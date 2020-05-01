@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-04-29 18:08+0000\n"
-"PO-Revision-Date: 2020-04-29 20:29+0200\n"
+"POT-Creation-Date: 2020-05-01 17:51+0000\n"
+"PO-Revision-Date: 2020-05-01 20:05+0200\n"
 "Last-Translator: mike99 <mike99@mail.to>\n"
 "Language-Team: openATV\n"
 "Language: de\n"
@@ -47,14 +47,6 @@ msgid ""
 msgstr ""
 "\n"
 " Kodi nicht installiert. Mit der Installation fortfahren?"
-
-# EventView.py#L324
-msgid ""
-"\n"
-"%Y/%m/%d  %H:%M - "
-msgstr ""
-"\n"
-"%d.%m.%Y  %H:%M - "
 
 msgid ""
 "\n"
@@ -273,6 +265,10 @@ msgstr ""
 msgid "   (2.1 GHz)"
 msgstr ""
 
+#, fuzzy, python-format
+msgid "  (%s x %s)"
+msgstr "%s (%s)\n"
+
 msgid "  Menu key : Select quad channel"
 msgstr "  MENU: Wähle Sendergruppe"
 
@@ -367,9 +363,6 @@ msgid "!! Bootloader Upgrade !!"
 msgstr "!! Bootloader Update !!"
 
 msgid "%-H:%M"
-msgstr ""
-
-msgid "%-H:%M - "
 msgstr ""
 
 msgid "%-H:%M:%S"
@@ -492,10 +485,6 @@ msgstr "%.0f MB"
 #, python-format
 msgid "%.2f GB"
 msgstr "%.2f GB"
-
-#, python-format
-msgid "%02d.%02d - %02d.%02d (%s%d min)"
-msgstr ""
 
 #, python-format
 msgid "%02d.%02d."
@@ -680,9 +669,6 @@ msgid "%A %d/%m"
 msgstr ""
 
 msgid "%A %d/%m/%Y"
-msgstr ""
-
-msgid "%A %e %b"
 msgstr ""
 
 msgid "%A %m/%-d"
@@ -1209,15 +1195,8 @@ msgstr "%d.%B %Y"
 msgid "%d.%03d GB"
 msgstr ""
 
-#
-msgid "%d.%B %Y"
-msgstr "%d.%B %Y"
-
 #, fuzzy
 msgid "%d.%m"
-msgstr "%d.%m.   "
-
-msgid "%d.%m.   "
 msgstr "%d.%m.   "
 
 #
@@ -1335,6 +1314,10 @@ msgstr ""
 #, python-format
 msgid "%s (%s)\n"
 msgstr "%s (%s)\n"
+
+#, fuzzy, python-format
+msgid "%s - %s (%s%d min)"
+msgstr "Slot %s - %s - %s"
 
 #, python-format
 msgid "%s - Setup"
@@ -6073,12 +6056,12 @@ msgid "Delete saved playlist"
 msgstr "Gespeicherte Playlist löschen"
 
 #
-msgid "Delete the character to the left of text cursor"
-msgstr "Lösche das Zeichen links vom Text-Cursor"
-
-#
 msgid "Delete the all the text"
 msgstr "Lösche den ganzen Text"
+
+#
+msgid "Delete the character to the left of text cursor"
+msgstr "Lösche das Zeichen links vom Text-Cursor"
 
 #
 msgid "Delete the character under the text cursor"
@@ -10696,22 +10679,6 @@ msgid "Move mode on"
 msgstr "Verschiebemodus an"
 
 #
-msgid "Move the text cursor left"
-msgstr "Bewegen Sie den Text-Cursor nach links"
-
-#
-msgid "Move the text cursor right"
-msgstr "Bewegen Sie den Text-Cursor nach rechts"
-
-#
-msgid "Move the text cursor to the first character"
-msgstr "Bewegen Sie im Textfeld den Cursor zum Anfang"
-
-#
-msgid "Move the text cursor to the last character"
-msgstr "Bewegen Sie im Textfeld den Cursor zum Ende"
-
-#
 msgid "Move the keyboard cursor down"
 msgstr "Bewegen Sie den Tastatur-Cursor nach unten"
 
@@ -10726,6 +10693,22 @@ msgstr "Bewegen Sie den Tastatur-Cursor nach rechts"
 #
 msgid "Move the keyboard cursor up"
 msgstr "Bewegen Sie den Tastatur-Cursor nach oben"
+
+#
+msgid "Move the text cursor left"
+msgstr "Bewegen Sie den Text-Cursor nach links"
+
+#
+msgid "Move the text cursor right"
+msgstr "Bewegen Sie den Text-Cursor nach rechts"
+
+#
+msgid "Move the text cursor to the first character"
+msgstr "Bewegen Sie im Textfeld den Cursor zum Anfang"
+
+#
+msgid "Move the text cursor to the last character"
+msgstr "Bewegen Sie im Textfeld den Cursor zum Ende"
 
 msgid "Move to home of list"
 msgstr "Springe zum Anfang der Liste"
@@ -14954,15 +14937,15 @@ msgstr ""
 msgid "Select the character or action under the keyboard cursor"
 msgstr "Wählen Sie das Zeichen oder die Aktion beim Cursor der Tastatur aus"
 
-#
-msgid "Select the locale from a menu"
-msgstr "Wählen Sie das Tastatur-Layout aus"
-
 msgid "Select the desired function and click on \"OK\" to assign it. Use \"CH+/-\" to toggle between the lists. Select an assigned function and click on \"OK\" to de-assign it. Use \"Next/Previous\" to change the order of the assigned functions."
 msgstr "Gewünschte Funktion auswählen und OK drücken, um sie zu belegen. Mit CH+/CH- zwischen den Listen umschalten. Zugeordnete Funktion wählen und OK drücken, um die Belegung zu entfernen. Mit '<' oder '>' die Funktionen sortieren."
 
 msgid "Select the highlighted image and reboot"
 msgstr "Ausgewähltes Image benutzen und neu starten"
+
+#
+msgid "Select the locale from a menu"
+msgstr "Wählen Sie das Tastatur-Layout aus"
 
 msgid "Select the manufacturer of your SCR device. If the manufacturer is not listed, set 'SCR' to 'user defined' and enter the device parameters manually according to its spec sheet."
 msgstr "Wählen Sie den Hersteller Ihres Unicable/SCR-Geräts aus. Wenn der Hersteller nicht aufgeführt ist, setzen Sie 'SCR' auf 'Benutzerdefiniert' und geben Sie die Geräteparameter gemäß dem zugehörigen Datenblatt manuell ein."
@@ -14998,6 +14981,16 @@ msgstr "Wählen Sie den Satelliten aus, den Sie konfigurieren wollen. Sobald die
 msgid "Select the satellite your dish receives from. If you are unsure select 'automatic' and the receiver will attempt to determine this for you."
 msgstr "Wählen Sie den Satelliten, von dem Ihr Gerät empfängt. Wenn Sie sich nicht sicher sind, wählen Sie 'automatisch' und der Empfänger wird versuchen, dies für Sie zu ermitteln."
 
+#
+#, fuzzy
+msgid "Select the shifted character set"
+msgstr "Wählen Sie das Zeichen oder die Aktion für den Cursor aus"
+
+#
+#, fuzzy
+msgid "Select the shifted character set for the next character only"
+msgstr "Shift nur für das nächste Zeichen benutzen"
+
 msgid "Select the sleep timer action."
 msgstr "Wählen Sie die Ausschalttimer Aktion."
 
@@ -15018,18 +15011,6 @@ msgstr "Wählen Sie den Typ des verwendeten LNB / Geräts (normalerweise 'Univer
 
 msgid "Select the type of Single Cable Reception device you are using."
 msgstr "Wählen Sie den Typ des Unicable/SCR-Geräts aus, das Sie verwenden."
-
-#
-msgid "Select the virtual keyboard locale from a menu"
-msgstr "Wählen Sie die Sprache von der virtuellen Tastatur"
-
-#
-msgid "Select the virtual keyboard shifted character set"
-msgstr "Wählen Sie das Zeichen oder die Aktion für den Cursor aus"
-
-#
-msgid "Select the virtual keyboard shifted character set for the next character only"
-msgstr "Shift nur für das nächste Zeichen benutzen"
 
 msgid "Select upgrade source"
 msgstr "Upgrade-Quelle auswählen"
@@ -16560,6 +16541,11 @@ msgstr "Skinauswahl"
 msgid "Skin setup"
 msgstr "Skinauswahl"
 
+#
+#, fuzzy, python-format
+msgid "Skin:\t\t%s"
+msgstr "Skins"
+
 msgid "SkinSelector"
 msgstr "Skinauswahl"
 
@@ -17507,6 +17493,9 @@ msgid "T2MI RAW Mode"
 msgstr ""
 
 msgid "TB"
+msgstr ""
+
+msgid "TEXT"
 msgstr ""
 
 #
@@ -23353,6 +23342,14 @@ msgstr "Umschalten"
 #~ "\n"
 #~ "Bitte folgenden Anschluss verwenden für IPTV Media Server?\n"
 
+# EventView.py#L324
+#~ msgid ""
+#~ "\n"
+#~ "%Y/%m/%d  %H:%M - "
+#~ msgstr ""
+#~ "\n"
+#~ "%d.%m.%Y  %H:%M - "
+
 #~ msgid ""
 #~ "\n"
 #~ "An Input/output error usually indicates a corrupted filesystem! Please check the filesystem of your timeshift-device!"
@@ -23436,6 +23433,13 @@ msgstr "Umschalten"
 #
 #~ msgid "%d services found!"
 #~ msgstr "%d Kanäle gefunden!"
+
+#
+#~ msgid "%d.%B %Y"
+#~ msgstr "%d.%B %Y"
+
+#~ msgid "%d.%m.   "
+#~ msgstr "%d.%m.   "
 
 #~ msgid "%k:%M %e/%m"
 #~ msgstr "%k:%M %e/%m"
@@ -25910,6 +25914,10 @@ msgstr "Umschalten"
 #~ msgid "Select skin:"
 #~ msgstr "Auswahl des Skins:"
 
+#
+#~ msgid "Select the virtual keyboard locale from a menu"
+#~ msgstr "Wählen Sie die Sprache von der virtuellen Tastatur"
+
 #~ msgid "Select your skin and press OK to activate the selected skin."
 #~ msgstr "Bitte einen Skin wählen und mit OK den Skin aktivieren."
 
@@ -27373,9 +27381,6 @@ msgstr "Umschalten"
 
 #~ msgid "slot%s - %s mode 12 (current image)"
 #~ msgstr "Slot %s - %s Mode 12 (aktuelles Image)"
-
-#~ msgid "slot%s - %s- %s "
-#~ msgstr "Slot %s - %s - %s"
 
 #
 #~ msgid "sort by date"
