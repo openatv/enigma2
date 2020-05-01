@@ -10,7 +10,7 @@ from Components.ScrollLabel import ScrollLabel
 from Components.Console import Console
 from Components.SystemInfo import SystemInfo
 from Components.config import config
-from enigma import eTimer, getEnigmaVersionString
+from enigma import eTimer, getEnigmaVersionString, getDesktop
 from boxbranding import getBoxType, getMachineBuild, getMachineBrand, getMachineName, getImageVersion, getImageBuild, getDriverDate
 
 from Components.Pixmap import MultiPixmap
@@ -152,6 +152,11 @@ def getAboutText():
 	day = string[6:8]
 	driversdate = '-'.join((year, month, day))
 	AboutText += _("Drivers:\t\t%s") % MyDateConverter(driversdate) + "\n"
+
+	skinWidth = getDesktop(0).size().width()
+	skinHeight = getDesktop(0).size().height()
+
+	AboutText += _("Skin:\t\t%s") % config.skin.primary_skin.value.split("/")[0] + _("  (%s x %s)") % (skinWidth, skinHeight) + "\n"
 
 	AboutText += _("GStreamer:\t\t%s") % about.getGStreamerVersionString() + "\n"
 	AboutText += _("Python:\t\t%s") % about.getPythonVersionString() + "\n"
