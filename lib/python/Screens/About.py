@@ -57,9 +57,15 @@ def parseLines(filename):
 	return ret
 
 def MyDateConverter(StringDate):
-	## StringDate must be a string "YYYY-MM-DD"
+	## StringDate must be a string "YYYY-MM-DD" or "YYYYMMDD"
 	try:
-		StringDate = StringDate.replace("-"," ")
+		if len(StringDate) == 8:
+			year = StringDate[0:4]
+			month = StringDate[4:6]
+			day = StringDate[6:8]
+			StringDate = ' '.join((year, month, day))
+		else:
+			StringDate = StringDate.replace("-"," ")
 		StringDate = time.strftime(config.usage.date.full.value, time.strptime(StringDate, "%Y %m %d"))
 		return StringDate
 	except:
@@ -143,15 +149,9 @@ def getAboutText():
 		AboutText += _("Selected Image:\t\t%s") % _("STARTUP_") + str(slot) + "  " + part + " " + bootmode + "\n"
 
 	AboutText += _("Version:\t\t%s") % getImageVersion() + "\n"
-	AboutText += _("Build:\t\t%s") % getImageBuild() + "\n"
+	AboutText += _("Build:\t\t%s") % MyDateConverter(getImageBuild()) + "\n"
 	AboutText += _("Kernel:\t\t%s") % about.getKernelVersionString() + "\n"
-
-	string = getDriverDate()
-	year = string[0:4]
-	month = string[4:6]
-	day = string[6:8]
-	driversdate = '-'.join((year, month, day))
-	AboutText += _("Drivers:\t\t%s") % MyDateConverter(driversdate) + "\n"
+	AboutText += _("Drivers:\t\t%s") % MyDateConverter(getDriverDate()) + "\n"
 
 	skinWidth = getDesktop(0).size().width()
 	skinHeight = getDesktop(0).size().height()
