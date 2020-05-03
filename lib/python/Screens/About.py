@@ -125,8 +125,8 @@ def getAboutText():
 			except:
 				pass
 
-	AboutText += _("CPU:\t\t%s") % about.getCPUString() + cpuMHz + "\n"
-	AboutText += _("Cores:\t\t%s") % about.getCpuCoresString() + "\n"
+	AboutText += _("CPU:\t\t%s%s   %s cores") % (about.getCPUString(), cpuMHz, about.getCpuCoresString()) + "\n"
+	#AboutText += _("Cores:\t\t%s") % about.getCpuCoresString() + "\n"
 
 	imagestarted = ""
 	bootname = ''
@@ -146,10 +146,10 @@ def getAboutText():
 			else:
 				image -=1
 			part = "SDcard slot %s (%s) " %(image, SystemInfo["canMultiBoot"][slot]['device'])
-		AboutText += _("Selected Image:\t\t%s") % _("STARTUP_") + str(slot) + "  " + part + " " + bootmode + "\n"
+		AboutText += _("Selected Image:\t\t%s") % _("STARTUP_") + str(slot) + "  (" + part + " " + bootmode + ")\n"
 
-	AboutText += _("Version:\t\t%s") % getImageVersion() + "\n"
-	AboutText += _("Build:\t\t%s") % MyDateConverter(getImageBuild()) + "\n"
+	AboutText += _("Version / Build:\t\t%s   (%s)") % (getImageVersion(), MyDateConverter(getImageBuild())) + "\n"
+	#AboutText += _("Build:\t\t%s") % MyDateConverter(getImageBuild()) + "\n"
 	AboutText += _("Kernel:\t\t%s") % about.getKernelVersionString() + "\n"
 	AboutText += _("Drivers:\t\t%s") % MyDateConverter(getDriverDate()) + "\n"
 
@@ -165,7 +165,7 @@ def getAboutText():
 	if MyFlashDate != _("unknown"):
 		AboutText += _("Installed:\t\t%s") % MyFlashDate + "\n"
 
-	AboutText += _("Last update:\t\t%s") % MyDateConverter(getEnigmaVersionString()) + "\n"
+	AboutText += _("Last E2 update:\t\t%s") % MyDateConverter(getEnigmaVersionString()) + "\n"
 
 	fp_version = getFPVersion()
 	if fp_version is None:
