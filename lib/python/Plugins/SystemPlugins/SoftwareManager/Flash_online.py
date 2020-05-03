@@ -197,7 +197,6 @@ class FlashImage(Screen):
 		self.containerbackup = None
 		self.containerofgwrite = None
 		self.getImageList = None
-		self.saveImageList = None
 		self.downloader = None
 		self.source = source
 		self.imagename = imagename
@@ -230,7 +229,6 @@ class FlashImage(Screen):
 			self.checkMedia(True)
 
 	def getImagelistCallback(self, imagedict):
-		self.saveImageList = imagedict
 		self.getImageList = None
 		choices = []
 		HIslot = len(imagedict) + 1
@@ -505,7 +503,6 @@ class FlashImage(Screen):
 		imagefiles = findimagefiles(self.unzippedimage)
 		if imagefiles:
 			self.ROOTFSSUBDIR = "none"
-			self.getImageList = self.saveImageList
 			if SystemInfo["canMultiBoot"]:
 				self.MTDKERNEL  = SystemInfo["canMultiBoot"][self.multibootslot]["kernel"].split('/')[2] 
 				self.MTDROOTFS  = SystemInfo["canMultiBoot"][self.multibootslot]["device"].split('/')[2] 
