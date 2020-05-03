@@ -455,10 +455,6 @@ msgid "%.2f GB"
 msgstr "%.2f ГБ"
 
 #, python-format
-msgid "%02d.%02d - %02d.%02d (%s%d min)"
-msgstr "%02d.%02d - %02d.%02d (%s%d хв.)"
-
-#, python-format
 msgid "%02d.%02d."
 msgstr "%02d.%02d."
 
@@ -1113,10 +1109,12 @@ msgstr ""
 #, python-format
 msgid ""
 "%s\n"
-"Press ok to close"
+"Press ok for multiboot selection\n"
+"Press exit to close"
 msgstr ""
 "%s\n"
-"Натисніть ОК, щоб закрити"
+"Натисніть OK для вибору іміджа\n"
+"Натисніть Exit, щоб вийти"
 
 #, python-format
 msgid "%s %02d.%02d."
@@ -1165,6 +1163,10 @@ msgstr " %s (%s)"
 #, python-format
 msgid "%s (%s)\n"
 msgstr "%s (%s)\n"
+
+#, python-format
+msgid "%s - %s (%s%d min)"
+msgstr "%s - %s (%s%d хв.)"
 
 #, python-format
 msgid "%s - Setup"
@@ -1294,6 +1296,9 @@ msgstr "(Вибрати режим)"
 
 msgid "(Show only reader:"
 msgstr "(Показати тільки рідер:"
+
+msgid "(current image)"
+msgstr "(поточний імідж)"
 
 msgid "(e.g. TV wakeup, but not switched to correct input)"
 msgstr "(наприклад, телевізор включився, але не переключився на правильний вхід)"
@@ -9294,7 +9299,7 @@ msgid "Local network"
 msgstr "Локальна мережа"
 
 msgid "Locale"
-msgstr "Місцевий"
+msgstr "Мова"
 
 msgid "Location"
 msgstr "Розташування"
@@ -15265,6 +15270,14 @@ msgstr "Слайд-шоу зверху вниз"
 msgid "Slot %d"
 msgstr "Слот %d"
 
+#, python-format
+msgid "Slot %s: %s%s"
+msgstr "Слот %s: %s%s"
+
+#, python-format
+msgid "Slot %s: %s - Mode %d%s"
+msgstr "Слот %s: %s - Режим %d%s"
+
 msgid "Slovak"
 msgstr "Словацька"
 
@@ -16074,7 +16087,7 @@ msgstr "ТБ"
 #. TRANSLATORS: Add here whatever should be shown in the "translator" about screen, up to 6 lines (use \n for newline)
 msgid "TRANSLATOR_INFO"
 msgstr ""
-"Переклад:  kvinto - 29.04.2020\n"
+"Переклад:  kvinto - 03.05.2020\n"
 "Сторінка:    https://gisclub.tv\n"
 "                  kvinto@rambler.ru"
 
@@ -19791,6 +19804,10 @@ msgstr "чорний список"
 msgid "blue"
 msgstr "синій"
 
+#, python-format
+msgid "bootmode = %s"
+msgstr "режим = %s"
+
 msgid "bottom"
 msgstr "знизу"
 
@@ -19984,6 +20001,9 @@ msgstr "драйвера"
 
 msgid "eMMC"
 msgstr "eMMC"
+
+msgid "eMMC slot %s"
+msgstr "eMMC слот %s"
 
 msgid "eSATA"
 msgstr "eSATA"
