@@ -529,7 +529,7 @@ class FlashImage(Screen):
 		if retval == 0:
 			self["header"].setText(_("Flashing image successful"))
 			self["summary_header"].setText(self["header"].getText())
-			self["info"].setText(_("%s\nPress ok to close") % self.imagename)
+			self["info"].setText(_("%s\nPress ok for multiboot selection\nPress exit to close") % self.imagename)
 		else:
 			self.session.openWithCallback(self.abort, MessageBox, _("Flashing image was not successful\n%s") % self.imagename, type=MessageBox.TYPE_ERROR, simple=True)
 
@@ -543,6 +543,9 @@ class FlashImage(Screen):
 	def ok(self):
 		fbClass.getInstance().unlock()
 		if self["header"].text == _("Flashing image successful"):
-			self.close()
+			if SystemInfo["canMultiBoot"]:
+				self.session.openWithCallback(self.abort, MultiBootSelector)
+			else:
+				self.close()
 		else:
 			return 0
