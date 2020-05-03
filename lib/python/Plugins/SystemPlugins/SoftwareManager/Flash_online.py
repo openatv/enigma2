@@ -9,6 +9,7 @@ from Components.ProgressBar import ProgressBar
 from Screens.MessageBox import MessageBox
 from Screens.ChoiceBox import ChoiceBox
 from Screens.Screen import Screen
+from Screens.MultiBootSelector import MultiBootSelector
 from Components.Console import Console
 from Tools.BoundFunction import boundFunction
 from Tools.Multiboot import GetImagelist, GetCurrentImage, GetCurrentImageMode, GetBoxName
