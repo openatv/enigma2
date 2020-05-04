@@ -122,7 +122,7 @@ def getAboutText():
 
 	MyFlashDate = about.getFlashDateString()
 	if MyFlashDate != _("unknown"):
-		AboutText += _("Installed:\t\t%s") % MyFlashDate + "\n"
+		AboutText += _("Installed:\t\t%s") % MyDateConverter(MyFlashDate) + "\n"
 
 	AboutText += _("Last E2 update:\t\t%s") % MyDateConverter(getEnigmaVersionString()) + "\n"
 
