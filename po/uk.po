@@ -237,6 +237,10 @@ msgstr "     неправильне місце призначення"
 msgid "   (%s MHz)"
 msgstr "   (%s MГц)"
 
+#, python-format
+msgid "  (%s x %s)"
+msgstr "  (%s x %s)"
+
 msgid "  Menu key : Select quad channel"
 msgstr "  Кнопка Меню : Вибір 4 канальної доріжки"
 
@@ -432,10 +436,6 @@ msgstr "%.0f МБ"
 #, python-format
 msgid "%.2f GB"
 msgstr "%.2f ГБ"
-
-#, python-format
-msgid "%02d.%02d - %02d.%02d (%s%d min)"
-msgstr "%02d.%02d - %02d.%02d (%s%d хв.)"
 
 #, python-format
 msgid "%02d.%02d."
@@ -1092,10 +1092,12 @@ msgstr ""
 #, python-format
 msgid ""
 "%s\n"
-"Press ok to close"
+"Press ok for multiboot selection\n"
+"Press exit to close"
 msgstr ""
 "%s\n"
-"Натисніть ОК, щоб закрити"
+"Натисніть OK для вибору іміджа\n"
+"Натисніть Exit, щоб вийти"
 
 #, python-format
 msgid "%s %02d.%02d."
@@ -1144,6 +1146,10 @@ msgstr " %s (%s)"
 #, python-format
 msgid "%s (%s)\n"
 msgstr "%s (%s)\n"
+
+#, python-format
+msgid "%s - %s (%s%d min)"
+msgstr "%s - %s (%s%d хв.)"
 
 #, python-format
 msgid "%s - Setup"
@@ -1273,6 +1279,9 @@ msgstr "(Вибрати режим)"
 
 msgid "(Show only reader:"
 msgstr "(Показати тільки рідер:"
+
+msgid "(current image)"
+msgstr "(поточний імідж)"
 
 msgid "(e.g. TV wakeup, but not switched to correct input)"
 msgstr "(наприклад, телевізор включився, але не переключився на правильний вхід)"
@@ -15176,6 +15185,10 @@ msgstr "Налаштування скіну"
 
 msgid "Skin setup"
 msgstr "Налаштування скіну"
+
+#, python-format
+msgid "Skin:\t\t%s"
+msgstr "Скін:\t\t%s"
 
 msgid "SkinSelector"
 msgstr "Вибір Скіну"
