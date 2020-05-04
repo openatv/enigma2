@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-03-20 18:43+0000\n"
-"PO-Revision-Date: 2020-03-21 11:41+0100\n"
+"POT-Creation-Date: 2020-05-01 17:51+0000\n"
+"PO-Revision-Date: 2020-05-02 12:01+0200\n"
 "Last-Translator: neoatomic <neoatomic@users.noreply.github.com>\n"
 "Language-Team: neoatomic\n"
 "Language: nl\n"
@@ -46,13 +46,6 @@ msgid ""
 msgstr ""
 "\n"
 "Kodi niet aanwezig. Doorgaan met installatie?"
-
-msgid ""
-"\n"
-"%Y/%m/%d  %H:%M - "
-msgstr ""
-"\n"
-"%Y/%m/%d  %H:%M - "
 
 msgid ""
 "\n"
@@ -258,6 +251,10 @@ msgstr "   (2.0 GHz)"
 msgid "   (2.1 GHz)"
 msgstr "   (2.1 GHz)"
 
+#, python-format
+msgid "  (%s x %s)"
+msgstr "  (%s x %s)"
+
 msgid "  Menu key : Select quad channel"
 msgstr "  Menu knop : Selecteer Quad zender"
 
@@ -354,9 +351,6 @@ msgstr "!! Bootloader update !!"
 msgid "%-H:%M"
 msgstr "%-H:%M"
 
-msgid "%-H:%M - "
-msgstr "%-H:%M - "
-
 msgid "%-H:%M:%S"
 msgstr "%-H:%M:%S"
 
@@ -402,6 +396,28 @@ msgstr "%-d-%b"
 
 msgid "%-d-%b-%Y"
 msgstr "%-d-%b-%Y"
+
+msgid "%-d. %B %Y"
+msgstr "%-d. %B %Y"
+
+msgid "%-d. %b"
+msgstr "%-d. %b"
+
+msgid "%-d. %b %Y"
+msgstr "%-d. %b %Y"
+
+msgid "%-d.%-m"
+msgstr "%-d.%-m"
+
+msgid "%-d.%-m.%Y"
+msgstr "%-d.%-m.%Y"
+
+msgid "%-d.%m"
+msgstr "%-d.%m"
+
+#| msgid "%d.%m.   "
+msgid "%-d.%m.%Y"
+msgstr "%-d.%m.%Y"
 
 msgid "%-d/%-m"
 msgstr "%-d/%-m"
@@ -455,10 +471,6 @@ msgid "%.2f GB"
 msgstr "%.2f GB"
 
 #, python-format
-msgid "%02d.%02d - %02d.%02d (%s%d min)"
-msgstr "%02d.%02d - %02d.%02d (%s%d min)"
-
-#, python-format
 msgid "%02d.%02d."
 msgstr "%02d.%02d."
 
@@ -498,6 +510,30 @@ msgstr "%A %-d-%B"
 
 msgid "%A %-d-%B-%Y"
 msgstr "%A %-d-%B-%Y"
+
+#| msgid "%A %-d %B"
+msgid "%A %-d. %B"
+msgstr "%A %-d. %B"
+
+#| msgid "%A %-d %B %Y"
+msgid "%A %-d. %B %Y"
+msgstr "%A %-d. %B %Y"
+
+#| msgid "%A %-d/%-m"
+msgid "%A %-d.%-m"
+msgstr "%A %-d.%-m"
+
+#| msgid "%A %-d/%-m/%Y"
+msgid "%A %-d.%-m.%Y"
+msgstr "%A %-d.%-m.%Y"
+
+#| msgid "%A %-d/%m"
+msgid "%A %-d.%m"
+msgstr "%A %-d.%m"
+
+#| msgid "%A %-d/%m/%Y"
+msgid "%A %-d.%m.%Y"
+msgstr "%A %-d.%m.%Y"
 
 msgid "%A %-d/%-m"
 msgstr "%A %-d/%-m"
@@ -583,6 +619,30 @@ msgstr "%A %d-%B"
 msgid "%A %d-%B-%Y"
 msgstr "%A %d-%B-%Y"
 
+#| msgid "%A %d %B"
+msgid "%A %d. %B"
+msgstr "%A %d. %B"
+
+#| msgid "%A %d %B %Y"
+msgid "%A %d. %B %Y"
+msgstr "%A %d. %B %Y"
+
+#| msgid "%A %d/%-m"
+msgid "%A %d.%-m"
+msgstr "%A %d.%-m"
+
+#| msgid "%A %d/%-m/%Y"
+msgid "%A %d.%-m.%Y"
+msgstr "%A %d.%-m.%Y"
+
+#| msgid "%A %d/%m"
+msgid "%A %d.%m"
+msgstr "%A %d.%m"
+
+#| msgid "%A %d/%m/%Y"
+msgid "%A %d.%m.%Y"
+msgstr "%A %d.%m.%Y"
+
 msgid "%A %d/%-m"
 msgstr "%A %d/%-m"
 
@@ -594,9 +654,6 @@ msgstr "%A %d/%m"
 
 msgid "%A %d/%m/%Y"
 msgstr "%A %d/%m/%Y"
-
-msgid "%A %e %b"
-msgstr "%A %e %b"
 
 msgid "%A %m/%-d"
 msgstr "%A %m/%-d"
@@ -724,6 +781,34 @@ msgstr "%a %-d-%b"
 msgid "%a %-d-%b-%Y"
 msgstr "%a %-d-%b-%Y"
 
+#| msgid "%a %-d %B %Y"
+msgid "%a %-d. %B %Y"
+msgstr "%a %-d. %B %Y"
+
+#| msgid "%a %-d %b"
+msgid "%a %-d. %b"
+msgstr "%a %-d. %b"
+
+#| msgid "%a %-d %b %Y"
+msgid "%a %-d. %b %Y"
+msgstr "%a %-d. %b %Y"
+
+#| msgid "%a %-d/%-m"
+msgid "%a %-d.%-m"
+msgstr "%a %-d.%-m"
+
+#| msgid "%a %-d/%-m/%Y"
+msgid "%a %-d.%-m.%Y"
+msgstr "%a %-d.%-m.%Y"
+
+#| msgid "%a %-d/%m"
+msgid "%a %-d.%m"
+msgstr "%a %-d.%m"
+
+#| msgid "%a %-d/%m/%Y"
+msgid "%a %-d.%m.%Y"
+msgstr "%a %-d.%m.%Y"
+
 msgid "%a %-d/%-m"
 msgstr "%a %-d/%-m"
 
@@ -843,6 +928,34 @@ msgstr "%a %d-%b"
 
 msgid "%a %d-%b-%Y"
 msgstr "%a %d-%b-%Y"
+
+#| msgid "%a %d %B %Y"
+msgid "%a %d. %B %Y"
+msgstr "%a %d. %B %Y"
+
+#| msgid "%a %d %b"
+msgid "%a %d. %b"
+msgstr "%a %d. %b"
+
+#| msgid "%a %d %b %Y"
+msgid "%a %d. %b %Y"
+msgstr "%a %d. %b %Y"
+
+#| msgid "%a %d/%-m"
+msgid "%a %d.%-m"
+msgstr "%a %d.%-m"
+
+#| msgid "%a %d/%-m/%Y"
+msgid "%a %d.%-m.%Y"
+msgstr "%a %d.%-m.%Y"
+
+#| msgid "%a %d/%m"
+msgid "%a %d.%m"
+msgstr "%a %d.%m"
+
+#| msgid "%a %d/%m/%Y"
+msgid "%a %d.%m.%Y"
+msgstr "%a %d.%m.%Y"
 
 msgid "%a %d/%-m"
 msgstr "%a %d/%-m"
@@ -1038,15 +1151,36 @@ msgstr "%d-%b-%Y"
 msgid "%d-%m"
 msgstr "%d-%m"
 
+#| msgid "%d %B %Y"
+msgid "%d. %B %Y"
+msgstr "%d. %B %Y"
+
+msgid "%d. %b"
+msgstr "%d. %b"
+
+#| msgid "%d %b %Y"
+msgid "%d. %b %Y"
+msgstr "%d. %b %Y"
+
+#| msgid "%d.%m.   "
+msgid "%d.%-m"
+msgstr "%d.%-m"
+
+#| msgid "%d.%B %Y"
+msgid "%d.%-m.%Y"
+msgstr "%d.%-m.%Y"
+
 #, python-format
 msgid "%d.%03d GB"
 msgstr "%d.%03d GB"
 
-msgid "%d.%B %Y"
-msgstr "%d.%B %Y"
+#| msgid "%d.%m.   "
+msgid "%d.%m"
+msgstr "%d.%m"
 
-msgid "%d.%m.   "
-msgstr "%d.%m.   "
+#| msgid "%d.%B %Y"
+msgid "%d.%m.%Y"
+msgstr "%d.%m.%Y"
 
 msgid "%d/%-m"
 msgstr "%d/%-m"
@@ -1159,6 +1293,11 @@ msgid "%s (%s)\n"
 msgstr "%s (%s)\n"
 
 #, python-format
+#| msgid "slot%s - %s- %s "
+msgid "%s - %s (%s%d min)"
+msgstr "%s - %s (%s%d min)"
+
+#, python-format
 msgid "%s - Setup"
 msgstr "%s - Instellingen"
 
@@ -1173,10 +1312,6 @@ msgstr "%s Instellingen"
 #, python-format
 msgid "%s additional screens"
 msgstr "%s extra schermen"
-
-#, python-format
-msgid "%s build date %s"
-msgstr "%s Build datum %s"
 
 #. TRANSLATORS: The satellite with name '%s' is no longer used after a configuration change. The user is asked whether or not the satellite should be deleted.
 #, python-format
@@ -1284,6 +1419,10 @@ msgstr "(Selectmode)"
 
 msgid "(Show only reader:"
 msgstr "(Toon alleen lezer:"
+
+#| msgid "Current time"
+msgid "(current image)"
+msgstr "(huidige image)"
 
 msgid "(e.g. TV wakeup, but not switched to correct input)"
 msgstr "(b.v. TV ontwaakt, maar schakelt niet naar correcte ingang/poort)"
@@ -3045,6 +3184,12 @@ msgstr "Backup beheer"
 msgid "Backup Mode"
 msgstr "Backup modus"
 
+msgid "Backup Mode: Flash Online\n"
+msgstr "Back-up modus: flash online\n"
+
+msgid "Backup Mode: USB Recovery\n"
+msgstr "Back-up modus: herstel via USB\n"
+
 msgid "Backup Settings"
 msgstr "Backup instellingen"
 
@@ -3623,6 +3768,12 @@ msgstr "Uitvoering annuleren?"
 msgid "Cancel save timeshift as movie"
 msgstr "Annuleer het opslaan van Timeshift als opname"
 
+msgid "Cancel the image selection and exit"
+msgstr "Annuleer de image selectie en exit"
+
+msgid "Cancel the image selection and exit all menus"
+msgstr "Annuleer de image selectie en exit alle menu's"
+
 msgid "Cancel the selection"
 msgstr "Annuleer de selectie"
 
@@ -3762,9 +3913,6 @@ msgstr "Zenderinfo"
 
 msgid "Channel List"
 msgstr "Zenderlijst"
-
-msgid "Channel Name"
-msgstr "Zender naam"
 
 msgid "Channel button always changes sides"
 msgstr "Zender knop wisselt altijd zijdes"
@@ -4006,9 +4154,6 @@ msgstr "Gebruikers IP"
 
 msgid "Clients"
 msgstr "Gebruikers"
-
-msgid "Clock"
-msgstr "Klok"
 
 msgid "Clock:"
 msgstr "Klok:"
@@ -4739,6 +4884,15 @@ msgstr "Dagnaam D maand jaar"
 msgid "Dayname D-Month-Year"
 msgstr "Dagnaam D-maand-jaar"
 
+msgid "Dayname D. Month Year"
+msgstr "Datum D. maand jaar"
+
+msgid "Dayname D.M.Year"
+msgstr "Datum D.M.jaar"
+
+msgid "Dayname D.MM.Year"
+msgstr "Datum D.MM.jaar"
+
 msgid "Dayname D/M/Year"
 msgstr "Dagnaam D/M/jaar"
 
@@ -4750,6 +4904,15 @@ msgstr "Dagnaam DD maand jaar"
 
 msgid "Dayname DD-Month-Year"
 msgstr "Dagnaam DD-maand-jaar"
+
+msgid "Dayname DD. Month Year"
+msgstr "Datum DD. maand jaar"
+
+msgid "Dayname DD.M.Year"
+msgstr "Datum DD.M.jaar"
+
+msgid "Dayname DD.MM.Year"
+msgstr "Datum DD.MM.jaar"
 
 msgid "Dayname DD/M/Year"
 msgstr "Dagnaam DD/M/jaar"
@@ -4962,11 +5125,14 @@ msgstr "Verwijder een item uit de afspeellijst"
 msgid "Delete saved playlist"
 msgstr "Verwijder een opgeslagen afspeellijst"
 
-msgid "Delete the character to the left of text buffer cursor"
-msgstr "Verwijder het karakter links van de tekst cursor"
+msgid "Delete the all the text"
+msgstr "Verwijder de tekst"
 
-msgid "Delete the character under the text buffer cursor"
-msgstr "Verwijder het karakter onder de tekst cursor"
+msgid "Delete the character to the left of text cursor"
+msgstr "Verwijder het karakter links van de cursor"
+
+msgid "Delete the character under the text cursor"
+msgstr "Verwijder het karakter onder de cursor"
 
 msgid "Delete the current timeshift buffer and restart timeshift"
 msgstr "Verwijder de huidige Timeshift-buffer en herstart Timeshift"
@@ -5333,10 +5499,6 @@ msgstr "Wilt u de DVD bekijken alvorens deze te branden?"
 
 msgid "Do you want to produce this collection?"
 msgstr "Wilt u deze collectie te produceren?"
-
-#, python-format
-msgid "Do you want to reboot now the image in slot %s?"
-msgstr "Wilt u nu herstarten het geselecteerde Image in slot %s?"
 
 #, python-format
 msgid "Do you want to reboot your %s %s"
@@ -7483,16 +7645,9 @@ msgid "Image Version"
 msgstr "Image versie"
 
 #, python-format
-msgid "Image Version %s"
-msgstr "Image versie %s"
-
-#, python-format
-msgid "Image created on: %s/%s-%s-%s-backup-%s_mmc.zip"
-msgstr "Image gecreëerd op: %s/%s-%s-%s-backup-%s_mmc.zip"
-
-#, python-format
-msgid "Image created on: %s/%s-%s-%s-backup-%s_recovery.zip"
-msgstr "Image gecreëerd op: %s/%s-%s-%s-backup-%s_recovery.zip"
+#| msgid "Image created on: %s/%s-%s-%s-backup-%s_recovery.zip"
+msgid "Image created on: %s/%s-%s-%s-backup-%s_recovery_emmc.zip"
+msgstr "Image gemaakt op: %s/%s-%s-%s-backup-%s_recovery_emmc.zip"
 
 #, python-format
 msgid "Image created on: %s/%s-%s-%s-backup-%s_usb.zip"
@@ -7615,12 +7770,6 @@ msgstr "Infotainment"
 
 msgid "Init"
 msgstr "Initialiseren"
-
-msgid "Init SDCARD"
-msgstr "Initialiseren SD kaart"
-
-msgid "Init SDcard"
-msgstr "Initialiseren SD kaart"
 
 msgid "Initial lock ratio"
 msgstr "Initiële lock ratio"
@@ -7975,6 +8124,9 @@ msgstr "Toetsenbord"
 
 msgid "Keyboard data entry"
 msgstr "Toetsenbord gegevens invoer"
+
+msgid "Keyboard long"
+msgstr "Toetsenbord lang"
 
 msgid "Keymap Selection"
 msgstr "Keymap toewijzen"
@@ -8803,29 +8955,29 @@ msgstr "Verplaats modus uit"
 msgid "Move mode on"
 msgstr "Verplaats modus aan"
 
-msgid "Move the text buffer cursor left"
-msgstr "Verplaatst de tekst cursor naar links"
-
-msgid "Move the text buffer cursor right"
-msgstr "Verplaatst de tekst cursor naar rechts"
-
-msgid "Move the text buffer cursor to the first character"
-msgstr "Verplaatst de tekst cursor naar het eerste karakter"
-
-msgid "Move the text buffer cursor to the last character"
-msgstr "Verplaatst de tekst cursor naar de laatste karakter"
-
-msgid "Move the virtual keyboard cursor down"
+msgid "Move the keyboard cursor down"
 msgstr "Verplaats de cursor van het virtuele toetsenbord naar onder"
 
-msgid "Move the virtual keyboard cursor left"
+msgid "Move the keyboard cursor left"
 msgstr "Verplaats de cursor van het virtuele toetsenbord naar links"
 
-msgid "Move the virtual keyboard cursor right"
+msgid "Move the keyboard cursor right"
 msgstr "Verplaats de cursor van het virtuele toetsenbord naar rechts"
 
-msgid "Move the virtual keyboard cursor up"
+msgid "Move the keyboard cursor up"
 msgstr "Verplaats de cursor van het virtuele toetsenbord naar boven"
+
+msgid "Move the text cursor left"
+msgstr "Verplaats de cursor naar links"
+
+msgid "Move the text cursor right"
+msgstr "Verplaats de cursor naar rechts"
+
+msgid "Move the text cursor to the first character"
+msgstr "Verplaats de cursor naar het eerste karakter"
+
+msgid "Move the text cursor to the last character"
+msgstr "Verplaatst de cursor naar het laatste karakter"
 
 msgid "Move to home of list"
 msgstr "Ga naar begin van de lijst"
@@ -8902,12 +9054,14 @@ msgstr "Multi EPG"
 msgid "MultiBoot Image Manager"
 msgstr "MultiBoot image manager"
 
+msgid "MultiBoot Image Selector"
+msgstr "Multiboot Image Selector"
+
+msgid "MultiBootSelector Actions"
+msgstr "Multiboot Selector acties"
+
 msgid "MultiQuickButton"
 msgstr "MultiQuickButton"
-
-#, python-format
-msgid "Multiboot ERROR! - no %s in boot partition."
-msgstr "Multiboot FOUT! - geen %s in bootpartitie."
 
 msgid "Multiboot Image Selector"
 msgstr "Multiboot Image Selector"
@@ -8918,21 +9072,6 @@ msgstr "Multiboot Image gecreëerd op: %s/%s-%s-%s-backup-%s_usb.zip"
 
 msgid "Multiboot Manager"
 msgstr "MultiBoot manager"
-
-msgid ""
-"Multiboot manager - Cannot initialize SDcard when running image on SDcard."
-msgstr ""
-"Multiboot manager - Kan SD kaart niet initialiseren als image wordt "
-"uitgevoerd op de SD kaart."
-
-msgid ""
-"Multiboot manager - SDcard initialization run, please restart your Image."
-msgstr ""
-"Multiboot manager - SD kaart initialiseren uitvoeren, a.u.b. uw Image "
-"herstarten."
-
-msgid "Multiboot manager - The SDcard must be at least 8MB."
-msgstr "Multiboot manager - De SD kaart moet tenminste 8MB zijn."
 
 msgid "Multimedia"
 msgstr "Multimedia"
@@ -10632,9 +10771,6 @@ msgstr "Druk '0' om tussen de PiP modes te schakelen"
 msgid "Press INFO on your remote control for additional information."
 msgstr "Druk INFO op uw afstandsbediening voor meer informatie."
 
-msgid "Press Init to format SDcard."
-msgstr "Druk op Init om SD kaart te formatteren."
-
 msgid "Press MENU on your remote control for additional options."
 msgstr "Druk MENU op uw afstandsbediening voor meer opties."
 
@@ -11690,13 +11826,6 @@ msgstr ""
 msgid "SD"
 msgstr "SD"
 
-msgid ""
-"SDcard is not initialised for multiboot - Exit and use MultiBoot Image "
-"Manager to initialise"
-msgstr ""
-"SD-kaart is niet geïnitialiseerd voor multiboot - Sluit af en gebruik "
-"MultiBoot Image Manager om te initialiseren"
-
 msgid "SDcard switch ERROR! - H9 root files not transferred to SD card"
 msgstr "SD kaart switch FOUT! - H9 root bestanden niet overgezet naar SD kaart"
 
@@ -12310,7 +12439,7 @@ msgstr ""
 "is de frequentie die de SCR switch gebruikt om de gevraagde transponder toe "
 "te kennen aan de tuner."
 
-msgid "Select the character or action under the virtual keyboard cursor"
+msgid "Select the character or action under the keyboard cursor"
 msgstr ""
 "Selecteer het karakter of de actie onder de cursor van het virtuele "
 "toetsenbord"
@@ -12324,6 +12453,13 @@ msgstr ""
 "Selecteer de gewenste functie en klik op \"OK\" om deze toe te wijzen. "
 "Gebruik \"Ch+/-\" om te schakelen tussen de lijsten. Selecteer een "
 "toegewezen functie en klik op \"OK\" om deze ongedaan te maken."
+
+msgid "Select the highlighted image and reboot"
+msgstr "Selecteer het gemarkeerde image en reboot"
+
+msgid "Select the locale from a menu"
+msgstr ""
+"Selecteer de landinstellingen voor het virtuele toetsenbord in het menu"
 
 msgid ""
 "Select the manufacturer of your SCR device. If the manufacturer is not "
@@ -12410,6 +12546,14 @@ msgstr ""
 "bent, kiest u 'automatisch' waarna de ontvanger zelf zal proberen dit te "
 "bepalen."
 
+msgid "Select the shifted character set"
+msgstr "Selecteer de SHIFT karakterset voor het virtuele toetsenbord"
+
+msgid "Select the shifted character set for the next character only"
+msgstr ""
+"Selecteer de SHIFT karakterset voor het virtuele toetsenbord alleen voor de "
+"volgende letter"
+
 msgid "Select the sleep timer action."
 msgstr "Selecteer slaap timer actie."
 
@@ -12432,19 +12576,6 @@ msgstr ""
 
 msgid "Select the type of Single Cable Reception device you are using."
 msgstr "Selecteer het type enkele kabel ontvangst apparaat dat u gebruikt."
-
-msgid "Select the virtual keyboard locale from a menu"
-msgstr ""
-"Selecteer de landinstellingen voor het virtuele toetsenbord in het menu"
-
-msgid "Select the virtual keyboard shifted character set"
-msgstr "Selecteer de hoofdletter set voor het virtuele toetsenbord"
-
-msgid ""
-"Select the virtual keyboard shifted character set for the next character only"
-msgstr ""
-"Selecteer de hoofdletter set voor het virtuele toetsenbord enkel voor de "
-"volgende letter"
 
 msgid "Select upgrade source"
 msgstr "Selecteer de update bron"
@@ -13542,6 +13673,11 @@ msgstr "Skin selecteren"
 msgid "Skin setup"
 msgstr "Skin selecteren"
 
+#, python-format
+#| msgid "Skins"
+msgid "Skin:\t\t%s"
+msgstr "Skin:\t\t%s"
+
 msgid "SkinSelector"
 msgstr "Skin selecteren"
 
@@ -13602,6 +13738,16 @@ msgstr "Schuiven boven>beneden"
 #, python-format
 msgid "Slot %d"
 msgstr "Slot %d"
+
+#, python-format
+#| msgid "slot%s - %s - %s "
+msgid "Slot %s: %s - Mode %d%s"
+msgstr "Slot %s: %s - Mode %d%s"
+
+#, python-format
+#| msgid "DiSEqC port %s: %s"
+msgid "Slot %s: %s%s"
+msgstr "Slot %s: %s%s"
 
 msgid "Slovak"
 msgstr "Slovaaks"
@@ -14299,6 +14445,9 @@ msgstr "T2MI RAW Modus"
 
 msgid "TB"
 msgstr "TB"
+
+msgid "TEXT"
+msgstr "TEKST"
 
 #. TRANSLATORS: Add here whatever should be shown in the "translator" about screen, up to 6 lines (use \n for newline)
 msgid "TRANSLATOR_INFO"
@@ -18897,36 +19046,9 @@ msgid "slot%s - %s (current image)"
 msgstr "slot%s - %s (huidige image)"
 
 #, python-format
-msgid "slot%s - %s - %s "
-msgstr "slot%s - %s - %s "
-
-#, python-format
-msgid "slot%s - %s - %s (current image)"
-msgstr "slot%s - %s - %s (huidige image)"
-
-#, python-format
-msgid "slot%s - %s - %s as USB Recovery"
-msgstr "slot%s - %s - %s als USB Herstel"
-
-#, python-format
-msgid "slot%s - %s mode 1"
-msgstr "slot%s - %s modus 1"
-
-#, python-format
-msgid "slot%s - %s mode 1 (current image)"
-msgstr "slot%s - %s mode 1 (huidige image)"
-
-#, python-format
-msgid "slot%s - %s mode 12"
-msgstr "slot%s - %s modus 12"
-
-#, python-format
-msgid "slot%s - %s mode 12 (current image)"
-msgstr "slot%s - %s mode 12 (huidige image)"
-
-#, python-format
-msgid "slot%s - %s- %s "
-msgstr "slot%s - %s- %s "
+#| msgid "slot%s - %s - %s as USB Recovery"
+msgid "slot%s - %s as USB Recovery"
+msgstr "slot%s - %s voor herstel via USB"
 
 msgid "slow"
 msgstr "langzaam"
@@ -19088,9 +19210,6 @@ msgstr "niet beschikbaar"
 msgid "unconfirmed"
 msgstr "onbevestigd"
 
-msgid "unknow"
-msgstr "onbekend"
-
 msgid "unknown"
 msgstr "onbekend"
 
@@ -19216,9 +19335,6 @@ msgstr "breedte"
 
 msgid "will take about 1-15 minutes for this system\n"
 msgstr "duurt ongeveer 1-15 minuten voor dit systeem\n"
-
-msgid "will take about 30 minutes for this system\n"
-msgstr "duurt ongeveer 30 minuten voor dit systeem\n"
 
 msgid "winter sport"
 msgstr "wintersport"
@@ -20751,6 +20867,9 @@ msgstr ""
 msgid "Configure your NTP server."
 msgstr "Configureer NTP server."
 
+msgid "Control LED can be turned on or off here."
+msgstr "Power LED kan hier worden in- of uitgeschakeld."
+
 msgid "Control of the position how finished timer are shown in the Timer List."
 msgstr "Stel in waar voltooide timers in de timerlijst moeten staan."
 
@@ -20858,9 +20977,6 @@ msgid ""
 msgstr ""
 "Dim het display tot het niveau van 'Helderheid (gedimd)', na een in te "
 "stellen tijd."
-
-msgid "Disable all VFD Symbols"
-msgstr "Uitschakelen van alle VFD symbolen"
 
 msgid "Disable background scanning"
 msgstr "Scannen op de achtergrond uitschakelen"
@@ -21643,9 +21759,6 @@ msgstr "Actualiseer elke X uur"
 
 msgid "Remember last service in PiP"
 msgstr "Onthoudt de laatste gekozen zender in PIP"
-
-msgid "Remote control model shown"
-msgstr "Afstandsbediening grafisch weergeven"
 
 msgid "Remove completed timers after (days)"
 msgstr "Verwijder voltooide timers na (aantal) dagen"
@@ -22581,6 +22694,9 @@ msgstr ""
 msgid "Tuner slot"
 msgstr "Tunerslot"
 
+msgid "Turn on the control LED."
+msgstr "Power LED inschakelen"
+
 msgid "Turn on the power LED."
 msgstr "Power LED inschakelen"
 
@@ -22984,10 +23100,6 @@ msgstr ""
 "Bij het overschakelen naar een andere zender wordt normaal gesproken de "
 "gehele transponder gescand op wijzigingen.\n"
 "A.u.b. alleen activeren, als u weet wat u doet."
-
-msgid ""
-"Which remote control gets shown. Only influences graphical representation."
-msgstr "Hier kunt u zien welke afstandsbediening grafisch wordt weergegeven."
 
 msgid ""
 "With this option set to 'yes' the channel lists will always show you the "
@@ -23443,3 +23555,114 @@ msgstr "Tijd tussen afbeeldingen in image viewer slideshow."
 
 msgid "Time for Slideshow"
 msgstr "Tussentijd voor slideshow afbeeldingen"
+
+#~ msgid ""
+#~ "\n"
+#~ "%Y/%m/%d  %H:%M - "
+#~ msgstr ""
+#~ "\n"
+#~ "%Y/%m/%d  %H:%M - "
+
+#~ msgid "%-H:%M - "
+#~ msgstr "%-H:%M - "
+
+#, python-format
+#~ msgid "%02d.%02d - %02d.%02d (%s%d min)"
+#~ msgstr "%02d.%02d - %02d.%02d (%s%d min)"
+
+#~ msgid "%A %e %b"
+#~ msgstr "%A %e %b"
+
+#, python-format
+#~ msgid "%s build date %s"
+#~ msgstr "%s Build datum %s"
+
+#~ msgid "Channel Name"
+#~ msgstr "Zender naam"
+
+#~ msgid "Clock"
+#~ msgstr "Klok"
+
+#, python-format
+#~ msgid "Do you want to reboot now the image in slot %s?"
+#~ msgstr "Wilt u nu herstarten het geselecteerde Image in slot %s?"
+
+#, python-format
+#~ msgid "Image Version %s"
+#~ msgstr "Image versie %s"
+
+#, python-format
+#~ msgid "Image created on: %s/%s-%s-%s-backup-%s_mmc.zip"
+#~ msgstr "Image gecreëerd op: %s/%s-%s-%s-backup-%s_mmc.zip"
+
+#~ msgid "Init SDCARD"
+#~ msgstr "Initialiseren SD kaart"
+
+#~ msgid "Init SDcard"
+#~ msgstr "Initialiseren SD kaart"
+
+#, python-format
+#~ msgid "Multiboot ERROR! - no %s in boot partition."
+#~ msgstr "Multiboot FOUT! - geen %s in bootpartitie."
+
+#~ msgid ""
+#~ "Multiboot manager - Cannot initialize SDcard when running image on SDcard."
+#~ msgstr ""
+#~ "Multiboot manager - Kan SD kaart niet initialiseren als image wordt "
+#~ "uitgevoerd op de SD kaart."
+
+#~ msgid ""
+#~ "Multiboot manager - SDcard initialization run, please restart your Image."
+#~ msgstr ""
+#~ "Multiboot manager - SD kaart initialiseren uitvoeren, a.u.b. uw Image "
+#~ "herstarten."
+
+#~ msgid "Multiboot manager - The SDcard must be at least 8MB."
+#~ msgstr "Multiboot manager - De SD kaart moet tenminste 8MB zijn."
+
+#~ msgid "Press Init to format SDcard."
+#~ msgstr "Druk op Init om SD kaart te formatteren."
+
+#~ msgid ""
+#~ "SDcard is not initialised for multiboot - Exit and use MultiBoot Image "
+#~ "Manager to initialise"
+#~ msgstr ""
+#~ "SD-kaart is niet geïnitialiseerd voor multiboot - Sluit af en gebruik "
+#~ "MultiBoot Image Manager om te initialiseren"
+
+#, python-format
+#~ msgid "slot%s - %s - %s (current image)"
+#~ msgstr "slot%s - %s - %s (huidige image)"
+
+#, python-format
+#~ msgid "slot%s - %s mode 1"
+#~ msgstr "slot%s - %s modus 1"
+
+#, python-format
+#~ msgid "slot%s - %s mode 1 (current image)"
+#~ msgstr "slot%s - %s mode 1 (huidige image)"
+
+#, python-format
+#~ msgid "slot%s - %s mode 12"
+#~ msgstr "slot%s - %s modus 12"
+
+#, python-format
+#~ msgid "slot%s - %s mode 12 (current image)"
+#~ msgstr "slot%s - %s mode 12 (huidige image)"
+
+#~ msgid "unknow"
+#~ msgstr "onbekend"
+
+#~ msgid "will take about 30 minutes for this system\n"
+#~ msgstr "duurt ongeveer 30 minuten voor dit systeem\n"
+
+#~ msgid "Disable all VFD Symbols"
+#~ msgstr "Uitschakelen van alle VFD symbolen"
+
+#~ msgid "Remote control model shown"
+#~ msgstr "Afstandsbediening grafisch weergeven"
+
+#~ msgid ""
+#~ "Which remote control gets shown. Only influences graphical representation."
+#~ msgstr ""
+#~ "Hier kunt u zien welke afstandsbediening grafisch wordt weergegeven."
