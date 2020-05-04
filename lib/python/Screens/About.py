@@ -86,47 +86,7 @@ def getAboutText():
 	if path.exists('/proc/stb/info/chipset'):
 		AboutText += _("Chipset:\t\t%s") % about.getChipSetString() + "\n"
 
-	cpuMHz = ""
-	if getMachineBuild() in ('u41','u42','u43'):
-		cpuMHz = _("   (1.0 GHz)")
-	elif getMachineBuild() in ('dags72604','vusolo4k','vuultimo4k','vuzero4k','gb72604'):
-		cpuMHz = _("   (1.5 GHz)")
-	elif getMachineBuild() in ('formuler1tc','formuler1', 'triplex', 'tiviaraplus'):
-		cpuMHz = _("   (1.3 GHz)")
-	elif getMachineBuild() in ('gbmv200','u51','u5','u53','u532','u533','u52','u54','u55','u56','u5pvr','h9','h9combo','h10','cc1','sf8008','sf8008m','hd60','hd61','i55plus','ustym4kpro','beyonwizv2','viper4k','v8plus','multibox'):
-		cpuMHz = _("   (1.6 GHz)")
-	elif getMachineBuild() in ('vuuno4kse','vuuno4k','dm900','dm920', 'gb7252', 'dags7252','xc7439','8100s'):
-		cpuMHz = _("   (1.7 GHz)")
-	elif getMachineBuild() in ('alien5',):
-		cpuMHz = _("   (2.0 GHz)")
-	elif getMachineBuild() in ('vuduo4k',):
-		cpuMHz = _("   (2.1 GHz)")
-	elif getMachineBuild() in ('sf5008','et13000','et1x000','hd52','hd51','sf4008','vs1500','h7','osmio4k','osmio4kplus','osmini4k'):
-		try:
-			import binascii
-			f = open('/sys/firmware/devicetree/base/cpus/cpu@0/clock-frequency', 'rb')
-			clockfrequency = f.read()
-			f.close()
-			cpuMHz = _("   (%s MHz)") % str(round(int(binascii.hexlify(clockfrequency), 16)/1000000,1))
-		except:
-			cpuMHz = _("   (1.7 GHz)")
-	else:
-		if path.exists('/proc/cpuinfo'):
-			f = open('/proc/cpuinfo', 'r')
-			temp = f.readlines()
-			f.close()
-			try:
-				for lines in temp:
-					lisp = lines.split(': ')
-					if lisp[0].startswith('cpu MHz'):
-						#cpuMHz = "   (" +  lisp[1].replace('\n', '') + " MHz)"
-						cpuMHz = "   (" +  str(int(float(lisp[1].replace('\n', '')))) + " MHz)"
-						break
-			except:
-				pass
-
-	AboutText += _("CPU:\t\t%s%s   %s cores") % (about.getCPUString(), cpuMHz, about.getCpuCoresString()) + "\n"
-	#AboutText += _("Cores:\t\t%s") % about.getCpuCoresString() + "\n"
+	AboutText += _("CPU:\t\t%s  (%s)  %s cores") % (about.getCPUString(), about.getCPUSpeedString(), about.getCpuCoresString()) + "\n"
 
 	imagestarted = ""
 	bootname = ''
@@ -148,8 +108,7 @@ def getAboutText():
 			part = "SDcard slot %s (%s) " %(image, SystemInfo["canMultiBoot"][slot]['device'])
 		AboutText += _("Selected Image:\t\t%s") % _("STARTUP_") + str(slot) + "  (" + part + " " + bootmode + ")\n"
 
-	AboutText += _("Version / Build:\t\t%s   (%s)") % (getImageVersion(), MyDateConverter(getImageBuild())) + "\n"
-	#AboutText += _("Build:\t\t%s") % MyDateConverter(getImageBuild()) + "\n"
+	AboutText += _("Version / Build:\t\t%s  (%s)") % (getImageVersion(), MyDateConverter(getImageBuild())) + "\n"
 	AboutText += _("Kernel:\t\t%s") % about.getKernelVersionString() + "\n"
 	AboutText += _("Drivers:\t\t%s") % MyDateConverter(getDriverDate()) + "\n"
 
