@@ -535,7 +535,7 @@ class FlashImage(Screen):
 			self.session.openWithCallback(self.abort, MessageBox, _("Flashing image was not successful\n%s") % self.imagename, type=MessageBox.TYPE_ERROR, simple=True)
 
 	def abort(self, reply=None):
-		if self.getImageList:
+		if self.getImageList or self.containerofgwrite:
 			return 0
 		if self.downloader:
 			self.downloader.stop()
