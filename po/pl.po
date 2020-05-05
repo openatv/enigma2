@@ -50,11 +50,6 @@ msgstr ""
 
 msgid ""
 "\n"
-"%Y/%m/%d  %H:%M - "
-msgstr ""
-
-msgid ""
-"\n"
 "* Logs location: logs settings, Filename: Enigma2-hdmicec-[date].log"
 msgstr ""
 "\n"
@@ -251,6 +246,10 @@ msgstr ""
 msgid "   (2.1 GHz)"
 msgstr ""
 
+#, python-format
+msgid "  (%s x %s)"
+msgstr ""
+
 msgid "  Menu key : Select quad channel"
 msgstr " Klawisz menu: Wybierz czterokanałowy kanał"
 
@@ -345,9 +344,6 @@ msgid "!! Bootloader Upgrade !!"
 msgstr "!! Aktualizacja Bootloadera !!"
 
 msgid "%-H:%M"
-msgstr ""
-
-msgid "%-H:%M - "
 msgstr ""
 
 msgid "%-H:%M:%S"
@@ -466,10 +462,6 @@ msgstr ""
 
 #, python-format
 msgid "%.2f GB"
-msgstr ""
-
-#, python-format
-msgid "%02d.%02d - %02d.%02d (%s%d min)"
 msgstr ""
 
 #, python-format
@@ -643,9 +635,6 @@ msgid "%A %d/%m"
 msgstr ""
 
 msgid "%A %d/%m/%Y"
-msgstr ""
-
-msgid "%A %e %b"
 msgstr ""
 
 msgid "%A %m/%-d"
@@ -1157,13 +1146,7 @@ msgstr ""
 msgid "%d.%03d GB"
 msgstr ""
 
-msgid "%d.%B %Y"
-msgstr ""
-
 msgid "%d.%m"
-msgstr ""
-
-msgid "%d.%m.   "
 msgstr ""
 
 msgid "%d.%m.%Y"
@@ -1280,12 +1263,16 @@ msgid "%s (%s)\n"
 msgstr ""
 
 #, python-format
+msgid "%s - %s (%s%d min)"
+msgstr ""
+
+#, python-format
 msgid "%s - Setup"
 msgstr "%s - Ustawienia"
 
 #, python-format
 msgid "%s - extraction errors."
-msgstr ""
+msgstr "%s - błędy ekstrakcji."
 
 #, python-format
 msgid "%s Setup"
@@ -3564,7 +3551,7 @@ msgstr "Buforowanie %d%%"
 msgid "Buffers:"
 msgstr "Bufory:"
 
-#, python-format
+#, fuzzy, python-format
 msgid "Build:\t\t%s"
 msgstr "Kompilacja:\t\t%s"
 
@@ -3739,8 +3726,8 @@ msgid "CPU priority for script execution"
 msgstr "Priorytet procesora do wykonania skryptu"
 
 #, python-format
-msgid "CPU:\t\t%s"
-msgstr "Procesor:\t\t%s"
+msgid "CPU:\t\t%s  (%s)  %s cores"
+msgstr "Procesor:\t\t%s  (%s)  %s Rdzenie"
 
 #, python-format
 msgid "CPU: %s"
@@ -5715,11 +5702,14 @@ msgstr "Usuń pozycję z listy"
 msgid "Delete saved playlist"
 msgstr "Usuń zapisaną listę odtwarzania"
 
-msgid "Delete the character to the left of text buffer cursor"
-msgstr "Usuń znak po lewej stronie kursora bufora tekstowego"
+msgid "Delete the all the text"
+msgstr "Usuń cały tekst"
 
-msgid "Delete the character under the text buffer cursor"
-msgstr "Usuń znak pod kursorem bufora tekstu"
+msgid "Delete the character to the left of text cursor"
+msgstr "Usuń znak po lewej stronie kursora tekstowego"
+
+msgid "Delete the character under the text cursor"
+msgstr "Usuń znak pod kursorem tekstowym"
 
 msgid "Delete the current timeshift buffer and restart timeshift"
 msgstr "Usuń bieżący bufor timeshiftu i ponownie uruchom timeshift"
@@ -9207,8 +9197,8 @@ msgid "Last speed"
 msgstr "Ostatnia prędkość"
 
 #, python-format
-msgid "Last update:\t\t%s"
-msgstr "Ostatnia aktualizacja:\t%s"
+msgid "Last E2 update:\t\t%s"
+msgstr "Ostatnia aktualizacja E2:\t%s"
 
 msgid "Last used share: "
 msgstr "Ostatnio używane udziały: "
@@ -9987,29 +9977,29 @@ msgstr "Tryb przenoszenia wył."
 msgid "Move mode on"
 msgstr "Tryb przenoszenia wł."
 
-msgid "Move the text buffer cursor left"
-msgstr "Przesuń kursor bufora tekstu w lewo"
+msgid "Move the keyboard cursor down"
+msgstr "Przesuń kursor klawiatury w dół"
 
-msgid "Move the text buffer cursor right"
-msgstr "Przesuń kursor bufora tekstu w prawo"
+msgid "Move the keyboard cursor left"
+msgstr "Przesuń kursor klawiatury w lewo"
 
-msgid "Move the text buffer cursor to the first character"
-msgstr "Przesuń kursor bufora tekstu na pierwszy znak"
+msgid "Move the keyboard cursor right"
+msgstr "Przesuń kursor klawiatury w prawo"
 
-msgid "Move the text buffer cursor to the last character"
-msgstr "Przesuń kursor bufora tekstu na ostatni znak"
+msgid "Move the keyboard cursor up"
+msgstr "Przesuń kursor klawiatury w górę"
 
-msgid "Move the virtual keyboard cursor down"
-msgstr "Przesuń kursor wirtualnej klawiatury w dół"
+msgid "Move the text cursor left"
+msgstr "Przesuń kursor tekstowy w lewo"
 
-msgid "Move the virtual keyboard cursor left"
-msgstr "Przesuń kursor wirtualnej klawiatury w lewo"
+msgid "Move the text cursor right"
+msgstr "Przesuń kursor tekstowy w prawo"
 
-msgid "Move the virtual keyboard cursor right"
-msgstr "Przesuń kursor wirtualnej klawiatury w prawo"
+msgid "Move the text cursor to the first character"
+msgstr "Przesuń kursor tekstowy do pierwszego znaku"
 
-msgid "Move the virtual keyboard cursor up"
-msgstr "Przesuń kursor wirtualnej klawiatury w górę"
+msgid "Move the text cursor to the last character"
+msgstr "Przesuń kursor tekstowy na ostatni znak"
 
 msgid "Move to home of list"
 msgstr "Przenieś do domowej listy"
@@ -13797,14 +13787,17 @@ msgstr "Wybierz częstotliwość pasma użytkownika, która ma zostać przypisan
 msgid "Select the User Band frequency to be assigned to this tuner. This is the frequency the SCR switch uses to pass the requested transponder to the tuner."
 msgstr "Wybierz częstotliwość pasma użytkownika, która ma zostać przypisana do tego tunera. Jest to częstotliwość używana przez przełącznik SCR do przekazania żądanego transpondera do tunera."
 
-msgid "Select the character or action under the virtual keyboard cursor"
-msgstr "Wybierz znak lub akcję pod wirtualnym kursorem klawiatury"
+msgid "Select the character or action under the keyboard cursor"
+msgstr "Wybierz znak lub akcję pod kursorem klawiatury"
 
 msgid "Select the desired function and click on \"OK\" to assign it. Use \"CH+/-\" to toggle between the lists. Select an assigned function and click on \"OK\" to de-assign it. Use \"Next/Previous\" to change the order of the assigned functions."
 msgstr "Wybierz żądaną funkcję i kliknij 'OK ',aby go przypisać.Użyj 'CH +/-' aby przełączać między listami.Wybierz przypisaną funkcję i kliknij 'OK ' aby przypisać. Użyj 'następny/poprzedni 'aby zmienić kolejność przypisanych funkcji."
 
 msgid "Select the highlighted image and reboot"
 msgstr "Wybierz podświetlony obraz i uruchom ponownie"
+
+msgid "Select the locale from a menu"
+msgstr "Wybierz ustawienia regionalne z menu"
 
 msgid "Select the manufacturer of your SCR device. If the manufacturer is not listed, set 'SCR' to 'user defined' and enter the device parameters manually according to its spec sheet."
 msgstr "Wybierz producenta swojego urządzenia SCR. Jeśli producenta nie ma na liście, ustaw „SCR” na „zdefiniowane przez użytkownika” i ręcznie wprowadź parametry urządzenia zgodnie z jego specyfikacją."
@@ -13839,6 +13832,12 @@ msgstr "Wybierz satelitę, którą chcesz skonfigurować. Po skonfigurowaniu teg
 msgid "Select the satellite your dish receives from. If you are unsure select 'automatic' and the receiver will attempt to determine this for you."
 msgstr "Wybierz satelitę, z którego odbierana jest antena. Jeśli nie masz pewności, wybierz „automatyczny”, a odbiornik spróbuje to ustalić."
 
+msgid "Select the shifted character set"
+msgstr "Wybierz przesunięty zestaw znaków"
+
+msgid "Select the shifted character set for the next character only"
+msgstr "Wybierz przesunięty zestaw znaków tylko dla następnego znaku"
+
 msgid "Select the sleep timer action."
 msgstr "Wybierz działanie wyłącznika czasowego."
 
@@ -13859,15 +13858,6 @@ msgstr "Wybierz typ używanego LNB / urządzenia (zwykle „Uniwersalny”). Je�
 
 msgid "Select the type of Single Cable Reception device you are using."
 msgstr "Wybierz typ używanego urządzenia do odbioru pojedynczego kabla."
-
-msgid "Select the virtual keyboard locale from a menu"
-msgstr "Wybierz ustawienia regionalne wirtualnej klawiatury z menu"
-
-msgid "Select the virtual keyboard shifted character set"
-msgstr "Wybierz zestaw znaków z przesuniętą klawiaturą wirtualną"
-
-msgid "Select the virtual keyboard shifted character set for the next character only"
-msgstr "Wybierz zestaw znaków przesunięty na klawiaturze wirtualnej tylko dla następnego znaku"
 
 msgid "Select upgrade source"
 msgstr "Wybierz źródło aktualizacji"
@@ -15278,6 +15268,10 @@ msgstr "Wybór Skóry"
 msgid "Skin setup"
 msgstr "Ust. Skóry"
 
+#, python-format
+msgid "Skin:\t\t%s"
+msgstr "Skóra:\t\t%s"
+
 msgid "SkinSelector"
 msgstr "Selektor Skór"
 
@@ -16159,6 +16153,9 @@ msgstr ""
 
 msgid "TB"
 msgstr ""
+
+msgid "TEXT"
+msgstr "TEKST"
 
 #. TRANSLATORS: Add here whatever should be shown in the "translator" about screen, up to 6 lines (use \n for newline)
 msgid "TRANSLATOR_INFO"
@@ -18281,8 +18278,8 @@ msgid "Version %s %s"
 msgstr "Wersja %s %s"
 
 #, python-format
-msgid "Version:\t\t%s"
-msgstr "Wersja:\t\t%s"
+msgid "Version / Build:\t\t%s   (%s)"
+msgstr "Wersja / Kompilacja:\t\t%s   (%s)"
 
 msgid "Version: "
 msgstr "Wersja: "
