@@ -843,64 +843,82 @@ class ViewGitLog(Screen):
 	def __init__(self, session, args=None):
 		Screen.__init__(self, session)
 		self.skinName = "SoftwareUpdateChanges"
-		self.setTitle(_("OE Changes"))
-		self.logtype = 'oe'
+		self.setTitle(_("Enigma2"))
 		self["text"] = ScrollLabel()
 		self['title_summary'] = StaticText()
 		self['text_summary'] = StaticText()
 		self["key_red"] = Button(_("Close"))
 		self["key_green"] = Button(_("OK"))
-		self["key_yellow"] = Button(_("Show E2 Log"))
+		self["key_yellow"] = Button(_("Next Log"))
 		self["myactions"] = ActionMap(['ColorActions', 'OkCancelActions', 'DirectionActions'],
 		{
 			'cancel': self.closeRecursive,
 			'green': self.closeRecursive,
 			"red": self.closeRecursive,
-			"yellow": self.changelogtype,
-			"left": self.pageUp,
-			"right": self.pageDown,
-			"down": self.pageDown,
-			"up": self.pageUp
+			"yellow": self.right,
+			"left": self.left,
+			"right": self.right,
+			"down": self["text"].pageDown,
+			"up": self["text"].pageUp
 		},-1)
-		self.onLayoutFinish.append(self.getlog)
 
-	def changelogtype(self):
-		if self.logtype == 'e2':
-			self["key_yellow"].setText(_("Show E2 Log"))
-			self.setTitle(_("OE Changes"))
-			self.logtype = 'oe'
-		else:
-			self["key_yellow"].setText(_("Show OE Log"))
-			self.setTitle(_("Enigma2 Changes"))
-			self.logtype = 'e2'
-		self.getlog()
-
-	def pageUp(self):
-		self["text"].pageUp()
-
-	def pageDown(self):
-		self["text"].pageDown()
-
-	def getlog(self):
-		fd = open('/etc/' + self.logtype + '-git.log', 'r')
-		releasenotes = fd.read()
-		fd.close()
-		releasenotes = releasenotes.replace('\nopenatv: build', "\n\nopenatv: build")
-		self["text"].setText(releasenotes)
-		summarytext = releasenotes
+		# get the branch to display from the Enigma version
 		try:
-			if self.logtype == 'e2':
-				self['title_summary'].setText(_("E2 Log"))
-				self['text_summary'].setText(_("Enigma2 Changes"))
-			else:
-				self['title_summary'].setText(_("OE Log"))
-				self['text_summary'].setText(_("OE Changes"))
+			branch = "?sha=" + "-".join(about.getEnigmaVersionString().split("-")[3:])
 		except:
-			self['title_summary'].setText("")
-			self['text_summary'].setText("")
+			branch = ""
 
-	def unattendedupdate(self):
-		self.close((_("Unattended upgrade without GUI and reboot system"), "cold"))
+		self.project = 0
+		self.projects = [
+			("https://api.github.com/repos/openatv/enigma2/commits" + branch, "Enigma2"),
+			("https://api.github.com/repos/oe-alliance/oe-alliance-core/commits?sha=4.4", "OE-A Core"),
+			("https://api.github.com/repos/openatv/MetrixHD/commits", "MetrixHD Skin"),
+			("https://api.github.com/repos/oe-alliance/oe-alliance-plugins/commits", "OE-A Plugins"),
+			("https://api.github.com/repos/oe-alliance/branding-module/commits", "Branding Module")
+		]
+		self.cachedProjects = {}
+		self.Timer = eTimer()
+		self.Timer.callback.append(self.readGithubCommitLogs)
+		self.Timer.start(50, True)
+
+	def readGithubCommitLogs(self):
+		url = self.projects[self.project][0]
+		commitlog = ""
+		from datetime import datetime
+		from json import loads
+		from urllib2 import urlopen
+		try:
+			try:
+				from ssl import _create_unverified_context
+				log = loads(urlopen(url, timeout=5, context=_create_unverified_context()).read())
+			except:
+				log = loads(urlopen(url, timeout=5).read())
+			for c in log:
+				creator = c['commit']['author']['name']
+				title = c['commit']['message']
+				date = datetime.strptime(c['commit']['committer']['date'], '%Y-%m-%dT%H:%M:%SZ').strftime('%x %X')
+				commitlog += date + ' ' + creator + '\n' + title + 2 * '\n'
+			commitlog = commitlog.encode('utf-8')
+			self.cachedProjects[self.projects[self.project][1]] = commitlog
+		except:
+			commitlog += _("Currently the commit log cannot be retrieved - please try later again")
+		self["text"].setText(commitlog)
+
+	def updateCommitLogs(self):
+		self.setTitle(self.projects[self.project][1])
+		if self.projects[self.project][1] in self.cachedProjects:
+			self["text"].setText(self.cachedProjects[self.projects[self.project][1]])
+		else:
+			self["text"].setText(_("Please wait"))
+			self.Timer.start(50, True)
+
+	def left(self):
+		self.project = self.project == 0 and len(self.projects) - 1 or self.project - 1
+		self.updateCommitLogs()
+
+	def right(self):
+		self.project = self.project != len(self.projects) - 1 and self.project + 1 or 0
+		self.updateCommitLogs()
 
 	def closeRecursive(self):
 		self.close((_("Cancel"), ""))
