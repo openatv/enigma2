@@ -81,9 +81,9 @@ def getCPUSpeedString():
 			f.close()
 			CPUSpeed_Int = round(int(binascii.hexlify(clockfrequency), 16)/1000000,1)
 			if CPUSpeed_Int >= 1000:
-				return "%s GHz" % str(round(CPUSpeed_Int/1000,1))
+				return _("%s GHz") % str(round(CPUSpeed_Int/1000,1))
 			else:
-				return "%s MHz" % str(round(CPUSpeed_Int,1))
+				return _("%s MHz") % str(round(CPUSpeed_Int,1))
 		except:
 			return "1,7 GHz"
 	else:
