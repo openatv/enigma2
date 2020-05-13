@@ -10,6 +10,7 @@ import datetime
 class TimeDateInput(Screen, ConfigListScreen):
 	def __init__(self, session, config_time=None, config_date=None):
 		Screen.__init__(self, session)
+		self.setTitle(_("Date/time input"))
 		self["oktext"] = Label(_("OK"))
 		self["canceltext"] = Label(_("Cancel"))
 		self["ok"] = Pixmap()
