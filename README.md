@@ -2,11 +2,11 @@
 
 > Ubuntu 18.04.1 LTS (Kernel 4.15.0)
 
-## openATV 6.4 is build using oe-alliance build-environment and several git repositories: ##
+## openATV 6.5 is build using oe-alliance build-environment and several git repositories: ##
 
-> [https://github.com/oe-alliance/oe-alliance-core/tree/4.4](https://github.com/oe-alliance/oe-alliance-core/tree/4.4 "OE-Alliance")
+> [https://github.com/oe-alliance/oe-alliance-core/tree/4.5](https://github.com/oe-alliance/oe-alliance-core/tree/4.5 "OE-Alliance")
 > 
-> [https://github.com/openatv/enigma2/tree/6.4](https://github.com/openatv/enigma2/tree/6.4 "openATV E2")
+> [https://github.com/openatv/enigma2/tree/6.5](https://github.com/openatv/enigma2/tree/6.5 "openATV E2")
 > 
 > [https://github.com/openatv/MetrixHD](https://github.com/openatv/MetrixHD "openATV Skin")
 
