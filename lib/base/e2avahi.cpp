@@ -72,7 +72,9 @@ struct AvahiServiceEntry
 		service_name(n),
 		service_type(t),
 		port_num(p)
-	{}
+	{
+		eDebug("[Avahi] AvahiServiceEntry %s (%s) %u", service_name, service_type, port_num);
+	}
 	AvahiServiceEntry():
 		group(NULL)
 	{}
@@ -138,6 +140,10 @@ static void avahi_service_try_register(AvahiServiceEntry *entry)
 	 * this appears to be what other services do. */
 	if ((!service_name) || (!*service_name))
 		service_name = avahi_client_get_host_name(avahi_client);
+
+	eDebug("[Avahi] Will Register %s (%s) on %s:%u",
+		service_name, entry->service_type,
+		avahi_client_get_host_name(avahi_client), entry->port_num);
 
 	if (!avahi_entry_group_add_service(entry->group,
 			AVAHI_IF_UNSPEC, AVAHI_PROTO_UNSPEC,
