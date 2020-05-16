@@ -1910,9 +1910,10 @@ class EPGSelection(Screen, HelpableScreen):
 				else:
 					self.zapFunc(None, False)
 		if self.session.pipshown:
-			self.Oldpipshown = False
-			self.session.pipshown = False
-			del self.session.pip
+			if not self.Oldpipshown:
+				self.Oldpipshown = False
+				self.session.pipshown = False
+				del self.session.pip
 		if self.Oldpipshown:
 			self.session.pipshown = True
 		self.closeEventViewDialog()
@@ -1933,7 +1934,7 @@ class EPGSelection(Screen, HelpableScreen):
 
 	def zapSelectedService(self, prev=False):
 		currservice = self.session.nav.getCurrentlyPlayingServiceReference() and str(self.session.nav.getCurrentlyPlayingServiceReference().toString()) or None
-		if self.session.pipshown:
+		if self.session.pipshown and config.usage.pip_mode.value == "standard":
 			self.prevch = self.session.pip.getCurrentService() and str(self.session.pip.getCurrentService().toString()) or None
 		else:
 			self.prevch = self.session.nav.getCurrentlyPlayingServiceReference() and str(self.session.nav.getCurrentlyPlayingServiceReference().toString()) or None
@@ -1973,6 +1974,8 @@ class EPGSelection(Screen, HelpableScreen):
 					self.zapFunc(ref.ref, bouquet = self.getCurrentBouquet(), preview = prev)
 					self.currch = self.session.nav.getCurrentlyPlayingServiceReference() and str(self.session.nav.getCurrentlyPlayingServiceReference().toString())
 				self['list'+str(self.activeList)].setCurrentlyPlaying(self.session.nav.getCurrentlyPlayingServiceOrGroup())
+				if self.Oldpipshown:
+					self.session.pipshown = True
 
 	def zapTo(self):
 		if self.session.nav.getCurrentlyPlayingServiceOrGroup() and '0:0:0:0:0:0:0:0:0' in self.session.nav.getCurrentlyPlayingServiceOrGroup().toString():

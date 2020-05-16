@@ -26,7 +26,11 @@ class Screensaver(Screen):
 	def layoutFinished(self):
 		picturesize = self["picture"].getSize()
 		self.maxx = self.instance.size().width() - picturesize[0]
+		if self.maxx < 1:
+			self.instance.size().width()
 		self.maxy = self.instance.size().height() - picturesize[1]
+		if self.maxy < 1:
+			self.maxy = self.instance.size().height()
 		self.doMovePicture()
 
 	def __onHide(self):
@@ -44,7 +48,11 @@ class Screensaver(Screen):
 					self.hide()
 
 	def doMovePicture(self):
-		self.posx = random.randint(1,self.maxx)
-		self.posy = random.randint(1,self.maxy)
+		try:
+			self.posx = random.randint(1,self.maxx)
+			self.posy = random.randint(1,self.maxy)
+		except Exception:
+			self.posx = 0
+			self.posy = 0
 		self["picture"].instance.move(ePoint(self.posx, self.posy))
 		self.moveLogoTimer.startLongTimer(9)
