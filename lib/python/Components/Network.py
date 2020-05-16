@@ -1,5 +1,6 @@
 import re
 import os
+import netifaces as ni
 from socket import *
 from Components.Console import Console
 from Components.PluginComponent import plugins
@@ -63,58 +64,24 @@ class Network:
 		return [ int(n) for n in ip.split('.') ]
 
 	def getAddrInet(self, iface, callback):
-		if not self.Console:
-			self.Console = Console()
-		cmd = "busybox ip -o addr show dev " + iface + " | grep -v inet6"
-		self.Console.ePopen(cmd, self.IPaddrFinished, [iface,callback])
-
-	def IPaddrFinished(self, result, retval, extra_args):
-		(iface, callback ) = extra_args
 		data = { 'up': False, 'dhcp': False, 'preup' : False, 'predown' : False }
-		globalIPpattern = re.compile("scope global")
-		ipRegexp = '[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}'
-		netRegexp = '[0-9]{1,2}'
-		macRegexp = '[0-9a-fA-F]{2}\:[0-9a-fA-F]{2}\:[0-9a-fA-F]{2}\:[0-9a-fA-F]{2}\:[0-9a-fA-F]{2}\:[0-9a-fA-F]{2}'
-		ipLinePattern = re.compile('inet ' + ipRegexp + '/')
-		ipPattern = re.compile(ipRegexp)
-		netmaskLinePattern = re.compile('/' + netRegexp)
-		netmaskPattern = re.compile(netRegexp)
-		bcastLinePattern = re.compile(' brd ' + ipRegexp)
-		upPattern = re.compile('UP')
-		macPattern = re.compile(macRegexp)
-		macLinePattern = re.compile('link/ether ' + macRegexp)
-
-		for line in result.splitlines():
-			split = line.strip().split(' ',2)
-			if (split[1][:-1] == iface) or (split[1][:-1] == (iface + '@sys0')):
-				up = self.regExpMatch(upPattern, split[2])
-				mac = self.regExpMatch(macPattern, self.regExpMatch(macLinePattern, split[2]))
-				if up is not None:
-					data['up'] = True
-					if iface is not 'lo':
-						self.configuredInterfaces.append(iface)
-				if mac is not None:
-					data['mac'] = mac
-			if split[1] == iface:
-				if re.search(globalIPpattern, split[2]):
-					ip = self.regExpMatch(ipPattern, self.regExpMatch(ipLinePattern, split[2]))
-					netmask = self.calc_netmask(self.regExpMatch(netmaskPattern, self.regExpMatch(netmaskLinePattern, split[2])))
-					bcast = self.regExpMatch(ipPattern, self.regExpMatch(bcastLinePattern, split[2]))
-					if ip is not None:
-						data['ip'] = self.convertIP(ip)
-					if netmask is not None:
-						data['netmask'] = self.convertIP(netmask)
-					if bcast is not None:
-						data['bcast'] = self.convertIP(bcast)
-
-		if not data.has_key('ip'):
+		try:
+			data['up'] = int(open('/sys/class/net/%s/flags' % iface).read().strip(), 16) & 1 == 1
+			if data['up']:
+				self.configuredInterfaces.append(iface)
+			nit = ni.ifaddresses(iface)
+			data['ip'] = self.convertIP(nit[ni.AF_INET][0]['addr']) # ipv4
+			data['netmask'] = self.convertIP(nit[ni.AF_INET][0]['netmask'])
+			data['bcast'] = self.convertIP(nit[ni.AF_INET][0]['broadcast'])
+			data['mac'] = nit[ni.AF_LINK][0]['addr'] # mac
+			data['gateway'] = self.convertIP(ni.gateways()['default'][ni.AF_INET][0]) # default gw
+		except:
 			data['dhcp'] = True
 			data['ip'] = [0, 0, 0, 0]
 			data['netmask'] = [0, 0, 0, 0]
 			data['gateway'] = [0, 0, 0, 0]
-
-		cmd = "route -n | grep  " + iface
-		self.Console.ePopen(cmd,self.routeFinished, [iface, data, callback])
+		self.ifaces[iface] = data
+		self.loadNetworkConfig(iface,callback)
 
 	def routeFinished(self, result, retval, extra_args):
 		(iface, data, callback) = extra_args
