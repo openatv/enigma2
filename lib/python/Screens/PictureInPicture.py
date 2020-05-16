@@ -1,18 +1,32 @@
 from Screens.Screen import Screen
 from Screens.Dish import Dishpip
-from enigma import ePoint, eSize, eRect, eServiceCenter, getBestPlayableServiceReference, eServiceReference, eTimer
+from enigma import ePoint, eSize, eRect, eServiceCenter, getBestPlayableServiceReference, eServiceReference, eTimer, getDesktop
 from Components.SystemInfo import SystemInfo
 from Components.VideoWindow import VideoWindow
-from Components.config import config, ConfigPosition, ConfigYesNo, ConfigSelection
+from Components.config import config, configfile, ConfigPosition, ConfigYesNo, ConfigSelection
+from Components.Label import Label
 from Tools import Notifications
 from Screens.MessageBox import MessageBox
 from os import access, W_OK
 
 MAX_X = 720
 MAX_Y = 576
+
 pip_config_initialized = False
 PipPigModeEnabled = False
 PipPigModeTimer = eTimer()
+
+sizemaxX = getDesktop(0).size().width()
+sizemaxY = getDesktop(0).size().height()
+
+if sizemaxY >= 720:
+	sizemaxX = 1280
+	sizemaxY = 720
+	fontsizeregular = 20
+else:
+	sizemaxX = 720
+	sizemaxY = 576
+	fontsizeregular = 15
 
 def timedStopPipPigMode():
 	from Screens.InfoBar import InfoBar
@@ -45,13 +59,51 @@ class PictureInPictureZapping(Screen):
 	skin = """<screen name="PictureInPictureZapping" flags="wfNoBorder" position="50,50" size="90,26" title="PiPZap" zPosition="-1">
 			<eLabel text="PiP-Zap" position="0,0" size="90,26" foregroundColor="#00ff66" font="Regular;26" />
 		</screen>"""
+		
+class PictureInPictureSidebySide(Screen):
+	sizeX_local = sizemaxX
+	sizeY_local = sizemaxY
+	fontsizeregular_local = fontsizeregular
+
+	skin = """<screen name="PictureInPictureSidebySide" flags="wfNoBorder" position="center,center" size="{0},{1}" zPosition="-1" backgroundColor="transparent">
+			<eLabel text="{2}" position="30,50" size="{3},50" foregroundColor="white" backgroundColor="background" font="Regular;{6}" halign="left" valign="center"/>
+			<eLabel text="{4}" position="0,{5}" size="{0},60" foregroundColor="white" backgroundColor="background" font="Regular;{6}" halign="center"/>
+		</screen>""".format( sizeX_local, sizeY_local, 
+					_("Active screen"),
+					sizeX_local - 40,
+					_("LEFT  -  change screen   |   RIGHT  -  active status change   |   EXIT  -  close right screen"),
+					sizeY_local - 70,
+					fontsizeregular_local )
+						
+class PictureInPictureSidebySideToogle(Screen):
+	sizeX_local = sizemaxX
+	sizeY_local = sizemaxY
+	fontsizeregular_local = fontsizeregular
+	
+	skin = """<screen name="PictureInPictureSidebySideToogle" flags="wfNoBorder" position="center,center" size="{0},{1}" zPosition="-1" backgroundColor="transparent">
+			<eLabel text="{2}" position="0,50" size="{3},50" foregroundColor="white" backgroundColor="background" font="Regular;{6}" halign="right" valign="center"/>
+			<eLabel text="{4}" position="0,{5}" size="{0},60" foregroundColor="white" backgroundColor="background" font="Regular;{6}" halign="center"/>
+		</screen>""".format( sizeX_local, sizeY_local,
+					_("Channel change +/-"),
+					sizeX_local - 30,
+					_("LEFT  -  back to active screen   |    EXIT  -  close right screen"),
+					sizeY_local - 70,
+					fontsizeregular_local )
+
+class MyPiP(Screen):
+	skin = """<screen name="MyPip" position="400,60" size="240,192" flags="wfNoBorder" backgroundColor="transparent" zPosition="-1">
+		<widget name="video" position="0,0" size="240,192" backgroundColor="transparent"/>
+	</screen>"""
 
 class PictureInPicture(Screen):
 	def __init__(self, session):
+		self.skin = MyPiP.skin
 		global pip_config_initialized
 		Screen.__init__(self, session)
 		self["video"] = VideoWindow()
 		self.pipActive = session.instantiateDialog(PictureInPictureZapping)
+		self.pipSideSide = session.instantiateDialog(PictureInPictureSidebySide)
+		self.pipSideSideToogle = session.instantiateDialog(PictureInPictureSidebySideToogle)
 		self.dishpipActive = session.instantiateDialog(Dishpip)
 		self.currentService = None
 		self.currentServiceReference = None
@@ -110,32 +162,45 @@ class PictureInPicture(Screen):
 			x = 0
 			y = 0
 		config.av.pip.save()
+		configfile.save()
 		self.instance.move(ePoint(x, y))
 
 	def resize(self, w, h):
 		config.av.pip.value[2] = w
 		config.av.pip.value[3] = h
 		config.av.pip.save()
-		if config.av.pip_mode.value == "standard":
+		configfile.save()
+		if config.usage.pip_mode.value == "standard":
+			if config.av.pip_mode.value == "standard":
+				self.instance.resize(eSize(*(w, h)))
+				self["video"].instance.resize(eSize(*(w, h)))
+				self.setSizePosMainWindow()
+			elif config.av.pip_mode.value == "cascade":
+				self.instance.resize(eSize(*(w, h)))
+				self["video"].instance.resize(eSize(*(w, h)))
+				self.setSizePosMainWindow(0, h, MAX_X - w, MAX_Y - h)
+			elif config.av.pip_mode.value == "split":
+				self.instance.resize(eSize(*(MAX_X/2, MAX_Y )))
+				self["video"].instance.resize(eSize(*(MAX_X/2, MAX_Y)))
+				self.setSizePosMainWindow(0, 0, MAX_X/2, MAX_Y)
+			elif config.av.pip_mode.value == "byside":
+				self.instance.resize(eSize(*(MAX_X/2, MAX_Y/2 )))
+				self["video"].instance.resize(eSize(*(MAX_X/2, MAX_Y/2)))
+				self.setSizePosMainWindow(0, MAX_Y/4, MAX_X/2, MAX_Y/2)
+			elif config.av.pip_mode.value in "bigpig external":
+				self.instance.resize(eSize(*(MAX_X, MAX_Y)))
+				self["video"].instance.resize(eSize(*(MAX_X, MAX_Y)))
+				self.setSizePosMainWindow()
+		if config.usage.pip_mode.value == "noadspip":
 			self.instance.resize(eSize(*(w, h)))
 			self["video"].instance.resize(eSize(*(w, h)))
 			self.setSizePosMainWindow()
-		elif config.av.pip_mode.value == "cascade":
-			self.instance.resize(eSize(*(w, h)))
-			self["video"].instance.resize(eSize(*(w, h)))
-			self.setSizePosMainWindow(0, h, MAX_X - w, MAX_Y - h)
-		elif config.av.pip_mode.value == "split":
-			self.instance.resize(eSize(*(MAX_X/2, MAX_Y )))
-			self["video"].instance.resize(eSize(*(MAX_X/2, MAX_Y)))
-			self.setSizePosMainWindow(0, 0, MAX_X/2, MAX_Y)
-		elif config.av.pip_mode.value == "byside":
+		if config.usage.pip_mode.value == "byside":
 			self.instance.resize(eSize(*(MAX_X/2, MAX_Y/2 )))
 			self["video"].instance.resize(eSize(*(MAX_X/2, MAX_Y/2)))
 			self.setSizePosMainWindow(0, MAX_Y/4, MAX_X/2, MAX_Y/2)
-		elif config.av.pip_mode.value in "bigpig external":
-			self.instance.resize(eSize(*(MAX_X, MAX_Y)))
-			self["video"].instance.resize(eSize(*(MAX_X, MAX_Y)))
-			self.setSizePosMainWindow()
+			self.pipActive.hide()
+			self.pipSideSide.show()
 
 	def setSizePosMainWindow(self, x = 0, y = 0, w = 0, h = 0):
 		if SystemInfo["VideoDestinationConfigurable"]:
@@ -150,6 +215,18 @@ class PictureInPicture(Screen):
 
 	def inactive(self):
 		self.pipActive.hide()
+		
+	def activeSide(self):
+		self.pipSideSide.show()
+
+	def inactiveSide(self):
+		self.pipSideSide.hide()
+		
+	def activeToggle(self):
+		self.pipSideSideToogle.show()
+
+	def inactiveToogle(self):
+		self.pipSideSideToogle.hide()
 
 	def getPosition(self):
 		return self.instance.position().x(), self.instance.position().y()
@@ -163,6 +240,7 @@ class PictureInPicture(Screen):
 	def setMode(self, mode):
 		config.av.pip_mode.value = mode
 		config.av.pip_mode.save()
+		configfile.save()
 		self.setExternalPiP(config.av.pip_mode.value == "external")
 		self.relocate()
 

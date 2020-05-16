@@ -2330,7 +2330,18 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 			self.pipzaptimer.callback.remove(self.hidePipzapMessage)
 			self.pipzaptimer.stop()
 		self.session.pip.inactive()
-
+	def togglePipzapSidebySide(self):
+		assert self.session.pip
+		if self.dopipzap:
+			self.dopipzap = False
+			self.__evServiceStart()
+			lastservice = eServiceReference(self.lastservice.value)
+			if lastservice.valid() and self.getCurrentSelection() != lastservice:
+				self.setCurrentSelection(lastservice)
+		else:
+			self.dopipzap = True
+			self.__evServiceStart()
+			self.setCurrentSelection(self.session.pip.getCurrentService())
 	#called from infoBar and channelSelected
 	def zap(self, enable_pipzap=False, preview_zap=False, checkParentalControl=True, ref=None):
 		self.curRoot = self.startRoot
@@ -2343,7 +2354,8 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 				if nref and (not checkParentalControl or Components.ParentalControl.parentalControl.isServicePlayable(nref, boundFunction(self.zap, enable_pipzap=True, checkParentalControl=False))):
 					self.session.pip.playService(nref)
 					self.__evServiceStart()
-					self.showPipzapMessage()
+					if config.usage.pip_mode.value != "byside":
+						self.showPipzapMessage()
 				else:
 					self.setStartRoot(self.curRoot)
 					self.setCurrentSelection(ref)
