@@ -216,7 +216,7 @@ def InitUsageConfig():
 		("user", _("user defined")),])
 	config.usage.sort_pluginlist = ConfigYesNo(default = True)
 	config.usage.sort_extensionslist = ConfigYesNo(default = False)
-	config.usage.colored_first_extensionslist = ConfigYesNo(default = True)
+	config.usage.colored_first_extensionslist = ConfigYesNo(default = False)
 	config.usage.show_restart_network_extensionslist = ConfigYesNo(default = True)
 	config.usage.movieplayer_pvrstate = ConfigYesNo(default = False)
 
