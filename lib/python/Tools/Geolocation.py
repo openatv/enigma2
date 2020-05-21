@@ -1,6 +1,8 @@
 from json import loads
 from urllib2 import URLError, urlopen
 
+from Components.config import ConfigYesNo, config
+
 # Data available from http://ip-api.com/json/:
 #
 # 	Name		Description				Example			Type
@@ -37,28 +39,37 @@ from urllib2 import URLError, urlopen
 # 	hosting		Hosting, colocated or data center	true			bool
 # 	query		IP used for the query			173.194.67.94		string
 
+config.misc.enableGeolocation = ConfigYesNo(default=True)
 geolocation = {}
 
 def InitGeolocation():
 	global geolocation
-	if len(geolocation) == 0:
-		try:
-			response = urlopen("http://ip-api.com/json/?fields=33288191", data=None, timeout=10).read()
-			# print "[Geolocation] DEBUG:", response
-			if response:
-				geolocation = loads(response)
-			status = geolocation.get("status", None)
-			if status and status == "success":
-				print "[Geolocation] Geolocation data initialised."
-			else:
-				print "[Geolocation] Error: Geolocation lookup returned a '%s' status!  Message '%s' returned." % (status, geolocation.get("message", None))
-		except URLError as err:
-			if hasattr(err, 'code'):
-				print "[Geolocation] Error: Geolocation data not available! (Code: %s)" % err.code
-			if hasattr(err, 'reason'):
-				print "[Geolocation] Error: Geolocation data not available! (Reason: %s)" % err.reason
-		except ValueError:
-			print "[Geolocation] Error: Geolocation data returned can not be processed!"
+	if config.misc.enableGeolocation.value:
+		if len(geolocation) == 0:
+			try:
+				response = urlopen("http://ip-api.com/json/?fields=33288191", data=None, timeout=10).read()
+				# print "[Geolocation] DEBUG:", response
+				if response:
+					geolocation = loads(response)
+				status = geolocation.get("status", None)
+				if status and status == "success":
+					print "[Geolocation] Geolocation data initialised."
+					config.misc.enableGeolocation.value = False
+					config.misc.enableGeolocation.save()
+				else:
+					print "[Geolocation] Error: Geolocation lookup returned a '%s' status!  Message '%s' returned." % (status, geolocation.get("message", None))
+			except URLError as err:
+				if hasattr(err, 'code'):
+					print "[Geolocation] Error: Geolocation data not available! (Code: %s)" % err.code
+				if hasattr(err, 'reason'):
+					print "[Geolocation] Error: Geolocation data not available! (Reason: %s)" % err.reason
+			except ValueError:
+				print "[Geolocation] Error: Geolocation data returned can not be processed!"
+		else:
+			print "[Geolocation] Note: Geolocation has already been run for this boot."
+	else:
+		geolocation = {}
+		print "[Geolocation] Warning: Geolocation has been disabled by user configuration!"
 
 def RefreshGeolocation():
 	global geolocation
