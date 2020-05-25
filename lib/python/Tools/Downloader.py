@@ -8,8 +8,7 @@ from twisted.internet import reactor, defer, ssl
 class HTTPProgressDownloader(client.HTTPDownloader):
 	def __init__(self, url, outfile, headers=None):
 		client.HTTPDownloader.__init__(self, url, outfile, headers=headers, agent="Enigma2 HbbTV/1.1.1 (+PVR+RTSP+DL;OpenATV;;;)")
-		self.status = None
-		self.progress_callback = None
+		self.status = self.progress_callback = self.error_callback = self.end_callback = None
 		self.deferred = defer.Deferred()
 
 	def noPage(self, reason):
@@ -18,6 +17,8 @@ class HTTPProgressDownloader(client.HTTPDownloader):
 			client.HTTPDownloader.page(self, "")
 		else:
 			client.HTTPDownloader.noPage(self, reason)
+		if self.error_callback:
+			self.error_callback(reason.getErrorMessage(), self.status)
 
 	def gotHeaders(self, headers):
 		if self.status == "200":
