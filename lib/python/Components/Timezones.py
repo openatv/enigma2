@@ -52,50 +52,49 @@ TIMEZONE_FILE = "/etc/timezone.xml"  # This should be SCOPE_TIMEZONES_FILE!  Thi
 TIMEZONE_DATA = "/usr/share/zoneinfo/"  # This should be SCOPE_TIMEZONES_DATA!
 
 def InitTimeZones():
-	tz = geolocation.get("timezone", None)
-	proxy = geolocation.get("proxy", False)
-	if tz is None or proxy is True:
-		area = DEFAULT_AREA
-		zone = timezones.getTimezoneDefault(area=area)
-		if proxy:
-			msg = " - proxy in use"
-		else:
-			msg = ""
-		print "[Timezones] Geolocation not available%s!  (area='%s', zone='%s')" % (msg, area, zone)
-	elif DEFAULT_AREA == "Classic":
-		area = "Classic"
-		zone = tz
-		print "[Timezones] Classic mode with geolocation tz='%s'.  (area='%s', zone='%s')" % (tz, area, zone)
-	else:
-		area, zone = tz.split("/", 1)
-		print "[Timezones] Modern mode with geolocation tz='%s'.  (area='%s', zone='%s')" % (tz, area, zone)
 	config.timezone = ConfigSubsection()
-	config.timezone.area = ConfigSelection(default=area, choices=timezones.getTimezoneAreaList())
-	config.timezone.val = ConfigSelection(default=timezones.getTimezoneDefault(), choices=timezones.getTimezoneList())
-	if not config.timezone.area.value and config.timezone.val.value.find("/") == -1:
-		config.timezone.area.value = "Generic"
-	try:
-		tzLink = path.realpath("/etc/localtime")[20:]
-		msgs = []
-		if config.timezone.area.value == "Classic":
-			if config.timezone.val.value != tzLink:
-				msgs.append("time zone '%s' != '%s'" % (config.timezone.val.value, tzLink))
+	config.timezone.area = ConfigSelection(default=DEFAULT_AREA, choices=timezones.getTimezoneAreaList())
+	config.timezone.val = ConfigSelection(default=DEFAULT_ZONE, choices=timezones.getTimezoneList())
+	if config.misc.firstrun.value:
+		proxy = geolocation.get("proxy", False)
+		tz = geolocation.get("timezone", None)
+		if proxy is True or tz is None:
+			msg = " - proxy in use" if proxy else ""
+			print "[Timezones] Warning: Geolocation not available%s!  (area='%s', zone='%s')" % (msg, config.timezone.area.value, config.timezone.val.value)
 		else:
-			tzSplit = tzLink.find("/")
-			if tzSplit == -1:
-				tzArea = "Generic"
-				tzVal = tzLink
+			area, zone = tz.split("/", 1)
+			if area != DEFAULT_AREA:
+				config.timezone.area.value = area
+				choices = timezones.getTimezoneList(area=area)
+				config.timezone.val.setChoices(choices, default=timezones.getTimezoneDefault(area, choices))
+			config.timezone.val.value = zone
+			config.timezone.save()
+			print "[Timezones] Initial time zone set by geolocation tz='%s'.  (area='%s', zone='%s')" % (tz, area, zone)
+	else:
+		if not config.timezone.area.value and config.timezone.val.value.find("/") == -1:
+			config.timezone.area.value = "Generic"
+		try:
+			tzLink = path.realpath("/etc/localtime")[20:]
+			msgs = []
+			if config.timezone.area.value == "Classic":
+				if config.timezone.val.value != tzLink:
+					msgs.append("time zone '%s' != '%s'" % (config.timezone.val.value, tzLink))
 			else:
-				tzArea = tzLink[:tzSplit]
-				tzVal = tzLink[tzSplit + 1:]
-			if config.timezone.area.value != tzArea:
-				msgs.append("area '%s' != '%s'" % (config.timezone.area.value, tzArea))
-			if config.timezone.val.value != tzVal:
-				msgs.append("zone '%s' != '%s'" % (config.timezone.val.value, tzVal))
-		if len(msgs):
-			print "[Timezones] Warning: Enigma2 time zone does not match system time zone (%s), setting system to Enigma2 time zone!" % ",".join(msgs)
-	except (IOError, OSError):
-		pass
+				tzSplit = tzLink.find("/")
+				if tzSplit == -1:
+					tzArea = "Generic"
+					tzVal = tzLink
+				else:
+					tzArea = tzLink[:tzSplit]
+					tzVal = tzLink[tzSplit + 1:]
+				if config.timezone.area.value != tzArea:
+					msgs.append("area '%s' != '%s'" % (config.timezone.area.value, tzArea))
+				if config.timezone.val.value != tzVal:
+					msgs.append("zone '%s' != '%s'" % (config.timezone.val.value, tzVal))
+			if len(msgs):
+				print "[Timezones] Warning: Enigma2 time zone does not match system time zone (%s), setting system to Enigma2 time zone!" % ",".join(msgs)
+		except (IOError, OSError):
+			pass
 
 	def timezoneAreaChoices(configElement):
 		choices = timezones.getTimezoneList(area=configElement.value)

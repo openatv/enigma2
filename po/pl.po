@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-12-30 14:34+0100\n"
-"PO-Revision-Date: 2020-05-14 15:23+0100\n"
+"PO-Revision-Date: 2020-05-24 15:23+0100\n"
 "Last-Translator: pololoko111 <pololoko111@o2.pl>\n"
 "Language-Team: Poland\n"
 "Language: pl\n"
@@ -2469,6 +2469,9 @@ msgstr "Dostosuj ustawienia 3D"
 msgid "Adjust the color settings so that all the color shades are distinguishable, but appear as saturated as possible. If you are happy with the result, press OK to close the video fine-tuning, or use the number keys to select other test screens."
 msgstr "Dostosuj ustawienia koloru, tak aby wszystkie odcienie były rozpoznawalne, ale jak najbardziej nasycone. Jeśli jesteś zadowolony z rezultatu wciśnij 'OK' aby wyjść z tego menu lub użyj przycisków numerycznych aby zobaczyć inne ekrany testowe."
 
+msgid "Ads filtering mode be default"
+msgstr "Tryb filtrowania reklam jest domyślny"
+
 msgid "Adjust the horizontal position of the letters used for teletext."
 msgstr "Dostosuj poziomą pozycję liter używanych do telegazety."
 
@@ -2522,6 +2525,18 @@ msgstr "Po wydarzeniu"
 
 msgid "After pressing OK, please wait!"
 msgstr "Po naciśnięciu OK, proszę czekać!"
+
+msgid "After this time, the Ads filtering mode should be the default set mode."
+msgstr "Po tym czasie tryb filtrowania reklam powinien być domyślnym trybem ustawiania."
+
+msgid "After 3 minutes"
+msgstr "Po 3 minutach"
+
+msgid "After 5 minutes"
+msgstr "Po 5 minutach"
+
+msgid "After 30 minutes"
+msgstr "Po 30 minutach"
 
 msgid "Agenten"
 msgstr "Agenci"
@@ -4233,16 +4248,16 @@ msgid "Choose the CI protocol operation mode for standard ci or ciplus."
 msgstr "Wybierz tryb działania protokołu CI dla standardowego ci lub ciplus."
 
 msgid "Choose the display formatting style for dates. 'D' / 'DD' is the date and 'M' / 'MM' is the month in digits.  ('DD' and 'MM' have leading zeros for single digit values.) The screen display will be based on your choice but can be influenced by the skin."
-msgstr ""
+msgstr "Wybierz styl formatowania wyświetlania dla dat. „D” / „DD” to data, a „M” / „MM” to miesiąc cyframi. („DD” i „MM” mają zera wiodące dla wartości jednocyfrowych.) Obraz na ekranie będzie zależał od twojego wyboru, ale skóra może na niego wpływać."
 
 msgid "Choose the display formatting style for times. 'H' / 'HH' is the hour for a 24 hour clock, 'h' / 'hh' is the hour for a 12 hour clock, 'mm' is the minutes and 'ss' is the seconds.  ('HH' and 'hh' have leading zeros for single digit values.) The screen display will be based on your choice but can be influenced by the skin."
-msgstr ""
+msgstr "Wybierz styl formatowania wyświetlania dla czasów. „H” / „HH” to godzina dla zegara 24-godzinnego, „h” / „hh” to godzina dla zegara 12-godzinnego, „mm” to minuty, a „ss” to sekundy. („HH” i „hh” mają zera wiodące dla wartości jednocyfrowych.) Obraz na ekranie będzie zależał od twojego wyboru, ale skóra może na niego wpływać."
 
 msgid "Choose the front panel display formatting style for dates. 'D' / 'DD' is the date and 'M' / 'MM' is the month in digits.  ('DD' and 'MM' have leading zeros for single digit values.) The screen display will be based on your choice but can be influenced by the skin."
-msgstr ""
+msgstr "Wybierz styl formatowania wyświetlania na panelu przednim dla dat. „D” / „DD” to data, a „M” / „MM” to miesiąc cyframi. („DD” i „MM” mają zera wiodące dla wartości jednocyfrowych.) Obraz na ekranie będzie zależał od twojego wyboru, ale skóra może na niego wpływać."
 
 msgid "Choose the front panel display formatting style for times. 'H' / 'HH' is the hour for a 24 hour clock, 'h' / 'hh' is the hour for a 12 hour clock, 'mm' is the minutes.  ('HH' and 'hh' have leading zeros for single digit values.) The front panel display will be based on your choice but can be influenced any applicable skin."
-msgstr ""
+msgstr "Wybierz styl formatowania wyświetlania na panelu przednim dla czasów. „H” / „HH” to godzina dla zegara 24-godzinnego, „h” / „hh” to godzina dla zegara 12-godzinnego, „mm” to minuty. („HH” i „hh” mają zera wiodące dla wartości jednocyfrowych.) Wyświetlacz na panelu przednim będzie zależał od twojego wyboru, ale może mieć wpływ na dowolną odpowiednią skórkę."
 
 msgid "Choose the location for crash and debuglogs."
 msgstr "Wybierz lokalizacje crash loga."
@@ -4373,6 +4388,15 @@ msgstr "Zamknij listę bukietów."
 
 msgid "Close dialog"
 msgstr "Zamknij okno dialogowe"
+
+msgid "Close Main screen"
+msgstr "Zamknij ekran główny"
+
+msgid "Color first in Extensions list"
+msgstr "Najpierw koloruj na liście rozszerzeń"
+
+msgid "Close Picture in Picture screen"
+msgstr "Zamknij ekran Obraz w Obrazie"
 
 msgid "Close title selection"
 msgstr "Zamknij wybór tytułu"
@@ -7263,6 +7287,9 @@ msgstr "Ulubione (długo)"
 msgid "Favourites"
 msgstr "Ulubione"
 
+msgid "Favourites (TV)"
+msgstr "Ulubione (TV)"
+
 msgid "Feeds status:   Stable"
 msgstr "Status źródeł:   Stabilne"
 
@@ -7480,6 +7507,17 @@ msgstr "Jedzenie/Wino"
 
 msgid "Football"
 msgstr "Piłka nożna"
+
+msgid ""
+"For faster operation, the BLUE button only needs to be pressed once to use!\n"
+"BlueSwitch: Blue-Short/Blue-Long  ->  Extensions/QuickMenu\n"
+"\n"
+"Set this option now?"
+msgstr ""
+"Aby przyspieszyć działanie, NIEBIESKI przycisk wystarczy nacisnąć raz, aby go użyć!\n"
+"Niebieski przełącznik: Niebieski-krótki/Niebiesk1-długi  ->  Rozszerzenia/SzybkieMenu\n"
+"\n"
+"Ustaw tę opcję teraz?"
 
 msgid "For more information see http://www.opena.tv"
 msgstr "Więcej informacji można znaleźć http://www.opena.tv"
@@ -9158,6 +9196,12 @@ msgstr "LED jasność podczas normalnych operacji."
 msgid "LED brightness during standby."
 msgstr "LED jasność w trybie czuwania."
 
+msgid "LEFT  -  back to active screen   |    EXIT  -  close right screen"
+msgstr "LEWO - powrót do aktywnego ekranu  |  EXIT - zamknij prawy ekran"
+
+msgid "LEFT  -  change screen   |   RIGHT  -  active status change   |   EXIT  -  close right screen"
+msgstr "LEWO - zmiana ekranu  |  PRAWO - aktywna zmiana statusu  |  EXIT  -  zamknij prawy ekran"
+
 msgid "LNB"
 msgstr ""
 
@@ -10619,6 +10663,9 @@ msgstr ""
 "Nie znaleziono działającego adaptera sieci bezprzewowej.\n"
 "Sprawdź czy podłączyłeś kompatybilne urządzenie WLAN i czy Twoja sieć jest poprawnie skonfigurowana."
 
+msgid "No, and I will never ask for notification again"
+msgstr "Nie, i nigdy więcej nie będę prosić o powiadomienie"
+
 msgid ""
 "No working wireless network interface found.\n"
 " Please verify that you have attached a compatible WLAN device or enable your local network interface."
@@ -10750,6 +10797,9 @@ msgstr "Nic nie ma do aktualizacji"
 
 msgid "Nothing, just leave this menu"
 msgstr "Nic nie robić, zostawić tylko menu"
+
+msgid "Not now, but warn me next time"
+msgstr "Nie teraz, ale ostrzegaj mnie następnym razem"
 
 msgctxt "now/next: 'now' event label"
 msgid "Now"
@@ -11413,6 +11463,12 @@ msgstr ""
 msgid "Pilot"
 msgstr ""
 
+msgid "PiP standard Setup"
+msgstr "Standardowa konfiguracja PiP"
+
+msgid "PiP usage Setup"
+msgstr "Konfiguracja użytkowania PiP"
+
 msgid "Pitcairn"
 msgstr "Pitcairn"
 
@@ -12054,6 +12110,18 @@ msgstr "Przygotowywanie... Prosze czekać"
 
 msgid "Preschool"
 msgstr "Przedszkola"
+
+msgid "PiP mode"
+msgstr "Tryb PiP"
+
+msgid "Choose what you want the PIP mode how to works."
+msgstr "Wybierz sposób działania obrazu w trybie obrazu."
+
+msgid "Ads filtering mode"
+msgstr "Tryb filtrowania reklam"
+
+msgid "Side by side mode"
+msgstr "Tryb obok siebie"
 
 msgid "Press '0' to toggle PiP mode"
 msgstr "Naciśnij przycisk '0', aby włączyć tryb PiP"
@@ -14319,6 +14387,9 @@ msgstr "Ustaw wymagane działanie danego przycisku."
 msgid "Set to yes for debugging the root cause of a spinner."
 msgstr "Ustaw na tak dla debugowania głównej przyczyny błędu."
 
+msgid "Setting by user"
+msgstr "Ustawienie według użytkownika"
+
 msgid "Set voltage and 22KHz"
 msgstr "Ustaw napięcie i 22KHz"
 
@@ -15950,6 +16021,9 @@ msgstr "Napisy (długo)"
 msgid "Subtitle position"
 msgstr "Pozycja napisów"
 
+msgid "Swap screen"
+msgstr "Zamień ekran"
+
 msgid "Subtitle selection"
 msgstr "Wybór napisów"
 
@@ -16940,6 +17014,10 @@ msgstr "Ta opcja pozwala na wyłączenie sortowania opcji w ustawieniach ekranu"
 
 msgid "This option allows you to enable 3D Surround Sound."
 msgstr "Ta opcja umożliwia włączenie dźwięku przestrzennego 3D."
+
+msgid "This option allows you to place the colored buttons (red, green, yellow, blue) to the first in the Extensions list."
+msgstr "Ta opcja pozwala umieścić kolorowe przyciski (czerwony, zielony, żółty, niebieski) na pierwszym miejscu na liście rozszerzeń."
+
 
 msgid "This option allows you to hide and sorting of the menus"
 msgstr "Ta opcja umożliwia ukrywanie i sortowanie w menu"
@@ -18303,8 +18381,8 @@ msgid "Version %s %s"
 msgstr "Wersja %s %s"
 
 #, python-format
-msgid "Version:\t\t%s"
-msgstr "Wersja / Kompilacja:\t\t%s"
+msgid "Version / Build:\t\t%s   (%s)"
+msgstr "Wersja / Kompilacja:\t\t%s   (%s)"
 
 msgid "Version: "
 msgstr "Wersja: "
@@ -18896,7 +18974,7 @@ msgid "When enabled, measure power consumption to detect when the rotor stops tu
 msgstr "Gdy jest włączone, pomiar zużycia energii w celu wykrycia, kiedy rotor zatrzymuje obrót (jeśli jest obsługa w tunerze)."
 
 msgid "When enabled, network trash cans are probed for cleaning."
-msgstr "Po włączeniu kosz zostanie podany do czyszczenia."
+msgstr "Gdy ta opcja jest włączona, sieciowe kosze są sprawdzane pod kątem czyszczenia."
 
 msgid "When enabled, number markers will be hidden."
 msgstr "Po włączeniu znaczniki liczb będą ukryte."
@@ -19158,6 +19236,9 @@ msgstr "Tak, i usuń ten film"
 
 msgid "Yes, backup my settings!"
 msgstr "Tak, zrób kopię moich ustawień!"
+
+msgid "Yes, I'm setting it up now"
+msgstr "Tak, konfiguruję to teraz"
 
 msgid "Yes, but don't save timeshift as movie"
 msgstr "Tak, ale nie zapisywać TimeShift jako filmu"
