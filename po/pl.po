@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-12-30 14:34+0100\n"
-"PO-Revision-Date: 2020-05-14 15:23+0100\n"
+"PO-Revision-Date: 2020-05-24 15:23+0100\n"
 "Last-Translator: pololoko111 <pololoko111@o2.pl>\n"
 "Language-Team: Poland\n"
 "Language: pl\n"
@@ -4248,16 +4248,16 @@ msgid "Choose the CI protocol operation mode for standard ci or ciplus."
 msgstr "Wybierz tryb działania protokołu CI dla standardowego ci lub ciplus."
 
 msgid "Choose the display formatting style for dates. 'D' / 'DD' is the date and 'M' / 'MM' is the month in digits.  ('DD' and 'MM' have leading zeros for single digit values.) The screen display will be based on your choice but can be influenced by the skin."
-msgstr ""
+msgstr "Wybierz styl formatowania wyświetlania dla dat. „D” / „DD” to data, a „M” / „MM” to miesiąc cyframi. („DD” i „MM” mają zera wiodące dla wartości jednocyfrowych.) Obraz na ekranie będzie zależał od twojego wyboru, ale skóra może na niego wpływać."
 
 msgid "Choose the display formatting style for times. 'H' / 'HH' is the hour for a 24 hour clock, 'h' / 'hh' is the hour for a 12 hour clock, 'mm' is the minutes and 'ss' is the seconds.  ('HH' and 'hh' have leading zeros for single digit values.) The screen display will be based on your choice but can be influenced by the skin."
-msgstr ""
+msgstr "Wybierz styl formatowania wyświetlania dla czasów. „H” / „HH” to godzina dla zegara 24-godzinnego, „h” / „hh” to godzina dla zegara 12-godzinnego, „mm” to minuty, a „ss” to sekundy. („HH” i „hh” mają zera wiodące dla wartości jednocyfrowych.) Obraz na ekranie będzie zależał od twojego wyboru, ale skóra może na niego wpływać."
 
 msgid "Choose the front panel display formatting style for dates. 'D' / 'DD' is the date and 'M' / 'MM' is the month in digits.  ('DD' and 'MM' have leading zeros for single digit values.) The screen display will be based on your choice but can be influenced by the skin."
-msgstr ""
+msgstr "Wybierz styl formatowania wyświetlania na panelu przednim dla dat. „D” / „DD” to data, a „M” / „MM” to miesiąc cyframi. („DD” i „MM” mają zera wiodące dla wartości jednocyfrowych.) Obraz na ekranie będzie zależał od twojego wyboru, ale skóra może na niego wpływać."
 
 msgid "Choose the front panel display formatting style for times. 'H' / 'HH' is the hour for a 24 hour clock, 'h' / 'hh' is the hour for a 12 hour clock, 'mm' is the minutes.  ('HH' and 'hh' have leading zeros for single digit values.) The front panel display will be based on your choice but can be influenced any applicable skin."
-msgstr ""
+msgstr "Wybierz styl formatowania wyświetlania na panelu przednim dla czasów. „H” / „HH” to godzina dla zegara 24-godzinnego, „h” / „hh” to godzina dla zegara 12-godzinnego, „mm” to minuty. („HH” i „hh” mają zera wiodące dla wartości jednocyfrowych.) Wyświetlacz na panelu przednim będzie zależał od twojego wyboru, ale może mieć wpływ na dowolną odpowiednią skórkę."
 
 msgid "Choose the location for crash and debuglogs."
 msgstr "Wybierz lokalizacje crash loga."
@@ -9195,6 +9195,12 @@ msgstr "LED jasność podczas normalnych operacji."
 
 msgid "LED brightness during standby."
 msgstr "LED jasność w trybie czuwania."
+
+msgid "LEFT  -  back to active screen   |    EXIT  -  close right screen"
+msgstr "LEWO - powrót do aktywnego ekranu  |  EXIT - zamknij prawy ekran"
+
+msgid "LEFT  -  change screen   |   RIGHT  -  active status change   |   EXIT  -  close right screen"
+msgstr "LEWO - zmiana ekranu  |  PRAWO - aktywna zmiana statusu  |  EXIT  -  zamknij prawy ekran"
 
 msgid "LNB"
 msgstr ""
@@ -18375,8 +18381,8 @@ msgid "Version %s %s"
 msgstr "Wersja %s %s"
 
 #, python-format
-msgid "Version:\t\t%s"
-msgstr "Wersja / Kompilacja:\t\t%s"
+msgid "Version / Build:\t\t%s   (%s)"
+msgstr "Wersja / Kompilacja:\t\t%s   (%s)"
 
 msgid "Version: "
 msgstr "Wersja: "
