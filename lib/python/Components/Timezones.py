@@ -128,6 +128,7 @@ class Timezones:
 		commonTimezoneNames = {
 			"Antarctica/DumontDUrville": "Dumont d'Urville",
 			"Asia/Ho_Chi_Minh": "Ho Chi Minh City",
+			"Atlantic/Canary": "Canary Islands",
 			"Australia/LHI": None,  # Duplicate entry - Exclude from list.
 			"Australia/Lord_Howe": "Lord Howe Island",
 			"Australia/North": "Northern Territory",
