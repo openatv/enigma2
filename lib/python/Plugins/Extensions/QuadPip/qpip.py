@@ -66,14 +66,14 @@ class QuadPipChannelEntry:
 		return self.idx
 
 	def setChannel(self, idx, chName, sref):
-		if self.channel.has_key(idx):
+		if idx in self.channel:
 			self.channel[idx] = (chName, sref)
 			return True
 
 		return False
 
 	def deleteChannel(self, idx):
-		if self.channel.has_key(idx):
+		if idx in self.channel:
 			self.channel[idx] = None
 			return True
 

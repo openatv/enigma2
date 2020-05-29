@@ -1197,7 +1197,7 @@ class InfoBarNumberZap:
 			})
 
 	def keyNumberGlobal(self, number):
-		if self.pvrStateDialog.has_key("PTSSeekPointer") and self.timeshiftEnabled() and self.isSeekable():
+		if "PTSSeekPointer" in self.pvrStateDialog and self.timeshiftEnabled() and self.isSeekable():
 			InfoBarTimeshiftState._mayShow(self)
 			self.pvrStateDialog["PTSSeekPointer"].setPosition((self.pvrStateDialog["PTSSeekBack"].instance.size().width()-4)/2, self.pvrStateDialog["PTSSeekPointer"].position[1])
 			if self.seekstate != self.SEEK_STATE_PLAY:
@@ -1218,7 +1218,7 @@ class InfoBarNumberZap:
 			elif len(self.servicelist.history) > 1 or config.usage.panicbutton.value:
 				self.checkTimeshiftRunning(self.recallPrevService)
 		else:
-			if self.has_key("TimeshiftActions") and self.timeshiftEnabled():
+			if "TimeshiftActions" in self and self.timeshiftEnabled():
 				ts = self.getTimeshift()
 				if ts and ts.isTimeshiftActive():
 					return
@@ -3044,7 +3044,7 @@ class InfoBarPVRState:
 		return InfoBarMoviePlayerSummary
 
 	def _mayShow(self):
-		if self.has_key("state") and not config.usage.movieplayer_pvrstate.value:
+		if "state" in self and not config.usage.movieplayer_pvrstate.value:
 			self["state"].setText("")
 			self["statusicon"].setPixmapNum(6)
 			self["speed"].setText("")
@@ -3057,14 +3057,14 @@ class InfoBarPVRState:
 	def __playStateChanged(self, state):
 		playstateString = state[3]
 		state_summary = playstateString
-		if self.pvrStateDialog.has_key("statusicon"):
+		if "statusicon" in self.pvrStateDialog:
 			self.pvrStateDialog["state"].setText(playstateString)
 			if playstateString == '>':
 				self.pvrStateDialog["statusicon"].setPixmapNum(0)
 				self.pvrStateDialog["speed"].setText("")
 				speed_summary = self.pvrStateDialog["speed"].text
 				statusicon_summary = 0
-				if self.has_key("state") and config.usage.movieplayer_pvrstate.value:
+				if "state" in self and config.usage.movieplayer_pvrstate.value:
 					self["state"].setText(playstateString)
 					self["statusicon"].setPixmapNum(0)
 					self["speed"].setText("")
@@ -3073,7 +3073,7 @@ class InfoBarPVRState:
 				self.pvrStateDialog["speed"].setText("")
 				speed_summary = self.pvrStateDialog["speed"].text
 				statusicon_summary = 1
-				if self.has_key("state") and config.usage.movieplayer_pvrstate.value:
+				if "state" in self and config.usage.movieplayer_pvrstate.value:
 					self["state"].setText(playstateString)
 					self["statusicon"].setPixmapNum(1)
 					self["speed"].setText("")
@@ -3082,7 +3082,7 @@ class InfoBarPVRState:
 				self.pvrStateDialog["speed"].setText("")
 				speed_summary = self.pvrStateDialog["speed"].text
 				statusicon_summary = 2
-				if self.has_key("state") and config.usage.movieplayer_pvrstate.value:
+				if "state" in self and config.usage.movieplayer_pvrstate.value:
 					self["state"].setText(playstateString)
 					self["statusicon"].setPixmapNum(2)
 					self["speed"].setText("")
@@ -3092,7 +3092,7 @@ class InfoBarPVRState:
 				self.pvrStateDialog["speed"].setText(speed[1])
 				speed_summary = self.pvrStateDialog["speed"].text
 				statusicon_summary = 3
-				if self.has_key("state") and config.usage.movieplayer_pvrstate.value:
+				if "state" in self and config.usage.movieplayer_pvrstate.value:
 					self["state"].setText(playstateString)
 					self["statusicon"].setPixmapNum(3)
 					self["speed"].setText(speed[1])
@@ -3102,7 +3102,7 @@ class InfoBarPVRState:
 				self.pvrStateDialog["speed"].setText(speed[1])
 				speed_summary = self.pvrStateDialog["speed"].text
 				statusicon_summary = 4
-				if self.has_key("state") and config.usage.movieplayer_pvrstate.value:
+				if "state" in self and config.usage.movieplayer_pvrstate.value:
 					self["state"].setText(playstateString)
 					self["statusicon"].setPixmapNum(4)
 					self["speed"].setText(speed[1])
@@ -3111,7 +3111,7 @@ class InfoBarPVRState:
 				self.pvrStateDialog["speed"].setText(playstateString)
 				speed_summary = self.pvrStateDialog["speed"].text
 				statusicon_summary = 5
-				if self.has_key("state") and config.usage.movieplayer_pvrstate.value:
+				if "state" in self and config.usage.movieplayer_pvrstate.value:
 					self["state"].setText(playstateString)
 					self["statusicon"].setPixmapNum(5)
 					self["speed"].setText(playstateString)
@@ -3305,12 +3305,12 @@ class InfoBarExtensions:
 	def updateExtension(self, extension, key = None):
 		self.extensionsList.append(extension)
 		if key is not None:
-			if self.extensionKeys.has_key(key):
+			if key in self.extensionKeys:
 				key = None
 
 		if key is None:
 			for x in self.availableKeys:
-				if not self.extensionKeys.has_key(x):
+				if x not in self.extensionKeys:
 					key = x
 					break
 
@@ -3338,7 +3338,7 @@ class InfoBarExtensions:
 		new_list = []
 		colorlist = []
 		for x in self.availableKeys:
-			if self.extensionKeys.has_key(x):
+			if x in self.extensionKeys:
 				entry = self.extensionKeys[x]
 				extension = self.extensionsList[entry]
 				if extension[2]():
@@ -5016,14 +5016,14 @@ class InfoBarNotifications:
 			del notifications[0]
 			cb = n[0]
 
-			if n[3].has_key("onSessionOpenCallback"):
+			if "onSessionOpenCallback" in n[3]:
 				n[3]["onSessionOpenCallback"]()
 				del n[3]["onSessionOpenCallback"]
 
 			if cb:
 				dlg = self.session.openWithCallback(cb, n[1], *n[2], **n[3])
 			elif not Notifications.current_notifications and n[4] == "ZapError":
-				if n[3].has_key("timeout"):
+				if "timeout" in n[3]:
 					del n[3]["timeout"]
 				n[3]["enable_input"] = False
 				dlg = self.session.instantiateDialog(n[1], *n[2], **n[3])

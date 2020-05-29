@@ -23,7 +23,7 @@ class HTTPProgressDownloader(client.HTTPDownloader):
 
 	def gotHeaders(self, headers):
 		if self.status == "200":
-			if headers.has_key("content-length"):
+			if "content-length" in headers:
 				self.totalbytes = int(headers["content-length"][0])
 			else:
 				self.totalbytes = 0

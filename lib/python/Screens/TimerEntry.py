@@ -293,20 +293,20 @@ class TimerEntry(Screen, ConfigListScreen):
 			if len(self["config"].getCurrent()) > 2 and self["config"].getCurrent()[2]:
 				self["description"].setText(self["config"].getCurrent()[2])
 			if isinstance(self["config"].getCurrent()[1], ConfigText):
-				if self.has_key("VKeyIcon"):
+				if "VKeyIcon" in self:
 					self["VirtualKB"].setEnabled(True)
 					self["VKeyIcon"].boolean = True
-				if self.has_key("HelpWindow"):
+				if "HelpWindow" in self:
 					if self["config"].getCurrent()[1].help_window and self["config"].getCurrent()[1].help_window.instance is not None:
 						helpwindowpos = self["HelpWindow"].getPosition()
 						from enigma import ePoint
 						self["config"].getCurrent()[1].help_window.instance.move(ePoint(helpwindowpos[0],helpwindowpos[1]))
 					else:
-						if self.has_key("VKeyIcon"):
+						if "VKeyIcon" in self:
 							self["VirtualKB"].setEnabled(False)
 							self["VKeyIcon"].boolean = False
 		else:
-			if self.has_key("VKeyIcon"):
+			if "VKeyIcon" in self:
 				self["VirtualKB"].setEnabled(False)
 				self["VKeyIcon"].boolean = False
 

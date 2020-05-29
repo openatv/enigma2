@@ -1114,7 +1114,7 @@ class HdmiCec:
 				else:
 					txt += "<wrong data length>"
 			elif length:
-				txt += CECdat.get(cmd,"").get(ord(data[0]),"<unknown>") if CECdat.has_key(cmd) else ""
+				txt += CECdat.get(cmd,"").get(ord(data[0]),"<unknown>") if cmd in CECdat else ""
 			else:
 				txt += CECdat.get(cmd,"")
 		self.CECwritedebug(txt)

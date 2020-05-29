@@ -76,12 +76,12 @@ class inputDevices:
 
 	def setDeviceAttribute(self, device, attribute, value):
 		#print "[iInputDevices] setting for device", device, "attribute", attribute, " to value", value
-		if self.Devices.has_key(device):
+		if device in self.Devices:
 			self.Devices[device][attribute] = value
 
 	def getDeviceAttribute(self, device, attribute):
-		if self.Devices.has_key(device):
-			if self.Devices[device].has_key(attribute):
+		if device in self.Devices:
+			if attribute in self.Devices[device]:
 				return self.Devices[device][attribute]
 		return None
 

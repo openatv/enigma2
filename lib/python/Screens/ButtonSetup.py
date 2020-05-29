@@ -163,7 +163,7 @@ def getButtonSetupFunctions():
 	pluginlist.sort(key=lambda p: p.name)
 	for plugin in pluginlist:
 		if plugin.name not in twinPlugins and plugin.path and 'selectedevent' not in plugin.__call__.func_code.co_varnames:
-			if twinPaths.has_key(plugin.path[plugin.path.rfind("Plugins"):]):
+			if plugin.path[plugin.path.rfind("Plugins"):] in twinPaths:
 				twinPaths[plugin.path[plugin.path.rfind("Plugins"):]] += 1
 			else:
 				twinPaths[plugin.path[plugin.path.rfind("Plugins"):]] = 1
@@ -173,7 +173,7 @@ def getButtonSetupFunctions():
 	pluginlist.sort(key=lambda p: p.name)
 	for plugin in pluginlist:
 		if plugin.name not in twinPlugins and plugin.path:
-			if twinPaths.has_key(plugin.path[plugin.path.rfind("Plugins"):]):
+			if plugin.path[plugin.path.rfind("Plugins"):] in twinPaths:
 				twinPaths[plugin.path[plugin.path.rfind("Plugins"):]] += 1
 			else:
 				twinPaths[plugin.path[plugin.path.rfind("Plugins"):]] = 1
@@ -416,7 +416,7 @@ class ButtonSetupSelect(Screen):
 		functionslist = []
 		catagories = {}
 		for function in self.ButtonSetupFunctions:
-			if not catagories.has_key(function[2]):
+			if function[2] not in catagories:
 				catagories[function[2]] = []
 			catagories[function[2]].append(function)
 		for catagorie in sorted(list(catagories)):
@@ -505,7 +505,7 @@ class ButtonSetupSelect(Screen):
 
 class ButtonSetupActionMap(ActionMap):
 	def action(self, contexts, action):
-		if (action in tuple(x[1] for x in getButtonSetupKeys()) and self.actions.has_key(action)):
+		if (action in tuple(x[1] for x in getButtonSetupKeys()) and action in self.actions):
 			res = self.actions[action](action)
 			if res is not None:
 				return res
@@ -515,7 +515,7 @@ class ButtonSetupActionMap(ActionMap):
 
 class helpableButtonSetupActionMap(HelpableActionMap):
 	def action(self, contexts, action):
-		if (action in tuple(x[1] for x in getButtonSetupKeys()) and self.actions.has_key(action)):
+		if (action in tuple(x[1] for x in getButtonSetupKeys()) and action in self.actions):
 			res = self.actions[action](action)
 			if res is not None:
 				return res
@@ -584,7 +584,7 @@ class InfoBarButtonSetup():
 				pluginlist.sort(key=lambda p: p.name)
 				for plugin in pluginlist:
 					if plugin.name not in twinPlugins and plugin.path and 'selectedevent' not in plugin.__call__.func_code.co_varnames:	
-						if twinPaths.has_key(plugin.path[plugin.path.rfind("Plugins"):]):
+						if plugin.path[plugin.path.rfind("Plugins"):] in twinPaths:
 							twinPaths[plugin.path[plugin.path.rfind("Plugins"):]] += 1
 						else:
 							twinPaths[plugin.path[plugin.path.rfind("Plugins"):]] = 1
@@ -596,7 +596,7 @@ class InfoBarButtonSetup():
 				pluginlist.sort(key=lambda p: p.name)
 				for plugin in pluginlist:
 					if plugin.name not in twinPlugins and plugin.path:
-						if twinPaths.has_key(plugin.path[plugin.path.rfind("Plugins"):]):
+						if plugin.path[plugin.path.rfind("Plugins"):] in twinPaths:
 							twinPaths[plugin.path[plugin.path.rfind("Plugins"):]] += 1
 						else:
 							twinPaths[plugin.path[plugin.path.rfind("Plugins"):]] = 1

@@ -64,9 +64,9 @@ class SetupSummary(Screen):
 	def selectionChanged(self):
 		self["SetupEntry"].text = self.parent.getCurrentEntry()
 		self["SetupValue"].text = self.parent.getCurrentValue()
-		if hasattr(self.parent,"getCurrentDescription") and self.parent.has_key("description"):
+		if hasattr(self.parent,"getCurrentDescription") and "description" in self.parent:
 			self.parent["description"].text = self.parent.getCurrentDescription()
-		if self.parent.has_key('footnote'):
+		if 'footnote' in self.parent:
 			if self.parent.getCurrentEntry().endswith('*'):
 				self.parent['footnote'].text = (_("* = Restart Required"))
 			else:
@@ -164,24 +164,24 @@ class Setup(ConfigListScreen, Screen):
 		if self["config"].getCurrent() is not None:
 			try:
 				if isinstance(self["config"].getCurrent()[1], ConfigText) or isinstance(self["config"].getCurrent()[1], ConfigPassword):
-					if self.has_key("VKeyIcon"):
+					if "VKeyIcon" in self:
 						self["VirtualKB"].setEnabled(True)
 						self["VKeyIcon"].boolean = True
-					if self.has_key("HelpWindow"):
+					if "HelpWindow" in self:
 						if self["config"].getCurrent()[1].help_window.instance is not None:
 							helpwindowpos = self["HelpWindow"].getPosition()
 							from enigma import ePoint
 							self["config"].getCurrent()[1].help_window.instance.move(ePoint(helpwindowpos[0],helpwindowpos[1]))
 				else:
-					if self.has_key("VKeyIcon"):
+					if "VKeyIcon" in self:
 						self["VirtualKB"].setEnabled(False)
 						self["VKeyIcon"].boolean = False
 			except:
-				if self.has_key("VKeyIcon"):
+				if "VKeyIcon" in self:
 					self["VirtualKB"].setEnabled(False)
 					self["VKeyIcon"].boolean = False
 		else:
-			if self.has_key("VKeyIcon"):
+			if "VKeyIcon" in self:
 				self["VirtualKB"].setEnabled(False)
 				self["VKeyIcon"].boolean = False
 

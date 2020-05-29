@@ -84,7 +84,7 @@ def getPage(url, contextFactory=None, *args, **kwargs):
 		authHeader = "Basic " + basicAuth.strip()
 		AuthHeaders = {"Authorization": authHeader}
 
-		if kwargs.has_key("headers"):
+		if "headers" in kwargs:
 			kwargs["headers"].update(AuthHeaders)
 		else:
 			kwargs["headers"] = AuthHeaders

@@ -638,7 +638,7 @@ class MovieList(GUIComponent):
 				realtags.update(this_tags)
 			for tag in this_tags:
 				if len(tag) >= 4:
-					if tags.has_key(tag):
+					if tag in tags:
 						tags[tag].append(name)
 					else:
 						tags[tag] = [name]

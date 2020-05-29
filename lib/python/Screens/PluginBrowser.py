@@ -770,7 +770,7 @@ class PluginDownloadBrowser(Screen):
 			elif x[0][0:15] == 'enigma2-locale-':
 				split[0] = "languages"
 
-			if not self.plugins.has_key(split[0]):
+			if split[0] not in self.plugins:
 				self.plugins[split[0]] = []
 
 			if split[0] == "kernel modules":

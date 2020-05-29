@@ -430,7 +430,7 @@ def setAudioTrack(service):
 		for i in xrange(nTracks):
 			audioInfo = tracks.getTrackInfo(i)
 			lang = audioInfo.getLanguage()
-			if langC.has_key(lang):
+			if lang in langC:
 				lang = langC[lang][0]
 			desc = audioInfo.getDescription()
 			track = idx, lang,  desc

@@ -37,7 +37,7 @@ class SetupSummary(Screen):
 		self["SetupValue"].text = self.parent.getCurrentValue()
 		if hasattr(self.parent,"getCurrentDescription"):
 			self.parent["description"].text = self.parent.getCurrentDescription()
-		if self.parent.has_key('footnote'):
+		if 'footnote' in self.parent:
 			if self.parent.getCurrentEntry().endswith('*'):
 				self.parent['footnote'].text = (_("* = Restart Required"))
 			else:
