@@ -4,6 +4,7 @@ import errno
 import xml.etree.cElementTree
 
 from os import environ, path, symlink, unlink, walk
+import six
 from time import gmtime, localtime, strftime, time
 
 from Components.config import ConfigSelection, ConfigSubsection, config
@@ -163,11 +164,11 @@ class Timezones:
 				name = commonTimezoneNames.get(tz, zone)  # Use the more common name if one is defined.
 				if name is None:
 					continue
-				if isinstance(name, unicode):
+				if isinstance(name, six.text_type):
 					name = name.encode(encoding="UTF-8", errors="ignore")
-				if isinstance(area, unicode):
+				if isinstance(area, six.text_type):
 					area = area.encode(encoding="UTF-8", errors="ignore")
-				if isinstance(zone, unicode):
+				if isinstance(zone, six.text_type):
 					zone = zone.encode(encoding="UTF-8", errors="ignore")
 				zones.append((zone, name.replace("_", " ")))
 			if area:
@@ -228,10 +229,10 @@ class Timezones:
 		if root is not None:
 			for zone in root.findall("zone"):
 				name = zone.get("name", "")
-				if isinstance(name, unicode):
+				if isinstance(name, six.text_type):
 					name = name.encode(encoding="UTF-8", errors="ignore")
 				zonePath = zone.get("zone", "")
-				if isinstance(zonePath, unicode):
+				if isinstance(zonePath, six.text_type):
 					zonePath = zonePath.encode(encoding="UTF-8", errors="ignore")
 				if path.exists(path.join(TIMEZONE_DATA, zonePath)):
 					zones.append((zonePath, name))

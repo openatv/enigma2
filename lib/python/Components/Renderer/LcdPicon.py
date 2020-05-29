@@ -9,6 +9,7 @@ from Components.Harddisk import harddiskmanager
 from boxbranding import getDisplayType
 from ServiceReference import ServiceReference
 from Components.SystemInfo import SystemInfo
+import six
 
 searchPaths = []
 lastLcdPiconPath = None
@@ -95,7 +96,7 @@ def getLcdPiconName(serviceName):
 		pngname = findLcdPicon('_'.join(fields))
 	if not pngname: # picon by channel name
 		name = ServiceReference(serviceName).getServiceName()
-		name = unicodedata.normalize('NFKD', unicode(name, 'utf_8', errors='ignore')).encode('ASCII', 'ignore')
+		name = unicodedata.normalize('NFKD', six.text_type(name, 'utf_8', errors='ignore')).encode('ASCII', 'ignore')
 		name = re.sub('[^a-z0-9]', '', name.replace('&', 'and').replace('+', 'plus').replace('*', 'star').lower())
 		if len(name) > 0:
 			pngname = findLcdPicon(name)
