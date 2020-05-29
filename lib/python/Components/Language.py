@@ -1,4 +1,5 @@
 # -*- coding: UTF-8 -*-
+from __future__ import print_function
 import gettext
 import locale
 import os
@@ -77,16 +78,16 @@ class Language:
 				self.langlist.append(str(lang + "_" + country))
 
 		except:
-			print "Language " + str(name) + " not found"
+			print("Language " + str(name) + " not found")
 		self.langlistselection.append((str(lang + "_" + country), name))
 
 	def activateLanguage(self, index):
 		try:
 			if index not in self.lang:
-				print "Selected language %s is not installed, fallback to en_US!" % index
+				print("Selected language %s is not installed, fallback to en_US!" % index)
 				index = "en_US"
 			lang = self.lang[index]
-			print "Activating language " + lang[0]
+			print("Activating language " + lang[0])
 			self.catalog = gettext.translation('enigma2', resolveFilename(SCOPE_LANGUAGE, ""), languages=[index], fallback=True)
 			self.catalog.install(names=("ngettext", "pgettext"))
 			self.activeLanguage = index
@@ -94,7 +95,7 @@ class Language:
 				if x:
 					x()
 		except:
-			print "Selected language does not exist!"
+			print("Selected language does not exist!")
 
 		# These should always be C.UTF-8 (or POSIX if C.UTF-8 is unavaible) or program code might behave
 		# differently depending on language setting
@@ -184,9 +185,9 @@ class Language:
 		lang = config.osd.language.value
 
 		if delLang:
-			print"DELETE LANG", delLang
+			print("DELETE LANG", delLang)
 			if delLang == "en_US" or delLang == "de_DE" or delLang == "fr_FR":
-				print"Default Language can not be deleted !!"
+				print("Default Language can not be deleted !!")
 				return
 			elif delLang == "en_GB" or delLang == "pt_BR":
 				delLang = delLang.lower()
@@ -195,7 +196,7 @@ class Language:
 			else:
 				os.system("opkg remove --autoremove --force-depends " + Lpackagename + delLang[:2])
 		else:
-			print"Delete all lang except ", lang
+			print("Delete all lang except ", lang)
 			ll = os.listdir(LPATH)
 			for x in ll:
 				if len(x) > 2:

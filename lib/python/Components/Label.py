@@ -1,3 +1,4 @@
+from __future__ import print_function
 from HTMLComponent import HTMLComponent
 from GUIComponent import GUIComponent
 from VariableText import VariableText
@@ -90,12 +91,12 @@ class MultiColorLabel(Label):
 			if len(self.foreColors) > x:
 				self.instance.setForegroundColor(self.foreColors[x])
 			else:
-				print "setForegroundColorNum(%d) failed! defined colors:" % x, self.foreColors
+				print("setForegroundColorNum(%d) failed! defined colors:" % x, self.foreColors)
 
 	def setBackgroundColorNum(self, x):
 		if self.instance:
 			if len(self.backColors) > x:
 				self.instance.setBackgroundColor(self.backColors[x])
 			else:
-				print "setBackgroundColorNum(%d) failed! defined colors:" % x, self.backColors
+				print("setBackgroundColorNum(%d) failed! defined colors:" % x, self.backColors)
 

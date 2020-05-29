@@ -1,3 +1,4 @@
+from __future__ import print_function
 from Screens.Screen import Screen
 from Components.ActionMap import ActionMap
 from Components.Harddisk import harddiskmanager
@@ -33,7 +34,7 @@ class HarddiskSetup(Screen):
 		})
 
 	def hddQuestion(self, answer=False):
-		print 'answer:',answer
+		print('answer:',answer)
 		if Screens.InfoBar.InfoBar.instance.timeshiftEnabled():
 			message = self.question + "\n\n" + _("You seem to be in timeshft, the service will briefly stop as timeshfit stops.")
 			message += '\n' + _("Do you want to continue?")

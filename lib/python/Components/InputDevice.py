@@ -1,3 +1,4 @@
+from __future__ import print_function
 from os import listdir, open as os_open, close as os_close, write as os_write, O_RDWR, O_NONBLOCK
 from fcntl import ioctl
 from boxbranding import getBoxType, getBrandOEM
@@ -44,7 +45,7 @@ class inputDevices:
 					self.name = 'keyboard'
 				os_close(self.fd)
 			except (IOError,OSError), err:
-				print '[iInputDevices] getInputDevices  <ERROR: ioctl(EVIOCGNAME): ' + str(err) + ' >'
+				print('[iInputDevices] getInputDevices  <ERROR: ioctl(EVIOCGNAME): ' + str(err) + ' >')
 				self.name = None
 
 			if self.name:
@@ -61,7 +62,7 @@ class inputDevices:
 		elif "mouse" in name:
 			return "mouse"
 		else:
-			print "Unknown device type:",name
+			print("Unknown device type:",name)
 			return None
 
 	def getDeviceName(self, x):
@@ -103,7 +104,7 @@ class inputDevices:
 	#}; -> size = 16
 
 	def setDefaults(self, device):
-		print "[iInputDevices] setDefaults for device %s" % device
+		print("[iInputDevices] setDefaults for device %s" % device)
 		self.setDeviceAttribute(device, 'configuredName', None)
 		event_repeat = struct.pack('LLHHi', 0, 0, 0x14, 0x01, 100)
 		event_delay = struct.pack('LLHHi', 0, 0, 0x14, 0x00, 700)
@@ -114,7 +115,7 @@ class inputDevices:
 
 	def setRepeat(self, device, value): #REP_PERIOD
 		if self.getDeviceAttribute(device, 'enabled'):
-			print "[iInputDevices] setRepeat for device %s to %d ms" % (device,value)
+			print("[iInputDevices] setRepeat for device %s to %d ms" % (device,value))
 			event = struct.pack('LLHHi', 0, 0, 0x14, 0x01, int(value))
 			fd = os_open("/dev/input/" + device, O_RDWR)
 			os_write(fd, event)
@@ -122,7 +123,7 @@ class inputDevices:
 
 	def setDelay(self, device, value): #REP_DELAY
 		if self.getDeviceAttribute(device, 'enabled'):
-			print "[iInputDevices] setDelay for device %s to %d ms" % (device,value)
+			print("[iInputDevices] setDelay for device %s to %d ms" % (device,value))
 			event = struct.pack('LLHHi', 0, 0, 0x14, 0x00, int(value))
 			fd = os_open("/dev/input/" + device, O_RDWR)
 			os_write(fd, event)

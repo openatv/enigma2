@@ -1,3 +1,4 @@
+from __future__ import print_function
 from re import escape as re_escape
 
 from enigma import eTimer, eEnv
@@ -316,7 +317,7 @@ class WlanScan(Screen):
 		self.cleanList = []
 		aps = iWlan.getNetworkList()
 		if aps is not None:
-			print "[WirelessLan.py] got Accespoints!"
+			print("[WirelessLan.py] got Accespoints!")
 			tmpList = []
 			compList = []
 			for ap in aps:

@@ -1,3 +1,4 @@
+from __future__ import print_function
 from enigma import eDVBResourceManager,\
 	eDVBFrontendParametersSatellite, eDVBFrontendParametersTerrestrial, eDVBFrontendParametersATSC, iDVBFrontend
 
@@ -89,7 +90,7 @@ class Satfinder(ScanSetup, ServiceScan):
 	def newConfig(self):
 #		self.transponder = None
 		cur = self["config"].getCurrent()
-		print"cur ", cur
+		print("cur ", cur)
 
 		if cur == self.tunerEntry:
 			self.feid = int(self.scan_nims.value)
@@ -161,7 +162,7 @@ class Satfinder(ScanSetup, ServiceScan):
 			(system in ('ATSC') and config.Nims[fe_id].atsc.configMode.value == "nothing") :
 			return
 		slot = nimmanager.nim_slots[fe_id]
-		print "dvb_api_version ",iDVBFrontend.dvb_api_version
+		print("dvb_api_version ",iDVBFrontend.dvb_api_version)
 		self.frontend = None
 		if not self.openFrontend():
 			self.session.nav.stopService()
@@ -191,7 +192,7 @@ class Satfinder(ScanSetup, ServiceScan):
 
 
 #			if not path.exists("/proc/stb/frontend/%d/mode" % fe_id) and iDVBFrontend.dvb_api_version >= 5:
-		print "api >=5 and new style tuner driver"
+		print("api >=5 and new style tuner driver")
 		if self.frontend:
 			if system == 'DVB-C':
 				ret = self.frontend.changeType(iDVBFrontend.feCable)
@@ -204,11 +205,11 @@ class Satfinder(ScanSetup, ServiceScan):
 			else:
 				ret = False
 			if not ret:
-				print "%d: tunerTypeChange to '%s' failed" %(fe_id, system)
+				print("%d: tunerTypeChange to '%s' failed" %(fe_id, system))
 			else:
-				print "new system ",system
+				print("new system ",system)
 		else:
-			print "%d: tunerTypeChange to '%s' failed (BUSY)" %(fe_id, multiType.getText())
+			print("%d: tunerTypeChange to '%s' failed (BUSY)" %(fe_id, multiType.getText()))
 		self.retune()
 
 	def createConfig(self):
@@ -254,7 +255,7 @@ class Satfinder(ScanSetup, ServiceScan):
 			return self.retuneATSC()
 		self.frontend = None
 		self.raw_channel = None
-		print "error: tuner not enabled/supported", nim.getType()
+		print("error: tuner not enabled/supported", nim.getType())
 
 	def retuneCab(self):
 		if self.initcomplete:
@@ -373,7 +374,7 @@ class Satfinder(ScanSetup, ServiceScan):
 
 	def keyGoScan(self):
 		if self.transponder is None:
-			print "error: no transponder data"
+			print("error: no transponder data")
 			return
 		fe_id = int(self.scan_nims.value)
 		nim = nimmanager.nim_slots[fe_id]
@@ -434,7 +435,7 @@ class Satfinder(ScanSetup, ServiceScan):
 				self.transponder[3]  # system
 			)
 		else:
-			print "error: tuner not enabled/supported", nim.getType()
+			print("error: tuner not enabled/supported", nim.getType())
 		self.startScan(tlist, fe_id)
 
 	def startScan(self, tlist, feid):

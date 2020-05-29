@@ -1,3 +1,4 @@
+from __future__ import print_function
 from Components.ActionMap import ActionMap
 from Components.Ipkg import IpkgComponent
 from Components.Label import Label
@@ -51,7 +52,7 @@ class Ipkg(Screen):
 			self.runningCmd = 0
 		else:
 			self.runningCmd += 1
-		print len(self.cmdList), self.runningCmd
+		print(len(self.cmdList), self.runningCmd)
 		if len(self.cmdList) - 1 < self.runningCmd:
 			self.activityslider.setValue(0)
 			self.slider.setValue(len(self.cmdList))

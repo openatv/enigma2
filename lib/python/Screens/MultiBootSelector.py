@@ -1,3 +1,4 @@
+from __future__ import print_function
 from enigma import getDesktop
 from os import mkdir, path
 
@@ -92,7 +93,7 @@ class MultiBootSelector(Screen, HelpableScreen):
 		list = []
 		mode = GetCurrentImageMode() or 0
 		currentimageslot = GetCurrentImage()
-		print "[MultiBootSelector] reboot1 slot:", currentimageslot
+		print("[MultiBootSelector] reboot1 slot:", currentimageslot)
 		current = "  %s" % _("(current image)")
 		slotSingle = _("Slot %s: %s%s")
 		slotMulti = _("Slot %s: %s - Mode %d%s")
@@ -116,14 +117,14 @@ class MultiBootSelector(Screen, HelpableScreen):
 		self.currentSelected = self["config"].l.getCurrentSelection()
 		self.slot = self.currentSelected[0][1]
 		if self.currentSelected[0][1] != "Queued":
-			print "[MultiBootSelector] reboot2 rebootslot = %s, " % self.slot
-			print "[MultiBootSelector] reboot3 slotinfo = %s" % SystemInfo["canMultiBoot"]
+			print("[MultiBootSelector] reboot2 rebootslot = %s, " % self.slot)
+			print("[MultiBootSelector] reboot3 slotinfo = %s" % SystemInfo["canMultiBoot"])
 			if self.slot < 12:
 				copyfile(path.join(self.mountDir, SystemInfo["canMultiBoot"][self.slot]["startupfile"]), path.join(self.mountDir, "STARTUP"))
 			else:
 				self.slot -= 12
 				startupfile = path.join(self.mountDir, SystemInfo["canMultiBoot"][self.slot]["startupfile"].replace("BOXMODE_1", "BOXMODE_12"))
-				print "[MultiBootSelector] reboot5 startupfile = %s" % startupfile
+				print("[MultiBootSelector] reboot5 startupfile = %s" % startupfile)
 				if "BOXMODE" in startupfile:
 					copyfile(startupfile, path.join(self.mountDir, "STARTUP"))
 				else:

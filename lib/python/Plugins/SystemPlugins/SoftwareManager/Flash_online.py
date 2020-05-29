@@ -1,3 +1,4 @@
+from __future__ import print_function
 from Components.config import config
 from Components.Label import Label
 from Components.ActionMap import ActionMap
@@ -234,7 +235,7 @@ class FlashImage(Screen):
 		choices = []
 		HIslot = len(imagedict) + 1
 		currentimageslot = GetCurrentImage()
-		print "[FlashOnline] Current Image Slot %s, Imagelist %s"% ( currentimageslot, imagedict)
+		print("[FlashOnline] Current Image Slot %s, Imagelist %s"% ( currentimageslot, imagedict))
 		for x in range(1,HIslot):
 			choices.append(((_("slot%s - %s (current image)") if x == currentimageslot else _("slot%s - %s")) % (x, imagedict[x]['imagename']), (x,True)))
 		choices.append((_("No, do not flash an image"), False))
@@ -386,7 +387,7 @@ class FlashImage(Screen):
 							os.makedirs('/media/hdd/images/config')
 						open('/media/hdd/images/config/settings','w').close()
 					except:
-						print "[FlashOnline] postFlashActionCallback: failed to create /media/hdd/images/config/settings"
+						print("[FlashOnline] postFlashActionCallback: failed to create /media/hdd/images/config/settings")
 				else:
 					if os.path.exists('/media/hdd/images/config/settings'):
 						os.unlink('/media/hdd/images/config/settings')
@@ -396,7 +397,7 @@ class FlashImage(Screen):
 							os.makedirs('/media/hdd/images/config')
 						open('/media/hdd/images/config/plugins','w').close()
 					except:
-						print "[FlashOnline] postFlashActionCallback: failed to create /media/hdd/images/config/plugins"
+						print("[FlashOnline] postFlashActionCallback: failed to create /media/hdd/images/config/plugins")
 				else:
 					if os.path.exists('/media/hdd/images/config/plugins'):
 						os.unlink('/media/hdd/images/config/plugins')
@@ -406,7 +407,7 @@ class FlashImage(Screen):
 							os.makedirs('/media/hdd/images/config')
 						open('/media/hdd/images/config/noplugins','w').close()
 					except:
-						print "[FlashOnline] postFlashActionCallback: failed to create /media/hdd/images/config/noplugins"
+						print("[FlashOnline] postFlashActionCallback: failed to create /media/hdd/images/config/noplugins")
 				else:
 					if os.path.exists('/media/hdd/images/config/noplugins'):
 						os.unlink('/media/hdd/images/config/noplugins')
@@ -437,7 +438,7 @@ class FlashImage(Screen):
 								if os.path.exists('/media/hdd/images/config/fast'):
 									os.unlink('/media/hdd/images/config/fast')
 						except:
-							print "[FlashOnline] postFlashActionCallback: failed to create restore mode flagfile"
+							print("[FlashOnline] postFlashActionCallback: failed to create restore mode flagfile")
 				self.startDownload()
 			else:
 				self.abort()

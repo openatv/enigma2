@@ -1,3 +1,4 @@
+from __future__ import print_function
 from Plugins.Plugin import PluginDescriptor
 from Screens.Screen import Screen
 from Screens.MessageBox import MessageBox
@@ -92,7 +93,7 @@ class SoftwarePanel(Screen):
 				self.session.open(UpdatePlugin)
 				self.close()
 			else:
-				print "DO NOT UPDATE !!!"
+				print("DO NOT UPDATE !!!")
 				message = _("There are to many update packages !!\n\n"
 				"There is a risk that your %s %s will not\n"
 				"boot after online-update, or will show disfunction in running Image.\n\n"
@@ -101,7 +102,7 @@ class SoftwarePanel(Screen):
 				self.session.openWithCallback(self.checkPackagesCallback, MessageBox, message, default = True)
 
 	def checkPackagesCallback(self, ret):
-		print ret
+		print(ret)
 		if ret:
 			from Plugins.SystemPlugins.SoftwareManager.Flash_online import FlashOnline
 			self.session.open(FlashOnline)
@@ -113,8 +114,8 @@ class SoftwarePanel(Screen):
 
 	def UpdatePackageNr(self):
 		self.packages = len(self.list)
-		print self.packages
-		print"packagenr" + str(self.packages)
+		print(self.packages)
+		print("packagenr" + str(self.packages))
 		self["packagenr"].setText(str(self.packages))
 		if self.packages == 0:
 			self['key_green'].hide()
@@ -124,7 +125,7 @@ class SoftwarePanel(Screen):
 			self['key_green_pic'].show()
 
 	def checkTraficLight(self):
-		print"checkTraficLight"
+		print("checkTraficLight")
 		from urllib import urlopen
 		import socket
 		self['a_red'].hide()
@@ -228,7 +229,7 @@ class SoftwarePanel(Screen):
 				try:
 					self.list.append(self.buildEntryComponent(x[0], x[1], x[2], "upgradeable"))
 				except:
-					print "[SOFTWAREPANEL] " + x[0] + " no valid architecture, ignoring !!"
+					print("[SOFTWAREPANEL] " + x[0] + " no valid architecture, ignoring !!")
 #					self.list.append(self.buildEntryComponent(x[0], '', 'no valid architecture, ignoring !!', "installable"))
 #			if len(excludeList) > 0:
 #				for x in excludeList:

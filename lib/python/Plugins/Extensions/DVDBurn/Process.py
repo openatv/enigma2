@@ -1,3 +1,4 @@
+from __future__ import print_function
 from Components.Task import Task, Job, DiskspacePrecondition, Condition, ToolExistsPrecondition
 from Components.Harddisk import harddiskmanager
 from Screens.MessageBox import MessageBox
@@ -18,7 +19,7 @@ class png2yuvTask(Task):
 		self.container.dumpToFile(self.dumpFile)
 
 	def processStderr(self, data):
-		print "[png2yuvTask]", data[:-1]
+		print("[png2yuvTask]", data[:-1])
 
 class mpeg2encTask(Task):
 	def __init__(self, job, inputfile, outputfile):
@@ -33,7 +34,7 @@ class mpeg2encTask(Task):
 		self.container.readFromFile(self.inputFile)
 
 	def processOutputLine(self, line):
-		print "[mpeg2encTask]", line[:-1]
+		print("[mpeg2encTask]", line[:-1])
 
 class spumuxTask(Task):
 	def __init__(self, job, xmlfile, inputfile, outputfile):
@@ -51,7 +52,7 @@ class spumuxTask(Task):
 		self.container.readFromFile(self.inputFile)
 
 	def processStderr(self, data):
-		print "[spumuxTask]", data[:-1]
+		print("[spumuxTask]", data[:-1])
 
 class MakeFifoNode(Task):
 	def __init__(self, job, number):
@@ -131,10 +132,10 @@ class DemuxTask(Task):
 			try:
 				self.currentPID = str(int(line.split(': PID 0x',1)[1].split(' ',1)[0],16))
 			except ValueError:
-				print "[DemuxTask] ERROR: couldn't detect Audio PID (projectx too old?)"
+				print("[DemuxTask] ERROR: couldn't detect Audio PID (projectx too old?)")
 
 	def haveNewFile(self, file):
-		print "[DemuxTask] produced file:", file, self.currentPID
+		print("[DemuxTask] produced file:", file, self.currentPID)
 		self.generated_files.append(file)
 		if self.currentPID in self.relevantAudioPIDs:
 			self.mplex_audiofiles[self.currentPID] = file
@@ -173,12 +174,12 @@ class DemuxTask(Task):
 		f.close()
 
 	def cleanup(self, failed):
-		print "[DemuxTask::cleanup]"
+		print("[DemuxTask::cleanup]")
 		self.mplex_streamfiles = [ self.mplex_videofile ]
 		for pid in self.relevantAudioPIDs:
 			if pid in self.mplex_audiofiles:
 				self.mplex_streamfiles.append(self.mplex_audiofiles[pid])
-		print self.mplex_streamfiles
+		print(self.mplex_streamfiles)
 
 		if failed:
 			import os
@@ -224,7 +225,7 @@ class MplexTask(Task):
 			self.args += self.demux_task.mplex_streamfiles
 
 	def processOutputLine(self, line):
-		print "[MplexTask] ", line[:-1]
+		print("[MplexTask] ", line[:-1])
 		if line.startswith("**ERROR:"):
 			if line.find("Frame data under-runs detected") != -1:
 				self.error = self.ERROR_UNDERRUN
@@ -253,7 +254,7 @@ class DVDAuthorTask(Task):
 		self.menupreview = job.menupreview
 
 	def processOutputLine(self, line):
-		print "[DVDAuthorTask] ", line[:-1]
+		print("[DVDAuthorTask] ", line[:-1])
 		if not self.menupreview and line.startswith("STAT: Processing"):
 			self.callback(self, [], stay_resident=True)
 		elif line.startswith("STAT: VOBU"):
@@ -261,9 +262,9 @@ class DVDAuthorTask(Task):
 				progress = int(line.split("MB")[0].split(" ")[-1])
 				if progress:
 					self.job.mplextask.progress = progress
-					print "[DVDAuthorTask] update mplextask progress:", self.job.mplextask.progress, "of", self.job.mplextask.end
+					print("[DVDAuthorTask] update mplextask progress:", self.job.mplextask.progress, "of", self.job.mplextask.end)
 			except:
-				print "couldn't set mux progress"
+				print("couldn't set mux progress")
 
 class DVDAuthorFinalTask(Task):
 	def __init__(self, job):
@@ -276,7 +277,7 @@ class WaitForResidentTasks(Task):
 		Task.__init__(self, job, "waiting for dvdauthor to finalize")
 		
 	def run(self, callback):
-		print "waiting for %d resident task(s) %s to finish..." % (len(self.job.resident_tasks),str(self.job.resident_tasks))
+		print("waiting for %d resident task(s) %s to finish..." % (len(self.job.resident_tasks),str(self.job.resident_tasks)))
 		self.callback = callback
 		if self.job.resident_tasks == 0:
 			callback(self, [])
@@ -318,7 +319,7 @@ class BurnTask(Task):
 
 	def processOutputLine(self, line):
 		line = line[:-1]
-		print "[GROWISOFS] %s" % line
+		print("[GROWISOFS] %s" % line)
 		progpos = line.find("%) @")
 		if line[8:14] == "done, ":
 			self.progress = float(line[:6])
@@ -337,12 +338,12 @@ class BurnTask(Task):
 				self.error = self.ERROR_MINUSRWBUG
 			else:
 				self.error = self.ERROR_UNKNOWN
-				print "BurnTask: unknown error %s" % line
+				print("BurnTask: unknown error %s" % line)
 		elif line.startswith(":-("):
 			if line.find("No space left on device") != -1:
 				self.error = self.ERROR_SIZE
 			elif self.error == self.ERROR_MINUSRWBUG:
-				print "*sigh* this is a known bug. we're simply gonna assume everything is fine."
+				print("*sigh* this is a known bug. we're simply gonna assume everything is fine.")
 				self.postconditions = []
 			elif line.find("write failed") != -1:
 				self.error = self.ERROR_WRITE_FAILED
@@ -352,13 +353,13 @@ class BurnTask(Task):
 				self.error = self.ERROR_NOTWRITEABLE
 			else:
 				self.error = self.ERROR_UNKNOWN
-				print "BurnTask: unknown error %s" % line
+				print("BurnTask: unknown error %s" % line)
 		elif line.startswith("FATAL:"):
 			if line.find("already carries isofs!"):
 				self.error = self.ERROR_ISOFS
 			else:
 				self.error = self.ERROR_UNKNOWN
-				print "BurnTask: unknown error %s" % line
+				print("BurnTask: unknown error %s" % line)
 		elif line.find("-allow-limited-size was not specified. There is no way do represent this file size. Aborting.") != -1:
 			self.error = self.ERROR_FILETOOLARGE
 		elif line.startswith("genisoimage: File too large."):

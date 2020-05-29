@@ -1,3 +1,4 @@
+from __future__ import print_function
 from Screens.Screen import Screen
 from Screens.ChannelSelection import *
 from Components.ActionMap import HelpableActionMap, ActionMap, NumberActionMap
@@ -49,7 +50,7 @@ class CIselectMainMenu(Screen):
 		else:
 			NUM_CI = eDVBCIInterfaces.getInstance() and eDVBCIInterfaces.getInstance().getNumOfSlots()
 
-		print "[CI_Wizzard] FOUND %d CI Slots " % NUM_CI
+		print("[CI_Wizzard] FOUND %d CI Slots " % NUM_CI)
 
 		self.dlg = None
 		self.state = { }
@@ -84,9 +85,9 @@ class CIselectMainMenu(Screen):
 			action = cur[2]
 			slot = cur[3]
 			if action == 1:
-				print "[CI_Wizzard] there is no CI Slot in your %s %s" % (getMachineBrand(), getMachineName())
+				print("[CI_Wizzard] there is no CI Slot in your %s %s" % (getMachineBrand(), getMachineName()))
 			else:
-				print "[CI_Wizzard] selected CI Slot : %d" % slot
+				print("[CI_Wizzard] selected CI Slot : %d" % slot)
 				if config.usage.setup_level.index > 1: # advanced
 					self.session.open(CIconfigMenu, slot)
 				else:
@@ -135,16 +136,16 @@ class CIconfigMenu(Screen):
 				"cancel": self.cancel
 			}, -1)
 
-		print "[CI_Wizzard_Config] Configuring CI Slots : %d  " % self.ci_slot
+		print("[CI_Wizzard_Config] Configuring CI Slots : %d  " % self.ci_slot)
 
 		i=0
 		self.caidlist=[]
-		print eDVBCIInterfaces.getInstance().readCICaIds(self.ci_slot)
+		print(eDVBCIInterfaces.getInstance().readCICaIds(self.ci_slot))
 		for caid in eDVBCIInterfaces.getInstance().readCICaIds(self.ci_slot):
 			i+=1
 			self.caidlist.append((str(hex(int(caid))),str(caid),i))
 
-		print "[CI_Wizzard_Config_CI%d] read following CAIds from CI: %s" %(self.ci_slot, self.caidlist)
+		print("[CI_Wizzard_Config_CI%d] read following CAIds from CI: %s" %(self.ci_slot, self.caidlist))
 
 		self.selectedcaid = []
 		self.servicelist = []
@@ -271,7 +272,7 @@ class CIconfigMenu(Screen):
 			fp.write("</ci>\n")
 			fp.close()
 		except:
-			print "[CI_Config_CI%d] xml not written" %self.ci_slot
+			print("[CI_Config_CI%d] xml not written" %self.ci_slot)
 			os.unlink(self.filename)
 		cihelper.load_ci_assignment(force = True)
 
@@ -292,7 +293,7 @@ class CIconfigMenu(Screen):
 			tree = ci_parse(self.filename).getroot()
 			for slot in tree.findall("slot"):
 				read_slot = getValue(slot.findall("id"), False).encode("UTF-8")
-				print "ci " + read_slot
+				print("ci " + read_slot)
 				i=0
 				for caid in slot.findall("caid"):
 					read_caid = caid.get("id").encode("UTF-8")
@@ -312,7 +313,7 @@ class CIconfigMenu(Screen):
 
 				self.ci_config.append((int(read_slot), (self.read_services, self.read_providers, self.usingcaid)))
 		except:
-			print "[CI_Config_CI%d] error parsing xml..." %self.ci_slot
+			print("[CI_Config_CI%d] error parsing xml..." %self.ci_slot)
 
 		for item in self.read_services:
 			if len(item):
@@ -630,7 +631,7 @@ def sessionstart(reason, session):
 def autostart(reason, **kwargs):
 	global global_session
 	if reason == 0:
-		print "[CI_Assignment] activating ci configs:"
+		print("[CI_Assignment] activating ci configs:")
 		activate_all(global_session)
 	elif reason == 1:
 		global_session = None

@@ -1,3 +1,4 @@
+from __future__ import print_function
 import re
 import os
 import netifaces as ni
@@ -90,7 +91,7 @@ class Network:
 		ipLinePattern = re.compile(ipRegexp)
 
 		for line in result.splitlines():
-			print line[0:7]
+			print(line[0:7])
 			if line[0:7] == "0.0.0.0":
 				gateway = self.regExpMatch(ipPattern, line[16:31])
 				if gateway:
@@ -152,7 +153,7 @@ class Network:
 				fp.write("nameserver %d.%d.%d.%d\n" % tuple(nameserver))
 			fp.close()
 		except:
-			print "[Network.py] interfaces - resolv.conf write failed"
+			print("[Network.py] interfaces - resolv.conf write failed")
 
 	def loadNetworkConfig(self,iface,callback = None):
 		interfaces = []
@@ -162,7 +163,7 @@ class Network:
 			interfaces = fp.readlines()
 			fp.close()
 		except:
-			print "[Network.py] interfaces - opening failed"
+			print("[Network.py] interfaces - opening failed")
 
 		ifaces = {}
 		currif = ""
@@ -226,7 +227,7 @@ class Network:
 			fp.close()
 			self.nameservers = []
 		except:
-			print "[Network.py] resolv.conf - opening failed"
+			print("[Network.py] resolv.conf - opening failed")
 
 		for line in resolv:
 			if self.regExpMatch(nameserverPattern, line) is not None:
@@ -681,7 +682,7 @@ class Network:
 		cidr_range = range(0, 32)
 		cidr = long(nmask)
 		if cidr not in cidr_range:
-			print 'cidr invalid: %d' % cidr
+			print('cidr invalid: %d' % cidr)
 			return None
 		else:
 			nm = ((1L<<cidr)-1)<<(32-cidr)
@@ -699,10 +700,10 @@ class Network:
 			return
 		action = event['ACTION']
 		if action == "add":
-			print "[Network] Add new interface:", interface
+			print("[Network] Add new interface:", interface)
 			self.getAddrInet(interface, None)
 		elif action == "remove":
-			print "[Network] Removed interface:", interface
+			print("[Network] Removed interface:", interface)
 			try:
 				del self.ifaces[interface]
 			except KeyError:

@@ -1,3 +1,4 @@
+from __future__ import print_function
 import struct
 import os
 import datetime
@@ -1120,7 +1121,7 @@ class HdmiCec:
 
 	def CECwritedebug(self, debugtext, debugprint = False):
 		if debugprint and not config.hdmicec.debug.value:
-			print debugtext
+			print(debugtext)
 			return
 		log_path = config.crash.debug_path.value
 		if pathExists(log_path):
@@ -1129,7 +1130,7 @@ class HdmiCec:
 			if self.disk_full:
 				self.start_log = True
 			if not self.disk_full and disk_free < 500:
-				print "[HdmiCec] write debug file failed - disk full!"
+				print("[HdmiCec] write debug file failed - disk full!")
 				self.disk_full = True
 				return
 			elif not self.disk_full and disk_free < 1000:
@@ -1150,7 +1151,7 @@ class HdmiCec:
 				debugtext += "%s  +++  stop logging  +++  disk full!\n" % timestamp
 			self.CECwritefile(debugfile, "a", debugtext)
 		else:
-			print "[HdmiCec] write debug file failed - log path (%s) not found!" %log_path
+			print("[HdmiCec] write debug file failed - log path (%s) not found!" %log_path)
 
 	def CECcmdstart(self, configElement):
 		if config.hdmicec.commandline.value:
@@ -1257,7 +1258,7 @@ class HdmiCec:
 				f.write(INPUT)
 		except Exception, e:
 			txt = "[HdmiCec] write file '%s' failed - error: %s" %(FILE, e)
-			print txt if "Enigma2-hdmicec-" in FILE else self.CECwritedebug(txt, True)
+			print(txt if "Enigma2-hdmicec-" in FILE else self.CECwritedebug(txt, True))
 
 	def CECremovefiles(self, FILES):
 		for f in FILES:

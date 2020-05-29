@@ -1,3 +1,4 @@
+from __future__ import print_function
 import random
 
 from Screens.Satconfig import NimSelection
@@ -58,7 +59,7 @@ class ResultParser:
 				reasons[transponder[2]] = reasons.get(transponder[2], [])
 				reasons[transponder[2]].append(transponder)
 				if transponder[2] == "pids_failed":
-					print transponder[2], "-", transponder[3]
+					print(transponder[2], "-", transponder[3])
 
 			text += "The %d unsuccessful tuning attempts failed for the following reasons:\n" % countfailed
 
@@ -315,7 +316,7 @@ class DiseqcTester(Screen, TuneTest, ResultParser):
 
 	# returns a string for the user representing a human readable output for index
 	def getTextualIndexRepresentation(self, index):
-		print "getTextualIndexRepresentation:", index
+		print("getTextualIndexRepresentation:", index)
 		text = ""
 
 		text += nimmanager.getSatDescription(index[2]) + ", "
@@ -333,14 +334,14 @@ class DiseqcTester(Screen, TuneTest, ResultParser):
 
 	def fillTransponderList(self):
 		self.clearTransponder()
-		print "----------- fillTransponderList"
-		print "index:", self.currentlyTestedIndex
+		print("----------- fillTransponderList")
+		print("index:", self.currentlyTestedIndex)
 		keys = self.indexlist.keys()
 		if self.getContinueScanning():
-			print "index:", self.getTextualIndexRepresentation(self.currentlyTestedIndex)
+			print("index:", self.getTextualIndexRepresentation(self.currentlyTestedIndex))
 			for transponder in self.indexlist[self.currentlyTestedIndex]:
 				self.addTransponder(transponder)
-			print "transponderList:", self.transponderlist
+			print("transponderList:", self.transponderlist)
 			return True
 		else:
 			return False
@@ -370,7 +371,7 @@ class DiseqcTester(Screen, TuneTest, ResultParser):
 			return self.randomkeys[0]
 		elif self.test_type == self.TEST_TYPE_COMPLETE:
 			keys = self.indexlist.keys()
-			print "keys:", keys
+			print("keys:", keys)
 			successorindex = {}
 			for index in keys:
 				successorindex[index] = []
@@ -394,7 +395,7 @@ class DiseqcTester(Screen, TuneTest, ResultParser):
 				else:
 					currindex = successorindex[currindex].pop()
 					self.keylist.append(currindex)
-			print "self.keylist:", self.keylist
+			print("self.keylist:", self.keylist)
 			self.myindex = 0
 			self["overall_progress"].setRange(len(self.keylist))
 			self["overall_progress"].setValue(self.myindex)
@@ -486,7 +487,7 @@ class DiseqcTester(Screen, TuneTest, ResultParser):
 		self.resultsstatus[status].append(index)
 
 	def finishedChecking(self):
-		print "finishedChecking"
+		print("finishedChecking")
 		TuneTest.finishedChecking(self)
 
 		if not self.results.has_key(self.currentlyTestedIndex):
@@ -525,8 +526,8 @@ class DiseqcTester(Screen, TuneTest, ResultParser):
 		else:
 			self.running = False
 			self["progress_list"].setIndex(0)
-			print "results:", self.results
-			print "resultsstatus:", self.resultsstatus
+			print("results:", self.results)
+			print("resultsstatus:", self.resultsstatus)
 			if self.log:
 				file = open("/media/hdd/diseqctester.log", "w")
 				self.setResultType(ResultParser.TYPE_ALL)
@@ -551,7 +552,7 @@ class DiseqcTester(Screen, TuneTest, ResultParser):
 		self.close()
 
 	def select(self):
-		print "selectedIndex:", self["progress_list"].getCurrent()[0]
+		print("selectedIndex:", self["progress_list"].getCurrent()[0])
 		if not self.running:
 			index = self["progress_list"].getCurrent()[0]
 			self.setResultType(ResultParser.TYPE_BYORBPOS)
@@ -562,7 +563,7 @@ class DiseqcTester(Screen, TuneTest, ResultParser):
 			self.session.open(TextBox, self.getTextualResult())
 
 	def selectionChanged(self):
-		print "selection changed"
+		print("selection changed")
 		if len(self.list) > 0 and not self.running:
 			self["CmdText"].setText(_("Press OK to get further details for %s") % str(self["progress_list"].getCurrent()[1]))
 
@@ -618,7 +619,7 @@ class DiseqcTesterTestTypeSelection(Screen, ConfigListScreen):
 		self["config"].l.setList(self.list)
 
 	def keyOK(self):
-		print self.testtype.value
+		print(self.testtype.value)
 		testtype = DiseqcTester.TEST_TYPE_QUICK
 		if self.testtype.value == "quick":
 			testtype = DiseqcTester.TEST_TYPE_QUICK

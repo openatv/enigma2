@@ -1,3 +1,4 @@
+from __future__ import print_function
 from Screens.Screen import Screen
 from Components.ActionMap import ActionMap, HelpableActionMap, NumberActionMap
 from Components.Sources.List import List

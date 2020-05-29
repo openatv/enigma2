@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from __future__ import print_function
 from boxbranding import getImageVersion,getMachineBrand, getMachineName
 from os import system, access, R_OK
 import re
@@ -50,7 +51,7 @@ class MountTask(Task):
 		self.weighting = 1
 
 	def processOutput(self, data):
-		print "[MountTask] output:", data
+		print("[MountTask] output:", data)
 
 class UmountTask(Task):
 	def __init__(self, job, mountpoint):
@@ -87,10 +88,10 @@ class ImageDownloadTask(Task):
 		self.download = downloadWithProgress(self.url,self.path)
 		self.download.addProgress(self.download_progress)
 		self.download.start().addCallback(self.download_finished).addErrback(self.download_failed)
-		print "[ImageDownloadTask] downloading", self.url, "to", self.path
+		print("[ImageDownloadTask] downloading", self.url, "to", self.path)
 
 	def abort(self):
-		print "[ImageDownloadTask] aborting", self.url
+		print("[ImageDownloadTask] aborting", self.url)
 		if self.download:
 			self.download.stop()
 		self.aborted = True
@@ -161,7 +162,7 @@ class PartitionTask(Task):
 		Task.run(self, callback)
 
 	def processOutput(self, data):
-		print "[PartitionTask] output:", data
+		print("[PartitionTask] output:", data)
 		if data.startswith("BLKRRPART:"):
 			self.error = self.ERROR_BLKRRPART
 		else:
@@ -187,7 +188,7 @@ class UnpackTask(Task):
 		self.progress += 1
 
 	def processOutput(self, data):
-		print "[UnpackTask] output: \'%s\'" % data
+		print("[UnpackTask] output: \'%s\'" % data)
 		self.job.imagefilename = data
 
 	def afterRun(self):
@@ -212,7 +213,7 @@ class CopyTask(Task):
 		self.progress += 1
 
 	def processOutput(self, data):
-		print "[CopyTask] output:", data
+		print("[CopyTask] output:", data)
 
 	def afterRun(self):
 		self.delayTimer.callback.remove(self.progress_increment)
@@ -247,24 +248,24 @@ class NFOViewer(Screen):
 
 class feedDownloader:
 	def __init__(self, feed_base, box, OE_vers):
-		print "[feedDownloader::init] feed_base=%s, box=%s" % (feed_base, box)
+		print("[feedDownloader::init] feed_base=%s, box=%s" % (feed_base, box))
 		self.feed_base = feed_base
 		self.OE_vers = OE_vers
 		self.box = box
 
 	def getList(self, callback, errback):
 		self.urlbase = "%s/%s/%s/images/" % (self.feed_base, self.OE_vers, self.box)
-		print "[getList]", self.urlbase
+		print("[getList]", self.urlbase)
 		self.callback = callback
 		self.errback = errback
 		client.getPage(self.urlbase).addCallback(self.feed_finished).addErrback(self.feed_failed)
 
 	def feed_failed(self, failure_instance):
-		print "[feed_failed]", str(failure_instance)
+		print("[feed_failed]", str(failure_instance))
 		self.errback(failure_instance.getErrorMessage())
 
 	def feed_finished(self, feedhtml):
-		print "[feed_finished]"
+		print("[feed_finished]")
 		fileresultmask = re.compile("<a class=[\'\"]nfi[\'\"] href=[\'\"](?P<url>.*?)[\'\"]>(?P<name>.*?.nfi)</a>", re.DOTALL)
 		searchresults = fileresultmask.finditer(feedhtml)
 		fileresultlist = []
@@ -314,7 +315,7 @@ class DeviceBrowser(Screen, HelpableScreen):
 		self.onClose.append(self.removeHotplug)
 
 	def hotplugCB(self, dev, action):
-		print "[hotplugCB]", dev, action
+		print("[hotplugCB]", dev, action)
 		self.updateButton()
 
 	def updateButton(self):
@@ -325,7 +326,7 @@ class DeviceBrowser(Screen, HelpableScreen):
 			self["key_green"].text = ""
 
 	def removeHotplug(self):
-		print "[removeHotplug]"
+		print("[removeHotplug]")
 		hotplugNotifier.remove(self.hotplugCB)
 
 	def ok(self):
@@ -336,7 +337,7 @@ class DeviceBrowser(Screen, HelpableScreen):
 				self.filelist.descent()
 
 	def use(self):
-		print "[use]", self["filelist"].getCurrentDirectory(), self["filelist"].getFilename()
+		print("[use]", self["filelist"].getCurrentDirectory(), self["filelist"].getFilename())
 		if self["filelist"].getCurrentDirectory() is not None:
 			if self.filelist.canDescent() and self["filelist"].getFilename() and len(self["filelist"].getFilename()) > len(self["filelist"].getCurrentDirectory()):
 				self.filelist.descent()
@@ -431,7 +432,7 @@ class NFIDownload(Screen):
 		self.target_dir = None
 
 	def tool_avail(self, string):
-		print "[tool_avail]" + string
+		print("[tool_avail]" + string)
 		self.taskstring += string
 
 	def go(self):
@@ -444,7 +445,7 @@ class NFIDownload(Screen):
 		client.getPage(url).addCallback(self.md5sums_finished).addErrback(self.feed_failed)
 
 	def md5sums_finished(self, data):
-		print "[md5sums_finished]", data
+		print("[md5sums_finished]", data)
 		self.stickimage_md5 = data
 		self.checkUSBStick()
 
@@ -461,7 +462,7 @@ class NFIDownload(Screen):
 			self.session.open(NFOViewer, self.nfo)
 
 	def keyOk(self):
-		print "[keyOk]", self["menu"].getCurrent()
+		print("[keyOk]", self["menu"].getCurrent())
 		current = self["menu"].getCurrent()
 		if current:
 			if self.branch == START:
@@ -513,7 +514,7 @@ class NFIDownload(Screen):
 				self.nfo_download(ALLIMAGES, self["menu"].getIndex())
 
 	def listImages(self):
-		print "[listImages]"
+		print("[listImages]")
 		imagelist = []
 		mask = re.compile("%s/(?P<OE_vers>1\.\d)/%s/images/(?P<branch>.*?)-%s_(?P<version>.*?).nfi" % (self.feed_base, self.box, self.box), re.DOTALL)
 		for name, url in self.feedlists[ALLIMAGES]:
@@ -529,10 +530,10 @@ class NFIDownload(Screen):
 
 	def getUSBPartitions(self):
 		allpartitions = [ (r.description, r.mountpoint) for r in harddiskmanager.getMountedPartitions(onlyhotplug = True)]
-		print "[getUSBPartitions]", allpartitions
+		print("[getUSBPartitions]", allpartitions)
 		usbpartition = []
 		for x in allpartitions:
-			print x, x[1] == '/', x[0].find("USB"), access(x[1], R_OK)
+			print(x, x[1] == '/', x[0].find("USB"), access(x[1], R_OK))
 			if x[1] != '/' and x[0].find("USB") > -1:  # and access(x[1], R_OK) is True:
 				usbpartition.append(x)
 		return usbpartition
@@ -549,7 +550,7 @@ class NFIDownload(Screen):
 		self.session.openWithCallback(self.DeviceBrowserClosed, DeviceBrowser, None, showDirectories=True, showMountpoints=True, inhibitMounts=["/autofs/sr0/"])
 
 	def DeviceBrowserClosed(self, path):
-		print "[DeviceBrowserClosed]", str(path)
+		print("[DeviceBrowserClosed]", str(path))
 		self.target_dir = path
 		if path:
 			self.ackDestinationDevice()
@@ -566,14 +567,14 @@ class NFIDownload(Screen):
 		self.session.openWithCallback(self.ackDestination_query, ChoiceBox, title=message, list=choices)
 
 	def ackDestination_query(self, choice):
-		print "[ackDestination_query]", choice
+		print("[ackDestination_query]", choice)
 		if isinstance(choice, tuple):
 			choice[1]()
 		else:
 			self.keyRed()
 
 	def ackedDestination(self):
-		print "[ackedDestination]", self.branch, self.target_dir
+		print("[ackedDestination]", self.branch, self.target_dir)
 		self.container.setCWD(resolveFilename(SCOPE_MEDIA)+"usb/")
 		if self.target_dir[:8] == "/autofs/":
 			self.target_dir = "/dev/" + self.target_dir[8:-1]
@@ -588,7 +589,7 @@ class NFIDownload(Screen):
 		elif self.branch != STICK_WIZARD:
 			url = self.feedlists[self.branch][self.image_idx][1]
 			filename = self.feedlists[self.branch][self.image_idx][0]
-			print "[getImage] start downloading %s to %s" % (url, filename)
+			print("[getImage] start downloading %s to %s" % (url, filename))
 			if self.target_dir.startswith("/dev/"):
 				job = ImageDownloadJob(url, filename, self.target_dir, self.usbmountpoint)
 			else:
@@ -599,7 +600,7 @@ class NFIDownload(Screen):
 			self.session.openWithCallback(self.ImageDownloadCB, JobView, job, afterEventChangeable = False)
 
 	def StickWizardCB(self, ret=None):
-		print "[StickWizardCB]", ret
+		print("[StickWizardCB]", ret)
 #		print job_manager.active_jobs, job_manager.failed_jobs, job_manager.job_classes, job_manager.in_background, job_manager.active_job
 		if len(job_manager.failed_jobs) == 0:
 			self.session.open(MessageBox, _("The USB stick was prepared to be bootable.\nNow you can download an NFI image file!"), type = MessageBox.TYPE_INFO)
@@ -612,7 +613,7 @@ class NFIDownload(Screen):
 			self.umount()
 
 	def ImageDownloadCB(self, ret):
-		print "[ImageDownloadCB]", ret
+		print("[ImageDownloadCB]", ret)
 #		print job_manager.active_jobs, job_manager.failed_jobs, job_manager.job_classes, job_manager.in_background, job_manager.active_job
 		if len(job_manager.failed_jobs) == 0:
 			self.session.openWithCallback(self.askBackupCB, MessageBox, _("The wizard can backup your current settings. Do you want to do a backup now?"), MessageBox.TYPE_YESNO)
@@ -650,7 +651,7 @@ class NFIDownload(Screen):
 		self["status"].text = _("Could not connect to %s %s .NFI image feed server:") % (getMachineBrand(), getMachineName()) + "\n" + str(message) + "\n" + _("Please check your network settings!")
 
 	def gotFeed(self, feedlist, OE_vers):
-		print "[gotFeed]", OE_vers
+		print("[gotFeed]", OE_vers)
 		releaselist = []
 		experimentallist = []
 
@@ -673,21 +674,21 @@ class NFIDownload(Screen):
 	def checkUSBStick(self):
 		self.target_dir = None
 		allpartitions = [ (r.description, r.mountpoint) for r in harddiskmanager.getMountedPartitions(onlyhotplug = True)]
-		print "[checkUSBStick] found partitions:", allpartitions
+		print("[checkUSBStick] found partitions:", allpartitions)
 		usbpartition = []
 		for x in allpartitions:
-			print x, x[1] == '/', x[0].find("USB"), access(x[1], R_OK)
+			print(x, x[1] == '/', x[0].find("USB"), access(x[1], R_OK))
 			if x[1] != '/' and x[0].find("USB") > -1:  # and access(x[1], R_OK) is True:
 				usbpartition.append(x)
 
-		print usbpartition
+		print(usbpartition)
 		if len(usbpartition) == 1:
 			self.target_dir = usbpartition[0][1]
 			self.md5_passback = self.getFeed
 			self.md5_failback = self.askStartWizard
 			self.md5verify(self.stickimage_md5, self.target_dir)
 		elif not usbpartition:
-			print "[NFIFlash] needs to create usb flasher stick first!"
+			print("[NFIFlash] needs to create usb flasher stick first!")
 			self.askStartWizard()
 		else:
 			self.askStartWizard()
@@ -701,7 +702,7 @@ If you already have a prepared bootable USB stick, please insert it now. Otherwi
 		self.session.openWithCallback(self.wizardDeviceBrowserClosed, DeviceBrowser, None, message, showDirectories=True, showMountpoints=True, inhibitMounts=["/","/autofs/sr0/","/autofs/sda1/","/media/hdd/","/media/net/",self.usbmountpoint,"/media/dvd/"])
 
 	def wizardDeviceBrowserClosed(self, path):
-		print "[wizardDeviceBrowserClosed]", path
+		print("[wizardDeviceBrowserClosed]", path)
 		self.target_dir = path
 		if path:
 			self.md5_passback = self.getFeed
@@ -711,7 +712,7 @@ If you already have a prepared bootable USB stick, please insert it now. Otherwi
 			self.close()
 
 	def wizardQuery(self):
-		print "[wizardQuery]"
+		print("[wizardQuery]")
 		description = self.target_dir
 		for name, dev in self.getUSBPartitions():
 			if dev == self.target_dir:
@@ -746,23 +747,23 @@ If you already have a prepared bootable USB stick, please insert it now. Otherwi
 	def nfo_download(self, branch, idx):
 		nfourl = (self.feedlists[branch][idx][1])[:-4]+".nfo"
 		self.nfofilename = (self.feedlists[branch][idx][0])[:-4]+".nfo"
-		print "[check_for_NFO]", nfourl
+		print("[check_for_NFO]", nfourl)
 		client.getPage(nfourl).addCallback(self.nfo_finished).addErrback(self.nfo_failed)
 
 	def nfo_failed(self, failure_instance):
-		print "[nfo_failed] " + str(failure_instance)
+		print("[nfo_failed] " + str(failure_instance))
 		self["key_blue"].text = ""
 		self.nfofilename = ""
 		self.nfo = ""
 
 	def nfo_finished(self,nfodata=""):
-		print "[nfo_finished] " + str(nfodata)
+		print("[nfo_finished] " + str(nfodata))
 		self["key_blue"].text = _("Changelog")
 		self.nfo = nfodata
 
 	def md5verify(self, md5, path):
 		cmd = "md5sum -c -s"
-		print "[verify_md5]", md5, path, cmd
+		print("[verify_md5]", md5, path, cmd)
 		self.container.setCWD(path)
 		self.container.appClosed.append(self.md5finished)
 		self.container.execute(cmd)
@@ -773,25 +774,25 @@ If you already have a prepared bootable USB stick, please insert it now. Otherwi
 		self.container.sendEOF()
 
 	def md5finished(self, retval):
-		print "[md5finished]", str(retval)
+		print("[md5finished]", str(retval))
 		self.container.appClosed.remove(self.md5finished)
 		self.container.dataSent.remove(self.md5ready)
 		if retval==0:
-			print "check passed! calling", repr(self.md5_passback)
+			print("check passed! calling", repr(self.md5_passback))
 			self.md5_passback()
 		else:
-			print "check failed! calling", repr(self.md5_failback)
+			print("check failed! calling", repr(self.md5_failback))
 			self.md5_failback()
 
 	def umount(self):
 		cmd = "umount " + self.usbmountpoint
-		print "[umount]", cmd
+		print("[umount]", cmd)
 		self.container.setCWD('/')
 		self.container.appClosed.append(self.umountFinished)
 		self.container.execute(cmd)
 
 	def umountFinished(self, retval):
-		print "[umountFinished]", str(retval)
+		print("[umountFinished]", str(retval))
 		self.container.appClosed.remove(self.umountFinished)
 		self.umountCallback()
 
@@ -800,7 +801,7 @@ def main(session, **kwargs):
 
 def filescan_open(list, session, **kwargs):
 	dev = "/dev/" + list[0].path.rsplit('/',1)[0][7:]
-	print "mounting device " + dev + " to /media/usb..."
+	print("mounting device " + dev + " to /media/usb...")
 	usbmountpoint = resolveFilename(SCOPE_MEDIA)+"usb/"
 	system("mount %s %s -o rw,sync" % (dev, usbmountpoint))
 	session.open(NFIDownload,usbmountpoint)

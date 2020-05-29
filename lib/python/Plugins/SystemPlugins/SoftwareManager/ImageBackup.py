@@ -1,3 +1,4 @@
+from __future__ import print_function
 #################################################################################
 # FULL BACKUP UYILITY FOR ENIGMA2, SUPPORTS THE MODELS OE-A 4.4     			#
 #	                         						                            #
@@ -83,7 +84,7 @@ class ImageBackup(Screen):
 		self.saveImageList = imagedict
 		list = []
 		currentimageslot = GetCurrentImage() or 1
-		print "[Image Backup] Current Image Slot %s, Imagelist %s"% ( currentimageslot, imagedict)
+		print("[Image Backup] Current Image Slot %s, Imagelist %s"% ( currentimageslot, imagedict))
 		if imagedict:
 			for x in sorted(imagedict.keys()):
 				if imagedict[x]["imagename"] != _("Empty slot"):
@@ -171,28 +172,28 @@ class ImageBackup(Screen):
 					self.MTDKERNEL = getMachineMtdKernel()
 					self.MTDROOTFS = getMachineMtdRoot()
 
-				print "[Image Backup] BOX MACHINEBUILD = >%s<" %self.MACHINEBUILD
-				print "[Image Backup] BOX MACHINENAME = >%s<" %self.MACHINENAME
-				print "[Image Backup] BOX MACHINEBRAND = >%s<" %self.MACHINEBRAND
-				print "[Image Backup] BOX MODEL = >%s<" %self.MODEL
-				print "[Image Backup] OEM MODEL = >%s<" %self.OEM
-				print "[Image Backup] IMAGEFOLDER = >%s<" %self.IMAGEFOLDER
-				print "[Image Backup] UBINIZE = >%s<" %self.UBINIZE_ARGS
-				print "[Image Backup] MKUBIFS = >%s<" %self.MKUBIFS_ARGS
-				print "[Image Backup] MTDBOOT = >%s<" %self.MTDBOOT
-				print "[Image Backup] MTDKERNEL = >%s<" %self.MTDKERNEL
-				print "[Image Backup] MTDROOTFS = >%s<" %self.MTDROOTFS
-				print "[Image Backup] ROOTFSBIN = >%s<" %self.ROOTFSBIN
-				print "[Image Backup] KERNELBIN = >%s<" %self.KERNELBIN
-				print "[Image Backup] ROOTFSSUBDIR = >%s<" %self.ROOTFSSUBDIR
-				print "[Image Backup] ROOTFSTYPE = >%s<" %self.ROOTFSTYPE
-				print "[Image Backup] EMMCIMG = >%s<" %self.EMMCIMG
-				print "[Image Backup] IMAGEDISTRO = >%s<" %self.IMAGEDISTRO
-				print "[Image Backup] DISTROVERSION = >%s<" %self.DISTROVERSION
-				print "[Image Backup] MTDBOOT = >%s<" %self.MTDBOOT
-				print "[Image Backup] USB RECOVERY = >%s< " %self.RECOVERY
-				print "[Image Backup] DESTINATION = >%s< " %self.DIRECTORY
-				print "[Image Backup] SLOT = >%s< " %self.SLOT
+				print("[Image Backup] BOX MACHINEBUILD = >%s<" %self.MACHINEBUILD)
+				print("[Image Backup] BOX MACHINENAME = >%s<" %self.MACHINENAME)
+				print("[Image Backup] BOX MACHINEBRAND = >%s<" %self.MACHINEBRAND)
+				print("[Image Backup] BOX MODEL = >%s<" %self.MODEL)
+				print("[Image Backup] OEM MODEL = >%s<" %self.OEM)
+				print("[Image Backup] IMAGEFOLDER = >%s<" %self.IMAGEFOLDER)
+				print("[Image Backup] UBINIZE = >%s<" %self.UBINIZE_ARGS)
+				print("[Image Backup] MKUBIFS = >%s<" %self.MKUBIFS_ARGS)
+				print("[Image Backup] MTDBOOT = >%s<" %self.MTDBOOT)
+				print("[Image Backup] MTDKERNEL = >%s<" %self.MTDKERNEL)
+				print("[Image Backup] MTDROOTFS = >%s<" %self.MTDROOTFS)
+				print("[Image Backup] ROOTFSBIN = >%s<" %self.ROOTFSBIN)
+				print("[Image Backup] KERNELBIN = >%s<" %self.KERNELBIN)
+				print("[Image Backup] ROOTFSSUBDIR = >%s<" %self.ROOTFSSUBDIR)
+				print("[Image Backup] ROOTFSTYPE = >%s<" %self.ROOTFSTYPE)
+				print("[Image Backup] EMMCIMG = >%s<" %self.EMMCIMG)
+				print("[Image Backup] IMAGEDISTRO = >%s<" %self.IMAGEDISTRO)
+				print("[Image Backup] DISTROVERSION = >%s<" %self.DISTROVERSION)
+				print("[Image Backup] MTDBOOT = >%s<" %self.MTDBOOT)
+				print("[Image Backup] USB RECOVERY = >%s< " %self.RECOVERY)
+				print("[Image Backup] DESTINATION = >%s< " %self.DIRECTORY)
+				print("[Image Backup] SLOT = >%s< " %self.SLOT)
 
 				self.TITLE = _("Full back-up on %s") % (self.DIRECTORY)
 				self.START = time()
@@ -574,20 +575,20 @@ class ImageBackup(Screen):
 		if self.RECOVERY:
 			if self.EMMCIMG == "usb_update.bin":
 				if not os.path.isfile("%s/%s" % (self.MAINDESTROOT, self.EMMCIMG)):
-					print "[Image Backup] %s file not found" %(self.EMMCIMG)
+					print("[Image Backup] %s file not found" %(self.EMMCIMG))
 					file_found = False
 			else:
 				if not os.path.isfile("%s/%s" % (self.MAINDEST, self.EMMCIMG)):
-					print "[Image Backup] %s file not found" %(self.EMMCIMG)
+					print("[Image Backup] %s file not found" %(self.EMMCIMG))
 					file_found = False
 
 		else:
 			if not os.path.isfile("%s/%s" % (self.MAINDEST, self.ROOTFSBIN)):
-				print "[Image Backup] %s file not found" %(self.ROOTFSBIN)
+				print("[Image Backup] %s file not found" %(self.ROOTFSBIN))
 				file_found = False
 
 			if not os.path.isfile("%s/%s" % (self.MAINDEST, self.KERNELBIN)):
-				print "[Image Backup] %s file not found" %(self.KERNELBIN)
+				print("[Image Backup] %s file not found" %(self.KERNELBIN))
 				file_found = False
 
 		if SystemInfo["canMultiBoot"] and not self.RECOVERY and not SystemInfo["HasRootSubdir"]:

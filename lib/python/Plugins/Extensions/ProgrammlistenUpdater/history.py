@@ -1,3 +1,4 @@
+from __future__ import print_function
 from Components.ActionMap import ActionMap
 from Components.ScrollLabel import ScrollLabel
 from Components.Sources.StaticText import StaticText
@@ -16,7 +17,7 @@ def DownloadInfo(url):
         text = link.encode("utf-8")
 
     except:
-        print"ERROR Download History %s" %(url)
+        print("ERROR Download History %s" %(url))
 
     return text
 

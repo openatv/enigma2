@@ -1,3 +1,4 @@
+from __future__ import print_function
 from boxbranding import getMachineBrand, getMachineName, getBoxType
 from os import system
 
@@ -203,7 +204,7 @@ class NetworkWizard(WizardLanguage, Rc):
 				self.isInterfaceUp = False
 			self.resetRef.close(True)
 		else:
-			print "we should never come here!"
+			print("we should never come here!")
 
 	def AdapterSetupEnd(self, iface):
 		self.originalInterfaceStateChanged = True
@@ -321,7 +322,7 @@ class NetworkWizard(WizardLanguage, Rc):
 			self.w = iWlan.getInterface()
 			aps = iWlan.getNetworkList()
 			if aps is not None:
-				print "[NetworkWizard.py] got Accespoints!"
+				print("[NetworkWizard.py] got Accespoints!")
 				tmplist = []
 				complist = []
 				for ap in aps:

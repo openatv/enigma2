@@ -1,3 +1,4 @@
+from __future__ import print_function
 from Screen import Screen
 from MessageBox import MessageBox
 from Components.AVSwitch import AVSwitch
@@ -50,4 +51,4 @@ class Scart(Screen):
 					if notification[1].msgBoxID == "scart_msgbox":
 						notification[1].close()
 				except:
-					print "other notification is open. try another one."
+					print("other notification is open. try another one.")

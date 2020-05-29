@@ -1,3 +1,4 @@
+from __future__ import print_function
 from Components.config import config
 from Components.Converter.Converter import Converter
 from enigma import iServiceInformation, iPlayableService
@@ -182,7 +183,7 @@ class VtiInfo(Poll, Converter, object):
         if pingtestresult is not None:
             for line in pingtestresult:
                 x = line.lower().find('0')
-                print x
+                print(x)
                 if x == 0:
                     pingtestresult = 0
                 else:

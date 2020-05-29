@@ -1,3 +1,4 @@
+from __future__ import print_function
 import re, os, urllib2, sys
 
 
@@ -11,14 +12,14 @@ def DownloadSetting(url):
         response.close()
         xx = re.compile('<td><a href="(.+?)">(.+?)</a></td>.*?<td>(.+?)</td>', re.DOTALL).findall(link)
         for link, name, date in xx:
-            print link, name, date
+            print(link, name, date)
             prelink = ''
             if not link.startswith("http://"):
                 prelink = url.replace('asd.php','')
             list.append((date, name, prelink + link))
 
     except:
-        print"ERROR DownloadSetting %s" %(url)
+        print("ERROR DownloadSetting %s" %(url))
 
     return list
 

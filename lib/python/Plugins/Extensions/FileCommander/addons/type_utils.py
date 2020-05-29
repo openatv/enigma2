@@ -2,6 +2,7 @@
 # -*- coding: iso-8859-1 -*-
 
 # Components
+from __future__ import print_function
 from Components.config import config
 from Components.Label import Label
 from Components.ActionMap import HelpableActionMap
@@ -424,7 +425,7 @@ class ImageViewer(Screen, HelpableScreen):
 		self["status"].show()
 
 	def cbSlideShow(self):
-		print "slide to next Picture index=" + str(self.lsatIndex)
+		print("slide to next Picture index=" + str(self.lsatIndex))
 		if not config.pic.loop.value and self.lsatIndex == self.fileListLen:
 			self.PlayPause()
 		self.displayNow = True

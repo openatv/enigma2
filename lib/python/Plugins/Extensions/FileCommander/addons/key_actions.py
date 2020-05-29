@@ -2,6 +2,7 @@
 # -*- coding: iso-8859-1 -*-
 
 # Components
+from __future__ import print_function
 from Components.config import config
 from Components.Scanner import openFile
 from Components.MovieList import AUDIO_EXTENSIONS, IMAGE_EXTENSIONS, MOVIE_EXTENSIONS, DVD_EXTENSIONS
@@ -636,7 +637,7 @@ class key_actions(stat_info):
 		testFileName = filename.lower()
 		filetype = os.path.splitext(testFileName)[1]
 		longname = sourceDir + filename
-		print "[Filebrowser]:", filename, sourceDir, testFileName
+		print("[Filebrowser]:", filename, sourceDir, testFileName)
 		if not fileExists(longname):
 			self.session.open(MessageBox, _("File not found: %s") % longname, type=MessageBox.TYPE_ERROR)
 			return

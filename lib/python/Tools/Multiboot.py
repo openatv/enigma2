@@ -1,3 +1,4 @@
+from __future__ import print_function
 import glob
 import shutil
 import subprocess
@@ -18,7 +19,7 @@ def getMBbootdevice():
 		if path.exists(device):
 			Console().ePopen("mount %s %s" % (device, Imagemount))
 			if path.isfile(path.join(Imagemount, "STARTUP")):
-				print '[Multiboot] Startupdevice found:', device
+				print('[Multiboot] Startupdevice found:', device)
 				return device
 			Console().ePopen("umount %s" % Imagemount)
 	if not path.ismount(Imagemount):
@@ -36,7 +37,7 @@ def getMultibootslots():
 		for file in glob.glob(path.join(Imagemount, "STARTUP_*")):
 			if "STARTUP_RECOVERY" in file:
 				SystemInfo["RecoveryMode"] = True
-				print "[multiboot] [getMultibootslots] RecoveryMode is set to:%s" % SystemInfo["RecoveryMode"]
+				print("[multiboot] [getMultibootslots] RecoveryMode is set to:%s" % SystemInfo["RecoveryMode"])
 			slotnumber = file.rsplit("_", 3 if "BOXMODE" in file else 1)[1]
 			if slotnumber.isdigit() and slotnumber not in bootslots:
 				slot = {}
@@ -55,14 +56,14 @@ def getMultibootslots():
 								slot["kernel"] = "%sp%s" % (device.split("p")[0], int(device.split("p")[1]) - 1)
 							if "rootsubdir" in line:
 								SystemInfo["HasRootSubdir"] = True
-								print "[multiboot] [getMultibootslots] HasRootSubdir is set to:%s" % SystemInfo["HasRootSubdir"]
+								print("[multiboot] [getMultibootslots] HasRootSubdir is set to:%s" % SystemInfo["HasRootSubdir"])
 								slot["rootsubdir"] = getparam(line, "rootsubdir")
 								slot["kernel"] = getparam(line, "kernel")
 
 						break
 				if slot:
 					bootslots[int(slotnumber)] = slot
-		print "[multiboot1] getMultibootslots bootslots = %s" %bootslots
+		print("[multiboot1] getMultibootslots bootslots = %s" %bootslots)
 		Console().ePopen("umount %s" % Imagemount)
 		if not path.ismount(Imagemount):
 			rmdir(Imagemount)

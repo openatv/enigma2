@@ -1,3 +1,4 @@
+from __future__ import print_function
 from Plugins.Plugin import PluginDescriptor
 from Screens.PluginBrowser import *
 from Screens.Ipkg import Ipkg
@@ -137,7 +138,7 @@ if config.usage.keymap.value != eEnv.resolve("${datadir}/enigma2/keymap.xml"):
 		setDefaultKeymap()
 		
 def setDefaultKeymap():
-	print "[Info-Panel] Set Keymap to Default"
+	print("[Info-Panel] Set Keymap to Default")
 	config.usage.keymap.value = eEnv.resolve("${datadir}/enigma2/keymap.xml")
 	config.save()
 
@@ -168,10 +169,10 @@ machinebrand = getMachineBrand()
 OEMname = getBrandOEM()
 
 INFO_Panel_Version = 'Info-Panel V1.2'
-print "[Info-Panel] machinebrand: %s"  % (machinebrand)
-print "[Info-Panel] machinename: %s"  % (machinename)
-print "[Info-Panel] oem name: %s"  % (OEMname)
-print "[Info-Panel] boxtype: %s"  % (boxversion)
+print("[Info-Panel] machinebrand: %s"  % (machinebrand))
+print("[Info-Panel] machinename: %s"  % (machinename))
+print("[Info-Panel] oem name: %s"  % (OEMname))
+print("[Info-Panel] boxtype: %s"  % (boxversion))
 panel = open("/tmp/infopanel.ver", "w")
 panel.write(INFO_Panel_Version + '\n')
 panel.write("Machinebrand: %s " % (machinebrand)+ '\n')
@@ -291,11 +292,11 @@ class Infopanel(Screen, InfoBarPiP, ProtectedScreen):
 		INFOCONF = 0
 		pluginlist="False"
 		try:
-			print '[INFO-Panel] SHOW'
+			print('[INFO-Panel] SHOW')
 			global inINFOPanel
 			inINFOPanel = self
 		except:
-			print '[INFO-Panel] Error Hide'
+			print('[INFO-Panel] Error Hide')
 #		global servicelist
 		if services is not None:
 			self.servicelist = services
@@ -393,11 +394,11 @@ class Infopanel(Screen, InfoBarPiP, ProtectedScreen):
 				self.service = self.session.nav.getCurrentlyPlayingServiceReference()
 				service = self.service.toCompareString()
 				servicename = ServiceReference.ServiceReference(service).getServiceName().replace('\xc2\x87', '').replace('\xc2\x86', '').ljust(16)
-				print '[INFO-Panel] HIDE'
+				print('[INFO-Panel] HIDE')
 				global inINFOPanel
 				inINFOPanel = None
 			except:
-				print '[INFO-Panel] Error Hide'
+				print('[INFO-Panel] Error Hide')
 			self.close()
 		elif menu == 1:
 			self["Mlist"].moveToIndex(0)
@@ -417,7 +418,7 @@ class Infopanel(Screen, InfoBarPiP, ProtectedScreen):
 #		menu = self["Mlist"].getCurrent()
 		global INFOCONF
 		menu = self['Mlist'].l.getCurrentSelection()[0][2]
-		print '[INFO-Panel] MenuItem: ' + menu
+		print('[INFO-Panel] MenuItem: ' + menu)
 		if menu == "Plugins":
 			self.Plugins()
 		elif menu == "Pluginbrowser":

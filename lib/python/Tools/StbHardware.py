@@ -1,3 +1,4 @@
+from __future__ import print_function
 from time import time, localtime, gmtime
 from os import path
 from fcntl import ioctl
@@ -21,7 +22,7 @@ def getFPVersion():
 			fp = open("/dev/dbox/fp0")
 			ret = ioctl(fp.fileno(),0)
 		except IOError:
-			print "getFPVersion failed!"
+			print("getFPVersion failed!")
 	return ret
 
 def setFPWakeuptime(wutime):
@@ -35,15 +36,15 @@ def setFPWakeuptime(wutime):
 			ioctl(fp.fileno(), 6, pack('L', wutime)) # set wake up
 			fp.close()
 		except IOError:
-			print "setFPWakeupTime failed!"
+			print("setFPWakeupTime failed!")
 
 def setRTCoffset():
 	forsleep = (localtime(time()).tm_hour-gmtime(time()).tm_hour)*3600
-	print "[RTC] set RTC offset to %s sec." % (forsleep)
+	print("[RTC] set RTC offset to %s sec." % (forsleep))
 	try:
 		open("/proc/stb/fp/rtc_offset", "w").write(str(forsleep))
 	except IOError:
-		print "setRTCoffset failed!"
+		print("setRTCoffset failed!")
 
 def setRTCtime(wutime):
         if path.exists("/proc/stb/fp/rtc_offset"):
@@ -58,7 +59,7 @@ def setRTCtime(wutime):
 			ioctl(fp.fileno(), 0x101, pack('L', wutime)) # set wake up
 			fp.close()
 		except IOError:
-			print "setRTCtime failed!"
+			print("setRTCtime failed!")
 
 def getFPWakeuptime():
 	ret = 0
@@ -72,7 +73,7 @@ def getFPWakeuptime():
 			ret = unpack('L', ioctl(fp.fileno(), 5, '    '))[0] # get wakeuptime
 			fp.close()
 		except IOError:
-			print "getFPWakeupTime failed!"
+			print("getFPWakeupTime failed!")
 	return ret
 
 wasTimerWakeup = None
@@ -99,7 +100,7 @@ def getFPWasTimerWakeup(check = False):
 			wasTimerWakeup = unpack('B', ioctl(fp.fileno(), 9, ' '))[0] and True or False
 			fp.close()
 		except IOError:
-			print "wasTimerWakeup failed!"
+			print("wasTimerWakeup failed!")
 			isError = True
 
 	if wasTimerWakeup:
@@ -120,4 +121,4 @@ def clearFPWasTimerWakeup():
 			ioctl(fp.fileno(), 10)
 			fp.close()
 		except IOError:
-			print "clearFPWasTimerWakeup failed!"
+			print("clearFPWasTimerWakeup failed!")

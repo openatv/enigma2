@@ -1,3 +1,4 @@
+from __future__ import print_function
 import NavigationInstance
 from time import localtime, mktime, gmtime
 from ServiceReference import ServiceReference
@@ -198,7 +199,7 @@ class TimerSanityCheck:
 					fakeRecResult = -1
 				#print "[TimerSanityCheck] +++", len(NavigationInstance.instance.getRecordings(True)), fakeRecResult
 				if fakeRecResult == -6 and len(NavigationInstance.instance.getRecordings(True)) < 2:
-					print "[TimerSanityCheck] less than two timers in the simulated recording list - timer conflict is not plausible - ignored !"
+					print("[TimerSanityCheck] less than two timers in the simulated recording list - timer conflict is not plausible - ignored !")
 					fakeRecResult = 0
 				if not fakeRecResult: # tune okay
 					#feinfo = fakeRecService.frontendInfo()
@@ -243,7 +244,7 @@ class TimerSanityCheck:
 					if entry[1] == timer:
 						overlaplist.remove(entry)
 			else:
-				print "Bug: unknown flag!"
+				print("Bug: unknown flag!")
 
 			if ci_timer and cihelper.ServiceIsAssigned(timer.service_ref.ref):
 				if event[1] == self.bflag:
@@ -303,7 +304,7 @@ class TimerSanityCheck:
 								break
 
 		if len(self.simultimer) < 2:
-			print "Possible Bug: unknown Conflict!"
+			print("Possible Bug: unknown Conflict!")
 			return True
 
 		return False # conflict detected!

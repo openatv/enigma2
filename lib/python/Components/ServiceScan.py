@@ -1,3 +1,4 @@
+from __future__ import print_function
 from enigma import eComponentScan, iDVBFrontend, eTimer
 from Components.NimManager import nimmanager as nimmgr
 from Components.Converter.ChannelNumbers import channelnumbers
@@ -149,7 +150,7 @@ class ServiceScan:
 								tp.Inversion_Unknown : _("Auto")
 							}.get(tp.inversion, ""))
 					else:
-						print "unknown transponder type in scanStatusChanged"
+						print("unknown transponder type in scanStatusChanged")
 				self.network.setText(network)
 				self.transponder.setText(tp_text)
 
@@ -215,7 +216,7 @@ class ServiceScan:
 	def execEnd(self):
 		if self.scan is None:
 			if not self.isDone():
-				print "*** warning *** scan was not finished!"
+				print("*** warning *** scan was not finished!")
 			return
 		self.scan.statusChanged.get().remove(self.scanStatusChanged)
 		self.scan.newService.get().remove(self.newService)

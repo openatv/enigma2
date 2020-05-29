@@ -1,3 +1,4 @@
+from __future__ import print_function
 from bisect import insort
 from time import time, localtime, mktime
 from enigma import eTimer, eActionMap
@@ -228,7 +229,7 @@ class Timer:
 	def calcNextActivation(self):
 		now = time()
 		if self.lastActivation > now:
-			print "[timer.py] timewarp - re-evaluating all processed timers."
+			print("[timer.py] timewarp - re-evaluating all processed timers.")
 			tl = self.processed_timers
 			self.processed_timers = [ ]
 			for x in tl:
@@ -262,7 +263,7 @@ class Timer:
 			try:
 				self.timer_list.remove(timer)
 			except:
-				print "[timer] Failed to remove, not in list"
+				print("[timer] Failed to remove, not in list")
 				return
 		# give the timer a chance to re-enqueue
 		if timer.state == TimerEntry.StateEnded:

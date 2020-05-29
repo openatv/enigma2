@@ -1,3 +1,4 @@
+from __future__ import print_function
 from boxbranding import getMachineBrand, getMachineName
 from xml.sax import make_parser
 from xml.sax.handler import ContentHandler
@@ -33,7 +34,7 @@ class Wizard(Screen):
 	instance = None
 
 	def createSummary(self):
-		print "WizardCreateSummary"
+		print("WizardCreateSummary")
 		return WizardSummary
 
 	class parseWizard(ContentHandler):
@@ -312,7 +313,7 @@ class Wizard(Screen):
 		count = 0
 		for x in self.wizard.keys():
 			if self.wizard[x]["id"] == id:
-				print "result:", count
+				print("result:", count)
 				return count
 			count += 1
 # 		print "result: nothing"
@@ -414,7 +415,7 @@ class Wizard(Screen):
 		elif self.showList and len(self.wizard[self.currStep]["evaluatedlist"]) > 0:
 			self["list"].selectPrevious()
 			if self.wizard[self.currStep].has_key("onselect"):
-				print "current:", self["list"].current
+				print("current:", self["list"].current)
 				self.selection = self["list"].current[-1]
 				#self.selection = self.wizard[self.currStep]["evaluatedlist"][self["list"].l.getCurrentSelectionIndex()][1]
 				exec("self." + self.wizard[self.currStep]["onselect"] + "()")
@@ -478,7 +479,7 @@ class Wizard(Screen):
 		elif self.showList and len(self.wizard[self.currStep]["evaluatedlist"]) > 0:
 			if self.wizard[self.currStep].has_key("onselect"):
 				self.selection = self["list"].current[-1]
-				print "self.selection:", self.selection
+				print("self.selection:", self.selection)
 				exec("self." + self.wizard[self.currStep]["onselect"] + "()")
 
 	def resetCounter(self):
@@ -588,7 +589,7 @@ class Wizard(Screen):
 					rootrenderer = renderer
 					while renderer.source is not None:
 						if renderer.source is self["list"]:
-							print "setZPosition"
+							print("setZPosition")
 							rootrenderer.instance.setZPosition(1)
 						renderer = renderer.source
 
@@ -613,19 +614,19 @@ class Wizard(Screen):
 				self["list"].hide()
 
 			if self.showConfig:
-				print "showing config"
+				print("showing config")
 # 				self["config"].instance.setZPosition(1)
 				if self.wizard[self.currStep]["config"]["type"] == "dynamic":
-					print "config type is dynamic"
+					print("config type is dynamic")
 					self["config"].instance.setZPosition(2)
 					self["config"].l.setList(eval("self." + self.wizard[self.currStep]["config"]["source"])())
 				elif self.wizard[self.currStep]["config"]["screen"] is not None:
 					if self.wizard[self.currStep]["config"]["type"] == "standalone":
-						print "Type is standalone"
+						print("Type is standalone")
 						self.session.openWithCallback(self.ok, self.wizard[self.currStep]["config"]["screen"])
 					else:
 						self["config"].instance.setZPosition(2)
-						print "wizard screen", self.wizard[self.currStep]["config"]["screen"]
+						print("wizard screen", self.wizard[self.currStep]["config"]["screen"])
 						if self.wizard[self.currStep]["config"]["args"] is None:
 							self.configInstance = self.session.instantiateDialog(self.wizard[self.currStep]["config"]["screen"])
 						else:
@@ -634,10 +635,10 @@ class Wizard(Screen):
 						self["config"].l.setList(self.configInstance["config"].list)
 						callbacks = self.configInstance["config"].onSelectionChanged
 						self.configInstance["config"].destroy()
-						print "clearConfigList", self.configInstance["config"], self["config"]
+						print("clearConfigList", self.configInstance["config"], self["config"])
 						self.configInstance["config"] = self["config"]
 						self.configInstance["config"].onSelectionChanged = callbacks
-						print "clearConfigList", self.configInstance["config"], self["config"]
+						print("clearConfigList", self.configInstance["config"], self["config"])
 				else:
 					self["config"].l.setList([])
 					self.handleInputHelpers()

@@ -1,3 +1,4 @@
+from __future__ import print_function
 from sys import _getframe
 from LogConfig import LogConfig, LOG_TYPE_DEBUG, LOG_TYPE_INFO, LOG_TYPE_WARNING, LOG_TYPE_ERROR, LOG_LEVEL_ERROR, LOG_LEVEL_WARNING, LOG_LEVEL_INFO, LOG_LEVEL_DEBUG
 
@@ -64,4 +65,4 @@ class Log(object):
 			elif type == LOG_TYPE_DEBUG:
 				msg = "\033[0;37m%s\033[1;m" % msg
 
-		print msg
+		print(msg)

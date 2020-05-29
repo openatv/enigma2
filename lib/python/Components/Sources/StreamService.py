@@ -1,3 +1,4 @@
+from __future__ import print_function
 from Source import Source
 from Components.Element import cached
 from enigma import eServiceReference, pNavigation
@@ -19,20 +20,20 @@ class StreamService(Source):
 	service = property(getService)
 
 	def handleCommand(self, cmd):
-		print "StreamService handle command", cmd
+		print("StreamService handle command", cmd)
 		self.ref = eServiceReference(cmd)
 
 	def recordEvent(self, service, event):
 		if service is self.__service:
 			return
-		print "RECORD event for us:", service
+		print("RECORD event for us:", service)
 		self.changed((self.CHANGED_ALL, ))
 
 	def execBegin(self):
 		if self.ref is None:
-			print "StreamService has no service ref set."
+			print("StreamService has no service ref set.")
 			return
-		print "StreamService execBegin", self.ref.toString()
+		print("StreamService execBegin", self.ref.toString())
 		try:
 			#not all images support recording type indicators
 			self.__service = self.navcore.recordService(self.ref,False,pNavigation.isStreaming)
@@ -44,7 +45,7 @@ class StreamService(Source):
 			self.__service.start()
 
 	def execEnd(self):
-		print "StreamService execEnd", self.ref.toString()
+		print("StreamService execEnd", self.ref.toString())
 		self.navcore.record_event.remove(self.recordEvent)
 		if self.__service is not None:
 			self.navcore.stopRecordService(self.__service)

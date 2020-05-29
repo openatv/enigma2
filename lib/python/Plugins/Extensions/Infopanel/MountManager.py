@@ -1,3 +1,4 @@
+from __future__ import print_function
 from Screens.Screen import Screen
 from enigma import eTimer
 from boxbranding import getMachineBrand, getMachineName, getBoxType, getMachineBuild
@@ -525,7 +526,7 @@ class DevicePanelConf(Screen, ConfigListScreen):
 			model = file('/sys/block/' + device2 + '/device/model').read()
 		model = str(model).replace('\n', '')
 		des = ''
-		print "test:" 
+		print("test:") 
 		if devicetype.find('/devices/pci') != -1 or devicetype.find('ahci') != -1:
 			name = _("HARD DISK: ")
 			mypixmap = '/usr/lib/enigma2/python/Plugins/Extensions/Infopanel/icons/dev_hdd.png'

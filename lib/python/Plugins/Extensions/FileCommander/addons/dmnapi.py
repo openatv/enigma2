@@ -2,6 +2,7 @@
 # -*- coding: UTF-8 -*-
 # napiprojekt.pl API is used with napiproject administration consent
 
+from __future__ import print_function
 import re
 import os
 import os.path
@@ -21,7 +22,7 @@ def get_all(file, supplement):
 				try:
 					dmnapim.get_sub_from_napi(os.path.join(dir, f))
 				except:
-					print "  Error: %s" % (sys.exc_info()[1])
+					print("  Error: %s" % (sys.exc_info()[1]))
 
 try:
 	# opt fps videofile [subtitlefile]
@@ -46,10 +47,10 @@ try:
 			do = "opkg install " + ipk
 		else:
 			do = "ipkg install " + ipk
-		print "Upgrade to:\n", file, "\n"
+		print("Upgrade to:\n", file, "\n")
 		os.system("cd /tmp ; rm -f enigma2-plugin-extensions-dmnapi*.ipk ; opkg update && wget -c %s && ls -al enigma2-plugin-extensions-dmnapi*.ipk && %s" % (file, do))
 	elif opt == "n24":
 		file = os.path.abspath(sys.argv[3])
 		dmnapim.get_sub_from_n24(file, sys.argv[4], fps=fps)
 except:
-	print "  Error: %s" % (sys.exc_info()[1])
+	print("  Error: %s" % (sys.exc_info()[1]))

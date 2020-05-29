@@ -1,3 +1,4 @@
+from __future__ import print_function
 from Tools.Profile import profile
 
 # workaround for required config entry dependencies.
@@ -348,8 +349,8 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 			zoomval = abs(self.zoomrate) + 10
 		else:
 			zoomval = self.zoomrate
-		print 'zoomRate:', self.zoomrate
-		print 'zoomval:', zoomval
+		print('zoomRate:', self.zoomrate)
+		print('zoomval:', zoomval)
 		if fileExists("/proc/stb/vmpeg/0/zoomrate"):
 			file = open('/proc/stb/vmpeg/0/zoomrate', 'w')
 			file.write('%d' % int(zoomval))
@@ -672,7 +673,7 @@ class MoviePlayer(InfoBarAspectSelection, InfoBarSimpleEventView, InfoBarBase, I
 							self.movielistAgain()
 						return
 					except Exception, e:
-						print "[InfoBar] Failed to move to .Trash folder:", e
+						print("[InfoBar] Failed to move to .Trash folder:", e)
 						msg = _("Cannot move to trash can") + "\n" + str(e) + "\n"
 				info = serviceHandler.info(ref)
 				name = info and info.getName(ref) or _("this recording")

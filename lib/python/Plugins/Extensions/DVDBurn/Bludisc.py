@@ -1,3 +1,4 @@
+from __future__ import print_function
 from Components.Task import Task, Job, DiskspacePrecondition, Condition
 from Components.Harddisk import harddiskmanager
 from Tools.Directories import SCOPE_HDD, resolveFilename, createDir
@@ -152,12 +153,12 @@ class BludiscStream(object):
 			if videoformatstring in VIDEO_FORMATS:
 				videoformat = VIDEO_FORMATS[videoformatstring]
 			else:
-				print "BludiscStream %s object warning... PID %i video stream format %s out of spec!" % (self.__parent.inputfile, self.__PID, videoformatstring)
+				print("BludiscStream %s object warning... PID %i video stream format %s out of spec!" % (self.__parent.inputfile, self.__PID, videoformatstring))
 
 			if self.__parent.framerate in VIDEO_RATES:
 				frame_rate = VIDEO_RATES[self.__parent.framerate]
 			else:
-				print "BludiscStream %s object warning... PID %i video frame rate %s out of spec!" % (self.__parent.inputfile, self.__PID, self.__parent.framerate)
+				print("BludiscStream %s object warning... PID %i video frame rate %s out of spec!" % (self.__parent.inputfile, self.__PID, self.__parent.framerate))
 
 			byteval = (videoformat << 4) + frame_rate
 
@@ -223,13 +224,13 @@ class RemuxTask(Task):
 			(spn, pts) = (int(values[1]), int(values[2]))
 			if spn > 0 and pts > 0:
 				self.title.entrypoints.append((spn, pts))
-				print "[bdremux] added new entrypoint", self.title.entrypoints[-1]
+				print("[bdremux] added new entrypoint", self.title.entrypoints[-1])
 			self.progress = spn
 		elif line.startswith("linked:"):	
 			words = line[:-1].split(' ')
 			pid = int(words[5].split('_')[1])
 			self.title.addStream(pid)
-			print "[bdremux] added stream with pid", pid
+			print("[bdremux] added stream with pid", pid)
 		elif line.find("has CAPS:") > 0:
 			words = line[:-1].split(' ')
 			pid = int(words[0].split('_')[1])
@@ -239,7 +240,7 @@ class RemuxTask(Task):
 
 			stream = self.title.getStreamByPID(pid)
 			if stream == None:
-				print "[bdremux] invalid stream!"
+				print("[bdremux] invalid stream!")
 				return
 
 			sdict = {}
@@ -259,13 +260,13 @@ class RemuxTask(Task):
 						stream.setAudioRate(v)
 					elif key == "channels":
 						stream.setAudioPresentation(v)
-			print "[bdremux] discovered caps for pid %i (%s)" % (pid, stype)
+			print("[bdremux] discovered caps for pid %i (%s)" % (pid, stype))
 		elif line.startswith("ERROR:"):
 			self.error_text = line[7:-1]
-			print "[bdremux] error:", self.error_text
+			print("[bdremux] error:", self.error_text)
 			Task.processFinished(self, 1)
 		else:
-			print "[bdremux]", line[:-1]
+			print("[bdremux]", line[:-1])
 
 	def cleanup(self, failed):
 		if not failed:
@@ -509,7 +510,7 @@ class CreateMplsTask(Task):
 			StnTable += zeros[0:5]	# reserved
 
 			for vid in self.title.VideoStreams:
-				print "adding vid", vid, type(vid)
+				print("adding vid", vid, type(vid))
 				VideoEntry = bytearray(1)	# len
 				VideoEntry += '\x01'		# type 01 = elementary stream of the clip used by the PlayItem
 
@@ -555,7 +556,7 @@ class CreateMplsTask(Task):
 		mplsbuffer[0x0C:0x10] = PlayListMarkStartAdress
 		
 		if len(self.title.entrypoints) == 0:
-			print "no entry points found for this title!"
+			print("no entry points found for this title!")
 			self.title.entrypoints.append(0)
 
 		#playlist mark list [(id, type, timestamp, skip duration)]
@@ -570,8 +571,8 @@ class CreateMplsTask(Task):
 						markslist.append((mark_id, 1, ep_pts, 0))
 						mark_id += 1
 		except AttributeError:
-			print "title has no chaptermarks"
-		print "**** final markslist", markslist
+			print("title has no chaptermarks")
+		print("**** final markslist", markslist)
 
 		num_marks = len(markslist)
 		PlayListMark = bytearray()			# len 4 bytes

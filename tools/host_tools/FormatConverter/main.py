@@ -1,4 +1,5 @@
 #!/usr/bin/python
+from __future__ import print_function
 import os
 
 from datasource import genericdatasource
@@ -29,7 +30,7 @@ while True:
 		break
 
 	while True:
-		print datasources[index].getStatus()
+		print(datasources[index].getStatus())
 		list = []
 		for action in datasources[index].getCapabilities():
 			list.append(action[0])

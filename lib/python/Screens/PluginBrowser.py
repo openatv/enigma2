@@ -1,3 +1,4 @@
+from __future__ import print_function
 from boxbranding import getImageVersion
 import os
 from Screen import Screen
@@ -650,7 +651,7 @@ class PluginDownloadBrowser(Screen):
 			try:
 				self.postInstallCall()
 			except Exception, ex:
-				print "[PluginBrowser] postInstallCall failed:", ex
+				print("[PluginBrowser] postInstallCall failed:", ex)
 			self.resetPostInstall()
 		try:
 			os.unlink('/tmp/opkg.conf')

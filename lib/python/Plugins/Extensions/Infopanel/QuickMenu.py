@@ -1,3 +1,4 @@
+from __future__ import print_function
 
 from enigma import eListboxPythonMultiContent, gFont, eEnv, getDesktop, pNavigation
 from boxbranding import getMachineBrand, getMachineName, getBoxType, getBrandOEM
@@ -112,7 +113,7 @@ def isFileSystemSupported(filesystem):
 				return True
 		return False
 	except Exception, ex:
-		print "[Harddisk] Failed to read /proc/filesystems:", ex
+		print("[Harddisk] Failed to read /proc/filesystems:", ex)
 
 class QuickMenu(Screen, ProtectedScreen):
 	skin = """

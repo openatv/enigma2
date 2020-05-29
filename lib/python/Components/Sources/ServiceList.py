@@ -1,3 +1,4 @@
+from __future__ import print_function
 from Source import Source
 from enigma import eServiceCenter, eServiceReference
 
@@ -33,10 +34,10 @@ class ServiceList(Source):
 	root = property(getRoot, setRoot)
 
 	def handleCommand(self, cmd):
-		print "ServiceList handle command"
+		print("ServiceList handle command")
 
 		if self.validate_commands and not self.validateReference(cmd):
-			print "Service reference did not validate!"
+			print("Service reference did not validate!")
 			return
 
 		ref = eServiceReference(cmd)

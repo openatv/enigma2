@@ -1,3 +1,4 @@
+from __future__ import print_function
 import os
 import struct
 import random
@@ -468,13 +469,13 @@ class MovieList(GUIComponent):
 				service = ServiceReference(ref).getServiceName()							# get service name
 				serviceSize = getTextBoundarySize(self.instance, self.dateFont, self.l.getItemSize(), service).width()
 			except Exception, e:
-				print('[MovieList] load extended infos get failed: ', e)
+				print(('[MovieList] load extended infos get failed: ', e))
 			if ext == '2':
 				try:
 					picon = getPiconName(ref)
 					picon = loadPNG(picon)
 				except Exception, e:
-					print('[MovieList] load picon get failed: ', e)
+					print(('[MovieList] load picon get failed: ', e))
 
 			if fileExtension in RECORD_EXTENSIONS:
 				if ext == '1':
@@ -589,7 +590,7 @@ class MovieList(GUIComponent):
 
 		reflist = root and serviceHandler.list(root)
 		if reflist is None:
-			print "listing of movies failed"
+			print("listing of movies failed")
 			return
 		realtags = set()
 		tags = {}
