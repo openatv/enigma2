@@ -12,6 +12,9 @@ import urllib2
 from hashlib import md5
 import struct
 
+from six.moves import range
+
+
 class GetFPS(object):
     def __init__(self, filename):
         self.filename = filename
@@ -88,7 +91,7 @@ def f(z):
     add = [0, 0xd, 0x10, 0xb, 0x5]
 
     b = []
-    for i in xrange(len(idx)):
+    for i in range(len(idx)):
         a = add[i]
         m = mul[i]
         i = idx[i]
