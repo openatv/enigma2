@@ -2,7 +2,6 @@
 from __future__ import print_function
 import sys
 import os
-import string
 import re
 from xml.sax import make_parser
 from xml.sax.handler import ContentHandler, property_lexical_handler
@@ -59,7 +58,7 @@ for arg in sys.argv[1:]:
 	for (k, c) in attrlist:
 		print()
 		print('#: ' + arg)
-		string.replace(k, "\\n", "\"\n\"")
+		k.replace("\\n", "\"\n\"")
 		if c:
 			for l in c.split('\n'):
 				print("#. ", l)

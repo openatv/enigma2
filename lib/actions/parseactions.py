@@ -97,7 +97,7 @@ def do_file(f, mode):
 						firsthit = 0
 
 					if mode == "parse":
-						print("{\"" + actionname + "\", \"" + t + "\", " + string.join((classname, t), "::") + "},")
+						print("{\"" + actionname + "\", \"" + t + "\", " + (classname, t).join("::") + "},")
 
 					counter += 1
 

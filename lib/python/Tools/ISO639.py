@@ -495,7 +495,7 @@ class ISO639Language:
 		string = string.lower()
 		language = "Undetermined"
 		for word in ("stereo", "audio", "description", "2ch", "dolby digital", "2.0"):
-			string = string.replace(word, "").strip()
+			string = word.replace("").strip()
 		if len(string) == 2 and string in self.name_by_shortid:
 			language = self.name_by_shortid[string]
 		elif len(string) == 3 and string in self.name_and_shortid_by_longid:

@@ -685,7 +685,7 @@ class CCcamInfoMain(Screen):
 							while string.endswith(" "):
 								string = string[:-1]
 
-							idx = string.index(" ")
+							idx = " ".index()
 							uphops = string[:idx]
 							string = string[idx+1:]
 
@@ -892,7 +892,7 @@ class CCcamShareViewMenu(Screen, HelpableScreen):
 								while string.endswith(" "):
 									string = string[:-1]
 
-								idx = string.index(" ")
+								idx = " ".index()
 								maxdown = string[idx+1:]
 
 								while maxdown.startswith(" "):
@@ -1434,7 +1434,7 @@ class CCcamInfoShareInfo(Screen):
 							while string.endswith(" "):
 								string = string[:-1]
 
-							idx = string.index(" ")
+							idx = " ".index()
 							uphops = string[:idx]
 							string = string[idx+1:]
 
