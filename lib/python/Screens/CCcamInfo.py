@@ -26,6 +26,7 @@ from twisted.internet import reactor
 from twisted.web.client import HTTPClientFactory
 from urlparse import urlparse, urlunparse
 import skin
+import six
 
 #TOGGLE_SHOW = InfoBar.toggleShow
 
@@ -107,7 +108,7 @@ class HelpableNumberActionMap(NumberActionMap):
 	def __init__(self, parent, context, actions, prio):
 		alist = []
 		adict = {}
-		for (action, funchelp) in actions.iteritems():
+		for (action, funchelp) in six.iteritems(actions):
 			alist.append((action, funchelp[1]))
 			adict[action] = funchelp[0]
 		NumberActionMap.__init__(self, [context], adict, prio)

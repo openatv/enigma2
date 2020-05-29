@@ -40,6 +40,7 @@ import os
 import stat
 import string
 import re
+import six
 
 # System mods
 from .InputBox import InputBox
@@ -52,7 +53,7 @@ from .addons.type_utils import vEditor
 MOVIEEXTENSIONS = {"cuts": "movieparts", "meta": "movieparts", "ap": "movieparts", "sc": "movieparts", "eit": "movieparts"}
 
 def _make_filter(media_type):
-	return "(?i)^.*\.(" + '|'.join(sorted((ext for ext, type in EXTENSIONS.iteritems() if type == media_type))) + ")$"
+	return "(?i)^.*\.(" + '|'.join(sorted((ext for ext, type in six.iteritems(EXTENSIONS) if type == media_type))) + ")$"
 
 def _make_rec_filter():
 	return "(?i)^.*\.(" + '|'.join(sorted(["ts"] + [ext == "eit" and ext or "ts." + ext  for ext in MOVIEEXTENSIONS.iterkeys()])) + ")$"

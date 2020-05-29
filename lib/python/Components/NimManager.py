@@ -2314,7 +2314,8 @@ def InitNimManager(nimmgr, update_slots=None):
 					except:
 						print("[info] no /sys/module/dvb_core/parameters/dvb_shutdown_timeout available")
 
-					for x in iDVBFrontendDict.iteritems():
+					import six
+					for x in six.iteritems(iDVBFrontendDict):
 						if x[1] == system:
 							frontend.overrideType(x[0])
 							break

@@ -1,6 +1,7 @@
 from copy import copy, deepcopy
 
 from enigma import BT_SCALE, RT_HALIGN_CENTER, RT_HALIGN_LEFT, RT_HALIGN_RIGHT, RT_VALIGN_BOTTOM, RT_VALIGN_CENTER, RT_VALIGN_TOP, eListboxPythonMultiContent, getPrevAsciiCode, gFont
+import six
 
 from skin import fonts, parameters
 from Components.ActionMap import HelpableNumberActionMap
@@ -1078,7 +1079,7 @@ class VirtualKeyBoard(Screen, HelpableScreen):
 
 	def localeMenu(self):
 		languages = []
-		for locale, data in self.locales.iteritems():
+		for locale, data in six.iteritems(self.locales):
 			languages.append((data[0] + "  -  " + data[1] + "  (" + locale + ")", locale))
 		languages = sorted(languages)
 		index = 0

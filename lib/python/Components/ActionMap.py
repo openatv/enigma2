@@ -3,7 +3,6 @@ from enigma import eActionMap
 
 from Tools.KeyBindings import queryKeyBinding
 
-
 class ActionMap:
 	def __init__(self, contexts=None, actions=None, prio=0):
 		self.contexts = contexts or []
@@ -99,7 +98,8 @@ class HelpableActionMap(ActionMap):
 		adict = {}
 		for context in contexts:
 			alist = []
-			for (action, funchelp) in actions.iteritems():
+			import six
+			for (action, funchelp) in six.iteritems(actions):
 				# Check if this is a tuple.
 				if isinstance(funchelp, tuple):
 					if queryKeyBinding(context, action):

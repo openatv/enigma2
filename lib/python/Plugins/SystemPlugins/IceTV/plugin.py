@@ -39,6 +39,7 @@ from Components.TimerSanityCheck import TimerSanityCheck
 import NavigationInstance
 from twisted.internet import reactor, threads
 from os import path
+import six
 
 _session = None
 password_requested = False
@@ -623,7 +624,7 @@ class EPGFetcher(object):
 
     def makeChanServMap(self, channels):
         res = defaultdict(list)
-        name_map = dict((n.upper(), t) for n, t in self.getScanChanNameMap().iteritems())
+        name_map = dict((n.upper(), t) for n, t in six.iteritems(self.getScanChanNameMap()))
 
         for channel in channels:
             channel_id = long(channel["id"])
@@ -656,7 +657,7 @@ class EPGFetcher(object):
     def serviceToIceChannelId(self, serviceref):
         svc = str(serviceref).split(":")
         triplet = (int(svc[5], 16), int(svc[4], 16), int(svc[3], 16))
-        for channel_id, dvbt in self.channel_service_map.iteritems():
+        for channel_id, dvbt in six.iteritems(self.channel_service_map):
             if triplet in dvbt:
                 return channel_id
 
