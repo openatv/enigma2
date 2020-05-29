@@ -1,9 +1,9 @@
 from boxbranding import getImageVersion, getImageBuild, getImageDistro, getMachineBrand, getMachineName, getMachineBuild
 from os import rename, path, remove
 from gettext import dgettext
-import urllib
 
 from enigma import eTimer, eDVBDB
+from six.moves import urllib
 
 import Components.Task
 from Screens.ChoiceBox import ChoiceBox

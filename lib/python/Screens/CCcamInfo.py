@@ -22,9 +22,9 @@ from Screens.MessageBox import MessageBox
 from Screens.Screen import Screen
 from Screens.VirtualKeyBoard import VirtualKeyBoard
 from Tools.Directories import fileExists, SCOPE_ACTIVE_SKIN, resolveFilename
+from six.moves.urllib.parse import urlparse, urlunparse
 from twisted.internet import reactor
 from twisted.web.client import HTTPClientFactory
-from urlparse import urlparse, urlunparse
 import skin
 import six
 

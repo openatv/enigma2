@@ -2,13 +2,14 @@
 
 # source: https://code.google.com/p/python-weather-api/
 
-from urllib2 import urlopen, URLError
-from urllib import urlencode
 import sys
 import re
 import json
 
 from six.moves import range
+from six.moves.urllib.error import URLError
+from six.moves.urllib.parse import urlencode
+from six.moves.urllib.request import urlopen
 
 
 WOEID_SEARCH_URL     = 'http://query.yahooapis.com/v1/public/yql'
