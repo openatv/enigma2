@@ -1,5 +1,6 @@
 from __future__ import print_function
-from Screen import Screen
+from __future__ import absolute_import
+from Screens.Screen import Screen
 from Screens.MessageBox import MessageBox
 from Components.ConfigList import ConfigListScreen
 from Components.ActionMap import ActionMap

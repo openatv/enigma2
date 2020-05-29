@@ -1,4 +1,5 @@
 from __future__ import print_function
+from __future__ import absolute_import
 import re
 import os
 import netifaces as ni
@@ -34,7 +35,7 @@ class Network:
 
 	def onRemoteRootFS(self):
 		if self.remoteRootFS is None:
-			import Harddisk
+			import Components.Harddisk
 			for parts in Harddisk.getProcMounts():
 				if parts[1] == '/' and parts[2] == 'nfs':
 					self.remoteRootFS = True

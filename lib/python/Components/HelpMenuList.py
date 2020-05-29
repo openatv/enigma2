@@ -1,5 +1,6 @@
 from __future__ import print_function
-from GUIComponent import GUIComponent
+from __future__ import absolute_import
+from Components.GUIComponent import GUIComponent
 
 from enigma import eListboxPythonMultiContent, eListbox, gFont
 from Tools.KeyBindings import queryKeyBinding, getKeyDescription

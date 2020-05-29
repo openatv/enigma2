@@ -1,5 +1,6 @@
+from __future__ import absolute_import
 from Components.config import config
-from Renderer import Renderer
+from Components.Renderer.Renderer import Renderer
 from enigma import eLabel, eTimer
 from boxbranding import getBoxType
 from Components.VariableText import VariableText

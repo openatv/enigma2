@@ -1,4 +1,5 @@
 from __future__ import print_function
+from __future__ import absolute_import
 import os
 from boxbranding import getBoxType, getBrandOEM, getMachineBrand
 from time import localtime, mktime
@@ -16,7 +17,7 @@ from enigma import eDVBSatelliteEquipmentControl as secClass, \
 from Tools.HardwareInfo import HardwareInfo
 from Tools.BoundFunction import boundFunction
 from Components.About import about
-from config import config, ConfigSubsection, ConfigSelection, ConfigFloat, ConfigSatlist, ConfigYesNo, ConfigInteger, ConfigSubList, ConfigNothing, ConfigSubDict, ConfigOnOff, ConfigDateTime, ConfigText
+from Components.config import config, ConfigSubsection, ConfigSelection, ConfigFloat, ConfigSatlist, ConfigYesNo, ConfigInteger, ConfigSubList, ConfigNothing, ConfigSubDict, ConfigOnOff, ConfigDateTime, ConfigText
 
 maxFixedLnbPositions = 0
 

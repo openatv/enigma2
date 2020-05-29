@@ -1,4 +1,5 @@
-from Screen import Screen
+from __future__ import absolute_import
+from Screens.Screen import Screen
 from Screens.Setup import getConfigMenuItem, Setup
 from Screens.InputBox import PinInput
 from Screens.MessageBox import MessageBox

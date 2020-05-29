@@ -3,6 +3,7 @@
 
 # Components
 from __future__ import print_function
+from __future__ import absolute_import
 from Components.config import config
 from Components.Scanner import openFile
 from Components.MovieList import AUDIO_EXTENSIONS, IMAGE_EXTENSIONS, MOVIE_EXTENSIONS, DVD_EXTENSIONS
@@ -18,7 +19,7 @@ from Screens.InfoBar import InfoBar
 # Tools
 from Tools.Directories import fileExists
 from Tools.UnitConversions import UnitScaler, UnitMultipliers
-from Tools import Notifications
+import Tools.Notifications
 
 # Various
 from mimetypes import guess_type
@@ -34,12 +35,12 @@ import re
 import os
 
 # Addons
-from unrar import RarMenuScreen
-from tar import TarMenuScreen
-from unzip import UnzipMenuScreen
-from gz import GunzipMenuScreen
-from ipk import ipkMenuScreen
-from type_utils import ImageViewer, MoviePlayer, vEditor
+from .unrar import RarMenuScreen
+from .tar import TarMenuScreen
+from .unzip import UnzipMenuScreen
+from .gz import GunzipMenuScreen
+from .ipk import ipkMenuScreen
+from .type_utils import ImageViewer, MoviePlayer, vEditor
 
 TEXT_EXTENSIONS = frozenset((".txt", ".log", ".py", ".xml", ".html", ".meta", ".bak", ".lst", ".cfg", ".conf", ".srt"))
 
@@ -167,7 +168,7 @@ class task_postconditions(Condition):
 		if InfoBar.instance and not inStandby:
 			InfoBar.instance.openInfoBarMessage(message, messageboxtyp, timeout)
 		else:
-			Notifications.AddNotification(MessageBox, message, type=messageboxtyp, timeout=timeout)
+			Tools.Notifications.AddNotification(MessageBox, message, type=messageboxtyp, timeout=timeout)
 
 def task_processStdout(data):
 	global task_Stout
@@ -741,7 +742,7 @@ class key_actions(stat_info):
 				NavigationInstance.instance.playService(last_service)
 				global last_service
 				last_service = None
-			Notifications.AddNotification(MessageBox, _("The function has interrupted.\nDon't press in the next time any key until the picture from mvi-file is displayed!"), type=MessageBox.TYPE_ERROR, timeout=10)
+			Tools.Notifications.AddNotification(MessageBox, _("The function has interrupted.\nDon't press in the next time any key until the picture from mvi-file is displayed!"), type=MessageBox.TYPE_ERROR, timeout=10)
 
 	def onFileActionCB(self, result):
 		# os.system('echo %s > /tmp/test.log' % (result))

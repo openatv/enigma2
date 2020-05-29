@@ -1,8 +1,9 @@
 from __future__ import print_function
-from GUIComponent import GUIComponent
+from __future__ import absolute_import
+from Components.GUIComponent import GUIComponent
 from skin import applyAllAttributes
 from Tools.CList import CList
-from Sources.StaticText import StaticText
+from Components.Sources.StaticText import StaticText
 
 class GUISkin:
 	__module__ = __name__

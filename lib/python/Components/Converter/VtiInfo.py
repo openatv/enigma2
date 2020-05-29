@@ -1,9 +1,10 @@
 from __future__ import print_function
+from __future__ import absolute_import
 from Components.config import config
 from Components.Converter.Converter import Converter
 from enigma import iServiceInformation, iPlayableService
 from Components.Element import cached
-from Poll import Poll
+from Components.Converter.Poll import Poll
 
 class VtiInfo(Poll, Converter, object):
     ECMINFO = 1

@@ -2,6 +2,7 @@
 # -*- coding: iso-8859-1 -*-
 
 from __future__ import print_function
+from __future__ import absolute_import
 from Plugins.Plugin import PluginDescriptor
 
 # Components
@@ -30,7 +31,7 @@ from Screens.VirtualKeyBoard import VirtualKeyBoard
 # Tools
 from Tools.BoundFunction import boundFunction
 from Tools.UnitConversions import UnitScaler, UnitMultipliers
-from Tools import Notifications
+import Tools.Notifications
 
 # Various
 from enigma import eConsoleAppContainer, RT_HALIGN_LEFT, RT_HALIGN_RIGHT, eTimer
@@ -41,12 +42,12 @@ import string
 import re
 
 # System mods
-from InputBox import InputBox
-from FileList import FileList, MultiFileSelectList, EXTENSIONS
+from .InputBox import InputBox
+from .FileList import FileList, MultiFileSelectList, EXTENSIONS
 
 # Addons
-from addons.key_actions import key_actions, stat_info
-from addons.type_utils import vEditor
+from .addons.key_actions import key_actions, stat_info
+from .addons.type_utils import vEditor
 
 MOVIEEXTENSIONS = {"cuts": "movieparts", "meta": "movieparts", "ap": "movieparts", "sc": "movieparts", "eit": "movieparts"}
 
@@ -599,7 +600,7 @@ class FileCommanderScreen(Screen, HelpableScreen, key_actions):
 		if InfoBar.instance and not inStandby:
 			InfoBar.instance.openInfoBarMessage(message, messageboxtyp, timeout)
 		else:
-			Notifications.AddNotification(MessageBox, message, type=messageboxtyp, timeout=timeout)
+			Tools.Notifications.AddNotification(MessageBox, message, type=messageboxtyp, timeout=timeout)
 		if hasattr(self, "jobs"):
 			self.finishedCB(None)
 		return False
@@ -625,7 +626,7 @@ class FileCommanderScreen(Screen, HelpableScreen, key_actions):
 			if InfoBar.instance and not inStandby:
 				InfoBar.instance.openInfoBarMessage(message, messageboxtyp, timeout)
 			else:
-				Notifications.AddNotification(MessageBox, message, type=messageboxtyp, timeout=timeout)
+				Tools.Notifications.AddNotification(MessageBox, message, type=messageboxtyp, timeout=timeout)
 
 	def setSort(self, list, setDirs = False):
 		sortDirs, sortFiles = list.getSortBy().split(',')

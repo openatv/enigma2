@@ -1,4 +1,5 @@
 from __future__ import print_function
+from __future__ import absolute_import
 import os
 import time
 import random
@@ -28,7 +29,7 @@ from Components.Harddisk import harddiskmanager
 from Components.config import config
 from Tools.Directories import fileExists, resolveFilename, SCOPE_CONFIG, SCOPE_PLAYLIST, SCOPE_ACTIVE_SKIN
 from Tools.BoundFunction import boundFunction
-from settings import MediaPlayerSettings, Load_defaults
+from .settings import MediaPlayerSettings, Load_defaults
 
 
 class MyPlayList(PlayList):

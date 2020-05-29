@@ -1,12 +1,13 @@
 from __future__ import print_function
+from __future__ import absolute_import
 import os
 import time
 from Tools.CList import CList
-from SystemInfo import SystemInfo
+from Components.SystemInfo import SystemInfo
 from Components.Console import Console
 from Tools.HardwareInfo import HardwareInfo
 from boxbranding import getBoxType, getMachineBuild
-import Task
+import Components.Task
 import re
 
 def readFile(filename):
@@ -344,23 +345,23 @@ class Harddisk:
 		h.close()
 
 	def createInitializeJob(self):
-		job = Task.Job(_("Initializing storage device..."))
+		job = Components.Task.Job(_("Initializing storage device..."))
 		size = self.diskSize()
 		print("[HD] size: %s MB" % size)
 
 		task = UnmountTask(job, self)
 
-		task = Task.PythonTask(job, _("Removing partition table"))
+		task = Components.Task.PythonTask(job, _("Removing partition table"))
 		task.work = self.killPartitionTable
 		task.weighting = 1
 
-		task = Task.LoggingTask(job, _("Rereading partition table"))
+		task = Components.Task.LoggingTask(job, _("Rereading partition table"))
 		task.weighting = 1
 		task.setTool('hdparm')
 		task.args.append('-z')
 		task.args.append(self.disk_path)
 
-		task = Task.ConditionTask(job, _("Waiting for partition"), timeoutCount=20)
+		task = Components.Task.ConditionTask(job, _("Waiting for partition"), timeoutCount=20)
 		task.check = lambda: not os.path.exists(self.partitionPath("1"))
 		task.weighting = 1
 
@@ -373,7 +374,7 @@ class Harddisk:
 			else:
 				use_parted = False
 
-		task = Task.LoggingTask(job, _("Creating partition"))
+		task = Components.Task.LoggingTask(job, _("Creating partition"))
 		task.weighting = 5
 		if use_parted:
 			task.setTool('parted')
@@ -401,7 +402,7 @@ class Harddisk:
 				# Smaller disks (CF cards, sticks etc) don't need that
 				task.initial_input = "0,\n;\n;\n;\ny\n"
 
-		task = Task.ConditionTask(job, _("Waiting for partition"))
+		task = Components.Task.ConditionTask(job, _("Waiting for partition"))
 		task.check = lambda: os.path.exists(self.partitionPath("1"))
 		task.weighting = 1
 
@@ -427,7 +428,7 @@ class Harddisk:
 		task = MountTask(job, self)
 		task.weighting = 3
 
-		task = Task.ConditionTask(job, _("Waiting for mount"), timeoutCount=20)
+		task = Components.Task.ConditionTask(job, _("Waiting for mount"), timeoutCount=20)
 		task.check = self.mountDevice
 		task.weighting = 1
 
@@ -442,7 +443,7 @@ class Harddisk:
 		return -5
 
 	def createCheckJob(self):
-		job = Task.Job(_("Checking filesystem..."))
+		job = Components.Task.Job(_("Checking filesystem..."))
 		if self.findMount():
 			# Create unmount task if it was not mounted
 			UnmountTask(job, self)
@@ -450,20 +451,20 @@ class Harddisk:
 		else:
 			# otherwise, assume there is one partition
 			dev = self.partitionPath("1")
-		task = Task.LoggingTask(job, "fsck")
+		task = Components.Task.LoggingTask(job, "fsck")
 		task.setTool('fsck.ext3')
 		task.args.append('-f')
 		task.args.append('-p')
 		task.args.append(dev)
 		MountTask(job, self)
-		task = Task.ConditionTask(job, _("Waiting for mount"))
+		task = Components.Task.ConditionTask(job, _("Waiting for mount"))
 		task.check = self.mountDevice
 		return job
 
 	def createExt4ConversionJob(self):
 		if not isFileSystemSupported('ext4'):
 			raise Exception("You system does not support ext4")
-		job = Task.Job(_("Converting ext3 to ext4..."))
+		job = Components.Task.Job(_("Converting ext3 to ext4..."))
 		if not os.path.exists('/sbin/tune2fs'):
 			addInstallTask(job, 'e2fsprogs-tune2fs')
 		if self.findMount():
@@ -473,18 +474,18 @@ class Harddisk:
 		else:
 			# otherwise, assume there is one partition
 			dev = self.partitionPath("1")
-		task = Task.LoggingTask(job, "fsck")
+		task = Components.Task.LoggingTask(job, "fsck")
 		task.setTool('fsck.ext3')
 		task.args.append('-p')
 		task.args.append(dev)
-		task = Task.LoggingTask(job, "tune2fs")
+		task = Components.Task.LoggingTask(job, "tune2fs")
 		task.setTool('tune2fs')
 		task.args.append('-O')
 		task.args.append('extents,uninit_bg,dir_index')
 		task.args.append('-o')
 		task.args.append('journal_data_writeback')
 		task.args.append(dev)
-		task = Task.LoggingTask(job, "fsck")
+		task = Components.Task.LoggingTask(job, "fsck")
 		task.setTool('fsck.ext4')
 		task.postconditions = [] # ignore result, it will always "fail"
 		task.args.append('-f')
@@ -492,7 +493,7 @@ class Harddisk:
 		task.args.append('-D')
 		task.args.append(dev)
 		MountTask(job, self)
-		task = Task.ConditionTask(job, _("Waiting for mount"))
+		task = Components.Task.ConditionTask(job, _("Waiting for mount"))
 		task.check = self.mountDevice
 		return job
 
@@ -765,10 +766,10 @@ DEVICEDB = \
 DEVICEDB["dm525"] = DEVICEDB["dm520"]
 
 def addInstallTask(job, package):
-	task = Task.LoggingTask(job, "update packages")
+	task = Components.Task.LoggingTask(job, "update packages")
 	task.setTool('opkg')
 	task.args.append('update')
-	task = Task.LoggingTask(job, "Install " + package)
+	task = Components.Task.LoggingTask(job, "Install " + package)
 	task.setTool('opkg')
 	task.args.append('install')
 	task.args.append(package)
@@ -1035,9 +1036,9 @@ class HarddiskManager:
 		except Exception as ex:
 			print("[Harddisk] Failed to set %s speed to %s" % (device, speed), ex)
 
-class UnmountTask(Task.LoggingTask):
+class UnmountTask(Components.Task.LoggingTask):
 	def __init__(self, job, hdd):
-		Task.LoggingTask.__init__(self, job, _("Unmount"))
+		Components.Task.LoggingTask.__init__(self, job, _("Unmount"))
 		self.hdd = hdd
 		self.mountpoints = []
 	def prepare(self):
@@ -1050,7 +1051,7 @@ class UnmountTask(Task.LoggingTask):
 		self.args.append('-f')
 		for dev in self.hdd.enumMountDevices():
 			self.args.append(dev)
-			self.postconditions.append(Task.ReturncodePostcondition())
+			self.postconditions.append(Components.Task.ReturncodePostcondition())
 			self.mountpoints.append(dev)
 		if not self.mountpoints:
 			print("UnmountTask: No mountpoints found?")
@@ -1063,9 +1064,9 @@ class UnmountTask(Task.LoggingTask):
 			except Exception as ex:
 				print("Failed to remove path '%s':" % path, ex)
 
-class MountTask(Task.LoggingTask):
+class MountTask(Components.Task.LoggingTask):
 	def __init__(self, job, hdd):
-		Task.LoggingTask.__init__(self, job, _("Mount"))
+		Components.Task.LoggingTask.__init__(self, job, _("Mount"))
 		self.hdd = hdd
 	def prepare(self):
 		try:
@@ -1087,17 +1088,17 @@ class MountTask(Task.LoggingTask):
 			fspath = os.path.realpath(parts[0])
 			if os.path.realpath(fspath) == dev:
 				self.setCmdline("mount -t auto " + fspath)
-				self.postconditions.append(Task.ReturncodePostcondition())
+				self.postconditions.append(Components.Task.ReturncodePostcondition())
 				return
 		# device is not in fstab
 		if self.hdd.type == DEVTYPE_UDEV:
 			# we can let udev do the job, re-read the partition table
 			# Sorry for the sleep 2 hack...
 			self.setCmdline('sleep 2; hdparm -z ' + self.hdd.disk_path)
-			self.postconditions.append(Task.ReturncodePostcondition())
+			self.postconditions.append(Components.Task.ReturncodePostcondition())
 
 
-class MkfsTask(Task.LoggingTask):
+class MkfsTask(Components.Task.LoggingTask):
 	def prepare(self):
 		self.fsck_state = None
 	def processOutput(self, data):

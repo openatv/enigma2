@@ -1,6 +1,7 @@
 from __future__ import print_function
+from __future__ import absolute_import
 from Components.Console import Console
-from config import config
+from Components.config import config
 from enigma import eTimer, eDVBLocalTimeHandler, eEPGCache
 from Tools.StbHardware import setRTCtime
 from time import time, ctime

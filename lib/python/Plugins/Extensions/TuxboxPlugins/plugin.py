@@ -1,9 +1,10 @@
 from __future__ import print_function
+from __future__ import absolute_import
 # must be fixed for the new plugin interface
 from Tools.BoundFunction import boundFunction
 from Tools.Directories import pathExists
 from Plugins.Plugin import PluginDescriptor
-from pluginrunner import PluginRunner
+from .pluginrunner import PluginRunner
 
 from os import listdir
 

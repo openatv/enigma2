@@ -1,8 +1,9 @@
+from __future__ import absolute_import
 from Components.Converter.Converter import Converter
 from enigma import iServiceInformation, iPlayableService, eServiceReference
 from Screens.InfoBarGenerics import hasActiveSubservicesForCurrentChannel
 from Components.Element import cached
-from Poll import Poll
+from Components.Converter.Poll import Poll
 from Tools.Transponder import ConvertToHumanReadable
 
 from os import path

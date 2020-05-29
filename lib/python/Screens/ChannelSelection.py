@@ -1,10 +1,11 @@
 # -*- coding: utf-8 -*-
 from __future__ import print_function
+from __future__ import absolute_import
 from boxbranding import getMachineBuild, getMachineBrand, getMachineName
 import os
 from Tools.Profile import profile
 
-from Screen import Screen
+from Screens.Screen import Screen
 import Screens.InfoBar
 import Components.ParentalControl
 from Components.Button import Button
@@ -19,7 +20,7 @@ from Components.UsageConfig import preferredTimerPath
 from Components.Renderer.Picon import getPiconName
 from Screens.TimerEdit import TimerSanityConflict
 profile("ChannelSelection.py 1")
-from EpgSelection import EPGSelection
+from Screens.EpgSelection import EPGSelection
 from enigma import eActionMap, eServiceReferenceDVB, eServiceReference, eEPGCache, eServiceCenter, eRCInput, eTimer, ePoint, eDVBDB, iPlayableService, iServiceInformation, getPrevAsciiCode, eEnv, loadPNG
 from Components.config import config, configfile, ConfigSubsection, ConfigText, ConfigYesNo
 from Tools.NumericalTextInput import NumericalTextInput
@@ -35,7 +36,7 @@ from Components.Input import Input
 profile("ChannelSelection.py 3")
 from Components.ChoiceList import ChoiceList, ChoiceEntryComponent
 from RecordTimer import RecordTimerEntry, AFTEREVENT
-from TimerEntry import TimerEntry, InstantRecordTimerEntry
+from Screens.TimerEntry import TimerEntry, InstantRecordTimerEntry
 from Screens.InputBox import InputBox, PinInput
 from Screens.VirtualKeyBoard import VirtualKeyBoard
 from Screens.ChoiceBox import ChoiceBox
@@ -48,7 +49,7 @@ from Screens.RdsDisplay import RassInteractive
 from Screens.EventView import EventViewEPGSelect
 from ServiceReference import ServiceReference
 from Tools.BoundFunction import boundFunction
-from Tools import Notifications
+import Tools.Notifications
 from Tools.ServiceReference import service_types_tv_ref, service_types_radio_ref, serviceRefAppendPath
 from Plugins.Plugin import PluginDescriptor
 from Components.PluginComponent import plugins
@@ -2389,7 +2390,7 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 					self.mainScreenRoot = self.getRoot()
 				self.revertMode = None
 			else:
-				Notifications.RemovePopup("Parental control")
+				Tools.Notifications.RemovePopup("Parental control")
 				self.setCurrentSelection(nref)
 		else:
 			self.setStartRoot(self.curRoot)

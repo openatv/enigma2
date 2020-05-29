@@ -1,4 +1,5 @@
-from Screen import Screen
+from __future__ import absolute_import
+from Screens.Screen import Screen
 from Components.ConfigList import ConfigList
 from Components.ActionMap import ActionMap
 

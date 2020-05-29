@@ -10,7 +10,7 @@ from Components.Harddisk import harddiskmanager
 from GlobalActions import globalActionMap
 from enigma import eDVBVolumecontrol, eTimer, eDVBLocalTimeHandler, eServiceReference
 from boxbranding import getMachineBrand, getMachineName, getBoxType, getBrandOEM, getMachineBuild
-from Tools import Notifications
+import Tools.Notifications
 from time import localtime, time
 import Screens.InfoBar
 from gettext import dgettext
@@ -290,7 +290,7 @@ class Standby(Standby2):
 			self.onClose.append(self.doStandby)
 
 	def doStandby(self):
-		Notifications.AddNotification(Screens.Standby.Standby2)
+		Tools.Notifications.AddNotification(Screens.Standby.Standby2)
 
 class StandbySummary(Screen):
 	skin = """

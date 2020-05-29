@@ -251,9 +251,9 @@ class Navigation:
 
 	def gotostandby(self):
 		if not Screens.Standby.inStandby:
-			from Tools import Notifications
+			import Tools.Notifications
 			print('[NAVIGATION] now entering standby')
-			Notifications.AddNotification(Screens.Standby.Standby)
+			Tools.Notifications.AddNotification(Screens.Standby.Standby)
 
 	def dispatchEvent(self, i):
 		for x in self.event:

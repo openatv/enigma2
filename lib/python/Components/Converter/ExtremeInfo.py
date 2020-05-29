@@ -1,3 +1,4 @@
+from __future__ import absolute_import
 from Components.Converter.Converter import Converter
 from Components.Element import cached
 from ServiceReference import ServiceReference
@@ -8,7 +9,7 @@ from Tools.Directories import fileExists, resolveFilename
 from os import environ, listdir, remove, rename, system
 from Components.ServiceEventTracker import ServiceEventTracker
 import gettext
-from Poll import Poll
+from Components.Converter.Poll import Poll
 
 class ExtremeInfo(Poll, Converter, object):
     TUNERINFO = 0

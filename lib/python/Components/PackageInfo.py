@@ -1,3 +1,4 @@
+from __future__ import absolute_import
 import xml.sax
 from Tools.Directories import crawlDirectory, resolveFilename, SCOPE_CONFIG, SCOPE_SKIN, copyfile, copytree
 from Components.NimManager import nimmanager

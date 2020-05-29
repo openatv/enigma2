@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from __future__ import print_function
+from __future__ import absolute_import
 from Plugins.Plugin import PluginDescriptor
 from Screens.Console import Console
 from Screens.ChoiceBox import ChoiceBox
@@ -41,13 +42,13 @@ from datetime import date, timedelta
 from twisted.web import client
 from twisted.internet import reactor
 
-from ImageBackup import ImageBackup
-from Flash_online import FlashOnline
-from ImageWizard import ImageWizard
-from Multibootmgr import MultiBootWizard
-from BackupRestore import BackupSelection, RestoreMenu, BackupScreen, RestoreScreen, getBackupPath, getOldBackupPath, getBackupFilename, RestoreMyMetrixHD
-from BackupRestore import InitConfig as BackupRestore_InitConfig
-from SoftwareTools import iSoftwareTools
+from .ImageBackup import ImageBackup
+from .Flash_online import FlashOnline
+from .ImageWizard import ImageWizard
+from .Multibootmgr import MultiBootWizard
+from .BackupRestore import BackupSelection, RestoreMenu, BackupScreen, RestoreScreen, getBackupPath, getOldBackupPath, getBackupFilename, RestoreMyMetrixHD
+from .BackupRestore import InitConfig as BackupRestore_InitConfig
+from .SoftwareTools import iSoftwareTools
 import os
 from boxbranding import getBoxType, getMachineBrand, getMachineName, getBrandOEM
 

@@ -1,10 +1,11 @@
 from __future__ import print_function
+from __future__ import absolute_import
 from Components.Task import Task, Job, DiskspacePrecondition, Condition
 from Components.Harddisk import harddiskmanager
 from Tools.Directories import SCOPE_HDD, resolveFilename, createDir
 from time import strftime
-from Process import CheckDiskspaceTask, getISOfilename, BurnTask, RemoveWorkspaceFolder
-from Project import iso639language
+from .Process import CheckDiskspaceTask, getISOfilename, BurnTask, RemoveWorkspaceFolder
+from .Project import iso639language
 import struct
 import os
 import re

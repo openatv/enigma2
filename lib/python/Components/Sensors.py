@@ -1,3 +1,4 @@
+from __future__ import absolute_import
 from Components.FanControl import fancontrol
 
 class Sensors:

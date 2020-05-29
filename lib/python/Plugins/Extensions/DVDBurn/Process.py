@@ -1,9 +1,10 @@
 from __future__ import print_function
+from __future__ import absolute_import
 from Components.Task import Task, Job, DiskspacePrecondition, Condition, ToolExistsPrecondition
 from Components.Harddisk import harddiskmanager
 from Screens.MessageBox import MessageBox
-from Project import iso639language
-from Tools import Notifications
+from .Project import iso639language
+import Tools.Notifications
 
 class png2yuvTask(Task):
 	def __init__(self, job, inputfile, outputfile):
@@ -420,7 +421,7 @@ class PreviewTask(Task):
 			if Screens.Standby.inStandby:
 				self.previewCB(False)
 			else:
-				Notifications.AddNotificationWithCallback(self.previewCB, MessageBox, _("Do you want to preview this DVD before burning?"), timeout = 60, default = False, domain = "JobManager")
+				Tools.Notifications.AddNotificationWithCallback(self.previewCB, MessageBox, _("Do you want to preview this DVD before burning?"), timeout = 60, default = False, domain = "JobManager")
 
 	def abort(self):
 		self.finish(aborted = True)
@@ -435,7 +436,7 @@ class PreviewTask(Task):
 		if self.job.menupreview:
 			self.closedCB(True)
 		else:
-			Notifications.AddNotificationWithCallback(self.closedCB, MessageBox, _("Do you want to burn this collection to DVD medium?"), domain = "JobManager" )
+			Tools.Notifications.AddNotificationWithCallback(self.closedCB, MessageBox, _("Do you want to burn this collection to DVD medium?"), domain = "JobManager" )
 
 	def closedCB(self, answer):
 		if answer == True:

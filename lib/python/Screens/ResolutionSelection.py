@@ -1,5 +1,6 @@
 from __future__ import print_function
-from Screen import Screen
+from __future__ import absolute_import
+from Screens.Screen import Screen
 from Screens.ChoiceBox import ChoiceBox
 
 class ResolutionSelection(Screen):

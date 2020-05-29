@@ -1,4 +1,5 @@
-from Screen import Screen
+from __future__ import absolute_import
+from Screens.Screen import Screen
 
 from Components.Label import Label
 from Components.Pixmap import Pixmap, MultiPixmap

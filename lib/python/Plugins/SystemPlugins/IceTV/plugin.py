@@ -7,6 +7,7 @@ All Right Reserved
 License: Proprietary / Commercial - contact enigma.licensing (at) urbanec.net
 '''
 from __future__ import print_function
+from __future__ import absolute_import
 
 from enigma import eTimer, eEPGCache, eDVBDB, eServiceReference, iRecordableService, eServiceCenter
 from Tools.ServiceReference import service_types_tv_ref
@@ -28,7 +29,7 @@ from Tools.Directories import resolveFilename, SCOPE_PLUGINS
 from Tools.LoadPixmap import LoadPixmap
 from calendar import timegm
 from time import strptime, gmtime, localtime, strftime, time
-from . import config, enableIceTV, disableIceTV
+import config, enableIceTV, disableIceTV
 import API as ice
 import requests
 from collections import deque, defaultdict

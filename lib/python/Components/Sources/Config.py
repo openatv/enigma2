@@ -1,5 +1,6 @@
 from __future__ import print_function
-from Source import Source
+from __future__ import absolute_import
+from Components.Sources.Source import Source
 
 class Config(Source):
 	def __init__(self, config):

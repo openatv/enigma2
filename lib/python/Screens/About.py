@@ -1,5 +1,6 @@
 from __future__ import print_function
-from Screen import Screen
+from __future__ import absolute_import
+from Screens.Screen import Screen
 from skin import isVTISkin
 from Components.ActionMap import ActionMap
 from Components.Button import Button

@@ -26,7 +26,7 @@ from RecordTimer import RecordTimerEntry, parseEvent, AFTEREVENT
 from ServiceReference import ServiceReference, isPlayableForCur
 from Tools.LoadPixmap import LoadPixmap
 from Tools.Alternatives import CompareWithAlternatives
-from Tools import Notifications
+import Tools.Notifications
 from enigma import eEPGCache, eListbox, gFont, eListboxPythonMultiContent, RT_HALIGN_LEFT, RT_HALIGN_RIGHT, RT_HALIGN_CENTER, RT_VALIGN_CENTER, RT_WRAP, BT_SCALE, BT_KEEP_ASPECT_RATIO, BT_ALIGN_CENTER, eSize, eRect, eTimer, getBestPlayableServiceReference, loadPNG
 from GraphMultiEpgSetup import GraphMultiEpgSetup
 from time import localtime, time, strftime

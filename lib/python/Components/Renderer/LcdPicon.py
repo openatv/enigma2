@@ -1,6 +1,7 @@
 from __future__ import print_function
+from __future__ import absolute_import
 import os, re, unicodedata
-from Renderer import Renderer
+from Components.Renderer.Renderer import Renderer
 from enigma import ePixmap, ePicLoad
 from Tools.Alternatives import GetWithAlternative
 from Tools.Directories import pathExists, SCOPE_ACTIVE_SKIN, resolveFilename

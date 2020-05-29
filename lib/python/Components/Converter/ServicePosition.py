@@ -1,7 +1,8 @@
-from Converter import Converter
+from __future__ import absolute_import
+from Components.Converter.Converter import Converter
 from Components.Sources.Clock import Clock
 from time import time as getTime, localtime, strftime
-from Poll import Poll
+from Components.Converter.Poll import Poll
 from enigma import iPlayableService
 from Components.Element import cached, ElementError
 from Components.config import config

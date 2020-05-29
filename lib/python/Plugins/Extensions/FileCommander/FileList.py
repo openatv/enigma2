@@ -1,3 +1,4 @@
+from __future__ import absolute_import
 import os
 import re
 from Components.FileList import FileList as FileListBase, EXTENSIONS as BASE_EXTENSIONS
@@ -8,7 +9,7 @@ from Tools.Directories import fileExists, resolveFilename, SCOPE_PLUGINS, SCOPE_
 from enigma import RT_HALIGN_LEFT, BT_SCALE, eListboxPythonMultiContent, \
 	eServiceReference, eServiceReferenceFS, eServiceCenter
 from Tools.LoadPixmap import LoadPixmap
-from addons.key_actions import TEXT_EXTENSIONS
+from .addons.key_actions import TEXT_EXTENSIONS
 import skin
 
 LOCAL_EXTENSIONS = {

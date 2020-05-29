@@ -1,4 +1,5 @@
-from Source import Source
+from __future__ import absolute_import
+from Components.Sources.Source import Source
 
 class CanvasSource(Source):
 	def __init__(self):

@@ -1,10 +1,11 @@
 from __future__ import print_function
+from __future__ import absolute_import
 from enigma import eTimer
 import re, glob, shutil, os, urllib2, urllib, time, sys
 from Screens.Screen import Screen
 from Components.config import ConfigSubsection, ConfigYesNo, ConfigText, config, configfile
 from Screens.MessageBox import MessageBox
-from downloader import DownloadSetting, ConverDate, ConverDateBack
+from .downloader import DownloadSetting, ConverDate, ConverDateBack
 from enigma import *
 
 try:

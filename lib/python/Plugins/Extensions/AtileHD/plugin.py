@@ -26,7 +26,7 @@ from Screens.Standby import TryQuitMainloop
 from Tools.Directories import *
 from Tools.LoadPixmap import LoadPixmap
 from Tools.WeatherID import get_woeid_from_yahoo
-from Tools import Notifications
+import Tools.Notifications
 from os import listdir, remove, rename, system, path, symlink, chdir, makedirs, mkdir
 import shutil
 

@@ -14,7 +14,7 @@ import json
 from fcntl import ioctl
 from struct import pack
 from socket import socket, create_connection, AF_INET, SOCK_DGRAM, SHUT_RDWR, error as sockerror
-from . import config, saveConfigFile, getIceTVDeviceType
+import config, saveConfigFile, getIceTVDeviceType
 from boxbranding import getMachineBrand, getMachineName, getImageBuild
 
 _version_string = "20191127"
