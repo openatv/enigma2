@@ -9,17 +9,17 @@ from Tools.Directories import pathExists
 import platform
 
 # include/uapi/asm-generic/ioctl.h
-IOC_NRBITS = 8L
-IOC_TYPEBITS = 8L
-IOC_SIZEBITS = 13L if "mips" in platform.machine() else 14L
-IOC_DIRBITS = 3L if "mips" in platform.machine() else 2L
+IOC_NRBITS = 8
+IOC_TYPEBITS = 8
+IOC_SIZEBITS = 13 if "mips" in platform.machine() else 14
+IOC_DIRBITS = 3 if "mips" in platform.machine() else 2
 
-IOC_NRSHIFT = 0L
+IOC_NRSHIFT = 0
 IOC_TYPESHIFT = IOC_NRSHIFT+IOC_NRBITS
 IOC_SIZESHIFT = IOC_TYPESHIFT+IOC_TYPEBITS
 IOC_DIRSHIFT = IOC_SIZESHIFT+IOC_SIZEBITS
 
-IOC_READ = 2L
+IOC_READ = 2
 
 def EVIOCGNAME(length):
 	return (IOC_READ<<IOC_DIRSHIFT)|(length<<IOC_SIZESHIFT)|(0x45<<IOC_TYPESHIFT)|(0x06<<IOC_NRSHIFT)

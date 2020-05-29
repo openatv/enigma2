@@ -677,15 +677,15 @@ class Network:
 		from struct import pack
 		from socket import inet_ntoa
 
-		mask = 1L<<31
-		xnet = (1L<<32)-1
+		mask = 1<<31
+		xnet = (1<<32)-1
 		cidr_range = range(0, 32)
 		cidr = long(nmask)
 		if cidr not in cidr_range:
 			print('cidr invalid: %d' % cidr)
 			return None
 		else:
-			nm = ((1L<<cidr)-1)<<(32-cidr)
+			nm = ((1<<cidr)-1)<<(32-cidr)
 			netmask = str(inet_ntoa(pack('>L', nm)))
 			return netmask
 

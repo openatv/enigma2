@@ -252,7 +252,7 @@ def InitUsageConfig():
 	config.usage.pip_last_service_timeout = ConfigSelection(default = "-1", choices = choicelist)
 	if not os.path.exists(resolveFilename(SCOPE_HDD)):
 		try:
-			os.mkdir(resolveFilename(SCOPE_HDD),0755)
+			os.mkdir(resolveFilename(SCOPE_HDD),0o755)
 		except:
 			pass
 	config.usage.default_path = ConfigText(default = resolveFilename(SCOPE_HDD))
@@ -278,7 +278,7 @@ def InitUsageConfig():
 
 	if not os.path.exists(resolveFilename(SCOPE_TIMESHIFT)):
 		try:
-			os.mkdir(resolveFilename(SCOPE_TIMESHIFT),0755)
+			os.mkdir(resolveFilename(SCOPE_TIMESHIFT),0o755)
 		except:
 			pass
 	config.usage.timeshift_path = ConfigText(default = resolveFilename(SCOPE_TIMESHIFT))
@@ -297,7 +297,7 @@ def InitUsageConfig():
 
 	if not os.path.exists(resolveFilename(SCOPE_AUTORECORD)):
 		try:
-			os.mkdir(resolveFilename(SCOPE_AUTORECORD),0755)
+			os.mkdir(resolveFilename(SCOPE_AUTORECORD),0o755)
 		except:
 			pass
 	config.usage.autorecord_path = ConfigText(default = resolveFilename(SCOPE_AUTORECORD))
@@ -1128,14 +1128,14 @@ def InitUsageConfig():
 				debugpath.append((p.mountpoint + 'logs/', d))
 	config.crash.debug_path = ConfigSelection(default = "/home/root/logs/", choices = debugpath)
 	if not os.path.exists("/home"):
-		os.mkdir("/home",0755)
+		os.mkdir("/home",0o755)
 	if not os.path.exists("/home/root"):
-		os.mkdir("/home/root",0755)
+		os.mkdir("/home/root",0o755)
 
 	def updatedebug_path(configElement):
 		if not os.path.exists(config.crash.debug_path.value):
 			try:
-				os.mkdir(config.crash.debug_path.value,0755)
+				os.mkdir(config.crash.debug_path.value,0o755)
 			except:
 				print("Failed to create log path: %s" %config.crash.debug_path.value)
 	config.crash.debug_path.addNotifier(updatedebug_path, immediate_feedback = False)
