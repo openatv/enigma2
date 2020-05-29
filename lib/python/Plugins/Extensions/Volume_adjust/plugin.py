@@ -61,7 +61,7 @@ class Volume_adjust(Screen):
 		self["press_menu"] = StaticText(_("press the menu button to set a general AC3/Dolby offset"))
 		self["ServiceList.desc"] = Label(_("Channel \t\t\tVolume +"))
 
-		self["actions"] = ActionMap(["ColorActions","OkCancelActions","MenuActions"],
+		self["actions"] = ActionMap(["ColorActions", "OkCancelActions", "MenuActions"],
 			{
 				"green": self.greenPressed,
 				"red": self.redPressed,
@@ -102,7 +102,7 @@ class Volume_adjust(Screen):
 			service = self.service.toCompareString()
 			service_name = ServiceReference(self.service).getServiceName().replace('\xc2\x87', '').replace('\xc2\x86', '')
 			service_name = service_name + '\t\t\t0'
-			self.servicelist.append( (service_name , ConfigNothing(), 0, service))
+			self.servicelist.append( (service_name, ConfigNothing(), 0, service))
 			self.read_volume.append('0')
 			offset = 0
 			self.session.openWithCallback( self.VolumeChanged, Change_volume, service_name, offset)
@@ -149,7 +149,7 @@ class Volume_adjust(Screen):
 						self.session.openWithCallback( self.VolumeChanged, Change_volume, service_name, offset)
 						self.read_volume.append (str(offset))
 					service_name = service_name + self.Tabs(service_name) + self.read_volume[t]
-					self.servicelist.append( (service_name , ConfigNothing(), 0, service_ref.ref.toString()))
+					self.servicelist.append( (service_name, ConfigNothing(), 0, service_ref.ref.toString()))
 					self["ServiceList"].l.setList(self.servicelist)
 
 	def VolumeChanged(self, *args):
@@ -160,7 +160,7 @@ class Volume_adjust(Screen):
 		tmp0 = tmp[0][0:-3].strip()
 		self.read_volume[t-1] = str(offset)
 		service_name = tmp0 + self.Tabs(tmp0) + str(offset)
-		self.servicelist[t-1] = ( (service_name , ConfigNothing(), 0, tmp[3]))
+		self.servicelist[t-1] = ( (service_name, ConfigNothing(), 0, tmp[3]))
 		self["ServiceList"].l.setList(self.servicelist)
 
 	def Change_vol_now(self, *args):
@@ -171,7 +171,7 @@ class Volume_adjust(Screen):
 		tmp0 = tmp[0][0:-3].strip()
 		self.read_volume[t] = str(offset)
 		service_name = tmp0 + self.Tabs(tmp0) + str(offset)
-		self.servicelist[t] = ( (service_name , ConfigNothing(), 0, tmp[3]))
+		self.servicelist[t] = ( (service_name, ConfigNothing(), 0, tmp[3]))
 		self["ServiceList"].l.setList(self.servicelist)
 
 	def Tabs(self, name):
@@ -265,7 +265,7 @@ class Change_volume(ConfigListScreen, Screen):
 		self["key_red"] = StaticText(_("Cancel"))
 		self["key_green"] = StaticText(_("Ok"))
 		self["key_yellow"] = StaticText(_("+/-"))
-		self["actions"] = ActionMap(["ColorActions","SetupActions"],
+		self["actions"] = ActionMap(["ColorActions", "SetupActions"],
 		{
 			"ok": self.ok, 
 			"cancel": self.cancel, 
@@ -390,7 +390,7 @@ class Volume_Config(ConfigListScreen, Screen):
 		self["key_green"] = StaticText(_("Save"))
 		self["key_yellow"] = StaticText(_("+/-"))
 		self["infotext"] = StaticText(_("this offset will only be used if the channel has not its own volume offset"))
-		self["actions"] = ActionMap(["ColorActions","SetupActions"],
+		self["actions"] = ActionMap(["ColorActions", "SetupActions"],
 		{
 			"ok": self.ok, 
 			"cancel": self.cancel, 
@@ -431,7 +431,7 @@ class Volume:
 		self.onClose = [ ]
 		self.read_services=[]
 		self.read_volume=[]
-		self.__event_tracker = ServiceEventTracker(screen=self,eventmap=
+		self.__event_tracker = ServiceEventTracker(screen=self, eventmap=
 			{
 				iPlayableService.evUpdatedInfo: self.__evUpdatedInfo,
 			})

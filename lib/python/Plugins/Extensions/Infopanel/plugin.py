@@ -75,9 +75,9 @@ def Check_SysSoftcam():
 
 
 if Check_Softcam():
-	redSelection = [('0',_("Default (Instant Record)")), ('1',_("Infopanel")),('2',_("Timer List")),('3',_("Show Movies")), ('4',_("SoftcamSetup"))]
+	redSelection = [('0', _("Default (Instant Record)")), ('1', _("Infopanel")), ('2', _("Timer List")), ('3', _("Show Movies")), ('4', _("SoftcamSetup"))]
 else:
-	redSelection = [('0',_("Default (Instant Record)")), ('1',_("Infopanel")),('2',_("Timer List")),('3',_("Show Movies"))]
+	redSelection = [('0', _("Default (Instant Record)")), ('1', _("Infopanel")), ('2', _("Timer List")), ('3', _("Show Movies"))]
 
 def timerEvent():
 	pluginlist = plugins.getPlugins(PluginDescriptor.WHERE_PLUGINMENU)
@@ -93,7 +93,7 @@ timer = eTimer()
 timer.timeout.get().append(timerEvent)
 timer.startLongTimer(1)
 
-choicelist = [('0',_("Audio Selection")),('1',_("Default (Timeshift)")), ('2',_("Toggle Pillarbox <> Pan&Scan")),('3',_("Teletext"))]
+choicelist = [('0', _("Audio Selection")), ('1', _("Default (Timeshift)")), ('2', _("Toggle Pillarbox <> Pan&Scan")), ('3', _("Teletext"))]
 config.plugins.infopanel_yellowkey = ConfigSubsection()
 if getBoxType() == "dm800":
 	config.plugins.infopanel_yellowkey.list = ConfigSelection(default='1', choices = choicelist)
@@ -103,7 +103,7 @@ else:
 	config.plugins.infopanel_yellowkey.listLong = ConfigSelection(default='0', choices = choicelist)
 config.plugins.showinfopanelextensions = ConfigYesNo(default=False)
 config.plugins.infopanel_frozencheck = ConfigSubsection()
-config.plugins.infopanel_frozencheck.list = ConfigSelection([('0',_("Off")),('1',_("1 min.")), ('5',_("5 min.")),('10',_("10 min.")),('15',_("15 min.")),('30',_("30 min."))])
+config.plugins.infopanel_frozencheck.list = ConfigSelection([('0', _("Off")), ('1', _("1 min.")), ('5', _("5 min.")), ('10', _("10 min.")), ('15', _("15 min.")), ('30', _("30 min."))])
 	
 if os.path.isfile("/usr/lib/enigma2/python/Plugins/Extensions/MultiQuickButton/plugin.pyo") is True:
 	try:
@@ -190,7 +190,7 @@ ExitSave = "[Exit] = " +_("Cancel") +"              [Ok] =" +_("Save")
 
 class ConfigPORT(ConfigSequence):
 	def __init__(self, default):
-		ConfigSequence.__init__(self, seperator = ".", limits = [(1,65535)], default = default)
+		ConfigSequence.__init__(self, seperator = ".", limits = [(1, 65535)], default = default)
 
 def main(session, **kwargs):
 		session.open(Infopanel)
@@ -207,7 +207,7 @@ def Plugins(**kwargs):
 	#// show Infopanel in Main Menu
 	PluginDescriptor(name=_("Info Panel"), description="Info panel GUI 27/12/2013", where = PluginDescriptor.WHERE_MENU, fnc = Apanel),
 	#// SwapAutostart
-	PluginDescriptor(where = [PluginDescriptor.WHERE_SESSIONSTART,PluginDescriptor.WHERE_AUTOSTART],fnc = SwapAutostart),
+	PluginDescriptor(where = [PluginDescriptor.WHERE_SESSIONSTART, PluginDescriptor.WHERE_AUTOSTART], fnc = SwapAutostart),
 	#// show Infopanel in EXTENSIONS Menu
 	PluginDescriptor(name=_("Info Panel"), description="Info panel GUI 27/12/2013", where = PluginDescriptor.WHERE_EXTENSIONSMENU, fnc = main) ]
 
@@ -471,7 +471,7 @@ class Infopanel(Screen, InfoBarPiP, ProtectedScreen):
 		elif menu == "software-update":
 			self.session.open(SoftwarePanel)
 		elif menu == "backup-settings":
-			self.session.openWithCallback(self.backupDone,BackupScreen, runBackup = True)
+			self.session.openWithCallback(self.backupDone, BackupScreen, runBackup = True)
 		elif menu == "restore-settings":
 			self.backuppath = getBackupPath()
 			self.backupfile = getBackupFilename()
@@ -481,11 +481,11 @@ class Infopanel(Screen, InfoBarPiP, ProtectedScreen):
 			else:
 				self.session.open(MessageBox, _("Sorry no backups found!"), MessageBox.TYPE_INFO, timeout = 10)
 		elif menu == "backup-files":
-			self.session.open(BackupSelection,title=_("Default files/folders to backup"),configBackupDirs=config.plugins.configurationbackup.backupdirs_default,readOnly=True)
+			self.session.open(BackupSelection, title=_("Default files/folders to backup"), configBackupDirs=config.plugins.configurationbackup.backupdirs_default, readOnly=True)
 		elif menu == "backup-files-additional":
-			self.session.open(BackupSelection,title=_("Additional files/folders to backup"),configBackupDirs=config.plugins.configurationbackup.backupdirs,readOnly=False)
+			self.session.open(BackupSelection, title=_("Additional files/folders to backup"), configBackupDirs=config.plugins.configurationbackup.backupdirs, readOnly=False)
 		elif menu == "backup-files-excluded":
-			self.session.open(BackupSelection,title=_("Files/folders to exclude from backup"),configBackupDirs=config.plugins.configurationbackup.backupdirs_exclude,readOnly=False)
+			self.session.open(BackupSelection, title=_("Files/folders to exclude from backup"), configBackupDirs=config.plugins.configurationbackup.backupdirs_exclude, readOnly=False)
 		elif menu == "MultiQuickButton":
 			self.session.open(MultiQuickButton)
 		elif menu == "MountManager":
@@ -612,13 +612,13 @@ class KeymapSel(ConfigListScreen, Screen):
 		ntrkey = eEnv.resolve("${datadir}/enigma2/keymap.ntr")
 		u80key = eEnv.resolve("${datadir}/enigma2/keymap.u80")
 		self.actkeymap = self.getKeymap(config.usage.keymap.value)
-		keySel = [ ('keymap.xml',_("Default  (keymap.xml)"))]
+		keySel = [ ('keymap.xml', _("Default  (keymap.xml)"))]
 		if os.path.isfile(usrkey):
-			keySel.append(('keymap.usr',_("User  (keymap.usr)")))
+			keySel.append(('keymap.usr', _("User  (keymap.usr)")))
 		if os.path.isfile(ntrkey):
-			keySel.append(('keymap.ntr',_("Neutrino  (keymap.ntr)")))
+			keySel.append(('keymap.ntr', _("Neutrino  (keymap.ntr)")))
 		if os.path.isfile(u80key):
-			keySel.append(('keymap.u80',_("UP80  (keymap.u80)")))
+			keySel.append(('keymap.u80', _("UP80  (keymap.u80)")))
 		if self.actkeymap == usrkey and not os.path.isfile(usrkey):
 			setDefaultKeymap()
 		if self.actkeymap == ntrkey and not os.path.isfile(ntrkey):
@@ -784,7 +784,7 @@ class Info(Screen):
 			info1 = self.Do_cmd("cat", "/etc/motd", None)
 			if info1.find('wElc0me') > -1:
 				info1 = info1[info1.find('wElc0me'):len(info1)] + "\n"
-				info1 = info1.replace('|','')
+				info1 = info1.replace('|', '')
 			else:
 				info1 = info1[info1.find('INFO'):len(info1)] + "\n"
 			info2 = self.Do_cmd("cat", "/etc/image-version", None)
@@ -854,7 +854,7 @@ class Info(Screen):
 			info0 = self.Do_cmd("cat", "/proc/version", None)
 			info = info0.split('(')
 			info1 = "Name = " + info[0] + "\n"
-			info2 =  "Owner = " + info[1].replace(')','') + "\n"
+			info2 =  "Owner = " + info[1].replace(')', '') + "\n"
 			info3 =  "Mainimage = " + info[2][0:info[2].find(')')] + "\n"
 			info4 = "Date = " + info[3][info[3].find('SMP')+4:len(info[3])]
 			info5 = self.Do_cut(info1 + info2 + info3 + info4)

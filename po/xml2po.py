@@ -56,7 +56,7 @@ for arg in sys.argv[1:]:
 	attrlist = list(attrlist)
 	attrlist.sort(key=lambda a: a[0])
 
-	for (k,c) in attrlist:
+	for (k, c) in attrlist:
 		print()
 		print('#: ' + arg)
 		string.replace(k, "\\n", "\"\n\"")

@@ -20,7 +20,7 @@ def Load_defaults():
 
 def opkgExtraDestinations():
 	global opkgDestinations
-	return ''.join([" --add-dest %s:%s" % (i,i) for i in opkgDestinations])
+	return ''.join([" --add-dest %s:%s" % (i, i) for i in opkgDestinations])
 
 def opkgAddDestination(mountpoint):
 	global opkgDestinations

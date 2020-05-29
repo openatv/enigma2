@@ -87,7 +87,7 @@ def InitSkins():
 					print('[RESTORE_SKIN] ...skip!')
 					continue
 				lastpath = skinpath
-				if getattr(__import__(skin.replace('/usr/lib/enigma2/python/','').replace(ext,'').replace('/','.'), fromlist=['ActivateSkinSettings']), 'ActivateSkinSettings')().WriteSkin(True):
+				if getattr(__import__(skin.replace('/usr/lib/enigma2/python/', '').replace(ext, '').replace('/', '.'), fromlist=['ActivateSkinSettings']), 'ActivateSkinSettings')().WriteSkin(True):
 					print('[RESTORE_SKIN] ... failed!')
 				else:
 					print('[RESTORE_SKIN] ... done!')

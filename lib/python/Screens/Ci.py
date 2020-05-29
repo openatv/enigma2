@@ -496,7 +496,7 @@ class CiSelection(Screen):
 				"right": self.keyLeft,
 				"ok": self.okbuttonClick,
 				"cancel": self.cancel
-			},-1)
+			}, -1)
 
 		self.dlg = None
 		self.state = { }
@@ -616,7 +616,7 @@ class CiSelection(Screen):
 			elif action == 2 and self.state[slot] == 2:
 				self.dlg = self.session.openWithCallback(self.dlgClosed, MMIDialog, slot, action)
 
-	def cancelCB(self,value):
+	def cancelCB(self, value):
 		pass
 
 	def cancel(self):

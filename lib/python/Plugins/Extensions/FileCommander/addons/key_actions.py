@@ -370,7 +370,7 @@ class key_actions(stat_info):
 				nice = 'nice -n %d ' %nice
 			if ionice:
 				ionice = 'ionice -c %d ' %ionice
-			priority = '%s%s' %(nice,ionice)
+			priority = '%s%s' %(nice, ionice)
 			if self.commando.endswith('.sh'):
 				if os.access(self.commando, os.X_OK):
 					if 'PAR' in answer:
@@ -396,7 +396,7 @@ class key_actions(stat_info):
 			if (yfile.st_size < 1000000):
 				self.session.open(vEditor, self.commando)
 
-		if answer and answer not in ("NO","VIEW"):
+		if answer and answer not in ("NO", "VIEW"):
 			if answer.endswith('_BG'):
 				global task_Stout, task_Sterr
 				task_Stout = []
@@ -682,9 +682,9 @@ class key_actions(stat_info):
 			savetext = ''
 			stat = os.statvfs('/tmp/')
 			if stat.f_bavail * stat.f_bsize > 1000000:
-				choice.append((_("Show as Picture and save as file ('%s')")%self.tmp_file , "save"))
+				choice.append((_("Show as Picture and save as file ('%s')")%self.tmp_file, "save"))
 				savetext = _(" or save additional the picture to a file")
-			self.session.openWithCallback(self.mviFileCB, MessageBox, _("Show '%s' as picture%s?\nThe current service must interrupted!") %(longname,savetext), simple=True, list=choice)
+			self.session.openWithCallback(self.mviFileCB, MessageBox, _("Show '%s' as picture%s?\nThe current service must interrupted!") %(longname, savetext), simple=True, list=choice)
 		elif filetype in TEXT_EXTENSIONS or config.plugins.filecommander.unknown_extension_as_text.value:
 			try:
 				xfile = os.stat(longname)
@@ -723,7 +723,7 @@ class key_actions(stat_info):
 		self.show()
 		self.session.nav.playService(last_service)
 		eActionMap.getInstance().unbindAction('', self.showCB)
-		self.disableActions_Timer.start(100,True)
+		self.disableActions_Timer.start(100, True)
 
 	def saveCB(self, extra_args):
 		if hasattr(self, 'session'):
@@ -732,7 +732,7 @@ class key_actions(stat_info):
 			self.show()
 			if os.path.isfile(self.tmp_file):
 				filename = self.tmp_file.split('/')[-1]
-				self.session.open(ImageViewer, [((filename,''),'')],0, self.tmp_file.replace(filename,''), filename)
+				self.session.open(ImageViewer, [((filename, ''), '')], 0, self.tmp_file.replace(filename, ''), filename)
 			else:
 				self.session.open(MessageBox, _("File not found: %s") %self.tmp_file, type=MessageBox.TYPE_ERROR)
 		else:

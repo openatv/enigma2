@@ -156,7 +156,7 @@ class Input(VariableText, HTMLComponent, GUIComponent, NumericalTextInput):
 
 	def insertChar(self, ch, pos=False, owr=False, ins=False):
 		if isinstance(ch, str):
-			ch = ch.decode("utf-8","ignore")
+			ch = ch.decode("utf-8", "ignore")
 		if not pos:
 			pos = self.currPos
 		if ins and not self.maxSize:

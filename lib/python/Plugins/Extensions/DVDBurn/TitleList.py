@@ -198,7 +198,7 @@ class TitleList(Screen, HelpableScreen):
 		if source is None:
 			return None
 		if not source.getPath().endswith(".ts"):
-			self.session.open(MessageBox,text = _("You can only burn Dreambox recordings!"), type = MessageBox.TYPE_ERROR)
+			self.session.open(MessageBox, text = _("You can only burn Dreambox recordings!"), type = MessageBox.TYPE_ERROR)
 			return None
 		t = self.project.addService(source)
 		try:
@@ -241,7 +241,7 @@ class TitleList(Screen, HelpableScreen):
 
 	def askBurnProject(self):
 		if len(self["titles"].list):
-			self.session.openWithCallback(self.burnProject,MessageBox,text = _("Do you want to produce this collection?"), type = MessageBox.TYPE_YESNO)
+			self.session.openWithCallback(self.burnProject, MessageBox, text = _("Do you want to produce this collection?"), type = MessageBox.TYPE_YESNO)
 
 	def burnProject(self, answer=True):
 		if not answer:
@@ -308,7 +308,7 @@ class TitleList(Screen, HelpableScreen):
 				self["medium_label"].setText(_("Exceeds Bludisc medium!"))
 				self["medium_label"].setForegroundColorNum(2)
 				if self.previous_size < MAX_BD:
-					self.session.open(MessageBox,text = _("Exceeds Bludisc medium!"), type = MessageBox.TYPE_ERROR)
+					self.session.open(MessageBox, text = _("Exceeds Bludisc medium!"), type = MessageBox.TYPE_ERROR)
 			elif size < MAX_BD:
 				self["medium_label"].setText(_("Required medium type:") + " " + _("BLUDISC RECORDABLE") + ", %d MB " % (MAX_BD - size) + _("free"))
 				self["medium_label"].setForegroundColorNum(1)
@@ -319,7 +319,7 @@ class TitleList(Screen, HelpableScreen):
 				self["medium_label"].setText(_("Exceeds dual layer medium!"))
 				self["medium_label"].setForegroundColorNum(2)
 				if self.previous_size < MAX_DL:
-					self.session.open(MessageBox,text = _("Exceeds dual layer medium!"), type = MessageBox.TYPE_ERROR)
+					self.session.open(MessageBox, text = _("Exceeds dual layer medium!"), type = MessageBox.TYPE_ERROR)
 			elif size > MAX_SL:
 				percent = 100 * size / float(MAX_DL)
 				self["space_label"].text = "%d MB (%.2f%%)" % (size, percent)
@@ -364,10 +364,10 @@ class TitleList(Screen, HelpableScreen):
 			text = _("The DVD standard doesn't support H.264 (HDTV) video streams.")
 			
 			if all_hd == True:
-				choices.append((_("BDMV Bludisc (HDTV titles only)"),"bdmv"))
+				choices.append((_("BDMV Bludisc (HDTV titles only)"), "bdmv"))
 			
-			choices.append((_("Dreambox format data DVD (won't work in other DVD players)"),"data_ts"))
-			choices.append((_("Don't add this recording"),None))
+			choices.append((_("Dreambox format data DVD (won't work in other DVD players)"), "data_ts"))
+			choices.append((_("Don't add this recording"), None))
 			self.session.openWithCallback(self.formatCB, ChoiceBox, title=text, list=choices)
 
 		#elif t.VideoType != 1 and self.project.settings.authormode.value == "bdmv":
@@ -406,7 +406,7 @@ class TitleList(Screen, HelpableScreen):
 		if not len(self["titles"].list) or close or self.project.finished_burning:
 			self.close()
 		else:
-			self.session.openWithCallback(self.exitCB, MessageBox,text = _("Your current collection will get lost!") + "\n" + _("Do you really want to exit?"), type = MessageBox.TYPE_YESNO)
+			self.session.openWithCallback(self.exitCB, MessageBox, text = _("Your current collection will get lost!") + "\n" + _("Do you really want to exit?"), type = MessageBox.TYPE_YESNO)
 
 	def exitCB(self, answer):
 		print("exitCB", answer)

@@ -74,7 +74,7 @@ class CopyMeta(Task):
 		Task.__init__(self, job, "Copy title meta files")
 		self.setTool("cp")
 		from os import listdir
-		path, filename = sourcefile.rstrip("/").rsplit("/",1)
+		path, filename = sourcefile.rstrip("/").rsplit("/", 1)
 		tsfiles = listdir(path)
 		for file in tsfiles:
 			if file.startswith(filename+"."):
@@ -130,7 +130,7 @@ class DemuxTask(Task):
 			self.haveProgress(progress)
 		elif line.startswith(MSG_NEW_MP2) or line.startswith(MSG_NEW_AC3):
 			try:
-				self.currentPID = str(int(line.split(': PID 0x',1)[1].split(' ',1)[0],16))
+				self.currentPID = str(int(line.split(': PID 0x', 1)[1].split(' ', 1)[0], 16))
 			except ValueError:
 				print("[DemuxTask] ERROR: couldn't detect Audio PID (projectx too old?)")
 
@@ -277,7 +277,7 @@ class WaitForResidentTasks(Task):
 		Task.__init__(self, job, "waiting for dvdauthor to finalize")
 		
 	def run(self, callback):
-		print("waiting for %d resident task(s) %s to finish..." % (len(self.job.resident_tasks),str(self.job.resident_tasks)))
+		print("waiting for %d resident task(s) %s to finish..." % (len(self.job.resident_tasks), str(self.job.resident_tasks)))
 		self.callback = callback
 		if self.job.resident_tasks == 0:
 			callback(self, [])
@@ -475,7 +475,7 @@ class ImagePrepareTask(Task):
 		from enigma import eTimer
 		self.delayTimer = eTimer()
 		self.delayTimer.callback.append(self.conduct)
-		self.delayTimer.start(10,1)
+		self.delayTimer.start(10, 1)
 
 	def conduct(self):
 		try:
@@ -487,7 +487,7 @@ class ImagePrepareTask(Task):
 			if self.Menus.im_bg_orig.size != (width, height):
 				self.Menus.im_bg_orig = self.Menus.im_bg_orig.resize((width, height))
 			self.Menus.fontsizes = [s.fontsize_headline.getValue(), s.fontsize_title.getValue(), s.fontsize_subtitle.getValue()]
-			self.Menus.fonts = [(truetype(s.fontface_headline.getValue(), self.Menus.fontsizes[0])), (truetype(s.fontface_title.getValue(), self.Menus.fontsizes[1])),(truetype(s.fontface_subtitle.getValue(), self.Menus.fontsizes[2]))]
+			self.Menus.fonts = [(truetype(s.fontface_headline.getValue(), self.Menus.fontsizes[0])), (truetype(s.fontface_title.getValue(), self.Menus.fontsizes[1])), (truetype(s.fontface_subtitle.getValue(), self.Menus.fontsizes[2]))]
 			Task.processFinished(self, 0)
 		except:
 			Task.processFinished(self, 1)
@@ -547,7 +547,7 @@ class MenuImageTask(Task):
 			menu_end_title = nr_titles+1
 		col = 1
 		row = 1
-		for title_no in range( menu_start_title , menu_end_title ):
+		for title_no in range( menu_start_title, menu_end_title ):
 			title = self.job.project.titles[title_no-1]
 			col_width  = ( s_width  - s_left - s_right  ) / nr_cols
 			row_height = ( s_height - s_top  - s_bottom ) / nr_rows
@@ -561,7 +561,7 @@ class MenuImageTask(Task):
 			if bottom > s_height:
 				bottom = s_height
 			#draw_bg.rectangle((left, top, right, bottom), outline=(255,0,0))
-			im_cell_bg = Image.new("RGBA", (width, height),(0,0,0,0))
+			im_cell_bg = Image.new("RGBA", (width, height), (0, 0, 0, 0))
 			draw_cell_bg = ImageDraw.Draw(im_cell_bg)
 			im_cell_high = Image.new("P", (width, height), 0)
 			im_cell_high.putpalette(self.Menus.spu_palette)
@@ -571,10 +571,10 @@ class MenuImageTask(Task):
 				thumbPos = self.getPosition(s.offset_thumb.getValue(), 0, 0, width, height, thumb_size)
 				box = (thumbPos[0], thumbPos[1], thumbPos[0]+thumb_size[0], thumbPos[1]+thumb_size[1])
 				try:
-					thumbIm = Image_open(title.inputfile.rsplit('.',1)[0] + ".png")
-					im_cell_bg.paste(thumbIm,thumbPos)
+					thumbIm = Image_open(title.inputfile.rsplit('.', 1)[0] + ".png")
+					im_cell_bg.paste(thumbIm, thumbPos)
 				except:
-					draw_cell_bg.rectangle(box, fill=(64,127,127,127))
+					draw_cell_bg.rectangle(box, fill=(64, 127, 127, 127))
 				border = s.thumb_border.getValue()
 				if border:
 					draw_cell_high.rectangle(box, fill=1)
@@ -592,11 +592,11 @@ class MenuImageTask(Task):
 
 			del draw_cell_bg
 			del draw_cell_high
-			im_bg.paste(im_cell_bg,(left, top, right, bottom), mask=im_cell_bg)
-			im_high.paste(im_cell_high,(left, top, right, bottom))
+			im_bg.paste(im_cell_bg, (left, top, right, bottom), mask=im_cell_bg)
+			im_high.paste(im_cell_high, (left, top, right, bottom))
 
 			spuxml += """
-	<button name="button%s" x0="%d" x1="%d" y0="%d" y1="%d"/>""" % (str(title_no).zfill(2),left,right,top,bottom )
+	<button name="button%s" x0="%d" x1="%d" y0="%d" y1="%d"/>""" % (str(title_no).zfill(2), left, right, top, bottom )
 			if col < nr_cols:
 				col += 1
 			else:
@@ -611,7 +611,7 @@ class MenuImageTask(Task):
 			draw_bg.text(pos, next_page_text, fill=self.Menus.color_button, font=fonts[1])
 			draw_high.text(pos, next_page_text, fill=1, font=fonts[1])
 			spuxml += """
-	<button name="button_next" x0="%d" x1="%d" y0="%d" y1="%d"/>""" % (pos[0],pos[0]+textsize[0],pos[1],pos[1]+textsize[1])
+	<button name="button_next" x0="%d" x1="%d" y0="%d" y1="%d"/>""" % (pos[0], pos[0]+textsize[0], pos[1], pos[1]+textsize[1])
 		if self.menu_count > 1:
 			prev_page_text = s.prev_page_text.getValue().decode("utf-8")
 			textsize = draw_bg.textsize(prev_page_text, font=fonts[1])
@@ -619,14 +619,14 @@ class MenuImageTask(Task):
 			draw_bg.text(pos, prev_page_text, fill=self.Menus.color_button, font=fonts[1])
 			draw_high.text(pos, prev_page_text, fill=1, font=fonts[1])
 			spuxml += """
-	<button name="button_prev" x0="%d" x1="%d" y0="%d" y1="%d"/>""" % (pos[0],pos[0]+textsize[0],pos[1],pos[1]+textsize[1])
+	<button name="button_prev" x0="%d" x1="%d" y0="%d" y1="%d"/>""" % (pos[0], pos[0]+textsize[0], pos[1], pos[1]+textsize[1])
 		del draw_bg
 		del draw_high
-		fd=open(self.menubgpngfilename,"w")
-		im_bg.save(fd,"PNG")
+		fd=open(self.menubgpngfilename, "w")
+		im_bg.save(fd, "PNG")
 		fd.close()
-		fd=open(self.highlightpngfilename,"w")
-		im_high.save(fd,"PNG")
+		fd=open(self.highlightpngfilename, "w")
+		im_high.save(fd, "PNG")
 		fd.close()
 		spuxml += """
 	</spu>
@@ -672,7 +672,7 @@ class Menus:
 		job.nr_menus = ((nr_titles+job.titles_per_menu-1)/job.titles_per_menu)
 
 		#a new menu_count every 4 titles (1,2,3,4->1 ; 5,6,7,8->2 etc.)
-		for menu_count in range(1 , job.nr_menus+1):
+		for menu_count in range(1, job.nr_menus+1):
 			num = str(menu_count)
 			spuxmlfilename = job.workspace+"/spumux"+num+".xml"
 			menubgpngfilename = job.workspace+"/dvd_menubg"+num+".png"
@@ -708,7 +708,7 @@ def CreateAuthoringXML_singleset(job):
 	if mode.startswith("menu"):
 		authorxml.append('   <menus lang="' + iso639language.get_dvd_id(job.project.menutemplate.settings.menulang.getValue()) + '">\n')
 		authorxml.append('    <video aspect="4:3"/>\n')
-		for menu_count in range(1 , job.nr_menus+1):
+		for menu_count in range(1, job.nr_menus+1):
 			if menu_count == 1:
 				authorxml.append('    <pgc entry="root">\n')
 			else:
@@ -717,7 +717,7 @@ def CreateAuthoringXML_singleset(job):
 			menu_end_title = (menu_count)*job.titles_per_menu + 1
 			if menu_end_title > nr_titles:
 				menu_end_title = nr_titles+1
-			for i in range( menu_start_title , menu_end_title ):
+			for i in range( menu_start_title, menu_end_title ):
 				authorxml.append('     <button name="button' + (str(i).zfill(2)) + '"> jump title ' + str(i) +'; </button>\n')
 			if menu_count > 1:
 				authorxml.append('     <button name="button_prev"> jump menu ' + str(menu_count-1) + '; </button>\n')
@@ -765,7 +765,7 @@ def CreateAuthoringXML_multiset(job):
 	authorxml.append('   <menus lang="' + iso639language.get_dvd_id(job.project.menutemplate.settings.menulang.getValue()) + '">\n')
 	authorxml.append('    <video aspect="4:3"/>\n')
 	if mode.startswith("menu"):
-		for menu_count in range(1 , job.nr_menus+1):
+		for menu_count in range(1, job.nr_menus+1):
 			if menu_count == 1:
 				authorxml.append('    <pgc>\n')
 			else:
@@ -774,7 +774,7 @@ def CreateAuthoringXML_multiset(job):
 			menu_end_title = (menu_count)*job.titles_per_menu + 1
 			if menu_end_title > nr_titles:
 				menu_end_title = nr_titles+1
-			for i in range( menu_start_title , menu_end_title ):
+			for i in range( menu_start_title, menu_end_title ):
 				authorxml.append('     <button name="button' + (str(i).zfill(2)) + '"> jump titleset ' + str(i) +' title 1; </button>\n')
 			if menu_count > 1:
 				authorxml.append('     <button name="button_prev"> jump menu ' + str(menu_count-1) + '; </button>\n')
@@ -927,7 +927,7 @@ class DVDdataJob(Job):
 		nr_titles = len(self.project.titles)
 		for self.i in range(nr_titles):
 			title = self.project.titles[self.i]
-			filename = title.inputfile.rstrip("/").rsplit("/",1)[1]
+			filename = title.inputfile.rstrip("/").rsplit("/", 1)[1]
 			link_name =  self.workspace + filename
 			LinkTS(self, title.inputfile, link_name)
 			CopyMeta(self, title.inputfile)

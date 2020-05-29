@@ -40,7 +40,7 @@ class TunerInfo(GUIComponent):
 		if self.instance:
 			self.instance.setValue(self.value)
 
-	def calc(self,val):
+	def calc(self, val):
 		if not val:
 			return 0
 		if val < 2500:

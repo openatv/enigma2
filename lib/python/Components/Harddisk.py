@@ -512,10 +512,10 @@ class Harddisk:
 			f = open("/sys/block/%s/stat" % self.device)
 			l = f.read()
 			f.close()
-			data = l.split(None,5)
+			data = l.split(None, 5)
 			return int(data[0]), int(data[4])
 		else:
-			return -1,-1
+			return -1, -1
 
 	def startIdle(self):
 		from enigma import eTimer
@@ -583,7 +583,7 @@ class Partition:
 		self.is_hotplug = force_mounted # so far; this might change.
 		self.device = device
 	def __str__(self):
-		return "Partition(mountpoint=%s,description=%s,device=%s)" % (self.mountpoint,self.description,self.device)
+		return "Partition(mountpoint=%s,description=%s,device=%s)" % (self.mountpoint, self.description, self.device)
 
 	def stat(self):
 		if self.mountpoint:
@@ -791,9 +791,9 @@ class HarddiskManager:
 		error = False
 		removable = False
 		BLACKLIST=[]
-		if getMachineBuild() in ('gbmv200','multibox','h9combo','h10','v8plus','hd60','hd61','vuduo4k','ustym4kpro','beyonwizv2','viper4k','dags72604','u51','u52','u53','u532','u533','u54','u56','u5','u5pvr','cc1','sf8008','sf8008m','vuzero4k','et1x000','vuuno4k','vuuno4kse','vuultimo4k','vusolo4k','hd51','hd52','sf4008','dm900','dm7080','dm820', 'gb7252', 'gb72604', 'dags7252', 'vs1500','h7','8100s','et13000','sf5008'):
+		if getMachineBuild() in ('gbmv200', 'multibox', 'h9combo', 'h10', 'v8plus', 'hd60', 'hd61', 'vuduo4k', 'ustym4kpro', 'beyonwizv2', 'viper4k', 'dags72604', 'u51', 'u52', 'u53', 'u532', 'u533', 'u54', 'u56', 'u5', 'u5pvr', 'cc1', 'sf8008', 'sf8008m', 'vuzero4k', 'et1x000', 'vuuno4k', 'vuuno4kse', 'vuultimo4k', 'vusolo4k', 'hd51', 'hd52', 'sf4008', 'dm900', 'dm7080', 'dm820', 'gb7252', 'gb72604', 'dags7252', 'vs1500', 'h7', '8100s', 'et13000', 'sf5008'):
 			BLACKLIST=["mmcblk0"]
-		elif getMachineBuild() in ('xc7439','osmio4k','osmio4kplus','osmini4k'):
+		elif getMachineBuild() in ('xc7439', 'osmio4k', 'osmio4kplus', 'osmini4k'):
 			BLACKLIST=["mmcblk1"]
 
 		blacklisted = False
@@ -860,14 +860,14 @@ class HarddiskManager:
 		if len(netmount) > 0:
 			for fil in netmount:
 				if os.path.ismount('/media/net/' + fil):
-					print("new Network Mount", fil, '->', os.path.join('/media/net/',fil))
-					self.partitions.append(Partition(mountpoint = os.path.join('/media/net/',fil + '/'), description = fil))
+					print("new Network Mount", fil, '->', os.path.join('/media/net/', fil))
+					self.partitions.append(Partition(mountpoint = os.path.join('/media/net/', fil + '/'), description = fil))
 		autofsmount = (os.path.exists('/media/autofs') and os.listdir('/media/autofs')) or ""
 		if len(autofsmount) > 0:
 			for fil in autofsmount:
 				if os.path.ismount('/media/autofs/' + fil) or os.path.exists('/media/autofs/' + fil):
-					print("new Network Mount", fil, '->', os.path.join('/media/autofs/',fil))
-					self.partitions.append(Partition(mountpoint = os.path.join('/media/autofs/',fil + '/'), description = fil))
+					print("new Network Mount", fil, '->', os.path.join('/media/autofs/', fil))
+					self.partitions.append(Partition(mountpoint = os.path.join('/media/autofs/', fil + '/'), description = fil))
 		if os.path.ismount('/media/hdd') and '/media/hdd/' not in [p.mountpoint for p in self.partitions]:
 			print("new Network Mount being used as HDD replacement -> /media/hdd/")
 			self.partitions.append(Partition(mountpoint = '/media/hdd/', description = '/media/hdd'))
@@ -1002,7 +1002,7 @@ class HarddiskManager:
 		except IOError as s:
 			print("couldn't read model: ", s)
 		from Tools.HardwareInfo import HardwareInfo
-		for physdevprefix, pdescription in DEVICEDB.get(HardwareInfo().device_name,{}).items():
+		for physdevprefix, pdescription in DEVICEDB.get(HardwareInfo().device_name, {}).items():
 			if phys.startswith(physdevprefix):
 				description = pdescription
 		# not wholedisk and not partition 1
@@ -1112,9 +1112,9 @@ class MkfsTask(Task.LoggingTask):
 		elif self.fsck_state == 'inode':
 			if '/' in data:
 				try:
-					d = data.strip(' \x08\r\n').split('/',1)
+					d = data.strip(' \x08\r\n').split('/', 1)
 					if '\x08' in d[1]:
-						d[1] = d[1].split('\x08',1)[0]
+						d[1] = d[1].split('\x08', 1)[0]
 					self.setProgress(80*int(d[0])/int(d[1]))
 				except Exception as e:
 					print("[Mkfs] E:", e)

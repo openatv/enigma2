@@ -82,7 +82,7 @@ class Network:
 			data['netmask'] = [0, 0, 0, 0]
 			data['gateway'] = [0, 0, 0, 0]
 		self.ifaces[iface] = data
-		self.loadNetworkConfig(iface,callback)
+		self.loadNetworkConfig(iface, callback)
 
 	def routeFinished(self, result, retval, extra_args):
 		(iface, data, callback) = extra_args
@@ -98,7 +98,7 @@ class Network:
 					data['gateway'] = self.convertIP(gateway)
 
 		self.ifaces[iface] = data
-		self.loadNetworkConfig(iface,callback)
+		self.loadNetworkConfig(iface, callback)
 
 	def writeNetworkConfig(self):
 		self.configuredInterfaces = []
@@ -195,7 +195,7 @@ class Network:
 				if split[0] == "pre-up":
 					if "preup" in self.ifaces[currif]:
 						self.ifaces[currif]["preup"] = i
-				if split[0] in ("pre-down","post-down"):
+				if split[0] in ("pre-down", "post-down"):
 					if "predown" in self.ifaces[currif]:
 						self.ifaces[currif]["predown"] = i
 
@@ -278,9 +278,9 @@ class Network:
 		moduledir = self.getWlanModuleDir(iface)
 		if moduledir:
 			name = os.path.basename(os.path.realpath(moduledir))
-			if name in ('ath_pci','ath5k','ar6k_wlan'):
+			if name in ('ath_pci', 'ath5k', 'ar6k_wlan'):
 				name = 'Atheros'
-			elif name in ('rt73','rt73usb','rt3070sta'):
+			elif name in ('rt73', 'rt73usb', 'rt3070sta'):
 				name = 'Ralink'
 			elif name == 'zd1211b':
 				name = 'Zydas'
@@ -389,25 +389,25 @@ class Network:
 			self.commands.append("ifconfig wlan0 down")
 			self.commands.append("ifconfig ath0 down")
 		self.commands.append("/etc/init.d/avahi-daemon start")
-		self.resetNetworkConsole.eBatch(self.commands, self.resetNetworkFinished, [mode,callback], debug=True)
+		self.resetNetworkConsole.eBatch(self.commands, self.resetNetworkFinished, [mode, callback], debug=True)
 
-	def resetNetworkFinished(self,extra_args):
+	def resetNetworkFinished(self, extra_args):
 		(mode, callback) = extra_args
 		if len(self.resetNetworkConsole.appContainers) == 0:
 			if callback is not None:
-				callback(True,mode)
+				callback(True, mode)
 
-	def checkNetworkState(self,statecallback):
+	def checkNetworkState(self, statecallback):
 		self.NetworkState = 0
 		cmd1 = "ping -c 1 www.openpli.org"
 		cmd2 = "ping -c 1 www.google.nl"
 		cmd3 = "ping -c 1 www.google.com"
 		self.PingConsole = Console()
-		self.PingConsole.ePopen(cmd1, self.checkNetworkStateFinished,statecallback)
-		self.PingConsole.ePopen(cmd2, self.checkNetworkStateFinished,statecallback)
-		self.PingConsole.ePopen(cmd3, self.checkNetworkStateFinished,statecallback)
+		self.PingConsole.ePopen(cmd1, self.checkNetworkStateFinished, statecallback)
+		self.PingConsole.ePopen(cmd2, self.checkNetworkStateFinished, statecallback)
+		self.PingConsole.ePopen(cmd3, self.checkNetworkStateFinished, statecallback)
 
-	def checkNetworkStateFinished(self, result, retval,extra_args):
+	def checkNetworkStateFinished(self, result, retval, extra_args):
 		(statecallback) = extra_args
 		if self.PingConsole is not None:
 			if retval == 0:
@@ -435,7 +435,7 @@ class Network:
 		self.commands.append("/etc/init.d/avahi-daemon start")
 		self.restartConsole.eBatch(self.commands, self.restartNetworkFinished, callback, debug=True)
 
-	def restartNetworkFinished(self,extra_args):
+	def restartNetworkFinished(self, extra_args):
 		( callback ) = extra_args
 		if callback is not None:
 			try:
@@ -443,12 +443,12 @@ class Network:
 			except:
 				pass
 
-	def getLinkState(self,iface,callback):
+	def getLinkState(self, iface, callback):
 		cmd = self.ethtool_bin + " " + iface
 		self.LinkConsole = Console()
-		self.LinkConsole.ePopen(cmd, self.getLinkStateFinished,callback)
+		self.LinkConsole.ePopen(cmd, self.getLinkStateFinished, callback)
 
-	def getLinkStateFinished(self, result, retval,extra_args):
+	def getLinkStateFinished(self, result, retval, extra_args):
 		(callback) = extra_args
 
 		if self.LinkConsole is not None:
@@ -495,7 +495,7 @@ class Network:
 			self.activateInterfaceConsole.killAll()
 			self.activateInterfaceConsole = None
 
-	def checkforInterface(self,iface):
+	def checkforInterface(self, iface):
 		if self.getAdapterAttribute(iface, 'up') is True:
 			return True
 		else:
@@ -506,16 +506,16 @@ class Network:
 			else:
 				return False
 
-	def checkDNSLookup(self,statecallback):
+	def checkDNSLookup(self, statecallback):
 		cmd1 = "nslookup www.dream-multimedia-tv.de"
 		cmd2 = "nslookup www.heise.de"
 		cmd3 = "nslookup www.google.de"
 		self.DnsConsole = Console()
-		self.DnsConsole.ePopen(cmd1, self.checkDNSLookupFinished,statecallback)
-		self.DnsConsole.ePopen(cmd2, self.checkDNSLookupFinished,statecallback)
-		self.DnsConsole.ePopen(cmd3, self.checkDNSLookupFinished,statecallback)
+		self.DnsConsole.ePopen(cmd1, self.checkDNSLookupFinished, statecallback)
+		self.DnsConsole.ePopen(cmd2, self.checkDNSLookupFinished, statecallback)
+		self.DnsConsole.ePopen(cmd3, self.checkDNSLookupFinished, statecallback)
 
-	def checkDNSLookupFinished(self, result, retval,extra_args):
+	def checkDNSLookupFinished(self, result, retval, extra_args):
 		(statecallback) = extra_args
 		if self.DnsConsole is not None:
 			if retval == 0:
@@ -550,9 +550,9 @@ class Network:
 					callback(True)
 				return
 			buildCommands(ifaces)
-		self.deactivateInterfaceConsole.eBatch(commands, self.deactivateInterfaceFinished, [ifaces,callback], debug=True)
+		self.deactivateInterfaceConsole.eBatch(commands, self.deactivateInterfaceFinished, [ifaces, callback], debug=True)
 
-	def deactivateInterfaceFinished(self,extra_args):
+	def deactivateInterfaceFinished(self, extra_args):
 		(ifaces, callback) = extra_args
 		def checkCommandResult(iface):
 			if self.deactivateInterfaceConsole and "ifdown " + iface in self.deactivateInterfaceConsole.appResults:
@@ -588,7 +588,7 @@ class Network:
 		commands = ["ifup " + iface]
 		self.activateInterfaceConsole.eBatch(commands, self.activateInterfaceFinished, callback, debug=True)
 
-	def activateInterfaceFinished(self,extra_args):
+	def activateInterfaceFinished(self, extra_args):
 		callback = extra_args
 		if self.activateInterfaceConsole:
 			if len(self.activateInterfaceConsole.appContainers) == 0:
@@ -665,15 +665,15 @@ class Network:
 			module = os.path.basename(os.path.realpath(moduledir))
 			if module in ('brcm-systemport',):
 				return 'brcm-wl'
-			if module in ('ath_pci','ath5k'):
+			if module in ('ath_pci', 'ath5k'):
 				return 'madwifi'
-			if module in ('rt73','rt73'):
+			if module in ('rt73', 'rt73'):
 				return 'ralink'
 			if module == 'zd1211b':
 				return 'zydas'
 		return 'wext'
 
-	def calc_netmask(self,nmask):
+	def calc_netmask(self, nmask):
 		from struct import pack
 		from socket import inet_ntoa
 

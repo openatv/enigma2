@@ -43,14 +43,14 @@ ENABLE_QPIP_PROCPATH = "/proc/stb/video/decodermode"
 
 def setDecoderMode(value):
 	if os.access(ENABLE_QPIP_PROCPATH, os.F_OK):
-		open(ENABLE_QPIP_PROCPATH,"w").write(value)
-		return open(ENABLE_QPIP_PROCPATH,"r").read().strip() == value
+		open(ENABLE_QPIP_PROCPATH, "w").write(value)
+		return open(ENABLE_QPIP_PROCPATH, "r").read().strip() == value
 
 class QuadPipChannelEntry:
 	def __init__(self, name, idx, ch1, ch2, ch3, ch4):
 		self.name = name
 		self.idx = idx
-		self.channel = {"1" : ch1, "2" : ch2, "3" : ch1, "4" : ch1,}
+		self.channel = {"1": ch1, "2": ch2, "3": ch1, "4": ch1,}
 
 	def __str__(self):
 		return "idx : %d, name : %s, ch0 : %s, ch1 : %s, ch2 : %s, ch3 : %s"\
@@ -246,8 +246,8 @@ class CreateQuadPipChannelEntry(ChannelSelectionBase):
 		{
 			"cancel": self.Exit,
 			"ok": self.channelSelected,
-			"toggleList" : self.toggleCurrList,
-			"editName" : self.editEntryName,
+			"toggleList": self.toggleCurrList,
+			"editName": self.editEntryName,
 			"up": self.goUp,
 			"down": self.goDown,
 		}, -1)
@@ -305,7 +305,7 @@ class CreateQuadPipChannelEntry(ChannelSelectionBase):
 
 	def updateDescChannels(self):
 		self.descChannels = []
-		for idx in range(1,5):
+		for idx in range(1, 5):
 			sIdx = str(idx)
 			_isEmpty = False
 			chName = self.newChannel.getChannelName(sIdx)
@@ -359,7 +359,7 @@ class CreateQuadPipChannelEntry(ChannelSelectionBase):
 				#self.addChannel(serviceName, sref)
 				_title = _('Choice where to put "%s"') % serviceName
 				_list = []
-				for idx in range(1,5):
+				for idx in range(1, 5):
 					sIdx = str(idx)
 					_isEmpty = False
 					chName = self.newChannel.getChannelName(sIdx)
@@ -388,7 +388,7 @@ class CreateQuadPipChannelEntry(ChannelSelectionBase):
 				self.updateDescChannelList()
 
 	def getNewChannel(self):
-		for idx in range(1,5):
+		for idx in range(1, 5):
 			sIdx = str(idx)
 			ch = self.newChannel.getChannel(sIdx)
 			if ch is not None:
@@ -440,7 +440,7 @@ class QuadPiPChannelSelection(Screen, HelpableScreen):
 		button_margin = 5
 		button_h = 40
 		list_y = 40+button_margin*3
-		self.fontSize = {1080:(28, 24), 720:(24,20), 576:(20,18)}.get(dh, (28, 24))
+		self.fontSize = {1080:(28, 24), 720:(24, 20), 576:(20, 18)}.get(dh, (28, 24))
 		self.skin = QuadPiPChannelSelection.skin % (pw, ph, \
 														sw, sh+list_y, \
 														sw/8-70, button_margin, \
@@ -657,12 +657,12 @@ class QuadPipScreen(Screen, FocusShowHide, HelpableScreen):
 			"right": (self.keyRight, _("Select channel audio")),
 			"up": (self.keyUp, _("Select channel audio")),
 			"down": (self.keyDown, _("Select channel audio")),
-			"channelup" : (self.KeyChannel, _("Show channel selection")),
-			"channeldown" : (self.KeyChannel, _("Show channel selection")),
-			"menu" : (self.KeyChannel, _("Show channel selection")),
-			"channelPrev" : (self.KeyPrev, _("Prev quad PiP channel")),
-			"channelNext" : (self.KeyNext, _("Next quad PiP channel")),
-			"red" : (self.KeyRed, _("Show/Hide focus bar")),
+			"channelup": (self.KeyChannel, _("Show channel selection")),
+			"channeldown": (self.KeyChannel, _("Show channel selection")),
+			"menu": (self.KeyChannel, _("Show channel selection")),
+			"channelPrev": (self.KeyPrev, _("Prev quad PiP channel")),
+			"channelNext": (self.KeyNext, _("Next quad PiP channel")),
+			"red": (self.KeyRed, _("Show/Hide focus bar")),
 		}, -1)
 
 		self["ch1"] = Label(_(" "))
@@ -922,7 +922,7 @@ class QuadPipScreen(Screen, FocusShowHide, HelpableScreen):
 		self.curChannel = channel.channel.copy()
 
 		self.session.qPips = []
-		for idx in range(1,5):
+		for idx in range(1, 5):
 			chInfo = channel.getChannel(str(idx))
 			if chInfo is None:
 				continue
@@ -968,7 +968,7 @@ class QuadPipScreen(Screen, FocusShowHide, HelpableScreen):
 			self.curPlayAudio = -1
 
 	def updateChannelName(self, channel):
-		for idx in range(1,5):
+		for idx in range(1, 5):
 			self["ch%d" % idx].setText((channel and channel.getChannelName(str(idx))) or _("No channel"))
 
 	def disableFCC(self):

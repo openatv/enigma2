@@ -49,7 +49,7 @@ class RdsInfoDisplay(Screen):
 		return RdsInfoDisplaySummary
 
 	def hideWidgets(self):
-		for x in (self["RadioText"],self["RtpText"],self["RassLogo"]):
+		for x in (self["RadioText"], self["RtpText"], self["RassLogo"]):
 			x.hide()
 		for x in self.onText:
 			x('')
@@ -154,7 +154,7 @@ class RassInteractive(Screen):
 
 		self.current_page=0
 		self.current_subpage=0
-		self.showRassPage(0,0)
+		self.showRassPage(0, 0)
 		self.onLayoutFinish.append(self.updateSubPagePixmaps)
 
 	def updateSubPagePixmaps(self):
@@ -196,7 +196,7 @@ class RassInteractive(Screen):
 				current_pos = self["Marker"].getPosition()
 				y = current_pos[1]
 				y += page_diff * 25
-				self["Marker"].setPosition(current_pos[0],y)
+				self["Marker"].setPosition(current_pos[0], y)
 
 	def getMaskForPage(self, page, masks=None):
 		if not masks:

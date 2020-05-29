@@ -29,7 +29,7 @@ class pstrCnvrt(Converter, object):
 				self.evnt = event.getEventName()
 				try:
 					p = '((.*?)) \([T](\d+)\)'
-					e1 = re.search(p,self.evnt)
+					e1 = re.search(p, self.evnt)
 					if e1:
 						jr = e1.group(1)
 						self.evntNm = re.sub('\s+', '+', jr)
@@ -57,7 +57,7 @@ class pstrCnvrt(Converter, object):
 		url_poster = 'https://image.tmdb.org/t/p/w185_and_h278_bestv2%s'%(imgP)
 		dwn_poster = '/tmp/poster/poster.jpg'
 
-		with open(dwn_poster,'wb') as f:
+		with open(dwn_poster, 'wb') as f:
 			f.write(urllib2.urlopen(url_poster).read())
 			f.close()
 			return self.evntNm
@@ -68,7 +68,7 @@ class pstrCnvrt(Converter, object):
 		for i in pattern:
 			seg = re.search(i, fd)
 			if seg:
-				if re.search('Episodio',i):
+				if re.search('Episodio', i):
 					return 'S'+seg.group(2).zfill(2)+'E'+seg.group(1).zfill(2)
 				else :
 					return 'S'+seg.group(1).zfill(2)+'E'+seg.group(2).zfill(2)

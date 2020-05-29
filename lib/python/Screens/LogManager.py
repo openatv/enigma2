@@ -131,8 +131,8 @@ class LogManagerPoller:
 			config.crash.lastfulljobtrashtime.save()
 			configfile.save()
 			for mount in mounts:
-				if path.isdir(path.join(mount,'logs')):
-					matches.append(path.join(mount,'logs'))
+				if path.isdir(path.join(mount, 'logs')):
+					matches.append(path.join(mount, 'logs'))
 			matches.append('/home/root/logs')
 		else:
 			#small JobTrash (in selected log file dir only) twice a day
@@ -466,7 +466,7 @@ class LogManager(Screen):
 			try:
 				print("connecting to server: mail.dummy.org")
 				#socket.setdefaulttimeout(30)
-				s = smtplib.SMTP("mail.dummy.org",26)
+				s = smtplib.SMTP("mail.dummy.org", 26)
 				s.login(wos_user, wos_pwd)
 				if config.logmanager.usersendcopy.value:
 					s.sendmail(fromlogman, [tocrashlogs, fromlogman], msg.as_string())
@@ -516,7 +516,7 @@ class LogManagerViewLog(Screen):
 		listwidth = int(self["list"].instance.size().width() / fontwidth)
 		if path.exists(self.logfile):
 			for line in file(self.logfile ).readlines():
-				line = line.replace('\t',' '*9)
+				line = line.replace('\t', ' '*9)
 				if len(line) > listwidth:
 					pos = 0
 					offset = 0
@@ -562,7 +562,7 @@ class LogManagerFb(Screen):
 		self["blue"] = Label(_("rename"))
 
 
-		self["actions"] = ActionMap(["ChannelSelectBaseActions","WizardActions", "DirectionActions", "MenuActions", "NumberActions", "ColorActions"],
+		self["actions"] = ActionMap(["ChannelSelectBaseActions", "WizardActions", "DirectionActions", "MenuActions", "NumberActions", "ColorActions"],
 			{
 			 "ok": self.ok,
 			 "back": self.exit,

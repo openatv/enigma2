@@ -313,9 +313,9 @@ class TimerEditList(Screen):
 		service = str(cur.service_ref.getServiceName())
 		t = localtime(cur.begin)
 		f = str(t.tm_year) + str(t.tm_mon).zfill(2) + str(t.tm_mday).zfill(2) + " " + str(t.tm_hour).zfill(2) + str(t.tm_min).zfill(2) + " - " + service + " - " + cur.name
-		f = f.replace(':','_')
-		f = f.replace(',','_')
-		f = f.replace('/','_')
+		f = f.replace(':', '_')
+		f = f.replace(',', '_')
+		f = f.replace('/', '_')
 
 		if not cur:
 			return
@@ -397,9 +397,9 @@ class TimerEditList(Screen):
 		service = str(item.service_ref.getServiceName())
 		t = localtime(item.begin)
 		f = str(t.tm_year) + str(t.tm_mon).zfill(2) + str(t.tm_mday).zfill(2) + " " + str(t.tm_hour).zfill(2) + str(t.tm_min).zfill(2) + " - " + service + " - " + name
-		f = f.replace(':','_')
-		f = f.replace(',','_')
-		f = f.replace('/','_')
+		f = f.replace(':', '_')
+		f = f.replace(',', '_')
+		f = f.replace('/', '_')
 		path = resolveFilename(SCOPE_HDD)
 		self.removeTimer(True)
 		from enigma import eBackgroundFileEraser

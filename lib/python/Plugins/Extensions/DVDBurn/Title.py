@@ -33,7 +33,7 @@ class Title:
 		self.VideoPID = -1
 		self.framerate = 0
 		self.progressive = -1
-		self.resolution = (-1,-1)
+		self.resolution = (-1, -1)
 
 	def addService(self, service):
 		from os import path

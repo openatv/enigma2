@@ -50,15 +50,15 @@ class EPGList(HTMLComponent, GUIComponent):
 		sf = getSkinFactor()
 		self.screenwidth = int(1280 * sf) # important for compatibility to other plugins (e.g. partnerbox)
 		if sf == 1.5:
-			self.posx, self.posy , self.picx, self.picy, self.gap = skinparameter.get("EpgListIcon", (2,13,25,25,2))
-			self.column_service, self.column_time , self.column_remaining, self.column_gap = skinparameter.get("EpgListMulti", (240,180,120,30))
-			self.progress_width, self.progress_height , self.progress_borderwidth = skinparameter.get("EpgListMultiProgressBar", (120,15,1))
-			self.column_weekday, self.column_datetime = skinparameter.get("EpgListSingle", (75,225))
+			self.posx, self.posy, self.picx, self.picy, self.gap = skinparameter.get("EpgListIcon", (2, 13, 25, 25, 2))
+			self.column_service, self.column_time, self.column_remaining, self.column_gap = skinparameter.get("EpgListMulti", (240, 180, 120, 30))
+			self.progress_width, self.progress_height, self.progress_borderwidth = skinparameter.get("EpgListMultiProgressBar", (120, 15, 1))
+			self.column_weekday, self.column_datetime = skinparameter.get("EpgListSingle", (75, 225))
 		else:
-			self.posx, self.posy , self.picx, self.picy, self.gap = skinparameter.get("EpgListIcon", (1,11,23,23,1))
-			self.column_service, self.column_time , self.column_remaining, self.column_gap = skinparameter.get("EpgListMulti", (160,120,80,20))
-			self.progress_width, self.progress_height , self.progress_borderwidth = skinparameter.get("EpgListMultiProgressBar", (80,10,1))
-			self.column_weekday, self.column_datetime = skinparameter.get("EpgListSingle", (50,150))
+			self.posx, self.posy, self.picx, self.picy, self.gap = skinparameter.get("EpgListIcon", (1, 11, 23, 23, 1))
+			self.column_service, self.column_time, self.column_remaining, self.column_gap = skinparameter.get("EpgListMulti", (160, 120, 80, 20))
+			self.progress_width, self.progress_height, self.progress_borderwidth = skinparameter.get("EpgListMultiProgressBar", (80, 10, 1))
+			self.column_weekday, self.column_datetime = skinparameter.get("EpgListSingle", (50, 150))
 
 		self.cur_event = None
 		self.cur_service = None
@@ -231,35 +231,35 @@ class EPGList(HTMLComponent, GUIComponent):
 			self.skinUsingBackColorByTime = False
 			for (attrib, value) in self.skinAttributes:
 				if attrib == "ServiceFontGraphical":
-					font = parseFont(value, ((1,1),(1,1)) )
+					font = parseFont(value, ((1, 1), (1, 1)) )
 					self.serviceFontNameGraph = font.family
 					self.serviceFontSizeGraph = font.pointSize
 				elif attrib == "EntryFontGraphical":
-					font = parseFont(value, ((1,1),(1,1)) )
+					font = parseFont(value, ((1, 1), (1, 1)) )
 					self.eventFontNameGraph = font.family
 					self.eventFontSizeGraph = font.pointSize
 				elif attrib == "ServiceFontInfobar":
-					font = parseFont(value, ((1,1),(1,1)) )
+					font = parseFont(value, ((1, 1), (1, 1)) )
 					self.serviceFontNameInfobar = font.family
 					self.serviceFontSizeInfobar = font.pointSize
 				elif attrib == "EventFontInfobar":
-					font = parseFont(value, ((1,1),(1,1)) )
+					font = parseFont(value, ((1, 1), (1, 1)) )
 					self.eventFontNameInfobar = font.family
 					self.eventFontSizeInfobar = font.pointSize
 				elif attrib == "EventFontSingle":
-					font = parseFont(value, ((1,1),(1,1)) )
+					font = parseFont(value, ((1, 1), (1, 1)) )
 					self.eventFontNameSingle = font.family
 					self.eventFontSizeSingle = font.pointSize
 				elif attrib == "EventFontMulti":
-					font = parseFont(value, ((1,1),(1,1)) )
+					font = parseFont(value, ((1, 1), (1, 1)) )
 					self.eventFontNameMulti = font.family
 					self.eventFontSizeMulti = font.pointSize
 				elif attrib == "EventFontVertical":
-					font = parseFont(value, ((1,1),(1,1)) )
+					font = parseFont(value, ((1, 1), (1, 1)) )
 					self.eventFontNameVertical = font.family
 					self.eventFontSizeVertical = font.pointSize
 				elif attrib == "TimeFontVertical":
-					font = parseFont(value, ((1,1),(1,1)) )
+					font = parseFont(value, ((1, 1), (1, 1)) )
 					self.timeFontNameVertical = font.family
 					self.timeFontSizeVertical = font.pointSize
 				elif attrib == "EntryFontAlignment":
@@ -351,7 +351,7 @@ class EPGList(HTMLComponent, GUIComponent):
 				elif attrib == "NumberOfRows":
 					self.NumberOfRows = int(value)
 				else:
-					attribs.append((attrib,value))
+					attribs.append((attrib, value))
 			self.skinAttributes = attribs
 		rc = GUIComponent.applySkin(self, desktop, screen)
 		self.listHeight = self.instance.size().height()
@@ -619,7 +619,7 @@ class EPGList(HTMLComponent, GUIComponent):
 			instance.setWrapAround(True)
 			instance.selectionChanged.get().append(self.serviceChanged)
 			instance.setContent(self.l)
-			self.l.setSelectionClip(eRect(0,0,0,0), False)
+			self.l.setSelectionClip(eRect(0, 0, 0, 0), False)
 		else:
 			instance.setWrapAround(False)
 			instance.selectionChanged.get().append(self.selectionChanged)
@@ -765,7 +765,7 @@ class EPGList(HTMLComponent, GUIComponent):
 			(eListboxPythonMultiContent.TYPE_TEXT, r2.x, r2.y, r2.w, r1.h, 0, RT_HALIGN_LEFT|RT_VALIGN_CENTER, datetime, foreColor, foreColorSel, backColor, backColorSel)
 		]
 		if clock_types:
-			if (self.wasEntryAutoTimer or self.wasEntryIceTV) and clock_types in (2,7,12):
+			if (self.wasEntryAutoTimer or self.wasEntryIceTV) and clock_types in (2, 7, 12):
 				res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, r3.x+r3.w-self.picx - self.posx, (r3.h/2-self.posy), self.picx, self.picy, self.clocks[clock_types]))
 				if self.wasEntryAutoTimer:
 					res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, r3.x+r3.w-self.picx*2 - self.gap - self.posx, (r3.h/2-self.posy), self.picx, self.picy, self.autotimericon))
@@ -795,7 +795,7 @@ class EPGList(HTMLComponent, GUIComponent):
 			(eListboxPythonMultiContent.TYPE_TEXT, r2.x, r2.y, r2.w, r1.h, 0, RT_HALIGN_LEFT|RT_VALIGN_CENTER, strftime(_("%e/%m, %-H:%M"), t))
 		]
 		if clock_types:
-			if (self.wasEntryAutoTimer or self.wasEntryIceTV) and clock_types in (2,7,12):
+			if (self.wasEntryAutoTimer or self.wasEntryIceTV) and clock_types in (2, 7, 12):
 				res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, r3.x+r3.w-self.picx - self.posx, (r3.h/2-self.posy), self.picx, self.picy, self.clocks[clock_types]))
 				if self.wasEntryAutoTimer:
 					res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, r3.x+r3.w-self.picx*2 - self.gap - self.posx, (r3.h/2-self.posy), self.picx, self.picy, self.autotimericon))
@@ -827,7 +827,7 @@ class EPGList(HTMLComponent, GUIComponent):
 				begin = localtime(beginTime)
 				end = localtime(beginTime+duration)
 				res.extend((
-					(eListboxPythonMultiContent.TYPE_TEXT, r4.x, r4.y, r4.w, r4.h, 1, RT_HALIGN_CENTER|RT_VALIGN_CENTER, _("%02d:%02d - %02d:%02d")%(begin[3],begin[4],end[3],end[4])),
+					(eListboxPythonMultiContent.TYPE_TEXT, r4.x, r4.y, r4.w, r4.h, 1, RT_HALIGN_CENTER|RT_VALIGN_CENTER, _("%02d:%02d - %02d:%02d")%(begin[3], begin[4], end[3], end[4])),
 					(eListboxPythonMultiContent.TYPE_TEXT, r5.x, r5.y, r5.w, r5.h, 1, RT_HALIGN_RIGHT|RT_VALIGN_CENTER, _("%d min") % (duration / 60))
 				))
 			else:
@@ -842,7 +842,7 @@ class EPGList(HTMLComponent, GUIComponent):
 				))
 			if clock_types:
 				pos = r3.x+r3.w
-				if (self.wasEntryAutoTimer or self.wasEntryIceTV) and clock_types in (2,7,12):
+				if (self.wasEntryAutoTimer or self.wasEntryIceTV) and clock_types in (2, 7, 12):
 					res.append((eListboxPythonMultiContent.TYPE_TEXT, r3.x, r3.y, r3.w-self.picx*2 - (self.gap*2) - self.posx, r3.h, 1, RT_HALIGN_LEFT|RT_VALIGN_CENTER, EventName))
 					res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, pos-self.picx - self.posx, (r3.h/2-self.posy), self.picx, self.picy, self.clocks[clock_types]))
 					if self.wasEntryAutoTimer:
@@ -1184,23 +1184,23 @@ class EPGList(HTMLComponent, GUIComponent):
 							RecIconHeight = top + self.gap
 						else:
 							RecIconHeight = top+height-self.picy - self.gap
-						if clock_types in (1,6,11):
+						if clock_types in (1, 6, 11):
 							pos = (left+xpos+ewidth-self.picx, RecIconHeight)
-						elif clock_types in (5,10,15):
+						elif clock_types in (5, 10, 15):
 							pos = (left+xpos-self.picx - self.posx, RecIconHeight)
 						else:
 							pos = (left+xpos+ewidth-self.picx - self.posx, RecIconHeight)
 						res.append(MultiContentEntryPixmapAlphaBlend(
 							pos = pos, size = (self.picx, self.picy),
 							png = clocks))
-						if (self.wasEntryAutoTimer or self.wasEntryIceTV) and clock_types in (2,7,12):
+						if (self.wasEntryAutoTimer or self.wasEntryIceTV) and clock_types in (2, 7, 12):
 							if self.wasEntryAutoTimer:
 								res.append(MultiContentEntryPixmapAlphaBlend(
-									pos = (pos[0]-self.picx - self.gap,pos[1]), size = (self.picx, self.picy),
+									pos = (pos[0]-self.picx - self.gap, pos[1]), size = (self.picx, self.picy),
 									png = self.autotimericon))
 							if self.wasEntryIceTV:
 								res.append(MultiContentEntryPixmapAlphaBlend(
-									pos = (pos[0]-self.picx - self.gap,pos[1]), size = (self.picx, self.picy),
+									pos = (pos[0]-self.picx - self.gap, pos[1]), size = (self.picx, self.picy),
 									png = self.icetvicon))
 		return res
 
@@ -1251,7 +1251,7 @@ class EPGList(HTMLComponent, GUIComponent):
 			duration = beginTime + 3600
 
 		t = localtime(beginTime)
-		primetime = mktime((t[0],t[1],t[2],config.epgselection.vertical_primetimehour.value,config.epgselection.vertical_primetimemins.value,0,t[6],t[7],t[8]))
+		primetime = mktime((t[0], t[1], t[2], config.epgselection.vertical_primetimehour.value, config.epgselection.vertical_primetimemins.value, 0, t[6], t[7], t[8]))
 		pt = (primetime >= beginTime and primetime < beginTime+duration)
 		if pt:
 			foreColor = foreColorPrimeTime
@@ -1264,14 +1264,14 @@ class EPGList(HTMLComponent, GUIComponent):
 		if pt:
 			res.extend((
 				(eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, r2.x+self.posx, r2.h/2-self.posy, self.picx, self.picy, self.primetimeicon),
-				(eListboxPythonMultiContent.TYPE_TEXT, r2.x+self.posx*3+self.picx, r2.y, r2.w-(self.posx*3+self.picx), r2.h, 0, RT_HALIGN_LEFT|RT_VALIGN_CENTER, ("%02d.%02d"%(t[2],t[1]) + " " + self.days[t[6]]) + " " + ("%02d:%02d"%(t[3],t[4])), foreColorTime, foreColorSel, backColorTime, backColorSel),
+				(eListboxPythonMultiContent.TYPE_TEXT, r2.x+self.posx*3+self.picx, r2.y, r2.w-(self.posx*3+self.picx), r2.h, 0, RT_HALIGN_LEFT|RT_VALIGN_CENTER, ("%02d.%02d"%(t[2], t[1]) + " " + self.days[t[6]]) + " " + ("%02d:%02d"%(t[3], t[4])), foreColorTime, foreColorSel, backColorTime, backColorSel),
 			))
 		else:
 			res.extend((
-				(eListboxPythonMultiContent.TYPE_TEXT, r2.x+self.posx, r2.y, r2.w-self.posx, r2.h, 0, RT_HALIGN_LEFT|RT_VALIGN_CENTER, ("%02d.%02d"%(t[2],t[1]) + " " + self.days[t[6]]) + " " + ("%02d:%02d"%(t[3],t[4])), foreColorTime, foreColorSel, backColorTime, backColorSel),
+				(eListboxPythonMultiContent.TYPE_TEXT, r2.x+self.posx, r2.y, r2.w-self.posx, r2.h, 0, RT_HALIGN_LEFT|RT_VALIGN_CENTER, ("%02d.%02d"%(t[2], t[1]) + " " + self.days[t[6]]) + " " + ("%02d:%02d"%(t[3], t[4])), foreColorTime, foreColorSel, backColorTime, backColorSel),
 			))
 		if clock_types:
-			if (self.wasEntryAutoTimer or self.wasEntryIceTV) and clock_types in (2,7,12):
+			if (self.wasEntryAutoTimer or self.wasEntryIceTV) and clock_types in (2, 7, 12):
 				if self.wasEntryAutoTimer:
 					res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, r2.w-self.picx*2-self.posx*2, r2.h/2-self.posy, self.picx, self.picy, self.autotimericon))
 				if self.wasEntryIceTV:
@@ -1383,7 +1383,7 @@ class EPGList(HTMLComponent, GUIComponent):
 			entry = entries[self.cur_event] #(event_id, event_title, begin_time, duration)
 			time_base = self.time_base + self.offs * self.time_epoch * 60
 			xpos, width = self.calcEntryPosAndWidth(self.event_rect, time_base, self.time_epoch, entry[2], entry[3])
-			self.select_rect = Rect(xpos ,0, width, self.event_rect.height)
+			self.select_rect = Rect(xpos, 0, width, self.event_rect.height)
 			self.l.setSelectionClip(eRect(xpos, 0, width, self.event_rect.h), visible and update)
 		else:
 			self.select_rect = self.event_rect
@@ -1540,7 +1540,7 @@ class EPGList(HTMLComponent, GUIComponent):
 			self.l.invalidate()
 			self.moveToEventId(event_id)
 
-	def getChannelNumber(self,service):
+	def getChannelNumber(self, service):
 		if hasattr(service, "ref") and service.ref and '0:0:0:0:0:0:0:0:0' not in service.ref.toString():
 			numservice = service.ref
 			num = numservice and numservice.getChannelNum() or None
@@ -1590,7 +1590,7 @@ class TimelineText(HTMLComponent, GUIComponent):
 		self.type = type
 		self.graphic = graphic
 		self.l = eListboxPythonMultiContent()
-		self.l.setSelectionClip(eRect(0,0,0,0))
+		self.l.setSelectionClip(eRect(0, 0, 0, 0))
 		self.itemHeight = 30
 		self.TlDate = None
 		self.TlTime = None
@@ -1618,11 +1618,11 @@ class TimelineText(HTMLComponent, GUIComponent):
 				elif attrib == "backgroundColor":
 					self.backColor = parseColor(value).argb()
 				elif attrib == "font":
-					self.l.setFont(0, parseFont(value,  ((1,1),(1,1)) ))
+					self.l.setFont(0, parseFont(value,  ((1, 1), (1, 1)) ))
 				elif attrib == "borderWidth":
 					self.borderWidth = int(value)
 				elif attrib == "TimelineFont":
-					font = parseFont(value, ((1,1),(1,1)) )
+					font = parseFont(value, ((1, 1), (1, 1)) )
 					self.timelineFontName = font.family
 					self.timelineFontSize = font.pointSize
 				elif attrib == "TimelineAlignment":
@@ -1630,7 +1630,7 @@ class TimelineText(HTMLComponent, GUIComponent):
 				elif attrib == "itemHeight":
 					self.itemHeight = int(value)
 				else:
-					attribs.append((attrib,value))
+					attribs.append((attrib, value))
 			self.skinAttributes = attribs
 		rc = GUIComponent.applySkin(self, desktop, screen)
 		self.listHeight = self.instance.size().height()
@@ -1747,10 +1747,10 @@ class TimelineText(HTMLComponent, GUIComponent):
 				if (self.type == EPG_TYPE_GRAPH and config.epgselection.graph_timeline24h.value) or (self.type == EPG_TYPE_INFOBARGRAPH and config.epgselection.infobar_timeline24h.value):
 					timetext = strftime("%H:%M", localtime(time_base + x*timeStepsCalc))
 				else:
-					if int(strftime("%H",ttime)) > 12:
-						timetext = strftime("%-I:%M",ttime) + _('pm')
+					if int(strftime("%H", ttime)) > 12:
+						timetext = strftime("%-I:%M", ttime) + _('pm')
 					else:
-						timetext = strftime("%-I:%M",ttime) + _('am')
+						timetext = strftime("%-I:%M", ttime) + _('am')
 				res.append(MultiContentEntryText(
 					pos = (service_rect.width() + xpos, 0),
 					size = (incWidth, self.listHeight),
@@ -1817,7 +1817,7 @@ class EPGBouquetList(HTMLComponent, GUIComponent):
 			attribs = [ ]
 			for (attrib, value) in self.skinAttributes:
 				if attrib == "font":
-					font = parseFont(value, ((1,1),(1,1)) )
+					font = parseFont(value, ((1, 1), (1, 1)) )
 					self.bouquetFontName = font.family
 					self.bouquetFontSize = font.pointSize
 				elif attrib == "foregroundColor":
@@ -1835,7 +1835,7 @@ class EPGBouquetList(HTMLComponent, GUIComponent):
 				elif attrib == "itemHeight":
 					self.itemHeight = int(value)
 				else:
-					attribs.append((attrib,value))
+					attribs.append((attrib, value))
 			self.skinAttributes = attribs
 		rc = GUIComponent.applySkin(self, desktop, screen)
 		self.listHeight = self.instance.size().height()
@@ -1968,7 +1968,7 @@ class EPGBouquetList(HTMLComponent, GUIComponent):
 				flags = BT_SCALE))
 		else:
 			res.append(MultiContentEntryText(
-				pos = (left , top), size = (width, height),
+				pos = (left, top), size = (width, height),
 				font = 0, flags = RT_HALIGN_LEFT | RT_VALIGN_CENTER,
 				text = "", color = None, color_sel = None,
 				backcolor = backColor, backcolor_sel = backColorSel,

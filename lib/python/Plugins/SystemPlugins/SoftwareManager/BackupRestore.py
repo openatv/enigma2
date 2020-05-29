@@ -13,7 +13,7 @@ from Components.Sources.List import List
 from Components.Button import Button
 from Components.config import NoSave, getConfigListEntry, configfile, ConfigSelection, ConfigSubsection, ConfigText, ConfigLocations
 from Components.config import config
-from Components.ConfigList import ConfigList,ConfigListScreen
+from Components.ConfigList import ConfigList, ConfigListScreen
 from Components.FileList import MultiFileSelectList
 from Components.Network import iNetwork
 from Plugins.Plugin import PluginDescriptor
@@ -199,16 +199,16 @@ class BackupScreen(Screen, ConfigListScreen):
 				self.newfilename = self.backuppath + "/" + dt + '-' + self.backupfile
 				if path.exists(self.newfilename):
 					remove(self.newfilename)
-				rename(self.fullbackupfilename,self.newfilename)
+				rename(self.fullbackupfilename, self.newfilename)
 			if self.finished_cb:
-				self.session.openWithCallback(self.finished_cb, Console, title = _("Backup is running..."), cmdlist = cmd,finishedCallback = self.backupFinishedCB,closeOnSuccess = True)
+				self.session.openWithCallback(self.finished_cb, Console, title = _("Backup is running..."), cmdlist = cmd, finishedCallback = self.backupFinishedCB, closeOnSuccess = True)
 			else:
-				self.session.open(Console, title = _("Backup is running..."), cmdlist = cmd,finishedCallback = self.backupFinishedCB, closeOnSuccess = True)
+				self.session.open(Console, title = _("Backup is running..."), cmdlist = cmd, finishedCallback = self.backupFinishedCB, closeOnSuccess = True)
 		except OSError:
 			if self.finished_cb:
 				self.session.openWithCallback(self.finished_cb, MessageBox, _("Sorry, your backup destination is not writeable.\nPlease select a different one."), MessageBox.TYPE_INFO, timeout = 10 )
 			else:
-				self.session.openWithCallback(self.backupErrorCB,MessageBox, _("Sorry, your backup destination is not writeable.\nPlease select a different one."), MessageBox.TYPE_INFO, timeout = 10 )
+				self.session.openWithCallback(self.backupErrorCB, MessageBox, _("Sorry, your backup destination is not writeable.\nPlease select a different one."), MessageBox.TYPE_INFO, timeout = 10 )
 
 	def backupFinishedCB(self,retval = None):
 		config.usage.shutdownOK.setValue(self.save_shutdownOK)
@@ -311,7 +311,7 @@ class BackupSelection(Screen):
 
 	def changeSelectionState(self):
 		if self.readOnly:
-			self.session.open(MessageBox,_("The default backup selection cannot be changed.\nPlease use the 'additional' and 'excluded' backup selection."), type = MessageBox.TYPE_INFO,timeout = 10)
+			self.session.open(MessageBox, _("The default backup selection cannot be changed.\nPlease use the 'additional' and 'excluded' backup selection."), type = MessageBox.TYPE_INFO, timeout = 10)
 		else:
 			self["checkList"].changeSelectionState()
 			self.selectedFiles = self["checkList"].getSelectedList()
@@ -448,7 +448,7 @@ class RestoreMenu(Screen):
 	def startDelete(self, ret = False):
 		if ret == True:
 			self.exe = True
-			print("removing:",self.val)
+			print("removing:", self.val)
 			if path.exists(self.val) == True:
 				remove(self.val)
 			self.exe = False
@@ -539,7 +539,7 @@ class RestoreScreen(Screen, ConfigListScreen):
 
 	def rebootSYS(self, ret = None):
 		try:
-			f = open("/tmp/rebootSYS.sh","w")
+			f = open("/tmp/rebootSYS.sh", "w")
 			f.write("#!/bin/bash\n\nkillall -9 enigma2\nreboot\n")
 			f.close()
 			self.session.open(Console, title = _("Your %s %s will Reboot...")% (getMachineBrand(), getMachineName()), cmdlist = ["chmod +x /tmp/rebootSYS.sh", "/tmp/rebootSYS.sh"])
@@ -591,13 +591,13 @@ class RestoreMyMetrixHD(Screen):
 			from Plugins.Extensions.MyMetrixLite.ActivateSkinSettings import ActivateSkinSettings
 			result = ActivateSkinSettings().WriteSkin(True)
 			if result:
-				infotext = ({1:_("Unknown Error creating Skin.\nPlease check after reboot MyMetrixLite-Plugin and apply your settings."),
-							2:_("Error creating HD-Skin. Not enough flash memory free."),
-							3:_("Error creating EHD-Skin. Not enough flash memory free.\nUsing HD-Skin!"),
-							4:_("Error creating EHD-Skin. Icon package download not available.\nUsing HD-Skin!"),
-							5:_("Error creating EHD-Skin.\nUsing HD-Skin!"),
-							6:_("Error creating EHD-Skin. Some EHD-Icons are missing.\nUsing HD-Skin!"),
-							7:_("Error, unknown Result!"),
+				infotext = ({1: _("Unknown Error creating Skin.\nPlease check after reboot MyMetrixLite-Plugin and apply your settings."),
+							2: _("Error creating HD-Skin. Not enough flash memory free."),
+							3: _("Error creating EHD-Skin. Not enough flash memory free.\nUsing HD-Skin!"),
+							4: _("Error creating EHD-Skin. Icon package download not available.\nUsing HD-Skin!"),
+							5: _("Error creating EHD-Skin.\nUsing HD-Skin!"),
+							6: _("Error creating EHD-Skin. Some EHD-Icons are missing.\nUsing HD-Skin!"),
+							7: _("Error, unknown Result!"),
 							}[result])
 				self.session.openWithCallback(self.checkSkinCallback, MessageBox, infotext, MessageBox.TYPE_ERROR, timeout = 30)
 			else:
@@ -699,7 +699,7 @@ class installedPlugins(Screen):
 		self.Menulist = []
 		for x in self.PluginList:
 			if x not in self.pluginsInstalled:
-				self.Menulist.append(SettingsEntry(x , True))
+				self.Menulist.append(SettingsEntry(x, True))
 		if len(self.Menulist) == 0:
 			self.close()
 		else:
@@ -800,7 +800,7 @@ class RestorePlugins(Screen):
 		item = self["menu"].getCurrent()[0]
 		state = self["menu"].getCurrent()[2]
 		if state:
-			self.list[index] = SettingsEntry(item , False)
+			self.list[index] = SettingsEntry(item, False)
 		else:
 			self.list[index] = SettingsEntry(item, True)
 

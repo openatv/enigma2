@@ -148,7 +148,7 @@ class Screen(dict, GUISkin):
 
 	def show(self):
 		# Temporarily add to ease up identification of screens
-		print('[SCREENNAME] ',self.skinName)
+		print('[SCREENNAME] ', self.skinName)
 		if (self.shown and self.already_shown) or not self.instance:
 			return
 		self.shown = True

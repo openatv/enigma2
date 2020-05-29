@@ -163,7 +163,7 @@ class VNetSpeedInfo(Poll, Converter, object):
 		while (bw):
 			bw = bwm.readline()
 			while bw.find("  ") is not -1:
-				bw=bw.replace("  "," ")
+				bw=bw.replace("  ", " ")
 			if bw.find("eth") is not -1:
 				flaglan=1
 				sp=bw.split(":")

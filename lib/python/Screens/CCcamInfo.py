@@ -52,7 +52,7 @@ def _parse(url):
 	url = url.strip()
 	parsed = urlparse(url)
 	scheme = parsed[0]
-	path = urlunparse(('','') + parsed[2:])
+	path = urlunparse(('', '') + parsed[2:])
 
 	host, port = parsed[1], 80
 
@@ -275,9 +275,9 @@ def CCcamListEntry(name, idx):
 	else:
 		png = "/usr/share/enigma2/skin_default/buttons/key_%s.png" % str(idx)
 	if fileExists(png):
-		x, y, w, h = skin.parameters.get("ChoicelistIcon",(5*sf, 0, 35*sf, 25*sf))
+		x, y, w, h = skin.parameters.get("ChoicelistIcon", (5*sf, 0, 35*sf, 25*sf))
 		res.append(MultiContentEntryPixmapAlphaBlend(pos=(x, y), size=(w, h), png=loadPNG(png)))
-	x, y, w, h = skin.parameters.get("ChoicelistName",(45*sf, 2*sf, 550*sf, 25*sf))
+	x, y, w, h = skin.parameters.get("ChoicelistName", (45*sf, 2*sf, 550*sf, 25*sf))
 	res.append(MultiContentEntryText(pos=(x, y), size=(w, h), font=0, text=name))
 	return res
 
@@ -288,9 +288,9 @@ def CCcamServerListEntry(name, color):
 	else:
 		png = "/usr/share/enigma2/skin_default/buttons/key_%s.png" % color
 	if fileExists(png):
-		x, y, w, h = skin.parameters.get("ChoicelistIcon",(5*sf, 0, 35*sf, 25*sf))
+		x, y, w, h = skin.parameters.get("ChoicelistIcon", (5*sf, 0, 35*sf, 25*sf))
 		res.append(MultiContentEntryPixmapAlphaBlend(pos=(x, y), size=(w, h), png=loadPNG(png)))
-	x, y, w, h = skin.parameters.get("ChoicelistName",(45*sf, 2*sf, 550*sf, 25*sf))
+	x, y, w, h = skin.parameters.get("ChoicelistName", (45*sf, 2*sf, 550*sf, 25*sf))
 	res.append(MultiContentEntryText(pos=(x, y), size=(w, h), font=0, text=name))
 	return res
 
@@ -325,12 +325,12 @@ def CCcamConfigListEntry(file):
 
 	if content == org:
 		png = lock_on
-		x, y, w, h = skin.parameters.get("SelectionListLock",(5*sf, 0, 25*sf, 25*sf))
+		x, y, w, h = skin.parameters.get("SelectionListLock", (5*sf, 0, 25*sf, 25*sf))
 	else:
 		png = lock_off
-		x, y, w, h = skin.parameters.get("SelectionListLockOff",(5*sf, 0, 25*sf, 25*sf))
+		x, y, w, h = skin.parameters.get("SelectionListLockOff", (5*sf, 0, 25*sf, 25*sf))
 	res.append(MultiContentEntryPixmapAlphaBlend(pos=(x, y), size=(w, h), png=png))
-	x, y, w, h = skin.parameters.get("SelectionListDescr",(45*sf, 2*sf, 550*sf, 25*sf))
+	x, y, w, h = skin.parameters.get("SelectionListDescr", (45*sf, 2*sf, 550*sf, 25*sf))
 	res.append(MultiContentEntryText(pos=(x, y), size=(w, h), font=0, text=name))
 
 	return res
@@ -340,12 +340,12 @@ def CCcamMenuConfigListEntry(name, blacklisted):
 
 	if blacklisted:
 		png = lock_off
-		x, y, w, h = skin.parameters.get("SelectionListLockOff",(5*sf, 0, 25*sf, 25*sf))
+		x, y, w, h = skin.parameters.get("SelectionListLockOff", (5*sf, 0, 25*sf, 25*sf))
 	else:
 		png = lock_on
-		x, y, w, h = skin.parameters.get("SelectionListLock",(5*sf, 0, 25*sf, 25*sf))
+		x, y, w, h = skin.parameters.get("SelectionListLock", (5*sf, 0, 25*sf, 25*sf))
 	res.append(MultiContentEntryPixmapAlphaBlend(pos=(x, y), size=(w, h), png=png))
-	x, y, w, h = skin.parameters.get("SelectionListDescr",(45*sf, 2*sf, 550*sf, 25*sf))
+	x, y, w, h = skin.parameters.get("SelectionListDescr", (45*sf, 2*sf, 550*sf, 25*sf))
 	res.append(MultiContentEntryText(pos=(x, y), size=(w, h), font=0, text=name))
 
 	return res

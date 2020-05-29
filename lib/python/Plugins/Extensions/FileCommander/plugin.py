@@ -134,11 +134,11 @@ class FileCommanderConfigScreen(Setup):
 def formatSortingTyp(sortDirs, sortFiles):
 	sortDirs, reverseDirs = [int(x) for x in sortDirs.split('.')]
 	sortFiles, reverseFiles = [int(x) for x in sortFiles.split('.')]
-	sD = ('n','d','s')[sortDirs] #name, date, size
-	sF = ('n','d','s')[sortFiles]
-	rD = ('+','-')[reverseDirs] #normal, reverse
-	rF = ('+','-')[reverseFiles]
-	return '[D]%s%s[F]%s%s' %(sD,rD,sF,rF)
+	sD = ('n', 'd', 's')[sortDirs] #name, date, size
+	sF = ('n', 'd', 's')[sortFiles]
+	rD = ('+', '-')[reverseDirs] #normal, reverse
+	rF = ('+', '-')[reverseFiles]
+	return '[D]%s%s[F]%s%s' %(sD, rD, sF, rF)
 
 ###################
 # ## Main Screen ###
@@ -248,8 +248,8 @@ class FileCommanderScreen(Screen, HelpableScreen, key_actions):
 		self["list_left"] = FileList(path_left, matchingPattern=filter, sortDirs=sortDirs, sortFiles=sortFilesLeft, firstDirs=firstDirs)
 		self["list_right"] = FileList(path_right, matchingPattern=filter, sortDirs=sortDirs, sortFiles=sortFilesRight, firstDirs=firstDirs)
 
-		sortLeft = formatSortingTyp(sortDirs,sortFilesLeft)
-		sortRight = formatSortingTyp(sortDirs,sortFilesRight)
+		sortLeft = formatSortingTyp(sortDirs, sortFilesLeft)
+		sortRight = formatSortingTyp(sortDirs, sortFilesRight)
 		self["sort_left"] = Label(sortLeft)
 		self["sort_right"] = Label(sortRight)
 
@@ -573,7 +573,7 @@ class FileCommanderScreen(Screen, HelpableScreen, key_actions):
 		for job in job_manager.getPendingJobs():
 			#self.tasklist.append((job, job.name, job.getStatustext(), int(100 * job.progress / float(job.end)), str(100 * job.progress / float(job.end)) + "%"))
 			progress = job.getProgress()
-			self.tasklist.append((job,job.name,job.getStatustext(),progress,str(progress) + " %" ))
+			self.tasklist.append((job, job.name, job.getStatustext(), progress, str(progress) + " %" ))
 		self.session.open(TaskListScreen, self.tasklist)
 
 	def addJob(self, job, updateDirs):
@@ -1142,8 +1142,8 @@ class FileCommanderScreenFileSelect(Screen, HelpableScreen, key_actions):
 		sortDirsRight, sortFilesRight = config.plugins.filecommander.sortingRight_tmp.value.split(',')
 		firstDirs = config.plugins.filecommander.firstDirs.value
 
-		sortLeft = formatSortingTyp(sortDirsLeft,sortFilesLeft)
-		sortRight = formatSortingTyp(sortDirsRight,sortFilesRight)
+		sortLeft = formatSortingTyp(sortDirsLeft, sortFilesLeft)
+		sortRight = formatSortingTyp(sortDirsRight, sortFilesRight)
 		self["sort_left"] = Label(sortLeft)
 		self["sort_right"] = Label(sortRight)
 
@@ -1265,7 +1265,7 @@ class FileCommanderScreenFileSelect(Screen, HelpableScreen, key_actions):
 		for job in job_manager.getPendingJobs():
 			#self.tasklist.append((job, job.name, job.getStatustext(), int(100 * job.progress / float(job.end)), str(100 * job.progress / float(job.end)) + "%"))
 			progress = job.getProgress()
-			self.tasklist.append((job,job.name,job.getStatustext(),progress,str(progress) + " %" ))
+			self.tasklist.append((job, job.name, job.getStatustext(), progress, str(progress) + " %" ))
 		self.session.open(TaskListScreen, self.tasklist)
 
 # ## delete select ###

@@ -250,7 +250,7 @@ class AtileHD_Config(Screen, ConfigListScreen):
 		default = ("default", _("Default"))
 
 		# search typ
-		styp = default_file.replace('_Original.xml','')
+		styp = default_file.replace('_Original.xml', '')
 		if self.is_atile:
 			search_str = '%s_atile_' %styp
 		else:
@@ -264,8 +264,8 @@ class AtileHD_Config(Screen, ConfigListScreen):
 		for f in sorted(files, key=str.lower):
 			if f.endswith('.xml') and f.startswith(search_str):
 				friendly_name = f.replace(search_str, "").replace(".xml", "").replace("_", " ")
-				if path.exists(self.skin_base_dir + 'allScreens/%s/%s' %(styp,f)):
-					choices.append((self.skin_base_dir + 'allScreens/%s/%s' %(styp,f), friendly_name))
+				if path.exists(self.skin_base_dir + 'allScreens/%s/%s' %(styp, f)):
+					choices.append((self.skin_base_dir + 'allScreens/%s/%s' %(styp, f), friendly_name))
 				else:
 					choices.append((self.skin_base_dir + f, friendly_name))
 		choices.append(default)
@@ -512,7 +512,7 @@ class AtileHD_Config(Screen, ConfigListScreen):
 				print("makedir mySkin_off")
 			if self.myAtileHD_active.value:
 				if not path.exists("mySkin") and path.exists("mySkin_off"):
-						symlink("mySkin_off","mySkin")
+						symlink("mySkin_off", "mySkin")
 			else:
 				if path.exists("mySkin"):
 					if path.exists("mySkin_off"):
@@ -542,7 +542,7 @@ class AtileHD_Config(Screen, ConfigListScreen):
 		self["config"].setCurrentIndex(0)
 
 	def restartGUI(self):
-		restartbox = self.session.openWithCallback(self.restartGUIcb,MessageBox,_("Restart necessary, restart GUI now?"), MessageBox.TYPE_YESNO)
+		restartbox = self.session.openWithCallback(self.restartGUIcb, MessageBox, _("Restart necessary, restart GUI now?"), MessageBox.TYPE_YESNO)
 		restartbox.setTitle(_("Message"))
 
 	def about(self):

@@ -142,7 +142,7 @@ class TimerEntry(Screen, ConfigListScreen):
 			shutdownString = _("shut down")
 		self.timerentry_afterevent = ConfigSelection(choices = [("nothing", _("do nothing")), ("standby", _("go to standby")), ("deepstandby", shutdownString), ("auto", _("auto"))], default = afterevent)
 		self.timerentry_recordingtype = ConfigSelection(choices = [("normal", _("normal")), ("descrambled+ecm", _("descramble and record ecm")), ("scrambled+ecm", _("don't descramble, record ecm"))], default = recordingtype)
-		self.timerentry_type = ConfigSelection(choices = [("once",_("once")), ("repeated", _("repeated"))], default = type)
+		self.timerentry_type = ConfigSelection(choices = [("once", _("once")), ("repeated", _("repeated"))], default = type)
 		self.timerentry_name = ConfigText(default = self.timer.name.replace('\xc2\x86', '').replace('\xc2\x87', '').encode("utf-8"), visible_width = 50, fixed_size = False)
 		self.timerentry_description_replaced = self.timer.description.replace('\xc2\x8a', ' ').encode("utf-8")
 		self.timerentry_description = ConfigText(default = self.timerentry_description_replaced, visible_width = 50, fixed_size = False)
@@ -173,7 +173,7 @@ class TimerEntry(Screen, ConfigListScreen):
 
 		self.timerentry_repeatedbegindate = ConfigDateTime(default = self.timer.repeatedbegindate, formatstring = config.usage.date.full.value, increment = 86400)
 
-		self.timerentry_weekday = ConfigSelection(default = weekday_table[weekday], choices = [("mon",_("Monday")), ("tue", _("Tuesday")), ("wed",_("Wednesday")), ("thu", _("Thursday")), ("fri", _("Friday")), ("sat", _("Saturday")), ("sun", _("Sunday"))])
+		self.timerentry_weekday = ConfigSelection(default = weekday_table[weekday], choices = [("mon", _("Monday")), ("tue", _("Tuesday")), ("wed", _("Wednesday")), ("thu", _("Thursday")), ("fri", _("Friday")), ("sat", _("Saturday")), ("sun", _("Sunday"))])
 
 		self.timerentry_day = ConfigSubList()
 		for x in (0, 1, 2, 3, 4, 5, 6):
@@ -213,7 +213,7 @@ class TimerEntry(Screen, ConfigListScreen):
 				a = float(stat.f_blocks) * stat.f_bsize / 1024 / 1024 /1024
 				b = float(stat.f_bavail) * stat.f_bsize / 1024 / 1024 /1024
 				c = 100.0 * b / a
-				free = ("%0.f GB (%0.f %s) " + _("free diskspace")) % (b,c,"%")
+				free = ("%0.f GB (%0.f %s) " + _("free diskspace")) % (b, c, "%")
 				description = _("Current location")
 		except:
 			pass
@@ -300,7 +300,7 @@ class TimerEntry(Screen, ConfigListScreen):
 					if self["config"].getCurrent()[1].help_window and self["config"].getCurrent()[1].help_window.instance is not None:
 						helpwindowpos = self["HelpWindow"].getPosition()
 						from enigma import ePoint
-						self["config"].getCurrent()[1].help_window.instance.move(ePoint(helpwindowpos[0],helpwindowpos[1]))
+						self["config"].getCurrent()[1].help_window.instance.move(ePoint(helpwindowpos[0], helpwindowpos[1]))
 					else:
 						if "VKeyIcon" in self:
 							self["VirtualKB"].setEnabled(False)

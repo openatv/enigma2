@@ -114,7 +114,7 @@ class VideoWizard(WizardLanguage, Rc):
 				if descr == 'Scart' and has_jack and not has_scart:
 					descr = 'Jack'
 				if port != "DVI-PC":
-					list.append((descr,port))
+					list.append((descr, port))
 		list.sort(key = lambda x: x[0])
 		print("listInputChannels:", list)
 		return list
@@ -216,7 +216,7 @@ class VideoWizard(WizardLanguage, Rc):
 			config.misc.showtestcard.value = False
 
 	def keyNumberGlobal(self, number):
-		if number in (1,2,3):
+		if number in (1, 2, 3):
 			if number == 1:
 				self.hw.saveMode("HDMI", "720p", "multi")
 			elif number == 2:

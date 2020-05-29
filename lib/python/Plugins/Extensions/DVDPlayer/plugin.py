@@ -43,7 +43,7 @@ def filescan_open(list, session, **kwargs):
 			if x.mimetype == "video/x-dvd-iso":
 				dvd_filelist.append(x.path)
 			if x.mimetype == "video/x-dvd":
-				dvd_filelist.append(x.path.rsplit('/',1)[0])
+				dvd_filelist.append(x.path.rsplit('/', 1)[0])
 		session.open(DVD.DVDPlayer, dvd_filelist=dvd_filelist)
 
 def filescan(**kwargs):
@@ -55,7 +55,7 @@ def filescan(**kwargs):
 			return fileExists(file.path)
 
 	return [
-		LocalScanner(mimetypes = ["video/x-dvd","video/x-dvd-iso"],
+		LocalScanner(mimetypes = ["video/x-dvd", "video/x-dvd-iso"],
 			paths_to_scan =
 				[
 					ScanPath(path = "video_ts", with_subdirs = False),

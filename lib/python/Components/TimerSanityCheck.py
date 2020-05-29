@@ -88,7 +88,7 @@ class TimerSanityCheck:
 					begin += 86400
 					rflags >>= 1
 			else:
-				self.nrep_eventlist.extend([(self.newtimer.begin,self.bflag,-1),(self.newtimer.end,self.eflag,-1)])
+				self.nrep_eventlist.extend([(self.newtimer.begin, self.bflag, -1), (self.newtimer.end, self.eflag, -1)])
 
 ##################################################################################
 # now process existing timers
@@ -109,7 +109,7 @@ class TimerSanityCheck:
 						begin += 86400
 						rflags >>= 1
 				elif timer.state < TimerEntry.StateEnded:
-					self.nrep_eventlist.extend([(timer.begin,self.bflag,idx),(timer.end,self.eflag,idx)])
+					self.nrep_eventlist.extend([(timer.begin, self.bflag, idx), (timer.end, self.eflag, idx)])
 			idx += 1
 
 ################################################################################
@@ -136,10 +136,10 @@ class TimerSanityCheck:
 					new_event_end = new_event_begin + (event_end - event_begin)
 					if event[1] == -1:
 						if new_event_begin >= self.newtimer.begin: # is the soap already running?
-							self.nrep_eventlist.extend([(new_event_begin, self.bflag, event[1]),(new_event_end, self.eflag, event[1])])
+							self.nrep_eventlist.extend([(new_event_begin, self.bflag, event[1]), (new_event_end, self.eflag, event[1])])
 					else:
 						if new_event_begin >= self.timerlist[event[1]].begin: # is the soap already running?
-							self.nrep_eventlist.extend([(new_event_begin, self.bflag, event[1]),(new_event_end, self.eflag, event[1])])
+							self.nrep_eventlist.extend([(new_event_begin, self.bflag, event[1]), (new_event_end, self.eflag, event[1])])
 		else:
 			offset_0 = 345600 # the Epoch begins on Thursday
 			for cnt in (0, 1): # test two weeks to take care of Sunday-Monday transitions
@@ -152,7 +152,7 @@ class TimerSanityCheck:
 						event_end = self.timerlist[event[1]].end
 					new_event_begin = event[0] + offset_0 + (cnt * 604800)
 					new_event_end = new_event_begin + (event_end - event_begin)
-					self.nrep_eventlist.extend([(new_event_begin, self.bflag, event[1]),(new_event_end, self.eflag, event[1])])
+					self.nrep_eventlist.extend([(new_event_begin, self.bflag, event[1]), (new_event_end, self.eflag, event[1])])
 
 ################################################################################
 # order list chronological
@@ -263,7 +263,7 @@ class TimerSanityCheck:
 					if ConflictTimer is None:
 						ConflictTimer = timer
 						ConflictTunerType = tunerType
-			self.nrep_eventlist[idx] = (event[0],event[1],event[2],cnt,overlaplist[:]) # insert a duplicate into current overlaplist
+			self.nrep_eventlist[idx] = (event[0], event[1], event[2], cnt, overlaplist[:]) # insert a duplicate into current overlaplist
 			idx += 1
 
 		if ConflictTimer is None: # no conflict found :)

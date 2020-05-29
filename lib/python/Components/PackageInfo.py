@@ -157,7 +157,7 @@ class PackageInfoHandler:
 		try:
 			xml.sax.parse(file, handler)
 			for entry in handler.list:
-				self.packageslist.append((entry,file))
+				self.packageslist.append((entry, file))
 		except InfoHandlerParseError:
 			pass
 
@@ -166,7 +166,7 @@ class PackageInfoHandler:
 		try:
 			xml.sax.parse(file, handler)
 			for entry in handler.list:
-				self.packagesIndexlist.append((entry,file))
+				self.packagesIndexlist.append((entry, file))
 		except InfoHandlerParseError:
 			pass
 
@@ -176,7 +176,7 @@ class PackageInfoHandler:
 		try:
 			xml.sax.parse(file, handler)
 			for entry in handler.list:
-				self.packageDetails.append((entry,file))
+				self.packageDetails.append((entry, file))
 		except InfoHandlerParseError:
 			pass
 
@@ -215,7 +215,7 @@ class PackageInfoHandler:
 			for file in indexfileList:
 				neededFile = self.directory[0] + "/" + file
 				if os.path.isfile(neededFile):
-					self.readIndex(self.directory[0] + "/" , neededFile)
+					self.readIndex(self.directory[0] + "/", neededFile)
 
 		if prerequisites:
 			for package in self.packagesIndexlist[:]:

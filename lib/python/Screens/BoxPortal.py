@@ -11,7 +11,7 @@ from boxbranding import getBoxType
 
 def isExtension_installed(pname):
 	try:
-		for plugin in plugins.getPlugins([PluginDescriptor.WHERE_PLUGINMENU,PluginDescriptor.WHERE_EXTENSIONSMENU]):
+		for plugin in plugins.getPlugins([PluginDescriptor.WHERE_PLUGINMENU, PluginDescriptor.WHERE_EXTENSIONSMENU]):
 			if plugin.name == pname:
 				return True
 				break
