@@ -26,8 +26,8 @@ from random import SystemRandom as SystemRandom
 from threading import Thread as Thread
 from threading import Event as Event
 
-import log
-import rotor_calc
+from . import log
+from . import rotor_calc
 
 class PositionerSetup(Screen):
 

@@ -8,7 +8,7 @@ from enigma import ePicLoad
 from Components.config import config, getConfigListEntry, ConfigInteger
 from Components.ConfigList import ConfigListScreen
 from Components.AVSwitch import AVSwitch
-import Title
+from . import Title
 
 class TitleProperties(Screen, ConfigListScreen):
 	skin = """

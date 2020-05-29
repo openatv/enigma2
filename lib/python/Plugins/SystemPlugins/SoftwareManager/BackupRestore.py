@@ -24,7 +24,7 @@ from os import system, popen, path, makedirs, listdir, access, stat, rename, rem
 from time import gmtime, strftime, localtime, sleep
 from datetime import date
 from boxbranding import getBoxType, getMachineBrand, getMachineName, getImageDistro
-import ShellCompatibleFunctions
+from . import ShellCompatibleFunctions
 
 boxtype = getBoxType()
 distro = getImageDistro()

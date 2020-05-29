@@ -3,7 +3,7 @@
 ### main work done in enigma2.sh, here we do just a touch
 ### TODO: installation error checking is missing, network state...
 
-
+from __future__ import absolute_import
 from Screens.Screen import Screen
 from Components.ActionMap import ActionMap
 from Components.Label import Label
@@ -13,7 +13,7 @@ import os
 #from Components.Ipkg import IpkgComponent
 #from Screens.Ipkg import Ipkg
 from enigma import quitMainloop
-from Plugins.Extensions.StartKodi.installsomething import InstallSomething
+from .installsomething import InstallSomething
 
 
 

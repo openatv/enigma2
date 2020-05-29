@@ -5,11 +5,11 @@ from enigma import getDesktop
 #------------------------------------------------------------------------------------------
 
 def Pic_Thumb(*args, **kwa):
-	import ui
+	from . import ui
 	return ui.Pic_Thumb(*args, **kwa)
 
 def picshow(*args, **kwa):
-	import ui
+	from . import ui
 	return ui.picshow(*args, **kwa)
 
 def main(session, **kwargs):
