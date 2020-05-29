@@ -650,7 +650,7 @@ class PluginDownloadBrowser(Screen):
 		if hasattr(self, 'postInstallCall'):
 			try:
 				self.postInstallCall()
-			except Exception, ex:
+			except Exception as ex:
 				print("[PluginBrowser] postInstallCall failed:", ex)
 			self.resetPostInstall()
 		try:

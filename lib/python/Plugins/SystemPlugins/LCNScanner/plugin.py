@@ -78,7 +78,7 @@ class LCN():
 				cmd = "x[0] = " + rule
 				try:
 					exec cmd
-				except Exception, e:
+				except Exception as e:
 					print(e)
 
 	def addMarker(self, position, text):
@@ -89,7 +89,7 @@ class LCN():
 		
 		try:
 			f = open(self.dbfile)
-		except Exception, e:
+		except Exception as e:
 			print(e)
 			return
 		
@@ -142,7 +142,7 @@ class LCN():
 	def writeTVBouquet(self):
 		try:
 			f = open('/etc/enigma2/userbouquet.terrestrial_lcn.tv', "w")
-		except Exception, e:
+		except Exception as e:
 			print(e)
 			return
 
@@ -220,7 +220,7 @@ class LCN():
 	def writeRadioBouquet(self):
 		try:
 			f = open('/etc/enigma2/userbouquet.terrestrial_lcn.radio', "w")
-		except Exception, e:
+		except Exception as e:
 			print(e)
 			return
 
@@ -324,7 +324,7 @@ class LCNBuildHelper():
 	def readBouquetsList(self, pwd, bouquetname):
 		try:
 			f = open(pwd + "/" + bouquetname)
-		except Exception, e:
+		except Exception as e:
 			print(e)
 			return
 			
@@ -351,7 +351,7 @@ class LCNBuildHelper():
 			if filename:
 				try:
 					fb = open(pwd + "/" + filename)
-				except Exception, e:
+				except Exception as e:
 					print(e)
 					continue
 					

@@ -112,7 +112,7 @@ def isFileSystemSupported(filesystem):
 			if fs.strip().endswith(filesystem):
 				return True
 		return False
-	except Exception, ex:
+	except Exception as ex:
 		print("[Harddisk] Failed to read /proc/filesystems:", ex)
 
 class QuickMenu(Screen, ProtectedScreen):

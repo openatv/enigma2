@@ -1238,7 +1238,7 @@ class HdmiCec:
 								self.CECdebug('Tx', address, cmd, data, len(data))
 							eHdmiCEC.getInstance().sendMessage(address, cmd, data, len(data))
 						self.cmdWaitTimer.startLongTimer(waittime)
-				except Exception, e:
+				except Exception as e:
 					self.CECwritedebug("[HdmiCec] CECcmdline - error: %s" %e, True)
 					txt = "%s\n" %e
 					self.CECwritefile(errfile, "w", txt)
@@ -1248,7 +1248,7 @@ class HdmiCec:
 		try:
 			with open(FILE) as f: 
 				return f.read()
-		except Exception, e:
+		except Exception as e:
 			self.CECwritedebug("[HdmiCec] read file '%s' failed - error: %s" %(FILE, e), True)
 		return ""
 
@@ -1256,7 +1256,7 @@ class HdmiCec:
 		try:
 			with open(FILE, MODE) as f: 
 				f.write(INPUT)
-		except Exception, e:
+		except Exception as e:
 			txt = "[HdmiCec] write file '%s' failed - error: %s" %(FILE, e)
 			print(txt if "Enigma2-hdmicec-" in FILE else self.CECwritedebug(txt, True))
 
@@ -1265,7 +1265,7 @@ class HdmiCec:
 			if fileExists(f):
 				try:
 					os.remove(f)
-				except Exception, e:
+				except Exception as e:
 					self.CECwritedebug("[HdmiCec] remove file '%s' failed - error: %s" %(f, e), True)
 
 hdmi_cec = HdmiCec()

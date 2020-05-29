@@ -212,7 +212,7 @@ class IpkgComponent:
 				# if we get multiple config file update questions, the next ones
 				# don't necessarily start at the beginning of a line
 				self.callCallbacks(self.EVENT_MODIFIED, data.split(' \'', 3)[1][:-1])
-		except Exception, ex:
+		except Exception as ex:
 			print("[Ipkg] Failed to parse: '%s'" % data)
 			print("[Ipkg]", ex)
 

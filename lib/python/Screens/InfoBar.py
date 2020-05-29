@@ -265,7 +265,7 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 			from Plugins.Extensions.MediaPlayer.plugin import MediaPlayer
 			self.session.open(MediaPlayer)
 			no_plugin = False
-		except Exception, e:
+		except Exception as e:
 			self.session.open(MessageBox, _("The MediaPlayer plugin is not installed!\nPlease install it."), type = MessageBox.TYPE_INFO,timeout = 10 )
 
 	def showMediaCenter(self):
@@ -273,7 +273,7 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 			from Plugins.Extensions.BMediaCenter.plugin import DMC_MainMenu
 			self.session.open(DMC_MainMenu)
 			no_plugin = False
-		except Exception, e:
+		except Exception as e:
 			self.session.open(MessageBox, _("The MediaCenter plugin is not installed!\nPlease install it."), type = MessageBox.TYPE_INFO,timeout = 10 )
 
 	def openSleepTimer(self):
@@ -314,7 +314,7 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 				if plugin.name == _("EPGSearch") or plugin.name == _("search EPG...") or plugin.name == "Durchsuche EPG...":
 					self.runPlugin(plugin)
 					break
-		except Exception, e:
+		except Exception as e:
 			self.session.open(MessageBox, _("The EPGSearch plugin is not installed!\nPlease install it."), type = MessageBox.TYPE_INFO,timeout = 10 )
 
 	def openIMDB(self):
@@ -323,7 +323,7 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 				if plugin.name == _("IMDb Details"):
 					self.runPlugin(plugin)
 					break
-		except Exception, e:
+		except Exception as e:
 			self.session.open(MessageBox, _("The IMDb plugin is not installed!\nPlease install it."), type = MessageBox.TYPE_INFO,timeout = 10 )
 
 	def openSimpleUnmount(self):
@@ -332,7 +332,7 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 				if plugin.name == _("SimpleUmount"):
 					self.runPlugin(plugin)
 					break
-		except Exception, e:
+		except Exception as e:
 			self.session.open(MessageBox, _("The SimpleUmount plugin is not installed!\nPlease install it."), type = MessageBox.TYPE_INFO,timeout = 10 )
 
 	def ZoomInOut(self):
@@ -373,7 +373,7 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 			from Plugins.Extensions.MediaPortal.plugin import MPmain as MediaPortal
 			MediaPortal(self.session)
 			no_plugin = False
-		except Exception, e:
+		except Exception as e:
 			self.session.open(MessageBox, _("The MediaPortal plugin is not installed!\nPlease install it."), type = MessageBox.TYPE_INFO,timeout = 10 )
 			
 	def showSetup(self):
@@ -405,7 +405,7 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 			from Plugins.SystemPlugins.Videomode.plugin import videoSetupMain
 			self.session.instantiateDialog(videoSetupMain)
 			no_plugin = False
-		except Exception, e:
+		except Exception as e:
 			self.session.open(MessageBox, _("The VideoMode plugin is not installed!\nPlease install it."), type = MessageBox.TYPE_INFO,timeout = 10 )
 			
 	def showPluginBrowser(self):
@@ -462,7 +462,7 @@ def setAudioTrack(service):
 			matchedAc3 = tryAudioTrack(tracks, audiolang, caudiolang, trackList, seltrack, useAc3)
 			if matchedAc3: return
 			tracks.selectTrack(0)    # fallback to track 1(0)
-	except Exception, e:
+	except Exception as e:
 		print("[MoviePlayer] audioTrack exception:\n" + str(e))
 
 def tryAudioTrack(tracks, audiolang, caudiolang, trackList, seltrack, useAc3):
@@ -672,7 +672,7 @@ class MoviePlayer(InfoBarAspectSelection, InfoBarSimpleEventView, InfoBarBase, I
 						else:
 							self.movielistAgain()
 						return
-					except Exception, e:
+					except Exception as e:
 						print("[InfoBar] Failed to move to .Trash folder:", e)
 						msg = _("Cannot move to trash can") + "\n" + str(e) + "\n"
 				info = serviceHandler.info(ref)

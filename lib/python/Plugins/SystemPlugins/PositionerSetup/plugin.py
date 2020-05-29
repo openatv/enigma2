@@ -1047,7 +1047,7 @@ class PositionerSetupLog(Screen):
 			f = open('/tmp/positionersetup.log', 'w')
 			f.write(log.value)
 			f.close()
-		except Exception, e:
+		except Exception as e:
 			self["list"].setText(_("Failed to write /tmp/positionersetup.log: ") + str(e))
 		self.close(True)
 

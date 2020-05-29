@@ -59,7 +59,7 @@ class HarddiskSetup(Screen):
 				if job.name in (_("Initializing storage device..."), _("Checking filesystem..."),_("Converting ext3 to ext4...")):
 					self.showJobView(job)
 					break
-		except Exception, ex:
+		except Exception as ex:
 			self.session.open(MessageBox, str(ex), type=MessageBox.TYPE_ERROR, timeout=10)
 
 		if self.curentservice:

@@ -35,7 +35,7 @@ def getProcMounts():
 			item[1] = item[1].replace('\\040', ' ')
 			result.append(item)
 		return result
-	except IOError, ex:
+	except IOError as ex:
 		print("[Harddisk] Failed to open /proc/mounts", ex)
 		return []
 
@@ -48,7 +48,7 @@ def isFileSystemSupported(filesystem):
 				return True
 		file.close()
 		return False
-	except Exception, ex:
+	except Exception as ex:
 		print("[Harddisk] Failed to read /proc/filesystems:", ex)
 
 def findMountPoint(path):
@@ -219,7 +219,7 @@ class Harddisk:
 				return readFile(self.sysfsPath('device/name'))
 			else:
 				raise Exception, "no hdX or sdX or mmcX"
-		except Exception, e:
+		except Exception as e:
 			#print "[Harddisk] Failed to get model:", e
 			return "-?-"
 
@@ -839,7 +839,7 @@ class HarddiskManager:
 		try:
 			if os.path.exists("/dev/" + blockdev):
 				open("/dev/" + blockdev).close()
-		except IOError, err:
+		except IOError as err:
 			if err.errno == 159: # no medium present
 				medium_found = False
 
@@ -999,7 +999,7 @@ class HarddiskManager:
 		description = _("External Storage %s") % dev
 		try:
 			description = readFile("/sys" + phys + "/model")
-		except IOError, s:
+		except IOError as s:
 			print("couldn't read model: ", s)
 		from Tools.HardwareInfo import HardwareInfo
 		for physdevprefix, pdescription in DEVICEDB.get(HardwareInfo().device_name,{}).items():
@@ -1032,7 +1032,7 @@ class HarddiskManager:
 			cd = open(device)
 			ioctl(cd.fileno(), ioctl_flag, speed)
 			cd.close()
-		except Exception, ex:
+		except Exception as ex:
 			print("[Harddisk] Failed to set %s speed to %s" % (device, speed), ex)
 
 class UnmountTask(Task.LoggingTask):
@@ -1044,7 +1044,7 @@ class UnmountTask(Task.LoggingTask):
 		try:
 			dev = self.hdd.disk_path.split('/')[-1]
 			open('/dev/nomount.%s' % dev, "wb").close()
-		except Exception, e:
+		except Exception as e:
 			print("ERROR: Failed to create /dev/nomount file:", e)
 		self.setTool('umount')
 		self.args.append('-f')
@@ -1060,7 +1060,7 @@ class UnmountTask(Task.LoggingTask):
 		for path in self.mountpoints:
 			try:
 				os.rmdir(path)
-			except Exception, ex:
+			except Exception as ex:
 				print("Failed to remove path '%s':" % path, ex)
 
 class MountTask(Task.LoggingTask):
@@ -1071,7 +1071,7 @@ class MountTask(Task.LoggingTask):
 		try:
 			dev = self.hdd.disk_path.split('/')[-1]
 			os.unlink('/dev/nomount.%s' % dev)
-		except Exception, e:
+		except Exception as e:
 			print("ERROR: Failed to remove /dev/nomount file:", e)
 		# try mounting through fstab first
 		if self.hdd.mount_device is None:
@@ -1116,7 +1116,7 @@ class MkfsTask(Task.LoggingTask):
 					if '\x08' in d[1]:
 						d[1] = d[1].split('\x08',1)[0]
 					self.setProgress(80*int(d[0])/int(d[1]))
-				except Exception, e:
+				except Exception as e:
 					print("[Mkfs] E:", e)
 				return # don't log the progess
 		self.log.append(data)

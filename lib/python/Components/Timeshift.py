@@ -765,7 +765,7 @@ class InfoBarTimeshift:
 								ptsfilename = "%s - %s" % (self.pts_curevent_name.replace("\n", ""),strftime("%Y%m%d %H%M",localtime(self.pts_starttime)))
 							elif config.recording.filename_composition.value == "veryveryshort":
 								ptsfilename = "%s - %s" % (self.pts_curevent_name.replace("\n", ""),strftime("%Y%m%d %H%M",localtime(self.pts_starttime)))
-					except Exception, errormsg:
+					except Exception as errormsg:
 						print("[TIMESHIFT] - Using default filename")
 
 					if config.recording.ascii_filenames.value:
@@ -802,7 +802,7 @@ class InfoBarTimeshift:
 								ptsfilename = "%s - %s" % (eventname,strftime("%Y%m%d %H%M",localtime(int(begintime))))
 							elif config.recording.filename_composition.value == "veryveryshort":
 								ptsfilename = "%s - %s" % (eventname,strftime("%Y%m%d %H%M",localtime(int(begintime))))
-					except Exception, errormsg:
+					except Exception as errormsg:
 						print("[TIMESHIFT] - Using default filename")
 
 					if config.recording.ascii_filenames.value:
@@ -824,7 +824,7 @@ class InfoBarTimeshift:
 				if not mergelater:
 					self.ptsCreateAPSCFiles(fullname+".ts")
 
-			except Exception, errormsg:
+			except Exception as errormsg:
 				timeshift_saved = False
 				timeshift_saveerror1 = errormsg
 
@@ -888,7 +888,7 @@ class InfoBarTimeshift:
 						timeshift_saveerror1 = ""
 						timeshift_saveerror2 = _("Not enough free Diskspace!\n\nFilesize: %sMB\nFree Space: %sMB\nPath: %s" % (filesize,freespace,config.usage.autorecord_path.value))
 
-				except Exception, errormsg:
+				except Exception as errormsg:
 					timeshift_saved = False
 					timeshift_saveerror2 = errormsg
 
@@ -1109,7 +1109,7 @@ class InfoBarTimeshift:
 			service = self.session.nav.getCurrentService()
 			info = service and service.info()
 			event = info and info.getEvent(0)
-		except Exception, errormsg:
+		except Exception as errormsg:
 			Notifications.AddNotification(MessageBox, _("Getting Event Info failed!")+"\n\n%s" % errormsg, MessageBox.TYPE_ERROR, timeout=10)
 
 		if event is not None:
@@ -1171,7 +1171,7 @@ class InfoBarTimeshift:
 					metafile = open("%spts_livebuffer_%s.meta" % (config.usage.timeshift_path.value,self.pts_eventcount), "w")
 					metafile.write("%s\n%s\n%s\n%i\n" % (self.pts_curevent_servicerefname,self.pts_curevent_name.replace("\n", ""),self.pts_curevent_description.replace("\n", ""),int(self.pts_starttime)))
 					metafile.close()
-				except Exception, errormsg:
+				except Exception as errormsg:
 					Notifications.AddNotification(MessageBox, _("Creating Hardlink to Timeshift file failed!")+"\n"+_("The Filesystem on your Timeshift-Device does not support hardlinks.\nMake sure it is formatted in EXT2, EXT3 or EXT4!")+"\n\n%s" % errormsg, MessageBox.TYPE_ERROR, timeout=30)
 
 				# Create EIT File
@@ -1186,7 +1186,7 @@ class InfoBarTimeshift:
 						metafile = open("%s.ts.meta" % fullname, "w")
 						metafile.write("%s\n%s\n%s\n%i\nautosaved\n" % (self.pts_curevent_servicerefname,self.pts_curevent_name.replace("\n", ""),self.pts_curevent_description.replace("\n", ""),int(self.pts_starttime)))
 						metafile.close()
-					except Exception, errormsg:
+					except Exception as errormsg:
 						print("[TIMESHIFT] - %s" % errormsg)
 
 	def ptsRecordCurrentEvent(self):
@@ -1285,7 +1285,7 @@ class InfoBarTimeshift:
 			try:
 				serviceref = ServiceReference(self.session.nav.getCurrentlyPlayingServiceOrGroup()).ref.toString()
 				eEPGCache.getInstance().saveEventToFile(filename+".eit", serviceref, self.pts_curevent_eventid, -1, -1)
-			except Exception, errormsg:
+			except Exception as errormsg:
 				print("[TIMESHIFT] - %s" % errormsg)
 
 	def ptsCopyFilefinished(self, srcfile, destfile):

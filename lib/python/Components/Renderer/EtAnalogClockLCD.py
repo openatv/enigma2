@@ -102,7 +102,7 @@ class EtAnalogClockLCD(Renderer):
 			sopt = int(opt[0])
 			if len(opt) < 2:
 				opt.append('')
-		except Exception, e:
+		except Exception as e:
 			return
 
 		if (what[0] == self.CHANGED_CLEAR):

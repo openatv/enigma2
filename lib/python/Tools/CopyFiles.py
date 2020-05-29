@@ -14,7 +14,7 @@ class DeleteFolderTask(PythonTask):
 		errors = []
 		try:
 			rmtree(self.fileList)
-		except Exception, e:
+		except Exception as e:
 			errors.append(e)
 		if errors:
 			raise errors[0]

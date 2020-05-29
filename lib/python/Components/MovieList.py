@@ -468,13 +468,13 @@ class MovieList(GUIComponent):
 				ref = info.getInfoString(serviceref, iServiceInformation.sServiceref)		# get reference
 				service = ServiceReference(ref).getServiceName()							# get service name
 				serviceSize = getTextBoundarySize(self.instance, self.dateFont, self.l.getItemSize(), service).width()
-			except Exception, e:
+			except Exception as e:
 				print(('[MovieList] load extended infos get failed: ', e))
 			if ext == '2':
 				try:
 					picon = getPiconName(ref)
 					picon = loadPNG(picon)
-				except Exception, e:
+				except Exception as e:
 					print(('[MovieList] load picon get failed: ', e))
 
 			if fileExtension in RECORD_EXTENSIONS:

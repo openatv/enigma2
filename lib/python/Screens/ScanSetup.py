@@ -263,13 +263,13 @@ class CableTransponderSearchSupport:
 						try:
 							device_id = GetDeviceId('TT3L10', nim_idx)
 							device_id = "--device=%s" % (device_id)
-						except Exception, err:
+						except Exception as err:
 							print("GetCommand ->", err)
 							device_id = "--device=0"
 #						print nim_idx, nim_name, cable_autoscan_nimtype[nim_name], device_id
 					command = "%s %s" % (cable_autoscan_nimtype[nim_name], device_id)
 					return command
-			except Exception, err:
+			except Exception as err:
 				print("GetCommand ->", err)
 			return "tda1002x"
 
@@ -518,13 +518,13 @@ class TerrestrialTransponderSearchSupport:
 					try:
 						device_id = GetDeviceId(nim_name, nim_idx)
 						device_id = "--device %s" % (device_id)
-					except Exception, err:
+					except Exception as err:
 						print("terrestrialTransponderGetCmd ->", err)
 						device_id = "--device 0"
 #					print nim_idx, nim_name, terrestrial_autoscan_nimtype[nim_name], device_id
 				command = "%s %s" % (terrestrial_autoscan_nimtype[nim_name], device_id)
 				return command
-		except Exception, err:
+		except Exception as err:
 			print("terrestrialTransponderGetCmd ->", err)
 		return ""
 

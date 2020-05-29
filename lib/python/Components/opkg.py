@@ -59,7 +59,7 @@ def listsDirPath():
 					return line[2].strip()
 			elif line.startswith('lists_dir'):
 				return line.replace('\n','').split(' ')[2]
-	except Exception, ex:
+	except Exception as ex:
 		print("[opkg]", ex)
 	return '/var/lib/opkg/lists'
 

@@ -91,7 +91,7 @@ def InitSkins():
 					print('[RESTORE_SKIN] ... failed!')
 				else:
 					print('[RESTORE_SKIN] ... done!')
-			except Exception, err:
+			except Exception as err:
 				print('[RESTORE_SKIN] ...error occurred: ', err)
 	##################################################################################################
 	runCallbacks = False

@@ -1031,7 +1031,7 @@ class AutoVideoMode(Screen):
 									f.write(write_mode)
 									f.close()
 									changeResolution = True
-								except Exception, e:
+								except Exception as e:
 									print("[VideoMode] write_mode exception:" + str(e))
 
 						if not changeResolution:
@@ -1049,7 +1049,7 @@ class AutoVideoMode(Screen):
 											f.write(x)
 											f.close()
 											changeResolution = True
-										except Exception, e:
+										except Exception as e:
 											print("[VideoMode] write_mode exception:" + str(e))
 								if not changeResolution:
 									print("[VideoMode] setMode - port: %s, mode: 1080p is also not available" % config_port)
@@ -1065,7 +1065,7 @@ class AutoVideoMode(Screen):
 											f.write(x)
 											f.close()
 											changeResolution = True
-										except Exception, e:
+										except Exception as e:
 											print("[VideoMode] write_mode exception:" + str(e))
 								if not changeResolution:
 									print("[VideoMode] setMode - port: %s, mode: 2160p is also not available" % config_port)
@@ -1079,7 +1079,7 @@ class AutoVideoMode(Screen):
 						if config.av.autores_label_timeout.value != '0':
 							resolutionlabel.show()
 						vf.close()
-				except Exception, e:
+				except Exception as e:
 					print("[VideoMode] read videomode_choices exception:" + str(e))
 			elif write_mode and current_mode != write_mode:
 				# the resolution remained stuck at a wrong setting after streaming when self.bufferfull was False (should be fixed now after adding BufferInfoStop)

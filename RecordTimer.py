@@ -102,7 +102,7 @@ def findSafeRecordPath(dirname):
 	if not os.path.isdir(dirname):
 		try:
 			os.makedirs(dirname)
-		except Exception, ex:
+		except Exception as ex:
 			print('[RecordTimer] Failed to create dir "%s":' % dirname, ex)
 			return None
 	return dirname
@@ -440,7 +440,7 @@ class RecordTimerEntry(timer.TimerEntry, object):
 		if not InfoBar:
 			try:
 				from Screens.InfoBar import InfoBar
-			except Exception, e:
+			except Exception as e:
 				print("[RecordTimer] import from 'Screens.InfoBar import InfoBar' failed:", e)
 
 		if os.path.exists("/tmp/was_rectimer_wakeup") and not wasRecTimerWakeup:
@@ -521,7 +521,7 @@ class RecordTimerEntry(timer.TimerEntry, object):
 					# give the Trashcan a chance to clean up
 					try:
 						Trashcan.instance.cleanIfIdle()
-					except Exception, e:
+					except Exception as e:
 						print("[TIMER] Failed to call Trashcan.instance.cleanIfIdle()")
 						print("[TIMER] Error:", e)
 				# fine. it worked, resources are allocated.

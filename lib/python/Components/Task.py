@@ -189,7 +189,7 @@ class Task(object):
 		try:
 			self.prepare()
 			self._run()
-		except Exception, ex:
+		except Exception as ex:
 			print("[Task] exception:", ex)
 			self.postconditions = [FailedPostcondition(ex)]
 			self.finish()
@@ -328,7 +328,7 @@ class ConditionTask(Task):
 			if (self.timeoutCount is not None) and (self.triggerCount > self.timeoutCount):
 				raise Exception, "Timeout elapsed, sorry"
 			res = self.check()
-		except Exception, e:
+		except Exception as e:
 			self.postconditions.append(FailedPostcondition(e))
 			res = True
 		if res:

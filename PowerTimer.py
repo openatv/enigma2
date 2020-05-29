@@ -25,7 +25,7 @@ aeDSsave = False
 wasTimerWakeup = False
 try:
 	from Screens.InfoBar import InfoBar
-except Exception, e:
+except Exception as e:
 	print("[PowerTimer] import from 'Screens.InfoBar import InfoBar' failed:", e)
 	InfoBar = False
 #+++
@@ -168,7 +168,7 @@ class PowerTimerEntry(timer.TimerEntry, object):
 		if not InfoBar:
 			try:
 				from Screens.InfoBar import InfoBar
-			except Exception, e:
+			except Exception as e:
 				print("[PowerTimer] import from 'Screens.InfoBar import InfoBar' failed:", e)
 
 		isRecTimerWakeup = breakPT = shiftPT = False

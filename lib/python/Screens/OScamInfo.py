@@ -180,7 +180,7 @@ class OscamInfo:
 		try:
 			data = urllib2.urlopen( request ).read()
 			# print data
-		except urllib2.URLError, e:
+		except urllib2.URLError as e:
 			if hasattr(e, "reason"):
 				err = str(e.reason)
 			elif hasattr(e, "code"):
