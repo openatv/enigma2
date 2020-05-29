@@ -8,6 +8,7 @@ import struct
 from Components.config import config, ConfigSubsection, ConfigInteger, ConfigYesNo, ConfigText, ConfigSlider
 from Tools.Directories import pathExists
 import platform
+import six
 
 # include/uapi/asm-generic/ioctl.h
 IOC_NRBITS = 8
@@ -73,7 +74,7 @@ class inputDevices:
 			return "Unknown device name"
 
 	def getDeviceList(self):
-		return sorted(self.Devices.iterkeys())
+		return sorted(six.iterkeys(self.Devices))
 
 	def setDeviceAttribute(self, device, attribute, value):
 		#print "[iInputDevices] setting for device", device, "attribute", attribute, " to value", value
@@ -139,7 +140,7 @@ class InitInputDevices:
 
 	def createConfig(self, *args):
 		config.inputDevices = ConfigSubsection()
-		for device in sorted(iInputDevices.Devices.iterkeys()):
+		for device in sorted(six.iterkeys(iInputDevices.Devices)):
 			self.currentDevice = device
 			#print "[InitInputDevices] -> creating config entry for device: %s -> %s  " % (self.currentDevice, iInputDevices.Devices[device]["name"])
 			self.setupConfigEntries(self.currentDevice)
