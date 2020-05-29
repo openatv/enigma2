@@ -2744,7 +2744,7 @@ class InfoBarSeek:
 
 	def doSeekRelative(self, pts):
 		try:
-			if "<class 'Screens.InfoBar.InfoBar'>" in `self`:
+			if "<class 'Screens.InfoBar.InfoBar'>" in repr(self):
 				if InfoBarTimeshift.timeshiftEnabled(self):
 					length = InfoBarTimeshift.ptsGetLength(self)
 					position = InfoBarTimeshift.ptsGetPosition(self)

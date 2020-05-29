@@ -1643,7 +1643,7 @@ class EPGSelection(Screen, HelpableScreen):
 			self['input_actions'].setEnabled(True)
 
 	def doRecordTimer(self, rec=False):
-		if not rec and 'Plugins.Extensions.EPGSearch.EPGSearch.EPGSearch' in `self`:
+		if not rec and 'Plugins.Extensions.EPGSearch.EPGSearch.EPGSearch' in repr(self):
 			self.RecordTimerQuestion()
 		else:
 			self.doInstantTimer(0, 0)
