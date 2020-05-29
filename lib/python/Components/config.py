@@ -8,6 +8,7 @@ from Tools.LoadPixmap import LoadPixmap
 from copy import copy as copy_copy
 from os import path as os_path
 from time import localtime, strftime
+import six
 
 # ConfigElement, the base class of all ConfigElements.
 
@@ -42,7 +43,7 @@ class ConfigElement(object):
 		self.callNotifiersOnSaveAndCancel = False
 
 	def getNotifiers(self):
-		return [func for (func, val, call_on_save_and_cancel) in self.__notifiers.itervalues()]
+		return [func for (func, val, call_on_save_and_cancel) in six.itervalues(self.__notifiers)]
 
 	def setNotifiers(self, val):
 		print("just readonly access to notifiers is allowed! append/remove doesnt work anymore! please use addNotifier, removeNotifier, clearNotifiers")
@@ -50,7 +51,7 @@ class ConfigElement(object):
 	notifiers = property(getNotifiers, setNotifiers)
 
 	def getNotifiersFinal(self):
-		return [func for (func, val, call_on_save_and_cancel) in self.__notifiers_final.itervalues()]
+		return [func for (func, val, call_on_save_and_cancel) in six.itervalues(self.__notifiers_final)]
 
 	def setNotifiersFinal(self, val):
 		print("just readonly access to notifiers_final is allowed! append/remove doesnt work anymore! please use addNotifier, removeNotifier, clearNotifiers")

@@ -95,7 +95,8 @@ class VolumeControl:
 		delay = 0
 		repeat = 0
 
-		for device in inputconfig.itervalues():
+		import six
+		for device in six.itervalues(inputconfig):
 			if "enabled" in device and bool(device["enabled"]):
 				if "delay" in device:
 					val = int(device["delay"])

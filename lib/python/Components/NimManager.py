@@ -319,7 +319,8 @@ class SecConfigure:
 				if slot.isMultiType():
 					eDVBResourceManager.getInstance().setFrontendType(slot.frontend_id, "dummy", False) #to force a clear of m_delsys_whitelist
 					types = slot.getMultiTypeList()
-					for FeType in types.itervalues():
+					import six
+					for FeType in six.itervalues(types):
 						if FeType in ("DVB-S", "DVB-S2", "DVB-S2X") and config.Nims[slot.slot].dvbs.configMode.value == "nothing":
 							continue
 						elif FeType in ("DVB-T", "DVB-T2") and config.Nims[slot.slot].dvbt.configMode.value == "nothing":
@@ -2287,8 +2288,8 @@ def InitNimManager(nimmgr, update_slots=None):
 			if slot.isMultiType():
 				eDVBResourceManager.getInstance().setFrontendType(slot.frontend_id, "dummy", False) #to force a clear of m_delsys_whitelist
 				types = slot.getMultiTypeList()
-				#print"[adenin]",types
-				for FeType in types.itervalues():
+				import six
+				for FeType in six.itervalues(types):
 					if FeType in ("DVB-S", "DVB-S2", "DVB-S2X") and config.Nims[slot.slot].dvbs.configMode.value == "nothing":
 						continue
 					elif FeType in ("DVB-T", "DVB-T2") and config.Nims[slot.slot].dvbt.configMode.value == "nothing":
