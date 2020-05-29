@@ -275,7 +275,7 @@ class choicesList(object): # XXX: we might want a better name for this
 			if isinstance(default, tuple):
 				default = default[0]
 		else:
-			default = choices.keys()[0]
+			default = list(choices.keys())[0]
 		return default
 
 class descriptionList(choicesList): # XXX: we might want a better name for this
