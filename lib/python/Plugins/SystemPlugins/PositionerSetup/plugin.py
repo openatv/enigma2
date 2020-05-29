@@ -742,7 +742,7 @@ class PositionerSetup(Screen):
 
 		def optimise(readings):
 			xi = readings.keys()
-			yi = map(lambda (x, y) : x, readings.values())
+			yi = map(lambda x_y : x_y[0], readings.values())
 			x0 = sum(map(mul, xi, yi)) / sum(yi)
 			xm = xi[yi.index(max(yi))]
 			return x0, xm
@@ -877,7 +877,7 @@ class PositionerSetup(Screen):
 
 		def optimise(readings):
 			xi = readings.keys()
-			yi = map(lambda (x, y) : x, readings.values())
+			yi = map(lambda x_y1 : x_y1[0], readings.values())
 			x0 = int(round(sum(map(mul, xi, yi)) / sum(yi)))
 			xm = xi[yi.index(max(yi))]
 			return x0, xm
