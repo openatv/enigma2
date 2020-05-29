@@ -329,7 +329,7 @@ class ServiceList(HTMLComponent, GUIComponent):
 		list = serviceHandler.list(self.root)
 		dest = [ ]
 		if list is not None:
-			while 1:
+			while True:
 				s = list.getNext()
 				if s.valid():
 					dest.append(s.toString())

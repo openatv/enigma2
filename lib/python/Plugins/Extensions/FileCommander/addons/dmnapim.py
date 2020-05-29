@@ -52,7 +52,7 @@ class GetFPS(object):
     def get_mkv_fps(self):
         track = 0
         self.file.seek(0)
-        while 1:
+        while True:
             class_id, length = self.eblm()
             # print "class_id: %X length %i position:%i" % (class_id, length, self.file.tell())
             if (class_id == 0x83):

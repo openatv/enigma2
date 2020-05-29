@@ -29,6 +29,6 @@ class NetlinkSocket(socket.socket):
 if __name__ == '__main__':
 	nls = NetlinkSocket()
 	print("socket no:", nls.fileno())
-	while 1:
+	while True:
 		for item in nls.parse():
 			print(repr(item))

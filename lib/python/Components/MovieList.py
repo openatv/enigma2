@@ -70,7 +70,7 @@ def moviePlayState(cutsFileName, ref, length):
 		f = open(cutsFileName, 'rb')
 		lastCut = None
 		cutPTS = None
-		while 1:
+		while True:
 			data = f.read(cutsParser.size)
 			if len(data) < cutsParser.size:
 				break
@@ -121,7 +121,7 @@ def resetMoviePlayState(cutsFileName, ref=None):
 			delResumePoint(ref)
 		f = open(cutsFileName, 'rb')
 		cutlist = []
-		while 1:
+		while True:
 			data = f.read(cutsParser.size)
 			if len(data) < cutsParser.size:
 				break
@@ -609,7 +609,7 @@ class MovieList(GUIComponent):
 			ref.flags = eServiceReference.flagDirectory
 			self.list.append((ref, None, 0, -1))
 			numberOfDirs += 1
-		while 1:
+		while True:
 			serviceref = reflist.getNext()
 			if not serviceref.valid():
 				break
