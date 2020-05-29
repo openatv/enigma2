@@ -206,7 +206,7 @@ class QuickMenu(Screen, ProtectedScreen):
 				self["summary_description"].text = item[0]
 
 	def goLeft(self):
-		if self.menu <> 0:
+		if self.menu != 0:
 			self.menu = 0
 			self.selectedList = self["list"]
 			self["list"].selectionEnabled(1)

@@ -43,7 +43,7 @@ for mount in mounts:
 
 def getValue(line):
 	dummy = line.split('=')
-	if len(dummy) <> 2:
+	if len(dummy) != 2:
 		print("Error: Wrong formatted settings file")
 		exit
 	if dummy[1] == "false":
@@ -57,7 +57,7 @@ def getValue(line):
 p = Popen("opkg list-upgradable", stdout=PIPE, stderr=PIPE, shell=True)
 stdout, stderr = p.communicate()
 
-if stderr <> "":
+if stderr != "":
 	print("Error occurred:", stderr)
 	exit
 

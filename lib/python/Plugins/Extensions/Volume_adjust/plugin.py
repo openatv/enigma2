@@ -480,7 +480,7 @@ class Volume:
 		if not self.service is None:
 			service = self.service.toCompareString()
 			# check for new channel (zap)
-			if service <> self.oldservice:
+			if service != self.oldservice:
 				print('[Volume Adjust] New Channel')
 				# store new channel
 				self.oldservice = service

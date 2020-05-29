@@ -2661,7 +2661,7 @@ class InfoBarSeek:
 			self.unPauseService()
 
 	def playpauseService(self):
-		if self.seekAction <> 0:
+		if self.seekAction != 0:
 			self.seekAction = 0
 			self.doPause(False)
 			global seek_withjumps_muted
@@ -2698,7 +2698,7 @@ class InfoBarSeek:
 	def unPauseService(self):
 		SystemInfo["StatePlayPause"] = False
 		if self.seekstate == self.SEEK_STATE_PLAY:
-			if self.seekAction <> 0: self.playpauseService()
+			if self.seekAction != 0: self.playpauseService()
 			#return 0 # if 'return 0', plays timeshift again from the beginning
 			return
 		self.doPause(False)

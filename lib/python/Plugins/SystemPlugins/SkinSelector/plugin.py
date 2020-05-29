@@ -85,7 +85,7 @@ class SkinSelector(Screen):
 	def find(self, arg, dirname, names):
 		for x in names:
 			if x == "skin.xml":
-				if dirname <> self.root:
+				if dirname != self.root:
 					subdir = dirname[19:]
 					self.skinlist.append(subdir)
 				else:
