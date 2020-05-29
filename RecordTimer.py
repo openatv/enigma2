@@ -4,7 +4,7 @@ import xml.etree.cElementTree
 from datetime import datetime
 from time import localtime, strftime, ctime, time
 from bisect import insort
-from sys import maxint
+from sys import maxsize
 import os
 from enigma import eEPGCache, getBestPlayableServiceReference, eServiceReferenceDVB, eStreamServer, eServiceReference, iRecordableService, quitMainloop, eActionMap, setPreferredTuner, eServiceCenter
 
@@ -487,7 +487,7 @@ class RecordTimerEntry(timer.TimerEntry, object):
 				Screens.Standby.TVinStandby.skipHdmiCecNow('zapandrecordtimer')
 				if Screens.Standby.inStandby:
 					self.wasInStandby = True
-					#eActionMap.getInstance().bindAction('', -maxint - 1, self.keypress)
+					#eActionMap.getInstance().bindAction('', -sys.maxsize - 1, self.keypress)
 					#set service to zap after standby
 					Screens.Standby.inStandby.prev_running_service = self.service_ref.ref
 					Screens.Standby.inStandby.paused_service = None
@@ -672,7 +672,7 @@ class RecordTimerEntry(timer.TimerEntry, object):
 				Screens.Standby.TVinStandby.skipHdmiCecNow('zaptimer')
 				if Screens.Standby.inStandby:
 					self.wasInStandby = True
-					#eActionMap.getInstance().bindAction('', -maxint - 1, self.keypress)
+					#eActionMap.getInstance().bindAction('', -maxsize - 1, self.keypress)
 					self.log(11, "wakeup and zap")
 					#set service to zap after standby
 					Screens.Standby.inStandby.prev_running_service = self.service_ref.ref

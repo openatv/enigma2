@@ -10,7 +10,7 @@ from Tools.Directories import fileExists, pathExists
 from time import time
 import Screens.Standby
 
-from sys import maxint
+from sys import maxsize
 
 config.hdmicec = ConfigSubsection()
 config.hdmicec.enabled = ConfigYesNo(default = False) # query from this value in hdmi_cec.cpp
@@ -476,7 +476,7 @@ class HdmiCec:
 
 			self.volumeForwardingEnabled = False
 			self.volumeForwardingDestination = 0
-			eActionMap.getInstance().bindAction('', -maxint - 1, self.keyEvent)
+			eActionMap.getInstance().bindAction('', -maxsize - 1, self.keyEvent)
 			config.hdmicec.volume_forwarding.addNotifier(self.configVolumeForwarding, initial_call = False)
 			config.hdmicec.enabled.addNotifier(self.configVolumeForwarding)
 
