@@ -218,7 +218,7 @@ class Harddisk:
 			elif self.device.startswith('mmcblk'):
 				return readFile(self.sysfsPath('device/name'))
 			else:
-				raise Exception, "no hdX or sdX or mmcX"
+				raise Exception("no hdX or sdX or mmcX")
 		except Exception as e:
 			#print "[Harddisk] Failed to get model:", e
 			return "-?-"
@@ -462,7 +462,7 @@ class Harddisk:
 
 	def createExt4ConversionJob(self):
 		if not isFileSystemSupported('ext4'):
-			raise Exception, _("You system does not support ext4")
+			raise Exception("You system does not support ext4")
 		job = Task.Job(_("Converting ext3 to ext4..."))
 		if not os.path.exists('/sbin/tune2fs'):
 			addInstallTask(job, 'e2fsprogs-tune2fs')
@@ -589,7 +589,7 @@ class Partition:
 		if self.mountpoint:
 			return os.statvfs(self.mountpoint)
 		else:
-			raise OSError, "Device %s is not mounted" % self.device
+			raise OSError("Device %s is not mounted" % self.device)
 
 	def free(self):
 		try:

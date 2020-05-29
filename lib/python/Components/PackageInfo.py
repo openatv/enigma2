@@ -26,7 +26,7 @@ class InfoHandler(xml.sax.ContentHandler):
 		self.data = ""
 
 	def printError(self, error):
-		raise InfoHandlerParseError, error
+		raise InfoHandlerParseError(error)
 
 	def startElement(self, name, attrs):
 		self.elements.append(name)

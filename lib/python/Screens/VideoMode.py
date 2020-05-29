@@ -294,7 +294,7 @@ class VideoSetup(Screen, ConfigListScreen):
 				config.av.autores_1080i_deinterlace.setValue(self.last_good_autores_extra[1])
 				config.av.autores_unknownres.setValue(self.last_good_autores_unknownres)
 				try:
-					if not self.current_mode in iAVSwitch.readAvailableModes(): raise TypeError, "No old video mode saved!"
+					if not self.current_mode in iAVSwitch.readAvailableModes(): raise TypeError("No old video mode saved!")
 					f = open("/proc/stb/video/videomode", "w")
 					f.write(self.current_mode)
 					f.close()

@@ -475,7 +475,7 @@ class CreateMplsTask(Task):
 		
 		if num_primary_video == 0:
 			self.error_text = "Title %05d has no valid video streams!" % self.mpls_num
-			raise Exception, self.error_text
+			raise Exception(self.error_text)
 
 		num_primary_audio = len(self.title.AudioStreams)
 

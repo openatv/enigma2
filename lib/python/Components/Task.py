@@ -283,7 +283,7 @@ class PythonTask(Task):
 		self.timer.callback.append(self.onTimer)
 		self.timer.start(5)
 	def work(self):
-		raise NotImplemented, "work"
+		raise NotImplemented("work")
 	def abort(self):
 		self.aborted = True
 		if self.callback is None:
@@ -326,7 +326,7 @@ class ConditionTask(Task):
 		self.triggerCount += 1
 		try:
 			if (self.timeoutCount is not None) and (self.triggerCount > self.timeoutCount):
-				raise Exception, "Timeout elapsed, sorry"
+				raise Exception("Timeout elapsed, sorry")
 			res = self.check()
 		except Exception as e:
 			self.postconditions.append(FailedPostcondition(e))
