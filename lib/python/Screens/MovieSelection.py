@@ -2,7 +2,8 @@ from __future__ import print_function
 from __future__ import absolute_import
 import os
 import time
-import cPickle as pickle
+import six
+from six.moves import cPickle as pickle
 
 from enigma import eServiceReference, eServiceReferenceFS, eServiceCenter, eTimer, eSize, iPlayableService, iServiceInformation, getPrevAsciiCode, eRCInput, pNavigation
 
@@ -37,6 +38,7 @@ import Tools.CopyFiles
 import Tools.Trashcan
 import NavigationInstance
 import RecordTimer
+
 
 
 config.movielist = ConfigSubsection()
@@ -840,7 +842,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase, Pr
 			self.list.moveToChar(charstr[0], self["chosenletter"])
 
 	def keyAsciiCode(self):
-		unichar = unichr(getPrevAsciiCode())
+		unichar = six.unichr(getPrevAsciiCode())
 		charstr = unichar.encode("utf-8")
 		if len(charstr) == 1:
 			self.list.moveToString(charstr[0], self["chosenletter"])

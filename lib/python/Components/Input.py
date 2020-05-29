@@ -4,6 +4,7 @@ from Components.GUIComponent import GUIComponent
 from Components.VariableText import VariableText
 
 from enigma import eLabel
+import six
 
 from Tools.NumericalTextInput import NumericalTextInput
 
@@ -243,7 +244,7 @@ class Input(VariableText, HTMLComponent, GUIComponent, NumericalTextInput):
 		if self.allmarked:
 			self.deleteAllChars()
 			self.allmarked = False
-		self.insertChar(unichr(code), self.currPos, False, False)
+		self.insertChar(six.unichr(code), self.currPos, False, False)
 		self.innerright()
 		self.update()
 

@@ -57,6 +57,8 @@ from RecordTimer import TIMERTYPE
 from skin import getSkinFactor
 
 from time import localtime, time, strftime
+import six
+
 try:
 	from Plugins.SystemPlugins.PiPServiceRelation.plugin import getRelationDict
 	plugin_PiPServiceRelation_installed = True
@@ -2006,7 +2008,7 @@ class ChannelSelectionBase(Screen):
 		self.selectionNumber = ""
 
 	def keyAsciiCode(self):
-		unichar = unichr(getPrevAsciiCode())
+		unichar = six.unichr(getPrevAsciiCode())
 		charstr = unichar.encode('utf-8')
 		if len(charstr) == 1:
 			self.servicelist.moveToChar(charstr[0])

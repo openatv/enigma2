@@ -34,7 +34,6 @@ from Tools.Directories import pathExists, fileExists, resolveFilename, SCOPE_PLU
 from Tools.LoadPixmap import LoadPixmap
 from Tools.NumericalTextInput import NumericalTextInput
 from enigma import eTimer, RT_HALIGN_LEFT, RT_VALIGN_CENTER, eListboxPythonMultiContent, eListbox, gFont, getDesktop, ePicLoad, eRCInput, getPrevAsciiCode, eEnv, iRecordableService, getEnigmaVersionString
-from cPickle import dump, load
 from os import path as os_path, system as os_system, unlink, stat, mkdir, popen, makedirs, listdir, access, rename, remove, W_OK, R_OK, F_OK
 from time import time, gmtime, strftime, localtime
 from stat import ST_MTIME
@@ -51,6 +50,10 @@ from .BackupRestore import InitConfig as BackupRestore_InitConfig
 from .SoftwareTools import iSoftwareTools
 import os
 from boxbranding import getBoxType, getMachineBrand, getMachineName, getBrandOEM
+import six
+from six.moves.cPickle import dump, load
+from six.moves import reload_module
+
 
 boxtype = getBoxType()
 brandoem = getBrandOEM()
@@ -2048,7 +2051,7 @@ class PacketManager(Screen, NumericalTextInput):
 				self.setNextIdx(keyvalue[0])
 
 	def keyGotAscii(self):
-		keyvalue = unichr(getPrevAsciiCode()).encode("utf-8")
+		keyvalue = six.unichr(getPrevAsciiCode()).encode("utf-8")
 		if len(keyvalue) == 1:
 			self.setNextIdx(keyvalue[0])
 
@@ -2075,7 +2078,7 @@ class PacketManager(Screen, NumericalTextInput):
 		rcinput.setKeyboardMode(rcinput.kmNone)
 		self.close()
 
-	def reload(self):
+	def reload_module(self):
 		if (os_path.exists(self.cache_file) == True):
 			remove(self.cache_file)
 			self.list_updating = True
@@ -2442,7 +2445,7 @@ class ShowUpdatePackages(Screen, NumericalTextInput):
 				self.setNextIdx(keyvalue[0])
 		
 	def keyGotAscii(self):
-		keyvalue = unichr(getPrevAsciiCode()).encode("utf-8")
+		keyvalue = six.unichr(getPrevAsciiCode()).encode("utf-8")
 		if len(keyvalue) == 1:
 			self.setNextIdx(keyvalue[0])
 		
