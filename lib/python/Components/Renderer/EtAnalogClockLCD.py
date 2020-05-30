@@ -19,10 +19,10 @@ class EtAnalogClockLCD(Renderer):
 		self.bColor = gRGB(0, 0, 0, 255)
 		self.forend = -1
 		self.linewidth = 1
-                self.positionheight = 1
-                self.positionwidth = 1
-                self.linesize = 1
-                
+		self.positionheight = 1
+		self.positionwidth = 1
+		self.linesize = 1
+
 	GUI_WIDGET = eCanvas
 
 	def applySkin(self, desktop, parent):

@@ -1303,7 +1303,7 @@ class TunerScreen(ConfigListScreen, Screen):
 			transponder = nimmanager.getTransponders(satpos)[self.tuning.transponder.index]
 			returnvalue = (transponder[1] / 1000, transponder[2] / 1000,
 				transponder[3], transponder[4], 2, satpos, transponder[5], transponder[6], transponder[8], transponder[9], transponder[10], transponder[11], transponder[12], transponder[13], transponder[14])
- 		self.close(returnvalue)
+		self.close(returnvalue)
 
 	def keyCancel(self):
 		self.close(None)

@@ -27,13 +27,13 @@ class Streaming2(Converter):
 			else:
 				return _("=NO STREAM\n")
 
-                retval = "+%d:%s" % (s["demux"], ','.join(["%x:%s" % (x[0], x[1]) for x in s["pids"]]))
+		retval = "+%d:%s" % (s["demux"], ','.join(["%x:%s" % (x[0], x[1]) for x in s["pids"]]))
 
-                if "default_audio_pid" in s:
-                        retval += ",%x:%s" % (s["default_audio_pid"], "default_audio_pid")
+		if "default_audio_pid" in s:
+			retval += ",%x:%s" % (s["default_audio_pid"], "default_audio_pid")
 
-                retval += "\n"
+		retval += "\n"
 
-                return(retval);
+		return(retval);
 
 	text = property(getText)
