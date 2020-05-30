@@ -44,7 +44,7 @@ class GUISkin:
 
 		for f in self.onLayoutFinish:
 			if not isinstance(f, type(self.close)): # is this the best way to do this?
-				exec f in globals(), locals()
+				exec(f, globals(), locals())
 			else:
 				f()
 

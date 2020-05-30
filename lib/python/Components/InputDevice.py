@@ -159,9 +159,9 @@ class InitInputDevices:
 				devname = iInputDevices.getDeviceAttribute(self.currentDevice, 'name')
 				if devname != configElement.value:
 					cmd = "config.inputDevices." + self.currentDevice + ".enabled.value = False"
-					exec cmd
+					exec(cmd)
 					cmd = "config.inputDevices." + self.currentDevice + ".enabled.save()"
-					exec cmd
+					exec(cmd)
 		elif iInputDevices.currentDevice != "":
 			iInputDevices.setName(iInputDevices.currentDevice, configElement.value)
 
@@ -179,35 +179,35 @@ class InitInputDevices:
 
 	def setupConfigEntries(self, device):
 		cmd = "config.inputDevices." + device + " = ConfigSubsection()"
-		exec cmd
+		exec(cmd)
 		boxtype=getBoxType()
 		if boxtype == 'dm800' or boxtype == 'azboxhd':
 			cmd = "config.inputDevices." + device + ".enabled = ConfigYesNo(default = True)"
 		else:
 			cmd = "config.inputDevices." + device + ".enabled = ConfigYesNo(default = False)"
-		exec cmd
+		exec(cmd)
 		cmd = "config.inputDevices." + device + ".enabled.addNotifier(self.inputDevicesEnabledChanged,config.inputDevices." + device + ".enabled)"
-		exec cmd
+		exec(cmd)
 		cmd = "config.inputDevices." + device + '.name = ConfigText(default="")'
-		exec cmd
+		exec(cmd)
 		cmd = "config.inputDevices." + device + ".name.addNotifier(self.inputDevicesNameChanged,config.inputDevices." + device + ".name)"
-		exec cmd
+		exec(cmd)
 		if boxtype in ('maram9', 'classm', 'axodin', 'axodinc', 'starsatlx', 'genius', 'evo', 'galaxym6'):
 			cmd = "config.inputDevices." + device + ".repeat = ConfigSlider(default=400, increment = 10, limits=(0, 500))"
 		elif boxtype == 'azboxhd':
 			cmd = "config.inputDevices." + device + ".repeat = ConfigSlider(default=150, increment = 10, limits=(0, 500))"
 		else:		
 			cmd = "config.inputDevices." + device + ".repeat = ConfigSlider(default=100, increment = 10, limits=(0, 500))"	
-		exec cmd
+		exec(cmd)
 		cmd = "config.inputDevices." + device + ".repeat.addNotifier(self.inputDevicesRepeatChanged,config.inputDevices." + device + ".repeat)"
-		exec cmd
+		exec(cmd)
 		if boxtype in ('maram9', 'classm', 'axodin', 'axodinc', 'starsatlx', 'genius', 'evo', 'galaxym6'):
 			cmd = "config.inputDevices." + device + ".delay = ConfigSlider(default=200, increment = 100, limits=(0, 5000))"
 		else:
 			cmd = "config.inputDevices." + device + ".delay = ConfigSlider(default=700, increment = 100, limits=(0, 5000))"
-		exec cmd
+		exec(cmd)
 		cmd = "config.inputDevices." + device + ".delay.addNotifier(self.inputDevicesDelayChanged,config.inputDevices." + device + ".delay)"
-		exec cmd
+		exec(cmd)
 
 
 iInputDevices = inputDevices()

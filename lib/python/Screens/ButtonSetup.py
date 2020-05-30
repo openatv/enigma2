@@ -153,7 +153,7 @@ def getButtonSetupKeys():
 config.misc.ButtonSetup = ConfigSubsection()
 config.misc.ButtonSetup.additional_keys = ConfigYesNo(default=True)
 for x in getButtonSetupKeys():
-	exec "config.misc.ButtonSetup." + x[1] + " = ConfigText(default='" + x[2] + "')"
+	exec("config.misc.ButtonSetup." + x[1] + " = ConfigText(default='" + x[2] + "')")
 
 def getButtonSetupFunctions():
 	ButtonSetupFunctions = []
@@ -611,18 +611,18 @@ class InfoBarButtonSetup():
 						return
 			elif selected[0] == "Infobar":
 				if hasattr(self, selected[1]):
-					exec "self." + ".".join(selected[1:]) + "()"
+					exec("self." + ".".join(selected[1:]) + "()")
 				else:
 					return 0
 			elif selected[0] == "Module":
 				try:
-					exec "from %s import %s" % (selected[1], selected[2])
-					exec "self.session.open(%s)" %  ",".join(selected[2:])
+					exec("from %s import %s" % (selected[1], selected[2]))
+					exec("self.session.open(%s)" %  ",".join(selected[2:]))
 				except:
 					print("[ButtonSetup] error during executing module %s, screen %s" % (selected[1], selected[2]))
 			elif selected[0] == "Setup":
 				from Screens.Setup import Setup
-				exec "self.session.open(Setup, \"%s\")" % selected[1]
+				exec("self.session.open(Setup, \"%s\")" % selected[1])
 			elif selected[0].startswith("Zap"):
 				if selected[0] == "ZapPanic":
 					self.servicelist.history = []
@@ -650,7 +650,7 @@ class InfoBarButtonSetup():
 					self.session.open(Execute, selected[1] + " shellscript", None, command)
 				else:
 					from Screens.Console import Console
-					exec "self.session.open(Console,_(selected[1]),[command])"
+					exec("self.session.open(Console,_(selected[1]),[command])")
 			elif selected[0] == "EMC":
 				try:
 					from Plugins.Extensions.EnhancedMovieCenter.plugin import showMoviesNew
