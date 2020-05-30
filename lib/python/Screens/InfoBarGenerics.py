@@ -4094,8 +4094,8 @@ class InfoBarPiP:
 		else:
 			if isinstance(self, InfoBarChannelSelection):
 				self.LeftPressed()
-			
- 	def doTogglePipzap(self):
+
+	def doTogglePipzap(self):
 		if hasattr(self.session, "pip"):
 			if config.usage.pip_mode.value == "byside":
 				if not self.TogglePiPZapSidebySide:

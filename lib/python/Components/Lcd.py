@@ -352,7 +352,7 @@ def InitLcd():
 			config.lcd.modepip.addNotifier(setLCDModePiP)
 
 			config.lcd.screenshot = ConfigYesNo(default=False)
- 			config.lcd.screenshot.addNotifier(setLCDScreenshot)
+			config.lcd.screenshot.addNotifier(setLCDScreenshot)
 
 			config.lcd.modeminitv = ConfigSelection(choices={
 					"0": _("normal"),

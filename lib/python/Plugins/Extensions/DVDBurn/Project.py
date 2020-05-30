@@ -121,13 +121,13 @@ class Project:
 			file.close()
 			projectfiledom = xml.dom.minidom.parseString(data)
 			for node in projectfiledom.childNodes[0].childNodes:
-			  print("node:", node)
-			  if node.nodeType == xml.dom.minidom.Element.nodeType:
-			    if node.tagName == 'settings':
-				self.xmlAttributesToConfig(node, self.settings)
-			    elif node.tagName == 'titles':
-				self.xmlGetTitleNodeRecursive(node)
-				
+				print("node:", node)
+				if node.nodeType == xml.dom.minidom.Element.nodeType:
+					if node.tagName == 'settings':
+						self.xmlAttributesToConfig(node, self.settings)
+					elif node.tagName == 'titles':
+						self.xmlGetTitleNodeRecursive(node)
+
 			for key in self.filekeys:
 				val = self.settings.dict()[key].getValue()
 				if not fileExists(val):
@@ -175,23 +175,23 @@ class Project:
 		print("[xmlGetTitleNodeRecursive]", title_idx, node)
 		print(node.childNodes)
 		for subnode in node.childNodes:
-		  print("xmlGetTitleNodeRecursive subnode:", subnode)
-		  if subnode.nodeType == xml.dom.minidom.Element.nodeType:
-		    if subnode.tagName == 'title':
-			title_idx += 1
-			title = Title.Title(self)
-			self.titles.append(title)
-			self.xmlGetTitleNodeRecursive(subnode, title_idx)
-		    if subnode.tagName == 'path':
-			print("path:", subnode.firstChild.data)
-			filename = subnode.firstChild.data
-			self.titles[title_idx].addFile(filename.encode("utf-8"))
-		    if subnode.tagName == 'properties':
-			self.xmlAttributesToConfig(node, self.titles[title_idx].properties)
-		    if subnode.tagName == 'audiotracks':
-			self.xmlGetTitleNodeRecursive(subnode, title_idx)
-		    if subnode.tagName == 'audiotrack':
-			print("audiotrack...", subnode.toxml())
+			print("xmlGetTitleNodeRecursive subnode:", subnode)
+			if subnode.nodeType == xml.dom.minidom.Element.nodeType:
+				if subnode.tagName == 'title':
+					title_idx += 1
+					title = Title.Title(self)
+					self.titles.append(title)
+					self.xmlGetTitleNodeRecursive(subnode, title_idx)
+				if subnode.tagName == 'path':
+					print("path:", subnode.firstChild.data)
+					filename = subnode.firstChild.data
+					self.titles[title_idx].addFile(filename.encode("utf-8"))
+				if subnode.tagName == 'properties':
+					self.xmlAttributesToConfig(node, self.titles[title_idx].properties)
+				if subnode.tagName == 'audiotracks':
+					self.xmlGetTitleNodeRecursive(subnode, title_idx)
+				if subnode.tagName == 'audiotrack':
+					print("audiotrack...", subnode.toxml())
 
 	def getSize(self):
 		totalsize = 0
