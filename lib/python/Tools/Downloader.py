@@ -49,11 +49,11 @@ class downloadWithProgress:
 			scheme, host, port, path = client._parse(url)
 		else:
 			# _URI class renamed to URI in 15.0.0
- 			try:
- 				from twisted.web.client import _URI as URI
- 			except ImportError:
- 				from twisted.web.client import URI
- 			uri = URI.fromBytes(url)
+			try:
+				from twisted.web.client import _URI as URI
+			except ImportError:
+				from twisted.web.client import URI
+			uri = URI.fromBytes(url)
 			scheme = uri.scheme
 			host = uri.host
 			port = uri.port
