@@ -4527,12 +4527,12 @@ class InfoBarAudioSelection:
 	def yellow_key(self):
 		if not hasattr(self, "LongButtonPressed"):
 			self.LongButtonPressed = False
+		global AUDIO
 		if not self.LongButtonPressed:
 			if config.plugins.infopanel_yellowkey.list.value == '0':
 				from Screens.AudioSelection import AudioSelection
 				self.session.openWithCallback(self.audioSelected, AudioSelection, infobar=self)
 			elif config.plugins.infopanel_yellowkey.list.value == '2':
-				global AUDIO
 				AUDIO = True
 				ToggleVideo()
 			elif config.plugins.infopanel_yellowkey.list.value == '3':
@@ -4547,7 +4547,6 @@ class InfoBarAudioSelection:
 				from Screens.AudioSelection import AudioSelection
 				self.session.openWithCallback(self.audioSelected, AudioSelection, infobar=self)
 			elif config.plugins.infopanel_yellowkey.listLong.value == '2':
-				global AUDIO
 				AUDIO = True
 				ToggleVideo()
 			elif config.plugins.infopanel_yellowkey.listLong.value == '3':
