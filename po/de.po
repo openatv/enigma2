@@ -948,7 +948,7 @@ msgstr "%d GB"
 
 #, python-format
 msgid "%d KB"
-msgstr ""
+msgstr "%d kB"
 
 #, python-format
 msgid "%d MB"
@@ -980,7 +980,7 @@ msgstr[1] "%d Min"
 #
 #, python-format
 msgid "%d Mins"
-msgstr "%d min"
+msgstr "%d Min"
 
 #. TRANSLATORS: Intermediate scanning result, '%d' channel(s) have been found so far
 #, python-format
@@ -1002,7 +1002,7 @@ msgstr "%d kB"
 #
 #, python-format
 msgid "%d min"
-msgstr "%d min"
+msgstr "%d Min"
 
 #, python-format
 msgid "%d minute"
@@ -1134,8 +1134,8 @@ msgid ""
 "Press exit to close"
 msgstr ""
 "%s\n"
-"Drücken Sie Ok für Multiboot Auswahl\n"
-"Drücken Sie Exit zum Beenden"
+"Drücken Sie OK für Multiboot-Auswahl.\n"
+"Drücken Sie EXIT zum Beenden."
 
 #, python-format
 msgid "%s %02d.%02d."
@@ -1195,7 +1195,7 @@ msgstr "%s - Extraktionsfehler."
 
 #, python-format
 msgid "%s Setup"
-msgstr ""
+msgstr "%s Einrichtung"
 
 #, python-format
 msgid "%s additional screens"
@@ -2189,7 +2189,7 @@ msgid "Aborted a pseudo recording.\n"
 msgstr "Eine Pseudo-Aufnahme wurde deaktiviert.\n"
 
 msgid "Aborted a streaming service.\n"
-msgstr ""
+msgstr "Streaming-Dienst abgebrochen.\n"
 
 msgid "Aborting updateprogress"
 msgstr "Update wurde abgebrochen"
@@ -2223,7 +2223,7 @@ msgid "Activate HbbTV (Redbutton)"
 msgstr "HbbTV einschalten"
 
 msgid "Activate MAC-address configuration"
-msgstr ""
+msgstr "Aktiviere MAC-Adresskonfiguration"
 
 #
 msgid "Activate Picture in Picture"
@@ -2234,7 +2234,7 @@ msgid "Activate an way to send individual or specific internal HDMI-CEC commands
 msgstr "Aktivieren Sie die Möglichkeit, individuelle oder festgelegte interne HDMI-CEC-Befehle von der Befehlszeile zu senden. Geben Sie in der Befehlszeile 'echo help > %s' ein und lesen Sie die Datei '%s', um eine kurze Hilfe zu erhalten."
 
 msgid "Activate current configuration"
-msgstr ""
+msgstr "Aktuelle Konfiguration aktivieren"
 
 msgid "Activate left-hand file list as multi-select source"
 msgstr "Aktivieren Sie die linke Dateiliste als Mehrfachauswahlquelle"
@@ -2307,7 +2307,7 @@ msgid "Add a mark"
 msgstr "Marker hinzufügen"
 
 msgid "Add a nameserver entry"
-msgstr ""
+msgstr "Einen Nameserver-Eintrag hinzufügen"
 
 #
 msgid "Add a new title"
@@ -2592,7 +2592,7 @@ msgstr "OSCam Info unter Erweiterungen (Taste BLAU) anzeigen."
 
 # ImageBackup.py
 msgid "Almost there... "
-msgstr "Fast geschafft..."
+msgstr "Fast geschafft... "
 
 msgid "Alpha"
 msgstr "Buchstabe"
@@ -2848,7 +2848,7 @@ msgid "Ask user (with default as 'yes')"
 msgstr "Benutzer fragen (Standard vorbelegen mit 'Ja')"
 
 msgid "Aspect"
-msgstr ""
+msgstr "Aspect"
 
 #
 msgid "Aspect Ratio"
@@ -2859,7 +2859,7 @@ msgid "Aspect list..."
 msgstr "Seitenverhältnis..."
 
 msgid "Aspect long"
-msgstr ""
+msgstr "Aspect lang"
 
 msgid "Aspect ratio"
 msgstr "Seitenverhältnis"
@@ -2987,7 +2987,7 @@ msgid "Auto Timers"
 msgstr "AutoTimer"
 
 msgid "Auto Volume Level"
-msgstr ""
+msgstr "Automatische Lautstärkeanpassung"
 
 msgid "Auto chapter split every ? minutes (0=never)"
 msgstr "Automatischer Kapitelwechsel alle x Minuten (0=nie)"
@@ -3000,7 +3000,7 @@ msgid "Auto focus"
 msgstr "Auto Fokus"
 
 msgid "Auto focus commencing ..."
-msgstr ""
+msgstr "Auto Fokus startet..."
 
 msgid "Auto language selection"
 msgstr "Automatische Sprachauswahl"
@@ -3448,7 +3448,7 @@ msgid "Bouvet Island"
 msgstr "Bouvet Insel"
 
 msgid "Box or driver is not support Quad PiP."
-msgstr ""
+msgstr "Box oder Treiber unterstützen Quad Bild im Bild nicht!"
 
 msgid "Brazil"
 msgstr "Brasilien"
@@ -3744,7 +3744,7 @@ msgstr ""
 
 #, python-format
 msgid "Can't read link contents: %s"
-msgstr ""
+msgstr "Linkinhalt kann nicht gelesen werden: %s"
 
 msgid "Can't unmount partiton, make sure it is not being used for swap or record/timeshift paths"
 msgstr "Kann Partition nicht aushängen. Bitte sicherstellen, dass diese nicht für Auslagerungsdatei oder Aufnahme/Timeshift-Pfade genutzt wird"
@@ -4744,7 +4744,10 @@ msgstr "Einstellen, welcher von mehreren Tunern bevorzugt benutzt werden soll. B
 
 #
 msgid "Configure your NTP server."
-msgstr "Den NTP-Server zur Zeit-Synchronisierung ändern."
+msgstr ""
+"Wählen Sie den NTP-Server zur Zeitsynchronisierung.\n"
+"\n"
+"Mit der TXT (Videotext) Taste erhalten Sie eine virtuelle Tastatur."
 
 msgid "Configure your Network"
 msgstr "Das Netzwerk konfigurieren"
@@ -4859,16 +4862,16 @@ msgid "Control your Softcams"
 msgstr "Kontrolle der Softcams"
 
 msgid "Convert ext3 filesystem to ext4"
-msgstr "Konvertiere ext3 zu ext4"
+msgstr "Konvertiere EXT3 zu EXT4"
 
 msgid "Convert ext3 to ext4"
-msgstr "Konvertierung ext3 nach ext4"
+msgstr "Konvertierung EXT3 nach EXT4"
 
 msgid "Convert filesystem ext3 to ext4"
-msgstr "ext3 nach ext4 konvertieren"
+msgstr "EXT3 nach EXT4 konvertieren"
 
 msgid "Converting ext3 to ext4..."
-msgstr "Wandle ext3 in ext4 um..."
+msgstr "Wandle EXT3 in EXT4 um..."
 
 msgid "Cook Islands"
 msgstr "Cookinseln"
@@ -5255,7 +5258,7 @@ msgid "Date style"
 msgstr "Datumsformat"
 
 msgid "Date/time input"
-msgstr ""
+msgstr "Datums- / Zeiteingabe"
 
 msgid "Day D Mon"
 msgstr "Tag T Mon"
@@ -5282,103 +5285,103 @@ msgid "Day DD/MM"
 msgstr "Tag TT/MM"
 
 msgid "Day M/D"
-msgstr ""
+msgstr "Tag M/T"
 
 msgid "Day M/DD"
-msgstr ""
+msgstr "Tag M/TT"
 
 msgid "Day MM/D"
-msgstr ""
+msgstr "Tag MM/T"
 
 msgid "Day MM/DD"
-msgstr ""
+msgstr "Tag MM/TT"
 
 msgid "Day Mon D"
-msgstr ""
+msgstr "Tag Mon T"
 
 msgid "Day Mon DD"
-msgstr ""
+msgstr "Tag Mon TT"
 
 msgid "Day Mon-D"
-msgstr ""
+msgstr "Tag Mon-T"
 
 msgid "Day Mon-DD"
-msgstr ""
+msgstr "Tag Mon-TT"
 
 msgid "Dayname D Month Year"
-msgstr ""
+msgstr "Wochentag T Monat Jahr"
 
 msgid "Dayname D-Month-Year"
-msgstr ""
+msgstr "Wochentag T-Monat-Jahr"
 
 msgid "Dayname D/M/Year"
-msgstr ""
+msgstr "Wochentag T/M/Jahr"
 
 msgid "Dayname D/MM/Year"
-msgstr ""
+msgstr "Wochentag T/MM/Jahr"
 
 msgid "Dayname DD Month Year"
-msgstr ""
+msgstr "Wochentag TT Monat Jahr"
 
 msgid "Dayname DD-Month-Year"
-msgstr ""
+msgstr "Wochentag TT-Monat-Jahr"
 
 msgid "Dayname DD/M/Year"
-msgstr ""
+msgstr "Wochentag TT/M/Jahr"
 
 msgid "Dayname DD/MM/Year"
-msgstr ""
+msgstr "Wochentag TT/MM/Jahr"
 
 msgid "Dayname M/D/Year"
-msgstr ""
+msgstr "Wochentag M/T/Jahr"
 
 msgid "Dayname M/DD/Year"
-msgstr ""
+msgstr "Wochentag M/TT/Jahr"
 
 msgid "Dayname MM/D/Year"
-msgstr ""
+msgstr "Wochentag MM/T/Jahr"
 
 msgid "Dayname MM/DD/Year"
-msgstr ""
+msgstr "Wochentag MM/TT/Jahr"
 
 msgid "Dayname Month D Year"
-msgstr ""
+msgstr "Wochentag Monat T Jahr"
 
 msgid "Dayname Month DD Year"
-msgstr ""
+msgstr "Wochentag Monat TT Jahr"
 
 msgid "Dayname Month-D-Year"
-msgstr ""
+msgstr "Wochentag Monat-T-Jahr"
 
 msgid "Dayname Month-DD-Year"
-msgstr ""
+msgstr "Wochentag Monat-TT-Jahr"
 
 msgid "Dayname Year Month D"
-msgstr ""
+msgstr "Wochentag Jahr Monat T"
 
 msgid "Dayname Year Month DD"
-msgstr ""
+msgstr "Wochentag Jahr Monat TT"
 
 msgid "Dayname Year-Month-D"
-msgstr ""
+msgstr "Wochentag Jahr-Monat-T"
 
 msgid "Dayname Year-Month-DD"
-msgstr ""
+msgstr "Wochentag Jahr-Monat-TT"
 
 msgid "Dayname Year/M/D"
-msgstr ""
+msgstr "Wochentag Jahr/M/T"
 
 msgid "Dayname Year/M/DD"
-msgstr ""
+msgstr "Wochentag Jahr/M/TT"
 
 msgid "Dayname Year/MM/D"
-msgstr ""
+msgstr "Wochentag Jahr/MM/T"
 
 msgid "Dayname Year/MM/DD"
-msgstr ""
+msgstr "Wochentag Jahr/MM/T"
 
 msgid "Deactivate"
-msgstr ""
+msgstr "Deaktivieren"
 
 msgid "Debug Logs"
 msgstr "Debug-Logs"
@@ -6278,7 +6281,7 @@ msgid "EJECTCD"
 msgstr ""
 
 msgid "EJECTCD long"
-msgstr ""
+msgstr "EJECTCD lang"
 
 msgid "EPG"
 msgstr "EPG"
@@ -6925,7 +6928,7 @@ msgstr "Sendungsinformation:"
 
 #
 msgid "Everyday"
-msgstr "Jeder Tag"
+msgstr "Täglich"
 
 msgid "Everywhere"
 msgstr "Überall"
@@ -7090,7 +7093,7 @@ msgstr ""
 
 #, python-format
 msgid "External Storage %s"
-msgstr ""
+msgstr "Externer Speicher %s"
 
 msgid "External subtitle color"
 msgstr "Farbe für externe Untertitel"
@@ -8013,7 +8016,7 @@ msgid "Here you can specify additional files that should be added to the backup 
 msgstr "Hier kann festgelegt werden, welche Dateien zusätzlich zu denen der Standardliste gesichert werden."
 
 msgid "Hidden / Blank"
-msgstr ""
+msgstr "Keine Anzeige"
 
 msgid "Hidden network"
 msgstr "Verstecktes Netzwerk"
@@ -8383,15 +8386,15 @@ msgstr ""
 # ImageBackup.py
 #, python-format
 msgid "Image created on: %s/%s-%s-%s-backup-%s_mmc.zip"
-msgstr "USB Image erstellt auf: %s/%s-%s-%s-backup-%s_mmc.zip"
+msgstr "USB Image erstellt: %s/%s-%s-%s-backup-%s_mmc.zip"
 
 #, python-format
 msgid "Image created on: %s/%s-%s-%s-backup-%s_recovery.zip"
-msgstr "Image erstellt auf: %s/%s-%s-%s-backup-%s_recovery.zip"
+msgstr "Image erstellt: %s/%s-%s-%s-backup-%s_recovery.zip"
 
 #, python-format
 msgid "Image created on: %s/%s-%s-%s-backup-%s_usb.zip"
-msgstr "Image erstellt auf: %s/%s-%s-%s-backup-%s_usb.zip"
+msgstr "Image erstellt: %s/%s-%s-%s-backup-%s_usb.zip"
 
 # ImageBackup.py
 msgid "Image creation failed - "
@@ -8484,7 +8487,7 @@ msgid "Index"
 msgstr "Index"
 
 msgid "Index allocated:"
-msgstr ""
+msgstr "Index zugeordnet:"
 
 msgid "India"
 msgstr "Indien"
@@ -8635,10 +8638,10 @@ msgid "Install '%s' and enable this operation"
 msgstr "'%s' installieren und aktivieren"
 
 msgid "Install Failed !!"
-msgstr ""
+msgstr "!! Installation fehlgeschlagen !!"
 
 msgid "Install Finished."
-msgstr ""
+msgstr "Installation abgeschlossen."
 
 msgid "Install Plugins"
 msgstr "Installiere Plugins"
@@ -8870,14 +8873,14 @@ msgid "Jersey"
 msgstr "Jersey"
 
 msgid "Job Manager"
-msgstr ""
+msgstr "Job Manager"
 
 #
 msgid "Job View"
 msgstr "Jobansicht"
 
 msgid "Job overview"
-msgstr ""
+msgstr "Jobübersicht"
 
 #
 msgid "JobManager"
@@ -8929,7 +8932,7 @@ msgid "KA-SAT"
 msgstr ""
 
 msgid "KB"
-msgstr ""
+msgstr "kB"
 
 msgid "Kazakhstan"
 msgstr "Kasachstan"
@@ -9033,22 +9036,22 @@ msgid "LCN rules:"
 msgstr ""
 
 msgid "LED Deep Standby"
-msgstr ""
+msgstr "LED Deep-Standby"
 
 msgid "LED Normal"
-msgstr ""
+msgstr "LED Normal"
 
 msgid "LED Standby"
-msgstr ""
+msgstr "LED Standby"
 
 msgid "LED brightness during deep standby."
-msgstr ""
+msgstr "LED Helligkeit im Deep-Standby."
 
 msgid "LED brightness during normal operations."
-msgstr ""
+msgstr "LED Helligkeit im Betrieb."
 
 msgid "LED brightness during standby."
-msgstr ""
+msgstr "LED Helligkeit im Standby."
 
 #
 msgid "LNB"
@@ -9100,7 +9103,7 @@ msgstr "Letztes Update:\t\t%s"
 
 #, python-format
 msgid "Last update:\t%s"
-msgstr ""
+msgstr "Letztes Update:\t%s"
 
 msgid "Last used share: "
 msgstr "Letztes genutztes Netzlaufwerk: "
@@ -9382,7 +9385,7 @@ msgid "Lowest Mode"
 msgstr "Niedrigster Modus"
 
 msgid "Lowest Video output mode"
-msgstr ""
+msgstr "Niedrigster Videoausgabemodus"
 
 msgid "Luxembourg"
 msgstr "Luxemburg"
@@ -9487,7 +9490,7 @@ msgid "Manage your online update files"
 msgstr "Verwaltung Ihrer Online-Update Dateien"
 
 msgid "Manual"
-msgstr ""
+msgstr "Manuell"
 
 msgid "Manual Scan"
 msgstr "Manueller Suchlauf"
@@ -9564,7 +9567,7 @@ msgstr "Maxdown: "
 
 #, python-format
 msgid "Maximum minutes to jump %d !"
-msgstr ""
+msgstr "Sie können nur maximal %d Minuten springen!"
 
 msgid "Maximum no of days:"
 msgstr "Maximale Anzahl von Tagen:"
@@ -9736,7 +9739,7 @@ msgid "Model: %s %s\n"
 msgstr "Modell: %s %s\n"
 
 msgid "Modified:"
-msgstr ""
+msgstr "Geändert:"
 
 #
 msgid "Modulation"
@@ -9758,7 +9761,7 @@ msgstr "Mo."
 
 #
 msgid "Mon-Fri"
-msgstr "Mo. bis Fr."
+msgstr "Montag bis Freitag"
 
 msgid "Monaco"
 msgstr "Monaco"
@@ -10000,7 +10003,7 @@ msgstr "Multiboot-Auswahl"
 # ImageBackup.py
 #, python-format
 msgid "Multiboot Image created on: %s/%s-%s-%s-backup-%s_usb.zip"
-msgstr "Multiboot-Image erstellt als: %s/%s-%s-%s-backup-%s_usb.zip"
+msgstr "Multiboot-Image erstellt: %s/%s-%s-%s-backup-%s_usb.zip"
 
 msgid "Multiboot Manager"
 msgstr "Multiboot-Manager"
@@ -11268,7 +11271,7 @@ msgid "Percentage"
 msgstr "Prozent"
 
 msgid "Percentage left"
-msgstr "Prozent Links"
+msgstr "Prozent links"
 
 msgid "Percentage right"
 msgstr "Prozent rechts"
@@ -11322,14 +11325,14 @@ msgid "PiP"
 msgstr "Bild im Bild"
 
 msgid "PiP-Zap"
-msgstr "Bild im Bild-Zap"
+msgstr "Bild im Bild Zap"
 
 #
 msgid "PiPSetup"
-msgstr "Bild im Bild-Einstellungen"
+msgstr "Bild im Bild Einstellungen"
 
 msgid "PiPZap"
-msgstr "Bild im Bild-Zap"
+msgstr "Bild im Bild Zap"
 
 msgid "Picon"
 msgstr ""
@@ -11350,7 +11353,7 @@ msgstr "Mini-TV im vertikalen EPG anzeigen"
 
 #
 msgid "Picture in Picture Setup"
-msgstr "Bild im Bild-Einstellungen"
+msgstr "Bild im Bild Einstellungen"
 
 msgid "Picture in graphics"
 msgstr "Mini-TV Bild im grafischen EPG anzeigen"
@@ -11570,7 +11573,7 @@ msgstr "Auf das zuletzt ausgewählte Medium konnte nicht zugegriffen werden, dah
 
 #
 msgid "Please open Picture in Picture first"
-msgstr "Bitte erst Bild im Bild aktivieren (Bild im Bild-Zap)"
+msgstr "Bitte erst Bild im Bild aktivieren (Bild im Bild Zap)"
 
 #
 msgid "Please press OK to continue."
@@ -11975,7 +11978,7 @@ msgid "Power LED State in Standby"
 msgstr "Power-LED im Standby"
 
 msgid "Power LED can be turned on or off here."
-msgstr "Power-LED kann hier an oder ausgeschaltet werden.."
+msgstr "Power-LED kann hier an- oder ausgeschaltet werden."
 
 msgid "Power LED state during deep-standby."
 msgstr "Hier können Sie einstellen, ob die Power-LED im Deep-Standby an oder aus sein soll."
@@ -12011,7 +12014,7 @@ msgid "PowerTimer"
 msgstr ""
 
 msgid "PowerTimer DeepStandby"
-msgstr ""
+msgstr "PowerTimer Deep-Standby"
 
 #
 msgid "PowerTimer List"
@@ -12388,13 +12391,13 @@ msgid "Quad PiP Channel Selection"
 msgstr "Quad Bild im Bild Kanalauswahl"
 
 msgid "Quad PiP Screen"
-msgstr ""
+msgstr "Quad Bild im Bild Bildschirm"
 
 msgid "Quad PiP channel "
-msgstr ""
+msgstr "Quad Bild im Bild Kanal"
 
 msgid "Quad PiP is not available."
-msgstr ""
+msgstr "Quad Bild im Bild ist nicht verfügbar!"
 
 msgid "Question"
 msgstr "Frage"
@@ -12750,16 +12753,16 @@ msgid "Remaining & Elapsed"
 msgstr "Verbleibende & Verstrichene"
 
 msgid "Remaining minutes left"
-msgstr "verbleibende Minuten Links"
+msgstr "Verbleibende Minuten links"
 
 msgid "Remaining minutes right"
-msgstr "verbleibende Minuten rechts"
+msgstr "Verbleibende Minuten rechts"
 
 msgid "Remaining minutes/Progress bar left"
-msgstr "verbleibende Minuten/Fortschrittsanzeige links"
+msgstr "Verbleibende Minuten/Fortschrittsanzeige links"
 
 msgid "Remaining minutes/Progress bar right"
-msgstr "verbleibende Minuten/Fortschrittsanzeige rechts"
+msgstr "Verbleibende Minuten/Fortschrittsanzeige rechts"
 
 # /data/setup.xml
 msgid "Remember last service in PiP"
@@ -12806,7 +12809,7 @@ msgid "Remove a mark"
 msgstr "Markierung entfernen"
 
 msgid "Remove a nameserver entry"
-msgstr ""
+msgstr "Nameserver Eintrag entfernen"
 
 msgid "Remove all cuts and marks"
 msgstr "Alle Markierungen und Schnitte entfernen"
@@ -13454,7 +13457,7 @@ msgstr ""
 #. TRANSLATORS: option name, indicating which type of (DVB-C) band should be scanned. The name of the band is printed in '%s'. E.g.: 'Scan EU MID band'
 #, python-format
 msgid "Scan %s band"
-msgstr ""
+msgstr "Scanne %s Band"
 
 #
 msgid "Scan additional SR"
@@ -13734,7 +13737,7 @@ msgid "Select a tuner"
 msgstr "Tuner auswählen"
 
 msgid "Select a wireless network"
-msgstr ""
+msgstr "Wählen Sie ein drahtloses Netzwerk"
 
 msgid "Select action"
 msgstr ""
@@ -13965,9 +13968,7 @@ msgid "Select video mode"
 msgstr "Videomodus auswählen"
 
 msgid "Select what should be done when the %s %s was boot-up, normal playing or goto standby."
-msgstr ""
-"Wählen Sie, was geschehen soll, wenn die %s %s gestartet wird.\n"
-"Normal starten oder in den Standby gehen?"
+msgstr "Wählen Sie, was geschehen soll, wenn die %s %s gestartet wird."
 
 # Powerlost setup.xml
 msgid "Select what should be done when the %s %s was shutdown incorrectly, or after the Power was lost."
@@ -14632,7 +14633,7 @@ msgstr "Satelliten-Ausrüstung"
 
 # Zeitenstellung
 msgid "Setup your timezone."
-msgstr "Hier können Sie Ihre Zeitzone auswählen."
+msgstr "Einstellen der Zeitzone."
 
 msgid "Seychelles"
 msgstr "Seychellen"
@@ -15013,7 +15014,7 @@ msgid "Show extension selection"
 msgstr "Erweiterungs-Auswahl anzeigen"
 
 msgid "Show extensions..."
-msgstr ""
+msgstr "Zeige Erweiterungen..."
 
 msgid "Show favourites list"
 msgstr "Zeige Favoritenliste"
@@ -15551,7 +15552,7 @@ msgid "Smpte 240M"
 msgstr ""
 
 msgid "Social/Political/Economics"
-msgstr ""
+msgstr "Sozial/Politik/Wirtschaft"
 
 msgid "Socket"
 msgstr "Socket"
@@ -17406,7 +17407,7 @@ msgstr "Timereintrag"
 
 #, python-format
 msgid "Timer is activated: +%d min"
-msgstr "Timer ist aktiviert: +%d min"
+msgstr "Timer ist aktiviert: +%d Min"
 
 msgid "Timer is not activated"
 msgstr "Timer ist nicht aktiviert"
@@ -17902,7 +17903,10 @@ msgid "URL"
 msgstr ""
 
 msgid "URL of fallback remote receiver"
-msgstr "URL des Reservereceivers"
+msgstr ""
+"URL des Reservereceivers.\n"
+"\n"
+"Mit der TXT (Videotext) Taste erhalten Sie eine virtuelle Tastatur."
 
 #
 msgid "USALS"
@@ -18059,7 +18063,7 @@ msgid "Up/Down button mode"
 msgstr "Funktion der Tasten Hoch/Runter"
 
 msgid "Up/Down buttons also for 'all up/down'?"
-msgstr "Hoch/Runter Tasten für \"Alle hoch/runter\""
+msgstr "Hoch/Runter Tasten für \"alle hoch/runter\""
 
 #
 msgid "Update"
@@ -18227,7 +18231,7 @@ msgstr "Netmed EPG Informationen verwenden, wenn sie verfügbar sind."
 
 # ImageBackup.py
 msgid "Use OnlineFlash in SoftwareManager"
-msgstr "verwenden Sie OnlineFlash im SoftwareManager"
+msgstr "Verwenden Sie OnlineFlash im SoftwareManager"
 
 msgid "Use OpenTV EPG information when it is available."
 msgstr "OpenTV EPG Information verwenden, wenn sie verfügbar sind."
@@ -18396,7 +18400,7 @@ msgid "User  (keymap.usr)"
 msgstr "Benutzer ('keymap.usr')"
 
 msgid "User - bouquets"
-msgstr ""
+msgstr "Benutzer - Bouquets"
 
 #
 msgid "User defined"
@@ -18434,7 +18438,7 @@ msgstr "Nutzername:"
 
 #, python-format
 msgid "Using LNB %d"
-msgstr ""
+msgstr "Verwende LNB %d"
 
 msgid "Using fixed address"
 msgstr "Nutze fixe Adresse"
@@ -18444,7 +18448,7 @@ msgstr "Altes Profil verwenden: "
 
 #, python-format
 msgid "Using tuner %s"
-msgstr ""
+msgstr "Verwende Tuner %s"
 
 msgid "Usually when the subtitle language is the same as the audio language, the subtitles will not be used. Enable this option to allow these subtitles to be used."
 msgstr "Normalerweise werden Untertitel unterdrückt, wenn es dieselbe Sprache ist wie die der Tonspur. Mit dieser Einstellung kann man Untertitel erzwingen."
@@ -18636,7 +18640,7 @@ msgid "VideoEnhancement Setup"
 msgstr "Einstellungen Video-Optimierung."
 
 msgid "VideoEnhancementPreview"
-msgstr ""
+msgstr "Bild-Optimierung Vorschau"
 
 msgid "VideoFinetune"
 msgstr "Bild Feinabstimmung"
@@ -18842,11 +18846,11 @@ msgid "Wait please while creating swapfile..."
 msgstr "Swap File wird erstellt. Bitte warten..."
 
 msgid "Wait please while scanning for devices..."
-msgstr "Bitte warten während Suchlauf nach Geräten..."
+msgstr "Bitte warten Sie während des Suchlaufes nach Geräten..."
 
 #, python-format
 msgid "Wait please while scanning your %s %s devices..."
-msgstr ""
+msgstr "Bitte warten Sie während des Suchlaufes nach Geräten Ihrer %s %s..."
 
 msgid "Wait please while scanning..."
 msgstr "Während Suchlauf bitte warten..."
@@ -18856,7 +18860,7 @@ msgid "Waiting"
 msgstr "Warte"
 
 msgid "Waiting for mount"
-msgstr ""
+msgstr "Warten auf Mount"
 
 msgid "Waiting for partition"
 msgstr "Warte auf Partition"
@@ -18889,7 +18893,7 @@ msgid "Warning: This is the last crash before an automatic restart is performed.
 msgstr "WARNUNG: Dies ist der letzte Absturz, bevor ein automatischer Neustart ausgeführt wird.\n"
 
 msgid "Warning: no LNB; using factory defaults."
-msgstr ""
+msgstr "Warnung: Kein LNB! Benutze Werkseinstellungen."
 
 # hinzu  03.01.13 husky
 msgid "Watch movies..."
@@ -19019,7 +19023,7 @@ msgid "What action is required on completion of the timer? 'Auto' lets the box r
 msgstr "Wählen Sie, was nach dem ausgeführten Timer geschehen soll. 'Automatisch' lässt die Box in den Zustand gehen, den sie vor dem Timerstart hatte."
 
 msgid "What do you want to play?\n"
-msgstr ""
+msgstr "Was möchten Sie wiedergeben?\n"
 
 #
 msgid "What do you want to scan?"
@@ -19204,7 +19208,7 @@ msgid ""
 "\n"
 "Really do a factory reset?"
 msgstr ""
-"Wenn Sie die Werkseinstellungen wiederherstellen, verlieren Sie sämtliche Konfigurationsdateien (einschließlich Kanalliste, Tuner-Konfiguration...)\n"
+"Wenn Sie die Werkseinstellungen wiederherstellen, verlieren Sie sämtliche Konfigurationsdateien (einschließlich Kanalliste, Tuner-Konfiguration etc.).\n"
 "\n"
 "Nach der Wiederherstellung wird die %s %s automatisch neu starten.\n"
 "\n"
@@ -19525,7 +19529,7 @@ msgstr ""
 "Bitte drücken Sie OK, um mit der Wiederherstellung zu beginnen."
 
 msgid "You have chosen to save the current timeshift"
-msgstr ""
+msgstr "Sie haben ausgewählt, dass die aktuelle Timeshift-Datei gespeichert werden soll"
 
 msgid ""
 "You have chosen to save the current timeshift event, but the event has not yet finished\n"
@@ -19586,7 +19590,7 @@ msgid "You seem to be in timeshift, Do you want to leave timeshift ?"
 msgstr "Möchten Sie Timeshift beenden?"
 
 msgid "You system does not support ext4"
-msgstr "Das System unterstützt kein ext4"
+msgstr "Das System unterstützt kein EXT4"
 
 msgid "Your %s %s does not have an internet connection"
 msgstr "Ihre %s %s hat keine Internetverbindung"
@@ -19885,7 +19889,7 @@ msgid "Zap to selected channel"
 msgstr "Schalte zum ausgewählten Sender um"
 
 msgid "Zap to selected channel, or show detailed event info (depends on configuration)"
-msgstr ""
+msgstr "Zum ausgewählten Kanal umschalten oder detaillierte Ereignisinformationen anzeigen (abhängig von der Konfiguration)"
 
 msgid "Zap up"
 msgstr "Kanal -"
@@ -20340,7 +20344,7 @@ msgid "disconnected"
 msgstr "Getrennt"
 
 msgid "discussion/interview/debate"
-msgstr ""
+msgstr "Diskussion/Interview/Debatte"
 
 msgid "display"
 msgstr "Anzeige"
@@ -20500,20 +20504,20 @@ msgid "experimental film/video"
 msgstr "experimenteller Film/Video"
 
 msgid "extensions"
-msgstr ""
+msgstr "Erweiterungen"
 
 msgid "extensions."
-msgstr ""
+msgstr "Erweiterungen."
 
 # NimManager.py
 msgid "externally loopthrough to"
 msgstr "Extern verbunden mit"
 
 msgid "extra wide"
-msgstr ""
+msgstr "extra breit"
 
 msgid "extrawide"
-msgstr ""
+msgstr "extra breit"
 
 msgid "failed"
 msgstr "Fehlgeschlagen"
@@ -20532,7 +20536,7 @@ msgid "feed status"
 msgstr "Feed-Status"
 
 msgid "file can not displayed - file not found"
-msgstr ""
+msgstr "Datei kann nicht angezeigt werden! Datei nicht gefunden."
 
 # 5.1 /Plugins\Extensions\PicturePlayer
 msgid "fileformats (BMP, PNG, JPG, GIF)"
@@ -20600,7 +20604,7 @@ msgid "from dir"
 msgstr "Quellordner"
 
 msgid "full"
-msgstr ""
+msgstr "voll"
 
 msgid "further education"
 msgstr "Weiterbildung"
@@ -20784,7 +20788,7 @@ msgid "jump forward to the next title"
 msgstr "Zum nächsten Titel springen"
 
 msgid "jump to chapter by number"
-msgstr ""
+msgstr "Nach Nummer zum Kapitel springen"
 
 msgid "jump to next page or all up (setup in menu)"
 msgstr "Zur nächsten Seite springen oder alle rauf (Einstellung im Menü)"
@@ -20829,7 +20833,7 @@ msgid "length"
 msgstr "Länge"
 
 msgid "limit ..., aborting !"
-msgstr ""
+msgstr "Limit..., Abbruch!"
 
 msgid "literature"
 msgstr "Literatur"
@@ -20877,7 +20881,7 @@ msgid "middle"
 msgstr "Mitte"
 
 msgid "min"
-msgstr "Minuten"
+msgstr "Min"
 
 #
 msgid "mins"
@@ -20899,7 +20903,7 @@ msgid "motor sport"
 msgstr "Motorsport"
 
 msgid "motoring"
-msgstr ""
+msgstr "Motorsport"
 
 msgid "move"
 msgstr "Verschieben"
@@ -21005,7 +21009,7 @@ msgid "no or unknown card inserted"
 msgstr "Keine oder unbekannte Karte eingesteckt"
 
 msgid "no resource manager"
-msgstr ""
+msgstr "Kein Resourcen-Manager"
 
 msgid "no storage devices found"
 msgstr "Keine Speichergeräte gefunden"
@@ -21110,10 +21114,10 @@ msgid "pass"
 msgstr "Durchgang"
 
 msgid "performing arts"
-msgstr ""
+msgstr "Darstellende Künste"
 
 msgid "picons"
-msgstr ""
+msgstr "Picons"
 
 msgid "pid:"
 msgstr "PID:"
@@ -21148,7 +21152,7 @@ msgid "pm"
 msgstr ""
 
 msgid "popular culture/traditional arts"
-msgstr ""
+msgstr "Beliebte Kultur/Traditionelle Kunst"
 
 msgid "pre-school children's program"
 msgstr "Programm für Vorschulkinder"
@@ -21348,7 +21352,7 @@ msgid "scan state"
 msgstr "Status Suchlauf"
 
 msgid "science fiction/fantasy/horror"
-msgstr "Science Fiction/Fantasy/Horror"
+msgstr "Science Fiction/Fantasie/Horror"
 
 msgid "script 'sterr':"
 msgstr "Skript 'sterr':"
@@ -21357,13 +21361,13 @@ msgid "script 'stout':"
 msgstr "Skript 'stout':"
 
 msgid "sdr"
-msgstr ""
+msgstr "SDR"
 
 msgid "search EPG..."
 msgstr "durchsuche EPG..."
 
 msgid "second cable of motorized LNB"
-msgstr ""
+msgstr "Zweites Kabel für motorisiertes LNB"
 
 #
 msgid "seconds"
@@ -21858,7 +21862,7 @@ msgid "white"
 msgstr "Weiß"
 
 msgid "wide"
-msgstr ""
+msgstr "breit"
 
 msgid "width"
 msgstr "Breite"
