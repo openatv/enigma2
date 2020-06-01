@@ -1,8 +1,10 @@
-from HTMLComponent import HTMLComponent
-from GUIComponent import GUIComponent
-from VariableText import VariableText
+from __future__ import print_function
+from __future__ import absolute_import
+from Components.HTMLComponent import HTMLComponent
+from Components.GUIComponent import GUIComponent
+from Components.VariableText import VariableText
 from skin import parseColor
-from ConditionalWidget import ConditionalWidget, BlinkingWidget, BlinkingWidgetConditional
+from Components.ConditionalWidget import ConditionalWidget, BlinkingWidget, BlinkingWidgetConditional
 
 from enigma import eLabel
 
@@ -50,7 +52,7 @@ class BlinkingLabelConditional(BlinkingWidgetConditional, LabelConditional):
 
 class MultiColorLabel(Label):
 	def __init__(self, text=""):
-		Label.__init__(self,text)
+		Label.__init__(self, text)
 		self.foreColors = []
 		self.backColors = []
 
@@ -77,11 +79,11 @@ class MultiColorLabel(Label):
 				elif attrib == "foregroundColor":
 					foregroundColor = value
 				else:
-					attribs.append((attrib,value))
+					attribs.append((attrib, value))
 			if foregroundColor:
-				attribs.append(("foregroundColor",foregroundColor))
+				attribs.append(("foregroundColor", foregroundColor))
 			if backgroundColor:
-				attribs.append(("backgroundColor",backgroundColor))
+				attribs.append(("backgroundColor", backgroundColor))
 			self.skinAttributes = attribs
 		return GUIComponent.applySkin(self, desktop, screen)
 
@@ -90,12 +92,12 @@ class MultiColorLabel(Label):
 			if len(self.foreColors) > x:
 				self.instance.setForegroundColor(self.foreColors[x])
 			else:
-				print "setForegroundColorNum(%d) failed! defined colors:" % x, self.foreColors
+				print("setForegroundColorNum(%d) failed! defined colors:" % x, self.foreColors)
 
 	def setBackgroundColorNum(self, x):
 		if self.instance:
 			if len(self.backColors) > x:
 				self.instance.setBackgroundColor(self.backColors[x])
 			else:
-				print "setBackgroundColorNum(%d) failed! defined colors:" % x, self.backColors
+				print("setBackgroundColorNum(%d) failed! defined colors:" % x, self.backColors)
 

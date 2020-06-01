@@ -1,3 +1,4 @@
+from __future__ import print_function
 import os
 from Tools.Directories import fileExists
 from Plugins.Plugin import PluginDescriptor
@@ -33,7 +34,7 @@ def filescan_open(list, session, **kwargs):
 		cd = harddiskmanager.getCD()
 		if cd and (os.path.exists(os.path.join(harddiskmanager.getAutofsMountpoint(cd), "VIDEO_TS"))
 				or os.path.exists(os.path.join(harddiskmanager.getAutofsMountpoint(cd), "video_ts"))):
-			print "[DVDplayer] found device /dev/%s", " mount path ", harddiskmanager.getAutofsMountpoint(cd)
+			print("[DVDplayer] found device /dev/%s", " mount path ", harddiskmanager.getAutofsMountpoint(cd))
 			session.open(DVD.DVDPlayer, dvd_device="/dev/%s" %(harddiskmanager.getAutofsMountpoint(cd)))
 			return
 	else:
@@ -42,7 +43,7 @@ def filescan_open(list, session, **kwargs):
 			if x.mimetype == "video/x-dvd-iso":
 				dvd_filelist.append(x.path)
 			if x.mimetype == "video/x-dvd":
-				dvd_filelist.append(x.path.rsplit('/',1)[0])
+				dvd_filelist.append(x.path.rsplit('/', 1)[0])
 		session.open(DVD.DVDPlayer, dvd_filelist=dvd_filelist)
 
 def filescan(**kwargs):
@@ -54,7 +55,7 @@ def filescan(**kwargs):
 			return fileExists(file.path)
 
 	return [
-		LocalScanner(mimetypes = ["video/x-dvd","video/x-dvd-iso"],
+		LocalScanner(mimetypes = ["video/x-dvd", "video/x-dvd-iso"],
 			paths_to_scan =
 				[
 					ScanPath(path = "video_ts", with_subdirs = False),
@@ -67,14 +68,14 @@ def filescan(**kwargs):
 		)]
 
 def onPartitionChange(action, partition):
-	print "[@] onPartitionChange", action, partition
+	print("[@] onPartitionChange", action, partition)
 	if partition != harddiskmanager.getCD():
 		global detected_DVD
 		if action == 'remove':
-			print "[DVDplayer] DVD removed"
+			print("[DVDplayer] DVD removed")
 			detected_DVD = False
 		elif action == 'add':
-			print "[DVDplayer] DVD Inserted"
+			print("[DVDplayer] DVD Inserted")
 			detected_DVD = None
 
 def menu(menuid, **kwargs):
@@ -84,7 +85,7 @@ def menu(menuid, **kwargs):
 			cd = harddiskmanager.getCD()
 			if cd and (os.path.exists(os.path.join(harddiskmanager.getAutofsMountpoint(cd), "VIDEO_TS"))
 					or os.path.exists(os.path.join(harddiskmanager.getAutofsMountpoint(cd), "video_ts"))):
-				print "[DVDplayer] Mountpoint is present and is", harddiskmanager.getAutofsMountpoint(cd)
+				print("[DVDplayer] Mountpoint is present and is", harddiskmanager.getAutofsMountpoint(cd))
 				detected_DVD = True
 			else:
 				detected_DVD = False

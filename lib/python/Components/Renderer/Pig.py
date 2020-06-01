@@ -1,7 +1,8 @@
+from __future__ import absolute_import
 ##
 ## P(icture)i(n)g(raphics) renderer
 ##
-from Renderer import Renderer
+from Components.Renderer.Renderer import Renderer
 from enigma import eVideoWidget, getDesktop
 from Screens.PictureInPicture import PipPigMode
 
@@ -23,7 +24,7 @@ class Pig(Renderer):
 		for (attrib, value) in self.skinAttributes:
 			if attrib == "hidePip":
 				self.hidePip = value == 1
-				attribs.remove((attrib,value))
+				attribs.remove((attrib, value))
 		self.skinAttributes = attribs
 		ret = Renderer.applySkin(self, desktop, parent)
 		if ret:

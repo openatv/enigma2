@@ -35,15 +35,15 @@ class SetupSummary(Screen):
 	def selectionChanged(self):
 		self["SetupEntry"].text = self.parent.getCurrentEntry()
 		self["SetupValue"].text = self.parent.getCurrentValue()
-		if hasattr(self.parent,"getCurrentDescription"):
+		if hasattr(self.parent, "getCurrentDescription"):
 			self.parent["description"].text = self.parent.getCurrentDescription()
-		if self.parent.has_key('footnote'):
+		if 'footnote' in self.parent:
 			if self.parent.getCurrentEntry().endswith('*'):
 				self.parent['footnote'].text = (_("* = Restart Required"))
 			else:
 				self.parent['footnote'].text = (_(" "))
 
-class RecordingSettings(Screen,ConfigListScreen):
+class RecordingSettings(Screen, ConfigListScreen):
 	def removeNotifier(self):
 		if config.usage.setup_level.notifiers:
 			config.usage.setup_level.notifiers.remove(self.levelChanged)

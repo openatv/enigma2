@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: iso-8859-1 -*-
 
+from __future__ import print_function
 from Components.config import config
 from enigma import gFont
 from Plugins.Extensions.FileCommander.addons.unarchiver import ArchiverMenuScreen, ArchiverInfoScreen
@@ -25,7 +26,7 @@ class UnzipMenuScreen(ArchiverMenuScreen):
 		self.pversion = pversion
 
 	def unpackModus(self, id):
-		print "[UnzipMenuScreen] unpackModus", id
+		print("[UnzipMenuScreen] unpackModus", id)
 		if id == 1:
 			cmd = ("unzip", "-l", self.sourceDir + self.filename)
 			self.unpackPopen(cmd, UnpackInfoScreen)

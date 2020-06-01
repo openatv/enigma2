@@ -1,3 +1,4 @@
+from __future__ import print_function
 from time import localtime, mktime, time, strftime
 
 from enigma import eEPGCache, eTimer, eServiceReference, ePoint
@@ -132,7 +133,7 @@ class EventViewBase:
 				cb_func2 = lambda ret: self.editTimer(timer)
 				menu = [(_("Delete timer"), 'CALLFUNC', self.ChoiceBoxCB, cb_func1), (_("Edit timer"), 'CALLFUNC', self.ChoiceBoxCB, cb_func2)]
 				self.ChoiceBoxDialog = self.session.instantiateDialog(ChoiceBox, title=_("Select action for timer %s:") % event.getEventName(), list=menu, keys=['green', 'blue'], skin_name="RecordTimerQuestion")
-				self.ChoiceBoxDialog.instance.move(ePoint(self.instance.position().x()+self["key_green"].getPosition()[0],self.instance.position().y()+self["key_green"].getPosition()[1]-self["key_green"].instance.size().height()))
+				self.ChoiceBoxDialog.instance.move(ePoint(self.instance.position().x()+self["key_green"].getPosition()[0], self.instance.position().y()+self["key_green"].getPosition()[1]-self["key_green"].instance.size().height()))
 				self.showChoiceBoxDialog()
 				break
 		else:
@@ -158,7 +159,7 @@ class EventViewBase:
 		self['actions'].setEnabled(True)
 
 	def finishedAdd(self, answer):
-		print "finished add"
+		print("finished add")
 		if answer[0]:
 			entry = answer[1]
 			simulTimerList = self.session.nav.RecordTimer.record(entry)
@@ -191,7 +192,7 @@ class EventViewBase:
 		else:
 			self["key_green"].setText(_("Add timer"))
 			self.key_green_choice = self.ADD_TIMER
-			print "Timeredit aborted"
+			print("Timeredit aborted")
 
 	def finishSanityCorrection(self, answer):
 		self.finishedAdd(answer)
@@ -208,7 +209,7 @@ class EventViewBase:
 			else:
 				self["channel"].setText(_("unknown service"))
 
-	def sort_func(self,x,y):
+	def sort_func(self, x, y):
 		if x[1] < y[1]:
 			return -1
 		elif x[1] == y[1]:
@@ -231,7 +232,7 @@ class EventViewBase:
 		if short == text:
 			short = ""
 
-		if short and extended and extended.replace('\n','') == short.replace('\n',''):
+		if short and extended and extended.replace('\n', '') == short.replace('\n', ''):
 			pass #extended = extended
 		elif short and extended:
 			extended = short + '\n' + extended
@@ -269,7 +270,7 @@ class EventViewBase:
 			fail = True
 
 		if fail:
-			print 'wrong timestamp detected: source = %s ,date = %s ,time = %s' %(beginTimeString,begindate,begintime)
+			print('wrong timestamp detected: source = %s ,date = %s ,time = %s' %(beginTimeString, begindate, begintime))
 			return
 		###
 
@@ -340,7 +341,7 @@ class EventViewBase:
 			menu = []
 			for p in plugins.getPlugins(PluginDescriptor.WHERE_EVENTINFO):
 				#only list service or event specific eventinfo plugins here, no servelist plugins
-				if 'servicelist' not in p.__call__.func_code.co_varnames:
+				if 'servicelist' not in p.__call__.__code__.co_varnames:
 					menu.append((p.name, boundFunction(self.runPlugin, p)))
 			if menu:
 				self.session.open(EventViewContextMenu, menu)
@@ -352,7 +353,7 @@ class EventViewSimple(Screen, EventViewBase):
 	def __init__(self, session, event, ref, callback=None, singleEPGCB=None, multiEPGCB=None, similarEPGCB=None, skin='EventViewSimple'):
 		Screen.__init__(self, session)
 		self.setTitle(_('Eventview'))
-		self.skinName = [skin,"EventView"]
+		self.skinName = [skin, "EventView"]
 		EventViewBase.__init__(self, event, ref, callback, similarEPGCB)
 		self.key_green_choice = None
 

@@ -1,3 +1,4 @@
+from __future__ import print_function
 from Screens.Screen import Screen
 from Components.ActionMap import ActionMap, HelpableActionMap, NumberActionMap
 from Components.Sources.List import List
@@ -10,7 +11,7 @@ from boxbranding import getBoxType
 
 def isExtension_installed(pname):
 	try:
-		for plugin in plugins.getPlugins([PluginDescriptor.WHERE_PLUGINMENU,PluginDescriptor.WHERE_EXTENSIONSMENU]):
+		for plugin in plugins.getPlugins([PluginDescriptor.WHERE_PLUGINMENU, PluginDescriptor.WHERE_EXTENSIONSMENU]):
 			if plugin.name == pname:
 				return True
 				break

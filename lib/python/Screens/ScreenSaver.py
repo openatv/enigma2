@@ -49,8 +49,8 @@ class Screensaver(Screen):
 
 	def doMovePicture(self):
 		try:
-			self.posx = random.randint(1,self.maxx)
-			self.posy = random.randint(1,self.maxy)
+			self.posx = random.randint(1, self.maxx)
+			self.posy = random.randint(1, self.maxy)
 		except Exception:
 			self.posx = 0
 			self.posy = 0

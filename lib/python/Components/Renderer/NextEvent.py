@@ -1,3 +1,4 @@
+from __future__ import absolute_import
 #######################################################################
 #
 #
@@ -25,7 +26,7 @@
 from Components.VariableText import VariableText
 from enigma import eLabel, eEPGCache
 from Components.config import config
-from Renderer import Renderer
+from Components.Renderer.Renderer import Renderer
 from time import localtime
 
 class NextEvent(Renderer, VariableText):
@@ -49,7 +50,7 @@ class NextEvent(Renderer, VariableText):
 					t = localtime(eventNext[0][1])
 					duration = "%d min" %  (eventNext[0][2] / 60)
 					if config.osd.language.value == "de_DE":
-                                            ENext = _("Es folgt:") + ' ' + "%02d:%02d  %s\n%s" % (t[3], t[4], duration, eventNext[0][4])
-                                        else:
-                                            ENext = _("It follows:") + ' ' + "%02d:%02d  %s\n%s" % (t[3], t[4], duration, eventNext[0][4])
+						ENext = _("Es folgt:") + ' ' + "%02d:%02d  %s\n%s" % (t[3], t[4], duration, eventNext[0][4])
+					else:
+						ENext = _("It follows:") + ' ' + "%02d:%02d  %s\n%s" % (t[3], t[4], duration, eventNext[0][4])
 			self.text = ENext

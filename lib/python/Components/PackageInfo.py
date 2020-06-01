@@ -1,3 +1,4 @@
+from __future__ import absolute_import
 import xml.sax
 from Tools.Directories import crawlDirectory, resolveFilename, SCOPE_CONFIG, SCOPE_SKIN, copyfile, copytree
 from Components.NimManager import nimmanager
@@ -26,19 +27,19 @@ class InfoHandler(xml.sax.ContentHandler):
 		self.data = ""
 
 	def printError(self, error):
-		raise InfoHandlerParseError, error
+		raise InfoHandlerParseError(error)
 
 	def startElement(self, name, attrs):
 		self.elements.append(name)
 
 		if name in ("hardware", "bcastsystem", "satellite", "tag", "flag"):
-			if not attrs.has_key("type"):
+			if "type" not in attrs:
 					self.printError(str(name) + " tag with no type attribute")
 			if self.elements[-3] in ("default", "package"):
 				prerequisites = self.globalprerequisites
 			else:
 				prerequisites = self.prerequisites
-			if not prerequisites.has_key(name):
+			if name not in prerequisites:
 				prerequisites[name] = []
 			prerequisites[name].append(str(attrs["type"]))
 
@@ -47,7 +48,7 @@ class InfoHandler(xml.sax.ContentHandler):
 			self.data = ""
 
 		if name == "files":
-			if attrs.has_key("type"):
+			if "type" in attrs:
 				if attrs["type"] == "directories":
 					self.attributes["filestype"] = "directories"
 				elif attrs["type"] == "package":
@@ -55,13 +56,13 @@ class InfoHandler(xml.sax.ContentHandler):
 
 		if name == "file":
 			self.prerequisites = {}
-			if not attrs.has_key("type"):
+			if "type" not in attrs:
 				self.printError("file tag with no type attribute")
 			else:
-				if not attrs.has_key("name"):
+				if "name" not in attrs:
 					self.printError("file tag with no name attribute")
 				else:
-					if not attrs.has_key("directory"):
+					if "directory" not in attrs:
 						directory = self.directory
 					type = attrs["type"]
 					if not type in self.validFileTypes:
@@ -71,30 +72,30 @@ class InfoHandler(xml.sax.ContentHandler):
 						self.fileattrs = attrs
 
 		if name == "package":
-			if attrs.has_key("details"):
+			if "details" in attrs:
 				self.attributes["details"] = str(attrs["details"])
-			if attrs.has_key("name"):
+			if "name" in attrs:
 				self.attributes["name"] = str(attrs["name"])
-			if attrs.has_key("packagename"):
+			if "packagename" in attrs:
 				self.attributes["packagename"] = str(attrs["packagename"])
-			if attrs.has_key("packagetype"):
+			if "packagetype" in attrs:
 				self.attributes["packagetype"] = str(attrs["packagetype"])
-			if attrs.has_key("needsRestart"):
+			if "needsRestart" in attrs:
 				self.attributes["needsRestart"] = str(attrs["needsRestart"])
-			if attrs.has_key("shortdescription"):
+			if "shortdescription" in attrs:
 				self.attributes["shortdescription"] = str(attrs["shortdescription"])
 
 		if name == "screenshot":
-			if attrs.has_key("src"):
+			if "src" in attrs:
 				self.attributes["screenshot"] = str(attrs["src"])
 
 	def endElement(self, name):
 		self.elements.pop()
 		if name == "file":
 			if len(self.prerequisites) == 0 or self.prerequisitesMet(self.prerequisites):
-				if not self.attributes.has_key(self.filetype):
+				if self.filetype not in self.attributes:
 					self.attributes[self.filetype] = []
-				if self.fileattrs.has_key("directory"):
+				if "directory" in self.fileattrs:
 					directory = str(self.fileattrs["directory"])
 					if len(directory) < 1 or directory[0] != "/":
 						directory = self.directory + directory
@@ -157,7 +158,7 @@ class PackageInfoHandler:
 		try:
 			xml.sax.parse(file, handler)
 			for entry in handler.list:
-				self.packageslist.append((entry,file))
+				self.packageslist.append((entry, file))
 		except InfoHandlerParseError:
 			pass
 
@@ -166,7 +167,7 @@ class PackageInfoHandler:
 		try:
 			xml.sax.parse(file, handler)
 			for entry in handler.list:
-				self.packagesIndexlist.append((entry,file))
+				self.packagesIndexlist.append((entry, file))
 		except InfoHandlerParseError:
 			pass
 
@@ -176,7 +177,7 @@ class PackageInfoHandler:
 		try:
 			xml.sax.parse(file, handler)
 			for entry in handler.list:
-				self.packageDetails.append((entry,file))
+				self.packageDetails.append((entry, file))
 		except InfoHandlerParseError:
 			pass
 
@@ -215,7 +216,7 @@ class PackageInfoHandler:
 			for file in indexfileList:
 				neededFile = self.directory[0] + "/" + file
 				if os.path.isfile(neededFile):
-					self.readIndex(self.directory[0] + "/" , neededFile)
+					self.readIndex(self.directory[0] + "/", neededFile)
 
 		if prerequisites:
 			for package in self.packagesIndexlist[:]:
@@ -234,39 +235,39 @@ class PackageInfoHandler:
 	def prerequisiteMet(self, prerequisites):
 		met = True
 		if self.neededTag is None:
-			if prerequisites.has_key("tag"):
+			if "tag" in prerequisites:
 				return False
 		elif self.neededTag == 'ALL_TAGS':
 				return True
 		else:
-			if prerequisites.has_key("tag"):
+			if "tag" in prerequisites:
 				if not self.neededTag in prerequisites["tag"]:
 					return False
 			else:
 				return False
 
 		if self.neededFlag is None:
-			if prerequisites.has_key("flag"):
+			if "flag" in prerequisites:
 				return False
 		else:
-			if prerequisites.has_key("flag"):
+			if "flag" in prerequisites:
 				if not self.neededFlag in prerequisites["flag"]:
 					return False
 			else:
 				return True
 
-		if prerequisites.has_key("satellite"):
+		if "satellite" in prerequisites:
 			for sat in prerequisites["satellite"]:
 				if int(sat) not in nimmanager.getConfiguredSats():
 					return False
-		if prerequisites.has_key("bcastsystem"):
+		if "bcastsystem" in prerequisites:
 			has_system = False
 			for bcastsystem in prerequisites["bcastsystem"]:
 				if nimmanager.hasNimType(bcastsystem):
 					has_system = True
 			if not has_system:
 				return False
-		if prerequisites.has_key("hardware"):
+		if "hardware" in prerequisites:
 			hardware_found = False
 			for hardware in prerequisites["hardware"]:
 				if hardware == getBoxType():
@@ -320,7 +321,7 @@ class PackageInfoHandler:
 
 		currentAttribute = self.attributeNames[self.currentAttributeIndex]
 
-		if attributes.has_key(currentAttribute):
+		if currentAttribute in attributes:
 			if self.currentIndex >= len(attributes[currentAttribute]):
 				self.currentIndex = -1
 				self.currentAttributeIndex += 1

@@ -1,3 +1,4 @@
+from __future__ import absolute_import
 from Screens.Wizard import WizardSummary
 from Screens.WizardLanguage import WizardLanguage
 from Screens.Wizard import wizardManager
@@ -13,7 +14,7 @@ from Components.Pixmap import Pixmap, MovingPixmap, MultiPixmap
 from os import popen, path, makedirs, listdir, access, stat, rename, remove, W_OK, R_OK
 from enigma import eEnv
 from boxbranding import getBoxType, getImageDistro
-from BackupRestore import InitConfig as BackupRestore_InitConfig
+from .BackupRestore import InitConfig as BackupRestore_InitConfig
 
 from Components.config import config, getConfigListEntry, ConfigSubsection, ConfigText, ConfigLocations, ConfigBoolean
 from Components.Harddisk import harddiskmanager
@@ -28,7 +29,7 @@ backupfile = "enigma2settingsbackup.tar.gz"
 def checkConfigBackup():
 	parts = [ (r.description, r.mountpoint) for r in harddiskmanager.getMountedPartitions(onlyhotplug = False)]
 	if boxtype in ('maram9', 'classm', 'axodin', 'axodinc', 'starsatlx', 'genius', 'evo', 'galaxym6'):
-		parts.append(('mtd backup','/media/backup'))
+		parts.append(('mtd backup', '/media/backup'))
 	for x in parts:
 		if x[1] == '/':
 			parts.remove(x)

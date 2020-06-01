@@ -1,7 +1,8 @@
+from __future__ import absolute_import
 # original code is from openmips gb Team: [OMaclock] Converter #
 # Thx to arn354 #
 
-from Converter import Converter
+from Components.Converter.Converter import Converter
 from time import localtime, strftime
 from Components.Element import cached
 

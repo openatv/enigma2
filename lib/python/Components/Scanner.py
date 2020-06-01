@@ -1,3 +1,5 @@
+from __future__ import print_function
+from __future__ import absolute_import
 from Plugins.Plugin import PluginDescriptor
 from Components.PluginComponent import plugins
 
@@ -88,7 +90,7 @@ class ScanFile:
 		return "<ScanFile " + self.path + " (" + str(self.mimetype) + ", " + str(self.size) + " MB)>"
 
 def execute(option):
-	print "execute", option
+	print("execute", option)
 	if option is None:
 		return
 
@@ -104,7 +106,7 @@ def scanDevice(mountpoint):
 			l = [l]
 		scanner += l
 
-	print "scanner:", scanner
+	print("scanner:", scanner)
 
 	res = { }
 
@@ -124,7 +126,7 @@ def scanDevice(mountpoint):
 			paths_to_scan.remove(ScanPath(path=p.path))
 
 	from Components.Harddisk import harddiskmanager
-	blockdev = mountpoint.rstrip("/").rsplit('/',1)[-1]
+	blockdev = mountpoint.rstrip("/").rsplit('/', 1)[-1]
 	error, blacklisted, removable, is_cdrom, partitions, medium_found = harddiskmanager.getBlockDevInfo(blockdev)
 
 	# now scan the paths
@@ -135,7 +137,7 @@ def scanDevice(mountpoint):
 			for f in files:
 				path = os.path.join(root, f)
 				if (is_cdrom and f.endswith(".wav") and f.startswith("track")) or f == "cdplaylist.cdpls":
-					sfile = ScanFile(path,"audio/x-cda")
+					sfile = ScanFile(path, "audio/x-cda")
 				else:
 					sfile = ScanFile(path)
 				for s in scanner:
@@ -161,7 +163,7 @@ def openList(session, files):
 		else:
 			scanner += l
 
-	print "scanner:", scanner
+	print("scanner:", scanner)
 
 	res = { }
 

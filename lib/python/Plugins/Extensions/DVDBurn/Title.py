@@ -1,5 +1,6 @@
+from __future__ import absolute_import
 from Components.config import ConfigSubsection, ConfigSubList, ConfigInteger, ConfigText, ConfigSelection
-import TitleCutter
+from . import TitleCutter
 
 class ConfigFixedText(ConfigText):
 	def __init__(self, text, visible_width=60):
@@ -33,7 +34,7 @@ class Title:
 		self.VideoPID = -1
 		self.framerate = 0
 		self.progressive = -1
-		self.resolution = (-1,-1)
+		self.resolution = (-1, -1)
 
 	def addService(self, service):
 		from os import path

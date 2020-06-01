@@ -1,3 +1,4 @@
+from __future__ import print_function
 from Screens.Screen import Screen
 from Screens.MessageBox import MessageBox
 from Screens.ChoiceBox import ChoiceBox
@@ -17,8 +18,10 @@ from xml.etree import ElementTree
 
 from operator import itemgetter
 import os, time
-import urllib2
 import skin
+
+from six.moves import urllib
+
 
 ###global
 sf = skin.getSkinFactor()
@@ -63,7 +66,7 @@ class OscamInfo:
 		for file in ["/tmp/.ncam/ncam.version", "/tmp/.oscam/oscam.version"]:
 			if fileExists(file):
 				with open(file, 'r') as data:
-					conffile = file.split('/')[-1].replace("version","conf")
+					conffile = file.split('/')[-1].replace("version", "conf")
 					for i in data:
 						if "web interface support:" in i.lower():
 							owebif = i.split(":")[1].strip()
@@ -94,7 +97,7 @@ class OscamInfo:
 		if conffile == "":
 			conffile = "oscam.conf"
 		conf += "/" + conffile
-		api = conffile.replace(".conf","api")
+		api = conffile.replace(".conf", "api")
 
 		# Assume that oscam webif is NOT blocking localhost, IPv6 is also configured if it is compiled in,
 		# and no user and password are required
@@ -158,7 +161,7 @@ class OscamInfo:
 
 		if self.port.startswith( '+' ):
 			self.proto = "https"
-			self.port.replace("+","")
+			self.port.replace("+", "")
 
 		if part is None:
 			self.url = "%s://%s:%s/%s.html?part=status" % ( self.proto, self.ip, self.port, self.api )
@@ -167,25 +170,25 @@ class OscamInfo:
 		if part is not None and reader is not None:
 			self.url = "%s://%s:%s/%s.html?part=%s&label=%s" % ( self.proto, self.ip, self.port, self.api, part, reader )
 
-		opener = urllib2.build_opener( urllib2.HTTPHandler )
+		opener = urllib.request.build_opener( urllib2.HTTPHandler )
 		if not self.username == "":
-			pwman = urllib2.HTTPPasswordMgrWithDefaultRealm()
+			pwman = urllib.request.HTTPPasswordMgrWithDefaultRealm()
 			pwman.add_password( None, self.url, self.username, self.password )
 			handlers = urllib2.HTTPDigestAuthHandler( pwman )
-			opener = urllib2.build_opener( urllib2.HTTPHandler, handlers )
-			urllib2.install_opener( opener )
-		request = urllib2.Request( self.url )
+			opener = urllib.request.build_opener( urllib2.HTTPHandler, handlers )
+			urllib.request.install_opener( opener )
+		request = urllib.request.Request( self.url )
 		err = False
 		try:
-			data = urllib2.urlopen( request ).read()
+			data = urllib.request.urlopen( request ).read()
 			# print data
-		except urllib2.URLError, e:
+		except urllib.error.URLError as e:
 			if hasattr(e, "reason"):
 				err = str(e.reason)
 			elif hasattr(e, "code"):
 				err = str(e.code)
 		if err is not False:
-			print "[openWebIF] error: %s" % err
+			print("[openWebIF] error: %s" % err)
 			return False, err
 		else:
 			return True, data
@@ -214,13 +217,13 @@ class OscamInfo:
 				for cl in clients:
 					name = cl.attrib["name"]
 					proto = cl.attrib["protocol"]
-					if cl.attrib.has_key("au"):
+					if "au" in cl.attrib:
 						au = cl.attrib["au"]
 					else:
 						au = ""
 					caid = cl.find("request").attrib["caid"]
 					srvid = cl.find("request").attrib["srvid"]
-					if cl.find("request").attrib.has_key("ecmtime"):
+					if "ecmtime" in cl.find("request").attrib:
 						ecmtime = cl.find("request").attrib["ecmtime"]
 						if ecmtime == "0" or ecmtime == "":
 							ecmtime = _("n/a")
@@ -261,14 +264,14 @@ class OscamInfo:
 				log = data.find("log")
 				logtext = log.text
 			if typ == "s":
-				if tmp.has_key("r"):
+				if "r" in tmp:
 					for i in tmp["r"]:
 						retval.append(i)
-				if tmp.has_key("p"):
+				if "p" in tmp:
 					for i in tmp["p"]:
 						retval.append(i)
 			elif typ == "c":
-				if tmp.has_key("c"):
+				if "c" in tmp:
 					for i in tmp["c"]:
 						retval.append(i)
 			elif typ == "l":
@@ -291,7 +294,7 @@ class OscamInfo:
 		xmldata = self.openWebIF()
 		if xmldata[0]:
 			data = ElementTree.XML(xmldata[1])
-			if data.attrib.has_key("version"):
+			if "version" in data.attrib:
 				self.version = data.attrib["version"]
 			else:
 				self.version = _("n/a")
@@ -317,7 +320,7 @@ class OscamInfo:
 			status = data.find("status")
 			clients = status.findall("client")
 			for cl in clients:
-				if cl.attrib.has_key("type"):
+				if "type" in cl.attrib:
 					if cl.attrib["type"] == "p" or cl.attrib["type"] == "r":
 						if spec is not None:
 							proto = cl.attrib["protocol"]
@@ -340,7 +343,7 @@ class OscamInfo:
 			status = data.find("status")
 			clients = status.findall("client")
 			for cl in clients:
-				if cl.attrib.has_key("type"):
+				if "type" in cl.attrib:
 					if cl.attrib["type"] == "c":
 						readers.append( (cl.attrib["name"], cl.attrib["name"]) )  # return tuple for later use in Choicebox
 			return clientnames
@@ -445,7 +448,7 @@ class OscamInfoMenu(Screen):
 	def down(self):
 		pass
 	def goEntry(self, entry):
-		if entry in (1,2,3) and config.oscaminfo.userdatafromconf.value and self.osc.confPath()[0] is None:
+		if entry in (1, 2, 3) and config.oscaminfo.userdatafromconf.value and self.osc.confPath()[0] is None:
 			config.oscaminfo.userdatafromconf.setValue(False)
 			config.oscaminfo.userdatafromconf.save()
 			self.session.openWithCallback(self.ErrMsgCallback, MessageBox, _("File oscam.conf not found.\nPlease enter username/password manually."), MessageBox.TYPE_ERROR)
@@ -484,7 +487,7 @@ class OscamInfoMenu(Screen):
 			self.session.open(OscamInfoConfigScreen)
 
 	def chooseReaderCallback(self, retval):
-		print retval
+		print(retval)
 		if retval is not None:
 			if self.callbackmode == "cccam":
 				self.session.open(oscEntitlements, retval[1])
@@ -492,7 +495,7 @@ class OscamInfoMenu(Screen):
 				self.session.open(oscReaderStats, retval[1])
 
 	def ErrMsgCallback(self, retval):
-		print retval
+		print(retval)
 		self.session.open(OscamInfoConfigScreen)
 
 	def buildMenu(self, mlist):
@@ -506,24 +509,24 @@ class OscamInfoMenu(Screen):
 				if fileExists(png):
 					png = LoadPixmap(png)
 				if png is not None:
-					x, y, w, h = skin.parameters.get("ChoicelistDash",(0, 2*sf, 800*sf, 2*sf))
+					x, y, w, h = skin.parameters.get("ChoicelistDash", (0, 2*sf, 800*sf, 2*sf))
 					res.append((eListboxPythonMultiContent.TYPE_PIXMAP, x, y, w, h, png))
-					x, y, w, h = skin.parameters.get("ChoicelistName",(45*sf, 2*sf, 800*sf, 25*sf))
+					x, y, w, h = skin.parameters.get("ChoicelistName", (45*sf, 2*sf, 800*sf, 25*sf))
 					res.append((eListboxPythonMultiContent.TYPE_TEXT, x, y, w, h, 0, RT_HALIGN_LEFT, t[2:]))
 					png2 = resolveFilename(SCOPE_ACTIVE_SKIN, "buttons/key_" + keys[k] + ".png")
 					if fileExists(png2):
 						png2 = LoadPixmap(png2)
 					if png2 is not None:
-						x, y, w, h = skin.parameters.get("ChoicelistIcon",(5*sf, 0, 35*sf, 25*sf))
+						x, y, w, h = skin.parameters.get("ChoicelistIcon", (5*sf, 0, 35*sf, 25*sf))
 						res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHATEST, x, y, w, h, png2))
 			else:
-				x, y, w, h = skin.parameters.get("ChoicelistName",(45*sf, 2*sf, 800*sf, 25*sf))
+				x, y, w, h = skin.parameters.get("ChoicelistName", (45*sf, 2*sf, 800*sf, 25*sf))
 				res.append((eListboxPythonMultiContent.TYPE_TEXT, x, y, w, h, 0, RT_HALIGN_LEFT, t))
 				png2 = resolveFilename(SCOPE_ACTIVE_SKIN, "buttons/key_" + keys[k] + ".png")
 				if fileExists(png2):
 					png2 = LoadPixmap(png2)
 				if png2 is not None:
-					x, y, w, h = skin.parameters.get("ChoicelistIcon",(5*sf, 0, 35*sf, 25*sf))
+					x, y, w, h = skin.parameters.get("ChoicelistIcon", (5*sf, 0, 35*sf, 25*sf))
 					res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHATEST, x, y, w, h, png2))
 			menuentries.append(res)
 			if k < len(keys) - 1:
@@ -751,7 +754,7 @@ class oscInfo(Screen, OscamInfo):
 		res = [""]
 		for i in listentry:
 			if i.strip() != "" or i is not None:
-				res.append( (eListboxPythonMultiContent.TYPE_TEXT, 5*sf, 0, self.sizeLH,self.itemheight*sf, 2, RT_HALIGN_LEFT, i) )
+				res.append( (eListboxPythonMultiContent.TYPE_TEXT, 5*sf, 0, self.sizeLH, self.itemheight*sf, 2, RT_HALIGN_LEFT, i) )
 		return res
 
 	def showData(self):
@@ -762,7 +765,7 @@ class oscInfo(Screen, OscamInfo):
 			data = self.readXML(typ = self.what)
 		self.out = []
 		self.itemheight = 25
-		if not isinstance(data,str):
+		if not isinstance(data, str):
 			if self.what != "l":
 				heading = ( self.HEAD[self.NAME], self.HEAD[self.PROT], self.HEAD[self.CAID_SRVID],
 						self.HEAD[self.SRVNAME], self.HEAD[self.ECMTIME], self.HEAD[self.IP_PORT], "")
@@ -907,7 +910,7 @@ class oscEntitlements(Screen, OscamInfo):
 				providertxt += "%s - %s%s" % ( j[0], j[1], linefeed )
 			res.append( ( 	ca_id,
 					csystem,
-					str(hops[1]),str(hops[2]), str(hops[3]), str(hops[4]), str(hops[5]), str(csum), str(creshare),
+					str(hops[1]), str(hops[2]), str(hops[3]), str(hops[4]), str(hops[5]), str(csum), str(creshare),
 					providertxt[:-1]
 					) )
 			outlist.append(res)
@@ -917,7 +920,7 @@ class oscEntitlements(Screen, OscamInfo):
 		xmldata_for_reader = self.openWebIF(part = "entitlement", reader = self.cccamreader)
 		xdata = ElementTree.XML(xmldata_for_reader[1])
 		reader = xdata.find("reader")
-		if reader.attrib.has_key("hostaddress"):
+		if "hostaddress" in reader.attrib:
 			hostadr = reader.attrib["hostaddress"]
 			host_ok = True
 		else:
@@ -935,8 +938,8 @@ class oscEntitlements(Screen, OscamInfo):
 			chop = int(i.attrib["hop"])
 			if chop > 5:
 				chop = 5
-			if caid.has_key(ccaid):
-				if caid[ccaid].has_key("hop"):
+			if ccaid in caid:
+				if "hop" in caid[ccaid]:
 					caid[ccaid]["hop"][chop] += 1
 				else:
 					caid[ccaid]["hop"] = [ 0, 0, 0, 0, 0, 0 ]
@@ -949,7 +952,7 @@ class oscEntitlements(Screen, OscamInfo):
 				caid[ccaid]["system"] = csystem
 			else:
 				caid[ccaid] = {}
-				if caid[ccaid].has_key("hop"):
+				if "hop" in caid[ccaid]:
 					caid[ccaid]["hop"][chop] += 1
 				else:
 					caid[ccaid]["hop"] = [ 0, 0, 0, 0, 0, 0]
@@ -1046,7 +1049,7 @@ class oscReaderStats(Screen, OscamInfo):
 				providertxt += "%s - %s%s" % ( j[0], j[1], linefeed )
 			res.append( ( 	ca_id,
 					csystem,
-					str(hops[1]),str(hops[2]), str(hops[3]), str(hops[4]), str(hops[5]), str(csum), str(creshare),
+					str(hops[1]), str(hops[2]), str(hops[3]), str(hops[4]), str(hops[5]), str(csum), str(creshare),
 					providertxt[:-1]
 					) )
 			outlist.append(res)
@@ -1092,12 +1095,12 @@ class oscReaderStats(Screen, OscamInfo):
 						if rcs == "found":
 							avg_time = str(float(avgtime) / 1000)[:5]
 							last_time = str(float(lasttime) / 1000)[:5]
-							if j.attrib.has_key("lastrequest"):
+							if "lastrequest" in j.attrib:
 								lastreq = j.attrib["lastrequest"]
 								try:
 									last_req = lastreq.split("T")[1][:-5]
 								except IndexError:
-									last_req = time.strftime("%H:%M:%S",time.localtime(float(lastreq)))
+									last_req = time.strftime("%H:%M:%S", time.localtime(float(lastreq)))
 							else:
 								last_req = ""
 						else:

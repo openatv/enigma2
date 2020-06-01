@@ -1,4 +1,6 @@
-from Screen import Screen
+from __future__ import print_function
+from __future__ import absolute_import
+from Screens.Screen import Screen
 from skin import isVTISkin
 from Components.ActionMap import ActionMap
 from Components.Button import Button
@@ -19,7 +21,7 @@ from Components.Network import iNetwork
 from Tools.StbHardware import getFPVersion
 from Tools.Multiboot import GetCurrentImage, GetCurrentImageMode
 
-from os import path,popen
+from os import path, popen
 from re import search
 
 import time
@@ -43,7 +45,7 @@ def parseFile(filename):
 		ret = f.read().strip()
 		f.close()
 	except IOError:
-		print "[ERROR] failed to open file %s" % filename
+		print("[ERROR] failed to open file %s" % filename)
 	return ret
 
 def parseLines(filename):
@@ -53,7 +55,7 @@ def parseLines(filename):
 		ret = f.readlines()
 		f.close()
 	except IOError:
-		print "[ERROR] failed to open file %s" % filename
+		print("[ERROR] failed to open file %s" % filename)
 	return ret
 
 def MyDateConverter(StringDate):
@@ -65,7 +67,7 @@ def MyDateConverter(StringDate):
 			day = StringDate[6:8]
 			StringDate = ' '.join((year, month, day))
 		else:
-			StringDate = StringDate.replace("-"," ")
+			StringDate = StringDate.replace("-", " ")
 		StringDate = time.strftime(config.usage.date.full.value, time.strptime(StringDate, "%Y %m %d"))
 		return StringDate
 	except:
@@ -148,7 +150,7 @@ def getAboutText():
 		f.close()
 	if tempinfo and int(tempinfo.replace('\n', '')) > 0:
 		mark = str('\xc2\xb0')
-		AboutText += _("System temperature:\t%s") % tempinfo.replace('\n', '').replace(' ','') + mark + "C\n"
+		AboutText += _("System temperature:\t%s") % tempinfo.replace('\n', '').replace(' ', '') + mark + "C\n"
 
 	tempinfo = ""
 	if path.exists('/proc/stb/fp/temp_sensor_avs'):
@@ -175,13 +177,13 @@ def getAboutText():
 					temp = line[1].split("=")
 					temp = line[1].split(" ")
 					tempinfo = temp[2]
-					if getMachineBuild() in ('u41','u42','u43'):
+					if getMachineBuild() in ('u41', 'u42', 'u43'):
 						tempinfo = str(int(tempinfo) - 15)
 		except:
 			tempinfo = ""
 	if tempinfo and int(tempinfo.replace('\n', '')) > 0:
 		mark = str('\xc2\xb0')
-		AboutText += _("Processor temperature:\t%s") % tempinfo.replace('\n', '').replace(' ','') + mark + "C\n"
+		AboutText += _("Processor temperature:\t%s") % tempinfo.replace('\n', '').replace(' ', '') + mark + "C\n"
 	AboutLcdText = AboutText.replace('\t', ' ')
 
 	return AboutText, AboutLcdText
@@ -190,7 +192,7 @@ class About(Screen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
 		Screen.setTitle(self, _("Image Information"))
-		self.skinName = ["AboutOE","About"]
+		self.skinName = ["AboutOE", "About"]
 		self.populate()
 
 		self["key_red"] = Button(_("Exit"))
@@ -264,7 +266,7 @@ class About(Screen):
 			hddlist = harddiskmanager.HDDList()
 			hdd = hddlist and hddlist[0][1] or None
 			if hdd is not None and hdd.model() != "":
-				self["hddA"] = StaticText(_("%s\n(%s, %d MB free)") % (hdd.model(), hdd.capacity(),hdd.free()))
+				self["hddA"] = StaticText(_("%s\n(%s, %d MB free)") % (hdd.model(), hdd.capacity(), hdd.free()))
 			else:
 				self["hddA"] = StaticText(_("none"))
 
@@ -342,7 +344,7 @@ class About(Screen):
 				id = f.read()[:-1].split('=')
 				f.close()
 				from Screens.MessageBox import MessageBox
-				self.session.open(MessageBox,id[1], type = MessageBox.TYPE_INFO)
+				self.session.open(MessageBox, id[1], type = MessageBox.TYPE_INFO)
 			except:
 				pass
 
@@ -635,76 +637,76 @@ class SystemNetworkInfo(Screen):
 	def createscreen(self):
 		def netspeed():
 			netspeed=""
-			for line in popen('ethtool eth0 |grep Speed','r'):
+			for line in popen('ethtool eth0 |grep Speed', 'r'):
 				line = line.strip().split(":")
-				line =line[1].replace(' ','')
+				line =line[1].replace(' ', '')
 				netspeed += line
 				return str(netspeed)
 
 		def netspeed_eth1():
 			netspeed=""
-			for line in popen('ethtool eth1 |grep Speed','r'):
+			for line in popen('ethtool eth1 |grep Speed', 'r'):
 				line = line.strip().split(":")
-				line =line[1].replace(' ','')
+				line =line[1].replace(' ', '')
 				netspeed += line
 				return str(netspeed)
 
 		self.AboutText = ""
 		self.iface = "eth0"
 		eth0 = about.getIfConfig('eth0')
-		if eth0.has_key('addr'):
-			if eth0.has_key('ifname'):
+		if 'addr' in eth0:
+			if 'ifname' in eth0:
 				self.AboutText += '{:<35}'.format(_('Interface:')) + "\t" + " /dev/" + eth0['ifname'] + "\n"
 			self.AboutText += '{:<35}'.format(_("IP:")) + "\t" + eth0['addr'] + "\n"
-			if eth0.has_key('netmask'):
+			if 'netmask' in eth0:
 				self.AboutText += '{:<35}'.format(_("Netmask:")) + "\t" + eth0['netmask'] + "\n"
-			if eth0.has_key('hwaddr'):
+			if 'hwaddr' in eth0:
 				self.AboutText += '{:<35}'.format(_("MAC:")) + "\t" + eth0['hwaddr'] + "\n"
 			self.AboutText += '{:<35}'.format(_("Network Speed:")) + "\t" + netspeed() + "\n"
 			self.iface = 'eth0'
 
 		eth1 = about.getIfConfig('eth1')
-		if eth1.has_key('addr'):
-			if eth1.has_key('ifname'):
+		if 'addr' in eth1:
+			if 'ifname' in eth1:
 				self.AboutText += '{:<35}'.format(_('Interface:')) + "\t" + " /dev/" + eth1['ifname'] + "\n"
 			self.AboutText += '{:<35}'.format(_("IP:")) + "\t" + eth1['addr'] + "\n"
-			if eth1.has_key('netmask'):
+			if 'netmask' in eth1:
 				self.AboutText += '{:<35}'.format(_("Netmask:")) + "\t" + eth1['netmask'] + "\n"
-			if eth1.has_key('hwaddr'):
+			if 'hwaddr' in eth1:
 				self.AboutText += '{:<35}'.format(_("MAC:")) + "\t" + eth1['hwaddr'] + "\n"
 			self.AboutText += '{:<35}'.format(_("Network Speed:")) + "\t" + netspeed_eth1() + "\n"
 			self.iface = 'eth1'
 
 		ra0 = about.getIfConfig('ra0')
-		if ra0.has_key('addr'):
-			if ra0.has_key('ifname'):
+		if 'addr' in ra0:
+			if 'ifname' in ra0:
 				self.AboutText += '{:<35}'.format(_('Interface:')) + "\t" + " /dev/" + ra0['ifname'] + "\n"
 			self.AboutText += '{:<35}'.format(_("IP:")) + "\t" + ra0['addr'] + "\n"
-			if ra0.has_key('netmask'):
+			if 'netmask' in ra0:
 				self.AboutText += '{:<35}'.format(_("Netmask:")) + "\t" + ra0['netmask'] + "\n"
-			if ra0.has_key('hwaddr'):
+			if 'hwaddr' in ra0:
 				self.AboutText += '{:<35}'.format(_("MAC:")) + "\t" + ra0['hwaddr'] + "\n"
 			self.iface = 'ra0'
 
 		wlan0 = about.getIfConfig('wlan0')
-		if wlan0.has_key('addr'):
-			if wlan0.has_key('ifname'):
+		if 'addr' in wlan0:
+			if 'ifname' in wlan0:
 				self.AboutText += '{:<35}'.format(_('Interface:')) + "\t" + " /dev/" + wlan0['ifname'] + "\n"
 			self.AboutText += '{:<35}'.format(_("IP:")) + "\t" + wlan0['addr'] + "\n"
-			if wlan0.has_key('netmask'):
+			if 'netmask' in wlan0:
 				self.AboutText += '{:<35}'.format(_("Netmask:")) + "\t" + wlan0['netmask'] + "\n"
-			if wlan0.has_key('hwaddr'):
+			if 'hwaddr' in wlan0:
 				self.AboutText += '{:<35}'.format(_("MAC:")) + "\t" + wlan0['hwaddr'] + "\n"
 			self.iface = 'wlan0'
 
 		wlan1 = about.getIfConfig('wlan1')
-		if wlan1.has_key('addr'):
-			if wlan1.has_key('ifname'):
+		if 'addr' in wlan1:
+			if 'ifname' in wlan1:
 				self.AboutText += '{:<35}'.format(_('Interface:')) + "\t" + " /dev/" + wlan1['ifname'] + "\n"
 			self.AboutText += '{:<35}'.format(_("IP:")) + "\t" + wlan1['addr'] + "\n"
-			if wlan1.has_key('netmask'):
+			if 'netmask' in wlan1:
 				self.AboutText += '{:<35}'.format(_("Netmask:")) + "\t" + wlan1['netmask'] + "\n"
-			if wlan1.has_key('hwaddr'):
+			if 'hwaddr' in wlan1:
 				self.AboutText += '{:<35}'.format(_("MAC:")) + "\t" + wlan1['hwaddr'] + "\n"
 			self.iface = 'wlan1'
 
@@ -739,24 +741,24 @@ class SystemNetworkInfo(Screen):
 							essid = _("No Connection")
 						else:
 							accesspoint = str(status[self.iface]["accesspoint"])
-						if self.has_key("BSSID"):
+						if "BSSID" in self:
 							self.AboutText += _('Accesspoint:') + '\t' + accesspoint + '\n'
-						if self.has_key("ESSID"):
+						if "ESSID" in self:
 							self.AboutText += _('SSID:') + '\t' + essid + '\n'
 
 						quality = str(status[self.iface]["quality"])
-						if self.has_key("quality"):
+						if "quality" in self:
 							self.AboutText += _('Link Quality:') + '\t' + quality + '\n'
 
 						if status[self.iface]["bitrate"] == '0':
 							bitrate = _("Unsupported")
 						else:
 							bitrate = str(status[self.iface]["bitrate"]) + " Mb/s"
-						if self.has_key("bitrate"):
+						if "bitrate" in self:
 							self.AboutText += _('Bitrate:') + '\t' + bitrate + '\n'
 
 						signal = str(status[self.iface]["signal"])
-						if self.has_key("signal"):
+						if "signal" in self:
 							self.AboutText += _('Signal Strength:') + '\t' + signal + '\n'
 
 						if status[self.iface]["encryption"] == "off":
@@ -766,7 +768,7 @@ class SystemNetworkInfo(Screen):
 								encryption = _("Unsupported")
 						else:
 							encryption = _("Enabled")
-						if self.has_key("enc"):
+						if "enc" in self:
 							self.AboutText += _('Encryption:') + '\t' + encryption + '\n'
 
 						if status[self.iface]["essid"] == "off" or status[self.iface]["accesspoint"] == "Not-Associated" or status[self.iface]["accesspoint"] is False:
@@ -861,7 +863,7 @@ class ViewGitLog(Screen):
 			"right": self.pageDown,
 			"down": self.pageDown,
 			"up": self.pageUp
-		},-1)
+		}, -1)
 		self.onLayoutFinish.append(self.getlog)
 
 	def changelogtype(self):
@@ -925,7 +927,7 @@ class TranslationInfo(Screen):
 				continue
 			(type, value) = l
 			infomap[type] = value
-		print infomap
+		print(infomap)
 
 		self["key_red"] = Button(_("Cancel"))
 		self["TranslationInfo"] = StaticText(info)

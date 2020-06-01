@@ -1,3 +1,4 @@
+from __future__ import print_function
 import os
 
 filename = "/usr/lib/enigma2/python/Plugins/Extensions/MediaPortal/plugin.pyo"
@@ -16,7 +17,7 @@ for line, str in enumerate(source):
 	str = str.replace('dm920N', 'dn920N')
 	
 	if oldstr != str:
-		print "!!! Patch pyo line %d" %(line)
+		print("!!! Patch pyo line %d" %(line))
 
 	dest.write(str)
 

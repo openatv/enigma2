@@ -1,8 +1,10 @@
-from HTMLComponent import HTMLComponent
-from GUIComponent import GUIComponent
-from VariableText import VariableText
+from __future__ import absolute_import
+from Components.HTMLComponent import HTMLComponent
+from Components.GUIComponent import GUIComponent
+from Components.VariableText import VariableText
 
 from enigma import eLabel
+import six
 
 from Tools.NumericalTextInput import NumericalTextInput
 
@@ -156,7 +158,7 @@ class Input(VariableText, HTMLComponent, GUIComponent, NumericalTextInput):
 
 	def insertChar(self, ch, pos=False, owr=False, ins=False):
 		if isinstance(ch, str):
-			ch = ch.decode("utf-8","ignore")
+			ch = ch.decode("utf-8", "ignore")
 		if not pos:
 			pos = self.currPos
 		if ins and not self.maxSize:
@@ -242,7 +244,7 @@ class Input(VariableText, HTMLComponent, GUIComponent, NumericalTextInput):
 		if self.allmarked:
 			self.deleteAllChars()
 			self.allmarked = False
-		self.insertChar(unichr(code), self.currPos, False, False)
+		self.insertChar(six.unichr(code), self.currPos, False, False)
 		self.innerright()
 		self.update()
 

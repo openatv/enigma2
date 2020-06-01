@@ -1,9 +1,11 @@
+from __future__ import print_function
+from __future__ import absolute_import
 from Components.Task import Task, Job, DiskspacePrecondition, Condition
 from Components.Harddisk import harddiskmanager
 from Tools.Directories import SCOPE_HDD, resolveFilename, createDir
 from time import strftime
-from Process import CheckDiskspaceTask, getISOfilename, BurnTask, RemoveWorkspaceFolder
-from Project import iso639language
+from .Process import CheckDiskspaceTask, getISOfilename, BurnTask, RemoveWorkspaceFolder
+from .Project import iso639language
 import struct
 import os
 import re
@@ -58,25 +60,25 @@ class BludiscTitle(object):
 
 	def getInTimeBytes(self):
 		in_time = self.entrypoints[0][1]	# first keyframe (in 90khz pts)
-		return struct.pack('>L',in_time/2)	# start time (in 45khz ticks)
+		return struct.pack('>L', in_time/2)	# start time (in 45khz ticks)
 
 	def getOutTimeBytes(self):
 	      out_time = self.entrypoints[-1][1]	# last keyframe (in 90khz pts)
-	      return struct.pack('>L',out_time/2)	# end time (in 45khz ticks)
+	      return struct.pack('>L', out_time/2)	# end time (in 45khz ticks)
 
 	InTime = property(getInTimeBytes)
 	OutTime = property(getOutTimeBytes)
 
 	def getNumSourcePackets(self):
 		num_source_packets = self.muxed_size / 192
-		return struct.pack('>L',num_source_packets) 
+		return struct.pack('>L', num_source_packets) 
 
 	def getTsRecordingRate(self):
 		clip_len_seconds = (self.entrypoints[-1][1] - self.entrypoints[0][1]) / 90000
 		if self.length > clip_len_seconds:
 			clip_len_seconds = self.length
 		ts_recording_rate = self.muxed_size / clip_len_seconds	#! possible lack in accuracy 
-		return struct.pack('>L',ts_recording_rate)
+		return struct.pack('>L', ts_recording_rate)
 
 	def getEPforOffsetPTS(self, requested_pts):
 		best_pts = 0
@@ -89,8 +91,8 @@ class BludiscTitle(object):
 
 class BludiscStream(object):
 	def __init__(self, parent, PID):
-	  	self.__parent = parent
-	  	self.__PID = PID
+		self.__parent = parent
+		self.__PID = PID
 		self.__streamtype = 0x00
 		self.__framerate = None
 		self.__audiorate = 0
@@ -128,12 +130,12 @@ class BludiscStream(object):
 		return False
 
 	def getStreamtypeByte(self):
-		return struct.pack('B',self.__streamtype)
+		return struct.pack('B', self.__streamtype)
 
 	streamType = property(getStreamtypeByte, setStreamtype)
 	
 	def getPIDBytes(self):
-		return struct.pack('>H',self.__PID)
+		return struct.pack('>H', self.__PID)
 	
 	pid = property(getPIDBytes)
 
@@ -152,19 +154,19 @@ class BludiscStream(object):
 			if videoformatstring in VIDEO_FORMATS:
 				videoformat = VIDEO_FORMATS[videoformatstring]
 			else:
-				print "BludiscStream %s object warning... PID %i video stream format %s out of spec!" % (self.__parent.inputfile, self.__PID, videoformatstring)
+				print("BludiscStream %s object warning... PID %i video stream format %s out of spec!" % (self.__parent.inputfile, self.__PID, videoformatstring))
 
 			if self.__parent.framerate in VIDEO_RATES:
 				frame_rate = VIDEO_RATES[self.__parent.framerate]
 			else:
-				print "BludiscStream %s object warning... PID %i video frame rate %s out of spec!" % (self.__parent.inputfile, self.__PID, self.__parent.framerate)
+				print("BludiscStream %s object warning... PID %i video frame rate %s out of spec!" % (self.__parent.inputfile, self.__PID, self.__parent.framerate))
 
 			byteval = (videoformat << 4) + frame_rate
 
 		if self.isAudio: 
 			byteval = (self.__audiopresentation << 4) + self.__audiorate
 
-		return struct.pack('B',byteval)
+		return struct.pack('B', byteval)
 	
 	formatByte = property(getFormatByte)
 
@@ -183,10 +185,10 @@ class BludiscStream(object):
 	def getAspectByte(self):
 		aspect = self.__parent.properties.aspect.value
 		if self.isVideo:
-		      if aspect == "16:9":
-			    return struct.pack('B',0x30)
-		      elif aspect == "4:3":
-			    return struct.pack('B',0x20)
+			if aspect == "16:9":
+				return struct.pack('B', 0x30)
+			elif aspect == "4:3":
+				return struct.pack('B', 0x20)
 
 	aspect = property(getAspectByte)
 
@@ -213,7 +215,7 @@ class RemuxTask(Task):
 				if audiotrack.format.value == "AC3": #! only consider ac3 streams at the moment
 					dvbpids.append(int(audiotrack.pid.getValue()))
 		sourcepids = "--source-pids=" + ",".join(["0x%04x" % pid for pid in dvbpids])
-		self.bdmvpids = [0x1011]+range(0x1100,0x1107)[:len(dvbpids)-1]
+		self.bdmvpids = [0x1011]+range(0x1100, 0x1107)[:len(dvbpids)-1]
 		resultpids = "--result-pids=" + ",".join(["0x%04x" % pid for pid in self.bdmvpids])
 		return [sourcepids, resultpids]
 
@@ -223,13 +225,13 @@ class RemuxTask(Task):
 			(spn, pts) = (int(values[1]), int(values[2]))
 			if spn > 0 and pts > 0:
 				self.title.entrypoints.append((spn, pts))
-				print "[bdremux] added new entrypoint", self.title.entrypoints[-1]
+				print("[bdremux] added new entrypoint", self.title.entrypoints[-1])
 			self.progress = spn
 		elif line.startswith("linked:"):	
 			words = line[:-1].split(' ')
 			pid = int(words[5].split('_')[1])
 			self.title.addStream(pid)
-			print "[bdremux] added stream with pid", pid
+			print("[bdremux] added stream with pid", pid)
 		elif line.find("has CAPS:") > 0:
 			words = line[:-1].split(' ')
 			pid = int(words[0].split('_')[1])
@@ -239,7 +241,7 @@ class RemuxTask(Task):
 
 			stream = self.title.getStreamByPID(pid)
 			if stream == None:
-				print "[bdremux] invalid stream!"
+				print("[bdremux] invalid stream!")
 				return
 
 			sdict = {}
@@ -259,13 +261,13 @@ class RemuxTask(Task):
 						stream.setAudioRate(v)
 					elif key == "channels":
 						stream.setAudioPresentation(v)
-			print "[bdremux] discovered caps for pid %i (%s)" % (pid, stype)
+			print("[bdremux] discovered caps for pid %i (%s)" % (pid, stype))
 		elif line.startswith("ERROR:"):
 			self.error_text = line[7:-1]
-			print "[bdremux] error:", self.error_text
+			print("[bdremux] error:", self.error_text)
 			Task.processFinished(self, 1)
 		else:
-			print "[bdremux]", line[:-1]
+			print("[bdremux]", line[:-1])
 
 	def cleanup(self, failed):
 		if not failed:
@@ -295,7 +297,7 @@ class CreateStructureTask(Task):
 		Task.processFinished(self, 0)
 
 	def conduct(self):
-		for directory in ['BDMV','BDMV/AUXDATA','BDMV/BACKUP','BDMV/BACKUP/BDJO','BDMV/BACKUP/CLIPINF','BDMV/BACKUP/JAR','BDMV/BACKUP/PLAYLIST','BDMV/BDJO','BDMV/CLIPINF','BDMV/JAR','BDMV/META','BDMV/META/DL','BDMV/PLAYLIST','BDMV/STREAM']:
+		for directory in ['BDMV', 'BDMV/AUXDATA', 'BDMV/BACKUP', 'BDMV/BACKUP/BDJO', 'BDMV/BACKUP/CLIPINF', 'BDMV/BACKUP/JAR', 'BDMV/BACKUP/PLAYLIST', 'BDMV/BDJO', 'BDMV/CLIPINF', 'BDMV/JAR', 'BDMV/META', 'BDMV/META/DL', 'BDMV/PLAYLIST', 'BDMV/STREAM']:
 			if not createDir(self.job.workspace+directory):
 				Task.processFinished(self, 1)
 
@@ -343,15 +345,15 @@ class CreateIndexTask(Task):
 		INDEXES += '\xFF\xFF'			# id_ref 
 		INDEXES += zeros[0:4]
 
-		INDEXES += struct.pack('>H',num_titles)
+		INDEXES += struct.pack('>H', num_titles)
 		for i in range(num_titles):
 			HDMV_OBJ = bytearray('\x40')	# object_type & access_type
 			HDMV_OBJ += zeros[0:3]		# skip 3 bytes
 			HDMV_OBJ += zeros[0:2]
-			HDMV_OBJ += struct.pack('>H',i) # index 2 bytes
+			HDMV_OBJ += struct.pack('>H', i) # index 2 bytes
 			HDMV_OBJ += zeros[0:4]		# skip 4 bytes
 			INDEXES += HDMV_OBJ
-		INDEXES[0:4] = struct.pack('>L',len(INDEXES)-4)
+		INDEXES[0:4] = struct.pack('>L', len(INDEXES)-4)
 		indexbuffer += INDEXES
 
 		f = open(self.job.workspace+"BDMV/index.bdmv", 'w')
@@ -387,23 +389,23 @@ class CreateMobjTask(Task):
 
 		for i in range(len(self.job.titles)):
 			instructions.append(	# load title number into register0 \
-				 [['\x50\x40\x00\x01','\x00\x00\x00\x00',struct.pack('>L',i)],\
+				 [['\x50\x40\x00\x01', '\x00\x00\x00\x00', struct.pack('>L', i)],\
 						# PLAY_PL
-				  ['\x22\x00\x00\x00','\x00\x00\x00\x00','\x00\x00\x00\x00']])
+				  ['\x22\x00\x00\x00', '\x00\x00\x00\x00', '\x00\x00\x00\x00']])
 			if i < len(self.job.titles)-1: # on all except last title JUMP_TITLE i+2 (JUMP_TITLE is one-based)
-				instructions[-1].append(['\x21\x81\x00\x00',struct.pack('>L',i+2),'\x00\x00\x00\x00'])
+				instructions[-1].append(['\x21\x81\x00\x00', struct.pack('>L', i+2), '\x00\x00\x00\x00'])
 
 		#SETSTREAM (first audio stream as default track) ['\x51\xC0\x00\x01','\x00\x00\x00\x00','\x80\x01\x00\x00'] #!
 
 		num_objects = len(instructions)
 		OBJECTS = bytearray(4) #length of objects
 		OBJECTS += zeros[0:4] #reserved
-		OBJECTS += struct.pack('>H',num_objects)
+		OBJECTS += struct.pack('>H', num_objects)
 		for i in range(num_objects):
 			MOBJ = bytearray()
 			MOBJ += '\x80\x00' # resume_intention_flag, menu_call_mask, title_search_maskplayback_type, 13 reserved
 			num_commands = len(instructions[i])
-			MOBJ += struct.pack('>H',num_commands)
+			MOBJ += struct.pack('>H', num_commands)
 			for c in range(num_commands):
 				CMD = bytearray()
 				CMD += instructions[i][c][0] #options
@@ -411,7 +413,7 @@ class CreateMobjTask(Task):
 				CMD += instructions[i][c][2] #source
 				MOBJ += CMD
 			OBJECTS += MOBJ
-		OBJECTS[0:4] = struct.pack('>L',len(OBJECTS)-4)
+		OBJECTS[0:4] = struct.pack('>L', len(OBJECTS)-4)
 
 		mob += OBJECTS
 
@@ -457,7 +459,7 @@ class CreateMplsTask(Task):
 
 		AppInfoPlayList += '\x40\x00'	#playlist_random_access_flag, audio_mix_app_flag, lossless_may_bypass_mixer_flag, 13 bit reserved_for_word_align
 
-		mplsbuffer += bytearray(struct.pack('>L',len(AppInfoPlayList)))
+		mplsbuffer += bytearray(struct.pack('>L', len(AppInfoPlayList)))
 		mplsbuffer += AppInfoPlayList
 
 		PlayList = bytearray()		#length of PlayList (4 bytes)
@@ -465,16 +467,16 @@ class CreateMplsTask(Task):
 		PlayList += zeros[0:2]		#reserved 2 bytes
 
 		num_of_playitems = 1
-		PlayList += struct.pack('>H',num_of_playitems)
+		PlayList += struct.pack('>H', num_of_playitems)
 
 		num_of_subpaths = 0
-		PlayList += struct.pack('>H',num_of_subpaths)
+		PlayList += struct.pack('>H', num_of_subpaths)
 
 		num_primary_video = len(self.title.VideoStreams)
 		
 		if num_primary_video == 0:
 			self.error_text = "Title %05d has no valid video streams!" % self.mpls_num
-			raise Exception, self.error_text
+			raise Exception(self.error_text)
 
 		num_primary_audio = len(self.title.AudioStreams)
 
@@ -499,29 +501,29 @@ class CreateMplsTask(Task):
 
 			StnTable = bytearray()	# len 4 bytes
 			StnTable += zeros[0:2]	# reserved
-			StnTable += struct.pack('B',num_primary_video)
-			StnTable += struct.pack('B',num_primary_audio)
-			StnTable += struct.pack('B',num_pg)
-			StnTable += struct.pack('B',num_ig)
-			StnTable += struct.pack('B',num_secondary_audio)
-			StnTable += struct.pack('B',num_secondary_video)
-			StnTable += struct.pack('B',num_PIP_PG)
+			StnTable += struct.pack('B', num_primary_video)
+			StnTable += struct.pack('B', num_primary_audio)
+			StnTable += struct.pack('B', num_pg)
+			StnTable += struct.pack('B', num_ig)
+			StnTable += struct.pack('B', num_secondary_audio)
+			StnTable += struct.pack('B', num_secondary_video)
+			StnTable += struct.pack('B', num_PIP_PG)
 			StnTable += zeros[0:5]	# reserved
 
 			for vid in self.title.VideoStreams:
-				print "adding vid", vid, type(vid)
+				print("adding vid", vid, type(vid))
 				VideoEntry = bytearray(1)	# len
 				VideoEntry += '\x01'		# type 01 = elementary stream of the clip used by the PlayItem
 
 				VideoEntry += vid.pid		# stream_pid
 				VideoEntry += zeros[0:6]	# reserved
-				VideoEntry[0] = struct.pack('B',len(VideoEntry)-1)
+				VideoEntry[0] = struct.pack('B', len(VideoEntry)-1)
 
 				VideoAttr = bytearray(1)	# len
 				VideoAttr += vid.streamType	# Video type
 				VideoAttr += vid.formatByte	# Format & Framerate
 				VideoAttr += zeros[0:3]		# reserved
-				VideoAttr[0] = struct.pack('B',len(VideoAttr)-1)
+				VideoAttr[0] = struct.pack('B', len(VideoAttr)-1)
 				
 				StnTable += VideoEntry
 				StnTable += VideoAttr
@@ -531,31 +533,31 @@ class CreateMplsTask(Task):
 				AudioEntry += '\x01'		# type 01 = elementary stream of the clip used by the PlayItem
 				AudioEntry += aud.pid		# stream_pid
 				AudioEntry += zeros[0:6]	# reserved
-				AudioEntry[0] = struct.pack('B',len(AudioEntry)-1)
+				AudioEntry[0] = struct.pack('B', len(AudioEntry)-1)
 
 				AudioAttr = bytearray(1)	# len
 				AudioAttr += aud.streamType	# stream_coding_type
 				AudioAttr += aud.formatByte	# Audio Format & Samplerate
 				AudioAttr += aud.languageCode	# Audio Language Code
-				AudioAttr[0] = struct.pack('B',len(AudioAttr)-1)
+				AudioAttr[0] = struct.pack('B', len(AudioAttr)-1)
 
 				StnTable += AudioEntry
 				StnTable += AudioAttr
 
-			PlayItem += struct.pack('>H',len(StnTable))
+			PlayItem += struct.pack('>H', len(StnTable))
 			PlayItem += StnTable
 			
-			PlayList += struct.pack('>H',len(PlayItem))
+			PlayList += struct.pack('>H', len(PlayItem))
 			PlayList += PlayItem
 
-		mplsbuffer += struct.pack('>L',len(PlayList))
+		mplsbuffer += struct.pack('>L', len(PlayList))
 		mplsbuffer += PlayList
 
-		PlayListMarkStartAdress = bytearray(struct.pack('>L',len(mplsbuffer)))
+		PlayListMarkStartAdress = bytearray(struct.pack('>L', len(mplsbuffer)))
 		mplsbuffer[0x0C:0x10] = PlayListMarkStartAdress
 		
 		if len(self.title.entrypoints) == 0:
-			print "no entry points found for this title!"
+			print("no entry points found for this title!")
 			self.title.entrypoints.append(0)
 
 		#playlist mark list [(id, type, timestamp, skip duration)]
@@ -570,23 +572,23 @@ class CreateMplsTask(Task):
 						markslist.append((mark_id, 1, ep_pts, 0))
 						mark_id += 1
 		except AttributeError:
-			print "title has no chaptermarks"
-		print "**** final markslist", markslist
+			print("title has no chaptermarks")
+		print("**** final markslist", markslist)
 
 		num_marks = len(markslist)
 		PlayListMark = bytearray()			# len 4 bytes
-		PlayListMark += struct.pack('>H',num_marks)
+		PlayListMark += struct.pack('>H', num_marks)
 		for mark_id, mark_type, mark_ts, skip_dur in markslist:
 			MarkEntry = bytearray()
-			MarkEntry += struct.pack('B',mark_id)	# mark_id
-			MarkEntry += struct.pack('B',mark_type)	# mark_type 00=resume, 01=bookmark, 02=skip mark
-			MarkEntry += struct.pack('>H',item_i)	# play_item_ref (number of PlayItem that the mark is for
-			MarkEntry += struct.pack('>L',mark_ts)	# (in 45khz time ticks)
+			MarkEntry += struct.pack('B', mark_id)	# mark_id
+			MarkEntry += struct.pack('B', mark_type)	# mark_type 00=resume, 01=bookmark, 02=skip mark
+			MarkEntry += struct.pack('>H', item_i)	# play_item_ref (number of PlayItem that the mark is for
+			MarkEntry += struct.pack('>L', mark_ts)	# (in 45khz time ticks)
 			MarkEntry += '\xFF\xFF'			# entry_ES_PID
-			MarkEntry += struct.pack('>L',skip_dur)	# for skip marks: skip duration
+			MarkEntry += struct.pack('>L', skip_dur)	# for skip marks: skip duration
 			PlayListMark += MarkEntry
 
-		mplsbuffer += struct.pack('>L',len(PlayListMark))
+		mplsbuffer += struct.pack('>L', len(PlayListMark))
 		mplsbuffer += PlayListMark
 
 		f = open(self.job.workspace+"BDMV/PLAYLIST/%05d.mpls" % self.mpls_num, 'w')
@@ -640,14 +642,14 @@ class CreateClpiTask(Task):
 		TS_type_info_block += zeros[0:25]		# nit/stream_format_name?
 		ClipInfo += TS_type_info_block
 
-		ClipInfo[0:4] = bytearray(struct.pack('>L',len(ClipInfo)-4))
+		ClipInfo[0:4] = bytearray(struct.pack('>L', len(ClipInfo)-4))
 
 		num_stc_sequences = 1
 		SequenceInfo = bytearray(4)			# len 4 bytes
 		SequenceInfo += '\x00'				# reserved
 		SequenceInfo += '\x01'				# num_atc_sequences
 		SequenceInfo += '\x00\x00\x00\x00'		# spn_atc_start
-		SequenceInfo += struct.pack('B',num_stc_sequences)
+		SequenceInfo += struct.pack('B', num_stc_sequences)
 		SequenceInfo += '\x00'				# offset_stc_id
 		num_of_playitems = 1
 		for pi in range(num_of_playitems):
@@ -657,19 +659,19 @@ class CreateClpiTask(Task):
 			STCEntry += self.title.InTime		# presentation_start_time (in 45khz)
 			STCEntry += self.title.OutTime		# presentation_end_time (in 45khz)
 			SequenceInfo += STCEntry
-		SequenceInfo[0:4] = struct.pack('>L',len(SequenceInfo)-4)
+		SequenceInfo[0:4] = struct.pack('>L', len(SequenceInfo)-4)
 
 		num_program_sequences = 1
 		num_streams_in_ps = len(self.title.VideoStreams)+len(self.title.AudioStreams)
 
 		ProgramInfo = bytearray(4)			# len 4 bytes
 		ProgramInfo += '\x00'				# reserved align
-		ProgramInfo += struct.pack('B',num_program_sequences)
+		ProgramInfo += struct.pack('B', num_program_sequences)
 		for psi in range(num_program_sequences):
 			ProgramEntry = bytearray()
 			ProgramEntry += '\x00\x00\x00\x00'	# spn_program_sequence_start
 			ProgramEntry += '\x01\x00'		# program_map_pid
-			ProgramEntry += struct.pack('B',num_streams_in_ps)
+			ProgramEntry += struct.pack('B', num_streams_in_ps)
 			ProgramEntry += '\x00'			# num_groups
 			for stream in self.title.VideoStreams+self.title.AudioStreams:
 				StreamEntry = bytearray()
@@ -689,7 +691,7 @@ class CreateClpiTask(Task):
 				StreamEntry += StreamCodingInfo
 				ProgramEntry += StreamEntry
 			ProgramInfo += ProgramEntry
-		ProgramInfo[0:4] = struct.pack('>L',len(ProgramInfo)-4)
+		ProgramInfo[0:4] = struct.pack('>L', len(ProgramInfo)-4)
 
 		coarse_entrypoints = []	# [(presentation_time_stamp, source_packet_number, ref_ep_fine_id)]
 		fine_entrypoints = []	# [(presentation_time_stamp, source_packet_number)]
@@ -698,13 +700,13 @@ class CreateClpiTask(Task):
 		prev_spn = -1
 		fine_ref = -1
 		for entrypoint in self.title.entrypoints:
-			fine_entrypoints.append((entrypoint[1],entrypoint[0]))
+			fine_entrypoints.append((entrypoint[1], entrypoint[0]))
 			coarse_pts = entrypoint[1] & 0x1FFF80000
 			high_spn = ( entrypoint[0] & 0xFFFE0000 )
 			fine_ref += 1
 
 			if coarse_pts > prev_coarse or high_spn > prev_spn:
-				coarse_entrypoints.append((entrypoint[1],entrypoint[0],fine_ref))
+				coarse_entrypoints.append((entrypoint[1], entrypoint[0], fine_ref))
 			prev_coarse = coarse_pts
 			prev_spn = high_spn
 
@@ -712,7 +714,7 @@ class CreateClpiTask(Task):
 		CPI += '\x00\x01' 		# reserved_align & cpi_type = ep_map
 		EP_MAP = bytearray('\x00')	# reserved_align
 		num_stream_pid = len(self.title.VideoStreams)
-		EP_MAP += struct.pack('B',num_stream_pid)
+		EP_MAP += struct.pack('B', num_stream_pid)
 
 		for stream in self.title.VideoStreams:
 			EP_STREAMS = bytearray()
@@ -723,7 +725,7 @@ class CreateClpiTask(Task):
 			num_ep_fine = len(fine_entrypoints)
 			ep_bits = ((num_ep_fine & 0x3FFFF) + ((num_ep_coarse & 0xFFFF) << 0x12) + ((ap_stream_type & 0xF) << 0x22))
 			# 10 bits align, 4 bits ap_stream_type, 16 bits number_ep_coarse, 18 bits number_ep_fine
-			EP_STREAMS += struct.pack('>3H',((ep_bits&0xFFFF00000000)>>0x20),((ep_bits&0xFFFF0000)>>0x10),ep_bits&0xFFFF)
+			EP_STREAMS += struct.pack('>3H', ((ep_bits&0xFFFF00000000)>>0x20), ((ep_bits&0xFFFF0000)>>0x10), ep_bits&0xFFFF)
 			EP_STREAMS += '\x00\x00\x00\x0e'	# ep_map_stream_start_addr
 			EP_MAP += EP_STREAMS
 
@@ -739,12 +741,12 @@ class CreateClpiTask(Task):
 
 				coarse_bits = (pts_ep_coarse & 0x3FFF) + ((ref_ep_fine_id & 0x3FFFF) << 0xE)
 
-				EP_MAP_STREAM_COARSE += struct.pack('>L',coarse_bits)
-				EP_MAP_STREAM_COARSE += struct.pack('>L',spn_ep_coarse)
+				EP_MAP_STREAM_COARSE += struct.pack('>L', coarse_bits)
+				EP_MAP_STREAM_COARSE += struct.pack('>L', spn_ep_coarse)
 
 				EP_MAP_STREAM += EP_MAP_STREAM_COARSE
 
-			EP_MAP_STREAM[0:4] = struct.pack('>L',len(EP_MAP_STREAM))
+			EP_MAP_STREAM[0:4] = struct.pack('>L', len(EP_MAP_STREAM))
 
 			for ep in fine_entrypoints:
 				EP_MAP_STREAM_FINE = bytearray()
@@ -757,13 +759,13 @@ class CreateClpiTask(Task):
 
 				fine_bits = (spn_ep_fine & 0x1FFFF) + ((pts_ep_fine & 0x7FF) << 0x11) + (i_end_position_offset << 0x1C) + (is_angle_change_point << 0x1F)
 
-				EP_MAP_STREAM_FINE += struct.pack('>L',fine_bits)
+				EP_MAP_STREAM_FINE += struct.pack('>L', fine_bits)
 
 				EP_MAP_STREAM += EP_MAP_STREAM_FINE
 
 		EP_MAP += EP_MAP_STREAM
 		CPI += EP_MAP
-		CPI[0:4] = struct.pack('>L',len(CPI)-4)
+		CPI[0:4] = struct.pack('>L', len(CPI)-4)
 
 		clpibuffer += ClipInfo
 		while len(clpibuffer) < 0xDC:
@@ -774,10 +776,10 @@ class CreateClpiTask(Task):
 		clpibuffer += ProgramInfo
 		while len(clpibuffer) < 0x134:
 			clpibuffer += '\x30'	# insert padding
-		clpibuffer[0x10:0x14] = struct.pack('>L',len(clpibuffer)) #cpi_start_address
+		clpibuffer[0x10:0x14] = struct.pack('>L', len(clpibuffer)) #cpi_start_address
 
 		clpibuffer += CPI
-		clpibuffer[0x14:0x18] = struct.pack('>L',len(clpibuffer)) #clip_mark_start_address
+		clpibuffer[0x14:0x18] = struct.pack('>L', len(clpibuffer)) #clip_mark_start_address
 		clpibuffer += zeros[0:4]
 
 		f = open(self.job.workspace+"BDMV/CLIPINF/%05d.clpi" % self.clip_num, 'w')
@@ -791,7 +793,7 @@ class CopyThumbTask(Task):
 	def __init__(self, job, sourcefile, title_no):
 		Task.__init__(self, job, "Copy thumbnail")
 		self.setTool("cp")
-		source = sourcefile.rsplit('.',1)[0] + ".png"
+		source = sourcefile.rsplit('.', 1)[0] + ".png"
 		dest = self.job.workspace+'BDMV/META/DL/thumb_%05d.png' % title_no
 		self.args += [source, dest]
 		self.weighting = 10

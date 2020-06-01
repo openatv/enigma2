@@ -1,3 +1,4 @@
+from __future__ import print_function
 import os
 from subprocess import Popen, PIPE
 
@@ -25,7 +26,7 @@ def opkgAddDestination(mountpoint):
 	global opkgDestinations
 	if mountpoint not in opkgDestinations:
 		opkgDestinations.append(mountpoint)
-		print "[Ipkg] Added to OPKG destinations:", mountpoint
+		print("[Ipkg] Added to OPKG destinations:", mountpoint)
 
 mounts = os.listdir('/media')
 for mount in mounts:
@@ -42,8 +43,8 @@ for mount in mounts:
 
 def getValue(line):
 	dummy = line.split('=')
-	if len(dummy) <> 2:
-		print "Error: Wrong formatted settings file"
+	if len(dummy) != 2:
+		print("Error: Wrong formatted settings file")
 		exit
 	if dummy[1] == "false":
 		return False
@@ -56,8 +57,8 @@ def getValue(line):
 p = Popen("opkg list-upgradable", stdout=PIPE, stderr=PIPE, shell=True)
 stdout, stderr = p.communicate()
 
-if stderr <> "":
-	print "Error occurred:", stderr
+if stderr != "":
+	print("Error occurred:", stderr)
 	exit
 
 # read configuration
@@ -66,7 +67,7 @@ try:
 	lines = f.readlines()
 	f.close()
 except:
-	print "Error opening /etc/enigma2/settings file"
+	print("Error opening /etc/enigma2/settings file")
 
 for line in lines:
 	if line.startswith("config.plugins.softwaremanager.overwriteSettingsFiles"):

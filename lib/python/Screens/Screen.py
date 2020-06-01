@@ -1,3 +1,4 @@
+from __future__ import print_function
 from Tools.Profile import profile
 
 profile("LOAD:GUISkin")
@@ -86,7 +87,7 @@ class Screen(dict, GUISkin):
 #			assert self.session == None, "a screen can only exec once per time"
 #			self.session = session
 
-			for val in self.values() + self.renderer:
+			for val in list(self.values()) + self.renderer:
 				val.execBegin()
 				if not self.stand_alone and self.session.current_dialog != self:
 					return
@@ -147,7 +148,7 @@ class Screen(dict, GUISkin):
 
 	def show(self):
 		# Temporarily add to ease up identification of screens
-		print '[SCREENNAME] ',self.skinName
+		print('[SCREENNAME] ', self.skinName)
 		if (self.shown and self.already_shown) or not self.instance:
 			return
 		self.shown = True
@@ -155,7 +156,7 @@ class Screen(dict, GUISkin):
 		self.instance.show()
 		for x in self.onShow:
 			x()
-		for val in self.values() + self.renderer:
+		for val in list(self.values()) + self.renderer:
 			if isinstance(val, GUIComponent) or isinstance(val, Source):
 				val.onShow()
 
@@ -166,7 +167,7 @@ class Screen(dict, GUISkin):
 		self.instance.hide()
 		for x in self.onHide:
 			x()
-		for val in self.values() + self.renderer:
+		for val in list(self.values()) + self.renderer:
 			if isinstance(val, GUIComponent) or isinstance(val, Source):
 				val.onHide()
 

@@ -1,3 +1,4 @@
+from __future__ import print_function
 from enigma import eConsoleAppContainer
 from Screens.Screen import Screen
 from Components.ActionMap import ActionMap
@@ -62,7 +63,7 @@ class Console(Screen):
 	def startRun(self):
 		self["text"].setText(_("Execution progress:") + "\n\n")
 		self["summary_description"].setText(_("Execution progress:"))
-		print "[Console] executing in run", self.run, " the command:", self.cmdlist[self.run]
+		print("[Console] executing in run", self.run, " the command:", self.cmdlist[self.run])
 		if self.doExec(self.cmdlist[self.run]): #start of container application failed...
 			self.runFinished(-1) # so we must call runFinished manual
 
@@ -133,7 +134,7 @@ class Console(Screen):
 	def saveOutputText(self):
 		from time import time, localtime
 		lt = localtime(time())
-		self.output_file = '/tmp/%02d%02d%02d_console.txt' %(lt[3],lt[4],lt[5])
+		self.output_file = '/tmp/%02d%02d%02d_console.txt' %(lt[3], lt[4], lt[5])
 		self.session.openWithCallback(self.saveOutputTextCB, MessageBox, _("Save the commands and the output to a file?\n('%s')") %self.output_file, type=MessageBox.TYPE_YESNO, default=True)
 
 	def formatCmdList(self, source):

@@ -1,6 +1,8 @@
+from __future__ import print_function
+from __future__ import absolute_import
 from boxbranding import getImageVersion
 import os
-from Screen import Screen
+from Screens.Screen import Screen
 from Screens.ParentalControlSetup import ProtectedScreen
 from Components.Language import language
 from enigma import eConsoleAppContainer, eDVBDB
@@ -385,7 +387,7 @@ class PluginBrowser(Screen, ProtectedScreen):
 			try:
 				from Plugins.SystemPlugins.SoftwareManager.plugin import PluginManager
 			except ImportError:
-				self.session.open(MessageBox, _("The software management extension is not installed!\nPlease install it."), type = MessageBox.TYPE_INFO,timeout = 10 )
+				self.session.open(MessageBox, _("The software management extension is not installed!\nPlease install it."), type = MessageBox.TYPE_INFO, timeout = 10 )
 			else:
 				self.session.openWithCallback(self.PluginDownloadBrowserClosed, PluginManager)
 
@@ -545,7 +547,7 @@ class PluginDownloadBrowser(Screen):
 			if dest.startswith('/'):
 				# Custom install path, add it to the list too
 				dest = os.path.normpath(dest)
-				extra = '--add-dest %s:%s -d %s' % (dest,dest,dest)
+				extra = '--add-dest %s:%s -d %s' % (dest, dest, dest)
 				Ipkg.opkgAddDestination(dest)
 			else:
 				extra = '-d ' + dest
@@ -557,7 +559,7 @@ class PluginDownloadBrowser(Screen):
 		if val:
 			if self.type == self.DOWNLOAD:
 				if self["list"].l.getCurrentSelection()[0].name.startswith("picons-"):
-					supported_filesystems = frozenset(('vfat','ext4', 'ext3', 'ext2', 'reiser', 'reiser4', 'jffs2', 'ubifs', 'rootfs'))
+					supported_filesystems = frozenset(('vfat', 'ext4', 'ext3', 'ext2', 'reiser', 'reiser4', 'jffs2', 'ubifs', 'rootfs'))
 					candidates = []
 					import Components.Harddisk
 					mounts = Components.Harddisk.getProcMounts()
@@ -570,7 +572,7 @@ class PluginDownloadBrowser(Screen):
 						self.session.openWithCallback(self.installDestinationCallback, ChoiceBox, title=_("Install picons on"), list=candidates)
 					return
 				elif self["list"].l.getCurrentSelection()[0].name.startswith("display-picon"):
-					supported_filesystems = frozenset(('vfat','ext4', 'ext3', 'ext2', 'reiser', 'reiser4', 'jffs2', 'ubifs', 'rootfs'))
+					supported_filesystems = frozenset(('vfat', 'ext4', 'ext3', 'ext2', 'reiser', 'reiser4', 'jffs2', 'ubifs', 'rootfs'))
 					candidates = []
 					import Components.Harddisk
 					mounts = Components.Harddisk.getProcMounts()
@@ -649,8 +651,8 @@ class PluginDownloadBrowser(Screen):
 		if hasattr(self, 'postInstallCall'):
 			try:
 				self.postInstallCall()
-			except Exception, ex:
-				print "[PluginBrowser] postInstallCall failed:", ex
+			except Exception as ex:
+				print("[PluginBrowser] postInstallCall failed:", ex)
 			self.resetPostInstall()
 		try:
 			os.unlink('/tmp/opkg.conf')
@@ -769,7 +771,7 @@ class PluginDownloadBrowser(Screen):
 			elif x[0][0:15] == 'enigma2-locale-':
 				split[0] = "languages"
 
-			if not self.plugins.has_key(split[0]):
+			if split[0] not in self.plugins:
 				self.plugins[split[0]] = []
 
 			if split[0] == "kernel modules":
@@ -778,7 +780,7 @@ class PluginDownloadBrowser(Screen):
 				for t in self.LanguageList:
 					if len(x[2])>2:
 						tmpT = t[0].lower()
-						tmpT = tmpT.replace('_','-')
+						tmpT = tmpT.replace('_', '-')
 						if tmpT == x[2]:
 							countryIcon = LoadPixmap(resolveFilename(SCOPE_ACTIVE_SKIN, "countries/" + t[0] + ".png"))
 							if countryIcon is None:

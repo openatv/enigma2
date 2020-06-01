@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from __future__ import print_function
 import errno
 import inspect
 import os
@@ -6,6 +7,7 @@ import os
 from enigma import eEnv, getDesktop
 from re import compile
 from stat import S_IMODE
+import six
 
 pathExists = os.path.exists
 isMount = os.path.ismount  # Only used in OpenATV /lib/python/Plugins/SystemPlugins/NFIFlash/downloader.py.
@@ -79,13 +81,13 @@ def resolveFilename(scope, base="", path_prefix=None):
 		if path_prefix:
 			base = os.path.join(path_prefix, base[2:])
 		else:
-			print "[Directories] Warning: resolveFilename called with base starting with '~/' but 'path_prefix' is None!"
+			print("[Directories] Warning: resolveFilename called with base starting with '~/' but 'path_prefix' is None!")
 	# Don't further resolve absolute paths.
 	if base.startswith("/"):
 		return os.path.normpath(base)
 	# If an invalid scope is specified log an error and return None.
 	if scope not in defaultPaths:
-		print "[Directories] Error: Invalid scope=%d provided to resolveFilename!" % scope
+		print("[Directories] Error: Invalid scope=%d provided to resolveFilename!" % scope)
 		return None
 	# Ensure that the defaultPaths directories that should exist do exist.
 	path, flag = defaultPaths.get(scope)
@@ -93,7 +95,7 @@ def resolveFilename(scope, base="", path_prefix=None):
 		try:
 			os.makedirs(path)
 		except (IOError, OSError) as err:
-			print "[Directories] Error %d: Couldn't create directory '%s' (%s)" % (err.errno, path, err.strerror)
+			print("[Directories] Error %d: Couldn't create directory '%s' (%s)" % (err.errno, path, err.strerror))
 			return None
 	# Remove any suffix data and restore it at the end.
 	suffix = None
@@ -236,7 +238,7 @@ def bestRecordingLocation(candidates):
 					biggest = size
 					path = candidate[1]
 		except (IOError, OSError) as err:
-			print "[Directories] Error %d: Couldn't get free space for '%s' (%s)" % (err.errno, candidate[1], err.strerror)
+			print("[Directories] Error %d: Couldn't get free space for '%s' (%s)" % (err.errno, candidate[1], err.strerror))
 	return path
 
 def defaultRecordingLocation(candidate=None):
@@ -317,7 +319,7 @@ def getRecordingFilename(basename, dirname=None):
 	# but must not truncate in the middle of a multi-byte utf8 character!
 	# So convert the truncation to unicode and back, ignoring errors, the
 	# result will be valid utf8 and so xml parsing will be OK.
-	filename = unicode(filename[:247], "utf8", "ignore").encode("utf8", "ignore")
+	filename = six.text_type(filename[:247], "utf8", "ignore").encode("utf8", "ignore")
 	if dirname is not None:
 		if not dirname.startswith("/"):
 			dirname = os.path.join(defaultRecordingLocation(), dirname)
@@ -368,7 +370,7 @@ def copyfile(src, dst):
 				break
 			f2.write(buf)
 	except (IOError, OSError) as err:
-		print "[Directories] Error %d: Copying file '%s' to '%s'! (%s)" % (err.errno, src, dst, err.strerror)
+		print("[Directories] Error %d: Copying file '%s' to '%s'! (%s)" % (err.errno, src, dst, err.strerror))
 		status = -1
 	if f1 is not None:
 		f1.close()
@@ -379,13 +381,13 @@ def copyfile(src, dst):
 		try:
 			os.chmod(dst, S_IMODE(st.st_mode))
 		except (IOError, OSError) as err:
-			print "[Directories] Error %d: Setting modes from '%s' to '%s'! (%s)" % (err.errno, src, dst, err.strerror)
+			print("[Directories] Error %d: Setting modes from '%s' to '%s'! (%s)" % (err.errno, src, dst, err.strerror))
 		try:
 			os.utime(dst, (st.st_atime, st.st_mtime))
 		except (IOError, OSError) as err:
-			print "[Directories] Error %d: Setting times from '%s' to '%s'! (%s)" % (err.errno, src, dst, err.strerror)
+			print("[Directories] Error %d: Setting times from '%s' to '%s'! (%s)" % (err.errno, src, dst, err.strerror))
 	except (IOError, OSError) as err:
-		print "[Directories] Error %d: Obtaining stats from '%s' to '%s'! (%s)" % (err.errno, src, dst, err.strerror)
+		print("[Directories] Error %d: Obtaining stats from '%s' to '%s'! (%s)" % (err.errno, src, dst, err.strerror))
 	return status
 
 def copytree(src, dst, symlinks=False):
@@ -408,19 +410,19 @@ def copytree(src, dst, symlinks=False):
 			else:
 				copyfile(srcname, dstname)
 		except (IOError, OSError) as err:
-			print "[Directories] Error %d: Copying tree '%s' to '%s'! (%s)" % (err.errno, srcname, dstname, err.strerror)
+			print("[Directories] Error %d: Copying tree '%s' to '%s'! (%s)" % (err.errno, srcname, dstname, err.strerror))
 	try:
 		st = os.stat(src)
 		try:
 			os.chmod(dst, S_IMODE(st.st_mode))
 		except (IOError, OSError) as err:
-			print "[Directories] Error %d: Setting modes from '%s' to '%s'! (%s)" % (err.errno, src, dst, err.strerror)
+			print("[Directories] Error %d: Setting modes from '%s' to '%s'! (%s)" % (err.errno, src, dst, err.strerror))
 		try:
 			os.utime(dst, (st.st_atime, st.st_mtime))
 		except (IOError, OSError) as err:
-			print "[Directories] Error %d: Setting times from '%s' to '%s'! (%s)" % (err.errno, src, dst, err.strerror)
+			print("[Directories] Error %d: Setting times from '%s' to '%s'! (%s)" % (err.errno, src, dst, err.strerror))
 	except (IOError, OSError) as err:
-		print "[Directories] Error %d: Obtaining stats from '%s' to '%s'! (%s)" % (err.errno, src, dst, err.strerror)
+		print("[Directories] Error %d: Obtaining stats from '%s' to '%s'! (%s)" % (err.errno, src, dst, err.strerror))
 
 # Renames files or if source and destination are on different devices moves them in background
 # input list of (source, destination)
@@ -434,22 +436,22 @@ def moveFiles(fileList):
 			movedList.append(item)
 	except (IOError, OSError) as err:
 		if err.errno == errno.EXDEV:  # Invalid cross-device link
-			print "[Directories] Warning: Cannot rename across devices, trying slower move."
+			print("[Directories] Warning: Cannot rename across devices, trying slower move.")
 			from Tools.CopyFiles import moveFiles as extMoveFiles  # OpenViX, OpenATV, Beyonwiz
 			# from Screens.CopyFiles import moveFiles as extMoveFiles  # OpenPLi
 			extMoveFiles(fileList, item[0])
-			print "[Directories] Moving files in background."
+			print("[Directories] Moving files in background.")
 		else:
-			print "[Directories] Error %d: Moving file '%s' to '%s'! (%s)" % (err.errno, item[0], item[1], err.strerror)
+			print("[Directories] Error %d: Moving file '%s' to '%s'! (%s)" % (err.errno, item[0], item[1], err.strerror))
 			errorFlag = True
 	if errorFlag:
-		print "[Directories] Reversing renamed files due to error."
+		print("[Directories] Reversing renamed files due to error.")
 		for item in movedList:
 			try:
 				os.rename(item[1], item[0])
 			except (IOError, OSError) as err:
-				print "[Directories] Error %d: Renaming '%s' to '%s'! (%s)" % (err.errno, item[1], item[0], err.strerror)
-				print "[Directories] Failed to undo move:", item
+				print("[Directories] Error %d: Renaming '%s' to '%s'! (%s)" % (err.errno, item[1], item[0], err.strerror))
+				print("[Directories] Failed to undo move:", item)
 
 def getSize(path, pattern=".*"):
 	path_size = 0

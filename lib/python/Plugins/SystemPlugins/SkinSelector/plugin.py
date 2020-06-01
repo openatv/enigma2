@@ -1,6 +1,7 @@
 # -*- coding: iso-8859-1 -*-
 # (c) 2006 Stephan Reichholf
 # This Software is Free, use it where you want, when you want for whatever you want and modify it if you want but don't remove my copyright!
+from __future__ import print_function
 from Screens.Screen import Screen
 from Screens.Standby import TryQuitMainloop
 from Screens.MessageBox import MessageBox
@@ -78,13 +79,13 @@ class SkinSelector(Screen):
 		self.loadPreview()
 
 	def info(self):
-		aboutbox = self.session.open(MessageBox,_("Enigma2 Skinselector\n\nIf you experience any problems please contact\nstephan@reichholf.net\n\n\xA9 2006 - Stephan Reichholf"), MessageBox.TYPE_INFO)
+		aboutbox = self.session.open(MessageBox, _("Enigma2 Skinselector\n\nIf you experience any problems please contact\nstephan@reichholf.net\n\n\xA9 2006 - Stephan Reichholf"), MessageBox.TYPE_INFO)
 		aboutbox.setTitle(_("About..."))
 
 	def find(self, arg, dirname, names):
 		for x in names:
 			if x == "skin.xml":
-				if dirname <> self.root:
+				if dirname != self.root:
 					subdir = dirname[19:]
 					self.skinlist.append(subdir)
 				else:
@@ -97,10 +98,10 @@ class SkinSelector(Screen):
 		else:
 			skinfile = self["SkinList"].getCurrent()+"/skin.xml"
 
-		print "Skinselector: Selected Skin: "+self.root+skinfile
+		print("Skinselector: Selected Skin: "+self.root+skinfile)
 		config.skin.primary_skin.setValue(skinfile)
 		config.skin.primary_skin.save()
-		restartbox = self.session.openWithCallback(self.restartGUI,MessageBox,_("GUI needs a restart to apply a new skin\nDo you want to Restart the GUI now?"), MessageBox.TYPE_YESNO)
+		restartbox = self.session.openWithCallback(self.restartGUI, MessageBox, _("GUI needs a restart to apply a new skin\nDo you want to Restart the GUI now?"), MessageBox.TYPE_YESNO)
 		restartbox.setTitle(_("Restart GUI now?"))
 
 	def loadPreview(self):

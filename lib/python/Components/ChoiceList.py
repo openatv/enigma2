@@ -1,4 +1,5 @@
-from MenuList import MenuList
+from __future__ import absolute_import
+from Components.MenuList import MenuList
 from Tools.Directories import SCOPE_ACTIVE_SKIN, resolveFilename
 from enigma import RT_HALIGN_LEFT, eListboxPythonMultiContent, gFont
 from Tools.LoadPixmap import LoadPixmap
@@ -14,10 +15,10 @@ def ChoiceEntryComponent(key = None, text=None):
 	text = ["--"] if text is None else text
 	res = [ text ]
 	if text[0] == "--":
-		x, y, w, h = skin.parameters.get("ChoicelistDash",(0, 2, 800, 25))
+		x, y, w, h = skin.parameters.get("ChoicelistDash", (0, 2, 800, 25))
 		res.append((eListboxPythonMultiContent.TYPE_TEXT, x, y, w, h, 0, RT_HALIGN_LEFT, "-"*200))
 	else:
-		x, y, w, h = skin.parameters.get("ChoicelistName",(45, 2, 800, 25))
+		x, y, w, h = skin.parameters.get("ChoicelistName", (45, 2, 800, 25))
 		res.append((eListboxPythonMultiContent.TYPE_TEXT, x, y, w, h, 0, RT_HALIGN_LEFT, text[0]))
 		if key:
 			if key == "expandable":
@@ -32,7 +33,7 @@ def ChoiceEntryComponent(key = None, text=None):
 				pngfile = resolveFilename(SCOPE_ACTIVE_SKIN, "buttons/key_%s.png" % key)
 			if fileExists(pngfile):
 				png = LoadPixmap(pngfile)
-				x, y, w, h = skin.parameters.get("ChoicelistIcon",(5, 0, 35, 25))
+				x, y, w, h = skin.parameters.get("ChoicelistIcon", (5, 0, 35, 25))
 				if key in ("verticalline", "expanded"):
 					h = 100
 					if key == "verticalline":

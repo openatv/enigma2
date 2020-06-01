@@ -1,3 +1,4 @@
+from __future__ import print_function
 # Volume Adjust 
 # 2009 Black_64
 #
@@ -60,7 +61,7 @@ class Volume_adjust(Screen):
 		self["press_menu"] = StaticText(_("press the menu button to set a general AC3/Dolby offset"))
 		self["ServiceList.desc"] = Label(_("Channel \t\t\tVolume +"))
 
-		self["actions"] = ActionMap(["ColorActions","OkCancelActions","MenuActions"],
+		self["actions"] = ActionMap(["ColorActions", "OkCancelActions", "MenuActions"],
 			{
 				"green": self.greenPressed,
 				"red": self.redPressed,
@@ -101,7 +102,7 @@ class Volume_adjust(Screen):
 			service = self.service.toCompareString()
 			service_name = ServiceReference(self.service).getServiceName().replace('\xc2\x87', '').replace('\xc2\x86', '')
 			service_name = service_name + '\t\t\t0'
-			self.servicelist.append( (service_name , ConfigNothing(), 0, service))
+			self.servicelist.append( (service_name, ConfigNothing(), 0, service))
 			self.read_volume.append('0')
 			offset = 0
 			self.session.openWithCallback( self.VolumeChanged, Change_volume, service_name, offset)
@@ -148,7 +149,7 @@ class Volume_adjust(Screen):
 						self.session.openWithCallback( self.VolumeChanged, Change_volume, service_name, offset)
 						self.read_volume.append (str(offset))
 					service_name = service_name + self.Tabs(service_name) + self.read_volume[t]
-					self.servicelist.append( (service_name , ConfigNothing(), 0, service_ref.ref.toString()))
+					self.servicelist.append( (service_name, ConfigNothing(), 0, service_ref.ref.toString()))
 					self["ServiceList"].l.setList(self.servicelist)
 
 	def VolumeChanged(self, *args):
@@ -159,7 +160,7 @@ class Volume_adjust(Screen):
 		tmp0 = tmp[0][0:-3].strip()
 		self.read_volume[t-1] = str(offset)
 		service_name = tmp0 + self.Tabs(tmp0) + str(offset)
-		self.servicelist[t-1] = ( (service_name , ConfigNothing(), 0, tmp[3]))
+		self.servicelist[t-1] = ( (service_name, ConfigNothing(), 0, tmp[3]))
 		self["ServiceList"].l.setList(self.servicelist)
 
 	def Change_vol_now(self, *args):
@@ -170,7 +171,7 @@ class Volume_adjust(Screen):
 		tmp0 = tmp[0][0:-3].strip()
 		self.read_volume[t] = str(offset)
 		service_name = tmp0 + self.Tabs(tmp0) + str(offset)
-		self.servicelist[t] = ( (service_name , ConfigNothing(), 0, tmp[3]))
+		self.servicelist[t] = ( (service_name, ConfigNothing(), 0, tmp[3]))
 		self["ServiceList"].l.setList(self.servicelist)
 
 	def Tabs(self, name):
@@ -179,7 +180,7 @@ class Volume_adjust(Screen):
 		for let in name:
 			if ord(let) > 1 and ord(let) < 128:
 				k+=1
-		print '[Volume Adjust] length service name = ' + str(k)
+		print('[Volume Adjust] length service name = ' + str(k))
 		if k > 28:
 			return '\t'
 		elif k > 18:
@@ -214,10 +215,10 @@ class Volume_adjust(Screen):
 			fp.close()
 		except:
 			#os.unlink(self.filename) # gives a GS WHY ???
-			print "[Volume Adjust] error writing xml..."
+			print("[Volume Adjust] error writing xml...")
 
 	def loadXML(self):
-		print "[Volume Adjust] load xml..."
+		print("[Volume Adjust] load xml...")
 		if not os_path.exists(self.filename):
 			return
 		self.read_services=[]
@@ -232,7 +233,7 @@ class Volume_adjust(Screen):
 					self.read_services.append (read_service_ref)
 					self.read_volume.append (read_service_volume)
 		except:
-			print "[Volume Adjust] error parsing xml..."
+			print("[Volume Adjust] error parsing xml...")
 
 		for item in self.read_services:
 			if len(item):
@@ -264,7 +265,7 @@ class Change_volume(ConfigListScreen, Screen):
 		self["key_red"] = StaticText(_("Cancel"))
 		self["key_green"] = StaticText(_("Ok"))
 		self["key_yellow"] = StaticText(_("+/-"))
-		self["actions"] = ActionMap(["ColorActions","SetupActions"],
+		self["actions"] = ActionMap(["ColorActions", "SetupActions"],
 		{
 			"ok": self.ok, 
 			"cancel": self.cancel, 
@@ -389,7 +390,7 @@ class Volume_Config(ConfigListScreen, Screen):
 		self["key_green"] = StaticText(_("Save"))
 		self["key_yellow"] = StaticText(_("+/-"))
 		self["infotext"] = StaticText(_("this offset will only be used if the channel has not its own volume offset"))
-		self["actions"] = ActionMap(["ColorActions","SetupActions"],
+		self["actions"] = ActionMap(["ColorActions", "SetupActions"],
 		{
 			"ok": self.ok, 
 			"cancel": self.cancel, 
@@ -430,7 +431,7 @@ class Volume:
 		self.onClose = [ ]
 		self.read_services=[]
 		self.read_volume=[]
-		self.__event_tracker = ServiceEventTracker(screen=self,eventmap=
+		self.__event_tracker = ServiceEventTracker(screen=self, eventmap=
 			{
 				iPlayableService.evUpdatedInfo: self.__evUpdatedInfo,
 			})
@@ -443,7 +444,7 @@ class Volume:
 
 	def loadXML(self):
 		# load the list
-		print "[Volume Adjust] load xml..."
+		print("[Volume Adjust] load xml...")
 		if not os_path.exists(self.filen):
 			return
 		self.read_services=[]
@@ -458,18 +459,18 @@ class Volume:
 					self.read_services.append (read_service_ref)
 					self.read_volume.append (read_service_volume)
 		except:
-			print "[Volume Adjust] error parsing xml..."
+			print("[Volume Adjust] error parsing xml...")
 		for i in self.read_services:
-			print i
+			print(i)
 
 
 	def __evUpdatedInfo(self):
 		# here it starts the actual routine to change the volume offset
-		print "[Volume Adjust] Update Info"
+		print("[Volume Adjust] Update Info")
 		if not self.startonce:
 			self.setvolume()
 		vol = self.volctrl.getVolume()
-		print "[Volume Adjust] Volume = " + str(vol)
+		print("[Volume Adjust] Volume = " + str(vol))
 		global ListChange
 		# Check if list is updated (new save) or no list loaded
 		if ListChange or len(self.read_services) == 0:
@@ -479,13 +480,13 @@ class Volume:
 		if not self.service is None:
 			service = self.service.toCompareString()
 			# check for new channel (zap)
-			if service <> self.oldservice:
-				print '[Volume Adjust] New Channel'
+			if service != self.oldservice:
+				print('[Volume Adjust] New Channel')
 				# store new channel
 				self.oldservice = service
 				# calculate normal volume (subtract previous offset of the actual volume)
 				vol3 = str(self.volctrl.getVolume())
-				print '[Volume Adjust] oldvol = ' + str(self.oldvol)
+				print('[Volume Adjust] oldvol = ' + str(self.oldvol))
 				normalvol = int(vol3) - self.oldvol
 				# don't forget to update the actual volume variable
 				# don't change the volume if the offset = 0
@@ -499,37 +500,37 @@ class Volume:
 				for i in self.read_services:
 					if i == service:
 						# service found
-						print '[Volume Adjust] Found adjust volume channel'
+						print('[Volume Adjust] Found adjust volume channel')
 						found = True
 						break
 					tel +=1
 				# if channel found in list, search volume offset and change the volume
 				if found:
 					voloffset = self.read_volume[tel]
-					print '[Volume Adjust] offset = ' + voloffset
+					print('[Volume Adjust] offset = ' + voloffset)
 					# calculate new volume
 					vol1 = int(voloffset)
 					vol2 = str(self.volctrl.getVolume())
 					newvol = int(vol2) + vol1
-					print '[Volume Adjust] newvol = ' + str(newvol)
+					print('[Volume Adjust] newvol = ' + str(newvol))
 					# set the new volume
 					self.volctrl.setVolume(newvol, newvol)
 					# store the new offset, need to change it back when new channel not in list
 					self.oldvol = int(voloffset)
 				else:
 					if config.Volume.Enabled.value:
-						print '[Volume Adjust] Check for AC3/Dolby'
+						print('[Volume Adjust] Check for AC3/Dolby')
 						if self.isCurrentAudioAC3DTS():
 							vol = self.volctrl.getVolume()
 							newvol = int(vol) + config.Volume.AC3_vol.value
-							print '[Volume Adjust] newvol AC3/Dolby = ' + str(newvol)
+							print('[Volume Adjust] newvol AC3/Dolby = ' + str(newvol))
 							self.volctrl.setVolume(newvol, newvol)
 							self.oldvol = config.Volume.AC3_vol.value
 
 	def setvolume(self):
 		vol = 50
 		vol = config.audio.volume.value
-		print '[Setvolume] start with volume ' + str(vol)
+		print('[Setvolume] start with volume ' + str(vol))
 		self.volctrl.setVolume(vol, vol)
 		self.startonce = True
 
@@ -541,14 +542,14 @@ class Volume:
 				tracknr = audio.getCurrentTrack()
 				i = audio.getTrackInfo(tracknr)
 				description = i.getDescription();
-				print '[Volume Adjust] description: ' + description
+				print('[Volume Adjust] description: ' + description)
 				if "AC3" in description or "DTS" in description or "Dolby Digital" == description:
-					print '[Volume Adjust] AudioAC3Dolby = YES'
+					print('[Volume Adjust] AudioAC3Dolby = YES')
 					return True
 			except:
-				print '[Volume Adjust] Fault AudioAC3Dolby = NO'
+				print('[Volume Adjust] Fault AudioAC3Dolby = NO')
 				return False
-		print '[Volume Adjust] AudioAC3Dolby = NO'
+		print('[Volume Adjust] AudioAC3Dolby = NO')
 		return False
 
 

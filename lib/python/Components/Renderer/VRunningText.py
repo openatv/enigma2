@@ -7,7 +7,8 @@
 # Support: http://dream.altmaster.net/
 #
 
-from Renderer import Renderer
+from __future__ import absolute_import
+from Components.Renderer.Renderer import Renderer
 
 from enigma import eCanvas, eRect, gRGB, eLabel, eTimer, fontRenderClass, ePoint, eSize, gFont
 from enigma import RT_WRAP, RT_HALIGN_LEFT, RT_HALIGN_CENTER, RT_HALIGN_RIGHT, RT_HALIGN_BLOCK, RT_VALIGN_TOP, RT_VALIGN_CENTER, RT_VALIGN_BOTTOM
@@ -29,7 +30,7 @@ BOTTOM   = 3
 CENTER   = 2
 BLOCK    = 3
 
-def RGB(r,g,b):
+def RGB(r, g, b):
 	return (r<<16)|(g<<8)|b
 
 class VRunningText(Renderer):
@@ -37,10 +38,10 @@ class VRunningText(Renderer):
 		Renderer.__init__(self)
 		self.type     = NONE
 		self.txfont   = gFont("Regular", 14)
-		self.fcolor   = gRGB(RGB(255,255,255))
-		self.bcolor   = gRGB(RGB(0,0,0))
+		self.fcolor   = gRGB(RGB(255, 255, 255))
+		self.bcolor   = gRGB(RGB(0, 0, 0))
 		self.scolor   = None
-		self.soffset  = (0,0)
+		self.soffset  = (0, 0)
 		self.txtflags = 0 #RT_WRAP
 		self.txtext   = ""
 		self.test_label = self.mTimer = self.mStartPoint = None
@@ -60,7 +61,7 @@ class VRunningText(Renderer):
 				x, y = value.split(',')
 				self.W, self.H = int(x), int(y)
 
-		self.instance.setSize( eSize(self.W,self.H) )
+		self.instance.setSize( eSize(self.W, self.H) )
 		self.test_label = eLabel(instance)
 		self.mTimer = eTimer()
 		self.mTimer.callback.append(self.movingLoop)
@@ -87,7 +88,7 @@ class VRunningText(Renderer):
 			attribs = [ ]
 			for (attrib, value) in self.skinAttributes:
 				if attrib == "font":
-					self.txfont = parseFont(value, ((1,1),(1,1)))
+					self.txfont = parseFont(value, ((1, 1), (1, 1)))
 				elif attrib == "foregroundColor":
 					self.fcolor = parseColor(value)
 				elif attrib == "backgroundColor":
@@ -96,11 +97,11 @@ class VRunningText(Renderer):
 					self.scolor = parseColor(value)
 				elif attrib == "shadowOffset":
 					x, y = value.split(',')
-					self.soffset = (int(x),int(y))
-				elif attrib == "valign" and value in ("top","center","bottom"):
+					self.soffset = (int(x), int(y))
+				elif attrib == "valign" and value in ("top", "center", "bottom"):
 					valign = { "top": eLabel.alignTop, "center": eLabel.alignCenter, "bottom": eLabel.alignBottom }[value]
 					self.txtflags |= { "top": RT_VALIGN_TOP, "center": RT_VALIGN_CENTER, "bottom": RT_VALIGN_BOTTOM }[value]
-				elif attrib == "halign" and value in ("left","center","right","block"):
+				elif attrib == "halign" and value in ("left", "center", "right", "block"):
 					self.halign = { "left": eLabel.alignLeft, "center": eLabel.alignCenter, "right": eLabel.alignRight, "block": eLabel.alignBlock }[value]
 					self.txtflags |= { "left": RT_HALIGN_LEFT, "center": RT_HALIGN_CENTER, "right": RT_HALIGN_RIGHT, "block": RT_HALIGN_BLOCK }[value]
 				elif attrib == "noWrap":
@@ -126,9 +127,9 @@ class VRunningText(Renderer):
 								self.txtflags |= RT_WRAP
 							else:
 								self.txtflags &= ~RT_WRAP
-						elif opt == "movetype" and val in ("none","running","swimming"):
+						elif opt == "movetype" and val in ("none", "running", "swimming"):
 							self.type = {"none": NONE, "running": RUNNING, "swimming": SWIMMING}[val]
-						elif opt =="direction" and val in ("left","right","top","bottom"):
+						elif opt =="direction" and val in ("left", "right", "top", "bottom"):
 							self.direction = { "left": LEFT, "right": RIGHT, "top": TOP, "bottom": BOTTOM }[val]
 						elif opt == "step" and val:
 							#retValue(val, limit, default, Min=False)
@@ -148,7 +149,7 @@ class VRunningText(Renderer):
 						elif opt =="startpoint" and val:
 							self.mStartPoint = int(val)
 				else:
-					attribs.append((attrib,value))
+					attribs.append((attrib, value))
 			self.skinAttributes = attribs
 		ret = Renderer.applySkin(self, desktop, screen)
 		#if self.type == RUNNING and self.direction in (LEFT,RIGHT):
@@ -167,8 +168,8 @@ class VRunningText(Renderer):
 			self.test_label.setNoWrap(1)
 		self.test_label.setVAlign(valign)
 		self.test_label.setHAlign(self.halign)
-		self.test_label.move( ePoint(self.W,self.H) )
-		self.test_label.resize( eSize(self.W,self.H) )
+		self.test_label.move( ePoint(self.W, self.H) )
+		self.test_label.resize( eSize(self.W, self.H) )
 		#self.test_label.hide()
 		#self.changed((self.CHANGED_DEFAULT,))
 		return ret
@@ -224,7 +225,7 @@ class VRunningText(Renderer):
 #		self.direction =	0 - LEFT; 1 - RIGHT;   2 - TOP;      3 - BOTTOM
 #		self.halign =		0 - LEFT; 1 - RIGHT;   2 -CENTER;    3 - BLOCK
 
-		if self.direction in (LEFT,RIGHT):
+		if self.direction in (LEFT, RIGHT):
 			if self.type == RUNNING:		# scroll_type == RUNNING
 				if not self.mAlways and text_width <= self.W:
 					return False
@@ -285,7 +286,7 @@ class VRunningText(Renderer):
 					return False
 			else:					# scroll_type == NONE
 				return False
-		elif self.direction in (TOP,BOTTOM):
+		elif self.direction in (TOP, BOTTOM):
 			if self.type == RUNNING:		# scroll_type == RUNNING
 				if not self.mAlways and text_height <= self.H:
 					return False
@@ -339,17 +340,17 @@ class VRunningText(Renderer):
 			return False
 
 		if self.mStartDelay:
-			if self.direction in (LEFT,RIGHT):
+			if self.direction in (LEFT, RIGHT):
 				self.drawText(self.P, self.Y)
 			else: # if self.direction in (TOP,BOTTOM)
 				self.drawText(self.X, self.P)
 		self.mCount = self.mRepeat
-		self.mTimer.start(self.mStartDelay,True)
+		self.mTimer.start(self.mStartDelay, True)
 		return True
 
 	def movingLoop(self):
 		if self.A <= self.P <= self.B:
-			if self.direction in (LEFT,RIGHT):
+			if self.direction in (LEFT, RIGHT):
 				self.drawText(self.P, self.Y)
 			else: # if self.direction in (TOP,BOTTOM)
 				self.drawText(self.X, self.P)
@@ -368,7 +369,7 @@ class VRunningText(Renderer):
 					self.drawText(0, 0)
 					timeout = self.mLoopTimeout
 					self.P = 1
-					self.mTimer.start(self.mStartDelay,True)
+					self.mTimer.start(self.mStartDelay, True)
 					return
 			timeout = self.mLoopTimeout
 			if self.type == RUNNING:
@@ -380,6 +381,6 @@ class VRunningText(Renderer):
 				self.mStep = -self.mStep
 		
 		self.P += self.mStep
-		self.mTimer.start(timeout,True)
+		self.mTimer.start(timeout, True)
 
 

@@ -1,5 +1,7 @@
+from __future__ import print_function
+from __future__ import absolute_import
 from Components.Console import Console
-from config import config
+from Components.config import config
 from enigma import eTimer, eDVBLocalTimeHandler, eEPGCache
 from Tools.StbHardware import setRTCtime
 from time import time, ctime
@@ -30,7 +32,7 @@ class NTPSyncPoller:
 
 	def timecheck(self):
 		if config.misc.SyncTimeUsing.value == "1":
-			print '[NTP]: Updating'
+			print('[NTP]: Updating')
 			self.Console.ePopen('/usr/bin/ntpdate-sync', self.update_schedule)
 		else:
 			self.update_schedule()
@@ -39,8 +41,8 @@ class NTPSyncPoller:
 		nowTime = time()
 		nowTimereal = ctime(nowTime)
 		if nowTime > 10000:
-			print '[NTP]: setting E2 unixtime:',nowTime
-			print '[NTP]: setting E2 realtime:',nowTimereal
+			print('[NTP]: setting E2 unixtime:', nowTime)
+			print('[NTP]: setting E2 realtime:', nowTimereal)
 			setRTCtime(nowTime)
 			if config.misc.SyncTimeUsing.value == "1":
 				eDVBLocalTimeHandler.getInstance().setUseDVBTime(False)
@@ -49,5 +51,5 @@ class NTPSyncPoller:
 			eEPGCache.getInstance().timeUpdated()
 			self.timer.startLongTimer(int(config.misc.useNTPminutes.value) * 60)
 		else:
-			print 'NO TIME SET'
+			print('NO TIME SET')
 			self.timer.startLongTimer(10)

@@ -1,3 +1,4 @@
+from __future__ import print_function
 from ServiceReference import ServiceReference
 from enigma import eServiceReference
 import os
@@ -57,7 +58,7 @@ class PlaylistIOInternal(PlaylistIO):
 		return self.list
 
 	def save(self, filename = None):
-		print "Writing playlist into file", filename
+		print("Writing playlist into file", filename)
 		file = open(filename, "w")
 		for x in self.list:
 			file.write(str(x) + "\n")
@@ -81,7 +82,7 @@ class PlaylistIOM3U(PlaylistIO):
 			if entry == "":
 				break
 			if entry.startswith("#EXTINF:"):
-				extinf = entry.split(',',1)
+				extinf = entry.split(',', 1)
 				if len(extinf) > 1:
 					self.displayname = extinf[1]
 				# TODO: use e2 facilities to create a service ref from file

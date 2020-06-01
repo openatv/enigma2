@@ -1,3 +1,4 @@
+from __future__ import absolute_import
 import os
 import re
 from Components.FileList import FileList as FileListBase, EXTENSIONS as BASE_EXTENSIONS
@@ -8,7 +9,7 @@ from Tools.Directories import fileExists, resolveFilename, SCOPE_PLUGINS, SCOPE_
 from enigma import RT_HALIGN_LEFT, BT_SCALE, eListboxPythonMultiContent, \
 	eServiceReference, eServiceReferenceFS, eServiceCenter
 from Tools.LoadPixmap import LoadPixmap
-from addons.key_actions import TEXT_EXTENSIONS
+from .addons.key_actions import TEXT_EXTENSIONS
 import skin
 
 LOCAL_EXTENSIONS = {
@@ -55,7 +56,7 @@ def getPNGByExt(name):
 
 def FileEntryComponent(name, absolute=None, isDir=False, isLink=False):
 	res = [(absolute, isDir, isLink)]
-	x, y, w, h = skin.parameters.get("FileListName",(55, 1, 1175, 25))
+	x, y, w, h = skin.parameters.get("FileListName", (55, 1, 1175, 25))
 	res.append((eListboxPythonMultiContent.TYPE_TEXT, x, y, w-x, h, 0, RT_HALIGN_LEFT, name))
 	if isLink:
 		link_png = LoadPixmap(path=os.path.join(imagePath, "link-arrow.png"))
@@ -69,10 +70,10 @@ def FileEntryComponent(name, absolute=None, isDir=False, isLink=False):
 	else:
 		png = getPNGByExt(name)
 	if png is not None:
-		x, y, w, h = skin.parameters.get("FileListIcon",(10, 4, 20, 20))
+		x, y, w, h = skin.parameters.get("FileListIcon", (10, 4, 20, 20))
 		res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, x, y, w, h, png, None, None, BT_SCALE))
 		if link_png is not None:
-			res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, x, y, w, h, link_png, None ,None, BT_SCALE))
+			res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, x, y, w, h, link_png, None, None, BT_SCALE))
 
 	return res
 
@@ -147,7 +148,7 @@ class FileList(FileListBase):
 				root.setName(self.additional_extensions)
 			serviceHandler = eServiceCenter.getInstance()
 			list = serviceHandler.list(root)
-			while 1:
+			while True:
 				s = list.getNext()
 				if not s.valid():
 					del list
@@ -248,7 +249,7 @@ class FileList(FileListBase):
 
 def MultiFileSelectEntryComponent(name, absolute=None, isDir=False, isLink=False, selected=False):
 	res = [(absolute, isDir, isLink, selected, name)]
-	x, y, w, h = skin.parameters.get("FileListMultiName",(55, 1, 1175, 25))
+	x, y, w, h = skin.parameters.get("FileListMultiName", (55, 1, 1175, 25))
 	res.append((eListboxPythonMultiContent.TYPE_TEXT, x, y, w, h, 0, RT_HALIGN_LEFT, name))
 
 	if isLink:
@@ -263,23 +264,23 @@ def MultiFileSelectEntryComponent(name, absolute=None, isDir=False, isLink=False
 	else:
 		png = getPNGByExt(name)
 	if png is not None:
-		x, y, w, h = skin.parameters.get("FileListMultiIcon",(30, 4, 20, 20))
-		res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, x, y, w, h, png, None ,None, BT_SCALE))
+		x, y, w, h = skin.parameters.get("FileListMultiIcon", (30, 4, 20, 20))
+		res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, x, y, w, h, png, None, None, BT_SCALE))
 		if link_png is not None:
-			res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, x, y, w, h, link_png, None ,None, BT_SCALE))
+			res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, x, y, w, h, link_png, None, None, BT_SCALE))
 
 	if not name.startswith('<'):
-		x, y, w, h = skin.parameters.get("FileListMultiLock",(4, 0, 25, 25))
+		x, y, w, h = skin.parameters.get("FileListMultiLock", (4, 0, 25, 25))
 		if selected is False:
 			icon = LoadPixmap(path=resolveFilename(SCOPE_CURRENT_SKIN, "skin_default/icons/lock_off.png"))
 			if not icon:
 				icon = LoadPixmap(path=os.path.join(imagePath, "lock_off.png"))
-			res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, x, y, w, h, icon, None ,None, BT_SCALE))
+			res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, x, y, w, h, icon, None, None, BT_SCALE))
 		else:
 			icon = LoadPixmap(path=resolveFilename(SCOPE_CURRENT_SKIN, "skin_default/icons/lock_on.png"))
 			if not icon:
 				icon = LoadPixmap(path=os.path.join(imagePath, "lock_on.png"))
-			res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, x, y, w, h, icon, None ,None, BT_SCALE))
+			res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, x, y, w, h, icon, None, None, BT_SCALE))
 	return res
 
 class MultiFileSelectList(FileList):
@@ -361,7 +362,7 @@ class MultiFileSelectList(FileList):
 			serviceHandler = eServiceCenter.getInstance()
 			list = serviceHandler.list(root)
 
-			while 1:
+			while True:
 				s = list.getNext()
 				if not s.valid():
 					del list

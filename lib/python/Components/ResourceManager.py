@@ -1,11 +1,12 @@
+from __future__ import print_function
 class ResourceManager:
 	def __init__(self):
 		self.resourceList = {}
 
 	def addResource(self, name, resource):
-		print "adding Resource", name
+		print("adding Resource", name)
 		self.resourceList[name] = resource
-		print "resources:", self.resourceList
+		print("resources:", self.resourceList)
 
 
 	def getResource(self, name):
@@ -14,7 +15,7 @@ class ResourceManager:
 		return self.resourceList[name]
 
 	def hasResource(self, name):
-		return self.resourceList.has_key(name)
+		return name in self.resourceList
 
 	def removeResource(self, name):
 		if self.hasResource(name):

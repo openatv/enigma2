@@ -37,7 +37,7 @@ class SoftcamSetup(Screen, ConfigListScreen):
 				"green": self.save,
 				"red": self.cancel,
 				"blue": self.ppanelShortcut,
-			},-1)
+			}, -1)
 
 		self.list = [ ]
 		ConfigListScreen.__init__(self, self.list, session = session, on_change = self.changedEntry)

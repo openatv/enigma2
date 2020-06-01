@@ -1,4 +1,5 @@
-from Renderer import Renderer
+from __future__ import absolute_import
+from Components.Renderer.Renderer import Renderer
 from enigma import ePixmap
 from Components.config import config
 from Tools.Directories import SCOPE_ACTIVE_SKIN, resolveFilename

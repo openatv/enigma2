@@ -1,3 +1,4 @@
+from __future__ import print_function
 from skin import parseColor, parseFont, parseSize
 from Components.config import config, ConfigClock, ConfigInteger, ConfigSubsection, ConfigYesNo, ConfigSelection, ConfigSelectionNumber
 from Components.Pixmap import Pixmap
@@ -25,7 +26,7 @@ from RecordTimer import RecordTimerEntry, parseEvent, AFTEREVENT
 from ServiceReference import ServiceReference, isPlayableForCur
 from Tools.LoadPixmap import LoadPixmap
 from Tools.Alternatives import CompareWithAlternatives
-from Tools import Notifications
+import Tools.Notifications
 from enigma import eEPGCache, eListbox, gFont, eListboxPythonMultiContent, RT_HALIGN_LEFT, RT_HALIGN_RIGHT, RT_HALIGN_CENTER, RT_VALIGN_CENTER, RT_WRAP, BT_SCALE, BT_KEEP_ASPECT_RATIO, BT_ALIGN_CENTER, eSize, eRect, eTimer, getBestPlayableServiceReference, loadPNG
 from GraphMultiEpgSetup import GraphMultiEpgSetup
 from time import localtime, time, strftime
@@ -48,12 +49,12 @@ config.misc.graph_mepg.servicetitle_mode = ConfigSelection(default = "picon+serv
 config.misc.graph_mepg.roundTo = ConfigSelection(default = "900", choices = [("900", _("%d minutes") % 15), ("1800", _("%d minutes") % 30), ("3600", _("%d minutes") % 60)])
 config.misc.graph_mepg.OKButton = ConfigSelection(default = "info", choices = [("info", _("Show detailed event info")), ("zap", _("Zap to selected channel"))])
 possibleAlignmentChoices = [
-	( str(RT_HALIGN_LEFT   | RT_VALIGN_CENTER          ) , _("left")),
-	( str(RT_HALIGN_CENTER | RT_VALIGN_CENTER          ) , _("centered")),
-	( str(RT_HALIGN_RIGHT  | RT_VALIGN_CENTER          ) , _("right")),
-	( str(RT_HALIGN_LEFT   | RT_VALIGN_CENTER | RT_WRAP) , _("left, wrapped")),
-	( str(RT_HALIGN_CENTER | RT_VALIGN_CENTER | RT_WRAP) , _("centered, wrapped")),
-	( str(RT_HALIGN_RIGHT  | RT_VALIGN_CENTER | RT_WRAP) , _("right, wrapped"))]
+	( str(RT_HALIGN_LEFT   | RT_VALIGN_CENTER          ), _("left")),
+	( str(RT_HALIGN_CENTER | RT_VALIGN_CENTER          ), _("centered")),
+	( str(RT_HALIGN_RIGHT  | RT_VALIGN_CENTER          ), _("right")),
+	( str(RT_HALIGN_LEFT   | RT_VALIGN_CENTER | RT_WRAP), _("left, wrapped")),
+	( str(RT_HALIGN_CENTER | RT_VALIGN_CENTER | RT_WRAP), _("centered, wrapped")),
+	( str(RT_HALIGN_RIGHT  | RT_VALIGN_CENTER | RT_WRAP), _("right, wrapped"))]
 config.misc.graph_mepg.event_alignment = ConfigSelection(default = possibleAlignmentChoices[0][0], choices = possibleAlignmentChoices)
 config.misc.graph_mepg.servicename_alignment = ConfigSelection(default = possibleAlignmentChoices[0][0], choices = possibleAlignmentChoices)
 config.misc.graph_mepg.extension_menu = ConfigYesNo(default = True)
@@ -146,7 +147,7 @@ class EPGList(HTMLComponent, GUIComponent):
 				elif attrib == "EntryBorderColor":
 					self.borderColor = parseColor(value).argb()
 				elif attrib == "EntryFont":
-					font = parseFont(value, ((1,1),(1,1)) )
+					font = parseFont(value, ((1, 1), (1, 1)) )
 					self.entryFontName = font.family
 					self.entryFontSize = font.pointSize
 				elif attrib == "ServiceForegroundColor" or attrib == "ServiceNameForegroundColor":
@@ -164,7 +165,7 @@ class EPGList(HTMLComponent, GUIComponent):
 				elif attrib == "ServiceBorderColor":
 					self.borderColorService = parseColor(value).argb()
 				elif attrib == "ServiceFont":
-					self.serviceFont = parseFont(value, ((1,1),(1,1)) )
+					self.serviceFont = parseFont(value, ((1, 1), (1, 1)) )
 				elif attrib == "EntryBackgroundColorNow":
 					self.backColorNow = parseColor(value).argb()
 				elif attrib == "EntryForegroundColorNow":
@@ -178,7 +179,7 @@ class EPGList(HTMLComponent, GUIComponent):
 				elif attrib == "EventNamePadding":
 					self.eventNamePadding = int(value)
 				else:
-					attribs.append((attrib,value))
+					attribs.append((attrib, value))
 			self.skinAttributes = attribs
 		self.l.setFont(0, self.serviceFont)
 		self.setEventFontsize()
@@ -566,7 +567,7 @@ class EPGList(HTMLComponent, GUIComponent):
 			entry = entries[self.cur_event] #(event_id, event_title, begin_time, duration)
 			time_base = self.time_base + self.offs*self.time_epoch * 60
 			xpos, width = self.calcEntryPosAndWidth(self.event_rect, time_base, self.time_epoch, entry[2], entry[3])
-			self.select_rect = Rect(xpos ,0, width, self.event_rect.height)
+			self.select_rect = Rect(xpos, 0, width, self.event_rect.height)
 			self.l.setSelectionClip(eRect(xpos, 0, width, self.event_rect.h), visible and update)
 		else:
 			self.select_rect = self.event_rect
@@ -657,7 +658,7 @@ class TimelineText(HTMLComponent, GUIComponent):
 				elif attrib == "font":
 					self.font = parseFont(value,  ((1, 1), (1, 1)) )
 				else:
-					attribs.append((attrib,value))
+					attribs.append((attrib, value))
 			self.skinAttributes = attribs
 		self.l.setFont(0, self.font)
 		return GUIComponent.applySkin(self, desktop, screen)
@@ -1030,7 +1031,7 @@ class GraphMultiEPG(Screen, HelpableScreen):
 		refstr = ':'.join(serviceref.ref.toString().split(':')[:11])
 		for timer in self.session.nav.RecordTimer.timer_list:
 			if timer.eit == eventid and ':'.join(timer.service_ref.ref.toString().split(':')[:11]) == refstr:
-				menu = [(_("Delete timer"), "delete"),(_("Edit timer"), "edit")]
+				menu = [(_("Delete timer"), "delete"), (_("Edit timer"), "edit")]
 				buttons = ["red", "green"]
 				def timerAction(choice):
 					if choice is not None:
@@ -1045,7 +1046,7 @@ class GraphMultiEPG(Screen, HelpableScreen):
 			self.session.openWithCallback(self.finishedTimerAdd, TimerEntry, newEntry)
 
 	def finishedTimerAdd(self, answer):
-		print "finished add"
+		print("finished add")
 		if answer[0]:
 			entry = answer[1]
 			simulTimerList = self.session.nav.RecordTimer.record(entry)
@@ -1074,7 +1075,7 @@ class GraphMultiEPG(Screen, HelpableScreen):
 		else:
 			self["key_green"].setText(_("Add timer"))
 			self.key_green_choice = self.ADD_TIMER
-			print "Timeredit aborted"
+			print("Timeredit aborted")
 	
 	def finishSanityCorrection(self, answer):
 		self.finishedTimerAdd(answer)

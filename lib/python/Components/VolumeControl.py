@@ -1,9 +1,10 @@
+from __future__ import absolute_import
 from enigma import eDVBVolumecontrol, eTimer
 from Tools.Profile import profile
 from Screens.Volume import Volume
 from Screens.Mute import Mute
 from GlobalActions import globalActionMap
-from config import config, ConfigSubsection, ConfigInteger
+from Components.config import config, ConfigSubsection, ConfigInteger
 
 profile("VolumeControl")
 #TODO .. move this to a own .py file
@@ -80,7 +81,7 @@ class VolumeControl:
 		else:
 			self.getInputConfig()
 			step = config.av.volume_stepsize.value
-		self.stepVolTimer.start(self.repeat,True)
+		self.stepVolTimer.start(self.repeat, True)
 		return step
 
 	def getInputConfig(self):
@@ -94,7 +95,8 @@ class VolumeControl:
 		delay = 0
 		repeat = 0
 
-		for device in inputconfig.itervalues():
+		import six
+		for device in six.itervalues(inputconfig):
 			if "enabled" in device and bool(device["enabled"]):
 				if "delay" in device:
 					val = int(device["delay"])

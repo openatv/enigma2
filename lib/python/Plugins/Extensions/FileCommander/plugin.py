@@ -1,6 +1,8 @@
 #!/usr/bin/env python
 # -*- coding: iso-8859-1 -*-
 
+from __future__ import print_function
+from __future__ import absolute_import
 from Plugins.Plugin import PluginDescriptor
 
 # Components
@@ -29,7 +31,7 @@ from Screens.VirtualKeyBoard import VirtualKeyBoard
 # Tools
 from Tools.BoundFunction import boundFunction
 from Tools.UnitConversions import UnitScaler, UnitMultipliers
-from Tools import Notifications
+import Tools.Notifications
 
 # Various
 from enigma import eConsoleAppContainer, RT_HALIGN_LEFT, RT_HALIGN_RIGHT, eTimer
@@ -38,22 +40,23 @@ import os
 import stat
 import string
 import re
+import six
 
 # System mods
-from InputBox import InputBox
-from FileList import FileList, MultiFileSelectList, EXTENSIONS
+from .InputBox import InputBox
+from .FileList import FileList, MultiFileSelectList, EXTENSIONS
 
 # Addons
-from addons.key_actions import key_actions, stat_info
-from addons.type_utils import vEditor
+from .addons.key_actions import key_actions, stat_info
+from .addons.type_utils import vEditor
 
 MOVIEEXTENSIONS = {"cuts": "movieparts", "meta": "movieparts", "ap": "movieparts", "sc": "movieparts", "eit": "movieparts"}
 
 def _make_filter(media_type):
-	return "(?i)^.*\.(" + '|'.join(sorted((ext for ext, type in EXTENSIONS.iteritems() if type == media_type))) + ")$"
+	return "(?i)^.*\.(" + '|'.join(sorted((ext for ext, type in six.iteritems(EXTENSIONS) if type == media_type))) + ")$"
 
 def _make_rec_filter():
-	return "(?i)^.*\.(" + '|'.join(sorted(["ts"] + [ext == "eit" and ext or "ts." + ext  for ext in MOVIEEXTENSIONS.iterkeys()])) + ")$"
+	return "(?i)^.*\.(" + '|'.join(sorted(["ts"] + [ext == "eit" and ext or "ts." + ext  for ext in six.iterkeys(MOVIEEXTENSIONS)])) + ")$"
 
 movie = _make_filter("movie")
 music = _make_filter("music")
@@ -133,11 +136,11 @@ class FileCommanderConfigScreen(Setup):
 def formatSortingTyp(sortDirs, sortFiles):
 	sortDirs, reverseDirs = [int(x) for x in sortDirs.split('.')]
 	sortFiles, reverseFiles = [int(x) for x in sortFiles.split('.')]
-	sD = ('n','d','s')[sortDirs] #name, date, size
-	sF = ('n','d','s')[sortFiles]
-	rD = ('+','-')[reverseDirs] #normal, reverse
-	rF = ('+','-')[reverseFiles]
-	return '[D]%s%s[F]%s%s' %(sD,rD,sF,rF)
+	sD = ('n', 'd', 's')[sortDirs] #name, date, size
+	sF = ('n', 'd', 's')[sortFiles]
+	rD = ('+', '-')[reverseDirs] #normal, reverse
+	rF = ('+', '-')[reverseFiles]
+	return '[D]%s%s[F]%s%s' %(sD, rD, sF, rF)
 
 ###################
 # ## Main Screen ###
@@ -247,8 +250,8 @@ class FileCommanderScreen(Screen, HelpableScreen, key_actions):
 		self["list_left"] = FileList(path_left, matchingPattern=filter, sortDirs=sortDirs, sortFiles=sortFilesLeft, firstDirs=firstDirs)
 		self["list_right"] = FileList(path_right, matchingPattern=filter, sortDirs=sortDirs, sortFiles=sortFilesRight, firstDirs=firstDirs)
 
-		sortLeft = formatSortingTyp(sortDirs,sortFilesLeft)
-		sortRight = formatSortingTyp(sortDirs,sortFilesRight)
+		sortLeft = formatSortingTyp(sortDirs, sortFilesLeft)
+		sortRight = formatSortingTyp(sortDirs, sortFilesRight)
 		self["sort_left"] = Label(sortLeft)
 		self["sort_right"] = Label(sortRight)
 
@@ -572,7 +575,7 @@ class FileCommanderScreen(Screen, HelpableScreen, key_actions):
 		for job in job_manager.getPendingJobs():
 			#self.tasklist.append((job, job.name, job.getStatustext(), int(100 * job.progress / float(job.end)), str(100 * job.progress / float(job.end)) + "%"))
 			progress = job.getProgress()
-			self.tasklist.append((job,job.name,job.getStatustext(),progress,str(progress) + " %" ))
+			self.tasklist.append((job, job.name, job.getStatustext(), progress, str(progress) + " %" ))
 		self.session.open(TaskListScreen, self.tasklist)
 
 	def addJob(self, job, updateDirs):
@@ -598,7 +601,7 @@ class FileCommanderScreen(Screen, HelpableScreen, key_actions):
 		if InfoBar.instance and not inStandby:
 			InfoBar.instance.openInfoBarMessage(message, messageboxtyp, timeout)
 		else:
-			Notifications.AddNotification(MessageBox, message, type=messageboxtyp, timeout=timeout)
+			Tools.Notifications.AddNotification(MessageBox, message, type=messageboxtyp, timeout=timeout)
 		if hasattr(self, "jobs"):
 			self.finishedCB(None)
 		return False
@@ -624,7 +627,7 @@ class FileCommanderScreen(Screen, HelpableScreen, key_actions):
 			if InfoBar.instance and not inStandby:
 				InfoBar.instance.openInfoBarMessage(message, messageboxtyp, timeout)
 			else:
-				Notifications.AddNotification(MessageBox, message, type=messageboxtyp, timeout=timeout)
+				Tools.Notifications.AddNotification(MessageBox, message, type=messageboxtyp, timeout=timeout)
 
 	def setSort(self, list, setDirs = False):
 		sortDirs, sortFiles = list.getSortBy().split(',')
@@ -942,7 +945,7 @@ class FileCommanderScreen(Screen, HelpableScreen, key_actions):
 			return
 		subFile = sourceDir + testFileName
 		if (testFileName.endswith(".mpg")) or (testFileName.endswith(".mpeg")) or (testFileName.endswith(".mkv")) or (testFileName.endswith(".m2ts")) or (testFileName.endswith(".vob")) or (testFileName.endswith(".mod")) or (testFileName.endswith(".avi")) or (testFileName.endswith(".mp4")) or (testFileName.endswith(".divx")) or (testFileName.endswith(".mkv")) or (testFileName.endswith(".wmv")) or (testFileName.endswith(".mov")) or (testFileName.endswith(".flv")) or (testFileName.endswith(".3gp")):
-			print "[FileCommander] Downloading subtitle for: ", subFile
+			print("[FileCommander] Downloading subtitle for: ", subFile)
 			# For Future USE
 
 	def subCallback(self, answer=False):
@@ -1141,8 +1144,8 @@ class FileCommanderScreenFileSelect(Screen, HelpableScreen, key_actions):
 		sortDirsRight, sortFilesRight = config.plugins.filecommander.sortingRight_tmp.value.split(',')
 		firstDirs = config.plugins.filecommander.firstDirs.value
 
-		sortLeft = formatSortingTyp(sortDirsLeft,sortFilesLeft)
-		sortRight = formatSortingTyp(sortDirsRight,sortFilesRight)
+		sortLeft = formatSortingTyp(sortDirsLeft, sortFilesLeft)
+		sortRight = formatSortingTyp(sortDirsRight, sortFilesRight)
 		self["sort_left"] = Label(sortLeft)
 		self["sort_right"] = Label(sortRight)
 
@@ -1208,7 +1211,7 @@ class FileCommanderScreenFileSelect(Screen, HelpableScreen, key_actions):
 		if self.ACTIVELIST == self.SOURCELIST:
 			self.ACTIVELIST.changeSelectionState()
 			self.selectedFiles = self.ACTIVELIST.getSelectedList()
-			print "[FileCommander] selectedFiles:", self.selectedFiles
+			print("[FileCommander] selectedFiles:", self.selectedFiles)
 			self.goDown()
 
 	def exit(self, jobs=None, updateDirs=None):
@@ -1264,7 +1267,7 @@ class FileCommanderScreenFileSelect(Screen, HelpableScreen, key_actions):
 		for job in job_manager.getPendingJobs():
 			#self.tasklist.append((job, job.name, job.getStatustext(), int(100 * job.progress / float(job.end)), str(100 * job.progress / float(job.end)) + "%"))
 			progress = job.getProgress()
-			self.tasklist.append((job,job.name,job.getStatustext(),progress,str(progress) + " %" ))
+			self.tasklist.append((job, job.name, job.getStatustext(), progress, str(progress) + " %" ))
 		self.session.open(TaskListScreen, self.tasklist)
 
 # ## delete select ###
@@ -1279,7 +1282,7 @@ class FileCommanderScreenFileSelect(Screen, HelpableScreen, key_actions):
 		self.delete_files = []
 		self.delete_updateDirs = [self.SOURCELIST.getCurrentDirectory()]
 		for file in self.selectedFiles:
-			print 'delete: %s' %file
+			print('delete: %s' %file)
 			if not cnt:
 				filename += '%s' %file
 			elif cnt < 5:
@@ -1301,7 +1304,7 @@ class FileCommanderScreenFileSelect(Screen, HelpableScreen, key_actions):
 		if result is not None:
 			if result[1]:
 				for file in self.delete_files:
-					print 'delete:', file
+					print('delete:', file)
 					os.remove(file)
 				self.exit([self.delete_dirs], self.delete_updateDirs)
 
@@ -1416,7 +1419,7 @@ class FileCommanderScreenFileSelect(Screen, HelpableScreen, key_actions):
 				self[side + "_head2"].updateList(())
 
 	def doRefresh(self):
-		print "[FileCommander] selectedFiles:", self.selectedFiles
+		print("[FileCommander] selectedFiles:", self.selectedFiles)
 		self.SOURCELIST.refresh()
 		self.TARGETLIST.refresh()
 		self.updateHead()

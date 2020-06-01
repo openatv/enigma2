@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: iso-8859-1 -*-
 
+from __future__ import print_function
 from Components.config import config
 from Tools.Directories import shellquote
 from Plugins.Extensions.FileCommander.addons.unarchiver import ArchiverMenuScreen, ArchiverInfoScreen
@@ -24,7 +25,7 @@ class GunzipMenuScreen(ArchiverMenuScreen):
 		self.pversion = pversion
 
 	def unpackModus(self, id):
-		print "[GunzipMenuScreen] unpackModus", id
+		print("[GunzipMenuScreen] unpackModus", id)
 		pathName = self.sourceDir + self.filename
 		if id == 1:
 			cmd = ("gunzip", pathName)

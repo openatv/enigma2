@@ -1,6 +1,7 @@
+from __future__ import absolute_import
 from datetime import datetime
 
-from Poll import Poll
+from Components.Converter.Poll import Poll
 from Components.Converter.Converter import Converter
 from Components.Element import cached
 

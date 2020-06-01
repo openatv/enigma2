@@ -1,3 +1,4 @@
+from __future__ import print_function
 from Components.ActionMap import ActionMap
 from Components.Button import Button
 from Components.Label import Label
@@ -103,12 +104,12 @@ class TimerEditList(Screen):
 				timersanitycheck = TimerSanityCheck(self.session.nav.RecordTimer.timer_list, cur)
 				if not timersanitycheck.check():
 					t.disable()
-					print "Sanity check failed"
+					print("Sanity check failed")
 					simulTimerList = timersanitycheck.getSimulTimerList()
 					if simulTimerList is not None:
 						self.session.openWithCallback(self.finishedEdit, TimerSanityConflict, simulTimerList)
 				else:
-					print "Sanity check passed"
+					print("Sanity check passed")
 					if timersanitycheck.doubleCheck():
 						t.disable()
 			else:
@@ -312,9 +313,9 @@ class TimerEditList(Screen):
 		service = str(cur.service_ref.getServiceName())
 		t = localtime(cur.begin)
 		f = str(t.tm_year) + str(t.tm_mon).zfill(2) + str(t.tm_mday).zfill(2) + " " + str(t.tm_hour).zfill(2) + str(t.tm_min).zfill(2) + " - " + service + " - " + cur.name
-		f = f.replace(':','_')
-		f = f.replace(',','_')
-		f = f.replace('/','_')
+		f = f.replace(':', '_')
+		f = f.replace(',', '_')
+		f = f.replace('/', '_')
 
 		if not cur:
 			return
@@ -396,9 +397,9 @@ class TimerEditList(Screen):
 		service = str(item.service_ref.getServiceName())
 		t = localtime(item.begin)
 		f = str(t.tm_year) + str(t.tm_mon).zfill(2) + str(t.tm_mday).zfill(2) + " " + str(t.tm_hour).zfill(2) + str(t.tm_min).zfill(2) + " - " + service + " - " + name
-		f = f.replace(':','_')
-		f = f.replace(',','_')
-		f = f.replace('/','_')
+		f = f.replace(':', '_')
+		f = f.replace(',', '_')
+		f = f.replace('/', '_')
 		path = resolveFilename(SCOPE_HDD)
 		self.removeTimer(True)
 		from enigma import eBackgroundFileEraser
@@ -460,7 +461,7 @@ class TimerEditList(Screen):
 			else:
 				success = True
 			if success:
-				print "Sanity check passed"
+				print("Sanity check passed")
 				self.session.nav.RecordTimer.timeChanged(entry)
 
 			self.fillTimerList()
@@ -502,7 +503,7 @@ class TimerSanityConflict(Screen):
 	def __init__(self, session, timer):
 		Screen.__init__(self, session)
 		self.timer = timer
-		print "TimerSanityConflict"
+		print("TimerSanityConflict")
 
 		self["timer1"] = TimerList(self.getTimerList(timer[0]))
 		self.list = []

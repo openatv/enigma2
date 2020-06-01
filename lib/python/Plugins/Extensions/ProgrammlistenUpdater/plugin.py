@@ -1,3 +1,4 @@
+from __future__ import absolute_import
 from Components.ConfigList import ConfigListScreen, ConfigList
 from Components.config import ConfigSubsection, ConfigYesNo, ConfigText, config, configfile
 from Components.ActionMap import ActionMap
@@ -9,11 +10,11 @@ from Screens.Screen import Screen
 from Screens.MessageBox import MessageBox
 from Plugins.Plugin import PluginDescriptor
 from enigma import *
-from downloader import DownloadSetting, ConverDate
+from .downloader import DownloadSetting, ConverDate
 from Components.NimManager import nimmanager
-from settinglist import *
-from restore import *
-from history import *
+from .settinglist import *
+from .restore import *
+from .history import *
 import os
 import skin
 
@@ -32,10 +33,10 @@ class MenuListSetting(MenuList):
 
     def __init__(self, list):
         MenuList.__init__(self, list, True, eListboxPythonMultiContent)
-        font, size = skin.parameters.get("ProgrammlistenUpdaterListFont", ('Regular',25))
+        font, size = skin.parameters.get("ProgrammlistenUpdaterListFont", ('Regular', 25))
         self.l.setFont(0, gFont(font, size))
 
-class Programmlisten_Updater(Screen,ConfigListScreen):
+class Programmlisten_Updater(Screen, ConfigListScreen):
 
     skin =  """
         <screen name="Programmlisten_Updater" position="center,center" size="710,500">
@@ -67,15 +68,15 @@ class Programmlisten_Updater(Screen,ConfigListScreen):
         self["key_yellow"] = StaticText(_("AutoUpdate"))
 
 
-        self["ColorActions"] = ActionMap(['OkCancelActions', 'MenuActions', 'ShortcutActions',"ColorActions","InfobarEPGActions"],
+        self["ColorActions"] = ActionMap(['OkCancelActions', 'MenuActions', 'ShortcutActions', "ColorActions", "InfobarEPGActions"],
             {
             "red": self.keyCancel,
             "green": self.keyOk,
-            "yellow" : self.keyAutoUpdate,
-            "cancel" : self.keyCancel,
-            "ok" : self.keyOk,
-            "menu" : self.keyMenu,
-            "InfoPressed" : self.keyHistory,
+            "yellow": self.keyAutoUpdate,
+            "cancel": self.keyCancel,
+            "ok": self.keyOk,
+            "menu": self.keyMenu,
+            "InfoPressed": self.keyHistory,
             })
 
         self.List = DownloadSetting(URL)
@@ -143,9 +144,9 @@ class Programmlisten_Updater(Screen,ConfigListScreen):
     def ListEntryMenuSettings(self, name, date, link, name1, date1):
         res = [(name, date, link, name1, date1)]
         try:
-            x, y, w1, w2, h = skin.parameters.get("ProgrammlistenUpdaterList", (15,7,420,210,40))
+            x, y, w1, w2, h = skin.parameters.get("ProgrammlistenUpdaterList", (15, 7, 420, 210, 40))
         except ValueError:
-            x, y, w1, w2, h = (15,7,420,210,40)
+            x, y, w1, w2, h = (15, 7, 420, 210, 40)
         res.append(MultiContentEntryText(pos=(x, y), size=(w1, h), font=0, text=name, flags=RT_HALIGN_LEFT))
         res.append(MultiContentEntryText(pos=(x+w1, y), size=(w2, h), font=0, color=16777215, text=date1, flags=RT_HALIGN_RIGHT))
         res.append(MultiContentEntryText(pos=(0, 0), size=(0, 0), font=0, text=link, flags=RT_HALIGN_LEFT))

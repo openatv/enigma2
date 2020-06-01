@@ -1,3 +1,5 @@
+from __future__ import print_function
+from __future__ import absolute_import
 from enigma import eComponentScan, iDVBFrontend, eTimer
 from Components.NimManager import nimmanager as nimmgr
 from Components.Converter.ChannelNumbers import channelnumbers
@@ -117,7 +119,7 @@ class ServiceScan:
 								tp.Modulation_QAM16 : "QAM16", tp.Modulation_QAM64 : "QAM64",
 								tp.Modulation_Auto : "AUTO", tp.Modulation_QAM256 : "QAM256"
 							}.get(tp.modulation, ""),
-							"%s%s" % (channel, freqMHz.replace(".0","")),
+							"%s%s" % (channel, freqMHz.replace(".0", "")),
 							{
 								tp.Bandwidth_8MHz : "Bw 8MHz", tp.Bandwidth_7MHz : "Bw 7MHz", tp.Bandwidth_6MHz : "Bw 6MHz",
 								tp.Bandwidth_Auto : "Bw Auto", tp.Bandwidth_5MHz : "Bw 5MHz",
@@ -142,14 +144,14 @@ class ServiceScan:
 								tp.Modulation_VSB_8 : "8VSB",
 								tp.Modulation_VSB_16 : "16VSB"
 							}.get(tp.modulation, ""),
-							freqMHz.replace(".0",""),
+							freqMHz.replace(".0", ""),
 							{
 								tp.Inversion_Off : _("Off"),
 								tp.Inversion_On :_("On"),
 								tp.Inversion_Unknown : _("Auto")
 							}.get(tp.inversion, ""))
 					else:
-						print "unknown transponder type in scanStatusChanged"
+						print("unknown transponder type in scanStatusChanged")
 				self.network.setText(network)
 				self.transponder.setText(tp_text)
 
@@ -185,7 +187,7 @@ class ServiceScan:
 		self.feid = self.scanList[self.run]["feid"]
 		self.flags = self.scanList[self.run]["flags"]
 		self.networkid = 0
-		if self.scanList[self.run].has_key("networkid"):
+		if "networkid" in self.scanList[self.run]:
 			self.networkid = self.scanList[self.run]["networkid"]
 		self.state = self.Idle
 		self.scanStatusChanged()
@@ -215,7 +217,7 @@ class ServiceScan:
 	def execEnd(self):
 		if self.scan is None:
 			if not self.isDone():
-				print "*** warning *** scan was not finished!"
+				print("*** warning *** scan was not finished!")
 			return
 		self.scan.statusChanged.get().remove(self.scanStatusChanged)
 		self.scan.newService.get().remove(self.newService)

@@ -49,21 +49,21 @@ def MenuEntryPixmap(entryID, png_cache, lastMenuID):
 
 def MenuEntryName(name):
 	def splitUpperCase(name, maxlen):
-		for c in range(len(name),0,-1):
+		for c in range(len(name), 0, -1):
 			if name[c-1].isupper() and c-1 and c-1 <= maxlen:
 				return name[:c-1] + "-:-" + name[c-1:]
 		return name
 	def splitLowerCase(name, maxlen):
-		for c in range(len(name),0,-1):
+		for c in range(len(name), 0, -1):
 			if name[c-1].islower() and c-1 and c-1 <= maxlen:
 				return name[:c-1] + "-:-" + name[c-1:]
 		return name
 	def splitName(name, maxlen):
 		for s in (" ", "-", "/"):
-			pos = name.rfind(s,0,maxlen+1)
+			pos = name.rfind(s, 0, maxlen+1)
 			if pos > 1:
 				return [name[:pos+1] if pos+1 <= maxlen and s != " " else name[:pos], name[pos+1:]]
-		return splitUpperCase(name, maxlen).split("-:-",1)
+		return splitUpperCase(name, maxlen).split("-:-", 1)
 
 	maxrow = 3
 	maxlen = 18
@@ -71,14 +71,14 @@ def MenuEntryName(name):
 	if len(name) > maxlen and maxrow > 1:
 		namesplit = splitName(name, maxlen)
 		if len(namesplit) == 1 or (len(namesplit) == 2 and len(namesplit[1]) > maxlen * (maxrow-1)):
-			tmp = splitLowerCase(name, maxlen).split("-:-",1)
+			tmp = splitLowerCase(name, maxlen).split("-:-", 1)
 			if len(tmp[0]) > len(namesplit[0]) or len(namesplit) < 2:
 				namesplit = tmp
-		for x in range(1,maxrow):
+		for x in range(1, maxrow):
 			if len(namesplit) > x and len(namesplit) < maxrow and len(namesplit[x]) > maxlen:
 				tmp = splitName(namesplit[x], maxlen)
 				if len(tmp) == 1 or (len(tmp) == 2 and len(tmp[1]) > maxlen * (maxrow-x)):
-					tmp = splitLowerCase(namesplit[x], maxlen).split("-:-",1)
+					tmp = splitLowerCase(namesplit[x], maxlen).split("-:-", 1)
 				if len(tmp) == 2:
 					namesplit.pop(x)
 					namesplit.extend(tmp)
@@ -103,7 +103,7 @@ class title_History:
 			return
 		if(self.thistory == ''):
 			return
-		result = self.thistory.rsplit('>',2)
+		result = self.thistory.rsplit('>', 2)
 		if(result[0] == ''):
 			self.reset()
 			return
@@ -124,7 +124,7 @@ class MenuUpdater:
 		self.updatedMenuItems[id].remove([text, pos, module, screen, weight, description])
 
 	def updatedMenuAvailable(self, id):
-		return self.updatedMenuItems.has_key(id)
+		return id in self.updatedMenuItems
 
 	def getUpdatedMenu(self, id):
 		return self.updatedMenuItems[id]
@@ -148,7 +148,7 @@ class Menu(Screen, ProtectedScreen):
 			selection[1]()
 
 	def execText(self, text):
-		exec text
+		exec(text)
 
 	def runScreen(self, arg):
 		# arg[0] is the module (as string)
@@ -157,7 +157,7 @@ class Menu(Screen, ProtectedScreen):
 		#	string (as we want to reference
 		#	stuff which is just imported)
 		if arg[0] != "":
-			exec "from %s import %s" % (arg[0], arg[1].split(",")[0])
+			exec("from %s import %s" % (arg[0], arg[1].split(",")[0]))
 			self.openDialog(*eval(arg[1]))
 
 	def nothing(self): #dummy
@@ -367,8 +367,8 @@ class Menu(Screen, ProtectedScreen):
 		if config.usage.menu_sort_mode.value == "user" and menuID == "mainmenu":
 			plugin_list = []
 			id_list = []
-			for l in plugins.getPlugins([PluginDescriptor.WHERE_PLUGINMENU ,PluginDescriptor.WHERE_EXTENSIONSMENU, PluginDescriptor.WHERE_EVENTINFO]):
-				l.id = (l.name.lower()).replace(' ','_')
+			for l in plugins.getPlugins([PluginDescriptor.WHERE_PLUGINMENU, PluginDescriptor.WHERE_EXTENSIONSMENU, PluginDescriptor.WHERE_EVENTINFO]):
+				l.id = (l.name.lower()).replace(' ', '_')
 				if l.id not in id_list:
 					id_list.append(l.id)
 					plugin_list.append((l.name, boundFunction(l.__call__, session), l.id, 200))

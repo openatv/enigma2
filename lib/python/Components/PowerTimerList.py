@@ -1,8 +1,9 @@
+from __future__ import absolute_import
 from enigma import eListboxPythonMultiContent, eListbox, gFont, getDesktop, \
 	RT_HALIGN_LEFT, RT_HALIGN_RIGHT, RT_VALIGN_TOP, RT_VALIGN_BOTTOM
 
-from HTMLComponent import HTMLComponent
-from GUIComponent import GUIComponent
+from Components.HTMLComponent import HTMLComponent
+from Components.GUIComponent import GUIComponent
 from skin import parseFont
 from Tools.FuzzyDate import FuzzyTime
 from Tools.LoadPixmap import LoadPixmap
@@ -155,11 +156,11 @@ class PowerTimerList(HTMLComponent, GUIComponent, object):
 		def itemHeight(value):
 			self.itemHeight = int(value)
 		def setServiceNameFont(value):
-			self.serviceNameFont = parseFont(value, ((1,1),(1,1)))
+			self.serviceNameFont = parseFont(value, ((1, 1), (1, 1)))
 		def setEventNameFont(value):
-			self.eventNameFont = parseFont(value, ((1,1),(1,1)))
+			self.eventNameFont = parseFont(value, ((1, 1), (1, 1)))
 		def setFont(value):
-			self.font = parseFont(value, ((1,1),(1,1)))
+			self.font = parseFont(value, ((1, 1), (1, 1)))
 		def rowSplit(value):
 			self.rowSplit = int(value)
 		def iconMargin(value):

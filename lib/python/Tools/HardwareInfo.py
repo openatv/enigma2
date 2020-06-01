@@ -1,3 +1,4 @@
+from __future__ import print_function
 from boxbranding import getBoxType, getBrandOEM, getMachineName
 from Components.About import about
 
@@ -24,21 +25,21 @@ class HardwareInfo:
 			except:
 				pass
 		except:
-			print "----------------"
-			print "you should upgrade to new drivers for the hardware detection to work properly"
-			print "----------------"
-			print "fallback to detect hardware via /proc/cpuinfo!!"
+			print("----------------")
+			print("you should upgrade to new drivers for the hardware detection to work properly")
+			print("----------------")
+			print("fallback to detect hardware via /proc/cpuinfo!!")
 			try:
 				rd = open("/proc/cpuinfo", "r").read()
 				if "Brcm4380 V4.2" in rd:
 					HardwareInfo.device_name = "dm8000"
-					print "dm8000 detected!"
+					print("dm8000 detected!")
 				elif "Brcm7401 V0.0" in rd:
 					HardwareInfo.device_name = "dm800"
-					print "dm800 detected!"
+					print("dm800 detected!")
 				elif "MIPS 4KEc V4.8" in rd:
 					HardwareInfo.device_name = "dm7025"
-					print "dm7025 detected!"
+					print("dm7025 detected!")
 			except:
 				pass
 
@@ -62,7 +63,7 @@ class HardwareInfo:
 
 	def linux_kernel(self):
 		try:
-			return open("/proc/version","r").read().split(' ', 4)[2].split('-',2)[0]
+			return open("/proc/version", "r").read().split(' ', 4)[2].split('-', 2)[0]
 		except:
 			return "unknown"
 

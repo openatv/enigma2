@@ -1,8 +1,9 @@
+from __future__ import absolute_import
 from Components.Sensors import sensors
 
 from enigma import eTimer
 
-from Source import Source
+from Components.Sources.Source import Source
 
 class SensorSource(Source):
 	def __init__(self, update_interval = 500, sensorid = None):

@@ -1,4 +1,5 @@
-from Renderer import Renderer
+from __future__ import absolute_import
+from Components.Renderer.Renderer import Renderer
 from enigma import ePixmap
 from Tools.Directories import fileExists, SCOPE_CURRENT_SKIN, resolveFilename
 import os
@@ -23,7 +24,7 @@ class AudioIcon(Renderer):
 				else:
 					self.path = value + "/"
 			else:
-				attribs.append((attrib,value))
+				attribs.append((attrib, value))
 			if attrib == "size":
 				value = value.split(',')
 				if len(value) == 2:

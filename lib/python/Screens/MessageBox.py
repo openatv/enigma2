@@ -1,3 +1,4 @@
+from __future__ import print_function
 from enigma import eTimer, ePoint, eSize, getDesktop
 
 from Components.ActionMap import HelpableActionMap
@@ -132,7 +133,7 @@ class MessageBox(Screen, HelpableScreen):
 			self.baseTitle = self.baseTitle % prefix
 		self.setTitle(self.baseTitle)
 		if self.timeout > 0:
-			print "[MessageBox] Timeout set to %d seconds." % self.timeout
+			print("[MessageBox] Timeout set to %d seconds." % self.timeout)
 			self.timer.start(25)
 
 	def processTimer(self):
@@ -156,7 +157,7 @@ class MessageBox(Screen, HelpableScreen):
 				self.ok()
 
 	def stopTimer(self, reason):
-		print "[MessageBox] %s" % reason
+		print("[MessageBox] %s" % reason)
 		self.timer.stop()
 		self.timeout = 0
 		if self.baseTitle is not None:

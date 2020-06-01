@@ -1,3 +1,4 @@
+from __future__ import print_function
 from enigma import eDVBDB, eDVBResourceManager, getLinkedSlotID, isFBCLink
 from Screens.Screen import Screen
 from Components.SystemInfo import SystemInfo
@@ -204,7 +205,7 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 				self.nimConfig.dvbs.configMode.setChoices(choices, default = "simple")
 
 	def createSetup(self):
-		print "Creating setup"
+		print("Creating setup")
 		self.list = [ ]
 
 		self.multiType = None
@@ -286,7 +287,7 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 				self.list.append(getConfigListEntry(_("Tuner"), nimConfig.connectedTo, _("Select the tuner that controls the motorised dish.")))
 			elif nimConfig.configMode.value == "loopthrough":
 				choices = []
-				print "connectable to:", nimmanager.canConnectTo(self.slotid)
+				print("connectable to:", nimmanager.canConnectTo(self.slotid))
 				connectable = nimmanager.canConnectTo(self.slotid)
 				for id in connectable:
 					choices.append((str(id), nimmanager.getNimDescription(id)))
@@ -686,7 +687,7 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 		self.slot_dest_list = []
 		def checkRecursiveConnect(slot_id):
 			if slot_id in self.slot_dest_list:
-				print slot_id
+				print(slot_id)
 				return False
 			self.slot_dest_list.append(slot_id)
 			slot_config = nimmanager.nim_slots[slot_id].config.dvbs
@@ -749,10 +750,10 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 	def keySave(self):
 		if self.nim.canBeCompatible("DVB-S"):
 			if not self.unicableconnection():
-				self.session.open(MessageBox, _("The unicable connection setting is wrong.\n Maybe recursive connection of tuners."),MessageBox.TYPE_ERROR,timeout=10)
+				self.session.open(MessageBox, _("The unicable connection setting is wrong.\n Maybe recursive connection of tuners."), MessageBox.TYPE_ERROR, timeout=10)
 				return
 			if not self.checkLoopthrough():
-				self.session.open(MessageBox, _("The loopthrough setting is wrong."),MessageBox.TYPE_ERROR,timeout=10)
+				self.session.open(MessageBox, _("The loopthrough setting is wrong."), MessageBox.TYPE_ERROR, timeout=10)
 				return
 
 		old_configured_sats = nimmanager.getConfiguredSats()
@@ -1197,7 +1198,7 @@ class SelectSatsEntryScreen(Screen):
 			menu = [(_("Reverse list"), "2"), (_("Standard list"), "1")]
 			connected_sat = [x[0][1] for x in lst if x[0][3]]
 			if len(connected_sat) > 0:
-				menu.insert(0,(_("Connected satellites"), "3"))
+				menu.insert(0, (_("Connected satellites"), "3"))
 			def sortAction(choice):
 				if choice:
 					reverse_flag = False

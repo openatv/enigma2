@@ -1,3 +1,4 @@
+from __future__ import print_function
 from Screens.Screen import Screen
 from Screens.Dish import Dishpip
 from enigma import ePoint, eSize, eRect, eServiceCenter, getBestPlayableServiceReference, eServiceReference, eTimer, getDesktop
@@ -5,7 +6,7 @@ from Components.SystemInfo import SystemInfo
 from Components.VideoWindow import VideoWindow
 from Components.config import config, configfile, ConfigPosition, ConfigYesNo, ConfigSelection
 from Components.Label import Label
-from Tools import Notifications
+import Tools.Notifications
 from Screens.MessageBox import MessageBox
 from os import access, W_OK
 
@@ -256,10 +257,10 @@ class PictureInPicture(Screen):
 		ref = self.resolveAlternatePipService(service)
 		if ref:
 			if self.isPlayableForPipService(ref):
-				print "playing pip service", ref and ref.toString()
+				print("playing pip service", ref and ref.toString())
 			else:
 				if not config.usage.hide_zap_errors.value:
-					Notifications.AddPopup(text = _("No free tuner!"), type = MessageBox.TYPE_ERROR, timeout = 5, id = "ZapPipError")
+					Tools.Notifications.AddPopup(text = _("No free tuner!"), type = MessageBox.TYPE_ERROR, timeout = 5, id = "ZapPipError")
 				return False
 			self.pipservice = eServiceCenter.getInstance().play(ref)
 			if self.pipservice and not self.pipservice.setTarget(1, True):
@@ -274,7 +275,7 @@ class PictureInPicture(Screen):
 				self.currentService = None
 				self.currentServiceReference = None
 				if not config.usage.hide_zap_errors.value:
-					Notifications.AddPopup(text = _("Incorrect type service for PiP!"), type = MessageBox.TYPE_ERROR, timeout = 5, id = "ZapPipError")
+					Tools.Notifications.AddPopup(text = _("Incorrect type service for PiP!"), type = MessageBox.TYPE_ERROR, timeout = 5, id = "ZapPipError")
 		return False
 
 	def getCurrentService(self):

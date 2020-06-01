@@ -1,3 +1,4 @@
+from __future__ import print_function
 from input import inputChoices
 
 class datasource:
@@ -19,10 +20,10 @@ class datasource:
 
 	def printAll(self):
 		for sat in self.transponderlist.keys():
-			print "***********"
-			print "sat:", sat, self.satnames[sat]
+			print("***********")
+			print("sat:", sat, self.satnames[sat])
 			for transponder in self.transponderlist[sat]:
-				print transponder
+				print(transponder)
 
 	def clear(self):
 		self.transponderlist = {}
@@ -35,7 +36,7 @@ class datasource:
 		pass
 
 	def addSat(self, satname, satpos):
-		if not self.transponderlist.has_key(satpos):
+		if satpos not in self.transponderlist:
 			self.transponderlist[satpos] = []
 			self.satnames[satpos] = satname
 
@@ -65,25 +66,25 @@ class genericdatasource(datasource):
 		while choice is not None:
 			choice = inputChoices(["select source", "select destination", "copy now!"])
 			if choice == 0:
-				print "\nselect source:"
+				print("\nselect source:")
 				self.source = self.selectDatasource()
 			elif choice == 1:
-				print "\nselect destination"
+				print("\nselect destination")
 				self.destination = self.selectDatasource()
 			elif choice == 2:
 				self.docopymerge(action)
 
 	def docopymerge(self, action = "copy"):
 		if self.source is None:
-			print "select a source first!"
+			print("select a source first!")
 		elif self.destination is None:
-			print "select a destination first!"
+			print("select a destination first!")
 		else:
 			if action == "copy":
-				print "copying ",
+				print("copying ", end=' ')
 			elif action == "merge":
-				print "merging ",
-			print "from %s to %s" % (self.source.getName(), self.destination.getName())
+				print("merging ", end=' ')
+			print("from %s to %s" % (self.source.getName(), self.destination.getName()))
 			countsat = 0
 			counttransponder = 0
 			if action == "copy":
@@ -94,7 +95,7 @@ class genericdatasource(datasource):
 				for transponder in self.source.transponderlist[satpos]:
 					counttransponder += 1
 					self.destination.addTransponder(satpos, transponder)
-			print "copied %d sats with %d transponders" % (countsat, counttransponder)
+			print("copied %d sats with %d transponders" % (countsat, counttransponder))
 
 	def selectDatasource(self):
 		list = []

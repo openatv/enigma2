@@ -1,4 +1,5 @@
-from Screen import Screen
+from __future__ import absolute_import
+from Screens.Screen import Screen
 from Screens.Setup import getConfigMenuItem, Setup
 from Screens.InputBox import PinInput
 from Screens.MessageBox import MessageBox
@@ -77,7 +78,7 @@ class AudioSelection(Screen, ConfigListScreen):
 		}, -2)
 
 		self.settings = ConfigSubsection()
-		choicelist = [(PAGE_AUDIO,""), (PAGE_SUBTITLES,"")]
+		choicelist = [(PAGE_AUDIO, ""), (PAGE_SUBTITLES, "")]
 		self.settings.menupage = ConfigSelection(choices = choicelist, default=page)
 		self.onLayoutFinish.append(self.__layoutFinished)
 
@@ -169,7 +170,7 @@ class AudioSelection(Screen, ConfigListScreen):
 				conflist.append(getConfigListEntry(_("PCM Multichannel"), self.settings.pcm_multichannel, None))
 
 			if SystemInfo["CanDTSHD"]:
-				if getBoxType() in ("dm7080" , "dm820"):
+				if getBoxType() in ("dm7080", "dm820"):
 					choice_list = [("use_hdmi_caps",  _("controlled by HDMI")), ("force_dts", _("convert to DTS"))]
 				else:
 					choice_list = [("downmix",  _("Downmix")), ("force_dts", _("convert to DTS")), ("use_hdmi_caps",  _("controlled by HDMI")), ("multichannel",  _("convert to multi-channel PCM")), ("hdmi_best",  _("use best / controlled by HDMI"))]
@@ -192,7 +193,7 @@ class AudioSelection(Screen, ConfigListScreen):
 			if n > 0:
 				self.audioChannel = service.audioChannel()
 				if self.audioChannel:
-					choicelist = [("0",_("left")), ("1",_("stereo")), ("2", _("right"))]
+					choicelist = [("0", _("left")), ("1", _("stereo")), ("2", _("right"))]
 					self.settings.channelmode = ConfigSelection(choices = choicelist, default = str(self.audioChannel.getCurrentChannel()))
 					self.settings.channelmode.addNotifier(self.changeMode, initial_call = False)
 					conflist.append(getConfigListEntry(_("Audio Channel"), self.settings.channelmode, None))
@@ -213,7 +214,7 @@ class AudioSelection(Screen, ConfigListScreen):
 					for lang in languages:
 						if cnt:
 							language += ' / '
-						if LanguageCodes.has_key(lang):
+						if lang in LanguageCodes:
 							language += _(LanguageCodes[lang][0])
 						else:
 							language += lang
@@ -257,7 +258,7 @@ class AudioSelection(Screen, ConfigListScreen):
 				if len(Plugins):
 					for x in Plugins:
 						if x[0] != 'AudioEffect': # always make AudioEffect Blue button.
-							conflist.append(getConfigListEntry(x[0], ConfigNothing(),x[1]))
+							conflist.append(getConfigListEntry(x[0], ConfigNothing(), x[1]))
 
 		elif self.settings.menupage.value == PAGE_SUBTITLES:
 
@@ -277,7 +278,7 @@ class AudioSelection(Screen, ConfigListScreen):
 
 					try:
 						if x[4] != "und":
-							if LanguageCodes.has_key(x[4]):
+							if x[4] in LanguageCodes:
 								language = _(LanguageCodes[x[4]][0])
 							else:
 								language = x[4]
@@ -304,7 +305,7 @@ class AudioSelection(Screen, ConfigListScreen):
 					streams.append((x, "", number, description, language, selected))
 					idx += 1
 
-			if self.infobar.selected_subtitle and self.infobar.selected_subtitle != (0,0,0,0)  and not ".DVDPlayer'>" in `self.infobar`:
+			if self.infobar.selected_subtitle and self.infobar.selected_subtitle != (0, 0, 0, 0)  and not ".DVDPlayer'>" in repr(self.infobar):
 				conflist.append(getConfigListEntry(_("Subtitle Quickmenu"), ConfigNothing(), None))
 
 		if len(conflist) > 0 and conflist[0][0]:
@@ -332,7 +333,7 @@ class AudioSelection(Screen, ConfigListScreen):
 		self.selectedSubtitle = None
 		if self.subtitlesEnabled():
 			self.selectedSubtitle = self.infobar.selected_subtitle
-			if self.selectedSubtitle and self.selectedSubtitle[:4] == (0,0,0,0):
+			if self.selectedSubtitle and self.selectedSubtitle[:4] == (0, 0, 0, 0):
 				self.selectedSubtitle = None
 			elif self.selectedSubtitle and not self.selectedSubtitle[:4] in (x[:4] for x in subtitlelist):
 				subtitlelist.append(self.selectedSubtitle)
@@ -395,7 +396,7 @@ class AudioSelection(Screen, ConfigListScreen):
 		self.fillList()
 
 	def changeAACDownmix(self, downmix):
-		if getBoxType() in ('dm900', 'dm920', 'dm7080', 'dm800','gbquad4k', 'gbue4k', 'gbx34k'):
+		if getBoxType() in ('dm900', 'dm920', 'dm7080', 'dm800', 'gbquad4k', 'gbue4k', 'gbx34k'):
 			config.av.downmix_aac.setValue(downmix.value)
 		else:
 			if downmix.value:
@@ -451,7 +452,7 @@ class AudioSelection(Screen, ConfigListScreen):
 		if config or self.focus == FOCUS_CONFIG:
 			if self.settings.menupage.value == PAGE_AUDIO and self["config"].getCurrent()[2]:
 				self["config"].getCurrent()[2]()
-			elif self.settings.menupage.value == PAGE_SUBTITLES and self.infobar.selected_subtitle and self.infobar.selected_subtitle != (0,0,0,0):
+			elif self.settings.menupage.value == PAGE_SUBTITLES and self.infobar.selected_subtitle and self.infobar.selected_subtitle != (0, 0, 0, 0):
 				self.session.open(QuickSubtitlesConfigMenu, self.infobar)
 			else:
 				ConfigListScreen.keyRight(self)
@@ -642,7 +643,7 @@ class QuickSubtitlesConfigMenu(ConfigListScreen, Screen):
 			"7": self.keyNumber,
 			"9": self.keyNumber,
 			"0": self.keyNumber,
-		},-2)
+		}, -2)
 
 		self.onLayoutFinish.append(self.layoutFinished)
 
@@ -681,7 +682,7 @@ class QuickSubtitlesConfigMenu(ConfigListScreen, Screen):
 		self.wait.start(500, True)
 
 	def changedEntry(self):
-		if self["config"].getCurrent() in [getConfigMenuItem("config.subtitles.pango_subtitles_delay"),getConfigMenuItem("config.subtitles.pango_subtitles_fps")]:
+		if self["config"].getCurrent() in [getConfigMenuItem("config.subtitles.pango_subtitles_delay"), getConfigMenuItem("config.subtitles.pango_subtitles_fps")]:
 			self.wait.start(500, True)
 
 	def resyncSubtitles(self):

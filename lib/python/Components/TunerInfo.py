@@ -1,4 +1,5 @@
-from GUIComponent import GUIComponent
+from __future__ import absolute_import
+from Components.GUIComponent import GUIComponent
 
 from enigma import eLabel, eSlider, iFrontendInformation
 
@@ -40,7 +41,7 @@ class TunerInfo(GUIComponent):
 		if self.instance:
 			self.instance.setValue(self.value)
 
-	def calc(self,val):
+	def calc(self, val):
 		if not val:
 			return 0
 		if val < 2500:

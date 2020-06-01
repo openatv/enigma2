@@ -1,4 +1,6 @@
-from Converter import Converter
+from __future__ import print_function
+from __future__ import absolute_import
+from Components.Converter.Converter import Converter
 from Components.Element import cached
 
 from Components.config import configfile
@@ -35,12 +37,12 @@ class ConfigEntryTest(Converter, object):
 			else:
 				self.argerror = True
 		if self.argerror:
-			print "ConfigEntryTest Converter got incorrect arguments", args, "!!!\narg[0] must start with 'config.',\narg[1] is the compare string,\narg[2],arg[3] are optional arguments and must be 'Invert' or 'CheckSourceBoolean'"
+			print("ConfigEntryTest Converter got incorrect arguments", args, "!!!\narg[0] must start with 'config.',\narg[1] is the compare string,\narg[2],arg[3] are optional arguments and must be 'Invert' or 'CheckSourceBoolean'")
 
 	@cached
 	def getBoolean(self):
 		if self.argerror:
-			print "ConfigEntryTest got invalid arguments", self.converter_arguments, "force True!!"
+			print("ConfigEntryTest got invalid arguments", self.converter_arguments, "force True!!")
 			return True
 		if self.checkSourceBoolean and not self.source.boolean:
 			return False

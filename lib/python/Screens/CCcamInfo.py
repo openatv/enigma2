@@ -1,5 +1,6 @@
 # -*- coding: UTF-8 -*-
 # CCcam Info by AliAbdul
+from __future__ import print_function
 from base64 import encodestring
 from os import listdir, remove, rename, system, popen, path
 
@@ -21,10 +22,11 @@ from Screens.MessageBox import MessageBox
 from Screens.Screen import Screen
 from Screens.VirtualKeyBoard import VirtualKeyBoard
 from Tools.Directories import fileExists, SCOPE_ACTIVE_SKIN, resolveFilename
+from six.moves.urllib.parse import urlparse, urlunparse
 from twisted.internet import reactor
 from twisted.web.client import HTTPClientFactory
-from urlparse import urlparse, urlunparse
 import skin
+import six
 
 #TOGGLE_SHOW = InfoBar.toggleShow
 
@@ -51,7 +53,7 @@ def _parse(url):
 	url = url.strip()
 	parsed = urlparse(url)
 	scheme = parsed[0]
-	path = urlunparse(('','') + parsed[2:])
+	path = urlunparse(('', '') + parsed[2:])
 
 	host, port = parsed[1], 80
 
@@ -83,7 +85,7 @@ def getPage(url, contextFactory=None, *args, **kwargs):
 		authHeader = "Basic " + basicAuth.strip()
 		AuthHeaders = {"Authorization": authHeader}
 
-		if kwargs.has_key("headers"):
+		if "headers" in kwargs:
 			kwargs["headers"].update(AuthHeaders)
 		else:
 			kwargs["headers"] = AuthHeaders
@@ -106,7 +108,7 @@ class HelpableNumberActionMap(NumberActionMap):
 	def __init__(self, parent, context, actions, prio):
 		alist = []
 		adict = {}
-		for (action, funchelp) in actions.iteritems():
+		for (action, funchelp) in six.iteritems(actions):
 			alist.append((action, funchelp[1]))
 			adict[action] = funchelp[0]
 		NumberActionMap.__init__(self, [context], adict, prio)
@@ -274,9 +276,9 @@ def CCcamListEntry(name, idx):
 	else:
 		png = "/usr/share/enigma2/skin_default/buttons/key_%s.png" % str(idx)
 	if fileExists(png):
-		x, y, w, h = skin.parameters.get("ChoicelistIcon",(5*sf, 0, 35*sf, 25*sf))
+		x, y, w, h = skin.parameters.get("ChoicelistIcon", (5*sf, 0, 35*sf, 25*sf))
 		res.append(MultiContentEntryPixmapAlphaBlend(pos=(x, y), size=(w, h), png=loadPNG(png)))
-	x, y, w, h = skin.parameters.get("ChoicelistName",(45*sf, 2*sf, 550*sf, 25*sf))
+	x, y, w, h = skin.parameters.get("ChoicelistName", (45*sf, 2*sf, 550*sf, 25*sf))
 	res.append(MultiContentEntryText(pos=(x, y), size=(w, h), font=0, text=name))
 	return res
 
@@ -287,9 +289,9 @@ def CCcamServerListEntry(name, color):
 	else:
 		png = "/usr/share/enigma2/skin_default/buttons/key_%s.png" % color
 	if fileExists(png):
-		x, y, w, h = skin.parameters.get("ChoicelistIcon",(5*sf, 0, 35*sf, 25*sf))
+		x, y, w, h = skin.parameters.get("ChoicelistIcon", (5*sf, 0, 35*sf, 25*sf))
 		res.append(MultiContentEntryPixmapAlphaBlend(pos=(x, y), size=(w, h), png=loadPNG(png)))
-	x, y, w, h = skin.parameters.get("ChoicelistName",(45*sf, 2*sf, 550*sf, 25*sf))
+	x, y, w, h = skin.parameters.get("ChoicelistName", (45*sf, 2*sf, 550*sf, 25*sf))
 	res.append(MultiContentEntryText(pos=(x, y), size=(w, h), font=0, text=name))
 	return res
 
@@ -324,12 +326,12 @@ def CCcamConfigListEntry(file):
 
 	if content == org:
 		png = lock_on
-		x, y, w, h = skin.parameters.get("SelectionListLock",(5*sf, 0, 25*sf, 25*sf))
+		x, y, w, h = skin.parameters.get("SelectionListLock", (5*sf, 0, 25*sf, 25*sf))
 	else:
 		png = lock_off
-		x, y, w, h = skin.parameters.get("SelectionListLockOff",(5*sf, 0, 25*sf, 25*sf))
+		x, y, w, h = skin.parameters.get("SelectionListLockOff", (5*sf, 0, 25*sf, 25*sf))
 	res.append(MultiContentEntryPixmapAlphaBlend(pos=(x, y), size=(w, h), png=png))
-	x, y, w, h = skin.parameters.get("SelectionListDescr",(45*sf, 2*sf, 550*sf, 25*sf))
+	x, y, w, h = skin.parameters.get("SelectionListDescr", (45*sf, 2*sf, 550*sf, 25*sf))
 	res.append(MultiContentEntryText(pos=(x, y), size=(w, h), font=0, text=name))
 
 	return res
@@ -339,12 +341,12 @@ def CCcamMenuConfigListEntry(name, blacklisted):
 
 	if blacklisted:
 		png = lock_off
-		x, y, w, h = skin.parameters.get("SelectionListLockOff",(5*sf, 0, 25*sf, 25*sf))
+		x, y, w, h = skin.parameters.get("SelectionListLockOff", (5*sf, 0, 25*sf, 25*sf))
 	else:
 		png = lock_on
-		x, y, w, h = skin.parameters.get("SelectionListLock",(5*sf, 0, 25*sf, 25*sf))
+		x, y, w, h = skin.parameters.get("SelectionListLock", (5*sf, 0, 25*sf, 25*sf))
 	res.append(MultiContentEntryPixmapAlphaBlend(pos=(x, y), size=(w, h), png=png))
-	x, y, w, h = skin.parameters.get("SelectionListDescr",(45*sf, 2*sf, 550*sf, 25*sf))
+	x, y, w, h = skin.parameters.get("SelectionListDescr", (45*sf, 2*sf, 550*sf, 25*sf))
 	res.append(MultiContentEntryText(pos=(x, y), size=(w, h), font=0, text=name))
 
 	return res
@@ -549,7 +551,7 @@ class CCcamInfoMain(Screen):
 			self["menu"].pageDown()
 
 	def getWebpageError(self, error=""):
-		print str(error)
+		print(str(error))
 		self.session.openWithCallback(self.workingFinished, MessageBox, _("Error reading webpage!"), MessageBox.TYPE_ERROR)
 
 	def showFile(self, file):
@@ -683,7 +685,7 @@ class CCcamInfoMain(Screen):
 							while string.endswith(" "):
 								string = string[:-1]
 
-							idx = string.index(" ")
+							idx = " ".index()
 							uphops = string[:idx]
 							string = string[idx+1:]
 
@@ -890,7 +892,7 @@ class CCcamShareViewMenu(Screen, HelpableScreen):
 								while string.endswith(" "):
 									string = string[:-1]
 
-								idx = string.index(" ")
+								idx = " ".index()
 								maxdown = string[idx+1:]
 
 								while maxdown.startswith(" "):
@@ -1432,7 +1434,7 @@ class CCcamInfoShareInfo(Screen):
 							while string.endswith(" "):
 								string = string[:-1]
 
-							idx = string.index(" ")
+							idx = " ".index()
 							uphops = string[:idx]
 							string = string[idx+1:]
 

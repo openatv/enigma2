@@ -1,3 +1,5 @@
+from __future__ import print_function
+from __future__ import absolute_import
 import os
 
 from Components.config import config, ConfigSubList, ConfigSubsection, ConfigSlider
@@ -22,17 +24,17 @@ class FanControl:
 			cfg = self.getConfig(fanid)
 			self.setVoltage(fanid, cfg.vlt.value)
 			self.setPWM(fanid, cfg.pwm.value)
-			print "[FanControl]: setting fan values: fanid = %d, voltage = %d, pwm = %d" % (fanid, cfg.vlt.value, cfg.pwm.value)
+			print("[FanControl]: setting fan values: fanid = %d, voltage = %d, pwm = %d" % (fanid, cfg.vlt.value, cfg.pwm.value))
 
 	def setVoltage_PWM_Standby(self):
 		for fanid in range(self.getFanCount()):
 			cfg = self.getConfig(fanid)
 			self.setVoltage(fanid, cfg.vlt_standby.value)
 			self.setPWM(fanid, cfg.pwm_standby.value)
-			print "[FanControl]: setting fan values (standby mode): fanid = %d, voltage = %d, pwm = %d" % (fanid, cfg.vlt_standby.value, cfg.pwm_standby.value)
+			print("[FanControl]: setting fan values (standby mode): fanid = %d, voltage = %d, pwm = %d" % (fanid, cfg.vlt_standby.value, cfg.pwm_standby.value))
 
 	def getRecordEvent(self, recservice, event):
-		recordings = len(NavigationInstance.instance.getRecordings(False,pNavigation.isRealRecording))
+		recordings = len(NavigationInstance.instance.getRecordings(False, pNavigation.isRealRecording))
 		if event == iRecordableService.evEnd:
 			if recordings == 0:
 				self.setVoltage_PWM_Standby()
@@ -42,14 +44,14 @@ class FanControl:
 
 	def leaveStandby(self):
 		NavigationInstance.instance.record_event.remove(self.getRecordEvent)
-		recordings = NavigationInstance.instance.getRecordings(False,pNavigation.isRealRecording)
+		recordings = NavigationInstance.instance.getRecordings(False, pNavigation.isRealRecording)
 		if not recordings:
 			self.setVoltage_PWM()
 
 	def standbyCounterChanged(self, configElement):
 		from Screens.Standby import inStandby
 		inStandby.onClose.append(self.leaveStandby)
-		recordings = NavigationInstance.instance.getRecordings(False,pNavigation.isRealRecording)
+		recordings = NavigationInstance.instance.getRecordings(False, pNavigation.isRealRecording)
 		NavigationInstance.instance.record_event.append(self.getRecordEvent)
 		if not recordings:
 			self.setVoltage_PWM_Standby()

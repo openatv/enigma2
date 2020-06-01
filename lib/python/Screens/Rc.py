@@ -1,3 +1,4 @@
+from __future__ import print_function
 from Components.Pixmap import MovingPixmap, MultiPixmap
 from Tools.Directories import resolveFilename, SCOPE_SKIN
 from xml.etree.ElementTree import ElementTree
@@ -21,8 +22,8 @@ class Rc:
 		self.rcheighthalf = 250
 
 		self.selectpics = []
-		self.selectpics.append((self.rcheighthalf, ["arrowdown", "arrowdown2"], (-18,-70)))
-		self.selectpics.append((self.rcheight, ["arrowup", "arrowup2"], (-18,0)))
+		self.selectpics.append((self.rcheighthalf, ["arrowdown", "arrowdown2"], (-18, -70)))
+		self.selectpics.append((self.rcheight, ["arrowup", "arrowup2"], (-18, 0)))
 
 		self.readPositions()
 		self.clearSelectedKeys()
@@ -75,7 +76,7 @@ class Rc:
 			except:
 				rc = self.rcs[config.misc.rcused.value]
 
-		if rc.has_key(key):
+		if key in rc:
 			rcpos = self["rc"].getPosition()
 			pos = rc[key]
 			selectPics = self.getSelectPic(pos)
@@ -85,7 +86,7 @@ class Rc:
 					selectPic = x
 					break
 			if selectPic is not None:
-				print "selectPic:", selectPic
+				print("selectPic:", selectPic)
 				self[selectPic].moveTo(rcpos[0] + pos[0] + selectPics[1][0], rcpos[1] + pos[1] + selectPics[1][1], 1)
 				self[selectPic].startMoving()
 				self[selectPic].show()
