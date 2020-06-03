@@ -966,6 +966,11 @@ next:
 	}
 }
 
+void eEPGCache::flushEPG(int sid, int onid, int tsid)
+{
+	flushEPG(uniqueEPGKey(sid, onid, tsid));
+}
+
 void eEPGCache::flushEPG(const uniqueEPGKey & s)
 {
 	singleLock l(cache_lock);

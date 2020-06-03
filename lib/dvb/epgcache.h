@@ -460,8 +460,9 @@ public:
 	void save();
 	void load();
 	void timeUpdated();
-	void flushEPG(const uniqueEPGKey & s=uniqueEPGKey());
+	void flushEPG(int sid, int onid, int tsid);
 #ifndef SWIG
+	void flushEPG(const uniqueEPGKey & s=uniqueEPGKey());
 	eEPGCache();
 	~eEPGCache();
 
