@@ -798,7 +798,7 @@ class PowerTimerEntry(timer.TimerEntry, object):
 					for lines in temp:
 						lisp = lines.split()
 						if lisp[0].endswith(':') and (lisp[0].startswith('eth') or lisp[0].startswith('wlan')):
-							newbytes += long(lisp[1]) + long(lisp[9])
+							newbytes += int(lisp[1]) + int(lisp[9])
 					if getInitialValue:
 						self.netbytes = newbytes
 						self.netbytes_time = now
@@ -836,7 +836,7 @@ def createTimer(xml):
 	begin = int(xml.get("begin"))
 	end = int(xml.get("end"))
 	repeated = xml.get("repeated").encode("utf-8")
-	disabled = long(xml.get("disabled") or "0")
+	disabled = int(xml.get("disabled") or "0")
 	afterevent = str(xml.get("afterevent") or "nothing")
 	afterevent = {
 		"nothing": AFTEREVENT.NONE,
