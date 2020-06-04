@@ -1,6 +1,7 @@
 from __future__ import print_function
 import errno
 import xml.etree.cElementTree
+import six
 
 from boxbranding import getBoxType
 from enigma import addFont, eLabel, ePixmap, ePoint, eRect, eSize, eWindow, eWindowStyleManager, eWindowStyleSkinned, getDesktop, gFont, getFontFaces, gRGB
@@ -83,7 +84,7 @@ def InitSkins():
 			try:
 				print('[RESTORE_SKIN] restore skin from "%s" ...' % skin)
 				skinpath, ext = path.splitext(skin)
-				if skinpath == lastpath or not ext in '.pyo':
+				if skinpath == lastpath or not ext in '.py*':
 					print('[RESTORE_SKIN] ...skip!')
 					continue
 				lastpath = skinpath
@@ -123,13 +124,14 @@ def InitSkins():
 		print("[Skin] Error: Adding %s display skin '%s' has failed!" % (name, config.skin.display_skin.value))
 		result.append(skin)
 	# Add the activated optional skin parts.
-	partsDir = resolveFilename(SCOPE_CURRENT_SKIN, pathjoin(dirname(currentPrimarySkin), "mySkin", ""))
-	if pathExists(partsDir) and currentPrimarySkin != DEFAULT_SKIN:
-		for file in sorted(listdir(partsDir)):
-			if file.startswith("skin_") and file.endswith(".xml"):
-				partsFile = pathjoin(partsDir, file)
-				if not loadSkin(partsFile, scope=SCOPE_CURRENT_SKIN, desktop=getDesktop(GUI_SKIN_ID), screenID=GUI_SKIN_ID):
-					print("[Skin] Error: Failed to load modular skin file '%s'!" % partsFile)
+	if currentPrimarySkin != None:
+		partsDir = resolveFilename(SCOPE_CURRENT_SKIN, pathjoin(dirname(currentPrimarySkin), "mySkin", ""))
+		if pathExists(partsDir) and currentPrimarySkin != DEFAULT_SKIN:
+			for file in sorted(listdir(partsDir)):
+				if file.startswith("skin_") and file.endswith(".xml"):
+					partsFile = pathjoin(partsDir, file)
+					if not loadSkin(partsFile, scope=SCOPE_CURRENT_SKIN, desktop=getDesktop(GUI_SKIN_ID), screenID=GUI_SKIN_ID):
+						print("[Skin] Error: Failed to load modular skin file '%s'!" % partsFile)
 	# Add an optional skin related user skin "user_skin_<SkinName>.xml".  If there is
 	# not a skin related user skin then try to add am optional generic user skin.
 	result = None
@@ -403,14 +405,14 @@ def collectAttributes(skinAttributes, node, context, skinPath=None, ignore=(), f
 			# listbox; when the scrollbar setting is applied after the size, a scrollbar
 			# will not be shown until the selection moves for the first time.
 			if attrib == "size":
-				size = value.encode("utf-8")
+				size = six.ensure_str(value.encode)
 			elif attrib == "position":
-				pos = value.encode("utf-8")
+				pos = six.ensure_str(value.encode)
 			elif attrib == "font":
-				font = value.encode("utf-8")
+				font = six.ensure_str(value.encode)
 				skinAttributes.append((attrib, font))
 			else:
-				skinAttributes.append((attrib, value.encode("utf-8")))
+				skinAttributes.append((attrib, six.ensure_str(value.encode)))
 	if pos is not None:
 		pos, size = context.parse(pos, size, font)
 		skinAttributes.append(("position", pos))
