@@ -627,7 +627,7 @@ class EPGFetcher(object):
         name_map = dict((n.upper(), t) for n, t in six.iteritems(self.getScanChanNameMap()))
 
         for channel in channels:
-            channel_id = long(channel["id"])
+            channel_id = int(channel["id"])
             triplets = []
             if "dvb_triplets" in channel:
                 triplets = channel["dvb_triplets"]
@@ -664,7 +664,7 @@ class EPGFetcher(object):
     def makeChanShowMap(self, shows):
         res = defaultdict(list)
         for show in shows:
-            channel_id = long(show["channel_id"])
+            channel_id = int(show["channel_id"])
             res[channel_id].append(show)
         return res
 
@@ -781,7 +781,7 @@ class EPGFetcher(object):
                 name = iceTimer.get("name", "").encode("utf-8")
                 start = int(timegm(strptime(iceTimer["start_time"].split("+")[0], "%Y-%m-%dT%H:%M:%S")))
                 duration = 60 * int(iceTimer["duration_minutes"])
-                channel_id = long(iceTimer["channel_id"])
+                channel_id = int(iceTimer["channel_id"])
                 ice_timer_id = iceTimer["id"].encode("utf-8")
                 if action == "forget":
                     for timer in _session.nav.RecordTimer.timer_list:

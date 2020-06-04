@@ -681,7 +681,7 @@ class Network:
 		mask = 1<<31
 		xnet = (1<<32)-1
 		cidr_range = range(0, 32)
-		cidr = long(nmask)
+		cidr = int(nmask)
 		if cidr not in cidr_range:
 			print('cidr invalid: %d' % cidr)
 			return None

@@ -15,8 +15,8 @@ def getFPVersion():
 			file.close()
 		elif getBoxType() in ('dm7080', 'dm820', 'dm520', 'dm525', 'dm900', 'dm920'):
 			ret = open("/proc/stb/fp/version", "r").read()
-		else:	
-			ret = long(open("/proc/stb/fp/version", "r").read())
+		else:
+			ret = int(open("/proc/stb/fp/version", "r").read())
 	except IOError:
 		try:
 			fp = open("/dev/dbox/fp0")
@@ -65,7 +65,7 @@ def getFPWakeuptime():
 	ret = 0
 	try:
 		f = open("/proc/stb/fp/wakeup_time", "r")
-		ret = long(f.read())
+		ret = int(f.read())
 		f.close()
 	except IOError:
 		try:

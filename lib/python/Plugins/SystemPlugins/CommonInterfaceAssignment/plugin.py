@@ -298,7 +298,7 @@ class CIconfigMenu(Screen):
 				for caid in slot.findall("caid"):
 					read_caid = caid.get("id").encode("UTF-8")
 					self.selectedcaid.append((str(read_caid), str(read_caid), i))
-					self.usingcaid.append(long(read_caid, 16))
+					self.usingcaid.append(int(read_caid, 16))
 					i+=1
 
 				for service in  slot.findall("service"):
