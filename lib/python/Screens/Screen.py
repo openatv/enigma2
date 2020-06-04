@@ -12,9 +12,11 @@ from enigma import eRCInput, eTimer
 
 class Screen(dict, GUISkin):
 
-	ALLOW_SCREEN = False
-	ALLOW_SCREEN, SUSPEND_STOPS, SUSPEND_PAUSES = range(3)
-	ALLOW_SUSPEND = False
+	SUSPEND_NONE = 0
+	SUSPEND_STOPS = 1
+	SUSPEND_PAUSES = 2
+
+	ALLOW_SUSPEND = SUSPEND_NONE
 
 	global_screen = None
 
