@@ -99,14 +99,14 @@ def getAboutText():
 		bootmode = ""
 		part = _("eMMC slot %s") %slot
 		if SystemInfo["canMode12"]:
-			bootmode = _("bootmode = %s") %GetCurrentImageMode()
+			bootmode = _(" bootmode = %s") %GetCurrentImageMode()
 		if SystemInfo["HasHiSi"] and "sda" in SystemInfo["canMultiBoot"][slot]['device']:
 			if slot > 4:
 				image -=4
 			else:
 				image -=1
 			part = "SDcard slot %s (%s) " %(image, SystemInfo["canMultiBoot"][slot]['device'])
-		AboutText += _("Selected Image:\t\t%s") % _("STARTUP_") + str(slot) + "  (" + part + " " + bootmode + ")\n"
+		AboutText += _("Selected Image:\t\t%s") % _("STARTUP_") + str(slot) + "  (" + part + bootmode + ")\n"
 
 	AboutText += _("Version / Build:\t\t%s  (%s)") % (getImageVersion(), MyDateConverter(getImageBuild())) + "\n"
 	AboutText += _("Kernel:\t\t%s") % about.getKernelVersionString() + "\n"
