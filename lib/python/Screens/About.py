@@ -25,6 +25,7 @@ from os import path, popen
 from re import search
 
 import time
+import six
 
 def parse_ipv4(ip):
 	ret = ""
@@ -149,7 +150,7 @@ def getAboutText():
 		tempinfo = f.read()
 		f.close()
 	if tempinfo and int(tempinfo.replace('\n', '')) > 0:
-		mark = str('\xc2\xb0')
+		mark = str('\xb0')
 		AboutText += _("System temperature:\t%s") % tempinfo.replace('\n', '').replace(' ', '') + mark + "C\n"
 
 	tempinfo = ""
@@ -182,7 +183,7 @@ def getAboutText():
 		except:
 			tempinfo = ""
 	if tempinfo and int(tempinfo.replace('\n', '')) > 0:
-		mark = str('\xc2\xb0')
+		mark = str('\xb0')
 		AboutText += _("Processor temperature:\t%s") % tempinfo.replace('\n', '').replace(' ', '') + mark + "C\n"
 	AboutLcdText = AboutText.replace('\t', ' ')
 
@@ -527,7 +528,7 @@ class SystemMemoryInfo(Screen):
 				"down": self["AboutScrollLabel"].pageDown,
 			})
 
-		out_lines = file("/proc/meminfo").readlines()
+		out_lines = open("/proc/meminfo").readlines()
 		self.AboutText = _("RAM") + '\n\n'
 		RamTotal = "-"
 		RamFree = "-"
@@ -714,7 +715,7 @@ class SystemNetworkInfo(Screen):
 		self.AboutText += "\n" + '{:<35}'.format(_("Bytes received:")) + "\t" + rx_bytes + "\n"
 		self.AboutText += '{:<35}'.format(_("Bytes sent:")) + "\t" + tx_bytes + "\n"
 
-		hostname = file('/proc/sys/kernel/hostname').read()
+		hostname = open('/proc/sys/kernel/hostname').read()
 		self.AboutText += "\n" + '{:<35}'.format(_("Hostname:")) + "\t" + hostname + "\n"
 		self["AboutScrollLabel"] = ScrollLabel(self.AboutText)
 

@@ -20,6 +20,7 @@ from glob import glob
 from skin import getSkinFactor
 
 import Components.Task
+import sys
 
 # Import smtplib for the actual sending function
 import smtplib, base64
@@ -27,7 +28,10 @@ import smtplib, base64
 # Here are the email package modules we'll need
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
-from email.Utils import formatdate
+if sys.version_info[0] >= 3:
+	from email.utils import formatdate
+else:
+	from email.Utils import formatdate
 
 _session = None
 

@@ -217,7 +217,7 @@ class choicesList(object): # XXX: we might want a better name for this
 		if self.type == choicesList.LIST_TYPE_LIST:
 			ret = [not isinstance(x, tuple) and x or x[0] for x in self.choices]
 		else:
-			ret = self.choices.keys()
+			ret = list(self.choices.keys())
 		return ret or [""]
 
 	def __iter__(self):
@@ -236,7 +236,7 @@ class choicesList(object): # XXX: we might want a better name for this
 			assert isinstance(orig, tuple)
 			self.choices[index] = (orig[0], descr)
 		else:
-			key = self.choices.keys()[index]
+			key = list(self.choices.keys())[index]
 			self.choices[key] = descr
 
 	def __getitem__(self, index):
@@ -245,14 +245,10 @@ class choicesList(object): # XXX: we might want a better name for this
 			if isinstance(ret, tuple):
 				ret = ret[0]
 			return ret
-		return self.choices.keys()[index]
+		return list(self.choices.keys())[index]
 
 	def index(self, value):
-		try:
-			return self.__list__().index(value)
-		except (ValueError, IndexError):
-			# occurs e.g. when default is not in list
-			return 0
+		return self.__list__().index(value)
 
 	def __setitem__(self, index, value):
 		if self.type == choicesList.LIST_TYPE_LIST:
@@ -262,7 +258,7 @@ class choicesList(object): # XXX: we might want a better name for this
 			else:
 				self.choices[index] = value
 		else:
-			key = self.choices.keys()[index]
+			key = list(self.choices.keys())[index]
 			orig = self.choices[key]
 			del self.choices[key]
 			self.choices[value] = orig

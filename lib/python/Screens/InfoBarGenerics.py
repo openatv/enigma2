@@ -59,7 +59,8 @@ from datetime import datetime
 import itertools, datetime
 from sys import maxsize
 
-import os, cPickle
+import os
+from six.moves import cPickle as pickle
 
 # hack alert!
 from Screens.Menu import MainMenu, Menu, mdom

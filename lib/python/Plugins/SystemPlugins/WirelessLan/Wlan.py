@@ -1,6 +1,9 @@
 from __future__ import print_function
 from os import system, path as os_path
-from string import maketrans, strip
+import sys
+
+if sys.version_info[0] < 3:
+	from string import maketrans, strip
 
 from enigma import eConsoleAppContainer
 
@@ -40,8 +43,10 @@ class Wlan:
 				b += ' '
 			else:
 				b += chr(i)
-
-		self.asciitrans = maketrans(a, b)
+		if sys.version_info[0] >=3:
+			self.asciitrans = str.maketrans(a, b)
+		else:
+			self.asciitrans = maketrans(a, b)
 
 	def asciify(self, str):
 		return str.translate(self.asciitrans)

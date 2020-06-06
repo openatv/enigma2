@@ -12,9 +12,11 @@ from enigma import eRCInput, eTimer
 
 class Screen(dict, GUISkin):
 
-	ALLOW_SCREEN = False
-	ALLOW_SCREEN, SUSPEND_STOPS, SUSPEND_PAUSES = range(3)
-	ALLOW_SUSPEND = False
+	SUSPEND_NONE = 0
+	SUSPEND_STOPS = 1
+	SUSPEND_PAUSES = 2
+
+	ALLOW_SUSPEND = SUSPEND_NONE
 
 	global_screen = None
 
@@ -129,7 +131,7 @@ class Screen(dict, GUISkin):
 			val.disconnectAll()  # disconnected converter/sources and probably destroy them. Sources will not be destroyed.
 
 		del self.session
-		for (name, val) in self.items():
+		for (name, val) in list(self.items()):
 			val.destroy()
 			del self[name]
 
