@@ -16,6 +16,7 @@ from Components.Pixmap import Pixmap, MovingPixmap
 from Components.Button import Button
 from Tools.LoadPixmap import LoadPixmap
 import os
+import six
 from skin import findSkinScreen
 
 import xml.etree.cElementTree
@@ -182,10 +183,10 @@ class Menu(Screen, ProtectedScreen):
 					return
 			elif not SystemInfo.get(requires, False):
 				return
-		MenuTitle = _(node.get("text", "??").encode("UTF-8"))
+		MenuTitle = _(six.ensure_str(node.get("text", "??")))
 		entryID = node.get("entryID", "undefined")
 		weight = node.get("weight", 50)
-		description = node.get('description', '').encode('UTF-8') or None
+		description = six.ensure_str(node.get("description", "")) or None
 		description = description and _(description)
 		menupng = MenuEntryPixmap(entryID, self.png_cache, lastMenuID)
 		x = node.get("flushConfigOnClose")
@@ -217,10 +218,10 @@ class Menu(Screen, ProtectedScreen):
 		configCondition = node.get("configcondition")
 		if configCondition and not eval(configCondition + ".value"):
 			return
-		item_text = node.get("text", "").encode("UTF-8")
+		item_text = six.ensure_str(node.get("text", ""))
 		entryID = node.get("entryID", "undefined")
 		weight = node.get("weight", 50)
-		description = node.get('description', '').encode('UTF-8') or ''
+		description = six.ensure_str(node.get("description", "")) or ''
 		description = description and _(description)
 		menupng = MenuEntryPixmap(entryID, self.png_cache, lastMenuID)
 		for x in node:
@@ -325,7 +326,7 @@ class Menu(Screen, ProtectedScreen):
 				if menuupdater.updatedMenuAvailable(menuID):
 					for x in menuupdater.getUpdatedMenu(menuID):
 						if x[1] == count:
-							description = x.get('description', '').encode('UTF-8') or None
+							description = six.ensure_str(x.get("description", "")) or None
 							description = description and _(description)
 							menupng = MenuEntryPixmap(menuID, self.png_cache, lastMenuID)
 							m_list.append((x[0], boundFunction(self.runScreen, (x[2], x[3] + ", ")), x[4], description, menupng))
@@ -442,10 +443,10 @@ class Menu(Screen, ProtectedScreen):
 				"blue": self.keyBlue,
 			})
 
-		a = parent.get("title", "").encode("UTF-8") or None
+		a = six.ensure_str(parent.get("title", "")) or None
 		a = a and _(a)
 		if a is None:
-			a = _(parent.get("text", "").encode("UTF-8"))
+			a = _(six.ensure_str(parent.get("text", "")))
 		else:
 			t_history.reset()
 		self["title"] = StaticText(a)

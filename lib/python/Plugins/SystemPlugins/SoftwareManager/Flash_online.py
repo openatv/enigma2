@@ -15,7 +15,8 @@ from Components.Console import Console
 from Tools.BoundFunction import boundFunction
 from Tools.Multiboot import GetImagelist, GetCurrentImage, GetCurrentImageMode, GetBoxName
 from enigma import eTimer, fbClass
-import os, urllib2, json, shutil, math, time, zipfile, shutil
+import os, json, shutil, math, time, zipfile, shutil
+from six.moves.urllib.request import urlopen
 
 
 from boxbranding import getImageDistro, getMachineBuild, getMachineBrand, getMachineName, getMachineMtdRoot, getMachineMtdKernel
@@ -89,9 +90,9 @@ class FlashOnline(Screen):
 			box = GetBoxName()
 			if not self.jsonlist:
 				try:
-					self.jsonlist = dict(json.load(urllib2.urlopen('%s/%s' % (feedurl, box))))
+					self.jsonlist = dict(json.load(urlopen('%s/%s' % (feedurl, box))))
 					#if config.usage.alternative_imagefeed.value:
-					#	self.jsonlist.update(dict(json.load(urllib2.urlopen('%s%s' % (config.usage.alternative_imagefeed.value, box)))))
+					#	self.jsonlist.update(dict(json.load(urlopen('%s%s' % (config.usage.alternative_imagefeed.value, box)))))
 				except:
 					pass
 			self.imagesList = dict(self.jsonlist)

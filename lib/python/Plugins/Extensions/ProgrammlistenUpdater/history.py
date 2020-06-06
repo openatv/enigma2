@@ -3,15 +3,17 @@ from Components.ActionMap import ActionMap
 from Components.ScrollLabel import ScrollLabel
 from Components.Sources.StaticText import StaticText
 from Screens.Screen import Screen
-import re, os, urllib2, sys
+import re, os, sys
+from six.moves.urllib.request import urlopen
+from six.moves.urllib.request import Request
 
 URL ='http://www.sattechnik.de/programmlisten-update/history.txt'
 
 def DownloadInfo(url):
     text = ""
     try:
-        req = urllib2.Request(url)
-        response = urllib2.urlopen(req)
+        req = Request(url)
+        response = urlopen(req)
         link = response.read().decode("windows-1252")
         response.close()
         text = link.encode("utf-8")

@@ -1,6 +1,7 @@
 from boxbranding import getBoxType, getMachineBuild, getImageVersion
-from sys import modules
+from sys import modules, version_info
 import socket, fcntl, struct, time, os
+
 
 def getImageVersionString():
 	return getImageVersion()
@@ -188,8 +189,12 @@ def getIfTransferredData(ifname):
 
 def getPythonVersionString():
 	try:
-		import commands
-		status, output = commands.getstatusoutput("python -V")
+		if version_info[0] >= 3:
+			import subprocess
+			status, output = subprocess.getstatusoutput("python3 -V")
+		else:
+			import commands
+			status, output = commands.getstatusoutput("python -V")
 		return output.split(' ')[1]
 	except:
 		return _("unknown")

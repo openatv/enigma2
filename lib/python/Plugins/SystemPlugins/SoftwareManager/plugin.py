@@ -1602,7 +1602,7 @@ class UpdatePlugin(Screen):
 			return
 
 	def checkTraficLight(self):
-		from urllib import urlopen
+		from six.moves.urllib.request import urlopen
 		import socket
 		currentTimeoutDefault = socket.getdefaulttimeout()
 		socket.setdefaulttimeout(3)

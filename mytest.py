@@ -584,7 +584,7 @@ def runScreenTest():
 			os.system('rm -f /media/hdd/images/config/autorestore')
 		screensToRun = [ p.__call__ for p in plugins.getPlugins(PluginDescriptor.WHERE_WIZARD) ]
 		screensToRun += wizardManager.getWizards()
-	
+
 	screensToRun.append((100, InfoBar.InfoBar))
 	screensToRun.sort()
 	print(screensToRun)

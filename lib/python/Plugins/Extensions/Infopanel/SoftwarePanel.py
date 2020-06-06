@@ -126,7 +126,7 @@ class SoftwarePanel(Screen):
 
 	def checkTraficLight(self):
 		print("checkTraficLight")
-		from urllib import urlopen
+		from six.moves.urllib.request import urlopen
 		import socket
 		self['a_red'].hide()
 		self['a_yellow'].hide()

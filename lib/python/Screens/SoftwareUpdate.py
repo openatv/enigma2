@@ -173,7 +173,7 @@ class UpdatePlugin(Screen):
 		self.checkNetworkState()
 
 	def feedsStatus(self):
-		from urllib import urlopen
+		from six.moves.urllib.request import urlopen
 		import socket
 		self['tl_red'].hide()
 		self['tl_yellow'].hide()
@@ -287,7 +287,7 @@ class UpdatePlugin(Screen):
 				self.updating = False
 				self.ipkg.startCmd(IpkgComponent.CMD_UPGRADE_LIST)
 			elif self.ipkg.currentCommand == IpkgComponent.CMD_UPGRADE_LIST:
-				from urllib import urlopen
+				from six.moves.urllib.request import urlopen
 				import socket
 				currentTimeoutDefault = socket.getdefaulttimeout()
 				socket.setdefaulttimeout(3)

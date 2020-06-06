@@ -408,9 +408,9 @@ class SecConfigure:
 					sec.setLNBThreshold(11700000)
 				elif currLnb.lof.value == "unicable":
 					def setupUnicable(configManufacturer, ProductDict):
-						manufacturer_name = configManufacturer.value.decode('utf-8')
+						manufacturer_name = six.ensure_text(configManufacturer.value)
 						manufacturer = ProductDict[manufacturer_name]
-						product_name = manufacturer.product.value.decode('utf-8')
+						product_name = six.ensure_text(manufacturer.product.value)
 						if product_name == "None" and manufacturer.product.saved_value != "None":
 							product_name = manufacturer.product.value = manufacturer.product.saved_value
 						manufacturer_scr = manufacturer.scr
@@ -427,6 +427,7 @@ class SecConfigure:
 								sec.setLNBLOFL(manufacturer.lofl[product_name][position_idx].value * 1000)
 								sec.setLNBLOFH(manufacturer.lofh[product_name][position_idx].value * 1000)
 								sec.setLNBThreshold(manufacturer.loft[product_name][position_idx].value * 1000)
+								print("debug:%s" % currLnb.unicableTuningAlgo.value)
 								sec.setLNBSatCRTuningAlgo(["traditional", "reliable", "traditional_retune", "reliable_retune"].index(currLnb.unicableTuningAlgo.value))
 								sec.setLNBBootupTime(manufacturer.bootuptime[product_name][0].value)
 								configManufacturer.save_forced = True
@@ -625,7 +626,7 @@ class SecConfigure:
 			return
 
 		if ManufacturerName is not None:
-			ManufacturerName = ManufacturerName.decode("utf-8")
+			ManufacturerName = six.ensure_text(ManufacturerName)
 		print("ManufacturerName %s" % ManufacturerName)
 
 		PDict = SDict.get(ManufacturerName, None)			#dict contained last stored device data

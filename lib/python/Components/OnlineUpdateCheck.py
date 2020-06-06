@@ -61,7 +61,7 @@ class OnlineUpdateCheckPoller:
 				self.total_packages = len(self.ipkg.getFetchedList())
 				print ('[OnlineVersionCheck] %s Updates available' % self.total_packages)
 				if self.total_packages:
-					from urllib import urlopen
+					from six.moves.urllib.request import urlopen
 					import socket
 					currentTimeoutDefault = socket.getdefaulttimeout()
 					socket.setdefaulttimeout(3)

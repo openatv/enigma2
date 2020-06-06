@@ -1,12 +1,13 @@
 from __future__ import print_function
 from __future__ import absolute_import
 from enigma import eTimer
-import re, glob, shutil, os, urllib2, urllib, time, sys
+import re, glob, shutil, os, time, sys
 from Screens.Screen import Screen
 from Components.config import ConfigSubsection, ConfigYesNo, ConfigText, config, configfile
 from Screens.MessageBox import MessageBox
 from .downloader import DownloadSetting, ConverDate, ConverDateBack
-from enigma import *
+from six.moves.urllib.request import urlopen
+from six.moves.urllib.request import Request
 
 try:
     import zipfile
@@ -18,9 +19,9 @@ Directory = os.path.dirname(sys.modules[__name__].__file__)
 def InstallSettings(name, link, date):
 
     def DownloadSetting(link):
-        req = urllib2.Request(link)
+        req = Request(link)
         req.add_header('User-Agent', 'VAS')
-        response = urllib2.urlopen(req)
+        response = urlopen(req)
         newlink = response.read()
         response.close()
         Setting = open(Directory + '/Settings/tmp/listE2.zip', 'w')

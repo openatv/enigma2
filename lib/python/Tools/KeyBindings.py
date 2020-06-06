@@ -145,7 +145,7 @@ keyDescriptions = [{
 		KEYIDS["KEY_SLEEP"]: ("SLEEP",),
 		KEYIDS["KEY_SUBTITLE"]: ("SUBTITLE",),
 		KEYIDS["KEY_HELP"]: ("HELP",),
-		KEYIDS["KEY_VMODE"]: ("VMODE",),
+		KEYIDS["KEY_VMODE"]: ("VMODE",)
 	},
 	{       # XP1000
 		KEYIDS["BTN_0"]: ("UP", "fp"),
@@ -194,7 +194,7 @@ keyDescriptions = [{
 		KEYIDS["KEY_VMODE"]: ("VMODE",),
 		KEYIDS["KEY_PROGRAM"]: ("TIMER",),
 		KEYIDS["KEY_SLEEP"]: ("SLEEP",),
-		KEYIDS["KEY_EPG"]: ("EPG",),
+		KEYIDS["KEY_EPG"]: ("EPG",)
 	},
 	{       # Formuler F1
 		KEYIDS["BTN_0"]: ("UP", "fp"),
@@ -243,7 +243,7 @@ keyDescriptions = [{
 		KEYIDS["KEY_BACK"]: ("RECALL",),
 		KEYIDS["KEY_CONTEXT_MENU"]: ("CONTEXT",),
 		KEYIDS["KEY_EPG"]: ("EPG",),
-		KEYIDS["KEY_BOOKMARKS"]: ("PLAYLIST",),
+		KEYIDS["KEY_BOOKMARKS"]: ("PLAYLIST",)
 	},
 ]
 

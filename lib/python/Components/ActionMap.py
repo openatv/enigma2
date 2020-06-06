@@ -4,7 +4,7 @@ from enigma import eActionMap
 from Tools.KeyBindings import queryKeyBinding
 
 class ActionMap:
-	def __init__(self, contexts=None, actions=None, prio=0):
+	def __init__(self, contexts = [ ], actions = { }, prio=0):
 		self.contexts = contexts or []
 		self.actions = actions or {}
 		self.prio = prio
@@ -90,14 +90,14 @@ class HelpableActionMap(ActionMap):
 	# ActionMapconstructor,	the collected helpstrings (with correct
 	# context, action) is added to the screen's "helpList", which will
 	# be picked up by the "HelpableScreen".
-	def __init__(self, parent, contexts, actions=None, prio=0, description=None):
+	def __init__(self, parent, contexts, actions={ }, prio=0, description=None):
 		if not hasattr(contexts, '__iter__'):
 			contexts = [contexts]
 		actions = actions or {}
 		self.description = description
-		adict = {}
+		adict = { }
 		for context in contexts:
-			alist = []
+			alist = [ ]
 			import six
 			for (action, funchelp) in six.iteritems(actions):
 				# Check if this is a tuple.
@@ -110,11 +110,11 @@ class HelpableActionMap(ActionMap):
 						alist.append((action, None))
 					adict[action] = funchelp
 			parent.helpList.append((self, context, alist))
-		ActionMap.__init__(self, contexts, adict, prio)
+		ActionMap.__init__(self, [contexts], adict, prio)
 
 
 class HelpableNumberActionMap(NumberActionMap, HelpableActionMap):
-	def __init__(self, parent, contexts, actions=None, prio=0, description=None):
+	def __init__(self, parent, contexts, actions = { }, prio=0, description=None):
 		# Initialise NumberActionMap with empty context and actions
 		# so that the underlying ActionMap is only initialised with
 		# these once, via the HelpableActionMap.

@@ -131,7 +131,7 @@ class Screen(dict, GUISkin):
 			val.disconnectAll()  # disconnected converter/sources and probably destroy them. Sources will not be destroyed.
 
 		del self.session
-		for (name, val) in self.items():
+		for (name, val) in list(self.items()):
 			val.destroy()
 			del self[name]
 
