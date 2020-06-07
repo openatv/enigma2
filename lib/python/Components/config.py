@@ -1253,7 +1253,7 @@ class ConfigText(ConfigElement, NumericalTextInput):
 				mark = range(0, min(self.visible_width, len(self.text)))
 			else:
 				mark = [self.marked_pos-self.offset]
-			return ("mtext"[1-selected:], six.ensure_str(text[self.offset:self.offset+self.visible_width])+" ", mark)
+			return ("mtext"[1-selected:], six.ensure_str(self.text[self.offset:self.offset+self.visible_width])+" ", mark)
 		else:
 			if self.allmarked:
 				mark = range(0, len(self.text))
