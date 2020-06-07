@@ -23,6 +23,7 @@ from Tools.Directories import resolveFilename, SCOPE_HDD, fileExists
 from time import time, localtime
 from timer import TimerEntry as RealTimerEntry
 from enigma import eServiceCenter, eEPGCache
+from functools import cmp_to_key
 import Tools.CopyFiles
 import os
 
@@ -246,7 +247,7 @@ class TimerEditList(Screen):
 		list.extend([(timer, False) for timer in self.session.nav.RecordTimer.timer_list])
 		list.extend([(timer, True) for timer in self.session.nav.RecordTimer.processed_timers])
 		if config.usage.timerlist_finished_timer_position.index: #end of list
-			list.sort(cmp = eol_compare)
+			list.sort(key=cmp_to_key(eol_compare))
 		else:
 			list.sort(key = lambda x: x[0].begin)
 
