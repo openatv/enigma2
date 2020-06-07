@@ -1,3 +1,6 @@
+## Build Status - branch 6.5: ##
+[![Build Status](https://travis-ci.org/openatv/enigma2.svg?branch=6.5)](https://travis-ci.org/openatv/enigma2)
+
 ## Our buildserver is currently running on: ##
 
 > Ubuntu 18.04.1 LTS (Kernel 4.15.0)
