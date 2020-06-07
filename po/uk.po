@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-12-30 14:34+0100\n"
-"PO-Revision-Date: 2020-13-05 10:39+0200\n"
+"PO-Revision-Date: 2020-07-06 10:39+0200\n"
 "Last-Translator: kvinto <badsystem@ukr.net>\n"
 "Language-Team: <sat-ukraine.info>\n"
 "Language: uk\n"
@@ -452,6 +452,12 @@ msgstr "%02d:%02d"
 #, python-format
 msgid "%02d:%02d - %02d:%02d"
 msgstr "%02d:%02d - %02d:%02d"
+
+msgid "%02d.%02d - %02d.%02d (%s%s)"
+msgstr "%02d.%02d - %02d.%02d (%s%s)"
+
+msgid "%d hour %d min"
+msgstr "%d год. %d хв."
 
 #, python-format
 msgid "%03d MB"
@@ -4170,6 +4176,9 @@ msgstr "Виберіть ім'я файлу для даних ЕПГ, коли %
 msgid "Choose time interval to which the graphics will be rounded off."
 msgstr "Вкажіть часовий інтервал, в якому графіка буде відключена."
 
+msgid "Choose what you want the PIP mode how to works."
+msgstr "Виберіть потрібний режим роботи PIP."
+
 msgid "Choose what you want the button '0' to do when PIP is active."
 msgstr "Вкажіть дію для кнопки '0', коли вікно PIP активне."
 
@@ -4285,11 +4294,14 @@ msgstr "Закрити"
 msgid "Close Main screen"
 msgstr "Закрити Основний екран"
 
+msgid "Close PIP and try again!"
+msgstr "Закрийте PIP і повторіть спробу!"
+
 msgid "Close PiP on exit"
 msgstr "Закрити ПІП на виході"
 
 msgid "Close Picture in Picture screen"
-msgstr "Закрити Екран в Екрані"
+msgstr "Закрити Зображення в Зображенні"
 
 msgid "Close bouquet list."
 msgstr "Закрити список фаворитів."
@@ -5092,8 +5104,10 @@ msgid "Current location"
 msgstr "Поточне розташування"
 
 #, python-format
-msgid "Current mode: %s \n"
-msgstr "Поточний режим: %s \n"
+msgid "Current mode:   %s\n"
+"\n"
+msgstr "Поточний режим:   %s\n"
+"\n"
 
 msgid "Current settings:"
 msgstr "Поточні налаштування:"
@@ -8043,7 +8057,7 @@ msgid "History"
 msgstr "Історiя"
 
 msgid "History Zap..."
-msgstr "Історія Переключень..."
+msgstr "Історія Перемикань..."
 
 msgid "History back"
 msgstr "Назад в історії"
@@ -10894,6 +10908,9 @@ msgstr "Тільки при включенні"
 msgid "Only select 'yes' if you are using a multiswich that requires a DiSEqC Port-A command signal. For all other setups select 'no'."
 msgstr "Виберіть 'Так' коли Ви використовуєте мультисвіч, який вимагає команду DiSEqC Port-A. Для всіх інших налаштувань виберіть 'Ні'"
 
+msgid "Only Standard"
+msgstr "Тільки Стандартний"
+
 msgid "Open"
 msgstr "Відкрити"
 
@@ -11335,6 +11352,15 @@ msgstr "Налаштування ПІП"
 msgid "PiP mode"
 msgstr "ПіП режим"
 
+msgid "PiP settings"
+msgstr "Налаштування PiP"
+
+msgid "PiP size and position change"
+msgstr "Зміна розміру і положення PiP"
+
+msgid "PiP size and position save"
+msgstr "Збереження розміру і положення PiP"
+
 msgid "PiP standard Setup"
 msgstr "PiP Стандартні налаштування"
 
@@ -11740,15 +11766,6 @@ msgstr ""
 "Відрегулювати положення користувача інтерфейсу. Краї червоної області повинні стосуватися країв екрану телевізора.\n"
 "Якщо готові, натисніть зелену кнопку для продовження."
 
-msgid ""
-"Please use direction keys to move the PiP window.\n"
-"Press Bouquet +/- to resize the window.\n"
-"Press OK to go back to the TV mode or EXIT to cancel the moving."
-msgstr ""
-"Використовуйте кнопки управління для переміщення вікна ПІП.\n"
-"Натисніть +/-, для зміни розміру вікна.\n"
-"Натисніть OK, щоб повернутись в режим TV, або EXIT для відміни."
-
 msgid "Please use the UP and DOWN keys to select your language. Afterwards press the OK button."
 msgstr "Будь-ласка, використовуйте кнопки ВВЕРХ і ВНИЗ, для вибору мови. Після вибору натисніть OK."
 
@@ -11887,6 +11904,15 @@ msgstr "Португальська"
 msgid "Position Setup"
 msgstr "Налаштування положення"
 
+msgid ""
+"Position change:  Use direction keys to move the PiP window\n"
+"Size change:  Channel +/- to resize the window\n"
+"OK  -  save changes  |  EXIT  -  cancel"
+msgstr ""
+"Зміна положення: Використовуйте клавіші напрямку для переміщення вікна PiP\n"
+"Зміна розміру: канал +/- для зміни розміру вікна\n"
+"OK  -  зберегти зміни  |  EXIT  -  скасувати"
+
 msgid "Position of finished Timers in Timerlist"
 msgstr "Розташування виконаних Таймерів в списку"
 
@@ -12016,8 +12042,8 @@ msgstr "Приготування... Зачекайте, будь ласка"
 msgid "Preschool"
 msgstr "Дошкільні"
 
-msgid "Press '0' to toggle PiP mode"
-msgstr "Натисніть кнопку '0', щоб змінити режим ПІП"
+msgid "Press '0' to toggle PiP current mode"
+msgstr "Натисніть кнопку '0', щоб змінити поточний режим ПІП"
 
 msgid "Press INFO on your remote control for additional information."
 msgstr "Натисніть INFO на пульті ду для отримання додаткової інформації."
@@ -13793,6 +13819,9 @@ msgstr "Виберіть виробника свого пристрою SCR. Я�
 
 msgid "Select the method of restoring screen resolution and framebuffer when leaving teletext."
 msgstr "Виберіть метод відновлення роздільної здатності екрана та буфера обміну при виході з телетексту."
+
+msgid "Select the mode in which the position and size are saved. Changing the position and size is only possible when using the Standard usage mode!"
+msgstr "Виберіть режим, при якому зберігаються положення та розмір. Зміна положення та розміру можлива лише у стандартному режимі використання!"
 
 msgid "Select the model number of your Unicable device. If the model number is not listed, set 'SCR' to 'user defined' and enter the device parameters manually according to its spec sheet."
 msgstr "Виберіть номер моделі вашого пристрою Unicable. Якщо номер моделі не вказаний, встановіть 'SCR' на 'визначено користувачем' і введіть параметри пристрою вручну відповідно до його специфікації."
@@ -15633,6 +15662,9 @@ msgstr "Стандарт"
 msgid "Standard (always)"
 msgstr "Стандарт (завжди)"
 
+msgid "Standard and Ads filtering mode"
+msgstr "Стандартний режим та режим фільтрації"
+
 msgid "Standard list"
 msgstr "Стандартний список"
 
@@ -16139,7 +16171,7 @@ msgstr "ТБ"
 #. TRANSLATORS: Add here whatever should be shown in the "translator" about screen, up to 6 lines (use \n for newline)
 msgid "TRANSLATOR_INFO"
 msgstr ""
-"Переклад:  kvinto - 21.05.2020\n"
+"Переклад:  kvinto - 07.06.2020\n"
 "Сторінка:    https://gisclub.tv\n"
 "                  kvinto@rambler.ru"
 
@@ -16758,6 +16790,9 @@ msgstr "Тут можна вказати чи переглядати списо�
 
 msgid "This allows you to show weblinks modules in downloads"
 msgstr "Тут можна вказати чи переглядати список web-посилань при завантаженні"
+
+msgid "This feature is currently unavailable!"
+msgstr "Ця функція наразі недоступна!"
 
 #, python-format
 msgid "This field allows you to search an additional symbol rate up to %s."
