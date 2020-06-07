@@ -488,7 +488,7 @@ class PliExtraInfo(Poll, Converter, object):
 
 	def createOrbPosOrTunerSystem(self, fedata, feraw):
 		orbpos = self.createOrbPos(feraw)
-		if orbpos is not "":
+		if orbpos != "":
 			return orbpos
 		return self.createTunerSystem(fedata)
 
@@ -873,6 +873,6 @@ class PliExtraInfo(Poll, Converter, object):
 			if what[1] == iPlayableService.evEnd:
 				self.feraw = self.fedata = None
 			Converter.changed(self, what)
-		elif what[0] == self.CHANGED_POLL and self.updateFEdata is not None:
+		elif what[0] == self.CHANGED_POLL and self.updateFEdata != None:
 			self.updateFEdata = False
 			Converter.changed(self, what)
