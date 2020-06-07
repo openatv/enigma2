@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from __future__ import print_function
 from time import localtime, mktime, time, strftime
 
@@ -21,6 +22,7 @@ from RecordTimer import RecordTimerEntry, parseEvent, AFTEREVENT
 from Screens.TimerEntry import TimerEntry
 from Plugins.Plugin import PluginDescriptor
 from Tools.BoundFunction import boundFunction
+import six
 
 class EventViewContextMenu(Screen):
 	def __init__(self, session, menu):

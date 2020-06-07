@@ -20,7 +20,7 @@ def setupdom(plugin=None):
 	# read the setupmenu
 	if plugin:
 		# first we search in the current path
-		setupfile = file(resolveFilename(SCOPE_CURRENT_PLUGIN, plugin + '/setup.xml'), 'r')
+		setupfile = open(resolveFilename(SCOPE_CURRENT_PLUGIN, plugin + '/setup.xml'), 'r')
 	else:
 		# if not found in the current path, we use the global datadir-path
 		setupfile = open(eEnv.resolve('${datadir}/enigma2/setup.xml'), 'r')
@@ -81,16 +81,18 @@ class Setup(ConfigListScreen, Screen):
 		self.onNotifiers.remove(self.levelChanged)
 
 	def levelChanged(self, configElement):
-		list = []
-		self.refill(list)
-		self["config"].setList(list)
+		print("levelChanged")
+		listItems = []
+		self.refill(listItems)
+		self["config"].setList(listItems)
 
-	def refill(self, list):
+	def refill(self, listItems):
+		print("refill")
 		xmldata = setupdom(self.plugin).getroot()
 		for x in xmldata.findall("setup"):
 			if x.get("key") != self.setup:
 				continue
-			self.addItems(list, x)
+			self.addItems(listItems, x)
 			self.setup_title = six.ensure_str(x.get("title", ""))
 			self.seperation = int(x.get('separation', '0'))
 
@@ -109,13 +111,13 @@ class Setup(ConfigListScreen, Screen):
 		self.setup = setup
 		self.plugin = plugin
 		self.PluginLanguageDomain = PluginLanguageDomain
-		list = []
+		listItems = []
 		self.onNotifiers = [ ]
-		self.refill(list)
-		ConfigListScreen.__init__(self, list, session = session, on_change = self.changedEntry)
+		self.refill(listItems)
+		ConfigListScreen.__init__(self, listItems, session = session, on_change = self.changedEntry)
 		self.createSetup()
 
-		#check for list.entries > 0 else self.close
+		#check for listItems.entries > 0 else self.close
 		self["key_red"] = StaticText(_("Cancel"))
 		self["key_green"] = StaticText(_("OK"))
 		self["description"] = Label("")
@@ -124,6 +126,7 @@ class Setup(ConfigListScreen, Screen):
 			{
 				"cancel": self.keyCancel,
 				"save": self.keySave,
+				"ok": self.keySave,
 				"menu": self.closeRecursive,
 			}, -2)
 
@@ -140,16 +143,16 @@ class Setup(ConfigListScreen, Screen):
 		self.onClose.append(self.HideHelp)
 
 	def createSetup(self):
-		list = []
-		self.refill(list)
-		self["config"].setList(list)
+		listItems = []
+		self.refill(listItems)
+		self["config"].setList(listItems)
 		if config.usage.sort_settings.value:
 			self["config"].list.sort()
 		self.moveToItem(self.item)
 
 	def getIndexFromItem(self, item):
-		if item is not None:
-			for x in range(len(self["config"].list)):
+		if item != None:
+			for x in list(range(len(self["config"].list))):
 				if self["config"].list[x][0] == item[0]:
 					return x
 		return None
@@ -221,7 +224,7 @@ class Setup(ConfigListScreen, Screen):
 		except:
 			pass
 
-	def addItems(self, list, parentNode):
+	def addItems(self, listItems, parentNode):
 		for x in parentNode:
 			if not x.tag:
 				continue
@@ -252,7 +255,7 @@ class Setup(ConfigListScreen, Screen):
 				value = x.get("value")
 				if requires and requires.startswith('config.'):
 					item = eval(requires or "")
-					if value and str(item.value) == value or not value and item.value and not item.value == "0":
+					if value and six.ensure_str(item.value) == value or not value and item.value and not item.value == "0":
 						SystemInfo[requires] = True
 					else:
 						SystemInfo[requires] = False
@@ -277,20 +280,20 @@ class Setup(ConfigListScreen, Screen):
 				# the first b is the item itself, ignored by the configList.
 				# the second one is converted to string.
 				if not isinstance(item, ConfigNothing):
-					list.append((item_text, item, item_description))
+					listItems.append((item_text, item, item_description))
 
-def getSetupTitle(id):
+def getSetupTitle(setupId):
 	xmldata = setupdom().getroot()
 	for x in xmldata.findall("setup"):
-		if x.get("key") == id:
+		if x.get("key") == setupId:
 			if _(six.ensure_str(x.get("title", ""))) == _("OSD Settings") or _(six.ensure_str(x.get("title", ""))) == _("Softcam Setup") or _(six.ensure_str(x.get("title", ""))) == _("EPG settings"):
 				return _("Settings...")
 			return six.ensure_str(x.get("title", ""))
-	raise SetupError("unknown setup id '%s'!" % repr(id))
+	raise SetupError("unknown setup id '%s'!" % repr(setupId))
 
-def getSetupTitleLevel(id):
+def getSetupTitleLevel(setupId):
 	xmldata = setupdom().getroot()
 	for x in xmldata.findall("setup"):
-		if x.get("key") == id:
+		if x.get("key") == setupId:
 			return int(x.get("level", 0))
 	return 0
