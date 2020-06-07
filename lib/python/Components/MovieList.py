@@ -1,3 +1,4 @@
+from __future__ import division
 from __future__ import print_function
 from __future__ import absolute_import
 import os
@@ -5,7 +6,6 @@ import struct
 import random
 
 from enigma import eListboxPythonMultiContent, eListbox, gFont, iServiceInformation, eSize, RT_HALIGN_LEFT, RT_HALIGN_RIGHT, RT_VALIGN_CENTER, eServiceReference, eServiceReferenceFS, eServiceCenter, eTimer, getDesktop, loadPNG, BT_SCALE, BT_KEEP_ASPECT_RATIO
-from six.moves import reload_module
 
 from Components.GUIComponent import GUIComponent
 from Tools.FuzzyDate import FuzzyTime
@@ -282,14 +282,14 @@ class MovieList(GUIComponent):
 		if self.listHeight > 0:
 			ext = config.movielist.useextlist.value
 			if ext != '0':
-				itemHeight = (self.listHeight / config.movielist.itemsperpage.value) *2
+				itemHeight = (self.listHeight // config.movielist.itemsperpage.value) *2
 			else:
-				itemHeight = self.listHeight / config.movielist.itemsperpage.value
+				itemHeight = self.listHeight // config.movielist.itemsperpage.value
 		else:
 			itemHeight = 30 # some default (270/5)
 		self.itemHeight = itemHeight
 		self.l.setItemHeight(itemHeight)
-		self.instance.resize(eSize(self.listWidth, self.listHeight / itemHeight * itemHeight))
+		self.instance.resize(eSize(self.listWidth, self.listHeight // itemHeight * itemHeight))
 
 	def setFontsize(self):
 		self.l.setFont(0, gFont(self.fontName, self.fontSize + config.movielist.fontsize.value))
@@ -311,7 +311,7 @@ class MovieList(GUIComponent):
 		res = [ None ]
 
 		if ext != '0':
-			ih = self.itemHeight / 2
+			ih = self.itemHeight // 2
 		else:
 			ih = self.itemHeight
 
@@ -408,7 +408,7 @@ class MovieList(GUIComponent):
 							data.partcol = 0x206333
 		len = data.len
 		if len > 0:
-			len = "%d:%02d" % (len / 60, len % 60)
+			len = "%d:%02d" % (len // 60, len % 60)
 		else:
 			len = ""
 
@@ -417,7 +417,7 @@ class MovieList(GUIComponent):
 		if switch == 'i':
 			iconSize = dataIconSize
 			iconPosX = listBeginX
-			iconPosY = ih/2-iconSize/2
+			iconPosY = ih//2-iconSize//2
 			if iconPosY < iconPosX:
 				iconPosY = iconPosX
 			res.append(MultiContentEntryPixmapAlphaBlend(pos=(iconPosX, iconPosY), size=(iconSize, iconSize), png=data.icon))
@@ -425,21 +425,21 @@ class MovieList(GUIComponent):
 			if data.part is not None and data.part > 0:
 				iconSize = progressBarSize
 				iconPosX = listBeginX
-				iconPosY = ih/2-iconSize/8
+				iconPosY = ih//2-iconSize//8
 				if iconPosY < iconPosX:
 					iconPosY = iconPosX
-				res.append(MultiContentEntryProgress(pos=(iconPosX, iconPosY), size=(iconSize, iconSize/4), percent=data.part, borderWidth=2, foreColor=data.partcol, foreColorSelected=None, backColor=None, backColorSelected=None))
+				res.append(MultiContentEntryProgress(pos=(iconPosX, iconPosY), size=(iconSize, iconSize//4), percent=data.part, borderWidth=2, foreColor=data.partcol, foreColorSelected=None, backColor=None, backColorSelected=None))
 			else:
 				iconSize = dataIconSize
 				iconPosX = listBeginX
-				iconPosY = ih/2-iconSize/2
+				iconPosY = ih//2-iconSize//2
 				if iconPosY < iconPosX:
 					iconPosY = iconPosX
 				res.append(MultiContentEntryPixmapAlphaBlend(pos=(iconPosX, iconPosY), size=(iconSize, iconSize), png=data.icon))
 		elif switch == 's':
 			iconSize = progressIconSize
 			iconPosX = listBeginX
-			iconPosY = ih/2-iconSize/2
+			iconPosY = ih//2-iconSize//2
 			if iconPosY < iconPosX:
 				iconPosY = iconPosX
 			if data.part is not None and data.part > 0:
@@ -550,7 +550,7 @@ class MovieList(GUIComponent):
 		instance.setContent(None)
 		instance.selectionChanged.get().remove(self.selectionChanged)
 
-	def reload_module(self, root = None, filter_tags = None):
+	def reload(self, root = None, filter_tags = None):
 		if self.reloadDelayTimer is not None:
 			self.reloadDelayTimer.stop()
 			self.reloadDelayTimer = None
@@ -659,8 +659,7 @@ class MovieList(GUIComponent):
 
 		self.firstFileEntry = numberOfDirs
 		self.parentDirectory = 0
-
-		self.list.sort(key=self.buildGroupwiseSortkey)
+		#self.list.sort(key=self.buildGroupwiseSortkey) must rework for py3
 		if self.sort_type == MovieList.SORT_ALPHANUMERIC:
 			self.list = sorted(self.list[:numberOfDirs], key=self.buildAlphaNumericSortKey) + sorted(self.list[numberOfDirs:], key=self.buildAlphaNumericSortKey)
 		elif self.sort_type == MovieList.SORT_ALPHANUMERIC_REVERSE:
