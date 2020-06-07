@@ -123,7 +123,7 @@ before_install:
     - export GST_PLUGIN_SCANNER=$PWD/gstreamer/libexec/gstreamer-1.0/gst-plugin-scanner
     - export PATH=$PATH:$PWD/gstreamer/bin
     - export LD_LIBRARY_PATH=$PWD/gstreamer/lib/x86_64-linux-gnu:$LD_LIBRARY_PATH
-    - pip install -r future==0.18.2 six==1.15.0
+    - pip install future==0.18.2 six==1.15.0
 
 script:
 - echo installing libdvbsi++
