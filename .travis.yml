@@ -1,7 +1,7 @@
 language: cpp
 
 sudo: required
-dist: trusty
+dist: bionic
 
 matrix:
   include:
@@ -122,7 +122,6 @@ matrix:
             - libgif-dev
       env:
         - MATRIX_EVAL="CC=gcc-8 && CXX=g++-8"
-
 git:
   depth: 10
 
