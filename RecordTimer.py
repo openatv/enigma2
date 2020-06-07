@@ -1,3 +1,4 @@
+from __future__ import division
 from __future__ import print_function
 from boxbranding import getMachineBrand, getMachineName
 import xml.etree.cElementTree
@@ -24,6 +25,8 @@ import NavigationInstance
 from ServiceReference import ServiceReference
 from enigma import pNavigation, eDVBFrontend
 import subprocess, threading
+import six
+from six.moves import range
 
 
 # ok, for descriptions etc we have:
@@ -236,7 +239,7 @@ class RecordTimerEntry(timer.TimerEntry, object):
 				self.stop_MountTest(None, cmd)
 		elif cmd == 'freespace':
 			s = os.statvfs(dirname)
-			if (s.f_bavail * s.f_bsize) / 1000000 < 1024:
+			if (s.f_bavail * s.f_bsize) // 1000000 < 1024:
 				self.stop_MountTest(None, cmd)
 
 	def stop_MountTest(self, thread, cmd):
@@ -348,7 +351,7 @@ class RecordTimerEntry(timer.TimerEntry, object):
 
 	def getEventFromEPG(self):
 		epgcache = eEPGCache.getInstance()
-		queryTime = self.begin + (self.end - self.begin) / 2
+		queryTime = self.begin + (self.end - self.begin) // 2
 		ref = self.service_ref and self.service_ref.ref
 		return epgcache.lookupEventTime(ref, queryTime)
 
@@ -383,7 +386,7 @@ class RecordTimerEntry(timer.TimerEntry, object):
 			description = self.description
 			if self.repeated:
 				epgcache = eEPGCache.getInstance()
-				queryTime=self.begin+(self.end-self.begin)/2
+				queryTime=self.begin+(self.end-self.begin)//2
 				evt = epgcache.lookupEventTime(rec_ref, queryTime)
 				if evt:
 					if self.rename_repeat:
@@ -1501,7 +1504,7 @@ class RecordTimer(timer.Timer):
 						bt = localtime(begin)
 						bday = bt.tm_wday
 						begin2 = 1440 + bt.tm_hour * 60 + bt.tm_min
-						end2 = begin2 + duration / 60
+						end2 = begin2 + duration // 60
 					xbt = localtime(x.begin)
 					xet = localtime(timer_end)
 					offset_day = False
@@ -1511,7 +1514,7 @@ class RecordTimer(timer.Timer):
 						if oday == -1: oday = 6
 						offset_day = x.repeated & (1 << oday)
 					xbegin = 1440 + xbt.tm_hour * 60 + xbt.tm_min
-					xend = xbegin + ((timer_end - x.begin) / 60)
+					xend = xbegin + ((timer_end - x.begin) // 60)
 					if xend < xbegin:
 						xend += 1440
 					if x.repeated & (1 << bday) and checking_time:

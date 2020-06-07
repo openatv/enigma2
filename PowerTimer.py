@@ -1,3 +1,4 @@
+from __future__ import division
 from __future__ import print_function
 import os
 from boxbranding import getMachineBrand, getMachineName
@@ -16,6 +17,8 @@ from Tools import Directories, Notifications
 from Tools.XMLTools import stringToXML
 import timer
 import NavigationInstance
+import six
+from six.moves import range
 
 #global variables begin
 DSsave = False
@@ -808,7 +811,7 @@ class PowerTimerEntry(timer.TimerEntry, object):
 					seconds = int(now-self.netbytes_time)
 					self.netbytes = newbytes
 					self.netbytes_time = now
-					diffbytes = float(newbytes - oldbytes) * 8 / 1024 / seconds 	#in kbit/s
+					diffbytes = float(newbytes - oldbytes) * 8 // 1024 // seconds 	#in kbit/s
 					if diffbytes < 0:
 						print('[PowerTimer] Receive/Transmit -> overflow interface counter, waiting for next value')
 						return True
