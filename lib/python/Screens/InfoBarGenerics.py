@@ -61,6 +61,7 @@ from sys import maxsize
 
 import os
 from six.moves import cPickle as pickle
+import six
 
 # hack alert!
 from Screens.Menu import MainMenu, Menu, mdom
@@ -249,10 +250,10 @@ class InfoBarUnhandledKey:
 	#this function is called on every keypress!
 	def actionA(self, key, flag):
 		try:
-			print('KEY: %s %s %s %s' % (key, flag, (key_name for key_name, value in KEYIDS.items() if value==key).next(), getKeyDescription(key)[0]))
+			print('KEY: %s %s %s %s' % (key, flag, six.next(key_name for key_name, value in KEYIDS.items() if value==key), getKeyDescription(key)[0]))
 		except:
 			try:
-				print('KEY: %s %s %s' % (key, flag, (key_name for key_name, value in KEYIDS.items() if value==key).next())) # inverse dictionary lookup in KEYIDS
+				print('KEY: %s %s %s' % (key, flag, six.next(key_name for key_name, value in KEYIDS.items() if value==key))) # inverse dictionary lookup in KEYIDS
 			except:
 				print('KEY: %s %s' % (key, flag))
 		self.unhandledKeyDialog.hide()
