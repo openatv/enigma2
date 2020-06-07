@@ -98,11 +98,11 @@ class NetworkWizard(WizardLanguage, Rc):
 
 	def getInstalledInterfaceCount(self):
 		self.originalInterfaceState = {}
-		self.Adapterlist = iNetwork.getAdapterList()
+		self.Adapterlist = list(iNetwork.getAdapterList())
 		self.InstalledInterfaceCount = len(self.Adapterlist)
 		if self.Adapterlist is not None:
 			if self.InstalledInterfaceCount == 1 and self.selectedInterface is None:
-					self.selectedInterface = self.Adapterlist[0]
+				self.selectedInterface = self.Adapterlist[0]
 		for interface in iNetwork.getAdapterList():
 			self.originalInterfaceState[interface] = {}
 			self.originalInterfaceState[interface]["up"] = iNetwork.getAdapterAttribute(interface, 'up')
@@ -163,7 +163,7 @@ class NetworkWizard(WizardLanguage, Rc):
 		self.stopScan()
 		if self.Adapterlist is None:
 			self.Adapterlist = iNetwork.getAdapterList()
-		if self.NextStep is not 'end':
+		if self.NextStep != 'end':
 			if len(self.Adapterlist) == 0:
 				#Reset Network to defaults if network broken
 				iNetwork.resetNetworkConfig('lan', self.resetNetworkConfigCB)
