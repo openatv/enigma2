@@ -441,7 +441,11 @@ class HdmiCec:
 
 	def __init__(self):
 		if config.hdmicec.enabled.value:
-			assert not HdmiCec.instance, "only one HdmiCec instance is allowed!"
+			try:
+				if HdmiCec.instance:
+					raise AssertionError("only one HdmiCec instance is allowed!")
+			except:
+				pass
 			HdmiCec.instance = self
 
 			self.wait = eTimer()

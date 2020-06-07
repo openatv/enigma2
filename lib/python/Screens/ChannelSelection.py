@@ -2206,7 +2206,11 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 				iPlayableService.evEnd: self.__evServiceEnd
 			})
 
-		#assert ChannelSelection.instance is None, "class InfoBar is a singleton class and just one instance of this class is allowed!"
+		try:
+			if ChannelSelection.instance:
+				raise AssertionError("class InfoBar is a singleton class and just one instance of this class is allowed!")
+		except:
+			pass
 		ChannelSelection.instance = self
 		self.startServiceRef = None
 		self.history_tv = []
