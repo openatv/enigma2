@@ -2074,7 +2074,7 @@ class ChannelSelectionBase(Screen):
 
 	def keyAsciiCode(self):
 		unichar = six.unichr(getPrevAsciiCode())
-		charstr = six.ensure_str[unichar)
+		charstr = six.ensure_str(unichar)
 		if len(charstr) == 1:
 			self.servicelist.moveToChar(charstr[0])
 

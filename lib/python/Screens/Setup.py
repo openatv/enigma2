@@ -15,6 +15,7 @@ from boxbranding import getMachineBrand, getMachineName
 
 import xml.etree.cElementTree
 import six
+from six.moves import range
 
 def setupdom(plugin=None):
 	# read the setupmenu
@@ -152,7 +153,7 @@ class Setup(ConfigListScreen, Screen):
 
 	def getIndexFromItem(self, item):
 		if item != None:
-			for x in list(range(len(self["config"].list))):
+			for x in range(len(self["config"].list)):
 				if self["config"].list[x][0] == item[0]:
 					return x
 		return None
