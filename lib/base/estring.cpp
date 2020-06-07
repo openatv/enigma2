@@ -776,7 +776,7 @@ unsigned int truncateUTF8(std::string &s, unsigned int newsize)
         // Assume s is a real UTF8 string!!!
         while (len > newsize) {
                 while (len-- > 0  && (data[len] & 0xC0) == 0x80)
-                        ; // remove UTF data bytes,  e.g. range 0x80 - 0xBF
+                        // ; // remove UTF data bytes,  e.g. range 0x80 - 0xBF
                 if (len > 0)   // remove the UTF startbyte, or normal ascii character
                          --len;
         }
