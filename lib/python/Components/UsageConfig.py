@@ -234,21 +234,25 @@ def InitUsageConfig():
 	config.usage.hdd_timer = ConfigYesNo(default = False)	
 	config.usage.output_12V = ConfigSelection(default = "do not change", choices = [
 		("do not change", _("Do not change")), ("off", _("Off")), ("on", _("On")) ])
+
 	config.usage.pip_mode = ConfigSelection(default = "standard", choices = [
 		("standard", _("Standard")), ("noadspip", _("Ads filtering mode")), ("byside", _("Side by side mode")) ])
+		
 	config.usage.noadspip_default_mode_time = ConfigSelection(default = "180", choices = [
 		("0", _("Setting by user")), ("180", _("After 3 minutes")), ("300", _("After 5 minutes")), ("1800", _("After 30 minutes")) ])
 	config.usage.pip_lastusage = ConfigInteger(default = int(time()))
-	config.usage.pip_zero_button = ConfigSelection(default = "standard", choices = [
+	config.usage.pip_position_size_save = ConfigSelection(default = "standard", choices = [
+		("standard", _("Only Standard")), ("standard and noadspip", _("Standard and Ads filtering mode")) ])
+	config.usage.pip_zero_button = ConfigSelection(default = "swap", choices = [
 		("standard", _("Standard")), ("swap", _("Swap PiP and main picture")),
 		("swapstop", _("Move PiP to main picture")), ("stop", _("Stop PiP")) ])
-	config.usage.pip_hideOnExit = ConfigSelection(default = "no", choices = [
+	config.usage.pip_hideOnExit = ConfigSelection(default = "without popup", choices = [
 		("no", _("No")), ("popup", _("With popup")), ("without popup", _("Without popup")) ])
 	choicelist = [("-1", _("Disabled")), ("0", _("No timeout"))]
 	for i in [60, 300, 600, 900, 1800, 2700, 3600]:
 		m = i/60
 		choicelist.append(("%d" % i, ngettext("%d minute", "%d minutes", m) % m))
-	config.usage.pip_last_service_timeout = ConfigSelection(default = "-1", choices = choicelist)
+	config.usage.pip_last_service_timeout = ConfigSelection(default = "0", choices = choicelist)
 	if not os.path.exists(resolveFilename(SCOPE_HDD)):
 		try:
 			os.mkdir(resolveFilename(SCOPE_HDD),0755)
