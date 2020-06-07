@@ -1,12 +1,13 @@
 from __future__ import print_function
 import re, os, sys
 from six.moves.urllib.request import urlopen
+from six.moves.urllib.request import Request
 
 
 def DownloadSetting(url):
     list = []
     try:
-        req = urllib2.Request(url)
+        req = Request(url)
         req.add_header('User-Agent', 'VAS')
         response = urlopen(req)
         link = response.read()

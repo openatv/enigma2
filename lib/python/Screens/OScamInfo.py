@@ -21,6 +21,7 @@ import os, time
 import skin
 
 from six.moves import urllib
+from six.moves.urllib.request import HTTPHandler, HTTPDigestAuthHandler
 
 
 ###global
@@ -170,12 +171,12 @@ class OscamInfo:
 		if part is not None and reader is not None:
 			self.url = "%s://%s:%s/%s.html?part=%s&label=%s" % ( self.proto, self.ip, self.port, self.api, part, reader )
 
-		opener = urllib.request.build_opener( urllib2.HTTPHandler )
+		opener = urllib.request.build_opener( HTTPHandler )
 		if not self.username == "":
 			pwman = urllib.request.HTTPPasswordMgrWithDefaultRealm()
 			pwman.add_password( None, self.url, self.username, self.password )
-			handlers = urllib2.HTTPDigestAuthHandler( pwman )
-			opener = urllib.request.build_opener( urllib2.HTTPHandler, handlers )
+			handlers = HTTPDigestAuthHandler( pwman )
+			opener = urllib.request.build_opener( HTTPHandler, handlers )
 			urllib.request.install_opener( opener )
 		request = urllib.request.Request( self.url )
 		err = False
