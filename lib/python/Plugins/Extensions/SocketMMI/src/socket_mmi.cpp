@@ -3,6 +3,7 @@
 #include <unistd.h>
 #include <fcntl.h>
 #include <sys/ioctl.h>
+#include <Python.h>
 
 #include <lib/base/ebase.h>
 #include <lib/base/init.h>
@@ -482,17 +483,17 @@ static PyMethodDef module_methods[] = {
 		NULL,													/* m_clear */
 		NULL,													/* m_free */
 	};
-#endif
 
+PyMODINIT_FUNC PyInit_socketmmi(void)
+{
+    return PyModule_Create(&moduledef);
+}
 
+#else
 PyMODINIT_FUNC
 initsocketmmi(void)
 {
-#if PY_MAJOR_VERSION >= 3
-	PyModule_Create(&moduledef);
-#else
 	Py_InitModule3("socketmmi", module_methods,
 		"Module that implements mmi via unix domain socket.");
-#endif
-}
 };
+#endif
