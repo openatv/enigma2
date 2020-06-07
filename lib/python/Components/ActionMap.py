@@ -1,10 +1,11 @@
 from __future__ import print_function
 from enigma import eActionMap
+import six
 
 from Tools.KeyBindings import queryKeyBinding
 
 class ActionMap:
-	def __init__(self, contexts = [ ], actions = { }, prio=0):
+	def __init__(self, contexts=None, actions=None, prio=0):
 		self.contexts = contexts or []
 		self.actions = actions or {}
 		self.prio = prio
@@ -65,7 +66,6 @@ class ActionMap:
 	def destroy(self):
 		pass
 
-
 class NumberActionMap(ActionMap):
 	def action(self, contexts, action):
 		if action in ("0", "1", "2", "3", "4", "5", "6", "7", "8", "9") and action in self.actions:
@@ -75,7 +75,6 @@ class NumberActionMap(ActionMap):
 			return 1
 		else:
 			return ActionMap.action(self, contexts, action)
-
 
 class HelpableActionMap(ActionMap):
 	# An Actionmap which automatically puts the actions into the helpList.
@@ -90,31 +89,37 @@ class HelpableActionMap(ActionMap):
 	# ActionMapconstructor,	the collected helpstrings (with correct
 	# context, action) is added to the screen's "helpList", which will
 	# be picked up by the "HelpableScreen".
-	def __init__(self, parent, contexts, actions={ }, prio=0, description=None):
-		if not hasattr(contexts, '__iter__'):
+	def __init__(self, parent, contexts, actions=None, prio=0, description=None):
+		def exists(record):
+			for context in parent.helpList:
+				if record in context[2]:
+					print("[HelpActionMap] removed duplicity: %s %s" % (context[1], record))
+					return True
+			return False
+		if not type(contexts) is list:
 			contexts = [contexts]
 		actions = actions or {}
 		self.description = description
-		adict = { }
+		adict = {}
 		for context in contexts:
-			alist = [ ]
-			import six
+			alist = []
 			for (action, funchelp) in six.iteritems(actions):
 				# Check if this is a tuple.
 				if isinstance(funchelp, tuple):
 					if queryKeyBinding(context, action):
-						alist.append((action, funchelp[1]))
+						if not exists((action, funchelp[1])):
+							alist.append((action, funchelp[1]))
 					adict[action] = funchelp[0]
 				else:
 					if queryKeyBinding(context, action):
-						alist.append((action, None))
+						if not exists((action, None)):
+							alist.append((action, None))
 					adict[action] = funchelp
 			parent.helpList.append((self, context, alist))
-		ActionMap.__init__(self, [contexts], adict, prio)
-
+		ActionMap.__init__(self, contexts, adict, prio)
 
 class HelpableNumberActionMap(NumberActionMap, HelpableActionMap):
-	def __init__(self, parent, contexts, actions = { }, prio=0, description=None):
+	def __init__(self, parent, contexts, actions=None, prio=0, description=None):
 		# Initialise NumberActionMap with empty context and actions
 		# so that the underlying ActionMap is only initialised with
 		# these once, via the HelpableActionMap.
