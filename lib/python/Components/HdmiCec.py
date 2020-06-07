@@ -12,6 +12,7 @@ from time import time
 import Screens.Standby
 
 from sys import maxsize
+from six.moves import range
 
 config.hdmicec = ConfigSubsection()
 config.hdmicec.enabled = ConfigYesNo(default = False) # query from this value in hdmi_cec.cpp
