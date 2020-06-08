@@ -358,11 +358,9 @@ class Infopanel(Screen, InfoBarPiP, ProtectedScreen):
 
 	def up(self):
 		self["Mlist"].up()
-		pass
 
 	def down(self):
 		self["Mlist"].down()
-		pass
 
 	def left(self):
 		pass

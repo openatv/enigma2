@@ -82,13 +82,11 @@ class Setup(ConfigListScreen, Screen):
 		self.onNotifiers.remove(self.levelChanged)
 
 	def levelChanged(self, configElement):
-		print("levelChanged")
 		listItems = []
 		self.refill(listItems)
 		self["config"].setList(listItems)
 
 	def refill(self, listItems):
-		print("refill")
 		xmldata = setupdom(self.plugin).getroot()
 		for x in xmldata.findall("setup"):
 			if x.get("key") != self.setup:
