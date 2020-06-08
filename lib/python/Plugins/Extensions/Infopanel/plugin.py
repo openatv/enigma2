@@ -307,8 +307,8 @@ class Infopanel(Screen, InfoBarPiP, ProtectedScreen):
 		self["actions"] = ActionMap(["OkCancelActions", "DirectionActions", "ColorActions"],
 			{
 				"cancel": self.Exit,
-				"upUp": self.up,
-				"downUp": self.down,
+				"up": self.up,
+				"down": self.down,
 				"ok": self.ok,
 			}, 1)
 		
@@ -357,11 +357,11 @@ class Infopanel(Screen, InfoBarPiP, ProtectedScreen):
 		self.selectionChanged()
 
 	def up(self):
-		#self["Mlist"].up()
+		self["Mlist"].up()
 		pass
 
 	def down(self):
-		#self["Mlist"].down()
+		self["Mlist"].down()
 		pass
 
 	def left(self):
