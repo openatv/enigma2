@@ -506,7 +506,7 @@ class VirtualKeyBoard(Screen, HelpableScreen):
 			"last": (self.cursorLast, _("Move the text cursor to the last character")),
 			"backspace": (self.backSelected, _("Delete the character to the left of text cursor")),
 			"delete": (self.forwardSelected, _("Delete the character under the text cursor")),
-			"erase": (self.eraseAll, _("Delete the all the text")),
+			"erase": (self.eraseAll, _("Delete all the text")),
 			"toggleOverwrite": (self.keyToggleOW, _("Toggle new text inserts before or overwrites existing text")),
 			"1": (self.keyNumberGlobal, _("Number or SMS style data entry")),
 			"2": (self.keyNumberGlobal, _("Number or SMS style data entry")),
