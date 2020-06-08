@@ -487,7 +487,7 @@ static PyMethodDef module_methods[] = {
 PyMODINIT_FUNC PyInit_socketmmi(void)
 {
     return PyModule_Create(&moduledef);
-};
+}
 
 #else
 PyMODINIT_FUNC
@@ -495,5 +495,6 @@ initsocketmmi(void)
 {
 	Py_InitModule3("socketmmi", module_methods,
 		"Module that implements mmi via unix domain socket.");
-};
+}
 #endif
+};
