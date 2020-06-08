@@ -653,8 +653,8 @@ class EPGList(HTMLComponent, GUIComponent):
 			w = self.column_time
 			self.start_end_rect = Rect(xpos, 0, w, height)
 			p =  w-self.progress_width
-			self.progress_rect = Rect(xpos + int(p/2), int((height-self.progress_height)/2), w-p, self.progress_height)
-			xpos += w + int(self.column_gap/2)
+			self.progress_rect = Rect(xpos + int(p//2), int((height-self.progress_height)//2), w-p, self.progress_height)
+			xpos += w + int(self.column_gap//2)
 			w = self.column_remaining
 			self.remaining_rect = Rect(xpos, 0, w, height)
 			xpos += w + self.column_gap
@@ -769,7 +769,7 @@ class EPGList(HTMLComponent, GUIComponent):
 		]
 		if clock_types:
 			if (self.wasEntryAutoTimer or self.wasEntryIceTV) and clock_types in (2, 7, 12):
-				res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, r3.x+r3.w-self.picx - self.posx, (r3.h/2-self.posy), self.picx, self.picy, self.clocks[clock_types]))
+				res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, r3.x+r3.w-self.picx - self.posx, (r3.h//2-self.posy), self.picx, self.picy, self.clocks[clock_types]))
 				if self.wasEntryAutoTimer:
 					res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, r3.x+r3.w-self.picx*2 - self.gap - self.posx, (r3.h/2-self.posy), self.picx, self.picy, self.autotimericon))
 				if self.wasEntryIceTV:
@@ -801,9 +801,9 @@ class EPGList(HTMLComponent, GUIComponent):
 			if (self.wasEntryAutoTimer or self.wasEntryIceTV) and clock_types in (2, 7, 12):
 				res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, r3.x+r3.w-self.picx - self.posx, (r3.h/2-self.posy), self.picx, self.picy, self.clocks[clock_types]))
 				if self.wasEntryAutoTimer:
-					res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, r3.x+r3.w-self.picx*2 - self.gap - self.posx, (r3.h/2-self.posy), self.picx, self.picy, self.autotimericon))
+					res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, r3.x+r3.w-self.picx*2 - self.gap - self.posx, (r3.h//2-self.posy), self.picx, self.picy, self.autotimericon))
 				if self.wasEntryIceTV:
-					res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, r3.x+r3.w-self.picx*2 - self.gap - self.posx, (r3.h/2-self.posy), self.picx, self.picy, self.icetvicon))
+					res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, r3.x+r3.w-self.picx*2 - self.gap - self.posx, (r3.h//2-self.posy), self.picx, self.picy, self.icetvicon))
 				res.append((eListboxPythonMultiContent.TYPE_TEXT, r3.x, r3.y, r3.w-self.picx*2 - (self.gap*2) - self.posx, r3.h, 0, RT_HALIGN_LEFT|RT_VALIGN_CENTER, service_name))
 			else:
 				res.extend((
@@ -1266,7 +1266,7 @@ class EPGList(HTMLComponent, GUIComponent):
 			]
 		if pt:
 			res.extend((
-				(eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, r2.x+self.posx, r2.h/2-self.posy, self.picx, self.picy, self.primetimeicon),
+				(eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, r2.x+self.posx, r2.h//2-self.posy, self.picx, self.picy, self.primetimeicon),
 				(eListboxPythonMultiContent.TYPE_TEXT, r2.x+self.posx*3+self.picx, r2.y, r2.w-(self.posx*3+self.picx), r2.h, 0, RT_HALIGN_LEFT|RT_VALIGN_CENTER, ("%02d.%02d"%(t[2], t[1]) + " " + self.days[t[6]]) + " " + ("%02d:%02d"%(t[3], t[4])), foreColorTime, foreColorSel, backColorTime, backColorSel),
 			))
 		else:
@@ -1276,13 +1276,13 @@ class EPGList(HTMLComponent, GUIComponent):
 		if clock_types:
 			if (self.wasEntryAutoTimer or self.wasEntryIceTV) and clock_types in (2, 7, 12):
 				if self.wasEntryAutoTimer:
-					res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, r2.w-self.picx*2-self.posx*2, r2.h/2-self.posy, self.picx, self.picy, self.autotimericon))
+					res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, r2.w-self.picx*2-self.posx*2, r2.h//2-self.posy, self.picx, self.picy, self.autotimericon))
 				if self.wasEntryIceTV:
-					res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, r2.w-self.picx*2-self.posx*2, r2.h/2-self.posy, self.picx, self.picy, self.icetvicon))
-				res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, r2.w-self.picx-self.posx, r2.h/2-self.posy, self.picx, self.picy, self.clocks[clock_types]))
+					res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, r2.w-self.picx*2-self.posx*2, r2.h//2-self.posy, self.picx, self.picy, self.icetvicon))
+				res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, r2.w-self.picx-self.posx, r2.h//2-self.posy, self.picx, self.picy, self.clocks[clock_types]))
 			else:
 				res.extend((
-					(eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, r2.w-self.picx-self.posx, r2.h/2-self.posy, self.picx, self.picy, self.clocks[clock_types]),
+					(eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, r2.w-self.picx-self.posx, r2.h//2-self.posy, self.picx, self.picy, self.clocks[clock_types]),
 				))
 		res.extend((
 				(eListboxPythonMultiContent.TYPE_TEXT, r1.x, r1.y, r1.w, r1.h, 0, RT_HALIGN_LEFT, ' ', foreColor, foreColorSel, borderColor, borderColor),		#//parting line
