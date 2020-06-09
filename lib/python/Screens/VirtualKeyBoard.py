@@ -1,3 +1,4 @@
+from __future__ import division
 from copy import copy, deepcopy
 
 from enigma import BT_SCALE, RT_HALIGN_CENTER, RT_HALIGN_LEFT, RT_HALIGN_RIGHT, RT_VALIGN_BOTTOM, RT_VALIGN_CENTER, RT_VALIGN_TOP, eListboxPythonMultiContent, getPrevAsciiCode, gFont
@@ -37,7 +38,7 @@ class VirtualKeyBoardList(MenuList):
 		MenuList.__init__(self, list, enableWrapAround, eListboxPythonMultiContent)
 		font = fonts.get("VirtualKeyBoard", ("Regular", 28, 45))
 		self.l.setFont(0, gFont(font[0], font[1]))
-		self.l.setFont(1, gFont(font[0], font[1] * 5 / 9))  # Smaller font is 56% the height of bigger font
+		self.l.setFont(1, gFont(font[0], font[1] * 5 // 9))  # Smaller font is 56% the height of bigger font
 		self.l.setItemHeight(font[2])
 
 
@@ -941,9 +942,9 @@ class VirtualKeyBoard(Screen, HelpableScreen):
 		res = [keys]
 		text = []
 		offset = 14 - self.keyboardWidth  # 14 represents the maximum buttons per row as defined here and in the skin (14 x self.width).
-		x = self.width * offset / 2
+		x = self.width * offset // 2
 		if offset % 2:
-			x += self.width / 2
+			x += self.width // 2
 		xHighlight = x
 		prevKey = None
 		for key in keys:
@@ -1001,22 +1002,22 @@ class VirtualKeyBoard(Screen, HelpableScreen):
 					left = xData
 					wImage = image.size().width()
 					if alignH == RT_HALIGN_CENTER:
-						left += (w - wImage) / 2
+						left += (w - wImage) // 2
 					elif alignH == RT_HALIGN_RIGHT:
 						left += w - wImage
 					top = self.padding[1]
 					hImage = image.size().height()
 					if alignV == RT_VALIGN_CENTER:
-						top += (h - hImage) / 2
+						top += (h - hImage) // 2
 					elif alignV == RT_VALIGN_BOTTOM:
 						top += h - hImage
 					res.append(MultiContentEntryPixmapAlphaTest(pos=(left, top), size=(wImage, hImage), png=image))
 					# print "[VirtualKeyBoard] DEBUG: Left=%d, Top=%d, Width=%d, Height=%d, Image Width=%d, Image Height=%d" % (left, top, w, h, wImage, hImage)
 				else:  # Display the cell text.
 					if len(key) > 1:  # NOTE: UTF8 / Unicode glyphs only count as one character here.
-						text.append(MultiContentEntryText(pos=(xData, self.padding[1]), size=(w, h), font=1, flags=alignH | alignV, text=key.encode("utf-8"), color=self.shiftColors[self.shiftLevel]))
+						text.append(MultiContentEntryText(pos=(xData, self.padding[1]), size=(w, h), font=1, flags=alignH | alignV, text=six.ensure_str(key), color=self.shiftColors[self.shiftLevel]))
 					else:
-						text.append(MultiContentEntryText(pos=(xData, self.padding[1]), size=(w, h), font=0, flags=alignH | alignV, text=key.encode("utf-8"), color=self.shiftColors[self.shiftLevel]))
+						text.append(MultiContentEntryText(pos=(xData, self.padding[1]), size=(w, h), font=0, flags=alignH | alignV, text=six.ensure_str(key), color=self.shiftColors[self.shiftLevel]))
 			prevKey = key
 			self.index += 1
 		return res + text
@@ -1025,26 +1026,26 @@ class VirtualKeyBoard(Screen, HelpableScreen):
 		if self.sel_l is None or self.sel_m is None or self.sel_r is None:
 			return
 		if self.previousSelectedKey is not None:
-			del self.list[self.previousSelectedKey / self.keyboardWidth][-3:]
+			del self.list[self.previousSelectedKey // self.keyboardWidth][-3:]
 		if self.selectedKey > self.maxKey:
 			self.selectedKey = self.maxKey
 		start, width = self.findStartAndWidth(self.selectedKey)
 		x = start * self.width
 		w = self.sel_l.size().width()
-		self.list[self.selectedKey / self.keyboardWidth].append(MultiContentEntryPixmapAlphaTest(pos=(x, 0), size=(w, self.height), png=self.sel_l))
+		self.list[self.selectedKey // self.keyboardWidth].append(MultiContentEntryPixmapAlphaTest(pos=(x, 0), size=(w, self.height), png=self.sel_l))
 		x += w
 		w = self.sel_m.size().width() + (self.width * (width - 1))
-		self.list[self.selectedKey / self.keyboardWidth].append(MultiContentEntryPixmapAlphaTest(pos=(x, 0), size=(w, self.height), png=self.sel_m, flags=BT_SCALE))
+		self.list[self.selectedKey // self.keyboardWidth].append(MultiContentEntryPixmapAlphaTest(pos=(x, 0), size=(w, self.height), png=self.sel_m, flags=BT_SCALE))
 		x += w
 		w = self.sel_r.size().width()
-		self.list[self.selectedKey / self.keyboardWidth].append(MultiContentEntryPixmapAlphaTest(pos=(x, 0), size=(w, self.height), png=self.sel_r))
+		self.list[self.selectedKey // self.keyboardWidth].append(MultiContentEntryPixmapAlphaTest(pos=(x, 0), size=(w, self.height), png=self.sel_r))
 		self.previousSelectedKey = self.selectedKey
 		self["list"].setList(self.list)
 
 	def findStartAndWidth(self, key):
 		if key > self.maxKey:
 			key = self.maxKey
-		row = key / self.keyboardWidth
+		row = key // self.keyboardWidth
 		key = key % self.keyboardWidth
 		start = key
 		while start:
@@ -1062,10 +1063,10 @@ class VirtualKeyBoard(Screen, HelpableScreen):
 
 	def processSelect(self):
 		self.smsChar = None
-		text = self.keyList[self.shiftLevel][self.selectedKey / self.keyboardWidth][self.selectedKey % self.keyboardWidth].encode("UTF-8")
+		text = six.ensure_str(self.keyList[self.shiftLevel][self.selectedKey // self.keyboardWidth][self.selectedKey % self.keyboardWidth])
 		cmd = self.cmds.get(text.upper(), None)
 		if cmd is None:
-			self['text'].char(text.encode('UTF-8'))
+			self['text'].char(six.ensure_str(text))
 		else:
 			exec(cmd)
 		if text not in (u"SHIFT", u"SHIFTICON") and self.shiftHold != -1:
@@ -1151,7 +1152,7 @@ class VirtualKeyBoard(Screen, HelpableScreen):
 		self.smsChar = None
 		self.selectedKey -= self.keyboardWidth
 		if self.selectedKey < 0:
-			self.selectedKey = self.maxKey / self.keyboardWidth * self.keyboardWidth + self.selectedKey % self.keyboardWidth
+			self.selectedKey = self.maxKey // self.keyboardWidth * self.keyboardWidth + self.selectedKey % self.keyboardWidth
 			if self.selectedKey > self.maxKey:
 				self.selectedKey -= self.keyboardWidth
 		self.markSelectedKey()
@@ -1161,7 +1162,7 @@ class VirtualKeyBoard(Screen, HelpableScreen):
 		start, width = self.findStartAndWidth(self.selectedKey)
 		if width > 1:
 			width = self.selectedKey % self.keyboardWidth - start + 1
-		self.selectedKey = self.selectedKey / self.keyboardWidth * self.keyboardWidth + (self.selectedKey + self.keyboardWidth - width) % self.keyboardWidth
+		self.selectedKey = self.selectedKey // self.keyboardWidth * self.keyboardWidth + (self.selectedKey + self.keyboardWidth - width) % self.keyboardWidth
 		if self.selectedKey > self.maxKey:
 			self.selectedKey = self.maxKey
 		self.markSelectedKey()
@@ -1171,9 +1172,9 @@ class VirtualKeyBoard(Screen, HelpableScreen):
 		start, width = self.findStartAndWidth(self.selectedKey)
 		if width > 1:
 			width = start + width - self.selectedKey % self.keyboardWidth
-		self.selectedKey = self.selectedKey / self.keyboardWidth * self.keyboardWidth + (self.selectedKey + width) % self.keyboardWidth
+		self.selectedKey = self.selectedKey // self.keyboardWidth * self.keyboardWidth + (self.selectedKey + width) % self.keyboardWidth
 		if self.selectedKey > self.maxKey:
-			self.selectedKey = self.selectedKey / self.keyboardWidth * self.keyboardWidth
+			self.selectedKey = self.selectedKey // self.keyboardWidth * self.keyboardWidth
 		self.markSelectedKey()
 
 	def down(self):
@@ -1189,7 +1190,7 @@ class VirtualKeyBoard(Screen, HelpableScreen):
 
 	def keyGotAscii(self):
 		self.smsChar = None
-		if self.selectAsciiKey(str(six.unichr(getPrevAsciiCode()).encode("utf-8"))):
+		if six.ensure_str(self.selectAsciiKey(str(six.unichr(getPrevAsciiCode())))):
 			self.processSelect()
 
 	def selectAsciiKey(self, char):
