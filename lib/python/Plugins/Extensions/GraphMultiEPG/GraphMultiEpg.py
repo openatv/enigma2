@@ -1,3 +1,4 @@
+from __future__ import division
 from __future__ import print_function
 from skin import parseColor, parseFont, parseSize
 from Components.config import config, ConfigClock, ConfigInteger, ConfigSubsection, ConfigYesNo, ConfigSelection, ConfigSelectionNumber
@@ -334,7 +335,7 @@ class EPGList(HTMLComponent, GUIComponent):
 		width = esize.width()
 		height = esize.height()
 		if self.showServiceTitle:
-			w = width / 10 * 2;
+			w = width // 10 * 2;
 		else:     # if self.showPicon:    # this must be set if showServiceTitle is None
 			w = 2 * height - 2 * self.serviceBorderWidth  # FIXME: could do better...
 		self.service_rect = Rect(0, 0, w, height)
@@ -346,8 +347,8 @@ class EPGList(HTMLComponent, GUIComponent):
 		self.picon_size = eSize(piconWidth, piconHeight)
 
 	def calcEntryPosAndWidthHelper(self, stime, duration, start, end, width):
-		xpos = (stime - start) * width / (end - start)
-		ewidth = (stime + duration - start) * width / (end - start)
+		xpos = (stime - start) * width // (end - start)
+		ewidth = (stime + duration - start) * width // (end - start)
 		ewidth -= xpos;
 		if xpos < 0:
 			ewidth += xpos;
@@ -689,7 +690,7 @@ class TimelineText(HTMLComponent, GUIComponent):
 			service_rect = l.getServiceRect()
 			itemHeight = self.l.getItemSize().height()
 			time_steps = 60 if time_epoch > 180 else 30
-			num_lines = time_epoch / time_steps
+			num_lines = time_epoch // time_steps
 			timeStepsCalc = time_steps * 60
 			incWidth = event_rect.width() / num_lines
 			if int(config.misc.graph_mepg.center_timeline.value):
