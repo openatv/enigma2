@@ -148,7 +148,7 @@ class TuneTest:
 
 	def gotTsidOnid(self, tsid, onid):
 		print("******** got tsid, onid:", tsid, onid)
-		if tsid is not -1 and onid is not -1:
+		if tsid != -1 and onid != -1:
 			self.pidStatus = self.INTERNAL_PID_STATUS_SUCCESSFUL
 			self.tsid = tsid
 			self.onid = onid

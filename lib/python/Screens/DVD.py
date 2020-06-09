@@ -391,7 +391,7 @@ class DVDPlayer(Screen, InfoBarBase, InfoBarNotifications, InfoBarSeek, InfoBarP
 		print("[DVD] SubtitleInfoAvail ", repr(subtitleTuple))
 		if subtitleTuple:
 			subtitleString = ""
-			if subtitleTuple[0] is not 0:
+			if subtitleTuple[0] != 0:
 				subtitleString = "%s" % subtitleTuple[1]
 			self["subtitleLabel"].setText(subtitleString)
 			if subtitleTuple != self.last_subtitleTuple and not self.in_menu:

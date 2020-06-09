@@ -318,9 +318,9 @@ class Infopanel(Screen, InfoBarPiP, ProtectedScreen):
 		self.Mlist = []
 		if Check_Softcam():
 			self.Mlist.append(MenuEntryItem((InfoEntryComponent('SoftcamSetup'), _("Softcam-Setup"), 'SoftcamSetup')))
-		if Check_SysSoftcam() is "oscam":
+		if Check_SysSoftcam() == "oscam":
 			self.Mlist.append(MenuEntryItem((InfoEntryComponent('OScamInfo'), _("OScamInfo"), 'OScamInfo')))
-		if Check_SysSoftcam() is "ncam":
+		if Check_SysSoftcam() == "ncam":
 			self.Mlist.append(MenuEntryItem((InfoEntryComponent('OScamInfo'), _("NcamInfo"), 'OScamInfo')))
 		#self.Mlist.append(MenuEntryItem((InfoEntryComponent ("SoftwareManager" ), _("Software update"), ("software-update"))))
 		self.Mlist.append(MenuEntryItem((InfoEntryComponent ("SoftwareManager" ), _("Software Manager"), ("software-manager"))))
