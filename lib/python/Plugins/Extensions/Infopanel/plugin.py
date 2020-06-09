@@ -298,7 +298,7 @@ class Infopanel(Screen, InfoBarPiP, ProtectedScreen):
 		except:
 			print('[INFO-Panel] Error Hide')
 #		global servicelist
-		if services != None:
+		if services is not None:
 			self.servicelist = services
 		else:
 			self.servicelist = None
@@ -318,9 +318,9 @@ class Infopanel(Screen, InfoBarPiP, ProtectedScreen):
 		self.Mlist = []
 		if Check_Softcam():
 			self.Mlist.append(MenuEntryItem((InfoEntryComponent('SoftcamSetup'), _("Softcam-Setup"), 'SoftcamSetup')))
-		if Check_SysSoftcam() == "oscam":
+		if Check_SysSoftcam() is "oscam":
 			self.Mlist.append(MenuEntryItem((InfoEntryComponent('OScamInfo'), _("OScamInfo"), 'OScamInfo')))
-		if Check_SysSoftcam() == "ncam":
+		if Check_SysSoftcam() is "ncam":
 			self.Mlist.append(MenuEntryItem((InfoEntryComponent('OScamInfo'), _("NcamInfo"), 'OScamInfo')))
 		#self.Mlist.append(MenuEntryItem((InfoEntryComponent ("SoftwareManager" ), _("Software update"), ("software-update"))))
 		self.Mlist.append(MenuEntryItem((InfoEntryComponent ("SoftwareManager" ), _("Software Manager"), ("software-manager"))))
@@ -346,7 +346,7 @@ class Infopanel(Screen, InfoBarPiP, ProtectedScreen):
 		if self['Mlist'].l.getCurrentSelection():
 			selection = self['Mlist'].l.getCurrentSelection()[0]
 			self["summary_description"].text = selection[1]
-			if (selection[0] != None):
+			if (selection[0] is not None):
 				return selection[0]
 
 	def selectionChanged(self):

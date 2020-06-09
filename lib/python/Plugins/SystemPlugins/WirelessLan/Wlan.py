@@ -368,7 +368,7 @@ class wpaSupplicant:
 				}
 
 			for (key, item) in wsconfig.items():
-				if item == "None" or item == "":
+				if item is "None" or item is "":
 					if key == 'hiddenessid':
 						wsconfig['hiddenessid'] = False
 					if key == 'ssid':
