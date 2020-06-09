@@ -821,6 +821,22 @@ void eEPGCache::sectionRead(const uint8_t *data, eit_type_t source, channel_data
 	eventMap &eventmap = servicemap.byEvent;
 	timeMap &timemap = servicemap.byTime;
 
+	if (!(source & EPG_IMPORT) && (servicemap.sources & EPG_IMPORT))
+		return;
+	else if ((source & EPG_IMPORT) && !(servicemap.sources & EPG_IMPORT))
+	{
+		if (!eventmap.empty() || !timemap.empty())
+		{
+			flushEPG(service);
+			servicemap = eventDB[service];
+			eventmap = servicemap.byEvent;
+			timemap = servicemap.byTime;
+		}
+		servicemap.sources = source;
+	}
+	else
+		servicemap.sources |= source;
+
 	while (ptr<len)
 	{
 		uint16_t event_hash;

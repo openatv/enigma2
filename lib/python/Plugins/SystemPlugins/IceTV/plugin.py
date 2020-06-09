@@ -15,7 +15,7 @@ from Components.ConfigList import ConfigListScreen
 from Components.Label import Label
 from Components.MenuList import MenuList
 from Components.Pixmap import Pixmap
-from Components.config import getConfigListEntry
+from Components.config import getConfigListEntry, ConfigText
 from Components.Converter.genre import getGenreStringSub
 from Plugins.Plugin import PluginDescriptor
 from Screens.ChoiceBox import ChoiceBox
@@ -342,11 +342,14 @@ class EPGFetcher(object):
         self.fetch_timer.callback.append(self.createFetchJob)
         config.plugins.icetv.refresh_interval.addNotifier(self.freqChanged, initial_call=False, immediate_feedback=False)
         self.fetch_timer.start(int(config.plugins.icetv.refresh_interval.value) * 1000)
+        config.plugins.icetv.enable_epg.addNotifier(self.icetvEnableChanged, initial_call=False, immediate_feedback=False)
+        config.plugins.icetv.enable_epg.callNotifiersOnSaveAndCancel = True
         self.log = deque(maxlen=40)
         self.send_scans = False
         # TODO: channel_service_map should probably be locked in case the user edits timers at the time of a fetch
         # Then again, the GIL may actually prevent issues here.
         self.channel_service_map = None
+        self.service_set = None
 
         # Status updates for timers that can't be processed at
         # the time that a status change is flagged (e.g. for instant
@@ -384,7 +387,7 @@ class EPGFetcher(object):
                 self.addLog("Can not proceed - you need to login first")
                 return False
             else:
-                return True
+                return self.isIceTVEpgChannel(entry.service_ref.ref)
         else:
             # IceTV is not enabled
             return False
@@ -503,6 +506,11 @@ class EPGFetcher(object):
         self.fetch_timer.stop()
         self.fetch_timer.start(int(refresh_interval.value) * 1000)
 
+    def icetvEnableChanged(self, enable_epg):
+        if not enable_epg.value:
+            self.channel_service_map = None
+            self.service_set = None
+
     def addLog(self, msg):
         entry = LogEntry(time(), msg)
         self.log.append(entry)
@@ -531,6 +539,7 @@ class EPGFetcher(object):
             if not ice.haveCredentials():
                 return False
         res = True
+        old_service_set = self.service_set
         try:
             self.settings = dict((s["name"], s["value"].encode("utf-8") if s["type"] == 2 else s["value"]) for s in self.getSettings())
             print "[EPGFetcher] settings", self.settings
@@ -542,7 +551,7 @@ class EPGFetcher(object):
         if send_logs:
             self.postPvrLogs()
         try:
-            self.channel_service_map = self.makeChanServMap(self.getChannels())
+            self.makeChanServMap(self.getChannels())
         except (Exception) as ex:
             _logResponseException(self, _("Can not retrieve channel map"), ex)
             if send_logs:
@@ -551,8 +560,16 @@ class EPGFetcher(object):
         if self.send_scans:
             self.postScans()
             self.send_scans = False
+        epgcache = eEPGCache.getInstance()
+        if old_service_set is not None:
+            removed_services = old_service_set - self.service_set
+            added_services = self.service_set - old_service_set
+            for t in list(removed_services) + list(added_services):
+                epgcache.flushEPG(t[2], t[0], t[1])
+        else:
+            added_services = set()
         try:
-            res = self.processShowsBatched()
+            res = self.processShowsBatched(added_triples=added_services)
             self.deferredPostStatus(None)
             self.statusCleanup()
             if res:  # Timers fetched in non-batched show fetch
@@ -623,6 +640,7 @@ class EPGFetcher(object):
         res = defaultdict(list)
         name_map = dict((n.upper(), t) for n, t in self.getScanChanNameMap().iteritems())
 
+        ice_services = set()
         for channel in channels:
             channel_id = long(channel["id"])
             triplets = []
@@ -631,10 +649,11 @@ class EPGFetcher(object):
             elif "dvbt_info" in channel:
                 triplets = channel["dvbt_info"]
             for triplet in triplets:
-                res[channel_id].append(
-                    (int(triplet["original_network_id"]),
+                t = (int(triplet["original_network_id"]),
                      int(triplet["transport_stream_id"]),
-                     int(triplet["service_id"])))
+                     int(triplet["service_id"]))
+                res[channel_id].append(t)
+                ice_services.add(t)
 
             names = [channel["name"].strip().upper()]
             if "name_short" in channel:
@@ -649,6 +668,9 @@ class EPGFetcher(object):
             for triplets in (name_map[n] for n in names if n in name_map):
                 for triplet in (t for t in triplets if t not in res[channel_id]):
                     res[channel_id].append(triplet)
+                    ice_services.add(triplet)
+        self.channel_service_map = res
+        self.service_set = ice_services
         return res
 
     def serviceToIceChannelId(self, serviceref):
@@ -737,30 +759,41 @@ class EPGFetcher(object):
                     updated |= timer_updated
         return updated
 
-    def processShowsBatched(self):
+    def triplesToChannels(self, triples):
+        if triples:
+            return set(ch for ch, tl in self.channel_service_map.iteritems() for t in tl if t in triples)
+        else:
+            return set()
+
+    def processShowsBatched(self, added_triples=None):
         # Maximum number of channels to fetch in a batch
         max_fetch = config.plugins.icetv.batchsize.value
         res = False
+        added_channels = self.triplesToChannels(added_triples)
         channels = self.channel_service_map.keys()
+        channels = list(set(channels) - added_channels)
+        added_channels = list(added_channels)
         epgcache = eEPGCache.getInstance()
-        channel_show_map = {}
+        channels_lists = [l for l in added_channels, channels if l]
         last_update_time = 0
-        pos = 0
-        mapping_errors = set()
         shows = None
-        while pos < len(channels):
-            fetch_chans = channels[pos:pos + max_fetch]
-            batch_fetch = max_fetch and len(fetch_chans) != len(channels)
-            shows = self.getShows(chan_list=batch_fetch and fetch_chans or None, fetch_timers=pos + len(fetch_chans) >= len(channels))
-            channel_show_map = self.makeChanShowMap(shows["shows"])
-            for channel_id in channel_show_map.keys():
-                if channel_id in self.channel_service_map:
-                    epgcache.importEvents(self.channel_service_map[channel_id], self.convertChanShows(channel_show_map[channel_id], mapping_errors))
-            if pos == 0 and "last_update_time" in shows:
-                last_update_time = shows["last_update_time"]
-            if self.updateDescriptions(channel_show_map):
-                NavigationInstance.instance.RecordTimer.saveTimer()
-            pos += len(fetch_chans) if max_fetch else len(channels)
+        mapping_errors = set()
+        for i, chan_list in enumerate(channels_lists):
+            pos = 0
+            while pos < len(chan_list):
+                fetch_chans = chan_list[pos:pos + max_fetch]
+                batch_fetch = added_channels or (max_fetch and len(fetch_chans) != len(chan_list))
+                is_last_fetch = i == len(channels_lists) - 1 and pos + len(fetch_chans) >= len(chan_list)
+                shows = self.getShows(chan_list=batch_fetch and fetch_chans or None, fetch_timers=is_last_fetch, fetch_from_epoch=chan_list is added_channels)
+                channel_show_map = self.makeChanShowMap(shows["shows"])
+                for channel_id in channel_show_map.keys():
+                    if channel_id in self.channel_service_map:
+                        epgcache.importEvents(self.channel_service_map[channel_id], self.convertChanShows(channel_show_map[channel_id], mapping_errors))
+                if i == 0 and pos == 0 and "last_update_time" in shows:
+                    last_update_time = shows["last_update_time"]
+                if self.updateDescriptions(channel_show_map):
+                    NavigationInstance.instance.RecordTimer.saveTimer()
+                pos += len(fetch_chans) if max_fetch else len(chan_list)
         if shows is not None and "timers" in shows:
             res = self.processTimers(shows["timers"])
         config.plugins.icetv.last_update_time.value = last_update_time
@@ -887,6 +920,11 @@ class EPGFetcher(object):
                     return True
         return False
 
+    def isIceTVEpgChannel(self, service):
+        sref = eServiceReference(service)
+        triple = tuple(sref.getUnsignedData(i) for i in (3, 2, 1))
+        return self.service_set and triple in self.service_set
+
     def updateTimer(self, timer, name, start, end, eit, channels):
         changed = False
         db = eDVBDB.getInstance()
@@ -935,10 +973,10 @@ class EPGFetcher(object):
         res = req.get().json()
         return res.get("settings", [])
 
-    def getShows(self, chan_list=None, fetch_timers=True):
+    def getShows(self, chan_list=None, fetch_timers=True, fetch_from_epoch=False):
         req = ice.Shows()
         last_update = config.plugins.icetv.last_update_time.value
-        req.params["last_update_time"] = last_update
+        req.params["last_update_time"] = 0 if fetch_from_epoch else last_update
         if chan_list:
             req.params["channel_id"] = ','.join(str(ch) for ch in chan_list)
         if not fetch_timers:
@@ -1001,7 +1039,7 @@ class EPGFetcher(object):
     def postTimer(self, local_timer):
         if self.channel_service_map is None:
             try:
-                self.channel_service_map = self.makeChanServMap(self.getChannels())
+                self.makeChanServMap(self.getChannels())
             except (IOError, RuntimeError, KeyError) as ex:
                 _logResponseException(self, _("Can not retrieve channel map"), ex)
                 return
@@ -1318,9 +1356,9 @@ class IceTVUserTypeScreen(Screen):
 
 class IceTVNewUserSetup(ConfigListScreen, Screen):
     skin = """
-<screen name="IceTVNewUserSetup" position="320,230" size="640,310" title="IceTV - User Information" >
+<screen name="IceTVNewUserSetup" position="320,230" size="640,335" title="IceTV - User Information" >
     <widget name="instructions" position="20,10" size="600,100" font="Regular;22" />
-    <widget name="config" position="20,120" size="600,100" />
+    <widget name="config" position="20,120" size="600,125" />
 
     <widget name="description" position="20,e-90" size="600,60" font="Regular;18" foregroundColor="grey" halign="left" valign="top" />
     <ePixmap name="red" position="20,e-28" size="15,16" pixmap="skin_default/buttons/button_red.png" alphatest="blend" />
@@ -1339,6 +1377,7 @@ class IceTVNewUserSetup(ConfigListScreen, Screen):
     _password = _("Password")
     _label = _("Label")
     _update_interval = _("Connect to IceTV server every")
+    _merge_eit = _("Merge broadcast EPG with IceTV")
 
     def __init__(self, session):
         self.session = session
@@ -1360,6 +1399,8 @@ class IceTVNewUserSetup(ConfigListScreen, Screen):
                                 _("Choose a label that will identify this device within IceTV services.")),
              getConfigListEntry(self._update_interval, config.plugins.icetv.refresh_interval,
                                 _("Choose how often to connect to IceTV server to check for updates.")),
+             getConfigListEntry(self._merge_eit, config.plugins.icetv.merge_eit_epg,
+                                _("Fill in channel EPGs from the broadcast EPG where there is no IceTV EPG for the channel")),
         ]
         ConfigListScreen.__init__(self, self.list, session)
         self["InusActions"] = ActionMap(contexts=["SetupActions", "ColorActions"],
@@ -1373,7 +1414,7 @@ class IceTVNewUserSetup(ConfigListScreen, Screen):
 
     def keyboard(self):
         selection = self["config"].getCurrent()
-        if selection[1] is not config.plugins.icetv.refresh_interval:
+        if isinstance(selection[1], ConfigText):
             self.KeyText()
 
     def cancel(self):
@@ -1669,7 +1710,7 @@ class IceTVNeedPassword(ConfigListScreen, Screen):
 
     def keyboard(self):
         selection = self["config"].getCurrent()
-        if selection[1] is not config.plugins.icetv.refresh_interval:
+        if isinstance(selection[1], ConfigText):
             self.KeyText()
 
     def cancel(self):

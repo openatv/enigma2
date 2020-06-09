@@ -1,6 +1,6 @@
 from time import localtime, time, strftime, mktime
 
-from enigma import eEPGCache, eListbox, eListboxPythonMultiContent, loadPNG, gFont, getDesktop, eRect, eSize, RT_HALIGN_LEFT, RT_HALIGN_RIGHT, RT_HALIGN_CENTER, RT_VALIGN_CENTER, RT_VALIGN_TOP, RT_WRAP, BT_SCALE, BT_KEEP_ASPECT_RATIO
+from enigma import eEPGCache, eListbox, eListboxPythonMultiContent, eServiceReference, loadPNG, gFont, getDesktop, eRect, eSize, RT_HALIGN_LEFT, RT_HALIGN_RIGHT, RT_HALIGN_CENTER, RT_VALIGN_CENTER, RT_VALIGN_TOP, RT_WRAP, BT_SCALE, BT_KEEP_ASPECT_RATIO
 
 from HTMLComponent import HTMLComponent
 from GUIComponent import GUIComponent
@@ -713,6 +713,15 @@ class EPGList(HTMLComponent, GUIComponent):
 		xpos, width = self.calcEntryPosAndWidthHelper(ev_start, ev_duration, time_base, time_base + time_epoch * 60, event_rect.width())
 		return xpos + event_rect.left(), width
 
+	def isIceTV(self, service):
+		if hasattr(config.plugins, "icetv"):
+			try:
+				from Plugins.SystemPlugins.IceTV.plugin import fetcher
+				return fetcher is not None and fetcher.isIceTVEpgChannel(eServiceReference(service))
+			except ImportError as e:
+				pass
+		return False
+
 	def getPixmapForEntry(self, service, eventId, beginTime, duration):
 		if not beginTime:
 			return None
@@ -820,7 +829,22 @@ class EPGList(HTMLComponent, GUIComponent):
 		r4 = self.start_end_rect
 		r5 = self.remaining_rect
 		borderw = self.progress_borderwidth
-		res = [None, (eListboxPythonMultiContent.TYPE_TEXT, r1.x, r1.y, r1.w, r1.h, 0, RT_HALIGN_LEFT | RT_VALIGN_CENTER, service_name)] # no private data needed
+
+		if self.isIceTV(service) and config.epg.eit.value:
+			iceicon_size = self.icetvicon.size()
+			r_ice = Rect(0, 0, iceicon_size.width(), iceicon_size.height())
+		else:
+			r_ice = Rect(0, 0, 0, 0)
+
+		res = [None, (eListboxPythonMultiContent.TYPE_TEXT, r1.x, r1.y, r1.w - r_ice.w, r1.h, 0, RT_HALIGN_LEFT | RT_VALIGN_CENTER, service_name)] # no private data needed
+
+		if r_ice.w > 0 and r_ice.h > 0:
+			res.append(MultiContentEntryPixmapAlphaBlend(
+				pos=(r1.x + r1.w - r_ice.w, r1.y),
+				size=(r_ice.w, r_ice.h),
+				png=self.icetvicon,
+				backcolor=None, backcolor_sel=None))
+
 		if beginTime is not None:
 			clock_types = self.getPixmapForEntry(service, eventId, beginTime, duration)
 			if nowTime < beginTime:
@@ -879,6 +903,7 @@ class EPGList(HTMLComponent, GUIComponent):
 		serviceForeColor = self.foreColorService
 		serviceBackColor = self.backColorService
 		bgpng = self.othServPix
+
 		if CompareWithAlternatives(service, self.currentlyPlaying and self.currentlyPlaying.toString()):
 			serviceForeColor = self.foreColorServiceNow
 			serviceBackColor = self.backColorServiceNow
@@ -960,6 +985,14 @@ class EPGList(HTMLComponent, GUIComponent):
 				text = service_name,
 				color = serviceForeColor, color_sel = serviceForeColor,
 				backcolor = serviceBackColor, backcolor_sel = serviceBackColor))
+
+		if self.isIceTV(service) and config.epg.eit.value:
+			iceicon_size = self.icetvicon.size()
+			res.append(MultiContentEntryPixmapAlphaBlend(
+				pos=(r1.x + r1.w - self.serviceBorderWidth - iceicon_size.width(), r1.y + r1.h - self.serviceBorderWidth - iceicon_size.height()),
+				size=(iceicon_size.width(), iceicon_size.height()),
+				png=self.icetvicon,
+				backcolor=None, backcolor_sel=None))
 
 		# Service Borders
 		if self.borderTopPix is not None and self.graphic:

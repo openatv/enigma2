@@ -156,6 +156,8 @@ struct hash_uniqueEPGKey
 struct EventCacheItem {
 	eventMap byEvent;
 	timeMap byTime;
+	int sources;
+	EventCacheItem(): sources(0) {}
 };
 
 typedef std::set<uint32_t> tidMap;
