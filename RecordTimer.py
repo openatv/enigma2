@@ -421,8 +421,8 @@ class RecordTimerEntry(timer.TimerEntry, object):
 		if next_state == self.StatePrepared:
 			if not self.justplay and not self.freespace():
 				Notifications.AddPopup(
-					text=_("Write error while recording. Disk full?\n%s") % self.name,
-					type=MessageBox.TYPE_ERROR, timeout=5, id="DiskFullMessage")
+					text=_("Write error while recording.\n%s") % self.name,
+					type=MessageBox.TYPE_ERROR, timeout=5, id="WriteErrorMessage")
 				self.failed = True
 				self.next_activation = time()
 				self.end = time() + 5
@@ -834,11 +834,12 @@ class RecordTimerEntry(timer.TimerEntry, object):
 			return
 		# self.log(16, "record event %d" % event)
 		if event == iRecordableService.evRecordWriteError:
-			print "[RecordTimer] WRITE ERROR on recording, disk full?"
+			print "[RecordTimer] WRITE ERROR on recording."
 			# Show notification. The 'id' will make sure that it will be
 			# displayed only once, even if multiple timers are failing at the
-			# same time (which is likely in if the disk is full).
-			Notifications.AddPopup(text=_("Write error while recording. Disk full?\n"), type=MessageBox.TYPE_ERROR, timeout=0, id="DiskFullMessage")
+			# same time (which is likely if the disk is full).
+			# Unfortunately the event has no associated data to reveal the exact cause of the error
+			Notifications.AddPopup(text=_("Write error while recording.\n"), type=MessageBox.TYPE_ERROR, timeout=0, id="WriteErrorMessage")
 			# OK, the recording has been stopped. We need to properly record
 			# that in our state, but also allow the possibility of a re-try.
 			# TODO: This has to be done.
