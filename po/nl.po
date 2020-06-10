@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-05-01 17:51+0000\n"
-"PO-Revision-Date: 2020-05-31 15:01+0200\n"
+"PO-Revision-Date: 2020-06-10 19:02+0200\n"
 "Last-Translator: neoatomic <neoatomic@users.noreply.github.com>\n"
 "Language-Team: neoatomic\n"
 "Language: nl\n"
@@ -1054,6 +1054,15 @@ msgid "%d channel found"
 msgid_plural "%d channels found"
 msgstr[0] "%d zender gevonden"
 msgstr[1] "%d zenders gevonden"
+
+#| msgid "%02d.%02d - %02d.%02d (%s%d min)"
+msgid "%02d.%02d - %02d.%02d (%s%s)"
+msgstr "%02d.%02d - %02d.%02d (%s%s)"
+
+#| msgid "%d hour"
+#| msgid_plural "%d hours"
+msgid "%d hour %d min"
+msgstr "%d uur %d minuten"
 
 #, python-format
 msgid "%d hour"
@@ -2314,6 +2323,12 @@ msgstr "Actief"
 msgid "Active clients"
 msgstr "Actieve gebruikers"
 
+msgid "Active screen"
+msgstr "Actief scherm"
+
+msgid "Active status change"
+msgstr "Status wijziging"
+
 msgid "Adapter settings"
 msgstr "Adapter instellingen"
 
@@ -2459,6 +2474,9 @@ msgstr ""
 "verzadigd mogelijk zijn. Zodra het resultaat u bevalt, drukt u op OK om dit "
 "menu af te sluiten of selecteert u een ander testscherm d.m.v. de "
 "nummerknoppen."
+
+msgid "Ads filtering mode"
+msgstr "Reclame filter modus activeren"
 
 msgid "Ads filtering mode be default"
 msgstr "Voegt de filtermodus toe als standaard"
@@ -3870,6 +3888,9 @@ msgstr "Wijzig timer"
 msgid "Change to bouquet"
 msgstr "Verander naar favorietenlijst"
 
+msgid "Change to Side by Side mode"
+msgstr "Wijzig naar "
+
 msgid "Changelog"
 msgstr "Veranderingslogboek"
 
@@ -3883,6 +3904,9 @@ msgstr ""
 
 msgid "Channel"
 msgstr "Zender"
+
+msgid "Channel change +/-"
+msgstr "Zenderwijziging +/-"
 
 msgid "Channel \t\t\tVolume +"
 msgstr "Zender \t\t\tVolume +"
@@ -4043,6 +4067,9 @@ msgstr "Hoe vaak moet bij de IceTV server gecontroleerd worden op updates."
 msgid "Choose the CI protocol operation mode for standard ci or ciplus."
 msgstr "Selecteer het CI protocol voor standaard CI of CI+."
 
+msgid "Choose what you want the PIP mode how to works."
+msgstr "Selecteer welke functie de PiP modus moet hebben."
+
 msgid "Choose where to mount your devices to:"
 msgstr "Selecteer waar uw apparaten aan te koppelen:"
 
@@ -4160,6 +4187,9 @@ msgstr "Gekleurde toetsen bovenaan in Applicatielijst? (Blauw-lang)"
 
 msgid "Close Picture in Picture screen"
 msgstr "Het Picture In Picture scherm uitschakelen"
+
+msgid "Close PIP and try again!"
+msgstr "Sluit Pip en probeer het opnieuw!"
 
 msgid "Close title selection"
 msgstr "Sluit titelselectie"
@@ -4672,7 +4702,9 @@ msgid "Current location"
 msgstr "Huidige locatie"
 
 #, python-format
-msgid "Current mode: %s \n"
+msgid ""
+"Current mode:   %s\n"
+"\n"
 msgstr "Huidige modus: %s \n"
 
 msgid "Current settings:"
@@ -4962,7 +4994,7 @@ msgid "Dayname Year/MM/DD"
 msgstr "Dagnaam jaar/MM/DD"
 
 msgid "Deactivate"
-msgstr ""
+msgstr "Uitschakelen"
 
 msgid "Debug Logs"
 msgstr "Debug logs"
@@ -7346,6 +7378,9 @@ msgstr "Geschiedenis volgende >"
 msgid "History zap..."
 msgstr "Geschiedenis-zap..."
 
+msgid "History Zap..."
+msgstr "History Zap..."
+
 msgid "Hobbys"
 msgstr "Hobby's"
 
@@ -8319,6 +8354,18 @@ msgstr "Links van de zendernaam"
 
 msgid "Left long"
 msgstr "Links lang"
+
+msgid "LEFT  -  back to active screen   |    EXIT  -  close right screen"
+msgstr ""
+"PIJL LINKS  -  terug naar het actieve scherm   |    EXIT  -  sluit het "
+"rechter scherm"
+
+msgid ""
+"LEFT  -  change screen   |   RIGHT  -  active status change   |   EXIT  -  "
+"close right screen"
+msgstr ""
+"PIJL LINKS  -  wijzig scherm   |   PIJL RECHTS  -  actief scherm wijziging   "
+"|   EXIT  -  sluit het rechter scherm"
 
 msgid "Leichtathletik"
 msgstr "Atletiek"
@@ -9784,6 +9831,11 @@ msgstr "Bevestigen"
 msgid "OK long"
 msgstr "OK lang"
 
+msgid ""
+"OK - go back to the TV mode  |  EXIT - cancel  |   <  >  -  change usage mode"
+msgstr ""
+"OK - ga terug naar TV  |  EXIT - annuleren  |   <  >  -  wijzig de modus"
+
 msgid "ONID"
 msgstr "ONID"
 
@@ -9891,6 +9943,9 @@ msgid ""
 msgstr ""
 "Selecteer alleen 'ja' als u een multiswich gebruikt die een DiSEqC Port-A "
 "commando gebruikt. In alle andere gevallen kiest u 'nee'."
+
+msgid "Only Standard"
+msgstr "Alleen standaard"
 
 msgid "Open"
 msgstr "Open"
@@ -10296,6 +10351,9 @@ msgstr "Filippijnen"
 msgid "PiP"
 msgstr "PiP"
 
+msgid "PiP size and position change"
+msgstr "Wijzig de Pip grootte en positie "
+
 msgid "Picon"
 msgstr "Picon"
 
@@ -10323,6 +10381,15 @@ msgstr "Pillarbox"
 
 msgid "Pilot"
 msgstr "Navigatie"
+
+msgid "PiP mode"
+msgstr "Pip modus"
+
+msgid "PiP settings"
+msgstr "Pip instellingen"
+
+msgid "PiP size and position save"
+msgstr "Pip afmeting en positie opslaan"
 
 msgid "PiP standard Setup"
 msgstr "PiP standaard instellingen"
@@ -10573,16 +10640,6 @@ msgstr ""
 "Wanneer u klaar bent drukt u op de groene knop."
 
 msgid ""
-"Please use direction keys to move the PiP window.\n"
-"Press Bouquet +/- to resize the window.\n"
-"Press OK to go back to the TV mode or EXIT to cancel the moving."
-msgstr ""
-"Selecteer met '0' de weergave modus. Gebruik de pijlknoppen om het PiP "
-"venster te verplaatsen.\n"
-"Druk op bouquet +/- om venster grote te wijzigen.\n"
-"Druk op OK om terug te gaan naar TV modus of EXIT na verplaatsen."
-
-msgid ""
 "Please use the UP and DOWN keys to select your language. Afterwards press "
 "the OK button."
 msgstr ""
@@ -10715,6 +10772,19 @@ msgstr "Portugal"
 msgid "Portuguese"
 msgstr "Portugees"
 
+#| msgid ""
+#| "Please use direction keys to move the PiP window.\n"
+#| "Press Bouquet +/- to resize the window.\n"
+#| "Press OK to go back to the TV mode or EXIT to cancel the moving."
+msgid ""
+"Position change:  Use direction keys to move the PiP window\n"
+"Size change:  Channel +/- to resize the window\n"
+"OK  -  save changes  |  EXIT  -  cancel"
+msgstr ""
+"Positie: gebruik de pijl-toetsen om het PiP venster te verplaatsen\n"
+"Afmeting:  Channel +/- om de afmeting van het venster te wijzigen\n"
+"OK  -  wijzigingen opslaan  |  EXIT  -  annuleren"
+
 msgid "Position Setup"
 msgstr "Motorinstellingen"
 
@@ -10791,8 +10861,8 @@ msgstr "Voorbereiden... Een ogenblik geduld a.u.b."
 msgid "Preschool"
 msgstr "Peuters"
 
-msgid "Press '0' to toggle PiP mode"
-msgstr "Druk '0' om tussen de PiP modes te schakelen"
+msgid "Press '0' to toggle PiP current mode"
+msgstr "Druk '0' om de huidige PiP modus te wisselen"
 
 msgid "Press INFO on your remote control for additional information."
 msgstr "Druk INFO op uw afstandsbediening voor meer informatie."
@@ -12232,6 +12302,13 @@ msgstr ""
 "scannen."
 
 msgid ""
+"Select the mode in which the position and size are saved. Changing the "
+"position and size is only possible when using the Standard usage mode!"
+msgstr ""
+"Kies de modus waar in de positie en afmeting worden opgeslagen. Het wijzigen "
+"van de positie en afmeting is alleen mogelijk in de standaard modus!"
+
+msgid ""
 "Select 'yes' if this tuner is connected to the SCR device through another "
 "tuner, otherwise select 'no'."
 msgstr ""
@@ -13326,10 +13403,10 @@ msgid "Show OE Log"
 msgstr "Toon OE Log"
 
 msgid "Show PIP"
-msgstr "Toon de PIP"
+msgstr "Toon PiP"
 
 msgid "Show PIP in MiniTV"
-msgstr "Toon PIP in MiniTV"
+msgstr "Toon PiP in MiniTV"
 
 msgid "Show RFmod setup..."
 msgstr "Toon RFmod instellingen..."
@@ -13596,6 +13673,10 @@ msgstr "Naast elkaar"
 
 msgid "Side by side"
 msgstr "Naast elkaar"
+
+#| msgid "Side by side"
+msgid "Side by side mode"
+msgstr "Naast elkaar modus"
 
 msgid "Sierra Leone"
 msgstr "Sierra Leone"
@@ -14049,6 +14130,9 @@ msgstr "Standaard"
 msgid "Standard (always)"
 msgstr "Standaard (altijd)"
 
+msgid "Standard and Ads filtering mode"
+msgstr "Standaard en reclame filter modus"
+
 msgid "Standard list"
 msgstr "Standaard lijst"
 
@@ -14134,7 +14218,7 @@ msgid "Stop"
 msgstr "Stop"
 
 msgid "Stop PiP"
-msgstr "Beëindig de PiP"
+msgstr "Beëindig PiP"
 
 msgid "Stop Streams"
 msgstr "Stop Streams"
@@ -14312,10 +14396,10 @@ msgid "Swap Manager"
 msgstr "Swap beheer"
 
 msgid "Swap PIP"
-msgstr "Swap PIP"
+msgstr "PiP wisselen"
 
 msgid "Swap PiP and main picture"
-msgstr "PiP/hoofdbeeld wisselen"
+msgstr "PiP en hoofd beeldscherm wisselen"
 
 msgid "Swap Place:"
 msgstr "Swap locatie:"
@@ -14692,7 +14776,7 @@ msgstr ""
 "Installeer deze."
 
 msgid "The TV was switched to the recording service!\n"
-msgstr "De TV was overgeschakeld naar een opname!\n"
+msgstr "Uw ontvanger is overgeschakeld naar een opname!\n"
 
 msgid ""
 "The USB stick was prepared to be bootable.\n"
@@ -15035,6 +15119,9 @@ msgstr "Hiermee kunt u de vix modules tonen in downloads"
 
 msgid "This allows you to show weblinks modules in downloads"
 msgstr "Hiermee kunt u de weblink modules tonen in downloads"
+
+msgid "This feature is currently unavailable!"
+msgstr "Deze functie is voorlopig niet beschikbaar!"
 
 #, python-format
 msgid "This field allows you to search an additional symbol rate up to %s."
@@ -15601,7 +15688,7 @@ msgid "Toggle LCD LiveTV"
 msgstr "Wissel LCD - live TV"
 
 msgid "Toggle PIPzap"
-msgstr "Wissel PIPzap"
+msgstr "Wissel PiPzap"
 
 msgid "Toggle Picture In Graphics"
 msgstr "Wissel naar Mini-TV"
@@ -17655,7 +17742,7 @@ msgid "activate network adapter configuration"
 msgstr "start de netwerkadapter configuratie"
 
 msgid "activatePiP"
-msgstr "activeerPiP"
+msgstr "activeer PiP"
 
 msgid "add Current"
 msgstr "Huidige toevoegen"
@@ -17757,8 +17844,9 @@ msgstr "kunst / cultuur (algemeen)"
 msgid "arts/culture magazine"
 msgstr "kunst / cultuurmagazine"
 
+#, fuzzy
 msgid "as plugin in extended bar"
-msgstr ""
+msgstr "als plug-in de uitgebreide informatiebalk"
 
 msgid "ask user"
 msgstr "Vraag gebruiker"
@@ -18048,7 +18136,7 @@ msgid "enable"
 msgstr "activeren"
 
 msgid "enable PIP no HDR"
-msgstr "activeer PIP geen HDR"
+msgstr "activeer PiP geen HDR"
 
 msgid "enable bouquet edit"
 msgstr "Favorietenlijst bewerken activeren"
@@ -18249,7 +18337,7 @@ msgid "get the cards' server"
 msgstr "verkrijg de kaartserver"
 
 msgid "go to deep standby"
-msgstr ""
+msgstr "uw ontvanger afsluiten"
 
 msgid "go to standby"
 msgstr "ga naar stand-by"
@@ -18258,7 +18346,7 @@ msgid "goto current channel and now"
 msgstr "Ga direct naar huidige zender"
 
 msgid "goto deep-standby"
-msgstr ""
+msgstr "uw ontvanger afsluiten"
 
 msgid "goto first channel"
 msgstr "Ga naar eerste zender"
@@ -19042,7 +19130,7 @@ msgid "shuffle"
 msgstr "willekeurig"
 
 msgid "shut down"
-msgstr ""
+msgstr "Afsluiten"
 
 msgid "simple"
 msgstr "eenvoudig"
@@ -19363,7 +19451,7 @@ msgstr "breedte"
 
 msgid "will take about 1-15 minutes for this system\n"
 msgstr ""
-"de back-up voor dit systeem ongeveer 1-15 minuten.\n"
+"de back-up voor uw ontvanger ongeveer 1-15 minuten.\n"
 "\n"
 
 msgid "winter sport"
@@ -19636,10 +19724,10 @@ msgid "PiP-Zap"
 msgstr "PiP-Zap"
 
 msgid "PiPSetup"
-msgstr "PIP instellingen"
+msgstr "PiP instellingen"
 
 msgid "PiPZap"
-msgstr "PiP zap"
+msgstr "PiP Zap"
 
 msgid "Plugin browser"
 msgstr "Applicatie overzicht"
@@ -20310,7 +20398,7 @@ msgid "Choose time interval to which the graphics will be rounded off."
 msgstr "Kies de tijdsinterval waarop de grafische indeling wordt afgerond."
 
 msgid "Choose what you want the button '0' to do when PIP is active."
-msgstr "Stel hier in wat de '0'-knop moet doen wanneer PIP actief is."
+msgstr "Stel hier in wat de '0'-knop moet doen wanneer PiP actief is."
 
 msgid "Choose whether or not to show an icon when a motorized dish is moving."
 msgstr ""
@@ -20397,7 +20485,7 @@ msgstr ""
 msgid ""
 "Configure if and how long the latest service in the PiP will be remembered."
 msgstr ""
-"Hier stelt u in of en hoe lang de laatste zender in de PIP wordt onthouden.\n"
+"Hier stelt u in of en hoe lang de laatste zender in PIP wordt onthouden.\n"
 "U kunt hier kiezen uit: Gedeactiveerd, Geen timeout of 1-60 minuten."
 
 msgid "Configure if and how service type icons will be shown."
@@ -21766,7 +21854,7 @@ msgid "RF output"
 msgstr "RF modulator"
 
 msgid "Recordings abort PIP"
-msgstr "Annuleer PiP bij opname"
+msgstr "Annuleer PiP bij een opname"
 
 msgid "Recordings abort pseudo recordings"
 msgstr "Annuleer pseudo opname bij echte opname"
@@ -21788,7 +21876,7 @@ msgid "Refresh every (in hours)"
 msgstr "Actualiseer elke X uur"
 
 msgid "Remember last service in PiP"
-msgstr "Onthoudt de laatste gekozen zender in PIP"
+msgstr "Onthoudt de laatste gekozen zender in PiP"
 
 msgid "Remove completed timers after (days)"
 msgstr "Verwijder voltooide timers na (aantal) dagen"
@@ -23181,7 +23269,7 @@ msgid "You can Display MiniTV with or without OSD Menu"
 msgstr "U kunt de MiniTV laten zien met of zonder OSD-menu"
 
 msgid "You can Display PIP with or without OSD Menu"
-msgstr "U kunt PIP laten zien met of zonder OSD-menu"
+msgstr "U kunt PiP laten zien met of zonder OSD-menu"
 
 msgid "You can have the list sorted by time or alphanumerical."
 msgstr ""
@@ -23610,10 +23698,6 @@ msgstr "Tussentijd voor slideshow afbeeldingen"
 
 #~ msgid "%-H:%M - "
 #~ msgstr "%-H:%M - "
-
-#, python-format
-#~ msgid "%02d.%02d - %02d.%02d (%s%d min)"
-#~ msgstr "%02d.%02d - %02d.%02d (%s%d min)"
 
 #~ msgid "%A %e %b"
 #~ msgstr "%A %e %b"
