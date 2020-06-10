@@ -53,6 +53,9 @@ class downloadWithProgress:
 				from twisted.web.client import _URI as URI
 			except ImportError:
 				from twisted.web.client import URI
+			# twisted wants bytes
+			if isinstance(url, str):
+				url = str.encode(url)
 			uri = URI.fromBytes(url)
 			scheme = uri.scheme
 			host = uri.host
