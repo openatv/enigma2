@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-12-30 14:34+0100\n"
-"PO-Revision-Date: 2020-05-24 15:23+0100\n"
+"PO-Revision-Date: 2020-06-10 15:23+0100\n"
 "Last-Translator: pololoko111 <pololoko111@o2.pl>\n"
 "Language-Team: Poland\n"
 "Language: pl\n"
@@ -480,6 +480,12 @@ msgstr ""
 #, python-format
 msgid "%02d:%02d - %02d:%02d"
 msgstr ""
+
+msgid "%02d.%02d - %02d.%02d (%s%s)"
+msgstr "%02d.%02d - %02d.%02d (%s%s)"
+
+msgid "%d hour %d min"
+msgstr "%d godzina %d min"
 
 #, python-format
 msgid "%03d MB"
@@ -4271,6 +4277,9 @@ msgstr "Wybierz nazwę pliku, który przechowuje EPG gdy %s %s jest wyłączony.
 msgid "Choose time interval to which the graphics will be rounded off."
 msgstr "Wybierz przedział czasowy, do którego będą zaokrąglane grafiki."
 
+msgid "Choose what you want the PIP mode how to works."
+msgstr "Wybierz jak będzie dźałał tryb PIP"
+
 msgid "Choose what you want the button '0' to do when PIP is active."
 msgstr "Wybierz przycisk '0 ', kiedy PIP jest aktywny."
 
@@ -4379,6 +4388,9 @@ msgstr "Lustro TV obraz na LCD"
 
 msgid "Close"
 msgstr "Zamknij"
+
+msgid "Close PIP and try again!"
+msgstr "Zamknij PIP i spróbuj ponownie!"
 
 msgid "Close PiP on exit"
 msgstr "Zamknij PiP i wyjdż"
@@ -5193,8 +5205,10 @@ msgid "Current location"
 msgstr "Bieżąca lokalizacja"
 
 #, python-format
-msgid "Current mode: %s \n"
-msgstr "Bieżący Tryb: %s \n"
+msgid "Current mode:   %s\n"
+"\n"
+msgstr "Aktualny tryb:   %s\n"
+"\n"
 
 msgid "Current settings:"
 msgstr "Aktualne ustawienia:"
@@ -10982,6 +10996,9 @@ msgstr "Tylko przy starcie"
 msgid "Only select 'yes' if you are using a multiswich that requires a DiSEqC Port-A command signal. For all other setups select 'no'."
 msgstr "Wybierz „tak” tylko, jeśli używasz multiswich, który wymaga sygnału polecenia DiSEqC Port-A. Dla wszystkich innych ustawień wybierz „nie”."
 
+msgid "Only Standard"
+msgstr "Tylko Standard"
+
 msgid "Open"
 msgstr "Otwórz"
 
@@ -11835,15 +11852,6 @@ msgstr ""
 "\n"
 "Następnie naciśnij zielony."
 
-msgid ""
-"Please use direction keys to move the PiP window.\n"
-"Press Bouquet +/- to resize the window.\n"
-"Press OK to go back to the TV mode or EXIT to cancel the moving."
-msgstr ""
-"Użyj przycisków 'strzałek', aby przesunąć okno PiP.\n"
-"Wciśnij 'bukiet +/-' (lub 'kanał+/-') aby zmienić rozmiar okna.\n"
-"Wciśnij 'OK' aby wrócić do trybu TV lub 'EXIT' aby przerwać przesuwanie."
-
 msgid "Please use the UP and DOWN keys to select your language. Afterwards press the OK button."
 msgstr "W celu wyboru języka użyj klawiszy 'GÓRA' lub 'DÓŁ'. Nastepnie nacisnij przycisk 'OK'."
 
@@ -11982,6 +11990,15 @@ msgstr "Portugalski"
 msgid "Position Setup"
 msgstr "Konfiguracja Pozycji"
 
+msgid ""
+"Position change:  Use direction keys to move the PiP window\n"
+"Size change:  Channel +/- to resize the window\n"
+"OK  -  save changes  |  EXIT  -  cancel"
+msgstr ""
+"Zmiana pozycji:  Użyj klawiszy kierunkowych, aby przesunąć okno PiP\n"
+"Zmiana rozmiaru: Kanał +/-  aby zmienić rozmiar okna\n"
+"OK  -  Zapisz zmiany  |  EXIT  -  Anuluj"
+
 msgid "Position of finished Timers in Timerlist"
 msgstr "Lista pozycji do wykonania w liście Timera"
 
@@ -12114,6 +12131,15 @@ msgstr "Przedszkola"
 msgid "PiP mode"
 msgstr "Tryb PiP"
 
+msgid "PiP settings"
+msgstr "Ustawienia PiP"
+
+msgid "PiP size and position change"
+msgstr "Rozmiar PiP i zmiana pozycji"
+
+msgid "PiP size and position save"
+msgstr "Zapisywanie rozmiaru i pozycji PiP"
+
 msgid "Choose what you want the PIP mode how to works."
 msgstr "Wybierz sposób działania obrazu w trybie obrazu."
 
@@ -12123,8 +12149,8 @@ msgstr "Tryb filtrowania reklam"
 msgid "Side by side mode"
 msgstr "Tryb obok siebie"
 
-msgid "Press '0' to toggle PiP mode"
-msgstr "Naciśnij przycisk '0', aby włączyć tryb PiP"
+msgid "Press '0' to toggle PiP current mode"
+msgstr "Naciśnij przycisk '0' aby przełączyć biezący tryb PiP"
 
 msgid "Press INFO on your remote control for additional information."
 msgstr "Wciśnij INFO na pilocie, aby uzyskać dodatkowe informacje."
@@ -13897,6 +13923,9 @@ msgstr "Wybierz producenta swojego urządzenia SCR. Jeśli producenta nie ma na 
 
 msgid "Select the method of restoring screen resolution and framebuffer when leaving teletext."
 msgstr "Wybierz metodę przywracania rozdzielczości ekranu i bufora ramki po opuszczeniu telegazety."
+
+msgid "Select the mode in which the position and size are saved. Changing the position and size is only possible when using the Standard usage mode!"
+msgstr "Wybierz tryb, w którym pozycja i rozmiar są zapisywane. Zmiana pozycji i rozmiaru jest możliwa tylko przy użyciu standardowego trybu użytkowania!"
 
 msgid "Select the model number of your Unicable device. If the model number is not listed, set 'SCR' to 'user defined' and enter the device parameters manually according to its spec sheet."
 msgstr "Wybierz numer modelu swojego urządzenia Unicable. Jeśli numeru modelu nie ma na liście, ustaw „SCR” na „zdefiniowane przez użytkownika” i ręcznie wprowadź parametry urządzenia zgodnie z arkuszem specyfikacji."
@@ -15744,6 +15773,9 @@ msgstr "Standardowe"
 msgid "Standard (always)"
 msgstr "Standardowo (zawsze)"
 
+msgid "Standard and Ads filtering mode"
+msgstr "Tryb standardowy i tryb filtrowania reklam"
+
 msgid "Standard list"
 msgstr "Lista standardowa"
 
@@ -16875,6 +16907,9 @@ msgstr "To pozwala pokazać moduły vix w plikach do pobrania"
 
 msgid "This allows you to show weblinks modules in downloads"
 msgstr "Pozwala to wyświetlać moduły linków w plikach do pobrania"
+
+msgid "This feature is currently unavailable!"
+msgstr "Ta funkcja jest obecnie niedostępna!"
 
 #, python-format
 msgid "This field allows you to search an additional symbol rate up to %s."
