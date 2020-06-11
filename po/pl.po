@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-12-30 14:34+0100\n"
-"PO-Revision-Date: 2020-05-24 15:23+0100\n"
+"PO-Revision-Date: 2020-06-11 15:23+0100\n"
 "Last-Translator: pololoko111 <pololoko111@o2.pl>\n"
 "Language-Team: Poland\n"
 "Language: pl\n"
@@ -1052,7 +1052,13 @@ msgid "%d channel found"
 msgid_plural "%d channels found"
 msgstr[0] "znaleziono %d kanał"
 msgstr[1] "znaleziono %d kanały"
-msgstr[2] "znaleziono %d kanałów"
+msgstr[2] "znaleziono %d kanałów
+
+msgid "%02d.%02d - %02d.%02d (%s%s)"
+msgstr ""
+
+msgid "%d hour %d min"
+msgstr "%d godzina %d min"
 
 #, python-format
 msgid "%d hour"
@@ -2337,6 +2343,12 @@ msgstr "Aktywny"
 msgid "Active clients"
 msgstr "Aktywnych klientów"
 
+msgid "Active screen"
+msgstr "Aktywny ekran"
+
+msgid "Active status change"
+msgstr "Aktywna zmiana statusu"
+
 msgid "Adapter settings"
 msgstr "Ustawienia adaptera"
 
@@ -2468,6 +2480,9 @@ msgstr "Dostosuj ustawienia 3D"
 
 msgid "Adjust the color settings so that all the color shades are distinguishable, but appear as saturated as possible. If you are happy with the result, press OK to close the video fine-tuning, or use the number keys to select other test screens."
 msgstr "Dostosuj ustawienia koloru, tak aby wszystkie odcienie były rozpoznawalne, ale jak najbardziej nasycone. Jeśli jesteś zadowolony z rezultatu wciśnij 'OK' aby wyjść z tego menu lub użyj przycisków numerycznych aby zobaczyć inne ekrany testowe."
+
+msgid "Ads filtering mode"
+msgstr "Tryb filtrowania reklam"
 
 msgid "Ads filtering mode be default"
 msgstr "Tryb filtrowania reklam jest domyślny"
@@ -4012,6 +4027,9 @@ msgstr "Zmień timer"
 msgid "Change to bouquet"
 msgstr "Zamień na bukiet"
 
+msgid "Change to Side by Side mode"
+msgstr "Przejdź do trybu Obok siebie"
+
 msgid "Changelog"
 msgstr "Rejestr zmian"
 
@@ -4025,6 +4043,9 @@ msgstr ""
 
 msgid "Channel"
 msgstr "Kanał"
+
+msgid "Channel change +/-"
+msgstr "Zmiana kanału +/-"
 
 msgid "Channel \t\t\tVolume +"
 msgstr "Kanał \t\t\tGłośność +"
@@ -4247,6 +4268,9 @@ msgstr "Wybierz styl głównych menu"
 msgid "Choose the CI protocol operation mode for standard ci or ciplus."
 msgstr "Wybierz tryb działania protokołu CI dla standardowego ci lub ciplus."
 
+msgid "Choose what you want the PIP mode how to works."
+msgstr "Wybierz tryb PIP."
+
 msgid "Choose the display formatting style for dates. 'D' / 'DD' is the date and 'M' / 'MM' is the month in digits.  ('DD' and 'MM' have leading zeros for single digit values.) The screen display will be based on your choice but can be influenced by the skin."
 msgstr "Wybierz styl formatowania wyświetlania dla dat. „D” / „DD” to data, a „M” / „MM” to miesiąc cyframi. („DD” i „MM” mają zera wiodące dla wartości jednocyfrowych.) Obraz na ekranie będzie zależał od twojego wyboru, ale skóra może na niego wpływać."
 
@@ -4397,6 +4421,9 @@ msgstr "Najpierw koloruj na liście rozszerzeń"
 
 msgid "Close Picture in Picture screen"
 msgstr "Zamknij ekran Obraz w Obrazie"
+
+msgid "Close PIP and try again!"
+msgstr "Zamknij PIP i spróbuj ponownie!"
 
 msgid "Close title selection"
 msgstr "Zamknij wybór tytułu"
@@ -5193,8 +5220,10 @@ msgid "Current location"
 msgstr "Bieżąca lokalizacja"
 
 #, python-format
-msgid "Current mode: %s \n"
-msgstr "Bieżący Tryb: %s \n"
+msgid ""
+"Current mode:   %s\n"
+"\n"
+msgstr ""
 
 msgid "Current settings:"
 msgstr "Aktualne ustawienia:"
@@ -8167,6 +8196,9 @@ msgstr "'w Lewo/w Prawo' dalej"
 msgid "History zap..."
 msgstr "Historia Przełączania..."
 
+msgid "History Zap..."
+msgstr "Historia Przełączania..."
+
 msgid "Hobbys"
 msgstr ""
 
@@ -9287,6 +9319,12 @@ msgstr "Na lewo od nazwy kanału"
 
 msgid "Left long"
 msgstr "W lewo (długo)"
+
+msgid "LEFT  -  back to active screen   |    EXIT  -  close right screen"
+msgstr "LEWO   -  powrót do aktywnego ekranu  |  WYJŚCIE  -  zamknij prawy ekran"
+
+msgid "LEFT  -  change screen   |   RIGHT  -  active status change   |   EXIT  -  close right screen"
+msgstr "LEWO  -   zmiana ekranu  |  PRAWO  -  aktywna zmiana statusu  |  WYJŚCIE  -  zamknij prawy ekran"
 
 msgid "Leichtathletik"
 msgstr "Lekka Atletyka"
@@ -10866,6 +10904,9 @@ msgstr "Akcja dla przycisku 'OK'"
 msgid "OK long"
 msgstr "OK (długo)"
 
+msgid "OK - go back to the TV mode  |  EXIT - cancel  |   <  >  -  change usage mode"
+msgstr "OK - wróć do trybu TV  |  EXIT - anuluj  |  <  >  -  zmień tryb użytkowania"
+
 msgid "OK, guide me through the upgrade process"
 msgstr "OK, przeprowadź mnie poprzez proces aktualizacji"
 
@@ -10981,6 +11022,9 @@ msgstr "Tylko przy starcie"
 
 msgid "Only select 'yes' if you are using a multiswich that requires a DiSEqC Port-A command signal. For all other setups select 'no'."
 msgstr "Wybierz „tak” tylko, jeśli używasz multiswich, który wymaga sygnału polecenia DiSEqC Port-A. Dla wszystkich innych ustawień wybierz „nie”."
+
+msgid "Only Standard"
+msgstr "Tylko standard"
 
 msgid "Open"
 msgstr "Otwórz"
@@ -11189,6 +11233,9 @@ msgstr "Wymagany kod PIN"
 
 msgid "PIP"
 msgstr ""
+
+msgid "PiP size and position change"
+msgstr "Rozmiar PiP i zmiana pozycji"
 
 msgid "PIP long"
 msgstr "PIP (długo)"
@@ -11462,6 +11509,15 @@ msgstr ""
 
 msgid "Pilot"
 msgstr ""
+
+msgid "PiP mode"
+msgstr "Tryb PiP"
+
+msgid "PiP settings"
+msgstr "Ustawienia PiP"
+
+msgid "PiP size and position save"
+msgstr "Zapisywanie rozmiaru i pozycji PiP"
 
 msgid "PiP standard Setup"
 msgstr "Standardowa konfiguracja PiP"
@@ -11835,15 +11891,6 @@ msgstr ""
 "\n"
 "Następnie naciśnij zielony."
 
-msgid ""
-"Please use direction keys to move the PiP window.\n"
-"Press Bouquet +/- to resize the window.\n"
-"Press OK to go back to the TV mode or EXIT to cancel the moving."
-msgstr ""
-"Użyj przycisków 'strzałek', aby przesunąć okno PiP.\n"
-"Wciśnij 'bukiet +/-' (lub 'kanał+/-') aby zmienić rozmiar okna.\n"
-"Wciśnij 'OK' aby wrócić do trybu TV lub 'EXIT' aby przerwać przesuwanie."
-
 msgid "Please use the UP and DOWN keys to select your language. Afterwards press the OK button."
 msgstr "W celu wyboru języka użyj klawiszy 'GÓRA' lub 'DÓŁ'. Nastepnie nacisnij przycisk 'OK'."
 
@@ -11978,6 +12025,15 @@ msgstr "Portugalia"
 
 msgid "Portuguese"
 msgstr "Portugalski"
+
+msgid ""
+"Position change:  Use direction keys to move the PiP window\n"
+"Size change:  Channel +/- to resize the window\n"
+"OK  -  save changes  |  EXIT  -  cancel"
+msgstr ""
+"Zmiana pozycji: Użyj klawiszy kierunkowych, aby przesunąć okno PiP\n"
+"Zmiana rozmiaru: Kanał +/- aby zmienić rozmiar okna\n"
+"OK  -  zapisz zmiany  |  EXIT  -  anuluj"
 
 msgid "Position Setup"
 msgstr "Konfiguracja Pozycji"
@@ -12123,8 +12179,8 @@ msgstr "Tryb filtrowania reklam"
 msgid "Side by side mode"
 msgstr "Tryb obok siebie"
 
-msgid "Press '0' to toggle PiP mode"
-msgstr "Naciśnij przycisk '0', aby włączyć tryb PiP"
+msgid "Press '0' to toggle PiP current mode"
+msgstr "Naciśnij przycisk '0' aby przełączyć bieżący tryb PiP"
 
 msgid "Press INFO on your remote control for additional information."
 msgstr "Wciśnij INFO na pilocie, aby uzyskać dodatkowe informacje."
@@ -13659,6 +13715,9 @@ msgstr ""
 
 msgid "Select 'provider' to scan from the predefined list of cable multiplexes. Select 'bands' to only scan certain parts of the spectrum. Select 'steps' to scan in steps of a particular frequency bandwidth."
 msgstr ""
+
+msgid "Select the mode in which the position and size are saved. Changing the position and size is only possible when using the Standard usage mode!"
+msgstr "Wybierz tryb, w którym pozycja i rozmiar są zapisywane. Zmiana pozycji i rozmiaru jest możliwa tylko przy użyciu standardowego trybu użytkowania!"
 
 msgid "Select 'yes' if this tuner is connected to the SCR device through another tuner, otherwise select 'no'."
 msgstr ""
@@ -15259,6 +15318,9 @@ msgstr "Obok Siebie"
 msgid "Side by side"
 msgstr "Obok siebie"
 
+msgid "Side by side mode"
+msgstr "Tryb obok siebie"
+
 msgid "Sierra Leone"
 msgstr "Sierra Leone"
 
@@ -15743,6 +15805,9 @@ msgstr "Standardowe"
 
 msgid "Standard (always)"
 msgstr "Standardowo (zawsze)"
+
+msgid "Standard and Ads filtering mode"
+msgstr "Tryb standardowy i tryb filtrowania reklam"
 
 msgid "Standard list"
 msgstr "Lista standardowa"
@@ -16875,6 +16940,9 @@ msgstr "To pozwala pokazać moduły vix w plikach do pobrania"
 
 msgid "This allows you to show weblinks modules in downloads"
 msgstr "Pozwala to wyświetlać moduły linków w plikach do pobrania"
+
+msgid "This feature is currently unavailable!"
+msgstr "Ta funkcja jest obecnie niedostępna!"
 
 #, python-format
 msgid "This field allows you to search an additional symbol rate up to %s."
