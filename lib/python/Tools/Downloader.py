@@ -13,7 +13,7 @@ class HTTPProgressDownloader(client.HTTPDownloader):
 		self.deferred = defer.Deferred()
 
 	def noPage(self, reason):
-		if self.status == "304":
+		if self.status == b"304":
 			print(reason.getErrorMessage())
 			client.HTTPDownloader.page(self, "")
 		else:
@@ -22,8 +22,8 @@ class HTTPProgressDownloader(client.HTTPDownloader):
 			self.error_callback(reason.getErrorMessage(), self.status)
 
 	def gotHeaders(self, headers):
-		if self.status == "200":
-			if "content-length" in headers:
+		if self.status == b"200":
+			if b"content-length" in headers:
 				self.totalbytes = int(headers["content-length"][0])
 			else:
 				self.totalbytes = 0
@@ -31,7 +31,7 @@ class HTTPProgressDownloader(client.HTTPDownloader):
 		return client.HTTPDownloader.gotHeaders(self, headers)
 
 	def pagePart(self, packet):
-		if self.status == "200":
+		if self.status == b"200":
 			self.currentbytes += len(packet)
 		if self.totalbytes and self.progress_callback:
 			self.progress_callback(self.currentbytes, self.totalbytes)
@@ -55,7 +55,7 @@ class downloadWithProgress:
 				from twisted.web.client import URI
 			# twisted wants bytes
 			if isinstance(url, str):
-				url = str.encode(url)
+				url = url.encode("UTF-8")
 			uri = URI.fromBytes(url)
 			scheme = uri.scheme
 			host = uri.host
