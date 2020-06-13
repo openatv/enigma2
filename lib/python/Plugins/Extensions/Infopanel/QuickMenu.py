@@ -742,7 +742,7 @@ class QuickMenuDevices(Screen):
 		d2 = device
 		name = 'USB: '
 		mypixmap = '/usr/lib/enigma2/python/Plugins/Extensions/Infopanel/icons/dev_usbstick.png'
-		model = file('/sys/block/' + device2 + '/device/model').read()
+		model = open('/sys/block/' + device2 + '/device/model').read()
 		model = str(model).replace('\n', '')
 		des = ''
 		if devicetype.find('/devices/pci') != -1:
@@ -792,7 +792,7 @@ class QuickMenuDevices(Screen):
 					des = _("Size: ") + str(size / 1024) + " " + _("MB")
 			else:
 				try:
-					size = file('/sys/block/' + device2 + '/' + device + '/size').read()
+					size = open('/sys/block/' + device2 + '/' + device + '/size').read()
 					size = str(size).replace('\n', '')
 					size = int(size)
 				except:

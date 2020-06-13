@@ -1042,7 +1042,7 @@ class NimManager:
 					if not path.exists("/etc/enigma2/lamedb"):
 						print("/etc/enigma2/lamedb not found")
 						return None
-					f = file("/etc/enigma2/lamedb", "r")
+					f = open("/etc/enigma2/lamedb", "r")
 					lamedb = f.readlines()
 					f.close()
 
