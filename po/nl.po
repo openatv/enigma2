@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-05-01 17:51+0000\n"
-"PO-Revision-Date: 2020-06-10 19:02+0200\n"
+"POT-Creation-Date: 2020-06-11 20:09+0000\n"
+"PO-Revision-Date: 2020-06-13 12:57+0200\n"
 "Last-Translator: neoatomic <neoatomic@users.noreply.github.com>\n"
 "Language-Team: neoatomic\n"
 "Language: nl\n"
@@ -227,31 +227,6 @@ msgid "     wrong back-up destination "
 msgstr "     verkeerde back-up bestemming "
 
 #, python-format
-msgid "   (%s MHz)"
-msgstr "   (%s MHz)"
-
-msgid "   (1.0 GHz)"
-msgstr "   (1.0 GHz)"
-
-msgid "   (1.3 GHz)"
-msgstr "  (1.3 GHz)"
-
-msgid "   (1.5 GHz)"
-msgstr "   (1.5 GHz)"
-
-msgid "   (1.6 GHz)"
-msgstr "   (1.6 GHz)"
-
-msgid "   (1.7 GHz)"
-msgstr "   (1.7 GHz)"
-
-msgid "   (2.0 GHz)"
-msgstr "   (2.0 GHz)"
-
-msgid "   (2.1 GHz)"
-msgstr "   (2.1 GHz)"
-
-#, python-format
 msgid "  (%s x %s)"
 msgstr "  (%s x %s)"
 
@@ -335,6 +310,10 @@ msgstr ""
 " !! beschikbaar !!\n"
 "\n"
 "Wilt u de nieuwe zenderlijst installeren?"
+
+#, python-format
+msgid " bootmode = %s"
+msgstr " bootmodus = %s"
 
 msgid " of "
 msgstr " of "
@@ -468,6 +447,10 @@ msgstr "%.0f MB"
 #, python-format
 msgid "%.2f GB"
 msgstr "%.2f GB"
+
+#, python-format
+msgid "%02d.%02d - %02d.%02d (%s%s)"
+msgstr "%02d.%02d - %02d.%02d (%s%s)"
 
 #, python-format
 msgid "%02d.%02d."
@@ -641,6 +624,9 @@ msgstr "%A %d/%m"
 
 msgid "%A %d/%m/%Y"
 msgstr "%A %d/%m/%Y"
+
+msgid "%A %e %b"
+msgstr "%A %e %b"
 
 msgid "%A %m/%-d"
 msgstr "%A %m/%-d"
@@ -1055,20 +1041,15 @@ msgid_plural "%d channels found"
 msgstr[0] "%d zender gevonden"
 msgstr[1] "%d zenders gevonden"
 
-#| msgid "%02d.%02d - %02d.%02d (%s%d min)"
-msgid "%02d.%02d - %02d.%02d (%s%s)"
-msgstr "%02d.%02d - %02d.%02d (%s%s)"
-
-#| msgid "%d hour"
-#| msgid_plural "%d hours"
-msgid "%d hour %d min"
-msgstr "%d uur %d minuten"
-
 #, python-format
 msgid "%d hour"
 msgid_plural "%d hours"
 msgstr[0] "%d uur"
 msgstr[1] "%d uren"
+
+#, python-format
+msgid "%d hour %d min"
+msgstr "%d uur %d minuten"
 
 #, python-format
 msgid "%d kB"
@@ -1215,10 +1196,12 @@ msgstr ""
 #, python-format
 msgid ""
 "%s\n"
-"Press ok to close"
+"Press ok for multiboot selection\n"
+"Press exit to close"
 msgstr ""
 "%s\n"
-"Druk op OK om te sluiten"
+"Druk op OK voor de multiboot selectie\n"
+"Druk op EXIT om af te sluiten"
 
 #, python-format
 msgid "%s %02d.%02d."
@@ -1269,16 +1252,21 @@ msgid "%s (%s)\n"
 msgstr "%s (%s)\n"
 
 #, python-format
-msgid "%s - %s (%s%d min)"
-msgstr "%s - %s (%s%d min)"
-
-#, python-format
 msgid "%s - Setup"
 msgstr "%s - Instellingen"
 
 #, python-format
 msgid "%s - extraction errors."
 msgstr "%s - uitpak fouten."
+
+#, python-format
+msgid "%s GHz"
+msgstr "%s GHz"
+
+#, python-format
+#| msgid "   (%s MHz)"
+msgid "%s MHz"
+msgstr "%s MHz"
 
 #, python-format
 msgid "%s Setup"
@@ -1568,7 +1556,7 @@ msgid "12bit"
 msgstr "12bit"
 
 msgid "12bit 4:2:0/4:2:2 no PIP"
-msgstr "12bit 4:2:0/4:2:2 geen PIP"
+msgstr "12bit 4:2:0/4:2:2 geen PiP"
 
 msgid "13 V"
 msgstr "13V"
@@ -2478,9 +2466,6 @@ msgstr ""
 msgid "Ads filtering mode"
 msgstr "Reclame filter modus activeren"
 
-msgid "Ads filtering mode be default"
-msgstr "Voegt de filtermodus toe als standaard"
-
 msgid "Adult"
 msgstr "Volwassen"
 
@@ -2517,6 +2502,15 @@ msgstr "Avontuur"
 msgid "Afghanistan"
 msgstr "Afghanistan"
 
+msgid "After 3 minutes"
+msgstr "Na 3 minuten"
+
+msgid "After 30 minutes"
+msgstr "Na 30 minuten"
+
+msgid "After 5 minutes"
+msgstr "Na 5 minuten"
+
 msgid "After Recording"
 msgstr "Na opname"
 
@@ -2525,18 +2519,6 @@ msgstr "Na opname"
 
 msgid "After pressing OK, please wait!"
 msgstr "Even geduld na het drukken van 'OK'!"
-
-msgid "After this time, the Ads filtering mode should be the default set mode."
-msgstr "Na deze tijd zou de filtermodus de standaard instelling moeten zijn."
-
-msgid "After 3 minutes"
-msgstr "Na 3 minuten"
-
-msgid "After 5 minutes"
-msgstr "Na 5 minuten"
-
-msgid "After 30 minutes"
-msgstr "Na 30 minuten"
 
 msgid "Agenten"
 msgstr "Agenten"
@@ -3330,7 +3312,7 @@ msgid "Bhutan"
 msgstr "Bhutan"
 
 msgid "Big PiP"
-msgstr "Grote PIP"
+msgstr "Grote PiP"
 
 msgid "Bildung"
 msgstr "Onderwijs"
@@ -3444,10 +3426,6 @@ msgstr "Bufferend %d%%"
 
 msgid "Buffers:"
 msgstr "Buffers:"
-
-#, python-format
-msgid "Build:\t\t%s"
-msgstr "Build:\t\t%s"
 
 #, python-format
 msgid "Build: %s"
@@ -3614,8 +3592,8 @@ msgid "CPU"
 msgstr "CPU"
 
 #, python-format
-msgid "CPU:\t\t%s"
-msgstr "CPU:\t\t%s"
+msgid "CPU:\t\t%s  (%s)  %s cores"
+msgstr "CPU:\t\t%s  (%s)  %s cores"
 
 #, python-format
 msgid "CPU: %s"
@@ -3665,6 +3643,40 @@ msgstr "Cambodja"
 
 msgid "Cameroon"
 msgstr "Kameroen"
+
+msgid ""
+"Can be used to test defect pixels on TV screen.\n"
+"\n"
+"Available color test screens:\n"
+"\n"
+"red\n"
+"green\n"
+"blue\n"
+"white\n"
+"black\n"
+"cyan\n"
+"magenta\n"
+"yellow\n"
+"\n"
+"Screens change with left/right buttons or use red, green, blue to toggle.\n"
+"Yellow for returning back to this intro"
+msgstr ""
+"Kan gebruikt worden voor het testen van dode pixels op uw TV.\n"
+"\n"
+"Beschikbare testscherm kleuren:\n"
+"\n"
+"rood\n"
+"groen\n"
+"blauw\n"
+"wit\n"
+"zwart\n"
+"cyaan\n"
+"magenta\n"
+"geel\n"
+"\n"
+"Testschermen wijzigen met de links/rechts knoppen, of rood, groen, blauw om "
+"van kleur te wisselen.\n"
+"Geel drukken om terug te keren naar deze toelichting."
 
 msgid "Can not delete timer"
 msgstr "Kan de timer niet verwijderen"
@@ -3885,11 +3897,11 @@ msgstr "Wijzig stapgrootte"
 msgid "Change timer"
 msgstr "Wijzig timer"
 
-msgid "Change to bouquet"
-msgstr "Verander naar favorietenlijst"
-
 msgid "Change to Side by Side mode"
 msgstr "Wijzig naar "
+
+msgid "Change to bouquet"
+msgstr "Ga naar favorietenlijst"
 
 msgid "Changelog"
 msgstr "Veranderingslogboek"
@@ -3904,9 +3916,6 @@ msgstr ""
 
 msgid "Channel"
 msgstr "Zender"
-
-msgid "Channel change +/-"
-msgstr "Zenderwijziging +/-"
 
 msgid "Channel \t\t\tVolume +"
 msgstr "Zender \t\t\tVolume +"
@@ -3925,6 +3934,9 @@ msgstr "Zenderlijst"
 
 msgid "Channel button always changes sides"
 msgstr "Zender knop wisselt altijd zijdes"
+
+msgid "Channel change +/-"
+msgstr "Zenderwijziging +/-"
 
 msgid "Channel down"
 msgstr "Vorige zender"
@@ -4067,9 +4079,6 @@ msgstr "Hoe vaak moet bij de IceTV server gecontroleerd worden op updates."
 msgid "Choose the CI protocol operation mode for standard ci or ciplus."
 msgstr "Selecteer het CI protocol voor standaard CI of CI+."
 
-msgid "Choose what you want the PIP mode how to works."
-msgstr "Selecteer welke functie de PiP modus moet hebben."
-
 msgid "Choose where to mount your devices to:"
 msgstr "Selecteer waar uw apparaten aan te koppelen:"
 
@@ -4173,23 +4182,20 @@ msgstr "Klok:"
 msgid "Close"
 msgstr "Sluiten"
 
+msgid "Close Main screen"
+msgstr "Sluit het hoofdscherm"
+
+msgid "Close PIP and try again!"
+msgstr "Sluit PiP en probeer het opnieuw!"
+
+msgid "Close Picture in Picture screen"
+msgstr "Het Picture In Picture scherm uitschakelen"
+
 msgid "Close bouquet list."
 msgstr "Sluit favorietenlijst."
 
 msgid "Close dialog"
 msgstr "Sluit dialoog"
-
-msgid "Close Main screen"
-msgstr "Sluit het hoofdscherm"
-
-msgid "Color first in Extensions list"
-msgstr "Gekleurde toetsen bovenaan in Applicatielijst? (Blauw-lang)"
-
-msgid "Close Picture in Picture screen"
-msgstr "Het Picture In Picture scherm uitschakelen"
-
-msgid "Close PIP and try again!"
-msgstr "Sluit Pip en probeer het opnieuw!"
 
 msgid "Close title selection"
 msgstr "Sluit titelselectie"
@@ -4541,10 +4547,6 @@ msgid "Copying files"
 msgstr "Kopieert bestanden"
 
 #, python-format
-msgid "Cores:\t\t%s"
-msgstr "Cores:\t\t%s"
-
-#, python-format
 msgid "Cores: %s"
 msgstr "Cores: %s"
 
@@ -4852,6 +4854,9 @@ msgstr "Datum"
 msgid "Date reverse"
 msgstr "Datum omgekeerd"
 
+msgid "Date/time input"
+msgstr "Tijd/datum invoer"
+
 msgid "Dating"
 msgstr "Dating"
 
@@ -5118,6 +5123,9 @@ msgstr "Verwijder taal"
 msgid "Delete Plugins"
 msgstr "Plug-ins en applicaties verwijderen"
 
+msgid "Delete all the text"
+msgstr "Verwijder de tekst"
+
 msgid "Delete and uninstall Plugins. This will remove the Plugin from your box"
 msgstr ""
 "Lijst met geïnstalleerde plug-ins. \n"
@@ -5149,9 +5157,6 @@ msgstr "Verwijder een item uit de afspeellijst"
 
 msgid "Delete saved playlist"
 msgstr "Verwijder een opgeslagen afspeellijst"
-
-msgid "Delete all the text"
-msgstr "Verwijder de tekst"
 
 msgid "Delete the character to the left of text cursor"
 msgstr "Verwijder het karakter links van de cursor"
@@ -5325,7 +5330,7 @@ msgid "Disabled"
 msgstr "Gedeactiveerd"
 
 msgid "Disabled PIP.\n"
-msgstr "PIP uitgeschakeld.\n"
+msgstr "PiP uitgeschakeld.\n"
 
 msgid "Disk full"
 msgstr "Harde schijf vol"
@@ -5898,7 +5903,7 @@ msgid "Enable Network Traffic check"
 msgstr "Activeer Netwerkverkeer controle"
 
 msgid "Enable Quad PIP"
-msgstr "Quad PIP inschakelen"
+msgstr "Quad PiP inschakelen"
 
 msgid "Enable Swap at startup"
 msgstr "Activeer Swap tijdens opstarten"
@@ -6432,7 +6437,7 @@ msgid "External"
 msgstr "Extern"
 
 msgid "External PiP"
-msgstr "Externe PIP"
+msgstr "Externe PiP"
 
 #, python-format
 msgid "External Storage %s"
@@ -6553,6 +6558,9 @@ msgstr "Snel spoelen"
 msgid "Fastforward"
 msgstr "Vooruitspoelen"
 
+msgid "Favorit TV..."
+msgstr "Favoriete TV..."
+
 msgid "Favorites"
 msgstr "Favoriet"
 
@@ -6561,9 +6569,6 @@ msgstr "Favoriet lang"
 
 msgid "Favourites"
 msgstr "Favorieten"
-
-msgid "Favourites (TV)"
-msgstr "Favorieten (TV)"
 
 msgid "Feeds status:   Stable"
 msgstr "Feed status:   Stabiel"
@@ -6873,6 +6878,10 @@ msgstr "USB Voorzijde"
 
 msgid "Front USB 3.0"
 msgstr "Voorzijde USB 3.0"
+
+#, python-format
+msgid "Frontprocessor version:\t%s"
+msgstr "Frontprocessor versie:\t%s"
 
 #, python-format
 msgid "Frontprocessor version: %s"
@@ -7366,6 +7375,9 @@ msgstr "Historisch"
 msgid "History"
 msgstr "Geschiedenis"
 
+msgid "History Zap..."
+msgstr "History Zap..."
+
 msgid "History back"
 msgstr "Geschiedenis vorige <"
 
@@ -7377,9 +7389,6 @@ msgstr "Geschiedenis volgende >"
 
 msgid "History zap..."
 msgstr "Geschiedenis-zap..."
-
-msgid "History Zap..."
-msgstr "History Zap..."
 
 msgid "Hobbys"
 msgstr "Hobby's"
@@ -7754,7 +7763,7 @@ msgid "Inadyn Setup"
 msgstr "Inadyn instellen"
 
 msgid "Incorrect type service for PiP!"
-msgstr "Onjuist service type voor PIP!"
+msgstr "Onjuist zendertype voor PiP!"
 
 msgid "Increase time scale"
 msgstr "Vergroot tijdschaal"
@@ -8263,6 +8272,18 @@ msgstr "LCN plug-in voor DVB-T/T2 services"
 msgid "LCN rules:"
 msgstr "LCN regels:"
 
+msgid "LEFT  -  back to active screen   |    EXIT  -  close right screen"
+msgstr ""
+"PIJL LINKS  -  terug naar het actieve scherm   |    EXIT  -  sluit het "
+"rechter scherm"
+
+msgid ""
+"LEFT  -  change screen   |   RIGHT  -  active status change   |   EXIT  -  "
+"close right screen"
+msgstr ""
+"PIJL LINKS  -  wijzig scherm   |   PIJL RECHTS  -  actief scherm wijziging   "
+"|   EXIT  -  sluit het rechter scherm"
+
 msgid "LNB"
 msgstr "LNB"
 
@@ -8293,6 +8314,10 @@ msgstr "Taalkeuze"
 msgid "Lao People's Democratic Republic"
 msgstr "Laos"
 
+#, python-format
+msgid "Last E2 update:\t\t%s"
+msgstr "Laatste E2 update:\t\t%s"
+
 msgid "Last Req."
 msgstr "Laatste verzoek."
 
@@ -8301,10 +8326,6 @@ msgstr "Laatste configuratie"
 
 msgid "Last speed"
 msgstr "Laatste snelheid"
-
-#, python-format
-msgid "Last update:\t\t%s"
-msgstr "Laatste update:\t\t%s"
 
 #, python-format
 msgid "Last update:\t%s"
@@ -8354,18 +8375,6 @@ msgstr "Links van de zendernaam"
 
 msgid "Left long"
 msgstr "Links lang"
-
-msgid "LEFT  -  back to active screen   |    EXIT  -  close right screen"
-msgstr ""
-"PIJL LINKS  -  terug naar het actieve scherm   |    EXIT  -  sluit het "
-"rechter scherm"
-
-msgid ""
-"LEFT  -  change screen   |   RIGHT  -  active status change   |   EXIT  -  "
-"close right screen"
-msgstr ""
-"PIJL LINKS  -  wijzig scherm   |   PIJL RECHTS  -  actief scherm wijziging   "
-"|   EXIT  -  sluit het rechter scherm"
 
 msgid "Leichtathletik"
 msgstr "Atletiek"
@@ -8824,6 +8833,9 @@ msgstr "Min"
 msgid "Mins Secs"
 msgstr "Minuten seconden"
 
+msgid "Minutes:"
+msgstr "minuten:"
+
 msgid "Miscellaneous"
 msgstr "Diversen"
 
@@ -8972,9 +8984,6 @@ msgstr "Verplaats 1 element"
 
 msgid "Move Left/Right"
 msgstr "Verplaats links/rechts"
-
-msgid "Move PIP"
-msgstr "Verplaats PIP"
 
 msgid "Move PiP to main picture"
 msgstr "Verplaats het PiP beeld naar het hoofdbeeld"
@@ -9742,6 +9751,9 @@ msgstr ""
 msgid "Not mounted"
 msgstr "Niet gemount"
 
+msgid "Not now, but warn me next time"
+msgstr "Nee, niet nu maar vraag mij de volgende keer"
+
 msgid "Not running"
 msgstr "Niet Actief"
 
@@ -9769,9 +9781,6 @@ msgstr "Geen updates beschikbaar"
 
 msgid "Nothing, just leave this menu"
 msgstr "Niets, alleen dit menu verlaten"
-
-msgid "Not now, but warn me next time"
-msgstr "Nee, niet nu maar vraag mij de volgende keer"
 
 msgctxt "now/next: 'now' event label"
 msgid "Now"
@@ -9828,13 +9837,13 @@ msgstr "OEM Model:\t\t%s\n"
 msgid "OK"
 msgstr "Bevestigen"
 
-msgid "OK long"
-msgstr "OK lang"
-
 msgid ""
 "OK - go back to the TV mode  |  EXIT - cancel  |   <  >  -  change usage mode"
 msgstr ""
 "OK - ga terug naar TV  |  EXIT - annuleren  |   <  >  -  wijzig de modus"
+
+msgid "OK long"
+msgstr "OK lang"
 
 msgid "ONID"
 msgstr "ONID"
@@ -9919,6 +9928,9 @@ msgstr "OpenATV via het internet updaten"
 msgid "OnlineVersionCheck"
 msgstr "Controle op update"
 
+msgid "Only Standard"
+msgstr "Alleen standaard"
+
 msgid "Only extensions."
 msgstr "Alleen applicaties"
 
@@ -9931,11 +9943,11 @@ msgstr "Verplaats de schotel alléén met hoge snelheid na dit tijdstip."
 msgid "Only move the dish quickly before this hour."
 msgstr "Verplaats de schotel alléén met hoge snelheid voor dit tijdstip."
 
-msgid "Only provider"
-msgstr "Alleen provider"
-
 msgid "Only on startup"
 msgstr "Enkel na het opstarten"
+
+msgid "Only provider"
+msgstr "Alleen provider"
 
 msgid ""
 "Only select 'yes' if you are using a multiswich that requires a DiSEqC Port-"
@@ -9943,9 +9955,6 @@ msgid ""
 msgstr ""
 "Selecteer alleen 'ja' als u een multiswich gebruikt die een DiSEqC Port-A "
 "commando gebruikt. In alle andere gevallen kiest u 'nee'."
-
-msgid "Only Standard"
-msgstr "Alleen standaard"
 
 msgid "Open"
 msgstr "Open"
@@ -10133,13 +10142,13 @@ msgid "PIDs"
 msgstr "PIDs"
 
 msgid "PIP"
-msgstr "PIP"
+msgstr "PiP"
 
 msgid "PIP long"
-msgstr "PIP lang"
+msgstr "PiP lang"
 
 msgid "PIP with OSD"
-msgstr "PIP met OSD"
+msgstr "PiP met OSD"
 
 msgid "PLP ID"
 msgstr "PLP ID"
@@ -10351,8 +10360,17 @@ msgstr "Filippijnen"
 msgid "PiP"
 msgstr "PiP"
 
+msgid "PiP mode"
+msgstr "PiP modus"
+
 msgid "PiP size and position change"
-msgstr "Wijzig de Pip grootte en positie "
+msgstr "Wijzig de PiP grootte en positie"
+
+msgid "PiP usage Setup"
+msgstr "PiP Gebruikersinstellingen"
+
+msgid "PiPSetup"
+msgstr "PiP instellingen"
 
 msgid "Picon"
 msgstr "Picon"
@@ -10362,9 +10380,6 @@ msgstr "Picon en zendernaam"
 
 msgid "Picon and service name"
 msgstr "Picon en zendernaam"
-
-msgid "Picture in Picture Setup"
-msgstr "Picture In Picture Instellingen"
 
 msgid "Picture player"
 msgstr "Fotospeler"
@@ -10382,23 +10397,14 @@ msgstr "Pillarbox"
 msgid "Pilot"
 msgstr "Navigatie"
 
-msgid "PiP mode"
-msgstr "Pip modus"
-
-msgid "PiP settings"
-msgstr "Pip instellingen"
-
-msgid "PiP size and position save"
-msgstr "Pip afmeting en positie opslaan"
-
-msgid "PiP standard Setup"
-msgstr "PiP standaard instellingen"
-
-msgid "PiP usage Setup"
-msgstr "PiP Gebruikersinstellingen"
-
 msgid "Pitcairn"
 msgstr "Pitcairneilanden"
+
+msgid "Pixel Test"
+msgstr "Pixel test"
+
+msgid "Pixels\n"
+msgstr "Pixels\n"
 
 msgid "Play"
 msgstr "Afspelen"
@@ -10772,10 +10778,9 @@ msgstr "Portugal"
 msgid "Portuguese"
 msgstr "Portugees"
 
-#| msgid ""
-#| "Please use direction keys to move the PiP window.\n"
-#| "Press Bouquet +/- to resize the window.\n"
-#| "Press OK to go back to the TV mode or EXIT to cancel the moving."
+msgid "Position Setup"
+msgstr "Motorinstellingen"
+
 msgid ""
 "Position change:  Use direction keys to move the PiP window\n"
 "Size change:  Channel +/- to resize the window\n"
@@ -10784,9 +10789,6 @@ msgstr ""
 "Positie: gebruik de pijl-toetsen om het PiP venster te verplaatsen\n"
 "Afmeting:  Channel +/- om de afmeting van het venster te wijzigen\n"
 "OK  -  wijzigingen opslaan  |  EXIT  -  annuleren"
-
-msgid "Position Setup"
-msgstr "Motorinstellingen"
 
 msgid "Position stored at index"
 msgstr "Positie opgeslagen in index"
@@ -12302,13 +12304,6 @@ msgstr ""
 "scannen."
 
 msgid ""
-"Select the mode in which the position and size are saved. Changing the "
-"position and size is only possible when using the Standard usage mode!"
-msgstr ""
-"Kies de modus waar in de positie en afmeting worden opgeslagen. Het wijzigen "
-"van de positie en afmeting is alleen mogelijk in de standaard modus!"
-
-msgid ""
 "Select 'yes' if this tuner is connected to the SCR device through another "
 "tuner, otherwise select 'no'."
 msgstr ""
@@ -13023,6 +13018,9 @@ msgstr ""
 msgid "Setting Restored "
 msgstr "Instellingen hersteld "
 
+msgid "Setting by user"
+msgstr "Instelling per gebruiker"
+
 msgid "Settings"
 msgstr "Instellingen"
 
@@ -13402,9 +13400,6 @@ msgstr "Toon multi EPG"
 msgid "Show OE Log"
 msgstr "Toon OE Log"
 
-msgid "Show PIP"
-msgstr "Toon PiP"
-
 msgid "Show PIP in MiniTV"
 msgstr "Toon PiP in MiniTV"
 
@@ -13674,7 +13669,6 @@ msgstr "Naast elkaar"
 msgid "Side by side"
 msgstr "Naast elkaar"
 
-#| msgid "Side by side"
 msgid "Side by side mode"
 msgstr "Naast elkaar modus"
 
@@ -14407,8 +14401,8 @@ msgstr "Swap locatie:"
 msgid "Swap Size:"
 msgstr "Swap grootte:"
 
-msgid "Swap services"
-msgstr "Zenders omwisselen"
+msgid "Swap screen"
+msgstr "Beeldscherm wisselen"
 
 msgid "SwapManager"
 msgstr "Swap beheer"
@@ -15279,13 +15273,6 @@ msgstr "Hier kunt u instellen hoe SD-video moet weergegeven worden op uw TV."
 msgid "This option allows you to enable 3D Surround Sound."
 msgstr "U kunt deze optie gebruiken 3D Surround geluid inschakelen."
 
-msgid ""
-"This option allows you to place the colored buttons (red, green, yellow, "
-"blue) to the first in the Extensions list."
-msgstr ""
-"Met deze optie kunt u de gekleurde knoppen (rood, groen, geel en blauw) "
-"bovenaan in de applicatielijst plaatsen."
-
 msgid "This option allows you to use all HDMI Modes"
 msgstr "Met deze optie kunt u alle HDMI modus gebruiken"
 
@@ -15687,9 +15674,6 @@ msgstr "Schakel HDMI-in vol-sherm modus in/uit"
 msgid "Toggle LCD LiveTV"
 msgstr "Wissel LCD - live TV"
 
-msgid "Toggle PIPzap"
-msgstr "Wissel PiPzap"
-
 msgid "Toggle Picture In Graphics"
 msgstr "Wissel naar Mini-TV"
 
@@ -15985,6 +15969,9 @@ msgstr "Type:"
 
 msgid "Type: "
 msgstr "Type: "
+
+msgid "UHD Test"
+msgstr "UHD test"
 
 msgid "UI 3D setup"
 msgstr "UI 3D Instellingen"
@@ -16540,8 +16527,9 @@ msgid "Version %s %s"
 msgstr "Versie %s %s"
 
 #, python-format
-msgid "Version:\t\t%s"
-msgstr "Versie:\t\t%s"
+#| msgid "Version %s %s"
+msgid "Version / Build:\t\t%s  (%s)"
+msgstr "Versie / Build:\t\t%s  (%s)"
 
 msgid "Version: "
 msgstr "Versie: "
@@ -17012,6 +17000,9 @@ msgstr ""
 "Kies 'Ja' wanneer u verwijderde opnames naar de prullenbak wilt verplaatsen, "
 "anders worden deze direct verwijderd."
 
+msgid "When enabled, network trash cans are probed for cleaning."
+msgstr "Indien geactiveerd, worden netwerk prullenbakken ook opgeschoond."
+
 msgid ""
 "When enabled, your receiver will detect activity on the VCR SCART input."
 msgstr ""
@@ -17200,6 +17191,9 @@ msgstr "Ja"
 
 msgid "Yes to all"
 msgstr "Ja op alles"
+
+msgid "Yes, I'm setting it up now"
+msgstr "Ja, de instellingen nu opslaan"
 
 msgid "Yes, always"
 msgstr "Ja, altijd"
@@ -17741,9 +17735,6 @@ msgstr "start zodadelijk"
 msgid "activate network adapter configuration"
 msgstr "start de netwerkadapter configuratie"
 
-msgid "activatePiP"
-msgstr "activeer PiP"
-
 msgid "add Current"
 msgstr "Huidige toevoegen"
 
@@ -17844,7 +17835,6 @@ msgstr "kunst / cultuur (algemeen)"
 msgid "arts/culture magazine"
 msgstr "kunst / cultuurmagazine"
 
-#, fuzzy
 msgid "as plugin in extended bar"
 msgstr "als plug-in de uitgebreide informatiebalk"
 
@@ -18104,6 +18094,11 @@ msgstr "drivers"
 
 msgid "eMMC"
 msgstr "eMMC"
+
+#, python-format
+#| msgid "CI slot: "
+msgid "eMMC slot %s"
+msgstr "eMMC slot %s"
 
 msgid "eSATA"
 msgstr "eSATA"
@@ -19654,9 +19649,6 @@ msgstr "Verder op de achtergrond"
 msgid "DVD file browser"
 msgstr "DvD bestands verkenner"
 
-msgid "Date/time input"
-msgstr "Tijd/datum invoer"
-
 msgid "Dish"
 msgstr "Schotel"
 
@@ -19719,15 +19711,6 @@ msgstr "Pincode benodigd"
 
 msgid "Parental control services editor"
 msgstr "Kinderslot zenderbewerking"
-
-msgid "PiP-Zap"
-msgstr "PiP-Zap"
-
-msgid "PiPSetup"
-msgstr "PiP instellingen"
-
-msgid "PiPZap"
-msgstr "PiP Zap"
 
 msgid "Plugin browser"
 msgstr "Applicatie overzicht"
@@ -20092,8 +20075,14 @@ msgid "Adjust the vertical position of the letters used for teletext."
 msgstr ""
 "Pas de verticale positie van de letters aan die worden gebruikt in Teletekst."
 
+msgid "Ads filtering mode be default"
+msgstr "Voegt de filtermodus toe als standaard"
+
 msgid "After PowerLost"
 msgstr "Na stroomuitval"
+
+msgid "After this time, the Ads filtering mode should be the default set mode."
+msgstr "Na deze tijd zou de filtermodus de standaard instelling moeten zijn."
 
 msgid "Alignment channel number"
 msgstr "Positie zendernummer"
@@ -20397,6 +20386,9 @@ msgstr ""
 msgid "Choose time interval to which the graphics will be rounded off."
 msgstr "Kies de tijdsinterval waarop de grafische indeling wordt afgerond."
 
+msgid "Choose what you want the PIP mode how to works."
+msgstr "Selecteer welke functie de PiP modus moet hebben."
+
 msgid "Choose what you want the button '0' to do when PIP is active."
 msgstr "Stel hier in wat de '0'-knop moet doen wanneer PiP actief is."
 
@@ -20419,6 +20411,9 @@ msgstr "Toon het TV beeld op het LCD"
 
 msgid "Close PiP on exit"
 msgstr "Sluit PiP met de EXIT-knop"
+
+msgid "Color first in Extensions list"
+msgstr "Gekleurde toetsen bovenaan in Applicatielijst? (Blauw-lang)"
 
 msgid "Composition of the recording filenames"
 msgstr "Samenstelling van de opname bestandsnamen"
@@ -20485,7 +20480,7 @@ msgstr ""
 msgid ""
 "Configure if and how long the latest service in the PiP will be remembered."
 msgstr ""
-"Hier stelt u in of en hoe lang de laatste zender in PIP wordt onthouden.\n"
+"Hier stelt u in of en hoe lang de laatste zender in PiP wordt onthouden.\n"
 "U kunt hier kiezen uit: Gedeactiveerd, Geen timeout of 1-60 minuten."
 
 msgid "Configure if and how service type icons will be shown."
@@ -21749,6 +21744,12 @@ msgstr "Maak een back-up van de instellingen voordat u gaat updaten."
 msgid "Perform an online update check in the background"
 msgstr "Controleer in de achtergrond op updates"
 
+msgid "PiP settings"
+msgstr "PiP instellingen"
+
+msgid "PiP size and position save"
+msgstr "PiP afmeting en positie opslaan"
+
 msgid "Picon width"
 msgstr "Picon breedte"
 
@@ -21977,6 +21978,13 @@ msgstr ""
 "Selecteer de methode voor het herstellen van de schermresolutie en "
 "framebuffer bij het verlaten van Teletekst."
 
+msgid ""
+"Select the mode in which the position and size are saved. Changing the "
+"position and size is only possible when using the Standard usage mode!"
+msgstr ""
+"Kies de modus waar in de positie en afmeting worden opgeslagen. Het wijzigen "
+"van de positie en afmeting is alleen mogelijk in de standaard modus!"
+
 msgid "Select the time zone within the area or region."
 msgstr "Selecteer de tijdzone binnen uw gebied of regio."
 
@@ -22142,9 +22150,6 @@ msgstr "Selecteer welke functie deze knop in de EPG heeft."
 msgid "Set to yes for debugging the root cause of a spinner."
 msgstr ""
 "Zet op Ja, voor debuggen en achterliggende oorzaak van spinner te vinden."
-
-msgid "Setting by user"
-msgstr "Instelling per gebruiker"
 
 msgid "Setup delay mode to zap to channels."
 msgstr "Stel een vertraging in voor het zappen naar een andere zender."
@@ -22479,9 +22484,6 @@ msgstr "Ondertitel taalkeuze 4"
 msgid "Subtitle position"
 msgstr "Verticale positie ondertitels"
 
-msgid "Swap screen"
-msgstr "Beeldscherm wisselen"
-
 msgid "Swap SNR in '%' with SNR in 'db'"
 msgstr "Wissel tussen SNR in dB en %"
 
@@ -22709,6 +22711,13 @@ msgstr ""
 "overzicht.\n"
 "'Door u ingesteld' betekent wijzigen in het menu zelf, met behulp van de "
 "'Wijzig modus' (Blauw)."
+
+msgid ""
+"This option allows you to place the colored buttons (red, green, yellow, "
+"blue) to the first in the Extensions list."
+msgstr ""
+"Met deze optie kunt u de gekleurde knoppen (rood, groen, geel en blauw) "
+"bovenaan in de applicatielijst plaatsen."
 
 msgid "This option allows you to show menu number quick links."
 msgstr ""
@@ -23101,9 +23110,6 @@ msgstr ""
 "gedetecteerd indien deze stopt met draaien. (indien door de tuner "
 "ondersteund)"
 
-msgid "When enabled, network trash cans are probed for cleaning."
-msgstr "Indien geactiveerd, worden netwerk prullenbakken ook opgeschoond."
-
 msgid "When enabled, number markers will be hidden."
 msgstr "Wanneer geactiveerd, zijn de numerieke markeringen niet zichtbaar."
 
@@ -23469,9 +23475,6 @@ msgstr "Waar wilt u een back-up maken van de instellingen?"
 msgid "Yes, backup my settings!"
 msgstr "Ja, een back-up maken van mijn instellingen!"
 
-msgid "Yes, I'm setting it up now"
-msgstr "Ja, de instellingen nu opslaan"
-
 msgid "Yes, restore the settings now"
 msgstr "Ja, de gegevens nu terugplaatsen"
 
@@ -23684,6 +23687,82 @@ msgstr "Tijd tussen afbeeldingen in image viewer slideshow."
 msgid "Time for Slideshow"
 msgstr "Tussentijd voor slideshow afbeeldingen"
 
+#~ msgid "   (1.0 GHz)"
+#~ msgstr "   (1.0 GHz)"
+
+#~ msgid "   (1.3 GHz)"
+#~ msgstr "  (1.3 GHz)"
+
+#~ msgid "   (1.5 GHz)"
+#~ msgstr "   (1.5 GHz)"
+
+#~ msgid "   (1.6 GHz)"
+#~ msgstr "   (1.6 GHz)"
+
+#~ msgid "   (1.7 GHz)"
+#~ msgstr "   (1.7 GHz)"
+
+#~ msgid "   (2.0 GHz)"
+#~ msgstr "   (2.0 GHz)"
+
+#~ msgid "   (2.1 GHz)"
+#~ msgstr "   (2.1 GHz)"
+
+#, python-format
+#~ msgid ""
+#~ "%s\n"
+#~ "Press ok to close"
+#~ msgstr ""
+#~ "%s\n"
+#~ "Druk op OK om te sluiten"
+
+#, python-format
+#~ msgid "%s - %s (%s%d min)"
+#~ msgstr "%s - %s (%s%d min)"
+
+#, python-format
+#~ msgid "Build:\t\t%s"
+#~ msgstr "Build:\t\t%s"
+
+#, python-format
+#~ msgid "CPU:\t\t%s"
+#~ msgstr "CPU:\t\t%s"
+
+#, python-format
+#~ msgid "Cores:\t\t%s"
+#~ msgstr "Cores:\t\t%s"
+
+#~ msgid "Move PIP"
+#~ msgstr "Verplaats PIP"
+
+#~ msgid "Picture in Picture Setup"
+#~ msgstr "Picture In Picture Instellingen"
+
+#~ msgid "PiP standard Setup"
+#~ msgstr "PiP standaard instellingen"
+
+#~ msgid "Show PIP"
+#~ msgstr "Toon PiP"
+
+#~ msgid "Swap services"
+#~ msgstr "Zenders omwisselen"
+
+#~ msgid "Toggle PIPzap"
+#~ msgstr "Wissel PiPzap"
+
+#, python-format
+#~ msgid "Version:\t\t%s"
+#~ msgstr "Versie:\t\t%s"
+
+#~ msgid "activatePiP"
+#~ msgstr "activeer PiP"
+
+#~ msgid "PiP-Zap"
+#~ msgstr "PiP-Zap"
+
+#~ msgid "PiPZap"
+#~ msgstr "PiP Zap"
+
 #~ msgid "When enabled, network trash can's are probed for cleaning."
 #~ msgstr ""
 #~ "Wanneer geactiveerd, dan worden prullenbakken in het netwerk ook leeg "
@@ -23698,9 +23777,6 @@ msgstr "Tussentijd voor slideshow afbeeldingen"
 
 #~ msgid "%-H:%M - "
 #~ msgstr "%-H:%M - "
-
-#~ msgid "%A %e %b"
-#~ msgstr "%A %e %b"
 
 #, python-format
 #~ msgid "%s build date %s"
