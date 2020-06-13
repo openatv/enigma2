@@ -248,7 +248,7 @@ class CronTimers(Screen):
 			mysel = self['list'].getCurrent()
 			if mysel:
 				myline = mysel[1]
-				file('/etc/cron/crontabs/root.tmp', 'w').writelines([l for l in file('/etc/cron/crontabs/root').readlines() if myline not in l])
+				open('/etc/cron/crontabs/root.tmp', 'w').writelines([l for l in open('/etc/cron/crontabs/root').readlines() if myline not in l])
 				rename('/etc/cron/crontabs/root.tmp', '/etc/cron/crontabs/root')
 				rc = system('crontab /etc/cron/crontabs/root -c /etc/cron/crontabs')
 				self.updateList()

@@ -167,7 +167,7 @@ class NetworkAdapterSelection(Screen, HelpableScreen):
 			unlink("/etc/default_gw")
 
 		if os_path.exists("/etc/default_gw"):
-			fp = file('/etc/default_gw', 'r')
+			fp = open('/etc/default_gw', 'r')
 			result = fp.read()
 			fp.close()
 			default_gw = result

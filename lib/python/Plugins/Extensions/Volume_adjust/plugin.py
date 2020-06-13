@@ -193,7 +193,7 @@ class Volume_adjust(Screen):
 		global ListChange
 		ListChange = True
 		try:
-			fp = file(self.filename, 'w')
+			fp = open(self.filename, 'w')
 			fp.write("<?xml version=\"1.0\" encoding=\"utf-8\" ?>\n")
 			fp.write("<adjustlist>\n")
 			fp.write("\t<channels>\n")

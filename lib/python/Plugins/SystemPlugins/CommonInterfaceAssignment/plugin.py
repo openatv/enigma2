@@ -249,7 +249,7 @@ class CIconfigMenu(Screen):
 
 	def saveXML(self):
 		try:
-			fp = file(self.filename, 'w')
+			fp = open(self.filename, 'w')
 			fp.write("<?xml version=\"1.0\" encoding=\"utf-8\" ?>\n")
 			fp.write("<ci>\n")
 			fp.write("\t<slot>\n")

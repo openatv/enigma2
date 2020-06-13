@@ -151,7 +151,7 @@ class brcmWLConfig:
 		wepkeytype = config.plugins.wlan.wepkeytype.value
 		psk = config.plugins.wlan.psk.value
 		
-		fp = file(getWlanConfigName(iface), 'wb')
+		fp = open(getWlanConfigName(iface), 'w')
 		
 		fp.write('ssid='+essid+'\n')
 		if encryption in ('WPA', 'WPA2', 'WPA/WPA2', 'WEP'):
@@ -269,7 +269,7 @@ class wpaSupplicant:
 		wepkeytype = config.plugins.wlan.wepkeytype.value
 		psk = config.plugins.wlan.psk.value
 
-		fp = file(getWlanConfigName(iface), 'w')
+		fp = open(getWlanConfigName(iface), 'w')
 		fp.write('#WPA Supplicant Configuration by enigma2\n')
 		fp.write('ctrl_interface=/var/run/wpa_supplicant\n')
 		fp.write('eapol_version=1\n')
@@ -316,7 +316,7 @@ class wpaSupplicant:
 		try:
 			#parse the wpasupplicant configfile
 			print("[Wlan.py] parsing configfile: ", configfile)
-			fp = file(configfile, 'r')
+			fp = open(configfile, 'r')
 			supplicant = fp.readlines()
 			fp.close()
 			essid = None

@@ -203,14 +203,14 @@ class HddMount(Screen):
 		mypixmap = '/usr/lib/enigma2/python/Plugins/Extensions/Infopanel/icons/dev_usbstick.png'
 		if device2.startswith('mmcblk'):
 			try:
-				model = file('/sys/block/' + device2 + '/device/name').read()
+				model = open('/sys/block/' + device2 + '/device/name').read()
 			except:
 				model = ''
 			mypixmap = '/usr/lib/enigma2/python/Plugins/Extensions/Infopanel/icons/dev_mmc.png'
 			name = 'MMC: '
 		else:
 			try:
-				model = file('/sys/block/' + device2 + '/device/model').read()
+				model = open('/sys/block/' + device2 + '/device/model').read()
 			except:
 				model = ''
 		model = str(model).replace('\n', '')
@@ -267,7 +267,7 @@ class HddMount(Screen):
 					des = _("Size: ") + str(size / 1024) + _("MB")
 			else:
 				try:
-					size = file('/sys/block/' + device2 + '/' + device + '/size').read()
+					size = open('/sys/block/' + device2 + '/' + device + '/size').read()
 					size = str(size).replace('\n', '')
 					size = int(size)
 				except:
@@ -355,11 +355,11 @@ class HddMount(Screen):
 		self.device_uuid = 'UUID=' + self.device_uuid_tmp
 		if not path.exists(self.mountp):
 			mkdir(self.mountp, 0o755)
-		file('/etc/fstab.tmp', 'w').writelines([l for l in file('/etc/fstab').readlines() if '/media/hdd' not in l])
+		open('/etc/fstab.tmp', 'w').writelines([l for l in open('/etc/fstab').readlines() if '/media/hdd' not in l])
 		rename('/etc/fstab.tmp', '/etc/fstab')
-		file('/etc/fstab.tmp', 'w').writelines([l for l in file('/etc/fstab').readlines() if self.device not in l])
+		open('/etc/fstab.tmp', 'w').writelines([l for l in open('/etc/fstab').readlines() if self.device not in l])
 		rename('/etc/fstab.tmp', '/etc/fstab')
-		file('/etc/fstab.tmp', 'w').writelines([l for l in file('/etc/fstab').readlines() if self.device_uuid not in l])
+		open('/etc/fstab.tmp', 'w').writelines([l for l in open('/etc/fstab').readlines() if self.device_uuid not in l])
 		rename('/etc/fstab.tmp', '/etc/fstab')
 		out = open('/etc/fstab', 'a')
 		line = self.device_uuid + '\t/media/hdd\tauto\tdefaults\t0 0\n'
@@ -519,11 +519,11 @@ class DevicePanelConf(Screen, ConfigListScreen):
 		name = 'USB: '
 		mypixmap = '/usr/lib/enigma2/python/Plugins/Extensions/Infopanel/icons/dev_usbstick.png'
 		if device2.startswith('mmcblk'):
-			model = file('/sys/block/' + device2 + '/device/name').read()
+			model = open('/sys/block/' + device2 + '/device/name').read()
 			mypixmap = '/usr/lib/enigma2/python/Plugins/Extensions/Infopanel/icons/dev_mmc.png'
 			name = 'MMC: '
 		else:
-			model = file('/sys/block/' + device2 + '/device/model').read()
+			model = open('/sys/block/' + device2 + '/device/model').read()
 		model = str(model).replace('\n', '')
 		des = ''
 		print("test:") 
@@ -556,7 +556,7 @@ class DevicePanelConf(Screen, ConfigListScreen):
 					des = _("Size: ") + str(size / 1024) + _("MB")
 			else:
 				try:
-					size = file('/sys/block/' + device2 + '/' + device + '/size').read()
+					size = open('/sys/block/' + device2 + '/' + device + '/size').read()
 					size = str(size).replace('\n', '')
 					size = int(size)
 				except:
@@ -653,9 +653,9 @@ class DevicePanelConf(Screen, ConfigListScreen):
 
 		if not path.exists(self.mountp):
 			mkdir(self.mountp, 0o755)
-		file('/etc/fstab.tmp', 'w').writelines([l for l in file('/etc/fstab').readlines() if self.device not in l])
+		open('/etc/fstab.tmp', 'w').writelines([l for l in file('/etc/fstab').readlines() if self.device not in l])
 		rename('/etc/fstab.tmp', '/etc/fstab')
-		file('/etc/fstab.tmp', 'w').writelines([l for l in file('/etc/fstab').readlines() if self.device_uuid not in l])
+		open('/etc/fstab.tmp', 'w').writelines([l for l in file('/etc/fstab').readlines() if self.device_uuid not in l])
 		rename('/etc/fstab.tmp', '/etc/fstab')
 		out = open('/etc/fstab', 'a')
 		line = self.device_uuid + '\t' + self.mountp + '\t' + self.device_type + '\tdefaults\t0 0\n'
