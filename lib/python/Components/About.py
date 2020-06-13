@@ -154,10 +154,10 @@ def getCpuCoresString():
 		return "unavailable"
 
 def _ifinfo(sock, addr, ifname):
-	iface = struct.pack('256s', ifname[:15])
+	iface = struct.pack('256s', bytes(ifname[:15], 'utf-8'))
 	info  = fcntl.ioctl(sock.fileno(), addr, iface)
 	if addr == 0x8927:
-		return ''.join(['%02x:' % ord(char) for char in info[18:24]])[:-1].upper()
+		return ''.join(['%02x:' % ord(chr(char)) for char in info[18:24]])[:-1].upper()
 	else:
 		return socket.inet_ntoa(info[20:24])
 
