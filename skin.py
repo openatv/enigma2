@@ -85,7 +85,7 @@ def InitSkins():
 			try:
 				print('[RESTORE_SKIN] restore skin from "%s" ...' % skin)
 				skinpath, ext = path.splitext(skin)
-				if skinpath == lastpath or not ext in '.py*':
+				if skinpath == lastpath or not ext in ('.py', '.pyc', '.pyo'):
 					print('[RESTORE_SKIN] ...skip!')
 					continue
 				lastpath = skinpath
