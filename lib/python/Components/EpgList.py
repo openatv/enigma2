@@ -15,7 +15,6 @@ from Components.config import config
 from ServiceReference import ServiceReference
 from Tools.Directories import resolveFilename, SCOPE_ACTIVE_SKIN
 from Tools.TextBoundary import getTextBoundarySize
-from six.moves import range
 
 EPG_TYPE_SINGLE = 0
 EPG_TYPE_MULTI = 1
@@ -400,7 +399,7 @@ class EPGList(HTMLComponent, GUIComponent):
 
 	def getIndexFromService(self, serviceref):
 		if serviceref is not None:
-			for x in range(len(self.list)):
+			for x in list(range(len(self.list))):
 				if CompareWithAlternatives(self.list[x][0], serviceref.toString()):
 					return x
 				if CompareWithAlternatives(self.list[x][1], serviceref.toString()):
@@ -1745,7 +1744,7 @@ class TimelineText(HTMLComponent, GUIComponent):
 					backcolor = backColor,
 					border_width = self.borderWidth, border_color = self.borderColor))
 
-			for x in range(0, num_lines):
+			for x in list(range(0, num_lines)):
 				ttime = localtime(time_base + (x*timeStepsCalc))
 				if (self.type == EPG_TYPE_GRAPH and config.epgselection.graph_timeline24h.value) or (self.type == EPG_TYPE_INFOBARGRAPH and config.epgselection.infobar_timeline24h.value):
 					timetext = strftime("%H:%M", localtime(time_base + x*timeStepsCalc))
@@ -1766,7 +1765,7 @@ class TimelineText(HTMLComponent, GUIComponent):
 				line.setPosition(xpos + eventLeft, old_pos[1])
 				line.visible = True
 				xpos += incWidth
-			for x in range(num_lines, MAX_TIMELINES):
+			for x in list(range(num_lines, MAX_TIMELINES)):
 				time_lines[x].visible = False
 			self.l.setList([res])
 			self.time_base = time_base
@@ -1865,7 +1864,7 @@ class EPGBouquetList(HTMLComponent, GUIComponent):
 
 	def getIndexFromService(self, serviceref):
 		if serviceref is not None:
-			for x in range(len(self.bouquetslist)):
+			for x in list(range(len(self.bouquetslist))):
 				if CompareWithAlternatives(self.bouquetslist[x][1].toString(), serviceref.toString()):
 					return x
 		return 0

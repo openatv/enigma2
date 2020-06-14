@@ -41,7 +41,7 @@ class LCN():
 		if lcn == 0:
 			return
 		
-		for i in range(0, len(self.lcnlist)):
+		for i in list(range(0, len(self.lcnlist))):
 			if self.lcnlist[i][0] == lcn:
 				if self.lcnlist[i][5] > signal:
 					self.addLcnToList(namespace, nid, tsid, sid, lcn + 16536, signal)

@@ -12,7 +12,6 @@ from time import time
 import Screens.Standby
 
 from sys import maxsize
-from six.moves import range
 
 config.hdmicec = ConfigSubsection()
 config.hdmicec.enabled = ConfigYesNo(default = False) # query from this value in hdmi_cec.cpp
@@ -50,7 +49,7 @@ for i in (10, 50, 100, 150, 250, 500, 750, 1000):
 	choicelist.append(("%d" % i, _("%d ms") % i))
 config.hdmicec.minimum_send_interval = ConfigSelection(default = "250", choices = [("0", _("Disabled"))] + choicelist)
 choicelist = []
-for i in range(1, 6):
+for i in list(range(1, 6)):
 	choicelist.append(("%d" % i, _("%d times") % i))
 config.hdmicec.messages_repeat = ConfigSelection(default = "0", choices = [("0", _("Disabled"))] + choicelist)
 config.hdmicec.messages_repeat_standby = ConfigYesNo(default = False)
@@ -1062,7 +1061,7 @@ class HdmiCec:
 		txt = "<%s:> " %type
 		tmp = "%02X " %address
 		tmp += "%02X " %cmd
-		for i in range(length):
+		for i in list(range(length)):
 			tmp += "%02X " % ord(data[i])
 		if cmdmsg:
 			self.CECcmdline(tmp)
@@ -1107,7 +1106,7 @@ class HdmiCec:
 						s = 1
 						txt += CECdat.get(cmd, "").get(ord(data[0]), "<unknown>")
 					txt += "<"
-					for i in range(s, length):
+					for i in list(range(s, length)):
 						txt += "%s" %data[i]
 					txt += ">"
 				else:

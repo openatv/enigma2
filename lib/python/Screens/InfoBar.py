@@ -40,8 +40,6 @@ from Components.ServiceEventTracker import ServiceEventTracker, InfoBarBase
 profile("LOAD:HelpableScreen")
 from Screens.HelpMenu import HelpableScreen
 
-from six.moves import range
-
 
 class InfoBar(InfoBarBase, InfoBarShowHide,
 	InfoBarNumberZap, InfoBarChannelSelection, InfoBarMenu, InfoBarEPG, InfoBarRdsDecoder,
@@ -431,7 +429,7 @@ def setAudioTrack(service):
 		if not nTracks: return
 		idx = 0
 		trackList = []
-		for i in range(nTracks):
+		for i in list(range(nTracks)):
 			audioInfo = tracks.getTrackInfo(i)
 			lang = audioInfo.getLanguage()
 			if lang in langC:

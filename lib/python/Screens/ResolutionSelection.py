@@ -36,7 +36,7 @@ class ResolutionSelection(Screen):
 
 		mode = open("/proc/stb/video/videomode").read()[:-1] 
 		print(mode) 
-		for x in range(len(tlist)): 
+		for x in list(range(len(tlist))):
 			if tlist[x][1] == mode: 
 				selection = x
 

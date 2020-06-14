@@ -192,20 +192,20 @@ class CronTimers(Screen):
 				if len(parts)>5 and not parts[0].startswith("#"):
 					if parts[1] == '*':
 						line2 = 'H: 00:' + parts[0].zfill(2) + '\t'
-						for i in range(5, len(parts)):
+						for i in list(range(5, len(parts))):
 							line2 = line2 + parts[i] + ' '
 						res = (line2, line)
 						self.list.append(res)
 					elif parts[2] == '*' and parts[4] == '*':
 						line2 = 'D: ' + parts[1].zfill(2) + ':' + parts[0].zfill(2) + '\t'
-						for i in range(5, len(parts)):
+						for i in list(range(5, len(parts))):
 							line2 = line2 + parts[i] + ' '
 						res = (line2, line)
 						self.list.append(res)
 					elif parts[3] == '*':
 						if parts[4] == "*":
 							line2 = 'M:  Day ' + parts[2] + '  ' + parts[1].zfill(2) + ':' + parts[0].zfill(2) + '\t'
-							for i in range(5, len(parts)):
+							for i in list(range(5, len(parts))):
 								line2 = line2 + parts[i] + ' '
 						header = 'W:  '
 						day = ""
@@ -226,7 +226,7 @@ class CronTimers(Screen):
 
 						if day:
 							line2 = header + day + parts[1].zfill(2) + ':' + parts[0].zfill(2) + '\t'
-							for i in range(5, len(parts)):
+							for i in list(range(5, len(parts))):
 								line2 = line2 + parts[i] + ' '
 						res = (line2, line)
 						self.list.append(res)

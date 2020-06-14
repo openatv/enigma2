@@ -23,7 +23,7 @@ class CIHelper:
 				Len = len(definitions)
 				return Len > 0 and definitions[Len-1].text or default
 
-			for ci in range(NUM_CI):
+			for ci in list(range(NUM_CI)):
 				filename = eEnv.resolve("${sysconfdir}/enigma2/ci") + str(ci) + ".xml"
 
 				if not os.path.exists(filename):
@@ -110,7 +110,7 @@ class CIHelper:
 			no_ci = eDVBCIInterfaces.getInstance().getNumOfSlots()
 			if no_ci > 0:
 				self.CI_MULTIDESCRAMBLE = False
-				for ci in range(no_ci):
+				for ci in list(range(no_ci)):
 					appname = eDVBCI_UI.getInstance().getAppName(ci)
 					if appname in self.CI_MULTIDESCRAMBLE_MODULES:
 						self.CI_MULTIDESCRAMBLE = True

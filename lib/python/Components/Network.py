@@ -337,7 +337,7 @@ class Network:
 
 	def changeNameserver(self, oldnameserver, newnameserver):
 		if oldnameserver in self.nameservers:
-			for i in range(len(self.nameservers)):
+			for i in list(range(len(self.nameservers))):
 				if self.nameservers[i] == oldnameserver:
 					self.nameservers[i] = newnameserver
 

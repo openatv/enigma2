@@ -4919,7 +4919,7 @@ class InfoBarAspectSelection:
 	def aspectSelection(self):
 		selection = 0
 		tlist= [(_("Resolution"), "resolution"), ("--", ""), (_("4_3_letterbox"), "0"), (_("4_3_panscan"), "1"), (_("16_9"), "2"), (_("16_9_always"), "3"), (_("16_10_letterbox"), "4"), (_("16_10_panscan"), "5"), (_("16_9_letterbox"), "6")]
-		for x in range(len(tlist)):
+		for x in list(range(len(tlist))):
 			selection = x
 		keys = ["green", "",  "0", "1", "2", "3", "4", "5", "6", "7", "8", "9" ]
 		self.session.openWithCallback(self.aspectSelected, ChoiceBox, title=_("Please select an aspect ratio..."), list = tlist, selection = selection, keys = keys)
@@ -4993,7 +4993,7 @@ class InfoBarResolutionSelection:
 
 		mode = open("/proc/stb/video/videomode").read()[:-1]
 		print(mode)
-		for x in range(len(tlist)):
+		for x in list(range(len(tlist))):
 			if tlist[x][1] == mode:
 				selection = x
 

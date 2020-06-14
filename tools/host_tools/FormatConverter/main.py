@@ -23,7 +23,7 @@ for source in datasources:
 while True:
 	os.system("/usr/bin/clear")
 	list = []
-	for index in range(len(datasources)):
+	for index in list(range(len(datasources))):
 		list.append(datasources[index].getName() + (" (%d sats)" % len(datasources[index].transponderlist.keys())))
 	index = inputChoices(list, "q", "quit")
 	if index is None:

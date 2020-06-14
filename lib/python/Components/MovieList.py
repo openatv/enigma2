@@ -183,7 +183,7 @@ class MovieList(GUIComponent):
 
 		self.onSelectionChanged = [ ]
 		self.iconPart = []
-		for part in range(5):
+		for part in list(range(5)):
 			self.iconPart.append(LoadPixmap(resolveFilename(SCOPE_ACTIVE_SKIN, "icons/part_%d_4.png" % part)))
 		self.iconMovieRec = LoadPixmap(resolveFilename(SCOPE_ACTIVE_SKIN, "icons/part_new.png"))
 		self.iconMoviePlay = LoadPixmap(resolveFilename(SCOPE_ACTIVE_SKIN, "icons/movie_play.png"))

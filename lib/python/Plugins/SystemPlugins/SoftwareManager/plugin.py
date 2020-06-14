@@ -2330,7 +2330,7 @@ class IpkgInstaller(Screen):
 			title = list[0][:p]
 			self.title = ("%s %s %s") % (_("Install extensions"), _("from"), title)
 
-		for listindex in range(len(list)):
+		for listindex in list(range(len(list))):
 			self.list.addSelection(list[listindex][p+1:], list[listindex], listindex, False)
 		self.list.sort()
 

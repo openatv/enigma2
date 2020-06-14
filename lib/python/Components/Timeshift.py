@@ -1002,7 +1002,7 @@ class InfoBarTimeshift:
 
 		if timeshiftEnabled:
 			if isSeekable:
-				for i in range(self.pts_currplaying, self.pts_eventcount + 1):
+				for i in list(range(self.pts_currplaying, self.pts_eventcount + 1)):
 					lockedFiles.append(("pts_livebuffer_%s") % i)
 			else:
 				if not self.event_changed:
@@ -1016,15 +1016,15 @@ class InfoBarTimeshift:
 				print("[TIMESHIFT] - error reading disk space - function 'checking for free space' can't used")
 
 		if freespace < int(config.timeshift.timeshiftCheckFreeSpace.value):
-			for i in range(1, self.pts_eventcount + 1):
+			for i in list(range(1, self.pts_eventcount + 1)):
 				removeFiles.append(("pts_livebuffer_%s") % i)
 			print("[TIMESHIFT] - less than %s MByte disk space available - try to the deleting all unused timeshift files" % config.timeshift.timeshiftCheckFreeSpace.value)
 		elif self.pts_eventcount - config.timeshift.timeshiftMaxEvents.value >= 0:
 			if self.event_changed or len(lockedFiles) == 0:
-				for i in range(1, self.pts_eventcount - config.timeshift.timeshiftMaxEvents.value + 2):
+				for i in list(range(1, self.pts_eventcount - config.timeshift.timeshiftMaxEvents.value + 2)):
 					removeFiles.append(("pts_livebuffer_%s") % i)
 			else:
-				for i in range(1, self.pts_eventcount - config.timeshift.timeshiftMaxEvents.value + 1):
+				for i in list(range(1, self.pts_eventcount - config.timeshift.timeshiftMaxEvents.value + 1)):
 					removeFiles.append(("pts_livebuffer_%s") % i)
 
 		for filename in os.listdir(config.usage.timeshift_path.value):

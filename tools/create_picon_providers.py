@@ -48,11 +48,11 @@ while len(f) > 2:
 	filename = filename.replace('\n', '')
 	provider = provider.replace('\n', '')
 
-	for i in range(len(filename)):
+	for i in list(range(len(filename))):
 		if ord(filename[i]) > 127:
 			filename = filename[0:i] + '_' + filename[i + 1:]
 
-	for i in range(len(provider)):
+	for i in list(range(len(provider))):
 		if ord(provider[i]) > 127:
 			provider = provider[0:i] + '_' + provider[i + 1:]
 

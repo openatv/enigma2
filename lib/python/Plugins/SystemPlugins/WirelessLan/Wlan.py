@@ -37,7 +37,7 @@ class Wlan:
 		self.oldInterfaceState = None
 
 		a = ''; b = ''
-		for i in range(0, 255):
+		for i in list(range(0, 255)):
 			a += chr(i)
 			if i < 32 or i > 127:
 				b += ' '
