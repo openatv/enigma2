@@ -2,15 +2,16 @@ from __future__ import absolute_import
 from Components.MenuList import MenuList
 
 class FIFOList(MenuList):
-	def __init__(self, menulist=None, length=10):
-		if not menulist: menulist = []
-		self.list = menulist
-		self.len = length
+	def __init__(self, list = [ ], len = 10):
+		self.len = len
+		self.list = list
 		MenuList.__init__(self, self.list)
+
 
 	def addItem(self, item):
 		self.list.append(item)
-		self.l.setList(self.list[-self.len:])
+		self.list = self.list[-self.len:]
+		self.l.setList(self.list)
 
 	def clear(self):
 		del self.list[:]
