@@ -906,14 +906,13 @@ class AdapterSetupConfiguration(Screen, HelpableScreen):
 
 	def queryWirelessDevice(self, iface):
 		try:
-			from pythonwifi.iwlibs import Wireless
+			from wifi.scan import Cell
 			import errno
 		except ImportError:
 			return False
 		else:
 			try:
-				ifobj = Wireless(iface) # a Wireless NIC Object
-				wlanresponse = ifobj.getAPaddr()
+				wlanresponse = list(Cell.all(iface))
 			except IOError as xxx_todo_changeme:
 				(error_no, error_str) = xxx_todo_changeme.args
 				if error_no in (errno.EOPNOTSUPP, errno.ENODEV, errno.EPERM):
@@ -922,7 +921,7 @@ class AdapterSetupConfiguration(Screen, HelpableScreen):
 					print("error: ", error_no, error_str)
 					return True
 			else:
-				return True
+		return True
 
 	def ok(self):
 		self.cleanup()

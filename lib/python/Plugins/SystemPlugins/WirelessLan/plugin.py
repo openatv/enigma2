@@ -20,42 +20,51 @@ from .Wlan import iWlan, iStatus, getWlanConfigName
 plugin_path = eEnv.resolve("${libdir}/enigma2/python/Plugins/SystemPlugins/WirelessLan")
 
 
-list = ["Unencrypted", "WEP", "WPA", "WPA/WPA2", "WPA2"]
+liste = ["Unencrypted", "WEP", "WPA", "WPA/WPA2", "WPA2"]
 
 weplist = ["ASCII", "HEX"]
 
 config.plugins.wlan = ConfigSubsection()
 config.plugins.wlan.essid = NoSave(ConfigText(default = "", fixed_size = False))
 config.plugins.wlan.hiddenessid = NoSave(ConfigYesNo(default = False))
-config.plugins.wlan.encryption = NoSave(ConfigSelection(list, default = "WPA2"))
+config.plugins.wlan.encryption = NoSave(ConfigSelection(liste, default = "WPA2"))
 config.plugins.wlan.wepkeytype = NoSave(ConfigSelection(weplist, default = "ASCII"))
 config.plugins.wlan.psk = NoSave(ConfigPassword(default = "", fixed_size = False))
 
 
 class WlanStatus(Screen):
 	skin = """
-		<screen name="WlanStatus" position="center,center" size="560,400" title="Wireless network status" >
+		<screen name="WlanStatus" position="center,center" size="560,430" title="Wireless network status" >
 			<ePixmap pixmap="skin_default/buttons/red.png" position="0,0" size="140,40" alphatest="on" />
 			<widget source="key_red" render="Label" position="0,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#9f1313" transparent="1" />
 
 			<widget source="LabelBSSID" render="Label" position="10,60" size="200,25" valign="left" font="Regular;20" transparent="1" foregroundColor="#FFFFFF" />
-			<widget source="LabelESSID" render="Label" position="10,100" size="200,25" valign="center" font="Regular;20" transparent="1" foregroundColor="#FFFFFF" />
-			<widget source="LabelQuality" render="Label" position="10,140" size="200,25" valign="center" font="Regular;20" transparent="1" foregroundColor="#FFFFFF" />
-			<widget source="LabelSignal" render="Label" position="10,180" size="200,25" valign="center" font="Regular;20" transparent="1" foregroundColor="#FFFFFF" />
-			<widget source="LabelBitrate" render="Label" position="10,220" size="200,25" valign="center" font="Regular;20" transparent="1" foregroundColor="#FFFFFF" />
-			<widget source="LabelEnc" render="Label" position="10,260" size="200,25" valign="center" font="Regular;20" transparent="1" foregroundColor="#FFFFFF" />
-			<widget source="BSSID" render="Label" position="220,60" size="330,25" valign="center" font="Regular;20" transparent="1" foregroundColor="#FFFFFF" />
-			<widget source="ESSID" render="Label" position="220,100" size="330,25" valign="center" font="Regular;20" transparent="1" foregroundColor="#FFFFFF" />
-			<widget source="quality" render="Label" position="220,140" size="330,25" valign="center" font="Regular;20" transparent="1" foregroundColor="#FFFFFF" />
-			<widget source="signal" render="Label" position="220,180" size="330,25" valign="center" font="Regular;20" transparent="1" foregroundColor="#FFFFFF" />
-			<widget source="bitrate" render="Label" position="220,220" size="330,25" valign="center" font="Regular;20" transparent="1" foregroundColor="#FFFFFF" />
-			<widget source="enc" render="Label" position="220,260" size="330,25" valign="center" font="Regular;20" transparent="1" foregroundColor="#FFFFFF" />
+			<widget source="LabelESSID" render="Label" position="10,90" size="200,25" valign="center" font="Regular;20" transparent="1" foregroundColor="#FFFFFF" />
+			<widget source="LabelQuality" render="Label" position="10,120" size="200,25" valign="center" font="Regular;20" transparent="1" foregroundColor="#FFFFFF" />
+			<widget source="LabelChannel" render="Label" position="10,150" size="200,25" valign="center" font="Regular;20" transparent="1" foregroundColor="#FFFFFF" />
+			<widget source="LabelFrequency" render="Label" position="10,180" size="200,25" valign="center" font="Regular;20" transparent="1" foregroundColor="#FFFFFF" />
+			<widget source="LabelFrequencyNorm" render="Label" position="10,210" size="200,25" valign="center" font="Regular;20" transparent="1" foregroundColor="#FFFFFF" />
+			<widget source="LabelSignal" render="Label" position="10,240" size="200,25" valign="center" font="Regular;20" transparent="1" foregroundColor="#FFFFFF" />
+			<widget source="LabelBitrate" render="Label" position="10,270" size="200,25" valign="center" font="Regular;20" transparent="1" foregroundColor="#FFFFFF" />
+			<widget source="LabelEnc" render="Label" position="10,300" size="200,25" valign="center" font="Regular;20" transparent="1" foregroundColor="#FFFFFF" />
+			<widget source="LabelEncType" render="Label" position="10,330" size="200,25" valign="center" font="Regular;20" transparent="1" foregroundColor="#FFFFFF" />
 
-			<ePixmap pixmap="skin_default/div-h.png" position="0,350" zPosition="1" size="560,2" />
-			<widget source="IFtext" render="Label" position="10,355" size="120,21" zPosition="10" font="Regular;20" halign="left" backgroundColor="#25062748" transparent="1" />
-			<widget source="IF" render="Label" position="120,355" size="400,21" zPosition="10" font="Regular;20" halign="left" backgroundColor="#25062748" transparent="1" />
-			<widget source="Statustext" render="Label" position="10,375" size="115,21" zPosition="10" font="Regular;20" halign="left" backgroundColor="#25062748" transparent="1"/>
-			<widget name="statuspic" pixmaps="skin_default/buttons/button_green.png,skin_default/buttons/button_green_off.png" position="130,380" zPosition="10" size="15,16" transparent="1" alphatest="on"/>
+			<widget source="BSSID" render="Label" position="220,60" size="330,25" valign="center" font="Regular;20" transparent="1" foregroundColor="#FFFFFF" />
+			<widget source="ESSID" render="Label" position="220,90" size="330,25" valign="center" font="Regular;20" transparent="1" foregroundColor="#FFFFFF" />
+			<widget source="quality" render="Label" position="220,120" size="330,25" valign="center" font="Regular;20" transparent="1" foregroundColor="#FFFFFF" />
+			<widget source="channel" render="Label" position="220,150" size="330,25" valign="center" font="Regular;20" transparent="1" foregroundColor="#FFFFFF" />
+			<widget source="frequency" render="Label" position="220,180" size="330,25" valign="center" font="Regular;20" transparent="1" foregroundColor="#FFFFFF" />
+			<widget source="frequency_norm" render="Label" position="220,210" size="330,25" valign="center" font="Regular;20" transparent="1" foregroundColor="#FFFFFF" />
+			<widget source="signal" render="Label" position="220,240" size="330,25" valign="center" font="Regular;20" transparent="1" foregroundColor="#FFFFFF" />
+			<widget source="bitrate" render="Label" position="220,270" size="330,25" valign="center" font="Regular;20" transparent="1" foregroundColor="#FFFFFF" />
+			<widget source="enc" render="Label" position="220,300" size="330,25" valign="center" font="Regular;20" transparent="1" foregroundColor="#FFFFFF" />
+			<widget source="encryption_type" render="Label" position="220,330" size="330,25" valign="center" font="Regular;20" transparent="1" foregroundColor="#FFFFFF" />
+
+			<ePixmap pixmap="skin_default/div-h.png" position="0,370" zPosition="1" size="560,2" />
+			<widget source="IFtext" render="Label" position="10,375" size="120,21" zPosition="10" font="Regular;20" halign="left" backgroundColor="#25062748" transparent="1" />
+			<widget source="IF" render="Label" position="120,375" size="400,21" zPosition="10" font="Regular;20" halign="left" backgroundColor="#25062748" transparent="1" />
+			<widget source="Statustext" render="Label" position="10,395" size="115,21" zPosition="10" font="Regular;20" halign="left" backgroundColor="#25062748" transparent="1"/>
+			<widget name="statuspic" pixmaps="skin_default/buttons/button_green.png,skin_default/buttons/button_green_off.png" position="130,400" zPosition="10" size="15,16" transparent="1" alphatest="on"/>
 		</screen>"""
 
 	def __init__(self, session, iface):
@@ -70,12 +79,22 @@ class WlanStatus(Screen):
 		self["LabelBitrate"] = StaticText(_('Bitrate:'))
 		self["LabelEnc"] = StaticText(_('Encryption:'))
 
+		self["LabelChannel"] = StaticText(_('Channel:'))
+		self["LabelEncType"] = StaticText(_('Encryption Type:'))
+		self["LabelFrequency"] = StaticText(_('Frequency:'))
+		self["LabelFrequencyNorm"] = StaticText(_('Frequency Norm:'))
+
 		self["BSSID"] = StaticText()
 		self["ESSID"] = StaticText()
 		self["quality"] = StaticText()
 		self["signal"] = StaticText()
 		self["bitrate"] = StaticText()
 		self["enc"] = StaticText()
+
+		self["channel"] = StaticText()
+		self["encryption_type"] = StaticText()
+		self["frequency"] = StaticText()
+		self["frequency_norm"] = StaticText()
 
 		self["IFtext"] = StaticText()
 		self["IF"] = StaticText()
@@ -133,11 +152,11 @@ class WlanStatus(Screen):
 					if status[self.iface]["bitrate"] == '0':
 						bitrate = _("Unsupported")
 					else:
-						bitrate = str(status[self.iface]["bitrate"]) + " Mb/s"
+						bitrate = str(status[self.iface]["bitrate"])
 					if "bitrate" in self:
 						self["bitrate"].setText(bitrate)
 
-					signal = status[self.iface]["signal"]
+					signal = str(status[self.iface]["signal"]) + " dBm" 
 					if "signal" in self:
 						self["signal"].setText(signal)
 
@@ -150,6 +169,23 @@ class WlanStatus(Screen):
 						encryption = _("Enabled")
 					if "enc" in self:
 						self["enc"].setText(encryption)
+
+					channel = str(status[self.iface]["channel"])
+					if "channel" in self:
+						self["channel"].setText(channel)
+
+					encryption_type = status[self.iface]["encryption_type"]
+					if "encryption_type" in self:
+						self["encryption_type"].setText(encryption_type)
+
+					frequency = status[self.iface]["frequency"]
+					if "frequency" in self:
+						self["frequency"].setText(frequency)
+
+					frequency_norm = status[self.iface]["frequency_norm"]
+					if "frequency_norm" in self:
+						self["frequency_norm"].setText(frequency_norm)
+
 					self.updateStatusLink(status)
 
 	def exit(self):
@@ -164,6 +200,10 @@ class WlanStatus(Screen):
 		self["signal"].setText(wait_txt)
 		self["bitrate"].setText(wait_txt)
 		self["enc"].setText(wait_txt)
+		self["channel"].setText(wait_txt)
+		self["encryption_type"].setText(wait_txt)
+		self["frequency"].setText(wait_txt)
+		self["frequency_norm"].setText(wait_txt)
 		self["IFtext"].setText(_("Network:"))
 		self["IF"].setText(iNetwork.getFriendlyAdapterName(self.iface))
 		self["Statustext"].setText(_("Link:"))
@@ -175,7 +215,6 @@ class WlanStatus(Screen):
 			else:
 				self["statuspic"].setPixmapNum(0)
 			self["statuspic"].show()
-
 
 class WlanScan(Screen):
 	skin = """
@@ -191,6 +230,7 @@ class WlanScan(Screen):
 					{"template": [
 							MultiContentEntryText(pos = (0, 0), size = (550, 30), font=0, flags = RT_HALIGN_LEFT, text = 0), # index 0 is the essid
 							MultiContentEntryText(pos = (0, 30), size = (175, 20), font=1, flags = RT_HALIGN_LEFT, text = 5), # index 5 is the interface
+							MultiContentEntryText(pos = (245, 0), size = (200, 20), font=1, flags = RT_HALIGN_LEFT, text = 6), # index 6 is the frequency_norm
 							MultiContentEntryText(pos = (175, 30), size = (175, 20), font=1, flags = RT_HALIGN_LEFT, text = 4), # index 0 is the encryption
 							MultiContentEntryText(pos = (350, 0), size = (200, 20), font=1, flags = RT_HALIGN_LEFT, text = 2), # index 0 is the signal
 							MultiContentEntryText(pos = (350, 30), size = (200, 20), font=1, flags = RT_HALIGN_LEFT, text = 3), # index 0 is the maxrate
@@ -276,9 +316,9 @@ class WlanScan(Screen):
 		self.rescanTimer.stop()
 		self.updateAPList()
 
-	def buildEntryComponent(self, essid, bssid, encrypted, iface, maxrate, signal):
+	def buildEntryComponent(self, essid, bssid, encrypted, iface, maxrate, signal, frequency_norm):
 		encryption = encrypted and _("Yes") or _("No")
-		return essid, bssid, _("Signal: ") + str(signal), _("Max. bitrate: ") + str(maxrate), _("Encrypted: ") + encryption, _("Interface: ") + str(iface), self.divpng
+		return essid, bssid, _("Signal: ") + str(signal), _("Max. bitrate: ") + str(maxrate), _("Encrypted: ") + encryption, _("Interface: ") + str(iface), frequency_norm, self.divpng
 
 	def updateAPList(self):
 		newList = []
@@ -296,7 +336,7 @@ class WlanScan(Screen):
 
 		if len(tmpList):
 			for entry in tmpList:
-				self.newAPList.append(self.buildEntryComponent( entry[0], entry[1], entry[2], entry[3], entry[4], entry[5] ))
+				self.newAPList.append(self.buildEntryComponent( entry[0], entry[1], entry[2], entry[3], entry[4], entry[5],entry[6] ))
 
 			currentListEntry = self["list"].getCurrent()
 			if currentListEntry is not None:
@@ -325,7 +365,7 @@ class WlanScan(Screen):
 				a = aps[ap]
 				if a['active']:
 					tmpList.append( (a['essid'], a['bssid']) )
-					compList.append( (a['essid'], a['bssid'], a['encrypted'], a['iface'], a['maxrate'], a['signal']) )
+					compList.append( (a['essid'], a['bssid'], a['encrypted'], a['iface'], a['maxrate'], a['signal'], a['frequency_norm']) )
 
 			for entry in tmpList:
 				if entry[0] == "":
@@ -333,14 +373,14 @@ class WlanScan(Screen):
 						if compentry[1] == entry[1]:
 							compList.remove(compentry)
 			for entry in compList:
-				self.cleanList.append( ( entry[0], entry[1], entry[2], entry[3], entry[4], entry[5] ) )
+				self.cleanList.append( ( entry[0], entry[1], entry[2], entry[3], entry[4], entry[5], entry[6]) )
 				if entry[0] not in self.oldlist:
 					self.oldlist[entry[0]] = { 'data': entry }
 				else:
 					self.oldlist[entry[0]]['data'] = entry
 
 		for entry in self.cleanList:
-			self.APList.append(self.buildEntryComponent( entry[0], entry[1], entry[2], entry[3], entry[4], entry[5] ))
+			self.APList.append(self.buildEntryComponent( entry[0], entry[1], entry[2], entry[3], entry[4], entry[5], entry[6] ))
 
 		if refresh is False:
 			self['list'].setList(self.APList)

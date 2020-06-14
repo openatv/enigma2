@@ -597,12 +597,23 @@ class SystemNetworkInfo(Screen):
 		self["LabelSignal"] = StaticText()
 		self["LabelBitrate"] = StaticText()
 		self["LabelEnc"] = StaticText()
+
+		self["LabelChannel"] = StaticText(_('Channel:'))
+		self["LabelEncType"] = StaticText(_('Encryption Type:'))
+		self["LabelFrequency"] = StaticText(_('Frequency:'))
+		self["LabelFrequencyNorm"] = StaticText(_('Frequency Norm:'))
+
 		self["BSSID"] = StaticText()
 		self["ESSID"] = StaticText()
 		self["quality"] = StaticText()
 		self["signal"] = StaticText()
 		self["bitrate"] = StaticText()
 		self["enc"] = StaticText()
+
+		self["channel"] = StaticText()
+		self["encryption_type"] = StaticText()
+		self["frequency"] = StaticText()
+		self["frequency_norm"] = StaticText()
 
 		self["IFtext"] = StaticText()
 		self["IF"] = StaticText()
@@ -752,14 +763,26 @@ class SystemNetworkInfo(Screen):
 						if "quality" in self:
 							self.AboutText += _('Link Quality:') + '\t' + quality + '\n'
 
+						channel = str(status[self.iface]["channel"])
+						if "channel" in self:
+							self.AboutText += _('Channel:') + '\t' + channel + '\n'
+
+						frequency = status[self.iface]["frequency"]
+						if "frequency" in self:
+							self.AboutText += _('Frequency:') + '\t' + frequency + '\n'
+
+						frequency_norm = status[self.iface]["frequency_norm"]
+						if "frequency_norm" in self:
+							self.AboutText += _('Frequency Norm:') + '\t' + frequency_norm + '\n'
+
 						if status[self.iface]["bitrate"] == '0':
 							bitrate = _("Unsupported")
 						else:
-							bitrate = str(status[self.iface]["bitrate"]) + " Mb/s"
+							bitrate = str(status[self.iface]["bitrate"])
 						if "bitrate" in self:
 							self.AboutText += _('Bitrate:') + '\t' + bitrate + '\n'
 
-						signal = str(status[self.iface]["signal"])
+						signal = str(status[self.iface]["signal"]) + " dBm"
 						if "signal" in self:
 							self.AboutText += _('Signal Strength:') + '\t' + signal + '\n'
 
@@ -772,6 +795,10 @@ class SystemNetworkInfo(Screen):
 							encryption = _("Enabled")
 						if "enc" in self:
 							self.AboutText += _('Encryption:') + '\t' + encryption + '\n'
+
+						encryption_type = status[self.iface]["encryption_type"]
+						if "encryption_type" in self:
+							self.AboutText += _('Encryption Type:') + '\t' + encryption_type + '\n'
 
 						if status[self.iface]["essid"] == "off" or status[self.iface]["accesspoint"] == "Not-Associated" or status[self.iface]["accesspoint"] is False:
 							self.LinkState = False
