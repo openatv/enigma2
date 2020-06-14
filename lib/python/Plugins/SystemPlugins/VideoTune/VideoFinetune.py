@@ -1,3 +1,4 @@
+from __future__ import division
 from Screens.Screen import Screen
 from Components.config import config
 from Components.Sources.CanvasSource import CanvasSource
@@ -187,7 +188,7 @@ class VideoFinetune(Screen):
 		c.fill(0, 0, xres, yres, RGB(0, 0, 0))
 
 		for i in list(range(15)):
-			col = i * 116 / 14
+			col = i * 116 // 14
 			height = yres / 3
 			eh = height / 8
 			offset = yres/6 + eh * i
