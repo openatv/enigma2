@@ -332,7 +332,7 @@ class Harddisk:
 		zero = 512 * '\0'
 		h = open(self.dev_path, 'wb')
 		# delete first 9 sectors, which will likely kill the first partition too
-		for i in range(9):
+		for i in list(range(9)):
 			h.write(zero)
 		h.close()
 
@@ -340,7 +340,7 @@ class Harddisk:
 		zero = 512 * '\0'
 		part = self.partitionPath(n)
 		h = open(part, 'wb')
-		for i in range(3):
+		for i in list(range(3)):
 			h.write(zero)
 		h.close()
 

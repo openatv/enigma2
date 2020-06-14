@@ -198,7 +198,7 @@ class AudioSelection(Screen, ConfigListScreen):
 					self.settings.channelmode.addNotifier(self.changeMode, initial_call = False)
 					conflist.append(getConfigListEntry(_("Audio Channel"), self.settings.channelmode, None))
 				selectedAudio = self.audioTracks.getCurrentTrack()
-				for x in range(n):
+				for x in list(range(n)):
 					number = str(x + 1)
 					i = audio.getTrackInfo(x)
 					languages = i.getLanguage().split('/')

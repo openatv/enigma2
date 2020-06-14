@@ -20,14 +20,14 @@ class FanControl:
 		config.misc.standbyCounter.addNotifier(self.standbyCounterChanged, initial_call = False)
 
 	def setVoltage_PWM(self):
-		for fanid in range(self.getFanCount()):
+		for fanid in list(range(self.getFanCount())):
 			cfg = self.getConfig(fanid)
 			self.setVoltage(fanid, cfg.vlt.value)
 			self.setPWM(fanid, cfg.pwm.value)
 			print("[FanControl]: setting fan values: fanid = %d, voltage = %d, pwm = %d" % (fanid, cfg.vlt.value, cfg.pwm.value))
 
 	def setVoltage_PWM_Standby(self):
-		for fanid in range(self.getFanCount()):
+		for fanid in list(range(self.getFanCount())):
 			cfg = self.getConfig(fanid)
 			self.setVoltage(fanid, cfg.vlt_standby.value)
 			self.setPWM(fanid, cfg.pwm_standby.value)
@@ -63,7 +63,7 @@ class FanControl:
 			fancontrol.setPWM(fanid, configElement.value)
 
 		config.fans = ConfigSubList()
-		for fanid in range(self.getFanCount()):
+		for fanid in list(range(self.getFanCount())):
 			fan = ConfigSubsection()
 			fan.vlt = ConfigSlider(default = 15, increment = 5, limits = (0, 255))
 			if getBoxType() == 'tm2t':

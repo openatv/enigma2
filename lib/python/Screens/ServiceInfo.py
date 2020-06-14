@@ -217,7 +217,7 @@ class ServiceInfo(Screen):
 		trackList = []
 		if self.numberofTracks:
 			currentTrack = self.audio.getCurrentTrack()
-			for i in range(0, self.numberofTracks):
+			for i in list(range(0, self.numberofTracks)):
 				audioDesc = self.audio.getTrackInfo(i).getDescription()
 				audioPID = self.audio.getTrackInfo(i).getPID()
 				audioLang = self.audio.getTrackInfo(i).getLanguage()
@@ -374,7 +374,7 @@ class ServiceInfo(Screen):
 						break
 				if caid[2]:
 					if CaIdDescription == "Seca":
-						provid = ",".join([caid[2][i:i+4] for i in range(0, len(caid[2]), 30)])
+						provid = ",".join([caid[2][i:i+4] for i in list(range(0, len(caid[2]), 30))])
 					if CaIdDescription == "Nagra":
 						provid = caid[2][-4:]
 					if CaIdDescription == "Via":

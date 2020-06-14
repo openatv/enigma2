@@ -11,7 +11,6 @@ import time
 from hashlib import md5
 import struct
 
-from six.moves import range
 from six.moves import urllib
 
 
@@ -91,7 +90,7 @@ def f(z):
     add = [0, 0xd, 0x10, 0xb, 0x5]
 
     b = []
-    for i in range(len(idx)):
+    for i in list(range(len(idx))):
         a = add[i]
         m = mul[i]
         i = idx[i]
@@ -181,7 +180,7 @@ def read_mdvd(list, fps):
                 time2 = int(time1) + 20
             subt.append(int(time2) / fps)
             texts = m.group(3).strip().split("|")
-            for i in range(len(texts)):
+            for i in list(range(len(texts))):
                 text = texts[i]
                 if text.lower().startswith('{c:') or text.lower().startswith('{y:'):
                     end_marker = text.index('}')
@@ -227,7 +226,7 @@ def read_sub2(list):
                 subt.append(int(m.group(5)) * 3600 + int(m.group(6)) * 60 + int(m.group(7)) + int(m.group(8)) / 100.0)
                 l = list.pop(0).strip()
                 lines = l.split("[br]")
-                for i in range(0, len(lines)):
+                for i in list(range(0, len(lines))):
                     subt.append(lines[i])
                 subtitles.append(subt)
     except IndexError:
@@ -280,7 +279,7 @@ def read_tmp(list):
 
     times = subs.keys()
     times.sort()
-    for i in range(0, len(times)):
+    for i in list(range(0, len(times))):
         next_time = 1
         while (times[i] + next_time) not in subs and next_time < 4:
             next_time = next_time + 1
@@ -312,7 +311,7 @@ def to_srt(list):
 
 
 def sub_fix_times(sub):
-    for i in range(len(sub) - 2):
+    for i in list(range(len(sub) - 2)):
         approx = min(1 + (len(" ".join(sub[i][2:])) / 10), 9.9)                 # 10 char per second
 #       print sub[i][0],sub[i][1], sub[i][1] - sub[i][0], approx
         if (sub[i + 1][0] <= sub[i][0]):

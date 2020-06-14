@@ -6,7 +6,6 @@ import sys
 import re
 import json
 
-from six.moves import range
 from six.moves.urllib.error import URLError
 from six.moves.urllib.parse import urlencode
 from six.moves.urllib.request import urlopen
@@ -45,7 +44,7 @@ def get_woeid_from_yahoo(search_string):
 
 	woeid_data = {}
 	woeid_data['count'] = yahoo_woeid_result['query']['count']
-	for i in range(yahoo_woeid_result['query']['count']):
+	for i in list(range(yahoo_woeid_result['query']['count'])):
 		try:
 			place_data = result[i]
 		except KeyError:

@@ -50,12 +50,12 @@ def MenuEntryPixmap(entryID, png_cache, lastMenuID):
 
 def MenuEntryName(name):
 	def splitUpperCase(name, maxlen):
-		for c in range(len(name), 0, -1):
+		for c in list(range(len(name), 0, -1)):
 			if name[c-1].isupper() and c-1 and c-1 <= maxlen:
 				return name[:c-1] + "-:-" + name[c-1:]
 		return name
 	def splitLowerCase(name, maxlen):
-		for c in range(len(name), 0, -1):
+		for c in list(range(len(name), 0, -1)):
 			if name[c-1].islower() and c-1 and c-1 <= maxlen:
 				return name[:c-1] + "-:-" + name[c-1:]
 		return name
@@ -75,7 +75,7 @@ def MenuEntryName(name):
 			tmp = splitLowerCase(name, maxlen).split("-:-", 1)
 			if len(tmp[0]) > len(namesplit[0]) or len(namesplit) < 2:
 				namesplit = tmp
-		for x in range(1, maxrow):
+		for x in list(range(1, maxrow)):
 			if len(namesplit) > x and len(namesplit) < maxrow and len(namesplit[x]) > maxlen:
 				tmp = splitName(namesplit[x], maxlen)
 				if len(tmp) == 1 or (len(tmp) == 2 and len(tmp[1]) > maxlen * (maxrow-x)):

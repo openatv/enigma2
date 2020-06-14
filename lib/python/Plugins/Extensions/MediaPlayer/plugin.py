@@ -962,7 +962,7 @@ class MediaPlayer(Screen, InfoBarBase, InfoBarScreenSaver, InfoBarSeek, InfoBarA
 
 	def playServiceRefEntry(self, serviceref):
 		serviceRefList = self.playlist.getServiceRefList()
-		for count in range(len(serviceRefList)):
+		for count in list(range(len(serviceRefList))):
 			if serviceRefList[count] == serviceref:
 				self.changeEntry(count)
 				break

@@ -26,7 +26,6 @@ from ServiceReference import ServiceReference
 from enigma import pNavigation, eDVBFrontend
 import subprocess, threading
 import six
-from six.moves import range
 
 
 # ok, for descriptions etc we have:
@@ -899,13 +898,13 @@ class RecordTimerEntry(timer.TimerEntry, object):
 				wd_timer = datetime.fromtimestamp(self.begin).isoweekday()*-1
 				wd_repeated = bin(128+int(self.repeated))
 
-				for s in range(wd_timer-1, -8, -1):
+				for s in list(range(wd_timer-1, -8, -1)):
 					count_day +=1
 					if int(wd_repeated[s]):
 						next_day = s
 						break
 				if next_day == 0:
-					for s in range(-1, wd_timer-1, -1):
+					for s in list(range(-1, wd_timer-1, -1)):
 						count_day +=1
 						if int(wd_repeated[s]):
 							next_day = s
