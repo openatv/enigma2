@@ -226,7 +226,7 @@ class NumericalTextInput:
 			locale = LOCALES.get(language.getLanguage(), None)
 			if locale is not None and index in list(range(0, 6)):
 				index = index % 3
-				for num in list(range(0, 10))
+				for num in list(range(0, 10)):
 					if locale[num][index] is not None:
 						self.mapping[num] = locale[num][index]
 			self.mapping = tuple(self.mapping)

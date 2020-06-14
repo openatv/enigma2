@@ -1355,7 +1355,7 @@ def InitUsageConfig():
 		if config.autolanguage.subtitle_autoselect3.value:
 			choicelist.append((str(y+1), _("All")))
 		config.autolanguage.equal_languages.setChoices(choicelist, default="0")
-	config.autolanguage.equal_languages = ConfigSelection(default="0", choices=[str(x) for x in list(range(0, 16)]))
+	config.autolanguage.equal_languages = ConfigSelection(default="0", choices=[str(x) for x in list(range(0, 16))])
 	config.autolanguage.subtitle_autoselect1 = ConfigSelection(choices=subtitle_language_choices, default="")
 	config.autolanguage.subtitle_autoselect2 = ConfigSelection(choices=subtitle_language_choices, default="")
 	config.autolanguage.subtitle_autoselect3 = ConfigSelection(choices=subtitle_language_choices, default="")
