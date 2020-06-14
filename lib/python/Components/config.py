@@ -2138,7 +2138,7 @@ configfile = ConfigFile()
 configfile.load()
 
 def getConfigListEntry(*args):
-	assert len(args) > 1, "getConfigListEntry needs a minimum of two arguments (descr, configElement)"
+	assert len(args) > 0, "getConfigListEntry needs a minimum of one argument (descr)"
 	return args
 
 def updateConfigElement(element, newelement):
