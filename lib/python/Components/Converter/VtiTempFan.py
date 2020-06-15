@@ -42,7 +42,7 @@ class VtiTempFan(Poll, Converter, object):
             f = open('/proc/stb/sensors/temp0/unit', 'rb')
             unit = f.readline().strip()
             f.close()
-            tempinfo = 'TEMP: ' + str(temp) + ' \xc2\xb0' + str(unit)
+            tempinfo = 'TEMP: ' + str(temp) + ' \xb0' + str(unit)
             return tempinfo
         except:
             pass

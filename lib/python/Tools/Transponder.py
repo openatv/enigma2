@@ -1,3 +1,5 @@
+#!/usr/bin/python
+# -*- coding: utf-8 -*-
 from __future__ import print_function
 from enigma import eDVBFrontendParametersSatellite, eDVBFrontendParametersCable, eDVBFrontendParametersTerrestrial, eDVBFrontendParametersATSC
 from Components.NimManager import nimmanager
@@ -13,10 +15,10 @@ def getTunerDescription(nim):
 	return ""
 
 def getMHz(frequency):
-	if str(frequency).endswith('MHz'):
-		return float(frequency.split()[0])
 	return (frequency+50000)/100000/10.
 
+# Note: newly added region add into ImportChannels to getTerrestrialRegion()
+#	due using for fallback tuner too
 def getChannelNumber(frequency, nim):
 	if nim == "DVB-T":
 		for n in nimmanager.nim_slots:
@@ -33,6 +35,8 @@ def getChannelNumber(frequency, nim):
 			elif 470 <= f < 863: 	# IV,V
 				d = (f + 2) % 8
 				return str(int(f - 470) / 8 + 21) + (d < 3.5 and "-" or d > 4.5 and "+" or "")
+		elif "Zealand" in descr and 506 <= f <= 700:
+			return str(int(f - 506) / 8 + 25)
 		elif "Australia" in descr:
 			d = (f + 1) % 7
 			ds = (d < 3 and "-" or d > 4 and "+" or "")
@@ -58,7 +62,19 @@ def channel2frequency(channel, nim):
 			return (177500 + 7000*(channel- 5))*1000
 		elif 21 <= channel <= 69:
 			return (474000 + 8000*(channel-21))*1000
-	return 474000000
+	elif "Zealand" in descr and 25 <= channel <= 50:
+			return (506000 + 8000 * (int(channel) - 25)) * 1000
+	else:	# Australian rules
+		res = 474000000
+		if channel != "9A":
+			ch = int(channel)
+			if 6 <= ch <= 9:
+				res = (177500 + 7000 * (ch - 6)) * 1000
+			elif 10 <= ch <= 12:
+				res = (212500 + 7000 * (ch - 10)) * 1000
+			elif 28 <= ch <= 69:
+				res = (529500 + 7000 * (ch - 28)) * 1000
+		return res
 
 def ConvertToHumanReadable(tp, tunertype = None):
 	ret = { }
@@ -105,8 +121,6 @@ def ConvertToHumanReadable(tp, tunertype = None):
 		ret["system"] = {
 			eDVBFrontendParametersSatellite.System_DVB_S : "DVB-S",
 			eDVBFrontendParametersSatellite.System_DVB_S2 : "DVB-S2"}.get(tp.get("system"))
-		ret["frequency"] = (tp.get("frequency") and ('%s MHz' % str(tp.get("frequency")/1000.))) or '0 MHz'
-		ret["symbol_rate"] = (tp.get("symbol_rate") and tp.get("symbol_rate")/1000) or 0
 		if ret["system"] == "DVB-S2":
 			ret["rolloff"] = {
 				eDVBFrontendParametersSatellite.RollOff_alpha_0_35 : "0.35",
@@ -155,7 +169,6 @@ def ConvertToHumanReadable(tp, tunertype = None):
 		ret["system"] = {
 			eDVBFrontendParametersCable.System_DVB_C_ANNEX_A : "DVB-C",
 			eDVBFrontendParametersCable.System_DVB_C_ANNEX_C : "DVB-C ANNEX C"}.get(tp.get("system"))
-		ret["frequency"] = (tp.get("frequency") and str(tp.get("frequency")/1000) + ' MHz') or '0 MHz'
 	elif tunertype == "DVB-T":
 		ret["tuner_type"] = _("Terrestrial")
 		ret["bandwidth"] = {
@@ -166,7 +179,6 @@ def ConvertToHumanReadable(tp, tunertype = None):
 			6000000 : "6 MHz",
 			5000000 : "5 MHz",
 			1712000 : "1.712 MHz"}.get(tp.get("bandwidth"))
-		#print 'bandwidth:',tp.get("bandwidth")
 		ret["code_rate_lp"] = {
 			eDVBFrontendParametersTerrestrial.FEC_Auto : _("Auto"),
 			eDVBFrontendParametersTerrestrial.FEC_1_2 : "1/2",
@@ -178,7 +190,6 @@ def ConvertToHumanReadable(tp, tunertype = None):
 			eDVBFrontendParametersTerrestrial.FEC_6_7 : "6/7",
 			eDVBFrontendParametersTerrestrial.FEC_7_8 : "7/8",
 			eDVBFrontendParametersTerrestrial.FEC_8_9 : "8/9"}.get(tp.get("code_rate_lp"))
-		#print 'code_rate_lp:',tp.get("code_rate_lp")
 		ret["code_rate_hp"] = {
 			eDVBFrontendParametersTerrestrial.FEC_Auto : _("Auto"),
 			eDVBFrontendParametersTerrestrial.FEC_1_2 : "1/2",
@@ -190,14 +201,12 @@ def ConvertToHumanReadable(tp, tunertype = None):
 			eDVBFrontendParametersTerrestrial.FEC_6_7 : "6/7",
 			eDVBFrontendParametersTerrestrial.FEC_7_8 : "7/8",
 			eDVBFrontendParametersTerrestrial.FEC_8_9 : "8/9"}.get(tp.get("code_rate_hp"))
-		#print 'code_rate_hp:',tp.get("code_rate_hp")
 		ret["constellation"] = {
 			eDVBFrontendParametersTerrestrial.Modulation_Auto : _("Auto"),
 			eDVBFrontendParametersTerrestrial.Modulation_QPSK : "QPSK",
 			eDVBFrontendParametersTerrestrial.Modulation_QAM16 : "QAM16",
 			eDVBFrontendParametersTerrestrial.Modulation_QAM64 : "QAM64",
 			eDVBFrontendParametersTerrestrial.Modulation_QAM256 : "QAM256"}.get(tp.get("constellation"))
-		#print 'constellation:',tp.get("constellation")
 		ret["transmission_mode"] = {
 			eDVBFrontendParametersTerrestrial.TransmissionMode_Auto : _("Auto"),
 			eDVBFrontendParametersTerrestrial.TransmissionMode_1k : "1k",
@@ -206,7 +215,6 @@ def ConvertToHumanReadable(tp, tunertype = None):
 			eDVBFrontendParametersTerrestrial.TransmissionMode_8k : "8k",
 			eDVBFrontendParametersTerrestrial.TransmissionMode_16k : "16k",
 			eDVBFrontendParametersTerrestrial.TransmissionMode_32k : "32k"}.get(tp.get("transmission_mode"))
-		#print 'transmission_mode:',tp.get("transmission_mode")
 		ret["guard_interval"] = {
 			eDVBFrontendParametersTerrestrial.GuardInterval_Auto : _("Auto"),
 			eDVBFrontendParametersTerrestrial.GuardInterval_19_256 : "19/256",
@@ -216,26 +224,20 @@ def ConvertToHumanReadable(tp, tunertype = None):
 			eDVBFrontendParametersTerrestrial.GuardInterval_1_16 : "1/16",
 			eDVBFrontendParametersTerrestrial.GuardInterval_1_8 : "1/8",
 			eDVBFrontendParametersTerrestrial.GuardInterval_1_4 : "1/4"}.get(tp.get("guard_interval"))
-		#print 'guard_interval:',tp.get("guard_interval")
 		ret["hierarchy_information"] = {
 			eDVBFrontendParametersTerrestrial.Hierarchy_Auto : _("Auto"),
 			eDVBFrontendParametersTerrestrial.Hierarchy_None : _("None"),
 			eDVBFrontendParametersTerrestrial.Hierarchy_1 : "1",
 			eDVBFrontendParametersTerrestrial.Hierarchy_2 : "2",
 			eDVBFrontendParametersTerrestrial.Hierarchy_4 : "4"}.get(tp.get("hierarchy_information"))
-		#print 'hierarchy_information:',tp.get("hierarchy_information")
 		ret["inversion"] = {
 			eDVBFrontendParametersTerrestrial.Inversion_Unknown : _("Auto"),
 			eDVBFrontendParametersTerrestrial.Inversion_On : _("On"),
 			eDVBFrontendParametersTerrestrial.Inversion_Off : _("Off")}.get(tp.get("inversion"))
-		#print 'inversion:',tp.get("inversion")
 		ret["system"] = {
 			eDVBFrontendParametersTerrestrial.System_DVB_T_T2 : "DVB-T/T2",
 			eDVBFrontendParametersTerrestrial.System_DVB_T : "DVB-T",
 			eDVBFrontendParametersTerrestrial.System_DVB_T2 : "DVB-T2"}.get(tp.get("system"))
-#		print 'system:',tp.get("system")
-		ret["frequency"] = (tp.get("frequency") and ('%s MHz' % str(tp.get("frequency")/1000000.))) or '0 MHz'
-#		print 'frequency:',tp.get("frequency")
 		ret["channel"] = _("CH%s") % getChannelNumber(tp.get("frequency"), "DVB-T")
 	elif tunertype == "ATSC":
 		ret["tuner_type"] = "ATSC"
@@ -256,7 +258,7 @@ def ConvertToHumanReadable(tp, tunertype = None):
 			eDVBFrontendParametersATSC.System_ATSC : "ATSC",
 			eDVBFrontendParametersATSC.System_DVB_C_ANNEX_B : "DVB-C ANNEX B"}.get(tp.get("system"))
 	elif tunertype != "None":
-		print("ConvertToHumanReadable: no or unknown tunertype in tpdata dict for tunertype:", tunertype)
+		print("[Transponder] ConvertToHumanReadable: no or unknown tunertype in tpdata dict for tunertype:", tunertype)
 	for k, v in tp.items():
 		if k not in ret:
 			ret[k] = v
