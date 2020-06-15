@@ -394,17 +394,15 @@ class Status:
 
 	def iwconfigFinished(self, result, retval, extra_args):
 		iface = extra_args
+		ssid = "off"
 		data = { 'essid': False, 'frequency': False, 'accesspoint': False, 'bitrate': False, 'encryption': False, 'quality': False, 'signal': False, 'channel': False, 'encryption_type': False, 'frequency': False, 'frequency_norm': False }
 		for line in result.splitlines():
 			line = line.strip()
 			if "ESSID" in line:
-				if "off/any" in line:
-					ssid = "off"
+				if "Nickname" in line:
+					ssid=(line[line.index('ESSID')+7:line.index('"  Nickname')])
 				else:
-					if "Nickname" in line:
-						ssid=(line[line.index('ESSID')+7:line.index('"  Nickname')])
-					else:
-						ssid=(line[line.index('ESSID')+7:len(line)-1])
+					ssid=(line[line.index('ESSID')+7:len(line)-1])
 				if ssid is not None:
 					data['essid'] = ssid
 			if "Access Point" in line:
