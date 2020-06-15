@@ -921,7 +921,7 @@ class AdapterSetupConfiguration(Screen, HelpableScreen):
 					print("error: ", error_no, error_str)
 					return True
 			else:
-		return True
+				return True
 
 	def ok(self):
 		self.cleanup()
