@@ -1858,7 +1858,7 @@ def InitNimManager(nimmgr, update_slots=None):
 
 			def fillUnicableConf(sectionDict, unicableproducts, vco_null_check):
 				for manufacturer in unicableproducts:
-					products = unicableproducts[manufacturer].keys()
+					products = list(unicableproducts[manufacturer].keys())
 					products.sort()
 					products_valide = []
 					products_valide_append = products_valide.append
