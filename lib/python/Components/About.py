@@ -60,19 +60,19 @@ def getChipSetString():
 
 def getCPUSpeedString():
 	if getMachineBuild() in ('u41','u42','u43'):
-		return "1,0 GHz"
+		return _("1,0 GHz")
 	elif getMachineBuild() in ('dags72604','vusolo4k','vuultimo4k', 'vuzero4k', 'gb72604'):
-		return "1,5 GHz"
+		return _("1,5 GHz")
 	elif getMachineBuild() in ('formuler1tc','formuler1', 'triplex', 'tiviaraplus'):
-		return "1,3 GHz"
+		return _("1,3 GHz")
 	elif getMachineBuild() in ('gbmv200','u51','u52','u53','u532','u533','u54','u55','u56','u5','u5pvr','h9','h9combo','h10','cc1','sf8008','sf8008m','hd60','hd61','i55plus','ustym4kpro','beyonwizv2','viper4k','v8plus','multibox'):
-		return "1,6 GHz"
+		return _("1,6 GHz")
 	elif getMachineBuild() in ('vuuno4kse','vuuno4k','dm900','dm920', 'gb7252', 'dags7252','xc7439','8100s'):
-		return "1,7 GHz"
+		return _("1,7 GHz")
 	elif getMachineBuild() in ('alien5',):
-		return "2,0 GHz"
+		return _("2,0 GHz")
 	elif getMachineBuild() in ('vuduo4k',):
-		return "2,1 GHz"
+		return _("2,1 GHz")
 	elif getMachineBuild() in ('hd51','hd52','sf4008','vs1500','et1x000','h7','et13000','sf5008','osmio4k','osmio4kplus','osmini4k'):
 		try:
 			import binascii
@@ -85,7 +85,7 @@ def getCPUSpeedString():
 			else:
 				return _("%s MHz") % str(round(CPUSpeed_Int,1))
 		except:
-			return "1,7 GHz"
+			return _("1,7 GHz")
 	else:
 		try:
 			file = open('/proc/cpuinfo', 'r')
