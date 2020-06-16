@@ -5,7 +5,7 @@ from threading import Thread, current_thread
 from sys import _current_frames
 from traceback import extract_stack
 from time import sleep
-from Components.config import config, ConfigYesNo
+from Components.config import config
 
 class StackTracePrinter(Thread):
 	@classmethod
@@ -35,7 +35,7 @@ class StackTracePrinter(Thread):
 					print("StackTrace")
 					code = []
 					code.append("========== Stacktrace of active Python threads ===========")
-					for threadId, stack in _current_frames().items():
+					for threadId, stack in list(_current_frames().items()):
 						if (threadId != current_thread().ident):
 							if (threadId == self.MainThread_ident):
 								code.append("========== MainThread 0x%08x =========================" % threadId)

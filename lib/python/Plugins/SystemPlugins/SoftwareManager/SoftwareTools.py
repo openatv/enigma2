@@ -261,11 +261,11 @@ class SoftwareTools(PackageInfoHandler):
 		self.ipkg.stop()
 		if self.Console is not None:
 			if len(self.Console.appContainers):
-				for name in self.Console.appContainers.keys():
+				for name in list(self.Console.appContainers.keys()):
 					self.Console.kill(name)
 		if self.UpdateConsole is not None:
 			if len(self.UpdateConsole.appContainers):
-				for name in self.UpdateConsole.appContainers.keys():
+				for name in list(self.UpdateConsole.appContainers.keys()):
 					self.UpdateConsole.kill(name)
 
 	def verifyPrerequisites(self, prerequisites):

@@ -637,7 +637,7 @@ class SecConfigure:
 		if PN is None:
 			return
 
-		if ManufacturerName in ProductDict.keys():			# manufacture are listed, use its ConfigSubsection
+		if ManufacturerName in list(ProductDict.keys()):			# manufacture are listed, use its ConfigSubsection
 			tmp = ProductDict[ManufacturerName]
 			if PN in tmp.product.choices.choices:
 				return
@@ -762,8 +762,8 @@ class NIM(object):
 			return False
 		if self.isMultiType():
 			#print"[adenin] %s is multitype"%(self.slot)
-			for type in self.multi_type.values():
-				if what in self.compatible[type]:
+			for _type in list(self.multi_type.values()):
+				if what in self.compatible[_type]:
 					return True
 		elif  what in self.compatible[self.getType()]:
 			#print"[adenin] %s is NOT multitype"%(self.slot)
@@ -773,8 +773,8 @@ class NIM(object):
 	def getType(self):
 		try:
 			if self.isMultiType():
-				type = self.multi_type[self.config.multiType.value]
-				return type
+				_type = self.multi_type[self.config.multiType.value]
+				return _type
 		except:
 			pass
 		return self.type
@@ -1398,9 +1398,9 @@ class NimManager:
 		return nimList
 
 	def canDependOn(self, slotid):
-		type = self.getNimType(slotid)
-		type = type[:5] # DVB-S2X --> DVB-S2 --> DVB-S, DVB-T2 --> DVB-T, DVB-C2 --> DVB-C
-		nimList = self.getNimListOfType(type, slotid)
+		_type = self.getNimType(slotid)
+		_type = _type[:5] # DVB-S2X --> DVB-S2 --> DVB-S, DVB-T2 --> DVB-T, DVB-C2 --> DVB-C
+		nimList = self.getNimListOfType(_type, slotid)
 		positionerList = []
 		for nim in nimList[:]:
 			if self.nim_slots[nim].canBeCompatible('DVB-S'):
@@ -1413,7 +1413,7 @@ class NimManager:
 							nimHaveRotor = True
 							break
 					if not nimHaveRotor:
-						for sat in mode.advanced.sat.values():
+						for sat in list(mode.advanced.sat.values()):
 							lnb_num = int(sat.lnb.value)
 							diseqcmode = lnb_num and mode.advanced.lnb[lnb_num].diseqcMode.value or ""
 							if diseqcmode == "1_2":
@@ -2354,11 +2354,11 @@ def InitNimManager(nimmgr, update_slots=None):
 		if slot.isMultiType() and addMultiType:
 			typeList = []
 			default = "0"
-			for id in slot.getMultiTypeList().keys():
-				type = slot.getMultiTypeList()[id]
-				typeList.append((id, type))
-				if getMachineBrand() == "Beyonwiz" and type.startswith("DVB-T"):
-					default = id
+			for _id in list(slot.getMultiTypeList().keys()):
+				_type = slot.getMultiTypeList()[_id]
+				typeList.append((_id, _type))
+				if getMachineBrand() == "Beyonwiz" and _type.startswith("DVB-T"):
+					default = _id
 			nim.multiType = ConfigSelection(typeList, default)
 
 			nim.multiType.fe_id = x - empty_slots

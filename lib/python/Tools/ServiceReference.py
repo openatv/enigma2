@@ -15,7 +15,7 @@ from enigma import eServiceReference, eServiceReferenceDVB
 # '(type == serviceTypes[0]) || (type == serviceTypes[1]) || ...'
 
 def makeServiceQueryStr(serviceTypes):
-	return ' || '.join(map(lambda x: '(type == %d)' % x, serviceTypes))
+	return ' || '.join(['(type == %d)' % x for x in serviceTypes])
 
 def serviceRefAppendPath(sref, path):
 	nsref = eServiceReference(sref)

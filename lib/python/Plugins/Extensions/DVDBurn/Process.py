@@ -203,7 +203,7 @@ class MplexTaskPostcondition(Condition):
 		}[task.error]
 
 class MplexTask(Task):
-	ERROR_UNDERRUN, ERROR_UNKNOWN = range(2)
+	ERROR_UNDERRUN, ERROR_UNKNOWN = list(range(2))
 	def __init__(self, job, outputfile, inputfiles=None, demux_task=None, weighting = 500):
 		Task.__init__(self, job, "Mux ES into PS")
 		self.weighting = weighting
@@ -306,7 +306,7 @@ class BurnTaskPostcondition(Condition):
 		}[task.error]
 
 class BurnTask(Task):
-	ERROR_NOTWRITEABLE, ERROR_LOAD, ERROR_SIZE, ERROR_WRITE_FAILED, ERROR_DVDROM, ERROR_ISOFS, ERROR_FILETOOLARGE, ERROR_ISOTOOLARGE, ERROR_MINUSRWBUG, ERROR_UNKNOWN = range(10)
+	ERROR_NOTWRITEABLE, ERROR_LOAD, ERROR_SIZE, ERROR_WRITE_FAILED, ERROR_DVDROM, ERROR_ISOFS, ERROR_FILETOOLARGE, ERROR_ISOTOOLARGE, ERROR_MINUSRWBUG, ERROR_UNKNOWN = list(range(10))
 	def __init__(self, job, extra_args=[], tool="growisofs"):
 		Task.__init__(self, job, job.name)
 		self.weighting = 500

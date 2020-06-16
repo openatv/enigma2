@@ -1226,9 +1226,9 @@ class HdmiCec:
 						raise Exception("Wrong address detected - '%s'" %ceccmd[0])
 					address = int(ceccmd[0] or "0", 16)
 					if len(ceccmd) > 1:
-						if ceccmd[1] in CECintcmd.keys():
+						if ceccmd[1] in list(CECintcmd.keys()):
 							self.sendMessage(address, CECintcmd[ceccmd[1]])
-						elif ceccmd[1] in CECintcmd.values():
+						elif ceccmd[1] in list(CECintcmd.values()):
 							self.sendMessage(address, ceccmd[1])
 						else:
 							for x in ceccmd[1:]:

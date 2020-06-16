@@ -480,7 +480,7 @@ class EPGFetcher(object):
 
     def statusCleanup(self):
         def doTimeouts(status, timeout):
-            for tid, worklist in status.items():
+            for tid, worklist in list(status.items()):
                 if worklist and min(worklist, key=itemgetter(-1))[-1] < timeout:
                     status[tid] = [ent for ent in worklist if ent[-1] >= timeout]
                     if not status[tid]:
@@ -597,10 +597,10 @@ class EPGFetcher(object):
         triplet_map = defaultdict(list)
         scan_list = []
 
-        for id, triplets in self.channel_service_map.items():
+        for id, triplets in list(self.channel_service_map.items()):
             for triplet in triplets:
                 triplet_map[triplet].append(id)
-        for name, triplets in name_map.items():
+        for name, triplets in list(name_map.items()):
             for triplet in triplets:
                 if triplet in triplet_map:
                     for id in triplet_map[triplet]:
@@ -744,7 +744,7 @@ class EPGFetcher(object):
         # Maximum number of channels to fetch in a batch
         max_fetch = config.plugins.icetv.batchsize.value
         res = False
-        channels = self.channel_service_map.keys()
+        channels = list(self.channel_service_map.keys())
         epgcache = eEPGCache.getInstance()
         channel_show_map = {}
         last_update_time = 0
@@ -756,7 +756,7 @@ class EPGFetcher(object):
             batch_fetch = max_fetch and len(fetch_chans) != len(channels)
             shows = self.getShows(chan_list=batch_fetch and fetch_chans or None, fetch_timers=pos + len(fetch_chans) >= len(channels))
             channel_show_map = self.makeChanShowMap(shows["shows"])
-            for channel_id in channel_show_map.keys():
+            for channel_id in list(channel_show_map.keys()):
                 if channel_id in self.channel_service_map:
                     epgcache.importEvents(self.channel_service_map[channel_id], self.convertChanShows(channel_show_map[channel_id], mapping_errors))
             if pos == 0 and "last_update_time" in shows:
@@ -1249,7 +1249,7 @@ class IceTVServerSetup(Screen):
         self["key_green"] = Label(_("Save"))
         self["key_yellow"] = Label()
         self["key_blue"] = Label()
-        self["config"] = MenuList(sorted(ice.iceTVServers.items()))
+        self["config"] = MenuList(sorted(list(ice.iceTVServers.items())))
         self["IrsActions"] = ActionMap(contexts=["SetupActions", "ColorActions"],
                                        actions={"cancel": self.cancel,
                                                 "red": self.cancel,

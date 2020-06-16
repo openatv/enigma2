@@ -238,7 +238,7 @@ class wpaSupplicant:
 					'key': "",
 				}
 
-		for (k, v) in wsconf.items():
+		for (k, v) in list(wsconf.items()):
 			print("[wsconf][%s] %s" % (k, v))
 
 		return wsconf
@@ -348,7 +348,7 @@ class wpaSupplicant:
 					'key': config.plugins.wlan.psk.value,
 				}
 
-			for (key, item) in wsconfig.items():
+			for (key, item) in list(wsconfig.items()):
 				if item == "None" or item == "":
 					if key == 'hiddenessid':
 						wsconfig['hiddenessid'] = False

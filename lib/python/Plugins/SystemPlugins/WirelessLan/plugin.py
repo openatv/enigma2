@@ -329,7 +329,7 @@ class WlanScan(Screen):
 		currentListEntry = None
 		currentListIndex = None
 
-		for ap in self.oldlist.keys():
+		for ap in list(self.oldlist.keys()):
 			data = self.oldlist[ap]['data']
 			if data is not None:
 				tmpList.append(data)

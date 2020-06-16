@@ -277,7 +277,7 @@ def read_tmp(list):
             else:
                 subs[time] = m.group(4).strip().split("|")
 
-    times = subs.keys()
+    times = list(subs.keys())
     times.sort()
     for i in list(range(0, len(times))):
         next_time = 1

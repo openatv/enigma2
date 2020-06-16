@@ -502,7 +502,7 @@ class ISO639Language:
 			language = self.name_and_shortid_by_longid[string][1]
 		elif len(string) >= 3:
 			string = string.capitalize()
-			for key in self.idlist_by_name.keys():
+			for key in list(self.idlist_by_name.keys()):
 				if key == string or _(key) == string:
 					language = key
 		return language

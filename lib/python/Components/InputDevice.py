@@ -68,7 +68,7 @@ class inputDevices:
 			return None
 
 	def getDeviceName(self, x):
-		if x in self.Devices.keys():
+		if x in list(self.Devices.keys()):
 			return self.Devices[x].get("name", x)
 		else:
 			return "Unknown device name"

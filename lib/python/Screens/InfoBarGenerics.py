@@ -106,7 +106,7 @@ def setResumePoint(session):
 				else:
 					l = None
 				resumePointCache[key] = [lru, pos[1], l]
-				for k, v in resumePointCache.items():
+				for k, v in list(resumePointCache.items()):
 					if v[0] < lru:
 						candidate = k
 						filepath = os.path.realpath(candidate.split(':')[-1])
@@ -253,10 +253,10 @@ class InfoBarUnhandledKey:
 	#this function is called on every keypress!
 	def actionA(self, key, flag):
 		try:
-			print('KEY: %s %s %s %s' % (key, flag, six.next(key_name for key_name, value in KEYIDS.items() if value==key), getKeyDescription(key)[0]))
+			print('KEY: %s %s %s %s' % (key, flag, six.next(key_name for key_name, value in list(KEYIDS.items()) if value==key), getKeyDescription(key)[0]))
 		except:
 			try:
-				print('KEY: %s %s %s' % (key, flag, six.next(key_name for key_name, value in KEYIDS.items() if value==key))) # inverse dictionary lookup in KEYIDS
+				print('KEY: %s %s %s' % (key, flag, six.next(key_name for key_name, value in list(KEYIDS.items()) if value==key))) # inverse dictionary lookup in KEYIDS
 			except:
 				print('KEY: %s %s' % (key, flag))
 		self.unhandledKeyDialog.hide()

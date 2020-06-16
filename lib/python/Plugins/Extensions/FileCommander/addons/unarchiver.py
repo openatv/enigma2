@@ -139,7 +139,7 @@ class ArchiverMenuScreen(Screen):
 			print("[ArchiverMenuScreen]", msg)
 			self.session.open(MessageBox, msg, MessageBox.TYPE_ERROR)
 			return
-		output = map(str.splitlines, p.communicate())
+		output = list(map(str.splitlines, p.communicate()))
 		if output[0] and output[1]:
 			output[1].append("----------")
 		self.extractlist = [(l,) for l in output[1] + output[0]]
@@ -252,7 +252,7 @@ class ArchiverInfoScreen(Screen):
 	def onLayout(self):
 		self.setTitle(self.pname)
 		if len(self.list) != 0:
-			self.chooseMenuList.setList(map(self.ListEntry, self.list))
+			self.chooseMenuList.setList(list(map(self.ListEntry, self.list)))
 
 	def ListEntry(self, entry):
 		x, y, w, h = skin.parameters.get("FileListName", (10, 0, 1180, 25))

@@ -1003,7 +1003,7 @@ class HarddiskManager:
 		except IOError as s:
 			print("couldn't read model: ", s)
 		from Tools.HardwareInfo import HardwareInfo
-		for physdevprefix, pdescription in DEVICEDB.get(HardwareInfo().device_name, {}).items():
+		for physdevprefix, pdescription in list(DEVICEDB.get(HardwareInfo().device_name, {}).items()):
 			if phys.startswith(physdevprefix):
 				description = pdescription
 		# not wholedisk and not partition 1

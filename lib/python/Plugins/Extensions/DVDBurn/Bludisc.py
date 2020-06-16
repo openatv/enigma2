@@ -42,7 +42,7 @@ class BludiscTitle(object):
 
 	def getVideoStreams(self):
 		streams = []
-		for stream in self.__streams.values():
+		for stream in list(self.__streams.values()):
 			if stream.isVideo:
 				streams.append(stream)
 		return streams
@@ -51,7 +51,7 @@ class BludiscTitle(object):
 	
 	def getAudioStreams(self):
 		streams = []
-		for stream in self.__streams.values():
+		for stream in list(self.__streams.values()):
 			if stream.isAudio:
 				streams.append(stream)
 		return streams
@@ -63,8 +63,8 @@ class BludiscTitle(object):
 		return struct.pack('>L', in_time/2)	# start time (in 45khz ticks)
 
 	def getOutTimeBytes(self):
-	      out_time = self.entrypoints[-1][1]	# last keyframe (in 90khz pts)
-	      return struct.pack('>L', out_time/2)	# end time (in 45khz ticks)
+		out_time = self.entrypoints[-1][1]	# last keyframe (in 90khz pts)
+		struct.pack('>L', out_time/2)	# end time (in 45khz ticks)
 
 	InTime = property(getInTimeBytes)
 	OutTime = property(getOutTimeBytes)
@@ -215,7 +215,7 @@ class RemuxTask(Task):
 				if audiotrack.format.value == "AC3": #! only consider ac3 streams at the moment
 					dvbpids.append(int(audiotrack.pid.getValue()))
 		sourcepids = "--source-pids=" + ",".join(["0x%04x" % pid for pid in dvbpids])
-		self.bdmvpids = [0x1011]+range(0x1100, 0x1107)[:len(dvbpids)-1]
+		self.bdmvpids = [0x1011]+list(range(0x1100, 0x1107))[:len(dvbpids)-1]
 		resultpids = "--result-pids=" + ",".join(["0x%04x" % pid for pid in self.bdmvpids])
 		return [sourcepids, resultpids]
 

@@ -29,7 +29,7 @@ class VServiceOrbitalPosition(Converter, object):
 			transponder_info = info.getInfoObject(ref, iServiceInformation.sTransponderData)
 		else:
 			transponder_info = info.getInfoObject(iServiceInformation.sTransponderData)
-		if transponder_info and "orbital_position" in transponder_info.keys():
+		if transponder_info and "orbital_position" in list(transponder_info.keys()):
 			pos = int(transponder_info["orbital_position"])
 			direction = 'E'
 			if pos > 1800:
