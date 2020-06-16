@@ -1325,13 +1325,13 @@ class NimManager:
 
 	def getNimListOfType(self, type, exception = -1):
 		# returns a list of indexes for NIMs compatible to the given type, except for 'exception'
-		list = []
+		result = []
 		for x in self.nim_slots:
 			if x.isMultiType() and x.canBeCompatible(type) and x.slot != exception:
-				list.append(x.slot)
+				result.append(x.slot)
 			elif x.isCompatible(type) and x.slot != exception:
-				list.append(x.slot)
-		return list
+				result.append(x.slot)
+		return result
 
 	def __init__(self):
 		sec = secClass.getInstance()
@@ -1347,10 +1347,10 @@ class NimManager:
 
 	# get a list with the friendly full description
 	def nimList(self):
-		list = [ ]
+		result = [ ]
 		for slot in self.nim_slots:
-			list.append(slot.friendly_full_description)
-		return list
+			result.append(slot.friendly_full_description)
+		return result
 
 	def getSlotCount(self):
 		return len(self.nim_slots)
@@ -1472,13 +1472,13 @@ class NimManager:
 			return res
 
 	def getSatListForNim(self, slotid):
-		list = []
+		result = []
 		if self.nim_slots[slotid].canBeCompatible("DVB-S"):
 			nim = config.Nims[slotid].dvbs
 			configMode = nim.configMode.value
 
 			if configMode == "nothing":
-				return list
+				return result
 
 			elif configMode == "equal":
 				slotid = int(nim.connectedTo.value)
@@ -1492,72 +1492,72 @@ class NimManager:
 				dm = nim.diseqcMode.value
 				if dm in ("single", "toneburst_a_b", "diseqc_a_b", "diseqc_a_b_c_d"):
 					if nim.diseqcA.orbital_position < 3600:
-						list.append(self.satList[nim.diseqcA.index - 2])
+						result.append(self.satList[nim.diseqcA.index - 2])
 				if dm in ("toneburst_a_b", "diseqc_a_b", "diseqc_a_b_c_d"):
 					if nim.diseqcB.orbital_position < 3600:
-						list.append(self.satList[nim.diseqcB.index - 2])
+						result.append(self.satList[nim.diseqcB.index - 2])
 				if dm == "diseqc_a_b_c_d":
 					if nim.diseqcC.orbital_position < 3600:
-						list.append(self.satList[nim.diseqcC.index - 2])
+						result.append(self.satList[nim.diseqcC.index - 2])
 					if nim.diseqcD.orbital_position < 3600:
-						list.append(self.satList[nim.diseqcD.index - 2])
+						result.append(self.satList[nim.diseqcD.index - 2])
 				if dm == "positioner":
 					for x in self.satList:
-						list.append(x)
+						result.append(x)
 				if dm == "positioner_select":
 					for x in self.satList:
 						if str(x[0]) in nim.userSatellitesList.value:
-							list.append(x)
+							result.append(x)
 			elif configMode == "advanced":
 				for x in list(range(3601, 3605)):
 					if int(nim.advanced.sat[x].lnb.value) != 0:
 						for x in self.satList:
-							list.append(x)
-				if not list:
+							result.append(x)
+				if not result:
 					for x in self.satList:
 						if int(nim.advanced.sat[x[0]].lnb.value) != 0:
-							list.append(x)
+							result.append(x)
 				for x in list(range(3605, 3607)):
 					if int(nim.advanced.sat[x].lnb.value) != 0:
 						for user_sat in self.satList:
 							if str(user_sat[0]) in nim.advanced.sat[x].userSatellitesList.value and user_sat not in list:
-								list.append(user_sat)
-		return list
+								result.append(user_sat)
+		return result
 
 	def getNimListForSat(self, orb_pos):
 		return [nim.slot for nim in self.nim_slots if nim.isCompatible("DVB-S") and not nim.isFBCLink() and orb_pos in [sat[0] for sat in self.getSatListForNim(nim.slot)]]
 
 	def getRotorSatListForNim(self, slotid):
-		list = []
+		result = []
 		if self.nim_slots[slotid].isCompatible("DVB-S"):
 			nim = config.Nims[slotid].dvbs
 			configMode = nim.configMode.value
 			if configMode == "simple":
 				if nim.diseqcMode.value == "positioner":
 					for x in self.satList:
-						list.append(x)
+						result.append(x)
 				elif nim.diseqcMode.value == "positioner_select":
 					for x in self.satList:
 						if str(x[0]) in nim.userSatellitesList.value:
-							list.append(x)
+							result.append(x)
 			elif configMode == "advanced":
 				for x in list(range(3601, 3605)):
 					if int(nim.advanced.sat[x].lnb.value) != 0:
 						for x in self.satList:
-							list.append(x)
-				if not list:
+							result.append(x)
+				if not result:
 					for x in self.satList:
 						lnbnum = int(nim.advanced.sat[x[0]].lnb.value)
 						if lnbnum != 0:
 							lnb = nim.advanced.lnb[lnbnum]
 							if lnb.diseqcMode.value == "1_2":
-								list.append(x)
+								result.append(x)
 				for x in list(range(3605, 3607)):
 					if int(nim.advanced.sat[x].lnb.value) != 0:
 						for user_sat in self.satList:
 							if str(user_sat[0]) in nim.advanced.sat[x].userSatellitesList.value and user_sat not in list:
-								list.append(user_sat)
-		return list
+								result.append(user_sat)
+		return result
 
 def InitSecParams():
 	config.sec = ConfigSubsection()

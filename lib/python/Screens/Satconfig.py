@@ -1,4 +1,5 @@
 from __future__ import print_function
+from __future__ import division
 from enigma import eDVBDB, eDVBResourceManager, getLinkedSlotID, isFBCLink
 from Screens.Screen import Screen
 from Components.SystemInfo import SystemInfo
@@ -791,7 +792,7 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 					h = _("W")
 				else:
 					h = _("E")
-				sat_name = ("%d.%d" + h) % (orbpos / 10, orbpos % 10)
+				sat_name = ("%d.%d" + h) % (orbpos // 10, orbpos % 10)
 
 			if confirmed[1] == "yes" or confirmed[1] == "no":
 				# TRANSLATORS: The satellite with name '%s' is no longer used after a configuration change. The user is asked whether or not the satellite should be deleted.
