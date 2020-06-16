@@ -648,7 +648,7 @@ class SystemNetworkInfo(Screen):
 
 	def createscreen(self):
 		def netspeed():
-			netspeed="N/A"
+			netspeed=""
 			for line in popen('ethtool eth0 |grep Speed', 'r'):
 				line = line.strip().split(":")
 				line =line[1].replace(' ', '')
@@ -657,7 +657,7 @@ class SystemNetworkInfo(Screen):
 
 
 		def netspeed_eth1():
-			netspeed="N/A"
+			netspeed=""
 			for line in popen('ethtool eth1 |grep Speed', 'r'):
 				line = line.strip().split(":")
 				line =line[1].replace(' ', '')
