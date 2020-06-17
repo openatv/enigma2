@@ -1187,6 +1187,16 @@ def Plugins(**kwargs):
     return res
 
 
+class IceTVUIBase:
+    def __init__(self, title=None, description=None):
+        if hasattr(self, "_instructions"):
+            self["instructions"] = Label(self._instructions)
+        if title is not None:
+                self.setTitle(title)
+        if description is not None:
+                self["description"] = Label(description)
+
+
 class IceTVMain(ChoiceBox):
     def __init__(self, session, *args, **kwargs):
         global _session
@@ -1259,7 +1269,7 @@ class IceTVLogView(TextBox):
 </screen>"""
 
 
-class IceTVServerSetup(Screen):
+class IceTVServerSetup(Screen, IceTVUIBase):
     skin = """
 <screen name="IceTVServerSetup" position="320,130" size="640,510" title="IceTV - Service selection" >
     <widget name="instructions" position="20,10" size="600,100" font="Regular;22" />
@@ -1278,8 +1288,7 @@ class IceTVServerSetup(Screen):
         self.session = session
         self.have_region_list = False
         Screen.__init__(self, session)
-        self.setTitle(_("IceTV - Service selection"))
-        self["instructions"] = Label(self._instructions)
+        IceTVUIBase.__init__(self, title=_("IceTV - Service selection"))
         self["key_red"] = Label(_("Cancel"))
         self["key_green"] = Label(_("Save"))
         self["key_yellow"] = Label()
@@ -1317,7 +1326,7 @@ class IceTVServerSetup(Screen):
             self.close(True)
 
 
-class IceTVUserTypeScreen(Screen):
+class IceTVUserTypeScreen(Screen, IceTVUIBase):
     skin = """
 <screen name="IceTVUserTypeScreen" position="320,130" size="640,400" title="IceTV - Account selection" >
  <widget position="20,20" size="600,40" name="title" font="Regular;32" />
@@ -1334,9 +1343,8 @@ class IceTVUserTypeScreen(Screen):
     def __init__(self, session):
         self.session = session
         Screen.__init__(self, session)
-        self.setTitle(_("IceTV - Account selection"))
         self["title"] = Label(_("Welcome to IceTV"))
-        self["instructions"] = Label(_(self._instructions))
+        IceTVUIBase.__init__(self, title=_("IceTV - Account selection"))
         options = []
         options.append((_("New user"), "newUser"))
         options.append((_("Existing or trial user"), "oldUser"))
@@ -1362,7 +1370,7 @@ class IceTVUserTypeScreen(Screen):
             self.close(True)
 
 
-class IceTVNewUserSetup(ConfigListScreen, Screen):
+class IceTVNewUserSetup(ConfigListScreen, Screen, IceTVUIBase):
     skin = """
 <screen name="IceTVNewUserSetup" position="320,230" size="640,335" title="IceTV - User Information" >
     <widget name="instructions" position="20,10" size="600,100" font="Regular;22" />
@@ -1390,9 +1398,7 @@ class IceTVNewUserSetup(ConfigListScreen, Screen):
     def __init__(self, session):
         self.session = session
         Screen.__init__(self, session)
-        self.setTitle(_("IceTV - User Information"))
-        self["instructions"] = Label(self._instructions)
-        self["description"] = Label()
+        IceTVUIBase.__init__(self, title=_("IceTV - User Information"), description="")
         self["HelpWindow"] = Label()
         self["key_red"] = Label(_("Cancel"))
         self["key_green"] = Label(_("Save"))
@@ -1460,7 +1466,7 @@ class IceTVOldUserSetup(IceTVNewUserSetup):
         self.session.openWithCallback(self.loginDone, IceTVLogin)
 
 
-class IceTVRegionSetup(Screen):
+class IceTVRegionSetup(Screen, IceTVUIBase):
     skin = """
 <screen name="IceTVRegionSetup" position="320,130" size="640,510" title="IceTV - Region" >
     <widget name="instructions" position="20,10" size="600,100" font="Regular;22" />
@@ -1485,9 +1491,7 @@ class IceTVRegionSetup(Screen):
         self.session = session
         self.have_region_list = False
         Screen.__init__(self, session)
-        self.setTitle(_("IceTV - Region"))
-        self["instructions"] = Label(self._instructions)
-        self["description"] = Label(self._wait)
+        IceTVUIBase.__init__(self, title=_("IceTV - Region"), description=self._wait)
         self["error"] = Label()
         self["error"].hide()
         self["key_red"] = Label(_("Cancel"))
@@ -1544,7 +1548,7 @@ class IceTVRegionSetup(Screen):
             self["error"].show()
 
 
-class IceTVLogin(Screen):
+class IceTVLogin(Screen, IceTVUIBase):
     skin = """
 <screen name="IceTVLogin" position="220,115" size="840,570" title="IceTV - Login" >
     <widget name="instructions" position="20,10" size="800,80" font="Regular;22" />
@@ -1565,8 +1569,7 @@ class IceTVLogin(Screen):
         self.session = session
         self.success = False
         Screen.__init__(self, session)
-        self.setTitle(_("IceTV - Login"))
-        self["instructions"] = Label(self._instructions)
+        IceTVUIBase.__init__(self, title=_("IceTV - Login"))
         self["message"] = Label()
         self["error"] = Label()
         self["error"].hide()
@@ -1676,7 +1679,7 @@ class IceTVCreateLogin(IceTVLogin):
     def setCountry(self):
         return True
 
-class IceTVNeedPassword(ConfigListScreen, Screen):
+class IceTVNeedPassword(ConfigListScreen, Screen, IceTVUIBase):
     skin = """
 <screen name="IceTVNeedPassword" position="320,230" size="640,310" title="IceTV - Password required" >
     <widget name="instructions" position="20,10" size="600,100" font="Regular;22" />
@@ -1699,9 +1702,10 @@ class IceTVNeedPassword(ConfigListScreen, Screen):
     def __init__(self, session):
         self.session = session
         Screen.__init__(self, session)
-        self.setTitle(_("IceTV - Password required"))
-        self["instructions"] = Label(self._instructions % config.plugins.icetv.member.email_address.value)
-        self["description"] = Label()
+	# This creates a new instance variable.
+	# It doesn't change the class variable of the same name.
+	self._instructions = self._instructions % config.plugins.icetv.member.email_address.value
+        IceTVUIBase.__init__(self, title=_("IceTV - Password required"), description="")
         self["key_red"] = Label(_("Cancel"))
         self["key_green"] = Label(_("Login"))
         self["key_yellow"] = Label()
