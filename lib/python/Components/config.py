@@ -1238,7 +1238,7 @@ class ConfigText(ConfigElement, NumericalTextInput):
 		try:
 			self.text = six.ensure_text(val)
 		except UnicodeDecodeError:
-			self.text = val.decode("utf-8", "ignore")
+			self.text = six.ensure_text(val, errors='ignore')
 			print("Broken UTF8!")
 
 	value = property(getValue, setValue)
