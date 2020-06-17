@@ -535,7 +535,7 @@ class EPGFetcher(object):
                 return False
         res = True
         try:
-            self.settings = dict((s["name"], s["value"].encode("utf-8") if s["type"] == 2 else s["value"]) for s in self.getSettings())
+            self.settings = dict((s["name"], six.ensure_str(s["value"]) if s["type"] == 2 else s["value"]) for s in self.getSettings())
             print("[EPGFetcher] settings", self.settings)
         except (Exception) as ex:
             self.settings = {}
@@ -617,7 +617,7 @@ class EPGFetcher(object):
         if servicelist is not None:
             serviceRef = servicelist.getNext()
             while serviceRef.valid():
-                name = ServiceReference(serviceRef).getServiceName().decode("utf-8").strip()
+                name = six.ensure_text(ServiceReference(serviceRef).getServiceName()).strip()
                 name_map[name].append(tuple(serviceRef.getUnsignedData(i) for i in (3, 2, 1)))
                 serviceRef = servicelist.getNext()
         return name_map
@@ -685,12 +685,12 @@ class EPGFetcher(object):
                 start = int(show["start_unix"])
                 stop = int(show["stop_unix"])
                 duration = stop - start
-            title = show.get("title", "").encode("utf-8")
-            short = show.get("subtitle", "").encode("utf-8")
-            extended = show.get("desc", "").encode("utf-8")
+            title = six.ensure_str(show.get("title", ""))
+            short = six.ensure_str(show.get("subtitle", ""))
+            extended = six.ensure_str(show.get("desc", ""))
             genres = []
             for g in show.get("category", []):
-                name = g['name'].encode("utf-8")
+                name = six.ensure_str(g['name'])
                 if name in category_cache:
                     eit_remap = category_cache[name]
                     genres.append(eit_remap)
@@ -704,7 +704,7 @@ class EPGFetcher(object):
                     elif name not in mapping_errors:
                         print('[EPGFetcher] ERROR: lookup of 0x%02x%s "%s" returned \"%s"' % (eit, (" (remapped to 0x%02x)" % eit_remap) if eit != eit_remap else "", name, mapped_name))
                         mapping_errors.add(name)
-            p_rating = ((country_code, parental_ratings.get(show.get("rating", "").encode("utf-8"), 0x00)),)
+            p_rating = ((country_code, parental_ratings.get(six.ensure_str(show.get("rating", "")), 0x00)),)
             res.append((start, duration, title, short, extended, genres, event_id, p_rating))
         return res
 
@@ -776,13 +776,13 @@ class EPGFetcher(object):
         for iceTimer in timers:
             # print "[IceTV] iceTimer:", iceTimer
             try:
-                action = iceTimer.get("action", "").encode("utf-8")
-                state = iceTimer.get("state", "").encode("utf-8")
-                name = iceTimer.get("name", "").encode("utf-8")
+                action = six.ensure_str(iceTimer.get("action", ""))
+                state = six.ensure_str(iceTimer.get("state", ""))
+                name = six.ensure_str(iceTimer.get("name", ""))
                 start = int(timegm(strptime(iceTimer["start_time"].split("+")[0], "%Y-%m-%dT%H:%M:%S")))
                 duration = 60 * int(iceTimer["duration_minutes"])
                 channel_id = int(iceTimer["channel_id"])
-                ice_timer_id = iceTimer["id"].encode("utf-8")
+                ice_timer_id = six.ensure_str(iceTimer["id"])
                 if action == "forget":
                     for timer in _session.nav.RecordTimer.timer_list:
                         if timer.ice_timer_id == ice_timer_id:
@@ -873,14 +873,14 @@ class EPGFetcher(object):
         return res
 
     def isIceTimerInUpdateQueue(self, iceTimer, update_queue):
-        ice_timer_id = iceTimer["id"].encode("utf-8")
+        ice_timer_id = six.ensure_str(iceTimer["id"])
         for timer in update_queue:
-            if ice_timer_id == timer["id"].encode("utf-8"):
+            if ice_timer_id == six.ensure_str(timer["id"]):
                 return True
         return False
 
     def isIceTimerInLocalTimerList(self, iceTimer, ignoreCompleted=False):
-        ice_timer_id = iceTimer["id"].encode("utf-8")
+        ice_timer_id = six.ensure_str(iceTimer["id"])
         for timer in _session.nav.RecordTimer.timer_list:
             if timer.ice_timer_id == ice_timer_id:
                 return True
@@ -1030,7 +1030,7 @@ class EPGFetcher(object):
                 req.data["duration_minutes"] = ((local_timer.end - config.recording.margin_after.value * 60) - (local_timer.begin + config.recording.margin_before.value * 60)) / 60
                 res = req.post()
                 try:
-                    local_timer.ice_timer_id = res.json()["timers"][0]["id"].encode("utf-8")
+                    local_timer.ice_timer_id = six.ensure_str(res.json()["timers"][0]["id"])
                     self.addLog("Timer '%s' created OK" % local_timer.name)
                     if local_timer.ice_timer_id is not None:
                         NavigationInstance.instance.RecordTimer.saveTimer()
