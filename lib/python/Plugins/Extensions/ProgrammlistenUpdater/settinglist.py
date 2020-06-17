@@ -1,6 +1,6 @@
 from __future__ import print_function
 from __future__ import absolute_import
-from enigma import eTimer
+from enigma import eTimer, eDVBDB
 import re, glob, shutil, os, time, sys
 from Screens.Screen import Screen
 from Components.config import ConfigSubsection, ConfigYesNo, ConfigText, config, configfile
@@ -25,7 +25,7 @@ def InstallSettings(name, link, date):
         newlink = response.read()
         response.close()
         Setting = open(Directory + '/Settings/tmp/listE2.zip', 'w')
-        Setting.write(newlink)
+        Setting.write(str(newlink))
         Setting.close()
         if os.path.exists(Directory + '/Settings/tmp/listE2.zip'):
             os.system('mkdir ' + Directory + '/Settings/tmp/listE2_unzip')

@@ -4,6 +4,7 @@ from Components.ScrollLabel import ScrollLabel
 from Components.Sources.StaticText import StaticText
 from Screens.Screen import Screen
 import re, os, sys
+import six
 from six.moves.urllib.request import urlopen
 from six.moves.urllib.request import Request
 
@@ -16,7 +17,7 @@ def DownloadInfo(url):
         response = urlopen(req)
         link = response.read().decode("windows-1252")
         response.close()
-        text = link.encode("utf-8")
+        text = six.ensure_str(link)
 
     except:
         print("ERROR Download History %s" %(url))

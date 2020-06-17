@@ -2,6 +2,7 @@ from __future__ import print_function
 import re, os, sys
 from six.moves.urllib.request import urlopen
 from six.moves.urllib.request import Request
+import six
 
 
 def DownloadSetting(url):
@@ -10,7 +11,7 @@ def DownloadSetting(url):
         req = Request(url)
         req.add_header('User-Agent', 'VAS')
         response = urlopen(req)
-        link = response.read()
+        link = six.ensure_str(response.read())
         response.close()
         xx = re.compile('<td><a href="(.+?)">(.+?)</a></td>.*?<td>(.+?)</td>', re.DOTALL).findall(link)
         for link, name, date in xx:
