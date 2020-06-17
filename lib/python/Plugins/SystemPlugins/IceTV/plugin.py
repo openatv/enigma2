@@ -1284,6 +1284,7 @@ class IceTVServerSetup(Screen):
         self["key_green"] = Label(_("Save"))
         self["key_yellow"] = Label()
         self["key_blue"] = Label()
+        self.onLayoutFinish.append(self.onLayoutFinished)
         self["config"] = MenuList(sorted(ice.iceTVServers.items()))
         self["IrsActions"] = ActionMap(contexts=["SetupActions", "ColorActions"],
                                        actions={"cancel": self.cancel,
@@ -1292,6 +1293,13 @@ class IceTVServerSetup(Screen):
                                                 "ok": self.save,
                                                 }, prio=-2
                                        )
+
+    def onLayoutFinished(self):
+        curr_server_name = config.plugins.icetv.server.name.value
+        try:
+                self["config"].moveToIndex(next(i for i, ent in enumerate(self["config"].list) if ent[1] == curr_server_name))
+        except StopIteration:
+                pass
 
     def cancel(self):
         config.plugins.icetv.server.name.cancel()
@@ -1521,6 +1529,12 @@ class IceTVRegionSetup(Screen):
                 rl.append((str(region["name"]), int(region["id"]), str(region["country_code_3"])))
             self["config"].setList(rl)
             self["description"].setText("")
+            curr_region_id = config.plugins.icetv.member.region_id.value
+            curr_country_code = config.plugins.icetv.member.country.value
+            try:
+                    self["config"].moveToIndex(next(i for i, ent in enumerate(rl) if ent[1] == curr_region_id and ent[2] == curr_country_code))
+            except StopIteration:
+                    pass
             if rl:
                 self.have_region_list = True
         except (IOError, RuntimeError) as ex:
