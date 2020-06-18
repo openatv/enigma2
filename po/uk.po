@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-12-30 14:34+0100\n"
-"PO-Revision-Date: 2020-13-05 10:39+0200\n"
+"PO-Revision-Date: 2020-12-06 10:39+0200\n"
 "Last-Translator: kvinto <badsystem@ukr.net>\n"
 "Language-Team: <sat-ukraine.info>\n"
 "Language: uk\n"
@@ -234,10 +234,6 @@ msgid "     wrong back-up destination "
 msgstr "     неправильне місце призначення"
 
 #, python-format
-msgid "   (%s MHz)"
-msgstr "   (%s MГц)"
-
-#, python-format
 msgid "  (%s x %s)"
 msgstr "  (%s x %s)"
 
@@ -321,6 +317,10 @@ msgstr ""
 " доступні!!\n"
 "\n"
 "Ви хочете встановити новий список налаштувань?"
+
+#, python-format
+msgid " bootmode = %s"
+msgstr " режим = %s"
 
 msgid " of "
 msgstr " з"
@@ -452,6 +452,9 @@ msgstr "%02d:%02d"
 #, python-format
 msgid "%02d:%02d - %02d:%02d"
 msgstr "%02d:%02d - %02d:%02d"
+
+msgid "%02d.%02d - %02d.%02d (%s%s)"
+msgstr "%02d.%02d - %02d.%02d (%s%s)"
 
 #, python-format
 msgid "%03d MB"
@@ -958,6 +961,9 @@ msgstr[0] "%d година"
 msgstr[1] "%d години"
 msgstr[2] "%d годин"
 
+msgid "%d hour %d min"
+msgstr "%d год. %d хв."
+
 #, python-format
 msgid "%d kB"
 msgstr "%d кБ"
@@ -1148,20 +1154,20 @@ msgid "%s (%s)\n"
 msgstr "%s (%s)\n"
 
 #, python-format
-msgid "%s - %s (%s%d min)"
-msgstr "%s - %s (%s%d хв.)"
-
-#, python-format
-msgid "%s GHz"
-msgstr "%s ГГц"
-
-#, python-format
 msgid "%s - Setup"
 msgstr "%s - Налаштування"
 
 #, python-format
 msgid "%s - extraction errors."
 msgstr "%s - помилки розархівування."
+
+#, python-format
+msgid "%s GHz"
+msgstr "%s ГГц"
+
+#, python-format
+msgid "%s MHz"
+msgstr "%s МГц"
 
 #, python-format
 msgid "%s Setup"
@@ -2376,9 +2382,6 @@ msgstr "Налаштування горизонтального положенн
 msgid "Adjust the vertical position of the letters used for teletext."
 msgstr "Налаштування вертикального положення букв, які використовуються для телетексту."
 
-msgid "Ads filtering mode"
-msgstr "Режим фільтрації повідомлень"
-
 msgid "Adult"
 msgstr "Для дорослих"
 
@@ -2418,11 +2421,11 @@ msgstr "Афганістан"
 msgid "After 3 minutes"
 msgstr "Через 3 хвилини"
 
-msgid "After 5 minutes"
-msgstr "Через 5 хвилин"
-
 msgid "After 30 minutes"
 msgstr "Через 30 хвилин"
+
+msgid "After 5 minutes"
+msgstr "Через 5 хвилин"
 
 msgid "After PowerLost"
 msgstr "Після втрати живлення"
@@ -3468,8 +3471,8 @@ msgid "Buffers:"
 msgstr "Буфери:"
 
 #, python-format
-msgid "Build:\t\t%s"
-msgstr "Збірка: \t\t%s"
+msgid "Build: %s"
+msgstr "Збірка: %s"
 
 msgid "Bulgaria"
 msgstr "Болгарія"
@@ -3689,6 +3692,39 @@ msgstr "Камбоджа"
 
 msgid "Cameroon"
 msgstr "Камерун"
+
+msgid ""
+"Can be used to test defect pixels on TV screen.\n"
+"\n"
+"Available color test screens:\n"
+"\n"
+"red\n"
+"green\n"
+"blue\n"
+"white\n"
+"black\n"
+"cyan\n"
+"magenta\n"
+"yellow\n"
+"\n"
+"Screens change with left/right buttons or use red, green, blue to toggle.\n"
+"Yellow for returning back to this intro"
+msgstr ""
+"Можна використовувати для тестування битих пікселів на екрані телевізора.\n"
+"\n"
+"Перелік кольорів тестових екранів:\n"
+"\n"
+"червоний\n"
+"зелений\n"
+"голубий\n"
+"білий\n"
+"чорний\n"
+"синій\n"
+"пурпуровий\n"
+"жовтий\n"
+"\n"
+"Зміна екранів кнопками вліво/вправо, або використовуйте червону, зелену, синю кнопку для перемикання.\n"
+"Жовта для повернення до даного екрану"
 
 msgid "Can be used for different fps between external subtitles and video."
 msgstr "Може бути використане при різних fps між зовнішніми субтитрами і відео."
@@ -4285,11 +4321,14 @@ msgstr "Закрити"
 msgid "Close Main screen"
 msgstr "Закрити Основний екран"
 
+msgid "Close PIP and try again!"
+msgstr "Закрийте PIP і повторіть спробу!"
+
 msgid "Close PiP on exit"
 msgstr "Закрити ПІП на виході"
 
 msgid "Close Picture in Picture screen"
-msgstr "Закрити Екран в Екрані"
+msgstr "Закрити Зображення в Зображенні"
 
 msgid "Close bouquet list."
 msgstr "Закрити список фаворитів."
@@ -4924,10 +4963,6 @@ msgid "Copying files"
 msgstr "Копіювання файлів"
 
 #, python-format
-msgid "Cores:\t\t%s"
-msgstr "Ядра: \t\t%s"
-
-#, python-format
 msgid "Cores: %s"
 msgstr "Ядра: %s"
 
@@ -5092,8 +5127,10 @@ msgid "Current location"
 msgstr "Поточне розташування"
 
 #, python-format
-msgid "Current mode: %s \n"
-msgstr "Поточний режим: %s \n"
+msgid "Current mode:   %s\n"
+"\n"
+msgstr "Поточний режим:   %s\n"
+"\n"
 
 msgid "Current settings:"
 msgstr "Поточні налаштування:"
@@ -5578,8 +5615,11 @@ msgstr "Видалити мови"
 msgid "Delete Plugins"
 msgstr "Видалити плагіни"
 
+msgid "Delete all the text"
+msgstr "Видалити весь текст"
+
 msgid "Delete and uninstall Plugins. This will remove the Plugin from your box"
-msgstr "Видалити плагіни. Це видалить плагін із Вашого приймача"
+msgstr "Видалити плагіни. Дана дія видалить плагіни з Вашого приймача"
 
 msgid "Delete current line"
 msgstr "Видалити цей рядок"
@@ -7168,6 +7208,9 @@ msgstr "Швидкість перемотування вперед"
 msgid "Fastforward"
 msgstr "Перемотка вперед"
 
+msgid "Favorit TV..."
+msgstr "Фаворитний Список..."
+
 msgid "Favorites"
 msgstr "Фаворити"
 
@@ -7176,9 +7219,6 @@ msgstr "Fav довге натискання"
 
 msgid "Favourites"
 msgstr "Фаворити"
-
-msgid "Favourites (TV)"
-msgstr "Фаворити (ТБ)"
 
 msgid "Feeds status:   Stable"
 msgstr "Статус фіду:   Стабільний"
@@ -7520,6 +7560,10 @@ msgstr "Передня USB 3.0"
 #, python-format
 msgid "Frontprocessor version:\t%s"
 msgstr "Версія процесора:\t%s"
+
+#, python-format
+msgid "Frontprocessor version: %s"
+msgstr "Версія процесора: %s"
 
 msgid "Full Image Backup "
 msgstr "Повна копія Іміджу "
@@ -8043,7 +8087,7 @@ msgid "History"
 msgstr "Історiя"
 
 msgid "History Zap..."
-msgstr "Історія Переключень..."
+msgstr "Історія Перемикань..."
 
 msgid "History back"
 msgstr "Назад в історії"
@@ -9131,12 +9175,6 @@ msgstr "Лаоська Народно-Демократична Республі�
 msgid "Last Req."
 msgstr "Останній запит."
 
-msgid "Last config"
-msgstr "Остання конфігурація"
-
-msgid "Last speed"
-msgstr "Остання швидкість"
-
 #, python-format
 msgid "Last E2 update:\t\t%s"
 msgstr "Останнє оновлення Е2:\t%s"
@@ -9144,6 +9182,12 @@ msgstr "Останнє оновлення Е2:\t%s"
 #, python-format
 msgid "Last update:\t%s"
 msgstr "Оновлено:\t%s"
+
+msgid "Last config"
+msgstr "Остання конфігурація"
+
+msgid "Last speed"
+msgstr "Остання швидкість"
 
 msgid "Last used share: "
 msgstr "Останній мережевий диск: "
@@ -10876,6 +10920,9 @@ msgstr "Онлайн оновлення програмного забезпеч�
 msgid "OnlineVersionCheck"
 msgstr "Онлайн перевірка версії"
 
+msgid "Only Standard"
+msgstr "Тільки Стандартний"
+
 msgid "Only extensions."
 msgstr "Тільки розширення."
 
@@ -11335,6 +11382,15 @@ msgstr "Налаштування ПІП"
 msgid "PiP mode"
 msgstr "ПіП режим"
 
+msgid "PiP settings"
+msgstr "Налаштування PiP"
+
+msgid "PiP size and position change"
+msgstr "Зміна розміру і положення PiP"
+
+msgid "PiP size and position save"
+msgstr "Збереження розміру і положення PiP"
+
 msgid "PiP standard Setup"
 msgstr "PiP Стандартні налаштування"
 
@@ -11740,15 +11796,6 @@ msgstr ""
 "Відрегулювати положення користувача інтерфейсу. Краї червоної області повинні стосуватися країв екрану телевізора.\n"
 "Якщо готові, натисніть зелену кнопку для продовження."
 
-msgid ""
-"Please use direction keys to move the PiP window.\n"
-"Press Bouquet +/- to resize the window.\n"
-"Press OK to go back to the TV mode or EXIT to cancel the moving."
-msgstr ""
-"Використовуйте кнопки управління для переміщення вікна ПІП.\n"
-"Натисніть +/-, для зміни розміру вікна.\n"
-"Натисніть OK, щоб повернутись в режим TV, або EXIT для відміни."
-
 msgid "Please use the UP and DOWN keys to select your language. Afterwards press the OK button."
 msgstr "Будь-ласка, використовуйте кнопки ВВЕРХ і ВНИЗ, для вибору мови. Після вибору натисніть OK."
 
@@ -11887,6 +11934,15 @@ msgstr "Португальська"
 msgid "Position Setup"
 msgstr "Налаштування положення"
 
+msgid ""
+"Position change:  Use direction keys to move the PiP window\n"
+"Size change:  Channel +/- to resize the window\n"
+"OK  -  save changes  |  EXIT  -  cancel"
+msgstr ""
+"Зміна положення: Використовуйте клавіші напрямку для переміщення вікна PiP\n"
+"Зміна розміру: канал +/- для зміни розміру вікна\n"
+"OK  -  зберегти зміни  |  EXIT  -  скасувати"
+
 msgid "Position of finished Timers in Timerlist"
 msgstr "Розташування виконаних Таймерів в списку"
 
@@ -12016,8 +12072,8 @@ msgstr "Приготування... Зачекайте, будь ласка"
 msgid "Preschool"
 msgstr "Дошкільні"
 
-msgid "Press '0' to toggle PiP mode"
-msgstr "Натисніть кнопку '0', щоб змінити режим ПІП"
+msgid "Press '0' to toggle PiP current mode"
+msgstr "Натисніть кнопку '0', щоб змінити поточний режим ПІП"
 
 msgid "Press INFO on your remote control for additional information."
 msgstr "Натисніть INFO на пульті ду для отримання додаткової інформації."
@@ -13793,6 +13849,9 @@ msgstr "Виберіть виробника свого пристрою SCR. Я�
 
 msgid "Select the method of restoring screen resolution and framebuffer when leaving teletext."
 msgstr "Виберіть метод відновлення роздільної здатності екрана та буфера обміну при виході з телетексту."
+
+msgid "Select the mode in which the position and size are saved. Changing the position and size is only possible when using the Standard usage mode!"
+msgstr "Виберіть режим, при якому зберігаються положення та розмір. Зміна положення та розміру можлива лише у стандартному режимі використання!"
 
 msgid "Select the model number of your Unicable device. If the model number is not listed, set 'SCR' to 'user defined' and enter the device parameters manually according to its spec sheet."
 msgstr "Виберіть номер моделі вашого пристрою Unicable. Якщо номер моделі не вказаний, встановіть 'SCR' на 'визначено користувачем' і введіть параметри пристрою вручну відповідно до його специфікації."
@@ -15633,6 +15692,9 @@ msgstr "Стандарт"
 msgid "Standard (always)"
 msgstr "Стандарт (завжди)"
 
+msgid "Standard and Ads filtering mode"
+msgstr "Стандартний режим та режим фільтрації"
+
 msgid "Standard list"
 msgstr "Стандартний список"
 
@@ -16139,7 +16201,7 @@ msgstr "ТБ"
 #. TRANSLATORS: Add here whatever should be shown in the "translator" about screen, up to 6 lines (use \n for newline)
 msgid "TRANSLATOR_INFO"
 msgstr ""
-"Переклад:  kvinto - 21.05.2020\n"
+"Переклад:  kvinto - 12.06.2020\n"
 "Сторінка:    https://gisclub.tv\n"
 "                  kvinto@rambler.ru"
 
@@ -16759,6 +16821,9 @@ msgstr "Тут можна вказати чи переглядати списо�
 msgid "This allows you to show weblinks modules in downloads"
 msgstr "Тут можна вказати чи переглядати список web-посилань при завантаженні"
 
+msgid "This feature is currently unavailable!"
+msgstr "Ця функція наразі недоступна!"
+
 #, python-format
 msgid "This field allows you to search an additional symbol rate up to %s."
 msgstr "Це поле дозволяє шукати додаткову швидкість передачі символів до %s."
@@ -16903,9 +16968,6 @@ msgstr "Цей параметр дозволяє Вам приховати і с
 
 msgid "This option allows you to hide and sorting of the plugin browser."
 msgstr "Цей параметр дозволяє Вам приховати і сортувати плагіни в браузері."
-
-msgid "This option allows you to place the colored buttons (red, green, yellow, blue) to the first in the Extensions list."
-msgstr "Ця опція дозволяє розмістити кольорові кнопки (червону, зелену, жовту, синю) по порядку у списку розширень."
 
 msgid "This option allows you to show menu number quick links."
 msgstr "Цей параметр дозволяє відображати швидкі посилання номера меню."
@@ -17645,6 +17707,9 @@ msgstr "Тип:"
 
 msgid "Type: "
 msgstr "Тип: "
+
+msgid "UHD Test"
+msgstr "Тест UHD"
 
 msgid "UI 3D setup"
 msgstr "GUI Налаштування 3D"
@@ -19852,10 +19917,6 @@ msgstr "чорний список"
 
 msgid "blue"
 msgstr "синій"
-
-#, python-format
-msgid " bootmode = %s"
-msgstr " режим = %s"
 
 msgid "bottom"
 msgstr "знизу"

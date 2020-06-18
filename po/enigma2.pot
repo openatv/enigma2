@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-05-01 17:51+0000\n"
+"POT-Creation-Date: 2020-06-11 20:09+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -173,31 +173,6 @@ msgid "     wrong back-up destination "
 msgstr ""
 
 #, python-format
-msgid "   (%s MHz)"
-msgstr ""
-
-msgid "   (1.0 GHz)"
-msgstr ""
-
-msgid "   (1.3 GHz)"
-msgstr ""
-
-msgid "   (1.5 GHz)"
-msgstr ""
-
-msgid "   (1.6 GHz)"
-msgstr ""
-
-msgid "   (1.7 GHz)"
-msgstr ""
-
-msgid "   (2.0 GHz)"
-msgstr ""
-
-msgid "   (2.1 GHz)"
-msgstr ""
-
-#, python-format
 msgid "  (%s x %s)"
 msgstr ""
 
@@ -277,6 +252,10 @@ msgid ""
 " available !!\n"
 "\n"
 "Do you want to install the new settingslist?"
+msgstr ""
+
+#, python-format
+msgid " bootmode = %s"
 msgstr ""
 
 msgid " of "
@@ -410,6 +389,10 @@ msgstr ""
 
 #, python-format
 msgid "%.2f GB"
+msgstr ""
+
+#, python-format
+msgid "%02d.%02d - %02d.%02d (%s%s)"
 msgstr ""
 
 #, python-format
@@ -583,6 +566,9 @@ msgid "%A %d/%m"
 msgstr ""
 
 msgid "%A %d/%m/%Y"
+msgstr ""
+
+msgid "%A %e %b"
 msgstr ""
 
 msgid "%A %m/%-d"
@@ -998,17 +984,15 @@ msgid_plural "%d channels found"
 msgstr[0] ""
 msgstr[1] ""
 
-msgid "%02d.%02d - %02d.%02d (%s%s)"
-msgstr ""
-
-msgid "%d hour %d min"
-msgstr ""
-
 #, python-format
 msgid "%d hour"
 msgid_plural "%d hours"
 msgstr[0] ""
 msgstr[1] ""
+
+#, python-format
+msgid "%d hour %d min"
+msgstr ""
 
 #, python-format
 msgid "%d kB"
@@ -1153,7 +1137,8 @@ msgstr ""
 #, python-format
 msgid ""
 "%s\n"
-"Press ok to close"
+"Press ok for multiboot selection\n"
+"Press exit to close"
 msgstr ""
 
 #, python-format
@@ -1205,15 +1190,19 @@ msgid "%s (%s)\n"
 msgstr ""
 
 #, python-format
-msgid "%s - %s (%s%d min)"
-msgstr ""
-
-#, python-format
 msgid "%s - Setup"
 msgstr ""
 
 #, python-format
 msgid "%s - extraction errors."
+msgstr ""
+
+#, python-format
+msgid "%s GHz"
+msgstr ""
+
+#, python-format
+msgid "%s MHz"
 msgstr ""
 
 #, python-format
@@ -2322,9 +2311,6 @@ msgstr ""
 msgid "Ads filtering mode"
 msgstr ""
 
-msgid "Ads filtering mode be default"
-msgstr ""
-
 msgid "Adult"
 msgstr ""
 
@@ -2361,6 +2347,15 @@ msgstr ""
 msgid "Afghanistan"
 msgstr ""
 
+msgid "After 3 minutes"
+msgstr ""
+
+msgid "After 30 minutes"
+msgstr ""
+
+msgid "After 5 minutes"
+msgstr ""
+
 msgid "After Recording"
 msgstr ""
 
@@ -2368,18 +2363,6 @@ msgid "After event"
 msgstr ""
 
 msgid "After pressing OK, please wait!"
-msgstr ""
-
-msgid "After this time, the Ads filtering mode should be the default set mode."
-msgstr ""
-
-msgid "After 3 minutes"
-msgstr ""
-
-msgid "After 5 minutes"
-msgstr ""
-
-msgid "After 30 minutes"
 msgstr ""
 
 msgid "Agenten"
@@ -3233,10 +3216,6 @@ msgid "Buffers:"
 msgstr ""
 
 #, python-format
-msgid "Build:\t\t%s"
-msgstr ""
-
-#, python-format
 msgid "Build: %s"
 msgstr ""
 
@@ -3397,7 +3376,7 @@ msgid "CPU"
 msgstr ""
 
 #, python-format
-msgid "CPU:\t\t%s"
+msgid "CPU:\t\t%s  (%s)  %s cores"
 msgstr ""
 
 #, python-format
@@ -3447,6 +3426,24 @@ msgid "Cambodia"
 msgstr ""
 
 msgid "Cameroon"
+msgstr ""
+
+msgid ""
+"Can be used to test defect pixels on TV screen.\n"
+"\n"
+"Available color test screens:\n"
+"\n"
+"red\n"
+"green\n"
+"blue\n"
+"white\n"
+"black\n"
+"cyan\n"
+"magenta\n"
+"yellow\n"
+"\n"
+"Screens change with left/right buttons or use red, green, blue to toggle.\n"
+"Yellow for returning back to this intro"
 msgstr ""
 
 msgid "Can not delete timer"
@@ -3649,10 +3646,10 @@ msgstr ""
 msgid "Change timer"
 msgstr ""
 
-msgid "Change to bouquet"
+msgid "Change to Side by Side mode"
 msgstr ""
 
-msgid "Change to Side by Side mode"
+msgid "Change to bouquet"
 msgstr ""
 
 msgid "Changelog"
@@ -3665,9 +3662,6 @@ msgid ""
 msgstr ""
 
 msgid "Channel"
-msgstr ""
-
-msgid "Channel change +/-"
 msgstr ""
 
 msgid "Channel \t\t\tVolume +"
@@ -3686,6 +3680,9 @@ msgid "Channel List"
 msgstr ""
 
 msgid "Channel button always changes sides"
+msgstr ""
+
+msgid "Channel change +/-"
 msgstr ""
 
 msgid "Channel down"
@@ -3820,9 +3817,6 @@ msgstr ""
 msgid "Choose the CI protocol operation mode for standard ci or ciplus."
 msgstr ""
 
-msgid "Choose what you want the PIP mode how to works."
-msgstr ""
-
 msgid "Choose where to mount your devices to:"
 msgstr ""
 
@@ -3917,22 +3911,19 @@ msgstr ""
 msgid "Close"
 msgstr ""
 
-msgid "Close bouquet list."
-msgstr ""
-
-msgid "Close dialog"
-msgstr ""
-
 msgid "Close Main screen"
 msgstr ""
 
-msgid "Color first in Extensions list"
+msgid "Close PIP and try again!"
 msgstr ""
 
 msgid "Close Picture in Picture screen"
 msgstr ""
 
-msgid "Close PIP and try again!"
+msgid "Close bouquet list."
+msgstr ""
+
+msgid "Close dialog"
 msgstr ""
 
 msgid "Close title selection"
@@ -4232,10 +4223,6 @@ msgid "Copy folder"
 msgstr ""
 
 msgid "Copying files"
-msgstr ""
-
-#, python-format
-msgid "Cores:\t\t%s"
 msgstr ""
 
 #, python-format
@@ -4539,6 +4526,9 @@ msgstr ""
 msgid "Date reverse"
 msgstr ""
 
+msgid "Date/time input"
+msgstr ""
+
 msgid "Dating"
 msgstr ""
 
@@ -4802,6 +4792,9 @@ msgstr ""
 msgid "Delete Plugins"
 msgstr ""
 
+msgid "Delete all the text"
+msgstr ""
+
 msgid "Delete and uninstall Plugins. This will remove the Plugin from your box"
 msgstr ""
 
@@ -4830,9 +4823,6 @@ msgid "Delete playlist entry"
 msgstr ""
 
 msgid "Delete saved playlist"
-msgstr ""
-
-msgid "Delete the all the text"
 msgstr ""
 
 msgid "Delete the character to the left of text cursor"
@@ -6119,6 +6109,9 @@ msgstr ""
 msgid "Fastforward"
 msgstr ""
 
+msgid "Favorit TV..."
+msgstr ""
+
 msgid "Favorites"
 msgstr ""
 
@@ -6126,9 +6119,6 @@ msgid "Favorites long"
 msgstr ""
 
 msgid "Favourites"
-msgstr ""
-
-msgid "Favourites (TV)"
 msgstr ""
 
 msgid "Feeds status:   Stable"
@@ -6428,6 +6418,10 @@ msgid "Front USB"
 msgstr ""
 
 msgid "Front USB 3.0"
+msgstr ""
+
+#, python-format
+msgid "Frontprocessor version:\t%s"
 msgstr ""
 
 #, python-format
@@ -6901,6 +6895,9 @@ msgstr ""
 msgid "History"
 msgstr ""
 
+msgid "History Zap..."
+msgstr ""
+
 msgid "History back"
 msgstr ""
 
@@ -6911,9 +6908,6 @@ msgid "History next"
 msgstr ""
 
 msgid "History zap..."
-msgstr ""
-
-msgid "History Zap..."
 msgstr ""
 
 msgid "Hobbys"
@@ -7725,6 +7719,12 @@ msgstr ""
 msgid "LCN rules:"
 msgstr ""
 
+msgid "LEFT  -  back to active screen   |    EXIT  -  close right screen"
+msgstr ""
+
+msgid "LEFT  -  change screen   |   RIGHT  -  active status change   |   EXIT  -  close right screen"
+msgstr ""
+
 msgid "LNB"
 msgstr ""
 
@@ -7755,6 +7755,10 @@ msgstr ""
 msgid "Lao People's Democratic Republic"
 msgstr ""
 
+#, python-format
+msgid "Last E2 update:\t\t%s"
+msgstr ""
+
 msgid "Last Req."
 msgstr ""
 
@@ -7762,10 +7766,6 @@ msgid "Last config"
 msgstr ""
 
 msgid "Last speed"
-msgstr ""
-
-#, python-format
-msgid "Last update:\t\t%s"
 msgstr ""
 
 #, python-format
@@ -7813,12 +7813,6 @@ msgid "Left from servicename"
 msgstr ""
 
 msgid "Left long"
-msgstr ""
-
-msgid "LEFT  -  back to active screen   |    EXIT  -  close right screen"
-msgstr ""
-
-msgid "LEFT  -  change screen   |   RIGHT  -  active status change   |   EXIT  -  close right screen"
 msgstr ""
 
 msgid "Leichtathletik"
@@ -8278,6 +8272,9 @@ msgstr ""
 msgid "Mins Secs"
 msgstr ""
 
+msgid "Minutes:"
+msgstr ""
+
 msgid "Miscellaneous"
 msgstr ""
 
@@ -8421,9 +8418,6 @@ msgid "Move 1 element"
 msgstr ""
 
 msgid "Move Left/Right"
-msgstr ""
-
-msgid "Move PIP"
 msgstr ""
 
 msgid "Move PiP to main picture"
@@ -9148,6 +9142,9 @@ msgstr ""
 msgid "Not mounted"
 msgstr ""
 
+msgid "Not now, but warn me next time"
+msgstr ""
+
 msgid "Not running"
 msgstr ""
 
@@ -9172,9 +9169,6 @@ msgid "Nothing to upgrade"
 msgstr ""
 
 msgid "Nothing, just leave this menu"
-msgstr ""
-
-msgid "Not now, but warn me next time"
 msgstr ""
 
 msgctxt "now/next: 'now' event label"
@@ -9224,10 +9218,10 @@ msgstr ""
 msgid "OK"
 msgstr ""
 
-msgid "OK long"
+msgid "OK - go back to the TV mode  |  EXIT - cancel  |   <  >  -  change usage mode"
 msgstr ""
 
-msgid "OK - go back to the TV mode  |  EXIT - cancel  |   <  >  -  change usage mode"
+msgid "OK long"
 msgstr ""
 
 msgid "ONID"
@@ -9311,6 +9305,9 @@ msgstr ""
 msgid "OnlineVersionCheck"
 msgstr ""
 
+msgid "Only Standard"
+msgstr ""
+
 msgid "Only extensions."
 msgstr ""
 
@@ -9323,16 +9320,13 @@ msgstr ""
 msgid "Only move the dish quickly before this hour."
 msgstr ""
 
-msgid "Only provider"
-msgstr ""
-
 msgid "Only on startup"
 msgstr ""
 
-msgid "Only select 'yes' if you are using a multiswich that requires a DiSEqC Port-A command signal. For all other setups select 'no'."
+msgid "Only provider"
 msgstr ""
 
-msgid "Only Standard"
+msgid "Only select 'yes' if you are using a multiswich that requires a DiSEqC Port-A command signal. For all other setups select 'no'."
 msgstr ""
 
 msgid "Open"
@@ -9734,7 +9728,16 @@ msgstr ""
 msgid "PiP"
 msgstr ""
 
+msgid "PiP mode"
+msgstr ""
+
 msgid "PiP size and position change"
+msgstr ""
+
+msgid "PiP usage Setup"
+msgstr ""
+
+msgid "PiPSetup"
 msgstr ""
 
 msgid "Picon"
@@ -9744,9 +9747,6 @@ msgid "Picon and Service Name"
 msgstr ""
 
 msgid "Picon and service name"
-msgstr ""
-
-msgid "Picture in Picture Setup"
 msgstr ""
 
 msgid "Picture player"
@@ -9765,22 +9765,13 @@ msgstr ""
 msgid "Pilot"
 msgstr ""
 
-msgid "PiP mode"
-msgstr ""
-
-msgid "PiP settings"
-msgstr ""
-
-msgid "PiP size and position save"
-msgstr ""
-
-msgid "PiP standard Setup"
-msgstr ""
-
-msgid "PiP usage Setup"
-msgstr ""
-
 msgid "Pitcairn"
+msgstr ""
+
+msgid "Pixel Test"
+msgstr ""
+
+msgid "Pixels\n"
 msgstr ""
 
 msgid "Play"
@@ -10126,13 +10117,13 @@ msgstr ""
 msgid "Portuguese"
 msgstr ""
 
+msgid "Position Setup"
+msgstr ""
+
 msgid ""
 "Position change:  Use direction keys to move the PiP window\n"
 "Size change:  Channel +/- to resize the window\n"
 "OK  -  save changes  |  EXIT  -  cancel"
-msgstr ""
-
-msgid "Position Setup"
 msgstr ""
 
 msgid "Position stored at index"
@@ -11577,9 +11568,6 @@ msgstr ""
 msgid "Select 'provider' to scan from the predefined list of cable multiplexes. Select 'bands' to only scan certain parts of the spectrum. Select 'steps' to scan in steps of a particular frequency bandwidth."
 msgstr ""
 
-msgid "Select the mode in which the position and size are saved. Changing the position and size is only possible when using the Standard usage mode!"
-msgstr ""
-
 msgid "Select 'yes' if this tuner is connected to the SCR device through another tuner, otherwise select 'no'."
 msgstr ""
 
@@ -12106,6 +12094,9 @@ msgstr ""
 msgid "Setting Restored "
 msgstr ""
 
+msgid "Setting by user"
+msgstr ""
+
 msgid "Settings"
 msgstr ""
 
@@ -12454,9 +12445,6 @@ msgid "Show Multi EPG"
 msgstr ""
 
 msgid "Show OE Log"
-msgstr ""
-
-msgid "Show PIP"
 msgstr ""
 
 msgid "Show PIP in MiniTV"
@@ -13427,7 +13415,7 @@ msgstr ""
 msgid "Swap Size:"
 msgstr ""
 
-msgid "Swap services"
+msgid "Swap screen"
 msgstr ""
 
 msgid "SwapManager"
@@ -14122,9 +14110,6 @@ msgstr ""
 msgid "This option allows you to enable 3D Surround Sound."
 msgstr ""
 
-msgid "This option allows you to place the colored buttons (red, green, yellow, blue) to the first in the Extensions list."
-msgstr ""
-
 msgid "This option allows you to use all HDMI Modes"
 msgstr ""
 
@@ -14434,9 +14419,6 @@ msgstr ""
 msgid "Toggle LCD LiveTV"
 msgstr ""
 
-msgid "Toggle PIPzap"
-msgstr ""
-
 msgid "Toggle Picture In Graphics"
 msgstr ""
 
@@ -14719,6 +14701,9 @@ msgid "Type:"
 msgstr ""
 
 msgid "Type: "
+msgstr ""
+
+msgid "UHD Test"
 msgstr ""
 
 msgid "UI 3D setup"
@@ -15234,7 +15219,7 @@ msgid "Version %s %s"
 msgstr ""
 
 #, python-format
-msgid "Version:\t\t%s"
+msgid "Version / Build:\t\t%s  (%s)"
 msgstr ""
 
 msgid "Version: "
@@ -15667,6 +15652,9 @@ msgstr ""
 msgid "When enabled, deleted recordings are moved to the trash can, instead of being deleted immediately."
 msgstr ""
 
+msgid "When enabled, network trash cans are probed for cleaning."
+msgstr ""
+
 msgid "When enabled, your receiver will detect activity on the VCR SCART input."
 msgstr ""
 
@@ -15814,6 +15802,9 @@ msgid "Yes"
 msgstr ""
 
 msgid "Yes to all"
+msgstr ""
+
+msgid "Yes, I'm setting it up now"
 msgstr ""
 
 msgid "Yes, always"
@@ -16260,9 +16251,6 @@ msgstr ""
 msgid "activate network adapter configuration"
 msgstr ""
 
-msgid "activatePiP"
-msgstr ""
-
 msgid "add Current"
 msgstr ""
 
@@ -16619,6 +16607,10 @@ msgid "drivers"
 msgstr ""
 
 msgid "eMMC"
+msgstr ""
+
+#, python-format
+msgid "eMMC slot %s"
 msgstr ""
 
 msgid "eSATA"
@@ -18147,9 +18139,6 @@ msgstr ""
 msgid "DVD file browser"
 msgstr ""
 
-msgid "Date/time input"
-msgstr ""
-
 msgid "Dish"
 msgstr ""
 
@@ -18211,15 +18200,6 @@ msgid "PIN code needed"
 msgstr ""
 
 msgid "Parental control services editor"
-msgstr ""
-
-msgid "PiP-Zap"
-msgstr ""
-
-msgid "PiPSetup"
-msgstr ""
-
-msgid "PiPZap"
 msgstr ""
 
 msgid "Plugin browser"
@@ -18518,7 +18498,13 @@ msgstr ""
 msgid "Adjust the vertical position of the letters used for teletext."
 msgstr ""
 
+msgid "Ads filtering mode be default"
+msgstr ""
+
 msgid "After PowerLost"
+msgstr ""
+
+msgid "After this time, the Ads filtering mode should be the default set mode."
 msgstr ""
 
 msgid "Alignment channel number"
@@ -18752,6 +18738,9 @@ msgstr ""
 msgid "Choose time interval to which the graphics will be rounded off."
 msgstr ""
 
+msgid "Choose what you want the PIP mode how to works."
+msgstr ""
+
 msgid "Choose what you want the button '0' to do when PIP is active."
 msgstr ""
 
@@ -18768,6 +18757,9 @@ msgid "Clone TV screen to LCD"
 msgstr ""
 
 msgid "Close PiP on exit"
+msgstr ""
+
+msgid "Color first in Extensions list"
 msgstr ""
 
 msgid "Composition of the recording filenames"
@@ -19652,6 +19644,12 @@ msgstr ""
 msgid "Perform an online update check in the background"
 msgstr ""
 
+msgid "PiP settings"
+msgstr ""
+
+msgid "PiP size and position save"
+msgstr ""
+
 msgid "Picon width"
 msgstr ""
 
@@ -19850,6 +19848,9 @@ msgstr ""
 msgid "Select the method of restoring screen resolution and framebuffer when leaving teletext."
 msgstr ""
 
+msgid "Select the mode in which the position and size are saved. Changing the position and size is only possible when using the Standard usage mode!"
+msgstr ""
+
 msgid "Select the time zone within the area or region."
 msgstr ""
 
@@ -19974,9 +19975,6 @@ msgid "Set to what you want the button to do."
 msgstr ""
 
 msgid "Set to yes for debugging the root cause of a spinner."
-msgstr ""
-
-msgid "Setting by user"
 msgstr ""
 
 msgid "Setup delay mode to zap to channels."
@@ -20288,9 +20286,6 @@ msgstr ""
 msgid "Subtitle position"
 msgstr ""
 
-msgid "Swap screen"
-msgstr ""
-
 msgid "Swap SNR in '%' with SNR in 'db'"
 msgstr ""
 
@@ -20436,6 +20431,9 @@ msgid "This option allows you to hide and sorting of the menus"
 msgstr ""
 
 msgid "This option allows you to hide and sorting of the plugin browser."
+msgstr ""
+
+msgid "This option allows you to place the colored buttons (red, green, yellow, blue) to the first in the Extensions list."
 msgstr ""
 
 msgid "This option allows you to show menu number quick links."
@@ -20687,9 +20685,6 @@ msgstr ""
 msgid "When enabled, measure power consumption to detect when the rotor stops turning (when supported by the tuner)."
 msgstr ""
 
-msgid "When enabled, network trash cans are probed for cleaning."
-msgstr ""
-
 msgid "When enabled, number markers will be hidden."
 msgstr ""
 
@@ -20927,9 +20922,6 @@ msgid "Where do you want to backup your settings?"
 msgstr ""
 
 msgid "Yes, backup my settings!"
-msgstr ""
-
-msgid "Yes, I'm setting it up now"
 msgstr ""
 
 msgid "Yes, restore the settings now"

@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-12-30 14:34+0100\n"
-"PO-Revision-Date: 2020-05-24 15:23+0100\n"
+"PO-Revision-Date: 2020-06-16 15:23+0100\n"
 "Last-Translator: pololoko111 <pololoko111@o2.pl>\n"
 "Language-Team: Poland\n"
 "Language: pl\n"
@@ -223,31 +223,6 @@ msgid "     wrong back-up destination "
 msgstr ""
 
 #, python-format
-msgid "   (%s MHz)"
-msgstr ""
-
-msgid "   (1.0 GHz)"
-msgstr ""
-
-msgid "   (1.3 GHz)"
-msgstr ""
-
-msgid "   (1.5 GHz)"
-msgstr ""
-
-msgid "   (1.6 GHz)"
-msgstr ""
-
-msgid "   (1.7 GHz)"
-msgstr ""
-
-msgid "   (2.0 GHz)"
-msgstr ""
-
-msgid "   (2.1 GHz)"
-msgstr ""
-
-#, python-format
 msgid "  (%s x %s)"
 msgstr ""
 
@@ -331,6 +306,10 @@ msgstr ""
 " dostępna !!\n"
 "\n"
 "Czy chcesz zainstalować nową listę kanałów?"
+
+#, python-format
+msgid " bootmode = %s"
+msgstr " tryb rozruchowy = %s"
 
 msgid " of "
 msgstr " z "
@@ -463,6 +442,10 @@ msgstr ""
 
 #, python-format
 msgid "%.2f GB"
+msgstr ""
+
+#, python-format
+msgid "%02d.%02d - %02d.%02d (%s%s)"
 msgstr ""
 
 #, python-format
@@ -636,6 +619,9 @@ msgid "%A %d/%m"
 msgstr ""
 
 msgid "%A %d/%m/%Y"
+msgstr ""
+
+msgid "%A %e %b"
 msgstr ""
 
 msgid "%A %m/%-d"
@@ -1210,9 +1196,11 @@ msgstr ""
 #, python-format
 msgid ""
 "%s\n"
+"Press ok for multiboot selection\n"
 "Press ok to close"
 msgstr ""
 "%s\n"
+"Naciśnij ok, aby wybrać opcję wielokrotnego uruchamiania\n"
 "Naciśnij ok, aby zamknąć"
 
 #, python-format
@@ -3568,10 +3556,6 @@ msgid "Buffers:"
 msgstr "Bufory:"
 
 #, python-format
-msgid "Build:\t\t%s"
-msgstr "Kompilacja:\t\t%s"
-
-#, python-format
 msgid "Build: %s"
 msgstr "Kompilacja: %s"
 
@@ -3794,6 +3778,40 @@ msgstr "Kambodża"
 msgid "Cameroon"
 msgstr "Kamerun"
 
+msgid ""
+"Can be used to test defect pixels on TV screen.\n"
+"\n"
+"Available color test screens:\n"
+"\n"
+"red\n"
+"green\n"
+"blue\n"
+"white\n"
+"black\n"
+"cyan\n"
+"magenta\n"
+"yellow\n"
+"\n"
+"Screens change with left/right buttons or use red, green, blue to toggle.\n"
+"Yellow for returning back to this intro"
+msgstr ""
+"Może służyć do testowania uszkodzonych pikseli na ekranie telewizora.\n"
+"\n"
+"Dostępne kolorowe ekrany testowe:\n"
+"\n"
+"czerwony\n"
+"zielony\n"
+"niebieski\n"
+"biały\n"
+"czarny\n"
+"cyjan\n"
+"magentkarmazynowy\n"
+"żółty\n"
+"\n"
+"Ekrany zmieniają się za pomocą przycisków w lewo / w prawo lub do przełączania służą przyciski czerwony, zielony, niebieski.\n"
+"Żółty za powrót do tego wstępu"
+
+
 msgid "Can be used for different fps between external subtitles and video."
 msgstr "Może być stosowane do różnych klatek na sekundę między napisami zewnętrznymi i wideo."
 
@@ -4009,6 +4027,9 @@ msgstr "Zmień rozmiar skoku"
 msgid "Change timer"
 msgstr "Zmień timer"
 
+msgid "Change to Side by Side mode"
+msgstr "Przejdź do trybu Obok siebie"
+
 msgid "Change to bouquet"
 msgstr "Zamień na bukiet"
 
@@ -4046,6 +4067,9 @@ msgstr "Lista Kanałów"
 
 msgid "Channel button always changes sides"
 msgstr "Przycisk kanału zawsze zmienia strony"
+
+msgid "Channel change +/-"
+msgstr "Zmiana kanału +/-"
 
 msgid "Channel buttons"
 msgstr "Przyciski kanałów"
@@ -4391,6 +4415,9 @@ msgstr "Zamknij okno dialogowe"
 
 msgid "Close Main screen"
 msgstr "Zamknij ekran główny"
+
+msgid "Close PIP and try again!"
+msgstr "Zamknij PIP i spróbuj ponownie!"
 
 msgid "Color first in Extensions list"
 msgstr "Najpierw koloruj na liście rozszerzeń"
@@ -5023,10 +5050,6 @@ msgstr "Kopiuj folder"
 
 msgid "Copying files"
 msgstr "Kopiowanie plików"
-
-#, python-format
-msgid "Cores:\t\t%s"
-msgstr "Rdzenie:\t\t%s"
 
 #, python-format
 msgid "Cores: %s"
@@ -5727,7 +5750,7 @@ msgstr "Usuń pozycję z listy"
 msgid "Delete saved playlist"
 msgstr "Usuń zapisaną listę odtwarzania"
 
-msgid "Delete the all the text"
+msgid "Delete all the text"
 msgstr "Usuń cały tekst"
 
 msgid "Delete the character to the left of text cursor"
@@ -7278,6 +7301,9 @@ msgstr "Szybkie przewijanie do przodu"
 msgid "Fastforward"
 msgstr "Przewijanie do przodu"
 
+msgid "Favorit TV..."
+msgstr "Ulubiona telewizja ..."
+
 msgid "Favorites"
 msgstr "Ulubione"
 
@@ -7286,9 +7312,6 @@ msgstr "Ulubione (długo)"
 
 msgid "Favourites"
 msgstr "Ulubione"
-
-msgid "Favourites (TV)"
-msgstr "Ulubione (TV)"
 
 msgid "Feeds status:   Stable"
 msgstr "Status źródeł:   Stabilne"
@@ -7630,6 +7653,10 @@ msgstr "Przedni USB 3.0"
 #, python-format
 msgid "Frontprocessor version:\t%s"
 msgstr "Wersja frontprocesora:\t%s"
+
+#, python-format
+msgid "Frontprocessor version: %s"
+msgstr "Wersja frontprocesora: %s"
 
 msgid "Full Image Backup "
 msgstr "Pełna kopia zapasowa obrazu "
@@ -10964,6 +10991,9 @@ msgstr "Aktualizacja oprogramowania online"
 msgid "OnlineVersionCheck"
 msgstr "Sprawdź dostępną wersję"
 
+msgid "Only Standard"
+msgstr "Tylko standard"
+
 msgid "Only extensions."
 msgstr "Tylko rozszerzenia."
 
@@ -11393,6 +11423,12 @@ msgstr "Wykonaj kopię zapasową ustawień, wykonywanie kopii zapasowej przed ak
 msgid "Perform an online update check in the background"
 msgstr "Wykonaj aktualizacji online w tle"
 
+msgid "PiP settings"
+msgstr "Ustawienia PiP"
+
+msgid "PiP size and position save"
+msgstr "Zapisywanie rozmiaru i pozycji PiP"
+
 msgid "Permanently delete all recordings in the trash can?"
 msgstr "Trwale usunąć wszystkie nagrania z 'Kosza'?"
 
@@ -11471,6 +11507,12 @@ msgstr "Konfiguracja użytkowania PiP"
 
 msgid "Pitcairn"
 msgstr "Pitcairn"
+
+msgid "Pixel Test"
+msgstr "Test Pikseli"
+
+msgid "Pixels\n"
+msgstr "Piksele\n"
 
 msgid "Play"
 msgstr "Odtwarzaj"
@@ -15744,6 +15786,9 @@ msgstr "Standardowe"
 msgid "Standard (always)"
 msgstr "Standardowo (zawsze)"
 
+msgid "Standard and Ads filtering mode"
+msgstr "Tryb standardowy i tryb filtrowania reklam"
+
 msgid "Standard list"
 msgstr "Lista standardowa"
 
@@ -17769,6 +17814,9 @@ msgstr "Typ:"
 
 msgid "Type: "
 msgstr "Typ: "
+
+msgid "UHD Test"
+msgstr ""
 
 msgid "UI 3D setup"
 msgstr "Ustawienia UI 3D"
@@ -20169,6 +20217,10 @@ msgid "drivers"
 msgstr "sterowniki"
 
 msgid "eMMC"
+msgstr ""
+
+#, python-format
+msgid "eMMC slot %s"
 msgstr ""
 
 msgid "eSATA"
