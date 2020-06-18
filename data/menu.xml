@@ -217,15 +217,16 @@ self.session.open(HdmiCECSetupScreen)
 			<item weight="80" level="1" entryID="rfmod_setup" requires="RfModulator"><setup id="RFmod"/></item>
 			<item weight="99" level="0" text="Factory reset" entryID="factory_reset">
 				<code>
+from __future__ import print_function
 from Screens.FactoryReset import FactoryReset
 def msgClosed(ret):
 	if ret:
 		from os import system, path, _exit
-		print"[FACTORY RESET] remove dir /etc/enigma2"
+		print("[FACTORY RESET] remove dir /etc/enigma2")
 		system("rm -R /etc/enigma2")
 		if path.exists("/media/hdd/images/config"):
 			system("rm -R /media/hdd/images/config")
-		print"[FACTORY RESET] set network to DHCP"
+		print("[FACTORY RESET] set network to DHCP")
 		system("cp -f /usr/share/enigma2/defaults/interfaces /etc/network/interfaces")
 		system("/etc/init.d/networking restart")
 		_exit(0)
