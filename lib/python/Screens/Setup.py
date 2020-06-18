@@ -253,7 +253,10 @@ class Setup(ConfigListScreen, Screen):
 				value = x.get("value")
 				if requires and requires.startswith('config.'):
 					item = eval(requires or "")
-					if value and six.ensure_str(item.value) == value or not value and item.value and not item.value == "0":
+					iv = item.value
+					if iv and not isinstance(iv, bool):
+						iv = six.ensure_str(iv)
+					if value and iv == value or not value and iv and not iv == "0":
 						SystemInfo[requires] = True
 					else:
 						SystemInfo[requires] = False
