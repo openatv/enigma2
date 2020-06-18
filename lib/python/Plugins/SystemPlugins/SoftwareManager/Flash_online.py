@@ -107,24 +107,24 @@ class FlashOnline(Screen):
 							for dir in [dir for dir in [os.path.join(media, dir) for dir in os.listdir(media)] if os.path.isdir(dir) and os.path.splitext(dir)[1] == ".unzipped"]:
 								shutil.rmtree(dir)
 
-		list = []
+		_list = []
 		for catagorie in reversed(sorted(self.imagesList.keys())):
 			if catagorie in self.expanded:
-				list.append(ChoiceEntryComponent('expanded', ((str(catagorie)), "Expander")))
+				_list.append(ChoiceEntryComponent('expanded', ((str(catagorie)), "Expander")))
 				for image in reversed(sorted(list(self.imagesList[catagorie].keys()), key=lambda x: x.split(os.sep)[-1])):
-					list.append(ChoiceEntryComponent('verticalline', ((str(self.imagesList[catagorie][image]['name'])), str(self.imagesList[catagorie][image]['link']))))
+					_list.append(ChoiceEntryComponent('verticalline', ((str(self.imagesList[catagorie][image]['name'])), str(self.imagesList[catagorie][image]['link']))))
 			else:
 				for image in list(self.imagesList[catagorie].keys()):
-					list.append(ChoiceEntryComponent('expandable', ((str(catagorie)), "Expander")))
+					_list.append(ChoiceEntryComponent('expandable', ((str(catagorie)), "Expander")))
 					break
-		if list:
-			self["list"].setList(list)
+		if _list:
+			self["list"].setList(_list)
 			if self.setIndex:
-				self["list"].moveToIndex(self.setIndex if self.setIndex < len(list) else len(list) - 1)
+				self["list"].moveToIndex(self.setIndex if self.setIndex < len(_list) else len(_list) - 1)
 				if self["list"].l.getCurrentSelection()[0][1] == "Expander":
 					self.setIndex -= 1
 					if self.setIndex:
-						self["list"].moveToIndex(self.setIndex if self.setIndex < len(list) else len(list) - 1)
+						self["list"].moveToIndex(self.setIndex if self.setIndex < len(_list) else len(_list) - 1)
 				self.setIndex = 0
 			self.selectionChanged()
 		else:
