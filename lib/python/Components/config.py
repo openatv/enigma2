@@ -1037,7 +1037,7 @@ class ConfigClock(ConfigSequence):
 		newtime = list(self.t)
 		newtime[3] = self._value[0]
 		newtime[4] = self._value[1]
-		value = strftime(self.timeformat, newtime)
+		value = strftime(self.timeformat, tuple(newtime))
 		return value, mPos
 
 integer_limits = (0, 9999999999)
