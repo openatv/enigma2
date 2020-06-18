@@ -171,9 +171,10 @@ def getIfConfig(ifname):
 	infos['hwaddr']  = 0x8927 # SIOCSIFHWADDR
 	infos['netmask'] = 0x891b # SIOCGIFNETMASK
 	try:
-		for k, v in infos.items():
+		for k, v in list(infos.items()):
 			ifreq[k] = _ifinfo(sock, v, ifname)
-	except:
+	except Exception as ex:
+		print("[About] getIfConfig Ex:", ex)
 		pass
 	sock.close()
 	return ifreq
