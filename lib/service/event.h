@@ -82,7 +82,7 @@ class eServiceEvent: public iObject
 	time_t m_begin;
 	int m_duration;
 	int m_event_id;
-	std::string m_event_name, m_short_description, m_extended_description, m_extra_event_data, m_epg_source;
+	std::string m_event_name, m_short_description, m_extended_description, m_extra_event_data, m_epg_source, m_extended_description_items;
 	static std::string m_language, m_language_alternative;
 	// .. additional info
 public:
