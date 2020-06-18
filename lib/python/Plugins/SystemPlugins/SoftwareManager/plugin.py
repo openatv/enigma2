@@ -2078,7 +2078,7 @@ class PacketManager(Screen, NumericalTextInput):
 		rcinput.setKeyboardMode(rcinput.kmNone)
 		self.close()
 
-	def reload_module(self):
+	def reload(self):
 		if (os_path.exists(self.cache_file) == True):
 			remove(self.cache_file)
 			self.list_updating = True
