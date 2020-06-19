@@ -110,7 +110,7 @@
 		<item level="2" text="Show additional slider value" description="Enable the current value of the slider at end of the slider bar.">config.usage.show_slider_value</item>
 	</setup>
 	<setup key="pipsetup" title="PiP settings">
-		<item level="2" text="PiP mode" description="Choose what you want the PIP mode how to works." requires="PIPAvailable">config.usage.pip_mode</item>
+		<item level="2" text="PiP mode" description="Choose how you want PIP mode to work." requires="PIPAvailable">config.usage.pip_mode</item>
 		<item level="2" text="Ads filtering mode be default" description="After this time, the Ads filtering mode should be the default set mode." requires="PIPAvailable">config.usage.noadspip_default_mode_time</item>
 		<item level="1" text="Color first in Extensions list" description="This option allows you to place the colored buttons (red, green, yellow, blue) to the first in the Extensions list.">config.usage.colored_first_extensionslist</item>
 		<item level="2" text="Close PiP on exit" description="When enabled the PiP can be closed by the exit button." requires="PIPAvailable">config.usage.pip_hideOnExit</item>
