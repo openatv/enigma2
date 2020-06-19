@@ -755,36 +755,36 @@ class SystemNetworkInfo(Screen):
 						else:
 							accesspoint = str(status[self.iface]["accesspoint"])
 						if "BSSID" in self:
-							self.AboutText += _('Accesspoint:') + '\t' + accesspoint + '\n'
+							self.AboutText += '{:<35}'.format(_('Accesspoint:')) + '\t' + accesspoint + '\n'
 						if "ESSID" in self:
-							self.AboutText += _('SSID:') + '\t' + essid + '\n'
+							self.AboutText += '{:<35}'.format(_('SSID:')) + '\t' + essid + '\n'
 
 						quality = str(status[self.iface]["quality"])
 						if "quality" in self:
-							self.AboutText += _('Link Quality:') + '\t' + quality + '\n'
+							self.AboutText += '{:<35}'.format(_('Link Quality:')) + '\t' + quality + '\n'
 
 						channel = str(status[self.iface]["channel"])
 						if "channel" in self:
-							self.AboutText += _('Channel:') + '\t' + channel + '\n'
+							self.AboutText += '{:<35}'.format(_('Channel:')) + '\t' + channel + '\n'
 
 						frequency = status[self.iface]["frequency"]
 						if "frequency" in self:
-							self.AboutText += _('Frequency:') + '\t' + frequency + '\n'
+							self.AboutText += '{:<35}'.format(_('Frequency:')) + '\t' + frequency + '\n'
 
 						frequency_norm = status[self.iface]["frequency_norm"]
 						if "frequency_norm" in self:
-							self.AboutText += _('Frequency Norm:') + '\t' + frequency_norm + '\n'
+							self.AboutText += '{:<35}'.format(_('Frequency Norm:')) + '\t' + frequency_norm + '\n'
 
 						if status[self.iface]["bitrate"] == '0':
 							bitrate = _("Unsupported")
 						else:
 							bitrate = str(status[self.iface]["bitrate"])
 						if "bitrate" in self:
-							self.AboutText += _('Bitrate:') + '\t' + bitrate + '\n'
+							self.AboutText += '{:<35}'.format(_('Bitrate:')) + '\t' + bitrate + '\n'
 
 						signal = str(status[self.iface]["signal"]) + " dBm"
 						if "signal" in self:
-							self.AboutText += _('Signal Strength:') + '\t' + signal + '\n'
+							self.AboutText += '{:<35}'.format(_('Signal Strength:')) + '\t' + signal + '\n'
 
 						if status[self.iface]["encryption"] == "off":
 							if accesspoint == "Not-Associated":
@@ -794,11 +794,11 @@ class SystemNetworkInfo(Screen):
 						else:
 							encryption = _("Enabled")
 						if "enc" in self:
-							self.AboutText += _('Encryption:') + '\t' + encryption + '\n'
+							self.AboutText += '{:<35}'.format(_('Encryption:')) + '\t' + encryption + '\n'
 
 						encryption_type = status[self.iface]["encryption_type"]
 						if "encryption_type" in self:
-							self.AboutText += _('Encryption Type:') + '\t' + encryption_type + '\n'
+							self.AboutText += '{:<35}'.format(_('Encryption Type:')) + '\t' + encryption_type + '\n'
 
 						if status[self.iface]["essid"] == "off" or status[self.iface]["accesspoint"] == "Not-Associated" or status[self.iface]["accesspoint"] is False:
 							self.LinkState = False
