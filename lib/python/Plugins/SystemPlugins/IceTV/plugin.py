@@ -1188,22 +1188,44 @@ def Plugins(**kwargs):
 
 
 class IceTVUIBase:
-    def __init__(self, title=None, description=None):
+    _banner = _("Never miss a good Free-to-Air TV show again.\n\n"
+                "Set recordings from anywhere with our app.\n\n"
+                "See new and recommended shows on the app or website and just press 'record'.\n\n"
+                "No need to use the awkward PVR EPG any more.\n\n"
+                "Find out more at %s")
+
+    def __init__(self, title=None, description=None, server=None):
         if hasattr(self, "_instructions"):
             self["instructions"] = Label(self._instructions)
         if title is not None:
                 self.setTitle(title)
         if description is not None:
                 self["description"] = Label(description)
+        if self._banner is not None:
+            self["banner"] = Label()
+            if server is None:
+                    server = config.plugins.icetv.server.name.value
+            self.setBanner(server)
+
+    def setBanner(self, server):
+        self["banner"].text = self._banner % server.replace("api.", "www.", 1)
 
 
 class IceTVMain(ChoiceBox):
+    skin = """
+<screen name="IceTVMain" position="center,center" size="1060,350" zPosition="5">
+    <ePixmap pixmap="/usr/lib/enigma2/python/Plugins/SystemPlugins/IceTV/icetv_logo172x100.png" position="202,0" size="172,100" alphatest="on" />
+    <widget name="text" position="540,0" size="520,350" font="Regular;22" valign="center" halign="center" />
+    <widget name="list" position="10,100" size="520,150" enableWrapAround="1" />
+</screen>"""
+
     def __init__(self, session, *args, **kwargs):
         global _session
         if _session is None:
             _session = session
         self.skinName = "IceTVMain"
         self.setTitle(_("IceTV - Setup"))
+        text = IceTVUIBase._banner % config.plugins.icetv.server.name.value.replace("api.", "www.")
         menu = [
                 (_("Show log"), "CALLFUNC", self.showLog),
                 (_("Fetch EPG and update timers now"), "CALLFUNC", self.fetch),
@@ -1214,10 +1236,10 @@ class IceTVMain(ChoiceBox):
                ]
         try:
             # Use windowTitle for compatibility betwwen OpenATV & OpenViX
-            super(IceTVMain, self).__init__(session, title=_("IceTV version %s") % ice._version_string, list=menu, skin_name=self.skinName, windowTitle=_("IceTV - Setup"))
+            super(IceTVMain, self).__init__(session, title=(_("IceTV version %s\n") + text) % ice._version_string, list=menu, skin_name=self.skinName, windowTitle=_("IceTV - Setup"))
         except TypeError:
             # Fallback for Beyonwiz
-            super(IceTVMain, self).__init__(session, title=_("IceTV version %s") % ice._version_string, list=menu)
+            super(IceTVMain, self).__init__(session, skin_name=self.skinName, title=(_("IceTV version %s\n") + text) % ice._version_string, list=menu)
 
         self["debugactions"] = ActionMap(
             contexts=["DirectionActions"],
@@ -1271,9 +1293,11 @@ class IceTVLogView(TextBox):
 
 class IceTVServerSetup(Screen, IceTVUIBase):
     skin = """
-<screen name="IceTVServerSetup" position="320,130" size="640,510" title="IceTV - Service selection" >
+<screen name="IceTVServerSetup" position="center,center" size="1190,510" title="IceTV - Service selection" >
     <widget name="instructions" position="20,10" size="600,100" font="Regular;22" />
     <widget name="config" position="30,120" size="580,300" enableWrapAround="1" scrollbarMode="showAlways"/>
+    <ePixmap pixmap="/usr/lib/enigma2/python/Plugins/SystemPlugins/IceTV/icetv_logo172x100.png" position="804,0" size="172,100" alphatest="on" />
+    <widget name="banner" position="630,105" size="520,350" font="Regular;22" valign="center" halign="center" />
     <ePixmap name="red" position="20,e-28" size="15,16" pixmap="skin_default/buttons/button_red.png" alphatest="blend" />
     <ePixmap name="green" position="170,e-28" size="15,16" pixmap="skin_default/buttons/button_green.png" alphatest="blend" />
     <widget name="key_red" position="40,e-30" size="150,25" valign="top" halign="left" font="Regular;20" />
@@ -1295,6 +1319,7 @@ class IceTVServerSetup(Screen, IceTVUIBase):
         self["key_blue"] = Label()
         self.onLayoutFinish.append(self.onLayoutFinished)
         self["config"] = MenuList(sorted(ice.iceTVServers.items()))
+        self["config"].onSelectionChanged.append(self.selectionChanged)
         self["IrsActions"] = ActionMap(contexts=["SetupActions", "ColorActions"],
                                        actions={"cancel": self.cancel,
                                                 "red": self.cancel,
@@ -1309,6 +1334,9 @@ class IceTVServerSetup(Screen, IceTVUIBase):
                 self["config"].moveToIndex(next(i for i, ent in enumerate(self["config"].list) if ent[1] == curr_server_name))
         except StopIteration:
                 pass
+
+    def selectionChanged(self):
+        self.setBanner(self["config"].getCurrent()[1])
 
     def cancel(self):
         config.plugins.icetv.server.name.cancel()
@@ -1328,9 +1356,11 @@ class IceTVServerSetup(Screen, IceTVUIBase):
 
 class IceTVUserTypeScreen(Screen, IceTVUIBase):
     skin = """
-<screen name="IceTVUserTypeScreen" position="320,130" size="640,400" title="IceTV - Account selection" >
+<screen name="IceTVUserTypeScreen" position="center,center" size="1190,455" title="IceTV - Account selection" >
  <widget position="20,20" size="600,40" name="title" font="Regular;32" />
  <widget position="20,80" size="600,200" name="instructions" font="Regular;22" />
+    <ePixmap pixmap="/usr/lib/enigma2/python/Plugins/SystemPlugins/IceTV/icetv_logo172x100.png" position="804,0" size="172,100" alphatest="on" />
+    <widget name="banner" position="630,105" size="520,350" font="Regular;22" valign="center" halign="center" />
  <widget position="20,300" size="600,100" name="menu" />
 </screen>
 """
@@ -1338,7 +1368,7 @@ class IceTVUserTypeScreen(Screen, IceTVUIBase):
                       "IceTV smart recording service, we need to gather some "
                       "basic information.\n\n"
                       "If you already have an IceTV subscription or trial, please select "
-                      "'Existing or trial user', if not, then select 'New user'.")
+                      "'Existing or trial customer', if not, then select 'New customer'.")
 
     def __init__(self, session):
         self.session = session
@@ -1346,8 +1376,8 @@ class IceTVUserTypeScreen(Screen, IceTVUIBase):
         self["title"] = Label(_("Welcome to IceTV"))
         IceTVUIBase.__init__(self, title=_("IceTV - Account selection"))
         options = []
-        options.append((_("New user"), "newUser"))
-        options.append((_("Existing or trial user"), "oldUser"))
+        options.append((_("New customer"), "newUser"))
+        options.append((_("Existing or trial customer"), "oldUser"))
         self["menu"] = MenuList(options)
         self["aMap"] = ActionMap(contexts=["OkCancelActions", "DirectionActions"],
                                  actions={
@@ -1372,11 +1402,13 @@ class IceTVUserTypeScreen(Screen, IceTVUIBase):
 
 class IceTVNewUserSetup(ConfigListScreen, Screen, IceTVUIBase):
     skin = """
-<screen name="IceTVNewUserSetup" position="320,230" size="640,335" title="IceTV - User Information" >
-    <widget name="instructions" position="20,10" size="600,100" font="Regular;22" />
-    <widget name="config" position="20,120" size="600,125" />
+<screen name="IceTVNewUserSetup" position="center,center" size="1190,455" title="IceTV - User Information" >
+    <widget name="instructions" position="20,10" size="600,125" font="Regular;22" />
+    <widget name="config" position="20,145" size="600,125" />
 
     <widget name="description" position="20,e-90" size="600,60" font="Regular;18" foregroundColor="grey" halign="left" valign="top" />
+    <ePixmap pixmap="/usr/lib/enigma2/python/Plugins/SystemPlugins/IceTV/icetv_logo172x100.png" position="804,0" size="172,100" alphatest="on" />
+    <widget name="banner" position="630,105" size="520,350" font="Regular;22" valign="center" halign="center" />
     <ePixmap name="red" position="20,e-28" size="15,16" pixmap="skin_default/buttons/button_red.png" alphatest="blend" />
     <ePixmap name="green" position="170,e-28" size="15,16" pixmap="skin_default/buttons/button_green.png" alphatest="blend" />
     <ePixmap name="blue" position="470,e-28" size="15,16" pixmap="skin_default/buttons/button_blue.png" alphatest="blend" />
@@ -1386,9 +1418,10 @@ class IceTVNewUserSetup(ConfigListScreen, Screen, IceTVUIBase):
     <widget name="key_blue" position="490,e-30" size="150,25" valign="top" halign="left" font="Regular;20" />
 </screen>"""
 
-    _instructions = _("Please enter your email address. This is required for us to send you "
-                      "service announcements, account reminders, promotional offers and "
-                      "a welcome email.")
+    _instructions = _("Please enter your email address, which will be your login.\n"
+                      "Via your account on the IceTV website you can choose"
+                      " to receive service announcements, account reminders"
+                      " and promotional offers.")
     _email = _("Email")
     _password = _("Password")
     _label = _("Label")
@@ -1399,6 +1432,7 @@ class IceTVNewUserSetup(ConfigListScreen, Screen, IceTVUIBase):
         self.session = session
         Screen.__init__(self, session)
         IceTVUIBase.__init__(self, title=_("IceTV - User Information"), description="")
+        self["instructions"] = Label(self._instructions)
         self["HelpWindow"] = Label()
         self["key_red"] = Label(_("Cancel"))
         self["key_green"] = Label(_("Save"))
@@ -1468,12 +1502,14 @@ class IceTVOldUserSetup(IceTVNewUserSetup):
 
 class IceTVRegionSetup(Screen, IceTVUIBase):
     skin = """
-<screen name="IceTVRegionSetup" position="320,130" size="640,510" title="IceTV - Region" >
+<screen name="IceTVRegionSetup" position="center,center" size="1190,510" title="IceTV - Region" >
     <widget name="instructions" position="20,10" size="600,100" font="Regular;22" />
     <widget name="config" position="30,120" size="580,300" enableWrapAround="1" scrollbarMode="showAlways"/>
     <widget name="error" position="30,120" size="580,300" font="Console; 16" zPosition="1" />
 
     <widget name="description" position="20,e-90" size="600,60" font="Regular;18" foregroundColor="grey" halign="left" valign="top" />
+    <ePixmap pixmap="/usr/lib/enigma2/python/Plugins/SystemPlugins/IceTV/icetv_logo172x100.png" position="804,0" size="172,100" alphatest="on" />
+    <widget name="banner" position="630,105" size="520,350" font="Regular;22" valign="center" halign="center" />
     <ePixmap name="red" position="20,e-28" size="15,16" pixmap="skin_default/buttons/button_red.png" alphatest="blend" />
     <ePixmap name="green" position="170,e-28" size="15,16" pixmap="skin_default/buttons/button_green.png" alphatest="blend" />
     <widget name="key_red" position="40,e-30" size="150,25" valign="top" halign="left" font="Regular;20" />
@@ -1550,11 +1586,11 @@ class IceTVRegionSetup(Screen, IceTVUIBase):
 
 class IceTVLogin(Screen, IceTVUIBase):
     skin = """
-<screen name="IceTVLogin" position="220,115" size="840,570" title="IceTV - Login" >
-    <widget name="instructions" position="20,10" size="800,80" font="Regular;22" />
-    <widget name="error" position="30,120" size="780,300" font="Console; 16" zPosition="1" />
-    <widget name="qrcode" position="292,90" size="256,256" pixmap="/usr/lib/enigma2/python/Plugins/SystemPlugins/IceTV/de_qr_code.png" zPosition="1" />
-    <widget name="message" position="20,360" size="800,170" font="Regular;22" />
+<screen name="IceTVLogin" position="center,50" size="990,650" title="IceTV - Login" >
+    <widget name="instructions" position="20,10" size="950,80" font="Regular;22" />
+    <widget name="error" position="30,120" size="930,300" font="Console; 16" zPosition="1" />
+    <widget name="qrcode" position="342,90" size="256,256" pixmap="/usr/lib/enigma2/python/Plugins/SystemPlugins/IceTV/de_qr_code.png" zPosition="1" />
+    <widget name="message" position="20,360" size="950,250" font="Regular;22" />
 
     <ePixmap name="green" position="170,e-28" size="15,16" pixmap="skin_default/buttons/button_green.png" alphatest="blend" />
     <widget name="key_red" position="40,e-30" size="150,25" valign="top" halign="left" font="Regular;20" />
@@ -1564,6 +1600,7 @@ class IceTVLogin(Screen, IceTVUIBase):
 </screen>"""
 
     _instructions = _("Contacting IceTV server and setting up your %s %s.") % (getMachineBrand(), getMachineName())
+    _banner = None
 
     def __init__(self, session):
         self.session = session
@@ -1625,11 +1662,13 @@ class IceTVLogin(Screen, IceTVUIBase):
             self["instructions"].setText(_("Congratulations, you have successfully configured your %s %s "
                                            "for use with the IceTV Smart Recording service. "
                                            "Your IceTV guide will now download in the background.") % (getMachineBrand(), getMachineName()))
-            self["message"].setText(_("Enjoy how IceTV can enhance your TV viewing experience by "
-                                      "downloading the IceTV app to your smartphone or tablet. "
-                                      "The IceTV app is available free from the iTunes App Store, "
-                                      "the Google Play Store and the Windows Phone Store.\n\n"
-                                      "Download it today!"))
+            self["message"].setText(_("Everything in one place - IceTV does it for you!\n\n"
+                                      "Using the IceTV app or website, 'My Shows' is your place to go to."
+                                      " See the next 7 days of your recordings,"
+                                      " favourite shows, keyword notifications,"
+                                      " new series broadcasts, and our recommendations.\n\n"
+                                      "Everything in one place. Simply select something new and press Record.\n\n"
+                                      "IceTV's smartphone and tablet apps can be downloaded by scanning the code above."))
             self["qrcode"].show()
             config.plugins.icetv.configured.value = True
             config.plugins.icetv.last_update_time.value = 0
@@ -1681,11 +1720,13 @@ class IceTVCreateLogin(IceTVLogin):
 
 class IceTVNeedPassword(ConfigListScreen, Screen, IceTVUIBase):
     skin = """
-<screen name="IceTVNeedPassword" position="320,230" size="640,310" title="IceTV - Password required" >
+<screen name="IceTVNeedPassword" position="center,center" size="1190,455" title="IceTV - Password required" >
     <widget name="instructions" position="20,10" size="600,100" font="Regular;22" />
     <widget name="config" position="20,120" size="600,100" />
 
     <widget name="description" position="20,e-90" size="600,60" font="Regular;18" foregroundColor="grey" halign="left" valign="top" />
+    <ePixmap pixmap="/usr/lib/enigma2/python/Plugins/SystemPlugins/IceTV/icetv_logo172x100.png" position="804,0" size="172,100" alphatest="on" />
+    <widget name="banner" position="630,105" size="520,350" font="Regular;22" valign="center" halign="center" />
     <ePixmap name="red" position="20,e-28" size="15,16" pixmap="skin_default/buttons/button_red.png" alphatest="blend" />
     <ePixmap name="green" position="170,e-28" size="15,16" pixmap="skin_default/buttons/button_green.png" alphatest="blend" />
     <ePixmap name="blue" position="470,e-28" size="15,16" pixmap="skin_default/buttons/button_blue.png" alphatest="blend" />
@@ -1702,9 +1743,9 @@ class IceTVNeedPassword(ConfigListScreen, Screen, IceTVUIBase):
     def __init__(self, session):
         self.session = session
         Screen.__init__(self, session)
-	# This creates a new instance variable.
-	# It doesn't change the class variable of the same name.
-	self._instructions = self._instructions % config.plugins.icetv.member.email_address.value
+        # This creates a new instance variable.
+        # It doesn't change the class variable of the same name.
+        self._instructions = self._instructions % config.plugins.icetv.member.email_address.value
         IceTVUIBase.__init__(self, title=_("IceTV - Password required"), description="")
         self["key_red"] = Label(_("Cancel"))
         self["key_green"] = Label(_("Login"))
