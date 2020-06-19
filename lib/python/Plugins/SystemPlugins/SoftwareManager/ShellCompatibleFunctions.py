@@ -100,15 +100,15 @@ def restoreUserDB():
 
 	with open('/etc/passwd') as f:
 		newpasswd = f.readlines()
-		newpasswd = [x.strip() for x in newpasswd]
-		name, passwd, uid, gid, gecos, home, shell = x.split(':')
-		takenuids.append(uid)
+		for x in newpasswd:
+			name, passwd, uid, gid, gecos, home, shell = x.strip().split(':')
+			takenuids.append(uid)
 
 	with open('/etc/group') as f:
 		newgroups = f.readlines()
-		newgroups = [x.strip() for x in newgroups]
-		name, passwd, gid, rest = x.split(':', 3)
-		takengids.append(gid)
+		for x in newgroups:
+			name, passwd, gid, rest = x.strip().split(':', 3)
+			takengids.append(gid)
 
 	for x in oldpasswd:
 		usersuccess = False
