@@ -22,6 +22,7 @@ from Tools.XMLTools import elementsWithTag, mergeText, stringToXML
 from enigma import *
 from os import system, path as os_path
 from Components.ServiceEventTracker import ServiceEventTracker, InfoBarBase
+import six
 global ListChange
 ListChange = None
 config.Volume  = ConfigSubsection()
@@ -227,9 +228,9 @@ class Volume_adjust(Screen):
 			tree = ci_parse(self.filename).getroot()
 			for channels in tree.findall("channels"):
 				for service in  channels.findall("service"):
-					read_service_name = service.get("name").encode("UTF-8")
-					read_service_ref = service.get("ref").encode("UTF-8")
-					read_service_volume = service.get("volume").encode("UTF-8")
+					read_service_name = six.ensure_str(service.get("name"))
+					read_service_ref = six.ensure_str(service.get("ref"))
+					read_service_volume = six.ensure_str(service.get("volume"))
 					self.read_services.append (read_service_ref)
 					self.read_volume.append (read_service_volume)
 		except:
@@ -453,9 +454,9 @@ class Volume:
 			tree = ci_parse(self.filen).getroot()
 			for channels in tree.findall("channels"):
 				for service in  channels.findall("service"):
-					read_service_name = service.get("name").encode("UTF-8")
-					read_service_ref = service.get("ref").encode("UTF-8")
-					read_service_volume = service.get("volume").encode("UTF-8")
+					read_service_name = six.ensure_str(service.get("name"))
+					read_service_ref = six.ensure_str(service.get("ref"))
+					read_service_volume = six.ensure_str(service.get("volume"))
 					self.read_services.append (read_service_ref)
 					self.read_volume.append (read_service_volume)
 		except:

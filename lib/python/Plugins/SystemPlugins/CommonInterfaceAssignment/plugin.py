@@ -19,6 +19,7 @@ from enigma import eDVBCI_UI, eDVBCIInterfaces, eEnv, eServiceCenter
 from os import system, path as os_path
 from boxbranding import getMachineBrand, getMachineName, getBoxType
 import os
+import six
 
 class CIselectMainMenu(Screen):
 	skin = """
@@ -292,23 +293,23 @@ class CIconfigMenu(Screen):
 		try:
 			tree = ci_parse(self.filename).getroot()
 			for slot in tree.findall("slot"):
-				read_slot = getValue(slot.findall("id"), False).encode("UTF-8")
+				read_slot = six.ensure_str(getValue(slot.findall("id"), False))
 				print("ci " + read_slot)
 				i=0
 				for caid in slot.findall("caid"):
-					read_caid = caid.get("id").encode("UTF-8")
+					read_caid = six.ensure_str(caid.get("id"))
 					self.selectedcaid.append((str(read_caid), str(read_caid), i))
 					self.usingcaid.append(int(read_caid, 16))
 					i+=1
 
 				for service in  slot.findall("service"):
-					read_service_name = service.get("name").encode("UTF-8")
-					read_service_ref = service.get("ref").encode("UTF-8")
+					read_service_name = six.ensure_str(service.get("name"))
+					read_service_ref = six.ensure_str(service.get("ref"))
 					self.read_services.append (read_service_ref)
 
 				for provider in  slot.findall("provider"):
-					read_provider_name = provider.get("name").encode("UTF-8")
-					read_provider_dvbname = provider.get("dvbnamespace").encode("UTF-8")
+					read_provider_name = six.ensure_str(provider.get("name"))
+					read_provider_dvbname = six.ensure_str(provider.get("dvbnamespace"))
 					self.read_providers.append((read_provider_name, read_provider_dvbname))
 
 				self.ci_config.append((int(read_slot), (self.read_services, self.read_providers, self.usingcaid)))
