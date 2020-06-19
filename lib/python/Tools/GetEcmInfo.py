@@ -1,5 +1,6 @@
 import os
 import time
+import six
 
 ECM_INFO = '/tmp/ecm.info'
 EMPTY_ECM_INFO = '', '0', '0', '0'
@@ -34,7 +35,7 @@ class GetEcmInfo:
 			except:
 				ecm = ''
 			for line in ecm:
-				d = line.split(':', 1)
+				d = six.ensure_str(line).split(':', 1)
 				if len(d) > 1:
 					info[d[0].strip()] = d[1].strip()
 			data = self.getText()
@@ -80,8 +81,9 @@ class GetEcmInfo:
 						try:
 							share = open('/tmp/share.info', 'rb').readlines()
 							for line in share:
-								if cardid in line:
-									self.textvalue = line.strip()
+								l = six.ensure_str(line)
+								if cardid in l:
+									self.textvalue = l.strip()
 									break
 							else:
 								self.textvalue = cardid
