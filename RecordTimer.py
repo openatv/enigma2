@@ -1140,9 +1140,9 @@ class RecordTimerEntry(timer.TimerEntry, object):
 def createTimer(xml):
 	begin = int(xml.get("begin"))
 	end = int(xml.get("end"))
-	serviceref = ServiceReference(xml.get("serviceref").encode("utf-8"))
-	description = xml.get("description").encode("utf-8")
-	repeated = xml.get("repeated").encode("utf-8")
+	serviceref = ServiceReference(six.ensure_str(xml.get("serviceref")))
+	description = six.ensure_str(xml.get("description"))
+	repeated = six.ensure_str(xml.get("repeated"))
 	rename_repeat = int(xml.get("rename_repeat") or "1")
 	disabled = int(xml.get("disabled") or "0")
 	justplay = int(xml.get("justplay") or "0")
@@ -1161,12 +1161,12 @@ def createTimer(xml):
 		eit = None
 	location = xml.get("location")
 	if location and location != "None":
-		location = location.encode("utf-8")
+		location = six.ensure_str(location)
 	else:
 		location = None
 	tags = xml.get("tags")
 	if tags and tags != "None":
-		tags = tags.encode("utf-8").split(' ')
+		tags = six.ensure_str(tags).split(' ')
 	else:
 		tags = None
 	descramble = int(xml.get("descramble") or "1")
@@ -1174,9 +1174,9 @@ def createTimer(xml):
 	isAutoTimer = int(xml.get("isAutoTimer") or "0")
 	ice_timer_id = xml.get("ice_timer_id")
 	if ice_timer_id:
-		ice_timer_id = ice_timer_id.encode("utf-8")
+		ice_timer_id = six.ensure_str(ice_timer_id)
 
-	name = xml.get("name").encode("utf-8")
+	name = six.ensure_str(xml.get("name"))
 	#filename = xml.get("filename").encode("utf-8")
 	entry = RecordTimerEntry(serviceref, begin, end, name, description, eit, disabled, justplay, afterevent,
 	dirname = location, tags = tags, descramble = descramble, record_ecm = record_ecm,
@@ -1186,7 +1186,7 @@ def createTimer(xml):
 	for l in xml.findall("log"):
 		time = int(l.get("time"))
 		code = int(l.get("code"))
-		msg = l.text.strip().encode("utf-8")
+		msg = six.ensure_str(l.text.strip())
 		entry.log_entries.append((time, code, msg))
 
 	return entry
