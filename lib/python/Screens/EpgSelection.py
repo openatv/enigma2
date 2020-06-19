@@ -1,4 +1,4 @@
-from __future__ import absolute_import
+from __future__ import absolute_import, division
 from time import localtime, time, strftime, mktime
 
 from enigma import eServiceReference, eTimer, eServiceCenter, ePoint
@@ -674,7 +674,7 @@ class EPGSelection(Screen, HelpableScreen):
 					idx+=1
 					if channel[1] == nameROH:
 						break
-				page = idx/(self.Fields-1)
+				page = idx // (self.Fields-1)
 				row = idx%(self.Fields-1)
 				if row:
 					self.activeList = row
@@ -2700,7 +2700,7 @@ class EPGSelection(Screen, HelpableScreen):
 
 	def gotoLast(self):
 		idx = len(self.list)
-		page = idx/(self.Fields-1)
+		page = idx // (self.Fields-1)
 		row = idx%(self.Fields-1)
 		if row:
 			self.activeList = row
@@ -2754,7 +2754,7 @@ class EPGSelection(Screen, HelpableScreen):
 
 	def setMinus24h(self, force = False, daypart = 1):
 		now = time()
-		oneDay =  24*3600/daypart
+		oneDay =  24*3600 // daypart
 		if not self.lastMinus:
 			self.lastMinus = oneDay
 		ev_begin, ev_end = self.getEventTime(self.activeList)
