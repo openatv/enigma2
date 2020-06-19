@@ -294,7 +294,7 @@ class VideoFinetune(Screen):
 			for i in list(range(8)):
 				height = yres // 3;
 				eh = height // 8;
-				offset = yres/6 + eh * i;
+				offset = yres // 6 + eh * i;
 				x = xres * 2 // 3;
 				width = yres // 6;
 
@@ -364,13 +364,13 @@ class VideoFinetune(Screen):
 			c.fill(offset_x, offset_y + y, width // 2, 2, RGB(255, 255, 255))
 
 		l = 0
-		fnt = gFont("Regular", height / 14)
+		fnt = gFont("Regular", height // 14)
 		import math
 		for i in list(range(1, 15)):
 			y = i * height // 14
 			h = y - l
 			gamma = 0.6 + i * 0.2
-			col = int(math.pow(.5, 1.0 // gamma) * 256.0)
+			col = int(math.pow(.5, 1.0 / gamma) * 256.0)
 			c.fill(offset_x + width // 2, offset_y + l, width // 2, h, RGB(col, col, col))
 
 			c.writeText(offset_x + width // 2, offset_y + l, width // 2, h, RGB(0, 0, 0), RGB(col, col, col), fnt, "%1.2f" % gamma, RT_WRAP|RT_HALIGN_RIGHT)
@@ -451,9 +451,9 @@ class PixelsTestScreen(Screen):
 	def intro(self):
 		c = self["Canvas"]
 		c.fill(0, 0, self.xres, self.yres, RGB(0, 0, 0))
-		c.writeText(self.xres / 10, self.yres / 6 - self.fontsize * 3, self.xres * 3 / 5, 40, RGB(255, 128, 255), RGB(0, 0, 0), gFont("Regular", self.fontsize * 2),
+		c.writeText(self.xres // 10, self.yres // 6 - self.fontsize * 3, self.xres * 3 // 5, 40, RGB(255, 128, 255), RGB(0, 0, 0), gFont("Regular", self.fontsize * 2),
 			_("Pixels\n"))
-		c.writeText(self.xres / 10, self.yres / 6, self.xres / 2, self.yres * 4 / 6, RGB(255, 255, 255), RGB(0, 0, 0), gFont("Regular", self.fontsize),
+		c.writeText(self.xres // 10, self.yres // 6, self.xres // 2, self.yres * 4 // 6, RGB(255, 255, 255), RGB(0, 0, 0), gFont("Regular", self.fontsize),
 			_("Can be used to test defect pixels on TV screen.\n\n"
 			"Available color test screens:\n\n"
 			"red\ngreen\nblue\nwhite\nblack\ncyan\nmagenta\nyellow\n\n"
