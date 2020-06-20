@@ -141,4 +141,4 @@ class GetEcmInfo:
 			decCI='0'
 			provid='0'
 			ecmpid='0'
-		return self.textvalue, decCI, provid, ecmpid
+		return str(self.textvalue), decCI, provid, ecmpid
