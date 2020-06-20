@@ -2627,13 +2627,13 @@ class EPGSelection(Screen, HelpableScreen):
 
 	def displayActiveEPG(self):
 		marker = config.epgselection.vertical_eventmarker.value
-		for list in list(range(1, self.Fields)):
-			if list == self.activeList:
-				self["list"+str(list)].selectionEnabled(True)
-				self["Active"+str(list)].show()
+		for _list in list(range(1, self.Fields)):
+			if _list == self.activeList:
+				self["list"+str(_list)].selectionEnabled(True)
+				self["Active"+str(_list)].show()
 			else:
-				self["Active"+str(list)].hide()
-				self["list"+str(list)].selectionEnabled(marker)
+				self["Active"+str(_list)].hide()
+				self["list"+str(_list)].selectionEnabled(marker)
 
 	def getActivePrg(self):
 		return self["list"].getSelectionIndex()+(self.activeList-1)
