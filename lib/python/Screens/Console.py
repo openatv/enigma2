@@ -6,6 +6,7 @@ from Components.ScrollLabel import ScrollLabel
 from Components.Sources.StaticText import StaticText
 from Screens.MessageBox import MessageBox
 from Components.Label import Label
+import six
 
 class Console(Screen):
 
@@ -212,4 +213,5 @@ class Console(Screen):
 				self.container.kill()
 
 	def dataAvail(self, str):
+		str = six.ensure_str(str)
 		self["text"].appendText(str)

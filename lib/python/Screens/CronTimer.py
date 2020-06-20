@@ -12,6 +12,7 @@ from Screens.MessageBox import MessageBox
 from Tools.Directories import fileExists
 from os import system, listdir, rename, path, mkdir
 from time import sleep
+import six
 from boxbranding import getMachineBrand, getMachineName
 
 class CronTimers(Screen):
@@ -52,6 +53,7 @@ class CronTimers(Screen):
 		self.Console.ePopen('/usr/bin/opkg list_installed ' + self.service_name, self.checkNetworkState)
 
 	def checkNetworkState(self, str, retval, extra_args):
+		str = six.ensure_str(str)
 		if not str:
 			self.feedscheck = self.session.open(MessageBox, _('Please wait whilst feeds state is checked.'), MessageBox.TYPE_INFO, enable_input = False)
 			self.feedscheck.setTitle(_('Checking Feeds'))
@@ -62,6 +64,7 @@ class CronTimers(Screen):
 			self.updateList()
 
 	def checkNetworkStateFinished(self, result, retval,extra_args=None):
+		result = six.ensure_str(result)
 		if 'bad address' in result:
 			self.session.openWithCallback(self.InstallPackageFailed, MessageBox, _("Your %s %s is not connected to the internet, please check your network settings and try again.") % (getMachineBrand(), getMachineName()), type=MessageBox.TYPE_INFO, timeout=10, close_on_any_key=True)
 		elif ('wget returned 1' or 'wget returned 255' or '404 Not Found') in result:
@@ -97,6 +100,7 @@ class CronTimers(Screen):
 			self.close()
 
 	def RemovedataAvail(self, str, retval, extra_args):
+		str = six.ensure_str(str)
 		if str:
 			self.session.openWithCallback(self.RemovePackage, MessageBox, _('Ready to remove "%s" ?') % self.service_name)
 		else:

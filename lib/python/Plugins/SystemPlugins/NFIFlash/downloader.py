@@ -3,6 +3,7 @@ from __future__ import print_function
 from boxbranding import getImageVersion, getMachineBrand, getMachineName
 from os import system, access, R_OK
 import re
+import six
 
 from enigma import eConsoleAppContainer, eTimer
 from twisted.web import client
@@ -432,6 +433,7 @@ class NFIDownload(Screen):
 		self.target_dir = None
 
 	def tool_avail(self, string):
+		string = six.ensure_str(string)
 		print("[tool_avail]" + string)
 		self.taskstring += string
 

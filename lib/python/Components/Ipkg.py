@@ -1,6 +1,7 @@
 from __future__ import print_function
 from __future__ import absolute_import
 import os
+import six
 from enigma import eConsoleAppContainer
 from Components.Harddisk import harddiskmanager
 from Components.config import config, ConfigSubsection, ConfigYesNo
@@ -141,6 +142,7 @@ class IpkgComponent:
 				os.system("opkg flag ok " + x[0])
 
 	def cmdData(self, data):
+		data = six.ensure_str(data)
 # 		print "data:", data
 		if self.cache is None:
 			self.cache = data

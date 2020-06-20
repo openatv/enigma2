@@ -4,6 +4,7 @@
 
 from __future__ import print_function
 from Tools.CList import CList
+import six
 
 class Job(object):
 	NOT_STARTED, IN_PROGRESS, FINISHED, FAILED = list(range(4))
@@ -207,6 +208,7 @@ class Task(object):
 		self.processOutput(data)
 
 	def processOutput(self, data):
+		data = six.ensure_str(data)
 		self.output_line += data
 		while True:
 			i = self.output_line.find('\n')

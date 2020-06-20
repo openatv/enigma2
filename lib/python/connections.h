@@ -30,9 +30,10 @@ inline PyObject *PyFrom(const char *c)
 	return PyString_FromString(c);
 }
 
+// Only used by console which might transfer binary data(screenshots). So use Bytes instead of Unicode
 inline PyObject *PyFrom(std::pair<const char*, int>& p)
 {
-	return PyString_FromStringAndSize(p.first, p.second);
+	return PyBytes_FromStringAndSize(p.first, p.second);
 }
 
 template <class R>

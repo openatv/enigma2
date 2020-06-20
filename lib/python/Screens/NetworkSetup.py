@@ -3,6 +3,7 @@ from boxbranding import getBoxType, getMachineBrand, getMachineName
 from os import path as os_path, remove, unlink, rename, chmod, access, X_OK
 from shutil import move
 import time
+import six
 
 from enigma import eTimer, eConsoleAppContainer
 
@@ -1734,6 +1735,7 @@ class NetworkAfp(Screen):
 		self.Console.ePopen('/usr/bin/opkg list_installed ' + self.service_name, self.checkNetworkState)
 
 	def checkNetworkState(self, str, retval, extra_args):
+		str = six.ensure_str(str)
 		if 'Collected errors' in str:
 			self.session.openWithCallback(self.close, MessageBox, _("A background update check is in progress, please wait a few minutes and try again."), type=MessageBox.TYPE_INFO, timeout=10, close_on_any_key=True)
 		elif not str:
@@ -1746,6 +1748,7 @@ class NetworkAfp(Screen):
 			self.updateService()
 
 	def checkNetworkStateFinished(self, result, retval,extra_args=None):
+		result = six.ensure_str(result)
 		if 'bad address' in result:
 			self.session.openWithCallback(self.InstallPackageFailed, MessageBox, _("Your %s %s is not connected to the internet, please check your network settings and try again.") % (getMachineBrand(), getMachineName()), type=MessageBox.TYPE_INFO, timeout=10, close_on_any_key=True)
 		elif ('wget returned 1' or 'wget returned 255' or '404 Not Found') in result:
@@ -1776,6 +1779,7 @@ class NetworkAfp(Screen):
 		self.Console.ePopen('/usr/bin/opkg list_installed ' + self.service_name, self.RemovedataAvail)
 
 	def RemovedataAvail(self, str, retval, extra_args):
+		str = six.ensure_str(str)
 		if str:
 			restartbox = self.session.openWithCallback(self.RemovePackage, MessageBox, _('Your %s %s will be restarted after the removal of service\nDo you want to remove now ?') % (getMachineBrand(), getMachineName()), MessageBox.TYPE_YESNO)
 			restartbox.setTitle(_('Ready to remove %s ?') % self.service_name)
@@ -1875,6 +1879,7 @@ class NetworkSABnzbd(Screen):
 		self.Console.ePopen('/usr/bin/opkg list_installed ' + self.service_name, self.checkNetworkState)
 
 	def checkNetworkState(self, str, retval, extra_args):
+		str = six.ensure_str(str)
 		print('INSTALL CHECK FINISHED', str)
 		if not str:
 			self.feedscheck = self.session.open(MessageBox, _('Please wait whilst feeds state is checked.'), MessageBox.TYPE_INFO, enable_input = False)
@@ -1887,6 +1892,7 @@ class NetworkSABnzbd(Screen):
 			self.updateService()
 
 	def checkNetworkStateFinished(self, result, retval,extra_args=None):
+		result = six.ensure_str(result)
 		if (float(getVersionString()) < 3.0 and result.find('mipsel/Packages.gz, wget returned 1') != -1) or (float(getVersionString()) >= 3.0 and result.find('mips32el/Packages.gz, wget returned 1') != -1):
 			self.session.openWithCallback(self.InstallPackageFailed, MessageBox, _("Sorry feeds are down for maintenance, please try again later."), type=MessageBox.TYPE_INFO, timeout=10, close_on_any_key=True)
 		elif result.find('bad address') != -1:
@@ -1919,6 +1925,7 @@ class NetworkSABnzbd(Screen):
 		self.Console.ePopen('/usr/bin/opkg list_installed ' + self.service_name, self.RemovedataAvail)
 
 	def RemovedataAvail(self, str, retval, extra_args):
+		str = six.ensure_str(str)
 		if str:
 			self.session.openWithCallback(self.RemovePackage, MessageBox, _('Ready to remove %s ?') % self.service_name, MessageBox.TYPE_YESNO)
 		else:
@@ -2099,6 +2106,7 @@ class NetworkNfs(Screen):
 		self.Console.ePopen('/usr/bin/opkg list_installed ' + self.service_name, self.checkNetworkState)
 
 	def checkNetworkState(self, str, retval, extra_args):
+		str = six.ensure_str(str)
 		if 'Collected errors' in str:
 			self.session.openWithCallback(self.close, MessageBox, _("A background update check is in progress, please wait a few minutes and try again."), type=MessageBox.TYPE_INFO, timeout=10, close_on_any_key=True)
 		elif not str:
@@ -2111,6 +2119,7 @@ class NetworkNfs(Screen):
 			self.updateService()
 
 	def checkNetworkStateFinished(self, result, retval,extra_args=None):
+		result = six.ensure_str(result)
 		if 'bad address' in result:
 			self.session.openWithCallback(self.InstallPackageFailed, MessageBox, _("Your %s %s is not connected to the internet, please check your network settings and try again.") % (getMachineBrand(), getMachineName()), type=MessageBox.TYPE_INFO, timeout=10, close_on_any_key=True)
 		elif ('wget returned 1' or 'wget returned 255' or '404 Not Found') in result:
@@ -2141,6 +2150,7 @@ class NetworkNfs(Screen):
 		self.Console.ePopen('/usr/bin/opkg list_installed ' + self.service_name, self.RemovedataAvail)
 
 	def RemovedataAvail(self, str, retval, extra_args):
+		str = six.ensure_str(str)
 		if str:
 			restartbox = self.session.openWithCallback(self.RemovePackage, MessageBox, _('Your %s %s will be restarted after the removal of service\nDo you want to remove now ?') % (getMachineBrand(), getMachineName()), MessageBox.TYPE_YESNO)
 			restartbox.setTitle(_('Ready to remove %s ?') % self.service_name)
@@ -2238,6 +2248,7 @@ class NetworkOpenvpn(Screen):
 		self.Console.ePopen('/usr/bin/opkg list_installed ' + self.service_name, self.checkNetworkState)
 
 	def checkNetworkState(self, str, retval, extra_args):
+		str = six.ensure_str(str)
 		if 'Collected errors' in str:
 			self.session.openWithCallback(self.close, MessageBox, _("A background update check is in progress, please wait a few minutes and try again."), type=MessageBox.TYPE_INFO, timeout=10, close_on_any_key=True)
 		elif not str:
@@ -2250,6 +2261,7 @@ class NetworkOpenvpn(Screen):
 			self.updateService()
 
 	def checkNetworkStateFinished(self, result, retval,extra_args=None):
+		result = six.ensure_str(result)
 		if 'bad address' in result:
 			self.session.openWithCallback(self.InstallPackageFailed, MessageBox, _("Your %s %s is not connected to the internet, please check your network settings and try again.") % (getMachineBrand(), getMachineName()), type=MessageBox.TYPE_INFO, timeout=10, close_on_any_key=True)
 		elif ('wget returned 1' or 'wget returned 255' or '404 Not Found') in result:
@@ -2282,6 +2294,7 @@ class NetworkOpenvpn(Screen):
 		self.Console.ePopen('/usr/bin/opkg list_installed ' + self.service_name, self.RemovedataAvail)
 
 	def RemovedataAvail(self, str, retval, extra_args):
+		str = six.ensure_str(str)
 		if str:
 			self.session.openWithCallback(self.RemovePackage, MessageBox, _('Ready to remove %s ?') % self.service_name, MessageBox.TYPE_YESNO)
 		else:
@@ -2411,6 +2424,7 @@ class NetworkSamba(Screen):
 		self.Console.ePopen('/usr/bin/opkg list_installed ' + self.service_name, self.checkNetworkState)
 
 	def checkNetworkState(self, str, retval, extra_args):
+		str = six.ensure_str(str)
 		if 'Collected errors' in str:
 			self.session.openWithCallback(self.close, MessageBox, _("A background update check is in progress, please wait a few minutes and try again."), type=MessageBox.TYPE_INFO, timeout=10, close_on_any_key=True)
 		elif not str:
@@ -2423,6 +2437,7 @@ class NetworkSamba(Screen):
 			self.updateService()
 
 	def checkNetworkStateFinished(self, result, retval,extra_args=None):
+		result = six.ensure_str(result)
 		if 'bad address' in result:
 			self.session.openWithCallback(self.InstallPackageFailed, MessageBox, _("Your %s %s is not connected to the internet, please check your network settings and try again.") % (getMachineBrand(), getMachineName()), type=MessageBox.TYPE_INFO, timeout=10, close_on_any_key=True)
 		elif ('wget returned 1' or 'wget returned 255' or '404 Not Found') in result:
@@ -2459,6 +2474,7 @@ class NetworkSamba(Screen):
 		self.Console.ePopen('/usr/bin/opkg list_installed ' + self.service_name, self.RemovedataAvail)
 
 	def RemovedataAvail(self, str, retval, extra_args):
+		str = six.ensure_str(str)
 		if str:
 			restartbox = self.session.openWithCallback(self.RemovePackage, MessageBox, _('Your %s %s will be restarted after the removal of service\nDo you want to remove now ?') % (getMachineBrand(), getMachineName()), MessageBox.TYPE_YESNO)
 			restartbox.setTitle(_('Ready to remove "%s" ?') % self.service_name)
@@ -2675,6 +2691,7 @@ class NetworkInadyn(Screen):
 		self.Console.ePopen('/usr/bin/opkg list_installed ' + self.service_name, self.checkNetworkState)
 
 	def checkNetworkState(self, str, retval, extra_args):
+		str = six.ensure_str(str)
 		if 'Collected errors' in str:
 			self.session.openWithCallback(self.close, MessageBox, _("A background update check is in progress, please wait a few minutes and try again."), type=MessageBox.TYPE_INFO, timeout=10, close_on_any_key=True)
 		elif not str:
@@ -2687,6 +2704,7 @@ class NetworkInadyn(Screen):
 			self.updateService()
 
 	def checkNetworkStateFinished(self, result, retval,extra_args=None):
+		result = six.ensure_str(result)
 		if 'bad address' in result:
 			self.session.openWithCallback(self.InstallPackageFailed, MessageBox, _("Your %s %s is not connected to the internet, please check your network settings and try again.") % (getMachineBrand(), getMachineName()), type=MessageBox.TYPE_INFO, timeout=10, close_on_any_key=True)
 		elif ('wget returned 1' or 'wget returned 255' or '404 Not Found') in result:
@@ -2719,6 +2737,7 @@ class NetworkInadyn(Screen):
 		self.Console.ePopen('/usr/bin/opkg list_installed ' + self.service_name, self.RemovedataAvail)
 
 	def RemovedataAvail(self, str, retval, extra_args):
+		str = six.ensure_str(str)
 		if str:
 			self.session.openWithCallback(self.RemovePackage, MessageBox, _('Ready to remove %s ?') % self.service_name, MessageBox.TYPE_YESNO)
 		else:
@@ -3024,6 +3043,7 @@ class NetworkuShare(Screen):
 		self.Console.ePopen('/usr/bin/opkg list_installed ' + self.service_name, self.checkNetworkState)
 
 	def checkNetworkState(self, str, retval, extra_args):
+		str = six.ensure_str(str)
 		if 'Collected errors' in str:
 			self.session.openWithCallback(self.close, MessageBox, _("A background update check is in progress, please wait a few minutes and try again."), type=MessageBox.TYPE_INFO, timeout=10, close_on_any_key=True)
 		elif not str:
@@ -3036,6 +3056,7 @@ class NetworkuShare(Screen):
 			self.updateService()
 
 	def checkNetworkStateFinished(self, result, retval,extra_args=None):
+		result = six.ensure_str(result)
 		if 'bad address' in result:
 			self.session.openWithCallback(self.InstallPackageFailed, MessageBox, _("Your %s %s is not connected to the internet, please check your network settings and try again.") % (getMachineBrand(), getMachineName()), type=MessageBox.TYPE_INFO, timeout=10, close_on_any_key=True)
 		elif ('wget returned 1' or 'wget returned 255' or '404 Not Found') in result:
@@ -3068,6 +3089,7 @@ class NetworkuShare(Screen):
 		self.Console.ePopen('/usr/bin/opkg list_installed ' + self.service_name, self.RemovedataAvail)
 
 	def RemovedataAvail(self, str, retval, extra_args):
+		str = six.ensure_str(str)
 		if str:
 			self.session.openWithCallback(self.RemovePackage, MessageBox, _('Ready to remove %s ?') % self.service_name, MessageBox.TYPE_YESNO)
 		else:
@@ -3516,6 +3538,7 @@ class NetworkMiniDLNA(Screen):
 		self.Console.ePopen('/usr/bin/opkg list_installed ' + self.service_name, self.checkNetworkState)
 
 	def checkNetworkState(self, str, retval, extra_args):
+		str = six.ensure_str(str)
 		if 'Collected errors' in str:
 			self.session.openWithCallback(self.close, MessageBox, _("A background update check is in progress, please wait a few minutes and try again."), type=MessageBox.TYPE_INFO, timeout=10, close_on_any_key=True)
 		elif not str:
@@ -3528,6 +3551,7 @@ class NetworkMiniDLNA(Screen):
 			self.updateService()
 
 	def checkNetworkStateFinished(self, result, retval,extra_args=None):
+		result = six.ensure_str(result)
 		if 'bad address' in result:
 			self.session.openWithCallback(self.InstallPackageFailed, MessageBox, _("Your %s %s is not connected to the internet, please check your network settings and try again.") % (getMachineBrand(), getMachineName()), type=MessageBox.TYPE_INFO, timeout=10, close_on_any_key=True)
 		elif ('wget returned 1' or 'wget returned 255' or '404 Not Found') in result:
@@ -3560,6 +3584,7 @@ class NetworkMiniDLNA(Screen):
 		self.Console.ePopen('/usr/bin/opkg list_installed ' + self.service_name, self.RemovedataAvail)
 
 	def RemovedataAvail(self, str, retval, extra_args):
+		str = six.ensure_str(str)
 		if str:
 			self.session.openWithCallback(self.RemovePackage, MessageBox, _('Ready to remove %s ?') % self.service_name, MessageBox.TYPE_YESNO)
 		else:
@@ -4061,6 +4086,7 @@ class NetworkPassword(ConfigListScreen, Screen):
 
 
 	def dataAvail(self, data):
+		data = six.ensure_str(data)
 		self.output_line += data
 		while True:
 			i = self.output_line.find('\n')

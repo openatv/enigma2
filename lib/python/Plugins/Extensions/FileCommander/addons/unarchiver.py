@@ -12,6 +12,7 @@ from Components.MultiContent import MultiContentEntryText, MultiContentEntryProg
 from enigma import eConsoleAppContainer, eListboxPythonMultiContent, gFont, RT_HALIGN_LEFT, RT_HALIGN_CENTER, RT_VALIGN_CENTER
 import subprocess
 import skin
+import six
 
 pname = _("File Commander - generalised archive handler")
 pdesc = _("unpack archives")
@@ -196,6 +197,7 @@ class ArchiverMenuScreen(Screen):
 		self.session.open(MessageBox, message, type, timeout=timeout)
 
 	def logerrs(self, data):
+		data = six.ensure_str(data)
 		self.errlog += data
 
 	def cancel(self):
