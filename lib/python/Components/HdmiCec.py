@@ -1015,6 +1015,9 @@ class HdmiCec:
 		address = keyEvent
 		data = ''
 		if keyEvent in (0, 2):
+			if keyCode == 116:
+				cmd = 0x44
+				data = str(struct.pack('B', 0x40))
 			if keyCode == 115:
 				cmd = 0x44
 				data = str(struct.pack('B', 0x41))
@@ -1024,7 +1027,7 @@ class HdmiCec:
 			elif keyCode == 113:
 				cmd = 0x44
 				data = str(struct.pack('B', 0x43))
-		elif keyEvent == 1 and keyCode in (113, 114, 115):
+		elif keyEvent == 1 and keyCode in (113, 114, 115, 116):
 			cmd = 0x45
 		if cmd:
 			if config.hdmicec.debug.value:
