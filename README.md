@@ -1,17 +1,17 @@
-## Build Status - branch 6.5: ##
+## Build Status - branch 6.5  develop: ##
 [![Build Status](https://travis-ci.org/openatv/enigma2.svg?branch=6.5)](https://travis-ci.org/openatv/enigma2)
 
 ## Our buildserver is currently running on: ##
 
-> Ubuntu 18.04.1 LTS (Kernel 4.15.0)
+> Ubuntu 20.04 LTS (Kernel 5.4.0)
 
 ## openATV 6.5 is build using oe-alliance build-environment and several git repositories: ##
 
-> [https://github.com/oe-alliance/oe-alliance-core/tree/4.5](https://github.com/oe-alliance/oe-alliance-core/tree/4.5 "OE-Alliance")
+> [https://github.com/oe-alliance/oe-alliance-core/tree/nextp3](https://github.com/oe-alliance/oe-alliance-core/tree/nextp3 "OE-Alliance")
 > 
 > [https://github.com/openatv/enigma2/tree/6.5](https://github.com/openatv/enigma2/tree/6.5 "openATV E2")
 > 
-> [https://github.com/openatv/MetrixHD](https://github.com/openatv/MetrixHD "openATV Skin")
+> [https://github.com/openatv/MetrixHD](https://github.com/openatv/MetrixHD/tree/dev "openATV Skin")
 
 > and a lot more...
 
@@ -32,66 +32,54 @@
     select "NO"
 
 ----------
-3 - Use update-alternatives for having gcc redirected automatically to gcc-8
-
-    sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-7 700 --slave /usr/bin/g++ g++ /usr/bin/g++-7
-    sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-8 800 --slave /usr/bin/g++ g++ /usr/bin/g++-8
-
-----------
-4 - Repair g++ after gcc8 installation
-
-    sudo apt-get remove -y  g++
-    sudo apt-get install -y  g++
-
-----------
-5 - modify max_user_watches
+3 - modify max_user_watches
 
     echo fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sysctl.conf
 
     sudo sysctl -n -w fs.inotify.max_user_watches=524288
 
 ----------
-6 - Add user openatvbuilder
+4 - Add user openatvbuilder
 
     sudo adduser openatvbuilder
 
 ----------
-7 - Switch to user openatvbuilder
+5 - Switch to user openatvbuilder
 
     su openatvbuilder
 
 ----------
-8 - Switch to home of openatvbuilder
+6 - Switch to home of openatvbuilder
 
     cd ~
 
 ----------
-9 - Create folder openatv
+7 - Create folder openatv
 
     mkdir -p ~/openatv
 
 ----------
-10 - Switch to folder openatv
+8 - Switch to folder openatv
 
     cd openatv
 
 ----------
-11 - Clone oe-alliance git
+9 - Clone oe-alliance git
 
-    git clone git://github.com/oe-alliance/build-enviroment.git -b 4.4
+    git clone git://github.com/oe-alliance/build-enviroment.git -b nextp3
 
 ----------
-12 - Switch to folder build-enviroment
+10 - Switch to folder build-enviroment
 
     cd build-enviroment
 
 ----------
-13 - Update build-enviroment
+11 - Update build-enviroment
 
     make update
 
 ----------
-14 - Finally you can start building a image
+12 - Finally you can start building a image
 
-    MACHINE=zgemmah9combo DISTRO=openatv DISTRO_TYPE=release make image
+    MACHINE=zgemmah9combo DISTRO=openatv DISTRO_TYPE=develop make image
 
