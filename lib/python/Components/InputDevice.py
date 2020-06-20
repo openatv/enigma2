@@ -39,10 +39,11 @@ class inputDevices:
 
 		for evdev in devices:
 			try:
-				buffer = "\0"*512
+				_buffer = "\0"*512
 				self.fd = os_open("/dev/input/" + evdev, O_RDWR | O_NONBLOCK)
-				self.name = ioctl(self.fd, EVIOCGNAME(256), buffer)
+				self.name = ioctl(self.fd, EVIOCGNAME(256), _buffer)
 				self.name = self.name[:self.name.find(b"\0")]
+				self.name = six.ensure_str(self.name)
 				if str(self.name).find("Keyboard") != -1:
 					self.name = 'keyboard'
 				os_close(self.fd)
@@ -51,7 +52,7 @@ class inputDevices:
 				self.name = None
 
 			if self.name:
-				self.Devices[evdev] = {'name': self.name, 'type': self.getInputDeviceType(six.ensure_str(self.name)),'enabled': False, 'configuredName': None }
+				self.Devices[evdev] = {'name': self.name, 'type': self.getInputDeviceType(self.name),'enabled': False, 'configuredName': None }
 				if getBoxType().startswith('et'):
 					self.setDefaults(evdev) # load default remote control "delay" and "repeat" values for ETxxxx ("QuickFix Scrollspeed Menues" proposed by Xtrend Support)
 
