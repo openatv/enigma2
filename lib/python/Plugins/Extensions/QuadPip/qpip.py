@@ -56,7 +56,7 @@ class QuadPipChannelEntry:
 		return "idx : %d, name : %s, ch0 : %s, ch1 : %s, ch2 : %s, ch3 : %s"\
 					% (self.idx, self.name, self.channel.get("1"), self.channel.get("2"), self.channel.get("3"), self.channel.get("4"))
 
-	def __cmp__(self, other):
+	def __lt__(self, other):
 		return self.idx - other.idx
 
 	def getName(self):

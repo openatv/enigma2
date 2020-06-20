@@ -122,13 +122,14 @@ class ScanPath:
 	def __hash__(self):
 		return self.path.__hash__() ^ self.with_subdirs.__hash__()
 
-	def __cmp__(self, other):
-		if self.path < other.path:
-			return -1
-		elif self.path > other.path:
-			return +1
-		else:
-			return self.with_subdirs.__cmp__(other.with_subdirs)
+	def __eq__(self, other):
+		return ((self.with_subdirs, self.path) == (other.with_subdirs, other.path))
+
+	def __lt__(self, other):
+		return ((self.with_subdirs, self.path) < (other.with_subdirs, other.path))
+
+	def __gt__(self, other):
+		return ((self.with_subdirs, self.path) > (other.with_subdirs, other.path))
 
 class ScanFile:
 	def __init__(self, path, mimetype = None, size = None, autodetect = True):
@@ -154,7 +155,7 @@ def scanDevice(mountpoint):
 	scanner = [ ]
 
 	for p in plugins.getPlugins(PluginDescriptor.WHERE_FILESCAN):
-		l = p.__call__()
+		l = p()
 		if not isinstance(l, list):
 			l = [l]
 		scanner += l
@@ -210,7 +211,7 @@ def openList(session, files):
 	scanner = [ ]
 
 	for p in plugins.getPlugins(PluginDescriptor.WHERE_FILESCAN):
-		l = p.__call__()
+		l = p()
 		if not isinstance(l, list):
 			scanner.append(l)
 		else:
