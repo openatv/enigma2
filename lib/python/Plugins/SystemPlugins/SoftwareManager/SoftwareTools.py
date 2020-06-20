@@ -10,8 +10,8 @@ from Components.Network import iNetwork
 from Tools.Directories import pathExists, fileExists, resolveFilename, SCOPE_METADIR
 from Tools.HardwareInfo import HardwareInfo
 from time import time
-
 from boxbranding import getImageVersion
+import six
 
 class SoftwareTools(PackageInfoHandler):
 	lastDownloadDate = None
@@ -123,6 +123,7 @@ class SoftwareTools(PackageInfoHandler):
 	def IpkgListAvailableCB(self, result, retval, extra_args = None):
 		(callback) = extra_args or None
 		if result:
+			result = six.ensure_str(result)
 			if self.list_updating:
 				self.available_packetlist = []
 				for x in result.splitlines():
@@ -161,6 +162,7 @@ class SoftwareTools(PackageInfoHandler):
 	def InstallMetaPackageCB(self, result, retval = None, extra_args = None):
 		(callback) = extra_args or None
 		if result:
+			result = six.ensure_str(result)
 			self.fillPackagesIndexList()
 			if callback is None:
 				self.startIpkgListInstalled()
@@ -187,6 +189,7 @@ class SoftwareTools(PackageInfoHandler):
 	def IpkgListInstalledCB(self, result, retval, extra_args = None):
 		(callback) = extra_args or None
 		if result:
+			result = six.ensure_str(result)
 			self.installed_packetlist = {}
 			for x in result.splitlines():
 				tokens = x.split(' - ')

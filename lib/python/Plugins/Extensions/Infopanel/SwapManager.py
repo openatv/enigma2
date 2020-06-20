@@ -13,6 +13,7 @@ from os import system, stat as mystat, path, remove, rename
 from enigma import eTimer
 from glob import glob
 import stat
+import six
 
 config.plugins.infopanel = ConfigSubsection()
 config.plugins.infopanel.swapautostart = ConfigYesNo(default = False)
@@ -35,6 +36,8 @@ class StartSwap:
 	 	self.Console.ePopen("sfdisk -l /dev/sd? 2>/dev/null | grep swap", self.startSwap2)
 
 	def startSwap2(self, result = None, retval = None, extra_args = None):
+		if result != None:
+			result = six.ensure_str(result)
 		swap_place = ""
 		if result and result.find('sd') != -1:
 			for line in result.split('\n'):
@@ -137,6 +140,8 @@ class Swap(Screen):
 		self.Console.ePopen("sfdisk -l /dev/sd? 2>/dev/null | grep swap", self.updateSwap2)
 
 	def updateSwap2(self, result = None, retval = None, extra_args = None):
+		if result != None:
+			result = six.ensure_str(result)
 		self.swapsize = 0
 		self.swap_place = ''
 		self.swap_active = False

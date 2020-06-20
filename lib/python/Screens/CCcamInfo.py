@@ -749,6 +749,7 @@ class CCcamInfoMain(Screen):
 
 	def showFreeMemory(self, result, retval, extra_args):
 		if retval == 0:
+			result = six.ensure_str(result)
 			if result.__contains__("Total:"):
 				idx = result.index("Total:")
 				result = result[idx+6:]

@@ -2197,8 +2197,9 @@ class PacketManager(Screen, NumericalTextInput):
 		pass
 
 	def IpkgList_Finished(self, result, retval, extra_args = None):
-		result = result.replace('\n ', ' - ')
 		if result:
+			result = six.ensure_str(result)
+			result = result.replace('\n ', ' - ')
 			self.packetlist = []
 			last_name = ""
 			for x in result.splitlines():
@@ -2220,6 +2221,7 @@ class PacketManager(Screen, NumericalTextInput):
 
 	def IpkgListInstalled_Finished(self, result, retval, extra_args = None):
 		if result:
+			result = six.ensure_str(result)
 			self.installed_packetlist = {}
 			for x in result.splitlines():
 				tokens = x.split(' - ')
@@ -2235,6 +2237,7 @@ class PacketManager(Screen, NumericalTextInput):
 
 	def OpkgListUpgradeable_Finished(self, result, retval, extra_args = None):
 		if result:
+			result = six.ensure_str(result)
 			self.upgradeable_packages = {}
 			for x in result.splitlines():
 				tokens = x.split(' - ')

@@ -8,6 +8,7 @@ from Components.Console import Console
 from Components.PluginComponent import plugins
 from Plugins.Plugin import PluginDescriptor
 from boxbranding import getBoxType
+import six
 
 class Network:
 	def __init__(self):
@@ -451,6 +452,7 @@ class Network:
 
 	def getLinkStateFinished(self, result, retval, extra_args):
 		(callback) = extra_args
+		result = six.ensure_str(result)
 
 		if self.LinkConsole is not None:
 			if len(self.LinkConsole.appContainers) == 0:
