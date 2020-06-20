@@ -31,11 +31,14 @@ class GetEcmInfo:
 			info['ecminterval1'] = oecmi0
 			old_ecm_time = ecm_time
 			try:
-				ecm = open(ECM_INFO, 'rb').readlines()
+				if six.PY2:
+					ecm = open(ECM_INFO, 'rb').readlines()
+				else:
+					ecm = open(ECM_INFO, 'r').readlines()
 			except:
 				ecm = ''
 			for line in ecm:
-				d = six.ensure_str(line).split(':', 1)
+				d = line.split(':', 1)
 				if len(d) > 1:
 					info[d[0].strip()] = d[1].strip()
 			data = self.getText()
@@ -79,11 +82,13 @@ class GetEcmInfo:
 					if info['decode'] == 'Network':
 						cardid = 'id:' + info.get('prov', '')
 						try:
-							share = open('/tmp/share.info', 'rb').readlines()
+							if six.PY2:
+								share = open('/tmp/share.info', 'rb').readlines()
+							else:
+								share = open('/tmp/share.info', 'r').readlines()
 							for line in share:
-								l = six.ensure_str(line)
-								if cardid in l:
-									self.textvalue = l.strip()
+								if cardid in line:
+									self.textvalue = line.strip()
 									break
 							else:
 								self.textvalue = cardid
@@ -141,4 +146,4 @@ class GetEcmInfo:
 			decCI='0'
 			provid='0'
 			ecmpid='0'
-		return str(self.textvalue), decCI, provid, ecmpid
+		return self.textvalue, decCI, provid, ecmpid
