@@ -52,7 +52,7 @@ import os
 from boxbranding import getBoxType, getMachineBrand, getMachineName, getBrandOEM
 import six
 from six.moves.cPickle import dump, load
-from six.moves import reload_module
+from six.moves import reload_module, range
 
 
 boxtype = getBoxType()
@@ -2333,7 +2333,7 @@ class IpkgInstaller(Screen):
 			title = list[0][:p]
 			self.title = ("%s %s %s") % (_("Install extensions"), _("from"), title)
 
-		for listindex in list(range(len(list))):
+		for listindex in range(len(list)):
 			self.list.addSelection(list[listindex][p+1:], list[listindex], listindex, False)
 		self.list.sort()
 
