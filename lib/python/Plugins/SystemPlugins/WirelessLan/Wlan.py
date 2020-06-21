@@ -401,11 +401,14 @@ class Status:
 		for line in result.splitlines():
 			line = line.strip()
 			if "ESSID" in line:
-				if "Nickname" in line:
-					ssid=(line[line.index('ESSID')+7:line.index('"  Nickname')])
+				if "off/any" in line:
+					ssid = "off"
 				else:
-					ssid=(line[line.index('ESSID')+7:len(line)-1])
-				if ssid is not None:
+					if "Nickname" in line:
+						ssid=(line[line.index('ESSID')+7:line.index('"  Nickname')])
+					else:
+						ssid=(line[line.index('ESSID')+7:len(line)-1])
+				if ssid is not "off":
 					data['essid'] = ssid
 			if "Access Point" in line:
 				if "Sensitivity" in line:
@@ -414,6 +417,19 @@ class Status:
 					ap=line[line.index('Access Point')+14:len(line)]
 				if ap is not None:
 					data['accesspoint'] = ap
+			if "Frequency" in line:
+				frequency = line[line.index('Frequency')+10 :line.index(' GHz')]
+				if frequency is not None:
+					data['frequency'] = frequency
+			if "Bit Rate" in line:
+				if "kb" in line:
+					br = line[line.index('Bit Rate')+9 :line.index(' kb/s')]
+				elif "Gb" in line:
+					br = line[line.index('Bit Rate')+9 :line.index(' Gb/s')]
+				else:
+					br = line[line.index('Bit Rate')+9 :line.index(' Mb/s')]
+				if br is not None:
+					data['bitrate'] = br
 
 		if ssid is not None and ssid is not "off":
 			scanresults = list(Cell.all(iface,5))
@@ -440,13 +456,13 @@ class Status:
 						'pairwise_ciphers': scanresults[i].pairwise_ciphers,
 						'authentication_suites': scanresults[i].authentication_suites,
 					}
-				data['bitrate'] = aps[ssid]["maxrate"]
+				#data['bitrate'] = aps[ssid]["maxrate"]
 				data['encryption'] = aps[ssid]["encrypted"]
 				data['quality'] = aps[ssid]["quality"]
 				data['signal'] = aps[ssid]["signal"]
 				data['channel'] = aps[ssid]["channel"]
 				data['encryption_type'] = aps[ssid]["encryption_type"]
-				data['frequency'] = aps[ssid]["frequency"]
+				#data['frequency'] = aps[ssid]["frequency"]
 				data['frequency_norm'] = aps[ssid]["frequency_norm"]
 
 		self.wlaniface[iface] = data

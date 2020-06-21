@@ -114,7 +114,7 @@ class WlanStatus(Screen):
 		}, -1)
 		self.timer = eTimer()
 		self.timer.timeout.get().append(self.resetList)
-		self.onShown.append(lambda: self.timer.start(8000))
+		self.onShown.append(lambda: self.timer.start(16000))
 		self.onLayoutFinish.append(self.layoutFinished)
 		self.onClose.append(self.cleanup)
 
