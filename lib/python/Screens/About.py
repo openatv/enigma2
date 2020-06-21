@@ -774,7 +774,7 @@ class SystemNetworkInfo(Screen):
 							self.AboutText += '{:<35}'.format(_('Frequency:')) + '\t' + frequency + '\n'
 
 						frequency_norm = status[self.iface]["frequency_norm"]
-						if "frequency_norm" in self:
+						if frequency_norm is not None:
 							self.AboutText += '{:<35}'.format(_('Frequency Norm:')) + '\t' + frequency_norm + '\n'
 
 						if status[self.iface]["bitrate"] == '0':
