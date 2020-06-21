@@ -212,4 +212,4 @@ class TimerList(HTMLComponent, GUIComponent, object):
 		if op > 1800:
 			op = 3600 - op
 			direction = 'W'
-		return ("%d.%d" + SIGN + "%s") % (op // 10, op % 10, direction)
+		return ("%d.%d%s%s") % (op // 10, op % 10, SIGN, direction)
