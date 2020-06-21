@@ -10,6 +10,9 @@ from ServiceReference import ServiceReference
 from enigma import eListboxPythonMultiContent, eListbox, gFont, iServiceInformation, eServiceCenter, eDVBFrontendParametersSatellite, RT_HALIGN_LEFT, RT_VALIGN_CENTER
 from Tools.Transponder import ConvertToHumanReadable, getChannelNumber
 import skin
+import six
+
+SIGN = '°' if six.PY3 else str('\xc2\xb0')
 
 TYPE_TEXT = 0
 TYPE_VALUE_HEX = 1
@@ -211,7 +214,7 @@ class ServiceInfo(Screen):
 			if posi > 1800:
 				posi = 3600 - posi
 				EW = "W"
-		return "%s - %s\xb0 %s" % (namespace, (float(posi) / 10.0), EW)
+		return "%s - %s" + SIGN + "%s" % (namespace, (float(posi) / 10.0), EW)
 
 	def getTrackList(self):
 		trackList = []

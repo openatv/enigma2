@@ -3,9 +3,12 @@
 from __future__ import print_function
 from enigma import eDVBFrontendParametersSatellite, eDVBFrontendParametersCable, eDVBFrontendParametersTerrestrial, eDVBFrontendParametersATSC
 from Components.NimManager import nimmanager
+import six
+
+SIGN = '°' if six.PY3 else str('\xc2\xb0')
 
 def orbpos(pos):
-	return pos > 3600 and "N/A" or "%d.%d\xc2\xb0%s" % (pos > 1800 and ((3600 - pos) / 10, (3600 - pos) % 10, "W") or (pos / 10, pos % 10, "E"))
+	return pos > 3600 and "N/A" or "%d.%d" + SIGN + "%s" % (pos > 1800 and ((3600 - pos) / 10, (3600 - pos) % 10, "W") or (pos / 10, pos % 10, "E"))
 
 def getTunerDescription(nim):
 	try:

@@ -27,6 +27,8 @@ from re import search
 import time
 import six
 
+SIGN = '°' if six.PY3 else str('\xc2\xb0')
+
 def parse_ipv4(ip):
 	ret = ""
 	idx = 0
@@ -150,8 +152,7 @@ def getAboutText():
 		tempinfo = f.read()
 		f.close()
 	if tempinfo and int(tempinfo.replace('\n', '')) > 0:
-		mark = str('\xb0')
-		AboutText += _("System temperature:\t%s") % tempinfo.replace('\n', '').replace(' ', '') + mark + "C\n"
+		AboutText += _("System temperature:\t%s") % tempinfo.replace('\n', '').replace(' ', '') + SIGN + "C\n"
 
 	tempinfo = ""
 	if path.exists('/proc/stb/fp/temp_sensor_avs'):
@@ -183,8 +184,7 @@ def getAboutText():
 		except:
 			tempinfo = ""
 	if tempinfo and int(tempinfo.replace('\n', '')) > 0:
-		mark = str('\xb0')
-		AboutText += _("Processor temperature:\t%s") % tempinfo.replace('\n', '').replace(' ', '') + mark + "C\n"
+		AboutText += _("Processor temperature:\t%s") % tempinfo.replace('\n', '').replace(' ', '') + SIGN + "C\n"
 	AboutLcdText = AboutText.replace('\t', ' ')
 
 	return AboutText, AboutLcdText

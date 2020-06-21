@@ -9,6 +9,9 @@ from Components.config import config
 from Tools.Transponder import ConvertToHumanReadable, getChannelNumber
 from Tools.GetEcmInfo import GetEcmInfo
 from Components.Converter.Poll import Poll
+import six
+
+SIGN = '°' if six.PY3 else str('\xc2\xb0')
 
 caid_data = (
 	( "0x100",  "0x1ff", "Seca",     "S",  True  ),
@@ -481,9 +484,9 @@ class PliExtraInfo(Poll, Converter, object):
 	def createOrbPos(self, feraw):
 		orbpos = feraw.get("orbital_position")
 		if orbpos > 1800:
-			return str((float(3600 - orbpos)) / 10.0) + "\xb0 W"
+			return str((float(3600 - orbpos)) / 10.0) + SIGN + "W"
 		elif orbpos > 0:
-			return str((float(orbpos)) / 10.0) + "\xb0 E"
+			return str((float(orbpos)) / 10.0) + SIGN + "E"
 		return ""
 
 	def createOrbPosOrTunerSystem(self, fedata, feraw):

@@ -73,6 +73,8 @@ FLAG_IS_DEDICATED_3D = 128
 FLAG_HIDE_VBI = 512
 FLAG_CENTER_DVB_SUBS = 2048 #define in lib/dvb/idvb.h as dxNewFound = 64 and dxIsDedicated3D = 128
 
+SIGN = '°' if six.PY3 else str('\xc2\xb0')
+
 class BouquetSelector(Screen):
 	def __init__(self, session, bouquets, selectedFunc, enableWrapAround=True):
 		Screen.__init__(self, session)
@@ -1274,7 +1276,7 @@ class ChannelSelectionEdit:
 				direction = _("W")
 			else:
 				direction = _("E")
-			messageText = _("Are you sure to remove all %d.%d%s%s services?") % (unsigned_orbpos/10, unsigned_orbpos%10, "\xb0", direction)
+			messageText = _("Are you sure to remove all %d.%d%s%s services?") % (unsigned_orbpos/10, unsigned_orbpos%10, SIGN, direction)
 		self.session.openWithCallback(self.removeSatelliteServicesCallback, MessageBox, messageText)
 
 	def removeSatelliteServicesCallback(self, answer):
