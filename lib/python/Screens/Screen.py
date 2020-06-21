@@ -13,7 +13,7 @@ from Components.Sources.Source import Source
 
 
 class Screen(dict, GUISkin):
-	NO_SUSPEND, SUSPEND_STOPS, SUSPEND_PAUSES = range(3)
+	NO_SUSPEND, SUSPEND_STOPS, SUSPEND_PAUSES = list(range(3))
 	ALLOW_SUSPEND = NO_SUSPEND
 	global_screen = None
 
@@ -75,7 +75,7 @@ class Screen(dict, GUISkin):
 					return
 			# assert self.session is None, "a screen can only exec once per time"
 			# self.session = session
-			for val in self.values() + self.renderer:
+			for val in list(self.values()) + self.renderer:
 				val.execBegin()
 				if not self.stand_alone and self.session.current_dialog != self:
 					return
