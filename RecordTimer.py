@@ -334,10 +334,15 @@ class RecordTimerEntry(timer.TimerEntry, object):
 			else:
 				filename += " - " + name # standard
 
-		if config.recording.ascii_filenames.value:
-			filename = ASCIItranslit.legacyEncode(filename)
+		if six.PY2: #FIME
+			if config.recording.ascii_filenames.value:
+				filename = ASCIItranslit.legacyEncode(filename)
 
 		self.Filename = Directories.getRecordingFilename(filename, self.MountPath)
+		
+		if six.PY3: #FIME
+			self.Filename = self.Filename.encode("ascii","ignore").decode()
+		
 		if debug:
 			self.log(0, "Filename calculated as: '%s'" % self.Filename)
 		return self.Filename
