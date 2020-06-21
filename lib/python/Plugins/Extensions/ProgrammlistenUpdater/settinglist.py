@@ -1,18 +1,13 @@
 from __future__ import print_function
 from __future__ import absolute_import
 from enigma import eTimer, eDVBDB
-import re, glob, shutil, os, time, sys
-from Screens.Screen import Screen
-from Components.config import ConfigSubsection, ConfigYesNo, ConfigText, config, configfile
+import os, time, sys
+from Components.config import config, configfile
 from Screens.MessageBox import MessageBox
 from .downloader import DownloadSetting, ConverDate, ConverDateBack
 from six.moves.urllib.request import urlopen
 from six.moves.urllib.request import Request
-
-try:
-    import zipfile
-except:
-    pass
+import six
 
 Directory = os.path.dirname(sys.modules[__name__].__file__)
 
@@ -24,19 +19,19 @@ def InstallSettings(name, link, date):
         response = urlopen(req)
         newlink = response.read()
         response.close()
-        Setting = open(Directory + '/Settings/tmp/listE2.zip', 'w')
-        Setting.write(str(newlink))
+        Setting = open(Directory + '/Settings/tmp/listE2.zip', 'wb')
+        Setting.write(newlink)
         Setting.close()
         if os.path.exists(Directory + '/Settings/tmp/listE2.zip'):
             os.system('mkdir ' + Directory + '/Settings/tmp/listE2_unzip')
             try:
-                os.system('unzip ' + Directory + '/Settings/tmp/listE2.zip -d  ' + Directory + '/Settings/tmp/listE2_unzip')
+                os.system('unzip -q ' + Directory + '/Settings/tmp/listE2.zip -d  ' + Directory + '/Settings/tmp/listE2_unzip')
             except:
                 print("ERROR unzip listE2.zip")
             if not os.path.exists(Directory + '/Settings/tmp/setting'):
                 os.system('mkdir ' + Directory + '/Settings/tmp/setting')
                 try:
-                    os.system('unzip ' + Directory + '/Settings/tmp/listE2_unzip/*.zip -d  ' + Directory + '/Settings/tmp/setting')
+                    os.system('unzip -q ' + Directory + '/Settings/tmp/listE2_unzip/*.zip -d  ' + Directory + '/Settings/tmp/setting')
                 except:
                     print("ERROR unzip %s.zip", name)
         return False
@@ -65,9 +60,8 @@ def InstallSettings(name, link, date):
         inhaltfile = Directory + '/Settings/tmp/setting/inhalt.lst'
         if os.path.isfile(inhaltfile):
             with open(inhaltfile, 'r') as f:
-                data = f.read().decode("utf-8-sig").encode("utf-8")
+                data = six.ensure_str(f.read())
             RemoveList = data.splitlines()
-
         return RemoveList
 
     if not DownloadSetting(link):

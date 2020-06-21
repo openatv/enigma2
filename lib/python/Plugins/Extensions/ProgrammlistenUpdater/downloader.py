@@ -6,7 +6,7 @@ import six
 
 
 def DownloadSetting(url):
-    list = []
+    _list = []
     try:
         req = Request(url)
         req.add_header('User-Agent', 'VAS')
@@ -15,16 +15,16 @@ def DownloadSetting(url):
         response.close()
         xx = re.compile('<td><a href="(.+?)">(.+?)</a></td>.*?<td>(.+?)</td>', re.DOTALL).findall(link)
         for link, name, date in xx:
-            print(link, name, date)
+            #print(link, name, date)
             prelink = ''
             if not link.startswith("http://"):
                 prelink = url.replace('asd.php', '')
-            list.append((date, name, prelink + link))
+            _list.append((date, name, prelink + link))
 
     except:
         print("ERROR DownloadSetting %s" %(url))
 
-    return list
+    return _list
 
 def ConverDate(data):
     year = data[:2]
