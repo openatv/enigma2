@@ -20,7 +20,8 @@ def filescan_open(list, session, **kwargs):
 	# Recreate List as expected by PicView
 	filelist = [((file.path, False), None) for file in list]
 	from .ui import Pic_Full_View
-	session.open(Pic_Full_View, filelist, 0, file.path)
+	p = filelist[0][0][0]
+	session.open(Pic_Full_View, filelist, 0, p)
 
 def filescan(**kwargs):
 	from Components.Scanner import Scanner, ScanPath
