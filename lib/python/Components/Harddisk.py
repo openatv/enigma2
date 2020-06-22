@@ -9,6 +9,7 @@ from Tools.HardwareInfo import HardwareInfo
 from boxbranding import getBoxType, getMachineBuild
 import Components.Task
 import re
+import six
 
 def readFile(filename):
 	file = open(filename)
@@ -329,7 +330,7 @@ class Harddisk:
 		return 1
 
 	def killPartitionTable(self):
-		zero = 512 * '\0'
+		zero = 512 * b'\0'
 		h = open(self.dev_path, 'wb')
 		# delete first 9 sectors, which will likely kill the first partition too
 		for i in list(range(9)):
@@ -337,7 +338,7 @@ class Harddisk:
 		h.close()
 
 	def killPartition(self, n):
-		zero = 512 * '\0'
+		zero = 512 * b'\0'
 		part = self.partitionPath(n)
 		h = open(part, 'wb')
 		for i in list(range(3)):
@@ -1044,6 +1045,7 @@ class UnmountTask(Components.Task.LoggingTask):
 	def prepare(self):
 		try:
 			dev = self.hdd.disk_path.split('/')[-1]
+			dev = six.ensure_binary(dev)
 			open('/dev/nomount.%s' % dev, "wb").close()
 		except Exception as e:
 			print("ERROR: Failed to create /dev/nomount file:", e)
