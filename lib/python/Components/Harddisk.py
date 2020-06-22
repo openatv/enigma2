@@ -1104,6 +1104,7 @@ class MkfsTask(Components.Task.LoggingTask):
 	def prepare(self):
 		self.fsck_state = None
 	def processOutput(self, data):
+		data = six.ensure_str(data)
 		print("[Mkfs]", data)
 		if 'Writing inode tables:' in data:
 			self.fsck_state = 'inode'
