@@ -1355,7 +1355,10 @@ class RecordTimer(timer.Timer):
 				list.append(' code="' + str(code) + '"')
 				list.append(' time="' + str(time) + '"')
 				list.append('>')
-				list.append(str(stringToXML(msg)))
+				if isinstance(msg, int):
+					list.append(str(msg))
+				else:
+					list.append(str(stringToXML(msg)))
 				list.append('</log>\n')
 
 			list.append('</timer>\n')
