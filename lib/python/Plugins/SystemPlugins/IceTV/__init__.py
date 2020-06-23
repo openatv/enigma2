@@ -51,6 +51,7 @@ config.plugins.icetv.last_update_time.disableSave()
 
 config.plugins.icetv.enable_epg = ConfigYesNo(default=False)
 config.plugins.icetv.configured = ConfigYesNo(default=False)
+config.plugins.icetv.merge_eit_epg = ConfigYesNo(default=True)
 
 minute = 60
 hour = minute * 60
@@ -85,11 +86,11 @@ def saveConfigFile():
     configfile.save()
 
 def enableIceTV():
-    setIceTVDefaults()
     epgcache = eEPGCache.getInstance()
     epgcache.setEpgSources(0)
     epgcache.clear()
     epgcache.save()
+    setIceTVDefaults()
     saveConfigFile()
 
 def disableIceTV():
@@ -104,7 +105,7 @@ def disableIceTV():
 def setIceTVDefaults():
     config.plugins.icetv.enable_epg.value = True
     config.plugins.icetv.last_update_time.value = 0
-    config.epg.eit.value = False
+    config.epg.eit.value = config.plugins.icetv.merge_eit_epg.value
     config.epg.save()
     config.usage.show_eit_nownext.value = False
     config.usage.show_eit_nownext.save()
