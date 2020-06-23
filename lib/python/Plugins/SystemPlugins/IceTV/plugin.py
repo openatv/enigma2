@@ -1188,11 +1188,7 @@ def Plugins(**kwargs):
 
 
 class IceTVUIBase:
-    _banner = _("Never miss a good Free-to-Air TV show again.\n\n"
-                "Set recordings from anywhere with our app.\n\n"
-                "See new and recommended shows on the app or website and just press 'record'.\n\n"
-                "No need to use the awkward PVR EPG any more.\n\n"
-                "Find out more at %s")
+    _banner = _("Find out more at %s")
 
     def __init__(self, title=None, description=None, server=None):
         if hasattr(self, "_instructions"):
@@ -1226,6 +1222,7 @@ class IceTVMain(ChoiceBox):
         self.skinName = "IceTVMain"
         self.setTitle(_("IceTV - Setup"))
         text = IceTVUIBase._banner % config.plugins.icetv.server.name.value.replace("api.", "www.")
+
         menu = [
                 (_("Show log"), "CALLFUNC", self.showLog),
                 (_("Fetch EPG and update timers now"), "CALLFUNC", self.fetch),

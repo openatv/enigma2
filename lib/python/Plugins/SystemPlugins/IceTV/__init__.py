@@ -51,7 +51,7 @@ config.plugins.icetv.last_update_time.disableSave()
 
 config.plugins.icetv.enable_epg = ConfigYesNo(default=False)
 config.plugins.icetv.configured = ConfigYesNo(default=False)
-config.plugins.icetv.merge_eit_epg = ConfigYesNo(default=False)
+config.plugins.icetv.merge_eit_epg = ConfigYesNo(default=True)
 
 minute = 60
 hour = minute * 60
