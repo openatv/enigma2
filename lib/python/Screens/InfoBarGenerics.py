@@ -3943,6 +3943,9 @@ class InfoBarPiP:
 		config.av.pip_mode = ConfigSelection(default="standard", choices=choicelist)
 		config.av.pip = ConfigPosition(default=[510, 28, 180, 135], args = (720, 576, 720, 576))
 		config.av.pip_standard = ConfigPosition(default=[510, 28, 180, 135], args = (720, 576, 720, 576))
+		config.av.pip_noadspip = ConfigPosition(default=[510, 28, 180, 135], args = (720, 576, 720, 576))
+		config.usage.pip_position_size_save = ConfigSelection(default = "standard", choices = [
+			("standard", _("Only Standard")), ("standard and noadspip", _("Standard and Ads filtering mode")) ])
 		config.usage.pip_zero_button = ConfigSelection(default = "swap", choices = [
 			("standard", _("Standard")), ("swap", _("Swap PiP and main picture")),
 			("swapstop", _("Move PiP to main picture")), ("stop", _("Stop PiP")) ])
