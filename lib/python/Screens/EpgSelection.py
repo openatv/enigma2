@@ -959,7 +959,10 @@ class EPGSelection(Screen, HelpableScreen):
 			cur = self["bouquetlist"].l.getCurrentSelection()
 			return cur and cur[1]
 		else:
-			return self.servicelist.getRoot()
+			if self.servicelist:
+				return self.servicelist.getRoot()
+			else:
+				return self.StartBouquet
 
 	def BouquetOK(self):
 		self.BouquetRoot = False
