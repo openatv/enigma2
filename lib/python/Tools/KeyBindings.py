@@ -359,8 +359,8 @@ def getKeyDescription(key):
 	if rc_model.rcIsDefault():
 		idx = config.misc.rcused.value
 	else:
-		# rcType = config.plugins.remotecontroltype.rctype.value
-		rcType = config.misc.inputdevices.rcType.value
+		rcType = config.plugins.remotecontroltype.rctype.value
+		# rcType = config.misc.inputdevices.rcType.value
 		if rcType == 14:  # XP1000
 			idx = 3
 		elif rcType == 18:  # F1
