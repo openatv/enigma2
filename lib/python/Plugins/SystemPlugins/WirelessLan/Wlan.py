@@ -408,7 +408,7 @@ class Status:
 						ssid=(line[line.index('ESSID')+7:line.index('"  Nickname')])
 					else:
 						ssid=(line[line.index('ESSID')+7:len(line)-1])
-				if ssid is not "off":
+				if ssid != "off":
 					data['essid'] = ssid
 			if "Access Point" in line:
 				if "Sensitivity" in line:
@@ -431,7 +431,7 @@ class Status:
 				if br is not None:
 					data['bitrate'] = br
 
-		if ssid is not None and ssid is not "off":
+		if ssid != None and ssid != "off":
 			scanresults = list(Cell.all(iface,5))
 			aps = {}
 			if scanresults is not None:
