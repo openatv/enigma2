@@ -1,6 +1,6 @@
 # The following KEYID numbers are currently unused:
 #
-# 199, 204, 228-237, 239, 241-255, 258-303, 306, 309, 312-351,
+# 199, 204, 228-237, 239, 241-255, 258-303, 316-351,
 # 416-437, 439-447, 452-509, 512-529, 531-626, 628-UP.
 #
 # PLEASE NOTE: If you add any buttons PLEASE update this list to assist
@@ -240,10 +240,16 @@ KEYIDS = {
 	"BTN_1": 257,
 	"BtnA": 304,
 	"BtnB": 305,
+	"BtnC": 306,
 	"BtnX": 307,
 	"BtnY": 308,
+	"BtnZ": 309,
 	"BtnTL": 310,
 	"BtnTR": 311,
+	"BtnTL2": 312,
+	"BtnTR2": 313,
+	"BtnSelect": 314,
+	"BtnStart": 315,
 	"KEY_OK": 352,
 	"KEY_SELECT": 353,
 	"KEY_GOTO": 354,
