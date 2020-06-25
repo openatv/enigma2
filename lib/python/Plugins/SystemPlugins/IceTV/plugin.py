@@ -782,7 +782,7 @@ class EPGFetcher(object):
         shows = None
         mapping_errors = set()
         for i, chan_list in enumerate(channels_lists):
-        pos = 0
+            pos = 0
             while pos < len(chan_list):
                 fetch_chans = chan_list[pos:pos + max_fetch]
                 batch_fetch = added_channels or (max_fetch and len(fetch_chans) != len(chan_list))
@@ -793,7 +793,7 @@ class EPGFetcher(object):
                 if channel_id in self.channel_service_map:
                     epgcache.importEvents(self.channel_service_map[channel_id], self.convertChanShows(channel_show_map[channel_id], mapping_errors))
                 if i == 0 and pos == 0 and "last_update_time" in shows:
-                last_update_time = shows["last_update_time"]
+                    last_update_time = shows["last_update_time"]
             if self.updateDescriptions(channel_show_map):
                 NavigationInstance.instance.RecordTimer.saveTimer()
                 pos += len(fetch_chans) if max_fetch else len(chan_list)
