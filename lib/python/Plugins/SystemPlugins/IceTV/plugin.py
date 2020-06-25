@@ -777,7 +777,7 @@ class EPGFetcher(object):
         channels = list(set(channels) - added_channels)
         added_channels = list(added_channels)
         epgcache = eEPGCache.getInstance()
-        channels_lists = [l for l in added_channels, channels if l]
+        channels_lists = [l for l in (added_channels, channels) if l]
         last_update_time = 0
         shows = None
         mapping_errors = set()
