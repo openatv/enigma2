@@ -342,8 +342,9 @@ knownAlisaes = {
 }
 
 def invertKeyIds():
+	import six
 	invKeyIds = {}
-	for k, v in KEYIDS.iteritems():
+	for k, v in six.iteritems(KEYIDS):
 		if v not in invKeyIds:
 			invKeyIds[v] = k
 		else:

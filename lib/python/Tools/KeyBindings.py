@@ -369,7 +369,7 @@ def getKeyDescription(key):
 			idx = 2
 	return keyDescriptions[idx].get(key)
 
-def getKeyBindingKeys(filterfn=lambda(key): True):
+def getKeyBindingKeys(filterfn=lambda key: True):
 	return filter(filterfn, keyBindings)
 
 # Remove all entries of domain "domain".
