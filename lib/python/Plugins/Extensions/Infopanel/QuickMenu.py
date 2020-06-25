@@ -62,7 +62,7 @@ if path.exists("/usr/lib/enigma2/python/Plugins/Extensions/AudioSync"):
 else:
 	AUDIOSYNC = False
 
-if path.exists("/usr/lib/enigma2/python/Plugins/SystemPlugins/VideoEnhancement/plugin.pyo"):
+if path.exists("/usr/lib/enigma2/python/Plugins/SystemPlugins/VideoEnhancement/plugin.py"):
 	from Plugins.SystemPlugins.VideoEnhancement.plugin import VideoEnhancementSetup
 	VIDEOENH = True
 else:
@@ -80,13 +80,13 @@ if path.exists("/usr/lib/enigma2/python/Plugins/Extensions/dBackup"):
 else:
 	DBACKUP = False
 
-if path.exists("/usr/lib/enigma2/python/Plugins/SystemPlugins/PositionerSetup/plugin.pyo"):
+if path.exists("/usr/lib/enigma2/python/Plugins/SystemPlugins/PositionerSetup/plugin.py"):
 	from Plugins.SystemPlugins.PositionerSetup.plugin import PositionerSetup, RotorNimSelection
 	POSSETUP = True
 else:
 	POSSETUP = False
 	
-if path.exists("/usr/lib/enigma2/python/Plugins/SystemPlugins/Satfinder/plugin.pyo"):
+if path.exists("/usr/lib/enigma2/python/Plugins/SystemPlugins/Satfinder/plugin.py"):
 	from Plugins.SystemPlugins.Satfinder.plugin import Satfinder
 	SATFINDER = True
 else:

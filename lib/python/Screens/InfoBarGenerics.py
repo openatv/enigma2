@@ -77,7 +77,7 @@ jump_last_pos = None
 
 onzap_show_infobar = True
 
-if fileExists("/usr/lib/enigma2/python/Plugins/Extensions/CoolTVGuide/plugin.pyo"):
+if fileExists("/usr/lib/enigma2/python/Plugins/Extensions/CoolTVGuide/plugin.py"):
 	COOLTVGUIDE = True
 else:
 	COOLTVGUIDE = False
@@ -2216,7 +2216,7 @@ class InfoBarEPG:
 	def openMerlinEPGCenter(self):
 		if self.servicelist is None:
 			return
-		if fileExists("/usr/lib/enigma2/python/Plugins/Extensions/MerlinEPGCenter/plugin.py*"):
+		if fileExists("/usr/lib/enigma2/python/Plugins/Extensions/MerlinEPGCenter/plugin.py"):
 			for plugin in plugins.getPlugins([PluginDescriptor.WHERE_EXTENSIONSMENU, PluginDescriptor.WHERE_EVENTINFO]):
 				if plugin.name == _("Merlin EPG Center"):
 					self.runPlugin(plugin)
@@ -3484,7 +3484,7 @@ class InfoBarExtensions:
 			print('[INFOBARGENERICS] failed to restart network')
 
 	def showAutoTimerList(self):
-		if os.path.exists("/usr/lib/enigma2/python/Plugins/Extensions/AutoTimer/plugin.py*"):
+		if os.path.exists("/usr/lib/enigma2/python/Plugins/Extensions/AutoTimer/plugin.py"):
 			from Plugins.Extensions.AutoTimer.plugin import main, autostart
 			from Plugins.Extensions.AutoTimer.AutoTimer import AutoTimer
 			from Plugins.Extensions.AutoTimer.AutoPoller import AutoPoller
@@ -3559,7 +3559,7 @@ class InfoBarExtensions:
 			self.session.open(EPGSearch)
 
 	def showIMDB(self):
-		if os.path.exists("/usr/lib/enigma2/python/Plugins/Extensions/IMDb/plugin.py*"):
+		if os.path.exists("/usr/lib/enigma2/python/Plugins/Extensions/IMDb/plugin.py"):
 			from Plugins.Extensions.IMDb.plugin import IMDB
 			s = self.session.nav.getCurrentService()
 			if s:
@@ -3581,7 +3581,7 @@ class InfoBarExtensions:
 					self.session.open(MessageBox, _("The MediaPlayer plugin is not installed!\nPlease install it."), type = MessageBox.TYPE_INFO, timeout = 10 )
 
 	def showDreamPlex(self):
-		if os.path.exists("/usr/lib/enigma2/python/Plugins/Extensions/DreamPlex/plugin.py*"):
+		if os.path.exists("/usr/lib/enigma2/python/Plugins/Extensions/DreamPlex/plugin.py"):
 			from Plugins.Extensions.DreamPlex.plugin import DPS_MainMenu
 			self.session.open(DPS_MainMenu)
 		else:
@@ -4211,21 +4211,21 @@ class InfoBarINFOpanel:
 	def selectRedKeytask(self):
 		isWEBBROWSER = None
 		isHBBTV = None
-		if os.path.isfile("/usr/lib/enigma2/python/Plugins/Extensions/WebBrowser/browser.py*"):
+		if os.path.isfile("/usr/lib/enigma2/python/Plugins/Extensions/WebBrowser/browser.py"):
 			isWEBBROWSER = True
-		if os.path.isfile("/usr/lib/enigma2/python/Plugins/Extensions/HbbTV/plugin.py*"):
+		if os.path.isfile("/usr/lib/enigma2/python/Plugins/Extensions/HbbTV/plugin.py"):
 			isHBBTV = True
-		if os.path.isfile("/usr/lib/enigma2/python/Plugins/Extensions/E3Opera/plugin.py*"):
+		if os.path.isfile("/usr/lib/enigma2/python/Plugins/Extensions/E3Opera/plugin.py"):
 			isHBBTV = True
-		if os.path.isfile("/usr/lib/enigma2/python/Plugins/Extensions/NXHbbTV/plugin.py*"):
+		if os.path.isfile("/usr/lib/enigma2/python/Plugins/Extensions/NXHbbTV/plugin.py"):
 			isHBBTV = True
-		if os.path.isfile("/usr/lib/enigma2/python/Plugins/Extensions/OpenOpera/plugin.py*"):
+		if os.path.isfile("/usr/lib/enigma2/python/Plugins/Extensions/OpenOpera/plugin.py"):
 			isHBBTV = True
-		if os.path.isfile("/usr/lib/enigma2/python/Plugins/Extensions/WebkitHbbTV/plugin.py*"):
+		if os.path.isfile("/usr/lib/enigma2/python/Plugins/Extensions/WebkitHbbTV/plugin.py"):
 			isHBBTV = True
-		if os.path.isfile("/usr/lib/enigma2/python/Plugins/Extensions/QtHbbtv/plugin.py*"):
+		if os.path.isfile("/usr/lib/enigma2/python/Plugins/Extensions/QtHbbtv/plugin.py"):
 			isHBBTV = True
-		if os.path.isfile("/usr/lib/enigma2/python/Plugins/Extensions/Hbbtv/plugin.py*"):
+		if os.path.isfile("/usr/lib/enigma2/python/Plugins/Extensions/Hbbtv/plugin.py"):
 			isHBBTV = True
 
 		if isWEBBROWSER or isHBBTV:

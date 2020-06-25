@@ -351,7 +351,7 @@ class key_actions(stat_info):
 		if self.commando.endswith('.sh'):
 			stxt = _('shell')
 		askList = [(_("Cancel"), "NO"), (_("View or edit this %s script") %stxt, "VIEW"), (_("Run script"), "YES"), (_("Run script in background"), "YES_BG")]
-		if self.commando.endswith('.pyo'):
+		if self.commando.endswith('.py'):
 			askList.remove((_("View or edit this %s script") %stxt, "VIEW"))
 		if self.parameter:
 			askList.append((_("Run script with optional parameter"), "PAR"))

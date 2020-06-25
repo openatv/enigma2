@@ -353,7 +353,7 @@ class TimerEditList(Screen):
 		elif answer[1] == 'yes':
 			self.removeTimer(True)
 		elif answer[1] == 'yesremove':
-			if fileExists("/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/plugin.pyo"):
+			if fileExists("/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/plugin.py"):
 				if config.EMC.movie_trashcan_enable.value:
 					trashpath = config.EMC.movie_trashcan_path.value
 					self.MoveToTrash(trashpath)

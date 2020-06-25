@@ -220,7 +220,7 @@ class VideoSetup(Screen, ConfigListScreen):
 				if SystemInfo["ScartSwitch"]:
 					self.list.append(getConfigListEntry(_("Auto scart switching"), config.av.vcrswitch, _("When enabled, your receiver will detect activity on the VCR SCART input.")))
 
-		if not isinstance(config.av.scaler_sharpness, ConfigNothing) and not path.exists("/usr/lib/enigma2/python/Plugins/SystemPlugins/VideoEnhancement/plugin.pyo"):
+		if not isinstance(config.av.scaler_sharpness, ConfigNothing) and not path.exists("/usr/lib/enigma2/python/Plugins/SystemPlugins/VideoEnhancement/plugin.py"):
 			self.list.append(getConfigListEntry(_("Scaler sharpness"), config.av.scaler_sharpness, _("This option configures the picture sharpness.")))
 
 		if SystemInfo["havecolorspace"]:

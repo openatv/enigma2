@@ -477,7 +477,7 @@ def InitUsageConfig():
 	config.usage.updownbutton_mode = ConfigSelection(default="1", choices = [
 					("0", _("Just change channels")),
 					("1", _("Channel List"))])
-	if fileExists("/usr/lib/enigma2/python/Plugins/Extensions/CoolTVGuide/plugin.pyo"):
+	if fileExists("/usr/lib/enigma2/python/Plugins/Extensions/CoolTVGuide/plugin.py"):
 		config.usage.okbutton_mode = ConfigSelection(default="0", choices = [
 						("0", _("InfoBar")),
 						("1", _("Channel List")),
@@ -1391,7 +1391,7 @@ def InitUsageConfig():
 					("1", _("with long OK press")),
 					("2", _("with exit button")),
 					("3", _("with left/right buttons"))])
-	if fileExists("/usr/lib/enigma2/python/Plugins/Extensions/CoolTVGuide/plugin.pyo"):
+	if fileExists("/usr/lib/enigma2/python/Plugins/Extensions/CoolTVGuide/plugin.py"):
 		config.plisettings.PLIEPG_mode = ConfigSelection(default="cooltvguide", choices = [
 					("pliepg", _("Show Graphical EPG")),
 					("single", _("Show Single EPG")),
