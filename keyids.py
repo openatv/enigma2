@@ -343,12 +343,13 @@ knownAlisaes = {
 
 def invertKeyIds():
 	invKeyIds = {}
-	for k, v in KEYIDS.iteritems():
-		if v not in invKeyIds:
-			invKeyIds[v] = k
+	for key in KEYIDS:
+		value = KEYIDS[key]
+		if value not in invKeyIds:
+			invKeyIds[value] = key
 		else:
-			if v in knownAlisaes and k in knownAlisaes[v]:
-				invKeyIds[v] = knownAlisaes[v][0]
+			if value in knownAlisaes and key in knownAlisaes[value]:
+				invKeyIds[value] = knownAlisaes[value][0]
 			else:
-				print("[Keyids] Error: Key code %d is mapped to both '%s' and '%s'!" % (v, invKeyIds[v], k))
+				print("[Keyids] Error: Key code %d is mapped to both '%s' and '%s'!" % (value, invKeyIds[value], key))
 	return invKeyIds
