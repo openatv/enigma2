@@ -567,7 +567,7 @@ class key_actions(stat_info):
 	def play_music(self, dirsource):
 		self.sourceDir = dirsource
 		askList = [(_("Play title"), "SINGLE"), (_("Play folder"), "LIST"), (_("Cancel"), "NO")]
-		self.session.openWithCallback(self.do_play_music, ChoiceBox, title=_("What do you want to play?\n" + self.sourceDir.getFilename()), list=askList)
+		self.session.openWithCallback(self.do_play_music, ChoiceBox, title=_("What do you want to play?\n") + self.sourceDir.getFilename(), list=askList)
 
 	def do_play_music(self, answer):
 		longname = self.sourceDir.getCurrentDirectory() + self.sourceDir.getFilename()
