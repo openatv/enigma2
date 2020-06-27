@@ -8,7 +8,7 @@ import six
 SIGN = '°' if six.PY3 else str('\xc2\xb0')
 
 def orbpos(pos):
-	return pos > 3600 and "N/A" or "%d.%d%s%s" % (pos > 1800 and ((3600 - pos) / 10, SIGN,(3600 - pos) % 10, "W") or (pos / 10, pos % 10, "E"))
+	return pos > 3600 and "N/A" or "%d.%d%s%s" % (pos > 1800 and ((3600 - pos) / 10, (3600 - pos) % 10, SIGN, "W") or (pos / 10, pos % 10, SIGN, "E"))
 
 def getTunerDescription(nim):
 	try:
