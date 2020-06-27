@@ -16,6 +16,7 @@ from Tools.LoadPixmap import LoadPixmap
 from os import system, rename, path, mkdir, remove
 from time import sleep
 from re import search
+import six
 
 class HddMount(Screen):
 	skin = """
@@ -348,7 +349,7 @@ class HddMount(Screen):
 	def add_fstab(self, result = None, retval = None, extra_args = None):
 		self.device = extra_args[0]
 		self.mountp = extra_args[1]
-		self.device_uuid_tmp = result.split('UUID=')
+		self.device_uuid_tmp = six.ensure_str(result).split('UUID=')
 		self.device_uuid_tmp = self.device_uuid_tmp[1].replace('"', "")
 		self.device_uuid_tmp = self.device_uuid_tmp.replace('\n', "")
 		self.device_uuid_tmp = self.device_uuid_tmp.split()[0]
@@ -611,7 +612,7 @@ class DevicePanelConf(Screen, ConfigListScreen):
 	def add_fstab(self, result = None, retval = None, extra_args = None):
 		self.device = extra_args[0]
 		self.mountp = extra_args[1]
-		self.device_tmp = result.split(' ')
+		self.device_tmp = six.ensure_str(result).split(' ')
 		if self.device_tmp[0].startswith('UUID='):
 			self.device_uuid = self.device_tmp[0].replace('"', "")
 			self.device_uuid = self.device_uuid.replace('\n', "")
