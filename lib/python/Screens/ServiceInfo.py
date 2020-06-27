@@ -395,5 +395,6 @@ class ServiceInfo(Screen):
 					altColor = True
 				tlist.append(ServiceInfoListEntry(formatstring % (caid[1], caid[1], caid[0], CaIdDescription, extra_info), altColor=altColor))
 			if not tlist:
-				tlist.append(ServiceInfoListEntry(_("No ECMPids available (FTA Service)")))
+				tlist.append(ServiceInfoListEntry(_("No ECMPids available")))
+				tlist.append(ServiceInfoListEntry(_("(FTA Service)")))
 			self["infolist"].l.setList(tlist)
