@@ -127,6 +127,8 @@ if [ "$(grep config.log.level /etc/enigma2/settings)" == "config.log.level=3" ];
 	VERBOSE='--verbose'
 fi
 
+export LC_CTYPE="en_US.UTF-8"
+
 if [ "$(grep config.crash.enabledebug /etc/enigma2/settings)" == "config.crash.enabledebug=true" ]; then
 	RANDOMIZE1970=''
 	time=`date +%Y` ;
