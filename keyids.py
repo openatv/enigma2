@@ -343,8 +343,7 @@ knownAlisaes = {
 
 def invertKeyIds():
 	invKeyIds = {}
-	for key in KEYIDS:
-		value = KEYIDS[key]
+	for key, value in KEYIDS.items():
 		if value not in invKeyIds:
 			invKeyIds[value] = key
 		else:
