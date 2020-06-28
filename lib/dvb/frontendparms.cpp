@@ -8,7 +8,6 @@
 #include <unistd.h>
 #include <fcntl.h>
 #include <sys/ioctl.h>
-#include <ansidebug.h>
 
 
 DEFINE_REF(eDVBFrontendStatus);
