@@ -43,12 +43,12 @@ class InfoBarBase:
 		else:
 			nav = self.session.nav
 			ServiceEventTracker.setActiveInfoBar(self, not steal_current_service and nav.getCurrentService(), nav.getCurrentlyPlayingServiceOrGroup())
-		self.onClose.append(self.__close)
+		self.onClose.append(self._close)
 		InfoBarBase.infoBarOpened(self)
 		global InfoBarCount
 		InfoBarCount += 1
 
-	def __close(self):
+	def _close(self):
 		ServiceEventTracker.popActiveInfoBar()
 		InfoBarBase.infoBarClosed(self)
 		global InfoBarCount
@@ -86,7 +86,11 @@ class ServiceEventTracker:
 		set = ServiceEventTracker
 		set.oldRef = old_ref
 		set.oldServiceStr = old_service and old_service.getPtrString()
-		assert infobar not in set.InfoBarStack, "FATAL: Infobar '" + str(infobar) + "' is already active!"
+		try:
+			if infobar.instance:
+				raise AssertionError("FATAL: Infobar '" + str(infobar) + "' is already active!")
+		except:
+			pass
 		set.InfoBarStack.append(infobar)
 		set.InfoBarStackSize += 1
 #		print "ServiceEventTracker set active '" + str(infobar) + "'"
@@ -104,6 +108,11 @@ class ServiceEventTracker:
 			set.oldRef = nav.getCurrentlyPlayingServiceOrGroup()
 #			if set.InfoBarStackSize:
 #				print "ServiceEventTracker reset active '" + str(stack[set.InfoBarStackSize-1]) + "'"
+
+	@staticmethod
+	def getActiveInfoBar():
+		set = ServiceEventTracker
+		return set.InfoBarStackSize and set.InfoBarStack[set.InfoBarStackSize-1] or None
 
 	def __init__(self, screen, eventmap):
 		self.__screen = screen
