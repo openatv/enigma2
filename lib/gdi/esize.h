@@ -9,6 +9,9 @@ class eSize
 public:
 	eSize();
 	eSize( int w, int h );
+	eSize( float w, int h );
+	eSize( int w, float h );
+	eSize( float w, float h );
 
 	bool isNull()	const;
 	bool isEmpty()	const;
@@ -59,6 +62,15 @@ inline eSize::eSize()
 
 inline eSize::eSize( int w, int h )
 { wd=w; ht=h; }
+
+inline eSize::eSize( float w, int h )
+{ wd=(int)w; ht=h; }
+
+inline eSize::eSize( int w, float h )
+{ wd=w; ht=(int)h; }
+
+inline eSize::eSize( float w, float h )
+{ wd=(int)w; ht=(int)h; }
 
 inline bool eSize::isNull() const
 { return wd==0 && ht==0; }
