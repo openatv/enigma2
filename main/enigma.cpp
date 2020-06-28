@@ -40,11 +40,6 @@
 
 #include <gst/gst.h>
 
-#include <lib/base/eerroroutput.h>
-ePtr<eErrorOutput> m_erroroutput;
-
-bool verbose = false;
-
 #ifdef OBJECT_DEBUG
 int object_total_remaining;
 
@@ -130,6 +125,8 @@ void keyEvent(const eRCKey &key)
 #include <lib/dvb/dvbtime.h>
 #include <lib/dvb/epgcache.h>
 
+/* Defined in eerror.cpp */
+void setDebugTime(bool enable);
 class eMain: public eApplication, public sigc::trackable
 {
 	eInit init;
@@ -271,27 +268,18 @@ int main(int argc, char **argv)
 
 	gst_init(&argc, &argv);
 
-	for (int i = 0; i < argc; i++)
-	{
-		if (!(strcmp(argv[i], "--debug-no-color")) or !(strcmp(argv[i], "--nc")))
-		{
-			logOutputColors = 0;
-		}
-
-		if (!(strcmp(argv[i], "--verbose")))
-		{
-			verbose = true;
-		}
-	}
-
-	m_erroroutput = new eErrorOutput();
-	m_erroroutput->run();
-
 	// set pythonpath if unset
 	setenv("PYTHONPATH", eEnv::resolve("${libdir}/enigma2/python").c_str(), 0);
 	printf("PYTHONPATH: %s\n", getenv("PYTHONPATH"));
 	printf("DVB_API_VERSION %d DVB_API_VERSION_MINOR %d\n", DVB_API_VERSION, DVB_API_VERSION_MINOR);
 
+	// get enigma2 debug level settings
+	debugLvl = getenv("ENIGMA_DEBUG_LVL") ? atoi(getenv("ENIGMA_DEBUG_LVL")) : 3;
+	if (debugLvl < 0)
+		debugLvl = 0;
+	printf("ENIGMA_DEBUG_LVL=%d\n", debugLvl);
+	if (getenv("ENIGMA_DEBUG_TIME"))
+		setDebugTime(atoi(getenv("ENIGMA_DEBUG_TIME")) != 0);
 	ePython python;
 	eMain main;
 
@@ -415,7 +403,6 @@ int main(int argc, char **argv)
 		p.clear();
 		p.flush();
 	}
-	m_erroroutput = NULL;
 	return exit_code;
 }
 

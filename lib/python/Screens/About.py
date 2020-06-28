@@ -12,7 +12,7 @@ from Components.ScrollLabel import ScrollLabel
 from Components.Console import Console
 from Components.SystemInfo import SystemInfo
 from Components.config import config
-from enigma import eTimer, getEnigmaVersionString, getDesktop
+from enigma import eTimer, getEnigmaVersionString, getDesktop, eGetEnigmaDebugLvl
 from boxbranding import getBoxType, getMachineBuild, getMachineBrand, getMachineName, getImageVersion, getImageBuild, getDriverDate
 
 from Components.Pixmap import MultiPixmap
@@ -130,6 +130,7 @@ def getAboutText():
 		AboutText += _("Installed:\t\t%s") % MyDateConverter(MyFlashDate) + "\n"
 
 	AboutText += _("Last E2 update:\t\t%s") % MyDateConverter(getEnigmaVersionString()) + "\n"
+	AboutText += _("Enigma2 debug level:\t%d") % eGetEnigmaDebugLvl() + "\n"
 
 	fp_version = getFPVersion()
 	if fp_version is None:

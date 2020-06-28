@@ -38,7 +38,7 @@ int eDVBCIApplicationManagerSession::receivedAPDU(const unsigned char *tag,const
 			dl=((unsigned char*)data)[5];
 			if ((dl + 6) > len)
 			{
-				eDebugNoNewLineEnd("[CI AM] warning, invalid length (%d vs %d)", dl+6, len);
+				eDebugNoNewLine("[CI AM] warning, invalid length (%d vs %d)", dl+6, len);
 				dl=len-6;
 			}
 			char str[dl + 1];

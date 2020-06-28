@@ -141,7 +141,7 @@ def saveResumePoints():
 		pickle.dump(resumePointCache, f, pickle.HIGHEST_PROTOCOL)
 		f.close()
 	except Exception as ex:
-		print("[InfoBar] Failed to write resumepoints:", ex)
+		print("[InfoBarGenerics] Failed to write resumepoints:", ex)
 	resumePointCacheLast = int(time())
 
 def loadResumePoints():
@@ -151,7 +151,7 @@ def loadResumePoints():
 		file.close()
 		return PickleFile
 	except Exception as ex:
-		print("[InfoBar] Failed to load resumepoints:", ex)
+		print("[InfoBarGenerics] Failed to load resumepoints:", ex)
 		return {}
 
 def updateresumePointCache():
@@ -160,7 +160,7 @@ def updateresumePointCache():
 
 def ToggleVideo():
 	mode = open("/proc/stb/video/policy").read()[:-1]
-	print(mode)
+	print("[InfoBarGenerics] toggle videomode:",mode)
 	if mode == "letterbox":
 		f = open("/proc/stb/video/policy", "w")
 		f.write("panscan")
@@ -253,12 +253,12 @@ class InfoBarUnhandledKey:
 	#this function is called on every keypress!
 	def actionA(self, key, flag):
 		try:
-			print('KEY: %s %s %s %s' % (key, flag, six.next(key_name for key_name, value in list(KEYIDS.items()) if value==key), getKeyDescription(key)[0]))
+			print('[InfoBarGenerics] KEY: %s %s %s %s' % (key, flag, six.next(key_name for key_name, value in list(KEYIDS.items()) if value==key), getKeyDescription(key)[0]))
 		except:
 			try:
-				print('KEY: %s %s %s' % (key, flag, six.next(key_name for key_name, value in list(KEYIDS.items()) if value==key))) # inverse dictionary lookup in KEYIDS
+				print('[InfoBarGenerics] KEY: %s %s %s' % (key, flag, six.next(key_name for key_name, value in list(KEYIDS.items()) if value==key))) # inverse dictionary lookup in KEYIDS
 			except:
-				print('KEY: %s %s' % (key, flag))
+				print('[InfoBarGenerics] KEY: %s %s' % (key, flag))
 		self.unhandledKeyDialog.hide()
 		if self.closeSIB(key) and self.secondInfoBarScreen and self.secondInfoBarScreen.shown:
 			self.secondInfoBarScreen.hide()
@@ -2597,7 +2597,7 @@ class InfoBarSeek:
 
 		global seek_withjumps_muted
 		if seek_withjumps_muted and eDVBVolumecontrol.getInstance().isMuted():
-			print("STILL MUTED AFTER FFWD/FBACK !!!!!!!! so we unMute")
+			print("[InfoBarGenerics] STILL MUTED AFTER FFWD/FBACK !!!!!!!! so we unMute")
 			seek_withjumps_muted = False
 			eDVBVolumecontrol.getInstance().volumeUnMute()
 
@@ -3050,7 +3050,7 @@ class InfoBarSeek:
 
 		global seek_withjumps_muted
 		if seek_withjumps_muted and eDVBVolumecontrol.getInstance().isMuted():
-			print("STILL MUTED AFTER FFWD/FBACK !!!!!!!! so we unMute")
+			print("[InfoBarGenerics] STILL MUTED AFTER FFWD/FBACK !!!!!!!! so we unMute")
 			seek_withjumps_muted = False
 			eDVBVolumecontrol.getInstance().volumeUnMute()
 
@@ -3837,7 +3837,7 @@ class InfoBarPiP:
 				del self.session.pip
 				if SystemInfo["LCDMiniTV"]:
 					if config.lcd.modepip.value >= "1":
-						print('[LCDMiniTV] disable PIP')
+						print('[InfoBarGenerics] [LCDMiniTV] disable PIP')
 						f = open("/proc/stb/lcd/mode", "w")
 						f.write(config.lcd.modeminitv.value)
 						f.close()
@@ -3885,7 +3885,7 @@ class InfoBarPiP:
 					InfoBarPiP.pipWindowActive = False
 					self.session.pip.servicePath = curServicePath
 					if SystemInfo["LCDMiniTVPiP"] and int(config.lcd.modepip.value) >= 1:
-						print('[LCDMiniTV] enable PIP')
+						print('[InfoBarGenerics] [LCDMiniTV] enable PIP')
 						f = open("/proc/stb/lcd/mode", "w")
 						f.write(config.lcd.modepip.value)
 						f.close()
@@ -3907,7 +3907,7 @@ class InfoBarPiP:
 						InfoBarPiP.pipWindowActive = False
 						self.session.pip.servicePath = self.servicelist.getCurrentServicePath()
 						if SystemInfo["LCDMiniTVPiP"] and int(config.lcd.modepip.value) >= 1:
-							print('[LCDMiniTV] enable PIP')
+							print('[InfoBarGenerics] [LCDMiniTV] enable PIP')
 							f = open("/proc/stb/lcd/mode", "w")
 							f.write(config.lcd.modepip.value)
 							f.close()
@@ -4262,7 +4262,7 @@ class InfoBarINFOpanel:
 				self.StartPlugin(config.plugins.infopanel_redpanel.selection.value)
 
 		except:
-			print("Error on RedKeyTask !!")
+			print("[InfoBarGenerics] Error on RedKeyTask !!")
 		
 	def softcamPanel(self):
 		try:
@@ -4281,7 +4281,7 @@ class InfoBarINFOpanel:
 				self.StartPlugin(config.plugins.infopanel_redpanel.selectionLong.value)
 
 		except:
-			print("Error on RedKeyTask Long!!")
+			print("[InfoBarGenerics] Error on RedKeyTask Long!!")
 			
 	def StartsoftcamPanel(self):
 		try:
@@ -4639,18 +4639,18 @@ class InfoBarAudioSelection:
 		self.session.openWithCallback(self.audioSelected, AudioSelection, infobar=self)
 
 	def audioSelected(self, ret=None):
-		print("[infobar::audioSelected]", ret)
+		print("[InfoBarGenerics] [infobar::audioSelected]", ret)
 
 	def audioDownmixToggle(self, popup = True):
 		if SystemInfo["CanDownmixAC3"]:
 			if config.av.downmix_ac3.value:
 				message = _("Dolby Digital downmix is now") + " " + _("disabled")
-				print('[Audio] Dolby Digital downmix is now disabled')
+				print('[InfoBarGenerics] [Audio] Dolby Digital downmix is now disabled')
 				config.av.downmix_ac3.setValue(False)
 			else:
 				config.av.downmix_ac3.setValue(True)
 				message = _("Dolby Digital downmix is now") + " " + _("enabled")
-				print('[Audio] Dolby Digital downmix is now enabled')
+				print('[InfoBarGenerics] [Audio] Dolby Digital downmix is now enabled')
 			if popup:
 				Notifications.AddPopup(text = message, type = MessageBox.TYPE_INFO, timeout = 5, id = "DDdownmixToggle")
 
@@ -4837,7 +4837,7 @@ class InfoBarRedButton:
 			try:
 				x(orgId)
 			except Exception as ErrMsg:
-				print(ErrMsg)
+				print("[InfoBarGenerics] updateAIT error", ErrMsg)
 				#self.onReadyForAIT.remove(x)
 
 	def updateInfomation(self):
@@ -4852,7 +4852,7 @@ class InfoBarRedButton:
 		info = service and service.info()
 		try:
 			for x in info.getInfoObject(iServiceInformation.sHBBTVUrl):
-				print(x)
+				print("[InfoBarGenerics] HbbtvApplication:",x)
 				if x[0] in (-1, 1):
 					self.updateAIT(x[3])
 					self["HbbtvApplication"].setApplicationName(x[1])
@@ -4894,29 +4894,29 @@ class InfoBarAspectSelection:
 		self.__ExGreen_state = self.STATE_HIDDEN
 
 	def ExGreen_doAspect(self):
-		print("do self.STATE_ASPECT")
+		print("[InfoBarGenerics] do self.STATE_ASPECT")
 		self.__ExGreen_state = self.STATE_ASPECT
 		self.aspectSelection()
 
 	def ExGreen_doResolution(self):
-		print("do self.STATE_RESOLUTION")
+		print("[InfoBarGenerics] do self.STATE_RESOLUTION")
 		self.__ExGreen_state = self.STATE_RESOLUTION
 		self.resolutionSelection()
 		
 	def ExGreen_doHide(self):
-		print("do self.STATE_HIDDEN")
+		print("[InfoBarGenerics] do self.STATE_HIDDEN")
 		self.__ExGreen_state = self.STATE_HIDDEN 
 
 	def ExGreen_toggleGreen(self, arg=""):
-		print(self.__ExGreen_state)
+		print("[InfoBarGenerics] toggleGreen:",self.__ExGreen_state)
 		if self.__ExGreen_state == self.STATE_HIDDEN:
-			print("self.STATE_HIDDEN")
+			print("[InfoBarGenerics] self.STATE_HIDDEN")
 			self.ExGreen_doAspect()
 		elif self.__ExGreen_state == self.STATE_ASPECT:
-			print("self.STATE_ASPECT")
+			print("[InfoBarGenerics] self.STATE_ASPECT")
 			self.ExGreen_doResolution()
 		elif self.__ExGreen_state == self.STATE_RESOLUTION:
-			print("self.STATE_RESOLUTION")
+			print("[InfoBarGenerics] self.STATE_RESOLUTION")
 			self.ExGreen_doHide()
 
 	def aspectSelection(self):
@@ -4962,7 +4962,7 @@ class InfoBarResolutionSelection:
 				fpsString = f.read()
 				f.close()
 			except:
-				print("[InfoBarResolutionSelection] Error open /proc/stb/vmpeg/0/framerate !!")
+				print("[InfoBarGenerics] [InfoBarResolutionSelection] Error open /proc/stb/vmpeg/0/framerate !!")
 				fpsString = '50000'
 		
 		xres = int(xresString, 16)
@@ -4995,7 +4995,7 @@ class InfoBarResolutionSelection:
 		keys = ["green", "yellow", "blue", "", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9" ]
 
 		mode = open("/proc/stb/video/videomode").read()[:-1]
-		print(mode)
+		print("[InfoBarGenerics] videomode:",mode)
 		for x in list(range(len(tlist))):
 			if tlist[x][1] == mode:
 				selection = x
@@ -5431,7 +5431,7 @@ class InfoBarTeletextPlugin:
 					"startTeletext": (self.startTeletext, _("View teletext..."))
 				})
 		else:
-			print("no teletext plugin found!")
+			print("[InfoBarGenerics] no teletext plugin found!")
 
 	def startTeletext(self):
 		self.teletext_plugin and self.teletext_plugin(session=self.session, service=self.session.nav.getCurrentService())
@@ -5846,7 +5846,7 @@ class InfoBarOpenOnTopHelper:
 		try:
 			self.session.openWithCallback(callback, MessageBox, message, messageboxtyp, timeout=timeout, default=default)
 		except Exception as e:
-			print("[openInfoBarMessageWithCallback] Exception:", e)
+			print("[InfoBarGenerics] [openInfoBarMessageWithCallback] Exception:", e)
 
 	def openInfoBarSession(self, session, option=None):
 		try:
@@ -5855,7 +5855,7 @@ class InfoBarOpenOnTopHelper:
 			else:
 				self.session.open(session, option)
 		except Exception as e:
-			print("[openInfoBarSession] Exception:", e)
+			print("[InfoBarGenerics] [openInfoBarSession] Exception:", e)
 
 #########################################################################################
 # handle bsod (python crashes) and show information after crash                         #
