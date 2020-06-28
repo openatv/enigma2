@@ -1,4 +1,4 @@
-from __future__ import print_function
+from __future__ import print_function, division
 from Screens.Screen import Screen
 from Screens.Dish import Dishpip
 from enigma import ePoint, eSize, eRect, eServiceCenter, getBestPlayableServiceReference, eServiceReference, eTimer, getDesktop
@@ -204,13 +204,13 @@ class PictureInPicture(Screen):
 				self["video"].instance.resize(eSize(*(w, h)))
 				self.setSizePosMainWindow(0, h, MAX_X - w, MAX_Y - h)
 			elif config.av.pip_mode.value == "split":
-				self.instance.resize(eSize(*(MAX_X/2, MAX_Y )))
-				self["video"].instance.resize(eSize(*(MAX_X/2, MAX_Y)))
-				self.setSizePosMainWindow(0, 0, MAX_X/2, MAX_Y)
+				self.instance.resize(eSize(*(MAX_X//2, MAX_Y )))
+				self["video"].instance.resize(eSize(*(MAX_X//2, MAX_Y)))
+				self.setSizePosMainWindow(0, 0, MAX_X//2, MAX_Y)
 			elif config.av.pip_mode.value == "byside":
-				self.instance.resize(eSize(*(MAX_X/2, MAX_Y/2 )))
-				self["video"].instance.resize(eSize(*(MAX_X/2, MAX_Y/2)))
-				self.setSizePosMainWindow(0, MAX_Y/4, MAX_X/2, MAX_Y/2)
+				self.instance.resize(eSize(*(MAX_X//2, MAX_Y//2 )))
+				self["video"].instance.resize(eSize(*(MAX_X//2, MAX_Y//2)))
+				self.setSizePosMainWindow(0, MAX_Y//4, MAX_X//2, MAX_Y//2)
 			elif config.av.pip_mode.value in "bigpig external":
 				self.instance.resize(eSize(*(MAX_X, MAX_Y)))
 				self["video"].instance.resize(eSize(*(MAX_X, MAX_Y)))
@@ -220,9 +220,9 @@ class PictureInPicture(Screen):
 			self["video"].instance.resize(eSize(*(w, h)))
 			self.setSizePosMainWindow()
 		if config.usage.pip_mode.value == "byside":
-			self.instance.resize(eSize(*(MAX_X/2, MAX_Y/2 )))
-			self["video"].instance.resize(eSize(*(MAX_X/2, MAX_Y/2)))
-			self.setSizePosMainWindow(0, MAX_Y/4, MAX_X/2, MAX_Y/2)
+			self.instance.resize(eSize(*(MAX_X//2, MAX_Y//2 )))
+			self["video"].instance.resize(eSize(*(MAX_X//2, MAX_Y//2)))
+			self.setSizePosMainWindow(0, MAX_Y//4, MAX_X//2, MAX_Y//2)
 			self.pipActive.hide()
 			self.pipSideSide.show()
 
