@@ -65,7 +65,7 @@ class inputDevices:
 		elif "mouse" in name:
 			return "mouse"
 		else:
-			print("Unknown device type:", name)
+			print("[iInputDevices] Unknown device type:", name)
 			return None
 
 	def getDeviceName(self, x):
