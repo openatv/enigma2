@@ -135,7 +135,7 @@ def get_subtitle(digest, lang="PL"):
 
     return sub
 
-def detect_format(list):
+def detect_format(_list):
     """
     Detect the format of input subtitles file.
     input: contents of a file as list
@@ -146,7 +146,7 @@ def detect_format(list):
     re_tmp = re.compile("^(\d+):(\d+):(\d+):(.*)")
     re_sub2 = re.compile("^(\d+):(\d+):(\d+)\.\d+\s*\,.*")
     re_mpl2 = re.compile("^\[(\d+)\]\[(\d+)\]\s*(.*)")
-    for line in list:
+    for line in _list:
         if re_mdvd.match(line):
             return "mdvd"
         elif re_srt.match(line):
@@ -160,7 +160,7 @@ def detect_format(list):
     return ""
 
 
-def read_mdvd(list, fps):
+def read_mdvd(_list, fps):
     """
     Read micro-dvd subtitles.
     input: contents of a file as list
@@ -169,8 +169,8 @@ def read_mdvd(list, fps):
     re1 = re.compile("^\{(\d+)\}\{(\d*)\}\s*(.*)")
 
     subtitles = []
-    while len(list) > 0:
-        x = list.pop(0)
+    while len(_list) > 0:
+        x = _list.pop(0)
         m = re1.match(x, 0)
         if m:
             time1 = int(m.group(1))
@@ -191,7 +191,7 @@ def read_mdvd(list, fps):
             subtitles.append(subt)
     return subtitles
 
-def read_mpl2(list):
+def read_mpl2(_list):
     """
     Read mpl2 subtitles
     input: contents of a file as list
@@ -199,8 +199,8 @@ def read_mpl2(list):
     """
     re1 = re.compile("^\[(\d+)\]\[(\d+)\]\s*(.*)")
     subtitles = []
-    while len(list) > 0:
-        m = re1.match(list.pop(0), 0)
+    while len(_list) > 0:
+        m = re1.match(_list.pop(0), 0)
         if m:
             subt = [int(m.group(1)) * 0.1]
             subt.append(int(m.group(2)) * 0.1)
@@ -208,7 +208,7 @@ def read_mpl2(list):
             subtitles.append(subt)
     return subtitles
 
-def read_sub2(list):
+def read_sub2(_list):
     """
     Reads subviewer 2.0 format subtitles, e.g.:
         00:01:54.75,00:01:58.54
@@ -219,12 +219,12 @@ def read_sub2(list):
     re1 = re.compile("^(\d+):(\d+):(\d+)\.(\d+)\s*\,\s*(\d+):(\d+):(\d+)\.(\d+).*$")
     subtitles = []
     try:
-        while len(list) > 0:
-            m = re1.match(list.pop(0), 0)
+        while len(_list) > 0:
+            m = re1.match(_list.pop(0), 0)
             if m:
                 subt = [int(m.group(1)) * 3600 + int(m.group(2)) * 60 + int(m.group(3)) + int(m.group(4)) / 100.0]
                 subt.append(int(m.group(5)) * 3600 + int(m.group(6)) * 60 + int(m.group(7)) + int(m.group(8)) / 100.0)
-                l = list.pop(0).strip()
+                l = _list.pop(0).strip()
                 lines = l.split("[br]")
                 for i in list(range(0, len(lines))):
                     subt.append(lines[i])
@@ -233,7 +233,7 @@ def read_sub2(list):
         sys.stderr.write("Warning: it seems like input file is damaged or too short.\n")
     return subtitles
 
-def read_srt(list):
+def read_srt(_list):
     """
     Reads srt subtitles.
     input: contents of a file as list
@@ -244,22 +244,22 @@ def read_srt(list):
     re3 = re.compile("^\s*$")
     subtitles = []
     try:
-        while len(list) > 0:
-            if re1.match(list.pop(0), 0):
-                m = re2.match(list.pop(0), 0)
+        while len(_list) > 0:
+            if re1.match(_list.pop(0), 0):
+                m = re2.match(_list.pop(0), 0)
                 if m:
                     subt = [int(m.group(1)) * 3600 + int(m.group(2)) * 60 + int(m.group(3)) + int(m.group(4)) / 1000.0]
                     subt.append(int(m.group(5)) * 3600 + int(m.group(6)) * 60 + int(m.group(7)) + int(m.group(8)) / 1000.0)
-                    l = list.pop(0)
+                    l = _list.pop(0)
                     while not re3.match(l, 0):
                         subt.append(l.strip())
-                        l = list.pop(0)
+                        l = _list.pop(0)
                     subtitles.append(subt)
     except IndexError:
         sys.stderr.write("Warning: it seems like input file is damaged or too short.\n")
     return subtitles
 
-def read_tmp(list):
+def read_tmp(_list):
     """
     Reads tmplayer (tmp) subtitles.
     input: contents of a file as list
@@ -268,8 +268,8 @@ def read_tmp(list):
     re1 = re.compile("^(\d+):(\d+):(\d+):(.*)")
     subtitles = []
     subs = {}
-    while len(list) > 0:
-        m = re1.match(list.pop(0), 0)
+    while len(_list) > 0:
+        m = re1.match(_list.pop(0), 0)
         if m:
             time = int(m.group(1)) * 3600 + int(m.group(2)) * 60 + int(m.group(3))
             if time in subs:
@@ -288,13 +288,13 @@ def read_tmp(list):
         subtitles.append(subt)
     return subtitles
 
-def to_srt(list):
+def to_srt(_list):
     """
     Converts list of subtitles (internal format) to srt format
     """
     outl = []
     count = 1
-    for l in list:
+    for l in _list:
         secs1 = l[0]
         h1 = int(secs1 / 3600)
         m1 = int(int(secs1 % 3600) / 60)
@@ -327,13 +327,13 @@ def sub_fix_times(sub):
                 sub[i][1] = sub[i + 1][0] - 0.2
     return sub
 
-def get_split_times(str):
+def get_split_times(_str):
     """
     Converts comma-separated string of "xx:yy:zz,xx:yy:zz,..." times to list of times (in seconds)
     input: string of comma-separated xx:yy:zz time positions
     returns: list of times
     """
-    tlist = str.split(",")
+    tlist = _str.split(",")
     re1 = re.compile("^(\d+):(\d+):(\d+)")
     times = []
     for t in tlist:
