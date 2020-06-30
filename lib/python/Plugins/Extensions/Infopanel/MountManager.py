@@ -654,9 +654,9 @@ class DevicePanelConf(Screen, ConfigListScreen):
 
 		if not path.exists(self.mountp):
 			mkdir(self.mountp, 0o755)
-		open('/etc/fstab.tmp', 'w').writelines([l for l in file('/etc/fstab').readlines() if self.device not in l])
+		open('/etc/fstab.tmp', 'w').writelines([l for l in open('/etc/fstab').readlines() if self.device not in l])
 		rename('/etc/fstab.tmp', '/etc/fstab')
-		open('/etc/fstab.tmp', 'w').writelines([l for l in file('/etc/fstab').readlines() if self.device_uuid not in l])
+		open('/etc/fstab.tmp', 'w').writelines([l for l in open('/etc/fstab').readlines() if self.device_uuid not in l])
 		rename('/etc/fstab.tmp', '/etc/fstab')
 		out = open('/etc/fstab', 'a')
 		line = self.device_uuid + '\t' + self.mountp + '\t' + self.device_type + '\tdefaults\t0 0\n'
