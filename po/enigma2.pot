@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-12-18 01:43+0000\n"
+"POT-Creation-Date: 2020-07-01 20:55+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1044,7 +1044,8 @@ msgstr ""
 #, python-format
 msgid ""
 "%s\n"
-"Press ok to close"
+"Press ok for multiboot selection\n"
+"Press exit to close"
 msgstr ""
 
 #, python-format
@@ -1109,10 +1110,6 @@ msgstr ""
 
 #, python-format
 msgid "%s additional screens"
-msgstr ""
-
-#, python-format
-msgid "%s build date %s"
 msgstr ""
 
 #. TRANSLATORS: The satellite with name '%s' is no longer used after a configuration change. The user is asked whether or not the satellite should be deleted.
@@ -1218,6 +1215,9 @@ msgid "(Selectmode)"
 msgstr ""
 
 msgid "(Show only reader:"
+msgstr ""
+
+msgid "(current image)"
 msgstr ""
 
 msgid "(e.g. TV wakeup, but not switched to correct input)"
@@ -2749,6 +2749,12 @@ msgstr ""
 msgid "Backup Mode"
 msgstr ""
 
+msgid "Backup Mode: Flash Online\n"
+msgstr ""
+
+msgid "Backup Mode: USB Recovery\n"
+msgstr ""
+
 msgid "Backup Settings"
 msgstr ""
 
@@ -3205,6 +3211,12 @@ msgid "Cancel execution?"
 msgstr ""
 
 msgid "Cancel save timeshift as movie"
+msgstr ""
+
+msgid "Cancel the image selection and exit"
+msgstr ""
+
+msgid "Cancel the image selection and exit all menus"
 msgstr ""
 
 msgid "Cancelled upon user request"
@@ -4729,10 +4741,6 @@ msgid "Do you want to preview this DVD before burning?"
 msgstr ""
 
 msgid "Do you want to produce this collection?"
-msgstr ""
-
-#, python-format
-msgid "Do you want to reboot now the image in slot %s?"
 msgstr ""
 
 #, python-format
@@ -6520,15 +6528,7 @@ msgid "Image Version"
 msgstr ""
 
 #, python-format
-msgid "Image Version %s"
-msgstr ""
-
-#, python-format
-msgid "Image created on: %s/%s-%s-%s-backup-%s_mmc.zip"
-msgstr ""
-
-#, python-format
-msgid "Image created on: %s/%s-%s-%s-backup-%s_recovery.zip"
+msgid "Image created on: %s/%s-%s-%s-backup-%s_recovery_emmc.zip"
 msgstr ""
 
 #, python-format
@@ -6628,12 +6628,6 @@ msgid "Infos"
 msgstr ""
 
 msgid "Init"
-msgstr ""
-
-msgid "Init SDCARD"
-msgstr ""
-
-msgid "Init SDcard"
 msgstr ""
 
 msgid "Initial lock ratio"
@@ -7655,6 +7649,9 @@ msgstr ""
 msgid "Move Up/Down"
 msgstr ""
 
+msgid "Move down a line"
+msgstr ""
+
 msgid "Move down a page"
 msgstr ""
 
@@ -7710,6 +7707,9 @@ msgid "Move to home of list"
 msgstr ""
 
 msgid "Move to position X"
+msgstr ""
+
+msgid "Move up a line"
 msgstr ""
 
 msgid "Move up a page"
@@ -7778,11 +7778,13 @@ msgstr ""
 msgid "MultiBoot Image Manager"
 msgstr ""
 
-msgid "MultiQuickButton"
+msgid "MultiBoot Image Selector"
 msgstr ""
 
-#, python-format
-msgid "Multiboot ERROR! - no %s in boot partition."
+msgid "MultiBootSelector Actions"
+msgstr ""
+
+msgid "MultiQuickButton"
 msgstr ""
 
 msgid "Multiboot Image Selector"
@@ -7793,15 +7795,6 @@ msgid "Multiboot Image created on: %s/%s-%s-%s-backup-%s_usb.zip"
 msgstr ""
 
 msgid "Multiboot Manager"
-msgstr ""
-
-msgid "Multiboot manager - Cannot initialize SDcard when running image on SDcard."
-msgstr ""
-
-msgid "Multiboot manager - SDcard initialization run, please restart your Image."
-msgstr ""
-
-msgid "Multiboot manager - The SDcard must be at least 8MB."
 msgstr ""
 
 msgid "Multimedia"
@@ -9281,9 +9274,6 @@ msgstr ""
 msgid "Press INFO on your remote control for additional information."
 msgstr ""
 
-msgid "Press Init to format SDcard."
-msgstr ""
-
 msgid "Press MENU on your remote control for additional options."
 msgstr ""
 
@@ -10219,9 +10209,6 @@ msgstr ""
 msgid "SD"
 msgstr ""
 
-msgid "SDcard is not initialised for multiboot - Exit and use MultiBoot Image Manager to initialise"
-msgstr ""
-
 msgid "SDcard switch ERROR! - H9 root files not transferred to SD card"
 msgstr ""
 
@@ -10725,6 +10712,9 @@ msgid "Select the character or action under the virtual keyboard cursor"
 msgstr ""
 
 msgid "Select the desired function and click on \"OK\" to assign it. Use \"CH+/-\" to toggle between the lists. Select an assigned function and click on \"OK\" to de-assign it. Use \"Next/Previous\" to change the order of the assigned functions."
+msgstr ""
+
+msgid "Select the highlighted image and reboot"
 msgstr ""
 
 msgid "Select the manufacturer of your SCR device. If the manufacturer is not listed, set 'SCR' to 'user defined' and enter the device parameters manually according to its spec sheet."
@@ -11815,6 +11805,14 @@ msgstr ""
 
 #, python-format
 msgid "Slot %d"
+msgstr ""
+
+#, python-format
+msgid "Slot %s: %s - Mode %d%s"
+msgstr ""
+
+#, python-format
+msgid "Slot %s: %s%s"
 msgstr ""
 
 msgid "Slovak"
@@ -15121,6 +15119,10 @@ msgstr ""
 msgid "blue"
 msgstr ""
 
+#, python-format
+msgid "bootmode = %s"
+msgstr ""
+
 msgid "bottom"
 msgstr ""
 
@@ -15295,6 +15297,10 @@ msgid "drivers"
 msgstr ""
 
 msgid "eMMC"
+msgstr ""
+
+#, python-format
+msgid "eMMC slot %s"
 msgstr ""
 
 msgid "eSATA"
@@ -16327,35 +16333,7 @@ msgid "slot%s - %s (current image)"
 msgstr ""
 
 #, python-format
-msgid "slot%s - %s - %s "
-msgstr ""
-
-#, python-format
-msgid "slot%s - %s - %s (current image)"
-msgstr ""
-
-#, python-format
-msgid "slot%s - %s - %s as USB Recovery"
-msgstr ""
-
-#, python-format
-msgid "slot%s - %s mode 1"
-msgstr ""
-
-#, python-format
-msgid "slot%s - %s mode 1 (current image)"
-msgstr ""
-
-#, python-format
-msgid "slot%s - %s mode 12"
-msgstr ""
-
-#, python-format
-msgid "slot%s - %s mode 12 (current image)"
-msgstr ""
-
-#, python-format
-msgid "slot%s - %s- %s "
+msgid "slot%s - %s as USB Recovery"
 msgstr ""
 
 msgid "slow"
@@ -16508,9 +16486,6 @@ msgstr ""
 msgid "unconfirmed"
 msgstr ""
 
-msgid "unknow"
-msgstr ""
-
 msgid "unknown"
 msgstr ""
 
@@ -16629,9 +16604,6 @@ msgid "width"
 msgstr ""
 
 msgid "will take about 1-15 minutes for this system\n"
-msgstr ""
-
-msgid "will take about 30 minutes for this system\n"
 msgstr ""
 
 msgid "winter sport"
@@ -17747,6 +17719,9 @@ msgstr ""
 msgid "Configure your NTP server."
 msgstr ""
 
+msgid "Control LED can be turned on or off here."
+msgstr ""
+
 msgid "Control of the position how finished timer are shown in the Timer List."
 msgstr ""
 
@@ -18441,9 +18416,6 @@ msgid "Refresh every (in hours)"
 msgstr ""
 
 msgid "Remember last service in PiP"
-msgstr ""
-
-msgid "Remote control model shown"
 msgstr ""
 
 msgid "Remove completed timers after (days)"
@@ -19181,6 +19153,9 @@ msgstr ""
 msgid "Tuner slot"
 msgstr ""
 
+msgid "Turn on the control LED."
+msgstr ""
+
 msgid "Turn on the power LED."
 msgstr ""
 
@@ -19395,9 +19370,6 @@ msgid "When nonzero, a recording will stop later than the ending time indicated 
 msgstr ""
 
 msgid "When tuned to a service the system will normally scan the transponder for any changes and save them. Only set to 'yes' if you're absolutely sure what you're doing."
-msgstr ""
-
-msgid "Which remote control gets shown. Only influences graphical representation."
 msgstr ""
 
 msgid "With this option set to 'yes' the channel lists will always show you the bouquet screen first. If set to 'no' the current bouquet will be opened."
