@@ -1,4 +1,4 @@
-from __future__ import print_function
+from __future__ import print_function, division
 
 from enigma import eListboxPythonMultiContent, gFont, eEnv, getDesktop, pNavigation
 from boxbranding import getMachineBrand, getMachineName, getBoxType, getBrandOEM
@@ -786,21 +786,20 @@ class QuickMenuDevices(Screen):
 			if line.find(device) != -1:
 				parts = line.strip().split()
 				size = int(parts[2])
-				if ((size / 1024) / 1024) > 1:
-					des = _("Size: ") + str((size / 1024) / 1024) + " " + _("GB")
-				else:
-					des = _("Size: ") + str(size / 1024) + " " + _("MB")
 			else:
 				try:
 					size = open('/sys/block/' + device2 + '/' + device + '/size').read()
 					size = str(size).replace('\n', '')
 					size = int(size)
+					size = size // 2
 				except:
 					size = 0
-				if (((size / 2) / 1024) / 1024) > 1:
-					des = _("Size: ") + str(((size / 2) / 1024) / 1024) + " " + _("GB")
-				else:
-					des = _("Size: ") + str((size / 2) / 1024) + " " + _("MB")
+
+			if ((size / 1024) / 1024) > 1:
+				des = _("Size: ") + str((size // 1024) // 1024) + " " + _("GB")
+			else:
+				des = _("Size: ") + str(size // 1024) + " " + _("MB")
+
 		f.close()
 		if des != '':
 			if rw.startswith('rw'):
