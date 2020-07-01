@@ -12,7 +12,7 @@ from Components.MenuList import MenuList
 from Plugins.Plugin import PluginDescriptor
 from Components.config import config
 from Tools.Directories import resolveFilename, SCOPE_PLUGINS
-from os import path, walk
+from os import path
 from enigma import eEnv
 
 class SkinSelector(Screen):

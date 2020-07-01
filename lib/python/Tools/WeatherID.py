@@ -2,7 +2,6 @@
 
 # source: https://code.google.com/p/python-weather-api/
 
-import sys
 import re
 import json
 

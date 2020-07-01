@@ -4,7 +4,6 @@ from Components.ActionMap import ActionMap
 from Components.Button import Button
 from Components.ScrollLabel import ScrollLabel
 from Components.Converter.ClientsStreaming import ClientsStreaming
-from Components.Sources.StaticText import StaticText
 from enigma import eTimer, eStreamServer
 import skin
 

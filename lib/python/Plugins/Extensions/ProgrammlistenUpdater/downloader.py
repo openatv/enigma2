@@ -1,5 +1,5 @@
 from __future__ import print_function
-import re, os, sys
+import re
 from six.moves.urllib.request import urlopen
 from six.moves.urllib.request import Request
 import six

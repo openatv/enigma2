@@ -3,7 +3,6 @@ from Components.ActionMap import ActionMap
 from Components.ScrollLabel import ScrollLabel
 from Components.Sources.StaticText import StaticText
 from Screens.Screen import Screen
-import re, os, sys
 import six
 from six.moves.urllib.request import urlopen
 from six.moves.urllib.request import Request

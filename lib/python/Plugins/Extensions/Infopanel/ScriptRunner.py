@@ -8,7 +8,6 @@ from Components.Language import language
 from Components.Button import Button
 from Components.MenuList import MenuList
 from Components.Sources.List import List
-from Screens.Standby import TryQuitMainloop
 from Tools.Directories import resolveFilename, SCOPE_PLUGINS, SCOPE_CURRENT_SKIN
 from os import listdir, remove, mkdir, path, access, X_OK, chmod
 import datetime, time

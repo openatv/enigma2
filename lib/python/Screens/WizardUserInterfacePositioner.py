@@ -1,9 +1,7 @@
 from Screens.Screen import Screen
-from Screens.Wizard import wizardManager, WizardSummary
 from Screens.WizardLanguage import WizardLanguage
 from Screens.Rc import Rc
-from Screens.MessageBox import MessageBox
-from Components.Pixmap import Pixmap, MovingPixmap, MultiPixmap
+from Components.Pixmap import Pixmap
 from Components.Sources.Boolean import Boolean
 from Tools.Directories import resolveFilename, SCOPE_SKIN
 from Components.Console import Console

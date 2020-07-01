@@ -1,5 +1,4 @@
 from Screens.Screen import Screen
-from Screens.Standby import TryQuitMainloop
 from Screens.MessageBox import MessageBox
 from Screens.Console import Console
 from boxbranding import getMachineBuild

@@ -7,7 +7,7 @@ from Components.Sources.StaticText import StaticText
 from Screens.Screen import Screen
 from Screens.MessageBox import MessageBox
 from .downloader import ConverDate
-import glob, os, urllib, sys
+import glob, os, sys
 from enigma import *
 
 Directory = os.path.dirname(sys.modules[__name__].__file__)

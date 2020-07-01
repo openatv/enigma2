@@ -20,7 +20,6 @@ import math
 from Components.Renderer.Renderer import Renderer
 from skin import parseColor
 from enigma import eCanvas, eSize, gRGB, eRect
-from Components.VariableText import VariableText
 
 class VWatches(Renderer):
 
