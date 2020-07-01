@@ -87,4 +87,4 @@ class VfdDisplay(Poll, Converter, object):
 			Converter.changed(self, what)
 		elif what[0] is self.CHANGED_ALL:
 			Converter.changed(self, what)
- 
+

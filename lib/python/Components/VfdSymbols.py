@@ -345,7 +345,7 @@ class SymbolsCheckPoller:
 	def Audio(self):
 		if not fileExists("/proc/stb/lcd/symbol_dolby_audio"):
 			return
-		      
+
 		audio = self.service.audioTracks()
 		if audio:
 			n = audio.getNumberOfTracks()

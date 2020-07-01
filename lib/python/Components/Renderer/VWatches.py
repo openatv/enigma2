@@ -84,7 +84,7 @@ class VWatches(Renderer):
 			if error > 0:
 				y = y + ystep
 				error = error - deltax
-        
+
 	def changed(self, what):
 		sss = self.source.value
 		if what[0] == self.CHANGED_CLEAR:
@@ -107,4 +107,3 @@ class VWatches(Renderer):
 				pass
 		self.instance.clear(self.bColor)
 
-        

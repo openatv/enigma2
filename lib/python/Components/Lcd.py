@@ -188,7 +188,7 @@ class LCD:
 		eDBoxLCD.getInstance().setFlipped(value)
 		
 	def setScreenShot(self, value):
- 		eDBoxLCD.getInstance().setDump(value)
+		eDBoxLCD.getInstance().setDump(value)
 
 	def isOled(self):
 		return eDBoxLCD.getInstance().isOled()
@@ -343,7 +343,7 @@ def InitLcd():
 			def setLCDModePiP(configElement):
 				pass
 			def setLCDScreenshot(configElement):
- 				ilcd.setScreenShot(configElement.value)
+				ilcd.setScreenShot(configElement.value)
 
 			config.lcd.modepip = ConfigSelection(choices={
 					"0": _("off"),
