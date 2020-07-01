@@ -22,6 +22,7 @@ from Components.config import config, ConfigSubsection, ConfigNumber, ConfigSele
 from twisted.web.client import getPage
 from xml.dom.minidom import parseString
 from enigma import eTimer
+import six
 
 config.plugins.AtileHD = ConfigSubsection()
 config.plugins.AtileHD.refreshInterval = ConfigNumber(default = "10")
@@ -177,6 +178,7 @@ class WeatherData:
 			self.timer.start(timeout, True)
 			print("AtileHD lookup for ID " + str(config.plugins.AtileHD.woeid.value))
 			url = "http://query.yahooapis.com/v1/public/yql?q=select%20item%20from%20weather.forecast%20where%20woeid%3D%22"+str(config.plugins.AtileHD.woeid.value)+"%22&format=xml"
+			url = six.ensure_binary(url)
 			getPage(url, method = 'GET').addCallback(self.GotWeatherData).addErrback(self.downloadError)
 
 	def GotWeatherData(self, data = None):

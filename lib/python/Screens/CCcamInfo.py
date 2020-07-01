@@ -89,7 +89,7 @@ def getPage(url, contextFactory=None, *args, **kwargs):
 			kwargs["headers"].update(AuthHeaders)
 		else:
 			kwargs["headers"] = AuthHeaders
-
+	url = six.ensure_binary(url)
 	factory = HTTPClientFactory(url, *args, **kwargs)
 	reactor.connectTCP(host, port, factory)
 
