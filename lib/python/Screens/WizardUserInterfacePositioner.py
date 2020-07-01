@@ -6,7 +6,6 @@ from Screens.MessageBox import MessageBox
 from Components.Pixmap import Pixmap, MovingPixmap, MultiPixmap
 from Components.Sources.Boolean import Boolean
 from Tools.Directories import resolveFilename, SCOPE_SKIN
-from Components.config import config, configfile
 from Components.Console import Console
 
 class UserInterfacePositionerWizard(WizardLanguage, Rc):

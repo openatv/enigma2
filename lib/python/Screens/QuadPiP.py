@@ -2,7 +2,6 @@ from __future__ import print_function
 from Screens.Screen import Screen
 from enigma import ePoint, eSize, eServiceCenter, getBestPlayableServiceReference, eServiceReference
 from Components.VideoWindow import VideoWindow
-from Components.config import config, ConfigPosition
 
 class QuadPiP(Screen):
 	def __init__(self, session, decoderIdx = 1, pos = None):

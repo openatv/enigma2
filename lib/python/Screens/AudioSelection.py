@@ -19,7 +19,6 @@ from boxbranding import getBoxType
 from enigma import iPlayableService, eTimer, eSize
 
 from Tools.ISO639 import LanguageCodes
-from Tools.BoundFunction import boundFunction
 FOCUS_CONFIG, FOCUS_STREAMS = range(2)
 [PAGE_AUDIO, PAGE_SUBTITLES] = ["audio", "subtitles"]
 

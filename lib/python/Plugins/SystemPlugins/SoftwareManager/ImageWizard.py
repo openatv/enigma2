@@ -7,7 +7,6 @@ from Screens.Screen import Screen
 from Components.Label import Label
 from Components.MenuList import MenuList
 from Components.PluginComponent import plugins
-from Components.Pixmap import Pixmap
 from Plugins.Plugin import PluginDescriptor
 from Tools.Directories import fileExists, resolveFilename, SCOPE_PLUGINS
 from Components.Pixmap import Pixmap, MovingPixmap, MultiPixmap
@@ -16,7 +15,7 @@ from enigma import eEnv
 from boxbranding import getBoxType, getImageDistro
 from .BackupRestore import InitConfig as BackupRestore_InitConfig
 
-from Components.config import config, getConfigListEntry, ConfigSubsection, ConfigText, ConfigLocations, ConfigBoolean
+from Components.config import config
 from Components.Harddisk import harddiskmanager
 
 boxtype = getBoxType()

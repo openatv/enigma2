@@ -4,7 +4,7 @@ from __future__ import print_function
 ##
 from Tools.Directories import fileExists
 from Tools.Alternatives import GetWithAlternative
-from Components.config import config
+#from Components.config import config
 from enigma import eServiceCenter, eServiceReference
 
 searchPaths = ('/usr/share/enigma2/%s/', '/media/usb/%s/', '/media/mmc/%s/', '/media/hdd/%s/')

@@ -1,7 +1,6 @@
 # -*- coding: iso-8859-1 -*-
 from enigma import eConsoleAppContainer
 from Components.Console import Console
-from Components.About import about
 from Components.PackageInfo import PackageInfoHandler
 from Components.Language import language
 from Components.Sources.List import List

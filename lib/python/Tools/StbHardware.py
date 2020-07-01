@@ -3,7 +3,6 @@ from time import time, localtime, gmtime
 from os import path
 from fcntl import ioctl
 from struct import pack, unpack
-from Components.config import config
 from boxbranding import getBoxType, getBrandOEM
 
 def getFPVersion():

@@ -1,5 +1,5 @@
 from __future__ import absolute_import
-from Components.config import config, ConfigSubsection, ConfigSelection, ConfigPIN, ConfigText, ConfigYesNo, ConfigSubList, ConfigInteger
+from Components.config import config, ConfigSubsection, ConfigSelection, ConfigPIN, ConfigYesNo, ConfigSubList, ConfigInteger
 from Components.ServiceList import refreshServiceList
 #from Screens.ChannelSelection import service_types_tv
 from Screens.InputBox import PinInput
@@ -11,6 +11,7 @@ from Tools.Directories import resolveFilename, SCOPE_CONFIG
 from Tools.Notifications import AddPopup
 from enigma import eTimer, eServiceCenter, iServiceInformation, eServiceReference, eDVBDB
 import time
+
 
 TYPE_SERVICE = "SERVICE"
 TYPE_BOUQUETSERVICE = "BOUQUETSERVICE"
@@ -232,8 +233,6 @@ class ParentalControl:
 
 	def readServicesFromBouquet(self, sBouquetSelection, formatstring):
 		#This method gives back a list of services for a given bouquet
-		from enigma import eServiceCenter, eServiceReference
-
 		serviceHandler = eServiceCenter.getInstance()
 		refstr = sBouquetSelection
 		root = eServiceReference(refstr)

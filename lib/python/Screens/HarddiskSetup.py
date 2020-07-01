@@ -7,7 +7,6 @@ from Components.Label import Label
 from Components.Pixmap import Pixmap
 from Components.Task import job_manager
 from Screens.MessageBox import MessageBox
-from Tools.BoundFunction import boundFunction
 import Screens.InfoBar
 
 

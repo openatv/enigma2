@@ -5,7 +5,6 @@ from enigma import iPlayableService, iServiceInformation, eTimer, eServiceCenter
 
 from Screens.Screen import Screen
 from Screens.ChannelSelection import FLAG_IS_DEDICATED_3D
-from Components.About import about
 from Components.SystemInfo import SystemInfo
 from Components.ConfigList import ConfigListScreen
 from Components.config import config, configfile, getConfigListEntry, ConfigNothing

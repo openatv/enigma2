@@ -1,7 +1,6 @@
 from Plugins.Plugin import PluginDescriptor
 from Screens.Screen import Screen
 from Screens.Console import Console
-from Screens.ChoiceBox import ChoiceBox
 from Screens.MessageBox import MessageBox
 from Components.ActionMap import ActionMap, HelpableActionMap
 from Components.Label import Label

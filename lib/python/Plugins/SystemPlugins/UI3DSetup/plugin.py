@@ -26,7 +26,6 @@ class UI3DSetupScreen(Screen, ConfigListScreen):
 		Screen.__init__(self, session)
 
 		from Components.ActionMap import ActionMap
-		from Components.Button import Button
 		self["key_red"] = StaticText(_("Cancel"))
 		self["key_green"] = StaticText(_("Save"))
 

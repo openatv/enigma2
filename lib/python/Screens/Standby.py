@@ -306,7 +306,6 @@ class StandbySummary(Screen):
 
 from enigma import quitMainloop, iRecordableService
 from Screens.MessageBox import MessageBox
-from time import time
 from Components.Task import job_manager
 
 class QuitMainloopScreen(Screen):

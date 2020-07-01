@@ -7,7 +7,7 @@ from Components.ActionMap import NumberActionMap
 from Components.Pixmap import Pixmap
 from Components.Sources.StaticText import StaticText
 from Components.MenuList import MenuList
-from Components.config import config, configfile
+from Components.config import config
 from Tools.Directories import resolveFilename, SCOPE_ACTIVE_SKIN
 from enigma import eEnv, ePicLoad
 import os

@@ -5,7 +5,6 @@ from Screens.Console import Console
 from boxbranding import getMachineBuild
 from Components.ActionMap import ActionMap
 from Components.ChoiceList import ChoiceList, ChoiceEntryComponent
-from Components.config import config
 from Components.Label import Label
 from Components.Sources.StaticText import StaticText
 from Components.SystemInfo import SystemInfo

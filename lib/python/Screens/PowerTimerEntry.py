@@ -1,7 +1,7 @@
 from __future__ import print_function
 from Screens.Screen import Screen
 from Screens.MessageBox import MessageBox
-from Components.config import ConfigSelection, ConfigSelectionNumber, ConfigSubList, ConfigDateTime, ConfigClock, ConfigYesNo, ConfigInteger, getConfigListEntry, ConfigIP
+from Components.config import ConfigSelection, ConfigSelectionNumber, ConfigSubList, ConfigDateTime, ConfigClock, ConfigYesNo, getConfigListEntry, ConfigIP
 from Components.ActionMap import NumberActionMap
 from Components.ConfigList import ConfigListScreen
 from Components.MenuList import MenuList

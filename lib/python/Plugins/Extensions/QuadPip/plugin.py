@@ -1,7 +1,6 @@
 from __future__ import absolute_import
 from Plugins.Plugin import PluginDescriptor
 from Components.PluginComponent import plugins
-from Components.config import config, ConfigSubsection, ConfigSelection
 from enigma import eDBoxLCD
 
 from .qpip import QuadPipScreen, setDecoderMode
