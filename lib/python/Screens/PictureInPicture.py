@@ -177,11 +177,11 @@ class PictureInPicture(Screen):
 			x = MAX_X - w
 			y = 0
 		elif config.av.pip_mode.value == "split":
-			x = MAX_X / 2
+			x = MAX_X // 2
 			y = 0
 		elif config.av.pip_mode.value == "byside":
-			x = MAX_X / 2
-			y = MAX_Y / 4
+			x = MAX_X // 2
+			y = MAX_Y // 4
 		elif config.av.pip_mode.value in "bigpig external":
 			x = 0
 			y = 0
