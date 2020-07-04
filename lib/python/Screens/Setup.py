@@ -250,19 +250,30 @@ class Setup(ConfigListScreen, Screen):
 					continue
 
 				requires = x.get("requires")
-				value = x.get("value")
-				if requires and requires.startswith('config.'):
-					item = eval(requires or "")
-					iv = item.value
-					if iv and not isinstance(iv, bool):
-						iv = six.ensure_str(iv)
-					if value and iv == value or not value and iv and not iv == "0":
-						SystemInfo[requires] = True
-					else:
-						SystemInfo[requires] = False
+				if requires:
+					meets = True
+					for requires in requires.split(';'):
+						negate = requires.startswith('!')
+						if negate:
+							requires = requires[1:]
+						if requires.startswith('config.'):
+							try:
+								item = eval(requires)
+								SystemInfo[requires] = True if item.value and item.value not in ("0", "False", "false", "off") else False
+							except AttributeError:
+								print('[Setup] unknown "requires" config element:', requires)
 
-				if requires and not SystemInfo.get(requires, False):
-					continue
+						if requires:
+							if not SystemInfo.get(requires, False):
+								if not negate:
+									meets = False
+									break
+							else:
+								if negate:
+									meets = False
+									break
+					if not meets:
+						continue
 
 				if self.PluginLanguageDomain:
 					item_text = dgettext(self.PluginLanguageDomain, six.ensure_str(x.get("text", "??")))
