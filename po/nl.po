@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-06-11 20:09+0000\n"
-"PO-Revision-Date: 2020-06-28 14:33+0200\n"
+"POT-Creation-Date: 2020-07-01 21:55+0000\n"
+"PO-Revision-Date: 2020-07-05 15:25+0200\n"
 "Last-Translator: neoatomic <neoatomic@users.noreply.github.com>\n"
 "Language-Team: neoatomic\n"
 "Language: nl\n"
@@ -1264,7 +1264,6 @@ msgid "%s GHz"
 msgstr "%s GHz"
 
 #, python-format
-#| msgid "   (%s MHz)"
 msgid "%s MHz"
 msgstr "%s MHz"
 
@@ -6000,19 +5999,6 @@ msgstr ""
 msgid "Enigma2 skin selector"
 msgstr "Enigma2 skinkeuze"
 
-msgid ""
-"Enjoy how IceTV can enhance your TV viewing experience by downloading the "
-"IceTV app to your smartphone or tablet. The IceTV app is available free from "
-"the iTunes App Store, the Google Play Store and the Windows Phone Store.\n"
-"\n"
-"Download it today!"
-msgstr ""
-"Geniet van de uitgebreide IceTV kijkervaring door het downloaden van de "
-"IceTV app naar uw telefoon of tablet. The IceTV app is gratis beschikbaar in "
-"de ITunes App Store, de Google Play Store en de Windows Phone Store.\n"
-"\n"
-"Doe het vandaag!"
-
 msgid "Enter"
 msgstr "Enter"
 
@@ -6304,6 +6290,30 @@ msgstr "Programma overzicht:"
 msgid "Everyday"
 msgstr "Elke dag"
 
+msgid ""
+"Everything in one place - IceTV does it for you!\n"
+"\n"
+"Using the IceTV app or website, 'My Shows' is your place to go to. See the "
+"next 7 days of your recordings, favourite shows, keyword notifications, new "
+"series broadcasts, and our recommendations.\n"
+"\n"
+"Everything in one place. Simply select something new and press Record.\n"
+"\n"
+"IceTV's smartphone and tablet apps can be downloaded by scanning the code "
+"above."
+msgstr ""
+"Alles in 1 - IceTV does it for you!\n"
+"\n"
+"Gebruik de IceTV app of website, 'My Shows' alles wat u nodig hebt. Zie de "
+"komende 7 dagen van uw opnames, favoriete shows, trefwoorden, nieuwe series "
+"en onze aanbevelingen.\n"
+"\n"
+"Alles in 1 overzicht. Selecteer eenvoudig een nieuwe uitzending en klik op "
+"opnemen\n"
+"\n"
+"IceTV's telefoon en tablet apps kunnen worden gedownload door bovenstaande "
+"code te scannen."
+
 msgid "Everywhere"
 msgstr "Overal"
 
@@ -6331,7 +6341,7 @@ msgstr "Voortgang extern commando:"
 msgid "Exif"
 msgstr "Exif"
 
-msgid "Existing or trial user"
+msgid "Existing or trial customer"
 msgstr "Bestaande of Proef account"
 
 msgid "Exit"
@@ -6666,6 +6676,13 @@ msgstr "Bestandssysteemcontrole"
 msgid "Filesystem check your Harddisk"
 msgstr "Het bestandssysteem van uw harde schijf controleren."
 
+msgid ""
+"Fill in channel EPGs from the broadcast EPG where there is no IceTV EPG for "
+"the channel"
+msgstr ""
+"Laat de zender EPG automatisch actualiseren wanneer er geen IceTV EPG "
+"beschikbaar is"
+
 msgid "Film-Noir"
 msgstr "Misdaadfilm"
 
@@ -6677,6 +6694,10 @@ msgstr "Eindpositie op index"
 
 msgid "Finance"
 msgstr "Financiën"
+
+#, python-format
+msgid "Find out more at %s"
+msgstr "Lees meer op %s"
 
 msgid "Fine movement"
 msgstr "Fijn bewegen"
@@ -7577,6 +7598,10 @@ msgstr ""
 msgid "IceTV version %s"
 msgstr "IceTV versie %s"
 
+#, python-format
+msgid "IceTV version %s\n"
+msgstr "IceTV versie %s\n"
+
 msgid "Iceland"
 msgstr "Ijsland"
 
@@ -7732,7 +7757,7 @@ msgid ""
 "recording service, we need to gather some basic information.\n"
 "\n"
 "If you already have an IceTV subscription or trial, please select 'Existing "
-"or trial user', if not, then select 'New user'."
+"or trial customer', if not, then select 'New customer'."
 msgstr ""
 "Om alle functies van de IceTV smart recording service te kunnen gebruiken, "
 "hebben wij enkele basisgegevens nodig.\n"
@@ -8781,6 +8806,9 @@ msgstr "Menu"
 msgid "Menu config"
 msgstr "Menu configuratie"
 
+msgid "Merge broadcast EPG with IceTV"
+msgstr "Combineer de zender EPG met die van IceTV"
+
 msgid "Merging Timeshift files"
 msgstr "Samenvoegen Timeshift-bestanden"
 
@@ -9365,6 +9393,9 @@ msgstr "Nieuwe zenderlijst DXAndy "
 msgid "New Zealand"
 msgstr "Nieuw-Zeeland"
 
+msgid "New customer"
+msgstr "Nieuwe account"
+
 msgid "New event info"
 msgstr "Nieuwe programma informatie"
 
@@ -9382,9 +9413,6 @@ msgstr "Nieuwe programma info"
 
 msgid "New timers location"
 msgstr "Locatie voor nieuwe timers"
-
-msgid "New user"
-msgstr "Nieuwe account"
 
 msgid "New version:"
 msgstr "Nieuwe versie:"
@@ -10542,12 +10570,14 @@ msgid "Please enter the old PIN code"
 msgstr "Voer a.u.b. de oude pincode in"
 
 msgid ""
-"Please enter your email address. This is required for us to send you service "
-"announcements, account reminders, promotional offers and a welcome email."
+"Please enter your email address, which will be your login.\n"
+"Via your account on the IceTV website you can choose to receive service "
+"announcements, account reminders and promotional offers."
 msgstr ""
-"A.u.b. uw emailadres opgeven. Die gebruiken wij voor het versturen van "
-"service aankondigingen, account herinneringen, promotie aanbiedingen en een "
-"welkom bericht."
+"Geef a.u.b. uw emailadres op, die ook wordt gebruikt als inlognaam.\n"
+"Via uw account op de IceTV website kunt u instellen of deze gebruikt mag "
+"worden voor het ontvangen van \n"
+"service aankondigingen, account herinneringen en promotie aanbiedingen."
 
 msgid "Please enter your personal feed URL"
 msgstr "Voer uw persoonlijke feed URL in"
@@ -16527,7 +16557,6 @@ msgid "Version %s %s"
 msgstr "Versie %s %s"
 
 #, python-format
-#| msgid "Version %s %s"
 msgid "Version / Build:\t\t%s  (%s)"
 msgstr "Versie / Build:\t\t%s  (%s)"
 
@@ -18096,7 +18125,6 @@ msgid "eMMC"
 msgstr "eMMC"
 
 #, python-format
-#| msgid "CI slot: "
 msgid "eMMC slot %s"
 msgstr "eMMC slot %s"
 
@@ -20314,6 +20342,9 @@ msgstr "Kies een land voor het decoderen van genre informatie uit de EPG."
 msgid "Choose a country scheme for decoding rating information in EPG events."
 msgstr "Kies een land voor het decoderen van rating informatie uit de EPG."
 
+msgid "Choose how you want PIP mode to work."
+msgstr "Selecteer hier de Picture in Picture modus."
+
 msgid "Choose style of main menus"
 msgstr "Kies hier de stijl van het hoofdmenu."
 
@@ -20385,9 +20416,6 @@ msgstr ""
 
 msgid "Choose time interval to which the graphics will be rounded off."
 msgstr "Kies de tijdsinterval waarop de grafische indeling wordt afgerond."
-
-msgid "Choose what you want the PIP mode how to works."
-msgstr "Selecteer welke functie de PiP modus moet hebben."
 
 msgid "Choose what you want the button '0' to do when PIP is active."
 msgstr "Stel hier in wat de '0'-knop moet doen wanneer PiP actief is."
@@ -23686,6 +23714,20 @@ msgstr "Tijd tussen afbeeldingen in image viewer slideshow."
 
 msgid "Time for Slideshow"
 msgstr "Tussentijd voor slideshow afbeeldingen"
+
+#~ msgid ""
+#~ "Enjoy how IceTV can enhance your TV viewing experience by downloading the "
+#~ "IceTV app to your smartphone or tablet. The IceTV app is available free "
+#~ "from the iTunes App Store, the Google Play Store and the Windows Phone "
+#~ "Store.\n"
+#~ "\n"
+#~ "Download it today!"
+#~ msgstr ""
+#~ "Geniet van de uitgebreide IceTV kijkervaring door het downloaden van de "
+#~ "IceTV app naar uw telefoon of tablet. The IceTV app is gratis beschikbaar "
+#~ "in de ITunes App Store, de Google Play Store en de Windows Phone Store.\n"
+#~ "\n"
+#~ "Doe het vandaag!"
 
 #~ msgid "   (1.0 GHz)"
 #~ msgstr "   (1.0 GHz)"
