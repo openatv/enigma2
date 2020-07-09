@@ -4,8 +4,8 @@ msgstr ""
 "Project-Id-Version: openATV / enigma2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-12-30 14:34+0100\n"
-"PO-Revision-Date: 2020-07-02 11:03+0100\n"
-"Last-Translator: wedebe <wedebe@dev.null>\n"
+"PO-Revision-Date: 2020-07-05 22:08+0100\n"
+"Last-Translator: Web Dev Ben <9741693+wedebe@users.noreply.github.com>\n"
 "Language-Team: \n"
 "Language: en_US\n"
 "MIME-Version: 1.0\n"
@@ -23,7 +23,7 @@ msgid ""
 msgstr ""
 "\n"
 "\n"
-"[User bouquets (TV)]\n"
+"[Custom bouquets (TV)]\n"
 
 msgid ""
 "\n"
@@ -206,7 +206,7 @@ msgid ""
 "[User - bouquets (RADIO)]\n"
 msgstr ""
 "\n"
-"[User - bouquets (RADIO)]\n"
+"[Custom bouquets (Radio)]\n"
 
 #, python-format
 msgid ""
@@ -298,17 +298,17 @@ msgid " (higher than any auto)"
 msgstr " (higher than any auto)"
 
 msgid " (higher than rotor any auto)"
-msgstr " (higher than rotator any auto)"
+msgstr " (higher than positioner any auto)"
 
 msgid " (lower than any auto)"
 msgstr " (lower than any auto)"
 
 #, python-format
 msgid " - %d elements exist! Overwrite"
-msgstr ""
+msgstr " - %d items exist! Overwrite"
 
 msgid " - 1 element exist! Overwrite"
-msgstr " - 1 element exists! Overwrite"
+msgstr " - 1 item exists! Overwrite"
 
 msgid " - file exist! Overwrite"
 msgstr " - destination file exists! Overwrite"
@@ -1375,9 +1375,8 @@ msgstr ""
 msgid "(Attention: There will be a restart after %d crashes.)"
 msgstr "(Your receiver will automatically restart after %d crashes)."
 
-#, fuzzy
 msgid "(Selectmode)"
-msgstr "Select movie"
+msgstr "(Select mode)"
 
 msgid "(Show only reader:"
 msgstr "(Show only reader:"
@@ -1467,9 +1466,8 @@ msgstr "1"
 msgid "1 GB"
 msgstr "1 GB"
 
-#, fuzzy
 msgid "1 hour"
-msgstr "%d hour"
+msgstr "1 hour"
 
 msgid "1 min."
 msgstr "1 min."
@@ -2034,7 +2032,7 @@ msgid ""
 "A finished powertimer wants to reboot your %s %s.\n"
 "Do that now?"
 msgstr ""
-"A power timer wants to reboot your %s %s.\n"
+"A power timer wants to restart your %s %s.\n"
 "Do that now?"
 
 msgid ""
@@ -2207,7 +2205,7 @@ msgstr "Dolby Digital / Dolby AC-3 volume offset"
 msgid "AC3plus transcoding"
 msgstr "Dolby Digital Plus (AC3+ / DD+ / E-AC-3 / EC-3) transcoding"
 
-#. TRANSLATORS: genre category
+# TRANSLATORS: EPG/IceTV genre subcategory
 msgid "AFL"
 msgstr "AFL"
 
@@ -2233,7 +2231,7 @@ msgstr "AV aspect is %s."
 msgid "AZPlay"
 msgstr "AZPlay"
 
-#. TRANSLATORS: genre category
+# TRANSLATORS: EPG/IceTV genre subcategory
 msgid "Abenteuer"
 msgstr "Adventure"
 
@@ -2264,14 +2262,15 @@ msgstr "Accessed:"
 msgid "Accesspoint:"
 msgstr "Access point:"
 
+# TRANSLATORS: EPG/IceTV genre subcategory
 msgid "Action"
 msgstr "Action"
 
 msgid "Action on long powerbutton press"
-msgstr "Power button hold"
+msgstr "Choose what you'd like the Power button to do when held down."
 
 msgid "Action on short powerbutton press"
-msgstr "Power button"
+msgstr "Choose what you'd like the Power button to do."
 
 msgid "Activate"
 msgstr "Activate"
@@ -2415,9 +2414,8 @@ msgstr "Record indefinitely"
 msgid "Add recording (stop after current event)"
 msgstr "Record the current event"
 
-#, fuzzy
 msgid "Add selected folder to bookmarks"
-msgstr "Select files/folders to backup"
+msgstr "Add selected folder to bookmarks"
 
 msgid "Add service"
 msgstr "Add channel"
@@ -2447,16 +2445,17 @@ msgid "Additional files/folders to backup"
 msgstr "Additional files/folders to back up"
 
 msgid "Additional motor options allow you to enter details from your motor's spec sheet so enigma can work out how long it will take to move the dish from one satellite to another satellite."
-msgstr "Additional options allow you to enter details from your dish rotator's spec sheet so your receiver can work out how long it will take to move the dish from one satellite to another."
+msgstr "Additional options allow you to enter details from your dish positioner's spec sheet so your receiver can work out how long it will take to move the dish from one satellite to another."
 
 msgid "Additional rotator options allow you to enter details from your motor's spec sheet so your receiver can work out how long it will take to move to another satellite."
-msgstr "Additional options allow you to enter details from your dish rotator's spec sheet so your receiver can work out how long it will take to move to another satellite."
+msgstr "Additional options allow you to enter details from your dish positioner's spec sheet so your receiver can work out how long it will take to move to another satellite."
 
 msgid "Address"
 msgstr "Address"
 
+# TRANSLATORS: EPG/IceTV genre subcategory
 msgid "Adel"
-msgstr ""
+msgstr "Aristocracy"
 
 msgid "Adjust 3D settings"
 msgstr "Adjust 3D settings"
@@ -2472,11 +2471,11 @@ msgstr "Adjust the horizontal position of the letters used for teletext."
 msgid "Adjust the vertical position of the letters used for teletext."
 msgstr "Adjust the vertical position of the letters used for teletext, measured from the bottom of the screen."
 
-#. TRANSLATORS: genre category
+# TRANSLATORS: EPG/IceTV genre subcategory
 msgid "Adult"
 msgstr ""
 
-#. TRANSLATORS: genre category
+# TRANSLATORS: EPG/IceTV genre subcategory
 msgid "Adult Audience, Strong Violence 15+"
 msgstr ""
 
@@ -2504,11 +2503,11 @@ msgstr "Advanced software plugin"
 msgid "Advanced video enhancement setup"
 msgstr "Advanced video enhancement setup"
 
-#. TRANSLATORS: genre category
+# TRANSLATORS: EPG/IceTV genre subcategory
 msgid "Adventure"
 msgstr ""
 
-#. TRANSLATORS: regional option
+# TRANSLATORS: regional option label
 msgid "Afghanistan"
 msgstr "Afghanistan"
 
@@ -2524,22 +2523,22 @@ msgstr "After event"
 msgid "After pressing OK, please wait!"
 msgstr "Please wait after pressing OK!"
 
-#. TRANSLATORS: genre category
+# TRANSLATORS: EPG/IceTV genre subcategory
 msgid "Agenten"
 msgstr "Agents"
 
-#. TRANSLATORS: regional option
+# TRANSLATORS: regional option label
 msgid "Aland Islands"
 msgstr "Aland Islands"
 
-#. TRANSLATORS: regional option
+# TRANSLATORS: regional option label
 msgid "Albania"
 msgstr "Albania"
 
 msgid "Album"
 msgstr "Album"
 
-#. TRANSLATORS: regional option
+# TRANSLATORS: regional option label
 msgid "Algeria"
 msgstr "Algeria"
 
@@ -2632,9 +2631,8 @@ msgstr ""
 "This option lets you choose whether to enable debug logging.\n"
 "These logs contain detailed information of everything the system does, and can be very useful when troubleshooting problems."
 
-#, fuzzy
 msgid "Allows you to enable the twisted log. They contain very detailed information of everything the twisted does. ('/tmp/twisted.log')"
-msgstr "This option lets you enable the debug log. They contain very detailed information of everything the system does."
+msgstr "This option lets you enable the debug log which contains very detailed information of everything the system does, and can be very useful when troubleshooting problems.."
 
 msgid "Allows you to enable/disable displaying icons on the frontpanel."
 msgstr "Choose whether to show symbols on the front panel display."
@@ -2708,15 +2706,15 @@ msgstr "Always show bouquets"
 msgid "Always use smart1080p mode"
 msgstr "Always use smart1080p mode"
 
-#. TRANSLATORS: genre category
+# TRANSLATORS: EPG/IceTV genre subcategory
 msgid "American Football"
 msgstr "American Football"
 
-#. TRANSLATORS: regional option
+# TRANSLATORS: regional option label
 msgid "American Samoa"
 msgstr "American Samoa"
 
-#. TRANSLATORS: genre category
+# TRANSLATORS: EPG/IceTV genre subcategory
 msgid "American Sports"
 msgstr "American Sports"
 
@@ -2734,15 +2732,15 @@ msgstr "Something went wrong while downloading the package list, please try agai
 msgid "An unknown error occurred!"
 msgstr "An unknown problem occurred!"
 
-#. TRANSLATORS: regional option
+# TRANSLATORS: regional option label
 msgid "Andorra"
 msgstr "Andorra"
 
-#. TRANSLATORS: regional option
+# TRANSLATORS: regional option label
 msgid "Angola"
 msgstr "Angola"
 
-#. TRANSLATORS: regional option
+# TRANSLATORS: regional option label
 msgid "Anguilla"
 msgstr "Anguilla"
 
@@ -2758,26 +2756,26 @@ msgstr "Animation Speed"
 msgid "Animations"
 msgstr "Animations"
 
-#. TRANSLATORS: genre category
+# TRANSLATORS: EPG/IceTV genre subcategory
 msgid "Anime"
 msgstr ""
 
-#. TRANSLATORS: regional option
+# TRANSLATORS: regional option label
 msgid "Antarctica"
 msgstr "Antarctica"
 
-#. TRANSLATORS: regional option
+# TRANSLATORS: regional option label
 msgid "Antigua and Barbuda"
 msgstr "Antigua and Barbuda"
 
 msgid "Any activity"
 msgstr "Any activity"
 
-#. TRANSLATORS: regional option
+# TRANSLATORS: regional option label
 msgid "Arabic"
 msgstr "Arabic"
 
-#. TRANSLATORS: genre category
+# TRANSLATORS: EPG/IceTV genre subcategory
 msgid "Architektur"
 msgstr "Architecture"
 
@@ -2900,32 +2898,31 @@ msgstr "Are you sure you want to send the log\n"
 msgid "Are you sure you want to update your %s %s ?"
 msgstr "Are you sure you want to update your %s %s?"
 
-#. TRANSLATORS: regional option
+# TRANSLATORS: regional option label
 msgid "Argentina"
 msgstr "Argentina"
 
-#. TRANSLATORS: regional option
+# TRANSLATORS: regional option label
 msgid "Armenia"
 msgstr "Armenia"
 
-#. TRANSLATORS: genre category
+# TRANSLATORS: EPG/IceTV genre subcategory
 msgid "Artist"
 msgstr "Artist"
 
-#. TRANSLATORS: genre category
-#, fuzzy
+# TRANSLATORS: EPG/IceTV genre subcategory
 msgid "Arts & Culture"
-msgstr "Arts/Culture"
+msgstr "Arts & Culture"
 
-#. TRANSLATORS: genre category
+# TRANSLATORS: EPG ETSI genre; EPG AUS genre; IceTV genre
 msgid "Arts/Culture"
 msgstr "Arts/Culture"
 
-#. TRANSLATORS: regional option
+# TRANSLATORS: regional option label
 msgid "Aruba"
 msgstr "Aruba"
 
-#. TRANSLATORS: genre category
+# TRANSLATORS: EPG/IceTV genre subcategory
 msgid "Arzt"
 msgstr "Doctor"
 
@@ -2947,6 +2944,7 @@ msgstr "Aspect Ratio"
 msgid "Aspect list..."
 msgstr "Aspect list..."
 
+# msgctxt "button|hold"
 msgid "Aspect long"
 msgstr "Aspect button hold"
 
@@ -2971,9 +2969,9 @@ msgstr ""
 msgid "At End:"
 msgstr "At End:"
 
-#. TRANSLATORS: genre category
+# TRANSLATORS: EPG/IceTV genre subcategory
 msgid "Athletics"
-msgstr ""
+msgstr "Athletics"
 
 msgid "Attach a file"
 msgstr "Attach a file"
@@ -3014,6 +3012,7 @@ msgstr "Audio language 3"
 msgid "Audio language selection 4"
 msgstr "Audio language 4"
 
+# msgctxt "button|hold"
 msgid "Audio long"
 msgstr "Audio button hold"
 
@@ -3029,15 +3028,15 @@ msgstr "Volume step size"
 msgid "Audio volume step size fast mode"
 msgstr "Volume jump size"
 
-#. TRANSLATORS: regional option
+# TRANSLATORS: regional option label
 msgid "Australia"
 msgstr "Australia"
 
-#. TRANSLATORS: regional option
+# TRANSLATORS: regional option label
 msgid "Australian"
 msgstr "Australian"
 
-#. TRANSLATORS: regional option
+# TRANSLATORS: regional option label
 msgid "Austria"
 msgstr "Austria"
 
@@ -3062,9 +3061,8 @@ msgstr "Auto Language"
 msgid "Auto Language Selection"
 msgstr "Auto Language Selection"
 
-#, fuzzy
 msgid "Auto Modes Selected."
-msgstr "no CAId selected"
+msgstr "Auto Modes Selected."
 
 msgid "Auto Standby"
 msgstr "Auto standby"
@@ -3147,7 +3145,7 @@ msgstr "Automatically use external subtitles"
 msgid "Automatically update Client/Server View?"
 msgstr "Automatically Update Client/Server View?"
 
-#. TRANSLATORS: genre category
+# TRANSLATORS: EPG/IceTV genre subcategory
 msgid "Automobil"
 msgstr "Cars"
 
@@ -3176,14 +3174,14 @@ msgstr "Avoid getting stuck (at the expense of some stuttering) when the jump ti
 msgid "Axas E4HD Ultra"
 msgstr ""
 
-#. TRANSLATORS: regional option
+# TRANSLATORS: regional option label
 msgid "Azerbaijan"
 msgstr "Azerbaijan"
 
 msgid "B"
 msgstr "B"
 
-#. TRANSLATORS: genre category
+# TRANSLATORS: EPG/IceTV genre subcategory
 msgid "B-Movie"
 msgstr "B-Movie"
 
@@ -3357,11 +3355,11 @@ msgstr "Back up, flash and restore settings without plugins"
 msgid "Backup, flash and restore settings and selected plugins (ask user)"
 msgstr "Back up, flash and restore settings with selected plugins (ask user)"
 
-#. TRANSLATORS: regional option
+# TRANSLATORS: regional option label
 msgid "Bahamas"
 msgstr "Bahamas"
 
-#. TRANSLATORS: regional option
+# TRANSLATORS: regional option label
 msgid "Bahrain"
 msgstr "Bahrain"
 
@@ -3371,11 +3369,11 @@ msgstr "Band"
 msgid "Bandwidth"
 msgstr "Bandwidth"
 
-#. TRANSLATORS: regional option
+# TRANSLATORS: regional option label
 msgid "Bangladesh"
 msgstr "Bangladesh"
 
-#. TRANSLATORS: regional option
+# TRANSLATORS: regional option label
 msgid "Barbados"
 msgstr "Barbados"
 
@@ -3388,18 +3386,18 @@ msgstr "Base transparency for OpenOpera web browser."
 msgid "Base transparency for teletext, more options available within teletext screen."
 msgstr "Base transparency for teletext, more options available within teletext screen."
 
-#. TRANSLATORS: genre category
+# TRANSLATORS: EPG/IceTV genre subcategory
 msgid "Baseball"
-msgstr ""
+msgstr "Baseball"
 
 msgid "Basic settings"
 msgstr "Basic Settings"
 
-#. TRANSLATORS: genre category
+# TRANSLATORS: EPG/IceTV genre subcategory
 msgid "Basketball"
-msgstr ""
+msgstr "Basketball"
 
-#. TRANSLATORS: regional option
+# TRANSLATORS: regional option label
 msgid "Basque"
 msgstr "Basque"
 
@@ -3424,62 +3422,62 @@ msgstr "Behavior when a movie is stopped"
 msgid "Behavior when a movie reaches the end"
 msgstr "Behavior when a movie reaches the end"
 
-#. TRANSLATORS: regional option
+# TRANSLATORS: regional option label
 msgid "Belarus"
 msgstr "Belarus"
 
-#. TRANSLATORS: regional option
+# TRANSLATORS: regional option label
 msgid "Belgian"
-msgstr ""
+msgstr "Belgian"
 
-#. TRANSLATORS: regional option
+# TRANSLATORS: regional option label
 msgid "Belgium"
 msgstr "Belgium"
 
-#. TRANSLATORS: regional option
+# TRANSLATORS: regional option label
 msgid "Belize"
 msgstr "Belize"
 
-#. TRANSLATORS: regional option
+# TRANSLATORS: regional option label
 msgid "Benin"
 msgstr "Benin"
 
-#. TRANSLATORS: genre category
+# TRANSLATORS: EPG/IceTV genre subcategory
 msgid "Bericht"
 msgstr "Report"
 
 msgid "Bermuda"
 msgstr "Bermuda"
 
-#. TRANSLATORS: genre category
+# TRANSLATORS: EPG/IceTV genre subcategory
 msgid "Berufe"
 msgstr "Jobs"
 
 msgid "Beyonwiz U4"
 msgstr ""
 
-#. TRANSLATORS: genre category
+# TRANSLATORS: EPG/IceTV genre subcategory
 msgid "Beziehung"
 msgstr "Relationship"
 
-#. TRANSLATORS: regional option
+# TRANSLATORS: regional option label
 msgid "Bhutan"
 msgstr "Bhutan"
 
 msgid "Big PiP"
 msgstr "Big PiP"
 
-#. TRANSLATORS: genre category
+# TRANSLATORS: EPG/IceTV genre subcategory
 msgid "Bildung"
 msgstr "Education"
 
-#. TRANSLATORS: genre category
+# TRANSLATORS: EPG/IceTV genre subcategory
 msgid "Biografie"
 msgstr "Biography"
 
-#. TRANSLATORS: genre category
+# TRANSLATORS: EPG/IceTV genre subcategory
 msgid "Biography"
-msgstr ""
+msgstr "Biography"
 
 msgid "Bitrate"
 msgstr "Bitrate"
@@ -3487,6 +3485,7 @@ msgstr "Bitrate"
 msgid "Bitrate:"
 msgstr "Bitrate:"
 
+# colour
 msgid "Black"
 msgstr "Black"
 
@@ -3508,12 +3507,14 @@ msgstr "Block device"
 msgid "Block noise reduction"
 msgstr "Block noise reduction"
 
+# colour
 msgid "Blue"
 msgstr "Blue button"
 
 msgid "Blue button"
 msgstr "Blue button"
 
+# msgctxt "button|hold"
 msgid "Blue long"
 msgstr "Blue button hold"
 
@@ -3523,15 +3524,15 @@ msgstr "Switch Blue button press/hold actions"
 msgid "Bluetooth Setup"
 msgstr "Bluetooth Setup"
 
-#. TRANSLATORS: regional option
+# TRANSLATORS: regional option label
 msgid "Bolivia (Plurinational State of)"
 msgstr "Bolivia, Plurinational State of"
 
-#. TRANSLATORS: genre category
+# TRANSLATORS: EPG/IceTV genre subcategory
 msgid "Bollywood"
-msgstr ""
+msgstr "Bollywood"
 
-#. TRANSLATORS: regional option
+# TRANSLATORS: regional option label
 msgid "Bonaire, Sint Eustatius and Saba"
 msgstr "Bonaire, Sint Eustatius and Saba"
 
@@ -3554,16 +3555,17 @@ msgstr "Bootloader update required!"
 msgid "Bootloader:\t\t%s\n"
 msgstr "Bootloader:\t\t%s\n"
 
-#. TRANSLATORS: regional option
+# TRANSLATORS: regional option label
 msgid "Bosnia and Herzegovina"
 msgstr "Bosnia and Herzegovina"
 
-#. TRANSLATORS: regional option
+# TRANSLATORS: regional option label
 msgid "Botswana"
 msgstr "Botswana"
 
+# TRANSLATORS: EPG/IceTV genre subcategory
 msgid "Boulevard"
-msgstr ""
+msgstr "Boulevard"
 
 msgid "Bouquet List"
 msgstr "show bouquet list"
@@ -3571,22 +3573,22 @@ msgstr "show bouquet list"
 msgid "BouquetList"
 msgstr "Bouquet List"
 
-#. TRANSLATORS: regional option
+# TRANSLATORS: regional option label
 msgid "Bouvet Island"
 msgstr "Bouvet Island"
 
 msgid "Box or driver is not support Quad PiP."
 msgstr "Receiver or driver does not support Quad PiP."
 
-#. TRANSLATORS: genre category
+# TRANSLATORS: EPG/IceTV genre subcategory
 msgid "Boxen"
 msgstr "Boxing"
 
-#. TRANSLATORS: genre category
+# TRANSLATORS: EPG/IceTV genre subcategory
 msgid "Boxing"
-msgstr ""
+msgstr "Boxing"
 
-#. TRANSLATORS: regional option
+# TRANSLATORS: regional option label
 msgid "Brazil"
 msgstr "Brazil"
 
@@ -3602,11 +3604,11 @@ msgstr "Brightness (normal)"
 msgid "Brightness (Standby)"
 msgstr "Brightness (standby)"
 
-#. TRANSLATORS: regional option
+# TRANSLATORS: regional option label
 msgid "British Indian Ocean Territory"
 msgstr "British Indian Ocean Territory"
 
-#. TRANSLATORS: regional option
+# TRANSLATORS: regional option label
 msgid "Brunei Darussalam"
 msgstr "Brunei Darussalam"
 
@@ -3625,15 +3627,15 @@ msgstr "Build:\t%s"
 msgid "Build: %s"
 msgstr "Build: %s"
 
-#. TRANSLATORS: regional option
+# TRANSLATORS: regional option label
 msgid "Bulgaria"
 msgstr "Bulgaria"
 
-#. TRANSLATORS: regional option
+# TRANSLATORS: language option label
 msgid "Bulgarian"
-msgstr "Bulgarian"
+msgstr "Български"
 
-#. TRANSLATORS: regional option
+# TRANSLATORS: regional option label
 msgid "Burkina Faso"
 msgstr "Burkina Faso"
 
@@ -3649,14 +3651,14 @@ msgstr "Burn existing image to disc"
 msgid "Burn to medium"
 msgstr "Burn to disc"
 
-#. TRANSLATORS: regional option
+# TRANSLATORS: regional option label
 msgid "Burundi"
 msgstr "Burundi"
 
 msgid "Bus: "
 msgstr "Bus: "
 
-#. TRANSLATORS: genre category
+# TRANSLATORS: EPG/IceTV genre subcategory
 msgid "Business & Finance"
 msgstr ""
 
@@ -3790,9 +3792,8 @@ msgstr "CIHelper for SLOT CI1"
 msgid "CIselectMainMenu"
 msgstr "CI Select Main Menu"
 
-#, fuzzy
 msgid "CPU"
-msgstr "CPU: %s"
+msgstr "CPU"
 
 msgid "CPU priority for script execution"
 msgstr ""
@@ -3817,7 +3818,7 @@ msgstr "Cable"
 msgid "Cable Scan"
 msgstr "Cable Scan"
 
-#. TRANSLATORS: regional option
+# TRANSLATORS: regional option label
 msgid "Cabo Verde"
 msgstr "Cabo Verde"
 
@@ -3845,11 +3846,11 @@ msgstr "Calibrate"
 msgid "Call-in"
 msgstr ""
 
-#. TRANSLATORS: regional option
+# TRANSLATORS: regional option label
 msgid "Cambodia"
 msgstr "Cambodia"
 
-#. TRANSLATORS: regional option
+# TRANSLATORS: regional option label
 msgid "Cameroon"
 msgstr "Cameroon"
 
@@ -3876,7 +3877,7 @@ msgstr "Can't send PVR log information"
 
 #, fuzzy
 msgid "Can not post scan information"
-msgstr "Translation Information"
+msgstr "Can't send scan information"
 
 msgid "Can not retrieve IceTV settings"
 msgstr ""
@@ -3932,7 +3933,7 @@ msgstr ""
 msgid "Can't unmount partiton, make sure it is not being used for swap or record/timeshift paths"
 msgstr "Couldn't unmount partiton, make sure it's not being used for swap or record/timeshift paths"
 
-#. TRANSLATORS: regional option
+# TRANSLATORS: regional option label
 msgid "Canada"
 msgstr "Canada"
 
@@ -3996,29 +3997,32 @@ msgstr "Cards: 0"
 msgid "Cardserial"
 msgstr "Card serial"
 
-#. TRANSLATORS: genre category
+# TRANSLATORS: EPG/IceTV genre subcategory
 msgid "Cartoon"
 msgstr ""
 
 msgid "Cascade PiP"
 msgstr "Cascade PiP"
 
-#, fuzzy
+# TRANSLATORS: EPG/IceTV genre subcategory
 msgid "Casting"
-msgstr "Waiting"
+msgstr "Casting"
 
 msgid "Caution update not yet tested !!"
 msgstr "CAUTION: update hasn't been tested yet!"
 
+# TRANSLATORS: regional option label
 msgid "Cayman Islands"
 msgstr "Cayman Islands"
 
 msgid "Celsius"
 msgstr "Celsius"
 
+# TRANSLATORS: regional option label
 msgid "Central African Republic"
 msgstr "Central African Republic"
 
+# TRANSLATORS: regional option label
 msgid "Chad"
 msgstr "Chad"
 
@@ -4240,21 +4244,23 @@ msgstr ""
 "Checking tuner %d\n"
 "DiSEqC port %s for %s"
 
-#. TRANSLATORS: genre category
+# TRANSLATORS: EPG/IceTV genre subcategory
 msgid "Children"
 msgstr "Childrens'"
 
-#. TRANSLATORS: genre category
+# TRANSLATORS: EPG ETSI genre; IceTV genre
 msgid "Children/Youth"
-msgstr "Childrens'/Youth"
+msgstr "Children/Youth"
 
-#. TRANSLATORS: genre category
+# TRANSLATORS: EPG AUS genre
 msgid "Childrens"
 msgstr "Childrens'"
 
+# TRANSLATORS: regional option label
 msgid "Chile"
 msgstr "Chile"
 
+# TRANSLATORS: regional option label
 msgid "China"
 msgstr "China"
 
@@ -4301,7 +4307,7 @@ msgid "Choose between Daily, Weekly, Weekdays or user defined."
 msgstr "Choose between Daily, Weekly, Weekdays or user defined."
 
 msgid "Choose dvb wait delay for ci response."
-msgstr "Choose dvb wait delay for ci response."
+msgstr "Choose DVB wait delay for CI response."
 
 msgid "Choose how often to connect to IceTV server to check for updates."
 msgstr ""
@@ -4313,16 +4319,16 @@ msgid "Choose the CI protocol operation mode for standard ci or ciplus."
 msgstr "Choose the CI protocol operation mode for standard CI or CI+."
 
 msgid "Choose the display formatting style for dates. 'D' / 'DD' is the date and 'M' / 'MM' is the month in digits.  ('DD' and 'MM' have leading zeros for single digit values.) The screen display will be based on your choice but can be influenced by the skin."
-msgstr ""
+msgstr "Choose the display formatting style for dates. The screen display will be based on your choice but may be influenced by the skin."
 
 msgid "Choose the display formatting style for times. 'H' / 'HH' is the hour for a 24 hour clock, 'h' / 'hh' is the hour for a 12 hour clock, 'mm' is the minutes and 'ss' is the seconds.  ('HH' and 'hh' have leading zeros for single digit values.) The screen display will be based on your choice but can be influenced by the skin."
-msgstr "Choose the display formatting style for times. 'H' / 'HH' is the hour for a 24-hour clock, 'h' / 'hh' is the hour for a 12 hour clock, 'mm' is the minutes and 'ss' is the seconds. ('HH' and 'hh' have leading zeros for single digit values). The screen display will be based on your choice but can be influenced by the skin."
+msgstr "Choose the display formatting style for times. The screen display will be based on your choice but may be influenced by the skin."
 
 msgid "Choose the front panel display formatting style for dates. 'D' / 'DD' is the date and 'M' / 'MM' is the month in digits.  ('DD' and 'MM' have leading zeros for single digit values.) The screen display will be based on your choice but can be influenced by the skin."
-msgstr "Choose how you'd like the date to appear on the front panel display. 'D' / 'DD' is the date and 'M' / 'MM' is the month in digits.  ('DD' and 'MM' have leading zeros for single digit values.) The screen display will be based on your choice but can be influenced by the skin."
+msgstr "Choose how you'd like the date to appear on the front panel display. The screen display will be based on your choice but may be influenced by the skin."
 
 msgid "Choose the front panel display formatting style for times. 'H' / 'HH' is the hour for a 24 hour clock, 'h' / 'hh' is the hour for a 12 hour clock, 'mm' is the minutes.  ('HH' and 'hh' have leading zeros for single digit values.) The front panel display will be based on your choice but can be influenced any applicable skin."
-msgstr "Choose how you'd like the time to appear on the front panel display. 'H' / 'HH' is the hour for a 24 hour clock, 'h' / 'hh' is the hour for a 12 hour clock, 'mm' is the minutes.  ('HH' and 'hh' have leading zeros for single digit values.) The front panel display will be based on your choice but can be influenced any applicable skin."
+msgstr "Choose how you'd like the time to appear on the front panel display. The front panel display will be based on your choice but may be influenced any applicable skin."
 
 msgid "Choose the location for crash and debuglogs."
 msgstr "Choose where crash and debug logs should be saved."
@@ -4385,6 +4391,7 @@ msgstr "Choose a tuner to configure."
 msgid "Chose between record and ZAP."
 msgstr "Choose whether to just zap to the specified channel, record, or both."
 
+# TRANSLATORS: regional option label
 msgid "Christmas Island"
 msgstr "Christmas Island"
 
@@ -4464,6 +4471,7 @@ msgstr "Close dialog"
 msgid "Close title selection"
 msgstr "Close title selection"
 
+# TRANSLATORS: regional option label
 msgid "Cocos (Keeling) Islands"
 msgstr "Cocos (Keeling) Islands"
 
@@ -4488,6 +4496,7 @@ msgstr "Collection name"
 msgid "Collection settings"
 msgstr "Collection settings"
 
+# TRANSLATORS: regional option label
 msgid "Colombia"
 msgstr "Colombia"
 
@@ -4503,11 +4512,11 @@ msgstr "Color space"
 msgid "Combo"
 msgstr "Combo"
 
-#. TRANSLATORS: genre category
+# TRANSLATORS: EPG AUS genre; IceTV genre
 msgid "Comedy"
-msgstr ""
+msgstr "Comedy"
 
-#. TRANSLATORS: genre category
+# TRANSLATORS: EPG/IceTV genre subcategory
 msgid "Comic"
 msgstr ""
 
@@ -4535,6 +4544,7 @@ msgstr "Common Interface assignment"
 msgid "Communication"
 msgstr "Communication"
 
+# TRANSLATORS: regional option label
 msgid "Comoros"
 msgstr "Comoros"
 
@@ -4560,11 +4570,11 @@ msgid "Config"
 msgstr "Config"
 
 msgid "Config file name (ok to change):"
-msgstr "Config file name (OK to change):"
+msgstr "Config file name (press OK to change):"
 
 #, python-format
 msgid "Configfile %s saved."
-msgstr "Configfile %s saved."
+msgstr "Config file %s saved."
 
 msgid "Configuration mode"
 msgstr "Configuration mode"
@@ -4758,9 +4768,8 @@ msgstr "Configure the hard disk drive to go to standby after the specified idle 
 msgid "Configure the height of the TrueType font letters used for teletext."
 msgstr "Configure the height of the TrueType font letters used for teletext."
 
-#, fuzzy
 msgid "Configure the history of time that will be presented."
-msgstr "Configure the amount of time passed that should be shown on opening."
+msgstr "Configure the amount of passed time to show when the EPG is opened."
 
 msgid "Configure the horizontal alignment of the subtitles."
 msgstr "Configure how subtitles should be aligned horizontally."
@@ -4993,7 +5002,7 @@ msgid "Consult your SCR device spec sheet for this information."
 msgstr "Refer to your SCR device's spec sheet for this information."
 
 msgid "Consult your motor's spec sheet for this information, or leave the default setting."
-msgstr "Refer to your dish rotator's spec sheet for this information or leave the default setting."
+msgstr "Refer to your dish positioner's spec sheet for this information or leave the default setting."
 
 #, python-format
 msgid "Contacting IceTV server and setting up your %s %s."
@@ -5008,6 +5017,7 @@ msgstr "Content does not fit on DVD!"
 msgid "Context"
 msgstr "Context press"
 
+# msgctxt "button|hold"
 msgid "Context long"
 msgstr "Context button hold"
 
@@ -5056,7 +5066,7 @@ msgstr "Converting ext3 to ext4..."
 msgid "Cook Islands"
 msgstr "Cook Islands"
 
-#. TRANSLATORS: genre category
+# TRANSLATORS: EPG/IceTV genre subcategory
 msgid "Cooking"
 msgstr ""
 
@@ -5080,10 +5090,10 @@ msgstr "Copy"
 
 #, python-format
 msgid "Copy %d elements"
-msgstr ""
+msgstr "Copy %d items"
 
 msgid "Copy 1 element"
-msgstr ""
+msgstr "Copy 1 item"
 
 msgid "Copy file"
 msgstr "Copy file"
@@ -5186,7 +5196,7 @@ msgid "Create directory/folder"
 msgstr "Create folder"
 
 msgid "Create separate radio userbouquet"
-msgstr "Create separate radio user bouquet"
+msgstr "Create custom radio bouquet"
 
 msgid "Create symlink to file"
 msgstr "Create symlink to file"
@@ -5217,19 +5227,21 @@ msgstr "Creating filesystem"
 msgid "Creating partition"
 msgstr "Creating partition"
 
-#. TRANSLATORS: genre category
+# TRANSLATORS: EPG/IceTV genre subcategory
 msgid "Cricket"
 msgstr ""
 
-#. TRANSLATORS: genre category
+# TRANSLATORS: EPG/IceTV genre subcategory
 msgid "Crime"
 msgstr ""
 
+# TRANSLATORS: regional option label
 msgid "Croatia"
 msgstr "Croatia"
 
+# TRANSLATORS: language option label
 msgid "Croatian"
-msgstr "Croatian"
+msgstr "Hrvatski"
 
 msgid "Cron Manager"
 msgstr "Cron Manager"
@@ -5240,19 +5252,21 @@ msgstr "Cron Manager"
 msgid "CronTimers"
 msgstr "Cron Timers"
 
+# TRANSLATORS: regional option label
 msgid "Cuba"
 msgstr "Cuba"
 
-#. TRANSLATORS: genre category
+# TRANSLATORS: EPG/IceTV genre subcategory
 msgid "Cult"
 msgstr ""
 
+# TRANSLATORS: regional option label
 msgid "Curacao"
 msgstr "Curacao"
 
-#, fuzzy
+# TRANSLATORS: EPG AUS genre
 msgid "Current Affairs"
-msgstr "News Current Affairs"
+msgstr "Current Affairs"
 
 msgid "Current CEC address"
 msgstr "Current HDMI-CEC address"
@@ -5298,19 +5312,19 @@ msgid "Custom"
 msgstr "Custom"
 
 msgid "Custom skip time for '1'/'3' buttons"
-msgstr "Custom skip time for 1 and 3 buttons"
+msgstr "Custom skip time for buttons 1 and 3"
 
 msgid "Custom skip time for '4'/'6' buttons"
-msgstr "Custom skip time for 4 and 6 buttons"
+msgstr "Custom skip time for buttons 4 and 6"
 
 msgid "Custom skip time for '7'/'9' buttons"
-msgstr "Custom skip time for 7 and 9 buttons"
+msgstr "Custom skip time for buttons 7 and 9"
 
 msgid "Customise"
 msgstr "Customize"
 
 msgid "Customise enigma2 personal settings"
-msgstr "Customize Enigma2 personal settings"
+msgstr "Customize your receiver's settings"
 
 msgid "Customize"
 msgstr "Customize"
@@ -5327,16 +5341,19 @@ msgstr "Cutlist editor"
 msgid "Cutlist editor..."
 msgstr "Cutlist editor..."
 
-#. TRANSLATORS: genre category
+# TRANSLATORS: EPG/IceTV genre subcategory
 msgid "Cycling"
 msgstr ""
 
+# TRANSLATORS: regional option label
 msgid "Cyprus"
 msgstr "Cyprus"
 
+# TRANSLATORS: regional option label
 msgid "Czech"
-msgstr "Czech"
+msgstr "Česky"
 
+# TRANSLATORS: regional option label
 msgid "Czechia"
 msgstr "Czech Republic"
 
@@ -5359,18 +5376,18 @@ msgid ""
 "DO NOT POWER OFF YOUR DEVICE WHILE UPDATING!\n"
 "Update now?"
 msgstr ""
-"DO NOT POWER OFF YOUR DEVICE WHILE UPDATING!\n"
+"*!* DO NOT INTERRUPT YOUR RECEIVER WHILE UPDATING *!*\n"
+"Doing so could cause irreparable damage.\n"
 "Update now?"
 
 msgid "DTS"
 msgstr "DTS"
 
-#, fuzzy
 msgid "DTS HD downmix"
-msgstr "DTS downmix"
+msgstr "DTS HD downmix"
 
 msgid "DTS downmix"
-msgstr "Downmix DTS"
+msgstr "DTS downmix"
 
 msgid "DTS/DTS-HD HR/DTS-HD MA/DTS:X"
 msgstr "DTS/DTS-HD HR/DTS-HD MA/DTS:X"
@@ -5429,12 +5446,13 @@ msgstr "DVD Player"
 msgid "Daily"
 msgstr "Daily"
 
-#. TRANSLATORS: genre category
+# TRANSLATORS: EPG/IceTV genre subcategory
 msgid "Dance"
 msgstr ""
 
+# TRANSLATORS: language option label
 msgid "Danish"
-msgstr "Danish"
+msgstr "Dansk"
 
 msgid "Date"
 msgstr "Date (old-new)"
@@ -5448,130 +5466,129 @@ msgstr ""
 msgid "Date/time input"
 msgstr "Date/Time Entry"
 
-#. TRANSLATORS: genre category
+# TRANSLATORS: EPG/IceTV genre subcategory
 msgid "Dating"
-msgstr ""
+msgstr "Dating"
 
 msgid "Day D Mon"
-msgstr ""
+msgstr "Day D Mth (Thu 2 Jan)"
 
 msgid "Day D-Mon"
-msgstr ""
+msgstr "Day D-Mth (Thu 2-Jan)"
 
 msgid "Day D/M"
-msgstr ""
+msgstr "Day D/M (Thu 2/1)"
 
 msgid "Day D/MM"
-msgstr ""
+msgstr "Day D/MM (Thu 2/01)"
 
 msgid "Day DD Mon"
-msgstr ""
+msgstr "Day DD Mth (Thu 02 Jan)"
 
 msgid "Day DD-Mon"
-msgstr ""
+msgstr "Day DD-Mth (Thu 02-Jan)"
 
-#, fuzzy
 msgid "Day DD/M"
-msgstr "Play DVD"
+msgstr "Day DD/M (Thu 02/1)"
 
 msgid "Day DD/MM"
-msgstr ""
+msgstr "Day DD/MM (Thu 02/01)"
 
 msgid "Day M/D"
-msgstr ""
+msgstr "Day M/D (Thu 1/2)"
 
 msgid "Day M/DD"
-msgstr ""
+msgstr "Day M/DD (Thu 1/02)"
 
 msgid "Day MM/D"
-msgstr ""
+msgstr "Day MM/D (Thu 01/2)"
 
 msgid "Day MM/DD"
-msgstr ""
+msgstr "Day MM/DD (Thu 01/02)"
 
 msgid "Day Mon D"
-msgstr ""
+msgstr "Day Mth D (Thu Jan 2)"
 
 msgid "Day Mon DD"
-msgstr ""
+msgstr "Day Mth DD (Thu Jan 02)"
 
 msgid "Day Mon-D"
-msgstr ""
+msgstr "Day Mth-D (Thu Jan-2)"
 
 msgid "Day Mon-DD"
-msgstr ""
+msgstr "Day Mth-DD (Thu Jan-02)"
 
 msgid "Dayname D Month Year"
-msgstr ""
+msgstr "Dayname D Month Year (Thursday 2 January 2020)"
 
 msgid "Dayname D-Month-Year"
-msgstr ""
+msgstr "Dayname D-Month-Year (Thursday 2-January-2020)"
 
 msgid "Dayname D/M/Year"
-msgstr ""
+msgstr "Dayname D/M/Year (Thursday 2/1/2020)"
 
 msgid "Dayname D/MM/Year"
-msgstr ""
+msgstr "Dayname D/MM/Year (Thursday 2/01/2020)"
 
 msgid "Dayname DD Month Year"
-msgstr ""
+msgstr "Dayname DD Month Year (Thursday 02 January 2020)"
 
 msgid "Dayname DD-Month-Year"
-msgstr ""
+msgstr "Dayname DD-Month-Year (Thursday 02-January-2020)"
 
 msgid "Dayname DD/M/Year"
-msgstr ""
+msgstr "Dayname DD/M/Year (Thursday 02/1/2020)"
 
 msgid "Dayname DD/MM/Year"
-msgstr ""
+msgstr "Dayname DD/MM/Year (Thursday 02/01/2020)"
 
 msgid "Dayname M/D/Year"
-msgstr ""
+msgstr "Dayname M/D/Year (Thursday 1/2/2020)"
 
 msgid "Dayname M/DD/Year"
-msgstr ""
+msgstr "Dayname M/DD/Year (Thursday 1/02/2020)"
 
 msgid "Dayname MM/D/Year"
-msgstr ""
+msgstr "Dayname MM/D/Year (Thursday 01/2/2020)"
 
 msgid "Dayname MM/DD/Year"
-msgstr ""
+msgstr "Dayname MM/DD/Year (Thursday 01/02/2020)"
 
 msgid "Dayname Month D Year"
-msgstr ""
+msgstr "Dayname Month D Year (Thursday January 2 2020)"
 
 msgid "Dayname Month DD Year"
-msgstr ""
+msgstr "Dayname Month DD Year (Thursday January 02 2020)"
 
 msgid "Dayname Month-D-Year"
-msgstr ""
+msgstr "Dayname Month-D-Year (Thursday January-2-2020)"
 
 msgid "Dayname Month-DD-Year"
-msgstr ""
+msgstr "Dayname Month-DD-Year (Thursday January-02-2020)"
 
 msgid "Dayname Year Month D"
-msgstr ""
+msgstr "Dayname Year Month D (Thursday 2020 January 2)"
 
 msgid "Dayname Year Month DD"
-msgstr ""
+msgstr "Dayname Year Month DD (Thursday 2020 January 02)"
 
 msgid "Dayname Year-Month-D"
-msgstr ""
+msgstr "Dayname Year-Month-D (Thursday 2020-January-2)"
 
 msgid "Dayname Year-Month-DD"
-msgstr ""
+msgstr "Dayname Year-Month-DD (Thursday 2020-January-02)"
 
 msgid "Dayname Year/M/D"
-msgstr ""
+msgstr "Dayname Year/M/D (Thursday 2020/1/2)"
 
 msgid "Dayname Year/M/DD"
-msgstr ""
+msgstr "Dayname Year/M/DD (Thursday 2020/1/02)"
 
 msgid "Dayname Year/MM/D"
-msgstr ""
+msgstr "Dayname Year/MM/D (Thursday 2020/01/2)"
 
 msgid "Dayname Year/MM/DD"
-msgstr ""
+msgstr "Dayname Year/MM/DD (Thursday 2020/01/02)"
 
 msgid "Deactivate"
 msgstr "Deactivate"
@@ -5595,16 +5612,16 @@ msgid "Default  (keymap.xml)"
 msgstr "Default  (keymap.xml)"
 
 msgid "Default 'After event' *"
-msgstr "Default After event action *"
+msgstr "Default action after event *"
 
 msgid "Default 'Timer type' *"
-msgstr "Default Timer type *"
+msgstr "Default timer type *"
 
 msgid "Default (Instant Record)"
 msgstr "default (record instantly)"
 
 msgid "Default (Timeshift)"
-msgstr "Default (timeshift)"
+msgstr "default (timeshift)"
 
 msgid "Default CPU priority (nice) for executed scripts. This can reduce the load so that scripts do not interfere with the rest of the system. (higher values = lower priority)"
 msgstr "Default CPU priority (nice) for executed scripts. This can reduce the load so that scripts won't interfere with the rest of the system (higher value = lower priority)."
@@ -5700,16 +5717,16 @@ msgid "Delay after last voltage change"
 msgstr "Delay after last voltage change"
 
 msgid "Delay after motor stop command"
-msgstr "Delay after dish rotator stop command"
+msgstr "Delay after dish positioner stop command"
 
 msgid "Delay after set voltage before measure motor power"
-msgstr "Delay after setting voltage before measuring dish rotator power"
+msgstr "Delay after setting voltage before measuring dish positioner power"
 
 msgid "Delay after toneburst"
 msgstr "Delay after toneburst"
 
 msgid "Delay after voltage change before motor command"
-msgstr "Delay after voltage change before dish rotator command"
+msgstr "Delay after voltage change before dish positioner command"
 
 msgid "Delay before key repeat starts:"
 msgstr "Delay before button repeat starts (in ms)"
@@ -5721,16 +5738,17 @@ msgid "Delay between diseqc commands"
 msgstr "Delay between DiSEqC commands"
 
 msgid "Delay between switch and motor command"
-msgstr "Delay between switch and dish rotator command"
+msgstr "Delay between switch and dish positioner command"
 
 msgid "Delay for external subtitles"
 msgstr "External subtitle delay"
 
+# needs improving
 msgid "Delay in milliseconds after finish scrolling text on display."
 msgstr "Delay in milliseconds after finish scrolling text on display."
 
 msgid "Delay in milliseconds before start of scrolling text on display."
-msgstr "Delay in milliseconds before start of scrolling text on display."
+msgstr "Delay in milliseconds before display text should start scrolling."
 
 msgid "Delay time"
 msgstr "Delay time"
@@ -5741,17 +5759,16 @@ msgstr "Delay:"
 msgid "Delete"
 msgstr "Delete"
 
-#, fuzzy, python-format
+#, python-format
 msgid "Delete %d elements"
-msgstr "Deleted items"
+msgstr "Delete %d items"
 
 #, python-format
 msgid "Delete %s?"
 msgstr "Delete %s?"
 
-#, fuzzy
 msgid "Delete 1 element"
-msgstr "Delete entry"
+msgstr "Delete 1 item"
 
 msgid "Delete Confirmation"
 msgstr "Delete Confirmation"
@@ -5859,7 +5876,7 @@ msgstr "Detected HDD:"
 msgid "Detected NIMs:"
 msgstr "Detected NIMs:"
 
-#. TRANSLATORS: genre category
+# TRANSLATORS: EPG/IceTV genre subcategory
 msgid "Detektiv"
 msgstr "Detective"
 
@@ -5948,6 +5965,7 @@ msgstr "Folder %s does not exist."
 msgid "Directory browser"
 msgstr "Directory browser"
 
+# msgctxt "button|hold"
 msgid "Directory long"
 msgstr "Directory button hold"
 
@@ -6121,11 +6139,10 @@ msgstr "Are you sure you want to remove the timer for %s?"
 
 #, python-format
 msgid "Do you really want to remove your bookmark of %s?"
-msgstr "Are you sure you want to remove your bookmark of %s?"
+msgstr "Are you sure you want to remove the %s bookmark?"
 
-#, fuzzy
 msgid "Do you want change rights?\n"
-msgstr "Would you like to install a channel list?"
+msgstr "Would you like to change permissions?\n"
 
 msgid "Do you want to add any additional information ?"
 msgstr "Would you like to add any additional information?"
@@ -6141,8 +6158,8 @@ msgid ""
 "Do you want to attach a text file to explain the log ?\n"
 "(choose 'No' to type message using virtual keyboard.)"
 msgstr ""
-"Would you like to attach a text file to explain the log?\n"
-"(select 'No' to type a message using the virtual keyboard)."
+"Would you like to attach a text file to comment on the log?\n"
+"(select 'No' to add a message using the on-screen keyboard)."
 
 msgid ""
 "Do you want to backup now?\n"
@@ -6189,7 +6206,7 @@ msgid ""
 "Do you want to flash image\n"
 "%s"
 msgstr ""
-"Are you sure you want to flash the image\n"
+"Are you sure you want to flash this image?\n"
 "%s"
 
 msgid "Do you want to install a channel list?"
@@ -6207,20 +6224,20 @@ msgstr "Would you like to preview this DVD before burning?"
 msgid "Do you want to produce this collection?"
 msgstr "Would you like to produce this collection?"
 
-#, fuzzy, python-format
+#, python-format
 msgid "Do you want to reboot now the image in slot %s?"
-msgstr "Are you sure you want to reboot now with the selected image?"
+msgstr "Are you sure you want to restart with the image in slot %s?"
 
 #, python-format
 msgid "Do you want to reboot your %s %s"
-msgstr "Are you sure you want to reboot your %s %s?"
+msgstr "Are you sure you want to restart your %s %s?"
 
 #, python-format
 msgid "Do you want to reboot your %s %s?"
-msgstr "Are you sure you want to reboot your %s %s?"
+msgstr "Are you sure you want to restart your %s %s?"
 
 msgid "Do you want to reboot your receiver?"
-msgstr "Are you sure you want to reboot your receiver?"
+msgstr "Are you sure you want to restart your receiver?"
 
 msgid "Do you want to remove the package:\n"
 msgstr "Are you sure you want to remove the package\n"
@@ -6254,11 +6271,11 @@ msgstr "Would you like to upgrade the package?\n"
 msgid "Do you want to view or run the script?\n"
 msgstr "Would you like to view or run the script?\n"
 
-#. TRANSLATORS: genre category
+# TRANSLATORS: EPG AUS genre; IceTV genre
 msgid "Documentary"
-msgstr ""
+msgstr "Documentary"
 
-#. TRANSLATORS: genre category
+# TRANSLATORS: EPG/IceTV genre subcategory
 msgid "Dokumentation"
 msgstr "Documentation"
 
@@ -6349,10 +6366,9 @@ msgstr "Retrieving plugin information..."
 msgid "Downmix"
 msgstr "Downmix"
 
-#. TRANSLATORS: genre category
-#, fuzzy
+# TRANSLATORS: EPG AUS genre; IceTV genre
 msgid "Drama"
-msgstr "Movie/Drama"
+msgstr "Drama"
 
 msgid "Dreambox format data DVD (HDTV compatible)"
 msgstr "Dreambox format data DVD (HDTV compatible)"
@@ -6368,15 +6384,16 @@ msgstr "Drivers:\t%s"
 msgid "Drivers:\t%s"
 msgstr "Drivers:\t%s"
 
-#. TRANSLATORS: genre category
+# TRANSLATORS: EPG/IceTV genre subcategory
 msgid "Drogen"
 msgstr "Drugs"
 
 msgid "During this time, the transmitter and the recording destination are checked. If the recording destination (eg NAS) does not ready in time for recording, this time can be increased."
-msgstr "During this time, the transmitter and the recording destination will be checked. If the recording destination (eg. NAS) is not ready in time for recording, this time can be increased."
+msgstr "During this time, the transmitter and the recording destination will be checked. If the recording destination (e.g. NAS) is not ready in time for recording, this time can be increased."
 
+# TRANSLATORS: language option label
 msgid "Dutch"
-msgstr "Dutch"
+msgstr "Nederlands"
 
 msgid "Dynamic contrast"
 msgstr "Dynamic contrast"
@@ -6416,6 +6433,7 @@ msgstr ""
 msgid "EJECTCD"
 msgstr "EJECTCD button"
 
+# msgctxt "button|hold"
 msgid "EJECTCD long"
 msgstr "EJECTCD button hold"
 
@@ -6493,6 +6511,7 @@ msgstr "East"
 msgid "East limit set"
 msgstr "East limit set"
 
+# TRANSLATORS: EPG/IceTV genre subcategory
 msgid "Eastern"
 msgstr "Eastern"
 
@@ -6549,22 +6568,22 @@ msgstr "Edit title"
 msgid "Edit upgrade source url."
 msgstr "Edit upgrade source url."
 
-#. TRANSLATORS: genre category
+# TRANSLATORS: EPG/IceTV genre subcategory
 msgid "Education"
-msgstr ""
+msgstr "Education"
 
-#. TRANSLATORS: genre category
+# TRANSLATORS: EPG AUS genre
 msgid "Education/Information"
-msgstr "Educational/Informational"
+msgstr "Education/Information"
 
-#. TRANSLATORS: genre category
+# TRANSLATORS: EPG ETSI genre; IceTV genre
 msgid "Education/Science/Factual"
-msgstr ""
+msgstr "Education/Science/Factual"
 
 msgid "Egypt"
 msgstr "Egypt"
 
-#. TRANSLATORS: genre category
+# TRANSLATORS: EPG/IceTV genre subcategory
 msgid "Einzelsportart"
 msgstr "Individual sports"
 
@@ -6676,9 +6695,8 @@ msgstr "Enable blinking REC symbol on the front panel display"
 msgid "Enable chapter support for video files"
 msgstr "Enable chapter support for video files"
 
-#, fuzzy
 msgid "Enable command line function"
-msgstr "Enable panic button"
+msgstr "Enable command line capability"
 
 msgid "Enable cut file support for audio files"
 msgstr "Enable cut file support for audio files"
@@ -6719,9 +6737,11 @@ msgstr "Enable panic button"
 msgid "Enable preview"
 msgstr "Enable preview"
 
+# needs improvement
 msgid "Enable remote enigma2 receiver to be tried to tune into services that cannot be tuned into locally (e.g. tuner is occupied or service type is unavailable on the local tuner. Specify complete URL including http:// and port number (normally ...:8001), e.g. http://second_box:8001."
 msgstr "Enable remote Enigma2 receiver to be tried to tune into services which can't be tuned into locally (e.g. tuner is occupied or service type is unavailable on the local tuner. Specify complete URL including http:// and port number (usually :8001), e.g. http://second_box:8001."
 
+# needs improvement
 msgid "Enable screenshot of LCD in /tmp"
 msgstr "Enable screenshot of the front panel display to /tmp"
 
@@ -6732,13 +6752,13 @@ msgid "Enable terrestrial LCN:"
 msgstr "Enable terrestrial LCN:"
 
 msgid "Enable the current value of the slider at end of the slider bar."
-msgstr ""
+msgstr "Show the current value at end of the slider bar."
 
 msgid "Enable this setting if your aerial system needs power"
 msgstr ""
 
 msgid "Enable to display all true/false, yes/no, on/off and enable/disable set up options as a graphical switch."
-msgstr ""
+msgstr "Choose whether to show all yes/no type values (true/false, on/off, enable/disable) as a graphical switch."
 
 #, fuzzy
 msgid "Enable twisted log *"
@@ -6771,16 +6791,17 @@ msgstr "Encryption:"
 msgid "End"
 msgstr "End button"
 
+# msgctxt "button|hold"
 msgid "End long"
 msgstr "END button hold"
 
 msgid "End time"
 msgstr "End time"
 
-#. TRANSLATORS: genre category?
 msgid "Energie"
 msgstr "Energy"
 
+# TRANSLATORS: language option label
 msgid "English"
 msgstr "English"
 
@@ -6862,9 +6883,9 @@ msgstr "Enter your high band local oscillator frequency. Refer to your LNB's spe
 msgid "Enter your low band local oscillator frequency. For more information consult the spec sheet of your LNB."
 msgstr "Enter your low band local oscillator frequency. Refer to your LNB's spec sheet for more information."
 
-#. TRANSLATORS: genre category
+# TRANSLATORS: EPG AUS genre
 msgid "Entertainment"
-msgstr ""
+msgstr "Entertainment"
 
 msgid "Entitlements"
 msgstr "Entitlements"
@@ -6872,6 +6893,7 @@ msgstr "Entitlements"
 msgid "Epg/Guide"
 msgstr "EPG/Guide press"
 
+# msgctxt "button|hold"
 msgid "Epg/Guide long"
 msgstr "EPG/Guide button hold"
 
@@ -6890,7 +6912,7 @@ msgstr ""
 msgid "Eritrea"
 msgstr "Eritrea"
 
-#. TRANSLATORS: genre category
+# TRANSLATORS: EPG/IceTV genre subcategory
 msgid "Erotik"
 msgstr "Erotic"
 
@@ -6939,7 +6961,7 @@ msgid ""
 "Please check after reboot MyMetrixLite-Plugin and apply your settings."
 msgstr ""
 "Couldn't create MetrixHD skin.\n"
-"Please check the MyMetrixLite plugin after rebooting and apply your settings."
+"Please check the MyMetrixLite plugin and apply your settings after restarting."
 
 #, python-format
 msgid ""
@@ -7024,18 +7046,21 @@ msgstr ""
 msgid "Es folgt:"
 msgstr "It follows:"
 
-#. TRANSLATORS: genre category
+# TRANSLATORS: EPG/IceTV genre subcategory
 msgid "Esoterik"
 msgstr "Esoteric"
 
+# TRANSLATORS: EPG/IceTV genre subcategory
 msgid "Essen"
-msgstr ""
+msgstr "Food"
 
+# TRANSLATORS: regional option label
 msgid "Estonia"
 msgstr "Estonia"
 
+# TRANSLATORS: language option label
 msgid "Estonian"
-msgstr "Estonian"
+msgstr "Eesti"
 
 msgid "Ethernet network interface"
 msgstr "Ethernet network interface"
@@ -7246,7 +7271,7 @@ msgid "External subtitle switch fonts"
 msgstr "External subtitle font switching"
 
 msgid "Extra motor options"
-msgstr "Extra dish rotator options"
+msgstr "Extra dish positioner options"
 
 msgid "Extremsport"
 msgstr "Extreme sports"
@@ -7257,6 +7282,7 @@ msgstr "Extrude from left"
 msgid "F1"
 msgstr "F1 press"
 
+# msgctxt "button|hold"
 msgid "F1 long"
 msgstr "F1 button hold"
 
@@ -7266,18 +7292,21 @@ msgstr "F1/F3/F4/F4-TURBO/TRIPLEX"
 msgid "F2"
 msgstr "F2 button"
 
+# msgctxt "button|hold"
 msgid "F2 long"
 msgstr "F2 button hold"
 
 msgid "F3"
 msgstr "F3 button"
 
+# msgctxt "button|hold"
 msgid "F3 long"
 msgstr "F3 button hold"
 
 msgid "F4"
 msgstr "F4 button"
 
+# msgctxt "button|hold"
 msgid "F4 long"
 msgstr "F4 button hold"
 
@@ -7374,6 +7403,7 @@ msgstr "▶︎▶︎ Fast forward"
 msgid "Favorites"
 msgstr "Favorites button"
 
+# msgctxt "button|hold"
 msgid "Favorites long"
 msgstr "Favorites button hold"
 
@@ -7414,7 +7444,7 @@ msgid "File Commander - Addon Movieplayer"
 msgstr "File Commander - Addon Movie Player"
 
 msgid "File Commander - all Task's are completed!"
-msgstr "File Commander - all Tasks are completed!"
+msgstr "File Commander - all tasks have completed!"
 
 msgid "File Commander - generalised archive handler"
 msgstr "File Commander - generalized archive handler"
@@ -7454,12 +7484,13 @@ msgstr ""
 msgid "File checksums/hashes"
 msgstr "Checksum/hash method"
 
+# msgctxt "button|hold"
 msgid "File long"
 msgstr "FILE button hold"
 
-#, fuzzy, python-format
+#, python-format
 msgid "File not found: %s"
-msgstr "Video mode: %s"
+msgstr "File not found: %s"
 
 msgid ""
 "File oscam.conf not found.\n"
@@ -7487,10 +7518,11 @@ msgstr "Check Filesystem"
 msgid "Filesystem check your Harddisk"
 msgstr "Check your hard disk's filesystem"
 
-#. TRANSLATORS: genre category
+# TRANSLATORS: EPG/IceTV genre subcategory
 msgid "Film-Noir"
-msgstr ""
+msgstr "Film noir"
 
+# needs improvement
 msgid "Filter extension for 'My Extension' setting of 'Filter extension'. Use the extension name without a '.'."
 msgstr ""
 
@@ -7509,7 +7541,7 @@ msgstr "Final position at index"
 msgid "Final scroll delay"
 msgstr "Delay after scrolling"
 
-#. TRANSLATORS: genre category
+# TRANSLATORS: EPG/IceTV genre subcategory
 msgid "Finance"
 msgstr ""
 
@@ -7528,18 +7560,18 @@ msgstr "Finished configuring your network"
 msgid "Finished restarting your network"
 msgstr "Finished restarting your network!"
 
-#. TRANSLATORS: regional option
+# TRANSLATORS: regional option label
 msgid "Finland"
 msgstr "Finland"
 
-#. TRANSLATORS: regional option
+# TRANSLATORS: language option label
 msgid "Finnish"
-msgstr "Finnish"
+msgstr "Suomi"
 
 msgid "First playable timeshift file!"
 msgstr "First playable timeshift file!"
 
-#. TRANSLATORS: genre category
+# TRANSLATORS: EPG/IceTV genre subcategory
 msgid "Fishing"
 msgstr ""
 
@@ -7597,11 +7629,11 @@ msgstr "Font:"
 msgid "Fontsize"
 msgstr "Text size"
 
-#. TRANSLATORS: genre category
+# TRANSLATORS: EPG/IceTV genre subcategory
 msgid "Food/Wine"
 msgstr ""
 
-#. TRANSLATORS: genre category
+# TRANSLATORS: EPG/IceTV genre subcategory
 msgid "Football"
 msgstr "Football/Soccer"
 
@@ -7644,11 +7676,11 @@ msgstr "Frame rate"
 msgid "Frame size in full view"
 msgstr "Frame size in full view"
 
-#. TRANSLATORS: regional option
+# TRANSLATORS: regional option label
 msgid "France"
 msgstr "France"
 
-#. TRANSLATORS: genre category
+# TRANSLATORS: EPG/IceTV genre subcategory
 msgid "Frauen"
 msgstr "Womens'"
 
@@ -7673,19 +7705,19 @@ msgstr "Free: "
 msgid "FreeSpace"
 msgstr "Free Space"
 
-#. TRANSLATORS: regional option
+# TRANSLATORS: language option label
 msgid "French"
-msgstr "French"
+msgstr "Français"
 
-#. TRANSLATORS: regional option
+# TRANSLATORS: regional option label
 msgid "French Guiana"
 msgstr "French Guiana"
 
-#. TRANSLATORS: regional option
+# TRANSLATORS: regional option label
 msgid "French Polynesia"
 msgstr "French Polynesia"
 
-#. TRANSLATORS: regional option
+# TRANSLATORS: regional option label
 msgid "French Southern Territories"
 msgstr "French Southern Territories"
 
@@ -7750,11 +7782,11 @@ msgstr "fullscreen"
 msgid "Fulview resulution"
 msgstr "Full view resolution"
 
-#. TRANSLATORS: genre category
+# TRANSLATORS: EPG/IceTV genre subcategory
 msgid "Fußball"
 msgstr "Football/Soccer"
 
-#. TRANSLATORS: genre category
+# TRANSLATORS: EPG/IceTV genre subcategory
 msgid "Für Kinder"
 msgstr "For children"
 
@@ -7800,27 +7832,27 @@ msgstr ""
 "\n"
 "Would you like to restart it now?"
 
-#. TRANSLATORS: genre category
+# TRANSLATORS: EPG/IceTV genre subcategory
 msgid "Gabon"
 msgstr "Gabon"
 
-#. TRANSLATORS: genre category
+# TRANSLATORS: EPG/IceTV genre subcategory
 msgid "Gambia"
 msgstr "Gambia"
 
-#. TRANSLATORS: genre category
+# TRANSLATORS: EPG/IceTV genre subcategory
 msgid "Game Show"
 msgstr ""
 
-#. TRANSLATORS: genre category
+# TRANSLATORS: EPG/IceTV genre subcategory
 msgid "Gangster"
 msgstr ""
 
-#. TRANSLATORS: genre category
+# TRANSLATORS: EPG/IceTV genre subcategory
 msgid "Gardening"
 msgstr ""
 
-#. TRANSLATORS: genre category
+# TRANSLATORS: EPG/IceTV genre subcategory
 msgid "Garten"
 msgstr "Gardening"
 
@@ -7845,27 +7877,27 @@ msgstr ""
 msgid "Genre"
 msgstr "Genre"
 
-#. TRANSLATORS: regional option
+# TRANSLATORS: regional option label
 msgid "Georgia"
 msgstr "Georgia"
 
-#. TRANSLATORS: regional option
+# TRANSLATORS: language option label
 msgid "German"
-msgstr "German"
+msgstr "Deutsch"
 
-#. TRANSLATORS: regional option
+# TRANSLATORS: regional option label
 msgid "Germany"
 msgstr "Germany"
 
-#. TRANSLATORS: genre category
+# TRANSLATORS: EPG/IceTV genre subcategory
 msgid "Geschichte"
 msgstr "History"
 
-#. TRANSLATORS: genre category
+# TRANSLATORS: EPG/IceTV genre subcategory
 msgid "Gesellschaft"
 msgstr "Society"
 
-#. TRANSLATORS: genre category
+# TRANSLATORS: EPG/IceTV genre subcategory
 msgid "Gesundheit"
 msgstr "Health"
 
@@ -7884,11 +7916,11 @@ msgstr "Getting Softcam list..."
 msgid "Getting plugin information. Please wait..."
 msgstr "Getting plugin information..."
 
-#. TRANSLATORS: regional option
+# TRANSLATORS: regional option label
 msgid "Ghana"
 msgstr "Ghana"
 
-#. TRANSLATORS: regional option
+# TRANSLATORS: regional option label
 msgid "Gibraltar"
 msgstr "Gibraltar"
 
@@ -7937,7 +7969,7 @@ msgstr "Go up the list"
 msgid "Gold"
 msgstr "Gold"
 
-#. TRANSLATORS: genre category
+# TRANSLATORS: EPG/IceTV genre subcategory
 msgid "Golf"
 msgstr ""
 
@@ -8016,31 +8048,35 @@ msgstr "Graphical EPG Settings"
 msgid "Graphics"
 msgstr "graphical"
 
-#. TRANSLATORS: regional option
+# TRANSLATORS: regional option label
 msgid "Greece"
 msgstr "Greece"
 
-#. TRANSLATORS: regional option
+# TRANSLATORS: language option label
 msgid "Greek"
-msgstr "Greek"
+msgstr "Ελληνικά"
 
+# colour
 msgid "Green"
 msgstr "Green button"
 
+# colour
 msgid "Green button"
 msgstr "Green button"
 
+# msgctxt "button|hold"
 msgid "Green long"
 msgstr "Green button hold"
 
-#. TRANSLATORS: regional option
+# TRANSLATORS: regional option label
 msgid "Greenland"
 msgstr "Greenland"
 
-#. TRANSLATORS: regional option
+# TRANSLATORS: regional option label
 msgid "Grenada"
 msgstr "Grenada"
 
+# colour
 msgid "Grey"
 msgstr "Grey"
 
@@ -8053,34 +8089,34 @@ msgstr "Grow drop"
 msgid "Grow from left"
 msgstr "Grow from left"
 
-#. TRANSLATORS: regional option
+# TRANSLATORS: regional option label
 msgid "Guadeloupe"
 msgstr "Guadeloupe"
 
-#. TRANSLATORS: regional option
+# TRANSLATORS: regional option label
 msgid "Guam"
 msgstr "Guam"
 
 msgid "Guard interval"
 msgstr "Guard interval"
 
-#. TRANSLATORS: regional option
+# TRANSLATORS: regional option label
 msgid "Guatemala"
 msgstr "Guatemala"
 
-#. TRANSLATORS: regional option
+# TRANSLATORS: regional option label
 msgid "Guernsey"
 msgstr "Guernsey"
 
-#. TRANSLATORS: regional option
+# TRANSLATORS: regional option label
 msgid "Guinea"
 msgstr "Guinea"
 
-#. TRANSLATORS: regional option
+# TRANSLATORS: regional option label
 msgid "Guinea-Bissau"
 msgstr "Guinea-Bissau"
 
-#. TRANSLATORS: regional option
+# TRANSLATORS: regional option label
 msgid "Guyana"
 msgstr "Guyana"
 
@@ -8091,10 +8127,10 @@ msgid "H: = Hourly / D: = Daily / W: = Weekly / M: = Monthly"
 msgstr "H: Hourly / D: Daily / W: Weekly / M: Monthly"
 
 msgid "H:mm"
-msgstr ""
+msgstr "H:mm (8:20 - 24hr)"
 
 msgid "H:mm:ss"
-msgstr ""
+msgstr "H:mm:ss (8:20:01 - 24hr)"
 
 msgid "HARD DISK: "
 msgstr "HARD DISK: "
@@ -8151,10 +8187,10 @@ msgid "HELP"
 msgstr ""
 
 msgid "HH:mm"
-msgstr ""
+msgstr "HH:mm (07:56 - 24hr)"
 
 msgid "HH:mm:ss"
-msgstr ""
+msgstr "HH:mm:ss (07:56:34 - 24hr)"
 
 msgid "HI-cleanup for external subtitles"
 msgstr "Hide HI text from external subtitles"
@@ -8162,11 +8198,11 @@ msgstr "Hide HI text from external subtitles"
 msgid "HLG Support"
 msgstr "HLG Support"
 
-#. TRANSLATORS: regional option
+# TRANSLATORS: regional option label
 msgid "Haiti"
 msgstr "Haiti"
 
-#. TRANSLATORS: genre category
+# TRANSLATORS: EPG/IceTV genre subcategory
 msgid "Handball"
 msgstr ""
 
@@ -8197,28 +8233,30 @@ msgstr "Hard Disk"
 msgid "Harddisk Setup"
 msgstr "Hard Disk Setup"
 
-#. TRANSLATORS: regional option
+# TRANSLATORS: regional option label
 msgid "Heard Island and McDonald Islands"
 msgstr "Heard Island and McDonald Islands"
 
-#. TRANSLATORS: regional option
+# TRANSLATORS: regional option label
 msgid "Hebrew"
 msgstr "Hebrew"
 
 msgid "Height"
 msgstr "Height"
 
-#. TRANSLATORS: genre category
+#, fuzzy
+# TRANSLATORS: EPG/IceTV genre subcategory, needs
 msgid "Heimat"
 msgstr ""
 
-#. TRANSLATORS: genre category
+# TRANSLATORS: EPG/IceTV genre subcategory
 msgid "Heimwerker"
 msgstr "DIY"
 
 msgid "Help"
 msgstr "Help button"
 
+# msgctxt "button|hold"
 msgid "Help long"
 msgstr "Help button hold"
 
@@ -8287,7 +8325,7 @@ msgstr "High bitrate support"
 msgid "Hispasat 30.0w"
 msgstr ""
 
-#. TRANSLATORS: genre category
+# TRANSLATORS: EPG/IceTV genre subcategory
 msgid "Historical"
 msgstr ""
 
@@ -8300,6 +8338,7 @@ msgstr "History back"
 msgid "History buttons mode"
 msgstr "History buttons mode"
 
+# msgctxt "button|hold"
 msgid "History long"
 msgstr "History button hold"
 
@@ -8309,11 +8348,11 @@ msgstr "History next"
 msgid "History zap..."
 msgstr "Zap History"
 
-#. TRANSLATORS: genre category
+# TRANSLATORS: EPG/IceTV genre subcategory
 msgid "Hobbys"
 msgstr "Hobbies"
 
-#. TRANSLATORS: genre category
+# TRANSLATORS: EPG/IceTV genre subcategory
 msgid "Hockey"
 msgstr ""
 
@@ -8323,27 +8362,29 @@ msgstr "Hold screen"
 msgid "Hold till locked"
 msgstr "Hold picture until locked"
 
-#. TRANSLATORS: regional option
+# TRANSLATORS: regional option label
 msgid "Holy See"
 msgstr "Holy See"
 
 msgid "Home"
 msgstr "Home button"
 
+# msgctxt "button|hold"
 msgid "Home long"
 msgstr "Home button hold"
 
 msgid "Homepage"
 msgstr "Homepage press"
 
+# msgctxt "button|hold"
 msgid "Homepage long"
 msgstr "Homepage button hold"
 
-#. TRANSLATORS: regional option
+# TRANSLATORS: regional option label
 msgid "Honduras"
 msgstr "Honduras"
 
-#. TRANSLATORS: regional option
+# TRANSLATORS: regional option label
 msgid "Hong Kong"
 msgstr "Hong Kong"
 
@@ -8407,11 +8448,11 @@ msgstr "Record for how many minutes?"
 msgid "Hue"
 msgstr "Hue"
 
-#. TRANSLATORS: regional option
+# TRANSLATORS: language option label
 msgid "Hungarian"
-msgstr "Hungarian"
+msgstr "Magyar"
 
-#. TRANSLATORS: regional option
+# TRANSLATORS: regional option label
 msgid "Hungary"
 msgstr "Hungary"
 
@@ -8477,36 +8518,29 @@ msgstr ""
 msgid "IceTV - Password required"
 msgstr ""
 
-#, fuzzy
 msgid "IceTV - Region"
-msgstr "Region"
+msgstr ""
 
-#, fuzzy
 msgid "IceTV - Service selection"
-msgstr "Show subservice selection"
+msgstr ""
 
-#, fuzzy
 msgid "IceTV - Setup"
-msgstr "%s - Setup"
+msgstr ""
 
-#, fuzzy
 msgid "IceTV - User Information"
-msgstr "Image Information"
+msgstr ""
 
-#, fuzzy
 msgid "IceTV disabled"
-msgstr "disabled"
+msgstr ""
 
-#, fuzzy
 msgid "IceTV enabled"
-msgstr "enabled"
+msgstr ""
 
 msgid "IceTV setup wizard"
 msgstr ""
 
-#, fuzzy
 msgid "IceTV update completed OK"
-msgstr "Backup completed."
+msgstr ""
 
 msgid ""
 "IceTV update completed with errors.\n"
@@ -8514,11 +8548,11 @@ msgid ""
 "Please check the log for details."
 msgstr ""
 
-#, fuzzy, python-format
+#, python-format
 msgid "IceTV version %s"
-msgstr "Image Version"
+msgstr ""
 
-#. TRANSLATORS: regional option
+# TRANSLATORS: regional option label
 msgid "Iceland"
 msgstr "Iceland"
 
@@ -8528,12 +8562,15 @@ msgstr "icons"
 msgid "Idle Time: "
 msgstr "Idle Time: "
 
+# needs improvement
 msgid "If 'never', will force restart despite that after 100 crashes."
 msgstr ""
 
+# needs improvement
 msgid "If 'never', will write crash log despite that for the first crash."
 msgstr ""
 
+# needs improvement
 msgid "If editing a file, can you set the cursor start position at end or begin of the line."
 msgstr ""
 
@@ -8604,7 +8641,7 @@ msgid "If set to 'yes', enable autorecord for automatically background timeshift
 msgstr "Choose whether to enable auto-record for automatic background timeshift"
 
 msgid "If set to 'yes; the infobar will be displayed when Fast Forwarding or Rewinding during media playback."
-msgstr "Choose whether the infobar should appear when fast forwarding or rewinding media playback."
+msgstr "Choose whether the infobar should appear when fast-forwarding or rewinding media playback."
 
 msgid "If set to 'yes; the infobar will remain shown permanently in 'paused' state (no timeout)."
 msgstr "Choose whether the infobar should stay on screen while paused."
@@ -8789,15 +8826,15 @@ msgstr "Index"
 msgid "Index allocated:"
 msgstr "Index allocated:"
 
-#. TRANSLATORS: regional option
+# TRANSLATORS: regional option label
 msgid "India"
 msgstr "India"
 
-#. TRANSLATORS: regional option
+# TRANSLATORS: regional option label
 msgid "Indonesia"
 msgstr "Indonesia"
 
-#. TRANSLATORS: regional option
+# TRANSLATORS: language option label
 msgid "Indonesian"
 msgstr "Indonesian"
 
@@ -8807,12 +8844,14 @@ msgstr "Info"
 msgid "Info (EPG)"
 msgstr "Info/EPG button"
 
+# msgctxt "button|hold"
 msgid "Info (EPG) Long"
 msgstr "Info/EPG button hold"
 
 msgid "Info Panel"
 msgstr "Info Panel"
 
+# msgctxt "button|hold"
 msgid "Info button (long)"
 msgstr "Info button hold"
 
@@ -8855,9 +8894,9 @@ msgstr "Information"
 msgid "Infos"
 msgstr "System Info"
 
-#. TRANSLATORS: genre category
+# TRANSLATORS: EPG AUS genre
 msgid "Infotainment"
-msgstr ""
+msgstr "Infotainment"
 
 msgid "Init"
 msgstr "Init"
@@ -8904,9 +8943,8 @@ msgstr "Inotify Monitoring"
 msgid "Input"
 msgstr "Input"
 
-#, fuzzy
 msgid "Input "
-msgstr "Input"
+msgstr "Input "
 
 msgid "Input Stream ID"
 msgstr "Input Stream ID"
@@ -8914,9 +8952,8 @@ msgstr "Input Stream ID"
 msgid "Input channel name."
 msgstr "Input channel name."
 
-#, fuzzy
 msgid "Input config file name:"
-msgstr "Input channel name."
+msgstr "Input config file name:"
 
 msgid "Input devices"
 msgstr "Input Devices"
@@ -9089,19 +9126,19 @@ msgstr "Choose the direction of the Channel Up/Down buttons."
 msgid "Ipkg"
 msgstr "IPKG"
 
-#. TRANSLATORS: regional option
+# TRANSLATORS: regional option label
 msgid "Iran (Islamic Republic of)"
 msgstr "Iran, Islamic Republic of"
 
-#. TRANSLATORS: regional option
+# TRANSLATORS: regional option label
 msgid "Iran, Islamic Republic"
 msgstr "Iran, Islamic Republic of"
 
-#. TRANSLATORS: regional option
+# TRANSLATORS: regional option label
 msgid "Iraq"
 msgstr "Iraq"
 
-#. TRANSLATORS: regional option
+# TRANSLATORS: regional option label
 msgid "Ireland"
 msgstr "Ireland"
 
@@ -9114,11 +9151,11 @@ msgstr "Is this setting OK?"
 msgid "Is this video mode ok?"
 msgstr "Is this video mode OK?"
 
-#. TRANSLATORS: regional option
+# TRANSLATORS: regional option label
 msgid "Isle of Man"
 msgstr "Isle of Man"
 
-#. TRANSLATORS: regional option
+# TRANSLATORS: regional option label
 msgid "Israel"
 msgstr "Israel"
 
@@ -9126,40 +9163,41 @@ msgid "It follows:"
 msgstr "It follows:"
 
 msgid "It is not possible to calculate hashes on <List of Storage Devices>"
-msgstr ""
+msgstr "Hashes can't be calculacted on <List of Storage Devices>"
 
 msgid "It is not possible to change the file mode of <List of Storage Devices>"
-msgstr ""
+msgstr "File mode can't be changed on <List of Storage Devices>"
 
 msgid "It is not possible to get the file status of <List of Storage Devices>"
-msgstr ""
+msgstr "File status can't be done on <List of Storage Devices>"
 
 #, python-format
 msgid "It is not possible to run '%s' on <List of Storage Devices>"
-msgstr ""
+msgstr "%s can't be run on <List of Storage Devices>"
 
 msgid "It's not possible to rename the filesystem root."
 msgstr "The filesystem root can't be renamed."
 
-#. TRANSLATORS: regional option
+# TRANSLATORS: language option label
 msgid "Italian"
-msgstr "Italian"
+msgstr "Italiano"
 
+# TRANSLATORS: regional option label
 msgid "Italy"
 msgstr "Italy"
 
 msgid "JUMP 24 HOURS"
 msgstr "JUMP 24 HOURS"
 
-#. TRANSLATORS: regional option
+# TRANSLATORS: regional option label
 msgid "Jamaica"
 msgstr "Jamaica"
 
-#. TRANSLATORS: regional option
+# TRANSLATORS: regional option label
 msgid "Japan"
 msgstr "Japan"
 
-#. TRANSLATORS: regional option
+# TRANSLATORS: regional option label
 msgid "Jersey"
 msgstr "Jersey"
 
@@ -9175,11 +9213,11 @@ msgstr "Job overview"
 msgid "JobManager"
 msgstr "Job Manager"
 
-#. TRANSLATORS: regional option
+# TRANSLATORS: regional option label
 msgid "Jordan"
 msgstr "Jordan"
 
-#. TRANSLATORS: genre category
+# TRANSLATORS: EPG/IceTV genre subcategory
 msgid "Jugend"
 msgstr "Youth"
 
@@ -9219,26 +9257,25 @@ msgstr "Just change channels"
 msgid "Just zap"
 msgstr "Just zap"
 
-#. TRANSLATORS: genre category
+# TRANSLATORS: EPG/IceTV genre subcategory
 msgid "Justiz"
 msgstr "Justice"
 
 msgid "KA-SAT"
 msgstr "KA-SAT"
 
-#, fuzzy
 msgid "KB"
-msgstr "B"
+msgstr "KB"
 
-#. TRANSLATORS: genre category
+# TRANSLATORS: EPG/IceTV genre subcategory
 msgid "Kampfsport"
 msgstr "Martial arts"
 
-#. TRANSLATORS: genre category
+# TRANSLATORS: EPG/IceTV genre subcategory
 msgid "Katastrophe"
-msgstr ""
+msgstr "Catastrophe"
 
-#. TRANSLATORS: regional option
+# TRANSLATORS: regional option label
 msgid "Kazakhstan"
 msgstr "Kazakhstan"
 
@@ -9268,9 +9305,8 @@ msgstr "Kernel: %s"
 msgid "Keyboard"
 msgstr "Keyboard"
 
-#, fuzzy
 msgid "Keyboard data entry"
-msgstr "Keyboard setup"
+msgstr "Keyboard input"
 
 msgid "Keyboard map"
 msgstr "Keyboard map"
@@ -9291,76 +9327,75 @@ msgstr "Keymap changed, you'll need to restart the GUI"
 msgid "Kinder"
 msgstr "Kids"
 
-#. TRANSLATORS: regional option
+# TRANSLATORS: regional option label
 msgid "Kiribati"
 msgstr "Kiribati"
 
-#. TRANSLATORS: genre category
+# TRANSLATORS: EPG/IceTV genre subcategory
 msgid "Klassiker"
 msgstr "Classic"
 
-#. TRANSLATORS: genre category
+# TRANSLATORS: EPG/IceTV genre subcategory
 msgid "Kneipensport"
 msgstr "Pub sports"
 
 msgid "Kodi MediaCenter"
-msgstr "Kodi MediaCenter"
+msgstr "Kodi Media Center"
 
 msgid "Kodi installed:"
 msgstr "Kodi installed:"
 
-#, fuzzy
 msgid "Kodi media player"
-msgstr "Exit media player?"
+msgstr "Kodi media player"
 
 msgid "Kodi/extra partition free space:"
 msgstr "Kodi/extra partition free space:"
 
-#. TRANSLATORS: genre category
+# TRANSLATORS: EPG/IceTV genre subcategory
 msgid "Komödie"
 msgstr "Comedy"
 
-#. TRANSLATORS: regional option
+# TRANSLATORS: regional option label
 msgid "Korea (Democratic People's Republic of)"
 msgstr "Korea, Democratic People's Republic of"
 
-#. TRANSLATORS: regional option
+# TRANSLATORS: regional option label
 msgid "Korea (Republic of)"
 msgstr "Korea, Republic of"
 
-#. TRANSLATORS: genre category
+# TRANSLATORS: EPG/IceTV genre subcategory
 msgid "Kraftsport"
 msgstr "Weightlifting"
 
-#. TRANSLATORS: genre category
+# TRANSLATORS: EPG/IceTV genre subcategory
 msgid "Krieg"
 msgstr "War"
 
-#. TRANSLATORS: genre category
+# TRANSLATORS: EPG/IceTV genre subcategory
 msgid "Krimi"
 msgstr "Crime"
 
-#. TRANSLATORS: genre category
+# TRANSLATORS: EPG/IceTV genre subcategory
 msgid "Kriminalität"
 msgstr "Crime"
 
-#. TRANSLATORS: genre category
+# TRANSLATORS: EPG/IceTV genre subcategory
 msgid "Kultur"
 msgstr "Culture"
 
-#. TRANSLATORS: genre category
+# TRANSLATORS: EPG/IceTV genre subcategory
 msgid "Kunst"
 msgstr "Art"
 
-#. TRANSLATORS: genre category
+# TRANSLATORS: EPG/IceTV genre subcategory
 msgid "Kurzfilm"
 msgstr "Short film"
 
-#. TRANSLATORS: regional option
+# TRANSLATORS: regional option label
 msgid "Kuwait"
 msgstr "Kuwait"
 
-#. TRANSLATORS: regional option
+# TRANSLATORS: regional option label
 msgid "Kyrgyzstan"
 msgstr "Kyrgyzstan"
 
@@ -9373,6 +9408,7 @@ msgstr "LAN adapter"
 msgid "LAN connection"
 msgstr "LAN connection"
 
+# msgctxt "button|hold"
 msgid "LAN long"
 msgstr "LAN button hold"
 
@@ -9413,7 +9449,7 @@ msgid "LNB"
 msgstr "LNB"
 
 msgid "LNB/Switch Bootup time [ms]"
-msgstr "LNB/Switch Bootup time [ms]"
+msgstr "LNB/Switch boot-up time in ms"
 
 msgid "LOF"
 msgstr ""
@@ -9427,8 +9463,9 @@ msgstr ""
 msgid "Label"
 msgstr "Label"
 
+# TRANSLATORS:IceTV genre subcategory
 msgid "Landestypisch"
-msgstr ""
+msgstr "Folklore"
 
 msgid "Language"
 msgstr "Language Settings"
@@ -9436,7 +9473,7 @@ msgstr "Language Settings"
 msgid "Language selection"
 msgstr "Language Selection"
 
-#. TRANSLATORS: regional option
+# TRANSLATORS: regional option label
 msgid "Lao People's Democratic Republic"
 msgstr "Lao People's Democratic Republic"
 
@@ -9464,24 +9501,24 @@ msgstr "Last update:\t%s"
 msgid "Last used share: "
 msgstr "Last used share: "
 
-#. TRANSLATORS: genre category
+# TRANSLATORS: EPG/IceTV genre subcategory
 msgid "Late Night"
 msgstr ""
 
 msgctxt "third event: 'third' event label"
 msgid "Later"
-msgstr ""
+msgstr "Later"
 
 msgid "Latitude"
 msgstr "Latitude"
 
-#. TRANSLATORS: regional option
+# TRANSLATORS: regional option label
 msgid "Latvia"
 msgstr "Latvia"
 
-#. TRANSLATORS: regional option
+# TRANSLATORS: language option label
 msgid "Latvian"
-msgstr "Latvian"
+msgstr "Latviešu"
 
 msgid "Leave DVD player?"
 msgstr "Quit DVD player?"
@@ -9495,7 +9532,7 @@ msgstr "Quit multi-select"
 msgid "Leave this set to 'yes' unless you fully understand why you are adjusting it."
 msgstr "Leave this set to 'yes' unless you know exactly what you're doing."
 
-#. TRANSLATORS: regional option
+# TRANSLATORS: regional option label
 msgid "Lebanon"
 msgstr "Lebanon"
 
@@ -9505,18 +9542,19 @@ msgstr "◀︎ Left"
 msgid "Left from servicename"
 msgstr "left of service name"
 
+# msgctxt "button|hold"
 msgid "Left long"
 msgstr "◀︎ Left button hold"
 
-#. TRANSLATORS: genre category
+# TRANSLATORS: EPG/IceTV genre subcategory
 msgid "Leichtathletik"
 msgstr "Athletics"
 
-#. TRANSLATORS: genre category
+# TRANSLATORS: EPG ETSI genre; IceTV genre
 msgid "Leisure hobbies"
 msgstr "Leisure hobbies"
 
-#. TRANSLATORS: regional option
+# TRANSLATORS: regional option label
 msgid "Lesotho"
 msgstr "Lesotho"
 
@@ -9527,19 +9565,19 @@ msgstr "letterbox"
 msgid "Letterbox zoom"
 msgstr "Letterbox zoom"
 
-#. TRANSLATORS: regional option
+# TRANSLATORS: regional option label
 msgid "Liberia"
 msgstr "Liberia"
 
-#. TRANSLATORS: regional option
+# TRANSLATORS: regional option label
 msgid "Libya"
 msgstr "Libya"
 
-#. TRANSLATORS: regional option
+# TRANSLATORS: regional option label
 msgid "Liechtenstein"
 msgstr "Liechtenstein"
 
-#. TRANSLATORS: genre category
+# TRANSLATORS: EPG/IceTV genre subcategory
 msgid "Lifestyle"
 msgstr ""
 
@@ -9579,9 +9617,8 @@ msgstr "Link quality:"
 msgid "Link quality:"
 msgstr "Link quality:"
 
-#, fuzzy
 msgid "Link target:"
-msgstr "Link Quality:"
+msgstr "Link target:"
 
 msgid "Link:"
 msgstr "Link:"
@@ -9589,9 +9626,8 @@ msgstr "Link:"
 msgid "Linked titles with a DVD menu"
 msgstr "Linked titles with a DVD menu"
 
-#, fuzzy
 msgid "Links:"
-msgstr "Link:"
+msgstr "Links:"
 
 msgid "List EPG functions..."
 msgstr "List EPG functions..."
@@ -9602,9 +9638,8 @@ msgstr "Show available networks"
 msgid "List mode"
 msgstr "List mode"
 
-#, fuzzy
 msgid "List of Storage Devices"
-msgstr "List of storage devices"
+msgstr "List of Storage Devices"
 
 msgid "List of storage devices"
 msgstr "List of storage devices"
@@ -9618,6 +9653,7 @@ msgstr[1] "List version %d, found %d channels"
 msgid "List/Fav"
 msgstr "LIST/FAV button"
 
+# msgctxt "button|hold"
 msgid "List/Fav long"
 msgstr "LIST/FAV button hold"
 
@@ -9627,21 +9663,21 @@ msgstr "Listen to the radio..."
 msgid "Lists reloaded!"
 msgstr "Lists reloaded!"
 
-#. TRANSLATORS: genre category
+# TRANSLATORS: EPG/IceTV genre subcategory
 msgid "Literatur"
 msgstr "Literature"
 
-#. TRANSLATORS: genre category
+# TRANSLATORS: EPG/IceTV genre subcategory
 msgid "Literaturverfilmung"
 msgstr "Film adaptation"
 
-#. TRANSLATORS: regional option
+# TRANSLATORS: regional option label
 msgid "Lithuania"
 msgstr "Lithuania"
 
-#. TRANSLATORS: regional option
+# TRANSLATORS: language option label
 msgid "Lithuanian"
-msgstr "Lithuanian"
+msgstr "Lietuvių"
 
 msgid "Live"
 msgstr ""
@@ -9718,15 +9754,18 @@ msgstr "Logs older than the configured number of days will be deleted."
 msgid "Logs settings"
 msgstr "Logs Settings"
 
+# msgctxt "button|hold"
 msgid "Long << / >>"
-msgstr "◀︎◀︎ REW / FFWD ▶︎▶︎ hold"
+msgstr "◀︎◀︎ REW / FWD ▶︎▶︎ hold"
 
+# msgctxt "button|hold"
 msgid "Long Left/Right"
 msgstr "◀︎ Left / Right ▶︎ hold"
 
 msgid "Long filenames"
 msgstr "Long filenames"
 
+# msgctxt "button|hold"
 msgid "Long key press"
 msgstr "Button hold"
 
@@ -9757,11 +9796,11 @@ msgstr "Lowest Mode"
 msgid "Lowest Video output mode"
 msgstr "Lowest Video output mode"
 
-#. TRANSLATORS: regional option
+# TRANSLATORS: regional option label
 msgid "Luxembourg"
 msgstr "Luxembourg"
 
-#. TRANSLATORS: regional option
+# TRANSLATORS: regional option label
 msgid "Luxembourgish"
 msgstr "Luxembourgish"
 
@@ -9783,6 +9822,7 @@ msgstr "MB"
 msgid "MIRACLEBOX_TWINPLUS"
 msgstr ""
 
+# TRANSLATORS: EPG/IceTV genre subcategory
 msgid "MMA"
 msgstr "MMA"
 
@@ -9792,25 +9832,25 @@ msgstr "MORE"
 msgid "MOUSE"
 msgstr ""
 
+# msgctxt "button|hold"
 msgid "MOUSE long"
 msgstr "MOUSE button hold"
 
-#. TRANSLATORS: regional option
+# TRANSLATORS: regional option label
 msgid "Macao"
 msgstr "Macao"
 
-#. TRANSLATORS: regional option
+# TRANSLATORS: regional option label
 msgid "Macedonia (the former Yugoslav Republic of)"
 msgstr "Macedonia, The former Yugoslav Republic of"
 
-#. TRANSLATORS: regional option
+# TRANSLATORS: regional option label
 msgid "Madagascar"
 msgstr "Madagascar"
 
-#. TRANSLATORS: genre category
-#, fuzzy
+# TRANSLATORS: EPG/IceTV genre subcategory
 msgid "Magazin"
-msgstr "news magazine"
+msgstr "Magazine"
 
 msgid "Main menu"
 msgstr "Main menu"
@@ -9836,23 +9876,23 @@ msgstr "Make this mark an 'out' point"
 msgid "Make this mark just a mark"
 msgstr "Make this mark just a mark"
 
-#. TRANSLATORS: regional option
+# TRANSLATORS: regional option label
 msgid "Malawi"
 msgstr "Malawi"
 
-#. TRANSLATORS: regional option
+# TRANSLATORS: regional option label
 msgid "Malaysia"
 msgstr "Malaysia"
 
-#. TRANSLATORS: regional option
+# TRANSLATORS: regional option label
 msgid "Maldives"
 msgstr "Maldives"
 
-#. TRANSLATORS: regional option
+# TRANSLATORS: regional option label
 msgid "Mali"
 msgstr "Mali"
 
-#. TRANSLATORS: regional option
+# TRANSLATORS: regional option label
 msgid "Malta"
 msgstr "Malta"
 
@@ -9869,7 +9909,7 @@ msgstr "Manage your %s %s's software"
 msgid "Manage your online update files"
 msgstr "Manage your online update files"
 
-#. TRANSLATORS: genre category
+# TRANSLATORS: EPG/IceTV genre subcategory
 msgid "Mannschaftssport"
 msgstr "Team sports"
 
@@ -9912,30 +9952,31 @@ msgstr "Mark as a dedicated 3D channel"
 msgid "Mark/Portal/Playlist"
 msgstr "Mark/Portal/Playlist"
 
+# msgctxt "button|hold"
 msgid "Mark/Portal/Playlist long"
 msgstr "Mark/Portal/Playlist button hold"
 
-#. TRANSLATORS: regional option
+# TRANSLATORS: regional option label
 msgid "Marshall Islands"
 msgstr "Marshall Islands"
 
-#. TRANSLATORS: regional option
+# TRANSLATORS: regional option label
 msgid "Martinique"
 msgstr "Martinique"
 
-#. TRANSLATORS: genre category
+# TRANSLATORS: EPG/IceTV genre subcategory
 msgid "Mature Adult Audience 15+"
 msgstr ""
 
-#. TRANSLATORS: genre category
+# TRANSLATORS: EPG/IceTV genre subcategory
 msgid "Mature Audience 15+"
 msgstr ""
 
-#. TRANSLATORS: regional option
+# TRANSLATORS: regional option label
 msgid "Mauritania"
 msgstr "Mauritania"
 
-#. TRANSLATORS: regional option
+# TRANSLATORS: regional option label
 msgid "Mauritius"
 msgstr "Mauritius"
 
@@ -9967,7 +10008,7 @@ msgstr "Update EPG data for next # days"
 msgid "Maximum space used (MB):"
 msgstr "Maximum space used (MB)"
 
-#. TRANSLATORS: regional option
+# TRANSLATORS: regional option label
 msgid "Mayotte"
 msgstr "Mayotte"
 
@@ -9983,6 +10024,7 @@ msgstr "Media Player"
 msgid "Media Portal"
 msgstr "Media Portal"
 
+# msgctxt "button|hold"
 msgid "Media long"
 msgstr "Media button hold"
 
@@ -9998,7 +10040,7 @@ msgstr "Media scanner"
 msgid "MediaPlayer"
 msgstr "Media Player"
 
-#. TRANSLATORS: genre category
+# TRANSLATORS: EPG/IceTV genre subcategory
 msgid "Medical"
 msgstr ""
 
@@ -10050,11 +10092,11 @@ msgstr "MessageBox Functions"
 msgid "Metadata changed:"
 msgstr ""
 
-#. TRANSLATORS: regional option
+# TRANSLATORS: regional option label
 msgid "Mexico"
 msgstr "Mexico"
 
-#. TRANSLATORS: regional option
+# TRANSLATORS: regional option label
 msgid "Micronesia (Federated States of)"
 msgstr "Micronesia, Federated States of"
 
@@ -10089,8 +10131,9 @@ msgstr "Mins"
 msgid "Mins Secs"
 msgstr "Mins Secs"
 
+# TRANSLATORS: IceTV genre
 msgid "Miscellaneous"
-msgstr ""
+msgstr "Miscellaneous"
 
 msgid "Misconfiguration in channel allocation"
 msgstr ""
@@ -10150,7 +10193,7 @@ msgstr "Modulator"
 msgid "Module"
 msgstr "Modules"
 
-#. TRANSLATORS: regional option
+# TRANSLATORS: regional option label
 msgid "Moldova (Republic of)"
 msgstr "Moldova, Republic of"
 
@@ -10160,55 +10203,55 @@ msgstr "Mon"
 msgid "Mon-Fri"
 msgstr "Mon-Fri"
 
-#. TRANSLATORS: regional option
+# TRANSLATORS: regional option label
 msgid "Monaco"
 msgstr "Monaco"
 
 msgid "Monday"
 msgstr "Monday"
 
-#. TRANSLATORS: regional option
+# TRANSLATORS: regional option label
 msgid "Mongolia"
 msgstr "Mongolia"
 
-#. TRANSLATORS: regional option
+# TRANSLATORS: regional option label
 msgid "Montenegro"
 msgstr "Montenegro"
 
 msgid "Monthly"
 msgstr "Monthly"
 
-#. TRANSLATORS: regional option
+# TRANSLATORS: regional option label
 msgid "Montserrat"
 msgstr "Montserrat"
 
-#. TRANSLATORS: regional option
+# TRANSLATORS: regional option label
 msgid "Morocco"
 msgstr "Morocco"
 
 msgid "Mosquito noise reduction"
 msgstr "Mosquito noise reduction"
 
-#. TRANSLATORS: genre category
+# TRANSLATORS: EPG/IceTV genre subcategory
 msgid "Motor Sport"
 msgstr "Motorsport"
 
 msgid "Motor command retries"
-msgstr "Retry dish rotator command # times"
+msgstr "Retry dish positioner command # times"
 
 msgid "Motor running timeout"
 msgstr "Motor running timeout"
 
-#. TRANSLATORS: genre category
+# TRANSLATORS: EPG/IceTV genre subcategory
 msgid "Motorsport"
 msgstr ""
 
 msgid "Mount"
 msgstr "Mount"
 
-#, fuzzy, python-format
+#, python-format
 msgid "Mount '%s' has not enough free space to record."
-msgstr "Not enough free space to record"
+msgstr "There's not enough free space on mount %s to record."
 
 msgid "Mount Manager"
 msgstr "Mount Manager"
@@ -10237,13 +10280,12 @@ msgstr "Mounts Setup"
 msgid "Move"
 msgstr "Move"
 
-#, fuzzy, python-format
+#, python-format
 msgid "Move %d elements"
-msgstr "Movement"
+msgstr "Move %d items"
 
-#, fuzzy
 msgid "Move 1 element"
-msgstr "Movement"
+msgstr "Move 1 item"
 
 msgid "Move Left/Right"
 msgstr "Move Left/Right"
@@ -10301,16 +10343,16 @@ msgid "Move the text buffer cursor to the last character"
 msgstr ""
 
 msgid "Move the virtual keyboard cursor down"
-msgstr ""
+msgstr "Move the on-screen keyboard cursor down"
 
 msgid "Move the virtual keyboard cursor left"
-msgstr ""
+msgstr "Move the on-screen keyboard cursor left"
 
 msgid "Move the virtual keyboard cursor right"
-msgstr ""
+msgstr "Move the on-screen keyboard cursor right"
 
 msgid "Move the virtual keyboard cursor up"
-msgstr ""
+msgstr "Move the on-screen keyboard cursor up"
 
 msgid "Move to home of list"
 msgstr "Move to home of list"
@@ -10318,9 +10360,8 @@ msgstr "Move to home of list"
 msgid "Move to position X"
 msgstr "Move to position X"
 
-#, fuzzy
 msgid "Move up a line"
-msgstr "Move up a page"
+msgstr "Move up a line"
 
 msgid "Move up a page"
 msgstr "Move up a page"
@@ -10341,9 +10382,9 @@ msgstr "Moved to position at index"
 msgid "Movement"
 msgstr "Movement"
 
-#. TRANSLATORS: genre category
+# TRANSLATORS: EPG AUS genre
 msgid "Movie"
-msgstr ""
+msgstr "Movie"
 
 msgid "Movie List"
 msgstr "Movie List"
@@ -10357,7 +10398,7 @@ msgstr "Movie location"
 msgid "Movie selection"
 msgstr "Movie selection"
 
-#. TRANSLATORS: genre category
+# TRANSLATORS: EPG ETSI genre; IceTV genre
 msgid "Movie/Drama"
 msgstr "Movie/Drama"
 
@@ -10379,7 +10420,7 @@ msgstr "Moving to position"
 msgid "Moving west ..."
 msgstr "Moving west..."
 
-#. TRANSLATORS: regional option
+# TRANSLATORS: regional option label
 msgid "Mozambique"
 msgstr "Mozambique"
 
@@ -10436,30 +10477,28 @@ msgstr "Multisat"
 msgid "Multisat all select"
 msgstr "Multisat all select"
 
-#, fuzzy
 msgid "Multistream"
-msgstr "Multisat"
+msgstr "Multistream"
 
-#. TRANSLATORS: genre category
+# TRANSLATORS: EPG/IceTV genre subcategory
 msgid "Murder"
 msgstr ""
 
-#. TRANSLATORS: genre category
+# TRANSLATORS: EPG AUS genre
 msgid "Music"
-msgstr ""
+msgstr "Music"
 
-#. TRANSLATORS: genre category
+# TRANSLATORS: EPG ETSI genre; IceTV genre
 msgid "Music/Ballet/Dance"
 msgstr "Music/Ballet/Dance"
 
-#. TRANSLATORS: genre category
-#, fuzzy
+# TRANSLATORS: EPG/IceTV genre subcategory
 msgid "Musical"
-msgstr "musical/opera"
+msgstr "Musical"
 
-#. TRANSLATORS: genre category
+# TRANSLATORS: EPG/IceTV genre subcategory
 msgid "Musik"
-msgstr ""
+msgstr "Music"
 
 msgid "Mute"
 msgstr "Mute"
@@ -10472,15 +10511,15 @@ msgstr "Extension"
 msgid "My extension"
 msgstr "extensions"
 
-#. TRANSLATORS: regional option
+# TRANSLATORS: regional option label
 msgid "Myanmar"
 msgstr "Myanmar"
 
-#. TRANSLATORS: genre category
+# TRANSLATORS: EPG/IceTV genre subcategory
 msgid "Mystery"
 msgstr ""
 
-#. TRANSLATORS: genre category
+# TRANSLATORS: EPG/IceTV genre subcategory
 msgid "Märchen"
 msgstr "Fairytale"
 
@@ -10500,7 +10539,9 @@ msgid "NFI image flashing"
 msgstr "NFI image flashing"
 
 msgid "NFI image flashing completed. Press Yellow to Reboot!"
-msgstr "NFI image flashing completed. Press the Yellow button to reboot!"
+msgstr ""
+"NFI image flashing complete!\n"
+"Please press the Yellow button to restart."
 
 msgid "NFS"
 msgstr "NFS"
@@ -10523,7 +10564,7 @@ msgstr "NTP server"
 msgid "NTSC"
 msgstr "NTSC"
 
-#. TRANSLATORS: genre category
+# TRANSLATORS: EPG/IceTV genre subcategory
 msgid "Nachrichten"
 msgstr "News"
 
@@ -10552,41 +10593,41 @@ msgstr "Nameserver setup"
 msgid "Namespace"
 msgstr "Namespace"
 
-#. TRANSLATORS: regional option
+# TRANSLATORS: regional option label
 msgid "Namibia"
 msgstr "Namibia"
 
-#. TRANSLATORS: genre category
+# TRANSLATORS: EPG/IceTV genre subcategory
 msgid "National"
 msgstr ""
 
 msgid "Native"
 msgstr "native"
 
-#. TRANSLATORS: genre category
+# TRANSLATORS: EPG/IceTV genre subcategory
 msgid "Natur"
 msgstr "Nature"
 
-#. TRANSLATORS: genre category
+# TRANSLATORS: EPG/IceTV genre subcategory
 msgid "Nature"
 msgstr ""
 
-#. TRANSLATORS: regional option
+# TRANSLATORS: regional option label
 msgid "Nauru"
 msgstr "Nauru"
 
 msgid "NcamInfo"
 msgstr "Ncam Info"
 
-#. TRANSLATORS: regional option
+# TRANSLATORS: regional option label
 msgid "Nepal"
 msgstr "Nepal"
 
-#. TRANSLATORS: genre category
+# TRANSLATORS: EPG/IceTV genre subcategory
 msgid "Netball"
 msgstr ""
 
-#. TRANSLATORS: regional option
+# TRANSLATORS: regional option label
 msgid "Netherlands"
 msgstr "Netherlands"
 
@@ -10692,7 +10733,7 @@ msgstr "Never decrypt while recording"
 msgid "New"
 msgstr "New"
 
-#. TRANSLATORS: regional option
+# TRANSLATORS: regional option label
 msgid "New Caledonia"
 msgstr "New Caledonia"
 
@@ -10708,7 +10749,7 @@ msgstr "New search"
 msgid "New Setting DXAndy "
 msgstr "New Setting DXAndy "
 
-#. TRANSLATORS: regional option
+# TRANSLATORS: regional option label
 msgid "New Zealand"
 msgstr "New Zealand"
 
@@ -10738,19 +10779,17 @@ msgstr "New user"
 msgid "New version:"
 msgstr "New version:"
 
-#. TRANSLATORS: genre category
+# TRANSLATORS: EPG AUS genre
 msgid "News"
-msgstr ""
+msgstr "News"
 
-#. TRANSLATORS: genre category
-#, fuzzy
+# TRANSLATORS: EPG ETSI genre; IceTV genre
 msgid "News/Current Affairs"
-msgstr "News Current Affairs"
+msgstr "News/Current Affairs"
 
 msgid "Next"
 msgstr "Next"
 
-#, fuzzy
 msgctxt "now/next: 'next' event label"
 msgid "Next"
 msgstr "Next"
@@ -10759,24 +10798,25 @@ msgid "Next quad PiP channel"
 msgstr "Next quad PiP channel"
 
 msgid "Nextsong"
-msgstr "▶︎▶︎| Next track button"
+msgstr "▶︎▶︎| Next Track button"
 
+# msgctxt "button|hold"
 msgid "Nextsong long"
-msgstr "▶︎▶︎| Next track button hold"
+msgstr "▶︎▶︎| Next Track button hold"
 
-#. TRANSLATORS: regional option
+# TRANSLATORS: regional option label
 msgid "Nicaragua"
 msgstr "Nicaragua"
 
-#. TRANSLATORS: regional option
+# TRANSLATORS: regional option label
 msgid "Niger"
 msgstr "Niger"
 
-#. TRANSLATORS: regional option
+# TRANSLATORS: regional option label
 msgid "Nigeria"
 msgstr "Nigeria"
 
-#. TRANSLATORS: regional option
+# TRANSLATORS: regional option label
 msgid "Niue"
 msgstr "Niue"
 
@@ -10826,9 +10866,8 @@ msgstr "No cable tuner found!"
 msgid "No card inserted!"
 msgstr "No card inserted!"
 
-#, fuzzy
 msgid "No channel"
-msgstr "no channel list"
+msgstr "No channel"
 
 msgid "No clients streaming"
 msgstr "No clients streaming"
@@ -10846,9 +10885,8 @@ msgstr ""
 msgid "No delay"
 msgstr "no delay"
 
-#, fuzzy
 msgid "No demux available"
-msgstr "No free index available"
+msgstr "No demux available"
 
 msgid "No description available."
 msgstr "No description available."
@@ -10871,9 +10909,8 @@ msgstr "No event info found, recording indefinitely..."
 msgid "No fast winding possible yet.. but you can use the number buttons to skip forward/backward!"
 msgstr "Fast winding is not possible yet, but you can use the number buttons to skip forward/backward!"
 
-#, fuzzy
 msgid "No files found."
-msgstr "no image found"
+msgstr "No files found."
 
 msgid "No free index available"
 msgstr "No free index available"
@@ -11037,7 +11074,7 @@ msgstr "none"
 msgid "None of the hash programs for the hashes %s are available"
 msgstr ""
 
-#. TRANSLATORS: regional option
+# TRANSLATORS: regional option label
 msgid "Norfolk Island"
 msgstr "Norfolk Island"
 
@@ -11047,19 +11084,19 @@ msgstr "Normal mode"
 msgid "North"
 msgstr "North"
 
-#. TRANSLATORS: regional option
+# TRANSLATORS: regional option label
 msgid "Northern Mariana Islands"
 msgstr "Northern Mariana Islands"
 
-#. TRANSLATORS: regional option
+# TRANSLATORS: regional option label
 msgid "Norway"
 msgstr "Norway"
 
-#. TRANSLATORS: regional option
+# TRANSLATORS: language option label
 msgid "Norwegian"
-msgstr "Norwegian"
+msgstr "Norsk"
 
-#. TRANSLATORS: genre category
+# TRANSLATORS: EPG/IceTV genre subcategory
 msgid "Not Classified"
 msgstr "Not classified"
 
@@ -11127,10 +11164,9 @@ msgstr "Nothing to upgrade"
 msgid "Nothing, just leave this menu"
 msgstr "Nothing, just quit this menu"
 
-#, fuzzy
 msgctxt "now/next: 'now' event label"
 msgid "Now"
-msgstr "No"
+msgstr "Now"
 
 msgid "Now building the Backup Image"
 msgstr ""
@@ -11181,6 +11217,8 @@ msgstr "OEM Model:\t\t%s\n"
 msgid "OK"
 msgstr "OK"
 
+# dupe?
+# msgctxt "button|hold"
 msgid "OK button (long)"
 msgstr "OK button hold"
 
@@ -11190,6 +11228,8 @@ msgstr "OK button"
 msgid "OK button mode"
 msgstr "OK button"
 
+# dupe?
+# msgctxt "button|hold"
 msgid "OK long"
 msgstr "OK button hold"
 
@@ -11248,24 +11288,23 @@ msgstr "OK"
 msgid "Older files in the timeshift directory are removed on every event change."
 msgstr "Older files in the timeshift folder are removed on every event change."
 
-#. TRANSLATORS: regional option
+# TRANSLATORS: regional option label
 msgid "Olympia"
 msgstr ""
 
-#. TRANSLATORS: genre category
+# TRANSLATORS: EPG/IceTV genre subcategory
 msgid "Olympics"
 msgstr ""
 
-#. TRANSLATORS: regional option
+# TRANSLATORS: regional option label
 msgid "Oman"
 msgstr "Oman"
 
 msgid "On"
 msgstr "On"
 
-#, fuzzy
 msgid "On device:"
-msgstr "Input devices"
+msgstr "On device:"
 
 msgid "On end of movie"
 msgstr "On end of movie"
@@ -11339,6 +11378,7 @@ msgstr "Open bouquet list..."
 msgid "Open favourites list"
 msgstr "Open favorites list"
 
+# msgctxt "button|hold"
 msgid "Open long"
 msgstr "OPEN button hold"
 
@@ -11396,6 +11436,7 @@ msgstr "Power LED state during normal operation."
 msgid "Option"
 msgstr "Option"
 
+# msgctxt "button|hold"
 msgid "Option long"
 msgstr "Option button hold"
 
@@ -11427,10 +11468,11 @@ msgstr "Oscam Log ( Oscam Version: %s )"
 msgid "OscamInfo Mainmenu"
 msgstr "Oscam Info Main Menu"
 
+# TRANSLATORS: EPG ETSI genre
 msgid "Other"
 msgstr "Other"
 
-#. TRANSLATORS: genre category
+# TRANSLATORS: EPG/IceTV genre subcategory
 msgid "Outdoor"
 msgstr ""
 
@@ -11474,7 +11516,7 @@ msgid "Overwrite picon files during software upgrade?"
 msgstr "Choose whether to overwrite picon files during a software upgrade."
 
 msgid "Overwrite setting files (channellist) during software upgrade?"
-msgstr "Choose whether to overwrite settings files (eg. channel list) during a software upgrade."
+msgstr "Choose whether to overwrite settings files (e.g. channel list) during a software upgrade."
 
 msgid "Overwrite softcam files during software upgrade?"
 msgstr "Overwrite Softcam files during software upgrade"
@@ -11494,6 +11536,7 @@ msgstr "PAL"
 msgid "PC"
 msgstr "PC button"
 
+# msgctxt "button|hold"
 msgid "PC long"
 msgstr "PC button hold"
 
@@ -11521,6 +11564,7 @@ msgstr "PIN code needed"
 msgid "PIP"
 msgstr "PiP"
 
+# msgctxt "button|hold"
 msgid "PIP long"
 msgstr "PiP button hold"
 
@@ -11548,6 +11592,7 @@ msgstr "PRIMETIME"
 msgid "PVR"
 msgstr "PVR button"
 
+# msgctxt "button|hold"
 msgid "PVR long"
 msgstr "PVR button hold"
 
@@ -11584,24 +11629,26 @@ msgstr "Page up list"
 msgid "PageDown"
 msgstr "Page Down button"
 
+# msgctxt "button|hold"
 msgid "PageDown long"
 msgstr "Page Down button hold"
 
 msgid "PageUp"
 msgstr "Page Up button"
 
+# msgctxt "button|hold"
 msgid "PageUp long"
 msgstr "Page Up button hold"
 
-#. TRANSLATORS: regional option
+# TRANSLATORS: regional option label
 msgid "Pakistan"
 msgstr "Pakistan"
 
-#. TRANSLATORS: regional option
+# TRANSLATORS: regional option label
 msgid "Palau"
 msgstr "Palau"
 
-#. TRANSLATORS: regional option
+# TRANSLATORS: regional option label
 msgid "Palestine, State of"
 msgstr "Palestine, State of"
 
@@ -11610,7 +11657,7 @@ msgstr "Palestine, State of"
 msgid "Pan&scan"
 msgstr "pan and scan"
 
-#. TRANSLATORS: regional option
+# TRANSLATORS: regional option label
 msgid "Panama"
 msgstr "Panama"
 
@@ -11620,14 +11667,14 @@ msgstr "Panic channel"
 msgid "Panic to"
 msgstr "Panic to"
 
-#. TRANSLATORS: regional option
+# TRANSLATORS: regional option label
 msgid "Papua New Guinea"
 msgstr "Papua New Guinea"
 
 msgid "Parabel"
 msgstr "Parabola"
 
-#. TRANSLATORS: regional option
+# TRANSLATORS: regional option label
 msgid "Paraguay"
 msgstr "Paraguay"
 
@@ -11649,11 +11696,11 @@ msgstr "Parental control services editor"
 msgid "Parental control setup"
 msgstr "Parental Control Setup"
 
-#. TRANSLATORS: genre category
+# TRANSLATORS: EPG/IceTV genre subcategory
 msgid "Parliament"
 msgstr ""
 
-#. TRANSLATORS: genre category
+# TRANSLATORS: EPG/IceTV genre subcategory
 msgid "Parodie"
 msgstr "Parody"
 
@@ -11738,22 +11785,21 @@ msgstr "Are you sure you want to permanently delete all recordings in the trash 
 msgid "Permanently remove all deleted items"
 msgstr "Permanently remove all deleted items"
 
-#, fuzzy
 msgid "Permissions:"
-msgstr "Version: "
+msgstr "Permissions:"
 
-#. TRANSLATORS: regional option
+# TRANSLATORS: regional option label
 msgid "Persian"
 msgstr "Persian"
 
 msgid "Personalize your Skin"
 msgstr "Personalize your Skin"
 
-#. TRANSLATORS: regional option
+# TRANSLATORS: regional option label
 msgid "Peru"
 msgstr "Peru"
 
-#. TRANSLATORS: regional option
+# TRANSLATORS: regional option label
 msgid "Philippines"
 msgstr "Philippines"
 
@@ -11806,11 +11852,11 @@ msgstr "Pictures"
 msgid "Pillarbox"
 msgstr "pillarbox"
 
-#. TRANSLATORS: genre category
+# TRANSLATORS: EPG/IceTV genre subcategory
 msgid "Pilot"
 msgstr "Pilot"
 
-#. TRANSLATORS: regional option
+# TRANSLATORS: regional option label
 msgid "Pitcairn"
 msgstr "Pitcairn"
 
@@ -11820,9 +11866,8 @@ msgstr "Play"
 msgid "Play DVD"
 msgstr "Play DVD"
 
-#, fuzzy
 msgid "Play DVDs"
-msgstr "Play DVD"
+msgstr "Play DVDs"
 
 msgid "Play audio in background"
 msgstr "Play audio in background"
@@ -11863,9 +11908,8 @@ msgstr "Play previous"
 msgid "Play recorded movies..."
 msgstr "Play recorded movies..."
 
-#, fuzzy
 msgid "Play title"
-msgstr "Delay time"
+msgstr "Play title"
 
 msgid "Play/view/edit/install/extract/run file or enter folder"
 msgstr ""
@@ -11873,6 +11917,7 @@ msgstr ""
 msgid "Playlist"
 msgstr "Playlist"
 
+# msgctxt "button|hold"
 msgid "Playlist long"
 msgstr "Playlist button hold"
 
@@ -11938,7 +11983,7 @@ msgid "Please enter a new filename"
 msgstr "Please enter a new filename"
 
 msgid "Please enter filename (empty = use current date)"
-msgstr "Please enter filename (empty = use current date)"
+msgstr "Please enter filename (use current date if left empty)"
 
 msgid "Please enter name of the new directory"
 msgstr "Please enter a name for the new folder"
@@ -12289,11 +12334,11 @@ msgstr "Plugin Browser Settings"
 msgid "Plugins"
 msgstr "Plugins"
 
-#. TRANSLATORS: genre category
+# TRANSLATORS: EPG/IceTV genre subcategory
 msgid "Poker"
 msgstr ""
 
-#. TRANSLATORS: regional option
+# TRANSLATORS: regional option label
 msgid "Poland"
 msgstr "Poland"
 
@@ -12303,11 +12348,11 @@ msgstr "Polarisation"
 msgid "Polarization"
 msgstr "Polarization"
 
-#. TRANSLATORS: regional option
+# TRANSLATORS: language option label
 msgid "Polish"
-msgstr "Polish"
+msgstr "Polski"
 
-#. TRANSLATORS: genre category
+# TRANSLATORS: EPG/IceTV genre subcategory
 msgid "Politik"
 msgstr "Politics"
 
@@ -12335,13 +12380,13 @@ msgstr "Port:"
 msgid "Porträt"
 msgstr "Portrait"
 
-#. TRANSLATORS: regional option
+# TRANSLATORS: regional option label
 msgid "Portugal"
 msgstr "Portugal"
 
-#. TRANSLATORS: regional option
+# TRANSLATORS: language option label
 msgid "Portuguese"
-msgstr "Portuguese"
+msgstr "Português"
 
 msgid "Position Setup"
 msgstr "Position Setup"
@@ -12391,6 +12436,7 @@ msgstr "Power LED state during standby."
 msgid "Power On Display"
 msgstr "Enable front panel display"
 
+# msgctxt "button|hold"
 msgid "Power long"
 msgstr "Power button hold"
 
@@ -12472,7 +12518,7 @@ msgstr "Prepare another USB stick for image flashing"
 msgid "Preparing... Please wait"
 msgstr "Preparing, please wait..."
 
-#. TRANSLATORS: genre category
+# TRANSLATORS: EPG/IceTV genre subcategory
 msgid "Preschool"
 msgstr ""
 
@@ -12510,9 +12556,8 @@ msgstr "Press OK to get further details for %s"
 msgid "Press OK to scan"
 msgstr "Press OK to start scanning."
 
-#, fuzzy
 msgid "Press OK to select a group of satellites to configure in one block."
-msgstr "Press OK to select satellites"
+msgstr "Press OK to select several satellites to configure together."
 
 msgid "Press OK to select a provider."
 msgstr "Press OK to select a provider."
@@ -12569,10 +12614,11 @@ msgid "Previous page"
 msgstr "previous page"
 
 msgid "Prevsong"
-msgstr "|◀︎◀︎ Previous track"
+msgstr "|◀︎◀︎ Previous Track"
 
+# msgctxt "button|hold"
 msgid "Prevsong long"
-msgstr "|◀︎◀︎ Previous track button hold"
+msgstr "|◀︎◀︎ Previous Track button hold"
 
 msgid "Primary DNS"
 msgstr "Primary DNS"
@@ -12632,6 +12678,7 @@ msgid ""
 "The package containing this program isn't known."
 msgstr ""
 
+# msgctxt "button|hold"
 msgid "Program long"
 msgstr "Program button hold"
 
@@ -12728,6 +12775,7 @@ msgstr "Protocol"
 msgid "Prov"
 msgstr "Prov"
 
+# msgctxt "button|hold"
 msgid "Prov long"
 msgstr "Prov button hold"
 
@@ -12749,15 +12797,15 @@ msgstr "Providers:"
 msgid "Providers: "
 msgstr "Providers: "
 
-#. TRANSLATORS: genre category
+# TRANSLATORS: EPG/IceTV genre subcategory
 msgid "Psychologie"
 msgstr "Psychology"
 
-#. TRANSLATORS: regional option
+# TRANSLATORS: regional option label
 msgid "Puerto Rico"
 msgstr "Puerto Rico"
 
-#. TRANSLATORS: genre category
+# TRANSLATORS: EPG/IceTV genre subcategory
 msgid "Puppentrick"
 msgstr "Puppetry"
 
@@ -12774,7 +12822,7 @@ msgstr "Python frontend for /tmp/mmi.socket"
 msgid "Python:\t\t%s"
 msgstr "Python:\t%s"
 
-#. TRANSLATORS: regional option
+# TRANSLATORS: regional option label
 msgid "Qatar"
 msgstr "Qatar"
 
@@ -12817,7 +12865,7 @@ msgstr "Quick Menu"
 msgid "QuickMenu/Extensions"
 msgstr "Quick Menu/Extensions"
 
-#. TRANSLATORS: genre category
+# TRANSLATORS: EPG/IceTV genre subcategory
 msgid "Quiz"
 msgstr ""
 
@@ -12848,10 +12896,11 @@ msgstr "Radio button"
 msgid "Radio Channel Selection"
 msgstr "Radio Channel Selection"
 
+# msgctxt "button|hold"
 msgid "Radio long"
 msgstr "Radio button hold"
 
-#. TRANSLATORS: genre category
+# TRANSLATORS: EPG/IceTV genre subcategory
 msgid "Radsport"
 msgstr "Cycling"
 
@@ -12861,9 +12910,8 @@ msgstr "RAM"
 msgid "Random"
 msgstr "Random"
 
-#, fuzzy
 msgid "Random password"
-msgstr "Please enter new name:"
+msgstr "Random password"
 
 #, python-format
 msgid "Rating defined by broadcaster - %d"
@@ -12900,11 +12948,11 @@ msgstr "Ready to remove \"%s\"?"
 msgid "Ready to remove %s ?"
 msgstr "Ready to remove %s?"
 
-#. TRANSLATORS: genre category
+# TRANSLATORS: IceTV genre
 msgid "Real Life"
 msgstr ""
 
-#. TRANSLATORS: genre category
+# TRANSLATORS: EPG/IceTV genre subcategory
 msgid "Reality"
 msgstr ""
 
@@ -12927,14 +12975,14 @@ msgid "Really exit the subservices quickzap?"
 msgstr "Are you sure you want to exit the subservices quick zap?"
 
 msgid "Really reboot into Recovery Mode?"
-msgstr "Are you sure you want to reboot into recovery mode?"
+msgstr "Are you sure you want to restart into recovery mode?"
 
 msgid "Really reboot now?"
-msgstr "Are you sure you want to reboot now?"
+msgstr "Are you sure you want to restart now?"
 
 #, python-format
 msgid "Really reflash your %s %s and reboot now?"
-msgstr "Are you sure you want to reflash your %s %s and reboot now?"
+msgstr "Are you sure you want to reflash your %s %s and restart now?"
 
 msgid "Really restart now?"
 msgstr "Are you sure you want to restart now?"
@@ -12943,17 +12991,17 @@ msgid "Really shutdown now?"
 msgstr "Are you sure you want to shutdown now?"
 
 msgid "Really upgrade the front panel and reboot now?"
-msgstr "Are you sure you want to upgrade the front panel and reboot now?"
+msgstr "Are you sure you want to upgrade the front panel and restart now?"
 
 msgid "Really upgrade the frontprocessor and reboot now?"
-msgstr "Are you sure you want to upgrade the front processor and reboot?"
+msgstr "Are you sure you want to upgrade the front processor and restart?"
 
 #, python-format
 msgid "Really upgrade your %s %s and reboot now?"
-msgstr "Are you sure you want to upgrade your %s %s and reboot now?"
+msgstr "Are you sure you want to upgrade your %s %s and restart now?"
 
 msgid "Reboot"
-msgstr "Reboot"
+msgstr "Restart"
 
 msgid "Rebuild"
 msgstr "Rebuild"
@@ -12964,6 +13012,7 @@ msgstr "Rebuild LCN bouquet now?"
 msgid "Rec"
 msgstr "● REC"
 
+# msgctxt "button|hold"
 msgid "Rec long"
 msgstr "● REC button hold"
 
@@ -13077,6 +13126,7 @@ msgstr "Record"
 msgid "Recovery Mode"
 msgstr "Recovery Mode"
 
+# colour
 msgid "Red"
 msgstr "Red button"
 
@@ -13089,6 +13139,7 @@ msgstr "Red button..."
 msgid "Red colored"
 msgstr "red color text"
 
+# msgctxt "button|hold"
 msgid "Red long"
 msgstr "Red button hold"
 
@@ -13107,8 +13158,8 @@ msgid ""
 "Please wait until your %s %s reboots\n"
 "This may take a few minutes"
 msgstr ""
-"Reflash in progress.\n"
-"Please wait until your %s %s reboots!\n"
+"Re-flashing in progress.\n"
+"Please wait until your %s %s restarts!\n"
 "This could take a while..."
 
 msgid "Refresh every (in hours)"
@@ -13135,15 +13186,14 @@ msgstr "Region"
 msgid "Regional"
 msgstr ""
 
-#, fuzzy
 msgid "Regular file"
-msgstr "template file"
+msgstr "Regular file"
 
-#. TRANSLATORS: genre category
+# TRANSLATORS: EPG/IceTV genre subcategory
 msgid "Reisen"
 msgstr "Travel"
 
-#. TRANSLATORS: genre category
+# TRANSLATORS: EPG/IceTV genre subcategory
 msgid "Reiten"
 msgstr "Horse riding"
 
@@ -13156,7 +13206,7 @@ msgstr "Release Notes"
 msgid "Relevant PIDs Routing"
 msgstr ""
 
-#. TRANSLATORS: genre category
+# TRANSLATORS: EPG/IceTV genre subcategory
 msgid "Religion"
 msgstr ""
 
@@ -13236,9 +13286,8 @@ msgstr "Remove a mark"
 msgid "Remove a nameserver entry"
 msgstr "Remove a nameserver entry"
 
-#, fuzzy
 msgid "Remove all cuts and marks"
-msgstr "Remove a mark"
+msgstr "Remove all cuts and marks"
 
 msgid "Remove bookmark"
 msgstr "Remove bookmark"
@@ -13312,7 +13361,7 @@ msgstr "Rename to:"
 msgid "Renamed %s!"
 msgstr "Renamed %s!"
 
-#. TRANSLATORS: genre category
+# TRANSLATORS: EPG/IceTV genre subcategory
 msgid "Renovation"
 msgstr "House & DIY"
 
@@ -13340,7 +13389,7 @@ msgstr "Repeats"
 msgid "Replace `- ` in dialogs with colored text per speaker (like teletext subtitles for the hearing impaired)"
 msgstr "Replace '- ' in dialog with colored text per speaker (like teletext subtitles for the hearing impaired)."
 
-#. TRANSLATORS: genre category
+# TRANSLATORS: EPG/IceTV genre subcategory
 msgid "Reportage"
 msgstr "Report"
 
@@ -13353,6 +13402,7 @@ msgstr "Required medium type:"
 msgid "Rereading partition table"
 msgstr "Re-reading partition table"
 
+# TRANSLATORS: EPG ETSI genre
 msgid "Reserved"
 msgstr "Reserved"
 
@@ -13417,9 +13467,8 @@ msgstr "Restart Network Adapter"
 msgid "Restart both"
 msgstr "Restart both"
 
-#, fuzzy
 msgid "Restart cardserver"
-msgstr "get the cards' server"
+msgstr "Restart card server"
 
 msgid "Restart enigma"
 msgstr "Restart Enigma2"
@@ -13478,7 +13527,7 @@ msgstr "Restoring..."
 msgid "Restrict the active time range"
 msgstr "Restrict active time range"
 
-#. TRANSLATORS: genre category
+# TRANSLATORS: EPG/IceTV genre subcategory
 msgid "Restricted 18+"
 msgstr ""
 
@@ -13504,7 +13553,7 @@ msgstr "return to movie list"
 msgid "Return to previous service"
 msgstr "return to previous service"
 
-#. TRANSLATORS: regional option
+# TRANSLATORS: regional option label
 msgid "Reunion"
 msgstr "Reunion"
 
@@ -13520,7 +13569,7 @@ msgstr "Reverse list"
 msgid "Reverse right file sorting"
 msgstr "Reverse right file sorting"
 
-#. TRANSLATORS: genre category
+# TRANSLATORS: EPG/IceTV genre subcategory
 msgid "Revue"
 msgstr ""
 
@@ -13539,25 +13588,26 @@ msgstr "▶︎ Right"
 msgid "Right from servicename"
 msgstr "right of service name"
 
+# msgctxt "button|hold"
 msgid "Right long"
 msgstr "▶︎ Right button hold"
 
 msgid "Roll-off"
 msgstr "Roll-off"
 
-#. TRANSLATORS: genre category
+# TRANSLATORS: EPG/IceTV genre subcategory
 msgid "Romance"
 msgstr ""
 
-#. TRANSLATORS: regional option
+# TRANSLATORS: regional option label
 msgid "Romania"
 msgstr "Romania"
 
-#. TRANSLATORS: regional option
+# TRANSLATORS: regional option label
 msgid "Romanian"
 msgstr "Romanian"
 
-#. TRANSLATORS: genre category
+# TRANSLATORS: EPG/IceTV genre subcategory
 msgid "Romantik"
 msgstr "Romantic"
 
@@ -13568,23 +13618,23 @@ msgid "Root directory"
 msgstr "Root folder"
 
 msgid "Rotor step position:"
-msgstr "Rotator step position:"
+msgstr "Positioner step position:"
 
 msgid "Rotor turning speed"
-msgstr "Rotator turning speed"
+msgstr "Positioner turning speed"
 
 msgid "Routing request"
 msgstr "Routing request"
 
-#. TRANSLATORS: genre category
+# TRANSLATORS: EPG/IceTV genre subcategory
 msgid "Rowing"
 msgstr ""
 
-#. TRANSLATORS: genre category
+# TRANSLATORS: EPG/IceTV genre subcategory
 msgid "Rugby"
 msgstr ""
 
-#. TRANSLATORS: genre category
+# TRANSLATORS: EPG/IceTV genre subcategory
 msgid "Rugby League"
 msgstr ""
 
@@ -13604,9 +13654,8 @@ msgstr "Run frequency"
 msgid "Run script"
 msgstr ""
 
-#, fuzzy
 msgid "Run script in background"
-msgstr "Continue in background"
+msgstr "Run script in background"
 
 msgid "Run script with optional parameter"
 msgstr ""
@@ -13620,15 +13669,15 @@ msgstr "Running"
 msgid "Running Myrestore script, Please wait ..."
 msgstr "Running Myrestore script, please wait..."
 
-#. TRANSLATORS: regional option
+# TRANSLATORS: language option label
 msgid "Russian"
-msgstr "Russian"
+msgstr "Русский"
 
-#. TRANSLATORS: regional option
+# TRANSLATORS: regional option label
 msgid "Russian Federation"
 msgstr "Russian Federation"
 
-#. TRANSLATORS: regional option
+# TRANSLATORS: regional option label
 msgid "Rwanda"
 msgstr "Rwanda"
 
@@ -13644,6 +13693,7 @@ msgstr "SABnzbd Setup"
 msgid "SAT"
 msgstr "SAT"
 
+# msgctxt "button|hold"
 msgid "SAT long"
 msgstr "SAT button hold"
 
@@ -13692,38 +13742,38 @@ msgstr "STARTUP_"
 msgid "STB Display"
 msgstr "Front Panel Display Settings"
 
-#. TRANSLATORS: genre category
+# TRANSLATORS: EPG/IceTV genre subcategory
 msgid "Saga"
 msgstr ""
 
-#. TRANSLATORS: genre category
+# TRANSLATORS: EPG/IceTV genre subcategory
 msgid "Sailing"
 msgstr "Sailing"
 
 msgid "Saint Barthelemy"
 msgstr "Saint Barthelemy"
 
-#. TRANSLATORS: regional option
+# TRANSLATORS: regional option label
 msgid "Saint Helena, Ascension and Tristan da Cunha"
 msgstr "Saint Helena, Ascension and Tristan da Cunha"
 
-#. TRANSLATORS: regional option
+# TRANSLATORS: regional option label
 msgid "Saint Kitts and Nevis"
 msgstr "Saint Kitts and Nevis"
 
-#. TRANSLATORS: regional option
+# TRANSLATORS: regional option label
 msgid "Saint Lucia"
 msgstr "Saint Lucia"
 
-#. TRANSLATORS: regional option
+# TRANSLATORS: regional option label
 msgid "Saint Martin (French part)"
 msgstr "Saint Martin, French part"
 
-#. TRANSLATORS: regional option
+# TRANSLATORS: regional option label
 msgid "Saint Pierre and Miquelon"
 msgstr "Saint Pierre and Miquelon"
 
-#. TRANSLATORS: regional option
+# TRANSLATORS: regional option label
 msgid "Saint Vincent and the Grenadines"
 msgstr "Saint Vincent and the Grenadines"
 
@@ -13746,15 +13796,15 @@ msgstr "* current animation"
 msgid "Same resolution as skin"
 msgstr "Same resolution as skin"
 
-#. TRANSLATORS: regional option
+# TRANSLATORS: regional option label
 msgid "Samoa"
 msgstr "Samoa"
 
-#. TRANSLATORS: regional option
+# TRANSLATORS: regional option label
 msgid "San Marino"
 msgstr "San Marino"
 
-#. TRANSLATORS: regional option
+# TRANSLATORS: regional option label
 msgid "Sao Tome and Principe"
 msgstr "São Tomé and Príncipe"
 
@@ -13788,7 +13838,7 @@ msgstr "Satellites"
 msgid "Satfinder"
 msgstr "Sat finder"
 
-#. TRANSLATORS: genre category
+# TRANSLATORS: EPG/IceTV genre subcategory
 msgid "Satire"
 msgstr ""
 
@@ -13801,7 +13851,7 @@ msgstr "Saturation"
 msgid "Saturday"
 msgstr "Saturday"
 
-#. TRANSLATORS: regional option
+# TRANSLATORS: regional option label
 msgid "Saudi Arabia"
 msgstr "Saudi Arabia"
 
@@ -13932,19 +13982,19 @@ msgstr "Scanning..."
 msgid "Scans default lamedbs sorted by satellite with a connected dish positioner"
 msgstr "Scans default lamedbs sorted by satellite with a connected dish positioner"
 
-#. TRANSLATORS: genre category
+# TRANSLATORS: EPG/IceTV genre subcategory
 msgid "Sci-Fi"
 msgstr "Sci-fi"
 
-#. TRANSLATORS: genre category
+# TRANSLATORS: EPG/IceTV genre subcategory
 msgid "Science"
 msgstr ""
 
-#. TRANSLATORS: genre category
+# TRANSLATORS: EPG/IceTV genre subcategory
 msgid "Science & Tech"
 msgstr "Science & Technology"
 
-#. TRANSLATORS: genre category
+# TRANSLATORS: EPG/IceTV genre subcategory
 msgid "Science-Fiction"
 msgstr "Science fiction"
 
@@ -14000,6 +14050,7 @@ msgstr "Search west"
 msgid "Search/WEB"
 msgstr "Search/WEB"
 
+# msgctxt "button|hold"
 msgid "Search/WEB long"
 msgstr "Search/WEB button hold"
 
@@ -14129,6 +14180,7 @@ msgstr "Select Quad Channels"
 msgid "Select Red-key action"
 msgstr "Red button"
 
+# msgctxt "button|hold"
 msgid "Select Red-key action long"
 msgstr "Red button hold"
 
@@ -14141,6 +14193,7 @@ msgstr "Select Software Update"
 msgid "Select Yellow Key Action"
 msgstr "Yellow button"
 
+# msgctxt "button|hold"
 msgid "Select Yellow Key Action long"
 msgstr "Yellow button hold"
 
@@ -14235,6 +14288,7 @@ msgstr "Select how your box should upgrade."
 msgid "Select if timeshift must continue when set to record."
 msgstr "Select whether timeshift should continue when set to record."
 
+#, fuzzy
 msgid "Select if you want the Subservice mode to be activated."
 msgstr "Select if you want the Subservice mode to be activated."
 
@@ -14253,6 +14307,7 @@ msgstr "Select location"
 msgid "Select movie"
 msgstr "Select movie"
 
+#, fuzzy
 msgid "Select of the number"
 msgstr "Select of the number"
 
@@ -14266,7 +14321,7 @@ msgid "Select satellites"
 msgstr "Select satellites"
 
 msgid "Select seekbar to be activated by arrow L/R (long) or << >> (long)."
-msgstr "Choose whether to activate the seekbar by holding down the ◀︎ / ▶︎ or ◀︎◀︎ / ▶︎▶︎ buttons."
+msgstr "Choose whether to activate the seekbar by holding down the ◀︎ LEFT / RIGHT ▶︎ or ◀︎◀︎ REW / FWD ▶︎▶︎ buttons."
 
 msgid "Select service to add..."
 msgstr "Select a service to add..."
@@ -14299,7 +14354,7 @@ msgid "Select the User Band frequency to be assigned to this tuner. This is the 
 msgstr ""
 
 msgid "Select the character or action under the virtual keyboard cursor"
-msgstr ""
+msgstr "Select the character or action under the on-screen keyboard cursor"
 
 msgid "Select the desired function and click on \"OK\" to assign it. Use \"CH+/-\" to toggle between the lists. Select an assigned function and click on \"OK\" to de-assign it. Use \"Next/Previous\" to change the order of the assigned functions."
 msgstr ""
@@ -14359,13 +14414,13 @@ msgid "Select the type of Single Cable Reception device you are using."
 msgstr ""
 
 msgid "Select the virtual keyboard locale from a menu"
-msgstr ""
+msgstr "Select the on-screen keyboard locale from a menu"
 
 msgid "Select the virtual keyboard shifted character set"
-msgstr ""
+msgstr "Select the on-screen keyboard shifted character set"
 
 msgid "Select the virtual keyboard shifted character set for the next character only"
-msgstr ""
+msgstr "Select the on-screen keyboard shifted character set for the next character only"
 
 msgid "Select upgrade source"
 msgstr "Select upgrade source"
@@ -14418,9 +14473,8 @@ msgstr "Choose what you'd like the Yellow button to do when held down."
 msgid "Select wireless network"
 msgstr "Select wireless network"
 
-#, fuzzy
 msgid "Select your ATSC provider."
-msgstr "ATSC provider"
+msgstr "Select your ATSC provider."
 
 msgid "Select your Language for Audio/Subtitles"
 msgstr "Select your language for audio/subtitles"
@@ -14498,7 +14552,7 @@ msgstr "Send DiSEqC"
 msgid "Send DiSEqC only on satellite change"
 msgstr "Send DiSEqC only on satellite change"
 
-#. TRANSLATORS: regional option
+# TRANSLATORS: regional option label
 msgid "Senegal"
 msgstr "Senegal"
 
@@ -14508,18 +14562,18 @@ msgstr "Seperate titles with a main menu"
 msgid "Sequence repeat"
 msgstr "Sequence repeat"
 
-#. TRANSLATORS: regional option
+# TRANSLATORS: regional option label
 msgid "Serbia"
 msgstr "Serbia"
 
-#. TRANSLATORS: regional option
+# TRANSLATORS: regional option label
 msgid "Serbian"
 msgstr "Serbian"
 
 msgid "Serial No"
 msgstr "Serial No"
 
-#. TRANSLATORS: genre category
+# TRANSLATORS: EPG/IceTV genre subcategory
 msgid "Serie"
 msgstr "Series"
 
@@ -14795,9 +14849,8 @@ msgstr "Set to your preferred primetime minute."
 msgid "Set to what you want the button to do."
 msgstr "Choose what you'd like this button to do."
 
-#, fuzzy
 msgid "Set to yes for debugging the root cause of a spinner."
-msgstr "Set to yes ONLY TEMPORARILY for debugging the root cause of a spinner."
+msgstr "Set to yes ONLY TEMPORARILY for debugging the root cause of a spinner (system slowdown)."
 
 msgid "Set voltage and 22KHz"
 msgstr "Set voltage and 22KHz"
@@ -14922,7 +14975,7 @@ msgid "Setup network. Here you can setup DHCP, IP, DNS"
 msgstr "Set up network. Here you can setup DHCP, IP, DNS"
 
 msgid "Setup rotor"
-msgstr "Set up rotator"
+msgstr "Set up positioner"
 
 msgid "Setup the interval to check for online updates. (in hours)"
 msgstr "Set up the interval to check for online updates. (in hours)"
@@ -15002,7 +15055,7 @@ msgstr "Set up your satellite equipment"
 msgid "Setup your timezone."
 msgstr "Set up your time zone"
 
-#. TRANSLATORS: regional option
+# TRANSLATORS: regional option label
 msgid "Seychelles"
 msgstr "Seychelles"
 
@@ -15028,11 +15081,11 @@ msgstr "Shellscript"
 msgid "Shift"
 msgstr ""
 
-#. TRANSLATORS: genre category
+# TRANSLATORS: EPG/IceTV genre subcategory
 msgid "Shopping"
 msgstr ""
 
-#. TRANSLATORS: genre category
+# TRANSLATORS: EPG/IceTV genre subcategory
 msgid "Short Film"
 msgstr ""
 
@@ -15043,11 +15096,10 @@ msgid "Short filenames with time"
 msgstr "Short filenames with time"
 
 msgid "Should the crash counter be reset to prevent a restart?"
-msgstr ""
+msgstr "Would you like to reset the crash counter to prevent a restart?"
 
-#, fuzzy
 msgid "Show"
-msgstr "Show EPG"
+msgstr "Show"
 
 #, python-format
 msgid ""
@@ -15339,7 +15391,6 @@ msgstr "Show default backup files"
 msgid "Show detailed event info"
 msgstr "Show detailed event info"
 
-#, fuzzy
 msgid "Show detailed event info (setup in menu)"
 msgstr "Show detailed event info (set up in menu)"
 
@@ -15490,9 +15541,8 @@ msgstr "Positioner movement indicator"
 msgid "Show preview of current mode (*)."
 msgstr "Show preview of current mode (*)."
 
-#, fuzzy
 msgid "Show previous picture"
-msgstr "Switch to previous channel"
+msgstr "Show previous picture"
 
 msgid "Show quickmenu..."
 msgstr "Show quick menu..."
@@ -15611,9 +15661,8 @@ msgstr "Show translation packages"
 msgid "Show transponder remaining/elapsed as"
 msgstr "Show transponder remaining/elapsed as"
 
-#, fuzzy
 msgid "Show two lines per entry"
-msgstr "Show Merlin EPG Center"
+msgstr "Show two lines per entry"
 
 msgid "Show unknown Videoresolution as next higher or as highest screen resolution."
 msgstr "Show unknown video resolution as next higher or highest screen resolution."
@@ -15636,6 +15685,7 @@ msgstr "Show warning before restart"
 msgid "Show warning when timeshift is stopped"
 msgstr "Show warning when timeshift is stopped"
 
+# TRANSLATORS: EPG ETSI genre; IceTV genre
 msgid "Show/Games show"
 msgstr "Show/Gameshow"
 
@@ -15721,11 +15771,11 @@ msgstr "Simple zoom"
 msgid "SimpleUmount"
 msgstr "Simple Umount"
 
-#. TRANSLATORS: regional option
+# TRANSLATORS: regional option label
 msgid "Simplified Chinese"
 msgstr "Simplified Chinese"
 
-#. TRANSLATORS: regional option
+# TRANSLATORS: regional option label
 msgid "Singapore"
 msgstr "Singapore"
 
@@ -15744,11 +15794,11 @@ msgstr "single step (GOP)"
 msgid "SingleEPG settings"
 msgstr "Single EPG Settings"
 
-#. TRANSLATORS: regional option
+# TRANSLATORS: regional option label
 msgid "Sint Maarten (Dutch part)"
 msgstr "Sint Maarten, Dutch part"
 
-#. TRANSLATORS: genre category
+# TRANSLATORS: EPG/IceTV genre subcategory
 msgid "Sitcom"
 msgstr ""
 
@@ -15809,7 +15859,7 @@ msgstr "Skip internet connection check (disables automatic package installation)
 msgid "Skip selection"
 msgstr "Skip selection"
 
-#. TRANSLATORS: genre category
+# TRANSLATORS: EPG/IceTV genre subcategory
 msgid "Slapstick"
 msgstr "Slapstick comedy"
 
@@ -15822,6 +15872,7 @@ msgstr "Sleep Timer"
 msgid "Sleep delay"
 msgstr "Sleep delay"
 
+# msgctxt "button|hold"
 msgid "Sleep long"
 msgstr "Sleep button hold"
 
@@ -15853,21 +15904,21 @@ msgstr "Slide top to bottom"
 msgid "Slot %d"
 msgstr "Slot %d"
 
-#. TRANSLATORS: regional option
+# TRANSLATORS: language option label
 msgid "Slovak"
-msgstr "Slovak"
+msgstr "Slovensky"
 
-#. TRANSLATORS: regional option
+# TRANSLATORS: regional option label
 msgid "Slovakia"
 msgstr "Slovakia"
 
-#. TRANSLATORS: regional option
+# TRANSLATORS: regional option label
 msgid "Slovenia"
 msgstr "Slovenia"
 
-#. TRANSLATORS: regional option
+# TRANSLATORS: language option label
 msgid "Slovenian"
-msgstr "Slovenian"
+msgstr "Slovenščina"
 
 msgid "Slow"
 msgstr "Slow"
@@ -15890,23 +15941,23 @@ msgstr ""
 msgid "Smpte 240M"
 msgstr ""
 
-#. TRANSLATORS: genre category
+# TRANSLATORS: EPG/IceTV genre subcategory
 msgid "Soap"
 msgstr ""
 
-#. TRANSLATORS: genre category
+# TRANSLATORS: EPG/IceTV genre subcategory
 msgid "Soap Opera"
 msgstr ""
 
-#. TRANSLATORS: genre category
+# TRANSLATORS: EPG/IceTV genre subcategory
 msgid "Soccer"
 msgstr ""
 
-#. TRANSLATORS: genre category
+# TRANSLATORS: EPG ETSI genre; IceTV genre
 msgid "Social/Political/Economics"
-msgstr "Social Affairs/Politics/Economics"
+msgstr "Social/Political/Economics"
 
-#. TRANSLATORS: genre category
+# TRANSLATORS: EPG/IceTV genre subcategory
 msgid "Society & Culture"
 msgstr ""
 
@@ -15973,11 +16024,11 @@ msgstr "Software manager..."
 msgid "Softwareupdate"
 msgstr "Software update"
 
-#. TRANSLATORS: regional option
+# TRANSLATORS: regional option label
 msgid "Solomon Islands"
 msgstr "Solomon Islands"
 
-#. TRANSLATORS: regional option
+# TRANSLATORS: regional option label
 msgid "Somalia"
 msgstr "Somalia"
 
@@ -16104,49 +16155,49 @@ msgstr "Source request"
 msgid "South"
 msgstr "South"
 
-#. TRANSLATORS: regional option
+# TRANSLATORS: regional option label
 msgid "South Africa"
 msgstr "South Africa"
 
-#. TRANSLATORS: regional option
+# TRANSLATORS: regional option label
 msgid "South Georgia and the South Sandwich Islands"
 msgstr "South Georgia and the South Sandwich Islands"
 
-#. TRANSLATORS: regional option
+# TRANSLATORS: regional option label
 msgid "South Sudan"
 msgstr "South Sudan"
 
 msgid "Space used:"
 msgstr "Space used:"
 
-#. TRANSLATORS: regional option
+# TRANSLATORS: regional option label
 msgid "Spain"
 msgstr "Spain"
 
-#. TRANSLATORS: regional option
+# TRANSLATORS: language option label
 msgid "Spanish"
-msgstr "Spanish"
+msgstr "Español"
 
-#, fuzzy
+# TRANSLATORS: EPG AUS genre; IceTV genre
 msgid "Special"
-msgstr "Serial No"
+msgstr "Special"
 
-#, fuzzy
+# msgctxt "keyboard"
 msgid "Special 1"
-msgstr "Serial No"
+msgstr "Special 1"
 
-#, fuzzy
+# msgctxt "keyboard"
 msgid "Special 2"
-msgstr "Serial No"
+msgstr "Special 2"
 
 msgid "Special Features"
 msgstr "Special Features"
 
-#. TRANSLATORS: genre category
+# TRANSLATORS: EPG/IceTV genre subcategory
 msgid "Spiele"
 msgstr "Games"
 
-#. TRANSLATORS: genre category
+# TRANSLATORS: EPG/IceTV genre subcategory
 msgid "Spielfilm"
 msgstr "Motion pictures"
 
@@ -16156,19 +16207,19 @@ msgstr "Split preview mode"
 msgid "Splitscreen"
 msgstr "Split screen"
 
-#. TRANSLATORS: genre category
+# TRANSLATORS: EPG AUS genre
 msgid "Sport"
 msgstr ""
 
-#. TRANSLATORS: genre category
+# TRANSLATORS: EPG ETSI genre; IceTV genre
 msgid "Sports"
 msgstr "Sports"
 
-#. TRANSLATORS: genre category
+# TRANSLATORS: EPG/IceTV genre subcategory
 msgid "Sprache"
 msgstr "Language"
 
-#. TRANSLATORS: regional option
+# TRANSLATORS: regional option label
 msgid "Sri Lanka"
 msgstr "Sri Lanka"
 
@@ -16229,15 +16280,14 @@ msgstr "Start time"
 msgid "Start timeshift"
 msgstr "Start timeshift"
 
-#, fuzzy
 msgid "Start/stop slide show"
-msgstr "Start/stop/select cam"
+msgstr "Start/stop slideshow"
 
 msgid "Start/stop/select cam"
 msgstr "Start/stop/select cam"
 
 msgid "Start/stop/select your cam, You need to install first a softcam"
-msgstr "Start/stop/select your cam, you'll need to install a softcam first"
+msgstr "Start/stop/select your cam; you'll need to install a softcam first"
 
 msgid "StartWizard"
 msgstr "Start Wizard"
@@ -16248,9 +16298,8 @@ msgstr "Starting Softcam"
 msgid "Starting on"
 msgstr "Starting on"
 
-#, fuzzy
 msgid "Starts in a few seconds"
-msgstr "Start offline decode"
+msgstr "Will start in a few seconds"
 
 msgid "Status"
 msgstr "Status"
@@ -16400,7 +16449,7 @@ msgstr "Stripes"
 msgid "Strongest position"
 msgstr "Strongest position"
 
-#. TRANSLATORS: genre category
+# TRANSLATORS: EPG/IceTV genre subcategory
 msgid "Stumm"
 msgstr "Silent"
 
@@ -16418,7 +16467,7 @@ msgid "Subservices"
 msgstr "Subservices"
 
 msgid "Subtitle"
-msgstr "Subtitle button"
+msgstr "SUB/Subtitle button"
 
 msgid "Subtitle Quickmenu"
 msgstr "Subtitle Quick Menu"
@@ -16453,8 +16502,9 @@ msgstr "Subtitle language 3"
 msgid "Subtitle language selection 4"
 msgstr "Subtitle language 4"
 
+# msgctxt "button|hold"
 msgid "Subtitle long"
-msgstr "Subtitle button hold"
+msgstr "SUB/Subtitle button hold"
 
 msgid "Subtitle position"
 msgstr "Vertical position"
@@ -16477,7 +16527,7 @@ msgstr "Subtitles Settings"
 msgid "Succeeded:"
 msgstr "Succeeded:"
 
-#. TRANSLATORS: regional option
+# TRANSLATORS: regional option label
 msgid "Sudan"
 msgstr "Sudan"
 
@@ -16490,11 +16540,11 @@ msgstr "Sunday"
 msgid "Support at"
 msgstr "Support at"
 
-#. TRANSLATORS: regional option
+# TRANSLATORS: regional option label
 msgid "Suriname"
 msgstr "Suriname"
 
-#. TRANSLATORS: regional option
+# TRANSLATORS: regional option label
 msgid "Svalbard and Jan Mayen"
 msgstr "Svalbard and Jan Mayen"
 
@@ -16541,19 +16591,19 @@ msgstr ""
 msgid "SwaptoSD"
 msgstr "Swap"
 
-#. TRANSLATORS: regional option
+# TRANSLATORS: regional option label
 msgid "Swaziland"
 msgstr "Swaziland"
 
-#. TRANSLATORS: regional option
+# TRANSLATORS: regional option label
 msgid "Sweden"
 msgstr "Sweden"
 
-#. TRANSLATORS: regional option
+# TRANSLATORS: language option label
 msgid "Swedish"
-msgstr "Swedish"
+msgstr "Svenska"
 
-#. TRANSLATORS: genre category
+# TRANSLATORS: EPG/IceTV genre subcategory
 msgid "Swimming"
 msgstr ""
 
@@ -16627,7 +16677,7 @@ msgstr "Switchable tuner types:"
 msgid "Switching to live TV - timeshift is still active!"
 msgstr "Switching to live TV... timeshift is still active!"
 
-#. TRANSLATORS: regional option
+# TRANSLATORS: regional option label
 msgid "Switzerland"
 msgstr "Switzerland"
 
@@ -16652,7 +16702,7 @@ msgstr "Sync time using"
 msgid "Synchronize systemtime using transponder or internet."
 msgstr "Choose either transponder information or an internet time server to synchronize your receiver's time."
 
-#. TRANSLATORS: regional option
+# TRANSLATORS: regional option label
 msgid "Syrian Arab Republic"
 msgstr "Syrian Arab Republic"
 
@@ -16684,16 +16734,14 @@ msgstr "System Info"
 msgid "Systeminfo"
 msgstr "System info"
 
-#, fuzzy
 msgid "T2MI PID"
-msgstr "PMT PID"
+msgstr "T2MI PID"
 
 msgid "T2MI PLP"
 msgstr ""
 
-#, fuzzy
 msgid "T2MI PLP ID"
-msgstr "PLP ID"
+msgstr "T2MI PLP ID"
 
 msgid "T2MI RAW Mode"
 msgstr ""
@@ -16729,34 +16777,34 @@ msgstr "Table of content for collection"
 msgid "Tags"
 msgstr "Tags"
 
-#. TRANSLATORS: regional option
+# TRANSLATORS: regional option label
 msgid "Taiwan"
 msgstr "Taiwan"
 
-#. TRANSLATORS: regional option
+# TRANSLATORS: regional option label
 msgid "Tajikistan"
 msgstr "Tajikistan"
 
-#. TRANSLATORS: genre category
+# TRANSLATORS: EPG/IceTV genre subcategory
 msgid "Talk"
 msgstr ""
 
-#. TRANSLATORS: genre category
+# TRANSLATORS: EPG/IceTV genre subcategory
 msgid "Talk Show"
 msgstr "Talk show"
 
-#. TRANSLATORS: genre category
+# TRANSLATORS: EPG/IceTV genre subcategory
 msgid "Tanz"
 msgstr "Dance"
 
-#. TRANSLATORS: regional option
+# TRANSLATORS: regional option label
 msgid "Tanzania, United Republic of"
 msgstr "Tanzania, United Republic of"
 
 msgid "Task list"
 msgstr "Task list"
 
-#. TRANSLATORS: genre category
+# TRANSLATORS: EPG/IceTV genre subcategory
 msgid "Technik"
 msgstr "Technology"
 
@@ -16820,7 +16868,7 @@ msgstr "Telnet Port"
 msgid "Telnet Setup"
 msgstr "Telnet Setup"
 
-#. TRANSLATORS: genre category
+# TRANSLATORS: EPG/IceTV genre subcategory
 msgid "Tennis"
 msgstr ""
 
@@ -16855,11 +16903,11 @@ msgstr "text only"
 msgid "Text color"
 msgstr "Text color"
 
-#. TRANSLATORS: regional option
+# TRANSLATORS: language option label
 msgid "Thai"
-msgstr "Thai"
+msgstr "ภาษาไทย"
 
-#. TRANSLATORS: regional option
+# TRANSLATORS: regional option label
 msgid "Thailand"
 msgstr "Thailand"
 
@@ -16960,11 +17008,10 @@ msgstr "The PIN code has been saved successfully."
 msgid "The PIN codes you entered are different."
 msgstr "The PIN codes you entered don't match."
 
-#, fuzzy
 msgid ""
 "The SimpleUmount plugin is not installed!\n"
 "Please install it."
-msgstr "Please install the MediaCenter plugin!"
+msgstr "Please install the SimpleUmount plugin!"
 
 msgid "The TV was switched to the recording service!\n"
 msgstr "The channel was changed to record an event!\n"
@@ -16973,8 +17020,8 @@ msgid ""
 "The USB stick was prepared to be bootable.\n"
 "Now you can download an NFI image file!"
 msgstr ""
-"The USB stick was prepared to be bootable.\n"
-"Now you can download an NFI image file!"
+"The USB stick was made bootable.\n"
+"You can now download an NFI image file!"
 
 msgid ""
 "The VideoMode plugin is not installed!\n"
@@ -17185,7 +17232,7 @@ msgstr "The wizard found a configuration backup. Would you like to restore your 
 msgid "The wizard is finished now."
 msgstr "The wizard is now finished."
 
-#. TRANSLATORS: genre category
+# TRANSLATORS: EPG/IceTV genre subcategory
 msgid "Theater"
 msgstr ""
 
@@ -17215,8 +17262,8 @@ msgid ""
 msgstr ""
 "There are too many packages to update!\n"
 "\n"
-"There is a risk that your %s %s will not\n"
-"boot properly or will experience issues after an online update.\n"
+"There is a risk that your %s %s will not start up\n"
+"properly or will experience issues after an online update.\n"
 "\n"
 "A fresh image flash will increase stability\n"
 "\n"
@@ -17553,7 +17600,7 @@ msgid ""
 "If you already have a prepared bootable USB stick, please insert it now. Otherwise plug in a USB stick with a minimum size of 64 MB!"
 msgstr ""
 "This plugin creates a USB stick which can be used to update your %s %s's image without the need for a network connection.\n"
-"First, a USB stick needs to be prepared so that it becomes bootable.\n"
+"First, a USB stick needs to be prepared to make it bootable.\n"
 "In the next step, an NFI image file can be downloaded from the update server and saved on the USB stick.\n"
 "If you have already prepared a bootable USB stick, please insert it now. Otherwise plug in a USB stick with a minimum size of 64 MB!"
 
@@ -17636,7 +17683,7 @@ msgid ""
 "This will (re-)calculate all positions of your rotor and may remove previously memorised positions and fine-tuning!\n"
 "Are you sure?"
 msgstr ""
-"This will (re-)calculate all rotator positions and may remove previously memorized positions and fine-tuning!\n"
+"This will (re-)calculate all positioner positions and may remove previously memorized positions and fine-tuning!\n"
 "Are you sure?"
 
 msgid "This will go fast forward/backward with time frames of x secs"
@@ -17648,7 +17695,7 @@ msgstr "Three"
 msgid "Threshold"
 msgstr "Threshold"
 
-#. TRANSLATORS: genre category
+# TRANSLATORS: EPG/IceTV genre subcategory
 msgid "Thriller"
 msgstr ""
 
@@ -17664,7 +17711,7 @@ msgstr "Thursday"
 msgid "TiVo support"
 msgstr "TiVo support"
 
-#. TRANSLATORS: genre category
+# TRANSLATORS: EPG/IceTV genre subcategory
 msgid "Tiere"
 msgstr "Animals"
 
@@ -17713,6 +17760,7 @@ msgstr "Time jump repeat interval for fast forward/backward"
 msgid "Time jump: Use normal fast forward for speeds"
 msgstr "Time jump: Use normal fast forward for speeds"
 
+# msgctxt "button|hold"
 msgid "Time long"
 msgstr "Time button hold"
 
@@ -17864,7 +17912,7 @@ msgstr "Timeshift action on zap"
 msgid "Timezone"
 msgstr "Time zone"
 
-#. TRANSLATORS: regional option
+# TRANSLATORS: regional option label
 msgid "Timor-Leste"
 msgstr "Timor-Leste"
 
@@ -17931,11 +17979,11 @@ msgstr "Toggle between bouquet/EPG lists"
 msgid "Toggle new text inserts before or overwrites existing text"
 msgstr "Choose whether new text should be inserted before, or overwrite existing text"
 
-#. TRANSLATORS: regional option
+# TRANSLATORS: regional option label
 msgid "Togo"
 msgstr "Togo"
 
-#. TRANSLATORS: regional option
+# TRANSLATORS: regional option label
 msgid "Tokelau"
 msgstr "Tokelau"
 
@@ -17951,7 +17999,7 @@ msgstr "Toneburst"
 msgid "Toneburst A/B"
 msgstr "Toneburst A/B"
 
-#. TRANSLATORS: regional option
+# TRANSLATORS: regional option label
 msgid "Tonga"
 msgstr "Tonga"
 
@@ -17989,11 +18037,11 @@ msgstr "Total:"
 msgid "Track"
 msgstr "Track"
 
-#. TRANSLATORS: regional option
+# TRANSLATORS: regional option label
 msgid "Traditional Chinese"
 msgstr "Traditional Chinese"
 
-#. TRANSLATORS: genre category
+# TRANSLATORS: EPG/IceTV genre subcategory
 msgid "Tragödie"
 msgstr "Tragedy"
 
@@ -18036,7 +18084,7 @@ msgstr "Trash can"
 msgid "Trashcan:"
 msgstr "Trash can:"
 
-#. TRANSLATORS: genre category
+# TRANSLATORS: EPG/IceTV genre subcategory
 msgid "Travel"
 msgstr ""
 
@@ -18046,7 +18094,7 @@ msgstr "Tried to disable PiP, suddenly found no InfoBar.instance.\n"
 msgid "Tries left:"
 msgstr "Attempts remaining:"
 
-#. TRANSLATORS: regional option
+# TRANSLATORS: regional option label
 msgid "Trinidad and Tobago"
 msgstr "Trinidad and Tobago"
 
@@ -18069,7 +18117,7 @@ msgid "Try to find used transponders in terrestrial network.. please wait..."
 msgstr "Trying to find transponders used in terrestrial network, please wait..."
 
 msgid "Try to prevent reboots for software errors and maintain of the availability for the receiver."
-msgstr ""
+msgstr "Try to prevent restarts caused by software errors to maintain the availability of your receiver."
 
 msgid "Try to send repeated commands if not all commands are executed.\n"
 msgstr ""
@@ -18096,7 +18144,7 @@ msgid "Tune and focus"
 msgstr "Tune and focus"
 
 msgid "Tune failed!"
-msgstr "Signal lost!"
+msgstr "No signal!"
 
 msgid "Tuned for recording"
 msgstr "Tuned for recording"
@@ -18156,7 +18204,7 @@ msgstr "Tuner type %s"
 msgid "Tuning algorithm"
 msgstr "Tuning algorithm"
 
-#. TRANSLATORS: regional option
+# TRANSLATORS: regional option label
 msgid "Tunisia"
 msgstr "Tunisia"
 
@@ -18165,23 +18213,23 @@ msgid ""
 "Fast: One reboot after flash, one reboot after restore\n"
 "Slow: One reboot after flash, one reboot after restore in GUI"
 msgstr ""
-"Turbo: Reboot once, after flash\n"
-"Fast: Reboot after flash and after restore\n"
-"Slow: Reboot after flash, and after restore in user interface"
+"Turbo: Restart once, after flash\n"
+"Fast: Restart after flash and after restore\n"
+"Slow: Restart after flash, and after restore in user interface"
 
-#. TRANSLATORS: regional option
+# TRANSLATORS: regional option label
 msgid "Turkey"
 msgstr "Turkey"
 
-#. TRANSLATORS: regional option
+# TRANSLATORS: language option label
 msgid "Turkish"
-msgstr "Turkish"
+msgstr "Türkçe"
 
-#. TRANSLATORS: regional option
+# TRANSLATORS: regional option label
 msgid "Turkmenistan"
 msgstr "Turkmenistan"
 
-#. TRANSLATORS: regional option
+# TRANSLATORS: regional option label
 msgid "Turks and Caicos Islands"
 msgstr "Turks and Caicos Islands"
 
@@ -18203,7 +18251,7 @@ msgstr ""
 msgid "Turning step size"
 msgstr "Turning step size"
 
-#. TRANSLATORS: regional option
+# TRANSLATORS: regional option label
 msgid "Tuvalu"
 msgstr "Tuvalu"
 
@@ -18258,19 +18306,19 @@ msgstr ""
 msgid "USB switch ERROR! - root files not transferred to USB"
 msgstr ""
 
-#. TRANSLATORS: regional option
+# TRANSLATORS: regional option label
 msgid "Uganda"
 msgstr "Uganda"
 
-#. TRANSLATORS: regional option
+# TRANSLATORS: regional option label
 msgid "Ukraine"
 msgstr "Ukraine"
 
-#. TRANSLATORS: regional option
+# TRANSLATORS: language option label
 msgid "Ukrainian"
-msgstr "Ukrainian"
+msgstr "Українська"
 
-#. TRANSLATORS: genre category
+# TRANSLATORS: EPG/IceTV genre subcategory
 msgid "Umweltbewusstsein"
 msgstr "Environmental awareness"
 
@@ -18284,8 +18332,9 @@ msgid "Unattended upgrade without GUI"
 msgstr "Unattended upgrade without user interface"
 
 msgid "Unattended upgrade without GUI and reboot system"
-msgstr "Unattended upgrade without user interface and reboot system"
+msgstr "Unattended upgrade without user interface and restart system"
 
+# TRANSLATORS: EPG AUS genre
 msgid "Undefined"
 msgstr "Undefined"
 
@@ -18326,22 +18375,22 @@ msgstr "Uninstall"
 msgid "Uninstall '%s' package and disable '%s'"
 msgstr ""
 
-#. TRANSLATORS: regional option
+# TRANSLATORS: regional option label
 msgid "United Arab Emirates"
 msgstr "United Arab Emirates"
 
 msgid "United Kingdom"
 msgstr "United Kingdom"
 
-#. TRANSLATORS: regional option
+# TRANSLATORS: regional option label
 msgid "United States"
 msgstr "United States of America"
 
-#. TRANSLATORS: regional option
+# TRANSLATORS: regional option label
 msgid "United States Minor Outlying Islands"
 msgstr "United States Minor Outlying Islands"
 
-#. TRANSLATORS: regional option
+# TRANSLATORS: regional option label
 msgid "United States of America"
 msgstr "United States of America"
 
@@ -18356,7 +18405,7 @@ msgid ""
 "Please check after reboot MyMetrixLite-Plugin and apply your settings."
 msgstr ""
 "Unknown error creating skin.\n"
-"Please check after reboot MyMetrixLite plugin and apply your settings."
+"Please check the MyMetrixLite plugin and apply your settings after restarting."
 
 msgid "Unknown error code"
 msgstr "Unknown error code"
@@ -18365,13 +18414,12 @@ msgstr "Unknown error code"
 msgid "Unknown group: %d"
 msgstr "Unknown group: %d"
 
-#, fuzzy
 msgid "Unknown recording event"
-msgstr "Stop recording now"
+msgstr "Unknown recording event"
 
-#, fuzzy, python-format
+#, python-format
 msgid "Unknown user: %d"
-msgstr "unknown service"
+msgstr "Unknown user: %d"
 
 msgid "Unless set to 'disabled' you get a preview of channels inside the EPG list."
 msgstr "Choose whether you'd like to preview channels from the EPG."
@@ -18392,34 +18440,43 @@ msgstr "Unpack to current folder"
 msgid "Unsupported"
 msgstr "Unsupported"
 
-#. TRANSLATORS: genre category
+# TRANSLATORS: EPG/IceTV genre subcategory
 msgid "Unterhaltung"
 msgstr "Entertainment"
 
+# TRANSLATORS: EPG/IceTV genre subcategory
 msgid "Unused 0x22"
 msgstr ""
 
+# TRANSLATORS: EPG/IceTV genre subcategory
 msgid "Unused 0x52"
 msgstr ""
 
+# TRANSLATORS: EPG/IceTV genre subcategory
 msgid "Unused 0x53"
 msgstr ""
 
+# TRANSLATORS: EPG/IceTV genre subcategory
 msgid "Unused 0x54"
 msgstr ""
 
+# TRANSLATORS: EPG/IceTV genre subcategory
 msgid "Unused 0x71"
 msgstr ""
 
+# TRANSLATORS: EPG/IceTV genre subcategory
 msgid "Unused 0x72"
 msgstr ""
 
+# TRANSLATORS: EPG/IceTV genre subcategory
 msgid "Unused 0x80"
 msgstr ""
 
+# TRANSLATORS: EPG/IceTV genre subcategory
 msgid "Unused 0xb1"
 msgstr ""
 
+# TRANSLATORS: EPG/IceTV genre subcategory
 msgid "Unused 0xb2"
 msgstr ""
 
@@ -18480,7 +18537,7 @@ msgid ""
 "Your Bootloader is now up-to-date!"
 msgstr ""
 "Update succeeded!\n"
-"Your bootloader is now up to date!"
+"Your bootloader is now up to date."
 
 msgid "Update/Backup your firmware, Backup/Restore settings"
 msgstr "Update or back up your image / back up or restore your settings"
@@ -18510,7 +18567,7 @@ msgid "Upgrade (Backup, Flash & Restore All)"
 msgstr ""
 
 msgid "Upgrade and reboot system"
-msgstr "Upgrade and reboot system"
+msgstr "Upgrade and restart system"
 
 msgid "Upgrade finished."
 msgstr "Upgrade finished."
@@ -18522,7 +18579,7 @@ msgid ""
 "This may take a few minutes"
 msgstr ""
 "Upgrade in progress.\n"
-"Please wait until your %s %s reboots!\n"
+"Please wait until your %s %s restarts!\n"
 "This could take a while..."
 
 msgid "Upgrade with GUI"
@@ -18549,7 +18606,7 @@ msgstr "Uppercase"
 msgid "Uptime"
 msgstr "Uptime"
 
-#. TRANSLATORS: regional option
+# TRANSLATORS: regional option label
 msgid "Uruguay"
 msgstr "Uruguay"
 
@@ -18566,7 +18623,7 @@ msgid "Use DHCP"
 msgstr "Use DHCP"
 
 msgid "Use Deinterlacing for 1080i Videosignal?"
-msgstr "Use deinterlacing for 1080i video signal?"
+msgstr "Use de-interlacing for 1080i video signal?"
 
 msgid "Use EIT EPG information when it is available."
 msgstr ""
@@ -18710,7 +18767,7 @@ msgid "Use the cursor keys to select an installed image and then Erase button."
 msgstr "Use the ▲ Up and ▼ Down buttons to select an installed image to erase."
 
 msgid "Use the cursor keys to select an installed image and then Reboot button."
-msgstr "Use the ▲ Up and ▼ Down buttons to select an installed image to reboot to."
+msgstr "Use the ▲ Up and ▼ Down buttons to select an installed image to restart into."
 
 msgid "Use the cursor keys to select an installed image and then Start button."
 msgstr "Use the ▲ Up and ▼ Down buttons to select an installed image to start."
@@ -18764,14 +18821,15 @@ msgid "User  (keymap.usr)"
 msgstr "User  (keymap.usr)"
 
 msgid "User - bouquets"
-msgstr "User bouquets"
+msgstr "Custom bouquets"
 
 msgid "User defined"
 msgstr "User defined"
 
-#, fuzzy, python-format
+# TRANSLATORS: EPG/IceTV genre subcategory
+#, python-format
 msgid "User defined 0x%02x"
-msgstr "User defined"
+msgstr "User defined 0x%02x"
 
 msgid "User defined delay when you press another button to zap to the channel."
 msgstr "User defined delay when you press another button to zap to the channel."
@@ -18817,7 +18875,7 @@ msgstr "Using tuner %s"
 msgid "Usually when the subtitle language is the same as the audio language, the subtitles will not be used. Enable this option to allow these subtitles to be used."
 msgstr "Usually when the subtitle language is the same as the audio language, the subtitles will not be used. Enable this option to allow these subtitles to be used."
 
-#. TRANSLATORS: regional option
+# TRANSLATORS: regional option label
 msgid "Uzbekistan"
 msgstr "Uzbekistan"
 
@@ -18831,39 +18889,38 @@ msgid "VMGM (intro trailer)"
 msgstr "VMGM (intro trailer)"
 
 msgid "VOD"
-msgstr "VOD button"
+msgstr "VOD/IPTV button"
 
+# msgctxt "button|hold"
 msgid "VOD long"
-msgstr "VOD button hold"
+msgstr "VOD/IPTV button hold"
 
-#, fuzzy
 msgid "VPN"
-msgstr "OpenVPN"
+msgstr "VPN"
 
 msgid "VU+"
 msgstr "Vu+"
 
-#. TRANSLATORS: regional option
+# TRANSLATORS: regional option label
 msgid "Vanuatu"
 msgstr "Vanuatu"
 
-#. TRANSLATORS: genre category
+# TRANSLATORS: EPG/IceTV genre subcategory
 msgid "Variety"
 msgstr "variety show"
 
-#, fuzzy
 msgid "Various"
-msgstr "Previous"
+msgstr "Various"
 
-#. TRANSLATORS: regional option
+# TRANSLATORS: regional option label
 msgid "Venezuela (Bolivarian Republic of)"
 msgstr "Venezuela, Bolivarian Republic of"
 
-#. TRANSLATORS: genre category
+# TRANSLATORS: EPG/IceTV genre subcategory
 msgid "Verkehr"
 msgstr "Traffic"
 
-#. TRANSLATORS: genre category
+# TRANSLATORS: EPG/IceTV genre subcategory
 msgid "Verschiedenes"
 msgstr "Various"
 
@@ -19034,7 +19091,7 @@ msgstr "Video setup"
 msgid "Videosize"
 msgstr "Video size"
 
-#. TRANSLATORS: regional option
+# TRANSLATORS: regional option label
 msgid "Viet Nam"
 msgstr "Vietnam"
 
@@ -19108,26 +19165,26 @@ msgstr "View the changes"
 msgid "View video CD..."
 msgstr "View video CD..."
 
-#. TRANSLATORS: genre category
+# TRANSLATORS: EPG/IceTV genre subcategory
 msgid "Violence"
 msgstr ""
 
-#. TRANSLATORS: regional option
+# TRANSLATORS: regional option label
 msgid "Virgin Islands (British)"
 msgstr "Virgin Islands (British)"
 
-#. TRANSLATORS: regional option
+# TRANSLATORS: regional option label
 msgid "Virgin Islands (U.S.)"
 msgstr "Virgin Islands, U.S."
 
 msgid "Virtual KeyBoard Functions"
-msgstr "Virtual Keyboard Functions"
+msgstr "On-Screen Keyboard Functions"
 
 msgid "Virtual KeyBoard Text:"
-msgstr "Virtual Keyboard Text:"
+msgstr "On-Screen Keyboard Text:"
 
 msgid "Virtual keyboard"
-msgstr "Virtual Keyboard"
+msgstr "On-screen keyboard"
 
 msgid "Vol"
 msgstr "Vol"
@@ -19195,7 +19252,7 @@ msgstr ""
 msgid "WWIO_BRE2ZE_TC"
 msgstr ""
 
-#. TRANSLATORS: genre category
+# TRANSLATORS: EPG/IceTV genre subcategory
 msgid "Waffen"
 msgstr "Weapons"
 
@@ -19242,11 +19299,11 @@ msgstr "Wake-up time before a timer begins (in minutes)"
 msgid "Wakeup your AV Receiver from standby"
 msgstr "Wake your AV receiver from standby"
 
-#. TRANSLATORS: regional option
+# TRANSLATORS: regional option label
 msgid "Wallis and Futuna"
 msgstr "Wallis and Futuna"
 
-#. TRANSLATORS: genre category
+# TRANSLATORS: EPG/IceTV genre subcategory
 msgid "War"
 msgstr ""
 
@@ -19259,7 +19316,7 @@ msgstr "* Note that your receiver will restart after the next crash.\n"
 msgid "Warning: no LNB; using factory defaults."
 msgstr "Warning: no LNB; using factory defaults."
 
-#. TRANSLATORS: genre category
+# TRANSLATORS: EPG/IceTV genre subcategory
 msgid "Wassersport"
 msgstr "Watersports"
 
@@ -19370,7 +19427,7 @@ msgstr ""
 msgid "Welcome..."
 msgstr "Welcome..."
 
-#. TRANSLATORS: genre category
+# TRANSLATORS: EPG/IceTV genre subcategory
 msgid "Werbung"
 msgstr "Advertising"
 
@@ -19380,18 +19437,19 @@ msgstr "West"
 msgid "West limit set"
 msgstr "West limit set"
 
+# TRANSLATORS: EPG/IceTV genre subcategory
 msgid "Western"
 msgstr "Western"
 
-#. TRANSLATORS: regional option
+# TRANSLATORS: regional option label
 msgid "Western Sahara"
 msgstr "Western Sahara"
 
-#. TRANSLATORS: genre category
+# TRANSLATORS: EPG/IceTV genre subcategory
 msgid "Wettbewerb"
 msgstr "Competition"
 
-#. TRANSLATORS: genre category
+# TRANSLATORS: EPG/IceTV genre subcategory
 msgid "Wetter"
 msgstr "Weather"
 
@@ -19404,7 +19462,7 @@ msgstr "Day of the week"
 msgid "What action is required on completion of the timer? 'Auto' lets the box return to the state it had when the timer started. 'Do nothing', 'Go to standby' and 'Go to deep standby' do exactly that."
 msgstr ""
 "Choose what should happen when the timer completes.\n"
-"'auto' will return your receiver to the state it was in (eg. standby) before the timer started; 'do nothing' will leave it in normal operation."
+"'auto' will return your receiver to the state it was in (e.g. standby) before the timer started; 'do nothing' will leave it in normal operation."
 
 msgid "What do you want to play?\n"
 msgstr "What would you like to play?\n"
@@ -19413,7 +19471,7 @@ msgid "What do you want to scan?"
 msgstr "What would you like to scan?"
 
 msgid "When enabled enigma2 will load unlinked userbouquets. This means that userbouquets that are available, but not included in the bouquets.tv or bouquets.radio files, will still be loaded. This allows you for example to keep your own user bouquet while installed settings are upgraded"
-msgstr "Choose whether to load bouquets that are available in the /etc/enigma2 settings folder (eg. userbouquet.[mychannels].tv) but not included in bouquets.tv or bouquets.radio. This would let you keep your custom bouquets while installed settings are upgraded"
+msgstr "Choose whether to load bouquets that are available in the /etc/enigma2 settings folder (e.g. userbouquet.[mychannels].tv) but not included in bouquets.tv or bouquets.radio. This would let you keep your custom bouquets while installed settings are upgraded"
 
 msgid "When enabled the PiP can be closed by the exit button."
 msgstr "Choose whether picture-in-picture mode can be stopped by using the Exit button."
@@ -19428,7 +19486,7 @@ msgid "When enabled, EIT data will be included in http streams. This allows a cl
 msgstr "Choose whether to include EIT data in HTTP streams. This allows client receivers to show EPG information.The Event Information Table provides data such as title, length, description, etc."
 
 msgid "When enabled, Enigma2 will load unlinked bouquets. This means that bouquets that are available, but not included in the bouquets.tv or bouquets.radio files, will still be loaded. This allows you for example to keep your own user bouquet while installed settings are upgraded"
-msgstr "Choose whether to load bouquets that are available in the /etc/enigma2 settings folder (eg. userbouquet.[mychannels].tv) but not included in bouquets.tv or bouquets.radio. This would let you keep your custom bouquets while installed settings are upgraded"
+msgstr "Choose whether to load bouquets that are available in the /etc/enigma2 settings folder (e.g. userbouquet.[mychannels].tv) but not included in bouquets.tv or bouquets.radio. This would let you keep your custom bouquets while installed settings are upgraded"
 
 msgid "When enabled, a popup message will be shown when a movie has finished and the next one will start."
 msgstr "Choose whether to show a notification when a movie has finished and the next one is about to start."
@@ -19485,7 +19543,7 @@ msgid "When enabled, it is possible to leave the movieplayer with exit."
 msgstr "Choose whether the Exit button should quit movie player."
 
 msgid "When enabled, measure power consumption to detect when the rotor stops turning (when supported by the tuner)."
-msgstr "Choose whether to detect when the rotator stops turning by measuring power consumption (when supported by the tuner)."
+msgstr "Choose whether to detect when the positioner stops turning by measuring power consumption (when supported by the tuner)."
 
 msgid "When enabled, network trash cans are probed for cleaning."
 msgstr "Choose whether to check network trash cans for cleaning."
@@ -19597,17 +19655,18 @@ msgstr "Select which remote control style should be shown. Only affects the OSD 
 msgid "While available"
 msgstr "While available"
 
+# colour
 msgid "White"
 msgstr "White"
 
 msgid "Width"
 msgstr "Width"
 
-#. TRANSLATORS: genre category
+# TRANSLATORS: EPG/IceTV genre subcategory
 msgid "Winter Sports"
 msgstr "Winter sports"
 
-#. TRANSLATORS: genre category
+# TRANSLATORS: EPG/IceTV genre subcategory
 msgid "Wintersport"
 msgstr "Winter sports"
 
@@ -19629,11 +19688,11 @@ msgstr "Wireless network connection setup."
 msgid "Wireless network state"
 msgstr "Wireless network state"
 
-#. TRANSLATORS: genre category
+# TRANSLATORS: EPG/IceTV genre subcategory
 msgid "Wirtschaft"
 msgstr "Economy"
 
-#. TRANSLATORS: genre category
+# TRANSLATORS: EPG/IceTV genre subcategory
 msgid "Wissenschaft"
 msgstr "Science"
 
@@ -19677,7 +19736,7 @@ msgstr "Workaround for old tuner driver"
 msgid "Would you save the entered PIN %s persistent?"
 msgstr "Would you like to save the entered PIN %s persistently?"
 
-#. TRANSLATORS: genre category
+# TRANSLATORS: EPG/IceTV genre subcategory
 msgid "Wrestling"
 msgstr ""
 
@@ -19703,6 +19762,7 @@ msgstr "Write failed!"
 msgid "Www"
 msgstr "WWW button"
 
+# msgctxt "button|hold"
 msgid "Www long"
 msgstr "WWW button hold"
 
@@ -19733,6 +19793,7 @@ msgstr ""
 msgid "Year"
 msgstr "Year"
 
+# colour
 msgid "Yellow"
 msgstr "Yellow button"
 
@@ -19742,10 +19803,11 @@ msgstr "Yellow DVB subtitles"
 msgid "Yellow button"
 msgstr "Yellow button"
 
+# msgctxt "button|hold"
 msgid "Yellow long"
 msgstr "Yellow button hold"
 
-#. TRANSLATORS: regional option
+# TRANSLATORS: regional option label
 msgid "Yemen"
 msgstr "Yemen"
 
@@ -19884,7 +19946,7 @@ msgid "You have chosen to backup your settings. Please press OK to start the bac
 msgstr "You've chosen to back up your settings, press OK to continue..."
 
 msgid "You have chosen to create a new .NFI flasher bootable USB stick. This will repartition the USB stick and therefore all data on it will be erased."
-msgstr "You've chosen to create a new .NFI flasher bootable USB stick. This will repartition the USB stick and ALL DATA on it will be LOST."
+msgstr "You've chosen to create a new .NFI flasher bootable USB stick. This will re-partition the USB stick and ALL DATA on it will be LOST."
 
 msgid "You have chosen to restore your settings. Enigma2 will restart after restore. Please press OK to start the restore now."
 msgstr "You've chosen to restore your settings, after which your receiver will restart. Press OK to continue or EXIT to cancel..."
@@ -19992,7 +20054,7 @@ msgstr "Your %s %s is restarting..."
 
 #, python-format
 msgid "Your %s %s is rebooting into Recovery Mode"
-msgstr "Your %s %s is rebooting into recovery mode..."
+msgstr "Your %s %s is restarting into recovery mode..."
 
 #, python-format
 msgid "Your %s %s is shutting down"
@@ -20008,7 +20070,7 @@ msgstr "Your %s %s doesn't seem to be connected to the internet. Please check yo
 # source needs improvement (remove repetition)
 #, python-format
 msgid "Your %s %s might be unusable now. Please consult the manual for further assistance before rebooting your %s %s."
-msgstr "Your %s %s might no longer be usable. Please refer to your receiver’s documentation for further assistance before rebooting your %s %s."
+msgstr "Your %s %s might no longer be usable. Please refer to your receiver’s documentation for further assistance before restarting your %s %s."
 
 #, python-format
 msgid ""
@@ -20022,7 +20084,7 @@ msgstr ""
 
 #, python-format
 msgid "Your %s %s will Reboot..."
-msgstr "Your %s %s is about to reboot..."
+msgstr "Your %s %s is about to restart..."
 
 #, python-format
 msgid "Your %s %s will Restart..."
@@ -20110,7 +20172,7 @@ msgid ""
 "This may take a few minutes"
 msgstr ""
 "Your front processor is about to be upgraded.\n"
-"Please wait until your %s %s reboots!\n"
+"Please wait until your %s %s restarts!\n"
 "This could take a while..."
 
 #, python-format
@@ -20169,7 +20231,7 @@ msgstr ""
 "\n"
 "Please choose what you'd like to do next."
 
-#. TRANSLATORS: genre category
+# TRANSLATORS: EPG/IceTV genre subcategory
 msgid "Youth"
 msgstr ""
 
@@ -20182,6 +20244,7 @@ msgstr "ZAP"
 msgid "ZOOM"
 msgstr ""
 
+# msgctxt "button|hold"
 msgid "ZOOM long"
 msgstr "ZOOM button hold"
 
@@ -20191,7 +20254,7 @@ msgstr "ZPicon"
 msgid "ZZPicon"
 msgstr "ZZPicon"
 
-#. TRANSLATORS: regional option
+# TRANSLATORS: regional option label
 msgid "Zambia"
 msgstr "Zambia"
 
@@ -20249,7 +20312,7 @@ msgstr "Zap up"
 msgid "Zap+Record next"
 msgstr "Zap + Record next"
 
-#. TRANSLATORS: genre category
+# TRANSLATORS: EPG/IceTV genre subcategory
 msgid "Zeichentrick"
 msgstr "Cartoon"
 
@@ -20268,11 +20331,11 @@ msgstr ""
 msgid "Zgemma i55"
 msgstr ""
 
-#. TRANSLATORS: regional option
+# TRANSLATORS: regional option label
 msgid "Zimbabwe"
 msgstr "Zimbabwe"
 
-#. TRANSLATORS: genre category
+# TRANSLATORS: EPG/IceTV genre subcategory
 msgid "Zirkus"
 msgstr "Circus"
 
@@ -20369,18 +20432,18 @@ msgstr "add to parental protection"
 msgid "address:"
 msgstr "address:"
 
-#. TRANSLATORS: genre category
+# TRANSLATORS: EPG ETSI genre
 msgid "adult movie/drama"
 msgstr "adult movie/drama"
 
 msgid "advanced"
 msgstr "advanced"
 
-#. TRANSLATORS: genre category
+# TRANSLATORS: EPG/IceTV genre subcategory
 msgid "adventure/western/war"
 msgstr "adventure/western/war"
 
-#. TRANSLATORS: genre category
+# TRANSLATORS: EPG/IceTV genre subcategory
 msgid "advertisement/shopping"
 msgstr "advertisement/shopping"
 
@@ -20433,16 +20496,15 @@ msgstr ""
 "Are you sure you want to restore\n"
 "the following backup?\n"
 
-#. TRANSLATORS: genre category
-#, fuzzy
+# TRANSLATORS: EPG/IceTV genre subcategory
 msgid "arts/culture (general)"
-msgstr "arts/culture (without music, general)"
+msgstr "arts/culture (general)"
 
-#. TRANSLATORS: genre category
+# TRANSLATORS: EPG/IceTV genre subcategory
 msgid "arts/culture (without music, general)"
 msgstr "arts/culture (without music, general)"
 
-#. TRANSLATORS: genre category
+# TRANSLATORS: EPG/IceTV genre subcategory
 msgid "arts/culture magazine"
 msgstr "arts/culture magazine"
 
@@ -20458,7 +20520,7 @@ msgstr "at beginning"
 msgid "at end"
 msgstr "at end"
 
-#. TRANSLATORS: genre category
+# TRANSLATORS: EPG/IceTV genre subcategory
 msgid "athletics"
 msgstr "athletics"
 
@@ -20491,7 +20553,7 @@ msgstr "back"
 msgid "background image"
 msgstr "background image"
 
-#. TRANSLATORS: genre category
+# TRANSLATORS: EPG/IceTV genre subcategory
 msgid "ballet"
 msgstr "ballet"
 
@@ -20505,6 +20567,7 @@ msgstr "because of the filesystem on the device, the backup\n"
 msgid "better"
 msgstr "better"
 
+# colour
 msgid "black"
 msgstr "black"
 
@@ -20514,13 +20577,14 @@ msgstr "black & white"
 msgid "blacklist"
 msgstr "blacklist"
 
+# colour
 msgid "blue"
 msgstr "blue"
 
 msgid "bottom"
 msgstr "bottom"
 
-#. TRANSLATORS: genre category
+# TRANSLATORS: EPG/IceTV genre subcategory
 msgid "broadcasting/press"
 msgstr "broadcasting/press"
 
@@ -20540,7 +20604,7 @@ msgstr "card"
 msgid "card reader"
 msgstr "card reader"
 
-#. TRANSLATORS: genre category
+# TRANSLATORS: EPG/IceTV genre subcategory
 msgid "cartoon/puppets"
 msgstr "cartoon/puppets"
 
@@ -20565,14 +20629,13 @@ msgstr "change Volume up"
 msgid "chapters"
 msgstr "chapters"
 
-#. TRANSLATORS: genre category
+# TRANSLATORS: EPG/IceTV genre subcategory
 msgid "children's/youth program (general)"
 msgstr "children's/youth program (general)"
 
-#. TRANSLATORS: genre category
-#, fuzzy
+# TRANSLATORS: EPG/IceTV genre subcategory
 msgid "childrens (general)"
-msgstr "children's/youth program (general)"
+msgstr "childrens (general)"
 
 msgid "circular left"
 msgstr "circular left"
@@ -20586,14 +20649,13 @@ msgstr "clip overscan / letterbox borders"
 msgid "close share view"
 msgstr "close share view"
 
-#. TRANSLATORS: genre category
+# TRANSLATORS: EPG/IceTV genre subcategory
 msgid "comedy"
 msgstr "comedy"
 
-#. TRANSLATORS: genre category
-#, fuzzy
+# TRANSLATORS: EPG/IceTV genre subcategory
 msgid "comedy (general)"
-msgstr "movie/drama (general)"
+msgstr "comedy (general)"
 
 msgid "config menu"
 msgstr "config menu"
@@ -20619,20 +20681,18 @@ msgstr "convert to DTS"
 msgid "convert to multi-channel PCM"
 msgstr "convert to multi-channel PCM"
 
-#. TRANSLATORS: genre category
+# TRANSLATORS: EPG/IceTV genre subcategory
 msgid "cooking"
 msgstr "cooking"
 
 msgid "copy"
 msgstr "copy"
 
-#, fuzzy
 msgid "copy file"
-msgstr "Copying files"
+msgstr "copy file"
 
-#, fuzzy
 msgid "copy folder"
-msgstr "Select folders"
+msgstr "copy folder"
 
 msgid "copy to bouquets"
 msgstr "copy to bouquets"
@@ -20643,9 +20703,9 @@ msgstr "create folder"
 msgid "create symlink ..."
 msgstr "create symlink..."
 
-#, fuzzy
+# TRANSLATORS: EPG/IceTV genre subcategory
 msgid "current affairs (general)"
-msgstr "news/current affairs (general)"
+msgstr "current affairs (general)"
 
 #, python-format
 msgid "currently installed image: %s"
@@ -20678,7 +20738,7 @@ msgstr "delete cut"
 msgid "descramble and record ecm"
 msgstr "decrypt and record ECM"
 
-#. TRANSLATORS: genre category
+# TRANSLATORS: EPG/IceTV genre subcategory
 msgid "detective/thriller"
 msgstr "detective/thriller"
 
@@ -20694,7 +20754,7 @@ msgstr "disabled"
 msgid "disconnected"
 msgstr "disconnected"
 
-#. TRANSLATORS: genre category
+# TRANSLATORS: EPG/IceTV genre subcategory
 msgid "discussion/interview/debate"
 msgstr "discussion/interview/debate"
 
@@ -20704,13 +20764,13 @@ msgstr "display"
 msgid "do nothing"
 msgstr "do nothing"
 
+# TRANSLATORS: EPG/IceTV genre subcategory
 msgid "documentary"
 msgstr "documentary"
 
-#. TRANSLATORS: genre category
-#, fuzzy
+# TRANSLATORS: EPG/IceTV genre subcategory
 msgid "documentary (general)"
-msgstr "documentary"
+msgstr "documentary (general)"
 
 msgid "dolby"
 msgstr "Dolby"
@@ -20721,10 +20781,9 @@ msgstr "don't decrypt, record ECM"
 msgid "done!"
 msgstr "done!"
 
-#. TRANSLATORS: genre category
-#, fuzzy
+# TRANSLATORS: EPG/IceTV genre subcategory
 msgid "drama (general)"
-msgstr "movie/drama (general)"
+msgstr "drama (general)"
 
 msgid "drivers"
 msgstr "drivers"
@@ -20744,19 +20803,18 @@ msgstr "ECM time:"
 msgid "ecm.info"
 msgstr "ecm.info"
 
-#. TRANSLATORS: genre category
+# TRANSLATORS: EPG/IceTV genre subcategory
 msgid "economics/social advisory"
 msgstr "economics/social advisory"
 
 msgid "edit alternatives"
 msgstr "Edit alternatives"
 
-#. TRANSLATORS: genre category
-#, fuzzy
+# TRANSLATORS: EPG/IceTV genre subcategory
 msgid "education/information (general)"
-msgstr "education/science/factual topics (general)"
+msgstr "education/information (general)"
 
-#. TRANSLATORS: genre category
+# TRANSLATORS: EPG/IceTV genre subcategory
 msgid "education/science/factual topics (general)"
 msgstr "education/science/factual topics (general)"
 
@@ -20802,18 +20860,17 @@ msgstr "Enigma2 and network"
 msgid "enter number to jump to channel."
 msgstr "enter channel number to jump to."
 
-#. TRANSLATORS: genre category
+# TRANSLATORS: EPG/IceTV genre subcategory
 msgid "entertainment (10-16 year old)"
 msgstr "entertainment (10-16 year old)"
 
-#. TRANSLATORS: genre category
+# TRANSLATORS: EPG/IceTV genre subcategory
 msgid "entertainment (6-14 year old)"
 msgstr "entertainment (6-14 year old)"
 
-#. TRANSLATORS: genre category
-#, fuzzy
+# TRANSLATORS: EPG/IceTV genre subcategory
 msgid "entertainment (general)"
-msgstr "entertainment (6-14 year old)"
+msgstr "entertainment (general)"
 
 msgid "equal to"
 msgstr "equal to"
@@ -20858,8 +20915,9 @@ msgid "exit network adapter configuration"
 msgstr "exit network adapter configuration"
 
 msgid "exit networkadapter setup menu"
-msgstr "exit networkadapter setup menu"
+msgstr "exit network adapter setup menu"
 
+# TRANSLATORS: EPG/IceTV genre subcategory
 msgid "experimental film/video"
 msgstr "experimental film/video"
 
@@ -20902,18 +20960,18 @@ msgstr "file formats (BMP, PNG, JPG, GIF)"
 msgid "filename"
 msgstr "filename"
 
-#. TRANSLATORS: genre category
+# TRANSLATORS: EPG/IceTV genre subcategory
 msgid "film/cinema"
 msgstr "film/cinema"
 
 msgid "find currently played service"
 msgstr "Find current channel in channel list"
 
-#. TRANSLATORS: genre category
+# TRANSLATORS: EPG/IceTV genre subcategory
 msgid "fine arts"
 msgstr "fine arts"
 
-#. TRANSLATORS: genre category
+# TRANSLATORS: EPG/IceTV genre subcategory
 msgid "fitness & health"
 msgstr "fitness & health"
 
@@ -20923,11 +20981,11 @@ msgstr "flat alphabetic"
 msgid "flat alphabetic reverse"
 msgstr "flat alphabetic reverse"
 
-#. TRANSLATORS: genre category
+# TRANSLATORS: EPG/IceTV genre subcategory
 msgid "folk/traditional music"
 msgstr "folk/traditional music"
 
-#. TRANSLATORS: genre category
+# TRANSLATORS: EPG/IceTV genre subcategory
 msgid "football/soccer"
 msgstr "football/soccer"
 
@@ -20937,15 +20995,13 @@ msgstr ""
 msgid "force AC3plus"
 msgstr "force Dolby Digital Plus (AC3+ / DD+ / E-AC-3 / EC-3)"
 
-#, fuzzy
 msgid "force disabled"
-msgstr "disabled"
+msgstr "force disabled"
 
-#, fuzzy
 msgid "force enabled"
-msgstr "enabled"
+msgstr "force enabled"
 
-#. TRANSLATORS: genre category
+# TRANSLATORS: EPG/IceTV genre subcategory
 msgid "foreign countries/expeditions"
 msgstr "foreign countries/expeditions"
 
@@ -20970,11 +21026,11 @@ msgstr "full"
 msgid "further education"
 msgstr "further education"
 
-#. TRANSLATORS: genre category
+# TRANSLATORS: EPG/IceTV genre subcategory
 msgid "game show/quiz/contest"
 msgstr "game show/quiz/contest"
 
-#. TRANSLATORS: genre category
+# TRANSLATORS: EPG/IceTV genre subcategory
 msgid "gardening"
 msgstr "gardening"
 
@@ -21008,28 +21064,29 @@ msgstr "go to standby"
 msgid "grab this frame as bitmap"
 msgstr "grab this frame as bitmap"
 
+# colour
 msgid "green"
 msgstr "green"
 
 msgid "h:mm"
-msgstr ""
+msgstr "h:mm (3:56 - 12hr)"
 
 msgid "h:mm:ss"
-msgstr ""
+msgstr "h:mm:ss (3:56:45 - 12hr)"
 
 msgid "h:mm:ssAM/PM"
-msgstr ""
+msgstr "h:mm:ssAM/PM (3:56:45AM)"
 
 msgid "h:mm:ssam/pm"
-msgstr ""
+msgstr "h:mm:ssam/pm (3:56:45am)"
 
 msgid "h:mmAM/PM"
-msgstr ""
+msgstr "h:mmAM/PM (3:56AM)"
 
 msgid "h:mmam/pm"
-msgstr ""
+msgstr "h:mmam/pm (3:56am)"
 
-#. TRANSLATORS: genre category
+# TRANSLATORS: EPG/IceTV genre subcategory
 msgid "handicraft"
 msgstr "handicraft"
 
@@ -21055,27 +21112,26 @@ msgstr "height"
 msgid "help..."
 msgstr "help..."
 
-#, fuzzy
 msgid "helptext"
-msgstr "Teletext"
+msgstr "help text"
 
 msgid "hh:mm"
-msgstr ""
+msgstr "hh:mm (07:56 - 12hr)"
 
 msgid "hh:mm:ss"
-msgstr ""
+msgstr "hh:mm:ss (07:56:34 - 12hr)"
 
 msgid "hh:mm:ssAM/PM"
-msgstr ""
+msgstr "hh:mm:ssAM/PM (07:56:34AM)"
 
 msgid "hh:mm:ssam/pm"
-msgstr ""
+msgstr "hh:mm:ssam/pm (07:56:34am)"
 
 msgid "hh:mmAM/PM"
-msgstr ""
+msgstr "hh:mmAM/PM (07:56AM)"
 
 msgid "hh:mmam/pm"
-msgstr ""
+msgstr "hh:mmam/pm (07:56am)"
 
 msgid "hide"
 msgstr "hide"
@@ -21098,14 +21154,13 @@ msgstr "When set to 'no', only debug messages will be written to the debug log "
 msgid "increase uphop by 1"
 msgstr "increase uphop by 1"
 
-#. TRANSLATORS: genre category
+# TRANSLATORS: EPG/IceTV genre subcategory
 msgid "information/education/school program"
 msgstr "information/education/school program"
 
-#. TRANSLATORS: genre category
-#, fuzzy
+# TRANSLATORS: EPG/IceTV genre subcategory
 msgid "infotainment (general)"
-msgstr "sports (general)"
+msgstr "infotainment (general)"
 
 msgid "init module"
 msgstr "init module"
@@ -21181,7 +21236,7 @@ msgstr "◀︎ Left"
 msgid "left, wrapped"
 msgstr "left, wrapped"
 
-#. TRANSLATORS: genre category
+# TRANSLATORS: EPG/IceTV genre subcategory
 msgid "leisure hobbies (general)"
 msgstr "leisure hobbies (general)"
 
@@ -21191,7 +21246,7 @@ msgstr "length"
 msgid "limit ..., aborting !"
 msgstr "limit, aborting!"
 
-#. TRANSLATORS: genre category
+# TRANSLATORS: EPG/IceTV genre subcategory
 msgid "literature"
 msgstr "literature"
 
@@ -21210,7 +21265,7 @@ msgstr "loopthrough to"
 msgid "m2k"
 msgstr "m2k"
 
-#. TRANSLATORS: genre category
+# TRANSLATORS: EPG/IceTV genre subcategory
 msgid "magazines/reports/documentary"
 msgstr "magazines/reports/documentary"
 
@@ -21223,11 +21278,11 @@ msgstr ""
 msgid "manual"
 msgstr "manual"
 
-#. TRANSLATORS: genre category
+# TRANSLATORS: EPG/IceTV genre subcategory
 msgid "martial sports"
 msgstr "martial arts"
 
-#. TRANSLATORS: genre category
+# TRANSLATORS: EPG/IceTV genre subcategory
 msgid "medicine/physiology/psychology"
 msgstr "medicine/physiology/psychology"
 
@@ -21252,11 +21307,11 @@ msgstr "minutes"
 msgid "month"
 msgstr "month"
 
-#. TRANSLATORS: genre category
+# TRANSLATORS: EPG/IceTV genre subcategory
 msgid "motor sport"
 msgstr "motorsports"
 
-#. TRANSLATORS: genre category
+# TRANSLATORS: EPG/IceTV genre subcategory
 msgid "motoring"
 msgstr "motoring"
 
@@ -21281,12 +21336,11 @@ msgstr "move up to first entry"
 msgid "move up to previous entry"
 msgstr "move up to previous entry"
 
-#. TRANSLATORS: genre category
-#, fuzzy
+# TRANSLATORS: EPG/IceTV genre subcategory
 msgid "movie (general)"
-msgstr "movie/drama (general)"
+msgstr "movie (general)"
 
-#. TRANSLATORS: genre category
+# TRANSLATORS: EPG/IceTV genre subcategory
 msgid "movie/drama (general)"
 msgstr "movie/drama (general)"
 
@@ -21299,15 +21353,15 @@ msgstr "multi"
 msgid "multinorm"
 msgstr "multinorm"
 
-#. TRANSLATORS: genre category
+# TRANSLATORS: EPG/IceTV genre subcategory
 msgid "music (general)"
 msgstr "music (general)"
 
-#. TRANSLATORS: genre category
+# TRANSLATORS: EPG/IceTV genre subcategory
 msgid "music/ballet/dance (general)"
 msgstr "music/ballet/dance (general)"
 
-#. TRANSLATORS: genre category
+# TRANSLATORS: EPG/IceTV genre subcategory
 msgid "musical/opera"
 msgstr "musical/opera"
 
@@ -21317,7 +21371,7 @@ msgstr "N/A"
 msgid "n/a"
 msgstr "n/a"
 
-#. TRANSLATORS: genre category
+# TRANSLATORS: EPG/IceTV genre subcategory
 msgid "nature/animals/environment"
 msgstr "nature/animals/environment"
 
@@ -21330,19 +21384,19 @@ msgstr "never abort"
 msgid "new media"
 msgstr "new media"
 
-#. TRANSLATORS: genre category
+# TRANSLATORS: EPG/IceTV genre subcategory
 msgid "news (general)"
 msgstr "news (general)"
 
-#. TRANSLATORS: genre category
+# TRANSLATORS: EPG/IceTV genre subcategory
 msgid "news magazine"
 msgstr "news magazine"
 
-#. TRANSLATORS: genre category
+# TRANSLATORS: EPG/IceTV genre subcategory
 msgid "news/current affairs (general)"
 msgstr "news/current affairs (general)"
 
-#. TRANSLATORS: genre category
+# TRANSLATORS: EPG/IceTV genre subcategory
 msgid "news/weather report"
 msgstr "news/weather report"
 
@@ -21504,11 +21558,11 @@ msgstr "pli"
 msgid "pm"
 msgstr "pm"
 
-#. TRANSLATORS: genre category
+# TRANSLATORS: EPG/IceTV genre subcategory
 msgid "popular culture/traditional arts"
 msgstr "popular culture/traditional arts"
 
-#. TRANSLATORS: genre category
+# TRANSLATORS: EPG/IceTV genre subcategory
 msgid "pre-school children's program"
 msgstr "pre-school childrens' program"
 
@@ -21543,7 +21597,7 @@ msgid "real recordings or streaming"
 msgstr "real recordings or streaming"
 
 msgid "reboot system"
-msgstr "reboot system"
+msgstr "restart system"
 
 msgid "record"
 msgstr "record"
@@ -21555,6 +21609,7 @@ msgstr "record time changed, start prepare is now: %s"
 msgid "recording..."
 msgstr "recording..."
 
+# colour
 msgid "red"
 msgstr "red"
 
@@ -21564,11 +21619,11 @@ msgstr "reliable"
 msgid "reliable, retune"
 msgstr "reliable, retune"
 
-#. TRANSLATORS: genre category
+# TRANSLATORS: EPG/IceTV genre subcategory
 msgid "religion"
 msgstr "religion"
 
-#. TRANSLATORS: genre category
+# TRANSLATORS: EPG/IceTV genre subcategory
 msgid "remarkable people"
 msgstr "remarkable people"
 
@@ -21882,15 +21937,15 @@ msgstr ""
 msgid "slow"
 msgstr "slow"
 
-#. TRANSLATORS: genre category
+# TRANSLATORS: EPG/IceTV genre subcategory
 msgid "soap/melodrama/folkloric"
 msgstr "soap/melodrama/folkloric"
 
-#. TRANSLATORS: genre category
+# TRANSLATORS: EPG/IceTV genre subcategory
 msgid "social/political issues/economics (general)"
 msgstr "social/political issues/economics (general)"
 
-#. TRANSLATORS: genre category
+# TRANSLATORS: EPG/IceTV genre subcategory
 msgid "social/spiritual science"
 msgstr "social/spiritual science"
 
@@ -21903,19 +21958,19 @@ msgstr "playlist sorting"
 msgid "special (general)"
 msgstr "special (general)"
 
-#. TRANSLATORS: genre category
+# TRANSLATORS: EPG/IceTV genre subcategory
 msgid "special events"
 msgstr "special events"
 
-#. TRANSLATORS: genre category
+# TRANSLATORS: EPG/IceTV genre subcategory
 msgid "sport (general)"
 msgstr "sports (general)"
 
-#. TRANSLATORS: genre category
+# TRANSLATORS: EPG/IceTV genre subcategory
 msgid "sports (general)"
 msgstr "sports (general)"
 
-#. TRANSLATORS: genre category
+# TRANSLATORS: EPG/IceTV genre subcategory
 msgid "sports magazine"
 msgstr "sports magazine"
 
@@ -21973,22 +22028,22 @@ msgstr "system:"
 msgid "systemplugins"
 msgstr "system plugins"
 
-#. TRANSLATORS: genre category
+# TRANSLATORS: EPG/IceTV genre subcategory
 msgid "talk show"
 msgstr "talk show"
 
-#. TRANSLATORS: genre category
+# TRANSLATORS: EPG/IceTV genre subcategory
 msgid "team sports"
 msgstr "team sports"
 
-#. TRANSLATORS: genre category
+# TRANSLATORS: EPG/IceTV genre subcategory
 msgid "technology/natural science"
 msgstr "technology/natural science"
 
 msgid "template file"
 msgstr "template file"
 
-#. TRANSLATORS: genre category
+# TRANSLATORS: EPG/IceTV genre subcategory
 msgid "tennis/squash"
 msgstr "tennis/squash"
 
@@ -22013,7 +22068,7 @@ msgstr "toggle time, chapter, audio, subtitle info"
 msgid "top"
 msgstr "top"
 
-#. TRANSLATORS: genre category
+# TRANSLATORS: EPG/IceTV genre subcategory
 msgid "tourism/travel"
 msgstr "tourism/travel"
 
@@ -22093,9 +22148,8 @@ msgstr "update"
 msgid "updates available."
 msgstr "updates available."
 
-#, fuzzy
 msgid "upper line"
-msgstr "One line"
+msgstr "upper line"
 
 msgid "use best / controlled by HDMI"
 msgstr "use best / controlled by HDMI"
@@ -22113,14 +22167,13 @@ msgstr "user defined"
 msgid "user feed url"
 msgstr "user feed url"
 
-#, fuzzy
 msgid "userdefined"
 msgstr "user defined"
 
 msgid "using:"
 msgstr "using:"
 
-#. TRANSLATORS: genre category
+# TRANSLATORS: EPG/IceTV genre subcategory
 msgid "variety show"
 msgstr "variety show"
 
@@ -22130,8 +22183,9 @@ msgstr "vertical"
 msgid "view extensions..."
 msgstr "view extensions..."
 
+# colour
 msgid "violet"
-msgstr ""
+msgstr "violet"
 
 msgid "vix"
 msgstr "vix"
@@ -22148,12 +22202,12 @@ msgstr "wake up"
 msgid "wakeup to standby"
 msgstr "wake up to standby"
 
-#. TRANSLATORS: genre category
+# TRANSLATORS: EPG/IceTV genre subcategory
 msgid "water sport"
 msgstr "water sports"
 
 msgid "weblinks"
-msgstr "weblinks"
+msgstr "web links"
 
 msgid "weekly"
 msgstr "weekly"
@@ -22169,10 +22223,11 @@ msgid ""
 "\n"
 "A copy has been sent to yourself."
 msgstr ""
-"when asking question about this log\n"
+"when asking about this log.\n"
 "\n"
-"A copy has been sent to yourself."
+"A copy has been sent to you."
 
+# colour
 msgid "white"
 msgstr "white"
 
@@ -22189,7 +22244,7 @@ msgstr "will take about 1-4 minutes for this system\n"
 msgid "will take about 30 minutes for this system\n"
 msgstr "will take about 30 minutes for this system\n"
 
-#. TRANSLATORS: genre category
+# TRANSLATORS: EPG/IceTV genre subcategory
 msgid "winter sport"
 msgstr "winter sports"
 
@@ -22227,6 +22282,7 @@ msgstr "without Query"
 msgid "working"
 msgstr "working"
 
+# colour
 msgid "yellow"
 msgstr "yellow"
 
@@ -22238,7 +22294,7 @@ msgstr "yes (keep feeds)"
 
 #, python-format
 msgid "your %s %s might be unusable now. Please consult the manual for further assistance before rebooting your %s %s."
-msgstr "your %s %s might now be unusable, please refer to your %s %s's documentation for further assistance before rebooting it."
+msgstr "your %s %s might now be unusable, please refer to your %s %s's documentation for further assistance before restarting it."
 
 msgid "zap"
 msgstr "zap"

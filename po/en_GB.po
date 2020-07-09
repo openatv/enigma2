@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-12-30 14:34+0100\n"
-"PO-Revision-Date: 2020-07-02 11:04+0100\n"
+"PO-Revision-Date: 2020-07-05 22:08+0100\n"
 "Last-Translator: Web Dev Ben <9741693+wedebe@users.noreply.github.com>\n"
 "Language-Team: \n"
 "Language: en_GB\n"
@@ -327,19 +327,22 @@ msgstr ""
 msgid "%-I:%M:%S%^p"
 msgstr ""
 
+# TRANSLATORS: used on Timer Entry screen "%a %-d %b %Y"
 #. TRANSLATORS: full date representation daynum monthname year in strftime() format! See 'man strftime'
-#. TRANSLATORS: used on Timer Entry pages
+#, fuzzy
 msgid "%-d %B %Y"
 msgstr ""
 
+# TRANSLATORS: used on EPG Search results screen "%a %-d %b"
 #. TRANSLATORS: small date representation daynum short monthname in strftime() format! See 'man strftime'
 #. TRANSLATORS: compact date representation (for VFD) daynum short monthname in strftime() format! See 'man strftime'
-#. TRANSLATORS: used on EPG Search results
+#, fuzzy
 msgid "%-d %b"
 msgstr ""
 
+# TRANSLATORS: Used on Similar Broadcasts list and Timer Log screens "%a %-d %b %Y"
 #. TRANSLATORS: long date representation daynum short monthname year in strftime() format! See 'man strftime'
-#. TRANSLATORS: used in 'Similar broadcasts' list and Timer Log
+#, fuzzy
 msgid "%-d %b %Y"
 msgstr ""
 
@@ -1016,7 +1019,7 @@ msgstr[1] "%d mins"
 
 #, python-format
 msgid "%d Mins"
-msgstr ""
+msgstr "%d mins"
 
 #. TRANSLATORS: Intermediate scanning result, '%d' channel(s) have been found so far
 #, python-format
@@ -3828,7 +3831,7 @@ msgstr ""
 msgid "Cancel the selection"
 msgstr ""
 
-#. TRANSLATORS: override en_US
+# TRANSLATORS: override en_US (en.po)
 msgid "Cancelled upon user request"
 msgstr "Cancelled by user"
 
@@ -4447,11 +4450,11 @@ msgstr ""
 msgid "Configuration mode: %s"
 msgstr ""
 
-#. TRANSLATORS: override en_US
+# TRANSLATORS: override en_US (en.po)
 msgid "Configure an additional delay to improve external subtitle synchronisation."
 msgstr "Configure an additional delay to improve external subtitle synchronisation."
 
-#. TRANSLATORS: override en_US
+# TRANSLATORS: override en_US (en.po)
 msgid "Configure an additional delay to improve subtitle synchronisation."
 msgstr "Configure an additional delay to improve subtitle synchronisation."
 
@@ -5168,13 +5171,13 @@ msgstr ""
 msgid "Custom skip time for '7'/'9' buttons"
 msgstr ""
 
-#. TRANSLATORS: override en_US
+# TRANSLATORS: override en_US (en.po)
 msgid "Customise"
 msgstr "Customise"
 
-#. TRANSLATORS: override en_US
+# TRANSLATORS: override en_US (en.po)
 msgid "Customise enigma2 personal settings"
-msgstr "Customise Enigma2 personal settings"
+msgstr "Customise your receiver's settings"
 
 msgid "Customize"
 msgstr "Customise"
@@ -7042,7 +7045,7 @@ msgstr ""
 msgid "External subtitle color"
 msgstr "External subtitle colour"
 
-#. TRANSLATORS: override en_US
+# TRANSLATORS: override en_US (en.po)
 msgid "External subtitle dialog colorisation"
 msgstr "External subtitle dialogue colourisation"
 
@@ -7179,7 +7182,7 @@ msgstr "Favourites button"
 msgid "Favorites long"
 msgstr "Favourites hold"
 
-#. TRANSLATORS: override en_US
+# TRANSLATORS: override en_US (en.po)
 msgid "Favourites"
 msgstr "Favourites"
 
@@ -7219,7 +7222,7 @@ msgstr ""
 msgid "File Commander - all Task's are completed!"
 msgstr ""
 
-#. TRANSLATORS: override en_US
+# TRANSLATORS: override en_US (en.po)
 msgid "File Commander - generalised archive handler"
 msgstr "File Commander - generalised archive handler"
 
@@ -8346,7 +8349,7 @@ msgstr ""
 msgid "If using multiple uncommitted switches the DiSEqC commands must be sent multiple times. Set to the number of uncommitted switches in the chain minus one."
 msgstr ""
 
-#. TRANSLATORS: override en_US
+# TRANSLATORS: override en_US (en.po)
 msgid "If you are using a Circular polarised LNB select 'yes', otherwise select 'no'."
 msgstr "If you're using a circular polarised LNB, select 'yes', otherwise select 'no'."
 
@@ -8428,7 +8431,7 @@ msgstr ""
 msgid "Image-Version"
 msgstr ""
 
-#. TRANSLATORS: override en_US
+# TRANSLATORS: override en_US (en.po)
 msgid "ImageWizard"
 msgstr "Initialisation Wizard"
 
@@ -9230,7 +9233,7 @@ msgstr ""
 msgid "Limit west"
 msgstr ""
 
-#. TRANSLATORS: override en_US
+# TRANSLATORS: override en_US (en.po)
 msgid "Limits cancelled"
 msgstr "Limits cancelled"
 
@@ -10930,7 +10933,7 @@ msgstr ""
 msgid "Open bouquetlist..."
 msgstr ""
 
-#. TRANSLATORS: override en_US
+# TRANSLATORS: override en_US (en.po)
 msgid "Open favourites list"
 msgstr "Open favourites list"
 
@@ -13149,7 +13152,7 @@ msgstr ""
 msgid "SD"
 msgstr ""
 
-#. TRANSLATORS: override en_US
+# TRANSLATORS: override en_US (en.po)
 msgid "SDcard is not initialised for multiboot - Exit and use MultiBoot Image Manager to initialise"
 msgstr "SDcard is not initialised for multi-boot - Exit and use Multi-Boot Image Manager to initialise"
 
@@ -13823,7 +13826,7 @@ msgstr ""
 msgid "Select the sleep timer action."
 msgstr ""
 
-#. TRANSLATORS: override en_US
+# TRANSLATORS: override en_US (en.po)
 msgid "Select the tuner that controls the motorised dish."
 msgstr "Select which tuner should be used to control the motorised dish."
 
@@ -14024,14 +14027,14 @@ msgstr ""
 msgid "Service Title mode"
 msgstr ""
 
-#. TRANSLATORS: override en_US
+# TRANSLATORS: override en_US (en.po)
 msgid "Service cant been added to the favourites."
 msgstr "Channel can't be added to favourites."
 
 msgid "Service font size"
 msgstr ""
 
-#. TRANSLATORS: override en_US
+# TRANSLATORS: override en_US (en.po)
 msgid "Service has been added to the favourites."
 msgstr "Channel has been added to favourites."
 
@@ -16746,7 +16749,7 @@ msgstr ""
 msgid "This option allows you choose how to display the remaining/elapsed time for media playback."
 msgstr ""
 
-#. TRANSLATORS: override en_US
+# TRANSLATORS: override en_US (en.po)
 msgid "This option allows you choose the background colour of transparent picons."
 msgstr "Choose which colour to show behind channel picons with transparent backgrounds."
 
@@ -16971,13 +16974,13 @@ msgstr ""
 msgid "This test detects your configured LAN adapter."
 msgstr ""
 
-#. TRANSLATORS: override en_US
+# TRANSLATORS: override en_US (en.po)
 msgid ""
 "This will (re-)calculate all positions of your rotor and may remove previously memorised positions and fine-tuning!\n"
 "Are you sure?"
 msgstr ""
-"This will (re-)calculate all rotator positions and may remove previously memorised positions and fine-tuning!\n"
-"Are you sure?"
+"This will (re-)calculate all positioner positions and may remove previously memorised positions and fine-tuning!\n"
+"Do you want to continue?"
 
 msgid "This will go fast forward/backward with time frames of x secs"
 msgstr ""
@@ -17556,7 +17559,7 @@ msgstr ""
 msgid "USALS"
 msgstr ""
 
-#. TRANSLATORS: override en_US
+# TRANSLATORS: override en_US (en.po)
 msgid "USALS automatically moves a motorised dish to the correct satellite based on the coordinates entered by the user. Without USALS each satellite will need to be setup and saved individually."
 msgstr "USALS automatically moves a motorised dish to the correct satellite based on the co-ordinates entered by the user. Without USALS, each satellite will need to be set up and saved individually."
 
@@ -17737,7 +17740,7 @@ msgstr ""
 msgid "Up/Down button mode"
 msgstr ""
 
-#. TRANSLATORS: override en_US
+# TRANSLATORS: override en_US (en.po)
 msgid "Up/Down buttons also for 'all up/down'?"
 msgstr "Synchronise column scrolling"
 
@@ -19455,7 +19458,7 @@ msgstr ""
 msgid "[bouquet edit]"
 msgstr ""
 
-#. TRANSLATORS: override en_US
+# TRANSLATORS: override en_US (en.po)
 msgid "[favourite edit]"
 msgstr "[editing favourite]"
 
@@ -19510,7 +19513,7 @@ msgstr ""
 msgid "add service to bouquet"
 msgstr ""
 
-#. TRANSLATORS: override en_US
+# TRANSLATORS: override en_US (en.po)
 msgid "add service to favourites"
 msgstr "add service to favourites"
 
@@ -20444,7 +20447,7 @@ msgstr ""
 msgid "no module found"
 msgstr ""
 
-#. TRANSLATORS: override en_US
+# TRANSLATORS: override en_US (en.po)
 msgid "no or unknown card inserted"
 msgstr "no card or unrecognised card inserted"
 
