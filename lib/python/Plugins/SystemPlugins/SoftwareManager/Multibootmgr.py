@@ -35,7 +35,7 @@ class MultiBootWizard(Screen):
 	</screen>
 	"""
 
-	def __init__(self, session,menu_path=""):
+	def __init__(self, session):
 		Screen.__init__(self, session)
 		Screen.setTitle(self, _("MultiBoot Image Manager"))
 		self["key_red"] = StaticText(_("Cancel"))
