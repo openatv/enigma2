@@ -73,9 +73,8 @@
 			<!-- Menu / Settings / GUI / Display-->
 			<item weight="0" level="0" entryID="user_interface"><setup id="userinterface" /></item>
 			<item weight="5" level="0" entryID="remote_setup"><setup id="remotesetup"/></item>
-			<item weight="10" level="0" entryID="pip_setup" requires="PIPAvailable"><setup id="pipsetup"/></item>
-			<item weight="15" level="0" entryID="channelselection_setup"><setup id="channelselection" /></item>
-			<item weight="20" level="0" entryID="usage_setup"><setup id="usage" /></item>
+			<item weight="10" level="0" entryID="channelselection_setup"><setup id="channelselection" /></item>
+			<item weight="15" level="0" entryID="usage_setup"><setup id="usage" /></item>
 			<!--item weight="20" level="0" entryID="specialfeatures_menu"><setup id="specialfeatures" /></item-->
 			<item weight="25" level="0" text="Skin Setup" entryID="skin_setup"><screen module="SkinSelector" screen="SkinSelector"/></item>
 			<menu weight="30" level="0" text="STB Display" entryID="display_selection" requires="Display">

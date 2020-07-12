@@ -1,3 +1,4 @@
+
 <keymap>
 	<map context="ListboxActions">
 		<device name="keyboard">
@@ -179,7 +180,7 @@
 
 	<map context="InfoBarQuickMenu">
 		<key id="KEY_BLUE" mapto="quickmenu" flags="b" />
-	</map>
+ 	</map>
 
 	<map context="SatlistShortcutAction">
 		<key id="KEY_YELLOW" mapto="changetype" flags="b"/>
@@ -278,6 +279,7 @@
 		<key id="KEY_RIGHT" mapto="right" flags="mr" />
 	</map>
 
+
 	<map context="MenuActions">
 		<key id="KEY_MENU" mapto="menu" flags="mr" />
 		<key id="KEY_SPACE" mapto="menu" flags="mr" />
@@ -356,22 +358,16 @@
 	</map>
 
 	<map context="InfobarTimerButtonActions">
-		<key id="KEY_PROGRAM" mapto="timerSelection" flags="b" />
+			<key id="KEY_PROGRAM" mapto="timerSelection" flags="b" />
 	</map>
 
 	<map context="InfobarVmodeButtonActions">
-		<key id="KEY_VMODE" mapto="vmodeSelection" flags="m" />
+			<key id="KEY_VMODE" mapto="vmodeSelection" flags="m" />
 	</map>
 
 	<map context="InfobarPiPActions">
 		<key id="KEY_SCREEN" mapto="activatePiP" flags="b" />
 		<key id="KEY_F6" mapto="activatePiP" flags="b" />
-		<key id="KEY_SCREEN" mapto="activatePiPlong" flags="l" />
-		<key id="KEY_F6" mapto="activatePiPlong" flags="l" />
-		<key id="KEY_LEFT" mapto="left" flags="b" />
-		<key id="KEY_RIGHT" mapto="right" flags="b" />
-		<key id="KEY_EXIT" mapto="exitpip" flags="m" />
-		<key id="KEY_ESC" mapto="exitpip" flags="m" />
 	</map>
 
 	<map context="InfobarSubserviceQuickzapActions">
@@ -496,7 +492,6 @@
 		<key id="KEY_7" mapto="seekdef:7" flags="m" />
 		<key id="KEY_9" mapto="seekdef:9" flags="m" />
 	</map>
-	
 	<map context="InfobarSeekActionsPTS">
 		<key id="KEY_PLAYPAUSE" mapto="playpauseService" flags="m" />
 		<key id="KEY_PAUSE" mapto="pauseService" flags="m" />
@@ -778,6 +773,7 @@
 		<key id="KEY_ESC" mapto="cancel" flags="m" />
 	</map>
 
+
 	<map context="DirectionActions">
 		<key id="KEY_UP" mapto="up" flags="mr" />
 		<key id="KEY_DOWN" mapto="down" flags="mr" />
@@ -829,7 +825,6 @@
 		<key id="KEY_CHANNELUP" mapto="nextBouquet" flags="m" />
 		<key id="KEY_CHANNELDOWN" mapto="prevBouquet" flags="m" />
 	</map>
-	
 	<map context="StandbyActions">
 		<key id="KEY_POWER" mapto="power" flags="m" />
 		<key id="KEY_KP1" mapto="discrete_on" flags="m" />
@@ -876,16 +871,7 @@
 		<key id="KEY_CHANNELDOWN" mapto="size-" flags="mr" />
 		<key id="KEY_INFO" mapto="mode" flags="m" />
 	</map>
-	
-	<map context="PiPusageModeSetupActions">
-		<key id="KEY_LEFT" mapto="left" flags="mr" />
-		<key id="KEY_RIGHT" mapto="right" flags="mr" />
-		<key id="KEY_EXIT" mapto="cancel" flags="m" />
-		<key id="KEY_ESC" mapto="cancel" flags="m" />
-		<key id="KEY_ENTER" mapto="ok" flags="m" />
-		<key id="KEY_OK" mapto="ok" flags="m" />
-	</map>
-	
+
 	<map context="MediaPlayerActions">
 		<device name="dreambox advanced remote control (native)">
 			<key id="KEY_RECORD" mapto="shift_record" flags="l" />
@@ -925,7 +911,6 @@
 		<key id="KEY_FILE" mapto="nextBouquet" flags="m" />
 		<key id="KEY_LIST" mapto="prevBouquet" flags="m" />
 	</map>
-	
 	<map context="CCcamInfoActions">
 		<key id="KEY_1" mapto="1" flags="m"/>
 		<key id="KEY_2" mapto="2" flags="m"/>
@@ -952,7 +937,6 @@
 		<key id="KEY_CHANNELUP" mapto="incUphop" flags="m"/>
 		<key id="KEY_CHANNELDOWN" mapto="decUphop" flags="m"/>
 	</map>
-	
 	<map context="InfoBarINFOpanel">
 		<key id="KEY_RED" mapto="infoPanel" flags="b" />
 		<key id="KEY_RED" mapto="softcamPanel" flags="l" />
@@ -1051,7 +1035,6 @@
 		<key id="KEY_PREVIOUSSONG" mapto="prevsong_long" flags="l"/>
 		<key id="KEY_NEXTSONG" mapto="nextsong_long" flags="l"/>
 		<key id="KEY_SCREEN" mapto="activatePiP" flags="b"/>
-		<key id="KEY_SCREEN" mapto="activatePiPlong" flags="l"/>
 		<key id="KEY_PROGRAM" mapto="prog" flags="b"/>
 		<key id="KEY_PROGRAM" mapto="prog_long" flags="l"/>
 		<key id="KEY_PLAYPAUSE" mapto="playpause" flags="m"/>
@@ -1125,7 +1108,6 @@
 		<key id="KEY_KEYBOARD" mapto="keyboard" flags="b"/>
 		<key id="KEY_KEYBOARD" mapto="keyboard_long" flags="l"/>
 	</map>
-	
 	<map context="SubtitlesActions">
 		<key id="KEY_SUBTITLE" mapto="subtitles" flags="m" />
 		<key id="KEY_TEXT" mapto="subtitles" flags="m" />

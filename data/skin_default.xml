@@ -1,4 +1,4 @@
-<skin>
+﻿<skin>
 	<include filename="Skin_ExtPlugins.xml" />
 	<fonts>
 		<font filename="nmsbd.ttf" name="Regular" scale="90" />
@@ -1173,12 +1173,15 @@ self.autoResize()
 		<panel name="BasicTemplate" />
 		<widget name="servicelist" position="10,10" size="540,400" scrollbarMode="showOnDemand" />
 	</screen>
-	<screen name="PictureInPicture" position="400,60" size="240,192" flags="wfNoBorder" backgroundColor="transparent" zPosition="-2">
-		<widget name="video" position="0,0" size="240,192" backgroundColor="transparent" zPosition="-2" />
+	<screen name="PictureInPicture" position="400,60" zPosition="-1" size="240,192" flags="wfNoBorder">
+		<widget name="video" position="0,0" size="240,135" backgroundColor="transparent" />
 	</screen>
-	<screen name="PiPSetup" position="center,center" size="600,300" flags="wfNoBorder" backgroundColor="transparent" zPosition="2">
-		<widget name="text" position="20,20" size="580,280" font="Regular;20" foregroundColor="white" backgroundColor="black" valign="center" halign="center" />
-	</screen>																									
+	<screen name="PictureInPictureZapping" position="580,60" size="120,26" flags="wfNoBorder" backgroundColor="transparent" zPosition="-1" title="PiPZap" >
+		<eLabel text="PiP-Zap" position="0,0" size="120,26" backgroundColor="transparent" transparent="1" font="Regular;22" borderColor="black" borderWidth="3" valign="center" halign="center" />
+	</screen>
+	<screen name="PiPSetup" position="center,center" size="800,200" flags="wfNoBorder" backgroundColor="transparent" zPosition="-1" title="PiPSetup" >
+		<widget name="text" position="0,0" size="800,200" backgroundColor="transparent" transparent="1" font="Regular;22" borderColor="black" borderWidth="3" valign="center" halign="center" />
+	</screen>
 	<screen name="PinInput" position="center,center" size="500,170" title="PIN code needed">
 		<panel name="PinInputTemplate" />
 	</screen>
