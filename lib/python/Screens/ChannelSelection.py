@@ -2343,6 +2343,60 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 			self.pipzaptimer.stop()
 		self.session.pip.inactive()
 
+	def zap(self, enable_pipzap=False, preview_zap=False, checkParentalControl=True, ref=None):
+		self.curRoot = self.startRoot
+		nref = ref or self.getCurrentSelection()
+		ref = self.session.nav.getCurrentlyPlayingServiceOrGroup()
+		if enable_pipzap and self.dopipzap:
+			ref = self.session.pip.getCurrentService()
+			if ref is None or ref != nref:
+				nref = self.session.pip.resolveAlternatePipService(nref)
+				if nref and (not checkParentalControl or Components.ParentalControl.parentalControl.isServicePlayable(nref, boundFunction(self.zap, enable_pipzap=True, checkParentalControl=False))):
+					currentBouquet = self.getRoot()
+					self.session.pip.playService(nref,currentBouquet)
+					self.__evServiceStart()
+					if config.usage.pip_mode.value != "byside":
+						self.showPipzapMessage()
+				else:
+					self.setStartRoot(self.curRoot)
+					self.setCurrentSelection(ref)
+		elif ref is None or ref != nref:
+			Screens.InfoBar.InfoBar.instance.checkTimeshiftRunning(boundFunction(self.zapCheckTimeshiftCallback, enable_pipzap, preview_zap, nref))
+		elif not preview_zap:
+			self.saveRoot()
+			self.saveChannel(nref)
+			config.servicelist.lastmode.save()
+			self.setCurrentSelection(nref)
+			if self.startServiceRef is None or nref != self.startServiceRef:
+				self.addToHistory(nref)
+			self.rootChanged = False
+			self.revertMode = None
+
+	def zapCheckTimeshiftCallback(self, enable_pipzap, preview_zap, nref, answer):
+		if answer:
+			self.new_service_played = True
+			self.session.nav.playService(nref)
+			if not preview_zap:
+				self.saveRoot()
+				self.saveChannel(nref)
+				config.servicelist.lastmode.save()
+				if self.startServiceRef is None or nref != self.startServiceRef:
+					self.addToHistory(nref)
+				if self.dopipzap:
+					self.setCurrentSelection(self.session.pip.getCurrentService())
+				else:
+					self.mainScreenMode = config.servicelist.lastmode.value
+					self.mainScreenRoot = self.getRoot()
+				self.revertMode = None
+			else:
+				Tools.Notifications.RemovePopup("Parental control")
+				self.setCurrentSelection(nref)
+		else:
+			self.setStartRoot(self.curRoot)
+			self.setCurrentSelection(self.session.nav.getCurrentlyPlayingServiceOrGroup())
+		if not preview_zap:
+			self.hide()
+
 	def zapToServiceinList(self, service=None, bouquet=None):
 		if service is not None and bouquet is not None:
 			self.enterUserbouquet(bouquet, save_root=False)
