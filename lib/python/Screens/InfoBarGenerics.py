@@ -3501,6 +3501,7 @@ class InfoBarJobman:
 		job_manager.in_background = in_background
 
 # depends on InfoBarExtensions
+class InfoBarPiP:
 	def __init__(self):
 		try:
 			self.session.pipshown
