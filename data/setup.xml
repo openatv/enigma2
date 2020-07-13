@@ -98,26 +98,19 @@
 		<item level="2" text="Show crypto info in infobar" description="Show encryption info in the infobar (when supported by the skin).">config.usage.show_cryptoinfo</item>
 		<item level="2" text="Infobar frontend data source" description="Configure the source of the frontend data as shown on the infobars. 'Settings' is as stored on the settings. 'Tuner' is as reported by the tuner.">config.usage.infobar_frontend_source</item>
 		<item level="2" text="Swap SNR in '&#37;' with SNR in 'db'" description="This option allows you to the SNR as a percentage (not all receivers support this).">config.usage.swap_snr_on_osd</item>
+		<item level="1" text="Behavior of 0 key in PiP-mode" description="Choose what you want the button '0' to do when PIP is active.">config.usage.pip_zero_button</item>
 		<item level="1" text="Sort setting screen's alphabetically" description="This option allows you to disable sorting of the option in setting screen's">config.usage.sort_settings</item>
 		<item level="0" text="Sort order for menu entries" description="This option allows you to hide and sorting of the menus" >config.usage.menu_sort_mode</item>
 		<item level="1" text="Sort plug-in browser entries" description="This option allows you to hide and sorting of the plugin browser.">config.usage.plugins_sort_mode</item>
 		<item level="1" text="Sort Extensions list alphabetically" description="This option allows you to disable sorting of the Extensions list.">config.usage.sort_extensionslist</item>
 		<item level="1" text="Show screen menu path" description="This option allows you to show the screen menu path history.">config.usage.showScreenPath</item>
-		<item level="1" text="Color first in Extensions list" description="This option allows you to place the colored buttons (red, green, yellow, blue) to the first in the Extensions list.">config.usage.colored_first_extensionslist</item>
 		<item level="1" text="Show Restart Network in Extensions list *" description="This option allows you to disable show Restart Network in Extensions list.">config.usage.show_restart_network_extensionslist</item>
 		<item level="1" text="Show PVR status in MoviePlayer infobar" description="This option moves the PVR status from the separate window into the MoviePlayer infobar.">config.usage.movieplayer_pvrstate</item>
+		<item level="2" text="Close PiP on exit" description="When enabled the PiP can be closed by the exit button." requires="PIPAvailable">config.usage.pip_hideOnExit</item>
+		<item level="2" text="Remember last service in PiP" description="Configure if and how long the latest service in the PiP will be remembered." requires="PIPAvailable">config.usage.pip_last_service_timeout</item>
 		<item level="2" text="Show VCR scart on main menu" description="When enabled, the VCR scart option will be shown on the main menu" requires="ScartSwitch">config.usage.show_vcr_scart</item>
 		<item level="2" text="Show True/False as graphical switch" description="Enable to display all true/false, yes/no, on/off and enable/disable set up options as a graphical switch.">config.usage.boolean_graphic</item>
 		<item level="2" text="Show additional slider value" description="Enable the current value of the slider at end of the slider bar.">config.usage.show_slider_value</item>
-	</setup>
-	<setup key="pipsetup" title="PiP settings">
-		<item level="2" text="PiP mode" description="Choose how you want PIP mode to work." requires="PIPAvailable">config.usage.pip_mode</item>
-		<item level="2" text="Ads filtering mode be default" description="After this time, the Ads filtering mode should be the default set mode." requires="PIPAvailable">config.usage.noadspip_default_mode_time</item>
-		<item level="1" text="Color first in Extensions list" description="This option allows you to place the colored buttons (red, green, yellow, blue) to the first in the Extensions list.">config.usage.colored_first_extensionslist</item>
-		<item level="2" text="Close PiP on exit" description="When enabled the PiP can be closed by the exit button." requires="PIPAvailable">config.usage.pip_hideOnExit</item>
-		<item level="2" text="Remember last service in PiP" description="Configure if and how long the latest service in the PiP will be remembered." requires="PIPAvailable">config.usage.pip_last_service_timeout</item>
-		<item level="1" text="Behavior of 0 key in PiP-mode" description="Choose what you want the button '0' to do when PIP is active." requires="PIPAvailable">config.usage.pip_zero_button</item>		
-		<item level="2" text="PiP size and position save" description="Select the mode in which the position and size are saved. Changing the position and size is only possible when using the Standard usage mode!" requires="PIPAvailable">config.usage.pip_position_size_save</item>
 	</setup>
 	<setup key="channelselection" title="Channel selection settings">
 		<item level="0" text="Include CI assignment" description="Set CI assignment for detection of available services.">config.misc.use_ci_assignment</item>
@@ -502,11 +495,14 @@
 		<item level="2" text="Info button (long)" description="Set to what you want the button to do.">config.epgselection.graph_infolong</item>
 		<item level="2" text="OK button (short)" description="Set to what you want the button to do.">config.epgselection.graph_ok</item>
 		<item level="2" text="OK button (long)" description="Set to what you want the button to do.">config.epgselection.graph_oklong</item>
+
 		<item level="2" text="Red button" description="Set to what you want the button to do.">config.epgselection.graph_red</item>
 		<item level="2" text="Green button" description="Set to what you want the button to do.">config.epgselection.graph_green</item>
 		<item level="2" text="Yellow button" description="Set to what you want the button to do.">config.epgselection.graph_yellow</item>
 		<item level="2" text="Blue button" description="Set to what you want the button to do.">config.epgselection.graph_blue</item>
+		
 		<item level="2" text="Channel +/-" description="Set to what you want the button to do.">config.epgselection.graph_channelbtn</item>
+
 		<item level="2" text="Start mode" description="Here can set the EPG will alway open at the current channel, the first channel or one of both with primetime. If no primetime selected, the current time is used.">config.epgselection.graph_startmode</item>
 		<item level="2" text="Skip empty services" description="If set to 'yes' channels without EPG will not be shown.">config.epgselection.overjump</item>
 		<item level="2" text="Base time" description="Choose time interval to which the graphics will be rounded off.">config.epgselection.graph_roundto</item>
@@ -552,4 +548,4 @@
 		<item level="2" text="Show translation packages" description="If set to 'yes' it will show the 'PO' packages in browser.">config.pluginbrowser.po</item>
 		<item level="2" text="Show source packages" description="If set to 'yes' it will show the 'SRC' packages in browser.">config.pluginbrowser.src</item>
 	</setup>
-</setupxml>
+	</setupxml>

@@ -18,20 +18,10 @@ def clip(val, min, max):
 	if min <= val:
 		return max
 	return min
-	
-class MyPiPSetup(Screen):
-	skin = """<screen name="MyPiPSetup" position="center,center" size="662,302" flags="wfNoBorder" backgroundColor="background" zPosition="2">
-		<eLabel text="PiPSetup" position="1,5" size="660,50" font="Regular;28" foregroundColor="white" backgroundColor="background" halign="center" valign="center" zPosition="2" />
-		<eLabel position="1,60" size="660,1" backgroundColor="white" zPosition="2" />
-		<widget name="text" position="40,90" size="620,200" halign="left" font="Regular;20" foregroundColor="white" backgroundColor="background" zPosition="2" />
-	</screen>"""
 
 class PiPSetup(Screen):
-	
 	def __init__(self, session, pip):
-		self.skin = MyPiPSetup.skin
 		Screen.__init__(self, session)
-		self.skinName = "MyPiPSetup"
 
 		self.pip = pip
 
@@ -45,10 +35,10 @@ class PiPSetup(Screen):
 
 		self.resize = 100
 
-		self.helptext = _("Position change:  Use direction keys to move the PiP window\nSize change:  Channel +/- to resize the window\nOK  -  save changes  |  EXIT  -  cancel")
+		self.helptext = _("Please use direction keys to move the PiP window.\nPress Bouquet +/- to resize the window.\nPress OK to go back to the TV mode or EXIT to cancel the moving.")
 		if SystemInfo["VideoDestinationConfigurable"] or SystemInfo["HasExternalPIP"]:
-			self.helptext += "\n\n" + _("Press '0' to toggle PiP current mode")
-		self.modetext = _("Current mode:   %s\n\n")
+			self.helptext += "\n" + _("Press '0' to toggle PiP mode")
+		self.modetext = _("Current mode: %s \n")
 
 		self["text"] = Label((self.modetext % self.pip.getModeName()) + self.helptext)
 
@@ -75,7 +65,6 @@ class PiPSetup(Screen):
 		}, -1)
 
 	def go(self):
-		self.pip.savePiPSettings()
 		self.close()
 
 	def cancel(self):
