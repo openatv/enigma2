@@ -144,7 +144,7 @@ class Screen(dict):
 		return self.screenPath
 
 	def setTitle(self, title):
-		if len(self.session.dialog_stack) > 1:
+		if self.session and len(self.session.dialog_stack) > 1:
 			self.screenPath = " > ".join(ds[0].getTitle() for ds in self.session.dialog_stack[1:])
 		self.screenTitle = title
 		if self.instance:
