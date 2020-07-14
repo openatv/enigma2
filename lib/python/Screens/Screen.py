@@ -144,14 +144,15 @@ class Screen(dict):
 		return self.screenPath
 
 	def setTitle(self, title):
-		if not self or not self.session:  # Catch plugins that start without a self or session.
-			return
-		if len(self.session.dialog_stack) > 1:
-			self.screenPath = " > ".join(ds[0].getTitle() for ds in self.session.dialog_stack[1:])
+		try:
+			if self.session and len(self.session.dialog_stack) > 1:
+				self.screenPath = " > ".join(ds[0].getTitle() for ds in self.session.dialog_stack[1:])
+			if self.instance:
+				self.instance.setTitle(title)
+			self.summaries.setTitle(title)
+		except AttributeError:
+			pass
 		self.screenTitle = title
-		if self.instance:
-			self.instance.setTitle(title)
-		self.summaries.setTitle(title)
 		if config.usage.showScreenPath.value == "large":
 			screenPath = ""
 			screenTitle = "%s > %s" % (self.screenPath, title) if self.screenPath else title
