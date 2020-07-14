@@ -56,7 +56,7 @@ from Components.PluginComponent import plugins
 from RecordTimer import TIMERTYPE
 from skin import getSkinFactor
 
-from time import localtime, time
+from time import localtime, time, strftime
 import six
 
 try:
@@ -2352,11 +2352,9 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 			if ref is None or ref != nref:
 				nref = self.session.pip.resolveAlternatePipService(nref)
 				if nref and (not checkParentalControl or Components.ParentalControl.parentalControl.isServicePlayable(nref, boundFunction(self.zap, enable_pipzap=True, checkParentalControl=False))):
-					currentBouquet = self.getRoot()
-					self.session.pip.playService(nref,currentBouquet)
+					self.session.pip.playService(nref)
 					self.__evServiceStart()
-					if config.usage.pip_mode.value != "byside":
-						self.showPipzapMessage()
+					self.showPipzapMessage()
 				else:
 					self.setStartRoot(self.curRoot)
 					self.setCurrentSelection(ref)
@@ -2396,11 +2394,6 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 			self.setCurrentSelection(self.session.nav.getCurrentlyPlayingServiceOrGroup())
 		if not preview_zap:
 			self.hide()
-
-	def zapToServiceinList(self, service=None, bouquet=None):
-		if service is not None and bouquet is not None:
-			self.enterUserbouquet(bouquet, save_root=False)
-			self.setCurrentSelection(service)
 
 	def newServicePlayed(self):
 		ret = self.new_service_played
