@@ -1,4 +1,4 @@
-from __future__ import absolute_import, division
+from __future__ import absolute_import
 # shamelessly copied from pliExpertInfo (Vali, Mirakels, Littlesat)
 
 from os import path
@@ -390,7 +390,7 @@ class PliExtraInfo(Poll, Converter, object):
 				pass
 			f.close()
 
-		fps  = str((video_rate + 500) // 1000)
+		fps  = str((video_rate + 500) / 1000)
 		gamma = ("SDR", "HDR", "HDR10", "HLG", "")[info.getInfo(iServiceInformation.sGamma)]
 		return str(video_width) + "x" + str(video_height) + video_pol + fps + addspace(gamma)
 
@@ -484,9 +484,9 @@ class PliExtraInfo(Poll, Converter, object):
 	def createOrbPos(self, feraw):
 		orbpos = feraw.get("orbital_position")
 		if orbpos > 1800:
-			return str((float(3600 - orbpos)) // 10.0) + SIGN + "W"
+			return str((float(3600 - orbpos)) / 10.0) + SIGN + "W"
 		elif orbpos > 0:
-			return str((float(orbpos)) // 10.0) + SIGN + "E"
+			return str((float(orbpos)) / 10.0) + SIGN + "E"
 		return ""
 
 	def createOrbPosOrTunerSystem(self, fedata, feraw):
@@ -601,9 +601,9 @@ class PliExtraInfo(Poll, Converter, object):
 		if orbpos in sat_names:
 			return sat_names[orbpos]
 		elif orbpos > 1800:
-			return str((float(3600 - orbpos)) // 10.0) + "W"
+			return str((float(3600 - orbpos)) / 10.0) + "W"
 		else:
-			return str((float(orbpos)) // 10.0) + "E"
+			return str((float(orbpos)) / 10.0) + "E"
 
 	def createProviderName(self, info):
 		return info.getInfoString(iServiceInformation.sProvider)
