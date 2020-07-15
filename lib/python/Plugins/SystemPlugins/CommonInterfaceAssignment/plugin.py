@@ -368,18 +368,18 @@ class CAidSelect(Screen):
 			<widget source="introduction" render="Label" position="0,400" size="450,40" zPosition="10" font="Regular;21" halign="center" valign="center" backgroundColor="#25062748" transparent="1" />
 		</screen>"""
 
-	def __init__(self, session, list, selected_caids):
+	def __init__(self, session, _list, selected_caids):
 
 		Screen.__init__(self, session)
 
 		self.list = SelectionList()
 		self["list"] = self.list
 
-		for listindex in list(range(len(list))):
-			if find_in_list(selected_caids, list[listindex][0], 0):
-				self.list.addSelection(list[listindex][0], list[listindex][1], listindex, True)
+		for listindex in list(range(len(_list))):
+			if find_in_list(selected_caids, _list[listindex][0], 0):
+				self.list.addSelection(_list[listindex][0], _list[listindex][1], listindex, True)
 			else:
-				self.list.addSelection(list[listindex][0], list[listindex][1], listindex, False)
+				self.list.addSelection(_list[listindex][0], _list[listindex][1], listindex, False)
 
 		self["key_red"] = StaticText(_("Cancel"))
 		self["key_green"] = StaticText(_("Save"))
@@ -398,8 +398,8 @@ class CAidSelect(Screen):
 		self.setTitle(_("select CAId's"))
 
 	def greenPressed(self):
-		list = self.list.getSelectionsList()
-		self.close(list)
+		_list = self.list.getSelectionsList()
+		self.close(_list)
 
 	def cancel(self):
 		self.close()
