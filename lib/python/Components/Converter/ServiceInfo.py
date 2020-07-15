@@ -1,4 +1,4 @@
-from __future__ import absolute_import, division
+from __future__ import absolute_import
 from Components.Converter.Converter import Converter
 from enigma import iServiceInformation, iPlayableService, eServiceReference
 from Screens.InfoBarGenerics import hasActiveSubservicesForCurrentChannel
@@ -366,7 +366,7 @@ class ServiceInfo(Poll, Converter, object):
 			if fieldrate > 0:
 				if progressive == 'i':
 					fieldrate *= 2
-				fieldrate = "%dHz" % ((fieldrate + 500) // 1000,)
+				fieldrate = "%dHz" % ((fieldrate + 500) / 1000,)
 			else:
 				fieldrate = ""
 			return "%sx%s%s %s" % (self._getVideoWidthStr(info), self._getVideoHeightStr(info), progressive, fieldrate)
