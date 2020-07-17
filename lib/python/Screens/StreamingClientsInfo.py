@@ -9,7 +9,7 @@ import skin
 
 
 class StreamingClientsInfo(Screen):
-	def __init__(self, session, menu_path = ""):
+	def __init__(self, session):
 		Screen.__init__(self, session)
 		self.timer = eTimer()
 		self.setTitle(_("Streaming clients info"))

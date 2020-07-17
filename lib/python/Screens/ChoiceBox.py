@@ -16,7 +16,7 @@ config.misc.pluginlist.extension_order = ConfigText(default="")
 config.misc.pluginlist.fc_bookmarks_order = ConfigText(default="")
 
 class ChoiceBox(Screen):
-	def __init__(self, session, title="", list=None, keys=None, selection=0, skin_name=None, text="", reorderConfig="", var="", menu_path="", windowTitle = None, allow_cancel = True, titlebartext = _("Choice Box")):
+	def __init__(self, session, title="", list=None, keys=None, selection=0, skin_name=None, text="", reorderConfig="", var="", windowTitle = None, allow_cancel = True, titlebartext = _("Choice Box")):
 		if not windowTitle: #for compatibility
 			windowTitle = titlebartext
 		if not list: list = []
@@ -39,8 +39,6 @@ class ChoiceBox(Screen):
 			self['tl_red'] = Pixmap()
 			self['tl_yellow'] = Pixmap()
 			self['tl_green'] = Pixmap()
-		if skin_name and 'SoftwareUpdateChoices' in skin_name:
-			self["menu_path_compressed"] = StaticText(menu_path)
 
 		title_max = 55
 		if 'MetrixHD/' in config.skin.primary_skin.value:

@@ -10,7 +10,8 @@
 		<item level="0" requires="config.usage.time.enabled" text="Time style" description="Choose the display formatting style for times. 'H' / 'HH' is the hour for a 24 hour clock, 'h' / 'hh' is the hour for a 12 hour clock, 'mm' is the minutes and 'ss' is the seconds.  ('HH' and 'hh' have leading zeros for single digit values.) The screen display will be based on your choice but can be influenced by the skin.">config.usage.time.long</item>
 	</setup>
 	<setup key="timezone" title="Time zone settings">
-		<item level="0" text="Timezone" description="Setup your timezone.">config.timezone.val</item>
+		<item level="0" text="Time zone area" description="Select your time zone area or region.">config.timezone.area</item>
+		<item level="0" text="Time zone" description="Select the time zone within the area or region.">config.timezone.val</item>
 	</setup>
 	<setup key="audio_setup">
 		<!-- this is just a placeholder, the Videomode plugin implements this submenu -->
@@ -103,6 +104,7 @@
 		<item level="0" text="Sort order for menu entries" description="This option allows you to hide and sorting of the menus" >config.usage.menu_sort_mode</item>
 		<item level="1" text="Sort plug-in browser entries" description="This option allows you to hide and sorting of the plugin browser.">config.usage.plugins_sort_mode</item>
 		<item level="1" text="Sort Extensions list alphabetically" description="This option allows you to disable sorting of the Extensions list.">config.usage.sort_extensionslist</item>
+		<item level="1" text="Show screen menu path" description="This option allows you to show the screen menu path history.">config.usage.showScreenPath</item>
 		<item level="1" text="Show Restart Network in Extensions list *" description="This option allows you to disable show Restart Network in Extensions list.">config.usage.show_restart_network_extensionslist</item>
 		<item level="1" text="Show PVR status in MoviePlayer infobar" description="This option moves the PVR status from the separate window into the MoviePlayer infobar.">config.usage.movieplayer_pvrstate</item>
 		<item level="2" text="Close PiP on exit" description="When enabled the PiP can be closed by the exit button." requires="PIPAvailable">config.usage.pip_hideOnExit</item>
