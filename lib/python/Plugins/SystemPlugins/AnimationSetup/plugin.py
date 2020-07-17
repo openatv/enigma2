@@ -232,7 +232,7 @@ class AnimationSetupScreen(Screen):
 
 def checkAttrib(self, paused):
 	global g_animation_paused
-	if g_animation_paused is paused and self.skinAttributes is not None:
+	if g_animation_paused is paused and hasattr(self, "skinAttributes") and self.skinAttributes:
 		for (attr, value) in self.skinAttributes:
 			if attr == "animationPaused" and value in ("1", "on"):
 				return True
