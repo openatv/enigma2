@@ -18,7 +18,7 @@ class ConfigList(HTMLComponent, GUIComponent, object):
 		height, space = skin.parameters.get("ConfigListSlider", (17, 0))
 		self.l.setSlider(height, space)
 		self.timer = eTimer()
-		self.configList = list
+		self.list = list
 		self.onSelectionChanged = [ ]
 		self.current = None
 		self.session = session
@@ -111,7 +111,7 @@ class ConfigList(HTMLComponent, GUIComponent, object):
 
 	def isChanged(self):
 		is_changed = False
-		for x in self.configList:
+		for x in self.list:
 			is_changed |= x[1].isChanged()
 
 		return is_changed
