@@ -1,3 +1,4 @@
+from __future__ import print_function
 from Components.config import ConfigSubsection, config
 import os
 

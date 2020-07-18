@@ -83,7 +83,7 @@ class Wlan:
 				if driver in ('brcm-wl', ):
 					system("wl up")
 
-		scanresults = list(Cell.all(self.iface,5))
+		scanresults = list(Cell.all(self.iface, 5))
 		aps = {}
 		if scanresults is not None:
 			for i in range(len(scanresults)):
@@ -432,7 +432,7 @@ class Status:
 					data['bitrate'] = br
 
 		if ssid != None and ssid != "off":
-			scanresults = list(Cell.all(iface,5))
+			scanresults = list(Cell.all(iface, 5))
 			aps = {}
 			if scanresults is not None:
 				for i in range(len(scanresults)):

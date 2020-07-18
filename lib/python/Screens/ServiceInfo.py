@@ -48,9 +48,9 @@ def ServiceInfoListEntry(a, b="", valueType=TYPE_TEXT, param=4):
 		else:
 			b = str(b)
 
-	x, y, w, h = skin.parameters.get("ServiceInfo",(0, 0, 300, 30))
-	xa, ya, wa, ha = skin.parameters.get("ServiceInfoLeft",(0, 0, 300, 25))
-	xb, yb, wb, hb = skin.parameters.get("ServiceInfoRight",(300, 0, 600, 25))
+	x, y, w, h = skin.parameters.get("ServiceInfo", (0, 0, 300, 30))
+	xa, ya, wa, ha = skin.parameters.get("ServiceInfoLeft", (0, 0, 300, 25))
+	xb, yb, wb, hb = skin.parameters.get("ServiceInfoRight", (300, 0, 600, 25))
 	return [
 		#PyObject *type, *px, *py, *pwidth, *pheight, *pfnt, *pstring, *pflags;
 		(eListboxPythonMultiContent.TYPE_TEXT, x, y, w, h, 0, RT_HALIGN_LEFT, ""),
@@ -144,7 +144,7 @@ class ServiceInfo(Screen):
 				height = self.info.getInfo(iServiceInformation.sVideoHeight)
 				if width > 0 and height > 0:
 					resolution = videocodec + " - "
-					resolution += "%dx%d - " % (width,height)
+					resolution += "%dx%d - " % (width, height)
 					resolution += str((self.info.getInfo(iServiceInformation.sFrameRate) + 500) / 1000)
 					resolution += (" i", " p", "")[self.info.getInfo(iServiceInformation.sProgressive)]
 					aspect = self.getServiceInfoValue(iServiceInformation.sAspect)
@@ -154,7 +154,7 @@ class ServiceInfo(Screen):
 				if gamma:
 					resolution += " - " + gamma
 			self.service = self.session.nav.getCurrentService()
-			if "%3a//" in refstr and reftype not in (1,257,4098,4114):
+			if "%3a//" in refstr and reftype not in (1, 257, 4098, 4114):
 			#IPTV 4097 5001, no PIDs shown
 				fillList = [(_("Service name"), name, TYPE_TEXT),
 					(_("Videocodec, size & format"), resolution, TYPE_TEXT),

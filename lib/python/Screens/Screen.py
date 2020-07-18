@@ -274,7 +274,7 @@ class Screen(dict):
 				f()
 
 	def deleteGUIScreen(self):
-		for (name, val) in self.items():
+		for (name, val) in list(self.items()):
 			if isinstance(val, GUIComponent):
 				val.GUIdelete()
 

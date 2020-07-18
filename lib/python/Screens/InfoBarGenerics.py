@@ -158,7 +158,7 @@ def updateresumePointCache():
 
 def ToggleVideo():
 	mode = open("/proc/stb/video/policy").read()[:-1]
-	print("[InfoBarGenerics] toggle videomode:",mode)
+	print("[InfoBarGenerics] toggle videomode:", mode)
 	if mode == "letterbox":
 		f = open("/proc/stb/video/policy", "w")
 		f.write("panscan")
@@ -4344,7 +4344,7 @@ class InfoBarRedButton:
 		info = service and service.info()
 		try:
 			for x in info.getInfoObject(iServiceInformation.sHBBTVUrl):
-				print("[InfoBarGenerics] HbbtvApplication:",x)
+				print("[InfoBarGenerics] HbbtvApplication:", x)
 				if x[0] in (-1, 1):
 					self.updateAIT(x[3])
 					self["HbbtvApplication"].setApplicationName(x[1])
@@ -4400,7 +4400,7 @@ class InfoBarAspectSelection:
 		self.__ExGreen_state = self.STATE_HIDDEN 
 
 	def ExGreen_toggleGreen(self, arg=""):
-		print("[InfoBarGenerics] toggleGreen:",self.__ExGreen_state)
+		print("[InfoBarGenerics] toggleGreen:", self.__ExGreen_state)
 		if self.__ExGreen_state == self.STATE_HIDDEN:
 			print("[InfoBarGenerics] self.STATE_HIDDEN")
 			self.ExGreen_doAspect()
@@ -4487,7 +4487,7 @@ class InfoBarResolutionSelection:
 		keys = ["green", "yellow", "blue", "", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9" ]
 
 		mode = open("/proc/stb/video/videomode").read()[:-1]
-		print("[InfoBarGenerics] videomode:",mode)
+		print("[InfoBarGenerics] videomode:", mode)
 		for x in list(range(len(tlist))):
 			if tlist[x][1] == mode:
 				selection = x

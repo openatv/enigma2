@@ -49,7 +49,7 @@ from .FileList import FileList, MultiFileSelectList, EXTENSIONS
 from .addons.key_actions import key_actions, stat_info
 from .addons.type_utils import vEditor
 
-pvers = "%s%s" % (_("v"),"2.07")
+pvers = "%s%s" % (_("v"), "2.07")
 
 MOVIEEXTENSIONS = {"cuts": "movieparts", "meta": "movieparts", "ap": "movieparts", "sc": "movieparts", "eit": "movieparts"}
 

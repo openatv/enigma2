@@ -1,3 +1,4 @@
+from __future__ import print_function
 from boxbranding import getBoxType, getMachineBuild, getImageVersion
 from sys import modules, version_info
 import socket, fcntl, struct, time, os
