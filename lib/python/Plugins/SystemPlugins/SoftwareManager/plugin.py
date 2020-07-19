@@ -1435,7 +1435,7 @@ class PluginDetails(Screen, PackageInfoHandler):
 			self.thumbnail = "/tmp/" + thumbnailUrl.split('/')[-1]
 			print("[PluginDetails] downloading screenshot " + thumbnailUrl + " to " + self.thumbnail)
 			if iSoftwareTools.NetworkConnectionAvailable:
-				client.downloadPage(thumbnailUrl, self.thumbnail).addCallback(self.setThumbnail).addErrback(self.fetchFailed)
+				client.downloadPage(six.ensure_binary(thumbnailUrl), self.thumbnail).addCallback(self.setThumbnail).addErrback(self.fetchFailed)
 			else:
 				self.setThumbnail(noScreenshot = True)
 		else:
@@ -1448,7 +1448,7 @@ class PluginDetails(Screen, PackageInfoHandler):
 			if os_path.exists(resolveFilename(SCOPE_ACTIVE_SKIN, "noprev.png")):
 				filename = LoadPixmap(cached=True, path=resolveFilename(SCOPE_ACTIVE_SKIN, "noprev.png"))
 			else:
-				filename = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_PLUGIN, "SystemPlugins/SoftwareManager/noprev.png"))			
+				filename = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_PLUGIN, "SystemPlugins/SoftwareManager/noprev.png"))
 
 		sc = AVSwitch().getFramebufferScale()
 		self.picload.setPara((self["screenshot"].instance.size().width(), self["screenshot"].instance.size().height(), sc[0], sc[1], False, 1, "#00000000"))
