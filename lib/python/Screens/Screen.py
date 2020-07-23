@@ -148,6 +148,8 @@ class Screen(dict):
 		try:
 			if self.session and len(self.session.dialog_stack) > 1:
 				self.screenPath = " > ".join(ds[0].getTitle() for ds in self.session.dialog_stack[1:])
+			else:
+				self.screenPath = ""
 			if self.instance:
 				self.instance.setTitle(title)
 			self.summaries.setTitle(title)

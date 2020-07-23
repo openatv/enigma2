@@ -80,8 +80,7 @@ int eDVBScan::isValidONIDTSID(int orbital_position, eOriginalNetworkID onid, eTr
 		ret = tsid != 0x4321;
 		break;
 	case 0x0002:
-		ret = absdiff(orbital_position, 282) < 6 && tsid != 2019;
-		// 12070H and 10936V have same tsid/onid.. but even the same services are provided
+		ret = absdiff(orbital_position, 282) < 6;
 		break;
 	case 0x2000:
 		ret = tsid != 0x1000;
