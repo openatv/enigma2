@@ -436,10 +436,17 @@ RESULT eDVBPESReader::connectRead(const sigc::slot2<void,const uint8_t*,int> &r,
 	return 0;
 }
 
-eDVBRecordFileThread::eDVBRecordFileThread(int packetsize, int bufferCount):
+eDVBRecordFileThread::eDVBRecordFileThread(int packetsize, int bufferCount, int buffersize) :
+	/*
+	 * Note on buffer size: Usually this is calculated from packet size and an evaluated number of buffers.
+	 * for the Broadcom encoder we need to have a fixed buffer size though, so we must be able to override
+	 * the calculation. This could be faked by using a packet size of 47, but apparently other code
+	 * can't handle that and segfaults. If you want the "normal" behaviour, just use -1 (or leave it out
+	 * completely, the default declaration).
+	 */
 	eFilePushThreadRecorder(
-		/* buffer */ (unsigned char*) ::mmap(NULL, bufferCount * packetsize * 1050, PROT_READ | PROT_WRITE, MAP_PRIVATE | MAP_ANONYMOUS, /*ignored*/-1, 0),
-		/*buffersize*/ packetsize * 1050),        // the buffer should be higher than the hardware buffer size, accounts for RTSP header
+		/*buffer*/ (unsigned char*) ::mmap(NULL, (buffersize > 0) ? (buffersize * bufferCount) : (bufferCount * packetsize * 1024), PROT_READ | PROT_WRITE, MAP_PRIVATE | MAP_ANONYMOUS, /*ignored*/-1, 0),
+		/*buffersize*/ (buffersize > 0) ? buffersize : (packetsize * 1024)),
 	 m_ts_parser(packetsize),
 	 m_current_offset(0),
 	 m_fd_dest(-1),
@@ -651,8 +658,8 @@ void eDVBRecordFileThread::flush()
 	}
 }
 
-eDVBRecordStreamThread::eDVBRecordStreamThread(int packetsize) :
-	eDVBRecordFileThread(packetsize, recordingBufferCount)
+eDVBRecordStreamThread::eDVBRecordStreamThread(int packetsize, int buffersize) :
+	eDVBRecordFileThread(packetsize, recordingBufferCount, buffersize)
 {
 	eDebug("[eDVBRecordStreamThread] allocated %zu buffers of %zu kB", m_aio.size(), m_buffersize>>10);
 }

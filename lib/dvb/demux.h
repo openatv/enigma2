@@ -98,7 +98,7 @@ public:
 class eDVBRecordFileThread: public eFilePushThreadRecorder
 {
 public:
-	eDVBRecordFileThread(int packetsize, int bufferCount);
+	eDVBRecordFileThread(int packetsize, int bufferCount, int buffersize = -1);
 	~eDVBRecordFileThread();
 	void setTimingPID(int pid, iDVBTSRecorder::timing_pid_type pidtype, int streamtype);
 	void startSaveMetaInformation(const std::string &filename);
@@ -139,7 +139,7 @@ protected:
 class eDVBRecordStreamThread: public eDVBRecordFileThread
 {
 public:
-	eDVBRecordStreamThread(int packetsize);
+	eDVBRecordStreamThread(int packetsize, int buffersize = -1);
 
 protected:
 	int writeData(int len);

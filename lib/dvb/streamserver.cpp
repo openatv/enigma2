@@ -213,9 +213,11 @@ void eStreamClient::notifier(int what)
 						int framerate = 25000;
 						int interlaced = 0;
 						int aspectratio = 0;
+						int buffersize;
 						std::string vcodec, acodec;
-						sscanf(request.substr(pos).c_str(), "?bitrate=%d", &bitrate);
-						pos = request.find("?width=");
+
+						sscanf(request.substr(pos).c_str(), "&bitrate=%d", &bitrate);
+						pos = request.find("&width=");
 						if (pos != std::string::npos)
 							sscanf(request.substr(pos).c_str(), "?width=%d", &width);
 						pos = request.find("?height=");
@@ -252,11 +254,11 @@ void eStreamClient::notifier(int what)
 						}
 						encoderFd = -1;
 						if (eEncoder::getInstance())
-							encoderFd = eEncoder::getInstance()->allocateEncoder(serviceref, bitrate, width, height, framerate, !!interlaced, aspectratio, vcodec, acodec);
+							encoderFd = eEncoder::getInstance()->allocateEncoder(serviceref, bitrate, width, height, framerate, !!interlaced, aspectratio, buffersize, vcodec, acodec);
 						if (encoderFd >= 0)
 						{
 							running = true;
-							streamThread = new eDVBRecordStreamThread(188);
+							streamThread = new eDVBRecordStreamThread(188, buffersize);
 							if (streamThread)
 							{
 								streamThread->setTargetFD(streamFd);

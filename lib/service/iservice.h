@@ -667,6 +667,19 @@ public:
 };
 SWIG_TEMPLATE_TYPEDEF(ePtr<iTimeshiftService>, iTimeshiftServicePtr);
 
+SWIG_IGNORE(iTapService);
+class iTapService: public iObject
+{
+#ifdef SWIG
+	iTapService();
+	~iTapService();
+#endif
+public:
+	virtual bool startTapToFD(int fd, const std::vector<int> &pids, int packetsize = 188)=0;
+	virtual void stopTapToFD()=0;
+};
+SWIG_TEMPLATE_TYPEDEF(ePtr<iTapService>, iTapServicePtr);
+
 	/* not related to eCueSheet */
 
 class iCueSheet_ENUMS
@@ -977,6 +990,7 @@ public:
 	virtual SWIG_VOID(RESULT) subServices(ePtr<iSubserviceList> &SWIG_OUTPUT)=0;
 	virtual SWIG_VOID(RESULT) frontendInfo(ePtr<iFrontendInformation> &SWIG_OUTPUT)=0;
 	virtual SWIG_VOID(RESULT) timeshift(ePtr<iTimeshiftService> &SWIG_OUTPUT)=0;
+	virtual SWIG_VOID(RESULT) tap(ePtr<iTapService> &SWIG_OUTPUT)=0;
 	virtual SWIG_VOID(RESULT) cueSheet(ePtr<iCueSheet> &SWIG_OUTPUT)=0;
 	virtual SWIG_VOID(RESULT) subtitle(ePtr<iSubtitleOutput> &SWIG_OUTPUT)=0;
 	virtual SWIG_VOID(RESULT) audioDelay(ePtr<iAudioDelay> &SWIG_OUTPUT)=0;
