@@ -232,8 +232,8 @@ eventData::eventData(const eit_event_struct* e, int size, int _type, int tsidoni
 						*pdescr++ = title_crc;
 					}
 
-					//save text with original encoding
-					if( eventTextLen > 0 ) //only store the data if there is something to store 
+					//save the text with original encoding
+					if( eventTextLen > 0 ) //only store the data if there is something to store
 					{
 						int text_len = 6 + eventTextLen;
 						uint8_t *text_data = new uint8_t[text_len + 2];
