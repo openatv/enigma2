@@ -66,7 +66,7 @@ eEncoder::eEncoder()
 			if((navigation_instance = new eNavigation(service_center, decoder_index)) == nullptr)
 				break;
 
-			encoder.push_back(encoder_t(index, decoder_index, navigation_instance));
+			encoder.push_back(EncoderContext(index, decoder_index, navigation_instance));
 		}
 	}
 }
@@ -75,7 +75,7 @@ eEncoder::~eEncoder()
 {
 	for(int encoder_index = 0; encoder_index < (int)encoder.size(); encoder_index++)
 	{
-		encoder[encoder_index].state = encoder_t::state_destroyed;
+		encoder[encoder_index].state = EncoderContext::state_destroyed;
 		encoder[encoder_index].navigation_instance = nullptr; /* apparently we're not allowed to delete */
 	}
 
@@ -93,7 +93,7 @@ int eEncoder::allocateEncoder(const std::string &serviceref, const int bitrate, 
 			serviceref.c_str(), bitrate, width, height, vcodec.c_str(), acodec.c_str());
 
 	for(encoder_index = 0; encoder_index < (int)encoder.size(); encoder_index++)
-		if(encoder[encoder_index].state == encoder_t::state_idle)
+		if(encoder[encoder_index].state == EncoderContext::state_idle)
 			break;
 
 	if(encoder_index >= (int)encoder.size())
@@ -162,7 +162,7 @@ int eEncoder::allocateEncoder(const std::string &serviceref, const int bitrate, 
 	if(bcm_encoder)
 	{
 		buffersize = 188 * 256; /* broadcom magic value */
-		encoder[encoder_index].state = encoder_t::state_wait_pmt;
+		encoder[encoder_index].state = EncoderContext::state_wait_pmt;
 
 		switch(encoder_index)
 		{
@@ -188,7 +188,7 @@ int eEncoder::allocateEncoder(const std::string &serviceref, const int bitrate, 
 	else
 	{
 		buffersize = -1;
-		encoder[encoder_index].state = encoder_t::state_running;
+		encoder[encoder_index].state = EncoderContext::state_running;
 	}
 
 	return(encoderfd);
@@ -218,16 +218,16 @@ void eEncoder::freeEncoder(int encoderfd)
 
 	switch(encoder[encoder_index].state)
 	{
-		case(encoder_t::state_idle):
-		case(encoder_t::state_finishing):
-		case(encoder_t::state_destroyed):
+		case(EncoderContext::state_idle):
+		case(EncoderContext::state_finishing):
+		case(EncoderContext::state_destroyed):
 		{
 			eWarning("[eEncoder] trying to release inactive encoder %d fd=%d, state=%d", encoder_index, encoderfd, encoder[encoder_index].state);
 			return;
 		}
 	}
 
-	encoder[encoder_index].state = encoder_t::state_finishing;
+	encoder[encoder_index].state = EncoderContext::state_finishing;
 	encoder[encoder_index].kill();
 
 	encoder[encoder_index].navigation_instance->getCurrentService(service);
@@ -238,7 +238,7 @@ void eEncoder::freeEncoder(int encoderfd)
 
 	close(encoder[encoder_index].fd);
 	encoder[encoder_index].fd = -1;
-	encoder[encoder_index].state = encoder_t::state_idle;
+	encoder[encoder_index].state = EncoderContext::state_idle;
 }
 
 int eEncoder::getUsedEncoderCount()
@@ -249,8 +249,8 @@ int eEncoder::getUsedEncoderCount()
 	{
 		switch(encoder[encoder_index].state)
 		{
-			case(encoder_t::state_running):
-			case(encoder_t::state_wait_pmt):
+			case(EncoderContext::state_running):
+			case(EncoderContext::state_wait_pmt):
 			{
 				count++;
 				break;
@@ -270,8 +270,9 @@ void eEncoder::navigation_event(int encoder_index, int event)
 
 	if(event == eDVBServicePMTHandler::eventTuned)
 	{
-		if(encoder[encoder_index].state == encoder_t::state_wait_pmt)
 		eDebug("[eEncoder] navigation event tuned: %d %d", encoder_index, event);
+
+		if(encoder[encoder_index].state == EncoderContext::state_wait_pmt)
 		{
 			ePtr<iPlayableService> service;
 			ePtr<iTapService> tservice;
@@ -316,7 +317,7 @@ void eEncoder::navigation_event(int encoder_index, int event)
 					}
 				}
 
-				encoder[encoder_index].state = encoder_t::state_running;
+				encoder[encoder_index].state = EncoderContext::state_running;
 				encoder[encoder_index].run();
 			}
 		}
@@ -333,7 +334,7 @@ void eEncoder::navigation_event_1(int event)
 	navigation_event(1, event);
 }
 
-void eEncoder::encoder_t::thread(void)
+void eEncoder::EncoderContext::thread(void)
 {
 	hasStarted();
 
