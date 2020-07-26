@@ -98,7 +98,7 @@ public:
 class eDVBRecordFileThread: public eFilePushThreadRecorder
 {
 public:
-	eDVBRecordFileThread(int packetsize, int bufferCount, int buffersize = -1);
+	eDVBRecordFileThread(int packetsize, int bufferCount, int buffersize = -1, bool sync_mode = false);
 	~eDVBRecordFileThread();
 	void setTimingPID(int pid, iDVBTSRecorder::timing_pid_type pidtype, int streamtype);
 	void startSaveMetaInformation(const std::string &filename);
@@ -129,6 +129,7 @@ protected:
 	eMPEGStreamParserTS m_ts_parser;
 	off_t m_current_offset;
 	int m_fd_dest;
+	bool m_sync_mode;
 	typedef std::vector<AsyncIO> AsyncIOvector;
 	unsigned char* m_allocated_buffer;
 	AsyncIOvector m_aio;
@@ -139,7 +140,7 @@ protected:
 class eDVBRecordStreamThread: public eDVBRecordFileThread
 {
 public:
-	eDVBRecordStreamThread(int packetsize, int buffersize = -1);
+	eDVBRecordStreamThread(int packetsize, int buffersize = -1, bool sync_mode = false);
 
 protected:
 	int writeData(int len);
