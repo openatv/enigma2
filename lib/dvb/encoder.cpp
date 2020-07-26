@@ -42,7 +42,7 @@ eEncoder::eEncoder()
 		 * The Broadcom transcoding engine does not transfer the data to the encoder
 		 * itself, so we need to start a thread to do that. Therefore there is no
 		 * use to connect a (valid) decoder device. Even more it won't work because
-		 * we can't open de encoder when more than two (main, PiP) decoders are in
+		 * we can't open the encoder when more than two (main, PiP) decoders are in
 		 * use. The encoder is reported as "busy" then. That's why we use dummy values
 		 * here (4 onwards).
 		 *
