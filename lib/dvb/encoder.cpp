@@ -82,15 +82,25 @@ eEncoder::~eEncoder()
 	instance = nullptr;
 }
 
-int eEncoder::allocateEncoder(const std::string &serviceref,
+int eEncoder::allocateEncoder(const std::string &serviceref, int &buffersize,
 		int bitrate, int width, int height, int framerate, int interlaced, int aspectratio,
 		const std::string &vcodec, const std::string &acodec)
 {
+	static const char fileref[] = "1:0:1:0:0:0:0:0:0:0:";
 	int encoder_index;
 	char filename[128];
+	std::string source_file;
 
 	eDebug("[eEncoder] allocateEncoder serviceref=%s bitrate=%d width=%d height=%d vcodec=%s acodec=%s",
 			serviceref.c_str(), bitrate, width, height, vcodec.c_str(), acodec.c_str());
+
+	// extract file path from serviceref, this is needed for Broadcom transcoding
+	if(serviceref.compare(0, sizeof(fileref) - 1, std::string(fileref), 0, std::string::npos) == 0)
+		source_file = serviceref.substr(sizeof(fileref) - 1, std::string::npos);
+
+	eDebug("[allocateEncoder] serviceref: %s", serviceref.c_str());
+	eDebug("[allocateEncoder] serviceref substr: %s", serviceref.substr(0, sizeof(fileref) - 1).c_str());
+	eDebug("[allocateEncoder] source_file: \"%s\"", source_file.c_str());
 
 	for(encoder_index = 0; encoder_index < (int)encoder.size(); encoder_index++)
 		if(encoder[encoder_index].state == EncoderContext::state_idle)
@@ -146,6 +156,12 @@ int eEncoder::allocateEncoder(const std::string &serviceref,
 	if(encoder[encoder_index].navigation_instance->playService(serviceref) < 0)
 	{
 		eWarning("[eEncoder] navigation->playservice failed");
+		return(-1);
+	}
+
+	if(!source_file.empty() && ((encoder[encoder_index].file_fd = open(source_file.c_str(), O_RDONLY, 0)) < 0))
+	{
+		eWarning("[eEncoder] open source file failed");
 		return(-1);
 	}
 
@@ -225,6 +241,13 @@ void eEncoder::freeEncoder(int encoderfd)
 		}
 	}
 
+	if(encoder[encoder_index].stream_thread != nullptr)
+	{
+		encoder[encoder_index].stream_thread->stop();
+		delete encoder[encoder_index].stream_thread;
+		encoder[encoder_index].stream_thread = nullptr;
+	}
+
 	encoder[encoder_index].state = EncoderContext::state_finishing;
 	encoder[encoder_index].kill();
 
@@ -235,7 +258,9 @@ void eEncoder::freeEncoder(int encoderfd)
 	encoder[encoder_index].navigation_instance->stopService();
 
 	close(encoder[encoder_index].encoder_fd);
+	close(encoder[encoder_index].file_fd);
 	encoder[encoder_index].encoder_fd = -1;
+	encoder[encoder_index].file_fd = -1;
 
 	encoder[encoder_index].state = EncoderContext::state_idle;
 }
@@ -293,12 +318,32 @@ void eEncoder::navigation_event(int encoder_index, int event)
 				pids.push_back(vpid);
 				pids.push_back(apid);
 
-				service->tap(tservice);
+				if(encoder[encoder_index].file_fd < 0)
+				{
+					service->tap(tservice);
 
-				if(tservice == nullptr)
-					freeEncoder(encoder[encoder_index].encoder_fd);
+					if(tservice == nullptr)
+					{
+						eWarning("[eEncoder] tap service failed");
+						freeEncoder(encoder[encoder_index].encoder_fd);
+						return;
+					}
 
-				tservice->startTapToFD(encoder[encoder_index].encoder_fd, pids);
+					tservice->startTapToFD(encoder[encoder_index].encoder_fd, pids);
+				}
+				else
+				{
+					if(encoder[encoder_index].stream_thread != nullptr)
+					{
+						eWarning("[eEncoder] datapump already running");
+						return;
+					}
+
+					encoder[encoder_index].stream_thread = new eDVBRecordStreamThread(188, -1, true);
+
+					encoder[encoder_index].stream_thread->setTargetFD(encoder[encoder_index].encoder_fd);
+					encoder[encoder_index].stream_thread->start(encoder[encoder_index].file_fd);
+				}
 
 				if(ioctl(encoder[encoder_index].encoder_fd, IOCTL_BROADCOM_SET_PMTPID_MIPS, pmtpid) ||
 						ioctl(encoder[encoder_index].encoder_fd, IOCTL_BROADCOM_SET_VPID_MIPS, vpid) ||

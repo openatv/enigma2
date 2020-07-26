@@ -4,7 +4,7 @@
 #include <vector>
 
 #include <lib/nav/core.h>
-#include <lib/base/thread.h>
+#include <lib/dvb/streamserver.h>
 
 class eEncoder
 {
@@ -32,14 +32,18 @@ class eEncoder
 				{
 					encoder_index = encoder_index_in;
 					decoder_index = decoder_index_in;
+					file_fd = -1;
 					encoder_fd = -1;
 					state = state_idle;
 					navigation_instance = navigation_instance_in;
+					stream_thread = nullptr;
 				}
 
 				int encoder_index;
 				int decoder_index;
 				int encoder_fd;
+				int file_fd;
+				eDVBRecordStreamThread *stream_thread;
 
 				enum
 				{
@@ -71,7 +75,7 @@ class eEncoder
 		eEncoder();
 		~eEncoder();
 
-		int allocateEncoder(const std::string &serviceref, int bitrate, int width, int height, int framerate, int interlaced, int aspectratio,
+		int allocateEncoder(const std::string &serviceref, int &buffersize, int bitrate, int width, int height, int framerate, int interlaced, int aspectratio,
 				const std::string &vcodec = "", const std::string &acodec = "");
 		void freeEncoder(int encoderfd);
 		int getUsedEncoderCount();
