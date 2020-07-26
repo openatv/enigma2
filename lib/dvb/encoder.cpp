@@ -90,9 +90,22 @@ int eEncoder::allocateEncoder(const std::string &serviceref, int &buffersize,
 	int encoder_index;
 	char filename[128];
 	std::string source_file;
+	const char *vcodec_node;
+	const char *acodec_node;
 
 	eDebug("[eEncoder] allocateEncoder serviceref=%s bitrate=%d width=%d height=%d vcodec=%s acodec=%s",
 			serviceref.c_str(), bitrate, width, height, vcodec.c_str(), acodec.c_str());
+
+	if(bcm_encoder)
+	{
+		vcodec_node = "video_codec";
+		acodec_node = "audio_codec";
+	}
+	else
+	{
+		vcodec_node = "vcodec";
+		acodec_node = "acodec";
+	}
 
 	// extract file path from serviceref, this is needed for Broadcom transcoding
 	if(serviceref.compare(0, sizeof(fileref) - 1, std::string(fileref), 0, std::string::npos) == 0)
@@ -121,6 +134,19 @@ int eEncoder::allocateEncoder(const std::string &serviceref, int &buffersize,
 	snprintf(filename, sizeof(filename), "/proc/stb/encoder/%d/height", encoder_index);
 	CFile::writeInt(filename, height);
 
+	if(bcm_encoder)
+	{
+		snprintf(filename, sizeof(filename), "/proc/stb/encoder/%d/display_format", encoder_index);
+
+		if(height > 576)
+			CFile::write(filename, "720p");
+		else
+			if(height > 480)
+				CFile::write(filename, "576p");
+			else
+				CFile::write(filename, "480p");
+	}
+
 	snprintf(filename, sizeof(filename), "/proc/stb/encoder/%d/framerate", encoder_index);
 	CFile::writeInt(filename, framerate);
 
@@ -132,20 +158,20 @@ int eEncoder::allocateEncoder(const std::string &serviceref, int &buffersize,
 
 	if(!vcodec.empty())
 	{
-		snprintf(filename, sizeof(filename), "/proc/stb/encoder/%d/vcodec_choices", encoder_index);
+		snprintf(filename, sizeof(filename), "/proc/stb/encoder/%d/%s_choices", encoder_index, vcodec_node);
 		if (CFile::contains_word(filename, vcodec))
 		{
-			snprintf(filename, sizeof(filename), "/proc/stb/encoder/%d/vcodec", encoder_index);
+			snprintf(filename, sizeof(filename), "/proc/stb/encoder/%d/%s", encoder_index, vcodec_node);
 			CFile::write(filename, vcodec.c_str());
 		}
 	}
 
 	if(!acodec.empty())
 	{
-		snprintf(filename, sizeof(filename), "/proc/stb/encoder/%d/acodec_choices", encoder_index);
+		snprintf(filename, sizeof(filename), "/proc/stb/encoder/%d/%s_choices", encoder_index, acodec_node);
 		if (CFile::contains_word(filename, acodec))
 		{
-			snprintf(filename, sizeof(filename), "/proc/stb/encoder/%d/acodec", encoder_index);
+			snprintf(filename, sizeof(filename), "/proc/stb/encoder/%d/%s", encoder_index, acodec_node);
 			CFile::write(filename, acodec.c_str());
 		}
 	}
