@@ -263,12 +263,15 @@ int eEncoder::getUsedEncoderCount()
 
 void eEncoder::navigation_event(int encoder_index, int event)
 {
+	eDebug("[eEncoder] navigation event: %d %d", encoder_index, event);
+
 	if((encoder_index < 0) || (encoder_index >= (int)encoder.size()))
 		return;
 
 	if(event == eDVBServicePMTHandler::eventTuned)
 	{
 		if(encoder[encoder_index].state == encoder_t::state_wait_pmt)
+		eDebug("[eEncoder] navigation event tuned: %d %d", encoder_index, event);
 		{
 			ePtr<iPlayableService> service;
 			ePtr<iTapService> tservice;
@@ -332,14 +335,10 @@ void eEncoder::navigation_event_1(int event)
 
 void eEncoder::encoder_t::thread(void)
 {
-	eDebug("[eEncoder] start encoder thread");
-
 	hasStarted();
 
 	if(ioctl(fd, IOCTL_BROADCOM_START_TRANSCODING, 0))
 		eWarning("[eEncoder] thread encoder failed");
-
-	eDebug("[eEncoder] thread encoder done %d", encoder);
 }
 
 eAutoInitPtr<eEncoder> init_eEncoder(eAutoInitNumbers::service + 1, "Encoders");

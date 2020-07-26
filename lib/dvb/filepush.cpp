@@ -611,7 +611,7 @@ void eFilePushThreadRecorder::thread()
 #endif
 		if (w < 0)
 		{
-			eDebug("[eFilePushThreadRecorder] WRITE ERROR, aborting thread: %m");
+			eWarning("[eFilePushThreadRecorder] WRITE ERROR, aborting thread: %m");
 			sendEvent(evtWriteError);
 			break;
 		}
