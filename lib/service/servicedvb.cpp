@@ -2684,7 +2684,7 @@ bool eDVBServicePlay::startTapToFD(int fd, const std::vector<int> &pids, int pac
 	if (m_service_handler.getDataDemux(demux))
 		return(false);
 
-	demux->createTSRecorder(m_tap_recorder, packetsize, true);
+	demux->createTSRecorder(m_tap_recorder, packetsize, false);
 
 	if (!m_tap_recorder)
 	{
