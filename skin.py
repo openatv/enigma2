@@ -164,8 +164,8 @@ def loadSkin(filename, scope=SCOPE_SKIN, desktop=getDesktop(GUI_SKIN_ID), screen
 					if element.tag == "screen":  # Process all screen elements.
 						name = element.attrib.get("name", None)
 						if name:  # Without a name, it's useless!
-							sid = element.attrib.get("id", None)
-							if sid is None or int(sid) == screenID:  # If there is a screen ID is it for this display.
+							scrnID = element.attrib.get("id", None)
+							if scrnID is None or int(scrnID) == screenID:  # If there is a screen ID is it for this display.
 								# print("[Skin] DEBUG: Extracting screen '%s' from '%s'.  (scope='%s')" % (name, filename, scope))
 								domScreens[name] = (element, "%s/" % dirname(filename))
 					elif element.tag == "windowstyle":  # Process the windowstyle element.
@@ -683,8 +683,8 @@ def loadSingleSkinData(desktop, screenID, domSkin, pathSkin, scope=SCOPE_CURRENT
 	assert domSkin.tag == "skin", "root element in skin must be 'skin'!"
 	global colors, fonts, menus, parameters, setups, switchPixmap
 	for tag in domSkin.findall("output"):
-		sid = int(tag.attrib.get("id", GUI_SKIN_ID))
-		if sid == GUI_SKIN_ID:
+		scrnID = int(tag.attrib.get("id", GUI_SKIN_ID))
+		if scrnID == GUI_SKIN_ID:
 			for res in tag.findall("resolution"):
 				xres = res.attrib.get("xres")
 				xres = int(xres) if xres else 720
@@ -827,7 +827,7 @@ def loadSingleSkinData(desktop, screenID, domSkin, pathSkin, scope=SCOPE_CURRENT
 			eSubtitleWidget.setFontStyle(face, font, haveColor, foregroundColor, borderColor, borderWidth)
 	for tag in domSkin.findall("windowstyle"):
 		style = eWindowStyleSkinned()
-		sid = int(tag.attrib.get("id", GUI_SKIN_ID))
+		scrnID = int(tag.attrib.get("id", GUI_SKIN_ID))
 		font = gFont("Regular", 20)  # Default
 		offset = eSize(20, 5)  # Default
 		for title in tag.findall("title"):
@@ -857,9 +857,9 @@ def loadSingleSkinData(desktop, screenID, domSkin, pathSkin, scope=SCOPE_CURRENT
 				raise SkinError("Unknown color type '%s'" % colorType)
 			# print("[Skin] DEBUG: WindowStyle color type, color -" % (colorType, str(color)))
 		x = eWindowStyleManager.getInstance()
-		x.setStyle(sid, style)
+		x.setStyle(scrnID, style)
 	for tag in domSkin.findall("margin"):
-		sid = int(tag.attrib.get("id", GUI_SKIN_ID))
+		scrnID = int(tag.attrib.get("id", GUI_SKIN_ID))
 		r = eRect(0, 0, 0, 0)
 		v = tag.attrib.get("left")
 		if v:
@@ -875,7 +875,7 @@ def loadSingleSkinData(desktop, screenID, domSkin, pathSkin, scope=SCOPE_CURRENT
 			r.setBottom(int(v))
 		# The "desktop" parameter is hard-coded to the GUI screen, so we must ask
 		# for the one that this actually applies to.
-		getDesktop(sid).setMargins(r)
+		getDesktop(scrnID).setMargins(r)
 
 
 class additionalWidget:
