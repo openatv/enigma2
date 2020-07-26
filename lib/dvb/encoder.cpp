@@ -82,8 +82,9 @@ eEncoder::~eEncoder()
 	instance = nullptr;
 }
 
-// FIXME: const
-int eEncoder::allocateEncoder(const std::string &serviceref, const int bitrate, const int width, const int height, const int framerate, const int interlaced, const int aspectratio, int &buffersize, const std::string &vcodec, const std::string &acodec)
+int eEncoder::allocateEncoder(const std::string &serviceref,
+		int bitrate, int width, int height, int framerate, int interlaced, int aspectratio,
+		const std::string &vcodec, const std::string &acodec)
 {
 	int encoder_index;
 	char filename[128];
