@@ -30,16 +30,16 @@ class eEncoder
 
 				EncoderContext(int encoder_index_in, int decoder_index_in, eNavigation *navigation_instance_in)
 				{
-					encoder = encoder_in;
-					decoder = decoder_in;
-					fd = -1;
+					encoder_index = encoder_index_in;
+					decoder_index = decoder_index_in;
+					encoder_fd = -1;
 					state = state_idle;
 					navigation_instance = navigation_instance_in;
 				}
 
-				int encoder;
-				int decoder;
-				int fd;
+				int encoder_index;
+				int decoder_index;
+				int encoder_fd;
 
 				enum
 				{

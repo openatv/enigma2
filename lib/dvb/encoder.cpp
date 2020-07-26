@@ -86,7 +86,6 @@ eEncoder::~eEncoder()
 int eEncoder::allocateEncoder(const std::string &serviceref, const int bitrate, const int width, const int height, const int framerate, const int interlaced, const int aspectratio, int &buffersize, const std::string &vcodec, const std::string &acodec)
 {
 	int encoder_index;
-	int encoderfd = -1;
 	char filename[128];
 
 	eDebug("[eEncoder] allocateEncoder serviceref=%s bitrate=%d width=%d height=%d vcodec=%s acodec=%s",
@@ -151,13 +150,11 @@ int eEncoder::allocateEncoder(const std::string &serviceref, const int bitrate, 
 
 	snprintf(filename, sizeof(filename), "/dev/%s%d", bcm_encoder ? "bcm_enc" : "encoder", encoder_index);
 
-	if((encoderfd = open(filename, bcm_encoder ? O_RDWR : O_RDONLY)) < 0)
+	if((encoder[encoder_index].encoder_fd = open(filename, bcm_encoder ? O_RDWR : O_RDONLY)) < 0)
 	{
 		eWarning("[eEncoder] open encoder failed");
 		return(-1);
 	}
-
-	encoder[encoder_index].fd = encoderfd;
 
 	if(bcm_encoder)
 	{
@@ -191,7 +188,7 @@ int eEncoder::allocateEncoder(const std::string &serviceref, const int bitrate, 
 		encoder[encoder_index].state = EncoderContext::state_running;
 	}
 
-	return(encoderfd);
+	return(encoder[encoder_index].encoder_fd);
 }
 
 void eEncoder::freeEncoder(int encoderfd)
@@ -207,7 +204,7 @@ void eEncoder::freeEncoder(int encoderfd)
 	}
 
 	for(encoder_index = 0; encoder_index < (int)encoder.size(); encoder_index++)
-		if(encoder[encoder_index].fd == encoderfd)
+		if(encoder[encoder_index].encoder_fd == encoderfd)
 			break;
 
 	if(encoder_index >= (int)encoder.size())
@@ -236,8 +233,9 @@ void eEncoder::freeEncoder(int encoderfd)
 
 	encoder[encoder_index].navigation_instance->stopService();
 
-	close(encoder[encoder_index].fd);
-	encoder[encoder_index].fd = -1;
+	close(encoder[encoder_index].encoder_fd);
+	encoder[encoder_index].encoder_fd = -1;
+
 	encoder[encoder_index].state = EncoderContext::state_idle;
 }
 
@@ -297,22 +295,22 @@ void eEncoder::navigation_event(int encoder_index, int event)
 				service->tap(tservice);
 
 				if(tservice == nullptr)
-					freeEncoder(encoder[encoder_index].fd);
+					freeEncoder(encoder[encoder_index].encoder_fd);
 
-				tservice->startTapToFD(encoder[encoder_index].fd, pids);
+				tservice->startTapToFD(encoder[encoder_index].encoder_fd, pids);
 
-				if(ioctl(encoder[encoder_index].fd, IOCTL_BROADCOM_SET_PMTPID_MIPS, pmtpid) ||
-						ioctl(encoder[encoder_index].fd, IOCTL_BROADCOM_SET_VPID_MIPS, vpid) ||
-						ioctl(encoder[encoder_index].fd, IOCTL_BROADCOM_SET_APID_MIPS, apid))
+				if(ioctl(encoder[encoder_index].encoder_fd, IOCTL_BROADCOM_SET_PMTPID_MIPS, pmtpid) ||
+						ioctl(encoder[encoder_index].encoder_fd, IOCTL_BROADCOM_SET_VPID_MIPS, vpid) ||
+						ioctl(encoder[encoder_index].encoder_fd, IOCTL_BROADCOM_SET_APID_MIPS, apid))
 				{
 					eDebug("[eEncoder] set ioctl(mips) failed");
 
-					if(ioctl(encoder[encoder_index].fd, IOCTL_BROADCOM_SET_PMTPID_ARM, pmtpid) ||
-							ioctl(encoder[encoder_index].fd, IOCTL_BROADCOM_SET_VPID_ARM, vpid) ||
-							ioctl(encoder[encoder_index].fd, IOCTL_BROADCOM_SET_APID_ARM, apid))
+					if(ioctl(encoder[encoder_index].encoder_fd, IOCTL_BROADCOM_SET_PMTPID_ARM, pmtpid) ||
+							ioctl(encoder[encoder_index].encoder_fd, IOCTL_BROADCOM_SET_VPID_ARM, vpid) ||
+							ioctl(encoder[encoder_index].encoder_fd, IOCTL_BROADCOM_SET_APID_ARM, apid))
 					{
 						eWarning("[eEncoder] set ioctl(arm) failed too, giving up");
-						freeEncoder(encoder[encoder_index].fd);
+						freeEncoder(encoder[encoder_index].encoder_fd);
 						return;
 					}
 				}
@@ -338,7 +336,7 @@ void eEncoder::EncoderContext::thread(void)
 {
 	hasStarted();
 
-	if(ioctl(fd, IOCTL_BROADCOM_START_TRANSCODING, 0))
+	if(ioctl(encoder_fd, IOCTL_BROADCOM_START_TRANSCODING, 0))
 		eWarning("[eEncoder] thread encoder failed");
 }
 
