@@ -165,17 +165,17 @@ def loadSkin(filename, scope=SCOPE_SKIN, desktop=getDesktop(GUI_SKIN_ID), screen
 						name = element.attrib.get("name", None)
 						if name:  # Without a name, it's useless!
 							scrnID = element.attrib.get("id", None)
-							if scrnID is None or int(scrnID) == screenID:  # If there is a screen ID is it for this display.
+							if scrnID is None or scrnID == screenID:  # If there is a screen ID is it for this display.
 								# print("[Skin] DEBUG: Extracting screen '%s' from '%s'.  (scope='%s')" % (name, filename, scope))
 								domScreens[name] = (element, "%s/" % dirname(filename))
 					elif element.tag == "windowstyle":  # Process the windowstyle element.
-						screenID = element.attrib.get("id", None)
-						if screenID is not None:  # Without an screenID, it is useless!
-							screenID = int(screenID)
-							# print("[Skin] DEBUG: Processing a windowstyle ID='%s'." % screenID)
+						scrnID = element.attrib.get("id", None)
+						if scrnID is not None:  # Without an scrnID, it is useless!
+							scrnID = int(scrnID)
+							# print("[Skin] DEBUG: Processing a windowstyle ID='%s'." % scrnID)
 							domStyle = xml.etree.cElementTree.ElementTree(xml.etree.cElementTree.Element("skin"))
 							domStyle.getroot().append(element)
-							windowStyles[screenID] = (desktop, screenID, domStyle, filename, scope)
+							windowStyles[scrnID] = (desktop, screenID, domStyle, filename, scope)
 					# Element is not a screen or windowstyle element so no need for it any longer.
 				reloadWindowStyles()  # Reload the window style to ensure all skin changes are taken into account.
 				print("[Skin] Loading skin file '%s' complete." % filename)
