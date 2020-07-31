@@ -1,5 +1,5 @@
 from Screens.Screen import Screen
-#from Components.Sources.Source import ObsoleteSource
+
 
 class SimpleSummary(Screen):
 	skin = """
@@ -9,23 +9,13 @@ class SimpleSummary(Screen):
 		</widget>
 		<widget source="parent.Title" render="Label" position="6,4" size="120,42" font="Regular;18" />
 	</screen>"""
+
 	def __init__(self, session, parent):
-
-		Screen.__init__(self, session, parent = parent)
-
+		Screen.__init__(self, session, parent=parent)
 		names = parent.skinName
 		if not isinstance(names, list):
 			names = [names]
-
-		self.skinName = [ x + "_summary" for x in names ]
+		self.skinName = ["%s_summary" % x for x in names]
 		self.skinName.append("SimpleSummary")
-
-		# if parent has a "skin_summary" defined, use that as default
+		# If parent has a "skin_summary" defined, use that as default.
 		self.skin = parent.__dict__.get("skin_summary", self.skin)
-
-	def updateProgress(self):
-		pass
-
-	def updateService(self):
-		pass
-
