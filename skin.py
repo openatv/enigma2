@@ -19,6 +19,7 @@ from Tools.LoadPixmap import LoadPixmap
 
 DEFAULT_SKIN = "MetrixHD/skin.xml"
 EMERGENCY_SKIN = "skin_default.xml"
+EMERGENCY_NAME = "Default OE-A"
 DEFAULT_DISPLAY_SKIN = "skin_display_grautec.xml" if SystemInfo["grautec"] else "skin_display.xml"
 USER_SKIN = "skin_user.xml"
 USER_SKIN_TEMPLATE = "skin_user_%s.xml"
@@ -85,7 +86,7 @@ def InitSkins():
 			try:
 				print('[RESTORE_SKIN] restore skin from "%s" ...' % skin)
 				skinpath, ext = path.splitext(skin)
-				if skinpath == lastpath or not ext in ('.py', '.pyc', '.pyo'):
+				if skinpath == lastpath or ext not in ('.py', '.pyc', '.pyo'):
 					print('[RESTORE_SKIN] ...skip!')
 					continue
 				lastpath = skinpath
@@ -167,18 +168,18 @@ def loadSkin(filename, scope=SCOPE_SKIN, desktop=getDesktop(GUI_SKIN_ID), screen
 					if element.tag == "screen":  # Process all screen elements.
 						name = element.attrib.get("name", None)
 						if name:  # Without a name, it's useless!
-							sid = element.attrib.get("id", None)
-							if sid is None or sid == screenID:  # If there is a screen ID is it for this display.
+							scrnID = element.attrib.get("id", None)
+							if scrnID is None or scrnID == screenID:  # If there is a screen ID is it for this display.
 								 # print("[Skin] DEBUG: Extracting screen '%s' from '%s'.  (scope='%s')" % (name, filename, scope))
 								domScreens[name] = (element, "%s/" % dirname(filename))
 					elif element.tag == "windowstyle":  # Process the windowstyle element.
-						id = element.attrib.get("id", None)
-						if id is not None:  # Without an id, it is useless!
-							id = int(id)
-							# print("[Skin] DEBUG: Processing a windowstyle ID='%s'." % id)
+						scrnID = element.attrib.get("id", None)
+						if scrnID is not None:  # Without an scrnID, it is useless!
+							scrnID = int(scrnID)
+							# print("[Skin] DEBUG: Processing a windowstyle ID='%s'." % scrnID)
 							domStyle = xml.etree.cElementTree.ElementTree(xml.etree.cElementTree.Element("skin"))
 							domStyle.getroot().append(element)
-							windowStyles[id] = (desktop, screenID, domStyle.getroot(), filename, scope)
+							windowStyles[scrnID] = (desktop, screenID, domStyle.getroot(), filename, scope)
 					# Element is not a screen or windowstyle element so no need for it any longer.
 				reloadWindowStyles()  # Reload the window style to ensure all skin changes are taken into account.
 				print("[Skin] Loading skin file '%s' complete." % filename)
@@ -433,7 +434,7 @@ class AttributeParser:
 		except AttributeError:
 			print("[Skin] Attribute '%s' (with value of '%s') in object of type '%s' is not implemented!" % (attrib, value, self.guiObject.__class__.__name__))
 		except SkinError as err:
-			print("[Skin] Error:", err)
+			print("[Skin] Error: %s" % str(err))
 		except Exception:
 			print("[Skin] Attribute '%s' with wrong (or unknown) value '%s' in object of type '%s'!" % (attrib, value, self.guiObject.__class__.__name__))
 
@@ -448,16 +449,10 @@ class AttributeParser:
 		pass
 
 	def position(self, value):
-		if isinstance(value, tuple):
-			self.guiObject.move(ePoint(*value))
-		else:
-			self.guiObject.move(parsePosition(value, self.scaleTuple, self.guiObject, self.desktop, self.guiObject.csize()))
+		self.guiObject.move(ePoint(*value) if isinstance(value, tuple) else parsePosition(value, self.scaleTuple, self.guiObject, self.desktop, self.guiObject.csize()))
 
 	def size(self, value):
-		if isinstance(value, tuple):
-			self.guiObject.resize(eSize(*value))
-		else:
-			self.guiObject.resize(parseSize(value, self.scaleTuple, self.guiObject, self.desktop))
+		self.guiObject.resize(eSize(*value) if isinstance(value, tuple) else parseSize(value, self.scaleTuple, self.guiObject, self.desktop))
 
 	def animationPaused(self, value):
 		pass
@@ -683,8 +678,8 @@ def applyAllAttributes(guiObject, desktop, attributes, scale):
 	AttributeParser(guiObject, desktop, scale).applyAll(attributes)
 
 def reloadWindowStyles():
-	for id in windowStyles:
-		desktop, screenID, domSkin, pathSkin, scope = windowStyles[id]
+	for screenID in windowStyles:
+		desktop, screenID, domSkin, pathSkin, scope = windowStyles[screenID]
 		loadSingleSkinData(desktop, screenID, domSkin, pathSkin, scope)
 
 def loadSingleSkinData(desktop, screenID, domSkin, pathSkin, scope=SCOPE_CURRENT_SKIN):
@@ -692,12 +687,8 @@ def loadSingleSkinData(desktop, screenID, domSkin, pathSkin, scope=SCOPE_CURRENT
 	assert domSkin.tag == "skin", "root element in skin must be 'skin'!"
 	global colors, fonts, menus, parameters, setups, switchPixmap
 	for tag in domSkin.findall("output"):
-		id = tag.attrib.get("id")
-		if id:
-			id = int(id)
-		else:
-			id = GUI_SKIN_ID
-		if id == GUI_SKIN_ID:
+		scrnID = int(tag.attrib.get("id", GUI_SKIN_ID))
+		if screenID == GUI_SKIN_ID:
 			for res in tag.findall("resolution"):
 				xres = res.attrib.get("xres")
 				xres = int(xres) if xres else 720
@@ -840,11 +831,7 @@ def loadSingleSkinData(desktop, screenID, domSkin, pathSkin, scope=SCOPE_CURRENT
 			eSubtitleWidget.setFontStyle(face, font, haveColor, foregroundColor, borderColor, borderWidth)
 	for tag in domSkin.findall("windowstyle"):
 		style = eWindowStyleSkinned()
-		styleId = tag.attrib.get("id")
-		if styleId:
-			styleId = int(styleId)
-		else:
-			styleId = GUI_SKIN_ID
+		scrnID = int(tag.attrib.get("id", GUI_SKIN_ID))
 		font = gFont("Regular", 20)  # Default
 		offset = eSize(20, 5)  # Default
 		for title in tag.findall("title"):
@@ -852,7 +839,7 @@ def loadSingleSkinData(desktop, screenID, domSkin, pathSkin, scope=SCOPE_CURRENT
 			font = parseFont(title.attrib.get("font"), ((1, 1), (1, 1)))
 		style.setTitleFont(font)
 		style.setTitleOffset(offset)
-		# print("[Skin] DEBUG: WindowStyle font, offset -", font, offset)
+		# print("[Skin] DEBUG: WindowStyle font, offset - '%s' '%s'." % (str(font), str(offset)))
 		for borderset in tag.findall("borderset"):
 			bsName = str(borderset.attrib.get("name"))
 			for pixmap in borderset.findall("pixmap"):
@@ -864,7 +851,7 @@ def loadSingleSkinData(desktop, screenID, domSkin, pathSkin, scope=SCOPE_CURRENT
 						style.setPixmap(eWindowStyleSkinned.__dict__[bsName], eWindowStyleSkinned.__dict__[bpName], png)
 					except Exception:
 						pass
-				# print("[Skin] DEBUG: WindowStyle borderset name, filename -", bpName, filename)
+				# print("[Skin] DEBUG: WindowStyle borderset name, filename - '%s' '%s'." % (bpName, filename))
 		for color in tag.findall("color"):
 			colorType = color.attrib.get("name")
 			color = parseColor(color.attrib.get("color"))
@@ -872,15 +859,11 @@ def loadSingleSkinData(desktop, screenID, domSkin, pathSkin, scope=SCOPE_CURRENT
 				style.setColor(eWindowStyleSkinned.__dict__["col" + colorType], color)
 			except Exception:
 				raise SkinError("Unknown color type '%s'" % colorType)
-			# print("[Skin] DEBUG: WindowStyle color type, color -", type, color)
+			# print("[Skin] DEBUG: WindowStyle color type, color -" % (colorType, str(color)))
 		x = eWindowStyleManager.getInstance()
-		x.setStyle(styleId, style)
+		x.setStyle(scrnID, style)
 	for tag in domSkin.findall("margin"):
-		styleId = tag.attrib.get("id")
-		if styleId:
-			styleId = int(styleId)
-		else:
-			styleId = GUI_SKIN_ID
+		scrnID = int(tag.attrib.get("id", GUI_SKIN_ID))
 		r = eRect(0, 0, 0, 0)
 		v = tag.attrib.get("left")
 		if v:
@@ -896,7 +879,7 @@ def loadSingleSkinData(desktop, screenID, domSkin, pathSkin, scope=SCOPE_CURRENT
 			r.setBottom(int(v))
 		# The "desktop" parameter is hard-coded to the GUI screen, so we must ask
 		# for the one that this actually applies to.
-		getDesktop(styleId).setMargins(r)
+		getDesktop(scrnID).setMargins(r)
 
 
 class additionalWidget:
@@ -1024,8 +1007,8 @@ def readSkin(screen, skin, names, desktop):
 			for s in skin:
 				candidate = xml.etree.cElementTree.fromstring(s)
 				if candidate.tag == "screen":
-					sid = candidate.attrib.get("id", None)
-					if (not sid) or (int(sid) == DISPLAY_SKIN_ID):
+					screenID = candidate.attrib.get("id", None)
+					if (not screenID) or (int(screenID) == DISPLAY_SKIN_ID):
 						myScreen = candidate
 						break
 			else:
@@ -1248,7 +1231,7 @@ def readSkin(screen, skin, names, desktop):
 def getSkinFactor():
 	skinfactor = getDesktop(GUI_SKIN_ID).size().height() / 720.0
 	# if skinfactor not in [0.8, 1, 1.5, 3, 6]:
-	# 	print "[Skin] Warning: Unexpected result for getSkinFactor '%0.4f'!" % skinfactor
+	# 	print("[Skin] Warning: Unexpected result for getSkinFactor '%0.4f'!" % skinfactor)
 	return skinfactor
 
 # Search the domScreens dictionary to see if any of the screen names provided
