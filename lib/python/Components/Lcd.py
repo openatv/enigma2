@@ -344,8 +344,8 @@ def InitLcd():
 
 			config.lcd.modepip = ConfigSelection(choices={
 					"0": _("off"),
-					"5": _("PIP"),
-					"7": _("PIP with OSD")},
+					"5": _("PiP"),
+					"7": _("PiP with OSD")},
 					default = "0")
 			config.lcd.modepip.addNotifier(setLCDModePiP)
 
@@ -602,7 +602,7 @@ def InitLcd():
 		if SystemInfo["LCDMiniTV"] and config.misc.boxtype.value not in ( 'gbquad', 'gbquadplus', 'gbquad4k', 'gbue4k'):
 			config.lcd.minitvmode = ConfigSelection([("0", _("normal")), ("1", _("MiniTV")), ("2", _("OSD")), ("3", _("MiniTV with OSD"))], "0")
 			config.lcd.minitvmode.addNotifier(setLCDminitvmode)
-			config.lcd.minitvpipmode = ConfigSelection([("0", _("off")), ("5", _("PIP")), ("7", _("PIP with OSD"))], "0")
+			config.lcd.minitvpipmode = ConfigSelection([("0", _("off")), ("5", _("PiP")), ("7", _("PiP with OSD"))], "0")
 			config.lcd.minitvpipmode.addNotifier(setLCDminitvpipmode)
 			config.lcd.minitvfps = ConfigSlider(default=30, limits=(0, 30))
 			config.lcd.minitvfps.addNotifier(setLCDminitvfps)

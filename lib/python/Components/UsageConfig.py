@@ -168,7 +168,7 @@ def InitUsageConfig():
 	config.usage.show_second_infobar.addNotifier(showsecondinfobarChanged, immediate_feedback = True)
 	config.usage.infobar_frontend_source = ConfigSelection(default = "tuner", choices = [("settings", _("Settings")), ("tuner", _("Tuner"))])
 	
-	config.usage.show_picon_bkgrn = ConfigSelection(default = "transparent", choices = [("none", _("Disabled")), ("transparent", _("Transparent")), ("blue", _("Blue")), ("red", _("Red button")), ("black", _("Black")), ("white", _("White")), ("lightgrey", _("Light Grey")), ("grey", _("Grey"))])
+	config.usage.show_picon_bkgrn = ConfigSelection(default = "transparent", choices = [("none", pgettext("colour|label", "disabled")), ("transparent", pgettext("colour|label", "transparent")), ("blue", pgettext("colour|label", "blue")), ("red", pgettext("colour|label", "red")), ("black", pgettext("colour|label", "black")), ("white", pgettext("colour|label", "white")), ("lightgrey", pgettext("colour|label", "light grey")), ("grey", pgettext("colour|label", "grey"))])
 	config.usage.show_genre_info = ConfigYesNo(default=True)
 	config.usage.show_spinner = ConfigYesNo(default = True)
 	config.usage.enable_tt_caching = ConfigYesNo(default = True)
@@ -347,18 +347,18 @@ def InitUsageConfig():
 	config.usage.on_short_powerpress = ConfigSelection(default = "standby", choices = choicelist)
 
 	config.usage.long_press_emulation_key = ConfigSelection(default = "0", choices = [
-		("0", _("None")),
-		(str(KEYIDS["KEY_TV"]), _("TV")),
+		("0", pgettext("button|label", "None")),
+		(str(KEYIDS["KEY_TV"]), pgettext("button|label", "TV button")),
 		(str(KEYIDS["KEY_RADIO"]), pgettext("button|label", "Radio button")),
-		(str(KEYIDS["KEY_AUDIO"]), _("Audio")),
+		(str(KEYIDS["KEY_AUDIO"]), pgettext("button|label", "Audio button")),
 		(str(KEYIDS["KEY_VIDEO"]), pgettext("button|label", "List/FAV button")),
-		(str(KEYIDS["KEY_HOME"]), _("Home")),
-		(str(KEYIDS["KEY_END"]), _("End")),
-		(str(KEYIDS["KEY_HELP"]), _("Help")),
+		(str(KEYIDS["KEY_HOME"]), pgettext("button|label", "Home button")),
+		(str(KEYIDS["KEY_END"]), pgettext("button|label", "End button")),
+		(str(KEYIDS["KEY_HELP"]), pgettext("button|label", "Help button")),
 		(str(KEYIDS["KEY_INFO"]), pgettext("button|label", "Info/EPG button")),
-		(str(KEYIDS["KEY_TEXT"]), _("Teletext")),
-		(str(KEYIDS["KEY_SUBTITLE"]), _("Subtitle")),
-		(str(KEYIDS["KEY_FAVORITES"]), pgettext("button|label", "Favorites")),
+		(str(KEYIDS["KEY_TEXT"]), pgettext("button|label", "Text button")),
+		(str(KEYIDS["KEY_SUBTITLE"]), pgettext("button|label", "Subtitle button")),
+		(str(KEYIDS["KEY_FAVORITES"]), pgettext("button|label", "Favourites button")),
 	])
 
 	choicelist = [("0", _("Disabled"))]
