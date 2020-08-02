@@ -754,10 +754,12 @@ class ChannelSelectionEPG(InfoBarButtonSetup):
 	def __init__(self):
 		self.ChoiceBoxDialog = None
 		self.RemoveTimerDialog = None
-		self.hotkeys = [("Info (EPG)", "info", "Infobar/openEventView"),
-			("Info (EPG)" + " " + _("long"), "info_long", "Infobar/showEventInfoPlugins"),
-			("Epg/Guide", "epg", "Infobar/EPGPressed/1"),
-			("Epg/Guide" + " " + _("long"), "epg_long", "Infobar/showEventInfoPlugins")]
+		self.hotkeys = [
+			(pgettext("button|label", "Info/EPG button"), "info", "Infobar/openEventView"),
+			(pgettext("button|label", "Info/EPG button hold"), "info_long", "Infobar/showEventInfoPlugins"),
+			(pgettext("button|label", "EPG/Guide button"), "epg", "Infobar/EPGPressed/1"),
+			(pgettext("button|label", "EPG/Guide button hold"), "epg_long", "Infobar/showEventInfoPlugins"),
+		]
 		self["ChannelSelectEPGActions"] = ButtonSetupActionMap(["ChannelSelectEPGActions"], dict((x[1], self.ButtonSetupGlobal) for x in self.hotkeys))
 		self.currentSavedPath = []
 		self.onExecBegin.append(self.clearLongkeyPressed)

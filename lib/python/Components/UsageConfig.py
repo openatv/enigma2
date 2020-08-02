@@ -168,7 +168,7 @@ def InitUsageConfig():
 	config.usage.show_second_infobar.addNotifier(showsecondinfobarChanged, immediate_feedback = True)
 	config.usage.infobar_frontend_source = ConfigSelection(default = "tuner", choices = [("settings", _("Settings")), ("tuner", _("Tuner"))])
 	
-	config.usage.show_picon_bkgrn = ConfigSelection(default = "transparent", choices = [("none", _("Disabled")), ("transparent", _("Transparent")), ("blue", _("Blue")), ("red", _("Red")), ("black", _("Black")), ("white", _("White")), ("lightgrey", _("Light Grey")), ("grey", _("Grey"))])
+	config.usage.show_picon_bkgrn = ConfigSelection(default = "transparent", choices = [("none", _("Disabled")), ("transparent", _("Transparent")), ("blue", _("Blue")), ("red", _("Red button")), ("black", _("Black")), ("white", _("White")), ("lightgrey", _("Light Grey")), ("grey", _("Grey"))])
 	config.usage.show_genre_info = ConfigYesNo(default=True)
 	config.usage.show_spinner = ConfigYesNo(default = True)
 	config.usage.enable_tt_caching = ConfigYesNo(default = True)
@@ -349,16 +349,17 @@ def InitUsageConfig():
 	config.usage.long_press_emulation_key = ConfigSelection(default = "0", choices = [
 		("0", _("None")),
 		(str(KEYIDS["KEY_TV"]), _("TV")),
-		(str(KEYIDS["KEY_RADIO"]), _("Radio")),
+		(str(KEYIDS["KEY_RADIO"]), pgettext("button|label", "Radio button")),
 		(str(KEYIDS["KEY_AUDIO"]), _("Audio")),
-		(str(KEYIDS["KEY_VIDEO"]), _("List/Fav")),
+		(str(KEYIDS["KEY_VIDEO"]), pgettext("button|label", "List/FAV button")),
 		(str(KEYIDS["KEY_HOME"]), _("Home")),
 		(str(KEYIDS["KEY_END"]), _("End")),
 		(str(KEYIDS["KEY_HELP"]), _("Help")),
-		(str(KEYIDS["KEY_INFO"]), _("Info (EPG)")),
+		(str(KEYIDS["KEY_INFO"]), pgettext("button|label", "Info/EPG button")),
 		(str(KEYIDS["KEY_TEXT"]), _("Teletext")),
 		(str(KEYIDS["KEY_SUBTITLE"]), _("Subtitle")),
-		(str(KEYIDS["KEY_FAVORITES"]), _("Favorites")) ])
+		(str(KEYIDS["KEY_FAVORITES"]), pgettext("button|label", "Favorites")),
+	])
 
 	choicelist = [("0", _("Disabled"))]
 	for i in (5, 30, 60, 300, 600, 900, 1200, 1800, 2700, 3600):
