@@ -1220,7 +1220,6 @@ class IceTVMain(ChoiceBox):
         if _session is None:
             _session = session
         self.skinName = "IceTVMain"
-        self.setTitle(_("IceTV - Setup"))
         text = IceTVUIBase._banner % config.plugins.icetv.server.name.value.replace("api.", "www.")
 
         menu = [
@@ -1238,6 +1237,7 @@ class IceTVMain(ChoiceBox):
             # Fallback for Beyonwiz
             super(IceTVMain, self).__init__(session, skin_name=self.skinName, title=(_("IceTV version %s\n") + text) % ice._version_string, list=menu)
 
+        self.setTitle(_("IceTV - Setup"))
         self["debugactions"] = ActionMap(
             contexts=["DirectionActions"],
             actions={
