@@ -208,9 +208,9 @@ RESULT eServiceEvent::parseFrom(ATSCEvent *evt)
 
 RESULT eServiceEvent::parseFrom(const ExtendedTextTableSection *sct)
 {
-	m_short_description = sct->getMessage(m_language);
-	if (m_short_description.empty()) m_short_description = sct->getMessage(m_language_alternative);
-	if (m_short_description.empty()) m_short_description = sct->getMessage("");
+	m_short_description = convertDVBUTF8(sct->getMessage(m_language));
+	if (m_short_description.empty()) m_short_description = convertDVBUTF8(sct->getMessage(m_language_alternative));
+	if (m_short_description.empty()) m_short_description = convertDVBUTF8(sct->getMessage(""));
 	return 0;
 }
 
