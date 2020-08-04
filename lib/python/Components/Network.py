@@ -398,9 +398,9 @@ class Network:
 
 	def checkNetworkState(self,statecallback):
 		self.NetworkState = 0
-		cmd1 = "ping -c 1 www.openpli.org"
-		cmd2 = "ping -c 1 www.google.nl"
-		cmd3 = "ping -c 1 www.google.com"
+		cmd1 = "ping -c 1 1.1.1.1" # Cloudflare DNS
+		cmd2 = "ping -c 1 8.8.8.8" # Google DNS
+		cmd3 = "ping -c 1 208.67.222.222" # OpenDNS
 		self.PingConsole = Console()
 		self.PingConsole.ePopen(cmd1, self.checkNetworkStateFinished,statecallback)
 		self.PingConsole.ePopen(cmd2, self.checkNetworkStateFinished,statecallback)
@@ -506,9 +506,9 @@ class Network:
 				return False
 
 	def checkDNSLookup(self,statecallback):
-		cmd1 = "nslookup www.dream-multimedia-tv.de"
-		cmd2 = "nslookup www.heise.de"
-		cmd3 = "nslookup www.google.de"
+		cmd1 = "nslookup www.cloudflare.com"
+		cmd2 = "nslookup www.google.com"
+		cmd3 = "nslookup www.microsoft.com"
 		self.DnsConsole = Console()
 		self.DnsConsole.ePopen(cmd1, self.checkDNSLookupFinished,statecallback)
 		self.DnsConsole.ePopen(cmd2, self.checkDNSLookupFinished,statecallback)
