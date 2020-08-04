@@ -398,9 +398,9 @@ class Network:
 
 	def checkNetworkState(self,statecallback):
 		self.NetworkState = 0
-		cmd1 = "ping -c 1 1.1.1.1" # Cloudflare DNS
-		cmd2 = "ping -c 1 8.8.8.8" # Google DNS
-		cmd3 = "ping -c 1 208.67.222.222" # OpenDNS
+		cmd1 = "ping -c 1 www.openpli.org"
+		cmd2 = "ping -c 1 www.google.nl"
+		cmd3 = "ping -c 1 www.google.com"
 		self.PingConsole = Console()
 		self.PingConsole.ePopen(cmd1, self.checkNetworkStateFinished,statecallback)
 		self.PingConsole.ePopen(cmd2, self.checkNetworkStateFinished,statecallback)
