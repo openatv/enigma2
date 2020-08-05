@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-07-01 21:55+0000\n"
-"PO-Revision-Date: 2020-07-05 15:25+0200\n"
+"PO-Revision-Date: 2020-08-05 17:01+0200\n"
 "Last-Translator: neoatomic <neoatomic@users.noreply.github.com>\n"
 "Language-Team: neoatomic\n"
 "Language: nl\n"
@@ -11,7 +11,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 2.3.1\n"
+"X-Generator: Poedit 2.4\n"
 "X-Poedit-Basepath: .\n"
 "X-Poedit-SearchPath-0: ..\n"
 
@@ -29,7 +29,7 @@ msgid ""
 "   Please press OK to start Kodi..."
 msgstr ""
 "\n"
-" Druk OK om Kodi te starten..."
+" Druk op de OK-knop om Kodi te starten..."
 
 msgid ""
 "\n"
@@ -45,7 +45,7 @@ msgid ""
 " Kodi not present. Proceed with install?"
 msgstr ""
 "\n"
-"Kodi niet aanwezig. Doorgaan met installatie?"
+"Kodi is niet aanwezig. Doorgaan met de installatie?"
 
 msgid ""
 "\n"
@@ -74,7 +74,7 @@ msgid ""
 "After pressing OK, please wait!"
 msgstr ""
 "\n"
-"Na indrukken van OK, een moment geduld a.u.b.!"
+"Na het drukken op de OK-knop, a.u.b. een moment geduld!"
 
 #, python-format
 msgid ""
@@ -82,7 +82,7 @@ msgid ""
 "Backup your %s %s settings."
 msgstr ""
 "\n"
-"Maak een back-up van de instellingen van uw %s %s."
+"Maak een back-up van uw %s %s instellingen."
 
 #, python-format
 msgid ""
@@ -97,7 +97,7 @@ msgid ""
 "Edit the upgrade source address."
 msgstr ""
 "\n"
-"Wijzig het update bron adres."
+"Wijzig de locatie van het update bestand."
 
 #, python-format
 msgid ""
@@ -112,7 +112,7 @@ msgid ""
 "Maintain your multiboot device."
 msgstr ""
 "\n"
-"Uw multiboot-apparaat onderhouden."
+"Multiboot instellingen."
 
 #, python-format
 msgid ""
@@ -142,7 +142,7 @@ msgid ""
 "Recording in progress."
 msgstr ""
 "\n"
-"Opname is bezig."
+"Er is een Opname bezig."
 
 #, python-format
 msgid ""
@@ -158,7 +158,7 @@ msgid ""
 "Restore your %s %s with a new firmware."
 msgstr ""
 "\n"
-"Plaats nieuwe firmware in uw %s %s."
+"Uw %s %s met nieuwe firmware herstellen."
 
 msgid ""
 "\n"
@@ -202,7 +202,7 @@ msgid ""
 "[User - bouquets (RADIO)]\n"
 msgstr ""
 "\n"
-"[User - favorietenlijst (RADIO)]\n"
+"[Gebruiker - favorietenlijst (RADIO)]\n"
 
 #, python-format
 msgid ""
@@ -211,42 +211,42 @@ msgid ""
 "%s"
 msgstr ""
 "\n"
-"optionele parameter:\n"
+"Optionele parameter:\n"
 "%s"
 
 msgid " "
 msgstr " "
 
 msgid "     no space left on back-up device"
-msgstr "     geen ruimte over op het back-up apparaat"
+msgstr "     er is geen ruimte meer op het back-up apparaat"
 
 msgid "     no writing permission on back-up device"
-msgstr "     geen schrijf rechten voor het back-up apparaat"
+msgstr "     u heeft geen schrijf-rechten op het back-up apparaat"
 
 msgid "     wrong back-up destination "
-msgstr "     verkeerde back-up bestemming "
+msgstr "     verkeerde back-up locatie "
 
 #, python-format
 msgid "  (%s x %s)"
 msgstr "  (%s x %s)"
 
 msgid "  Menu key : Select quad channel"
-msgstr "  Menu knop : Selecteer Quad zender"
+msgstr "  Menu knop : Selecteer Quad channel"
 
 msgid "  Red key : Show/Hide channel name"
 msgstr "  Rode kop : Toon/verberg zender naam"
 
 #, python-format
 msgid " ('%s') ends successfully."
-msgstr " ('%s') Succesvol beëindigd."
+msgstr " ('%s') succesvol beëindigd."
 
 #, python-format
 msgid " ('%s') ends with error messages."
-msgstr " ('%s') eindigt met foutberichten."
+msgstr " ('%s') beëindigt met foutmeldingen."
 
 #, python-format
 msgid " ('%s') ends with error number [%d]."
-msgstr " ('%s') eindigt met fout nummer [%d]."
+msgstr " ('%s') beëindigt met foutcode [%d]."
 
 #, python-format
 msgid " (Channel %s)"
@@ -278,20 +278,20 @@ msgid " (higher than rotor any auto)"
 msgstr " (hoger dan de rotor van elke 'auto')"
 
 msgid " (lower than any auto)"
-msgstr " (lager dan elke auto)"
+msgstr " (lager dan elke 'auto')"
 
 #, python-format
 msgid " - %d elements exist! Overwrite"
-msgstr " -% d elementen bestaan! Overschrijven"
+msgstr " -%d bestaande elementen! Overschrijven"
 
 msgid " - 1 element exist! Overwrite"
-msgstr " -1 element bestaat! Overschrijven"
+msgstr " -1 bestaand element! Overschrijven"
 
 msgid " - file exist! Overwrite"
-msgstr " -bestand bestaat! Overschrijven"
+msgstr " -bestaand bestand! Overschrijven"
 
 msgid " - folder exist! Overwrite"
-msgstr " -map bestaat! Overschrijven"
+msgstr " -bestaande map! Overschrijven"
 
 msgid " <No Channel>"
 msgstr " <Geen Zender>"
@@ -319,7 +319,7 @@ msgid " of "
 msgstr " of "
 
 msgid " or save additional the picture to a file"
-msgstr " of extra de afbeelding opslaan in een bestand"
+msgstr " of aanvullend de afbeelding als bestand opslaan"
 
 msgid " updated"
 msgstr " bijgewerkt"
@@ -1209,7 +1209,7 @@ msgstr "%s %02d.%02d."
 
 #, python-format
 msgid "%s %s advanced remote control (native)"
-msgstr "%s %s geavanceerde AB"
+msgstr "%s %s geavanceerde afstandsbediening"
 
 #, python-format
 msgid "%s %s front panel"
@@ -1282,7 +1282,7 @@ msgstr "%s wordt niet langer gebruikt. Kan deze verwijderd worden?"
 
 #, python-format
 msgid "%s is password protected."
-msgstr "%s is met wachtwoord beveiligd."
+msgstr "%s is met een wachtwoord beveiligd."
 
 #, python-format
 msgid "%s not available."
@@ -1352,12 +1352,13 @@ msgstr "'%s' bevat %d bestand(en) en %d sub-mappen.\n"
 
 #, python-format
 msgid "'%s' not installed and no known package"
-msgstr "'%s' niet geïnstalleerd en geen onbekend pakket"
+msgstr "'%s' niet geïnstalleerd en geen bekend pakket"
 
 msgid ""
 "'Handle standby from TV' has a higher priority as 'Handle input from TV'"
 msgstr ""
-"'Verwerk stand-by van TV' heeft hogere prioriteit als 'Verwerk invoer van TV'"
+"'Het verwerken van de Stand-by (TV)' heeft een hogere prioriteit als 'het "
+"verwerken van de ingangen (TV)'"
 
 msgid "'weatherplugin' is not installed!"
 msgstr "de 'Weer plug-in' is niet geïnstalleerd!"
@@ -1374,10 +1375,10 @@ msgstr "(1 taak)"
 
 #, python-format
 msgid "(Attention: There will be a restart after %d crashes.)"
-msgstr "(Opgelet: Na %d crashes vind een herstart plaats.)"
+msgstr "(Opgelet: Na %d crashes wordt de ontvanger opnieuw gestart.)"
 
 msgid "(Selectmode)"
-msgstr "(Selectmode)"
+msgstr "(Selectie modus)"
 
 msgid "(Show only reader:"
 msgstr "(Toon alleen lezer:"
@@ -1386,7 +1387,7 @@ msgid "(current image)"
 msgstr "(huidige image)"
 
 msgid "(e.g. TV wakeup, but not switched to correct input)"
-msgstr "(b.v. TV ontwaakt, maar schakelt niet naar correcte ingang/poort)"
+msgstr "(b.v. TV ontwaakt, maar schakelt niet naar de juiste ingang)"
 
 msgid "(empty)"
 msgstr "(leeg)"
@@ -1968,17 +1969,16 @@ msgid ""
 "Extend sleep timer 30 minutes. Your %s %s\n"
 "will shut down after Recording or Powertimer event. Get in Standby now?"
 msgstr ""
-"Een Opname, OpnameTimer of PowerTimer is actief of begint binnen 15 "
-"minuten.\n"
+"Een Opname, Timer of PowerTimer is bezig of begint binnen 15 minuten.\n"
 "Verhoog de slaap timer met 30 minuten. Uw %s %s\n"
-"zal afsluiten na de Opname of Powertimer. Ga nu naar stand-by?"
+"zal afsluiten na de Opname of Powertimer. Nu naar stand-by?"
 
 msgid ""
 "A background update check is in progress, please wait a few minutes and try "
 "again."
 msgstr ""
-"Op de achtergrond wordt een controle uitgevoerd. Wacht een paar minuten en "
-"probeer het opnieuw."
+"Op de achtergrond wordt een update controle uitgevoerd, wacht enkele minuten "
+"en probeer het a.u.b. opnieuw."
 
 #, python-format
 msgid ""
@@ -2005,80 +2005,82 @@ msgid ""
 "A finished powertimer wants to reboot your %s %s.\n"
 "Do that now?"
 msgstr ""
-"Een voltooide timer wil uw %s %s\n"
-"herstarten. Dat nu doen?"
+"Een PowerTimer wil uw %s %s\n"
+"herstarten. Wilt u dit toestaan?"
 
 msgid ""
 "A finished powertimer wants to restart the user interface.\n"
 "Do that now?"
 msgstr ""
-"Een timer wil de gebruikersinterface van uw %s %s herstarten.\n"
-"Dat nu doen?"
+"Een PowerTimer wil de gebruikersinterface van uw %s %s herstarten.\n"
+"Wilt u dit toestaan?"
 
 #, python-format
 msgid ""
 "A finished powertimer wants to set your\n"
 "%s %s to standby. Do that now?"
 msgstr ""
-"Een voltooide timer wil uw %s %s\n"
-"in stand-by zetten. Dat nu doen?"
+"Een PowerTimer wil uw %s %s\n"
+"in Stand-by zetten. Wilt u dit toestaan?"
 
 #, python-format
 msgid ""
 "A finished powertimer wants to shutdown your %s %s.\n"
 "Do that now?"
 msgstr ""
-"Een voltooide timer wil uw\n"
-"%s %s uitschakelen. Wilt u dat nu doen?"
+"Een PowerTimer wil uw\n"
+"%s %s uitschakelen. Wilt u dit toestaan?"
 
 #, python-format
 msgid ""
 "A finished record timer wants to set your\n"
 "%s %s to standby. Do that now?"
 msgstr ""
-"Een voltooide timer wil uw %s %s\n"
-"in stand-by zetten. Dat nu doen?"
+"Een opname Timer wil uw %s %s\n"
+"nu in stand-by zetten. Wilt u dit toestaan?"
 
 #, python-format
 msgid ""
 "A finished record timer wants to shut down\n"
 "your %s %s. Shutdown now?"
 msgstr ""
-"Een voltooide timer wil uw\n"
-"%s %s uitschakelen. Dat nu doen?"
+"Een opname Timer wil uw\n"
+"%s %s nu uitschakelen. Wilt u dit toestaan?"
 
 #, python-format
 msgid ""
 "A recording has been started:\n"
 "%s"
 msgstr ""
-"Een opname is gestart:\n"
+"Er is een opname gestart:\n"
 "%s"
 
 msgid ""
 "A recording is currently running.\n"
 "What do you want to do?"
 msgstr ""
-"Bezig met opnemen.\n"
+"Er is nu een opname bezig.\n"
 "Wat wilt u doen?"
 
 msgid ""
 "A recording is currently running. Please stop the recording before trying to "
 "configure the positioner."
 msgstr ""
-"U bent aan het opnemen. Stop de opname voordat u de rotorinstellingen "
+"Er is nu een opname bezig. Stop de opname voordat u de rotorinstellingen "
 "probeert te wijzigen."
 
 msgid ""
 "A recording is currently running. Please stop the recording before trying to "
 "scan."
-msgstr "Een opname is nu bezig. Stop de opname voor u gaat zoeken."
+msgstr ""
+"Er is nu een opname bezig. Stop deze opname voor u zenders gaat zoeken."
 
 msgid ""
 "A recording is currently running. Please stop the recording before trying to "
 "start the satfinder."
 msgstr ""
-"U bent aan het opnemen. Stop de opname voordat u de signaalmeting start."
+"Er is nu een opname bezig. Stop deze opname voordat u een signaalmeting "
+"start."
 
 msgid "A repeating timer or just once?"
 msgstr "Een herhalende timer of eenmalig?"
@@ -2104,63 +2106,64 @@ msgid ""
 "A sleep timer wants to set your\n"
 "%s %s to standby. Do that now?"
 msgstr ""
-"Een slaap timer wil uw\n"
-"%s %s in stand-by zetten. Dat nu doen?"
+"Een uitschakeltimer wil uw\n"
+"%s %s in stand-by zetten. Wilt u dit toestaan?"
 
 #, python-format
 msgid ""
 "A sleep timer wants to set your %s %s to standby.\n"
 "Do that now or set extend additional minutes?"
 msgstr ""
-"Een slaap timer wilt uw %s %s in stand-by zetten.\n"
-"Doe dat nu of verhoog het aantal minuten?"
+"Een uitschakeltimer wil uw %s %s in stand-by zetten.\n"
+"Dit nu doen of met een aantal minuten uitstellen?"
 
 #, python-format
 msgid ""
 "A sleep timer wants to shut down\n"
 "your %s %s. Shutdown now?"
 msgstr ""
-"Een slaap timer wil uw\n"
-"%s %s uitschakelen. Dat nu doen?"
+"Een uitschakeltimer wil uw\n"
+"%s %s uitschakelen. Wilt u dit toestaan?"
 
 #, python-format
 msgid ""
 "A sleep timer wants to shut down your %s %s.\n"
 "Do that now or set extend additional minutes?"
 msgstr ""
-"Een slaap timer wilt uw %s %s .\n"
-"Doe dat nu of verhoog het aantal minuten?"
+"Een uitschakeltimer wil uw %s %s uitschakelen.\n"
+"Dit nu doen of met een aantal minuten uitstellen?"
 
 msgid "A small overview of the available icon states and actions."
-msgstr "Een klein overzicht van gebruikte icon-statussen en acties."
+msgstr "Een klein overzicht van de beschikbare icon-types en acties."
 
 msgid ""
 "A timer failed to record!\n"
 "Abort pseudo recordings (e.g. EPG refresh) and try again?\n"
 msgstr ""
 "Een timer opname is mislukt!\n"
-"Stop pseudo opname (b.v. ververs EPG ) en probeer het opnieuw?\n"
+"Stop eventuele pseudo opnames (door b.v. EPG refresh) en probeer het "
+"opnieuw?\n"
 
 msgid ""
 "A timer failed to record!\n"
 "Abort streaming and try again?\n"
 msgstr ""
 "Een timer opname is mislukt!\n"
-"Stop streaming en probeer het opnieuw?\n"
+"Stop met streamen en probeer het opnieuw?\n"
 
 msgid ""
 "A timer failed to record!\n"
 "Disable PIP and try again?\n"
 msgstr ""
-"Timer opname mislukt!\n"
+"Een timer opname is mislukt!\n"
 "Schakel PiP uit en probeer het opnieuw.\n"
 
 msgid ""
 "A timer failed to record!\n"
 "Disable TV and try again?\n"
 msgstr ""
-"Timer opname mislukt!\n"
-"Verander van zender en probeer het opnieuw.\n"
+"Een timer opname is mislukt!\n"
+"Geen TV meer kijken en opnieuw proberen?\n"
 
 msgid "AAC Plus downmix"
 msgstr "AAC Plus downmix"
@@ -2239,10 +2242,10 @@ msgid "Accept the current selection"
 msgstr "Accepteer de huidige selectie"
 
 msgid "Accessed:"
-msgstr "Toegankelijk:"
+msgstr "Geopend:"
 
 msgid "Accesspoint:"
-msgstr "Toegangspunt:"
+msgstr "Access Point MAC:"
 
 msgid "Action"
 msgstr "Actie"
@@ -2273,22 +2276,22 @@ msgid "Activate current configuration"
 msgstr "Activeer de huidige configuratie"
 
 msgid "Activate left-hand file list as multi-select source"
-msgstr "Activeer de linker bestandslijst als Multi-selecteer bron"
+msgstr "Activeer de linker bestandslijst als multi-selectie bron"
 
 msgid "Activate left-hand file list as source"
 msgstr "Activeer de linker bestandslijst als bron"
 
 msgid "Activate right-hand file list as multi-select source"
-msgstr "Activeer de rechter bestandslijst als Multi-selecteer bron"
+msgstr "Activeer de rechter bestandslijst als multi-selectie bron"
 
 msgid "Activate right-hand file list as source"
 msgstr "Activeer de rechter bestandslijst als bron"
 
 msgid "Activate timeshift End"
-msgstr "Beëindig de Timeshift"
+msgstr "Beëindig Timeshift"
 
 msgid "Activate timeshift end and pause"
-msgstr "Beëindig de Timestift en pauzeer"
+msgstr "Beëindig Timestift en Pauzeer"
 
 msgid ""
 "Activation takes place immediately. If it does feature not work, then try "
@@ -2308,7 +2311,7 @@ msgid "Active"
 msgstr "Actief"
 
 msgid "Active clients"
-msgstr "Actieve gebruikers"
+msgstr "Actieve clients"
 
 msgid "Active screen"
 msgstr "Actief scherm"
@@ -17723,7 +17726,7 @@ msgid "[Enigma2 Settings]\n"
 msgstr "[Enigma2 instellingen]\n"
 
 msgid "[Image Info]\n"
-msgstr "[Afbeelding Info]\n"
+msgstr "[Image Informatie]\n"
 
 msgid "[TimeShift] Restarting Timeshift!"
 msgstr "[TimeShift] Timeshift wordt herstart!"
