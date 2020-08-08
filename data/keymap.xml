@@ -88,6 +88,7 @@
 	</map>
 
 	<map context="TextEditActions">
+		<key id="KEY_BACK" mapto="backspace" flags="mr" />
 		<key id="KEY_LAST" mapto="backspace" flags="mr" />
 		<key id="KEY_STOP" mapto="backspace" flags="mr" />
 		<key id="KEY_PLAYPAUSE" mapto="delete" flags="mr" />
@@ -140,8 +141,8 @@
 	</map>
 
 	<map context="VirtualKeyBoardActions">
-		<!-- Also uses NumberActions - NOT YET!!! -->
-		<!-- Also uses TextEditActions - NOT YET!!! -->
+		<!-- Also uses NumberActions -->
+		<!-- Also uses TextEditActions -->
 		<key id="KEY_RED" mapto="cancel" flags="m" />
 		<key id="KEY_GREEN" mapto="save" flags="m" />
 		<key id="KEY_YELLOW" mapto="shift" flags="m" />
@@ -157,27 +158,6 @@
 		<key id="KEY_FASTFORWARD" mapto="next" flags="mr" />
 		<key id="KEY_NEXT" mapto="last" flags="m" />
 		<key id="KEY_DOWN" mapto="down" flags="mr" />
-		<key id="KEY_LAST" mapto="backspace" flags="mr" />
-		<key id="KEY_STOP" mapto="backspace" flags="mr" />
-		<key id="KEY_PLAYPAUSE" mapto="delete" flags="mr" />
-		<key id="KEY_PLAY" mapto="delete" flags="mr" />
-		<key id="KEY_PAUSE" mapto="delete" flags="mr" />
-		<key id="KEY_FILE" mapto="erase" flags="m" />
-		<key id="KEY_LIST" mapto="erase" flags="m" />
-		<key id="KEY_MEDIA" mapto="erase" flags="m" />
-		<key id="KEY_PVR" mapto="erase" flags="m" />
-		<key id="KEY_VIDEO" mapto="erase" flags="m" />
-		<key id="KEY_INFO" mapto="toggleOverwrite" flags="m" />
-		<key id="KEY_0" mapto="0" flags="m" />
-		<key id="KEY_1" mapto="1" flags="m" />
-		<key id="KEY_2" mapto="2" flags="m" />
-		<key id="KEY_3" mapto="3" flags="m" />
-		<key id="KEY_4" mapto="4" flags="m" />
-		<key id="KEY_5" mapto="5" flags="m" />
-		<key id="KEY_6" mapto="6" flags="m" />
-		<key id="KEY_7" mapto="7" flags="m" />
-		<key id="KEY_8" mapto="8" flags="m" />
-		<key id="KEY_9" mapto="9" flags="m" />
 		<!-- Keyboard specific buttons -->
 		<key id="KEY_F5" mapto="cancel" flags="m" />
 		<key id="KEY_F6" mapto="save" flags="m" />
@@ -191,21 +171,6 @@
 		<key id="KEY_F12" mapto="next" flags="m" />
 		<key id="KEY_F10" mapto="last" flags="m" />
 		<key id="KEY_NEXTSONG" mapto="last" flags="m" />
-		<key id="KEY_BACKSPACE" mapto="backspace" flags="mr" />
-		<key id="KEY_DELETE" mapto="delete" flags="mr" />
-		<key id="KEY_F4" mapto="erase" flags="m" />
-		<key id="KEY_INSERT" mapto="toggleOverwrite" flags="m" />
-		<key id="KEY_ASCII" mapto="gotAsciiCode" flags="mr" />
-		<key id="KEY_KP0" mapto="0" flags="m" />
-		<key id="KEY_KP1" mapto="1" flags="m" />
-		<key id="KEY_KP2" mapto="2" flags="m" />
-		<key id="KEY_KP3" mapto="3" flags="m" />
-		<key id="KEY_KP4" mapto="4" flags="m" />
-		<key id="KEY_KP5" mapto="5" flags="m" />
-		<key id="KEY_KP6" mapto="6" flags="m" />
-		<key id="KEY_KP7" mapto="7" flags="m" />
-		<key id="KEY_KP8" mapto="8" flags="m" />
-		<key id="KEY_KP9" mapto="9" flags="m" />
 	</map>
 
 	<!--
