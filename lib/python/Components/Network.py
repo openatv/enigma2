@@ -506,9 +506,9 @@ class Network:
 				return False
 
 	def checkDNSLookup(self,statecallback):
-		cmd1 = "nslookup www.dream-multimedia-tv.de"
-		cmd2 = "nslookup www.heise.de"
-		cmd3 = "nslookup www.google.de"
+		cmd1 = "nslookup www.cloudflare.com"
+		cmd2 = "nslookup www.google.com"
+		cmd3 = "nslookup www.microsoft.com"
 		self.DnsConsole = Console()
 		self.DnsConsole.ePopen(cmd1, self.checkDNSLookupFinished,statecallback)
 		self.DnsConsole.ePopen(cmd2, self.checkDNSLookupFinished,statecallback)
