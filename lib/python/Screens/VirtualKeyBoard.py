@@ -489,7 +489,7 @@ class VirtualKeyBoard(Screen, HelpableScreen):
 			"uk_01": [_("Ukrainian"), _("Russian"), self.ukranian(self.russian)],
 			"uk_UA": [_("Ukrainian"), _("Ukraine"), self.ukranianEnhanced(self.russian)]
 		}
-		self["actions"] = HelpableNumberActionMap(self, "VirtualKeyBoardActions", {
+		self["actions"] = HelpableNumberActionMap(self, ["VirtualKeyBoardActions", "NumberActions", "TextEditActions"], {
 			"cancel": (self.cancel, _("Cancel any text changes and exit")),
 			"save": (self.save, _("Save / Enter text and exit")),
 			"shift": (self.shiftSelected, _("Select the shifted character set for the next character only")),
@@ -508,6 +508,7 @@ class VirtualKeyBoard(Screen, HelpableScreen):
 			"delete": (self.forwardSelected, _("Delete the character under the text cursor")),
 			"erase": (self.eraseAll, _("Delete all the text")),
 			"toggleOverwrite": (self.keyToggleOW, _("Toggle new text inserts before or overwrites existing text")),
+			"0": (self.keyNumberGlobal, _("Number or SMS style data entry")),
 			"1": (self.keyNumberGlobal, _("Number or SMS style data entry")),
 			"2": (self.keyNumberGlobal, _("Number or SMS style data entry")),
 			"3": (self.keyNumberGlobal, _("Number or SMS style data entry")),
@@ -517,7 +518,6 @@ class VirtualKeyBoard(Screen, HelpableScreen):
 			"7": (self.keyNumberGlobal, _("Number or SMS style data entry")),
 			"8": (self.keyNumberGlobal, _("Number or SMS style data entry")),
 			"9": (self.keyNumberGlobal, _("Number or SMS style data entry")),
-			"0": (self.keyNumberGlobal, _("Number or SMS style data entry")),
 			"gotAsciiCode": (self.keyGotAscii, _("Keyboard data entry"))
 		}, -2, description=_("Virtual KeyBoard Functions"))
 		self.lang = language.getLanguage()
