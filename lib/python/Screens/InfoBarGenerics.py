@@ -1898,7 +1898,7 @@ class InfoBarEPG:
 	def RedPressed(self):
 		if isStandardInfoBar(self) or isMoviePlayerInfoBar(self):
 			if config.usage.defaultEPGType.value != _("Graphical EPG") and config.usage.defaultEPGType.value != _("None"):
-					self.openGraphEPG()
+				self.openGraphEPG()
 			else:
 				self.openSingleServiceEPG()
 
