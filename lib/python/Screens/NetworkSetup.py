@@ -1,6 +1,6 @@
 from __future__ import print_function
 from boxbranding import getBoxType, getMachineBrand, getMachineName
-from os import path as os_path, remove, unlink, rename, chmod, access, X_OK
+from os import system, path as os_path, remove, unlink, rename, chmod, access, X_OK
 from shutil import move
 import time
 import six
@@ -913,6 +913,7 @@ class AdapterSetupConfiguration(Screen, HelpableScreen):
 			return False
 		else:
 			try:
+				system("ifconfig "+self.iface+" up")
 				wlanresponse = list(Cell.all(iface))
 			except IOError as xxx_todo_changeme:
 				(error_no, error_str) = xxx_todo_changeme.args
