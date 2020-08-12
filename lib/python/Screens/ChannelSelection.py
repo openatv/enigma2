@@ -1984,12 +1984,12 @@ class ChannelSelectionBase(Screen):
 						self.numberSelectionActions(number)
 				else:
 					unichar = self.numericalTextInput.getKey(number)
-					charstr = unichar.encode("utf-8")
+					charstr = six.ensure_str(unichar)
 					if len(charstr) == 1:
 						self.servicelist.moveToChar(charstr[0])
 		else:
 			unichar = self.numericalTextInput.getKey(number)
-			charstr = unichar.encode("utf-8")
+			charstr = six.ensure_str(unichar)
 			if len(charstr) == 1:
 				self.servicelist.moveToChar(charstr[0])
 
