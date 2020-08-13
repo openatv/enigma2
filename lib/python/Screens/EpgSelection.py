@@ -2519,43 +2519,43 @@ class EPGSelection(Screen, HelpableScreen):
 			self.setMinus24h(True, 6)
 			self.lastEventTime = tmp
 			self.gotoLasttime()
-		for list in list(range(1, self.Fields)):
-			self['list'+str(list)].moveTo(self['list'+str(list)].instance.pageUp)
+		for _list in list(range(1, self.Fields)):
+			self['list'+str(_list)].moveTo(self['list'+str(_list)].instance.pageUp)
 		self.syncUp(idx)
 		self.saveLastEventTime()
 
 	def syncUp(self, idx):
 		idx = self['list'+str(self.activeList)].getCurrentIndex()
 		curTime = self.getEventTime(self.activeList)[0]
-		for list in list(range(1, self.Fields)):
-			if list == self.activeList:
+		for _list in list(range(1, self.Fields)):
+			if _list == self.activeList:
 				continue
 			for x in list(range(0, int(idx/config.epgselection.vertical_itemsperpage.value))):
-				evTime = self.getEventTime(list)[0]
+				evTime = self.getEventTime(_list)[0]
 				if curTime is None or evTime is None or curTime <= evTime:
-					self['list'+str(list)].moveTo(self['list'+str(list)].instance.pageUp)
-				evTime = self.getEventTime(list)[0]
+					self['list'+str(_list)].moveTo(self['list'+str(_list)].instance.pageUp)
+				evTime = self.getEventTime(_list)[0]
 				if curTime is None or evTime is None or curTime >= evTime:
 					break
 
 	def syncDown(self, idx):
 		curTime = self.getEventTime(self.activeList)[0]
-		for list in list(range(1, self.Fields)):
-			if list == self.activeList:
+		for _list in list(range(1, self.Fields)):
+			if _list == self.activeList:
 				continue
 			for x in list(range(0, int(idx/config.epgselection.vertical_itemsperpage.value))):
-				evTime = self.getEventTime(list)[0]
+				evTime = self.getEventTime(_list)[0]
 				if curTime is None or evTime is None or curTime >= evTime:
-					self['list'+str(list)].moveTo(self['list'+str(list)].instance.pageDown)
-				evTime = self.getEventTime(list)[0]
+					self['list'+str(_list)].moveTo(self['list'+str(_list)].instance.pageDown)
+				evTime = self.getEventTime(_list)[0]
 				if curTime is None or evTime is None or curTime <= evTime:
 					break
 
 	def allDown(self):
 		if self.getEventTime(self.activeList)[0] is None:
 			return
-		for list in list(range(1, self.Fields)):
-			self['list'+str(list)].moveTo(self['list'+str(list)].instance.pageDown)
+		for _list in list(range(1, self.Fields)):
+			self['list'+str(_list)].moveTo(self['list'+str(_list)].instance.pageDown)
 		idx = self['list'+str(self.activeList)].getCurrentIndex()
 		self.syncDown(idx)
 		self.saveLastEventTime()
@@ -2676,8 +2676,8 @@ class EPGSelection(Screen, HelpableScreen):
 		ev_begin, ev_end = self.getEventTime(self.activeList)
 		if ev_begin is None:
 			return
-		for list in list(range(1, self.Fields)):
-			idx += self['list'+str(list)].getCurrentIndex()
+		for _list in list(range(1, self.Fields)):
+			idx += self['list'+str(_list)].getCurrentIndex()
 
 		primetime = self.setPrimetime(ev_begin)
 
@@ -2702,62 +2702,62 @@ class EPGSelection(Screen, HelpableScreen):
 				else:
 					self['list'+str(self.activeList)].moveTo(self['list'+str(self.activeList)].instance.moveTop)
 					self.setMinus24h(True, 6)
-					for list in list(range(1, self.Fields)):
-						self['list'+str(list)].moveTo(self['list'+str(list)].instance.moveEnd)
-						cnt = self['list'+str(list)].getCurrentIndex()
-						self['list'+str(list)].moveTo(self['list'+str(list)].instance.moveTop)
-						self.findPrimetime(cnt, list, primetime)
+					for _list in list(range(1, self.Fields)):
+						self['list'+str(_list)].moveTo(self['list'+str(_list)].instance.moveEnd)
+						cnt = self['list'+str(_list)].getCurrentIndex()
+						self['list'+str(_list)].moveTo(self['list'+str(_list)].instance.moveTop)
+						self.findPrimetime(cnt, _list, primetime)
 			self.saveLastEventTime()
 
-	def gotoLasttime(self, list = 0):
-		if list:
-			self['list'+str(list)].moveTo(self['list'+str(list)].instance.moveEnd)
-			cnt = self['list'+str(list)].getCurrentIndex()
-			self['list'+str(list)].moveTo(self['list'+str(list)].instance.moveTop)
-			self.findLasttime(cnt, list)
+	def gotoLasttime(self, _list = 0):
+		if _list:
+			self['list'+str(_list)].moveTo(self['list'+str(_list)].instance.moveEnd)
+			cnt = self['list'+str(_list)].getCurrentIndex()
+			self['list'+str(_list)].moveTo(self['list'+str(_list)].instance.moveTop)
+			self.findLasttime(cnt, _list)
 		else:
-			for list in list(range(1, self.Fields)):
-				self['list'+str(list)].moveTo(self['list'+str(list)].instance.moveEnd)
-				cnt = self['list'+str(list)].getCurrentIndex()
-				self['list'+str(list)].moveTo(self['list'+str(list)].instance.moveTop)
-				self.findLasttime(cnt, list)
+			for _list in list(range(1, self.Fields)):
+				self['list'+str(_list)].moveTo(self['list'+str(_list)].instance.moveEnd)
+				cnt = self['list'+str(_list)].getCurrentIndex()
+				self['list'+str(_list)].moveTo(self['list'+str(_list)].instance.moveTop)
+				self.findLasttime(cnt, _list)
 
-	def findLasttime(self, cnt, list, idx = 0):
+	def findLasttime(self, cnt, _list, idx = 0):
 		last_begin, last_end = self.lastEventTime
 		for events in list(range(0, idx)):
-			self['list'+str(list)].moveTo(self['list'+str(list)].instance.moveDown)
+			self['list'+str(_list)].moveTo(self['list'+str(_list)].instance.moveDown)
 		for events in list(range(idx, cnt)):
-			ev_begin, ev_end = self.getEventTime(list)
+			ev_begin, ev_end = self.getEventTime(_list)
 			if ev_begin is not None:
 				if (ev_begin <= last_begin and ev_end > last_begin) or (ev_end >= last_end):
 					break
-				self['list'+str(list)].moveTo(self['list'+str(list)].instance.moveDown)
+				self['list'+str(_list)].moveTo(self['list'+str(_list)].instance.moveDown)
 			else:
 				break
 
-	def findPrimetime(self, cnt, list, primetime):
+	def findPrimetime(self, cnt, _list, primetime):
 		for events in list(range(0, cnt)):
-			ev_begin, ev_end = self.getEventTime(list)
+			ev_begin, ev_end = self.getEventTime(_list)
 			if ev_begin is not None:
 				if (primetime >= ev_begin and primetime < ev_end):
 					break
-				self['list'+str(list)].moveTo(self['list'+str(list)].instance.moveDown)
+				self['list'+str(_list)].moveTo(self['list'+str(_list)].instance.moveDown)
 			else:
 				break
 
-	def saveLastEventTime(self, list = 0):
-		if not list:
-			list = self.activeList
+	def saveLastEventTime(self, _list = 0):
+		if not _list:
+			_list = self.activeList
 		now = time()
 		last = self.lastEventTime
-		self.lastEventTime = self.getEventTime(list)
+		self.lastEventTime = self.getEventTime(_list)
 		if self.lastEventTime[0] is None and last[0] is not None:
 			self.lastEventTime = last
 		elif last[0] is None:
 			self.lastEventTime = (now, now+3600)
 
-	def getEventTime(self, list):
-		tmp = self['list'+str(list)].l.getCurrentSelection()
+	def getEventTime(self, _list):
+		tmp = self['list'+str(_list)].l.getCurrentSelection()
 		if tmp is None:
 			return None, None
 		return tmp[2], tmp[2]+tmp[3] #event begin, event end
