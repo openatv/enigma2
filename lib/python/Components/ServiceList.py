@@ -416,7 +416,7 @@ class ServiceList(HTMLComponent, GUIComponent):
 			channelNumberWidth = config.usage.alternative_number_mode.value and getTextBoundarySize(self.instance, self.ServiceNumberFont, self.instance.size(), "0"*int(config.usage.maxchannelnumlen.value)).width() or getTextBoundarySize(self.instance, self.ServiceNumberFont, self.instance.size(), "00000").width()
 			channelNumberSpace = self.fieldMargins + self.listMarginLeft
 
-		numberHeight = self.ItemHeight/2 if twoLines and config.usage.servicelist_servicenumber_valign.value == "1" else self.ItemHeight
+		numberHeight = self.ItemHeight//2 if twoLines and config.usage.servicelist_servicenumber_valign.value == "1" else self.ItemHeight
 		self.l.setElementPosition(self.l.celServiceNumber, eRect(self.listMarginLeft, 0, channelNumberWidth, numberHeight))
 
 		#progress view modes for two lines
@@ -438,7 +438,7 @@ class ServiceList(HTMLComponent, GUIComponent):
 		minuteUnit = _("min")
 		self.l.setProgressUnit(minuteUnit if "mins" in viewType else "%")
 
-		progressHeight = self.ItemHeight/2 if viewMode else self.ItemHeight
+		progressHeight = self.ItemHeight//2 if viewMode else self.ItemHeight
 		progressTextWidth = getTextBoundarySize(self.instance, self.ProgressInfoFont, self.instance.size(), "+000 %s" %minuteUnit).width() if "mins" in viewType else getTextBoundarySize(self.instance, self.ProgressInfoFont, self.instance.size(), "100 %").width()
 		self.l.setProgressTextWidth(progressTextWidth)
 
