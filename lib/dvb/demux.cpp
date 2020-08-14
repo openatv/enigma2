@@ -31,7 +31,7 @@ enum dmx_source {
 	DMX_SOURCE_FRONT1,
 	DMX_SOURCE_FRONT2,
 	DMX_SOURCE_FRONT3,
-	DMX_SOURCE_DVR0   = 16,
+	DMX_SOURCE_DVR0 = 16,
 	DMX_SOURCE_DVR1,
 	DMX_SOURCE_DVR2,
 	DMX_SOURCE_DVR3
@@ -135,6 +135,13 @@ RESULT eDVBDemux::setSourcePVR(int pvrnum)
 	if (fd < 0) return -1;
 	int n = m_dvr_source_offset + pvrnum;
 	int res = ::ioctl(fd, DMX_SET_SOURCE, &n);
+	if (res && pvrnum)
+	{
+		eDebug("[eDVBDemux] DMX_SET_SOURCE dvr%d failed: %m falling back to dvr0", pvrnum);
+		pvrnum = 0;
+		n = m_dvr_source_offset + pvrnum;
+		res = ::ioctl(fd, DMX_SET_SOURCE, &n);
+	}
 	if (res)
 		eDebug("[eDVBDemux] DMX_SET_SOURCE dvr%d failed: %m", pvrnum);
 	source = -1;
@@ -358,7 +365,7 @@ void eDVBPESReader::data(int)
 
 eDVBPESReader::eDVBPESReader(eDVBDemux *demux, eMainloop *context, RESULT &res): m_demux(demux), m_active(0)
 {
-	eWarning("[eDVBPESReader] Created. Opening demux");
+	eDebug("[eDVBPESReader] Created. Opening demux");
 	m_fd = m_demux->openDemux();
 	if (m_fd >= 0)
 	{
@@ -504,8 +511,12 @@ int eDVBRecordFileThread::AsyncIO::wait()
 {
 	if (aio.aio_buf != NULL) // Only if we had a request outstanding
 	{
-		while (aio_error(&aio) == EINPROGRESS)
+		int res;
+		while (1)
 		{
+			res = aio_error(&aio);
+			if (res != EINPROGRESS)
+				break;
 			eDebug("[eDVBRecordFileThread] Waiting for I/O to complete");
 			struct aiocb* paio = &aio;
 			int r = aio_suspend(&paio, 1, NULL);
@@ -548,24 +559,34 @@ int eDVBRecordFileThread::AsyncIO::poll()
 {
 	if (aio.aio_buf == NULL)
 		return 0;
-	if (aio_error(&aio) == EINPROGRESS)
+	int res = aio_error(&aio);
+	if (res == EINPROGRESS)
 	{
 		return 1;
 	}
-	int r = aio_return(&aio);
-	aio.aio_buf = NULL;
-	if (r < 0)
+	else if (res > 0)
 	{
 		aio.aio_buf = NULL;
 		eWarning("[eDVBRecordFileThread] poll: aio_return returned failure: %m");
 		return -1;
 	}
+	else if (res == 0 || res == ECANCELED)
+	{
+		__ssize_t r = aio_return(&aio);
+		aio.aio_buf = NULL;
+		if (r < 0)
+		{
+			eDebug("[eDVBRecordFileThread] wait: aio_return returned failure: %m");
+			return -1;
+		}
+	}
+	aio.aio_buf = NULL;
 	return 0;
 }
 
 int eDVBRecordFileThread::AsyncIO::start(int fd, off_t offset, size_t nbytes, void* buffer)
 {
-	memset(&aio, 0, sizeof(struct aiocb)); // Documentation says "zero it before call".
+	memset(&aio, 0, sizeof(aiocb)); // Documentation says "zero it before call".
 	aio.aio_fildes = fd;
 	aio.aio_nbytes = nbytes;
 	aio.aio_offset = offset;   // Offset can be omitted with O_APPEND
@@ -687,7 +708,7 @@ void eDVBRecordFileThread::flush()
 		it->wait();
 	}
 	int bufferCount = m_aio.size();
-	eDebug("[eDVBRecordFileThread] buffer usage histogram (%d buffers of %d kB)", bufferCount, m_buffersize>>10);
+	eDebug("[eDVBRecordFileThread] buffer usage histogram (%d buffers of %zd kB)", bufferCount, m_buffersize>>10);
 	for (int i=0; i <= bufferCount; ++i)
 	{
 		if (m_buffer_use_histogram[i] != 0)
