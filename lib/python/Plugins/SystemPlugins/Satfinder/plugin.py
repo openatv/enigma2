@@ -347,7 +347,7 @@ class Satfinder(ScanSetup, ServiceScan):
 					tps = nimmanager.getTransponders(orbpos)
 					if len(tps) > self.preDefTransponders.index:
 						tp = tps[self.preDefTransponders.index]
-						transponder = (tp[1] / 1000, tp[2] / 1000,
+						transponder = (tp[1] // 1000, tp[2] // 1000,
 							tp[3], tp[4], 2, orbpos, tp[5], tp[6], tp[8], tp[9], tp[10], tp[11], tp[12], tp[13], tp[14])
 						self.tuner.tune(transponder)
 						self.transponder = transponder
