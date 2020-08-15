@@ -664,7 +664,7 @@ class PositionerSetup(Screen):
 		def azimuth2Rotorcode(angle):
 			gotoXtable = (0x00, 0x02, 0x03, 0x05, 0x06, 0x08, 0x0A, 0x0B, 0x0D, 0x0E)
 			a = int(round(abs(angle) * 10.0))
-			return ((a / 10) << 4) + gotoXtable[a % 10]
+			return ((a // 10) << 4) + gotoXtable[a % 10]
 
 		satHourAngle = rotor_calc.calcSatHourangle(satlon, sitelat, sitelon)
 		if sitelat >= 0: # Northern Hemisphere
