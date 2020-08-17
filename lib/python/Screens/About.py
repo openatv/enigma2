@@ -90,7 +90,7 @@ def getAboutText():
 		cpuMHz = _("   (1.6 GHz)")
 	elif getMachineBuild() in ('vuuno4kse','vuuno4k','dm900','dm920', 'gb7252', 'dags7252','xc7439','8100s'):
 		cpuMHz = _("   (1.7 GHz)")
-	elif getMachineBuild() in ('alien5',):
+	elif getMachineBuild() in ('alien5','hzero','h8'):
 		cpuMHz = _("   (2.0 GHz)")
 	elif getMachineBuild() in ('vuduo4k',):
 		cpuMHz = _("   (2.1 GHz)")
