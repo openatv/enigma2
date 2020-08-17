@@ -361,7 +361,7 @@ class RemoteControlType(Screen, ConfigListScreen):
 				("22", _("Zgemma i55")),
 				("23", _("WWIO 4K")),
 				("24", _("Axas E4HD Ultra")),
-				("25", _("Zgemma H9/I55Plus old Model")),
+				("25", _("Zgemma H8/H0/H9/I55Plus old Model")),
 				("26", _("Protek 4K UHD/HD61")),
 				("27", _("HD60")),
 				("28", _("H7/H9/H9COMBO/H10 new Model"))
@@ -405,6 +405,8 @@ class RemoteControlType(Screen, ConfigListScreen):
 				("e4hd", 24),
 				#("h9", 25),# old model
 				("i55plus", 25),
+				("hzero", 25),
+				("h8", 25),
 				("protek4k", 26),
 				("hd61", 26),
 				("hd60", 27),
