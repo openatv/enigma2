@@ -1,5 +1,19 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <skin>
+<!--
+############################################################################################################
+to show the display-skin on some other older OSD-Skins, we need "windowstyle"
+If it has not been declared, there will otherwise be an error
+and the display skin will not be displayed
+[ E ] gui/ewindowstyle.cpp:35 getStyle [eWindowStyleManager] getStyle(style_id=1): NOT FOUND -->
+
+	<windowstyle id="1" type="skinned">
+		<color name="Background" color="#0060eb"/>
+		<color name="LabelForeground" color="#ffffff"/>
+	</windowstyle>
+
+<!-- ####################################################################################################### -->
+
 <!-- MyClockPanel -->	
 	<screen name="MyClockPanel">
 		<widget source="session.CurrentService" render="Label" position="0,0" size="1,1">
