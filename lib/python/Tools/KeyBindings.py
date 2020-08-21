@@ -161,7 +161,6 @@ keyDescriptions = [{  # id=0 - dmm0 remote directory, DM8000.
 	KEYIDS["KEY_F1"]: ("F1",),
 	KEYIDS["KEY_F2"]: ("F2",),
 	KEYIDS["KEY_F3"]: ("F3",),
-	KEYIDS["KEY_F6"]: ("PIP",),
 	KEYIDS["KEY_FASTFORWARD"]: ("FASTFORWARD",),
 	KEYIDS["KEY_FAVORITES"]: ("FAV",),
 	KEYIDS["KEY_FILE"]: ("LIST",),
