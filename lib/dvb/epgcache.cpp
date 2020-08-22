@@ -879,7 +879,7 @@ void eEPGCache::sectionRead(const uint8_t *data, eit_type_t source, channel_data
 						eDebug("[EPGC] Event %04x not found in eventMap at %ld", getEventID(it), getStartTime(it));
 					}
 					delete getEventData(it);
-					timemap.erase(it++);
+					it = timemap.erase(it);
 				}
 				else
 				{
@@ -1017,7 +1017,7 @@ void eEPGCache::cleanLoop()
 						eDebug("[EPGC] Event %04x not found in timeMap at %ld", getEventID(It), start_time);
 					}
 					delete getEventData(It);
-					timemap.erase(It++);
+					It = timemap.erase(It);
 					updated = true;
 				}
 				else
@@ -1035,14 +1035,14 @@ void eEPGCache::cleanLoop()
 							it != i->second.end(); )
 						{
 							if (timemap.find(it->second.first) == timemap.end())
-								i->second.erase(it++);
+								it = i->second.erase(it);
 							else
 								++it;
 						}
 						if ( i->second.size() )
 							++i;
 						else
-							x->second.erase(i++);
+							i = x->second.erase(i);
 					}
 				}
 			}
@@ -1369,7 +1369,7 @@ void eEPGCache::load()
 							eDebug("[EPGC] Event %04x not found in timeMap at %ld", getEventID(It), start_time);
 						}
 						delete getEventData(It);
-						timemap.erase(It++);
+						It = timemap.erase(It);
 					}
 					else
 					{
