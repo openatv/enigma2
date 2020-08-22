@@ -1,5 +1,6 @@
 from __future__ import print_function
 from __future__ import absolute_import
+from __future__ import division
 import os
 import time
 from Tools.CList import CList
@@ -406,6 +407,8 @@ class Harddisk:
 		task = Components.Task.ConditionTask(job, _("Waiting for partition"))
 		task.check = lambda: os.path.exists(self.partitionPath("1"))
 		task.weighting = 1
+
+		task = UnmountTask(job, self)
 
 		task = MkfsTask(job, _("Creating filesystem"))
 		big_o_options = ["dir_index"]
@@ -1105,23 +1108,17 @@ class MkfsTask(Components.Task.LoggingTask):
 		self.fsck_state = None
 	def processOutput(self, data):
 		data = six.ensure_str(data)
-		print("[Harddisk][Mkfs]", data)
-		if 'Writing inode tables:' in data:
+		if 'Writing inode tables:' in data or 'Die Superblöcke' in data:
 			self.fsck_state = 'inode'
-		elif 'Creating journal' in data:
-			self.fsck_state = 'journal'
-			self.setProgress(80)
-		elif 'Writing superblocks ' in data:
-			self.setProgress(95)
 		elif self.fsck_state == 'inode':
 			if '/' in data:
 				try:
 					d = data.strip(' \x08\r\n').split('/', 1)
 					if '\x08' in d[1]:
 						d[1] = d[1].split('\x08', 1)[0]
-					self.setProgress(80*int(d[0])/int(d[1]))
+					self.setProgress(80*int(d[0])//int(d[1]))
 				except Exception as e:
-					print("[Harddisk][Mkfs] E:", e)
+					print("[Harddisk] MkfsTask - [Mkfs] Error:", e)
 				return # don't log the progess
 		self.log.append(data)
 
