@@ -16,11 +16,13 @@ enigma2-xml.pot: $(srcdir)/xml2po.py $(top_srcdir)/data/*.xml $(top_srcdir)/lib/
 enigma2.pot: enigma2-py.pot enigma2-xml.pot
 	sed --in-place enigma2-py.pot --expression=s/CHARSET/UTF-8/
 	sed --in-place enigma2-xml.pot --expression=s/CHARSET/UTF-8/
-	cat $^ | $(MSGUNIQ) --no-wrap --add-location=file -o $@ -
+	sed --in-place enigma2-py.pot --expression=s/(#: ).*\/(.*\/plugin\.py|[^.*\/plugin\.py].*)(:\d*)/\1\2\3/
+	sed --in-place enigma2-xml.pot --expression=s/(#: ).*\/(.*\.xml)/\1\2/
+	cat $^ | $(MSGUNIQ) --no-wrap --sort-by-file -o $@ -
 
 %.po: enigma2.pot
 	if [ -f $@ ]; then \
-		$(MSGMERGE) --backup=none --no-wrap --add-location=file -s -U $@ $< && touch $@; \
+		$(MSGMERGE) --backup=none --no-wrap -s -U $@ $< && touch $@; \
 	else \
 		$(MSGINIT) -l $@ -o $@ -i $< --no-translator; \
 	fi
