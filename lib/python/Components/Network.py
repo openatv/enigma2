@@ -643,7 +643,12 @@ class Network:
 	def msgPlugins(self):
 		if self.config_ready is not None:
 			for p in plugins.getPlugins(PluginDescriptor.WHERE_NETWORKCONFIG_READ):
-				p(reason=self.config_ready)
+				try:
+					p(reason=self.config_ready)
+				except:
+					print "[Network] Plugin caused exception at WHERE_NETWORKCONFIG_READ"
+					import traceback
+					traceback.print_exc()
 
 	def hotplug(self, event):
 		interface = event['INTERFACE']
