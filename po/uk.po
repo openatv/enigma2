@@ -335,16 +335,16 @@ msgid " updated"
 msgstr " оновлено"
 
 msgid "!! Bootloader Upgrade !!"
-msgstr " !! Завантажувач Оновлено !!"
+msgstr "!! Завантажувач Оновлено !!"
 
 msgid "%-H:%M"
 msgstr "%-H:%M"
 
 msgid "%-H:%M - "
-msgstr "%-H:%M-"
+msgstr "%-H:%M - "
 
 msgid "%-H:%M:%S"
-msgstr "% - H:%M:%S"
+msgstr "%-H:%M:%S"
 
 msgid "%-I:%M"
 msgstr "%-I:%M"
@@ -366,12 +366,12 @@ msgstr "%-I:%M:%S%^p"
 
 #. TRANSLATORS: full date representation daynum monthname year in strftime() format! See 'man strftime'
 msgid "%-d %B %Y"
-msgstr "% - d %B %Y"
+msgstr "%-d %B %Y"
 
 #. TRANSLATORS: small date representation daynum short monthname in strftime() format! See 'man strftime'
 #. TRANSLATORS: compact date representation (for VFD) daynum short monthname in strftime() format! See 'man strftime'
 msgid "%-d %b"
-msgstr "% - d %b"
+msgstr "%-d %b"
 
 #. TRANSLATORS: long date representation daynum short monthname year in strftime() format! See 'man strftime'
 msgid "%-d %b %Y"
@@ -476,29 +476,29 @@ msgstr "%A"
 
 #. TRANSLATORS: short date representation dayname daynum short monthname in strftime() format! See 'man strftime'
 msgid "%A %-d %B"
-msgstr "%A %d %B"
+msgstr "%A %-d %B"
 
 #. TRANSLATORS: full date representation dayname daynum monthname year in strftime() format! See 'man strftime'
 msgid "%A %-d %B %Y"
 msgstr "%A %-d %B %Y"
 
 msgid "%A %-d-%B"
-msgstr "%A % -d- %B"
+msgstr "%A %-d-%B"
 
 msgid "%A %-d-%B-%Y"
-msgstr "%A % -d- %B-%Y"
+msgstr "%A %-d-%B-%Y"
 
 msgid "%A %-d/%-m"
-msgstr "%A % -d/% -m"
+msgstr "%A %-d/%-m"
 
 msgid "%A %-d/%-m/%Y"
 msgstr "%A %-d/%-m/%Y"
 
 msgid "%A %-d/%m"
-msgstr "%A %-d /%m"
+msgstr "%A %-d/%m"
 
 msgid "%A %-d/%m/%Y"
-msgstr "%A %-d /%m /%Y"
+msgstr "%A %-d/%m/%Y"
 
 msgid "%A %-m/%-d"
 msgstr "%A %-m/%-d"
@@ -510,7 +510,7 @@ msgid "%A %-m/%d"
 msgstr "%A %-m/%d"
 
 msgid "%A %-m/%d/%Y"
-msgstr "%A %-m /%d /%Y"
+msgstr "%A %-m/%d/%Y"
 
 msgid "%A %B %-d"
 msgstr "%A %B %-d"
@@ -522,31 +522,31 @@ msgid "%A %B %d"
 msgstr "%A %B %d"
 
 msgid "%A %B %d %Y"
-msgstr ""
+msgstr "%A %B %d %Y"
 
 msgid "%A %B-%-d"
-msgstr ""
+msgstr "%A %B-%-d"
 
 msgid "%A %B-%-d-%Y"
-msgstr ""
+msgstr "%A %B-%-d-%Y"
 
 msgid "%A %B-%d"
-msgstr ""
+msgstr "%A %B-%d"
 
 msgid "%A %B-%d-%Y"
-msgstr ""
+msgstr "%A %B-%d-%Y"
 
 msgid "%A %Y %B %-d"
-msgstr ""
+msgstr "%A %Y %B %-d"
 
 msgid "%A %Y %B %d"
 msgstr "%A %Y %B %d"
 
 msgid "%A %Y-%B-%-d"
-msgstr ""
+msgstr "%A %Y-%B-%-d"
 
 msgid "%A %Y-%B-%d"
-msgstr ""
+msgstr "%A %Y-%B-%d"
 
 msgid "%A %Y/%-m/%-d"
 msgstr "%A %Y/%-m/%-d"
@@ -564,25 +564,25 @@ msgid "%A %d %B"
 msgstr "%A %d %B"
 
 msgid "%A %d %B %Y"
-msgstr "%A %d %B %Y "
+msgstr "%A %d %B %Y"
 
 msgid "%A %d-%B"
-msgstr ""
+msgstr "%A %d-%B"
 
 msgid "%A %d-%B-%Y"
-msgstr ""
+msgstr "%A %d-%B-%Y"
 
 msgid "%A %d/%-m"
-msgstr ""
+msgstr "%A %d/%-m"
 
 msgid "%A %d/%-m/%Y"
-msgstr ""
+msgstr "%A %d/%-m/%Y"
 
 msgid "%A %d/%m"
-msgstr ""
+msgstr "%A %d/%m"
 
 msgid "%A %d/%m/%Y"
-msgstr ""
+msgstr "%A %d/%m/%Y"
 
 msgid "%A %e %b"
 msgstr "%A %e %b"
@@ -591,16 +591,16 @@ msgid "%A %m/%-d"
 msgstr "%A %m/%-d"
 
 msgid "%A %m/%-d/%Y"
-msgstr "%A %m.%-d/%Y"
+msgstr "%A %m/%-d/%Y"
 
 msgid "%A %m/%d"
-msgstr "%A %m %d"
+msgstr "%A %m/%d"
 
 msgid "%A %m/%d/%Y"
-msgstr "%A %m/ %d/ %Y"
+msgstr "%A %m/%d/%Y"
 
 msgid "%B %-d %Y"
-msgstr "%B % -d %Y"
+msgstr "%B %-d %Y"
 
 msgid "%B %d %Y"
 msgstr "%B %d %Y"
@@ -609,7 +609,7 @@ msgid "%B-%-d-%Y"
 msgstr "%B-%-d-%Y"
 
 msgid "%B-%d-%Y"
-msgstr "%B-%d -%Y"
+msgstr "%B-%d-%Y"
 
 msgid "%H:%M"
 msgstr "%H:%M"
@@ -641,7 +641,7 @@ msgid "%T"
 msgstr "%T"
 
 msgid "%Y %B %-d"
-msgstr "%Y %B % -d"
+msgstr "%Y %B %-d"
 
 msgid "%Y %B %d"
 msgstr "%Y %B %d"
@@ -653,22 +653,22 @@ msgid "%Y %b %d"
 msgstr "%Y %b %d"
 
 msgid "%Y-%B-%-d"
-msgstr ""
+msgstr "%Y-%B-%-d"
 
 msgid "%Y-%B-%d"
-msgstr ""
+msgstr "%Y-%B-%d"
 
 msgid "%Y-%b-%-d"
-msgstr ""
+msgstr "%Y-%b-%-d"
 
 msgid "%Y-%b-%d"
-msgstr ""
+msgstr "%Y-%b-%d"
 
 msgid "%Y-%m-%d"
 msgstr "%Y-%m-%d"
 
 msgid "%Y-%m-%d %H-%M"
-msgstr "%Y-%m-%d %H:%M"
+msgstr "%Y-%m-%d %H-%M"
 
 msgid "%Y/%-m/%-d"
 msgstr "%Y/%-m/%-d"
@@ -687,7 +687,7 @@ msgstr "%a"
 
 #. TRANSLATORS: small date representation short dayname daynum in strftime() format! See 'man strftime'
 msgid "%a %-d"
-msgstr "%a % d"
+msgstr "%a %-d"
 
 #. TRANSLATORS: long date representation short dayname daynum monthname year in strftime() format! See 'man strftime'
 msgid "%a %-d %B %Y"
@@ -695,20 +695,20 @@ msgstr "%a %-d %B %Y"
 
 #. TRANSLATORS: short date representation short dayname daynum short monthname in strftime() format! See 'man strftime'
 msgid "%a %-d %b"
-msgstr ""
+msgstr "%a %-d %b"
 
 #. TRANSLATORS: long date representation short dayname daynum short monthname year in strftime() format! See 'man strftime'
 msgid "%a %-d %b %Y"
-msgstr ""
+msgstr "%a %-d %b %Y"
 
 msgid "%a %-d+%b_"
-msgstr ""
+msgstr "%a %-d+%b_"
 
 msgid "%a %-d-%B-%Y"
-msgstr ""
+msgstr "%a %-d-%B-%Y"
 
 msgid "%a %-d-%b"
-msgstr ""
+msgstr "%a %-d-%b"
 
 msgid "%a %-d-%b-%Y"
 msgstr ""
@@ -825,7 +825,7 @@ msgid "%a %d %b %Y"
 msgstr ""
 
 msgid "%a %d-%B-%Y"
-msgstr "%a %d- %B- %Y"
+msgstr "%a %d-%B-%Y"
 
 msgid "%a %d-%b"
 msgstr ""
@@ -867,7 +867,7 @@ msgid "%b %d"
 msgstr "%b %d"
 
 msgid "%b %d %Y"
-msgstr "%b %d, %Y"
+msgstr "%b %d %Y"
 
 msgid "%b+%-d "
 msgstr "%b+%-d "
@@ -907,7 +907,7 @@ msgid "%d %b"
 msgstr ""
 
 msgid "%d %b %Y"
-msgstr "%d %b  %Y"
+msgstr "%d %b %Y"
 
 #, python-format
 msgid "%d GB"
@@ -1027,13 +1027,13 @@ msgid "%d+%b_"
 msgstr "%d+%b_"
 
 msgid "%d-%B-%Y"
-msgstr "%d %B %Y"
+msgstr "%d-%B-%Y"
 
 msgid "%d-%b"
-msgstr "%d %b"
+msgstr "%d-%b"
 
 msgid "%d-%b-%Y"
-msgstr "%d %b %Y"
+msgstr "%d-%b-%Y"
 
 msgid "%d-%m"
 msgstr "%d-%m"
@@ -16354,7 +16354,7 @@ msgstr "ТБ"
 #. TRANSLATORS: Add here whatever should be shown in the "translator" about screen, up to 6 lines (use \n for newline)
 msgid "TRANSLATOR_INFO"
 msgstr ""
-"Переклад:  kvinto - 04.08.2020\n"
+"Переклад:  kvinto - 28.08.2020\n"
 "Сторінка:    https://gisclub.tv\n"
 "                  kvinto@rambler.ru"
 
