@@ -129,7 +129,7 @@ def getIncludedExcludedPaths(root, dirs, files):
 
 def indicateProgress():
   global idx
-  print "\r" + prgChars[idx],
+  print("\r" + prgChars[idx], end=" ")
   idx = (idx + 1) % len(prgChars)
 
 def isFoundInFile(msgid, data):
@@ -163,7 +163,7 @@ def searchCodebaseForOccurrences(poFile):
   if prefs['searchCodebaseForOccurrences']:
     unCachedEntries = getUncachedEntries(poFile)
     if len(unCachedEntries) > 0: 
-      print "Searching for %d occurrences..." % len(unCachedEntries)
+      print("Searching for %d occurrences..." % len(unCachedEntries))
       for root, dirs, files in os.walk(codeBasePath, topdown=True, onerror=None):
         for fName in getIncludedExcludedPaths(root, dirs, files):
           indicateProgress()
@@ -234,7 +234,7 @@ def normaliseAllPoFiles(filesGlob):
       poFile = polib.pofile(fileName)
       poFile.wrapwidth = 1024 # avoid re-wrapping
       poFile.check_for_duplicates = True
-      print ("\rNormalising translation files..." + " {0:.0%}".format(float(fileIndex) / len(sorted(filesGlob)))),
+      print("\rNormalising translation files..." + " {0:.0%}".format(float(fileIndex) / len(sorted(filesGlob))), end=" ")
       sys.stdout.flush()
       
       for cacheEntry in sorted(occurrencesCache, key=lambda r: r[0]):
@@ -249,7 +249,7 @@ def normaliseAllPoFiles(filesGlob):
             )
             poFile.append(newEntry)
           except:
-            print "error adding"
+            print("error adding")
             pass
         elif len(matchedEntries) == 1 and matchedEntries[0].obsolete:
           # matchedEntries[0].obsolete = False
@@ -264,29 +264,29 @@ def main():
     poFilesGlob = sorted(filesGlob, key=os.path.getsize, reverse=True)
     fileIndex = 0
     os.system('clear')
-    print "Running... (first file will take substantially longer as there's no cache)"
+    print("Running... (first file will take substantially longer as there's no cache)")
 
     for fileName in poFilesGlob:
       fileIndex = fileIndex + 1
       baseFileName = os.path.basename(fileName)
-      print ("Processing file %3d" % fileIndex) + "/" + str(fileCountStr) + " (" + baseFileName + ")"
+      print("Processing file %3d" % fileIndex) + "/" + str(fileCountStr) + " (" + baseFileName + ")")
       poFile = processPoFile(fileName)
       poFile.save(fileName + prefs['newFileExt'])
       addToPoStats(baseFileName, poFile)
     if prefs['outputFinalStats']:
-      print ""
+      print("")
       rowFormat = "{:>12} " * (len(poStats['columnHeadings']) + 1)
       print(rowFormat.format("File", *poStats['columnHeadings']))
       rowsByName = sorted([line for line in zip(poStats['rowTitles'], poStats['data'])], key=lambda r: r[0])
       for pfs, row in rowsByName:
-        print rowFormat.format(pfs, *row)
-    print ""
+        print(rowFormat.format(pfs, *row))
+    print("")
     normaliseAllPoFiles(poFilesGlob)
     hours, remainder = divmod(timedelta(seconds = time.time() - startTime).seconds, 3600)
     minutes, seconds = divmod(remainder, 60)
-    print "\nComplete in " + '{:02}:{:02}:{:02}'.format(int(hours), int(minutes), int(seconds)) + "!\n"
+    print("\nComplete in " + '{:02}:{:02}:{:02}'.format(int(hours), int(minutes), int(seconds)) + "!\n")
   except KeyboardInterrupt:
-    print "\nBye!"
+    print("\nBye!")
 
 
 if __name__ == "__main__":
