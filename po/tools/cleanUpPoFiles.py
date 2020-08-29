@@ -269,7 +269,7 @@ def main():
     for fileName in poFilesGlob:
       fileIndex = fileIndex + 1
       baseFileName = os.path.basename(fileName)
-      print("Processing file %3d" % fileIndex) + "/" + str(fileCountStr) + " (" + baseFileName + ")")
+      #print("Processing file %3d" % fileIndex) + "/" + str(fileCountStr) + " (" + baseFileName + ")")
       poFile = processPoFile(fileName)
       poFile.save(fileName + prefs['newFileExt'])
       addToPoStats(baseFileName, poFile)
