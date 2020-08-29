@@ -1,4 +1,7 @@
 #!/usr/local/bin/python
+
+from __future__ import print_function
+
 """Cleans up PO translation files
 
    This script will iterate through all .po files and unset ( "" ) msgstr 
@@ -135,7 +138,7 @@ def indicateProgress():
 def isFoundInFile(msgid, data):
   isFound = False
   regex_msgid = r'["\'](' + re.escape(msgid) + '|' + re.escape(polib.escape(msgid)) + ')["\']'
-  if re.search(regex_msgid, data.read().decode()):
+  if re.search(regex_msgid, data.read(0).decode()):
     isFound = True
   return isFound
 
