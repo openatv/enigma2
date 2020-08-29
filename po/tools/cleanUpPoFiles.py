@@ -1,4 +1,4 @@
-#!/usr/local/bin/python
+#!/usr/local/bin/python3
 """Cleans up PO translation files
 
    This script will iterate through all .po files and unset ( "" ) msgstr 
@@ -54,7 +54,7 @@ prefs = {
   'searchCodebaseForOccurrences': True,
   'normalisePoFiles': True,
   'outputFinalStats': True,
-  'processMaxEntries': 0, # useful for testing; 0 will process all entries
+  'processMaxEntries': 10, # useful for testing; 0 will process all entries
   'include': ["*.xml", "*.py"], # for files only
   'exclude': ["*/\.*", codeBasePath + "/po/*"] # for dirs and files
 }
@@ -129,13 +129,13 @@ def getIncludedExcludedPaths(root, dirs, files):
 
 def indicateProgress():
   global idx
-  print("\r" + prgChars[idx], end=" ")
+  print(prgChars[idx], end="\r")
   idx = (idx + 1) % len(prgChars)
 
 def isFoundInFile(msgid, data):
   isFound = False
   regex_msgid = r'["\'](' + re.escape(msgid) + '|' + re.escape(polib.escape(msgid)) + ')["\']'
-  if re.search(regex_msgid, data):
+  if re.search(regex_msgid, data.read().decode()):
     isFound = True
   return isFound
 
@@ -269,7 +269,7 @@ def main():
     for fileName in poFilesGlob:
       fileIndex = fileIndex + 1
       baseFileName = os.path.basename(fileName)
-      #print("Processing file %3d" % fileIndex) + "/" + str(fileCountStr) + " (" + baseFileName + ")")
+      print(("Processing file %3d" % fileIndex) + "/" + str(fileCountStr) + " (" + baseFileName + ")")
       poFile = processPoFile(fileName)
       poFile.save(fileName + prefs['newFileExt'])
       addToPoStats(baseFileName, poFile)
