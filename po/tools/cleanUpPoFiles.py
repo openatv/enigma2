@@ -1,4 +1,4 @@
-#!/usr/local/bin/python3
+#!/usr/local/bin/python
 """Cleans up PO translation files
 
    This script will iterate through all .po files and unset ( "" ) msgstr 
