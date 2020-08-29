@@ -57,7 +57,7 @@ prefs = {
   'searchCodebaseForOccurrences': True,
   'normalisePoFiles': True,
   'outputFinalStats': True,
-  'processMaxEntries': 10, # useful for testing; 0 will process all entries
+  'processMaxEntries': 0, # useful for testing; 0 will process all entries
   'include': ["*.xml", "*.py"], # for files only
   'exclude': ["*/\.*", codeBasePath + "/po/*"] # for dirs and files
 }
