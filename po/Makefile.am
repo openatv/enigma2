@@ -1,10 +1,3 @@
-top_srcdir=~/Development/webdevben/enigma2
-srcdir=$(top_srcdir)/po
-XGETTEXT=xgettext
-SED=gsed
-MSGUNIQ=msguniq
-PYTHON=python
-
 dist_noinst_SCRIPTS = xml2po.py
 
 LANGS = ar bg ca cs da de el en en_GB es et fa fi fr fy he hr hu id is it ku lt lv nl no nb pl pt pt_BR ro ru sv sk sl sr th tr uk vi zh_CN zh_HK
