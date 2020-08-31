@@ -7,7 +7,8 @@ All Right Reserved
 License: Proprietary / Commercial - contact enigma.licensing (at) urbanec.net
 '''
 
-from enigma import eTimer, eEPGCache, eDVBDB, eServiceReference, iRecordableService
+from enigma import eTimer, eEPGCache, eDVBDB, eServiceReference, iRecordableService, eServiceCenter
+from Tools.ServiceReference import service_types_tv_ref
 from boxbranding import getMachineBrand, getMachineName
 from Components.ActionMap import ActionMap
 from Components.ConfigList import ConfigListScreen
@@ -22,6 +23,8 @@ from Screens.MessageBox import MessageBox
 from Screens.Screen import Screen
 from RecordTimer import RecordTimerEntry
 from ServiceReference import ServiceReference
+from Tools.Directories import resolveFilename, SCOPE_PLUGINS
+from Tools.LoadPixmap import LoadPixmap
 from calendar import timegm
 from time import strptime, gmtime, strftime, time
 from datetime import datetime
@@ -34,59 +37,215 @@ from Screens.TextBox import TextBox
 from Components.TimerSanityCheck import TimerSanityCheck
 import NavigationInstance
 from twisted.internet import reactor, threads
+from os import path
 
 _session = None
 password_requested = False
 
 genre_remaps = {
-    "AFL": 0xf7,
-    "Action": 0x1f,
-    "American Football": 0xf6,
-    "Baseball": 0xf5,
-    "Basketball": 0xf4,
-    "Boxing": 0x4a,
-    "Business & Finance": 0x84,
-    "Cartoon": 0x51,
-    "Comedy": 0xc0,
-    "Cricket": 0x4f,
-    "Current Affairs": 0x81,
-    "Cycling": 0x0e,
-    "Dance": 0x62,
-    "Documentary": 0xe0,
-    "Drama": 0xd0,
-    "Family": 0x0d,
-    "Fantasy": 0xf2,
-    "Film-Noir": 0x0c,
-    "Finance": 0x0b,
-    "Fishing": 0xa3,
-    "Food/Wine": 0xa4,
-    "Golf": 0x42,
-    "Hockey": 0x4e,
-    "Horror": 0xf1,
-    "Horse Racing": 0x0a,
-    "Lifestyle": 0xa2,
-    "MMA": 0x09,
-    "Mini Series": 0x08,
-    "Murder": 0x1c,
-    "Musical": 0x61,
-    "Mystery": 0x1b,
-    "Netball": 0x4d,
-    "Parliament": 0x82,
-    "Renovation": 0x07,
-    "Rowing": 0xf8,
-    "Rugby": 0x4c,
-    "Rugby League": 0x4b,
-    "Sailing": 0x06,
-    "Science": 0x94,
-    "Short Film": 0x05,
-    "Sitcom": 0xf3,
-    "Special": 0xb0,
-    "Thriller": 0x1a,
-    "Violence": 0x04,
-    "War": 0x1e,
-    "Western": 0x1d,
-    "Wrestling": 0x03,
-    "Youth": 0x02,
+    "AUS": {
+        "AFL": 0xf7,
+        "Action": 0x1f,
+        "American Football": 0xf6,
+        "Baseball": 0xf5,
+        "Basketball": 0xf4,
+        "Boxing": 0x4a,
+        "Business & Finance": 0x84,
+        "Cartoon": 0x51,
+        "Comedy": 0xc0,
+        "Cricket": 0x4f,
+        "Current Affairs": 0x81,
+        "Cycling": 0x0e,
+        "Dance": 0x62,
+        "Documentary": 0xe0,
+        "Drama": 0xd0,
+        "Family": 0x0d,
+        "Fantasy": 0xf2,
+        "Film-Noir": 0x0c,
+        "Finance": 0x0b,
+        "Fishing": 0xa3,
+        "Food/Wine": 0xa4,
+        "Golf": 0x42,
+        "Hockey": 0x4e,
+        "Horror": 0xf1,
+        "Horse Racing": 0x0a,
+        "Lifestyle": 0xa2,
+        "MMA": 0x09,
+        "Mini Series": 0x08,
+        "Murder": 0x1c,
+        "Musical": 0x61,
+        "Mystery": 0x1b,
+        "Netball": 0x4d,
+        "Parliament": 0x82,
+        "Renovation": 0x07,
+        "Rowing": 0xf8,
+        "Rugby": 0x4c,
+        "Rugby League": 0x4b,
+        "Sailing": 0x06,
+        "Science": 0x94,
+        "Short Film": 0x05,
+        "Sitcom": 0xf3,
+        "Special": 0xb0,
+        "Thriller": 0x1a,
+        "Violence": 0x04,
+        "War": 0x1e,
+        "Western": 0x1d,
+        "Wrestling": 0x03,
+        "Youth": 0x02,
+    },
+    "DEU": {
+        '': 0x00,
+        'Abenteuer': 0x01,
+        'Action': 0x56,
+        'Adel': 0x54,
+        'Agenten': 0x53,
+        'American Sports': 0x52,
+        'Animation': 0x55,
+        'Anime': 0x51,
+        'Architektur': 0x50,
+        'Arzt': 0x4f,
+        'Automobil': 0x4e,
+        'B-Movie': 0x4d,
+        'Bericht': 0x4c,
+        'Berufe': 0x4b,
+        'Beziehung': 0x4a,
+        'Bildung': 0x49,
+        'Biografie': 0x48,
+        'Bollywood': 0x47,
+        'Boulevard': 0x46,
+        'Boxen': 0x45,
+        'Call-in': 0x44,
+        'Casting': 0x43,
+        'Chronik': 0x42,
+        'Comedy': 0xc0,
+        'Comic': 0x41,
+        'Computer': 0x3f,
+        'Current Affairs': 0x81,
+        'Dating': 0x3e,
+        'Detektiv': 0x3d,
+        'Documentary': 0xe0,
+        'Dokumentation': 0x3c,
+        'Drama': 0xd0,
+        'Drogen': 0x3a,
+        'Eastern': 0x39,
+        'Einzelsportart': 0x38,
+        'Energie': 0x37,
+        'Epos': 0x36,
+        'Erotik': 0x35,
+        'Esoterik': 0x34,
+        'Essen': 0x33,
+        'Event': 0x32,
+        'Extremsport': 0x31,
+        'Familie': 0x30,
+        'Fantasy': 0x2f,
+        'Frauen': 0x2e,
+        'Fu\xc3\x9fball': 0x2d,
+        'F\xc3\xbcr Kinder': 0x2c,
+        'Gangster': 0x2b,
+        'Garten': 0x2a,
+        'Geschichte': 0x29,
+        'Gesellschaft': 0x28,
+        'Gesundheit': 0x27,
+        'Handball': 0x26,
+        'Heimat': 0x25,
+        'Heimwerker': 0x24,
+        'Hobbys': 0x23,
+        'Horror': 0x22,
+        'Independent': 0x21,
+        'Information': 0x20,
+        'International': 0x1f,
+        'Jugend': 0x1e,
+        'Justiz': 0x1d,
+        'Kampfsport': 0x1c,
+        'Katastrophe': 0x1b,
+        'Kinder': 0x1a,
+        'Klassiker': 0x19,
+        'Kneipensport': 0x18,
+        'Kom\xc3\xb6die': 0x17,
+        'Kraftsport': 0x16,
+        'Krieg': 0x15,
+        'Krimi': 0x13,
+        'Kriminalit\xc3\xa4t': 0x12,
+        'Kultur': 0x11,
+        'Kunst': 0x10,
+        'Kurzfilm': 0xef,
+        'Landestypisch': 0xee,
+        'Late Night': 0xed,
+        'Leichtathletik': 0xec,
+        'Lifestyle': 0xeb,
+        'Literatur': 0xea,
+        'Literaturverfilmung': 0xe9,
+        'Magazin': 0xe8,
+        'Mannschaftssport': 0xe7,
+        'Medien': 0xe6,
+        'Mode': 0xe5,
+        'Motorsport': 0xe4,
+        'Musical': 0xe3,
+        'Musik': 0xe2,
+        'Mystery': 0xe1,
+        'M\xc3\xa4rchen': 0xdf,
+        'Nachrichten': 0xde,
+        'National': 0xdd,
+        'Natur': 0xdc,
+        'Neue Medien': 0xdb,
+        'Olympia': 0xda,
+        'Outdoor': 0xd9,
+        'Parabel': 0xd8,
+        'Parodie': 0xd7,
+        'Poker': 0xd6,
+        'Politik': 0xd5,
+        'Portr\xc3\xa4t': 0xd4,
+        'Prominent': 0xd3,
+        'Psychologie': 0xd2,
+        'Puppentrick': 0xd1,
+        'Quiz': 0xcf,
+        'Radsport': 0xce,
+        'Reality': 0xcd,
+        'Regional': 0xcc,
+        'Reisen': 0xcb,
+        'Reiten': 0xca,
+        'Religion': 0xc9,
+        'Reportage': 0xc8,
+        'Revue': 0xc7,
+        'Romantik': 0xc6,
+        'Saga': 0xc5,
+        'Satire': 0xc4,
+        'Science-Fiction': 0xc3,
+        'Serie': 0xc2,
+        'Show': 0xc1,
+        'Slapstick': 0xff,
+        'Soap': 0xfe,
+        'Special': 0xb0,
+        'Spiele': 0xfd,
+        'Spielfilm': 0xfc,
+        'Sport': 0x40,
+        'Sprache': 0xfb,
+        'Stumm': 0xfa,
+        'Talk': 0xf9,
+        'Tanz': 0xf8,
+        'Technik': 0xf7,
+        'Theater': 0xf6,
+        'Thriller': 0xf5,
+        'Tiere': 0xf4,
+        'Trag\xc3\xb6die': 0xf3,
+        'Umweltbewusstsein': 0xf2,
+        'Unterhaltung': 0xf1,
+        'Verkehr': 0xf0,
+        'Verschiedenes': 0x0f,
+        'Videoclip': 0x0e,
+        'Vorschau': 0x0d,
+        'Waffen': 0x0c,
+        'Wassersport': 0x0b,
+        'Werbung': 0x0a,
+        'Western': 0x09,
+        'Wettbewerb': 0x08,
+        'Wetter': 0x07,
+        'Wintersport': 0x06,
+        'Wirtschaft': 0x05,
+        'Wissenschaft': 0x04,
+        'Zeichentrick': 0x03,
+        'Zirkus': 0x02,
+    },
 }
 
 parental_ratings = {
@@ -156,6 +315,7 @@ class EPGFetcher(object):
         config.plugins.icetv.refresh_interval.addNotifier(self.freqChanged, initial_call=False, immediate_feedback=False)
         self.fetch_timer.start(int(config.plugins.icetv.refresh_interval.value) * 1000)
         self.log = deque(maxlen=40)
+        self.send_scans = False
         # TODO: channel_service_map should probably be locked in case the user edits timers at the time of a fetch
         # Then again, the GIL may actually prevent issues here.
         self.channel_service_map = None
@@ -183,7 +343,7 @@ class EPGFetcher(object):
         _session.nav.RecordTimer.onTimerRemoved.append(self.onTimerRemoved)
         _session.nav.RecordTimer.onTimerChanged.append(self.onTimerChanged)
         _session.nav.record_event.append(self.gotRecordEvent)
-        self.addLog("IceTV started")
+        self.addLog(_("IceTV started"))
 
     def shouldProcessTimer(self, entry):
         if entry.isAutoTimer:
@@ -191,7 +351,7 @@ class EPGFetcher(object):
         if config.plugins.icetv.configured.value and config.plugins.icetv.enable_epg.value:
             global password_requested
             if password_requested:
-                self.addLog("Can not proceed - you need to login first")
+                self.addLog(_("Can not proceed - you need to login first"))
                 return False
             else:
                 return True
@@ -318,24 +478,25 @@ class EPGFetcher(object):
         self.log.append(logMsg)
         print "[IceTV]", logMsg
 
-    def createFetchJob(self, res=None):
+    def createFetchJob(self, res=None, send_scans=False):
         if config.plugins.icetv.configured.value and config.plugins.icetv.enable_epg.value:
             global password_requested
             if password_requested:
-                self.addLog("Can not proceed - you need to login first")
+                self.addLog(_("Can not proceed - you need to login first"))
                 return
             # print "[IceTV] Create fetch job"
+            self.send_scans = self.send_scans or send_scans
             reactor.callInThread(self.doWork)
 
     def doWork(self):
         global password_requested
-        self.addLog("Start update")
+        self.addLog(_("Start update"))
         if password_requested:
-            self.addLog("Can not proceed - you need to login first")
+            self.addLog(_("Can not proceed - you need to login first"))
             return False
         if not ice.haveCredentials():
             password_requested = True
-            self.addLog("No token, requesting password...")
+            self.addLog(_("No token, requesting password..."))
             _session.open(IceTVNeedPassword)
             if not ice.haveCredentials():
                 return False
@@ -345,6 +506,9 @@ class EPGFetcher(object):
         except (Exception) as ex:
             _logResponseException(self, _("Can not retrieve channel map"), ex)
             return False
+        if self.send_scans:
+            self.postScans()
+            self.send_scans = False
         try:
             shows = self.getShows()
             channel_show_map = self.makeChanShowMap(shows["shows"])
@@ -355,19 +519,19 @@ class EPGFetcher(object):
             epgcache.save()
             if "last_update_time" in shows:
                 config.plugins.icetv.last_update_time.value = shows["last_update_time"]
-            self.addLog("EPG download OK")
+            self.addLog(_("EPG download OK"))
             if self.updateDescriptions(channel_show_map):
                 NavigationInstance.instance.RecordTimer.saveTimer()
             if "timers" in shows:
                 res = self.processTimers(shows["timers"])
-            self.addLog("End update")
+            self.addLog(_("End update"))
             self.deferredPostStatus(None)
             self.statusCleanup()
             return res
         except (IOError, RuntimeError) as ex:
             if hasattr(ex, "response") and hasattr(ex.response, "status_code") and ex.response.status_code == 404:
                 # Ignore 404s when there are no EPG updates - buggy server
-                self.addLog("No EPG updates")
+                self.addLog(_("No EPG updates"))
             else:
                 _logResponseException(self, _("Can not download EPG"), ex)
                 res = False
@@ -375,21 +539,56 @@ class EPGFetcher(object):
             ice_timers = self.getTimers()
             if not self.processTimers(ice_timers):
                 res = False
-            self.addLog("End update")
+            self.addLog(_("End update"))
         except (Exception) as ex:
             _logResponseException(self, _("Can not download timers"), ex)
             res = False
         if not ice.haveCredentials() and not password_requested:
             password_requested = True
-            self.addLog("No token, requesting password...")
+            self.addLog(_("No token, requesting password..."))
             _session.open(IceTVNeedPassword)
-        self.addLog("End update")
+        self.addLog(_("End update"))
         self.deferredPostStatus(None)
         self.statusCleanup()
         return res
 
+    def getTriplets(self):
+        name_map = self.getScanChanNameMap()
+        if not self.channel_service_map or not name_map:
+            return None
+
+        triplet_map = defaultdict(list)
+        scan_list = []
+
+        for id, triplets in self.channel_service_map.items():
+            for triplet in triplets:
+                triplet_map[triplet].append(id)
+        for name, triplets in name_map.items():
+            for triplet in triplets:
+                if triplet in triplet_map:
+                    for id in triplet_map[triplet]:
+                        scan_list.append({"channel_id": id, "channel_name": name, "sid": triplet[2], "tsid": triplet[1], "onid": triplet[0]})
+                else:
+                    scan_list.append({"channel_name": name, "sid": triplet[2], "tsid": triplet[1], "onid": triplet[0]})
+        return scan_list or None
+
+    def getScanChanNameMap(self):
+        name_map = defaultdict(list)
+
+        serviceHandler = eServiceCenter.getInstance()
+        servicelist = serviceHandler.list(service_types_tv_ref)
+        if servicelist is not None:
+            serviceRef = servicelist.getNext()
+            while serviceRef.valid():
+                name = ServiceReference(serviceRef).getServiceName().decode("utf-8").strip()
+                name_map[name].append(tuple(serviceRef.getUnsignedData(i) for i in (3, 2, 1)))
+                serviceRef = servicelist.getNext()
+        return name_map
+
     def makeChanServMap(self, channels):
         res = defaultdict(list)
+        name_map = dict((n.upper(), t) for n, t in self.getScanChanNameMap().iteritems())
+
         for channel in channels:
             channel_id = long(channel["id"])
             triplets = []
@@ -402,6 +601,20 @@ class EPGFetcher(object):
                     (int(triplet["original_network_id"]),
                      int(triplet["transport_stream_id"]),
                      int(triplet["service_id"])))
+
+            names = [channel["name"].strip().upper()]
+            if "name_short" in channel:
+                name = channel["name_short"].strip().upper()
+                if name not in names:
+                    names.append(name)
+            for n in channel.get("known_names", []):
+                name = n.strip().upper()
+                if name not in names:
+                    names.append(name)
+
+            for triplets in (name_map[n] for n in names if n in name_map):
+                for triplet in (t for t in triplets if t not in res[channel_id]):
+                    res[channel_id].append(triplet)
         return res
 
     def serviceToIceChannelId(self, serviceref):
@@ -413,6 +626,8 @@ class EPGFetcher(object):
 
     def makeChanShowMap(self, shows):
         res = defaultdict(list)
+        mapping_errors = set()
+        country_code = config.plugins.icetv.member.country.value
         for show in shows:
             channel_id = long(show["channel_id"])
             event_id = int(show.get("eit_id"))
@@ -427,20 +642,21 @@ class EPGFetcher(object):
                 start = int(timegm(strptime(show["start"].split("+")[0], "%Y-%m-%dT%H:%M:%S")))
                 stop = int(timegm(strptime(show["stop"].split("+")[0], "%Y-%m-%dT%H:%M:%S")))
                 duration = stop - start
-            title = show.get("title", "").encode("utf8")
-            short = show.get("subtitle", "").encode("utf8")
-            extended = show.get("desc", "").encode("utf8")
+            title = show.get("title", "").encode("utf-8")
+            short = show.get("subtitle", "").encode("utf-8")
+            extended = show.get("desc", "").encode("utf-8")
             genres = []
             for g in show.get("category", []):
-                name = g['name']
-                eit = int(g["eit"], 0) or 0x01
-                eit_remap = genre_remaps.get(name, eit)
-                mapped_name = getGenreStringSub((eit_remap >> 4) & 0xf, eit_remap & 0xf, country="AUS")
+                name = g['name'].encode("utf-8")
+                eit = int(g.get("eit", "0"), 0) or 0x01
+                eit_remap = genre_remaps.get(country_code, {}).get(name, eit)
+                mapped_name = getGenreStringSub((eit_remap >> 4) & 0xf, eit_remap & 0xf, country=country_code)
                 if mapped_name == name:
                         genres.append(eit_remap)
-                else:
+                elif name not in mapping_errors:
                     print '[EPGFetcher] ERROR: lookup of 0x%02x%s "%s" returned \"%s"' % (eit, (" (remapped to 0x%02x)" % eit_remap) if eit != eit_remap else "", name, mapped_name)
-            p_rating = (("AUS", parental_ratings.get(show.get("rating", "").encode("utf8"), 0x00)),)
+                    mapping_errors.add(name)
+            p_rating = ((country_code, parental_ratings.get(show.get("rating", "").encode("utf-8"), 0x00)),)
             res[channel_id].append((start, duration, title, short, extended, genres, event_id, p_rating))
         return res
 
@@ -472,7 +688,7 @@ class EPGFetcher(object):
                             timer.eit = eit
                             timer_updated = True
                     if timer_updated:
-                        self.addLog("Update timer details from EPG '" + timer.name + "'")
+                        self.addLog(_("Update timer details from EPG '") + timer.name + "'")
                     updated |= timer_updated
         return updated
 
@@ -481,13 +697,13 @@ class EPGFetcher(object):
         for iceTimer in timers:
             # print "[IceTV] iceTimer:", iceTimer
             try:
-                action = iceTimer.get("action", "").encode("utf8")
-                state = iceTimer.get("state", "").encode("utf8")
-                name = iceTimer.get("name", "").encode("utf8")
+                action = iceTimer.get("action", "").encode("utf-8")
+                state = iceTimer.get("state", "").encode("utf-8")
+                name = iceTimer.get("name", "").encode("utf-8")
                 start = int(timegm(strptime(iceTimer["start_time"].split("+")[0], "%Y-%m-%dT%H:%M:%S")))
                 duration = 60 * int(iceTimer["duration_minutes"])
                 channel_id = long(iceTimer["channel_id"])
-                ice_timer_id = iceTimer["id"].encode("utf8")
+                ice_timer_id = iceTimer["id"].encode("utf-8")
                 if action == "forget":
                     for timer in _session.nav.RecordTimer.timer_list:
                         if timer.ice_timer_id == ice_timer_id:
@@ -520,7 +736,7 @@ class EPGFetcher(object):
                                         iceTimer["state"] = "failed"
                                         iceTimer["message"] = "Failed to update timer '%s'" % name
                                         update_queue.append(iceTimer)
-                                        self.addLog("Failed to update timer '%s" % name)
+                                        self.addLog(_("Failed to update timer '%s") % name)
                                 else:
                                     iceTimer["state"] = "pending"
                                     iceTimer["message"] = "Timer already up to date '%s'" % name
@@ -554,7 +770,7 @@ class EPGFetcher(object):
                                     iceTimer["state"] = "failed"
                                     iceTimer["message"] = "Timer conflict: '%s'" % "', '".join(names)
                                     # print "[IceTV] Timer conflict:", conflicts
-                                    self.addLog("Timer '%s' conflicts with %s" % (name, "', '".join([n for n in names if n != name])))
+                                    self.addLog(_("Timer '%s' conflicts with %s") % (name, "', '".join([n for n in names if n != name])))
                     if not completed and not updated and not created:
                         iceTimer["state"] = "failed"
                         update_queue.append(iceTimer)
@@ -568,7 +784,7 @@ class EPGFetcher(object):
         res = True
         try:
             self.putTimers(update_queue)
-            self.addLog("Timers updated OK")
+            self.addLog(_("Timers updated OK"))
         except KeyError as ex:
             print "[IceTV] ", str(ex)
             res = False
@@ -578,14 +794,14 @@ class EPGFetcher(object):
         return res
 
     def isIceTimerInUpdateQueue(self, iceTimer, update_queue):
-        ice_timer_id = iceTimer["id"].encode("utf8")
+        ice_timer_id = iceTimer["id"].encode("utf-8")
         for timer in update_queue:
-            if ice_timer_id == timer["id"].encode("utf8"):
+            if ice_timer_id == timer["id"].encode("utf-8"):
                 return True
         return False
 
     def isIceTimerInLocalTimerList(self, iceTimer, ignoreCompleted=False):
-        ice_timer_id = iceTimer["id"].encode("utf8")
+        ice_timer_id = iceTimer["id"].encode("utf-8")
         for timer in _session.nav.RecordTimer.timer_list:
             if timer.ice_timer_id == ice_timer_id:
                 return True
@@ -668,7 +884,7 @@ class EPGFetcher(object):
             req = ice.Timer(local_timer.ice_timer_id)
             timer = {}
             if not local_timer.eit:
-                self.addLog("Timer '%s' has no event id; update not sent to IceTV" % local_timer.name)
+                self.addLog(_("Timer '%s' has no event id; update not sent to IceTV") % local_timer.name)
                 return
             timer["id"] = local_timer.ice_timer_id
             timer["eit_id"] = local_timer.eit
@@ -688,7 +904,7 @@ class EPGFetcher(object):
                 timer["message"] = "Will record on %s" % config.plugins.icetv.device.label.value
             req.data["timers"] = [timer]
             res = req.put().json()
-            self.addLog("Timer '%s' updated OK" % local_timer.name)
+            self.addLog(_("Timer '%s' updated OK") % local_timer.name)
         except (IOError, RuntimeError, KeyError) as ex:
             _logResponseException(self, _("Can not update timer"), ex)
 
@@ -703,7 +919,7 @@ class EPGFetcher(object):
             try:
                 # print "[IceTV] uploading new timer"
                 if not local_timer.eit:
-                    self.addLog("Timer '%s' has no event id; not sent to IceTV" % local_timer.name)
+                    self.addLog(_("Timer '%s' has no event id; not sent to IceTV") % local_timer.name)
                     return
                 channel_id = self.serviceToIceChannelId(local_timer.service_ref)
                 req = ice.Timers()
@@ -721,13 +937,13 @@ class EPGFetcher(object):
                 req.data["duration_minutes"] = ((local_timer.end - config.recording.margin_after.value * 60) - (local_timer.begin + config.recording.margin_before.value * 60)) / 60
                 res = req.post()
                 try:
-                    local_timer.ice_timer_id = res.json()["timers"][0]["id"].encode("utf8")
-                    self.addLog("Timer '%s' created OK" % local_timer.name)
+                    local_timer.ice_timer_id = res.json()["timers"][0]["id"].encode("utf-8")
+                    self.addLog(_("Timer '%s' created OK") % local_timer.name)
                     if local_timer.ice_timer_id is not None:
                         NavigationInstance.instance.RecordTimer.saveTimer()
                         self.deferredPostStatus(local_timer)
                 except:
-                    self.addLog("Couldn't get IceTV timer id for timer '%s'" % local_timer.name)
+                    self.addLog(_("Couldn't get IceTV timer id for timer '%s'") % local_timer.name)
 
             except (IOError, RuntimeError, KeyError) as ex:
                 _logResponseException(self, _("Can not upload timer"), ex)
@@ -740,7 +956,7 @@ class EPGFetcher(object):
             # print "[IceTV] deleting timer:", ice_timer_id
             req = ice.Timer(ice_timer_id)
             req.delete()
-            self.addLog("Timer deleted OK")
+            self.addLog(_("Timer deleted OK"))
         except (IOError, RuntimeError, KeyError) as ex:
             _logResponseException(self, _("Can not delete timer"), ex)
 
@@ -750,11 +966,25 @@ class EPGFetcher(object):
             req = ice.Timer(timer.ice_timer_id)
             req.data["message"] = message
             req.data["state"] = state
-            print "[EPGFetcher] postStatus", timer.name, message, state
+            # print "[EPGFetcher] postStatus", timer.name, message, state
             res = req.put()
         except (IOError, RuntimeError, KeyError) as ex:
             _logResponseException(self, _("Can not update timer status"), ex)
         self.deferredPostStatus(timer)
+
+    def postScans(self):
+        scan_list = self.getTriplets()
+        print "[EPGFetcher] postScans", scan_list is not None
+        if scan_list is None:
+            return
+        try:
+            req = ice.Scans()
+            req.data["scans"] = scan_list
+            res = req.post()
+            print "[EPGFetcher] postScans", res
+        except (IOError, RuntimeError, KeyError) as ex:
+            _logResponseException(self, _("Can not post scan information"), ex)
+
 
 fetcher = None
 
@@ -782,6 +1012,10 @@ def plugin_main(session, **kwargs):
         fetcher = EPGFetcher()
     session.open(IceTVMain)
 
+def after_scan(**kwargs):
+    if fetcher is not None:
+        fetcher.createFetchJob(send_scans=True)
+
 def Plugins(**kwargs):
     res = []
     res.append(
@@ -800,6 +1034,13 @@ def Plugins(**kwargs):
             icon="icon.png",
             fnc=plugin_main
         ))
+    res.append(
+        PluginDescriptor(
+            name="IceTV",
+            where=PluginDescriptor.WHERE_SERVICESCAN,
+            description=_("IceTV version %s") % ice._version_string,
+            fnc=after_scan
+        ))
     return res
 
 
@@ -808,15 +1049,23 @@ class IceTVMain(ChoiceBox):
         global _session
         if _session is None:
             _session = session
+        self.skinName = "IceTVMain"
+        self.setTitle(_("IceTV - Setup"))
         menu = [
-                ("Show log", "CALLFUNC", self.showLog),
-                ("Fetch EPG and update timers now", "CALLFUNC", self.fetch),
-                ("IceTV setup wizard", "CALLFUNC", self.configure),
-                ("Login to IceTV server", "CALLFUNC", self.login),
-                ("Enable IceTV", "CALLFUNC", self.enable),
-                ("Disable IceTV", "CALLFUNC", self.disable),
+                (_("Show log"), "CALLFUNC", self.showLog),
+                (_("Fetch EPG and update timers now"), "CALLFUNC", self.fetch),
+                (_("IceTV setup wizard"), "CALLFUNC", self.configure),
+                (_("Login to IceTV server"), "CALLFUNC", self.login),
+                (_("Enable IceTV"), "CALLFUNC", self.enable),
+                (_("Disable IceTV"), "CALLFUNC", self.disable),
                ]
-        super(IceTVMain, self).__init__(session, title=_("IceTV version %s") % ice._version_string, list=menu)
+        try:
+            # Use windowTitle for compatibility betwwen OpenATV & OpenViX
+            super(IceTVMain, self).__init__(session, title=_("IceTV version %s") % ice._version_string, list=menu, skin_name=self.skinName, windowTitle=_("IceTV - Setup"))
+        except TypeError:
+            # Fallback for Beyonwiz
+            super(IceTVMain, self).__init__(session, title=_("IceTV version %s") % ice._version_string, list=menu)
+
         self["debugactions"] = ActionMap(
             contexts=["DirectionActions"],
             actions={
@@ -843,7 +1092,7 @@ class IceTVMain(ChoiceBox):
         _session.open(MessageBox, _("IceTV disabled"), type=MessageBox.TYPE_INFO, timeout=5)
 
     def configure(self, res=None):
-        _session.open(IceTVUserTypeScreen)
+        _session.open(IceTVServerSetup)
 
     def fetch(self, res=None):
         try:
@@ -851,7 +1100,7 @@ class IceTVMain(ChoiceBox):
                 _session.open(MessageBox, _("IceTV update completed OK"), type=MessageBox.TYPE_INFO, timeout=5)
                 return
         except (Exception) as ex:
-            fetcher.addLog("Error trying to fetch: %s" % str(ex))
+            fetcher.addLog(_("Error trying to fetch: %s") % str(ex))
         _session.open(MessageBox, _("IceTV update completed with errors.\n\nPlease check the log for details."), type=MessageBox.TYPE_ERROR, timeout=15)
 
     def login(self, res=None):
@@ -865,6 +1114,56 @@ class IceTVLogView(TextBox):
     skin = """<screen name="IceTVLogView" backgroundColor="background" position="90,150" size="1100,450" title="Log">
         <widget font="Console;18" name="text" position="0,4" size="1100,446"/>
 </screen>"""
+
+
+class IceTVServerSetup(Screen):
+    skin = """
+<screen name="IceTVServerSetup" position="320,130" size="640,510" title="IceTV - Service selection" >
+    <widget name="instructions" position="20,10" size="600,100" font="Regular;22" />
+    <widget name="config" position="30,120" size="580,300" enableWrapAround="1" scrollbarMode="showAlways"/>
+    <ePixmap name="red" position="20,e-28" size="15,16" pixmap="skin_default/buttons/button_red.png" alphatest="blend" />
+    <ePixmap name="green" position="170,e-28" size="15,16" pixmap="skin_default/buttons/button_green.png" alphatest="blend" />
+    <widget name="key_red" position="40,e-30" size="150,25" valign="top" halign="left" font="Regular;20" />
+    <widget name="key_green" position="190,e-30" size="150,25" valign="top" halign="left" font="Regular;20" />
+    <widget name="key_yellow" position="340,e-30" size="150,25" valign="top" halign="left" font="Regular;20" />
+    <widget name="key_blue" position="490,e-30" size="150,25" valign="top" halign="left" font="Regular;20" />
+</screen>"""
+
+    _instructions = _("Please select the IceTV service that you wish to use.")
+
+    def __init__(self, session):
+        self.session = session
+        self.have_region_list = False
+        Screen.__init__(self, session)
+        self.setTitle(_("IceTV - Service selection"))
+        self["instructions"] = Label(self._instructions)
+        self["key_red"] = Label(_("Cancel"))
+        self["key_green"] = Label(_("Save"))
+        self["key_yellow"] = Label()
+        self["key_blue"] = Label()
+        self["config"] = MenuList(sorted(ice.iceTVServers.items()))
+        self["IrsActions"] = ActionMap(contexts=["SetupActions", "ColorActions"],
+                                       actions={"cancel": self.cancel,
+                                                "red": self.cancel,
+                                                "green": self.save,
+                                                "ok": self.save,
+                                                }, prio=-2
+                                       )
+
+    def cancel(self):
+        config.plugins.icetv.server.name.cancel()
+        print "[IceTV] server reset to", config.plugins.icetv.server.name.value
+        self.close(False)
+
+    def save(self):
+        item = self["config"].getCurrent()
+        config.plugins.icetv.server.name.value = item[1]
+        print "[IceTV] server set to", config.plugins.icetv.server.name.value
+        self.session.openWithCallback(self.userDone, IceTVUserTypeScreen)
+
+    def userDone(self, user_success):
+        if user_success:
+            self.close(True)
 
 
 class IceTVUserTypeScreen(Screen):
@@ -884,6 +1183,7 @@ class IceTVUserTypeScreen(Screen):
     def __init__(self, session):
         self.session = session
         Screen.__init__(self, session)
+        self.setTitle(_("IceTV - Account selection"))
         self["title"] = Label(_("Welcome to IceTV"))
         self["instructions"] = Label(_(self._instructions))
         options = []
@@ -909,6 +1209,7 @@ class IceTVUserTypeScreen(Screen):
     def userDone(self, success):
         if success:
             self.close(True)
+
 
 class IceTVNewUserSetup(ConfigListScreen, Screen):
     skin = """
@@ -937,6 +1238,7 @@ class IceTVNewUserSetup(ConfigListScreen, Screen):
     def __init__(self, session):
         self.session = session
         Screen.__init__(self, session)
+        self.setTitle(_("IceTV - User Information"))
         self["instructions"] = Label(self._instructions)
         self["description"] = Label()
         self["HelpWindow"] = Label()
@@ -974,8 +1276,14 @@ class IceTVNewUserSetup(ConfigListScreen, Screen):
             x[1].cancel()
         self.close(False)
 
-    def save(self):
+    def saveConfs(self):
+        config.plugins.icetv.server.name.save()
+        config.plugins.icetv.member.country.save()
+        config.plugins.icetv.member.region_id.save()
         self.saveAll()
+
+    def save(self):
+        self.saveConfs()
         self.session.openWithCallback(self.regionDone, IceTVRegionSetup)
 
     def regionDone(self, region_success):
@@ -989,8 +1297,12 @@ class IceTVNewUserSetup(ConfigListScreen, Screen):
 
 class IceTVOldUserSetup(IceTVNewUserSetup):
 
+    def __init__(self, session):
+        super(IceTVOldUserSetup, self).__init__(session)
+        self.skinName = self.__class__.__bases__[0].__name__
+
     def save(self):
-        self.saveAll()
+        self.saveConfs()
         self.session.openWithCallback(self.loginDone, IceTVLogin)
 
 
@@ -1019,6 +1331,7 @@ class IceTVRegionSetup(Screen):
         self.session = session
         self.have_region_list = False
         Screen.__init__(self, session)
+        self.setTitle(_("IceTV - Region"))
         self["instructions"] = Label(self._instructions)
         self["description"] = Label(self._wait)
         self["error"] = Label()
@@ -1043,12 +1356,14 @@ class IceTVRegionSetup(Screen):
         self.region_list_timer.start(3, True)
 
     def cancel(self):
+        config.plugins.icetv.member.region_id.cancel()
+        config.plugins.icetv.member.country.cancel()
         self.close(False)
 
     def save(self):
         item = self["config"].getCurrent()
         config.plugins.icetv.member.region_id.value = item[1]
-        config.plugins.icetv.member.region_id.save()
+        config.plugins.icetv.member.country.value = item[2]
         self.close(self.have_region_list)
 
     def getRegionList(self):
@@ -1057,7 +1372,7 @@ class IceTVRegionSetup(Screen):
             regions = res["regions"]
             rl = []
             for region in regions:
-                rl.append((str(region["name"]), int(region["id"])))
+                rl.append((str(region["name"]), int(region["id"]), str(region["country_code_3"])))
             self["config"].setList(rl)
             self["description"].setText("")
             if rl:
@@ -1074,7 +1389,7 @@ class IceTVLogin(Screen):
 <screen name="IceTVLogin" position="220,115" size="840,570" title="IceTV - Login" >
     <widget name="instructions" position="20,10" size="800,80" font="Regular;22" />
     <widget name="error" position="30,120" size="780,300" font="Console; 16" zPosition="1" />
-    <widget name="qrcode" position="292,90" size="256,256" pixmap="/usr/lib/enigma2/python/Plugins/SystemPlugins/IceTV/qr_code.png" zPosition="1" />
+    <widget name="qrcode" position="292,90" size="256,256" pixmap="/usr/lib/enigma2/python/Plugins/SystemPlugins/IceTV/de_qr_code.png" zPosition="1" />
     <widget name="message" position="20,360" size="800,170" font="Regular;22" />
 
     <ePixmap name="green" position="170,e-28" size="15,16" pixmap="skin_default/buttons/button_green.png" alphatest="blend" />
@@ -1090,6 +1405,7 @@ class IceTVLogin(Screen):
         self.session = session
         self.success = False
         Screen.__init__(self, session)
+        self.setTitle(_("IceTV - Login"))
         self["instructions"] = Label(self._instructions)
         self["message"] = Label()
         self["error"] = Label()
@@ -1101,8 +1417,8 @@ class IceTVLogin(Screen):
         self["key_yellow"] = Label()
         self["key_blue"] = Label()
         self["IrsActions"] = ActionMap(contexts=["SetupActions", "ColorActions"],
-                                       actions={"cancel": self.done,
-                                                "red": self.done,
+                                       actions={"cancel": self.cancel,
+                                                "red": self.cancel,
                                                 "green": self.done,
                                                 "ok": self.done,
                                                 }, prio=-2
@@ -1111,10 +1427,24 @@ class IceTVLogin(Screen):
         self.login_timer.callback.append(self.doLogin)
         self.onLayoutFinish.append(self.layoutFinished)
 
+    def cancel(self):
+        config.plugins.icetv.member.country.cancel()
+        self.done()
+
     def done(self):
         self.close(self.success)
 
     def layoutFinished(self):
+        qrcode = {
+            "AUS": "au_qr_code.png",
+            "DEU": "de_qr_code.png",
+        }.get(config.plugins.icetv.member.country.value, "au_qr_code.png")
+        qrcode_path = resolveFilename(SCOPE_PLUGINS, path.join("SystemPlugins/IceTV", qrcode))
+        if path.isfile(qrcode_path):
+            self["qrcode"].instance.setPixmap(LoadPixmap(qrcode_path))
+        else:
+            print "[IceTV] missing QR code file", qrcode_path
+
         self.login_timer.start(3, True)
 
     def doLogin(self):
@@ -1126,7 +1456,9 @@ class IceTVLogin(Screen):
             pass
         try:
             self.loginCmd()
-            self.success = True
+            self.success = self.setCountry()
+            if not self.success:
+                return
             self["instructions"].setText(_("Congratulations, you have successfully configured your %s %s "
                                            "for use with the IceTV Smart Recording service. "
                                            "Your IceTV guide will now download in the background.") % (getMachineBrand(), getMachineName()))
@@ -1137,14 +1469,32 @@ class IceTVLogin(Screen):
                                       "Download it today!"))
             self["qrcode"].show()
             config.plugins.icetv.configured.value = True
+            config.plugins.icetv.last_update_time.value = 0
             enableIceTV()
-            fetcher.createFetchJob()
+            fetcher.createFetchJob(send_scans=True)
         except (IOError, RuntimeError) as ex:
             msg = _logResponseException(fetcher, _("Login failure"), ex)
             self["instructions"].setText(_("There was an error while trying to login."))
             self["message"].hide()
             self["error"].show()
             self["error"].setText(msg)
+
+    def setCountry(self):
+        try:
+            res = ice.Region(config.plugins.icetv.member.region_id.value).get().json()
+            regions = res["regions"]
+            if regions:
+                config.plugins.icetv.member.country.value = regions[0]["country_code_3"]
+                return True
+            else:
+                self["instructions"].setText(_("No valid region details were foind"))
+                return False
+        except (IOError, RuntimeError) as ex:
+            msg = _logResponseException(fetcher, _("Can not download current region details"), ex)
+            self["instructions"].setText(_("There was an error downloading current region details"))
+            self["error"].setText(msg)
+            self["error"].show()
+            return False
 
     def loginCmd(self):
         ice.Login(config.plugins.icetv.member.email_address.value,
@@ -1153,11 +1503,18 @@ class IceTVLogin(Screen):
 
 class IceTVCreateLogin(IceTVLogin):
 
+    def __init__(self, session):
+        super(IceTVCreateLogin, self).__init__(session)
+        self.skinName = self.__class__.__bases__[0].__name__
+
     def loginCmd(self):
         ice.Login(config.plugins.icetv.member.email_address.value,
                   config.plugins.icetv.member.password.value,
                   config.plugins.icetv.member.region_id.value).post()
 
+    # The country will have been set in IceTVNewUserSetup
+    def setCountry(self):
+        return True
 
 class IceTVNeedPassword(ConfigListScreen, Screen):
     skin = """
@@ -1182,6 +1539,7 @@ class IceTVNeedPassword(ConfigListScreen, Screen):
     def __init__(self, session):
         self.session = session
         Screen.__init__(self, session)
+        self.setTitle(_("IceTV - Password required"))
         self["instructions"] = Label(self._instructions % config.plugins.icetv.member.email_address.value)
         self["description"] = Label()
         self["key_red"] = Label(_("Cancel"))
@@ -1222,7 +1580,7 @@ class IceTVNeedPassword(ConfigListScreen, Screen):
             self.close()
             global password_requested
             password_requested = False
-            fetcher.addLog("Login OK")
+            fetcher.addLog(_("Login OK"))
             fetcher.createFetchJob()
         except (IOError, RuntimeError) as ex:
             msg = _logResponseException(fetcher, _("Login failure"), ex)
