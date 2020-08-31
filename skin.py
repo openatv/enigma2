@@ -466,7 +466,7 @@ class AttributeParser:
 				"disable_onhide": 0x01
 			}[value])
 		except KeyError:
-			print "[Skin] Error: Invalid animationMode '%s'!  Must be one of 'disable', 'off', 'offshow', 'offhide', 'onshow' or 'onhide'." % value
+			print("[Skin] Error: Invalid animationMode '%s'!  Must be one of 'disable', 'off', 'offshow', 'offhide', 'onshow' or 'onhide'." % value)
 
 	def title(self, value):
 		self.guiObject.setTitle(_(value))
