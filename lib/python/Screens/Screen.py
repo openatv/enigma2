@@ -144,7 +144,7 @@ class Screen(dict):
 	def getScreenPath(self):
 		return self.screenPath
 
-	def setTitle(self, title):
+	def setTitle(self, title, showPath=True):
 		try:  # This protects against calls to setTitle() before being fully initialised like self.session is accessed *before* being defined.
 			if self.session and len(self.session.dialog_stack) > 1:
 				self.screenPath = " > ".join(ds[0].getTitle() for ds in self.session.dialog_stack[1:])
@@ -156,10 +156,10 @@ class Screen(dict):
 		except AttributeError:
 			pass
 		self.screenTitle = title
-		if config.usage.showScreenPath.value == "large":
+		if showPath and config.usage.showScreenPath.value == "large":
 			screenPath = ""
 			screenTitle = "%s > %s" % (self.screenPath, title) if self.screenPath else title
-		elif config.usage.showScreenPath.value == "small":
+		elif showPath and config.usage.showScreenPath.value == "small":
 			screenPath = "%s >" % self.screenPath if self.screenPath else ""
 			screenTitle = title
 		else:
