@@ -16,11 +16,12 @@ class Screen(dict):
 	ALLOW_SUSPEND = NO_SUSPEND
 	globalScreen = None
 
-	def __init__(self, session, parent=None):
+	def __init__(self, session, parent=None, mandatoryWidgets=None):
 		dict.__init__(self)
 		self.skinName = self.__class__.__name__
 		self.session = session
 		self.parent = parent
+		self.mandatoryWidgets = mandatoryWidgets
 		self.onClose = []
 		self.onFirstExecBegin = []
 		self.onExecBegin = []
