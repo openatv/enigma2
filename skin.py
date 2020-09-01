@@ -466,7 +466,7 @@ class AttributeParser:
 				"disable_onhide": 0x01
 			}[value])
 		except KeyError:
-			print "[Skin] Error: Invalid animationMode '%s'!  Must be one of 'disable', 'off', 'offshow', 'offhide', 'onshow' or 'onhide'." % value
+			print("[Skin] Error: Invalid animationMode '%s'!  Must be one of 'disable', 'off', 'offshow', 'offhide', 'onshow' or 'onhide'." % value)
 
 	def title(self, value):
 		self.guiObject.setTitle(_(value))
@@ -990,14 +990,26 @@ def readSkin(screen, skin, names, desktop):
 	for n in names:  # Try all skins, first existing one has priority.
 		myScreen, path = domScreens.get(n, (None, None))
 		if myScreen is not None:
-			name = n  # Use this name for debug output.
-			break
+			if screen.mandatoryWidgets is None:
+				screen.mandatoryWidgets = []
+			else:
+				widgets = findWidgets(n)
+			if screen.mandatoryWidgets == [] or all(item in widgets for item in screen.mandatoryWidgets):
+				name = n  # Use this name for debug output.
+				break
+			else:
+				print("[Skin] Warning: Skin screen '%s' rejected as it does not offer all the mandatory widgets '%s'!" % (n, ", ".join(screen.mandatoryWidgets)))
+				myScreen = None
 	else:
 		name = "<embedded-in-%s>" % screen.__class__.__name__
 	if myScreen is None:  # Otherwise try embedded skin.
 		myScreen = getattr(screen, "parsedSkin", None)
 	if myScreen is None and getattr(screen, "skin", None):  # Try uncompiled embedded skin.
-		skin = screen.skin
+		if isinstance(screen.skin, list):
+			print("[Skin] Resizable embedded skin template found in '%s'." % name)
+			skin = screen.skin[0] % tuple([int(x * getSkinFactor()) for x in screen.skin[1:]])
+		else:
+			skin = screen.skin
 		print("[Skin] Parsing embedded skin '%s'." % name)
 		if isinstance(skin, tuple):
 			for s in skin:
@@ -1218,6 +1230,31 @@ def readSkin(screen, skin, names, desktop):
 	# things around.
 	screen = None
 	usedComponents = None
+
+# Return a set of all the widgets found in a screen. Panels will be expanded
+# recursively until all referenced widgets are captured. This code only performs
+# a simple scan of the XML and no skin processing is performed.
+#
+def findWidgets(name):
+	widgetSet = set()
+	element, path = domScreens.get(name, (None, None))
+	if element is not None:
+		widgets = element.findall("widget")
+		if widgets is not None:
+			for widget in widgets:
+				name = widget.get("name", None)
+				if name is not None:
+					widgetSet.add(name)
+				source = widget.get("source", None)
+				if source is not None:
+					widgetSet.add(source)
+		panels = element.findall("panel")
+		if panels is not None:
+			for panel in panels:
+				name = panel.get("name", None)
+				if name:
+					widgetSet.update(findWidgets(name))
+	return widgetSet
 
 # Return a scaling factor (float) that can be used to rescale screen displays
 # to suit the current resolution of the screen.  The scales are based on a
