@@ -54,7 +54,7 @@ prefs = {
   'newFileExt': "", # useful to avoid overwriting original file(s)
   'stripUnchangedMsgstrs': True,
   'removeMatchingObsoletes': False,
-  'searchCodebaseForOccurrences': True,
+  'searchCodebaseForOccurrences': False, # Makefile will take care of this by default
   'normalisePoFiles': True,
   'outputFinalStats': True,
   'processMaxEntries': 0, # useful for testing; 0 will process all entries
