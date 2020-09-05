@@ -155,7 +155,7 @@ class CheckTimer:
 
         def OnDsl():
             try:
-                urllib2.urlopen('http://www.google.de', None, 3)
+                urllib2.urlopen('https://www.google.de', None, 3)
                 return (True and config.pud.showmessage.value)
             except:
                 return False
