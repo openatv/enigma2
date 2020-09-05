@@ -23,7 +23,6 @@ enigma2.pot: enigma2-py.pot enigma2-xml.pot
 %.po: enigma2.pot
 	if [ -f $@ ]; then \
 		$(MSGMERGE) --backup=none --no-wrap -s -U $@ $< && touch $@; \
-		#$(MSGATTRIB) --no-wrap --no-obsolete $@ -o $@; \
 	else \
 		$(MSGINIT) -l $@ -o $@ -i $< --no-translator; \
 	fi
