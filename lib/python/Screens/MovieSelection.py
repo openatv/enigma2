@@ -250,7 +250,22 @@ class MovieBrowserConfiguration(ConfigListScreen,Screen):
 		configList.append(getConfigListEntry(_("Root directory"), config.movielist.root, _("Sets the root folder of movie list, to remove the '..' from benign shown in that folder.")))
 		configList.append(getConfigListEntry(_("Hide known extensions"), config.movielist.hide_extensions, _("Allows you to hide the extensions of known file types.")))
 		configList.append(getConfigListEntry(_("Show live tv when movie stopped"), config.movielist.show_live_tv_in_movielist, _("When set the PIG will return to live after a movie has stopped playing.")))
-		for btn in (('red', _('Red')), ('green', _('Green')), ('yellow', _('Yellow')), ('blue', _('Blue')),('redlong', _('Red long')), ('greenlong', _('Green long')), ('yellowlong', _('Yellow long')), ('bluelong', _('Blue long')), ('TV', _('TV')), ('Radio', _('Radio')), ('Text', _('Text')), ('F1', _('F1')), ('F2', _('F2')), ('F3', _('F3'))):
+		for btn in (
+			("red", pgettext("button|label", "Red button")), 
+			("green", pgettext("button|label", "Green button")), 
+			("yellow", pgettext("button|label", "Yellow button")), 
+			("blue", pgettext("button|label", "Blue button")),
+			("redlong", pgettext("button|label", "Red button hold")), 
+			("greenlong", pgettext("button|label", "Green button hold")), 
+			("yellowlong", pgettext("button|label", "Yellow button hold")), 
+			("bluelong", pgettext("button|label", "Blue button hold")), 
+			("TV", pgettext("button|label", "TV button")), 
+			("Radio", pgettext("button|label", "Radio button")), 
+			("Text", pgettext("button|label", "Text button")), 
+			("F1", pgettext("button|label", "F1 button")), 
+			("F2", pgettext("button|label", "F2 button")), 
+			("F3", pgettext("button|label", "F3 button")),
+		):
 			configList.append(getConfigListEntry(_("Button") + " " + _(btn[1]), userDefinedButtons[btn[0]], _("Allows you to setup the button to do what you choose.")))
 		ConfigListScreen.__init__(self, configList, session = self.session, on_change = self.changedEntry)
 		self["config"].setList(configList)
