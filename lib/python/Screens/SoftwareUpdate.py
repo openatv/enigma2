@@ -71,7 +71,7 @@ class SoftwareUpdateChanges(Screen):
 	def getlog(self):
 		global ocram
 		try:
-			sourcefile = 'http://www.openvix.co.uk/feeds/%s/%s/%s-git.log' % (getImageDistro(), getImageVersion(), self.logtype)
+			sourcefile = 'https://www.openvix.co.uk/feeds/%s/%s/%s-git.log' % (getImageDistro(), getImageVersion(), self.logtype)
 			sourcefile,headers = urllib.urlretrieve(sourcefile)
 			rename(sourcefile,'/tmp/' + self.logtype + '-git.log')
 			fd = open('/tmp/' + self.logtype + '-git.log', 'r')
@@ -181,7 +181,7 @@ class UpdatePlugin(Screen):
 		currentTimeoutDefault = socket.getdefaulttimeout()
 		socket.setdefaulttimeout(3)
 		try:
-			d = urlopen("http://openvix.co.uk/TrafficLightState.php")
+			d = urlopen("https://openvix.co.uk/TrafficLightState.php")
 			self.trafficLight = d.read()
 			if self.trafficLight == 'unstable':
 				self['tl_off'].hide()
@@ -291,7 +291,7 @@ class UpdatePlugin(Screen):
 				import socket
 				currentTimeoutDefault = socket.getdefaulttimeout()
 				socket.setdefaulttimeout(3)
-				status = urlopen('http://www.openvix.co.uk/feeds/status').read()
+				status = urlopen('https://www.openvix.co.uk/feeds/status').read()
 				if '404 Not Found' in status:
 					status = '1'
 				config.softwareupdate.updateisunstable.setValue(status)
