@@ -2927,7 +2927,7 @@ msgstr "Benutzer fragen (Standard vorbelegen mit 'Nein')"
 msgid "Ask user (with default as 'yes')"
 msgstr "Benutzer fragen (Standard vorbelegen mit 'Ja')"
 
-msgid "Aspect"
+msgid "Aspect button"
 msgstr ""
 
 msgid "Aspect Ratio"
@@ -2936,7 +2936,7 @@ msgstr "Seitenverhältnis"
 msgid "Aspect list..."
 msgstr "Seitenverhältnis..."
 
-msgid "Aspect long"
+msgid "Aspect button hold"
 msgstr "Aspect lang"
 
 msgid "Aspect ratio"
@@ -2968,6 +2968,9 @@ msgstr "Datei anhängen"
 
 msgid "Audio"
 msgstr "Ton"
+
+msgid "Audio button"
+msgstr "Audio"
 
 # A/V Settings
 msgid "Audio Auto Volume Level"
@@ -3004,7 +3007,7 @@ msgstr "Ton-Sprachauswahl 3"
 msgid "Audio language selection 4"
 msgstr "Ton-Sprachauswahl 4"
 
-msgid "Audio long"
+msgid "Audio button hold"
 msgstr "Audio lang"
 
 msgid "Audio options..."
@@ -3241,8 +3244,11 @@ msgstr "Back-up Tool für %s\n"
 msgid "Back-up Tool for an %s\n"
 msgstr "Back-up Tool für eine %s\n"
 
-msgid "Back/Recall"
+msgid "Back/Recall button"
 msgstr "Zurück"
+
+msgid "Back/Recall button hold"
+msgstr "Zurück lang"
 
 msgid "Background"
 msgstr "Hintergrund"
@@ -3460,9 +3466,6 @@ msgstr ""
 msgid "Bitrate:"
 msgstr "Datenrate:\t"
 
-msgid "Black"
-msgstr "Schwarz"
-
 msgid "Black screen"
 msgstr "Schwarzer Bildschirm"
 
@@ -3481,13 +3484,10 @@ msgstr "Blockgerät"
 msgid "Block noise reduction"
 msgstr "Block Noise-Reduzierung"
 
-msgid "Blue"
-msgstr "Blau"
-
 msgid "Blue button"
 msgstr "Taste BLAU"
 
-msgid "Blue long"
+msgid "Blue button hold"
 msgstr "Taste BLAU lang"
 
 msgid "BlueSwitch: Blue-Short/Blue-Long"
@@ -4103,7 +4103,7 @@ msgstr "Kanaltasten"
 msgid "Channel buttons invert"
 msgstr "Kanaltasten invertieren"
 
-msgid "Channel down"
+msgid "Channel Down button"
 msgstr "Sender zurück"
 
 msgid "Channel list context menu"
@@ -4148,7 +4148,7 @@ msgstr "Kanalliste Konfiguration"
 msgid "Channel selection settings"
 msgstr "Kanalliste"
 
-msgid "Channel up"
+msgid "Channel Up button"
 msgstr "Nächster Sender"
 
 msgid "Channel zap delay another button"
@@ -4442,7 +4442,6 @@ msgstr "Spiegel TV Bild zum LCD"
 msgid "Close"
 msgstr "Schließen"
 
-# /data/setup.xml
 msgid "Close PiP on exit"
 msgstr "Beende Bild im Bild mit EXIT"
 
@@ -4594,7 +4593,6 @@ msgstr ""
 msgid "Configure if and how crypto icons will be shown in the channel selection list."
 msgstr "Einstellen, ob und wie das Verschlüsselungssymbol angezeigt werden soll."
 
-# /data/setup.xml
 msgid "Configure if and how long the latest service in the PiP will be remembered."
 msgstr "Einstellen, ob und wie lange der aktuelle Bild im Bild Service in Erinnerung bleiben soll."
 
@@ -4999,10 +4997,10 @@ msgstr "Inhalt"
 msgid "Content does not fit on DVD!"
 msgstr "Inhalt passt nicht auf die DVD!"
 
-msgid "Context"
+msgid "Context button"
 msgstr "Kontext"
 
-msgid "Context long"
+msgid "Context button hold"
 msgstr "Kontext lang"
 
 msgid "Continue"
@@ -5960,6 +5958,9 @@ msgstr "Direkte Wiedergabe verknüpfter Titel ohne Menü"
 msgid "Directory"
 msgstr "Verzeichnis"
 
+msgid "Directory button"
+msgstr "Verzeichnis"
+
 #, python-format
 msgid "Directory %s does not exist."
 msgstr "Das Verzeichnis %s existiert nicht."
@@ -5967,7 +5968,7 @@ msgstr "Das Verzeichnis %s existiert nicht."
 msgid "Directory browser"
 msgstr "Datei-Manager"
 
-msgid "Directory long"
+msgid "Directory button hold"
 msgstr "Verzeichnis lang"
 
 msgid "Disable"
@@ -6329,7 +6330,7 @@ msgid_plural "Done - Installed, upgraded or removed %d packages (%s)"
 msgstr[0] "Beendet - %d Paket (%s) installiert, aktualisiert oder entfernt."
 msgstr[1] "Beendet - %d Pakete (%s) installiert, aktualisiert oder entfernt."
 
-msgid "Down"
+msgid "▼ Down button"
 msgstr "Runter"
 
 msgid "Download"
@@ -6434,11 +6435,11 @@ msgstr "ECM-Zeit"
 msgid "EDID decode"
 msgstr ""
 
-msgid "EJECTCD"
+msgid "Eject button"
 msgstr ""
 
-msgid "EJECTCD long"
-msgstr "EJECTCD lang"
+msgid "Eject button hold"
+msgstr "Eject lang"
 
 msgid "EPG"
 msgstr ""
@@ -6789,10 +6790,10 @@ msgstr ""
 msgid "Encryption:"
 msgstr "Verschlüsselung:\t"
 
-msgid "End"
+msgid "End button"
 msgstr "Ende"
 
-msgid "End long"
+msgid "End button hold"
 msgstr "Ende lang"
 
 msgid "End time"
@@ -6883,10 +6884,10 @@ msgstr "Unterhaltung"
 msgid "Entitlements"
 msgstr "Berechtigungen"
 
-msgid "Epg/Guide"
+msgid "EPG/Guide button"
 msgstr "EPG/Info"
 
-msgid "Epg/Guide long"
+msgid "EPG/Guide button hold"
 msgstr "EPG/Info lang"
 
 msgid "Epos"
@@ -7288,31 +7289,31 @@ msgstr ""
 msgid "Extrude from left"
 msgstr "Verformen nach links"
 
-msgid "F1"
+msgid "F1 button"
 msgstr ""
 
-msgid "F1 long"
+msgid "F1 button hold"
 msgstr "F1 lang"
 
 msgid "F1/F3/F4/F4-TURBO/TRIPLEX"
 msgstr ""
 
-msgid "F2"
+msgid "F2 button"
 msgstr ""
 
-msgid "F2 long"
+msgid "F2 button hold"
 msgstr "F2 lang"
 
-msgid "F3"
+msgid "F3 button"
 msgstr ""
 
-msgid "F3 long"
+msgid "F3 button hold"
 msgstr "F3 lang"
 
-msgid "F4"
+msgid "F4 button"
 msgstr ""
 
-msgid "F4 long"
+msgid "F4 button hold"
 msgstr "F4 lang"
 
 msgid "FCC 1953"
@@ -7400,13 +7401,13 @@ msgstr "Schneller Zeitraum"
 msgid "Fast forward speeds"
 msgstr "Vorlaufgeschwindigkeiten"
 
-msgid "Fastforward"
+msgid "▶︎▶︎ Fast Forward button"
 msgstr "Vorlauf"
 
-msgid "Favorites"
+msgid "Favourites button"
 msgstr "Favoriten"
 
-msgid "Favorites long"
+msgid "Favourites button hold"
 msgstr "Favoriten lang"
 
 msgid "Favourites"
@@ -7430,7 +7431,7 @@ msgstr "EPG abrufen und Timer aktualisieren"
 msgid "Fiji"
 msgstr "Fidschi"
 
-msgid "File"
+msgid "File button"
 msgstr "Datei"
 
 msgid "File Commander"
@@ -7484,7 +7485,7 @@ msgstr "Für die Berechnung von Datei-Prüfsummen mit der Taste 9"
 msgid "File checksums/hashes"
 msgstr "Datei Prüfsummen / Hash"
 
-msgid "File long"
+msgid "File button hold"
 msgstr "Datei lang"
 
 #, python-format
@@ -7588,7 +7589,6 @@ msgstr "Flashen"
 msgid "Flash Image"
 msgstr "Flashe Image"
 
-# /SoftwareManager/plugin.py
 msgid "Flash On the Fly"
 msgstr "Flashen online/lokal"
 
@@ -8031,13 +8031,10 @@ msgstr "Griechenland"
 msgid "Greek"
 msgstr "Griechisch"
 
-msgid "Green"
-msgstr "Grün"
-
 msgid "Green button"
 msgstr "Taste GRÜN"
 
-msgid "Green long"
+msgid "Green button hold"
 msgstr "Taste GRÜN lang"
 
 msgid "Greenland"
@@ -8139,7 +8136,10 @@ msgstr "HDMI-Aufnahme"
 msgid "HDMI-IN Recording settings"
 msgstr "HDMI-IN Aufnahmen"
 
-msgid "HDMIin"
+msgid "HDMI-in button"
+msgstr ""
+
+msgid "HDMI-in button hold"
 msgstr ""
 
 msgid "HDR10 Support"
@@ -8211,7 +8211,7 @@ msgstr ""
 msgid "Help"
 msgstr "Hilfe"
 
-msgid "Help long"
+msgid "Help button hold"
 msgstr "Hilfe lang"
 
 msgid "Helps setting up your signal"
@@ -8292,7 +8292,7 @@ msgstr "History zurück"
 msgid "History buttons mode"
 msgstr "Einstellungen der Historie"
 
-msgid "History long"
+msgid "History button hold"
 msgstr ""
 
 msgid "History next"
@@ -8319,13 +8319,16 @@ msgstr "Liechtenstein"
 msgid "Home"
 msgstr ""
 
-msgid "Home long"
+msgid "Home button"
 msgstr ""
 
-msgid "Homepage"
+msgid "Home button hold"
 msgstr ""
 
-msgid "Homepage long"
+msgid "Homepage button"
+msgstr ""
+
+msgid "Homepage button hold"
 msgstr "Homepage lang"
 
 msgid "Honduras"
@@ -8524,7 +8527,6 @@ msgstr "Einstellen, ob und wie die auszugebende Videoauflösung an die Auflösun
 msgid "If enabled the video will always be de-interlaced."
 msgstr "Einstellen, ob das Video immer de-interlaced werden soll."
 
-# /data/setup.xml
 msgid "If enabled, AIT data is included in recordings."
 msgstr "Bei 'Ja' sind in den Aufzeichnungen AIT-Daten enthalten."
 
@@ -8739,7 +8741,6 @@ msgstr "Inadyn (DynDNS)"
 msgid "Include AIT in http streams"
 msgstr "Integriere AIT in HTTP-Streams"
 
-# /data/setup.xml
 msgid "Include AIT in recordings"
 msgstr "Integriere AIT-Daten in Aufnahmen"
 
@@ -8782,10 +8783,10 @@ msgstr "Indonesisch"
 msgid "Info"
 msgstr ""
 
-msgid "Info (EPG)"
+msgid "Info/EPG button"
 msgstr "Info/EPG"
 
-msgid "Info (EPG) Long"
+msgid "Info/EPG button hold"
 msgstr "Info/EPG lang"
 
 msgid "Info Panel"
@@ -9221,10 +9222,13 @@ msgstr ""
 msgid "Keyboard"
 msgstr "Externe Tastatur"
 
+msgid "Keyboard button"
+msgstr "Externe Tastatur"
+
 msgid "Keyboard data entry"
 msgstr "Tastatureingabe"
 
-msgid "Keyboard long"
+msgid "Keyboard button hold"
 msgstr "Externe Tastatur lang"
 
 msgid "Keyboard map"
@@ -9299,7 +9303,7 @@ msgstr ""
 msgid "Kyrgyzstan"
 msgstr "Kirgisistan"
 
-msgid "LAN"
+msgid "LAN button"
 msgstr ""
 
 msgid "LAN adapter"
@@ -9308,7 +9312,7 @@ msgstr "LAN-Adapter"
 msgid "LAN connection"
 msgstr "LAN-Verbindung"
 
-msgid "LAN long"
+msgid "LAN button hold"
 msgstr ""
 
 msgid "LCD Skin Setup"
@@ -9432,10 +9436,13 @@ msgstr "Libanon"
 msgid "Left"
 msgstr "Links"
 
+msgid "◀︎ Left button"
+msgstr "Links"
+
 msgid "Left from servicename"
 msgstr "Links vom Servicenamen"
 
-msgid "Left long"
+msgid "◀︎ Left button hold"
 msgstr "Links lang"
 
 msgid "Leichtathletik"
@@ -9536,10 +9543,10 @@ msgid_plural "List version %d, found %d channels"
 msgstr[0] ""
 msgstr[1] ""
 
-msgid "List/Fav"
+msgid "List/FAV button"
 msgstr ""
 
-msgid "List/Fav long"
+msgid "List/FAV button hold"
 msgstr "List/Fav lang"
 
 msgid "Listen to the radio..."
@@ -9712,10 +9719,10 @@ msgstr ""
 msgid "MORE"
 msgstr "MEHR"
 
-msgid "MOUSE"
+msgid "Mouse button"
 msgstr ""
 
-msgid "MOUSE long"
+msgid "Mouse button hold"
 msgstr ""
 
 msgid "Macao"
@@ -9821,10 +9828,10 @@ msgstr "Vorlauf vor Aufnahme (in Minuten)"
 msgid "Mark service as dedicated 3D service"
 msgstr "Als 3D Kanal markieren"
 
-msgid "Mark/Portal/Playlist"
+msgid "Mark/Portal/Playlist button"
 msgstr ""
 
-msgid "Mark/Portal/Playlist long"
+msgid "Mark/Portal/Playlist button hold"
 msgstr "Mark/Portal/Playlist lang"
 
 msgid "Marshall Islands"
@@ -9877,7 +9884,7 @@ msgstr "Maximale Speicherplatznutzung (MB):"
 msgid "Mayotte"
 msgstr ""
 
-msgid "Media"
+msgid "Media button"
 msgstr "Medien"
 
 msgid "Media Center"
@@ -9889,7 +9896,7 @@ msgstr "Mediaplayer"
 msgid "Media Portal"
 msgstr ""
 
-msgid "Media long"
+msgid "Media button hold"
 msgstr "Media lang"
 
 msgid "Media playback Remaining/Elapsed as"
@@ -9934,6 +9941,9 @@ msgid "Memory index"
 msgstr "Index speichern"
 
 msgid "Menu"
+msgstr "Menü"
+
+msgid "Menu button"
 msgstr "Menü"
 
 msgid "Menu config"
@@ -10609,7 +10619,7 @@ msgstr "Nachrichten"
 msgid "News/Current Affairs"
 msgstr "Nachrichten/Aktuelles"
 
-msgid "Next"
+msgid "Next button"
 msgstr "Nächstes"
 
 msgctxt "now/next: 'next' event label"
@@ -10625,10 +10635,10 @@ msgstr "Seite vor"
 msgid "Next quad PiP channel"
 msgstr "Auf die nächste Sendergruppe schalten"
 
-msgid "Nextsong"
+msgid "Next Track ▶︎▶︎│ button"
 msgstr ""
 
-msgid "Nextsong long"
+msgid "Next Track ▶︎▶︎│ button hold"
 msgstr ""
 
 msgid "Nicaragua"
@@ -11042,6 +11052,9 @@ msgstr "OEM Modell:\t\t%s\n"
 msgid "OK"
 msgstr ""
 
+msgid "OK button"
+msgstr "OK Taste"
+
 msgid "OK button (long)"
 msgstr "OK Taste lang"
 
@@ -11051,7 +11064,7 @@ msgstr "OK Taste kurz"
 msgid "OK button mode"
 msgstr "Funktion der OK Taste"
 
-msgid "OK long"
+msgid "OK button hold"
 msgstr "OK Taste lang"
 
 msgid "OK, guide me through the upgrade process"
@@ -11176,7 +11189,7 @@ msgstr ""
 msgid "Only select 'yes' if you are using a multiswich that requires a DiSEqC Port-A command signal. For all other setups select 'no'."
 msgstr "Wählen Sie nur 'Ja', wenn Sie einen Multiswitch verwenden, der ein DiSEqC Port-A-Befehlssignal benötigt. Für alle anderen Setups wählen Sie 'Nein'."
 
-msgid "Open"
+msgid "Open button"
 msgstr "Öffnen"
 
 msgid "Open AutoTimer"
@@ -11203,7 +11216,7 @@ msgstr "Öffne Favoritenliste..."
 msgid "Open favourites list"
 msgstr "Öffne Favoritenliste"
 
-msgid "Open long"
+msgid "Open button hold"
 msgstr "Öffnen lang"
 
 msgid "Open satellites list"
@@ -11257,10 +11270,10 @@ msgstr "Betriebs-LED-Status im Standby"
 msgid "Operating LED status while running"
 msgstr "Betriebs-LED-Status im Betrieb"
 
-msgid "Option"
+msgid "Option button"
 msgstr ""
 
-msgid "Option long"
+msgid "Option button hold"
 msgstr "Option lang"
 
 # Menue Anpassungen OSD
@@ -11356,10 +11369,10 @@ msgstr ""
 msgid "PAL"
 msgstr ""
 
-msgid "PC"
+msgid "PC button"
 msgstr ""
 
-msgid "PC long"
+msgid "PC button hold"
 msgstr "PC lang"
 
 msgid "PCM"
@@ -11383,13 +11396,10 @@ msgstr ""
 msgid "PIN code needed"
 msgstr ""
 
-msgid "PIP"
-msgstr "Bild im Bild"
-
-msgid "PIP long"
+msgid "PiP button hold"
 msgstr "Bild im Bild lang"
 
-msgid "PIP with OSD"
+msgid "PiP with OSD"
 msgstr "Bild im Bild mit OSD"
 
 msgid "PLP ID"
@@ -11410,10 +11420,10 @@ msgstr ""
 msgid "PRIMETIME"
 msgstr ""
 
-msgid "PVR"
+msgid "PVR button"
 msgstr ""
 
-msgid "PVR long"
+msgid "PVR button hold"
 msgstr "PVR lang"
 
 msgid "Package list"
@@ -11446,16 +11456,16 @@ msgstr "Seite vor"
 msgid "Page up list"
 msgstr "Seite hoch"
 
-msgid "PageDown"
+msgid "Page Down button"
 msgstr "Seite zurück"
 
-msgid "PageDown long"
+msgid "Page Down button hold"
 msgstr "Seite zurück lang"
 
-msgid "PageUp"
+msgid "Page Up button"
 msgstr "Seite vor"
 
-msgid "PageUp long"
+msgid "Page Up button hold"
 msgstr "Seite vor lang"
 
 msgid "Pakistan"
@@ -11540,6 +11550,9 @@ msgid "Path to save not exist: '/tmp/'"
 msgstr "Pfad zum Speichern nicht vorhanden: '/tmp/'"
 
 msgid "Pause"
+msgstr "Anhalten"
+
+msgid "││ Pause button"
 msgstr "Anhalten"
 
 msgid "Pause movie at end"
@@ -11673,7 +11686,7 @@ msgstr ""
 msgid "Pixels\n"
 msgstr "Pixel\n"
 
-msgid "Play"
+msgid "▶︎ Play button"
 msgstr "Abspielen"
 
 msgid "Play DVD"
@@ -11688,7 +11701,6 @@ msgstr "Audio im Hintergrund abspielen"
 msgid "Play audio-CD..."
 msgstr "Audio-CD wiedergeben..."
 
-# /Extensions/MediaPlayer
 msgid "Play back media files"
 msgstr "Wiedergabe von Mediendateien"
 
@@ -11732,13 +11744,13 @@ msgstr "Titel abspielen"
 msgid "Play/view/edit/install/extract/run file or enter directory"
 msgstr "Datei abspielen/anzeigen/bearbeiten/installieren/extrahieren/ausführen oder Verzeichnis eingeben"
 
-msgid "Playlist"
+msgid "Playlist button"
 msgstr "Playliste"
 
-msgid "Playlist long"
+msgid "Playlist button hold"
 msgstr "Playliste lang"
 
-msgid "Playpause"
+msgid "▶︎││ Play/Pause button"
 msgstr "PlayPause"
 
 msgid "Please add titles to the compilation."
@@ -12228,7 +12240,7 @@ msgstr "Rotoreinstellungen-Log"
 msgid "Positioner setup"
 msgstr "Rotoreinstellungen"
 
-msgid "Power"
+msgid "Power button"
 msgstr "Ausschalttaste"
 
 msgid "Power LED State in Deep-Standby"
@@ -12249,7 +12261,7 @@ msgstr "Hier können Sie einstellen, ob die Power-LED im Standby an oder aus sei
 msgid "Power On Display"
 msgstr "Display einschalten"
 
-msgid "Power long"
+msgid "Power button hold"
 msgstr "Ausschalttaste lang"
 
 msgid "Power management. Consult your receiver's manual for more information."
@@ -12415,7 +12427,7 @@ msgstr "Vorschau des DVD-Menüs"
 msgid "Preview selected channel"
 msgstr ""
 
-msgid "Previous"
+msgid "Previous button"
 msgstr "Vorheriges"
 
 msgid "Previous bouquet"
@@ -12424,10 +12436,10 @@ msgstr "Favoriten zurück"
 msgid "Previous page"
 msgstr "Seite zurück"
 
-msgid "Prevsong"
+msgid "│◀︎◀︎ Previous Track button"
 msgstr ""
 
-msgid "Prevsong long"
+msgid "│◀︎◀︎ Previous Track button hold"
 msgstr ""
 
 msgid "Primary DNS"
@@ -12452,7 +12464,7 @@ msgstr "Mögliche Ursachen könnten sein"
 msgid "Process"
 msgstr "Aktivitätsanzeige"
 
-#, fuzzy, python-format
+#, python-format
 msgid "Processor temperature:\t\t%s"
 msgstr "Prozessor-Temperatur:\t%s"
 
@@ -12462,7 +12474,7 @@ msgstr ""
 msgid "Profile: Local box"
 msgstr "Profil: Lokale Box"
 
-msgid "Program"
+msgid "Program button"
 msgstr ""
 
 #, python-format
@@ -12493,7 +12505,7 @@ msgstr ""
 "Programm '%s' nicht installiert. \n"
 "Das Paket, das dieses Programm enthält, ist nicht bekannt."
 
-msgid "Program long"
+msgid "Program button hold"
 msgstr "Program lang"
 
 msgid "Programmlisten History"
@@ -12586,10 +12598,12 @@ msgstr ""
 msgid "Protocol"
 msgstr "Protokoll"
 
-msgid "Prov"
+# TRANSLATORS: Provider
+msgid "Prov button"
 msgstr ""
 
-msgid "Prov long"
+# TRANSLATORS: Provider
+msgid "Prov button hold"
 msgstr "Prov lang"
 
 msgid "Provider"
@@ -12699,13 +12713,13 @@ msgstr "RF-Ausgang"
 msgid "RGB"
 msgstr ""
 
-msgid "Radio"
+msgid "Radio button"
 msgstr ""
 
 msgid "Radio Channel Selection"
 msgstr "Radio Kanalliste"
 
-msgid "Radio long"
+msgid "Radio button hold"
 msgstr "Radio lang"
 
 msgid "Radsport"
@@ -12811,10 +12825,10 @@ msgstr ""
 msgid "Rebuild LCN bouquet now?"
 msgstr ""
 
-msgid "Rec"
+msgid "● REC button"
 msgstr "Aufnahme"
 
-msgid "Rec long"
+msgid "● REC button hold"
 msgstr "Aufnahme lang"
 
 msgid "Reception"
@@ -12926,9 +12940,6 @@ msgstr "Aufnahmen"
 msgid "Recovery Mode"
 msgstr "Wartungsmodus"
 
-msgid "Red"
-msgstr "Rot"
-
 msgid "Red button"
 msgstr "Taste ROT"
 
@@ -12938,7 +12949,7 @@ msgstr "Taste ROT..."
 msgid "Red colored"
 msgstr "Roter Servicename"
 
-msgid "Red long"
+msgid "Red button hold"
 msgstr "Taste ROT lang"
 
 msgid "Reduce the size of the service picons for more line spacing between them."
@@ -13035,7 +13046,6 @@ msgstr "Verbleibende Minuten/Fortschrittsanzeige links"
 msgid "Remaining minutes/Progress bar right"
 msgstr "Verbleibende Minuten/Fortschrittsanzeige rechts"
 
-# /data/setup.xml
 msgid "Remember last service in PiP"
 msgstr "Letzten Bild im Bild Service merken"
 
@@ -13360,7 +13370,7 @@ msgstr "Rechte Seite Sortierung umkehren"
 msgid "Revue"
 msgstr ""
 
-msgid "Rewind"
+msgid "◀︎◀︎ Rewind button"
 msgstr "Rücklauf"
 
 msgid "Rewind speeds"
@@ -13373,10 +13383,13 @@ msgstr "Untertitel neu formatieren"
 msgid "Right"
 msgstr "Rechts"
 
+msgid "Right ▶︎ button"
+msgstr "Rechts"
+
 msgid "Right from servicename"
 msgstr "Rechts vom Servicenamen"
 
-msgid "Right long"
+msgid "Right ▶︎ button hold"
 msgstr "Rechts lang"
 
 msgid "Roll-off"
@@ -13467,10 +13480,10 @@ msgstr ""
 msgid "SABnzbd Setup"
 msgstr "SABnzbd (Binary News)"
 
-msgid "SAT"
+msgid "SAT button"
 msgstr ""
 
-msgid "SAT long"
+msgid "SAT button hold"
 msgstr "SAT lang"
 
 msgid "SATA"
@@ -13806,10 +13819,10 @@ msgstr "Suche Wetter ID"
 msgid "Search west"
 msgstr "Westlich suchen"
 
-msgid "Search/WEB"
+msgid "Search/WEB button"
 msgstr "Suche/Web"
 
-msgid "Search/WEB long"
+msgid "Search/WEB button hold"
 msgstr "Suche/Web lang"
 
 msgid "Searching"
@@ -15648,13 +15661,13 @@ msgstr ""
 msgid "Skinselector"
 msgstr "Skinauswahl"
 
-msgid "Skip back"
+msgid "Skip Backward button"
 msgstr "Rückwärts spulen"
 
 msgid "Skip empty services"
 msgstr "Überspringen leerer Dienste"
 
-msgid "Skip forward"
+msgid "Skip Forward button"
 msgstr "Vorwärts spulen"
 
 # Erstassi
@@ -15667,7 +15680,7 @@ msgstr "Auswahl überspringen"
 msgid "Slapstick"
 msgstr ""
 
-msgid "Sleep"
+msgid "Sleep button"
 msgstr "Sleeptimer"
 
 msgid "Sleep Timer"
@@ -15676,7 +15689,7 @@ msgstr "Ausschalttimer"
 msgid "Sleep delay"
 msgstr "Ausschaltzeit"
 
-msgid "Sleep long"
+msgid "Sleep button hold"
 msgstr "Sleep lang"
 
 msgid "SleepTimer"
@@ -15730,6 +15743,9 @@ msgid "Slovenian"
 msgstr "Slowenisch"
 
 msgid "Slow"
+msgstr "Langsam"
+
+msgid "│▶︎ Slow button"
 msgstr "Langsam"
 
 msgid "Slow motion speeds"
@@ -16125,6 +16141,9 @@ msgstr ""
 msgid "Stop"
 msgstr "Stopp"
 
+msgid "■ Stop button"
+msgstr "Stopp"
+
 # UsageConfig.py:117
 msgid "Stop PiP"
 msgstr "Beende Bild im Bild"
@@ -16259,7 +16278,7 @@ msgstr "Unterkanal-Modus (Taste GRÜN)"
 msgid "Subservices"
 msgstr "Unterkanäle"
 
-msgid "Subtitle"
+msgid "Subtitle button"
 msgstr "Untertitel"
 
 # Subtitle QuickMenu
@@ -16296,7 +16315,7 @@ msgstr "Untertitel Sprachauswahl 3"
 msgid "Subtitle language selection 4"
 msgstr "Untertitel Sprachauswahl 4"
 
-msgid "Subtitle long"
+msgid "Subtitle button hold"
 msgstr "Untertitel lang"
 
 msgid "Subtitle position"
@@ -16550,7 +16569,7 @@ msgstr "TS-Datei ist zu groß für ISO9660 Level 1!"
 msgid "TSID"
 msgstr ""
 
-msgid "TV"
+msgid "TV button"
 msgstr ""
 
 msgid "TV button mode"
@@ -16593,6 +16612,9 @@ msgid "Technik"
 msgstr ""
 
 msgid "Teletext"
+msgstr "Videotext"
+
+msgid "Text button"
 msgstr "Videotext"
 
 msgid "Teletext CleanAlgo (resolution reset algorithm)"
@@ -17504,6 +17526,9 @@ msgstr ""
 msgid "Time"
 msgstr "Zeit"
 
+msgid "Time button"
+msgstr ""
+
 msgid "Time Update in Minutes"
 msgstr "Update-Zeit in Minuten"
 
@@ -17546,7 +17571,7 @@ msgstr "Zeitsprünge: Wiederholungsintervall für schnellen Vorlauf/Rücklauf"
 msgid "Time jump: Use normal fast forward for speeds"
 msgstr "Zeitsprünge: Normalen Vorlauf benutzen für"
 
-msgid "Time long"
+msgid "Time button hold"
 msgstr "Time lang"
 
 # PowerTimerList.py
@@ -17851,7 +17876,7 @@ msgstr "Übersetzungen"
 msgid "Transmission mode"
 msgstr "Übertragungsmodus"
 
-msgid "Transparent"
+msgid "transparent"
 msgstr ""
 
 msgid "Transponder"
@@ -18258,7 +18283,7 @@ msgstr ""
 msgid "Unzipping Image"
 msgstr "Entpacke Image"
 
-msgid "Up"
+msgid "▲ Up button"
 msgstr "Hoch"
 
 msgid "Up/Down button mode"
@@ -18646,10 +18671,10 @@ msgstr "VLAN-Verbindung"
 msgid "VMGM (intro trailer)"
 msgstr "VMGM (Trailer-Intro)"
 
-msgid "VOD"
+msgid "VOD/IPTV button"
 msgstr ""
 
-msgid "VOD long"
+msgid "VOD/IPTV button hold"
 msgstr "VOD lang"
 
 msgid "VPN"
@@ -18956,10 +18981,10 @@ msgstr "Lautstärkeanpassung"
 msgid "Volume Config"
 msgstr "Lautstärke Offset"
 
-msgid "Volume down"
+msgid "Volume - button"
 msgstr "Lautstärke -"
 
-msgid "Volume up"
+msgid "Volume + button"
 msgstr "Lautstärke +"
 
 msgid "Vorschau"
@@ -19212,7 +19237,6 @@ msgstr "Was wollen Sie scannen?"
 msgid "When enabled enigma2 will load unlinked userbouquets. This means that userbouquets that are available, but not included in the bouquets.tv or bouquets.radio files, will still be loaded. This allows you for example to keep your own user bouquet while installed settings are upgraded"
 msgstr "Bei 'Ja' werden alle vorhandenen Bouquets geladen, auch wenn sie nicht in der 'bouquets.tv' oder 'bouquets.radio' enthalten sind. Dies erlaubt Ihnen z.B. Ihre eigenen Bouquets zu erhalten, wenn Upgrades der installierten Bouquets erfolgen."
 
-# /data/setup.xml
 msgid "When enabled the PiP can be closed by the exit button."
 msgstr "Einstellen, ob und wie Bild im Bild beim Drücken der EXIT Taste beendet werden soll."
 
@@ -19402,9 +19426,6 @@ msgstr "Welche Sendung soll dauerhaft gespeichert werden?"
 msgid "While available"
 msgstr "Solange verfügbar"
 
-msgid "White"
-msgstr "Weiss"
-
 msgid "Width"
 msgstr "Breite"
 
@@ -19496,10 +19517,10 @@ msgstr "Schreibfehler bei der Aufnahme. %s"
 msgid "Write failed!"
 msgstr "Schreiben fehlgeschlagen!"
 
-msgid "Www"
+msgid "www button"
 msgstr "www"
 
-msgid "Www long"
+msgid "www button hold"
 msgstr "www lang"
 
 msgid "XBox 360 support"
@@ -19529,16 +19550,13 @@ msgstr ""
 msgid "Year"
 msgstr "Jahr"
 
-msgid "Yellow"
-msgstr "Gelb"
-
 msgid "Yellow DVB subtitles"
 msgstr "DVB Untertitel in gelb"
 
 msgid "Yellow button"
 msgstr "Taste GELB"
 
-msgid "Yellow long"
+msgid "Yellow button hold"
 msgstr "Taste GELB lang"
 
 msgid "Yemen"
@@ -19986,10 +20004,10 @@ msgstr "Youtube-TV"
 msgid "ZAP"
 msgstr "Umschalten"
 
-msgid "ZOOM"
+msgid "Zoom button"
 msgstr ""
 
-msgid "ZOOM long"
+msgid "Zoom button hold"
 msgstr "ZOOM lang"
 
 msgid "ZPicon"
@@ -20138,7 +20156,7 @@ msgstr "startet gleich"
 msgid "activate network adapter configuration"
 msgstr "Einstellungen des Netzwerkadapters aktivieren"
 
-msgid "activatePiP"
+msgid "Activate PiP button"
 msgstr "Aktiviere Bild im Bild"
 
 msgid "add Current"
@@ -21342,7 +21360,6 @@ msgstr "Kabel-Dienste entfernen"
 msgid "remove directory"
 msgstr "Verzeichnis entfernen"
 
-# /lib/python/Screens/ChannelSelection.py
 msgid "remove entry"
 msgstr "Eintrag entfernen"
 
@@ -21364,7 +21381,6 @@ msgstr "Diese Markierung entfernen"
 msgid "rename"
 msgstr "Umbenennen"
 
-# /lib/python/Screens/ChannelSelection.py
 msgid "rename entry"
 msgstr "Eintrag umbenennen"
 
@@ -22015,7 +22031,6 @@ msgstr "Umschalten"
 #~ msgid "%d jobs are running in the background!"
 #~ msgstr "Es laufen noch %d Jobs im Hintergrund!"
 
-# /SoftwareManager/Flash_online.py:624
 #~ msgid "%d of %d kBytes"
 #~ msgstr "%d von %d kBytes"
 
@@ -22747,7 +22762,6 @@ msgstr "Umschalten"
 #~ msgid "Display message before next played movie"
 #~ msgstr "Benachrichtigung anzeigen vor dem Abspielen des nächsten Filmes"
 
-# /SoftwareManager/Flash_online.py
 #~ msgid ""
 #~ "Do you really want to delete\n"
 #~ "%s ?"
@@ -23000,7 +23014,6 @@ msgstr "Umschalten"
 #~ msgid "Finished reloading mount file"
 #~ msgstr "'automounts.xml' wurde eingelesen"
 
-# /SoftwareManager/Flash_online.py
 #~ msgid "Flash On the fly (select a image)"
 #~ msgstr "Image zum Flashen auswählen"
 
@@ -23305,7 +23318,6 @@ msgstr "Umschalten"
 #~ msgid "Local"
 #~ msgstr "Lokal"
 
-# /SoftwareManager/Flash_online.py
 #~ msgid "Local = Flash a image from local path /hdd/images"
 #~ msgstr "Image von HDD oder USB flashen."
 
@@ -23573,7 +23585,6 @@ msgstr "Umschalten"
 #~ "\n"
 #~ "Sie benötigen mindestens 300 MB freien Speicherplatz.\n"
 
-# /SoftwareManager/Flash_online.py
 #~ msgid ""
 #~ "Not enough free space on /hdd !!\n"
 #~ "You need at least 300Mb free space.\n"
@@ -23601,9 +23612,6 @@ msgstr "Umschalten"
 
 #~ msgid "Number of characters visible in filename entry popup windows."
 #~ msgstr "Anzahl der Zeichen, die in den Popup-Fenstern des Dateinameneintrags sichtbar sind."
-
-#~ msgid "OK Button"
-#~ msgstr "OK Taste"
 
 #~ msgid "OK, remove another extensions"
 #~ msgstr "OK, noch eine Erweiterung entfernen."
@@ -23633,7 +23641,6 @@ msgstr "Umschalten"
 #~ msgid "One partiition"
 #~ msgstr "Eine Partition"
 
-# /SoftwareManager/Flash_online.py
 #~ msgid "Online = Download a image and flash it"
 #~ msgstr "Image online laden und flashen."
 
@@ -23817,7 +23824,6 @@ msgstr "Umschalten"
 #~ msgid "Please select an option below."
 #~ msgstr "Eine untenstehende Option auswählen."
 
-# /SoftwareManager/Flash_online.py
 #~ msgid "Please select medium"
 #~ msgstr "Bitte wählen Sie das Image"
 
@@ -24582,7 +24588,6 @@ msgstr "Umschalten"
 #~ msgid "The current beta image could not be stable"
 #~ msgstr "Das derzeitige Beta-Image könnte unstabil sein"
 
-# /SoftwareManager/Flash_online.py
 #~ msgid "The image is downloaded. Do you want to flash now?"
 #~ msgstr ""
 #~ "Das Image ist heruntergeladen,\n"
@@ -24822,7 +24827,6 @@ msgstr "Umschalten"
 #~ msgid "Unmount failed"
 #~ msgstr "Aushängen fehlgeschlagen"
 
-# /SoftwareManager/Flash_online.py
 #~ msgid "Unzipping files, Please wait ..."
 #~ msgstr "Datei wird entpackt. Bitte warten..."
 
@@ -25371,7 +25375,6 @@ msgstr "Umschalten"
 #~ msgid "ofgwrite flashing ready.\n"
 #~ msgstr "ofgwrite Flashvorgang beendet.\n"
 
-# /SoftwareManager/Flash_online.py
 #~ msgid ""
 #~ "ofgwrite not found !!\n"
 #~ "Please make sure you have ofgwrite installed in /usr/bin/ofgwrite.\n"
