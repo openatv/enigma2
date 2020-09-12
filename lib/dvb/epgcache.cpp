@@ -1557,6 +1557,8 @@ void eEPGCache::save()
 
 		free(buf);
 
+		singleLock lockcache(cache_lock);
+
 		int cnt=0;
 		unsigned int magic = EPG_MAGIC;
 		fwrite(&magic, sizeof(int), 1, f);
