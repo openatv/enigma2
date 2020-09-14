@@ -537,21 +537,21 @@ class InfoBarShowHide(InfoBarScreenSaver):
 		if self.__state == self.STATE_SHOWN and not self.__locked:
 			self.hideTimer.stop()
 			if self.secondInfoBarScreen and self.secondInfoBarScreen.shown:
-				idx = config.usage.second_infobar_timeout.index
+				val = int(config.usage.second_infobar_timeout.value)
 			else:
-				idx = config.usage.infobar_timeout.index
-			if idx:
-				self.hideTimer.start(idx * 1000, True)
+				val = int(config.usage.infobar_timeout.value)
+			if val:
+				self.hideTimer.start(val * 1000, True)
 		elif (self.secondInfoBarScreen and self.secondInfoBarScreen.shown) or ((not config.usage.show_second_infobar.value or isMoviePlayerInfoBar(self))):
 			self.hideTimer.stop()
-			idx = config.usage.second_infobar_timeout.index
-			if idx:
-				self.hideTimer.start(idx * 1000, True)
+			val = int(config.usage.second_infobar_timeout.value)
+			if val:
+				self.hideTimer.start(val * 1000, True)
 		elif hasattr(self, "pvrStateDialog"):
 			self.hideTimer.stop()
-			idx = config.usage.infobar_timeout.index
-			if idx:
-				self.hideTimer.start(idx * 1000, True)
+			val = int(config.usage.infobar_timeout.value)
+			if val:
+				self.hideTimer.start(val * 1000, True)
 
 	def doShow(self):
 		self.show()

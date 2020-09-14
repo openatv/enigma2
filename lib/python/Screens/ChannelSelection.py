@@ -2440,7 +2440,7 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 		self.buildTitleString()
 
 	def showPipzapMessage(self):
-		time = config.usage.infobar_timeout.index
+		time = int(config.usage.infobar_timeout.value)
 		if time:
 			self.pipzaptimer.startLongTimer(time)
 		if hasattr(self.session, 'pip') and self.session.pip:
