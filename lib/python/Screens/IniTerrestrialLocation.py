@@ -20,14 +20,14 @@ config.misc.inifirstrun = ConfigBoolean(default=True)
 class TerrestrialMenuList(MenuList):
 	def __init__(self, list, enableWrapAround=True):
 		MenuList.__init__(self, list, enableWrapAround, eListboxPythonMultiContent)
-		self.l.setFont(0, gFont("Regular", 24))
+		self.l.setFont(0, gFont("Regular", 22))
 		self.l.setFont(1, gFont("Regular", 14))
-		self.l.setItemHeight(32)
+		self.l.setItemHeight(30)
 
 def TerrestrialMenuEntryComponent(name, item):
 	return [
 		(item),
-		MultiContentEntryText(pos=(20, 4), size=(400, 32), font=0, text = _(name)),
+		MultiContentEntryText(pos=(20, 2), size=(400, 26), font=0, text = _(name)),
 	]
 
 def buildTerTransponder(
