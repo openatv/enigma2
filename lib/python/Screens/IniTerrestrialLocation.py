@@ -65,7 +65,7 @@ class IniTerrestrialLocation(Screen):
 		<widget source="key_red" render="Label" position="0,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#9f1313" transparent="1" />
 		<widget source="key_blue" render="Label" position="420,0" zPosition="1" size="140,40" font="Regular;20" halign="center" valign="center" backgroundColor="#2222bb" transparent="1" />
 		<widget name="config" position="0,90" size="560,384" transparent="0" enableWrapAround="1" scrollbarMode="showOnDemand" />
-		<widget name="text" position="0,e-75" size="560,75" font="Regular;18" halign="center" valign="top" transparent="0" zPosition="1" />
+		<widget name="description" position="0,e-75" size="560,75" font="Regular;18" halign="center" valign="top" transparent="0" zPosition="1" />
 	</screen>"""
 
 	def __init__(self, session):
@@ -77,7 +77,7 @@ class IniTerrestrialLocation(Screen):
 		if config.misc.inifirstrun.getValue():
 			self.skinName = ["IniTerrestrialLocationWizard"]
 
-		self["text"] = Label(_("Please select your location and then press OK to begin the scan.\n\nIf your location is not listed or the scan fails to find all channels, please select Full Scan."))
+		self["description"] = Label(_("Please select your location and then press OK to begin the scan.\n\nIf your location is not listed or the scan fails to find all channels, please select Full Scan."))
 		self["key_red"] = Label(_("Exit"))
 		self["key_blue"] = Label(_("Set location"))
 		self.mlist = []
@@ -177,7 +177,7 @@ class IniEndWizard(Screen):
 		Screen.__init__(self, session)
 		Screen.setTitle(self, _("Congratulations!"))
 
-		self["text"] = Label(_(
+		self["description"] = Label(_(
 							"Congratulations, your %s %s is now set up.\n"
 							"Please press OK to start using your %s %s.") % (getMachineBrand(), getMachineName(), getMachineBrand(), getMachineName()))
 
