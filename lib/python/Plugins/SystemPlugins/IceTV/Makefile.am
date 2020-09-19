@@ -5,4 +5,5 @@ install_PYTHON = \
 	plugin.py \
 	API.py \
 	icon.png \
-	qr_code.png
+	au_qr_code.png \
+	de_qr_code.png
