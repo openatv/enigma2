@@ -102,7 +102,7 @@ def f(z):
     return ''.join(b)
 
 def get_subtitle(digest, lang="PL"):
-    url = "http://napiprojekt.pl/unit_napisy/dl.php?l=%s&f=%s&t=%s&v=pynapi&kolejka=false&nick=&pass=&napios=%s" % \
+    url = "https://napiprojekt.pl/unit_napisy/dl.php?l=%s&f=%s&t=%s&v=pynapi&kolejka=false&nick=&pass=&napios=%s" % \
         (lang, digest, f(digest), os.name)
     repeat = 3
     sub = None
@@ -377,7 +377,7 @@ def read_subs(file, fmt, fps):
         sys.exit(1)
 
 def napiprojekt_fps(digest):
-    url = "http://napiprojekt.pl/api/api.php?mode=file_info&client=dreambox&id=%s" % (urllib.parse.quote(digest))
+    url = "https://napiprojekt.pl/api/api.php?mode=file_info&client=dreambox&id=%s" % (urllib.parse.quote(digest))
 #    element = ET.parse(urllib.request.urlopen(url))
 #    fps = element.find("video_info/fps").text
     try:

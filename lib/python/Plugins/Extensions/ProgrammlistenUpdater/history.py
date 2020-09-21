@@ -7,6 +7,7 @@ import six
 from six.moves.urllib.request import urlopen
 from six.moves.urllib.request import Request
 
+# TODO: this URL now redirects to https://www.receiver-settings.de/
 URL ='http://www.sattechnik.de/programmlisten-update/history.txt'
 
 def DownloadInfo(url):

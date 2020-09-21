@@ -152,7 +152,7 @@ class CheckTimer:
 
         def OnDsl():
             try:
-                urlopen('http://www.google.de', None, 3)
+                urlopen('https://www.google.de', None, 3)
                 return (True and config.pud.showmessage.value)
             except:
                 return False

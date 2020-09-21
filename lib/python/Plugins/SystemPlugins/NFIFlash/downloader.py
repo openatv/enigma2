@@ -125,7 +125,7 @@ class StickWizardJob(Job):
 			self.device = self.device[:-1]
 
 		box = HardwareInfo().get_device_name()
-		url = "http://www.dreamboxupdate.com/download/opendreambox/dreambox-nfiflasher-%s.tar.bz2" % box
+		url = "https://www.dreamboxupdate.com/download/opendreambox/dreambox-nfiflasher-%s.tar.bz2" % box
 		self.downloadfilename = "/tmp/dreambox-nfiflasher-%s.tar.bz2" % box
 		self.imagefilename = "/tmp/nfiflash_%s.img" % box
 		#UmountTask(self, device)
@@ -443,7 +443,7 @@ class NFIDownload(Screen):
 		self.umount()
 
 	def getMD5(self):
-		url = "http://www.dreamboxupdate.com/download/opendreambox/dreambox-nfiflasher-%s-md5sums" % self.box
+		url = "https://www.dreamboxupdate.com/download/opendreambox/dreambox-nfiflasher-%s-md5sums" % self.box
 		client.getPage(url).addCallback(self.md5sums_finished).addErrback(self.feed_failed)
 
 	def md5sums_finished(self, data):
