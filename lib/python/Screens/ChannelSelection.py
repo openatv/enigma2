@@ -755,8 +755,8 @@ class ChannelSelectionEPG(InfoBarButtonSetup):
 		self.ChoiceBoxDialog = None
 		self.RemoveTimerDialog = None
 		self.hotkeys = [
-			(pgettext("button|label", "Info/EPG button"), "info", "Infobar/openEventView"),
-			(pgettext("button|label", "Info/EPG button hold"), "info_long", "Infobar/showEventInfoPlugins"),
+			(pgettext("button|label", "ⓘ Info button"), "info", "Infobar/openEventView"),
+			(pgettext("button|label", "ⓘ Info button hold"), "info_long", "Infobar/showEventInfoPlugins"),
 			(pgettext("button|label", "EPG/Guide button"), "epg", "Infobar/EPGPressed/1"),
 			(pgettext("button|label", "EPG/Guide button hold"), "epg_long", "Infobar/showEventInfoPlugins"),
 		]

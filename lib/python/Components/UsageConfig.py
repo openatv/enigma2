@@ -364,7 +364,7 @@ def InitUsageConfig():
 		(str(KEYIDS["KEY_HOME"]), pgettext("button|label", "Home button")),
 		(str(KEYIDS["KEY_END"]), pgettext("button|label", "End button")),
 		(str(KEYIDS["KEY_HELP"]), pgettext("button|label", "Help button")),
-		(str(KEYIDS["KEY_INFO"]), pgettext("button|label", "Info/EPG button")),
+		(str(KEYIDS["KEY_INFO"]), pgettext("button|label", "ⓘ Info button")),
 		(str(KEYIDS["KEY_TEXT"]), pgettext("button|label", "Text button")),
 		(str(KEYIDS["KEY_SUBTITLE"]), pgettext("button|label", "Subtitle button")),
 		(str(KEYIDS["KEY_FAVORITES"]), pgettext("button|label", "Favourites button")),
