@@ -618,7 +618,7 @@ class AdapterSetup(Screen, ConfigListScreen, HelpableScreen):
 			havewol = False
 			if SystemInfo["WakeOnLAN"] and not getBoxType() in ('et10000', 'gb800seplus', 'gb800ueplus', 'gbultrase', 'gbultraue', 'gbultraueh', 'gbipbox', 'gbquad', 'gbx1', 'gbx2', 'gbx3', 'gbx3h'):
 				havewol = True
-			if getBoxType() in ('et10000' , 'vuultimo4k') and self.iface == 'eth0':
+			if getBoxType() in ('et10000' , 'vuultimo4k', 'vuduo4kse') and self.iface == 'eth0':
 				havewol = False
 			if havewol and self.onlyWakeOnWiFi != True:
 				self.list.append(getConfigListEntry(_('Enable Wake On LAN'), config.network.wol))
