@@ -1672,9 +1672,13 @@ class ChannelSelectionBase(Screen, HelpableScreen):
 		self.inFav = False
 		titleStr = self.getTitle()
 		nameStr = ''
-		pos = titleStr.find(']')
-		if pos == -1:
-			pos = titleStr.find(')')
+		pos = titleStr.rfind(' [')
+		if pos != -1:
+			mode = titleStr[pos:]
+			titleStr = titleStr[:pos]
+		else:
+			mode = ""
+		pos = titleStr.rfind(')')
 		if pos != -1:
 			titleStr = titleStr[:pos + 1]
 			if titleStr.find(' (TV)') != -1:
@@ -1685,7 +1689,7 @@ class ChannelSelectionBase(Screen, HelpableScreen):
 			if Len > 0:
 				ref = self.servicePath[-1]
 				nameStr = self.getServiceName(ref)
-				titleStr = nameStr + titleStr
+				titleStr = nameStr + titleStr + mode
 				self.setTitle(titleStr)
 				if self.greenIsFav:
 					if nameStr == _("Favourites"):
