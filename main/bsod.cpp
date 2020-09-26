@@ -152,10 +152,10 @@ void bsodFatal(const char *component)
 		component = "Enigma2";
 
 	/* Retrieve current ringbuffer state */
-	const char* logp1;
-	unsigned int logs1;
-	const char* logp2;
-	unsigned int logs2;
+	const char* logp1 = NULL;
+	unsigned int logs1 = 0;
+	const char* logp2 = NULL;
+	unsigned int logs2 = 0;
 	retrieveLogBuffer(&logp1, &logs1, &logp2, &logs2);
 
 	FILE *f;
