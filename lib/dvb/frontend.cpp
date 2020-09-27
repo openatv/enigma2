@@ -2372,7 +2372,8 @@ RESULT eDVBFrontend::prepare_terrestrial(const eDVBFrontendParametersTerrestrial
 {
 	int res = 0;
 	unsigned int freq = feparm.frequency;
-	if ( freq < fe_info.frequency_min || freq > fe_info.frequency_max)
+	if ((freq < fe_info.frequency_min || freq > fe_info.frequency_max)
+		&& fe_info.frequency_min != 0 && fe_info.frequency_max != 0)
 	{
 		eDebugNoSimulate("[FE] (%d) freq %d out of range (%d..%d)", m_dvbid, freq, fe_info.frequency_min, fe_info.frequency_max);
 		res = -EINVAL;
