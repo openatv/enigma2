@@ -1377,6 +1377,18 @@ int eDVBFrontend::readFrontendData(int type)
 							{
 								if (prop[0].u.st.stat[i].scale == FE_SCALE_RELATIVE)
 									strength = prop[0].u.st.stat[i].uvalue;
+								else if (!strength && prop[0].u.st.stat[i].scale == FE_SCALE_DECIBEL)
+								{
+									// Based on https://otadtv.com/digital_tv/signals.html
+									// -65 dBm is 0% and 0 dBm is too strong, so keep it
+									// simple and use that as relative.
+									if (prop[0].u.st.stat[i].svalue <= -65535)
+										strength = 1;  // avoid using fallback
+									else if (prop[0].u.st.stat[i].svalue >= 0)
+										strength = 65535;
+									else
+										strength = 65535 + prop[0].u.st.stat[i].svalue;
+								}
 							}
 						}
 					}
