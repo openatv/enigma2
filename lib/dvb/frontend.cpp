@@ -906,7 +906,7 @@ void eDVBFrontend::calculateSignalQuality(int snr, int &signalquality, int &sign
 		ret = (int)(snr / 40.5);
 		sat_max = 1618;
 	}
-	if (!strcmp(m_description, "AVL6211")) // ET10000
+	else if (!strcmp(m_description, "AVL6211")) // ET10000
 	{
 		ret = (int)(snr / 37.5);
 		sat_max = 1700;
@@ -1051,6 +1051,11 @@ void eDVBFrontend::calculateSignalQuality(int snr, int &signalquality, int &sign
 		snr = 0xFF - (snr & 0xFF);
 		if (snr != 0)
 			ret = 10 * (int)(-100 * (log10(snr) - log10(255)));
+	}
+	else if (!strcmp(m_description, "ATBM7821 DVB-T2/C")) // SF8008, Beyonwiz V2
+	{
+		ret = snr * 10;
+		ter_max = 4200;
 	}
 	else if (strstr(m_description, "Si2166B")) // DM7080HD/DM7020HD/DM820/DM800se DVB-S2 Dual NIM
 	{
