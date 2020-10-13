@@ -698,6 +698,10 @@ std::string eDVBFrontendData::getTypeDescription() const
 		{
 			result = "DVB-S";
 		}
+		else if (frontend->supportsDeliverySystem(SYS_DVBT, true) || frontend->supportsDeliverySystem(SYS_DVBT2, true))
+		{
+			result = "DVB-T";
+		}
 #if DVB_API_VERSION > 5 || DVB_API_VERSION == 5 && DVB_API_VERSION_MINOR >= 6
 		else if (frontend->supportsDeliverySystem(SYS_DVBC_ANNEX_A, true) || frontend->supportsDeliverySystem(SYS_DVBC_ANNEX_C, true))
 #else
@@ -705,10 +709,6 @@ std::string eDVBFrontendData::getTypeDescription() const
 #endif
 		{
 			result = "DVB-C";
-		}
-		else if (frontend->supportsDeliverySystem(SYS_DVBT, true) || frontend->supportsDeliverySystem(SYS_DVBT2, true))
-		{
-			result = "DVB-T";
 		}
 		else if (frontend->supportsDeliverySystem(SYS_ATSC, true) || frontend->supportsDeliverySystem(SYS_DVBC_ANNEX_B, true))
 		{

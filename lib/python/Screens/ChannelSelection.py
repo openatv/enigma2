@@ -1672,9 +1672,13 @@ class ChannelSelectionBase(Screen, HelpableScreen):
 		self.inFav = False
 		titleStr = self.getTitle()
 		nameStr = ''
-		pos = titleStr.find(']')
-		if pos == -1:
-			pos = titleStr.find(')')
+		pos = titleStr.rfind(' [')
+		if pos != -1:
+			mode = titleStr[pos:]
+			titleStr = titleStr[:pos]
+		else:
+			mode = ""
+		pos = titleStr.rfind(')')
 		if pos != -1:
 			titleStr = titleStr[:pos + 1]
 			if titleStr.find(' (TV)') != -1:
@@ -1685,7 +1689,7 @@ class ChannelSelectionBase(Screen, HelpableScreen):
 			if Len > 0:
 				ref = self.servicePath[-1]
 				nameStr = self.getServiceName(ref)
-				titleStr = nameStr + titleStr
+				titleStr = nameStr + titleStr + mode
 				self.setTitle(titleStr)
 				if self.greenIsFav:
 					if nameStr == _("Favourites"):
@@ -2396,6 +2400,7 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 					self.startRoot = None
 					self.correctChannelNumber()
 					self.movemode and self.toggleMoveMode()
+					self.bouquet_mark_edit != OFF and self.endMarkedEdit(True)
 					self.editMode = False
 					self.protectContextMenu = True
 					self.close(ref)
@@ -2440,7 +2445,7 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 		self.buildTitleString()
 
 	def showPipzapMessage(self):
-		time = config.usage.infobar_timeout.index
+		time = int(config.usage.infobar_timeout.value)
 		if time:
 			self.pipzaptimer.startLongTimer(time)
 		if hasattr(self.session, 'pip') and self.session.pip:
@@ -2712,6 +2717,8 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 		if config.usage.servicelistpreview_mode.value:
 			self.zapBack()
 		self.correctChannelNumber()
+		self.movemode and self.toggleMoveMode()
+		self.bouquet_mark_edit != OFF and self.endMarkedEdit(True)
 		self.editMode = False
 		self.protectContextMenu = True
 		self.close(None)
