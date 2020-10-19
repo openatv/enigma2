@@ -465,12 +465,15 @@ class RecordTimerEntry(timer.TimerEntry, object):
 # Report the tuner that the current recording is using
 	def log_tuner(self, level, state):
 		feinfo = self.record_service and self.record_service.frontendInfo()
-		fedata = feinfo and feinfo.getFrontendData()
-		tn = fedata.get("tuner_number") if fedata else -1
-		if tn >= 0:
-			tuner_info = "Tuner " + chr(ord('A') + tn)
+		if feinfo:
+			fedata = feinfo.getFrontendData()
+			tn = fedata.get("tuner_number") if fedata else -1
+			if tn >= 0:
+				tuner_info = "Tuner " + chr(ord('A') + tn)
+			else:
+				tuner_info = SystemInfo["HDMIin"] and "HDMI-IN" or "Unknown source"
 		else:
-			tuner_info = SystemInfo["HDMIin"] and "HDMI-IN" or "Unknown source"
+			tuner_info = "Tuner not (yet) allocated"
 		self.log(level, "%s recording from: %s" % (state, tuner_info))
 
 	def activate(self):
@@ -484,7 +487,7 @@ class RecordTimerEntry(timer.TimerEntry, object):
 					self.start_prepare = time() + 5 # tryPrepare in 5 seconds
 					self.log(0, "next try in 5 seconds ...(%d/3)" % self.MountPathRetryCounter)
 					return False
-				message = _("Write error at start of recording. %s\n%s") % ((_("Disk was not found!"), _("Disk is not writable!"), _("Disk full?"))[self.MountPathErrorNumber-1],self.name)
+				message = _("Error while preparing to record. %s\n%s") % ((_("Disk was not found!"), _("Disk is not writable!"), _("Disk full?"))[self.MountPathErrorNumber-1],self.name)
 				Notifications.AddPopup(message, MessageBox.TYPE_ERROR, timeout=20, id="DiskFullMessage")
 				self.failed = True
 				self.next_activation = time()
