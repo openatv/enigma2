@@ -1,13 +1,11 @@
 # Poland translations for Enigma2.
 #
-#: About.py:920 Recordings.py:80 Timershift.py:74 Converter/genre.py:242
-#: VideoEnhancement/plugin.py:27
 msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-09-06 12:13+0100\n"
-"PO-Revision-Date: 2020-06-16 15:23+0100\n"
+"PO-Revision-Date: 2020-10-18 10:59+0100\n"
 "Last-Translator: pololoko111 <pololoko111@o2.pl>\n"
 "Language-Team: Poland\n"
 "Language: pl\n"
@@ -15,7 +13,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: Poedit 2.3.1\n"
+"X-Generator: Poedit 2.4.1\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 
 #: ImageBackup.py:672
@@ -271,19 +269,19 @@ msgid "  Red key : Show/Hide channel name"
 msgstr "  Czerwony : Pokaż/Ukryj nazwę kanału"
 
 #: key_actions.py:154
-#, fuzzy, python-format
+#, python-format
 msgid " ('%s') ends successfully."
-msgstr "Usunięty pomyślnie."
+msgstr " ('%s') kończy się pomyślnie."
 
 #: key_actions.py:140
-#, fuzzy, python-format
+#, python-format
 msgid " ('%s') ends with error messages."
-msgstr "Ukryj wszelki zapis komunikatu o błędach."
+msgstr " ('%s') kończy się komunikatami o błędach."
 
 #: key_actions.py:137
 #, python-format
 msgid " ('%s') ends with error number [%d]."
-msgstr ""
+msgstr "('%s') kończy się numerem błędu [%d]."
 
 #: ScanSetup.py:1771
 #, python-format
@@ -1333,9 +1331,9 @@ msgstr[2] "%d Minut"
 #: RemainingToText.py:294 RemainingToText.py:296 RemainingToText.py:298
 #: RemainingToText.py:364 RemainingToText.py:366 RemainingToText.py:368
 #: RemainingToText.py:370 RemainingToText.py:372
-#, fuzzy, python-format
+#, python-format
 msgid "%d Mins"
-msgstr "Minut"
+msgstr "%d Min"
 
 #. TRANSLATORS: Intermediate scanning result, '%d' channel(s) have been found so far
 #: ServiceScan.py:44
@@ -1381,9 +1379,9 @@ msgid "%d minutes"
 msgstr "%d minut"
 
 #: HdmiCec.py:47 HdmiCec.py:56
-#, fuzzy, python-format
+#, python-format
 msgid "%d ms"
-msgstr "%d minut"
+msgstr "%d ms"
 
 #: UsageConfig.py:81
 #, python-format
@@ -1551,6 +1549,9 @@ msgid ""
 "Press ok for multiboot selection\n"
 "Press exit to close"
 msgstr ""
+"%s\n"
+"Naciśnij OK, aby wybrać multiboot\n"
+"Naciśnij EXIT, aby zamknąć"
 
 #: FuzzyDate.py:22
 #, python-format
@@ -1560,7 +1561,7 @@ msgstr ""
 #: InputDeviceSetup.py:145
 #, python-format
 msgid "%s %s advanced remote control (native)"
-msgstr "%s %s zaawansowany pilot"
+msgstr "%s %s zaawansowany pilot (natywne)"
 
 #: InputDeviceSetup.py:145
 #, python-format
@@ -1590,7 +1591,7 @@ msgstr "%s %s oprogramowania, ponieważ aktualizacje są dostępne."
 #: OScamInfo.py:327
 #, python-format
 msgid "%s ( %s Cards )"
-msgstr ""
+msgstr "%s ( %s Karty )"
 
 #: FileCommander/plugin.py:1559
 #, python-format
@@ -1666,9 +1667,9 @@ msgid "%s not available."
 msgstr "%s nie dostępne."
 
 #: addons/unarchiver.py:194
-#, fuzzy, python-format
+#, python-format
 msgid "%s successfully extracted."
-msgstr "%s pomyślnie wyodrębniono."
+msgstr "%s pomyślnie wypakowany."
 
 #: SoftwareUpdate.py:302 SoftwareUpdate.py:305
 #, python-format
@@ -4222,9 +4223,9 @@ msgid "Back-up Tool for a %s\n"
 msgstr "Narzędzie do tworzenia kopii zapasowych dla %s\n"
 
 #: ImageBackup.py:216
-#, fuzzy, python-format
+#, python-format
 msgid "Back-up Tool for an %s\n"
-msgstr "Narzędzie do tworzenia kopii zapasowych %s\n"
+msgstr "Narzędzie do tworzenia kopii zapasowych na %s\n"
 
 #: ButtonSetup.py:76 ButtonSetup.py:77
 msgid "Back/Recall"
@@ -16423,7 +16424,7 @@ msgid "Process"
 msgstr "Proces"
 
 #: About.py:184
-#, fuzzy, python-format
+#, python-format
 msgid "Processor temperature:\t\t%s"
 msgstr "Temperatura procesora:\t%s"
 
@@ -20864,7 +20865,6 @@ msgid "Softcam-Setup"
 msgstr "Konfiguracja Softcam"
 
 #: Infopanel/plugin.py:77
-#, fuzzy
 msgid "SoftcamSetup"
 msgstr "Konfiguracja Softcam"
 
@@ -27229,7 +27229,7 @@ msgstr "szybko"
 
 #: SoftwarePanel.py:66 SoftwarePanel.py:67 SoftwarePanel.py:68
 msgid "feed status"
-msgstr "stan serwera"
+msgstr "Stan Serwera"
 
 #: LogManager.py:534
 msgid "file can not displayed - file not found"
@@ -27315,9 +27315,8 @@ msgstr "z"
 #: FileCommander/plugin.py:700 FileCommander/plugin.py:729
 #: FileCommander/plugin.py:762 FileCommander/plugin.py:1298
 #: FileCommander/plugin.py:1344 FileCommander/plugin.py:1390
-#, fuzzy
 msgid "from dir"
-msgstr "z"
+msgstr "z katalogu"
 
 #: About.py:456
 msgid "full"
@@ -29794,9 +29793,8 @@ msgstr "przełączanie"
 #~ msgid "CommonInterface"
 #~ msgstr "Wspólny Interfejs"
 
-#, fuzzy
 #~ msgid "Compress"
-#~ msgstr "Kompletny"
+#~ msgstr "Kompresja"
 
 #~ msgid "Configure IPTV Player"
 #~ msgstr "Konfiguracja Odtwarzacza IPTV"
@@ -31125,7 +31123,6 @@ msgstr "przełączanie"
 #~ msgid "Multi-EPG bouquet selection"
 #~ msgstr "Wybór Bukietu Multi-EPG"
 
-#, fuzzy
 #~ msgid "MultiBootSelector"
 #~ msgstr "MultiBoot Selektor"
 
