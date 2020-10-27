@@ -239,7 +239,7 @@ class GenresAUSIceTV:
 	subtype = {
 		# Miscellaneous
 		0: (
-			_(""),  # 0x00
+			"",  # 0x00
 			_("Cult"),  # 0x01
 			_("Youth"),  # 0x02 remapped from 0x01
 			_("Wrestling"),  # 0x03 remapped from 0x01
@@ -254,6 +254,7 @@ class GenresAUSIceTV:
 			_("Film-Noir"),  # 0x0c remapped from 0x01
 			_("Family"),  # 0x0d remapped from 0x01
 			_("Cycling"),  # 0x0e remapped from 0x01
+			_("Weightlifting"),  # 0x0f remapped from 0x01
 		),
 		# Movie/Drama
 		1: (
@@ -278,8 +279,20 @@ class GenresAUSIceTV:
 		2: (
 			_("News"),  # 0x20
 			_("Weather"),  # 0x21
-			_("Unused 0x22"),  # 0x22
+			_("General Show"),  # 0x22 remapped from 0x01
 			_("Documentary"),  # 0x23
+			_("General News"),  # 0x24 remapped from 0x01
+			_("General Music"),  # 0x25 remapped from 0x01
+			_("General Movie"),  # 0x26 remapped from 0x01
+			_("General Education"),  # 0x27 remapped from 0x01
+			_("General Children's"),  # 0x28 remapped from 0x01
+			_("General Arts"),  # 0x29 remapped from 0x01
+			_("Gaelic Games"),  # 0x2a remapped from 0x01
+			_("Gaelic Football"),  # 0x2b remapped from 0x01
+			_("Formula One"),  # 0x2c remapped from 0x01
+			_("Football - International"),  # 0x2d remapped from 0x01
+			_("Football - Club"),  # 0x2e remapped from 0x01
+			_("Folkloric"),  # 0x2f remapped from 0x01
 		),
 		# Show/Games show
 		3: (
@@ -287,6 +300,18 @@ class GenresAUSIceTV:
 			_("Game Show"),  # 0x31
 			_("Variety"),  # 0x32
 			_("Talk Show"),  # 0x33
+			_("Folk"),  # 0x34 remapped from 0x01
+			_("Fitness & Health"),  # 0x35 remapped from 0x01
+			_("Film"),  # 0x36 remapped from 0x01
+			_("Factual Topics"),  # 0x37 remapped from 0x01
+			_("Extreme"),  # 0x38 remapped from 0x01
+			_("Equestrian"),  # 0x39 remapped from 0x01
+			_("Environment"),  # 0x3a remapped from 0x01
+			_("Economics"),  # 0x3b remapped from 0x01
+			_("Discussion"),  # 0x3c remapped from 0x01
+			_("Detective"),  # 0x3d remapped from 0x01
+			_("Debate"),  # 0x3e remapped from 0x01
+			_("Darts"),  # 0x3f remapped from 0x01
 		),
 		# Sports
 		4: (
@@ -311,10 +336,20 @@ class GenresAUSIceTV:
 		5: (
 			_("Children"),  # 0x50
 			_("Cartoon"),  # 0x51 remapped from 0x55
-			_("Unused 0x52"),  # 0x52
-			_("Unused 0x53"),  # 0x53
-			_("Unused 0x54"),  # 0x54
+			_("DIY"),  # 0x52 remapped from 0x01
+			_("Culture"),  # 0x53 remapped from 0x01
+			_("Combat Sports (without own category)"),  # 0x54 remapped from 0x01
 			_("Animation"),  # 0x55
+			_("Classical Music"),  # 0x56 remapped from 0x01
+			_("Cinema"),  # 0x57 remapped from 0x01
+			_("Challenge"),  # 0x58 remapped from 0x01
+			_("Cartoons"),  # 0x59 remapped from 0x01
+			_("Ballet"),  # 0x5a remapped from 0x01
+			_("Badminton"),  # 0x5b remapped from 0x01
+			_("Animated Movie"),  # 0x5c remapped from 0x01
+			_("Animals"),  # 0x5d remapped from 0x01
+			_("Advertisement"),  # 0x5e remapped from 0x01
+			_("Adult Movie"),  # 0x5f remapped from 0x01
 		),
 		# Music/Ballet/Dance
 		6: (
@@ -359,21 +394,66 @@ class GenresAUSIceTV:
 		# Special
 		11: (
 			_("Special"),  # 0xb0
-			_("Unused 0xb1"),  # 0xb1
+			_("Special"),  # 0xb1 remapped from 0xb0
 			_("Unused 0xb2"),  # 0xb2
 			_("Live"),  # 0xb3
 		),
 		# Comedy
 		12: (
 			_("Comedy"),  # 0xc0
+			_("Table Tennis"),  # 0xc1 remapped from 0x01
+			_("Strongman Contests"),  # 0xc2 remapped from 0x01
+			_("Sports Magazines"),  # 0xc3 remapped from 0x01
+			_("Soap"),  # 0xc4 remapped from 0x01
+			_("Snooker"),  # 0xc5 remapped from 0x01
+			_("Skiing"),  # 0xc6 remapped from 0x01
+			_("Sketches"),  # 0xc7 remapped from 0x01
+			_("Serious Music"),  # 0xc8 remapped from 0x01
+			_("Science Fiction"),  # 0xc9 remapped from 0x01
+			_("Rugby Union - International"),  # 0xca remapped from 0x01
+			_("Rugby Union - Domestic"),  # 0xcb remapped from 0x01
+			_("Rugby League - International"),  # 0xcc remapped from 0x01
+			_("Rugby League - Domestic"),  # 0xcd remapped from 0x01
+			_("Rock"),  # 0xce remapped from 0x01
+			_("Regional News"),  # 0xcf remapped from 0x01
 		),
 		# Drama
 		13: (
 			_("Drama"),  # 0xd0
+			_("Reality Show"),  # 0xd1 remapped from 0x01
+			_("Rallying"),  # 0xd2 remapped from 0x01
+			_("Quiz"),  # 0xd3 remapped from 0x01
+			_("Puppets"),  # 0xd4 remapped from 0x01
+			_("Powerboating"),  # 0xd5 remapped from 0x01
+			_("Pop"),  # 0xd6 remapped from 0x01
+			_("Politics"),  # 0xd7 remapped from 0x01
+			_("Political Issues"),  # 0xd8 remapped from 0x01
+			_("Poker"),  # 0xd9 remapped from 0x01
+			_("Other"),  # 0xda remapped from 0x01
+			_("Opera"),  # 0xdb remapped from 0x01
+			_("News Magazine"),  # 0xdc remapped from 0x01
+			_("National News"),  # 0xdd remapped from 0x01
+			_("Motoring"),  # 0xde remapped from 0x01
+			_("Motorcycling"),  # 0xdf remapped from 0x01
 		),
 		# Documentary
 		14: (
 			_("Documentary"),  # 0xe0
+			_("Modern Dance"),  # 0xe1 remapped from 0x01
+			_("Minority Sports"),  # 0xe2 remapped from 0x01
+			_("Melodrama"),  # 0xe3 remapped from 0x01
+			_("Martial Sports"),  # 0xe4 remapped from 0x01
+			_("Jazz"),  # 0xe5 remapped from 0x01
+			_("Interview"),  # 0xe6 remapped from 0x01
+			_("International News"),  # 0xe7 remapped from 0x01
+			_("Ice Skating"),  # 0xe8 remapped from 0x01
+			_("Ice Hockey"),  # 0xe9 remapped from 0x01
+			_("Horse racing"),  # 0xea remapped from 0x01
+			_("History"),  # 0xeb remapped from 0x01
+			_("Health & Fitness"),  # 0xec remapped from 0x01
+			_("Gymnastics"),  # 0xed remapped from 0x01
+			_("General Sports"),  # 0xee remapped from 0x01
+			_("General Social"),  # 0xef remapped from 0x01
 		),
 		# Real Life
 		15: (
@@ -386,6 +466,13 @@ class GenresAUSIceTV:
 			_("American Football"),  # 0xf6 remapped from 0x45
 			_("AFL"),  # 0xf7 remapped from 0x45
 			_("Rowing"),  # 0xf8 remapped from 0x48
+			_("Water Sport"),  # 0xf9 remapped from 0x01
+			_("Volleyball"),  # 0xfa remapped from 0x01
+			_("Urban Music"),  # 0xfb remapped from 0x01
+			_("Triathlon"),  # 0xfc remapped from 0x01
+			_("Traditional Music"),  # 0xfd remapped from 0x01
+			_("Tourism"),  # 0xfe remapped from 0x01
+			_("Technology"),  # 0xff remapped from 0x01
 		),
 	}
 
