@@ -1175,6 +1175,7 @@ def InitUsageConfig():
 	config.epgselection.infobar_piconwidth = ConfigSelectionNumber(default=100, stepwidth=1, min=50, max=500, wraparound=True)
 	config.epgselection.infobar_infowidth = ConfigSelectionNumber(default=50, stepwidth=25, min=0, max=150, wraparound=True)
 	config.epgselection.enhanced_preview_mode = ConfigYesNo(default=True)
+	config.epgselection.enhanced_picon = ConfigYesNo(default=True)
 	config.epgselection.enhanced_ok = ConfigSelection(default="Zap", choices=[("Zap", _("Zap")), ("Zap + Exit", _("Zap + Exit"))])
 	config.epgselection.enhanced_oklong = ConfigSelection(default="Zap + Exit", choices=[("Zap", _("Zap")), ("Zap + Exit", _("Zap + Exit"))])
 	config.epgselection.enhanced_eventfs = ConfigSelectionNumber(default=0, stepwidth=1, min=-8, max=10, wraparound=True)

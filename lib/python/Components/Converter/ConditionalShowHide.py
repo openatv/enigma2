@@ -47,6 +47,10 @@ class ConditionalShowHide(Converter, object):
 		else:
 			for x in self.downstream_elements:
 				x.visible = vis
+			# Need this to update a conditional Picon; only testing this
+			# one as CHANGED_CLEAR will remove a Pixmap.
+			if what[0] == self.CHANGED_ALL:
+				Converter.changed(self, what)
 
 	def connectDownstream(self, downstream):
 		Converter.connectDownstream(self, downstream)
