@@ -22,6 +22,7 @@ public:
 
 	void setInOutList(SWIG_PYOBJECT(ePyObject) list);
 	void setForegroundColor(const gRGB &col);
+	void setCutMark(const pts_t &where, int what);
 
 	void enableSeekPointer(int enable);
 	void setSeekPosition(const pts_t &pos);
@@ -40,6 +41,9 @@ private:
 
 	pts_t m_position, m_length, m_seek_position;
 	int m_pos, m_seek_pos;
+
+	pts_t m_cut_where;
+	int m_cut_what;
 
 		/* TODO: this is duplicated code from lib/service/servicedvb.h */
 	struct cueEntry

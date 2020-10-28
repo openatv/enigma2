@@ -13,6 +13,8 @@ ePositionGauge::ePositionGauge(eWidget *parent)
 	m_length = 0;
 	m_have_foreground_color = 0;
 	m_seek_position = 0;
+	m_cut_where = 0;
+	m_cut_what = -1;
 }
 
 ePositionGauge::~ePositionGauge()
@@ -93,6 +95,16 @@ void ePositionGauge::setInOutList(ePyObject list)
 	invalidate();
 }
 
+void ePositionGauge::setCutMark(const pts_t &where, int what)
+{
+	if (what >= -1 && what <= 1)
+	{
+		m_cut_where = where;
+		m_cut_what = what;
+		invalidate();
+	}
+}
+
 int ePositionGauge::event(int event, void *data, void *data2)
 {
 	switch (event)
@@ -166,6 +178,29 @@ int ePositionGauge::event(int event, void *data, void *data2)
 			painter.fill(eRect(xm_last - 1, 0, 3, s.height()));
 		}
 
+		if (m_cut_what != -1)
+		{
+			xm = scale(m_cut_where);
+			painter.setForegroundColor(gRGB(m_cut_what == 0 ? 0x008000 : 0x800000));
+			painter.fill(eRect(xm - 2, 0, 4, s.height()));
+			int xi = -1, xo;
+			if (m_cut_what == 0 && m_position < m_cut_where)
+			{
+				xi = m_pos;
+				xo = xm;
+			}
+			else if (m_cut_what == 1 && m_position > m_cut_where)
+			{
+				xi = xm;
+				xo = m_pos;
+			}
+			if (xi != -1)
+			{
+				painter.setForegroundColor(gRGB(0x800000));
+				painter.fill(eRect(xi, (s.height()-4) / 2, xo-xi, 4));
+			}
+		}
+
 #if 0
 // border
 		if (m_have_border_color)
@@ -191,6 +226,8 @@ void ePositionGauge::updatePosition()
 	m_seek_pos = scale(m_seek_position);
 	int base = (size().height() - 10) / 2;
 
+	if (m_cut_what != -1)
+		invalidate();
 	m_point_widget->move(ePoint(m_pos - m_point_center.x(), base - m_point_center.y()));
 	m_seek_point_widget->move(ePoint(m_seek_pos - m_seek_point_center.x(), base - m_seek_point_center.y()));
 }

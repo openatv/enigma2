@@ -491,19 +491,18 @@ class CutListEditor(Screen, InfoBarBase, InfoBarSeek, InfoBarCueSheetSupport, He
 			if result == CutListContextMenu.RET_STARTCUT:
 				self.cut_start = self.context_position
 				self.state = CutListContextMenu.SHOW_STARTCUT
-				if self.cut_end is None:
-					return
-				if self.cut_start >= self.cut_end:
+				if self.cut_end is None or self.cut_start >= self.cut_end:
 					self.cut_end = None
+					self["Timeline"].instance.setCutMark(self.cut_start, 1)
 					return
 			else: # CutListContextMenu.RET_ENDCUT
 				self.cut_end = self.context_position
 				self.state = CutListContextMenu.SHOW_ENDCUT
-				if self.cut_start is None:
-					return
-				if self.cut_end <= self.cut_start:
+				if self.cut_start is None or self.cut_end <= self.cut_start:
 					self.cut_start = None
+					self["Timeline"].instance.setCutMark(self.cut_end, 0)
 					return
+			self["Timeline"].instance.setCutMark(0, -1)
 			# remove marks between the new cut
 			for (where, what) in self.cut_list[:]:
 				if self.cut_start <= where <= self.cut_end:
