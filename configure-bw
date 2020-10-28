@@ -13,7 +13,7 @@ case "$1" in
 		EXTRA_PARAMS="--with-boxtype=inihdp --with-machinebuild=beyonwizt4 --with-bwlcd255"
 		;;
 	u4)
-		EXTRA_PARAMS="--with-boxtype=et1300 --with-machinebuild=beyonwizu4 --with-textlcd"
+		EXTRA_PARAMS="--with-boxtype=et13000 --with-machinebuild=beyonwizu4 --with-textlcd"
 		;;
 	v2)
 		EXTRA_PARAMS="--with-machinebuild=beyonwizv2 --with-boxtype=beyonwizv2 --with-7segment --with-lcddev=/dev/null"
