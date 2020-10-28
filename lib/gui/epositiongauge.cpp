@@ -111,60 +111,59 @@ int ePositionGauge::event(int event, void *data, void *data2)
 		style->setStyle(painter, eWindowStyle::styleLabel); // TODO - own style
 //		painter.fill(eRect(0, 10, s.width(), s.height()-20));
 
-		pts_t in = 0, out = 0;
-		int xm, xm_last = -1;
-
 		std::multiset<cueEntry>::iterator i(m_cue_entries.begin());
-
-		while (1)
-		{
-			if (i == m_cue_entries.end())
-				out = m_length;
-			else {
-				if (i->what == 0) /* in */
-				{
-					in = i++->where;
-					continue;
-				} else if (i->what == 1) /* out */
-					out = i++->where;
-				else /* mark or last */
-				{
-					xm = scale(i->where);
-					if (i->what == 2) {
-						painter.setForegroundColor(gRGB(0xFF8080));
-						if (xm - 2 < xm_last) /* Make sure last is not overdrawn */
-							painter.fill(eRect(xm_last, 0, 2 + xm - xm_last, s.height()));
-						else
-							painter.fill(eRect(xm - 2, 0, 4, s.height()));
-					} else if (i->what == 3) {
-						painter.setForegroundColor(gRGB(0x80FF80));
-						painter.fill(eRect(xm - 1, 0, 3, s.height()));
-						xm_last = xm + 2;
-					}
-					i++;
-					continue;
-				}
-			}
-
-			if (m_have_foreground_color)
-			{
-				painter.setForegroundColor(gRGB(m_foreground_color));
-				int xi = scale(in), xo = scale(out);
-				painter.fill(eRect(xi, (s.height()-4) / 2, xo-xi, 4));
-			}
-
-			in = m_length;
-
-			if (i == m_cue_entries.end())
-				break;
-		}
-//		painter.setForegroundColor(gRGB(0x00000000));
 
 		if (m_have_foreground_color)
 		{
+			painter.setForegroundColor(gRGB(m_foreground_color));
+			pts_t in = 0, out = 0;
+			while (1)
+			{
+				if (i == m_cue_entries.end())
+					out = m_length;
+				else {
+					if (i->what == 0) /* in */
+					{
+						in = i++->where;
+						continue;
+					} else if (i->what == 1) /* out */
+						out = i++->where;
+					else /* mark or last */
+					{
+						i++;
+						continue;
+					}
+				}
+
+				int xi = scale(in), xo = scale(out);
+				painter.fill(eRect(xi, (s.height()-4) / 2, xo-xi, 4));
+
+				in = m_length;
+
+				if (i == m_cue_entries.end())
+					break;
+			}
 			painter.setForegroundColor(gRGB(0x225b7395));
 			painter.fill(eRect(s.width() - 2, 2, s.width() - 1, s.height() - 4));
 			painter.fill(eRect(0, 2, 2, s.height() - 4));
+		}
+
+		int xm, xm_last = -1;
+		painter.setForegroundColor(gRGB(0xFF4040));
+		for (i = m_cue_entries.begin(); i != m_cue_entries.end(); ++i)
+		{
+			if (i->what == 3) /* last */
+				xm_last = scale(i->where);
+			else if (i->what == 2) /* mark */
+			{
+				xm = scale(i->where);
+				painter.fill(eRect(xm - 2, 0, 4, s.height()));
+			}
+		}
+		if (xm_last != -1)
+		{
+			painter.setForegroundColor(gRGB(0x40FF40));
+			painter.fill(eRect(xm_last - 1, 0, 3, s.height()));
 		}
 
 #if 0
