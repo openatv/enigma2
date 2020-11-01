@@ -3319,7 +3319,7 @@ void eEPGCache::importEvents(ePyObject serviceReferences, ePyObject list)
 	{
 		if (PyTuple_Size(serviceReferences) != 3)
 		{
-			eDebug("[EPG:import] serviceReferences tuple must contain 3 numbers (tsid, onid, sid), aborting");
+			eDebug("[EPG:import] serviceReferences tuple must contain 3 numbers (onid, tsid, sid), aborting");
 			return;
 		}
 		int onid = PyInt_AsLong(PyTuple_GET_ITEM(serviceReferences, 0));
@@ -3350,7 +3350,7 @@ void eEPGCache::importEvents(ePyObject serviceReferences, ePyObject list)
 			{
 				if (PyTuple_Size(item) != 3)
 				{
-					eDebug("[EPG:import] serviceReferences[%d] tuple must contain 3 numbers (tsid, onid, sid)", i);
+					eDebug("[EPG:import] serviceReferences[%d] tuple must contain 3 numbers (onid, tsid, sid)", i);
 				}
 				int onid = PyInt_AsLong(PyTuple_GET_ITEM(item, 0));
 				int tsid = PyInt_AsLong(PyTuple_GET_ITEM(item, 1));
