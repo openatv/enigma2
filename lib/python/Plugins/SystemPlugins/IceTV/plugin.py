@@ -722,10 +722,8 @@ class EPGFetcher(object):
         for show in shows:
             channel_id = long(show["channel_id"])
             event_id = int(show.get("eit_id"))
-            if event_id is None:
+            if event_id is None or event_id <= 0 or event_id >= 0xFFF7:
                 event_id = ice.showIdToEventId(show["id"])
-            if event_id <= 0:
-                event_id = None
             if "deleted_record" in show and int(show["deleted_record"]) == 1:
                 start = 999
                 duration = 10
