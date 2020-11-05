@@ -319,6 +319,10 @@ eventData::~eventData()
 		if ( it != descriptors.end() )
 		{
 			DescriptorPair &p = it->second;
+			if (p.reference_count == 0)
+			{
+				eDebug("[eEPGCache] Eventdata reference count is already zero!");
+			}
 			if (!--p.reference_count) // no more used descriptor
 			{
 				CacheSize -= it->second.data[1];
