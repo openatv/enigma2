@@ -2313,9 +2313,12 @@ void eEPGCache::channel_data::OPENTV_SummariesSection(const uint8_t *d)
 void eEPGCache::channel_data::cleanupOPENTV()
 {
 	m_OPENTV_Timer->stop();
-	m_OPENTV_ChannelsReader->stop();
-	m_OPENTV_TitlesReader->stop();
-	m_OPENTV_SummariesReader->stop();
+	if (m_OPENTV_ChannelsReader)
+		m_OPENTV_ChannelsReader->stop();
+	if (m_OPENTV_TitlesReader)
+		m_OPENTV_TitlesReader->stop();
+	if (m_OPENTV_SummariesReader)
+		m_OPENTV_SummariesReader->stop();
 	m_OPENTV_ChannelsConn = NULL;
 	m_OPENTV_TitlesConn = NULL;
 	m_OPENTV_SummariesConn = NULL;
