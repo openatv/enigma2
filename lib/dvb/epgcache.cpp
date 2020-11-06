@@ -994,11 +994,38 @@ void eEPGCache::flushEPG(int sid, int onid, int tsid)
 	flushEPG(uniqueEPGKey(sid, onid, tsid));
 }
 
-void eEPGCache::flushEPG(const uniqueEPGKey & s)
+// epg cache needs to be locked(cache_lock) before calling the procedure
+void eEPGCache::clearCompleteEPGCache()
 {
-	singleLock l(cache_lock);
+	// cache_lock needs to be set in calling procedure!
+	for (eventCache::iterator it(eventDB.begin()); it != eventDB.end(); ++it)
+	{
+		eventMap &evMap = it->second.byEvent;
+		timeMap &tmMap = it->second.byTime;
+		for (eventMap::iterator i = evMap.begin(); i != evMap.end(); ++i)
+			delete i->second;
+		evMap.clear();
+		tmMap.clear();
+	}
+	eventDB.clear();
+#ifdef ENABLE_PRIVATE_EPG
+	content_time_tables.clear();
+#endif
+	channelLastUpdated.clear();
+	singleLock m(channel_map_lock);
+	for (ChannelMap::const_iterator it(m_knownChannels.begin()); it != m_knownChannels.end(); ++it)
+	{
+		it->second->abortEPG();
+		it->second->startChannel();
+	}
+}
+
+void eEPGCache::flushEPG(const uniqueEPGKey & s, bool lock) // lock only affects complete flush
+{
+	eDebug("[eEPGCache] flushEPG %d", (int)(bool)s);
 	if (s)  // clear only this service
 	{
+		singleLock l(cache_lock);
 		eDebug("[eEPGCache] flushEPG svc(%04x:%04x:%04x)", s.onid, s.tsid, s.sid);
 		eventCache::iterator it = eventDB.find(s);
 		if (it != eventDB.end())
@@ -1047,29 +1074,13 @@ void eEPGCache::flushEPG(const uniqueEPGKey & s)
 	else // clear complete EPG Cache
 	{
 		eDebug("[eEPGCache] flushEPG all services");
-		for (eventCache::iterator it(eventDB.begin());
-			it != eventDB.end(); ++it)
+		if (lock)
 		{
-			EventCacheItem &servicemap = it->second;
-			eventMap &eventmap = servicemap.byEvent;
-			timeMap &timemap = servicemap.byTime;
-
-			for (eventMap::iterator i = eventmap.begin(); i != eventmap.end(); ++i)
-				delete getEventData(i);
-			eventmap.clear();
-			timemap.clear();
+			singleLock l(cache_lock);
+			clearCompleteEPGCache();
 		}
-		eventDB.clear();
-#ifdef ENABLE_PRIVATE_EPG
-		content_time_tables.clear();
-#endif
-		channelLastUpdated.clear();
-		singleLock m(channel_map_lock);
-		for (ChannelMap::const_iterator it(m_knownChannels.begin()); it != m_knownChannels.end(); ++it)
-		{
-			it->second->abortEPG();
-			it->second->startChannel();
-		}
+		else
+			clearCompleteEPGCache();
 	}
 }
 
@@ -1313,7 +1324,6 @@ void eEPGCache::load()
 	std::vector<char> vEPGDAT(m_filename.begin(), m_filename.end());
 	vEPGDAT.push_back('\0');
 	const char* EPGDAT = &vEPGDAT[0];
-	singleLock s(cache_lock);
 	std::string filenamex = m_filename + ".loading";
 	std::vector<char> vEPGDATX(filenamex.begin(), filenamex.end());
 	vEPGDATX.push_back('\0');
@@ -1357,6 +1367,11 @@ void eEPGCache::load()
 		ret = fread( text1, 13, 1, f);
 		if ( !memcmp( text1, "ENIGMA_EPG_V7", 13) )
 		{
+			singleLock s(cache_lock);
+			if (eventDB.size() > 0)
+			{
+				clearCompleteEPGCache();
+			}
 			std::unordered_set<uniqueEPGKey, hash_uniqueEPGKey > overlaps;
 			ret = fread( &size, sizeof(int), 1, f);
 			eventDB.rehash(size); /* Reserve buckets in advance */

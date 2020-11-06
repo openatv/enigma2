@@ -442,6 +442,7 @@ private:
 	void cleanLoop();
 	void submitEventData(const std::vector<int>& sids, const std::vector<eDVBChannelID>& chids, long start, long duration, const char* title, const char* short_summary, const char* long_description, char event_type, eit_type_t source, uint16_t eventId=0);
 	void submitEventData(const std::vector<int>& sids, const std::vector<eDVBChannelID>& chids, long start, long duration, const char* title, const char* short_summary, const char* long_description, std::vector<uint8_t> event_types, std::vector<eit_parental_rating> parental_ratings, eit_type_t source, uint16_t eventId=0);
+	void clearCompleteEPGCache();
 
 // called from main thread
 	void DVBChannelAdded(eDVBChannel*);
@@ -463,7 +464,7 @@ public:
 	void load();
 	void timeUpdated();
 	void flushEPG(int sid, int onid, int tsid);
-	void flushEPG(const uniqueEPGKey & s=uniqueEPGKey());
+	void flushEPG(const uniqueEPGKey & s=uniqueEPGKey(), bool lock = true);
 #ifndef SWIG
 	eEPGCache();
 	~eEPGCache();
