@@ -725,6 +725,7 @@ class EPGFetcher(object):
                 start = int(show["start_unix"])
                 stop = int(show["stop_unix"])
                 duration = stop - start
+                # TODO: Discard this entry if any of (start, stop, duration) are negative or bigger than 2147483647 (not maxint)
             title = show.get("title", "").encode("utf-8")
             short = show.get("subtitle", "").encode("utf-8")
             extended = show.get("desc", "").encode("utf-8")
@@ -821,6 +822,7 @@ class EPGFetcher(object):
                 name = iceTimer.get("name", "").encode("utf-8")
                 start = int(timegm(strptime(iceTimer["start_time"].split("+")[0], "%Y-%m-%dT%H:%M:%S")))
                 duration = 60 * int(iceTimer["duration_minutes"])
+                # TODO: Check that neither start nor duration are negative or bigger than 2147483647 (not maxint)
                 channel_id = long(iceTimer["channel_id"])
                 ice_timer_id = iceTimer["id"].encode("utf-8")
                 if action == "forget":
@@ -848,6 +850,7 @@ class EPGFetcher(object):
                             if timer.ice_timer_id == ice_timer_id:
                                 # print "[IceTV] updating timer:", timer
                                 eit = int(iceTimer.get("eit_id", -1))
+                                # TODO: Range check to make sure value fits in a 32 bit signed int (API limitation) or 16 bit unsigned int (DVB specification)
                                 if eit <= 0:
                                     eit = None
                                 if self.updateTimer(timer, name, start - config.recording.margin_before.value * 60, start + duration + config.recording.margin_after.value * 60, eit, self.channel_service_map[channel_id]):
@@ -875,6 +878,7 @@ class EPGFetcher(object):
                                 serviceref = ServiceReference(eServiceReference(serviceref))
                                 # print "[IceTV] New %s is valid" % str(serviceref), serviceref.getServiceName()
                                 eit = int(iceTimer.get("eit_id", -1))
+                                # TODO: Range check to make sure value fits in a 32 bit signed int (API limitation) or 16 bit unsigned int (DVB specification)
                                 if eit <= 0:
                                     eit = None
                                 recording = RecordTimerEntry(serviceref, start - config.recording.margin_before.value * 60, start + duration + config.recording.margin_after.value * 60, name, "", eit, ice_timer_id=ice_timer_id)
