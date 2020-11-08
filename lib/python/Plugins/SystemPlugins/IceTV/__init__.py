@@ -10,7 +10,8 @@ License: Proprietary / Commercial - contact enigma.licensing (at) urbanec.net
 from enigma import eEPGCache
 from boxbranding import getMachineBrand, getMachineName
 from Components.config import config, ConfigSubsection, ConfigNumber, ConfigText, \
-    ConfigPassword, ConfigSelection, NoSave, configfile, ConfigYesNo
+    ConfigPassword, ConfigSelection, NoSave, configfile, ConfigYesNo, \
+    ConfigSelectionNumber
 
 def getIceTVDeviceType():
     return {
@@ -72,6 +73,11 @@ checktimes = [
 ]
 
 config.plugins.icetv.refresh_interval = ConfigSelection(default="%d" % int(minute * 15), choices=checktimes)
+
+# Fetch EPG in batches of channels no larger than this size.
+# 0 disables batching - fetch EPG for all channels in 1 batch
+
+config.plugins.icetv.batchsize = ConfigSelectionNumber(0, 50, 1, default=30)
 
 def saveConfigFile():
     config.plugins.icetv.save()
