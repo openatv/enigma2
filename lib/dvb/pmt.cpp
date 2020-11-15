@@ -792,12 +792,15 @@ void eDVBServicePMTHandler::SDTScanEvent(int event)
 		case eDVBScan::evtFinish:
 		{
 			ePtr<iDVBChannelList> db;
+			ASSERT(m_resourceManager != NULL);
 			if (m_resourceManager->getChannelList(db) != 0)
 				eDebug("[eDVBServicePMTHandler] no channel list");
 			else
 			{
 				eDVBChannelID chid, curr_chid;
+				ASSERT(m_reference != NULL);
 				m_reference.getChannelID(chid);
+				ASSERT(m_dvb_scan != NULL);
 				curr_chid = m_dvb_scan->getCurrentChannelID();
 				if (chid == curr_chid)
 				{
