@@ -46,7 +46,7 @@ class InstallWizard(Screen, ConfigListScreen):
 				self.createMenu()
 		elif self.index == self.STATE_CHOISE_CHANNELLIST:
 			self.enabled = ConfigYesNo(default = True)
-			modes = {"default": _("default Astra (13e-19e)"),"scan": _("scan new")}
+			modes = {"default": _("default Astra (13e-19e)"),"none": _("none")}
 			self.channellist_type = ConfigSelection(choices = modes, default = "default")
 			self.createMenu()
 # 		elif self.index == self.STATE_CHOISE_SOFTCAM:
