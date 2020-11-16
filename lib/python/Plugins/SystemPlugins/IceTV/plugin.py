@@ -898,7 +898,7 @@ class EPGFetcher(object):
                                 # print "[IceTV] updating timer:", timer
                                 eit = int(iceTimer.get("eit_id", -1))
                                 if not (self.ID16_MIN <= eit <= self.ID16_MAX):
-                                    eit = ice.showIdToEventId(show["show_id"])
+                                    eit = None
                                 if self.updateTimer(timer, name, start - config.recording.margin_before.value * 60, start + duration + config.recording.margin_after.value * 60, eit, self.channel_service_map[channel_id]):
                                     if not self.modifyTimer(timer):
                                         iceTimer["state"] = "failed"
@@ -925,7 +925,7 @@ class EPGFetcher(object):
                                 # print "[IceTV] New %s is valid" % str(serviceref), serviceref.getServiceName()
                                 eit = int(iceTimer.get("eit_id", -1))
                                 if not (self.ID16_MIN <= eit <= self.ID16_MAX):
-                                    eit = ice.showIdToEventId(show["show_id"])
+                                    eit = None
                                 recording = RecordTimerEntry(serviceref, start - config.recording.margin_before.value * 60, start + duration + config.recording.margin_after.value * 60, name, "", eit, ice_timer_id=ice_timer_id)
                                 conflicts = _session.nav.RecordTimer.record(recording)
                                 if conflicts is None:
