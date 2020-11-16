@@ -414,10 +414,10 @@ class EPGFetcher(object):
     TIME_MIN = timegm((2000, 1, 1, 0, 0, 0, 0, 0, 0))  # 2000-01-01 00:00:00
     TIME_MAX = 2147483647  # Unix 32-bit time end - 2038-01-19 14:14:07
     DURATION_MAX = 14 * 24 * 60 * 60  # 14 days - must be within DVB-T limit
-    # Vatious 16-bit ids where 0 is not permitted
+    # Various 16-bit ids where 0 is not permitted
     ID16_MIN = 1
     ID16_MAX = 0xFFFF
-    PADDING_ALLOWANCE = 24 * 60 * 60 # 1 day - must at least max allowed "after" padding
+    PADDING_ALLOWANCE = 24 * 60 * 60  # 1 day - must at least max allowed "after" padding
 
     def __init__(self):
         self.fetch_timer = eTimer()
