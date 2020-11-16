@@ -699,7 +699,7 @@ class EPGFetcher(object):
                 t = tuple(int(triplet[servIdName]) for servIdName in tripletEntryNames)
                 for servId, servIdName in zip(t, tripletEntryNames):
                     if not (self.ID16_MIN <= servId <= self.ID16_MAX):
-                        print "[EPGFetcher] ERROR: invalid serviceid:", servId, "channel:", channel_id, channel["name"]
+                        self.addLog("[EPGFetcher] ERROR: invalid serviceid: %s channel: %s %s" % (servId, channel_id, channel["name"]))
                         break
                 else:
                     res[channel_id].append(t)
@@ -754,10 +754,10 @@ class EPGFetcher(object):
                 timeError = False
                 for which, t in ("start", start), ("stop", stop):
                     if not (self.TIME_MIN <= t <= self.TIME_MAX):
-                        print "[EPGFetcher] ERROR: invalid EPG %s start time: %d event id: %s title: %s" % (which, t, show["id"], title)
+                        self.addLog("[EPGFetcher] ERROR: invalid EPG %s start time: %d event id: %s title: %s" % (which, t, show["id"], title))
                         timeError = True
                 if not (0 < duration <= self.DURATION_MAX):
-                    print "[EPGFetcher] ERROR: invalid EPG duration: %d start time: %d event id: %s title: %s" % (duration, start, show["id"], title)
+                    self.addLog("[EPGFetcher] ERROR: invalid EPG duration: %d start time: %d event id: %s title: %s" % (duration, start, show["id"], title))
                     timeError = True
                 if timeError:
                     continue
@@ -770,7 +770,7 @@ class EPGFetcher(object):
                 else:
                     eit = int(g.get("eit", "0"), 0) or 0x01
                     if eit & ~0xFF:
-                        print "[EPGFetcher] ERROR: invalid genre id:", eit, "genre name:", name, "event_id:", show["id"], "title:", title
+                        self.addLog("[EPGFetcher] ERROR: invalid eit genre id: %s genre name: %s show_id: %s title: %s" % (eit, name, show["id"], title))
                         continue
                     eit_remap = genre_remaps.get(country_code, {}).get(name, eit)
                     mapped_name = getGenreStringSub((eit_remap >> 4) & 0xf, eit_remap & 0xf, country=country_code)
@@ -778,7 +778,7 @@ class EPGFetcher(object):
                         genres.append(eit_remap)
                         category_cache[name] = eit_remap
                     elif name not in mapping_errors:
-                        print '[EPGFetcher] ERROR: lookup of 0x%02x%s "%s" returned \"%s"' % (eit, (" (remapped to 0x%02x)" % eit_remap) if eit != eit_remap else "", name, mapped_name)
+                        self.addLog('[EPGFetcher] ERROR: lookup of 0x%02x%s "%s" returned \"%s"' % (eit, (" (remapped to 0x%02x)" % eit_remap) if eit != eit_remap else "", name, mapped_name))
                         mapping_errors.add(name)
             p_rating = ((country_code, parental_ratings.get(show.get("rating", "").encode("utf-8"), 0x00)),)
             res.append((start, duration, title, short, extended, genres, event_id, p_rating))
