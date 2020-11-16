@@ -449,8 +449,10 @@ private:
 	void DVBChannelStateChanged(iDVBChannel*);
 	void DVBChannelRunning(iDVBChannel *);
 
-	timeMap::iterator m_timemap_cursor, m_timemap_end;
-	int currentQueryTsidOnid; // needed for getNextTimeEntry.. only valid until next startTimeQuery call
+	eServiceReferenceDVB *m_timeQueryRef;
+	time_t m_timeQueryBegin;
+	int m_timeQueryMinutes;
+	int m_timeQueryCount;  // counts the returned events; getNextTimeEntry returns always the m_timeQueryCount'th event
 #else
 	eEPGCache();
 	~eEPGCache();
