@@ -400,6 +400,25 @@ class EPGFetcher(object):
         iRecordableService.errNoResources: _("Can't allocate program source (e.g. tuner)"),
     }
 
+    # EIT EPG times should be TIME_MIN <= t <= TIME_MAX
+
+    # The DVB-T standard allows 1900-03-01 .. 2100-02-28 UTC inclusive,
+    # but current implementations have typedef long int time_t,
+    # which is usually 32 bits.
+
+    # The standard allows event durations up to 16777216 (2^24) sec (~194 days).
+
+    # TIME_MIN = timegm((1900, 3, 1, 0, 0, 0, 0, 0, 0))  # 1900-03-01 00:00:00
+    # TIME_MAX = timegm((2100, 2, 28, 23, 59, 59, 0, 0, 0))  # 2100-02-28 23:59:59
+
+    TIME_MIN = timegm((2000, 1, 1, 0, 0, 0, 0, 0, 0))  # 2000-01-01 00:00:00
+    TIME_MAX = 2147483647  # Unix 32-bit time end - 2038-01-19 14:14:07
+    DURATION_MAX = 14 * 24 * 60 * 60  # 14 days - must be within DVB-T limit
+    # Vatious 16-bit ids where 0 is not permitted
+    ID16_MIN = 1
+    ID16_MAX = 0xFFFF
+    PADDING_ALLOWANCE = 24 * 60 * 60 # 1 day - must at least max allowed "after" padding
+
     def __init__(self):
         self.fetch_timer = eTimer()
         self.fetch_timer.callback.append(self.createFetchJob)
@@ -665,6 +684,7 @@ class EPGFetcher(object):
         return name_map
 
     def makeChanServMap(self, channels):
+        tripletEntryNames = ("original_network_id", "transport_stream_id", "service_id")
         res = defaultdict(list)
         name_map = dict((n.upper(), t) for n, t in self.getScanChanNameMap().iteritems())
 
@@ -676,10 +696,13 @@ class EPGFetcher(object):
             elif "dvbt_info" in channel:
                 triplets = channel["dvbt_info"]
             for triplet in triplets:
-                res[channel_id].append(
-                    (int(triplet["original_network_id"]),
-                     int(triplet["transport_stream_id"]),
-                     int(triplet["service_id"])))
+                t = tuple(int(triplet[servIdName]) for servIdName in tripletEntryNames)
+                for servId, servIdName in zip(t, tripletEntryNames):
+                    if not (self.ID16_MIN <= servId <= self.ID16_MAX):
+                        print "[EPGFetcher] ERROR: invalid serviceid:", servId, "channel:", channel_id, channel["name"]
+                        break
+                else:
+                    res[channel_id].append(t)
 
             names = [channel["name"].strip().upper()]
             if "name_short" in channel:
@@ -715,9 +738,12 @@ class EPGFetcher(object):
         res = []
         category_cache = {}
         for show in shows:
-            event_id = int(show.get("eit_id"))
-            if event_id is None or event_id <= 0 or event_id >= 0xFFF7:
+            event_id = int(show.get("eit_id", -1))
+            if not (self.ID16_MIN <= event_id <= self.ID16_MAX):
                 event_id = ice.showIdToEventId(show["id"])
+            title = show.get("title", "").encode("utf-8")
+            short = show.get("subtitle", "").encode("utf-8")
+            extended = show.get("desc", "").encode("utf-8")
             if "deleted_record" in show and int(show["deleted_record"]) == 1:
                 start = 999
                 duration = 10
@@ -725,10 +751,16 @@ class EPGFetcher(object):
                 start = int(show["start_unix"])
                 stop = int(show["stop_unix"])
                 duration = stop - start
-                # TODO: Discard this entry if any of (start, stop, duration) are negative or bigger than 2147483647 (not maxint)
-            title = show.get("title", "").encode("utf-8")
-            short = show.get("subtitle", "").encode("utf-8")
-            extended = show.get("desc", "").encode("utf-8")
+                timeError = False
+                for which, t in ("start", start), ("stop", stop):
+                    if not (self.TIME_MIN <= t <= self.TIME_MAX):
+                        print "[EPGFetcher] ERROR: invalid EPG %s start time: %d event id: %s title: %s" % (which, t, show["id"], title)
+                        timeError = True
+                if not (0 < duration <= self.DURATION_MAX):
+                    print "[EPGFetcher] ERROR: invalid EPG duration: %d start time: %d event id: %s title: %s" % (duration, start, show["id"], title)
+                    timeError = True
+                if timeError:
+                    continue
             genres = []
             for g in show.get("category", []):
                 name = g['name'].encode("utf-8")
@@ -737,6 +769,9 @@ class EPGFetcher(object):
                     genres.append(eit_remap)
                 else:
                     eit = int(g.get("eit", "0"), 0) or 0x01
+                    if eit & ~0xFF:
+                        print "[EPGFetcher] ERROR: invalid genre id:", eit, "genre name:", name, "event_id:", show["id"], "title:", title
+                        continue
                     eit_remap = genre_remaps.get(country_code, {}).get(name, eit)
                     mapped_name = getGenreStringSub((eit_remap >> 4) & 0xf, eit_remap & 0xf, country=country_code)
                     if mapped_name == name:
@@ -822,9 +857,21 @@ class EPGFetcher(object):
                 name = iceTimer.get("name", "").encode("utf-8")
                 start = int(timegm(strptime(iceTimer["start_time"].split("+")[0], "%Y-%m-%dT%H:%M:%S")))
                 duration = 60 * int(iceTimer["duration_minutes"])
-                # TODO: Check that neither start nor duration are negative or bigger than 2147483647 (not maxint)
                 channel_id = long(iceTimer["channel_id"])
                 ice_timer_id = iceTimer["id"].encode("utf-8")
+                timeError = False
+                for which, t, tTest in ("start", start, start - self.PADDING_ALLOWANCE), ("stop", start + duration, start + duration + self.PADDING_ALLOWANCE):
+                    if not (self.TIME_MIN <= tTest <= self.TIME_MAX):
+                        self.addLog("ERROR: invalid timer %s time: %d ice_timer_id: %s name: %s" % (which, t, ice_timer_id, name))
+                        timeError = True
+                if not (0 < duration <= self.DURATION_MAX):
+                    self.addLog("ERROR: invalid timer duration: %d ice_timer_id: %s name: %s" % (duration, ice_timer_id, name))
+                    timeError = True
+                if timeError:
+                    iceTimer["state"] = "failed"
+                    iceTimer["message"] = "Illegal start time or duration"
+                    update_queue.append(iceTimer)
+                    continue
                 if action == "forget":
                     for timer in _session.nav.RecordTimer.timer_list:
                         if timer.ice_timer_id == ice_timer_id:
@@ -850,9 +897,8 @@ class EPGFetcher(object):
                             if timer.ice_timer_id == ice_timer_id:
                                 # print "[IceTV] updating timer:", timer
                                 eit = int(iceTimer.get("eit_id", -1))
-                                # TODO: Range check to make sure value fits in a 32 bit signed int (API limitation) or 16 bit unsigned int (DVB specification)
-                                if eit <= 0:
-                                    eit = None
+                                if not (self.ID16_MIN <= eit <= self.ID16_MAX):
+                                    eit = ice.showIdToEventId(show["show_id"])
                                 if self.updateTimer(timer, name, start - config.recording.margin_before.value * 60, start + duration + config.recording.margin_after.value * 60, eit, self.channel_service_map[channel_id]):
                                     if not self.modifyTimer(timer):
                                         iceTimer["state"] = "failed"
@@ -878,9 +924,8 @@ class EPGFetcher(object):
                                 serviceref = ServiceReference(eServiceReference(serviceref))
                                 # print "[IceTV] New %s is valid" % str(serviceref), serviceref.getServiceName()
                                 eit = int(iceTimer.get("eit_id", -1))
-                                # TODO: Range check to make sure value fits in a 32 bit signed int (API limitation) or 16 bit unsigned int (DVB specification)
-                                if eit <= 0:
-                                    eit = None
+                                if not (self.ID16_MIN <= eit <= self.ID16_MAX):
+                                    eit = ice.showIdToEventId(show["show_id"])
                                 recording = RecordTimerEntry(serviceref, start - config.recording.margin_before.value * 60, start + duration + config.recording.margin_after.value * 60, name, "", eit, ice_timer_id=ice_timer_id)
                                 conflicts = _session.nav.RecordTimer.record(recording)
                                 if conflicts is None:
