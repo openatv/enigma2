@@ -658,14 +658,14 @@ class EPGFetcher(object):
         triplet_map = defaultdict(list)
         scan_list = []
 
-        for id, triplets in self.channel_service_map.items():
+        for channel_id, triplets in self.channel_service_map.items():
             for triplet in triplets:
-                triplet_map[triplet].append(id)
+                triplet_map[triplet].append(channel_id)
         for name, triplets in name_map.items():
             for triplet in triplets:
                 if triplet in triplet_map:
-                    for id in triplet_map[triplet]:
-                        scan_list.append({"channel_id": id, "channel_name": name, "sid": triplet[2], "tsid": triplet[1], "onid": triplet[0]})
+                    for channel_id in triplet_map[triplet]:
+                        scan_list.append({"channel_id": channel_id, "channel_name": name, "sid": triplet[2], "tsid": triplet[1], "onid": triplet[0]})
                 else:
                     scan_list.append({"channel_name": name, "sid": triplet[2], "tsid": triplet[1], "onid": triplet[0]})
         return scan_list or None
