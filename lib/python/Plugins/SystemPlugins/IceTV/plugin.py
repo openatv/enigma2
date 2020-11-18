@@ -364,6 +364,32 @@ def _logResponseException(logger, heading, exception):
     logger.addLog(msg)
     return msg
 
+def _getBatchsize(last_update):
+    maxDays = {
+        "AUS": 7,
+        "DEU": 14,
+    }.get(config.plugins.icetv.member.country.value, 14)
+    days = min(maxDays, (int(time()) - last_update + 86400 - 1) / 86400)
+    # Default batch size if it can't be determined dynamically
+    batchsize = config.plugins.icetv.max_batchsize.value
+    try:
+        for l in file("/proc/meminfo"):
+            f = l.split()
+            # Reduce batch size on machines with < 512MiB total available memory
+            if len(f) >= 2 and f[0] == "MemAvailable:":
+                memkB = int(f[1])
+                # Allow 60MB headroom & 250kB/channel/day &
+                # clamp in the range 1 .. config.plugins.icetv.max_batchsize
+                # if max_batchsize is non-zero, otherwise just ensure
+                # batchsize > 1
+                batchsize = max(1, (memkB - 60000) / (days * 250))
+                if config.plugins.icetv.max_batchsize.value > 0:
+                        batchsize = min(batchsize, config.plugins.icetv.max_batchsize.value)
+                break
+    except IOError:
+        pass
+    return batchsize
+
 class EPGFetcher(object):
     START_EVENTS = {
         iRecordableService.evStart,
@@ -818,7 +844,8 @@ class EPGFetcher(object):
 
     def processShowsBatched(self):
         # Maximum number of channels to fetch in a batch
-        max_fetch = config.plugins.icetv.batchsize.value
+        max_fetch = _getBatchsize(config.plugins.icetv.last_update_time.value)
+        print "[EPGFetcher] fetch batch size:", max_fetch
         res = False
         channels = self.channel_service_map.keys()
         epgcache = eEPGCache.getInstance()
