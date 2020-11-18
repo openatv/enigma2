@@ -792,12 +792,15 @@ void eDVBServicePMTHandler::SDTScanEvent(int event)
 		case eDVBScan::evtFinish:
 		{
 			ePtr<iDVBChannelList> db;
+			ASSERT(m_resourceManager != NULL);
 			if (m_resourceManager->getChannelList(db) != 0)
 				eDebug("[eDVBServicePMTHandler] no channel list");
 			else
 			{
 				eDVBChannelID chid, curr_chid;
+				ASSERT(m_reference != NULL);
 				m_reference.getChannelID(chid);
+				ASSERT(m_dvb_scan != NULL);
 				curr_chid = m_dvb_scan->getCurrentChannelID();
 				if (chid == curr_chid)
 				{
@@ -812,7 +815,7 @@ void eDVBServicePMTHandler::SDTScanEvent(int event)
 					if (chid.transport_stream_id != curr_chid.transport_stream_id)
 						eDebug("[eDVBServicePMTHandler] incorrect transport_stream_id. expected: %x current: %x",chid.transport_stream_id.get(), curr_chid.transport_stream_id.get());
 					if (chid.original_network_id != curr_chid.original_network_id)
-						eDebug("[eDVBServicePMTHandler] incorrect namespace. expected: %x current: %x",chid.original_network_id.get(), curr_chid.original_network_id.get());
+						eDebug("[eDVBServicePMTHandler] incorrect original_network_id. expected: %x current: %x",chid.original_network_id.get(), curr_chid.original_network_id.get());
 				}
 			}
 			break;
