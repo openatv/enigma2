@@ -75,9 +75,10 @@ checktimes = [
 config.plugins.icetv.refresh_interval = ConfigSelection(default="%d" % int(minute * 15), choices=checktimes)
 
 # Fetch EPG in batches of channels no larger than this size.
-# 0 disables batching - fetch EPG for all channels in 1 batch
+# If set to 0, there is no upper limit to the dynamically-calculated
+# batch size (other than the number of channels actually available)
 
-config.plugins.icetv.batchsize = ConfigSelectionNumber(0, 50, 1, default=30)
+config.plugins.icetv.max_batchsize = ConfigSelectionNumber(0, 50, 1, default=30)
 
 def saveConfigFile():
     config.plugins.icetv.save()
