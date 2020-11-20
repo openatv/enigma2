@@ -2958,7 +2958,7 @@ void eServiceMP3::pushSubtitles()
 			else
 				timeout = 60000;	//paused, subs must stay on (60s for now), avoid timeout in lib/gui/esubtitle.cpp: m_hide_subtitles_timer->start(m_pango_page.m_timeout, true);
 
-			if (current->second.text.empty())
+			if (current->second.pixmap)
 			{
 				eVobSubtitlePage vobsub_page;
 				vobsub_page.m_show_pts = start_ms * 90; 		// actually completely unused by widget!
