@@ -14,7 +14,7 @@ ePositionGauge::ePositionGauge(eWidget *parent)
 	m_have_foreground_color = 0;
 	m_seek_position = 0;
 	m_cut_where = 0;
-	m_cut_what = -1;
+	m_cut_what = CUT_TYPE_NONE;
 }
 
 ePositionGauge::~ePositionGauge()
@@ -97,7 +97,7 @@ void ePositionGauge::setInOutList(ePyObject list)
 
 void ePositionGauge::setCutMark(const pts_t &where, int what)
 {
-	if (what >= -1 && what <= 1)
+	if (what >= CUT_TYPE_NONE && what <= CUT_TYPE_OUT)
 	{
 		m_cut_where = where;
 		m_cut_what = what;
@@ -134,11 +134,11 @@ int ePositionGauge::event(int event, void *data, void *data2)
 				if (i == m_cue_entries.end())
 					out = m_length;
 				else {
-					if (i->what == 0) /* in */
+					if (i->what == CUT_TYPE_IN)
 					{
 						in = i++->where;
 						continue;
-					} else if (i->what == 1) /* out */
+					} else if (i->what == CUT_TYPE_OUT)
 						out = i++->where;
 					else /* mark or last */
 					{
@@ -164,9 +164,9 @@ int ePositionGauge::event(int event, void *data, void *data2)
 		painter.setForegroundColor(gRGB(0xFF4040));
 		for (i = m_cue_entries.begin(); i != m_cue_entries.end(); ++i)
 		{
-			if (i->what == 3) /* last */
+			if (i->what == CUT_TYPE_LAST)
 				xm_last = scale(i->where);
-			else if (i->what == 2) /* mark */
+			else if (i->what == CUT_TYPE_MARK)
 			{
 				xm = scale(i->where);
 				painter.fill(eRect(xm - 2, 0, 4, s.height()));
@@ -178,18 +178,18 @@ int ePositionGauge::event(int event, void *data, void *data2)
 			painter.fill(eRect(xm_last - 1, 0, 3, s.height()));
 		}
 
-		if (m_cut_what != -1)
+		if (m_cut_what != CUT_TYPE_NONE)
 		{
 			xm = scale(m_cut_where);
-			painter.setForegroundColor(gRGB(m_cut_what == 0 ? 0x008000 : 0x800000));
+			painter.setForegroundColor(gRGB(m_cut_what == CUT_TYPE_IN ? 0x008000 : 0x800000));
 			painter.fill(eRect(xm - 2, 0, 4, s.height()));
 			int xi = -1, xo;
-			if (m_cut_what == 0 && m_position < m_cut_where)
+			if (m_cut_what == CUT_TYPE_IN && m_position < m_cut_where)
 			{
 				xi = m_pos;
 				xo = xm;
 			}
-			else if (m_cut_what == 1 && m_position > m_cut_where)
+			else if (m_cut_what == CUT_TYPE_OUT && m_position > m_cut_where)
 			{
 				xi = xm;
 				xo = m_pos;
@@ -226,7 +226,7 @@ void ePositionGauge::updatePosition()
 	m_seek_pos = scale(m_seek_position);
 	int base = (size().height() - 10) / 2;
 
-	if (m_cut_what != -1)
+	if (m_cut_what != CUT_TYPE_NONE)
 		invalidate();
 	m_point_widget->move(ePoint(m_pos - m_point_center.x(), base - m_point_center.y()));
 	m_seek_point_widget->move(ePoint(m_seek_pos - m_seek_point_center.x(), base - m_seek_point_center.y()));

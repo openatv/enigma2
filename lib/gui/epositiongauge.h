@@ -6,6 +6,8 @@
 
 typedef long long pts_t;
 
+enum { CUT_TYPE_NONE = -1, CUT_TYPE_IN, CUT_TYPE_OUT, CUT_TYPE_MARK, CUT_TYPE_LAST };
+
 class ePixmap;
 
 class ePositionGauge: public eWidget
