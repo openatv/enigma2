@@ -161,7 +161,7 @@ int ePositionGauge::event(int event, void *data, void *data2)
 		}
 
 		int xm, xm_last = -1;
-		painter.setForegroundColor(gRGB(0xFF4040));
+		painter.setForegroundColor(gRGB(0xFF8080));
 		for (i = m_cue_entries.begin(); i != m_cue_entries.end(); ++i)
 		{
 			if (i->what == CUT_TYPE_LAST)
@@ -174,7 +174,7 @@ int ePositionGauge::event(int event, void *data, void *data2)
 		}
 		if (xm_last != -1)
 		{
-			painter.setForegroundColor(gRGB(0x40FF40));
+			painter.setForegroundColor(gRGB(0x80FF80));
 			painter.fill(eRect(xm_last - 1, 0, 3, s.height()));
 		}
 
