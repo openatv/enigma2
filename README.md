@@ -3,7 +3,7 @@
 
 ## Our buildserver is currently running on: ##
 
-> Ubuntu 20.04 LTS (Kernel 5.4.0)
+> Ubuntu 20.04.1 LTS (Kernel 5.4.0)
 
 ## openATV 6.5 is build using oe-alliance build-environment and several git repositories: ##
 
