@@ -65,7 +65,7 @@ def getCPUSpeedString():
 		return "1,5 GHz"
 	elif getMachineBuild() in ('formuler1tc','formuler1', 'triplex', 'tiviaraplus'):
 		return "1,3 GHz"
-	elif getMachineBuild() in ('gbmv200','u51','u52','u53','u532','u533','u54','u55','u56','u57','u5','u5pvr','h9','h9combo','h10','cc1','sf8008','sf8008m','hd60','hd61','i55plus','ustym4kpro','beyonwizv2','viper4k','v8plus','multibox','plus'):
+	elif getMachineBuild() in ('gbmv200','u51','u52','u53','u532','u533','u54','u55','u56','u57','u5','u5pvr','h9','i55se','h9se','h9combo','h9combose','h10','cc1','sf8008','sf8008m','hd60','hd61','i55plus','ustym4kpro','beyonwizv2','viper4k','v8plus','multibox','plus'):
 		return "1,6 GHz"
 	elif getMachineBuild() in ('vuuno4kse','vuuno4k','dm900','dm920', 'gb7252', 'dags7252','xc7439','8100s'):
 		return "1,7 GHz"
@@ -108,7 +108,7 @@ def getCPUSpeedString():
 def getCPUString():
 	if getMachineBuild() in ('vuduo4k','vuduo4kse','osmio4k','osmio4kplus','osmini4k','dags72604','vuuno4kse','vuuno4k', 'vuultimo4k','vusolo4k', 'vuzero4k', 'hd51', 'hd52', 'sf4008', 'dm900','dm920', 'gb7252', 'gb72604', 'dags7252', 'vs1500', 'et1x000', 'xc7439','h7','8100s','et13000','sf5008'):
 		return "Broadcom"
-	elif getMachineBuild() in ('gbmv200','u41','u42','u43','u51','u52','u53','u532','u533','u54','u55','u56','u57','u5','u5pvr','h9','h9combo','h10','cc1','sf8008','sf8008m','hd60','hd61','i55plus','ustym4kpro','beyonwizv2','viper4k','v8plus','multibox','plus','hzero','h8'):
+	elif getMachineBuild() in ('gbmv200','u41','u42','u43','u51','u52','u53','u532','u533','u54','u55','u56','u57','u5','u5pvr','h9','i55se','h9se','h9combo','h9combose','h10','cc1','sf8008','sf8008m','hd60','hd61','i55plus','ustym4kpro','beyonwizv2','viper4k','v8plus','multibox','plus','hzero','h8'):
 		return "Hisilicon"
 	elif getMachineBuild() in ('alien5',):
 		return "AMlogic"
@@ -139,7 +139,7 @@ def getCpuCoresString():
 			if len(splitted) > 1:
 				splitted[1] = splitted[1].replace('\n','')
 				if splitted[0].startswith("processor"):
-					if getMachineBuild() in ('gbmv200','u51','u52','u53','u532','u533','u54','u55','u56','u57','vuultimo4k','u5','u5pvr','h9','h9combo','h10','alien5','cc1','sf8008','sf8008m','hd60','hd61','i55plus','ustym4kpro','beyonwizv2','viper4k','v8plus','vuduo4k','vuduo4kse','multibox','plus'):
+					if getMachineBuild() in ('gbmv200','u51','u52','u53','u532','u533','u54','u55','u56','u57','vuultimo4k','u5','u5pvr','h9','i55se','h9se','h9combo','h9combose','h10','alien5','cc1','sf8008','sf8008m','hd60','hd61','i55plus','ustym4kpro','beyonwizv2','viper4k','v8plus','vuduo4k','vuduo4kse','multibox','plus'):
 						cores = 4
 					elif getMachineBuild() in ('u41','u42','u43'):
 						cores = 1
