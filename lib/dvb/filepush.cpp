@@ -56,7 +56,7 @@ static void ignore_but_report_signals()
 	struct sigaction act;
 	act.sa_handler = signal_handler; // no, SIG_IGN doesn't do it. we want to receive the -EINTR
 	act.sa_flags = 0;
-	sigaction(SIGUSR1, &act, 0);
+	//sigaction(SIGUSR1, &act, 0);
 }
 
 void eFilePushThread::thread()
@@ -565,17 +565,9 @@ void eFilePushThreadRecorder::thread()
 			bytes = read_dmx(m_fd_source, m_buffer, m_buffersize);
 		else
 		{
-			/* this works around the buggy Broadcom encoder that always returns even if there is no data */
-			/* (works like O_NONBLOCK even when not opened as such), prevent idle waiting for the data */
-			/* this won't ever hurt, because it will return immediately when there is data or an error condition */
-
-			struct pollfd pfd = { m_fd_source, POLLIN, 0 };
-			poll(&pfd, 1, 100);
-			/* Reminder: m_stop *must* be evaluated after each syscall. */
-			if (m_stop)
-				break;
-			
+			sigaction(SIGUSR1, &act, NULL);
 			bytes = ::read(m_fd_source, m_buffer, m_buffersize);
+			sigaction(SIGUSR1, NULL, NULL);
 		}
 		if (bytes < 0)
 		{
