@@ -189,6 +189,9 @@ class CutListEditor(Screen, InfoBarBase, InfoBarSeek, InfoBarCueSheetSupport, He
 	BACK_REMOVECUTS = 4
 	BACK_REMOVEALL = 5
 
+	CUT_TYPE_EOF = 4
+	CUT_TYPE_NONE = -1
+
 	def __init__(self, session, service):
 		self.skin = CutListEditor.skin
 		Screen.__init__(self, session)
@@ -318,9 +321,12 @@ class CutListEditor(Screen, InfoBarBase, InfoBarSeek, InfoBarCueSheetSupport, He
 		self.downloadCuesheet()
 		self.setCutListEnable()
 
-	def putCuesheet(self):
+	def putCuesheet(self, inhibit_seek=False):
+		if inhibit_seek:
+			self.inhibit_seek = True
 		self.uploadCuesheet()
 		self.setCutListEnable()
+		self.inhibit_seek = False
 
 	def setType(self, index, type):
 		if len(self.cut_list):
@@ -419,7 +425,7 @@ class CutListEditor(Screen, InfoBarBase, InfoBarSeek, InfoBarCueSheetSupport, He
 				n = cl[i+1][0]
 			r.append(CutListEntry(*e, where_next=n))
 		if length:
-			r.append(CutListEntry(length, 4))
+			r.append(CutListEntry(length, self.CUT_TYPE_EOF))
 		return r
 
 	def selectionChanged(self):
@@ -436,7 +442,7 @@ class CutListEditor(Screen, InfoBarBase, InfoBarSeek, InfoBarCueSheetSupport, He
 			# EOF may not be seekable, so go back a bit (2 seems sufficient) and then
 			# forward to the next access point (which will flicker if EOF is
 			# seekable, but better than waiting for a timeout when it's not).
-			if where[0][1] == 4:
+			if where[0][1] == self.CUT_TYPE_EOF:
 				curpos = seek.getPlayPosition()
 				seek.seekTo(pts-2)
 				i = 0
@@ -459,8 +465,8 @@ class CutListEditor(Screen, InfoBarBase, InfoBarSeek, InfoBarCueSheetSupport, He
 
 		l1 = len(new_list) - 1
 		l2 = len(self.last_cuts) - 1
-		if new_list[l1][0][1] != 4: l1 += 1
-		if self.last_cuts[l2][0][1] != 4: l2 += 1
+		if new_list[l1][0][1] != self.CUT_TYPE_EOF: l1 += 1
+		if self.last_cuts[l2][0][1] != self.CUT_TYPE_EOF: l2 += 1
 		for i in range(min(l1, l2)):
 			if new_list[l1-i-1][0] != self.last_cuts[l2-i-1][0]:
 				self["cutlist"].setIndex(l1-i-1)
@@ -491,26 +497,25 @@ class CutListEditor(Screen, InfoBarBase, InfoBarSeek, InfoBarCueSheetSupport, He
 			if result == CutListContextMenu.RET_STARTCUT:
 				self.cut_start = self.context_position
 				self.state = CutListContextMenu.SHOW_STARTCUT
-				if self.cut_end is None:
-					return
-				if self.cut_start >= self.cut_end:
+				if self.cut_end is None or self.cut_start >= self.cut_end:
 					self.cut_end = None
+					self["Timeline"].instance.setCutMark(self.cut_start, self.CUT_TYPE_OUT)
 					return
 			else: # CutListContextMenu.RET_ENDCUT
 				self.cut_end = self.context_position
 				self.state = CutListContextMenu.SHOW_ENDCUT
-				if self.cut_start is None:
-					return
-				if self.cut_end <= self.cut_start:
+				if self.cut_start is None or self.cut_end <= self.cut_start:
 					self.cut_start = None
+					self["Timeline"].instance.setCutMark(self.cut_end, self.CUT_TYPE_IN)
 					return
+			self["Timeline"].instance.setCutMark(0, self.CUT_TYPE_NONE)
 			# remove marks between the new cut
 			for (where, what) in self.cut_list[:]:
 				if self.cut_start <= where <= self.cut_end:
 					self.cut_list.remove((where, what))
 
-			bisect.insort(self.cut_list, (self.cut_start, 1))
-			bisect.insort(self.cut_list, (self.cut_end, 0))
+			bisect.insort(self.cut_list, (self.cut_start, self.CUT_TYPE_OUT))
+			bisect.insort(self.cut_list, (self.cut_end, self.CUT_TYPE_IN))
 			self.putCuesheet()
 			self.cut_start = self.cut_end = None
 			self.state = CutListContextMenu.SHOW_DELETECUT
@@ -519,11 +524,11 @@ class CutListEditor(Screen, InfoBarBase, InfoBarSeek, InfoBarCueSheetSupport, He
 			in_after = None
 
 			for (where, what) in self.cut_list:
-				if what == 1 and where <= self.context_position: # out
+				if what == self.CUT_TYPE_OUT and where <= self.context_position:
 					out_before = (where, what)
-				elif what == 0 and where < self.context_position: # in, before out
+				elif what == self.CUT_TYPE_IN and where < self.context_position:
 					out_before = None
-				elif what == 0 and where >= self.context_position and in_after is None:
+				elif what == self.CUT_TYPE_IN and where >= self.context_position and in_after is None:
 					in_after = (where, what)
 
 			if out_before is not None:
@@ -531,9 +536,7 @@ class CutListEditor(Screen, InfoBarBase, InfoBarSeek, InfoBarCueSheetSupport, He
 
 			if in_after is not None:
 				self.cut_list.remove(in_after)
-			self.inhibit_seek = True
-			self.putCuesheet()
-			self.inhibit_seek = False
+			self.putCuesheet(inhibit_seek=True)
 		elif result == CutListContextMenu.RET_MARKIN:
 			added = 1
 			first = True
@@ -543,36 +546,28 @@ class CutListEditor(Screen, InfoBarBase, InfoBarSeek, InfoBarCueSheetSupport, He
 						self.cut_list.insert(i+added, (where, self.CUT_TYPE_MARK))
 						added += 1
 					first = False
-			self.inhibit_seek = True
-			self.putCuesheet()
-			self.inhibit_seek = False
+			self.putCuesheet(inhibit_seek=True)
 		elif result == CutListContextMenu.RET_MARK:
 			self.__addMark()
 		elif result == CutListContextMenu.RET_DELETEMARK:
 			self.cut_list.remove(self.context_nearest_mark)
-			self.inhibit_seek = True
-			self.putCuesheet()
-			self.inhibit_seek = False
+			self.putCuesheet(inhibit_seek=True)
 		elif result == CutListContextMenu.RET_REMOVEBEFORE:
 			# remove marks before current position
 			for (where, what) in self.cut_list[:]:
 				if where <= self.context_position:
 					self.cut_list.remove((where, what))
 			# add 'in' point
-			bisect.insort(self.cut_list, (self.context_position, 0))
-			self.inhibit_seek = True
-			self.putCuesheet()
-			self.inhibit_seek = False
+			bisect.insort(self.cut_list, (self.context_position, self.CUT_TYPE_IN))
+			self.putCuesheet(inhibit_seek=True)
 		elif result == CutListContextMenu.RET_REMOVEAFTER:
 			# remove marks after current position
 			for (where, what) in self.cut_list[:]:
 				if where >= self.context_position:
 					self.cut_list.remove((where, what))
 			# add 'out' point
-			bisect.insort(self.cut_list, (self.context_position, 1))
-			self.inhibit_seek = True
-			self.putCuesheet()
-			self.inhibit_seek = False
+			bisect.insort(self.cut_list, (self.context_position, self.CUT_TYPE_OUT))
+			self.putCuesheet(inhibit_seek=True)
 		elif result == CutListContextMenu.RET_QUICKEXECUTE:
 			menu = [(_("cancel"), 0),
 					(_("end at this position"), 1),
@@ -625,9 +620,7 @@ class CutListEditor(Screen, InfoBarBase, InfoBarSeek, InfoBarCueSheetSupport, He
 			for (where, what) in self.cut_list[:]:
 				if where >= truncpts:
 					self.cut_list.remove((where, what))
-			self.inhibit_seek = True
-			self.putCuesheet()
-			self.inhibit_seek = False
+			self.putCuesheet(inhibit_seek=True)
 			self.prev_cuts = self.cut_list[:]
 			self.last_cuts = self.getCutlist()
 		self.session.nav.stopService()
@@ -662,9 +655,7 @@ class CutListEditor(Screen, InfoBarBase, InfoBarSeek, InfoBarCueSheetSupport, He
 				self.cut_list = [x for x in self.cut_list if x[1] not in (self.CUT_TYPE_IN, self.CUT_TYPE_OUT)]
 			else:
 				self.cut_list = self.prev_cuts
-			self.inhibit_seek = True
-			self.putCuesheet()
-			self.inhibit_seek = False
+			self.putCuesheet(inhibit_seek=True)
 			if result[1] == self.BACK_RESTOREEXIT:
 				self.close()
 
