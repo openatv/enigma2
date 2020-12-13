@@ -3,6 +3,8 @@
 #include <errno.h>
 #include <fcntl.h>
 #include <sys/ioctl.h>
+#include <poll.h>
+#include <signal.h>
 
 #if defined(__sh__) // this allows filesystem tasks to be prioritised
 #include <sys/vfs.h>
@@ -16,6 +18,11 @@
 //#define SHOW_WRITE_TIME
 
 DEFINE_REF(eFilePushThread);
+static void global_signal_SIGUSR1_handler(int x)
+{
+	eWarning("Signal SIGUSR1 caught\n");
+}
+
 eFilePushThread::eFilePushThread(int io_prio_class, int io_prio_level, int blocksize, size_t buffersize)
 	: prio_class(io_prio_class),
 	  prio(io_prio_level),
@@ -40,22 +47,17 @@ eFilePushThread::~eFilePushThread()
 	free(m_buffer);
 }
 
-static void signal_handler(int x)
-{
-}
-
-static void ignore_but_report_signals()
-{
-	/* we set the signal to not restart syscalls, so we can detect our signal. */
-	struct sigaction act;
-	act.sa_handler = signal_handler; // no, SIG_IGN doesn't do it. we want to receive the -EINTR
-	act.sa_flags = 0;
-	sigaction(SIGUSR1, &act, 0);
-}
-
 void eFilePushThread::thread()
 {
-	ignore_but_report_signals();
+	struct sigaction action;
+
+	/* we set the signal to not restart syscalls, so we can detect our signal.
+	 * SIGUSR1 is used to signal stopping from the parent thread */
+
+	action.sa_handler = global_signal_SIGUSR1_handler;
+	action.sa_flags = 0;
+	sigaction(SIGUSR1, &action, 0);
+
 	hasStarted(); /* "start()" blocks until we get here */
 	setIoPrio(prio_class, prio);
 	eDebug("[eFilePushThread] START thread");
@@ -294,11 +296,24 @@ void eFilePushThread::thread()
 
 void eFilePushThread::start(ePtr<iTsSource> &source, int fd_dest)
 {
+	struct sigaction action;
+
 	m_source = source;
 	m_fd_dest = fd_dest;
 	m_current_position = 0;
 	m_run_state = 1;
 	m_stop = 0;
+
+	/* prevent enigma main thread/process from being
+	 * actually killed when a thread is signalled
+	 * that not (yet) has signal handler or is not
+	 * (yet) blocking signals. NB this is still in
+	 * parent context */
+
+	action.sa_handler = global_signal_SIGUSR1_handler;
+	action.sa_flags = 0;
+	sigaction(SIGUSR1, &action, 0);
+
 	run();
 }
 
@@ -537,16 +552,22 @@ int eFilePushThreadRecorder::read_dmx(int fd, void *m_buffer, int size)
 
 void eFilePushThreadRecorder::thread()
 {
+	struct pollfd pfd;
+	struct timespec timeout;
+	sigset_t sigset;
+	int result;
+
 	setIoPrio(IOPRIO_CLASS_RT, 7);
 
 	eDebug("[eFilePushThreadRecorder] THREAD START");
 
-	/* we set the signal to not restart syscalls, so we can detect our signal. */
-	struct sigaction act;
-	memset(&act, 0, sizeof(act));
-	act.sa_handler = signal_handler; // no, SIG_IGN doesn't do it. we want to receive the -EINTR
-	act.sa_flags = 0;
-	sigaction(SIGUSR1, &act, 0);
+	/* block SIGUSR1 in this thread so it's delayed until the ppoll()
+	 * call where it will be handled. ppoll() will lift the block
+	 * momentarily and atomically, preventing a race condition */
+
+	sigemptyset(&sigset);
+	sigaddset(&sigset, SIGUSR1);
+	sigprocmask(SIG_BLOCK, &sigset, (sigset_t *)0);
 
 	hasStarted();
 	if (m_protocol == _PROTO_RTSP_TCP)
@@ -564,20 +585,51 @@ void eFilePushThreadRecorder::thread()
 			bytes = read_dmx(m_fd_source, m_buffer, m_buffersize);
 		else
 			bytes = ::read(m_fd_source, m_buffer, m_buffersize);
+		/* (works like O_NONBLOCK even when not opened as such), prevent idle waiting for the data */
+		/* this won't ever hurt, because it will return immediately when there is data or an error condition */
+
+		pfd.fd = m_fd_source;
+		pfd.events = POLLIN;
+		pfd.revents = 0;
+		timeout.tv_sec = 0;
+		timeout.tv_nsec = 100 * 1000000;
+		sigemptyset(&sigset);
+
+		/* this ppoll call will all of: 1) enforce a short delay if there is nothing to be read
+		 * (see above comment), 2) check if something actually can be read without blocking and
+		 * 3) check whether a SIGUSR1 is pending.
+		 * This is required to prevent a race condition leading to a deadlock, where a signal
+		 * is sent by the parent, the signal is consumed by the call to poll() and so it
+		 * doesn't interrupt the read call, which will never complete. */
+
+		result = ppoll(&pfd, 1, &timeout, &sigset);
+
+		if((result < 0) && (errno == EINTR))
+			continue; /* this will test m_stop immediately -> while(!m_stop) */
+
+		if(result < 0)
+			bytes = result;
+		else
+		{
+			if(result == 1)
+				bytes = ::read(m_fd_source, m_buffer, m_buffersize);
+			else
+			{
+				errno = EAGAIN;
+				bytes = -1;
+			}
+		}
+
 		if (bytes < 0)
 		{
 			bytes = 0;
-			/* Check m_stop after interrupted syscall. */
-			if (m_stop)
-			{
-				break;
-			}
+
 			if (errno == EINTR || errno == EBUSY || errno == EAGAIN)
 			{
 #if HAVE_HISILICON
 				usleep(100000);
 #endif
-				continue;
+				continue; /* this will test m_stop immediately -> while(!m_stop) */
 			}
 			if (errno == EOVERFLOW)
 			{
@@ -585,6 +637,7 @@ void eFilePushThreadRecorder::thread()
 				++m_overflow_count;
 				continue;
 			}
+
 			eDebug("[eFilePushThreadRecorder] *read error* (%m) - aborting thread because i don't know what else to do.");
 			sendEvent(evtReadError);
 			break;
@@ -615,8 +668,20 @@ void eFilePushThreadRecorder::thread()
 
 void eFilePushThreadRecorder::start(int fd)
 {
+	struct sigaction action;
+
 	m_fd_source = fd;
 	m_stop = 0;
+
+	/* prevent enigma main thread/process from being
+	 * actually killed when a thread is signalled
+	 * that not (yet) has signal handler or is not
+	 * (yet) blocking signals. NB this is still in
+	 * parent context. */
+	action.sa_handler = global_signal_SIGUSR1_handler;
+	action.sa_flags = 0;
+	sigaction(SIGUSR1, &action, 0);
+
 	run();
 }
 
