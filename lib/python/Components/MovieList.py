@@ -1,6 +1,7 @@
 import os
 import struct
 import random
+import weakref
 
 from enigma import eListboxPythonMultiContent, eListbox, gFont, iServiceInformation, eSize, RT_HALIGN_LEFT, RT_HALIGN_RIGHT, RT_VALIGN_CENTER, eServiceReference, eServiceReferenceFS, eServiceCenter, eTimer, getDesktop, loadPNG, BT_SCALE, BT_KEEP_ASPECT_RATIO
 
@@ -176,7 +177,7 @@ class MovieList(GUIComponent):
 		if root is not None:
 			self.reload(root)
 
-		self.l.setBuildFunc(self.buildMovieListEntry)
+		self.l.setBuildFunc(weakref.ref(self.buildMovieListEntry)) # weakref needed for WebIf as otherwise a cyclic reference prevents object destruction
 
 		self.onSelectionChanged = [ ]
 		self.iconPart = []
