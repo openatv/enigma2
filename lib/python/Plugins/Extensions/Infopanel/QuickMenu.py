@@ -287,13 +287,14 @@ class QuickMenu(Screen, ProtectedScreen):
 		self.sublist.append(QuickSubMenuEntryComponent("Samba",_("Setup Samba"),_("Setup Samba")))
 		self.sublist.append(QuickSubMenuEntryComponent("NFS",_("Setup NFS"),_("Setup NFS")))
 		self.sublist.append(QuickSubMenuEntryComponent("FTP",_("Setup FTP"),_("Setup FTP")))
-		self.sublist.append(QuickSubMenuEntryComponent("AFP",_("Setup AFP"),_("Setup AFP")))
+		self.sublist.append(QuickSubMenuEntryComponent("SATPI",_("Setup SATPI"),_("Setup SATPI")))
 		self.sublist.append(QuickSubMenuEntryComponent("OpenVPN",_("Setup OpenVPN"),_("Setup OpenVPN")))
 		self.sublist.append(QuickSubMenuEntryComponent("MiniDLNA",_("Setup MiniDLNA"),_("Setup MiniDLNA")))
 		self.sublist.append(QuickSubMenuEntryComponent("Inadyn",_("Setup Inadyn"),_("Setup Inadyn")))
 		self.sublist.append(QuickSubMenuEntryComponent("SABnzbd",_("Setup SABnzbd"),_("Setup SABnzbd")))
 		self.sublist.append(QuickSubMenuEntryComponent("uShare",_("Setup uShare"),_("Setup uShare")))
 		self.sublist.append(QuickSubMenuEntryComponent("Telnet",_("Setup Telnet"),_("Setup Telnet")))
+		self.sublist.append(QuickSubMenuEntryComponent("AFP",_("Setup AFP"),_("Setup AFP")))
 		self["sublist"].l.setList(self.sublist)
 
 ######## Mount Settings Menu ##############################
@@ -454,6 +455,8 @@ class QuickMenu(Screen, ProtectedScreen):
 			self.session.open(NetworkInadyn)
 		elif item[0] == _("SABnzbd"):
 			self.session.open(NetworkSABnzbd)
+		elif item[0] == _("SATPI"):
+			self.session.open(NetworkSATPI)
 		elif item[0] == _("uShare"):
 			self.session.open(NetworkuShare)
 		elif item[0] == _("Telnet"):
