@@ -179,8 +179,6 @@ class MovieList(GUIComponent):
 		if root is not None:
 			self.reload(root)
 
-		self.l.setBuildFunc(self.buildMovieListEntry)
-
 		self.onSelectionChanged = [ ]
 		self.iconPart = []
 		for part in list(range(5)):
@@ -558,6 +556,7 @@ class MovieList(GUIComponent):
 			self.load(root, filter_tags)
 		else:
 			self.load(self.root, filter_tags)
+		self.l.setBuildFunc(self.buildMovieListEntry)  # don't move that to __init__ as this will create memory leak when calling MovieList from WebIf
 		self.l.setList(self.list)
 
 	def removeService(self, service):
