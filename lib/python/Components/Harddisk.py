@@ -177,6 +177,9 @@ class Harddisk:
 		else:
 			internal = ("pci" or "ahci") in self.phys_path
 
+		if getMachineBuild() == 'sf8008':
+			internal = ("usb1/1-1/1-1.1/1-1.1:1.0") in self.phys_path
+
 		if card:
 			ret += type_name
 		elif internal:
