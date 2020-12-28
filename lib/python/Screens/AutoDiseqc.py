@@ -41,8 +41,8 @@ class AutoDiseqc(Screen, ConfigListScreen):
 		eDVBFrontendParametersSatellite.T2MI_Default_Pid,
 		3224, 3, _("Astra 3 23.5e")),
 
-		# astra 282 bbc
-		( 10773, 22000, \
+		# astra 282 cnbc
+		( 11479, 22000, \
 		eDVBFrontendParametersSatellite.Polarisation_Horizontal, eDVBFrontendParametersSatellite.FEC_5_6, \
 		eDVBFrontendParametersSatellite.Inversion_Off, 282, \
 		eDVBFrontendParametersSatellite.System_DVB_S, eDVBFrontendParametersSatellite.Modulation_Auto, \
@@ -52,7 +52,7 @@ class AutoDiseqc(Screen, ConfigListScreen):
 		eDVBFrontendParametersSatellite.PLS_Default_Gold_Code,
 		eDVBFrontendParametersSatellite.No_T2MI_PLP_Id,
 		eDVBFrontendParametersSatellite.T2MI_Default_Pid,
-		2045, 2, _("Astra 2 28.2e")),
+		2090, 2, _("Astra 2 28.2e")),
 
 		# hotbird 130 rai
 		( 10992, 27500, \
