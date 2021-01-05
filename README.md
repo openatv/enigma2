@@ -3,7 +3,7 @@
 
 ## Our buildserver is currently running on: ##
 
-> Ubuntu 20.04.1 LTS (Kernel 5.4.0)
+> Ubuntu 20.10 (Kernel 5.8.0)
 
 ## openATV 6.4 is build using oe-alliance build-environment and several git repositories: ##
 
@@ -27,67 +27,87 @@
 ----------
 2 - Set python2 as preferred provider for python
 
+    set python alternatives:
+    
     sudo update-alternatives --install /usr/bin/python python /usr/bin/python2 1
     sudo update-alternatives --install /usr/bin/python python /usr/bin/python3 2
+
+    call to choose python version:
+
     sudo update-alternatives --config python
+
     select python2
+
+----------
+3 - Set GCC to version 8
+
+    set GCC alternatives:
     
+    sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-8 8
+    sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-10 10
+
+    call to choose GCC version:
+
+    sudo update-alternatives --config gcc
+
+    select gcc version 8
+
 ----------    
-3 - Set your shell to /bin/bash.
+4 - Set your shell to /bin/bash.
 
     sudo dpkg-reconfigure dash
     When asked: Install dash as /bin/sh?
     select "NO"
 
 ----------
-4 - modify max_user_watches
+5 - modify max_user_watches
 
     echo fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sysctl.conf
 
     sudo sysctl -n -w fs.inotify.max_user_watches=524288
 
 ----------
-5 - Add user openatvbuilder
+6 - Add user openatvbuilder
 
     sudo adduser openatvbuilder
 
 ----------
-6 - Switch to user openatvbuilder
+7 - Switch to user openatvbuilder
 
     su openatvbuilder
 
 ----------
-7 - Switch to home of openatvbuilder
+8 - Switch to home of openatvbuilder
 
     cd ~
 
 ----------
-8 - Create folder openatv
+9 - Create folder openatv
 
     mkdir -p ~/openatv
 
 ----------
-9 - Switch to folder openatv
+10 - Switch to folder openatv
 
     cd openatv
 
 ----------
-10 - Clone oe-alliance git
+11 - Clone oe-alliance git
 
     git clone git://github.com/oe-alliance/build-enviroment.git -b 4.4
 
 ----------
-11 - Switch to folder build-enviroment
+12 - Switch to folder build-enviroment
 
     cd build-enviroment
 
 ----------
-12 - Update build-enviroment
+13 - Update build-enviroment
 
     make update
 
 ----------
-13 - Finally you can start building a image
+14 - Finally you can start building a image
 
     MACHINE=zgemmah9combo DISTRO=openatv DISTRO_TYPE=release make image
 
