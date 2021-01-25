@@ -116,11 +116,6 @@ class Timezones:
 		self.loadTimezones()
 		self.readTimezones()
 		self.callbacks = []
-		# This is a work around to maintain support of AutoTimers
-		# until AutoTimers are updated to use the Timezones
-		# callbacks.  Once AutoTimers are updated *all* AutoTimer
-		# code should be removed from the Timezones.py code!
-		self.autotimerInit()
 
 	# Scan the zoneinfo directory tree and all load all time zones found.
 	#
@@ -315,43 +310,6 @@ class Timezones:
 	def removeCallback(self, callback):
 		if callback in self.callbacks:
 			self.callbacks.remove(callback)
-
-	def autotimerInit(self):  # This code should be moved into the AutoTimer plugin!
-		try:
-			# Create attributes autotimer & autopoller for backwards compatibility.
-			# Their use is deprecated.
-			from enigma import eTimer
-			from Plugins.Extensions.AutoTimer.plugin import autotimer, autopoller
-			self.autotimerPoller = autopoller
-			self.autotimerTimer = autotimer
-			self.pollDelay = 3  # Poll delay in minutes.
-			try:
-				self.autotimerPollDelay = config.plugins.autotimer.delay.value
-			except AttributeError:
-				self.autotimerPollDelay = self.pollDelay
-			self.timer = eTimer()
-			self.timer.callback.append(self.autotimeQuery)
-			self.addCallback(self.autotimerCallback)
-		except ImportError:
-			self.autotimerPoller = None
-			self.autotimerTimer = None
-
-	def autotimerCallback(self):
-		if config.plugins.autotimer.autopoll.value:
-			self.timer.stop()
-			print "[Timezones] Trying to stop main AutoTimer poller."
-			if self.autotimerPoller is not None:
-				self.autotimerPoller.stop()
-			print "[Timezones] AutoTimer poller will be run in %d minutes." % self.pollDelay
-			self.timer.startLongTimer(self.pollDelay * 60)
-
-	def autotimeQuery(self):
-		print "[Timezones] AutoTimer poll is running."
-		if self.autotimerTimer is not None:
-			print "[Timezones] AutoTimer is parsing the EPG."
-			self.autotimerTimer.parseEPG(autoPoll=True)
-		if self.autotimerPoller is not None:
-			self.autotimerPoller.start()
 
 
 timezones = Timezones()
