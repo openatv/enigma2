@@ -1995,7 +1995,7 @@ void eEPGCache::submitEventData(const std::vector<int>& sids, const std::vector<
 
 	eit_event_t *evt_struct = (eit_event_t*) (data + EIT_SIZE);
 
-	uint16_t eventId = start & 0xFFFF;
+	uint16_t eventId = (event_id == 0) ? start & 0xFFFF : event_id;
 	evt_struct->setEventId(eventId);
 
 	//6 bytes start time, 3 bytes duration
