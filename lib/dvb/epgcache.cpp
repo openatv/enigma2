@@ -421,7 +421,6 @@ void eEPGCache::timeUpdated()
 			eDebug("[eEPGCache] time updated.. start EPG Mainloop");
 			run();
 			m_running = true;
-			/*emit*/ epgCacheStarted();
 		} else
 			messages.send(Message(Message::timeChanged));
 	}
@@ -856,6 +855,7 @@ void eEPGCache::thread()
 		eDebug("[eEPGCache] thread failed to modify scheduling priority (%m)");
 	}
 	if (load_epg) { load(); }
+	/*emit*/ epgCacheStarted();
 	cleanLoop();
 	runLoop();
 	save();
