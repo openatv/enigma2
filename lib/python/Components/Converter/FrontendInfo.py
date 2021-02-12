@@ -100,7 +100,7 @@ class FrontendInfo(Converter, object):
 
 	@cached
 	def getBool(self):
-		assert self.type in (self.LOCK, self.BER, self.SNR, self.SNRdB, self.AGC), "the boolean output of FrontendInfo can only be used for lock, BER, SNR, SNRdB or AGC info"
+		assert self.type in (self.LOCK, self.BER, self.SNR, self.SNRdB, self.AGC, self.STRING, self.USE_TUNERS_STRING), "the boolean output of FrontendInfo can only be used for lock, BER, SNR, SNRdB, AGC, STRING, or  USE_TUNERS_STRING"
 		if self.type == self.LOCK:
 			lock = self.source.lock
 			if lock is None:
@@ -114,6 +114,8 @@ class FrontendInfo(Converter, object):
 			return self.source.snr_db is not None
 		elif self.type == self.AGC:
 			return self.source.agc is not None
+		elif self.type in (self.STRING, self.USE_TUNERS_STRING):
+			return bool(self.getText())
 
 	text = property(getText)
 
