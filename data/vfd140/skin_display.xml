@@ -104,7 +104,7 @@
 		<widget source="parent.Event" render="Progress" position="0,26" size="60,6" borderWidth="1" zPosition="1" >
 			<convert type="EventTime">Progress</convert>
 		</widget>
-		<widget source="parent.Event" render="Label" position="70,25" size="70,12" font="FdLcD;12" halign="right" valign="bottom" noWrap="1" zPosition="1" >
+		<widget source="parent.Event" render="Label" position="70,23" size="70,12" font="FdLcD;12" halign="right" valign="bottom" noWrap="1" zPosition="1" >
 			<convert type="EventTime">VFDRemaining</convert>
 			<convert type="RemainingToText">VFDNoSeconds</convert>
 		</widget>
@@ -118,7 +118,7 @@
 		<widget source="session.Event_Now" render="Progress" position="0,26" size="60,6" borderWidth="1" zPosition="1" >
 			<convert type="EventTime">Progress</convert>
 		</widget>
-		<widget source="session.Event_Now" render="Label" position="70,25" size="70,12" font="FdLcD;12" halign="right" valign="bottom" noWrap="1" zPosition="1" >
+		<widget source="session.Event_Now" render="Label" position="70,23" size="70,12" font="FdLcD;12" halign="right" valign="bottom" noWrap="1" zPosition="1" >
 			<convert type="EventTime">VFDRemaining</convert>
 			<convert type="RemainingToText">VFDNoSeconds</convert>
 		</widget>
@@ -136,7 +136,7 @@
 		<widget source="session.CurrentService" render="Progress" position="0,26" size="60,6" borderWidth="1" zPosition="1" >
 			<convert type="ServicePosition">VFDPosition</convert>
 		</widget>
-		<widget source="session.CurrentService" render="Label" position="70,25" size="70,12" font="FdLcD;12" halign="right" valign="bottom" noWrap="1" zPosition="1" >
+		<widget source="session.CurrentService" render="Label" position="70,23" size="70,12" font="FdLcD;12" halign="right" valign="bottom" noWrap="1" zPosition="1" >
 			<convert type="ServicePosition">VFDPosition</convert>
 		</widget>
 		<panel name="SummaryIconsPanel" />
@@ -157,7 +157,7 @@
 			<convert type="ServiceTime">Duration</convert>
 			<convert type="ClockToText">AsLength</convert>
 		</widget>
-		<widget source="parent.Service" render="Label" position="70,25" size="70,12" font="FdLcD;12" halign="right" valign="bottom" noWrap="1" zPosition="1" >
+		<widget source="parent.Service" render="Label" position="70,23" size="70,12" font="FdLcD;12" halign="right" valign="bottom" noWrap="1" zPosition="1" >
 		  <convert type="MovieInfo">FileSize</convert>
 		</widget>
 	</screen>
@@ -173,7 +173,7 @@
 		<widget source="parent.ServiceEvent" render="Progress" position="0,26" size="60,6" borderWidth="1" zPosition="1" >
 			<convert type="EventTime">Progress</convert>
 		</widget>
-		<widget source="parent.ServiceEvent" render="Label" position="70,25" size="70,12" font="FdLcD;12" halign="right" valign="bottom" noWrap="1" zPosition="1" >
+		<widget source="parent.ServiceEvent" render="Label" position="70,23" size="70,12" font="FdLcD;12" halign="right" valign="bottom" noWrap="1" zPosition="1" >
 			<convert type="EventTime">VFDRemaining</convert>
 			<convert type="RemainingToText">VFDNoSeconds</convert>
 		</widget>
@@ -269,7 +269,7 @@
 		<widget source="parent.summary_job_name" render="Label" position="0,0" size="140,16" font="FdLcD;16" halign="center" valign="bottom" zPosition="1" noWrap="1" />
 		<widget source="parent.summary_job_task" render="Label" position="0,13" size="140,14" font="FdLcD;14" halign="center" valign="top" zPosition="1" noWrap="1" />
 		<widget source="parent.summary_job_progress" render="Progress" position="0,26" size="60,6" borderWidth="1" zPosition="1" />
-		<widget source="parent.summary_job_progress" render="Label" position="70,25" size="70,12" font="FdLcD;12" halign="right" valign="bottom" noWrap="1" zPosition="1" >
+		<widget source="parent.summary_job_progress" render="Label" position="70,23" size="70,12" font="FdLcD;12" halign="right" valign="bottom" noWrap="1" zPosition="1" >
 			<convert type="ProgressToText" />
 		</widget>
 	</screen>
