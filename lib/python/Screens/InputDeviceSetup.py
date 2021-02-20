@@ -363,7 +363,7 @@ class RemoteControlType(Screen, ConfigListScreen):
 				("24", _("Axas E4HD Ultra")),
 				("25", _("Zgemma H8/H0/H9/I55Plus old Model")),
 				("26", _("Protek 4K UHD/HD61")),
-				("27", _("HD60")),
+				("27", _("HD60/Multibox/Multiboxse")),
 				("28", _("I55SE/H7/H9/H9SE/H9COMBO/H9COMBOSE/H10 new Model"))
 				]
 		defaultRcList = [
@@ -410,6 +410,8 @@ class RemoteControlType(Screen, ConfigListScreen):
 				("protek4k", 26),
 				("hd61", 26),
 				("hd60", 27),
+				("multibox", 27),
+				("multiboxse", 27),
 				("h7", 28), # new model
 				("h9", 28), # new model
 				("h9se", 28), # new model
