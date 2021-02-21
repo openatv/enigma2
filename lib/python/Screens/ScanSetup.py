@@ -118,6 +118,7 @@ cable_autoscan_nimtype = {
 'SSH108' : 'ssh108',
 'TT3L10' : 'tt3l10',
 'TURBO' : 'vuplus_turbo_c',
+'TURBO2' : 'vuplus_turbo2_c',
 'TT2L08' : 'tt2l08',
 'BCM3148' : 'bcm3148'
 }
@@ -126,11 +127,13 @@ terrestrial_autoscan_nimtype = {
 'SSH108' : 'ssh108_t2_scan',
 'TT3L10' : 'tt3l10_t2_scan',
 'TURBO' : 'vuplus_turbo_t',
+'TURBO2' : 'vuplus_turbo2_t',
 'TT2L08' : 'tt2l08_t2_scan',
 'BCM3466' : 'bcm3466'
 }
 
 dual_tuner_list = ('TT3L10', 'BCM3466')
+vtuner_need_idx_list = ('TURBO2')
 
 def GetDeviceId(filter, nim_idx):
 	tuners={}
@@ -147,6 +150,17 @@ def GetDeviceId(filter, nim_idx):
 			else:			device_id = 1
 		socket_id += 1
 	return device_id
+
+def getVtunerId(filter, nim_idx):
+	idx_count = 1
+	for slot in nimmanager.nim_slots:
+		slot_idx = slot.slot
+		if filter in slot.description:
+			if slot_idx == nim_idx :
+				return "--idx " + str(idx_count)
+			else:
+				idx_count += 1
+	return ""
 
 def GetTerrestrial5VEnable(nim_idx):
        nim = nimmanager.nim_slots[nim_idx]
@@ -271,6 +285,8 @@ class CableTransponderSearchSupport:
 							print("GetCommand ->", err)
 							device_id = "--device=0"
 #						print nim_idx, nim_name, cable_autoscan_nimtype[nim_name], device_id
+					elif nim_name in vtuner_need_idx_list:
+						device_id = getVtunerId(nim_name, nim_idx)
 					command = "%s %s" % (cable_autoscan_nimtype[nim_name], device_id)
 					return command
 			except Exception as err:
@@ -527,6 +543,8 @@ class TerrestrialTransponderSearchSupport:
 						print("terrestrialTransponderGetCmd ->", err)
 						device_id = "--device 0"
 #					print nim_idx, nim_name, terrestrial_autoscan_nimtype[nim_name], device_id
+				elif nim_name in vtuner_need_idx_list:
+					device_id = getVtunerId(nim_name, nim_idx)
 				command = "%s %s" % (terrestrial_autoscan_nimtype[nim_name], device_id)
 				return command
 		except Exception as err:
