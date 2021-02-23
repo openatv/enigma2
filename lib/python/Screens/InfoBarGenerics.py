@@ -1688,6 +1688,8 @@ class InfoBarEPG:
 				ref = self.lastservice
 			else:
 				ref = self.session.nav.getCurrentlyPlayingServiceOrGroup()
+			if not ref:
+				ref = self.servicelist.getCurrentSelection()
 			if ref:
 				services = self.getBouquetServices(self.StartBouquet)
 				self.serviceSel = SimpleServicelist(services)

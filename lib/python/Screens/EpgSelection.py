@@ -487,6 +487,10 @@ class EPGSelection(Screen, HelpableScreen):
 
 	def onCreate(self):
 		serviceref = self.session.nav.getCurrentlyPlayingServiceOrGroup()
+		if not serviceref:
+			from InfoBar import InfoBar
+			InfoBarInstance = InfoBar.instance
+			serviceref = InfoBarInstance.servicelist.getCurrentSelection()
 		title = None
 		self['list'].recalcEntrySize()
 		self.BouquetRoot = False
