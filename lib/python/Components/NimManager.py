@@ -639,6 +639,12 @@ class NIM(object):
 			return "%s-%s: %s" % (self.slot_name, self.getSlotID(self.slot + 1), self.getFullDescription())
 		return self.getFriendlyFullDescription()
 
+	def isFBCLinkEnabled(self):
+		return self.isFBCLink() and (config.Nims[(self.slot >> 3 << 3)].configMode.value != "nothing" or self.getType() != "DVB-C" and config.Nims[(self.slot >> 3 << 3) + 1].configMode.value != "nothing")
+
+	def isEnabled(self):
+		return self.config_mode != "nothing" or self.isFBCLinkEnabled() or self.internally_connectable is not None and config.Nims[self.internally_connectable].configMode.value != "nothing"
+
 	slot_id = property(getSlotID)
 	slot_name = property(getSlotName)
 	friendly_full_description = property(getFriendlyFullDescription)
@@ -647,6 +653,7 @@ class NIM(object):
 	config_mode = property(lambda self: config.Nims[self.slot].configMode.value)
 	config = property(lambda self: config.Nims[self.slot])
 	empty = property(lambda self: self.getType() is None)
+	enabled = property(isEnabled)
 
 class NimManager:
 	def getConfiguredSats(self):
