@@ -11,6 +11,7 @@ from Components.SystemInfo import SystemInfo
 from Tools.Directories import pathExists
 
 Imagemount = "/tmp/multibootcheck"
+Imageroot = "/tmp/imageroot" 
 
 def getMBbootdevice():
 	if not path.isdir(Imagemount):
@@ -139,8 +140,8 @@ class GetImagelist():
 			self.slots = sorted(list(SystemInfo["canMultiBoot"].keys()))
 			self.callback = callback
 			self.imagelist = {}
-			if not path.isdir(Imagemount):
-				mkdir(Imagemount)
+			if not path.isdir(Imageroot):
+				mkdir(Imageroot)
 			self.container = Console()
 			self.phase = self.MOUNT
 			self.run()
@@ -149,10 +150,10 @@ class GetImagelist():
 
 	def run(self):
 		if self.phase == self.UNMOUNT:
-			self.container.ePopen("umount %s" % Imagemount, self.appClosed)
+			self.container.ePopen("umount %s" % Imageroot, self.appClosed)
 		else:
 			self.slot = self.slots.pop(0)
-			self.container.ePopen("mount %s %s" % (SystemInfo["canMultiBoot"][self.slot]["device"], Imagemount), self.appClosed)
+			self.container.ePopen("mount %s %s" % (SystemInfo["canMultiBoot"][self.slot]["device"], Imageroot), self.appClosed)
 
 	def appClosed(self, data="", retval=0, extra_args=None):
 		BuildVersion = "  "
@@ -165,9 +166,9 @@ class GetImagelist():
 			self.imagelist[self.slot] = {"imagename": _("Empty slot")}
 		if retval == 0 and self.phase == self.MOUNT:
 			if SystemInfo["HasRootSubdir"] and SystemInfo["canMultiBoot"][self.slot]["rootsubdir"] != None:
-				imagedir = ('%s/%s' %(Imagemount, SystemInfo["canMultiBoot"][self.slot]["rootsubdir"]))
+				imagedir = ('%s/%s' %(Imageroot, SystemInfo["canMultiBoot"][self.slot]["rootsubdir"]))
 			else:
-				imagedir = Imagemount
+				imagedir = Imageroot
 			if path.isfile("%s/usr/bin/enigma2" % imagedir):
 				Creator = open("%s/etc/issue" % imagedir).readlines()[-2].capitalize().strip()[:-6].replace("-release", " rel")
 				if Creator.startswith("Openvix"):
@@ -200,8 +201,8 @@ class GetImagelist():
 			self.run()
 		else:
 			self.container.killAll()
-			if not path.ismount(Imagemount):
-				rmdir(Imagemount)
+			if not path.ismount(Imageroot):
+				rmdir(Imageroot)
 			self.callback(self.imagelist)
 
 
@@ -304,8 +305,8 @@ class EmptySlot():
 			self.callback = callback
 			self.imagelist = {}
 			self.slot = Contents
-			if not path.isdir(Imagemount):
-				mkdir(Imagemount)
+			if not path.isdir(Imageroot):
+				mkdir(Imageroot)
 			self.container = Console()
 			self.phase = self.MOUNT
 			self.run()
@@ -314,16 +315,16 @@ class EmptySlot():
 
 	def run(self):
 		if self.phase == self.UNMOUNT:
-			self.container.ePopen("umount %s" % Imagemount, self.appClosed)
+			self.container.ePopen("umount %s" % Imageroot, self.appClosed)
 		else:
-			self.container.ePopen("mount %s %s" % (SystemInfo["canMultiBoot"][self.slot]["device"], Imagemount), self.appClosed)
+			self.container.ePopen("mount %s %s" % (SystemInfo["canMultiBoot"][self.slot]["device"], Imageroot), self.appClosed)
 
 	def appClosed(self, data="", retval=0, extra_args=None):
 		if retval == 0 and self.phase == self.MOUNT:
 			if SystemInfo["HasRootSubdir"] and SystemInfo["canMultiBoot"][self.slot]["rootsubdir"] != None:
-				imagedir = ('%s/%s' %(Imagemount, SystemInfo["canMultiBoot"][self.slot]["rootsubdir"]))
+				imagedir = ('%s/%s' %(Imageroot, SystemInfo["canMultiBoot"][self.slot]["rootsubdir"]))
 			else:
-				imagedir = Imagemount
+				imagedir = Imageroot
 			if path.isfile("%s/usr/bin/enigma2"%imagedir):
 				rename("%s/usr/bin/enigma2" %imagedir, "%s/usr/bin/enigmax.bin" %imagedir)
 				rename("%s/etc" %imagedir, "%s/etcx" %imagedir)
@@ -331,6 +332,6 @@ class EmptySlot():
 			self.run()
 		else:
 			self.container.killAll()
-			if not path.ismount(Imagemount):
-				rmdir(Imagemount)
+			if not path.ismount(Imageroot):
+				rmdir(Imageroot)
 			self.callback()

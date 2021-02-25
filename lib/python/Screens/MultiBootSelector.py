@@ -13,7 +13,7 @@ from Screens.Standby import QUIT_REBOOT, TryQuitMainloop
 from Tools.BoundFunction import boundFunction
 from Tools.Directories import copyfile, pathExists
 from Tools.Multiboot import GetCurrentImage, GetCurrentImageMode, GetImagelist
-
+import struct
 
 class MultiBootSelector(Screen, HelpableScreen):
 	skinTemplate = """
@@ -133,6 +133,9 @@ class MultiBootSelector(Screen, HelpableScreen):
 					open(path.join(self.mountDir, "STARTUP"), "w").write(f)
 			else:
 				copyfile(path.join(self.mountDir, SystemInfo["canMultiBoot"][slot]["startupfile"]), path.join(self.mountDir, "STARTUP"))
+				if SystemInfo["canDualBoot"]:
+					with open('/dev/block/by-name/flag', 'wb') as f:
+						f.write(struct.pack("B", int(slot)))
 			self.session.open(TryQuitMainloop, QUIT_REBOOT)
 
 	def selectionChanged(self):
