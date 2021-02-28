@@ -6,19 +6,37 @@ from enigma import eDVBDB, eEPGCache, setTunerTypePriorityOrder, setPreferredTun
 
 from Components.About import about
 from Components.Harddisk import harddiskmanager
+from Components.NimManager import nimmanager
+from Components.RcModel import rc_model
+from Components.ServiceList import refreshServiceList
 from config import ConfigSubsection, ConfigYesNo, config, ConfigSelection, ConfigText, ConfigNumber, ConfigSet, ConfigLocations, NoSave, ConfigClock, ConfigInteger, ConfigBoolean, ConfigPassword, ConfigIP, ConfigSlider, ConfigSelectionNumber, ConfigFloat, ConfigDictionarySet, ConfigDirectory
 from Tools.Directories import resolveFilename, SCOPE_HDD, SCOPE_TIMESHIFT, SCOPE_AUTORECORD, SCOPE_SYSETC, defaultRecordingLocation, fileExists
-from Components.NimManager import nimmanager
-from Components.ServiceList import refreshServiceList
 from SystemInfo import SystemInfo
 from Tools.HardwareInfo import HardwareInfo
 from boxbranding import getBoxType, getDisplayType
 from keyids import KEYIDS
 from sys import maxint
 import glob
-import os
+
 
 def InitUsageConfig():
+	AvailRemotes=glob.glob('/usr/share/enigma2/rc_models/*')
+	RemoteChoices=[]
+	DefaultRemote=rc_model.getRcFolder(GetDefault=True)
+
+	remoteSelectable=False
+	if AvailRemotes is not None:
+		for remote in AvailRemotes:
+			if os.path.isfile(remote+'/rc.png') and os.path.isfile(remote+'/rcpositions.xml') and os.path.isfile(remote+'/remote.html'):
+				pass
+			else:
+				AvailRemotes.remove(remote)
+		if len(AvailRemotes)>1:
+			remoteSelectable=True
+			for remote in AvailRemotes:
+				toadd = (remote.split('/')[-1], remote.split('/')[-1])
+				RemoteChoices.append(toadd)
+
 	config.misc.SettingsVersion = ConfigFloat(default = [1,1], limits = [(1,10),(0,99)])
 	config.misc.SettingsVersion.value = [1,1]
 	config.misc.SettingsVersion.save_forced = True
@@ -219,6 +237,7 @@ def InitUsageConfig():
 	config.usage.sort_extensionslist = ConfigYesNo(default = False)
 	config.usage.show_restart_network_extensionslist = ConfigYesNo(default = True)
 	config.usage.movieplayer_pvrstate = ConfigYesNo(default = False)
+	config.usage.rc_model = ConfigSelection(default = DefaultRemote, choices = RemoteChoices)
 
 	choicelist = []
 	for i in (10, 30):
