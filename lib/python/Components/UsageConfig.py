@@ -628,7 +628,7 @@ def InitUsageConfig():
 	config.usage.time.wide_display = NoSave(ConfigBoolean(default=False))
 
 	# TRANSLATORS: full date representation dayname daynum monthname year in strftime() format! See 'man strftime'
-	config.usage.date.dayfull = ConfigSelection(default=_("%A %-d %B %Y"), choices=[
+	choicelist = [
 		(_("%A %d %B %Y"), _("Dayname DD Month Year")),
 		(_("%A %d. %B %Y"), _("Dayname DD. Month Year")),
 		(_("%A %-d %B %Y"), _("Dayname D Month Year")),
@@ -658,8 +658,12 @@ def InitUsageConfig():
 		(_("%A %Y/%m/%d"), _("Dayname Year/MM/DD")),
 		(_("%A %Y/%m/%-d"), _("Dayname Year/MM/D")),
 		(_("%A %Y/%-m/%d"), _("Dayname Year/M/DD")),
-		(_("%A %Y/%-m/%-d"), _("Dayname Year/M/D"))
-	])
+		(_("%A %Y/%-m/%-d"), _("Dayname Year/M/D"))]
+
+	if config.osd.language.value == "de_DE":
+		config.usage.date.dayfull = ConfigSelection(default=_("%A %d.%m.%Y"), choices = choicelist)
+	else:
+		config.usage.date.dayfull = ConfigSelection(default=_("%A %-d %B %Y"), choices = choicelist)
 
 	# TRANSLATORS: long date representation short dayname daynum monthname year in strftime() format! See 'man strftime'
 	config.usage.date.shortdayfull = ConfigText(default=_("%a %-d %B %Y"))
