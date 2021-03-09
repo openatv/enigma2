@@ -2,6 +2,7 @@ from Components.Converter.Converter import Converter
 from Components.Element import cached
 from Components.config import config
 from Components.NimManager import nimmanager
+from skin import parameters
 
 class FrontendInfo(Converter, object):
 	BER = 0
@@ -44,6 +45,7 @@ class FrontendInfo(Converter, object):
 		assert self.type not in (self.LOCK, self.SLOT_NUMBER), "the text output of FrontendInfo cannot be used for lock info"
 		percent = None
 		swapsnr = config.usage.swap_snr_on_osd.value
+		colors = parameters.get("FrontendInfoColors", (0x0000FF00, 0x00FFFF00, 0x007F7F7F)) # tuner active, busy, available colors
 		if self.type == self.BER:  # as count
 			count = self.source.ber
 			if count is not None:
@@ -64,13 +66,13 @@ class FrontendInfo(Converter, object):
 		elif self.type == self.STRING:
 			string = ""
 			for n in nimmanager.nim_slots:
-				if n.type:
+				if n.type and n.enabled:
 					if n.slot == self.source.slot_number:
-						color = "\c0000??00"
+						color = "\c%08x" % colors[0]
 					elif self.source.tuner_mask & 1 << n.slot:
-						color = "\c00????00"
-					elif len(nimmanager.nim_slots) <= self.space_for_tuners or self.show_all_non_link_tuners and not (n.isFBCLink() or n.internally_connectable):
-						color = "\c007?7?7?"
+						color = "\c%08x" % colors[1]
+					elif len(nimmanager.nim_slots) <= self.space_for_tuners or n.isFBCRoot() or self.show_all_non_link_tuners and not (n.isFBCLink() or n.internally_connectable):
+						color = "\c%08x" % colors[2]
 					else:
 						continue
 					if string and len(nimmanager.nim_slots) <= self.space_for_tuners_with_spaces:
@@ -80,16 +82,16 @@ class FrontendInfo(Converter, object):
 		if self.type == self.USE_TUNERS_STRING:
 			string = ""
 			for n in nimmanager.nim_slots:
-				if n.type:
+				if n.type and n.enabled:
 					if n.slot == self.source.slot_number:
-						color = "\c0000??00"
+						color = "\c%08x" % colors[0]
 					elif self.source.tuner_mask & 1 << n.slot:
-						color = "\c00????00"
+						color = "\c%08x" % colors[1]
 					else:
 						continue
 					if string:
 						string += " "
-					string += color + chr(ord("A")+n.slot)
+					string += color + chr(ord("A") + n.slot)
 			return string
 		if percent is None:
 			return "N/A"
