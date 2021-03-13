@@ -157,7 +157,13 @@ OpenTvTitle::OpenTvTitle(const uint8_t * const buffer, uint16_t startMjd)
 		uint8_t descriptor_length = buffer[1];
 		uint8_t titleLength = descriptor_length > 7 ? descriptor_length-7 : 0;
 
-		startTimeBcd = (((startMjd - 40587) * 86400) + (UINT16(&buffer[2]) << 1));
+		uint32_t startSecond = (UINT16(&buffer[2]) << 1);
+
+		startTimeBcd = ((startMjd - 40587) * 86400) + startSecond;
+		
+		if (startSecond >= 86400)
+			startTimeBcd -= 0x20000;
+		
 		duration = UINT16(&buffer[4]) << 1;
 
 		//genre content
