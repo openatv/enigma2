@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-11-13 01:13+0000\n"
-"PO-Revision-Date: 2020-11-22 16:55+0100\n"
+"POT-Creation-Date: 2021-02-14 21:44+0000\n"
+"PO-Revision-Date: 2021-03-13 12:14+0100\n"
 "Last-Translator: neoatomic <neoatomic@users.noreply.github.com>\n"
 "Language-Team: neoatomic\n"
 "Language: nl\n"
@@ -243,7 +243,7 @@ msgstr ""
 "%s"
 
 # DO NOT TRANSLATE!
-#: Console.py:112 LogManager.py:514 Timershift.py:43 Recordings.py:44
+#: Recordings.py:44 Console.py:178 LogManager.py:514 Timershift.py:43
 #: qpip.py:667 qpip.py:668 qpip.py:669 qpip.py:670 ImageBackup.py:51
 msgid " "
 msgstr " "
@@ -293,7 +293,7 @@ msgstr " ('%s') eindigt met fout nummer [%d]."
 msgid " (Channel %s)"
 msgstr " (Zender %s)"
 
-#: Harddisk.py:1009
+#: Harddisk.py:1012
 #, python-format
 msgid " (Partition %d)"
 msgstr " (Partitie %d)"
@@ -572,7 +572,7 @@ msgstr "%02d:%02d"
 msgid "%02d:%02d - %02d:%02d"
 msgstr "%02d:%02d - %02d:%02d"
 
-#: Harddisk.py:206
+#: Harddisk.py:209
 #, python-format
 msgid "%03d MB"
 msgstr "%03d MB"
@@ -1306,14 +1306,14 @@ msgstr "%d MB"
 #. TRANSLATORS: full date representations short dayname daynum monthname long year in strftime() format! See 'man strftime'
 #. _("%a %e %B %Y")
 #.
-#: ClockToText.py:31 ServicePosition.py:159 ServicePosition.py:162
-#: ServicePosition.py:164 ServicePosition.py:166 ServicePosition.py:168
-#: ServicePosition.py:171 ServicePosition.py:175 ServicePosition.py:293
-#: ServicePosition.py:295 ServicePosition.py:299 ServicePosition.py:302
-#: ServicePosition.py:304 ServicePosition.py:317 ServicePosition.py:357
-#: ServicePosition.py:360 ServicePosition.py:362 ServicePosition.py:364
-#: ServicePosition.py:366 ServicePosition.py:369 ServicePosition.py:373
-#: ServicePosition.py:491 ServicePosition.py:493 ServicePosition.py:495
+#: ServicePosition.py:159 ServicePosition.py:162 ServicePosition.py:164
+#: ServicePosition.py:166 ServicePosition.py:168 ServicePosition.py:171
+#: ServicePosition.py:175 ServicePosition.py:293 ServicePosition.py:295
+#: ServicePosition.py:299 ServicePosition.py:302 ServicePosition.py:304
+#: ServicePosition.py:317 ServicePosition.py:357 ServicePosition.py:360
+#: ServicePosition.py:362 ServicePosition.py:364 ServicePosition.py:366
+#: ServicePosition.py:369 ServicePosition.py:373 ServicePosition.py:491
+#: ServicePosition.py:493 ServicePosition.py:495 ClockToText.py:31
 #: RemainingToText.py:120 RemainingToText.py:122 RemainingToText.py:124
 #: RemainingToText.py:126 RemainingToText.py:128 RemainingToText.py:194
 #: RemainingToText.py:196 RemainingToText.py:198 RemainingToText.py:200
@@ -1455,7 +1455,7 @@ msgstr "%d.%-m"
 msgid "%d.%-m.%Y"
 msgstr "%d.%-m.%Y"
 
-#: Harddisk.py:207
+#: Harddisk.py:210
 #, python-format
 msgid "%d.%03d GB"
 msgstr "%d.%03d GB"
@@ -1796,7 +1796,7 @@ msgstr "(leeg)"
 msgid "(show optional DVD audio menu)"
 msgstr "(optioneel DVD audio menu weergeven)"
 
-#: Timershift.py:41 Recordings.py:42
+#: Recordings.py:42 Timershift.py:41
 msgid "* = Restart Required"
 msgstr "* = Herstart noodzakelijk"
 
@@ -2309,11 +2309,11 @@ msgstr "32 Mb"
 msgid "3D Mode"
 msgstr "3D Modus"
 
-#: VideoMode.py:510 AudioSelection.py:231
+#: AudioSelection.py:231 VideoMode.py:510
 msgid "3D Surround"
 msgstr "3D Surround"
 
-#: VideoMode.py:513 AudioSelection.py:237
+#: AudioSelection.py:237 VideoMode.py:513
 msgid "3D Surround Speaker Position"
 msgstr "3D Surround luidspreker positie"
 
@@ -2537,7 +2537,7 @@ msgstr "<Standaard opnamelocatie>"
 msgid "<Last timer location>"
 msgstr "<Laatste timer locatie>"
 
-#: PowerTimerEdit.py:189 TimerEdit.py:216 TimerList.py:87 PowerTimerList.py:62
+#: TimerEdit.py:216 PowerTimerEdit.py:189 TimerList.py:87 PowerTimerList.py:62
 #: PowerTimerList.py:111
 msgid "<unknown>"
 msgstr "<onbekend>"
@@ -2570,9 +2570,9 @@ msgstr ""
 "Verhoog de slaap timer met 30 minuten. Uw %s %s\n"
 "zal afsluiten na de Opname of Powertimer. Ga nu naar stand-by?"
 
-#: SoftwareUpdate.py:214 NetworkSetup.py:1738 NetworkSetup.py:2103
-#: NetworkSetup.py:2242 NetworkSetup.py:2415 NetworkSetup.py:2679
-#: NetworkSetup.py:3028 NetworkSetup.py:3520
+#: NetworkSetup.py:1738 NetworkSetup.py:2103 NetworkSetup.py:2242
+#: NetworkSetup.py:2415 NetworkSetup.py:2679 NetworkSetup.py:3028
+#: NetworkSetup.py:3520 SoftwareUpdate.py:214
 msgid ""
 "A background update check is in progress, please wait a few minutes and try "
 "again."
@@ -2673,7 +2673,7 @@ msgstr ""
 "Bezig met opnemen.\n"
 "Wat wilt u doen?"
 
-#: QuickMenu.py:602 PositionerSetup/plugin.py:1342
+#: QuickMenu.py:605 PositionerSetup/plugin.py:1342
 msgid ""
 "A recording is currently running. Please stop the recording before trying to "
 "configure the positioner."
@@ -2687,7 +2687,7 @@ msgid ""
 "scan."
 msgstr "Een opname is nu bezig. Stop de opname voor u gaat zoeken."
 
-#: QuickMenu.py:618
+#: QuickMenu.py:621
 msgid ""
 "A recording is currently running. Please stop the recording before trying to "
 "start the satfinder."
@@ -2793,7 +2793,7 @@ msgstr ""
 msgid "AAC Plus downmix"
 msgstr "AAC Plus downmix"
 
-#: VideoMode.py:497 AudioSelection.py:135
+#: AudioSelection.py:135 VideoMode.py:497
 msgid "AAC downmix"
 msgstr "AAC downmix"
 
@@ -2801,7 +2801,7 @@ msgstr "AAC downmix"
 msgid "AAC plus downmix"
 msgstr "AAC plus downmix"
 
-#: VideoMode.py:503 AudioSelection.py:147
+#: AudioSelection.py:147 VideoMode.py:503
 msgid "AAC transcoding"
 msgstr "AAC transcoding"
 
@@ -2809,7 +2809,7 @@ msgstr "AAC transcoding"
 msgid "AC3"
 msgstr "AC3"
 
-#: VideoMode.py:487 AudioSelection.py:118
+#: AudioSelection.py:118 VideoMode.py:487
 msgid "AC3 downmix"
 msgstr "AC3 downmix"
 
@@ -2829,7 +2829,7 @@ msgstr "AC3plus transcodering"
 msgid "AFL"
 msgstr "AFL"
 
-#: QuickMenu.py:447
+#: QuickMenu.py:448
 msgid "AFP"
 msgstr "AFP"
 
@@ -2845,7 +2845,7 @@ msgstr "ATSC"
 msgid "ATSC provider"
 msgstr "ATSC provider"
 
-#: QuickMenu.py:405
+#: QuickMenu.py:406
 msgid "AV Setup"
 msgstr "Video/geluid"
 
@@ -2862,7 +2862,7 @@ msgstr "AZPlay"
 msgid "Abenteuer"
 msgstr "Avontuur"
 
-#: AutoDiseqc.py:115
+#: AutoDiseqc.py:160
 msgid "Abort"
 msgstr "Afbreken"
 
@@ -2878,8 +2878,8 @@ msgstr "Een streaming service gestopt.\n"
 msgid "Aborting updateprogress"
 msgstr "Update proces wordt gestopt"
 
-#: CCcamInfo.py:200 CCcamInfo.py:512 AtileHD/plugin.py:149 menu.xml
-#: skin_default.xml
+#: CCcamInfo.py:200 CCcamInfo.py:512 AtileHD/plugin.py:149 skin_default.xml
+#: menu.xml
 msgid "About"
 msgstr "Uw ontvanger"
 
@@ -2974,8 +2974,8 @@ msgstr ""
 "De activering vindt onmiddellijk plaats. Als deze functie niet wordt "
 "ondersteund, hebben de volumeknoppen geen functie!"
 
-#: CronTimer.py:25 NetworkSetup.py:2648 NetworkSetup.py:2986
-#: NetworkSetup.py:3481 SwapManager.py:99 SwapManager.py:217
+#: NetworkSetup.py:2648 NetworkSetup.py:2986 Ci.py:708 CronTimer.py:25
+#: SwapManager.py:99 SwapManager.py:217
 msgid "Active"
 msgstr "Actief"
 
@@ -2987,8 +2987,8 @@ msgstr "Actieve gebruikers"
 msgid "Adapter settings"
 msgstr "Adapter instellingen"
 
-#: PowerTimerEdit.py:42 CronTimer.py:39 NetworkSetup.py:263 TitleList.py:172
-#: qpip.py:462
+#: NetworkSetup.py:263 TimerEdit.py:52 PowerTimerEdit.py:42 CronTimer.py:39
+#: TitleList.py:172 qpip.py:462
 msgid "Add"
 msgstr "Toevoegen"
 
@@ -3134,7 +3134,7 @@ msgstr "Voegt schema toe..."
 msgid "Additional Info"
 msgstr "Aanvullende info"
 
-#: QuickMenu.py:541 Infopanel/plugin.py:485 SoftwareManager/plugin.py:368
+#: QuickMenu.py:544 Infopanel/plugin.py:485 SoftwareManager/plugin.py:368
 msgid "Additional files/folders to backup"
 msgstr "Extra back-up bestanden"
 
@@ -3266,9 +3266,9 @@ msgstr "Algerije"
 msgid "Alias"
 msgstr "Alias"
 
-#: OScamInfo.py:476 ChannelSelection.py:1516 ChannelSelection.py:1666
-#: CCcamInfo.py:944 CCcamInfo.py:1451 CCcamInfo.py:1456 CCcamInfo.py:1504
-#: CCcamInfo.py:1509 Satconfig.py:334 Satconfig.py:393 UsageConfig.py:1346
+#: ChannelSelection.py:1516 ChannelSelection.py:1666 CCcamInfo.py:944
+#: CCcamInfo.py:1451 CCcamInfo.py:1456 CCcamInfo.py:1504 CCcamInfo.py:1509
+#: OScamInfo.py:476 Satconfig.py:334 Satconfig.py:393 UsageConfig.py:1346
 #: CommonInterfaceAssignment/plugin.py:569
 msgid "All"
 msgstr "Alles"
@@ -3375,7 +3375,7 @@ msgstr "Alfanumeriek"
 msgid "Also on standby"
 msgstr "Tevens bij stand-by"
 
-#: VirtualKeyBoard.py:482 ServiceOrbitalPosition.py:57 ServiceName2.py:344
+#: VirtualKeyBoard.py:482 ServiceName2.py:344 ServiceOrbitalPosition.py:57
 msgid "Alternative"
 msgstr "Alternatieven"
 
@@ -3608,7 +3608,7 @@ msgstr ""
 "Weet u zeker dat u de back-up wilt terugplaatsen?\n"
 "Uw ontvanger zal herstarten nadat herstel van de back-up gereed is!"
 
-#: QuickMenu.py:535
+#: QuickMenu.py:538
 #, python-format
 msgid ""
 "Are you sure you want to restore your %s %s backup?\n"
@@ -3707,15 +3707,15 @@ msgstr "Toegewezen CAIds:"
 msgid "Assigned services/provider:"
 msgstr "Toegewezen zenders/providers:"
 
-#: AutoDiseqc.py:29
+#: AutoDiseqc.py:37
 msgid "Astra 1 19.2e"
 msgstr "Astra 1 19.2e"
 
-#: AutoDiseqc.py:55
+#: AutoDiseqc.py:81
 msgid "Astra 2 28.2e"
 msgstr "Astra 2 28.2e"
 
-#: AutoDiseqc.py:42
+#: AutoDiseqc.py:59
 msgid "Astra 3 23.5e"
 msgstr "Astra 3 23.5e"
 
@@ -3731,7 +3731,7 @@ msgstr "Atletiek"
 msgid "Attach a file"
 msgstr "Bestand toevoegen"
 
-#: ButtonSetup.py:88 UsageConfig.py:353 menu.xml skin_default.xml
+#: ButtonSetup.py:88 UsageConfig.py:353 skin_default.xml menu.xml
 msgid "Audio"
 msgstr "Audio"
 
@@ -3751,7 +3751,7 @@ msgstr "Geluids PID"
 msgid "Audio Selection"
 msgstr "Geluids selectie"
 
-#: QuickMenu.py:495
+#: QuickMenu.py:498
 msgid "Audio Settings"
 msgstr "Geluids instellingen"
 
@@ -3759,7 +3759,7 @@ msgstr "Geluids instellingen"
 msgid "Audio Source"
 msgstr "Geluidsbron"
 
-#: QuickMenu.py:499
+#: QuickMenu.py:502
 msgid "Audio Sync"
 msgstr "Geluids synchronisatie"
 
@@ -3827,11 +3827,11 @@ msgstr "Automatisch uitschakelen"
 msgid "Auto Detect"
 msgstr "Automatisch herkennen"
 
-#: QuickMenu.py:497
+#: QuickMenu.py:500
 msgid "Auto Language"
 msgstr "Automatische taalkeuze"
 
-#: QuickMenu.py:323
+#: QuickMenu.py:324
 msgid "Auto Language Selection"
 msgstr "Taal keuze voor geluid/ondertitels/EPG"
 
@@ -3883,11 +3883,11 @@ msgstr "Auto update"
 msgid "Automatic"
 msgstr "Automatisch"
 
-#: ScanSetup.py:1893 ButtonSetup.py:238 QuickMenu.py:508 menu.xml
+#: ButtonSetup.py:238 ScanSetup.py:1893 QuickMenu.py:511 menu.xml
 msgid "Automatic Scan"
 msgstr "Automatisch zoeken"
 
-#: QuickMenu.py:335
+#: QuickMenu.py:336
 msgid "Automatic Service Searching"
 msgstr "Automatisch zenders zoeken"
 
@@ -3903,7 +3903,7 @@ msgstr "Automatische resolutieinfo"
 msgid "Automatic scan"
 msgstr "Automatisch zoeken"
 
-#: QuickMenu.py:335
+#: QuickMenu.py:336
 msgid "Automatic scan for services"
 msgstr "Hier kunt u automatisch naar zenders zoeken"
 
@@ -3919,18 +3919,18 @@ msgstr "Auto"
 msgid "Autorecord location"
 msgstr "Automatische opname locatie"
 
-#: CronTimer.py:41 NetworkSetup.py:1722 NetworkSetup.py:1862
-#: NetworkSetup.py:2008 NetworkSetup.py:2089 NetworkSetup.py:2228
-#: NetworkSetup.py:2401 NetworkSetup.py:2576 NetworkSetup.py:2667
-#: NetworkSetup.py:3016 NetworkSetup.py:3508 SwapManager.py:102
+#: NetworkSetup.py:1722 NetworkSetup.py:1862 NetworkSetup.py:2008
+#: NetworkSetup.py:2089 NetworkSetup.py:2228 NetworkSetup.py:2401
+#: NetworkSetup.py:2576 NetworkSetup.py:2667 NetworkSetup.py:3016
+#: NetworkSetup.py:3508 Ci.py:715 CronTimer.py:41 SwapManager.py:102
 #: SABnzbdSetup/plugin.py:43
 msgid "Autostart"
 msgstr "Autostart"
 
-#: CronTimer.py:24 NetworkSetup.py:1715 NetworkSetup.py:1855
-#: NetworkSetup.py:2001 NetworkSetup.py:2082 NetworkSetup.py:2218
-#: NetworkSetup.py:2394 NetworkSetup.py:2569 NetworkSetup.py:2647
-#: NetworkSetup.py:2985 NetworkSetup.py:3480 SABnzbdSetup/plugin.py:36
+#: NetworkSetup.py:1715 NetworkSetup.py:1855 NetworkSetup.py:2001
+#: NetworkSetup.py:2082 NetworkSetup.py:2218 NetworkSetup.py:2394
+#: NetworkSetup.py:2569 NetworkSetup.py:2647 NetworkSetup.py:2985
+#: NetworkSetup.py:3480 Ci.py:707 CronTimer.py:24 SABnzbdSetup/plugin.py:36
 msgid "Autostart:"
 msgstr "Autostart:"
 
@@ -3975,7 +3975,7 @@ msgstr "BDMV Bludisc (Enkel HDTV titels)"
 msgid "BDMV Compatible Bludisc (HDTV only)"
 msgstr "BDMV compatibel Bludisc (alleen voor HDTV)"
 
-#: MediumToolbox.py:138 TitleList.py:312
+#: TitleList.py:312 MediumToolbox.py:138
 msgid "BLUDISC RECORDABLE"
 msgstr "OPNEEMBARE BLUDISK"
 
@@ -4016,35 +4016,35 @@ msgid "BT709 XvYCC"
 msgstr "BT709 XvYCC"
 
 #: NetworkSetup.py:1424 NetworkSetup.py:1429 NetworkSetup.py:1434
-#: NetworkSetup.py:1439 NetworkSetup.py:1444 downloader.py:511
-#: SoftwareManager/plugin.py:813
+#: NetworkSetup.py:1439 NetworkSetup.py:1444 SoftwareManager/plugin.py:813
+#: downloader.py:511
 msgid "Back"
 msgstr "Terug"
 
-#: Harddisk.py:717 Harddisk.py:718 Harddisk.py:719 Harddisk.py:729
-#: Harddisk.py:730 Harddisk.py:731
+#: Harddisk.py:720 Harddisk.py:721 Harddisk.py:722 Harddisk.py:732
+#: Harddisk.py:733 Harddisk.py:734
 msgid "Back USB"
 msgstr "Achterkant USB"
 
-#: Harddisk.py:666
+#: Harddisk.py:669
 msgid "Back USB 3.0"
 msgstr "Achterkant USB 3.0"
 
-#: Harddisk.py:706 Harddisk.py:707
+#: Harddisk.py:709 Harddisk.py:710
 msgid "Back, inner USB"
 msgstr "Achterkant, USB binnen"
 
-#: Harddisk.py:647 Harddisk.py:648 Harddisk.py:661 Harddisk.py:662
-#: Harddisk.py:668 Harddisk.py:672 Harddisk.py:689 Harddisk.py:693
+#: Harddisk.py:650 Harddisk.py:651 Harddisk.py:664 Harddisk.py:665
+#: Harddisk.py:671 Harddisk.py:675 Harddisk.py:692 Harddisk.py:696
 msgid "Back, lower USB"
 msgstr "Achterkant, USB beneden"
 
-#: Harddisk.py:704 Harddisk.py:705
+#: Harddisk.py:707 Harddisk.py:708
 msgid "Back, outer USB"
 msgstr "Achterkant, USB buiten"
 
-#: Harddisk.py:645 Harddisk.py:646 Harddisk.py:659 Harddisk.py:660
-#: Harddisk.py:669 Harddisk.py:673 Harddisk.py:690 Harddisk.py:694
+#: Harddisk.py:648 Harddisk.py:649 Harddisk.py:662 Harddisk.py:663
+#: Harddisk.py:672 Harddisk.py:676 Harddisk.py:693 Harddisk.py:697
 msgid "Back, upper USB"
 msgstr "Achterkant, USB boven"
 
@@ -4119,7 +4119,7 @@ msgstr "Back-up modus: flash online\n"
 msgid "Backup Mode: USB Recovery\n"
 msgstr "Back-up modus: herstel via USB\n"
 
-#: QuickMenu.py:526 Infopanel/plugin.py:578 Flash_online.py:254
+#: QuickMenu.py:529 Infopanel/plugin.py:578 Flash_online.py:254
 msgid "Backup Settings"
 msgstr "Back-up instellingen"
 
@@ -4127,11 +4127,11 @@ msgstr "Back-up instellingen"
 msgid "Backup completed."
 msgstr "Back-up voltooid."
 
-#: QuickMenu.py:625 Infopanel/plugin.py:588
+#: QuickMenu.py:628 Infopanel/plugin.py:588
 msgid "Backup done."
 msgstr "Back-up is gereed."
 
-#: QuickMenu.py:627 Infopanel/plugin.py:590 SoftwareManager/plugin.py:403
+#: QuickMenu.py:630 Infopanel/plugin.py:590 SoftwareManager/plugin.py:403
 msgid "Backup failed."
 msgstr "De back-up is mislukt."
 
@@ -4160,11 +4160,11 @@ msgstr "Back-up uw instellingen"
 msgid "Backup to destination: %s"
 msgstr "Back-up naar locatie : %s"
 
-#: QuickMenu.py:348
+#: QuickMenu.py:349
 msgid "Backup your current image"
 msgstr "Back-up de volledige image"
 
-#: QuickMenu.py:348
+#: QuickMenu.py:349
 msgid ""
 "Backup your current image to HDD or USB. This will make a 1:1 copy of your "
 "box"
@@ -4172,11 +4172,11 @@ msgstr ""
 "Back-up uw huidige image naar HDD of USB. Hiermee maakt u een 1:1 kopie van "
 "de software op uw ontvanger."
 
-#: QuickMenu.py:349
+#: QuickMenu.py:350
 msgid "Backup your current settings"
 msgstr "Maak een back-up van alle instellingen"
 
-#: QuickMenu.py:349
+#: QuickMenu.py:350
 msgid ""
 "Backup your current settings. This includes E2-setup, channels, network and "
 "all selected files"
@@ -4485,7 +4485,7 @@ msgstr "Brand DVD"
 msgid "Burn existing image to medium"
 msgstr "Brand huidige image naar medium"
 
-#: DVDBurn/plugin.py:12 Project.py:37 TitleList.py:70 TitleList.py:130
+#: TitleList.py:70 TitleList.py:130 DVDBurn/plugin.py:12 Project.py:37
 msgid "Burn to medium"
 msgstr "Brand naar medium"
 
@@ -4505,7 +4505,7 @@ msgstr "Bedrijf & financiën"
 msgid "Button"
 msgstr "Knop"
 
-#: QuickMenu.py:261 QuickMenu.py:464 setup.xml
+#: QuickMenu.py:261 QuickMenu.py:467 setup.xml
 msgid "Button Setup"
 msgstr "Knop instellingen"
 
@@ -4896,32 +4896,33 @@ msgstr ""
 msgid "Canada"
 msgstr "Canada"
 
-#: OScamInfo.py:1137 VideoMode.py:462 TimerEntry.py:47 LanguageSelection.py:53
-#: SoftwareUpdate.py:322 SoftwareUpdate.py:385 LocationBox.py:81 SDswap.py:40
-#: Console.py:23 MultiBootSelector.py:46 UserInterfacePositioner.py:258
+#: About.py:930 InputDeviceSetup.py:138 InputDeviceSetup.py:436
+#: NetworkSetup.py:261 NetworkSetup.py:345 NetworkSetup.py:471
+#: NetworkSetup.py:3382 NetworkSetup.py:3850 TimerEntry.py:47
+#: LanguageSelection.py:53 SoftwareUpdate.py:322 SoftwareUpdate.py:385
+#: SoftcamSetup.py:73 ButtonSetup.py:364 MultiBootSelector.py:46
+#: LocationBox.py:81 LocationBox.py:113 UserInterfacePositioner.py:258
 #: UserInterfacePositioner.py:399 UserInterfacePositioner.py:543 Ci.py:652
-#: ServiceScan.py:116 CCcamInfo.py:1638 PluginBrowser.py:824
-#: PluginBrowser.py:841 ButtonSetup.py:364 Timershift.py:72
-#: SleepTimerEdit.py:33 Satconfig.py:76 Satconfig.py:1162 NetworkSetup.py:261
-#: NetworkSetup.py:345 NetworkSetup.py:471 NetworkSetup.py:3382
-#: NetworkSetup.py:3850 Recordings.py:78 TimeDateInput.py:15
+#: Recordings.py:78 ServiceScan.py:116 Console.py:23 PluginBrowser.py:824
+#: PluginBrowser.py:841 Timershift.py:72 SleepTimerEdit.py:33 OScamInfo.py:1137
+#: VideoMode.py:462 Satconfig.py:76 Satconfig.py:1162 TimeDateInput.py:15
 #: ParentalControlSetup.py:51 ParentalControlSetup.py:187 MovieSelection.py:269
 #: MovieSelection.py:369 MovieSelection.py:1959 PowerTimerEntry.py:36
-#: About.py:930 InputDeviceSetup.py:138 InputDeviceSetup.py:433 Language.py:228
-#: MountManager.py:394 SoftwarePanel.py:62 Infopanel/plugin.py:187
-#: Infopanel/plugin.py:644 Volume_adjust/plugin.py:264
+#: Language.py:228 MountManager.py:394 SoftwarePanel.py:62
+#: Infopanel/plugin.py:187 Infopanel/plugin.py:644 Volume_adjust/plugin.py:264
 #: Volume_adjust/plugin.py:388 ProjectSettings.py:56 ProjectSettings.py:104
 #: TitleProperties.py:33 PicturePlayer/ui.py:163 AtileHD/plugin.py:85
 #: AtileHD/plugin.py:146 settings.py:36 settings.py:81
-#: OSDPositionSetup/plugin.py:29 downloader.py:297 downloader.py:565
-#: downloader.py:721 IceTV/plugin.py:1313 IceTV/plugin.py:1434
-#: IceTV/plugin.py:1530 IceTV/plugin.py:1747 AnimationSetup/plugin.py:68
-#: AnimationSetup/plugin.py:172 BackupRestore.py:249 BackupRestore.py:354
-#: BackupRestore.py:732 ImageBackup.py:49 Flash_online.py:43 Multibootmgr.py:41
-#: SoftwareManager/plugin.py:456 SoftwareManager/plugin.py:1153
-#: SoftwareManager/plugin.py:1894 VideoClippingSetup/plugin.py:29
-#: ConfigurationBackup/plugin.py:74 ConfigurationBackup/plugin.py:162
-#: UI3DSetup/plugin.py:30 HdmiCEC/plugin.py:38 DiseqcTester/plugin.py:590
+#: OSDPositionSetup/plugin.py:29 AnimationSetup/plugin.py:68
+#: AnimationSetup/plugin.py:172 IceTV/plugin.py:1313 IceTV/plugin.py:1434
+#: IceTV/plugin.py:1530 IceTV/plugin.py:1747 BackupRestore.py:249
+#: BackupRestore.py:354 BackupRestore.py:732 ImageBackup.py:49
+#: Flash_online.py:43 SoftwareManager/plugin.py:456
+#: SoftwareManager/plugin.py:1153 SoftwareManager/plugin.py:1894
+#: Multibootmgr.py:41 downloader.py:297 downloader.py:565 downloader.py:721
+#: VideoClippingSetup/plugin.py:29 ConfigurationBackup/plugin.py:74
+#: ConfigurationBackup/plugin.py:162 UI3DSetup/plugin.py:30
+#: HdmiCEC/plugin.py:38 DiseqcTester/plugin.py:590
 #: CommonInterfaceAssignment/plugin.py:381 VideoEnhancement/plugin.py:44
 #: VideoEnhancement/plugin.py:320 key_actions.py:227 key_actions.py:351
 #: key_actions.py:567 addons/unarchiver.py:68 addons/unarchiver.py:238
@@ -5090,7 +5091,7 @@ msgstr "Wijzig skin"
 msgid "Change step size"
 msgstr "Wijzig stapgrootte"
 
-#: EventView.py:189 EventView.py:296 EpgSelection.py:1694 EpgSelection.py:1857
+#: EpgSelection.py:1694 EpgSelection.py:1857 EventView.py:189 EventView.py:296
 #: GraphMultiEpg.py:1072 GraphMultiEpg.py:1117
 msgid "Change timer"
 msgstr "Wijzig timer"
@@ -5112,8 +5113,8 @@ msgstr ""
 "Een herstart is noodzakelijk voor de wijzigingen.\n"
 "Nu uw %s %s opnieuw opstarten?"
 
-#: OScamInfo.py:1116 TimerEntry.py:275 ServiceInfo.py:269 ScanSetup.py:874
-#: ScanSetup.py:1363 Satconfig.py:529 Satconfig.py:546 Satconfig.py:560
+#: TimerEntry.py:275 ServiceInfo.py:269 ScanSetup.py:874 ScanSetup.py:1363
+#: OScamInfo.py:1116 Satconfig.py:529 Satconfig.py:546 Satconfig.py:560
 #: ClientsStreaming.py:64 ProjectSettings.py:113 Title.py:21
 #: TitleProperties.py:89 setup.xml
 msgid "Channel"
@@ -5162,7 +5163,7 @@ msgstr "Zenderlijsttype"
 msgid "Channel not in services list"
 msgstr "Zender komt niet voor in de zenderlijst"
 
-#: ChannelSelection.py:1565 QuickMenu.py:474 skin_default.xml
+#: ChannelSelection.py:1565 QuickMenu.py:477 skin_default.xml
 msgid "Channel selection"
 msgstr "Zenderkeuze instellingen"
 
@@ -5206,7 +5207,7 @@ msgstr "Karakter apparaat"
 msgid "Check"
 msgstr "Controleer"
 
-#: QuickMenu.py:372
+#: QuickMenu.py:373
 msgid "Check HDD"
 msgstr "Harde schijf op fouten controleren"
 
@@ -5214,16 +5215,17 @@ msgstr "Harde schijf op fouten controleren"
 msgid "Check power and input state from TV"
 msgstr "Controleer power en invoer status van TV"
 
-#: QuickMenu.py:344
+#: QuickMenu.py:345
 msgid ""
 "Check/Install online updates (you must have a working internet connection)"
 msgstr ""
 "Controleer/installeer online updates. (Een internet verbinding is "
 "noodzakelijk)"
 
-#: CronTimer.py:57 NetworkSetup.py:1741 NetworkSetup.py:1881
-#: NetworkSetup.py:2106 NetworkSetup.py:2245 NetworkSetup.py:2418
-#: NetworkSetup.py:2682 NetworkSetup.py:3031 NetworkSetup.py:3523
+#: NetworkSetup.py:1741 NetworkSetup.py:1881 NetworkSetup.py:2106
+#: NetworkSetup.py:2245 NetworkSetup.py:2418 NetworkSetup.py:2682
+#: NetworkSetup.py:3031 NetworkSetup.py:3523 NetworkSetup.py:4114
+#: CronTimer.py:57
 msgid "Checking Feeds"
 msgstr "Controleert feeds"
 
@@ -5231,7 +5233,7 @@ msgstr "Controleert feeds"
 msgid "Checking Logs..."
 msgstr "Controleer logs..."
 
-#: HarddiskSetup.py:58 Harddisk.py:444
+#: HarddiskSetup.py:58 Harddisk.py:447
 msgid "Checking filesystem..."
 msgstr "Controleer bestandssysteem..."
 
@@ -5239,7 +5241,7 @@ msgstr "Controleer bestandssysteem..."
 msgid "Checking for Updates..."
 msgstr "Controleert op updates..."
 
-#: AutoDiseqc.py:223
+#: AutoDiseqc.py:268
 #, python-format
 msgid ""
 "Checking tuner %d\n"
@@ -5415,7 +5417,7 @@ msgstr "Maak prullenbakken in het netwerk leeg"
 msgid "Cleaning Trashes"
 msgstr "Prullenbakken worden nu leeg gemaakt"
 
-#: PowerTimerEdit.py:161 TimerEdit.py:187
+#: TimerEdit.py:187 PowerTimerEdit.py:161
 msgid "Cleanup"
 msgstr "Opruimen"
 
@@ -5453,8 +5455,8 @@ msgstr "Client Info ( Oscam-Versie: %s )"
 msgid "ClientIP"
 msgstr "Gebruikers IP"
 
-#: OScamInfo.py:611 OScamInfo.py:615 OScamInfo.py:619 OScamInfo.py:783
-#: OScamInfo.py:788 OScamInfo.py:799 CCcamInfo.py:186 CCcamInfo.py:465
+#: CCcamInfo.py:186 CCcamInfo.py:465 OScamInfo.py:611 OScamInfo.py:615
+#: OScamInfo.py:619 OScamInfo.py:783 OScamInfo.py:788 OScamInfo.py:799
 msgid "Clients"
 msgstr "Gebruikers"
 
@@ -5462,20 +5464,20 @@ msgstr "Gebruikers"
 msgid "Clock:"
 msgstr "Klok:"
 
-#: OScamInfo.py:605 SoftwareUpdate.py:38 ScanSetup.py:625 ScanSetup.py:1895
-#: StreamingClientsInfo.py:20 Satconfig.py:813 Satconfig.py:985
-#: CronTimer.py:279 SkinSelector.py:36 NetworkSetup.py:58 NetworkSetup.py:857
-#: NetworkSetup.py:1252 NetworkSetup.py:1510 NetworkSetup.py:1618 About.py:625
-#: About.py:851 InputDeviceSetup.py:23 SoftcamPanel.py:75 ScriptRunner.py:46
-#: TitleList.py:171 PicturePlayer/ui.py:59 PicturePlayer/ui.py:240
-#: downloader.py:403 downloader.py:499 SkinSelector/plugin.py:31
+#: About.py:851 InputDeviceSetup.py:23 NetworkSetup.py:58 NetworkSetup.py:857
+#: NetworkSetup.py:1252 NetworkSetup.py:1510 NetworkSetup.py:1618
+#: TaskList.py:47 SoftwareUpdate.py:38 ScanSetup.py:625 Console.py:78
+#: StreamingClientsInfo.py:20 OScamInfo.py:605 Satconfig.py:813
+#: Satconfig.py:985 CronTimer.py:279 SkinSelector.py:36 SoftcamPanel.py:75
+#: ScriptRunner.py:46 TitleList.py:171 PicturePlayer/ui.py:59
+#: PicturePlayer/ui.py:240 SkinSelector/plugin.py:31
 #: SoftwareManager/plugin.py:233 SoftwareManager/plugin.py:612
 #: SoftwareManager/plugin.py:699 SoftwareManager/plugin.py:835
 #: SoftwareManager/plugin.py:1262 SoftwareManager/plugin.py:1354
 #: SoftwareManager/plugin.py:1808 SoftwareManager/plugin.py:2018
 #: SoftwareManager/plugin.py:2332 SoftwareManager/plugin.py:2424
-#: WirelessLan/plugin.py:83 WirelessLan/plugin.py:228
-#: CommonInterfaceAssignment/plugin.py:36
+#: downloader.py:403 downloader.py:499 WirelessLan/plugin.py:83
+#: WirelessLan/plugin.py:228 CommonInterfaceAssignment/plugin.py:36
 #: CommonInterfaceAssignment/plugin.py:431
 #: CommonInterfaceAssignment/plugin.py:570
 msgid "Close"
@@ -5521,7 +5523,7 @@ msgstr "Samenvoegen"
 msgid "Collection name"
 msgstr "Naam van verzameling"
 
-#: ProjectSettings.py:135 TitleList.py:69
+#: TitleList.py:69 ProjectSettings.py:135
 msgid "Collection settings"
 msgstr "Instellingen verzameling"
 
@@ -5567,7 +5569,7 @@ msgstr "Commando volgorde"
 msgid "Command type"
 msgstr "Type opdracht"
 
-#: Ci.py:491 SoftwareManager/plugin.py:1029 menu.xml skin_default.xml
+#: Ci.py:491 SoftwareManager/plugin.py:1029 skin_default.xml menu.xml
 msgid "Common Interface"
 msgstr "Common Interface"
 
@@ -5597,7 +5599,7 @@ msgstr "Overscan compensatie"
 msgid "Complete"
 msgstr "Compleet"
 
-#: QuickMenu.py:519
+#: QuickMenu.py:522
 msgid "Complete Backup"
 msgstr "Volledige back-up"
 
@@ -5866,19 +5868,19 @@ msgstr "Continu afspelen (lus)"
 msgid "Contrast"
 msgstr "Contrast"
 
-#: QuickMenu.py:312
+#: QuickMenu.py:313
 msgid "Control your Softcams"
 msgstr "Softcams beheren"
 
-#: HarddiskSetup.py:128 QuickMenu.py:568
+#: HarddiskSetup.py:128 QuickMenu.py:571
 msgid "Convert ext3 to ext4"
 msgstr "Converteer ext3 naar ext 4"
 
-#: HarddiskSetup.py:122 QuickMenu.py:374
+#: HarddiskSetup.py:122 QuickMenu.py:375
 msgid "Convert filesystem ext3 to ext4"
 msgstr "Zet uw bestandssysteem om van ext3 naar ext4"
 
-#: HarddiskSetup.py:58 Harddisk.py:465
+#: HarddiskSetup.py:58 Harddisk.py:468
 msgid "Converting ext3 to ext4..."
 msgstr "Converteert ext3 naar ext4..."
 
@@ -6081,11 +6083,11 @@ msgstr "Creëer hardlink naar Timeshift-bestand mislukt!"
 msgid "Creating directory %s failed."
 msgstr "Het aanmaken van de map %s is mislukt."
 
-#: Harddisk.py:407
+#: Harddisk.py:410
 msgid "Creating filesystem"
 msgstr "Creëert bestandssyeteem"
 
-#: Harddisk.py:375
+#: Harddisk.py:378
 msgid "Creating partition"
 msgstr "Creëert partitie"
 
@@ -6137,10 +6139,10 @@ msgstr "Huidig CEC adres"
 msgid "Current Event:"
 msgstr "Huidig programma:"
 
-#: CronTimer.py:27 CronTimer.py:132 NetworkSetup.py:1717 NetworkSetup.py:1857
-#: NetworkSetup.py:2003 NetworkSetup.py:2084 NetworkSetup.py:2220
-#: NetworkSetup.py:2396 NetworkSetup.py:2571 NetworkSetup.py:2650
-#: NetworkSetup.py:2988 NetworkSetup.py:3483 SwapManager.py:123
+#: NetworkSetup.py:1717 NetworkSetup.py:1857 NetworkSetup.py:2003
+#: NetworkSetup.py:2084 NetworkSetup.py:2220 NetworkSetup.py:2396
+#: NetworkSetup.py:2571 NetworkSetup.py:2650 NetworkSetup.py:2988
+#: NetworkSetup.py:3483 Ci.py:710 CronTimer.py:132 SwapManager.py:123
 #: SwapManager.py:217 SwapManager.py:222 SABnzbdSetup/plugin.py:38
 msgid "Current Status:"
 msgstr "Status:"
@@ -6192,7 +6194,7 @@ msgstr "Huidig geïnstalleerde image"
 msgid "Custom"
 msgstr "Aanpassen"
 
-#: QuickMenu.py:462
+#: QuickMenu.py:465
 msgid "Customise"
 msgstr "Instellingen"
 
@@ -6236,7 +6238,7 @@ msgstr "Tsjechië"
 msgid "DAC"
 msgstr "DAC"
 
-#: NetworkSetup.py:1489 About.py:304
+#: About.py:304 NetworkSetup.py:1489
 msgid "DHCP"
 msgstr "DHCP"
 
@@ -6268,7 +6270,7 @@ msgstr "DTS"
 msgid "DTS HD downmix"
 msgstr "DTS HD downmix"
 
-#: VideoMode.py:491 AudioSelection.py:123
+#: AudioSelection.py:123 VideoMode.py:491
 msgid "DTS downmix"
 msgstr "DTS downmix"
 
@@ -6565,7 +6567,7 @@ msgstr "Afsluiten"
 msgid "Deep standby"
 msgstr "Afsluiten"
 
-#: NetworkSetup.py:158 InputDeviceSetup.py:262 InputDeviceSetup.py:344
+#: InputDeviceSetup.py:262 InputDeviceSetup.py:344 NetworkSetup.py:158
 #: UsageConfig.py:210 UsageConfig.py:216 AtileHD/plugin.py:249
 #: AnimationSetup/plugin.py:70 VideoEnhancement/plugin.py:47
 msgid "Default"
@@ -6591,7 +6593,7 @@ msgstr "Standaard Map"
 msgid "Default Services Scanner"
 msgstr "Standaard zender zoeker"
 
-#: QuickMenu.py:539 Infopanel/plugin.py:483 SoftwareManager/plugin.py:366
+#: QuickMenu.py:542 Infopanel/plugin.py:483 SoftwareManager/plugin.py:366
 msgid "Default files/folders to backup"
 msgstr "Standaard back-up bestanden"
 
@@ -6686,11 +6688,11 @@ msgstr "Vertragingstijd"
 msgid "Delay:"
 msgstr "Vertraging:"
 
-#: CCcamInfo.py:1256 CCcamInfo.py:1524 LogManager.py:210 PowerTimerEdit.py:127
-#: CronTimer.py:38 NetworkSetup.py:264 MovieSelection.py:385
-#: MovieSelection.py:390 MovieSelection.py:675 SwapManager.py:171
-#: FileCommander/plugin.py:255 FileCommander/plugin.py:1171 restore.py:38
-#: BackupRestore.py:356 CommonInterfaceAssignment/plugin.py:120
+#: NetworkSetup.py:264 TimerEdit.py:152 CCcamInfo.py:1256 CCcamInfo.py:1524
+#: LogManager.py:210 PowerTimerEdit.py:127 CronTimer.py:38
+#: MovieSelection.py:385 MovieSelection.py:390 MovieSelection.py:675
+#: SwapManager.py:171 FileCommander/plugin.py:255 FileCommander/plugin.py:1171
+#: restore.py:38 BackupRestore.py:356 CommonInterfaceAssignment/plugin.py:120
 #: type_utils.py:110
 msgid "Delete"
 msgstr "Verwijderen"
@@ -6717,7 +6719,7 @@ msgstr "Bevestig verwijderen"
 msgid "Delete Language"
 msgstr "Verwijder taal"
 
-#: QuickMenu.py:362
+#: QuickMenu.py:363
 msgid "Delete Plugins"
 msgstr "Plug-ins en applicaties verwijderen"
 
@@ -6725,7 +6727,7 @@ msgstr "Plug-ins en applicaties verwijderen"
 msgid "Delete all the text"
 msgstr "Verwijder de tekst"
 
-#: QuickMenu.py:362
+#: QuickMenu.py:363
 msgid "Delete and uninstall Plugins. This will remove the Plugin from your box"
 msgstr ""
 "Lijst met geïnstalleerde plug-ins. \n"
@@ -6784,8 +6786,8 @@ msgstr "Verwijder de huidige Timeshift-buffer en herstart Timeshift"
 msgid "Delete the selected files or directories"
 msgstr "Verwijder de geselecteerde bestanden of mappen"
 
-#: ChannelSelection.py:902 EventView.py:133 EpgSelection.py:1560
-#: EpgSelection.py:1565 GraphMultiEpg.py:1033
+#: EpgSelection.py:1560 EpgSelection.py:1565 ChannelSelection.py:902
+#: EventView.py:133 GraphMultiEpg.py:1033
 msgid "Delete timer"
 msgstr "Verwijder timer"
 
@@ -6799,7 +6801,7 @@ msgstr "Verwijderd"
 msgid "Deleted %s!"
 msgstr "%s verwijderd!"
 
-#: MovieList.py:356
+#: MovieList.py:354
 msgid "Deleted items"
 msgstr "Verwijderde bestanden"
 
@@ -6860,7 +6862,7 @@ msgstr "Detective"
 msgid "Device Information"
 msgstr "Apparaatinformatie"
 
-#: QuickMenu.py:485
+#: QuickMenu.py:488
 msgid "Device Manager"
 msgstr "Beheer opslagmedia"
 
@@ -6868,7 +6870,7 @@ msgstr "Beheer opslagmedia"
 msgid "Device mounts"
 msgstr "Lokale mounts"
 
-#: QuickMenu.py:811 MountManager.py:288
+#: QuickMenu.py:814 MountManager.py:288
 msgid "Device: "
 msgstr "Apparaat: "
 
@@ -6876,7 +6878,7 @@ msgstr "Apparaat: "
 msgid "Devicename:"
 msgstr "Apparaatnaam:"
 
-#: QuickMenu.py:144 QuickMenu.py:696 menu.xml
+#: QuickMenu.py:144 QuickMenu.py:699 menu.xml
 msgid "Devices"
 msgstr "Apparaten"
 
@@ -6908,7 +6910,7 @@ msgstr "DiSEqC tester"
 msgid "DiSEqC mode"
 msgstr "DiSEqC-modus"
 
-#: AutoDiseqc.py:329
+#: AutoDiseqc.py:374
 #, python-format
 msgid "DiSEqC port %s: %s"
 msgstr "DiSEqC poort %s: %s"
@@ -6940,7 +6942,7 @@ msgstr "Digitale contour verwijderen"
 msgid "Direct playback of linked titles without menu"
 msgstr "Direct afspelen van titels zonder menu"
 
-#: ButtonSetup.py:74 MovieList.py:359 MovieList.py:362 MovieInfo.py:53
+#: ButtonSetup.py:74 MovieList.py:357 MovieList.py:360 MovieInfo.py:53
 #: key_actions.py:68
 msgid "Directory"
 msgstr "Map"
@@ -6958,8 +6960,8 @@ msgstr "Bestandsverkenner"
 msgid "Directory long"
 msgstr "Map lang"
 
-#: PowerTimerEdit.py:140 TimerEdit.py:165 TimerEdit.py:612 TimerEdit.py:632
-#: config.py:400 UsageConfig.py:79 UsageConfig.py:1187
+#: TimerEdit.py:165 TimerEdit.py:612 TimerEdit.py:632 PowerTimerEdit.py:140
+#: UsageConfig.py:79 UsageConfig.py:1187 config.py:400
 #: AnimationSetup/plugin.py:39
 msgid "Disable"
 msgstr "Uit"
@@ -6976,8 +6978,8 @@ msgstr "IceTV uitschakelen"
 msgid "Disable MiniTV"
 msgstr "MiniTV uitschakelen"
 
-#: InfoBarGenerics.py:738 InfoBarGenerics.py:3533 InfoBarGenerics.py:3650
-#: InfoBar.py:621
+#: InfoBar.py:621 InfoBarGenerics.py:738 InfoBarGenerics.py:3533
+#: InfoBarGenerics.py:3650
 msgid "Disable Picture in Picture"
 msgstr "Picture in Picture uitschakelen"
 
@@ -6993,15 +6995,16 @@ msgstr "Deactiveer Intro scherm"
 msgid "Disable timer"
 msgstr "Timer uitschakelen"
 
-#: ScanSetup.py:1188 CronTimer.py:26 NetworkSetup.py:1716 NetworkSetup.py:1822
-#: NetworkSetup.py:1856 NetworkSetup.py:1967 NetworkSetup.py:2002
-#: NetworkSetup.py:2047 NetworkSetup.py:2083 NetworkSetup.py:2187
-#: NetworkSetup.py:2219 NetworkSetup.py:2331 NetworkSetup.py:2395
-#: NetworkSetup.py:2515 NetworkSetup.py:2570 NetworkSetup.py:2614
-#: NetworkSetup.py:2649 NetworkSetup.py:2987 NetworkSetup.py:3482 config.py:400
-#: AVSwitch.py:504 UsageConfig.py:171 UsageConfig.py:243 UsageConfig.py:338
-#: UsageConfig.py:363 UsageConfig.py:388 UsageConfig.py:390 UsageConfig.py:1057
-#: UsageConfig.py:1071 UsageConfig.py:1418 UsageConfig.py:1420 HdmiCec.py:21
+#: About.py:764 NetworkSetup.py:1716 NetworkSetup.py:1822 NetworkSetup.py:1856
+#: NetworkSetup.py:1967 NetworkSetup.py:2002 NetworkSetup.py:2047
+#: NetworkSetup.py:2083 NetworkSetup.py:2187 NetworkSetup.py:2219
+#: NetworkSetup.py:2331 NetworkSetup.py:2395 NetworkSetup.py:2515
+#: NetworkSetup.py:2570 NetworkSetup.py:2614 NetworkSetup.py:2649
+#: NetworkSetup.py:2987 NetworkSetup.py:3482 NetworkSetup.py:4089 Ci.py:709
+#: ScanSetup.py:1188 CronTimer.py:26 AVSwitch.py:504 UsageConfig.py:171
+#: UsageConfig.py:243 UsageConfig.py:338 UsageConfig.py:363 UsageConfig.py:388
+#: UsageConfig.py:390 UsageConfig.py:1057 UsageConfig.py:1071
+#: UsageConfig.py:1418 UsageConfig.py:1420 config.py:400 HdmiCec.py:21
 #: HdmiCec.py:29 HdmiCec.py:48 HdmiCec.py:52 HdmiCec.py:75
 #: SABnzbdSetup/plugin.py:37 SABnzbdSetup/plugin.py:134
 #: WirelessLan/plugin.py:144 VideoEnhancement.py:329 VideoEnhancement.py:346
@@ -7044,7 +7047,7 @@ msgstr "Toon 4:3 materiaal als"
 msgid "Display >16:9 content as"
 msgstr "Toon >16:9 materiaal als"
 
-#: QuickMenu.py:466
+#: QuickMenu.py:469
 msgid "Display Settings"
 msgstr "LCD instellingen"
 
@@ -7101,7 +7104,7 @@ msgstr ""
 msgid "Do you really want to delete %s ?"
 msgstr "Wilt u echt %s verwijderen?"
 
-#: InfoBarGenerics.py:479 TimerEdit.py:335 InfoBar.py:679
+#: TimerEdit.py:335 InfoBar.py:679 InfoBarGenerics.py:479
 #: MediaPlayer/plugin.py:798 MediaPlayer/plugin.py:859
 #, python-format
 msgid "Do you really want to delete %s?"
@@ -7351,7 +7354,7 @@ msgstr "Niet meer vragen!"
 msgid "Don't save"
 msgstr "Niet opslaan"
 
-#: PowerTimerEdit.py:96 TimerEdit.py:120
+#: TimerEdit.py:120 PowerTimerEdit.py:96
 msgid "Don't stop current event but disable coming events"
 msgstr "Huidige timer niet stoppen, maar toekomstige timers uitschakelen"
 
@@ -7399,19 +7402,19 @@ msgstr "Download %s van de server"
 msgid "Download .NFI-files for USB-flasher"
 msgstr "Download .NFI-bestanden voor USB-flasher"
 
-#: QuickMenu.py:549
+#: QuickMenu.py:552
 msgid "Download Plugins"
 msgstr "Plug-ins downloaden"
 
-#: QuickMenu.py:490
+#: QuickMenu.py:493
 msgid "Download Softcams"
 msgstr "Download softcams"
 
-#: QuickMenu.py:361
+#: QuickMenu.py:362
 msgid "Download and install Plugins"
 msgstr "Plug-ins en applicaties downloaden"
 
-#: QuickMenu.py:313
+#: QuickMenu.py:314
 msgid "Download and install cam"
 msgstr "Softcams downloaden en installeren"
 
@@ -7424,7 +7427,7 @@ msgstr "Downloaden"
 msgid "Downloaded Images"
 msgstr "Overige lokale images"
 
-#: Ipkg.py:85 downloader.py:74 downloader.py:102 SoftwareManager/plugin.py:1665
+#: Ipkg.py:85 SoftwareManager/plugin.py:1665 downloader.py:74 downloader.py:102
 msgid "Downloading"
 msgstr "Bezig met downloaden"
 
@@ -7574,7 +7577,7 @@ msgstr ""
 msgid "EPG search"
 msgstr "EPG search"
 
-#: Setup.py:285 QuickMenu.py:478 setup.xml
+#: Setup.py:285 QuickMenu.py:481 setup.xml
 msgid "EPG settings"
 msgstr "EPG instellingen"
 
@@ -7603,7 +7606,7 @@ msgstr "Oosters"
 msgid "Ecuador"
 msgstr "Ecuador"
 
-#: CCcamInfo.py:1259 TimerEdit.py:620 qpip.py:464
+#: TimerEdit.py:620 CCcamInfo.py:1259 qpip.py:464
 #: SoftwareManager/plugin.py:1809 CommonInterfaceAssignment/plugin.py:37
 #: type_utils.py:109
 msgid "Edit"
@@ -7629,11 +7632,11 @@ msgstr "Wijzig huidige regel"
 msgid "Edit line "
 msgstr "Wijzig regel "
 
-#: PluginBrowser.py:342 PluginBrowser.py:343
+#: PluginBrowser.py:342 Menu.py:696
 msgid "Edit mode off"
 msgstr "Wijzig modus uit"
 
-#: Menu.py:672 PluginBrowser.py:358 PluginBrowser.py:359
+#: PluginBrowser.py:358 Menu.py:395 Menu.py:672
 msgid "Edit mode on"
 msgstr "Wijzig modus aan"
 
@@ -7655,8 +7658,8 @@ msgstr "Pas de naamserver-configuratie (DNS) van uw %s %s aan.\n"
 msgid "Edit the network configuration of your %s %s.\n"
 msgstr "Bewerk de netwerkinstellingen van uw %s %s.\n"
 
-#: ChannelSelection.py:902 EventView.py:133 EpgSelection.py:1560
-#: EpgSelection.py:1565 GraphMultiEpg.py:1033
+#: EpgSelection.py:1560 EpgSelection.py:1565 ChannelSelection.py:902
+#: EventView.py:133 GraphMultiEpg.py:1033
 msgid "Edit timer"
 msgstr "Wijzig timer"
 
@@ -7713,7 +7716,7 @@ msgstr "Email"
 msgid "Empty slot"
 msgstr "Leeg slot"
 
-#: PowerTimerEdit.py:132 TimerEdit.py:157 TimerEdit.py:604 TimerEdit.py:624
+#: TimerEdit.py:157 TimerEdit.py:604 TimerEdit.py:624 PowerTimerEdit.py:132
 #: AnimationSetup/plugin.py:39
 msgid "Enable"
 msgstr "Aan"
@@ -7731,7 +7734,7 @@ msgstr "5V voor actieve antenne inschakelen"
 msgid "Enable AC3/Dolby"
 msgstr "Activeer AC3/Dolby"
 
-#: VideoMode.py:522 AudioSelection.py:190
+#: AudioSelection.py:190 VideoMode.py:522
 msgid "Enable BT Audio"
 msgstr "BT geluid inschakelen"
 
@@ -7817,12 +7820,12 @@ msgid "Enable this setting if your aerial system needs power"
 msgstr ""
 "Schakel deze optie in indien de antenne een externe voeding nodig heeft"
 
-#: ScanSetup.py:1188 Satconfig.py:1067 Satconfig.py:1123 Satconfig.py:1129
-#: Satconfig.py:1135 NetworkSetup.py:1826 NetworkSetup.py:1971
-#: NetworkSetup.py:2051 NetworkSetup.py:2191 NetworkSetup.py:2335
-#: NetworkSetup.py:2518 NetworkSetup.py:2618 config.py:399
-#: SABnzbdSetup/plugin.py:138 WirelessLan/plugin.py:148 HdmiCEC/plugin.py:69
-#: VideoEnhancement.py:329 VideoEnhancement.py:346
+#: About.py:768 NetworkSetup.py:1826 NetworkSetup.py:1971 NetworkSetup.py:2051
+#: NetworkSetup.py:2191 NetworkSetup.py:2335 NetworkSetup.py:2518
+#: NetworkSetup.py:2618 NetworkSetup.py:4204 ScanSetup.py:1188
+#: Satconfig.py:1067 Satconfig.py:1123 Satconfig.py:1129 Satconfig.py:1135
+#: config.py:399 SABnzbdSetup/plugin.py:138 WirelessLan/plugin.py:148
+#: HdmiCEC/plugin.py:69 VideoEnhancement.py:329 VideoEnhancement.py:346
 msgid "Enabled"
 msgstr "Ingeschakeld"
 
@@ -7872,7 +7875,7 @@ msgstr "Engels"
 msgid "Enhanced Movie Center"
 msgstr "Enhanced Movie Center"
 
-#: SoftwareUpdate.py:57 About.py:894
+#: About.py:894 SoftwareUpdate.py:57
 msgid "Enigma2 Changes"
 msgstr "Enimga2 veranderingen"
 
@@ -8029,7 +8032,7 @@ msgstr "Eritrea"
 msgid "Erotik"
 msgstr "Erotiek"
 
-#: OScamInfo.py:798 SoftwareUpdate.py:353 CCcamInfo.py:578
+#: SoftwareUpdate.py:353 CCcamInfo.py:578 OScamInfo.py:798
 #: MovieSelection.py:1654 MovieSelection.py:1657 MovieSelection.py:1736
 #: MovieSelection.py:1741 Task.py:372 SoftcamPanel.py:134 SoftwarePanel.py:173
 #: ProjectSettings.py:222 FileCommander/plugin.py:595
@@ -8327,11 +8330,11 @@ msgstr "Exif"
 msgid "Existing or trial customer"
 msgstr "Bestaande of Proef account"
 
-#: Menu.py:906 VirtualKeyBoard.py:531 DVD.py:438 InfoBarGenerics.py:4475
-#: ResolutionSelection.py:21 NetworkSetup.py:3971 About.py:196 QuickMenu.py:142
-#: MediumToolbox.py:29 TitleList.py:138 AtileHD/plugin.py:613 history.py:43
-#: restore.py:36 ProgrammlistenUpdater/plugin.py:65 LCNScanner/plugin.py:424
-#: BackupRestore.py:245 type_utils.py:108
+#: About.py:196 DVD.py:438 ButtonSetup.py:295 VirtualKeyBoard.py:531
+#: InfoBarGenerics.py:4475 ResolutionSelection.py:21 Menu.py:906
+#: QuickMenu.py:142 TitleList.py:138 MediumToolbox.py:29 AtileHD/plugin.py:613
+#: history.py:43 restore.py:36 ProgrammlistenUpdater/plugin.py:65
+#: LCNScanner/plugin.py:424 BackupRestore.py:245 type_utils.py:108
 msgid "Exit"
 msgstr "Afsluiten"
 
@@ -8451,7 +8454,7 @@ msgstr "Uitgebreide instellingen"
 msgid "Extended setup..."
 msgstr "Uitgebreide instellingen..."
 
-#: InfoBarGenerics.py:390 InfoBar.py:578
+#: InfoBar.py:578 InfoBarGenerics.py:390
 msgid "Extensions"
 msgstr "Applicaties"
 
@@ -8463,7 +8466,7 @@ msgstr "Applicatiebeheer"
 msgid "Extensions/QuickMenu"
 msgstr "Extensies/Snelmenu"
 
-#: Harddisk.py:164 Harddisk.py:523 Harddisk.py:560
+#: Harddisk.py:164 Harddisk.py:526 Harddisk.py:563
 msgid "External"
 msgstr "Extern"
 
@@ -8471,7 +8474,7 @@ msgstr "Extern"
 msgid "External PiP"
 msgstr "Externe PiP"
 
-#: Harddisk.py:998
+#: Harddisk.py:1001
 #, python-format
 msgid "External Storage %s"
 msgstr "Externe opslag %s"
@@ -8554,7 +8557,7 @@ msgstr "FSBL update controle"
 msgid "FTA"
 msgstr "FTA"
 
-#: QuickMenu.py:445
+#: QuickMenu.py:446
 msgid "FTP"
 msgstr "FTP"
 
@@ -8758,15 +8761,15 @@ msgstr "Schrijffout in bestand: '%s'"
 msgid "File/Directory Status Information"
 msgstr "Bestand/Map status informatie"
 
-#: QuickMenu.py:543 Infopanel/plugin.py:487 SoftwareManager/plugin.py:370
+#: QuickMenu.py:546 Infopanel/plugin.py:487 SoftwareManager/plugin.py:370
 msgid "Files/folders to exclude from backup"
 msgstr "Uitgesloten back-up bestanden"
 
-#: HarddiskSetup.py:110 QuickMenu.py:566 menu.xml
+#: HarddiskSetup.py:110 QuickMenu.py:569 menu.xml
 msgid "Filesystem Check"
 msgstr "Bestandssysteemcontrole"
 
-#: QuickMenu.py:372
+#: QuickMenu.py:373
 msgid "Filesystem check your Harddisk"
 msgstr "Het bestandssysteem van uw harde schijf controleren."
 
@@ -8851,15 +8854,15 @@ msgstr "Flash image"
 msgid "Flash On the Fly"
 msgstr "Flash online/lokaal"
 
-#: QuickMenu.py:517 SoftwareManager/plugin.py:186
+#: QuickMenu.py:520 SoftwareManager/plugin.py:186
 msgid "Flash Online"
 msgstr "Flash online/lokaal"
 
-#: QuickMenu.py:346
+#: QuickMenu.py:347
 msgid "Flash Online a new image"
 msgstr "Flash een image online of lokaal"
 
-#: QuickMenu.py:346
+#: QuickMenu.py:347
 msgid "Flash on the fly your your Receiver software."
 msgstr "Flash een image online of via usb naar uw ontvanger."
 
@@ -8940,11 +8943,11 @@ msgstr "Forceer de-interlace"
 msgid "Format"
 msgstr "Formaat"
 
-#: QuickMenu.py:371
+#: QuickMenu.py:372
 msgid "Format HDD"
 msgstr "Harde schijf formatteren"
 
-#: QuickMenu.py:371
+#: QuickMenu.py:372
 msgid "Format your Harddisk"
 msgstr "Harde schijf of ander medium formatteren."
 
@@ -8981,7 +8984,7 @@ msgstr "Vrij geheugen"
 msgid "Free memory:"
 msgstr "Vrij geheugen:"
 
-#: About.py:578
+#: CCcamInfo.py:760
 msgid "Free:"
 msgstr "Vrij:"
 
@@ -9047,13 +9050,13 @@ msgstr "Vrijdag"
 msgid "From :"
 msgstr "Van:"
 
-#: Harddisk.py:643 Harddisk.py:644 Harddisk.py:657 Harddisk.py:658
-#: Harddisk.py:714 Harddisk.py:715 Harddisk.py:716 Harddisk.py:726
-#: Harddisk.py:727 Harddisk.py:728
+#: Harddisk.py:646 Harddisk.py:647 Harddisk.py:660 Harddisk.py:661
+#: Harddisk.py:717 Harddisk.py:718 Harddisk.py:719 Harddisk.py:729
+#: Harddisk.py:730 Harddisk.py:731
 msgid "Front USB"
 msgstr "USB Voorzijde"
 
-#: Harddisk.py:667
+#: Harddisk.py:670
 msgid "Front USB 3.0"
 msgstr "Voorzijde USB 3.0"
 
@@ -9108,7 +9111,7 @@ msgstr "Voetbal"
 msgid "Für Kinder"
 msgstr "Voor kinderen"
 
-#: About.py:452 About.py:561 QuickMenu.py:789 QuickMenu.py:800
+#: About.py:452 About.py:561 QuickMenu.py:792 QuickMenu.py:803
 #: MountManager.py:264 MountManager.py:277 MountManager.py:553
 #: MountManager.py:566
 msgid "GB"
@@ -9171,8 +9174,8 @@ msgstr "Tuinieren"
 msgid "Garten"
 msgstr "Tuin"
 
-#: NetworkSetup.py:462 NetworkSetup.py:498 NetworkSetup.py:501 About.py:300
-#: setup.xml
+#: NetworkSetup.py:462 NetworkSetup.py:498 NetworkSetup.py:501
+#: NetworkSetup.py:607 setup.xml
 msgid "Gateway"
 msgstr "Gateway"
 
@@ -9498,10 +9501,6 @@ msgstr "Guinee-Bissau"
 msgid "Guyana"
 msgstr "Guyana"
 
-#: InputDeviceSetup.py:367
-msgid "H7/H9/H9COMBO/H10 new Model"
-msgstr "H7/H9/H9COMBO/H10 nieuw model"
-
 #: CronTimer.py:33
 msgid "H: = Hourly / D: = Daily / W: = Weekly / M: = Monthly"
 msgstr "U: = Uurlijks / D: = Dagelijks / W: = Wekelijks / M: = Maandelijks"
@@ -9514,7 +9513,7 @@ msgstr "H:mm"
 msgid "H:mm:ss"
 msgstr "H:mm:ss"
 
-#: QuickMenu.py:748 MountManager.py:218 MountManager.py:530
+#: QuickMenu.py:751 MountManager.py:218 MountManager.py:530
 msgid "HARD DISK: "
 msgstr "HARDE SCHIJF: "
 
@@ -9610,11 +9609,11 @@ msgstr "Verwerk stand-by van TV"
 msgid "Handle wakeup from TV"
 msgstr "Verwerk ontwaak van TV"
 
-#: QuickMenu.py:417 ConfigurationBackup/plugin.py:110
+#: QuickMenu.py:418 ConfigurationBackup/plugin.py:110
 msgid "Harddisk"
 msgstr "Harde schijf"
 
-#: ButtonSetup.py:263 QuickMenu.py:253 QuickMenu.py:370 QuickMenu.py:562
+#: ButtonSetup.py:263 QuickMenu.py:253 QuickMenu.py:371 QuickMenu.py:565
 msgid "Harddisk Setup"
 msgstr "Harde schijf configureren"
 
@@ -9650,7 +9649,7 @@ msgstr "Help lang"
 msgid "Helps setting up your signal"
 msgstr "Helpt u het signaal in te stellen"
 
-#: QuickMenu.py:351 SoftwareManager/plugin.py:212
+#: QuickMenu.py:352 SoftwareManager/plugin.py:212
 msgid ""
 "Here you can browse (but not modify) the files that are added to the "
 "backupfile by default (E2-setup, channels, network)."
@@ -9658,18 +9657,18 @@ msgstr ""
 "Hier kunt u door de bestanden bladeren die standaard worden\n"
 "meegenomen bij een back-up van de Enigma2-instellingen."
 
-#: QuickMenu.py:353 SoftwareManager/plugin.py:214
+#: QuickMenu.py:354 SoftwareManager/plugin.py:214
 msgid "Here you can select which files should be excluded from the backup."
 msgstr ""
 "Hier kunt u selecteren welke bestanden moeten worden uitgesloten van de back-"
 "up."
 
-#: QuickMenu.py:354
+#: QuickMenu.py:355
 msgid "Here you can select which files should be updated with a online update"
 msgstr ""
 "Selecteer welke bestanden mogen worden overschreven door een online update."
 
-#: QuickMenu.py:352 SoftwareManager/plugin.py:213
+#: QuickMenu.py:353 SoftwareManager/plugin.py:213
 msgid ""
 "Here you can specify additional files that should be added to the backup "
 "file."
@@ -9717,7 +9716,7 @@ msgstr "Hiërarchie informatie"
 msgid "High bitrate support"
 msgstr "Hoge bitrate ondersteuning"
 
-#: AutoDiseqc.py:81
+#: AutoDiseqc.py:125
 msgid "Hispasat 30.0w"
 msgstr "Hispasat 30.0w"
 
@@ -9829,7 +9828,7 @@ msgstr "Hostnaam:"
 msgid "Hostname: "
 msgstr "Apparaat naam: "
 
-#: AutoDiseqc.py:68
+#: AutoDiseqc.py:103
 msgid "Hotbird 13.0e"
 msgstr "Hotbird 13.0e"
 
@@ -9877,6 +9876,11 @@ msgstr "Hongaars"
 msgid "Hungary"
 msgstr "Hongarije"
 
+#: InputDeviceSetup.py:367
+#| msgid "H7/H9/H9COMBO/H10 new Model"
+msgid "I55SE/H7/H9/H9SE/H9COMBO/H9COMBOSE/H10 new Model"
+msgstr "I55SE/H7/H9/H9SE/H9COMBO/H9COMBOSE/H10 (nieuw model)"
+
 #: UsageConfig.py:1497 UsageConfig.py:1531
 msgid "IMDB search"
 msgstr "IMDb informatie"
@@ -9911,16 +9915,16 @@ msgstr "INS"
 msgid "IP"
 msgstr "IP"
 
-#: OScamInfo.py:52 OScamInfo.py:1172 NetworkSetup.py:460 NetworkSetup.py:602
-#: NetworkSetup.py:1495 PowerTimerEntry.py:204 setup.xml
+#: NetworkSetup.py:460 NetworkSetup.py:602 NetworkSetup.py:1495 OScamInfo.py:52
+#: OScamInfo.py:1172 PowerTimerEntry.py:204 setup.xml
 msgid "IP address"
 msgstr "IP-adres"
 
-#: About.py:658 About.py:682 About.py:704
+#: About.py:670 About.py:693 CCcamInfo.py:1233
 msgid "IP:"
 msgstr "IP:"
 
-#: QuickMenu.py:555
+#: QuickMenu.py:558
 msgid "IPK Installer"
 msgstr "IPK installeren"
 
@@ -10208,7 +10212,7 @@ msgstr "Bezig"
 msgid "Inactive"
 msgstr "Inactief"
 
-#: QuickMenu.py:453
+#: QuickMenu.py:454
 msgid "Inadyn"
 msgstr "Inadyn"
 
@@ -10318,7 +10322,7 @@ msgstr "Initiële signaalkwaliteit"
 msgid "Initial signal quality:"
 msgstr "Initiële signaalkwaliteit:"
 
-#: HarddiskSetup.py:80 QuickMenu.py:564 menu.xml
+#: HarddiskSetup.py:80 QuickMenu.py:567 menu.xml
 msgid "Initialization"
 msgstr "Initialiseren"
 
@@ -10326,7 +10330,7 @@ msgstr "Initialiseren"
 msgid "Initialize"
 msgstr "Initialiseer"
 
-#: HarddiskSetup.py:58 Harddisk.py:346
+#: HarddiskSetup.py:58 Harddisk.py:349
 msgid "Initializing storage device..."
 msgstr "Opslagapparaat initialiseren..."
 
@@ -10406,7 +10410,7 @@ msgstr "Installeer applicaties."
 msgid "Install lcd picons on"
 msgstr "Installeer LCD-Picons in"
 
-#: QuickMenu.py:364 SoftwareManager/plugin.py:193
+#: QuickMenu.py:365 SoftwareManager/plugin.py:193
 msgid "Install local extension"
 msgstr "Installeer een ipk bestand"
 
@@ -10443,10 +10447,10 @@ msgstr "Installeert"
 msgid "Installing Plugin ..."
 msgstr "Plug-in wordt geïnstalleerd ..."
 
-#: CronTimer.py:85 NetworkSetup.py:1769 NetworkSetup.py:1910
-#: NetworkSetup.py:2134 NetworkSetup.py:2273 NetworkSetup.py:2451
-#: NetworkSetup.py:2710 NetworkSetup.py:3059 NetworkSetup.py:3551
-#: SABnzbdSetup/plugin.py:73
+#: NetworkSetup.py:1769 NetworkSetup.py:1910 NetworkSetup.py:2134
+#: NetworkSetup.py:2273 NetworkSetup.py:2451 NetworkSetup.py:2710
+#: NetworkSetup.py:3059 NetworkSetup.py:3551 NetworkSetup.py:4143
+#: CronTimer.py:85 SABnzbdSetup/plugin.py:73
 msgid "Installing Service"
 msgstr "Installeert service"
 
@@ -10490,8 +10494,8 @@ msgstr "Directe opname..."
 msgid "Instant recordings location"
 msgstr "Locatie van directe opnames"
 
-#: NetworkSetup.py:2993 NetworkSetup.py:3261 NetworkSetup.py:3488
-#: NetworkSetup.py:3741 About.py:297
+#: About.py:297 NetworkSetup.py:2993 NetworkSetup.py:3261 NetworkSetup.py:3488
+#: NetworkSetup.py:3741
 msgid "Interface"
 msgstr "Interface"
 
@@ -10507,7 +10511,7 @@ msgstr "Interface: "
 msgid "Intermediate"
 msgstr "Tussenliggend"
 
-#: Harddisk.py:183
+#: Harddisk.py:186
 msgid "Internal"
 msgstr "Intern"
 
@@ -10515,13 +10519,13 @@ msgstr "Intern"
 msgid "Internal Flash"
 msgstr "Intern geheugen"
 
-#: Harddisk.py:649 Harddisk.py:650 Harddisk.py:651 Harddisk.py:670
-#: Harddisk.py:671 Harddisk.py:674 Harddisk.py:675 Harddisk.py:691
-#: Harddisk.py:692 Harddisk.py:695 Harddisk.py:696
+#: Harddisk.py:652 Harddisk.py:653 Harddisk.py:654 Harddisk.py:673
+#: Harddisk.py:674 Harddisk.py:677 Harddisk.py:678 Harddisk.py:694
+#: Harddisk.py:695 Harddisk.py:698 Harddisk.py:699
 msgid "Internal USB"
 msgstr "Interne USB"
 
-#: Harddisk.py:785
+#: Harddisk.py:788
 msgid "Internal flash"
 msgstr "Intern geheugen"
 
@@ -10593,7 +10597,7 @@ msgstr "Ierland"
 msgid "Is not necessary in most cases."
 msgstr "Is niet noodzakelijk in de meeste gevallen."
 
-#: InputDeviceSetup.py:484
+#: InputDeviceSetup.py:487
 msgid "Is this setting ok?"
 msgstr "Zijn deze instellingen correct?"
 
@@ -10894,7 +10898,7 @@ msgstr "LAN-verbinding"
 msgid "LAN long"
 msgstr "LAN lang"
 
-#: SkinSelector.py:202 QuickMenu.py:468 menu.xml
+#: SkinSelector.py:202 QuickMenu.py:471 menu.xml
 msgid "LCD Skin Setup"
 msgstr "LCD skin selecteren"
 
@@ -10938,7 +10942,7 @@ msgstr "Label"
 msgid "Landestypisch"
 msgstr "Regionaal"
 
-#: VirtualKeyBoard.py:529 ButtonSetup.py:265 menu.xml
+#: ButtonSetup.py:265 VirtualKeyBoard.py:529 menu.xml
 msgid "Language"
 msgstr "Taal"
 
@@ -11115,7 +11119,7 @@ msgstr "Kwaliteit van de verbinding:"
 msgid "Link target:"
 msgstr "Link doel:"
 
-#: NetworkSetup.py:1026 About.py:787 WirelessLan/plugin.py:167
+#: About.py:787 NetworkSetup.py:1026 WirelessLan/plugin.py:167
 msgid "Link:"
 msgstr "Verbinding:"
 
@@ -11139,7 +11143,7 @@ msgstr "Lijstmode"
 msgid "List of Storage Devices"
 msgstr "Overzicht van opslagmedia"
 
-#: config.py:1458 FileList.py:191 FileList.py:409 downloader.py:565
+#: FileList.py:191 FileList.py:409 config.py:1458 downloader.py:565
 #: downloader.py:721
 msgid "List of storage devices"
 msgstr "Overzicht van opslagmedia"
@@ -11276,7 +11280,7 @@ msgstr "Lengtegraad"
 msgid "Loop through to"
 msgstr "Doorlus naar"
 
-#: Harddisk.py:685 Harddisk.py:738 Harddisk.py:750
+#: Harddisk.py:688 Harddisk.py:741 Harddisk.py:753
 msgid "Lower USB"
 msgstr "USB Beneden"
 
@@ -11320,7 +11324,7 @@ msgstr "MAC-adres instellingen"
 msgid "MAC:"
 msgstr "MAC:"
 
-#: About.py:454 About.py:563 QuickMenu.py:791 QuickMenu.py:802
+#: About.py:454 About.py:563 QuickMenu.py:794 QuickMenu.py:805
 #: MountManager.py:266 MountManager.py:279 MountManager.py:555
 #: MountManager.py:568
 msgid "MB"
@@ -11358,7 +11362,7 @@ msgstr "Madagaskar"
 msgid "Magazin"
 msgstr "Magazine"
 
-#: ButtonSetup.py:182 menu.xml skin_default.xml
+#: Menu.py:25 skin_default.xml menu.xml
 msgid "Main menu"
 msgstr "Hoofdmenu"
 
@@ -11398,7 +11402,7 @@ msgstr "Malta"
 msgid "Manage extensions"
 msgstr "Beheer applicaties"
 
-#: QuickMenu.py:303
+#: QuickMenu.py:304
 msgid "Manage network mounts"
 msgstr "Beheer netwerk verbindingen"
 
@@ -11407,7 +11411,7 @@ msgstr "Beheer netwerk verbindingen"
 msgid "Manage your %s %s's software"
 msgstr "Beheer de software van uw %s %s"
 
-#: QuickMenu.py:354
+#: QuickMenu.py:355
 msgid "Manage your online update files"
 msgstr "Selecteer te overschrijven bestanden bij een update"
 
@@ -11419,15 +11423,15 @@ msgstr "Teamsport"
 msgid "Manual"
 msgstr "Handmatig"
 
-#: ScanSetup.py:599 ScanSetup.py:644 ButtonSetup.py:237 QuickMenu.py:510
+#: ButtonSetup.py:237 ScanSetup.py:599 ScanSetup.py:644 QuickMenu.py:513
 msgid "Manual Scan"
 msgstr "Handmatig zoeken"
 
-#: QuickMenu.py:336
+#: QuickMenu.py:337
 msgid "Manual Service Searching"
 msgstr "Handmatig zenders zoeken"
 
-#: QuickMenu.py:336
+#: QuickMenu.py:337
 msgid "Manual scan for services"
 msgstr "Hier kunt u handmatig naar zenders zoeken."
 
@@ -11553,7 +11557,7 @@ msgstr "Dit medium is geen beschrijfbare DVD!"
 msgid "Medium is not empty!"
 msgstr "Medium is niet leeg!"
 
-#: MediumToolbox.py:55 TitleList.py:127
+#: TitleList.py:127 MediumToolbox.py:55
 msgid "Medium toolbox"
 msgstr "Medium gereedschap"
 
@@ -11573,7 +11577,7 @@ msgstr "Geheugen informatie"
 msgid "Memory index"
 msgstr "Geheugenindex"
 
-#: DVD.py:336 MovieSelection.py:596 ProjectSettings.py:152
+#: ButtonSetup.py:56 MovieSelection.py:596 ProjectSettings.py:152
 #: ProjectSettings.py:154 ProjectSettings.py:155 ProjectSettings.py:156
 #: ProjectSettings.py:157 ProjectSettings.py:173 MediaPlayer/plugin.py:193
 #: skin_default.xml
@@ -11620,7 +11624,7 @@ msgstr "Micronesië"
 msgid "Mini Series"
 msgstr "Mini Series"
 
-#: QuickMenu.py:451
+#: QuickMenu.py:452
 msgid "MiniDLNA"
 msgstr "MiniDLNA"
 
@@ -11803,7 +11807,7 @@ msgstr "Timeout op motor beweging"
 msgid "Motorsport"
 msgstr "Motorsport"
 
-#: Harddisk.py:1067 MountManager.py:50
+#: Harddisk.py:1070 MountManager.py:50
 msgid "Mount"
 msgstr "Mount"
 
@@ -11812,7 +11816,7 @@ msgstr "Mount"
 msgid "Mount '%s' has not enough free space to record."
 msgstr "Mount '%s' heeft niet voldoende vrije ruimte voor opname."
 
-#: QuickMenu.py:481 MountManager.py:46
+#: QuickMenu.py:484 MountManager.py:46
 msgid "Mount Manager"
 msgstr "Mount beheer"
 
@@ -11824,7 +11828,7 @@ msgstr "Mount instellingen"
 msgid "Mount failed"
 msgstr "Mount mislukt"
 
-#: QuickMenu.py:811 MountManager.py:288
+#: QuickMenu.py:814 MountManager.py:288
 msgid "Mount: "
 msgstr "Mount: "
 
@@ -11832,11 +11836,11 @@ msgstr "Mount: "
 msgid "MountManager"
 msgstr "Mount beheer"
 
-#: QuickMenu.py:399 Infopanel/plugin.py:531 Infopanel/plugin.py:833
+#: QuickMenu.py:400 Infopanel/plugin.py:531 Infopanel/plugin.py:833
 msgid "Mounts"
 msgstr "Mounts"
 
-#: QuickMenu.py:305
+#: QuickMenu.py:306
 msgid "Mounts Devices"
 msgstr "Mount opslagmedia"
 
@@ -11879,8 +11883,8 @@ msgstr "Verplaats omhoog/omlaag"
 msgid "Move down a line"
 msgstr "Ga een regel naar beneden"
 
-#: MessageBox.py:49 EpgSelection.py:187 EpgSelection.py:199 EpgSelection.py:233
-#: EpgSelection.py:426
+#: EpgSelection.py:187 EpgSelection.py:199 EpgSelection.py:233
+#: EpgSelection.py:426 MessageBox.py:49
 msgid "Move down a page"
 msgstr "Ga een pagina naar beneden"
 
@@ -11910,12 +11914,12 @@ msgid "Move folder"
 msgstr "Verplaats map"
 
 #: PluginBrowser.py:292 PluginBrowser.py:293 PluginBrowser.py:344
-#: PluginBrowser.py:345 PluginBrowser.py:351 PluginBrowser.py:352
+#: PluginBrowser.py:345 PluginBrowser.py:351 Menu.py:617
 msgid "Move mode off"
 msgstr "Verplaats modus uit"
 
-#: Menu.py:695 PluginBrowser.py:295 PluginBrowser.py:296 PluginBrowser.py:354
-#: PluginBrowser.py:355
+#: PluginBrowser.py:295 PluginBrowser.py:296 PluginBrowser.py:354 Menu.py:614
+#: Menu.py:695
 msgid "Move mode on"
 msgstr "Verplaats modus aan"
 
@@ -11964,8 +11968,8 @@ msgstr "Ga naar positie X"
 msgid "Move up a line"
 msgstr "Ga een regel omhoog"
 
-#: MessageBox.py:48 EpgSelection.py:186 EpgSelection.py:200 EpgSelection.py:232
-#: EpgSelection.py:427
+#: EpgSelection.py:186 EpgSelection.py:200 EpgSelection.py:232
+#: EpgSelection.py:427 MessageBox.py:48
 msgid "Move up a page"
 msgstr "Ga een pagina omhoog"
 
@@ -12140,9 +12144,10 @@ msgstr "Mistery"
 msgid "Märchen"
 msgstr "Sprookjes"
 
-#: ServiceInfo.py:141 ServiceInfo.py:142 ServiceInfo.py:309 NetworkSetup.py:484
-#: NetworkSetup.py:488 NetworkSetup.py:491 NetworkSetup.py:495
-#: NetworkSetup.py:499 NimManager.py:1266 NimManager.py:1272 NimManager.py:1436
+#: NetworkSetup.py:484 NetworkSetup.py:488 NetworkSetup.py:491
+#: NetworkSetup.py:495 NetworkSetup.py:499 ServiceInfo.py:141
+#: ServiceInfo.py:142 ServiceInfo.py:309 NimManager.py:1266 NimManager.py:1272
+#: NimManager.py:1436
 msgid "N/A"
 msgstr "Niet beschikbaar"
 
@@ -12154,7 +12159,7 @@ msgstr "NFI image flashen"
 msgid "NFI image flashing completed. Press Yellow to Reboot!"
 msgstr "NFI image schrijven is gereed. Druk op gele knop om te herstarten!"
 
-#: QuickMenu.py:443
+#: QuickMenu.py:444
 msgid "NFS"
 msgstr "NFS"
 
@@ -12178,9 +12183,9 @@ msgstr "NTSC"
 msgid "Nachrichten"
 msgstr "Nieuws"
 
-#: TimerEntry.py:228 TimerEntry.py:335 ServiceInfo.py:168 NetworkSetup.py:3486
-#: NetworkSetup.py:3736 NetworkSetup.py:3785 FileCommander/plugin.py:88
-#: FileCommander/plugin.py:93
+#: NetworkSetup.py:3486 NetworkSetup.py:3736 NetworkSetup.py:3785
+#: TimerEntry.py:228 TimerEntry.py:335 ServiceInfo.py:168
+#: FileCommander/plugin.py:88 FileCommander/plugin.py:93
 msgid "Name"
 msgstr "Naam"
 
@@ -12249,7 +12254,7 @@ msgstr "Korfbal"
 msgid "Netherlands"
 msgstr "Nederland"
 
-#: NetworkSetup.py:461 About.py:299 setup.xml
+#: NetworkSetup.py:461 NetworkSetup.py:603 setup.xml
 msgid "Netmask"
 msgstr "Netmask"
 
@@ -12257,16 +12262,16 @@ msgstr "Netmask"
 msgid "Netmask:"
 msgstr "Netmask:"
 
-#: About.py:318 QuickMenu.py:392 Infopanel/plugin.py:532
+#: About.py:318 QuickMenu.py:393 Infopanel/plugin.py:532
 #: Infopanel/plugin.py:842 SoftwareManager/plugin.py:1027 menu.xml
 msgid "Network"
 msgstr "Netwerk"
 
-#: QuickMenu.py:432
+#: QuickMenu.py:433
 msgid "Network Adapter Selection"
 msgstr "Netwerk adapter"
 
-#: QuickMenu.py:483
+#: QuickMenu.py:486
 msgid "Network Browser"
 msgstr "Netwerk verkenner"
 
@@ -12278,7 +12283,7 @@ msgstr "Netwerk ID"
 msgid "Network Information"
 msgstr "Netwerkinformatie"
 
-#: QuickMenu.py:434
+#: QuickMenu.py:435
 msgid "Network Interface"
 msgstr "Netwerk interface"
 
@@ -12286,7 +12291,7 @@ msgstr "Netwerk interface"
 msgid "Network MAC settings"
 msgstr "Netwerk MAC instellingen"
 
-#: QuickMenu.py:436
+#: QuickMenu.py:437
 msgid "Network Restart"
 msgstr "Netwerk herstarten"
 
@@ -12294,13 +12299,13 @@ msgstr "Netwerk herstarten"
 msgid "Network Servers:"
 msgstr "Netwerk servers:"
 
-#: QuickMenu.py:438
+#: QuickMenu.py:439
 msgid "Network Services"
 msgstr "Netwerk functies"
 
 #: NetworkSetup.py:49 NetworkSetup.py:849
 msgid "Network Setup"
-msgstr "Netwerkinstellingen"
+msgstr "Netwerk instellen"
 
 #: About.py:675
 msgid "Network Speed:"
@@ -12310,7 +12315,7 @@ msgstr "Netwerk snelheid:"
 msgid "Network Test"
 msgstr "Netwerktest"
 
-#: QuickMenu.py:430
+#: QuickMenu.py:431
 msgid "Network Wizard"
 msgstr "Netwerk wizard"
 
@@ -12332,7 +12337,7 @@ msgstr "Netwerk zoeken"
 
 #: ButtonSetup.py:241 skin_default.xml setup.xml
 msgid "Network setup"
-msgstr "Netwerkinstellingen"
+msgstr "Netwerk instellen"
 
 #: NetworkSetup.py:1043
 msgid "Network test"
@@ -12347,8 +12352,7 @@ msgstr "Netwerktest: "
 msgid "Network wizard"
 msgstr "Netwerk wizard"
 
-#: NetworkSetup.py:468 NetworkSetup.py:1024 About.py:785
-#: WirelessLan/plugin.py:165
+#: NetworkSetup.py:468 NetworkSetup.py:1024 WirelessLan/plugin.py:165
 msgid "Network:"
 msgstr "Netwerk:"
 
@@ -12475,13 +12479,14 @@ msgstr "Nigeria"
 msgid "Niue"
 msgstr "Niue"
 
-#: Ci.py:50 InfoBarGenerics.py:5285 Satconfig.py:796 InfoBar.py:595
-#: InfoBar.py:603 MovieSelection.py:46 MessageBox.py:94 MessageBox.py:96
-#: PowerTimerEntry.py:134 PowerTimerEntry.py:152 PowerTimerEntry.py:154
-#: config.py:400 UsageConfig.py:94 UsageConfig.py:242 UsageConfig.py:329
-#: UsageConfig.py:433 UsageConfig.py:491 UsageConfig.py:1072 Lcd.py:674
-#: Lcd.py:686 Lcd.py:692 HdmiRecord.py:76 Timeshift.py:531 Timeshift.py:543
-#: Timeshift.py:913 ClientsStreaming.py:78 FileCommander/plugin.py:80
+#: About.py:304 ChannelSelection.py:897 Ci.py:50 InfoBar.py:595 InfoBar.py:603
+#: InfoBarGenerics.py:5285 Satconfig.py:796 MovieSelection.py:46
+#: MessageBox.py:94 MessageBox.py:96 PowerTimerEntry.py:134
+#: PowerTimerEntry.py:152 PowerTimerEntry.py:154 Lcd.py:674 Lcd.py:686
+#: Lcd.py:692 UsageConfig.py:94 UsageConfig.py:242 UsageConfig.py:329
+#: UsageConfig.py:433 UsageConfig.py:491 UsageConfig.py:1072 HdmiRecord.py:76
+#: Timeshift.py:531 Timeshift.py:543 Timeshift.py:913 config.py:400
+#: ClientsStreaming.py:78 FileCommander/plugin.py:80
 #: FileCommander/plugin.py:700 FileCommander/plugin.py:729
 #: FileCommander/plugin.py:762 FileCommander/plugin.py:896
 #: FileCommander/plugin.py:1298 FileCommander/plugin.py:1344
@@ -12498,7 +12503,7 @@ msgstr "Geen (ondersteunde) DVD-ROM gevonden!"
 msgid "No Connection"
 msgstr "Geen verbinding"
 
-#: QuickMenu.py:734
+#: QuickMenu.py:737
 msgid "No Devices Found !!"
 msgstr "!! Geen apparaten gevonden !!"
 
@@ -12608,7 +12613,7 @@ msgstr "Geen bestanden gevonden."
 msgid "No free index available"
 msgstr "Geen vrije index beschikbaar"
 
-#: PictureInPicture.py:184 InfoBarGenerics.py:5046
+#: InfoBarGenerics.py:5046 PictureInPicture.py:184
 msgid "No free tuner!"
 msgstr "Geen vrije tuner!"
 
@@ -12643,7 +12648,7 @@ msgstr ""
 "Geen pakketten werden nog geupdate. U kunt kunt daardoor uw netwerk "
 "controleren en het opnieuw probeer."
 
-#: QuickMenu.py:599 PositionerSetup/plugin.py:1339
+#: QuickMenu.py:602 PositionerSetup/plugin.py:1339
 msgid "No positioner capable frontend found."
 msgstr "Geen geschikte positioner gevonden."
 
@@ -12708,7 +12713,7 @@ msgstr ""
 "zonder succes:\n"
 "\n"
 
-#: QuickMenu.py:614 PositionerSetup/plugin.py:1354
+#: QuickMenu.py:617 PositionerSetup/plugin.py:1354
 msgid "No tuner is configured for use with a diseqc positioner!"
 msgstr "Geen tuner ingesteld voor gebruik van een DiSEqC motor!"
 
@@ -12804,14 +12809,14 @@ msgid "NodeID: "
 msgstr "NodeID: "
 
 #: ScanSetup.py:1152 ScanSetup.py:1220 ScanSetup.py:1289
-#: InfoBarGenerics.py:1895 config.py:400 UsageConfig.py:57 UsageConfig.py:71
+#: InfoBarGenerics.py:1895 Lcd.py:613 UsageConfig.py:57 UsageConfig.py:71
 #: UsageConfig.py:73 UsageConfig.py:75 UsageConfig.py:350 UsageConfig.py:1260
-#: UsageConfig.py:1342 HdmiCec.py:57 HdmiCec.py:64 NimManager.py:1807
-#: NimManager.py:1809 NimManager.py:1830 NimManager.py:1832 NimManager.py:1838
-#: Transponder.py:142 Transponder.py:221 QuickMenu.py:773 QuickMenu.py:775
-#: QuickMenu.py:779 QuickMenu.py:781 MountManager.py:246 MountManager.py:248
-#: MountManager.py:252 MountManager.py:254 MountManager.py:542
-#: PositionerSetup/plugin.py:1159
+#: UsageConfig.py:1342 NimManager.py:1807 NimManager.py:1809 NimManager.py:1830
+#: NimManager.py:1832 NimManager.py:1838 config.py:400 HdmiCec.py:57
+#: Transponder.py:73 Transponder.py:142 Transponder.py:221 QuickMenu.py:776
+#: QuickMenu.py:778 QuickMenu.py:782 QuickMenu.py:784 MountManager.py:246
+#: MountManager.py:248 MountManager.py:252 MountManager.py:254
+#: MountManager.py:542 PositionerSetup/plugin.py:1159
 msgid "None"
 msgstr "Geen"
 
@@ -12990,7 +12995,7 @@ msgstr "OCTAGON_SF4008"
 msgid "ODIN_M7"
 msgstr "ODIN_M7"
 
-#: SoftwareUpdate.py:29 SoftwareUpdate.py:61 About.py:870 About.py:897
+#: About.py:870 About.py:897 SoftwareUpdate.py:29 SoftwareUpdate.py:61
 msgid "OE Changes"
 msgstr "OE-veranderingen"
 
@@ -13003,20 +13008,19 @@ msgstr "OE Log"
 msgid "OEM Model:\t\t%s\n"
 msgstr "OEM Model:\t\t%s\n"
 
-#: OScamInfo.py:1138 VideoMode.py:463 TimerEntry.py:46 LocationBox.py:78
-#: SoftcamSetup.py:74 UserInterfacePositioner.py:544 Ci.py:653
+#: About.py:852 InputDeviceSetup.py:139 TimerEntry.py:46 SoftcamSetup.py:74
+#: LocationBox.py:78 UserInterfacePositioner.py:544 Ci.py:653
 #: ServiceScan.py:117 VirtualKeyBoard.py:64 PluginBrowser.py:842
-#: Satconfig.py:77 TimeDateInput.py:14 ParentalControlSetup.py:188
-#: MovieSelection.py:270 MovieSelection.py:370 PowerTimerEntry.py:35
-#: About.py:852 InputDeviceSetup.py:139 Infopanel/plugin.py:645
-#: ProjectSettings.py:57 ProjectSettings.py:105 ProjectSettings.py:219
-#: TitleProperties.py:34 PicturePlayer/ui.py:164 AtileHD/plugin.py:86
-#: AtileHD/plugin.py:147 OSDPositionSetup/plugin.py:28
-#: SoftwareManager/plugin.py:457 VideoClippingSetup/plugin.py:28
-#: ConfigurationBackup/plugin.py:73 HdmiCEC/plugin.py:39
-#: DiseqcTester/plugin.py:591 VideoEnhancement/plugin.py:45
-#: VideoEnhancement/plugin.py:321 addons/unarchiver.py:69
-#: addons/unarchiver.py:239 skin_default.xml
+#: OScamInfo.py:1138 VideoMode.py:463 Satconfig.py:77 TimeDateInput.py:14
+#: ParentalControlSetup.py:188 MovieSelection.py:270 MovieSelection.py:370
+#: PowerTimerEntry.py:35 Infopanel/plugin.py:645 ProjectSettings.py:57
+#: ProjectSettings.py:105 ProjectSettings.py:219 TitleProperties.py:34
+#: PicturePlayer/ui.py:164 AtileHD/plugin.py:86 AtileHD/plugin.py:147
+#: OSDPositionSetup/plugin.py:28 SoftwareManager/plugin.py:457
+#: VideoClippingSetup/plugin.py:28 ConfigurationBackup/plugin.py:73
+#: HdmiCEC/plugin.py:39 DiseqcTester/plugin.py:591
+#: VideoEnhancement/plugin.py:45 VideoEnhancement/plugin.py:321
+#: addons/unarchiver.py:69 addons/unarchiver.py:239 skin_default.xml
 msgid "OK"
 msgstr "Bevestigen"
 
@@ -13056,7 +13060,7 @@ msgstr "OSD naam aanvragen"
 msgid "OSD position setup"
 msgstr "OSD positie instellen"
 
-#: QuickMenu.py:472 skin_default.xml setup.xml
+#: QuickMenu.py:475 skin_default.xml setup.xml
 msgid "OSD settings"
 msgstr "OSD instellingen"
 
@@ -13073,13 +13077,12 @@ msgid "OVR"
 msgstr "OVR"
 
 #: ScanSetup.py:1136 ScanSetup.py:1176 ScanSetup.py:1199 ScanSetup.py:1230
-#: ScanSetup.py:1303 config.py:400 ServiceScan.py:147 UsageConfig.py:46
-#: UsageConfig.py:161 UsageConfig.py:236 UsageConfig.py:533 UsageConfig.py:595
-#: UsageConfig.py:984 Lcd.py:516 Lcd.py:522 Lcd.py:537 Lcd.py:540
-#: NimManager.py:1829 Transponder.py:118 Transponder.py:140 Transponder.py:229
-#: Transponder.py:253 Infopanel/plugin.py:105 UI3DSetup/plugin.py:6
-#: VideoEnhancement.py:164 PositionerSetup/plugin.py:1143
-#: PositionerSetup/plugin.py:1181
+#: Lcd.py:513 Lcd.py:519 Lcd.py:534 Lcd.py:540 ServiceScan.py:147
+#: UsageConfig.py:46 UsageConfig.py:161 UsageConfig.py:236 UsageConfig.py:533
+#: UsageConfig.py:595 UsageConfig.py:984 NimManager.py:1829 Transponder.py:71
+#: Transponder.py:118 Transponder.py:140 Transponder.py:229 Transponder.py:253
+#: Infopanel/plugin.py:105 UI3DSetup/plugin.py:6 VideoEnhancement.py:164
+#: PositionerSetup/plugin.py:1143 PositionerSetup/plugin.py:1181
 msgid "Off"
 msgstr "Uit"
 
@@ -13100,9 +13103,9 @@ msgid "Oman"
 msgstr "Oman"
 
 #: ScanSetup.py:1137 ScanSetup.py:1177 ScanSetup.py:1200 ScanSetup.py:1231
-#: ScanSetup.py:1304 config.py:399 ServiceScan.py:148 UsageConfig.py:236
-#: Lcd.py:516 Lcd.py:522 Lcd.py:537 Lcd.py:540 NimManager.py:1829
-#: Transponder.py:117 Transponder.py:139 Transponder.py:228 Transponder.py:252
+#: Lcd.py:513 Lcd.py:519 Lcd.py:534 Lcd.py:540 ServiceScan.py:148
+#: UsageConfig.py:236 NimManager.py:1829 Transponder.py:70 Transponder.py:117
+#: Transponder.py:139 Transponder.py:228 Transponder.py:252
 #: PositionerSetup/plugin.py:1144 PositionerSetup/plugin.py:1182
 msgid "On"
 msgstr "Aan"
@@ -13137,7 +13140,7 @@ msgstr "Een"
 msgid "One line"
 msgstr "Eén regel"
 
-#: QuickMenu.py:344
+#: QuickMenu.py:345
 msgid "Online software update"
 msgstr "OpenATV via het internet updaten"
 
@@ -13245,7 +13248,7 @@ msgstr "Open zenderlijst en selecteer vorige zender voor PiP"
 msgid "Open settings/actions menu"
 msgstr "Open instellingen/actie menu"
 
-#: QuickMenu.py:360
+#: QuickMenu.py:361
 msgid "Open the Plugin Browser"
 msgstr "Open het Applicatie overzicht"
 
@@ -13257,7 +13260,7 @@ msgstr "Open de opnamelijst"
 msgid "Open with File Commander"
 msgstr "Open met File Commander"
 
-#: QuickMenu.py:449
+#: QuickMenu.py:450
 msgid "OpenVPN"
 msgstr "OpenVPN"
 
@@ -13403,7 +13406,7 @@ msgstr "PC lang"
 msgid "PCM"
 msgstr "PCM"
 
-#: VideoMode.py:485 AudioSelection.py:169
+#: AudioSelection.py:169 VideoMode.py:485
 msgid "PCM Multichannel"
 msgstr "PCM Meerkanaals"
 
@@ -13615,7 +13618,7 @@ msgstr "Wachtwoord (httpwd)"
 
 #: NetworkSetup.py:3969 menu.xml
 msgid "Password Setup"
-msgstr "Wachtwoord instellingen"
+msgstr "Wachtwoord instellen"
 
 #: NetworkSetup.py:4035
 msgid "Password changed"
@@ -14151,9 +14154,10 @@ msgstr "Een ogenblik geduld, uw netwerk wordt herstart..."
 msgid "Please wait while your skin setting is restoring..."
 msgstr "Een ogenblik geduld, de skin instellingen worden teruggezet..."
 
-#: CronTimer.py:56 NetworkSetup.py:1740 NetworkSetup.py:1880
-#: NetworkSetup.py:2105 NetworkSetup.py:2244 NetworkSetup.py:2417
-#: NetworkSetup.py:2681 NetworkSetup.py:3030 NetworkSetup.py:3522
+#: NetworkSetup.py:1740 NetworkSetup.py:1880 NetworkSetup.py:2105
+#: NetworkSetup.py:2244 NetworkSetup.py:2417 NetworkSetup.py:2681
+#: NetworkSetup.py:3030 NetworkSetup.py:3522 NetworkSetup.py:4113
+#: CronTimer.py:56
 msgid "Please wait whilst feeds state is checked."
 msgstr "Een ogenblik geduld, de feed status wordt gecontroleerd."
 
@@ -14177,8 +14181,8 @@ msgstr "Even geduld... de softcam wordt herstart."
 msgid "Please wait."
 msgstr "Een ogenblik geduld ..."
 
-#: SoftwareUpdate.py:149 NetworkSetup.py:1353 NetworkSetup.py:1376
-#: NetworkSetup.py:1383 SoftwareManager/plugin.py:1536
+#: NetworkSetup.py:1353 NetworkSetup.py:1376 NetworkSetup.py:1383
+#: SoftwareUpdate.py:149 SoftwareManager/plugin.py:1536
 #: WirelessLan/plugin.py:158
 msgid "Please wait..."
 msgstr "Een ogenblik geduld ..."
@@ -14191,11 +14195,11 @@ msgstr "Een ogenblik geduld... De lijst wordt geladen..."
 msgid "Please wait...almost ready! "
 msgstr "Een ogenblik geduld... bijna klaar! "
 
-#: PluginBrowser.py:93 ButtonSetup.py:244 QuickMenu.py:547
+#: ButtonSetup.py:244 PluginBrowser.py:93 QuickMenu.py:550
 msgid "Plugin Browser"
 msgstr "Applicatie overzicht"
 
-#: PluginBrowser.py:818 QuickMenu.py:553
+#: PluginBrowser.py:818 QuickMenu.py:556
 msgid "Plugin Filter"
 msgstr "Plug-in filter"
 
@@ -14211,7 +14215,7 @@ msgstr "Plug-in beheer status"
 msgid "Plugin manager help"
 msgstr "Plug-in beheer helpfunctie"
 
-#: InfoBar.py:141 QuickMenu.py:414 Infopanel/plugin.py:327
+#: InfoBar.py:141 QuickMenu.py:415 Infopanel/plugin.py:327
 #: Infopanel/plugin.py:505 menu.xml
 msgid "Plugins"
 msgstr "Applicaties"
@@ -14244,7 +14248,7 @@ msgstr "Politiek"
 msgid "Popup"
 msgstr "Popup"
 
-#: OScamInfo.py:1173 NetworkSetup.py:3490 NetworkSetup.py:3746
+#: NetworkSetup.py:3490 NetworkSetup.py:3746 OScamInfo.py:1173
 msgid "Port"
 msgstr "Poort"
 
@@ -14296,7 +14300,7 @@ msgstr "Rotor"
 msgid "Positioner (selecting satellites)"
 msgstr "Rotor (selecteert satellieten)"
 
-#: QuickMenu.py:506
+#: QuickMenu.py:509
 msgid "Positioner Setup"
 msgstr "Rotor configureren"
 
@@ -14399,8 +14403,8 @@ msgstr "Druk MENU op uw afstandsbediening voor meer opties."
 msgid "Press MENU to install additional language(s)."
 msgstr "Druk MENU om additionele talen te installeren."
 
-#: SoftwareUpdate.py:153 NetworkSetup.py:53 NetworkSetup.py:426
-#: NetworkSetup.py:865 SoftwareManager/plugin.py:1540
+#: NetworkSetup.py:53 NetworkSetup.py:426 NetworkSetup.py:865
+#: SoftwareUpdate.py:153 SoftwareManager/plugin.py:1540
 msgid "Press OK on your remote control to continue."
 msgstr "Druk OK op uw afstandsbediening om verder te gaan."
 
@@ -14412,7 +14416,7 @@ msgstr "Druk op OK om de geselecteerde skin te activeren."
 msgid "Press OK to activate the settings."
 msgstr "Druk op OK om op te slaan."
 
-#: NetworkSetup.py:54 InputDeviceSetup.py:21
+#: InputDeviceSetup.py:21 NetworkSetup.py:54
 msgid "Press OK to edit the settings."
 msgstr "Druk op OK om te wijzigen."
 
@@ -14639,7 +14643,7 @@ msgstr "Voortgang:"
 msgid "Prominent"
 msgstr "Prominenten"
 
-#: TitleProperties.py:64 TitleList.py:67
+#: TitleList.py:67 TitleProperties.py:64
 msgid "Properties of current title"
 msgstr "Eigenschappen van huidige titel"
 
@@ -14707,7 +14711,7 @@ msgstr "Prov"
 msgid "Prov long"
 msgstr "Prov lang"
 
-#: OScamInfo.py:360 ChannelSelection.py:1662 ServiceInfo.py:169
+#: ChannelSelection.py:1662 ServiceInfo.py:169 OScamInfo.py:360
 #: NimManager.py:2149 ServiceName2.py:135 FastScan/plugin.py:173
 msgid "Provider"
 msgstr "Provider"
@@ -14894,18 +14898,19 @@ msgstr "Gereed om \"%s\" te installeren?"
 
 #: NetworkSetup.py:1895 NetworkSetup.py:2258 NetworkSetup.py:2431
 #: NetworkSetup.py:2695 NetworkSetup.py:3044 NetworkSetup.py:3536
+#: NetworkSetup.py:4128
 #, python-format
 msgid "Ready to install %s ?"
 msgstr "Gereed om %s te installeren?"
 
-#: CronTimer.py:101 NetworkSetup.py:2464 SABnzbdSetup/plugin.py:87
+#: NetworkSetup.py:2464 CronTimer.py:101 SABnzbdSetup/plugin.py:87
 #, python-format
 msgid "Ready to remove \"%s\" ?"
 msgstr "Gereed om \"%s\" te verwijderen?"
 
 #: NetworkSetup.py:1781 NetworkSetup.py:1923 NetworkSetup.py:2146
 #: NetworkSetup.py:2286 NetworkSetup.py:2723 NetworkSetup.py:3072
-#: NetworkSetup.py:3564
+#: NetworkSetup.py:3564 NetworkSetup.py:4156
 #, python-format
 msgid "Ready to remove %s ?"
 msgstr "Gereed om %s te verwijderen?"
@@ -14922,17 +14927,17 @@ msgstr "Reality"
 msgid "Really WOL now?"
 msgstr "Start WOL nu?"
 
-#: UserInterfacePositioner.py:381 UserInterfacePositioner.py:519
-#: UserInterfacePositioner.py:609 PluginBrowser.py:908 Timershift.py:313
-#: SleepTimerEdit.py:85 Satconfig.py:889 NetworkSetup.py:804 Recordings.py:273
-#: ParentalControlSetup.py:120 MovieSelection.py:313 InputDeviceSetup.py:239
-#: ConfigList.py:343 ConfigList.py:348 Infopanel/plugin.py:701
-#: AtileHD/plugin.py:398 SoftwareManager/plugin.py:548
+#: InputDeviceSetup.py:239 NetworkSetup.py:804 UserInterfacePositioner.py:381
+#: UserInterfacePositioner.py:519 UserInterfacePositioner.py:609
+#: Recordings.py:273 PluginBrowser.py:908 Timershift.py:313
+#: SleepTimerEdit.py:85 Satconfig.py:889 ParentalControlSetup.py:120
+#: MovieSelection.py:313 ConfigList.py:343 ConfigList.py:348
+#: Infopanel/plugin.py:701 AtileHD/plugin.py:398 SoftwareManager/plugin.py:548
 #: VideoEnhancement/plugin.py:179
 msgid "Really close without saving settings?"
 msgstr "Afsluiten zonder opslaan?"
 
-#: PowerTimerEdit.py:226 TimerEdit.py:302
+#: TimerEdit.py:302 PowerTimerEdit.py:226
 msgid "Really delete done timers?"
 msgstr "Wilt u de gebruikte timers echt wissen?"
 
@@ -15071,7 +15076,7 @@ msgstr "Opnemen bezig"
 msgid "Recording running"
 msgstr "Opname bezig"
 
-#: QuickMenu.py:476 menu.xml setup.xml
+#: QuickMenu.py:479 menu.xml setup.xml
 msgid "Recording settings"
 msgstr "Opname instellingen"
 
@@ -15251,7 +15256,7 @@ msgstr "Onthoudt de zender pincode"
 msgid "Remote box"
 msgstr "Remote ontvanger "
 
-#: InputDeviceSetup.py:442
+#: InputDeviceSetup.py:445
 msgid "Remote control type"
 msgstr "Type afstandsbediening"
 
@@ -15272,7 +15277,7 @@ msgstr "Verwijderen"
 msgid "Remove Confirmation"
 msgstr "Verwijderen bevestiging"
 
-#: QuickMenu.py:551
+#: QuickMenu.py:554
 msgid "Remove Plugins"
 msgstr "Plug-ins verwijderen"
 
@@ -15283,7 +15288,7 @@ msgstr "Verwijder Quad zender"
 #: NetworkSetup.py:1720 NetworkSetup.py:1860 NetworkSetup.py:2088
 #: NetworkSetup.py:2227 NetworkSetup.py:2400 NetworkSetup.py:2575
 #: NetworkSetup.py:2665 NetworkSetup.py:3014 NetworkSetup.py:3506
-#: SABnzbdSetup/plugin.py:41
+#: NetworkSetup.py:4093 SABnzbdSetup/plugin.py:41
 msgid "Remove Service"
 msgstr "Verwijder service"
 
@@ -15350,10 +15355,10 @@ msgstr "Titel verwijderen"
 msgid "Removing"
 msgstr "Bezig met verwijderen"
 
-#: CronTimer.py:113 NetworkSetup.py:1791 NetworkSetup.py:1933
-#: NetworkSetup.py:2156 NetworkSetup.py:2296 NetworkSetup.py:2474
-#: NetworkSetup.py:2733 NetworkSetup.py:3082 NetworkSetup.py:3574
-#: SABnzbdSetup/plugin.py:98
+#: NetworkSetup.py:1791 NetworkSetup.py:1933 NetworkSetup.py:2156
+#: NetworkSetup.py:2296 NetworkSetup.py:2474 NetworkSetup.py:2733
+#: NetworkSetup.py:3082 NetworkSetup.py:3574 NetworkSetup.py:4166
+#: CronTimer.py:113 SABnzbdSetup/plugin.py:98
 msgid "Removing Service"
 msgstr "Verwijderd zender"
 
@@ -15362,7 +15367,7 @@ msgstr "Verwijderd zender"
 msgid "Removing directory %s failed. (Maybe not empty.)"
 msgstr "Verwijderen van map %s mislukt (is deze map niet leeg?)"
 
-#: Harddisk.py:352
+#: Harddisk.py:355
 msgid "Removing partition table"
 msgstr "Verwijderd de partitietabel"
 
@@ -15413,7 +15418,7 @@ msgstr "Herhaal de stand-by commando's?"
 msgid "Repeat type"
 msgstr "Herhaal type"
 
-#: PowerTimerEdit.py:98 TimerEdit.py:122
+#: TimerEdit.py:122 PowerTimerEdit.py:98
 msgid "Repeating event currently recording... What do you want to do?"
 msgstr "Een herhaalde timer is bezig met een opname... Wat wilt u doen?"
 
@@ -15429,7 +15434,7 @@ msgstr "Reportage"
 msgid "Required medium type:"
 msgstr "Benodigd mediumtype:"
 
-#: Harddisk.py:356
+#: Harddisk.py:359
 msgid "Rereading partition table"
 msgstr "Lees de partitietabel opnieuw"
 
@@ -15473,7 +15478,7 @@ msgstr "Opnieuw verdelen"
 msgid "Reshare:"
 msgstr "Opnieuw verdelen:"
 
-#: VideoMode.py:189 InfoBarGenerics.py:4412
+#: InfoBarGenerics.py:4412 VideoMode.py:189
 msgid "Resolution"
 msgstr "Resolutie"
 
@@ -15559,7 +15564,7 @@ msgstr "Herstel MetrixHD instellingen"
 msgid "Restore Plugins"
 msgstr "Herstel plug-ins"
 
-#: QuickMenu.py:528 Infopanel/plugin.py:579
+#: QuickMenu.py:531 Infopanel/plugin.py:579
 msgid "Restore Settings"
 msgstr "Instellingen herstellen"
 
@@ -15571,7 +15576,7 @@ msgstr "Back-ups terugzetten"
 msgid "Restore is running..."
 msgstr "Herstellen wordt uitgevoerd..."
 
-#: QuickMenu.py:350
+#: QuickMenu.py:351
 msgid "Restore settings from a backup"
 msgstr "Instellingen herstellen vanuit een back-up"
 
@@ -15579,7 +15584,7 @@ msgstr "Instellingen herstellen vanuit een back-up"
 msgid "Restore system settings"
 msgstr "Herstel uw instellingen"
 
-#: QuickMenu.py:350
+#: QuickMenu.py:351
 msgid ""
 "Restore your settings back from a backup. After restore the box will restart "
 "to activated the new settings"
@@ -15757,10 +15762,10 @@ msgstr "Script uitvoeren met aanvullende parameter"
 msgid "Run script with optional parameter in background"
 msgstr "Script uitvoeren met aanvullende parameter in de achtergrond"
 
-#: CronTimer.py:29 CronTimer.py:180 NetworkSetup.py:1719 NetworkSetup.py:1859
-#: NetworkSetup.py:2005 NetworkSetup.py:2086 NetworkSetup.py:2222
-#: NetworkSetup.py:2398 NetworkSetup.py:2573 NetworkSetup.py:2652
-#: NetworkSetup.py:2990 NetworkSetup.py:3485 EventName.py:281
+#: NetworkSetup.py:1719 NetworkSetup.py:1859 NetworkSetup.py:2005
+#: NetworkSetup.py:2086 NetworkSetup.py:2222 NetworkSetup.py:2398
+#: NetworkSetup.py:2573 NetworkSetup.py:2652 NetworkSetup.py:2990
+#: NetworkSetup.py:3485 Ci.py:712 CronTimer.py:180 EventName.py:281
 #: SABnzbdSetup/plugin.py:40
 msgid "Running"
 msgstr "Actief"
@@ -15785,7 +15790,7 @@ msgstr "Rwanda"
 msgid "S-Video"
 msgstr "S-Video"
 
-#: QuickMenu.py:455
+#: QuickMenu.py:456
 msgid "SABnzbd"
 msgstr "SABnzbd"
 
@@ -15802,11 +15807,19 @@ msgstr "SAT"
 msgid "SAT long"
 msgstr "SAT lang"
 
-#: Harddisk.py:642 Harddisk.py:655 Harddisk.py:678 Harddisk.py:679
-#: Harddisk.py:683 Harddisk.py:699 Harddisk.py:700 Harddisk.py:711
-#: Harddisk.py:723 Harddisk.py:735 Harddisk.py:747
+#: Harddisk.py:645 Harddisk.py:658 Harddisk.py:681 Harddisk.py:682
+#: Harddisk.py:686 Harddisk.py:702 Harddisk.py:703 Harddisk.py:714
+#: Harddisk.py:726 Harddisk.py:738 Harddisk.py:750
 msgid "SATA"
 msgstr "SATA"
+
+#: QuickMenu.py:458
+msgid "SATPI"
+msgstr "SATPI"
+
+#: NetworkSetup.py:4085 NetworkSetup.py:4221 menu.xml
+msgid "SATPI Setup"
+msgstr "SATPI/SATIP instellen"
 
 #: Satconfig.py:317
 msgid "SCPC optimized search range"
@@ -15820,7 +15833,7 @@ msgstr ""
 "SCR timing aanpassing, in combinatie met SCR socket en de werking van "
 "verschillende SCR-apparaten met een kabel."
 
-#: Harddisk.py:677 Harddisk.py:698 Harddisk.py:713 Harddisk.py:725
+#: Harddisk.py:680 Harddisk.py:701 Harddisk.py:716 Harddisk.py:728
 msgid "SD"
 msgstr "SD"
 
@@ -15893,7 +15906,7 @@ msgstr "Saint-Pierre en Miquelon"
 msgid "Saint Vincent and the Grenadines"
 msgstr "Saint Vincent en de Grenadines"
 
-#: QuickMenu.py:441
+#: QuickMenu.py:442
 msgid "Samba"
 msgstr "Samba"
 
@@ -15934,7 +15947,7 @@ msgstr "Sao Tomé en Principe"
 msgid "Sat"
 msgstr "Za"
 
-#: QuickMenu.py:512
+#: QuickMenu.py:515
 msgid "Sat Finder"
 msgstr "Signaal zoeken"
 
@@ -15987,20 +16000,20 @@ msgstr "Zaterdag"
 msgid "Saudi Arabia"
 msgstr "Saoedi Arabië"
 
-#: LanguageSelection.py:54 Ci.py:811 CCcamInfo.py:1639 VirtualKeyBoard.py:65
-#: PluginBrowser.py:824 ButtonSetup.py:365 Timershift.py:73
-#: SleepTimerEdit.py:34 Satconfig.py:814 Satconfig.py:1163 CronTimer.py:280
-#: SkinSelector.py:37 NetworkSetup.py:262 NetworkSetup.py:346
+#: InputDeviceSetup.py:435 NetworkSetup.py:262 NetworkSetup.py:346
 #: NetworkSetup.py:472 NetworkSetup.py:2838 NetworkSetup.py:3213
 #: NetworkSetup.py:3383 NetworkSetup.py:3694 NetworkSetup.py:3851
-#: NetworkSetup.py:3972 Recordings.py:79 ParentalControlSetup.py:52
-#: InputDeviceSetup.py:432 Language.py:229 MountManager.py:393
-#: Infopanel/plugin.py:187 Volume_adjust/plugin.py:389 ProjectSettings.py:108
-#: ProjectSettings.py:219 ProjectSettings.py:222 settings.py:82
-#: IceTV/plugin.py:1314 IceTV/plugin.py:1435 IceTV/plugin.py:1531
-#: AnimationSetup/plugin.py:69 AnimationSetup/plugin.py:173
-#: BackupRestore.py:250 SoftwareManager/plugin.py:1895 UI3DSetup/plugin.py:31
-#: CommonInterfaceAssignment/plugin.py:382 PositionerSetup/plugin.py:1025
+#: NetworkSetup.py:3972 LanguageSelection.py:54 Ci.py:811 Recordings.py:79
+#: CCcamInfo.py:1639 VirtualKeyBoard.py:65 Console.py:79 PluginBrowser.py:824
+#: Timershift.py:73 SleepTimerEdit.py:34 Satconfig.py:814 Satconfig.py:1163
+#: CronTimer.py:280 SkinSelector.py:37 ParentalControlSetup.py:52
+#: Language.py:229 MountManager.py:393 Infopanel/plugin.py:187
+#: Volume_adjust/plugin.py:389 ProjectSettings.py:108 ProjectSettings.py:219
+#: ProjectSettings.py:222 settings.py:82 AnimationSetup/plugin.py:69
+#: AnimationSetup/plugin.py:173 IceTV/plugin.py:1314 IceTV/plugin.py:1435
+#: IceTV/plugin.py:1531 BackupRestore.py:250 SoftwareManager/plugin.py:1895
+#: UI3DSetup/plugin.py:31 CommonInterfaceAssignment/plugin.py:382
+#: PositionerSetup/plugin.py:1025
 msgid "Save"
 msgstr "Bevestigen"
 
@@ -16095,7 +16108,7 @@ msgstr "Zoek tevens op SR"
 msgid "Scan files..."
 msgstr "Zoek bestanden..."
 
-#: QuickMenu.py:364
+#: QuickMenu.py:365
 msgid "Scan for local extensions and install them"
 msgstr ""
 "Zoek naar lokale plug-ins en installeer deze.\n"
@@ -16172,7 +16185,7 @@ msgstr "Script '%s' moet lees permissies hebben om te kunnen worden uitgevoerd"
 msgid "ScriptRunner"
 msgstr "Script uitvoerder"
 
-#: VirtualKeyBoard.py:66 InfoBarGenerics.py:388 InfoBar.py:576
+#: VirtualKeyBoard.py:66 InfoBar.py:576 InfoBarGenerics.py:388
 msgid "Search"
 msgstr "Zoek"
 
@@ -16180,11 +16193,11 @@ msgstr "Zoek"
 msgid "Search IMDb for information about current event."
 msgstr "Zoek op IMDB naar informatie over huidig programma."
 
-#: QuickMenu.py:338
+#: QuickMenu.py:339
 msgid "Search Sats"
 msgstr "Satelliet signaal zoeken"
 
-#: QuickMenu.py:338
+#: QuickMenu.py:339
 msgid "Search Sats, check signal and lock"
 msgstr ""
 "Hier kunt u de satellieten zoeken en hun positie vastzetten. \n"
@@ -16194,7 +16207,7 @@ msgstr ""
 msgid "Search east"
 msgstr "Zoek oost"
 
-#: QuickMenu.py:304
+#: QuickMenu.py:305
 msgid "Search for network shares"
 msgstr "Zoek naar gedeelde netwerk mappen"
 
@@ -16280,8 +16293,8 @@ msgstr "Vooruit spoelen (tijd invoeren)"
 msgid "Seekbar"
 msgstr "Spoelbalk"
 
-#: Menu.py:907 Satconfig.py:986 NetworkSetup.py:59 NetworkSetup.py:3424
-#: NetworkSetup.py:3892 InputDeviceSetup.py:24 FileCommander/plugin.py:1194
+#: InputDeviceSetup.py:24 NetworkSetup.py:59 NetworkSetup.py:3424
+#: NetworkSetup.py:3892 Menu.py:748 Menu.py:907 FileCommander/plugin.py:1194
 #: qpip.py:461 BackupRestore.py:297
 msgid "Select"
 msgstr "Selecteer"
@@ -16445,17 +16458,17 @@ msgstr "Selecteer draadloos netwerk"
 msgid "Select action"
 msgstr "Selecteer actie"
 
-#: ChannelSelection.py:903 EventView.py:134 EpgSelection.py:1566
+#: EpgSelection.py:1566 ChannelSelection.py:903 EventView.py:134
 #: GraphMultiEpg.py:1041
 #, python-format
 msgid "Select action for timer %s:"
 msgstr "Selecteer actie voor de timer%s:"
 
-#: QuickMenu.py:540 Infopanel/plugin.py:581 SoftwareManager/plugin.py:213
+#: QuickMenu.py:543 Infopanel/plugin.py:581 SoftwareManager/plugin.py:213
 msgid "Select additional backup files"
 msgstr "Extra back-up bestanden"
 
-#: QuickMenu.py:352
+#: QuickMenu.py:353
 msgid "Select additional files to backup"
 msgstr "Selecteer extra back-up bestanden"
 
@@ -16463,7 +16476,7 @@ msgstr "Selecteer extra back-up bestanden"
 msgid "Select an image to be downloaded"
 msgstr "Selecteer de image die u wilt downloaden"
 
-#: DVD.py:223
+#: AudioSelection.py:106
 msgid "Select audio track"
 msgstr "Geluids instellingen"
 
@@ -16495,11 +16508,11 @@ msgstr "Selecteer de gewenste image uit feed lijst"
 msgid "Select destination for:"
 msgstr "Selecteer bestemming voor:"
 
-#: QuickMenu.py:542 Infopanel/plugin.py:582 SoftwareManager/plugin.py:214
+#: QuickMenu.py:545 Infopanel/plugin.py:582 SoftwareManager/plugin.py:214
 msgid "Select excluded backup files"
 msgstr "Uitgesloten back-up bestanden"
 
-#: QuickMenu.py:353
+#: QuickMenu.py:354
 msgid "Select files to exclude from backup"
 msgstr "Selecteer uitgesloten back-up bestanden"
 
@@ -16806,7 +16819,7 @@ msgstr "Selecteer te wijzigen updatefeed."
 msgid "Select your ATSC provider."
 msgstr "Selecteer uw ATSC provider."
 
-#: QuickMenu.py:323
+#: QuickMenu.py:324
 msgid "Select your Language for Audio/Subtitles"
 msgstr "Selecteer voorkeurstaal voor audio/ondertitels."
 
@@ -16953,9 +16966,9 @@ msgstr "Server niet beschikbaar"
 msgid "Server:"
 msgstr "Server:"
 
-#: OScamInfo.py:608 OScamInfo.py:616 OScamInfo.py:620 OScamInfo.py:779
-#: OScamInfo.py:789 OScamInfo.py:800 CCcamInfo.py:188 CCcamInfo.py:471
-#: CCcamInfo.py:1121
+#: CCcamInfo.py:188 CCcamInfo.py:471 CCcamInfo.py:1121 OScamInfo.py:608
+#: OScamInfo.py:616 OScamInfo.py:620 OScamInfo.py:779 OScamInfo.py:789
+#: OScamInfo.py:800
 msgid "Servers"
 msgstr "Servers"
 
@@ -17243,19 +17256,19 @@ msgstr "Instellingen"
 msgid "Setup - %s"
 msgstr "Instellingen - %s"
 
-#: QuickMenu.py:290
+#: QuickMenu.py:297
 msgid "Setup AFP"
 msgstr "AFP instellen"
 
-#: QuickMenu.py:322
+#: QuickMenu.py:323
 msgid "Setup Audio Sync"
 msgstr "Geluid sync instellen"
 
-#: QuickMenu.py:322
+#: QuickMenu.py:323
 msgid "Setup Audio Sync settings"
 msgstr "Geluid sync configuratie instellen"
 
-#: QuickMenu.py:320
+#: QuickMenu.py:321
 msgid "Setup Audiomode"
 msgstr "Geluids modus instellen"
 
@@ -17307,11 +17320,11 @@ msgstr "Netwerkadapter instellen (Samba, FTP, NFS, ...)"
 msgid "Setup OpenVPN"
 msgstr "OpenVPN instellen"
 
-#: QuickMenu.py:363
+#: QuickMenu.py:364
 msgid "Setup Plugin filter"
 msgstr "Plug-in feeds filteren"
 
-#: QuickMenu.py:363
+#: QuickMenu.py:364
 msgid ""
 "Setup Plugin filter. Here you can select which Plugins are showed in the "
 "PluginBrowser"
@@ -17326,6 +17339,10 @@ msgstr "Applicaties beheren"
 #: QuickMenu.py:294
 msgid "Setup SABnzbd"
 msgstr "SABnzbd instellen"
+
+#: QuickMenu.py:290
+msgid "Setup SATPI"
+msgstr "SATPI/SATIP instellen"
 
 #: QuickMenu.py:287
 msgid "Setup Samba"
@@ -17343,11 +17360,11 @@ msgstr "Tuners beheren"
 msgid "Setup Video/Audio"
 msgstr "Video/geluid instellingen"
 
-#: QuickMenu.py:319
+#: QuickMenu.py:320
 msgid "Setup Videomode"
 msgstr "Video instellingen"
 
-#: QuickMenu.py:332
+#: QuickMenu.py:333
 msgid "Setup each tuner for your satellite system"
 msgstr "Hier kunt u de tuners instellen van uw ontvanger."
 
@@ -17370,11 +17387,11 @@ msgstr "Toegangsniveau instellen"
 msgid "Setup network. Here you can setup DHCP, IP, DNS"
 msgstr "Netwerk instellingen. Hier DHCP, IP, DNS instellen."
 
-#: QuickMenu.py:334
+#: QuickMenu.py:335
 msgid "Setup rotor"
 msgstr "DiSEqC rotor instellen"
 
-#: QuickMenu.py:332
+#: QuickMenu.py:333
 msgid "Setup tuner(s)"
 msgstr "Tuner(s) instellen"
 
@@ -17382,7 +17399,7 @@ msgstr "Tuner(s) instellen"
 msgid "Setup uShare"
 msgstr "uShare instellen"
 
-#: QuickMenu.py:320
+#: QuickMenu.py:321
 msgid "Setup your Audio Mode"
 msgstr "Geluids voorkeuren instellen."
 
@@ -17390,7 +17407,7 @@ msgstr "Geluids voorkeuren instellen."
 msgid "Setup your Channel selection configuration"
 msgstr "Alle instellingen die met de zenderlijst te maken hebben."
 
-#: QuickMenu.py:305
+#: QuickMenu.py:306
 msgid "Setup your Device mounts (USB, HDD, others...)"
 msgstr "Mounts van opslagmedia instellen (USB, HDD, andere...)"
 
@@ -17398,7 +17415,7 @@ msgstr "Mounts van opslagmedia instellen (USB, HDD, andere...)"
 msgid "Setup your EPG config"
 msgstr "Alle instellingen die met de EPG te maken hebben."
 
-#: QuickMenu.py:253 QuickMenu.py:370
+#: QuickMenu.py:253 QuickMenu.py:371
 msgid "Setup your Harddisk"
 msgstr "Hier kunt u een harde schijf configureren."
 
@@ -17424,7 +17441,7 @@ msgstr "Hier kunt u de systeem instellingen beheren."
 msgid "Setup your Tuner and search for channels"
 msgstr "Hier kunt u de tuners instellen en zenders zoeken."
 
-#: QuickMenu.py:250 QuickMenu.py:319
+#: QuickMenu.py:250 QuickMenu.py:320
 msgid "Setup your Video Mode, Video Output and other Video Settings"
 msgstr ""
 "Hier kunt u alles instellen wat met Video/Geluid en Taal te maken heeft."
@@ -17456,7 +17473,7 @@ msgstr ""
 "Netwerk Interface instellen. \n"
 "Als er geen WLAN-Stick gebruikt wordt, kan er enkel voor LAN gekozen worden."
 
-#: QuickMenu.py:303
+#: QuickMenu.py:304
 msgid "Setup your network mounts"
 msgstr "De netwerk mounts instellen."
 
@@ -17464,7 +17481,7 @@ msgstr "De netwerk mounts instellen."
 msgid "Setup your positioner"
 msgstr "Instellen rotor"
 
-#: QuickMenu.py:334
+#: QuickMenu.py:335
 msgid "Setup your positioner for your satellite system"
 msgstr "Hier kunt u een DiSeqC motor instellen."
 
@@ -17502,7 +17519,7 @@ msgstr "Deel mappen"
 msgid "Share View"
 msgstr "Share overzicht"
 
-#: CCcamInfo.py:189 CCcamInfo.py:474 NetworkSetup.py:3214 NetworkSetup.py:3695
+#: NetworkSetup.py:3214 NetworkSetup.py:3695 CCcamInfo.py:189 CCcamInfo.py:474
 msgid "Shares"
 msgstr "Shares"
 
@@ -17660,7 +17677,7 @@ msgstr "Toon CoolSingleGuide"
 msgid "Show CoolTVGuide"
 msgstr "Toon CoolTVGuide"
 
-#: SoftwareUpdate.py:40 SoftwareUpdate.py:60 About.py:869
+#: About.py:869 SoftwareUpdate.py:40 SoftwareUpdate.py:60
 msgid "Show E2 Log"
 msgstr "Toon E2 log"
 
@@ -17701,9 +17718,9 @@ msgstr "Toon programma informatie..."
 msgid "Show Live in MiniTV"
 msgstr "Toon Live in MiniTV"
 
-#: OScamInfo.py:388 NetworkSetup.py:2229 NetworkSetup.py:2402
-#: NetworkSetup.py:2577 NetworkSetup.py:2668 NetworkSetup.py:3017
-#: NetworkSetup.py:3509
+#: NetworkSetup.py:2229 NetworkSetup.py:2402 NetworkSetup.py:2577
+#: NetworkSetup.py:2668 NetworkSetup.py:3017 NetworkSetup.py:3509
+#: OScamInfo.py:388
 msgid "Show Log"
 msgstr "Toon log"
 
@@ -17723,7 +17740,7 @@ msgstr "Toon Opname lijst"
 msgid "Show Multi EPG"
 msgstr "Toon multi EPG"
 
-#: SoftwareUpdate.py:56 About.py:873
+#: About.py:873 SoftwareUpdate.py:56
 msgid "Show OE Log"
 msgstr "Toon OE Log"
 
@@ -17805,7 +17822,7 @@ msgstr "Toon inhoud van tar of gecomprimeerd bestand"
 msgid "Show contents of zip file"
 msgstr "Toon inhoud van zip bestand"
 
-#: QuickMenu.py:538 Infopanel/plugin.py:580 SoftwareManager/plugin.py:212
+#: QuickMenu.py:541 Infopanel/plugin.py:580 SoftwareManager/plugin.py:212
 msgid "Show default backup files"
 msgstr "Standaard back-up bestanden"
 
@@ -17848,7 +17865,7 @@ msgstr "Toon de applicaties ..."
 msgid "Show favourites list"
 msgstr "Toon favorietenlijst"
 
-#: QuickMenu.py:351
+#: QuickMenu.py:352
 msgid "Show files backed up by default"
 msgstr "Toon standaard geselecteerde back-up bestanden"
 
@@ -18013,7 +18030,7 @@ msgstr "Toon de timer-lijst."
 msgid "Show the media center..."
 msgstr "Toon media center..."
 
-#: InfoBarGenerics.py:3132 InfoBarGenerics.py:3143 InfoBar.py:65
+#: InfoBar.py:65 InfoBarGenerics.py:3132 InfoBarGenerics.py:3143
 msgid "Show the media player..."
 msgstr "Open mediaspeler..."
 
@@ -18054,19 +18071,19 @@ msgstr "Show/Quiz"
 msgid "Show/Hide focus bar"
 msgstr "Toon/verberg focus balk"
 
-#: QuickMenu.py:360
+#: QuickMenu.py:361
 msgid "Shows Plugins Browser. Here you can setup installed Plugin"
 msgstr ""
 "Toont u de geïnstalleerde applicaties. Ook kunt u applicaties/plug-ins "
 "instellen."
 
-#: QuickMenu.py:252 QuickMenu.py:361
+#: QuickMenu.py:252 QuickMenu.py:362
 msgid "Shows available plugins. Here you can download and install them"
 msgstr ""
 "Hier vindt u beschikbare plug-ins.\n"
 "Hier kunt u ze downloaden, installeren en verwijderen."
 
-#: QuickMenu.py:313
+#: QuickMenu.py:314
 msgid "Shows available softcams. Here you can download and install them"
 msgstr ""
 "Toon de beschikbare Softcams die online gedownload en geïnstalleerd kunnen "
@@ -18212,8 +18229,8 @@ msgstr "Omgekeerd grote"
 msgid "Size:"
 msgstr "Grootte:"
 
-#: About.py:443 About.py:447 QuickMenu.py:789 QuickMenu.py:791 QuickMenu.py:800
-#: QuickMenu.py:802 MountManager.py:262 MountManager.py:264 MountManager.py:266
+#: About.py:443 About.py:447 QuickMenu.py:792 QuickMenu.py:794 QuickMenu.py:803
+#: QuickMenu.py:805 MountManager.py:262 MountManager.py:264 MountManager.py:266
 #: MountManager.py:275 MountManager.py:277 MountManager.py:279
 #: MountManager.py:551 MountManager.py:553 MountManager.py:555
 #: MountManager.py:564 MountManager.py:566 MountManager.py:568
@@ -18232,7 +18249,7 @@ msgstr "Skin selecteren"
 msgid "Skin Setting"
 msgstr "Skin instelling"
 
-#: QuickMenu.py:470 menu.xml
+#: QuickMenu.py:473 menu.xml
 msgid "Skin Setup"
 msgstr "Skin selecteren"
 
@@ -18408,11 +18425,11 @@ msgstr "Maatschappij & Cultuur"
 msgid "Socket"
 msgstr "Socket"
 
-#: QuickMenu.py:402
+#: QuickMenu.py:403
 msgid "Softcam"
 msgstr "Softcam"
 
-#: Setup.py:285 QuickMenu.py:488 menu.xml skin_default.xml
+#: Setup.py:285 QuickMenu.py:491 skin_default.xml menu.xml
 msgid "Softcam Setup"
 msgstr "Softcam configuratie"
 
@@ -18440,11 +18457,11 @@ msgstr "Softcam configuratie"
 msgid "Software"
 msgstr "Software"
 
-#: QuickMenu.py:411 Infopanel/plugin.py:325 Infopanel/plugin.py:573
+#: QuickMenu.py:412 Infopanel/plugin.py:325 Infopanel/plugin.py:573
 msgid "Software Manager"
 msgstr "Software beheer"
 
-#: QuickMenu.py:544
+#: QuickMenu.py:547
 msgid "Software Manager Setup"
 msgstr "Online update instellingen"
 
@@ -18452,7 +18469,7 @@ msgstr "Online update instellingen"
 msgid "Software Panel"
 msgstr "Software paneel"
 
-#: SoftwareUpdate.py:139 QuickMenu.py:515
+#: SoftwareUpdate.py:139 QuickMenu.py:518
 msgid "Software Update"
 msgstr "Software update"
 
@@ -18513,7 +18530,7 @@ msgstr "Sorry CIHelper configuratie mist"
 msgid "Sorry Inadyn Config is Missing"
 msgstr "Sorry, de Inadyn configuratie ontbreekt"
 
-#: QuickMenu.py:560
+#: QuickMenu.py:563
 msgid "Sorry MediaScanner is not installed!"
 msgstr "Sorry, MediaScanner is niet geïnstalleerd!"
 
@@ -18525,9 +18542,10 @@ msgstr "MiniDLNA Configuratie ontbreekt"
 msgid "Sorry feeds are down for maintenance"
 msgstr "Excuses: vanwege onderhoud zijn de feeds niet actief."
 
-#: CronTimer.py:68 NetworkSetup.py:1752 NetworkSetup.py:1891
-#: NetworkSetup.py:2117 NetworkSetup.py:2256 NetworkSetup.py:2429
-#: NetworkSetup.py:2693 NetworkSetup.py:3042 NetworkSetup.py:3534
+#: NetworkSetup.py:1752 NetworkSetup.py:1891 NetworkSetup.py:2117
+#: NetworkSetup.py:2256 NetworkSetup.py:2429 NetworkSetup.py:2693
+#: NetworkSetup.py:3042 NetworkSetup.py:3534 NetworkSetup.py:4124
+#: CronTimer.py:68
 msgid "Sorry feeds are down for maintenance, please try again later."
 msgstr ""
 "De feeds zijn niet actief vanwege onderhoud. Probeer het later opnieuw."
@@ -18540,7 +18558,7 @@ msgstr ""
 "Sorry feeds zijn niet bereikbaar door onderhoud, probeer later opnieuw. Als "
 "dit probleem zich blijft voordoen, Controleer www.opena.tv"
 
-#: QuickMenu.py:537 Infopanel/plugin.py:481
+#: QuickMenu.py:540 Infopanel/plugin.py:481
 msgid "Sorry no backups found!"
 msgstr "Sorry geen back-up gevonden!"
 
@@ -18722,7 +18740,7 @@ msgid "Standard menu"
 msgstr "Standaard menu"
 
 #: ButtonSetup.py:254 UsageConfig.py:336 UsageConfig.py:345 HdmiCec.py:22
-#: PowerTimerList.py:18 PowerTimerList.py:32 menu.xml skin_default.xml
+#: PowerTimerList.py:18 PowerTimerList.py:32 skin_default.xml menu.xml
 msgid "Standby"
 msgstr "Stand-by"
 
@@ -18734,14 +18752,15 @@ msgstr "Afsluiten"
 msgid "Standby without TV shutdown"
 msgstr "Stand-by zonder uitschakelen TV"
 
-#: Ci.py:768 CronTimer.py:184 NetworkSetup.py:1721 NetworkSetup.py:1841
-#: NetworkSetup.py:1861 NetworkSetup.py:1986 NetworkSetup.py:2006
-#: NetworkSetup.py:2068 NetworkSetup.py:2087 NetworkSetup.py:2204
-#: NetworkSetup.py:2226 NetworkSetup.py:2348 NetworkSetup.py:2399
-#: NetworkSetup.py:2535 NetworkSetup.py:2574 NetworkSetup.py:2634
-#: NetworkSetup.py:2666 NetworkSetup.py:2789 NetworkSetup.py:3015
-#: NetworkSetup.py:3141 NetworkSetup.py:3507 NetworkSetup.py:3629
-#: SABnzbdSetup/plugin.py:42 SABnzbdSetup/plugin.py:153 ImageBackup.py:52
+#: NetworkSetup.py:1721 NetworkSetup.py:1841 NetworkSetup.py:1861
+#: NetworkSetup.py:1986 NetworkSetup.py:2006 NetworkSetup.py:2068
+#: NetworkSetup.py:2087 NetworkSetup.py:2204 NetworkSetup.py:2226
+#: NetworkSetup.py:2348 NetworkSetup.py:2399 NetworkSetup.py:2535
+#: NetworkSetup.py:2574 NetworkSetup.py:2634 NetworkSetup.py:2666
+#: NetworkSetup.py:2789 NetworkSetup.py:3015 NetworkSetup.py:3141
+#: NetworkSetup.py:3507 NetworkSetup.py:3629 NetworkSetup.py:4094 Ci.py:714
+#: CronTimer.py:40 CronTimer.py:184 SABnzbdSetup/plugin.py:42
+#: SABnzbdSetup/plugin.py:153 ImageBackup.py:52
 msgid "Start"
 msgstr "Start"
 
@@ -18829,11 +18848,11 @@ msgstr "Naar oost gestapt"
 msgid "Stepped west"
 msgstr "Naar west gestapt"
 
-#: ButtonSetup.py:92 TimerEdit.py:161 CronTimer.py:179 NetworkSetup.py:1835
-#: NetworkSetup.py:1980 NetworkSetup.py:2062 NetworkSetup.py:2199
-#: NetworkSetup.py:2343 NetworkSetup.py:2529 NetworkSetup.py:2628
-#: NetworkSetup.py:2784 NetworkSetup.py:3136 NetworkSetup.py:3624
-#: MovieSelection.py:588 SABnzbdSetup/plugin.py:147
+#: NetworkSetup.py:1835 NetworkSetup.py:1980 NetworkSetup.py:2062
+#: NetworkSetup.py:2199 NetworkSetup.py:2343 NetworkSetup.py:2529
+#: NetworkSetup.py:2628 NetworkSetup.py:2784 NetworkSetup.py:3136
+#: NetworkSetup.py:3624 NetworkSetup.py:4213 TimerEdit.py:161 Ci.py:763
+#: CronTimer.py:179 MovieSelection.py:588 SABnzbdSetup/plugin.py:147
 #: PositionerSetup/plugin.py:352 PositionerSetup/plugin.py:353
 #: PositionerSetup/plugin.py:354 PositionerSetup/plugin.py:355
 #: PositionerSetup/plugin.py:395
@@ -18848,11 +18867,11 @@ msgstr "Beëindig PiP"
 msgid "Stop Streams"
 msgstr "Stop Streams"
 
-#: PowerTimerEdit.py:95 TimerEdit.py:119
+#: TimerEdit.py:119 PowerTimerEdit.py:95
 msgid "Stop current event and disable coming events"
 msgstr "Stop huidige timer en annuleer de volgende timers"
 
-#: PowerTimerEdit.py:94 TimerEdit.py:118
+#: TimerEdit.py:118 PowerTimerEdit.py:94
 msgid "Stop current event but not coming events"
 msgstr "Stop de huidige timer, maar alle volgende timers toestaan"
 
@@ -18916,10 +18935,10 @@ msgstr ""
 "Stop Timeshift en sla Timeshift-buffer op als opname, en start opname van "
 "het huidige programma"
 
-#: CronTimer.py:28 CronTimer.py:185 NetworkSetup.py:1718 NetworkSetup.py:1858
-#: NetworkSetup.py:2004 NetworkSetup.py:2085 NetworkSetup.py:2221
-#: NetworkSetup.py:2397 NetworkSetup.py:2572 NetworkSetup.py:2651
-#: NetworkSetup.py:2989 NetworkSetup.py:3484 SABnzbdSetup/plugin.py:39
+#: NetworkSetup.py:1718 NetworkSetup.py:1858 NetworkSetup.py:2004
+#: NetworkSetup.py:2085 NetworkSetup.py:2221 NetworkSetup.py:2397
+#: NetworkSetup.py:2572 NetworkSetup.py:2651 NetworkSetup.py:2989
+#: NetworkSetup.py:3484 Ci.py:711 CronTimer.py:185 SABnzbdSetup/plugin.py:39
 #: PositionerSetup/plugin.py:399
 msgid "Stopped"
 msgstr "Gestopt"
@@ -19242,9 +19261,9 @@ msgstr "Sync probleem bij draaiing naar het nulpunt!"
 msgid "Syrian Arab Republic"
 msgstr "Syrië"
 
-#: OScamInfo.py:891 ServiceInfo.py:183 ServiceInfo.py:241 ServiceInfo.py:281
-#: ScanSetup.py:789 ScanSetup.py:868 ScanSetup.py:903 NetworkSetup.py:2663
-#: NetworkSetup.py:2904 NetworkSetup.py:2918 QuickMenu.py:396
+#: NetworkSetup.py:2663 NetworkSetup.py:2904 NetworkSetup.py:2918
+#: ServiceInfo.py:183 ServiceInfo.py:241 ServiceInfo.py:281 ScanSetup.py:789
+#: ScanSetup.py:868 ScanSetup.py:903 OScamInfo.py:891 QuickMenu.py:397
 #: Infopanel/plugin.py:561 SoftwareManager/plugin.py:1021
 #: PositionerSetup/plugin.py:1208 menu.xml
 msgid "System"
@@ -19373,7 +19392,7 @@ msgstr "Takenlijst"
 msgid "Technik"
 msgstr "Techniek"
 
-#: BoxPortal.py:58 ButtonSetup.py:51 UsageConfig.py:359 Infopanel/plugin.py:95
+#: ButtonSetup.py:51 BoxPortal.py:58 UsageConfig.py:359 Infopanel/plugin.py:95
 msgid "Teletext"
 msgstr "Teletekst"
 
@@ -19381,7 +19400,7 @@ msgstr "Teletekst"
 msgid "Teletext base visibility"
 msgstr "Teletekst basis zichtbaarheid"
 
-#: QuickMenu.py:459
+#: QuickMenu.py:462
 msgid "Telnet"
 msgstr "Telnet"
 
@@ -19448,8 +19467,8 @@ msgstr "Thais"
 msgid "Thailand"
 msgstr "Thailand"
 
-#: InfoBarGenerics.py:3372 InfoBar.py:308 EpgSelection.py:1452
-#: EpgSelection.py:1465 EpgSelection.py:1495
+#: EpgSelection.py:1452 EpgSelection.py:1465 EpgSelection.py:1495
+#: InfoBar.py:308 InfoBarGenerics.py:3372
 msgid ""
 "The AutoTimer plugin is not installed!\n"
 "Please install it."
@@ -19479,7 +19498,7 @@ msgstr ""
 "De DreamPlex plug-in is niet geïnstalleerd!\n"
 "Installeer deze a.u.b. "
 
-#: InfoBar.py:317 EpgSelection.py:1439
+#: EpgSelection.py:1439 InfoBar.py:317
 msgid ""
 "The EPGSearch plugin is not installed!\n"
 "Please install it."
@@ -19495,7 +19514,7 @@ msgstr ""
 "Het bestandssyteem van uw Timeshift apparaat ondersteunt geen hardlinks.\n"
 "Formatteer die in EXT2, EXT3 or EXT4!"
 
-#: InfoBarGenerics.py:3428 InfoBar.py:326 EpgSelection.py:1426
+#: EpgSelection.py:1426 InfoBar.py:326 InfoBarGenerics.py:3428
 msgid ""
 "The IMDb plugin is not installed!\n"
 "Please install it."
@@ -19536,7 +19555,7 @@ msgstr ""
 "De MediaCenter plug-in is niet geïnstalleerd!\n"
 "Installeer deze a.u.b. "
 
-#: InfoBarGenerics.py:3438 InfoBar.py:268
+#: InfoBar.py:268 InfoBarGenerics.py:3438
 msgid ""
 "The MediaPlayer plugin is not installed!\n"
 "Please install it."
@@ -19645,7 +19664,7 @@ msgstr ""
 "De map %s is niet een EXT2, EXT3, EXT4, NFS en CIFS partitie.\n"
 "Zorg ervoor dat u een geldige partitietype selecteert."
 
-#: Timershift.py:138 Recordings.py:108
+#: Recordings.py:108 Timershift.py:138
 #, python-format
 msgid ""
 "The directory %s is not writable.\n"
@@ -20779,7 +20798,7 @@ msgstr "Totaal verwerkte gebruiker ecm's"
 msgid "Total handled client emm's"
 msgstr "Totaal verwerkte gebruiker emm's"
 
-#: About.py:577
+#: CCcamInfo.py:760
 msgid "Total:"
 msgstr "Totaal:"
 
@@ -20836,7 +20855,7 @@ msgstr "Transpondertype"
 msgid "Transport Stream Type"
 msgstr "Transponder stream type"
 
-#: MovieList.py:354 MovieList.py:357
+#: MovieList.py:352 MovieList.py:355
 msgid "Trashcan"
 msgstr "Prullenbak"
 
@@ -20950,11 +20969,11 @@ msgstr "Tuner "
 msgid "Tuner :"
 msgstr "Tuner:"
 
-#: ButtonSetup.py:236 QuickMenu.py:504
+#: ButtonSetup.py:236 QuickMenu.py:507
 msgid "Tuner Configuration"
 msgstr "Tuner configuratie"
 
-#: QuickMenu.py:408
+#: QuickMenu.py:409
 msgid "Tuner Setup"
 msgstr "Tuner"
 
@@ -20974,27 +20993,27 @@ msgstr "Tuner instellingen"
 msgid "Tuner status"
 msgstr "Tuner status"
 
-#: AutoDiseqc.py:277
+#: AutoDiseqc.py:322
 msgid "Tuner status FAILED"
 msgstr "Tuner status FAILED"
 
-#: AutoDiseqc.py:286
+#: AutoDiseqc.py:331
 msgid "Tuner status IDLE"
 msgstr "Tuner status IDLE"
 
-#: AutoDiseqc.py:283
+#: AutoDiseqc.py:328
 msgid "Tuner status LOCKED"
 msgstr "Tuner status LOCKED"
 
-#: AutoDiseqc.py:280
+#: AutoDiseqc.py:325
 msgid "Tuner status LOSTLOCK"
 msgstr "Tuner status LOSTLOCK"
 
-#: AutoDiseqc.py:274
+#: AutoDiseqc.py:319
 msgid "Tuner status TUNING"
 msgstr "Tuner status TUNING"
 
-#: AutoDiseqc.py:289
+#: AutoDiseqc.py:334
 msgid "Tuner status UNKNOWN"
 msgstr "Tuner status UNKNOWN"
 
@@ -21082,7 +21101,7 @@ msgstr "Zoekmodus"
 msgid "Type:"
 msgstr "Type:"
 
-#: CCcamInfo.py:299 CCcamInfo.py:656 CCcamInfo.py:697 QuickMenu.py:811
+#: CCcamInfo.py:299 CCcamInfo.py:656 CCcamInfo.py:697 QuickMenu.py:814
 #: MountManager.py:288
 msgid "Type: "
 msgstr "Type: "
@@ -21170,7 +21189,7 @@ msgstr ""
 msgid "Unattended upgrade without GUI"
 msgstr "Update zonder toezicht en GUI"
 
-#: SoftwareUpdate.py:131 About.py:903
+#: About.py:903 SoftwareUpdate.py:131
 msgid "Unattended upgrade without GUI and reboot system"
 msgstr "Update uitvoeren en vervolgens systeem herstarten"
 
@@ -21283,17 +21302,17 @@ msgstr "Onbekende gebruiker: %d"
 msgid "Unmark service as dedicated 3D service"
 msgstr "Déselecteer deze zender als 3D zender"
 
-#: Harddisk.py:1039 MountManager.py:49
+#: Harddisk.py:1042 MountManager.py:49
 msgid "Unmount"
 msgstr "Ontkoppel"
 
-#: addons/unzip.py:20 addons/unzip.py:21 addons/unrar.py:28 addons/unrar.py:29
-#: addons/gz.py:19 addons/gz.py:20 tar.py:18 tar.py:19
+#: addons/unrar.py:28 addons/unrar.py:29 addons/gz.py:19 addons/gz.py:20
+#: tar.py:18 tar.py:19 addons/unzip.py:20 addons/unzip.py:21
 #, python-format
 msgid "Unpack to %s"
 msgstr "Uitpakken naar %s"
 
-#: addons/unzip.py:19 addons/unrar.py:27 addons/gz.py:18 tar.py:17
+#: addons/unrar.py:27 addons/gz.py:18 tar.py:17 addons/unzip.py:19
 msgid "Unpack to current folder"
 msgstr "Uitpakken naar huidige map"
 
@@ -21490,7 +21509,7 @@ msgstr "Uphops -"
 msgid "Uphops: "
 msgstr "Uphops: "
 
-#: Harddisk.py:684 Harddisk.py:737 Harddisk.py:749
+#: Harddisk.py:687 Harddisk.py:740 Harddisk.py:752
 msgid "Upper USB"
 msgstr "USB boven"
 
@@ -21628,7 +21647,7 @@ msgid ""
 "setup your network"
 msgstr "Gebruik de netwerk wizard om het netwerk in te stellen."
 
-#: QuickMenu.py:312
+#: QuickMenu.py:313
 msgid ""
 "Use the Softcam Panel to control your Cam. This let you start/stop/select a "
 "cam"
@@ -21858,7 +21877,7 @@ msgstr "ViX EPG"
 msgid "Video PID"
 msgstr "Video PID"
 
-#: QuickMenu.py:493
+#: QuickMenu.py:496
 msgid "Video Settings"
 msgstr "Video instellingen"
 
@@ -21946,11 +21965,11 @@ msgstr "Video: "
 msgid "Video: %s fps"
 msgstr "Video: %s fps"
 
-#: QuickMenu.py:501
+#: QuickMenu.py:504
 msgid "VideoEnhancement"
 msgstr "Videoverbetering"
 
-#: QuickMenu.py:325
+#: QuickMenu.py:326
 msgid "VideoEnhancement Setup"
 msgstr "Videoverbetering instellingen"
 
@@ -22191,7 +22210,7 @@ msgstr "Wacht op tijdsynchronisatie bij opstareten"
 msgid "Wait please while creating swapfile..."
 msgstr "Een ogenblik geduld, swapfile wordt gemaakt..."
 
-#: About.py:396 QuickMenu.py:710 MountManager.py:88
+#: About.py:396 QuickMenu.py:713 MountManager.py:88
 msgid "Wait please while scanning for devices..."
 msgstr "Een ogenblik geduld, apparaten worden gescand..."
 
@@ -22208,11 +22227,11 @@ msgstr "Een ogenblik geduld tijdens het zoeken..."
 msgid "Waiting"
 msgstr "Wachten"
 
-#: Harddisk.py:429 Harddisk.py:458 Harddisk.py:494
+#: Harddisk.py:432 Harddisk.py:461 Harddisk.py:497
 msgid "Waiting for mount"
 msgstr "Wachten op de mount"
 
-#: Harddisk.py:362 Harddisk.py:403
+#: Harddisk.py:365 Harddisk.py:406
 msgid "Waiting for partition"
 msgstr "Wacht op een verdeelpunt"
 
@@ -22662,16 +22681,17 @@ msgstr "Geel lang"
 msgid "Yemen"
 msgstr "Jemen"
 
-#: Ci.py:50 InfoBarGenerics.py:5284 InfoBar.py:594 MessageBox.py:94
-#: MessageBox.py:96 PowerTimerEntry.py:134 PowerTimerEntry.py:152
-#: PowerTimerEntry.py:154 config.py:399 UsageConfig.py:433 Lcd.py:674
-#: Lcd.py:686 Lcd.py:692 HdmiRecord.py:77 Timeshift.py:543 Timeshift.py:914
-#: ClientsStreaming.py:81 FileCommander/plugin.py:80
-#: FileCommander/plugin.py:700 FileCommander/plugin.py:729
-#: FileCommander/plugin.py:762 FileCommander/plugin.py:896
-#: FileCommander/plugin.py:1298 FileCommander/plugin.py:1344
-#: FileCommander/plugin.py:1390 downloader.py:565 downloader.py:721
-#: FSBLUpdater/plugin.py:26 WirelessLan/plugin.py:278 videowizard.xml
+#: About.py:302 Ci.py:50 InfoBar.py:594 InfoBar.py:599 InfoBarGenerics.py:5284
+#: Satconfig.py:796 MessageBox.py:94 MessageBox.py:96 PowerTimerEntry.py:134
+#: PowerTimerEntry.py:152 PowerTimerEntry.py:154 Lcd.py:674 Lcd.py:686
+#: Lcd.py:692 UsageConfig.py:433 HdmiRecord.py:77 Timeshift.py:543
+#: Timeshift.py:914 config.py:399 ClientsStreaming.py:81
+#: FileCommander/plugin.py:80 FileCommander/plugin.py:700
+#: FileCommander/plugin.py:729 FileCommander/plugin.py:762
+#: FileCommander/plugin.py:896 FileCommander/plugin.py:1298
+#: FileCommander/plugin.py:1344 FileCommander/plugin.py:1390 downloader.py:565
+#: downloader.py:721 FSBLUpdater/plugin.py:26 WirelessLan/plugin.py:278
+#: videowizard.xml
 msgid "Yes"
 msgstr "Ja"
 
@@ -22887,11 +22907,11 @@ msgstr "Timeshift is waarschijnlijk actief!"
 msgid "You seem to be in timeshift, Do you want to leave timeshift ?"
 msgstr "Timeshift is waarschijnlijk actief, wilt u Timeshift stoppen?"
 
-#: Harddisk.py:464
+#: Harddisk.py:467
 msgid "You system does not support ext4"
 msgstr "Uw systeem ondersteunt geen ext4"
 
-#: ChannelSelection.py:589 InfoBarGenerics.py:3633 InfoBar.py:826
+#: ChannelSelection.py:589 InfoBar.py:826 InfoBarGenerics.py:3633
 #, python-format
 msgid "Your %s %s does not support PiP HD"
 msgstr "Uw %s %s ondersteunt geen PiP HD"
@@ -22901,10 +22921,10 @@ msgstr "Uw %s %s ondersteunt geen PiP HD"
 msgid "Your %s %s goes to WOL"
 msgstr "Uw %s %s gaat naar WOL"
 
-#: SoftwareUpdate.py:210 CronTimer.py:66 NetworkSetup.py:1750
-#: NetworkSetup.py:1893 NetworkSetup.py:2115 NetworkSetup.py:2254
-#: NetworkSetup.py:2427 NetworkSetup.py:2691 NetworkSetup.py:3040
-#: NetworkSetup.py:3532
+#: NetworkSetup.py:1750 NetworkSetup.py:1893 NetworkSetup.py:2115
+#: NetworkSetup.py:2254 NetworkSetup.py:2427 NetworkSetup.py:2691
+#: NetworkSetup.py:3040 NetworkSetup.py:3532 NetworkSetup.py:4126
+#: SoftwareUpdate.py:210 CronTimer.py:66
 #, python-format
 msgid ""
 "Your %s %s is not connected to the internet, please check your network "
@@ -23037,7 +23057,7 @@ msgstr ""
 "Uw verzameling is groter dan wat erop een single layer medium past, u heeft "
 "een lege dual layer DVD nodig!"
 
-#: InfoBarGenerics.py:3355 EpgSelection.py:1487
+#: EpgSelection.py:1487 InfoBarGenerics.py:3355
 #, python-format
 msgid ""
 "Your config file is not well-formed:\n"
@@ -23046,7 +23066,7 @@ msgstr ""
 "Uw instellingen zijn niet goed:\n"
 "%s"
 
-#: ProjectSettings.py:237 TitleList.py:408
+#: TitleList.py:408 ProjectSettings.py:237
 msgid "Your current collection will get lost!"
 msgstr "Uw huidige collectie zal verloren gaan!"
 
@@ -23278,11 +23298,11 @@ msgstr "Zimbabwe"
 msgid "Zirkus"
 msgstr "Circus"
 
-#: InfoBarGenerics.py:5070 InfoBar.py:73
+#: InfoBar.py:73 InfoBarGenerics.py:5070
 msgid "Zoom In/Out TV..."
 msgstr "Zoom In/Uit TV..."
 
-#: InfoBarGenerics.py:5071 InfoBar.py:74
+#: InfoBar.py:74 InfoBarGenerics.py:5071
 msgid "Zoom Off..."
 msgstr "Zoomfunctie uit..."
 
@@ -23346,7 +23366,7 @@ msgstr "Favorietenlijst bewerken afsluiten"
 msgid "abort favourites edit"
 msgstr "Favorieten bewerken afsluiten"
 
-#: PowerTimerEdit.py:183 TimerEdit.py:207 TimerList.py:74 PowerTimerList.py:102
+#: TimerEdit.py:207 PowerTimerEdit.py:183 TimerList.py:74 PowerTimerList.py:102
 msgid "about to start"
 msgstr "start zodadelijk"
 
@@ -23685,7 +23705,7 @@ msgstr "Comedy (algemeen)"
 msgid "confirmed"
 msgstr "bevestigd"
 
-#: Satconfig.py:576 NetworkSetup.py:1536 NetworkSetup.py:1595
+#: NetworkSetup.py:1536 NetworkSetup.py:1595 Satconfig.py:576
 msgid "connected"
 msgstr "verbonden"
 
@@ -23803,8 +23823,8 @@ msgstr "deactiveren"
 msgid "disable move mode"
 msgstr "Verplaatsmode deactiveren"
 
-#: InfoBarGenerics.py:4135 NetworkSetup.py:1367 TimerList.py:90
-#: NimManager.py:2109 NimManager.py:2265 PowerTimerList.py:118
+#: NetworkSetup.py:1367 InfoBarGenerics.py:4135 NimManager.py:2109
+#: NimManager.py:2265 TimerList.py:90 PowerTimerList.py:118
 #: ProgrammlistenUpdater/plugin.py:63 ProgrammlistenUpdater/plugin.py:100
 #: ProgrammlistenUpdater/plugin.py:137
 msgid "disabled"
@@ -23843,7 +23863,7 @@ msgstr "Dolby"
 msgid "don't descramble, record ecm"
 msgstr "niet decoderen, maar wel ECM opnemen"
 
-#: PowerTimerEdit.py:187 TimerEdit.py:214 TimerList.py:84 TimerList.py:96
+#: TimerEdit.py:214 PowerTimerEdit.py:187 TimerList.py:84 TimerList.py:96
 #: PowerTimerList.py:59 PowerTimerList.py:65 PowerTimerList.py:108
 #: PowerTimerList.py:114
 msgid "done!"
@@ -23857,7 +23877,7 @@ msgstr "Drama (algemeen)"
 msgid "drivers"
 msgstr "drivers"
 
-#: Harddisk.py:676 Harddisk.py:697 Harddisk.py:712 Harddisk.py:724
+#: Harddisk.py:679 Harddisk.py:700 Harddisk.py:715 Harddisk.py:727
 msgid "eMMC"
 msgstr "eMMC"
 
@@ -23866,8 +23886,8 @@ msgstr "eMMC"
 msgid "eMMC slot %s"
 msgstr "eMMC slot %s"
 
-#: Harddisk.py:656 Harddisk.py:736 Harddisk.py:742 Harddisk.py:743
-#: Harddisk.py:748 Harddisk.py:754 Harddisk.py:755
+#: Harddisk.py:659 Harddisk.py:739 Harddisk.py:745 Harddisk.py:746
+#: Harddisk.py:751 Harddisk.py:757 Harddisk.py:758
 msgid "eSATA"
 msgstr "eSATA"
 
@@ -23923,7 +23943,7 @@ msgstr "Favorieten bewerken inschakelen"
 msgid "enable move mode"
 msgstr "Verplaatsmodus activeren"
 
-#: InfoBarGenerics.py:4140 NetworkSetup.py:1363 NimManager.py:2109
+#: NetworkSetup.py:1363 InfoBarGenerics.py:4140 NimManager.py:2109
 #: NimManager.py:2240 NimManager.py:2249 NimManager.py:2258
 #: ProgrammlistenUpdater/plugin.py:104 ProgrammlistenUpdater/plugin.py:135
 msgid "enabled"
@@ -24073,7 +24093,7 @@ msgstr "incorrect"
 msgid "fashion"
 msgstr "mode"
 
-#: UsageConfig.py:559 Lcd.py:736 SoftwareManager/plugin.py:93
+#: Lcd.py:736 UsageConfig.py:559 SoftwareManager/plugin.py:93
 msgid "fast"
 msgstr "snel"
 
@@ -24149,7 +24169,8 @@ msgstr "buitenland/expedities"
 msgid "forward to the next chapter"
 msgstr "Verder naar het volgende hoofdstuk"
 
-#: About.py:292 About.py:494 TitleList.py:312 TitleList.py:325 TitleList.py:332
+#: About.py:494 LocationBox.py:388 TitleList.py:312 TitleList.py:325
+#: TitleList.py:332
 msgid "free"
 msgstr "vrij"
 
@@ -24313,8 +24334,8 @@ msgstr "hh:mmAM/PM"
 msgid "hh:mmam/pm"
 msgstr "hh:mmam/pm"
 
-#: Menu.py:723 Console.py:24 PluginBrowser.py:183 PluginBrowser.py:184
-#: PluginBrowser.py:245 PluginBrowser.py:246 UsageConfig.py:1487
+#: Console.py:24 PluginBrowser.py:183 PluginBrowser.py:184 PluginBrowser.py:245
+#: Menu.py:648 Menu.py:723 UsageConfig.py:1487
 msgid "hide"
 msgstr "Verberg"
 
@@ -24517,16 +24538,16 @@ msgstr "Midden"
 msgid "min"
 msgstr "Minuten"
 
-#: PowerTimerEdit.py:178 TimerEdit.py:201 TimerList.py:57 TimerList.py:61
+#: TimerEdit.py:201 PowerTimerEdit.py:178 TimerList.py:57 TimerList.py:61
 #: PowerTimerList.py:70 PowerTimerList.py:94
 msgid "mins"
 msgstr "min"
 
-#: UsageConfig.py:553 Lcd.py:576 Lcd.py:741
+#: Lcd.py:576 Lcd.py:741 UsageConfig.py:553
 msgid "minute"
 msgstr "minuut"
 
-#: InputBox.py:109 UsageConfig.py:26 UsageConfig.py:554 Lcd.py:577 Lcd.py:742
+#: Lcd.py:378 Lcd.py:578 Lcd.py:742 UsageConfig.py:26 UsageConfig.py:554
 msgid "minutes"
 msgstr "minuten"
 
@@ -24654,8 +24675,8 @@ msgstr "volgende hogere Resolutie"
 
 #: TimerEntry.py:166 ChannelSelection.py:383 ChannelSelection.py:1372
 #: ScanSetup.py:1364 ScanSetup.py:1986 MessageBox.py:206 PowerTimerEntry.py:141
-#: PowerTimerEntry.py:151 config.py:487 AVSwitch.py:922 AVSwitch.py:927
-#: NimManager.py:2105 FastScan/plugin.py:21
+#: PowerTimerEntry.py:151 AVSwitch.py:922 AVSwitch.py:927 NimManager.py:2105
+#: config.py:487 FastScan/plugin.py:21
 msgid "no"
 msgstr "Nee"
 
@@ -24692,12 +24713,11 @@ msgstr "geen bron beheerder"
 msgid "no storage devices found"
 msgstr "geen opslagmedia gevonden"
 
-#: About.py:499
+#: About.py:499 InstallWizard.py:49
 msgid "none"
 msgstr "geen"
 
-#: TimerEntry.py:144 UsageConfig.py:558 Lcd.py:371 Lcd.py:735
-#: RecordingConfig.py:23
+#: Lcd.py:356 Lcd.py:603 Lcd.py:735 UsageConfig.py:558 RecordingConfig.py:23
 msgid "normal"
 msgstr "Normaal"
 
@@ -24736,8 +24756,8 @@ msgid "not_tested"
 msgstr "niet_getest"
 
 #: Satconfig.py:1069 Satconfig.py:1121 Satconfig.py:1127 Satconfig.py:1133
-#: FileList.py:214 NimManager.py:1818 NimManager.py:2218 NimManager.py:2241
-#: NimManager.py:2250 NimManager.py:2259 FileList.py:225
+#: NimManager.py:1818 NimManager.py:2218 NimManager.py:2241 NimManager.py:2250
+#: NimManager.py:2259 FileList.py:214 FileList.py:225
 msgid "nothing connected"
 msgstr "niets aangesloten"
 
@@ -24750,9 +24770,9 @@ msgid "of a SINGLE layer medium used."
 msgstr "op een SINGLE layer medium gebruikt."
 
 #: AudioSelection.py:144 AudioSelection.py:187 AudioSelection.py:228
-#: AudioSelection.py:240 config.py:491 AVSwitch.py:553 AVSwitch.py:970
-#: AVSwitch.py:1013 AVSwitch.py:1211 AVSwitch.py:1231 UsageConfig.py:49
-#: UsageConfig.py:555 Lcd.py:379 Lcd.py:528 Lcd.py:579 Lcd.py:743
+#: AudioSelection.py:240 Lcd.py:379 Lcd.py:528 Lcd.py:579 Lcd.py:743
+#: AVSwitch.py:553 AVSwitch.py:970 AVSwitch.py:1013 AVSwitch.py:1211
+#: AVSwitch.py:1231 UsageConfig.py:49 UsageConfig.py:555 config.py:491
 #: AtileHD/plugin.py:652
 msgid "off"
 msgstr "Uit"
@@ -24765,7 +24785,7 @@ msgstr "Uit of wpa2 aan"
 msgid "offset is"
 msgstr "afstand is"
 
-#: AudioSelection.py:187 config.py:491 AVSwitch.py:1231 AtileHD/plugin.py:614
+#: AudioSelection.py:187 AVSwitch.py:1231 config.py:491 AtileHD/plugin.py:614
 #: AtileHD/plugin.py:654
 msgid "on"
 msgstr "aan"
@@ -24854,13 +24874,13 @@ msgstr "druk op OK als u gereed bent"
 msgid "please wait, loading picture..."
 msgstr "Een ogenblik geduld, de foto wordt geladen..."
 
-#: CronTimer.py:112 NetworkSetup.py:1768 NetworkSetup.py:1790
-#: NetworkSetup.py:1909 NetworkSetup.py:1932 NetworkSetup.py:2133
-#: NetworkSetup.py:2155 NetworkSetup.py:2272 NetworkSetup.py:2295
-#: NetworkSetup.py:2450 NetworkSetup.py:2473 NetworkSetup.py:2709
-#: NetworkSetup.py:2732 NetworkSetup.py:3058 NetworkSetup.py:3081
-#: NetworkSetup.py:3550 NetworkSetup.py:3573 SABnzbdSetup/plugin.py:72
-#: SABnzbdSetup/plugin.py:97
+#: NetworkSetup.py:1768 NetworkSetup.py:1790 NetworkSetup.py:1909
+#: NetworkSetup.py:1932 NetworkSetup.py:2133 NetworkSetup.py:2155
+#: NetworkSetup.py:2272 NetworkSetup.py:2295 NetworkSetup.py:2450
+#: NetworkSetup.py:2473 NetworkSetup.py:2709 NetworkSetup.py:2732
+#: NetworkSetup.py:3058 NetworkSetup.py:3081 NetworkSetup.py:3550
+#: NetworkSetup.py:3573 NetworkSetup.py:4142 NetworkSetup.py:4165
+#: CronTimer.py:112 SABnzbdSetup/plugin.py:72 SABnzbdSetup/plugin.py:97
 msgid "please wait..."
 msgstr "Een ogenblik geduld ..."
 
@@ -25104,10 +25124,6 @@ msgstr "Bewaar laatste map bij het beëindigen"
 msgid "save playlist on exit"
 msgstr "Bewaar afspeellijst bij het beëindigen"
 
-#: InstallWizard.py:49
-msgid "scan new"
-msgstr "scan nieuwe"
-
 #: ServiceScan.py:109 CableScan/plugin.py:77 FastScan/plugin.py:48
 msgid "scan state"
 msgstr "zoekstatus"
@@ -25136,9 +25152,9 @@ msgstr "zoek in EPG..."
 msgid "second cable of motorized LNB"
 msgstr "Tweede kabel van gemotoriseerde LNB"
 
-#: InputBox.py:109 UsageConfig.py:145 UsageConfig.py:550 UsageConfig.py:551
-#: UsageConfig.py:552 Lcd.py:375 Lcd.py:571 Lcd.py:573 Lcd.py:575 Lcd.py:643
-#: Lcd.py:645 Lcd.py:662 Lcd.py:664 Lcd.py:666 Lcd.py:739 Lcd.py:740
+#: Lcd.py:374 Lcd.py:376 Lcd.py:572 Lcd.py:574 Lcd.py:642 Lcd.py:644 Lcd.py:646
+#: Lcd.py:663 Lcd.py:665 Lcd.py:738 Lcd.py:740 UsageConfig.py:145
+#: UsageConfig.py:550 UsageConfig.py:551 UsageConfig.py:552
 msgid "seconds"
 msgstr "seconden"
 
@@ -25190,8 +25206,8 @@ msgstr "Share:"
 msgid "shell"
 msgstr "shell"
 
-#: Menu.py:721 PluginBrowser.py:180 PluginBrowser.py:181 PluginBrowser.py:249
-#: PluginBrowser.py:250
+#: PluginBrowser.py:180 PluginBrowser.py:181 PluginBrowser.py:249 Menu.py:651
+#: Menu.py:721
 msgid "show"
 msgstr "Toon"
 
@@ -25327,7 +25343,7 @@ msgstr "slot%s - %s (huidige image)"
 msgid "slot%s - %s as USB Recovery"
 msgstr "slot%s - %s voor herstel via USB"
 
-#: UsageConfig.py:557 Lcd.py:734 SoftwareManager/plugin.py:94
+#: Lcd.py:734 UsageConfig.py:557 SoftwareManager/plugin.py:94
 msgid "slow"
 msgstr "langzaam"
 
@@ -25517,7 +25533,7 @@ msgstr "juist"
 msgid "turbo"
 msgstr "turbo"
 
-#: QuickMenu.py:457
+#: QuickMenu.py:460
 msgid "uShare"
 msgstr "uShare"
 
@@ -25538,7 +25554,7 @@ msgstr "uShare poort"
 msgid "uShare Setup"
 msgstr "uShare instellen"
 
-#: About.py:447 QuickMenu.py:780 MountManager.py:253 MountManager.py:543
+#: About.py:447 QuickMenu.py:783 MountManager.py:253 MountManager.py:543
 msgid "unavailable"
 msgstr "niet beschikbaar"
 
@@ -25546,8 +25562,8 @@ msgstr "niet beschikbaar"
 msgid "unconfirmed"
 msgstr "onbevestigd"
 
-#: AudioSelection.py:301 About.py:72 About.py:17 About.py:35 About.py:195
-#: VAudioInfo.py:58 SoftwareManager/plugin.py:1399
+#: About.py:124 NetworkSetup.py:1544 AudioSelection.py:301 About.py:19
+#: About.py:195 VAudioInfo.py:58 SoftwareManager/plugin.py:1399
 #: SoftwareManager/plugin.py:1404
 msgid "unknown"
 msgstr "onbekend"
@@ -25661,7 +25677,7 @@ msgstr "openvix feeds"
 msgid "wait for mmi..."
 msgstr "wacht op mmi..."
 
-#: PowerTimerEdit.py:181 TimerEdit.py:205 TimerList.py:66 PowerTimerList.py:53
+#: TimerEdit.py:205 PowerTimerEdit.py:181 TimerList.py:66 PowerTimerList.py:53
 #: PowerTimerList.py:99
 msgid "waiting"
 msgstr "ingepland"
@@ -25782,8 +25798,8 @@ msgstr "Geel"
 
 #: TimerEntry.py:166 ChannelSelection.py:383 ChannelSelection.py:1372
 #: ScanSetup.py:1364 ScanSetup.py:1986 MessageBox.py:238 PowerTimerEntry.py:141
-#: PowerTimerEntry.py:151 config.py:487 AVSwitch.py:922 AVSwitch.py:927
-#: NimManager.py:2105 FastScan/plugin.py:21
+#: PowerTimerEntry.py:151 AVSwitch.py:922 AVSwitch.py:927 NimManager.py:2105
+#: config.py:487 FastScan/plugin.py:21
 msgid "yes"
 msgstr "Ja"
 
@@ -25816,137 +25832,19 @@ msgstr "zapte"
 msgid "zapping"
 msgstr "zappen"
 
-#: menu.xml
-msgid "Basic settings"
-msgstr "Basis instellingen"
+#: userinterfacepositionerwizard.xml networkwizard.xml
+msgid "Configure interface"
+msgstr "Configureer interface"
 
-#: menu.xml
-msgid "CIFS/Samba Setup"
-msgstr "CIFS/Samba instellen"
-
-#: menu.xml
-msgid "Convert ext3 filesystem to ext4"
-msgstr "Converteer van ext3 naar ext4"
-
-#: menu.xml
-msgid "CronTimers"
-msgstr "CronTimers"
-
-#: menu.xml
-msgid "Decryption & Parental Control"
-msgstr "Decryptie & kinderslot"
-
-#: menu.xml
-msgid "Delete EPG"
-msgstr "EPG verwijderen"
-
-#: menu.xml
-msgid "Device Setup"
-msgstr "Netwerk instellingen"
-
-#: menu.xml
-msgid "EPG"
-msgstr "EPG"
-
-#: menu.xml
-msgid "Extended GUI"
-msgstr "Overige GUI instellingen"
-
-#: menu.xml
-msgid "HDMI CEC"
-msgstr "HDMI CEC"
-
-#: menu.xml
-msgid "HDMI-IN Recording settings"
-msgstr "HDMI-IN opname instellingen"
-
-#: menu.xml
-msgid "Input devices"
-msgstr "Invoerapparaten"
-
-#: menu.xml
-msgid "Load EPG"
-msgstr "EPG laden"
-
-#: menu.xml
-msgid "Load/Save/Delete"
-msgstr "Laden/opslaan/verwijderen"
-
-#: menu.xml
-msgid "Mainmenu"
-msgstr "Hoofdmenu"
-
-#: menu.xml
-msgid "Manual scan"
-msgstr "Handmatig zoeken"
-
-#: menu.xml
-msgid "OSD Position"
-msgstr "OSD positie"
-
-#: menu.xml
-msgid "OpenVPN Setup"
-msgstr "OpenVPN instellen"
-
-#: menu.xml
-msgid "PowerTimers"
-msgstr "PowerTimers"
-
-#: menu.xml
-msgid "Reception"
-msgstr "Ontvangst"
-
-#: menu.xml
-msgid "Recordings & Timeshift"
-msgstr "Opname & Timeshift"
-
-#: menu.xml
-msgid "Recovery Mode"
-msgstr "Recovery modus"
-
-#: menu.xml
-msgid "Remote Control Code"
-msgstr "Afstandsbesturing code"
-
-#: menu.xml
-msgid "Restart Gui"
-msgstr "Herstart Enigma2"
-
-#: menu.xml
-msgid "STB Display"
-msgstr "Apparaat LCD/VFD scherm"
-
-#: menu.xml
-msgid "Save EPG"
-msgstr "EPG opslaan"
-
-#: menu.xml
-msgid "Shutdown"
-msgstr "Afsluiten"
-
-#: menu.xml
-msgid "Standby / Restart"
-msgstr "Afsluiten"
-
-#: menu.xml setup.xml
-msgid "Timeshift settings"
-msgstr "Timeshift instellingen"
-
-#: menu.xml
-msgid "Usage & GUI"
-msgstr "Bediening & GUI"
-
-#: menu.xml
-msgid "VCR scart"
-msgstr "VCR scart"
-
-#: menu.xml
-msgid "Video"
-msgstr "Video"
-
-#: menu.xml
-msgid "WOL Standby"
-msgstr "WOL stand-by"
+#: userinterfacepositionerwizard.xml
+msgid ""
+"Please setup your user interface by adjusting the values till the edges of "
+"the red box are touching the edges of your TV.\n"
+"When you are ready press OK to continue."
+msgstr ""
+"Stel uw gebruikersinterface in door de waarden aan te passen tot de randen "
+"van de rode rechthoek de randen van uw TV raken.\n"
+"Wanneer u klaar bent drukt u op OK om door te gaan."
 
 #: skin_default.xml
 msgid "0"
@@ -26425,6 +26323,138 @@ msgstr "Uw %s %s heeft geen verbinding met internet"
 #: startwizard.xml
 msgid "Your %s %s is not connected to the internet"
 msgstr "Uw %s %s is niet verbonden met internet"
+
+#: menu.xml
+msgid "Basic settings"
+msgstr "Basis instellingen"
+
+#: menu.xml
+msgid "CIFS/Samba Setup"
+msgstr "CIFS/Samba instellen"
+
+#: menu.xml
+msgid "Convert ext3 filesystem to ext4"
+msgstr "Converteer van ext3 naar ext4"
+
+#: menu.xml
+msgid "CronTimers"
+msgstr "CronTimers"
+
+#: menu.xml
+msgid "Decryption & Parental Control"
+msgstr "Decryptie & kinderslot"
+
+#: menu.xml
+msgid "Delete EPG"
+msgstr "EPG verwijderen"
+
+#: menu.xml
+msgid "Device Setup"
+msgstr "Netwerk instellen"
+
+#: menu.xml
+msgid "EPG"
+msgstr "EPG"
+
+#: menu.xml
+msgid "Extended GUI"
+msgstr "Overige GUI instellingen"
+
+#: menu.xml
+msgid "HDMI CEC"
+msgstr "HDMI CEC"
+
+#: menu.xml
+msgid "HDMI-IN Recording settings"
+msgstr "HDMI-IN opname instellingen"
+
+#: menu.xml
+msgid "Input devices"
+msgstr "Invoerapparaten"
+
+#: menu.xml
+msgid "Load EPG"
+msgstr "EPG laden"
+
+#: menu.xml
+msgid "Load/Save/Delete"
+msgstr "Laden/opslaan/verwijderen"
+
+#: menu.xml
+msgid "Mainmenu"
+msgstr "Hoofdmenu"
+
+#: menu.xml
+msgid "Manual scan"
+msgstr "Handmatig zoeken"
+
+#: menu.xml
+msgid "OSD Position"
+msgstr "OSD positie"
+
+#: menu.xml
+msgid "OpenVPN Setup"
+msgstr "OpenVPN instellen"
+
+#: menu.xml
+msgid "PowerTimers"
+msgstr "PowerTimers"
+
+#: menu.xml
+msgid "Reception"
+msgstr "Ontvangst"
+
+#: menu.xml
+msgid "Recordings & Timeshift"
+msgstr "Opname & Timeshift"
+
+#: menu.xml
+msgid "Recovery Mode"
+msgstr "Recovery modus"
+
+#: menu.xml
+msgid "Remote Control Code"
+msgstr "Afstandsbesturing code"
+
+#: menu.xml
+msgid "Restart Gui"
+msgstr "Herstart Enigma2"
+
+#: menu.xml
+msgid "STB Display"
+msgstr "Apparaat LCD/VFD scherm"
+
+#: menu.xml
+msgid "Save EPG"
+msgstr "EPG opslaan"
+
+#: menu.xml
+msgid "Shutdown"
+msgstr "Afsluiten"
+
+#: menu.xml
+msgid "Standby / Restart"
+msgstr "Afsluiten"
+
+#: menu.xml setup.xml
+msgid "Timeshift settings"
+msgstr "Timeshift instellingen"
+
+#: menu.xml
+msgid "Usage & GUI"
+msgstr "Bediening & GUI"
+
+#: menu.xml
+msgid "VCR scart"
+msgstr "VCR scart"
+
+#: menu.xml
+msgid "Video"
+msgstr "Video"
+
+#: menu.xml
+msgid "WOL Standby"
+msgstr "WOL stand-by"
 
 #: videowizard.xml
 msgid "Auto Modes Selected."
@@ -30498,19 +30528,105 @@ msgstr "Wissel van 12 naar 8 karakter weergave modus"
 msgid "userdefined"
 msgstr "gebruiker gedefinieerd"
 
-#: userinterfacepositionerwizard.xml networkwizard.xml
-msgid "Configure interface"
-msgstr "Configureer interface"
+#: imagewizard.xml
+msgid "Install a new image with a USB stick"
+msgstr "Installeer een nieuwe image d.m.v. een USB-stick"
 
-#: userinterfacepositionerwizard.xml
+#: imagewizard.xml
+msgid "Install a new image with your web browser"
+msgstr "Installeer een nieuwe image via uw browser"
+
+#: imagewizard.xml
+msgid "No backup needed"
+msgstr "Geen back-up nodig"
+
+#: imagewizard.xml
+msgid "No, do nothing."
+msgstr "Nee, geen actie."
+
+#: imagewizard.xml
+msgid "No, just start my %s %s"
+msgstr "Nee, uitsluitend %s %s starten"
+
+#: imagewizard.xml
+msgid "OK, guide me through the upgrade process"
+msgstr "OK, mij tijdens de software update begeleiden"
+
+#: imagewizard.xml
+msgid "The backup failed. Please choose a different backup location."
+msgstr "De back-up is mislukt. Selecteer een andere back-up locatie a.u.b."
+
+#: imagewizard.xml
+msgid "The wizard is finished now."
+msgstr "De wizard is nu gereed."
+
+#: imagewizard.xml
 msgid ""
-"Please setup your user interface by adjusting the values till the edges of "
-"the red box are touching the edges of your TV.\n"
-"When you are ready press OK to continue."
+"Welcome to the image upgrade wizard. The wizard will assist you in upgrading "
+"the firmware of your %s %s by providing a backup facility for your current "
+"settings and a short explanation of how to upgrade your firmware."
 msgstr ""
-"Stel uw gebruikersinterface in door de waarden aan te passen tot de randen "
-"van de rode rechthoek de randen van uw TV raken.\n"
-"Wanneer u klaar bent drukt u op OK om door te gaan."
+"Welkom bij de software update wizard. De wizard biedt u hulp bij het "
+"vernieuwen van de software in uw %s %s door het maken van een back-up van uw "
+"huidige instellingen en geeft u een korte uitleg over dit proces."
+
+#: imagewizard.xml
+msgid "Where do you want to backup your settings?"
+msgstr "Waar wilt u een back-up maken van de instellingen?"
+
+#: imagewizard.xml
+msgid "Yes, backup my settings!"
+msgstr "Ja, een back-up maken van mijn instellingen!"
+
+#: imagewizard.xml
+msgid "Yes, restore the settings now"
+msgstr "Ja, de gegevens nu terugplaatsen"
+
+#: imagewizard.xml
+msgid "Yes, shut down now."
+msgstr "Ja, schakel nu uit."
+
+#: imagewizard.xml
+msgid ""
+"You have chosen to backup your settings. Please press OK to start the backup "
+"now."
+msgstr ""
+"U heeft gekozen voor het maken van een back-up van uw instellingen. Druk op "
+"OK om te beginnen."
+
+#: imagewizard.xml
+msgid ""
+"You have chosen to restore your settings. Enigma2 will restart after "
+"restore. Please press OK to start the restore now."
+msgstr ""
+"U heeft gekozen voor het herstellen van uw instellingen. Enigma2 zal daarna "
+"herstarten. Druk op OK om te beginnen."
+
+#: imagewizard.xml
+msgid ""
+"You need a PC connected to your %s %s. If you need further instructions, "
+"please visit the website http://www.opena.tv.\n"
+"Your %s %s will now be halted. After you have performed the update "
+"instructions from the website, your new firmware will ask you to restore "
+"your settings."
+msgstr ""
+"U hebt een PC nodig die is verbonden met uw%s%s. Als u verdere instructies "
+"nodig heeft, kunt u terecht op de website http://www.opena.tv.\n"
+"Uw %s%s wordt nu stopgezet. Nadat u de update instructies van de website "
+"hebt uitgevoerd, zal uw nieuwe firmware u vragen om uw instellingen te "
+"herstellen."
+
+#: imagewizard.xml
+msgid "Your %s %s is shutting down. Please wait..."
+msgstr "Uw %s %s wordt uitgeschakeld. Een ogenblik geduld..."
+
+#: imagewizard.xml
+msgid ""
+"Your backup succeeded. We will now continue to explain the further upgrade "
+"process."
+msgstr ""
+"De back-up is geslaagd. U krijgt nu een korte uitleg over het vervolg van "
+"het update proces."
 
 #: networkwizard.xml
 msgid "Configure nameservers"
@@ -30650,106 +30766,6 @@ msgstr ""
 "Heeft u de USB WLAN Stick aangesloten op uw ontvanger?\n"
 "\n"
 "Selecteer wat u nu wilt doen."
-
-#: imagewizard.xml
-msgid "Install a new image with a USB stick"
-msgstr "Installeer een nieuwe image d.m.v. een USB-stick"
-
-#: imagewizard.xml
-msgid "Install a new image with your web browser"
-msgstr "Installeer een nieuwe image via uw browser"
-
-#: imagewizard.xml
-msgid "No backup needed"
-msgstr "Geen back-up nodig"
-
-#: imagewizard.xml
-msgid "No, do nothing."
-msgstr "Nee, geen actie."
-
-#: imagewizard.xml
-msgid "No, just start my %s %s"
-msgstr "Nee, uitsluitend %s %s starten"
-
-#: imagewizard.xml
-msgid "OK, guide me through the upgrade process"
-msgstr "OK, mij tijdens de software update begeleiden"
-
-#: imagewizard.xml
-msgid "The backup failed. Please choose a different backup location."
-msgstr "De back-up is mislukt. Selecteer een andere back-up locatie a.u.b."
-
-#: imagewizard.xml
-msgid "The wizard is finished now."
-msgstr "De wizard is nu gereed."
-
-#: imagewizard.xml
-msgid ""
-"Welcome to the image upgrade wizard. The wizard will assist you in upgrading "
-"the firmware of your %s %s by providing a backup facility for your current "
-"settings and a short explanation of how to upgrade your firmware."
-msgstr ""
-"Welkom bij de software update wizard. De wizard biedt u hulp bij het "
-"vernieuwen van de software in uw %s %s door het maken van een back-up van uw "
-"huidige instellingen en geeft u een korte uitleg over dit proces."
-
-#: imagewizard.xml
-msgid "Where do you want to backup your settings?"
-msgstr "Waar wilt u een back-up maken van de instellingen?"
-
-#: imagewizard.xml
-msgid "Yes, backup my settings!"
-msgstr "Ja, een back-up maken van mijn instellingen!"
-
-#: imagewizard.xml
-msgid "Yes, restore the settings now"
-msgstr "Ja, de gegevens nu terugplaatsen"
-
-#: imagewizard.xml
-msgid "Yes, shut down now."
-msgstr "Ja, schakel nu uit."
-
-#: imagewizard.xml
-msgid ""
-"You have chosen to backup your settings. Please press OK to start the backup "
-"now."
-msgstr ""
-"U heeft gekozen voor het maken van een back-up van uw instellingen. Druk op "
-"OK om te beginnen."
-
-#: imagewizard.xml
-msgid ""
-"You have chosen to restore your settings. Enigma2 will restart after "
-"restore. Please press OK to start the restore now."
-msgstr ""
-"U heeft gekozen voor het herstellen van uw instellingen. Enigma2 zal daarna "
-"herstarten. Druk op OK om te beginnen."
-
-#: imagewizard.xml
-msgid ""
-"You need a PC connected to your %s %s. If you need further instructions, "
-"please visit the website http://www.opena.tv.\n"
-"Your %s %s will now be halted. After you have performed the update "
-"instructions from the website, your new firmware will ask you to restore "
-"your settings."
-msgstr ""
-"U hebt een PC nodig die is verbonden met uw%s%s. Als u verdere instructies "
-"nodig heeft, kunt u terecht op de website http://www.opena.tv.\n"
-"Uw %s%s wordt nu stopgezet. Nadat u de update instructies van de website "
-"hebt uitgevoerd, zal uw nieuwe firmware u vragen om uw instellingen te "
-"herstellen."
-
-#: imagewizard.xml
-msgid "Your %s %s is shutting down. Please wait..."
-msgstr "Uw %s %s wordt uitgeschakeld. Een ogenblik geduld..."
-
-#: imagewizard.xml
-msgid ""
-"Your backup succeeded. We will now continue to explain the further upgrade "
-"process."
-msgstr ""
-"De back-up is geslaagd. U krijgt nu een korte uitleg over het vervolg van "
-"het update proces."
 
 #: setup.xml
 msgid "Add plugin to Extensions menu*"
@@ -30962,6 +30978,9 @@ msgstr "Tijd tussen afbeeldingen in image viewer slideshow."
 #: setup.xml
 msgid "Time for Slideshow"
 msgstr "Tussentijd voor slideshow afbeeldingen"
+
+#~ msgid "scan new"
+#~ msgstr "scan nieuwe"
 
 # normalised
 #~ msgid ""
