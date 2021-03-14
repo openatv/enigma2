@@ -160,10 +160,10 @@ OpenTvTitle::OpenTvTitle(const uint8_t * const buffer, uint16_t startMjd)
 		uint32_t startSecond = (UINT16(&buffer[2]) << 1);
 
 		startTimeBcd = ((startMjd - 40587) * 86400) + startSecond;
-		
+
 		if (startSecond >= 86400)
 			startTimeBcd -= 0x20000;
-		
+
 		duration = UINT16(&buffer[4]) << 1;
 
 		//genre content
