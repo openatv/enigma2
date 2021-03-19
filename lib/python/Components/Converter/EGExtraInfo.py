@@ -238,13 +238,13 @@ class EGExtraInfo(Poll, Converter, object):
 			available_caids = info.getInfoObject(iServiceInformation.sCAIDs)	
 			for caid_entry in self.caid_data:
 				if int(data['caid'], 16) >= int(caid_entry[0], 16) and int(data['caid'], 16) <= int(caid_entry[1], 16):
-					color = "\c0000??00"
+					color = "\c0000ff00"
 				else:
-					color = "\c007?7?7?"
+					color = "\c007f7f7f"
 					try:
 						for caid in available_caids:
 							if caid >= int(caid_entry[0], 16) and caid <= int(caid_entry[1], 16):
-								color = "\c00????00"
+								color = "\c00ffff00"
 					except:
 						pass
 
@@ -252,7 +252,7 @@ class EGExtraInfo(Poll, Converter, object):
 					res += " "
 				res += color + caid_entry[3]
 
-			res += "\c00??????"
+			res += "\c00ffffff"
 			return res
 
 		return ""

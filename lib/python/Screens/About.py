@@ -321,9 +321,8 @@ class Devices(AboutBase):
 
 		self.list.append(self.makeHeadingEntry(_("Detected Tuners:")))
 
-		nims = nimmanager.nimList()
-		for count in range(min(len(nims), 4)):
-			self.list.append(self.makeInfoEntry(*nims[count].split(": ")))
+		for nim in nimmanager.nimList():
+			self.list.append(self.makeInfoEntry(*nim.split(": ")))
 
 		self.list.append(self.makeEmptyEntry())
 		self.list.append(self.makeHeadingEntry(_("Detected HDDs and Volumes:")))
