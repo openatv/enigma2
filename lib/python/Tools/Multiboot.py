@@ -127,6 +127,8 @@ def GetBoxName():
 		box = "sf8008m"
 	elif box.startswith('sf8008'):
 		box = "sf8008"
+	elif box.startswith('ustym4kpro'):
+		box = "ustym4kpro"
 	elif box.startswith('twinboxlcdci'):
 		box = "twinboxlcd"
 	return box
