@@ -447,7 +447,7 @@ eEPGCache::eEPGCache()
 				op += 3600;
 			if (eitpid != 0)
 			{
-				sprintf (optsidonid, "%x%04x%04x", op, tsid, onid);
+				snprintf(optsidonid, sizeof(optsidonid) - 1, "%x%04x%04x", op, tsid, onid);
 				customeitpids[std::string(optsidonid)] = eitpid;
 				eDebug("[eEPGCache] %s --> %#x", optsidonid, eitpid);
 			}
