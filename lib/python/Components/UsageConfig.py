@@ -11,6 +11,7 @@ from Components.Harddisk import harddiskmanager
 from Components.config import ConfigSubsection, ConfigYesNo, config, ConfigSelection, ConfigText, ConfigNumber, ConfigSet, ConfigLocations, NoSave, ConfigClock, ConfigInteger, ConfigBoolean, ConfigPassword, ConfigIP, ConfigSlider, ConfigSelectionNumber, ConfigFloat, ConfigDictionarySet, ConfigDirectory
 from Tools.Directories import resolveFilename, SCOPE_HDD, SCOPE_TIMESHIFT, SCOPE_AUTORECORD, SCOPE_SYSETC, defaultRecordingLocation, fileExists
 from Components.NimManager import nimmanager
+from Components.RcModel import rc_model
 from Components.ServiceList import refreshServiceList
 from Components.SystemInfo import SystemInfo
 from Tools.HardwareInfo import HardwareInfo
@@ -21,8 +22,25 @@ import glob
 import os
 
 def InitUsageConfig():
-	config.misc.SettingsVersion = ConfigFloat(default = [1, 1], limits = [(1, 10), (0, 99)])
-	config.misc.SettingsVersion.value = [1, 1]
+	AvailRemotes=glob.glob('/usr/share/enigma2/rc_models/*')
+	RemoteChoices=[]
+	DefaultRemote=rc_model.getRcFolder(GetDefault=True)
+
+	remoteSelectable=False
+	if AvailRemotes is not None:
+		for remote in AvailRemotes:
+			if os.path.isfile(remote+'/rc.png') and os.path.isfile(remote+'/rcpositions.xml') and os.path.isfile(remote+'/remote.html'):
+				pass
+			else:
+				AvailRemotes.remove(remote)
+		if len(AvailRemotes)>1:
+			remoteSelectable=True
+			for remote in AvailRemotes:
+				toadd = (remote.split('/')[-1], remote.split('/')[-1])
+				RemoteChoices.append(toadd)
+
+	config.misc.SettingsVersion = ConfigFloat(default = [1,1], limits = [(1,10),(0,99)])
+	config.misc.SettingsVersion.value = [1,1]
 	config.misc.SettingsVersion.save_forced = True
 	config.misc.SettingsVersion.save()
 	config.misc.useNTPminutes = ConfigSelection(default = "30", choices = [("30", "30" + " " +_("minutes")), ("60", _("Hour")), ("1440", _("Once per day"))])
@@ -221,6 +239,7 @@ def InitUsageConfig():
 	config.usage.sort_extensionslist = ConfigYesNo(default = False)
 	config.usage.show_restart_network_extensionslist = ConfigYesNo(default = True)
 	config.usage.movieplayer_pvrstate = ConfigYesNo(default = False)
+	config.usage.rc_model = ConfigSelection(default = DefaultRemote, choices = RemoteChoices)
 
 	choicelist = []
 	for i in (10, 30):
@@ -611,7 +630,7 @@ def InitUsageConfig():
 	config.usage.time.wide_display = NoSave(ConfigBoolean(default=False))
 
 	# TRANSLATORS: full date representation dayname daynum monthname year in strftime() format! See 'man strftime'
-	config.usage.date.dayfull = ConfigSelection(default=_("%A %-d %B %Y"), choices=[
+	choicelist = [
 		(_("%A %d %B %Y"), _("Dayname DD Month Year")),
 		(_("%A %d. %B %Y"), _("Dayname DD. Month Year")),
 		(_("%A %-d %B %Y"), _("Dayname D Month Year")),
@@ -641,8 +660,12 @@ def InitUsageConfig():
 		(_("%A %Y/%m/%d"), _("Dayname Year/MM/DD")),
 		(_("%A %Y/%m/%-d"), _("Dayname Year/MM/D")),
 		(_("%A %Y/%-m/%d"), _("Dayname Year/M/DD")),
-		(_("%A %Y/%-m/%-d"), _("Dayname Year/M/D"))
-	])
+		(_("%A %Y/%-m/%-d"), _("Dayname Year/M/D"))]
+
+	if config.osd.language.value == "de_DE":
+		config.usage.date.dayfull = ConfigSelection(default=_("%A %d.%m.%Y"), choices = choicelist)
+	else:
+		config.usage.date.dayfull = ConfigSelection(default=_("%A %-d %B %Y"), choices = choicelist)
 
 	# TRANSLATORS: long date representation short dayname daynum monthname year in strftime() format! See 'man strftime'
 	config.usage.date.shortdayfull = ConfigText(default=_("%a %-d %B %Y"))
