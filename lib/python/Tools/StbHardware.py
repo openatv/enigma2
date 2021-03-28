@@ -46,6 +46,7 @@ def setRTCoffset():
 		print("setRTCoffset failed!")
 
 def setRTCtime(wutime):
+	wutime = int(wutime)
 	if path.exists("/proc/stb/fp/rtc_offset"):
 		setRTCoffset()
 	try:
