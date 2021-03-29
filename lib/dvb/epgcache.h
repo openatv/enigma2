@@ -442,14 +442,17 @@ private:
 	void cleanLoop();
 	void submitEventData(const std::vector<int>& sids, const std::vector<eDVBChannelID>& chids, long start, long duration, const char* title, const char* short_summary, const char* long_description, char event_type, eit_type_t source, uint16_t eventId=0);
 	void submitEventData(const std::vector<int>& sids, const std::vector<eDVBChannelID>& chids, long start, long duration, const char* title, const char* short_summary, const char* long_description, std::vector<uint8_t> event_types, std::vector<eit_parental_rating> parental_ratings, eit_type_t source, uint16_t eventId=0);
+	void clearCompleteEPGCache();
 
 // called from main thread
 	void DVBChannelAdded(eDVBChannel*);
 	void DVBChannelStateChanged(iDVBChannel*);
 	void DVBChannelRunning(iDVBChannel *);
 
-	timeMap::iterator m_timemap_cursor, m_timemap_end;
-	int currentQueryTsidOnid; // needed for getNextTimeEntry.. only valid until next startTimeQuery call
+	eServiceReferenceDVB *m_timeQueryRef;
+	time_t m_timeQueryBegin;
+	int m_timeQueryMinutes;
+	int m_timeQueryCount;  // counts the returned events; getNextTimeEntry returns always the m_timeQueryCount'th event
 #else
 	eEPGCache();
 	~eEPGCache();
@@ -463,7 +466,7 @@ public:
 	void load();
 	void timeUpdated();
 	void flushEPG(int sid, int onid, int tsid);
-	void flushEPG(const uniqueEPGKey & s=uniqueEPGKey());
+	void flushEPG(const uniqueEPGKey & s=uniqueEPGKey(), bool lock = true);
 #ifndef SWIG
 	eEPGCache();
 	~eEPGCache();
