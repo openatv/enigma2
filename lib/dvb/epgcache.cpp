@@ -1529,7 +1529,6 @@ void eEPGCache::save()
 		vEPGDAT.push_back('\0');
 		const char* EPGDAT = &vEPGDAT[0];
 
-		singleLock s(cache_lock);
 		/* create empty file */
 		FILE *f = fopen(EPGDAT, "wb");
 		if (!f)
