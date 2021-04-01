@@ -1015,8 +1015,7 @@ void eEPGCache::clearCompleteEPGCache()
 	singleLock m(channel_map_lock);
 	for (ChannelMap::const_iterator it(m_knownChannels.begin()); it != m_knownChannels.end(); ++it)
 	{
-		it->second->abortEPG();
-		it->second->startChannel();
+		it->second->startEPG();
 	}
 }
 
