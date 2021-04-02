@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-02-14 21:44+0000\n"
+"POT-Creation-Date: 2021-04-02 19:08+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -234,7 +234,7 @@ msgstr ""
 msgid " ('%s') ends with error number [%d]."
 msgstr ""
 
-#: ScanSetup.py:1771
+#: ScanSetup.py:1789
 #, python-format
 msgid " (Channel %s)"
 msgstr ""
@@ -334,149 +334,149 @@ msgstr ""
 msgid "!! Bootloader Upgrade !!"
 msgstr ""
 
-#: UsageConfig.py:753 UsageConfig.py:869 UsageConfig.py:881
+#: UsageConfig.py:776 UsageConfig.py:892 UsageConfig.py:904
 #: ServicePosition.py:314 RemainingToText.py:209
 msgid "%-H:%M"
 msgstr ""
 
-#: UsageConfig.py:727 UsageConfig.py:738 UsageConfig.py:753
+#: UsageConfig.py:750 UsageConfig.py:761 UsageConfig.py:776
 msgid "%-H:%M:%S"
 msgstr ""
 
-#: UsageConfig.py:759 UsageConfig.py:875 UsageConfig.py:883
+#: UsageConfig.py:782 UsageConfig.py:898 UsageConfig.py:906
 msgid "%-I:%M"
 msgstr ""
 
-#: UsageConfig.py:757 UsageConfig.py:873
+#: UsageConfig.py:780 UsageConfig.py:896
 msgid "%-I:%M%P"
 msgstr ""
 
-#: UsageConfig.py:755 UsageConfig.py:871
+#: UsageConfig.py:778 UsageConfig.py:894
 msgid "%-I:%M%^p"
 msgstr ""
 
-#: UsageConfig.py:733 UsageConfig.py:740 UsageConfig.py:759
+#: UsageConfig.py:756 UsageConfig.py:763 UsageConfig.py:782
 msgid "%-I:%M:%S"
 msgstr ""
 
-#: UsageConfig.py:731 UsageConfig.py:757
+#: UsageConfig.py:754 UsageConfig.py:780
 msgid "%-I:%M:%S%P"
 msgstr ""
 
-#: UsageConfig.py:729 UsageConfig.py:755
+#: UsageConfig.py:752 UsageConfig.py:778
 msgid "%-I:%M:%S%^p"
 msgstr ""
 
 #. TRANSLATORS: full date representation daynum monthname year in strftime() format! See 'man strftime'
-#: UsageConfig.py:661 UsageConfig.py:674
+#: UsageConfig.py:684 UsageConfig.py:697
 msgid "%-d %B %Y"
 msgstr ""
 
 #. TRANSLATORS: small date representation daynum short monthname in strftime() format! See 'man strftime'
 #. TRANSLATORS: compact date representation (for VFD) daynum short monthname in strftime() format! See 'man strftime'
-#: UsageConfig.py:667 UsageConfig.py:674 UsageConfig.py:789 UsageConfig.py:792
-#: UsageConfig.py:839
+#: UsageConfig.py:690 UsageConfig.py:697 UsageConfig.py:812 UsageConfig.py:815
+#: UsageConfig.py:862
 msgid "%-d %b"
 msgstr ""
 
 #. TRANSLATORS: long date representation daynum short monthname year in strftime() format! See 'man strftime'
-#: UsageConfig.py:664 UsageConfig.py:674
+#: UsageConfig.py:687 UsageConfig.py:697
 msgid "%-d %b %Y"
 msgstr ""
 
-#: UsageConfig.py:810 UsageConfig.py:811 UsageConfig.py:812 UsageConfig.py:839
+#: UsageConfig.py:833 UsageConfig.py:834 UsageConfig.py:835 UsageConfig.py:862
 msgid "%-d+%b_"
 msgstr ""
 
-#: UsageConfig.py:677
+#: UsageConfig.py:700
 msgid "%-d-%B-%Y"
 msgstr ""
 
-#: UsageConfig.py:677 UsageConfig.py:794 UsageConfig.py:841
+#: UsageConfig.py:700 UsageConfig.py:817 UsageConfig.py:864
 msgid "%-d-%b"
 msgstr ""
 
-#: UsageConfig.py:677
+#: UsageConfig.py:700
 msgid "%-d-%b-%Y"
 msgstr ""
 
-#: UsageConfig.py:675
+#: UsageConfig.py:698
 msgid "%-d. %B %Y"
 msgstr ""
 
-#: UsageConfig.py:675
+#: UsageConfig.py:698
 msgid "%-d. %b"
 msgstr ""
 
-#: UsageConfig.py:675
+#: UsageConfig.py:698
 msgid "%-d. %b %Y"
 msgstr ""
 
-#: UsageConfig.py:685
+#: UsageConfig.py:708
 msgid "%-d.%-m"
 msgstr ""
 
-#: UsageConfig.py:685
+#: UsageConfig.py:708
 msgid "%-d.%-m.%Y"
 msgstr ""
 
-#: UsageConfig.py:681
+#: UsageConfig.py:704
 msgid "%-d.%m"
 msgstr ""
 
-#: UsageConfig.py:681
+#: UsageConfig.py:704
 msgid "%-d.%m.%Y"
 msgstr ""
 
-#: UsageConfig.py:684 UsageConfig.py:798 UsageConfig.py:845
+#: UsageConfig.py:707 UsageConfig.py:821 UsageConfig.py:868
 msgid "%-d/%-m"
 msgstr ""
 
-#: UsageConfig.py:845
+#: UsageConfig.py:868
 msgid "%-d/%-m "
 msgstr ""
 
-#: UsageConfig.py:684
+#: UsageConfig.py:707
 msgid "%-d/%-m/%Y"
 msgstr ""
 
-#: UsageConfig.py:680 UsageConfig.py:796 UsageConfig.py:843
+#: UsageConfig.py:703 UsageConfig.py:819 UsageConfig.py:866
 msgid "%-d/%m"
 msgstr ""
 
-#: UsageConfig.py:843
+#: UsageConfig.py:866
 msgid "%-d/%m "
 msgstr ""
 
-#: UsageConfig.py:680
+#: UsageConfig.py:703
 msgid "%-d/%m/%Y"
 msgstr ""
 
-#: UsageConfig.py:841
+#: UsageConfig.py:864
 msgid "%-d=%b_"
 msgstr ""
 
-#: UsageConfig.py:693 UsageConfig.py:701 UsageConfig.py:806 UsageConfig.py:853
+#: UsageConfig.py:716 UsageConfig.py:724 UsageConfig.py:829 UsageConfig.py:876
 msgid "%-m/%-d"
 msgstr ""
 
-#: UsageConfig.py:853
+#: UsageConfig.py:876
 msgid "%-m/%-d "
 msgstr ""
 
-#: UsageConfig.py:693
+#: UsageConfig.py:716
 msgid "%-m/%-d/%Y"
 msgstr ""
 
-#: UsageConfig.py:691 UsageConfig.py:700 UsageConfig.py:805 UsageConfig.py:852
+#: UsageConfig.py:714 UsageConfig.py:723 UsageConfig.py:828 UsageConfig.py:875
 msgid "%-m/%d"
 msgstr ""
 
-#: UsageConfig.py:852
+#: UsageConfig.py:875
 msgid "%-m/%d "
 msgstr ""
 
-#: UsageConfig.py:691
+#: UsageConfig.py:714
 msgid "%-m/%d/%Y"
 msgstr ""
 
@@ -520,7 +520,7 @@ msgstr ""
 msgid "%03d MB"
 msgstr ""
 
-#: UsageConfig.py:1235
+#: UsageConfig.py:1258
 #, python-format
 msgid "%2.1f sec"
 msgstr ""
@@ -530,228 +530,227 @@ msgid "%A"
 msgstr ""
 
 #. TRANSLATORS: short date representation dayname daynum short monthname in strftime() format! See 'man strftime'
-#: UsageConfig.py:652 UsageConfig.py:674
+#: UsageConfig.py:675 UsageConfig.py:697
 msgid "%A %-d %B"
 msgstr ""
 
-#. TRANSLATORS: full date representation dayname daynum monthname year in strftime() format! See 'man strftime'
-#: UsageConfig.py:612 UsageConfig.py:615 UsageConfig.py:674
+#: UsageConfig.py:634 UsageConfig.py:666 UsageConfig.py:697
 msgid "%A %-d %B %Y"
 msgstr ""
 
-#: UsageConfig.py:677
+#: UsageConfig.py:700
 msgid "%A %-d-%B"
 msgstr ""
 
-#: UsageConfig.py:618 UsageConfig.py:677
+#: UsageConfig.py:637 UsageConfig.py:700
 msgid "%A %-d-%B-%Y"
 msgstr ""
 
-#: UsageConfig.py:675
+#: UsageConfig.py:698
 msgid "%A %-d. %B"
 msgstr ""
 
-#: UsageConfig.py:616 UsageConfig.py:675
+#: UsageConfig.py:635 UsageConfig.py:698
 msgid "%A %-d. %B %Y"
 msgstr ""
 
-#: UsageConfig.py:685
+#: UsageConfig.py:708
 msgid "%A %-d.%-m"
 msgstr ""
 
-#: UsageConfig.py:626 UsageConfig.py:685
+#: UsageConfig.py:645 UsageConfig.py:708
 msgid "%A %-d.%-m.%Y"
 msgstr ""
 
-#: UsageConfig.py:681
+#: UsageConfig.py:704
 msgid "%A %-d.%m"
 msgstr ""
 
-#: UsageConfig.py:622 UsageConfig.py:681
+#: UsageConfig.py:641 UsageConfig.py:704
 msgid "%A %-d.%m.%Y"
 msgstr ""
 
-#: UsageConfig.py:684
+#: UsageConfig.py:707
 msgid "%A %-d/%-m"
 msgstr ""
 
-#: UsageConfig.py:625 UsageConfig.py:684
+#: UsageConfig.py:644 UsageConfig.py:707
 msgid "%A %-d/%-m/%Y"
 msgstr ""
 
-#: UsageConfig.py:680
+#: UsageConfig.py:703
 msgid "%A %-d/%m"
 msgstr ""
 
-#: UsageConfig.py:621 UsageConfig.py:680
+#: UsageConfig.py:640 UsageConfig.py:703
 msgid "%A %-d/%m/%Y"
 msgstr ""
 
-#: UsageConfig.py:693 UsageConfig.py:701
+#: UsageConfig.py:716 UsageConfig.py:724
 msgid "%A %-m/%-d"
 msgstr ""
 
-#: UsageConfig.py:634 UsageConfig.py:693
+#: UsageConfig.py:653 UsageConfig.py:716
 msgid "%A %-m/%-d/%Y"
 msgstr ""
 
-#: UsageConfig.py:691 UsageConfig.py:700
+#: UsageConfig.py:714 UsageConfig.py:723
 msgid "%A %-m/%d"
 msgstr ""
 
-#: UsageConfig.py:632 UsageConfig.py:691
+#: UsageConfig.py:651 UsageConfig.py:714
 msgid "%A %-m/%d/%Y"
 msgstr ""
 
-#: UsageConfig.py:687 UsageConfig.py:695
+#: UsageConfig.py:710 UsageConfig.py:718
 msgid "%A %B %-d"
 msgstr ""
 
-#: UsageConfig.py:628 UsageConfig.py:687
+#: UsageConfig.py:647 UsageConfig.py:710
 msgid "%A %B %-d %Y"
 msgstr ""
 
-#: UsageConfig.py:686 UsageConfig.py:694
+#: UsageConfig.py:709 UsageConfig.py:717
 msgid "%A %B %d"
 msgstr ""
 
-#: UsageConfig.py:627 UsageConfig.py:686
+#: UsageConfig.py:646 UsageConfig.py:709
 msgid "%A %B %d %Y"
 msgstr ""
 
-#: UsageConfig.py:689 UsageConfig.py:697
+#: UsageConfig.py:712 UsageConfig.py:720
 msgid "%A %B-%-d"
 msgstr ""
 
-#: UsageConfig.py:630 UsageConfig.py:689
+#: UsageConfig.py:649 UsageConfig.py:712
 msgid "%A %B-%-d-%Y"
 msgstr ""
 
-#: UsageConfig.py:688 UsageConfig.py:696
+#: UsageConfig.py:711 UsageConfig.py:719
 msgid "%A %B-%d"
 msgstr ""
 
-#: UsageConfig.py:629 UsageConfig.py:688
+#: UsageConfig.py:648 UsageConfig.py:711
 msgid "%A %B-%d-%Y"
 msgstr ""
 
-#: UsageConfig.py:636 UsageConfig.py:695
+#: UsageConfig.py:655 UsageConfig.py:718
 msgid "%A %Y %B %-d"
 msgstr ""
 
-#: UsageConfig.py:635 UsageConfig.py:694
+#: UsageConfig.py:654 UsageConfig.py:717
 msgid "%A %Y %B %d"
 msgstr ""
 
-#: UsageConfig.py:638 UsageConfig.py:697
+#: UsageConfig.py:657 UsageConfig.py:720
 msgid "%A %Y-%B-%-d"
 msgstr ""
 
-#: UsageConfig.py:637 UsageConfig.py:696
+#: UsageConfig.py:656 UsageConfig.py:719
 msgid "%A %Y-%B-%d"
 msgstr ""
 
-#: UsageConfig.py:642 UsageConfig.py:701
+#: UsageConfig.py:661 UsageConfig.py:724
 msgid "%A %Y/%-m/%-d"
 msgstr ""
 
-#: UsageConfig.py:641 UsageConfig.py:700
+#: UsageConfig.py:660 UsageConfig.py:723
 msgid "%A %Y/%-m/%d"
 msgstr ""
 
-#: UsageConfig.py:640 UsageConfig.py:699
+#: UsageConfig.py:659 UsageConfig.py:722
 msgid "%A %Y/%m/%-d"
 msgstr ""
 
-#: UsageConfig.py:639 UsageConfig.py:698
+#: UsageConfig.py:658 UsageConfig.py:721
 msgid "%A %Y/%m/%d"
 msgstr ""
 
-#: UsageConfig.py:672 EpgList.py:1719 GraphMultiEpg.py:670
+#: UsageConfig.py:695 EpgList.py:1719 GraphMultiEpg.py:670
 msgid "%A %d %B"
 msgstr ""
 
-#: UsageConfig.py:613 UsageConfig.py:672
+#: UsageConfig.py:632 UsageConfig.py:695
 msgid "%A %d %B %Y"
 msgstr ""
 
-#: UsageConfig.py:676
+#: UsageConfig.py:699
 msgid "%A %d-%B"
 msgstr ""
 
-#: UsageConfig.py:617 UsageConfig.py:676
+#: UsageConfig.py:636 UsageConfig.py:699
 msgid "%A %d-%B-%Y"
 msgstr ""
 
-#: UsageConfig.py:673
+#: UsageConfig.py:696
 msgid "%A %d. %B"
 msgstr ""
 
-#: UsageConfig.py:614 UsageConfig.py:673
+#: UsageConfig.py:633 UsageConfig.py:696
 msgid "%A %d. %B %Y"
 msgstr ""
 
-#: UsageConfig.py:683
+#: UsageConfig.py:706
 msgid "%A %d.%-m"
 msgstr ""
 
-#: UsageConfig.py:624 UsageConfig.py:683
+#: UsageConfig.py:643 UsageConfig.py:706
 msgid "%A %d.%-m.%Y"
 msgstr ""
 
-#: UsageConfig.py:679
+#: UsageConfig.py:702
 msgid "%A %d.%m"
 msgstr ""
 
-#: UsageConfig.py:620 UsageConfig.py:679
+#: UsageConfig.py:639 UsageConfig.py:664 UsageConfig.py:702
 msgid "%A %d.%m.%Y"
 msgstr ""
 
-#: UsageConfig.py:682
+#: UsageConfig.py:705
 msgid "%A %d/%-m"
 msgstr ""
 
-#: UsageConfig.py:623 UsageConfig.py:682
+#: UsageConfig.py:642 UsageConfig.py:705
 msgid "%A %d/%-m/%Y"
 msgstr ""
 
-#: UsageConfig.py:678
+#: UsageConfig.py:701
 msgid "%A %d/%m"
 msgstr ""
 
-#: UsageConfig.py:619 UsageConfig.py:678
+#: UsageConfig.py:638 UsageConfig.py:701
 msgid "%A %d/%m/%Y"
 msgstr ""
 
-#: UsageConfig.py:692 UsageConfig.py:699
+#: UsageConfig.py:715 UsageConfig.py:722
 msgid "%A %m/%-d"
 msgstr ""
 
-#: UsageConfig.py:633 UsageConfig.py:692
+#: UsageConfig.py:652 UsageConfig.py:715
 msgid "%A %m/%-d/%Y"
 msgstr ""
 
-#: UsageConfig.py:690 UsageConfig.py:698
+#: UsageConfig.py:713 UsageConfig.py:721
 msgid "%A %m/%d"
 msgstr ""
 
-#: UsageConfig.py:631 UsageConfig.py:690
+#: UsageConfig.py:650 UsageConfig.py:713
 msgid "%A %m/%d/%Y"
 msgstr ""
 
-#: UsageConfig.py:687
+#: UsageConfig.py:710
 msgid "%B %-d %Y"
 msgstr ""
 
-#: UsageConfig.py:686
+#: UsageConfig.py:709
 msgid "%B %d %Y"
 msgstr ""
 
-#: UsageConfig.py:689
+#: UsageConfig.py:712
 msgid "%B-%-d-%Y"
 msgstr ""
 
-#: UsageConfig.py:688
+#: UsageConfig.py:711
 msgid "%B-%d-%Y"
 msgstr ""
 
@@ -759,71 +758,71 @@ msgstr ""
 msgid "%H:%M"
 msgstr ""
 
-#: UsageConfig.py:758 UsageConfig.py:874 UsageConfig.py:882
+#: UsageConfig.py:781 UsageConfig.py:897 UsageConfig.py:905
 msgid "%I:%M"
 msgstr ""
 
-#: UsageConfig.py:756 UsageConfig.py:872
+#: UsageConfig.py:779 UsageConfig.py:895
 msgid "%I:%M%P"
 msgstr ""
 
-#: UsageConfig.py:754 UsageConfig.py:870
+#: UsageConfig.py:777 UsageConfig.py:893
 msgid "%I:%M%^p"
 msgstr ""
 
-#: UsageConfig.py:732 UsageConfig.py:739 UsageConfig.py:758
+#: UsageConfig.py:755 UsageConfig.py:762 UsageConfig.py:781
 msgid "%I:%M:%S"
 msgstr ""
 
-#: UsageConfig.py:730 UsageConfig.py:756
+#: UsageConfig.py:753 UsageConfig.py:779
 msgid "%I:%M:%S%P"
 msgstr ""
 
-#: UsageConfig.py:728 UsageConfig.py:754
+#: UsageConfig.py:751 UsageConfig.py:777
 msgid "%I:%M:%S%^p"
 msgstr ""
 
 #. TRANSLATORS: short time representation hour:minute (Same as "Default")
-#: UsageConfig.py:747 UsageConfig.py:752 UsageConfig.py:814 UsageConfig.py:866
-#: UsageConfig.py:868 UsageConfig.py:878 UsageConfig.py:880
+#: UsageConfig.py:770 UsageConfig.py:775 UsageConfig.py:837 UsageConfig.py:889
+#: UsageConfig.py:891 UsageConfig.py:901 UsageConfig.py:903
 msgid "%R"
 msgstr ""
 
 #. TRANSLATORS: time representation hour:minute:seconds for 24 hour clock or 12 hour clock without AM/PM and hour:minute for 12 hour clocks with AM/PM
-#: UsageConfig.py:725 UsageConfig.py:726 UsageConfig.py:736 UsageConfig.py:737
-#: UsageConfig.py:744 UsageConfig.py:752
+#: UsageConfig.py:748 UsageConfig.py:749 UsageConfig.py:759 UsageConfig.py:760
+#: UsageConfig.py:767 UsageConfig.py:775
 msgid "%T"
 msgstr ""
 
-#: UsageConfig.py:695
+#: UsageConfig.py:718
 msgid "%Y %B %-d"
 msgstr ""
 
-#: UsageConfig.py:694
+#: UsageConfig.py:717
 msgid "%Y %B %d"
 msgstr ""
 
-#: UsageConfig.py:695
+#: UsageConfig.py:718
 msgid "%Y %b %-d"
 msgstr ""
 
-#: UsageConfig.py:694
+#: UsageConfig.py:717
 msgid "%Y %b %d"
 msgstr ""
 
-#: UsageConfig.py:697
+#: UsageConfig.py:720
 msgid "%Y-%B-%-d"
 msgstr ""
 
-#: UsageConfig.py:696
+#: UsageConfig.py:719
 msgid "%Y-%B-%d"
 msgstr ""
 
-#: UsageConfig.py:697
+#: UsageConfig.py:720
 msgid "%Y-%b-%-d"
 msgstr ""
 
-#: UsageConfig.py:696
+#: UsageConfig.py:719
 msgid "%Y-%b-%d"
 msgstr ""
 
@@ -835,19 +834,19 @@ msgstr ""
 msgid "%Y-%m-%d %H-%M"
 msgstr ""
 
-#: UsageConfig.py:701
+#: UsageConfig.py:724
 msgid "%Y/%-m/%-d"
 msgstr ""
 
-#: UsageConfig.py:700
+#: UsageConfig.py:723
 msgid "%Y/%-m/%d"
 msgstr ""
 
-#: UsageConfig.py:699
+#: UsageConfig.py:722
 msgid "%Y/%m/%-d"
 msgstr ""
 
-#: UsageConfig.py:698
+#: UsageConfig.py:721
 msgid "%Y/%m/%d"
 msgstr ""
 
@@ -856,204 +855,204 @@ msgid "%a"
 msgstr ""
 
 #. TRANSLATORS: small date representation short dayname daynum in strftime() format! See 'man strftime'
-#: UsageConfig.py:658 UsageConfig.py:674 UsageConfig.py:675 UsageConfig.py:677
-#: UsageConfig.py:680 UsageConfig.py:681 UsageConfig.py:684 UsageConfig.py:685
-#: UsageConfig.py:687 UsageConfig.py:689 UsageConfig.py:692 UsageConfig.py:693
-#: UsageConfig.py:695 UsageConfig.py:697 UsageConfig.py:699 UsageConfig.py:701
+#: UsageConfig.py:681 UsageConfig.py:697 UsageConfig.py:698 UsageConfig.py:700
+#: UsageConfig.py:703 UsageConfig.py:704 UsageConfig.py:707 UsageConfig.py:708
+#: UsageConfig.py:710 UsageConfig.py:712 UsageConfig.py:715 UsageConfig.py:716
+#: UsageConfig.py:718 UsageConfig.py:720 UsageConfig.py:722 UsageConfig.py:724
 msgid "%a %-d"
 msgstr ""
 
 #. TRANSLATORS: long date representation short dayname daynum monthname year in strftime() format! See 'man strftime'
-#: UsageConfig.py:646 UsageConfig.py:674
+#: UsageConfig.py:669 UsageConfig.py:697
 msgid "%a %-d %B %Y"
 msgstr ""
 
 #. TRANSLATORS: short date representation short dayname daynum short monthname in strftime() format! See 'man strftime'
-#: UsageConfig.py:655 UsageConfig.py:674 UsageConfig.py:839
+#: UsageConfig.py:678 UsageConfig.py:697 UsageConfig.py:862
 msgid "%a %-d %b"
 msgstr ""
 
 #. TRANSLATORS: long date representation short dayname daynum short monthname year in strftime() format! See 'man strftime'
-#: UsageConfig.py:649 UsageConfig.py:674
+#: UsageConfig.py:672 UsageConfig.py:697
 msgid "%a %-d %b %Y"
 msgstr ""
 
-#: UsageConfig.py:809
+#: UsageConfig.py:832
 msgid "%a %-d+%b_"
 msgstr ""
 
-#: UsageConfig.py:677
+#: UsageConfig.py:700
 msgid "%a %-d-%B-%Y"
 msgstr ""
 
-#: UsageConfig.py:677 UsageConfig.py:841
+#: UsageConfig.py:700 UsageConfig.py:864
 msgid "%a %-d-%b"
 msgstr ""
 
-#: UsageConfig.py:677
+#: UsageConfig.py:700
 msgid "%a %-d-%b-%Y"
 msgstr ""
 
-#: UsageConfig.py:675
+#: UsageConfig.py:698
 msgid "%a %-d. %B %Y"
 msgstr ""
 
-#: UsageConfig.py:675
+#: UsageConfig.py:698
 msgid "%a %-d. %b"
 msgstr ""
 
-#: UsageConfig.py:675
+#: UsageConfig.py:698
 msgid "%a %-d. %b %Y"
 msgstr ""
 
-#: UsageConfig.py:685
+#: UsageConfig.py:708
 msgid "%a %-d.%-m"
 msgstr ""
 
-#: UsageConfig.py:685
+#: UsageConfig.py:708
 msgid "%a %-d.%-m.%Y"
 msgstr ""
 
-#: UsageConfig.py:681
+#: UsageConfig.py:704
 msgid "%a %-d.%m"
 msgstr ""
 
-#: UsageConfig.py:681
+#: UsageConfig.py:704
 msgid "%a %-d.%m.%Y"
 msgstr ""
 
-#: UsageConfig.py:684 UsageConfig.py:845
+#: UsageConfig.py:707 UsageConfig.py:868
 msgid "%a %-d/%-m"
 msgstr ""
 
-#: UsageConfig.py:684
+#: UsageConfig.py:707
 msgid "%a %-d/%-m/%Y"
 msgstr ""
 
-#: UsageConfig.py:680 UsageConfig.py:843
+#: UsageConfig.py:703 UsageConfig.py:866
 msgid "%a %-d/%m"
 msgstr ""
 
-#: UsageConfig.py:680
+#: UsageConfig.py:703
 msgid "%a %-d/%m/%Y"
 msgstr ""
 
-#: UsageConfig.py:693 UsageConfig.py:701 UsageConfig.py:853
+#: UsageConfig.py:716 UsageConfig.py:724 UsageConfig.py:876
 msgid "%a %-m/%-d"
 msgstr ""
 
-#: UsageConfig.py:693
+#: UsageConfig.py:716
 msgid "%a %-m/%-d/%Y"
 msgstr ""
 
-#: UsageConfig.py:691 UsageConfig.py:700 UsageConfig.py:852
+#: UsageConfig.py:714 UsageConfig.py:723 UsageConfig.py:875
 msgid "%a %-m/%d"
 msgstr ""
 
-#: UsageConfig.py:691
+#: UsageConfig.py:714
 msgid "%a %-m/%d/%Y"
 msgstr ""
 
-#: UsageConfig.py:687
+#: UsageConfig.py:710
 msgid "%a %B %-d %Y"
 msgstr ""
 
-#: UsageConfig.py:686
+#: UsageConfig.py:709
 msgid "%a %B %d %Y"
 msgstr ""
 
-#: UsageConfig.py:689
+#: UsageConfig.py:712
 msgid "%a %B-%-d-%Y"
 msgstr ""
 
-#: UsageConfig.py:688
+#: UsageConfig.py:711
 msgid "%a %B-%d-%Y"
 msgstr ""
 
-#: UsageConfig.py:695
+#: UsageConfig.py:718
 msgid "%a %Y %B %-d"
 msgstr ""
 
-#: UsageConfig.py:694
+#: UsageConfig.py:717
 msgid "%a %Y %B %d"
 msgstr ""
 
-#: UsageConfig.py:695
+#: UsageConfig.py:718
 msgid "%a %Y %b %-d"
 msgstr ""
 
-#: UsageConfig.py:694
+#: UsageConfig.py:717
 msgid "%a %Y %b %d"
 msgstr ""
 
-#: UsageConfig.py:697
+#: UsageConfig.py:720
 msgid "%a %Y-%B-%-d"
 msgstr ""
 
-#: UsageConfig.py:696
+#: UsageConfig.py:719
 msgid "%a %Y-%B-%d"
 msgstr ""
 
-#: UsageConfig.py:697
+#: UsageConfig.py:720
 msgid "%a %Y-%b-%-d"
 msgstr ""
 
-#: UsageConfig.py:696
+#: UsageConfig.py:719
 msgid "%a %Y-%b-%d"
 msgstr ""
 
-#: UsageConfig.py:701
+#: UsageConfig.py:724
 msgid "%a %Y/%-m/%-d"
 msgstr ""
 
-#: UsageConfig.py:700
+#: UsageConfig.py:723
 msgid "%a %Y/%-m/%d"
 msgstr ""
 
-#: UsageConfig.py:699
+#: UsageConfig.py:722
 msgid "%a %Y/%m/%-d"
 msgstr ""
 
-#: UsageConfig.py:698
+#: UsageConfig.py:721
 msgid "%a %Y/%m/%d"
 msgstr ""
 
-#: UsageConfig.py:687 UsageConfig.py:695 UsageConfig.py:847
+#: UsageConfig.py:710 UsageConfig.py:718 UsageConfig.py:870
 msgid "%a %b %-d"
 msgstr ""
 
-#: UsageConfig.py:687
+#: UsageConfig.py:710
 msgid "%a %b %-d %Y"
 msgstr ""
 
-#: UsageConfig.py:686 UsageConfig.py:694 UsageConfig.py:846
+#: UsageConfig.py:709 UsageConfig.py:717 UsageConfig.py:869
 msgid "%a %b %d"
 msgstr ""
 
-#: UsageConfig.py:686
+#: UsageConfig.py:709
 msgid "%a %b %d %Y"
 msgstr ""
 
-#: UsageConfig.py:689 UsageConfig.py:697 UsageConfig.py:849
+#: UsageConfig.py:712 UsageConfig.py:720 UsageConfig.py:872
 msgid "%a %b-%-d"
 msgstr ""
 
-#: UsageConfig.py:689
+#: UsageConfig.py:712
 msgid "%a %b-%-d-%Y"
 msgstr ""
 
-#: UsageConfig.py:688 UsageConfig.py:696 UsageConfig.py:848
+#: UsageConfig.py:711 UsageConfig.py:719 UsageConfig.py:871
 msgid "%a %b-%d"
 msgstr ""
 
-#: UsageConfig.py:688
+#: UsageConfig.py:711
 msgid "%a %b-%d-%Y"
 msgstr ""
 
-#: UsageConfig.py:672 UsageConfig.py:673 UsageConfig.py:676 UsageConfig.py:678
-#: UsageConfig.py:679 UsageConfig.py:682 UsageConfig.py:683 UsageConfig.py:686
-#: UsageConfig.py:688 UsageConfig.py:690 UsageConfig.py:691 UsageConfig.py:694
-#: UsageConfig.py:696 UsageConfig.py:698 UsageConfig.py:700 EpgList.py:1725
+#: UsageConfig.py:695 UsageConfig.py:696 UsageConfig.py:699 UsageConfig.py:701
+#: UsageConfig.py:702 UsageConfig.py:705 UsageConfig.py:706 UsageConfig.py:709
+#: UsageConfig.py:711 UsageConfig.py:713 UsageConfig.py:714 UsageConfig.py:717
+#: UsageConfig.py:719 UsageConfig.py:721 UsageConfig.py:723 EpgList.py:1725
 msgid "%a %d"
 msgstr ""
 
@@ -1061,135 +1060,135 @@ msgstr ""
 msgid "%a %d %B"
 msgstr ""
 
-#: UsageConfig.py:672
+#: UsageConfig.py:695
 msgid "%a %d %B %Y"
 msgstr ""
 
-#: UsageConfig.py:672 UsageConfig.py:838 EpgList.py:1723
+#: UsageConfig.py:695 UsageConfig.py:861 EpgList.py:1723
 msgid "%a %d %b"
 msgstr ""
 
-#: UsageConfig.py:672
+#: UsageConfig.py:695
 msgid "%a %d %b %Y"
 msgstr ""
 
-#: UsageConfig.py:676
+#: UsageConfig.py:699
 msgid "%a %d-%B-%Y"
 msgstr ""
 
-#: UsageConfig.py:676 UsageConfig.py:840
+#: UsageConfig.py:699 UsageConfig.py:863
 msgid "%a %d-%b"
 msgstr ""
 
-#: UsageConfig.py:676
+#: UsageConfig.py:699
 msgid "%a %d-%b-%Y"
 msgstr ""
 
-#: UsageConfig.py:673
+#: UsageConfig.py:696
 msgid "%a %d. %B %Y"
 msgstr ""
 
-#: UsageConfig.py:673
+#: UsageConfig.py:696
 msgid "%a %d. %b"
 msgstr ""
 
-#: UsageConfig.py:673
+#: UsageConfig.py:696
 msgid "%a %d. %b %Y"
 msgstr ""
 
-#: UsageConfig.py:683
+#: UsageConfig.py:706
 msgid "%a %d.%-m"
 msgstr ""
 
-#: UsageConfig.py:683
+#: UsageConfig.py:706
 msgid "%a %d.%-m.%Y"
 msgstr ""
 
-#: UsageConfig.py:679
+#: UsageConfig.py:702
 msgid "%a %d.%m"
 msgstr ""
 
-#: UsageConfig.py:679
+#: UsageConfig.py:702
 msgid "%a %d.%m.%Y"
 msgstr ""
 
-#: UsageConfig.py:682 UsageConfig.py:844
+#: UsageConfig.py:705 UsageConfig.py:867
 msgid "%a %d/%-m"
 msgstr ""
 
-#: UsageConfig.py:682
+#: UsageConfig.py:705
 msgid "%a %d/%-m/%Y"
 msgstr ""
 
-#: UsageConfig.py:678 UsageConfig.py:842
+#: UsageConfig.py:701 UsageConfig.py:865
 msgid "%a %d/%m"
 msgstr ""
 
-#: UsageConfig.py:678
+#: UsageConfig.py:701
 msgid "%a %d/%m/%Y"
 msgstr ""
 
-#: UsageConfig.py:692 UsageConfig.py:699 UsageConfig.py:851
+#: UsageConfig.py:715 UsageConfig.py:722 UsageConfig.py:874
 msgid "%a %m/%-d"
 msgstr ""
 
-#: UsageConfig.py:692
+#: UsageConfig.py:715
 msgid "%a %m/%-d/%Y"
 msgstr ""
 
-#: UsageConfig.py:690 UsageConfig.py:698 UsageConfig.py:850
+#: UsageConfig.py:713 UsageConfig.py:721 UsageConfig.py:873
 msgid "%a %m/%d"
 msgstr ""
 
-#: UsageConfig.py:690
+#: UsageConfig.py:713
 msgid "%a %m/%d/%Y"
 msgstr ""
 
-#: UsageConfig.py:687 UsageConfig.py:695 UsageConfig.py:800 UsageConfig.py:847
+#: UsageConfig.py:710 UsageConfig.py:718 UsageConfig.py:823 UsageConfig.py:870
 msgid "%b %-d"
 msgstr ""
 
-#: UsageConfig.py:687
+#: UsageConfig.py:710
 msgid "%b %-d %Y"
 msgstr ""
 
-#: UsageConfig.py:686 UsageConfig.py:694 UsageConfig.py:799 UsageConfig.py:846
+#: UsageConfig.py:709 UsageConfig.py:717 UsageConfig.py:822 UsageConfig.py:869
 msgid "%b %d"
 msgstr ""
 
-#: UsageConfig.py:686
+#: UsageConfig.py:709
 msgid "%b %d %Y"
 msgstr ""
 
-#: UsageConfig.py:847
+#: UsageConfig.py:870
 msgid "%b+%-d "
 msgstr ""
 
-#: UsageConfig.py:846
+#: UsageConfig.py:869
 msgid "%b+%d "
 msgstr ""
 
-#: UsageConfig.py:689 UsageConfig.py:697 UsageConfig.py:802 UsageConfig.py:849
+#: UsageConfig.py:712 UsageConfig.py:720 UsageConfig.py:825 UsageConfig.py:872
 msgid "%b-%-d"
 msgstr ""
 
-#: UsageConfig.py:689
+#: UsageConfig.py:712
 msgid "%b-%-d-%Y"
 msgstr ""
 
-#: UsageConfig.py:688 UsageConfig.py:696 UsageConfig.py:801 UsageConfig.py:848
+#: UsageConfig.py:711 UsageConfig.py:719 UsageConfig.py:824 UsageConfig.py:871
 msgid "%b-%d"
 msgstr ""
 
-#: UsageConfig.py:688
+#: UsageConfig.py:711
 msgid "%b-%d-%Y"
 msgstr ""
 
-#: UsageConfig.py:849
+#: UsageConfig.py:872
 msgid "%b=%-d "
 msgstr ""
 
-#: UsageConfig.py:848
+#: UsageConfig.py:871
 msgid "%b=%d "
 msgstr ""
 
@@ -1200,15 +1199,15 @@ msgid_plural "%d"
 msgstr[0] ""
 msgstr[1] ""
 
-#: UsageConfig.py:672
+#: UsageConfig.py:695
 msgid "%d %B %Y"
 msgstr ""
 
-#: UsageConfig.py:672 UsageConfig.py:791 UsageConfig.py:838
+#: UsageConfig.py:695 UsageConfig.py:814 UsageConfig.py:861
 msgid "%d %b"
 msgstr ""
 
-#: UsageConfig.py:672
+#: UsageConfig.py:695
 msgid "%d %b %Y"
 msgstr ""
 
@@ -1289,7 +1288,7 @@ msgid_plural "%d channels found"
 msgstr[0] ""
 msgstr[1] ""
 
-#: UsageConfig.py:231
+#: UsageConfig.py:250
 #, python-format
 msgid "%d hour"
 msgid_plural "%d hours"
@@ -1306,16 +1305,16 @@ msgstr ""
 msgid "%d min"
 msgstr ""
 
-#: UsageConfig.py:228 UsageConfig.py:246 UsageConfig.py:341 UsageConfig.py:369
-#: UsageConfig.py:1062
+#: UsageConfig.py:247 UsageConfig.py:265 UsageConfig.py:360 UsageConfig.py:388
+#: UsageConfig.py:1085
 #, python-format
 msgid "%d minute"
 msgid_plural "%d minutes"
 msgstr[0] ""
 msgstr[1] ""
 
-#: InfoBarGenerics.py:5264 UsageConfig.py:1424 UsageConfig.py:1427
-#: UsageConfig.py:1430 UsageConfig.py:1460 UsageConfig.py:1463
+#: InfoBarGenerics.py:5264 UsageConfig.py:1447 UsageConfig.py:1450
+#: UsageConfig.py:1453 UsageConfig.py:1483 UsageConfig.py:1486
 #: GraphMultiEpg.py:48
 #, python-format
 msgid "%d minutes"
@@ -1326,7 +1325,7 @@ msgstr ""
 msgid "%d ms"
 msgstr ""
 
-#: UsageConfig.py:81
+#: UsageConfig.py:99
 #, python-format
 msgid "%d pixel wide"
 msgid_plural "%d pixels wide"
@@ -1338,8 +1337,8 @@ msgstr[1] ""
 msgid "%d sec"
 msgstr ""
 
-#: AVSwitch.py:540 UsageConfig.py:150 UsageConfig.py:225 UsageConfig.py:366
-#: UsageConfig.py:1059
+#: AVSwitch.py:540 UsageConfig.py:168 UsageConfig.py:244 UsageConfig.py:385
+#: UsageConfig.py:1082
 #, python-format
 msgid "%d second"
 msgid_plural "%d seconds"
@@ -1358,19 +1357,19 @@ msgid_plural "%d wireless networks found!"
 msgstr[0] ""
 msgstr[1] ""
 
-#: UsageConfig.py:838
+#: UsageConfig.py:861
 msgid "%d+%b_"
 msgstr ""
 
-#: UsageConfig.py:676
+#: UsageConfig.py:699
 msgid "%d-%B-%Y"
 msgstr ""
 
-#: UsageConfig.py:676 UsageConfig.py:793 UsageConfig.py:840
+#: UsageConfig.py:699 UsageConfig.py:816 UsageConfig.py:863
 msgid "%d-%b"
 msgstr ""
 
-#: UsageConfig.py:676
+#: UsageConfig.py:699
 msgid "%d-%b-%Y"
 msgstr ""
 
@@ -1378,23 +1377,23 @@ msgstr ""
 msgid "%d-%m"
 msgstr ""
 
-#: UsageConfig.py:673
+#: UsageConfig.py:696
 msgid "%d. %B %Y"
 msgstr ""
 
-#: UsageConfig.py:673
+#: UsageConfig.py:696
 msgid "%d. %b"
 msgstr ""
 
-#: UsageConfig.py:673
+#: UsageConfig.py:696
 msgid "%d. %b %Y"
 msgstr ""
 
-#: UsageConfig.py:683
+#: UsageConfig.py:706
 msgid "%d.%-m"
 msgstr ""
 
-#: UsageConfig.py:683
+#: UsageConfig.py:706
 msgid "%d.%-m.%Y"
 msgstr ""
 
@@ -1403,39 +1402,39 @@ msgstr ""
 msgid "%d.%03d GB"
 msgstr ""
 
-#: UsageConfig.py:679
+#: UsageConfig.py:702
 msgid "%d.%m"
 msgstr ""
 
-#: UsageConfig.py:679
+#: UsageConfig.py:702
 msgid "%d.%m.%Y"
 msgstr ""
 
-#: UsageConfig.py:682 UsageConfig.py:797 UsageConfig.py:844
+#: UsageConfig.py:705 UsageConfig.py:820 UsageConfig.py:867
 msgid "%d/%-m"
 msgstr ""
 
-#: UsageConfig.py:844
+#: UsageConfig.py:867
 msgid "%d/%-m "
 msgstr ""
 
-#: UsageConfig.py:682
+#: UsageConfig.py:705
 msgid "%d/%-m/%Y"
 msgstr ""
 
-#: UsageConfig.py:678 UsageConfig.py:795 UsageConfig.py:842
+#: UsageConfig.py:701 UsageConfig.py:818 UsageConfig.py:865
 msgid "%d/%m"
 msgstr ""
 
-#: UsageConfig.py:842
+#: UsageConfig.py:865
 msgid "%d/%m "
 msgstr ""
 
-#: UsageConfig.py:678
+#: UsageConfig.py:701
 msgid "%d/%m/%Y"
 msgstr ""
 
-#: UsageConfig.py:840
+#: UsageConfig.py:863
 msgid "%d=%b_"
 msgstr ""
 
@@ -1443,27 +1442,27 @@ msgstr ""
 msgid "%e/%m, %-H:%M"
 msgstr ""
 
-#: UsageConfig.py:692 UsageConfig.py:699 UsageConfig.py:804 UsageConfig.py:851
+#: UsageConfig.py:715 UsageConfig.py:722 UsageConfig.py:827 UsageConfig.py:874
 msgid "%m/%-d"
 msgstr ""
 
-#: UsageConfig.py:851
+#: UsageConfig.py:874
 msgid "%m/%-d "
 msgstr ""
 
-#: UsageConfig.py:692
+#: UsageConfig.py:715
 msgid "%m/%-d/%Y"
 msgstr ""
 
-#: UsageConfig.py:690 UsageConfig.py:698 UsageConfig.py:803 UsageConfig.py:850
+#: UsageConfig.py:713 UsageConfig.py:721 UsageConfig.py:826 UsageConfig.py:873
 msgid "%m/%d"
 msgstr ""
 
-#: UsageConfig.py:850
+#: UsageConfig.py:873
 msgid "%m/%d "
 msgstr ""
 
-#: UsageConfig.py:690
+#: UsageConfig.py:713
 msgid "%m/%d/%Y"
 msgstr ""
 
@@ -1562,12 +1561,12 @@ msgstr ""
 msgid "%s - extraction errors."
 msgstr ""
 
-#: About.py:100
+#: About.py:102
 #, python-format
 msgid "%s GHz"
 msgstr ""
 
-#: About.py:102
+#: About.py:104
 #, python-format
 msgid "%s MHz"
 msgstr ""
@@ -1758,7 +1757,7 @@ msgstr ""
 msgid "-24"
 msgstr ""
 
-#: UsageConfig.py:1508 UsageConfig.py:1516
+#: UsageConfig.py:1531 UsageConfig.py:1539
 msgid "-24h/+24 Hours"
 msgstr ""
 
@@ -1787,43 +1786,43 @@ msgstr ""
 msgid "/var directory"
 msgstr ""
 
-#: UsageConfig.py:1098 UsageConfig.py:1099 UsageConfig.py:1100
+#: UsageConfig.py:1121 UsageConfig.py:1122 UsageConfig.py:1123
 msgid "0.2s"
 msgstr ""
 
-#: UsageConfig.py:1098 UsageConfig.py:1099 UsageConfig.py:1100
+#: UsageConfig.py:1121 UsageConfig.py:1122 UsageConfig.py:1123
 msgid "0.3s"
 msgstr ""
 
-#: UsageConfig.py:1098 UsageConfig.py:1099 UsageConfig.py:1100
+#: UsageConfig.py:1121 UsageConfig.py:1122 UsageConfig.py:1123
 msgid "0.4s"
 msgstr ""
 
-#: UsageConfig.py:1098 UsageConfig.py:1099 UsageConfig.py:1100
+#: UsageConfig.py:1121 UsageConfig.py:1122 UsageConfig.py:1123
 msgid "0.5s"
 msgstr ""
 
-#: UsageConfig.py:1098 UsageConfig.py:1099 UsageConfig.py:1100
+#: UsageConfig.py:1121 UsageConfig.py:1122 UsageConfig.py:1123
 msgid "0.6s"
 msgstr ""
 
-#: UsageConfig.py:1098 UsageConfig.py:1099 UsageConfig.py:1100
+#: UsageConfig.py:1121 UsageConfig.py:1122 UsageConfig.py:1123
 msgid "0.7s"
 msgstr ""
 
-#: UsageConfig.py:1098 UsageConfig.py:1099 UsageConfig.py:1100
+#: UsageConfig.py:1121 UsageConfig.py:1122 UsageConfig.py:1123
 msgid "0.8s"
 msgstr ""
 
-#: UsageConfig.py:1098 UsageConfig.py:1099 UsageConfig.py:1100
+#: UsageConfig.py:1121 UsageConfig.py:1122 UsageConfig.py:1123
 msgid "0.9s"
 msgstr ""
 
-#: UsageConfig.py:48 skin_default.xml
+#: UsageConfig.py:66 skin_default.xml
 msgid "1"
 msgstr ""
 
-#: UsageConfig.py:1072
+#: UsageConfig.py:1095
 msgid "1 GB"
 msgstr ""
 
@@ -1847,19 +1846,19 @@ msgstr ""
 msgid "1.2"
 msgstr ""
 
-#: UsageConfig.py:1098 UsageConfig.py:1099
+#: UsageConfig.py:1121 UsageConfig.py:1122
 msgid "1.2s"
 msgstr ""
 
-#: UsageConfig.py:1098 UsageConfig.py:1099
+#: UsageConfig.py:1121 UsageConfig.py:1122
 msgid "1.5s"
 msgstr ""
 
-#: UsageConfig.py:1098 UsageConfig.py:1099
+#: UsageConfig.py:1121 UsageConfig.py:1122
 msgid "1.7s"
 msgstr ""
 
-#: UsageConfig.py:1181
+#: UsageConfig.py:1204
 msgid "10 MB/s"
 msgstr ""
 
@@ -1871,7 +1870,7 @@ msgstr ""
 msgid "10 minutes"
 msgstr ""
 
-#: UsageConfig.py:1184
+#: UsageConfig.py:1207
 msgid "100 MB/s"
 msgstr ""
 
@@ -2023,15 +2022,15 @@ msgstr ""
 msgid "1X"
 msgstr ""
 
-#: UsageConfig.py:1098 UsageConfig.py:1099 UsageConfig.py:1100
+#: UsageConfig.py:1121 UsageConfig.py:1122 UsageConfig.py:1123
 msgid "1s"
 msgstr ""
 
-#: UsageConfig.py:48 skin_default.xml
+#: UsageConfig.py:66 skin_default.xml
 msgid "2"
 msgstr ""
 
-#: UsageConfig.py:1072
+#: UsageConfig.py:1095
 msgid "2 GB"
 msgstr ""
 
@@ -2043,11 +2042,11 @@ msgstr ""
 msgid "2 minutes"
 msgstr ""
 
-#: UsageConfig.py:1098 UsageConfig.py:1099
+#: UsageConfig.py:1121 UsageConfig.py:1122
 msgid "2.5s"
 msgstr ""
 
-#: UsageConfig.py:1182
+#: UsageConfig.py:1205
 msgid "20 MB/s"
 msgstr ""
 
@@ -2079,11 +2078,11 @@ msgstr ""
 msgid "2160p50: 24p/50p/60p"
 msgstr ""
 
-#: UsageConfig.py:1250
+#: UsageConfig.py:1273
 msgid "23.976"
 msgstr ""
 
-#: UsageConfig.py:1251
+#: UsageConfig.py:1274
 msgid "24"
 msgstr ""
 
@@ -2091,11 +2090,11 @@ msgstr ""
 msgid "24 hours"
 msgstr ""
 
-#: UsageConfig.py:1492 UsageConfig.py:1529
+#: UsageConfig.py:1515 UsageConfig.py:1552
 msgid "24+ Hours"
 msgstr ""
 
-#: UsageConfig.py:1489 UsageConfig.py:1530
+#: UsageConfig.py:1512 UsageConfig.py:1553
 msgid "24- Hours"
 msgstr ""
 
@@ -2119,7 +2118,7 @@ msgstr ""
 msgid "24p/60p"
 msgstr ""
 
-#: UsageConfig.py:1252
+#: UsageConfig.py:1275
 msgid "25"
 msgstr ""
 
@@ -2151,7 +2150,7 @@ msgstr ""
 msgid "25p/60p"
 msgstr ""
 
-#: UsageConfig.py:1253
+#: UsageConfig.py:1276
 msgid "29.97"
 msgstr ""
 
@@ -2159,35 +2158,35 @@ msgstr ""
 msgid "2X"
 msgstr ""
 
-#: UsageConfig.py:161
+#: UsageConfig.py:179
 msgid "2nd Infobar ECM"
 msgstr ""
 
-#: UsageConfig.py:161
+#: UsageConfig.py:179
 msgid "2nd Infobar INFO"
 msgstr ""
 
-#: UsageConfig.py:1098 UsageConfig.py:1099
+#: UsageConfig.py:1121 UsageConfig.py:1122
 msgid "2s"
 msgstr ""
 
-#: UsageConfig.py:1097
+#: UsageConfig.py:1120
 msgid "2x"
 msgstr ""
 
-#: UsageConfig.py:1097
+#: UsageConfig.py:1120
 msgid "2x, 4x"
 msgstr ""
 
-#: UsageConfig.py:1097
+#: UsageConfig.py:1120
 msgid "2x, 4x, 6x"
 msgstr ""
 
-#: UsageConfig.py:1097
+#: UsageConfig.py:1120
 msgid "2x, 4x, 6x, 8x"
 msgstr ""
 
-#: UsageConfig.py:48 skin_default.xml
+#: UsageConfig.py:66 skin_default.xml
 msgid "3"
 msgstr ""
 
@@ -2195,11 +2194,11 @@ msgstr ""
 msgid "3 hours"
 msgstr ""
 
-#: UsageConfig.py:1098 UsageConfig.py:1099
+#: UsageConfig.py:1121 UsageConfig.py:1122
 msgid "3.5s"
 msgstr ""
 
-#: UsageConfig.py:1254
+#: UsageConfig.py:1277
 msgid "30"
 msgstr ""
 
@@ -2259,15 +2258,15 @@ msgstr ""
 msgid "3d mode"
 msgstr ""
 
-#: UsageConfig.py:1098 UsageConfig.py:1099
+#: UsageConfig.py:1121 UsageConfig.py:1122
 msgid "3s"
 msgstr ""
 
-#: UsageConfig.py:48 skin_default.xml
+#: UsageConfig.py:66 skin_default.xml
 msgid "4"
 msgstr ""
 
-#: UsageConfig.py:1072
+#: UsageConfig.py:1095
 msgid "4 GB"
 msgstr ""
 
@@ -2315,11 +2314,11 @@ msgstr ""
 msgid "4_3_panscan"
 msgstr ""
 
-#: UsageConfig.py:1098 UsageConfig.py:1099
+#: UsageConfig.py:1121 UsageConfig.py:1122
 msgid "4s"
 msgstr ""
 
-#: UsageConfig.py:48 skin_default.xml
+#: UsageConfig.py:66 skin_default.xml
 msgid "5"
 msgstr ""
 
@@ -2335,7 +2334,7 @@ msgstr ""
 msgid "5 minutes"
 msgstr ""
 
-#: UsageConfig.py:1183
+#: UsageConfig.py:1206
 msgid "50 MB/s"
 msgstr ""
 
@@ -2363,7 +2362,7 @@ msgstr ""
 msgid "512 Mb"
 msgstr ""
 
-#: UsageConfig.py:1098 UsageConfig.py:1099
+#: UsageConfig.py:1121 UsageConfig.py:1122
 msgid "5s"
 msgstr ""
 
@@ -2423,7 +2422,7 @@ msgstr ""
 msgid "720p50: 24p/50p/60p"
 msgstr ""
 
-#: UsageConfig.py:1072
+#: UsageConfig.py:1095
 msgid "8 GB"
 msgstr ""
 
@@ -2715,7 +2714,7 @@ msgstr ""
 msgid "AFP Setup"
 msgstr ""
 
-#: ScanSetup.py:1316 ServiceScan.py:127 ServiceScan.py:132
+#: ScanSetup.py:1334 ServiceScan.py:127 ServiceScan.py:132
 msgid "ATSC"
 msgstr ""
 
@@ -2978,7 +2977,7 @@ msgstr ""
 msgid "Add title"
 msgstr ""
 
-#: UsageConfig.py:1496 UsageConfig.py:1528
+#: UsageConfig.py:1519 UsageConfig.py:1551
 msgid "Add/Remove Timer"
 msgstr ""
 
@@ -3112,7 +3111,7 @@ msgstr ""
 
 #: ChannelSelection.py:1516 ChannelSelection.py:1666 CCcamInfo.py:944
 #: CCcamInfo.py:1451 CCcamInfo.py:1456 CCcamInfo.py:1504 CCcamInfo.py:1509
-#: OScamInfo.py:476 Satconfig.py:334 Satconfig.py:393 UsageConfig.py:1346
+#: OScamInfo.py:476 Satconfig.py:334 Satconfig.py:393 UsageConfig.py:1369
 #: CommonInterfaceAssignment/plugin.py:569
 msgid "All"
 msgstr ""
@@ -3193,11 +3192,11 @@ msgstr ""
 msgid "Almost there... "
 msgstr ""
 
-#: UsageConfig.py:495
+#: UsageConfig.py:514
 msgid "Alpha"
 msgstr ""
 
-#: UsageConfig.py:1414
+#: UsageConfig.py:1437
 msgid "Alphanumeric"
 msgstr ""
 
@@ -3310,7 +3309,7 @@ msgstr ""
 #: VirtualKeyBoard.py:450 VirtualKeyBoard.py:451 VirtualKeyBoard.py:452
 #: VirtualKeyBoard.py:453 VirtualKeyBoard.py:454 VirtualKeyBoard.py:455
 #: VirtualKeyBoard.py:456 VirtualKeyBoard.py:457 VirtualKeyBoard.py:458
-#: VirtualKeyBoard.py:459 VirtualKeyBoard.py:460 UsageConfig.py:1263
+#: VirtualKeyBoard.py:459 VirtualKeyBoard.py:460 UsageConfig.py:1286
 msgid "Arabic"
 msgstr ""
 
@@ -3470,15 +3469,15 @@ msgstr ""
 msgid "Arzt"
 msgstr ""
 
-#: UsageConfig.py:322 UsageConfig.py:324 UsageConfig.py:1066
+#: UsageConfig.py:341 UsageConfig.py:343 UsageConfig.py:1089
 msgid "Ask user"
 msgstr ""
 
-#: UsageConfig.py:318
+#: UsageConfig.py:337
 msgid "Ask user (with default as 'no')"
 msgstr ""
 
-#: UsageConfig.py:317
+#: UsageConfig.py:336
 msgid "Ask user (with default as 'yes')"
 msgstr ""
 
@@ -3534,7 +3533,7 @@ msgstr ""
 msgid "Attach a file"
 msgstr ""
 
-#: ButtonSetup.py:88 UsageConfig.py:353 skin_default.xml menu.xml
+#: ButtonSetup.py:88 UsageConfig.py:372 skin_default.xml menu.xml
 msgid "Audio"
 msgstr ""
 
@@ -3586,7 +3585,7 @@ msgstr ""
 msgid "Audio volume step size fast mode"
 msgstr ""
 
-#: UsageConfig.py:1011 UsageConfig.py:1012 CountryCodes.py:15 API.py:27
+#: UsageConfig.py:1034 UsageConfig.py:1035 CountryCodes.py:15 API.py:27
 msgid "Australia"
 msgstr ""
 
@@ -3606,13 +3605,13 @@ msgstr ""
 msgid "Authoring mode"
 msgstr ""
 
-#: Ci.py:84 ScanSetup.py:1138 ScanSetup.py:1146 ScanSetup.py:1154
-#: ScanSetup.py:1174 ScanSetup.py:1178 ScanSetup.py:1201 ScanSetup.py:1209
-#: ScanSetup.py:1232 ScanSetup.py:1253 ScanSetup.py:1264 ScanSetup.py:1270
-#: ScanSetup.py:1278 ScanSetup.py:1287 ScanSetup.py:1293 ScanSetup.py:1295
-#: ScanSetup.py:1305 ScanSetup.py:1307 ServiceScan.py:136 ServiceScan.py:149
+#: Ci.py:84 ScanSetup.py:1156 ScanSetup.py:1164 ScanSetup.py:1172
+#: ScanSetup.py:1192 ScanSetup.py:1196 ScanSetup.py:1219 ScanSetup.py:1227
+#: ScanSetup.py:1250 ScanSetup.py:1271 ScanSetup.py:1282 ScanSetup.py:1288
+#: ScanSetup.py:1296 ScanSetup.py:1305 ScanSetup.py:1311 ScanSetup.py:1313
+#: ScanSetup.py:1323 ScanSetup.py:1325 ServiceScan.py:136 ServiceScan.py:149
 #: AVSwitch.py:756 AVSwitch.py:764 AVSwitch.py:860 AVSwitch.py:888
-#: UsageConfig.py:984 NimManager.py:1794 Transponder.py:74 Transponder.py:114
+#: UsageConfig.py:1007 NimManager.py:1794 Transponder.py:74 Transponder.py:114
 #: Transponder.py:116 Transponder.py:131 Transponder.py:138 Transponder.py:143
 #: Transponder.py:161 Transponder.py:170 Transponder.py:182 Transponder.py:194
 #: Transponder.py:201 Transponder.py:210 Transponder.py:220 Transponder.py:227
@@ -3626,7 +3625,7 @@ msgstr ""
 msgid "Auto Deep Standby"
 msgstr ""
 
-#: UsageConfig.py:1011 UsageConfig.py:1012
+#: UsageConfig.py:1034 UsageConfig.py:1035
 msgid "Auto Detect"
 msgstr ""
 
@@ -3642,7 +3641,7 @@ msgstr ""
 msgid "Auto Standby"
 msgstr ""
 
-#: UsageConfig.py:1495 UsageConfig.py:1527
+#: UsageConfig.py:1518 UsageConfig.py:1550
 msgid "Auto Timer"
 msgstr ""
 
@@ -3686,7 +3685,7 @@ msgstr ""
 msgid "Automatic"
 msgstr ""
 
-#: ButtonSetup.py:238 ScanSetup.py:1893 QuickMenu.py:511 menu.xml
+#: ButtonSetup.py:238 ScanSetup.py:1911 QuickMenu.py:511 menu.xml
 msgid "Automatic Scan"
 msgstr ""
 
@@ -3702,7 +3701,7 @@ msgstr ""
 msgid "Automatic resolution label"
 msgstr ""
 
-#: ScanSetup.py:2049
+#: ScanSetup.py:2067
 msgid "Automatic scan"
 msgstr ""
 
@@ -3997,7 +3996,7 @@ msgstr ""
 msgid "Band"
 msgstr ""
 
-#: ServiceInfo.py:188 ServiceInfo.py:271 ScanSetup.py:881
+#: ServiceInfo.py:188 ServiceInfo.py:271 ScanSetup.py:899
 msgid "Bandwidth"
 msgstr ""
 
@@ -4025,7 +4024,7 @@ msgstr ""
 msgid "Basketball"
 msgstr ""
 
-#: UsageConfig.py:1264
+#: UsageConfig.py:1287
 msgid "Basque"
 msgstr ""
 
@@ -4034,7 +4033,7 @@ msgstr ""
 msgid "Begin time"
 msgstr ""
 
-#: UsageConfig.py:329
+#: UsageConfig.py:348
 msgid "Behave like stop-button"
 msgstr ""
 
@@ -4106,23 +4105,23 @@ msgstr ""
 msgid "Bitrate:"
 msgstr ""
 
-#: UsageConfig.py:171
+#: UsageConfig.py:189
 msgid "Black"
 msgstr ""
 
-#: UsageConfig.py:1196
+#: UsageConfig.py:1219
 msgid "Black screen"
 msgstr ""
 
-#: UsageConfig.py:1196
+#: UsageConfig.py:1219
 msgid "Black screen till locked"
 msgstr ""
 
-#: UsageConfig.py:505 UsageConfig.py:520
+#: UsageConfig.py:524 UsageConfig.py:539
 msgid "Blinking REC"
 msgstr ""
 
-#: UsageConfig.py:515
+#: UsageConfig.py:534
 msgid "Blinking REC Symbol"
 msgstr ""
 
@@ -4134,7 +4133,7 @@ msgstr ""
 msgid "Block noise reduction"
 msgstr ""
 
-#: ButtonSetup.py:26 MovieSelection.py:253 UsageConfig.py:171
+#: ButtonSetup.py:26 MovieSelection.py:253 UsageConfig.py:189
 msgid "Blue"
 msgstr ""
 
@@ -4191,8 +4190,8 @@ msgstr ""
 msgid "Boulevard"
 msgstr ""
 
-#: UsageConfig.py:460 UsageConfig.py:465 UsageConfig.py:1498
-#: UsageConfig.py:1532
+#: UsageConfig.py:479 UsageConfig.py:484 UsageConfig.py:1521
+#: UsageConfig.py:1555
 msgid "Bouquet List"
 msgstr ""
 
@@ -4252,7 +4251,7 @@ msgstr ""
 msgid "Bulgaria"
 msgstr ""
 
-#: UsageConfig.py:1265
+#: UsageConfig.py:1288
 msgid "Bulgarian"
 msgstr ""
 
@@ -4644,7 +4643,7 @@ msgstr ""
 msgid "Canada"
 msgstr ""
 
-#: About.py:930 InputDeviceSetup.py:138 InputDeviceSetup.py:436
+#: About.py:930 InputDeviceSetup.py:138 InputDeviceSetup.py:439
 #: NetworkSetup.py:261 NetworkSetup.py:345 NetworkSetup.py:471
 #: NetworkSetup.py:3382 NetworkSetup.py:3850 TimerEntry.py:47
 #: LanguageSelection.py:53 SoftwareUpdate.py:322 SoftwareUpdate.py:385
@@ -4859,7 +4858,7 @@ msgid ""
 "Restart your %s %s now?"
 msgstr ""
 
-#: TimerEntry.py:275 ServiceInfo.py:269 ScanSetup.py:874 ScanSetup.py:1363
+#: TimerEntry.py:275 ServiceInfo.py:269 ScanSetup.py:892 ScanSetup.py:1381
 #: OScamInfo.py:1116 Satconfig.py:529 Satconfig.py:546 Satconfig.py:560
 #: ClientsStreaming.py:64 ProjectSettings.py:113 Title.py:21
 #: TitleProperties.py:89 setup.xml
@@ -4870,22 +4869,22 @@ msgstr ""
 msgid "Channel \t\t\tVolume +"
 msgstr ""
 
-#: UsageConfig.py:1467 UsageConfig.py:1525
+#: UsageConfig.py:1490 UsageConfig.py:1548
 msgid "Channel 1"
 msgstr ""
 
-#: UsageConfig.py:1467 UsageConfig.py:1525
+#: UsageConfig.py:1490 UsageConfig.py:1548
 msgid "Channel 1 with Primetime"
 msgstr ""
 
-#: ButtonSetup.py:245 UsageConfig.py:1458 UsageConfig.py:1459
-#: UsageConfig.py:1512 UsageConfig.py:1513 UsageConfig.py:1514
-#: UsageConfig.py:1515
+#: ButtonSetup.py:245 UsageConfig.py:1481 UsageConfig.py:1482
+#: UsageConfig.py:1535 UsageConfig.py:1536 UsageConfig.py:1537
+#: UsageConfig.py:1538
 msgid "Channel Info"
 msgstr ""
 
-#: UsageConfig.py:459 UsageConfig.py:464 UsageConfig.py:469 UsageConfig.py:473
-#: UsageConfig.py:482
+#: UsageConfig.py:478 UsageConfig.py:483 UsageConfig.py:488 UsageConfig.py:492
+#: UsageConfig.py:501
 msgid "Channel List"
 msgstr ""
 
@@ -4925,7 +4924,7 @@ msgstr ""
 msgid "Channel:"
 msgstr ""
 
-#: UsageConfig.py:516
+#: UsageConfig.py:535
 msgid "Channelname"
 msgstr ""
 
@@ -5154,7 +5153,7 @@ msgstr ""
 msgid "Clear"
 msgstr ""
 
-#: ScanSetup.py:915 ScanSetup.py:1988
+#: ScanSetup.py:933 ScanSetup.py:2006
 msgid "Clear before scan"
 msgstr ""
 
@@ -5194,7 +5193,7 @@ msgstr ""
 
 #: About.py:851 InputDeviceSetup.py:23 NetworkSetup.py:58 NetworkSetup.py:857
 #: NetworkSetup.py:1252 NetworkSetup.py:1510 NetworkSetup.py:1618
-#: TaskList.py:47 SoftwareUpdate.py:38 ScanSetup.py:625 Console.py:78
+#: TaskList.py:47 SoftwareUpdate.py:38 ScanSetup.py:643 Console.py:78
 #: StreamingClientsInfo.py:20 OScamInfo.py:605 Satconfig.py:813
 #: Satconfig.py:985 CronTimer.py:279 SkinSelector.py:36 SoftcamPanel.py:75
 #: ScriptRunner.py:46 TitleList.py:171 PicturePlayer/ui.py:59
@@ -5227,11 +5226,11 @@ msgstr ""
 msgid "Cocos (Keeling) Islands"
 msgstr ""
 
-#: ServiceInfo.py:273 ScanSetup.py:882
+#: ServiceInfo.py:273 ScanSetup.py:900
 msgid "Code rate HP"
 msgstr ""
 
-#: ServiceInfo.py:272 ScanSetup.py:883
+#: ServiceInfo.py:272 ScanSetup.py:901
 msgid "Code rate LP"
 msgstr ""
 
@@ -5271,7 +5270,7 @@ msgstr ""
 msgid "Color space"
 msgstr ""
 
-#: ScanSetup.py:1184 Transponder.py:122 PositionerSetup/plugin.py:1188
+#: ScanSetup.py:1202 Transponder.py:122 PositionerSetup/plugin.py:1188
 msgid "Combo"
 msgstr ""
 
@@ -5322,7 +5321,7 @@ msgstr ""
 msgid "Compensate for overscan"
 msgstr ""
 
-#: ScanSetup.py:1358 ScanSetup.py:1361 ScanSetup.py:1362
+#: ScanSetup.py:1376 ScanSetup.py:1379 ScanSetup.py:1380
 #: DiseqcTester/plugin.py:600
 msgid "Complete"
 msgstr ""
@@ -5538,7 +5537,7 @@ msgstr ""
 msgid "Continues"
 msgstr ""
 
-#: UsageConfig.py:325
+#: UsageConfig.py:344
 msgid "Continues play (loop)"
 msgstr ""
 
@@ -5776,7 +5775,7 @@ msgstr ""
 msgid "Croatia"
 msgstr ""
 
-#: UsageConfig.py:1266
+#: UsageConfig.py:1289
 msgid "Croatian"
 msgstr ""
 
@@ -5898,7 +5897,7 @@ msgstr ""
 msgid "Cyprus"
 msgstr ""
 
-#: VirtualKeyBoard.py:461 UsageConfig.py:1269
+#: VirtualKeyBoard.py:461 UsageConfig.py:1292
 msgid "Czech"
 msgstr ""
 
@@ -5956,31 +5955,31 @@ msgstr ""
 msgid "DVB CI Delay"
 msgstr ""
 
-#: ScanSetup.py:1223 TimerList.py:207
+#: ScanSetup.py:1241 TimerList.py:207
 msgid "DVB-C"
 msgstr ""
 
-#: ScanSetup.py:1317 ServiceScan.py:133
+#: ScanSetup.py:1335 ServiceScan.py:133
 msgid "DVB-C ANNEX B"
 msgstr ""
 
-#: ScanSetup.py:1224
+#: ScanSetup.py:1242
 msgid "DVB-C ANNEX C"
 msgstr ""
 
-#: ScanSetup.py:1132 PositionerSetup/plugin.py:1139
+#: ScanSetup.py:1150 PositionerSetup/plugin.py:1139
 msgid "DVB-S"
 msgstr ""
 
-#: ScanSetup.py:1133 PositionerSetup/plugin.py:1140
+#: ScanSetup.py:1151 PositionerSetup/plugin.py:1140
 msgid "DVB-S2"
 msgstr ""
 
-#: ScanSetup.py:1296 TimerList.py:205
+#: ScanSetup.py:1314 TimerList.py:205
 msgid "DVB-T"
 msgstr ""
 
-#: ScanSetup.py:1297
+#: ScanSetup.py:1315
 msgid "DVB-T2"
 msgstr ""
 
@@ -6016,7 +6015,7 @@ msgstr ""
 msgid "Dance"
 msgstr ""
 
-#: UsageConfig.py:1270
+#: UsageConfig.py:1293
 msgid "Danish"
 msgstr ""
 
@@ -6037,187 +6036,187 @@ msgstr ""
 msgid "Dating"
 msgstr ""
 
-#: UsageConfig.py:792
+#: UsageConfig.py:815
 msgid "Day D Mon"
 msgstr ""
 
-#: UsageConfig.py:794
+#: UsageConfig.py:817
 msgid "Day D-Mon"
 msgstr ""
 
-#: UsageConfig.py:798
+#: UsageConfig.py:821
 msgid "Day D/M"
 msgstr ""
 
-#: UsageConfig.py:796
+#: UsageConfig.py:819
 msgid "Day D/MM"
 msgstr ""
 
-#: UsageConfig.py:791
+#: UsageConfig.py:814
 msgid "Day DD Mon"
 msgstr ""
 
-#: UsageConfig.py:793
+#: UsageConfig.py:816
 msgid "Day DD-Mon"
 msgstr ""
 
-#: UsageConfig.py:797
+#: UsageConfig.py:820
 msgid "Day DD/M"
 msgstr ""
 
-#: UsageConfig.py:795
+#: UsageConfig.py:818
 msgid "Day DD/MM"
 msgstr ""
 
-#: UsageConfig.py:806
+#: UsageConfig.py:829
 msgid "Day M/D"
 msgstr ""
 
-#: UsageConfig.py:805
+#: UsageConfig.py:828
 msgid "Day M/DD"
 msgstr ""
 
-#: UsageConfig.py:804
+#: UsageConfig.py:827
 msgid "Day MM/D"
 msgstr ""
 
-#: UsageConfig.py:803
+#: UsageConfig.py:826
 msgid "Day MM/DD"
 msgstr ""
 
-#: UsageConfig.py:800
+#: UsageConfig.py:823
 msgid "Day Mon D"
 msgstr ""
 
-#: UsageConfig.py:799
+#: UsageConfig.py:822
 msgid "Day Mon DD"
 msgstr ""
 
-#: UsageConfig.py:802
+#: UsageConfig.py:825
 msgid "Day Mon-D"
 msgstr ""
 
-#: UsageConfig.py:801
+#: UsageConfig.py:824
 msgid "Day Mon-DD"
 msgstr ""
 
-#: UsageConfig.py:615
+#: UsageConfig.py:634
 msgid "Dayname D Month Year"
 msgstr ""
 
-#: UsageConfig.py:618
+#: UsageConfig.py:637
 msgid "Dayname D-Month-Year"
 msgstr ""
 
-#: UsageConfig.py:616
+#: UsageConfig.py:635
 msgid "Dayname D. Month Year"
 msgstr ""
 
-#: UsageConfig.py:626
+#: UsageConfig.py:645
 msgid "Dayname D.M.Year"
 msgstr ""
 
-#: UsageConfig.py:622
+#: UsageConfig.py:641
 msgid "Dayname D.MM.Year"
 msgstr ""
 
-#: UsageConfig.py:625
+#: UsageConfig.py:644
 msgid "Dayname D/M/Year"
 msgstr ""
 
-#: UsageConfig.py:621
+#: UsageConfig.py:640
 msgid "Dayname D/MM/Year"
 msgstr ""
 
-#: UsageConfig.py:613
+#: UsageConfig.py:632
 msgid "Dayname DD Month Year"
 msgstr ""
 
-#: UsageConfig.py:617
+#: UsageConfig.py:636
 msgid "Dayname DD-Month-Year"
 msgstr ""
 
-#: UsageConfig.py:614
+#: UsageConfig.py:633
 msgid "Dayname DD. Month Year"
 msgstr ""
 
-#: UsageConfig.py:624
+#: UsageConfig.py:643
 msgid "Dayname DD.M.Year"
 msgstr ""
 
-#: UsageConfig.py:620
+#: UsageConfig.py:639
 msgid "Dayname DD.MM.Year"
 msgstr ""
 
-#: UsageConfig.py:623
+#: UsageConfig.py:642
 msgid "Dayname DD/M/Year"
 msgstr ""
 
-#: UsageConfig.py:619
+#: UsageConfig.py:638
 msgid "Dayname DD/MM/Year"
 msgstr ""
 
-#: UsageConfig.py:634
+#: UsageConfig.py:653
 msgid "Dayname M/D/Year"
 msgstr ""
 
-#: UsageConfig.py:632
+#: UsageConfig.py:651
 msgid "Dayname M/DD/Year"
 msgstr ""
 
-#: UsageConfig.py:633
+#: UsageConfig.py:652
 msgid "Dayname MM/D/Year"
 msgstr ""
 
-#: UsageConfig.py:631
+#: UsageConfig.py:650
 msgid "Dayname MM/DD/Year"
 msgstr ""
 
-#: UsageConfig.py:628
+#: UsageConfig.py:647
 msgid "Dayname Month D Year"
 msgstr ""
 
-#: UsageConfig.py:627
+#: UsageConfig.py:646
 msgid "Dayname Month DD Year"
 msgstr ""
 
-#: UsageConfig.py:630
+#: UsageConfig.py:649
 msgid "Dayname Month-D-Year"
 msgstr ""
 
-#: UsageConfig.py:629
+#: UsageConfig.py:648
 msgid "Dayname Month-DD-Year"
 msgstr ""
 
-#: UsageConfig.py:636
+#: UsageConfig.py:655
 msgid "Dayname Year Month D"
 msgstr ""
 
-#: UsageConfig.py:635
+#: UsageConfig.py:654
 msgid "Dayname Year Month DD"
 msgstr ""
 
-#: UsageConfig.py:638
+#: UsageConfig.py:657
 msgid "Dayname Year-Month-D"
 msgstr ""
 
-#: UsageConfig.py:637
+#: UsageConfig.py:656
 msgid "Dayname Year-Month-DD"
 msgstr ""
 
-#: UsageConfig.py:642
+#: UsageConfig.py:661
 msgid "Dayname Year/M/D"
 msgstr ""
 
-#: UsageConfig.py:641
+#: UsageConfig.py:660
 msgid "Dayname Year/M/DD"
 msgstr ""
 
-#: UsageConfig.py:640
+#: UsageConfig.py:659
 msgid "Dayname Year/MM/D"
 msgstr ""
 
-#: UsageConfig.py:639
+#: UsageConfig.py:658
 msgid "Dayname Year/MM/DD"
 msgstr ""
 
@@ -6229,7 +6228,7 @@ msgstr ""
 msgid "Debug Logs"
 msgstr ""
 
-#: UsageConfig.py:336 PowerTimerList.py:21 PowerTimerList.py:33 menu.xml
+#: UsageConfig.py:355 PowerTimerList.py:21 PowerTimerList.py:33 menu.xml
 msgid "Deep Standby"
 msgstr ""
 
@@ -6238,7 +6237,7 @@ msgid "Deep standby"
 msgstr ""
 
 #: InputDeviceSetup.py:262 InputDeviceSetup.py:344 NetworkSetup.py:158
-#: UsageConfig.py:210 UsageConfig.py:216 AtileHD/plugin.py:249
+#: UsageConfig.py:228 UsageConfig.py:234 AtileHD/plugin.py:249
 #: AnimationSetup/plugin.py:70 VideoEnhancement/plugin.py:47
 msgid "Default"
 msgstr ""
@@ -6614,7 +6613,7 @@ msgid "Directory long"
 msgstr ""
 
 #: TimerEdit.py:165 TimerEdit.py:612 TimerEdit.py:632 PowerTimerEdit.py:140
-#: UsageConfig.py:79 UsageConfig.py:1187 config.py:400
+#: UsageConfig.py:97 UsageConfig.py:1210 config.py:400
 #: AnimationSetup/plugin.py:39
 msgid "Disable"
 msgstr ""
@@ -6654,10 +6653,10 @@ msgstr ""
 #: NetworkSetup.py:2331 NetworkSetup.py:2395 NetworkSetup.py:2515
 #: NetworkSetup.py:2570 NetworkSetup.py:2614 NetworkSetup.py:2649
 #: NetworkSetup.py:2987 NetworkSetup.py:3482 NetworkSetup.py:4089 Ci.py:709
-#: ScanSetup.py:1188 CronTimer.py:26 AVSwitch.py:504 UsageConfig.py:171
-#: UsageConfig.py:243 UsageConfig.py:338 UsageConfig.py:363 UsageConfig.py:388
-#: UsageConfig.py:390 UsageConfig.py:1057 UsageConfig.py:1071
-#: UsageConfig.py:1418 UsageConfig.py:1420 config.py:400 HdmiCec.py:21
+#: ScanSetup.py:1206 CronTimer.py:26 AVSwitch.py:504 UsageConfig.py:189
+#: UsageConfig.py:262 UsageConfig.py:357 UsageConfig.py:382 UsageConfig.py:407
+#: UsageConfig.py:409 UsageConfig.py:1080 UsageConfig.py:1094
+#: UsageConfig.py:1441 UsageConfig.py:1443 config.py:400 HdmiCec.py:21
 #: HdmiCec.py:29 HdmiCec.py:48 HdmiCec.py:52 HdmiCec.py:75
 #: SABnzbdSetup/plugin.py:37 SABnzbdSetup/plugin.py:134
 #: WirelessLan/plugin.py:144 VideoEnhancement.py:329 VideoEnhancement.py:346
@@ -6724,7 +6723,7 @@ msgstr ""
 msgid "Do not center DVB subs on this service"
 msgstr ""
 
-#: UsageConfig.py:236
+#: UsageConfig.py:255
 msgid "Do not change"
 msgstr ""
 
@@ -6982,7 +6981,7 @@ msgstr ""
 msgid "Don't ask again!"
 msgstr ""
 
-#: UsageConfig.py:1066
+#: UsageConfig.py:1089
 msgid "Don't save"
 msgstr ""
 
@@ -7103,7 +7102,7 @@ msgstr ""
 msgid "Drogen"
 msgstr ""
 
-#: VirtualKeyBoard.py:462 UsageConfig.py:1271
+#: VirtualKeyBoard.py:462 UsageConfig.py:1294
 msgid "Dutch"
 msgstr ""
 
@@ -7191,7 +7190,7 @@ msgid ""
 "Exit key : Finish channel edit"
 msgstr ""
 
-#: UsageConfig.py:1502 UsageConfig.py:1538
+#: UsageConfig.py:1525 UsageConfig.py:1561
 msgid "EPG search"
 msgstr ""
 
@@ -7313,11 +7312,11 @@ msgstr ""
 msgid "El Salvador"
 msgstr ""
 
-#: UsageConfig.py:543 UsageConfig.py:547
+#: UsageConfig.py:562 UsageConfig.py:566
 msgid "Elapsed"
 msgstr ""
 
-#: UsageConfig.py:543 UsageConfig.py:547
+#: UsageConfig.py:562 UsageConfig.py:566
 msgid "Elapsed & Remaining"
 msgstr ""
 
@@ -7329,7 +7328,7 @@ msgstr ""
 msgid "Email"
 msgstr ""
 
-#: MultiBootSelector.py:102 Multiboot.py:190 ImageBackup.py:89
+#: MultiBootSelector.py:102 Multiboot.py:193 ImageBackup.py:89
 #: Multibootmgr.py:82
 msgid "Empty slot"
 msgstr ""
@@ -7439,7 +7438,7 @@ msgstr ""
 
 #: About.py:768 NetworkSetup.py:1826 NetworkSetup.py:1971 NetworkSetup.py:2051
 #: NetworkSetup.py:2191 NetworkSetup.py:2335 NetworkSetup.py:2518
-#: NetworkSetup.py:2618 NetworkSetup.py:4204 ScanSetup.py:1188
+#: NetworkSetup.py:2618 NetworkSetup.py:4204 ScanSetup.py:1206
 #: Satconfig.py:1067 Satconfig.py:1123 Satconfig.py:1129 Satconfig.py:1135
 #: config.py:399 SABnzbdSetup/plugin.py:138 WirelessLan/plugin.py:148
 #: HdmiCEC/plugin.py:69 VideoEnhancement.py:329 VideoEnhancement.py:346
@@ -7466,7 +7465,7 @@ msgstr ""
 msgid "Encryption:"
 msgstr ""
 
-#: ButtonSetup.py:84 UsageConfig.py:356
+#: ButtonSetup.py:84 UsageConfig.py:375
 msgid "End"
 msgstr ""
 
@@ -7484,7 +7483,7 @@ msgid "Energie"
 msgstr ""
 
 #: VirtualKeyBoard.py:463 VirtualKeyBoard.py:464 VirtualKeyBoard.py:465
-#: VirtualKeyBoard.py:466 VirtualKeyBoard.py:916 UsageConfig.py:1272
+#: VirtualKeyBoard.py:466 VirtualKeyBoard.py:916 UsageConfig.py:1295
 msgid "English"
 msgstr ""
 
@@ -7765,7 +7764,7 @@ msgstr ""
 msgid "Estonia"
 msgstr ""
 
-#: VirtualKeyBoard.py:467 UsageConfig.py:1273
+#: VirtualKeyBoard.py:467 UsageConfig.py:1296
 msgid "Estonian"
 msgstr ""
 
@@ -7797,15 +7796,15 @@ msgstr ""
 msgid "Event"
 msgstr ""
 
-#: InfoBarGenerics.py:1817 UsageConfig.py:161
+#: InfoBarGenerics.py:1817 UsageConfig.py:179
 msgid "Event Info"
 msgstr ""
 
-#: UsageConfig.py:79
+#: UsageConfig.py:97
 msgid "Eventname only"
 msgstr ""
 
-#: EventView.py:354 EventView.py:408 UsageConfig.py:114
+#: EventView.py:354 EventView.py:408 UsageConfig.py:132
 msgid "Eventview"
 msgstr ""
 
@@ -7832,7 +7831,7 @@ msgid ""
 "IceTV's smartphone and tablet apps can be downloaded by scanning the code above."
 msgstr ""
 
-#: UsageConfig.py:1189
+#: UsageConfig.py:1212
 msgid "Everywhere"
 msgstr ""
 
@@ -7844,11 +7843,11 @@ msgstr ""
 msgid "Exceeds dual layer medium!"
 msgstr ""
 
-#: UsageConfig.py:338
+#: UsageConfig.py:357
 msgid "Execute after current event"
 msgstr ""
 
-#: UsageConfig.py:342
+#: UsageConfig.py:361
 msgid "Execute in "
 msgstr ""
 
@@ -7944,15 +7943,15 @@ msgstr ""
 msgid "Expand"
 msgstr ""
 
-#: UsageConfig.py:387 UsageConfig.py:388
+#: UsageConfig.py:406 UsageConfig.py:407
 msgid "Experimental mode"
 msgstr ""
 
-#: UsageConfig.py:334
+#: UsageConfig.py:353
 msgid "Expert"
 msgstr ""
 
-#: UsageConfig.py:176 UsageConfig.py:387 UsageConfig.py:388
+#: UsageConfig.py:194 UsageConfig.py:406 UsageConfig.py:407
 msgid "Expert mode"
 msgstr ""
 
@@ -8004,7 +8003,7 @@ msgstr ""
 msgid "Extensions management"
 msgstr ""
 
-#: UsageConfig.py:30
+#: UsageConfig.py:48
 msgid "Extensions/QuickMenu"
 msgstr ""
 
@@ -8073,8 +8072,8 @@ msgstr ""
 msgid "FCC 1953"
 msgstr ""
 
-#: ServiceInfo.py:198 ServiceInfo.py:248 ServiceInfo.py:263 ScanSetup.py:800
-#: ScanSetup.py:802 ScanSetup.py:857 PositionerSetup/plugin.py:1216
+#: ServiceInfo.py:198 ServiceInfo.py:248 ServiceInfo.py:263 ScanSetup.py:818
+#: ScanSetup.py:820 ScanSetup.py:875 PositionerSetup/plugin.py:1216
 #: PositionerSetup/plugin.py:1219
 msgid "FEC"
 msgstr ""
@@ -8177,7 +8176,7 @@ msgstr ""
 msgid "Fastforward"
 msgstr ""
 
-#: ButtonSetup.py:61 UsageConfig.py:361
+#: ButtonSetup.py:61 UsageConfig.py:380
 msgid "Favorites"
 msgstr ""
 
@@ -8358,7 +8357,7 @@ msgstr ""
 msgid "Finland"
 msgstr ""
 
-#: VirtualKeyBoard.py:468 UsageConfig.py:1274
+#: VirtualKeyBoard.py:468 UsageConfig.py:1297
 msgid "Finnish"
 msgstr ""
 
@@ -8370,11 +8369,11 @@ msgstr ""
 msgid "Fishing"
 msgstr ""
 
-#: UsageConfig.py:1239
+#: UsageConfig.py:1262
 msgid "Fixed"
 msgstr ""
 
-#: UsageConfig.py:176
+#: UsageConfig.py:194
 msgid "Fixed X11 font (SD)"
 msgstr ""
 
@@ -8402,7 +8401,7 @@ msgstr ""
 msgid "Flash on the fly your your Receiver software."
 msgstr ""
 
-#: UsageConfig.py:46
+#: UsageConfig.py:64
 msgid "Flashing"
 msgstr ""
 
@@ -8531,7 +8530,7 @@ msgid "FreeSpace"
 msgstr ""
 
 #: VirtualKeyBoard.py:469 VirtualKeyBoard.py:470 VirtualKeyBoard.py:471
-#: UsageConfig.py:1275
+#: UsageConfig.py:1298
 msgid "French"
 msgstr ""
 
@@ -8548,8 +8547,8 @@ msgid "French Southern Territories"
 msgstr ""
 
 #: ServiceInfo.py:186 ServiceInfo.py:244 ServiceInfo.py:260 ServiceInfo.py:268
-#: ServiceInfo.py:283 ScanSetup.py:795 ScanSetup.py:853 ScanSetup.py:879
-#: ScanSetup.py:905 ScanSetup.py:1363 Satconfig.py:531 Satconfig.py:549
+#: ServiceInfo.py:283 ScanSetup.py:813 ScanSetup.py:871 ScanSetup.py:897
+#: ScanSetup.py:923 ScanSetup.py:1381 Satconfig.py:531 Satconfig.py:549
 #: Satconfig.py:563 CableScan/plugin.py:150 PositionerSetup/plugin.py:1212
 msgid "Frequency"
 msgstr ""
@@ -8617,7 +8616,7 @@ msgstr ""
 msgid "Full back-up on %s"
 msgstr ""
 
-#: UsageConfig.py:1226
+#: UsageConfig.py:1249
 msgid "Full transparency"
 msgstr ""
 
@@ -8629,7 +8628,7 @@ msgstr ""
 msgid "Fullbackup Images"
 msgstr ""
 
-#: UsageConfig.py:1418 UsageConfig.py:1420
+#: UsageConfig.py:1441 UsageConfig.py:1443
 msgid "Fullscreen"
 msgstr ""
 
@@ -8724,7 +8723,7 @@ msgstr ""
 msgid "General PCM delay"
 msgstr ""
 
-#: UsageConfig.py:1011 UsageConfig.py:1012
+#: UsageConfig.py:1034 UsageConfig.py:1035
 msgid "Generic"
 msgstr ""
 
@@ -8736,7 +8735,7 @@ msgstr ""
 msgid "Georgia"
 msgstr ""
 
-#: VirtualKeyBoard.py:472 VirtualKeyBoard.py:473 UsageConfig.py:1276
+#: VirtualKeyBoard.py:472 VirtualKeyBoard.py:473 UsageConfig.py:1299
 msgid "German"
 msgstr ""
 
@@ -8840,7 +8839,7 @@ msgstr ""
 msgid "Go up the list"
 msgstr ""
 
-#: ScanSetup.py:1183 Transponder.py:121 PositionerSetup/plugin.py:1187
+#: ScanSetup.py:1201 Transponder.py:121 PositionerSetup/plugin.py:1187
 msgid "Gold"
 msgstr ""
 
@@ -8866,12 +8865,12 @@ msgstr ""
 msgid "Goto Date/Time"
 msgstr ""
 
-#: UsageConfig.py:1501 UsageConfig.py:1535
+#: UsageConfig.py:1524 UsageConfig.py:1558
 msgid "Goto Date/Timer"
 msgstr ""
 
 #: EpgSelection.py:521 EpgSelection.py:2291 EpgSelection.py:2316
-#: EpgSelection.py:2341 EpgSelection.py:2366 UsageConfig.py:1536
+#: EpgSelection.py:2341 EpgSelection.py:2366 UsageConfig.py:1559
 msgid "Goto Primetime"
 msgstr ""
 
@@ -8953,7 +8952,7 @@ msgstr ""
 msgid "Graphical EPG"
 msgstr ""
 
-#: UsageConfig.py:1455
+#: UsageConfig.py:1478
 msgid "Graphics"
 msgstr ""
 
@@ -8961,7 +8960,7 @@ msgstr ""
 msgid "Greece"
 msgstr ""
 
-#: VirtualKeyBoard.py:474 UsageConfig.py:1277
+#: VirtualKeyBoard.py:474 UsageConfig.py:1300
 msgid "Greek"
 msgstr ""
 
@@ -8981,7 +8980,7 @@ msgstr ""
 msgid "Grenada"
 msgstr ""
 
-#: UsageConfig.py:171
+#: UsageConfig.py:189
 msgid "Grey"
 msgstr ""
 
@@ -9005,7 +9004,7 @@ msgstr ""
 msgid "Guam"
 msgstr ""
 
-#: ServiceInfo.py:203 ServiceInfo.py:276 ScanSetup.py:886
+#: ServiceInfo.py:203 ServiceInfo.py:276 ScanSetup.py:904
 msgid "Guard interval"
 msgstr ""
 
@@ -9033,11 +9032,11 @@ msgstr ""
 msgid "H: = Hourly / D: = Daily / W: = Weekly / M: = Monthly"
 msgstr ""
 
-#: UsageConfig.py:869 UsageConfig.py:881
+#: UsageConfig.py:892 UsageConfig.py:904
 msgid "H:mm"
 msgstr ""
 
-#: UsageConfig.py:727 UsageConfig.py:738
+#: UsageConfig.py:750 UsageConfig.py:761
 msgid "H:mm:ss"
 msgstr ""
 
@@ -9062,7 +9061,7 @@ msgid "HD2400"
 msgstr ""
 
 #: InputDeviceSetup.py:366
-msgid "HD60"
+msgid "HD60/Multibox/Multiboxse"
 msgstr ""
 
 #: AudioSelection.py:228 AudioSelection.py:240 AVSwitch.py:970 AVSwitch.py:1013
@@ -9101,11 +9100,11 @@ msgstr ""
 msgid "HELP"
 msgstr ""
 
-#: UsageConfig.py:868 UsageConfig.py:880
+#: UsageConfig.py:891 UsageConfig.py:903
 msgid "HH:mm"
 msgstr ""
 
-#: UsageConfig.py:726 UsageConfig.py:737
+#: UsageConfig.py:749 UsageConfig.py:760
 msgid "HH:mm:ss"
 msgstr ""
 
@@ -9145,7 +9144,7 @@ msgstr ""
 msgid "Heard Island and McDonald Islands"
 msgstr ""
 
-#: UsageConfig.py:1278
+#: UsageConfig.py:1301
 msgid "Hebrew"
 msgstr ""
 
@@ -9161,7 +9160,7 @@ msgstr ""
 msgid "Heimwerker"
 msgstr ""
 
-#: HelpMenu.py:10 UsageConfig.py:357
+#: HelpMenu.py:10 UsageConfig.py:376
 msgid "Help"
 msgstr ""
 
@@ -9189,7 +9188,7 @@ msgstr ""
 msgid "Here you can specify additional files that should be added to the backup file."
 msgstr ""
 
-#: UsageConfig.py:790 UsageConfig.py:867 UsageConfig.py:879
+#: UsageConfig.py:813 UsageConfig.py:890 UsageConfig.py:902
 msgid "Hidden / Blank"
 msgstr ""
 
@@ -9217,7 +9216,7 @@ msgstr ""
 msgid "Hide player"
 msgstr ""
 
-#: ServiceInfo.py:277 ScanSetup.py:887
+#: ServiceInfo.py:277 ScanSetup.py:905
 msgid "Hierarchy info"
 msgstr ""
 
@@ -9265,11 +9264,11 @@ msgstr ""
 msgid "Hockey"
 msgstr ""
 
-#: UsageConfig.py:1196
+#: UsageConfig.py:1219
 msgid "Hold screen"
 msgstr ""
 
-#: UsageConfig.py:1196
+#: UsageConfig.py:1219
 msgid "Hold till locked"
 msgstr ""
 
@@ -9277,7 +9276,7 @@ msgstr ""
 msgid "Holy See"
 msgstr ""
 
-#: ButtonSetup.py:82 MovieSelection.py:683 UsageConfig.py:355
+#: ButtonSetup.py:82 MovieSelection.py:683 UsageConfig.py:374
 msgid "Home"
 msgstr ""
 
@@ -9313,11 +9312,11 @@ msgstr ""
 msgid "Horizontal"
 msgstr ""
 
-#: UsageConfig.py:444
+#: UsageConfig.py:463
 msgid "Horizontal icons"
 msgstr ""
 
-#: UsageConfig.py:444
+#: UsageConfig.py:463
 msgid "Horizontal menu"
 msgstr ""
 
@@ -9357,7 +9356,7 @@ msgstr ""
 msgid "Hotkey Setup for"
 msgstr ""
 
-#: UsageConfig.py:26
+#: UsageConfig.py:44
 msgid "Hour"
 msgstr ""
 
@@ -9365,11 +9364,11 @@ msgstr ""
 msgid "Hourly"
 msgstr ""
 
-#: UsageConfig.py:541 UsageConfig.py:542 UsageConfig.py:545 UsageConfig.py:546
+#: UsageConfig.py:560 UsageConfig.py:561 UsageConfig.py:564 UsageConfig.py:565
 msgid "Hours Mins"
 msgstr ""
 
-#: UsageConfig.py:541 UsageConfig.py:542 UsageConfig.py:545 UsageConfig.py:546
+#: UsageConfig.py:560 UsageConfig.py:561 UsageConfig.py:564 UsageConfig.py:565
 msgid "Hours Mins Secs"
 msgstr ""
 
@@ -9381,7 +9380,7 @@ msgstr ""
 msgid "Hue"
 msgstr ""
 
-#: VirtualKeyBoard.py:475 UsageConfig.py:1279
+#: VirtualKeyBoard.py:475 UsageConfig.py:1302
 msgid "Hungarian"
 msgstr ""
 
@@ -9390,10 +9389,10 @@ msgid "Hungary"
 msgstr ""
 
 #: InputDeviceSetup.py:367
-msgid "I55SE/H7/H9/H9SE/H9COMBO/H9COMBOSE/H10 new Model"
+msgid "I55SE/H7/H9/H9SE/H9COMBO/H9COMBOSE/H10/H11 new Model"
 msgstr ""
 
-#: UsageConfig.py:1497 UsageConfig.py:1531
+#: UsageConfig.py:1520 UsageConfig.py:1554
 msgid "IMDB search"
 msgstr ""
 
@@ -9517,7 +9516,7 @@ msgstr ""
 msgid "Iceland"
 msgstr ""
 
-#: UsageConfig.py:536
+#: UsageConfig.py:555
 msgid "Icons"
 msgstr ""
 
@@ -9632,7 +9631,7 @@ msgstr ""
 msgid "ImageWizard"
 msgstr ""
 
-#: UsageConfig.py:345
+#: UsageConfig.py:364
 msgid "Immediate shutdown"
 msgstr ""
 
@@ -9697,7 +9696,7 @@ msgstr ""
 msgid "Indonesia"
 msgstr ""
 
-#: UsageConfig.py:1280
+#: UsageConfig.py:1303
 msgid "Indonesian"
 msgstr ""
 
@@ -9706,7 +9705,7 @@ msgstr ""
 msgid "Info"
 msgstr ""
 
-#: ButtonSetup.py:28 UsageConfig.py:358
+#: ButtonSetup.py:28 UsageConfig.py:377
 msgid "Info (EPG)"
 msgstr ""
 
@@ -9719,7 +9718,7 @@ msgstr ""
 msgid "Info Panel"
 msgstr ""
 
-#: UsageConfig.py:472 UsageConfig.py:481 skin_default.xml
+#: UsageConfig.py:491 UsageConfig.py:500 skin_default.xml
 msgid "InfoBar"
 msgstr ""
 
@@ -9795,7 +9794,7 @@ msgstr ""
 msgid "Input "
 msgstr ""
 
-#: ServiceInfo.py:193 ServiceInfo.py:251 ScanSetup.py:811
+#: ServiceInfo.py:193 ServiceInfo.py:251 ScanSetup.py:829
 #: PositionerSetup/plugin.py:1226
 msgid "Input Stream ID"
 msgstr ""
@@ -9952,7 +9951,7 @@ msgstr ""
 msgid "Interface: "
 msgstr ""
 
-#: UsageConfig.py:333
+#: UsageConfig.py:352
 msgid "Intermediate"
 msgstr ""
 
@@ -9960,7 +9959,7 @@ msgstr ""
 msgid "Internal"
 msgstr ""
 
-#: UsageConfig.py:990
+#: UsageConfig.py:1013
 msgid "Internal Flash"
 msgstr ""
 
@@ -9974,7 +9973,7 @@ msgstr ""
 msgid "Internal flash"
 msgstr ""
 
-#: UsageConfig.py:1188
+#: UsageConfig.py:1211
 msgid "Internal hdd only"
 msgstr ""
 
@@ -9990,7 +9989,7 @@ msgstr ""
 msgid "Interval between keys when repeating:"
 msgstr ""
 
-#: UsageConfig.py:703 UsageConfig.py:761 UsageConfig.py:855
+#: UsageConfig.py:726 UsageConfig.py:784 UsageConfig.py:878
 msgid "Invalid"
 msgstr ""
 
@@ -10003,13 +10002,13 @@ msgstr ""
 msgid "Invalid location"
 msgstr ""
 
-#: ScanSetup.py:1751 ScanSetup.py:1825
+#: ScanSetup.py:1769 ScanSetup.py:1843
 msgid "Invalid transponder data"
 msgstr ""
 
 #: ServiceInfo.py:190 ServiceInfo.py:247 ServiceInfo.py:262 ServiceInfo.py:270
-#: ServiceInfo.py:284 ScanSetup.py:796 ScanSetup.py:854 ScanSetup.py:880
-#: ScanSetup.py:906 PositionerSetup/plugin.py:1217
+#: ServiceInfo.py:284 ScanSetup.py:814 ScanSetup.py:872 ScanSetup.py:898
+#: ScanSetup.py:924 PositionerSetup/plugin.py:1217
 #: PositionerSetup/plugin.py:1220
 msgid "Inversion"
 msgstr ""
@@ -10042,7 +10041,7 @@ msgstr ""
 msgid "Is not necessary in most cases."
 msgstr ""
 
-#: InputDeviceSetup.py:487
+#: InputDeviceSetup.py:490
 msgid "Is this setting ok?"
 msgstr ""
 
@@ -10083,7 +10082,7 @@ msgstr ""
 msgid "It's not possible to rename the filesystem root."
 msgstr ""
 
-#: UsageConfig.py:1281
+#: UsageConfig.py:1304
 msgid "Italian"
 msgstr ""
 
@@ -10159,15 +10158,15 @@ msgstr ""
 msgid "Jump to prime time"
 msgstr ""
 
-#: UsageConfig.py:466
+#: UsageConfig.py:485
 msgid "Just change Bouquet"
 msgstr ""
 
-#: UsageConfig.py:463 UsageConfig.py:468
+#: UsageConfig.py:482 UsageConfig.py:487
 msgid "Just change channels"
 msgstr ""
 
-#: UsageConfig.py:1199
+#: UsageConfig.py:1222
 msgid "Just zap"
 msgstr ""
 
@@ -10195,7 +10194,7 @@ msgstr ""
 msgid "Kazakhstan"
 msgstr ""
 
-#: UsageConfig.py:122 UsageConfig.py:124
+#: UsageConfig.py:140 UsageConfig.py:142
 msgid "Keep service"
 msgstr ""
 
@@ -10394,7 +10393,7 @@ msgstr ""
 msgid "Lao People's Democratic Republic"
 msgstr ""
 
-#: UsageConfig.py:57
+#: UsageConfig.py:75
 msgid "Large"
 msgstr ""
 
@@ -10411,7 +10410,7 @@ msgstr ""
 msgid "Last config"
 msgstr ""
 
-#: UsageConfig.py:1094
+#: UsageConfig.py:1117
 msgid "Last speed"
 msgstr ""
 
@@ -10442,7 +10441,7 @@ msgid "Latvia"
 msgstr ""
 
 #: VirtualKeyBoard.py:476 VirtualKeyBoard.py:477 VirtualKeyBoard.py:478
-#: UsageConfig.py:1282
+#: UsageConfig.py:1305
 msgid "Latvian"
 msgstr ""
 
@@ -10470,7 +10469,7 @@ msgstr ""
 msgid "Left"
 msgstr ""
 
-#: UsageConfig.py:71 UsageConfig.py:73 UsageConfig.py:75
+#: UsageConfig.py:89 UsageConfig.py:91 UsageConfig.py:93
 msgid "Left from servicename"
 msgstr ""
 
@@ -10515,7 +10514,7 @@ msgstr ""
 msgid "Lifestyle"
 msgstr ""
 
-#: UsageConfig.py:171
+#: UsageConfig.py:189
 msgid "Light Grey"
 msgstr ""
 
@@ -10591,7 +10590,7 @@ msgid_plural "List version %d, found %d channels"
 msgstr[0] ""
 msgstr[1] ""
 
-#: ButtonSetup.py:57 UsageConfig.py:354
+#: ButtonSetup.py:57 UsageConfig.py:373
 msgid "List/Fav"
 msgstr ""
 
@@ -10619,7 +10618,7 @@ msgstr ""
 msgid "Lithuania"
 msgstr ""
 
-#: VirtualKeyBoard.py:479 UsageConfig.py:1283
+#: VirtualKeyBoard.py:479 UsageConfig.py:1306
 msgid "Lithuanian"
 msgstr ""
 
@@ -10692,11 +10691,11 @@ msgstr ""
 msgid "Login to IceTV server"
 msgstr ""
 
-#: UsageConfig.py:1078
+#: UsageConfig.py:1101
 msgid "Long << / >>"
 msgstr ""
 
-#: UsageConfig.py:1078
+#: UsageConfig.py:1101
 msgid "Long Left/Right"
 msgstr ""
 
@@ -10740,7 +10739,7 @@ msgstr ""
 msgid "Luxembourg"
 msgstr ""
 
-#: UsageConfig.py:1284
+#: UsageConfig.py:1307
 msgid "Luxembourgish"
 msgstr ""
 
@@ -10859,7 +10858,7 @@ msgstr ""
 msgid "Manual"
 msgstr ""
 
-#: ButtonSetup.py:237 ScanSetup.py:599 ScanSetup.py:644 QuickMenu.py:513
+#: ButtonSetup.py:237 ScanSetup.py:617 ScanSetup.py:662 QuickMenu.py:513
 msgid "Manual Scan"
 msgstr ""
 
@@ -11090,12 +11089,12 @@ msgstr ""
 msgid "Minimum send interval"
 msgstr ""
 
-#: UsageConfig.py:541 UsageConfig.py:542 UsageConfig.py:545 UsageConfig.py:546
+#: UsageConfig.py:560 UsageConfig.py:561 UsageConfig.py:564 UsageConfig.py:565
 #: RemainingToText.py:255 RemainingToText.py:408
 msgid "Mins"
 msgstr ""
 
-#: UsageConfig.py:541 UsageConfig.py:542 UsageConfig.py:545 UsageConfig.py:546
+#: UsageConfig.py:560 UsageConfig.py:561 UsageConfig.py:564 UsageConfig.py:565
 msgid "Mins Secs"
 msgstr ""
 
@@ -11131,7 +11130,7 @@ msgstr ""
 msgid "Mode %s (%04o)"
 msgstr ""
 
-#: UsageConfig.py:987 UI3DSetup/plugin.py:7
+#: UsageConfig.py:1010 UI3DSetup/plugin.py:7
 msgid "Mode 1"
 msgstr ""
 
@@ -11141,7 +11140,7 @@ msgid ""
 "Mode 12 supports PiP, Kodi may not work."
 msgstr ""
 
-#: UsageConfig.py:987 UI3DSetup/plugin.py:7
+#: UsageConfig.py:1010 UI3DSetup/plugin.py:7
 msgid "Mode 2"
 msgstr ""
 
@@ -11168,7 +11167,7 @@ msgid "Modified:"
 msgstr ""
 
 #: ServiceInfo.py:184 ServiceInfo.py:242 ServiceInfo.py:259 ServiceInfo.py:282
-#: ScanSetup.py:803 ScanSetup.py:856 ScanSetup.py:884 ScanSetup.py:907
+#: ScanSetup.py:821 ScanSetup.py:874 ScanSetup.py:902 ScanSetup.py:925
 #: CableScan/plugin.py:152 PositionerSetup/plugin.py:1221
 msgid "Modulation"
 msgstr ""
@@ -11302,7 +11301,7 @@ msgstr ""
 msgid "Move PIP"
 msgstr ""
 
-#: UsageConfig.py:240
+#: UsageConfig.py:259
 msgid "Move PiP to main picture"
 msgstr ""
 
@@ -11429,7 +11428,7 @@ msgstr ""
 msgid "Movie"
 msgstr ""
 
-#: UsageConfig.py:461
+#: UsageConfig.py:480
 msgid "Movie List"
 msgstr ""
 
@@ -11483,7 +11482,7 @@ msgstr ""
 msgid "Mtd"
 msgstr ""
 
-#: EventView.py:395 InfoBarGenerics.py:1821 UsageConfig.py:1416
+#: EventView.py:395 InfoBarGenerics.py:1821 UsageConfig.py:1439
 msgid "Multi EPG"
 msgstr ""
 
@@ -11528,15 +11527,15 @@ msgstr ""
 msgid "Multiplex"
 msgstr ""
 
-#: ScanSetup.py:1357
+#: ScanSetup.py:1375
 msgid "Multisat"
 msgstr ""
 
-#: ScanSetup.py:1357
+#: ScanSetup.py:1375
 msgid "Multisat all select"
 msgstr ""
 
-#: ScanSetup.py:1180
+#: ScanSetup.py:1198
 msgid "Multistream"
 msgstr ""
 
@@ -11763,7 +11762,7 @@ msgstr ""
 msgid "Network name (SSID)"
 msgstr ""
 
-#: ScanSetup.py:914 ScanSetup.py:1987
+#: ScanSetup.py:932 ScanSetup.py:2005
 msgid "Network scan"
 msgstr ""
 
@@ -11874,12 +11873,12 @@ msgid "Next"
 msgstr ""
 
 #: EpgSelection.py:2180 EpgSelection.py:2209 EpgSelection.py:2238
-#: EpgSelection.py:2267 UsageConfig.py:1494
+#: EpgSelection.py:2267 UsageConfig.py:1517
 msgid "Next bouquet"
 msgstr ""
 
 #: EpgSelection.py:2176 EpgSelection.py:2205 EpgSelection.py:2234
-#: EpgSelection.py:2263 UsageConfig.py:1493
+#: EpgSelection.py:2263 UsageConfig.py:1516
 msgid "Next page"
 msgstr ""
 
@@ -11915,8 +11914,8 @@ msgstr ""
 #: InfoBarGenerics.py:5285 Satconfig.py:796 MovieSelection.py:46
 #: MessageBox.py:94 MessageBox.py:96 PowerTimerEntry.py:134
 #: PowerTimerEntry.py:152 PowerTimerEntry.py:154 Lcd.py:674 Lcd.py:686
-#: Lcd.py:692 UsageConfig.py:94 UsageConfig.py:242 UsageConfig.py:329
-#: UsageConfig.py:433 UsageConfig.py:491 UsageConfig.py:1072 HdmiRecord.py:76
+#: Lcd.py:692 UsageConfig.py:112 UsageConfig.py:261 UsageConfig.py:348
+#: UsageConfig.py:452 UsageConfig.py:510 UsageConfig.py:1095 HdmiRecord.py:76
 #: Timeshift.py:531 Timeshift.py:543 Timeshift.py:913 config.py:400
 #: ClientsStreaming.py:78 FileCommander/plugin.py:80
 #: FileCommander/plugin.py:700 FileCommander/plugin.py:729
@@ -11992,7 +11991,7 @@ msgid ""
 "(Timeout reading PAT)"
 msgstr ""
 
-#: UsageConfig.py:1233
+#: UsageConfig.py:1256
 msgid "No delay"
 msgstr ""
 
@@ -12072,7 +12071,7 @@ msgstr ""
 msgid "No positioner capable frontend found."
 msgstr ""
 
-#: UsageConfig.py:382
+#: UsageConfig.py:401
 msgid "No priority"
 msgstr ""
 
@@ -12088,7 +12087,7 @@ msgstr ""
 msgid "No services/providers selected"
 msgstr ""
 
-#: UsageConfig.py:232 UsageConfig.py:233
+#: UsageConfig.py:251 UsageConfig.py:252
 msgid "No standby"
 msgstr ""
 
@@ -12100,7 +12099,7 @@ msgstr ""
 msgid "No tags are set on these movies."
 msgstr ""
 
-#: UsageConfig.py:151 UsageConfig.py:162 UsageConfig.py:243
+#: UsageConfig.py:169 UsageConfig.py:180 UsageConfig.py:262
 msgid "No timeout"
 msgstr ""
 
@@ -12108,7 +12107,7 @@ msgstr ""
 msgid "No to all"
 msgstr ""
 
-#: UsageConfig.py:1214
+#: UsageConfig.py:1237
 msgid "No transparency"
 msgstr ""
 
@@ -12128,7 +12127,7 @@ msgstr ""
 msgid "No tuner is configured for use with a diseqc positioner!"
 msgstr ""
 
-#: ScanSetup.py:1504
+#: ScanSetup.py:1522
 msgid ""
 "No tuner is enabled!\n"
 "Please setup your tuner settings before you start a service scan."
@@ -12189,11 +12188,11 @@ msgstr ""
 msgid "No, never"
 msgstr ""
 
-#: UsageConfig.py:1375
+#: UsageConfig.py:1398
 msgid "No, show always the plugin browser"
 msgstr ""
 
-#: UsageConfig.py:1374
+#: UsageConfig.py:1397
 msgid "No, show always the timer list"
 msgstr ""
 
@@ -12205,10 +12204,10 @@ msgstr ""
 msgid "NodeID: "
 msgstr ""
 
-#: ScanSetup.py:1152 ScanSetup.py:1220 ScanSetup.py:1289
-#: InfoBarGenerics.py:1895 Lcd.py:613 UsageConfig.py:57 UsageConfig.py:71
-#: UsageConfig.py:73 UsageConfig.py:75 UsageConfig.py:350 UsageConfig.py:1260
-#: UsageConfig.py:1342 NimManager.py:1807 NimManager.py:1809 NimManager.py:1830
+#: ScanSetup.py:1170 ScanSetup.py:1238 ScanSetup.py:1307
+#: InfoBarGenerics.py:1895 Lcd.py:613 UsageConfig.py:75 UsageConfig.py:89
+#: UsageConfig.py:91 UsageConfig.py:93 UsageConfig.py:369 UsageConfig.py:1283
+#: UsageConfig.py:1365 NimManager.py:1807 NimManager.py:1809 NimManager.py:1830
 #: NimManager.py:1832 NimManager.py:1838 config.py:400 HdmiCec.py:57
 #: Transponder.py:73 Transponder.py:142 Transponder.py:221 QuickMenu.py:776
 #: QuickMenu.py:778 QuickMenu.py:782 QuickMenu.py:784 MountManager.py:246
@@ -12242,7 +12241,7 @@ msgstr ""
 msgid "Norway"
 msgstr ""
 
-#: VirtualKeyBoard.py:480 UsageConfig.py:1285
+#: VirtualKeyBoard.py:480 UsageConfig.py:1308
 msgid "Norwegian"
 msgstr ""
 
@@ -12254,7 +12253,7 @@ msgstr ""
 msgid "Not Defined"
 msgstr ""
 
-#: UsageConfig.py:46
+#: UsageConfig.py:64
 msgid "Not Flashing"
 msgstr ""
 
@@ -12305,13 +12304,13 @@ msgstr ""
 msgid "Note: slot list does not show current image or empty slots."
 msgstr ""
 
-#: UsageConfig.py:507 UsageConfig.py:527 PowerTimerList.py:15
+#: UsageConfig.py:526 UsageConfig.py:546 PowerTimerList.py:15
 #: PowerTimerList.py:29
 msgid "Nothing"
 msgstr ""
 
-#: ScanSetup.py:649 ScanSetup.py:1855 ScanSetup.py:1857 ScanSetup.py:2147
-#: ScanSetup.py:2149 DefaultServicesScanner/plugin.py:90
+#: ScanSetup.py:667 ScanSetup.py:1873 ScanSetup.py:1875 ScanSetup.py:2165
+#: ScanSetup.py:2167 DefaultServicesScanner/plugin.py:90
 msgid ""
 "Nothing to scan!\n"
 "Please setup your tuner settings before you start a service scan."
@@ -12342,7 +12341,7 @@ msgstr ""
 msgid "Now, use the contrast setting to turn up the brightness of the background as much as possible, but make sure that you can still see the difference between the two brightest levels of shades.If you have done that, press OK."
 msgstr ""
 
-#: UsageConfig.py:496
+#: UsageConfig.py:515
 msgid "Number"
 msgstr ""
 
@@ -12454,10 +12453,10 @@ msgstr ""
 msgid "OVR"
 msgstr ""
 
-#: ScanSetup.py:1136 ScanSetup.py:1176 ScanSetup.py:1199 ScanSetup.py:1230
+#: ScanSetup.py:1154 ScanSetup.py:1194 ScanSetup.py:1217 ScanSetup.py:1248
 #: Lcd.py:513 Lcd.py:519 Lcd.py:534 Lcd.py:540 ServiceScan.py:147
-#: UsageConfig.py:46 UsageConfig.py:161 UsageConfig.py:236 UsageConfig.py:533
-#: UsageConfig.py:595 UsageConfig.py:984 NimManager.py:1829 Transponder.py:71
+#: UsageConfig.py:64 UsageConfig.py:179 UsageConfig.py:255 UsageConfig.py:552
+#: UsageConfig.py:614 UsageConfig.py:1007 NimManager.py:1829 Transponder.py:71
 #: Transponder.py:118 Transponder.py:140 Transponder.py:229 Transponder.py:253
 #: Infopanel/plugin.py:105 UI3DSetup/plugin.py:6 VideoEnhancement.py:164
 #: PositionerSetup/plugin.py:1143 PositionerSetup/plugin.py:1181
@@ -12480,9 +12479,9 @@ msgstr ""
 msgid "Oman"
 msgstr ""
 
-#: ScanSetup.py:1137 ScanSetup.py:1177 ScanSetup.py:1200 ScanSetup.py:1231
+#: ScanSetup.py:1155 ScanSetup.py:1195 ScanSetup.py:1218 ScanSetup.py:1249
 #: Lcd.py:513 Lcd.py:519 Lcd.py:534 Lcd.py:540 ServiceScan.py:148
-#: UsageConfig.py:236 NimManager.py:1829 Transponder.py:70 Transponder.py:117
+#: UsageConfig.py:255 NimManager.py:1829 Transponder.py:70 Transponder.py:117
 #: Transponder.py:139 Transponder.py:228 Transponder.py:252
 #: PositionerSetup/plugin.py:1144 PositionerSetup/plugin.py:1182
 msgid "On"
@@ -12504,7 +12503,7 @@ msgstr ""
 msgid "On reaching the end of a file during playback, you can choose the box's behavior."
 msgstr ""
 
-#: UsageConfig.py:26
+#: UsageConfig.py:44
 msgid "Once per day"
 msgstr ""
 
@@ -12512,7 +12511,7 @@ msgstr ""
 msgid "One"
 msgstr ""
 
-#: UsageConfig.py:595
+#: UsageConfig.py:614
 msgid "One line"
 msgstr ""
 
@@ -12528,7 +12527,7 @@ msgstr ""
 msgid "Only extensions."
 msgstr ""
 
-#: ScanSetup.py:916
+#: ScanSetup.py:934
 msgid "Only free scan"
 msgstr ""
 
@@ -12656,11 +12655,11 @@ msgstr ""
 msgid "Orbital position"
 msgstr ""
 
-#: ScanSetup.py:1180
+#: ScanSetup.py:1198
 msgid "Ordinary"
 msgstr ""
 
-#: UsageConfig.py:1239 UsageConfig.py:1249 UsageConfig.py:1262
+#: UsageConfig.py:1262 UsageConfig.py:1272 UsageConfig.py:1285
 msgid "Original"
 msgstr ""
 
@@ -12809,16 +12808,16 @@ msgstr ""
 msgid "PIP with OSD"
 msgstr ""
 
-#: ScanSetup.py:889
+#: ScanSetup.py:907
 msgid "PLP ID"
 msgstr ""
 
-#: ServiceInfo.py:195 ServiceInfo.py:253 ScanSetup.py:813
+#: ServiceInfo.py:195 ServiceInfo.py:253 ScanSetup.py:831
 #: PositionerSetup/plugin.py:1228
 msgid "PLS Code"
 msgstr ""
 
-#: ServiceInfo.py:194 ServiceInfo.py:252 ScanSetup.py:812
+#: ServiceInfo.py:194 ServiceInfo.py:252 ScanSetup.py:830
 #: PositionerSetup/plugin.py:1227
 msgid "PLS Mode"
 msgstr ""
@@ -13007,7 +13006,7 @@ msgstr ""
 msgid "Pause"
 msgstr ""
 
-#: UsageConfig.py:324
+#: UsageConfig.py:343
 msgid "Pause movie at end"
 msgstr ""
 
@@ -13028,23 +13027,23 @@ msgstr ""
 msgid "Peak load (max queued requests per workerthread)"
 msgstr ""
 
-#: UsageConfig.py:541 UsageConfig.py:542 UsageConfig.py:545 UsageConfig.py:546
+#: UsageConfig.py:560 UsageConfig.py:561 UsageConfig.py:564 UsageConfig.py:565
 msgid "Percentage"
 msgstr ""
 
-#: UsageConfig.py:97 UsageConfig.py:487
+#: UsageConfig.py:115 UsageConfig.py:506
 msgid "Percentage left"
 msgstr ""
 
-#: UsageConfig.py:98 UsageConfig.py:488
+#: UsageConfig.py:116 UsageConfig.py:507
 msgid "Percentage right"
 msgstr ""
 
-#: UsageConfig.py:107
+#: UsageConfig.py:125
 msgid "Percentage/Progress bar left"
 msgstr ""
 
-#: UsageConfig.py:108
+#: UsageConfig.py:126
 msgid "Percentage/Progress bar right"
 msgstr ""
 
@@ -13072,7 +13071,7 @@ msgstr ""
 msgid "Permissions:"
 msgstr ""
 
-#: VirtualKeyBoard.py:481 UsageConfig.py:1288
+#: VirtualKeyBoard.py:481 UsageConfig.py:1311
 msgid "Persian"
 msgstr ""
 
@@ -13088,15 +13087,15 @@ msgstr ""
 msgid "Philippines"
 msgstr ""
 
-#: UsageConfig.py:1418
+#: UsageConfig.py:1441
 msgid "PiP"
 msgstr ""
 
-#: UsageConfig.py:1434 UsageConfig.py:1466 GraphMultiEpg.py:46
+#: UsageConfig.py:1457 UsageConfig.py:1489 GraphMultiEpg.py:46
 msgid "Picon"
 msgstr ""
 
-#: UsageConfig.py:1434 UsageConfig.py:1466
+#: UsageConfig.py:1457 UsageConfig.py:1489
 msgid "Picon and Service Name"
 msgstr ""
 
@@ -13127,7 +13126,7 @@ msgstr ""
 msgid "Pillarbox"
 msgstr ""
 
-#: ServiceInfo.py:191 ServiceInfo.py:249 ScanSetup.py:806
+#: ServiceInfo.py:191 ServiceInfo.py:249 ScanSetup.py:824
 #: PositionerSetup/plugin.py:1224
 msgid "Pilot"
 msgstr ""
@@ -13144,7 +13143,7 @@ msgstr ""
 msgid "Pixels\n"
 msgstr ""
 
-#: ButtonSetup.py:90 UsageConfig.py:1092
+#: ButtonSetup.py:90 UsageConfig.py:1115
 msgid "Play"
 msgstr ""
 
@@ -13194,11 +13193,11 @@ msgstr ""
 msgid "Play next"
 msgstr ""
 
-#: UsageConfig.py:324
+#: UsageConfig.py:343
 msgid "Play next (return to movie list)"
 msgstr ""
 
-#: UsageConfig.py:325
+#: UsageConfig.py:344
 msgid "Play next (return to previous service)"
 msgstr ""
 
@@ -13566,11 +13565,11 @@ msgstr ""
 msgid "Polarisation"
 msgstr ""
 
-#: ServiceInfo.py:189 ServiceInfo.py:246 ScanSetup.py:798 NimManager.py:1828
+#: ServiceInfo.py:189 ServiceInfo.py:246 ScanSetup.py:816 NimManager.py:1828
 msgid "Polarization"
 msgstr ""
 
-#: VirtualKeyBoard.py:482 VirtualKeyBoard.py:483 UsageConfig.py:1286
+#: VirtualKeyBoard.py:482 VirtualKeyBoard.py:483 UsageConfig.py:1309
 msgid "Polish"
 msgstr ""
 
@@ -13614,7 +13613,7 @@ msgstr ""
 msgid "Portugal"
 msgstr ""
 
-#: UsageConfig.py:1287
+#: UsageConfig.py:1310
 msgid "Portuguese"
 msgstr ""
 
@@ -13679,7 +13678,7 @@ msgstr ""
 msgid "PowerTimer"
 msgstr ""
 
-#: UsageConfig.py:345
+#: UsageConfig.py:364
 msgid "PowerTimer DeepStandby"
 msgstr ""
 
@@ -13691,7 +13690,7 @@ msgstr ""
 msgid "PowerTimer Overview"
 msgstr ""
 
-#: UsageConfig.py:345
+#: UsageConfig.py:364
 msgid "PowerTimer Standby"
 msgstr ""
 
@@ -13699,7 +13698,7 @@ msgstr ""
 msgid "Predefined"
 msgstr ""
 
-#: ScanSetup.py:1357 ScanSetup.py:1358 ScanSetup.py:1361 ScanSetup.py:1362
+#: ScanSetup.py:1375 ScanSetup.py:1376 ScanSetup.py:1379 ScanSetup.py:1380
 #: PositionerSetup/plugin.py:1095
 msgid "Predefined transponder"
 msgstr ""
@@ -13754,7 +13753,7 @@ msgstr ""
 msgid "Press OK to get further details for %s"
 msgstr ""
 
-#: ScanSetup.py:2050 Satfinder/plugin.py:43
+#: ScanSetup.py:2068 Satfinder/plugin.py:43
 msgid "Press OK to scan"
 msgstr ""
 
@@ -13782,7 +13781,7 @@ msgstr ""
 msgid "Press OK to set the MAC-address."
 msgstr ""
 
-#: ScanSetup.py:647
+#: ScanSetup.py:665
 msgid "Press OK to start the scan"
 msgstr ""
 
@@ -13820,12 +13819,12 @@ msgid "Previous"
 msgstr ""
 
 #: EpgSelection.py:2182 EpgSelection.py:2211 EpgSelection.py:2240
-#: EpgSelection.py:2269 UsageConfig.py:1491
+#: EpgSelection.py:2269 UsageConfig.py:1514
 msgid "Previous bouquet"
 msgstr ""
 
 #: EpgSelection.py:2178 EpgSelection.py:2207 EpgSelection.py:2236
-#: EpgSelection.py:2265 UsageConfig.py:1490
+#: EpgSelection.py:2265 UsageConfig.py:1513
 msgid "Previous page"
 msgstr ""
 
@@ -13841,7 +13840,7 @@ msgstr ""
 msgid "Primary DNS"
 msgstr ""
 
-#: UsageConfig.py:1467 UsageConfig.py:1525
+#: UsageConfig.py:1490 UsageConfig.py:1548
 msgid "Primetime"
 msgstr ""
 
@@ -13926,31 +13925,31 @@ msgstr ""
 msgid "Programmlisten-Updater from DXAndy"
 msgstr ""
 
-#: UsageConfig.py:534
+#: UsageConfig.py:553
 msgid "Progress"
 msgstr ""
 
-#: UsageConfig.py:95 UsageConfig.py:485
+#: UsageConfig.py:113 UsageConfig.py:504
 msgid "Progress bar left"
 msgstr ""
 
-#: UsageConfig.py:96 UsageConfig.py:486
+#: UsageConfig.py:114 UsageConfig.py:505
 msgid "Progress bar right"
 msgstr ""
 
-#: UsageConfig.py:102
+#: UsageConfig.py:120
 msgid "Progress bar/Percentage left"
 msgstr ""
 
-#: UsageConfig.py:103
+#: UsageConfig.py:121
 msgid "Progress bar/Percentage right"
 msgstr ""
 
-#: UsageConfig.py:104
+#: UsageConfig.py:122
 msgid "Progress bar/Remaining minutes left"
 msgstr ""
 
-#: UsageConfig.py:105
+#: UsageConfig.py:123
 msgid "Progress bar/Remaining minutes right"
 msgstr ""
 
@@ -14113,7 +14112,7 @@ msgstr ""
 msgid "Quick"
 msgstr ""
 
-#: UsageConfig.py:494
+#: UsageConfig.py:513
 msgid "Quick Actions"
 msgstr ""
 
@@ -14133,7 +14132,7 @@ msgstr ""
 msgid "QuickMenu"
 msgstr ""
 
-#: UsageConfig.py:30
+#: UsageConfig.py:48
 msgid "QuickMenu/Extensions"
 msgstr ""
 
@@ -14145,11 +14144,11 @@ msgstr ""
 msgid "RAM"
 msgstr ""
 
-#: UsageConfig.py:504 UsageConfig.py:519
+#: UsageConfig.py:523 UsageConfig.py:538
 msgid "REC"
 msgstr ""
 
-#: UsageConfig.py:514
+#: UsageConfig.py:533
 msgid "REC Symbol"
 msgstr ""
 
@@ -14157,7 +14156,7 @@ msgstr ""
 msgid "RGB"
 msgstr ""
 
-#: ButtonSetup.py:47 MovieSelection.py:253 UsageConfig.py:352
+#: ButtonSetup.py:47 MovieSelection.py:253 UsageConfig.py:371
 msgid "Radio"
 msgstr ""
 
@@ -14338,7 +14337,7 @@ msgstr ""
 msgid "Record"
 msgstr ""
 
-#: UsageConfig.py:1500 UsageConfig.py:1534
+#: UsageConfig.py:1523 UsageConfig.py:1557
 msgid "Record - same as record button"
 msgstr ""
 
@@ -14435,7 +14434,7 @@ msgstr ""
 msgid "Records"
 msgstr ""
 
-#: ButtonSetup.py:20 MovieSelection.py:253 UsageConfig.py:171
+#: ButtonSetup.py:20 MovieSelection.py:253 UsageConfig.py:189
 msgid "Red"
 msgstr ""
 
@@ -14443,7 +14442,7 @@ msgstr ""
 msgid "Red button..."
 msgstr ""
 
-#: UsageConfig.py:75
+#: UsageConfig.py:93
 msgid "Red colored"
 msgstr ""
 
@@ -14483,7 +14482,7 @@ msgstr ""
 msgid "Regard deep standby as standby"
 msgstr ""
 
-#: ScanSetup.py:892 ScanSetup.py:899 Satconfig.py:349 Satconfig.py:410
+#: ScanSetup.py:910 ScanSetup.py:917 Satconfig.py:349 Satconfig.py:410
 msgid "Region"
 msgstr ""
 
@@ -14503,7 +14502,7 @@ msgstr ""
 msgid "Reiten"
 msgstr ""
 
-#: UsageConfig.py:1239
+#: UsageConfig.py:1262
 msgid "Relative"
 msgstr ""
 
@@ -14536,27 +14535,27 @@ msgstr ""
 msgid "Reloading bouquets and services..."
 msgstr ""
 
-#: UsageConfig.py:543 UsageConfig.py:547
+#: UsageConfig.py:562 UsageConfig.py:566
 msgid "Remaining"
 msgstr ""
 
-#: UsageConfig.py:543 UsageConfig.py:547
+#: UsageConfig.py:562 UsageConfig.py:566
 msgid "Remaining & Elapsed"
 msgstr ""
 
-#: UsageConfig.py:99 UsageConfig.py:489
+#: UsageConfig.py:117 UsageConfig.py:508
 msgid "Remaining minutes left"
 msgstr ""
 
-#: UsageConfig.py:100 UsageConfig.py:490
+#: UsageConfig.py:118 UsageConfig.py:509
 msgid "Remaining minutes right"
 msgstr ""
 
-#: UsageConfig.py:109
+#: UsageConfig.py:127
 msgid "Remaining minutes/Progress bar left"
 msgstr ""
 
-#: UsageConfig.py:110
+#: UsageConfig.py:128
 msgid "Remaining minutes/Progress bar right"
 msgstr ""
 
@@ -14568,7 +14567,7 @@ msgstr ""
 msgid "Remote box"
 msgstr ""
 
-#: InputDeviceSetup.py:445
+#: InputDeviceSetup.py:448
 msgid "Remote control type"
 msgstr ""
 
@@ -14710,7 +14709,7 @@ msgstr ""
 msgid "Renovation"
 msgstr ""
 
-#: UsageConfig.py:325
+#: UsageConfig.py:344
 msgid "Repeat"
 msgstr ""
 
@@ -14909,7 +14908,7 @@ msgstr ""
 msgid "Restricted 18+"
 msgstr ""
 
-#: UsageConfig.py:319
+#: UsageConfig.py:338
 msgid "Resume from last position"
 msgstr ""
 
@@ -14930,11 +14929,11 @@ msgstr ""
 msgid "Retrieving image slots - Please wait..."
 msgstr ""
 
-#: UsageConfig.py:322 UsageConfig.py:324
+#: UsageConfig.py:341 UsageConfig.py:343
 msgid "Return to movie list"
 msgstr ""
 
-#: UsageConfig.py:322 UsageConfig.py:324
+#: UsageConfig.py:341 UsageConfig.py:343
 msgid "Return to previous service"
 msgstr ""
 
@@ -14942,7 +14941,7 @@ msgstr ""
 msgid "Reunion"
 msgstr ""
 
-#: UsageConfig.py:123 UsageConfig.py:124
+#: UsageConfig.py:141 UsageConfig.py:142
 msgid "Reverse bouquet buttons"
 msgstr ""
 
@@ -14970,7 +14969,7 @@ msgstr ""
 msgid "Right"
 msgstr ""
 
-#: UsageConfig.py:71 UsageConfig.py:73 UsageConfig.py:75
+#: UsageConfig.py:89 UsageConfig.py:91 UsageConfig.py:93
 msgid "Right from servicename"
 msgstr ""
 
@@ -14978,7 +14977,7 @@ msgstr ""
 msgid "Right long"
 msgstr ""
 
-#: ServiceInfo.py:192 ServiceInfo.py:250 ScanSetup.py:805
+#: ServiceInfo.py:192 ServiceInfo.py:250 ScanSetup.py:823
 #: PositionerSetup/plugin.py:1223
 msgid "Roll-off"
 msgstr ""
@@ -14991,7 +14990,7 @@ msgstr ""
 msgid "Romania"
 msgstr ""
 
-#: UsageConfig.py:1289
+#: UsageConfig.py:1312
 msgid "Romanian"
 msgstr ""
 
@@ -14999,7 +14998,7 @@ msgstr ""
 msgid "Romantik"
 msgstr ""
 
-#: ScanSetup.py:1182 Transponder.py:120 PositionerSetup/plugin.py:1186
+#: ScanSetup.py:1200 Transponder.py:120 PositionerSetup/plugin.py:1186
 msgid "Root"
 msgstr ""
 
@@ -15078,7 +15077,7 @@ msgstr ""
 msgid "Running Myrestore script, Please wait ..."
 msgstr ""
 
-#: VirtualKeyBoard.py:484 VirtualKeyBoard.py:489 UsageConfig.py:1290
+#: VirtualKeyBoard.py:484 VirtualKeyBoard.py:489 UsageConfig.py:1313
 msgid "Russian"
 msgstr ""
 
@@ -15218,7 +15217,7 @@ msgstr ""
 msgid "Samba Setup"
 msgstr ""
 
-#: UsageConfig.py:233
+#: UsageConfig.py:252
 msgid "Same as in active"
 msgstr ""
 
@@ -15226,7 +15225,7 @@ msgstr ""
 msgid "Same behavior as current animation"
 msgstr ""
 
-#: UsageConfig.py:598
+#: UsageConfig.py:617
 msgid "Same resolution as skin"
 msgstr ""
 
@@ -15251,7 +15250,7 @@ msgstr ""
 msgid "Sat Finder"
 msgstr ""
 
-#: ScanSetup.py:794 ScanSetup.py:829 ScanSetup.py:838 Satconfig.py:135
+#: ScanSetup.py:812 ScanSetup.py:847 ScanSetup.py:856 Satconfig.py:135
 #: Satconfig.py:299 Satconfig.py:660 ServiceScan.py:52 Transponder.py:67
 #: ServiceName2.py:228 PositionerSetup/plugin.py:1203
 msgid "Satellite"
@@ -15300,7 +15299,7 @@ msgstr ""
 msgid "Saudi Arabia"
 msgstr ""
 
-#: InputDeviceSetup.py:435 NetworkSetup.py:262 NetworkSetup.py:346
+#: InputDeviceSetup.py:438 NetworkSetup.py:262 NetworkSetup.py:346
 #: NetworkSetup.py:472 NetworkSetup.py:2838 NetworkSetup.py:3213
 #: NetworkSetup.py:3383 NetworkSetup.py:3694 NetworkSetup.py:3851
 #: NetworkSetup.py:3972 LanguageSelection.py:54 Ci.py:811 Recordings.py:79
@@ -15321,11 +15320,11 @@ msgstr ""
 msgid "Save / Enter text and exit"
 msgstr ""
 
-#: UsageConfig.py:1066
+#: UsageConfig.py:1089
 msgid "Save and record"
 msgstr ""
 
-#: UsageConfig.py:1066
+#: UsageConfig.py:1089
 msgid "Save and stop"
 msgstr ""
 
@@ -15376,11 +15375,11 @@ msgstr ""
 msgid "Scaling mode"
 msgstr ""
 
-#: ScanSetup.py:626 ScanSetup.py:1896
+#: ScanSetup.py:644 ScanSetup.py:1914
 msgid "Scan"
 msgstr ""
 
-#: ScanSetup.py:2009 ScanSetup.py:2021 ScanSetup.py:2033 ScanSetup.py:2045
+#: ScanSetup.py:2027 ScanSetup.py:2039 ScanSetup.py:2051 ScanSetup.py:2063
 msgid "Scan "
 msgstr ""
 
@@ -16050,7 +16049,7 @@ msgstr ""
 msgid "Serbia"
 msgstr ""
 
-#: UsageConfig.py:1291
+#: UsageConfig.py:1314
 msgid "Serbian"
 msgstr ""
 
@@ -16097,15 +16096,15 @@ msgstr ""
 msgid "Service Information"
 msgstr ""
 
-#: UsageConfig.py:1434 UsageConfig.py:1466
+#: UsageConfig.py:1457 UsageConfig.py:1489
 msgid "Service Name"
 msgstr ""
 
-#: UsageConfig.py:1434 UsageConfig.py:1466
+#: UsageConfig.py:1457 UsageConfig.py:1489
 msgid "Service Number and Service Name"
 msgstr ""
 
-#: UsageConfig.py:1434 UsageConfig.py:1466
+#: UsageConfig.py:1457 UsageConfig.py:1489
 msgid "Service Number, Picon and Service Name"
 msgstr ""
 
@@ -16168,7 +16167,7 @@ msgid "Services"
 msgstr ""
 
 #: EpgSelection.py:522 EpgSelection.py:2293 EpgSelection.py:2318
-#: EpgSelection.py:2343 EpgSelection.py:2368 UsageConfig.py:1537
+#: EpgSelection.py:2343 EpgSelection.py:2368 UsageConfig.py:1560
 msgid "Set Basetime"
 msgstr ""
 
@@ -16309,7 +16308,7 @@ msgstr ""
 msgid "Setting Restored "
 msgstr ""
 
-#: MovieSelection.py:371 UsageConfig.py:169 TitleList.py:69 TitleList.py:86
+#: MovieSelection.py:371 UsageConfig.py:187 TitleList.py:69 TitleList.py:86
 #: PicturePlayer/ui.py:152 AnimationSetup/plugin.py:174
 msgid "Settings"
 msgstr ""
@@ -16699,23 +16698,23 @@ msgstr ""
 msgid "Show Clients"
 msgstr ""
 
-#: UsageConfig.py:478
+#: UsageConfig.py:497
 msgid "Show CoolChannelGuide"
 msgstr ""
 
-#: UsageConfig.py:477
+#: UsageConfig.py:496
 msgid "Show CoolEasyGuide"
 msgstr ""
 
-#: UsageConfig.py:474 UsageConfig.py:1398
+#: UsageConfig.py:493 UsageConfig.py:1421
 msgid "Show CoolInfoGuide"
 msgstr ""
 
-#: UsageConfig.py:475 UsageConfig.py:1397
+#: UsageConfig.py:494 UsageConfig.py:1420
 msgid "Show CoolSingleGuide"
 msgstr ""
 
-#: UsageConfig.py:476 UsageConfig.py:1392 UsageConfig.py:1399
+#: UsageConfig.py:495 UsageConfig.py:1415 UsageConfig.py:1422
 msgid "Show CoolTVGuide"
 msgstr ""
 
@@ -16723,7 +16722,7 @@ msgstr ""
 msgid "Show E2 Log"
 msgstr ""
 
-#: UsageConfig.py:1395 UsageConfig.py:1410
+#: UsageConfig.py:1418 UsageConfig.py:1433
 msgid "Show EPG"
 msgstr ""
 
@@ -16731,8 +16730,8 @@ msgstr ""
 msgid "Show EPG for current channel..."
 msgstr ""
 
-#: UsageConfig.py:1390 UsageConfig.py:1394 UsageConfig.py:1406
-#: UsageConfig.py:1409
+#: UsageConfig.py:1413 UsageConfig.py:1417 UsageConfig.py:1429
+#: UsageConfig.py:1432
 msgid "Show Eventview"
 msgstr ""
 
@@ -16740,7 +16739,7 @@ msgstr ""
 msgid "Show Format Setup..."
 msgstr ""
 
-#: UsageConfig.py:1386 UsageConfig.py:1402
+#: UsageConfig.py:1409 UsageConfig.py:1425
 msgid "Show Graphical EPG"
 msgstr ""
 
@@ -16766,7 +16765,7 @@ msgstr ""
 msgid "Show Log"
 msgstr ""
 
-#: UsageConfig.py:1407
+#: UsageConfig.py:1430
 msgid "Show Merlin EPG Center"
 msgstr ""
 
@@ -16774,11 +16773,11 @@ msgstr ""
 msgid "Show Movies"
 msgstr ""
 
-#: UsageConfig.py:1499 UsageConfig.py:1533
+#: UsageConfig.py:1522 UsageConfig.py:1556
 msgid "Show Movies List"
 msgstr ""
 
-#: UsageConfig.py:1388 UsageConfig.py:1404
+#: UsageConfig.py:1411 UsageConfig.py:1427
 msgid "Show Multi EPG"
 msgstr ""
 
@@ -16810,8 +16809,8 @@ msgstr ""
 msgid "Show SD as"
 msgstr ""
 
-#: UsageConfig.py:1387 UsageConfig.py:1396 UsageConfig.py:1403
-#: UsageConfig.py:1411
+#: UsageConfig.py:1410 UsageConfig.py:1419 UsageConfig.py:1426
+#: UsageConfig.py:1434
 msgid "Show Single EPG"
 msgstr ""
 
@@ -16819,7 +16818,7 @@ msgstr ""
 msgid "Show Timer List"
 msgstr ""
 
-#: UsageConfig.py:1389 UsageConfig.py:1405
+#: UsageConfig.py:1412 UsageConfig.py:1428
 msgid "Show Vertical EPG"
 msgstr ""
 
@@ -16948,7 +16947,7 @@ msgstr ""
 msgid "Show log"
 msgstr ""
 
-#: UsageConfig.py:1199
+#: UsageConfig.py:1222
 msgid "Show menu"
 msgstr ""
 
@@ -17004,7 +17003,7 @@ msgstr ""
 msgid "Show setup..."
 msgstr ""
 
-#: UsageConfig.py:345
+#: UsageConfig.py:364
 msgid "Show shutdown menu"
 msgstr ""
 
@@ -17140,7 +17139,7 @@ msgstr ""
 msgid "Shuffle playlist"
 msgstr ""
 
-#: UsageConfig.py:984 UI3DSetup/plugin.py:6
+#: UsageConfig.py:1007 UI3DSetup/plugin.py:6
 msgid "Side by Side"
 msgstr ""
 
@@ -17185,7 +17184,7 @@ msgid "Similar broadcasts:"
 msgstr ""
 
 #: ChannelSelection.py:1768 ChannelSelection.py:1790 Satconfig.py:190
-#: Satconfig.py:1113 AVSwitch.py:504 UsageConfig.py:332 UsageConfig.py:456
+#: Satconfig.py:1113 AVSwitch.py:504 UsageConfig.py:351 UsageConfig.py:475
 msgid "Simple"
 msgstr ""
 
@@ -17209,7 +17208,7 @@ msgstr ""
 msgid "SimpleUmount"
 msgstr ""
 
-#: UsageConfig.py:1267
+#: UsageConfig.py:1290
 msgid "Simplified Chinese"
 msgstr ""
 
@@ -17221,16 +17220,16 @@ msgstr ""
 msgid "Single"
 msgstr ""
 
-#: InfoBar.py:134 UsageConfig.py:114 UsageConfig.py:1416 UsageConfig.py:1458
-#: UsageConfig.py:1459 UsageConfig.py:1514 UsageConfig.py:1515
+#: InfoBar.py:134 UsageConfig.py:132 UsageConfig.py:1439 UsageConfig.py:1481
+#: UsageConfig.py:1482 UsageConfig.py:1537 UsageConfig.py:1538
 msgid "Single EPG"
 msgstr ""
 
-#: ScanSetup.py:1357
+#: ScanSetup.py:1375
 msgid "Single satellite"
 msgstr ""
 
-#: UsageConfig.py:1093
+#: UsageConfig.py:1116
 msgid "Single step (GOP)"
 msgstr ""
 
@@ -17280,7 +17279,7 @@ msgstr ""
 msgid "Skin Selector"
 msgstr ""
 
-#: UsageConfig.py:541 UsageConfig.py:542 UsageConfig.py:545 UsageConfig.py:546
+#: UsageConfig.py:560 UsageConfig.py:561 UsageConfig.py:564 UsageConfig.py:565
 msgid "Skin Setting"
 msgstr ""
 
@@ -17341,7 +17340,7 @@ msgstr ""
 msgid "Sleep long"
 msgstr ""
 
-#: ButtonSetup.py:258 UsageConfig.py:345
+#: ButtonSetup.py:258 UsageConfig.py:364
 msgid "SleepTimer"
 msgstr ""
 
@@ -17391,7 +17390,7 @@ msgstr ""
 msgid "Slot %s: %s%s"
 msgstr ""
 
-#: VirtualKeyBoard.py:485 UsageConfig.py:1292
+#: VirtualKeyBoard.py:485 UsageConfig.py:1315
 msgid "Slovak"
 msgstr ""
 
@@ -17403,7 +17402,7 @@ msgstr ""
 msgid "Slovenia"
 msgstr ""
 
-#: UsageConfig.py:1293
+#: UsageConfig.py:1316
 msgid "Slovenian"
 msgstr ""
 
@@ -17411,11 +17410,11 @@ msgstr ""
 msgid "Slow"
 msgstr ""
 
-#: UsageConfig.py:57
+#: UsageConfig.py:75
 msgid "Small"
 msgstr ""
 
-#: UsageConfig.py:535
+#: UsageConfig.py:554
 msgid "Small progress"
 msgstr ""
 
@@ -17686,7 +17685,7 @@ msgstr ""
 msgid "Spain"
 msgstr ""
 
-#: VirtualKeyBoard.py:486 UsageConfig.py:1294
+#: VirtualKeyBoard.py:486 UsageConfig.py:1317
 msgid "Spanish"
 msgstr ""
 
@@ -17735,9 +17734,9 @@ msgstr ""
 msgid "Sri Lanka"
 msgstr ""
 
-#: PictureInPicture.py:59 UsageConfig.py:49 UsageConfig.py:121
-#: UsageConfig.py:239 UsageConfig.py:455 UsageConfig.py:1467
-#: UsageConfig.py:1525
+#: PictureInPicture.py:59 UsageConfig.py:67 UsageConfig.py:139
+#: UsageConfig.py:258 UsageConfig.py:474 UsageConfig.py:1490
+#: UsageConfig.py:1548
 msgid "Standard"
 msgstr ""
 
@@ -17749,11 +17748,11 @@ msgstr ""
 msgid "Standard list"
 msgstr ""
 
-#: UsageConfig.py:444
+#: UsageConfig.py:463
 msgid "Standard menu"
 msgstr ""
 
-#: ButtonSetup.py:254 UsageConfig.py:336 UsageConfig.py:345 HdmiCec.py:22
+#: ButtonSetup.py:254 UsageConfig.py:355 UsageConfig.py:364 HdmiCec.py:22
 #: PowerTimerList.py:18 PowerTimerList.py:32 skin_default.xml menu.xml
 msgid "Standby"
 msgstr ""
@@ -17762,7 +17761,7 @@ msgstr ""
 msgid "Standby / restart"
 msgstr ""
 
-#: UsageConfig.py:345
+#: UsageConfig.py:364
 msgid "Standby without TV shutdown"
 msgstr ""
 
@@ -17782,7 +17781,7 @@ msgstr ""
 msgid "Start Kodi"
 msgstr ""
 
-#: UsageConfig.py:320
+#: UsageConfig.py:339
 msgid "Start from the beginning"
 msgstr ""
 
@@ -17873,7 +17872,7 @@ msgstr ""
 msgid "Stop"
 msgstr ""
 
-#: UsageConfig.py:240
+#: UsageConfig.py:259
 msgid "Stop PiP"
 msgstr ""
 
@@ -18038,7 +18037,7 @@ msgstr ""
 msgid "Subservices"
 msgstr ""
 
-#: ButtonSetup.py:54 UsageConfig.py:360
+#: ButtonSetup.py:54 UsageConfig.py:379
 msgid "Subtitle"
 msgstr ""
 
@@ -18112,7 +18111,7 @@ msgstr ""
 msgid "Swap PIP"
 msgstr ""
 
-#: UsageConfig.py:239
+#: UsageConfig.py:258
 msgid "Swap PiP and main picture"
 msgstr ""
 
@@ -18148,7 +18147,7 @@ msgstr ""
 msgid "Sweden"
 msgstr ""
 
-#: VirtualKeyBoard.py:487 UsageConfig.py:1295
+#: VirtualKeyBoard.py:487 UsageConfig.py:1318
 msgid "Swedish"
 msgstr ""
 
@@ -18248,8 +18247,8 @@ msgstr ""
 msgid "Switzerland"
 msgstr ""
 
-#: ServiceInfo.py:187 ServiceInfo.py:245 ServiceInfo.py:261 ScanSetup.py:797
-#: ScanSetup.py:855 CableScan/plugin.py:151 PositionerSetup/plugin.py:1214
+#: ServiceInfo.py:187 ServiceInfo.py:245 ServiceInfo.py:261 ScanSetup.py:815
+#: ScanSetup.py:873 CableScan/plugin.py:151 PositionerSetup/plugin.py:1214
 msgid "Symbol rate"
 msgstr ""
 
@@ -18270,8 +18269,8 @@ msgid "Syrian Arab Republic"
 msgstr ""
 
 #: NetworkSetup.py:2663 NetworkSetup.py:2904 NetworkSetup.py:2918
-#: ServiceInfo.py:183 ServiceInfo.py:241 ServiceInfo.py:281 ScanSetup.py:789
-#: ScanSetup.py:868 ScanSetup.py:903 OScamInfo.py:891 QuickMenu.py:397
+#: ServiceInfo.py:183 ServiceInfo.py:241 ServiceInfo.py:281 ScanSetup.py:807
+#: ScanSetup.py:886 ScanSetup.py:921 OScamInfo.py:891 QuickMenu.py:397
 #: Infopanel/plugin.py:561 SoftwareManager/plugin.py:1021
 #: PositionerSetup/plugin.py:1208 menu.xml
 msgid "System"
@@ -18306,16 +18305,16 @@ msgstr ""
 msgid "SystemInfo"
 msgstr ""
 
-#: ServiceInfo.py:197 ServiceInfo.py:255 ScanSetup.py:823
+#: ServiceInfo.py:197 ServiceInfo.py:255 ScanSetup.py:841
 #: PositionerSetup/plugin.py:1230
 msgid "T2MI PID"
 msgstr ""
 
-#: ScanSetup.py:819
+#: ScanSetup.py:837
 msgid "T2MI PLP"
 msgstr ""
 
-#: ServiceInfo.py:196 ServiceInfo.py:254 ScanSetup.py:822
+#: ServiceInfo.py:196 ServiceInfo.py:254 ScanSetup.py:840
 #: PositionerSetup/plugin.py:1229
 msgid "T2MI PLP ID"
 msgstr ""
@@ -18346,7 +18345,7 @@ msgstr ""
 msgid "TSID"
 msgstr ""
 
-#: ButtonSetup.py:46 MovieSelection.py:253 UsageConfig.py:351
+#: ButtonSetup.py:46 MovieSelection.py:253 UsageConfig.py:370
 msgid "TV"
 msgstr ""
 
@@ -18398,7 +18397,7 @@ msgstr ""
 msgid "Technik"
 msgstr ""
 
-#: ButtonSetup.py:51 BoxPortal.py:58 UsageConfig.py:359 Infopanel/plugin.py:95
+#: ButtonSetup.py:51 BoxPortal.py:58 UsageConfig.py:378 Infopanel/plugin.py:95
 msgid "Teletext"
 msgstr ""
 
@@ -18457,7 +18456,7 @@ msgstr ""
 msgid "Testscreens that are helpfull to fine-tune your display"
 msgstr ""
 
-#: MovieSelection.py:253 UsageConfig.py:1416 UsageConfig.py:1455
+#: MovieSelection.py:253 UsageConfig.py:1439 UsageConfig.py:1478
 msgid "Text"
 msgstr ""
 
@@ -18465,7 +18464,7 @@ msgstr ""
 msgid "Text color"
 msgstr ""
 
-#: VirtualKeyBoard.py:488 UsageConfig.py:1296
+#: VirtualKeyBoard.py:488 UsageConfig.py:1319
 msgid "Thai"
 msgstr ""
 
@@ -19243,8 +19242,8 @@ msgstr ""
 msgid "Tiere"
 msgstr ""
 
-#: ButtonSetup.py:107 TimeDateInput.py:48 UsageConfig.py:506 UsageConfig.py:521
-#: UsageConfig.py:526 UsageConfig.py:1414
+#: ButtonSetup.py:107 TimeDateInput.py:48 UsageConfig.py:525 UsageConfig.py:540
+#: UsageConfig.py:545 UsageConfig.py:1437
 msgid "Time"
 msgstr ""
 
@@ -19502,7 +19501,7 @@ msgstr ""
 msgid "Top"
 msgstr ""
 
-#: UsageConfig.py:984 UI3DSetup/plugin.py:6
+#: UsageConfig.py:1007 UI3DSetup/plugin.py:6
 msgid "Top and Bottom"
 msgstr ""
 
@@ -19543,7 +19542,7 @@ msgstr ""
 msgid "Track"
 msgstr ""
 
-#: UsageConfig.py:1268
+#: UsageConfig.py:1291
 msgid "Traditional Chinese"
 msgstr ""
 
@@ -19567,15 +19566,15 @@ msgstr ""
 msgid "Translations"
 msgstr ""
 
-#: ServiceInfo.py:202 ServiceInfo.py:275 ScanSetup.py:885
+#: ServiceInfo.py:202 ServiceInfo.py:275 ScanSetup.py:903
 msgid "Transmission mode"
 msgstr ""
 
-#: UsageConfig.py:171
+#: UsageConfig.py:189
 msgid "Transparent"
 msgstr ""
 
-#: ScanSetup.py:833 ScanSetup.py:860 ScanSetup.py:895 ScanSetup.py:911
+#: ScanSetup.py:851 ScanSetup.py:878 ScanSetup.py:913 ScanSetup.py:929
 #: PositionerSetup/plugin.py:1232
 msgid "Transponder"
 msgstr ""
@@ -19588,7 +19587,7 @@ msgstr ""
 msgid "Transponder type"
 msgstr ""
 
-#: ScanSetup.py:808
+#: ScanSetup.py:826
 msgid "Transport Stream Type"
 msgstr ""
 
@@ -19620,23 +19619,23 @@ msgstr ""
 msgid "True"
 msgstr ""
 
-#: UsageConfig.py:176
+#: UsageConfig.py:194
 msgid "TrueType font (HD)"
 msgstr ""
 
-#: UsageConfig.py:176
+#: UsageConfig.py:194
 msgid "TrueType font (SD)"
 msgstr ""
 
-#: UsageConfig.py:176
+#: UsageConfig.py:194
 msgid "TrueType font (full-HD)"
 msgstr ""
 
-#: ScanSetup.py:247 ScanSetup.py:381
+#: ScanSetup.py:261 ScanSetup.py:397
 msgid "Try to find used transponders in cable network.. please wait..."
 msgstr ""
 
-#: ScanSetup.py:465 ScanSetup.py:560
+#: ScanSetup.py:481 ScanSetup.py:578
 msgid "Try to find used transponders in terrestrial network.. please wait..."
 msgstr ""
 
@@ -19683,8 +19682,8 @@ msgstr ""
 msgid "Tuned for recording"
 msgstr ""
 
-#: ScanSetup.py:720 Satconfig.py:279 Satconfig.py:286 Satconfig.py:841
-#: Satconfig.py:1079 Satconfig.py:1081 ServiceScan.py:199 UsageConfig.py:169
+#: ScanSetup.py:738 Satconfig.py:279 Satconfig.py:286 Satconfig.py:841
+#: Satconfig.py:1079 Satconfig.py:1081 ServiceScan.py:199 UsageConfig.py:187
 #: CableScan/plugin.py:148 FastScan/plugin.py:172
 msgid "Tuner"
 msgstr ""
@@ -19745,7 +19744,7 @@ msgstr ""
 msgid "Tuner status UNKNOWN"
 msgstr ""
 
-#: ScanSetup.py:745 Satconfig.py:256
+#: ScanSetup.py:763 Satconfig.py:256
 #, python-format
 msgid "Tuner type %s"
 msgstr ""
@@ -19769,7 +19768,7 @@ msgstr ""
 msgid "Turkey"
 msgstr ""
 
-#: UsageConfig.py:1297
+#: UsageConfig.py:1320
 msgid "Turkish"
 msgstr ""
 
@@ -19809,7 +19808,7 @@ msgstr ""
 msgid "Two"
 msgstr ""
 
-#: UsageConfig.py:595
+#: UsageConfig.py:614
 msgid "Two lines"
 msgstr ""
 
@@ -19818,7 +19817,7 @@ msgstr ""
 msgid "Type"
 msgstr ""
 
-#: ScanSetup.py:762 ScanSetup.py:769 ScanSetup.py:772 ScanSetup.py:781
+#: ScanSetup.py:780 ScanSetup.py:787 ScanSetup.py:790 ScanSetup.py:799
 msgid "Type of scan"
 msgstr ""
 
@@ -19883,7 +19882,7 @@ msgstr ""
 msgid "Ukraine"
 msgstr ""
 
-#: VirtualKeyBoard.py:489 VirtualKeyBoard.py:490 UsageConfig.py:1298
+#: VirtualKeyBoard.py:489 VirtualKeyBoard.py:490 UsageConfig.py:1321
 msgid "Ukrainian"
 msgstr ""
 
@@ -19911,7 +19910,7 @@ msgstr ""
 msgid "Undefined"
 msgstr ""
 
-#: UsageConfig.py:1261
+#: UsageConfig.py:1284
 msgid "Undetermined"
 msgstr ""
 
@@ -19980,7 +19979,7 @@ msgstr ""
 msgid "Universal LNB"
 msgstr ""
 
-#: MessageBox.py:121 MessageBox.py:143 Network.py:293 Multiboot.py:186
+#: MessageBox.py:121 MessageBox.py:143 Network.py:293 Multiboot.py:189
 #: FrontendInfo.py:59 key_actions.py:71
 msgid "Unknown"
 msgstr ""
@@ -20291,7 +20290,7 @@ msgstr ""
 msgid "Use fastscan channel numbering"
 msgstr ""
 
-#: ScanSetup.py:775
+#: ScanSetup.py:793
 msgid "Use frequency or channel"
 msgstr ""
 
@@ -20400,7 +20399,7 @@ msgstr ""
 msgid "User - bouquets"
 msgstr ""
 
-#: UsageConfig.py:49 NimManager.py:1670 NimManager.py:1785 NimManager.py:1853
+#: UsageConfig.py:67 NimManager.py:1670 NimManager.py:1785 NimManager.py:1853
 #: Converter/genre.py:609 Converter/genre.py:619 Converter/genre.py:622
 #: Converter/genre.py:679
 msgid "User defined"
@@ -20411,7 +20410,7 @@ msgstr ""
 msgid "User defined 0x%02x"
 msgstr ""
 
-#: ScanSetup.py:1357 ScanSetup.py:1358 ScanSetup.py:1361 ScanSetup.py:1362
+#: ScanSetup.py:1375 ScanSetup.py:1376 ScanSetup.py:1379 ScanSetup.py:1380
 msgid "User defined transponder"
 msgstr ""
 
@@ -20968,7 +20967,7 @@ msgstr ""
 msgid "Watch recordings..."
 msgstr ""
 
-#: UsageConfig.py:1138
+#: UsageConfig.py:1161
 #, python-format
 msgid ""
 "We are really sorry. Your receiver encountered a software problem, and needs to be restarted.\n"
@@ -21140,11 +21139,11 @@ msgstr ""
 msgid "Which event do you want to save permanently?"
 msgstr ""
 
-#: UsageConfig.py:433
+#: UsageConfig.py:452
 msgid "While available"
 msgstr ""
 
-#: UsageConfig.py:171
+#: UsageConfig.py:189
 msgid "White"
 msgstr ""
 
@@ -21192,7 +21191,7 @@ msgstr ""
 msgid "With errors:"
 msgstr ""
 
-#: UsageConfig.py:242 UsageConfig.py:329
+#: UsageConfig.py:261 UsageConfig.py:348
 msgid "With popup"
 msgstr ""
 
@@ -21200,7 +21199,7 @@ msgstr ""
 msgid "With this setting, you can probably improve the signal quality or eliminate problems that can occur with longer HDMI cables."
 msgstr ""
 
-#: UsageConfig.py:242 UsageConfig.py:329
+#: UsageConfig.py:261 UsageConfig.py:348
 msgid "Without popup"
 msgstr ""
 
@@ -21249,7 +21248,7 @@ msgstr ""
 msgid "XP3000"
 msgstr ""
 
-#: UsageConfig.py:119
+#: UsageConfig.py:137
 msgid "XPicon, ZZZPicon"
 msgstr ""
 
@@ -21288,7 +21287,7 @@ msgstr ""
 #: About.py:302 Ci.py:50 InfoBar.py:594 InfoBar.py:599 InfoBarGenerics.py:5284
 #: Satconfig.py:796 MessageBox.py:94 MessageBox.py:96 PowerTimerEntry.py:134
 #: PowerTimerEntry.py:152 PowerTimerEntry.py:154 Lcd.py:674 Lcd.py:686
-#: Lcd.py:692 UsageConfig.py:433 HdmiRecord.py:77 Timeshift.py:543
+#: Lcd.py:692 UsageConfig.py:452 HdmiRecord.py:77 Timeshift.py:543
 #: Timeshift.py:914 config.py:399 ClientsStreaming.py:81
 #: FileCommander/plugin.py:80 FileCommander/plugin.py:700
 #: FileCommander/plugin.py:729 FileCommander/plugin.py:762
@@ -21315,11 +21314,11 @@ msgstr ""
 msgid "Yes, but don't save timeshift as movie"
 msgstr ""
 
-#: UsageConfig.py:1377
+#: UsageConfig.py:1400
 msgid "Yes, but if not available show the plugin browser"
 msgstr ""
 
-#: UsageConfig.py:1376
+#: UsageConfig.py:1399
 msgid "Yes, but if not available show the timer list"
 msgstr ""
 
@@ -21688,11 +21687,11 @@ msgstr ""
 msgid "ZOOM long"
 msgstr ""
 
-#: UsageConfig.py:119
+#: UsageConfig.py:137
 msgid "ZPicon"
 msgstr ""
 
-#: UsageConfig.py:119
+#: UsageConfig.py:137
 msgid "ZZPicon"
 msgstr ""
 
@@ -21700,17 +21699,17 @@ msgstr ""
 msgid "Zambia"
 msgstr ""
 
-#: UsageConfig.py:1421 UsageConfig.py:1422 UsageConfig.py:1443
-#: UsageConfig.py:1444 UsageConfig.py:1449 UsageConfig.py:1450
-#: UsageConfig.py:1456 UsageConfig.py:1457 UsageConfig.py:1512
-#: UsageConfig.py:1513 GraphMultiEpg.py:1100
+#: UsageConfig.py:1444 UsageConfig.py:1445 UsageConfig.py:1466
+#: UsageConfig.py:1467 UsageConfig.py:1472 UsageConfig.py:1473
+#: UsageConfig.py:1479 UsageConfig.py:1480 UsageConfig.py:1535
+#: UsageConfig.py:1536 GraphMultiEpg.py:1100
 msgid "Zap"
 msgstr ""
 
-#: UsageConfig.py:1421 UsageConfig.py:1422 UsageConfig.py:1443
-#: UsageConfig.py:1444 UsageConfig.py:1449 UsageConfig.py:1450
-#: UsageConfig.py:1456 UsageConfig.py:1457 UsageConfig.py:1512
-#: UsageConfig.py:1513
+#: UsageConfig.py:1444 UsageConfig.py:1445 UsageConfig.py:1466
+#: UsageConfig.py:1467 UsageConfig.py:1472 UsageConfig.py:1473
+#: UsageConfig.py:1479 UsageConfig.py:1480 UsageConfig.py:1535
+#: UsageConfig.py:1536
 msgid "Zap + Exit"
 msgstr ""
 
@@ -21954,7 +21953,7 @@ msgstr ""
 msgid "all events up"
 msgstr ""
 
-#: UsageConfig.py:1516
+#: UsageConfig.py:1539
 msgid "all up/down"
 msgstr ""
 
@@ -21970,7 +21969,7 @@ msgstr ""
 msgid "alphabetic reverse"
 msgstr ""
 
-#: UsageConfig.py:209 UsageConfig.py:215
+#: UsageConfig.py:227 UsageConfig.py:233
 msgid "alphabetical"
 msgstr ""
 
@@ -21978,7 +21977,7 @@ msgstr ""
 msgid "alpharev then newest"
 msgstr ""
 
-#: UsageConfig.py:1243
+#: UsageConfig.py:1266
 msgid "alternative"
 msgstr ""
 
@@ -22021,7 +22020,7 @@ msgstr ""
 msgid "arts/culture magazine"
 msgstr ""
 
-#: UsageConfig.py:1380
+#: UsageConfig.py:1403
 msgid "as plugin in extended bar"
 msgstr ""
 
@@ -22029,11 +22028,11 @@ msgstr ""
 msgid "ask user"
 msgstr ""
 
-#: UsageConfig.py:1159
+#: UsageConfig.py:1182
 msgid "at beginning"
 msgstr ""
 
-#: UsageConfig.py:1159
+#: UsageConfig.py:1182
 msgid "at end"
 msgstr ""
 
@@ -22055,8 +22054,8 @@ msgstr ""
 msgid "audio tracks"
 msgstr ""
 
-#: TimerEntry.py:143 AVSwitch.py:779 AVSwitch.py:808 UsageConfig.py:387
-#: UsageConfig.py:388 UsageConfig.py:389 UsageConfig.py:390
+#: TimerEntry.py:143 AVSwitch.py:779 AVSwitch.py:808 UsageConfig.py:406
+#: UsageConfig.py:407 UsageConfig.py:408 UsageConfig.py:409
 #: RecordingConfig.py:29
 msgid "auto"
 msgstr ""
@@ -22114,7 +22113,7 @@ msgstr ""
 msgid "blue"
 msgstr ""
 
-#: UsageConfig.py:1487
+#: UsageConfig.py:1510
 msgid "bottom"
 msgstr ""
 
@@ -22147,15 +22146,16 @@ msgstr ""
 msgid "cartoon/puppets"
 msgstr ""
 
-#: AudioSelection.py:234 AVSwitch.py:993 UsageConfig.py:1208
+#: AudioSelection.py:234 AVSwitch.py:993 UsageConfig.py:1231
 msgid "center"
 msgstr ""
 
-#: UsageConfig.py:88 UsageConfig.py:90 UsageConfig.py:1472 GraphMultiEpg.py:52
+#: UsageConfig.py:106 UsageConfig.py:108 UsageConfig.py:1495
+#: GraphMultiEpg.py:52
 msgid "centered"
 msgstr ""
 
-#: UsageConfig.py:1475 GraphMultiEpg.py:55
+#: UsageConfig.py:1498 GraphMultiEpg.py:55
 msgid "centered, wrapped"
 msgstr ""
 
@@ -22183,11 +22183,11 @@ msgstr ""
 msgid "childrens (general)"
 msgstr ""
 
-#: ScanSetup.py:1143 PositionerSetup/plugin.py:1150
+#: ScanSetup.py:1161 PositionerSetup/plugin.py:1150
 msgid "circular left"
 msgstr ""
 
-#: ScanSetup.py:1144 PositionerSetup/plugin.py:1151
+#: ScanSetup.py:1162 PositionerSetup/plugin.py:1151
 msgid "circular right"
 msgstr ""
 
@@ -22599,7 +22599,7 @@ msgstr ""
 msgid "fashion"
 msgstr ""
 
-#: Lcd.py:736 UsageConfig.py:559 SoftwareManager/plugin.py:93
+#: Lcd.py:736 UsageConfig.py:578 SoftwareManager/plugin.py:93
 msgid "fast"
 msgstr ""
 
@@ -22727,7 +22727,7 @@ msgstr ""
 msgid "goto current channel and now"
 msgstr ""
 
-#: UsageConfig.py:44
+#: UsageConfig.py:62
 msgid "goto deep-standby"
 msgstr ""
 
@@ -22743,7 +22743,7 @@ msgstr ""
 msgid "goto now"
 msgstr ""
 
-#: UsageConfig.py:44 UsageConfig.py:45
+#: UsageConfig.py:62 UsageConfig.py:63
 msgid "goto standby"
 msgstr ""
 
@@ -22755,27 +22755,27 @@ msgstr ""
 msgid "green"
 msgstr ""
 
-#: UsageConfig.py:875 UsageConfig.py:883
+#: UsageConfig.py:898 UsageConfig.py:906
 msgid "h:mm"
 msgstr ""
 
-#: UsageConfig.py:733 UsageConfig.py:740
+#: UsageConfig.py:756 UsageConfig.py:763
 msgid "h:mm:ss"
 msgstr ""
 
-#: UsageConfig.py:729
+#: UsageConfig.py:752
 msgid "h:mm:ssAM/PM"
 msgstr ""
 
-#: UsageConfig.py:731
+#: UsageConfig.py:754
 msgid "h:mm:ssam/pm"
 msgstr ""
 
-#: UsageConfig.py:871
+#: UsageConfig.py:894
 msgid "h:mmAM/PM"
 msgstr ""
 
-#: UsageConfig.py:873
+#: UsageConfig.py:896
 msgid "h:mmam/pm"
 msgstr ""
 
@@ -22814,32 +22814,32 @@ msgstr ""
 msgid "helptext"
 msgstr ""
 
-#: UsageConfig.py:874 UsageConfig.py:882
+#: UsageConfig.py:897 UsageConfig.py:905
 msgid "hh:mm"
 msgstr ""
 
-#: UsageConfig.py:732 UsageConfig.py:739
+#: UsageConfig.py:755 UsageConfig.py:762
 msgid "hh:mm:ss"
 msgstr ""
 
-#: UsageConfig.py:728
+#: UsageConfig.py:751
 msgid "hh:mm:ssAM/PM"
 msgstr ""
 
-#: UsageConfig.py:730
+#: UsageConfig.py:753
 msgid "hh:mm:ssam/pm"
 msgstr ""
 
-#: UsageConfig.py:870
+#: UsageConfig.py:893
 msgid "hh:mmAM/PM"
 msgstr ""
 
-#: UsageConfig.py:872
+#: UsageConfig.py:895
 msgid "hh:mmam/pm"
 msgstr ""
 
 #: Console.py:24 PluginBrowser.py:183 PluginBrowser.py:184 PluginBrowser.py:245
-#: Menu.py:648 Menu.py:723 UsageConfig.py:1487
+#: Menu.py:648 Menu.py:723 UsageConfig.py:1510
 msgid "hide"
 msgstr ""
 
@@ -22855,7 +22855,7 @@ msgstr ""
 msgid "hops:"
 msgstr ""
 
-#: ScanSetup.py:1141 PositionerSetup/plugin.py:1148
+#: ScanSetup.py:1159 PositionerSetup/plugin.py:1148
 msgid "horizontal"
 msgstr ""
 
@@ -22941,7 +22941,7 @@ msgstr ""
 msgid "just abort, show message"
 msgstr ""
 
-#: UsageConfig.py:44 UsageConfig.py:45
+#: UsageConfig.py:62 UsageConfig.py:63
 msgid "just boot"
 msgstr ""
 
@@ -22957,13 +22957,13 @@ msgstr ""
 msgid "leave movie player..."
 msgstr ""
 
-#: AudioSelection.py:195 UsageConfig.py:1208 UsageConfig.py:1471
+#: AudioSelection.py:195 UsageConfig.py:1231 UsageConfig.py:1494
 #: GraphMultiEpg.py:51 OSDPositionSetup/plugin.py:53
 #: VideoClippingSetup/plugin.py:56
 msgid "left"
 msgstr ""
 
-#: UsageConfig.py:1474 GraphMultiEpg.py:54
+#: UsageConfig.py:1497 GraphMultiEpg.py:54
 msgid "left, wrapped"
 msgstr ""
 
@@ -23034,7 +23034,7 @@ msgstr ""
 msgid "menu"
 msgstr ""
 
-#: UsageConfig.py:1487
+#: UsageConfig.py:1510
 msgid "middle"
 msgstr ""
 
@@ -23047,11 +23047,11 @@ msgstr ""
 msgid "mins"
 msgstr ""
 
-#: Lcd.py:576 Lcd.py:741 UsageConfig.py:553
+#: Lcd.py:576 Lcd.py:741 UsageConfig.py:572
 msgid "minute"
 msgstr ""
 
-#: Lcd.py:378 Lcd.py:578 Lcd.py:742 UsageConfig.py:26 UsageConfig.py:554
+#: Lcd.py:378 Lcd.py:578 Lcd.py:742 UsageConfig.py:44 UsageConfig.py:573
 msgid "minutes"
 msgstr ""
 
@@ -23141,7 +23141,7 @@ msgstr ""
 msgid "nature/animals/environment"
 msgstr ""
 
-#: UsageConfig.py:1097 UsageConfig.py:1107 ParentalControl.py:21
+#: UsageConfig.py:1120 UsageConfig.py:1130 ParentalControl.py:21
 msgid "never"
 msgstr ""
 
@@ -23178,7 +23178,7 @@ msgid "next higher Resolution"
 msgstr ""
 
 #: TimerEntry.py:166 ChannelSelection.py:383 ChannelSelection.py:1372
-#: ScanSetup.py:1364 ScanSetup.py:1986 MessageBox.py:206 PowerTimerEntry.py:141
+#: ScanSetup.py:1382 ScanSetup.py:2004 MessageBox.py:206 PowerTimerEntry.py:141
 #: PowerTimerEntry.py:151 AVSwitch.py:922 AVSwitch.py:927 NimManager.py:2105
 #: config.py:487 FastScan/plugin.py:21
 msgid "no"
@@ -23221,7 +23221,7 @@ msgstr ""
 msgid "none"
 msgstr ""
 
-#: Lcd.py:356 Lcd.py:603 Lcd.py:735 UsageConfig.py:558 RecordingConfig.py:23
+#: Lcd.py:356 Lcd.py:603 Lcd.py:735 UsageConfig.py:577 RecordingConfig.py:23
 msgid "normal"
 msgstr ""
 
@@ -23276,7 +23276,7 @@ msgstr ""
 #: AudioSelection.py:144 AudioSelection.py:187 AudioSelection.py:228
 #: AudioSelection.py:240 Lcd.py:379 Lcd.py:528 Lcd.py:579 Lcd.py:743
 #: AVSwitch.py:553 AVSwitch.py:970 AVSwitch.py:1013 AVSwitch.py:1211
-#: AVSwitch.py:1231 UsageConfig.py:49 UsageConfig.py:555 config.py:491
+#: AVSwitch.py:1231 UsageConfig.py:67 UsageConfig.py:574 config.py:491
 #: AtileHD/plugin.py:652
 msgid "off"
 msgstr ""
@@ -23318,7 +23318,7 @@ msgstr ""
 msgid "openATV"
 msgstr ""
 
-#: UsageConfig.py:1203 type_utils.py:174
+#: UsageConfig.py:1226 type_utils.py:174
 msgid "original"
 msgstr ""
 
@@ -23412,11 +23412,11 @@ msgstr ""
 msgid "previous channel page"
 msgstr ""
 
-#: UsageConfig.py:1508
+#: UsageConfig.py:1531
 msgid "previous/next Bouquet"
 msgstr ""
 
-#: UsageConfig.py:1508 UsageConfig.py:1516
+#: UsageConfig.py:1531 UsageConfig.py:1539
 msgid "previous/next Page"
 msgstr ""
 
@@ -23582,12 +23582,12 @@ msgstr ""
 msgid "rgb"
 msgstr ""
 
-#: AudioSelection.py:195 UsageConfig.py:1208 UsageConfig.py:1473
+#: AudioSelection.py:195 UsageConfig.py:1231 UsageConfig.py:1496
 #: GraphMultiEpg.py:53
 msgid "right"
 msgstr ""
 
-#: UsageConfig.py:1476 GraphMultiEpg.py:56
+#: UsageConfig.py:1499 GraphMultiEpg.py:56
 msgid "right, wrapped"
 msgstr ""
 
@@ -23652,8 +23652,8 @@ msgid "second cable of motorized LNB"
 msgstr ""
 
 #: Lcd.py:374 Lcd.py:376 Lcd.py:572 Lcd.py:574 Lcd.py:642 Lcd.py:644 Lcd.py:646
-#: Lcd.py:663 Lcd.py:665 Lcd.py:738 Lcd.py:740 UsageConfig.py:145
-#: UsageConfig.py:550 UsageConfig.py:551 UsageConfig.py:552
+#: Lcd.py:663 Lcd.py:665 Lcd.py:738 Lcd.py:740 UsageConfig.py:163
+#: UsageConfig.py:569 UsageConfig.py:570 UsageConfig.py:571
 msgid "seconds"
 msgstr ""
 
@@ -23842,7 +23842,7 @@ msgstr ""
 msgid "slot%s - %s as USB Recovery"
 msgstr ""
 
-#: Lcd.py:734 UsageConfig.py:557 SoftwareManager/plugin.py:94
+#: Lcd.py:734 UsageConfig.py:576 SoftwareManager/plugin.py:94
 msgid "slow"
 msgstr ""
 
@@ -24003,7 +24003,7 @@ msgstr ""
 msgid "toggle time, chapter, audio, subtitle info"
 msgstr ""
 
-#: UsageConfig.py:1487 OSDPositionSetup/plugin.py:55
+#: UsageConfig.py:1510 OSDPositionSetup/plugin.py:55
 #: VideoClippingSetup/plugin.py:58
 msgid "top"
 msgstr ""
@@ -24058,7 +24058,7 @@ msgid "unconfirmed"
 msgstr ""
 
 #: About.py:124 NetworkSetup.py:1544 AudioSelection.py:301 About.py:19
-#: About.py:195 VAudioInfo.py:58 SoftwareManager/plugin.py:1399
+#: About.py:199 VAudioInfo.py:58 SoftwareManager/plugin.py:1399
 #: SoftwareManager/plugin.py:1404
 msgid "unknown"
 msgstr ""
@@ -24112,7 +24112,7 @@ msgstr ""
 msgid "updates available."
 msgstr ""
 
-#: UsageConfig.py:88 UsageConfig.py:90
+#: UsageConfig.py:106 UsageConfig.py:108
 msgid "upper line"
 msgstr ""
 
@@ -24132,8 +24132,8 @@ msgstr ""
 msgid "use_hdmi_cacenter"
 msgstr ""
 
-#: TimerEntry.py:159 PowerTimerEntry.py:130 UsageConfig.py:211
-#: UsageConfig.py:217
+#: TimerEntry.py:159 PowerTimerEntry.py:130 UsageConfig.py:229
+#: UsageConfig.py:235
 msgid "user defined"
 msgstr ""
 
@@ -24149,7 +24149,7 @@ msgstr ""
 msgid "variety show"
 msgstr ""
 
-#: ScanSetup.py:1142 PositionerSetup/plugin.py:1149
+#: ScanSetup.py:1160 PositionerSetup/plugin.py:1149
 msgid "vertical"
 msgstr ""
 
@@ -24209,7 +24209,7 @@ msgid ""
 "A copy has been sent to yourself."
 msgstr ""
 
-#: UsageConfig.py:1204 UsageConfig.py:1244
+#: UsageConfig.py:1227 UsageConfig.py:1267
 msgid "white"
 msgstr ""
 
@@ -24245,15 +24245,15 @@ msgstr[1] ""
 msgid "with errors"
 msgstr ""
 
-#: UsageConfig.py:1382
+#: UsageConfig.py:1405
 msgid "with exit button"
 msgstr ""
 
-#: UsageConfig.py:1383
+#: UsageConfig.py:1406
 msgid "with left/right buttons"
 msgstr ""
 
-#: UsageConfig.py:1381
+#: UsageConfig.py:1404
 msgid "with long OK press"
 msgstr ""
 
@@ -24278,19 +24278,19 @@ msgstr ""
 msgid "working"
 msgstr ""
 
-#: UsageConfig.py:1205 UsageConfig.py:1245 PicturePlayer/ui.py:29
+#: UsageConfig.py:1228 UsageConfig.py:1268 PicturePlayer/ui.py:29
 #: PicturePlayer/ui.py:30
 msgid "yellow"
 msgstr ""
 
 #: TimerEntry.py:166 ChannelSelection.py:383 ChannelSelection.py:1372
-#: ScanSetup.py:1364 ScanSetup.py:1986 MessageBox.py:238 PowerTimerEntry.py:141
+#: ScanSetup.py:1382 ScanSetup.py:2004 MessageBox.py:238 PowerTimerEntry.py:141
 #: PowerTimerEntry.py:151 AVSwitch.py:922 AVSwitch.py:927 NimManager.py:2105
 #: config.py:487 FastScan/plugin.py:21
 msgid "yes"
 msgstr ""
 
-#: ScanSetup.py:1364 ScanSetup.py:1986
+#: ScanSetup.py:1382 ScanSetup.py:2004
 msgid "yes (keep feeds)"
 msgstr ""
 
@@ -24784,6 +24784,10 @@ msgid "Device Setup"
 msgstr ""
 
 #: menu.xml
+msgid "Dual Mode"
+msgstr ""
+
+#: menu.xml
 msgid "EPG"
 msgstr ""
 
@@ -25097,14 +25101,6 @@ msgstr ""
 
 #: setup.xml
 msgid "Automatic image backup"
-msgstr ""
-
-#: setup.xml
-msgid "Automatic refresh"
-msgstr ""
-
-#: setup.xml
-msgid "Automatic save"
 msgstr ""
 
 #: setup.xml
@@ -26656,6 +26652,10 @@ msgid "Remember last service in PiP"
 msgstr ""
 
 #: setup.xml
+msgid "Remote control model shown"
+msgstr ""
+
+#: setup.xml
 msgid "Remove completed timers after (days)"
 msgstr ""
 
@@ -26697,6 +26697,14 @@ msgstr ""
 
 #: setup.xml
 msgid "Save every (in hours)"
+msgstr ""
+
+#: setup.xml
+msgid "Scheduled load of epg.dat"
+msgstr ""
+
+#: setup.xml
+msgid "Scheduled save of epg.dat"
 msgstr ""
 
 #: setup.xml
@@ -27945,6 +27953,10 @@ msgstr ""
 
 #: setup.xml
 msgid "When tuned to a service the system will normally scan the transponder for any changes and save them. Only set to 'yes' if you're absolutely sure what you're doing."
+msgstr ""
+
+#: setup.xml
+msgid "Which remote control gets shown. Only influences graphical representation."
 msgstr ""
 
 #: setup.xml
