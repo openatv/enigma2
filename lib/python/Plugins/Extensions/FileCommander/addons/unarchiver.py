@@ -82,7 +82,7 @@ class ArchiverMenuScreen(Screen):
 
 	def onLayout(self):
 		self.setTitle(self.pname)
-		self.chooseMenuList.setList(map(self.ListEntry, self.list))
+		self.chooseMenuList.setList(list(map(self.ListEntry, self.list)))
 
 	def ListEntry(self, entry):
 		x, y, w, h = skin.parameters.get("FileListName", (10, 0, 1180, 25))
@@ -140,8 +140,13 @@ class ArchiverMenuScreen(Screen):
 			print("[ArchiverMenuScreen]", msg)
 			self.session.open(MessageBox, msg, MessageBox.TYPE_ERROR)
 			return
-		output = list(map(str.splitlines, p.communicate()))
-		if output[0] and output[1]:
+		stdout, stderr = p.communicate()
+		output = []
+		stdout = six.ensure_str(stdout)
+		stderr = six.ensure_str(stderr)
+		output.append(stdout.split('\n'))
+		output.append(stderr.split('\n'))
+		if stdout and stderr:
 			output[1].append("----------")
 		self.extractlist = [(l,) for l in output[1] + output[0]]
 		if not self.extractlist:
@@ -218,14 +223,14 @@ class ArchiverInfoScreen(Screen):
 			<ePixmap position="955,570" size="260,25" zPosition="0" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/FileCommander/pic/button_blue.png" transparent="1" alphatest="on"/>
 		</screen>"""
 
-	def __init__(self, session, list, sourceDir, filename):
+	def __init__(self, session, liste, sourceDir, filename):
 		self.session = session
 
 		self.pname = pname
 		self.pdesc = pdesc
 		self.pversion = pversion
 
-		self.list = list
+		self.list = liste
 		self.sourceDir = sourceDir
 		self.filename = filename
 		Screen.__init__(self, session)

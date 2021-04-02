@@ -48,8 +48,8 @@ class ipkMenuScreen(ArchiverMenuScreen):
 
 class UnpackInfoScreen(ArchiverInfoScreen):
 
-	def __init__(self, session, list, sourceDir, filename):
-		super(UnpackInfoScreen, self).__init__(session, list, sourceDir, filename)
+	def __init__(self, session, liste, sourceDir, filename):
+		super(UnpackInfoScreen, self).__init__(session, liste, sourceDir, filename)
 		self.pname = pname
 		self.pdesc = pdesc
 		self.pversion = pversion

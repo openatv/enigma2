@@ -9,6 +9,7 @@ import re
 import subprocess
 from Plugins.Extensions.FileCommander.InputBox import InputBox
 from Screens.VirtualKeyBoard import VirtualKeyBoard
+import six
 
 pname = _("File Commander - unrar Addon")
 pdesc = _("unpack Rar Files")
@@ -52,6 +53,7 @@ class RarMenuScreen(ArchiverMenuScreen):
 			return
 		stdlog = p.stdout.read()
 		if stdlog:
+			stdlog = six.ensure_str(stdlog)
 			print("[RarMenuScreen] checkPW stdout", len(stdlog))
 			print(stdlog)
 			if 'Corrupt file or wrong password.' in stdlog:
@@ -119,8 +121,8 @@ class RarMenuScreen(ArchiverMenuScreen):
 
 class UnpackInfoScreen(ArchiverInfoScreen):
 
-	def __init__(self, session, list, sourceDir, filename):
-		super(UnpackInfoScreen, self).__init__(session, list, sourceDir, filename)
+	def __init__(self, session, liste, sourceDir, filename):
+		super(UnpackInfoScreen, self).__init__(session, liste, sourceDir, filename)
 		self.pname = pname
 		self.pdesc = pdesc
 		self.pversion = pversion

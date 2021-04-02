@@ -629,8 +629,8 @@ class FileCommanderScreen(Screen, HelpableScreen, key_actions):
 			else:
 				Tools.Notifications.AddNotification(MessageBox, message, type=messageboxtyp, timeout=timeout)
 
-	def setSort(self, list, setDirs = False):
-		sortDirs, sortFiles = list.getSortBy().split(',')
+	def setSort(self, liste, setDirs = False):
+		sortDirs, sortFiles = liste.getSortBy().split(',')
 		if setDirs:
 			sort, reverse = [int(x) for x in sortDirs.split('.')]
 			sort += 1
@@ -643,8 +643,8 @@ class FileCommanderScreen(Screen, HelpableScreen, key_actions):
 				sort = 0
 		return '%d.%d' %(sort, reverse)
 
-	def setReverse(self, list, setDirs = False):
-		sortDirs, sortFiles = list.getSortBy().split(',')
+	def setReverse(self, liste, setDirs = False):
+		sortDirs, sortFiles = liste.getSortBy().split(',')
 		if setDirs:
 			sort, reverse = [int(x) for x in sortDirs.split('.')]
 		else:

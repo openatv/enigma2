@@ -57,14 +57,14 @@ def Plugins(path, **kwargs):
 	desc_pluginmenu = PluginDescriptor(name=pname, description=pdesc,  where=PluginDescriptor.WHERE_PLUGINMENU, icon="FileCommander.png", fnc=start_from_pluginmenu)
 	desc_extensionmenu = PluginDescriptor(name=pname, description=pdesc, where=PluginDescriptor.WHERE_EXTENSIONSMENU, fnc=start_from_pluginmenu)
 	desc_filescan = PluginDescriptor(name=pname, where=PluginDescriptor.WHERE_FILESCAN, fnc=start_from_filescan)
-	list = []
-	list.append(desc_pluginmenu)
+	_list = []
+	_list.append(desc_pluginmenu)
 ####
 # 	buggy
 # 	list.append(desc_filescan)
 ####
 	if config.plugins.filecommander.add_extensionmenu_entry.value:
-		list.append(desc_extensionmenu)
+		_list.append(desc_extensionmenu)
 	if config.plugins.filecommander.add_mainmenu_entry.value:
-		list.append(desc_mainmenu)
-	return list
+		_list.append(desc_mainmenu)
+	return _list
