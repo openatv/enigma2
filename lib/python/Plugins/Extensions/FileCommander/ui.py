@@ -9,7 +9,7 @@ from Components.config import config, ConfigSubsection, ConfigInteger, ConfigYes
 from Components.Label import Label
 from Components.FileTransfer import FileTransferJob, ALL_MOVIE_EXTENSIONS
 from Components.Task import job_manager
-from Components.ActionMap import ActionMap, HelpableActionMap
+from Components.ActionMap import ActionMap, HelpableActionMap, NumberActionMap
 from Components.Sources.Boolean import Boolean
 from Components.Sources.List import List
 from Components.ChoiceList import ChoiceList, ChoiceEntryComponent
@@ -122,7 +122,14 @@ cfg = config.plugins.filecommander
 class FileCommanderConfigScreen(Setup):
 	def __init__(self, session):
 		Setup.__init__(self, session, "filecommander", plugin="Extensions/FileCommander")
-
+		self["actions"] = NumberActionMap(["SetupActions", "MenuActions"],
+			{
+				"cancel": self.keyCancel,
+				"save": self.keySave,
+				"ok": self.keyOK,
+				"menu": self.closeRecursive,
+			}, -2)
+	
 	def keyOK(self):
 		if self["config"].getCurrent()[1] is config.plugins.filecommander.path_default:
 			self.session.openWithCallback(self.pathSelected, LocationBox, text=_("Default Folder"), currDir=config.plugins.filecommander.path_default.getValue(), minFree=100)
