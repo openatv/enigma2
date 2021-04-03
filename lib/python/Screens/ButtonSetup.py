@@ -49,6 +49,7 @@ def getButtonSetupKeys():
 		(_("Rec"), "rec", ""),
 		(_("Rec long"), "rec_long", ""),
 		(_("Teletext"), "text", ""),
+		(_("Teletext long"), "text_long", ""),
 		(_("Help"), "displayHelp", ""),
 		(_("Help long"), "displayHelp_long", ""),
 		(_("Subtitle"), "subtitle", ""),
