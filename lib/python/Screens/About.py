@@ -102,15 +102,15 @@ def getAboutText():
 	if SystemInfo["canMultiBoot"]:
 		slot = image = GetCurrentImage()
 		bootmode = ""
-		part = _("eMMC slot %s") %slot
+		part = _("eMMC slot %s") % slot
 		if SystemInfo["canMode12"]:
-			bootmode = _(" bootmode = %s") %GetCurrentImageMode()
+			bootmode = _(" bootmode = %s") % GetCurrentImageMode()
 		if SystemInfo["HasHiSi"] and "sda" in SystemInfo["canMultiBoot"][slot]['device']:
 			if slot > 4:
-				image -=4
+				image -= 4
 			else:
-				image -=1
-			part = "SDcard slot %s (%s) " %(image, SystemInfo["canMultiBoot"][slot]['device'])
+				image -= 1
+			part = "SDcard slot %s (%s) " % (image, SystemInfo["canMultiBoot"][slot]['device'])
 		AboutText += _("Selected Image:\t\t%s") % _("STARTUP_") + str(slot) + "  (" + part + bootmode + ")\n"
 
 	AboutText += _("Version / Build:\t\t%s  (%s)") % (getImageVersion(), MyDateConverter(getImageBuild())) + "\n"
@@ -293,12 +293,12 @@ class About(Screen):
 				for hddX in hddlist:
 					hdd = hddX[1]
 					if hdd.model() != "":
-						self.hdd_list.append((hdd.model() + "\n   %.2f GB - %.2f GB" % (hdd.diskSize()/1000.0, hdd.free()/1000.0) + " " + _("free") + "\n\n"))
+						self.hdd_list.append((hdd.model() + "\n   %.2f GB - %.2f GB" % (hdd.diskSize() / 1000.0, hdd.free() / 1000.0) + " " + _("free") + "\n\n"))
 
 			ifaces = iNetwork.getConfiguredAdapters()
 			iface_list = []
 			for iface in ifaces:
-				iface_list.append((_("Interface") + " : " + iNetwork.getAdapterName(iface) + " ("+ iNetwork.getFriendlyAdapterName(iface) + ")\n"))
+				iface_list.append((_("Interface") + " : " + iNetwork.getAdapterName(iface) + " (" + iNetwork.getFriendlyAdapterName(iface) + ")\n"))
 				iface_list.append((_("IP") + " : " + parse_ipv4(iNetwork.getAdapterAttribute(iface, "ip")) + "\n"))
 				iface_list.append((_("Netmask") + " : " + parse_ipv4(iNetwork.getAdapterAttribute(iface, "netmask")) + "\n"))
 				iface_list.append((_("Gateway") + " : " + parse_ipv4(iNetwork.getAdapterAttribute(iface, "gateway")) + "\n"))
@@ -444,18 +444,18 @@ class Devices(Screen):
 				if ((float(size) / 1024) / 1024) >= 1:
 					sizeline = _("Size: ") + str(round(((float(size) / 1024) / 1024), 2)) + " " + _("TB")
 				elif (size / 1024) >= 1:
-					sizeline = _("Size: ") + str(round((float(size) / 1024), 2)) +  " " + _("GB")
+					sizeline = _("Size: ") + str(round((float(size) / 1024), 2)) + " " + _("GB")
 				elif size >= 1:
-					sizeline = _("Size: ") + str(size) +  " " + _("MB")
+					sizeline = _("Size: ") + str(size) + " " + _("MB")
 				else:
 					sizeline = _("Size: ") + _("unavailable")
 
 				if ((float(free) / 1024) / 1024) >= 1:
-					freeline = _("Free: ") + str(round(((float(free) / 1024) / 1024), 2)) +  " " + _("TB")
+					freeline = _("Free: ") + str(round(((float(free) / 1024) / 1024), 2)) + " " + _("TB")
 				elif (free / 1024) >= 1:
-					freeline = _("Free: ") + str(round((float(free) / 1024), 2)) +  " " + _("GB")
+					freeline = _("Free: ") + str(round((float(free) / 1024), 2)) + " " + _("GB")
 				elif free >= 1:
-					freeline = _("Free: ") + str(free) +  " " + _("MB")
+					freeline = _("Free: ") + str(free) + " " + _("MB")
 				else:
 					freeline = _("Free: ") + _("full")
 				self.list.append(mount + '\t' + sizeline + ' \t' + freeline)
@@ -560,7 +560,7 @@ class SystemMemoryInfo(Screen):
 		self.Console.ePopen("df -mh / | grep -v '^Filesystem'", self.Stage1Complete)
 
 	def MySize(self, RamText):
-		RamText_End = RamText[len(RamText)-1]
+		RamText_End = RamText[len(RamText) - 1]
 		RamText_End2 = RamText_End
 		if RamText_End == "G":
 			RamText_End = _("GB")
@@ -569,7 +569,7 @@ class SystemMemoryInfo(Screen):
 		elif RamText_End == "K":
 			RamText_End = _("KB")
 		if RamText_End != RamText_End2:
-			RamText = RamText[0:len(RamText)-1] + " " + RamText_End
+			RamText = RamText[0:len(RamText) - 1] + " " + RamText_End
 		return RamText
 
 	def Stage1Complete(self, result, retval, extra_args=None):
@@ -651,19 +651,19 @@ class SystemNetworkInfo(Screen):
 
 	def createscreen(self):
 		def netspeed():
-			netspeed=""
+			netspeed = ""
 			for line in popen('ethtool eth0 |grep Speed', 'r'):
 				line = line.strip().split(":")
-				line =line[1].replace(' ', '')
+				line = line[1].replace(' ', '')
 				netspeed += line
 			return str(netspeed)
 
 
 		def netspeed_eth1():
-			netspeed=""
+			netspeed = ""
 			for line in popen('ethtool eth1 |grep Speed', 'r'):
 				line = line.strip().split(":")
-				line =line[1].replace(' ', '')
+				line = line[1].replace(' ', '')
 				netspeed += line
 			return str(netspeed)
 

@@ -38,7 +38,7 @@ class MenuListSetting(MenuList):
 
 class Programmlisten_Updater(Screen, ConfigListScreen):
 
-    skin =  """
+    skin = """
         <screen name="Programmlisten_Updater" position="center,center" size="710,500">
             <ePixmap pixmap="skin_default/buttons/red.png" position="5,0" size="140,40" alphatest="on" />
             <ePixmap pixmap="skin_default/buttons/green.png" position="155,0" size="140,40" alphatest="on" />
@@ -148,7 +148,7 @@ class Programmlisten_Updater(Screen, ConfigListScreen):
         except ValueError:
             x, y, w1, w2, h = (15, 7, 420, 210, 40)
         res.append(MultiContentEntryText(pos=(x, y), size=(w1, h), font=0, text=name, flags=RT_HALIGN_LEFT))
-        res.append(MultiContentEntryText(pos=(x+w1, y), size=(w2, h), font=0, color=16777215, text=date1, flags=RT_HALIGN_RIGHT))
+        res.append(MultiContentEntryText(pos=(x + w1, y), size=(w2, h), font=0, color=16777215, text=date1, flags=RT_HALIGN_RIGHT))
         res.append(MultiContentEntryText(pos=(0, 0), size=(0, 0), font=0, text=link, flags=RT_HALIGN_LEFT))
         res.append(MultiContentEntryText(pos=(0, 0), size=(0, 0), font=0, text=name1, flags=RT_HALIGN_LEFT))
         res.append(MultiContentEntryText(pos=(0, 0), size=(0, 0), font=0, text=date, flags=RT_HALIGN_LEFT))

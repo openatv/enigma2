@@ -15,35 +15,35 @@ from enigma import RT_WRAP, RT_HALIGN_LEFT, RT_HALIGN_CENTER, RT_HALIGN_RIGHT, R
 from skin import parseColor, parseFont
 
 # scroll type:
-NONE     = 0
-RUNNING  = 1
+NONE = 0
+RUNNING = 1
 SWIMMING = 2
-AUTO     = 3
+AUTO = 3
 # direction:
-LEFT     = 0
-RIGHT    = 1
-TOP      = 2
-BOTTOM   = 3
+LEFT = 0
+RIGHT = 1
+TOP = 2
+BOTTOM = 3
 # halign:
 #LEFT     = 0
 #RIGHT    = 1
-CENTER   = 2
-BLOCK    = 3
+CENTER = 2
+BLOCK = 3
 
 def RGB(r, g, b):
-	return (r<<16)|(g<<8)|b
+	return (r << 16) | (g << 8) | b
 
 class VRunningText(Renderer):
 	def __init__(self):
 		Renderer.__init__(self)
-		self.type     = NONE
-		self.txfont   = gFont("Regular", 14)
-		self.fcolor   = gRGB(RGB(255, 255, 255))
-		self.bcolor   = gRGB(RGB(0, 0, 0))
-		self.scolor   = None
-		self.soffset  = (0, 0)
+		self.type = NONE
+		self.txfont = gFont("Regular", 14)
+		self.fcolor = gRGB(RGB(255, 255, 255))
+		self.bcolor = gRGB(RGB(0, 0, 0))
+		self.scolor = None
+		self.soffset = (0, 0)
 		self.txtflags = 0 #RT_WRAP
-		self.txtext   = ""
+		self.txtext = ""
 		self.test_label = self.mTimer = self.mStartPoint = None
 		self.X = self.Y = self.W = self.H = self.mStartDelay = 0
 		self.mAlways = 1	# always move text
@@ -115,7 +115,7 @@ class VRunningText(Renderer):
 						val = ''
 						pos = opt.find('=')
 						if pos != -1:
-							val = opt[pos+1:].strip()
+							val = opt[pos + 1:].strip()
 							opt = opt[:pos].strip()
 						if opt == "wrap":
 							if val == "0":
@@ -129,7 +129,7 @@ class VRunningText(Renderer):
 								self.txtflags &= ~RT_WRAP
 						elif opt == "movetype" and val in ("none", "running", "swimming"):
 							self.type = {"none": NONE, "running": RUNNING, "swimming": SWIMMING}[val]
-						elif opt =="direction" and val in ("left", "right", "top", "bottom"):
+						elif opt == "direction" and val in ("left", "right", "top", "bottom"):
 							self.direction = {"left": LEFT, "right": RIGHT, "top": TOP, "bottom": BOTTOM}[val]
 						elif opt == "step" and val:
 							#retValue(val, limit, default, Min=False)
@@ -142,11 +142,11 @@ class VRunningText(Renderer):
 							self.mLoopTimeout = retValue(val, 0, self.mLoopTimeout)
 						elif opt == "oneshot" and val:
 							self.mOneShot = retValue(val, 0, self.mOneShot)
-						elif opt =="repeat" and val:
+						elif opt == "repeat" and val:
 							self.mRepeat = retValue(val, 0, self.mRepeat)
-						elif opt =="always" and val:
+						elif opt == "always" and val:
 							self.mAlways = retValue(val, 0, self.mAlways)
-						elif opt =="startpoint" and val:
+						elif opt == "startpoint" and val:
 							self.mStartPoint = int(val)
 				else:
 					attribs.append((attrib, value))
@@ -211,7 +211,7 @@ class VRunningText(Renderer):
 			fcolor = self.scolor
 		else:
 			fcolor = self.fcolor
-		self.instance.writeText(eRect(X-self.soffset[0], Y-self.soffset[1], self.W, self.H), fcolor, self.bcolor, self.txfont, self.txtext, self.txtflags)
+		self.instance.writeText(eRect(X - self.soffset[0], Y - self.soffset[1], self.W, self.H), fcolor, self.bcolor, self.txfont, self.txtext, self.txtflags)
 		if not self.scolor is None:
 			self.instance.writeText(eRect(X, Y, self.W, self.H), self.fcolor, self.scolor, self.txfont, self.txtext, self.txtflags)
 
@@ -362,8 +362,8 @@ class VRunningText(Renderer):
 				self.drawText(self.P, self.Y)
 			else: # if self.direction in (TOP,BOTTOM)
 				self.drawText(self.X, self.P)
-			if (self.type == RUNNING) and (self.mOneShot > 0) and (self.mStop+abs(self.mStep) > self.P >= self.mStop):
-				if (self.mRepeat > 0) and (self.mCount-1 == 0):
+			if (self.type == RUNNING) and (self.mOneShot > 0) and (self.mStop + abs(self.mStep) > self.P >= self.mStop):
+				if (self.mRepeat > 0) and (self.mCount - 1 == 0):
 					return
 				timeout = self.mOneShot
 			else:

@@ -5,11 +5,11 @@ from subprocess import Popen, PIPE
 opkgDestinations = ['/']
 opkgStatusPath = ''
 overwriteSettingsFiles = False
-overwriteDriversFiles  = True
-overwriteEmusFiles     = True
-overwritePiconsFiles   = True
+overwriteDriversFiles = True
+overwriteEmusFiles = True
+overwritePiconsFiles = True
 overwriteBootlogoFiles = True
-overwriteSpinnerFiles  = True
+overwriteSpinnerFiles = True
 
 def findMountPoint(path):
 	"""Example: findMountPoint("/media/hdd/some/file") returns "/media/hdd\""""

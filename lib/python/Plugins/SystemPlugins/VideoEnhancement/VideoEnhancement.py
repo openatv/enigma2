@@ -9,7 +9,7 @@ class VideoEnhancement:
 	firstRun = True
 
 	def __init__(self):
-		self.last_modes_preferred =  []
+		self.last_modes_preferred = []
 		self.createConfig()
 
 	def createConfig(self, *args):

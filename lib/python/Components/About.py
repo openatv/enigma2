@@ -85,9 +85,9 @@ def getCPUSpeedString():
 			f = open('/sys/firmware/devicetree/base/cpus/cpu@0/clock-frequency', 'rb')
 			clockfrequency = f.read()
 			f.close()
-			CPUSpeed_Int = round(int(binascii.hexlify(clockfrequency), 16)/1000000, 1)
+			CPUSpeed_Int = round(int(binascii.hexlify(clockfrequency), 16) / 1000000, 1)
 			if CPUSpeed_Int >= 1000:
-				return _("%s GHz") % str(round(CPUSpeed_Int/1000, 1))
+				return _("%s GHz") % str(round(CPUSpeed_Int / 1000, 1))
 			else:
 				return _("%s MHz") % str(round(CPUSpeed_Int, 1))
 		except:
@@ -103,7 +103,7 @@ def getCPUSpeedString():
 					if splitted[0].startswith("cpu MHz"):
 						mhz = float(splitted[1].split(' ')[0])
 						if mhz and mhz >= 1000:
-							mhz = _("%s GHz") % str(round(mhz/1000, 1))
+							mhz = _("%s GHz") % str(round(mhz / 1000, 1))
 						else:
 							mhz = _("%s MHz") % str(round(mhz, 1))
 			file.close()
@@ -120,7 +120,7 @@ def getCPUString():
 		return "AMlogic"
 	else:
 		try:
-			system="unknown"
+			system = "unknown"
 			file = open('/proc/cpuinfo', 'r')
 			lines = file.readlines()
 			for x in lines:
@@ -160,7 +160,7 @@ def getCpuCoresString():
 
 def _ifinfo(sock, addr, ifname):
 	iface = struct.pack('256s', bytes(ifname[:15], 'utf-8'))
-	info  = fcntl.ioctl(sock.fileno(), addr, iface)
+	info = fcntl.ioctl(sock.fileno(), addr, iface)
 	if addr == 0x8927:
 		return ''.join(['%02x:' % ord(chr(char)) for char in info[18:24]])[:-1].upper()
 	else:
@@ -169,11 +169,11 @@ def _ifinfo(sock, addr, ifname):
 def getIfConfig(ifname):
 	ifreq = {'ifname': ifname}
 	infos = {}
-	sock  = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+	sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
 	# offsets defined in /usr/include/linux/sockios.h on linux 2.6
-	infos['addr']    = 0x8915 # SIOCGIFADDR
+	infos['addr'] = 0x8915 # SIOCGIFADDR
 	infos['brdaddr'] = 0x8919 # SIOCGIFBRDADDR
-	infos['hwaddr']  = 0x8927 # SIOCSIFHWADDR
+	infos['hwaddr'] = 0x8927 # SIOCSIFHWADDR
 	infos['netmask'] = 0x891b # SIOCGIFNETMASK
 	try:
 		for k, v in list(infos.items()):

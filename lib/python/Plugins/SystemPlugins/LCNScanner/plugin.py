@@ -123,9 +123,9 @@ class LCN():
 	def readE2Services(self, serviceType):
 		self.e2services = []
 		if serviceType == "TV":
-			refstr = '%s ORDER BY name'%(self.service_types_tv)
+			refstr = '%s ORDER BY name' % (self.service_types_tv)
 		elif serviceType == "RADIO":
-			refstr = '%s ORDER BY name'%(self.service_types_radio)
+			refstr = '%s ORDER BY name' % (self.service_types_radio)
 		ref = eServiceReference(refstr)
 		serviceHandler = eServiceCenter.getInstance()
 		servicelist = serviceHandler.list(ref)
@@ -210,11 +210,11 @@ class LCN():
 			i += 1
 			
 		f = open('/etc/enigma2/bouquets.tv', 'w')
-		f.write(ret[0]+"\n")
+		f.write(ret[0] + "\n")
 		f.write('#SERVICE 1:7:1:0:0:0:0:0:0:0:FROM BOUQUET "userbouquet.terrestrial_lcn.tv" ORDER BY bouquet\n')
 		i = 1
 		while i < len(ret):
-			f.write(ret[i]+"\n")
+			f.write(ret[i] + "\n")
 			i += 1
 
 	def writeRadioBouquet(self):
@@ -288,11 +288,11 @@ class LCN():
 			i += 1
 			
 		f = open('/etc/enigma2/bouquets.radio', 'w')
-		f.write(ret[0]+"\n")
+		f.write(ret[0] + "\n")
 		f.write('#SERVICE 1:7:2:0:0:0:0:0:0:0:FROM BOUQUET "userbouquet.terrestrial_lcn.radio" ORDER BY bouquet\n')
 		i = 1
 		while i < len(ret):
-			f.write(ret[i]+"\n")
+			f.write(ret[i] + "\n")
 			i += 1
 			
 	def reloadBouquets(self):
@@ -339,7 +339,7 @@ class LCNBuildHelper():
 				continue
 				
 			tmp = line.strip().split(":")
-			line = tmp[len(tmp)-1]
+			line = tmp[len(tmp) - 1]
 			
 			filename = None
 			if line[:12] == "FROM BOUQUET":

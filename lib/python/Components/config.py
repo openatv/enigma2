@@ -191,9 +191,9 @@ KEY_END = 6
 KEY_TOGGLEOW = 7
 KEY_ASCII = 8
 KEY_TIMEOUT = 9
-KEY_NUMBERS = list(range(12, 12+10))
+KEY_NUMBERS = list(range(12, 12 + 10))
 KEY_0 = 12
-KEY_9 = 12+9
+KEY_9 = 12 + 9
 
 def getKeyNumber(key):
 	assert key in KEY_NUMBERS
@@ -666,7 +666,7 @@ class ConfigSequence(ConfigElement):
 			# only mark cursor when we are selected
 			# (this code is heavily ink optimized!)
 		if self.enabled:
-			return "mtext"[1-selected:], value, [mPos]
+			return "mtext"[1 - selected:], value, [mPos]
 		else:
 			return "text", value
 
@@ -703,7 +703,7 @@ class ConfigIP(ConfigSequence):
 			self.overwrite = True
 
 		elif key == KEY_RIGHT:
-			if self.marked_block < len(self.limits)-1:
+			if self.marked_block < len(self.limits) - 1:
 				self.marked_block += 1
 			self.overwrite = True
 
@@ -712,7 +712,7 @@ class ConfigIP(ConfigSequence):
 			self.overwrite = True
 
 		elif key == KEY_END:
-			self.marked_block = len(self.limits)-1
+			self.marked_block = len(self.limits) - 1
 			self.overwrite = True
 
 		elif key in KEY_NUMBERS or key == KEY_ASCII:
@@ -731,7 +731,7 @@ class ConfigIP(ConfigSequence):
 			else:
 				oldvalue *= 10
 				newvalue = oldvalue + number
-				if self.auto_jump and newvalue > self.limits[self.marked_block][1] and self.marked_block < len(self.limits)-1:
+				if self.auto_jump and newvalue > self.limits[self.marked_block][1] and self.marked_block < len(self.limits) - 1:
 					self.handleKey(KEY_RIGHT)
 					self.handleKey(key)
 					return
@@ -752,15 +752,15 @@ class ConfigIP(ConfigSequence):
 			if value:
 				value += self.seperator
 			value += str(i)
-		leftPos = sum(block_strlen[:self.marked_block])+self.marked_block
-		rightPos = sum(block_strlen[:(self.marked_block+1)])+self.marked_block
+		leftPos = sum(block_strlen[:self.marked_block]) + self.marked_block
+		rightPos = sum(block_strlen[:(self.marked_block + 1)]) + self.marked_block
 		mBlock = list(range(leftPos, rightPos))
 		return value, mBlock
 
 	def getMulti(self, selected):
 		(value, mBlock) = self.genText()
 		if self.enabled:
-			return "mtext"[1-selected:], value, mBlock
+			return "mtext"[1 - selected:], value, mBlock
 		else:
 			return "text", value
 
@@ -791,8 +791,8 @@ class ConfigMacText(ConfigElement, NumericalTextInput):
 
 	def validateMarker(self):
 		textlen = len(self.text)
-		if self.marked_pos > textlen-1:
-			self.marked_pos = textlen-1
+		if self.marked_pos > textlen - 1:
+			self.marked_pos = textlen - 1
 		elif self.marked_pos < 0:
 			self.marked_pos = 0
 
@@ -813,7 +813,7 @@ class ConfigMacText(ConfigElement, NumericalTextInput):
 				self.marked_pos = len(self.text)
 				self.allmarked = False
 			else:
-				if self.text[self.marked_pos-1] == ':':
+				if self.text[self.marked_pos - 1] == ':':
 					self.marked_pos -= 2
 				else:
 					self.marked_pos -= 1
@@ -823,8 +823,8 @@ class ConfigMacText(ConfigElement, NumericalTextInput):
 				self.marked_pos = 0
 				self.allmarked = False
 			else:
-				if self.marked_pos < (len(self.text)-1):
-					if self.text[self.marked_pos+1] == ':':
+				if self.marked_pos < (len(self.text) - 1):
+					if self.text[self.marked_pos + 1] == ':':
 						self.marked_pos += 2
 					else:
 						self.marked_pos += 1
@@ -875,14 +875,14 @@ class ConfigMacText(ConfigElement, NumericalTextInput):
 			if self.allmarked:
 				mark = list(range(0, min(self.visible_width, len(self.text))))
 			else:
-				mark = [self.marked_pos-self.offset]
-			return ("mtext"[1-selected:], six.ensure_str(text[self.offset:self.offset+self.visible_width])+" ", mark)
+				mark = [self.marked_pos - self.offset]
+			return ("mtext"[1 - selected:], six.ensure_str(text[self.offset:self.offset + self.visible_width]) + " ", mark)
 		else:
 			if self.allmarked:
 				mark = list(range(0, len(self.text)))
 			else:
 				mark = [self.marked_pos]
-			return "mtext"[1-selected:], six.ensure_str(self.text) + " ", mark
+			return "mtext"[1 - selected:], six.ensure_str(self.text) + " ", mark
 
 	def onSelect(self, session):
 		self.allmarked = (self.value != "")
@@ -1066,7 +1066,7 @@ class ConfigInteger(ConfigSequence):
 class ConfigPIN(ConfigInteger):
 	def __init__(self, default, len=4, censor=""):
 		assert isinstance(default, int), "ConfigPIN default must be an integer"
-		ConfigSequence.__init__(self, seperator=":", limits=[(0, (10**len)-1)], censor_char=censor, default=default)
+		ConfigSequence.__init__(self, seperator=":", limits=[(0, (10**len) - 1)], censor_char=censor, default=default)
 		self.len = len
 
 	def getLength(self):
@@ -1109,8 +1109,8 @@ class ConfigText(ConfigElement, NumericalTextInput):
 	def validateMarker(self):
 		textlen = len(self.text)
 		if self.fixed_size:
-			if self.marked_pos > textlen-1:
-				self.marked_pos = textlen-1
+			if self.marked_pos > textlen - 1:
+				self.marked_pos = textlen - 1
 		else:
 			if self.marked_pos > textlen:
 				self.marked_pos = textlen
@@ -1168,7 +1168,7 @@ class ConfigText(ConfigElement, NumericalTextInput):
 				self.deleteAllChars()
 				self.allmarked = False
 			elif self.marked_pos > 0:
-				self.deleteChar(self.marked_pos-1)
+				self.deleteChar(self.marked_pos - 1)
 				if not self.fixed_size and self.offset > 0:
 					self.offset -= 1
 				self.marked_pos -= 1
@@ -1254,14 +1254,14 @@ class ConfigText(ConfigElement, NumericalTextInput):
 			if self.allmarked:
 				mark = list(range(0, min(self.visible_width, len(self.text))))
 			else:
-				mark = [self.marked_pos-self.offset]
-			return ("mtext"[1-selected:], six.ensure_str(self.text[self.offset:self.offset+self.visible_width])+" ", mark)
+				mark = [self.marked_pos - self.offset]
+			return ("mtext"[1 - selected:], six.ensure_str(self.text[self.offset:self.offset + self.visible_width]) + " ", mark)
 		else:
 			if self.allmarked:
 				mark = list(range(0, len(self.text)))
 			else:
 				mark = [self.marked_pos]
-			return "mtext"[1-selected:], six.ensure_str(self.text)+" ", mark
+			return "mtext"[1 - selected:], six.ensure_str(self.text) + " ", mark
 
 	def onSelect(self, session):
 		self.allmarked = (self.value != "")
@@ -1456,7 +1456,7 @@ class ConfigDirectory(ConfigText):
 
 	def getMulti(self, selected):
 		if self.text == "":
-			return "mtext"[1-selected:], _("List of storage devices"), list(range(0))
+			return "mtext"[1 - selected:], _("List of storage devices"), list(range(0))
 		else:
 			return ConfigText.getMulti(self, selected)
 
@@ -1553,11 +1553,11 @@ class ConfigSet(ConfigElement):
 				self.toggleChoice(self.choices[self.pos])
 		elif key == KEY_LEFT:
 			if self.pos < 0:
-				self.pos = len(self.choices)-1
+				self.pos = len(self.choices) - 1
 			else:
 				self.pos -= 1
 		elif key == KEY_RIGHT:
-			if self.pos >= len(self.choices)-1:
+			if self.pos >= len(self.choices) - 1:
 				self.pos = -1
 			else:
 				self.pos += 1
@@ -1567,7 +1567,7 @@ class ConfigSet(ConfigElement):
 	def genString(self, lst):
 		res = ""
 		for x in lst:
-			res += self.description[x]+" "
+			res += self.description[x] + " "
 		return res
 
 	def getText(self):
@@ -1585,13 +1585,13 @@ class ConfigSet(ConfigElement):
 				tmp.sort()
 			ind = tmp.index(ch)
 			val1 = self.genString(tmp[:ind])
-			val2 = " "+self.genString(tmp[ind+1:])
+			val2 = " " + self.genString(tmp[ind + 1:])
 			if mem:
-				chstr = " "+self.description[ch]+" "
+				chstr = " " + self.description[ch] + " "
 			else:
-				chstr = "("+self.description[ch]+")"
+				chstr = "(" + self.description[ch] + ")"
 			len_val1 = len(val1)
-			return "mtext", val1+chstr+val2, list(range(len_val1, len_val1 + len(chstr)))
+			return "mtext", val1 + chstr + val2, list(range(len_val1, len_val1 + len(chstr)))
 
 	def onDeselect(self, session):
 		self.pos = -1
@@ -1774,7 +1774,7 @@ class ConfigLocations(ConfigElement):
 				self.addedMount(x)
 
 	def getMountpoint(self, file):
-		file = os_path.realpath(file)+"/"
+		file = os_path.realpath(file) + "/"
 		for m in self.mountpoints:
 			if file.startswith(m):
 				return m
@@ -1784,7 +1784,7 @@ class ConfigLocations(ConfigElement):
 		if key == KEY_LEFT:
 			self.pos -= 1
 			if self.pos < -1:
-				self.pos = len(self.value)-1
+				self.pos = len(self.value) - 1
 		elif key == KEY_RIGHT:
 			self.pos += 1
 			if self.pos >= len(self.value):
@@ -1810,16 +1810,16 @@ class ConfigLocations(ConfigElement):
 			for val in self.value:
 				if i == self.pos:
 					ind1 = len(valstr)
-				valstr += str(val)+" "
+				valstr += str(val) + " "
 				if i == self.pos:
 					ind2 = len(valstr)
 				i += 1
 			if self.visible_width and len(valstr) > self.visible_width:
-				if ind1+1 < self.visible_width/2:
+				if ind1 + 1 < self.visible_width / 2:
 					off = 0
 				else:
-					off = min(ind1+1-self.visible_width/2, len(valstr)-self.visible_width)
-				return "mtext", valstr[off:off+self.visible_width], list(range(ind1-off, ind2-off))
+					off = min(ind1 + 1 - self.visible_width / 2, len(valstr) - self.visible_width)
+				return "mtext", valstr[off:off + self.visible_width], list(range(ind1 - off, ind2 - off))
 			else:
 				return "mtext", valstr, list(range(ind1, ind2))
 
@@ -2188,7 +2188,7 @@ class ConfigCECAddress(ConfigSequence):
 			self.overwrite = True
 
 		elif key == KEY_RIGHT:
-			if self.marked_block < len(self.limits)-1:
+			if self.marked_block < len(self.limits) - 1:
 				self.marked_block += 1
 			self.overwrite = True
 
@@ -2197,7 +2197,7 @@ class ConfigCECAddress(ConfigSequence):
 			self.overwrite = True
 
 		elif key == KEY_END:
-			self.marked_block = len(self.limits)-1
+			self.marked_block = len(self.limits) - 1
 			self.overwrite = True
 
 		elif key in KEY_NUMBERS or key == KEY_ASCII:
@@ -2216,7 +2216,7 @@ class ConfigCECAddress(ConfigSequence):
 			else:
 				oldvalue *= 10
 				newvalue = oldvalue + number
-				if self.auto_jump and newvalue > self.limits[self.marked_block][1] and self.marked_block < len(self.limits)-1:
+				if self.auto_jump and newvalue > self.limits[self.marked_block][1] and self.marked_block < len(self.limits) - 1:
 					self.handleKey(KEY_RIGHT)
 					self.handleKey(key)
 					return
@@ -2237,15 +2237,15 @@ class ConfigCECAddress(ConfigSequence):
 			if value:
 				value += self.seperator
 			value += str(i)
-		leftPos = sum(block_strlen[:self.marked_block])+self.marked_block
-		rightPos = sum(block_strlen[:(self.marked_block+1)])+self.marked_block
+		leftPos = sum(block_strlen[:self.marked_block]) + self.marked_block
+		rightPos = sum(block_strlen[:(self.marked_block + 1)]) + self.marked_block
 		mBlock = list(range(leftPos, rightPos))
 		return value, mBlock
 
 	def getMulti(self, selected):
 		(value, mBlock) = self.genText()
 		if self.enabled:
-			return "mtext"[1-selected:], value, mBlock
+			return "mtext"[1 - selected:], value, mBlock
 		else:
 			return "text", value
 

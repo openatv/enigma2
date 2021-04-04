@@ -67,7 +67,7 @@ class SkinSelectorBase:
 
 	def layoutFinished(self):
 		self.picload.setPara((self["Preview"].instance.size().width(), self["Preview"].instance.size().height(), 0, 0, 1, 1, "#00000000"))
-		tmp = self.config.value.find("/"+self.SKINXML)
+		tmp = self.config.value.find("/" + self.SKINXML)
 		if tmp != -1:
 			tmp = self.config.value[:tmp]
 			idx = 0
@@ -96,7 +96,7 @@ class SkinSelectorBase:
 			self.skinfile = self["SkinList"].getCurrent()
 			self.skinfile = os.path.join(self.skinfile, self.SKINXML)
 
-		print("Skinselector: Selected Skin: "+self.root+self.skinfile)
+		print("Skinselector: Selected Skin: " + self.root + self.skinfile)
 		restartbox = self.session.openWithCallback(self.restartGUI, MessageBox, _("GUI needs a restart to apply a new skin\nDo you want to restart the GUI now?"), MessageBox.TYPE_YESNO)
 		restartbox.setTitle(_("Restart GUI now?"))
 

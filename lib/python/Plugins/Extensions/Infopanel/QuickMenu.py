@@ -646,9 +646,9 @@ def QuickMenuEntryComponent(name, description, long_description=None, width=540)
 	sf = getSkinFactor()
 	return [
 		_(name),
-		MultiContentEntryText(pos=(60*sf, 2*sf), size=((width-60)*sf, 28*sf), font=0, text=_(name)),
-		MultiContentEntryText(pos=(60*sf, 25*sf), size=((width-60)*sf, 22*sf), font=1, text=_(description)),
-		MultiContentEntryPixmapAlphaBlend(pos=(10*sf, 5*sf), size=(40*sf, 40*sf), flags=BT_SCALE, png=png),
+		MultiContentEntryText(pos=(60 * sf, 2 * sf), size=((width - 60) * sf, 28 * sf), font=0, text=_(name)),
+		MultiContentEntryText(pos=(60 * sf, 25 * sf), size=((width - 60) * sf, 22 * sf), font=1, text=_(description)),
+		MultiContentEntryPixmapAlphaBlend(pos=(10 * sf, 5 * sf), size=(40 * sf, 40 * sf), flags=BT_SCALE, png=png),
 		MultiContentEntryText(pos=(0, 0), size=(0, 0), font=0, text=_(long_description))
 	]
 
@@ -656,8 +656,8 @@ def QuickSubMenuEntryComponent(name, description, long_description=None, width=5
 	sf = getSkinFactor()
 	return [
 		_(name),
-		MultiContentEntryText(pos=(10*sf, 2*sf), size=((width-10)*sf, 28*sf), font=0, text=_(name)),
-		MultiContentEntryText(pos=(10*sf, 25*sf), size=((width-10)*sf, 22*sf), font=1, text=_(description)),
+		MultiContentEntryText(pos=(10 * sf, 2 * sf), size=((width - 10) * sf, 28 * sf), font=0, text=_(name)),
+		MultiContentEntryText(pos=(10 * sf, 25 * sf), size=((width - 10) * sf, 22 * sf), font=1, text=_(description)),
 		MultiContentEntryText(pos=(0, 0), size=(0, 0), font=0, text=_(long_description))
 	]
 
@@ -665,17 +665,17 @@ class QuickMenuList(MenuList):
 	def __init__(self, list, enableWrapAround=True):
 		MenuList.__init__(self, list, enableWrapAround, eListboxPythonMultiContent)
 		sf = getSkinFactor()
-		self.l.setFont(0, gFont("Regular", int(20*sf)))
-		self.l.setFont(1, gFont("Regular", int(16*sf)))
-		self.l.setItemHeight(int(50*sf))
+		self.l.setFont(0, gFont("Regular", int(20 * sf)))
+		self.l.setFont(1, gFont("Regular", int(16 * sf)))
+		self.l.setItemHeight(int(50 * sf))
 
 class QuickMenuSubList(MenuList):
 	def __init__(self, sublist, enableWrapAround=True):
 		MenuList.__init__(self, sublist, enableWrapAround, eListboxPythonMultiContent)
 		sf = getSkinFactor()
-		self.l.setFont(0, gFont("Regular", int(20*sf)))
-		self.l.setFont(1, gFont("Regular", int(16*sf)))
-		self.l.setItemHeight(int(50*sf))
+		self.l.setFont(0, gFont("Regular", int(20 * sf)))
+		self.l.setFont(1, gFont("Regular", int(16 * sf)))
+		self.l.setItemHeight(int(50 * sf))
 
 class QuickMenuDevices(Screen):
 	skin = """

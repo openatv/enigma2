@@ -25,7 +25,7 @@ class AddCopyTimeshiftTask(Task):
 		if self.srcsize <= 0 or not fileExists(self.destfile, 'r'):
 			return
 
-		self.setProgress(int((path.getsize(self.destfile)/float(self.srcsize))*100))
+		self.setProgress(int((path.getsize(self.destfile) / float(self.srcsize)) * 100))
 		self.ProgressTimer.start(15000, True)
 
 	def prepare(self):
@@ -62,7 +62,7 @@ class AddMergeTimeshiftTask(Task):
 		if self.srcsize <= 0 or not fileExists(self.destfile, 'r'):
 			return
 
-		self.setProgress(int((path.getsize(self.destfile)/float(self.srcsize))*100))
+		self.setProgress(int((path.getsize(self.destfile) / float(self.srcsize)) * 100))
 		self.ProgressTimer.start(7500, True)
 
 	def prepare(self):

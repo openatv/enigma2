@@ -11,12 +11,12 @@ import os
 import re
 
 zeros = bytearray(128)
-VIDEO_TYPES	= {'video/mpeg, mpegversion=(int)1': 0x01, 'video/mpeg, mpegversion=(int)2': 0x02, 'VC1': 0xEA, 'video/x-h264': 0x1B}
-AUDIO_TYPES	= {'audio/mpeg, mpegversion=(int)1': 0x03, 'audio/mpeg, mpegversion=(int)2': 0x04, 'audio/x-lpcm': 0x80, 'audio/x-ac3': 0x81, 'audio/x-dts': 0x82, 'TRUEHD': 0x83, 'AC3+': 0x84, 'DTSHD': 0x85, 'DTSHD Master': 0x86}
-VIDEO_FORMATS	= {'i480': 1, 'i576': 2, 'p480': 3, 'i1080': 4, 'p720': 5, 'p1080': 6, 'p576': 7}
-VIDEO_RATES	= {23976: 1, 24000: 2, 25000: 3, 29970: 4, 50000: 6, 59940: 7}
-AUDIO_CHANNELS  = {"reserved": 0, "mono": 1, "dual mono": 2, "stereo": 3, "multi": 6, "combo": 12}
-AUDIO_RATES     = {48000: 1, 96000: 4, 192000: 5, 48/192: 12, 48/96: 14}
+VIDEO_TYPES = {'video/mpeg, mpegversion=(int)1': 0x01, 'video/mpeg, mpegversion=(int)2': 0x02, 'VC1': 0xEA, 'video/x-h264': 0x1B}
+AUDIO_TYPES = {'audio/mpeg, mpegversion=(int)1': 0x03, 'audio/mpeg, mpegversion=(int)2': 0x04, 'audio/x-lpcm': 0x80, 'audio/x-ac3': 0x81, 'audio/x-dts': 0x82, 'TRUEHD': 0x83, 'AC3+': 0x84, 'DTSHD': 0x85, 'DTSHD Master': 0x86}
+VIDEO_FORMATS = {'i480': 1, 'i576': 2, 'p480': 3, 'i1080': 4, 'p720': 5, 'p1080': 6, 'p576': 7}
+VIDEO_RATES = {23976: 1, 24000: 2, 25000: 3, 29970: 4, 50000: 6, 59940: 7}
+AUDIO_CHANNELS = {"reserved": 0, "mono": 1, "dual mono": 2, "stereo": 3, "multi": 6, "combo": 12}
+AUDIO_RATES = {48000: 1, 96000: 4, 192000: 5, 48 / 192: 12, 48 / 96: 14}
 
 class BludiscTitle(object):
 	def __init__(self, title):
@@ -61,11 +61,11 @@ class BludiscTitle(object):
 
 	def getInTimeBytes(self):
 		in_time = self.entrypoints[0][1]	# first keyframe (in 90khz pts)
-		return struct.pack('>L', in_time/2)	# start time (in 45khz ticks)
+		return struct.pack('>L', in_time / 2)	# start time (in 45khz ticks)
 
 	def getOutTimeBytes(self):
 		out_time = self.entrypoints[-1][1]	# last keyframe (in 90khz pts)
-		struct.pack('>L', out_time/2)	# end time (in 45khz ticks)
+		struct.pack('>L', out_time / 2)	# end time (in 45khz ticks)
 
 	InTime = property(getInTimeBytes)
 	OutTime = property(getOutTimeBytes)
@@ -84,7 +84,7 @@ class BludiscTitle(object):
 	def getEPforOffsetPTS(self, requested_pts):
 		best_pts = 0
 		for spn, ep_pts in self.entrypoints:
-			if abs(requested_pts-best_pts) > abs(requested_pts-ep_pts):
+			if abs(requested_pts - best_pts) > abs(requested_pts - ep_pts):
 				best_pts = ep_pts
 			else:
 				break
@@ -148,9 +148,9 @@ class BludiscStream(object):
 			frame_rate = 0
 
 			if self.__parent.progressive > 0:
-				videoformatstring = "p"+str(yres)
+				videoformatstring = "p" + str(yres)
 			else:
-				videoformatstring = "i"+str(yres)
+				videoformatstring = "i" + str(yres)
 				
 			if videoformatstring in VIDEO_FORMATS:
 				videoformat = VIDEO_FORMATS[videoformatstring]
@@ -203,7 +203,7 @@ class RemuxTask(Task):
 		self.title_no = title_no
 		self.job = job
 		inputfile = title.inputfile
-		self.outputfile = self.job.workspace+'BDMV/STREAM/%05d.m2ts' % self.title_no
+		self.outputfile = self.job.workspace + 'BDMV/STREAM/%05d.m2ts' % self.title_no
 		self.args += [inputfile, self.outputfile, "--entrypoints", "--cutlist"]
 		self.args += self.getPIDs()
 		self.end = (self.title.filesize / 188)
@@ -216,7 +216,7 @@ class RemuxTask(Task):
 				if audiotrack.format.value == "AC3": #! only consider ac3 streams at the moment
 					dvbpids.append(int(audiotrack.pid.getValue()))
 		sourcepids = "--source-pids=" + ",".join(["0x%04x" % pid for pid in dvbpids])
-		self.bdmvpids = [0x1011]+list(range(0x1100, 0x1107))[:len(dvbpids)-1]
+		self.bdmvpids = [0x1011] + list(range(0x1100, 0x1107))[:len(dvbpids) - 1]
 		resultpids = "--result-pids=" + ",".join(["0x%04x" % pid for pid in self.bdmvpids])
 		return [sourcepids, resultpids]
 
@@ -238,7 +238,7 @@ class RemuxTask(Task):
 			pid = int(words[0].split('_')[1])
 			stype = words[3][:-1]
 			if words[3].find("mpeg") > 0:
-				stype = words[3]+' '+words[4][:-1]
+				stype = words[3] + ' ' + words[4][:-1]
 
 			stream = self.title.getStreamByPID(pid)
 			if stream == None:
@@ -299,7 +299,7 @@ class CreateStructureTask(Task):
 
 	def conduct(self):
 		for directory in ['BDMV', 'BDMV/AUXDATA', 'BDMV/BACKUP', 'BDMV/BACKUP/BDJO', 'BDMV/BACKUP/CLIPINF', 'BDMV/BACKUP/JAR', 'BDMV/BACKUP/PLAYLIST', 'BDMV/BDJO', 'BDMV/CLIPINF', 'BDMV/JAR', 'BDMV/META', 'BDMV/META/DL', 'BDMV/PLAYLIST', 'BDMV/STREAM']:
-			if not createDir(self.job.workspace+directory):
+			if not createDir(self.job.workspace + directory):
 				Task.processFinished(self, 1)
 
 class CreateIndexTask(Task):
@@ -354,13 +354,13 @@ class CreateIndexTask(Task):
 			HDMV_OBJ += struct.pack('>H', i) # index 2 bytes
 			HDMV_OBJ += zeros[0:4]		# skip 4 bytes
 			INDEXES += HDMV_OBJ
-		INDEXES[0:4] = struct.pack('>L', len(INDEXES)-4)
+		INDEXES[0:4] = struct.pack('>L', len(INDEXES) - 4)
 		indexbuffer += INDEXES
 
-		f = open(self.job.workspace+"BDMV/index.bdmv", 'w')
+		f = open(self.job.workspace + "BDMV/index.bdmv", 'w')
 		f.write(buffer(indexbuffer))
 		f.close()
-		f = open(self.job.workspace+"BDMV/BACKUP/index.bdmv", 'w')
+		f = open(self.job.workspace + "BDMV/BACKUP/index.bdmv", 'w')
 		f.write(buffer(indexbuffer))
 		f.close()
 
@@ -393,8 +393,8 @@ class CreateMobjTask(Task):
 				 [['\x50\x40\x00\x01', '\x00\x00\x00\x00', struct.pack('>L', i)],\
 						# PLAY_PL
 				  ['\x22\x00\x00\x00', '\x00\x00\x00\x00', '\x00\x00\x00\x00']])
-			if i < len(self.job.titles)-1: # on all except last title JUMP_TITLE i+2 (JUMP_TITLE is one-based)
-				instructions[-1].append(['\x21\x81\x00\x00', struct.pack('>L', i+2), '\x00\x00\x00\x00'])
+			if i < len(self.job.titles) - 1: # on all except last title JUMP_TITLE i+2 (JUMP_TITLE is one-based)
+				instructions[-1].append(['\x21\x81\x00\x00', struct.pack('>L', i + 2), '\x00\x00\x00\x00'])
 
 		#SETSTREAM (first audio stream as default track) ['\x51\xC0\x00\x01','\x00\x00\x00\x00','\x80\x01\x00\x00'] #!
 
@@ -414,14 +414,14 @@ class CreateMobjTask(Task):
 				CMD += instructions[i][c][2] #source
 				MOBJ += CMD
 			OBJECTS += MOBJ
-		OBJECTS[0:4] = struct.pack('>L', len(OBJECTS)-4)
+		OBJECTS[0:4] = struct.pack('>L', len(OBJECTS) - 4)
 
 		mob += OBJECTS
 
-		f = open(self.job.workspace+"BDMV/MovieObject.bdmv", 'w')
+		f = open(self.job.workspace + "BDMV/MovieObject.bdmv", 'w')
 		f.write(buffer(mob))
 		f.close()
-		f = open(self.job.workspace+"BDMV/BACKUP/MovieObject.bdmv", 'w')
+		f = open(self.job.workspace + "BDMV/BACKUP/MovieObject.bdmv", 'w')
 		f.write(buffer(mob))
 		f.close()
 
@@ -518,13 +518,13 @@ class CreateMplsTask(Task):
 
 				VideoEntry += vid.pid		# stream_pid
 				VideoEntry += zeros[0:6]	# reserved
-				VideoEntry[0] = struct.pack('B', len(VideoEntry)-1)
+				VideoEntry[0] = struct.pack('B', len(VideoEntry) - 1)
 
 				VideoAttr = bytearray(1)	# len
 				VideoAttr += vid.streamType	# Video type
 				VideoAttr += vid.formatByte	# Format & Framerate
 				VideoAttr += zeros[0:3]		# reserved
-				VideoAttr[0] = struct.pack('B', len(VideoAttr)-1)
+				VideoAttr[0] = struct.pack('B', len(VideoAttr) - 1)
 				
 				StnTable += VideoEntry
 				StnTable += VideoAttr
@@ -534,13 +534,13 @@ class CreateMplsTask(Task):
 				AudioEntry += '\x01'		# type 01 = elementary stream of the clip used by the PlayItem
 				AudioEntry += aud.pid		# stream_pid
 				AudioEntry += zeros[0:6]	# reserved
-				AudioEntry[0] = struct.pack('B', len(AudioEntry)-1)
+				AudioEntry[0] = struct.pack('B', len(AudioEntry) - 1)
 
 				AudioAttr = bytearray(1)	# len
 				AudioAttr += aud.streamType	# stream_coding_type
 				AudioAttr += aud.formatByte	# Audio Format & Samplerate
 				AudioAttr += aud.languageCode	# Audio Language Code
-				AudioAttr[0] = struct.pack('B', len(AudioAttr)-1)
+				AudioAttr[0] = struct.pack('B', len(AudioAttr) - 1)
 
 				StnTable += AudioEntry
 				StnTable += AudioAttr
@@ -563,7 +563,7 @@ class CreateMplsTask(Task):
 
 		#playlist mark list [(id, type, timestamp, skip duration)]
 		#! implement cutlist / skip marks
-		markslist = [(0, 1, self.title.entrypoints[0][1]/2, 0)]
+		markslist = [(0, 1, self.title.entrypoints[0][1] / 2, 0)]
 		mark_id = 1
 		try:
 			for chapter_pts in self.title.chaptermarks:
@@ -592,10 +592,10 @@ class CreateMplsTask(Task):
 		mplsbuffer += struct.pack('>L', len(PlayListMark))
 		mplsbuffer += PlayListMark
 
-		f = open(self.job.workspace+"BDMV/PLAYLIST/%05d.mpls" % self.mpls_num, 'w')
+		f = open(self.job.workspace + "BDMV/PLAYLIST/%05d.mpls" % self.mpls_num, 'w')
 		f.write(buffer(mplsbuffer))
 		f.close()
-		f = open(self.job.workspace+"BDMV/BACKUP/PLAYLIST/%05d.mpls" % self.mpls_num, 'w')
+		f = open(self.job.workspace + "BDMV/BACKUP/PLAYLIST/%05d.mpls" % self.mpls_num, 'w')
 		f.write(buffer(mplsbuffer))
 		f.close()
 
@@ -643,7 +643,7 @@ class CreateClpiTask(Task):
 		TS_type_info_block += zeros[0:25]		# nit/stream_format_name?
 		ClipInfo += TS_type_info_block
 
-		ClipInfo[0:4] = bytearray(struct.pack('>L', len(ClipInfo)-4))
+		ClipInfo[0:4] = bytearray(struct.pack('>L', len(ClipInfo) - 4))
 
 		num_stc_sequences = 1
 		SequenceInfo = bytearray(4)			# len 4 bytes
@@ -660,10 +660,10 @@ class CreateClpiTask(Task):
 			STCEntry += self.title.InTime		# presentation_start_time (in 45khz)
 			STCEntry += self.title.OutTime		# presentation_end_time (in 45khz)
 			SequenceInfo += STCEntry
-		SequenceInfo[0:4] = struct.pack('>L', len(SequenceInfo)-4)
+		SequenceInfo[0:4] = struct.pack('>L', len(SequenceInfo) - 4)
 
 		num_program_sequences = 1
-		num_streams_in_ps = len(self.title.VideoStreams)+len(self.title.AudioStreams)
+		num_streams_in_ps = len(self.title.VideoStreams) + len(self.title.AudioStreams)
 
 		ProgramInfo = bytearray(4)			# len 4 bytes
 		ProgramInfo += '\x00'				# reserved align
@@ -674,7 +674,7 @@ class CreateClpiTask(Task):
 			ProgramEntry += '\x01\x00'		# program_map_pid
 			ProgramEntry += struct.pack('B', num_streams_in_ps)
 			ProgramEntry += '\x00'			# num_groups
-			for stream in self.title.VideoStreams+self.title.AudioStreams:
+			for stream in self.title.VideoStreams + self.title.AudioStreams:
 				StreamEntry = bytearray()
 				StreamEntry += stream.pid	# stream_pid
 				StreamCodingInfo = bytearray('\x15')		# len 1 byte
@@ -692,7 +692,7 @@ class CreateClpiTask(Task):
 				StreamEntry += StreamCodingInfo
 				ProgramEntry += StreamEntry
 			ProgramInfo += ProgramEntry
-		ProgramInfo[0:4] = struct.pack('>L', len(ProgramInfo)-4)
+		ProgramInfo[0:4] = struct.pack('>L', len(ProgramInfo) - 4)
 
 		coarse_entrypoints = []	# [(presentation_time_stamp, source_packet_number, ref_ep_fine_id)]
 		fine_entrypoints = []	# [(presentation_time_stamp, source_packet_number)]
@@ -726,7 +726,7 @@ class CreateClpiTask(Task):
 			num_ep_fine = len(fine_entrypoints)
 			ep_bits = ((num_ep_fine & 0x3FFFF) + ((num_ep_coarse & 0xFFFF) << 0x12) + ((ap_stream_type & 0xF) << 0x22))
 			# 10 bits align, 4 bits ap_stream_type, 16 bits number_ep_coarse, 18 bits number_ep_fine
-			EP_STREAMS += struct.pack('>3H', ((ep_bits&0xFFFF00000000)>>0x20), ((ep_bits&0xFFFF0000)>>0x10), ep_bits&0xFFFF)
+			EP_STREAMS += struct.pack('>3H', ((ep_bits & 0xFFFF00000000) >> 0x20), ((ep_bits & 0xFFFF0000) >> 0x10), ep_bits & 0xFFFF)
 			EP_STREAMS += '\x00\x00\x00\x0e'	# ep_map_stream_start_addr
 			EP_MAP += EP_STREAMS
 
@@ -766,7 +766,7 @@ class CreateClpiTask(Task):
 
 		EP_MAP += EP_MAP_STREAM
 		CPI += EP_MAP
-		CPI[0:4] = struct.pack('>L', len(CPI)-4)
+		CPI[0:4] = struct.pack('>L', len(CPI) - 4)
 
 		clpibuffer += ClipInfo
 		while len(clpibuffer) < 0xDC:
@@ -783,10 +783,10 @@ class CreateClpiTask(Task):
 		clpibuffer[0x14:0x18] = struct.pack('>L', len(clpibuffer)) #clip_mark_start_address
 		clpibuffer += zeros[0:4]
 
-		f = open(self.job.workspace+"BDMV/CLIPINF/%05d.clpi" % self.clip_num, 'w')
+		f = open(self.job.workspace + "BDMV/CLIPINF/%05d.clpi" % self.clip_num, 'w')
 		f.write(buffer(clpibuffer))
 		f.close()
-		f = open(self.job.workspace+"BDMV/BACKUP/CLIPINF/%05d.clpi" % self.clip_num, 'w')
+		f = open(self.job.workspace + "BDMV/BACKUP/CLIPINF/%05d.clpi" % self.clip_num, 'w')
 		f.write(buffer(clpibuffer))
 		f.close()
 
@@ -795,7 +795,7 @@ class CopyThumbTask(Task):
 		Task.__init__(self, job, "Copy thumbnail")
 		self.setTool("cp")
 		source = sourcefile.rsplit('.', 1)[0] + ".png"
-		dest = self.job.workspace+'BDMV/META/DL/thumb_%05d.png' % title_no
+		dest = self.job.workspace + 'BDMV/META/DL/thumb_%05d.png' % title_no
 		self.args += [source, dest]
 		self.weighting = 10
 
@@ -820,7 +820,7 @@ class CreateMetaTask(Task):
 		dl.append(strftime("\t<di:date>%Y-%m-%d</di:date>"))
 		dl.append('\t\t<di:creator>Dream Multimedia Enigma2</di:creator>')
 		dl.append('\t\t<di:title>')
-		dl.append('\t\t\t<di:name>'+stringToXML(self.project.settings.name.value)+'</di:name>')
+		dl.append('\t\t\t<di:name>' + stringToXML(self.project.settings.name.value) + '</di:name>')
 		dl.append('\t\t\t<di:numSets>1</di:numSets>')
 		dl.append('\t\t\t<di:setNumber>1</di:setNumber>')
 		dl.append('\t\t</di:title>')
@@ -832,15 +832,15 @@ class CreateMetaTask(Task):
 		for title_no in list(range(len(self.job.titles))):
 			dl.append('\t\t\t<di:thumbnail href="thumb_%05d.png" />' % title_no)
 		dl.append('\t\t</di:description>')
-		dl.append('\t\t<di:language>'+stringToXML(self.languageCode)+'</di:language>')
+		dl.append('\t\t<di:language>' + stringToXML(self.languageCode) + '</di:language>')
 		dl.append('\t</di:discinfo>')
 		dl.append('</disclib>')
 
-		filename = self.job.workspace+'BDMV/META/DL/bdmt_%s.xml' % self.languageCode
+		filename = self.job.workspace + 'BDMV/META/DL/bdmt_%s.xml' % self.languageCode
 		try:	
 			file = open(filename, "w")
 			for line in dl:
-				file.write(line+'\n')
+				file.write(line + '\n')
 			file.close()
 		except:
 			Task.processFinished(self, 1)

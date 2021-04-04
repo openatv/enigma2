@@ -34,9 +34,9 @@ class MiniTV:
 	def showMiniTVDecoder(self):
 		old_value = config.plugins.minitv.decoder.value
 		if old_value == "0":
-			config.plugins.minitv.decoder.value =  "1"
+			config.plugins.minitv.decoder.value = "1"
 		else:
-			config.plugins.minitv.decoder.value =  "0"
+			config.plugins.minitv.decoder.value = "0"
 		config.plugins.minitv.decoder.save()
 
 	def miniTVChanged(self, configElement):

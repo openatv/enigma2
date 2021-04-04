@@ -26,11 +26,11 @@ class EGAnalogic(Converter, object):
 		t = localtime(time)	
 		
 		if self.type == 1:
-			return int((t.tm_sec *100) /60)
+			return int((t.tm_sec * 100) / 60)
 		elif self.type == 2:
-			return int((t.tm_min *100) /60)
+			return int((t.tm_min * 100) / 60)
 		elif self.type == 3:
-			return int(((t.tm_hour *100) /12) + (t.tm_min /8))
+			return int(((t.tm_hour * 100) / 12) + (t.tm_min / 8))
 		
 
 	value = property(getValue)

@@ -83,7 +83,7 @@ class PowerTimerEditList(Screen):
 		self.updateState()
 
 	def toggleDisabledState(self):
-		cur=self["timerlist"].getCurrent()
+		cur = self["timerlist"].getCurrent()
 		if cur:
 			t = cur
 			if t.disabled:
@@ -137,7 +137,7 @@ class PowerTimerEditList(Screen):
 				self.removeAction("yellow")
 				self["key_yellow"].setText(" ")
 				self.key_yellow_choice = self.EMPTY
-			elif ((not cur.isRunning())or cur.repeated) and (not cur.disabled) and (self.key_yellow_choice != self.DISABLE):
+			elif ((not cur.isRunning()) or cur.repeated) and (not cur.disabled) and (self.key_yellow_choice != self.DISABLE):
 				self["actions"].actions.update({"yellow":self.toggleDisabledState})
 				self["key_yellow"].setText(_("Disable"))
 				self.key_yellow_choice = self.DISABLE
@@ -217,12 +217,12 @@ class PowerTimerEditList(Screen):
 			_list.sort(key=lambda x: x[0].begin)
 
 	def showLog(self):
-		cur=self["timerlist"].getCurrent()
+		cur = self["timerlist"].getCurrent()
 		if cur:
 			self.session.openWithCallback(self.finishedEdit, TimerLog, cur)
 
 	def openEdit(self):
-		cur=self["timerlist"].getCurrent()
+		cur = self["timerlist"].getCurrent()
 		if cur:
 			self.session.openWithCallback(self.finishedEdit, TimerEntry, cur)
 

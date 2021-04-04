@@ -113,7 +113,7 @@ class MediumToolbox(Screen):
 				if size > 0:
 					capacity = size / 1048576
 					if used:
-						used = capacity-used
+						used = capacity - used
 					print("[dvd+rw-mediainfo] free blocks capacity=%d, used=%d" % (capacity, used))
 			elif line.find("Disc status:") > -1:
 				if line.find("blank") > -1:
@@ -126,7 +126,7 @@ class MediumToolbox(Screen):
 					capacity = 1
 				else:
 					capacity = formatted_capacity
-			infotext += line+'\n'
+			infotext += line + '\n'
 		if capacity and used > capacity:
 			used = read_capacity or capacity
 			capacity = formatted_capacity or capacity
@@ -152,7 +152,7 @@ class MediumToolbox(Screen):
 		else:
 			self["space_label"].text = _("Medium is not a writeable DVD!")
 			self["space_bar"].value = 0
-		free = capacity-used
+		free = capacity - used
 		if free < 2:
 			free = 0
 		self["info"].text = "Media-Type:\t\t%s\nFree capacity:\t\t%d MB" % (mediatype or "NO DVD", free)
@@ -215,7 +215,7 @@ class DVDformatTask(Task):
 	def processOutput(self, data):
 		print("[DVDformatTask processOutput]  ", data)
 		if data.endswith('%'):
-			data= data.replace('\x08', '')
-			self.progress = int(float(data[:-1])*10)
+			data = data.replace('\x08', '')
+			self.progress = int(float(data[:-1]) * 10)
 		else:
 			Task.processOutput(self, data)

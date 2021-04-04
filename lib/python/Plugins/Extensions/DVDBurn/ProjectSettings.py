@@ -66,14 +66,14 @@ class FileBrowser(Screen, HelpableScreen):
 	def getDir(self, currentVal=None, defaultDir=None):
 		if currentVal:
 			return (currentVal.rstrip("/").rsplit("/", 1))[0]
-		return defaultDir or (resolveFilename(SCOPE_PLUGINS)+"Extensions/DVDBurn/")
+		return defaultDir or (resolveFilename(SCOPE_PLUGINS) + "Extensions/DVDBurn/")
 
 	def ok(self):
 		if self.filelist.canDescent():
 			self.filelist.descent()
 			if self.scope == "image":
 				path = self["filelist"].getCurrentDirectory() or ""
-				if fileExists(path+"VIDEO_TS"):
+				if fileExists(path + "VIDEO_TS"):
 					self.close(path, self.scope, self.configRef)
 		else:
 			ret = self["filelist"].getCurrentDirectory() + '/' + self["filelist"].getFilename()
@@ -152,12 +152,12 @@ class ProjectSettings(Screen, ConfigListScreen):
 		if output == "iso":
 			self.list.append(getConfigListEntry(_("ISO path"), self.settings.isopath))
 		if authormode.startswith("menu"):
-			self.list.append(getConfigListEntry(_("Menu")+' '+_("template file"), self.settings.menutemplate))
+			self.list.append(getConfigListEntry(_("Menu") + ' ' + _("template file"), self.settings.menutemplate))
 			if config.usage.setup_level.index >= 2: # expert+
-				self.list.append(getConfigListEntry(_("Menu")+' '+_("Title"), self.project.menutemplate.settings.titleformat))
-				self.list.append(getConfigListEntry(_("Menu")+' '+_("Subtitles"), self.project.menutemplate.settings.subtitleformat))
-				self.list.append(getConfigListEntry(_("Menu")+' '+_("background image"), self.project.menutemplate.settings.menubg))
-				self.list.append(getConfigListEntry(_("Menu")+' '+_("Language selection"), self.project.menutemplate.settings.menulang))
+				self.list.append(getConfigListEntry(_("Menu") + ' ' + _("Title"), self.project.menutemplate.settings.titleformat))
+				self.list.append(getConfigListEntry(_("Menu") + ' ' + _("Subtitles"), self.project.menutemplate.settings.subtitleformat))
+				self.list.append(getConfigListEntry(_("Menu") + ' ' + _("background image"), self.project.menutemplate.settings.menubg))
+				self.list.append(getConfigListEntry(_("Menu") + ' ' + _("Language selection"), self.project.menutemplate.settings.menulang))
 			#self.list.append(getConfigListEntry(_("Menu")+' '+_("headline")+' '+_("color"), self.settings.color_headline))
 			#self.list.append(getConfigListEntry(_("Menu")+' '+_("text")+' '+_("color"), self.settings.color_button))
 			#self.list.append(getConfigListEntry(_("Menu")+' '+_("highlighted button")+' '+_("color"), self.settings.color_highlight))
@@ -173,7 +173,7 @@ class ProjectSettings(Screen, ConfigListScreen):
 			elif authormode == "data_ts":
 				self.list.append(getConfigListEntry(("DVD data format"), self.settings.dataformat))
 			elif authormode == "bdmv":
-				self.list.append(getConfigListEntry(_("Menu")+' '+_("Language selection"), self.project.menutemplate.settings.menulang))
+				self.list.append(getConfigListEntry(_("Menu") + ' ' + _("Language selection"), self.project.menutemplate.settings.menulang))
 		
 		self["config"].setList(self.list)
 		self.keydict = {}
@@ -185,13 +185,13 @@ class ProjectSettings(Screen, ConfigListScreen):
 	def keyLeft(self):
 		ConfigListScreen.keyLeft(self)
 		key = self.keydict[self["config"].getCurrent()[1]]
-		if key == "authormode" or key == "output" or key=="titlesetmode":
+		if key == "authormode" or key == "output" or key == "titlesetmode":
 			self.initConfigList()
 
 	def keyRight(self):
 		ConfigListScreen.keyRight(self)
 		key = self.keydict[self["config"].getCurrent()[1]]
-		if key == "authormode" or key == "output" or key=="titlesetmode":
+		if key == "authormode" or key == "output" or key == "titlesetmode":
 			self.initConfigList()
 
 	def exit(self):
@@ -217,12 +217,12 @@ class ProjectSettings(Screen, ConfigListScreen):
 	def saveProject(self):
 		if config.usage.setup_level.index >= 2: # expert+
 			self.applySettings()
-			ret = self.project.saveProject(resolveFilename(SCOPE_PLUGINS)+"Extensions/DVDBurn/")
+			ret = self.project.saveProject(resolveFilename(SCOPE_PLUGINS) + "Extensions/DVDBurn/")
 			if ret.startswith:
-				text = _("Save")+' '+_('OK')+':\n'+ret
+				text = _("Save") + ' ' + _('OK') + ':\n' + ret
 				self.session.open(MessageBox, text, type=MessageBox.TYPE_INFO)
 			else:
-				text = _("Save")+' '+_('Error')
+				text = _("Save") + ' ' + _('Error')
 				self.session.open(MessageBox, text, type=MessageBox.TYPE_ERROR)
 
 	def FileBrowserClosed(self, path, scope, configRef):

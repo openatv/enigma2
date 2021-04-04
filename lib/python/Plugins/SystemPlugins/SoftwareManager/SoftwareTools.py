@@ -17,8 +17,8 @@ class SoftwareTools(PackageInfoHandler):
 	NetworkConnectionAvailable = None
 	list_updating = False
 	available_updates = 0
-	available_updatelist  = []
-	available_packetlist  = []
+	available_updatelist = []
+	available_packetlist = []
 	installed_packetlist = {}
 
 
@@ -220,7 +220,7 @@ class SoftwareTools(PackageInfoHandler):
 
 	def countUpdates(self, callback=None):
 		self.available_updates = 0
-		self.available_updatelist  = []
+		self.available_updatelist = []
 		for package in self.packagesIndexlist[:]:
 			attributes = package[0]["attributes"]
 			packagename = attributes["packagename"]
@@ -228,7 +228,7 @@ class SoftwareTools(PackageInfoHandler):
 				if x[0] == packagename:
 					if packagename in self.installed_packetlist:
 						if self.installed_packetlist[packagename] != x[1]:
-							self.available_updates +=1
+							self.available_updates += 1
 							self.available_updatelist.append([packagename])
 
 		self.list_updating = False

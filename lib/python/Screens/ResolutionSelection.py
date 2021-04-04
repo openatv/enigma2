@@ -15,7 +15,7 @@ class ResolutionSelection(Screen):
 		yres = int(yresString, 16)
 		fps = int(fpsString, 16)
 		fpsFloat = float(fps)
-		fpsFloat = fpsFloat/1000
+		fpsFloat = fpsFloat / 1000
 
 
 		selection = 0 

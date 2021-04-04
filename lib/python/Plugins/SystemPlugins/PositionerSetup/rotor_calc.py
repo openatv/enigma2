@@ -5,16 +5,16 @@ r_sat = 42164.57 # Distance from earth centre to satellite
 r_eq = 6378.14  # Earth radius
 
 def calcElevation(SatLon, SiteLat, SiteLon, Height_over_ocean=0):
-	a0 =  0.58804392
+	a0 = 0.58804392
 	a1 = -0.17941557
-	a2 =  0.29906946E-1
+	a2 = 0.29906946E-1
 	a3 = -0.25187400E-2
-	a4 =  0.82622101E-4
+	a4 = 0.82622101E-4
 
 	sinRadSiteLat = math.sin(math.radians(SiteLat))
 	cosRadSiteLat = math.cos(math.radians(SiteLat))
 
-	Rstation = r_eq / (math.sqrt(1.00 - f * (2.00 - f) * sinRadSiteLat **2))
+	Rstation = r_eq / (math.sqrt(1.00 - f * (2.00 - f) * sinRadSiteLat ** 2))
 
 	Ra = (Rstation + Height_over_ocean) * cosRadSiteLat
 	Rz = Rstation * (1.00 - f) * (1.00 - f) * sinRadSiteLat
@@ -26,7 +26,7 @@ def calcElevation(SatLon, SiteLat, SiteLon, Height_over_ocean=0):
 	alfa_r_north = -alfa_rx * sinRadSiteLat + alfa_rz * cosRadSiteLat
 	alfa_r_zenith = alfa_rx * cosRadSiteLat + alfa_rz * sinRadSiteLat
 
-	den = alfa_r_north **2 + alfa_ry **2
+	den = alfa_r_north ** 2 + alfa_ry ** 2
 	if den > 0:
 		El_geometric = math.degrees(math.atan(alfa_r_zenith / math.sqrt(den)))
 	else:
@@ -36,7 +36,7 @@ def calcElevation(SatLon, SiteLat, SiteLon, Height_over_ocean=0):
 	refraction = math.fabs(a0 + (a1 + (a2 + (a3 + a4 * x) * x) * x) * x)
 
 	if El_geometric > 10.2:
-		El_observed = El_geometric + 0.01617 * (math.cos(math.radians(math.fabs(El_geometric)))/math.sin(math.radians(math.fabs(El_geometric))))
+		El_observed = El_geometric + 0.01617 * (math.cos(math.radians(math.fabs(El_geometric))) / math.sin(math.radians(math.fabs(El_geometric))))
 	else:
 		El_observed = El_geometric + refraction
 
@@ -53,7 +53,7 @@ def calcAzimuth(SatLon, SiteLat, SiteLon, Height_over_ocean=0):
 	sinRadSiteLat = math.sin(math.radians(SiteLat))
 	cosRadSiteLat = math.cos(math.radians(SiteLat))
 
-	Rstation = r_eq / (math.sqrt(1 - f * (2 - f) * sinRadSiteLat **2))
+	Rstation = r_eq / (math.sqrt(1 - f * (2 - f) * sinRadSiteLat ** 2))
 	Ra = (Rstation + Height_over_ocean) * cosRadSiteLat
 	Rz = Rstation * (1 - f) ** 2 * sinRadSiteLat
 

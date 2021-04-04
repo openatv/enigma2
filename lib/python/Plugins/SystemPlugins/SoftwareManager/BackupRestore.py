@@ -66,45 +66,45 @@ def InitConfig():
 		'/usr/bin/enigma2_pre_start.sh',
 		eEnv.resolve("${datadir}/enigma2/keymap.usr"),
 		eEnv.resolve("${datadir}/enigma2/keymap_usermod.xml")]\
-		+eEnv_resolve_multi("${sysconfdir}/opkg/*-secret-feed.conf")\
-		+eEnv_resolve_multi("${datadir}/enigma2/*/mySkin_off")\
-		+eEnv_resolve_multi("${datadir}/enigma2/*/mySkin")\
-		+eEnv_resolve_multi("${datadir}/enigma2/*/skin_user_*.xml")\
-		+eEnv_resolve_multi("/usr/bin/*cam*")\
-		+eEnv_resolve_multi("/etc/*.emu")\
-		+eEnv_resolve_multi("${sysconfdir}/cron*")\
-		+eEnv_resolve_multi("${sysconfdir}/init.d/softcam*")\
-		+eEnv_resolve_multi("${sysconfdir}/init.d/cardserver*")\
-		+eEnv_resolve_multi("${sysconfdir}/sundtek.*")\
-		+eEnv_resolve_multi("/usr/sundtek/*")\
-		+eEnv_resolve_multi("/opt/bin/*")\
-		+eEnv_resolve_multi("/usr/script/*")
+		+ eEnv_resolve_multi("${sysconfdir}/opkg/*-secret-feed.conf")\
+		+ eEnv_resolve_multi("${datadir}/enigma2/*/mySkin_off")\
+		+ eEnv_resolve_multi("${datadir}/enigma2/*/mySkin")\
+		+ eEnv_resolve_multi("${datadir}/enigma2/*/skin_user_*.xml")\
+		+ eEnv_resolve_multi("/usr/bin/*cam*")\
+		+ eEnv_resolve_multi("/etc/*.emu")\
+		+ eEnv_resolve_multi("${sysconfdir}/cron*")\
+		+ eEnv_resolve_multi("${sysconfdir}/init.d/softcam*")\
+		+ eEnv_resolve_multi("${sysconfdir}/init.d/cardserver*")\
+		+ eEnv_resolve_multi("${sysconfdir}/sundtek.*")\
+		+ eEnv_resolve_multi("/usr/sundtek/*")\
+		+ eEnv_resolve_multi("/opt/bin/*")\
+		+ eEnv_resolve_multi("/usr/script/*")
 
 	# Drop non existant paths from list
-	tmpfiles=[]
+	tmpfiles = []
 	for f in BACKUPFILES:
 		if path.exists(f):
 			tmpfiles.append(f)
-	backupset=tmpfiles
+	backupset = tmpfiles
 
 	config.plugins.configurationbackup = ConfigSubsection()
-	if boxtype in ('maram9', 'classm', 'axodin', 'axodinc', 'starsatlx', 'genius', 'evo', 'galaxym6') and not path.exists("/media/hdd/backup_%s" %boxtype):
+	if boxtype in ('maram9', 'classm', 'axodin', 'axodinc', 'starsatlx', 'genius', 'evo', 'galaxym6') and not path.exists("/media/hdd/backup_%s" % boxtype):
 		config.plugins.configurationbackup.backuplocation = ConfigText(default='/media/backup/', visible_width=50, fixed_size=False)
 	else:
 		config.plugins.configurationbackup.backuplocation = ConfigText(default='/media/hdd/', visible_width=50, fixed_size=False)
 	config.plugins.configurationbackup.backupdirs_default = NoSave(ConfigLocations(default=backupset))
-	config.plugins.configurationbackup.backupdirs         = ConfigLocations(default=[]) # 'backupdirs_addon' is called 'backupdirs' for backwards compatibility, holding the user's old selection, duplicates are removed during backup
+	config.plugins.configurationbackup.backupdirs = ConfigLocations(default=[]) # 'backupdirs_addon' is called 'backupdirs' for backwards compatibility, holding the user's old selection, duplicates are removed during backup
 	config.plugins.configurationbackup.backupdirs_exclude = ConfigLocations(default=[])
 	return config.plugins.configurationbackup
 
-config.plugins.configurationbackup=InitConfig()
+config.plugins.configurationbackup = InitConfig()
 
 def getBackupPath():
 	backuppath = config.plugins.configurationbackup.backuplocation.value
 	if backuppath.endswith('/'):
-		return backuppath + 'backup_' + distro + '_'+ boxtype
+		return backuppath + 'backup_' + distro + '_' + boxtype
 	else:
-		return backuppath + '/backup_' + distro + '_'+ boxtype
+		return backuppath + '/backup_' + distro + '_' + boxtype
 
 def getOldBackupPath():
 	backuppath = config.plugins.configurationbackup.backuplocation.value
@@ -170,7 +170,7 @@ class BackupScreen(Screen, ConfigListScreen):
 			if path.exists(self.backuppath) == False:
 				makedirs(self.backuppath)
 			InitConfig()
-			self.backupdirs=" ".join(f.strip("/") for f in config.plugins.configurationbackup.backupdirs_default.value)
+			self.backupdirs = " ".join(f.strip("/") for f in config.plugins.configurationbackup.backupdirs_default.value)
 			for f in config.plugins.configurationbackup.backupdirs.value:
 				if not f.strip("/") in self.backupdirs:
 					self.backupdirs += " " + f.strip("/")
@@ -184,7 +184,7 @@ class BackupScreen(Screen, ConfigListScreen):
 				self.backupdirs += " tmp/groups.txt"
 
 			ShellCompatibleFunctions.backupUserDB()
-			pkgs=ShellCompatibleFunctions.listpkg(type="user")
+			pkgs = ShellCompatibleFunctions.listpkg(type="user")
 			installed = open("/tmp/installed-list.txt", "w")
 			installed.write('\n'.join(pkgs))
 			installed.close()
@@ -289,9 +289,9 @@ class BackupSelection(Screen):
 	def selectionChanged(self):
 		current = self["checkList"].getCurrent()[0]
 		if current[3] == "<Parent directory>":
-			self["summary_description"].text =self["checkList"].getCurrentDirectory()+".."
+			self["summary_description"].text = self["checkList"].getCurrentDirectory() + ".."
 		else:
-			self["summary_description"].text =self["checkList"].getCurrentDirectory()+current[3]
+			self["summary_description"].text = self["checkList"].getCurrentDirectory() + current[3]
 		if self.readOnly:
 			return
 		if current[2] is True:
@@ -537,14 +537,14 @@ class RestoreScreen(Screen, ConfigListScreen):
 			self.restoreMetrixSkin()
 
 	def restartGUI(self, ret=None):
-		self.session.open(Console, title=_("Your %s %s will Restart...")% (getMachineBrand(), getMachineName()), cmdlist=["killall -9 enigma2"])
+		self.session.open(Console, title=_("Your %s %s will Restart...") % (getMachineBrand(), getMachineName()), cmdlist=["killall -9 enigma2"])
 
 	def rebootSYS(self, ret=None):
 		try:
 			f = open("/tmp/rebootSYS.sh", "w")
 			f.write("#!/bin/bash\n\nkillall -9 enigma2\nreboot\n")
 			f.close()
-			self.session.open(Console, title=_("Your %s %s will Reboot...")% (getMachineBrand(), getMachineName()), cmdlist=["chmod +x /tmp/rebootSYS.sh", "/tmp/rebootSYS.sh"])
+			self.session.open(Console, title=_("Your %s %s will Reboot...") % (getMachineBrand(), getMachineName()), cmdlist=["chmod +x /tmp/rebootSYS.sh", "/tmp/rebootSYS.sh"])
 		except:
 			self.restartGUI()
 
@@ -552,8 +552,8 @@ class RestoreScreen(Screen, ConfigListScreen):
 		configfile.load()
 		configfile.save()
 		try:
-			f=open("/etc/enigma2/settings", "r")
-			s=f.read()
+			f = open("/etc/enigma2/settings", "r")
+			s = f.read()
 			f.close()
 			restore = "config.skin.primary_skin=MetrixHD/skin.MySkin.xml" in s
 		except:
@@ -689,7 +689,7 @@ class installedPlugins(Screen):
 			self.readPluginList()
 
 	def readPluginList(self):
-		installedpkgs=ShellCompatibleFunctions.listpkg(type="installed")
+		installedpkgs = ShellCompatibleFunctions.listpkg(type="installed")
 		self.PluginList = []
 		with open('/tmp/installed-list.txt') as f:
 			for line in f:

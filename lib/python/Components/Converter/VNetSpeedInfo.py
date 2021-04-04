@@ -57,36 +57,36 @@ class VNetSpeedInfo(Poll, Converter, object):
 		Poll.__init__(self)
 		self.poll_interval = 1000
 		self.poll_enabled = True
-		self.lanreceivetotal=0
-		self.lanreceivetotalout=0
-		self.lanreceive=0
-		self.lanreceivemb=0
-		self.wlanreceivetotal=0
-		self.wlanreceivetotalout=0
-		self.wlanreceive=0
-		self.wlanreceivemb=0
-		self.lantransmittotal=0
-		self.lantransmittotalout=0
-		self.lantransmit=0
-		self.lantransmitmb=0
-		self.wlantransmittotal=0
-		self.wlantransmittotalout=0
-		self.wlantransmit=0
-		self.wlantransmitmb=0
-		self.receivetotal=0
-		self.receive=0
-		self.transmittotal=0
-		self.transmit=0
-		self.receivemb=0
-		self.nettyp="NONE"
-		self.error_lanreceive=0
-		self.drop_lanreceive=0
-		self.error_lantransmite=0
-		self.drop_lantransmite=0
-		self.error_wlanreceive=0
-		self.drop_wlanreceive=0
-		self.error_wlantransmite=0
-		self.drop_wlantransmite=0
+		self.lanreceivetotal = 0
+		self.lanreceivetotalout = 0
+		self.lanreceive = 0
+		self.lanreceivemb = 0
+		self.wlanreceivetotal = 0
+		self.wlanreceivetotalout = 0
+		self.wlanreceive = 0
+		self.wlanreceivemb = 0
+		self.lantransmittotal = 0
+		self.lantransmittotalout = 0
+		self.lantransmit = 0
+		self.lantransmitmb = 0
+		self.wlantransmittotal = 0
+		self.wlantransmittotalout = 0
+		self.wlantransmit = 0
+		self.wlantransmitmb = 0
+		self.receivetotal = 0
+		self.receive = 0
+		self.transmittotal = 0
+		self.transmit = 0
+		self.receivemb = 0
+		self.nettyp = "NONE"
+		self.error_lanreceive = 0
+		self.drop_lanreceive = 0
+		self.error_lantransmite = 0
+		self.drop_lantransmite = 0
+		self.error_wlanreceive = 0
+		self.drop_wlanreceive = 0
+		self.error_wlantransmite = 0
+		self.drop_wlantransmite = 0
 		
 		Converter.__init__(self, type)
 		self.type = type
@@ -155,92 +155,92 @@ class VNetSpeedInfo(Poll, Converter, object):
 	text = property(getText)
 
 	def updateNetSpeedInfoStatus(self):
-		flaglan=0
-		flagwlan=0
-		bwm=open("/proc/net/dev")
+		flaglan = 0
+		flagwlan = 0
+		bwm = open("/proc/net/dev")
 		bw = bwm.readline()
 		bw = bwm.readline()
-		sp=[]
+		sp = []
 		while (bw):
 			bw = bwm.readline()
 			while bw.find("  ") != -1:
-				bw=bw.replace("  ", " ")
+				bw = bw.replace("  ", " ")
 			if bw.find("eth") != -1:
-				flaglan=1
-				sp=bw.split(":")
-				bw=sp[1].lstrip()
-				sp=bw.split(" ")
+				flaglan = 1
+				sp = bw.split(":")
+				bw = sp[1].lstrip()
+				sp = bw.split(" ")
 				if len(sp[0]) == 0:
-					sp[0]="0"
+					sp[0] = "0"
 				if len(sp[2]) == 0:
-					sp[2]="0"
+					sp[2] = "0"
 				if len(sp[3]) == 0:
-					sp[3]="0"
+					sp[3] = "0"
 				if len(sp[8]) == 0:
-					sp[8]="0"
+					sp[8] = "0"
 				if len(sp[10]) == 0:
-					sp[10]="0"
+					sp[10] = "0"
 				if len(sp[11]) == 0:
-					sp[11]="0"
-				newlanreceive=int(sp[0])/1024
-				self.error_lanrecive=int(sp[2])
-				self.drop_lanreceive=int(sp[3])
+					sp[11] = "0"
+				newlanreceive = int(sp[0]) / 1024
+				self.error_lanrecive = int(sp[2])
+				self.drop_lanreceive = int(sp[3])
 				if self.lanreceivetotal > 0:
-					self.lanreceive=float(newlanreceive-self.lanreceivetotal)*8/1024
-					self.lanreceivemb=float(newlanreceive-self.lanreceivetotal)/1024
+					self.lanreceive = float(newlanreceive - self.lanreceivetotal) * 8 / 1024
+					self.lanreceivemb = float(newlanreceive - self.lanreceivetotal) / 1024
 				else:
-					self.lanreceive=0
-				self.lanreceivetotal=newlanreceive
-				self.lanreceivetotalout=newlanreceive/1024
-				newlantransmit=int(sp[8])/1024
-				self.error_lantransmite=int(sp[10])
-				self.drop_lantransmite=int(sp[11])
+					self.lanreceive = 0
+				self.lanreceivetotal = newlanreceive
+				self.lanreceivetotalout = newlanreceive / 1024
+				newlantransmit = int(sp[8]) / 1024
+				self.error_lantransmite = int(sp[10])
+				self.drop_lantransmite = int(sp[11])
 				if self.lantransmittotal > 0:
-					self.lantransmit=float(newlantransmit-self.lantransmittotal)*8/1024
-					self.lantransmitmb=float(newlantransmit-self.lantransmittotal)/1024
+					self.lantransmit = float(newlantransmit - self.lantransmittotal) * 8 / 1024
+					self.lantransmitmb = float(newlantransmit - self.lantransmittotal) / 1024
 				else:
-					self.lantransmit=0
-				self.lantransmittotal=newlantransmit
-				self.lantransmittotalout=newlantransmit/1024
+					self.lantransmit = 0
+				self.lantransmittotal = newlantransmit
+				self.lantransmittotalout = newlantransmit / 1024
 				if (self.lantransmittotal + self.lanreceivetotal) == 0:
 					flaglan = 0
 			if (bw.find("ra") != -1) or (bw.find("wlan") != -1) or (bw.find("wifi") != -1):
-				flagwlan=1
-				sp=bw.split(":")
-				bw=sp[1].lstrip()
-				sp=bw.split(" ")
+				flagwlan = 1
+				sp = bw.split(":")
+				bw = sp[1].lstrip()
+				sp = bw.split(" ")
 				if len(sp[0]) == 0:
-					sp[0]="0"
+					sp[0] = "0"
 				if len(sp[2]) == 0:
-					sp[2]="0"
+					sp[2] = "0"
 				if len(sp[3]) == 0:
-					sp[3]="0"
+					sp[3] = "0"
 				if len(sp[8]) == 0:
-					sp[8]="0"
+					sp[8] = "0"
 				if len(sp[10]) == 0:
-					sp[10]="0"
+					sp[10] = "0"
 				if len(sp[11]) == 0:
-					sp[11]="0"
-				newwlanreceive=int(sp[0])/1024
-				self.error_wlanrecive=int(sp[2])
-				self.drop_wlanreceive=int(sp[3])
+					sp[11] = "0"
+				newwlanreceive = int(sp[0]) / 1024
+				self.error_wlanrecive = int(sp[2])
+				self.drop_wlanreceive = int(sp[3])
 				if self.wlanreceivetotal > 0:
-					self.wlanreceive=float(newwlanreceive-self.wlanreceivetotal)*8/1024
-					self.wlanreceivemb=float(newwlanreceive-self.wlanreceivetotal)/1024
+					self.wlanreceive = float(newwlanreceive - self.wlanreceivetotal) * 8 / 1024
+					self.wlanreceivemb = float(newwlanreceive - self.wlanreceivetotal) / 1024
 				else:
-					self.wlanreceive=0
-				self.wlanreceivetotal=newwlanreceive
-				self.wlanreceivetotalout=newwlanreceive/1024
-				newwlantransmit=int(sp[8])/1024
-				self.error_wlantransmite=int(sp[10])
-				self.drop_wlantransmite=int(sp[11])
+					self.wlanreceive = 0
+				self.wlanreceivetotal = newwlanreceive
+				self.wlanreceivetotalout = newwlanreceive / 1024
+				newwlantransmit = int(sp[8]) / 1024
+				self.error_wlantransmite = int(sp[10])
+				self.drop_wlantransmite = int(sp[11])
 				if self.wlantransmittotal > 0:
-					self.wlantransmit=float(newwlantransmit-self.wlantransmittotal)*8/1024
-					self.wlantransmitmb=float(newwlantransmit-self.wlantransmittotal)/1024
+					self.wlantransmit = float(newwlantransmit - self.wlantransmittotal) * 8 / 1024
+					self.wlantransmitmb = float(newwlantransmit - self.wlantransmittotal) / 1024
 				else:
-					self.wlantransmit=0
-				self.wlantransmittotal=newwlantransmit
-				self.wlantransmittotalout=newwlantransmit/1024
+					self.wlantransmit = 0
+				self.wlantransmittotal = newwlantransmit
+				self.wlantransmittotalout = newwlantransmit / 1024
 		bwm.close()
 
 #		if ((flaglan == 1) and (flagwlan == 0)) or ((flaglan == 1) and (flagwlan == 1)):
@@ -260,8 +260,8 @@ class VNetSpeedInfo(Poll, Converter, object):
 			self.transmittotal = self.wlantransmittotal
 			self.nettyp = "WLAN"
 		if (flaglan == 1) or (flagwlan == 1):
-			self.receivemb = self.receive/8
-			self.transmitmb = self.transmit/8
+			self.receivemb = self.receive / 8
+			self.transmitmb = self.transmit / 8
 		if self.type == self.RCL:
 			return "%3.2f" % self.lanreceive
 		elif self.type == self.TML:

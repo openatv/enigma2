@@ -135,7 +135,7 @@ class EventViewBase:
 				cb_func2 = lambda ret: self.editTimer(timer)
 				menu = [(_("Delete timer"), 'CALLFUNC', self.ChoiceBoxCB, cb_func1), (_("Edit timer"), 'CALLFUNC', self.ChoiceBoxCB, cb_func2)]
 				self.ChoiceBoxDialog = self.session.instantiateDialog(ChoiceBox, title=_("Select action for timer %s:") % event.getEventName(), list=menu, keys=['green', 'blue'], skin_name="RecordTimerQuestion")
-				self.ChoiceBoxDialog.instance.move(ePoint(self.instance.position().x()+self["key_green"].getPosition()[0], self.instance.position().y()+self["key_green"].getPosition()[1]-self["key_green"].instance.size().height()))
+				self.ChoiceBoxDialog.instance.move(ePoint(self.instance.position().x() + self["key_green"].getPosition()[0], self.instance.position().y() + self["key_green"].getPosition()[1] - self["key_green"].instance.size().height()))
 				self.showChoiceBoxDialog()
 				break
 		else:
@@ -200,7 +200,7 @@ class EventViewBase:
 		self.finishedAdd(answer)
 
 	def setService(self, service):
-		self.currentService=service
+		self.currentService = service
 		self["Service"].newService(service.ref)
 		if self.isRecording:
 			self["channel"].setText(_("Recording"))
@@ -264,7 +264,7 @@ class EventViewBase:
 			fail = True
 
 		if fail:
-			print('wrong timestamp detected: source = %s ,date = %s ,time = %s' %(beginTimeString, begindate, begintime))
+			print('wrong timestamp detected: source = %s ,date = %s ,time = %s' % (beginTimeString, begindate, begintime))
 			return
 		###
 
@@ -275,7 +275,7 @@ class EventViewBase:
 		end = localtime(int(mktime((now.tm_year, int(begindate[1]), int(begindate[0]), int(begintime[0]), int(begintime[1]), 0, now.tm_wday, now.tm_yday, now.tm_isdst))) + event.getDuration())
 
 		self["datetime"].setText("%s - %s" % (strftime("%s, %s" % (config.usage.date.short.value, config.usage.time.short.value), begin), strftime(config.usage.time.short.value, end)))
-		self["duration"].setText(_("%d min")%(event.getDuration()/60))
+		self["duration"].setText(_("%d min") % (event.getDuration() / 60))
 		if self.SimilarBroadcastTimer is not None:
 			self.SimilarBroadcastTimer.start(400, True)
 			
@@ -317,9 +317,9 @@ class EventViewBase:
 				t = localtime(x[1])
 				text += "\n%s - %s" % (strftime(config.usage.date.long.value + ", " + config.usage.time.short.value, t), x[0])
 			descr = self["epg_description"]
-			descr.setText(descr.getText()+text)
+			descr.setText(descr.getText() + text)
 			descr = self["FullDescription"]
-			descr.setText(descr.getText()+text)
+			descr.setText(descr.getText() + text)
 			self["key_red"].setText(_("Similar"))
 
 	def openSimilarList(self):

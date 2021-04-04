@@ -389,7 +389,7 @@ class LocationBox(Screen, NumericalTextInput, HelpableScreen):
 			free = ""
 			try:
 				stat = os.statvfs(currFolder)
-				free = ("%0.f GB " + _("free")) % (float(stat.f_bavail) * stat.f_bsize / 1024 / 1024 /1024)
+				free = ("%0.f GB " + _("free")) % (float(stat.f_bavail) * stat.f_bsize / 1024 / 1024 / 1024)
 			except:
 				pass
 			self["targetfreespace"].setText(free)

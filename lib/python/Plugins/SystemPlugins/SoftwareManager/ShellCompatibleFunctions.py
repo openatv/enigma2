@@ -17,12 +17,12 @@ PACKAGES = '/var/lib/opkg/lists'
 INSTALLEDPACKAGES = '/var/lib/opkg/status'
 
 def backupUserDB():
-	oldpasswd=()
-	oldshadow=()
-	oldgroups=()
-	neededgroups=[]
-	tmppasswd=[]
-	tmpgroups=[]
+	oldpasswd = ()
+	oldshadow = ()
+	oldgroups = ()
+	neededgroups = []
+	tmppasswd = []
+	tmpgroups = []
 
 	with open('/etc/passwd') as f:
 		oldpasswd = f.readlines()
@@ -48,7 +48,7 @@ def backupUserDB():
 			sname, spasswd, bullshit = y.split(':', 2)
 			if name == sname:
 				# Store hash in password field
-				passwd=spasswd
+				passwd = spasswd
 
 		# ... also search his group ...
 		for z in oldgroups:
@@ -84,13 +84,13 @@ def restoreUserDB():
 	if not (os.path.isfile('/tmp/passwd.txt') and os.path.isfile('/tmp/groups.txt')):
 		return
 
-	oldpasswd=[]
-	oldgroups=[]
-	newpasswd=[]
-	newgroups=[]
-	takenuids=[]
-	takengids=[]
-	successusers=[]
+	oldpasswd = []
+	oldgroups = []
+	newpasswd = []
+	newgroups = []
+	takenuids = []
+	takengids = []
+	successusers = []
 
 	with open('/tmp/passwd.txt') as f:
 		oldpasswd = f.readlines()
@@ -170,7 +170,7 @@ def restoreUserDB():
 		if usersuccess:
 			successusers.append([oldname, oldpasswd])
 
-	shadow=[]
+	shadow = []
 	with open('/etc/shadow') as f:
 		shadow = f.readlines()
 		shadow = [x.strip() for x in shadow]

@@ -79,7 +79,7 @@ def getType(file):
 		p = file.rfind('.')
 		if p == -1:
 			return None
-		ext = file[p+1:].lower()
+		ext = file[p + 1:].lower()
 
 		if ext == "ipk":
 			return "application/x-debian-package"
