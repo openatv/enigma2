@@ -547,7 +547,7 @@ def autorestoreLoop():
 		try:
 			count = int(f.read())
 		except:
-			count = 0;
+			count = 0
 		f.close()
 		if count >= 3:
 			return False

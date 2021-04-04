@@ -3,7 +3,8 @@ from os import path
 # this is not a GUI renderer.
 class FrontpanelLed(Element):
 	def __init__(self, which=0, patterns=None, boolean=True):
-		if not patterns: patterns = [(20, 0, 0xffffffff), (20, 0x55555555, 0x84fc8c04)]
+		if not patterns:
+			patterns = [(20, 0, 0xffffffff), (20, 0x55555555, 0x84fc8c04)]
 		self.which = which
 		self.boolean = boolean
 		self.patterns = patterns

@@ -129,11 +129,13 @@ class ConfigElement(object):
 	# immediate_feedback = False means call notifier on leave the config element (up/down) when value have CHANGED
 	# call_on_save_or_cancel = True means call notifier always on save/cancel.. even when value have not changed
 	def addNotifier(self, notifier, initial_call = True, immediate_feedback = True, call_on_save_or_cancel = False, extra_args=None):
-		if not extra_args: extra_args = []
+		if not extra_args:
+			extra_args = []
 		assert callable(notifier), "notifiers must be callable"
 		try:
 			self.extra_args[notifier] = extra_args
-		except: pass	
+		except:
+			pass	
 		if immediate_feedback:
 			self.__notifiers[str(notifier)] = (notifier, self.value, call_on_save_or_cancel)
 		else:
@@ -1521,7 +1523,8 @@ class ConfigSatlist(ConfigSelection):
 
 class ConfigSet(ConfigElement):
 	def __init__(self, choices, default=None):
-		if not default: default = []
+		if not default:
+			default = []
 		ConfigElement.__init__(self)
 		if isinstance(choices, list):
 			choices.sort()
@@ -1677,7 +1680,8 @@ class ConfigDictionarySet(ConfigElement):
 
 class ConfigLocations(ConfigElement):
 	def __init__(self, default=None, visible_width=False):
-		if not default: default = []
+		if not default:
+			default = []
 		ConfigElement.__init__(self)
 		self.visible_width = visible_width
 		self.pos = -1

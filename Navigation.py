@@ -147,7 +147,8 @@ class Navigation:
 		if runCheck and ((self.__wasTimerWakeup or config.workaround.deeprecord.value) and now >= self.wakeupwindow_minus and now <= self.wakeupwindow_plus):
 			if self.syncCount > 0:
 				stbytimer = stbytimer - (self.syncCount * 5)
-				if stbytimer < 0: stbytimer = 0
+				if stbytimer < 0:
+					stbytimer = 0
 				if not self.__wasTimerWakeup:
 					self.__wasTimerWakeup = True
 					print("-"*100)
@@ -184,7 +185,8 @@ class Navigation:
 			if self.getstandby != 1 and ((self.wakeuptyp < 3 and self.timertime - now > 60 + stbytimer) or cec):
 				self.getstandby = 1
 				txt = ""
-				if cec: txt = "... or special hdmi-cec settings"
+				if cec:
+					txt = "... or special hdmi-cec settings"
 				print("[NAVIGATION] more than 60 seconds to wakeup%s - go in standby now" %txt)
 			print("="*100)
 			#go in standby
@@ -347,7 +349,8 @@ class Navigation:
 
 	def recordService(self, ref, simulate=False, type=pNavigation.isUnknownRecording):
 		service = None
-		if not simulate: print("recording service: %s" % (str(ref)))
+		if not simulate:
+			print("recording service: %s" % (str(ref)))
 		if isinstance(ref, ServiceReference.ServiceReference):
 			ref = ref.ref
 		if ref:

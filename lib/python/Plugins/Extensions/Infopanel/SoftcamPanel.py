@@ -26,10 +26,12 @@ def command(comandline, strip=1):
 		else:
 			for line in file:
 				text = text + line
-				if text[-1:] != '\n': text = text + "\n"
+				if text[-1:] != '\n':
+					text = text + "\n"
 		file.close()
 	# if one or last line then remove linefeed
-	if text[-1:] == '\n': text = text[:-1]
+	if text[-1:] == '\n':
+		text = text[:-1]
 	comandline = text
 	os.system("rm /tmp/command.txt")
 	return comandline

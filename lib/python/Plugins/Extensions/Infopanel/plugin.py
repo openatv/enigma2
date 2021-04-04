@@ -155,10 +155,12 @@ def command(comandline, strip=1):
     else:
       for line in file:
         text = text + line
-        if text[-1:] != '\n': text = text + "\n"
+        if text[-1:] != '\n':
+        	text = text + "\n"
     file.close()
   # if one or last line then remove linefeed
-  if text[-1:] == '\n': text = text[:-1]
+  if text[-1:] == '\n':
+  	text = text[:-1]
   comandline = text
   os.system("rm /tmp/command.txt")
   return comandline
@@ -262,11 +264,11 @@ from Screens.InfoBarGenerics import InfoBarPiP
 #g
 
 def InfoEntryComponent(file):
-	png = LoadPixmap(cached = True, path = resolveFilename(SCOPE_CURRENT_SKIN, "icons/" + file + ".png"));
+	png = LoadPixmap(cached = True, path = resolveFilename(SCOPE_CURRENT_SKIN, "icons/" + file + ".png"))
 	if png == None:
 		png = LoadPixmap("/usr/lib/enigma2/python/Plugins/Extensions/Infopanel/icons/" + file + ".png")
 		if png == None:
-			png = LoadPixmap(cached = True, path = resolveFilename(SCOPE_CURRENT_SKIN, "icons/default.png"));
+			png = LoadPixmap(cached = True, path = resolveFilename(SCOPE_CURRENT_SKIN, "icons/default.png"))
 			if png == None:
 				png = LoadPixmap("/usr/lib/enigma2/python/Plugins/Extensions/Infopanel/icons/default.png")
 	res = (png)
@@ -927,7 +929,7 @@ class Info(Screen):
 		try:
 			self["label2"].setText(_("Swap"))
 			info0 = self.Do_cmd("cat", "/proc/swaps", None, " | sed 's/\t/ /g; s/[ ]* / /g'")
-			info0 = info0.split("\n");
+			info0 = info0.split("\n")
 			info1 = ""
 			for l in info0[1:]:
 				l1 = l.split(" ")
@@ -936,8 +938,10 @@ class Info(Screen):
 				info1 = info1 + "Size: " + l1[2] + '\n'
 				info1 = info1 + "Used: " + l1[3] + '\n'
 				info1 = info1 + "Prio: " + l1[4] + '\n\n'
-			if info1[-1:] == '\n': info1 = info1[:-1]
-			if info1[-1:] == '\n': info1 = info1[:-1]
+			if info1[-1:] == '\n':
+				info1 = info1[:-1]
+			if info1[-1:] == '\n':
+				info1 = info1[:-1]
 			info1 = self.Do_cut(info1)
 			self["label1"].setText(info1)
 		except:
@@ -967,7 +971,8 @@ class Info(Screen):
 		text = ""
 		for line in text1:
 			text = text + line[:95] + "\n"
-		if text[-1:] == '\n': text = text[:-1]
+		if text[-1:] == '\n':
+			text = text[:-1]
 		return text
 
 	def Do_cmd(self, cmd , file, arg , pipe = ""):

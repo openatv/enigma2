@@ -1993,7 +1993,8 @@ class EPGSelection(Screen, HelpableScreen):
 				self.close()
 
 	def keyNumberGlobal(self, number):
-		if self.createTimer.isActive(): return
+		if self.createTimer.isActive():
+			return
 		if self.type == EPG_TYPE_GRAPH or self.type == EPG_TYPE_INFOBARGRAPH:
 			if self.type == EPG_TYPE_GRAPH:
 				now = time() - int(config.epgselection.graph_histminutes.value) * 60

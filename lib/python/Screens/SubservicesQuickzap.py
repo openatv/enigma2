@@ -8,9 +8,9 @@ from Screens.InfoBarGenerics import InfoBarShowHide, InfoBarMenu, InfoBarInstant
 from enigma import eServiceReference
 from Components.ServiceEventTracker import InfoBarBase
 
-class SubservicesQuickzap(InfoBarBase, InfoBarShowHide, InfoBarMenu, \
-		InfoBarInstantRecord, InfoBarSeek, InfoBarTimeshift, \
-		InfoBarTimeshiftState, InfoBarExtensions, InfoBarSubtitleSupport, \
+class SubservicesQuickzap(InfoBarBase, InfoBarShowHide, InfoBarMenu,
+		InfoBarInstantRecord, InfoBarSeek, InfoBarTimeshift,
+		InfoBarTimeshiftState, InfoBarExtensions, InfoBarSubtitleSupport,
 		InfoBarAudioSelection, Screen):
 	def __init__(self, session, subservices):
 		Screen.__init__(self, session)

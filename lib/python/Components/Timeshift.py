@@ -216,7 +216,8 @@ class InfoBarTimeshift:
 
 		if not state and self.pts_currplaying == self.pts_eventcount and self.timeshiftEnabled() and not self.event_changed:
 			self.setSeekState(self.SEEK_STATE_PLAY)
-			if hasattr(self, "pvrStateDialog"): self.pvrStateDialog.hide()
+			if hasattr(self, "pvrStateDialog"):
+				self.pvrStateDialog.hide()
 
 		self.restartSubtitle()
 
@@ -1546,7 +1547,8 @@ class InfoBarTimeshift:
 		else:
 			if length <= abs(self.posDiff):
 				tmp = length - 90000*10
-				if tmp < 0: tmp = 0
+				if tmp < 0:
+					tmp = 0
 				self.posDiff = tmp
 		self.setSeekState(self.SEEK_STATE_PLAY)
 		self.doSeek(self.posDiff)
