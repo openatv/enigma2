@@ -138,6 +138,8 @@ def getButtonSetupKeys():
 		(_("F3 long"), "f3_long", ""),
 		(_("F4"), "f4", ""),
 		(_("F4 long"), "f4_long", ""),
+		(_("Magic"), "f10", ""),
+		(_("Magic long"), "f10_long", ""),
 		(_("PIP"), "f6", ""),
 		(_("PIP long"), "f6_long", ""),
 		(_("MOUSE"), "mouse", ""),
