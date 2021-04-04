@@ -36,7 +36,7 @@ class PU_Restore(Screen, ConfigListScreen):
         self.skinName = "PU_Restore"
         self.setup_title = _("Programmlisten Restore")
         self.setTitle(self.setup_title)
-        
+
         self["key_red"] = StaticText(_("Exit"))
         self["key_green"] = StaticText(_("Restore"))
         self["key_yellow"] = StaticText(_("Delete"))
@@ -78,7 +78,7 @@ class PU_Restore(Screen, ConfigListScreen):
             os.system('rm -rf %s' % (Directory + '/Settings/enigma2/' + self.filename))
             self.List = self.Search_Settings()
             self.SettingsMenu()
-    
+
     def Search_Settings(self):
         list = []
         os.chdir(Directory + '/Settings/enigma2')
@@ -106,5 +106,3 @@ class PU_Restore(Screen, ConfigListScreen):
         eDVBDB.getInstance().reloadBouquets()
         self.session.open(MessageBox, _('Setting Restored ') + self.filename + _(' of ') + date, MessageBox.TYPE_INFO, timeout=15)
         self.close()
-        
-        

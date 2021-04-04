@@ -239,7 +239,7 @@ class SymbolsCheckPoller:
 		else:
 			file = open("/proc/stb/lcd/symbol_play", "w")
 			file.write('0')
-			file.close() 
+			file.close()
 
 	def PauseSymbol(self):
 		if not fileExists("/proc/stb/lcd/symbol_pause"):

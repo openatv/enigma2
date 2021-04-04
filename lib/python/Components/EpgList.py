@@ -954,12 +954,12 @@ class EPGList(HTMLComponent, GUIComponent):
 				piconWidth = 0
 		else:
 			piconWidth = 0
-			
+
 		channelWidth = 0
 		if self.showServiceNumber:
 			if not isinstance(channel, int):
 				channel = self.getChannelNumber(channel)
-			
+
 			if channel:
 				namefont = 0
 				namefontflag = RT_HALIGN_CENTER | RT_VALIGN_CENTER

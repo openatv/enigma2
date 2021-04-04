@@ -134,7 +134,7 @@ class AVSwitch:
 		del modes["YPbPr"]
 	if "Scart" in modes and not has_scart and not has_rca and not has_avjack:
 			del modes["Scart"]
-		
+
 	if getBoxType() in ('mutant2400',):
 		f = open("/proc/stb/info/board_revision", "r").read()
 		if f >= "2":
@@ -185,7 +185,7 @@ class AVSwitch:
 		else:
 			self.modes_preferred = self.readAvailableModes()
 			print("[AVSwitch] used default modes: ", self.modes_preferred)
-			
+
 		if len(self.modes_preferred) <= 2:
 			print("[AVSwitch] preferend modes not ok, possible driver failer, len=", len(self.modes_preferred))
 			self.modes_preferred = self.readAvailableModes()
@@ -584,7 +584,7 @@ def InitAVSwitch():
 		policy2_choices_raw = open(policy2_choices_proc, "r").read()
 	except:
 		policy2_choices_raw = "letterbox"
-	
+
 	policy2_choices = {}
 
 	if "letterbox" in policy2_choices_raw:
@@ -622,13 +622,13 @@ def InitAVSwitch():
 		policy_choices_raw = open(policy_choices_proc, "r").read()
 	except:
 		policy_choices_raw = "panscan"
-	
+
 	policy_choices = {}
 
 	if "pillarbox" in policy_choices_raw and not "panscan" in policy_choices_raw:
 		# Very few boxes support "pillarbox" as an alias for "panscan" (Which in fact does pillarbox)
 		# So only add "pillarbox" if "panscan" is not listed in choices
-		
+
 		# TRANSLATORS: (aspect ratio policy: black bars on left/right) in doubt, keep english term.
 		policy_choices.update({"pillarbox": _("Pillarbox")})
 
@@ -643,7 +643,7 @@ def InitAVSwitch():
 		# DRIVER BUG:	"letterbox" in /proc actually does pan&scan
 		#		"letterbox" and 4:3 content on 16:9 TVs is mutually exclusive, as "letterbox" is the method to show wide content on narrow TVs
 		#		Probably the bug arose as the driver actually does the same here as it would for wide content on narrow TVs (It stretches the picture to fit width)
-		
+
 		# TRANSLATORS: (aspect ratio policy: Fit width, cut/crop top and bottom (Maintain aspect ratio))
 		policy_choices.update({"letterbox": _("Pan&scan")})
 
@@ -688,7 +688,7 @@ def InitAVSwitch():
 			iAVSwitch.setColorFormat(0)
 		else:
 			if getBoxType() == 'et6x00':
-				map = {"cvbs": 3, "rgb": 3, "svideo": 2, "yuv": 3}	
+				map = {"cvbs": 3, "rgb": 3, "svideo": 2, "yuv": 3}
 			elif getBoxType() == 'gbquad' or getBoxType() == 'gbquadplus' or getBoxType().startswith('et'):
 				map = {"cvbs": 0, "rgb": 3, "svideo": 2, "yuv": 3}
 			else:
@@ -732,7 +732,7 @@ def InitAVSwitch():
 		config.av.bypass_edid_checking.addNotifier(setEDIDBypass)
 	else:
 		config.av.bypass_edid_checking = ConfigNothing()
-		
+
 	def setUnsupportModes(configElement):
 		iAVSwitch.readPreferredModes()
 		iAVSwitch.createConfig()
@@ -870,7 +870,7 @@ def InitAVSwitch():
 		config.av.hdmicolordepth.addNotifier(setHdmiColordepth)
 	else:
 		config.av.hdmicolordepth = ConfigNothing()
-		
+
 	if os.path.exists("/proc/stb/video/hdmi_hdrtype"):
 		f = open("/proc/stb/video/hdmi_hdrtype", "r")
 		have_HdmiHdrType = f.read().strip().split(" ")
@@ -911,13 +911,13 @@ def InitAVSwitch():
 	if have_HDRSupport:
 		def setHlgSupport(configElement):
 			open("/proc/stb/hdmi/hlg_support", "w").write(configElement.value)
-		config.av.hlg_support = ConfigSelection(default="auto(EDID)", 
+		config.av.hlg_support = ConfigSelection(default="auto(EDID)",
 			choices=[("auto(EDID)", _("controlled by HDMI")), ("yes", _("force enabled")), ("no", _("force disabled"))])
 		config.av.hlg_support.addNotifier(setHlgSupport)
 
 		def setHdr10Support(configElement):
 			open("/proc/stb/hdmi/hdr10_support", "w").write(configElement.value)
-		config.av.hdr10_support = ConfigSelection(default="auto(EDID)", 
+		config.av.hdr10_support = ConfigSelection(default="auto(EDID)",
 			choices=[("auto(EDID)", _("controlled by HDMI")), ("yes", _("force enabled")), ("no", _("force disabled"))])
 		config.av.hdr10_support.addNotifier(setHdr10Support)
 
@@ -1325,4 +1325,3 @@ def stopHotplug():
 
 def InitiVideomodeHotplug(**kwargs):
 	startHotplug()
-

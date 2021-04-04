@@ -5,7 +5,7 @@ from Plugins.Plugin import PluginDescriptor
 def main(session, **kwargs):
 	from .TitleList import TitleList
 	return session.open(TitleList.TitleList)
-	
+
 
 def main_add(session, service, **kwargs):
 	dvdburn = main(session, **kwargs)

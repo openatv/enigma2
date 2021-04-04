@@ -675,7 +675,7 @@ class QuickSubtitlesConfigMenu(ConfigListScreen, Screen):
 			delay += 90000 * 30 # +30sec
 		elif number == 0:
 			delay = 0 # reset to "No delay"
-			
+
 		delay = min(max(delay, minDelay), maxDelay)
 
 		configItem.setValue(str(delay))

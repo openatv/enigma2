@@ -355,4 +355,3 @@ class TimeshiftSettings(Screen, ConfigListScreen):
 				# the second one is converted to string.
 				if not isinstance(item, ConfigNothing):
 					list.append((item_text, item, item_description))
-

@@ -97,9 +97,9 @@ class ClientsStreaming(Converter, Poll, object):
 			info += ("%s %-8s %s\n") % (strtype, ip, service_name)
 
 			clients.append((ip, service_name, encoder))
-			
+
 			extrainfo += ("%-8s\t%s\t%s") % (ip, encoder, service_name) + "\n"
-			
+
 		if self.type == self.REF:
 			return ' '.join(refs)
 		elif self.type == self.IP:

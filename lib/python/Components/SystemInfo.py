@@ -100,7 +100,7 @@ SystemInfo["DefaultDisplayBrightness"] = getBoxType() in ("dm900", "dm920") and 
 SystemInfo["ForceLNBPowerChanged"] = fileCheck("/proc/stb/frontend/fbc/force_lnbon")
 SystemInfo["ForceToneBurstChanged"] = fileCheck("/proc/stb/frontend/fbc/force_toneburst")
 SystemInfo["USETunersetup"] = SystemInfo["ForceLNBPowerChanged"] or SystemInfo["ForceToneBurstChanged"]
-SystemInfo["XcoreVFD"] = getMachineBuild() in ("xc7346", "xc7439") 
+SystemInfo["XcoreVFD"] = getMachineBuild() in ("xc7346", "xc7439")
 SystemInfo["HDMIin"] = getMachineBuild() in ("inihdp", "hd2400", "et10000", "dm7080", "dm820", "dm900", "dm920", "vuultimo4k", "et13000", "sf5008", "vuuno4kse", "vuduo4k", "vuduo4kse") or getBoxType() in ("spycat4k", "spycat4kcombo", "gbquad4k")
 SystemInfo["HAVEEDIDDECODE"] = fileCheck("/proc/stb/hdmi/raw_edid") and fileCheck("/usr/bin/edid-decode")
 SystemInfo["HaveRCA"] = getHaveRCA() == "True"
@@ -119,7 +119,7 @@ SystemInfo["canDualBoot"] = fileExists("/dev/block/by-name/flag")
 SystemInfo["canMode12"] = getMachineBuild() in ("hd51", "vs1500", "h7") and ("brcm_cma=440M@328M brcm_cma=192M@768M", "brcm_cma=520M@248M brcm_cma=200M@768M")
 SystemInfo["HAScmdline"] = fileCheck("/boot/cmdline.txt")
 SystemInfo["HasMMC"] = fileHas("/proc/cmdline", "root=/dev/mmcblk") or SystemInfo["canMultiBoot"] and fileHas("/proc/cmdline", "root=/dev/sda")
-SystemInfo["HasSDmmc"] = SystemInfo["canMultiBoot"] and "sd" in SystemInfo["canMultiBoot"][2] and "mmcblk" in getMachineMtdRoot() 
+SystemInfo["HasSDmmc"] = SystemInfo["canMultiBoot"] and "sd" in SystemInfo["canMultiBoot"][2] and "mmcblk" in getMachineMtdRoot()
 SystemInfo["HasSDswap"] = getMachineBuild() in ("h9", "i55plus") and pathExists("/dev/mmcblk0p1")
 SystemInfo["HasFullHDSkinSupport"] = getBoxType() not in ("et4000", "et5000", "sh1", "hd500c", "hd1100", "xp1000", "lc")
 SystemInfo["CanProc"] = SystemInfo["HasMMC"] and getBrandOEM() != "vuplus"

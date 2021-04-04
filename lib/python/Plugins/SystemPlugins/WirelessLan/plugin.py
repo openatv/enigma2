@@ -156,7 +156,7 @@ class WlanStatus(Screen):
 					if "bitrate" in self:
 						self["bitrate"].setText(bitrate)
 
-					signal = str(status[self.iface]["signal"]) + " dBm" 
+					signal = str(status[self.iface]["signal"]) + " dBm"
 					if "signal" in self:
 						self["signal"].setText(signal)
 

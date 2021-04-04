@@ -63,4 +63,3 @@ class AudioIcon(Renderer):
 			if os.path.exists(pngname):
 				return pngname
 		return ""
-

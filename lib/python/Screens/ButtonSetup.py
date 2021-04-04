@@ -384,7 +384,7 @@ class ButtonSetupSelect(Screen):
 		self.prevselected = self.selected[:]
 		self["choosen"] = ChoiceList(list=self.selected, selection=0)
 		self["list"] = ChoiceList(list=self.getFunctionList(), selection=0)
-		self["actions"] = ActionMap(["OkCancelActions", "ColorActions", "DirectionActions", "KeyboardInputActions"], 
+		self["actions"] = ActionMap(["OkCancelActions", "ColorActions", "DirectionActions", "KeyboardInputActions"],
 		{
 			"ok": self.keyOk,
 			"cancel": self.cancel,
@@ -594,7 +594,7 @@ class InfoBarButtonSetup():
 				pluginlist = plugins.getPlugins(PluginDescriptor.WHERE_EVENTINFO)
 				pluginlist.sort(key=lambda p: p.name)
 				for plugin in pluginlist:
-					if plugin.name not in twinPlugins and plugin.path and 'selectedevent' not in plugin.__call__.__code__.co_varnames:	
+					if plugin.name not in twinPlugins and plugin.path and 'selectedevent' not in plugin.__call__.__code__.co_varnames:
 						if plugin.path[plugin.path.rfind("Plugins"):] in twinPaths:
 							twinPaths[plugin.path[plugin.path.rfind("Plugins"):]] += 1
 						else:
@@ -698,4 +698,3 @@ class InfoBarButtonSetup():
 
 	def ToggleLCDLiveTV(self):
 		config.lcd.showTv.value = not config.lcd.showTv.value
-

@@ -5,13 +5,13 @@ from Screens.MessageBox import MessageBox
 from Screens.Ipkg import Ipkg
 from Components.Ipkg import IpkgComponent
 
-# 
-# for common install invoke with 
+#
+# for common install invoke with
 # can handle multiple packages
-# TODO: 
-# - check why the frack ipkg does not report errors 
+# TODO:
+# - check why the frack ipkg does not report errors
 # - remove debug print
-# - caller could check for Net + feeds availability, but more clever to do it here 
+# - caller could check for Net + feeds availability, but more clever to do it here
 #
 # How to use:
 #    self.KodiInstallation = InstallSomething(self.session, [xbmc-turbo, wetek-good])
@@ -43,4 +43,3 @@ class InstallSomething():
 			quitMainloop(3)
 		elif callback == False:
 			pass
-

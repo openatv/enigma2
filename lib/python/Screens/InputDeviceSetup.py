@@ -466,21 +466,21 @@ class RemoteControlType(Screen, ConfigListScreen):
 
 	def getDefaultRcType(self):
 		boxtype = getBoxType()
-		boxtypecompat = self.getBoxTypeCompatible() 
+		boxtypecompat = self.getBoxTypeCompatible()
 		self.defaultRcType = 0
-		#print "Boxtype is %s" % boxtype         
+		#print "Boxtype is %s" % boxtype
 		for x in self.defaultRcList:
 			if x[0] in boxtype:
 				self.defaultRcType = x[1]
-				#print "Selecting %d as defaultRcType" % self.defaultRcType               
+				#print "Selecting %d as defaultRcType" % self.defaultRcType
 				break
-		
-		# boxtypecompat should be removed in the future                
-		if (self.defaultRcType == 0):    
+
+		# boxtypecompat should be removed in the future
+		if (self.defaultRcType == 0):
 			for x in self.defaultRcList:
 				if x[0] in boxtypecompat:
 					self.defaultRcType = x[1]
-					#print "Selecting %d as defaultRcType" % self.defaultRcType               
+					#print "Selecting %d as defaultRcType" % self.defaultRcType
 					break
 
 	def setDefaultRcType(self):

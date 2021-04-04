@@ -60,7 +60,7 @@ def InitCiConfig():
 		if SystemInfo["CommonInterfaceSupportsHighBitrates"]:
 			if getBrandOEM() in ('dags', 'blackbox'):
 				config.ci[slot].canHandleHighBitrates = ConfigYesNo(default=True)
-			else: 
+			else:
 				config.ci[slot].canHandleHighBitrates = ConfigYesNo(default=False)
 			config.ci[slot].canHandleHighBitrates.slotid = slot
 			config.ci[slot].canHandleHighBitrates.addNotifier(setCIBitrate)
@@ -654,7 +654,7 @@ class PermanentPinEntry(Screen, ConfigListScreen):
 		self.list.append(getConfigListEntry(_("Enter PIN"), NoSave(self.pin1)))
 		self.list.append(getConfigListEntry(_("Reenter PIN"), NoSave(self.pin2)))
 		ConfigListScreen.__init__(self, self.list)
-		
+
 		self["actions"] = NumberActionMap(["DirectionActions", "ColorActions", "OkCancelActions"],
 		{
 			"cancel": self.cancel,
@@ -899,4 +899,3 @@ class CIHelperSetup(Screen, ConfigListScreen):
 
 	def myStop(self):
 		self.close()
-

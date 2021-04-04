@@ -280,7 +280,7 @@ class EventViewBase:
 		self["duration"].setText(_("%d min") % (event.getDuration() / 60))
 		if self.SimilarBroadcastTimer is not None:
 			self.SimilarBroadcastTimer.start(400, True)
-			
+
 		serviceref = self.currentService
 		eventid = self.event.getEventId()
 		refstr = ':'.join(serviceref.ref.toString().split(':')[:11])
@@ -387,7 +387,7 @@ class EventViewEPGSelect(Screen, EventViewBase):
 		else:
 			self["key_yellow"] = Button("")
 			self["yellow"].hide()
-			
+
 		if multiEPGCB:
 			self["key_blue"] = Button(_("Multi EPG"))
 			self["epgactions3"] = ActionMap(["EventViewEPGActions"],
@@ -417,7 +417,7 @@ class EventViewMovieEvent(Screen):
 		self["datetime"] = Label()
 		self["channel"] = Label()
 		self["duration"] = Label()
-		
+
 		self["key_red"] = Button("")
 		self["key_green"] = Button("")
 		self["key_yellow"] = Button("")

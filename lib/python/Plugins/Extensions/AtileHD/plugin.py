@@ -60,7 +60,7 @@ def main(session, **kwargs):
 
 
 def isInteger(s):
-	try: 
+	try:
 		int(s)
 		return True
 	except ValueError:
@@ -140,12 +140,12 @@ class AtileHD_Config(Screen, ConfigListScreen):
 		self.skin_lines = []
 		self.changed_screens = False
 		Screen.__init__(self, session)
-		
+
 		self.start_skin = config.skin.primary_skin.value
-		
+
 		if self.start_skin != "skin.xml":
 			self.getInitConfig()
-		
+
 		self.list = []
 		ConfigListScreen.__init__(self, self.list, session=self.session, on_change=self.changedEntry)
 
@@ -163,12 +163,12 @@ class AtileHD_Config(Screen, ConfigListScreen):
 				"ok": self.keyOk,
 				"menu": self.setWeather,
 			}, -2)
-			
+
 		self["Picture"] = Pixmap()
-		
+
 		if not self.selectionChanged in self["config"].onSelectionChanged:
 			self["config"].onSelectionChanged.append(self.selectionChanged)
-		
+
 		if self.start_skin == "skin.xml":
 			self.onLayoutFinish.append(self.openSkinSelectorDelayed)
 		else:
@@ -606,26 +606,26 @@ class AtileHDScreens(Screen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
 		self.session = session
-		
+
 		global cur_skin
 		self.is_atile = False
 		if cur_skin == 'AtileHD':
 			self.is_atile = True
-		
+
 		self.title = _("%s additional screens") % cur_skin
 		try:
 			self["title"] = StaticText(self.title)
 		except:
 			print('self["title"] was not found in skin')
-		
+
 		self["key_red"] = StaticText(_("Exit"))
 		self["key_green"] = StaticText(_("on"))
-		
+
 		self["Picture"] = Pixmap()
-		
+
 		menu_list = []
 		self["menu"] = List(menu_list)
-		
+
 		self["shortcuts"] = ActionMap(["SetupActions", "ColorActions", "DirectionActions"],
 		{
 			"ok": self.runMenuEntry,
@@ -633,7 +633,7 @@ class AtileHDScreens(Screen):
 			"red": self.keyCancel,
 			"green": self.runMenuEntry,
 		}, -2)
-		
+
 		self.skin_base_dir = "/usr/share/enigma2/%s/" % cur_skin
 		self.screen_dir = "allScreens"
 		self.skinparts_dir = "skinparts"
@@ -646,10 +646,10 @@ class AtileHDScreens(Screen):
 		if not path.exists(my_path):
 			my_path = resolveFilename(SCOPE_SKIN, "skin_default/icons/lock_off.png")
 		self.disabled_pic = LoadPixmap(cached=True, path=my_path)
-		
+
 		if not self.selectionChanged in self["menu"].onSelectionChanged:
 			self["menu"].onSelectionChanged.append(self.selectionChanged)
-		
+
 		self.onLayoutFinish.append(self.createMenuList)
 
 	def selectionChanged(self):
@@ -718,7 +718,7 @@ class AtileHDScreens(Screen):
 			self["Picture"].show()
 		else:
 			self["Picture"].hide()
-	
+
 	def keyCancel(self):
 		self.close()
 

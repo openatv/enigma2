@@ -252,7 +252,7 @@ class PliExtraInfo(Poll, Converter, object):
 		res = color + 'P'
 		res += "\c00??????"
 		return res
-		
+
 	def createCryptoTandberg(self, info):
 		available_caids = info.getInfoObject(iServiceInformation.sCAIDs)
 		if int('0x1010', 16) <= int(self.current_caid, 16) <= int('0x1010', 16):
@@ -267,7 +267,7 @@ class PliExtraInfo(Poll, Converter, object):
 				pass
 		res = color + 'T'
 		res += "\c00??????"
-		return res		
+		return res
 
 	def createCryptoBeta(self, info):
 		available_caids = info.getInfoObject(iServiceInformation.sCAIDs)
@@ -514,13 +514,13 @@ class PliExtraInfo(Poll, Converter, object):
 				orbpos += 1
 			else:
 				orbpos -= 1
-				
+
 		sat_names = {
 			30: 'Rascom/Eutelsat 3E',
 			48: 'SES 5',
 			70: 'Eutelsat 7E',
 			90: 'Eutelsat 9E',
-			100: 'Eutelsat 10E',  
+			100: 'Eutelsat 10E',
 			130: 'Hot Bird',
 			160: 'Eutelsat 16E',
 			192: 'Astra 1KR/1L/1M/1N',
@@ -606,7 +606,7 @@ class PliExtraInfo(Poll, Converter, object):
 			3560: 'Amos',
 			3592: 'Thor/Intelsat'
 		}
-		
+
 		if orbpos in sat_names:
 			return sat_names[orbpos]
 		elif orbpos > 1800:
@@ -720,13 +720,13 @@ class PliExtraInfo(Poll, Converter, object):
 				return self.createCryptoDre(info)
 			else:
 				return ""
-				
+
 		if self.type == "CryptoTandberg":
 			if int(config.usage.show_cryptoinfo.value) > 0:
 				self.getCryptoInfo(info)
 				return self.createCryptoTandberg(info)
 			else:
-				return ""				
+				return ""
 
 		if self.type == "CryptoSpecial":
 			if int(config.usage.show_cryptoinfo.value) > 0:

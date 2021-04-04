@@ -1,7 +1,7 @@
 from enigma import eLabel
 
 # Calls onto the static function in eLabel. This avoids causing an invalidate
-# on the parent container which is detrimental to UI performance, 
+# on the parent container which is detrimental to UI performance,
 # particularly in a complex screen like the graph EPG
 
 

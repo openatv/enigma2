@@ -196,7 +196,7 @@ class SoftwarePanel(Screen):
 			else:
 				self.buildPacketList()
 		pass
-	
+
 	def buildEntryComponent(self, name, version, description, state):
 		divpng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_SKIN, "skin_default/div-h.png"))
 		if not description:

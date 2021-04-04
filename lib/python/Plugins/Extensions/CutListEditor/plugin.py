@@ -134,10 +134,10 @@ class CutListContextMenu(FixedMenu):
 
 	def grabFrame(self):
 		self.close(self.RET_GRABFRAME)
-		
+
 	def toggleIntro(self):
 		self.close(self.RET_TOGGLEINTRO)
-		
+
 	def callMovieCut(self):
 		self.close(self.RET_MOVIECUT)
 

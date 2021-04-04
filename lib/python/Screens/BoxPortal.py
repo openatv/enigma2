@@ -89,7 +89,7 @@ class BoxPortal(Screen):
 					from Plugins.Extensions.AZPlay.plugin import main
 					open(main(self.session))
 				except Exception as e:
-					print('[AZPlay] exception:\n' + str(e))					
+					print('[AZPlay] exception:\n' + str(e))
 			elif selection[1] == "teletext":
 				self.InfoBarTeletextPlugin()
 

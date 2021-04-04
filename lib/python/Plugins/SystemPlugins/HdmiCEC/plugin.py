@@ -89,7 +89,7 @@ class HdmiCECSetupScreen(Screen, ConfigListScreen):
 				self.list.append(getConfigListEntry(tab + _("Switch off the TV to correct input"), config.hdmicec.workaround_activesource, _("Some TV devices can't swich to correct input if a another hdmi port active. This setting set the TV to standby before.\n(If the TV does not turn back on, may require a slower transmission interval or the repetition of wake-up commands.)"),))
 			self.list.append(getConfigListEntry(_("Handle wakeup from TV"), config.hdmicec.handle_tv_wakeup, _('Choose a setting where your receiver wakes up from standby.'),))
 			self.list.append(getConfigListEntry(_("Handle standby from TV"), config.hdmicec.handle_tv_standby, _('helptext'), 'refreshlist'))
-			if config.hdmicec.advanced_settings.value: 
+			if config.hdmicec.advanced_settings.value:
 				self.list.append(getConfigListEntry(_("Handle input from TV"), config.hdmicec.handle_tv_input, _('helptext'), 'refreshlist'))
 				if config.hdmicec.handle_tv_standby.value != 'disabled' or config.hdmicec.handle_tv_input.value != 'disabled':
 					self.list.append(getConfigListEntry(_("Time delay until standby or deep standby"), config.hdmicec.handle_tv_delaytime, _("'Handle standby from TV' has a higher priority as 'Handle input from TV'"),))
@@ -98,7 +98,7 @@ class HdmiCECSetupScreen(Screen, ConfigListScreen):
 			self.list.append(getConfigListEntry(_("Wakeup your AV Receiver from standby"), config.hdmicec.control_receiver_wakeup, _('helptext'),))
 			self.list.append(getConfigListEntry(_("Use TV remote control"), config.hdmicec.report_active_menu, _('Activation takes place immediately. If it does feature not work, then try again with a slower send interval.'),))
 			self.list.append(getConfigListEntry(_("Minimum send interval"), config.hdmicec.minimum_send_interval, _('Try to slow down the send interval if not all commands are executed.'), ))
-			if config.hdmicec.advanced_settings.value: 
+			if config.hdmicec.advanced_settings.value:
 				self.list.append(getConfigListEntry(_("Repeat the sent standby and wakeup commands"), config.hdmicec.messages_repeat, _('Try to send repeated commands if not all commands are executed.\n') + _('(e.g. TV wakeup, but not switched to correct input)'), 'refreshlist'))
 				if int(config.hdmicec.messages_repeat.value):
 					self.list.append(getConfigListEntry(tab + _("Time delay for the repeated transmission"), config.hdmicec.messages_repeat_slowdown, _('The time is multiplied by the current repeat counter.'), ))

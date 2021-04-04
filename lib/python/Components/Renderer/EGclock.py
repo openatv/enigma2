@@ -20,9 +20,9 @@ class EGclock(VariableValue, Renderer):
 		if value is None:
 			value = 0
 		self.setValue(value)
-		
+
 	GUI_WIDGET = eGauge
-	
+
 	def postWidgetCreate(self, instance):
 		instance.setValue(0)
 

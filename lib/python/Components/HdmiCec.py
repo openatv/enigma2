@@ -621,9 +621,9 @@ class HdmiCec:
 				wakeup = True
 			elif not checkstate and config.hdmicec.handle_tv_wakeup.value != 'disabled':
 				if address == 0:
-					if ((cmd == 0x04 and config.hdmicec.handle_tv_wakeup.value == "wakeup") or 
+					if ((cmd == 0x04 and config.hdmicec.handle_tv_wakeup.value == "wakeup") or
 						(cmd == 0x85 and config.hdmicec.handle_tv_wakeup.value == "sourcerequest") or
-						(cmd == 0x46 and config.hdmicec.handle_tv_wakeup.value == "osdnamerequest") or 
+						(cmd == 0x46 and config.hdmicec.handle_tv_wakeup.value == "osdnamerequest") or
 						(cmd != 0x36 and config.hdmicec.handle_tv_wakeup.value == "activity")):
 						wakeup = True
 					elif cmd == 0x84 and config.hdmicec.handle_tv_wakeup.value == "tvreportphysicaladdress":
@@ -801,7 +801,7 @@ class HdmiCec:
 			self.CECwritedebug("[HdmiCec] Skip turning off TV", True)
 		elif config.hdmicec.control_tv_standby.value and not config.hdmicec.tv_standby_notinputactive.value and not self.sendMessagesIsActive() and not self.activesource and 'on' in self.tv_powerstate:
 			self.CECwritedebug("[HdmiCec] Skip turning off TV - config: tv has another input active", True)
-		else: 
+		else:
 			if config.hdmicec.enabled.value:
 				self.messages = []
 				self.what = 'standby'
@@ -1256,7 +1256,7 @@ class HdmiCec:
 
 	def CECreadfile(self, FILE):
 		try:
-			with open(FILE) as f: 
+			with open(FILE) as f:
 				return f.read()
 		except Exception as e:
 			self.CECwritedebug("[HdmiCec] read file '%s' failed - error: %s" % (FILE, e), True)
@@ -1264,7 +1264,7 @@ class HdmiCec:
 
 	def CECwritefile(self, FILE, MODE, INPUT):
 		try:
-			with open(FILE, MODE) as f: 
+			with open(FILE, MODE) as f:
 				f.write(INPUT)
 		except Exception as e:
 			txt = "[HdmiCec] write file '%s' failed - error: %s" % (FILE, e)

@@ -144,7 +144,7 @@ class UpdatePlugin(Screen):
 		self.sliderPackages = {"dreambox-dvb-modules": 1, "enigma2": 2, "tuxbox-image-info": 3}
 
 		self.setTitle(_("Software update"))
-		
+
 		self.slider = Slider(0, 4)
 		self["slider"] = self.slider
 		self.activityslider = Slider(0, 100)
@@ -162,7 +162,7 @@ class UpdatePlugin(Screen):
 		self['tl_green'] = Pixmap()
 		self.feedsStatus()
 		self['feedStatusMSG'] = Label(status_msgs[self.trafficLight])
-		
+
 		self.channellist_only = 0
 		self.channellist_name = ''
 		self.SettingsBackupDone = False
@@ -202,7 +202,7 @@ class UpdatePlugin(Screen):
 			self.trafficLight = 'unknown'
 			self['tl_off'].show()
 		socket.setdefaulttimeout(currentTimeoutDefault)
-		
+
 	def checkNetworkState(self):
 		cmd1 = "opkg update"
 		self.CheckConsole = Console()

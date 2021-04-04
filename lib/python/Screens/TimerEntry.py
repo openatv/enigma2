@@ -213,7 +213,7 @@ class TimerEntry(Screen, ConfigListScreen):
 		self.list = []
 		self.timerJustplayEntry = getConfigListEntry(_("Timer type"), self.timerentry_justplay, _("Chose between record and ZAP."))
 		self.list.append(self.timerJustplayEntry)
-		
+
 		description = free = ""
 		try:
 			if self.timerentry_justplay.value != "zap":
@@ -232,7 +232,7 @@ class TimerEntry(Screen, ConfigListScreen):
 		if self.timerentry_justplay.value != "zap":
 			if config.usage.setup_level.index >= 2: # expert+
 				self.list.append(self.dirname)
-		
+
 		self.entryName = getConfigListEntry(_("Name"), self.timerentry_name, _("Set the name the recording will get."))
 		self.list.append(self.entryName)
 		self.entryDescription = getConfigListEntry(_("Description"), self.timerentry_description, _("Set the description of the recording."))
@@ -712,4 +712,3 @@ class InstantRecordTimerEntry(TimerEntry):
 
 	def saveTimer(self):
 		self.session.nav.RecordTimer.saveTimer()
-

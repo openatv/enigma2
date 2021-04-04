@@ -43,4 +43,3 @@ print("getHaveWWOL=%s<" % boxbranding.getHaveWWOL())
 print("getHaveTranscoding1=%s<" % boxbranding.getHaveTranscoding1())
 print("getHaveTranscoding2=%s<" % boxbranding.getHaveTranscoding2())
 print("getHaveCI=%s<" % boxbranding.getHaveCI())
-

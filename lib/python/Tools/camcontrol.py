@@ -42,7 +42,7 @@ class CamControl:
 		dst = self.name + '.' + which
 		if not os.path.exists('/etc/init.d/' + dst):
 			print("[CamControl] init script does not exist:", dst)
-			return 
+			return
 		try:
 			os.unlink(self.link)
 		except:
@@ -53,4 +53,3 @@ class CamControl:
 			print("Failed to create symlink for softcam:", dst)
 			import sys
 			print(sys.exc_info()[:2])
-

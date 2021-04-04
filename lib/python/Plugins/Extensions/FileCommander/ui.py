@@ -98,7 +98,7 @@ choicelist = [
 				("0.1", _("Name reverse")),
 				("1.0", _("Date")),
 				("1.1", _("Date reverse")),
-				("2.0", _("Size")), 
+				("2.0", _("Size")),
 				("2.1", _("Size reverse"))]
 config.plugins.filecommander.sortFiles_left = ConfigSelection(default="1.1", choices=choicelist)
 config.plugins.filecommander.sortFiles_right = ConfigSelection(default="1.1", choices=choicelist)
@@ -134,7 +134,7 @@ class FileCommanderConfigScreen(Setup):
 				"ok": self.keyOK,
 				"menu": self.closeRecursive,
 			}, -2)
-	
+
 	def keyOK(self):
 		if self["config"].getCurrent()[1] is config.plugins.filecommander.path_default:
 			self.session.openWithCallback(self.pathSelected, LocationBox, text=_("Default Folder"), currDir=config.plugins.filecommander.path_default.getValue(), minFree=100)

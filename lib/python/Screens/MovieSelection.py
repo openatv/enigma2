@@ -261,7 +261,7 @@ class MovieBrowserConfiguration(ConfigListScreen, Screen):
 					  getConfigListEntry(_("Use individual settings for each directory"), config.movielist.settings_per_directory, _("When set each folder will show the previous state used, when off the default values will be shown.")),
 					  getConfigListEntry(_("Behavior when a movie reaches the end"), config.usage.on_movie_eof, _("On reaching the end of a file during playback, you can choose the box's behavior.")),
 					  getConfigListEntry(_("Stop service on return to movie list"), config.movielist.stop_service, _("Stop previous broadcasted service on return to movielist.")),
-					  getConfigListEntry(_("Show status icons in movielist"), config.usage.show_icons_in_movielist, _("Shows the watched status of the movie."))]		
+					  getConfigListEntry(_("Show status icons in movielist"), config.usage.show_icons_in_movielist, _("Shows the watched status of the movie."))]
 		if config.usage.show_icons_in_movielist.value:
 			configList.append(getConfigListEntry(_("Show icon for new/unseen items"), config.usage.movielist_unseen, _("Shows the icons when new/unseen, else will not show an icon.")))
 		configList.append(getConfigListEntry(_("Play audio in background"), config.movielist.play_audio_internal, _("Keeps MovieList open whilst playing audio files.")))
@@ -489,7 +489,7 @@ class MovieSelectionSummary(Screen):
 			self["name"].text = name
 		else:
 			self["name"].text = ""
-			
+
 
 from Screens.ParentalControlSetup import ProtectedScreen
 

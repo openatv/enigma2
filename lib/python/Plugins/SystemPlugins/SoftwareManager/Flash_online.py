@@ -194,7 +194,7 @@ class FlashOnline(Screen):
 	def keyDown(self):
 		self["list"].instance.moveSelection(self["list"].instance.moveDown)
 		self.selectionChanged()
-		
+
 
 class FlashImage(Screen):
 	skin = """<screen position="center,center" size="640,150" flags="wfNoBorder" backgroundColor="#54242424">
@@ -516,8 +516,8 @@ class FlashImage(Screen):
 		if imagefiles:
 			self.ROOTFSSUBDIR = "none"
 			if SystemInfo["canMultiBoot"]:
-				self.MTDKERNEL = SystemInfo["canMultiBoot"][self.multibootslot]["kernel"].split('/')[2] 
-				self.MTDROOTFS = SystemInfo["canMultiBoot"][self.multibootslot]["device"].split('/')[2] 
+				self.MTDKERNEL = SystemInfo["canMultiBoot"][self.multibootslot]["kernel"].split('/')[2]
+				self.MTDROOTFS = SystemInfo["canMultiBoot"][self.multibootslot]["device"].split('/')[2]
 				if SystemInfo["HasRootSubdir"]:
 					self.ROOTFSSUBDIR = SystemInfo["canMultiBoot"][self.multibootslot]['rootsubdir']
 			else:

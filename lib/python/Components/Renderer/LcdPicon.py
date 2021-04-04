@@ -24,7 +24,7 @@ def initLcdPiconPaths():
 		onMountpointAdded(part.mountpoint)
 	for mp in ('/usr/share/enigma2/', '/'):
 		onMountpointAdded(mp)
-		
+
 
 def onMountpointAdded(mountpoint):
 	global searchPaths

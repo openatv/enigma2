@@ -250,7 +250,7 @@ class SecConfigure:
 						print("[NimManager] diseqcmode: ", nim.diseqcMode.value)
 						if nim.diseqcMode.value == "single":			#single
 							currentCircular = False
-							if nim.diseqcA.value in ("360", "560"): 
+							if nim.diseqcA.value in ("360", "560"):
 								currentCircular = nim.simpleDiSEqCSetCircularLNB.value
 							if nim.simpleSingleSendDiSEqC.value:
 								self.addLNBSimple(sec, slotid=x, orbpos=nim.diseqcA.orbital_position, toneburstmode=diseqcParam.NO, diseqcmode=diseqcParam.V1_0, diseqcpos=diseqcParam.AA, diseqc13V=nim.diseqc13V.value, CircularLNB=currentCircular)
@@ -439,10 +439,10 @@ class SecConfigure:
 								print("[NimManager] positionnumber out of range")
 						else:
 							print("[NimManager] no product in list")
-							
+
 					if currLnb.unicable.value == "unicable_user":
 #TODO satpositions for satcruser
-						if currLnb.dictionuser.value == "EN50607": 
+						if currLnb.dictionuser.value == "EN50607":
 							sec.setLNBSatCRformat(1)
 							sec.setLNBSatCR(currLnb.satcruserEN50607.index)
 							sec.setLNBSatCRvco(currLnb.satcrvcouserEN50607[currLnb.satcruserEN50607.index].value * 1000)
@@ -801,7 +801,7 @@ class NIM(object):
 		if name is None:
 			name = chr(ord('A') + self.slot)
 		return name
-	
+
 	slot_input_name = property(getSlotInputName)
 
 	def getSlotName(self):
@@ -1900,7 +1900,7 @@ def InitNimManager(nimmgr, update_slots=None):
 							tmp.positions[article] = ConfigSubList()
 							tmp.positions[article].append(ConfigInteger(default=positions, limits=(positions, positions)))
 							tmp.diction[article] = ConfigSelection(choices=dictionlist, default=dictionlist[0][0])
-							
+
 							scrlist = []
 							scrlist_append = scrlist.append
 							vcolist = unicableproducts[manufacturer][article].get("frequencies")
@@ -1922,7 +1922,7 @@ def InitNimManager(nimmgr, update_slots=None):
 							tmp_lofl_article_append = tmp.lofl[article].append
 							tmp_lofh_article_append = tmp.lofh[article].append
 							tmp_loft_article_append = tmp.loft[article].append
-							
+
 							for cnt in list(range(1, positions + 1)):
 								lofl = int(positionslist[cnt][0])
 								lofh = int(positionslist[cnt][1])

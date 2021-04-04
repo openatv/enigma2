@@ -40,7 +40,7 @@ def InitOsd():
 		SystemInfo["OsdMenu"] = True
 	else:
 		SystemInfo["OsdMenu"] = False
-		
+
 	if getBrandOEM() in ('fulan',):
 		SystemInfo["CanChangeOsdPosition"] = False
 		SystemInfo["CanChange3DOsd"] = False
@@ -109,9 +109,9 @@ def InitOsd():
 				f.write('%d' % int(configElement.value))
 				f.close()
 			except:
-				pass	
+				pass
 	config.osd.threeDznorm.addNotifier(set3DZnorm)
-	
+
 
 class UserInterfacePositioner2(Screen, ConfigListScreen):
 	if (getDesktop(0).size().width() == 1920):
@@ -121,7 +121,7 @@ class UserInterfacePositioner2(Screen, ConfigListScreen):
 				<widget name="text" position="300,165" zPosition="1" size="1320,180" font="Regular;32" halign="center" valign="center" foregroundColor="yellow" backgroundColor="#1f771f" transparent="1" />
 				<widget name="config" position="225,375" zPosition="1" size="1470,315" itemHeight="45" font="Regular;30" transparent="1" />
 				<widget source="status" render="Label" position="300,713" zPosition="1" size="1320,120" font="Regular;32" halign="center" valign="center" foregroundColor="yellow" backgroundColor="#1f771f" transparent="1" />
-				
+
 				<eLabel backgroundColor="red" position="0,0" size="1920,1" zPosition="0" />
 				<eLabel backgroundColor="red" position="0,1079" size="1920,1" zPosition="0" />
 				<eLabel backgroundColor="red" position="0,0" size="1,1080" zPosition="0" />
@@ -156,7 +156,7 @@ class UserInterfacePositioner2(Screen, ConfigListScreen):
 				<widget name="text" position="200,110" zPosition="1" size="880,120" font="Regular;21" halign="center" valign="center" foregroundColor="yellow" backgroundColor="#1f771f" transparent="1" />
 				<widget name="config" position="150,250" zPosition="1" size="980,210" itemHeight="30" font="Regular;20" transparent="1" />
 				<widget source="status" render="Label" position="200,475" zPosition="1" size="880,80" font="Regular;21" halign="center" valign="center" foregroundColor="yellow" backgroundColor="#1f771f" transparent="1" />
-				
+
 				<eLabel backgroundColor="red" position="0,0" size="1280,1" zPosition="0" />
 				<eLabel backgroundColor="red" position="0,719" size="1280,1" zPosition="0" />
 				<eLabel backgroundColor="red" position="0,0" size="1,720" zPosition="0" />
@@ -192,7 +192,7 @@ class UserInterfacePositioner2(Screen, ConfigListScreen):
 				<widget name="text"  position="200,180" zPosition="1" size="624,100" font="Regular;21" halign="center" valign="center" foregroundColor="yellow" backgroundColor="#1f771f" transparent="1" />
 				<widget name="config" position="100,180" zPosition="1" size="824,50" font="Regular;24" halign="center" valign="center" transparent="1" />
 				<widget source="status" render="Label" position="200,450" zPosition="1" size="624,80" font="Regular;21" halign="center" valign="center" foregroundColor="yellow" backgroundColor="#1f771f" transparent="1" />
-				
+
 				<eLabel backgroundColor="red" position="0,0" size="1024,1" zPosition="0" />
 				<eLabel backgroundColor="red" position="0,575" size="1024,1" zPosition="0" />
 				<eLabel backgroundColor="red" position="0,0" size="1,576" zPosition="0" />
@@ -227,7 +227,7 @@ class UserInterfacePositioner2(Screen, ConfigListScreen):
 				<widget source="text" render="Label" position="75,80" zPosition="1" size="570,100" font="Regular;21" halign="center" valign="center" foregroundColor="yellow" backgroundColor="#1f771f" transparent="1" />
 				<widget source="config" render="Label" position="75,180" zPosition="1" size="570,50" font="Regular;21" halign="center" valign="center" transparent="1" />
 				<widget source="status" render="Label" position="75,450" zPosition="1" size="570,80" font="Regular;21" halign="center" valign="center" foregroundColor="yellow" backgroundColor="#1f771f" transparent="1" />
-				
+
 				<eLabel backgroundColor="red" position="0,0" size="720,1" zPosition="0" />
 				<eLabel backgroundColor="red" position="0,575" size="720,1" zPosition="0" />
 				<eLabel backgroundColor="red" position="0,0" size="1,576" zPosition="0" />
@@ -265,7 +265,7 @@ class UserInterfacePositioner2(Screen, ConfigListScreen):
 		self["key_green"] = StaticText(_("save"))
 		self["key_yellow"] = StaticText(_("Defaults"))
 		self["key_blue"] = StaticText()
-		
+
 		self["title"] = StaticText(_("OSD Adjustment"))
 		self["text"] = Label(_("Please setup your user interface by adjusting the values till the edges of the red box are touching the edges of your TV.\nWhen you are ready press green to continue."))
 
@@ -406,7 +406,7 @@ class UserInterfacePositioner(Screen, ConfigListScreen):
 		self["key_red"] = StaticText(_("Cancel"))
 		self["key_green"] = StaticText(_("save"))
 		self["key_yellow"] = StaticText(_("Defaults"))
-		
+
 		self["actions"] = ActionMap(["SetupActions", "ColorActions"],
 			{
 				"cancel": self.keyCancel,
@@ -533,7 +533,7 @@ class UserInterfacePositioner(Screen, ConfigListScreen):
 		config.osd.dst_height.save()
 		configfile.save()
 		self.close()
-		
+
 
 class OSD3DSetupScreen(Screen, ConfigListScreen):
 	def __init__(self, session):

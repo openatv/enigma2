@@ -82,4 +82,3 @@ class FSBLUpdater(Console):
 			txt = _("Update succeeded!\nYour Bootloader is now up-to-date!")
 			msgtype = MessageBox.TYPE_INFO
 		self.session.open(MessageBox, txt, type=msgtype, title=title)
-

@@ -199,7 +199,7 @@ class Pic_Setup(Screen, ConfigListScreen):
 		ConfigListScreen.keyRight(self)
 
 	def keyCancel(self):
-		self.close()		
+		self.close()
 
 	# for summary:
 	def changedEntry(self):
@@ -622,4 +622,3 @@ class Pic_Full_View(Screen):
 			getDesktop(0).resize(eSize(self.size_w, self.size_h))
 
 		self.close(self.lastindex + self.dirlistcount)
-

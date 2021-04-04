@@ -8,7 +8,7 @@ from enigma import *
 from Screens.Standby import *
 from Screens.MessageBox import MessageBox
 from Screens.SoftcamSetup import *
-from Components.ActionMap import ActionMap, NumberActionMap, HelpableActionMap 
+from Components.ActionMap import ActionMap, NumberActionMap, HelpableActionMap
 from Screens.Screen import Screen
 from Screens.ParentalControlSetup import ProtectedScreen
 from Screens.ChoiceBox import ChoiceBox
@@ -22,7 +22,7 @@ from Components.ScrollLabel import ScrollLabel
 from Components.Pixmap import Pixmap
 from Components.config import ConfigSubsection, ConfigInteger, ConfigText, getConfigListEntry, ConfigSelection, ConfigIP, ConfigYesNo, ConfigSequence, ConfigNumber, NoSave, ConfigEnableDisable, configfile
 from Components.ConfigList import ConfigListScreen
-from Components.Sources.StaticText import StaticText 
+from Components.Sources.StaticText import StaticText
 from Components.Sources.Progress import Progress
 from Components.Button import Button
 from Components.ActionMap import ActionMap
@@ -109,7 +109,7 @@ else:
 config.plugins.showinfopanelextensions = ConfigYesNo(default=False)
 config.plugins.infopanel_frozencheck = ConfigSubsection()
 config.plugins.infopanel_frozencheck.list = ConfigSelection([('0', _("Off")), ('1', _("1 min.")), ('5', _("5 min.")), ('10', _("10 min.")), ('15', _("15 min.")), ('30', _("30 min."))])
-	
+
 if os.path.isfile("/usr/lib/enigma2/python/Plugins/Extensions/MultiQuickButton/plugin.py") is True:
 	try:
 		from Plugins.Extensions.MultiQuickButton.plugin import *
@@ -141,7 +141,7 @@ if config.usage.keymap.value != eEnv.resolve("${datadir}/enigma2/keymap.xml"):
 		setDefaultKeymap()
 	if not os.path.isfile(eEnv.resolve("${datadir}/enigma2/keymap.u80")) and config.usage.keymap.value == eEnv.resolve("${datadir}/enigma2/keymap.u80"):
 		setDefaultKeymap()
-		
+
 
 def setDefaultKeymap():
 	print("[Info-Panel] Set Keymap to Default")
@@ -328,7 +328,7 @@ class Infopanel(Screen, InfoBarPiP, ProtectedScreen):
 				"down": self.down,
 				"ok": self.ok,
 			}, 1)
-		
+
 		self["label1"] = Label(INFO_Panel_Version)
 		self["summary_description"] = StaticText("")
 
@@ -341,7 +341,7 @@ class Infopanel(Screen, InfoBarPiP, ProtectedScreen):
 			self.Mlist.append(MenuEntryItem((InfoEntryComponent('OScamInfo'), _("NcamInfo"), 'OScamInfo')))
 		#self.Mlist.append(MenuEntryItem((InfoEntryComponent ("SoftwareManager" ), _("Software update"), ("software-update"))))
 		self.Mlist.append(MenuEntryItem((InfoEntryComponent("SoftwareManager"), _("Software Manager"), ("software-manager"))))
-		self.Mlist.append(MenuEntryItem((InfoEntryComponent('KeymapSel'), _("Keymap Selection"), 'KeymapSel')))	
+		self.Mlist.append(MenuEntryItem((InfoEntryComponent('KeymapSel'), _("Keymap Selection"), 'KeymapSel')))
 		self.Mlist.append(MenuEntryItem((InfoEntryComponent('Plugins'), _("Plugins"), 'Plugins')))
 		self.Mlist.append(MenuEntryItem((InfoEntryComponent('Infos'), _("Infos"), 'Infos')))
 		self.onChangedEntry = []
@@ -668,7 +668,7 @@ class KeymapSel(ConfigListScreen, Screen):
 		self.editListEntry = None
 		self.list = []
 		self.list.append(getConfigListEntry(_("Use Keymap"), self.keyshow))
-		
+
 		self["config"].list = self.list
 		self["config"].setList(self.list)
 		if config.usage.sort_settings.value:
@@ -1007,5 +1007,3 @@ class Info(Screen):
 		except:
 			o = ''
 			return o
-
-

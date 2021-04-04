@@ -46,7 +46,7 @@ class BackupSetup(Screen):
 			<widget name="backup" position="340,255" size="100,40" pixmap="~/blue.png" transparent="1" alphatest="on" />
 			<widget name="backuptext" position="0,0" size="0,0" valign="center" halign="center" zPosition="2" font="Regular;20" transparent="1"  foregroundColor="black" />
 		</screen>"""
-		
+
 	def keyLeft(self):
 		self["config"].handleKey(KEY_LEFT)
 
@@ -71,7 +71,7 @@ class BackupSetup(Screen):
 	def __init__(self, session, args=None):
 		Screen.__init__(self, session)
 		self.skin_path = plugin_path
-		
+
 		self["oktext"] = Label(_("OK"))
 		self["canceltext"] = Label(_("Cancel"))
 		self["backuptext"] = Label(_("Backup"))
@@ -80,12 +80,12 @@ class BackupSetup(Screen):
 		self["backup"] = Pixmap()
 		self["ok"] = Pixmap()
 		self["cancel"] = Pixmap()
-		
+
 		self.path = ""
 		self.list = []
 		self["config"] = ConfigList(self.list)
 		self.createSetup()
-		
+
 		self["actions"] = NumberActionMap(["SetupActions"],
 		{
 			"ok": self.keySave,
@@ -93,7 +93,7 @@ class BackupSetup(Screen):
 			"left": self.keyLeft,
 			"right": self.keyRight
 		}, -1)
-		
+
 		self["shortcuts"] = ActionMap(["ShortcutActions"],
 		{
 			"red": self.keyCancel,
@@ -101,7 +101,7 @@ class BackupSetup(Screen):
 			"blue": self.Backup,
 			"yellow": self.Restore,
 		})
-		
+
 	def createSetup(self):
 		print("Creating BackupSetup")
 		self.list = []
@@ -120,7 +120,7 @@ class BackupSetup(Screen):
 
 	def Backup(self):
 		print("this will start the backup now!")
-		self.session.openWithCallback(self.runBackup, MessageBox, _("Do you want to backup now?\nAfter pressing OK, please wait!"))	
+		self.session.openWithCallback(self.runBackup, MessageBox, _("Do you want to backup now?\nAfter pressing OK, please wait!"))
 
 	def Restore(self):
 		print("this will start the restore now!")
@@ -150,7 +150,7 @@ class RestoreMenu(Screen):
 	skin = """
 		<screen position="135,144" size="450,300" title="Restore Backups" >
 		<widget name="filelist" position="10,10" size="430,240" scrollbarMode="showOnDemand" />
-		<widget name="cancel" position="120,255" size="100,40" pixmap="~/red.png" transparent="1" alphatest="on" />		
+		<widget name="cancel" position="120,255" size="100,40" pixmap="~/red.png" transparent="1" alphatest="on" />
 		<widget name="canceltext" position="0,0" size="0,0" valign="center" halign="center" zPosition="2" font="Regular;20" transparent="1" foregroundColor="black" />
 		<widget name="restore" position="230,255" size="100,40" pixmap="~/yellow.png" transparent="1" alphatest="on" />
 		<widget name="restoretext" position="0,0" size="0,0" valign="center" halign="center" zPosition="2" font="Regular;20" transparent="1"  foregroundColor="black" />
@@ -170,7 +170,7 @@ class RestoreMenu(Screen):
 		self.val = []
 		self.entry = False
 		self.exe = False
-		
+
 		self.path = ""
 
 		self["actions"] = NumberActionMap(["SetupActions"],

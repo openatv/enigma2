@@ -15,7 +15,7 @@ for line, str in enumerate(source):
 	str = str.replace('dm525N', 'dn525N')
 	str = str.replace('dm900N', 'dn900N')
 	str = str.replace('dm920N', 'dn920N')
-	
+
 	if oldstr != str:
 		print("!!! Patch pyo line %d" % (line))
 
@@ -24,4 +24,3 @@ for line, str in enumerate(source):
 del source
 del dest
 os.remove(filename + ".org")
-

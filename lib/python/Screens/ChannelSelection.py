@@ -68,7 +68,7 @@ except:
 profile("ChannelSelection.py after imports")
 
 FLAG_SERVICE_NEW_FOUND = 64
-FLAG_IS_DEDICATED_3D = 128 
+FLAG_IS_DEDICATED_3D = 128
 FLAG_HIDE_VBI = 512
 FLAG_CENTER_DVB_SUBS = 2048 #define in lib/dvb/idvb.h as dxNewFound = 64 and dxIsDedicated3D = 128
 
@@ -248,7 +248,7 @@ class ChannelContextMenu(Screen):
 						if not self.parentalControlEnabled or self.parentalControl.getProtectionLevel(csel.getCurrentSelection().toCompareString()) == -1:
 							if self.csel.dopipzap:
 								append_when_current_valid(current, menu, (_("play in mainwindow"), self.playMain), level=0, key="red")
-							else:	
+							else:
 								append_when_current_valid(current, menu, (_("play as picture in picture"), self.showServiceInPiP), level=0, key="blue")
 					append_when_current_valid(current, menu, (_("find currently played service"), self.findCurrentlyPlayed), level=0, key="3")
 				else:
@@ -545,7 +545,7 @@ class ChannelContextMenu(Screen):
 			self.csel.servicelist.setCurrent(service)
 			self.close()
 		elif answer is not None:
-			self.session.openWithCallback(self.close, MessageBox, _("The pin code you entered is wrong."), MessageBox.TYPE_ERROR)	
+			self.session.openWithCallback(self.close, MessageBox, _("The pin code you entered is wrong."), MessageBox.TYPE_ERROR)
 		else:
 			self.close()
 
@@ -827,7 +827,7 @@ class ChannelSelectionEPG(InfoBarButtonSetup):
 				if timer.eit == eventidnext and ':'.join(timer.service_ref.ref.toString().split(':')[:11]) == refstr:
 					menu2 = _("Change next timer")
 		if eventidnext is not None:
-			menu = [(menu1, 'CALLFUNC', self.ChoiceBoxCB, self.doRecordCurrentTimer), 
+			menu = [(menu1, 'CALLFUNC', self.ChoiceBoxCB, self.doRecordCurrentTimer),
 					(menu2, 'CALLFUNC', self.ChoiceBoxCB, self.doRecordNextTimer)
 					]
 			if menu2 == _("Record next"):
@@ -1501,13 +1501,13 @@ class ChannelSelectionEdit:
 		l.setItemsPerPage()
 		l.setMode('MODE_TV')
 
-		# l.setMode('MODE_TV') automatically sets "hide number marker" to 
+		# l.setMode('MODE_TV') automatically sets "hide number marker" to
 		# the config.usage.hide_number_markers.value so when we are in "movemode"
-		# we need to force display of the markers here after l.setMode('MODE_TV') 
-		# has run. If l.setMode('MODE_TV') were ever removed above, 
-		# "self.servicelist.l.setHideNumberMarker(False)" could be moved 
+		# we need to force display of the markers here after l.setMode('MODE_TV')
+		# has run. If l.setMode('MODE_TV') were ever removed above,
+		# "self.servicelist.l.setHideNumberMarker(False)" could be moved
 		# directly to the "else" clause of "def toggleMoveMode".
-		if self.movemode: 
+		if self.movemode:
 			self.servicelist.l.setHideNumberMarker(False)
 
 		if close:
@@ -1836,10 +1836,10 @@ class ChannelSelectionBase(Screen):
 							if service_type:
 								if unsigned_orbpos == 0xFFFF: #Cable
 									service_name = _("Cable")
-									addCableAndTerrestrialLater.append(("%s - %s" % (service_name, service_type), service.toString()))			
+									addCableAndTerrestrialLater.append(("%s - %s" % (service_name, service_type), service.toString()))
 								elif unsigned_orbpos == 0xEEEE: #Terrestrial
 									service_name = _("Terrestrial")
-									addCableAndTerrestrialLater.append(("%s - %s" % (service_name, service_type), service.toString()))			
+									addCableAndTerrestrialLater.append(("%s - %s" % (service_name, service_type), service.toString()))
 								else:
 									try:
 										service_name = str(nimmanager.getSatDescription(orbpos))
@@ -2231,13 +2231,13 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 		if lastservice.valid():
 			self.setCurrentSelection(lastservice)
 
-	def toogleTvRadio(self): 
+	def toogleTvRadio(self):
 		if self.radioTV == 1:
 			self.radioTV = 0
-			self.setModeTv() 
-		else: 
+			self.setModeTv()
+		else:
 			self.radioTV = 1
-			self.setModeRadio() 
+			self.setModeRadio()
 
 	def setModeTv(self):
 		if self.revertMode is None and config.servicelist.lastmode.value == 'radio':
@@ -3047,7 +3047,7 @@ class HistoryZapSelector(Screen):
 					if eventName is None:
 						eventName = ""
 					else:
-						eventName = eventName.replace('(18+)', '').replace('18+', '').replace('(16+)', '').replace('16+', '').replace('(12+)', '').replace('12+', '').replace('(7+)', '').replace('7+', '').replace('(6+)', '').replace('6+', '').replace('(0+)', '').replace('0+', '')	
+						eventName = eventName.replace('(18+)', '').replace('18+', '').replace('(16+)', '').replace('16+', '').replace('(12+)', '').replace('12+', '').replace('(7+)', '').replace('7+', '').replace('(6+)', '').replace('6+', '').replace('(0+)', '').replace('0+', '')
 					# if config.plugins.SetupZapSelector.event.value == "2":
 					descriptionName = event.getShortDescription()
 					if descriptionName is None or descriptionName == "":

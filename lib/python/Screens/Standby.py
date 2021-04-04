@@ -121,7 +121,7 @@ class Standby2(Screen):
 		#restart last played service
 		#unmute adc
 		self.leaveMute()
-		# set LCDminiTV 
+		# set LCDminiTV
 		if SystemInfo["Display"] and SystemInfo["LCDMiniTV"]:
 			setLCDModeMinitTV(config.lcd.modeminitv.value)
 		#kill me
@@ -133,7 +133,7 @@ class Standby2(Screen):
 			self.Power()
 
 	# with the option "standby_noTVshutdown", use 'break' event / allow turning off the TV by a 'long' key press in standby
-	# avoid waking from standby by ignoring the key's 'break' event after the 'long' and subsequent 'repeat' events.  
+	# avoid waking from standby by ignoring the key's 'break' event after the 'long' and subsequent 'repeat' events.
 	def Power_long(self):
 		if (config.usage.on_short_powerpress.value == "standby_noTVshutdown"):
 			self.TVoff()
@@ -194,7 +194,7 @@ class Standby2(Screen):
 
 		#mute adc
 		self.setMute()
-	
+
 		if SystemInfo["Display"] and SystemInfo["LCDMiniTV"]:
 			# set LCDminiTV off
 			setLCDModeMinitTV("0")
@@ -431,7 +431,7 @@ class TryQuitMainloop(MessageBox):
 			print("[Standby] quitMainloop #1")
 			quitMainloopCode = self.retval
 			if SystemInfo["Display"] and SystemInfo["LCDMiniTV"]:
-				# set LCDminiTV off / fix a deep-standby-crash on some boxes / gb4k 
+				# set LCDminiTV off / fix a deep-standby-crash on some boxes / gb4k
 				print("[Standby] LCDminiTV off")
 				setLCDModeMinitTV("0")
 			if getBoxType() == "vusolo4k":  #workaround for white display flash
