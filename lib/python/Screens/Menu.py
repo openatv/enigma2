@@ -514,17 +514,6 @@ class Menu(Screen, ProtectedScreen):
 		self.session.open(IconMain, self.list, self.menu_title)
 		self.close()
 
-	def isProtected(self):
-		if config.ParentalControl.setuppinactive.value:
-			if config.ParentalControl.config_sections.main_menu.value and self.menuID == "mainmenu":
-				return True
-			elif config.ParentalControl.config_sections.configuration.value and self.menuID == "setup":
-				return True
-			elif config.ParentalControl.config_sections.timer_menu.value and self.menuID == "timermenu":
-				return True
-			elif config.ParentalControl.config_sections.standby_menu.value and self.menuID == "shutdown":
-				return True
-
 	def keyNumberGlobal(self, number):
 		self.number = self.number * 10 + number
 		if self.number and self.number <= len(self["menu"].list):
@@ -556,7 +545,7 @@ class Menu(Screen, ProtectedScreen):
 
 	def isProtected(self):
 		if config.ParentalControl.setuppinactive.value:
-			if config.ParentalControl.config_sections.main_menu.value:
+			if config.ParentalControl.config_sections.main_menu.value and not(hasattr(self.session, 'infobar') and self.session.infobar is None):
 				return self.menuID == "mainmenu"
 			elif config.ParentalControl.config_sections.configuration.value and self.menuID == "setup":
 				return True
