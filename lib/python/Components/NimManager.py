@@ -658,8 +658,8 @@ class SecConfigure:
 		if PN not in tmp.product.choices.choices:
 			print("[NimManager] [reconstructUnicableDate] Product %s not in unicable.xml" % PN)
 			scrlist = []
-			SatCR = int(PDict.get('scr', {PN:1}).get(PN, 1)) - 1
-			vco = int(PDict.get('vco', {PN:0}).get(PN, 0).get(str(SatCR), 1))
+			SatCR = int(PDict.get('scr', {PN: 1}).get(PN, 1)) - 1
+			vco = int(PDict.get('vco', {PN: 0}).get(PN, 0).get(str(SatCR), 1))
 
 			positionslist = [1, (9750, 10600, 11700)]	##adenin_todo
 			positions = int(positionslist[0])
@@ -669,7 +669,7 @@ class SecConfigure:
 			tmp.bootuptime[PN] = ConfigSubList()
 			tmp.bootuptime[PN].append(ConfigInteger(default=0, limits=(0, 0)))
 
-			positionsoffsetlist = [0,]	##adenin_todo
+			positionsoffsetlist = [0, ]	##adenin_todo
 			positionsoffset = int(positionsoffsetlist[0])
 			tmp.positionsoffset[PN] = ConfigSubList()
 			tmp.positionsoffset[PN].append(ConfigInteger(default=positionsoffset, limits=(positionsoffset, positionsoffset)))
@@ -1111,17 +1111,17 @@ class NimManager:
 							if ((version == 3) and len(x[1]) > len(t2_sv3)) or ((version == 4) and len(x[1]) > len(t2_sv4)):
 								continue
 							for y in list(range(0, len(x[0]))):
-								tp.update({t1[y]:x[0][y]})
+								tp.update({t1[y]: x[0][y]})
 							for y in list(range(0, len(x[1]))):
 								if version == 3:
-									tp.update({t2_sv3[y]:x[1][y]})
+									tp.update({t2_sv3[y]: x[1][y]})
 								elif version == 4:
-									tp.update({t2_sv4[y]:x[1][y]})
+									tp.update({t2_sv4[y]: x[1][y]})
 							if ((int(tp.get("namespace"), 16) >> 16) & 0xFFF) != int(tp.get("position")):
 								print("[NimManager] Namespace %s and Position %s are not identical" % (tp.get("namespace"), tp.get("position")))
 								continue
 							if version >= 4:
-								tp.update({"supposition":((int(tp.get("namespace", "0"), 16) >> 24) & 0x0F)})
+								tp.update({"supposition": ((int(tp.get("namespace", "0"), 16) >> 24) & 0x0F)})
 						elif freq[0] == "c" or freq[0] == "C":
 							print("[NimManager] DVB-C")
 							continue
@@ -1145,15 +1145,15 @@ class NimManager:
 								dir = 'E'
 							if freq >= 10000000 and freq <= 13000000:
 								fake_sat_pos = sat_pos
-								tmp_sat.update({'name':'%3.1f%c Ku-band satellite' % (sat_pos / 10.0, dir)})
+								tmp_sat.update({'name': '%3.1f%c Ku-band satellite' % (sat_pos / 10.0, dir)})
 								#tmp_sat.update({"band":"Ku"})
 							if freq >= 3000000 and freq <= 4000000:
 								fake_sat_pos = sat_pos + 1
-								tmp_sat.update({'name':'%3.1f%c C-band satellite' % (sat_pos / 10.0, dir)})
+								tmp_sat.update({'name': '%3.1f%c C-band satellite' % (sat_pos / 10.0, dir)})
 								#tmp_sat.update({"band":"C"})
 							if freq >= 17000000 and freq <= 23000000:
 								fake_sat_pos = sat_pos + 2
-								tmp_sat.update({'name':'%3.1f%c Ka-band satellite' % (sat_pos / 10.0, dir)})
+								tmp_sat.update({'name': '%3.1f%c Ka-band satellite' % (sat_pos / 10.0, dir)})
 								#tmp_sat.update({"band":"Ka"})
 							tmp_tp.append((
 									0,			#???
@@ -1169,9 +1169,9 @@ class NimManager:
 									-1,			#tsid  -1 -> any tsid are valid
 									-1			#onid  -1 -> any tsid are valid
 								))
-							tmp_sat.update({'flags':int(tp.get("flags"))})
-							satDict.update({fake_sat_pos:tmp_sat})
-							self.transponders.update({fake_sat_pos:tmp_tp})
+							tmp_sat.update({'flags': int(tp.get("flags"))})
+							satDict.update({fake_sat_pos: tmp_sat})
+							self.transponders.update({fake_sat_pos: tmp_tp})
 
 					for sat_pos in satDict:
 						self.satellites.update({sat_pos: satDict.get(sat_pos).get('name')})
@@ -1701,17 +1701,17 @@ def InitNimManager(nimmgr, update_slots=None):
 				else:
 					break
 
-			p_update({"frequencies":tuple(scr)})								#add scr frequencies to dict product
+			p_update({"frequencies": tuple(scr)})								#add scr frequencies to dict product
 
 			diction = product.get("format", "EN50494").upper()
 			if diction in jess_alias:
 				diction = "EN50607"
 			else:
 				diction = "EN50494"
-			p_update({"diction":tuple([diction])})								#add diction to dict product
+			p_update({"diction": tuple([diction])})								#add diction to dict product
 
 			positionsoffset = product.get("positionsoffset", 0)
-			p_update({"positionsoffset":tuple([positionsoffset])})						#add positionsoffset to dict product
+			p_update({"positionsoffset": tuple([positionsoffset])})						#add positionsoffset to dict product
 
 			positions = []
 			positions_append = positions.append
@@ -1723,13 +1723,13 @@ def InitNimManager(nimmgr, update_slots=None):
 				lof.append(int(product.get("threshold", 11700)))
 				positions_append(tuple(lof))
 
-			p_update({"positions":tuple(positions)})							#add positons to dict product
+			p_update({"positions": tuple(positions)})							#add positons to dict product
 
 			bootuptime = product.get("bootuptime", 2700)
-			p_update({"bootuptime":tuple([bootuptime])})							#add add boot up time
+			p_update({"bootuptime": tuple([bootuptime])})							#add add boot up time
 
-			m_update({product.get("name"):p})								#add dict product to dict manufacturer
-		unicablelnbproducts.update({manufacturer.get("name"):m})
+			m_update({product.get("name"): p})								#add dict product to dict manufacturer
+		unicablelnbproducts.update({manufacturer.get("name"): m})
 
 	entry = root.find("matrix")
 	for manufacturer in entry.getchildren():
@@ -1749,17 +1749,17 @@ def InitNimManager(nimmgr, update_slots=None):
 				else:
 					break
 
-			p_update({"frequencies":tuple(scr)})								#add scr frequencies to dict product
+			p_update({"frequencies": tuple(scr)})								#add scr frequencies to dict product
 
 			diction = product.get("format", "EN50494").upper()
 			if diction in jess_alias:
 				diction = "EN50607"
 			else:
 				diction = "EN50494"
-			p_update({"diction":tuple([diction])})								#add diction to dict product
+			p_update({"diction": tuple([diction])})								#add diction to dict product
 
 			positionsoffset = product.get("positionsoffset", 0)
-			p_update({"positionsoffset":tuple([positionsoffset])})						#add positionsoffset to dict product
+			p_update({"positionsoffset": tuple([positionsoffset])})						#add positionsoffset to dict product
 
 			positions = []
 			positions_append = positions.append
@@ -1771,13 +1771,13 @@ def InitNimManager(nimmgr, update_slots=None):
 				lof.append(int(product.get("threshold", 11700)))
 				positions_append(tuple(lof))
 
-			p_update({"positions":tuple(positions)})							#add positons to dict product
+			p_update({"positions": tuple(positions)})							#add positons to dict product
 
 			bootuptime = product.get("bootuptime", 2700)
-			p_update({"bootuptime":tuple([bootuptime])})							#add boot up time
+			p_update({"bootuptime": tuple([bootuptime])})							#add boot up time
 
-			m_update({product.get("name"):p})								#add dict product to dict manufacturer
-		unicablematrixproducts.update({manufacturer.get("name"):m})						#add dict manufacturer to dict unicablematrixproducts
+			m_update({product.get("name"): p})								#add dict product to dict manufacturer
+		unicablematrixproducts.update({manufacturer.get("name"): m})						#add dict manufacturer to dict unicablematrixproducts
 
 	UnicableLnbManufacturers = list(unicablelnbproducts.keys())
 	UnicableLnbManufacturers.sort()
@@ -1855,7 +1855,7 @@ def InitNimManager(nimmgr, update_slots=None):
 				if lnb == 1 or lnb > maxFixedLnbPositions:
 					section.unicable = ConfigSelection(unicable_choices, unicable_choices_default)
 				else:
-					section.unicable = ConfigSelection(choices={"unicable_matrix": _("Unicable Matrix"),"unicable_user": "Unicable " + _("User defined")}, default="unicable_matrix")
+					section.unicable = ConfigSelection(choices={"unicable_matrix": _("Unicable Matrix"), "unicable_user": "Unicable " + _("User defined")}, default="unicable_matrix")
 
 			def fillUnicableConf(sectionDict, unicableproducts, vco_null_check):
 				for manufacturer in unicableproducts:

@@ -1322,7 +1322,7 @@ class EPGList(HTMLComponent, GUIComponent):
 				))
 		return res
 
-	def getSelectionPosition(self,serviceref, activeList=1):
+	def getSelectionPosition(self, serviceref, activeList=1):
 		if self.type == EPG_TYPE_GRAPH or self.type == EPG_TYPE_INFOBARGRAPH:
 			indx = int(self.getIndexFromService(serviceref))
 			selx = self.select_rect.x + self.select_rect.w

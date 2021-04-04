@@ -624,7 +624,7 @@ class QuickMenu(Screen, ProtectedScreen):
 			self.session.open(Satfinder)
 		
 ######## SOFTWARE MANAGER TOOLS #######################
-	def backupDone(self,retval=None):
+	def backupDone(self, retval=None):
 		if retval is True:
 			self.session.open(MessageBox, _("Backup done."), MessageBox.TYPE_INFO, timeout=10)
 		else:

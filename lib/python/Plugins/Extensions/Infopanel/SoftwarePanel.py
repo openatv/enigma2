@@ -156,7 +156,7 @@ class SoftwarePanel(Screen):
 			self['a_off'].show()
 		socket.setdefaulttimeout(currentTimeoutDefault)
 
-	def setStatus(self,status=None):
+	def setStatus(self, status=None):
 		if status:
 			self.statuslist = []
 			divpng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_SKIN, "skin_default/div-h.png"))

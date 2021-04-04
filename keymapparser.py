@@ -45,13 +45,13 @@ def parseKeys(context, filename, actionmap, device, keys):
 			assert id, "[keymapparser] %s: must specify id in context %s, unmap '%s'" % (filename, context, unmap)
 			keyid = getKeyId(id)
 			actionmap.unbindPythonKey(context, keyid, unmap)
-			unmapDict.update({(context, id, unmap):filename})
+			unmapDict.update({(context, id, unmap): filename})
 		else:
 			assert mapto, "[keymapparser] %s: must specify mapto (or unmap) in context %s, id '%s'" % (filename, context, id)
 			assert id, "[keymapparser] %s: must specify id in context %s, mapto '%s'" % (filename, context, mapto)
 			keyid = getKeyId(id)
 
-			flag_ascii_to_id = lambda x: {'m':1,'b':2,'r':4,'l':8}[x]
+			flag_ascii_to_id = lambda x: {'m': 1, 'b': 2, 'r': 4, 'l': 8}[x]
 
 			flags = sum(map(flag_ascii_to_id, flags))
 

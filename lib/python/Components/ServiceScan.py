@@ -148,7 +148,7 @@ class ServiceScan:
 							freqMHz.replace(".0", ""),
 							{
 								tp.Inversion_Off: _("Off"),
-								tp.Inversion_On:_("On"),
+								tp.Inversion_On: _("On"),
 								tp.Inversion_Unknown: _("Auto")
 							}.get(tp.inversion, ""))
 					else:

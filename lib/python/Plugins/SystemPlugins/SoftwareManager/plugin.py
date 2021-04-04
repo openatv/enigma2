@@ -401,7 +401,7 @@ class UpdatePluginMenu(Screen):
 		except OSError:
 			self.session.open(MessageBox, _("Sorry, your backup destination is not writeable.\nPlease select a different one."), MessageBox.TYPE_INFO, timeout=10)
 
-	def backupDone(self,retval=None):
+	def backupDone(self, retval=None):
 		if retval is True:
 			self.session.open(MessageBox, _("Backup completed."), MessageBox.TYPE_INFO, timeout=10)
 		else:
@@ -746,7 +746,7 @@ class PluginManager(Screen, PackageInfoHandler):
 		if self.currList != "status":
 			self.session.open(PluginManagerHelp, self.skin_path)
 
-	def setState(self,status=None):
+	def setState(self, status=None):
 		if status:
 			self.currList = "status"
 			self.statuslist = []
@@ -2088,7 +2088,7 @@ class PacketManager(Screen, NumericalTextInput):
 	def setWindowTitle(self):
 		self.setTitle(_("Packet manager"))
 
-	def setStatus(self,status=None):
+	def setStatus(self, status=None):
 		if status:
 			self.statuslist = []
 			divpng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_ACTIVE_SKIN, "div-h.png"))
@@ -2474,7 +2474,7 @@ class ShowUpdatePackages(Screen, NumericalTextInput):
 	def setWindowTitle(self):
 		self.setTitle(_("New Packages"))
 
-	def setStatus(self,status=None):
+	def setStatus(self, status=None):
 		if status:
 			self.statuslist = []
 			divpng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_SKIN, "skin_default/div-h.png"))

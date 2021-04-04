@@ -58,7 +58,7 @@ class AnimationSetupConfig(ConfigListScreen, Screen):
 		Screen.__init__(self, session)
 		ConfigListScreen.__init__(self, self.entrylist)
 
-		self["actions"] = ActionMap(["OkCancelActions", "ColorActions",], {
+		self["actions"] = ActionMap(["OkCancelActions", "ColorActions", ], {
 			"ok": self.keyGreen,
 			"green": self.keyGreen,
 			"yellow": self.keyYellow,
@@ -116,33 +116,33 @@ class AnimationSetupConfig(ConfigListScreen, Screen):
 class AnimationSetupScreen(Screen):
 	if getBrandOEM() == 'gigablue':
 		animationSetupItems = [
-			{"idx":0, "name":_("Disable Animations")},
-			{"idx":1, "name":_("Simple fade")},
-			{"idx":2, "name":_("Simple zoom")},
-			{"idx":3, "name":_("Grow drop")},
-			{"idx":4, "name":_("Grow from left")},
-			{"idx":5, "name":_("Extrude from left")},
+			{"idx": 0, "name": _("Disable Animations")},
+			{"idx": 1, "name": _("Simple fade")},
+			{"idx": 2, "name": _("Simple zoom")},
+			{"idx": 3, "name": _("Grow drop")},
+			{"idx": 4, "name": _("Grow from left")},
+			{"idx": 5, "name": _("Extrude from left")},
 			#{"idx":6, "name":_("Popup")},
-			{"idx":7, "name":_("Slide drop")},
-			{"idx":8, "name":_("Slide from left")},
-			{"idx":9, "name":_("Slide left to right")},
-			{"idx":10, "name":_("Slide right to left")},
-			{"idx":11, "name":_("Slide top to bottom")},
-			{"idx":12, "name":_("Zoom from left")},
-			{"idx":13, "name":_("Zoom from right")},
-			{"idx":14, "name":_("Stripes")},
+			{"idx": 7, "name": _("Slide drop")},
+			{"idx": 8, "name": _("Slide from left")},
+			{"idx": 9, "name": _("Slide left to right")},
+			{"idx": 10, "name": _("Slide right to left")},
+			{"idx": 11, "name": _("Slide top to bottom")},
+			{"idx": 12, "name": _("Zoom from left")},
+			{"idx": 13, "name": _("Zoom from right")},
+			{"idx": 14, "name": _("Stripes")},
 		]
 	else:
 		animationSetupItems = [
-			{"idx":0, "name":_("Disable Animations")},
-			{"idx":1, "name":_("Simple fade")},
-			{"idx":2, "name":_("Grow drop")},
-			{"idx":3, "name":_("Grow from left")},
-			{"idx":4, "name":_("Popup")},
-			{"idx":5, "name":_("Slide drop")},
-			{"idx":6, "name":_("Slide left to right")},
-			{"idx":7, "name":_("Slide top to bottom")},
-			{"idx":8, "name":_("Stripes")},
+			{"idx": 0, "name": _("Disable Animations")},
+			{"idx": 1, "name": _("Simple fade")},
+			{"idx": 2, "name": _("Grow drop")},
+			{"idx": 3, "name": _("Grow from left")},
+			{"idx": 4, "name": _("Popup")},
+			{"idx": 5, "name": _("Slide drop")},
+			{"idx": 6, "name": _("Slide left to right")},
+			{"idx": 7, "name": _("Slide top to bottom")},
+			{"idx": 8, "name": _("Stripes")},
 		]
 
 	skin = """

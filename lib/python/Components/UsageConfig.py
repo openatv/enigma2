@@ -39,8 +39,8 @@ def InitUsageConfig():
 				toadd = (remote.split('/')[-1], remote.split('/')[-1])
 				RemoteChoices.append(toadd)
 
-	config.misc.SettingsVersion = ConfigFloat(default=[1,1], limits=[(1,10),(0,99)])
-	config.misc.SettingsVersion.value = [1,1]
+	config.misc.SettingsVersion = ConfigFloat(default=[1, 1], limits=[(1, 10), (0, 99)])
+	config.misc.SettingsVersion.value = [1, 1]
 	config.misc.SettingsVersion.save_forced = True
 	config.misc.SettingsVersion.save()
 	config.misc.useNTPminutes = ConfigSelection(default="30", choices=[("30", "30" + " " + _("minutes")), ("60", _("Hour")), ("1440", _("Once per day"))])
@@ -228,13 +228,13 @@ def InitUsageConfig():
 	config.usage.plugins_sort_mode = ConfigSelection(default="user", choices=[
 		("a_z", _("alphabetical")),
 		("default", _("Default")),
-		("user", _("user defined")),])
+		("user", _("user defined")), ])
 	config.usage.plugin_sort_weight = ConfigDictionarySet()
 	config.usage.menu_sort_weight = ConfigDictionarySet(default={"mainmenu": {"submenu": {}}})
 	config.usage.menu_sort_mode = ConfigSelection(default="user", choices=[
 		("a_z", _("alphabetical")),
 		("default", _("Default")),
-		("user", _("user defined")),])
+		("user", _("user defined")), ])
 	config.usage.sort_pluginlist = ConfigYesNo(default=True)
 	config.usage.sort_extensionslist = ConfigYesNo(default=False)
 	config.usage.show_restart_network_extensionslist = ConfigYesNo(default=True)
@@ -1094,7 +1094,7 @@ def InitUsageConfig():
 	config.timeshift.timeshiftMaxHours = ConfigSelectionNumber(min=1, max=999, stepwidth=1, default=12, wraparound=True)
 	config.timeshift.timeshiftMaxEvents = ConfigSelectionNumber(min=1, max=999, stepwidth=1, default=12, wraparound=True)
 	config.timeshift.timeshiftCheckEvents = ConfigSelection(default="0", choices=[("0", _("Disabled")), "15", "30", "60", "120", "240", "480"])
-	config.timeshift.timeshiftCheckFreeSpace = ConfigSelection(default="0", choices=[("0", _("No")), ("1024", _("1 GB")), ("2048", _("2 GB")), ("4096", _("4 GB")), ("8192", _("8 GB")),])
+	config.timeshift.timeshiftCheckFreeSpace = ConfigSelection(default="0", choices=[("0", _("No")), ("1024", _("1 GB")), ("2048", _("2 GB")), ("4096", _("4 GB")), ("8192", _("8 GB")), ])
 	config.timeshift.deleteAfterZap = ConfigYesNo(default=True)
 	config.timeshift.filesplitting = ConfigYesNo(default=True)
 	config.timeshift.showlivetvmsg = ConfigYesNo(default=True)

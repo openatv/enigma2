@@ -1115,7 +1115,7 @@ class TunerScreen(ConfigListScreen, Screen):
 			"modulation": eDVBFrontendParametersSatellite.Modulation_QPSK,
 			"pls_mode": eDVBFrontendParametersSatellite.PLS_Gold,
 			"pls_code": eDVBFrontendParametersSatellite.PLS_Default_Gold_Code,
-			"t2mi_plp_id":eDVBFrontendParametersSatellite.No_T2MI_PLP_Id}
+			"t2mi_plp_id": eDVBFrontendParametersSatellite.No_T2MI_PLP_Id}
 		if frontendData is not None:
 			ttype = frontendData.get("tuner_type", "UNKNOWN")
 			defaultSat["system"] = frontendData.get("system", eDVBFrontendParametersSatellite.System_DVB_S)

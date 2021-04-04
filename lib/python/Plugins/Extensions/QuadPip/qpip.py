@@ -50,7 +50,7 @@ class QuadPipChannelEntry:
 	def __init__(self, name, idx, ch1, ch2, ch3, ch4):
 		self.name = name
 		self.idx = idx
-		self.channel = {"1": ch1, "2": ch2, "3": ch1, "4": ch1,}
+		self.channel = {"1": ch1, "2": ch2, "3": ch1, "4": ch1, }
 
 	def __str__(self):
 		return "idx : %d, name : %s, ch0 : %s, ch1 : %s, ch2 : %s, ch3 : %s"\
@@ -254,9 +254,9 @@ class CreateQuadPipChannelEntry(ChannelSelectionBase):
 
 		self.session = session
 		dh = self.session.desktop.size().height()
-		self.skin = {1080:CreateQuadPipChannelEntry.skin_default_1080p,
-						720:CreateQuadPipChannelEntry.skin_default_720p,
-						576:CreateQuadPipChannelEntry.skin_default_576p}.get(dh, CreateQuadPipChannelEntry.skin_default_1080p)
+		self.skin = {1080: CreateQuadPipChannelEntry.skin_default_1080p,
+						720: CreateQuadPipChannelEntry.skin_default_720p,
+						576: CreateQuadPipChannelEntry.skin_default_576p}.get(dh, CreateQuadPipChannelEntry.skin_default_1080p)
 
 		self.defaultEntryName = defaultEntryName
 		self["textChannels"] = Label(" ")
@@ -435,12 +435,12 @@ class QuadPiPChannelSelection(Screen, HelpableScreen):
 
 		dw = self.session.desktop.size().width()
 		dh = self.session.desktop.size().height()
-		pw, ph = {1080:("center", "center"), 720:("center", "center"), 576:("center", "20%")}.get(dh, ("center", "center"))
-		(sw, sh) = {1080:(dw / 3, dh / 2), 720:(int(dw / 2), int(dh / 1.5)), 576:(int(dw / 1.3), int(dh / 1.5))}.get(dh, (28, 24))
+		pw, ph = {1080: ("center", "center"), 720: ("center", "center"), 576: ("center", "20%")}.get(dh, ("center", "center"))
+		(sw, sh) = {1080: (dw / 3, dh / 2), 720: (int(dw / 2), int(dh / 1.5)), 576: (int(dw / 1.3), int(dh / 1.5))}.get(dh, (28, 24))
 		button_margin = 5
 		button_h = 40
 		list_y = 40 + button_margin * 3
-		self.fontSize = {1080:(28, 24), 720:(24, 20), 576:(20, 18)}.get(dh, (28, 24))
+		self.fontSize = {1080: (28, 24), 720: (24, 20), 576: (20, 18)}.get(dh, (28, 24))
 		self.skin = QuadPiPChannelSelection.skin % (pw, ph,
 														sw, sh + list_y,
 														sw / 8 - 70, button_margin,
@@ -785,7 +785,7 @@ class QuadPipScreen(Screen, FocusShowHide, HelpableScreen):
 
 		self.decoderIdxMap = [None, 0, 1, 2, 3]
 
-		self.fontSize = {1080:40, 720:28, 576:18}.get(h, 40)
+		self.fontSize = {1080: 40, 720: 28, 576: 18}.get(h, 40)
 		self.text1Pos = (w - w / 3, h - h / 18 - h / 18, w / 3, h / 18)
 		self.text2Pos = (w - w / 3, h - h / 18, w / 3, h / 18)
 

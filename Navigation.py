@@ -82,7 +82,7 @@ class Navigation:
 			print("#" * 100)
 			print("[NAVIGATION] timediff from last shutdown to now = %ds" % (now - self.lastshutdowntime))
 			print("[NAVIGATION] shutdowntime: %s, wakeuptime: %s timertime: %s, recordtime: %s" % (ctime(self.lastshutdowntime), ctime(self.wakeuptime), ctime(self.timertime), ctime(self.recordtime)))
-			print("[NAVIGATION] wakeuptyp: %s, getstandby: %s, forcerecord: %s" % ({0:"record-timer",1:"zap-timer",2:"power-timer",3:"plugin-timer"}[self.wakeuptyp], {0:"no standby",1:"standby",2:"no standby (box was not in deepstandby)"}[self.getstandby], self.forcerecord))
+			print("[NAVIGATION] wakeuptyp: %s, getstandby: %s, forcerecord: %s" % ({0: "record-timer", 1: "zap-timer", 2: "power-timer", 3: "plugin-timer"}[self.wakeuptyp], {0: "no standby", 1: "standby", 2: "no standby (box was not in deepstandby)"}[self.getstandby], self.forcerecord))
 			print("#" * 100)
 
 		print("=" * 100)
@@ -154,7 +154,7 @@ class Navigation:
 					print("-" * 100)
 					print("[NAVIGATION] was timer wakeup after time sync is = True")
 					print("[NAVIGATION] wakeup time was %s" % ctime(self.wakeuptime))
-			print("[NAVIGATION] wakeup type is '%s' %s" % ({0:"record-timer",1:"zap-timer",2:"power-timer",3:"plugin-timer"}[self.wakeuptyp], {0:"and starts normal",1:"and starts in standby",2:"and starts not in standby"}[self.getstandby]))
+			print("[NAVIGATION] wakeup type is '%s' %s" % ({0: "record-timer", 1: "zap-timer", 2: "power-timer", 3: "plugin-timer"}[self.wakeuptyp], {0: "and starts normal", 1: "and starts in standby", 2: "and starts not in standby"}[self.getstandby]))
 			#record timer, zap timer, some plugin timer or next record timer begins in 15 mins
 			if self.wakeuptyp < 2 or self.forcerecord:
 				print("[NAVIGATION] timer starts at %s" % ctime(self.timertime))
@@ -204,7 +204,7 @@ class Navigation:
 				print("[NAVIGATION] secure timer wakeup detection window: %s - %s" % (ctime(self.wakeupwindow_minus), ctime(self.wakeupwindow_plus)))
 				print('+' * 100)
 			if self.timertime > 0:
-				print("[NAVIGATION] next '%s' starts at %s" % ({0:"record-timer",1:"zap-timer",2:"power-timer",3:"plugin-timer"}[self.wakeuptyp], ctime(self.timertime)))
+				print("[NAVIGATION] next '%s' starts at %s" % ({0: "record-timer", 1: "zap-timer", 2: "power-timer", 3: "plugin-timer"}[self.wakeuptyp], ctime(self.timertime)))
 				if self.recordtime > 0 and self.timertime != self.recordtime:
 					print("[NAVIGATION] next 'record-timer' starts at %s" % ctime(self.recordtime))
 				else:

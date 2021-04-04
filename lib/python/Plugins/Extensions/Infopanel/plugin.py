@@ -584,7 +584,7 @@ class Infopanel(Screen, InfoBarPiP, ProtectedScreen):
 		self["Mlist"].moveToIndex(0)
 		self["Mlist"].l.setList(self.tlist)
 
-	def backupDone(self,retval=None):
+	def backupDone(self, retval=None):
 		if retval is True:
 			self.session.open(MessageBox, _("Backup done."), MessageBox.TYPE_INFO, timeout=10)
 		else:

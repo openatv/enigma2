@@ -758,7 +758,7 @@ If you already have a prepared bootable USB stick, please insert it now. Otherwi
 		self.nfofilename = ""
 		self.nfo = ""
 
-	def nfo_finished(self,nfodata=""):
+	def nfo_finished(self, nfodata=""):
 		print("[nfo_finished] " + str(nfodata))
 		self["key_blue"].text = _("Changelog")
 		self.nfo = nfodata
