@@ -384,7 +384,7 @@ static PyMethodDef console_module_methods[] = {
 	PyModuleDef_HEAD_INIT,
 	"eConsoleImpl",																			/* m_name */
 	"Module that implements eConsoleAppContainer with working cyclic garbage collection.",	/* m_doc */
-	-1,																						/* m_siz
+	-1,																						/* m_size */
 	console_module_methods,																	/* m_methods */
 	NULL,																					/* m_reload */
 	NULL,																					/* m_traverse */

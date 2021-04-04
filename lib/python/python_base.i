@@ -404,7 +404,7 @@ static PyMethodDef base_module_methods[] = {
 	PyModuleDef_HEAD_INIT,
 	"eBaseImpl",																			/* m_name */
 	"Module that implements some enigma classes with working cyclic garbage collection.",	/* m_doc */
-	-1,																						/* m_siz
+	-1,																						/* m_size */
 	base_module_methods,																	/* m_methods */
 	NULL,																					/* m_reload */
 	NULL,																					/* m_traverse */
