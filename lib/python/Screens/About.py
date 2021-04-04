@@ -801,7 +801,7 @@ class SystemNetworkInfo(Screen):
 
 						encryption_type = status[self.iface]["encryption_type"]
 						if "encryption_type" in self:
-							self.AboutText += '{:<35}'.format(_('Encryption Type:')) + '\t' + encryption_type + '\n'
+							self.AboutText += '{:<35}'.format(_('Encryption Type:')) + '\t' + encryption_type.upper() + '\n'
 
 						if status[self.iface]["essid"] == "off" or status[self.iface]["accesspoint"] == "Not-Associated" or status[self.iface]["accesspoint"] is False:
 							self.LinkState = False
