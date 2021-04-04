@@ -252,7 +252,7 @@ class AudioSelection(Screen, ConfigListScreen):
 					def __call__(self, *args, **kwargs):
 						self.fnc(*self.args)
 
-				Plugins = [ (p.name, PluginCaller(self.infobar.runPlugin, p)) for p in plugins.getPlugins(where=PluginDescriptor.WHERE_AUDIOMENU) ]
+				Plugins = [(p.name, PluginCaller(self.infobar.runPlugin, p)) for p in plugins.getPlugins(where=PluginDescriptor.WHERE_AUDIOMENU)]
 				if len(Plugins):
 					for x in Plugins:
 						if x[0] != 'AudioEffect': # always make AudioEffect Blue button.

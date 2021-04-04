@@ -5,7 +5,7 @@ from .downloader import NFIDownload, filescan
 
 
 def NFIFlasherMain(session, tmp=None, **kwargs):
-	session.open(NFIDownload, "/home/root" )
+	session.open(NFIDownload, "/home/root")
 
 def NFICallFnc(tmp=None):
 	return NFIFlasherMain

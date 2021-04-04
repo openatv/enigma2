@@ -31,8 +31,8 @@ class Navigation:
 		self.pnav = pNavigation()
 		self.pnav.m_event.get().append(self.dispatchEvent)
 		self.pnav.m_record_event.get().append(self.dispatchRecordEvent)
-		self.event = [ ]
-		self.record_event = [ ]
+		self.event = []
+		self.record_event = []
 		self.currentlyPlayingServiceReference = None
 		self.currentlyPlayingServiceOrGroup = None
 		self.currentlyPlayingService = None

@@ -104,7 +104,7 @@ class CutListContextMenu(FixedMenu):
 		menu.append((_("execute cuts (requires MovieCut plugin)"), self.callMovieCut))
 
 		FixedMenu.__init__(self, session, _("Cut"), menu)
-		self.skinName = ["CutListContextMenu", "Menu" ]
+		self.skinName = ["CutListContextMenu", "Menu"]
 
 	def startCut(self):
 		self.close(self.RET_STARTCUT)
@@ -283,7 +283,7 @@ class CutListEditor(Screen, InfoBarBase, InfoBarSeek, InfoBarCueSheetSupport, He
 		self.close()
 
 	def getCutlist(self):
-		r = [ ]
+		r = []
 		for e in self.cut_list:
 			r.append(CutListEntry(*e))
 		return r

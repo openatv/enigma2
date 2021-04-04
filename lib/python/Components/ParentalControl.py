@@ -70,15 +70,15 @@ class ParentalControl:
 		#Either the service or all services contained in the bouquet to the method given
 		#That way all other functions do not need to distinguish between service and bouquet.
 		if "FROM BOUQUET" in service:
-			method( service, TYPE_BOUQUET, *args )
+			method(service, TYPE_BOUQUET, *args)
 			servicelist = self.readServicesFromBouquet(service, "C")
 			for ref in servicelist:
 				sRef = str(ref[0])
-				method( sRef, TYPE_BOUQUETSERVICE, *args )
+				method(sRef, TYPE_BOUQUETSERVICE, *args)
 		else:
 			ref = ServiceReference(service)
 			sRef = str(ref)
-			method( sRef, TYPE_SERVICE, *args )
+			method(sRef, TYPE_SERVICE, *args)
 
 	def isServicePlayable(self, ref, callback, session=None):
 		self.session = session
@@ -163,7 +163,7 @@ class ParentalControl:
 		return time.time()
 
 	def getPinList(self):
-		return [ x.value for x in config.ParentalControl.servicepin ]
+		return [x.value for x in config.ParentalControl.servicepin]
 
 	def setSessionPinCached(self):
 		if self.checkSessionPin == True:
@@ -204,7 +204,7 @@ class ParentalControl:
 		#I don't like to have two functions with identical code...
 		result = {}
 		try:
-			file =  open(resolveFilename(SCOPE_CONFIG, sWhichList ), 'r')
+			file =  open(resolveFilename(SCOPE_CONFIG, sWhichList), 'r')
 			for x in file:
 				sPlain = x.strip()
 				self.serviceMethodWrapper(sPlain, self.addServiceToList, result)

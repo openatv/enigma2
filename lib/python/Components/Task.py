@@ -9,8 +9,8 @@ import six
 class Job(object):
 	NOT_STARTED, IN_PROGRESS, FINISHED, FAILED = list(range(4))
 	def __init__(self, name):
-		self.tasks = [ ]
-		self.resident_tasks = [ ]
+		self.tasks = []
+		self.resident_tasks = []
 		self.workspace = "/tmp"
 		self.current_task = 0
 		self.callback = None
@@ -41,7 +41,7 @@ class Job(object):
 	progress = property(getProgress)
 
 	def getStatustext(self):
-		return { self.NOT_STARTED: _("Waiting"), self.IN_PROGRESS: _("In progress"), self.FINISHED: _("Finished"), self.FAILED: _("Failed") }[self.status]
+		return {self.NOT_STARTED: _("Waiting"), self.IN_PROGRESS: _("In progress"), self.FINISHED: _("Finished"), self.FAILED: _("Failed")}[self.status]
 
 	def task_progress_changed_CB(self):
 		self.state_changed()
@@ -118,9 +118,9 @@ class Job(object):
 class Task(object):
 	def __init__(self, job, name):
 		self.name = name
-		self.immediate_preconditions = [ ]
-		self.global_preconditions = [ ]
-		self.postconditions = [ ]
+		self.immediate_preconditions = []
+		self.global_preconditions = []
+		self.postconditions = []
 		self.returncode = None
 		self.initial_input = None
 		self.job = None
@@ -129,7 +129,7 @@ class Task(object):
 		self.__progress = 0
 		self.cmd = None
 		self.cwd = "/tmp"
-		self.args = [ ]
+		self.args = []
 		self.cmdline = None
 		self.task_progress_changed = None
 		self.output_line = ""
@@ -150,7 +150,7 @@ class Task(object):
 		self.cmdline = cmdline
 
 	def checkPreconditions(self, immediate=False):
-		not_met = [ ]
+		not_met = []
 		if immediate:
 			preconditions = self.immediate_preconditions
 		else:
@@ -232,7 +232,7 @@ class Task(object):
 
 	def finish(self, aborted=False):
 		self.afterRun()
-		not_met = [ ]
+		not_met = []
 		if aborted:
 			not_met.append(AbortedPostcondition())
 		else:
@@ -341,9 +341,9 @@ class ConditionTask(Task):
 # It also supports a notification when some error occurred, and possibly a retry.
 class JobManager:
 	def __init__(self):
-		self.active_jobs = [ ]
-		self.failed_jobs = [ ]
-		self.job_classes = [ ]
+		self.active_jobs = []
+		self.failed_jobs = []
+		self.job_classes = []
 		self.in_background = False
 		self.visible = False
 		self.active_job = None
@@ -372,7 +372,7 @@ class JobManager:
 			Tools.Notifications.AddNotificationWithCallback(self.errorCB, MessageBox, _("Error: %s\nRetry?") % (problems[0].getErrorMessage(task)))
 			return True
 		else:
-			Tools.Notifications.AddNotification(MessageBox, job.name + "\n" + _("Error") + ': %s' % (problems[0].getErrorMessage(task)), type=MessageBox.TYPE_ERROR )
+			Tools.Notifications.AddNotification(MessageBox, job.name + "\n" + _("Error") + ': %s' % (problems[0].getErrorMessage(task)), type=MessageBox.TYPE_ERROR)
 			return False
 
 	def jobDone(self, job, task, problems):
@@ -405,7 +405,7 @@ class JobManager:
 			self.kick()
 
 	def getPendingJobs(self):
-		list = [ ]
+		list = []
 		if self.active_job:
 			list.append(self.active_job)
 		list += self.active_jobs

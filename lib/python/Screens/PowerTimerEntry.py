@@ -139,7 +139,7 @@ class TimerEntry(Screen, ConfigListScreen):
 		self.timerentry_date = ConfigDateTime(default=self.timer.begin, formatstring=config.usage.date.full.value, increment=86400)
 		self.timerentry_starttime = ConfigClock(default=self.timer.begin)
 		self.timerentry_endtime = ConfigClock(default=self.timer.end)
-		self.timerentry_showendtime = ConfigSelection(default=(((self.timer.end - self.timer.begin) /60 ) > 4), choices=[(True, _("yes")), (False, _("no"))])
+		self.timerentry_showendtime = ConfigSelection(default=(((self.timer.end - self.timer.begin) /60) > 4), choices=[(True, _("yes")), (False, _("no"))])
 
 		self.timerentry_repeatedbegindate = ConfigDateTime(default=self.timer.repeatedbegindate, formatstring=config.usage.date.full.value, increment=86400)
 
@@ -344,7 +344,7 @@ class TimerEntry(Screen, ConfigListScreen):
 				self.timer.end += 86400
 
 		endaction = self.timerentry_showendtime.value
-		if (self.timer.end - self.timer.begin )/60 < 5 or self.timerentry_showendtime.value is False:
+		if (self.timer.end - self.timer.begin)/60 < 5 or self.timerentry_showendtime.value is False:
 			self.timerentry_afterevent.value = "nothing"
 			self.timer.end = self.timer.begin
 			if endaction:

@@ -176,7 +176,7 @@ class Harddisk:
 			type_name = " (CF)"
 
 		hw_type = HardwareInfo().get_device_name()
-		if hw_type == 'elite' or hw_type == 'premium' or hw_type == 'premium+' or hw_type == 'ultra' :
+		if hw_type == 'elite' or hw_type == 'premium' or hw_type == 'premium+' or hw_type == 'ultra':
 			internal = "ide" in self.phys_path
 		else:
 			internal = ("pci" or "ahci") in self.phys_path
@@ -783,16 +783,16 @@ def addInstallTask(job, package):
 
 class HarddiskManager:
 	def __init__(self):
-		self.hdd = [ ]
+		self.hdd = []
 		self.cd = ""
-		self.partitions = [ ]
-		self.devices_scanned_on_init = [ ]
+		self.partitions = []
+		self.devices_scanned_on_init = []
 		self.on_partition_list_change = CList()
 		self.enumerateBlockDevices()
 		self.enumerateNetworkMounts()
 		# Find stuff not detected by the enumeration
 		p = [("/", _("Internal flash"))]
-		self.partitions.extend([ Partition(mountpoint=x[0], description=x[1]) for x in p ])
+		self.partitions.extend([Partition(mountpoint=x[0], description=x[1]) for x in p])
 
 	def getBlockDevInfo(self, blockdev):
 		devpath = "/sys/block/" + blockdev
@@ -905,7 +905,7 @@ class HarddiskManager:
 				print("[Harddisk] couldn't determine blockdev physdev for device", device)
 		error, blacklisted, removable, is_cdrom, partitions, medium_found = self.getBlockDevInfo(self.splitDeviceName(device)[0])
 		hw_type = HardwareInfo().get_device_name()
-		if hw_type == 'elite' or hw_type == 'premium' or hw_type == 'premium+' or hw_type == 'ultra' :
+		if hw_type == 'elite' or hw_type == 'premium' or hw_type == 'premium+' or hw_type == 'ultra':
 			if device[0:3] == "hda":
 				blacklisted = True
 		if not blacklisted and medium_found:
@@ -960,7 +960,7 @@ class HarddiskManager:
 		return len(self.hdd)
 
 	def HDDList(self):
-		list = [ ]
+		list = []
 		for hd in self.hdd:
 			hdd = hd.model() + " - " + hd.bus()
 			cap = hd.capacity()

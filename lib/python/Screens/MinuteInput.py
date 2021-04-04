@@ -11,7 +11,7 @@ class MinuteInput(Screen):
 		self["minutes"] = Input(str(basemins), type=Input.NUMBER)
 		self.MaxMinutes = 9999
 
-		self["actions"] = NumberActionMap([ "InputActions", "MinuteInputActions", "TextEntryActions", "KeyboardInputActions" ],
+		self["actions"] = NumberActionMap(["InputActions", "MinuteInputActions", "TextEntryActions", "KeyboardInputActions"],
 		{
 			"1": self.keyNumberGlobal,
 			"2": self.keyNumberGlobal,

@@ -10,7 +10,7 @@ class GUISkin:
 
 	def __init__(self):
 		self["Title"] = StaticText()
-		self.onLayoutFinish = [ ]
+		self.onLayoutFinish = []
 		self.summaries = CList()
 		self.instance = None
 		self.desktop = None

@@ -167,12 +167,12 @@ class SecConfigure:
 		sec.clear() ## this do unlinking NIMs too !!
 		print("[NimManager] sec config cleared")
 
-		self.linked = { }
-		self.satposdepends = { }
-		self.equal = { }
+		self.linked = {}
+		self.satposdepends = {}
+		self.equal = {}
 
 		nim_slots = self.NimManager.nim_slots
-		used_nim_slots = [ ]
+		used_nim_slots = []
 
 		try:
 			for slot in nim_slots:
@@ -238,7 +238,7 @@ class SecConfigure:
 			if slot.canBeCompatible("DVB-S"):
 				nim = slot.config.dvbs
 				print("[NimManager] slot: " + str(x) + " configmode: " + str(nim.configMode.value))
-				if nim.configMode.value in ( "loopthrough", "satposdepends", "nothing" ):
+				if nim.configMode.value in ("loopthrough", "satposdepends", "nothing"):
 					pass
 				else:
 					sec.setSlotNotLinked(x)
@@ -288,7 +288,7 @@ class SecConfigure:
 							turning_speed=0
 							if nim.powerMeasurement.value:
 								useInputPower=True
-								turn_speed_dict = { "fast": rotorParam.FAST, "slow": rotorParam.SLOW }
+								turn_speed_dict = {"fast": rotorParam.FAST, "slow": rotorParam.SLOW}
 								if nim.turningSpeed.value in turn_speed_dict:
 									turning_speed = turn_speed_dict[nim.turningSpeed.value]
 								else:
@@ -507,11 +507,11 @@ class SecConfigure:
 					# Committed Diseqc Command
 					cdc = currLnb.commitedDiseqcCommand.value
 
-					c = { "none": diseqcParam.SENDNO,
+					c = {"none": diseqcParam.SENDNO,
 						"AA": diseqcParam.AA,
 						"AB": diseqcParam.AB,
 						"BA": diseqcParam.BA,
-						"BB": diseqcParam.BB }
+						"BB": diseqcParam.BB}
 
 					if cdc in c:
 						sec.setCommittedCommand(c[cdc])
@@ -564,7 +564,7 @@ class SecConfigure:
 					if currLnb.powerMeasurement.value:
 						sec.setUseInputpower(True)
 						sec.setInputpowerDelta(currLnb.powerThreshold.value)
-						turn_speed_dict = { "fast": rotorParam.FAST, "slow": rotorParam.SLOW }
+						turn_speed_dict = {"fast": rotorParam.FAST, "slow": rotorParam.SLOW}
 						if currLnb.turningSpeed.value in turn_speed_dict:
 							turning_speed = turn_speed_dict[currLnb.turningSpeed.value]
 						else:
@@ -678,7 +678,7 @@ class SecConfigure:
 
 			for cnt in list(range(0, SatCR + 1)):
 				vcofreq = (cnt == SatCR) and vco or 0		# equivalent to vcofreq = (cnt == SatCR) ? vco : 0
-				if vcofreq == 0 :
+				if vcofreq == 0:
 					scrlist.append(("%d" %(cnt+1), "SCR %d " %(cnt+1) +_("not used")))
 				else:
 					scrlist.append(("%d" %(cnt+1), "SCR %d" %(cnt+1)))
@@ -932,7 +932,7 @@ class NimManager:
 		nimConfig = config.Nims[nim].dvbc
 		if nimConfig.configMode.value != "nothing" and nimConfig.scan_type.value == "provider":
 			return self.transponderscable[self.cablesList[nimConfig.scan_provider.index][0]]
-		return [ ]
+		return []
 
 	def getTranspondersTerrestrial(self, region):
 		return self.transpondersterrestrial[region]
@@ -1008,11 +1008,11 @@ class NimManager:
 			return orbpos + 1800
 
 	def readTransponders(self):
-		self.satellites = { }
-		self.transponders = { }
-		self.transponderscable = { }
-		self.transpondersterrestrial = { }
-		self.transpondersatsc = { }
+		self.satellites = {}
+		self.transponders = {}
+		self.transponderscable = {}
+		self.transpondersterrestrial = {}
+		self.transpondersatsc = {}
 		db = eDVBDB.getInstance()
 
 		try:
@@ -1215,7 +1215,7 @@ class NimManager:
 		# Type will be either "DVB-S", "DVB-S2", "DVB-S2X", "DVB-T", "DVB-C" or None.
 
 		# nim_slots is an array which has exactly one entry for each slot, even for empty ones.
-		self.nim_slots = [ ]
+		self.nim_slots = []
 
 		try:
 			nimfile = open("/proc/bus/nim_sockets")
@@ -1338,7 +1338,7 @@ class NimManager:
 		sec = secClass.getInstance()
 		global maxFixedLnbPositions
 		maxFixedLnbPositions = sec.getMaxFixedLnbPositions()
-		self.satList = [ ]
+		self.satList = []
 		self.cablesList = []
 		self.terrestrialsList = []
 		self.atscList = []
@@ -1348,7 +1348,7 @@ class NimManager:
 
 	# get a list with the friendly full description
 	def nimList(self):
-		result = [ ]
+		result = []
 		for slot in self.nim_slots:
 			result.append(slot.friendly_full_description)
 		return result
@@ -1796,7 +1796,7 @@ def InitNimManager(nimmgr, update_slots=None):
 
 	advanced_lnb_diction_user_choices = [("EN50494", "Unicable(EN50494)"), ("EN50607", "JESS(EN50607)")]
 
-	prio_list = [ ("-1", _("Auto")) ]
+	prio_list = [("-1", _("Auto"))]
 	for prio in list(range(65))+list(range(14000, 14065))+list(range(19000, 19065)):
 		description = ""
 		if prio == 0:
@@ -2267,7 +2267,7 @@ def InitNimManager(nimmgr, update_slots=None):
 			createATSCConfig(nim, x)
 		if not(slot.canBeCompatible("DVB-S") or slot.canBeCompatible("DVB-T") or slot.canBeCompatible("DVB-C") or slot.canBeCompatible("ATSC")):
 			empty_slots += 1
-			nim.configMode = ConfigSelection(choices={ "nothing": _("disabled") }, default="nothing")
+			nim.configMode = ConfigSelection(choices={"nothing": _("disabled")}, default="nothing")
 			if slot.type is not None:
 				print("[NimManager] pls add support for this frontend type!", slot.type)
 

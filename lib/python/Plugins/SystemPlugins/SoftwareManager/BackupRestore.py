@@ -208,9 +208,9 @@ class BackupScreen(Screen, ConfigListScreen):
 				self.session.open(Console, title=_("Backup is running..."), cmdlist=cmd, finishedCallback=self.backupFinishedCB, closeOnSuccess=True)
 		except OSError:
 			if self.finished_cb:
-				self.session.openWithCallback(self.finished_cb, MessageBox, _("Sorry, your backup destination is not writeable.\nPlease select a different one."), MessageBox.TYPE_INFO, timeout=10 )
+				self.session.openWithCallback(self.finished_cb, MessageBox, _("Sorry, your backup destination is not writeable.\nPlease select a different one."), MessageBox.TYPE_INFO, timeout=10)
 			else:
-				self.session.openWithCallback(self.backupErrorCB, MessageBox, _("Sorry, your backup destination is not writeable.\nPlease select a different one."), MessageBox.TYPE_INFO, timeout=10 )
+				self.session.openWithCallback(self.backupErrorCB, MessageBox, _("Sorry, your backup destination is not writeable.\nPlease select a different one."), MessageBox.TYPE_INFO, timeout=10)
 
 	def backupFinishedCB(self,retval=None):
 		config.usage.shutdownOK.setValue(self.save_shutdownOK)
@@ -258,7 +258,7 @@ class BackupSelection(Screen):
 		self.selectedFiles = self.configBackupDirs.value
 		defaultDir = '/'
 		inhibitDirs = ["/bin", "/boot", "/dev", "/autofs", "/lib", "/proc", "/sbin", "/sys", "/hdd", "/tmp", "/mnt", "/media"]
-		self.filelist = MultiFileSelectList(self.selectedFiles, defaultDir, inhibitDirs=inhibitDirs )
+		self.filelist = MultiFileSelectList(self.selectedFiles, defaultDir, inhibitDirs=inhibitDirs)
 		self["checkList"] = self.filelist
 
 		self["actions"] = ActionMap(["DirectionActions", "OkCancelActions", "ShortcutActions"],
@@ -433,7 +433,7 @@ class RestoreMenu(Screen):
 		for f in BLACKLISTED:
 			tarcmd = tarcmd + " --exclude " + f.strip("/")
 
-		cmds = [ tarcmd, MANDATORY_RIGHTS, "/etc/init.d/autofs restart", "killall -9 enigma2" ]
+		cmds = [tarcmd, MANDATORY_RIGHTS, "/etc/init.d/autofs restart", "killall -9 enigma2"]
 		if ret == True:
 			cmds.insert(0, "rm -R /etc/enigma2")
 			self.session.open(Console, title=_("Restoring..."), cmdlist=cmds)
@@ -827,7 +827,7 @@ class RestorePlugins(Screen):
 
 	def SearchIPK(self, ipkname):
 		ipkname = ipkname + "*"
-		search_dirs = [ "/media/hdd/images/ipk", "/media/usb/images/ipk", "/media/mmc/images/ipk", "/media/cf/images/ipk" ]
+		search_dirs = ["/media/hdd/images/ipk", "/media/usb/images/ipk", "/media/mmc/images/ipk", "/media/cf/images/ipk"]
 		sdirs = " ".join(search_dirs)
 		cmd = 'find %s -name "%s" | grep -iv "./open-multiboot/*" | head -n 1' % (sdirs, ipkname)
 		res = popen(cmd).read()

@@ -337,9 +337,9 @@ class PluginBrowser(Screen, ProtectedScreen):
 				self.list.append(PluginEntryComponent(plugin, self.listWidth))
 			i += 10
 		if config.usage.plugins_sort_mode.value == "a_z" or (not empty_sort_order and config.usage.plugins_sort_mode.value == "user"):
-			self.list.sort(key=lambda p_name : p_name[0].name.lower())
+			self.list.sort(key=lambda p_name: p_name[0].name.lower())
 		elif config.usage.plugins_sort_mode.value == "user":
-			self.list.sort(key=lambda listweight : listweight[0].listweight)
+			self.list.sort(key=lambda listweight: listweight[0].listweight)
 		self["list"].l.setList(self.list)
 		if self.sort_mode:
 			self["key_blue"].setText(_("Edit mode off"))
@@ -388,7 +388,7 @@ class PluginBrowser(Screen, ProtectedScreen):
 			try:
 				from Plugins.SystemPlugins.SoftwareManager.plugin import PluginManager
 			except ImportError:
-				self.session.open(MessageBox, _("The software management extension is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10 )
+				self.session.open(MessageBox, _("The software management extension is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10)
 			else:
 				self.session.openWithCallback(self.PluginDownloadBrowserClosed, PluginManager)
 
@@ -827,7 +827,7 @@ class PluginFilter(ConfigListScreen, Screen):
 		self["description"] = Label("")
 		self["labelExitsave"] = Label("[Exit] = " +_("Cancel") +"              [Ok] =" +_("Save"))
 
-		self.onChangedEntry = [ ]
+		self.onChangedEntry = []
 		self.list = []
 		ConfigListScreen.__init__(self, self.list, session=self.session, on_change=self.changedEntry)
 		self.createSetup()

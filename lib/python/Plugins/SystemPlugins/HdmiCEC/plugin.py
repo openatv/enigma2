@@ -58,7 +58,7 @@ class HdmiCECSetupScreen(Screen, ConfigListScreen):
 			"down": self.keyDown,
 		}, -2)
 
-		self.onChangedEntry = [ ]
+		self.onChangedEntry = []
 		self.list = []
 		ConfigListScreen.__init__(self, self.list, session=self.session, on_change=self.changedEntry)
 		self.advancedSettings("start")

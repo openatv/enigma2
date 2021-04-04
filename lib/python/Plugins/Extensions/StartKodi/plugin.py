@@ -104,7 +104,7 @@ class StartKodi2(Screen):
 
 ### TODO: check portability (busybox vs coreutils)
 	def getFreeNand(self):
-		os.system('sync ; sync ; sync' )
+		os.system('sync ; sync ; sync')
 		sizeread = os.popen("df | grep %s | tr -s ' '" % 'root')
 		c = sizeread.read().strip().split(" ")
 		sizeread.close()

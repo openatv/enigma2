@@ -10,12 +10,12 @@ class AudioIcon(Renderer):
 	def __init__(self):
 		Renderer.__init__(self)
 		self.size = None
-		self.nameAudioCache = { }
+		self.nameAudioCache = {}
 		self.pngname = ""
 		self.path = ""
 
 	def applySkin(self, desktop, parent):
-		attribs = [ ]
+		attribs = []
 		for (attrib, value) in self.skinAttributes:
 			if attrib == "path":
 				self.path = value

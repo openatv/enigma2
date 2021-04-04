@@ -44,7 +44,7 @@ class CIHelper:
 
 						for service in slot.findall("service"):
 							read_service_ref = six.ensure_str(service.get("ref"))
-							read_services.append (read_service_ref)
+							read_services.append(read_service_ref)
 
 						for provider in slot.findall("provider"):
 							read_provider_name = six.ensure_str(provider.get("name"))

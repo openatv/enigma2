@@ -37,7 +37,7 @@ class FSBLCheckerDM900(FSBLCheckerBase):
 
 class FSBLUpdater(Console):
 	CHECKER_LUT = {
-		"dm900" : FSBLCheckerDM900
+		"dm900": FSBLCheckerDM900
 	}
 	FLASH_FSBL_BINARY = spawn.find_executable("flash-fsbl")
 

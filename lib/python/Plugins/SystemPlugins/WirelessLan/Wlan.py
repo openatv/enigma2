@@ -319,7 +319,7 @@ class wpaSupplicant:
 					config.plugins.wlan.essid.value = essid
 
 				elif split[0] == 'proto':
-					if split[1] == 'WPA' :
+					if split[1] == 'WPA':
 						mode = 'WPA'
 					if split[1] == 'RSN':
 						mode = 'WPA2'
@@ -399,7 +399,7 @@ class Status:
 		result = six.ensure_str(result)
 		iface = extra_args
 		ssid = "off"
-		data = { 'essid': False, 'frequency': False, 'accesspoint': False, 'bitrate': False, 'encryption': False, 'quality': False, 'signal': False, 'channel': False, 'encryption_type': False, 'frequency': False, 'frequency_norm': False }
+		data = {'essid': False, 'frequency': False, 'accesspoint': False, 'bitrate': False, 'encryption': False, 'quality': False, 'signal': False, 'channel': False, 'encryption_type': False, 'frequency': False, 'frequency_norm': False}
 		for line in result.splitlines():
 			line = line.strip()
 			if "ESSID" in line:
@@ -420,16 +420,16 @@ class Status:
 				if ap is not None:
 					data['accesspoint'] = ap
 			if "Frequency" in line:
-				frequency = line[line.index('Frequency')+10 :line.index(' GHz')]
+				frequency = line[line.index('Frequency')+10:line.index(' GHz')]
 				if frequency is not None:
 					data['frequency'] = frequency
 			if "Bit Rate" in line:
 				if "kb" in line:
-					br = line[line.index('Bit Rate')+9 :line.index(' kb/s')]
+					br = line[line.index('Bit Rate')+9:line.index(' kb/s')]
 				elif "Gb" in line:
-					br = line[line.index('Bit Rate')+9 :line.index(' Gb/s')]
+					br = line[line.index('Bit Rate')+9:line.index(' Gb/s')]
 				else:
-					br = line[line.index('Bit Rate')+9 :line.index(' Mb/s')]
+					br = line[line.index('Bit Rate')+9:line.index(' Mb/s')]
 				if br is not None:
 					data['bitrate'] = br
 

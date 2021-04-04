@@ -79,7 +79,7 @@ def InitCiConfig():
 			config.ci[slot].relevantPidsRouting.slotid = slot
 			config.ci[slot].relevantPidsRouting.addNotifier(setRelevantPidsRouting)
 	if SystemInfo["CommonInterfaceCIDelay"]:
-		config.cimisc.dvbCiDelay = ConfigSelection(default="256", choices=[ ("16", _("16")), ("32", _("32")), ("64", _("64")), ("128", _("128")), ("256", _("256"))] )
+		config.cimisc.dvbCiDelay = ConfigSelection(default="256", choices=[("16", _("16")), ("32", _("32")), ("64", _("64")), ("128", _("128")), ("256", _("256"))])
 		config.cimisc.dvbCiDelay.addNotifier(setdvbCiDelay)
 	if getBrandOEM() in ('entwopia', 'tripledot', 'dreambox'):
 		if SystemInfo["HaveCISSL"]:
@@ -92,16 +92,16 @@ def InitCiConfig():
 class CISetup(Screen, ConfigListScreen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
-		self.skinName = ["Setup" ]
+		self.skinName = ["Setup"]
 		self.setup_title = _("CI Basic settings")
 		self["HelpWindow"] = Pixmap()
 		self["HelpWindow"].hide()
 		self["VKeyIcon"] = Boolean(False)
 		self['footnote'] = Label()
 
-		self.onChangedEntry = [ ]
+		self.onChangedEntry = []
 
-		self.list = [ ]
+		self.list = []
 		ConfigListScreen.__init__(self, self.list, session=session, on_change=self.changedEntry)
 
 		from Components.ActionMap import ActionMap
@@ -125,7 +125,7 @@ class CISetup(Screen, ConfigListScreen):
 	def createSetup(self):
 		level = config.usage.setup_level.index
 
-		self.list = [ ]
+		self.list = []
 
 		if level >= 1:
 			if SystemInfo["CommonInterfaceCIDelay"]:
@@ -169,7 +169,7 @@ class CISetup(Screen, ConfigListScreen):
 		return SetupSummary
 
 class MMIDialog(Screen):
-	def __init__(self, session, slotid, action, handler=eDVBCI_UI.getInstance(), wait_text="wait for ci...", screen_data=None ):
+	def __init__(self, session, slotid, action, handler=eDVBCI_UI.getInstance(), wait_text="wait for ci...", screen_data=None):
 		Screen.__init__(self, session)
 
 		print("MMIDialog with action" + str(action))
@@ -185,7 +185,7 @@ class MMIDialog(Screen):
 		self["title"] = Label("")
 		self["subtitle"] = Label("")
 		self["bottom"] = Label("")
-		self["entries"] = ConfigList([ ])
+		self["entries"] = ConfigList([])
 
 		self["actions"] = NumberActionMap(["SetupActions"],
 			{
@@ -222,7 +222,7 @@ class MMIDialog(Screen):
 
 	def addEntry(self, list, entry):
 		if entry[0] == "TEXT":		#handle every item (text / pin only?)
-			list.append( (entry[1], ConfigNothing(), entry[2]) )
+			list.append((entry[1], ConfigNothing(), entry[2]))
 		if entry[0] == "PIN":
 			pinlength = entry[1]
 			if entry[3] == 1:
@@ -232,7 +232,7 @@ class MMIDialog(Screen):
 				# unmasked pins:
 				x = ConfigPIN(0, len=pinlength)
 			self["subtitle"].setText(entry[2])
-			list.append( getConfigListEntry("", x) )
+			list.append(getConfigListEntry("", x))
 			self["bottom"].setText(_("please press OK when ready"))
 
 	def okbuttonClick(self):
@@ -284,7 +284,7 @@ class MMIDialog(Screen):
 		elif self.tag == "WAIT":
 			self.handler.stopMMI(self.slotid)
 			self.closeMmi()
-		elif self.tag in ( "MENU", "LIST" ):
+		elif self.tag in ("MENU", "LIST"):
 			print("cancel list")
 			self.handler.answerMenu(self.slotid, 0)
 			self.showWait()
@@ -335,8 +335,8 @@ class MMIDialog(Screen):
 		self["title"].setText("")
 		self["subtitle"].setText("")
 		self["bottom"].setText("")
-		list = [ ]
-		list.append( (self.wait_text, ConfigNothing()) )
+		list = []
+		list.append((self.wait_text, ConfigNothing()))
 		self.updateList(list)
 
 	def showScreen(self):
@@ -346,7 +346,7 @@ class MMIDialog(Screen):
 		else:
 			screen = self.handler.getMMIScreen(self.slotid)
 
-		list = [ ]
+		list = []
 
 		self.timer.stop()
 		if len(screen) > 0 and screen[0][0] == "CLOSE":
@@ -409,8 +409,8 @@ class MMIDialog(Screen):
 class CiMessageHandler:
 	def __init__(self):
 		self.session = None
-		self.ci = { }
-		self.dlgs = { }
+		self.ci = {}
+		self.dlgs = {}
 		self.auto_close = False
 		eDVBCI_UI.getInstance().ciStateChanged.get().append(self.ciStateChanged)
 		if getBoxType() in ('vuzero',):
@@ -500,13 +500,13 @@ class CiSelection(Screen):
 			}, -1)
 
 		self.dlg = None
-		self.state = { }
+		self.state = {}
 		self.slots = []
 		self.HighBitrateEntry = {}
 		self.RelevantPidsRoutingEntry = {}
 		self.entryData = []
 
-		self.list = [ ]
+		self.list = []
 		self["entries"] = ConfigList(self.list)
 		self["entries"].list = self.list
 		self["entries"].l.setList(self.list)
@@ -569,8 +569,8 @@ class CiSelection(Screen):
 				self.addToList((appname, ConfigNothing()), 2, slot)
 
 			self.addToList(getConfigListEntry(_("Set pin code persistent"), config.ci[slot].use_static_pin), -1, slot)
-			self.addToList(( _("Enter persistent PIN code"), ConfigNothing()), 5, slot)
-			self.addToList(( _("Reset persistent PIN code"), ConfigNothing()), 6, slot)
+			self.addToList((_("Enter persistent PIN code"), ConfigNothing()), 5, slot)
+			self.addToList((_("Reset persistent PIN code"), ConfigNothing()), 6, slot)
 			self.addToList(getConfigListEntry(_("Show CI messages"), config.ci[slot].show_ci_messages), -1, slot)
 			self.addToList(getConfigListEntry(_("Multiple service support"), config.ci[slot].canDescrambleMultipleServices), -1, slot)
 
@@ -630,9 +630,9 @@ class CiSelection(Screen):
 class PermanentPinEntry(Screen, ConfigListScreen):
 	def __init__(self, session, pin, pin_slot):
 		Screen.__init__(self, session)
-		self.skinName = ["ParentalControlChangePin", "Setup" ]
+		self.skinName = ["ParentalControlChangePin", "Setup"]
 		self.setup_title = _("Enter pin code")
-		self.onChangedEntry = [ ]
+		self.onChangedEntry = []
 
 		self.slot = pin_slot
 		self.pin = pin
@@ -698,7 +698,7 @@ class CIHelper(Screen):
 		Screen.__init__(self, session)
 		Screen.setTitle(self, _("CIHelper Setup"))
 		self.skinName = "CIHelper"
-		self.onChangedEntry = [ ]
+		self.onChangedEntry = []
 		self['ci0'] = Label(_("CIHelper for SLOT CI0"))
 		self['ci0active'] = Pixmap()
 		self['ci0inactive'] = Pixmap()
@@ -806,7 +806,7 @@ class CIHelperSetup(Screen, ConfigListScreen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
 		Screen.setTitle(self, _("CIHelper Setup"))
-		self.onChangedEntry = [ ]
+		self.onChangedEntry = []
 		self.list = []
 		ConfigListScreen.__init__(self, self.list, session=self.session, on_change=self.selectionChanged)
 		Screen.setTitle(self, _("CIHelper Setup"))

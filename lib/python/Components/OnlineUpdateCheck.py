@@ -59,7 +59,7 @@ class OnlineUpdateCheckPoller:
 				self.ipkg.startCmd(IpkgComponent.CMD_UPGRADE_LIST)
 			elif self.ipkg.currentCommand == IpkgComponent.CMD_UPGRADE_LIST:
 				self.total_packages = len(self.ipkg.getFetchedList())
-				print ('[OnlineVersionCheck] %s Updates available' % self.total_packages)
+				print('[OnlineVersionCheck] %s Updates available' % self.total_packages)
 				if self.total_packages:
 					from six.moves.urllib.request import urlopen
 					import socket

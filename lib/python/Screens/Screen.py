@@ -271,7 +271,7 @@ class Screen(dict):
 			# DEBUG: if type(f) is not type(self.close):  # Is this the best way to do this?
 			# DEBUG: Is the following an acceptable fix?
 			if not isinstance(f, type(self.close)):
-				exec(f , globals(), locals())
+				exec(f, globals(), locals())
 			else:
 				f()
 

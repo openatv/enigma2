@@ -445,7 +445,7 @@ class EPGSelection(Screen, HelpableScreen):
 				self.skinName = 'EPGvertical'
 			self['bouquetlist'] = EPGBouquetList(graphic=graphic)
 			self['bouquetlist'].hide()
-			self["list"] = MenuList([ ])
+			self["list"] = MenuList([])
 			self["piconCh1"] = ServiceEvent()
 			self["piconCh2"] = ServiceEvent()
 			self["piconCh3"] = ServiceEvent()
@@ -2160,7 +2160,7 @@ class EPGSelection(Screen, HelpableScreen):
 				self['key_red'] = Button(_('-24'))
 			elif config.epgselection.graph_red.value == "timer":
 				self['key_red'] = Button(_('Add Timer'))
-			elif config.epgselection.graph_red.value == "imdb" or config.epgselection.graph_red.value == None :
+			elif config.epgselection.graph_red.value == "imdb" or config.epgselection.graph_red.value == None:
 				self['key_red'] = Button(_('IMDb Search'))
 			elif config.epgselection.graph_red.value == "autotimer":
 				self['key_red'] = Button(_('Add AutoTimer'))
@@ -2187,7 +2187,7 @@ class EPGSelection(Screen, HelpableScreen):
 				self['key_green'] = Button(_('+24'))
 			elif config.epgselection.graph_green.value == "24minus":
 				self['key_green'] = Button(_('-24'))
-			elif config.epgselection.graph_green.value == "timer" or config.epgselection.graph_green.value == None :
+			elif config.epgselection.graph_green.value == "timer" or config.epgselection.graph_green.value == None:
 				self['key_green'] = Button(_('Add Timer'))
 			elif config.epgselection.graph_green.value == "imdb":
 				self['key_green'] = Button(_('IMDb Search'))
@@ -2224,7 +2224,7 @@ class EPGSelection(Screen, HelpableScreen):
 				self['key_yellow'] = Button(_('Add AutoTimer'))
 			elif config.epgselection.graph_yellow.value == "bouquetlist":
 				self['key_yellow'] = Button(_('BouquetList'))
-			elif config.epgselection.graph_yellow.value == "epgsearch" or config.epgselection.graph_yellow.value == None :
+			elif config.epgselection.graph_yellow.value == "epgsearch" or config.epgselection.graph_yellow.value == None:
 				self['key_yellow'] = Button(_('EPG Search'))
 			elif config.epgselection.graph_yellow.value == "showmovies":
 				self['key_yellow'] = Button(_('Recordings'))
@@ -2249,7 +2249,7 @@ class EPGSelection(Screen, HelpableScreen):
 				self['key_blue'] = Button(_('Add Timer'))
 			elif config.epgselection.graph_blue.value == "imdb":
 				self['key_blue'] = Button(_('IMDb Search'))
-			elif config.epgselection.graph_blue.value == "autotimer" or config.epgselection.graph_blue.value == None :
+			elif config.epgselection.graph_blue.value == "autotimer" or config.epgselection.graph_blue.value == None:
 				self['key_blue'] = Button(_('Add AutoTimer'))
 			elif config.epgselection.graph_blue.value == "bouquetlist":
 				self['key_blue'] = Button(_('BouquetList'))
@@ -2277,7 +2277,7 @@ class EPGSelection(Screen, HelpableScreen):
 				self['key_red'] = Button(_('-24'))
 			elif config.epgselection.vertical_red.value == "timer":
 				self['key_red'] = Button(_('Add Timer'))
-			elif config.epgselection.vertical_red.value == "imdb" or config.epgselection.vertical_red.value == None :
+			elif config.epgselection.vertical_red.value == "imdb" or config.epgselection.vertical_red.value == None:
 				self['key_red'] = Button(_('IMDb Search'))
 			elif config.epgselection.vertical_red.value == "autotimer":
 				self['key_red'] = Button(_('Add AutoTimer'))
@@ -2300,7 +2300,7 @@ class EPGSelection(Screen, HelpableScreen):
 				self['key_green'] = Button(_('+24'))
 			elif config.epgselection.vertical_green.value == "24minus":
 				self['key_green'] = Button(_('-24'))
-			elif config.epgselection.vertical_green.value == "timer" or config.epgselection.vertical_green.value == None :
+			elif config.epgselection.vertical_green.value == "timer" or config.epgselection.vertical_green.value == None:
 				self['key_green'] = Button(_('Add Timer'))
 			elif config.epgselection.vertical_green.value == "imdb":
 				self['key_green'] = Button(_('IMDb Search'))
@@ -2333,7 +2333,7 @@ class EPGSelection(Screen, HelpableScreen):
 				self['key_yellow'] = Button(_('Add AutoTimer'))
 			elif config.epgselection.vertical_yellow.value == "bouquetlist":
 				self['key_yellow'] = Button(_('BouquetList'))
-			elif config.epgselection.vertical_yellow.value == "epgsearch" or config.epgselection.vertical_yellow.value == None :
+			elif config.epgselection.vertical_yellow.value == "epgsearch" or config.epgselection.vertical_yellow.value == None:
 				self['key_yellow'] = Button(_('EPG Search'))
 			elif config.epgselection.vertical_yellow.value == "showmovies":
 				self['key_yellow'] = Button(_('Recordings'))
@@ -2354,7 +2354,7 @@ class EPGSelection(Screen, HelpableScreen):
 				self['key_blue'] = Button(_('Add Timer'))
 			elif config.epgselection.vertical_blue.value == "imdb":
 				self['key_blue'] = Button(_('IMDb Search'))
-			elif config.epgselection.vertical_blue.value == "autotimer" or config.epgselection.vertical_blue.value == None :
+			elif config.epgselection.vertical_blue.value == "autotimer" or config.epgselection.vertical_blue.value == None:
 				self['key_blue'] = Button(_('Add AutoTimer'))
 			elif config.epgselection.vertical_blue.value == "bouquetlist":
 				self['key_blue'] = Button(_('BouquetList'))

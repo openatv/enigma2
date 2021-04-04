@@ -83,7 +83,7 @@ class EPGList(HTMLComponent, GUIComponent):
 
 		self.overjump_empty = overjump_empty
 		self.timer = timer
-		self.onSelChanged = [ ]
+		self.onSelChanged = []
 		if selChangedCB is not None:
 			self.onSelChanged.append(selChangedCB)
 		GUIComponent.__init__(self)
@@ -104,7 +104,7 @@ class EPGList(HTMLComponent, GUIComponent):
 			self.l.setBuildFunc(self.buildSimilarEntry)
 		self.epgcache = eEPGCache.getInstance()
 
-		self.clocks = [ LoadPixmap(cached=True, path=resolveFilename(SCOPE_ACTIVE_SKIN, 'icons/epgclock_add.png')),
+		self.clocks = [LoadPixmap(cached=True, path=resolveFilename(SCOPE_ACTIVE_SKIN, 'icons/epgclock_add.png')),
 				LoadPixmap(cached=True, path=resolveFilename(SCOPE_ACTIVE_SKIN, 'icons/epgclock_pre.png')),
 				LoadPixmap(cached=True, path=resolveFilename(SCOPE_ACTIVE_SKIN, 'icons/epgclock.png')),
 				LoadPixmap(cached=True, path=resolveFilename(SCOPE_ACTIVE_SKIN, 'icons/epgclock_prepost.png')),
@@ -120,7 +120,7 @@ class EPGList(HTMLComponent, GUIComponent):
 				LoadPixmap(cached=True, path=resolveFilename(SCOPE_ACTIVE_SKIN, 'icons/epgclock_prepost.png')),
 				LoadPixmap(cached=True, path=resolveFilename(SCOPE_ACTIVE_SKIN, 'icons/epgclock_post.png'))]
 
-		self.selclocks = [ LoadPixmap(cached=True, path=resolveFilename(SCOPE_ACTIVE_SKIN, 'icons/epgclock_add.png')),
+		self.selclocks = [LoadPixmap(cached=True, path=resolveFilename(SCOPE_ACTIVE_SKIN, 'icons/epgclock_add.png')),
 				LoadPixmap(cached=True, path=resolveFilename(SCOPE_ACTIVE_SKIN, 'icons/epgclock_selpre.png')),
 				LoadPixmap(cached=True, path=resolveFilename(SCOPE_ACTIVE_SKIN, 'icons/epgclock.png')),
 				LoadPixmap(cached=True, path=resolveFilename(SCOPE_ACTIVE_SKIN, 'icons/epgclock_selprepost.png')),
@@ -228,40 +228,40 @@ class EPGList(HTMLComponent, GUIComponent):
 
 	def applySkin(self, desktop, screen):
 		if self.skinAttributes is not None:
-			attribs = [ ]
+			attribs = []
 			self.skinUsingForeColorByTime = False
 			self.skinUsingBackColorByTime = False
 			for (attrib, value) in self.skinAttributes:
 				if attrib == "ServiceFontGraphical":
-					font = parseFont(value, ((1, 1), (1, 1)) )
+					font = parseFont(value, ((1, 1), (1, 1)))
 					self.serviceFontNameGraph = font.family
 					self.serviceFontSizeGraph = font.pointSize
 				elif attrib == "EntryFontGraphical":
-					font = parseFont(value, ((1, 1), (1, 1)) )
+					font = parseFont(value, ((1, 1), (1, 1)))
 					self.eventFontNameGraph = font.family
 					self.eventFontSizeGraph = font.pointSize
 				elif attrib == "ServiceFontInfobar":
-					font = parseFont(value, ((1, 1), (1, 1)) )
+					font = parseFont(value, ((1, 1), (1, 1)))
 					self.serviceFontNameInfobar = font.family
 					self.serviceFontSizeInfobar = font.pointSize
 				elif attrib == "EventFontInfobar":
-					font = parseFont(value, ((1, 1), (1, 1)) )
+					font = parseFont(value, ((1, 1), (1, 1)))
 					self.eventFontNameInfobar = font.family
 					self.eventFontSizeInfobar = font.pointSize
 				elif attrib == "EventFontSingle":
-					font = parseFont(value, ((1, 1), (1, 1)) )
+					font = parseFont(value, ((1, 1), (1, 1)))
 					self.eventFontNameSingle = font.family
 					self.eventFontSizeSingle = font.pointSize
 				elif attrib == "EventFontMulti":
-					font = parseFont(value, ((1, 1), (1, 1)) )
+					font = parseFont(value, ((1, 1), (1, 1)))
 					self.eventFontNameMulti = font.family
 					self.eventFontSizeMulti = font.pointSize
 				elif attrib == "EventFontVertical":
-					font = parseFont(value, ((1, 1), (1, 1)) )
+					font = parseFont(value, ((1, 1), (1, 1)))
 					self.eventFontNameVertical = font.family
 					self.eventFontSizeVertical = font.pointSize
 				elif attrib == "TimeFontVertical":
-					font = parseFont(value, ((1, 1), (1, 1)) )
+					font = parseFont(value, ((1, 1), (1, 1)))
 					self.timeFontNameVertical = font.family
 					self.timeFontSizeVertical = font.pointSize
 				elif attrib == "EntryFontAlignment":
@@ -670,7 +670,7 @@ class EPGList(HTMLComponent, GUIComponent):
 					piconw = config.epgselection.graph_piconwidth.value
 				if self.showServiceNumber:
 					font = gFont(self.serviceFontNameGraph, self.serviceFontSizeGraph + config.epgselection.graph_servfs.value)
-					channelw = getTextBoundarySize(self.instance, font, self.instance.size(), "0000" ).width()
+					channelw = getTextBoundarySize(self.instance, font, self.instance.size(), "0000").width()
 			elif self.type == EPG_TYPE_INFOBARGRAPH:
 				if self.showServiceTitle:
 					servicew = config.epgselection.infobar_servicewidth.value
@@ -678,7 +678,7 @@ class EPGList(HTMLComponent, GUIComponent):
 					piconw = config.epgselection.infobar_piconwidth.value
 				if self.showServiceNumber:
 					font = gFont(self.serviceFontNameGraph, self.serviceFontSizeGraph + config.epgselection.infobar_servfs.value)
-					channelw = getTextBoundarySize(self.instance, font, self.instance.size(), "0000" ).width()
+					channelw = getTextBoundarySize(self.instance, font, self.instance.size(), "0000").width()
 			w = (piconw + servicew)
 			self.service_rect = Rect(0, 0, w, height)
 			self.event_rect = Rect(w, 0, width - w, height)
@@ -894,7 +894,7 @@ class EPGList(HTMLComponent, GUIComponent):
 		width = r2.w
 		height = r2.h
 		selected = self.cur_service[0] == service
-		res = [ None ]
+		res = [None]
 
 		borderTopPix = None
 		borderLeftPix = None
@@ -963,7 +963,7 @@ class EPGList(HTMLComponent, GUIComponent):
 				namefont = 0
 				namefontflag = RT_HALIGN_CENTER | RT_VALIGN_CENTER
 				font = gFont(self.serviceFontNameGraph, self.serviceFontSizeGraph + config.epgselection.graph_servfs.value)
-				channelWidth = getTextBoundarySize(self.instance, font, self.instance.size(), (channel < 10000)  and "0000" or str(channel) ).width()
+				channelWidth = getTextBoundarySize(self.instance, font, self.instance.size(), (channel < 10000)  and "0000" or str(channel)).width()
 				res.append(MultiContentEntryText(
 					pos=(r1.x + self.serviceNamePadding + piconWidth + self.serviceNamePadding, r1.y + self.serviceBorderWidth),
 					size=(channelWidth, r1.h - 2 * self.serviceBorderWidth),
@@ -1432,7 +1432,7 @@ class EPGList(HTMLComponent, GUIComponent):
 				return self.epgcache.lookupEvent(list, buildFunc)
 			else:
 				return self.epgcache.lookupEvent(list)
-		return [ ]
+		return []
 
 	def fillSimilarList(self, refstr, event_id):
 		# search similar broadcastings
@@ -1451,7 +1451,7 @@ class EPGList(HTMLComponent, GUIComponent):
 		else:
 			t = time()
 			epg_time = t - config.epg.histminutes.value*60
-		test = [ 'RIBDT', (service.ref.toString(), 0, epg_time, -1) ]
+		test = ['RIBDT', (service.ref.toString(), 0, epg_time, -1)]
 		self.list = self.queryEPG(test)
 		self.l.setList(self.list)
 		if t != epg_time:
@@ -1466,14 +1466,14 @@ class EPGList(HTMLComponent, GUIComponent):
 		self.selectionChanged()
 
 	def fillMultiEPG(self, services, stime=None):
-		test = [ (service.ref.toString(), 0, stime) for service in services ]
+		test = [(service.ref.toString(), 0, stime) for service in services]
 		test.insert(0, 'X0RIBDTCn')
 		self.list = self.queryEPG(test)
 		self.l.setList(self.list)
 		self.selectionChanged()
 
 	def updateMultiEPG(self, direction):
-		test = [ x[3] and (x[1], direction, x[3]) or (x[1], direction, 0) for x in self.list ]
+		test = [x[3] and (x[1], direction, x[3]) or (x[1], direction, 0) for x in self.list]
 		test.insert(0, 'XRIBDTCn')
 		epg_data = self.queryEPG(test)
 		cnt = 0
@@ -1523,21 +1523,21 @@ class EPGList(HTMLComponent, GUIComponent):
 			self.time_base = time_base
 			self.offs = 0
 			#//
-			test = [ (service[0], 0, time_base, self.time_epoch) for service in self.list ]
+			test = [(service[0], 0, time_base, self.time_epoch) for service in self.list]
 			serviceList = self.list
 			piconIdx = 3
 			channelIdx = 4
 		else:
 			self.cur_event = None
 			self.cur_service = None
-			test = [ (service.ref.toString(), 0, self.time_base, self.time_epoch) for service in services ]
+			test = [(service.ref.toString(), 0, self.time_base, self.time_epoch) for service in services]
 			serviceList = services
 			piconIdx = 0
 			channelIdx = None
 
 		test.insert(0, 'XRnITBD') #return record, service ref, service name, event id, event title, begin time, duration
 		epg_data = self.queryEPG(test)
-		self.list = [ ]
+		self.list = []
 		tmp_list = None
 		service = ""
 		sname = ""
@@ -1552,7 +1552,7 @@ class EPGList(HTMLComponent, GUIComponent):
 					serviceIdx += 1
 				service = x[0]
 				sname = x[1]
-				tmp_list = [ ]
+				tmp_list = []
 			tmp_list.append((x[2], x[3], x[4], x[5])) #(event_id, event_title, begin_time, duration)
 		if tmp_list and len(tmp_list):
 			picon = None if piconIdx == 0 else serviceList[serviceIdx][piconIdx]
@@ -1586,12 +1586,12 @@ class EPGList(HTMLComponent, GUIComponent):
 	def getEventRect(self):
 		rc = self.event_rect
 		if rc:
-			return Rect( rc.left() + (self.instance and self.instance.position().x() or 0), rc.top(), rc.width(), rc.height() )
+			return Rect(rc.left() + (self.instance and self.instance.position().x() or 0), rc.top(), rc.width(), rc.height())
 
 	def getServiceRect(self):
 		rc = self.service_rect
 		if rc:
-			return Rect( rc.left() + (self.instance and self.instance.position().x() or 0), rc.top(), rc.width(), rc.height() )
+			return Rect(rc.left() + (self.instance and self.instance.position().x() or 0), rc.top(), rc.width(), rc.height())
 
 	def getTimeEpoch(self):
 		return self.time_epoch
@@ -1644,7 +1644,7 @@ class TimelineText(HTMLComponent, GUIComponent):
 
 	def applySkin(self, desktop, screen):
 		if self.skinAttributes is not None:
-			attribs = [ ]
+			attribs = []
 			for (attrib, value) in self.skinAttributes:
 				if attrib == "foregroundColor":
 					self.foreColor = parseColor(value).argb()
@@ -1653,11 +1653,11 @@ class TimelineText(HTMLComponent, GUIComponent):
 				elif attrib == "backgroundColor":
 					self.backColor = parseColor(value).argb()
 				elif attrib == "font":
-					self.l.setFont(0, parseFont(value,  ((1, 1), (1, 1)) ))
+					self.l.setFont(0, parseFont(value,  ((1, 1), (1, 1))))
 				elif attrib == "borderWidth":
 					self.borderWidth = int(value)
 				elif attrib == "TimelineFont":
-					font = parseFont(value, ((1, 1), (1, 1)) )
+					font = parseFont(value, ((1, 1), (1, 1)))
 					self.timelineFontName = font.family
 					self.timelineFontSize = font.pointSize
 				elif attrib == "TimelineAlignment":
@@ -1702,7 +1702,7 @@ class TimelineText(HTMLComponent, GUIComponent):
 
 		eventLeft = event_rect.left()
 
-		res = [ None ]
+		res = [None]
 
 		# Note: event_rect and service_rect are relative to the timeline_text position
 		# while the time lines are relative to the GraphEPG screen position!
@@ -1744,7 +1744,7 @@ class TimelineText(HTMLComponent, GUIComponent):
 					png=bgpng,
 					flags=BT_SCALE))
 			else:
-				res.append( MultiContentEntryText(
+				res.append(MultiContentEntryText(
 					pos=(0, 0),
 					size=(service_rect.width(), self.listHeight),
 					color=foreColor,
@@ -1770,7 +1770,7 @@ class TimelineText(HTMLComponent, GUIComponent):
 					png=bgpng,
 					flags=BT_SCALE))
 			else:
-				res.append( MultiContentEntryText(
+				res.append(MultiContentEntryText(
 					pos=(service_rect.width(), 0),
 					size=(event_rect.width(), self.listHeight),
 					color=foreColor,
@@ -1822,7 +1822,7 @@ class EPGBouquetList(HTMLComponent, GUIComponent):
 		self.l = eListboxPythonMultiContent()
 		self.l.setBuildFunc(self.buildEntry)
 
-		self.onSelChanged = [ ]
+		self.onSelChanged = []
 
 		self.foreColor = 0xffffff
 		self.foreColorSelected = 0xffffff
@@ -1849,10 +1849,10 @@ class EPGBouquetList(HTMLComponent, GUIComponent):
 
 	def applySkin(self, desktop, screen):
 		if self.skinAttributes is not None:
-			attribs = [ ]
+			attribs = []
 			for (attrib, value) in self.skinAttributes:
 				if attrib == "font":
-					font = parseFont(value, ((1, 1), (1, 1)) )
+					font = parseFont(value, ((1, 1), (1, 1)))
 					self.bouquetFontName = font.family
 					self.bouquetFontSize = font.pointSize
 				elif attrib == "foregroundColor":
@@ -1941,7 +1941,7 @@ class EPGBouquetList(HTMLComponent, GUIComponent):
 
 	def getBouquetRect(self):
 		rc = self.bouquet_rect
-		return Rect( rc.left() + (self.instance and self.instance.position().x() or 0), rc.top(), rc.width(), rc.height() )
+		return Rect(rc.left() + (self.instance and self.instance.position().x() or 0), rc.top(), rc.width(), rc.height())
 
 	def buildEntry(self, name, func):
 		r1 = self.bouquet_rect
@@ -1963,7 +1963,7 @@ class EPGBouquetList(HTMLComponent, GUIComponent):
 			else:
 				alignnment = RT_HALIGN_CENTER | RT_VALIGN_CENTER
 
-		res = [ None ]
+		res = [None]
 
 		if selected:
 			if self.graphic:

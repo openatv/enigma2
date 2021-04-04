@@ -2,7 +2,7 @@ from __future__ import absolute_import
 from Components.MenuList import MenuList
 
 class FIFOList(MenuList):
-	def __init__(self, list=[ ], len=10):
+	def __init__(self, list=[], len=10):
 		self.len = len
 		self.list = list
 		MenuList.__init__(self, self.list)

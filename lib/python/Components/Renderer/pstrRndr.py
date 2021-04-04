@@ -23,7 +23,7 @@ class pstrRndr(Renderer):
 	def changed(self, what):
 		try:
 			eventName = self.source.text
-			if eventName :
+			if eventName:
 				poster = '/tmp/poster/poster.jpg'
 				if os.path.exists(poster):
 					self.instance.setPixmap(loadJPG(poster))

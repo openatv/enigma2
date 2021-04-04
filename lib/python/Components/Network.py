@@ -64,10 +64,10 @@ class Network:
 
 	# helper function to convert ips from a sring to a list of ints
 	def convertIP(self, ip):
-		return [ int(n) for n in ip.split('.') ]
+		return [int(n) for n in ip.split('.')]
 
 	def getAddrInet(self, iface, callback):
-		data = { 'up': False, 'dhcp': False, 'preup' : False, 'predown' : False }
+		data = {'up': False, 'dhcp': False, 'preup': False, 'predown': False}
 		try:
 			data['up'] = int(open('/sys/class/net/%s/flags' % iface).read().strip(), 16) & 1 == 1
 			if data['up']:
@@ -438,7 +438,7 @@ class Network:
 		self.restartConsole.eBatch(self.commands, self.restartNetworkFinished, callback, debug=True)
 
 	def restartNetworkFinished(self, extra_args):
-		( callback ) = extra_args
+		(callback) = extra_args
 		if callback is not None:
 			try:
 				callback(True)
@@ -568,10 +568,10 @@ class Network:
 		if isinstance(ifaces, (list, tuple)):
 			for iface in ifaces:
 				if checkCommandResult(iface) is False:
-					Console().ePopen(("ifconfig " + iface + " down" ))
+					Console().ePopen(("ifconfig " + iface + " down"))
 		else:
 			if checkCommandResult(ifaces) is False:
-				Console().ePopen(("ifconfig " + ifaces + " down" ))
+				Console().ePopen(("ifconfig " + ifaces + " down"))
 
 		if self.deactivateInterfaceConsole:
 			if len(self.deactivateInterfaceConsole.appContainers) == 0:
@@ -721,7 +721,7 @@ class Network:
 			for x in nameservers.split()[1:]:
 				ip = self.regExpMatch(ipPattern, x)
 				if ip:
-					result.append( [ int(n) for n in ip.split('.') ] )
+					result.append([int(n) for n in ip.split('.')])
 		if len(self.nameservers) and not result: # use also global nameserver if we got no one from interface
 			result.extend(self.nameservers)
 		return result

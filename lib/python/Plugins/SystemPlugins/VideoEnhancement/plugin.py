@@ -19,7 +19,7 @@ class VideoEnhancementSetup(Screen, ConfigListScreen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
 		self.session = session
-		self.onChangedEntry = [ ]
+		self.onChangedEntry = []
 		self.skinName = ["VideoEnhancementSetup"]
 		self.setup_title = _("Video enhancement setup")
 		self["HelpWindow"] = Pixmap()
@@ -29,8 +29,8 @@ class VideoEnhancementSetup(Screen, ConfigListScreen):
 		self["description"] = Label(_(""))
 		self["introduction"] = StaticText()
 
-		self.list = [ ]
-		self.xtdlist = [ ]
+		self.list = []
+		self.xtdlist = []
 		ConfigListScreen.__init__(self, self.list, session=self.session, on_change=self.changedEntry)
 		self.createSetup()
 
@@ -151,7 +151,7 @@ class VideoEnhancementSetup(Screen, ConfigListScreen):
 				self.splitEntry
 			]
 			maxvalue = current[1].max
-			self.session.openWithCallback(self.PreviewClosed, VideoEnhancementPreview, configEntry=self.previewlist, oldSplitMode=config.pep.split.value, maxValue=maxvalue )
+			self.session.openWithCallback(self.PreviewClosed, VideoEnhancementPreview, configEntry=self.previewlist, oldSplitMode=config.pep.split.value, maxValue=maxvalue)
 		else:
 			self.previewlist = [
 				current
@@ -302,14 +302,14 @@ class VideoEnhancementPreview(Screen, ConfigListScreen):
 	def __init__(self, session, configEntry=None, oldSplitMode=None, maxValue=None):
 		Screen.__init__(self, session)
 
-		self.onChangedEntry = [ ]
+		self.onChangedEntry = []
 		self.setup_title = "Videoenhancement"
 		self.oldSplitMode = oldSplitMode
 		self.maxValue = maxValue
 		self.configStepsEntry = None
 		self.isStepSlider = None
 
-		self.list = [ ]
+		self.list = []
 		self.configEntry = configEntry
 		ConfigListScreen.__init__(self, self.list, session=session, on_change=self.changedEntry)
 
@@ -330,7 +330,7 @@ class VideoEnhancementPreview(Screen, ConfigListScreen):
 		self.setTitle(_("Video enhancement preview"))
 
 	def createSetup(self):
-		self.list = [ ]
+		self.list = []
 		if self.maxValue == 255:
 			self.configStepsEntry = getConfigListEntry(_("Change step size"), config.pep.configsteps)
 
@@ -408,7 +408,7 @@ def videoEnhancementSetupMain(session, **kwargs):
 
 def startSetup(menuid):
 	if menuid != "video_menu":
-		return [ ]
+		return []
 	return [(_("Extended settings"), videoEnhancementSetupMain, "videoenhancement_setup", 5)]
 
 def Plugins(**kwargs):

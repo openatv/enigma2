@@ -226,7 +226,7 @@ class MovieBrowserConfiguration(ConfigListScreen, Screen):
 		self['footnote'] = Label("")
 		self["description"] = Label("")
 
-		self.onChangedEntry = [ ]
+		self.onChangedEntry = []
 		cfg = ConfigSubsection()
 		self.cfg = cfg
 		cfg.moviesort = ConfigSelection(default=str(config.movielist.moviesort.value), choices=l_moviesort)
@@ -1776,7 +1776,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase, Pr
 						if os.path.isdir(d) and (d not in inlist):
 							bookmarks.append((fn, d))
 							inlist.append(d)
-			except Exception as e :
+			except Exception as e:
 				print("[MovieSelection]", e)
 			# Last favourites
 			for d in last_selected_dest:

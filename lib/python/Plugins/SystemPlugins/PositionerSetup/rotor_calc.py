@@ -14,7 +14,7 @@ def calcElevation(SatLon, SiteLat, SiteLon, Height_over_ocean=0):
 	sinRadSiteLat = math.sin(math.radians(SiteLat))
 	cosRadSiteLat = math.cos(math.radians(SiteLat))
 
-	Rstation = r_eq / (math.sqrt( 1.00 - f * (2.00 - f) * sinRadSiteLat **2))
+	Rstation = r_eq / (math.sqrt(1.00 - f * (2.00 - f) * sinRadSiteLat **2))
 
 	Ra = (Rstation + Height_over_ocean) * cosRadSiteLat
 	Rz = Rstation * (1.00 - f) * (1.00 - f) * sinRadSiteLat
@@ -36,7 +36,7 @@ def calcElevation(SatLon, SiteLat, SiteLon, Height_over_ocean=0):
 	refraction = math.fabs(a0 + (a1 + (a2 + (a3 + a4 * x) * x) * x) * x)
 
 	if El_geometric > 10.2:
-		El_observed = El_geometric + 0.01617 * (math.cos(math.radians(math.fabs(El_geometric)))/math.sin(math.radians(math.fabs(El_geometric))) )
+		El_observed = El_geometric + 0.01617 * (math.cos(math.radians(math.fabs(El_geometric)))/math.sin(math.radians(math.fabs(El_geometric))))
 	else:
 		El_observed = El_geometric + refraction
 
@@ -80,7 +80,7 @@ def calcDeclination(SiteLat, Azimuth, Elevation):
 	))
 
 def calcSatHourangle(SatLon, SiteLat, SiteLon):
-	Azimuth = calcAzimuth(SatLon, SiteLat, SiteLon )
+	Azimuth = calcAzimuth(SatLon, SiteLat, SiteLon)
 	Elevation = calcElevation(SatLon, SiteLat, SiteLon)
 
 	a = - math.cos(math.radians(Elevation)) * math.sin(math.radians(Azimuth))

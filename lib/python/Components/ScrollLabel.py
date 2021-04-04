@@ -31,7 +31,7 @@ class ScrollLabel(HTMLComponent, GUIComponent):
 		if self.skinAttributes:
 			widget_attribs = []
 			scrollbar_attribs = []
-			remove_attribs = [ ]
+			remove_attribs = []
 			for (attrib, value) in self.skinAttributes:
 				if "itemHeight" in attrib:
 					itemHeight = int(value)

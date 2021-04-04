@@ -336,7 +336,7 @@ class WlanScan(Screen):
 
 		if len(tmpList):
 			for entry in tmpList:
-				self.newAPList.append(self.buildEntryComponent( entry[0], entry[1], entry[2], entry[3], entry[4], entry[5], entry[6] ))
+				self.newAPList.append(self.buildEntryComponent(entry[0], entry[1], entry[2], entry[3], entry[4], entry[5], entry[6]))
 
 			currentListEntry = self["list"].getCurrent()
 			if currentListEntry is not None:
@@ -364,8 +364,8 @@ class WlanScan(Screen):
 			for ap in aps:
 				a = aps[ap]
 				if a['active']:
-					tmpList.append( (a['essid'], a['bssid']) )
-					compList.append( (a['essid'], a['bssid'], a['encrypted'], a['iface'], a['maxrate'], a['signal'], a['frequency_norm']) )
+					tmpList.append((a['essid'], a['bssid']))
+					compList.append((a['essid'], a['bssid'], a['encrypted'], a['iface'], a['maxrate'], a['signal'], a['frequency_norm']))
 
 			for entry in tmpList:
 				if entry[0] == "":
@@ -373,14 +373,14 @@ class WlanScan(Screen):
 						if compentry[1] == entry[1]:
 							compList.remove(compentry)
 			for entry in compList:
-				self.cleanList.append( ( entry[0], entry[1], entry[2], entry[3], entry[4], entry[5], entry[6]) )
+				self.cleanList.append((entry[0], entry[1], entry[2], entry[3], entry[4], entry[5], entry[6]))
 				if entry[0] not in self.oldlist:
-					self.oldlist[entry[0]] = { 'data': entry }
+					self.oldlist[entry[0]] = {'data': entry}
 				else:
 					self.oldlist[entry[0]]['data'] = entry
 
 		for entry in self.cleanList:
-			self.APList.append(self.buildEntryComponent( entry[0], entry[1], entry[2], entry[3], entry[4], entry[5], entry[6] ))
+			self.APList.append(self.buildEntryComponent(entry[0], entry[1], entry[2], entry[3], entry[4], entry[5], entry[6]))
 
 		if refresh is False:
 			self['list'].setList(self.APList)
@@ -399,7 +399,7 @@ class WlanScan(Screen):
 	def buildWlanList(self):
 		self.WlanList = []
 		for entry in self['list'].list:
-			self.WlanList.append( (entry[0], entry[0]) )
+			self.WlanList.append((entry[0], entry[0]))
 
 	def getLength(self):
 		return self.listLength

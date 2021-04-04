@@ -72,6 +72,6 @@ class pstrCnvrt(Converter, object):
 			if seg:
 				if re.search('Episodio', i):
 					return 'S'+seg.group(2).zfill(2)+'E'+seg.group(1).zfill(2)
-				else :
+				else:
 					return 'S'+seg.group(1).zfill(2)+'E'+seg.group(2).zfill(2)
 		return ''

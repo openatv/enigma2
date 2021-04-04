@@ -20,13 +20,13 @@ class Title:
 		self.DVBname = _("Title")
 		self.DVBdescr = _("Description")
 		self.DVBchannel = _("Channel")
-		self.cuesheet = [ ]
+		self.cuesheet = []
 		self.source = None
 		self.filesize = 0
 		self.estimatedDiskspace = 0
 		self.inputfile = ""
-		self.cutlist = [ ]
-		self.chaptermarks = [ ]
+		self.cutlist = []
+		self.chaptermarks = []
 		self.timeCreate = None
 		self.project = project
 		self.length = 0
@@ -83,7 +83,7 @@ class Title:
 		template = template.replace("$C", self.DVBchannel)
 		
 		#if template.find("$A") >= 0:
-		audiolist = [ ]
+		audiolist = []
 		for audiotrack in self.properties.audiotracks:
 			active = audiotrack.active.getValue()
 			if active:
@@ -117,8 +117,8 @@ class Title:
 		accumulated_at = 0
 		last_in = 0
 
-		self.cutlist = [ ]
-		self.chaptermarks = [ ]
+		self.cutlist = []
+		self.chaptermarks = []
 
 		# our demuxer expects *strictly* IN,OUT lists.
 		currently_in = not any(type == CUT_TYPE_IN for pts, type in self.cuesheet)
@@ -148,13 +148,13 @@ class Title:
 				
 		if len(self.cutlist) > 1:
 			part = accumulated_in / (self.length*90000.0)
-			usedsize = int ( part * self.filesize )
+			usedsize = int(part * self.filesize)
 			self.estimatedDiskspace = usedsize
 			self.length = accumulated_in / 90000
 
 	def getChapterMarks(self, template="$h:$m:$s.$t"):
-		timestamps = [ ]
-		chapters = [ ]
+		timestamps = []
+		chapters = []
 		minutes = self.properties.autochapter.getValue()
 		if len(self.chaptermarks) < 1 and minutes > 0:
 			chapterpts = 0

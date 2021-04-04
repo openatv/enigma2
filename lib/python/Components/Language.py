@@ -114,7 +114,7 @@ class Language:
 
 		# NOTE: we do not use LC_ALL, because LC_ALL will not set any of the categories, when one of the categories fails.
 		# We'd rather try to set all available categories, and ignore the others
-		for category in [locale.LC_TIME, locale.LC_MONETARY, locale.LC_MESSAGES, locale.LC_NUMERIC ]:
+		for category in [locale.LC_TIME, locale.LC_MONETARY, locale.LC_MESSAGES, locale.LC_NUMERIC]:
 			try:
 				locale.setlocale(category, (self.getLanguage(), 'UTF-8'))
 			except:
@@ -127,9 +127,9 @@ class Language:
 			os.mkdir('/home/root/.config') 
 
 		localeconf = open('/home/root/.config/locale.conf', 'w')
-		for category in ["LC_TIME", "LC_DATE", "LC_MONETARY", "LC_MESSAGES", "LC_NUMERIC", "LC_NAME", "LC_TELEPHONE", "LC_ADDRESS", "LC_PAPER", "LC_IDENTIFICATION", "LC_MEASUREMENT", "LANG" ]:
+		for category in ["LC_TIME", "LC_DATE", "LC_MONETARY", "LC_MESSAGES", "LC_NUMERIC", "LC_NAME", "LC_TELEPHONE", "LC_ADDRESS", "LC_PAPER", "LC_IDENTIFICATION", "LC_MEASUREMENT", "LANG"]:
 			if category == "LANG" or (category == "LC_DATE" and os.path.exists('/usr/lib/locale/' + self.getLanguage() + '/LC_TIME')) or os.path.exists('/usr/lib/locale/' + self.getLanguage() + '/' + category):
-				localeconf.write('export %s="%s.%s"\n' % (category, self.getLanguage(), "UTF-8" ))
+				localeconf.write('export %s="%s.%s"\n' % (category, self.getLanguage(), "UTF-8"))
 			else:
 				if os.path.exists('/usr/lib/locale/C.UTF-8/' + category):
 					localeconf.write('export %s="C.UTF-8"\n' % category)
@@ -146,7 +146,7 @@ class Language:
 			self.activateLanguage(self.langlist[index])
 
 	def getLanguageList(self):
-		return [ (x, self.lang[x]) for x in self.langlist ]
+		return [(x, self.lang[x]) for x in self.langlist]
 
 	def getLanguageListSelection(self):
 		return self.langlistselection

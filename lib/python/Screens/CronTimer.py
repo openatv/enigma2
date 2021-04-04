@@ -21,7 +21,7 @@ class CronTimers(Screen):
 		if not path.exists('/usr/script'):
 			mkdir('/usr/script', 0o755)
 		Screen.setTitle(self, _("Cron Manager"))
-		self.onChangedEntry = [ ]
+		self.onChangedEntry = []
 		self['lab1'] = Label(_("Autostart:"))
 		self['labactive'] = Label(_(_("Active")))
 		self['labdisabled'] = Label(_(_("Disabled")))
@@ -264,7 +264,7 @@ class CronTimers(Screen):
 			self.session.open(MessageBox, _(myline), MessageBox.TYPE_INFO)
 
 config.crontimers = ConfigSubsection()
-config.crontimers.commandtype = NoSave(ConfigSelection(choices=[ ('custom', _("Custom")), ('predefined', _("Predefined")) ]))
+config.crontimers.commandtype = NoSave(ConfigSelection(choices=[('custom', _("Custom")), ('predefined', _("Predefined"))]))
 config.crontimers.cmdtime = NoSave(ConfigClock(default=0))
 config.crontimers.cmdtime.value, mytmpt = ([0, 0], [0, 0])
 config.crontimers.user_command = NoSave(ConfigText(fixed_size=False))
@@ -277,7 +277,7 @@ class CronTimersConfig(Screen, ConfigListScreen):
 		Screen.__init__(self, session)
 		Screen.setTitle(self, _("Cron Manager"))
 		self.skinName = "Setup"
-		self.onChangedEntry = [ ]
+		self.onChangedEntry = []
 		self.list = []
 		ConfigListScreen.__init__(self, self.list, session=self.session, on_change=self.changedEntry)
 		self['key_red'] = Label(_("Close"))

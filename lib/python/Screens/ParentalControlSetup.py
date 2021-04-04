@@ -32,9 +32,9 @@ class ParentalControlSetup(Screen, ConfigListScreen, ProtectedScreen):
 		Screen.__init__(self, session)
 		ProtectedScreen.__init__(self)
 		# for the skin: first try ParentalControlSetup, then Setup, this allows individual skinning
-		self.skinName = ["ParentalControlSetup", "Setup" ]
+		self.skinName = ["ParentalControlSetup", "Setup"]
 		self.setup_title = _("Parental control setup")
-		self.onChangedEntry = [ ]
+		self.onChangedEntry = []
 
 		self.list = []
 		ConfigListScreen.__init__(self, self.list, session=self.session, on_change=self.changedEntry)
@@ -160,9 +160,9 @@ class ParentalControlChangePin(Screen, ConfigListScreen, ProtectedScreen):
 	def __init__(self, session, pin, pinname):
 		Screen.__init__(self, session)
 		# for the skin: first try ParentalControlChangePin, then Setup, this allows individual skinning
-		self.skinName = ["ParentalControlChangePin", "Setup" ]
+		self.skinName = ["ParentalControlChangePin", "Setup"]
 		self.setup_title = _("Change pin code")
-		self.onChangedEntry = [ ]
+		self.onChangedEntry = []
 
 		self.pin = pin
 		self.list = []

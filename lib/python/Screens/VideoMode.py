@@ -57,7 +57,7 @@ class VideoSetup(Screen, ConfigListScreen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
 		# for the skin: first try VideoSetup, then Setup, this allows individual skinning
-		self.skinName = ["VideoSetup", "Setup" ]
+		self.skinName = ["VideoSetup", "Setup"]
 		self.setup_title = _("Video settings")
 		self["HelpWindow"] = Pixmap()
 		self["HelpWindow"].hide()
@@ -65,13 +65,13 @@ class VideoSetup(Screen, ConfigListScreen):
 		self['footnote'] = Label()
 
 		self.hw = iAVSwitch
-		self.onChangedEntry = [ ]
+		self.onChangedEntry = []
 
 		# handle hotplug by re-creating setup
 		self.onShow.append(self.startHotplug)
 		self.onHide.append(self.stopHotplug)
 
-		self.list = [ ]
+		self.list = []
 		ConfigListScreen.__init__(self, self.list, session=session, on_change=self.changedEntry)
 
 		from Components.ActionMap import ActionMap
@@ -437,7 +437,7 @@ class AudioSetup(Screen, ConfigListScreen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
 		# for the skin: first try AudioSetup, then Setup, this allows individual skinning
-		self.skinName = ["AudioSetup", "Setup" ]
+		self.skinName = ["AudioSetup", "Setup"]
 		self.setup_title = _("Audio settings")
 		self["HelpWindow"] = Pixmap()
 		self["HelpWindow"].hide()
@@ -445,13 +445,13 @@ class AudioSetup(Screen, ConfigListScreen):
 		self['footnote'] = Label()
 
 		self.hw = iAVSwitch
-		self.onChangedEntry = [ ]
+		self.onChangedEntry = []
 
 		# handle hotplug by re-creating setup
 		self.onShow.append(self.startHotplug)
 		self.onHide.append(self.stopHotplug)
 
-		self.list = [ ]
+		self.list = []
 		ConfigListScreen.__init__(self, self.list, session=session, on_change=self.changedEntry)
 
 		from Components.ActionMap import ActionMap
@@ -481,7 +481,7 @@ class AudioSetup(Screen, ConfigListScreen):
 	def createSetup(self):
 		level = config.usage.setup_level.index
 
-		self.list = [ ]
+		self.list = []
 		
 		if level >= 1:
 			if SystemInfo["CanPcmMultichannel"]:

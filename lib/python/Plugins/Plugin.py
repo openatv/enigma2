@@ -90,7 +90,7 @@ class PluginDescriptor(object):
 		if isinstance(where, list):
 			self.where = where
 		else:
-			self.where = [ where ]
+			self.where = [where]
 		self.description = description
 
 		if icon is None or isinstance(icon, str):

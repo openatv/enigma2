@@ -5,8 +5,8 @@ from enigma import eDBoxLCD
 from Components.SystemInfo import SystemInfo
 
 config.plugins.minitv = ConfigSubsection()
-config.plugins.minitv.enable = ConfigSelection(default="disable", choices=[ ("enable", "enable"), ("disable", "disable")])
-config.plugins.minitv.decoder = ConfigSelection(default="0", choices=[ ("0", "0"), ("1", "1")])
+config.plugins.minitv.enable = ConfigSelection(default="disable", choices=[("enable", "enable"), ("disable", "disable")])
+config.plugins.minitv.decoder = ConfigSelection(default="0", choices=[("0", "0"), ("1", "1")])
 
 class MiniTV:
 	def __init__(self):

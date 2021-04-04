@@ -352,7 +352,7 @@ class ButtonSetup(Screen):
 		if key:
 			selected = []
 			for x in eval("config.misc.ButtonSetup." + key + ".value.split(',')"):
-				function = list(function for function in self.ButtonSetupFunctions if function[1] == x )
+				function = list(function for function in self.ButtonSetupFunctions if function[1] == x)
 				if function:
 					selected.append(ChoiceEntryComponent('', ((function[0][0]), function[0][1])))
 			self["choosen"].setList(selected)
@@ -373,7 +373,7 @@ class ButtonSetupSelect(Screen):
 		self.expanded = []
 		self.selected = []
 		for x in self.config.value.split(','):
-			function = list(function for function in self.ButtonSetupFunctions if function[1] == x )
+			function = list(function for function in self.ButtonSetupFunctions if function[1] == x)
 			if function:
 				self.selected.append(ChoiceEntryComponent('', ((function[0][0]), function[0][1])))
 		self.prevselected = self.selected[:]
@@ -548,7 +548,7 @@ class InfoBarButtonSetup():
 			elif x.startswith("Zap"):
 				selected.append(((_("Zap to") + " " + ServiceReference(eServiceReference(x.split("/", 1)[1]).toString()).getServiceName()), x))
 			else:
-				function = list(function for function in getButtonSetupFunctions() if function[1] == x )
+				function = list(function for function in getButtonSetupFunctions() if function[1] == x)
 				if function:
 					selected.append(function[0])
 		return selected
@@ -664,11 +664,11 @@ class InfoBarButtonSetup():
 			elif selected[0] == "ScriptRunner":
 				if os.path.isfile("/usr/lib/enigma2/python/Plugins/Extensions/Infopanel/ScriptRunner.py"):
 					from Plugins.Extensions.Infopanel.ScriptRunner import ScriptRunner
-					self.session.open (ScriptRunner)
+					self.session.open(ScriptRunner)
 			elif selected[0] == "QuickMenu":
 				if os.path.isfile("/usr/lib/enigma2/python/Plugins/Extensions/Infopanel/QuickMenu.py"):
 					from Plugins.Extensions.Infopanel.QuickMenu import QuickMenu
-					self.session.open (QuickMenu)
+					self.session.open(QuickMenu)
 			elif selected[0] == "Kodi":
 				if os.path.isfile("/usr/lib/enigma2/python/Plugins/Extensions/Kodi/plugin.py"):
 					from Plugins.Extensions.Kodi.plugin import KodiMainScreen

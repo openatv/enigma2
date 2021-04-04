@@ -112,7 +112,7 @@ class Tuner:
 			self.frontend.tune(self.lastparm)
 
 	def getTransponderData(self):
-		ret = { }
+		ret = {}
 		if self.frontend:
 			self.frontend.getTransponderData(ret, True)
 		return ret
