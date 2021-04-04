@@ -59,7 +59,7 @@ class TitleList(Screen, HelpableScreen):
 			<widget source="marker_bludisc" render="Label" position="508,460" size="44,12" zPosition="1" font="Regular;11" halign="right" foregroundColor="#FFFFFF" />
 		</screen>"""
 
-	def __init__(self, session, project = None):
+	def __init__(self, session, project=None):
 		Screen.__init__(self, session)
 		HelpableScreen.__init__(self)
 		
@@ -195,11 +195,11 @@ class TitleList(Screen, HelpableScreen):
 					self.close(current)
 		self.session.openWithCallback(self.selectedSource, DVDMovieSelection)
 
-	def selectedSource(self, source = None):
+	def selectedSource(self, source=None):
 		if source is None:
 			return None
 		if not source.getPath().endswith(".ts"):
-			self.session.open(MessageBox, text = _("You can only burn Dreambox recordings!"), type = MessageBox.TYPE_ERROR)
+			self.session.open(MessageBox, text=_("You can only burn Dreambox recordings!"), type=MessageBox.TYPE_ERROR)
 			return None
 		t = self.project.addService(source)
 		try:
@@ -242,7 +242,7 @@ class TitleList(Screen, HelpableScreen):
 
 	def askBurnProject(self):
 		if len(self["titles"].list):
-			self.session.openWithCallback(self.burnProject, MessageBox, text = _("Do you want to produce this collection?"), type = MessageBox.TYPE_YESNO)
+			self.session.openWithCallback(self.burnProject, MessageBox, text=_("Do you want to produce this collection?"), type=MessageBox.TYPE_YESNO)
 
 	def burnProject(self, answer=True):
 		if not answer:
@@ -309,7 +309,7 @@ class TitleList(Screen, HelpableScreen):
 				self["medium_label"].setText(_("Exceeds Bludisc medium!"))
 				self["medium_label"].setForegroundColorNum(2)
 				if self.previous_size < MAX_BD:
-					self.session.open(MessageBox, text = _("Exceeds Bludisc medium!"), type = MessageBox.TYPE_ERROR)
+					self.session.open(MessageBox, text=_("Exceeds Bludisc medium!"), type=MessageBox.TYPE_ERROR)
 			elif size < MAX_BD:
 				self["medium_label"].setText(_("Required medium type:") + " " + _("BLUDISC RECORDABLE") + ", %d MB " % (MAX_BD - size) + _("free"))
 				self["medium_label"].setForegroundColorNum(1)
@@ -320,14 +320,14 @@ class TitleList(Screen, HelpableScreen):
 				self["medium_label"].setText(_("Exceeds dual layer medium!"))
 				self["medium_label"].setForegroundColorNum(2)
 				if self.previous_size < MAX_DL:
-					self.session.open(MessageBox, text = _("Exceeds dual layer medium!"), type = MessageBox.TYPE_ERROR)
+					self.session.open(MessageBox, text=_("Exceeds dual layer medium!"), type=MessageBox.TYPE_ERROR)
 			elif size > MAX_SL:
 				percent = 100 * size / float(MAX_DL)
 				self["space_label"].text = "%d MB (%.2f%%)" % (size, percent)
 				self["medium_label"].setText(_("Required medium type:") + " " + _("DUAL LAYER DVD") + ", %d MB " % (MAX_DL - size) + _("free"))
 				self["medium_label"].setForegroundColorNum(1)
 				if self.previous_size < MAX_SL:
-					self.session.open(MessageBox, text = _("Your collection exceeds the size of a single layer medium, you will need a blank dual layer DVD!"), timeout = 10, type = MessageBox.TYPE_INFO)
+					self.session.open(MessageBox, text=_("Your collection exceeds the size of a single layer medium, you will need a blank dual layer DVD!"), timeout=10, type=MessageBox.TYPE_INFO)
 			elif size < MAX_SL:
 				percent = 100 * size / float(MAX_SL)
 				self["space_label"].text = "%d MB (%.2f%%)" % (size, percent)
@@ -339,7 +339,7 @@ class TitleList(Screen, HelpableScreen):
 		t = self["titles"].getCurrent()
 		return t and t[0]
 
-	def editTitle(self, title = None, editor = True):
+	def editTitle(self, title=None, editor=True):
 		t = title or self.getCurrentTitle()
 		if t is not None:
 			self.current_edit_title = t
@@ -403,11 +403,11 @@ class TitleList(Screen, HelpableScreen):
 			title.initDVDmenuText(count)
 		self.updateTitleList()
 
-	def leave(self, close = False):
+	def leave(self, close=False):
 		if not len(self["titles"].list) or close or self.project.finished_burning:
 			self.close()
 		else:
-			self.session.openWithCallback(self.exitCB, MessageBox, text = _("Your current collection will get lost!") + "\n" + _("Do you really want to exit?"), type = MessageBox.TYPE_YESNO)
+			self.session.openWithCallback(self.exitCB, MessageBox, text=_("Your current collection will get lost!") + "\n" + _("Do you really want to exit?"), type=MessageBox.TYPE_YESNO)
 
 	def exitCB(self, answer):
 		print("exitCB", answer)

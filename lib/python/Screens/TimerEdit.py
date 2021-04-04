@@ -121,7 +121,7 @@ class TimerEditList(Screen):
 							(_("Stop current event and disable coming events"), "stopall"),
 							(_("Don't stop current event but disable coming events"), "stoponlycoming")
 						)
-						self.session.openWithCallback(boundFunction(self.runningEventCallback, t), ChoiceBox, title=_("Repeating event currently recording... What do you want to do?"), list = list)
+						self.session.openWithCallback(boundFunction(self.runningEventCallback, t), ChoiceBox, title=_("Repeating event currently recording... What do you want to do?"), list=list)
 				else:
 					t.disable()
 			self.session.nav.RecordTimer.timeChanged(t)
@@ -132,7 +132,7 @@ class TimerEditList(Screen):
 		if result is not None:
 			if result[1] == "stoponlycurrent" or result[1] == "stopall":
 				t.enable()
-				t.processRepeated(findRunningEvent = False)
+				t.processRepeated(findRunningEvent=False)
 				self.session.nav.RecordTimer.doActivate(t)
 			if result[1] == "stoponlycoming" or result[1] == "stopall":
 				t.disable()
@@ -251,7 +251,7 @@ class TimerEditList(Screen):
 		if config.usage.timerlist_finished_timer_position.index: #end of list
 			_list.sort(key=cmp_to_key(eol_compare))
 		else:
-			_list.sort(key = lambda x: x[0].begin)
+			_list.sort(key=lambda x: x[0].begin)
 
 	def getEPGEvent(self, timer):
 		event = None
@@ -342,7 +342,7 @@ class TimerEditList(Screen):
 					(_("Yes, delete from Timerlist and delete recording"), "yesremove")]
 			self.session.openWithCallback(self.startDelete, ChoiceBox, title=message, list=choices)
 		else:
-			self.session.openWithCallback(self.removeTimer, MessageBox, _("Do you really want to delete %s?") % (cur.name), default = False)
+			self.session.openWithCallback(self.removeTimer, MessageBox, _("Do you really want to delete %s?") % (cur.name), default=False)
 
 	def startDelete(self, answer):
 		if not answer or not answer[1]:
@@ -361,7 +361,7 @@ class TimerEditList(Screen):
 				trashpath = resolveFilename(SCOPE_HDD) + '.Trash'
 				self.MoveToTrash(trashpath)
 			else:
-				self.session.openWithCallback(self.callbackRemoveRecording, MessageBox, _("Do you really want to delete the recording?"), default = False)
+				self.session.openWithCallback(self.callbackRemoveRecording, MessageBox, _("Do you really want to delete the recording?"), default=False)
 
 	def callbackRemoveRecording(self, answer):
 		if not answer:
@@ -436,9 +436,9 @@ class TimerEditList(Screen):
 		if event is None:
 			data = (int(time()), int(time() + 60), "", "", None)
 		else:
-			data = parseEvent(event, description = False)
+			data = parseEvent(event, description=False)
 
-		self.addTimer(RecordTimerEntry(serviceref, checkOldTimers = True, dirname = preferredTimerPath(), *data))
+		self.addTimer(RecordTimerEntry(serviceref, checkOldTimers=True, dirname=preferredTimerPath(), *data))
 
 	def addTimer(self, timer):
 		self.session.openWithCallback(self.finishedAdd, TimerEntry, timer)
@@ -648,7 +648,7 @@ class TimerSanityConflict(Screen):
 
 class TimerEditListSummary(Screen):
 	def __init__(self, session, parent):
-		Screen.__init__(self, session, parent = parent)
+		Screen.__init__(self, session, parent=parent)
 		self["name"] = StaticText("")
 		self["service"] = StaticText("")
 		self["time"] = StaticText("")

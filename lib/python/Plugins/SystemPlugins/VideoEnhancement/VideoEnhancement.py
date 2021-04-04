@@ -14,7 +14,7 @@ class VideoEnhancement:
 
 	def createConfig(self, *args):
 		config.pep = ConfigSubsection()
-		config.pep.configsteps = NoSave(ConfigSelection(choices=[1, 5, 10, 25], default = 1))
+		config.pep.configsteps = NoSave(ConfigSelection(choices=[1, 5, 10, 25], default=1))
 
 		if os_path.exists("/proc/stb/vmpeg/0/pep_contrast"):
 			def setContrast(config):
@@ -165,7 +165,7 @@ class VideoEnhancement:
 					"off": _("Off"),
 					"left": _("Left"),
 					"right": _("Right")},
-					default = "off")
+					default="off")
 			config.pep.split.addNotifier(setSplitMode)
 		else:
 			config.pep.split = NoSave(ConfigNothing())
@@ -327,7 +327,7 @@ class VideoEnhancement:
 				if not VideoEnhancement.firstRun:
 					self.setConfiguredValues()
 
-			config.pep.scaler_vertical_dejagging = ConfigBoolean(default=False, descriptions = {False: _("Disabled"), True: _("Enabled")} )
+			config.pep.scaler_vertical_dejagging = ConfigBoolean(default=False, descriptions={False: _("Disabled"), True: _("Enabled")} )
 			config.pep.scaler_vertical_dejagging.addNotifier(setScaler_vertical_dejagging)
 		else:
 			config.pep.scaler_vertical_dejagging = NoSave(ConfigNothing())
@@ -344,7 +344,7 @@ class VideoEnhancement:
 				if not VideoEnhancement.firstRun:
 					self.setConfiguredValues()
 
-			config.pep.smooth = ConfigBoolean(default=False, descriptions = {False: _("Disabled"), True: _("Enabled")} )
+			config.pep.smooth = ConfigBoolean(default=False, descriptions={False: _("Disabled"), True: _("Enabled")} )
 			config.pep.smooth.addNotifier(setSmooth)
 		else:
 			config.pep.smooth = NoSave(ConfigNothing())

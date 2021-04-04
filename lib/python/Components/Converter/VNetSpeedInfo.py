@@ -53,7 +53,7 @@ class VNetSpeedInfo(Poll, Converter, object):
 	DRO_RCW = 25  # Drop WLan-Receive
 	DRO_TMW = 26  # Drop WLan-Transmit
 
-	def __init__(self, type,update_interval = 1000):
+	def __init__(self, type,update_interval=1000):
 		Poll.__init__(self)
 		self.poll_interval = 1000
 		self.poll_enabled = True

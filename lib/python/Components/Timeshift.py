@@ -108,8 +108,7 @@ class InfoBarTimeshift:
 		self.save_timeshift_file = False
 		self.saveTimeshiftEventPopupActive = False
 
-		self.__event_tracker = ServiceEventTracker(screen = self, eventmap =
-			{
+		self.__event_tracker = ServiceEventTracker(screen=self, eventmap={
 				iPlayableService.evStart: self.__serviceStarted,
 				iPlayableService.evSeekableStatusChanged: self.__seekableStatusChanged,
 				iPlayableService.evEnd: self.__serviceEnd,
@@ -265,7 +264,7 @@ class InfoBarTimeshift:
 			self.doSeek(0)
 			self.posDiff = 0
 
-	def evSOF(self, posDiff = 0):  #called from InfoBarGenerics.py
+	def evSOF(self, posDiff=0):  #called from InfoBarGenerics.py
 		self.posDiff = posDiff
 		self.__evSOF()
 
@@ -306,7 +305,7 @@ class InfoBarTimeshift:
 			self.doSeek(0)
 			self.posDiff = 0
 
-	def evEOF(self, posDiff = 0):  #called from InfoBarGenerics.py
+	def evEOF(self, posDiff=0):  #called from InfoBarGenerics.py
 		self.posDiff = posDiff
 		self.__evEOF()
 
@@ -371,7 +370,7 @@ class InfoBarTimeshift:
 			if self.save_current_timeshift and self.timeshiftEnabled():
 				if config.recording.margin_after.value > 0 and len(self.recording) == 0:
 					self.SaveTimeshift(mergelater=True)
-					recording = RecordTimerEntry(ServiceReference(self.session.nav.getCurrentlyPlayingServiceOrGroup()), time(), time()+(config.recording.margin_after.value * 60), self.pts_curevent_name, self.pts_curevent_description, self.pts_curevent_eventid, afterEvent = AFTEREVENT.AUTO, justplay = False, always_zap = False, dirname = config.usage.autorecord_path.value)
+					recording = RecordTimerEntry(ServiceReference(self.session.nav.getCurrentlyPlayingServiceOrGroup()), time(), time()+(config.recording.margin_after.value * 60), self.pts_curevent_name, self.pts_curevent_description, self.pts_curevent_eventid, afterEvent=AFTEREVENT.AUTO, justplay=False, always_zap=False, dirname=config.usage.autorecord_path.value)
 					recording.dontSave = True
 					self.session.nav.RecordTimer.record(recording)
 					self.recording.append(recording)
@@ -480,7 +479,7 @@ class InfoBarTimeshift:
 			self.__seekableStatusChanged()
 
 	# activates timeshift, and seeks to (almost) the end
-	def activateTimeshiftEnd(self, back = True):
+	def activateTimeshiftEnd(self, back=True):
 		ts = self.getTimeshift()
 		if ts is None:
 			return
@@ -525,26 +524,26 @@ class InfoBarTimeshift:
 							(_("Save timeshift as movie and stop recording"), "savetimeshift"),
 							(_("Cancel save timeshift as movie"), "noSave"),
 							(_("Nothing, just leave this menu"), "no")]
-					self.session.openWithCallback(boundFunction(self.checkTimeshiftRunningCallback, returnFunction), MessageBox, message, simple = True, list = choice, timeout=30)
+					self.session.openWithCallback(boundFunction(self.checkTimeshiftRunningCallback, returnFunction), MessageBox, message, simple=True, list=choice, timeout=30)
 				else:
 					message =  _("You seem to be in timeshift, Do you want to leave timeshift ?")
 					choice = [(_("Yes, but don't save timeshift as movie"), "noSave"),
 							(_("Yes, but save timeshift as movie and continue recording"), "savetimeshiftandrecord"),
 							(_("Yes, but save timeshift as movie and stop recording"), "savetimeshift"),
 							(_("No"), "no")]
-					self.session.openWithCallback(boundFunction(self.checkTimeshiftRunningCallback, returnFunction), MessageBox, message, simple = True, list = choice, timeout=30)
+					self.session.openWithCallback(boundFunction(self.checkTimeshiftRunningCallback, returnFunction), MessageBox, message, simple=True, list=choice, timeout=30)
 			else:
 				if self.save_current_timeshift:
 					# the user has previously activated "Timeshift save recording" of current event - so must be necessarily saved of the timeshift!
 					# workaround - without the message box can the box no longer be operated when goes in standby(no freezing - no longer can use - unhandled key screen comes when key press -)
 					message = _("You have chosen to save the current timeshift")
 					choice = [(_("Now save timeshift as movie and continues recording"), "savetimeshiftandrecord")]
-					self.session.openWithCallback(boundFunction(self.checkTimeshiftRunningCallback, returnFunction), MessageBox, message, simple = True, list = choice, timeout=1)
+					self.session.openWithCallback(boundFunction(self.checkTimeshiftRunningCallback, returnFunction), MessageBox, message, simple=True, list=choice, timeout=1)
 					#InfoBarTimeshift.saveTimeshiftActions(self, "savetimeshiftandrecord", returnFunction)
 				else:
 					message =  _("You seem to be in timeshift, Do you want to leave timeshift ?")
 					choice = [(_("Yes"), config.timeshift.favoriteSaveAction.value), (_("No"), "no")]
-					self.session.openWithCallback(boundFunction(self.checkTimeshiftRunningCallback, returnFunction), MessageBox, message, simple = True, list = choice, timeout=30)
+					self.session.openWithCallback(boundFunction(self.checkTimeshiftRunningCallback, returnFunction), MessageBox, message, simple=True, list=choice, timeout=30)
 		elif self.save_current_timeshift:
 			# the user has chosen "no warning" when timeshift is stopped (config.usage.check_timeshift=False)
 			# but the user has previously activated "Timeshift save recording" of current event
@@ -552,7 +551,7 @@ class InfoBarTimeshift:
 			# workaround - without the message box can the box no longer be operated when goes in standby(no freezing - no longer can use - unhandled key screen comes when key press -)
 			message = _("You have chosen to save the current timeshift")
 			choice = [(_("Now save timeshift as movie and continues recording"), "savetimeshiftandrecord")]
-			self.session.openWithCallback(boundFunction(self.checkTimeshiftRunningCallback, returnFunction), MessageBox, message, simple = True, list = choice, timeout=1)
+			self.session.openWithCallback(boundFunction(self.checkTimeshiftRunningCallback, returnFunction), MessageBox, message, simple=True, list=choice, timeout=1)
 			#InfoBarTimeshift.saveTimeshiftActions(self, "savetimeshiftandrecord", returnFunction)
 		else:
 			returnFunction(True)
@@ -587,9 +586,9 @@ class InfoBarTimeshift:
 	def activateAutorecordTimeshift(self):
 		self.createTimeshiftFolder()
 		if self.pts_eventcount == 0: #only cleanup folder after switching channels, not when a new event starts, to allow saving old events from timeshift buffer
-			self.ptsCleanTimeshiftFolder(justZapped = True)  #remove all timeshift files
+			self.ptsCleanTimeshiftFolder(justZapped=True)  #remove all timeshift files
 		else:
-			self.ptsCleanTimeshiftFolder(justZapped = False) #only delete very old timeshift files based on config.usage.timeshiftMaxHours
+			self.ptsCleanTimeshiftFolder(justZapped=False) #only delete very old timeshift files based on config.usage.timeshiftMaxHours
 		if self.ptsCheckTimeshiftPath() is False or self.session.screen["Standby"].boolean is True or self.ptsLiveTVStatus() is False or (config.timeshift.stopwhilerecording.value and self.pts_record_running):
 			return
 
@@ -937,7 +936,7 @@ class InfoBarTimeshift:
 		else:
 			return
 		self.ptsAskUser_wait = True
-		self.session.openWithCallback(self.ptsAskUserCallback, MessageBox, message, simple = True, list = choice, timeout=30)
+		self.session.openWithCallback(self.ptsAskUserCallback, MessageBox, message, simple=True, list=choice, timeout=30)
 
 	def ptsAskUserCallback(self, answer):
 		self.ptsAskUser_wait = False
@@ -970,7 +969,7 @@ class InfoBarTimeshift:
 			ts.stopTimeshift(True)
 			self.__seekableStatusChanged()
 
-	def ptsEventCleanTimerSTOP(self, justStop = False):
+	def ptsEventCleanTimerSTOP(self, justStop=False):
 		if justStop is False:
 			self.pts_eventcount = 0
 		if self.pts_cleanEvent_timer.isActive(): 
@@ -986,9 +985,9 @@ class InfoBarTimeshift:
 	def ptsEventCleanTimeshiftFolder(self):
 		print("[TIMESHIFT] - 'cleanEvent_timer' is running")
 		self.ptsEventCleanTimerSTART()
-		self.ptsCleanTimeshiftFolder(justZapped = False)
+		self.ptsCleanTimeshiftFolder(justZapped=False)
 
-	def ptsCleanTimeshiftFolder(self, justZapped = True):
+	def ptsCleanTimeshiftFolder(self, justZapped=True):
 		if self.ptsCheckTimeshiftPath() is False or self.session.screen["Standby"].boolean is True:
 			self.ptsEventCleanTimerSTOP()
 			return
@@ -1192,7 +1191,7 @@ class InfoBarTimeshift:
 						print("[TIMESHIFT] - %s" % errormsg)
 
 	def ptsRecordCurrentEvent(self):
-		recording = RecordTimerEntry(ServiceReference(self.session.nav.getCurrentlyPlayingServiceOrGroup()), time(), self.pts_curevent_end, self.pts_curevent_name, self.pts_curevent_description, self.pts_curevent_eventid, afterEvent = AFTEREVENT.AUTO, justplay = False, always_zap = False, dirname = config.usage.autorecord_path.value)
+		recording = RecordTimerEntry(ServiceReference(self.session.nav.getCurrentlyPlayingServiceOrGroup()), time(), self.pts_curevent_end, self.pts_curevent_name, self.pts_curevent_description, self.pts_curevent_eventid, afterEvent=AFTEREVENT.AUTO, justplay=False, always_zap=False, dirname=config.usage.autorecord_path.value)
 		recording.dontSave = True
 		self.session.nav.RecordTimer.record(recording)
 		self.recording.append(recording)

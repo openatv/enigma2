@@ -140,7 +140,7 @@ class Navigation:
 		else:
 			self.wakeupCheck(False)
 
-	def wakeupCheck(self, runCheck = True):
+	def wakeupCheck(self, runCheck=True):
 		now = time()
 		stbytimer = 15 # original was 15
 
@@ -313,7 +313,7 @@ class Navigation:
 					if alternativeref and self.pnav and self.pnav.playService(alternativeref):
 						print("Failed to start", alternativeref)
 					return 0
-				elif checkParentalControl and not parentalControl.isServicePlayable(playref, boundFunction(self.playService, checkParentalControl = False)):
+				elif checkParentalControl and not parentalControl.isServicePlayable(playref, boundFunction(self.playService, checkParentalControl=False)):
 					if self.currentlyPlayingServiceOrGroup and InfoBarInstance and InfoBarInstance.servicelist.servicelist.setCurrent(self.currentlyPlayingServiceOrGroup, adjust):
 						self.currentlyPlayingServiceOrGroup = InfoBarInstance.servicelist.servicelist.getCurrent()
 					return 1
@@ -386,7 +386,7 @@ class Navigation:
 	def getRecordingsServicesAndTypesAndSlotIDs(self, type=pNavigation.isAnyRecording):
 		return self.pnav and self.pnav.getRecordingsServicesAndTypesAndSlotIDs(type)
 
-	def getRecordingsCheckBeforeActivateDeepStandby(self, modifyTimer = True):
+	def getRecordingsCheckBeforeActivateDeepStandby(self, modifyTimer=True):
 		# only for 'real' recordings
 		now = time()
 		rec = self.RecordTimer.isRecording()

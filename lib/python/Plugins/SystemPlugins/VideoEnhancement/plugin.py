@@ -31,7 +31,7 @@ class VideoEnhancementSetup(Screen, ConfigListScreen):
 
 		self.list = [ ]
 		self.xtdlist = [ ]
-		ConfigListScreen.__init__(self, self.list, session = self.session, on_change = self.changedEntry)
+		ConfigListScreen.__init__(self, self.list, session=self.session, on_change=self.changedEntry)
 		self.createSetup()
 
 		self["actions"] = ActionMap(["SetupActions", "ColorActions", "MenuActions"],
@@ -131,13 +131,13 @@ class VideoEnhancementSetup(Screen, ConfigListScreen):
 				self.splitEntry
 			]
 			maxvalue = current[1].max
-			self.session.openWithCallback(self.PreviewClosed, VideoEnhancementPreview, configEntry = self.previewlist, oldSplitMode = config.pep.split.value, maxValue = maxvalue)
+			self.session.openWithCallback(self.PreviewClosed, VideoEnhancementPreview, configEntry=self.previewlist, oldSplitMode=config.pep.split.value, maxValue=maxvalue)
 		else:
 			self.previewlist = [
 				current
 			]
 			maxvalue = current[1].max
-			self.session.openWithCallback(self.PreviewClosed, VideoEnhancementPreview, configEntry = self.previewlist, oldSplitMode = None, maxValue = maxvalue)
+			self.session.openWithCallback(self.PreviewClosed, VideoEnhancementPreview, configEntry=self.previewlist, oldSplitMode=None, maxValue=maxvalue)
 
 	def keyRight(self):
 		current = self["config"].getCurrent()
@@ -151,13 +151,13 @@ class VideoEnhancementSetup(Screen, ConfigListScreen):
 				self.splitEntry
 			]
 			maxvalue = current[1].max
-			self.session.openWithCallback(self.PreviewClosed, VideoEnhancementPreview, configEntry = self.previewlist, oldSplitMode = config.pep.split.value, maxValue = maxvalue )
+			self.session.openWithCallback(self.PreviewClosed, VideoEnhancementPreview, configEntry=self.previewlist, oldSplitMode=config.pep.split.value, maxValue=maxvalue )
 		else:
 			self.previewlist = [
 				current
 			]
 			maxvalue = current[1].max
-			self.session.openWithCallback(self.PreviewClosed, VideoEnhancementPreview, configEntry = self.previewlist, oldSplitMode = None, maxValue = maxvalue)
+			self.session.openWithCallback(self.PreviewClosed, VideoEnhancementPreview, configEntry=self.previewlist, oldSplitMode=None, maxValue=maxvalue)
 
 	def confirm(self, confirmed):
 		if not confirmed:
@@ -168,7 +168,7 @@ class VideoEnhancementSetup(Screen, ConfigListScreen):
 			self.keySave()
 
 	def apply(self):
-		self.session.openWithCallback(self.confirm, MessageBox, _("Use this video enhancement settings?"), MessageBox.TYPE_YESNO, timeout = 20, default = True)
+		self.session.openWithCallback(self.confirm, MessageBox, _("Use this video enhancement settings?"), MessageBox.TYPE_YESNO, timeout=20, default=True)
 
 	def cancelConfirm(self, result):
 		if not result:
@@ -178,7 +178,7 @@ class VideoEnhancementSetup(Screen, ConfigListScreen):
 
 	def keyCancel(self):
 		if self["config"].isChanged():
-			self.session.openWithCallback(self.cancelConfirm, MessageBox, _("Really close without saving settings?"), default = False)
+			self.session.openWithCallback(self.cancelConfirm, MessageBox, _("Really close without saving settings?"), default=False)
 		else:
 			self.close()
 
@@ -223,7 +223,7 @@ class VideoEnhancementSetup(Screen, ConfigListScreen):
 			self.keySave()
 
 	def keyYellow(self):
-		self.session.openWithCallback(self.keyYellowConfirm, MessageBox, _("Reset video enhancement settings to your last configuration?"), MessageBox.TYPE_YESNO, timeout = 20, default = False)
+		self.session.openWithCallback(self.keyYellowConfirm, MessageBox, _("Reset video enhancement settings to your last configuration?"), MessageBox.TYPE_YESNO, timeout=20, default=False)
 
 	def keyBlueConfirm(self, confirmed):
 		if not confirmed:
@@ -269,7 +269,7 @@ class VideoEnhancementSetup(Screen, ConfigListScreen):
 			self.keySave()
 
 	def keyBlue(self):
-		self.session.openWithCallback(self.keyBlueConfirm, MessageBox, _("Reset video enhancement settings to system defaults?"), MessageBox.TYPE_YESNO, timeout = 20, default = False)
+		self.session.openWithCallback(self.keyBlueConfirm, MessageBox, _("Reset video enhancement settings to system defaults?"), MessageBox.TYPE_YESNO, timeout=20, default=False)
 
 	# for summary:
 	def changedEntry(self):
@@ -299,7 +299,7 @@ class VideoEnhancementPreview(Screen, ConfigListScreen):
 			<widget source="introduction" render="Label" position="0,140" size="550,25" zPosition="10" font="Regular;21" halign="center" valign="center" backgroundColor="#25062748" transparent="1" />
 		</screen>"""
 
-	def __init__(self, session, configEntry = None, oldSplitMode = None, maxValue = None):
+	def __init__(self, session, configEntry=None, oldSplitMode=None, maxValue=None):
 		Screen.__init__(self, session)
 
 		self.onChangedEntry = [ ]
@@ -311,7 +311,7 @@ class VideoEnhancementPreview(Screen, ConfigListScreen):
 
 		self.list = [ ]
 		self.configEntry = configEntry
-		ConfigListScreen.__init__(self, self.list, session = session, on_change = self.changedEntry)
+		ConfigListScreen.__init__(self, self.list, session=session, on_change=self.changedEntry)
 
 		self["actions"] = ActionMap(["SetupActions"],
 			{
@@ -414,5 +414,5 @@ def startSetup(menuid):
 def Plugins(**kwargs):
 	list = []
 	if config.usage.setup_level.index >= 2 and os_path.exists("/proc/stb/vmpeg/0/pep_apply"):
-		list.append(PluginDescriptor(name=_("Video enhancement setup"), description=_("Advanced video enhancement setup"), where = PluginDescriptor.WHERE_MENU, needsRestart = False, fnc=startSetup))
+		list.append(PluginDescriptor(name=_("Video enhancement setup"), description=_("Advanced video enhancement setup"), where=PluginDescriptor.WHERE_MENU, needsRestart=False, fnc=startSetup))
 	return list

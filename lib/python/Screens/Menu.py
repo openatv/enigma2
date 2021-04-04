@@ -650,7 +650,7 @@ class Menu(Screen, ProtectedScreen):
 		else:
 			self.closeNonRecursive()
 
-	def resetSortOrder(self, key = None):
+	def resetSortOrder(self, key=None):
 		config.usage.menu_sort_weight.value = { "mainmenu" : {"submenu" : {} }}
 		config.usage.menu_sort_weight.save()
 		self.closeRecursive()
@@ -1009,7 +1009,7 @@ class IconMain(Screen):
 		else:
 			self.openTest()
 
-	def key_up(self, focusLastPic = False):
+	def key_up(self, focusLastPic=False):
 		self.ipage = self.ipage - 1
 		if self.ipage < 1 and 7 > self.picnum > 0:
 			self.ipage = 1
@@ -1029,7 +1029,7 @@ class IconMain(Screen):
 			self.index = 0
 		self.openTest()
 
-	def key_down(self, focusLastPic = False):
+	def key_down(self, focusLastPic=False):
 		self.ipage = self.ipage + 1
 		if self.ipage == 2 and 7 > self.picnum > 0:
 			self.ipage = 1

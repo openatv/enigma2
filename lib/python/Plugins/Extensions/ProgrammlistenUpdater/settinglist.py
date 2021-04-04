@@ -94,7 +94,7 @@ def InstallSettings(name, link, date):
 
 class CheckTimer:
 
-    def __init__(self, session = None):
+    def __init__(self, session=None):
         self.session = session
         self.UpdateTimer = eTimer()
         self.UpdateTimer.callback.append(self.startTimerSetting)

@@ -139,7 +139,7 @@ class EventViewBase:
 				self.showChoiceBoxDialog()
 				break
 		else:
-			newEntry = RecordTimerEntry(self.currentService, checkOldTimers = True, dirname = preferredTimerPath(), *parseEvent(self.event))
+			newEntry = RecordTimerEntry(self.currentService, checkOldTimers=True, dirname=preferredTimerPath(), *parseEvent(self.event))
 			self.session.openWithCallback(self.finishedAdd, TimerEntry, newEntry)
 
 	def ChoiceBoxCB(self, choice):
@@ -397,7 +397,7 @@ class EventViewEPGSelect(Screen, EventViewBase):
 			self["blue"].hide()
 
 class EventViewMovieEvent(Screen):
-	def __init__(self, session, name = None, ext_desc = None, dur = None):
+	def __init__(self, session, name=None, ext_desc=None, dur=None):
 		Screen.__init__(self, session)
 		self.screentitle = _("Eventview")
 		self.skinName = "EventView"

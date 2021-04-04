@@ -15,7 +15,7 @@ class GUISkin:
 		self.instance = None
 		self.desktop = None
 
-	def createGUIScreen(self, parent, desktop, updateonly = False):
+	def createGUIScreen(self, parent, desktop, updateonly=False):
 		for val in self.renderer:
 			if isinstance(val, GUIComponent):
 				if not updateonly:

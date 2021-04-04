@@ -248,7 +248,7 @@ class FlashImage(Screen):
 		choices.append((_("No, do not flash an image"), False))
 		self.session.openWithCallback(self.checkMedia, MessageBox, self.message, list=choices, default=currentimageslot, simple=True)
 
-	def backupQuestionCB(self, retval = True):
+	def backupQuestionCB(self, retval=True):
 		if retval:
 			self.checkMedia('backup')
 		else:
@@ -317,13 +317,13 @@ class FlashImage(Screen):
 		if retval:
 			if 'backup' == retval or True == retval:
 				from Plugins.SystemPlugins.SoftwareManager.BackupRestore import BackupScreen
-				self.session.openWithCallback(self.flashPostAction, BackupScreen, runBackup = True)
+				self.session.openWithCallback(self.flashPostAction, BackupScreen, runBackup=True)
 			else:
 				self.flashPostAction()
 		else:
 			self.abort()
 
-	def flashPostAction(self, retval = True):
+	def flashPostAction(self, retval=True):
 		if retval:
 			self.recordcheck = False
 			title =_("Please select what to do after flashing the image:\n(In addition, if it exists, a local script will be executed as well at /media/hdd/images/config/myrestore.sh)")

@@ -59,7 +59,7 @@ class ShowSoftcamPackages(Screen):
 			</widget>
 		</screen>"""
 	
-	def __init__(self, session, args = None):
+	def __init__(self, session, args=None):
 		Screen.__init__(self, session)
 		self.session = session
 		
@@ -87,7 +87,7 @@ class ShowSoftcamPackages(Screen):
 		self.Timer2 = eTimer()
 		self.Timer2.callback.append(self.updateList)
 
-	def go(self, returnValue = None):
+	def go(self, returnValue=None):
 		cur = self["list"].getCurrent()
 		if cur:
 			status = cur[3]
@@ -97,15 +97,15 @@ class ShowSoftcamPackages(Screen):
 
 	def runInstall(self, result):
 		if result:
-			self.session.openWithCallback(self.runInstallCont, Console, cmdlist = ['opkg install ' + self.package], closeOnSuccess = True)
+			self.session.openWithCallback(self.runInstallCont, Console, cmdlist=['opkg install ' + self.package], closeOnSuccess=True)
 
 	def runInstallCont(self):
 			ret = command('opkg list-installed | grep ' + self.package + ' | cut -d " " -f1')
 
 			if ret != self.package:
-				self.session.open(MessageBox, _("Install Failed !!"), MessageBox.TYPE_ERROR, timeout = 10)
+				self.session.open(MessageBox, _("Install Failed !!"), MessageBox.TYPE_ERROR, timeout=10)
 			else:
-				self.session.open(MessageBox, _("Install Finished."), MessageBox.TYPE_INFO, timeout = 10)
+				self.session.open(MessageBox, _("Install Finished."), MessageBox.TYPE_INFO, timeout=10)
 				self.setStatus('list')
 				self.Timer1.start(1000, True)
 
@@ -119,7 +119,7 @@ class ShowSoftcamPackages(Screen):
 	def setWindowTitle(self):
 		self.setTitle(_("Install Softcams"))
 
-	def setStatus(self,status = None):
+	def setStatus(self,status=None):
 		if status:
 			self.statuslist = []
 			divpng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_SKIN, "skin_default/div-h.png"))

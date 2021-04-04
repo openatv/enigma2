@@ -97,7 +97,7 @@ class PowerTimerEditList(Screen):
 							(_("Stop current event and disable coming events"), "stopall"),
 							(_("Don't stop current event but disable coming events"), "stoponlycoming")
 						)
-						self.session.openWithCallback(boundFunction(self.runningEventCallback, t), ChoiceBox, title=_("Repeating event currently recording... What do you want to do?"), list = list)
+						self.session.openWithCallback(boundFunction(self.runningEventCallback, t), ChoiceBox, title=_("Repeating event currently recording... What do you want to do?"), list=list)
 				else:
 					t.disable()
 			self.session.nav.PowerTimer.timeChanged(t)
@@ -108,7 +108,7 @@ class PowerTimerEditList(Screen):
 		if result is not None:
 			if result[1] == "stoponlycurrent" or result[1] == "stopall":
 				t.enable()
-				t.processRepeated(findRunningEvent = False)
+				t.processRepeated(findRunningEvent=False)
 				self.session.nav.PowerTimer.doActivate(t)
 			if result[1] == "stoponlycoming" or result[1] == "stopall":
 				t.disable()
@@ -214,7 +214,7 @@ class PowerTimerEditList(Screen):
 		if config.usage.timerlist_finished_timer_position.index: #end of list
 			_list.sort(key=cmp_to_key(eol_compare))
 		else:
-			_list.sort(key = lambda x: x[0].begin)
+			_list.sort(key=lambda x: x[0].begin)
 
 	def showLog(self):
 		cur=self["timerlist"].getCurrent()
@@ -240,7 +240,7 @@ class PowerTimerEditList(Screen):
 		if not cur:
 			return
 
-		self.session.openWithCallback(self.removeTimer, MessageBox, _("Do you really want to delete this timer ?"), default = False)
+		self.session.openWithCallback(self.removeTimer, MessageBox, _("Do you really want to delete this timer ?"), default=False)
 
 	def removeTimer(self, result):
 		if not result:
@@ -267,7 +267,7 @@ class PowerTimerEditList(Screen):
 
 	def addCurrentTimer(self):
 		data = (int(time() + 60), int(time() + 120))
-		self.addTimer(PowerTimerEntry(checkOldTimers = True, *data))
+		self.addTimer(PowerTimerEntry(checkOldTimers=True, *data))
 
 	def addTimer(self, timer):
 		self.session.openWithCallback(self.finishedAdd, TimerEntry, timer)
@@ -303,7 +303,7 @@ class PowerTimerEditList(Screen):
 
 class PowerTimerEditListSummary(Screen):
 	def __init__(self, session, parent):
-		Screen.__init__(self, session, parent = parent)
+		Screen.__init__(self, session, parent=parent)
 		self["name"] = StaticText("")
 		self["after"] = StaticText("")
 		self["time"] = StaticText("")

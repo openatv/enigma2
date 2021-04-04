@@ -40,7 +40,7 @@ class ResolutionSelection(Screen):
 			if tlist[x][1] == mode: 
 				selection = x
 
-		self.session.openWithCallback(self.ResolutionSelected, ChoiceBox, title=_("Please select a resolution..."), list = tlist, selection = selection, keys = keys)
+		self.session.openWithCallback(self.ResolutionSelected, ChoiceBox, title=_("Please select a resolution..."), list=tlist, selection=selection, keys=keys)
 		#return
 
 	def ResolutionSelected(self, Resolution):

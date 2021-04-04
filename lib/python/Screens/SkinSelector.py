@@ -13,7 +13,7 @@ from enigma import eEnv, ePicLoad
 import os
 
 class SkinSelectorBase:
-	def __init__(self, session, args = None):
+	def __init__(self, session, args=None):
 		self.setTitle(_("Skin Selector"))
 		self.skinlist = []
 		self.previewPath = ""
@@ -177,7 +177,7 @@ class SkinSelector(Screen, SkinSelectorBase):
 	skinlist = []
 	root = os.path.join(eEnv.resolve("${datadir}"), "enigma2")
 
-	def __init__(self, session, args = None):
+	def __init__(self, session, args=None):
 		Screen.__init__(self, session)
 		SkinSelectorBase.__init__(self, args)
 		Screen.setTitle(self, _("Skin setup"))
@@ -197,7 +197,7 @@ class LcdSkinSelector(Screen, SkinSelectorBase):
 	skinlist = []
 	root = os.path.join(eEnv.resolve("${datadir}"), "enigma2/display/")
 
-	def __init__(self, session, args = None):
+	def __init__(self, session, args=None):
 		Screen.__init__(self, session)
 		SkinSelectorBase.__init__(self, args)
 		Screen.setTitle(self, _("LCD Skin Setup"))

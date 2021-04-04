@@ -67,7 +67,7 @@ class BackupSetup(Screen):
 			x[1].save()
 		self.close()
 
-	def __init__(self, session, args = None):
+	def __init__(self, session, args=None):
 		Screen.__init__(self, session)
 		self.skin_path = plugin_path
 		
@@ -107,8 +107,8 @@ class BackupSetup(Screen):
 		self.list = [ ]
 		self["config"] = ConfigList(self.list)
 		self.backup = ConfigSubsection()
-		self.backup.type = ConfigSelection(choices = [("settings", _("enigma2 and network")), ("var", _("/var directory")), ("skin", _("/usr/share/enigma2 directory"))], default="settings")
-		self.backup.location = ConfigSelection(choices = [("mtd", _("Backup")), ("hdd", _("Harddisk")), ("usb", _("USB Stick")), ("cf", _("CF Drive"))])
+		self.backup.type = ConfigSelection(choices=[("settings", _("enigma2 and network")), ("var", _("/var directory")), ("skin", _("/usr/share/enigma2 directory"))], default="settings")
+		self.backup.location = ConfigSelection(choices=[("mtd", _("Backup")), ("hdd", _("Harddisk")), ("usb", _("USB Stick")), ("cf", _("CF Drive"))])
 		self.list.append(getConfigListEntry(_("Backup Mode"), self.backup.type))
 		self.list.append(getConfigListEntry(_("Backup Location"), self.backup.location))
 
@@ -135,13 +135,13 @@ class BackupSetup(Screen):
 				self.path = BackupPath[self.backup.location.value]
 				if self.backup.type.value == "settings":
 					print("Backup Mode: Settings")
-					self.session.open(Console, title = "Backup running", cmdlist = ["tar -czvf " + self.path + "/" + str(dt) + "_settings_backup.tar.gz /etc/enigma2/ /etc/network/interfaces /etc/wpa_supplicant.conf"])
+					self.session.open(Console, title="Backup running", cmdlist=["tar -czvf " + self.path + "/" + str(dt) + "_settings_backup.tar.gz /etc/enigma2/ /etc/network/interfaces /etc/wpa_supplicant.conf"])
 				elif self.backup.type.value == "var":
 					print("Backup Mode: var")
-					self.session.open(Console, title = "Backup running", cmdlist = [ "tar -czvf " + self.path + "/" + str(dt) + "_var_backup.tar.gz /var/"])
+					self.session.open(Console, title="Backup running", cmdlist=[ "tar -czvf " + self.path + "/" + str(dt) + "_var_backup.tar.gz /var/"])
 				elif self.backup.type.value == "skin":
 					print("Backup Mode: skin")
-					self.session.open(Console, title ="Backup running", cmdlist = [ "tar -czvf " + self.path + "/" + str(dt) + "_skin_backup.tar.gz /usr/share/enigma2/"])
+					self.session.open(Console, title="Backup running", cmdlist=[ "tar -czvf " + self.path + "/" + str(dt) + "_skin_backup.tar.gz /usr/share/enigma2/"])
 			else:
 				self.session.open(MessageBox, _("Sorry your Backup destination does not exist\n\nPlease choose an other one."), MessageBox.TYPE_INFO)
 
@@ -207,10 +207,10 @@ class RestoreMenu(Screen):
 	def keyCancel(self):
 		self.close()
 
-	def startRestore(self, ret = False):
+	def startRestore(self, ret=False):
 		if (ret == True):
 			self.exe = True
-			self.session.open(Console, title = "Restore running", cmdlist = ["tar -xzvf " + self.path + "/" + self.sel + " -C /", "killall -9 enigma2"])
+			self.session.open(Console, title="Restore running", cmdlist=["tar -xzvf " + self.path + "/" + self.sel + " -C /", "killall -9 enigma2"])
 
 	def Exit(self):
 		self.close()
@@ -221,4 +221,4 @@ def BackupMain(session, **kwargs):
 def Plugins(path, **kwargs):
 	global plugin_path
 	plugin_path = path
-	return PluginDescriptor(name="Backup/Restore", description="Backup and Restore your Settings", icon="backup.png", where = PluginDescriptor.WHERE_PLUGINMENU, fnc=BackupMain)
+	return PluginDescriptor(name="Backup/Restore", description="Backup and Restore your Settings", icon="backup.png", where=PluginDescriptor.WHERE_PLUGINMENU, fnc=BackupMain)

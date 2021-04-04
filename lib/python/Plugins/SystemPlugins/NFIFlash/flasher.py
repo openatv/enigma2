@@ -97,7 +97,7 @@ class NFIFlash(Screen):
 		self["key_green"] = StaticText()
 		self["key_yellow"] = StaticText()
 		self["key_blue"] = StaticText()
-		self.filelist = FileList(self.usbmountpoint, matchingPattern = "^.*\.(nfi|NFI)", showDirectories = False, showMountpoints = False)
+		self.filelist = FileList(self.usbmountpoint, matchingPattern="^.*\.(nfi|NFI)", showDirectories=False, showMountpoints=False)
 		self["filelist"] = self.filelist
 		self["infolabel"] = StaticText()
 
@@ -195,7 +195,7 @@ class NFIFlash(Screen):
 		self["key_yellow"].text = ""
 		self["key_green"].text = ""
 		job_manager.AddJob(self.job)
-		self.session.openWithCallback(self.flashed, JobView, self.job, cancelable = False, backgroundable = False, afterEventChangeable = False)
+		self.session.openWithCallback(self.flashed, JobView, self.job, cancelable=False, backgroundable=False, afterEventChangeable=False)
 
 	def flashed(self, bg):
 		print("[flashed]")
@@ -216,11 +216,11 @@ class NFIFlash(Screen):
 		if ret:
 			from Plugins.SystemPlugins.SoftwareManager.BackupRestore import getBackupFilename
 			restorecmd = ["tar -xzvf " + self.usbmountpoint + getBackupFilename() + " -C /"]
-			self.session.openWithCallback(self.unlockRebootButton, Console, title = _("Restore is running..."), cmdlist = restorecmd, closeOnSuccess = True)
+			self.session.openWithCallback(self.unlockRebootButton, Console, title=_("Restore is running..."), cmdlist=restorecmd, closeOnSuccess=True)
 		else:
 			self.unlockRebootButton()
 
-	def unlockRebootButton(self, retval = None):
+	def unlockRebootButton(self, retval=None):
 		if self.job.status == self.job.FINISHED:
 			self["key_yellow"].text = _("Reboot")
 

@@ -55,7 +55,7 @@ class CronTimers(Screen):
 	def checkNetworkState(self, str, retval, extra_args):
 		str = six.ensure_str(str)
 		if not str:
-			self.feedscheck = self.session.open(MessageBox, _('Please wait whilst feeds state is checked.'), MessageBox.TYPE_INFO, enable_input = False)
+			self.feedscheck = self.session.open(MessageBox, _('Please wait whilst feeds state is checked.'), MessageBox.TYPE_INFO, enable_input=False)
 			self.feedscheck.setTitle(_('Checking Feeds'))
 			cmd1 = "opkg update"
 			self.CheckConsole = Console()
@@ -84,11 +84,11 @@ class CronTimers(Screen):
 		self.close()
 
 	def doInstall(self, callback, pkgname):
-		self.message = self.session.open(MessageBox, _("please wait..."), MessageBox.TYPE_INFO, enable_input = False)
+		self.message = self.session.open(MessageBox, _("please wait..."), MessageBox.TYPE_INFO, enable_input=False)
 		self.message.setTitle(_('Installing Service'))
 		self.Console.ePopen('/usr/bin/opkg install ' + pkgname, callback)
 
-	def installComplete(self,result = None, retval = None, extra_args = None):
+	def installComplete(self,result=None, retval=None, extra_args=None):
 		self.message.close()
 		self.feedscheck.close()
 		self.updateList()
@@ -113,11 +113,11 @@ class CronTimers(Screen):
 			self.close()
 
 	def doRemove(self, callback, pkgname):
-		self.message = self.session.open(MessageBox, _("please wait..."), MessageBox.TYPE_INFO, enable_input = False)
+		self.message = self.session.open(MessageBox, _("please wait..."), MessageBox.TYPE_INFO, enable_input=False)
 		self.message.setTitle(_('Removing Service'))
 		self.Console.ePopen('/usr/bin/opkg remove ' + pkgname + ' --force-remove --autoremove', callback)
 
-	def removeComplete(self, result = None, retval = None, extra_args = None):
+	def removeComplete(self, result=None, retval=None, extra_args=None):
 		self.message.close()
 		self.close()
 
@@ -143,7 +143,7 @@ class CronTimers(Screen):
 		elif self.my_crond_run:
 			self.Console.ePopen('/etc/init.d/crond stop', self.StartStopCallback)
 
-	def StartStopCallback(self, result = None, retval = None, extra_args = None):
+	def StartStopCallback(self, result=None, retval=None, extra_args=None):
 		sleep(3)
 		self.updateList()
 
@@ -158,7 +158,7 @@ class CronTimers(Screen):
 	def addtocron(self):
 		self.session.openWithCallback(self.updateList, CronTimersConfig)
 
-	def updateList(self, result = None, retval = None, extra_args = None):
+	def updateList(self, result=None, retval=None, extra_args=None):
 		import process
 		p = process.ProcessList()
 		crond_process = str(p.named('crond')).strip('[]')
@@ -264,12 +264,12 @@ class CronTimers(Screen):
 			self.session.open(MessageBox, _(myline), MessageBox.TYPE_INFO)
 
 config.crontimers = ConfigSubsection()
-config.crontimers.commandtype = NoSave(ConfigSelection(choices = [ ('custom', _("Custom")), ('predefined', _("Predefined")) ]))
+config.crontimers.commandtype = NoSave(ConfigSelection(choices=[ ('custom', _("Custom")), ('predefined', _("Predefined")) ]))
 config.crontimers.cmdtime = NoSave(ConfigClock(default=0))
 config.crontimers.cmdtime.value, mytmpt = ([0, 0], [0, 0])
 config.crontimers.user_command = NoSave(ConfigText(fixed_size=False))
-config.crontimers.runwhen = NoSave(ConfigSelection(default='Daily', choices = [('Hourly', _("Hourly")), ('Daily', _("Daily")), ('Weekly', _("Weekly")), ('Monthly', _("Monthly"))]))
-config.crontimers.dayofweek = NoSave(ConfigSelection(default='Monday', choices = [('Monday', _("Monday")), ('Tuesday', _("Tuesday")), ('Wednesday', _("Wednesday")), ('Thursday', _("Thursday")), ('Friday', _("Friday")), ('Saturday', _("Saturday")), ('Sunday', _("Sunday"))]))
+config.crontimers.runwhen = NoSave(ConfigSelection(default='Daily', choices=[('Hourly', _("Hourly")), ('Daily', _("Daily")), ('Weekly', _("Weekly")), ('Monthly', _("Monthly"))]))
+config.crontimers.dayofweek = NoSave(ConfigSelection(default='Monday', choices=[('Monday', _("Monday")), ('Tuesday', _("Tuesday")), ('Wednesday', _("Wednesday")), ('Thursday', _("Thursday")), ('Friday', _("Friday")), ('Saturday', _("Saturday")), ('Sunday', _("Sunday"))]))
 config.crontimers.dayofmonth = NoSave(ConfigInteger(default=1, limits=(1, 31)))
 
 class CronTimersConfig(Screen, ConfigListScreen):
@@ -279,7 +279,7 @@ class CronTimersConfig(Screen, ConfigListScreen):
 		self.skinName = "Setup"
 		self.onChangedEntry = [ ]
 		self.list = []
-		ConfigListScreen.__init__(self, self.list, session = self.session, on_change = self.changedEntry)
+		ConfigListScreen.__init__(self, self.list, session=self.session, on_change=self.changedEntry)
 		self['key_red'] = Label(_("Close"))
 		self['key_green'] = Label(_("Save"))
 		self['actions'] = ActionMap(['WizardActions', 'ColorActions', 'VirtualKeyboardActions', "MenuActions"], {'red': self.close,'green': self.checkentry, 'back': self.close, 'showVirtualKeyboard': self.KeyText})
@@ -302,7 +302,7 @@ class CronTimersConfig(Screen, ConfigListScreen):
 				if pkg.find('.sh') >= 0:
 					predefinedlist.append((description, pkg))
 			predefinedlist.sort()
-		config.crontimers.predefined_command = NoSave(ConfigSelection(choices = predefinedlist))
+		config.crontimers.predefined_command = NoSave(ConfigSelection(choices=predefinedlist))
 		self.editListEntry = None
 
 		self.list = []
@@ -337,9 +337,9 @@ class CronTimersConfig(Screen, ConfigListScreen):
 			self.vkvar = sel[0]
 			if self.vkvar == _("Command To Run"):
 				from Screens.VirtualKeyBoard import VirtualKeyBoard
-				self.session.openWithCallback(self.VirtualKeyBoardCallback, VirtualKeyBoard, title = self["config"].getCurrent()[0], text = self["config"].getCurrent()[1].value)
+				self.session.openWithCallback(self.VirtualKeyBoardCallback, VirtualKeyBoard, title=self["config"].getCurrent()[0], text=self["config"].getCurrent()[1].value)
 
-	def VirtualKeyBoardCallback(self, callback = None):
+	def VirtualKeyBoardCallback(self, callback=None):
 		if callback is not None and len(callback):
 			self["config"].getCurrent()[1].setValue(callback)
 			self["config"].invalidate(self["config"].getCurrent())

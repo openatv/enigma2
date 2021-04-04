@@ -37,7 +37,7 @@ class ParentalControlSetup(Screen, ConfigListScreen, ProtectedScreen):
 		self.onChangedEntry = [ ]
 
 		self.list = []
-		ConfigListScreen.__init__(self, self.list, session = self.session, on_change = self.changedEntry)
+		ConfigListScreen.__init__(self, self.list, session=self.session, on_change=self.changedEntry)
 		self.createSetup()
 
 		self["actions"] = NumberActionMap(["SetupActions", "MenuActions"],
@@ -166,8 +166,8 @@ class ParentalControlChangePin(Screen, ConfigListScreen, ProtectedScreen):
 
 		self.pin = pin
 		self.list = []
-		self.pin1 = ConfigPIN(default = 1111, censor = "*")
-		self.pin2 = ConfigPIN(default = 1112, censor = "*")
+		self.pin1 = ConfigPIN(default=1111, censor="*")
+		self.pin2 = ConfigPIN(default=1112, censor="*")
 		self.pin1.addEndNotifier(boundFunction(self.valueChanged, 1))
 		self.pin2.addEndNotifier(boundFunction(self.valueChanged, 2))
 		self.list.append(getConfigListEntry(_("New PIN"), NoSave(self.pin1)))

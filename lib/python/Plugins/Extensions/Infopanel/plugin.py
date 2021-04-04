@@ -96,11 +96,11 @@ timer.startLongTimer(1)
 choicelist = [('0', _("Audio Selection")), ('1', _("Default (Timeshift)")), ('2', _("Toggle Pillarbox <> Pan&Scan")), ('3', _("Teletext"))]
 config.plugins.infopanel_yellowkey = ConfigSubsection()
 if getBoxType() == "dm800":
-	config.plugins.infopanel_yellowkey.list = ConfigSelection(default='1', choices = choicelist)
-	config.plugins.infopanel_yellowkey.listLong = ConfigSelection(default='1', choices = choicelist)
+	config.plugins.infopanel_yellowkey.list = ConfigSelection(default='1', choices=choicelist)
+	config.plugins.infopanel_yellowkey.listLong = ConfigSelection(default='1', choices=choicelist)
 else:
-	config.plugins.infopanel_yellowkey.list = ConfigSelection(default='0', choices = choicelist)
-	config.plugins.infopanel_yellowkey.listLong = ConfigSelection(default='0', choices = choicelist)
+	config.plugins.infopanel_yellowkey.list = ConfigSelection(default='0', choices=choicelist)
+	config.plugins.infopanel_yellowkey.listLong = ConfigSelection(default='0', choices=choicelist)
 config.plugins.showinfopanelextensions = ConfigYesNo(default=False)
 config.plugins.infopanel_frozencheck = ConfigSubsection()
 config.plugins.infopanel_frozencheck.list = ConfigSelection([('0', _("Off")), ('1', _("1 min.")), ('5', _("5 min.")), ('10', _("10 min.")), ('15', _("15 min.")), ('30', _("30 min."))])
@@ -192,7 +192,7 @@ ExitSave = "[Exit] = " +_("Cancel") +"              [Ok] =" +_("Save")
 
 class ConfigPORT(ConfigSequence):
 	def __init__(self, default):
-		ConfigSequence.__init__(self, seperator = ".", limits = [(1, 65535)], default = default)
+		ConfigSequence.__init__(self, seperator=".", limits=[(1, 65535)], default=default)
 
 def main(session, **kwargs):
 		session.open(Infopanel)
@@ -207,11 +207,11 @@ def Plugins(**kwargs):
 	return [
 
 	#// show Infopanel in Main Menu
-	PluginDescriptor(name=_("Info Panel"), description="Info panel GUI 27/12/2013", where = PluginDescriptor.WHERE_MENU, fnc = Apanel),
+	PluginDescriptor(name=_("Info Panel"), description="Info panel GUI 27/12/2013", where=PluginDescriptor.WHERE_MENU, fnc=Apanel),
 	#// SwapAutostart
-	PluginDescriptor(where = [PluginDescriptor.WHERE_SESSIONSTART, PluginDescriptor.WHERE_AUTOSTART], fnc = SwapAutostart),
+	PluginDescriptor(where=[PluginDescriptor.WHERE_SESSIONSTART, PluginDescriptor.WHERE_AUTOSTART], fnc=SwapAutostart),
 	#// show Infopanel in EXTENSIONS Menu
-	PluginDescriptor(name=_("Info Panel"), description="Info panel GUI 27/12/2013", where = PluginDescriptor.WHERE_EXTENSIONSMENU, fnc = main) ]
+	PluginDescriptor(name=_("Info Panel"), description="Info panel GUI 27/12/2013", where=PluginDescriptor.WHERE_EXTENSIONSMENU, fnc=main) ]
 
 
 
@@ -243,7 +243,7 @@ INFO_SKIN2 =  """<screen name="PANEL-Info2"  position="center,center" size="530,
 
 ###################  Max Test ###################
 class PanelList(MenuList):
-	def __init__(self, list, font0 = 24, font1 = 16, itemHeight = 50, enableWrapAround = True):
+	def __init__(self, list, font0=24, font1=16, itemHeight=50, enableWrapAround=True):
 		MenuList.__init__(self, list, enableWrapAround, eListboxPythonMultiContent)
 		sf = getSkinFactor()
 		self.l.setFont(0, gFont("Regular", int(font0 * sf)))
@@ -253,7 +253,7 @@ class PanelList(MenuList):
 def MenuEntryItem(entry):
 	res = [entry]
 	sf = getSkinFactor()
-	res.append(MultiContentEntryPixmapAlphaBlend(pos=(10*sf, 5*sf), size=(40*sf, 40*sf), flags = BT_SCALE, png=entry[0]))  # png vorn
+	res.append(MultiContentEntryPixmapAlphaBlend(pos=(10*sf, 5*sf), size=(40*sf, 40*sf), flags=BT_SCALE, png=entry[0]))  # png vorn
 	res.append(MultiContentEntryText(pos=(60*sf, 10*sf), size=(540*sf, 40*sf), font=0, text=entry[1]))  # menupunkt
 	return res
 ###################  Max Test ###################
@@ -264,11 +264,11 @@ from Screens.InfoBarGenerics import InfoBarPiP
 #g
 
 def InfoEntryComponent(file):
-	png = LoadPixmap(cached = True, path = resolveFilename(SCOPE_CURRENT_SKIN, "icons/" + file + ".png"))
+	png = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_SKIN, "icons/" + file + ".png"))
 	if png == None:
 		png = LoadPixmap("/usr/lib/enigma2/python/Plugins/Extensions/Infopanel/icons/" + file + ".png")
 		if png == None:
-			png = LoadPixmap(cached = True, path = resolveFilename(SCOPE_CURRENT_SKIN, "icons/default.png"))
+			png = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_SKIN, "icons/default.png"))
 			if png == None:
 				png = LoadPixmap("/usr/lib/enigma2/python/Plugins/Extensions/Infopanel/icons/default.png")
 	res = (png)
@@ -276,7 +276,7 @@ def InfoEntryComponent(file):
 
 class Infopanel(Screen, InfoBarPiP, ProtectedScreen):
 	servicelist = None
-	def __init__(self, session, services = None):
+	def __init__(self, session, services=None):
 		Screen.__init__(self, session)
 		config.plugins.configurationbackup=BackupRestore_InitConfig()
 		if config.ParentalControl.configured.value:
@@ -471,15 +471,15 @@ class Infopanel(Screen, InfoBarPiP, ProtectedScreen):
 		elif menu == "software-update":
 			self.session.open(SoftwarePanel)
 		elif menu == "backup-settings":
-			self.session.openWithCallback(self.backupDone, BackupScreen, runBackup = True)
+			self.session.openWithCallback(self.backupDone, BackupScreen, runBackup=True)
 		elif menu == "restore-settings":
 			self.backuppath = getBackupPath()
 			self.backupfile = getBackupFilename()
 			self.fullbackupfilename = self.backuppath + "/" + self.backupfile
 			if os_path.exists(self.fullbackupfilename):
-				self.session.openWithCallback(self.startRestore, MessageBox, _("Are you sure you want to restore your STB backup?\nSTB will restart after the restore"), default = False)
+				self.session.openWithCallback(self.startRestore, MessageBox, _("Are you sure you want to restore your STB backup?\nSTB will restart after the restore"), default=False)
 			else:
-				self.session.open(MessageBox, _("Sorry no backups found!"), MessageBox.TYPE_INFO, timeout = 10)
+				self.session.open(MessageBox, _("Sorry no backups found!"), MessageBox.TYPE_INFO, timeout=10)
 		elif menu == "backup-files":
 			self.session.open(BackupSelection, title=_("Default files/folders to backup"), configBackupDirs=config.plugins.configurationbackup.backupdirs_default, readOnly=True)
 		elif menu == "backup-files-additional":
@@ -584,16 +584,16 @@ class Infopanel(Screen, InfoBarPiP, ProtectedScreen):
 		self["Mlist"].moveToIndex(0)
 		self["Mlist"].l.setList(self.tlist)
 
-	def backupDone(self,retval = None):
+	def backupDone(self,retval=None):
 		if retval is True:
-			self.session.open(MessageBox, _("Backup done."), MessageBox.TYPE_INFO, timeout = 10)
+			self.session.open(MessageBox, _("Backup done."), MessageBox.TYPE_INFO, timeout=10)
 		else:
-			self.session.open(MessageBox, _("Backup failed."), MessageBox.TYPE_INFO, timeout = 10)
+			self.session.open(MessageBox, _("Backup failed."), MessageBox.TYPE_INFO, timeout=10)
 
-	def startRestore(self, ret = False):
+	def startRestore(self, ret=False):
 		if (ret == True):
 			self.exe = True
-			self.session.open(RestoreScreen, runRestore = True)
+			self.session.open(RestoreScreen, runRestore=True)
 
 class KeymapSel(ConfigListScreen, Screen):
 	def __init__(self, session):
@@ -630,7 +630,7 @@ class KeymapSel(ConfigListScreen, Screen):
 
 		self.onChangedEntry = [ ]
 		self.list = []
-		ConfigListScreen.__init__(self, self.list, session = self.session, on_change = self.changedEntry)
+		ConfigListScreen.__init__(self, self.list, session=self.session, on_change=self.changedEntry)
 		self.createSetup()
 
 		self["actions"] = ActionMap(["SetupActions", 'ColorActions'],
@@ -975,7 +975,7 @@ class Info(Screen):
 			text = text[:-1]
 		return text
 
-	def Do_cmd(self, cmd , file, arg , pipe = ""):
+	def Do_cmd(self, cmd , file, arg , pipe=""):
 		try:
 			if file != None:
 				if os.path.exists(file) is True:

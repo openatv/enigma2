@@ -703,7 +703,7 @@ class key_actions(stat_info):
 			if not found_viewer:
 				self.session.open(MessageBox, _("No viewer installed for this file type: %s") % filename, type=MessageBox.TYPE_ERROR, timeout=5, close_on_any_key=True)
 
-	def mviFileCB(self, ret = None):
+	def mviFileCB(self, ret=None):
 		if ret and ret != 'no':
 			global last_service
 			last_service = self.session.nav.getCurrentlyPlayingServiceReference()

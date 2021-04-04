@@ -53,7 +53,7 @@ class GetEcmInfo:
 		self.pollEcmData()
 		return data
 
-	def getInfo(self, member, ifempty = ''):
+	def getInfo(self, member, ifempty=''):
 		self.pollEcmData()
 		return str(info.get(member, ifempty))
 

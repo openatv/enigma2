@@ -5,14 +5,14 @@ from enigma import eDBoxLCD
 from Components.SystemInfo import SystemInfo
 
 config.plugins.minitv = ConfigSubsection()
-config.plugins.minitv.enable = ConfigSelection(default = "disable", choices = [ ("enable", "enable"), ("disable", "disable")])
-config.plugins.minitv.decoder = ConfigSelection(default = "0", choices = [ ("0", "0"), ("1", "1")])
+config.plugins.minitv.enable = ConfigSelection(default="disable", choices=[ ("enable", "enable"), ("disable", "disable")])
+config.plugins.minitv.decoder = ConfigSelection(default="0", choices=[ ("0", "0"), ("1", "1")])
 
 class MiniTV:
 	def __init__(self):
-		config.plugins.minitv.enable.addNotifier(self.miniTVChanged, initial_call = True)
-		config.plugins.minitv.decoder.addNotifier(self.miniTVDecoderChanged, initial_call = True)
-		config.misc.standbyCounter.addNotifier(self.standbyCounterChanged, initial_call = False)
+		config.plugins.minitv.enable.addNotifier(self.miniTVChanged, initial_call=True)
+		config.plugins.minitv.decoder.addNotifier(self.miniTVDecoderChanged, initial_call=True)
+		config.misc.standbyCounter.addNotifier(self.standbyCounterChanged, initial_call=False)
 
 	def getExtensionName(self):
 		if config.plugins.minitv.enable.value == "enable":
@@ -85,13 +85,13 @@ def Plugins(**kwargs):
 	list.append(
 		PluginDescriptor(name="MiniTV",
 		description="MiniTV",
-		where = [PluginDescriptor.WHERE_EXTENSIONSINGLE],
-		fnc = addExtentions))
+		where=[PluginDescriptor.WHERE_EXTENSIONSINGLE],
+		fnc=addExtentions))
 
 	list.append(
 		PluginDescriptor(
-		where = [PluginDescriptor.WHERE_AUTOSTART],
-		fnc = autoStart))
+		where=[PluginDescriptor.WHERE_AUTOSTART],
+		fnc=autoStart))
 
 	return list
 

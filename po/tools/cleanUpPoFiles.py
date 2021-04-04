@@ -245,10 +245,10 @@ def normaliseAllPoFiles(filesGlob):
         if len(matchedEntries) == 0 and len(occurrencesCache[cacheEntry]) > 0:
           try:
             newEntry = polib.POEntry(
-              msgid = polib.unescape(cacheEntry),
-              msgstr = "",
-              occurrences = occurrencesCache[cacheEntry],
-              tcomment = "normalised"
+              msgid=polib.unescape(cacheEntry),
+              msgstr="",
+              occurrences=occurrencesCache[cacheEntry],
+              tcomment="normalised"
             )
             poFile.append(newEntry)
           except:
@@ -285,7 +285,7 @@ def main():
         print(rowFormat.format(pfs, *row))
     print("")
     normaliseAllPoFiles(poFilesGlob)
-    hours, remainder = divmod(timedelta(seconds = time.time() - startTime).seconds, 3600)
+    hours, remainder = divmod(timedelta(seconds=time.time() - startTime).seconds, 3600)
     minutes, seconds = divmod(remainder, 60)
     print("\nComplete in " + '{:02}:{:02}:{:02}'.format(int(hours), int(minutes), int(seconds)) + "!\n")
   except KeyboardInterrupt:

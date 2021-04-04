@@ -11,7 +11,7 @@ from Tools.LoadPixmap import LoadPixmap
 
 class RdsInfoDisplaySummary(Screen):
 	def __init__(self, session, parent):
-		Screen.__init__(self, session, parent = parent)
+		Screen.__init__(self, session, parent=parent)
 		self["message"] = StaticText("")
 		self.parent.onText.append(self.onText)
 
@@ -28,8 +28,7 @@ class RdsInfoDisplay(Screen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
 
-		self.__event_tracker = ServiceEventTracker(screen=self, eventmap=
-			{
+		self.__event_tracker = ServiceEventTracker(screen=self, eventmap={
 				iPlayableService.evEnd: self.__serviceStopped,
 				iPlayableService.evUpdatedRadioText: self.RadioTextChanged,
 				iPlayableService.evUpdatedRtpText: self.RtpTextChanged,
@@ -119,8 +118,7 @@ class RassInteractive(Screen):
 				"prevSubPage": self.prevSubPage
 			})
 
-		self.__event_tracker = ServiceEventTracker(screen=self, eventmap=
-			{
+		self.__event_tracker = ServiceEventTracker(screen=self, eventmap={
 				iPlayableService.evUpdatedRassInteractivePicMask: self.recvRassInteractivePicMaskChanged
 			})
 

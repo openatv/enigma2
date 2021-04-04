@@ -85,7 +85,7 @@ config.plugins.filecommander.script_messagelen = ConfigSelectionNumber(default=3
 config.plugins.filecommander.script_priority_nice = ConfigSelectionNumber(default=0, stepwidth=1, min=0, max=19, wraparound=True)
 config.plugins.filecommander.script_priority_ionice = ConfigSelectionNumber(default=0, stepwidth=3, min=0, max=3, wraparound=True)
 config.plugins.filecommander.unknown_extension_as_text = ConfigYesNo(default=False)
-config.plugins.filecommander.sortDirs = ConfigSelection(default = "0.0", choices = [
+config.plugins.filecommander.sortDirs = ConfigSelection(default="0.0", choices=[
 				("0.0", _("Name")),
 				("0.1", _("Name reverse")),
 				("1.0", _("Date")),
@@ -97,8 +97,8 @@ choicelist = [
 				("1.1", _("Date reverse")),
 				("2.0", _("Size")), 
 				("2.1", _("Size reverse"))]
-config.plugins.filecommander.sortFiles_left = ConfigSelection(default = "1.1", choices = choicelist)
-config.plugins.filecommander.sortFiles_right = ConfigSelection(default = "1.1", choices = choicelist)
+config.plugins.filecommander.sortFiles_left = ConfigSelection(default="1.1", choices=choicelist)
+config.plugins.filecommander.sortFiles_right = ConfigSelection(default="1.1", choices=choicelist)
 config.plugins.filecommander.firstDirs = ConfigYesNo(default=True)
 config.plugins.filecommander.path_left_selected = ConfigYesNo(default=True)
 config.plugins.filecommander.showTaskCompleted_message = ConfigYesNo(default=True)
@@ -636,7 +636,7 @@ class FileCommanderScreen(Screen, HelpableScreen, key_actions):
 			else:
 				Tools.Notifications.AddNotification(MessageBox, message, type=messageboxtyp, timeout=timeout)
 
-	def setSort(self, liste, setDirs = False):
+	def setSort(self, liste, setDirs=False):
 		sortDirs, sortFiles = liste.getSortBy().split(',')
 		if setDirs:
 			sort, reverse = [int(x) for x in sortDirs.split('.')]
@@ -650,7 +650,7 @@ class FileCommanderScreen(Screen, HelpableScreen, key_actions):
 				sort = 0
 		return '%d.%d' %(sort, reverse)
 
-	def setReverse(self, liste, setDirs = False):
+	def setReverse(self, liste, setDirs=False):
 		sortDirs, sortFiles = liste.getSortBy().split(',')
 		if setDirs:
 			sort, reverse = [int(x) for x in sortDirs.split('.')]

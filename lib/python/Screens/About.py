@@ -346,7 +346,7 @@ class About(Screen):
 				id = f.read()[:-1].split('=')
 				f.close()
 				from Screens.MessageBox import MessageBox
-				self.session.open(MessageBox, id[1], type = MessageBox.TYPE_INFO)
+				self.session.open(MessageBox, id[1], type=MessageBox.TYPE_INFO)
 			except:
 				pass
 
