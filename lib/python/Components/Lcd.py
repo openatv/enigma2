@@ -20,15 +20,18 @@ class dummyScreen(Screen):
 	skin = """<screen position="0,0" size="0,0" transparent="1">
 	<widget source="session.VideoPicture" render="Pig" position="0,0" size="0,0" backgroundColor="transparent" zPosition="1"/>
 	</screen>"""
+
 	def __init__(self, session, args=None):
 		Screen.__init__(self, session)
 		self.close()
+
 
 def IconCheck(session=None, **kwargs):
 	if fileExists("/proc/stb/lcd/symbol_network") or fileExists("/proc/stb/lcd/symbol_usb"):
 		global networklinkpoller
 		networklinkpoller = IconCheckPoller()
 		networklinkpoller.start()
+
 
 class IconCheckPoller:
 	def __init__(self):
@@ -88,6 +91,7 @@ class IconCheckPoller:
 		#	f.close()
 
 		self.timer.startLongTimer(30)
+
 
 class LCD:
 	def __init__(self):
@@ -294,16 +298,19 @@ class LCD:
 		f.write("%d \n" % value)
 		f.close()
 
+
 def leaveStandby():
 	config.lcd.bright.apply()
 	config.lcd.ledbrightness.apply()
 	config.lcd.ledbrightnessdeepstandby.apply()
+
 
 def standbyCounterChanged(configElement):
 	Screens.Standby.inStandby.onClose.append(leaveStandby)
 	config.lcd.standby.apply()
 	config.lcd.ledbrightnessstandby.apply()
 	config.lcd.ledbrightnessdeepstandby.apply()
+
 
 def InitLcd():
 	if getBoxType() in ('gbx34k', 'force4', 'alien5', 'viperslim', 'lunix', 'lunix4k', 'purehdse', 'vipert2c', 'evoslimse', 'evoslimt2c', 'valalinux', 'tmtwin4k', 'tmnanom3', 'mbmicrov2', 'revo4k', 'force3uhd', 'force2nano', 'evoslim', 'wetekplay', 'wetekplay2', 'wetekhub', 'ultrabox', 'novaip', 'dm520', 'dm525', 'purehd', 'mutant11', 'xpeedlxpro', 'zgemmai55', 'sf98', 'et7x00mini', 'xpeedlxcs2', 'xpeedlxcc', 'e4hd', 'e4hdhybrid', 'mbmicro', 'beyonwizt2', 'amikomini', 'dynaspark', 'amiko8900', 'sognorevolution', 'arguspingulux', 'arguspinguluxmini', 'arguspinguluxplus', 'sparkreloaded', 'sabsolo', 'sparklx', 'gis8120', 'gb800se', 'gb800solo', 'gb800seplus', 'gbultrase', 'gbipbox', 'tmsingle', 'tmnano2super', 'iqonios300hd', 'iqonios300hdv2', 'optimussos1plus', 'optimussos1', 'vusolo', 'et4x00', 'et5x00', 'et6x00', 'et7000', 'et7100', 'mixosf7', 'mixoslumi', 'gbx1', 'gbx2', 'gbx3', 'gbx3h'):
@@ -332,6 +339,7 @@ def InitLcd():
 					f.close()
 				except:
 					pass
+
 			def setMiniTVFPS(configElement):
 				try:
 					print('setMiniTVFPS', configElement.value)
@@ -340,8 +348,10 @@ def InitLcd():
 					f.close()
 				except:
 					pass
+
 			def setLCDModePiP(configElement):
 				pass
+
 			def setLCDScreenshot(configElement):
 				ilcd.setScreenShot(configElement.value)
 

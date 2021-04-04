@@ -43,6 +43,7 @@ if float(getVersionString()) >= 4.0:
 else:
 	basegroup = "task-base"
 
+
 class NetworkAdapterSelection(Screen, HelpableScreen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
@@ -335,6 +336,7 @@ class NameserverSetup(Screen, ConfigListScreen, HelpableScreen):
 			self.createConfig()
 			self.createSetup()
 
+
 class NetworkMacSetup(Screen, ConfigListScreen, HelpableScreen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
@@ -407,6 +409,7 @@ class NetworkMacSetup(Screen, ConfigListScreen, HelpableScreen):
 	def restartfinishedCB(self, data):
 		if data == True:
 			self.session.openWithCallback(self.close, MessageBox, _("Finished configuring your network"), type=MessageBox.TYPE_INFO, timeout=10, default=False)
+
 
 class AdapterSetup(Screen, ConfigListScreen, HelpableScreen):
 	def __init__(self, session, networkinfo, essid=None):
@@ -903,7 +906,6 @@ class AdapterSetupConfiguration(Screen, HelpableScreen):
 		if not self.selectionChanged in self["menulist"].onSelectionChanged:
 			self["menulist"].onSelectionChanged.append(self.selectionChanged)
 		self.selectionChanged()
-
 
 	def queryWirelessDevice(self, iface):
 		try:
@@ -1609,6 +1611,7 @@ class NetworkAdapterTest(Screen):
 		else:
 			iStatus.stopWlanConsole()
 
+
 class NetworkMountsMenu(Screen, HelpableScreen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
@@ -1708,6 +1711,7 @@ class NetworkMountsMenu(Screen, HelpableScreen):
 				self.extendedSetup = ('extendedSetup', menuEntryDescription, self.extended)
 				menu.append((menuEntryName, self.extendedSetup))
 		return menu
+
 
 class NetworkAfp(Screen):
 	def __init__(self, session):
@@ -1852,6 +1856,8 @@ class NetworkAfp(Screen):
 		for cb in self.onChangedEntry:
 			cb(title, status_summary, autostartstatus_summary)
 ######################################################################################################################
+
+
 class NetworkSABnzbd(Screen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
@@ -2001,6 +2007,8 @@ class NetworkSABnzbd(Screen):
 			cb(title, status_summary, autostartstatus_summary)
 
 #########################################################################################################
+
+
 class NetworkFtp(Screen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
@@ -2081,6 +2089,7 @@ class NetworkFtp(Screen):
 
 		for cb in self.onChangedEntry:
 			cb(title, status_summary, autostartstatus_summary)
+
 
 class NetworkNfs(Screen):
 	def __init__(self, session):
@@ -2220,6 +2229,7 @@ class NetworkNfs(Screen):
 
 		for cb in self.onChangedEntry:
 			cb(title, status_summary, autostartstatus_summary)
+
 
 class NetworkOpenvpn(Screen):
 	def __init__(self, session):
@@ -2400,6 +2410,7 @@ class NetworkVpnLog(Screen):
 			remove('/etc/openvpn/tmp.log')
 		self['infotext'].setText(strview)
 
+
 class NetworkSamba(Screen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
@@ -2578,6 +2589,7 @@ class NetworkSambaLog(Screen):
 			remove('/tmp/tmp.log')
 		self['infotext'].setText(strview)
 
+
 class NetworkTelnet(Screen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
@@ -2656,6 +2668,7 @@ class NetworkTelnet(Screen):
 
 		for cb in self.onChangedEntry:
 			cb(title, status_summary, autostartstatus_summary)
+
 
 class NetworkInadyn(Screen):
 	def __init__(self, session):
@@ -2842,12 +2855,12 @@ class NetworkInadyn(Screen):
 		for cb in self.onChangedEntry:
 			cb(title, status_summary, autostartstatus_summary)
 
-
 	def setupinadyn(self):
 		self.session.openWithCallback(self.updateService, NetworkInadynSetup)
 
 	def inaLog(self):
 		self.session.open(NetworkInadynLog)
+
 
 class NetworkInadynSetup(Screen, ConfigListScreen):
 	def __init__(self, session):
@@ -2979,6 +2992,7 @@ class NetworkInadynSetup(Screen, ConfigListScreen):
 	def myStop(self):
 		self.close()
 
+
 class NetworkInadynLog(Screen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
@@ -2996,8 +3010,11 @@ class NetworkInadynLog(Screen):
 			f.close()
 		self['infotext'].setText(strview)
 
+
 config.networkushare = ConfigSubsection()
 config.networkushare.mediafolders = NoSave(ConfigLocations(default=""))
+
+
 class NetworkuShare(Screen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
@@ -3219,12 +3236,12 @@ class NetworkuShare(Screen):
 		for cb in self.onChangedEntry:
 			cb(title, status_summary, autostartstatus_summary)
 
-
 	def setupushare(self):
 		self.session.openWithCallback(self.updateService, NetworkuShareSetup)
 
 	def ushareLog(self):
 		self.session.open(NetworkuShareLog)
+
 
 class NetworkuShareSetup(Screen, ConfigListScreen):
 	def __init__(self, session):
@@ -3399,6 +3416,7 @@ class NetworkuShareSetup(Screen, ConfigListScreen):
 			pass
 		self.session.openWithCallback(self.updateList, uShareSelection)
 
+
 class uShareSelection(Screen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
@@ -3475,6 +3493,7 @@ class uShareSelection(Screen):
 		if self.filelist.canDescent():
 			self.filelist.descent()
 
+
 class NetworkuShareLog(Screen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
@@ -3494,8 +3513,11 @@ class NetworkuShareLog(Screen):
 			remove('/tmp/tmp.log')
 		self['infotext'].setText(strview)
 
+
 config.networkminidlna = ConfigSubsection()
 config.networkminidlna.mediafolders = NoSave(ConfigLocations(default=""))
+
+
 class NetworkMiniDLNA(Screen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
@@ -3709,6 +3731,7 @@ class NetworkMiniDLNA(Screen):
 	def minidlnaLog(self):
 		self.session.open(NetworkMiniDLNALog)
 
+
 class NetworkMiniDLNASetup(Screen, ConfigListScreen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
@@ -3869,6 +3892,7 @@ class NetworkMiniDLNASetup(Screen, ConfigListScreen):
 			pass
 		self.session.openWithCallback(self.updateList, MiniDLNASelection)
 
+
 class MiniDLNASelection(Screen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
@@ -3946,6 +3970,7 @@ class MiniDLNASelection(Screen):
 		if self.filelist.canDescent():
 			self.filelist.descent()
 
+
 class NetworkMiniDLNALog(Screen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
@@ -3964,6 +3989,7 @@ class NetworkMiniDLNALog(Screen):
 			f.close()
 			remove('/tmp/tmp.log')
 		self['infotext'].setText(strview)
+
 
 class NetworkServicesSummary(Screen):
 	def __init__(self, session, parent):
@@ -3985,6 +4011,7 @@ class NetworkServicesSummary(Screen):
 		self["title"].text = title
 		self["status_summary"].text = status_summary
 		self["autostartstatus_summary"].text = autostartstatus_summary
+
 
 class NetworkPassword(ConfigListScreen, Screen):
 	def __init__(self, session):
@@ -4086,7 +4113,6 @@ class NetworkPassword(ConfigListScreen, Screen):
 			self["config"].invalidate(self["config"].getCurrent())
 		self.showHelpWindow()
 
-
 	def dataAvail(self, data):
 		data = six.ensure_str(data)
 		self.output_line += data
@@ -4106,6 +4132,7 @@ class NetworkPassword(ConfigListScreen, Screen):
 		del self.container.appClosed[:]
 		del self.container
 		self.close()
+
 
 class NetworkSATPI(Screen):
 	def __init__(self, session):

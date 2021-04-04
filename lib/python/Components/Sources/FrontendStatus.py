@@ -2,6 +2,7 @@ from __future__ import absolute_import
 from Components.Sources.Source import Source
 from enigma import eTimer
 
+
 class FrontendStatus(Source):
 	def __init__(self, service_source=None, frontend_source=None, update_interval=1000):
 		Source.__init__(self)

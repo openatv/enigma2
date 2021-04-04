@@ -3,6 +3,7 @@ import six
 
 SIGN = '°' if six.PY3 else str('\xc2\xb0')
 
+
 class SensorToText(Converter, object):
 	def __init__(self, arguments):
 		Converter.__init__(self, arguments)

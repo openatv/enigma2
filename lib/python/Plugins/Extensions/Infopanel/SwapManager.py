@@ -20,6 +20,7 @@ config.plugins.infopanel.swapautostart = ConfigYesNo(default=False)
 
 startswap = None
 
+
 def SwapAutostart(reason, session=None, **kwargs):
 	global startswap
 	if reason == 0:
@@ -28,6 +29,7 @@ def SwapAutostart(reason, session=None, **kwargs):
 			startswap = StartSwap()
 			startswap.start()
 	
+
 class StartSwap:
 	def __init__(self):
 		self.Console = Console()
@@ -68,6 +70,8 @@ class StartSwap:
 			print("[SwapManager] Swapfile is already active on ", swap_place)
 	
 #######################################################################
+
+
 class Swap(Screen):
 	skin = """
 	<screen name="Swap" position="center,center" size="420,250" title="Swap File Manager" flags="wfBorder" >
@@ -88,6 +92,7 @@ class Swap(Screen):
 		<widget name="inactive" position="160,200" size="100,30" font="Regular;20" valign="center" halign="center" backgroundColor="red"/>
 		<widget name="active" position="160,200" size="100,30" font="Regular;20" valign="center" halign="center" backgroundColor="green"/>
 	</screen>"""
+
 	def __init__(self, session):
 		Screen.__init__(self, session)
 		Screen.setTitle(self, _("Swap Manager"))

@@ -29,6 +29,7 @@ import six
 
 SIGN = '°' if six.PY3 else str('\xc2\xb0')
 
+
 def parse_ipv4(ip):
 	ret = ""
 	idx = 0
@@ -41,6 +42,7 @@ def parse_ipv4(ip):
 			idx += 1
 	return ret
 
+
 def parseFile(filename):
 	ret = "N/A"
 	try:
@@ -51,6 +53,7 @@ def parseFile(filename):
 		print("[ERROR] failed to open file %s" % filename)
 	return ret
 
+
 def parseLines(filename):
 	ret = ["N/A"]
 	try:
@@ -60,6 +63,7 @@ def parseLines(filename):
 	except IOError:
 		print("[ERROR] failed to open file %s" % filename)
 	return ret
+
 
 def MyDateConverter(StringDate):
 	## StringDate must be a string "YYYY-MM-DD" or "YYYYMMDD"
@@ -75,6 +79,7 @@ def MyDateConverter(StringDate):
 		return StringDate
 	except:
 		return _("unknown")
+
 
 def getAboutText():
 	AboutText = ""
@@ -190,6 +195,7 @@ def getAboutText():
 
 	return AboutText, AboutLcdText
 
+
 class About(Screen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
@@ -210,7 +216,6 @@ class About(Screen):
 				"green": self.showTranslationInfo,
 				"0": self.showID,
 			})
-
 
 	def populate(self):
 		if isVTISkin:
@@ -271,7 +276,6 @@ class About(Screen):
 				self["hddA"] = StaticText(_("%s\n(%s, %d MB free)") % (hdd.model(), hdd.capacity(), hdd.free()))
 			else:
 				self["hddA"] = StaticText(_("none"))
-
 
 			self.enigma2_version = _("Version") + ": " + about.getEnigmaVersionString()
 			self.image_version = _("Image") + ": " + about.getImageVersionString()
@@ -370,6 +374,7 @@ class About(Screen):
 			self["FullAbout"].pageDown()
 		else:
 			self["AboutScrollLabel"].pageDown()
+
 
 class Devices(Screen):
 	def __init__(self, session):
@@ -513,6 +518,7 @@ class Devices(Screen):
 	def createSummary(self):
 		return AboutSummary
 
+
 class SystemMemoryInfo(Screen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
@@ -589,6 +595,7 @@ class SystemMemoryInfo(Screen):
 	def createSummary(self):
 		return AboutSummary
 
+
 class SystemNetworkInfo(Screen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
@@ -657,7 +664,6 @@ class SystemNetworkInfo(Screen):
 				line = line[1].replace(' ', '')
 				netspeed += line
 			return str(netspeed)
-
 
 		def netspeed_eth1():
 			netspeed = ""
@@ -865,6 +871,7 @@ class SystemNetworkInfo(Screen):
 	def createSummary(self):
 		return AboutSummary
 
+
 class AboutSummary(Screen):
 	def __init__(self, session, parent):
 		Screen.__init__(self, session, parent=parent)
@@ -873,6 +880,7 @@ class AboutSummary(Screen):
 		AboutText = getAboutText()[1]
 
 		self["AboutText"] = StaticText(AboutText)
+
 
 class ViewGitLog(Screen):
 	def __init__(self, session, args=None):
@@ -939,6 +947,7 @@ class ViewGitLog(Screen):
 
 	def closeRecursive(self):
 		self.close((_("Cancel"), ""))
+
 
 class TranslationInfo(Screen):
 	def __init__(self, session):

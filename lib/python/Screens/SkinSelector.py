@@ -12,6 +12,7 @@ from Tools.Directories import resolveFilename, SCOPE_ACTIVE_SKIN
 from enigma import eEnv, ePicLoad
 import os
 
+
 class SkinSelectorBase:
 	def __init__(self, session, args=None):
 		self.setTitle(_("Skin Selector"))
@@ -164,6 +165,7 @@ class SkinSelectorBase:
 				config.skin.primary_skin.save()
 			self.session.open(TryQuitMainloop, 3)
 
+
 class SkinSelector(Screen, SkinSelectorBase):
 	SKINXML = "skin.xml"
 	DEFAULTSKIN = _("< Default >")
@@ -183,6 +185,7 @@ class SkinSelector(Screen, SkinSelectorBase):
 		Screen.setTitle(self, _("Skin setup"))
 		self.skinName = "SkinSelector"
 		self.config = config.skin.primary_skin
+
 
 class LcdSkinSelector(Screen, SkinSelectorBase):
 	SKINXML = "skin_display.xml"

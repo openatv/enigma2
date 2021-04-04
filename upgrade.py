@@ -11,6 +11,7 @@ overwritePiconsFiles = True
 overwriteBootlogoFiles = True
 overwriteSpinnerFiles = True
 
+
 def findMountPoint(path):
 	"""Example: findMountPoint("/media/hdd/some/file") returns "/media/hdd\""""
 	path = os.path.abspath(path)
@@ -18,15 +19,18 @@ def findMountPoint(path):
 		path = os.path.dirname(path)
 	return path
 
+
 def opkgExtraDestinations():
 	global opkgDestinations
 	return ''.join([" --add-dest %s:%s" % (i, i) for i in opkgDestinations])
+
 
 def opkgAddDestination(mountpoint):
 	global opkgDestinations
 	if mountpoint not in opkgDestinations:
 		opkgDestinations.append(mountpoint)
 		print("[Ipkg] Added to OPKG destinations:", mountpoint)
+
 
 mounts = os.listdir('/media')
 for mount in mounts:
@@ -41,6 +45,7 @@ for mount in mounts:
 		if os.path.exists(os.path.join(mount, opkgStatusPath)):
 			opkgAddDestination(mount)
 
+
 def getValue(line):
 	dummy = line.split('=')
 	if len(dummy) != 2:
@@ -52,6 +57,7 @@ def getValue(line):
 		return True
 	else:
 		return False
+
 
 # get list of upgradable packages
 p = Popen("opkg list-upgradable", stdout=PIPE, stderr=PIPE, shell=True)

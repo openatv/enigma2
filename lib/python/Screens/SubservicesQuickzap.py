@@ -8,6 +8,7 @@ from Screens.InfoBarGenerics import InfoBarShowHide, InfoBarMenu, InfoBarInstant
 from enigma import eServiceReference
 from Components.ServiceEventTracker import InfoBarBase
 
+
 class SubservicesQuickzap(InfoBarBase, InfoBarShowHide, InfoBarMenu,
 		InfoBarInstantRecord, InfoBarSeek, InfoBarTimeshift,
 		InfoBarTimeshiftState, InfoBarExtensions, InfoBarSubtitleSupport,

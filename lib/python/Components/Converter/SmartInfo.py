@@ -5,6 +5,7 @@ from Components.Element import cached
 from xml.etree.cElementTree import parse
 from Components.Converter.Poll import Poll
 
+
 class SmartInfo(Poll, Converter, object):
     EXPERTINFO = 0
 

@@ -14,11 +14,13 @@ import sys
 from xml.sax import make_parser
 from xml.sax.handler import ContentHandler
 
+
 def getattrs(attrs, *a):
 	res = []
 	for x in a:
 		res.append(float(attrs[x]))
 	return res
+
 
 def parsedict(attrs):
 	if not attrs:
@@ -30,11 +32,14 @@ def parsedict(attrs):
 		r[key] = val
 	return r
 
+
 def px(x):
 	return int(float(x[:-2]) + .5)
 
+
 def contains(box_o, box_i):
 	return box_o[0] <= box_i[0] and box_o[1] <= box_i[1] and box_o[2] >= box_i[2] and box_o[3] >= box_i[3]
+
 
 class parseXML(ContentHandler):
 	def __init__(self):
@@ -79,6 +84,7 @@ class parseXML(ContentHandler):
 		else:
 			font = ""
 		print("""\t\t<widget source="%s" render="Label" position="%d,%d" size="%d,%d" %s />""" % (id, x, y, width, height, font))
+
 
 parser = make_parser()
 contentHandler = parseXML()

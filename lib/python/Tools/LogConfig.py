@@ -8,6 +8,7 @@ LOG_LEVEL_WARNING = 1
 LOG_LEVEL_INFO = 2
 LOG_LEVEL_DEBUG = 3
 
+
 class LogConfig(object):
 	_initialized = False
 

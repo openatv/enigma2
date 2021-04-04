@@ -43,6 +43,7 @@ class HTTPProgressDownloader(client.HTTPDownloader):
 			self.end_callback()
 		return ret
 
+
 class downloadWithProgress:
 	def __init__(self, url, outputfile, contextFactory=None, *args, **kwargs):
 		if hasattr(client, '_parse'):

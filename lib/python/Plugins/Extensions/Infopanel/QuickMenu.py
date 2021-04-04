@@ -92,6 +92,7 @@ if path.exists("/usr/lib/enigma2/python/Plugins/SystemPlugins/Satfinder/plugin.p
 else:
 	SATFINDER = False
 
+
 def Check_Softcam():
 	found = False
 	if fileExists("/etc/enigma2/noemu"):
@@ -106,6 +107,7 @@ def Check_Softcam():
 				break
 	return found
 
+
 def isFileSystemSupported(filesystem):
 	try:
 		for fs in open('/proc/filesystems', 'r'):
@@ -114,6 +116,7 @@ def isFileSystemSupported(filesystem):
 		return False
 	except Exception as ex:
 		print("[Harddisk] Failed to read /proc/filesystems:", ex)
+
 
 class QuickMenu(Screen, ProtectedScreen):
 	skin = """
@@ -387,6 +390,7 @@ class QuickMenu(Screen, ProtectedScreen):
 ######## Make Selection MAIN MENU LIST ##############################
 #####################################################################
 			
+
 	def okList(self):
 		item = self["list"].getCurrent()
 
@@ -652,6 +656,7 @@ def QuickMenuEntryComponent(name, description, long_description=None, width=540)
 		MultiContentEntryText(pos=(0, 0), size=(0, 0), font=0, text=_(long_description))
 	]
 
+
 def QuickSubMenuEntryComponent(name, description, long_description=None, width=540):
 	sf = getSkinFactor()
 	return [
@@ -661,6 +666,7 @@ def QuickSubMenuEntryComponent(name, description, long_description=None, width=5
 		MultiContentEntryText(pos=(0, 0), size=(0, 0), font=0, text=_(long_description))
 	]
 
+
 class QuickMenuList(MenuList):
 	def __init__(self, list, enableWrapAround=True):
 		MenuList.__init__(self, list, enableWrapAround, eListboxPythonMultiContent)
@@ -669,6 +675,7 @@ class QuickMenuList(MenuList):
 		self.l.setFont(1, gFont("Regular", int(16 * sf)))
 		self.l.setItemHeight(int(50 * sf))
 
+
 class QuickMenuSubList(MenuList):
 	def __init__(self, sublist, enableWrapAround=True):
 		MenuList.__init__(self, sublist, enableWrapAround, eListboxPythonMultiContent)
@@ -676,6 +683,7 @@ class QuickMenuSubList(MenuList):
 		self.l.setFont(0, gFont("Regular", int(20 * sf)))
 		self.l.setFont(1, gFont("Regular", int(16 * sf)))
 		self.l.setItemHeight(int(50 * sf))
+
 
 class QuickMenuDevices(Screen):
 	skin = """

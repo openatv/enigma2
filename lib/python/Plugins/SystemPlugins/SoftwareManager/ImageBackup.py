@@ -32,6 +32,7 @@ else:
 
 VERSION = _("Version %s %s") % (getImageDistro(), getImageVersion())
 
+
 class ImageBackup(Screen):
 
 	skin = """
@@ -236,7 +237,6 @@ class ImageBackup(Screen):
 					self.message += _("Backup Mode: Flash Online\n")
 				self.message += "_________________________________________________\n"
 				self.message += "'"
-
 
 				## PREPARING THE BUILDING ENVIRONMENT
 				os.system("rm -rf %s" % self.WORKDIR)
@@ -630,7 +630,6 @@ class ImageBackup(Screen):
 			cmdlist.append('echo "' + _("     no writing permission on back-up device") + '"')
 			cmdlist.append('echo " "')
 
-
 		cmdlist.append("rm -rf %s/build_%s" % (self.DIRECTORY, self.MODEL))
 		if SystemInfo["HasRootSubdir"]:
 			cmdlist.append("umount /tmp/bi/RootSubdir")
@@ -719,6 +718,5 @@ class ImageBackup(Screen):
 			AboutText += subprocess.getoutput("opkg list_installed | grep enigma2-plugin-")
 		else:
 			AboutText += commands.getoutput("opkg list_installed | grep enigma2-plugin-")
-
 
 		return AboutText

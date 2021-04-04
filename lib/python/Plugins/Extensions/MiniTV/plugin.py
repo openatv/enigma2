@@ -8,6 +8,7 @@ config.plugins.minitv = ConfigSubsection()
 config.plugins.minitv.enable = ConfigSelection(default="disable", choices=[("enable", "enable"), ("disable", "disable")])
 config.plugins.minitv.decoder = ConfigSelection(default="0", choices=[("0", "0"), ("1", "1")])
 
+
 class MiniTV:
 	def __init__(self):
 		config.plugins.minitv.enable.addNotifier(self.miniTVChanged, initial_call=True)
@@ -68,17 +69,21 @@ class MiniTV:
 		self.setMiniTV(config.plugins.minitv.enable.value)
 		self.setMiniTVDecoder(config.plugins.minitv.decoder.value)
 
+
 minitv_instance = MiniTV()
+
 
 def addExtentions(infobarExtensions):
 	infobarExtensions.addExtension((minitv_instance.getExtensionName, minitv_instance.showMiniTV, lambda: True), None)
 	if SystemInfo["LcdLiveTVPiP"]:
 		infobarExtensions.addExtension((minitv_instance.getExtensionNameDecoder, minitv_instance.showMiniTVDecoder, lambda: True), None)
 
+
 def autoStart(reason, **kwargs):
 	if reason == 1:
 		minitv_instance.setMiniTV("standby")
 		minitv_instance.setMiniTVDecoder("0")
+
 
 def Plugins(**kwargs):
 	list = []

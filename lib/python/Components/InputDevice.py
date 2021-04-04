@@ -23,6 +23,7 @@ IOC_DIRSHIFT = IOC_SIZESHIFT + IOC_SIZEBITS
 
 IOC_READ = 2
 
+
 def EVIOCGNAME(length):
 	return (IOC_READ << IOC_DIRSHIFT) | (length << IOC_SIZESHIFT) | (0x45 << IOC_TYPESHIFT) | (0x06 << IOC_NRSHIFT)
 
@@ -55,7 +56,6 @@ class inputDevices:
 				self.Devices[evdev] = {'name': self.name, 'type': self.getInputDeviceType(self.name), 'enabled': False, 'configuredName': None}
 				if getBoxType().startswith('et'):
 					self.setDefaults(evdev) # load default remote control "delay" and "repeat" values for ETxxxx ("QuickFix Scrollspeed Menues" proposed by Xtrend Support)
-
 
 	def getInputDeviceType(self, name):
 		if "remote control" in name:
@@ -217,6 +217,7 @@ iInputDevices = inputDevices()
 config.plugins.remotecontroltype = ConfigSubsection()
 config.plugins.remotecontroltype.rctype = ConfigInteger(default=0)
 
+
 class RcTypeControl():
 	def __init__(self):
 		if pathExists('/proc/stb/ir/rc/type') and getBrandOEM() not in ('gigablue', 'odin', 'ini', 'entwopia', 'tripledot'):
@@ -234,5 +235,6 @@ class RcTypeControl():
 		fd = open('/proc/stb/ir/rc/type', 'w')
 		fd.write('%d' % rctype)
 		fd.close()
+
 
 iRcTypeControl = RcTypeControl()

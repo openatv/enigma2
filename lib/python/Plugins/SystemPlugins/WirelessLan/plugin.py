@@ -216,6 +216,7 @@ class WlanStatus(Screen):
 				self["statuspic"].setPixmapNum(0)
 			self["statuspic"].show()
 
+
 class WlanScan(Screen):
 	skin = """
 		<screen name="WlanScan" position="center,center" size="560,400" title="Select a wireless network" >
@@ -413,12 +414,14 @@ class WlanScan(Screen):
 def WlanStatusScreenMain(session, iface):
 	session.open(WlanStatus, iface)
 
+
 def callFunction(iface):
 	iWlan.setInterface(iface)
 	i = iWlan.getWirelessInterfaces()
 	if iface in i or iNetwork.isWirelessInterface(iface):
 		return WlanStatusScreenMain
 	return None
+
 
 def configStrings(iface):
 	driver = iNetwork.detectWlanModule(iface)
@@ -440,6 +443,7 @@ def configStrings(iface):
 		ret += "\tpre-up iwconfig " + iface + " essid \"" + re_escape(config.plugins.wlan.essid.value) + "\" || true\n"
 	ret += "\tpre-down wpa_cli -i" + iface + " terminate || true\n"
 	return ret
+
 
 def Plugins(**kwargs):
 	return PluginDescriptor(name=_("Wireless LAN"), description=_("Connect to a wireless network"), where=PluginDescriptor.WHERE_NETWORKSETUP, needsRestart=False, fnc={"ifaceSupported": callFunction, "configStrings": configStrings, "WlanPluginEntry": lambda x: _("Wireless network configuration...")})

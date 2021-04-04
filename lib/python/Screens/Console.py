@@ -8,6 +8,7 @@ from Screens.MessageBox import MessageBox
 from Components.Label import Label
 import six
 
+
 class Console(Screen):
 
 	# cmdlist mat be a mixed list or tuple of strings

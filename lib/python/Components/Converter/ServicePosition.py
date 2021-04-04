@@ -7,6 +7,7 @@ from enigma import iPlayableService
 from Components.Element import cached, ElementError
 from Components.config import config
 
+
 class ServicePosition(Poll, Converter, object):
 	TYPE_LENGTH = 0
 	TYPE_POSITION = 1
@@ -471,7 +472,6 @@ class ServicePosition(Poll, Converter, object):
 						except:
 							return ""
 
-
 			else: # Skin Setting
 				if not self.detailed:
 					if self.showHours:
@@ -519,8 +519,6 @@ class ServicePosition(Poll, Converter, object):
 							return sign_p + "%d:%02d:%03d" % ((p / 60 / 90000), (p / 90000) % 60, (p % 90000) / 90)
 						elif self.type == self.TYPE_REMAINING:
 							return sign_r + "%d:%02d:%03d" % ((r / 60 / 90000), (r / 90000) % 60, (r % 90000) / 90)
-
-
 
 	# range/value are for the Progress renderer
 	range = 10000

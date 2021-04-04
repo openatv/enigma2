@@ -6,6 +6,7 @@ import six
 
 SIGN = ' °' if six.PY3 else str(' \xc2\xb0')
 
+
 class VtiTempFan(Poll, Converter, object):
     TEMPINFO = 1
     FANINFO = 2

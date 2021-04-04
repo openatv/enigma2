@@ -10,6 +10,7 @@ from Components.ConfigList import ConfigListScreen
 from Components.AVSwitch import AVSwitch
 from . import Title
 
+
 class TitleProperties(Screen, ConfigListScreen):
 	skin = """
 		<screen name="TitleProperties" position="center,center" size="560,445" title="Properties of current title" >

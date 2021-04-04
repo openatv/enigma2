@@ -90,6 +90,7 @@ prgChars = [
 ]
 idx = 0
 
+
 def stripUnchangedMsgstrs(poEntry):
   if prefs['stripUnchangedMsgstrs']:
     percentCleared = 0
@@ -113,11 +114,13 @@ def stripUnchangedMsgstrs(poEntry):
       poEntry.flags = [f for f in poEntry.flags if f != 'fuzzy']
     percentCleared = None
 
+
 def removeMatchingObsolete(poFile, poEntry):
   if prefs['removeMatchingObsoletes'] and not poEntry.obsolete:
     for obsoleteEntry in [o for o in poFile.obsolete_entries() if poEntry.msgid == o.msgid]:
       poFile.remove(obsoleteEntry)
       # numObsoletesRemoved = numObsoletesRemoved + 1
+
 
 def getIncludedExcludedPaths(root, dirs, files):
   # exclude dirs
@@ -130,10 +133,12 @@ def getIncludedExcludedPaths(root, dirs, files):
   files.sort(key=lambda f: os.stat(f).st_size, reverse=True) # sort by file size descending
   return files
 
+
 def indicateProgress():
   global idx
   print(prgChars[idx], end="\r")
   idx = (idx + 1) % len(prgChars)
+
 
 def isFoundInFile(msgid, data):
   isFound = False
@@ -141,6 +146,7 @@ def isFoundInFile(msgid, data):
   if re.search(regex_msgid, data.read(0).decode()):
     isFound = True
   return isFound
+
 
 def getUncachedEntries(poFile):
   entryIndex = 0
@@ -161,6 +167,7 @@ def getUncachedEntries(poFile):
       else:
         unCachedEntries.append(entry)
   return unCachedEntries
+
 
 def searchCodebaseForOccurrences(poFile):
   if prefs['searchCodebaseForOccurrences']:
@@ -200,6 +207,7 @@ def searchCodebaseForOccurrences(poFile):
           finally:
             data = None
 
+
 def processPoFile(fileName):
   poFile = polib.pofile(fileName)
   poFile.wrapwidth = 1024 # avoid re-wrapping
@@ -215,6 +223,7 @@ def processPoFile(fileName):
   searchCodebaseForOccurrences(poFile)
   return poFile
 
+
 def addToPoStats(baseFileName, poFile):
   if prefs['outputFinalStats']:
     poStats['rowTitles'].append(baseFileName)
@@ -229,6 +238,8 @@ def addToPoStats(baseFileName, poFile):
 
 # all entries that were found in the codebase will be added to 
 # or un-obsoleted from all .po files for consistency
+
+
 def normaliseAllPoFiles(filesGlob):
   if prefs['normalisePoFiles']:
     fileIndex = 0
@@ -258,6 +269,7 @@ def normaliseAllPoFiles(filesGlob):
           # matchedEntries[0].obsolete = False
           pass
       poFile.save(fileName + prefs['newFileExt'])
+
 
 def main():
   startTime = time.time()

@@ -18,6 +18,7 @@ from time import sleep
 from re import search
 import six
 
+
 class HddMount(Screen):
 	skin = """
 	<screen position="center,center" size="640,460" title="Mount Manager">
@@ -43,6 +44,7 @@ class HddMount(Screen):
 		</widget>
 		<widget name="lab1" zPosition="2" position="50,90" size="600,40" font="Regular;22" halign="center" transparent="1"/>
 	</screen>"""
+
 	def __init__(self, session):
 		Screen.__init__(self, session)
 		Screen.setTitle(self, _("Mount Manager"))
@@ -375,6 +377,7 @@ class HddMount(Screen):
 			self.updateList()
 			self.selectionChanged()
 
+
 class DevicePanelConf(Screen, ConfigListScreen):
 	skin = """
 	<screen position="center,center" size="640,460" title="Choose where to mount your devices to:">
@@ -385,6 +388,7 @@ class DevicePanelConf(Screen, ConfigListScreen):
 		<widget name="config" position="30,60" size="580,275" scrollbarMode="showOnDemand"/>
 		<widget name="Linconn" position="30,375" size="580,20" font="Regular;18" halign="center" valign="center" backgroundColor="#9f1313"/>
 	</screen>"""
+
 	def __init__(self, session):
 		Screen.__init__(self, session)
 		self.list = []
@@ -668,6 +672,7 @@ class DevicePanelConf(Screen, ConfigListScreen):
 			self.session.open(TryQuitMainloop, 2)
 		else:
 			self.close()
+
 
 class DevicesPanelSummary(Screen):
 	def __init__(self, session, parent):

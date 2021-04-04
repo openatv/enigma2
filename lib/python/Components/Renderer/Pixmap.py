@@ -3,6 +3,7 @@ from Components.Renderer.Renderer import Renderer
 
 from enigma import ePixmap
 
+
 class Pixmap(Renderer):
 	def __init__(self):
 		Renderer.__init__(self)

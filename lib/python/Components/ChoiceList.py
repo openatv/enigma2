@@ -7,9 +7,11 @@ from Tools.Directories import fileExists
 import skin
 from os import path
 
+
 def row_delta_y():
 	font = skin.fonts["ChoiceList"]
 	return (int(font[2]) - int(font[1])) / 2
+
 
 def ChoiceEntryComponent(key=None, text=None):
 	text = ["--"] if text is None else text
@@ -40,6 +42,7 @@ def ChoiceEntryComponent(key=None, text=None):
 						y = 0
 				res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, x, y, w, h, png))
 	return res
+
 
 class ChoiceList(MenuList):
 	def __init__(self, list, selection=0, enableWrapAround=False):

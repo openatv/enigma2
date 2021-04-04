@@ -8,6 +8,7 @@ config.plugins.OSDPositionSetup.dst_width = ConfigInteger(default=720)
 config.plugins.OSDPositionSetup.dst_top = ConfigInteger(default=0)
 config.plugins.OSDPositionSetup.dst_height = ConfigInteger(default=576)
 
+
 class OSDScreenPosition(Screen, ConfigListScreen):
 	skin = """
 	<screen position="0,0" size="e,e" title="OSD position setup" backgroundColor="blue">
@@ -80,6 +81,7 @@ class OSDScreenPosition(Screen, ConfigListScreen):
 		setConfiguredPosition()
 		self.close()
 
+
 def setPosition(dst_left, dst_width, dst_top, dst_height):
 	if dst_left + dst_width > 720:
 		dst_width = 720 - dst_left
@@ -101,14 +103,18 @@ def setPosition(dst_left, dst_width, dst_top, dst_height):
 	except:
 		return
 
+
 def setConfiguredPosition():
 	setPosition(int(config.plugins.OSDPositionSetup.dst_left.value), int(config.plugins.OSDPositionSetup.dst_width.value), int(config.plugins.OSDPositionSetup.dst_top.value), int(config.plugins.OSDPositionSetup.dst_height.value))
+
 
 def main(session, **kwargs):
 	session.open(OSDScreenPosition)
 
+
 def startup(reason, **kwargs):
 	setConfiguredPosition()
+
 
 def Plugins(**kwargs):
 	from os import path

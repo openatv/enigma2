@@ -12,11 +12,13 @@ import Components.Task
 import re
 import six
 
+
 def readFile(filename):
 	file = open(filename)
 	data = file.read().strip()
 	file.close()
 	return data
+
 
 def getextdevices(ext):
 	cmd = 'blkid -t TYPE=%s -o device' % ext
@@ -26,6 +28,7 @@ def getextdevices(ext):
 	else:
 		extdevices = [x.strip() for x in extdevices.split(",")]
 		return extdevices
+
 
 def getProcMounts():
 	try:
@@ -42,6 +45,7 @@ def getProcMounts():
 		print("[Harddisk] Failed to open /proc/mounts", ex)
 		return []
 
+
 def isFileSystemSupported(filesystem):
 	try:
 		file = open('/proc/filesystems', 'r')
@@ -54,12 +58,14 @@ def isFileSystemSupported(filesystem):
 	except Exception as ex:
 		print("[Harddisk] Failed to read /proc/filesystems:", ex)
 
+
 def findMountPoint(path):
 	"""Example: findMountPoint("/media/hdd/some/file") returns "/media/hdd\""""
 	path = os.path.abspath(path)
 	while not os.path.ismount(path):
 		path = os.path.dirname(path)
 	return path
+
 
 def getFolderSize(path):
 	if os.path.islink(path):
@@ -84,6 +90,7 @@ def getFolderSize(path):
 			dp = os.path.join(dirpath, d)
 	return total_bytes
 
+
 def Freespace(dev):
 	try:
 		statdev = os.statvfs(dev)
@@ -95,6 +102,7 @@ def Freespace(dev):
 
 DEVTYPE_UDEV = 0
 DEVTYPE_DEVFS = 1
+
 
 class Harddisk:
 	def __init__(self, device, removable=False):
@@ -582,6 +590,7 @@ class Harddisk:
 	def isSleeping(self):
 		return self.is_sleeping
 
+
 class Partition:
 	# for backward compatibility, force_mounted actually means "hotplug"
 	def __init__(self, mountpoint, device=None, description="", force_mounted=False):
@@ -590,6 +599,7 @@ class Partition:
 		self.force_mounted = mountpoint and force_mounted
 		self.is_hotplug = force_mounted # so far; this might change.
 		self.device = device
+
 	def __str__(self):
 		return "Partition(mountpoint=%s,description=%s,device=%s)" % (self.mountpoint, self.description, self.device)
 
@@ -644,6 +654,7 @@ class Partition:
 					if fields[1] == self.mountpoint:
 						return fields[2]
 		return ''
+
 
 DEVICEDB = \
 	{"dm8000":
@@ -772,6 +783,7 @@ DEVICEDB = \
 
 DEVICEDB["dm525"] = DEVICEDB["dm520"]
 
+
 def addInstallTask(job, package):
 	task = Components.Task.LoggingTask(job, "update packages")
 	task.setTool('opkg')
@@ -780,6 +792,7 @@ def addInstallTask(job, package):
 	task.setTool('opkg')
 	task.args.append('install')
 	task.args.append(package)
+
 
 class HarddiskManager:
 	def __init__(self):
@@ -1044,11 +1057,13 @@ class HarddiskManager:
 		except Exception as ex:
 			print("[Harddisk] Failed to set %s speed to %s" % (device, speed), ex)
 
+
 class UnmountTask(Components.Task.LoggingTask):
 	def __init__(self, job, hdd):
 		Components.Task.LoggingTask.__init__(self, job, _("Unmount"))
 		self.hdd = hdd
 		self.mountpoints = []
+
 	def prepare(self):
 		try:
 			dev = self.hdd.disk_path.split('/')[-1]
@@ -1066,6 +1081,7 @@ class UnmountTask(Components.Task.LoggingTask):
 			print("[Harddisk] UnmountTask: No mountpoints found?")
 			self.cmd = 'true'
 			self.args = [self.cmd]
+
 	def afterRun(self):
 		for path in self.mountpoints:
 			try:
@@ -1073,10 +1089,12 @@ class UnmountTask(Components.Task.LoggingTask):
 			except Exception as ex:
 				print("[Harddisk] Failed to remove path '%s':" % path, ex)
 
+
 class MountTask(Components.Task.LoggingTask):
 	def __init__(self, job, hdd):
 		Components.Task.LoggingTask.__init__(self, job, _("Mount"))
 		self.hdd = hdd
+
 	def prepare(self):
 		try:
 			dev = self.hdd.disk_path.split('/')[-1]
@@ -1110,6 +1128,7 @@ class MountTask(Components.Task.LoggingTask):
 class MkfsTask(Components.Task.LoggingTask):
 	def prepare(self):
 		self.fsck_state = None
+
 	def processOutput(self, data):
 		data = six.ensure_str(data)
 		if 'Writing inode tables:' in data or 'Die Superblöcke' in data:

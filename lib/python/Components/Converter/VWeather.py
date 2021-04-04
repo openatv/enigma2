@@ -31,6 +31,7 @@ config.plugins.AtileHD.tempUnit = ConfigSelection(default="Celsius", choices=[("
 
 weather_data = None
 
+
 class VWeather(Converter, object):
 
 	def __init__(self, type):
@@ -125,6 +126,7 @@ class VWeather(Converter, object):
 			return "°C"
 
 	text = property(getText)
+
 
 class WeatherData:
 	def __init__(self):

@@ -26,16 +26,19 @@ else:
 	MAX_NUM_CI = 4
 relevantPidsRoutingChoices = None
 
+
 def setCIBitrate(configElement):
 	if not configElement.value:
 		eDVBCI_UI.getInstance().setClockRate(configElement.slotid, eDVBCI_UI.rateNormal)
 	else:
 		eDVBCI_UI.getInstance().setClockRate(configElement.slotid, eDVBCI_UI.rateHigh)
 
+
 def setdvbCiDelay(configElement):
 	f = open("/proc/stb/tsmux/rmx_delay", "w")
 	f.write(configElement.value)
 	f.close()
+
 
 def setRelevantPidsRouting(configElement):
 	fileName = "/proc/stb/tsmux/ci%d_relevant_pids_routing" % (configElement.slotid)
@@ -43,6 +46,7 @@ def setRelevantPidsRouting(configElement):
 		f = open(fileName, "w")
 		f.write(configElement.value)
 		f.close()
+
 
 def InitCiConfig():
 	config.ci = ConfigSubList()
@@ -88,6 +92,7 @@ def InitCiConfig():
 			config.cimisc.civersion = ConfigSelection(default="legacy", choices=[("legacy", _("CI Legacy"))])
 	else:
 		config.cimisc.civersion = ConfigSelection(default="auto", choices=[("auto", _("Auto")), ("ciplus1", _("CI Plus 1.2")), ("ciplus2", _("CI Plus 1.3")), ("legacy", _("CI Legacy"))])
+
 
 class CISetup(Screen, ConfigListScreen):
 	def __init__(self, session):
@@ -167,6 +172,7 @@ class CISetup(Screen, ConfigListScreen):
 	def createSummary(self):
 		from Screens.Setup import SetupSummary
 		return SetupSummary
+
 
 class MMIDialog(Screen):
 	def __init__(self, session, slotid, action, handler=eDVBCI_UI.getInstance(), wait_text="wait for ci...", screen_data=None):
@@ -406,6 +412,7 @@ class MMIDialog(Screen):
 
 		#FIXME: check for mmi-session closed
 
+
 class CiMessageHandler:
 	def __init__(self):
 		self.session = None
@@ -485,7 +492,9 @@ class CiMessageHandler:
 		if slot in self.ci:
 			del self.ci[slot]
 
+
 CiHandler = CiMessageHandler()
+
 
 class CiSelection(Screen):
 	def __init__(self, session):
@@ -627,6 +636,7 @@ class CiSelection(Screen):
 				CiHandler.unregisterCIMessageHandler(slot)
 		self.close()
 
+
 class PermanentPinEntry(Screen, ConfigListScreen):
 	def __init__(self, session, pin, pin_slot):
 		Screen.__init__(self, session)
@@ -692,6 +702,7 @@ class PermanentPinEntry(Screen, ConfigListScreen):
 	def createSummary(self):
 		from Screens.Setup import SetupSummary
 		return SetupSummary
+
 
 class CIHelper(Screen):
 	def __init__(self, session):
@@ -801,6 +812,7 @@ class CIHelper(Screen):
 
 	def setupcihelper(self):
 		self.session.openWithCallback(self.updateService, CIHelperSetup)
+
 
 class CIHelperSetup(Screen, ConfigListScreen):
 	def __init__(self, session):

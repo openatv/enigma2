@@ -4,6 +4,7 @@ from Components.Renderer.Renderer import Renderer
 from enigma import eLabel
 from boxbranding import getImageVersion
 
+
 class VtiImageVersion(VariableText, Renderer):
 
     def __init__(self):

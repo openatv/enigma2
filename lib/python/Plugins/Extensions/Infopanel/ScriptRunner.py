@@ -13,6 +13,7 @@ from os import listdir, remove, mkdir, path, access, X_OK, chmod
 import datetime
 import time
 
+
 class ScriptRunner(Screen):
 	skin = """<screen name="ScriptRunner" position="center,center" size="560,400" title="Script Runner" flags="wfBorder" >
 		<ePixmap pixmap="skin_default/buttons/red.png" position="0,0" size="140,40" alphatest="on" />
@@ -25,7 +26,6 @@ class ScriptRunner(Screen):
 			self["list"].instance.setItemHeight(25)
 		</applet>
 	</screen>"""
-
 
 	def __init__(self, session):
 		Screen.__init__(self, session)

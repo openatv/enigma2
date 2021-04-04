@@ -19,11 +19,13 @@ from Components.AVSwitch import iAVSwitch
 
 resolutionlabel = None
 
+
 def getAutoresPlugin_enabled():
 	try:
 		return config.plugins.autoresolution.enable.value
 	except:
 		return False
+
 
 def getConfig_videomode(getmode, getrate):
 	port = config.av.videoport.value
@@ -32,6 +34,7 @@ def getConfig_videomode(getmode, getrate):
 	pol = mode.replace('p30', 'p')[-1:]
 	rate = getrate[mode].value.replace('Hz', '')
 	return port, mode, res, pol, rate
+
 
 def setProgressiveRate(vid_rate, new_rate, new_res, config_res, config_rate):
 	if vid_rate == 24:
@@ -52,6 +55,7 @@ def setProgressiveRate(vid_rate, new_rate, new_res, config_res, config_rate):
 	if int(new_res) >= int(config_res) and config_rate not in ("auto", "multi") and int(config_rate) < int(new_rate):
 		new_rate = config_rate
 	return new_rate
+
 
 class VideoSetup(Screen, ConfigListScreen):
 	def __init__(self, session):
@@ -433,6 +437,7 @@ class VideoSetup(Screen, ConfigListScreen):
 		from Screens.Setup import SetupSummary
 		return SetupSummary
 
+
 class AudioSetup(Screen, ConfigListScreen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
@@ -563,6 +568,7 @@ class AudioSetup(Screen, ConfigListScreen):
 		from Screens.Setup import SetupSummary
 		return SetupSummary
 
+
 class AutoVideoModeLabel(Screen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
@@ -581,8 +587,10 @@ class AutoVideoModeLabel(Screen):
 			idx += 4
 			self.hideTimer.start(idx * 1000, True)
 
+
 previous = None
 isDedicated3D = False
+
 
 def applySettings(mode=config.osd.threeDmode.value, znorm=int(config.osd.threeDznorm.value)):
 	global previous, isDedicated3D
@@ -605,6 +613,7 @@ def applySettings(mode=config.osd.threeDmode.value, znorm=int(config.osd.threeDz
 			open(SystemInfo["3DZNorm"], "w").write('%d' % znorm)
 		except:
 			return
+
 
 class AutoVideoMode(Screen):
 	def __init__(self, session):
@@ -1108,6 +1117,7 @@ class AutoVideoMode(Screen):
 		self.firstrun = False
 		self.delay = False
 		self.detecttimer.stop()
+
 
 def autostart(session):
 	global resolutionlabel

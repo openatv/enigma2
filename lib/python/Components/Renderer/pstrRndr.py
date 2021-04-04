@@ -7,6 +7,7 @@ from enigma import ePixmap, loadJPG
 import os
 import re
 
+
 class pstrRndr(Renderer):
 
 	def __init__(self):
@@ -20,6 +21,7 @@ class pstrRndr(Renderer):
 		return Renderer.applySkin(self, desktop, parent)
 
 	GUI_WIDGET = ePixmap
+
 	def changed(self, what):
 		try:
 			eventName = self.source.text

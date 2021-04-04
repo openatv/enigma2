@@ -53,11 +53,14 @@ pvers = "%s%s" % (_("v"), "2.07")
 
 MOVIEEXTENSIONS = {"cuts": "movieparts", "meta": "movieparts", "ap": "movieparts", "sc": "movieparts", "eit": "movieparts"}
 
+
 def _make_filter(media_type):
 	return "(?i)^.*\.(" + '|'.join(sorted((ext for ext, type in six.iteritems(EXTENSIONS) if type == media_type))) + ")$"
 
+
 def _make_rec_filter():
 	return "(?i)^.*\.(" + '|'.join(sorted(["ts"] + [ext == "eit" and ext or "ts." + ext for ext in six.iterkeys(MOVIEEXTENSIONS)])) + ")$"
+
 
 movie = _make_filter("movie")
 music = _make_filter("music")
@@ -119,6 +122,8 @@ cfg = config.plugins.filecommander
 # ####################
 # ## Config Screen ###
 # ####################
+
+
 class FileCommanderConfigScreen(Setup):
 	def __init__(self, session):
 		Setup.__init__(self, session, "filecommander", plugin="Extensions/FileCommander")
@@ -140,6 +145,7 @@ class FileCommanderConfigScreen(Setup):
 		if res is not None:
 			config.plugins.filecommander.path_default.value = res
 
+
 def formatSortingTyp(sortDirs, sortFiles):
 	sortDirs, reverseDirs = [int(x) for x in sortDirs.split('.')]
 	sortFiles, reverseFiles = [int(x) for x in sortFiles.split('.')]
@@ -153,7 +159,9 @@ def formatSortingTyp(sortDirs, sortFiles):
 # ## Main Screen ###
 ###################
 
+
 glob_running = False
+
 
 class FileCommanderScreen(Screen, HelpableScreen, key_actions):
 	skin = """
@@ -1051,6 +1059,7 @@ class FileCommanderScreen(Screen, HelpableScreen, key_actions):
 # 	def call_onFileAction(self):
 # 		self.onFileAction(self.SOURCELIST, self.TARGETLIST)
 
+
 class FileCommanderContextMenu(Screen):
 	skin = """
 		<screen name="FileCommanderContextMenu" position="center,center" size="560,570" title="File Commander context menu" backgroundColor="background">
@@ -1091,6 +1100,8 @@ class FileCommanderContextMenu(Screen):
 #####################
 # ## Select Screen ###
 #####################
+
+
 class FileCommanderScreenFileSelect(Screen, HelpableScreen, key_actions):
 	skin = """
 		<screen position="40,80" size="1200,600" title="" >
@@ -1471,6 +1482,7 @@ class FileCommanderScreenFileSelect(Screen, HelpableScreen, key_actions):
 					extension = os.path.splitext(movie)[1]
 				if extension in ALL_MOVIE_EXTENSIONS and movie in self.selectedFiles:
 					self.selectedFiles.remove(file)
+
 
 class FileCommanderFileStatInfo(Screen, stat_info):
 	skin = """

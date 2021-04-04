@@ -3,6 +3,7 @@ from Components.Scanner import scanDevice
 from Screens.InfoBar import InfoBar
 import os
 
+
 def execute(option):
 	#print "execute", option
 	if option is None:
@@ -10,6 +11,7 @@ def execute(option):
 
 	(_, scanner, files, session) = option
 	scanner.open(files, session)
+
 
 def mountpoint_choosen(option):
 	if option is None:
@@ -35,19 +37,24 @@ def mountpoint_choosen(option):
 		title=_("The following files were found..."),
 		list=list)
 
+
 def scan(session):
 	from Screens.ChoiceBox import ChoiceBox
 	parts = [(r.tabbedDescription(), r.mountpoint, session) for r in harddiskmanager.getMountedPartitions(onlyhotplug=False) if os.access(r.mountpoint, os.F_OK | os.R_OK)]
 	parts.append((_("Memory") + "\t/tmp", "/tmp", session))
 	session.openWithCallback(mountpoint_choosen, ChoiceBox, title=_("Please select medium to be scanned"), list=parts)
 
+
 def main(session, **kwargs):
 	scan(session)
+
 
 def menuEntry(*args):
 	mountpoint_choosen(args)
 
+
 from Components.Harddisk import harddiskmanager
+
 
 def menuHook(menuid):
 	if menuid != "mainmenu":
@@ -55,7 +62,9 @@ def menuHook(menuid):
 	from Tools.BoundFunction import boundFunction
 	return [(("%s (files)") % r.description, boundFunction(menuEntry, r.description, r.mountpoint), "hotplug_%s" % r.mountpoint, None) for r in harddiskmanager.getMountedPartitions(onlyhotplug=True)]
 
+
 global_session = None
+
 
 def partitionListChanged(action, device):
 	if InfoBar.instance:
@@ -70,9 +79,11 @@ def partitionListChanged(action, device):
 	#else:
 			#print "hotplug event.. but no infobar"
 
+
 def sessionstart(reason, session):
 	global global_session
 	global_session = session
+
 
 def autostart(reason, **kwargs):
 	global global_session
@@ -81,6 +92,7 @@ def autostart(reason, **kwargs):
 	elif reason == 1:
 		harddiskmanager.on_partition_list_change.remove(partitionListChanged)
 		global_session = None
+
 
 def Plugins(**kwargs):
 	return [

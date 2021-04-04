@@ -11,6 +11,7 @@ pname = _("File Commander - unzip Addon")
 pdesc = _("unpack zip Files")
 pversion = "0.2-r1"
 
+
 class UnzipMenuScreen(ArchiverMenuScreen):
 
 	def __init__(self, session, sourcelist, targetlist):
@@ -39,6 +40,7 @@ class UnzipMenuScreen(ArchiverMenuScreen):
 			elif id == 4:
 				cmd.append(config.usage.default_path.value)
 			self.unpackEConsoleApp(cmd)
+
 
 class UnpackInfoScreen(ArchiverInfoScreen):
 

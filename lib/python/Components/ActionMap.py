@@ -4,6 +4,7 @@ import six
 
 from Tools.KeyBindings import queryKeyBinding
 
+
 class ActionMap:
 	def __init__(self, contexts=None, actions=None, prio=0):
 		self.contexts = contexts or []
@@ -66,6 +67,7 @@ class ActionMap:
 	def destroy(self):
 		pass
 
+
 class NumberActionMap(ActionMap):
 	def action(self, contexts, action):
 		if action in ("0", "1", "2", "3", "4", "5", "6", "7", "8", "9") and action in self.actions:
@@ -75,6 +77,7 @@ class NumberActionMap(ActionMap):
 			return 1
 		else:
 			return ActionMap.action(self, contexts, action)
+
 
 class HelpableActionMap(ActionMap):
 	# An Actionmap which automatically puts the actions into the helpList.
@@ -117,6 +120,7 @@ class HelpableActionMap(ActionMap):
 					adict[action] = funchelp
 			parent.helpList.append((self, context, alist))
 		ActionMap.__init__(self, contexts, adict, prio)
+
 
 class HelpableNumberActionMap(NumberActionMap, HelpableActionMap):
 	def __init__(self, parent, contexts, actions=None, prio=0, description=None):

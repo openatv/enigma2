@@ -13,6 +13,7 @@ from Tools.Directories import resolveFilename, SCOPE_ACTIVE_SKIN
 from Components.Renderer.Picon import getPiconName
 from Components.config import config
 
+
 def refreshServiceList(configElement=None):
 	from Screens.InfoBar import InfoBar
 	InfoBarInstance = InfoBar.instance
@@ -20,6 +21,7 @@ def refreshServiceList(configElement=None):
 		servicelist = InfoBarInstance.servicelist
 		if servicelist:
 			servicelist.setMode()
+
 
 class ServiceList(HTMLComponent, GUIComponent):
 	MODE_NORMAL = 0
@@ -80,87 +82,124 @@ class ServiceList(HTMLComponent, GUIComponent):
 	def applySkin(self, desktop, parent):
 		def foregroundColorMarked(value):
 			self.l.setColor(eListboxServiceContent.markedForeground, parseColor(value))
+
 		def foregroundColorMarkedSelected(value):
 			self.l.setColor(eListboxServiceContent.markedForegroundSelected, parseColor(value))
+
 		def backgroundColorMarked(value):
 			self.l.setColor(eListboxServiceContent.markedBackground, parseColor(value))
+
 		def backgroundColorMarkedSelected(value):
 			self.l.setColor(eListboxServiceContent.markedBackgroundSelected, parseColor(value))
+
 		def foregroundColorServiceNotAvail(value):
 			self.l.setColor(eListboxServiceContent.serviceNotAvail, parseColor(value))
+
 		def foregroundColorEvent(value):
 			self.l.setColor(eListboxServiceContent.eventForeground, parseColor(value))
+
 		def colorServiceDescription(value):
 			self.l.setColor(eListboxServiceContent.serviceDescriptionColor, parseColor(value))
+
 		def foregroundColorEventSelected(value):
 			self.l.setColor(eListboxServiceContent.eventForegroundSelected, parseColor(value))
+
 		def colorServiceDescriptionSelected(value):
 			self.l.setColor(eListboxServiceContent.serviceDescriptionColorSelected, parseColor(value))
+
 		def foregroundColorEventborder(value):
 			self.l.setColor(eListboxServiceContent.eventborderForeground, parseColor(value))
+
 		def foregroundColorEventborderSelected(value):
 			self.l.setColor(eListboxServiceContent.eventborderForegroundSelected, parseColor(value))
+
 		def colorEventProgressbar(value):
 			self.l.setColor(eListboxServiceContent.serviceEventProgressbarColor, parseColor(value))
+
 		def colorEventProgressbarSelected(value):
 			self.l.setColor(eListboxServiceContent.serviceEventProgressbarColorSelected, parseColor(value))
+
 		def colorEventProgressbarBorder(value):
 			self.l.setColor(eListboxServiceContent.serviceEventProgressbarBorderColor, parseColor(value))
+
 		def colorEventProgressbarBorderSelected(value):
 			self.l.setColor(eListboxServiceContent.serviceEventProgressbarBorderColorSelected, parseColor(value))
+
 		def colorServiceRecorded(value):
 			self.l.setColor(eListboxServiceContent.serviceRecorded, parseColor(value))
+
 		def colorServicePseudoRecorded(value):
 			self.l.setColor(eListboxServiceContent.servicePseudoRecorded, parseColor(value))
+
 		def colorServiceStreamed(value):
 			self.l.setColor(eListboxServiceContent.serviceStreamed, parseColor(value))
+
 		def colorFallbackItem(value):
 			self.l.setColor(eListboxServiceContent.serviceItemFallback, parseColor(value))
+
 		def colorServiceSelectedFallback(value):
 			self.l.setColor(eListboxServiceContent.serviceSelectedFallback, parseColor(value))
+
 		def colorServiceDescriptionFallback(value):
 			self.l.setColor(eListboxServiceContent.eventForegroundFallback, parseColor(value))
+
 		def colorServiceDescriptionSelectedFallback(value):
 			self.l.setColor(eListboxServiceContent.eventForegroundSelectedFallback, parseColor(value))
+
 		def colorServiceRecording(value):
 			self.l.setColor(eListboxServiceContent.serviceRecordingColor, parseColor(value))
+
 		def colorServiceWithAdvertisment(value):
 			self.l.setColor(eListboxServiceContent.serviceAdvertismentColor, parseColor(value))
+
 		def picServiceEventProgressbar(value):
 			pic = LoadPixmap(resolveFilename(SCOPE_ACTIVE_SKIN, value))
 			pic and self.l.setPixmap(self.l.picServiceEventProgressbar, pic)
+
 		def serviceItemHeight(value):
 			self.ItemHeight = int(value)
+
 		def serviceNameFont(value):
 			font = parseFont(value, ((1, 1), (1, 1)))
 			self.ServiceNameFontName = font.family
 			self.ServiceNameFontSize = font.pointSize
+
 		def serviceInfoFont(value):
 			font = parseFont(value, ((1, 1), (1, 1)))
 			self.ServiceInfoFontName = font.family
 			self.ServiceInfoFontSize = font.pointSize
+
 		def serviceNumberFont(value):
 			font = parseFont(value, ((1, 1), (1, 1)))
 			self.ServiceNumberFontName = font.family
 			self.ServiceNumberFontSize = font.pointSize
+
 		def progressInfoFont(value):
 			font = parseFont(value, ((1, 1), (1, 1)))
 			self.progressInfoFontName = font.family
 			self.progressInfoFontSize = font.pointSize
+
 		def progressbarHeight(value):
 			self.l.setProgressbarHeight(int(value))
+
 		def progressbarBorderWidth(value):
 			self.l.setProgressbarBorderWidth(int(value))
+
 		def progressBarWidth(value):
 			self.progressBarWidth = int(value)
+
 		def fieldMargins(value):
 			self.fieldMargins = int(value)
+
 		def listMarginRight(value):
 			self.listMarginRight = int(value)
+
 		def listMarginLeft(value):
 			self.listMarginLeft = int(value)
+
 		def nonplayableMargins(value):
 			self.l.setNonplayableMargins(int(value))
+
 		def itemsDistances(value):
 			self.itemsDistances = int(value)
 			self.l.setItemsDistances(self.itemsDistances)

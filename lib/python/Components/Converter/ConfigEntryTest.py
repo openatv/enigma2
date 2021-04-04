@@ -5,6 +5,7 @@ from Components.Element import cached
 
 from Components.config import configfile
 
+
 class ConfigEntryTest(Converter, object):
 	def __init__(self, argstr):
 		Converter.__init__(self, argstr)
@@ -21,6 +22,7 @@ class ConfigEntryTest(Converter, object):
 			if "config." in args[0]:
 				self.configKey = args[0]
 				self.configValue = args[1]
+
 				def checkArg(arg):
 					if arg == 'Invert':
 						self.invert = True

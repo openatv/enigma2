@@ -5,6 +5,7 @@ from skin import applyAllAttributes
 from Tools.CList import CList
 from Components.Sources.StaticText import StaticText
 
+
 class GUISkin:
 	__module__ = __name__
 
@@ -73,6 +74,7 @@ class GUISkin:
 			self.summaries.setTitle(title)
 		except:
 			pass
+
 	def getTitle(self):
 		return self["Title"].text
 

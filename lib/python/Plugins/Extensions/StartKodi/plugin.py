@@ -16,7 +16,6 @@ from enigma import quitMainloop
 from .installsomething import InstallSomething
 
 
-
 class StartKodi2(Screen):
 
 	kodi_name = "kodi-amlogic"
@@ -34,6 +33,7 @@ class StartKodi2(Screen):
 		<widget name="freespace" position="340,125" size="150,25" font="Regular;20" />
 		<widget name="installed" position="340,150" size="150,25" font="Regular;20" />
 		</screen>"""
+
 	def __init__(self, session, args=0):
 		self.session = session
 		Screen.__init__(self, session)
@@ -77,7 +77,6 @@ class StartKodi2(Screen):
 #			self.KodiInstallation.__install__()
 #			self.isinstalled = True
 
-
 	def doInstallCallback(self, result):
 		if result:
 			self.KodiInstallation = InstallSomething(self.session, [self.kodi_name])
@@ -87,6 +86,7 @@ class StartKodi2(Screen):
 
 
 ### TODO: done touch(es) should go here
+
 	def ok(self):
 		if (self.isinstalled):
 #			self.[text] = Label(_("Starting Kodi..."))
@@ -103,6 +103,7 @@ class StartKodi2(Screen):
 
 
 ### TODO: check portability (busybox vs coreutils)
+
 	def getFreeNand(self):
 		os.system('sync ; sync ; sync')
 		sizeread = os.popen("df | grep %s | tr -s ' '" % 'root')
@@ -135,6 +136,7 @@ class StartKodi2(Screen):
 
 
 ### not very clever...
+
 	def isKodiInstalled(self):
 		if os.path.exists("/usr/lib/kodi/kodi.bin"):
 			self.isinstalled = True
@@ -151,6 +153,7 @@ class SysMessage(Screen):
 			<widget source="text" position="0,0" size="450,200" font="Regular;20" halign="center" valign="center" render="Label" />
 			<ePixmap pixmap="icons/input_error.png" position="5,5" size="53,53" alphatest="on" />
 		</screen>"""
+
 	def __init__(self, session, message):
 		from Components.Sources.StaticText import StaticText
 
@@ -167,15 +170,16 @@ class SysMessage(Screen):
 		self.close()
 
 
-
 ### MENU service stuff
 def main(session, **kwargs):
 	session.open(StartKodi2)
+
 
 def menu(menuid, **kwargs):
 	if menuid == "mainmenu":
 		return [(_("Start Kodi"), main, "start_kodi", 44)]
 	return []
+
 
 def Plugins(**kwargs):
 	return [

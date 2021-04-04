@@ -18,6 +18,7 @@ pname = _("File Commander - generalised archive handler")
 pdesc = _("unpack archives")
 pversion = "0.0-r1"
 
+
 class ArchiverMenuScreen(Screen):
 	skin = """
 		<screen position="40,80" size="1200,600" title="" >
@@ -207,6 +208,7 @@ class ArchiverMenuScreen(Screen):
 
 	def cancel(self):
 		self.close(False)
+
 
 class ArchiverInfoScreen(Screen):
 	skin = """

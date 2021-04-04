@@ -3,6 +3,7 @@ from Components.Label import Label
 from Components.VolumeBar import VolumeBar
 from Screens.Screen import Screen
 
+
 class Volume(Screen):
 	def __init__(self, session):
 		Screen.__init__(self, session)

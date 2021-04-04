@@ -26,11 +26,13 @@ def DownloadSetting(url):
 
     return _list
 
+
 def ConverDate(data):
     year = data[:2]
     month = data[-4:][:2]
     day = data[-2:]
     return day + '-' + month + '-20' + year
+
 
 def ConverDateBack(data):
     year = data[-2:]

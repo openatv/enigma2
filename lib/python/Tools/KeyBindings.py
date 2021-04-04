@@ -339,8 +339,10 @@ keyDescriptions = [{  # id=0 - dmm0 remote directory, DM8000.
 	KEYIDS["KEY_YELLOW"]: ("YELLOW",)
 }]
 
+
 def addKeyBinding(domain, key, context, action, flags):
 	keyBindings.setdefault((context, action), []).append((key, domain, flags))
+
 
 def removeKeyBinding(key, context, action, wild=True):
 	if wild and action == "*":
@@ -358,11 +360,14 @@ def removeKeyBinding(key, context, action, wild=True):
 
 # Returns a list of (key, flags) for a specified action.
 #
+
+
 def queryKeyBinding(context, action):
 	if (context, action) in keyBindings:
 		return [(x[0], x[2]) for x in keyBindings[(context, action)]]
 	else:
 		return []
+
 
 def getKeyDescription(key):
 	if rc_model.rcIsDefault():
@@ -378,11 +383,14 @@ def getKeyDescription(key):
 			idx = 2
 	return keyDescriptions[idx].get(key)
 
+
 def getKeyBindingKeys(filterfn=lambda key: True):
 	return filter(filterfn, keyBindings)
 
 # Remove all entries of domain "domain".
 #
+
+
 def removeKeyBindings(domain):
 	for x in keyBindings:
 		keyBindings[x] = [e for e in keyBindings[x] if e[1] != domain]

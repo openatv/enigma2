@@ -29,23 +29,30 @@ RECORD_EXTENSIONS = (".ts")
 
 cutsParser = struct.Struct('>QI') # big-endian, 64-bit PTS and 32-bit type
 
+
 class MovieListData:
 	def __init__(self):
 		pass
 
 # iStaticServiceInformation
+
+
 class StubInfo:
 	def __init__(self):
 		pass
 
 	def getName(self, serviceref):
 		return os.path.split(serviceref.getPath())[1]
+
 	def getLength(self, serviceref):
 		return -1
+
 	def getEvent(self, serviceref, *args):
 		return None
+
 	def isPlayable(self):
 		return True
+
 	def getInfo(self, serviceref, w):
 		try:
 			if w == iServiceInformation.sTimeCreate:
@@ -57,13 +64,18 @@ class StubInfo:
 		except:
 			pass
 		return 0
+
 	def getInfoString(self, serviceref, w):
 		return ''
+
+
 justStubInfo = StubInfo()
+
 
 def lastPlayPosFromCache(ref):
 	from Screens.InfoBarGenerics import resumePointCache
 	return resumePointCache.get(ref.toString(), None)
+
 
 def moviePlayState(cutsFileName, ref, length):
 	"""Returns None, 0..100 for percentage"""
@@ -116,6 +128,7 @@ def moviePlayState(cutsFileName, ref, length):
 				return 0
 		return None
 
+
 def resetMoviePlayState(cutsFileName, ref=None):
 	try:
 		if ref is not None:
@@ -138,6 +151,7 @@ def resetMoviePlayState(cutsFileName, ref=None):
 		pass
 		#import sys
 		#print "Exception in resetMoviePlayState: %s: %s" % sys.exc_info()[:2]
+
 
 class MovieList(GUIComponent):
 	SORT_ALPHANUMERIC = 1
@@ -860,6 +874,7 @@ class MovieList(GUIComponent):
 		self._char = ''
 		if self._lbl:
 			self._lbl.visible = False
+
 
 def getShortName(name, serviceref):
 	if serviceref.flags & eServiceReference.mustDescent: #Directory

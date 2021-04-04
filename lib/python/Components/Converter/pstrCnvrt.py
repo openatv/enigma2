@@ -14,6 +14,7 @@ from six.moves.urllib.parse import quote
 if not os.path.isdir('/tmp/poster'):
 	os.mkdir('/tmp/poster')
 
+
 class pstrCnvrt(Converter, object):
 
 	def __init__(self, type):

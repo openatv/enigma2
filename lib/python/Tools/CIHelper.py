@@ -8,6 +8,7 @@ import NavigationInstance
 import os
 import six
 
+
 class CIHelper:
 
 	CI_ASSIGNMENT_LIST = None
@@ -19,6 +20,7 @@ class CIHelper:
 		NUM_CI = eDVBCIInterfaces.getInstance().getNumOfSlots()
 		if NUM_CI > 0:
 			self.CI_ASSIGNMENT_LIST = []
+
 			def getValue(definitions, default):
 				ret = ""
 				Len = len(definitions)
@@ -157,7 +159,9 @@ class CIHelper:
 										return 0
 		return 1
 
+
 cihelper = CIHelper()
+
 
 def isPlayable(service):
 	ret = cihelper.isPlayable(service)

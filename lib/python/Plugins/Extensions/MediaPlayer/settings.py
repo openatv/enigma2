@@ -23,7 +23,9 @@ def Load_defaults():
 	config.mediaplayer.useAlternateUserAgent = NoSave(ConfigYesNo(default=False))
 	config.mediaplayer.alternateUserAgent = NoSave(ConfigText(default="Enigma2 HbbTV/1.1.1 (+PVR+RTSP+DL;openATV;;;)"))
 
+
 Load_defaults()
+
 
 class DirectoryBrowser(Screen, HelpableScreen):
 
@@ -66,6 +68,7 @@ class DirectoryBrowser(Screen, HelpableScreen):
 
 	def exit(self):
 		self.close(False)
+
 
 class MediaPlayerSettings(Screen, ConfigListScreen):
 

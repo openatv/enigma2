@@ -8,10 +8,10 @@
 #</widget>
 
 
-
 from Components.Converter.Converter import Converter
 from Components.Element import cached
 from enigma import iServiceInformation, eServiceReference, iPlayableServicePtr
+
 
 class MovieReference(Converter, object):
 

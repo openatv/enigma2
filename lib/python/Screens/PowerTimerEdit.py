@@ -17,6 +17,7 @@ from functools import cmp_to_key
 from time import time
 from timer import TimerEntry as RealTimerEntry
 
+
 class PowerTimerEditList(Screen):
 	EMPTY = 0
 	ENABLE = 1
@@ -202,6 +203,7 @@ class PowerTimerEditList(Screen):
 		#helper function to move finished timers to end of list
 		def _cmp(a, b):
 			return (a > b) - (a < b)
+
 		def eol_compare(x, y):
 			if x[0].state != y[0].state and x[0].state == RealTimerEntry.StateEnded or y[0].state == RealTimerEntry.StateEnded:
 				return _cmp(x[0].state, y[0].state)
@@ -300,6 +302,7 @@ class PowerTimerEditList(Screen):
 	def onStateChange(self, entry):
 		self.refill()
 		self.updateState()
+
 
 class PowerTimerEditListSummary(Screen):
 	def __init__(self, session, parent):

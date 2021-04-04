@@ -5,6 +5,7 @@ from fcntl import ioctl
 from struct import pack, unpack
 from boxbranding import getBoxType, getBrandOEM
 
+
 def getFPVersion():
 	ret = None
 	try:
@@ -24,6 +25,7 @@ def getFPVersion():
 			print("getFPVersion failed!")
 	return ret
 
+
 def setFPWakeuptime(wutime):
 	try:
 		f = open("/proc/stb/fp/wakeup_time", "w")
@@ -37,6 +39,7 @@ def setFPWakeuptime(wutime):
 		except IOError:
 			print("setFPWakeupTime failed!")
 
+
 def setRTCoffset():
 	forsleep = (localtime(time()).tm_hour - gmtime(time()).tm_hour) * 3600
 	print("[RTC] set RTC offset to %s sec." % (forsleep))
@@ -44,6 +47,7 @@ def setRTCoffset():
 		open("/proc/stb/fp/rtc_offset", "w").write(str(forsleep))
 	except IOError:
 		print("setRTCoffset failed!")
+
 
 def setRTCtime(wutime):
 	wutime = int(wutime)
@@ -61,6 +65,7 @@ def setRTCtime(wutime):
 		except IOError:
 			print("setRTCtime failed!")
 
+
 def getFPWakeuptime():
 	ret = 0
 	try:
@@ -76,7 +81,9 @@ def getFPWakeuptime():
 			print("getFPWakeupTime failed!")
 	return ret
 
+
 wasTimerWakeup = None
+
 
 def getFPWasTimerWakeup(check=False):
 	global wasTimerWakeup
@@ -109,6 +116,7 @@ def getFPWasTimerWakeup(check=False):
 	if check:
 		return wasTimerWakeup, isError
 	return wasTimerWakeup
+
 
 def clearFPWasTimerWakeup():
 	try:

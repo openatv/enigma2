@@ -16,6 +16,7 @@ from os import path as os_path
 import os
 from boxbranding import getMachineBrand, getMachineName
 
+
 class SoftwarePanel(Screen):
 
 	def __init__(self, session, *args):

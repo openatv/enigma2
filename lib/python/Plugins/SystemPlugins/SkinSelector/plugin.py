@@ -15,6 +15,7 @@ from Tools.Directories import resolveFilename, SCOPE_PLUGINS
 from os import path
 from enigma import eEnv
 
+
 class SkinSelector(Screen):
 	# for i18n:
 	# _("Choose your Skin")
@@ -122,14 +123,17 @@ class SkinSelector(Screen):
 		if answer is True:
 			self.session.open(TryQuitMainloop, 3)
 
+
 def SkinSelMain(session, **kwargs):
 	session.open(SkinSelector)
+
 
 def SkinSelSetup(menuid, **kwargs):
 	if menuid == "system":
 		return [(_("Skin"), SkinSelMain, "skin_selector", None)]
 	else:
 		return []
+
 
 def Plugins(**kwargs):
 	return PluginDescriptor(name=_("Skinselector"), description=_("Select Your Skin"), where=PluginDescriptor.WHERE_MENU, needsRestart=False, fnc=SkinSelSetup)

@@ -24,6 +24,7 @@ def filescan_open(list, session, **kwargs):
 	from . import ui
 	session.open(ui.FileCommanderScreen, path_left=path)
 
+
 def start_from_filescan(**kwargs):
 	from Components.Scanner import Scanner, ScanPath
 	return \
@@ -37,20 +38,24 @@ def start_from_filescan(**kwargs):
 			openfnc=filescan_open,
 		)
 
+
 def start_from_mainmenu(menuid, **kwargs):
 	# starting from main menu
 	if menuid == "mainmenu":
 		return [(pname, start_from_pluginmenu, "filecommand", 1)]
 	return []
 
+
 def start_from_pluginmenu(session, **kwargs):
 	from . import ui
 	session.openWithCallback(exit, ui.FileCommanderScreen)
+
 
 def exit(session, result):
 	if not result:
 		from . import ui
 		session.openWithCallback(exit, ui.FileCommanderScreen)
+
 
 def Plugins(path, **kwargs):
 	desc_mainmenu = PluginDescriptor(name=pname, description=pdesc, where=PluginDescriptor.WHERE_MENU, fnc=start_from_mainmenu)

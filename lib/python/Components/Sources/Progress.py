@@ -1,6 +1,7 @@
 from __future__ import absolute_import
 from Components.Sources.Source import Source
 
+
 class Progress(Source):
 	def __init__(self, value=0, valuerange=100):
 		Source.__init__(self)

@@ -43,6 +43,7 @@ inINFOPanel = None
 
 config.plugins.infopanel_redpanel = ConfigSubsection()
 
+
 def Check_Softcam():
 	found = False
 	if fileExists("/etc/enigma2/noemu"):
@@ -56,6 +57,7 @@ def Check_Softcam():
 				found = True
 				break
 	return found
+
 
 def Check_SysSoftcam():
 	syscam = "none"
@@ -79,6 +81,7 @@ if Check_Softcam():
 else:
 	redSelection = [('0', _("Default (Instant Record)")), ('1', _("Infopanel")), ('2', _("Timer List")), ('3', _("Show Movies"))]
 
+
 def timerEvent():
 	pluginlist = plugins.getPlugins(PluginDescriptor.WHERE_PLUGINMENU)
 	for p in pluginlist:
@@ -89,6 +92,8 @@ def timerEvent():
 	else:
 		config.plugins.infopanel_redpanel.selection = ConfigSelection(redSelection, default='1')
 		config.plugins.infopanel_redpanel.selectionLong = ConfigSelection(redSelection, default='2')
+
+
 timer = eTimer()
 timer.timeout.get().append(timerEvent)
 timer.startLongTimer(1)
@@ -137,12 +142,15 @@ if config.usage.keymap.value != eEnv.resolve("${datadir}/enigma2/keymap.xml"):
 	if not os.path.isfile(eEnv.resolve("${datadir}/enigma2/keymap.u80")) and config.usage.keymap.value == eEnv.resolve("${datadir}/enigma2/keymap.u80"):
 		setDefaultKeymap()
 		
+
 def setDefaultKeymap():
 	print("[Info-Panel] Set Keymap to Default")
 	config.usage.keymap.value = eEnv.resolve("${datadir}/enigma2/keymap.xml")
 	config.save()
 
 # edit bb , touch commands.getouput with this def #
+
+
 def command(comandline, strip=1):
   comandline = comandline + " >/tmp/command.txt"
   os.system(comandline)
@@ -164,6 +172,7 @@ def command(comandline, strip=1):
   comandline = text
   os.system("rm /tmp/command.txt")
   return comandline
+
 
 boxversion = getBoxType()
 machinename = getMachineName()
@@ -194,14 +203,17 @@ class ConfigPORT(ConfigSequence):
 	def __init__(self, default):
 		ConfigSequence.__init__(self, seperator=".", limits=[(1, 65535)], default=default)
 
+
 def main(session, **kwargs):
 		session.open(Infopanel)
+
 
 def Apanel(menuid, **kwargs):
 	if menuid == "mainmenu":
 		return [(_("Info Panel"), main, "Infopanel", 3)]
 	else:
 		return []
+
 
 def Plugins(**kwargs):
 	return [
@@ -214,9 +226,7 @@ def Plugins(**kwargs):
 	PluginDescriptor(name=_("Info Panel"), description="Info panel GUI 27/12/2013", where=PluginDescriptor.WHERE_EXTENSIONSMENU, fnc=main)]
 
 
-
 #############------- SKINS --------############################
-
 MENU_SKIN = """<screen position="center,center" size="500,370" title="INFO Panel" >
 	<widget source="global.CurrentTime" render="Label" position="0, 340" size="500,24" font="Regular;20" foregroundColor="#FFFFFF" halign="right" transparent="1" zPosition="5">
 		<convert type="ClockToText">>Format%H:%M:%S</convert>
@@ -250,6 +260,7 @@ class PanelList(MenuList):
 		self.l.setFont(1, gFont("Regular", int(font1 * sf)))
 		self.l.setItemHeight(int(itemHeight * sf))
 
+
 def MenuEntryItem(entry):
 	res = [entry]
 	sf = getSkinFactor()
@@ -258,10 +269,12 @@ def MenuEntryItem(entry):
 	return res
 ###################  Max Test ###################
 
+
 #g
 from Screens.PiPSetup import PiPSetup
 from Screens.InfoBarGenerics import InfoBarPiP
 #g
+
 
 def InfoEntryComponent(file):
 	png = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_SKIN, "icons/" + file + ".png"))
@@ -274,8 +287,10 @@ def InfoEntryComponent(file):
 	res = (png)
 	return res
 
+
 class Infopanel(Screen, InfoBarPiP, ProtectedScreen):
 	servicelist = None
+
 	def __init__(self, session, services=None):
 		Screen.__init__(self, session)
 		config.plugins.configurationbackup = BackupRestore_InitConfig()
@@ -595,6 +610,7 @@ class Infopanel(Screen, InfoBarPiP, ProtectedScreen):
 			self.exe = True
 			self.session.open(RestoreScreen, runRestore=True)
 
+
 class KeymapSel(ConfigListScreen, Screen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
@@ -715,6 +731,7 @@ class KeymapSel(ConfigListScreen, Screen):
 			quitMainloop(3)
 		else:
 			self.close()
+
 
 class Info(Screen):
 	def __init__(self, session, info):
@@ -955,7 +972,6 @@ class Info(Screen):
 			self["label1"].setText(info1)
 		except:
 			self["label1"].setText(_("an internal error has occur"))
-
 
 	def Do_find(self, text, search):
 		text = text + ' '

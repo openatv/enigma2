@@ -41,10 +41,12 @@ config.plugins.quadpip.lastchannel = ConfigNumber(default=1)
 
 ENABLE_QPIP_PROCPATH = "/proc/stb/video/decodermode"
 
+
 def setDecoderMode(value):
 	if os.access(ENABLE_QPIP_PROCPATH, os.F_OK):
 		open(ENABLE_QPIP_PROCPATH, "w").write(value)
 		return open(ENABLE_QPIP_PROCPATH, "r").read().strip() == value
+
 
 class QuadPipChannelEntry:
 	def __init__(self, name, idx, ch1, ch2, ch3, ch4):
@@ -106,6 +108,7 @@ class QuadPipChannelEntry:
 	def setName(self, name):
 		self.name = name
 
+
 class QuadPipChannelData:
 	def __init__(self):
 		self.PipChannelList = []
@@ -132,6 +135,7 @@ class QuadPipChannelData:
 
 	def length(self):
 		return len(self.PipChannelList)
+
 
 class QuadPipChannelList(QuadPipChannelData):
 	def __init__(self):
@@ -185,7 +189,9 @@ class QuadPipChannelList(QuadPipChannelData):
 	def getDefaultPreName(self):
 		return self.defaultEntryPreName
 
+
 quad_pip_channel_list_instance = QuadPipChannelList()
+
 
 class CreateQuadPipChannelEntry(ChannelSelectionBase):
 	skin_default_1080p = """
@@ -239,6 +245,7 @@ class CreateQuadPipChannelEntry(ChannelSelectionBase):
 			<widget name="description" position="360,390" size="310,140" font="Regular;20" halign="left" transparent="1" />
 		</screen>
 		"""
+
 	def __init__(self, session, defaultEntryName, channel=None):
 		ChannelSelectionBase.__init__(self, session)
 
@@ -399,6 +406,7 @@ class CreateQuadPipChannelEntry(ChannelSelectionBase):
 	def Exit(self):
 		self.close(self.getNewChannel())
 
+
 class QuadPiPChannelSelection(Screen, HelpableScreen):
 	skin = """
 		<screen position="%s,%s" size="%d,%d">
@@ -427,6 +435,7 @@ class QuadPiPChannelSelection(Screen, HelpableScreen):
 			</widget>
 		</screen>
 		"""
+
 	def __init__(self, session):
 		self.session = session
 		Screen.__init__(self, session)
@@ -593,6 +602,7 @@ class QuadPiPChannelSelection(Screen, HelpableScreen):
 	def getChannelList(self):
 		return self.qpipChannelList.getPipChannels()
 
+
 class FocusShowHide:
 	STATE_HIDDEN = 0
 	STATE_SHOWN = 1
@@ -629,6 +639,7 @@ class FocusShowHide:
 		elif self.__state == self.STATE_HIDDEN:
 			self.showFocus()
 
+
 class QuadPipScreen(Screen, FocusShowHide, HelpableScreen):
 	skin = """
 		<screen position="0,0" size="%d,%d" backgroundColor="transparent" flags="wfNoBorder">
@@ -641,6 +652,7 @@ class QuadPipScreen(Screen, FocusShowHide, HelpableScreen):
 			<widget name="focus" position="0,0" zPosition="-1" size="960,540" backgroundColor="#ffffffff" borderWidth="5" borderColor="#e61616" alphatest="on" />
 		</screen>
 		"""
+
 	def __init__(self, session):
 		self.session = session
 		self.session.qPips = None

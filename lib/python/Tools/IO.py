@@ -2,6 +2,7 @@ from __future__ import print_function
 from os import fchmod, fsync, path, rename, unlink
 from tempfile import NamedTemporaryFile
 
+
 def saveFile(filename, data, mode=0o644):
 	tmpFilename = None
 	try:

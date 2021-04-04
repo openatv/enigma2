@@ -10,6 +10,7 @@ from Plugins.Plugin import PluginDescriptor
 from boxbranding import getBoxType
 import six
 
+
 class Network:
 	def __init__(self):
 		self.ifaces = {}
@@ -533,6 +534,7 @@ class Network:
 		self.config_ready = False
 		self.msgPlugins()
 		commands = []
+
 		def buildCommands(iface):
 			commands.append("ifdown " + iface)
 			commands.append("ip addr flush dev " + iface + " scope global")
@@ -557,6 +559,7 @@ class Network:
 
 	def deactivateInterfaceFinished(self, extra_args):
 		(ifaces, callback) = extra_args
+
 		def checkCommandResult(iface):
 			if self.deactivateInterfaceConsole and "ifdown " + iface in self.deactivateInterfaceConsole.appResults:
 				result = str(self.deactivateInterfaceConsole.appResults.get("ifdown " + iface)).strip("\n")
@@ -726,7 +729,9 @@ class Network:
 			result.extend(self.nameservers)
 		return result
 
+
 iNetwork = Network()
+
 
 def InitNetwork():
 	pass

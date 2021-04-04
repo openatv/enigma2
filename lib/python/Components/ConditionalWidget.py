@@ -2,6 +2,7 @@ from __future__ import absolute_import
 from Components.GUIComponent import GUIComponent
 from enigma import eTimer
 
+
 class ConditionalWidget(GUIComponent):
 	def __init__(self, withTimer=True):
 		GUIComponent.__init__(self)
@@ -33,6 +34,7 @@ class ConditionalWidget(GUIComponent):
 				self.conditionalFunction = None
 				self.activateCondition(False)
 
+
 class BlinkingWidget(GUIComponent):
 	def __init__(self):
 		GUIComponent.__init__(self)
@@ -57,6 +59,7 @@ class BlinkingWidget(GUIComponent):
 		if self.visible:
 			self.hide()
 		self.timer.stop()
+
 
 class BlinkingWidgetConditional(BlinkingWidget, ConditionalWidget):
 	def __init__(self):

@@ -263,6 +263,7 @@ parental_ratings = {
     "TBA": 0x00,
 }
 
+
 def _logResponseException(logger, heading, exception):
     msg = heading
     if isinstance(exception, requests.exceptions.ConnectionError):
@@ -274,6 +275,7 @@ def _logResponseException(logger, heading, exception):
             msg += "\n" + ex_text
     logger.addLog(msg)
     return msg
+
 
 class LogEntry(dict):
     def __init__(self, timestamp, log_message, sent=False):
@@ -1134,6 +1136,7 @@ class EPGFetcher(object):
 
 fetcher = None
 
+
 def sessionstart_main(reason, session, **kwargs):
     global _session
     global fetcher
@@ -1158,9 +1161,11 @@ def plugin_main(session, **kwargs):
         fetcher = EPGFetcher()
     session.open(IceTVMain)
 
+
 def after_scan(**kwargs):
     if fetcher is not None:
         fetcher.createFetchJob(send_scans=True)
+
 
 def Plugins(**kwargs):
     res = []
@@ -1716,6 +1721,7 @@ class IceTVCreateLogin(IceTVLogin):
     # The country will have been set in IceTVNewUserSetup
     def setCountry(self):
         return True
+
 
 class IceTVNeedPassword(ConfigListScreen, Screen, IceTVUIBase):
     skin = """

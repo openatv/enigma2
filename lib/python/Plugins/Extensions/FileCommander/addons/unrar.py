@@ -15,6 +15,7 @@ pname = _("File Commander - unrar Addon")
 pdesc = _("unpack Rar Files")
 pversion = "0.2-r1"
 
+
 class RarMenuScreen(ArchiverMenuScreen):
 
 	DEFAULT_PW = "2D1U3MP!"
@@ -118,6 +119,7 @@ class RarMenuScreen(ArchiverMenuScreen):
 				255: "User stopped the process.",
 			}.get(data, "Unknown error")
 		super(RarMenuScreen, self).extractDone(filename, data)
+
 
 class UnpackInfoScreen(ArchiverInfoScreen):
 

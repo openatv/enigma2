@@ -15,6 +15,7 @@ def OnlineUpdateCheck(session=None, **kwargs):
 	onlineupdatecheckpoller = OnlineUpdateCheckPoller()
 	onlineupdatecheckpoller.start()
 
+
 class OnlineUpdateCheckPoller:
 	def __init__(self):
 		# Init Timer
@@ -77,6 +78,7 @@ class OnlineUpdateCheckPoller:
 				config.softwareupdate.updatefound.setValue(False)
 		pass
 
+
 class VersionCheck:
 	def __init__(self):
 		pass
@@ -102,5 +104,6 @@ class VersionCheck:
 				return False
 		else:
 			return False
+
 
 versioncheck = VersionCheck()

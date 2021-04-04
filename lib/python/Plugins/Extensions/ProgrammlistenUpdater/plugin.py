@@ -29,12 +29,14 @@ config.pud.just_update = ConfigYesNo(default=False)
 URL = 'http://www.sattechnik.de/programmlisten-update/asd.php'
 Version = '1.2'
 
+
 class MenuListSetting(MenuList):
 
     def __init__(self, list):
         MenuList.__init__(self, list, True, eListboxPythonMultiContent)
         font, size = skin.parameters.get("ProgrammlistenUpdaterListFont", ('Regular', 25))
         self.l.setFont(0, gFont(font, size))
+
 
 class Programmlisten_Updater(Screen, ConfigListScreen):
 
@@ -66,7 +68,6 @@ class Programmlisten_Updater(Screen, ConfigListScreen):
         self["key_red"] = StaticText(_("Exit"))
         self["key_green"] = StaticText(_("Install"))
         self["key_yellow"] = StaticText(_("AutoUpdate"))
-
 
         self["ColorActions"] = ActionMap(['OkCancelActions', 'MenuActions', 'ShortcutActions', "ColorActions", "InfobarEPGActions"],
             {
@@ -124,7 +125,6 @@ class Programmlisten_Updater(Screen, ConfigListScreen):
         if req:
             iTimerClass.startDownload(self.name, self.link, self.date)
         
-
     def Info(self):
         if not os.path.exists(Directory + '/Settings/enigma2'):
             os.system('mkdir -p ' + Directory + '/Settings/enigma2')
@@ -162,21 +162,27 @@ class Programmlisten_Updater(Screen, ConfigListScreen):
             self.listB.append(self.ListEntryMenuSettings(_('Server down'), '', '', '', ''))
         self['MenuListSetting'].setList(self.listB)
 
+
 jsession = None
+
 
 def SessionStart(reason, **kwargs):
     if reason == 0:
         iTimerClass.gotSession(kwargs['session'], URL)
     jsession = kwargs['session']
 
+
 iTimerClass = CheckTimer(jsession)
+
 
 def AutoStart(reason, **kwargs):
     if reason == 1:
         iTimerClass.StopTimer()
 
+
 def Main(session, **kwargs):
     session.open(Programmlisten_Updater)
+
 
 def Plugins(**kwargs):
     if nimmanager.hasNimType("DVB-S"):

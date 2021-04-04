@@ -20,6 +20,7 @@ import gettext
 
 inWizzard = False
 
+
 def LanguageEntryComponent(file, name, index):
 	png = LoadPixmap(resolveFilename(SCOPE_ACTIVE_SKIN, "countries/" + index + ".png"))
 	if png is None:
@@ -29,8 +30,10 @@ def LanguageEntryComponent(file, name, index):
 	res = (index, name, png)
 	return res
 
+
 def _cached(x):
 	return LANG_TEXT.get(config.osd.language.value, {}).get(x, "")
+
 
 class LanguageSelection(Screen):
 	def __init__(self, session):
@@ -182,7 +185,6 @@ class LanguageSelection(Screen):
 		from Screens.PluginBrowser import PluginDownloadBrowser
 		self.session.openWithCallback(self.update_after_installLanguage, PluginDownloadBrowser, 0)
 
-
 	def update_after_installLanguage(self):
 		language.InitLang()
 		self.updateList()
@@ -190,6 +192,7 @@ class LanguageSelection(Screen):
 
 	def changed(self):
 		self.run(justlocal=True)
+
 
 class LanguageWizard(LanguageSelection, Rc):
 	def __init__(self, session):
@@ -219,6 +222,7 @@ class LanguageWizard(LanguageSelection, Rc):
 
 	def createSummary(self):
 		return LanguageWizardSummary
+
 
 class LanguageWizardSummary(Screen):
 	def __init__(self, session, parent):

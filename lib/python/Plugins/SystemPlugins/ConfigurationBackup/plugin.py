@@ -32,6 +32,7 @@ MountPoints = {
 		"cf": "/media/cf"
 	}
 
+
 class BackupSetup(Screen):
 	skin = """
 		<screen position="135,144" size="450,300" title="Backup and Restore" >
@@ -101,7 +102,6 @@ class BackupSetup(Screen):
 			"yellow": self.Restore,
 		})
 		
-
 	def createSetup(self):
 		print("Creating BackupSetup")
 		self.list = []
@@ -144,6 +144,7 @@ class BackupSetup(Screen):
 					self.session.open(Console, title="Backup running", cmdlist=["tar -czvf " + self.path + "/" + str(dt) + "_skin_backup.tar.gz /usr/share/enigma2/"])
 			else:
 				self.session.open(MessageBox, _("Sorry your Backup destination does not exist\n\nPlease choose an other one."), MessageBox.TYPE_INFO)
+
 
 class RestoreMenu(Screen):
 	skin = """
@@ -215,8 +216,10 @@ class RestoreMenu(Screen):
 	def Exit(self):
 		self.close()
 
+
 def BackupMain(session, **kwargs):
 	session.open(BackupSetup)
+
 
 def Plugins(path, **kwargs):
 	global plugin_path

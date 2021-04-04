@@ -9,6 +9,7 @@ import os
 import enigma
 from enigma import pNavigation
 
+
 def getTrashFolder(path=None):
 	# Returns trash folder without symlinks
 	try:
@@ -25,6 +26,7 @@ def getTrashFolder(path=None):
 	except:
 		return None
 
+
 def createTrashFolder(path=None):
 	trash = getTrashFolder(path)
 	if trash and os.access(os.path.split(trash)[0], os.W_OK):
@@ -37,6 +39,7 @@ def createTrashFolder(path=None):
 	else:
 		return None
 
+
 def get_size(start_path='.'):
 	total_size = 0
 	if start_path:
@@ -48,6 +51,7 @@ def get_size(start_path='.'):
 				except:
 					pass
 	return total_size
+
 
 class Trashcan:
 	def __init__(self, session):
@@ -78,6 +82,7 @@ class Trashcan:
 		reserveBytes = 1024 * 1024 * 1024 * int(config.usage.movielist_trashcan_reserve.value)
 		clean(ctimeLimit, reserveBytes)
 
+
 def clean(ctimeLimit, reserveBytes):
 	isCleaning = False
 	for job in Components.Task.job_manager.getPendingJobs():
@@ -96,6 +101,7 @@ def clean(ctimeLimit, reserveBytes):
 		print("[Trashcan] Cleanup already running")
 	else:
 		print("[Trashcan] Disabled skipping check.")
+
 
 def cleanAll(path=None):
 	trash = getTrashFolder(path)
@@ -116,9 +122,11 @@ def cleanAll(path=None):
 			except:
 				pass
 
+
 def init(session):
 	global instance
 	instance = Trashcan(session)
+
 
 class CleanTrashTask(Components.Task.PythonTask):
 	def openFiles(self, ctimeLimit, reserveBytes):
@@ -191,6 +199,7 @@ class CleanTrashTask(Components.Task.PythonTask):
 						bytesToRemove -= st_size
 						size -= st_size
 					print("[Trashcan] " + str(trashfolder) + ": Size now:", size)
+
 
 class TrashInfo(VariableText, GUIComponent):
 	FREE = 0

@@ -2,6 +2,7 @@ from __future__ import absolute_import
 from Components.GUIComponent import GUIComponent
 from enigma import eVideoWidget, eSize
 
+
 class VideoWindow(GUIComponent):
 	def __init__(self, decoder=1, fb_width=720, fb_height=576):
 		GUIComponent.__init__(self)

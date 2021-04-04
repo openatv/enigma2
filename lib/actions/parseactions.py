@@ -3,6 +3,7 @@ from __future__ import print_function
 import tokenize
 import sys
 
+
 def filter(g):
 	while True:
 		t = next(g)
@@ -18,6 +19,7 @@ def filter(g):
 		if t[1] != "\n":
 #			print t
 			yield t[1]
+
 
 def do_file(f, mode):
 	tokens = filter(tokenize.generate_tokens(open(f, 'r').readline))
@@ -100,6 +102,7 @@ def do_file(f, mode):
 						print("{\"" + actionname + "\", \"" + t + "\", " + "::".join((classname, t)) + "},")
 
 					counter += 1
+
 
 mode = sys.argv[1]
 

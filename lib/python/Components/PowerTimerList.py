@@ -11,6 +11,7 @@ from timer import TimerEntry
 from Tools.Directories import resolveFilename, SCOPE_ACTIVE_SKIN
 from PowerTimer import AFTEREVENT, TIMERTYPE
 
+
 def gettimerType(timer):
 	timertype = {
 		TIMERTYPE.NONE: _("Nothing"),
@@ -25,6 +26,7 @@ def gettimerType(timer):
 		}[timer.timerType]
 	return timertype
 
+
 def getafterEvent(timer):
 	afterevent = {
 		AFTEREVENT.NONE: _("Nothing"),
@@ -34,6 +36,7 @@ def getafterEvent(timer):
 		AFTEREVENT.DEEPSTANDBY: _("Deep Standby")
 		}[timer.afterEvent]
 	return afterevent
+
 
 class PowerTimerList(HTMLComponent, GUIComponent, object):
 #
@@ -155,16 +158,22 @@ class PowerTimerList(HTMLComponent, GUIComponent, object):
 	def applySkin(self, desktop, parent):
 		def itemHeight(value):
 			self.itemHeight = int(value)
+
 		def setServiceNameFont(value):
 			self.serviceNameFont = parseFont(value, ((1, 1), (1, 1)))
+
 		def setEventNameFont(value):
 			self.eventNameFont = parseFont(value, ((1, 1), (1, 1)))
+
 		def setFont(value):
 			self.font = parseFont(value, ((1, 1), (1, 1)))
+
 		def rowSplit(value):
 			self.rowSplit = int(value)
+
 		def iconMargin(value):
 			self.iconMargin = int(value)
+
 		def satPosLeft(value):
 			self.satPosLeft = int(value)
 		for (attrib, value) in list(self.skinAttributes):

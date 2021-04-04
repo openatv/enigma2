@@ -5,6 +5,7 @@ from Components.VariableValue import VariableValue
 
 from enigma import eSlider
 
+
 class Slider(VariableValue, HTMLComponent, GUIComponent):
 	def __init__(self, min, max):
 		VariableValue.__init__(self)

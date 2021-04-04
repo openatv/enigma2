@@ -14,6 +14,7 @@ from Screens.Console import Console
 from enigma import *
 import os
 
+
 def command(comandline, strip=1):
 	comandline = comandline + " >/tmp/command.txt"
 	os.system(comandline)
@@ -35,6 +36,7 @@ def command(comandline, strip=1):
 	comandline = text
 	os.system("rm /tmp/command.txt")
 	return comandline
+
 
 class ShowSoftcamPackages(Screen):
 	skin = """

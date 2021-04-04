@@ -6,6 +6,7 @@ from __future__ import absolute_import
 from Components.Renderer.Renderer import Renderer
 from enigma import eLabel
 
+
 class VWeatherUpdater(Renderer):
 
 	def __init__(self):

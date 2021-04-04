@@ -435,6 +435,7 @@ CECdat = {
 			0x06: "<2.0>"},
 	}
 
+
 class HdmiCec:
 	instance = None
 
@@ -1276,5 +1277,6 @@ class HdmiCec:
 					os.remove(f)
 				except Exception as e:
 					self.CECwritedebug("[HdmiCec] remove file '%s' failed - error: %s" % (f, e), True)
+
 
 hdmi_cec = HdmiCec()

@@ -13,6 +13,7 @@ from Components.config import config, ConfigSubsection, ConfigNumber, ConfigText
     ConfigPassword, ConfigSelection, NoSave, configfile, ConfigYesNo, \
     ConfigSelectionNumber
 
+
 def getIceTVDeviceType():
     return {
         ("Beyonwiz", "T2"): 31,
@@ -21,6 +22,7 @@ def getIceTVDeviceType():
         ("Beyonwiz", "U4"): 36,
         ("Beyonwiz", "V2"): 38,
     }.get((getMachineBrand(), getMachineName()), 39)
+
 
 config.plugins.icetv = ConfigSubsection()
 
@@ -81,9 +83,11 @@ config.plugins.icetv.refresh_interval = ConfigSelection(default="%d" % int(minut
 
 config.plugins.icetv.batchsize = ConfigSelectionNumber(0, 50, 1, default=30)
 
+
 def saveConfigFile():
     config.plugins.icetv.save()
     configfile.save()
+
 
 def enableIceTV():
     epgcache = eEPGCache.getInstance()
@@ -92,6 +96,7 @@ def enableIceTV():
     epgcache.save()
     setIceTVDefaults()
     saveConfigFile()
+
 
 def disableIceTV():
     epgcache = eEPGCache.getInstance()
@@ -102,6 +107,7 @@ def disableIceTV():
     restoreDefaults()
     saveConfigFile()
 
+
 def setIceTVDefaults():
     config.plugins.icetv.enable_epg.value = True
     config.plugins.icetv.last_update_time.value = 0
@@ -109,6 +115,7 @@ def setIceTVDefaults():
     config.epg.save()
     config.usage.show_eit_nownext.value = False
     config.usage.show_eit_nownext.save()
+
 
 def restoreDefaults():
     config.usage.show_eit_nownext.value = True

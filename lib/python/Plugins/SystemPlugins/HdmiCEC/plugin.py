@@ -12,6 +12,7 @@ from Tools.Directories import fileExists
 if path.exists("/dev/hdmi_cec") or path.exists("/dev/misc/hdmi_cec0"):
 	import Components.HdmiCec
 
+
 class HdmiCECSetupScreen(Screen, ConfigListScreen):
 	skin = """
 	<screen position="c-300,c-250" size="600,500" title="HDMI CEC setup">
@@ -196,6 +197,7 @@ class HdmiCECSetupScreen(Screen, ConfigListScreen):
 			self["description"].setText(cur[3])
 		else:
 			self["description"].setText(" ")
+
 
 def Plugins(**kwargs):
 	return []

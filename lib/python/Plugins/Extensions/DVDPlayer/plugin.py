@@ -6,9 +6,11 @@ from Components.Harddisk import harddiskmanager
 
 detected_DVD = None
 
+
 def main(session, **kwargs):
 	from Screens import DVD
 	session.open(DVD.DVDPlayer)
+
 
 def play(session, **kwargs):
 	from Screens import DVD
@@ -18,15 +20,18 @@ def play(session, **kwargs):
 	else:
 		return
 
+
 def DVDPlayer(*args, **kwargs):
 	# for backward compatibility with plugins that do "from DVDPlayer.plugin import DVDPlayer"
 	from Screens import DVD
 	return DVD.DVDPlayer(*args, **kwargs)
 
+
 def DVDOverlay(*args, **kwargs):
 	# for backward compatibility with plugins that do "from DVDPlayer.plugin import DVDOverlay"
 	from Screens import DVD
 	return DVD.DVDOverlay(*args, **kwargs)
+
 
 def filescan_open(list, session, **kwargs):
 	from Screens import DVD
@@ -45,6 +50,7 @@ def filescan_open(list, session, **kwargs):
 			if x.mimetype == "video/x-dvd":
 				dvd_filelist.append(x.path.rsplit('/', 1)[0])
 		session.open(DVD.DVDPlayer, dvd_filelist=dvd_filelist)
+
 
 def filescan(**kwargs):
 	from Components.Scanner import Scanner, ScanPath
@@ -66,6 +72,7 @@ def filescan(**kwargs):
 			openfnc=filescan_open,
 		)]
 
+
 def onPartitionChange(action, partition):
 	print("[@] onPartitionChange", action, partition)
 	if partition != harddiskmanager.getCD():
@@ -76,6 +83,7 @@ def onPartitionChange(action, partition):
 		elif action == 'add':
 			print("[DVDplayer] DVD Inserted")
 			detected_DVD = None
+
 
 def menu(menuid, **kwargs):
 	if menuid == "mainmenu":
@@ -93,6 +101,7 @@ def menu(menuid, **kwargs):
 		if detected_DVD:
 			return [(_("DVD player"), play, "dvd_player", 46)]
 	return []
+
 
 def Plugins(**kwargs):
 	return [PluginDescriptor(where=PluginDescriptor.WHERE_FILESCAN, needsRestart=False, fnc=filescan),

@@ -30,8 +30,10 @@ BOTTOM = 3
 CENTER = 2
 BLOCK = 3
 
+
 def RGB(r, g, b):
 	return (r << 16) | (g << 8) | b
+
 
 class VRunningText(Renderer):
 	def __init__(self):

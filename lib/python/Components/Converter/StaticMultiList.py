@@ -2,8 +2,10 @@ from __future__ import print_function
 from enigma import eListboxPythonMultiContent
 from Components.Converter.StringList import StringList
 
+
 class StaticMultiList(StringList):
 	"""Turns a python list in 'multi list format' into a list which can be used in a listbox."""
+
 	def changed(self, what):
 		if not self.content:
 			self.content = eListboxPythonMultiContent()

@@ -6,6 +6,7 @@ from Screens.MessageBox import MessageBox
 import hashlib
 from distutils import spawn
 
+
 class FSBLCheckerBase(object):
 	def getCurrentHash(self):
 		data = None
@@ -31,9 +32,11 @@ class FSBLCheckerBase(object):
 				return True
 		return False
 
+
 class FSBLCheckerDM900(FSBLCheckerBase):
 	BL_SIZE = 3 * 512 * 1024
 	OUTDATED_HASHES = ('4e0e2dcd7f3772a12c9217eab4a80e0235345d3d4ca633f6769b45a3262ecc03',)
+
 
 class FSBLUpdater(Console):
 	CHECKER_LUT = {

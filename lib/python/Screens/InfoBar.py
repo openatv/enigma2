@@ -184,6 +184,7 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 		elif config.usage.tvradiobutton_mode.value == "BouquetList":
 			self.showTvChannelList(True)
 			self.servicelist.showFavourites()
+
 	def showTvButton(self):
 		if boxtype.startswith('gb') or boxtype in ('classm', 'genius', 'evo', 'galaxym6', 'sf8008', 'sf8008m'):
 			self.toogleTvRadio()
@@ -420,6 +421,7 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 		else:
 			self.showMovies()
 
+
 def setAudioTrack(service):
 	try:
 		from Tools.ISO639 import LanguageCodes as langC
@@ -471,6 +473,7 @@ def setAudioTrack(service):
 	except Exception as e:
 		print("[MoviePlayer] audioTrack exception:\n" + str(e))
 
+
 def tryAudioTrack(tracks, audiolang, caudiolang, trackList, seltrack, useAc3):
 	for entry in audiolang:
 		if caudiolang:
@@ -498,6 +501,7 @@ def tryAudioTrack(tracks, audiolang, caudiolang, trackList, seltrack, useAc3):
 					tracks.selectTrack(x[0])
 					return True
 	return False
+
 
 class MoviePlayer(InfoBarAspectSelection, InfoBarSimpleEventView, InfoBarBase, InfoBarShowHide, InfoBarLongKeyDetection, InfoBarMenu, InfoBarEPG,
 		InfoBarSeek, InfoBarShowMovies, InfoBarInstantRecord, InfoBarAudioSelection, InfoBarResolutionSelection, HelpableScreen, InfoBarNotifications,

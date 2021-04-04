@@ -7,11 +7,13 @@ from Components.ActionMap import ActionMap
 from Components.config import config
 from Components.NimManager import nimmanager as nimmgr
 
+
 class SecParameterSetup(Screen, ConfigListScreen):
 	skin = """
 		<screen position="100,100" size="560,400" title="Satellite equipment setup" >
 			<widget name="config" position="10,10" size="540,390" />
 		</screen>"""
+
 	def __init__(self, session):
 		self.skin = SecParameterSetup.skin
 
@@ -46,17 +48,21 @@ class SecParameterSetup(Screen, ConfigListScreen):
 			(_("Motor command retries"), config.sec.motor_command_retries)]
 		ConfigListScreen.__init__(self, list)
 
+
 session = None
+
 
 def confirmed(answer):
 	global session
 	if answer:
 		session.open(SecParameterSetup)
 
+
 def SecSetupMain(Session, **kwargs):
 	global session
 	session = Session
 	session.openWithCallback(confirmed, MessageBox, _("Please do not change any values unless you know what you are doing!"), MessageBox.TYPE_INFO)
+
 
 def SecSetupStart(menuid):
 	show = False
@@ -71,6 +77,7 @@ def SecSetupStart(menuid):
 			return [(_("Satellite equipment setup"), SecSetupMain, "satellite_equipment_setup", None)]
 
 	return []
+
 
 def Plugins(**kwargs):
 	if nimmgr.hasNimType("DVB-S"):

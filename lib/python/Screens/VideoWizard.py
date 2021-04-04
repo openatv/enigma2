@@ -48,6 +48,7 @@ class VideoWizardSummary(WizardSummary):
 	def setLCDPic(self, file):
 		self["pic"].instance.setPixmapFromFile(file)
 
+
 class VideoWizard(WizardLanguage, Rc):
 	skin = """
 		<screen position="fill" title="Welcome..." flags="wfNoBorder" >

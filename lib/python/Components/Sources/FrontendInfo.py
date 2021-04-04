@@ -4,6 +4,7 @@ from Components.Sources.Source import Source
 from Components.PerServiceDisplay import PerServiceBase
 from enigma import eDVBResourceManager
 
+
 class FrontendInfo(Source, PerServiceBase):
 	def __init__(self, service_source=None, frontend_source=None, navcore=None):
 		self.navcore = None

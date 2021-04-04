@@ -12,6 +12,7 @@ from Components.Converter.Combine import Combine
 from Components.Renderer.FrontpanelLed import FrontpanelLed
 from boxbranding import getBoxType
 
+
 class SessionGlobals(Screen):
 	def __init__(self, session):
 		Screen.__init__(self, session)

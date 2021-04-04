@@ -5,6 +5,7 @@ from Components.Converter.Poll import Poll
 from enigma import iPlayableService
 from Components.Element import cached, ElementError
 
+
 class SCServicePosition(Poll, Converter, object):
 	TYPE_LENGTH = 0
 	TYPE_POSITION = 1

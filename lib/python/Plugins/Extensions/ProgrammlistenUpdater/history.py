@@ -10,6 +10,7 @@ from six.moves.urllib.request import Request
 # TODO: this URL now redirects to https://www.receiver-settings.de/
 URL = 'http://www.sattechnik.de/programmlisten-update/history.txt'
 
+
 def DownloadInfo(url):
     text = ""
     try:
@@ -23,7 +24,6 @@ def DownloadInfo(url):
         print("ERROR Download History %s" % (url))
 
     return text
-
 
 
 class PU_History(Screen):
@@ -45,7 +45,6 @@ class PU_History(Screen):
         
         self["key_red"] = StaticText(_("Exit"))
         self["History"] = ScrollLabel()
-
 
         self["Actions"] = ActionMap(['OkCancelActions', 'ShortcutActions', "ColorActions", "DirectionActions"],
             {

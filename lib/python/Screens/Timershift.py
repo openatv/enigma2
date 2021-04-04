@@ -13,6 +13,7 @@ from Components.Sources.StaticText import StaticText
 from Components.SystemInfo import SystemInfo
 import six
 
+
 class SetupSummary(Screen):
 	def __init__(self, session, parent):
 		Screen.__init__(self, session, parent=parent)
@@ -41,6 +42,7 @@ class SetupSummary(Screen):
 				self.parent['footnote'].text = (_("* = Restart Required"))
 			else:
 				self.parent['footnote'].text = (_(" "))
+
 
 class TimeshiftSettings(Screen, ConfigListScreen):
 	def removeNotifier(self):

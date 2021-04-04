@@ -75,6 +75,8 @@ runCallbacks = False
 # SCOPE_CURRENT_LCDSKIN.  The full path is NOT saved.
 # E.g. "MySkin/skin_display.xml"
 #
+
+
 def InitSkins():
 	global currentPrimarySkin, currentDisplaySkin
 	##################################################################################################
@@ -147,11 +149,15 @@ def InitSkins():
 
 # Temporary entry point for older versions of mytest.py.
 #
+
+
 def loadSkinData(desktop):
 	InitSkins()
 
 # Method to load a skin XML file into the skin data structures.
 #
+
+
 def loadSkin(filename, scope=SCOPE_SKIN, desktop=getDesktop(GUI_SKIN_ID), screenID=GUI_SKIN_ID):
 	global windowStyles
 	filename = resolveFilename(scope, filename)
@@ -207,6 +213,7 @@ def loadSkin(filename, scope=SCOPE_SKIN, desktop=getDesktop(GUI_SKIN_ID), screen
 		print("[Skin] Error: Unexpected error opening skin file '%s'! (%s)" % (filename, err))
 	return False
 
+
 def reloadSkins():
 	domScreens.clear()
 	colors.clear()
@@ -229,9 +236,11 @@ def reloadSkins():
 	switchPixmap.clear()
 	InitSkins()
 
+
 def addCallback(callback):
 	if callback not in callbacks:
 		callbacks.append(callback)
+
 
 def removeCallback(callback):
 	if callback in self.callbacks:
@@ -266,6 +275,8 @@ class SkinError(Exception):
 #         w      : Multiply by current font width.
 #         h      : Multiply by current font height.
 #
+
+
 def parseCoordinate(s, e, size=0, font=None):
 	s = s.strip()
 	if s == "center":  # For speed as this can be common case.
@@ -297,6 +308,7 @@ def parseCoordinate(s, e, size=0, font=None):
 		val = 0
 	return val
 
+
 def getParentSize(object, desktop):
 	if object:
 		parent = object.getParent()
@@ -315,6 +327,7 @@ def getParentSize(object, desktop):
 			return desktop.size()  # Widget has no parent, use desktop size instead for relative coordinates.
 	return eSize()
 
+
 def parseValuePair(s, scale, object=None, desktop=None, size=None):
 	if s in variables:
 		s = variables[s]
@@ -326,11 +339,14 @@ def parseValuePair(s, scale, object=None, desktop=None, size=None):
 	yval = parseCoordinate(y, parentsize.height(), size and size.height() or 0)
 	return (xval * scale[0][0] // scale[0][1], yval * scale[1][0] // scale[1][1])
 
+
 def parsePosition(s, scale, object=None, desktop=None, size=None):
 	return ePoint(*parseValuePair(s, scale, object, desktop, size))
 
+
 def parseSize(s, scale, object=None, desktop=None):
 	return eSize(*parseValuePair(s, scale, object, desktop))
+
 
 def parseFont(s, scale=((1, 1), (1, 1))):
 	if ";" in s:
@@ -350,6 +366,7 @@ def parseFont(s, scale=((1, 1), (1, 1))):
 			size = f[1] if size is None else size
 	return gFont(name, int(size) * scale[0][0] // scale[0][1])
 
+
 def parseColor(s):
 	if s[0] != "#":
 		try:
@@ -357,6 +374,7 @@ def parseColor(s):
 		except KeyError:
 			raise SkinError("Color '%s' must be #aarrggbb or valid named color" % s)
 	return gRGB(int(s[1:], 0x10))
+
 
 def parseParameter(s):
 	"""This function is responsible for parsing parameters in the skin, it can parse integers, floats, hex colors, hex integers, named colors, fonts and strings."""
@@ -376,6 +394,7 @@ def parseParameter(s):
 	else:  # Integer.
 		return int(s)
 
+
 def loadPixmap(path, desktop):
 	option = path.find("#")
 	if option != -1:
@@ -386,6 +405,7 @@ def loadPixmap(path, desktop):
 	if pixmap is None:
 		raise SkinError("Pixmap file '%s' not found" % path)
 	return pixmap
+
 
 def collectAttributes(skinAttributes, node, context, skinPath=None, ignore=(), filenames=frozenset(("pixmap", "pointer", "seek_pointer", "backgroundPixmap", "selectionPixmap", "sliderPixmap", "scrollbarSliderPicture", "scrollbarbackgroundPixmap", "scrollbarBackgroundPicture"))):
 	size = None
@@ -670,17 +690,21 @@ class AttributeParser:
 		value = 1 if value.lower() in ("1", "enabled", "nowrap", "on", "true", "yes") else 0
 		self.guiObject.setNoWrap(value)
 
+
 def applySingleAttribute(guiObject, desktop, attrib, value, scale=((1, 1), (1, 1))):
 	# Is anyone still using applySingleAttribute?
 	AttributeParser(guiObject, desktop, scale).applyOne(attrib, value)
 
+
 def applyAllAttributes(guiObject, desktop, attributes, scale):
 	AttributeParser(guiObject, desktop, scale).applyAll(attributes)
+
 
 def reloadWindowStyles():
 	for screenID in windowStyles:
 		desktop, screenID, domSkin, pathSkin, scope = windowStyles[screenID]
 		loadSingleSkinData(desktop, screenID, domSkin, pathSkin, scope)
+
 
 def loadSingleSkinData(desktop, screenID, domSkin, pathSkin, scope=SCOPE_CURRENT_SKIN):
 	"""Loads skin data like colors, windowstyle etc."""
@@ -988,6 +1012,7 @@ class SkinContextStack(SkinContext):
 				pos = (self.x + parseCoordinate(pos[0], self.w, size[0], font), self.y + parseCoordinate(pos[1], self.h, size[1], font))
 		return (SizeTuple(pos), SizeTuple(size))
 
+
 def readSkin(screen, skin, names, desktop):
 	if not isinstance(names, list):
 		names = [names]
@@ -1228,6 +1253,8 @@ def readSkin(screen, skin, names, desktop):
 # default screen resolution of HD (720p).  That is the scale factor for a HD
 # screen will be 1.
 #
+
+
 def getSkinFactor():
 	skinfactor = getDesktop(GUI_SKIN_ID).size().height() / 720.0
 	# if skinfactor not in [0.8, 1, 1.5, 3, 6]:
@@ -1239,6 +1266,8 @@ def getSkinFactor():
 # screen will be skinned by the skin code.  A return of None implies that the
 # code must provide its own skin for the screen to be displayed to the user.
 #
+
+
 def findSkinScreen(names):
 	if not isinstance(names, list):
 		names = [names]
@@ -1247,6 +1276,7 @@ def findSkinScreen(names):
 		if screen is not None:
 			return name
 	return None
+
 
 def dump(x, i=0):
 	print(" " * i + str(x))

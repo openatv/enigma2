@@ -6,6 +6,7 @@ from enigma import ePoint, eTimer, iPlayableService
 import os
 import random
 
+
 class Screensaver(Screen):
 	def __init__(self, session):
 		Screen.__init__(self, session)

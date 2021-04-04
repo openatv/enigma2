@@ -13,6 +13,7 @@ from Components.ProgressBar import ProgressBar
 from Components.Pixmap import Pixmap
 from Components.ServiceList import refreshServiceList
 
+
 class CableScan:
 	def __init__(self, text, progressbar, scanTuner, scanNetwork, scanFrequency, scanSymbolRate, scanModulation, keepNumbers, hdList):
 		self.text = text
@@ -54,6 +55,7 @@ class CableScan:
 
 	def isDone(self):
 		return self.done
+
 
 class CableScanStatus(Screen):
 	skin = """
@@ -104,6 +106,7 @@ class CableScanStatus(Screen):
 		self.restoreService()
 		self.close()
 
+
 config.plugins.CableScan = ConfigSubsection()
 config.plugins.CableScan.keepnumbering = ConfigYesNo(default=False)
 config.plugins.CableScan.hdlist = ConfigYesNo(default=False)
@@ -118,6 +121,7 @@ config.plugins.CableScan.modulation = ConfigSelection(
 		(str(eDVBFrontendParametersCable.Modulation_QAM256), "QAM256")],
 	default=str(eDVBFrontendParametersCable.Modulation_QAM64))
 config.plugins.CableScan.auto = ConfigYesNo(default=False)
+
 
 class CableScanScreen(ConfigListScreen, Screen):
 	skin = """
@@ -177,6 +181,7 @@ class CableScanScreen(ConfigListScreen, Screen):
 	def keyCancel(self):
 		self.close()
 
+
 class CableScanAutoScreen(CableScanScreen):
 
 	def __init__(self, session, nimlist):
@@ -216,6 +221,7 @@ class CableScanAutoScreen(CableScanScreen):
 		from Screens.Standby import StandbySummary
 		return StandbySummary
 
+
 def CableScanMain(session, **kwargs):
 	nims = nimmanager.getNimListOfType("DVB-C")
 
@@ -230,8 +236,11 @@ def CableScanMain(session, **kwargs):
 			session.open(MessageBox, _("A recording is currently running. Please stop the recording before trying to scan."), MessageBox.TYPE_ERROR)
 		else:
 			session.open(CableScanScreen)
+
+
 Session = None
 CableScanAutoStartTimer = eTimer()
+
 
 def restartScanAutoStartTimer(reply=False):
 	if not reply:
@@ -239,6 +248,7 @@ def restartScanAutoStartTimer(reply=False):
 		CableScanAutoStartTimer.startLongTimer(3600)
 	else:
 		CableScanAutoStartTimer.startLongTimer(86400)
+
 
 def CableScanAuto():
 	nimlist = nimmanager.getNimListOfType("DVB-C")
@@ -248,10 +258,13 @@ def CableScanAuto():
 		else:
 			Session.openWithCallback(restartScanAutoStartTimer, CableScanAutoScreen, nimlist)
 
+
 CableScanAutoStartTimer.callback.append(CableScanAuto)
+
 
 def leaveStandby():
 	CableScanAutoStartTimer.stop()
+
 
 def standbyCountChanged(value):
 	if config.plugins.CableScan.auto.value:
@@ -259,16 +272,19 @@ def standbyCountChanged(value):
 		inStandby.onClose.append(leaveStandby)
 		CableScanAutoStartTimer.startLongTimer(150)
 
+
 def startSession(session, **kwargs):
 	global Session
 	Session = session
 	config.misc.standbyCounter.addNotifier(standbyCountChanged, initial_call=False)
+
 
 def CableScanStart(menuid, **kwargs):
 	if menuid == "scan":
 		return [(_("Cable Scan"), CableScanMain, "cablescan", None)]
 	else:
 		return []
+
 
 def Plugins(**kwargs):
 	if nimmanager.hasNimType("DVB-C"):

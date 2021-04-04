@@ -37,6 +37,7 @@ pversion = "1.0-r0"
 
 # ### play with movieplayer ###
 
+
 class MoviePlayer(Movie_Audio_Player):
 	def __init__(self, session, service):
 		self.session = session
@@ -69,6 +70,7 @@ class MoviePlayer(Movie_Audio_Player):
 			self.session.nav.playService(self.lastservice)
 
 # ### File viewer/line editor ###
+
 
 class vEditor(Screen, HelpableScreen):
 
@@ -244,6 +246,7 @@ class vEditor(Screen, HelpableScreen):
 			self.close()
 		else:
 			self.close()
+
 
 class ImageViewer(Screen, HelpableScreen):
 	s, w, h = 30, getDesktop(0).size().width(), getDesktop(0).size().height()
