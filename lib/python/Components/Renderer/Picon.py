@@ -1,6 +1,8 @@
 from __future__ import print_function
 from __future__ import absolute_import
-import os, re, unicodedata
+import os
+import re
+import unicodedata
 from Components.Renderer.Renderer import Renderer
 from enigma import ePixmap, ePicLoad
 from Tools.Alternatives import GetWithAlternative
@@ -8,7 +10,8 @@ from Tools.Directories import pathExists, SCOPE_SKIN_IMAGE, SCOPE_ACTIVE_SKIN, r
 from Components.Harddisk import harddiskmanager
 from ServiceReference import ServiceReference
 from Components.config import config
-import six, sys
+import six
+import sys
 
 searchPaths = []
 lastPiconPath = None

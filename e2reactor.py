@@ -9,7 +9,9 @@ Maintainer: U{Felix Domke<mailto:tmbinc@elitedvb.net>}
 """
 
 # System imports
-import select, errno, sys
+import select
+import errno
+import sys
 
 # Twisted imports
 from twisted.python import log, failure

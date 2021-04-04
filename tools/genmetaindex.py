@@ -1,5 +1,6 @@
 # usage: genmetaindex.py <xml-files>  > index.xml
-import sys, os
+import sys
+import os
 from xml.etree.ElementTree import ElementTree, Element
 
 root = Element("index")

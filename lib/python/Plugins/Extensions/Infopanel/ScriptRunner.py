@@ -10,7 +10,8 @@ from Components.MenuList import MenuList
 from Components.Sources.List import List
 from Tools.Directories import resolveFilename, SCOPE_PLUGINS, SCOPE_CURRENT_SKIN
 from os import listdir, remove, mkdir, path, access, X_OK, chmod
-import datetime, time
+import datetime
+import time
 
 class ScriptRunner(Screen):
 	skin = """<screen name="ScriptRunner" position="center,center" size="560,400" title="Script Runner" flags="wfBorder" >

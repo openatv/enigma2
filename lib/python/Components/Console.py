@@ -1,5 +1,7 @@
 from __future__ import print_function
-import enigma, ctypes, os
+import enigma
+import ctypes
+import os
 import six
 
 class ConsoleItem:

@@ -1,7 +1,9 @@
 from __future__ import print_function
 from __future__ import absolute_import
 from enigma import eTimer, eDVBDB
-import os, time, sys
+import os
+import time
+import sys
 from Components.config import config, configfile
 from Screens.MessageBox import MessageBox
 from .downloader import DownloadSetting, ConverDate, ConverDateBack

@@ -3,7 +3,8 @@ from __future__ import print_function
 from Plugins.Plugin import PluginDescriptor
 from Components.Harddisk import harddiskmanager
 from twisted.internet.protocol import Protocol, Factory
-import os, os.path
+import os
+import os.path
 import six
 
 # globals

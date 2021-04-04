@@ -57,7 +57,8 @@ from time import time, localtime, strftime
 from bisect import insort
 from keyids import KEYIDS
 from datetime import datetime
-import itertools, datetime
+import itertools
+import datetime
 from sys import maxsize
 
 import os
