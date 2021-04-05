@@ -306,7 +306,7 @@ def fileHas(f, content, mode="r"):
 
 def getRecordingFilename(basename, dirname=None):
 	# Filter out non-allowed characters.
-	non_allowed_characters = "/.\\:*?<>|\""
+	non_allowed_characters = "/.\\:*?<>|\"%"
 	basename = basename.replace("\xc2\x86", "").replace("\xc2\x87", "")
 	filename = ""
 	for c in basename:
