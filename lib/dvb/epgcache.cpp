@@ -526,7 +526,7 @@ void eEPGCache::sectionRead(const uint8_t *data, int source, eEPGChannelData *ch
 			goto next;
 
 		if ((start_time != 3599) &&  // NVOD Service
-				(start_time < (now+4*maxdays*24*60*60)) &&  // maxdays for EPG - no more than 4 weeks in future
+				(start_time < (now+maxdays*24*60*60)) &&  // maxdays for EPG - no more than maxdays in future
 				((onid != 1714) || (duration != (24*3600-1))))  // PlatformaHD invalid event
 		{
 			uint16_t event_id = eit_event->getEventId();
