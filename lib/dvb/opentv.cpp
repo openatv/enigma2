@@ -157,7 +157,19 @@ OpenTvTitle::OpenTvTitle(const uint8_t * const buffer, uint16_t startMjd)
 		uint8_t descriptor_length = buffer[1];
 		uint8_t titleLength = descriptor_length > 7 ? descriptor_length-7 : 0;
 
-		startTimeBcd = (((startMjd - 40587) * 86400) + (UINT16(&buffer[2]) << 1));
+		uint32_t startSecond = (UINT16(&buffer[2]) << 1);
+
+		startTimeBcd = ((startMjd - 40587) * 86400) + startSecond;
+
+		// HACK ALERT: There is a bug somewhere in the data that causes some
+		// events to be cataloged 0x20000 seconds further into the future
+		// than they should be. In these cases "startSecond" will have a value
+		// of 86400 seconds or greater. i.e. more than one day. When this
+		// happens it indicates that the bug is present for the current event
+		// and therefore the excess 0x20000 seconds is removed from "startTimeBcd".
+		if (startSecond >= 86400)
+			startTimeBcd -= 0x20000;
+
 		duration = UINT16(&buffer[4]) << 1;
 
 		//genre content
@@ -275,22 +287,54 @@ uint16_t OpenTvTitleSection::getTitlesListSize(void) const
 
 OpenTvSummary::OpenTvSummary(const uint8_t * const buffer)
 {
-	uint8_t descriptor_tag = buffer[0];
+	uint16_t bytesLeft = buffer[1];
+	uint16_t loopLength = 0;
+	uint16_t pos = 2;
 
-	if (descriptor_tag == OPENTV_EVENT_SUMMARY_DESCRIPTOR)
+	while (bytesLeft > 0 && bytesLeft >= (loopLength = buffer[pos+1]+2))
 	{
-		uint8_t descriptorLength = (buffer[1]);
+		uint8_t descriptor_tag = buffer[pos];
+		uint8_t descriptorLength = buffer[pos+1];
 
-		if (descriptorLength > 0)
+		switch (descriptor_tag)
 		{
-			char tmp[OPENTV_EVENT_SUMMARY_LENGTH];
-			memset(tmp, '\0', OPENTV_EVENT_SUMMARY_LENGTH);
+			case OPENTV_EVENT_SUMMARY_DESCRIPTOR:
+			{
+				if (descriptorLength > 0)
+				{
+					char tmp[OPENTV_EVENT_SUMMARY_LENGTH];
+					memset(tmp, '\0', OPENTV_EVENT_SUMMARY_LENGTH);
 
-			if (!huffman_decode (buffer + 2, descriptorLength, tmp, OPENTV_EVENT_SUMMARY_LENGTH * 2, false))
-				tmp[0] = '\0';
+					if (!huffman_decode (buffer+pos+2, descriptorLength, tmp, OPENTV_EVENT_SUMMARY_LENGTH * 2, false))
+						tmp[0] = '\0';
 
-			summary = convertDVBUTF8(tmp, sizeof(tmp), 5);
+					summary = convertDVBUTF8(tmp, sizeof(tmp), 5);
+				}
+				break;
+			}
+			case OPENTV_EVENT_DESCRIPTION_DESCRIPTOR:
+			{
+				//TODO: read event description descriptor
+				//mostly unused, huffman_decode same as summary
+				break;
+			}
+			case OPENTV_EVENT_SERIES_LINK_DESCRIPTOR:
+			{
+				//TODO: read series link id for future recording
+				//uint16_t seriesLink = UINT16(&buffer[pos+2]);
+				break;
+			}
+			case 0xd0:
+			{
+				//TODO: read first showing 0xbf isNew? event flag
+				//tag appears sometimes before summary with "New:" prepended titles.
+				break;
+			}
+			default:
+				break;
 		}
+		bytesLeft -= loopLength;
+		pos += loopLength;
 	}
 }
 
@@ -342,9 +386,9 @@ OpenTvSummarySection::OpenTvSummarySection(const uint8_t * const buffer) : LongC
 			uint8_t descriptor_tag = buffer[pos+2];
 			uint8_t descriptorLength = buffer[pos+3];
 
-			if ((descriptor_tag == OPENTV_DESCRIPTOR_LOOP) && (descriptorLength > 0))
+			if ((descriptor_tag == OPENTV_DESCRIPTOR_LOOP) && (descriptorLength > 2))
 			{
-				OpenTvSummary *summary = new OpenTvSummary(&buffer[pos+4]);
+				OpenTvSummary *summary = new OpenTvSummary(&buffer[pos+2]);
 				summary->setChannelId(tableIdExtension);
 				summary->setEventId(eventId);
 				summaries.push_back(summary);

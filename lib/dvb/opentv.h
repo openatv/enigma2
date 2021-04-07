@@ -8,30 +8,32 @@
 #define OPENTV_LOGICAL_CHANNEL_DESCRIPTOR	0xb1
 #define OPENTV_EVENT_TITLE_DESCRIPTOR		0xb5
 #define OPENTV_EVENT_SUMMARY_DESCRIPTOR		0xb9
+#define OPENTV_EVENT_DESCRIPTION_DESCRIPTOR	0xbb
+#define OPENTV_EVENT_SERIES_LINK_DESCRIPTOR	0xc1
 #define OPENTV_EVENT_TITLE_LENGTH		0xff
 #define OPENTV_EVENT_SUMMARY_LENGTH		0x3ff
 
 class OpenTvChannel
 {
-	protected:
-		unsigned transportStreamId	: 16;
-		unsigned originalNetworkId	: 16;
-		unsigned serviceId		: 16;
-		unsigned channelId		: 16;
-		unsigned serviceType		: 6;
+protected:
+	unsigned transportStreamId	: 16;
+	unsigned originalNetworkId	: 16;
+	unsigned serviceId		: 16;
+	unsigned channelId		: 16;
+	unsigned serviceType		: 6;
 
-	public:
-		OpenTvChannel(const uint8_t *const buffer);
-		~OpenTvChannel(void);
+public:
+	OpenTvChannel(const uint8_t *const buffer);
+	~OpenTvChannel(void);
 
-		uint16_t getTransportStreamId(void) const;
-		uint16_t getOriginalNetworkId(void) const;
-		uint16_t getServiceId(void) const;
-		uint16_t getChannelId(void) const;
-		uint8_t getServiceType(void) const;
+	uint16_t getTransportStreamId(void) const;
+	uint16_t getOriginalNetworkId(void) const;
+	uint16_t getServiceId(void) const;
+	uint16_t getChannelId(void) const;
+	uint8_t getServiceType(void) const;
 
-		void setTransportStreamId(uint16_t transportstreamid);
-		void setOriginalNetworkId(uint16_t originalnetworkid);
+	void setTransportStreamId(uint16_t transportstreamid);
+	void setOriginalNetworkId(uint16_t originalnetworkid);
 };
 
 typedef std::list<OpenTvChannel *> OpenTvChannelList;
@@ -40,20 +42,20 @@ typedef OpenTvChannelList::const_iterator OpenTvChannelListConstIterator;
 
 class OpenTvChannelSection : public LongCrcSection , public DescriptorContainer
 {
-	protected:
-		unsigned descriptorsLength		: 12;
-		unsigned descriptorLength		: 8;
-		unsigned transportDescriptorsLength	: 12;
-		unsigned transportStreamId		: 16;
-		unsigned originalNetworkId		: 16;
-		OpenTvChannelList channels;
+protected:
+	unsigned descriptorsLength		: 12;
+	unsigned descriptorLength		: 8;
+	unsigned transportDescriptorsLength	: 12;
+	unsigned transportStreamId		: 16;
+	unsigned originalNetworkId		: 16;
+	OpenTvChannelList channels;
 
-	public:
-		OpenTvChannelSection(const uint8_t * const buffer);
-		~OpenTvChannelSection(void);
+public:
+	OpenTvChannelSection(const uint8_t * const buffer);
+	~OpenTvChannelSection(void);
 
-		const OpenTvChannelList *getChannels(void) const;
-		uint16_t getChannelsListSize(void) const;
+	const OpenTvChannelList *getChannels(void) const;
+	uint16_t getChannelsListSize(void) const;
 };
 
 class OpenTvTitle : public DescriptorContainer
@@ -86,18 +88,18 @@ typedef OpenTvTitleList::const_iterator OpenTvTitleListConstIterator;
 
 class OpenTvTitleSection : public LongCrcSection , public DescriptorContainer
 {
-	protected:
-		unsigned channelId		: 16;
-		unsigned startTimeMjd		: 16;
-		unsigned eventId		: 16;
-		OpenTvTitleList titles;
+protected:
+	unsigned channelId		: 16;
+	unsigned startTimeMjd		: 16;
+	unsigned eventId		: 16;
+	OpenTvTitleList titles;
 
-	public:
-		OpenTvTitleSection(const uint8_t * const buffer);
-		~OpenTvTitleSection(void);
+public:
+	OpenTvTitleSection(const uint8_t * const buffer);
+	~OpenTvTitleSection(void);
 
-		const OpenTvTitleList *getTitles(void) const;
-		uint16_t getTitlesListSize(void) const;
+	const OpenTvTitleList *getTitles(void) const;
+	uint16_t getTitlesListSize(void) const;
 };
 
 class OpenTvSummary : public DescriptorContainer
@@ -113,7 +115,7 @@ public:
 
 	std::string getSummary(void) const;
 	uint16_t getChannelId(void) const;
-	uint16_t getEventId(void) const;;
+	uint16_t getEventId(void) const;
 	void setChannelId(uint16_t channelid);
 	void setEventId(uint16_t eventId);
 };
@@ -124,18 +126,18 @@ typedef OpenTvSummaryList::const_iterator OpenTvSummaryListConstIterator;
 
 class OpenTvSummarySection : public LongCrcSection , public DescriptorContainer
 {
-	protected:
-		unsigned channelId		: 16;
-		unsigned startTimeMjd		: 16;
-		unsigned eventId		: 16;
-		OpenTvSummaryList summaries;
+protected:
+	unsigned channelId		: 16;
+	unsigned startTimeMjd		: 16;
+	unsigned eventId		: 16;
+	OpenTvSummaryList summaries;
 
-	public:
-		OpenTvSummarySection(const uint8_t * const buffer);
-		~OpenTvSummarySection(void);
+public:
+	OpenTvSummarySection(const uint8_t * const buffer);
+	~OpenTvSummarySection(void);
 
-		const OpenTvSummaryList *getSummaries(void) const;
-		uint16_t getSummariesListSize(void) const;
+	const OpenTvSummaryList *getSummaries(void) const;
+	uint16_t getSummariesListSize(void) const;
 };
 
 #endif /* __OPENTV_H__ */
