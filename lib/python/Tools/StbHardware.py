@@ -15,7 +15,7 @@ def getFPVersion():
 			file.close()
 		elif getBoxType() in ('dm7080', 'dm820', 'dm520', 'dm525', 'dm900', 'dm920'):
 			ret = open("/proc/stb/fp/version", "r").read()
-		else:	
+		else:
 			ret = long(open("/proc/stb/fp/version", "r").read())
 	except IOError:
 		try:

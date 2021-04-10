@@ -150,9 +150,9 @@ class brcmWLConfig:
 		encryption = config.plugins.wlan.encryption.value
 		wepkeytype = config.plugins.wlan.wepkeytype.value
 		psk = config.plugins.wlan.psk.value
-		
+
 		fp = file(getWlanConfigName(iface), 'wb')
-		
+
 		fp.write('ssid=' + essid + '\n')
 		if encryption in ('WPA', 'WPA2', 'WPA/WPA2', 'WEP'):
 			if encryption == "WPA/WPA2":
@@ -170,7 +170,7 @@ class brcmWLConfig:
 		config.plugins.wlan.encryption.value = "WPA2"
 		config.plugins.wlan.psk.value = ""
 		configfile = getWlanConfigName(iface)
-		
+
 		if os_path.exists(configfile):
 			print "[Wlan.py] parsing configfile: ", configfile
 			fd = open(configfile, "r")

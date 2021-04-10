@@ -47,7 +47,7 @@ class VServiceInfo(Converter, object):
 			return False
 
 	boolean = property(getBoolean)
-	
+
 	@cached
 	def getText(self):
 		service = self.source.service

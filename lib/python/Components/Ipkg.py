@@ -236,7 +236,7 @@ class IpkgComponent:
 
 	def getExcludeList(self):
 		return self.excludeList
-	
+
 	def stop(self):
 		self.cmd.kill()
 

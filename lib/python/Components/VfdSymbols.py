@@ -238,7 +238,7 @@ class SymbolsCheckPoller:
 		else:
 			file = open("/proc/stb/lcd/symbol_play", "w")
 			file.write('0')
-			file.close() 
+			file.close()
 
 	def PauseSymbol(self):
 		if not fileExists("/proc/stb/lcd/symbol_pause"):
@@ -345,7 +345,7 @@ class SymbolsCheckPoller:
 	def Audio(self):
 		if not fileExists("/proc/stb/lcd/symbol_dolby_audio"):
 			return
-		      
+
 		audio = self.service.audioTracks()
 		if audio:
 			n = audio.getNumberOfTracks()

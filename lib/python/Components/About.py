@@ -43,7 +43,7 @@ def getKernelVersionString():
 		return kernelversion
 	except:
 		return _("unknown")
-	
+
 
 def getModelString():
 		model = getBoxType()

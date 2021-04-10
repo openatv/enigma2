@@ -10,7 +10,7 @@ from Components.SystemInfo import SystemInfo
 from Tools.Directories import pathExists
 
 Imagemount = "/tmp/multibootcheck"
-Imageroot = "/tmp/imageroot" 
+Imageroot = "/tmp/imageroot"
 
 
 def getMBbootdevice():

@@ -180,7 +180,7 @@ class Navigation:
 				if not self.forcerecord:
 					print "[NAVIGATION] timer starts at %s" % ctime(self.timertime)
 			#check for standby
-			cec = ((self.wakeuptyp == 0 and (Screens.Standby.TVinStandby.getTVstandby('zapandrecordtimer'))) or 
+			cec = ((self.wakeuptyp == 0 and (Screens.Standby.TVinStandby.getTVstandby('zapandrecordtimer'))) or
 					(self.wakeuptyp == 1 and (Screens.Standby.TVinStandby.getTVstandby('zaptimer'))) or
 					(self.wakeuptyp == 2 and (Screens.Standby.TVinStandby.getTVstandby('wakeuppowertimer'))))
 			if self.getstandby != 1 and ((self.wakeuptyp < 3 and self.timertime - now > 60 + stbytimer) or cec):

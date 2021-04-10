@@ -134,7 +134,7 @@ class ConfigElement(object):
 		try:
 			self.extra_args[notifier] = extra_args
 		except:
-			pass	
+			pass
 		if immediate_feedback:
 			self.__notifiers[str(notifier)] = (notifier, self.value, call_on_save_or_cancel)
 		else:

@@ -67,7 +67,7 @@ class TitleList(Screen, HelpableScreen):
 	def __init__(self, session, project=None):
 		Screen.__init__(self, session)
 		HelpableScreen.__init__(self)
-		
+
 		self["titleactions"] = HelpableActionMap(self, "TitleList",
 			{
 				"addTitle": (self.addTitle, _("Add a new title"), _("Add title")),
@@ -153,7 +153,7 @@ class TitleList(Screen, HelpableScreen):
 		job_manager.in_background = False
 		self.session.openWithCallback(self.JobViewCB, JobView, self.backgroundJob)
 		self.backgroundJob = None
-	
+
 	def titleProperties(self):
 		#if self.getCurrentTitle():
 			self.session.openWithCallback(self.updateTitleList, TitleProperties.TitleProperties, self, self.project, self["titles"].getIndex())
@@ -221,7 +221,7 @@ class TitleList(Screen, HelpableScreen):
 	def removeCurrentTitle(self):
 		title = self.getCurrentTitle()
 		self.removeTitle(title)
-	
+
 	def removeTitle(self, title):
 		if title is not None:
 			self.project.titles.remove(title)
@@ -314,7 +314,7 @@ class TitleList(Screen, HelpableScreen):
 		if self.project.settings.authormode.value == "bdmv":
 			percent = 100 * size / float(MAX_BD)
 			self["space_label"].text = "%d MB (%.2f%%)" % (size, percent)
-			
+
 			if size > MAX_BD:
 				self["medium_label"].setText(_("Exceeds Bludisc medium!"))
 				self["medium_label"].setForegroundColorNum(2)
@@ -373,10 +373,10 @@ class TitleList(Screen, HelpableScreen):
 
 		if t.VideoType != 0 and self.project.settings.authormode.value not in ("data_ts", "bdmv"):
 			text = _("The DVD standard doesn't support H.264 (HDTV) video streams.")
-			
+
 			if all_hd == True:
 				choices.append((_("BDMV Bludisc (HDTV titles only)"), "bdmv"))
-			
+
 			choices.append((_("Dreambox format data DVD (won't work in other DVD players)"), "data_ts"))
 			choices.append((_("Don't add this recording"), None))
 			self.session.openWithCallback(self.formatCB, ChoiceBox, title=text, list=choices)

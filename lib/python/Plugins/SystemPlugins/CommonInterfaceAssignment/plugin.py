@@ -388,8 +388,8 @@ class CAidSelect(Screen):
 
 		self["actions"] = ActionMap(["ColorActions", "SetupActions"],
 		{
-			"ok": self.list.toggleSelection, 
-			"cancel": self.cancel, 
+			"ok": self.list.toggleSelection,
+			"cancel": self.cancel,
 			"green": self.greenPressed,
 			"red": self.cancel
 		}, -1)

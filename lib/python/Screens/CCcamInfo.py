@@ -215,7 +215,7 @@ if path.exists(resolveFilename(SCOPE_ACTIVE_SKIN, "icons/lock_on.png")):
 	lock_on = loadPNG(resolveFilename(SCOPE_ACTIVE_SKIN, "icons/lock_on.png"))
 else:
 	lock_on = loadPNG("/usr/share/enigma2/skin_default/icons/lock_on.png")
-	
+
 if path.exists(resolveFilename(SCOPE_ACTIVE_SKIN, "icons/lock_off.png")):
 	lock_off = loadPNG(resolveFilename(SCOPE_ACTIVE_SKIN, "icons/lock_off.png"))
 else:

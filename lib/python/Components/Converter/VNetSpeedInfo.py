@@ -15,7 +15,7 @@
 # Coded by markusw (c) 2013
 # www.vuplus-support.org
 #
-####################################################################### 
+#######################################################################
 
 import os
 from Components.Label import Label
@@ -87,7 +87,7 @@ class VNetSpeedInfo(Poll, Converter, object):
 		self.drop_wlanreceive = 0
 		self.error_wlantransmite = 0
 		self.drop_wlantransmite = 0
-		
+
 		Converter.__init__(self, type)
 		self.type = type
 		self.type = type
@@ -149,9 +149,9 @@ class VNetSpeedInfo(Poll, Converter, object):
 	@cached
 	def getText(self):
 		textvalue = ""
-		textvalue = self.updateNetSpeedInfoStatus() 
-		return textvalue 
-	
+		textvalue = self.updateNetSpeedInfoStatus()
+		return textvalue
+
 	text = property(getText)
 
 	def updateNetSpeedInfoStatus(self):

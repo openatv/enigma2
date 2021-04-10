@@ -47,7 +47,7 @@ def InstallSettings(name, link, date):
         return False
 
     Status = True
-    
+
     # remove old download if exists
     if os.path.exists(Directory + '/Settings/tmp'):
         os.system('rm -rf ' + Directory + '/Settings/tmp')
@@ -94,7 +94,7 @@ def InstallSettings(name, link, date):
         # remove /tmp folder
         if os.path.exists(Directory + '/Settings/tmp'):
             os.system('rm -rf ' + Directory + '/Settings/tmp')
-        
+
     else:
         Status = False
 
@@ -135,7 +135,7 @@ class CheckTimer:
             pass
 
     def TimerSetting(self, Auto=False):
-  
+
         try:
             self.StopTimer()
         except:
@@ -144,7 +144,7 @@ class CheckTimer:
         now = time.time()
         ttime = now + 28800 # Check each 8 hours for new version
         delta1 = int(ttime - now)
-        
+
         if Auto:
             #Do Check at bootup after 2 min
             self.UpdateTimer.start(120000, True)
@@ -158,7 +158,7 @@ class CheckTimer:
         else:
             config.pud.update_question.value = False
         config.pud.save()
-        
+
     def startTimerSetting(self):
 
         def OnDsl():
@@ -191,5 +191,5 @@ class CheckTimer:
                     else:
                         print "Programmlisten-Updater: NO NEW UPDATE AVAILBLE"
                     break
- 
+
         self.TimerSetting()

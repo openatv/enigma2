@@ -2,7 +2,7 @@ from xml.etree.cElementTree import parse
 from Tools.XMLTools import elementsWithTag, mergeText, stringToXML
 from enigma import eDVBCIInterfaces, eDVBCI_UI, eEnv, eServiceCenter, eServiceReference
 from timer import TimerEntry
-import NavigationInstance 
+import NavigationInstance
 
 import os
 
@@ -117,7 +117,7 @@ class CIHelper:
 						self.CI_MULTIDESCRAMBLE = True
 		elif self.CI_MULTIDESCRAMBLE == False:
 			return False
-			
+
 		if self.CI_ASSIGNMENT_LIST is not None and len(self.CI_ASSIGNMENT_LIST):
 			for x in self.CI_ASSIGNMENT_LIST:
 				if ref.toString() in x[1][0]:

@@ -14,13 +14,13 @@ class SocketMMIMessageHandler:
 	def connected(self, slot=0):
 		return socketmmi.getState(slot)
 
-	def numConnections(self):                  
+	def numConnections(self):
 		if socketmmi.getState(0):
 			return 1
 		else:
 			return 0
 
-	def getState(self, slot=0):                                        
+	def getState(self, slot=0):
 		return socketmmi.getState(slot)
 
 	def getName(self, slot=0):

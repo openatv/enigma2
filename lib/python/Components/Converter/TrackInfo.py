@@ -34,7 +34,7 @@ class TrackInfo(Poll, Converter, object):
 		else:
 			self.type = self.AUDIO
 
-	@cached	
+	@cached
 	def getText(self):
 		service = self.source.service
 		if self.type == self.AUDIO or self.type == self.AUDIO_CODEC or self.type == self.AUDIO_LANG:
@@ -150,4 +150,3 @@ class TrackInfo(Poll, Converter, object):
 	def changed(self, what):
 		if what[0] != self.CHANGED_SPECIFIC or what[1] == self.type:
 			Converter.changed(self, what)
-

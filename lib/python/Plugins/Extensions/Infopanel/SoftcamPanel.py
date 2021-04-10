@@ -60,11 +60,11 @@ class ShowSoftcamPackages(Screen):
 				</convert>
 			</widget>
 		</screen>"""
-	
+
 	def __init__(self, session, args=None):
 		Screen.__init__(self, session)
 		self.session = session
-		
+
 		self["actions"] = ActionMap(["OkCancelActions", "DirectionActions", "ColorActions"],
 		{
 			"red": self.exit,
@@ -72,7 +72,7 @@ class ShowSoftcamPackages(Screen):
 			"cancel": self.exit,
 			"green": self.startupdateList,
 		}, -1)
-		
+
 		self.list = []
 		self.statuslist = []
 		self["list"] = List(self.list)
@@ -114,10 +114,10 @@ class ShowSoftcamPackages(Screen):
 	def UpgradeReboot(self, result):
 		if result is None:
 			return
-		
+
 	def exit(self):
 		self.close()
-			
+
 	def setWindowTitle(self):
 		self.setTitle(_("Install Softcams"))
 
@@ -136,7 +136,7 @@ class ShowSoftcamPackages(Screen):
 			elif status == 'error':
 				statuspng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_PLUGIN, "Extensions/Infopanel/icons/remove.png"))
 				self.statuslist.append((_("Error"), '', _("There was an error downloading the updatelist. Please try again."), '', statuspng, divpng))
-				self['list'].setList(self.statuslist)				
+				self['list'].setList(self.statuslist)
 
 	def startupdateList(self):
 		self.setStatus('update')
@@ -194,6 +194,6 @@ class ShowSoftcamPackages(Screen):
 					pass
 
 			self['list'].setList(self.list)
-	
+
 		else:
 			self.setStatus('error')

@@ -46,4 +46,3 @@ def recType(configString):
 		return pNavigation.isRealRecording | pNavigation.isStreaming
 	elif (configString == "real_pseudo"):
 		return pNavigation.isRealRecording | pNavigation.isPseudoRecording
-

@@ -84,7 +84,7 @@ if path.exists("/usr/lib/enigma2/python/Plugins/SystemPlugins/PositionerSetup/pl
 	POSSETUP = True
 else:
 	POSSETUP = False
-	
+
 if path.exists("/usr/lib/enigma2/python/Plugins/SystemPlugins/Satfinder/plugin.pyo"):
 	from Plugins.SystemPlugins.Satfinder.plugin import Satfinder
 	SATFINDER = True
@@ -226,10 +226,10 @@ class QuickMenu(Screen, ProtectedScreen):
 
 	def goUp(self):
 		self.selectedList.up()
-		
+
 	def goDown(self):
 		self.selectedList.down()
-		
+
 	def keyred(self):
 		self.close()
 
@@ -388,7 +388,7 @@ class QuickMenu(Screen, ProtectedScreen):
 #####################################################################
 ######## Make Selection MAIN MENU LIST ##############################
 #####################################################################
-			
+
 
 	def okList(self):
 		item = self["list"].getCurrent()
@@ -427,7 +427,7 @@ class QuickMenu(Screen, ProtectedScreen):
 #####################################################################
 ######## Make Selection SUB MENU LIST ##############################
 #####################################################################
-			
+
 	def okSubList(self):
 		item = self["sublist"].getCurrent()
 
@@ -475,7 +475,7 @@ class QuickMenu(Screen, ProtectedScreen):
 		elif item[0] == _("LCD Skin Setup"):
 			self.session.open(LcdSkinSelector)
 		elif item[0] == _("Skin Setup"):
-			self.session.open(SkinSelector)	
+			self.session.open(SkinSelector)
 		elif item[0] == _("OSD settings"):
 			self.openSetup("userinterface")
 		elif item[0] == _("Channel selection"):
@@ -593,7 +593,7 @@ class QuickMenu(Screen, ProtectedScreen):
 			self.adapters = [(iNetwork.getFriendlyAdapterName(x), x) for x in iNetwork.getInstalledAdapters()]
 
 		self.activeInterface = None
-	
+
 		for x in self.adapters:
 			if iNetwork.getAdapterAttribute(x[1], 'up') is True:
 				self.activeInterface = x[1]
@@ -625,7 +625,7 @@ class QuickMenu(Screen, ProtectedScreen):
 			self.session.open(MessageBox, _("A recording is currently running. Please stop the recording before trying to start the satfinder."), MessageBox.TYPE_ERROR)
 		else:
 			self.session.open(Satfinder)
-		
+
 ######## SOFTWARE MANAGER TOOLS #######################
 	def backupDone(self, retval=None):
 		if retval is True:
@@ -641,7 +641,7 @@ class QuickMenu(Screen, ProtectedScreen):
 
 ######## Create MENULIST format #######################
 def QuickMenuEntryComponent(name, description, long_description=None, width=540):
-	pngname = name.replace(" ", "_") 
+	pngname = name.replace(" ", "_")
 	png = LoadPixmap("/usr/lib/enigma2/python/Plugins/Extensions/Infopanel/icons/" + pngname + ".png")
 	if png is None:
 		png = LoadPixmap("/usr/lib/enigma2/python/Plugins/Extensions/Infopanel/icons/default.png")
@@ -709,7 +709,7 @@ class QuickMenuDevices(Screen):
 		self.devicelist = []
 		self['devicelist'] = List(self.devicelist)
 
-		self['actions'] = ActionMap(['WizardActions'], 
+		self['actions'] = ActionMap(['WizardActions'],
 		{
 			'back': self.close,
 		})
@@ -823,5 +823,3 @@ class QuickMenuDevices(Screen):
 			png = LoadPixmap(mypixmap)
 			res = (name, des, png)
 			self.devicelist.append(res)
-
-

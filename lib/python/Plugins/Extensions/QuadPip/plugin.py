@@ -31,4 +31,3 @@ def Plugins(**kwargs):
 		fnc=autoStart))
 
 	return list
-

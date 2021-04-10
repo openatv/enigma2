@@ -458,7 +458,7 @@ class ServiceList(HTMLComponent, GUIComponent):
 
 		#progress view modes for two lines
 		#  0 - single, centered
-		# 10 - single, upper line 
+		# 10 - single, upper line
 		#  1 - dual, bar upper line, value lower line
 		#  2 - dual, value upper line, bar lower line
 		# 11 - dual, bar and value upper line

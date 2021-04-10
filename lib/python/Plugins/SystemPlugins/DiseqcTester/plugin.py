@@ -185,7 +185,7 @@ class DiseqcTester(Screen, TuneTest, ResultParser):
 		</widget>
 		<widget name="Overall_progress" position="20,162" size="480,22" font="Regular;21" halign="center" transparent="1" />
 		<widget source="overall_progress" render="Progress" position="20,192" size="480,20" borderWidth="2" backgroundColor="#254f7497" />
-		
+
 		<widget name="Progress" position="20,222" size="480,22" font="Regular;21" halign="center" transparent="1" />
 		<widget source="sub_progress" render="Progress" position="20,252" size="480,20" borderWidth="2" backgroundColor="#254f7497" />
 

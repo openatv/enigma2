@@ -59,13 +59,13 @@ class Title:
 		self.filesize = path.getsize(self.inputfile)
 		self.estimatedDiskspace = self.filesize
 		self.length = info.getLength(service)
-						
+
 	def addFile(self, filename):
 		from enigma import eServiceReference
 		ref = eServiceReference(1, 0, filename)
 		self.addService(ref)
 		self.project.session.openWithCallback(self.titleEditDone, TitleCutter.CutlistReader, self)
-	
+
 	def titleEditDone(self, cutlist):
 		self.initDVDmenuText(len(self.project.titles))
 		self.cuesheet = cutlist
@@ -83,7 +83,7 @@ class Title:
 		template = template.replace("$c", str(len(self.chaptermarks) + 1))
 		template = template.replace("$f", self.inputfile)
 		template = template.replace("$C", self.DVBchannel)
-		
+
 		#if template.find("$A") >= 0:
 		audiolist = []
 		for audiotrack in self.properties.audiotracks:
@@ -125,7 +125,7 @@ class Title:
 		# our demuxer expects *strictly* IN,OUT lists.
 		currently_in = not any(type == CUT_TYPE_IN for pts, type in self.cuesheet)
 		if currently_in:
-			self.cutlist.append(0) # emulate "in" at first		
+			self.cutlist.append(0) # emulate "in" at first
 
 		for (pts, type) in self.cuesheet:
 			#print "pts=", pts, "type=", type, "accumulated_in=", accumulated_in, "accumulated_at=", accumulated_at, "last_in=", last_in
@@ -138,7 +138,7 @@ class Title:
 				self.cutlist.append(pts)
 
 				# accumulate the segment
-				accumulated_in += pts - last_in 
+				accumulated_in += pts - last_in
 				accumulated_at = pts
 				currently_in = False
 
@@ -147,7 +147,7 @@ class Title:
 				# as the in/out points are not.
 				reloc_pts = pts - last_in + accumulated_in
 				self.chaptermarks.append(reloc_pts)
-				
+
 		if len(self.cutlist) > 1:
 			part = accumulated_in / (self.length * 90000.0)
 			usedsize = int(part * self.filesize)

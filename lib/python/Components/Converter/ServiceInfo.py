@@ -263,7 +263,7 @@ class ServiceInfo(Poll, Converter, object):
 			return video_height > 500 and video_height <= 576
 		elif self.type == self.IS_480:
 			return video_height > 0 and video_height <= 480
-		elif self.type == self.IS_4K: 
+		elif self.type == self.IS_4K:
 			if info.getInfo(iServiceInformation.sGamma) > 0:
 				return False
 			else:
@@ -432,4 +432,4 @@ class ServiceInfo(Poll, Converter, object):
 				if info and not self._isHDMIIn(info):
 					return
 
-			Converter.changed(self, what) 
+			Converter.changed(self, what)

@@ -123,7 +123,7 @@ class Language:
 		try:
 			os.stat('/home/root/.config')
 		except:
-			os.mkdir('/home/root/.config') 
+			os.mkdir('/home/root/.config')
 
 		localeconf = open('/home/root/.config/locale.conf', 'w')
 		for category in ["LC_TIME", "LC_DATE", "LC_MONETARY", "LC_MESSAGES", "LC_NUMERIC", "LC_NAME", "LC_TELEPHONE", "LC_ADDRESS", "LC_PAPER", "LC_IDENTIFICATION", "LC_MEASUREMENT", "LANG"]:
@@ -210,7 +210,7 @@ class Language:
 					elif x == "pt":
 						if x != lang:
 							os.system("opkg remove --autoremove --force-depends " + Lpackagename + x)
-			
+
 			os.system("touch /etc/enigma2/.removelang")
 
 		self.InitLang()

@@ -318,7 +318,7 @@ class CreateQuadPipChannelEntry(ChannelSelectionBase):
 			if chName is None:
 				chName = _(" <empty>")
 				_isEmpty = True
-			self.descChannels.append(("%d)  %s" % (idx, chName), sIdx, _isEmpty))	
+			self.descChannels.append(("%d)  %s" % (idx, chName), sIdx, _isEmpty))
 
 	def updateDescChannelList(self):
 		self["selectedList"].setList(self.descChannels)
@@ -1015,4 +1015,3 @@ class QuadPipScreen(Screen, FocusShowHide, HelpableScreen):
 				config.plugins.minitv.enable.value = self.oldMinitvEanble
 			except:
 				pass
-

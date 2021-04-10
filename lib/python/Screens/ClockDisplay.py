@@ -14,4 +14,3 @@ class ClockDisplay(Screen):
 		b.onClick = [self.okbutton]
 		self["okbutton"] = b
 		self["title"] = Header("clock dialog: here you see the current uhrzeit!")
-

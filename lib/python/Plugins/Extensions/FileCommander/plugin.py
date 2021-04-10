@@ -97,7 +97,7 @@ choicelist = [
 				("0.1", _("Name reverse")),
 				("1.0", _("Date")),
 				("1.1", _("Date reverse")),
-				("2.0", _("Size")), 
+				("2.0", _("Size")),
 				("2.1", _("Size reverse"))]
 config.plugins.filecommander.sortFiles_left = ConfigSelection(default="1.1", choices=choicelist)
 config.plugins.filecommander.sortFiles_right = ConfigSelection(default="1.1", choices=choicelist)

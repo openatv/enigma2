@@ -143,7 +143,7 @@ def InitUsageConfig():
 		("keep reverseB", _("Keep service") + " + " + _("Reverse bouquet buttons"))])
 	config.usage.multiepg_ask_bouquet = ConfigYesNo(default=False)
 	config.usage.showpicon = ConfigYesNo(default=True)
-	
+
 #########  Workaround for VTI Skins   ##############
 	config.usage.picon_dir = ConfigDirectory(default="/usr/share/enigma2/picon")
 	config.usage.movielist_show_picon = ConfigYesNo(default=False)
@@ -172,7 +172,7 @@ def InitUsageConfig():
 	config.usage.show_infobar_on_skip = ConfigYesNo(default=True)
 	config.usage.show_infobar_locked_on_pause = ConfigYesNo(default=True)
 	config.usage.show_infobar_on_event_change = ConfigYesNo(default=False)
-	config.usage.show_infobar_channel_number = ConfigYesNo(default=False)	
+	config.usage.show_infobar_channel_number = ConfigYesNo(default=False)
 	config.usage.show_infobar_lite = ConfigYesNo(default=False)
 	config.usage.show_infobar_do_dimming = ConfigYesNo(default=False)
 	config.usage.show_infobar_dimming_speed = ConfigSelectionNumber(min=1, max=40, stepwidth=1, default=10, wraparound=True)
@@ -187,7 +187,7 @@ def InitUsageConfig():
 			SystemInfo["InfoBarEpg"] = False
 	config.usage.show_second_infobar.addNotifier(showsecondinfobarChanged, immediate_feedback=True)
 	config.usage.infobar_frontend_source = ConfigSelection(default="tuner", choices=[("settings", _("Settings")), ("tuner", _("Tuner"))])
-	
+
 	config.usage.show_picon_bkgrn = ConfigSelection(default="transparent", choices=[("none", _("Disabled")), ("transparent", _("Transparent")), ("blue", _("Blue")), ("red", _("Red")), ("black", _("Black")), ("white", _("White")), ("lightgrey", _("Light Grey")), ("grey", _("Grey"))])
 	config.usage.show_genre_info = ConfigYesNo(default=True)
 	config.usage.show_spinner = ConfigYesNo(default=True)
@@ -221,7 +221,7 @@ def InitUsageConfig():
 	config.usage.tuxtxt_TTFWidthFactor16.addNotifier(patchTuxtxtConfFile, initial_call=False, immediate_feedback=False, call_on_save_or_cancel=True)
 	config.usage.tuxtxt_TTFHeightFactor16.addNotifier(patchTuxtxtConfFile, initial_call=False, immediate_feedback=False, call_on_save_or_cancel=True)
 	config.usage.tuxtxt_CleanAlgo.addNotifier(patchTuxtxtConfFile, initial_call=False, immediate_feedback=False, call_on_save_or_cancel=True)
-	
+
 	config.usage.sort_settings = ConfigYesNo(default=False)
 	config.usage.sort_menu_byname = ConfigYesNo(default=False)
 	config.usage.sort_plugins_byname = ConfigYesNo(default=True)
@@ -252,7 +252,7 @@ def InitUsageConfig():
 		choicelist.append(("%d" % i, ngettext("%d hour", "%d hours", h) % h))
 	config.usage.hdd_standby = ConfigSelection(default="300", choices=[("0", _("No standby"))] + choicelist)
 	config.usage.hdd_standby_in_standby = ConfigSelection(default="-1", choices=[("-1", _("Same as in active")), ("0", _("No standby"))] + choicelist)
-	config.usage.hdd_timer = ConfigYesNo(default=False)	
+	config.usage.hdd_timer = ConfigYesNo(default=False)
 	config.usage.output_12V = ConfigSelection(default="do not change", choices=[
 		("do not change", _("Do not change")), ("off", _("Off")), ("on", _("On"))])
 
@@ -462,7 +462,7 @@ def InitUsageConfig():
 	config.usage.recording_frontend_priority_strictly = ConfigSelection(default="no", choices=priority_strictly_choices)
 	config.usage.recording_frontend_priority_intval = NoSave(ConfigInteger(default=0, limits=(-99, maxint)))
 	config.misc.disable_background_scan = ConfigYesNo(default=False)
-	
+
 	config.usage.menutype = ConfigSelection(default='standard', choices=[('horzanim', _('Horizontal menu')), ('horzicon', _('Horizontal icons')), ('standard', _('Standard menu'))])
 
 	config.usage.jobtaksextensions = ConfigYesNo(default=True)
@@ -529,23 +529,23 @@ def InitUsageConfig():
 						("Nothing", _("Nothing"))])
 	else:
 		config.usage.blinking_display_clock_during_recording = ConfigYesNo(default=False)
-		
+
 	#in use
 	if getDisplayType() in ('textlcd',):
 		config.usage.blinking_rec_symbol_during_recording = ConfigSelection(default="Channel", choices=[
-						("Rec", _("REC Symbol")), 
-						("RecBlink", _("Blinking REC Symbol")), 
+						("Rec", _("REC Symbol")),
+						("RecBlink", _("Blinking REC Symbol")),
 						("Channel", _("Channelname"))])
 	if getDisplayType() in ('7segment',):
 		config.usage.blinking_rec_symbol_during_recording = ConfigSelection(default="Rec", choices=[
-						("Rec", _("REC")), 
-						("RecBlink", _("Blinking REC")), 
+						("Rec", _("REC")),
+						("RecBlink", _("Blinking REC")),
 						("Time", _("Time"))])
 	else:
 		config.usage.blinking_rec_symbol_during_recording = ConfigYesNo(default=True)
 
 	config.usage.show_in_standby = ConfigSelection(default="time", choices=[
-					("time", _("Time")), 
+					("time", _("Time")),
 					("nothing", _("Nothing"))])
 
 	config.usage.show_message_when_recording_starts = ConfigYesNo(default=True)
@@ -579,7 +579,7 @@ def InitUsageConfig():
 		("500", _("slow")),
 		("300", _("normal")),
 		("100", _("fast"))])
-	
+
 	def SpinnerOnOffChanged(configElement):
 		setSpinnerOnOff(int(configElement.value))
 	config.usage.show_spinner.addNotifier(SpinnerOnOffChanged)
@@ -943,7 +943,7 @@ def InitUsageConfig():
 	config.epg.virgin = ConfigYesNo(default=False)
 	config.epg.opentv = ConfigYesNo(default=True)
 	config.epg.saveepg = ConfigYesNo(default=True)
-	
+
 	config.misc.showradiopic = ConfigYesNo(default=True)
 	config.misc.bootvideo = ConfigYesNo(default=True)
 
@@ -972,7 +972,7 @@ def InitUsageConfig():
 	config.epg.netmed.addNotifier(EpgSettingsChanged)
 	config.epg.virgin.addNotifier(EpgSettingsChanged)
 	config.epg.opentv.addNotifier(EpgSettingsChanged)
-	
+
 	config.epg.maxdays = ConfigSelectionNumber(min=1, max=365, stepwidth=1, default=7, wraparound=True)
 
 	def EpgmaxdaysChanged(configElement):
@@ -1137,7 +1137,7 @@ def InitUsageConfig():
 	config.crash.bsodhide = ConfigSelection(default="1", choices=choicelist)
 	config.crash.bsodmax = ConfigSelection(default="3", choices=choicelist)
 	#//
-	
+
 	config.crash.enabledebug = ConfigYesNo(default=False)
 	config.crash.debugloglimit = ConfigSelectionNumber(min=1, max=10, stepwidth=1, default=4, wraparound=True)
 	config.crash.daysloglimit = ConfigSelectionNumber(min=1, max=30, stepwidth=1, default=8, wraparound=True)
@@ -1218,7 +1218,7 @@ def InitUsageConfig():
 		("1", _("Internal hdd only")),
 		("3", _("Everywhere"))])
 	config.misc.erase_flags.addNotifier(updateEraseFlags, immediate_feedback=False)
-	
+
 	if SystemInfo["ZapMode"]:
 		def setZapmode(el):
 			open(SystemInfo["ZapMode"], "w").write(el.value)
@@ -1540,7 +1540,7 @@ def InitUsageConfig():
 	config.epgselection.graph_green = ConfigSelection(default='timer', choices=epg_colorkeys)
 	config.epgselection.graph_yellow = ConfigSelection(default='epgsearch', choices=epg_colorkeys)
 	config.epgselection.graph_blue = ConfigSelection(default='autotimer', choices=epg_colorkeys)
-	
+
 	config.epgselection.graph_channelbtn = ConfigSelection(choices=[("24", _("-24h/+24 Hours")), ("page", _("previous/next Page")), ("bouquet", _("previous/next Bouquet"))], default="24")
 
 	config.epgselection.vertical_itemsperpage = ConfigSelectionNumber(default=6, stepwidth=1, min=3, max=12, wraparound=True)

@@ -208,7 +208,7 @@ class RemainingToText(Poll, Converter, object):
 					time = getTime()
 					t = localtime(time)
 					d = _("%-H:%M")
-					if remaining is None:	
+					if remaining is None:
 						return strftime(d, t)
 					if remaining is not None:
 						if config.usage.elapsed_time_positive_vfd.value:

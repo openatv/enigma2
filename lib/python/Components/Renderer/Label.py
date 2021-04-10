@@ -27,4 +27,3 @@ class Label(VariableText, Renderer):
 		else:
 			self.text = "<no-source>"
 			print "SKINERROR: render label has no source"
-

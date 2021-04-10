@@ -103,15 +103,15 @@ class Programmlisten_Updater(Screen, ConfigListScreen):
         else:
             if config.pud.just_update.value:
                 self['update'].setText(_("enabled"))
-                config.pud.just_update.value = False               
+                config.pud.just_update.value = False
             else:
                 self['update'].setText(_("update"))
-                config.pud.just_update.value = True 
+                config.pud.just_update.value = True
             if config.pud.lastdate.value == '':
                 self.session.open(MessageBox, _('No Settings loaded !!\n\nPlease install first a settinglist'), MessageBox.TYPE_INFO, timeout=15)
             config.pud.autocheck.value = True
             iTimerClass.TimerSetting()
-        
+
         config.pud.save()
 
     def keyOk(self):
@@ -123,7 +123,7 @@ class Programmlisten_Updater(Screen, ConfigListScreen):
     def CBselect(self, req):
         if req:
             iTimerClass.startDownload(self.name, self.link, self.date)
-        
+
     def Info(self):
         if not os.path.exists(Directory + '/Settings/enigma2'):
             os.system('mkdir -p ' + Directory + '/Settings/enigma2')
@@ -154,7 +154,7 @@ class Programmlisten_Updater(Screen, ConfigListScreen):
         return res
 
     def SettingsMenu(self):
-        self.listB = []        
+        self.listB = []
         for date, name, link in self.List:
             self.listB.append(self.ListEntryMenuSettings(str(name.title()), str(date), str(link), str(name), ConverDate(str(date))))
         if not self.listB:

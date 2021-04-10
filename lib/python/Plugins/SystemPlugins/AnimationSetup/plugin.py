@@ -13,7 +13,7 @@ from boxbranding import getBrandOEM
 
 if not getBrandOEM() == 'gigablue':
 	from enigma import setAnimation_current_listbox
-	
+
 # default = disabled
 if getBrandOEM() == 'gigablue':
 	g_default = {

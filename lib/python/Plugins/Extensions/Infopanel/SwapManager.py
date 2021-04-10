@@ -26,7 +26,7 @@ def SwapAutostart(reason, session=None, **kwargs):
 			print "[SwapManager] autostart"
 			startswap = StartSwap()
 			startswap.start()
-	
+
 
 class StartSwap:
 	def __init__(self):
@@ -64,7 +64,7 @@ class StartSwap:
 			system('swapon ' + swap_place)
 		else:
 			print "[SwapManager] Swapfile is already active on ", swap_place
-	
+
 #######################################################################
 
 
@@ -270,10 +270,10 @@ class Swap(Screen):
 		parts = []
 		supported_filesystems = frozenset(('ext4', 'ext3', 'ext2', 'vfat'))
 		candidates = []
-		mounts = getProcMounts() 
+		mounts = getProcMounts()
 		for partition in harddiskmanager.getMountedPartitions(False, mounts):
 			if partition.filesystem(mounts) in supported_filesystems:
-				candidates.append((partition.description, partition.mountpoint)) 
+				candidates.append((partition.description, partition.mountpoint))
 		if len(candidates):
 			self.session.openWithCallback(self.doCSplace, ChoiceBox, title=_("Please select device to use as swapfile location"), list=candidates)
 		else:
@@ -297,7 +297,7 @@ class Swap(Screen):
 			self.commands.append('dd if=/dev/zero of=' + myfile + ' bs=1024 count=' + swapsize + ' 2>/dev/null')
 			self.commands.append('mkswap ' + myfile)
 			self.Console.eBatch(self.commands, self.updateSwap, debug=True)
-		
+
 	def autoSsWap(self):
 		if self.swap_place:
 			if config.plugins.infopanel.swapautostart.value:

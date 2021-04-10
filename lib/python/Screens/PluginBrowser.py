@@ -158,7 +158,7 @@ class PluginBrowser(Screen, ProtectedScreen):
 	def openSetup(self):
 		from Screens.Setup import Setup
 		self.session.open(Setup, "pluginbrowsersetup")
-		
+
 	def isProtected(self):
 		return config.ParentalControl.setuppinactive.value and not config.ParentalControl.config_sections.main_menu.value and config.ParentalControl.config_sections.plugin_browser.value
 
@@ -205,7 +205,7 @@ class PluginBrowser(Screen, ProtectedScreen):
 
 	def save(self):
 		self.run()
-	
+
 	def run(self):
 		plugin = self["list"].l.getCurrentSelection()[0]
 		plugin(session=self.session)
@@ -438,7 +438,7 @@ class PluginDownloadBrowser(Screen):
 
 		self.run = 0
 		self.remainingdata = ""
-		self["actions"] = ActionMap(["WizardActions"], 
+		self["actions"] = ActionMap(["WizardActions"],
 		{
 			"ok": self.go,
 			"back": self.requestClose,
@@ -557,7 +557,7 @@ class PluginDownloadBrowser(Screen):
 			self.doInstall(self.installFinished, self["list"].l.getCurrentSelection()[0].name + ' ' + extra)
 		else:
 			self.resetPostInstall()
-				
+
 	def runInstall(self, val):
 		if val:
 			if self.type == self.DOWNLOAD:
@@ -637,7 +637,7 @@ class PluginDownloadBrowser(Screen):
 
 	def startIpkgListAvailable(self):
 		self.container.execute(self.ipkg + Ipkg.opkgExtraDestinations() + " list")
-		
+
 	def startRun(self):
 		listsize = self["list"].instance.size()
 		self["list"].instance.hide()
@@ -797,7 +797,7 @@ class PluginDownloadBrowser(Screen):
 								countryIcon = LoadPixmap(resolveFilename(SCOPE_ACTIVE_SKIN, "countries/missing.png"))
 							self.plugins[split[0]].append((PluginDescriptor(name=x[0], description=x[2], icon=countryIcon), t[1], x[1]))
 							break
-							
+
 			else:
 				if len(split) < 2:
 					continue
@@ -870,7 +870,7 @@ class PluginFilter(ConfigListScreen, Screen):
 		self.list.append(getConfigListEntry(_("security"), config.pluginfilter.security, _("This allows you to show security modules in downloads")))
 		self.list.append(getConfigListEntry(_("kernel modules"), config.pluginfilter.kernel, _("This allows you to show kernel modules in downloads")))
 		self.list.append(getConfigListEntry(_("user feed url"), config.pluginfilter.userfeed, _("Please enter your personal feed URL")))
-		
+
 		self["config"].list = self.list
 		self["config"].setList(self.list)
 		if config.usage.sort_settings.value:

@@ -652,7 +652,7 @@ class PositionerSetup(Screen):
 		self["symbolrate_value"].setText(str(transponderdata.get("symbol_rate")))
 		self["fec_value"].setText(str(transponderdata.get("fec_inner")))
 		self["polarisation"].setText(str(transponderdata.get("polarization")))
-	
+
 	@staticmethod
 	def rotorCmd2Step(rotorCmd, stepsize):
 		return round(float(rotorCmd & 0xFFF) / 0x10 / stepsize) * (1 - ((rotorCmd & 0x1000) >> 11))

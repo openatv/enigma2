@@ -91,7 +91,7 @@ class ServiceName2(Converter, object):
 								istype = True
 								return istype
 						else:
-							if "%3a//" in s.toString().lower(): 
+							if "%3a//" in s.toString().lower():
 								istype = True
 								return istype
 			return istype
@@ -117,7 +117,7 @@ class ServiceName2(Converter, object):
 						isService = searchService(serviceHandler, bouquet)
 						if isService:
 							break
-		return isService 
+		return isService
 
 	def getServiceNumber(self, ref):
 		def searchHelper(serviceHandler, num, bouquet):
@@ -256,7 +256,7 @@ class ServiceName2(Converter, object):
 					result += '%d MHz' % (self.tpdata.get('frequency', 0) / 1000)
 				if type in ('DVB-T'):
 					result += '%.3f MHz' % (((self.tpdata.get('frequency', 0) + 500) / 1000) / 1000.0)
-#					result += '%.3f'%(((self.tpdata.get('frequency', 0) / 1000) +1) / 1000.0) + " MHz " 
+#					result += '%.3f'%(((self.tpdata.get('frequency', 0) / 1000) +1) / 1000.0) + " MHz "
 			elif f == 'f':	# %f - fec_inner (dvb-s/s2/c/t)
 				if type in ('DVB-S', 'DVB-C'):
 					x = self.tpdata.get('fec_inner', 15)
@@ -494,7 +494,7 @@ class ServiceName2(Converter, object):
 			refstr = info.getInfoString(iServiceInformation.sServiceref)
 		if refstr is None:
 			refstr = ''
-		if self.AlternativeControl: 
+		if self.AlternativeControl:
 			if ref and refstr.startswith("1:134:") and self.ref is None:
 				nref = self.resolveAlternate(ref)
 				if nref:
@@ -537,7 +537,7 @@ class ServiceName2(Converter, object):
 					return self.getProviderName(self.ref)
 				if ref:
 					return self.getProviderName(ref)
-				else: 
+				else:
 					return info.getInfoString(iServiceInformation.sProvider) or ''
 		elif self.type == self.REFERENCE:
 			if self.refstr:
@@ -615,7 +615,7 @@ class ServiceName2(Converter, object):
 						else:
 							if ref:
 								ret += self.getProviderName(ref)
-							else: 
+							else:
 								ret += info.getInfoString(iServiceInformation.sProvider) or ''
 				elif f == 'R':	# %R - Reference
 					if self.refstr:

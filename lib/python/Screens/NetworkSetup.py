@@ -2375,7 +2375,7 @@ class NetworkOpenvpn(Screen):
 			self.config_file = _(word)
 			self['labconfigfilename'].setText(self.config_file)
 
-			
+
 class NetworkVpnLog(Screen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
@@ -2551,7 +2551,7 @@ class NetworkSamba(Screen):
 		for cb in self.onChangedEntry:
 			cb(title, status_summary, autostartstatus_summary)
 
-			
+
 class NetworkSambaLog(Screen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
@@ -4030,7 +4030,7 @@ class NetworkPassword(ConfigListScreen, Screen):
 	def newRandom(self):
 		self.password.value = self.GeneratePassword()
 		self["config"].invalidateCurrent()
-	
+
 	def updateList(self):
 		self.password = NoSave(ConfigPassword(default=""))
 		instructions = _("You must set a root password in order to be able to use network services,"
@@ -4039,10 +4039,10 @@ class NetworkPassword(ConfigListScreen, Screen):
 		self['config'].list = self.list
 		self['config'].l.setList(self.list)
 
-	def GeneratePassword(self): 
+	def GeneratePassword(self):
 		passwdChars = string.letters + string.digits
 		passwdLength = 10
-		return ''.join(Random().sample(passwdChars, passwdLength)) 
+		return ''.join(Random().sample(passwdChars, passwdLength))
 
 	def SetPasswd(self):
 		self.hideHelpWindow()
@@ -4050,7 +4050,7 @@ class NetworkPassword(ConfigListScreen, Screen):
 		if not password:
 			self.session.openWithCallback(self.showHelpWindow, MessageBox, _("The password can not be blank."), MessageBox.TYPE_ERROR)
 			return
-		#print "[NetworkPassword] Changing the password for %s to %s" % (self.user,self.password) 
+		#print "[NetworkPassword] Changing the password for %s to %s" % (self.user,self.password)
 		self.container = eConsoleAppContainer()
 		self.container.appClosed.append(self.runFinished)
 		self.container.dataAvail.append(self.dataAvail)

@@ -14,7 +14,7 @@ def bigStorage(minFree):
 				diskstat = os.statvfs(candidate)
 				free = diskstat.f_bfree * diskstat.f_bsize
 				if free > minFree:
-					print 
+					print
 					return candidate
 			except:
 				pass
