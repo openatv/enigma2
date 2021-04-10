@@ -38,7 +38,7 @@ sf = skin.getSkinFactor()
 ###global
 
 def confPath():
-	search_dirs = [ "/usr", "/var", "/etc" ]
+	search_dirs = ["/usr", "/var", "/etc"]
 	sdirs = " ".join(search_dirs)
 	cmd = 'find %s -name "CCcam.cfg" | head -n 1' % sdirs
 	res = popen(cmd).read()

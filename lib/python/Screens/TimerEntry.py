@@ -67,7 +67,7 @@ class TimerEntry(Screen, ConfigListScreen):
 		}, -2)
 		self["VirtualKB"].setEnabled(False)
 
-		self.onChangedEntry = [ ]
+		self.onChangedEntry = []
 		self.list = []
 		ConfigListScreen.__init__(self, self.list, session=session)
 		self.createSetup("config")

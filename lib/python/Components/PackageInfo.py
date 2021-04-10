@@ -100,9 +100,9 @@ class InfoHandler(xml.sax.ContentHandler):
 						directory = self.directory + directory
 				else:
 					directory = self.directory
-				self.attributes[self.filetype].append({ "name": str(self.fileattrs["name"]), "directory": directory })
+				self.attributes[self.filetype].append({"name": str(self.fileattrs["name"]), "directory": directory})
 
-		if name in ( "default", "package" ):
+		if name in ("default", "package"):
 			self.list.append({"attributes": self.attributes, 'prerequisites': self.globalprerequisites})
 			self.attributes = {}
 			self.globalprerequisites = {}
@@ -215,7 +215,7 @@ class PackageInfoHandler:
 			for file in indexfileList:
 				neededFile = self.directory[0] + "/" + file
 				if os.path.isfile(neededFile):
-					self.readIndex(self.directory[0] + "/" , neededFile)
+					self.readIndex(self.directory[0] + "/", neededFile)
 
 		if prerequisites:
 			for package in self.packagesIndexlist[:]:

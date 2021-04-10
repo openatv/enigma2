@@ -40,8 +40,8 @@ class RdsInfoDisplay(Screen):
 
 		self.onLayoutFinish.append(self.hideWidgets)
 		self.rassInteractivePossible=False
-		self.onRassInteractivePossibilityChanged = [ ]
-		self.onText = [ ]
+		self.onRassInteractivePossibilityChanged = []
+		self.onText = []
 
 	def createSummary(self):
 		return RdsInfoDisplaySummary
@@ -98,19 +98,19 @@ class RassInteractive(Screen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
 
-		self["actions"] = NumberActionMap( [ "NumberActions", "RassInteractiveActions" ],
+		self["actions"] = NumberActionMap(["NumberActions", "RassInteractiveActions"],
 			{
 				"exit": self.close,
-				"0": lambda x : self.numPressed(0),
-				"1": lambda x : self.numPressed(1),
-				"2": lambda x : self.numPressed(2),
-				"3": lambda x : self.numPressed(3),
-				"4": lambda x : self.numPressed(4),
-				"5": lambda x : self.numPressed(5),
-				"6": lambda x : self.numPressed(6),
-				"7": lambda x : self.numPressed(7),
-				"8": lambda x : self.numPressed(8),
-				"9": lambda x : self.numPressed(9),
+				"0": lambda x: self.numPressed(0),
+				"1": lambda x: self.numPressed(1),
+				"2": lambda x: self.numPressed(2),
+				"3": lambda x: self.numPressed(3),
+				"4": lambda x: self.numPressed(4),
+				"5": lambda x: self.numPressed(5),
+				"6": lambda x: self.numPressed(6),
+				"7": lambda x: self.numPressed(7),
+				"8": lambda x: self.numPressed(8),
+				"9": lambda x: self.numPressed(9),
 				"nextPage": self.nextPage,
 				"prevPage": self.prevPage,
 				"nextSubPage": self.nextSubPage,
@@ -133,21 +133,21 @@ class RassInteractive(Screen):
 		self["Marker"] = Label(">")
 
 		self.subpage = {
-			1 : self["subpages_1"],
-			2 : self["subpages_2"],
-			3 : self["subpages_3"],
-			4 : self["subpages_4"],
-			5 : self["subpages_5"],
-			6 : self["subpages_6"],
-			7 : self["subpages_7"],
-			8 : self["subpages_8"],
-			9 : self["subpages_9"] }
+			1: self["subpages_1"],
+			2: self["subpages_2"],
+			3: self["subpages_3"],
+			4: self["subpages_4"],
+			5: self["subpages_5"],
+			6: self["subpages_6"],
+			7: self["subpages_7"],
+			8: self["subpages_8"],
+			9: self["subpages_9"]}
 
 		self.subpage_png = {
-			1 : LoadPixmap(resolveFilename(SCOPE_ACTIVE_SKIN, "icons/rass_page1.png")),
-			2 : LoadPixmap(resolveFilename(SCOPE_ACTIVE_SKIN, "icons/rass_page2.png")),
-			3 : LoadPixmap(resolveFilename(SCOPE_ACTIVE_SKIN, "icons/rass_page3.png")),
-			4 : LoadPixmap(resolveFilename(SCOPE_ACTIVE_SKIN, "icons/rass_page4.png")) }
+			1: LoadPixmap(resolveFilename(SCOPE_ACTIVE_SKIN, "icons/rass_page1.png")),
+			2: LoadPixmap(resolveFilename(SCOPE_ACTIVE_SKIN, "icons/rass_page2.png")),
+			3: LoadPixmap(resolveFilename(SCOPE_ACTIVE_SKIN, "icons/rass_page3.png")),
+			4: LoadPixmap(resolveFilename(SCOPE_ACTIVE_SKIN, "icons/rass_page4.png"))}
 
 		self.current_page=0
 		self.current_subpage=0

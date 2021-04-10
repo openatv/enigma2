@@ -253,7 +253,7 @@ ASCIItranslit = {
 	0x021A:	"T",
 	0x021B:	"t",
 	0x0259:	"_",
-	0x20AC:	"EUR" }
+	0x20AC:	"EUR"}
 
 def legacyEncode(string):
 	string2 = ""

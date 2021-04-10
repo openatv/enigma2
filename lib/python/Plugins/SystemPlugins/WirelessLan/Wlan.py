@@ -93,7 +93,7 @@ class Wlan:
 				extra = []
 				for element in result.custom:
 					element = element.encode()
-					extra.append( strip(self.asciify(element)) )
+					extra.append(strip(self.asciify(element)))
 				for element in extra:
 					if 'SignalStrength' in element:
 						signal = element[element.index('SignalStrength')+15:element.index(',L')]
@@ -107,17 +107,17 @@ class Wlan:
 					channel = "Unknown"
 
 				aps[bssid] = {
-					'active' : True,
+					'active': True,
 					'bssid': result.bssid,
 					'channel': channel,
 					'encrypted': encryption,
 					'essid': result.essid and strip(self.asciify(result.essid)) or "",
 					'iface': self.iface,
-					'maxrate' : ifobj._formatBitrate(result.rate[-1][-1]),
-					'noise' : '',#result.quality.nlevel-0x100,
-					'quality' : str(quality),
-					'signal' : str(signal),
-					'custom' : extra,
+					'maxrate': ifobj._formatBitrate(result.rate[-1][-1]),
+					'noise': '',#result.quality.nlevel-0x100,
+					'quality': str(quality),
+					'signal': str(signal),
+					'custom': extra,
 				}
 
 				index += 1
@@ -254,7 +254,7 @@ class wpaSupplicant:
 				}
 
 		for (k,v) in wsconf.items():
-			print "[wsconf][%s] %s" % (k , v)
+			print "[wsconf][%s] %s" % (k, v)
 
 		return wsconf
 
@@ -331,7 +331,7 @@ class wpaSupplicant:
 					config.plugins.wlan.essid.value = essid
 
 				elif split[0] == 'proto':
-					if split[1] == 'WPA' :
+					if split[1] == 'WPA':
 						mode = 'WPA'
 					if split[1] == 'RSN':
 						mode = 'WPA2'
@@ -409,7 +409,7 @@ class Status:
 
 	def iwconfigFinished(self, result, retval, extra_args):
 		iface = extra_args
-		data = { 'essid': False, 'frequency': False, 'accesspoint': False, 'bitrate': False, 'encryption': False, 'quality': False, 'signal': False }
+		data = {'essid': False, 'frequency': False, 'accesspoint': False, 'bitrate': False, 'encryption': False, 'quality': False, 'signal': False}
 		for line in result.splitlines():
 			line = line.strip()
 			# print "[Wlan.py] line -->",line
@@ -424,7 +424,7 @@ class Status:
 				if ssid is not None:
 					data['essid'] = ssid
 			if "Frequency" in line:
-				frequency = line[line.index('Frequency')+10 :line.index(' GHz')]
+				frequency = line[line.index('Frequency')+10:line.index(' GHz')]
 				if frequency is not None:
 					data['frequency'] = frequency
 			if "Access Point" in line:
@@ -436,22 +436,22 @@ class Status:
 					data['accesspoint'] = ap
 			if "Bit Rate" in line:
 				if "kb" in line:
-					br = line[line.index('Bit Rate')+9 :line.index(' kb/s')]
+					br = line[line.index('Bit Rate')+9:line.index(' kb/s')]
 				elif "Gb" in line:
-					br = line[line.index('Bit Rate')+9 :line.index(' Gb/s')]
+					br = line[line.index('Bit Rate')+9:line.index(' Gb/s')]
 				else:
-					br = line[line.index('Bit Rate')+9 :line.index(' Mb/s')]
+					br = line[line.index('Bit Rate')+9:line.index(' Mb/s')]
 				if br is not None:
 					data['bitrate'] = br
 			if "Encryption key" in line:
 				if ":off" in line:
 					enc = "off"
 				elif "Security" in line:
-					enc = line[line.index('Encryption key')+15 :line.index('   Security')]
+					enc = line[line.index('Encryption key')+15:line.index('   Security')]
 					if enc is not None:
 						enc = "on"
 				else:
-					enc = line[line.index('Encryption key')+15 :len(line)]
+					enc = line[line.index('Encryption key')+15:len(line)]
 					if enc is not None:
 						enc = "on"
 				if enc is not None:
@@ -465,7 +465,7 @@ class Status:
 					data['quality'] = qual
 			if 'Signal level' in line:
 				if "dBm" in line:
-					signal = line[line.index('Signal level')+13 :line.index(' dBm')] + " dBm"
+					signal = line[line.index('Signal level')+13:line.index(' dBm')] + " dBm"
 				elif "/100" in line:
 					if "Noise" in line:
 						signal = line[line.index('Signal level')+13:line.index('  Noise')]

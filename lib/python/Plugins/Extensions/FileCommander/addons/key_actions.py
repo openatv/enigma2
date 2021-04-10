@@ -681,7 +681,7 @@ class key_actions(stat_info):
 			savetext = ''
 			stat = os.statvfs('/tmp/')
 			if stat.f_bavail * stat.f_bsize > 1000000:
-				choice.append((_("Show as Picture and save as file ('%s')")%self.tmp_file , "save"))
+				choice.append((_("Show as Picture and save as file ('%s')")%self.tmp_file, "save"))
 				savetext = _(" or save additional the picture to a file")
 			self.session.openWithCallback(self.mviFileCB, MessageBox, _("Show '%s' as picture%s?\nThe current service must interrupted!") %(longname,savetext), simple=True, list=choice)
 		elif filetype in TEXT_EXTENSIONS or config.plugins.filecommander.unknown_extension_as_text.value:

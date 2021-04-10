@@ -45,9 +45,9 @@ class PU_Restore(Screen,ConfigListScreen):
             {
             "red": self.keyCancel,
             "green": self.keyGreen,
-            "yellow" : self.keyYellow,
-            "cancel" : self.keyCancel,
-            "ok" : self.keyOk,
+            "yellow": self.keyYellow,
+            "cancel": self.keyCancel,
+            "ok": self.keyOk,
             })
 
         self.List = self.Search_Settings()

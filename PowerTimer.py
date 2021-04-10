@@ -748,7 +748,7 @@ class PowerTimerEntry(timer.TimerEntry, object):
 
 		return {self.StatePrepared: self.start_prepare,
 				self.StateRunning: self.begin,
-				self.StateEnded: self.end }[next_state]
+				self.StateEnded: self.end}[next_state]
 
 	def getNextWakeup(self, getNextStbPowerOn=False):
 		next_state = self.state + 1

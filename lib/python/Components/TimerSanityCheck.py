@@ -23,7 +23,7 @@ class TimerSanityCheck:
 		if self.newtimer is None:
 			self.simultimer = []
 		else:
-			self.simultimer = [ self.newtimer ]
+			self.simultimer = [self.newtimer]
 		return self.checkTimerlist()
 
 	def getSimulTimerList(self):
@@ -31,7 +31,7 @@ class TimerSanityCheck:
 
 	def doubleCheck(self):
 		if self.newtimer is not None and self.newtimer.service_ref.ref.valid():
-			self.simultimer = [ self.newtimer ]
+			self.simultimer = [self.newtimer]
 			for timer in self.timerlist:
 				if timer == self.newtimer:
 					return True
@@ -187,7 +187,7 @@ class TimerSanityCheck:
 			else:
 				timer = self.timerlist[event[2]]
 			if event[1] == self.bflag:
-				tunerType = [ ]
+				tunerType = []
 				if timer.service_ref.ref and timer.service_ref.ref.flags & eServiceReference.isGroup:
 					fakeRecService = NavigationInstance.instance.recordService(getBestPlayableServiceReference(timer.service_ref.ref, eServiceReference(), True), True)
 				else:
@@ -287,7 +287,7 @@ class TimerSanityCheck:
 							ConflictTunerType = newTimerTunerType
 							break
 
-		self.simultimer = [ ConflictTimer ]
+		self.simultimer = [ConflictTimer]
 		for event in self.nrep_eventlist:
 			if len(event[4]) > 1: # entry in overlaplist of this event??
 				for entry in event[4]:

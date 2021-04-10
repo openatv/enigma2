@@ -49,7 +49,7 @@ class QuadPipChannelEntry:
 	def __init__(self, name, idx, ch1, ch2, ch3, ch4):
 		self.name = name
 		self.idx = idx
-		self.channel = {"1" : ch1, "2" : ch2, "3" : ch1, "4" : ch1,}
+		self.channel = {"1": ch1, "2": ch2, "3": ch1, "4": ch1,}
 
 	def __str__(self):
 		return "idx : %d, name : %s, ch0 : %s, ch1 : %s, ch2 : %s, ch3 : %s"\
@@ -245,8 +245,8 @@ class CreateQuadPipChannelEntry(ChannelSelectionBase):
 		{
 			"cancel": self.Exit,
 			"ok": self.channelSelected,
-			"toggleList" : self.toggleCurrList,
-			"editName" : self.editEntryName,
+			"toggleList": self.toggleCurrList,
+			"editName": self.editEntryName,
 			"up": self.goUp,
 			"down": self.goDown,
 		}, -1)
@@ -656,12 +656,12 @@ class QuadPipScreen(Screen, FocusShowHide, HelpableScreen):
 			"right": (self.keyRight, _("Select channel audio")),
 			"up": (self.keyUp, _("Select channel audio")),
 			"down": (self.keyDown, _("Select channel audio")),
-			"channelup" : (self.KeyChannel, _("Show channel selection")),
-			"channeldown" : (self.KeyChannel, _("Show channel selection")),
-			"menu" : (self.KeyChannel, _("Show channel selection")),
-			"channelPrev" : (self.KeyPrev, _("Prev quad PiP channel")),
-			"channelNext" : (self.KeyNext, _("Next quad PiP channel")),
-			"red" : (self.KeyRed, _("Show/Hide focus bar")),
+			"channelup": (self.KeyChannel, _("Show channel selection")),
+			"channeldown": (self.KeyChannel, _("Show channel selection")),
+			"menu": (self.KeyChannel, _("Show channel selection")),
+			"channelPrev": (self.KeyPrev, _("Prev quad PiP channel")),
+			"channelNext": (self.KeyNext, _("Next quad PiP channel")),
+			"red": (self.KeyRed, _("Show/Hide focus bar")),
 		}, -1)
 
 		self["ch1"] = Label(_(" "))

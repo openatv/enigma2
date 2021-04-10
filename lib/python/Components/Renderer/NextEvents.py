@@ -12,7 +12,7 @@ class NextEvents(VariableText, Renderer):
 
 	def applySkin(self, desktop, parent):
 		self.number = 0
-		attribs = [ ]
+		attribs = []
 		for (attrib, value) in self.skinAttributes:
 			if attrib == "number":
 				self.number = int(value)
@@ -34,7 +34,7 @@ class NextEvents(VariableText, Renderer):
 		if what[0] == self.CHANGED_CLEAR:
 			self.text = ""
 		else:
-			list = self.epgcache.lookupEvent([ 'BDT', (self.source.text, 0, -1, 360) ])
+			list = self.epgcache.lookupEvent(['BDT', (self.source.text, 0, -1, 360)])
 			text = ""
 			if len(list):
 				if self.lines:

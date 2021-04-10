@@ -138,7 +138,7 @@ class UpdatePlugin(Screen):
 		Screen.__init__(self, session)
 		Screen.setTitle(self, _("Software Update"))
 
-		self.sliderPackages = { "dreambox-dvb-modules": 1, "enigma2": 2, "tuxbox-image-info": 3 }
+		self.sliderPackages = {"dreambox-dvb-modules": 1, "enigma2": 2, "tuxbox-image-info": 3}
 
 		self.setTitle(_("Software update"))
 		

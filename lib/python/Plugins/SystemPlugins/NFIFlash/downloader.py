@@ -46,7 +46,7 @@ class MountTask(Task):
 		self.setTool("mount")
 		options = "rw,sync"
 		self.mountpoint = mountpoint
-		self.args += [ device, mountpoint, "-o"+options ]
+		self.args += [device, mountpoint, "-o"+options]
 		self.weighting = 1
 
 	def processOutput(self, data):
@@ -97,7 +97,7 @@ class ImageDownloadTask(Task):
 
 	def download_progress(self, recvbytes, totalbytes):
 		#print "[update_progress] recvbytes=%d, totalbytes=%d" % (recvbytes, totalbytes)
-		if ( recvbytes - self.last_recvbytes  ) > 10000: # anti-flicker
+		if (recvbytes - self.last_recvbytes) > 10000: # anti-flicker
 			self.progress = int(100*(float(recvbytes)/float(totalbytes)))
 			self.name = _("Downloading") + ' ' + "%d of %d kBytes" % (recvbytes/1024, totalbytes/1024)
 			self.last_recvbytes = recvbytes
@@ -520,15 +520,15 @@ class NFIDownload(Screen):
 			result = mask.match(url)
 			if result:
 				if result.group("version").startswith("20"):
-					version = ( result.group("version")[:4]+'-'+result.group("version")[4:6]+'-'+result.group("version")[6:8] )
+					version = (result.group("version")[:4]+'-'+result.group("version")[4:6]+'-'+result.group("version")[6:8])
 				else:
 					version = result.group("version")
 				description = "\nOpendreambox %s\n%s image\n%s\n" % (result.group("OE_vers"), result.group("branch"), version)
-				imagelist.append((url, name, _("Download %s from server" ) % description, None))
+				imagelist.append((url, name, _("Download %s from server") % description, None))
 		self["menu"].setList(imagelist)
 
 	def getUSBPartitions(self):
-		allpartitions = [ (r.description, r.mountpoint) for r in harddiskmanager.getMountedPartitions(onlyhotplug=True)]
+		allpartitions = [(r.description, r.mountpoint) for r in harddiskmanager.getMountedPartitions(onlyhotplug=True)]
 		print "[getUSBPartitions]", allpartitions
 		usbpartition = []
 		for x in allpartitions:
@@ -672,7 +672,7 @@ class NFIDownload(Screen):
 
 	def checkUSBStick(self):
 		self.target_dir = None
-		allpartitions = [ (r.description, r.mountpoint) for r in harddiskmanager.getMountedPartitions(onlyhotplug=True)]
+		allpartitions = [(r.description, r.mountpoint) for r in harddiskmanager.getMountedPartitions(onlyhotplug=True)]
 		print "[checkUSBStick] found partitions:", allpartitions
 		usbpartition = []
 		for x in allpartitions:
@@ -725,7 +725,7 @@ If you already have a prepared bootable USB stick, please insert it now. Otherwi
 		self.menulist = []
 		try:
 			latest_release = "Release %s (Opendreambox 1.5)" % self.feedlists[RELEASE][0][0][-9:-4]
-			self.menulist.append((RELEASE, _("Get latest release image"), _("Download %s from server" ) % latest_release, None))
+			self.menulist.append((RELEASE, _("Get latest release image"), _("Download %s from server") % latest_release, None))
 		except IndexError:
 			pass
 
@@ -736,8 +736,8 @@ If you already have a prepared bootable USB stick, please insert it now. Otherwi
 		except IndexError:
 			pass
 
-		self.menulist.append((ALLIMAGES, _("Select an image to be downloaded"), _("Select desired image from feed list" ), None))
-		self.menulist.append((STICK_WIZARD, _("USB stick wizard"), _("Prepare another USB stick for image flashing" ), None))
+		self.menulist.append((ALLIMAGES, _("Select an image to be downloaded"), _("Select desired image from feed list"), None))
+		self.menulist.append((STICK_WIZARD, _("USB stick wizard"), _("Prepare another USB stick for image flashing"), None))
 		self["menu"].setList(self.menulist)
 		self["status"].text = _("Currently installed image") + ": %s" % (getImageVersion())
 		self.branch = START

@@ -13,7 +13,7 @@ class FileBrowser(Screen, HelpableScreen):
 	def __init__(self, session, scope, configRef):
 		Screen.__init__(self, session)
 		# for the skin: first try FileBrowser_DVDBurn, then FileBrowser, this allows individual skinning
-		self.skinName = ["FileBrowser_DVDBurn", "FileBrowser" ]
+		self.skinName = ["FileBrowser_DVDBurn", "FileBrowser"]
 
 		HelpableScreen.__init__(self)
 		self.scope = scope

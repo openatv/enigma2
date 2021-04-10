@@ -49,7 +49,7 @@ class HddMount(Screen):
 		self['key_yellow'] = Label(_("Unmount"))
 		self['key_blue'] = Label(_("Mount"))
 		self['lab1'] = Label()
-		self.onChangedEntry = [ ]
+		self.onChangedEntry = []
 		self.list = []
 		self['list'] = List(self.list)
 		self["list"].onSelectionChanged.append(self.selectionChanged)
@@ -300,7 +300,7 @@ class HddMount(Screen):
 		if sel:
 			mountp = sel[3]
 			device = sel[4]
-			system ('mount ' + device)
+			system('mount ' + device)
 			mountok = False
 			f = open('/proc/mounts', 'r')
 			for line in f.readlines():
@@ -315,7 +315,7 @@ class HddMount(Screen):
 		if sel:
 			mountp = sel[3]
 			device = sel[4]
-			system ('umount ' + mountp)
+			system('umount ' + mountp)
 			try:
 				mounts = open("/proc/mounts")
 			except IOError:
@@ -597,7 +597,7 @@ class DevicePanelConf(Screen, ConfigListScreen):
 			self.mountp = x[1].value
 			self.type = x[3]
 			self.Console.ePopen('umount ' + self.device)
-			self.Console.ePopen("/sbin/blkid | grep " + self.device, self.add_fstab, [self.device, self.mountp] )
+			self.Console.ePopen("/sbin/blkid | grep " + self.device, self.add_fstab, [self.device, self.mountp])
 		message = _("Updating mount locations.")
 		ybox = self.session.openWithCallback(self.delay, MessageBox, message, type=MessageBox.TYPE_INFO, timeout=5, enable_input=False)
 		ybox.setTitle(_("Please wait."))

@@ -82,7 +82,7 @@ class Listbox(Renderer, object):
 		self.__scrollbarMode = mode
 		if self.instance is not None:
 			self.instance.setScrollbarMode(int(
-				{ "showOnDemand": 0,
+				{"showOnDemand": 0,
 				  "showAlways": 1,
 				  "showNever": 2,
 				}[mode]))

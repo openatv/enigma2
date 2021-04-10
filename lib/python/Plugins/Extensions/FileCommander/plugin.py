@@ -572,7 +572,7 @@ class FileCommanderScreen(Screen, HelpableScreen, key_actions):
 		for job in job_manager.getPendingJobs():
 			#self.tasklist.append((job, job.name, job.getStatustext(), int(100 * job.progress / float(job.end)), str(100 * job.progress / float(job.end)) + "%"))
 			progress = job.getProgress()
-			self.tasklist.append((job,job.name,job.getStatustext(),progress,str(progress) + " %" ))
+			self.tasklist.append((job,job.name,job.getStatustext(),progress,str(progress) + " %"))
 		self.session.open(TaskListScreen, self.tasklist)
 
 	def addJob(self, job, updateDirs):
@@ -1264,7 +1264,7 @@ class FileCommanderScreenFileSelect(Screen, HelpableScreen, key_actions):
 		for job in job_manager.getPendingJobs():
 			#self.tasklist.append((job, job.name, job.getStatustext(), int(100 * job.progress / float(job.end)), str(100 * job.progress / float(job.end)) + "%"))
 			progress = job.getProgress()
-			self.tasklist.append((job,job.name,job.getStatustext(),progress,str(progress) + " %" ))
+			self.tasklist.append((job,job.name,job.getStatustext(),progress,str(progress) + " %"))
 		self.session.open(TaskListScreen, self.tasklist)
 
 # ## delete select ###
@@ -1556,7 +1556,7 @@ class FileCommanderFileStatInfo(Screen, stat_info):
 		self.list.append((_("Type:"), self.filetypeStr(mode)))
 		self.list.append((_("Owner:"), "%s (%d)" % (self.username(st.st_uid), st.st_uid)))
 		self.list.append((_("Group:"), "%s (%d)" % (self.groupname(st.st_gid), st.st_gid)))
-		self.list.append((_("Permissions:"), _("%s (%04o)") % ( self.fileModeStr(perms), perms)))
+		self.list.append((_("Permissions:"), _("%s (%04o)") % (self.fileModeStr(perms), perms)))
 		if not (stat.S_ISCHR(mode) or stat.S_ISBLK(mode)):
 			self.list.append((_("Size:"), "%s (%sB)" % ("{:n}".format(st.st_size), ' '.join(self.SIZESCALER.scale(st.st_size)))))
 		self.list.append((_("Modified:"), self.formatTime(st.st_mtime)))

@@ -111,7 +111,7 @@ class picshow(Screen):
 			self.session.open(Pic_Exif, self.picload.getInfo(self.filelist.getCurrentDirectory() + self.filelist.getFilename()))
 
 	def KeyMenu(self):
-		self.session.openWithCallback(self.setConf ,Pic_Setup)
+		self.session.openWithCallback(self.setConf,Pic_Setup)
 
 	def KeyOk(self):
 		if self.filelist.canDescent():
@@ -362,7 +362,7 @@ class Pic_Thumb(Screen):
 			return
 
 		pos = self.positionlist[self.filelist[self.index][T_FRAME_POS]]
-		self["frame"].moveTo( pos[0], pos[1], 1)
+		self["frame"].moveTo(pos[0], pos[1], 1)
 		self["frame"].startMoving()
 
 		if self.currPage != self.filelist[self.index][T_PAGE]:

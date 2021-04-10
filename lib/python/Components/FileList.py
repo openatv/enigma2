@@ -38,7 +38,7 @@ EXTENSIONS = {
 	}
 
 def FileEntryComponent(name, absolute=None, isDir=False):
-	res = [ (absolute, isDir) ]
+	res = [(absolute, isDir)]
 	x, y, w, h = skin.parameters.get("FileListName",(35, 1, 470, 20))
 	res.append((eListboxPythonMultiContent.TYPE_TEXT, x, y, w, h, 0, RT_HALIGN_LEFT, name))
 	if isDir:
@@ -148,11 +148,11 @@ class FileList(MenuList):
 				path = os.path.join(p.mountpoint, "")
 				if path not in self.inhibitMounts and not self.inParentDirs(path, self.inhibitDirs):
 					self.list.append(FileEntryComponent(name=p.description, absolute=path, isDir=True))
-			files = [ ]
-			directories = [ ]
+			files = []
+			directories = []
 		elif directory is None:
-			files = [ ]
-			directories = [ ]
+			files = []
+			directories = []
 		elif self.useServiceRef:
 			# we should not use the 'eServiceReference(string)' constructor, because it doesn't allow ':' in the directoryname
 			root = eServiceReference(eServiceReference.idFile, eServiceReference.noFlags, eServiceReferenceFS.directory)
@@ -208,7 +208,7 @@ class FileList(MenuList):
 					name = x
 
 				if (self.matchingPattern is None) or self.matchingPattern.search(path):
-					self.list.append(FileEntryComponent(name=name, absolute=x , isDir=False))
+					self.list.append(FileEntryComponent(name=name, absolute=x, isDir=False))
 
 		if self.showMountpoints and len(self.list) == 0:
 			self.list.append(FileEntryComponent(name=_("nothing connected"), absolute=None, isDir=False))
@@ -273,7 +273,7 @@ class FileList(MenuList):
 
 
 def MultiFileSelectEntryComponent(name, absolute=None, isDir=False, selected=False):
-	res = [ (absolute, isDir, selected, name) ]
+	res = [(absolute, isDir, selected, name)]
 	x, y, w, h = skin.parameters.get("FileListMultiName",(55, 0, 470, 25))
 	res.append((eListboxPythonMultiContent.TYPE_TEXT, x, y, w, h, 0, RT_HALIGN_LEFT, name))
 	if isDir:
@@ -309,7 +309,7 @@ class MultiFileSelectList(FileList):
 		font = skin.fonts.get("FileListMulti", ("Regular", 20, 25))
 		self.l.setFont(0, gFont(font[0], font[1]))
 		self.l.setItemHeight(font[2])
-		self.onSelectionChanged = [ ]
+		self.onSelectionChanged = []
 
 	def selectionChanged(self):
 		for f in self.onSelectionChanged:
@@ -367,11 +367,11 @@ class MultiFileSelectList(FileList):
 				path = os.path.join(p.mountpoint, "")
 				if path not in self.inhibitMounts and not self.inParentDirs(path, self.inhibitDirs):
 					self.list.append(MultiFileSelectEntryComponent(name=p.description, absolute=path, isDir=True))
-			files = [ ]
-			directories = [ ]
+			files = []
+			directories = []
 		elif directory is None:
-			files = [ ]
-			directories = [ ]
+			files = []
+			directories = []
 		elif self.useServiceRef:
 			root = eServiceReference(eServiceReference.idFile, eServiceReference.noFlags, eServiceReferenceFS.directory)
 			root.setPath(directory)
@@ -431,7 +431,7 @@ class MultiFileSelectList(FileList):
 						#if os.path.basename(entry) == x:
 						if entry == path:
 							alreadySelected = True
-					self.list.append(MultiFileSelectEntryComponent(name=name, absolute=x , isDir=False, selected=alreadySelected))
+					self.list.append(MultiFileSelectEntryComponent(name=name, absolute=x, isDir=False, selected=alreadySelected))
 
 		self.l.setList(self.list)
 

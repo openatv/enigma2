@@ -314,7 +314,7 @@ class NetworkWizard(WizardLanguage, Rc):
 	def listAccessPoints(self):
 		self.APList = []
 		if self.WlanPluginInstalled is False:
-			self.APList.append( ( _("No networks found"), None ) )
+			self.APList.append((_("No networks found"), None))
 		else:
 			from Plugins.SystemPlugins.WirelessLan.Wlan import iWlan
 			iWlan.setInterface(self.selectedInterface)
@@ -327,8 +327,8 @@ class NetworkWizard(WizardLanguage, Rc):
 				for ap in aps:
 					a = aps[ap]
 					if a['active']:
-						tmplist.append( (a['bssid'], a['essid']) )
-						complist.append( (a['bssid'], a['essid']) )
+						tmplist.append((a['bssid'], a['essid']))
+						complist.append((a['bssid'], a['essid']))
 
 				for entry in tmplist:
 					if entry[1] == "":
@@ -336,9 +336,9 @@ class NetworkWizard(WizardLanguage, Rc):
 							if compentry[0] == entry[0]:
 								complist.remove(compentry)
 				for entry in complist:
-					self.APList.append( (entry[1], entry[1]) )
+					self.APList.append((entry[1], entry[1]))
 			if not len(aps):
-				self.APList.append( ( _("No networks found"), None ) )
+				self.APList.append((_("No networks found"), None))
 
 		self.rescanTimer.start(4000)
 		return self.APList

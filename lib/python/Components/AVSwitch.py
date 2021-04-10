@@ -32,70 +32,70 @@ else:
 
 class AVSwitch:
 	hw_type = HardwareInfo().get_device_name()
-	rates = { } # high-level, use selectable modes.
-	modes = { }  # a list of (high-level) modes for a certain port.
+	rates = {} # high-level, use selectable modes.
+	modes = {}  # a list of (high-level) modes for a certain port.
 
-	rates["PAL"] =		{	"50Hz":		{ 50: "pal" },
-							"60Hz":		{ 60: "pal60" },
-							"multi":	{ 50: "pal", 60: "pal60" } }
+	rates["PAL"] =		{	"50Hz":		{50: "pal"},
+							"60Hz":		{60: "pal60"},
+							"multi":	{50: "pal", 60: "pal60"}}
 
-	rates["NTSC"] =		{	"60Hz":		{ 60: "ntsc" } }
+	rates["NTSC"] =		{	"60Hz":		{60: "ntsc"}}
 
-	rates["Multi"] =	{	"multi":	{ 50: "pal", 60: "ntsc" } }
+	rates["Multi"] =	{	"multi":	{50: "pal", 60: "ntsc"}}
 
-	rates["480i"] =		{	"60Hz":		{ 60: "480i" } }
+	rates["480i"] =		{	"60Hz":		{60: "480i"}}
 
-	rates["576i"] =		{	"50Hz":		{ 50: "576i" } }
+	rates["576i"] =		{	"50Hz":		{50: "576i"}}
 
-	rates["480p"] =		{	"60Hz":		{ 60: "480p" } }
+	rates["480p"] =		{	"60Hz":		{60: "480p"}}
 
-	rates["576p"] =		{	"50Hz":		{ 50: "576p" } }
+	rates["576p"] =		{	"50Hz":		{50: "576p"}}
 
-	rates["720p"] =		{	"50Hz":		{ 50: "720p50" },
-							"60Hz":		{ 60: "720p" },
-							"multi":	{ 50: "720p50", 60: "720p" },
-							"auto":		{ 50: "720p50", 60: "720p", 24: "720p24" } }
+	rates["720p"] =		{	"50Hz":		{50: "720p50"},
+							"60Hz":		{60: "720p"},
+							"multi":	{50: "720p50", 60: "720p"},
+							"auto":		{50: "720p50", 60: "720p", 24: "720p24"}}
 
-	rates["1080i"] =	{	"50Hz":		{ 50: "1080i50" },
-							"60Hz":		{ 60: "1080i" },
-							"multi":	{ 50: "1080i50", 60: "1080i" },
-							"auto":		{ 50: "1080i50", 60: "1080i", 24: "1080p24" } }
+	rates["1080i"] =	{	"50Hz":		{50: "1080i50"},
+							"60Hz":		{60: "1080i"},
+							"multi":	{50: "1080i50", 60: "1080i"},
+							"auto":		{50: "1080i50", 60: "1080i", 24: "1080p24"}}
 
-	rates["1080p"] =	{ 	"50Hz":		{ 50: "1080p50" },
-							"60Hz":		{ 60: "1080p" },
-							"multi":	{ 50: "1080p50", 60: "1080p" },
-							"auto":		{ 50: "1080p50", 60: "1080p", 24: "1080p24" } }
+	rates["1080p"] =	{"50Hz":		{50: "1080p50"},
+							"60Hz":		{60: "1080p"},
+							"multi":	{50: "1080p50", 60: "1080p"},
+							"auto":		{50: "1080p50", 60: "1080p", 24: "1080p24"}}
 
 	if getBoxType().startswith('dm9'):
-		rates["2160p"] =	{ 	"50Hz":		{ 50: "2160p50" },
-								"60Hz":		{ 60: "2160p60" },
-								"multi":	{ 50: "2160p50", 60: "2160p60" },
-								"auto":		{ 50: "2160p50", 60: "2160p60", 24: "2160p24" } }
+		rates["2160p"] =	{"50Hz":		{50: "2160p50"},
+								"60Hz":		{60: "2160p60"},
+								"multi":	{50: "2160p50", 60: "2160p60"},
+								"auto":		{50: "2160p50", 60: "2160p60", 24: "2160p24"}}
 	else:
-		rates["2160p"] =	{ 	"50Hz":		{ 50: "2160p50" },
-								"60Hz":		{ 60: "2160p" },
-								"multi":	{ 50: "2160p50", 60: "2160p" },
-								"auto":		{ 50: "2160p50", 60: "2160p", 24: "2160p24" } }
+		rates["2160p"] =	{"50Hz":		{50: "2160p50"},
+								"60Hz":		{60: "2160p"},
+								"multi":	{50: "2160p50", 60: "2160p"},
+								"auto":		{50: "2160p50", 60: "2160p", 24: "2160p24"}}
 
-	rates["2160p30"] =	{ 	"25Hz":		{ 50: "2160p25" },
-							"30Hz":		{ 60: "2160p30"} ,
-							"multi":	{ 50: "2160p25", 60: "2160p30" },
-							"auto":		{ 50: "2160p25", 60: "2160p30", 24: "2160p24" } }
+	rates["2160p30"] =	{"25Hz":		{50: "2160p25"},
+							"30Hz":		{60: "2160p30"},
+							"multi":	{50: "2160p25", 60: "2160p30"},
+							"auto":		{50: "2160p25", 60: "2160p30", 24: "2160p24"}}
 
 	rates["PC"] = {
-		"1024x768":						{ 60: "1024x768" }, # not possible on DM7025
-		"800x600" :						{ 60: "800x600" },  # also not possible
-		"720x480" :						{ 60: "720x480" },
-		"720x576" :						{ 60: "720x576" },
-		"1280x720":						{ 60: "1280x720" },
-		"1280x720 multi":				{ 50: "1280x720_50", 60: "1280x720" },
-		"1920x1080":					{ 60: "1920x1080"},
-		"1920x1080 multi":				{ 50: "1920x1080", 60: "1920x1080_50" },
-		"1280x1024":					{ 60: "1280x1024"},
-		"1366x768" :					{ 60: "1366x768"},
-		"1366x768 multi":				{ 50: "1366x768", 60: "1366x768_50" },
-		"1280x768":						{ 60: "1280x768" },
-		"640x480" :						{ 60: "640x480" }
+		"1024x768":						{60: "1024x768"}, # not possible on DM7025
+		"800x600":						{60: "800x600"},  # also not possible
+		"720x480":						{60: "720x480"},
+		"720x576":						{60: "720x576"},
+		"1280x720":						{60: "1280x720"},
+		"1280x720 multi":				{50: "1280x720_50", 60: "1280x720"},
+		"1920x1080":					{60: "1920x1080"},
+		"1920x1080 multi":				{50: "1920x1080", 60: "1920x1080_50"},
+		"1280x1024":					{60: "1280x1024"},
+		"1366x768":					{60: "1366x768"},
+		"1366x768 multi":				{50: "1366x768", 60: "1366x768_50"},
+		"1280x768":						{60: "1280x768"},
+		"640x480":						{60: "640x480"}
 	}
 
 	modes["Scart"] = ["PAL", "NTSC", "Multi"]
@@ -138,7 +138,7 @@ class AVSwitch:
 			del modes["YPbPr"]
 
 	def __init__(self):
-		self.last_modes_preferred =  [ ]
+		self.last_modes_preferred =  []
 		self.on_hotplug = CList()
 		self.current_mode = None
 		self.current_port = None
@@ -157,7 +157,7 @@ class AVSwitch:
 			f.close()
 		except IOError:
 			print "[AVSwitch] couldn't read available videomodes."
-			modes = [ ]
+			modes = []
 			return modes
 		return modes.split(' ')
 
@@ -307,14 +307,14 @@ class AVSwitch:
 
 	# get a list with all modes, with all rates, for a given port.
 	def getModeList(self, port):
-		res = [ ]
+		res = []
 		for mode in self.modes[port]:
 			# list all rates which are completely valid
 			rates = [rate for rate in self.rates[mode] if self.isModeAvailable(port, mode, rate)]
 
 			# if at least one rate is ok, add this mode
 			if len(rates):
-				res.append( (mode, rates) )
+				res.append((mode, rates))
 		return res
 
 	def createConfig(self, *args):
@@ -363,7 +363,7 @@ class AVSwitch:
 		config.av.videoport = ConfigSelection(choices=lst)
 
 	def setInput(self, input):
-		INPUT = { "ENCODER": 0, "SCART": 1, "AUX": 2 }
+		INPUT = {"ENCODER": 0, "SCART": 1, "AUX": 2}
 		eAVSwitch.getInstance().setInput(INPUT[input])
 
 	def setColorFormat(self, value):
@@ -416,11 +416,11 @@ class AVSwitch:
 		arw = "0"
 		try:
 			if about.getChipSetString() in ('meson-6', 'meson-64'):
-				if cfgelement.value == "panscan" :
+				if cfgelement.value == "panscan":
 					arw = "11"
-				if cfgelement.value == "letterbox" :
+				if cfgelement.value == "letterbox":
 					arw = "12"
-				if cfgelement.value == "bestfit" :
+				if cfgelement.value == "bestfit":
 					arw = "10"
 				open("/sys/class/video/screen_mode", "w").write(arw)
 			else:
@@ -694,11 +694,11 @@ def InitAVSwitch():
 	config.av.colorformat.addNotifier(setColorFormat)
 
 	def setAspectRatio(configElement):
-		map = {"4_3_letterbox": 0, "4_3_panscan": 1, "16_9": 2, "16_9_always": 3, "16_10_letterbox": 4, "16_10_panscan": 5, "16_9_letterbox" : 6}
+		map = {"4_3_letterbox": 0, "4_3_panscan": 1, "16_9": 2, "16_9_always": 3, "16_10_letterbox": 4, "16_10_panscan": 5, "16_9_letterbox": 6}
 		iAVSwitch.setAspectRatio(map[configElement.value])
 
 	iAVSwitch.setInput("ENCODER") # init on startup
-	if (getBoxType() in ('gbquad', 'gbquadplus', 'et5x00', 'ixussone', 'ixusszero', 'axodin', 'axodinc', 'starsatlx', 'galaxym6', 'geniuse3hd', 'evoe3hd', 'axase3', 'axase3c', 'omtimussos1', 'omtimussos2', 'gb800seplus', 'gb800ueplus', 'gbultrase', 'gbultraue', 'gbultraueh' , 'twinboxlcd' )) or about.getModelString() == 'et6000':
+	if (getBoxType() in ('gbquad', 'gbquadplus', 'et5x00', 'ixussone', 'ixusszero', 'axodin', 'axodinc', 'starsatlx', 'galaxym6', 'geniuse3hd', 'evoe3hd', 'axase3', 'axase3c', 'omtimussos1', 'omtimussos2', 'gb800seplus', 'gb800ueplus', 'gbultrase', 'gbultraue', 'gbultraueh', 'twinboxlcd')) or about.getModelString() == 'et6000':
 		detected = False
 	else:
 		detected = eAVSwitch.getInstance().haveScartSwitch()
@@ -911,23 +911,23 @@ def InitAVSwitch():
 		def setHlgSupport(configElement):
 			open("/proc/stb/hdmi/hlg_support", "w").write(configElement.value)
 		config.av.hlg_support = ConfigSelection(default="auto(EDID)", 
-			choices=[ ("auto(EDID)", _("controlled by HDMI")), ("yes", _("force enabled")), ("no", _("force disabled")) ])
+			choices=[("auto(EDID)", _("controlled by HDMI")), ("yes", _("force enabled")), ("no", _("force disabled"))])
 		config.av.hlg_support.addNotifier(setHlgSupport)
 
 		def setHdr10Support(configElement):
 			open("/proc/stb/hdmi/hdr10_support", "w").write(configElement.value)
 		config.av.hdr10_support = ConfigSelection(default="auto(EDID)", 
-			choices=[ ("auto(EDID)", _("controlled by HDMI")), ("yes", _("force enabled")), ("no", _("force disabled")) ])
+			choices=[("auto(EDID)", _("controlled by HDMI")), ("yes", _("force enabled")), ("no", _("force disabled"))])
 		config.av.hdr10_support.addNotifier(setHdr10Support)
 
 		def setDisable12Bit(configElement):
 			open("/proc/stb/video/disable_12bit", "w").write(configElement.value)
-		config.av.allow_12bit = ConfigSelection(default="0", choices=[ ("0", _("yes")), ("1", _("no")) ])
+		config.av.allow_12bit = ConfigSelection(default="0", choices=[("0", _("yes")), ("1", _("no"))])
 		config.av.allow_12bit.addNotifier(setDisable12Bit)
 
 		def setDisable10Bit(configElement):
 			open("/proc/stb/video/disable_10bit", "w").write(configElement.value)
-		config.av.allow_10bit = ConfigSelection(default="0", choices=[ ("0", _("yes")), ("1", _("no")) ])
+		config.av.allow_10bit = ConfigSelection(default="0", choices=[("0", _("yes")), ("1", _("no"))])
 		config.av.allow_10bit.addNotifier(setDisable10Bit)
 
 
@@ -1108,7 +1108,7 @@ def InitAVSwitch():
 			f = open("/proc/stb/audio/dtshd", "w")
 			f.write(configElement.value)
 			f.close()
-		if getBoxType() in ("dm7080" , "dm820"):
+		if getBoxType() in ("dm7080", "dm820"):
 			choice_list = [("use_hdmi_caps",  _("controlled by HDMI")), ("force_dts", _("convert to DTS"))]
 			config.av.dtshd = ConfigSelection(choices=choice_list, default="use_hdmi_caps")
 		else:

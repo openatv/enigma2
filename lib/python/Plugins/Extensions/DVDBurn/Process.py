@@ -87,21 +87,21 @@ class DemuxTask(Task):
 		title = job.project.titles[job.i]
 		self.global_preconditions.append(DiskspacePrecondition(title.estimatedDiskspace))
 		self.setTool("projectx")
-		self.args += [inputfile, "-demux", "-set", "ExportPanel.Streamtype.Subpicture=0", "-set", "ExportPanel.Streamtype.Teletext=0", "-out", self.job.workspace ]
+		self.args += [inputfile, "-demux", "-set", "ExportPanel.Streamtype.Subpicture=0", "-set", "ExportPanel.Streamtype.Teletext=0", "-out", self.job.workspace]
 		self.end = 300
 		self.prog_state = 0
 		self.weighting = 1000
 		self.cutfile = self.job.workspace + "/cut_%d.Xcl" % (job.i+1)
 		self.cutlist = title.cutlist
 		self.currentPID = None
-		self.relevantAudioPIDs = [ ]
+		self.relevantAudioPIDs = []
 		self.getRelevantAudioPIDs(title)
-		self.generated_files = [ ]
-		self.mplex_audiofiles = { }
+		self.generated_files = []
+		self.mplex_audiofiles = {}
 		self.mplex_videofile = ""
-		self.mplex_streamfiles = [ ]
+		self.mplex_streamfiles = []
 		if len(self.cutlist) > 1:
-			self.args += [ "-cut", self.cutfile ]
+			self.args += ["-cut", self.cutfile]
 
 	def prepare(self):
 		self.writeCutfile()
@@ -174,7 +174,7 @@ class DemuxTask(Task):
 
 	def cleanup(self, failed):
 		print "[DemuxTask::cleanup]"
-		self.mplex_streamfiles = [ self.mplex_videofile ]
+		self.mplex_streamfiles = [self.mplex_videofile]
 		for pid in self.relevantAudioPIDs:
 			if pid in self.mplex_audiofiles:
 				self.mplex_streamfiles.append(self.mplex_audiofiles[pid])
@@ -435,7 +435,7 @@ class PreviewTask(Task):
 		if self.job.menupreview:
 			self.closedCB(True)
 		else:
-			Notifications.AddNotificationWithCallback(self.closedCB, MessageBox, _("Do you want to burn this collection to DVD medium?"), domain="JobManager" )
+			Notifications.AddNotificationWithCallback(self.closedCB, MessageBox, _("Do you want to burn this collection to DVD medium?"), domain="JobManager")
 
 	def closedCB(self, answer):
 		if answer == True:
@@ -445,7 +445,7 @@ class PreviewTask(Task):
 
 	def previewProject(self):
 		from Plugins.Extensions.DVDPlayer.plugin import DVDPlayer
-		self.job.project.session.openWithCallback(self.playerClosed, DVDPlayer, dvd_filelist=[ self.path ])
+		self.job.project.session.openWithCallback(self.playerClosed, DVDPlayer, dvd_filelist=[self.path])
 
 class PreviewTaskPostcondition(Condition):
 	def check(self, task):
@@ -549,13 +549,13 @@ class MenuImageTask(Task):
 			menu_end_title = nr_titles+1
 		col = 1
 		row = 1
-		for title_no in range( menu_start_title , menu_end_title ):
+		for title_no in range(menu_start_title, menu_end_title):
 			title = self.job.project.titles[title_no-1]
-			col_width  = ( s_width  - s_left - s_right  ) / nr_cols
-			row_height = ( s_height - s_top  - s_bottom ) / nr_rows
-			left =   s_left + ( (col-1) * col_width ) + s_cols/2
+			col_width  = (s_width  - s_left - s_right) / nr_cols
+			row_height = (s_height - s_top  - s_bottom) / nr_rows
+			left =   s_left + ((col-1) * col_width) + s_cols/2
 			right =    left + col_width - s_cols
-			top =     s_top + ( (row-1) * row_height) + s_rows/2
+			top =     s_top + ((row-1) * row_height) + s_rows/2
 			bottom =    top + row_height - s_rows
 			width = right - left
 			height = bottom - top
@@ -598,7 +598,7 @@ class MenuImageTask(Task):
 			im_high.paste(im_cell_high,(left, top, right, bottom))
 
 			spuxml += """
-	<button name="button%s" x0="%d" x1="%d" y0="%d" y1="%d"/>""" % (str(title_no).zfill(2),left,right,top,bottom )
+	<button name="button%s" x0="%d" x1="%d" y0="%d" y1="%d"/>""" % (str(title_no).zfill(2),left,right,top,bottom)
 			if col < nr_cols:
 				col += 1
 			else:
@@ -609,7 +609,7 @@ class MenuImageTask(Task):
 		if self.menu_count < self.job.nr_menus:
 			next_page_text = s.next_page_text.getValue().decode("utf-8")
 			textsize = draw_bg.textsize(next_page_text, font=fonts[1])
-			pos = ( s_width-textsize[0]-s_right, top )
+			pos = (s_width-textsize[0]-s_right, top)
 			draw_bg.text(pos, next_page_text, fill=self.Menus.color_button, font=fonts[1])
 			draw_high.text(pos, next_page_text, fill=1, font=fonts[1])
 			spuxml += """
@@ -617,7 +617,7 @@ class MenuImageTask(Task):
 		if self.menu_count > 1:
 			prev_page_text = s.prev_page_text.getValue().decode("utf-8")
 			textsize = draw_bg.textsize(prev_page_text, font=fonts[1])
-			pos = ( (s_left+s_cols/2), top )
+			pos = ((s_left+s_cols/2), top)
 			draw_bg.text(pos, prev_page_text, fill=self.Menus.color_button, font=fonts[1])
 			draw_high.text(pos, prev_page_text, fill=1, font=fonts[1])
 			spuxml += """
@@ -647,11 +647,11 @@ class MenuImageTask(Task):
 		if offset[0] != -1:
 			pos[0] += offset[0]
 		else:
-			pos[0] += ( (right-left) - size[0] ) / 2
+			pos[0] += ((right-left) - size[0]) / 2
 		if offset[1] != -1:
 			pos[1] += offset[1]
 		else:
-			pos[1] += ( (bottom-top) - size[1] ) / 2
+			pos[1] += ((bottom-top) - size[1]) / 2
 		return tuple(pos)
 
 class Menus:
@@ -664,7 +664,7 @@ class Menus:
 		self.color_headline = tuple(s.color_headline.getValue())
 		self.color_button = tuple(s.color_button.getValue())
 		self.color_highlight = tuple(s.color_highlight.getValue())
-		self.spu_palette = [ 0x60, 0x60, 0x60 ] + s.color_highlight.getValue()
+		self.spu_palette = [0x60, 0x60, 0x60] + s.color_highlight.getValue()
 
 		ImagePrepareTask(job)
 		nr_titles = len(job.project.titles)
@@ -674,7 +674,7 @@ class Menus:
 		job.nr_menus = ((nr_titles+job.titles_per_menu-1)/job.titles_per_menu)
 
 		#a new menu_count every 4 titles (1,2,3,4->1 ; 5,6,7,8->2 etc.)
-		for menu_count in range(1 , job.nr_menus+1):
+		for menu_count in range(1, job.nr_menus+1):
 			num = str(menu_count)
 			spuxmlfilename = job.workspace+"/spumux"+num+".xml"
 			menubgpngfilename = job.workspace+"/dvd_menubg"+num+".png"
@@ -710,7 +710,7 @@ def CreateAuthoringXML_singleset(job):
 	if mode.startswith("menu"):
 		authorxml.append('   <menus lang="' + iso639language.get_dvd_id(job.project.menutemplate.settings.menulang.getValue()) + '">\n')
 		authorxml.append('    <video aspect="4:3"/>\n')
-		for menu_count in range(1 , job.nr_menus+1):
+		for menu_count in range(1, job.nr_menus+1):
 			if menu_count == 1:
 				authorxml.append('    <pgc entry="root">\n')
 			else:
@@ -719,7 +719,7 @@ def CreateAuthoringXML_singleset(job):
 			menu_end_title = (menu_count)*job.titles_per_menu + 1
 			if menu_end_title > nr_titles:
 				menu_end_title = nr_titles+1
-			for i in range( menu_start_title , menu_end_title ):
+			for i in range(menu_start_title, menu_end_title):
 				authorxml.append('     <button name="button' + (str(i).zfill(2)) + '"> jump title ' + str(i) +'; </button>\n')
 			if menu_count > 1:
 				authorxml.append('     <button name="button_prev"> jump menu ' + str(menu_count-1) + '; </button>\n')
@@ -730,7 +730,7 @@ def CreateAuthoringXML_singleset(job):
 			authorxml.append('    </pgc>\n')
 		authorxml.append('   </menus>\n')
 	authorxml.append('   <titles>\n')
-	for i in range( nr_titles ):
+	for i in range(nr_titles):
 		chapters = ','.join(job.project.titles[i].getChapterMarks())
 		title_no = i+1
 		title_filename = job.workspace + "/dvd_title_%d.mpg" % (title_no)
@@ -739,7 +739,7 @@ def CreateAuthoringXML_singleset(job):
 		else:
 			MakeFifoNode(job, title_no)
 		if mode.endswith("linked") and title_no < nr_titles:
-			post_tag = "jump title %d;" % ( title_no+1 )
+			post_tag = "jump title %d;" % (title_no+1)
 		elif mode.startswith("menu"):
 			post_tag = "call vmgm menu 1;"
 		else:
@@ -768,7 +768,7 @@ def CreateAuthoringXML_multiset(job):
 	authorxml.append('   <menus lang="' + iso639language.get_dvd_id(job.project.menutemplate.settings.menulang.getValue()) + '">\n')
 	authorxml.append('    <video aspect="4:3"/>\n')
 	if mode.startswith("menu"):
-		for menu_count in range(1 , job.nr_menus+1):
+		for menu_count in range(1, job.nr_menus+1):
 			if menu_count == 1:
 				authorxml.append('    <pgc>\n')
 			else:
@@ -777,7 +777,7 @@ def CreateAuthoringXML_multiset(job):
 			menu_end_title = (menu_count)*job.titles_per_menu + 1
 			if menu_end_title > nr_titles:
 				menu_end_title = nr_titles+1
-			for i in range( menu_start_title , menu_end_title ):
+			for i in range(menu_start_title, menu_end_title):
 				authorxml.append('     <button name="button' + (str(i).zfill(2)) + '"> jump titleset ' + str(i) +' title 1; </button>\n')
 			if menu_count > 1:
 				authorxml.append('     <button name="button_prev"> jump menu ' + str(menu_count-1) + '; </button>\n')
@@ -788,13 +788,13 @@ def CreateAuthoringXML_multiset(job):
 			authorxml.append('    </pgc>\n')
 	else:
 		authorxml.append('    <pgc>\n')
-		authorxml.append('     <vob file="' + job.project.settings.vmgm.getValue() + '" />\n' )
+		authorxml.append('     <vob file="' + job.project.settings.vmgm.getValue() + '" />\n')
 		authorxml.append('     <post> jump titleset 1 title 1; </post>\n')
 		authorxml.append('    </pgc>\n')
 	authorxml.append('   </menus>\n')
 	authorxml.append('  </vmgm>\n')
 
-	for i in range( nr_titles ):
+	for i in range(nr_titles):
 		title = job.project.titles[i]
 		authorxml.append('  <titleset>\n')
 		authorxml.append('   <menus lang="' + iso639language.get_dvd_id(job.project.menutemplate.settings.menulang.getValue()) + '">\n')
@@ -829,7 +829,7 @@ def CreateAuthoringXML_multiset(job):
 		else:
 			MakeFifoNode(job, title_no)
 		if mode.endswith("linked") and title_no < nr_titles:
-			post_tag = "jump titleset %d title 1;" % ( title_no+1 )
+			post_tag = "jump titleset %d title 1;" % (title_no+1)
 		elif mode.startswith("menu"):
 			post_tag = "call vmgm menu 1;"
 		else:
@@ -901,15 +901,15 @@ class DVDJob(Job):
 			if output == "medium":
 				self.name = _("Burn DVD")
 				tool = "growisofs"
-				burnargs = [ "-Z", "/dev/" + harddiskmanager.getCD(), "-dvd-compat" ]
+				burnargs = ["-Z", "/dev/" + harddiskmanager.getCD(), "-dvd-compat"]
 				if self.project.size/(1024*1024) > self.project.MAX_SL:
-					burnargs += [ "-use-the-force-luke=4gms", "-speed=1", "-R" ]
+					burnargs += ["-use-the-force-luke=4gms", "-speed=1", "-R"]
 			elif output == "iso":
 				self.name = _("Create DVD-ISO")
 				tool = "genisoimage"
 				isopathfile = getISOfilename(self.project.settings.isopath.getValue(), volName)
-				burnargs = [ "-o", isopathfile ]
-			burnargs += [ "-dvd-video", "-publisher", "Dreambox", "-V", volName, self.workspace + "/dvd" ]
+				burnargs = ["-o", isopathfile]
+			burnargs += ["-dvd-video", "-publisher", "Dreambox", "-V", volName, self.workspace + "/dvd"]
 			BurnTask(self, burnargs, tool)
 		RemoveWorkspaceFolder(self)
 
@@ -941,21 +941,21 @@ class DVDdataJob(Job):
 		tool = "growisofs"
 		if output == "medium":
 			self.name = _("Burn DVD")
-			burnargs = [ "-Z", "/dev/" + harddiskmanager.getCD(), "-dvd-compat" ]
+			burnargs = ["-Z", "/dev/" + harddiskmanager.getCD(), "-dvd-compat"]
 			if self.project.size/(1024*1024) > self.project.MAX_SL:
-				burnargs += [ "-use-the-force-luke=4gms", "-speed=1", "-R" ]
+				burnargs += ["-use-the-force-luke=4gms", "-speed=1", "-R"]
 		elif output == "iso":
 			tool = "genisoimage"
 			self.name = _("Create DVD-ISO")
 			isopathfile = getISOfilename(self.project.settings.isopath.getValue(), volName)
-			burnargs = [ "-o", isopathfile ]
+			burnargs = ["-o", isopathfile]
 		if self.project.settings.dataformat.getValue() == "iso9660_1":
-			burnargs += ["-iso-level", "1" ]
+			burnargs += ["-iso-level", "1"]
 		elif self.project.settings.dataformat.getValue() == "iso9660_4":
-			burnargs += ["-iso-level", "4", "-allow-limited-size" ]
+			burnargs += ["-iso-level", "4", "-allow-limited-size"]
 		elif self.project.settings.dataformat.getValue() == "udf":
-			burnargs += ["-udf", "-allow-limited-size" ]
-		burnargs += [ "-publisher", "Dreambox", "-V", volName, "-follow-links", self.workspace ]
+			burnargs += ["-udf", "-allow-limited-size"]
+		burnargs += ["-publisher", "Dreambox", "-V", volName, "-follow-links", self.workspace]
 		BurnTask(self, burnargs, tool)
 		RemoveWorkspaceFolder(self)
 
@@ -967,15 +967,15 @@ class DVDisoJob(Job):
 		from Tools.Directories import getSize
 		if imagepath.endswith(".iso"):
 			#PreviewTask(self, imagepath)
-			burnargs = [ "-Z", "/dev/" + harddiskmanager.getCD() + '='+imagepath, "-dvd-compat", "-use-the-force-luke=tty"]
+			burnargs = ["-Z", "/dev/" + harddiskmanager.getCD() + '='+imagepath, "-dvd-compat", "-use-the-force-luke=tty"]
 			if getSize(imagepath)/(1024*1024) > self.project.MAX_SL:
-				burnargs += [ "-use-the-force-luke=4gms", "-speed=1" ]
+				burnargs += ["-use-the-force-luke=4gms", "-speed=1"]
 		else:
 			PreviewTask(self, imagepath + "/VIDEO_TS/")
 			volName = self.project.settings.name.getValue()
-			burnargs = [ "-Z", "/dev/" + harddiskmanager.getCD(), "-dvd-compat" ]
+			burnargs = ["-Z", "/dev/" + harddiskmanager.getCD(), "-dvd-compat"]
 			if getSize(imagepath)/(1024*1024) > self.project.MAX_SL:
-				burnargs += [ "-use-the-force-luke=4gms", "-speed=1", "-R" ]
-			burnargs += [ "-dvd-video", "-publisher", "Dreambox", "-V", volName, imagepath ]
+				burnargs += ["-use-the-force-luke=4gms", "-speed=1", "-R"]
+			burnargs += ["-dvd-video", "-publisher", "Dreambox", "-V", volName, imagepath]
 		tool = "growisofs"
 		BurnTask(self, burnargs, tool)

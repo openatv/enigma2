@@ -159,15 +159,15 @@ class Timer:
 	MaxWaitTime = 100
 
 	def __init__(self):
-		self.timer_list = [ ]
-		self.processed_timers = [ ]
+		self.timer_list = []
+		self.processed_timers = []
 
 		self.timer = eTimer()
 		self.timer.callback.append(self.calcNextActivation)
 		self.lastActivation = time()
 
 		self.calcNextActivation()
-		self.on_state_change = [ ]
+		self.on_state_change = []
 
 	def stateChanged(self, entry):
 		for f in self.on_state_change:
@@ -230,7 +230,7 @@ class Timer:
 		if self.lastActivation > now:
 			print "[timer.py] timewarp - re-evaluating all processed timers."
 			tl = self.processed_timers
-			self.processed_timers = [ ]
+			self.processed_timers = []
 			for x in tl:
 				# simulate a "waiting" state to give them a chance to re-occure
 				x.resetState()

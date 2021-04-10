@@ -18,17 +18,17 @@ plugin_path = ""
 
 # FIXME: harddiskmanager has a better overview about available mointpoints!
 BackupPath = {
-		"mtd" : "/media/backup",
-		"hdd" : "/media/hdd/backup",
-		"usb" : "/media/usb/backup",
-		"cf" : "/media/cf/backup"
+		"mtd": "/media/backup",
+		"hdd": "/media/hdd/backup",
+		"usb": "/media/usb/backup",
+		"cf": "/media/cf/backup"
 	}
 
 MountPoints = {
-		"mtd" : "/media/backup",
-		"hdd" : "/media/hdd",
-		"usb" : "/media/usb",
-		"cf" : "/media/cf"
+		"mtd": "/media/backup",
+		"hdd": "/media/hdd",
+		"usb": "/media/usb",
+		"cf": "/media/cf"
 	}
 
 class BackupSetup(Screen):
@@ -103,7 +103,7 @@ class BackupSetup(Screen):
 
 	def createSetup(self):
 		print "Creating BackupSetup"
-		self.list = [ ]
+		self.list = []
 		self["config"] = ConfigList(self.list)
 		self.backup = ConfigSubsection()
 		self.backup.type = ConfigSelection(choices=[("settings", _("enigma2 and network")), ("var", _("/var directory")), ("skin", _("/usr/share/enigma2 directory"))], default="settings")
@@ -137,10 +137,10 @@ class BackupSetup(Screen):
 					self.session.open(Console, title="Backup running", cmdlist=["tar -czvf " + self.path + "/" + str(dt) + "_settings_backup.tar.gz /etc/enigma2/ /etc/network/interfaces /etc/wpa_supplicant.conf"])
 				elif self.backup.type.value == "var":
 					print "Backup Mode: var"
-					self.session.open(Console, title="Backup running", cmdlist=[ "tar -czvf " + self.path + "/" + str(dt) + "_var_backup.tar.gz /var/"])
+					self.session.open(Console, title="Backup running", cmdlist=["tar -czvf " + self.path + "/" + str(dt) + "_var_backup.tar.gz /var/"])
 				elif self.backup.type.value == "skin":
 					print "Backup Mode: skin"
-					self.session.open(Console, title="Backup running", cmdlist=[ "tar -czvf " + self.path + "/" + str(dt) + "_skin_backup.tar.gz /usr/share/enigma2/"])
+					self.session.open(Console, title="Backup running", cmdlist=["tar -czvf " + self.path + "/" + str(dt) + "_skin_backup.tar.gz /usr/share/enigma2/"])
 			else:
 				self.session.open(MessageBox, _("Sorry your Backup destination does not exist\n\nPlease choose an other one."), MessageBox.TYPE_INFO)
 

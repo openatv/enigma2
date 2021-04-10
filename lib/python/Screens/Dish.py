@@ -183,7 +183,7 @@ class Dish(Screen):
 				mrt = 3600 - mrt
 			if mrt % 10:
 				mrt += 10
-			mrt = round((mrt * 1000 / self.getTurningSpeed(pol) ) / 10000) + 3
+			mrt = round((mrt * 1000 / self.getTurningSpeed(pol)) / 10000) + 3
 		return mrt
 
 	def getTurningSpeed(self, pol=0):

@@ -29,7 +29,7 @@ POLL_DISCONNECTED = (select.POLLHUP | select.POLLERR | select.POLLNVAL)
 
 class E2SharedPoll:
 	def __init__(self):
-		self.dict = { }
+		self.dict = {}
 		self.eApp = getApplication()
 
 	def register(self, fd, eventmask=select.POLLIN | select.POLLERR | select.POLLOUT):
@@ -154,7 +154,7 @@ class PollReactor(posixbase.PosixReactorBase):
 			if l is None:
 				if self.running:
 					self.stop()
-				l = [ ]
+				l = []
 		except select.error, e:
 			if e[0] == errno.EINTR:
 				return

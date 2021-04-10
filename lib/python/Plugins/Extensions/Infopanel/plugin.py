@@ -210,7 +210,7 @@ def Plugins(**kwargs):
 	#// SwapAutostart
 	PluginDescriptor(where=[PluginDescriptor.WHERE_SESSIONSTART,PluginDescriptor.WHERE_AUTOSTART],fnc=SwapAutostart),
 	#// show Infopanel in EXTENSIONS Menu
-	PluginDescriptor(name=_("Info Panel"), description="Info panel GUI 27/12/2013", where=PluginDescriptor.WHERE_EXTENSIONSMENU, fnc=main) ]
+	PluginDescriptor(name=_("Info Panel"), description="Info panel GUI 27/12/2013", where=PluginDescriptor.WHERE_EXTENSIONSMENU, fnc=main)]
 
 
 
@@ -324,7 +324,7 @@ class Infopanel(Screen, InfoBarPiP, ProtectedScreen):
 		if Check_SysSoftcam() is "ncam":
 			self.Mlist.append(MenuEntryItem((InfoEntryComponent('OScamInfo'), _("NcamInfo"), 'OScamInfo')))
 		#self.Mlist.append(MenuEntryItem((InfoEntryComponent ("SoftwareManager" ), _("Software update"), ("software-update"))))
-		self.Mlist.append(MenuEntryItem((InfoEntryComponent ("SoftwareManager" ), _("Software Manager"), ("software-manager"))))
+		self.Mlist.append(MenuEntryItem((InfoEntryComponent("SoftwareManager"), _("Software Manager"), ("software-manager"))))
 		self.Mlist.append(MenuEntryItem((InfoEntryComponent('KeymapSel'), _("Keymap Selection"), 'KeymapSel')))	
 		self.Mlist.append(MenuEntryItem((InfoEntryComponent('Plugins'), _("Plugins"), 'Plugins')))
 		self.Mlist.append(MenuEntryItem((InfoEntryComponent('Infos'), _("Infos"), 'Infos')))
@@ -576,12 +576,12 @@ class Infopanel(Screen, InfoBarPiP, ProtectedScreen):
 		self.tlist = []
 		self.oldmlist = []
 		self.oldmlist = self.Mlist
-		self.tlist.append(MenuEntryItem((InfoEntryComponent ("SoftwareManager" ), _("Software update"), ("software-update"))))
-		self.tlist.append(MenuEntryItem((InfoEntryComponent ("BackupSettings" ), _("Backup Settings"), ("backup-settings"))))
-		self.tlist.append(MenuEntryItem((InfoEntryComponent ("RestoreSettings" ), _("Restore Settings"), ("restore-settings"))))
-		self.tlist.append(MenuEntryItem((InfoEntryComponent ("BackupFiles" ), _("Show default backup files"), ("backup-files"))))
-		self.tlist.append(MenuEntryItem((InfoEntryComponent ("BackupFilesAdditional" ), _("Select additional backup files"), ("backup-files-additional"))))
-		self.tlist.append(MenuEntryItem((InfoEntryComponent ("BackupFilesExcluded" ), _("Select excluded backup files"), ("backup-files-excluded"))))
+		self.tlist.append(MenuEntryItem((InfoEntryComponent("SoftwareManager"), _("Software update"), ("software-update"))))
+		self.tlist.append(MenuEntryItem((InfoEntryComponent("BackupSettings"), _("Backup Settings"), ("backup-settings"))))
+		self.tlist.append(MenuEntryItem((InfoEntryComponent("RestoreSettings"), _("Restore Settings"), ("restore-settings"))))
+		self.tlist.append(MenuEntryItem((InfoEntryComponent("BackupFiles"), _("Show default backup files"), ("backup-files"))))
+		self.tlist.append(MenuEntryItem((InfoEntryComponent("BackupFilesAdditional"), _("Select additional backup files"), ("backup-files-additional"))))
+		self.tlist.append(MenuEntryItem((InfoEntryComponent("BackupFilesExcluded"), _("Select excluded backup files"), ("backup-files-excluded"))))
 		self["Mlist"].moveToIndex(0)
 		self["Mlist"].l.setList(self.tlist)
 
@@ -600,7 +600,7 @@ class KeymapSel(ConfigListScreen, Screen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
 		self.session = session
-		self.skinName = ["SetupInfo", "Setup" ]
+		self.skinName = ["SetupInfo", "Setup"]
 		Screen.setTitle(self, _("Keymap Selection") + "...")
 		self.setup_title =  _("Keymap Selection") + "..."
 		self["HelpWindow"] = Pixmap()
@@ -613,7 +613,7 @@ class KeymapSel(ConfigListScreen, Screen):
 		ntrkey = eEnv.resolve("${datadir}/enigma2/keymap.ntr")
 		u80key = eEnv.resolve("${datadir}/enigma2/keymap.u80")
 		self.actkeymap = self.getKeymap(config.usage.keymap.value)
-		keySel = [ ('keymap.xml',_("Default  (keymap.xml)"))]
+		keySel = [('keymap.xml',_("Default  (keymap.xml)"))]
 		if os.path.isfile(usrkey):
 			keySel.append(('keymap.usr',_("User  (keymap.usr)")))
 		if os.path.isfile(ntrkey):
@@ -629,7 +629,7 @@ class KeymapSel(ConfigListScreen, Screen):
 		self.keyshow = ConfigSelection(keySel)
 		self.keyshow.value = self.actkeymap
 
-		self.onChangedEntry = [ ]
+		self.onChangedEntry = []
 		self.list = []
 		ConfigListScreen.__init__(self, self.list, session=self.session, on_change=self.changedEntry)
 		self.createSetup()
@@ -976,7 +976,7 @@ class Info(Screen):
 			text = text[:-1]
 		return text
 
-	def Do_cmd(self, cmd , file, arg , pipe=""):
+	def Do_cmd(self, cmd, file, arg, pipe=""):
 		try:
 			if file != None:
 				if os.path.exists(file) is True:

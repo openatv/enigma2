@@ -239,7 +239,7 @@ class CutListEditor(Screen, InfoBarBase, InfoBarSeek, InfoBarCueSheetSupport, He
 		self.close()
 
 	def getCutlist(self):
-		r = [ ]
+		r = []
 		for e in self.cut_list:
 			r.append(CutListEntry(*e))
 		return r

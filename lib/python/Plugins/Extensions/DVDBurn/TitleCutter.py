@@ -41,7 +41,7 @@ class TitleCutter(CutListEditor):
 				self.t.properties.audiotracks[-1].pid = ConfigFixedText(pid)
 				self.t.properties.audiotracks[-1].DVB_lang = ConfigFixedText(DVB_lang)
 		sAspect = service.info().getInfo(iServiceInformation.sAspect)
-		if sAspect in ( 1, 2, 5, 6, 9, 0xA, 0xD, 0xE ):
+		if sAspect in (1, 2, 5, 6, 9, 0xA, 0xD, 0xE):
 			aspect = "4:3"
 		else:
 			aspect = "16:9"

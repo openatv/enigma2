@@ -71,11 +71,11 @@ class Programmlisten_Updater(Screen,ConfigListScreen):
             {
             "red": self.keyCancel,
             "green": self.keyOk,
-            "yellow" : self.keyAutoUpdate,
-            "cancel" : self.keyCancel,
-            "ok" : self.keyOk,
-            "menu" : self.keyMenu,
-            "InfoPressed" : self.keyHistory,
+            "yellow": self.keyAutoUpdate,
+            "cancel": self.keyCancel,
+            "ok": self.keyOk,
+            "menu": self.keyMenu,
+            "InfoPressed": self.keyHistory,
             })
 
         self.List = DownloadSetting(URL)

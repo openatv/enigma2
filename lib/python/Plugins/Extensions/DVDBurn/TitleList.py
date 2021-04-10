@@ -283,7 +283,7 @@ class TitleList(Screen, HelpableScreen):
 		job_manager.AddJob(job)
 
 	def updateTitleList(self):
-		list = [ ]
+		list = []
 		for title in self.project.titles:
 			list.append((title, title.properties.menutitle.getValue(), title.properties.menusubtitle.getValue(), title.DVBchannel, title.formatDVDmenuText("$D.$M.$Y, $T", 0), title.formatDVDmenuText("$l", 0)))
 		self["titles"].list = list

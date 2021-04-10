@@ -283,7 +283,7 @@ class WeatherData:
 		if config.plugins.AtileHD.tempUnit.value == "Fahrenheit":
 			return str(int(round(float(temp),0)))
 		else:
-			celsius = (float(temp) - 32 ) * 5 / 9
+			celsius = (float(temp) - 32) * 5 / 9
 			return str(int(round(float(celsius),0)))
 
 	def getWeatherDate(self, weather):

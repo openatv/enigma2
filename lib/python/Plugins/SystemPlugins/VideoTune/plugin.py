@@ -6,7 +6,7 @@ def videoFinetuneMain(session, **kwargs):
 
 def startSetup(menuid):
 	if menuid != "video_menu":
-		return [ ]
+		return []
 
 	return [(_("Testscreens"), videoFinetuneMain, "video_finetune", 10)]
 

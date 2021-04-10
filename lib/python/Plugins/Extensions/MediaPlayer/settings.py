@@ -29,7 +29,7 @@ class DirectoryBrowser(Screen, HelpableScreen):
 	def __init__(self, session, currDir):
 		Screen.__init__(self, session)
 		# for the skin: first try MediaPlayerDirectoryBrowser, then FileBrowser, this allows individual skinning
-		self.skinName = ["MediaPlayerDirectoryBrowser", "FileBrowser" ]
+		self.skinName = ["MediaPlayerDirectoryBrowser", "FileBrowser"]
 
 		HelpableScreen.__init__(self)
 
@@ -71,9 +71,9 @@ class MediaPlayerSettings(Screen,ConfigListScreen):
 	def __init__(self, session, parent):
 		Screen.__init__(self, session)
 		# for the skin: first try MediaPlayerSettings, then Setup, this allows individual skinning
-		self.skinName = ["MediaPlayerSettings", "Setup" ]
+		self.skinName = ["MediaPlayerSettings", "Setup"]
 		self.setup_title = _("Edit settings")
-		self.onChangedEntry = [ ]
+		self.onChangedEntry = []
 		self["HelpWindow"] = Pixmap()
 		self["HelpWindow"].hide()
 		self["VKeyIcon"] = Boolean(False)

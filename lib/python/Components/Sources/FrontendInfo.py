@@ -43,7 +43,7 @@ class FrontendInfo(Source, PerServiceBase):
 	def getFrontendData(self):
 		if self.frontend_source:
 			frontend = self.frontend_source()
-			dict = { }
+			dict = {}
 			if frontend:
 				frontend.getFrontendData(dict)
 			return dict

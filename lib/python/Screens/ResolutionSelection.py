@@ -30,7 +30,7 @@ class ResolutionSelection(Screen):
 		tlist.append(("1080p@24hz", "1080p24")) 
 		tlist.append(("1080p@25hz", "1080p25")) 
 
-		keys = ["green", "yellow", "blue", "", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9" ] 
+		keys = ["green", "yellow", "blue", "", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9"] 
 
 		mode = open("/proc/stb/video/videomode").read()[:-1] 
 		print mode 

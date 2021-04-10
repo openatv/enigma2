@@ -58,7 +58,7 @@ class MultiColorLabel(Label):
 		if self.skinAttributes is not None:
 			foregroundColor = None
 			backgroundColor = None
-			attribs = [ ]
+			attribs = []
 			for (attrib, value) in self.skinAttributes:
 				if attrib == "foregroundColors":
 					colors = value.split(',')

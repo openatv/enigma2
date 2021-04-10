@@ -88,7 +88,7 @@ def applySettings(mode, znorm, setmode):
 			file.close()
 		elif setmode == "mode2":
 			file = open("/proc/stb/fb/primary/3d","w")
-			if mode == "sidebyside" :
+			if mode == "sidebyside":
 				mode = "sbs"
 			elif mode == "topandbottom":
 				mode = "tab"

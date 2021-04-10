@@ -37,8 +37,8 @@ class TimerEditList(Screen):
 		Screen.__init__(self, session)
 		Screen.setTitle(self, _("Timer List"))
 
-		self.onChangedEntry = [ ]
-		list = [ ]
+		self.onChangedEntry = []
+		list = []
 		self.list = list
 		self.fillTimerList()
 
@@ -160,7 +160,7 @@ class TimerEditList(Screen):
 				self["actions"].actions.update({"yellow":self.removeTimerQuestion})
 				self["key_yellow"].setText(_("Stop"))
 				self.key_yellow_choice = self.STOP
-			elif ((not cur.isRunning())or cur.repeated ) and (not cur.disabled) and (self.key_yellow_choice != self.DISABLE):
+			elif ((not cur.isRunning())or cur.repeated) and (not cur.disabled) and (self.key_yellow_choice != self.DISABLE):
 				self["actions"].actions.update({"yellow":self.toggleDisabledState})
 				self["key_yellow"].setText(_("Disable"))
 				self.key_yellow_choice = self.DISABLE
@@ -265,7 +265,7 @@ class TimerEditList(Screen):
 				duration = (timer.end - begin - config.recording.margin_after.value*60) / 60
 				if duration <= 0:
 					duration = 30 # it seems to be a reminder or a justplay timer without end time, so search epg events for the next 30 min
-				list = epgcache.lookupEvent([ 'IBDT', (ref, 0, begin, duration) ])
+				list = epgcache.lookupEvent(['IBDT', (ref, 0, begin, duration)])
 				if len(list):
 					for epgevent in list:
 						if timer.name.startswith(epgevent[3]):
@@ -607,7 +607,7 @@ class TimerSanityConflict(Screen):
 				self.removeAction("green")
 				self["key_green"].setText(" ")
 				self.key_green_choice = self.EMPTY
-			elif (not self.timer[0].isRunning() or self.timer[0].repeated ) and self.key_green_choice != self.DISABLE:
+			elif (not self.timer[0].isRunning() or self.timer[0].repeated) and self.key_green_choice != self.DISABLE:
 				self["actions"].actions.update({"green":self.toggleNewTimer})
 				self["key_green"].setText(_("Disable"))
 				self.key_green_choice = self.DISABLE
@@ -627,7 +627,7 @@ class TimerSanityConflict(Screen):
 					self.removeAction("blue")
 					self["key_blue"].setText(" ")
 					self.key_blue_choice = self.EMPTY
-				elif (not self.timer[x].isRunning() or self.timer[x].repeated ) and self.key_blue_choice != self.DISABLE:
+				elif (not self.timer[x].isRunning() or self.timer[x].repeated) and self.key_blue_choice != self.DISABLE:
 					self["actions"].actions.update({"blue":self.toggleTimer})
 					self["key_blue"].setText(_("Disable"))
 					self.key_blue_choice = self.DISABLE

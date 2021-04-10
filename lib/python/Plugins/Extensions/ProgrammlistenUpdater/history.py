@@ -50,8 +50,8 @@ class PU_History(Screen):
         self["Actions"] = ActionMap(['OkCancelActions', 'ShortcutActions',"ColorActions","DirectionActions"],
             {
             "red": self.keyOk,
-            "cancel" : self.keyOk,
-            "ok" : self.keyOk,
+            "cancel": self.keyOk,
+            "ok": self.keyOk,
             "up": self["History"].pageUp,
             "down": self["History"].pageDown,
             "left": self["History"].pageUp,

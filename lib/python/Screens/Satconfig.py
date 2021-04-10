@@ -53,16 +53,16 @@ if SystemInfo["ForceToneBurstChanged"]:
 class TunerSetup(Screen, ConfigListScreen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
-		self.skinName = ["Setup" ]
+		self.skinName = ["Setup"]
 		self.setup_title = _("Tuner settings")
 		self["HelpWindow"] = Pixmap()
 		self["HelpWindow"].hide()
 		self["VKeyIcon"] = Boolean(False)
 		self['footnote'] = Label()
 
-		self.onChangedEntry = [ ]
+		self.onChangedEntry = []
 
-		self.list = [ ]
+		self.list = []
 		ConfigListScreen.__init__(self, self.list, session=session, on_change=self.changedEntry)
 
 		from Components.ActionMap import ActionMap
@@ -86,7 +86,7 @@ class TunerSetup(Screen, ConfigListScreen):
 	def createSetup(self):
 		level = config.usage.setup_level.index
 
-		self.list = [ ]
+		self.list = []
 
 		if level >= 1:
 			if SystemInfo["ForceLNBPowerChanged"]:
@@ -196,7 +196,7 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 			if len(nimmanager.canConnectTo(self.slotid)) > 0:
 				choices["loopthrough"] = _("Loop through to")
 			if isFBCLink(self.nim.slot):
-				choices = { "nothing": _("not configured"),
+				choices = {"nothing": _("not configured"),
 						"advanced": _("Advanced")}
 			if self.nim.isMultiType():
 				self.nimConfig.dvbs.configMode.setChoices(choices, default="nothing")
@@ -205,7 +205,7 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 
 	def createSetup(self):
 		print "Creating setup"
-		self.list = [ ]
+		self.list = []
 
 		self.multiType = None
 		self.diseqcModeEntry = None
@@ -654,7 +654,7 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 						self.list.append(getConfigListEntry("   " + _("Max memory positions"), currLnb.rotorPositions, _("Consult your motor's spec sheet for this information, or leave the default setting.")))
 
 	def fillAdvancedList(self):
-		self.list = [ ]
+		self.list = []
 		self.configMode = getConfigListEntry(_("Configuration mode"), self.nimConfig.dvbs.configMode)
 		self.list.append(self.configMode)
 		self.advancedSatsEntry = getConfigListEntry(_("Satellite"), self.nimConfig.dvbs.advanced.sats)
@@ -805,7 +805,7 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 		Screen.__init__(self, session)
 		Screen.setTitle(self, _("Tuner settings"))
 		self.setup_title = _("Tuner settings")
-		self.list = [ ]
+		self.list = []
 		ServiceStopScreen.__init__(self)
 		self.stopService()
 		ConfigListScreen.__init__(self, self.list, on_change=self.changedEntry)
@@ -1051,7 +1051,7 @@ class NimSelection(Screen):
 		return True
 
 	def updateList(self, index=None):
-		self.list = [ ]
+		self.list = []
 		for x in nimmanager.nim_slots:
 			slotid = x.slot
 			text = ""
@@ -1072,9 +1072,9 @@ class NimSelection(Screen):
 					nimConfig = nimmanager.getNimConfig(x.slot).dvbs
 					text = nimConfig.configMode.value
 					if nimConfig.configMode.value in ("loopthrough", "equal", "satposdepends"):
-						text = { "loopthrough": _("Loop through to"),
+						text = {"loopthrough": _("Loop through to"),
 								 "equal": _("Equal to"),
-								 "satposdepends": _("Second cable of motorized LNB") } [nimConfig.configMode.value]
+								 "satposdepends": _("Second cable of motorized LNB")}[nimConfig.configMode.value]
 						if len(x.input_name) > 1:
 							text += " " + _("Tuner") + " " + ["A1", "A2", "B", "C"][int(nimConfig.connectedTo.value)]
 						else:

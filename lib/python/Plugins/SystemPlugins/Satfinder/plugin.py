@@ -41,7 +41,7 @@ class Satfinder(ScanSetup, ServiceScan):
 		ScanSetup.__init__(self, session)
 		self.setTitle(_("Signal Finder"))
 		self["introduction"].setText(_("Press OK to scan"))
-		self["Frontend"] = FrontendStatus(frontend_source=lambda : self.frontend, update_interval=100)
+		self["Frontend"] = FrontendStatus(frontend_source=lambda: self.frontend, update_interval=100)
 
 		self["actions"] = ActionMap(["SetupActions", "ColorActions"],
 		{
@@ -158,7 +158,7 @@ class Satfinder(ScanSetup, ServiceScan):
 		if (system in ('DVB-S','DVB-S2') and config.Nims[fe_id].dvbs.configMode.value == "nothing") or \
 			(system in ('DVB-T','DVB-T2') and config.Nims[fe_id].dvbt.configMode.value == "nothing") or \
 			(system in ('DVB-C') and config.Nims[fe_id].dvbc.configMode.value == "nothing") or \
-			(system in ('ATSC') and config.Nims[fe_id].atsc.configMode.value == "nothing") :
+			(system in ('ATSC') and config.Nims[fe_id].atsc.configMode.value == "nothing"):
 			return
 		slot = nimmanager.nim_slots[fe_id]
 		print "dvb_api_version ",iDVBFrontend.dvb_api_version
@@ -271,7 +271,7 @@ class Satfinder(ScanSetup, ServiceScan):
 			elif self.scan_typecable.value == "predefined_transponder":
 				if self.CableTransponders is not None:
 					tps = nimmanager.getTranspondersCable(int(self.scan_nims.value))
-					if len(tps) > self.CableTransponders.index :
+					if len(tps) > self.CableTransponders.index:
 						tp = tps[self.CableTransponders.index]
 						# tp = 0 transponder type, 1 freq, 2 sym, 3 mod, 4 fec, 5 inv, 6 sys
 						transponder = (tp[1], tp[2], tp[3], tp[4], tp[5])
@@ -304,7 +304,7 @@ class Satfinder(ScanSetup, ServiceScan):
 				if self.TerrestrialTransponders is not None:
 					region = nimmanager.getTerrestrialDescription(int(self.scan_nims.value))
 					tps = nimmanager.getTranspondersTerrestrial(region)
-					if len(tps) > self.TerrestrialTransponders.index :
+					if len(tps) > self.TerrestrialTransponders.index:
 						transponder = tps[self.TerrestrialTransponders.index]
 						# frequency 1, inversion 9, bandwidth 2, fechigh 4, feclow 5, modulation 3, transmission 7, guard 6, hierarchy 8, system 10, plp_id 11
 						self.tuner.tuneTerr(transponder[1], transponder[9], transponder[2], transponder[4], transponder[5], transponder[3], transponder[7], transponder[6], transponder[8], transponder[10], transponder[11])

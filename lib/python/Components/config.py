@@ -34,8 +34,8 @@ class ConfigElement(object):
 		self.save_forced = False
 		self.last_value = None
 		self.save_disabled = False
-		self.__notifiers = { }
-		self.__notifiers_final = { }
+		self.__notifiers = {}
+		self.__notifiers_final = {}
 		self.enabled = True
 		self.callNotifiersOnSaveAndCancel = False
 
@@ -161,8 +161,8 @@ class ConfigElement(object):
 				pass
 
 	def clearNotifiers(self):
-		self.__notifiers = { }
-		self.__notifiers_final = { }
+		self.__notifiers = {}
+		self.__notifiers_final = {}
 
 	def disableSave(self):
 		self.save_disabled = True
@@ -1648,7 +1648,7 @@ class ConfigDictionarySet(ConfigElement):
 			if value in self.dirs:
 				self.dirs[value][config_key] = config_value
 			else:
-				self.dirs[value] = {config_key : config_value}
+				self.dirs[value] = {config_key: config_value}
 			self.changed()
 
 	def getConfigValue(self, value, config_key):
@@ -1870,7 +1870,7 @@ class ConfigSubList(list, object):
 			x.load()
 
 	def getSavedValue(self):
-		res = { }
+		res = {}
 		for i, val in enumerate(self):
 			sv = val.saved_value
 			if sv is not None:
@@ -1951,8 +1951,8 @@ class ConfigSubDict(dict, object):
 class ConfigSubsection(object):
 	def __init__(self):
 		self.__dict__["content"] = ConfigSubsectionContent()
-		self.content.items = { }
-		self.content.stored_values = { }
+		self.content.items = {}
+		self.content.stored_values = {}
 
 	def __setattr__(self, name, value):
 		if name == "saved_value":
@@ -2029,7 +2029,7 @@ class Config(ConfigSubsection):
 		return ''.join(result)
 
 	def unpickle(self, lines, base_file=True):
-		tree = { }
+		tree = {}
 		configbase = tree.setdefault("config", {})
 		for l in lines:
 			if not l or l[0] == '#':

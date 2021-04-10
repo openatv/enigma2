@@ -8,7 +8,7 @@ class HelpMenu(Screen, Rc):
 	def __init__(self, session, list):
 		Screen.__init__(self, session)
 		Screen.setTitle(self, _("Help"))
-		self.onSelChanged = [ ]
+		self.onSelChanged = []
 		self["list"] = HelpMenuList(list, self.close)
 		self["list"].onSelChanged.append(self.SelectionChanged)
 		Rc.__init__(self)
@@ -47,7 +47,7 @@ class HelpMenu(Screen, Rc):
 
 class HelpableScreen:
 	def __init__(self):
-		self["helpActions"] = ActionMap( [ "HelpActions" ],
+		self["helpActions"] = ActionMap(["HelpActions"],
 			{
 				"displayHelp": self.showHelp,
 			})

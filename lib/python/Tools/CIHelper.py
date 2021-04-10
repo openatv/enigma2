@@ -42,7 +42,7 @@ class CIHelper:
 
 						for service in slot.findall("service"):
 							read_service_ref = service.get("ref").encode("UTF-8")
-							read_services.append (read_service_ref)
+							read_services.append(read_service_ref)
 
 						for provider in slot.findall("provider"):
 							read_provider_name = provider.get("name").encode("UTF-8")

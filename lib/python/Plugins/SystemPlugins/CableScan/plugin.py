@@ -183,7 +183,7 @@ class CableScanAutoScreen(CableScanScreen):
 		Screen.__init__(self, session)
 		self.skinName="Standby"
 
-		self["actions"] = ActionMap( [ "StandbyActions" ],
+		self["actions"] = ActionMap(["StandbyActions"],
 		{
 			"power": self.Power,
 			"discrete_on": self.Power

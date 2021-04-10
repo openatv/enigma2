@@ -34,7 +34,7 @@ class PlayList(MenuList):
 		]
 
 	def PlaylistEntryComponent(self, serviceref, state):
-		res = [ serviceref ]
+		res = [serviceref]
 		text = serviceref.getName()
 		if text is "":
 			text = path.split(serviceref.getPath().split('/')[-1])[1]
@@ -115,7 +115,7 @@ class PlayList(MenuList):
 		return l and l[0]
 
 	def getServiceRefList(self):
-		return [ x[0] for x in self.list ]
+		return [x[0] for x in self.list]
 
 	def __len__(self):
 		return len(self.list)

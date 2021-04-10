@@ -140,7 +140,7 @@ class ServicePositionGauge(PerServiceBase, GUIComponent):
 	def newCuesheet(self):
 		service = self.navcore.getCurrentService()
 		cue = service and service.cueSheet()
-		cutlist = (cue and cue.getCutList()) or [ ]
+		cutlist = (cue and cue.getCutList()) or []
 		if self.instance is not None:
 			self.instance.setInOutList(cutlist)
 

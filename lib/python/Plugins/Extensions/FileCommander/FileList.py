@@ -72,7 +72,7 @@ def FileEntryComponent(name, absolute=None, isDir=False, isLink=False):
 		x, y, w, h = skin.parameters.get("FileListIcon",(10, 4, 20, 20))
 		res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, x, y, w, h, png, None, None, BT_SCALE))
 		if link_png is not None:
-			res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, x, y, w, h, link_png, None ,None, BT_SCALE))
+			res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, x, y, w, h, link_png, None,None, BT_SCALE))
 
 	return res
 
@@ -264,9 +264,9 @@ def MultiFileSelectEntryComponent(name, absolute=None, isDir=False, isLink=False
 		png = getPNGByExt(name)
 	if png is not None:
 		x, y, w, h = skin.parameters.get("FileListMultiIcon",(30, 4, 20, 20))
-		res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, x, y, w, h, png, None ,None, BT_SCALE))
+		res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, x, y, w, h, png, None,None, BT_SCALE))
 		if link_png is not None:
-			res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, x, y, w, h, link_png, None ,None, BT_SCALE))
+			res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, x, y, w, h, link_png, None,None, BT_SCALE))
 
 	if not name.startswith('<'):
 		x, y, w, h = skin.parameters.get("FileListMultiLock",(4, 0, 25, 25))
@@ -274,12 +274,12 @@ def MultiFileSelectEntryComponent(name, absolute=None, isDir=False, isLink=False
 			icon = LoadPixmap(path=resolveFilename(SCOPE_CURRENT_SKIN, "skin_default/icons/lock_off.png"))
 			if not icon:
 				icon = LoadPixmap(path=os.path.join(imagePath, "lock_off.png"))
-			res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, x, y, w, h, icon, None ,None, BT_SCALE))
+			res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, x, y, w, h, icon, None,None, BT_SCALE))
 		else:
 			icon = LoadPixmap(path=resolveFilename(SCOPE_CURRENT_SKIN, "skin_default/icons/lock_on.png"))
 			if not icon:
 				icon = LoadPixmap(path=os.path.join(imagePath, "lock_on.png"))
-			res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, x, y, w, h, icon, None ,None, BT_SCALE))
+			res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, x, y, w, h, icon, None,None, BT_SCALE))
 	return res
 
 class MultiFileSelectList(FileList):

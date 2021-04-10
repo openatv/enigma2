@@ -9,12 +9,12 @@ import os
 import re
 
 zeros = bytearray(128)
-VIDEO_TYPES	= { 'video/mpeg, mpegversion=(int)1': 0x01, 'video/mpeg, mpegversion=(int)2': 0x02, 'VC1': 0xEA, 'video/x-h264': 0x1B }
-AUDIO_TYPES	= { 'audio/mpeg, mpegversion=(int)1': 0x03, 'audio/mpeg, mpegversion=(int)2': 0x04, 'audio/x-lpcm': 0x80, 'audio/x-ac3': 0x81, 'audio/x-dts': 0x82, 'TRUEHD': 0x83, 'AC3+': 0x84, 'DTSHD': 0x85, 'DTSHD Master': 0x86 }
-VIDEO_FORMATS	= { 'i480': 1, 'i576': 2, 'p480': 3, 'i1080': 4, 'p720': 5, 'p1080': 6, 'p576': 7 }
-VIDEO_RATES	= { 23976: 1, 24000: 2, 25000: 3, 29970: 4, 50000: 6, 59940: 7 }
-AUDIO_CHANNELS  = { "reserved": 0, "mono": 1, "dual mono": 2, "stereo": 3, "multi": 6, "combo": 12 }
-AUDIO_RATES     = { 48000: 1, 96000: 4, 192000: 5, 48/192: 12, 48/96: 14 }
+VIDEO_TYPES	= {'video/mpeg, mpegversion=(int)1': 0x01, 'video/mpeg, mpegversion=(int)2': 0x02, 'VC1': 0xEA, 'video/x-h264': 0x1B}
+AUDIO_TYPES	= {'audio/mpeg, mpegversion=(int)1': 0x03, 'audio/mpeg, mpegversion=(int)2': 0x04, 'audio/x-lpcm': 0x80, 'audio/x-ac3': 0x81, 'audio/x-dts': 0x82, 'TRUEHD': 0x83, 'AC3+': 0x84, 'DTSHD': 0x85, 'DTSHD Master': 0x86}
+VIDEO_FORMATS	= {'i480': 1, 'i576': 2, 'p480': 3, 'i1080': 4, 'p720': 5, 'p1080': 6, 'p576': 7}
+VIDEO_RATES	= {23976: 1, 24000: 2, 25000: 3, 29970: 4, 50000: 6, 59940: 7}
+AUDIO_CHANNELS  = {"reserved": 0, "mono": 1, "dual mono": 2, "stereo": 3, "multi": 6, "combo": 12}
+AUDIO_RATES     = {48000: 1, 96000: 4, 192000: 5, 48/192: 12, 48/96: 14}
 
 class BludiscTitle(object):
 	def __init__(self, title):
@@ -204,7 +204,7 @@ class RemuxTask(Task):
 		self.outputfile = self.job.workspace+'BDMV/STREAM/%05d.m2ts' % self.title_no
 		self.args += [inputfile, self.outputfile, "--entrypoints", "--cutlist"]
 		self.args += self.getPIDs()
-		self.end = ( self.title.filesize / 188 )
+		self.end = (self.title.filesize / 188)
 		self.weighting = 1000
 
 	def getPIDs(self):
@@ -567,7 +567,7 @@ class CreateMplsTask(Task):
 			for chapter_pts in self.title.chaptermarks:
 				if (chapter_pts):
 					ep_pts = self.title.getEPforOffsetPTS(chapter_pts)
-					if ( ep_pts > markslist[0][2] ):
+					if (ep_pts > markslist[0][2]):
 						markslist.append((mark_id, 1, ep_pts, 0))
 						mark_id += 1
 		except AttributeError:
@@ -701,7 +701,7 @@ class CreateClpiTask(Task):
 		for entrypoint in self.title.entrypoints:
 			fine_entrypoints.append((entrypoint[1],entrypoint[0]))
 			coarse_pts = entrypoint[1] & 0x1FFF80000
-			high_spn = ( entrypoint[0] & 0xFFFE0000 )
+			high_spn = (entrypoint[0] & 0xFFFE0000)
 			fine_ref += 1
 
 			if coarse_pts > prev_coarse or high_spn > prev_spn:
@@ -734,7 +734,7 @@ class CreateClpiTask(Task):
 			for ep in coarse_entrypoints:
 				EP_MAP_STREAM_COARSE = bytearray()
 
-				pts_ep_coarse = ( ep[0] & 0x1FFF80000 ) >> 19
+				pts_ep_coarse = (ep[0] & 0x1FFF80000) >> 19
 				spn_ep_coarse = ep[1]
 				ref_ep_fine_id = ep[2]
 
@@ -753,8 +753,8 @@ class CreateClpiTask(Task):
 				is_angle_change_point = 0
 				i_end_position_offset = 1
 
-				pts_ep_fine = ( ep[0] & 0xFFE00 ) >> 0x09
-				spn_ep_fine = ( ep[1] & 0x1FFFF )
+				pts_ep_fine = (ep[0] & 0xFFE00) >> 0x09
+				spn_ep_fine = (ep[1] & 0x1FFFF)
 
 				fine_bits = (spn_ep_fine & 0x1FFFF) + ((pts_ep_fine & 0x7FF) << 0x11) + (i_end_position_offset << 0x1C) + (is_angle_change_point << 0x1F)
 
@@ -876,12 +876,12 @@ class BDMVJob(Job):
 		tool = "growisofs"
 		if output == "medium":
 			self.name = _("Burn Bludisc")
-			burnargs = [ "-Z", "/dev/" + harddiskmanager.getCD(), "-dvd-compat", "-use-the-force-luke=tty"]
+			burnargs = ["-Z", "/dev/" + harddiskmanager.getCD(), "-dvd-compat", "-use-the-force-luke=tty"]
 		elif output == "iso":
 			tool = "genisoimage"
 			self.name = _("Create Bludisc ISO file")
 			isopathfile = getISOfilename(self.project.settings.isopath.getValue(), volName)
-			burnargs = [ "-o", isopathfile ]
-		burnargs += [ "-udf", "-allow-limited-size", "-publisher", "Dreambox", "-V", volName, self.workspace ]
+			burnargs = ["-o", isopathfile]
+		burnargs += ["-udf", "-allow-limited-size", "-publisher", "Dreambox", "-V", volName, self.workspace]
 		BurnTask(self, burnargs, tool)
 		RemoveWorkspaceFolder(self)

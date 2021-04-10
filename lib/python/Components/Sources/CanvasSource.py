@@ -8,7 +8,7 @@ class CanvasSource(Source):
 
 	def clear(self):
 		self.sequence += 1
-		self._drawlist = (self.sequence, [ ])
+		self._drawlist = (self.sequence, [])
 
 	def get_drawlist(self):
 		return self._drawlist

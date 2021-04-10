@@ -175,7 +175,7 @@ class FastScanScreen(ConfigListScreen, Screen):
 		self.config_autoproviders = {}
 		auto_providers = config.misc.fastscan.autoproviders.value.split(",")
 		for provider in self.providers:
-			self.config_autoproviders[provider[0]] = ConfigYesNo(default=provider[0] in auto_providers )
+			self.config_autoproviders[provider[0]] = ConfigYesNo(default=provider[0] in auto_providers)
 		self.list = []
 		ConfigListScreen.__init__(self, self.list)
 		self.createSetup()
@@ -261,7 +261,7 @@ class FastScanAutoScreen(FastScanScreen):
 		Screen.__init__(self, session)
 		self.skinName="Standby"
 
-		self["actions"] = ActionMap( [ "StandbyActions" ],
+		self["actions"] = ActionMap(["StandbyActions"],
 		{
 			"power": self.Power,
 			"discrete_on": self.Power

@@ -272,7 +272,7 @@ class UserInterfacePositioner2(Screen, ConfigListScreen):
 				"yellow": self.keyDefault,
 			}, -2)
 
-		self.onChangedEntry = [ ]
+		self.onChangedEntry = []
 		self.list = []
 		ConfigListScreen.__init__(self, self.list, session=self.session, on_change=self.changedEntry)
 		if SystemInfo["CanChangeOsdAlpha"]:
@@ -410,7 +410,7 @@ class UserInterfacePositioner(Screen, ConfigListScreen):
 				"yellow": self.keyDefault,
 			}, -2)
 
-		self.onChangedEntry = [ ]
+		self.onChangedEntry = []
 		self.list = []
 		ConfigListScreen.__init__(self, self.list, session=self.session, on_change=self.changedEntry)
 		if SystemInfo["CanChangeOsdAlpha"] == True:
@@ -549,7 +549,7 @@ class OSD3DSetupScreen(Screen, ConfigListScreen):
 				"save": self.keySave,
 			}, -2)
 
-		self.onChangedEntry = [ ]
+		self.onChangedEntry = []
 		self.list = []
 		ConfigListScreen.__init__(self, self.list, session=self.session, on_change=self.changedEntry)
 		self.list.append(getConfigListEntry(_("3D Mode"), config.osd.threeDmode, _("This option lets you choose the 3D mode")))

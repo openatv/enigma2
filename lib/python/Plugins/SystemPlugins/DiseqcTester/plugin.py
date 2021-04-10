@@ -219,7 +219,7 @@ class DiseqcTester(Screen, TuneTest, ResultParser):
 		self["Failed"] = Label(_("Failed:"))
 		self["Succeeded"] = Label(_("Succeeded:"))
 		self["Not_tested"] = Label(_("Not tested:"))
-		self["With_errors"] = Label (_("With errors:"))
+		self["With_errors"] = Label(_("With errors:"))
 		self["actions"] = NumberActionMap(["SetupActions"],
 		{
 			"ok": self.select,
@@ -227,7 +227,7 @@ class DiseqcTester(Screen, TuneTest, ResultParser):
 		}, -2)
 
 		TuneTest.__init__(self, feid, stopOnSuccess=self.loopssuccessful, stopOnError=self.loopsfailed)
-		self["Frontend"] = FrontendStatus(frontend_source=lambda : self.frontend, update_interval=100)
+		self["Frontend"] = FrontendStatus(frontend_source=lambda: self.frontend, update_interval=100)
 		self["overall_progress"] = Progress()
 		self["sub_progress"] = Progress()
 
@@ -571,9 +571,9 @@ class DiseqcTesterTestTypeSelection(Screen, ConfigListScreen):
 	def __init__(self, session, feid):
 		Screen.__init__(self, session)
 		# for the skin: first try MediaPlayerSettings, then Setup, this allows individual skinning
-		self.skinName = ["DiseqcTesterTestTypeSelection", "Setup" ]
+		self.skinName = ["DiseqcTesterTestTypeSelection", "Setup"]
 		self.setup_title = _("DiSEqC-tester settings")
-		self.onChangedEntry = [ ]
+		self.onChangedEntry = []
 		self.feid = feid
 
 		self.list = []
@@ -687,5 +687,5 @@ def autostart(reason, **kwargs):
 	resourcemanager.addResource("DiseqcTester", DiseqcTesterMain)
 
 def Plugins(**kwargs):
-	return [ PluginDescriptor(name="DiSEqC Tester", description=_("Test DiSEqC settings"), where=PluginDescriptor.WHERE_PLUGINMENU, needsRestart=False, fnc=DiseqcTesterMain),
+	return [PluginDescriptor(name="DiSEqC Tester", description=_("Test DiSEqC settings"), where=PluginDescriptor.WHERE_PLUGINMENU, needsRestart=False, fnc=DiseqcTesterMain),
 			PluginDescriptor(where=PluginDescriptor.WHERE_AUTOSTART, needsRestart=False, fnc=autostart)]

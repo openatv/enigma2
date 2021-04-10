@@ -28,7 +28,7 @@ class Project:
 	MAX_DL = 8150
 	MAX_BD = 24220
 	def __init__(self):
-		self.titles = [ ]
+		self.titles = []
 		self.target = None
 		self.settings = ConfigSubsection()
 		self.settings.name = ConfigText(fixed_size=False, visible_width=40)
@@ -58,7 +58,7 @@ class Project:
 		list.append('<DreamDVDBurnerProject>\n')
 		list.append('\t<settings ')
 		for key, val in self.settings.dict().iteritems():
-			list.append( key + '="' + str(val.getValue()) + '" ' )
+			list.append(key + '="' + str(val.getValue()) + '" ')
 		list.append('/>\n')
 		list.append('\t<titles>\n')
 		for title in self.titles:
@@ -74,11 +74,11 @@ class Project:
 					for audiotrack in val:
 						audiotracks.append('\t\t\t\t<audiotrack ')
 						for subkey, subval in audiotrack.dict().iteritems():
-							audiotracks.append( subkey + '="' + str(subval.getValue()) + '" ' )
+							audiotracks.append(subkey + '="' + str(subval.getValue()) + '" ')
 						audiotracks.append(' />\n')
 					audiotracks.append('\t\t\t</audiotracks>\n')
 				else:
-					list.append( key + '="' + str(val.getValue()) + '" ' )
+					list.append(key + '="' + str(val.getValue()) + '" ')
 			list.append('/>\n')
 			for line in audiotracks:
 				list.append(line)

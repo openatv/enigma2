@@ -16,7 +16,7 @@ to generate HTML."""
 			fonts = []
 		Source.__init__(self)
 		self.__list = list
-		self.onSelectionChanged = [ ]
+		self.onSelectionChanged = []
 		self.item_height = item_height
 		self.fonts = fonts
 		self.disable_callbacks = False

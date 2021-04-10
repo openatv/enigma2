@@ -35,7 +35,7 @@ class Element(object):
 	def __init__(self):
 		self.downstream_elements = CList()
 		self.master = None
-		self.sources = [ ]
+		self.sources = []
 		self.source = None
 		self.__suspended = True
 		self.cache = None
@@ -70,7 +70,7 @@ class Element(object):
 			# sources are owned by the Screen, so don't destroy them here.
 			self.destroy()
 		self.source = None
-		self.sources = [ ]
+		self.sources = []
 
 	def disconnectDownstream(self, downstream):
 		self.downstream_elements.remove(downstream)
@@ -82,7 +82,7 @@ class Element(object):
 
 	# default action: push downstream
 	def changed(self, *args, **kwargs):
-		self.cache = { }
+		self.cache = {}
 		self.downstream_elements.changed(*args, **kwargs)
 		self.cache = None
 

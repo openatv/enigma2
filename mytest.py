@@ -215,8 +215,8 @@ class Session:
 
 		self.current_dialog = None
 
-		self.dialog_stack = [ ]
-		self.summary_stack = [ ]
+		self.dialog_stack = []
+		self.summary_stack = []
 		self.summary = None
 
 		self.in_exec = False
@@ -576,12 +576,12 @@ def runScreenTest():
 			from Plugins.SystemPlugins.SoftwareManager.BackupRestore import RestoreScreen
 			session.open(RestoreScreen, runRestore=True)
 		else:
-			screensToRun = [ p.__call__ for p in plugins.getPlugins(PluginDescriptor.WHERE_WIZARD) ]
+			screensToRun = [p.__call__ for p in plugins.getPlugins(PluginDescriptor.WHERE_WIZARD)]
 			screensToRun += wizardManager.getWizards()
 	else:
 		if os.path.exists("/media/hdd/images/config/autorestore"):
 			os.system('rm -f /media/hdd/images/config/autorestore')
-		screensToRun = [ p.__call__ for p in plugins.getPlugins(PluginDescriptor.WHERE_WIZARD) ]
+		screensToRun = [p.__call__ for p in plugins.getPlugins(PluginDescriptor.WHERE_WIZARD)]
 		screensToRun += wizardManager.getWizards()
 	
 	screensToRun.append((100, InfoBar.InfoBar))
@@ -649,7 +649,7 @@ def runScreenTest():
 		configfile.save()
 
 	# kill showiframe if it is running (sh4 hack...)
-	if getMachineBuild() in ('spark' , 'spark7162'):
+	if getMachineBuild() in ('spark', 'spark7162'):
 		os.system("killall -9 showiframe")
 
 	runReactor()

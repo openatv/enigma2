@@ -73,7 +73,7 @@ class ServiceList(HTMLComponent, GUIComponent):
 		self.listMarginRight = 25 #scrollbar is fixed 20 + 5 Extra marge
 		self.listMarginLeft = 5
 
-		self.onSelectionChanged = [ ]
+		self.onSelectionChanged = []
 
 	def applySkin(self, desktop, parent):
 		def foregroundColorMarked(value):
@@ -130,19 +130,19 @@ class ServiceList(HTMLComponent, GUIComponent):
 		def serviceItemHeight(value):
 			self.ItemHeight = int(value)
 		def serviceNameFont(value):
-			font = parseFont(value, ((1,1),(1,1)) )
+			font = parseFont(value, ((1,1),(1,1)))
 			self.ServiceNameFontName = font.family
 			self.ServiceNameFontSize = font.pointSize
 		def serviceInfoFont(value):
-			font = parseFont(value, ((1,1),(1,1)) )
+			font = parseFont(value, ((1,1),(1,1)))
 			self.ServiceInfoFontName = font.family
 			self.ServiceInfoFontSize = font.pointSize
 		def serviceNumberFont(value):
-			font = parseFont(value, ((1,1),(1,1)) )
+			font = parseFont(value, ((1,1),(1,1)))
 			self.ServiceNumberFontName = font.family
 			self.ServiceNumberFontSize = font.pointSize
 		def progressInfoFont(value):
-			font = parseFont(value, ((1,1),(1,1)) )
+			font = parseFont(value, ((1,1),(1,1)))
 			self.progressInfoFontName = font.family
 			self.progressInfoFontSize = font.pointSize
 		def progressbarHeight(value):
@@ -326,7 +326,7 @@ class ServiceList(HTMLComponent, GUIComponent):
 	def getRootServices(self):
 		serviceHandler = eServiceCenter.getInstance()
 		list = serviceHandler.list(self.root)
-		dest = [ ]
+		dest = []
 		if list is not None:
 			while 1:
 				s = list.getNext()
@@ -379,7 +379,7 @@ class ServiceList(HTMLComponent, GUIComponent):
 		i = self.l
 		i.markedQueryStart()
 		ref = eServiceReference()
-		marked = [ ]
+		marked = []
 		while i.markedQueryNext(ref) == 0:
 			marked.append(ref.toString())
 			ref = eServiceReference()

@@ -96,20 +96,20 @@ class Setup(ConfigListScreen, Screen):
 	def __init__(self, session, setup, plugin=None, PluginLanguageDomain=None):
 		Screen.__init__(self, session)
 		# for the skin: first try a setup_<setupID>, then Setup
-		self.skinName = ["setup_" + setup, "Setup" ]
+		self.skinName = ["setup_" + setup, "Setup"]
 
 		self['footnote'] = Label()
 		self["HelpWindow"] = Pixmap()
 		self["HelpWindow"].hide()
 		self["VKeyIcon"] = Boolean(False)
 		self["status"] = StaticText()
-		self.onChangedEntry = [ ]
+		self.onChangedEntry = []
 		self.item = None
 		self.setup = setup
 		self.plugin = plugin
 		self.PluginLanguageDomain = PluginLanguageDomain
 		list = []
-		self.onNotifiers = [ ]
+		self.onNotifiers = []
 		self.refill(list)
 		ConfigListScreen.__init__(self, list, session=session, on_change=self.changedEntry)
 		self.createSetup()

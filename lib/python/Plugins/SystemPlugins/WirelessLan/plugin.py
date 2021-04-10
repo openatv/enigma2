@@ -294,7 +294,7 @@ class WlanScan(Screen):
 
 		if len(tmpList):
 			for entry in tmpList:
-				self.newAPList.append(self.buildEntryComponent( entry[0], entry[1], entry[2], entry[3], entry[4], entry[5] ))
+				self.newAPList.append(self.buildEntryComponent(entry[0], entry[1], entry[2], entry[3], entry[4], entry[5]))
 
 			currentListEntry = self["list"].getCurrent()
 			if currentListEntry is not None:
@@ -322,8 +322,8 @@ class WlanScan(Screen):
 			for ap in aps:
 				a = aps[ap]
 				if a['active']:
-					tmpList.append( (a['essid'], a['bssid']) )
-					compList.append( (a['essid'], a['bssid'], a['encrypted'], a['iface'], a['maxrate'], a['signal']) )
+					tmpList.append((a['essid'], a['bssid']))
+					compList.append((a['essid'], a['bssid'], a['encrypted'], a['iface'], a['maxrate'], a['signal']))
 
 			for entry in tmpList:
 				if entry[0] == "":
@@ -331,14 +331,14 @@ class WlanScan(Screen):
 						if compentry[1] == entry[1]:
 							compList.remove(compentry)
 			for entry in compList:
-				self.cleanList.append( ( entry[0], entry[1], entry[2], entry[3], entry[4], entry[5] ) )
+				self.cleanList.append((entry[0], entry[1], entry[2], entry[3], entry[4], entry[5]))
 				if not self.oldlist.has_key(entry[0]):
-					self.oldlist[entry[0]] = { 'data': entry }
+					self.oldlist[entry[0]] = {'data': entry}
 				else:
 					self.oldlist[entry[0]]['data'] = entry
 
 		for entry in self.cleanList:
-			self.APList.append(self.buildEntryComponent( entry[0], entry[1], entry[2], entry[3], entry[4], entry[5] ))
+			self.APList.append(self.buildEntryComponent(entry[0], entry[1], entry[2], entry[3], entry[4], entry[5]))
 
 		if refresh is False:
 			self['list'].setList(self.APList)
@@ -357,7 +357,7 @@ class WlanScan(Screen):
 	def buildWlanList(self):
 		self.WlanList = []
 		for entry in self['list'].list:
-			self.WlanList.append( (entry[0], entry[0]) )
+			self.WlanList.append((entry[0], entry[0]))
 
 	def getLength(self):
 		return self.listLength

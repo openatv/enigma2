@@ -79,7 +79,7 @@ class RecordingSettings(Screen,ConfigListScreen):
 		self["key_green"] = StaticText(_("Save"))
 		self["description"] = Label(_(""))
 
-		self.onChangedEntry = [ ]
+		self.onChangedEntry = []
 		self.setup = "recording"
 		list = []
 		ConfigListScreen.__init__(self, list, session=session, on_change=self.changedEntry)
@@ -111,7 +111,7 @@ class RecordingSettings(Screen,ConfigListScreen):
 			return False
 
 	def createSetup(self):
-		self.styles = [ ("<default>", _("<Default movie location>")), ("<current>", _("<Current movielist location>")), ("<timer>", _("<Last timer location>")) ]
+		self.styles = [("<default>", _("<Default movie location>")), ("<current>", _("<Current movielist location>")), ("<timer>", _("<Last timer location>"))]
 		styles_keys = [x[0] for x in self.styles]
 		tmp = config.movielist.videodirs.value
 		default = config.usage.default_path.value

@@ -59,7 +59,7 @@ def backupUserDB():
 					neededgroups.append(gname)
 
 				# ... add group's name after numeric gid and store his line in backup ...
-				newpwd = ":".join( ( name, passwd, uid, gid, gname, gecos, home, shell ) )
+				newpwd = ":".join((name, passwd, uid, gid, gname, gecos, home, shell))
 				tmppasswd.append(newpwd)
 
 	# Copy only needed groups into backup ...

@@ -79,7 +79,7 @@ class PositionerSetup(Screen):
 		else:
 			self.advanced = False
 
-		cur = { }
+		cur = {}
 		if not self.openFrontend():
 			self.oldref = session.nav.getCurrentlyPlayingServiceReference()
 			service = session.nav.getCurrentService()
@@ -104,12 +104,12 @@ class PositionerSetup(Screen):
 					if hasattr(self, 'raw_channel'):
 						del self.raw_channel
 
-		self.frontendStatus = { }
+		self.frontendStatus = {}
 		self.diseqc = Diseqc(self.frontend)
 		# True means we dont like that the normal sec stuff sends commands to the rotor!
 		self.tuner = Tuner(self.frontend, ignore_rotor=True)
 
-		tp = ( cur.get("frequency", 0) / 1000,
+		tp = (cur.get("frequency", 0) / 1000,
 			cur.get("symbol_rate", 0) / 1000,
 			cur.get("polarization", eDVBFrontendParametersSatellite.Polarisation_Horizontal),
 			cur.get("fec_inner", eDVBFrontendParametersSatellite.FEC_Auto),
@@ -289,7 +289,7 @@ class PositionerSetup(Screen):
 			self.turningspeedV = nim.turningspeedV.float
 		else:	# it is advanced
 			self.printMsg(_("Configuration mode: %s") % _("advanced"))
-			fe_data = { }
+			fe_data = {}
 			self.frontend.getFrontendData(fe_data)
 			self.frontend.getTransponderData(fe_data, True)
 			orb_pos = fe_data.get("orbital_position", None)
@@ -414,7 +414,7 @@ class PositionerSetup(Screen):
 			self.diseqccommand("limitOff")
 			self.statusMsg(_("Limits cancelled"), timeout=self.STATUS_MSG_TIMEOUT)
 		elif entry == "tune":
-			fe_data = { }
+			fe_data = {}
 			self.frontend.getFrontendData(fe_data)
 			self.frontend.getTransponderData(fe_data, True)
 			feparm = self.tuner.lastparm.getDVBS()
@@ -741,7 +741,7 @@ class PositionerSetup(Screen):
 
 		def optimise(readings):
 			xi = readings.keys()
-			yi = map(lambda (x, y) : x, readings.values())
+			yi = map(lambda (x, y): x, readings.values())
 			x0 = sum(map(mul, xi, yi)) / sum(yi)
 			xm = xi[yi.index(max(yi))]
 			return x0, xm
@@ -876,7 +876,7 @@ class PositionerSetup(Screen):
 
 		def optimise(readings):
 			xi = readings.keys()
-			yi = map(lambda (x, y) : x, readings.values())
+			yi = map(lambda (x, y): x, readings.values())
 			x0 = int(round(sum(map(mul, xi, yi)) / sum(yi)))
 			xm = xi[yi.index(max(yi))]
 			return x0, xm
@@ -1091,8 +1091,8 @@ class TunerScreen(ConfigListScreen, Screen):
 		self.tuning = ConfigSubsection()
 		self.tuning.type = ConfigSelection(
 				default="manual_transponder",
-				choices={ "manual_transponder" : _("Manual transponder"),
-							"predefined_transponder" : _("Predefined transponder") } )
+				choices={"manual_transponder": _("Manual transponder"),
+							"predefined_transponder": _("Predefined transponder")})
 		self.tuning.sat = ConfigSatlist(list=satlist)
 		if orb_pos is not None:
 			for sat in satlist:
@@ -1112,7 +1112,7 @@ class TunerScreen(ConfigListScreen, Screen):
 			"modulation": eDVBFrontendParametersSatellite.Modulation_QPSK,
 			"pls_mode": eDVBFrontendParametersSatellite.PLS_Gold,
 			"pls_code": eDVBFrontendParametersSatellite.PLS_Default_Gold_Code,
-			"t2mi_plp_id":eDVBFrontendParametersSatellite.No_T2MI_PLP_Id }
+			"t2mi_plp_id":eDVBFrontendParametersSatellite.No_T2MI_PLP_Id}
 		if frontendData is not None:
 			ttype = frontendData.get("tuner_type", "UNKNOWN")
 			defaultSat["system"] = frontendData.get("system", eDVBFrontendParametersSatellite.System_DVB_S)
@@ -1325,7 +1325,7 @@ class RotorNimSelection(Screen):
 
 		self["actions"] = ActionMap(["OkCancelActions"],
 		{
-			"ok": self.okbuttonClick ,
+			"ok": self.okbuttonClick,
 			"cancel": self.close
 		}, -1)
 

@@ -48,7 +48,7 @@ def menu(menuid, **kwargs):
 		return [(_("Setup - %s") % cur_skin, main, "atilehd_setup", None)]
 	else:
 		pass
-	return [ ]
+	return []
 
 def main(session, **kwargs):
 	print "[%s]: Config ..." % cur_skin
@@ -696,7 +696,7 @@ class AtileHDScreens(Screen):
 				else:
 					if path.islink(dir_path + "/" + f):
 						remove(dir_path + "/" + f)
-		menu_list = [ ]
+		menu_list = []
 		for entry in f_list:
 			menu_list.append((entry[0], entry[1], entry[2]))
 		self["menu"].updateList(menu_list)

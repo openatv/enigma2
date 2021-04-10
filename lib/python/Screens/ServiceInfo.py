@@ -61,7 +61,7 @@ class ServiceInfoList(HTMLComponent, GUIComponent):
 
 	def applySkin(self, desktop, screen):
 		if self.skinAttributes is not None:
-			attribs = [ ]
+			attribs = []
 			for (attrib, value) in self.skinAttributes:
 				if attrib == "font":
 					font = skin.parseFont(value, ((1,1),(1,1)))
@@ -127,7 +127,7 @@ class ServiceInfo(Screen):
 				self.info = None
 				self.feinfo = None
 
-		tlist = [ ]
+		tlist = []
 
 		self["infolist"] = ServiceInfoList(tlist)
 		self.onShown.append(self.information)
@@ -154,7 +154,7 @@ class ServiceInfo(Screen):
 					resolution += ("i", "p", "-")[self.info.getInfo(iServiceInformation.sProgressive)]
 					resolution += str((self.info.getInfo(iServiceInformation.sFrameRate) + 500) / 1000)
 					aspect = self.getServiceInfoValue(iServiceInformation.sAspect)
-					aspect = aspect in ( 1, 2, 5, 6, 9, 0xA, 0xD, 0xE ) and "4:3" or "16:9"
+					aspect = aspect in (1, 2, 5, 6, 9, 0xA, 0xD, 0xE) and "4:3" or "16:9"
 					resolution += " - ["+aspect+"]"
 					gammas = ("SDR", "HDR", "HDR10", "HLG", "")
 					if self.info.getInfo(iServiceInformation.sGamma) < len(gammas):
@@ -165,7 +165,7 @@ class ServiceInfo(Screen):
 				videomode = f.read()[:-1].replace('\n','')
 				f.close()
 
-			Labels = ( (_("Name"), name, TYPE_TEXT),
+			Labels = ((_("Name"), name, TYPE_TEXT),
 					(_("Provider"), self.getServiceInfoValue(iServiceInformation.sProvider), TYPE_TEXT),
 					(_("Videoformat"), aspect, TYPE_TEXT),
 					(_("Videomode"), videomode, TYPE_TEXT),
@@ -179,7 +179,7 @@ class ServiceInfo(Screen):
 		else:
 			if self.transponder_info:
 				tp_info = ConvertToHumanReadable(self.transponder_info)
-				conv = { "tuner_type" 				: _("Transponder type"),
+				conv = {"tuner_type" 				: _("Transponder type"),
 						 "system"					: _("System"),
 						 "modulation"				: _("Modulation"),
 						 "orbital_position"			: _("Orbital position"),
@@ -207,7 +207,7 @@ class ServiceInfo(Screen):
 
 	def pids(self):
 		if self.type == TYPE_SERVICE_INFO:
-			Labels = ( (_("Video PID"), self.getServiceInfoValue(iServiceInformation.sVideoPID), TYPE_VALUE_HEX_DEC, 4),
+			Labels = ((_("Video PID"), self.getServiceInfoValue(iServiceInformation.sVideoPID), TYPE_VALUE_HEX_DEC, 4),
 					   (_("Audio PID"), self.getServiceInfoValue(iServiceInformation.sAudioPID), TYPE_VALUE_HEX_DEC, 4),
 					   (_("PCR PID"), self.getServiceInfoValue(iServiceInformation.sPCRPID), TYPE_VALUE_HEX_DEC, 4),
 					   (_("PMT PID"), self.getServiceInfoValue(iServiceInformation.sPMTPID), TYPE_VALUE_HEX_DEC, 4),
@@ -282,10 +282,10 @@ class ServiceInfo(Screen):
 						(_("Modulation"), frontendData["modulation"], TYPE_TEXT),
 						(_("Frequency"), frontendData["frequency"], TYPE_VALUE_DEC),
 						(_("Inversion"), frontendData["inversion"], TYPE_TEXT))
-		return [ ]
+		return []
 
 	def fillList(self, Labels):
-		tlist = [ ]
+		tlist = []
 
 		for item in Labels:
 			if item[1] is None:

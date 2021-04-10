@@ -23,7 +23,7 @@ def parsedict(attrs):
 	if not attrs:
 		return []
 	d = attrs.split(';')
-	r = { }
+	r = {}
 	for x in d:
 		(key, val) = x.split(':')
 		r[key] = val

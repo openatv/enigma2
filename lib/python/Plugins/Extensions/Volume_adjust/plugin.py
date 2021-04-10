@@ -90,7 +90,7 @@ class Volume_adjust(Screen):
 
 	def greenPressed(self):
 		# select service (shows the channel list)
-		self.session.openWithCallback( self.finishedChannelSelection, mySmallChannelSelection, None)
+		self.session.openWithCallback(self.finishedChannelSelection, mySmallChannelSelection, None)
 
 	def yellowPressed(self):
 		self.okPressed()
@@ -101,10 +101,10 @@ class Volume_adjust(Screen):
 			service = self.service.toCompareString()
 			service_name = ServiceReference(self.service).getServiceName().replace('\xc2\x87', '').replace('\xc2\x86', '')
 			service_name = service_name + '\t\t\t0'
-			self.servicelist.append( (service_name , ConfigNothing(), 0, service))
+			self.servicelist.append((service_name, ConfigNothing(), 0, service))
 			self.read_volume.append('0')
 			offset = 0
-			self.session.openWithCallback( self.VolumeChanged, Change_volume, service_name, offset)
+			self.session.openWithCallback(self.VolumeChanged, Change_volume, service_name, offset)
 
 	def config_menu(self):
 		self.session.open(Volume_Config)
@@ -117,7 +117,7 @@ class Volume_adjust(Screen):
 			offset = int(self.read_volume[cur])
 			tmp = self.servicelist[cur]
 			service_name = tmp[0][0:-3].strip()
-			self.session.openWithCallback( self.Change_vol_now, Change_volume, service_name, offset)
+			self.session.openWithCallback(self.Change_vol_now, Change_volume, service_name, offset)
 
 	def cancel(self):
 		self.saveXML()
@@ -145,10 +145,10 @@ class Volume_adjust(Screen):
 					if t == k:
 						global offset
 						offset = 0
-						self.session.openWithCallback( self.VolumeChanged, Change_volume, service_name, offset)
-						self.read_volume.append (str(offset))
+						self.session.openWithCallback(self.VolumeChanged, Change_volume, service_name, offset)
+						self.read_volume.append(str(offset))
 					service_name = service_name + self.Tabs(service_name) + self.read_volume[t]
-					self.servicelist.append( (service_name , ConfigNothing(), 0, service_ref.ref.toString()))
+					self.servicelist.append((service_name, ConfigNothing(), 0, service_ref.ref.toString()))
 					self["ServiceList"].l.setList(self.servicelist)
 
 	def VolumeChanged(self, *args):
@@ -159,7 +159,7 @@ class Volume_adjust(Screen):
 		tmp0 = tmp[0][0:-3].strip()
 		self.read_volume[t-1] = str(offset)
 		service_name = tmp0 + self.Tabs(tmp0) + str(offset)
-		self.servicelist[t-1] = ( (service_name , ConfigNothing(), 0, tmp[3]))
+		self.servicelist[t-1] = ((service_name, ConfigNothing(), 0, tmp[3]))
 		self["ServiceList"].l.setList(self.servicelist)
 
 	def Change_vol_now(self, *args):
@@ -170,7 +170,7 @@ class Volume_adjust(Screen):
 		tmp0 = tmp[0][0:-3].strip()
 		self.read_volume[t] = str(offset)
 		service_name = tmp0 + self.Tabs(tmp0) + str(offset)
-		self.servicelist[t] = ( (service_name , ConfigNothing(), 0, tmp[3]))
+		self.servicelist[t] = ((service_name, ConfigNothing(), 0, tmp[3]))
 		self["ServiceList"].l.setList(self.servicelist)
 
 	def Tabs(self, name):
@@ -229,8 +229,8 @@ class Volume_adjust(Screen):
 					read_service_name = service.get("name").encode("UTF-8")
 					read_service_ref = service.get("ref").encode("UTF-8")
 					read_service_volume = service.get("volume").encode("UTF-8")
-					self.read_services.append (read_service_ref)
-					self.read_volume.append (read_service_volume)
+					self.read_services.append(read_service_ref)
+					self.read_volume.append(read_service_volume)
 		except:
 			print "[Volume Adjust] error parsing xml..."
 
@@ -427,7 +427,7 @@ class Volume:
 		# autostarting instance, comes active when info is updated (zap)
 		self.session = session
 		self.service = None
-		self.onClose = [ ]
+		self.onClose = []
 		self.read_services=[]
 		self.read_volume=[]
 		self.__event_tracker = ServiceEventTracker(screen=self,eventmap={
@@ -454,8 +454,8 @@ class Volume:
 					read_service_name = service.get("name").encode("UTF-8")
 					read_service_ref = service.get("ref").encode("UTF-8")
 					read_service_volume = service.get("volume").encode("UTF-8")
-					self.read_services.append (read_service_ref)
-					self.read_volume.append (read_service_volume)
+					self.read_services.append(read_service_ref)
+					self.read_volume.append(read_service_volume)
 		except:
 			print "[Volume Adjust] error parsing xml..."
 		for i in self.read_services:
@@ -565,9 +565,9 @@ def main(session, **kwargs):
 def menu(menuid, **kwargs):
 	if menuid == "audio_menu":
 		return [(_("Volume Adjust"), main, "Volume_Adjust", 5)]
-	return [ ]
+	return []
 
 def Plugins(**kwargs):
-	return [PluginDescriptor( where=PluginDescriptor.WHERE_SESSIONSTART, fnc=sessionstart ),
-			PluginDescriptor( name="Volume Adjust", description=_("select channels to add a offset to the Volume"), where=PluginDescriptor.WHERE_MENU, fnc=menu )]
+	return [PluginDescriptor(where=PluginDescriptor.WHERE_SESSIONSTART, fnc=sessionstart),
+			PluginDescriptor(name="Volume Adjust", description=_("select channels to add a offset to the Volume"), where=PluginDescriptor.WHERE_MENU, fnc=menu)]
 
