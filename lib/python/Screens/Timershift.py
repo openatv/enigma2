@@ -15,7 +15,7 @@ from Components.SystemInfo import SystemInfo
 
 class SetupSummary(Screen):
 	def __init__(self, session, parent):
-		Screen.__init__(self, session, parent = parent)
+		Screen.__init__(self, session, parent=parent)
 		self["SetupTitle"] = StaticText(_(parent.setup_title))
 		self["SetupEntry"] = StaticText("")
 		self["SetupValue"] = StaticText("")
@@ -76,7 +76,7 @@ class TimeshiftSettings(Screen,ConfigListScreen):
 		self.onChangedEntry = [ ]
 		self.setup = "timeshift"
 		list = []
-		ConfigListScreen.__init__(self, list, session = session, on_change = self.changedEntry)
+		ConfigListScreen.__init__(self, list, session=session, on_change=self.changedEntry)
 		self.createSetup()
 
 		self["setupActions"] = ActionMap(["SetupActions", "ColorActions", "MenuActions"],
@@ -136,7 +136,7 @@ class TimeshiftSettings(Screen,ConfigListScreen):
 					self.session.open(
 						MessageBox,
 						_("The directory %s is not writable.\nMake sure you select a writable directory instead.")%dir,
-						type = MessageBox.TYPE_ERROR
+						type=MessageBox.TYPE_ERROR
 						)
 					return False
 			else:
@@ -145,7 +145,7 @@ class TimeshiftSettings(Screen,ConfigListScreen):
 				self.session.open(
 					MessageBox,
 					_("The directory %s is not a EXT2, EXT3, EXT4, NFS or CIFS partition.\nMake sure you select a valid partition type.")%dir,
-					type = MessageBox.TYPE_ERROR
+					type=MessageBox.TYPE_ERROR
 					)
 				return False
 		else:
@@ -154,7 +154,7 @@ class TimeshiftSettings(Screen,ConfigListScreen):
 			self.session.open(
 				MessageBox,
 				_("The directory %s is not a EXT2, EXT3, EXT4, NFS or CIFS partition.\nMake sure you select a valid partition type.")%dir,
-				type = MessageBox.TYPE_ERROR
+				type=MessageBox.TYPE_ERROR
 				)
 			return False
 
@@ -170,8 +170,8 @@ class TimeshiftSettings(Screen,ConfigListScreen):
 			cooltmp = cooltmp[:]
 			cooltmp.append(cooldefault)
 # 		print "TimeshiftPath: ", default, tmp
-		self.timeshift_dirname = ConfigSelection(default = default, choices = tmp)
-		self.autorecord_dirname = ConfigSelection(default = cooldefault, choices = cooltmp)
+		self.timeshift_dirname = ConfigSelection(default=default, choices=tmp)
+		self.autorecord_dirname = ConfigSelection(default=cooldefault, choices=cooltmp)
 		self.timeshift_dirname.addNotifier(self.checkReadWriteDir, initial_call=False, immediate_feedback=False)
 		self.autorecord_dirname.addNotifier(self.checkReadWriteDir, initial_call=False, immediate_feedback=False)
 		list = []
@@ -244,13 +244,13 @@ class TimeshiftSettings(Screen,ConfigListScreen):
 					self.session.open(
 						MessageBox,
 						_("The directory %s is not a EXT2, EXT3, EXT4, NFS or CIFS partition.\nMake sure you select a valid partition type.")%res,
-						type = MessageBox.TYPE_ERROR
+						type=MessageBox.TYPE_ERROR
 						)
 			else:
 				self.session.open(
 					MessageBox,
 					_("The directory %s is not a EXT2, EXT3, EXT4, NFS or CIFS partition.\nMake sure you select a valid partition type.")%res,
-					type = MessageBox.TYPE_ERROR
+					type=MessageBox.TYPE_ERROR
 					)
 
 	def saveAll(self):
@@ -283,7 +283,7 @@ class TimeshiftSettings(Screen,ConfigListScreen):
 					self.session.open(
 						MessageBox,
 						_("The directory %s is not a EXT2, EXT3, EXT4, NFS or CIFS partition.\nMake sure you select a valid partition type.")%config.usage.timeshift_path.value,
-						type = MessageBox.TYPE_ERROR
+						type=MessageBox.TYPE_ERROR
 						)
 				else:
 					config.timeshift.startdelay.setValue(0)
@@ -294,7 +294,7 @@ class TimeshiftSettings(Screen,ConfigListScreen):
 				self.session.open(
 					MessageBox,
 					_("The directory %s is not a EXT2, EXT3, EXT4, NFS or CIFS partition.\nMake sure you select a valid partition type.")%config.usage.timeshift_path.value,
-					type = MessageBox.TYPE_ERROR
+					type=MessageBox.TYPE_ERROR
 					)
 			else:
 				config.timeshift.startdelay.setValue(0)
@@ -310,7 +310,7 @@ class TimeshiftSettings(Screen,ConfigListScreen):
 
 	def keyCancel(self):
 		if self["config"].isChanged():
-			self.session.openWithCallback(self.cancelConfirm, MessageBox, _("Really close without saving settings?"), default = False)
+			self.session.openWithCallback(self.cancelConfirm, MessageBox, _("Really close without saving settings?"), default=False)
 		else:
 			self.close()
 

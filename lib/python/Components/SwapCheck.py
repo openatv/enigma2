@@ -71,7 +71,7 @@ class SwapCheck:
 		print "[SwapCheck] Creating Swapfile"
 		self.Console.ePopen("dd if=/dev/zero of=" + swapdevice + " bs=1024 count=16440", self.MemCheck3)
 
-	def MemCheck3(self, result, retval, extra_args = None):
+	def MemCheck3(self, result, retval, extra_args=None):
 		if retval == 0:
 			self.Console.ePopen("mkswap " + swapdevice, self.MemCheck4)
 		else:
@@ -84,11 +84,11 @@ class SwapCheck:
 				else:
 					self.callback()
 
-	def MemCheck4(self, result, retval, extra_args = None):
+	def MemCheck4(self, result, retval, extra_args=None):
 		if retval == 0:
 			self.Console.ePopen("swapon " + swapdevice, self.MemCheck5)
 
-	def MemCheck5(self, result, retval, extra_args = None):
+	def MemCheck5(self, result, retval, extra_args=None):
 		if self.extra_args:
 			self.callback(self.extra_args)
 		else:

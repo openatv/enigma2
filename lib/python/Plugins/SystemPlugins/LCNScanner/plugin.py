@@ -311,7 +311,7 @@ class LCNBuildHelper():
 			
 		config.lcn = ConfigSubsection()
 		config.lcn.enabled = ConfigYesNo(True)
-		config.lcn.bouquet = ConfigSelection(default = "userbouquet.LastScanned.tv", choices = self.bouquetlist)
+		config.lcn.bouquet = ConfigSelection(default="userbouquet.LastScanned.tv", choices=self.bouquetlist)
 		config.lcn.rules = ConfigSelection(self.rulelist)
 
 	def readBouquetsTvList(self, pwd):
@@ -367,7 +367,7 @@ class LCNBuildHelper():
 		if config.lcn.enabled.value == True:
 			self.buildlcn(True)
 		
-	def buildlcn(self, suppressmessages = False):
+	def buildlcn(self, suppressmessages=False):
 		rule = self.rulelist[0][0]
 		for x in self.rulelist:
 			if x[0] == config.lcn.rules.value:
@@ -419,7 +419,7 @@ class LCNScannerPlugin(Screen, ConfigListScreen, LCNBuildHelper):
 			getConfigListEntry(_("LCN rules:"), config.lcn.rules),
 		]
 
-		ConfigListScreen.__init__(self, self.list, session = session)
+		ConfigListScreen.__init__(self, self.list, session=session)
 		self["key_red"] = Button(_("Rebuild"))
 		self["key_green"] = Button(_("Exit"))
 		self["actions"] = ActionMap(["OkCancelActions", "ColorActions"],
@@ -438,7 +438,7 @@ class LCNScannerPlugin(Screen, ConfigListScreen, LCNBuildHelper):
 		
 	def ok(self):
 		if config.lcn.enabled.value == True:
-			self.session.openWithCallback(self.confirm, MessageBox, _("Rebuild LCN bouquet now?"), MessageBox.TYPE_YESNO, default = True)
+			self.session.openWithCallback(self.confirm, MessageBox, _("Rebuild LCN bouquet now?"), MessageBox.TYPE_YESNO, default=True)
 		else:
 			self.keySave()
 			configfile.save()
@@ -453,5 +453,5 @@ def LCNScannerSetup(menuid, **kwargs):
 		return []
 
 def Plugins(**kwargs):
-	return PluginDescriptor(name="LCN", description=_("LCN plugin for DVB-T/T2 services"), where = PluginDescriptor.WHERE_MENU, fnc=LCNScannerSetup)
+	return PluginDescriptor(name="LCN", description=_("LCN plugin for DVB-T/T2 services"), where=PluginDescriptor.WHERE_MENU, fnc=LCNScannerSetup)
 	#return PluginDescriptor(name="LCN", description=_("LCN plugin for DVB-T/T2 services"), where = PluginDescriptor.WHERE_PLUGINMENU, fnc=LCNScannerMain)

@@ -59,7 +59,7 @@ def channel2frequency(channel, nim):
 			return (474000 + 8000*(channel-21))*1000
 	return 474000000
 
-def ConvertToHumanReadable(tp, tunertype = None):
+def ConvertToHumanReadable(tp, tunertype=None):
 	ret = { }
 	if tunertype is None:
 		tunertype = tp.get("tuner_type", "None")

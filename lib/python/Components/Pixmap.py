@@ -15,7 +15,7 @@ class Pixmap(GUIComponent):
 		return s.width(), s.height()
 
 class PixmapConditional(ConditionalWidget, Pixmap):
-	def __init__(self, withTimer = True):
+	def __init__(self, withTimer=True):
 		ConditionalWidget.__init__(self)
 		Pixmap.__init__(self)
 
@@ -34,7 +34,7 @@ class MovingPixmap(Pixmap):
 		self.moveTimer = eTimer()
 		self.moveTimer.callback.append(self.doMove)
 
-	def clearPath(self, repeated = False):
+	def clearPath(self, repeated=False):
 		if self.moving:
 			self.moving = False
 			self.moveTimer.stop()
@@ -43,10 +43,10 @@ class MovingPixmap(Pixmap):
 		self.currDest = 0
 		self.repeated = repeated
 
-	def addMovePoint(self, x, y, time = 20):
+	def addMovePoint(self, x, y, time=20):
 		self.path.append((x, y, time))
 
-	def moveTo(self, x, y, time = 20):
+	def moveTo(self, x, y, time=20):
 		self.clearPath()
 		self.addMovePoint(x, y, time)
 

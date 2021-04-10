@@ -18,7 +18,7 @@ class CanvasSource(Source):
 	def fill(self, x, y, width, height, color):
 		self.drawlist[1].append((1, x, y, width, height, color))
 
-	def writeText(self, x, y, width, height, fg, bg, font, text, flags = 0):
+	def writeText(self, x, y, width, height, fg, bg, font, text, flags=0):
 		self.drawlist[1].append((2, x, y, width, height, fg, bg, font, text, flags))
 
 	def line(self, x0, y0, x1, y1, color):

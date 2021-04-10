@@ -97,7 +97,7 @@ class ProjectSettings(Screen,ConfigListScreen):
 			<widget source="info" render="Label" position="10,360" size="550,80" font="Regular;18" halign="center" valign="center" />
 		</screen>"""
 
-	def __init__(self, session, project = None):
+	def __init__(self, session, project=None):
 		Screen.__init__(self, session)
 		self.project = project
 		
@@ -217,10 +217,10 @@ class ProjectSettings(Screen,ConfigListScreen):
 			ret = self.project.saveProject(resolveFilename(SCOPE_PLUGINS)+"Extensions/DVDBurn/")
 			if ret.startswith:
 				text = _("Save")+' '+_('OK')+':\n'+ret
-				self.session.open(MessageBox,text,type = MessageBox.TYPE_INFO)
+				self.session.open(MessageBox,text,type=MessageBox.TYPE_INFO)
 			else:
 				text = _("Save")+' '+_('Error')
-				self.session.open(MessageBox,text,type = MessageBox.TYPE_ERROR)
+				self.session.open(MessageBox,text,type=MessageBox.TYPE_ERROR)
 
 	def FileBrowserClosed(self, path, scope, configRef):
 		if scope == "menutemplate":
@@ -234,7 +234,7 @@ class ProjectSettings(Screen,ConfigListScreen):
 			self.path = path
 			print "len(self.titles)", len(self.project.titles)
 			if len(self.project.titles):
-				self.session.openWithCallback(self.askLoadCB, MessageBox,text = _("Your current collection will get lost!") + "\n" + _("Do you want to restore your settings?"), type = MessageBox.TYPE_YESNO)
+				self.session.openWithCallback(self.askLoadCB, MessageBox,text=_("Your current collection will get lost!") + "\n" + _("Do you want to restore your settings?"), type=MessageBox.TYPE_YESNO)
 			else:
 				self.askLoadCB(True)
 		elif scope:

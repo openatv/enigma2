@@ -20,7 +20,7 @@ class SkinSelector(Screen):
 	skinlist = []
 	root = eEnv.resolve("${datadir}/enigma2/")
 
-	def __init__(self, session, args = None):
+	def __init__(self, session, args=None):
 
 		Screen.__init__(self, session)
 
@@ -131,4 +131,4 @@ def SkinSelSetup(menuid, **kwargs):
 		return []
 
 def Plugins(**kwargs):
-	return PluginDescriptor(name=_("Skinselector"), description=_("Select Your Skin"), where = PluginDescriptor.WHERE_MENU, needsRestart = False, fnc=SkinSelSetup)
+	return PluginDescriptor(name=_("Skinselector"), description=_("Select Your Skin"), where=PluginDescriptor.WHERE_MENU, needsRestart=False, fnc=SkinSelSetup)

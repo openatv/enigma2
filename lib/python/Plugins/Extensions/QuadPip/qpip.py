@@ -36,7 +36,7 @@ from Components.Slider import Slider
 from Components.SystemInfo import SystemInfo
 
 config.plugins.quadpip = ConfigSubsection()
-config.plugins.quadpip.lastchannel = ConfigNumber(default = 1)
+config.plugins.quadpip.lastchannel = ConfigNumber(default=1)
 
 ENABLE_QPIP_PROCPATH = "/proc/stb/video/decodermode"
 
@@ -238,7 +238,7 @@ class CreateQuadPipChannelEntry(ChannelSelectionBase):
 			<widget name="description" position="360,390" size="310,140" font="Regular;20" halign="left" transparent="1" />
 		</screen>
 		"""
-	def __init__(self, session, defaultEntryName, channel = None):
+	def __init__(self, session, defaultEntryName, channel=None):
 		ChannelSelectionBase.__init__(self, session)
 
 		self["actions"] = ActionMap(["OkCancelActions", "DirectionActions", "QuadPipChannelEditActions"],
@@ -281,7 +281,7 @@ class CreateQuadPipChannelEntry(ChannelSelectionBase):
 		self["textChannels"].setText("%s :" % self.newChannel.getName())
 
 	def editEntryName(self):
-		self.session.openWithCallback(self.editEntryNameCB, VirtualKeyBoard, title = (_("Input channel name.")), text = self.newChannel.getName())
+		self.session.openWithCallback(self.editEntryNameCB, VirtualKeyBoard, title=(_("Input channel name.")), text=self.newChannel.getName())
 
 	def editEntryNameCB(self, newName):
 		if newName:

@@ -59,7 +59,7 @@ class DefaultServicesScannerPlugin(ScanSetup):
 			<widget name="introduction" position="10,365" size="500,25" font="Regular;20" halign="center" />
 		</screen>"""
 
-	def __init__(self, session, args = None):
+	def __init__(self, session, args=None):
 		ScanSetup.__init__(self, session)
 		# backup lamedb
 		confdir = resolveFilename(SCOPE_CONFIG)
@@ -81,7 +81,7 @@ class DefaultServicesScannerPlugin(ScanSetup):
 		print "runScan"
 		self.keyGo()
 
-	def startScan(self, tlist, flags, feid, networkid = 0):
+	def startScan(self, tlist, flags, feid, networkid=0):
 		print "startScan"
 		if len(tlist):
 			# flags |= eComponentScan.scanSearchBAT
@@ -89,7 +89,7 @@ class DefaultServicesScannerPlugin(ScanSetup):
 		else:
 			self.session.openWithCallback(self.scanFinished, MessageBox, _("Nothing to scan!\nPlease setup your tuner settings before you start a service scan."), MessageBox.TYPE_ERROR)
 
-	def scanFinished(self, value = None):
+	def scanFinished(self, value=None):
 		print "finished"
 		print "self.scanIndex:", self.scanIndex
 		db = eDVBDB.getInstance()
@@ -134,4 +134,4 @@ def DefaultServicesScannerMain(session, **kwargs):
 	session.open(DefaultServicesScannerPlugin)
 
 def Plugins(**kwargs):
-	return PluginDescriptor(name=_("Default Services Scanner"), description=_("Scans default lamedbs sorted by satellite with a connected dish positioner"), where = PluginDescriptor.WHERE_PLUGINMENU, needsRestart = False, fnc=DefaultServicesScannerMain)
+	return PluginDescriptor(name=_("Default Services Scanner"), description=_("Scans default lamedbs sorted by satellite with a connected dish positioner"), where=PluginDescriptor.WHERE_PLUGINMENU, needsRestart=False, fnc=DefaultServicesScannerMain)

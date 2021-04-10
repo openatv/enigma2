@@ -54,16 +54,15 @@ def filescan(**kwargs):
 			return fileExists(file.path)
 
 	return [
-		LocalScanner(mimetypes = ["video/x-dvd","video/x-dvd-iso"],
-			paths_to_scan =
-				[
-					ScanPath(path = "video_ts", with_subdirs = False),
-					ScanPath(path = "VIDEO_TS", with_subdirs = False),
-					ScanPath(path = "", with_subdirs = False),
+		LocalScanner(mimetypes=["video/x-dvd","video/x-dvd-iso"],
+			paths_to_scan=[
+					ScanPath(path="video_ts", with_subdirs=False),
+					ScanPath(path="VIDEO_TS", with_subdirs=False),
+					ScanPath(path="", with_subdirs=False),
 				],
-			name = "DVD",
-			description = _("Play DVD"),
-			openfnc = filescan_open,
+			name="DVD",
+			description=_("Play DVD"),
+			openfnc=filescan_open,
 		)]
 
 def onPartitionChange(action, partition):
@@ -95,5 +94,5 @@ def menu(menuid, **kwargs):
 	return []
 
 def Plugins(**kwargs):
-	return [PluginDescriptor(where = PluginDescriptor.WHERE_FILESCAN, needsRestart = False, fnc = filescan),
-		PluginDescriptor(name = _("DVDPlayer"), description = _("Play DVDs"), where = PluginDescriptor.WHERE_MENU, needsRestart = False, fnc = menu)]
+	return [PluginDescriptor(where=PluginDescriptor.WHERE_FILESCAN, needsRestart=False, fnc=filescan),
+		PluginDescriptor(name=_("DVDPlayer"), description=_("Play DVDs"), where=PluginDescriptor.WHERE_MENU, needsRestart=False, fnc=menu)]

@@ -44,9 +44,9 @@ class Tuner:
 			self.frontend.tune(feparm)
 
 	def tuneTerr(self, frequency,
-		inversion=2, bandwidth = 7000000, fechigh = 6, feclow = 6,
-		modulation = 2, transmission = 2, guard = 4,
-		hierarchy = 4, system = 0, plp_id = 0):
+		inversion=2, bandwidth=7000000, fechigh=6, feclow=6,
+		modulation=2, transmission=2, guard=4,
+		hierarchy=4, system=0, plp_id=0):
 		if self.frontend:
 			print "[TuneTest] tuning to transponder with data", [frequency, inversion, bandwidth, fechigh, feclow, modulation, transmission, guard, hierarchy, system, plp_id]
 			parm = eDVBFrontendParametersTerrestrial()
@@ -121,7 +121,7 @@ class Tuner:
 # 2) call run(<checkPIDs = True>)
 # 3) finishedChecking() is called, when the run is finished
 class TuneTest:
-	def __init__(self, feid, stopOnSuccess = -1, stopOnError = -1):
+	def __init__(self, feid, stopOnSuccess=-1, stopOnError=-1):
 		self.stopOnSuccess = stopOnSuccess
 		self.stopOnError = stopOnError
 		self.feid = feid
@@ -279,7 +279,7 @@ class TuneTest:
 	INTERNAL_PID_STATUS_SUCCESSFUL = 2
 	INTERNAL_PID_STATUS_FAILED = 3
 
-	def run(self, checkPIDs = False):
+	def run(self, checkPIDs=False):
 		self.checkPIDs = checkPIDs
 		self.pidStatus = self.INTERNAL_PID_STATUS_NOOP
 		self.failedTune = []

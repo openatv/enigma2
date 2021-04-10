@@ -41,7 +41,7 @@ class Satfinder(ScanSetup, ServiceScan):
 		ScanSetup.__init__(self, session)
 		self.setTitle(_("Signal Finder"))
 		self["introduction"].setText(_("Press OK to scan"))
-		self["Frontend"] = FrontendStatus(frontend_source = lambda : self.frontend, update_interval = 100)
+		self["Frontend"] = FrontendStatus(frontend_source=lambda : self.frontend, update_interval=100)
 
 		self["actions"] = ActionMap(["SetupActions", "ColorActions"],
 		{
@@ -237,7 +237,7 @@ class Satfinder(ScanSetup, ServiceScan):
 			):
 			if x is not None:
 				x.clearNotifiers()
-				x.addNotifier(self.TriggeredByConfigElement, initial_call = False)
+				x.addNotifier(self.TriggeredByConfigElement, initial_call=False)
 
 	def TriggeredByConfigElement(self, configElement):
 		self.retune()
@@ -487,6 +487,6 @@ def SatfinderStart(menuid, **kwargs):
 
 def Plugins(**kwargs):
 	if nimmanager.hasNimType("DVB-S") or nimmanager.hasNimType("DVB-T") or nimmanager.hasNimType("DVB-C") or nimmanager.hasNimType("ATSC"):
-		return PluginDescriptor(name=_("Signal Finder"), description=_("Helps setting up your signal"), where = PluginDescriptor.WHERE_MENU, needsRestart = False, fnc=SatfinderStart)
+		return PluginDescriptor(name=_("Signal Finder"), description=_("Helps setting up your signal"), where=PluginDescriptor.WHERE_MENU, needsRestart=False, fnc=SatfinderStart)
 	else:
 		return []

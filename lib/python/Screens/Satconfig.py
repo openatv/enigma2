@@ -63,7 +63,7 @@ class TunerSetup(Screen, ConfigListScreen):
 		self.onChangedEntry = [ ]
 
 		self.list = [ ]
-		ConfigListScreen.__init__(self, self.list, session = session, on_change = self.changedEntry)
+		ConfigListScreen.__init__(self, self.list, session=session, on_change=self.changedEntry)
 
 		from Components.ActionMap import ActionMap
 		self["actions"] = ActionMap(["SetupActions", "MenuActions", "ColorActions"],
@@ -199,9 +199,9 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 				choices = { "nothing": _("not configured"),
 						"advanced": _("Advanced")}
 			if self.nim.isMultiType():
-				self.nimConfig.dvbs.configMode.setChoices(choices, default = "nothing")
+				self.nimConfig.dvbs.configMode.setChoices(choices, default="nothing")
 			else:
-				self.nimConfig.dvbs.configMode.setChoices(choices, default = "simple")
+				self.nimConfig.dvbs.configMode.setChoices(choices, default="simple")
 
 	def createSetup(self):
 		print "Creating setup"
@@ -332,7 +332,7 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 						cablecountrycode = nimmanager.getCableCountrycode(self.slotid)
 						default = cablecountrycode in cablecountrycodelist and cablecountrycode or None
 						choices = [("all", _("All"))]+sorted([(x, self.countrycodeToCountry(x)) for x in cablecountrycodelist], key=lambda listItem: listItem[1])
-						self.cableCountries = ConfigSelection(default = default, choices = choices)
+						self.cableCountries = ConfigSelection(default=default, choices=choices)
 						self.cableCountriesEntry = getConfigListEntry(_("Country"), self.cableCountries, _("Select your country. If not available select 'all'."))
 						self.originalCableRegion = self.nimConfig.dvbc.scan_provider.value
 					# country/region tier two
@@ -341,7 +341,7 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 					else:
 						cableNames = sorted([x[0] for x in nimmanager.getCablesByCountrycode(self.cableCountries.value)])
 					default = self.nimConfig.dvbc.scan_provider.value in cableNames and self.nimConfig.dvbc.scan_provider.value or None
-					self.cableRegions = ConfigSelection(default = default, choices = cableNames)
+					self.cableRegions = ConfigSelection(default=default, choices=cableNames)
 					def updateCableProvider(configEntry):
 						self.nimConfig.dvbc.scan_provider.value = configEntry.value
 						self.nimConfig.dvbc.scan_provider.save()
@@ -391,7 +391,7 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 					if terrestrialcountrycode is None and getMachineBrand() == "Beyonwiz" and "AUS" in terrestrialcountrycodelist:
 						default = "AUS"
 					choices = [("all", _("All"))]+sorted([(x, self.countrycodeToCountry(x)) for x in terrestrialcountrycodelist], key=lambda listItem: listItem[1])
-					self.terrestrialCountries = ConfigSelection(default = default, choices = choices)
+					self.terrestrialCountries = ConfigSelection(default=default, choices=choices)
 					self.terrestrialCountriesEntry = getConfigListEntry(_("Country"), self.terrestrialCountries, _("Select your country. If not available select 'all'."))
 					self.originalTerrestrialRegion = self.nimConfig.dvbt.terrestrial.value
 				# country/region tier two
@@ -402,7 +402,7 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 				default = self.nimConfig.dvbt.terrestrial.value in terrstrialNames and self.nimConfig.dvbt.terrestrial.value or None
 				if default is None and getMachineBrand() == "Beyonwiz" and "All regions, Australia, (DVB-T)" in terrstrialNames:
 					default = "All regions, Australia, (DVB-T)"
-				self.terrestrialRegions = ConfigSelection(default = default, choices = terrstrialNames)
+				self.terrestrialRegions = ConfigSelection(default=default, choices=terrstrialNames)
 				def updateTerrestrialProvider(configEntry):
 					self.nimConfig.dvbt.terrestrial.value = configEntry.value
 					self.nimConfig.dvbt.terrestrial.save()
@@ -808,7 +808,7 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 		self.list = [ ]
 		ServiceStopScreen.__init__(self)
 		self.stopService()
-		ConfigListScreen.__init__(self, self.list, on_change = self.changedEntry)
+		ConfigListScreen.__init__(self, self.list, on_change=self.changedEntry)
 
 		self["key_red"] = Label(_("Close"))
 		self["key_green"] = Label(_("Save"))
@@ -886,7 +886,7 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 
 	def keyCancel(self):
 		if self["config"].isChanged():
-			self.session.openWithCallback(self.cancelConfirm, MessageBox, _("Really close without saving settings?"), default = False)
+			self.session.openWithCallback(self.cancelConfirm, MessageBox, _("Really close without saving settings?"), default=False)
 		else:
 			self.restoreService(_("Zap back to service before tuner setup?"))
 
@@ -1208,4 +1208,4 @@ class SelectSatsEntryScreen(Screen):
 						reverse_flag = not reverse_flag
 					self["list"].sort(sortType=sort_type, flag=reverse_flag)
 					self["list"].moveToIndex(0)
-			self.session.openWithCallback(sortAction, ChoiceBox, title= _("Select sort method:"), list=menu)
+			self.session.openWithCallback(sortAction, ChoiceBox, title=_("Select sort method:"), list=menu)

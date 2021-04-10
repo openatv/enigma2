@@ -63,7 +63,7 @@ class Ipkg(Screen):
 		else:
 			cmd = self.cmdList[self.runningCmd]
 			self.slider.setValue(self.runningCmd)
-			self.ipkg.startCmd(cmd[0], args = cmd[1])
+			self.ipkg.startCmd(cmd[0], args=cmd[1])
 			self.startActivityTimer()
 
 	def doActivityTimer(self):

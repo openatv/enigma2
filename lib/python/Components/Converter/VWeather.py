@@ -23,9 +23,9 @@ from xml.dom.minidom import parseString
 from enigma import eTimer
 
 config.plugins.AtileHD = ConfigSubsection()
-config.plugins.AtileHD.refreshInterval = ConfigNumber(default = "10")
-config.plugins.AtileHD.woeid = ConfigNumber(default = "640161")
-config.plugins.AtileHD.tempUnit = ConfigSelection(default = "Celsius", choices = [("Celsius", _("Celsius")),("Fahrenheit", _("Fahrenheit"))])
+config.plugins.AtileHD.refreshInterval = ConfigNumber(default="10")
+config.plugins.AtileHD.woeid = ConfigNumber(default="640161")
+config.plugins.AtileHD.tempUnit = ConfigSelection(default="Celsius", choices=[("Celsius", _("Celsius")),("Fahrenheit", _("Fahrenheit"))])
 
 weather_data = None
 
@@ -167,7 +167,7 @@ class WeatherData:
 			self.timer.callback.append(self.GetWeather)
 			self.GetWeather()
 
-	def downloadError(self, error = None):
+	def downloadError(self, error=None):
 		print "[WeatherUpdate] error fetching weather data"
 
 	def GetWeather(self):
@@ -176,9 +176,9 @@ class WeatherData:
 			self.timer.start(timeout, True)
 			print "AtileHD lookup for ID " + str(config.plugins.AtileHD.woeid.value)
 			url = "http://query.yahooapis.com/v1/public/yql?q=select%20item%20from%20weather.forecast%20where%20woeid%3D%22"+str(config.plugins.AtileHD.woeid.value)+"%22&format=xml"
-			getPage(url,method = 'GET').addCallback(self.GotWeatherData).addErrback(self.downloadError)
+			getPage(url,method='GET').addCallback(self.GotWeatherData).addErrback(self.downloadError)
 
-	def GotWeatherData(self, data = None):
+	def GotWeatherData(self, data=None):
 		if data is not None:
 			dom = parseString(data)
 			title = self.getText(dom.getElementsByTagName('title')[0].childNodes)

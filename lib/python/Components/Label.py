@@ -34,18 +34,18 @@ class Label(VariableText, HTMLComponent, GUIComponent):
 		return s.width(), s.height()
 
 class LabelConditional(Label, ConditionalWidget):
-	def __init__(self, text = "", withTimer = True):
-		ConditionalWidget.__init__(self, withTimer = withTimer)
-		Label.__init__(self, text = text)
+	def __init__(self, text="", withTimer=True):
+		ConditionalWidget.__init__(self, withTimer=withTimer)
+		Label.__init__(self, text=text)
 
 class BlinkingLabel(Label, BlinkingWidget):
-	def __init__(self, text = ""):
-		Label.__init__(text = text)
+	def __init__(self, text=""):
+		Label.__init__(text=text)
 		BlinkingWidget.__init__()
 
 class BlinkingLabelConditional(BlinkingWidgetConditional, LabelConditional):
-	def __init__(self, text = ""):
-		LabelConditional.__init__(self, text = text)
+	def __init__(self, text=""):
+		LabelConditional.__init__(self, text=text)
 		BlinkingWidgetConditional.__init__(self)
 
 class MultiColorLabel(Label):

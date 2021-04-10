@@ -3,10 +3,10 @@ from Tools.HardwareInfo import HardwareInfo
 from downloader import NFIDownload, filescan
 
 
-def NFIFlasherMain(session, tmp = None, **kwargs):
+def NFIFlasherMain(session, tmp=None, **kwargs):
 	session.open(NFIDownload, "/home/root" )
 
-def NFICallFnc(tmp = None):
+def NFICallFnc(tmp=None):
 	return NFIFlasherMain
 
 def Plugins(**kwargs):
@@ -17,9 +17,9 @@ def Plugins(**kwargs):
 		# it's not possible to rewrite the flash memory with a system currently booted from it
 	return [PluginDescriptor(name=_("NFI image flashing"),
 		description=_("Download .NFI-files for USB-flasher"),
-		icon = "flash.png",
-		where = PluginDescriptor.WHERE_SOFTWAREMANAGER,
-		needsRestart = False,
+		icon="flash.png",
+		where=PluginDescriptor.WHERE_SOFTWAREMANAGER,
+		needsRestart=False,
 		fnc={"SoftwareSupported": NFICallFnc, "menuEntryName": lambda x: _("NFI image flashing"),
 			"menuEntryDescription": lambda x: _("Download .NFI-files for USB-flasher")}),
-		PluginDescriptor(name="nfi", where = PluginDescriptor.WHERE_FILESCAN, needsRestart = False, fnc = filescan)]
+		PluginDescriptor(name="nfi", where=PluginDescriptor.WHERE_FILESCAN, needsRestart=False, fnc=filescan)]

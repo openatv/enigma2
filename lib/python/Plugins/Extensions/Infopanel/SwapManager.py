@@ -14,7 +14,7 @@ from glob import glob
 import stat
 
 config.plugins.infopanel = ConfigSubsection()
-config.plugins.infopanel.swapautostart = ConfigYesNo(default = False)
+config.plugins.infopanel.swapautostart = ConfigYesNo(default=False)
 
 startswap = None
 
@@ -33,7 +33,7 @@ class StartSwap:
 	def start(self):
 	 	self.Console.ePopen("sfdisk -l /dev/sd? 2>/dev/null | grep swap", self.startSwap2)
 
-	def startSwap2(self, result = None, retval = None, extra_args = None):
+	def startSwap2(self, result=None, retval=None, extra_args=None):
 		swap_place = ""
 		if result and result.find('sd') != -1:
 			for line in result.split('\n'):
@@ -111,7 +111,7 @@ class Swap(Screen):
 		self.activityTimer.timeout.get().append(self.getSwapDevice)
 		self.updateSwap()
 
-	def updateSwap(self, result = None, retval = None, extra_args = None):
+	def updateSwap(self, result=None, retval=None, extra_args=None):
 		self["actions"].setEnabled(False)
 		self.swap_active = False
 		self['autostart_on'].hide()
@@ -135,7 +135,7 @@ class Swap(Screen):
 			remove('/tmp/swapdevices.tmp')
 		self.Console.ePopen("sfdisk -l /dev/sd? 2>/dev/null | grep swap", self.updateSwap2)
 
-	def updateSwap2(self, result = None, retval = None, extra_args = None):
+	def updateSwap2(self, result=None, retval=None, extra_args=None):
 		self.swapsize = 0
 		self.swap_place = ''
 		self.swap_active = False
@@ -252,7 +252,7 @@ class Swap(Screen):
 			else:
 				self.doCreateSwap()
 
-	def createDel2(self, result, retval, extra_args = None):
+	def createDel2(self, result, retval, extra_args=None):
 		if retval == 0:
 			remove(self.swap_place)
 			if config.plugins.infopanel.swapautostart.value:
@@ -270,9 +270,9 @@ class Swap(Screen):
 			if partition.filesystem(mounts) in supported_filesystems:
 				candidates.append((partition.description, partition.mountpoint)) 
 		if len(candidates):
-			self.session.openWithCallback(self.doCSplace, ChoiceBox, title = _("Please select device to use as swapfile location"), list = candidates)
+			self.session.openWithCallback(self.doCSplace, ChoiceBox, title=_("Please select device to use as swapfile location"), list=candidates)
 		else:
-			self.session.open(MessageBox, _("Sorry, no physical devices that supports SWAP attached. Can't create Swapfile on network or fat32 filesystems"), MessageBox.TYPE_INFO, timeout = 10)
+			self.session.open(MessageBox, _("Sorry, no physical devices that supports SWAP attached. Can't create Swapfile on network or fat32 filesystems"), MessageBox.TYPE_INFO, timeout=10)
 
 	def doCSplace(self, name):
 		if name:

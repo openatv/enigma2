@@ -15,8 +15,7 @@ class Screensaver(Screen):
 		self.onShow.append(self.__onShow)
 		self.onHide.append(self.__onHide)
 
-		self.__event_tracker = ServiceEventTracker(screen=self, eventmap=
-			{
+		self.__event_tracker = ServiceEventTracker(screen=self, eventmap={
 				iPlayableService.evStart: self.serviceStarted
 			})
 

@@ -20,8 +20,8 @@ import skin
 config.pud = ConfigSubsection()
 config.pud.autocheck = ConfigYesNo(default=False)
 config.pud.showmessage = ConfigYesNo(default=True)
-config.pud.lastdate = ConfigText(visible_width = 200)
-config.pud.satname = ConfigText(visible_width = 200, default='Enigma2 D 19E FTA')
+config.pud.lastdate = ConfigText(visible_width=200)
+config.pud.satname = ConfigText(visible_width=200, default='Enigma2 D 19E FTA')
 config.pud.update_question = ConfigYesNo(default=False)
 config.pud.just_update = ConfigYesNo(default=False)
 

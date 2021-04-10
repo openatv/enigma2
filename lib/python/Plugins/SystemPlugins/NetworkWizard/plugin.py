@@ -1,7 +1,7 @@
 from Plugins.Plugin import PluginDescriptor
 from Components.config import config, ConfigBoolean
 
-config.misc.firstrun = ConfigBoolean(default = True)
+config.misc.firstrun = ConfigBoolean(default=True)
 
 def NetworkWizardMain(session, **kwargs):
 	session.open(NetworkWizard)
@@ -19,5 +19,5 @@ def NetworkWizard(*args, **kwargs):
 def Plugins(**kwargs):
 	list = []
 	if config.misc.firstrun.value:
-		list.append(PluginDescriptor(name=_("Network wizard"), where = PluginDescriptor.WHERE_WIZARD, needsRestart = False, fnc=(25, NetworkWizard)))
+		list.append(PluginDescriptor(name=_("Network wizard"), where=PluginDescriptor.WHERE_WIZARD, needsRestart=False, fnc=(25, NetworkWizard)))
 	return list

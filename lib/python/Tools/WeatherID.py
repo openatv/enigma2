@@ -16,7 +16,7 @@ def get_woeid_from_yahoo(search_string):
 	params = {'q': WOEID_QUERY_STRING % encoded_string, 'format': 'json'}
 	url = '?'.join((WOEID_SEARCH_URL, urlencode(params)))
 	try:
-		handler = urlopen(url, timeout = 10)
+		handler = urlopen(url, timeout=10)
 	except URLError:
 		return {'error': _('Could not connect to server')}
 

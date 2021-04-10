@@ -66,7 +66,7 @@ class PictureInPicture(Screen):
 			self.choicelist.append(("external", _("External PiP")))
 
 		if not pip_config_initialized:
-			config.av.pip = ConfigPosition(default=[510, 28, 180, 135], args = (MAX_X, MAX_Y, MAX_X, MAX_Y))
+			config.av.pip = ConfigPosition(default=[510, 28, 180, 135], args=(MAX_X, MAX_Y, MAX_X, MAX_Y))
 			config.av.pip_mode = ConfigSelection(default="standard", choices=self.choicelist)
 			pip_config_initialized = True
 
@@ -137,7 +137,7 @@ class PictureInPicture(Screen):
 			self["video"].instance.resize(eSize(*(MAX_X, MAX_Y)))
 			self.setSizePosMainWindow()
 
-	def setSizePosMainWindow(self, x = 0, y = 0, w = 0, h = 0):
+	def setSizePosMainWindow(self, x=0, y=0, w=0, h=0):
 		if SystemInfo["VideoDestinationConfigurable"]:
 			self["video"].instance.setFullScreenPosition(eRect(x, y, w, h))
 
@@ -181,7 +181,7 @@ class PictureInPicture(Screen):
 				print "playing pip service", ref and ref.toString()
 			else:
 				if not config.usage.hide_zap_errors.value:
-					Notifications.AddPopup(text = _("No free tuner!"), type = MessageBox.TYPE_ERROR, timeout = 5, id = "ZapPipError")
+					Notifications.AddPopup(text=_("No free tuner!"), type=MessageBox.TYPE_ERROR, timeout=5, id="ZapPipError")
 				return False
 			self.pipservice = eServiceCenter.getInstance().play(ref)
 			if self.pipservice and not self.pipservice.setTarget(1, True):
@@ -196,7 +196,7 @@ class PictureInPicture(Screen):
 				self.currentService = None
 				self.currentServiceReference = None
 				if not config.usage.hide_zap_errors.value:
-					Notifications.AddPopup(text = _("Incorrect type service for PiP!"), type = MessageBox.TYPE_ERROR, timeout = 5, id = "ZapPipError")
+					Notifications.AddPopup(text=_("Incorrect type service for PiP!"), type=MessageBox.TYPE_ERROR, timeout=5, id="ZapPipError")
 		return False
 
 	def getCurrentService(self):

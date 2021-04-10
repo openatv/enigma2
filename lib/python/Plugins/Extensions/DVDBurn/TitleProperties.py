@@ -65,7 +65,7 @@ class TitleProperties(Screen,ConfigListScreen):
 
 	def initConfigList(self, element=None):
 		try:
-			self.properties.position = ConfigInteger(default = self.title_idx+1, limits = (1, len(self.project.titles)))
+			self.properties.position = ConfigInteger(default=self.title_idx+1, limits=(1, len(self.project.titles)))
 			title = self.project.titles[self.title_idx]
 			self.list = []
 			self.list.append(getConfigListEntry("DVD " + _("Track"), self.properties.position))

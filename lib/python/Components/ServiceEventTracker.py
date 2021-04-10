@@ -35,7 +35,7 @@ class InfoBarBase:
 		for x in InfoBarBase.onInfoBarClosed:
 			x(infobar)
 
-	def __init__(self, steal_current_service = False):
+	def __init__(self, steal_current_service=False):
 		if steal_current_service:
 			ServiceEventTracker.setActiveInfoBar(self, None, None)
 		else:

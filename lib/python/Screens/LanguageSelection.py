@@ -129,7 +129,7 @@ class LanguageSelection(Screen):
 			if curlang == t[0]:
 				lang = t[1]
 				break
-		self.session.openWithCallback(self.delLangCB, MessageBox, _("Do you want to delete all other languages?\nExcept English, French, German and your selection:\n\n") + _("%s") %(lang), default = False)
+		self.session.openWithCallback(self.delLangCB, MessageBox, _("Do you want to delete all other languages?\nExcept English, French, German and your selection:\n\n") + _("%s") %(lang), default=False)
 
 	def delLangCB(self, anwser):
 		if anwser:
@@ -138,7 +138,7 @@ class LanguageSelection(Screen):
 			self.updateList()
 			self.selectActiveLanguage()
 
-	def run(self, justlocal = False):
+	def run(self, justlocal=False):
 		print "updating language..."
 		lang = self["languages"].getCurrent()[0]
 
@@ -173,7 +173,7 @@ class LanguageSelection(Screen):
 		if not languageList: # no language available => display only english
 			list = [ LanguageEntryComponent("en", "English (US)", "en_US") ]
 		else:
-			list = [ LanguageEntryComponent(file = x[1][2].lower(), name = x[1][0], index = x[0]) for x in languageList]
+			list = [ LanguageEntryComponent(file=x[1][2].lower(), name=x[1][0], index=x[0]) for x in languageList]
 		self.list = list
 		self["languages"].list = list
 
@@ -188,7 +188,7 @@ class LanguageSelection(Screen):
 		self.selectActiveLanguage()
 
 	def changed(self):
-		self.run(justlocal = True)
+		self.run(justlocal=True)
 
 class LanguageWizard(LanguageSelection, Rc):
 	def __init__(self, session):
@@ -209,7 +209,7 @@ class LanguageWizard(LanguageSelection, Rc):
 		self.selectKey("DOWN")
 
 	def changed(self):
-		self.run(justlocal = True)
+		self.run(justlocal=True)
 		self.setText()
 
 	def setText(self):

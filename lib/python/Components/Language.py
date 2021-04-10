@@ -178,7 +178,7 @@ class Language:
 	def addCallback(self, callback):
 		self.callbacks.append(callback)
 
-	def delLanguage(self, delLang = None):
+	def delLanguage(self, delLang=None):
 		from Components.config import config, configfile
 		from shutil import rmtree
 		lang = config.osd.language.value

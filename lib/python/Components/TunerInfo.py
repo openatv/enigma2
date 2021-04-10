@@ -19,7 +19,7 @@ class TunerInfo(GUIComponent):
 	SYNC_STATE = 8
 	LOCK = 9
 
-	def __init__(self, type, servicefkt = None, frontendfkt = None, statusDict = None):
+	def __init__(self, type, servicefkt=None, frontendfkt=None, statusDict=None):
 		GUIComponent.__init__(self)
 		self.instance = None
 		self.message = None

@@ -4,7 +4,7 @@ from Components.VideoWindow import VideoWindow
 from Components.config import config, ConfigPosition
 
 class QuadPiP(Screen):
-	def __init__(self, session, decoderIdx = 1, pos = None):
+	def __init__(self, session, decoderIdx=1, pos=None):
 		Screen.__init__(self, session)
 		self["video"] = VideoWindow(decoderIdx, 720, 576)
 		self.currentService = None

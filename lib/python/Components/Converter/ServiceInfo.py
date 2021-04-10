@@ -113,7 +113,7 @@ class ServiceInfo(Poll, Converter, object):
 			return info.getInfoString(what)
 		return convert(v)
 
-	def getServiceInfoHexString(self, info, what, convert = lambda x: "%04x" % x):
+	def getServiceInfoHexString(self, info, what, convert=lambda x: "%04x" % x):
 		v = info.getInfo(what)
 		if v == -1:
 			return "N/A"

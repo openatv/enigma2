@@ -34,7 +34,7 @@ class StartKodi2(Screen):
 		<widget name="freespace" position="340,125" size="150,25" font="Regular;20" />
 		<widget name="installed" position="340,150" size="150,25" font="Regular;20" />
 		</screen>"""
-	def __init__(self, session, args = 0):
+	def __init__(self, session, args=0):
 		self.session = session
 		Screen.__init__(self, session)
 
@@ -179,8 +179,8 @@ def menu(menuid, **kwargs):
 
 def Plugins(**kwargs):
 	return [
-	PluginDescriptor(name = _("Start Kodi"), description = _("Kodi media player"), 	where = PluginDescriptor.WHERE_PLUGINMENU, icon = "kodi.png", needsRestart = False, fnc = main),
-	PluginDescriptor(name = _("Start Kodi"), description = _("Play back media files"), where = PluginDescriptor.WHERE_MENU, needsRestart = False, fnc = menu)
+	PluginDescriptor(name=_("Start Kodi"), description=_("Kodi media player"), 	where=PluginDescriptor.WHERE_PLUGINMENU, icon="kodi.png", needsRestart=False, fnc=main),
+	PluginDescriptor(name=_("Start Kodi"), description=_("Play back media files"), where=PluginDescriptor.WHERE_MENU, needsRestart=False, fnc=menu)
 ]
 #	PluginDescriptor(name = _("StartKodi"), description = _("Play back media files"), where = PluginDescriptor.WHERE_EXTENSIONSMENU, needsRestart = False, fnc = menu)
 

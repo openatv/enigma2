@@ -46,7 +46,7 @@ class Rect:
 		return self.w
 
 class EPGList(HTMLComponent, GUIComponent):
-	def __init__(self, type = EPG_TYPE_SINGLE, selChangedCB = None, timer = None, time_epoch = 120, overjump_empty = False, graphic=False):
+	def __init__(self, type=EPG_TYPE_SINGLE, selChangedCB=None, timer=None, time_epoch=120, overjump_empty=False, graphic=False):
 		sf = getSkinFactor()
 		self.screenwidth = int(1280 * sf) # important for compatibility to other plugins (e.g. partnerbox)
 		if sf == 1.5:
@@ -462,7 +462,7 @@ class EPGList(HTMLComponent, GUIComponent):
 		if cur_sel:
 			self.findBestEvent()
 
-	def findBestEvent(self, getnow = False):
+	def findBestEvent(self, getnow=False):
 		old_service = self.cur_service  #(service, service_name, events, picon)
 		cur_service = self.cur_service = self.l.getCurrentSelection()
 		time_base = self.getTimeBase()
@@ -912,19 +912,19 @@ class EPGList(HTMLComponent, GUIComponent):
 		if bgpng is not None and self.graphic:
 			serviceBackColor = None
 			res.append(MultiContentEntryPixmapAlphaBlend(
-					pos = (r1.x + self.serviceBorderWidth, r1.y + self.serviceBorderWidth),
-					size = (r1.w - 2 * self.serviceBorderWidth, r1.h - 2 * self.serviceBorderWidth),
-					png = bgpng,
-					flags = BT_SCALE))
+					pos=(r1.x + self.serviceBorderWidth, r1.y + self.serviceBorderWidth),
+					size=(r1.w - 2 * self.serviceBorderWidth, r1.h - 2 * self.serviceBorderWidth),
+					png=bgpng,
+					flags=BT_SCALE))
 		else:
 			res.append(MultiContentEntryText(
-					pos  = (r1.x, r1.y),
-					size = (r1.w, r1.h),
-					font = 0, flags = RT_HALIGN_LEFT | RT_VALIGN_CENTER,
-					text = "",
-					color = serviceForeColor, color_sel = serviceForeColor,
-					backcolor = serviceBackColor, backcolor_sel = serviceBackColor,
-					border_width = self.serviceBorderWidth, border_color = self.borderColorService))
+					pos=(r1.x, r1.y),
+					size=(r1.w, r1.h),
+					font=0, flags=RT_HALIGN_LEFT | RT_VALIGN_CENTER,
+					text="",
+					color=serviceForeColor, color_sel=serviceForeColor,
+					backcolor=serviceBackColor, backcolor_sel=serviceBackColor,
+					border_width=self.serviceBorderWidth, border_color=self.borderColorService))
 
 		displayPicon = None
 		if self.showPicon:
@@ -938,10 +938,10 @@ class EPGList(HTMLComponent, GUIComponent):
 				displayPicon = loadPNG(picon)
 			if displayPicon is not None:
 				res.append(MultiContentEntryPixmapAlphaBlend(
-					pos = (r1.x + self.serviceBorderWidth, r1.y + self.serviceBorderWidth),
-					size = (piconWidth, piconHeight),
-					png = displayPicon,
-					backcolor = None, backcolor_sel = None, flags = BT_SCALE | BT_KEEP_ASPECT_RATIO))
+					pos=(r1.x + self.serviceBorderWidth, r1.y + self.serviceBorderWidth),
+					size=(piconWidth, piconHeight),
+					png=displayPicon,
+					backcolor=None, backcolor_sel=None, flags=BT_SCALE | BT_KEEP_ASPECT_RATIO))
 			elif not self.showServiceTitle:
 				# no picon so show servicename anyway in picon space
 				namefont = 0
@@ -963,12 +963,12 @@ class EPGList(HTMLComponent, GUIComponent):
 				font = gFont(self.serviceFontNameGraph, self.serviceFontSizeGraph + config.epgselection.graph_servfs.value)
 				channelWidth = getTextBoundarySize(self.instance, font, self.instance.size(), (channel < 10000)  and "0000" or str(channel) ).width()
 				res.append(MultiContentEntryText(
-					pos = (r1.x + self.serviceNamePadding + piconWidth + self.serviceNamePadding, r1.y + self.serviceBorderWidth),
-					size = (channelWidth, r1.h - 2 * self.serviceBorderWidth),
-					font = namefont, flags = namefontflag,
-					text = str(channel),
-					color = serviceForeColor, color_sel = serviceForeColor,
-					backcolor = serviceBackColor, backcolor_sel = serviceBackColor))
+					pos=(r1.x + self.serviceNamePadding + piconWidth + self.serviceNamePadding, r1.y + self.serviceBorderWidth),
+					size=(channelWidth, r1.h - 2 * self.serviceBorderWidth),
+					font=namefont, flags=namefontflag,
+					text=str(channel),
+					color=serviceForeColor, color_sel=serviceForeColor,
+					backcolor=serviceBackColor, backcolor_sel=serviceBackColor))
 
 		if self.showServiceTitle: # we have more space so reset parms
 			namefont = 0
@@ -977,14 +977,14 @@ class EPGList(HTMLComponent, GUIComponent):
 
 		if self.showServiceTitle or displayPicon is None:
 			res.append(MultiContentEntryText(
-				pos = (r1.x + self.serviceNamePadding + piconWidth + self.serviceNamePadding + channelWidth + self.serviceNumberPadding,
+				pos=(r1.x + self.serviceNamePadding + piconWidth + self.serviceNamePadding + channelWidth + self.serviceNumberPadding,
 					r1.y + self.serviceBorderWidth),
-				size = (namewidth - 3 * (self.serviceBorderWidth + self.serviceNamePadding),
+				size=(namewidth - 3 * (self.serviceBorderWidth + self.serviceNamePadding),
 					r1.h - 2 * self.serviceBorderWidth),
-				font = namefont, flags = namefontflag,
-				text = service_name,
-				color = serviceForeColor, color_sel = serviceForeColor,
-				backcolor = serviceBackColor, backcolor_sel = serviceBackColor))
+				font=namefont, flags=namefontflag,
+				text=service_name,
+				color=serviceForeColor, color_sel=serviceForeColor,
+				backcolor=serviceBackColor, backcolor_sel=serviceBackColor))
 
 		if self.isIceTV(service) and config.epg.eit.value:
 			iceicon_size = self.icetvicon.size()
@@ -997,69 +997,69 @@ class EPGList(HTMLComponent, GUIComponent):
 		# Service Borders
 		if self.borderTopPix is not None and self.graphic:
 			res.append(MultiContentEntryPixmapAlphaTest(
-					pos = (r1.x, r1.y),
-					size = (r1.w, self.serviceBorderWidth),
-					png = self.borderTopPix,
-					flags = BT_SCALE))
+					pos=(r1.x, r1.y),
+					size=(r1.w, self.serviceBorderWidth),
+					png=self.borderTopPix,
+					flags=BT_SCALE))
 			res.append(MultiContentEntryPixmapAlphaTest(
-					pos = (r2.x, r2.y),
-					size = (r2.w, self.eventBorderWidth),
-					png = self.borderTopPix,
-					flags = BT_SCALE))
+					pos=(r2.x, r2.y),
+					size=(r2.w, self.eventBorderWidth),
+					png=self.borderTopPix,
+					flags=BT_SCALE))
 		if self.borderBottomPix is not None and self.graphic:
 			res.append(MultiContentEntryPixmapAlphaTest(
-					pos = (r1.x, r1.h-self.serviceBorderWidth),
-					size = (r1.w, self.serviceBorderWidth),
-					png = self.borderBottomPix,
-					flags = BT_SCALE))
+					pos=(r1.x, r1.h-self.serviceBorderWidth),
+					size=(r1.w, self.serviceBorderWidth),
+					png=self.borderBottomPix,
+					flags=BT_SCALE))
 			res.append(MultiContentEntryPixmapAlphaTest(
-					pos = (r2.x, r2.h-self.eventBorderWidth),
-					size = (r2.w, self.eventBorderWidth),
-					png = self.borderBottomPix,
-					flags = BT_SCALE))
+					pos=(r2.x, r2.h-self.eventBorderWidth),
+					size=(r2.w, self.eventBorderWidth),
+					png=self.borderBottomPix,
+					flags=BT_SCALE))
 		if self.borderLeftPix is not None and self.graphic:
 			res.append(MultiContentEntryPixmapAlphaTest(
-					pos = (r1.x, r1.y),
-					size = (self.serviceBorderWidth, r1.h),
-					png = self.borderLeftPix,
-					flags = BT_SCALE))
+					pos=(r1.x, r1.y),
+					size=(self.serviceBorderWidth, r1.h),
+					png=self.borderLeftPix,
+					flags=BT_SCALE))
 			res.append(MultiContentEntryPixmapAlphaTest(
-					pos = (r2.x, r2.y),
-					size = (self.eventBorderWidth, r2.h),
-					png = self.borderLeftPix,
-					flags = BT_SCALE))
+					pos=(r2.x, r2.y),
+					size=(self.eventBorderWidth, r2.h),
+					png=self.borderLeftPix,
+					flags=BT_SCALE))
 		if self.borderRightPix is not None and self.graphic:
 			res.append(MultiContentEntryPixmapAlphaTest(
-					pos = (r1.w-self.serviceBorderWidth, r1.x),
-					size = (self.serviceBorderWidth, r1.h),
-					png = self.borderRightPix,
-					flags = BT_SCALE))
+					pos=(r1.w-self.serviceBorderWidth, r1.x),
+					size=(self.serviceBorderWidth, r1.h),
+					png=self.borderRightPix,
+					flags=BT_SCALE))
 			res.append(MultiContentEntryPixmapAlphaTest(
-					pos = (r2.x + r2.w-self.eventBorderWidth, r2.y),
-					size = (self.eventBorderWidth, r2.h),
-					png = self.borderRightPix,
-					flags = BT_SCALE))
+					pos=(r2.x + r2.w-self.eventBorderWidth, r2.y),
+					size=(self.eventBorderWidth, r2.h),
+					png=self.borderRightPix,
+					flags=BT_SCALE))
 
 		if self.graphic:
 			if not selected and self.othEvPix:
 				res.append(MultiContentEntryPixmapAlphaTest(
-					pos = (r2.x + self.eventBorderWidth, r2.y + self.eventBorderWidth),
-					size = (r2.w - 2 * self.eventBorderWidth, r2.h - 2 * self.eventBorderWidth),
-					png = self.othEvPix,
-					flags = BT_SCALE))
+					pos=(r2.x + self.eventBorderWidth, r2.y + self.eventBorderWidth),
+					size=(r2.w - 2 * self.eventBorderWidth, r2.h - 2 * self.eventBorderWidth),
+					png=self.othEvPix,
+					flags=BT_SCALE))
 			elif selected and self.selEvPix:
 				res.append(MultiContentEntryPixmapAlphaTest(
-					pos = (r2.x + self.eventBorderWidth, r2.y + self.eventBorderWidth),
-					size = (r2.w - 2 * self.eventBorderWidth, r2.h - 2 * self.eventBorderWidth),
-					png = self.selEvPix,
-					flags = BT_SCALE))
+					pos=(r2.x + self.eventBorderWidth, r2.y + self.eventBorderWidth),
+					size=(r2.w - 2 * self.eventBorderWidth, r2.h - 2 * self.eventBorderWidth),
+					png=self.selEvPix,
+					flags=BT_SCALE))
 		else:
 			res.append(MultiContentEntryText(
-				pos = (left, top), size = (width, height),
-				font = 1, flags = RT_HALIGN_LEFT | RT_VALIGN_CENTER,
-				text = "", color = None, color_sel = None,
-				backcolor = self.backColor, backcolor_sel = self.backColorSelected,
-				border_width = self.eventBorderWidth, border_color = self.borderColor))
+				pos=(left, top), size=(width, height),
+				font=1, flags=RT_HALIGN_LEFT | RT_VALIGN_CENTER,
+				text="", color=None, color_sel=None,
+				backcolor=self.backColor, backcolor_sel=self.backColorSelected,
+				border_width=self.eventBorderWidth, border_color=self.borderColor))
 
 		# Events for service
 		if events:
@@ -1149,17 +1149,17 @@ class EPGList(HTMLComponent, GUIComponent):
 					backColor = None
 					backColorSel = None
 					res.append(MultiContentEntryPixmapAlphaTest(
-						pos = (left + xpos + self.eventBorderWidth, top + self.eventBorderWidth),
-						size = (ewidth - 2 * self.eventBorderWidth, height - 2 * self.eventBorderWidth),
-						png = bgpng,
-						flags = BT_SCALE))
+						pos=(left + xpos + self.eventBorderWidth, top + self.eventBorderWidth),
+						size=(ewidth - 2 * self.eventBorderWidth, height - 2 * self.eventBorderWidth),
+						png=bgpng,
+						flags=BT_SCALE))
 				else:
 					res.append(MultiContentEntryText(
-						pos = (left + xpos, top), size = (ewidth, height),
-						font = 1, flags = RT_HALIGN_LEFT | RT_VALIGN_CENTER,
-						text = "", color = None, color_sel = None,
-						backcolor = backColor, backcolor_sel = backColorSel,
-						border_width = self.eventBorderWidth, border_color = self.borderColor))
+						pos=(left + xpos, top), size=(ewidth, height),
+						font=1, flags=RT_HALIGN_LEFT | RT_VALIGN_CENTER,
+						text="", color=None, color_sel=None,
+						backcolor=backColor, backcolor_sel=backColorSel,
+						border_width=self.eventBorderWidth, border_color=self.borderColor))
 
 				# event text
 				evX = left + xpos + self.eventBorderWidth + self.eventNamePadding
@@ -1172,41 +1172,41 @@ class EPGList(HTMLComponent, GUIComponent):
 					infowidth = config.epgselection.infobar_infowidth.value
 				if evW < infowidth and infoPix is not None:
 					res.append(MultiContentEntryPixmapAlphaBlend(
-						pos = (evX, evY), size = (evW, evH),
-						png = infoPix))
+						pos=(evX, evY), size=(evW, evH),
+						png=infoPix))
 				else:
 					res.append(MultiContentEntryText(
-						pos = (evX, evY), size = (evW, evH),
-						font = 1, flags = int(config.epgselection.graph_event_alignment.value),
-						text = ev[1],
-						color = foreColor, color_sel = foreColorSel,
-						backcolor = backColor, backcolor_sel = backColorSel))
+						pos=(evX, evY), size=(evW, evH),
+						font=1, flags=int(config.epgselection.graph_event_alignment.value),
+						text=ev[1],
+						color=foreColor, color_sel=foreColorSel,
+						backcolor=backColor, backcolor_sel=backColorSel))
 
 				# event box borders
 				if borderTopPix is not None and self.graphic:
 					res.append(MultiContentEntryPixmapAlphaTest(
-							pos = (left + xpos, top),
-							size = (ewidth, self.eventBorderWidth),
-							png = borderTopPix,
-							flags = BT_SCALE))
+							pos=(left + xpos, top),
+							size=(ewidth, self.eventBorderWidth),
+							png=borderTopPix,
+							flags=BT_SCALE))
 				if borderBottomPix is not None and self.graphic:
 					res.append(MultiContentEntryPixmapAlphaTest(
-							pos = (left + xpos, height-self.eventBorderWidth),
-							size = (ewidth, self.eventBorderWidth),
-							png = borderBottomPix,
-							flags = BT_SCALE))
+							pos=(left + xpos, height-self.eventBorderWidth),
+							size=(ewidth, self.eventBorderWidth),
+							png=borderBottomPix,
+							flags=BT_SCALE))
 				if borderLeftPix is not None and self.graphic:
 					res.append(MultiContentEntryPixmapAlphaTest(
-							pos = (left + xpos, top),
-							size = (self.eventBorderWidth, height),
-							png = borderLeftPix,
-							flags = BT_SCALE))
+							pos=(left + xpos, top),
+							size=(self.eventBorderWidth, height),
+							png=borderLeftPix,
+							flags=BT_SCALE))
 				if borderRightPix is not None and self.graphic:
 					res.append(MultiContentEntryPixmapAlphaTest(
-							pos = (left + xpos + ewidth-self.eventBorderWidth, top),
-							size = (self.eventBorderWidth, height),
-							png = borderRightPix,
-							flags = BT_SCALE))
+							pos=(left + xpos + ewidth-self.eventBorderWidth, top),
+							size=(self.eventBorderWidth, height),
+							png=borderRightPix,
+							flags=BT_SCALE))
 
 				# recording icons
 				if clock_types is not None and ewidth > 23:
@@ -1224,17 +1224,17 @@ class EPGList(HTMLComponent, GUIComponent):
 						else:
 							pos = (left+xpos+ewidth-self.picx - self.posx, RecIconHeight)
 						res.append(MultiContentEntryPixmapAlphaBlend(
-							pos = pos, size = (self.picx, self.picy),
-							png = clocks))
+							pos=pos, size=(self.picx, self.picy),
+							png=clocks))
 						if (self.wasEntryAutoTimer or self.wasEntryIceTV) and clock_types in (2,7,12):
 							if self.wasEntryAutoTimer:
 								res.append(MultiContentEntryPixmapAlphaBlend(
-									pos = (pos[0]-self.picx - self.gap,pos[1]), size = (self.picx, self.picy),
-									png = self.autotimericon))
+									pos=(pos[0]-self.picx - self.gap,pos[1]), size=(self.picx, self.picy),
+									png=self.autotimericon))
 							if self.wasEntryIceTV:
 								res.append(MultiContentEntryPixmapAlphaBlend(
-									pos = (pos[0]-self.picx - self.gap,pos[1]), size = (self.picx, self.picy),
-									png = self.icetvicon))
+									pos=(pos[0]-self.picx - self.gap,pos[1]), size=(self.picx, self.picy),
+									png=self.icetvicon))
 		return res
 
 	def buildVerticalEntry(self, service, eventId, beginTime, duration, EventName):
@@ -1320,7 +1320,7 @@ class EPGList(HTMLComponent, GUIComponent):
 				))
 		return res
 
-	def getSelectionPosition(self,serviceref, activeList = 1):
+	def getSelectionPosition(self,serviceref, activeList=1):
 		if self.type == EPG_TYPE_GRAPH or self.type == EPG_TYPE_INFOBARGRAPH:
 			indx = int(self.getIndexFromService(serviceref))
 			selx = self.select_rect.x + self.select_rect.w
@@ -1342,7 +1342,7 @@ class EPGList(HTMLComponent, GUIComponent):
 		selx = min(self.instance.position().x() + selx, 1280*sf)
 		return int(selx), int(sely)
 
-	def selEntry(self, dir, visible = True):
+	def selEntry(self, dir, visible=True):
 		cur_service = self.cur_service    #(service, service_name, events, picon)
 		self.recalcEntrySize()
 		valid_event = self.cur_event is not None
@@ -1443,7 +1443,7 @@ class EPGList(HTMLComponent, GUIComponent):
 		self.l.setList(self.list)
 		self.selectionChanged()
 
-	def fillSingleEPG(self, service, stime = None):
+	def fillSingleEPG(self, service, stime=None):
 		if stime is not None:
 			t = epg_time = int(stime)
 		else:
@@ -1484,7 +1484,7 @@ class EPGList(HTMLComponent, GUIComponent):
 		self.l.setList(self.list)
 		self.selectionChanged()
 
-	def fillGraphEPG(self, services, stime = None, getnow = False):
+	def fillGraphEPG(self, services, stime=None, getnow=False):
 		if (self.type == EPG_TYPE_GRAPH or self.type == EPG_TYPE_INFOBARGRAPH) and not self.graphicsloaded:
 			if self.graphic:
 				self.nowEvPix = loadPNG(resolveFilename(SCOPE_ACTIVE_SKIN, 'epg/CurrentEvent.png'))
@@ -1618,7 +1618,7 @@ class EPGList(HTMLComponent, GUIComponent):
 			index += 1
 
 class TimelineText(HTMLComponent, GUIComponent):
-	def __init__(self, type = EPG_TYPE_GRAPH, graphic=False):
+	def __init__(self, type=EPG_TYPE_GRAPH, graphic=False):
 		GUIComponent.__init__(self)
 		self.type = type
 		self.graphic = graphic
@@ -1737,25 +1737,25 @@ class TimelineText(HTMLComponent, GUIComponent):
 				backColor = None
 				backColorSel = None
 				res.append(MultiContentEntryPixmapAlphaTest(
-					pos = (0, 0),
-					size = (service_rect.width(), self.listHeight),
-					png = bgpng,
-					flags = BT_SCALE))
+					pos=(0, 0),
+					size=(service_rect.width(), self.listHeight),
+					png=bgpng,
+					flags=BT_SCALE))
 			else:
 				res.append( MultiContentEntryText(
-					pos = (0, 0),
-					size = (service_rect.width(), self.listHeight),
-					color = foreColor,
-					backcolor = backColor,
-					border_width = self.borderWidth, border_color = self.borderColor))
+					pos=(0, 0),
+					size=(service_rect.width(), self.listHeight),
+					color=foreColor,
+					backcolor=backColor,
+					border_width=self.borderWidth, border_color=self.borderColor))
 
 			res.append(MultiContentEntryText(
-				pos = (5, 0),
-				size = (service_rect.width()-15, self.listHeight),
-				font = 0, flags = alignnment,
-				text = _(datestr),
-				color = foreColor,
-				backcolor = backColor))
+				pos=(5, 0),
+				size=(service_rect.width()-15, self.listHeight),
+				font=0, flags=alignnment,
+				text=_(datestr),
+				color=foreColor,
+				backcolor=backColor))
 
 			bgpng = self.TlTime
 			xpos = 0 # eventLeft
@@ -1763,17 +1763,17 @@ class TimelineText(HTMLComponent, GUIComponent):
 				backColor = None
 				backColorSel = None
 				res.append(MultiContentEntryPixmapAlphaTest(
-					pos = (service_rect.width(), 0),
-					size = (event_rect.width(), self.listHeight),
-					png = bgpng,
-					flags = BT_SCALE))
+					pos=(service_rect.width(), 0),
+					size=(event_rect.width(), self.listHeight),
+					png=bgpng,
+					flags=BT_SCALE))
 			else:
 				res.append( MultiContentEntryText(
-					pos = (service_rect.width(), 0),
-					size = (event_rect.width(), self.listHeight),
-					color = foreColor,
-					backcolor = backColor,
-					border_width = self.borderWidth, border_color = self.borderColor))
+					pos=(service_rect.width(), 0),
+					size=(event_rect.width(), self.listHeight),
+					color=foreColor,
+					backcolor=backColor,
+					border_width=self.borderWidth, border_color=self.borderColor))
 
 			for x in range(0, num_lines):
 				ttime = localtime(time_base + (x*timeStepsCalc))
@@ -1785,12 +1785,12 @@ class TimelineText(HTMLComponent, GUIComponent):
 					else:
 						timetext = strftime("%-I:%M",ttime) + _('am')
 				res.append(MultiContentEntryText(
-					pos = (service_rect.width() + xpos, 0),
-					size = (incWidth, self.listHeight),
-					font = 0, flags = RT_HALIGN_LEFT | RT_VALIGN_CENTER,
-					text = timetext,
-					color = foreColor,
-					backcolor = backColor))
+					pos=(service_rect.width() + xpos, 0),
+					size=(incWidth, self.listHeight),
+					font=0, flags=RT_HALIGN_LEFT | RT_VALIGN_CENTER,
+					text=timetext,
+					color=foreColor,
+					backcolor=backColor))
 				line = time_lines[x]
 				old_pos = line.position
 				line.setPosition(xpos + eventLeft, old_pos[1])
@@ -1995,17 +1995,17 @@ class EPGBouquetList(HTMLComponent, GUIComponent):
 		# box background
 		if bgpng is not None and self.graphic:
 			res.append(MultiContentEntryPixmapAlphaTest(
-				pos = (left + self.BorderWidth, top + self.BorderWidth),
-				size = (width - 2 * self.BorderWidth, height - 2 * self.BorderWidth),
-				png = bgpng,
-				flags = BT_SCALE))
+				pos=(left + self.BorderWidth, top + self.BorderWidth),
+				size=(width - 2 * self.BorderWidth, height - 2 * self.BorderWidth),
+				png=bgpng,
+				flags=BT_SCALE))
 		else:
 			res.append(MultiContentEntryText(
-				pos = (left , top), size = (width, height),
-				font = 0, flags = RT_HALIGN_LEFT | RT_VALIGN_CENTER,
-				text = "", color = None, color_sel = None,
-				backcolor = backColor, backcolor_sel = backColorSel,
-				border_width = self.BorderWidth, border_color = self.borderColor))
+				pos=(left , top), size=(width, height),
+				font=0, flags=RT_HALIGN_LEFT | RT_VALIGN_CENTER,
+				text="", color=None, color_sel=None,
+				backcolor=backColor, backcolor_sel=backColorSel,
+				border_width=self.BorderWidth, border_color=self.borderColor))
 
 		evX = left + self.BorderWidth + self.bouquetNamePadding
 		evY = top + self.BorderWidth
@@ -2013,38 +2013,38 @@ class EPGBouquetList(HTMLComponent, GUIComponent):
 		evH = height - 2 * self.BorderWidth
 
 		res.append(MultiContentEntryText(
-			pos = (evX, evY), size = (evW, evH),
-			font = 0, flags = alignnment,
-			text = name,
-			color = foreColor, color_sel = foreColorSel,
-			backcolor = backColor, backcolor_sel = backColorSel))
+			pos=(evX, evY), size=(evW, evH),
+			font=0, flags=alignnment,
+			text=name,
+			color=foreColor, color_sel=foreColorSel,
+			backcolor=backColor, backcolor_sel=backColorSel))
 
 		# Borders
 		if self.graphic:
 			if borderTopPix is not None:
 				res.append(MultiContentEntryPixmapAlphaTest(
-						pos = (left, r1.y),
-						size = (r1.w, self.BorderWidth),
-						png = borderTopPix,
-						flags = BT_SCALE))
+						pos=(left, r1.y),
+						size=(r1.w, self.BorderWidth),
+						png=borderTopPix,
+						flags=BT_SCALE))
 			if borderBottomPix is not None:
 				res.append(MultiContentEntryPixmapAlphaTest(
-						pos = (left, r1.h-self.BorderWidth),
-						size = (r1.w, self.BorderWidth),
-						png = borderBottomPix,
-						flags = BT_SCALE))
+						pos=(left, r1.h-self.BorderWidth),
+						size=(r1.w, self.BorderWidth),
+						png=borderBottomPix,
+						flags=BT_SCALE))
 			if borderLeftPix is not None:
 				res.append(MultiContentEntryPixmapAlphaTest(
-						pos = (left, r1.y),
-						size = (self.BorderWidth, r1.h),
-						png = borderLeftPix,
-						flags = BT_SCALE))
+						pos=(left, r1.y),
+						size=(self.BorderWidth, r1.h),
+						png=borderLeftPix,
+						flags=BT_SCALE))
 			if borderRightPix is not None:
 				res.append(MultiContentEntryPixmapAlphaTest(
-						pos = (r1.w-self.BorderWidth, left),
-						size = (self.BorderWidth, r1.h),
-						png = borderRightPix,
-						flags = BT_SCALE))
+						pos=(r1.w-self.BorderWidth, left),
+						size=(self.BorderWidth, r1.h),
+						png=borderRightPix,
+						flags=BT_SCALE))
 
 		return res
 

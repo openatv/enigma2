@@ -527,7 +527,7 @@ class QuickMenu(Screen, ProtectedScreen):
 			else:
 				self.session.open(ImageBackup)
 		elif item[0] == _("Backup Settings"):
-			self.session.openWithCallback(self.backupDone,BackupScreen, runBackup = True)
+			self.session.openWithCallback(self.backupDone,BackupScreen, runBackup=True)
 		elif item[0] == _("Restore Settings"):
 			self.backuppath = getBackupPath()
 			if not path.isdir(self.backuppath):
@@ -535,9 +535,9 @@ class QuickMenu(Screen, ProtectedScreen):
 			self.backupfile = getBackupFilename()
 			self.fullbackupfilename = self.backuppath + "/" + self.backupfile
 			if os_path.exists(self.fullbackupfilename):
-				self.session.openWithCallback(self.startRestore, MessageBox, _("Are you sure you want to restore your %s %s backup?\nSTB will restart after the restore") % (getMachineBrand(), getMachineName()),default = False)
+				self.session.openWithCallback(self.startRestore, MessageBox, _("Are you sure you want to restore your %s %s backup?\nSTB will restart after the restore") % (getMachineBrand(), getMachineName()),default=False)
 			else:
-				self.session.open(MessageBox, _("Sorry no backups found!"), MessageBox.TYPE_INFO, timeout = 10)
+				self.session.open(MessageBox, _("Sorry no backups found!"), MessageBox.TYPE_INFO, timeout=10)
 		elif item[0] == _("Show default backup files"):
 			self.session.open(BackupSelection,title=_("Default files/folders to backup"),configBackupDirs=config.plugins.configurationbackup.backupdirs_default,readOnly=True)
 		elif item[0] == _("Select additional backup files"):
@@ -560,7 +560,7 @@ class QuickMenu(Screen, ProtectedScreen):
 				from Plugins.Extensions.MediaScanner.plugin import main
 				main(self.session)
 			except:
-				self.session.open(MessageBox, _("Sorry MediaScanner is not installed!"), MessageBox.TYPE_INFO, timeout = 10)
+				self.session.open(MessageBox, _("Sorry MediaScanner is not installed!"), MessageBox.TYPE_INFO, timeout=10)
 ######## Select Harddisk Menu ############################################
 		elif item[0] == _("Harddisk Setup"):
 			self.openSetup("harddisk")
@@ -623,20 +623,20 @@ class QuickMenu(Screen, ProtectedScreen):
 			self.session.open(Satfinder)
 		
 ######## SOFTWARE MANAGER TOOLS #######################
-	def backupDone(self,retval = None):
+	def backupDone(self,retval=None):
 		if retval is True:
-			self.session.open(MessageBox, _("Backup done."), MessageBox.TYPE_INFO, timeout = 10)
+			self.session.open(MessageBox, _("Backup done."), MessageBox.TYPE_INFO, timeout=10)
 		else:
-			self.session.open(MessageBox, _("Backup failed."), MessageBox.TYPE_INFO, timeout = 10)
+			self.session.open(MessageBox, _("Backup failed."), MessageBox.TYPE_INFO, timeout=10)
 
-	def startRestore(self, ret = False):
+	def startRestore(self, ret=False):
 		if (ret == True):
 			self.exe = True
-			self.session.open(RestoreScreen, runRestore = True)
+			self.session.open(RestoreScreen, runRestore=True)
 
 
 ######## Create MENULIST format #######################
-def QuickMenuEntryComponent(name, description, long_description = None, width=540):
+def QuickMenuEntryComponent(name, description, long_description=None, width=540):
 	pngname = name.replace(" ","_") 
 	png = LoadPixmap("/usr/lib/enigma2/python/Plugins/Extensions/Infopanel/icons/" + pngname + ".png")
 	if png is None:
@@ -645,19 +645,19 @@ def QuickMenuEntryComponent(name, description, long_description = None, width=54
 	sf = getSkinFactor()
 	return [
 		_(name),
-		MultiContentEntryText(pos=(60*sf, 2*sf), size=((width-60)*sf, 28*sf), font=0, text = _(name)),
-		MultiContentEntryText(pos=(60*sf, 25*sf), size=((width-60)*sf, 22*sf), font=1, text = _(description)),
-		MultiContentEntryPixmapAlphaBlend(pos=(10*sf, 5*sf), size=(40*sf, 40*sf), flags = BT_SCALE, png = png),
-		MultiContentEntryText(pos=(0, 0), size=(0, 0), font=0, text = _(long_description))
+		MultiContentEntryText(pos=(60*sf, 2*sf), size=((width-60)*sf, 28*sf), font=0, text=_(name)),
+		MultiContentEntryText(pos=(60*sf, 25*sf), size=((width-60)*sf, 22*sf), font=1, text=_(description)),
+		MultiContentEntryPixmapAlphaBlend(pos=(10*sf, 5*sf), size=(40*sf, 40*sf), flags=BT_SCALE, png=png),
+		MultiContentEntryText(pos=(0, 0), size=(0, 0), font=0, text=_(long_description))
 	]
 
-def QuickSubMenuEntryComponent(name, description, long_description = None, width=540):
+def QuickSubMenuEntryComponent(name, description, long_description=None, width=540):
 	sf = getSkinFactor()
 	return [
 		_(name),
-		MultiContentEntryText(pos=(10*sf, 2*sf), size=((width-10)*sf, 28*sf), font=0, text = _(name)),
-		MultiContentEntryText(pos=(10*sf, 25*sf), size=((width-10)*sf, 22*sf), font=1, text = _(description)),
-		MultiContentEntryText(pos=(0, 0), size=(0, 0), font=0, text = _(long_description))
+		MultiContentEntryText(pos=(10*sf, 2*sf), size=((width-10)*sf, 28*sf), font=0, text=_(name)),
+		MultiContentEntryText(pos=(10*sf, 25*sf), size=((width-10)*sf, 22*sf), font=1, text=_(description)),
+		MultiContentEntryText(pos=(0, 0), size=(0, 0), font=0, text=_(long_description))
 	]
 
 class QuickMenuList(MenuList):
@@ -709,7 +709,7 @@ class QuickMenuDevices(Screen):
 		self.activityTimer.timeout.get().append(self.updateList2)
 		self.updateList()
 
-	def updateList(self, result = None, retval = None, extra_args = None):
+	def updateList(self, result=None, retval=None, extra_args=None):
 		scanning = _("Wait please while scanning for devices...")
 		self['lab1'].setText(scanning)
 		self.activityTimer.start(10)

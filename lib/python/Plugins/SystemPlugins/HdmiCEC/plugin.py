@@ -60,7 +60,7 @@ class HdmiCECSetupScreen(Screen, ConfigListScreen):
 
 		self.onChangedEntry = [ ]
 		self.list = []
-		ConfigListScreen.__init__(self, self.list, session = self.session, on_change = self.changedEntry)
+		ConfigListScreen.__init__(self, self.list, session=self.session, on_change=self.changedEntry)
 		self.advancedSettings("start")
 		self.createSetup()
 
@@ -115,7 +115,7 @@ class HdmiCECSetupScreen(Screen, ConfigListScreen):
 		self.updateAddress()
 		self.showHelpText()
 
-	def advancedSettings(self, mode = None, savevalues = False):
+	def advancedSettings(self, mode=None, savevalues=False):
 		advconfigs = ('deepstandby_waitfortimesync', 'tv_standby_notinputactive', 'tv_wakeup_zaptimer', 'tv_wakeup_zapandrecordtimer', 'tv_wakeup_wakeuppowertimer',
 						'workaround_activesource','handle_tv_input', 'handle_tv_delaytime', 'messages_repeat', 'check_tv_state', 'workaround_turnbackon')
 		cecconf = config.hdmicec.dict()
@@ -164,7 +164,7 @@ class HdmiCECSetupScreen(Screen, ConfigListScreen):
 		#for x in self["config"].list:
 		#	x[1].save()
 		#configfile.save()
-		self.advancedSettings(savevalues = True)
+		self.advancedSettings(savevalues=True)
 		self.close()
 
 	def keyCancel(self):

@@ -13,7 +13,7 @@ class Console(Screen):
 	# Strings are executed by sh -c strng
 	# lists/tuples are executed by execvp(lst[0], lst)
 
-	def __init__(self, session, title = _("Console"), cmdlist = None, finishedCallback = None, closeOnSuccess = False):
+	def __init__(self, session, title=_("Console"), cmdlist=None, finishedCallback=None, closeOnSuccess=False):
 		Screen.__init__(self, session)
 
 		self.finishedCallback = finishedCallback
@@ -125,7 +125,7 @@ class Console(Screen):
 		else:
 			self.cancel_msg = self.session.openWithCallback(self.cancelCB, MessageBox, _("Cancel execution?"), type=MessageBox.TYPE_YESNO, default=False)
 
-	def cancelCB(self, ret = None):
+	def cancelCB(self, ret=None):
 		self.cancel_msg = None
 		if ret:
 			self.cancel(True)
@@ -144,7 +144,7 @@ class Console(Screen):
 		else:
 			yield source
 
-	def saveOutputTextCB(self, ret = None):
+	def saveOutputTextCB(self, ret=None):
 		if ret:
 			from os import path
 			failtext = _("Path to save not exist: '/tmp/'")
@@ -180,7 +180,7 @@ class Console(Screen):
 		else:
 			self.output_file = ''
 
-	def toggleScreenHide(self, setshow = False):
+	def toggleScreenHide(self, setshow=False):
 		if self.screen_hide or setshow:
 			self.show()
 		else:
@@ -199,7 +199,7 @@ class Console(Screen):
 				rd = "File read error: '%s'\n" %file
 		return rd
 
-	def cancel(self, force = False):
+	def cancel(self, force=False):
 		if self.screen_hide:
 			self.toggleScreenHide()
 			return

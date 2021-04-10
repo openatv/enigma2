@@ -19,13 +19,13 @@ def Plugins(**kwargs):
 	list.append(
 		PluginDescriptor(name=_("Enable Quad PIP"),
 		description="Quad Picture in Picture",
-		where = [PluginDescriptor.WHERE_EXTENSIONSMENU],
-		fnc = main))
+		where=[PluginDescriptor.WHERE_EXTENSIONSMENU],
+		fnc=main))
 
 	list.append(
 		PluginDescriptor(
-		where = [PluginDescriptor.WHERE_AUTOSTART],
-		fnc = autoStart))
+		where=[PluginDescriptor.WHERE_AUTOSTART],
+		fnc=autoStart))
 
 	return list
 

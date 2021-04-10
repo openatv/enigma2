@@ -12,7 +12,7 @@ from Tools.Directories import resolveFilename, SCOPE_SKIN, SCOPE_ACTIVE_SKIN
 from Tools.HardwareInfo import HardwareInfo
 
 
-config.misc.showtestcard = ConfigBoolean(default = False)
+config.misc.showtestcard = ConfigBoolean(default=False)
 
 has_rca = False
 has_dvi = False
@@ -76,7 +76,7 @@ class VideoWizard(WizardLanguage, Rc):
 		self.xmlfile = resolveFilename(SCOPE_SKIN, "videowizard.xml")
 		self.hw = iAVSwitch
 
-		WizardLanguage.__init__(self, session, showSteps = False, showStepSlider = False)
+		WizardLanguage.__init__(self, session, showSteps=False, showStepSlider=False)
 		Rc.__init__(self)
 		self["wizard"] = Pixmap()
 		self["HelpWindow"] = Pixmap()
@@ -114,7 +114,7 @@ class VideoWizard(WizardLanguage, Rc):
 					descr = 'Jack'
 				if port != "DVI-PC":
 					list.append((descr,port))
-		list.sort(key = lambda x: x[0])
+		list.sort(key=lambda x: x[0])
 		print "listInputChannels:", list
 		return list
 
@@ -145,7 +145,7 @@ class VideoWizard(WizardLanguage, Rc):
 		self.port = port
 		if len(modeList) > 0:
 			ratesList = self.listRates(modeList[0][0])
-			self.hw.setMode(port = port, mode = modeList[0][0], rate = ratesList[0][0])
+			self.hw.setMode(port=port, mode=modeList[0][0], rate=ratesList[0][0])
 
 	def listModes(self):
 		list = []
@@ -170,11 +170,11 @@ class VideoWizard(WizardLanguage, Rc):
 		print "ratesList:", ratesList
 		if self.port == "HDMI" and mode in ("720p", "1080i", "1080p"):
 			self.rate = "multi"
-			self.hw.setMode(port = self.port, mode = mode, rate = "multi")
+			self.hw.setMode(port=self.port, mode=mode, rate="multi")
 		else:
-			self.hw.setMode(port = self.port, mode = mode, rate = ratesList[0][0])
+			self.hw.setMode(port=self.port, mode=mode, rate=ratesList[0][0])
 
-	def listRates(self, querymode = None):
+	def listRates(self, querymode=None):
 		if querymode is None:
 			querymode = self.mode
 		list = []
@@ -203,9 +203,9 @@ class VideoWizard(WizardLanguage, Rc):
 		self.rateSelect(self.selection)
 
 	def rateSelect(self, rate):
-		self.hw.setMode(port = self.port, mode = self.mode, rate = rate)
+		self.hw.setMode(port=self.port, mode=self.mode, rate=rate)
 
-	def showTestCard(self, selection = None):
+	def showTestCard(self, selection=None):
 		if selection is None:
 			selection = self.selection
 		print "set config.misc.showtestcard to", {'yes': True, 'no': False}[selection]

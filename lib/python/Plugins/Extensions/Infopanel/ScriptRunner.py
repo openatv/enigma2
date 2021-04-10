@@ -67,14 +67,14 @@ class ScriptRunner(Screen):
 			ybox = self.session.openWithCallback(self.Run, MessageBox, message, MessageBox.TYPE_YESNO)
 			ybox.setTitle(_("Run Confirmation"))
 		else:
-			self.session.open(MessageBox, _("You have no script to run."), MessageBox.TYPE_INFO, timeout = 10)
+			self.session.open(MessageBox, _("You have no script to run."), MessageBox.TYPE_INFO, timeout=10)
 
 	def Run(self,answer):
 		if answer is True:
 			if not access("/usr/script/" + self.sel, X_OK):
 				chmod("/usr/script/" + self.sel, 0755)
 			cmd1 = ". /usr/script/" + self.sel
-			self.session.open(Console, title=self.sel, cmdlist = [cmd1], closeOnSuccess = False)	
+			self.session.open(Console, title=self.sel, cmdlist=[cmd1], closeOnSuccess=False)	
 					
 	def myclose(self):
 		self.close()

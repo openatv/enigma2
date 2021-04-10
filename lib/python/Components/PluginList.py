@@ -19,7 +19,7 @@ def PluginEntryComponent(plugin, width=440):
 		plugin,
 		MultiContentEntryText(pos=(nx, ny), size=(width-nx, nh), font=0, text=plugin.name),
 		MultiContentEntryText(pos=(nx, dy), size=(width-dx, dh), font=1, text=plugin.description),
-		MultiContentEntryPixmapAlphaTest(pos=(ix, iy), size=(iw, ih), png = png, flags = BT_SCALE | BT_KEEP_ASPECT_RATIO | BT_HALIGN_CENTER | BT_VALIGN_CENTER)
+		MultiContentEntryPixmapAlphaTest(pos=(ix, iy), size=(iw, ih), png=png, flags=BT_SCALE | BT_KEEP_ASPECT_RATIO | BT_HALIGN_CENTER | BT_VALIGN_CENTER)
 	]
 
 def PluginEntryComponentSelected(plugin, width=440):
@@ -32,11 +32,11 @@ def PluginEntryComponentSelected(plugin, width=440):
 	ix, iy, iw, ih = skin.parameters.get("PluginBrowserIcon",(10, 5, 100, 40))
 	return [
 		plugin,
-		MultiContentEntryText(pos=(nx, ny), size=(width-nx, nh), backcolor_sel = 0xDC143C),
-		MultiContentEntryText(pos=(nx, dy), size=(width-dx, dh), backcolor_sel = 0xDC143C),
+		MultiContentEntryText(pos=(nx, ny), size=(width-nx, nh), backcolor_sel=0xDC143C),
+		MultiContentEntryText(pos=(nx, dy), size=(width-dx, dh), backcolor_sel=0xDC143C),
 		MultiContentEntryText(pos=(nx, ny), size=(width-nx, nh), font=0, text=plugin.name),
 		MultiContentEntryText(pos=(nx, dy), size=(width-dx, dh), font=1, text=plugin.description),
-		MultiContentEntryPixmapAlphaTest(pos=(ix, iy), size=(iw, ih), png = png, flags = BT_SCALE | BT_KEEP_ASPECT_RATIO | BT_HALIGN_CENTER | BT_VALIGN_CENTER)
+		MultiContentEntryPixmapAlphaTest(pos=(ix, iy), size=(iw, ih), png=png, flags=BT_SCALE | BT_KEEP_ASPECT_RATIO | BT_HALIGN_CENTER | BT_VALIGN_CENTER)
 	]
 
 def PluginCategoryComponent(name, png, width=440):
@@ -45,7 +45,7 @@ def PluginCategoryComponent(name, png, width=440):
 	return [
 		name,
 		MultiContentEntryText(pos=(x, y), size=(width-x, h), font=0, text=name),
-		MultiContentEntryPixmapAlphaBlend(pos=(ix, iy), size=(iw, ih), png = png)
+		MultiContentEntryPixmapAlphaBlend(pos=(ix, iy), size=(iw, ih), png=png)
 	]
 
 def PluginDownloadComponent(plugin, name, version=None, width=440):
@@ -67,7 +67,7 @@ def PluginDownloadComponent(plugin, name, version=None, width=440):
 		plugin,
 		MultiContentEntryText(pos=(x, y), size=(width-x, h), font=0, text=name),
 		MultiContentEntryText(pos=(dx, dy), size=(width-dx, dh), font=1, text=plugin.description),
-		MultiContentEntryPixmapAlphaBlend(pos=(ix, iy), size=(iw, ih), png = png)
+		MultiContentEntryPixmapAlphaBlend(pos=(ix, iy), size=(iw, ih), png=png)
 	]
 
 

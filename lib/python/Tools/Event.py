@@ -1,5 +1,5 @@
 class Event:
-	def __init__(self, start = None, stop = None):
+	def __init__(self, start=None, stop=None):
 		self.list = [ ]
 		self.start = start
 		self.stop = stop

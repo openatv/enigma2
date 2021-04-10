@@ -11,4 +11,4 @@ def startSetup(menuid):
 	return [(_("Testscreens"), videoFinetuneMain, "video_finetune", 10)]
 
 def Plugins(**kwargs):
-	return PluginDescriptor(name=_("Testscreens"), description=_("Testscreens that are helpfull to fine-tune your display"), where = PluginDescriptor.WHERE_MENU, needsRestart = False, fnc=startSetup)
+	return PluginDescriptor(name=_("Testscreens"), description=_("Testscreens that are helpfull to fine-tune your display"), where=PluginDescriptor.WHERE_MENU, needsRestart=False, fnc=startSetup)

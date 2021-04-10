@@ -52,7 +52,7 @@ class Dish(Screen):
 		self.onHide.append(self.__onHide)
 
 		self.__event_tracker = ServiceEventTracker(screen=self,
-			eventmap= {
+			eventmap={
 				iPlayableService.evStart: self.__serviceStarted,
 				iPlayableService.evTunedIn: self.__serviceTunedIn,
 			})
@@ -260,7 +260,7 @@ class Dishpip(Dish, Screen):
 		self["turnSpeed"] = Label("")
 		self.updateRotorSatList()
 		self.frontend = None
-		self["Frontend"] = FrontendStatus(service_source = lambda: self.frontend, update_interval=1000)
+		self["Frontend"] = FrontendStatus(service_source=lambda: self.frontend, update_interval=1000)
 		self.rotorTimer = eTimer()
 		self.rotorTimer.timeout.get().append(self.updateRotorMovingState)
 		self.turnTimer = eTimer()

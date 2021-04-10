@@ -12,20 +12,20 @@ import Screens.Standby
 from sys import maxint
 
 config.hdmicec = ConfigSubsection()
-config.hdmicec.enabled = ConfigYesNo(default = False) # query from this value in hdmi_cec.cpp
-config.hdmicec.control_tv_standby = ConfigYesNo(default = True)
-config.hdmicec.control_tv_wakeup = ConfigYesNo(default = True)
-config.hdmicec.report_active_source = ConfigYesNo(default = True)
-config.hdmicec.report_active_menu = ConfigYesNo(default = True) # query from this value in hdmi_cec.cpp
+config.hdmicec.enabled = ConfigYesNo(default=False) # query from this value in hdmi_cec.cpp
+config.hdmicec.control_tv_standby = ConfigYesNo(default=True)
+config.hdmicec.control_tv_wakeup = ConfigYesNo(default=True)
+config.hdmicec.report_active_source = ConfigYesNo(default=True)
+config.hdmicec.report_active_menu = ConfigYesNo(default=True) # query from this value in hdmi_cec.cpp
 choicelist = [
 	("disabled", _("Disabled")),
 	("standby", _("Standby")),
 	("deepstandby", _("Deep standby")),
 	]
-config.hdmicec.handle_tv_standby = ConfigSelection(default = "standby", choices = choicelist)
-config.hdmicec.handle_tv_input = ConfigSelection(default = "disabled", choices = choicelist)
+config.hdmicec.handle_tv_standby = ConfigSelection(default="standby", choices=choicelist)
+config.hdmicec.handle_tv_input = ConfigSelection(default="disabled", choices=choicelist)
 config.hdmicec.handle_tv_wakeup = ConfigSelection(
-	choices = {
+	choices={
 	"disabled": _("Disabled"),
 	"wakeup": _("Wakeup"),
 	"tvreportphysicaladdress": _("TV physical address report"),
@@ -35,48 +35,48 @@ config.hdmicec.handle_tv_wakeup = ConfigSelection(
 	"osdnamerequest": _("OSD name request"),
 	"activity": _("Any activity"),
 	},
-	default = "streamrequest")
-config.hdmicec.fixed_physical_address = ConfigText(default = "0.0.0.0")
-config.hdmicec.volume_forwarding = ConfigYesNo(default = False)
-config.hdmicec.control_receiver_wakeup = ConfigYesNo(default = False)
-config.hdmicec.control_receiver_standby = ConfigYesNo(default = False)
-config.hdmicec.handle_deepstandby_events = ConfigYesNo(default = True)
-config.hdmicec.preemphasis = ConfigYesNo(default = False)
+	default="streamrequest")
+config.hdmicec.fixed_physical_address = ConfigText(default="0.0.0.0")
+config.hdmicec.volume_forwarding = ConfigYesNo(default=False)
+config.hdmicec.control_receiver_wakeup = ConfigYesNo(default=False)
+config.hdmicec.control_receiver_standby = ConfigYesNo(default=False)
+config.hdmicec.handle_deepstandby_events = ConfigYesNo(default=True)
+config.hdmicec.preemphasis = ConfigYesNo(default=False)
 choicelist = []
 for i in (10, 50, 100, 150, 250, 500, 750, 1000):
 	choicelist.append(("%d" % i, _("%d ms") % i))
-config.hdmicec.minimum_send_interval = ConfigSelection(default = "250", choices = [("0", _("Disabled"))] + choicelist)
+config.hdmicec.minimum_send_interval = ConfigSelection(default="250", choices=[("0", _("Disabled"))] + choicelist)
 choicelist = []
 for i in range(1,6):
 	choicelist.append(("%d" % i, _("%d times") % i))
-config.hdmicec.messages_repeat = ConfigSelection(default = "0", choices = [("0", _("Disabled"))] + choicelist)
-config.hdmicec.messages_repeat_standby = ConfigYesNo(default = False)
+config.hdmicec.messages_repeat = ConfigSelection(default="0", choices=[("0", _("Disabled"))] + choicelist)
+config.hdmicec.messages_repeat_standby = ConfigYesNo(default=False)
 choicelist = []
 for i in (500, 1000, 2000, 3000, 4000, 5000):
 	choicelist.append(("%d" % i, _("%d ms") % i))
-config.hdmicec.messages_repeat_slowdown = ConfigSelection(default = "1000", choices = [("0", _("None"))] + choicelist)
+config.hdmicec.messages_repeat_slowdown = ConfigSelection(default="1000", choices=[("0", _("None"))] + choicelist)
 choicelist = []
 for i in (5,10,30,60,120,300,600,900,1800,3600):
 	if i/60<1:
 		choicelist.append(("%d" % i, _("%d sec") % i))
 	else:
 		choicelist.append(("%d" % i, _("%d min") % (i/60)))
-config.hdmicec.handle_tv_delaytime = ConfigSelection(default = "0", choices = [("0", _("None"))] + choicelist)
-config.hdmicec.deepstandby_waitfortimesync = ConfigYesNo(default = True)
-config.hdmicec.tv_wakeup_zaptimer = ConfigYesNo(default = True)
-config.hdmicec.tv_wakeup_zapandrecordtimer = ConfigYesNo(default = True)
-config.hdmicec.tv_wakeup_wakeuppowertimer = ConfigYesNo(default = True)
-config.hdmicec.tv_standby_notinputactive = ConfigYesNo(default = True)
-config.hdmicec.check_tv_state = ConfigYesNo(default = False)
-config.hdmicec.workaround_activesource = ConfigYesNo(default = False)
+config.hdmicec.handle_tv_delaytime = ConfigSelection(default="0", choices=[("0", _("None"))] + choicelist)
+config.hdmicec.deepstandby_waitfortimesync = ConfigYesNo(default=True)
+config.hdmicec.tv_wakeup_zaptimer = ConfigYesNo(default=True)
+config.hdmicec.tv_wakeup_zapandrecordtimer = ConfigYesNo(default=True)
+config.hdmicec.tv_wakeup_wakeuppowertimer = ConfigYesNo(default=True)
+config.hdmicec.tv_standby_notinputactive = ConfigYesNo(default=True)
+config.hdmicec.check_tv_state = ConfigYesNo(default=False)
+config.hdmicec.workaround_activesource = ConfigYesNo(default=False)
 choicelist = []
 for i in (5,10,15,30,45,60):
 	choicelist.append(("%d" % i, _("%d sec") % i))
-config.hdmicec.workaround_turnbackon = ConfigSelection(default = "0", choices = [("0", _("Disabled"))] + choicelist)
-config.hdmicec.advanced_settings = ConfigYesNo(default = False)
-config.hdmicec.default_settings = NoSave(ConfigYesNo(default = False))
-config.hdmicec.debug = ConfigYesNo(default = False)
-config.hdmicec.commandline = ConfigYesNo(default = False)
+config.hdmicec.workaround_turnbackon = ConfigSelection(default="0", choices=[("0", _("Disabled"))] + choicelist)
+config.hdmicec.advanced_settings = ConfigYesNo(default=False)
+config.hdmicec.default_settings = NoSave(ConfigYesNo(default=False))
+config.hdmicec.debug = ConfigYesNo(default=False)
+config.hdmicec.commandline = ConfigYesNo(default=False)
 
 cmdfile = "/tmp/hdmicec_cmd"
 msgfile = "/tmp/hdmicec_msg"
@@ -469,24 +469,24 @@ class HdmiCec:
 			self.checkifPowerupWithoutWakingTv() # initially write 'False' to file, see below
 
 			eHdmiCEC.getInstance().messageReceived.get().append(self.messageReceived)
-			config.misc.standbyCounter.addNotifier(self.onEnterStandby, initial_call = False)
-			config.misc.DeepStandby.addNotifier(self.onEnterDeepStandby, initial_call = False)
+			config.misc.standbyCounter.addNotifier(self.onEnterStandby, initial_call=False)
+			config.misc.DeepStandby.addNotifier(self.onEnterDeepStandby, initial_call=False)
 			self.setFixedPhysicalAddress(config.hdmicec.fixed_physical_address.value)
 
 			self.volumeForwardingEnabled = False
 			self.volumeForwardingDestination = 0
 			eActionMap.getInstance().bindAction('', -maxint - 1, self.keyEvent)
-			config.hdmicec.volume_forwarding.addNotifier(self.configVolumeForwarding, initial_call = False)
+			config.hdmicec.volume_forwarding.addNotifier(self.configVolumeForwarding, initial_call=False)
 			config.hdmicec.enabled.addNotifier(self.configVolumeForwarding)
 
 			#workaround for needless messages after cancel settings
 			self.old_configReportActiveMenu = config.hdmicec.report_active_menu.value
 			self.old_configTVstate = config.hdmicec.check_tv_state.value or (config.hdmicec.tv_standby_notinputactive.value and config.hdmicec.control_tv_standby.value)
 			#
-			config.hdmicec.report_active_menu.addNotifier(self.configReportActiveMenu, initial_call = False)
-			config.hdmicec.check_tv_state.addNotifier(self.configTVstate, initial_call = False)
-			config.hdmicec.tv_standby_notinputactive.addNotifier(self.configTVstate, initial_call = False)
-			config.hdmicec.control_tv_standby.addNotifier(self.configTVstate, initial_call = False)
+			config.hdmicec.report_active_menu.addNotifier(self.configReportActiveMenu, initial_call=False)
+			config.hdmicec.check_tv_state.addNotifier(self.configTVstate, initial_call=False)
+			config.hdmicec.tv_standby_notinputactive.addNotifier(self.configTVstate, initial_call=False)
+			config.hdmicec.control_tv_standby.addNotifier(self.configTVstate, initial_call=False)
 
 			config.hdmicec.commandline.addNotifier(self.CECcmdstart)
 
@@ -816,7 +816,7 @@ class HdmiCec:
 			if os.path.exists("/usr/script/TvOff.sh"):
 				Console().ePopen("/usr/script/TvOff.sh &")
 
-	def sendMessagesIsActive(self, stopMessages = False):
+	def sendMessagesIsActive(self, stopMessages=False):
 		if stopMessages:
 			active = False
 			if self.wait.isActive():
@@ -841,7 +841,7 @@ class HdmiCec:
 		elif self.firstrun and not config.hdmicec.handle_deepstandby_events.value:
 			self.firstrun = False
 
-	def checkTVstate(self, state = ''):
+	def checkTVstate(self, state=''):
 		if self.stateTimer.isActive():
 			self.stateTimer.stop()
 
@@ -885,7 +885,7 @@ class HdmiCec:
 				self.activesource = False
 				self.tv_powerstate = 'standby'
 
-	def handleTimerStop(self, reset = False):
+	def handleTimerStop(self, reset=False):
 		if reset:
 			self.tv_skip_messages = False
 		if self.handleTimer.isActive():
@@ -946,7 +946,7 @@ class HdmiCec:
 		now = time()
 		recording = NavigationInstance.instance.getRecordingsCheckBeforeActivateDeepStandby()
 		rectimer = abs(NavigationInstance.instance.RecordTimer.getNextRecordingTime() - now) <= 900 or NavigationInstance.instance.RecordTimer.getStillRecording() or abs(NavigationInstance.instance.RecordTimer.getNextZapTime() - now) <= 900
-		pwrtimer = abs(NavigationInstance.instance.PowerTimer.getNextPowerManagerTime() - now) <= 900 or NavigationInstance.instance.PowerTimer.isProcessing(exceptTimer = 0) or not NavigationInstance.instance.PowerTimer.isAutoDeepstandbyEnabled()
+		pwrtimer = abs(NavigationInstance.instance.PowerTimer.getNextPowerManagerTime() - now) <= 900 or NavigationInstance.instance.PowerTimer.isProcessing(exceptTimer=0) or not NavigationInstance.instance.PowerTimer.isAutoDeepstandbyEnabled()
 		if recording or rectimer or pwrtimer:
 			self.CECwritedebug('[HdmiCec] go not into deepstandby... recording=%s, rectimer=%s, pwrtimer=%s' %(recording, rectimer, pwrtimer), True)
 			self.standby()
@@ -1055,7 +1055,7 @@ class HdmiCec:
 		self.CECwritefile(f, "w", "False")
 		return powerupWithoutWakingTv
 
-	def CECdebug(self, type, address, cmd, data, length, cmdmsg = False):
+	def CECdebug(self, type, address, cmd, data, length, cmdmsg=False):
 		txt = "<%s:> " %type
 		tmp = "%02X " %address
 		tmp += "%02X " %cmd
@@ -1122,7 +1122,7 @@ class HdmiCec:
 				txt += CECdat.get(cmd,"")
 		self.CECwritedebug(txt)
 
-	def CECwritedebug(self, debugtext, debugprint = False):
+	def CECwritedebug(self, debugtext, debugprint=False):
 		if debugprint and not config.hdmicec.debug.value:
 			print debugtext
 			return
@@ -1162,7 +1162,7 @@ class HdmiCec:
 		else:
 			self.CECcmdline("stop")
 
-	def CECcmdline(self, received = None):
+	def CECcmdline(self, received=None):
 		polltime = 1
 		waittime = 3
 		if self.cmdPollTimer.isActive():

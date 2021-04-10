@@ -10,9 +10,9 @@ from Components.config import config, configfile
 from Components.Console import Console
 
 class UserInterfacePositionerWizard(WizardLanguage, Rc):
-	def __init__(self, session, interface = None):
+	def __init__(self, session, interface=None):
 		self.xmlfile = resolveFilename(SCOPE_SKIN, "userinterfacepositionerwizard.xml")
-		WizardLanguage.__init__(self, session, showSteps = False, showStepSlider = False)
+		WizardLanguage.__init__(self, session, showSteps=False, showStepSlider=False)
 		Rc.__init__(self)
 		self.skinName = "StartWizard"
 		self.session = session
@@ -32,7 +32,7 @@ class UserInterfacePositionerWizard(WizardLanguage, Rc):
 	def layoutFinished(self):
 		self.Console.ePopen('/usr/bin/showiframe /usr/share/enigma2/hd-testcard.mvi')
 
-	def exitWizardQuestion(self, ret = False):
+	def exitWizardQuestion(self, ret=False):
 		if ret:
 			self.markDone()
 			self.close()

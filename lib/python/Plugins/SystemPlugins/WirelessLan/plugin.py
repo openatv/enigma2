@@ -23,11 +23,11 @@ list = ["Unencrypted", "WEP", "WPA", "WPA/WPA2", "WPA2"]
 weplist = ["ASCII", "HEX"]
 
 config.plugins.wlan = ConfigSubsection()
-config.plugins.wlan.essid = NoSave(ConfigText(default = "", fixed_size = False))
-config.plugins.wlan.hiddenessid = NoSave(ConfigYesNo(default = False))
-config.plugins.wlan.encryption = NoSave(ConfigSelection(list, default = "WPA2"))
-config.plugins.wlan.wepkeytype = NoSave(ConfigSelection(weplist, default = "ASCII"))
-config.plugins.wlan.psk = NoSave(ConfigPassword(default = "", fixed_size = False))
+config.plugins.wlan.essid = NoSave(ConfigText(default="", fixed_size=False))
+config.plugins.wlan.hiddenessid = NoSave(ConfigYesNo(default=False))
+config.plugins.wlan.encryption = NoSave(ConfigSelection(list, default="WPA2"))
+config.plugins.wlan.wepkeytype = NoSave(ConfigSelection(weplist, default="ASCII"))
+config.plugins.wlan.psk = NoSave(ConfigPassword(default="", fixed_size=False))
 
 
 class WlanStatus(Screen):
@@ -243,7 +243,7 @@ class WlanScan(Screen):
 		iWlan.setInterface(self.iface)
 		self.w = iWlan.getInterface()
 		self.onLayoutFinish.append(self.layoutFinished)
-		self.getAccessPoints(refresh = False)
+		self.getAccessPoints(refresh=False)
 
 	def layoutFinished(self):
 		self.setTitle(_("Select a wireless network"))
@@ -280,7 +280,7 @@ class WlanScan(Screen):
 
 	def updateAPList(self):
 		newList = []
-		newList = self.getAccessPoints(refresh = True)
+		newList = self.getAccessPoints(refresh=True)
 		self.newAPList = []
 		tmpList = []
 		newListIndex = None
@@ -311,7 +311,7 @@ class WlanScan(Screen):
 			self.buildWlanList()
 			self.setInfo()
 
-	def getAccessPoints(self, refresh = False):
+	def getAccessPoints(self, refresh=False):
 		self.APList = []
 		self.cleanList = []
 		aps = iWlan.getNetworkList()
@@ -400,4 +400,4 @@ def configStrings(iface):
 	return ret
 
 def Plugins(**kwargs):
-	return PluginDescriptor(name=_("Wireless LAN"), description=_("Connect to a wireless network"), where = PluginDescriptor.WHERE_NETWORKSETUP, needsRestart = False, fnc={"ifaceSupported": callFunction, "configStrings": configStrings, "WlanPluginEntry": lambda x: _("Wireless network configuration...")})
+	return PluginDescriptor(name=_("Wireless LAN"), description=_("Connect to a wireless network"), where=PluginDescriptor.WHERE_NETWORKSETUP, needsRestart=False, fnc={"ifaceSupported": callFunction, "configStrings": configStrings, "WlanPluginEntry": lambda x: _("Wireless network configuration...")})

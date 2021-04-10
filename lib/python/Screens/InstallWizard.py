@@ -8,9 +8,9 @@ from Components.Ipkg import IpkgComponent
 from enigma import eDVBDB
 
 config.misc.installwizard = ConfigSubsection()
-config.misc.installwizard.hasnetwork = ConfigBoolean(default = False)
-config.misc.installwizard.ipkgloaded = ConfigBoolean(default = False)
-config.misc.installwizard.channellistdownloaded = ConfigBoolean(default = False)
+config.misc.installwizard.hasnetwork = ConfigBoolean(default=False)
+config.misc.installwizard.ipkgloaded = ConfigBoolean(default=False)
+config.misc.installwizard.channellistdownloaded = ConfigBoolean(default=False)
 
 
 class InstallWizard(Screen, ConfigListScreen):
@@ -19,7 +19,7 @@ class InstallWizard(Screen, ConfigListScreen):
 	STATE_CHOISE_CHANNELLIST = 1
 # 	STATE_CHOISE_SOFTCAM = 2
 
-	def __init__(self, session, args = None):
+	def __init__(self, session, args=None):
 		Screen.__init__(self, session)
 
 		self.index = args
@@ -30,13 +30,13 @@ class InstallWizard(Screen, ConfigListScreen):
 			config.misc.installwizard.hasnetwork.value = False
 			config.misc.installwizard.ipkgloaded.value = False
 			modes = {0: " "}
-			self.enabled = ConfigSelection(choices = modes, default = 0)
+			self.enabled = ConfigSelection(choices=modes, default=0)
 			self.adapters = [(iNetwork.getFriendlyAdapterName(x),x) for x in iNetwork.getAdapterList()]
 			is_found = False
 			for x in self.adapters:
 				if x[1] == 'eth0' or x[1] == 'eth1':
 					if iNetwork.getAdapterAttribute(x[1], 'up'):
-						self.ipConfigEntry = ConfigIP(default = iNetwork.getAdapterAttribute(x[1], "ip"))
+						self.ipConfigEntry = ConfigIP(default=iNetwork.getAdapterAttribute(x[1], "ip"))
 						iNetwork.checkNetworkState(self.checkNetworkCB)
 						if_found = True
 					else:
@@ -45,9 +45,9 @@ class InstallWizard(Screen, ConfigListScreen):
 			if is_found is False:
 				self.createMenu()
 		elif self.index == self.STATE_CHOISE_CHANNELLIST:
-			self.enabled = ConfigYesNo(default = True)
+			self.enabled = ConfigYesNo(default=True)
 			modes = {"default": _("default Astra (13e-19e)"),"none": _("none")}
-			self.channellist_type = ConfigSelection(choices = modes, default = "default")
+			self.channellist_type = ConfigSelection(choices=modes, default="default")
 			self.createMenu()
 # 		elif self.index == self.STATE_CHOISE_SOFTCAM:
 # 			self.enabled = ConfigYesNo(default = True)
@@ -115,7 +115,7 @@ class InstallWizard(Screen, ConfigListScreen):
 
 
 class InstallWizardIpkgUpdater(Screen):
-	def __init__(self, session, index, info, cmd, pkg = None):
+	def __init__(self, session, index, info, cmd, pkg=None):
 		Screen.__init__(self, session)
 
 		self["statusbar"] = StaticText(info)

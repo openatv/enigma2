@@ -430,8 +430,7 @@ class Volume:
 		self.onClose = [ ]
 		self.read_services=[]
 		self.read_volume=[]
-		self.__event_tracker = ServiceEventTracker(screen=self,eventmap=
-			{
+		self.__event_tracker = ServiceEventTracker(screen=self,eventmap={
 				iPlayableService.evUpdatedInfo: self.__evUpdatedInfo,
 			})
 		self.volctrl = eDVBVolumecontrol.getInstance()
@@ -569,6 +568,6 @@ def menu(menuid, **kwargs):
 	return [ ]
 
 def Plugins(**kwargs):
-	return [PluginDescriptor( where = PluginDescriptor.WHERE_SESSIONSTART, fnc = sessionstart ),
-			PluginDescriptor( name = "Volume Adjust", description = _("select channels to add a offset to the Volume"), where = PluginDescriptor.WHERE_MENU, fnc = menu )]
+	return [PluginDescriptor( where=PluginDescriptor.WHERE_SESSIONSTART, fnc=sessionstart ),
+			PluginDescriptor( name="Volume Adjust", description=_("select channels to add a offset to the Volume"), where=PluginDescriptor.WHERE_MENU, fnc=menu )]
 

@@ -25,7 +25,7 @@ class eTimer:
 		self.next_activation = None
 		print "NEW TIMER"
 
-	def start(self, msec, singleshot = False):
+	def start(self, msec, singleshot=False):
 		print "start timer", msec
 		self.next_activation = time.time() + msec / 1000.0
 		self.msec = msec
@@ -70,7 +70,7 @@ def stop():
 	global stopped
 	stopped = True
 
-def run(duration = 1000):
+def run(duration=1000):
 	stoptimer = eTimer()
 	stoptimer.start(duration * 1000.0)
 	stoptimer.callback.append(stop)

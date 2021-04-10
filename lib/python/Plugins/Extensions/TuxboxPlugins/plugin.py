@@ -17,7 +17,7 @@ def getPlugins():
 		for x in dir:
 			if x[-3:] == "cfg":
 				params = getPluginParams(x)
-				pluginlist.append(PluginDescriptor(name=params["name"], description=params["desc"], where = PluginDescriptor.WHERE_PLUGINMENU, icon="tuxbox.png", needsRestart = True, fnc=boundFunction(main, plugin=x)))
+				pluginlist.append(PluginDescriptor(name=params["name"], description=params["desc"], where=PluginDescriptor.WHERE_PLUGINMENU, icon="tuxbox.png", needsRestart=True, fnc=boundFunction(main, plugin=x)))
 
 	return pluginlist
 

@@ -3,18 +3,18 @@ import TitleCutter
 
 class ConfigFixedText(ConfigText):
 	def __init__(self, text, visible_width=60):
-		ConfigText.__init__(self, default = text, fixed_size = True, visible_width = visible_width)
+		ConfigText.__init__(self, default=text, fixed_size=True, visible_width=visible_width)
 	def handleKey(self, key):
 		pass
 
 class Title:
 	def __init__(self, project):
 		self.properties = ConfigSubsection()
-		self.properties.menutitle = ConfigText(fixed_size = False, visible_width = 80)
-		self.properties.menusubtitle = ConfigText(fixed_size = False, visible_width = 80)
-		self.properties.aspect = ConfigSelection(choices = [("4:3", _("4:3")), ("16:9", _("16:9"))])
-		self.properties.widescreen = ConfigSelection(choices = [("nopanscan", "nopanscan"), ("noletterbox", "noletterbox")])
-		self.properties.autochapter = ConfigInteger(default = 0, limits = (0, 60))
+		self.properties.menutitle = ConfigText(fixed_size=False, visible_width=80)
+		self.properties.menusubtitle = ConfigText(fixed_size=False, visible_width=80)
+		self.properties.aspect = ConfigSelection(choices=[("4:3", _("4:3")), ("16:9", _("16:9"))])
+		self.properties.widescreen = ConfigSelection(choices=[("nopanscan", "nopanscan"), ("noletterbox", "noletterbox")])
+		self.properties.autochapter = ConfigInteger(default=0, limits=(0, 60))
 		self.properties.audiotracks = ConfigSubList()
 		self.DVBname = _("Title")
 		self.DVBdescr = _("Description")

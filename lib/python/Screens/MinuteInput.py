@@ -4,7 +4,7 @@ from Components.Input import Input
 from Screens.MessageBox import MessageBox
 
 class MinuteInput(Screen):
-	def __init__(self, session, basemins = 5):
+	def __init__(self, session, basemins=5):
 		Screen.__init__(self, session)
 		self.setTitle(_("Minutes:"))
 

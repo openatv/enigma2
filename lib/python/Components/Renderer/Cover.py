@@ -70,7 +70,7 @@ class Cover(Renderer):
                     self.instance.hide()
             return
 
-    def showCoverCallback(self, picInfo = None):
+    def showCoverCallback(self, picInfo=None):
         if self.picload:
             ptr = self.picload.getData()
             if ptr != None:

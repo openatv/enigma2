@@ -27,16 +27,16 @@ class InstallSomething():
 
 # plain install, just finish and exit
 	def __install__(self):
-		self.session.open(Ipkg, cmdList = self.cmdList)
+		self.session.open(Ipkg, cmdList=self.cmdList)
 
 # install with restart
 	def __installRST__(self):
-		self.session.openWithCallback(self.__restartMessage__, Ipkg, cmdList = self.cmdList)
+		self.session.openWithCallback(self.__restartMessage__, Ipkg, cmdList=self.cmdList)
 
 	def __restartMessage__(self):
-		self.session.openWithCallback(self.__restartGUI__, MessageBox,_("Restart Enigma2 to apply the changes?"), MessageBox.TYPE_YESNO, default = True)
+		self.session.openWithCallback(self.__restartGUI__, MessageBox,_("Restart Enigma2 to apply the changes?"), MessageBox.TYPE_YESNO, default=True)
 
-	def __restartGUI__(self, callback = None):
+	def __restartGUI__(self, callback=None):
 		if callback == True:
 			quitMainloop(3)
 		elif callback == False:

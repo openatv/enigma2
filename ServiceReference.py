@@ -2,7 +2,7 @@ from enigma import eServiceReference, eServiceCenter, getBestPlayableServiceRefe
 import NavigationInstance
 
 class ServiceReference(eServiceReference):
-	def __init__(self, ref, reftype = eServiceReference.idInvalid, flags = 0, path = ''):
+	def __init__(self, ref, reftype=eServiceReference.idInvalid, flags=0, path=''):
 		if reftype != eServiceReference.idInvalid:
 			self.ref = eServiceReference(reftype, flags, path)
 		elif not isinstance(ref, eServiceReference):

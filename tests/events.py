@@ -59,7 +59,7 @@ def end_log(test_name):
 	else:
 		print "no test data to compare with."
 
-def log(fnc, base_time = 0, test_name = "test", *args, **kwargs):
+def log(fnc, base_time=0, test_name="test", *args, **kwargs):
 	import fake_time
 	fake_time.setTime(base_time)
 

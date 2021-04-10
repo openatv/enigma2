@@ -2,7 +2,7 @@ from Source import Source
 from enigma import eTimer
 
 class FrontendStatus(Source):
-	def __init__(self, service_source = None, frontend_source = None, update_interval = 1000):
+	def __init__(self, service_source=None, frontend_source=None, update_interval=1000):
 		Source.__init__(self)
 		self.update_interval = update_interval
 		self.service_source = service_source

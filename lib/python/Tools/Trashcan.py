@@ -36,7 +36,7 @@ def createTrashFolder(path=None):
 	else:
 		return None
 
-def get_size(start_path = '.'):
+def get_size(start_path='.'):
 	total_size = 0
 	if start_path:
 		for dirpath, dirnames, filenames in os.walk(start_path):
@@ -196,7 +196,7 @@ class TrashInfo(VariableText, GUIComponent):
 	USED = 1
 	SIZE = 2
 
-	def __init__(self, path, type, update = True):
+	def __init__(self, path, type, update=True):
 		GUIComponent.__init__(self)
 		VariableText.__init__(self)
 		self.type = type

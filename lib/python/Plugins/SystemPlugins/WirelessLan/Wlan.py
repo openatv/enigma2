@@ -15,11 +15,11 @@ list = ["WPA/WPA2", "WPA2", "WPA", "WEP", "Unencrypted"]
 weplist = ["ASCII", "HEX"]
 
 config.plugins.wlan = ConfigSubsection()
-config.plugins.wlan.essid = NoSave(ConfigText(default = "", fixed_size = False))
-config.plugins.wlan.hiddenessid = NoSave(ConfigYesNo(default = False))
-config.plugins.wlan.encryption = NoSave(ConfigSelection(list, default = "WPA/WPA2"))
-config.plugins.wlan.wepkeytype = NoSave(ConfigSelection(weplist, default = "ASCII"))
-config.plugins.wlan.psk = NoSave(ConfigPassword(default = "", fixed_size = False))
+config.plugins.wlan.essid = NoSave(ConfigText(default="", fixed_size=False))
+config.plugins.wlan.hiddenessid = NoSave(ConfigYesNo(default=False))
+config.plugins.wlan.encryption = NoSave(ConfigSelection(list, default="WPA/WPA2"))
+config.plugins.wlan.wepkeytype = NoSave(ConfigSelection(weplist, default="ASCII"))
+config.plugins.wlan.psk = NoSave(ConfigPassword(default="", fixed_size=False))
 
 def getWlanConfigName(iface):
 	driver = iNetwork.detectWlanModule(iface)
@@ -28,7 +28,7 @@ def getWlanConfigName(iface):
 	return '/etc/wpa_supplicant.' + iface + '.conf'
 
 class Wlan:
-	def __init__(self, iface = None):
+	def __init__(self, iface=None):
 		self.iface = iface
 		self.oldInterfaceState = None
 
@@ -49,7 +49,7 @@ class Wlan:
 	def getWirelessInterfaces(self):
 		return getWNICnames()
 
-	def setInterface(self, iface = None):
+	def setInterface(self, iface=None):
 		self.iface = iface
 
 	def getInterface(self):
@@ -400,7 +400,7 @@ class Status:
 			self.WlanConsole.killAll()
 			self.WlanConsole = None
 
-	def getDataForInterface(self, iface, callback = None):
+	def getDataForInterface(self, iface, callback=None):
 		self.WlanConsole = Console()
 		cmd = "iwconfig " + iface
 		if callback is not None:

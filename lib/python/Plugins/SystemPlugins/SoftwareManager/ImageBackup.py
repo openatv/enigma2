@@ -471,7 +471,7 @@ class ImageBackup(Screen):
 					f.write('</Partition_Info>\n')
 					f.close()
 					cmdlist.append('mkupdate -s 00000003-00000001-01010101 -f %s/emmc_partitions.xml -d %s/%s' % (self.WORKDIR,self.WORKDIR,self.EMMCIMG))
-				self.session.open(Console, title = self.TITLE, cmdlist = cmdlist, finishedCallback = self.doFullBackupCB, closeOnSuccess = True)
+				self.session.open(Console, title=self.TITLE, cmdlist=cmdlist, finishedCallback=self.doFullBackupCB, closeOnSuccess=True)
 			else:
 				self.close()
 		else:
@@ -640,7 +640,7 @@ class ImageBackup(Screen):
 		TIMELAP = str(datetime.timedelta(seconds=DIFF))
 		cmdlist.append('echo "' + _("Time required for this process: %s") %TIMELAP + '\n"')
 
-		self.session.open(Console, title = self.TITLE, cmdlist = cmdlist, closeOnSuccess = False)
+		self.session.open(Console, title=self.TITLE, cmdlist=cmdlist, closeOnSuccess=False)
 
 	def imageInfo(self):
 		AboutText = _("Full Image Backup ")

@@ -9,8 +9,7 @@ class TitleCutter(CutListEditor):
 		self.skin = CutListEditor.skin
 		self.session = session
 		self.t = t
-		self.__event_tracker = ServiceEventTracker(screen=self, eventmap=
-			{
+		self.__event_tracker = ServiceEventTracker(screen=self, eventmap={
 				iPlayableService.evUpdatedInfo: self.getPMTInfo,
 				iPlayableService.evCuesheetChanged: self.refillList
 			})
@@ -34,11 +33,11 @@ class TitleCutter(CutListEditor):
 					description = "MP2"
 				print "[audiotrack] pid:", pid, "description:", description, "language:", DVB_lang, "count:", x, "active:", (x < 8)
 				self.t.properties.audiotracks.append(ConfigSubsection())
-				self.t.properties.audiotracks[-1].active = ConfigYesNo(default = (x < 8))
+				self.t.properties.audiotracks[-1].active = ConfigYesNo(default=(x < 8))
 				self.t.properties.audiotracks[-1].format = ConfigFixedText(description)
 				choicelist = iso639language.getChoices()
 				determined_language = iso639language.determineLanguage(DVB_lang)
-				self.t.properties.audiotracks[-1].language = ConfigSelection(choices = choicelist, default=determined_language)
+				self.t.properties.audiotracks[-1].language = ConfigSelection(choices=choicelist, default=determined_language)
 				self.t.properties.audiotracks[-1].pid = ConfigFixedText(pid)
 				self.t.properties.audiotracks[-1].DVB_lang = ConfigFixedText(DVB_lang)
 		sAspect = service.info().getInfo(iServiceInformation.sAspect)

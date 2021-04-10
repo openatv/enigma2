@@ -101,7 +101,7 @@ class FileList(FileListBase):
 
 		FileListBase.__init__(self, directory, showDirectories=showDirectories, showFiles=showFiles, showMountpoints=showMountpoints, matchingPattern=matchingPattern, useServiceRef=useServiceRef, inhibitDirs=inhibitDirs, inhibitMounts=inhibitMounts, isTop=isTop, enableWrapAround=enableWrapAround, additionalExtensions=additionalExtensions)
 
-	def setSortBy(self, sortBy, setDir = False):
+	def setSortBy(self, sortBy, setDir=False):
 		#0.0
 		#| 0 - normal
 		#| 1 - reverse

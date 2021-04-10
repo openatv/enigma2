@@ -32,7 +32,7 @@ def InitRFmod():
 		config.rfmod.test = ConfigOnOff(default=False)
 		config.rfmod.sound = ConfigOnOff(default=True)
 		config.rfmod.soundcarrier = ConfigSelection(choices=[("4500","4.5 MHz"), ("5500", "5.5 MHz"), ("6000", "6.0 MHz"), ("6500", "6.5 MHz")], default="5500")
-		config.rfmod.channel = ConfigSelection(default = "36", choices = ["%d" % x for x in range(RFMOD_CHANNEL_MIN, RFMOD_CHANNEL_MAX)])
+		config.rfmod.channel = ConfigSelection(default="36", choices=["%d" % x for x in range(RFMOD_CHANNEL_MIN, RFMOD_CHANNEL_MAX)])
 		config.rfmod.finetune = ConfigSlider(default=5, limits=(1, 10))
 
 		iRFmod = RFmod()

@@ -28,7 +28,7 @@ class FSBLUpdateHandler(object):
 				(_("Don't ask again!"), "never")
 			]
 			txt = _("DO NOT POWER OFF YOUR DEVICE WHILE UPDATING!\nUpdate now?")
-			Notifications.AddNotificationWithCallback(self._startFSBLUpdater, ChoiceBox, list=choices, title = txt, windowTitle=_("Bootloader update required!"))
+			Notifications.AddNotificationWithCallback(self._startFSBLUpdater, ChoiceBox, list=choices, title=txt, windowTitle=_("Bootloader update required!"))
 		else:
 			Log.i("No FSBL update required!")
 
@@ -56,5 +56,5 @@ def Plugins(path, **kwargs):
 	return [
 		PluginDescriptor(
 			name=_("FSBL Update Check"),
-			where = PluginDescriptor.WHERE_SESSIONSTART,
+			where=PluginDescriptor.WHERE_SESSIONSTART,
 			fnc=sessionstart,)]

@@ -10,15 +10,15 @@ from Plugins.Plugin import PluginDescriptor
 from os import system as os_system, path as os_path, mkdir
 from boxbranding import getMachineBrand, getMachineName
 
-config.misc.defaultchosen = ConfigBoolean(default = False)
+config.misc.defaultchosen = ConfigBoolean(default=False)
 
 class DefaultWizard(WizardLanguage, DreamInfoHandler):
-	def __init__(self, session, silent = True, showSteps = False, neededTag = None):
-		DreamInfoHandler.__init__(self, self.statusCallback, neededTag = neededTag)
+	def __init__(self, session, silent=True, showSteps=False, neededTag=None):
+		DreamInfoHandler.__init__(self, self.statusCallback, neededTag=neededTag)
 		self.silent = silent
 		self.setDirectory()
 
-		WizardLanguage.__init__(self, session, showSteps = False)
+		WizardLanguage.__init__(self, session, showSteps=False)
 		self["wizard"] = Pixmap()
 		self["rc"] = MovingPixmap()
 		self["arrowdown"] = MovingPixmap()
@@ -63,7 +63,7 @@ class DefaultWizard(WizardLanguage, DreamInfoHandler):
 				self.indexList.append(x)
 
 class DreamPackageWizard(DefaultWizard):
-	def __init__(self, session, packagefile, silent = False):
+	def __init__(self, session, packagefile, silent=False):
 		if not pathExists("/tmp/package"):
 			mkdir("/tmp/package")
 		os_system("tar xpzf %s -C /tmp/package" % packagefile)
@@ -76,7 +76,7 @@ class DreamPackageWizard(DefaultWizard):
 
 class ImageDefaultInstaller(DreamInfoHandler):
 	def __init__(self):
-		DreamInfoHandler.__init__(self, self.statusCallback, blocking = True)
+		DreamInfoHandler.__init__(self, self.statusCallback, blocking=True)
 		self.directory = resolveFilename(SCOPE_DEFAULTDIR)
 		self.fillPackagesList()
 		self.installPackage(0)
@@ -94,26 +94,25 @@ def filescan_open(list, session, **kwargs):
 	print "open default wizard"
 	filelist = [(os_path.split(x.path)[1], x.path, session) for x in list]
 	print filelist
-	session.openWithCallback(install, ChoiceBox, title = _("Please choose he package..."), list=filelist)
+	session.openWithCallback(install, ChoiceBox, title=_("Please choose he package..."), list=filelist)
 
 def filescan(**kwargs):
 	from Components.Scanner import Scanner, ScanPath
 	return \
-		Scanner(mimetypes = ["application/x-dream-package"],
-			paths_to_scan =
-				[
-					ScanPath(path = "dmpkg", with_subdirs = True),
-					ScanPath(path = "", with_subdirs = False),
+		Scanner(mimetypes=["application/x-dream-package"],
+			paths_to_scan=[
+					ScanPath(path="dmpkg", with_subdirs=True),
+					ScanPath(path="", with_subdirs=False),
 				],
-			name = "Dream-Package",
-			description = _("Install settings, skins, software..."),
-			openfnc = filescan_open, )
+			name="Dream-Package",
+			description=_("Install settings, skins, software..."),
+			openfnc=filescan_open, )
 
 print "add dreampackage scanner plugin"
-plugins.addPlugin(PluginDescriptor(name="Dream-Package", where = PluginDescriptor.WHERE_FILESCAN, fnc = filescan, internal = True))
+plugins.addPlugin(PluginDescriptor(name="Dream-Package", where=PluginDescriptor.WHERE_FILESCAN, fnc=filescan, internal=True))
 print "added"
 
-wizardManager.registerWizard(DefaultWizard, config.misc.defaultchosen.value, priority = 6)
+wizardManager.registerWizard(DefaultWizard, config.misc.defaultchosen.value, priority=6)
 
 if config.misc.defaultchosen.value:
 	print "Installing image defaults"

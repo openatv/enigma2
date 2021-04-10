@@ -75,7 +75,7 @@ class CIHelper:
 				provider_services_refs = self.getProivderServices(providers)
 			self.CI_ASSIGNMENT_SERVICES_LIST = [service_refs, provider_services_refs]
 
-	def load_ci_assignment(self, force = False):
+	def load_ci_assignment(self, force=False):
 		if self.CI_ASSIGNMENT_LIST is None or force:
 			self.parse_ci_assignment()
 

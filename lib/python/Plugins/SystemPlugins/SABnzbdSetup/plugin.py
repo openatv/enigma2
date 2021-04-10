@@ -73,7 +73,7 @@ class SABnzbdSetupScreen(Screen):
 		self.message.setTitle(_('Installing Service'))
 		self.Console.ePopen('/usr/bin/opkg install ' + pkgname + ' sync', callback)
 
-	def installComplete(self,result = None, retval = None, extra_args = None):
+	def installComplete(self,result=None, retval=None, extra_args=None):
 		self["actions"].setEnabled(True)
 		from Screens.Standby import TryQuitMainloop
 		self.session.open(TryQuitMainloop, 2)
@@ -98,7 +98,7 @@ class SABnzbdSetupScreen(Screen):
 		self.message.setTitle(_('Removing Service'))
 		self.Console.ePopen('/usr/bin/opkg remove ' + pkgname + ' --force-remove --autoremove sync', callback)
 
-	def removeComplete(self,result = None, retval = None, extra_args = None):
+	def removeComplete(self,result=None, retval=None, extra_args=None):
 		self["actions"].setEnabled(True)
 		from Screens.Standby import TryQuitMainloop
 		self.session.open(TryQuitMainloop, 2)
@@ -125,7 +125,7 @@ class SABnzbdSetupScreen(Screen):
 		time.sleep(3)
 		self.updateService()
 
-	def updateService(self,result = None, retval = None, extra_args = None):
+	def updateService(self,result=None, retval=None, extra_args=None):
 		import process
 		p = process.ProcessList()
 		sabnzbd_process = str(p.named('SABnzbd.py')).strip('[]')
