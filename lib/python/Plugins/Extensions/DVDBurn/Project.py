@@ -4,9 +4,11 @@ import Title
 import xml.dom.minidom
 from Tools.Directories import resolveFilename, SCOPE_PLUGINS, SCOPE_FONTS
 
+
 class ConfigColor(ConfigSequence):
 	def __init__(self, default=[128, 128, 128]):
 		ConfigSequence.__init__(self, seperator="#", limits=[(0, 255), (0, 255), (0, 255)], default=default)
+
 
 class ConfigFilename(ConfigText):
 	def __init__(self):
@@ -23,10 +25,12 @@ class ConfigFilename(ConfigText):
 			mark = [filename]
 		return ("mtext"[1 - selected:], filename, mark)
 	
+
 class Project:
 	MAX_SL = 4480
 	MAX_DL = 8150
 	MAX_BD = 24220
+
 	def __init__(self):
 		self.titles = []
 		self.target = None
@@ -198,6 +202,7 @@ class Project:
 
 	size = property(getSize)
 
+
 class MenuTemplate(Project):
 	def __init__(self):
 		self.settings = ConfigSubsection()
@@ -246,7 +251,10 @@ class MenuTemplate(Project):
 		Project.error = self.error
 		return ret
 
+
 from Tools.ISO639 import ISO639Language
+
+
 class DVDISO639Language(ISO639Language):
 	def __init__(self):
 		ISO639Language.__init__(self, self.PRIMARY)
@@ -266,5 +274,6 @@ class DVDISO639Language(ISO639Language):
 				if len(lang) == 3:
 					return lang
 		return ret
+
 
 iso639language = DVDISO639Language()

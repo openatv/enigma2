@@ -1,5 +1,6 @@
 from Source import Source
 
+
 class StaticText(Source):
 	# filter is a function which filters external, untrusted strings
 	# this must be done to avoid XSS attacks!

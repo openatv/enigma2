@@ -6,6 +6,7 @@ from Components.Sources.StaticText import StaticText
 from Screens.MessageBox import MessageBox
 from Components.Label import Label
 
+
 class Console(Screen):
 
 	# cmdlist mat be a mixed list or tuple of strings

@@ -15,6 +15,7 @@ from boxbranding import getMachineBrand, getMachineName
 
 import xml.etree.cElementTree
 
+
 def setupdom(plugin=None):
 	# read the setupmenu
 	if plugin:
@@ -27,11 +28,13 @@ def setupdom(plugin=None):
 	setupfile.close()
 	return setupfiledom
 
+
 def getConfigMenuItem(configElement):
 	for item in setupdom().getroot().findall('./setup/item/.'):
 		if item.text == configElement:
 			return _(item.attrib["text"]), eval(configElement)
 	return "", None
+
 
 class SetupError(Exception):
 	def __init__(self, message):
@@ -39,6 +42,7 @@ class SetupError(Exception):
 
 	def __str__(self):
 		return self.msg
+
 
 class SetupSummary(Screen):
 	def __init__(self, session, parent):
@@ -71,6 +75,7 @@ class SetupSummary(Screen):
 				self.parent['footnote'].text = (_("* = Restart Required"))
 			else:
 				self.parent['footnote'].text = (_(" "))
+
 
 class Setup(ConfigListScreen, Screen):
 
@@ -278,6 +283,7 @@ class Setup(ConfigListScreen, Screen):
 				if not isinstance(item, ConfigNothing):
 					list.append((item_text, item, item_description))
 
+
 def getSetupTitle(id):
 	xmldata = setupdom().getroot()
 	for x in xmldata.findall("setup"):
@@ -286,6 +292,7 @@ def getSetupTitle(id):
 				return _("Settings...")
 			return x.get("title", "").encode("UTF-8")
 	raise SetupError("unknown setup id '%s'!" % repr(id))
+
 
 def getSetupTitleLevel(id):
 	xmldata = setupdom().getroot()

@@ -9,6 +9,7 @@ from Tools.Directories import resolveFilename, SCOPE_SKIN
 from Components.config import config, configfile
 from Components.Console import Console
 
+
 class UserInterfacePositionerWizard(WizardLanguage, Rc):
 	def __init__(self, session, interface=None):
 		self.xmlfile = resolveFilename(SCOPE_SKIN, "userinterfacepositionerwizard.xml")

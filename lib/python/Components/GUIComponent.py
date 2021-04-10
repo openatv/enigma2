@@ -3,6 +3,7 @@ import skin
 from enigma import ePoint, eSize
 from Components.config import config
 
+
 class GUIComponent(object):
 	""" GUI component """
 

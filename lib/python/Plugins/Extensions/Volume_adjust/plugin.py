@@ -239,6 +239,7 @@ class Volume_adjust(Screen):
 				self.finishedChannelSelection(item)
 		self["ServiceList"].l.setList(self.servicelist)
 
+
 class Change_volume(ConfigListScreen, Screen):
 	skin = """
 		<screen position="center,center" size="310,190"  title="Change Volume offset" >
@@ -294,6 +295,7 @@ class Change_volume(ConfigListScreen, Screen):
 
 	def cancel(self):
 		self.close()
+
 
 class mySmallChannelSelection(ChannelSelectionBase):
 
@@ -352,6 +354,7 @@ class mySmallChannelSelection(ChannelSelectionBase):
 	def cancel(self):
 		self.close(None)
 
+
 def find_in_list(list, search, listpos=0):
 	# check for double entry's in list (only service name)
 	for item in list:
@@ -360,6 +363,7 @@ def find_in_list(list, search, listpos=0):
 		if tmp0 == search:
 			return True
 	return False
+
 
 class Volume_Config(ConfigListScreen, Screen):
 	skin = """
@@ -422,6 +426,7 @@ class Volume_Config(ConfigListScreen, Screen):
 		config.Volume.save()
 		self.close()
 
+
 class Volume:
 	def __init__(self, session):
 		# autostarting instance, comes active when info is updated (zap)
@@ -460,7 +465,6 @@ class Volume:
 			print "[Volume Adjust] error parsing xml..."
 		for i in self.read_services:
 			print i
-
 
 	def __evUpdatedInfo(self):
 		# here it starts the actual routine to change the volume offset
@@ -559,13 +563,16 @@ def sessionstart(reason, session):
 	if VolumeInstance is None:
 		VolumeInstance = Volume(session)
 
+
 def main(session, **kwargs):
 	session.open(Volume_adjust)
+
 
 def menu(menuid, **kwargs):
 	if menuid == "audio_menu":
 		return [(_("Volume Adjust"), main, "Volume_Adjust", 5)]
 	return []
+
 
 def Plugins(**kwargs):
 	return [PluginDescriptor(where=PluginDescriptor.WHERE_SESSIONSTART, fnc=sessionstart),

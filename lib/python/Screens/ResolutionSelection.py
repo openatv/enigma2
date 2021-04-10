@@ -1,6 +1,7 @@
 from Screen import Screen
 from Screens.ChoiceBox import ChoiceBox
 
+
 class ResolutionSelection(Screen):
 	def __init__(self, session, infobar=None):
 		Screen.__init__(self, session)
@@ -14,7 +15,6 @@ class ResolutionSelection(Screen):
 		fps = int(fpsString, 16)
 		fpsFloat = float(fps)
 		fpsFloat = fpsFloat / 1000
-
 
 		selection = 0 
 		tlist = [] 

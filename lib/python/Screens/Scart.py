@@ -3,6 +3,7 @@ from MessageBox import MessageBox
 from Components.AVSwitch import AVSwitch
 from Tools import Notifications
 
+
 class Scart(Screen):
 	def __init__(self, session, start_visible=True):
 		Screen.__init__(self, session)

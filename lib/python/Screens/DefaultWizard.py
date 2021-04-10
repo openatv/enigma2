@@ -12,6 +12,7 @@ from boxbranding import getMachineBrand, getMachineName
 
 config.misc.defaultchosen = ConfigBoolean(default=False)
 
+
 class DefaultWizard(WizardLanguage, DreamInfoHandler):
 	def __init__(self, session, silent=True, showSteps=False, neededTag=None):
 		DreamInfoHandler.__init__(self, self.statusCallback, neededTag=neededTag)
@@ -62,6 +63,7 @@ class DefaultWizard(WizardLanguage, DreamInfoHandler):
 			if self.packagesConfig[x].value:
 				self.indexList.append(x)
 
+
 class DreamPackageWizard(DefaultWizard):
 	def __init__(self, session, packagefile, silent=False):
 		if not pathExists("/tmp/package"):
@@ -74,6 +76,7 @@ class DreamPackageWizard(DefaultWizard):
 		self.directory = "/tmp/package"
 		self.xmlfile = "dreampackagewizard.xml"
 
+
 class ImageDefaultInstaller(DreamInfoHandler):
 	def __init__(self):
 		DreamInfoHandler.__init__(self, self.statusCallback, blocking=True)
@@ -84,10 +87,12 @@ class ImageDefaultInstaller(DreamInfoHandler):
 	def statusCallback(self, status, progress):
 		pass
 
+
 def install(choice):
 	if choice is not None:
 		#os_system("mkdir /tmp/package && tar xpzf %s ")
 		choice[2].open(DreamPackageWizard, choice[1])
+
 
 def filescan_open(list, session, **kwargs):
 	from Screens.ChoiceBox import ChoiceBox
@@ -95,6 +100,7 @@ def filescan_open(list, session, **kwargs):
 	filelist = [(os_path.split(x.path)[1], x.path, session) for x in list]
 	print filelist
 	session.openWithCallback(install, ChoiceBox, title=_("Please choose he package..."), list=filelist)
+
 
 def filescan(**kwargs):
 	from Components.Scanner import Scanner, ScanPath
@@ -107,6 +113,7 @@ def filescan(**kwargs):
 			name="Dream-Package",
 			description=_("Install settings, skins, software..."),
 			openfnc=filescan_open, )
+
 
 print "add dreampackage scanner plugin"
 plugins.addPlugin(PluginDescriptor(name="Dream-Package", where=PluginDescriptor.WHERE_FILESCAN, fnc=filescan, internal=True))

@@ -7,7 +7,6 @@ class ResourceManager:
 		self.resourceList[name] = resource
 		print "resources:", self.resourceList
 
-
 	def getResource(self, name):
 		if not self.hasResource(name):
 			return None
@@ -19,5 +18,6 @@ class ResourceManager:
 	def removeResource(self, name):
 		if self.hasResource(name):
 			del self.resourceList[name]
+
 
 resourcemanager = ResourceManager()

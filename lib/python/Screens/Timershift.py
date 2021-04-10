@@ -42,6 +42,7 @@ class SetupSummary(Screen):
 			else:
 				self.parent['footnote'].text = (_(" "))
 
+
 class TimeshiftSettings(Screen, ConfigListScreen):
 	def removeNotifier(self):
 		if config.usage.setup_level.notifiers:

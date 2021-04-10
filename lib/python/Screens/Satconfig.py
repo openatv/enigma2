@@ -25,6 +25,7 @@ from os import path
 
 from Tools.BugHunting import printCallSequence
 
+
 def setForceLNBPowerChanged(configElement):
 	f = open("/proc/stb/frontend/fbc/force_lnbon", "w")
 	if configElement.value:
@@ -32,6 +33,7 @@ def setForceLNBPowerChanged(configElement):
 	else:
 		f.write("off")
 	f.close()
+
 
 def setForceToneBurstChanged(configElement):
 	f = open("/proc/stb/frontend/fbc/force_toneburst", "w")
@@ -41,6 +43,7 @@ def setForceToneBurstChanged(configElement):
 		f.write("disable")
 	f.close()
 
+
 config.tunermisc = ConfigSubsection()
 if SystemInfo["ForceLNBPowerChanged"]:
 	config.tunermisc.forceLnbPower = ConfigYesNo(default=False)
@@ -49,6 +52,7 @@ if SystemInfo["ForceLNBPowerChanged"]:
 if SystemInfo["ForceToneBurstChanged"]:
 	config.tunermisc.forceToneBurst = ConfigYesNo(default=False)
 	config.tunermisc.forceToneBurst.addNotifier(setForceToneBurstChanged)
+
 
 class TunerSetup(Screen, ConfigListScreen):
 	def __init__(self, session):
@@ -126,6 +130,7 @@ class TunerSetup(Screen, ConfigListScreen):
 	def createSummary(self):
 		from Screens.Setup import SetupSummary
 		return SetupSummary
+
 
 class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 	def createSimpleSetup(self, list, mode):
@@ -342,6 +347,7 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 						cableNames = sorted([x[0] for x in nimmanager.getCablesByCountrycode(self.cableCountries.value)])
 					default = self.nimConfig.dvbc.scan_provider.value in cableNames and self.nimConfig.dvbc.scan_provider.value or None
 					self.cableRegions = ConfigSelection(default=default, choices=cableNames)
+
 					def updateCableProvider(configEntry):
 						self.nimConfig.dvbc.scan_provider.value = configEntry.value
 						self.nimConfig.dvbc.scan_provider.save()
@@ -403,6 +409,7 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 				if default is None and getMachineBrand() == "Beyonwiz" and "All regions, Australia, (DVB-T)" in terrstrialNames:
 					default = "All regions, Australia, (DVB-T)"
 				self.terrestrialRegions = ConfigSelection(default=default, choices=terrstrialNames)
+
 				def updateTerrestrialProvider(configEntry):
 					self.nimConfig.dvbt.terrestrial.value = configEntry.value
 					self.nimConfig.dvbt.terrestrial.save()
@@ -684,6 +691,7 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 				return False
 
 		self.slot_dest_list = []
+
 		def checkRecursiveConnect(slot_id):
 			if slot_id in self.slot_dest_list:
 				print slot_id
@@ -720,6 +728,7 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 				return False
 
 		self.slot_dest_list = []
+
 		def checkRecursiveConnect(slot_id):
 			if slot_id in self.slot_dest_list:
 				return False
@@ -970,6 +979,7 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 		from Screens.Setup import SetupSummary
 		return SetupSummary
 
+
 class NimSelection(Screen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
@@ -1142,6 +1152,7 @@ class NimSelection(Screen):
 		if index is not None:
 			self["nimlist"].setIndex(index)
 
+
 class SelectSatsEntryScreen(Screen):
 	skin = """
 		<screen name="SelectSatsEntryScreen" position="center,center" size="560,410" title="Select Sats Entry" >
@@ -1157,6 +1168,7 @@ class SelectSatsEntryScreen(Screen):
 			<ePixmap pixmap="skin_default/div-h.png" position="0,375" zPosition="1" size="540,2" transparent="1" alphatest="on" />
 			<widget name="hint" position="10,380" size="540,25" font="Regular;19" halign="center" transparent="1" />
 		</screen>"""
+
 	def __init__(self, session, userSatlist=[]):
 		Screen.__init__(self, session)
 		self["key_red"] = Button(_("Cancel"))
@@ -1198,6 +1210,7 @@ class SelectSatsEntryScreen(Screen):
 			connected_sat = [x[0][1] for x in lst if x[0][3]]
 			if len(connected_sat) > 0:
 				menu.insert(0, (_("Connected satellites"), "3"))
+
 			def sortAction(choice):
 				if choice:
 					reverse_flag = False

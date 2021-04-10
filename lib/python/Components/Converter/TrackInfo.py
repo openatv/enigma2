@@ -4,6 +4,7 @@ from Poll import Poll
 from Tools.ISO639 import LanguageCodes
 from Tools.Directories import fileExists
 
+
 class TrackInfo(Poll, Converter, object):
 	AUDIO = 0
 	SUBTITLE = 1
@@ -143,7 +144,6 @@ class TrackInfo(Poll, Converter, object):
 						else:
 							return language
 			return _("None")
-
 
 	text = property(getText)
 

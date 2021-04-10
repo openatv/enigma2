@@ -30,6 +30,7 @@ class ResultParser:
 	TYPE_BYORBPOS = 0
 	TYPE_BYINDEX = 1
 	TYPE_ALL = 2
+
 	def setResultType(self, type):
 		self.type = type
 
@@ -131,8 +132,8 @@ class ResultParser:
 					text += self.getTextualResultForIndex(index, logfulltransponders=True)
 					text += "\n-----------------------------------------------------\n"
 
-
 		return text
+
 
 class DiseqcTester(Screen, TuneTest, ResultParser):
 	skin = """
@@ -206,6 +207,7 @@ class DiseqcTester(Screen, TuneTest, ResultParser):
 	TEST_TYPE_QUICK = 0
 	TEST_TYPE_RANDOM = 1
 	TEST_TYPE_COMPLETE = 2
+
 	def __init__(self, session, feid, test_type=TEST_TYPE_QUICK, loopsfailed=3, loopssuccessful=1, log=False):
 		Screen.__init__(self, session)
 		self.setup_title = _("DiSEqC Tester")
@@ -400,8 +402,8 @@ class DiseqcTester(Screen, TuneTest, ResultParser):
 			self["overall_progress"].setValue(self.myindex)
 			return self.keylist[0]
 
-
 	# after each index is finished, getNextIndex is called to get the next index to scan
+
 	def getNextIndex(self):
 		# TODO use other function to scan more randomly
 		if self.test_type == self.TEST_TYPE_QUICK:
@@ -511,7 +513,6 @@ class DiseqcTester(Screen, TuneTest, ResultParser):
 			self["succeeded_counter"].setText(str(int(self["succeeded_counter"].getText()) + 1))
 			self.addResult(self.currentlyTestedIndex, _("successful"), self.failedTune, self.successfullyTune)
 
-
 		#self["failed_counter"].setText(str(int(self["failed_counter"].getText()) + len(self.failedTune)))
 		#self["succeeded_counter"].setText(str(int(self["succeeded_counter"].getText()) + len(self.successfullyTune)))
 		#if len(self.failedTune) == 0 and len(self.successfullyTune) == 0:
@@ -565,6 +566,7 @@ class DiseqcTester(Screen, TuneTest, ResultParser):
 		print "selection changed"
 		if len(self.list) > 0 and not self.running:
 			self["CmdText"].setText(_("Press OK to get further details for %s") % str(self["progress_list"].getCurrent()[1]))
+
 
 class DiseqcTesterTestTypeSelection(Screen, ConfigListScreen):
 
@@ -646,6 +648,7 @@ class DiseqcTesterTestTypeSelection(Screen, ConfigListScreen):
 		from Screens.Setup import SetupSummary
 		return SetupSummary
 
+
 class DiseqcTesterNimSelection(NimSelection):
 	skin = """
 		<screen position="160,123" size="400,330" title="Select a tuner">
@@ -680,11 +683,14 @@ class DiseqcTesterNimSelection(NimSelection):
 			return True
 		return False
 
+
 def DiseqcTesterMain(session, **kwargs):
 	session.open(DiseqcTesterNimSelection)
 
+
 def autostart(reason, **kwargs):
 	resourcemanager.addResource("DiseqcTester", DiseqcTesterMain)
+
 
 def Plugins(**kwargs):
 	return [PluginDescriptor(name="DiSEqC Tester", description=_("Test DiSEqC settings"), where=PluginDescriptor.WHERE_PLUGINMENU, needsRestart=False, fnc=DiseqcTesterMain),

@@ -55,6 +55,7 @@ from random import randint
 
 import os
 
+
 class InfoBarTimeshift:
 
 	ts_disabled = False
@@ -190,7 +191,6 @@ class InfoBarTimeshift:
 
 		# Record Event Tracker
 		self.session.nav.RecordTimer.on_state_change.append(self.ptsTimerEntryStateChange)
-
 
 		# Keep Current Event Info for recordings
 		self.pts_eventcount = 0

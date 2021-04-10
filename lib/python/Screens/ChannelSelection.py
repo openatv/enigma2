@@ -68,6 +68,7 @@ FLAG_IS_DEDICATED_3D = 128
 FLAG_HIDE_VBI = 512
 FLAG_CENTER_DVB_SUBS = 2048 #define in lib/dvb/idvb.h as dxNewFound = 64 and dxIsDedicated3D = 128
 
+
 class BouquetSelector(Screen):
 	def __init__(self, session, bouquets, selectedFunc, enableWrapAround=True):
 		Screen.__init__(self, session)
@@ -128,20 +129,24 @@ class SilentBouquetSelector:
 	def getCurrent(self):
 		return self.bouquets[self.pos]
 
+
 # csel.bouquet_mark_edit values
 OFF = 0
 EDIT_BOUQUET = 1
 EDIT_ALTERNATIVES = 2
 
+
 def append_when_current_valid(current, menu, args, level=0, key=""):
 	if current and current.valid() and level <= config.usage.setup_level.index:
 		menu.append(ChoiceEntryComponent(key, args))
+
 
 def removed_userbouquets_available():
 	for file in os.listdir("/etc/enigma2/"):
 		if file.startswith("userbouquet") and file.endswith(".del"):
 			return True
 	return False
+
 
 class ChannelContextMenu(Screen):
 	def __init__(self, session, csel):
@@ -492,6 +497,7 @@ class ChannelContextMenu(Screen):
 		config.servicelist.save()
 		configfile.save()
 		self.close()
+
 	def showBouquetInputBox(self):
 		self.session.openWithCallback(self.bouquetInputCallback, VirtualKeyBoard, title=_("Please enter a name for the new bouquet"), text="bouquetname", maxSize=False, visible_width=56, type=Input.TEXT)
 
@@ -587,7 +593,6 @@ class ChannelContextMenu(Screen):
 					self.session.openWithCallback(self.close, MessageBox, _("Could not open Picture in Picture"), MessageBox.TYPE_ERROR)
 		else:
 			self.session.open(MessageBox, _("Your %s %s does not support PiP HD") % (getMachineBrand(), getMachineName()), type=MessageBox.TYPE_INFO, timeout=5)
-
 
 	def addServiceToBouquetSelected(self):
 		bouquets = self.csel.getBouquetList()
@@ -709,6 +714,7 @@ class ChannelContextMenu(Screen):
 		plugin(session=self.session, service=self.csel.getCurrentSelection())
 		self.close()
 
+
 class SelectionEventInfo:
 	def __init__(self):
 		self["Service"] = self["ServiceEvent"] = ServiceEvent()
@@ -728,6 +734,7 @@ class SelectionEventInfo:
 		service.newService(cur)
 		self["Event"].newEvent(service.event)
 
+
 def parseCurentEvent(list):
 	if len(list) >= 0:
 		list = list[0]
@@ -739,6 +746,7 @@ def parseCurentEvent(list):
 		return begin, end, name, description, eit
 	return False
 
+
 def parseNextEvent(list):
 	if len(list) > 0:
 		list = list[1]
@@ -749,6 +757,7 @@ def parseNextEvent(list):
 		eit = list[0]
 		return begin, end, name, description, eit
 	return False
+
 
 class ChannelSelectionEPG(InfoBarButtonSetup):
 	def __init__(self):
@@ -1032,6 +1041,7 @@ class ChannelSelectionEPG(InfoBarButtonSetup):
 		if not preview:
 			self.startServiceRef = None
 			self.startRoot = None
+
 
 class ChannelSelectionEdit:
 	def __init__(self):
@@ -1495,6 +1505,7 @@ class ChannelSelectionEdit:
 		if close:
 			self.cancel()
 
+
 MODE_TV = 0
 MODE_RADIO = 1
 
@@ -1510,6 +1521,7 @@ multibouquet_radio_ref = eServiceReference(service_types_radio_ref)
 multibouquet_radio_ref.setPath('FROM BOUQUET "bouquets.radio" ORDER BY bouquet')
 
 singlebouquet_radio_ref = serviceRefAppendPath(service_types_radio_ref, ' FROM BOUQUET "userbouquet.favourites.radio" ORDER BY bouquet')
+
 
 class ChannelSelectionBase(Screen):
 	def __init__(self, session):
@@ -2090,6 +2102,7 @@ class ChannelSelectionBase(Screen):
 			if playingref:
 				self.setCurrentSelectionAlternative(playingref)
 
+
 HISTORYSIZE = 20
 
 #config for lastservice
@@ -2106,6 +2119,7 @@ config.servicelist.startupservice_standby = ConfigText()
 config.servicelist.startupservice_onstandby = ConfigYesNo(default=False)
 config.servicelist.startuproot = ConfigText()
 config.servicelist.startupmode = ConfigText(default='tv')
+
 
 class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelectionEPG, SelectionEventInfo):
 	instance = None
@@ -2131,7 +2145,6 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 			})
 
 		self.radioTV = 0
-
 
 		self.__event_tracker = ServiceEventTracker(screen=self, eventmap={
 				iPlayableService.evStart: self.__evServiceStart,
@@ -2758,7 +2771,6 @@ class PiPZapSelection(ChannelSelection):
 							f.close()
 					self.close(None)
 
-
 	def cancel(self):
 		self.asciiOff()
 		if self.startservice and hasattr(self.session, 'pip') and self.session.pip.getCurrentService() and self.startservice == self.session.pip.getCurrentService():
@@ -2934,6 +2946,7 @@ class ChannelSelectionRadio(ChannelSelectionBase, ChannelSelectionEdit, ChannelS
 	def zapBack(self):
 		self.channelSelected()
 
+
 class SimpleChannelSelection(ChannelSelectionBase):
 	def __init__(self, session, title, currentBouquet=False):
 		ChannelSelectionBase.__init__(self, session)
@@ -2979,6 +2992,7 @@ class SimpleChannelSelection(ChannelSelectionBase):
 	def setModeRadio(self):
 		self.setRadioMode()
 		self.showFavourites()
+
 
 class HistoryZapSelector(Screen):
 	def __init__(self, session, items=None, sel_item=0, mark_item=0, invert_items=False, redirect_buttons=False, wrap_around=True):

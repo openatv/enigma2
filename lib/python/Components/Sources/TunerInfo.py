@@ -2,6 +2,7 @@ from Source import Source
 from Components.NimManager import nimmanager
 from enigma import eDVBResourceManager
 
+
 class TunerInfo(Source):
     FE_USE_MASK = 0
     TUNER_AVAILABLE = 1

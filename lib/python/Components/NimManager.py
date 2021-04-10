@@ -38,6 +38,7 @@ iDVBFrontendDict = {
 	iDVBFrontend.feATSC: "ATSC",
 }
 
+
 def getConfigSatlist(orbpos, satlist):
 	default_orbpos = None
 	for x in satlist:
@@ -45,6 +46,7 @@ def getConfigSatlist(orbpos, satlist):
 			default_orbpos = orbpos
 			break
 	return ConfigSatlist(satlist, default_orbpos)
+
 
 class SecConfigure:
 	def getConfiguredSats(self):
@@ -716,6 +718,7 @@ class SecConfigure:
 		self.configuredSatellites = set()
 		self.update()
 
+
 class NIM(object):
 	def __init__(self, slot, type, description, has_outputs=True, internally_connectable=None, multi_type=None, frontend_id=None, i2c=None, is_empty=False, input_name=None, supports_blind_scan=False):
 		if not multi_type:
@@ -915,6 +918,7 @@ class NIM(object):
 	config = property(lambda self: config.Nims[self.slot])
 	empty = property(lambda self: self.getType() is None)
 
+
 class NimManager:
 	def getConfiguredSats(self):
 		return self.sec.getConfiguredSats()
@@ -1036,6 +1040,7 @@ class NimManager:
 			else: #satellites.xml not found or corrupted
 				from Tools.Notifications import AddPopup
 				from Screens.MessageBox import MessageBox
+
 				def emergencyAid():
 					if not path.exists("/etc/enigma2/lamedb"):
 						print "/etc/enigma2/lamedb not found"
@@ -1557,6 +1562,7 @@ class NimManager:
 								list.append(user_sat)
 		return list
 
+
 def InitSecParams():
 	config.sec = ConfigSubsection()
 
@@ -1638,9 +1644,11 @@ def InitSecParams():
 # the C(++) part should can handle this
 # the configElement should be only visible when diseqc 1.2 is disabled
 
+
 jess_alias = ("JESS", "UNICABLE2", "SCD2", "EN50607", "EN 50607")
 
 lscr = [("scr%d" % i) for i in range(1, 33)]
+
 
 def InitNimManager(nimmgr, update_slots=None):
 	update_slots = [] if update_slots is None else update_slots
@@ -2330,7 +2338,6 @@ def InitNimManager(nimmgr, update_slots=None):
 					except:
 						print "[info] no /sys/module/dvb_core/parameters/dvb_shutdown_timeout available"
 
-
 					nimmgr.enumerateNIMs()
 				else:
 					print "tuner type is already %d" % cur_type
@@ -2391,5 +2398,6 @@ def InitNimManager(nimmgr, update_slots=None):
 			empty = False
 		if empty:
 			empty_slots += 1
+
 
 nimmanager = NimManager()

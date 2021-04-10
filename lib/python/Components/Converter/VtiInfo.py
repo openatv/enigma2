@@ -4,6 +4,7 @@ from enigma import iServiceInformation, iPlayableService
 from Components.Element import cached
 from Poll import Poll
 
+
 class VtiInfo(Poll, Converter, object):
     ECMINFO = 1
     ONLINETEST = 21

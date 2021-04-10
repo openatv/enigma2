@@ -5,6 +5,7 @@ from Screens.InfoBar import InfoBar
 from Tools.Directories import resolveFilename, SCOPE_SYSETC
 from enigma import eLabel
 
+
 class VtiEmuInfo(VariableText, Renderer):
 
     def __init__(self):

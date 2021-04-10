@@ -11,6 +11,7 @@ import urllib2
 from hashlib import md5
 import struct
 
+
 class GetFPS(object):
     def __init__(self, filename):
         self.filename = filename
@@ -62,6 +63,7 @@ class GetFPS(object):
                 self.file.seek(length, 1)
         return (1000000000 / float(struct.unpack('>I', self.file.read(4))[0]))
 
+
 def convert_to_unicode(sub):
     if sub.startswith('\xef\xbb\xbf'):
         return sub.decode("utf-8-sig", 'ignore'), "utf-8-sig"
@@ -81,6 +83,7 @@ def convert_to_unicode(sub):
 #    if iso > utf and iso > win:
     return sub.decode("iso-8859-2", 'ignore'), "iso-8859-2"
 
+
 def f(z):
     idx = [0xe, 0x3, 0x6, 0x8, 0x2]
     mul = [2, 2, 5, 4, 3]
@@ -97,6 +100,7 @@ def f(z):
         b.append(("%x" % (v * m))[-1])
 
     return ''.join(b)
+
 
 def get_subtitle(digest, lang="PL"):
     url = "https://napiprojekt.pl/unit_napisy/dl.php?l=%s&f=%s&t=%s&v=pynapi&kolejka=false&nick=&pass=&napios=%s" % \
@@ -131,6 +135,7 @@ def get_subtitle(digest, lang="PL"):
         raise Exception(error)
 
     return sub
+
 
 def detect_format(list):
     """
@@ -188,6 +193,7 @@ def read_mdvd(list, fps):
             subtitles.append(subt)
     return subtitles
 
+
 def read_mpl2(list):
     """
     Read mpl2 subtitles
@@ -204,6 +210,7 @@ def read_mpl2(list):
             subt.extend(m.group(3).strip().split("|"))
             subtitles.append(subt)
     return subtitles
+
 
 def read_sub2(list):
     """
@@ -230,6 +237,7 @@ def read_sub2(list):
         sys.stderr.write("Warning: it seems like input file is damaged or too short.\n")
     return subtitles
 
+
 def read_srt(list):
     """
     Reads srt subtitles.
@@ -255,6 +263,7 @@ def read_srt(list):
     except IndexError:
         sys.stderr.write("Warning: it seems like input file is damaged or too short.\n")
     return subtitles
+
 
 def read_tmp(list):
     """
@@ -284,6 +293,7 @@ def read_tmp(list):
         subt.extend(subs[times[i]])
         subtitles.append(subt)
     return subtitles
+
 
 def to_srt(list):
     """
@@ -323,6 +333,7 @@ def sub_fix_times(sub):
             else:
                 sub[i][1] = sub[i + 1][0] - 0.2
     return sub
+
 
 def get_split_times(str):
     """
@@ -373,6 +384,7 @@ def read_subs(file, fmt, fps):
         sys.stderr.write("Input format not specified/recognized\n")
         sys.exit(1)
 
+
 def napiprojekt_fps(digest):
     url = "https://napiprojekt.pl/api/api.php?mode=file_info&client=dreambox&id=%s" % (urllib2.quote(digest))
 #    element = ET.parse(urllib2.urlopen(url))
@@ -383,6 +395,7 @@ def napiprojekt_fps(digest):
         fps = 23.976
     return floatfps
 
+
 def read_sub(fmt, subs):
     if fmt == "tmp":
         return read_tmp(subs)
@@ -392,6 +405,7 @@ def read_sub(fmt, subs):
         return read_sub2(subs)
     elif fmt == "mpl2":
         return read_mpl2(subs)
+
 
 def to_srt_utf8(subs_org, file, digest=0, info="", fps=0):
     p, f = os.path.split(file)
@@ -428,10 +442,12 @@ def to_srt_utf8(subs_org, file, digest=0, info="", fps=0):
     except:
         print "  Error: %s" % (sys.exc_info()[1])
 
+
 def get_sub_from_napi(file, fps=0):
         digest = hashFile(file)['npb']
         if digest:
                 to_srt_utf8(get_subtitle(digest), file, digest, fps=fps)
+
 
 def convert(file, src, fps=0):
     try:
@@ -462,6 +478,7 @@ tvshowRegex = re.compile('(?P<show>.*)S(?P<season>[0-9]{2})E(?P<episode>[0-9]{2}
 tvshowRegex2 = re.compile('(?P<show>.*).(?P<season>[0-9]{1,2})x(?P<episode>[0-9]{1,2}).(?P<teams>.*)', re.IGNORECASE)
 movieRegex = re.compile('(?P<movie>.*)[\.|\[|\(| ]{1}(?P<year>(?:(?:19|20)[0-9]{2}))(?P<teams>.*)', re.IGNORECASE)
 
+
 def parse_name(name):
 
     fn = name.lower()
@@ -490,6 +507,7 @@ def parse_name(name):
                         res = {'type': 'movie', 'name': movie.strip(), 'year': year, 'teams': teams}
     return res
 
+
 def find_imdb(path):
     ImdbId = ''
     try:
@@ -509,6 +527,7 @@ def find_imdb(path):
     except:
         pass
     return ImdbId
+
 
 def hashFile(name):
     try:
@@ -535,6 +554,7 @@ def hashFile(name):
     except:
         print "[DMnapi] Error hashFile: ", name
         return dict(osb="%016x" % 0, npb=d.hexdigest(), fsize=filesize)
+
 
 def get_sub_from_n24(file, id, fps=0):
     try:

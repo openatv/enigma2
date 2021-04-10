@@ -15,6 +15,7 @@ STATE_REWIND = 3
 STATE_FORWARD = 4
 STATE_NONE = 5
 
+
 class PlayList(MenuList):
 	def __init__(self, enableWrapAround=False):
 		MenuList.__init__(self, [], enableWrapAround, eListboxPythonMultiContent)

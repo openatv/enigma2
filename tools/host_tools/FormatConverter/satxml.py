@@ -4,6 +4,7 @@ from xml.dom import minidom
 from xml.dom.minidom import Document
 from input import inputText
 
+
 class satxml(datasource):
 	def __init__(self, filename="satellites.xml"):
 		self.filename = filename

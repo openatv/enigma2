@@ -18,8 +18,10 @@ TYPE_VALUE_HEX_DEC = 3
 TYPE_SLIDER = 4
 TYPE_VALUE_ORBIT_DEC = 5
 
+
 def to_unsigned(x):
 	return x & 0xFFFFFFFF
+
 
 def ServiceInfoListEntry(a, b, valueType=TYPE_TEXT, param=4):
 	#screenwidth = getDesktop(0).size().width()
@@ -48,6 +50,7 @@ def ServiceInfoListEntry(a, b, valueType=TYPE_TEXT, param=4):
 		(eListboxPythonMultiContent.TYPE_TEXT, xa, ya, wa, ha, 0, RT_HALIGN_LEFT, a),
 		(eListboxPythonMultiContent.TYPE_TEXT, xb, yb, wb, hb, 0, RT_HALIGN_LEFT, b)
 	]
+
 
 class ServiceInfoList(HTMLComponent, GUIComponent):
 	def __init__(self, source):
@@ -87,8 +90,10 @@ class ServiceInfoList(HTMLComponent, GUIComponent):
 		self.instance.setContent(self.l)
 		self.setFontsize()
 
+
 TYPE_SERVICE_INFO = 1
 TYPE_TRANSPONDER_INFO = 2
+
 
 class ServiceInfo(Screen):
 	def __init__(self, session, serviceref=None):

@@ -2,6 +2,7 @@ from Screens.Screen import Screen
 from Components.ActionMap import ActionMap
 from Components.ScrollLabel import ScrollLabel
 
+
 class TextBox(Screen):
 	def __init__(self, session, text="", title=None):
 		Screen.__init__(self, session)

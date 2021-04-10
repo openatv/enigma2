@@ -1,5 +1,6 @@
 from Components.MenuList import MenuList
 
+
 class FIFOList(MenuList):
 	def __init__(self, menulist=None, length=10):
 		if not menulist:

@@ -30,6 +30,7 @@ QUIT_IMAGE_RESTORE = 43
 QUIT_UPGRADE_FRONTPANEL = 44
 QUIT_WOLSHUTDOWN = 45
 
+
 class TVstate: #load in Navigation
 	def __init__(self):
 		global TVinStandby
@@ -91,6 +92,7 @@ class TVstate: #load in Navigation
 			elif value == 'standby':
 				self.hdmicec_instance.standbyMessages()
 
+
 def setLCDModeMinitTV(value):
 	try:
 		f = open("/proc/stb/lcd/mode", "w")
@@ -98,6 +100,7 @@ def setLCDModeMinitTV(value):
 		f.close()
 	except:
 		pass
+
 
 class Standby2(Screen):
 	def Power(self):
@@ -270,6 +273,7 @@ class Standby2(Screen):
 		self.prev_running_service = self.session.nav.getCurrentlyPlayingServiceOrGroup()
 		self.session.nav.stopService()
 
+
 class Standby(Standby2):
 	def __init__(self, session):
 		if Screens.InfoBar.InfoBar and Screens.InfoBar.InfoBar.instance and Screens.InfoBar.InfoBar.ptsGetTimeshiftStatus(Screens.InfoBar.InfoBar.instance):
@@ -291,6 +295,7 @@ class Standby(Standby2):
 	def doStandby(self):
 		Notifications.AddNotification(Screens.Standby.Standby2)
 
+
 class StandbySummary(Screen):
 	skin = """
 	<screen position="0,0" size="132,64">
@@ -303,10 +308,12 @@ class StandbySummary(Screen):
 		</widget>
 	</screen>"""
 
+
 from enigma import quitMainloop, iRecordableService
 from Screens.MessageBox import MessageBox
 from time import time
 from Components.Task import job_manager
+
 
 class QuitMainloopScreen(Screen):
 	def __init__(self, session, retvalue=QUIT_SHUTDOWN):
@@ -330,8 +337,10 @@ class QuitMainloopScreen(Screen):
 			}.get(retvalue)
 		self["text"] = Label(text)
 
+
 inTryQuitMainloop = False
 quitMainloopCode = 1
+
 
 class TryQuitMainloop(MessageBox):
 	def __init__(self, session, retvalue=QUIT_SHUTDOWN, timeout=-1, default_yes=True):

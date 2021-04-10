@@ -1,6 +1,8 @@
 from Screen import Screen
 
 # a clock display dialog
+
+
 class ClockDisplay(Screen):
 	def okbutton(self):
 		self.session.close()

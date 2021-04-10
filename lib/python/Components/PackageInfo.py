@@ -7,11 +7,14 @@ from boxbranding import getBoxType
 from enigma import eConsoleAppContainer, eDVBDB
 import os
 
+
 class InfoHandlerParseError(Exception):
 	def __init__(self, value):
 		self.value = value
+
 	def __str__(self):
 		return repr(self.value)
+
 
 class InfoHandler(xml.sax.ContentHandler):
 	def __init__(self, prerequisiteMet, directory):

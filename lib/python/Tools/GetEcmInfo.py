@@ -9,6 +9,7 @@ info = {}
 ecm = ''
 data = EMPTY_ECM_INFO
 
+
 class GetEcmInfo:
 	def pollEcmData(self):
 		global data

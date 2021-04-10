@@ -10,6 +10,7 @@ pname = _("File Commander - gzip Addon")
 pdesc = _("unpack gzip Files")
 pversion = "0.2-r1"
 
+
 class GunzipMenuScreen(ArchiverMenuScreen):
 
 	def __init__(self, session, sourcelist, targetlist):
@@ -39,6 +40,7 @@ class GunzipMenuScreen(ArchiverMenuScreen):
 			dest += baseName
 			cmd = "gunzip -c %s > %s && rm %s" % (shellquote(pathName), shellquote(dest), shellquote(pathName))
 		self.unpackEConsoleApp(cmd)
+
 
 class UnpackInfoScreen(ArchiverInfoScreen):
 

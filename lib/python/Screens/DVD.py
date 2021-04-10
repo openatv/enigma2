@@ -15,6 +15,7 @@ from Components.Harddisk import harddiskmanager
 
 lastpath = ""
 
+
 class DVDSummary(Screen):
 	def __init__(self, session, parent):
 		Screen.__init__(self, session, parent)
@@ -28,6 +29,7 @@ class DVDSummary(Screen):
 	def setTitle(self, title):
 		self["Title"].setText(title)
 
+
 class DVDOverlay(Screen):
 	def __init__(self, session, args=None, height=None):
 		desktop_size = getDesktop(0).size()
@@ -37,6 +39,7 @@ class DVDOverlay(Screen):
 			h = height
 		DVDOverlay.skin = """<screen name="DVDOverlay" position="0,0" size="%d,%d" flags="wfNoBorder" zPosition="-1" backgroundColor="transparent" />""" % (w, h)
 		Screen.__init__(self, session)
+
 
 class ChapterZap(Screen):
 	skin = """
@@ -87,6 +90,7 @@ class ChapterZap(Screen):
 		self.Timer = eTimer()
 		self.Timer.callback.append(self.keyOK)
 		self.Timer.start(3000, True)
+
 
 class DVDPlayer(Screen, InfoBarBase, InfoBarNotifications, InfoBarSeek, InfoBarPVRState, InfoBarShowHide, HelpableScreen, InfoBarCueSheetSupport, InfoBarAudioSelection, InfoBarSubtitleSupport):
 	ALLOW_SUSPEND = Screen.SUSPEND_PAUSES

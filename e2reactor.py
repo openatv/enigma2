@@ -27,6 +27,7 @@ selectables = {}
 
 POLL_DISCONNECTED = (select.POLLHUP | select.POLLERR | select.POLLNVAL)
 
+
 class E2SharedPoll:
 	def __init__(self):
 		self.dict = {}
@@ -45,7 +46,9 @@ class E2SharedPoll:
 			return None
 		return r
 
+
 poller = E2SharedPoll()
+
 
 class PollReactor(posixbase.PosixReactorBase):
 	"""A reactor that uses poll(2)."""
@@ -67,7 +70,6 @@ class PollReactor(posixbase.PosixReactorBase):
 		else:
 			if fd in selectables:
 				del selectables[fd]
-
 
 		poller.eApp.interruptPoll()
 
@@ -212,10 +214,12 @@ class PollReactor(posixbase.PosixReactorBase):
 		poller.eApp.interruptPoll()
 		return posixbase.PosixReactorBase.callLater(self, *args, **kwargs)
 
+
 def install():
 	"""Install the poll() reactor."""
 
 	p = PollReactor()
 	main.installReactor(p)
+
 
 __all__ = ["PollReactor", "install"]

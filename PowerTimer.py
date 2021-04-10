@@ -49,6 +49,8 @@ debug = False
 #----------------------------------------------------------------------------------------------------
 
 #reset wakeup state after ending timer
+
+
 def resetTimerWakeup():
 	global wasTimerWakeup
 	if os.path.exists("/tmp/was_powertimer_wakeup"):
@@ -59,10 +61,13 @@ def resetTimerWakeup():
 
 # parses an event, and gives out a (begin, end, name, duration, eit)-tuple.
 # begin and end will be corrected
+
+
 def parseEvent(ev):
 	begin = ev.getBeginTime()
 	end = begin + ev.getDuration()
 	return begin, end
+
 
 class AFTEREVENT:
 	def __init__(self):
@@ -73,6 +78,7 @@ class AFTEREVENT:
 	WAKEUPTOSTANDBY = 2
 	STANDBY = 3
 	DEEPSTANDBY = 4
+
 
 class TIMERTYPE:
 	def __init__(self):
@@ -89,6 +95,8 @@ class TIMERTYPE:
 	RESTART = 8
 
 # please do not translate log messages
+
+
 class PowerTimerEntry(timer.TimerEntry, object):
 	def __init__(self, begin, end, disabled=False, afterEvent=AFTEREVENT.NONE, timerType=TIMERTYPE.WAKEUP, checkOldTimers=False, autosleepdelay=60):
 		timer.TimerEntry.__init__(self, int(begin), int(end))
@@ -846,6 +854,7 @@ class PowerTimerEntry(timer.TimerEntry, object):
 				print '[PowerTimer] Receive/Transmit Bytes: Error reading values! Use "cat /proc/net/dev" for testing on command line.'
 		return False
 
+
 def createTimer(xml):
 	timertype = str(xml.get("timertype") or "wakeup")
 	timertype = {
@@ -904,6 +913,7 @@ def createTimer(xml):
 		entry.log_entries.append((ltime, code, msg))
 
 	return entry
+
 
 class PowerTimer(timer.Timer):
 	def __init__(self):

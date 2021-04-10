@@ -20,6 +20,7 @@ from enigma import eLabel
 from Components.VariableText import VariableText
 from enigma import eServiceReference
 
+
 class VReference(VariableText, Renderer):
 
 	def __init__(self):

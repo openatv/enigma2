@@ -4,6 +4,7 @@ from Screens.MessageBox import MessageBox
 from Project import iso639language
 from Tools import Notifications
 
+
 class png2yuvTask(Task):
 	def __init__(self, job, inputfile, outputfile):
 		Task.__init__(self, job, "Creating menu video")
@@ -20,6 +21,7 @@ class png2yuvTask(Task):
 	def processStderr(self, data):
 		print "[png2yuvTask]", data[:-1]
 
+
 class mpeg2encTask(Task):
 	def __init__(self, job, inputfile, outputfile):
 		Task.__init__(self, job, "Encoding menu video")
@@ -34,6 +36,7 @@ class mpeg2encTask(Task):
 
 	def processOutputLine(self, line):
 		print "[mpeg2encTask]", line[:-1]
+
 
 class spumuxTask(Task):
 	def __init__(self, job, xmlfile, inputfile, outputfile):
@@ -53,6 +56,7 @@ class spumuxTask(Task):
 	def processStderr(self, data):
 		print "[spumuxTask]", data[:-1]
 
+
 class MakeFifoNode(Task):
 	def __init__(self, job, number):
 		Task.__init__(self, job, "Make FIFO nodes")
@@ -61,12 +65,14 @@ class MakeFifoNode(Task):
 		self.args += [nodename, "p"]
 		self.weighting = 10
 
+
 class LinkTS(Task):
 	def __init__(self, job, sourcefile, link_name):
 		Task.__init__(self, job, "Creating symlink for source titles")
 		self.setTool("ln")
 		self.args += ["-s", sourcefile, link_name]
 		self.weighting = 10
+
 
 class CopyMeta(Task):
 	def __init__(self, job, sourcefile):
@@ -80,6 +86,7 @@ class CopyMeta(Task):
 				self.args += [path + '/' + file]
 		self.args += [self.job.workspace]
 		self.weighting = 15
+
 
 class DemuxTask(Task):
 	def __init__(self, job, inputfile):
@@ -188,6 +195,7 @@ class DemuxTask(Task):
 				except OSError:
 					pass
 
+
 class MplexTaskPostcondition(Condition):
 	def check(self, task):
 		if task.error == task.ERROR_UNDERRUN:
@@ -200,8 +208,10 @@ class MplexTaskPostcondition(Condition):
 			task.ERROR_UNKNOWN: ("An unknown error occurred!")
 		}[task.error]
 
+
 class MplexTask(Task):
 	ERROR_UNDERRUN, ERROR_UNKNOWN = range(2)
+
 	def __init__(self, job, outputfile, inputfiles=None, demux_task=None, weighting=500):
 		Task.__init__(self, job, "Mux ES into PS")
 		self.weighting = weighting
@@ -231,6 +241,7 @@ class MplexTask(Task):
 			else:
 				self.error = self.ERROR_UNKNOWN
 
+
 class RemoveESFiles(Task):
 	def __init__(self, job, demux_task):
 		Task.__init__(self, job, "Remove temp. files")
@@ -242,6 +253,7 @@ class RemoveESFiles(Task):
 		self.args += ["-f"]
 		self.args += self.demux_task.generated_files
 		self.args += [self.demux_task.cutfile]
+
 
 class DVDAuthorTask(Task):
 	def __init__(self, job):
@@ -265,11 +277,13 @@ class DVDAuthorTask(Task):
 			except:
 				print "couldn't set mux progress"
 
+
 class DVDAuthorFinalTask(Task):
 	def __init__(self, job):
 		Task.__init__(self, job, "dvdauthor finalize")
 		self.setTool("dvdauthor")
 		self.args += ["-T", "-o", self.job.workspace + "/dvd"]
+
 
 class WaitForResidentTasks(Task):
 	def __init__(self, job):
@@ -281,8 +295,10 @@ class WaitForResidentTasks(Task):
 		if self.job.resident_tasks == 0:
 			callback(self, [])
 
+
 class BurnTaskPostcondition(Condition):
 	RECOVERABLE = True
+
 	def check(self, task):
 		if task.returncode == 0:
 			return True
@@ -303,8 +319,10 @@ class BurnTaskPostcondition(Condition):
 			task.ERROR_UNKNOWN: _("An unknown error occurred!")
 		}[task.error]
 
+
 class BurnTask(Task):
 	ERROR_NOTWRITEABLE, ERROR_LOAD, ERROR_SIZE, ERROR_WRITE_FAILED, ERROR_DVDROM, ERROR_ISOFS, ERROR_FILETOOLARGE, ERROR_ISOTOOLARGE, ERROR_MINUSRWBUG, ERROR_UNKNOWN = range(10)
+
 	def __init__(self, job, extra_args=[], tool="growisofs"):
 		Task.__init__(self, job, job.name)
 		self.weighting = 500
@@ -369,12 +387,14 @@ class BurnTask(Task):
 		self.args = [tool]
 		self.global_preconditions.append(ToolExistsPrecondition())
 
+
 class RemoveWorkspaceFolder(Task):
 	def __init__(self, job):
 		Task.__init__(self, job, "Remove temp. files")
 		self.setTool("rm")
 		self.args += ["-rf", self.job.workspace]
 		self.weighting = 10
+
 
 class CheckDiskspaceTask(Task):
 	def __init__(self, job):
@@ -402,6 +422,7 @@ class CheckDiskspaceTask(Task):
 			callback(self, failed_preconditions)
 			return
 		Task.processFinished(self, 0)
+
 
 class PreviewTask(Task):
 	def __init__(self, job, path):
@@ -447,6 +468,7 @@ class PreviewTask(Task):
 		from Plugins.Extensions.DVDPlayer.plugin import DVDPlayer
 		self.job.project.session.openWithCallback(self.playerClosed, DVDPlayer, dvd_filelist=[self.path])
 
+
 class PreviewTaskPostcondition(Condition):
 	def check(self, task):
 		return task.returncode == 0
@@ -454,12 +476,14 @@ class PreviewTaskPostcondition(Condition):
 	def getErrorMessage(self, task):
 		return "Cancel"
 
+
 class ImagingPostcondition(Condition):
 	def check(self, task):
 		return task.returncode == 0
 
 	def getErrorMessage(self, task):
 		return _("Failed") + ": python-imaging"
+
 
 class ImagePrepareTask(Task):
 	def __init__(self, job):
@@ -491,6 +515,7 @@ class ImagePrepareTask(Task):
 			Task.processFinished(self, 0)
 		except:
 			Task.processFinished(self, 1)
+
 
 class MenuImageTask(Task):
 	def __init__(self, job, menu_count, spuxmlfilename, menubgpngfilename, highlightpngfilename):
@@ -654,6 +679,7 @@ class MenuImageTask(Task):
 			pos[1] += ((bottom - top) - size[1]) / 2
 		return tuple(pos)
 
+
 class Menus:
 	def __init__(self, job):
 		self.job = job
@@ -689,6 +715,7 @@ class Menus:
 			menuoutputfilename = job.workspace + "/dvdmenu" + num + ".mpg"
 			spumuxTask(job, spuxmlfilename, menubgmpgfilename, menuoutputfilename)
 		
+
 def CreateAuthoringXML_singleset(job):
 	nr_titles = len(job.project.titles)
 	mode = job.project.settings.authormode.getValue()
@@ -757,6 +784,7 @@ def CreateAuthoringXML_singleset(job):
 	for x in authorxml:
 		f.write(x)
 	f.close()
+
 
 def CreateAuthoringXML_multiset(job):
 	nr_titles = len(job.project.titles)
@@ -847,6 +875,7 @@ def CreateAuthoringXML_multiset(job):
 		f.write(x)
 	f.close()
 
+
 def getISOfilename(isopath, volName):
 	from Tools.Directories import fileExists
 	i = 0
@@ -855,6 +884,7 @@ def getISOfilename(isopath, volName):
 		i = i + 1
 		filename = isopath + '/' + volName + str(i).zfill(3) + ".iso"
 	return filename
+
 
 class DVDJob(Job):
 	def __init__(self, project, menupreview=False):
@@ -913,6 +943,7 @@ class DVDJob(Job):
 			BurnTask(self, burnargs, tool)
 		RemoveWorkspaceFolder(self)
 
+
 class DVDdataJob(Job):
 	def __init__(self, project):
 		Job.__init__(self, "Data DVD Burn")
@@ -958,6 +989,7 @@ class DVDdataJob(Job):
 		burnargs += ["-publisher", "Dreambox", "-V", volName, "-follow-links", self.workspace]
 		BurnTask(self, burnargs, tool)
 		RemoveWorkspaceFolder(self)
+
 
 class DVDisoJob(Job):
 	def __init__(self, project, imagepath):

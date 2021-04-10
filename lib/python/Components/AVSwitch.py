@@ -30,6 +30,7 @@ if getBrandOEM() in ('azbox',):
 else:
 	config.av.edid_override = ConfigYesNo(default=False)
 
+
 class AVSwitch:
 	hw_type = HardwareInfo().get_device_name()
 	rates = {} # high-level, use selectable modes.
@@ -149,7 +150,6 @@ class AVSwitch:
 		self.readPreferredModes()
 		self.createConfig()
 
-
 	def readAvailableModes(self):
 		try:
 			f = open("/proc/stb/video/videomode_choices")
@@ -227,7 +227,6 @@ class AVSwitch:
 		self.current_mode = mode
 		self.current_port = port
 		modes = self.rates[mode][rate]
-
 
 		mode_50 = modes.get(50)
 		mode_60 = modes.get(60)
@@ -491,7 +490,9 @@ class AVSwitch:
 			val = 6
 		return val
 
+
 iAVSwitch = AVSwitch()
+
 
 def InitAVSwitch():
 	if getBoxType() == 'vuduo' or getBoxType().startswith('ixuss'):
@@ -730,7 +731,6 @@ def InitAVSwitch():
 	else:
 		config.av.bypass_edid_checking = ConfigNothing()
 		
-		
 	def setUnsupportModes(configElement):
 		iAVSwitch.readPreferredModes()
 		iAVSwitch.createConfig()
@@ -869,7 +869,6 @@ def InitAVSwitch():
 	else:
 		config.av.hdmicolordepth = ConfigNothing()
 		
-		
 	if os.path.exists("/proc/stb/video/hdmi_hdrtype"):
 		f = open("/proc/stb/video/hdmi_hdrtype", "r")
 		have_HdmiHdrType = f.read().strip().split(" ")
@@ -929,7 +928,6 @@ def InitAVSwitch():
 			open("/proc/stb/video/disable_10bit", "w").write(configElement.value)
 		config.av.allow_10bit = ConfigSelection(default="0", choices=[("0", _("yes")), ("1", _("no"))])
 		config.av.allow_10bit.addNotifier(setDisable10Bit)
-
 
 	if os.path.exists("/proc/stb/hdmi/audio_source"):
 		f = open("/proc/stb/hdmi/audio_source", "r")
@@ -1280,6 +1278,7 @@ def InitAVSwitch():
 
 	iAVSwitch.setConfiguredMode()
 
+
 class VideomodeHotplug:
 	def __init__(self):
 		pass
@@ -1307,16 +1306,20 @@ class VideomodeHotplug:
 			print "[AVSwitch] setting %s/%s/%s" % (port, mode, rate)
 			iAVSwitch.setMode(port, mode, rate)
 
+
 hotplug = None
+
 
 def startHotplug():
 	global hotplug
 	hotplug = VideomodeHotplug()
 	hotplug.start()
 
+
 def stopHotplug():
 	global hotplug
 	hotplug.stop()
+
 
 def InitiVideomodeHotplug(**kwargs):
 	startHotplug()

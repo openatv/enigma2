@@ -15,6 +15,7 @@ from Tools.FuzzyDate import FuzzyTime
 from time import time
 from timer import TimerEntry as RealTimerEntry
 
+
 class PowerTimerEditList(Screen):
 	EMPTY = 0
 	ENABLE = 1
@@ -296,6 +297,7 @@ class PowerTimerEditList(Screen):
 	def onStateChange(self, entry):
 		self.refill()
 		self.updateState()
+
 
 class PowerTimerEditListSummary(Screen):
 	def __init__(self, session, parent):

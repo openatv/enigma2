@@ -22,6 +22,7 @@ from enigma import eCanvas, eSize, gRGB, eRect
 from Components.VariableText import VariableText
 from Components.config import config
 
+
 class VWatches(Renderer):
 
 	def __init__(self):

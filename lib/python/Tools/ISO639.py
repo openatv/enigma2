@@ -435,8 +435,10 @@ LanguageCodes["znd"] = ("Zande", "")
 LanguageCodes["zul"] = LanguageCodes["zu"] = ("Zulu", "Negro-african")
 LanguageCodes["zun"] = ("Zuni", "")
 
+
 class ISO639Language:
 	[PRIMARY, SECONDARY, TERTIARY] = [1, 2, 3]
+
 	def __init__(self, depth=PRIMARY):
 		self.depth = depth
 

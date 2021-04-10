@@ -11,6 +11,7 @@ path = "picon"
 nameCache = {}
 pngname = ""
 
+
 def findFile(serviceName):
 	path = "picon"
 	#piconsize = int(config.usage.servicelist_show_picon.value)
@@ -40,6 +41,7 @@ def findFile(serviceName):
 		if fileExists(pngname):
 			return pngname
 	return ""
+
 
 def findPicon(service):
 	pngname = ""

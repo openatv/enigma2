@@ -25,6 +25,7 @@ from Screens.Setup import Setup, getSetupTitle, getSetupTitleLevel
 mainmenu = _("Main menu")
 lastMenuID = None
 
+
 def MenuEntryPixmap(entryID, png_cache, lastMenuID):
 	png = png_cache.get(entryID, None)
 	if png is None:
@@ -47,17 +48,20 @@ def MenuEntryPixmap(entryID, png_cache, lastMenuID):
 			png_cache['missing'] = png
 	return png
 
+
 def MenuEntryName(name):
 	def splitUpperCase(name, maxlen):
 		for c in range(len(name), 0, -1):
 			if name[c - 1].isupper() and c - 1 and c - 1 <= maxlen:
 				return name[:c - 1] + "-:-" + name[c - 1:]
 		return name
+
 	def splitLowerCase(name, maxlen):
 		for c in range(len(name), 0, -1):
 			if name[c - 1].islower() and c - 1 and c - 1 <= maxlen:
 				return name[:c - 1] + "-:-" + name[c - 1:]
 		return name
+
 	def splitName(name, maxlen):
 		for s in (" ", "-", "/"):
 			pos = name.rfind(s, 0, maxlen + 1)
@@ -86,16 +90,20 @@ def MenuEntryName(name):
 				break
 	return name if len(namesplit) < 2 else "\n".join(namesplit)
 
+
 # read the menu
 file = open(resolveFilename(SCOPE_SKIN, 'menu.xml'), 'r')
 mdom = xml.etree.cElementTree.parse(file)
 file.close()
 
+
 class title_History:
 	def __init__(self):
 		self.thistory = ''
+
 	def reset(self):
 		self.thistory = ''
+
 	def reducehistory(self):
 		history_len = len(self.thistory.split('>'))
 		if(history_len < 3):
@@ -109,7 +117,9 @@ class title_History:
 			return
 		self.thistory = result[0] + '> '
 
+
 t_history = title_History()
+
 
 class MenuUpdater:
 	def __init__(self):
@@ -129,10 +139,13 @@ class MenuUpdater:
 	def getUpdatedMenu(self, id):
 		return self.updatedMenuItems[id]
 
+
 menuupdater = MenuUpdater()
+
 
 class MenuSummary(Screen):
 	pass
+
 
 class Menu(Screen, ProtectedScreen):
 	ALLOW_SUSPEND = True
@@ -713,6 +726,7 @@ class Menu(Screen, ProtectedScreen):
 		else:
 			self["yellow"].setText("")
 
+
 class AnimMain(Screen):
 
 	def __init__(self, session, tlist, menuTitle):
@@ -852,6 +866,7 @@ class AnimMain(Screen):
 		selection = self.tlist[idx]
 		if selection is not None:
 			selection[1]()
+
 
 class IconMain(Screen):
 
@@ -1089,6 +1104,7 @@ class IconMain(Screen):
 		selection = self.tlist[idx]
 		if selection is not None:
 			selection[1]()
+
 
 class MainMenu(Menu):
 	#add file load functions for the xml-file

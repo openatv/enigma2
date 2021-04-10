@@ -13,6 +13,7 @@ from enigma import eListbox
 # it should expose exactly the non-content related functions
 # of the eListbox class. more or less.
 
+
 class Listbox(Renderer, object):
 	def __init__(self):
 		Renderer.__init__(self)

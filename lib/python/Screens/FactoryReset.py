@@ -1,6 +1,7 @@
 from Screens.MessageBox import MessageBox
 from boxbranding import getMachineBrand, getMachineName
 
+
 class FactoryReset(MessageBox):
 	def __init__(self, session):
 		MessageBox.__init__(self, session, _("When you do a factory reset, you will lose ALL your configuration data\n"

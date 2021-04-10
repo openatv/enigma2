@@ -7,6 +7,7 @@ from Screens.MessageBox import MessageBox
 from Screens.ChoiceBox import ChoiceBox
 import skin
 
+
 class ConfigList(HTMLComponent, GUIComponent, object):
 	def __init__(self, list, session=None):
 		GUIComponent.__init__(self)
@@ -134,6 +135,7 @@ class ConfigList(HTMLComponent, GUIComponent, object):
 		for x in self.onSelectionChanged:
 			if x.__func__.__name__ == "selectionChanged":
 				x()
+
 
 class ConfigListScreen:
 	def __init__(self, list, session=None, on_change=None):

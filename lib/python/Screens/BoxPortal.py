@@ -8,6 +8,7 @@ from Plugins.Plugin import PluginDescriptor
 
 from boxbranding import getBoxType
 
+
 def isExtension_installed(pname):
 	try:
 		for plugin in plugins.getPlugins([PluginDescriptor.WHERE_PLUGINMENU, PluginDescriptor.WHERE_EXTENSIONSMENU]):
@@ -16,6 +17,7 @@ def isExtension_installed(pname):
 				break
 	except:
 		return False
+
 
 class BoxPortal(Screen):
 	skin = """
@@ -96,7 +98,6 @@ class BoxPortal(Screen):
 			self.teletext_plugin = p
 
 		self.teletext_plugin(session=self.session, service=self.session.nav.getCurrentService())
-
 
 	def exit(self):
 		self.close()

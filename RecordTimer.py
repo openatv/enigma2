@@ -48,6 +48,8 @@ debug = False
 #+++
 
 #reset wakeup state after ending timer
+
+
 def resetTimerWakeup():
 	global wasRecTimerWakeup
 	if os.path.exists("/tmp/was_rectimer_wakeup"):
@@ -58,6 +60,8 @@ def resetTimerWakeup():
 
 # parses an event and returns a (begin, end, name, duration, eit)-tuple.
 # begin and end will be corrected
+
+
 def parseEvent(ev, description=True):
 	if description:
 		name = ev.getEventName()
@@ -74,6 +78,7 @@ def parseEvent(ev, description=True):
 	end += config.recording.margin_after.value * 60
 	return begin, end, name, description, eit
 
+
 class AFTEREVENT:
 	def __init__(self):
 		pass
@@ -85,12 +90,14 @@ class AFTEREVENT:
 
 	DEFAULT = int(config.recording.default_afterevent.value)
 
+
 class TIMERTYPE:
 	def __init__(self):
 		pass
 
 	JUSTPLAY = config.recording.default_timertype.value == "zap"
 	ALWAYS_ZAP = config.recording.default_timertype.value == "zap+record"
+
 
 def findSafeRecordPath(dirname):
 	if not dirname:
@@ -108,8 +115,10 @@ def findSafeRecordPath(dirname):
 			return None
 	return dirname
 
+
 service_types_tv = service_types_tv_ref.toString()
 service_types_radio = service_types_radio_ref.toString()
+
 
 def getBqRootStr(ref):
 	ref = ref.toString()
@@ -129,6 +138,8 @@ def getBqRootStr(ref):
 	return bqrootstr
 
 # please do not translate log messages
+
+
 class RecordTimerEntry(timer.TimerEntry, object):
 	def __init__(self, serviceref, begin, end, name, description, eit, disabled=False, justplay=TIMERTYPE.JUSTPLAY, afterEvent=AFTEREVENT.DEFAULT, checkOldTimers=False, dirname=None, tags=None, descramble='notset', record_ecm='notset', rename_repeat=True, isAutoTimer=False, ice_timer_id=None, always_zap=TIMERTYPE.ALWAYS_ZAP, MountPath=None):
 		timer.TimerEntry.__init__(self, int(begin), int(end))
@@ -1140,6 +1151,7 @@ class RecordTimerEntry(timer.TimerEntry, object):
 
 	record_service = property(lambda self: self.__record_service, setRecordService)
 
+
 def createTimer(xml):
 	begin = int(xml.get("begin"))
 	end = int(xml.get("end"))
@@ -1194,6 +1206,7 @@ def createTimer(xml):
 
 	return entry
 
+
 class RecordTimer(timer.Timer):
 	def __init__(self):
 		timer.Timer.__init__(self)
@@ -1207,6 +1220,7 @@ class RecordTimer(timer.Timer):
 			self.loadTimer()
 		except IOError:
 			print "unable to load timers from file!"
+
 	def timeChanged(self, entry):
 		timer.Timer.timeChanged(self, entry)
 		for f in self.onTimerChanged:

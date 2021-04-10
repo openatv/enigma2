@@ -31,8 +31,10 @@ class ConsoleItem:
 				os.waitpid(self.container.getPID(), 0)
 			except:
 				pass
+
 	def dataAvailCB(self, data):
 		self.appResults.append(data)
+
 	def finishedCB(self, retval):
 		print "[Console] finished:", self.name
 		del self.containers[self.name]
@@ -43,6 +45,7 @@ class ConsoleItem:
 		if callback is not None:
 			data = ''.join(self.appResults)
 			callback(data, retval, self.extra_args)
+
 
 class Console(object):
 	def __init__(self):

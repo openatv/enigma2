@@ -6,22 +6,29 @@ from Components.SystemInfo import SystemInfo
 RFMOD_CHANNEL_MIN = 21
 RFMOD_CHANNEL_MAX = 69 + 1
 
+
 class RFmod:
 	def __init__(self):
 		pass
 
 	def setFunction(self, value):
 		eRFmod.getInstance().setFunction(not value)
+
 	def setTestmode(self, value):
 		eRFmod.getInstance().setTestmode(value)
+
 	def setSoundFunction(self, value):
 		eRFmod.getInstance().setSoundFunction(not value)
+
 	def setSoundCarrier(self, value):
 		eRFmod.getInstance().setSoundCarrier(value)
+
 	def setChannel(self, value):
 		eRFmod.getInstance().setChannel(value)
+
 	def setFinetune(self, value):
 		eRFmod.getInstance().setFinetune(value)
+
 
 def InitRFmod():
 	detected = eRFmod.getInstance().detected()

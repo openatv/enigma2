@@ -3,6 +3,7 @@ from Components.GUIComponent import GUIComponent
 from enigma import eTimer, iPlayableService, ePositionGauge
 import time
 
+
 class ServicePosition(PerServiceDisplay, object):
 	TYPE_LENGTH = 0,
 	TYPE_POSITION = 1,

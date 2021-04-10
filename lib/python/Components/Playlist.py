@@ -2,6 +2,7 @@ from ServiceReference import ServiceReference
 from enigma import eServiceReference
 import os
 
+
 class PlaylistIO:
 	def __init__(self):
 		self.list = []
@@ -38,6 +39,7 @@ class PlaylistIO:
 		ref = eServiceReference(4097, 0, path)
 		return ServiceReference(ref)
 
+
 class PlaylistIOInternal(PlaylistIO):
 	def __init__(self):
 		PlaylistIO.__init__(self)
@@ -64,6 +66,7 @@ class PlaylistIOInternal(PlaylistIO):
 		file.close()
 
 		return self.OK
+
 
 class PlaylistIOM3U(PlaylistIO):
 	def __init__(self):
@@ -96,6 +99,7 @@ class PlaylistIOM3U(PlaylistIO):
 
 	def save(self, filename=None):
 		return self.ERROR
+
 
 class PlaylistIOPLS(PlaylistIO):
 	def __init__(self):

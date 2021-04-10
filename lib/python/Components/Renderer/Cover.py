@@ -7,6 +7,7 @@ from Components.Sources.ServiceEvent import ServiceEvent
 from Components.Sources.CurrentService import CurrentService
 from os import path as os_path
 
+
 class Cover(Renderer):
     exts = ('.jpg', '.png', '.jpeg')
 

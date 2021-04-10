@@ -6,13 +6,17 @@ from time import time, ctime
 
 # _session = None
 #
+
+
 def AutoNTPSync(session=None, **kwargs):
 	global ntpsyncpoller
 	ntpsyncpoller = NTPSyncPoller()
 	ntpsyncpoller.start()
 
+
 class NTPSyncPoller:
 	"""Automatically Poll NTP"""
+
 	def __init__(self):
 		# Init Timer
 		self.timer = eTimer()

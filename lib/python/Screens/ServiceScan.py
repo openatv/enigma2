@@ -32,6 +32,7 @@ class ServiceScanSummary(Screen):
 	def updateService(self, name):
 		self["Service"].setText(name)
 
+
 class ServiceScan(Screen):
 
 	def up(self):

@@ -8,6 +8,7 @@ from Components.Element import cached
 # lines starting with '+' are PIDs to record:
 # 	"+d:[p:t[,p:t...]]" with d=demux nr, p: pid, t: type
 
+
 class Streaming(Converter):
 	@cached
 	def getText(self):

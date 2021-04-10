@@ -255,6 +255,7 @@ ASCIItranslit = {
 	0x0259: "_",
 	0x20AC: "EUR"}
 
+
 def legacyEncode(string):
 	string2 = ""
 	for z, char in enumerate(string.decode("utf-8")):

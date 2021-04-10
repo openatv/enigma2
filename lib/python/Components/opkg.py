@@ -1,6 +1,7 @@
 import os
 from boxbranding import getImageVersion
 
+
 def enumFeeds():
 	for fn in os.listdir('/etc/opkg'):
 		if fn.endswith('-feed.conf'):
@@ -14,6 +15,7 @@ def enumFeeds():
 				pass
 			except IOError:
 				pass
+
 
 def enumPlugins(filter_start=''):
 	list_dir = listsDirPath()
@@ -49,6 +51,7 @@ def enumPlugins(filter_start=''):
 		except IOError:
 			pass
 
+
 def listsDirPath():
 	try:
 		for line in open('/etc/opkg/opkg.conf', "r"):
@@ -61,6 +64,7 @@ def listsDirPath():
 	except Exception, ex:
 		print "[opkg]", ex
 	return '/var/lib/opkg/lists'
+
 
 if __name__ == '__main__':
 	for p in enumPlugins('enigma'):

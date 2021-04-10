@@ -8,6 +8,7 @@ import skin
 selectiononpng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_ACTIVE_SKIN, "icons/lock_on.png"))
 selectionoffpng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_ACTIVE_SKIN, "icons/lock_off.png"))
 
+
 def SelectionEntryComponent(description, value, index, selected):
 	dx, dy, dw, dh = skin.parameters.get("SelectionListDescr", (25, 3, 650, 30))
 	res = [
@@ -21,6 +22,7 @@ def SelectionEntryComponent(description, value, index, selected):
 		ix, iy, iw, ih = skin.parameters.get("SelectionListLockOff", (0, 2, 25, 24))
 		res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, ix, iy, iw, ih, selectionoffpng))
 	return res
+
 
 class SelectionList(MenuList):
 	def __init__(self, list=None, enableWrapAround=False):

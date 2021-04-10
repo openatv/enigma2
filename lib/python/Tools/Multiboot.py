@@ -12,6 +12,7 @@ from Tools.Directories import pathExists
 Imagemount = "/tmp/multibootcheck"
 Imageroot = "/tmp/imageroot" 
 
+
 def getMBbootdevice():
 	if not path.isdir(Imagemount):
 		mkdir(Imagemount)
@@ -25,8 +26,10 @@ def getMBbootdevice():
 	if not path.ismount(Imagemount):
 		rmdir(Imagemount)
 
+
 def getparam(line, param):
 	return line.replace("userdataroot", "rootuserdata").rsplit('%s=' % param, 1)[1].split(' ', 1)[0]
+
 
 def getMultibootslots():
 	bootslots = {}
@@ -69,6 +72,7 @@ def getMultibootslots():
 			rmdir(Imagemount)
 	return bootslots
 
+
 def GetCurrentImage():
 	if SystemInfo["canMultiBoot"]:
 		slot = [x[-1] for x in open("/sys/firmware/devicetree/base/chosen/bootargs", "r").read().split() if x.startswith("rootsubdir")]
@@ -79,16 +83,21 @@ def GetCurrentImage():
 			for slot in SystemInfo["canMultiBoot"].keys():
 				if SystemInfo["canMultiBoot"][slot]["device"] == device:
 					return slot
+
+
 def GetCurrentKern():
 	if SystemInfo["HasRootSubdir"]:
 		return SystemInfo["HasRootSubdir"] and (int(open("/sys/firmware/devicetree/base/chosen/bootargs", "r").read()[:-1].split("kernel=/dev/mmcblk0p")[1].split(" ")[0]))
+
 
 def GetCurrentRoot():
 	if SystemInfo["HasRootSubdir"]:
 		return SystemInfo["HasRootSubdir"] and (int(open("/sys/firmware/devicetree/base/chosen/bootargs", "r").read()[:-1].split("root=/dev/mmcblk0p")[1].split(" ")[0]))
 
+
 def GetCurrentImageMode():
 	return bool(SystemInfo["canMultiBoot"]) and SystemInfo["canMode12"] and int(open("/sys/firmware/devicetree/base/chosen/bootargs", "r").read().replace("\0", "").split("=")[-1])
+
 
 def GetSTARTUPFile():
 	if SystemInfo["HAScmdline"]:
@@ -96,8 +105,10 @@ def GetSTARTUPFile():
 	else:
 		return "STARTUP"
 
+
 def ReadSTARTUP():
 	return SystemInfo["canMultiBoot"] and open('/tmp/startupmount/%s' % GetSTARTUPFile(), 'r').read()
+
 
 def GetBoxName():
 	box = getBoxType()
@@ -131,6 +142,7 @@ def GetBoxName():
 	elif box.startswith('twinboxlcdci'):
 		box = "twinboxlcd"
 	return box
+
 
 class GetImagelist():
 	MOUNT = 0

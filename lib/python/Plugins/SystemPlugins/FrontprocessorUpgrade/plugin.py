@@ -3,6 +3,7 @@ from Components.ActionMap import ActionMap
 from Components.Label import Label
 from Plugins.Plugin import PluginDescriptor
 
+
 def getUpgradeVersion():
 	import os
 	try:
@@ -14,6 +15,7 @@ def getUpgradeVersion():
 	else:
 		return int(r[16:17])
 
+
 class FPUpgrade(Screen):
 	skin = """
 		<screen position="150,200" size="450,200" title="FP upgrade required" >
@@ -23,6 +25,7 @@ class FPUpgrade(Screen):
 			<widget name="oldversion" position="300,100" size="50,25" font="Regular;20" />
 			<widget name="newversion" position="300,125" size="50,25" font="Regular;20" />
 		</screen>"""
+
 	def __init__(self, session):
 		self.skin = FPUpgrade.skin
 		Screen.__init__(self, session)
@@ -47,12 +50,14 @@ class FPUpgrade(Screen):
 	def ok(self):
 		self.close(4)
 
+
 class SystemMessage(Screen):
 	skin = """
 		<screen position="150,200" size="450,200" title="System Message" >
 			<widget source="text" position="0,0" size="450,200" font="Regular;20" halign="center" valign="center" render="Label" />
 			<ePixmap pixmap="icons/input_error.png" position="5,5" size="53,53" alphatest="on" />
 		</screen>"""
+
 	def __init__(self, session, message):
 		from Components.Sources.StaticText import StaticText
 
@@ -67,6 +72,7 @@ class SystemMessage(Screen):
 
 	def ok(self):
 		self.close()
+
 
 def Plugins(**kwargs):
 	from Tools.StbHardware import getFPVersion

@@ -3,6 +3,7 @@
 
 from os import path
 
+
 def getExtendedMovieDescription(ref):
 	f = None
 	extended_desc = ""

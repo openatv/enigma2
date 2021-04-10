@@ -52,6 +52,7 @@ BOTTOM = 3
 CENTER = 2
 BLOCK = 3
 
+
 class RunningText(Renderer):
 	def __init__(self):
 		Renderer.__init__(self)
@@ -71,7 +72,6 @@ class RunningText(Renderer):
 		self.mPageDelay = self.mPageLength = 0
 		self.lineHeight = 0		# for text height auto correction on dmm-enigma2
 		self.mShown = 0
-
 
 	GUI_WIDGET = eWidget
 
@@ -102,6 +102,7 @@ class RunningText(Renderer):
 			except:
 					x = default
 			return x
+
 		def setWrapFlag(attrib, value):
 			if (attrib.lower() == "wrap" and value == "0") or \
 			   (attrib.lower() == "nowrap" and value != "0"):
@@ -176,8 +177,6 @@ class RunningText(Renderer):
 					elif attrib == "transparent":
 						self.scroll_label.setTransparent(int(value))
 					
-						
-						
 			self.skinAttributes = attribs
 		ret = Renderer.applySkin(self, desktop, screen)
 		
@@ -369,8 +368,6 @@ class RunningText(Renderer):
 				self.moveLabel(self.P, self.Y)
 			else: # if self.direction in (TOP,BOTTOM):
 				self.moveLabel(self.X, self.P)
-				
-		
 				
 		self.mCount = self.mRepeat
 		self.mTimer.start(self.mStartDelay, True)

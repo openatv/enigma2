@@ -2,6 +2,7 @@ from Source import Source
 from Components.Element import cached
 from enigma import eServiceReference, pNavigation
 
+
 class StreamService(Source):
 	def __init__(self, navcore):
 		Source.__init__(self)

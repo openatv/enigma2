@@ -49,11 +49,14 @@ from addons.type_utils import vEditor
 
 MOVIEEXTENSIONS = {"cuts": "movieparts", "meta": "movieparts", "ap": "movieparts", "sc": "movieparts", "eit": "movieparts"}
 
+
 def _make_filter(media_type):
 	return "(?i)^.*\.(" + '|'.join(sorted((ext for ext, type in EXTENSIONS.iteritems() if type == media_type))) + ")$"
 
+
 def _make_rec_filter():
 	return "(?i)^.*\.(" + '|'.join(sorted(["ts"] + [ext == "eit" and ext or "ts." + ext for ext in MOVIEEXTENSIONS.iterkeys()])) + ")$"
+
 
 movie = _make_filter("movie")
 music = _make_filter("music")
@@ -116,6 +119,8 @@ config.plugins.filecommander.path_right_tmp = NoSave(ConfigText(default=config.p
 # ####################
 # ## Config Screen ###
 # ####################
+
+
 class FileCommanderConfigScreen(Setup):
 	def __init__(self, session):
 		Setup.__init__(self, session, "filecommander", plugin="Extensions/FileCommander")
@@ -130,6 +135,7 @@ class FileCommanderConfigScreen(Setup):
 		if res is not None:
 			config.plugins.filecommander.path_default.value = res
 
+
 def formatSortingTyp(sortDirs, sortFiles):
 	sortDirs, reverseDirs = [int(x) for x in sortDirs.split('.')]
 	sortFiles, reverseFiles = [int(x) for x in sortFiles.split('.')]
@@ -143,7 +149,9 @@ def formatSortingTyp(sortDirs, sortFiles):
 # ## Main Screen ###
 ###################
 
+
 glob_running = False
+
 
 class FileCommanderScreen(Screen, HelpableScreen, key_actions):
 	skin = """
@@ -1041,6 +1049,7 @@ class FileCommanderScreen(Screen, HelpableScreen, key_actions):
 # 	def call_onFileAction(self):
 # 		self.onFileAction(self.SOURCELIST, self.TARGETLIST)
 
+
 class FileCommanderContextMenu(Screen):
 	skin = """
 		<screen name="FileCommanderContextMenu" position="center,center" size="560,570" title="File Commander context menu" backgroundColor="background">
@@ -1081,6 +1090,8 @@ class FileCommanderContextMenu(Screen):
 #####################
 # ## Select Screen ###
 #####################
+
+
 class FileCommanderScreenFileSelect(Screen, HelpableScreen, key_actions):
 	skin = """
 		<screen position="40,80" size="1200,600" title="" >
@@ -1462,6 +1473,7 @@ class FileCommanderScreenFileSelect(Screen, HelpableScreen, key_actions):
 				if extension in ALL_MOVIE_EXTENSIONS and movie in self.selectedFiles:
 					self.selectedFiles.remove(file)
 
+
 class FileCommanderFileStatInfo(Screen, stat_info):
 	skin = """
 		<screen name="FileCommanderFileStatInfo" backgroundColor="un44000000" position="center,center" size="545,345" title="File/Directory Status Information">
@@ -1583,9 +1595,12 @@ class FileCommanderFileStatInfo(Screen, stat_info):
 # #####################
 # ## Start routines ###
 # #####################
+
+
 def filescan_open(list, session, **kwargs):
 	path = "/".join(list[0].path.split("/")[:-1]) + "/"
 	session.open(FileCommanderScreen, path_left=path)
+
 
 def start_from_filescan(**kwargs):
 	from Components.Scanner import Scanner, ScanPath
@@ -1600,18 +1615,22 @@ def start_from_filescan(**kwargs):
 			openfnc=filescan_open,
 		)
 
+
 def start_from_mainmenu(menuid, **kwargs):
 	# starting from main menu
 	if menuid == "mainmenu":
 		return [(pname, start_from_pluginmenu, "filecommand", 1)]
 	return []
 
+
 def start_from_pluginmenu(session, **kwargs):
 	session.openWithCallback(exit, FileCommanderScreen)
+
 
 def exit(session, result):
 	if not result:
 		session.openWithCallback(exit, FileCommanderScreen)
+
 
 def Plugins(path, **kwargs):
 	desc_mainmenu = PluginDescriptor(name=pname, description=pdesc, where=PluginDescriptor.WHERE_MENU, fnc=start_from_mainmenu)

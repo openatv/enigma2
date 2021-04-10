@@ -8,6 +8,7 @@ from os import listdir
 
 TUXBOX_PLUGINS_PATH = "/usr/lib/tuxbox/plugins/"
 
+
 def getPlugins():
 	pluginlist = []
 
@@ -20,6 +21,7 @@ def getPlugins():
 				pluginlist.append(PluginDescriptor(name=params["name"], description=params["desc"], where=PluginDescriptor.WHERE_PLUGINMENU, icon="tuxbox.png", needsRestart=True, fnc=boundFunction(main, plugin=x)))
 
 	return pluginlist
+
 
 def getPluginParams(file):
 	params = {}
@@ -34,10 +36,12 @@ def getPluginParams(file):
 
 	return params
 
+
 def main(session, plugin, **kwargs):
 	print "Running plugin " + plugin[:-4] + ".so with config file", plugin
 	print getPluginParams(plugin)
 	session.open(PluginRunner, plugin[:-4].split(".so")[0])
+
 
 def Plugins(**kwargs):
 	return getPlugins()

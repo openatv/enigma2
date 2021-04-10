@@ -35,6 +35,7 @@ def CutListEntry(where, what):
 		type_col = 0x000000
 	return (where, what), "%dh:%02dm:%02ds:%03d" % (h, m, s, ms), type, type_col
 
+
 class CutListContextMenu(FixedMenu):
 	RET_STARTCUT = 0
 	RET_ENDCUT = 1
@@ -104,6 +105,7 @@ class CutListContextMenu(FixedMenu):
 
 	def grabFrame(self):
 		self.close(self.RET_GRABFRAME)
+
 
 class CutListEditor(Screen, InfoBarBase, InfoBarSeek, InfoBarCueSheetSupport, HelpableScreen):
 	skin = """

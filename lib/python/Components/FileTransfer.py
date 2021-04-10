@@ -7,10 +7,12 @@ import os
 
 ALL_MOVIE_EXTENSIONS = MOVIE_EXTENSIONS.union((".ts",))
 
+
 class FileTransferJob(Job):
 	def __init__(self, src_file, dst_file, src_isDir, do_copy, title):
 		Job.__init__(self, title)
 		FileTransferTask(self, src_file, dst_file, src_isDir, do_copy)
+
 
 class FileTransferTask(Task):
 	def __init__(self, job, src_file, dst_file, src_isDir, do_copy):

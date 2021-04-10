@@ -86,7 +86,6 @@ class SDswap(Screen):
 		else:
 			self.session.open(MessageBox, _("USB switch ERROR! - root files not transferred to USB"), MessageBox.TYPE_INFO, timeout=20)
 
-
 	def Unm(self, data=None, retval=None, extra_args=None):
 		self.container.killAll()
 		self.session.open(TryQuitMainloop, 2)

@@ -1,6 +1,7 @@
 from boxbranding import getBoxType, getBrandOEM, getMachineName
 from Components.About import about
 
+
 class HardwareInfo:
 	device_name = None
 	device_version = None

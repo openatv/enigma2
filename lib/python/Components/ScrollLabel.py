@@ -3,6 +3,7 @@ from HTMLComponent import HTMLComponent
 from GUIComponent import GUIComponent
 from enigma import eLabel, eWidget, eSlider, fontRenderClass, ePoint, eSize
 
+
 class ScrollLabel(HTMLComponent, GUIComponent):
 	def __init__(self, text="", showscrollbar=True):
 		GUIComponent.__init__(self)

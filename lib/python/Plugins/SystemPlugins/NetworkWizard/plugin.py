@@ -3,8 +3,10 @@ from Components.config import config, ConfigBoolean
 
 config.misc.firstrun = ConfigBoolean(default=True)
 
+
 def NetworkWizardMain(session, **kwargs):
 	session.open(NetworkWizard)
+
 
 def startSetup(menuid):
 	if menuid != "system":
@@ -12,9 +14,11 @@ def startSetup(menuid):
 
 	return [(_("Network wizard"), NetworkWizardMain, "nw_wizard", 40)]
 
+
 def NetworkWizard(*args, **kwargs):
 	from NetworkWizard import NetworkWizard
 	return NetworkWizard(*args, **kwargs)
+
 
 def Plugins(**kwargs):
 	list = []

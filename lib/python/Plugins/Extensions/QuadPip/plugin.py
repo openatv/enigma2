@@ -5,14 +5,17 @@ from enigma import eDBoxLCD
 
 from qpip import QuadPipScreen, setDecoderMode
 
+
 def main(session, **kwargs):
 	session.open(QuadPipScreen)
+
 
 def autoStart(reason, **kwargs):
 	if reason == 0:
 		setDecoderMode("normal")
 	elif reason == 1:
 		pass
+
 
 def Plugins(**kwargs):
 	list = []

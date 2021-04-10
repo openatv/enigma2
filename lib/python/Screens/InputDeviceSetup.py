@@ -12,6 +12,7 @@ from Tools.LoadPixmap import LoadPixmap
 from Components.Pixmap import Pixmap
 from boxbranding import getBoxType, getMachineBrand, getMachineName, getBrandOEM
 
+
 class InputDeviceSelection(Screen, HelpableScreen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
@@ -240,6 +241,7 @@ class InputDeviceSetup(Screen, ConfigListScreen):
 		else:
 			self.close()
 	# for summary:
+
 	def changedEntry(self):
 		for x in self.onChangedEntry:
 			x()

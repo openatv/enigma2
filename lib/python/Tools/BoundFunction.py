@@ -3,6 +3,7 @@ class boundFunction:
 		self.fnc = fnc
 		self.args = args
 		self.kwargs = kwargs
+
 	def __call__(self, *args, **kwargs):
 		newkwargs = dict(self.kwargs)
 		newkwargs.update(kwargs)

@@ -14,9 +14,11 @@ from ServiceReference import ServiceReference
 INVALID_POSITION = 9999
 config.misc.lastrotorposition = ConfigInteger(INVALID_POSITION)
 
+
 class Dish(Screen):
 	STATE_HIDDEN = 0
 	STATE_SHOWN = 1
+
 	def __init__(self, session):
 		Screen.__init__(self, session)
 		self["Dishpixmap"] = BlinkingPixmapConditional()
@@ -245,9 +247,11 @@ class Dish(Screen):
 		t = abs(time)
 		return "%s%02d:%02d" % (time < 0 and "- " or "", t / 60 % 60, t % 60)
 
+
 class Dishpip(Dish, Screen):
 	STATE_HIDDEN = 0
 	STATE_SHOWN = 1
+
 	def __init__(self, session):
 		Screen.__init__(self, session)
 		self["Dishpixmap"] = Boolean(fixed=True, poll=1500)

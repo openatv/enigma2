@@ -4,6 +4,7 @@ from Components.ActionMap import ActionMap
 from Components.HelpMenuList import HelpMenuList
 from Screens.Rc import Rc
 
+
 class HelpMenu(Screen, Rc):
 	def __init__(self, session, list):
 		Screen.__init__(self, session)
@@ -44,6 +45,7 @@ class HelpMenu(Screen, Rc):
 		#	arrow.moveTo(selection[1], selection[2], 1)
 		#	arrow.startMoving()
 		#	arrow.show()
+
 
 class HelpableScreen:
 	def __init__(self):

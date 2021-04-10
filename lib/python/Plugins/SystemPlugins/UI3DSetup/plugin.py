@@ -11,6 +11,7 @@ config.plugins.UI3DSetup.mode = ConfigSelection(choices=modelist, default="auto"
 config.plugins.UI3DSetup.znorm = ConfigInteger(default=0)
 config.plugins.UI3DSetup.setmode = ConfigSelection(choices=setmodelist, default="mode1")
 
+
 class UI3DSetupScreen(Screen, ConfigListScreen):
 	skin = """
 		<screen position="center,center" size="440,300" title="UI 3D setup" >
@@ -77,6 +78,7 @@ class UI3DSetupScreen(Screen, ConfigListScreen):
 		setConfiguredSettings()
 		self.close()
 
+
 def applySettings(mode, znorm, setmode):
 	try:
 		if setmode == "mode1":
@@ -100,15 +102,19 @@ def applySettings(mode, znorm, setmode):
 	except:
 		return
 
+
 def setConfiguredSettings():
 	applySettings(config.plugins.UI3DSetup.mode.value,
 		int(config.plugins.UI3DSetup.znorm.value), config.plugins.UI3DSetup.setmode.value)
 
+
 def main(session, **kwargs):
 	session.open(UI3DSetupScreen)
 
+
 def startup(reason, **kwargs):
 	setConfiguredSettings()
+
 
 def Plugins(**kwargs):
 	from os import path

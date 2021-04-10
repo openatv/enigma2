@@ -6,6 +6,7 @@ from ConditionalWidget import ConditionalWidget, BlinkingWidget, BlinkingWidgetC
 
 from enigma import eLabel
 
+
 class Label(VariableText, HTMLComponent, GUIComponent):
 	def __init__(self, text=""):
 		GUIComponent.__init__(self)
@@ -33,20 +34,24 @@ class Label(VariableText, HTMLComponent, GUIComponent):
 		s = self.instance.calculateSize()
 		return s.width(), s.height()
 
+
 class LabelConditional(Label, ConditionalWidget):
 	def __init__(self, text="", withTimer=True):
 		ConditionalWidget.__init__(self, withTimer=withTimer)
 		Label.__init__(self, text=text)
+
 
 class BlinkingLabel(Label, BlinkingWidget):
 	def __init__(self, text=""):
 		Label.__init__(text=text)
 		BlinkingWidget.__init__()
 
+
 class BlinkingLabelConditional(BlinkingWidgetConditional, LabelConditional):
 	def __init__(self, text=""):
 		LabelConditional.__init__(self, text=text)
 		BlinkingWidgetConditional.__init__(self)
+
 
 class MultiColorLabel(Label):
 	def __init__(self, text=""):

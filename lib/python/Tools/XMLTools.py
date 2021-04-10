@@ -1,5 +1,6 @@
 import re
 
+
 def elementsWithTag(el, tag):
 	"""filters all elements of childNode with the specified function
 	example: nodes = elementsWithTag(childNodes, lambda x: x == "bla")"""
@@ -16,12 +17,14 @@ def elementsWithTag(el, tag):
 		if tag(x.tagName):
 			yield x
 
+
 def mergeText(nodelist):
 	rc = ""
 	for node in nodelist:
 		if node.nodeType == node.TEXT_NODE:
 			rc = rc + node.data
 	return rc
+
 
 def stringToXML(text):
 	illegal_xml_chars_RE = re.compile(u'[\x00-\x08\x0b\x0c\x0e-\x1F\uD800-\uDFFF\uFFFE\uFFFF]')

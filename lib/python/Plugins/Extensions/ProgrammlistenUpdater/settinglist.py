@@ -20,6 +20,7 @@ except:
 
 Directory = os.path.dirname(sys.modules[__name__].__file__)
 
+
 def InstallSettings(name, link, date):
 
     def DownloadSetting(link):

@@ -20,9 +20,11 @@ for dir in os.listdir("."):
 category = raw_input("Select plugin category: ")
 category = dirlist[int(category) - 1]
 
+
 def add_where_extensionsmenu(name, fnc):
 	description = raw_input("Plugin description: ")
 	return 'PluginDescriptor(name = "%s", description = _("%s"), where = PluginDescriptor.WHERE_EXTENSIONSMENU, fnc = %s)' % (name, description, fnc)
+
 
 def add_where_pluginmenu(name, fnc):
 	description = raw_input("Plugin description: ")
@@ -30,6 +32,7 @@ def add_where_pluginmenu(name, fnc):
 	if icon == "":
 		icon = "plugin.png"
 	return 'PluginDescriptor(name = "%s", description = _("%s"), icon = "%s", where = PluginDescriptor.WHERE_PLUGINMENU, fnc = %s)' % (name, description, icon, fnc)
+
 
 wherelist = [("WHERE_EXTENSIONSMENU", add_where_extensionsmenu), ("WHERE_PLUGINMENU", add_where_pluginmenu)]
 

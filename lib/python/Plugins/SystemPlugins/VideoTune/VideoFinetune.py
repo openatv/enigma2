@@ -7,8 +7,10 @@ from Components.SystemInfo import SystemInfo
 from Tools.Directories import fileExists, resolveFilename, SCOPE_PLUGINS
 from enigma import gFont, getDesktop, gMainDC, eSize, RT_HALIGN_RIGHT, RT_WRAP
 
+
 def RGB(r, g, b):
 	return (r << 16) | (g << 8) | b
+
 
 class OverscanTestScreen(Screen):
 	def __init__(self, session):
@@ -41,6 +43,7 @@ class OverscanTestScreen(Screen):
 
 	def keyNumber(self, key):
 		self.close(key)
+
 
 class FullHDTestScreen(OverscanTestScreen):
 	skin = """
@@ -77,6 +80,7 @@ class FullHDTestScreen(OverscanTestScreen):
 		gMainDC.getInstance().setResolution(self.xres, self.yres)
 		getDesktop(0).resize(eSize(self.xres, self.yres))
 
+
 class FullUHDTestScreen(OverscanTestScreen):
 	skin = """<screen position="0,0" size="0,0"/>"""
 
@@ -106,6 +110,7 @@ class FullUHDTestScreen(OverscanTestScreen):
 
 	def __close(self):
 		self.session.nav.playService(self.oldref)
+
 
 class VideoFinetune(Screen):
 	skin = """
@@ -410,6 +415,7 @@ class VideoFinetune(Screen):
 				self.keyNumber(key)
 		else:
 			self.close()
+
 
 class PixelsTestScreen(Screen):
 	skin = """

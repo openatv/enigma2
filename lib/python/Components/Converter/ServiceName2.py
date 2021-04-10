@@ -29,6 +29,7 @@ try:
 except:
 	correctChannelNumber = False
 
+
 class ServiceName2(Converter, object):
 	NAME = 0
 	NUMBER = 1

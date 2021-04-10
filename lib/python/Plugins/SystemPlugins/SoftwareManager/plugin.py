@@ -67,6 +67,7 @@ else:
 
 config.plugins.configurationbackup = BackupRestore_InitConfig()
 
+
 def Load_defaults():
 	config.plugins.softwaremanager = ConfigSubsection()
 	config.plugins.softwaremanager.overwriteSettingsFiles = ConfigYesNo(default=False)
@@ -95,7 +96,9 @@ def Load_defaults():
 					], "turbo")
 	config.plugins.softwaremanager.epgcache = ConfigYesNo(default=False)
 
+
 Load_defaults()
+
 
 def write_cache(cache_file, cache_data):
 	#Does a cPickle dump
@@ -107,6 +110,7 @@ def write_cache(cache_file, cache_data):
 	fd = open(cache_file, 'w')
 	dump(cache_data, fd, -1)
 	fd.close()
+
 
 def valid_cache(cache_file, cache_ttl):
 	#See if the cache file exists and is still living
@@ -120,12 +124,14 @@ def valid_cache(cache_file, cache_ttl):
 	else:
 		return 1
 
+
 def load_cache(cache_file):
 	#Does a cPickle load
 	fd = open(cache_file)
 	cache_data = load(fd)
 	fd.close()
 	return cache_data
+
 
 def Check_Softcam():
 	found = False
@@ -137,6 +143,7 @@ def Check_Softcam():
 				found = True
 				break
 	return found
+
 
 class UpdatePluginMenu(Screen):
 	skin = """
@@ -406,6 +413,7 @@ class UpdatePluginMenu(Screen):
 		if (ret == True):
 			self.exe = True
 			self.session.open(RestoreScreen, runRestore=True)
+
 
 class SoftwareManagerSetup(Screen, ConfigListScreen):
 
@@ -1322,6 +1330,7 @@ class PluginDetails(Screen, PackageInfoHandler):
 			<widget name="detailtext" position="10,90" size="270,330" zPosition="10" font="Regular;21" transparent="1" halign="left" valign="top"/>
 			<widget name="screenshot" position="290,90" size="300,330" alphatest="on"/>
 		</screen>"""
+
 	def __init__(self, session, plugin_path, packagedata=None):
 		Screen.__init__(self, session)
 		Screen.setTitle(self, _("Plugin details"))
@@ -1494,6 +1503,7 @@ class PluginDetails(Screen, PackageInfoHandler):
 			self.session.openWithCallback(self.UpgradeReboot, MessageBox, _("Installation finished.") + " " + _("Do you want to reboot your receiver?"), MessageBox.TYPE_YESNO)
 		else:
 			self.close(True)
+
 	def UpgradeReboot(self, result):
 		if result:
 			self.session.open(TryQuitMainloop, retvalue=3)
@@ -1789,6 +1799,7 @@ class UpdatePlugin(Screen):
 
 	def restoreMetrixHDCallback(self, ret=None):
 		self.session.openWithCallback(self.exitAnswer, MessageBox, _("Upgrade finished.") + " " + _("Do you want to reboot your %s %s?") % (getMachineBrand(), getMachineName()))
+
 
 class IPKGMenu(Screen):
 	skin = """
@@ -2356,6 +2367,7 @@ def filescan_open(list, session, **kwargs):
 	filelist = [x.path for x in list]
 	session.open(IpkgInstaller, filelist) # list
 
+
 def filescan(**kwargs):
 	from Components.Scanner import Scanner, ScanPath
 	return \
@@ -2367,6 +2379,7 @@ def filescan(**kwargs):
 			name="Ipkg",
 			description=_("Install extensions."),
 			openfnc=filescan_open, )
+
 
 class ShowUpdatePackages(Screen, NumericalTextInput):
 	skin = """
@@ -2542,8 +2555,10 @@ class ShowUpdatePackages(Screen, NumericalTextInput):
 		else:
 			self.setStatus('error')
 
+
 def UpgradeMain(session, **kwargs):
 	session.open(UpdatePluginMenu)
+
 
 def startSetup(menuid):
 	if menuid != "setup":

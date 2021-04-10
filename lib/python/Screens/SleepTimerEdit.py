@@ -9,6 +9,7 @@ from Components.config import config, getConfigListEntry
 from enigma import eEPGCache
 from time import time
 
+
 class SleepTimerEdit(ConfigListScreen, Screen):
 
 	skin = """

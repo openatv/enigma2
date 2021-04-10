@@ -13,6 +13,7 @@ from Components.config import config, ConfigSelection, getConfigListEntry
 from Components.TuneTest import Tuner
 from Tools.Transponder import getChannelNumber, channel2frequency
 
+
 class Satfinder(ScanSetup, ServiceScan):
 	def __init__(self, session):
 		self.initcomplete = False
@@ -21,7 +22,6 @@ class Satfinder(ScanSetup, ServiceScan):
 		self.frontendData = feinfo and feinfo.getAll(True)
 		del feinfo
 		del service
-
 
 		self.systemEntry = None
 		self.systemEntryATSC = None
@@ -128,7 +128,6 @@ class Satfinder(ScanSetup, ServiceScan):
 			ScanSetup.newConfig(self)
 		if cur[1].value == "single_transponder":
 			self.retune()
-
 
 	def createSetup(self):
 		ScanSetup.createSetup(self)
@@ -458,6 +457,7 @@ class Satfinder(ScanSetup, ServiceScan):
 			self.raw_channel = None
 		self.close(True)
 
+
 def SatfinderMain(session, close=None, **kwargs):
 	nims = nimmanager.nim_slots
 	nimList = []
@@ -479,11 +479,13 @@ def SatfinderMain(session, close=None, **kwargs):
 	else:
 		session.openWithCallback(close, Satfinder)
 
+
 def SatfinderStart(menuid, **kwargs):
 	if menuid == "scan":
 		return [(_("Signal Finder"), SatfinderMain, "satfinder", None)]
 	else:
 		return []
+
 
 def Plugins(**kwargs):
 	if nimmanager.hasNimType("DVB-S") or nimmanager.hasNimType("DVB-T") or nimmanager.hasNimType("DVB-C") or nimmanager.hasNimType("ATSC"):

@@ -4,6 +4,7 @@ import tokenize
 import sys
 import string
 
+
 def filter(g):
 	while 1:
 		t = g.next()
@@ -19,6 +20,7 @@ def filter(g):
 		if t[1] != "\n":
 #			print t
 			yield t[1]
+
 
 def do_file(f, mode):
 	tokens = filter(tokenize.generate_tokens(open(f, 'r').readline))
@@ -101,6 +103,7 @@ def do_file(f, mode):
 						print "{\"" + actionname + "\", \"" + t + "\", " + string.join((classname, t), "::") + "},"
 
 					counter += 1
+
 
 mode = sys.argv[1]
 

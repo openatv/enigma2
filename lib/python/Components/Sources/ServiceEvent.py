@@ -2,6 +2,7 @@ from Components.Element import cached
 from enigma import eServiceCenter
 from Source import Source
 
+
 class ServiceEvent(Source, object):
 	def __init__(self):
 		Source.__init__(self)

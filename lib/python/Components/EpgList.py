@@ -25,6 +25,7 @@ EPG_TYPE_VERTICAL = 8
 
 MAX_TIMELINES = 6
 
+
 class Rect:
 	def __init__(self, x, y, width, height):
 		self.x = x
@@ -44,6 +45,7 @@ class Rect:
 
 	def width(self):
 		return self.w
+
 
 class EPGList(HTMLComponent, GUIComponent):
 	def __init__(self, type=EPG_TYPE_SINGLE, selChangedCB=None, timer=None, time_epoch=120, overjump_empty=False, graphic=False):
@@ -611,7 +613,6 @@ class EPGList(HTMLComponent, GUIComponent):
 		elif self.type == EPG_TYPE_VERTICAL:
 			self.l.setFont(0, gFont(self.timeFontNameVertical, self.timeFontSizeVertical + config.epgselection.vertical_eventfs.value))
 			self.l.setFont(1, gFont(self.eventFontNameVertical, self.eventFontSizeVertical + config.epgselection.vertical_eventfs.value))
-
 
 	def postWidgetCreate(self, instance):
 		if self.type == EPG_TYPE_GRAPH or self.type == EPG_TYPE_INFOBARGRAPH:
@@ -1617,6 +1618,7 @@ class EPGList(HTMLComponent, GUIComponent):
 				break
 			index += 1
 
+
 class TimelineText(HTMLComponent, GUIComponent):
 	def __init__(self, type=EPG_TYPE_GRAPH, graphic=False):
 		GUIComponent.__init__(self)
@@ -1812,6 +1814,7 @@ class TimelineText(HTMLComponent, GUIComponent):
 			timeline_now.visible = True
 		else:
 			timeline_now.visible = False
+
 
 class EPGBouquetList(HTMLComponent, GUIComponent):
 	def __init__(self, graphic=False):

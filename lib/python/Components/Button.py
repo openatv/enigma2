@@ -4,6 +4,7 @@ from VariableText import VariableText
 
 from enigma import eButton
 
+
 class Button(VariableText, HTMLComponent, GUIComponent):
 	def __init__(self, text="", onClick=None):
 		if not onClick:

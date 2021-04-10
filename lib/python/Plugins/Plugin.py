@@ -3,6 +3,7 @@ import os
 
 config.plugins = ConfigSubsection()
 
+
 class PluginDescriptor:
 	"""An object to describe a plugin."""
 

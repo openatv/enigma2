@@ -104,6 +104,8 @@ class HarddiskSelection(Screen):
 			self.close(True)
 
 # This is actually just HarddiskSelection but with correct type
+
+
 class HarddiskFsckSelection(HarddiskSelection):
 	def __init__(self, session):
 		HarddiskSelection.__init__(self, session)
@@ -115,6 +117,7 @@ class HarddiskFsckSelection(HarddiskSelection):
 			 action=selection.createCheckJob,
 			 text=_("Check"),
 			 question=_("Do you really want to check the filesystem?\nThis could take a long time!"))
+
 
 class HarddiskConvertExt4Selection(HarddiskSelection):
 	def __init__(self, session):

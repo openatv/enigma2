@@ -17,6 +17,7 @@ from Components.Ipkg import IpkgComponent
 #    self.KodiInstallation.__install__()
 # for restart question install invoke with:     self.KodiInstallation.__installRST__()
 
+
 class InstallSomething():
 	def __init__(self, session, url_to_download):
 		self.session = session

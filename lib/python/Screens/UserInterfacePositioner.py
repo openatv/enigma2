@@ -12,11 +12,13 @@ from enigma import getDesktop
 from os import access, R_OK
 from boxbranding import getBoxType, getBrandOEM
 
+
 def getFilePath(setting):
 	if getBrandOEM() in ('dreambox',):
 		return "/proc/stb/vmpeg/0/dst_%s" % (setting)
 	else:
 		return "/proc/stb/fb/dst_%s" % (setting)
+
 
 def setPositionParameter(parameter, configElement):
 	f = open(getFilePath(parameter), "w")
@@ -26,6 +28,7 @@ def setPositionParameter(parameter, configElement):
 		f = open(getFilePath("apply"), "w")
 		f.write('1')
 		f.close()
+
 
 def InitOsd():
 	SystemInfo["CanChange3DOsd"] = access('/proc/stb/fb/3dmode', R_OK) and True or False
@@ -108,6 +111,7 @@ def InitOsd():
 				pass	
 	config.osd.threeDznorm.addNotifier(set3DZnorm)
 	
+
 class UserInterfacePositioner2(Screen, ConfigListScreen):
 	if (getDesktop(0).size().width() == 1920):
 		skin = """
@@ -250,6 +254,7 @@ class UserInterfacePositioner2(Screen, ConfigListScreen):
 				<widget source="key_blue" render="Label" position="500,455" zPosition="1" size="140,22" font="Regular;18" halign="center" valign="center" backgroundColor="#1f771f" transparent="1" />
 
 			</screen>"""
+
 	def __init__(self, session):
 		Screen.__init__(self, session)
 		self.setup_title = _("Position Setup")
@@ -390,6 +395,7 @@ class UserInterfacePositioner2(Screen, ConfigListScreen):
 		configfile.save()
 		self.close()
 
+
 class UserInterfacePositioner(Screen, ConfigListScreen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
@@ -400,7 +406,6 @@ class UserInterfacePositioner(Screen, ConfigListScreen):
 		self["key_green"] = StaticText(_("save"))
 		self["key_yellow"] = StaticText(_("Defaults"))
 		
-
 		self["actions"] = ActionMap(["SetupActions", "ColorActions"],
 			{
 				"cancel": self.keyCancel,
@@ -528,6 +533,7 @@ class UserInterfacePositioner(Screen, ConfigListScreen):
 		configfile.save()
 		self.close()
 		
+
 class OSD3DSetupScreen(Screen, ConfigListScreen):
 	def __init__(self, session):
 		Screen.__init__(self, session)

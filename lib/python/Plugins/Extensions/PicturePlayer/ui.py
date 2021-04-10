@@ -15,8 +15,10 @@ from Components.ConfigList import ConfigListScreen
 from Components.config import config, ConfigSubsection, ConfigInteger, ConfigSelection, ConfigText, ConfigYesNo, getConfigListEntry
 import skin
 
+
 def getScale():
 	return AVSwitch().getFramebufferScale()
+
 
 config.pic = ConfigSubsection()
 config.pic.framesize = ConfigInteger(default=30, limits=(5, 99))
@@ -28,6 +30,7 @@ config.pic.infoline = ConfigYesNo(default=True)
 config.pic.loop = ConfigYesNo(default=True)
 config.pic.bgcolor = ConfigSelection(default="#00000000", choices=[("#00000000", _("black")), ("#009eb9ff", _("blue")), ("#00ff5a51", _("red")), ("#00ffe875", _("yellow")), ("#0038FF48", _("green"))])
 config.pic.textcolor = ConfigSelection(default="#0038FF48", choices=[("#00000000", _("black")), ("#009eb9ff", _("blue")), ("#00ff5a51", _("red")), ("#00ffe875", _("yellow")), ("#0038FF48", _("green"))])
+
 
 class picshow(Screen):
 	skin = """
@@ -142,6 +145,7 @@ class picshow(Screen):
 
 #------------------------------------------------------------------------------------------
 
+
 class Pic_Setup(Screen, ConfigListScreen):
 
 	def __init__(self, session):
@@ -213,6 +217,7 @@ class Pic_Setup(Screen, ConfigListScreen):
 
 #---------------------------------------------------------------------------
 
+
 class Pic_Exif(Screen):
 	skin = """
 		<screen name="Pic_Exif" position="center,center" size="560,360" title="Info" >
@@ -256,11 +261,13 @@ class Pic_Exif(Screen):
 
 #----------------------------------------------------------------------------------------
 
+
 T_INDEX = 0
 T_FRAME_POS = 1
 T_PAGE = 2
 T_NAME = 3
 T_FULL = 4
+
 
 class Pic_Thumb(Screen):
 	def __init__(self, session, piclist, lastindex, path):
@@ -438,11 +445,13 @@ class Pic_Thumb(Screen):
 		self.index = val
 		if self.old_index != self.index:
 			self.paintFrame()
+
 	def Exit(self):
 		del self.picload
 		self.close(self.index + self.dirlistcount)
 
 #---------------------------------------------------------------------------
+
 
 class Pic_Full_View(Screen):
 	def __init__(self, session, filelist, index, path):

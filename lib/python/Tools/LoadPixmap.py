@@ -2,6 +2,7 @@ from enigma import loadPNG, loadJPG
 
 pixmap_cache = {}
 
+
 def LoadPixmap(path, desktop=None, cached=False):
 	if path in pixmap_cache:
 		return pixmap_cache[path]

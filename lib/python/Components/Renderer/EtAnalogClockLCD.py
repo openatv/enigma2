@@ -8,6 +8,7 @@ from enigma import eCanvas, eSize, gRGB, eRect
 from Components.VariableText import VariableText
 from Components.config import config
 
+
 class EtAnalogClockLCD(Renderer):
 	def __init__(self):
 		Renderer.__init__(self)

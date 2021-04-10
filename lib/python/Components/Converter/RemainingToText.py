@@ -4,6 +4,7 @@ from Poll import Poll
 from Components.Element import cached
 from Components.config import config
 
+
 class RemainingToText(Poll, Converter, object):
 	DEFAULT = 0
 	WITH_SECONDS = 2
@@ -429,6 +430,5 @@ class RemainingToText(Poll, Converter, object):
 							return ""
 				else:
 					return sign_l + "%d" % l
-
 
 	text = property(getText)

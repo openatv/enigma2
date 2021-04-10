@@ -4,6 +4,7 @@ from enigma import iRecordableService, pNavigation
 import Components.RecordingConfig
 from Components.config import config
 
+
 class RecordState(Source):
 	def __init__(self, session):
 		Source.__init__(self)

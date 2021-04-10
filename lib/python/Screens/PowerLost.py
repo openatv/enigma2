@@ -4,6 +4,7 @@ from Components.config import config
 import Screens.Standby
 from boxbranding import getMachineBrand, getMachineName
 
+
 class PowerLost(Screen):
 	def __init__(self, session):
 		Screen.__init__(self, session)

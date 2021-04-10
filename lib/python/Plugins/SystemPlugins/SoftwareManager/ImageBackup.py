@@ -26,6 +26,7 @@ from boxbranding import getMachineBrand, getMachineName, getDriverDate, getImage
 
 VERSION = _("Version %s %s") % (getImageDistro(), getImageVersion())
 
+
 class ImageBackup(Screen):
 
 	skin = """
@@ -230,7 +231,6 @@ class ImageBackup(Screen):
 					self.message += _("Backup Mode: Flash Online\n")
 				self.message += "_________________________________________________\n"
 				self.message += "'"
-
 
 				## PREPARING THE BUILDING ENVIRONMENT
 				os.system("rm -rf %s" % self.WORKDIR)
@@ -623,7 +623,6 @@ class ImageBackup(Screen):
 			cmdlist.append('echo "' + _("     no space left on back-up device") + '"')
 			cmdlist.append('echo "' + _("     no writing permission on back-up device") + '"')
 			cmdlist.append('echo " "')
-
 
 		cmdlist.append("rm -rf %s/build_%s" % (self.DIRECTORY, self.MODEL))
 		if SystemInfo["HasRootSubdir"]:

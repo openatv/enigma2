@@ -6,12 +6,14 @@ from keyids import KEYIDS
 # these are only informational (for help)...
 from Tools.KeyBindings import addKeyBinding
 
+
 class KeymapError(Exception):
 	def __init__(self, message):
 		self.msg = message
 
 	def __str__(self):
 		return self.msg
+
 
 def getKeyId(id):
 	if len(id) == 1:
@@ -30,7 +32,9 @@ def getKeyId(id):
 			raise KeymapError("[keymapparser] key id '" + str(id) + "' is illegal")
 	return keyid
 
+
 unmapDict = {}
+
 
 def parseKeys(context, filename, actionmap, device, keys):
 	for x in keys.findall("key"):
@@ -62,6 +66,7 @@ def parseKeys(context, filename, actionmap, device, keys):
 				actionmap.bindKey(filename, device, keyid, flags, context, mapto)
 				addKeyBinding(filename, keyid, context, mapto, flags)
 
+
 def parseTrans(filename, actionmap, device, keys):
 	for x in keys.findall("toggle"):
 		get_attr = x.attrib.get
@@ -81,6 +86,7 @@ def parseTrans(filename, actionmap, device, keys):
 		keyout = getKeyId(keyout)
 		toggle = int(toggle)
 		actionmap.bindTranslation(filename, device, keyin, keyout, toggle)
+
 
 def readKeymap(filename):
 	p = enigma.eActionMap.getInstance()
@@ -112,6 +118,7 @@ def readKeymap(filename):
 	for ctrans in keymap.findall("translate"):
 		for device in ctrans.findall("device"):
 			parseTrans(filename, p, device.attrib.get("name"), device)
+
 
 def removeKeymap(filename):
 	p = enigma.eActionMap.getInstance()

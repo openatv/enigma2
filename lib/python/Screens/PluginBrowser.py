@@ -42,9 +42,11 @@ config.pluginfilter.vix = ConfigYesNo(default=False)
 config.pluginfilter.weblinks = ConfigYesNo(default=True)
 config.pluginfilter.userfeed = ConfigText(default='http://', fixed_size=False)
 
+
 def languageChanged():
 	plugins.clearPluginList()
 	plugins.readPluginList(resolveFilename(SCOPE_PLUGINS))
+
 
 def Check_Softcam():
 	found = False
@@ -57,6 +59,7 @@ def Check_Softcam():
 				break
 	return found
 
+
 def CreateFeedConfig():
 	fileconf = "/etc/opkg/user-feed.conf"
 	feedurl = "src/gz user-feeds %s\n" % config.pluginfilter.userfeed.value
@@ -64,6 +67,7 @@ def CreateFeedConfig():
 	f.write(feedurl)
 	f.close()
 	os.system("ipkg update")
+
 
 class PluginBrowserSummary(Screen):
 	def __init__(self, session, parent):
@@ -388,6 +392,7 @@ class PluginBrowser(Screen, ProtectedScreen):
 				self.session.open(MessageBox, _("The software management extension is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10)
 			else:
 				self.session.openWithCallback(self.PluginDownloadBrowserClosed, PluginManager)
+
 
 class PluginDownloadBrowser(Screen):
 	DOWNLOAD = 0
@@ -810,6 +815,7 @@ class PluginDownloadBrowser(Screen):
 		self.list = list
 		self["list"].l.setList(list)
 
+
 class PluginFilter(ConfigListScreen, Screen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
@@ -918,5 +924,6 @@ class PluginFilter(ConfigListScreen, Screen):
 		if callback is not None and len(callback):
 			self["config"].getCurrent()[1].value = callback
 			self["config"].invalidate(self["config"].getCurrent())
+
 
 language.addCallback(languageChanged)
