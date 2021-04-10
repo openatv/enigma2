@@ -2,6 +2,7 @@ from enigma import eCanvas, eRect, gRGB
 
 from Renderer import Renderer
 
+
 class Canvas(Renderer):
 	GUI_WIDGET = eCanvas
 

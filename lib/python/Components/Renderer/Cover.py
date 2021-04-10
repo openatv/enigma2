@@ -7,6 +7,7 @@ from Components.Sources.ServiceEvent import ServiceEvent
 from Components.Sources.CurrentService import CurrentService
 from os import path as os_path
 
+
 class Cover(Renderer):
     exts = ('.jpg', '.png', '.jpeg')
 
@@ -70,7 +71,7 @@ class Cover(Renderer):
                     self.instance.hide()
             return
 
-    def showCoverCallback(self, picInfo = None):
+    def showCoverCallback(self, picInfo=None):
         if self.picload:
             ptr = self.picload.getData()
             if ptr != None:

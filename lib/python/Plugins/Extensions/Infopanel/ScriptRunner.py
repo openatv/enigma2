@@ -12,7 +12,9 @@ from Components.Sources.List import List
 from Screens.Standby import TryQuitMainloop
 from Tools.Directories import resolveFilename, SCOPE_PLUGINS, SCOPE_CURRENT_SKIN
 from os import listdir, remove, mkdir, path, access, X_OK, chmod
-import datetime, time
+import datetime
+import time
+
 
 class ScriptRunner(Screen):
 	skin = """<screen name="ScriptRunner" position="center,center" size="560,400" title="Script Runner" flags="wfBorder" >
@@ -26,7 +28,6 @@ class ScriptRunner(Screen):
 			self["list"].instance.setItemHeight(25)
 		</applet>
 	</screen>"""
-
 
 	def __init__(self, session):
 		Screen.__init__(self, session)
@@ -45,7 +46,7 @@ class ScriptRunner(Screen):
 
 		self["key_red"] = Button(_("Close"))
 		self["key_green"] = Button(_("Run"))
-		
+
 	def populate_List(self):
 		if not path.exists('/usr/script'):
 			mkdir('/usr/script', 0755)
@@ -57,7 +58,7 @@ class ScriptRunner(Screen):
 			pkg = parts[0]
 			if pkg.find('.sh') >= 0:
 				self.list.append(pkg)
-		self.list.sort()	
+		self.list.sort()
 
 	def runscript(self):
 		self.sel = self['list'].getCurrent()
@@ -66,15 +67,14 @@ class ScriptRunner(Screen):
 			ybox = self.session.openWithCallback(self.Run, MessageBox, message, MessageBox.TYPE_YESNO)
 			ybox.setTitle(_("Run Confirmation"))
 		else:
-			self.session.open(MessageBox, _("You have no script to run."), MessageBox.TYPE_INFO, timeout = 10)
+			self.session.open(MessageBox, _("You have no script to run."), MessageBox.TYPE_INFO, timeout=10)
 
-	def Run(self,answer):
+	def Run(self, answer):
 		if answer is True:
 			if not access("/usr/script/" + self.sel, X_OK):
 				chmod("/usr/script/" + self.sel, 0755)
 			cmd1 = ". /usr/script/" + self.sel
-			self.session.open(Console, title=self.sel, cmdlist = [cmd1], closeOnSuccess = False)	
-					
+			self.session.open(Console, title=self.sel, cmdlist=[cmd1], closeOnSuccess=False)
+
 	def myclose(self):
 		self.close()
-		

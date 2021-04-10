@@ -14,6 +14,7 @@ from Tools.Directories import copyfile, pathExists
 from Tools.Multiboot import GetCurrentImage, GetCurrentImageMode, GetImagelist
 import struct
 
+
 class MultiBootSelector(Screen, HelpableScreen):
 	skinTemplate = """
 	<screen title="MultiBoot Image Selector" position="center,center" size="%d,%d">

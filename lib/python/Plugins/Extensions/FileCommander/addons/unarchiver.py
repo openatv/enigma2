@@ -16,6 +16,7 @@ pname = _("File Commander - generalised archive handler")
 pdesc = _("unpack archives")
 pversion = "0.0-r1"
 
+
 class ArchiverMenuScreen(Screen):
 	skin = """
 		<screen position="40,80" size="1200,600" title="" >
@@ -83,25 +84,25 @@ class ArchiverMenuScreen(Screen):
 		self.chooseMenuList.setList(map(self.ListEntry, self.list))
 
 	def ListEntry(self, entry):
-		x, y, w, h = skin.parameters.get("FileListName",(10, 0, 1180, 25))
+		x, y, w, h = skin.parameters.get("FileListName", (10, 0, 1180, 25))
 		x = 10
 		w = self['list_left'].l.getItemSize().width()
 		return [
 			entry,
-			MultiContentEntryText(pos=(x, y), size=(w-x, h), font=0, flags=RT_HALIGN_LEFT, text=entry[0])
+			MultiContentEntryText(pos=(x, y), size=(w - x, h), font=0, flags=RT_HALIGN_LEFT, text=entry[0])
 		]
 
 	def UnpackListEntry(self, entry):
 		# print "[ArchiverMenuScreen] UnpackListEntry", entry
 		currentProgress = int(float(100) / float(int(100)) * int(entry))
 		progpercent = str(currentProgress) + "%"
-		x, y, w, h = skin.parameters.get("FileListMultiName",(60, 0, 1180, 25))
+		x, y, w, h = skin.parameters.get("FileListMultiName", (60, 0, 1180, 25))
 		x2 = x
 		x = 10
 		w = self['list_left'].l.getItemSize().width()
 		return [
 			entry,
-			MultiContentEntryProgress(pos=(x+x2, y+int(h/3)), size=(w-(x+x2), int(h/3)), percent=int(currentProgress), borderWidth=1),
+			MultiContentEntryProgress(pos=(x + x2, y + int(h / 3)), size=(w - (x + x2), int(h / 3)), percent=int(currentProgress), borderWidth=1),
 			MultiContentEntryText(pos=(x, y), size=(x2, h), font=0, flags=RT_HALIGN_LEFT, text=str(progpercent))
 		]
 
@@ -200,6 +201,7 @@ class ArchiverMenuScreen(Screen):
 	def cancel(self):
 		self.close(False)
 
+
 class ArchiverInfoScreen(Screen):
 	skin = """
 		<screen position="40,80" size="1200,600" title="" >
@@ -254,7 +256,7 @@ class ArchiverInfoScreen(Screen):
 			self.chooseMenuList.setList(map(self.ListEntry, self.list))
 
 	def ListEntry(self, entry):
-		x, y, w, h = skin.parameters.get("FileListName",(10, 0, 1180, 25))
+		x, y, w, h = skin.parameters.get("FileListName", (10, 0, 1180, 25))
 		x = 10
 		w = self['list_left'].l.getItemSize().width()
 		flags = RT_HALIGN_LEFT
@@ -263,7 +265,7 @@ class ArchiverInfoScreen(Screen):
 			y *= 2
 		return [
 			entry,
-			MultiContentEntryText(pos=(x, int(y)), size=(w-x, h), font=0, flags=flags, text=entry[0])
+			MultiContentEntryText(pos=(x, int(y)), size=(w - x, h), font=0, flags=flags, text=entry[0])
 		]
 
 	def cancel(self):

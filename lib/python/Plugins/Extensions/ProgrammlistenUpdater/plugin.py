@@ -20,24 +20,26 @@ import skin
 config.pud = ConfigSubsection()
 config.pud.autocheck = ConfigYesNo(default=False)
 config.pud.showmessage = ConfigYesNo(default=True)
-config.pud.lastdate = ConfigText(visible_width = 200)
-config.pud.satname = ConfigText(visible_width = 200, default='Enigma2 D 19E FTA')
+config.pud.lastdate = ConfigText(visible_width=200)
+config.pud.satname = ConfigText(visible_width=200, default='Enigma2 D 19E FTA')
 config.pud.update_question = ConfigYesNo(default=False)
 config.pud.just_update = ConfigYesNo(default=False)
 
 URL = 'http://www.sattechnik.de/programmlisten-update/asd.php'
 Version = '1.2'
 
+
 class MenuListSetting(MenuList):
 
     def __init__(self, list):
         MenuList.__init__(self, list, True, eListboxPythonMultiContent)
-        font, size = skin.parameters.get("ProgrammlistenUpdaterListFont", ('Regular',25))
+        font, size = skin.parameters.get("ProgrammlistenUpdaterListFont", ('Regular', 25))
         self.l.setFont(0, gFont(font, size))
 
-class Programmlisten_Updater(Screen,ConfigListScreen):
 
-    skin =  """
+class Programmlisten_Updater(Screen, ConfigListScreen):
+
+    skin = """
         <screen name="Programmlisten_Updater" position="center,center" size="710,500">
             <ePixmap pixmap="skin_default/buttons/red.png" position="5,0" size="140,40" alphatest="on" />
             <ePixmap pixmap="skin_default/buttons/green.png" position="155,0" size="140,40" alphatest="on" />
@@ -66,16 +68,15 @@ class Programmlisten_Updater(Screen,ConfigListScreen):
         self["key_green"] = StaticText(_("Install"))
         self["key_yellow"] = StaticText(_("AutoUpdate"))
 
-
-        self["ColorActions"] = ActionMap(['OkCancelActions', 'MenuActions', 'ShortcutActions',"ColorActions","InfobarEPGActions"],
+        self["ColorActions"] = ActionMap(['OkCancelActions', 'MenuActions', 'ShortcutActions', "ColorActions", "InfobarEPGActions"],
             {
             "red": self.keyCancel,
             "green": self.keyOk,
-            "yellow" : self.keyAutoUpdate,
-            "cancel" : self.keyCancel,
-            "ok" : self.keyOk,
-            "menu" : self.keyMenu,
-            "InfoPressed" : self.keyHistory,
+            "yellow": self.keyAutoUpdate,
+            "cancel": self.keyCancel,
+            "ok": self.keyOk,
+            "menu": self.keyMenu,
+            "InfoPressed": self.keyHistory,
             })
 
         self.List = DownloadSetting(URL)
@@ -102,15 +103,15 @@ class Programmlisten_Updater(Screen,ConfigListScreen):
         else:
             if config.pud.just_update.value:
                 self['update'].setText(_("enabled"))
-                config.pud.just_update.value = False               
+                config.pud.just_update.value = False
             else:
                 self['update'].setText(_("update"))
-                config.pud.just_update.value = True 
+                config.pud.just_update.value = True
             if config.pud.lastdate.value == '':
                 self.session.open(MessageBox, _('No Settings loaded !!\n\nPlease install first a settinglist'), MessageBox.TYPE_INFO, timeout=15)
             config.pud.autocheck.value = True
             iTimerClass.TimerSetting()
-        
+
         config.pud.save()
 
     def keyOk(self):
@@ -122,7 +123,6 @@ class Programmlisten_Updater(Screen,ConfigListScreen):
     def CBselect(self, req):
         if req:
             iTimerClass.startDownload(self.name, self.link, self.date)
-        
 
     def Info(self):
         if not os.path.exists(Directory + '/Settings/enigma2'):
@@ -143,39 +143,45 @@ class Programmlisten_Updater(Screen,ConfigListScreen):
     def ListEntryMenuSettings(self, name, date, link, name1, date1):
         res = [(name, date, link, name1, date1)]
         try:
-            x, y, w1, w2, h = skin.parameters.get("ProgrammlistenUpdaterList", (15,7,420,210,40))
+            x, y, w1, w2, h = skin.parameters.get("ProgrammlistenUpdaterList", (15, 7, 420, 210, 40))
         except ValueError:
-            x, y, w1, w2, h = (15,7,420,210,40)
+            x, y, w1, w2, h = (15, 7, 420, 210, 40)
         res.append(MultiContentEntryText(pos=(x, y), size=(w1, h), font=0, text=name, flags=RT_HALIGN_LEFT))
-        res.append(MultiContentEntryText(pos=(x+w1, y), size=(w2, h), font=0, color=16777215, text=date1, flags=RT_HALIGN_RIGHT))
+        res.append(MultiContentEntryText(pos=(x + w1, y), size=(w2, h), font=0, color=16777215, text=date1, flags=RT_HALIGN_RIGHT))
         res.append(MultiContentEntryText(pos=(0, 0), size=(0, 0), font=0, text=link, flags=RT_HALIGN_LEFT))
         res.append(MultiContentEntryText(pos=(0, 0), size=(0, 0), font=0, text=name1, flags=RT_HALIGN_LEFT))
         res.append(MultiContentEntryText(pos=(0, 0), size=(0, 0), font=0, text=date, flags=RT_HALIGN_LEFT))
         return res
 
     def SettingsMenu(self):
-        self.listB = []        
+        self.listB = []
         for date, name, link in self.List:
             self.listB.append(self.ListEntryMenuSettings(str(name.title()), str(date), str(link), str(name), ConverDate(str(date))))
         if not self.listB:
             self.listB.append(self.ListEntryMenuSettings(_('Server down'), '', '', '', ''))
         self['MenuListSetting'].setList(self.listB)
 
+
 jsession = None
+
 
 def SessionStart(reason, **kwargs):
     if reason == 0:
         iTimerClass.gotSession(kwargs['session'], URL)
     jsession = kwargs['session']
 
+
 iTimerClass = CheckTimer(jsession)
+
 
 def AutoStart(reason, **kwargs):
     if reason == 1:
         iTimerClass.StopTimer()
 
+
 def Main(session, **kwargs):
     session.open(Programmlisten_Updater)
+
 
 def Plugins(**kwargs):
     if nimmanager.hasNimType("DVB-S"):

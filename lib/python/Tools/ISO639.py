@@ -1,5 +1,5 @@
 # -*- coding: iso-8859-2 -*-
-LanguageCodes = { }
+LanguageCodes = {}
 
 LanguageCodes["aar"] = LanguageCodes["aa"] = ("Afar", "Hamitic")
 LanguageCodes["abk"] = LanguageCodes["ab"] = ("Abkhazian", "Ibero-caucasian")
@@ -435,14 +435,16 @@ LanguageCodes["znd"] = ("Zande", "")
 LanguageCodes["zul"] = LanguageCodes["zu"] = ("Zulu", "Negro-african")
 LanguageCodes["zun"] = ("Zuni", "")
 
+
 class ISO639Language:
 	[PRIMARY, SECONDARY, TERTIARY] = [1, 2, 3]
+
 	def __init__(self, depth=PRIMARY):
 		self.depth = depth
 
 		wanted_languages = []
 		if depth == self.PRIMARY:
-			wanted_languages = [ "Undetermined", "English", "German", "Arabic", "Catalan", "Croatian", "Czech", "Danish", "Dutch", "Estonian", "Finnish", "French", "Greek", "Hungarian", "Lithuanian", "Latvian", "Icelandic", "Italian", "Norwegian", "Polish", "Portuguese", "Russian", "Serbian", "Slovakian", "Slovenian", "Spanish", "Swedish", "Turkish", "Ukrainian" ]
+			wanted_languages = ["Undetermined", "English", "German", "Arabic", "Catalan", "Croatian", "Czech", "Danish", "Dutch", "Estonian", "Finnish", "French", "Greek", "Hungarian", "Lithuanian", "Latvian", "Icelandic", "Italian", "Norwegian", "Polish", "Portuguese", "Russian", "Serbian", "Slovakian", "Slovenian", "Spanish", "Swedish", "Turkish", "Ukrainian"]
 		elif depth == self.SECONDARY:
 			for key, val in LanguageCodes.iteritems():
 				if len(key) == 2:
@@ -484,16 +486,16 @@ class ISO639Language:
 			if syslang not in id_list and 'en' not in id_list:
 				choices.append((lang, lang))
 		choices.sort()
-		choices.insert(0,(self.name_by_shortid[syslang], self.name_by_shortid[syslang]))
+		choices.insert(0, (self.name_by_shortid[syslang], self.name_by_shortid[syslang]))
 		if syslang != "en":
-			choices.insert(1,(self.name_by_shortid["en"], self.name_by_shortid["en"]))
+			choices.insert(1, (self.name_by_shortid["en"], self.name_by_shortid["en"]))
 		return choices
 
 	def determineLanguage(self, string):
 		string = string.lower()
 		language = "Undetermined"
 		for word in ("stereo", "audio", "description", "2ch", "dolby digital", "2.0"):
-			string = string.replace(word,"").strip()
+			string = string.replace(word, "").strip()
 		if len(string) == 2 and string in self.name_by_shortid:
 			language = self.name_by_shortid[string]
 		elif len(string) == 3 and string in self.name_and_shortid_by_longid:

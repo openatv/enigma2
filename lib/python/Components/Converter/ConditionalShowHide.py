@@ -1,6 +1,7 @@
 from enigma import eTimer
 from Converter import Converter
 
+
 class ConditionalShowHide(Converter, object):
 	def __init__(self, argstr):
 		Converter.__init__(self, argstr)

@@ -15,8 +15,9 @@ STATE_REWIND = 3
 STATE_FORWARD = 4
 STATE_NONE = 5
 
+
 class PlayList(MenuList):
-	def __init__(self, enableWrapAround = False):
+	def __init__(self, enableWrapAround=False):
 		MenuList.__init__(self, [], enableWrapAround, eListboxPythonMultiContent)
 		font = skin.fonts.get("PlayList", ("Regular", 18, 23))
 		self.l.setFont(0, gFont(font[0], font[1]))
@@ -34,15 +35,15 @@ class PlayList(MenuList):
 		]
 
 	def PlaylistEntryComponent(self, serviceref, state):
-		res = [ serviceref ]
+		res = [serviceref]
 		text = serviceref.getName()
 		if text is "":
 			text = path.split(serviceref.getPath().split('/')[-1])[1]
-		x, y, w, h = skin.parameters.get("PlayListName",(25, 1, 470, 22))
+		x, y, w, h = skin.parameters.get("PlayListName", (25, 1, 470, 22))
 		res.append((eListboxPythonMultiContent.TYPE_TEXT, x, y, w, h, 0, RT_VALIGN_CENTER, text))
 		try:
 			png = self.icons[state]
-			x, y, w, h = skin.parameters.get("PlayListIcon",(5, 3, 16, 16))
+			x, y, w, h = skin.parameters.get("PlayListIcon", (5, 3, 16, 16))
 			res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHATEST, x, y, w, h, png))
 		except:
 				pass
@@ -115,8 +116,7 @@ class PlayList(MenuList):
 		return l and l[0]
 
 	def getServiceRefList(self):
-		return [ x[0] for x in self.list ]
+		return [x[0] for x in self.list]
 
 	def __len__(self):
 		return len(self.list)
-		

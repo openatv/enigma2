@@ -25,6 +25,7 @@ from Screens.Setup import Setup, getSetupTitle, getSetupTitleLevel
 mainmenu = _("Main menu")
 lastMenuID = None
 
+
 def MenuEntryPixmap(entryID, png_cache, lastMenuID):
 	png = png_cache.get(entryID, None)
 	if png is None:
@@ -47,38 +48,41 @@ def MenuEntryPixmap(entryID, png_cache, lastMenuID):
 			png_cache['missing'] = png
 	return png
 
+
 def MenuEntryName(name):
 	def splitUpperCase(name, maxlen):
-		for c in range(len(name),0,-1):
-			if name[c-1].isupper() and c-1 and c-1 <= maxlen:
-				return name[:c-1] + "-:-" + name[c-1:]
+		for c in range(len(name), 0, -1):
+			if name[c - 1].isupper() and c - 1 and c - 1 <= maxlen:
+				return name[:c - 1] + "-:-" + name[c - 1:]
 		return name
+
 	def splitLowerCase(name, maxlen):
-		for c in range(len(name),0,-1):
-			if name[c-1].islower() and c-1 and c-1 <= maxlen:
-				return name[:c-1] + "-:-" + name[c-1:]
+		for c in range(len(name), 0, -1):
+			if name[c - 1].islower() and c - 1 and c - 1 <= maxlen:
+				return name[:c - 1] + "-:-" + name[c - 1:]
 		return name
+
 	def splitName(name, maxlen):
 		for s in (" ", "-", "/"):
-			pos = name.rfind(s,0,maxlen+1)
+			pos = name.rfind(s, 0, maxlen + 1)
 			if pos > 1:
-				return [name[:pos+1] if pos+1 <= maxlen and s != " " else name[:pos], name[pos+1:]]
-		return splitUpperCase(name, maxlen).split("-:-",1)
+				return [name[:pos + 1] if pos + 1 <= maxlen and s != " " else name[:pos], name[pos + 1:]]
+		return splitUpperCase(name, maxlen).split("-:-", 1)
 
 	maxrow = 3
 	maxlen = 18
 	namesplit = []
 	if len(name) > maxlen and maxrow > 1:
 		namesplit = splitName(name, maxlen)
-		if len(namesplit) == 1 or (len(namesplit) == 2 and len(namesplit[1]) > maxlen * (maxrow-1)):
-			tmp = splitLowerCase(name, maxlen).split("-:-",1)
+		if len(namesplit) == 1 or (len(namesplit) == 2 and len(namesplit[1]) > maxlen * (maxrow - 1)):
+			tmp = splitLowerCase(name, maxlen).split("-:-", 1)
 			if len(tmp[0]) > len(namesplit[0]) or len(namesplit) < 2:
 				namesplit = tmp
-		for x in range(1,maxrow):
+		for x in range(1, maxrow):
 			if len(namesplit) > x and len(namesplit) < maxrow and len(namesplit[x]) > maxlen:
 				tmp = splitName(namesplit[x], maxlen)
-				if len(tmp) == 1 or (len(tmp) == 2 and len(tmp[1]) > maxlen * (maxrow-x)):
-					tmp = splitLowerCase(namesplit[x], maxlen).split("-:-",1)
+				if len(tmp) == 1 or (len(tmp) == 2 and len(tmp[1]) > maxlen * (maxrow - x)):
+					tmp = splitLowerCase(namesplit[x], maxlen).split("-:-", 1)
 				if len(tmp) == 2:
 					namesplit.pop(x)
 					namesplit.extend(tmp)
@@ -86,16 +90,20 @@ def MenuEntryName(name):
 				break
 	return name if len(namesplit) < 2 else "\n".join(namesplit)
 
+
 # read the menu
 file = open(resolveFilename(SCOPE_SKIN, 'menu.xml'), 'r')
 mdom = xml.etree.cElementTree.parse(file)
 file.close()
 
+
 class title_History:
 	def __init__(self):
 		self.thistory = ''
+
 	def reset(self):
 		self.thistory = ''
+
 	def reducehistory(self):
 		history_len = len(self.thistory.split('>'))
 		if(history_len < 3):
@@ -103,13 +111,15 @@ class title_History:
 			return
 		if(self.thistory == ''):
 			return
-		result = self.thistory.rsplit('>',2)
+		result = self.thistory.rsplit('>', 2)
 		if(result[0] == ''):
 			self.reset()
 			return
 		self.thistory = result[0] + '> '
 
+
 t_history = title_History()
+
 
 class MenuUpdater:
 	def __init__(self):
@@ -129,10 +139,13 @@ class MenuUpdater:
 	def getUpdatedMenu(self, id):
 		return self.updatedMenuItems[id]
 
+
 menuupdater = MenuUpdater()
+
 
 class MenuSummary(Screen):
 	pass
+
 
 class Menu(Screen, ProtectedScreen):
 	ALLOW_SUSPEND = True
@@ -352,7 +365,7 @@ class Menu(Screen, ProtectedScreen):
 					m_list.append((l[0], boundFunction(l[1], self.session), l[2], l[3] or 50, description, menupng))
 
 		# for the skin: first try a menu_<menuID>, then Menu
-		self.skinName = [ ]
+		self.skinName = []
 		if menuID is not None:
 			if config.usage.menutype.value == 'horzanim' and findSkinScreen("Animmain"):
 				self.skinName.append('Animmain')
@@ -367,8 +380,8 @@ class Menu(Screen, ProtectedScreen):
 		if config.usage.menu_sort_mode.value == "user" and menuID == "mainmenu":
 			plugin_list = []
 			id_list = []
-			for l in plugins.getPlugins([PluginDescriptor.WHERE_PLUGINMENU ,PluginDescriptor.WHERE_EXTENSIONSMENU, PluginDescriptor.WHERE_EVENTINFO]):
-				l.id = (l.name.lower()).replace(' ','_')
+			for l in plugins.getPlugins([PluginDescriptor.WHERE_PLUGINMENU, PluginDescriptor.WHERE_EXTENSIONSMENU, PluginDescriptor.WHERE_EVENTINFO]):
+				l.id = (l.name.lower()).replace(' ', '_')
 				if l.id not in id_list:
 					id_list.append(l.id)
 					plugin_list.append((l.name, boundFunction(l.__call__, session), l.id, 200))
@@ -400,7 +413,7 @@ class Menu(Screen, ProtectedScreen):
 			m_list.sort(key=lambda x: int(x[3]))
 
 		if config.usage.menu_show_numbers.value:
-			m_list = [(str(x[0] + 1) + " " +x[1][0], x[1][1], x[1][2]) for x in enumerate(m_list)]
+			m_list = [(str(x[0] + 1) + " " + x[1][0], x[1][1], x[1][2]) for x in enumerate(m_list)]
 
 		self["menu"] = List(m_list)
 		self["menu"].enableWrapAround = True
@@ -457,9 +470,9 @@ class Menu(Screen, ProtectedScreen):
 		self["title0"] = StaticText('')
 		self["title1"] = StaticText('')
 		self["title2"] = StaticText('')
-		if history_len < 13 :
+		if history_len < 13:
 			self["title0"] = StaticText(a)
-		elif history_len < 21 :
+		elif history_len < 21:
 			self["title0"] = StaticText('')
 			self["title1"] = StaticText(a)
 		else:
@@ -467,7 +480,7 @@ class Menu(Screen, ProtectedScreen):
 			self["title1"] = StaticText('')
 			self["title2"] = StaticText(a)
 
-		if(t_history.thistory ==''):
+		if(t_history.thistory == ''):
 			t_history.thistory = str(a) + ' > '
 		else:
 			t_history.thistory = t_history.thistory + str(a) + ' > '
@@ -597,7 +610,7 @@ class Menu(Screen, ProtectedScreen):
 			select = False
 			if self.selected_entry is None:
 				select = True
-			elif  self.selected_entry != m_entry[2]:
+			elif self.selected_entry != m_entry[2]:
 				select = True
 			if not select:
 				self["green"].setText(_("Move mode on"))
@@ -649,8 +662,8 @@ class Menu(Screen, ProtectedScreen):
 		else:
 			self.closeNonRecursive()
 
-	def resetSortOrder(self, key = None):
-		config.usage.menu_sort_weight.value = { "mainmenu" : {"submenu" : {} }}
+	def resetSortOrder(self, key=None):
+		config.usage.menu_sort_weight.value = {"mainmenu": {"submenu": {}}}
 		config.usage.menu_sort_weight.save()
 		self.closeRecursive()
 
@@ -712,6 +725,7 @@ class Menu(Screen, ProtectedScreen):
 				self["yellow"].setText(_("hide"))
 		else:
 			self["yellow"].setText("")
+
 
 class AnimMain(Screen):
 
@@ -852,6 +866,7 @@ class AnimMain(Screen):
 		selection = self.tlist[idx]
 		if selection is not None:
 			selection[1]()
+
 
 class IconMain(Screen):
 
@@ -1008,7 +1023,7 @@ class IconMain(Screen):
 		else:
 			self.openTest()
 
-	def key_up(self, focusLastPic = False):
+	def key_up(self, focusLastPic=False):
 		self.ipage = self.ipage - 1
 		if self.ipage < 1 and 7 > self.picnum > 0:
 			self.ipage = 1
@@ -1028,7 +1043,7 @@ class IconMain(Screen):
 			self.index = 0
 		self.openTest()
 
-	def key_down(self, focusLastPic = False):
+	def key_down(self, focusLastPic=False):
 		self.ipage = self.ipage + 1
 		if self.ipage == 2 and 7 > self.picnum > 0:
 			self.ipage = 1
@@ -1051,9 +1066,9 @@ class IconMain(Screen):
 	def keyNumberGlobal(self, number):
 		if number == 7:
 			self.key_up()
-		elif  number == 8:
+		elif number == 8:
 			self.closeNonRecursive()
-		elif  number == 9:
+		elif number == 9:
 			self.key_down()
 		else:
 			number -= 1
@@ -1089,6 +1104,7 @@ class IconMain(Screen):
 		selection = self.tlist[idx]
 		if selection is not None:
 			selection[1]()
+
 
 class MainMenu(Menu):
 	#add file load functions for the xml-file

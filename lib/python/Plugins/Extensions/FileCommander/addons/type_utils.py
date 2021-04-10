@@ -36,6 +36,7 @@ pversion = "1.0-r0"
 
 # ### play with movieplayer ###
 
+
 class MoviePlayer(Movie_Audio_Player):
 	def __init__(self, session, service):
 		self.session = session
@@ -68,6 +69,7 @@ class MoviePlayer(Movie_Audio_Player):
 			self.session.nav.playService(self.lastservice)
 
 # ### File viewer/line editor ###
+
 
 class vEditor(Screen, HelpableScreen):
 
@@ -158,19 +160,19 @@ class vEditor(Screen, HelpableScreen):
 				# screen: ... size="1140,30" font="screen_text; 20"
 				# font:   ... <alias name="FileList" font="screen_text" size="20" height="30" />
 				font = skin.fonts.get("FileList", ("Regular", 20, 30))
-				fieldwidth = int(1140*skin.getSkinFactor()) #fhd?
-				length=1
+				fieldwidth = int(1140 * skin.getSkinFactor()) #fhd?
+				length = 1
 				if firstpos_end:
-					while getTextBoundarySize(self.instance, gFont(font[0], font[1]), eSize(fieldwidth, font[2]), editableText[len(editableText)-length:], True).width() <= fieldwidth:
-						length+=1
+					while getTextBoundarySize(self.instance, gFont(font[0], font[1]), eSize(fieldwidth, font[2]), editableText[len(editableText) - length:], True).width() <= fieldwidth:
+						length += 1
 						if length > len(editableText):
 							break
 				else:
-					while getTextBoundarySize(self.instance, gFont(font[0], font[1]), eSize(fieldwidth, font[2]), editableText.replace(' ','')[:length], True).width() <= fieldwidth:
-						length+=1
+					while getTextBoundarySize(self.instance, gFont(font[0], font[1]), eSize(fieldwidth, font[2]), editableText.replace(' ', '')[:length], True).width() <= fieldwidth:
+						length += 1
 						if length > len(editableText):
 							break
-				length-=1
+				length -= 1
 			self.session.openWithCallback(self.callbackEditLine, InputBoxWide, title=_(_("original") + ": " + editableText), visible_width=length, overwrite=False, firstpos_end=firstpos_end, allmarked=False, windowTitle=_("Edit line ") + str(self.selLine + 1), text=editableText)
 		except:
 			msg = self.session.open(MessageBox, _("This line is not editable!"), MessageBox.TYPE_ERROR)
@@ -243,6 +245,7 @@ class vEditor(Screen, HelpableScreen):
 			self.close()
 		else:
 			self.close()
+
 
 class ImageViewer(Screen, HelpableScreen):
 	s, w, h = 30, getDesktop(0).size().width(), getDesktop(0).size().height()

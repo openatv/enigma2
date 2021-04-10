@@ -341,6 +341,7 @@ knownAlisaes = {
 	530: ("KEY_MOUSE", "KEY_TOUCHPAD_TOGGLE")
 }
 
+
 def invertKeyIds():
 	invKeyIds = {}
 	for key, value in KEYIDS.items():

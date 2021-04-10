@@ -14,14 +14,15 @@ IOC_SIZEBITS = 13L if "mips" in platform.machine() else 14L
 IOC_DIRBITS = 3L if "mips" in platform.machine() else 2L
 
 IOC_NRSHIFT = 0L
-IOC_TYPESHIFT = IOC_NRSHIFT+IOC_NRBITS
-IOC_SIZESHIFT = IOC_TYPESHIFT+IOC_TYPEBITS
-IOC_DIRSHIFT = IOC_SIZESHIFT+IOC_SIZEBITS
+IOC_TYPESHIFT = IOC_NRSHIFT + IOC_NRBITS
+IOC_SIZESHIFT = IOC_TYPESHIFT + IOC_TYPEBITS
+IOC_DIRSHIFT = IOC_SIZESHIFT + IOC_SIZEBITS
 
 IOC_READ = 2L
 
+
 def EVIOCGNAME(length):
-	return (IOC_READ<<IOC_DIRSHIFT)|(length<<IOC_SIZESHIFT)|(0x45<<IOC_TYPESHIFT)|(0x06<<IOC_NRSHIFT)
+	return (IOC_READ << IOC_DIRSHIFT) | (length << IOC_SIZESHIFT) | (0x45 << IOC_TYPESHIFT) | (0x06 << IOC_NRSHIFT)
 
 
 class inputDevices:
@@ -36,24 +37,23 @@ class inputDevices:
 
 		for evdev in devices:
 			try:
-				buffer = "\0"*512
+				buffer = "\0" * 512
 				self.fd = os_open("/dev/input/" + evdev, O_RDWR | O_NONBLOCK)
 				self.name = ioctl(self.fd, EVIOCGNAME(256), buffer)
 				self.name = self.name[:self.name.find("\0")]
 				if str(self.name).find("Keyboard") != -1:
 					self.name = 'keyboard'
 				os_close(self.fd)
-			except (IOError,OSError), err:
+			except (IOError, OSError), err:
 				print '[iInputDevices] getInputDevices  <ERROR: ioctl(EVIOCGNAME): ' + str(err) + ' >'
 				self.name = None
 
 			if self.name:
-				self.Devices[evdev] = {'name': self.name, 'type': self.getInputDeviceType(self.name),'enabled': False, 'configuredName': None }
+				self.Devices[evdev] = {'name': self.name, 'type': self.getInputDeviceType(self.name), 'enabled': False, 'configuredName': None}
 				if getBoxType().startswith('et'):
 					self.setDefaults(evdev) # load default remote control "delay" and "repeat" values for ETxxxx ("QuickFix Scrollspeed Menues" proposed by Xtrend Support)
 
-
-	def getInputDeviceType(self,name):
+	def getInputDeviceType(self, name):
 		if "remote control" in name:
 			return "remote"
 		elif "keyboard" in name:
@@ -61,7 +61,7 @@ class inputDevices:
 		elif "mouse" in name:
 			return "mouse"
 		else:
-			print "Unknown device type:",name
+			print "Unknown device type:", name
 			return None
 
 	def getDeviceName(self, x):
@@ -114,7 +114,7 @@ class inputDevices:
 
 	def setRepeat(self, device, value): #REP_PERIOD
 		if self.getDeviceAttribute(device, 'enabled'):
-			print "[iInputDevices] setRepeat for device %s to %d ms" % (device,value)
+			print "[iInputDevices] setRepeat for device %s to %d ms" % (device, value)
 			event = struct.pack('LLHHi', 0, 0, 0x14, 0x01, int(value))
 			fd = os_open("/dev/input/" + device, O_RDWR)
 			os_write(fd, event)
@@ -122,7 +122,7 @@ class inputDevices:
 
 	def setDelay(self, device, value): #REP_DELAY
 		if self.getDeviceAttribute(device, 'enabled'):
-			print "[iInputDevices] setDelay for device %s to %d ms" % (device,value)
+			print "[iInputDevices] setDelay for device %s to %d ms" % (device, value)
 			event = struct.pack('LLHHi', 0, 0, 0x14, 0x00, int(value))
 			fd = os_open("/dev/input/" + device, O_RDWR)
 			os_write(fd, event)
@@ -143,13 +143,13 @@ class InitInputDevices:
 			self.setupConfigEntries(self.currentDevice)
 			self.currentDevice = ""
 
-	def inputDevicesEnabledChanged(self,configElement):
+	def inputDevicesEnabledChanged(self, configElement):
 		if self.currentDevice != "" and iInputDevices.currentDevice == "":
 			iInputDevices.setEnabled(self.currentDevice, configElement.value)
 		elif iInputDevices.currentDevice != "":
 			iInputDevices.setEnabled(iInputDevices.currentDevice, configElement.value)
 
-	def inputDevicesNameChanged(self,configElement):
+	def inputDevicesNameChanged(self, configElement):
 		if self.currentDevice != "" and iInputDevices.currentDevice == "":
 			iInputDevices.setName(self.currentDevice, configElement.value)
 			if configElement.value != "":
@@ -162,22 +162,22 @@ class InitInputDevices:
 		elif iInputDevices.currentDevice != "":
 			iInputDevices.setName(iInputDevices.currentDevice, configElement.value)
 
-	def inputDevicesRepeatChanged(self,configElement):
+	def inputDevicesRepeatChanged(self, configElement):
 		if self.currentDevice != "" and iInputDevices.currentDevice == "":
 			iInputDevices.setRepeat(self.currentDevice, configElement.value)
 		elif iInputDevices.currentDevice != "":
 			iInputDevices.setRepeat(iInputDevices.currentDevice, configElement.value)
 
-	def inputDevicesDelayChanged(self,configElement):
+	def inputDevicesDelayChanged(self, configElement):
 		if self.currentDevice != "" and iInputDevices.currentDevice == "":
 			iInputDevices.setDelay(self.currentDevice, configElement.value)
 		elif iInputDevices.currentDevice != "":
 			iInputDevices.setDelay(iInputDevices.currentDevice, configElement.value)
 
-	def setupConfigEntries(self,device):
+	def setupConfigEntries(self, device):
 		cmd = "config.inputDevices." + device + " = ConfigSubsection()"
 		exec cmd
-		boxtype=getBoxType()
+		boxtype = getBoxType()
 		if boxtype == 'dm800' or boxtype == 'azboxhd':
 			cmd = "config.inputDevices." + device + ".enabled = ConfigYesNo(default = True)"
 		else:
@@ -193,8 +193,8 @@ class InitInputDevices:
 			cmd = "config.inputDevices." + device + ".repeat = ConfigSlider(default=400, increment = 10, limits=(0, 500))"
 		elif boxtype == 'azboxhd':
 			cmd = "config.inputDevices." + device + ".repeat = ConfigSlider(default=150, increment = 10, limits=(0, 500))"
-		else:		
-			cmd = "config.inputDevices." + device + ".repeat = ConfigSlider(default=100, increment = 10, limits=(0, 500))"	
+		else:
+			cmd = "config.inputDevices." + device + ".repeat = ConfigSlider(default=100, increment = 10, limits=(0, 500))"
 		exec cmd
 		cmd = "config.inputDevices." + device + ".repeat.addNotifier(self.inputDevicesRepeatChanged,config.inputDevices." + device + ".repeat)"
 		exec cmd
@@ -211,7 +211,8 @@ iInputDevices = inputDevices()
 
 
 config.plugins.remotecontroltype = ConfigSubsection()
-config.plugins.remotecontroltype.rctype = ConfigInteger(default = 0)
+config.plugins.remotecontroltype.rctype = ConfigInteger(default=0)
+
 
 class RcTypeControl():
 	def __init__(self):
@@ -230,5 +231,6 @@ class RcTypeControl():
 		fd = open('/proc/stb/ir/rc/type', 'w')
 		fd.write('%d' % rctype)
 		fd.close()
+
 
 iRcTypeControl = RcTypeControl()

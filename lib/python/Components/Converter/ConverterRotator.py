@@ -17,7 +17,7 @@ class ConverterRotator(Poll, Converter, object):
 		Poll.__init__(self)
 		Converter.__init__(self, type)
 		self.mainstream = None
-		self.sourceList = [ ]
+		self.sourceList = []
 		self.sourceIndex = -1
 		if type and type.isdigit():
 			self.poll_interval = int(type) * 1000
@@ -31,7 +31,7 @@ class ConverterRotator(Poll, Converter, object):
 			if suspended:
 				self.poll_enabled = False
 			else:
-				self.sourceIndex = len(self.sourceList)-1
+				self.sourceIndex = len(self.sourceList) - 1
 				self.poll_enabled = True
 				self.poll()
 

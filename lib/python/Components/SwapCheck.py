@@ -3,6 +3,7 @@ import os
 
 swapdevice = None
 
+
 def bigStorage(minFree):
 		mounts = open('/proc/mounts', 'rb').readlines()
 		mountpoints = [x.split(' ', 2)[1] for x in mounts]
@@ -13,16 +14,18 @@ def bigStorage(minFree):
 				diskstat = os.statvfs(candidate)
 				free = diskstat.f_bfree * diskstat.f_bsize
 				if free > minFree:
-					print 
+					print
 					return candidate
 			except:
 				pass
 		return None
 
+
 class SwapCheck:
 	def __init__(self, callback=None, extra_args=None):
 		self.Console = Console()
-		if not extra_args: extra_args = []
+		if not extra_args:
+				extra_args = []
 		self.extra_args = extra_args
 		assert callable(callback), "callback must be callable"
 		self.callback = callback
@@ -50,7 +53,7 @@ class SwapCheck:
 					swapfree = int(parts[1])
 			f.close()
 			TotalFree = memfree + swapfree
-			print "[SwapCheck] Free Mem",TotalFree
+			print "[SwapCheck] Free Mem", TotalFree
 			if int(TotalFree) < 5000:
 				print "[SwapCheck] Not Enough Ram"
 				self.MemCheck2()
@@ -70,7 +73,7 @@ class SwapCheck:
 		print "[SwapCheck] Creating Swapfile"
 		self.Console.ePopen("dd if=/dev/zero of=" + swapdevice + " bs=1024 count=16440", self.MemCheck3)
 
-	def MemCheck3(self, result, retval, extra_args = None):
+	def MemCheck3(self, result, retval, extra_args=None):
 		if retval == 0:
 			self.Console.ePopen("mkswap " + swapdevice, self.MemCheck4)
 		else:
@@ -83,11 +86,11 @@ class SwapCheck:
 				else:
 					self.callback()
 
-	def MemCheck4(self, result, retval, extra_args = None):
+	def MemCheck4(self, result, retval, extra_args=None):
 		if retval == 0:
 			self.Console.ePopen("swapon " + swapdevice, self.MemCheck5)
 
-	def MemCheck5(self, result, retval, extra_args = None):
+	def MemCheck5(self, result, retval, extra_args=None):
 		if self.extra_args:
 			self.callback(self.extra_args)
 		else:
@@ -95,5 +98,5 @@ class SwapCheck:
 
 	def RemoveSwap(self):
 		if swapdevice and os.path.exists(swapdevice):
-			print "[SwapCheck] Removing Swapfile",swapdevice
+			print "[SwapCheck] Removing Swapfile", swapdevice
 			self.Console.ePopen("swapoff " + swapdevice + " && rm " + swapdevice)

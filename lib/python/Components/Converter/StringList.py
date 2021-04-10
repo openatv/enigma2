@@ -2,8 +2,10 @@ from Converter import Converter
 from enigma import eListboxPythonStringContent
 from Components.Element import cached
 
+
 class StringList(Converter):
 	"""Turns a simple python list into a list which can be used in a listbox."""
+
 	def __init__(self, type):
 		Converter.__init__(self, type)
 		self.content = None

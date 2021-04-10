@@ -5,6 +5,7 @@ from struct import pack, unpack
 from Components.config import config
 from boxbranding import getBoxType, getBrandOEM
 
+
 def getFPVersion():
 	ret = None
 	try:
@@ -12,17 +13,18 @@ def getFPVersion():
 			file = open("/proc/stb/info/micomver", "r")
 			ret = file.readline().strip()
 			file.close()
-		elif getBoxType() in ('dm7080','dm820','dm520','dm525','dm900','dm920'):
+		elif getBoxType() in ('dm7080', 'dm820', 'dm520', 'dm525', 'dm900', 'dm920'):
 			ret = open("/proc/stb/fp/version", "r").read()
-		else:	
+		else:
 			ret = long(open("/proc/stb/fp/version", "r").read())
 	except IOError:
 		try:
 			fp = open("/dev/dbox/fp0")
-			ret = ioctl(fp.fileno(),0)
+			ret = ioctl(fp.fileno(), 0)
 		except IOError:
 			print "getFPVersion failed!"
 	return ret
+
 
 def setFPWakeuptime(wutime):
 	try:
@@ -37,13 +39,15 @@ def setFPWakeuptime(wutime):
 		except IOError:
 			print "setFPWakeupTime failed!"
 
+
 def setRTCoffset():
-	forsleep = (localtime(time()).tm_hour-gmtime(time()).tm_hour)*3600
+	forsleep = (localtime(time()).tm_hour - gmtime(time()).tm_hour) * 3600
 	print "[RTC] set RTC offset to %s sec." % (forsleep)
 	try:
 		open("/proc/stb/fp/rtc_offset", "w").write(str(forsleep))
 	except IOError:
 		print "setRTCoffset failed!"
+
 
 def setRTCtime(wutime):
         if path.exists("/proc/stb/fp/rtc_offset"):
@@ -60,6 +64,7 @@ def setRTCtime(wutime):
 		except IOError:
 			print "setRTCtime failed!"
 
+
 def getFPWakeuptime():
 	ret = 0
 	try:
@@ -75,9 +80,11 @@ def getFPWakeuptime():
 			print "getFPWakeupTime failed!"
 	return ret
 
+
 wasTimerWakeup = None
 
-def getFPWasTimerWakeup(check = False):
+
+def getFPWasTimerWakeup(check=False):
 	global wasTimerWakeup
 	isError = False
 	if wasTimerWakeup is not None:
@@ -108,6 +115,7 @@ def getFPWasTimerWakeup(check = False):
 	if check:
 		return wasTimerWakeup, isError
 	return wasTimerWakeup
+
 
 def clearFPWasTimerWakeup():
 	try:

@@ -9,8 +9,9 @@ from Tools.BoundFunction import boundFunction
 from Tools.Notifications import AddPopup
 from time import time
 
+
 class InputBox(Screen):
-	def __init__(self, session, title = "", windowTitle = _("Input"), useableChars = None, **kwargs):
+	def __init__(self, session, title="", windowTitle=_("Input"), useableChars=None, **kwargs):
 		Screen.__init__(self, session)
 
 		self["text"] = Label(title)
@@ -88,10 +89,12 @@ class InputBox(Screen):
 	def keyInsert(self):
 		self["input"].toggleOverwrite()
 
+
 class PinInput(InputBox):
 	def __init__(self, session, service="", triesEntry=None, pinList=None, popup=False, simple=True, *args, **kwargs):
-		if not pinList: pinList = []
-		InputBox.__init__(self, session = session, text = "    ", maxSize = True, type = Input.PIN, *args, **kwargs)
+		if not pinList:
+			pinList = []
+		InputBox.__init__(self, session=session, text="    ", maxSize=True, type=Input.PIN, *args, **kwargs)
 
 		self.waitTime = 15
 		self.triesEntry = triesEntry
@@ -108,10 +111,10 @@ class PinInput(InputBox):
 				remainingSeconds = int(remaining % 60)
 				messageText = _("You have to wait %s!") % (str(remainingMinutes) + " " + _("minutes") + ", " + str(remainingSeconds) + " " + _("seconds"))
 				if service and simple:
-					AddPopup(messageText, type = MessageBox.TYPE_ERROR, timeout = 3)
+					AddPopup(messageText, type=MessageBox.TYPE_ERROR, timeout=3)
 					self.closePinCancel()
 				else:
-					self.onFirstExecBegin.append(boundFunction(self.session.openWithCallback, self.closePinCancel, MessageBox, messageText, MessageBox.TYPE_ERROR, timeout = 3))
+					self.onFirstExecBegin.append(boundFunction(self.session.openWithCallback, self.closePinCancel, MessageBox, messageText, MessageBox.TYPE_ERROR, timeout=3))
 			else:
 				self.setTries(3)
 

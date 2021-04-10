@@ -1,6 +1,7 @@
 from boxbranding import getBoxType, getBrandOEM, getMachineName
 from Components.About import about
 
+
 class HardwareInfo:
 	device_name = None
 	device_version = None
@@ -62,7 +63,7 @@ class HardwareInfo:
 
 	def linux_kernel(self):
 		try:
-			return open("/proc/version","r").read().split(' ', 4)[2].split('-',2)[0]
+			return open("/proc/version", "r").read().split(' ', 4)[2].split('-', 2)[0]
 		except:
 			return "unknown"
 

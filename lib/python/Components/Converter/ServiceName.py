@@ -10,6 +10,7 @@ from Components.NimManager import nimmanager
 from Components.Converter.ChannelNumbers import channelnumbers
 import Screens.InfoBar
 
+
 class ServiceName(Converter, object):
 	NAME = 0
 	NAME_ONLY = 1
@@ -109,10 +110,10 @@ class ServiceName(Converter, object):
 				if self.system() == None: # catch driver bug
 					return ""
 				if "DVB-T" in self.system():
-					return	self.dvb_t()
+					return self.dvb_t()
 				elif "DVB-C" in self.system():
 					return self.dvb_c()
-				return 	self.dvb_s()
+				return self.dvb_s()
 			if service:
 				result = service.toString()
 			else:
@@ -129,31 +130,42 @@ class ServiceName(Converter, object):
 
 	def dvb_s(self):
 		return "%s %s %s %s %s %s %s" % (self.orb_pos(), self.system(), self.freq(), self.polar(), self.s_rate(), self.fec(), self.mod())
+
 	def dvb_t(self):
 		return "%s %s %s/%s" % (self.system(), self.ch_number(), self.freq(), self.bandwidth())
+
 	def dvb_c(self):
 		return "%s %s %s %s %s" % (self.system(), self.freq(), self.s_rate(), self.fec(), self.mod())
+
 	def system(self):
 		return self.t_info["system"]
+
 	def freq(self):
 		return self.t_info["frequency"]
+
 	def bandwidth(self):
 		return self.t_info["bandwidth"]
+
 	def s_rate(self):
 		return self.t_info["symbol_rate"]
+
 	def mod(self):
 		return self.t_info["modulation"]
+
 	def polar(self):
 		return self.t_info["polarization_abbreviation"]
+
 	def orb_pos(self):
 		op = self.t_info["orbital_position"]
 		if '(' in op:
 			op = op.split('(')[1]
-			return "%s°%s" % (op[:-2],op[-2:-1])
+			return "%s°%s" % (op[:-2], op[-2:-1])
 		op = op.split(' ')[0]
-		return "%s°%s" % (op[:-1],op[-1:])
+		return "%s°%s" % (op[:-1], op[-1:])
+
 	def fec(self):
 		return self.t_info["fec_inner"]
+
 	def ch_number(self):
 		for n in nimmanager.nim_slots:
 			if n.isCompatible("DVB-T"):

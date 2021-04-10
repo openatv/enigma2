@@ -152,7 +152,7 @@ class AutoDiseqc(Screen, ConfigListScreen):
 		self["tunerstatusbar"] = StaticText(" ")
 
 		self.list = []
-		ConfigListScreen.__init__(self, self.list, session = self.session)
+		ConfigListScreen.__init__(self, self.list, session=self.session)
 
 		self["config"].list = self.list
 		self["config"].l.setList(self.list)
@@ -332,7 +332,7 @@ class AutoDiseqc(Screen, ConfigListScreen):
 
 		elif dict["tuner_state"] == "UNKNOWN":
                         self["tunerstatusbar"].setText(_("Tuner status UNKNOWN"))
-			
+
 		if dict["tuner_state"] == "LOSTLOCK" or dict["tuner_state"] == "FAILED":
 			self.tunerStopScan(False)
 			return

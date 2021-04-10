@@ -1,10 +1,11 @@
 # -*- coding: utf-8 -*-
 # by digiteng...12-2019
 # v1.1a 01-2020
-from Renderer import Renderer 
+from Renderer import Renderer
 from enigma import ePixmap, loadJPG
 import os
 import re
+
 
 class pstrRndr(Renderer):
 
@@ -19,10 +20,11 @@ class pstrRndr(Renderer):
 		return Renderer.applySkin(self, desktop, parent)
 
 	GUI_WIDGET = ePixmap
+
 	def changed(self, what):
 		try:
 			eventName = self.source.text
-			if eventName :
+			if eventName:
 				poster = '/tmp/poster/poster.jpg'
 				if os.path.exists(poster):
 					self.instance.setPixmap(loadJPG(poster))

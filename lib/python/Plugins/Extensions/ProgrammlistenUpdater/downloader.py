@@ -1,4 +1,7 @@
-import re, os, urllib2, sys
+import re
+import os
+import urllib2
+import sys
 
 
 def DownloadSetting(url):
@@ -14,19 +17,21 @@ def DownloadSetting(url):
             print link, name, date
             prelink = ''
             if not link.startswith("http://"):
-                prelink = url.replace('asd.php','')
+                prelink = url.replace('asd.php', '')
             list.append((date, name, prelink + link))
 
     except:
-        print"ERROR DownloadSetting %s" %(url)
+        print"ERROR DownloadSetting %s" % (url)
 
     return list
+
 
 def ConverDate(data):
     year = data[:2]
     month = data[-4:][:2]
     day = data[-2:]
     return day + '-' + month + '-20' + year
+
 
 def ConverDateBack(data):
     year = data[-2:]

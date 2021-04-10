@@ -28,6 +28,7 @@ iceTVServers = {
     _("Germany"): "api.icetv.de",
 }
 
+
 def isServerReachable():
     try:
         sock = create_connection((config.plugins.icetv.server.name.value, 80), 3)
@@ -37,6 +38,7 @@ def isServerReachable():
     except sockerror as ex:
         print "[IceTV] Can not connect to IceTV server:", str(ex)
     return False
+
 
 def getMacAddress(ifname):
     result = "00:00:00:00:00:00"
@@ -51,8 +53,10 @@ def getMacAddress(ifname):
     sock.close()
     return result
 
+
 def haveCredentials():
     return bool(config.plugins.icetv.member.token.value)
+
 
 def getCredentials():
     return {
@@ -60,14 +64,17 @@ def getCredentials():
             "token": config.plugins.icetv.member.token.value,
     }
 
+
 def clearCredentials():
     config.plugins.icetv.member.token.value = ""
     config.plugins.icetv.member.token.save()
     saveConfigFile()
 
+
 def showIdToEventId(show_id):
     # Fit within 16 bits, but avoid 0 and 0xFFF8 - 0xFFFF
     return (int(show_id) % 0xFFF7) + 1
+
 
 class Request(object):
     def __init__(self, resource):

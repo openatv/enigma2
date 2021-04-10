@@ -1,4 +1,6 @@
-import os, re, unicodedata
+import os
+import re
+import unicodedata
 from Renderer import Renderer
 from enigma import ePixmap, ePicLoad
 from Tools.Alternatives import GetWithAlternative
@@ -11,6 +13,7 @@ from Components.SystemInfo import SystemInfo
 searchPaths = []
 lastLcdPiconPath = None
 
+
 def initLcdPiconPaths():
 	global searchPaths
 	searchPaths = []
@@ -18,7 +21,8 @@ def initLcdPiconPaths():
 		onMountpointAdded(part.mountpoint)
 	for mp in ('/usr/share/enigma2/', '/'):
 		onMountpointAdded(mp)
-		
+
+
 def onMountpointAdded(mountpoint):
 	global searchPaths
 	try:
@@ -35,6 +39,7 @@ def onMountpointAdded(mountpoint):
 	except Exception, ex:
 		print "[LcdPicon] Failed to investigate %s:" % mountpoint, ex
 
+
 def onMountpointRemoved(mountpoint):
 	global searchPaths
 	if getDisplayType() in ('bwlcd255', 'bwlcd140') and not SystemInfo["grautec"] or os.path.isdir(mountpoint + 'piconlcd'):
@@ -47,11 +52,13 @@ def onMountpointRemoved(mountpoint):
 	except:
 		pass
 
+
 def onPartitionChange(why, part):
 	if why == 'add':
 		onMountpointAdded(part.mountpoint)
 	elif why == 'remove':
 		onMountpointRemoved(part.mountpoint)
+
 
 def findLcdPicon(serviceName):
 	global lastLcdPiconPath
@@ -80,6 +87,7 @@ def findLcdPicon(serviceName):
 		else:
 			return ""
 
+
 def getLcdPiconName(serviceName):
 	#remove the path and name fields, and replace ':' by '_'
 	sname = '_'.join(GetWithAlternative(serviceName).split(':', 10)[:10])
@@ -101,12 +109,13 @@ def getLcdPiconName(serviceName):
 				pngname = findLcdPicon(name[:-2])
 	return pngname
 
+
 class LcdPicon(Renderer):
 	def __init__(self):
 		Renderer.__init__(self)
 		self.PicLoad = ePicLoad()
 		self.PicLoad.PictureData.get().append(self.updatePicon)
-		self.piconsize = (0,0)
+		self.piconsize = (0, 0)
 		self.pngname = ""
 		self.lastPath = None
 		if getDisplayType() in ('bwlcd255', 'bwlcd140') and not SystemInfo["grautec"]:
@@ -142,7 +151,7 @@ class LcdPicon(Renderer):
 		for (attrib, value) in self.skinAttributes:
 			if attrib == "path":
 				self.addPath(value)
-				attribs.remove((attrib,value))
+				attribs.remove((attrib, value))
 			elif attrib == "size":
 				self.piconsize = value
 		self.skinAttributes = attribs
@@ -173,6 +182,7 @@ class LcdPicon(Renderer):
 					else:
 						self.instance.hide()
 					self.pngname = pngname
+
 
 harddiskmanager.on_partition_list_change.append(onPartitionChange)
 initLcdPiconPaths()

@@ -5,6 +5,7 @@ from traceback import extract_stack
 from time import sleep
 from Components.config import config, ConfigYesNo
 
+
 class StackTracePrinter(Thread):
 	@classmethod
 	def getInstance(self):

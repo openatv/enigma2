@@ -1,5 +1,6 @@
 from Components.Converter.StringList import StringList
 
+
 class TemplatedMultiContent(StringList):
 	"""Turns a python tuple list into a multi-content list which can be used in a listbox renderer."""
 

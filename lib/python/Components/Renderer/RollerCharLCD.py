@@ -4,6 +4,7 @@ from enigma import eLabel, eTimer
 from boxbranding import getBoxType
 from Components.VariableText import VariableText
 
+
 class RollerCharLCD(VariableText, Renderer):
 
 	def __init__(self):

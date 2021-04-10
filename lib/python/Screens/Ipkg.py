@@ -6,9 +6,11 @@ from Screens.Screen import Screen
 from Screens.MessageBox import MessageBox
 from enigma import eTimer
 
+
 class Ipkg(Screen):
 	def __init__(self, session, cmdList=None):
-		if not cmdList: cmdList = []
+		if not cmdList:
+			cmdList = []
 		Screen.__init__(self, session)
 		self.setTitle(_("Installing Software..."))
 
@@ -62,7 +64,7 @@ class Ipkg(Screen):
 		else:
 			cmd = self.cmdList[self.runningCmd]
 			self.slider.setValue(self.runningCmd)
-			self.ipkg.startCmd(cmd[0], args = cmd[1])
+			self.ipkg.startCmd(cmd[0], args=cmd[1])
 			self.startActivityTimer()
 
 	def doActivityTimer(self):

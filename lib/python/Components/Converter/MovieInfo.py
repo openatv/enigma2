@@ -3,6 +3,7 @@ from Components.Element import cached, ElementError
 from enigma import iServiceInformation, eServiceReference
 from ServiceReference import ServiceReference
 
+
 class MovieInfo(Converter, object):
 	MOVIE_SHORT_DESCRIPTION = 0 # meta description when available.. when not .eit short description
 	MOVIE_META_DESCRIPTION = 1 # just meta description when available
@@ -53,12 +54,12 @@ class MovieInfo(Converter, object):
 					return _("Directory")
 				filesize = info.getInfoObject(service, iServiceInformation.sFileSize)
 				if filesize is not None:
-					if filesize >= 100000*1024*1024:
-						return _("%.0f GB") % (filesize / (1024.0*1024.0*1024.0))
-					elif filesize >= 100000*1024:
-						return _("%.2f GB") % (filesize / (1024.0*1024.0*1024.0))
+					if filesize >= 100000 * 1024 * 1024:
+						return _("%.0f GB") % (filesize / (1024.0 * 1024.0 * 1024.0))
+					elif filesize >= 100000 * 1024:
+						return _("%.2f GB") % (filesize / (1024.0 * 1024.0 * 1024.0))
 					else:
-						return _("%.0f MB") % (filesize / (1024.0*1024.0))
+						return _("%.0f MB") % (filesize / (1024.0 * 1024.0))
 		return ""
 
 	text = property(getText)

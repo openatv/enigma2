@@ -1,5 +1,6 @@
 from Screens.MessageBox import MessageBox
 
+
 class ServiceStopScreen:
 	def __init__(self):
 		try:
@@ -33,7 +34,7 @@ class ServiceStopScreen:
 	def __onClose(self):
 		self.session.nav.playService(self.oldref)
 
-	def restoreService(self, msg = _("Zap back to previously tuned service?")):
+	def restoreService(self, msg=_("Zap back to previously tuned service?")):
 		if self.oldref:
 			self.session.openWithCallback(self.restartPrevService, MessageBox, msg, MessageBox.TYPE_YESNO)
 		else:
@@ -41,5 +42,5 @@ class ServiceStopScreen:
 
 	def restartPrevService(self, yesno):
 		if not yesno:
-			self.oldref=None
+			self.oldref = None
 		self.close()

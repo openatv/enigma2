@@ -37,6 +37,7 @@ imagePath = resolveFilename(SCOPE_CURRENT_SKIN, 'FCimages')
 if not os.path.isdir(imagePath):
 	imagePath = resolveFilename(SCOPE_PLUGINS, base="Extensions/FileCommander/images/")
 
+
 def getPNGByExt(name):
 	basename, ext = os.path.splitext(name)
 	if ext.startswith('.'):
@@ -53,10 +54,11 @@ def getPNGByExt(name):
 	else:
 		return LoadPixmap(path=os.path.join(imagePath, "file.png"))
 
+
 def FileEntryComponent(name, absolute=None, isDir=False, isLink=False):
 	res = [(absolute, isDir, isLink)]
-	x, y, w, h = skin.parameters.get("FileListName",(55, 1, 1175, 25))
-	res.append((eListboxPythonMultiContent.TYPE_TEXT, x, y, w-x, h, 0, RT_HALIGN_LEFT, name))
+	x, y, w, h = skin.parameters.get("FileListName", (55, 1, 1175, 25))
+	res.append((eListboxPythonMultiContent.TYPE_TEXT, x, y, w - x, h, 0, RT_HALIGN_LEFT, name))
 	if isLink:
 		link_png = LoadPixmap(path=os.path.join(imagePath, "link-arrow.png"))
 	else:
@@ -69,12 +71,13 @@ def FileEntryComponent(name, absolute=None, isDir=False, isLink=False):
 	else:
 		png = getPNGByExt(name)
 	if png is not None:
-		x, y, w, h = skin.parameters.get("FileListIcon",(10, 4, 20, 20))
+		x, y, w, h = skin.parameters.get("FileListIcon", (10, 4, 20, 20))
 		res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, x, y, w, h, png, None, None, BT_SCALE))
 		if link_png is not None:
-			res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, x, y, w, h, link_png, None ,None, BT_SCALE))
+			res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, x, y, w, h, link_png, None, None, BT_SCALE))
 
 	return res
+
 
 def getSortedList(list, sortBy, dir=''):
 	sort, reverse = [int(x) for x in sortBy.split('.')]
@@ -92,6 +95,7 @@ def getSortedList(list, sortBy, dir=''):
 		list.append(x[0])
 	return list
 
+
 class FileList(FileListBase):
 	def __init__(self, directory, showDirectories=True, showFiles=True, showMountpoints=True, matchingPattern=None, useServiceRef=False, inhibitDirs=False, inhibitMounts=False, isTop=False, enableWrapAround=True, additionalExtensions=None, sortDirs='0.0', sortFiles='0.0', firstDirs=True):
 		self.parent_directory = None
@@ -101,7 +105,7 @@ class FileList(FileListBase):
 
 		FileListBase.__init__(self, directory, showDirectories=showDirectories, showFiles=showFiles, showMountpoints=showMountpoints, matchingPattern=matchingPattern, useServiceRef=useServiceRef, inhibitDirs=inhibitDirs, inhibitMounts=inhibitMounts, isTop=isTop, enableWrapAround=enableWrapAround, additionalExtensions=additionalExtensions)
 
-	def setSortBy(self, sortBy, setDir = False):
+	def setSortBy(self, sortBy, setDir=False):
 		#0.0
 		#| 0 - normal
 		#| 1 - reverse
@@ -114,7 +118,7 @@ class FileList(FileListBase):
 			self.sortFiles = sortBy
 
 	def getSortBy(self):
-		return '%s,%s' %(self.sortDirs, self.sortFiles)
+		return '%s,%s' % (self.sortDirs, self.sortFiles)
 
 	def changeDir(self, directory, select=None):
 		self.list = []
@@ -246,9 +250,10 @@ class FileList(FileListBase):
 		idx = self.l.getCurrentSelectionIndex()
 		return idx
 
+
 def MultiFileSelectEntryComponent(name, absolute=None, isDir=False, isLink=False, selected=False):
 	res = [(absolute, isDir, isLink, selected, name)]
-	x, y, w, h = skin.parameters.get("FileListMultiName",(55, 1, 1175, 25))
+	x, y, w, h = skin.parameters.get("FileListMultiName", (55, 1, 1175, 25))
 	res.append((eListboxPythonMultiContent.TYPE_TEXT, x, y, w, h, 0, RT_HALIGN_LEFT, name))
 
 	if isLink:
@@ -263,24 +268,25 @@ def MultiFileSelectEntryComponent(name, absolute=None, isDir=False, isLink=False
 	else:
 		png = getPNGByExt(name)
 	if png is not None:
-		x, y, w, h = skin.parameters.get("FileListMultiIcon",(30, 4, 20, 20))
-		res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, x, y, w, h, png, None ,None, BT_SCALE))
+		x, y, w, h = skin.parameters.get("FileListMultiIcon", (30, 4, 20, 20))
+		res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, x, y, w, h, png, None, None, BT_SCALE))
 		if link_png is not None:
-			res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, x, y, w, h, link_png, None ,None, BT_SCALE))
+			res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, x, y, w, h, link_png, None, None, BT_SCALE))
 
 	if not name.startswith('<'):
-		x, y, w, h = skin.parameters.get("FileListMultiLock",(4, 0, 25, 25))
+		x, y, w, h = skin.parameters.get("FileListMultiLock", (4, 0, 25, 25))
 		if selected is False:
 			icon = LoadPixmap(path=resolveFilename(SCOPE_CURRENT_SKIN, "skin_default/icons/lock_off.png"))
 			if not icon:
 				icon = LoadPixmap(path=os.path.join(imagePath, "lock_off.png"))
-			res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, x, y, w, h, icon, None ,None, BT_SCALE))
+			res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, x, y, w, h, icon, None, None, BT_SCALE))
 		else:
 			icon = LoadPixmap(path=resolveFilename(SCOPE_CURRENT_SKIN, "skin_default/icons/lock_on.png"))
 			if not icon:
 				icon = LoadPixmap(path=os.path.join(imagePath, "lock_on.png"))
-			res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, x, y, w, h, icon, None ,None, BT_SCALE))
+			res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, x, y, w, h, icon, None, None, BT_SCALE))
 	return res
+
 
 class MultiFileSelectList(FileList):
 	def __init__(self, preselectedFiles, directory, showMountpoints=False, matchingPattern=None, showDirectories=True, showFiles=True, useServiceRef=False, inhibitDirs=False, inhibitMounts=False, isTop=False, enableWrapAround=True, additionalExtensions=None, sortDirs='0.0', sortFiles='0.0', firstDirs=True):

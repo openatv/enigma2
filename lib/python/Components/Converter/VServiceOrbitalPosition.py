@@ -3,6 +3,7 @@ from Components.Converter.Converter import Converter
 from enigma import iServiceInformation, iPlayableService, iPlayableServicePtr
 from Components.Element import cached
 
+
 class VServiceOrbitalPosition(Converter, object):
 	FULL = 0
 	SHORT = 1
@@ -36,9 +37,9 @@ class VServiceOrbitalPosition(Converter, object):
 				pos = 3600 - pos
 				direction = 'W'
 			if self.type == self.SHORT:
-				return "%d.%d%s" % (pos/10, pos%10, direction)
+				return "%d.%d%s" % (pos / 10, pos % 10, direction)
 			else:
-				return "%d.%d ° %s" % (pos/10, pos%10, direction)
+				return "%d.%d ° %s" % (pos / 10, pos % 10, direction)
 		else:
 			return ""
 

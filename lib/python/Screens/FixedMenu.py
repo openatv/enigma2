@@ -3,6 +3,7 @@ from Components.Sources.List import List
 from Components.ActionMap import ActionMap
 from Components.Sources.StaticText import StaticText
 
+
 class FixedMenu(Screen):
 	def okbuttonClick(self):
 		selection = self["menu"].getCurrent()

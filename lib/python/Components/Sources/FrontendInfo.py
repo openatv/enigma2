@@ -3,8 +3,9 @@ from Source import Source
 from Components.PerServiceDisplay import PerServiceBase
 from enigma import eDVBResourceManager
 
+
 class FrontendInfo(Source, PerServiceBase):
-	def __init__(self, service_source = None, frontend_source = None, navcore = None):
+	def __init__(self, service_source=None, frontend_source=None, navcore=None):
 		self.navcore = None
 		Source.__init__(self)
 		if navcore:
@@ -43,7 +44,7 @@ class FrontendInfo(Source, PerServiceBase):
 	def getFrontendData(self):
 		if self.frontend_source:
 			frontend = self.frontend_source()
-			dict = { }
+			dict = {}
 			if frontend:
 				frontend.getFrontendData(dict)
 			return dict

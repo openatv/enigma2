@@ -3,6 +3,7 @@
 import os
 import socket
 
+
 class NetlinkSocket(socket.socket):
 	def __init__(self):
 		NETLINK_KOBJECT_UEVENT = 15 # hasn't landed in socket yet, see linux/netlink.h
@@ -19,10 +20,11 @@ class NetlinkSocket(socket.socket):
 				event = {}
 			else:
 				try:
-					k,v = item.split('=', 1)
+					k, v = item.split('=', 1)
 					event[k] = v
 				except:
 					event[None] = item
+
 
 # Quick unit test (you can run this on any Linux machine)
 if __name__ == '__main__':

@@ -4,20 +4,20 @@ from __future__ import print_function
 
 """Cleans up PO translation files
 
-   This script will iterate through all .po files and unset ( "" ) msgstr 
-   translation entries which match exactly their msgid value. 
-   The 'fuzzy' flag for each (if it exists) will be removed in such cases. 
+   This script will iterate through all .po files and unset ( "" ) msgstr
+   translation entries which match exactly their msgid value.
+   The 'fuzzy' flag for each (if it exists) will be removed in such cases.
    Polib will be required, see the docs at
    https://polib.readthedocs.io/en/latest/installation.html#installation
 
    This script is functional over efficient!
 
    Known issues / notes:
-   - normalised entries (those found in other translation files) 
+   - normalised entries (those found in other translation files)
      are currently appended for ease of diffing
    - comments in source code files should probably be ignored
    - FIXED: colour hex values (eg. "#25062748") should be ignored
-   - printed strings (print "we should never come here!") 
+   - printed strings (print "we should never come here!")
      should probably be ignored
    - entries not found in source code aren't marked obsolete/removed
      (these may be from plugin code outside of the enigma2 sources)
@@ -70,11 +70,11 @@ occurrencesCache = {}
 
 poStats = {}
 poStats['columnHeadings'] = [
-  "Entries", 
-  "Fuzzy", 
-  "Unchanged", 
-  "Translated", 
-  "Ratio", 
+  "Entries",
+  "Fuzzy",
+  "Unchanged",
+  "Translated",
+  "Ratio",
   "-",
 ] #"Removed #~"]
 poStats['data'] = []
@@ -90,12 +90,13 @@ prgChars = [
 ]
 idx = 0
 
+
 def stripUnchangedMsgstrs(poEntry):
   if prefs['stripUnchangedMsgstrs']:
     percentCleared = 0
     if len(poEntry.msgid_plural) > 0:
       try:
-        # this script version will only handle an entry with one singular 
+        # this script version will only handle an entry with one singular
         # (msgstr_plural[0]) and one plural msgstr_plural[1] entry
         if (poEntry.msgid == poEntry.msgstr_plural[0]):
           poEntry.msgstr_plural[0] = ""
@@ -113,11 +114,13 @@ def stripUnchangedMsgstrs(poEntry):
       poEntry.flags = [f for f in poEntry.flags if f != 'fuzzy']
     percentCleared = None
 
+
 def removeMatchingObsolete(poFile, poEntry):
   if prefs['removeMatchingObsoletes'] and not poEntry.obsolete:
     for obsoleteEntry in [o for o in poFile.obsolete_entries() if poEntry.msgid == o.msgid]:
       poFile.remove(obsoleteEntry)
       # numObsoletesRemoved = numObsoletesRemoved + 1
+
 
 def getIncludedExcludedPaths(root, dirs, files):
   # exclude dirs
@@ -130,10 +133,12 @@ def getIncludedExcludedPaths(root, dirs, files):
   files.sort(key=lambda f: os.stat(f).st_size, reverse=True) # sort by file size descending
   return files
 
+
 def indicateProgress():
   global idx
   print(prgChars[idx], end="\r")
   idx = (idx + 1) % len(prgChars)
+
 
 def isFoundInFile(msgid, data):
   isFound = False
@@ -141,6 +146,7 @@ def isFoundInFile(msgid, data):
   if re.search(regex_msgid, data.read(0).decode()):
     isFound = True
   return isFound
+
 
 def getUncachedEntries(poFile):
   entryIndex = 0
@@ -162,10 +168,11 @@ def getUncachedEntries(poFile):
         unCachedEntries.append(entry)
   return unCachedEntries
 
+
 def searchCodebaseForOccurrences(poFile):
   if prefs['searchCodebaseForOccurrences']:
     unCachedEntries = getUncachedEntries(poFile)
-    if len(unCachedEntries) > 0: 
+    if len(unCachedEntries) > 0:
       print("Searching for %d occurrences..." % len(unCachedEntries))
       for root, dirs, files in os.walk(codeBasePath, topdown=True, onerror=None):
         for fName in getIncludedExcludedPaths(root, dirs, files):
@@ -200,6 +207,7 @@ def searchCodebaseForOccurrences(poFile):
           finally:
             data = None
 
+
 def processPoFile(fileName):
   poFile = polib.pofile(fileName)
   poFile.wrapwidth = 1024 # avoid re-wrapping
@@ -215,20 +223,23 @@ def processPoFile(fileName):
   searchCodebaseForOccurrences(poFile)
   return poFile
 
+
 def addToPoStats(baseFileName, poFile):
   if prefs['outputFinalStats']:
     poStats['rowTitles'].append(baseFileName)
     poStats['data'].append([
-                    len(poFile.translated_entries()) + len(poFile.untranslated_entries()), 
-                    len(poFile.fuzzy_entries()), 
-                    len(poFile.untranslated_entries()), 
-                    str(len(poFile.translated_entries())), 
+                    len(poFile.translated_entries()) + len(poFile.untranslated_entries()),
+                    len(poFile.fuzzy_entries()),
+                    len(poFile.untranslated_entries()),
+                    str(len(poFile.translated_entries())),
                     str(poFile.percent_translated()) + "%",
                     '-', #numObsoletesRemoved
                   ])
 
-# all entries that were found in the codebase will be added to 
+# all entries that were found in the codebase will be added to
 # or un-obsoleted from all .po files for consistency
+
+
 def normaliseAllPoFiles(filesGlob):
   if prefs['normalisePoFiles']:
     fileIndex = 0
@@ -239,16 +250,16 @@ def normaliseAllPoFiles(filesGlob):
       poFile.check_for_duplicates = True
       print("\rNormalising translation files..." + " {0:.0%}".format(float(fileIndex) / len(sorted(filesGlob))), end=" ")
       sys.stdout.flush()
-      
+
       for cacheEntry in sorted(occurrencesCache, key=lambda r: r[0]):
         matchedEntries = [e for e in poFile if e.msgid == polib.unescape(cacheEntry)]
         if len(matchedEntries) == 0 and len(occurrencesCache[cacheEntry]) > 0:
           try:
             newEntry = polib.POEntry(
-              msgid = polib.unescape(cacheEntry),
-              msgstr = "",
-              occurrences = occurrencesCache[cacheEntry],
-              tcomment = "normalised"
+              msgid=polib.unescape(cacheEntry),
+              msgstr="",
+              occurrences=occurrencesCache[cacheEntry],
+              tcomment="normalised"
             )
             poFile.append(newEntry)
           except:
@@ -258,6 +269,7 @@ def normaliseAllPoFiles(filesGlob):
           # matchedEntries[0].obsolete = False
           pass
       poFile.save(fileName + prefs['newFileExt'])
+
 
 def main():
   startTime = time.time()
@@ -285,7 +297,7 @@ def main():
         print(rowFormat.format(pfs, *row))
     print("")
     normaliseAllPoFiles(poFilesGlob)
-    hours, remainder = divmod(timedelta(seconds = time.time() - startTime).seconds, 3600)
+    hours, remainder = divmod(timedelta(seconds=time.time() - startTime).seconds, 3600)
     minutes, seconds = divmod(remainder, 60)
     print("\nComplete in " + '{:02}:{:02}:{:02}'.format(int(hours), int(minutes), int(seconds)) + "!\n")
   except KeyboardInterrupt:

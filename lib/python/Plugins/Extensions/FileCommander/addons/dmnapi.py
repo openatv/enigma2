@@ -8,6 +8,7 @@ import os.path
 import sys
 import dmnapim
 
+
 def get_all(file, supplement):
 	rex = re.compile('.*\\.%s$' % file[-3:], re.I)
 
@@ -22,6 +23,7 @@ def get_all(file, supplement):
 					dmnapim.get_sub_from_napi(os.path.join(dir, f))
 				except:
 					print "  Error: %s" % (sys.exc_info()[1])
+
 
 try:
 	# opt fps videofile [subtitlefile]

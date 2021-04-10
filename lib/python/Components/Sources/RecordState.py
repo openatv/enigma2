@@ -4,6 +4,7 @@ from enigma import iRecordableService, pNavigation
 import Components.RecordingConfig
 from Components.config import config
 
+
 class RecordState(Source):
 	def __init__(self, session):
 		Source.__init__(self)
@@ -15,7 +16,7 @@ class RecordState(Source):
 	def gotRecordEvent(self, service, event):
 		prev_records = self.records_running
 		if event in (iRecordableService.evEnd, iRecordableService.evStart, None):
-			recs = self.session.nav.getRecordings(False,Components.RecordingConfig.recType(config.recording.show_rec_symbol_for_rec_types.getValue()))
+			recs = self.session.nav.getRecordings(False, Components.RecordingConfig.recType(config.recording.show_rec_symbol_for_rec_types.getValue()))
 			self.records_running = len(recs)
 			if self.records_running != prev_records:
 				self.changed((self.CHANGED_ALL,))

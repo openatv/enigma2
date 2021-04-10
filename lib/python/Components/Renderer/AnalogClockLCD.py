@@ -8,6 +8,7 @@ from enigma import eCanvas, eSize, gRGB, eRect
 from Components.VariableText import VariableText
 from Components.config import config
 
+
 class AnalogClockLCD(Renderer):
 	def __init__(self):
 		Renderer.__init__(self)
@@ -21,7 +22,7 @@ class AnalogClockLCD(Renderer):
                 self.positionheight = 1
                 self.positionwidth = 1
                 self.linesize = 1
-                
+
 	GUI_WIDGET = eCanvas
 
 	def applySkin(self, desktop, parent):
@@ -51,19 +52,19 @@ class AnalogClockLCD(Renderer):
 		z = (math.pi / 180)
 		x = int(round((r * math.sin((a * z)))))
 		y = int(round((r * math.cos((a * z)))))
-		return ((m + x),(m1 - y))
+		return ((m + x), (m1 - y))
 
-	def hand(self,opt):
+	def hand(self, opt):
 		width = self.positionwidth
 		height = self.positionheight
 		r = (width / 2)
 		r1 = (height / 2)
-		l = self.linesize  
+		l = self.linesize
 		if opt == 'sec':
-			l = self.linesize  
+			l = self.linesize
 			self.fColor = self.fColors
 		elif opt == 'min':
-			l = self.linesize 
+			l = self.linesize
 			self.fColor = self.fColorm
 		else:
 			self.fColor = self.fColorh
@@ -73,11 +74,11 @@ class AnalogClockLCD(Renderer):
 	def line_draw(self, x0, y0, x1, y1):
 		steep = (abs((y1 - y0)) > abs((x1 - x0)))
 		if steep:
-			x0,y0 = y0,x0
-			x1,y1 = y1,x1
+			x0, y0 = y0, x0
+			x1, y1 = y1, x1
 		if (x0 > x1):
-			x0,x1 = x1,x0
-			y0,y1 = y1,y0
+			x0, x1 = x1, x0
+			y0, y1 = y1, y0
 		if (y0 < y1):
 			ystep = 1
 		else:

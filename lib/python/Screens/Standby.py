@@ -30,6 +30,7 @@ QUIT_IMAGE_RESTORE = 43
 QUIT_UPGRADE_FRONTPANEL = 44
 QUIT_WOLSHUTDOWN = 45
 
+
 class TVstate: #load in Navigation
 	def __init__(self):
 		global TVinStandby
@@ -91,6 +92,7 @@ class TVstate: #load in Navigation
 			elif value == 'standby':
 				self.hdmicec_instance.standbyMessages()
 
+
 def setLCDModeMinitTV(value):
 	try:
 		f = open("/proc/stb/lcd/mode", "w")
@@ -98,6 +100,7 @@ def setLCDModeMinitTV(value):
 		f.close()
 	except:
 		pass
+
 
 class Standby2(Screen):
 	def Power(self):
@@ -107,7 +110,7 @@ class Standby2(Screen):
 		if os.path.exists("/usr/script/StandbyLeave.sh"):
 			Console().ePopen("/usr/script/StandbyLeave.sh &")
 
-		if (getBrandOEM() in ('fulan','clap','dinobot') or getMachineBuild() in ('gbmv200','sf8008','sf8008m','ustym4kpro','beyonwizv2','viper4k')):
+		if (getBrandOEM() in ('fulan', 'clap', 'dinobot') or getMachineBuild() in ('gbmv200', 'sf8008', 'sf8008m', 'ustym4kpro', 'beyonwizv2', 'viper4k')):
 			try:
 				open("/proc/stb/hdmi/output", "w").write("on")
 			except:
@@ -117,7 +120,7 @@ class Standby2(Screen):
 		#restart last played service
 		#unmute adc
 		self.leaveMute()
-		# set LCDminiTV 
+		# set LCDminiTV
 		if SystemInfo["Display"] and SystemInfo["LCDMiniTV"]:
 			setLCDModeMinitTV(config.lcd.modeminitv.value)
 		#kill me
@@ -129,15 +132,15 @@ class Standby2(Screen):
 			self.Power()
 
 	# with the option "standby_noTVshutdown", use 'break' event / allow turning off the TV by a 'long' key press in standby
-	# avoid waking from standby by ignoring the key's 'break' event after the 'long' and subsequent 'repeat' events.  
+	# avoid waking from standby by ignoring the key's 'break' event after the 'long' and subsequent 'repeat' events.
 	def Power_long(self):
 		if (config.usage.on_short_powerpress.value == "standby_noTVshutdown"):
 			self.TVoff()
-			self.ignoreKeyBreakTimer.start(250,1)
+			self.ignoreKeyBreakTimer.start(250, 1)
 
 	def Power_repeat(self):
 		if (config.usage.on_short_powerpress.value == "standby_noTVshutdown") and self.ignoreKeyBreakTimer.isActive():
-			self.ignoreKeyBreakTimer.start(250,1)
+			self.ignoreKeyBreakTimer.start(250, 1)
 
 	def Power_break(self):
 		if (config.usage.on_short_powerpress.value == "standby_noTVshutdown") and not self.ignoreKeyBreakTimer.isActive():
@@ -171,7 +174,7 @@ class Standby2(Screen):
 		if os.path.exists("/usr/script/StandbyEnter.sh"):
 			Console().ePopen("/usr/script/StandbyEnter.sh &")
 
-		self["actions"] = ActionMap( [ "StandbyActions" ],
+		self["actions"] = ActionMap(["StandbyActions"],
 		{
 			"power": self.Power,
 			"power_make": self.Power_make,
@@ -190,7 +193,7 @@ class Standby2(Screen):
 
 		#mute adc
 		self.setMute()
-	
+
 		if SystemInfo["Display"] and SystemInfo["LCDMiniTV"]:
 			# set LCDminiTV off
 			setLCDModeMinitTV("0")
@@ -205,7 +208,7 @@ class Standby2(Screen):
 				self.paused_service = self.session.current_dialog
 				self.paused_service.pauseService()
 		if not self.paused_service:
-			self.timeHandler =  eDVBLocalTimeHandler.getInstance()
+			self.timeHandler = eDVBLocalTimeHandler.getInstance()
 			if self.timeHandler.ready():
 				if self.session.nav.getCurrentlyPlayingServiceOrGroup():
 					self.stopService()
@@ -224,7 +227,7 @@ class Standby2(Screen):
 			self.avswitch.setInput("SCART")
 		else:
 			self.avswitch.setInput("AUX")
-		if (getBrandOEM() in ('fulan','clap','dinobot') or getMachineBuild() in ('gbmv200','sf8008','sf8008m','ustym4kpro','beyonwizv2','viper4k')):
+		if (getBrandOEM() in ('fulan', 'clap', 'dinobot') or getMachineBuild() in ('gbmv200', 'sf8008', 'sf8008m', 'ustym4kpro', 'beyonwizv2', 'viper4k')):
 			try:
 				open("/proc/stb/hdmi/output", "w").write("off")
 			except:
@@ -270,6 +273,7 @@ class Standby2(Screen):
 		self.prev_running_service = self.session.nav.getCurrentlyPlayingServiceOrGroup()
 		self.session.nav.stopService()
 
+
 class Standby(Standby2):
 	def __init__(self, session):
 		if Screens.InfoBar.InfoBar and Screens.InfoBar.InfoBar.instance and Screens.InfoBar.InfoBar.ptsGetTimeshiftStatus(Screens.InfoBar.InfoBar.instance):
@@ -291,6 +295,7 @@ class Standby(Standby2):
 	def doStandby(self):
 		Notifications.AddNotification(Screens.Standby.Standby2)
 
+
 class StandbySummary(Screen):
 	skin = """
 	<screen position="0,0" size="132,64">
@@ -303,10 +308,12 @@ class StandbySummary(Screen):
 		</widget>
 	</screen>"""
 
+
 from enigma import quitMainloop, iRecordableService
 from Screens.MessageBox import MessageBox
 from time import time
 from Components.Task import job_manager
+
 
 class QuitMainloopScreen(Screen):
 	def __init__(self, session, retvalue=QUIT_SHUTDOWN):
@@ -330,14 +337,16 @@ class QuitMainloopScreen(Screen):
 			}.get(retvalue)
 		self["text"] = Label(text)
 
+
 inTryQuitMainloop = False
 quitMainloopCode = 1
 
+
 class TryQuitMainloop(MessageBox):
-	def __init__(self, session, retvalue=QUIT_SHUTDOWN, timeout=-1, default_yes = True):
+	def __init__(self, session, retvalue=QUIT_SHUTDOWN, timeout=-1, default_yes=True):
 		self.retval = retvalue
 		self.ptsmainloopvalue = retvalue
-		recordings = session.nav.getRecordings(False,Components.RecordingConfig.recType(config.recording.warn_box_restart_rec_types.getValue()))
+		recordings = session.nav.getRecordings(False, Components.RecordingConfig.recType(config.recording.warn_box_restart_rec_types.getValue()))
 		jobs = len(job_manager.getPendingJobs())
 		inTimeshift = Screens.InfoBar.InfoBar and Screens.InfoBar.InfoBar.instance and Screens.InfoBar.InfoBar.ptsGetTimeshiftStatus(Screens.InfoBar.InfoBar.instance)
 		self.connected = False
@@ -358,11 +367,11 @@ class TryQuitMainloop(MessageBox):
 		if inTimeshift:
 			reason = _("You seem to be in timeshift!") + '\n'
 			default_yes = True
-			timeout=30
+			timeout = 30
 		if recordings or (next_rec_time > 0 and (next_rec_time - time()) < 360):
 			reason = _("Recording(s) are in progress or coming up in few seconds!") + '\n'
 			default_yes = False
-			timeout=30
+			timeout = 30
 
 		if reason and inStandby:
 			session.nav.record_event.append(self.getRecordEvent)
@@ -380,7 +389,7 @@ class TryQuitMainloop(MessageBox):
 				QUIT_WOLSHUTDOWN: _("Really WOL now?")
 				}.get(retvalue)
 			if text:
-				MessageBox.__init__(self, session, reason+text, type = MessageBox.TYPE_YESNO, timeout = timeout, default = default_yes)
+				MessageBox.__init__(self, session, reason + text, type=MessageBox.TYPE_YESNO, timeout=timeout, default=default_yes)
 				self.skinName = "MessageBoxSimple"
 				session.nav.record_event.append(self.getRecordEvent)
 				self.connected = True
@@ -396,7 +405,7 @@ class TryQuitMainloop(MessageBox):
 			return
 		else:
 			if event == iRecordableService.evEnd:
-				recordings = self.session.nav.getRecordings(False,Components.RecordingConfig.recType(config.recording.warn_box_restart_rec_types.getValue()))
+				recordings = self.session.nav.getRecordings(False, Components.RecordingConfig.recType(config.recording.warn_box_restart_rec_types.getValue()))
 				if not recordings: # no more recordings exist
 					rec_time = self.session.nav.RecordTimer.getNextRecordingTime()
 					if rec_time > 0 and (rec_time - time()) < 360:
@@ -410,19 +419,19 @@ class TryQuitMainloop(MessageBox):
 	def close(self, value):
 		global quitMainloopCode
 		if self.connected:
-			self.connected=False
+			self.connected = False
 			self.session.nav.record_event.remove(self.getRecordEvent)
 		if value:
 			self.hide()
 			if self.retval == QUIT_SHUTDOWN:
 				config.misc.DeepStandby.value = True
 			self.session.nav.stopService()
-			self.quitScreen = self.session.instantiateDialog(QuitMainloopScreen,retvalue=self.retval)
+			self.quitScreen = self.session.instantiateDialog(QuitMainloopScreen, retvalue=self.retval)
 			self.quitScreen.show()
 			print "[Standby] quitMainloop #1"
 			quitMainloopCode = self.retval
 			if SystemInfo["Display"] and SystemInfo["LCDMiniTV"]:
-				# set LCDminiTV off / fix a deep-standby-crash on some boxes / gb4k 
+				# set LCDminiTV off / fix a deep-standby-crash on some boxes / gb4k
 				print "[Standby] LCDminiTV off"
 				setLCDModeMinitTV("0")
 			if getBoxType() == "vusolo4k":  #workaround for white display flash

@@ -16,6 +16,7 @@ from os import system, rename, path, mkdir, remove
 from time import sleep
 from re import search
 
+
 class HddMount(Screen):
 	skin = """
 	<screen position="center,center" size="640,460" title="Mount Manager">
@@ -41,6 +42,7 @@ class HddMount(Screen):
 		</widget>
 		<widget name="lab1" zPosition="2" position="50,90" size="600,40" font="Regular;22" halign="center" transparent="1"/>
 	</screen>"""
+
 	def __init__(self, session):
 		Screen.__init__(self, session)
 		Screen.setTitle(self, _("Mount Manager"))
@@ -49,7 +51,7 @@ class HddMount(Screen):
 		self['key_yellow'] = Label(_("Unmount"))
 		self['key_blue'] = Label(_("Mount"))
 		self['lab1'] = Label()
-		self.onChangedEntry = [ ]
+		self.onChangedEntry = []
 		self.list = []
 		self['list'] = List(self.list)
 		self["list"].onSelectionChanged.append(self.selectionChanged)
@@ -70,11 +72,11 @@ class HddMount(Screen):
 			self["key_red"].setText(_("Use as HDD"))
 		else:
 			self["key_red"].setText(" ")
-			
+
 		if self.sel:
 			try:
 				name = str(self.sel[0])
-				desc = str(self.sel[1].replace('\t','  '))
+				desc = str(self.sel[1].replace('\t', '  '))
 			except:
 				name = ""
 				desc = ""
@@ -84,7 +86,7 @@ class HddMount(Screen):
 		for cb in self.onChangedEntry:
 			cb(name, desc)
 
-	def updateList(self, result = None, retval = None, extra_args = None):
+	def updateList(self, result=None, retval=None, extra_args=None):
 		scanning = _("Wait please while scanning for devices...")
 		self['lab1'].setText(scanning)
 		self.activityTimer.start(10)
@@ -99,11 +101,11 @@ class HddMount(Screen):
 			if not parts:
 				continue
 			device = parts[3]
-			if not search('sd[a-z][1-9]',device) and not search('mmcblk[0-9]p[1-9]',device):
+			if not search('sd[a-z][1-9]', device) and not search('mmcblk[0-9]p[1-9]', device):
 				continue
-			if getMachineBuild() in ('dagsmv200','gbmv200','i55se','h9se','h9combo','h9combose','h10','h11','v8plus','hd60','hd61','pulse4k','vuduo4k','vuduo4kse','ustym4kpro','beyonwizv2','viper4k','sf8008','sf8008m','cc1','dags72604','u51','u52','u53','u532','u533','u54','u56','u57','vuzero4k','u5','sf5008','et13000','et1x000','vuuno4k','vuuno4kse', 'vuultimo4k', 'vusolo4k', 'hd51', 'hd52', 'dm820', 'dm7080', 'sf4008', 'dm900', 'dm920', 'gb7252', 'gb72604', 'dags7252', 'vs1500','h7','8100s') and search('mmcblk0p[1-9]',device):
+			if getMachineBuild() in ('dagsmv200', 'gbmv200', 'i55se', 'h9se', 'h9combo', 'h9combose', 'h10', 'h11', 'v8plus', 'hd60', 'hd61', 'pulse4k', 'vuduo4k', 'vuduo4kse', 'ustym4kpro', 'beyonwizv2', 'viper4k', 'sf8008', 'sf8008m', 'cc1', 'dags72604', 'u51', 'u52', 'u53', 'u532', 'u533', 'u54', 'u56', 'u57', 'vuzero4k', 'u5', 'sf5008', 'et13000', 'et1x000', 'vuuno4k', 'vuuno4kse', 'vuultimo4k', 'vusolo4k', 'hd51', 'hd52', 'dm820', 'dm7080', 'sf4008', 'dm900', 'dm920', 'gb7252', 'gb72604', 'dags7252', 'vs1500', 'h7', '8100s') and search('mmcblk0p[1-9]', device):
 				continue
-			if getMachineBuild() in ('xc7439','osmio4k','osmio4kplus','osmini4k') and search('mmcblk1p[1-9]',device):
+			if getMachineBuild() in ('xc7439', 'osmio4k', 'osmio4kplus', 'osmini4k') and search('mmcblk1p[1-9]', device):
 				continue
 			if device in list2:
 				continue
@@ -229,7 +231,7 @@ class HddMount(Screen):
 			swapdevices = ' '
 		if path.exists('/tmp/devices.tmp'):
 			remove('/tmp/devices.tmp')
-		swapdevices = swapdevices.replace('\n','')
+		swapdevices = swapdevices.replace('\n', '')
 		swapdevices = swapdevices.split('/')
 		f = open('/proc/mounts', 'r')
 		for line in f.readlines():
@@ -259,7 +261,7 @@ class HddMount(Screen):
 				parts = line.strip().split()
 				size = int(parts[2])
 				if (((float(size) / 1024) / 1024) / 1024) > 1:
-					des = _("Size: ") + str(round((((float(size) / 1024) / 1024) / 1024),2)) + _("TB")
+					des = _("Size: ") + str(round((((float(size) / 1024) / 1024) / 1024), 2)) + _("TB")
 				elif ((size / 1024) / 1024) > 1:
 					des = _("Size: ") + str((size / 1024) / 1024) + _("GB")
 				else:
@@ -272,7 +274,7 @@ class HddMount(Screen):
 				except:
 					size = 0
 				if ((((float(size) / 2) / 1024) / 1024) / 1024) > 1:
-					des = _("Size: ") + str(round(((((float(size) / 2) / 1024) / 1024) / 1024),2)) + _("TB")
+					des = _("Size: ") + str(round(((((float(size) / 2) / 1024) / 1024) / 1024), 2)) + _("TB")
 				elif (((size / 2) / 1024) / 1024) > 1:
 					des = _("Size: ") + str(((size / 2) / 1024) / 1024) + _("GB")
 				else:
@@ -300,7 +302,7 @@ class HddMount(Screen):
 		if sel:
 			mountp = sel[3]
 			device = sel[4]
-			system ('mount ' + device)
+			system('mount ' + device)
 			mountok = False
 			f = open('/proc/mounts', 'r')
 			for line in f.readlines():
@@ -315,7 +317,7 @@ class HddMount(Screen):
 		if sel:
 			mountp = sel[3]
 			device = sel[4]
-			system ('umount ' + mountp)
+			system('umount ' + mountp)
 			try:
 				mounts = open("/proc/mounts")
 			except IOError:
@@ -342,24 +344,24 @@ class HddMount(Screen):
 				self.Console.ePopen('mount ' + self.device + ' /media/hdd')
 				self.Console.ePopen("/sbin/blkid | grep " + self.device, self.add_fstab, [self.device, self.mountp])
 			else:
-				self.session.open(MessageBox, _("This Device is already mounted as HDD."), MessageBox.TYPE_INFO, timeout = 10, close_on_any_key = True)
-			
-	def add_fstab(self, result = None, retval = None, extra_args = None):
+				self.session.open(MessageBox, _("This Device is already mounted as HDD."), MessageBox.TYPE_INFO, timeout=10, close_on_any_key=True)
+
+	def add_fstab(self, result=None, retval=None, extra_args=None):
 		self.device = extra_args[0]
 		self.mountp = extra_args[1]
 		self.device_uuid_tmp = result.split('UUID=')
-		self.device_uuid_tmp = self.device_uuid_tmp[1].replace('"',"")
-		self.device_uuid_tmp = self.device_uuid_tmp.replace('\n',"")
+		self.device_uuid_tmp = self.device_uuid_tmp[1].replace('"', "")
+		self.device_uuid_tmp = self.device_uuid_tmp.replace('\n', "")
 		self.device_uuid_tmp = self.device_uuid_tmp.split()[0]
 		self.device_uuid = 'UUID=' + self.device_uuid_tmp
 		if not path.exists(self.mountp):
 			mkdir(self.mountp, 0755)
 		file('/etc/fstab.tmp', 'w').writelines([l for l in file('/etc/fstab').readlines() if '/media/hdd' not in l])
-		rename('/etc/fstab.tmp','/etc/fstab')
+		rename('/etc/fstab.tmp', '/etc/fstab')
 		file('/etc/fstab.tmp', 'w').writelines([l for l in file('/etc/fstab').readlines() if self.device not in l])
-		rename('/etc/fstab.tmp','/etc/fstab')
+		rename('/etc/fstab.tmp', '/etc/fstab')
 		file('/etc/fstab.tmp', 'w').writelines([l for l in file('/etc/fstab').readlines() if self.device_uuid not in l])
-		rename('/etc/fstab.tmp','/etc/fstab')
+		rename('/etc/fstab.tmp', '/etc/fstab')
 		out = open('/etc/fstab', 'a')
 		line = self.device_uuid + '\t/media/hdd\tauto\tdefaults\t0 0\n'
 		out.write(line)
@@ -373,6 +375,7 @@ class HddMount(Screen):
 			self.updateList()
 			self.selectionChanged()
 
+
 class DevicePanelConf(Screen, ConfigListScreen):
 	skin = """
 	<screen position="center,center" size="640,460" title="Choose where to mount your devices to:">
@@ -383,6 +386,7 @@ class DevicePanelConf(Screen, ConfigListScreen):
 		<widget name="config" position="30,60" size="580,275" scrollbarMode="showOnDemand"/>
 		<widget name="Linconn" position="30,375" size="580,20" font="Regular;18" halign="center" valign="center" backgroundColor="#9f1313"/>
 	</screen>"""
+
 	def __init__(self, session):
 		Screen.__init__(self, session)
 		self.list = []
@@ -407,7 +411,7 @@ class DevicePanelConf(Screen, ConfigListScreen):
 		f.close()
 		if path.exists('/tmp/devices.tmp'):
 			remove('/tmp/devices.tmp')
-		swapdevices = swapdevices.replace('\n','')
+		swapdevices = swapdevices.replace('\n', '')
 		swapdevices = swapdevices.split('/')
 		f = open('/proc/partitions', 'r')
 		for line in f.readlines():
@@ -415,11 +419,11 @@ class DevicePanelConf(Screen, ConfigListScreen):
 			if not parts:
 				continue
 			device = parts[3]
-			if not search('sd[a-z][1-9]',device) and not search('mmcblk[0-9]p[1-9]',device):
+			if not search('sd[a-z][1-9]', device) and not search('mmcblk[0-9]p[1-9]', device):
 				continue
-			if getMachineBuild() in ('dagsmv200','gbmv200','multibox','multiboxse','i55se','h9se','h9combo','h9combose','h10','h11','v8plus','hd60','hd61','pulse4k','vuduo4k','vuduo4kse','ustym4kpro','beyonwizv2','viper4k','sf8008','sf8008m','cc1','dags72604','u51','u52','u53','u532','u533','u54','u56','u57','vuzero4k','u5','sf5008','et13000','et1x000','vuuno4k','vuuno4kse', 'vuultimo4k', 'vusolo4k', 'hd51', 'hd52', 'dm820', 'dm7080', 'sf4008', 'dm900', 'dm920', 'gb7252', 'gb72604', 'dags7252', 'vs1500','h7','8100s') and search('mmcblk0p[1-9]',device):
+			if getMachineBuild() in ('dagsmv200', 'gbmv200', 'multibox', 'multiboxse', 'i55se', 'h9se', 'h9combo', 'h9combose', 'h10', 'h11', 'v8plus', 'hd60', 'hd61', 'pulse4k', 'vuduo4k', 'vuduo4kse', 'ustym4kpro', 'beyonwizv2', 'viper4k', 'sf8008', 'sf8008m', 'cc1', 'dags72604', 'u51', 'u52', 'u53', 'u532', 'u533', 'u54', 'u56', 'u57', 'vuzero4k', 'u5', 'sf5008', 'et13000', 'et1x000', 'vuuno4k', 'vuuno4kse', 'vuultimo4k', 'vusolo4k', 'hd51', 'hd52', 'dm820', 'dm7080', 'sf4008', 'dm900', 'dm920', 'gb7252', 'gb72604', 'dags7252', 'vs1500', 'h7', '8100s') and search('mmcblk0p[1-9]', device):
 				continue
-			if getMachineBuild() in ('xc7439','osmio4k','osmio4kplus','osmini4k') and search('mmcblk1p[1-9]',device):
+			if getMachineBuild() in ('xc7439', 'osmio4k', 'osmio4kplus', 'osmini4k') and search('mmcblk1p[1-9]', device):
 				continue
 			if device in list2:
 				continue
@@ -525,7 +529,7 @@ class DevicePanelConf(Screen, ConfigListScreen):
 			model = file('/sys/block/' + device2 + '/device/model').read()
 		model = str(model).replace('\n', '')
 		des = ''
-		print "test:" 
+		print "test:"
 		if devicetype.find('/devices/pci') != -1 or devicetype.find('ahci') != -1:
 			name = _("HARD DISK: ")
 			mypixmap = '/usr/lib/enigma2/python/Plugins/Extensions/Infopanel/icons/dev_hdd.png'
@@ -548,7 +552,7 @@ class DevicePanelConf(Screen, ConfigListScreen):
 				parts = line.strip().split()
 				size = int(parts[2])
 				if (((float(size) / 1024) / 1024) / 1024) > 1:
-					des = _("Size: ") + str(round((((float(size) / 1024) / 1024) / 1024),2)) + _("TB")
+					des = _("Size: ") + str(round((((float(size) / 1024) / 1024) / 1024), 2)) + _("TB")
 				elif ((size / 1024) / 1024) > 1:
 					des = _("Size: ") + str((size / 1024) / 1024) + _("GB")
 				else:
@@ -561,7 +565,7 @@ class DevicePanelConf(Screen, ConfigListScreen):
 				except:
 					size = 0
 				if ((((float(size) / 2) / 1024) / 1024) / 1024) > 1:
-					des = _("Size: ") + str(round(((((float(size) / 2) / 1024) / 1024) / 1024),2)) + _("TB")
+					des = _("Size: ") + str(round(((((float(size) / 2) / 1024) / 1024) / 1024), 2)) + _("TB")
 				elif (((size / 2) / 1024) / 1024) > 1:
 					des = _("Size: ") + str(((size / 2) / 1024) / 1024) + _("GB")
 				else:
@@ -597,9 +601,9 @@ class DevicePanelConf(Screen, ConfigListScreen):
 			self.mountp = x[1].value
 			self.type = x[3]
 			self.Console.ePopen('umount ' + self.device)
-			self.Console.ePopen("/sbin/blkid | grep " + self.device, self.add_fstab, [self.device, self.mountp] )
+			self.Console.ePopen("/sbin/blkid | grep " + self.device, self.add_fstab, [self.device, self.mountp])
 		message = _("Updating mount locations.")
-		ybox = self.session.openWithCallback(self.delay, MessageBox, message, type=MessageBox.TYPE_INFO, timeout=5, enable_input = False)
+		ybox = self.session.openWithCallback(self.delay, MessageBox, message, type=MessageBox.TYPE_INFO, timeout=5, enable_input=False)
 		ybox.setTitle(_("Please wait."))
 
 	def delay(self, val):
@@ -607,55 +611,55 @@ class DevicePanelConf(Screen, ConfigListScreen):
 		ybox = self.session.openWithCallback(self.restartBox, MessageBox, message, MessageBox.TYPE_YESNO)
 		ybox.setTitle(_("Restart %s %s.") % (getMachineBrand(), getMachineName()))
 
-	def add_fstab(self, result = None, retval = None, extra_args = None):
+	def add_fstab(self, result=None, retval=None, extra_args=None):
 		self.device = extra_args[0]
 		self.mountp = extra_args[1]
 		self.device_tmp = result.split(' ')
 		if self.device_tmp[0].startswith('UUID='):
-			self.device_uuid = self.device_tmp[0].replace('"',"")
-			self.device_uuid = self.device_uuid.replace('\n',"")
+			self.device_uuid = self.device_tmp[0].replace('"', "")
+			self.device_uuid = self.device_uuid.replace('\n', "")
 		elif self.device_tmp[1].startswith('UUID='):
-			self.device_uuid = self.device_tmp[1].replace('"',"")
-			self.device_uuid = self.device_uuid.replace('\n',"")
+			self.device_uuid = self.device_tmp[1].replace('"', "")
+			self.device_uuid = self.device_uuid.replace('\n', "")
 		elif self.device_tmp[2].startswith('UUID='):
-			self.device_uuid = self.device_tmp[2].replace('"',"")
-			self.device_uuid = self.device_uuid.replace('\n',"")
+			self.device_uuid = self.device_tmp[2].replace('"', "")
+			self.device_uuid = self.device_uuid.replace('\n', "")
 		elif self.device_tmp[3].startswith('UUID='):
-			self.device_uuid = self.device_tmp[3].replace('"',"")
-			self.device_uuid = self.device_uuid.replace('\n',"")
+			self.device_uuid = self.device_tmp[3].replace('"', "")
+			self.device_uuid = self.device_uuid.replace('\n', "")
 		try:
 			if self.device_tmp[0].startswith('TYPE='):
-				self.device_type = self.device_tmp[0].replace('TYPE=',"")
-				self.device_type = self.device_type.replace('"',"")
-				self.device_type = self.device_type.replace('\n',"")
+				self.device_type = self.device_tmp[0].replace('TYPE=', "")
+				self.device_type = self.device_type.replace('"', "")
+				self.device_type = self.device_type.replace('\n', "")
 			elif self.device_tmp[1].startswith('TYPE='):
-				self.device_type = self.device_tmp[1].replace('TYPE=',"")
-				self.device_type = self.device_type.replace('"',"")
-				self.device_type = self.device_type.replace('\n',"")
+				self.device_type = self.device_tmp[1].replace('TYPE=', "")
+				self.device_type = self.device_type.replace('"', "")
+				self.device_type = self.device_type.replace('\n', "")
 			elif self.device_tmp[2].startswith('TYPE='):
-				self.device_type = self.device_tmp[2].replace('TYPE=',"")
-				self.device_type = self.device_type.replace('"',"")
-				self.device_type = self.device_type.replace('\n',"")
+				self.device_type = self.device_tmp[2].replace('TYPE=', "")
+				self.device_type = self.device_type.replace('"', "")
+				self.device_type = self.device_type.replace('\n', "")
 			elif self.device_tmp[3].startswith('TYPE='):
-				self.device_type = self.device_tmp[3].replace('TYPE=',"")
-				self.device_type = self.device_type.replace('"',"")
-				self.device_type = self.device_type.replace('\n',"")
+				self.device_type = self.device_tmp[3].replace('TYPE=', "")
+				self.device_type = self.device_type.replace('"', "")
+				self.device_type = self.device_type.replace('\n', "")
 			elif self.device_tmp[4].startswith('TYPE='):
-				self.device_type = self.device_tmp[4].replace('TYPE=',"")
-				self.device_type = self.device_type.replace('"',"")
-				self.device_type = self.device_type.replace('\n',"")
+				self.device_type = self.device_tmp[4].replace('TYPE=', "")
+				self.device_type = self.device_type.replace('"', "")
+				self.device_type = self.device_type.replace('\n', "")
 		except:
 			self.device_type = 'auto'
-				
+
 		if self.device_type.startswith('ext'):
 			self.device_type = 'auto'
 
 		if not path.exists(self.mountp):
 			mkdir(self.mountp, 0755)
 		file('/etc/fstab.tmp', 'w').writelines([l for l in file('/etc/fstab').readlines() if self.device not in l])
-		rename('/etc/fstab.tmp','/etc/fstab')
+		rename('/etc/fstab.tmp', '/etc/fstab')
 		file('/etc/fstab.tmp', 'w').writelines([l for l in file('/etc/fstab').readlines() if self.device_uuid not in l])
-		rename('/etc/fstab.tmp','/etc/fstab')
+		rename('/etc/fstab.tmp', '/etc/fstab')
 		out = open('/etc/fstab', 'a')
 		line = self.device_uuid + '\t' + self.mountp + '\t' + self.device_type + '\tdefaults\t0 0\n'
 		out.write(line)
@@ -667,9 +671,10 @@ class DevicePanelConf(Screen, ConfigListScreen):
 		else:
 			self.close()
 
+
 class DevicesPanelSummary(Screen):
 	def __init__(self, session, parent):
-		Screen.__init__(self, session, parent = parent)
+		Screen.__init__(self, session, parent=parent)
 		self["entry"] = StaticText("")
 		self["desc"] = StaticText("")
 		self.onShow.append(self.addWatcher)
@@ -685,5 +690,3 @@ class DevicesPanelSummary(Screen):
 	def selectionChanged(self, name, desc):
 		self["entry"].text = name
 		self["desc"].text = desc
-
-

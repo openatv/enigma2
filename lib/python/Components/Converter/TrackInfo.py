@@ -4,7 +4,8 @@ from Poll import Poll
 from Tools.ISO639 import LanguageCodes
 from Tools.Directories import fileExists
 
-class TrackInfo(Poll,Converter, object):
+
+class TrackInfo(Poll, Converter, object):
 	AUDIO = 0
 	SUBTITLE = 1
 	AUDIO_CODEC = 2
@@ -33,7 +34,7 @@ class TrackInfo(Poll,Converter, object):
 		else:
 			self.type = self.AUDIO
 
-	@cached	
+	@cached
 	def getText(self):
 		service = self.source.service
 		if self.type == self.AUDIO or self.type == self.AUDIO_CODEC or self.type == self.AUDIO_LANG:
@@ -43,7 +44,7 @@ class TrackInfo(Poll,Converter, object):
 					selectedAudio = audio.getCurrentTrack()
 					i = audio.getTrackInfo(selectedAudio)
 					languages = i.getLanguage().split('/')
-					description = i.getDescription().replace(" audio","") or ""
+					description = i.getDescription().replace(" audio", "") or ""
 					cnt = 0
 					language = ''
 					for lang in languages:
@@ -144,10 +145,8 @@ class TrackInfo(Poll,Converter, object):
 							return language
 			return _("None")
 
-
 	text = property(getText)
 
 	def changed(self, what):
 		if what[0] != self.CHANGED_SPECIFIC or what[1] == self.type:
 			Converter.changed(self, what)
-

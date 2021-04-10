@@ -13,6 +13,7 @@ def EpgCacheLoadCheck(session=None, **kwargs):
 	else:
 		epgcacheloadcheckpoller.stop()
 
+
 def EpgCacheSaveCheck(session=None, **kwargs):
 	global epgcachesavecheckpoller
 	epgcachesavecheckpoller = EpgCacheSaveCheckPoller()
@@ -20,6 +21,7 @@ def EpgCacheSaveCheck(session=None, **kwargs):
 		epgcachesavecheckpoller.start()
 	else:
 		epgcachesavecheckpoller.stop()
+
 
 class EpgCacheLoadCheckPoller:
 	def __init__(self):
@@ -60,6 +62,7 @@ class EpgCacheLoadCheckPoller:
 	def JobSched(self):
 		self.timer.startLongTimer(int(config.epg.cacheloadtimer.value) * 3600)
 
+
 class EpgCacheSaveCheckPoller:
 	def __init__(self):
 		self.timer = eTimer()
@@ -99,15 +102,18 @@ class EpgCacheSaveCheckPoller:
 	def JobSched(self):
 		self.timer.startLongTimer(int(config.epg.cachesavetimer.value) * 3600)
 
+
 class EpgSaveMsg(MessageBox):
 	def __init__(self, session):
 		MessageBox.__init__(self, session, _("Are you sure you want to save the EPG Cache to:\n") + config.misc.epgcache_filename.value, MessageBox.TYPE_YESNO)
 		self.skinName = "MessageBox"
 
+
 class EpgLoadMsg(MessageBox):
 	def __init__(self, session):
 		MessageBox.__init__(self, session, _("Are you sure you want to reload the EPG data from:\n") + config.misc.epgcache_filename.value, MessageBox.TYPE_YESNO)
 		self.skinName = "MessageBox"
+
 
 class EpgDeleteMsg(MessageBox):
 	def __init__(self, session):

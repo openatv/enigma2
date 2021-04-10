@@ -7,7 +7,7 @@ from enigma import eLabel, eSlider, eTimer
 
 
 class PerServiceBase(object):
-	EventMap = { }
+	EventMap = {}
 
 	@staticmethod
 	def event(ev):
@@ -59,8 +59,10 @@ class PerServiceBase(object):
 	def poll(self):
 		pass
 
+
 class PerServiceDisplay(PerServiceBase, VariableText, GUIComponent):
 	"""Mixin for building components which display something which changes on navigation events, for example "service name" """
+
 	def __init__(self, navcore, eventmap):
 		GUIComponent.__init__(self)
 		VariableText.__init__(self)
@@ -71,6 +73,7 @@ class PerServiceDisplay(PerServiceBase, VariableText, GUIComponent):
 		GUIComponent.destroy(self)
 
 	GUI_WIDGET = eLabel
+
 
 class PerServiceDisplayProgress(PerServiceBase, VariableValue, GUIComponent):
 	def __init__(self, navcore, eventmap):

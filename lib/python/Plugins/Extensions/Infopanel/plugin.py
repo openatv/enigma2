@@ -7,7 +7,7 @@ from enigma import *
 from Screens.Standby import *
 from Screens.MessageBox import MessageBox
 from Screens.SoftcamSetup import *
-from Components.ActionMap import ActionMap, NumberActionMap, HelpableActionMap 
+from Components.ActionMap import ActionMap, NumberActionMap, HelpableActionMap
 from Screens.Screen import Screen
 from Screens.ParentalControlSetup import ProtectedScreen
 from Screens.ChoiceBox import ChoiceBox
@@ -19,9 +19,9 @@ from Components.FileList import FileList
 from Components.Label import Label
 from Components.ScrollLabel import ScrollLabel
 from Components.Pixmap import Pixmap
-from Components.config import ConfigSubsection, ConfigInteger, ConfigText, getConfigListEntry, ConfigSelection,  ConfigIP, ConfigYesNo, ConfigSequence, ConfigNumber, NoSave, ConfigEnableDisable, configfile
+from Components.config import ConfigSubsection, ConfigInteger, ConfigText, getConfigListEntry, ConfigSelection, ConfigIP, ConfigYesNo, ConfigSequence, ConfigNumber, NoSave, ConfigEnableDisable, configfile
 from Components.ConfigList import ConfigListScreen
-from Components.Sources.StaticText import StaticText 
+from Components.Sources.StaticText import StaticText
 from Components.Sources.Progress import Progress
 from Components.Button import Button
 from Components.ActionMap import ActionMap
@@ -42,6 +42,7 @@ inINFOPanel = None
 
 config.plugins.infopanel_redpanel = ConfigSubsection()
 
+
 def Check_Softcam():
 	found = False
 	if fileExists("/etc/enigma2/noemu"):
@@ -56,27 +57,29 @@ def Check_Softcam():
 				break
 	return found
 
+
 def Check_SysSoftcam():
-	syscam="none"
+	syscam = "none"
 	if os.path.isfile('/etc/init.d/softcam'):
 		if (os.path.islink('/etc/init.d/softcam') and not os.readlink('/etc/init.d/softcam').lower().endswith('none')):
 			try:
 				syscam = os.readlink('/etc/init.d/softcam').rsplit('.', 1)[1]
 				if syscam.lower().startswith('oscam'):
-					syscam="oscam"
+					syscam = "oscam"
 				if syscam.lower().startswith('ncam'):
-					syscam="ncam"
+					syscam = "ncam"
 				if syscam.lower().startswith('cccam'):
-					syscam="cccam"
+					syscam = "cccam"
 			except:
 				pass
 	return syscam
 
 
 if Check_Softcam():
-	redSelection = [('0',_("Default (Instant Record)")), ('1',_("Infopanel")),('2',_("Timer List")),('3',_("Show Movies")), ('4',_("SoftcamSetup"))]
+	redSelection = [('0', _("Default (Instant Record)")), ('1', _("Infopanel")), ('2', _("Timer List")), ('3', _("Show Movies")), ('4', _("SoftcamSetup"))]
 else:
-	redSelection = [('0',_("Default (Instant Record)")), ('1',_("Infopanel")),('2',_("Timer List")),('3',_("Show Movies"))]
+	redSelection = [('0', _("Default (Instant Record)")), ('1', _("Infopanel")), ('2', _("Timer List")), ('3', _("Show Movies"))]
+
 
 def timerEvent():
 	pluginlist = plugins.getPlugins(PluginDescriptor.WHERE_PLUGINMENU)
@@ -88,22 +91,24 @@ def timerEvent():
 	else:
 		config.plugins.infopanel_redpanel.selection = ConfigSelection(redSelection, default='1')
 		config.plugins.infopanel_redpanel.selectionLong = ConfigSelection(redSelection, default='2')
+
+
 timer = eTimer()
 timer.timeout.get().append(timerEvent)
 timer.startLongTimer(1)
 
-choicelist = [('0',_("Audio Selection")),('1',_("Default (Timeshift)")), ('2',_("Toggle Pillarbox <> Pan&Scan")),('3',_("Teletext"))]
+choicelist = [('0', _("Audio Selection")), ('1', _("Default (Timeshift)")), ('2', _("Toggle Pillarbox <> Pan&Scan")), ('3', _("Teletext"))]
 config.plugins.infopanel_yellowkey = ConfigSubsection()
 if getBoxType() == "dm800":
-	config.plugins.infopanel_yellowkey.list = ConfigSelection(default='1', choices = choicelist)
-	config.plugins.infopanel_yellowkey.listLong = ConfigSelection(default='1', choices = choicelist)
+	config.plugins.infopanel_yellowkey.list = ConfigSelection(default='1', choices=choicelist)
+	config.plugins.infopanel_yellowkey.listLong = ConfigSelection(default='1', choices=choicelist)
 else:
-	config.plugins.infopanel_yellowkey.list = ConfigSelection(default='0', choices = choicelist)
-	config.plugins.infopanel_yellowkey.listLong = ConfigSelection(default='0', choices = choicelist)
+	config.plugins.infopanel_yellowkey.list = ConfigSelection(default='0', choices=choicelist)
+	config.plugins.infopanel_yellowkey.listLong = ConfigSelection(default='0', choices=choicelist)
 config.plugins.showinfopanelextensions = ConfigYesNo(default=False)
 config.plugins.infopanel_frozencheck = ConfigSubsection()
-config.plugins.infopanel_frozencheck.list = ConfigSelection([('0',_("Off")),('1',_("1 min.")), ('5',_("5 min.")),('10',_("10 min.")),('15',_("15 min.")),('30',_("30 min."))])
-	
+config.plugins.infopanel_frozencheck.list = ConfigSelection([('0', _("Off")), ('1', _("1 min.")), ('5', _("5 min.")), ('10', _("10 min.")), ('15', _("15 min.")), ('30', _("30 min."))])
+
 if os.path.isfile("/usr/lib/enigma2/python/Plugins/Extensions/MultiQuickButton/plugin.pyo") is True:
 	try:
 		from Plugins.Extensions.MultiQuickButton.plugin import *
@@ -135,13 +140,16 @@ if config.usage.keymap.value != eEnv.resolve("${datadir}/enigma2/keymap.xml"):
 		setDefaultKeymap()
 	if not os.path.isfile(eEnv.resolve("${datadir}/enigma2/keymap.u80")) and config.usage.keymap.value == eEnv.resolve("${datadir}/enigma2/keymap.u80"):
 		setDefaultKeymap()
-		
+
+
 def setDefaultKeymap():
 	print "[Info-Panel] Set Keymap to Default"
 	config.usage.keymap.value = eEnv.resolve("${datadir}/enigma2/keymap.xml")
 	config.save()
 
 # edit bb , touch commands.getouput with this def #
+
+
 def command(comandline, strip=1):
   comandline = comandline + " >/tmp/command.txt"
   os.system(comandline)
@@ -154,13 +162,16 @@ def command(comandline, strip=1):
     else:
       for line in file:
         text = text + line
-        if text[-1:] != '\n': text = text + "\n"
+        if text[-1:] != '\n':
+        	text = text + "\n"
     file.close()
   # if one or last line then remove linefeed
-  if text[-1:] == '\n': text = text[:-1]
+  if text[-1:] == '\n':
+  	text = text[:-1]
   comandline = text
   os.system("rm /tmp/command.txt")
   return comandline
+
 
 boxversion = getBoxType()
 machinename = getMachineName()
@@ -168,31 +179,33 @@ machinebrand = getMachineBrand()
 OEMname = getBrandOEM()
 
 INFO_Panel_Version = 'Info-Panel V1.2'
-print "[Info-Panel] machinebrand: %s"  % (machinebrand)
-print "[Info-Panel] machinename: %s"  % (machinename)
-print "[Info-Panel] oem name: %s"  % (OEMname)
-print "[Info-Panel] boxtype: %s"  % (boxversion)
+print "[Info-Panel] machinebrand: %s" % (machinebrand)
+print "[Info-Panel] machinename: %s" % (machinename)
+print "[Info-Panel] oem name: %s" % (OEMname)
+print "[Info-Panel] boxtype: %s" % (boxversion)
 panel = open("/tmp/infopanel.ver", "w")
 panel.write(INFO_Panel_Version + '\n')
-panel.write("Machinebrand: %s " % (machinebrand)+ '\n')
-panel.write("Machinename: %s " % (machinename)+ '\n')
-panel.write("oem name: %s " % (OEMname)+ '\n')
-panel.write("Boxtype: %s " % (boxversion)+ '\n')
+panel.write("Machinebrand: %s " % (machinebrand) + '\n')
+panel.write("Machinename: %s " % (machinename) + '\n')
+panel.write("oem name: %s " % (OEMname) + '\n')
+panel.write("Boxtype: %s " % (boxversion) + '\n')
 try:
-	panel.write("Keymap: %s " % (config.usage.keymap.value)+ '\n')
+	panel.write("Keymap: %s " % (config.usage.keymap.value) + '\n')
 except:
 	panel.write("Keymap: keymap file not found !!" + '\n')
 panel.close()
 
-ExitSave = "[Exit] = " +_("Cancel") +"              [Ok] =" +_("Save")
+ExitSave = "[Exit] = " + _("Cancel") + "              [Ok] =" + _("Save")
 
 
 class ConfigPORT(ConfigSequence):
 	def __init__(self, default):
-		ConfigSequence.__init__(self, seperator = ".", limits = [(1,65535)], default = default)
+		ConfigSequence.__init__(self, seperator=".", limits=[(1, 65535)], default=default)
+
 
 def main(session, **kwargs):
 		session.open(Infopanel)
+
 
 def Apanel(menuid, **kwargs):
 	if menuid == "mainmenu":
@@ -200,20 +213,19 @@ def Apanel(menuid, **kwargs):
 	else:
 		return []
 
+
 def Plugins(**kwargs):
 	return [
 
 	#// show Infopanel in Main Menu
-	PluginDescriptor(name=_("Info Panel"), description="Info panel GUI 27/12/2013", where = PluginDescriptor.WHERE_MENU, fnc = Apanel),
+	PluginDescriptor(name=_("Info Panel"), description="Info panel GUI 27/12/2013", where=PluginDescriptor.WHERE_MENU, fnc=Apanel),
 	#// SwapAutostart
-	PluginDescriptor(where = [PluginDescriptor.WHERE_SESSIONSTART,PluginDescriptor.WHERE_AUTOSTART],fnc = SwapAutostart),
+	PluginDescriptor(where=[PluginDescriptor.WHERE_SESSIONSTART, PluginDescriptor.WHERE_AUTOSTART], fnc=SwapAutostart),
 	#// show Infopanel in EXTENSIONS Menu
-	PluginDescriptor(name=_("Info Panel"), description="Info panel GUI 27/12/2013", where = PluginDescriptor.WHERE_EXTENSIONSMENU, fnc = main) ]
-
+	PluginDescriptor(name=_("Info Panel"), description="Info panel GUI 27/12/2013", where=PluginDescriptor.WHERE_EXTENSIONSMENU, fnc=main)]
 
 
 #############------- SKINS --------############################
-
 MENU_SKIN = """<screen position="center,center" size="500,370" title="INFO Panel" >
 	<widget source="global.CurrentTime" render="Label" position="0, 340" size="500,24" font="Regular;20" foregroundColor="#FFFFFF" halign="right" transparent="1" zPosition="5">
 		<convert type="ClockToText">>Format%H:%M:%S</convert>
@@ -228,54 +240,59 @@ CONFIG_SKIN = """<screen position="center,center" size="600,440" title="PANEL Co
 	<widget name="labelExitsave" position="90,410" size="420,25" halign="center" font="Regular;20" transparent="1" foregroundColor="#f2e000" />
 </screen>"""
 
-INFO_SKIN =  """<screen name="Panel-Info"  position="center,center" size="730,400" title="PANEL-Info" >
+INFO_SKIN = """<screen name="Panel-Info"  position="center,center" size="730,400" title="PANEL-Info" >
 	<widget name="label2" position="0,10" size="730,25" font="Regular;20" transparent="1" halign="center" foregroundColor="#f2e000" />
 	<widget name="label1" position="10,45" size="710,350" font="Console;20" zPosition="1" backgroundColor="#251e1f20" transparent="1" />
 </screen>"""
 
-INFO_SKIN2 =  """<screen name="PANEL-Info2"  position="center,center" size="530,400" title="PANEL-Info" backgroundColor="#251e1f20">
+INFO_SKIN2 = """<screen name="PANEL-Info2"  position="center,center" size="530,400" title="PANEL-Info" backgroundColor="#251e1f20">
 	<widget name="label1" position="10,50" size="510,340" font="Regular;15" zPosition="1" backgroundColor="#251e1f20" transparent="1" />
 </screen>"""
 
 
 ###################  Max Test ###################
 class PanelList(MenuList):
-	def __init__(self, list, font0 = 24, font1 = 16, itemHeight = 50, enableWrapAround = True):
+	def __init__(self, list, font0=24, font1=16, itemHeight=50, enableWrapAround=True):
 		MenuList.__init__(self, list, enableWrapAround, eListboxPythonMultiContent)
 		sf = getSkinFactor()
 		self.l.setFont(0, gFont("Regular", int(font0 * sf)))
 		self.l.setFont(1, gFont("Regular", int(font1 * sf)))
-		self.l.setItemHeight(int(itemHeight*sf))
+		self.l.setItemHeight(int(itemHeight * sf))
+
 
 def MenuEntryItem(entry):
 	res = [entry]
 	sf = getSkinFactor()
-	res.append(MultiContentEntryPixmapAlphaBlend(pos=(10*sf, 5*sf), size=(40*sf, 40*sf), flags = BT_SCALE, png=entry[0]))  # png vorn
-	res.append(MultiContentEntryText(pos=(60*sf, 10*sf), size=(540*sf, 40*sf), font=0, text=entry[1]))  # menupunkt
+	res.append(MultiContentEntryPixmapAlphaBlend(pos=(10 * sf, 5 * sf), size=(40 * sf, 40 * sf), flags=BT_SCALE, png=entry[0]))  # png vorn
+	res.append(MultiContentEntryText(pos=(60 * sf, 10 * sf), size=(540 * sf, 40 * sf), font=0, text=entry[1]))  # menupunkt
 	return res
 ###################  Max Test ###################
+
 
 #g
 from Screens.PiPSetup import PiPSetup
 from Screens.InfoBarGenerics import InfoBarPiP
 #g
 
+
 def InfoEntryComponent(file):
-	png = LoadPixmap(cached = True, path = resolveFilename(SCOPE_CURRENT_SKIN, "icons/" + file + ".png"));
+	png = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_SKIN, "icons/" + file + ".png"))
 	if png == None:
 		png = LoadPixmap("/usr/lib/enigma2/python/Plugins/Extensions/Infopanel/icons/" + file + ".png")
 		if png == None:
-			png = LoadPixmap(cached = True, path = resolveFilename(SCOPE_CURRENT_SKIN, "icons/default.png"));
+			png = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_SKIN, "icons/default.png"))
 			if png == None:
 				png = LoadPixmap("/usr/lib/enigma2/python/Plugins/Extensions/Infopanel/icons/default.png")
 	res = (png)
 	return res
 
+
 class Infopanel(Screen, InfoBarPiP, ProtectedScreen):
 	servicelist = None
-	def __init__(self, session, services = None):
+
+	def __init__(self, session, services=None):
 		Screen.__init__(self, session)
-		config.plugins.configurationbackup=BackupRestore_InitConfig()
+		config.plugins.configurationbackup = BackupRestore_InitConfig()
 		if config.ParentalControl.configured.value:
 			ProtectedScreen.__init__(self)
 		self.session = session
@@ -289,7 +306,7 @@ class Infopanel(Screen, InfoBarPiP, ProtectedScreen):
 		global INFOCONF
 		global menu
 		INFOCONF = 0
-		pluginlist="False"
+		pluginlist = "False"
 		try:
 			print '[INFO-Panel] SHOW'
 			global inINFOPanel
@@ -310,7 +327,7 @@ class Infopanel(Screen, InfoBarPiP, ProtectedScreen):
 				"downUp": self.down,
 				"ok": self.ok,
 			}, 1)
-		
+
 		self["label1"] = Label(INFO_Panel_Version)
 		self["summary_description"] = StaticText("")
 
@@ -322,8 +339,8 @@ class Infopanel(Screen, InfoBarPiP, ProtectedScreen):
 		if Check_SysSoftcam() is "ncam":
 			self.Mlist.append(MenuEntryItem((InfoEntryComponent('OScamInfo'), _("NcamInfo"), 'OScamInfo')))
 		#self.Mlist.append(MenuEntryItem((InfoEntryComponent ("SoftwareManager" ), _("Software update"), ("software-update"))))
-		self.Mlist.append(MenuEntryItem((InfoEntryComponent ("SoftwareManager" ), _("Software Manager"), ("software-manager"))))
-		self.Mlist.append(MenuEntryItem((InfoEntryComponent('KeymapSel'), _("Keymap Selection"), 'KeymapSel')))	
+		self.Mlist.append(MenuEntryItem((InfoEntryComponent("SoftwareManager"), _("Software Manager"), ("software-manager"))))
+		self.Mlist.append(MenuEntryItem((InfoEntryComponent('KeymapSel'), _("Keymap Selection"), 'KeymapSel')))
 		self.Mlist.append(MenuEntryItem((InfoEntryComponent('Plugins'), _("Plugins"), 'Plugins')))
 		self.Mlist.append(MenuEntryItem((InfoEntryComponent('Infos'), _("Infos"), 'Infos')))
 		self.onChangedEntry = []
@@ -470,21 +487,21 @@ class Infopanel(Screen, InfoBarPiP, ProtectedScreen):
 		elif menu == "software-update":
 			self.session.open(SoftwarePanel)
 		elif menu == "backup-settings":
-			self.session.openWithCallback(self.backupDone,BackupScreen, runBackup = True)
+			self.session.openWithCallback(self.backupDone, BackupScreen, runBackup=True)
 		elif menu == "restore-settings":
 			self.backuppath = getBackupPath()
 			self.backupfile = getBackupFilename()
 			self.fullbackupfilename = self.backuppath + "/" + self.backupfile
 			if os_path.exists(self.fullbackupfilename):
-				self.session.openWithCallback(self.startRestore, MessageBox, _("Are you sure you want to restore your STB backup?\nSTB will restart after the restore"), default = False)
+				self.session.openWithCallback(self.startRestore, MessageBox, _("Are you sure you want to restore your STB backup?\nSTB will restart after the restore"), default=False)
 			else:
-				self.session.open(MessageBox, _("Sorry no backups found!"), MessageBox.TYPE_INFO, timeout = 10)
+				self.session.open(MessageBox, _("Sorry no backups found!"), MessageBox.TYPE_INFO, timeout=10)
 		elif menu == "backup-files":
-			self.session.open(BackupSelection,title=_("Default files/folders to backup"),configBackupDirs=config.plugins.configurationbackup.backupdirs_default,readOnly=True)
+			self.session.open(BackupSelection, title=_("Default files/folders to backup"), configBackupDirs=config.plugins.configurationbackup.backupdirs_default, readOnly=True)
 		elif menu == "backup-files-additional":
-			self.session.open(BackupSelection,title=_("Additional files/folders to backup"),configBackupDirs=config.plugins.configurationbackup.backupdirs,readOnly=False)
+			self.session.open(BackupSelection, title=_("Additional files/folders to backup"), configBackupDirs=config.plugins.configurationbackup.backupdirs, readOnly=False)
 		elif menu == "backup-files-excluded":
-			self.session.open(BackupSelection,title=_("Files/folders to exclude from backup"),configBackupDirs=config.plugins.configurationbackup.backupdirs_exclude,readOnly=False)
+			self.session.open(BackupSelection, title=_("Files/folders to exclude from backup"), configBackupDirs=config.plugins.configurationbackup.backupdirs_exclude, readOnly=False)
 		elif menu == "MultiQuickButton":
 			self.session.open(MultiQuickButton)
 		elif menu == "MountManager":
@@ -574,33 +591,34 @@ class Infopanel(Screen, InfoBarPiP, ProtectedScreen):
 		self.tlist = []
 		self.oldmlist = []
 		self.oldmlist = self.Mlist
-		self.tlist.append(MenuEntryItem((InfoEntryComponent ("SoftwareManager" ), _("Software update"), ("software-update"))))
-		self.tlist.append(MenuEntryItem((InfoEntryComponent ("BackupSettings" ), _("Backup Settings"), ("backup-settings"))))
-		self.tlist.append(MenuEntryItem((InfoEntryComponent ("RestoreSettings" ), _("Restore Settings"), ("restore-settings"))))
-		self.tlist.append(MenuEntryItem((InfoEntryComponent ("BackupFiles" ), _("Show default backup files"), ("backup-files"))))
-		self.tlist.append(MenuEntryItem((InfoEntryComponent ("BackupFilesAdditional" ), _("Select additional backup files"), ("backup-files-additional"))))
-		self.tlist.append(MenuEntryItem((InfoEntryComponent ("BackupFilesExcluded" ), _("Select excluded backup files"), ("backup-files-excluded"))))
+		self.tlist.append(MenuEntryItem((InfoEntryComponent("SoftwareManager"), _("Software update"), ("software-update"))))
+		self.tlist.append(MenuEntryItem((InfoEntryComponent("BackupSettings"), _("Backup Settings"), ("backup-settings"))))
+		self.tlist.append(MenuEntryItem((InfoEntryComponent("RestoreSettings"), _("Restore Settings"), ("restore-settings"))))
+		self.tlist.append(MenuEntryItem((InfoEntryComponent("BackupFiles"), _("Show default backup files"), ("backup-files"))))
+		self.tlist.append(MenuEntryItem((InfoEntryComponent("BackupFilesAdditional"), _("Select additional backup files"), ("backup-files-additional"))))
+		self.tlist.append(MenuEntryItem((InfoEntryComponent("BackupFilesExcluded"), _("Select excluded backup files"), ("backup-files-excluded"))))
 		self["Mlist"].moveToIndex(0)
 		self["Mlist"].l.setList(self.tlist)
 
-	def backupDone(self,retval = None):
+	def backupDone(self, retval=None):
 		if retval is True:
-			self.session.open(MessageBox, _("Backup done."), MessageBox.TYPE_INFO, timeout = 10)
+			self.session.open(MessageBox, _("Backup done."), MessageBox.TYPE_INFO, timeout=10)
 		else:
-			self.session.open(MessageBox, _("Backup failed."), MessageBox.TYPE_INFO, timeout = 10)
+			self.session.open(MessageBox, _("Backup failed."), MessageBox.TYPE_INFO, timeout=10)
 
-	def startRestore(self, ret = False):
+	def startRestore(self, ret=False):
 		if (ret == True):
 			self.exe = True
-			self.session.open(RestoreScreen, runRestore = True)
+			self.session.open(RestoreScreen, runRestore=True)
+
 
 class KeymapSel(ConfigListScreen, Screen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
 		self.session = session
-		self.skinName = ["SetupInfo", "Setup" ]
+		self.skinName = ["SetupInfo", "Setup"]
 		Screen.setTitle(self, _("Keymap Selection") + "...")
-		self.setup_title =  _("Keymap Selection") + "..."
+		self.setup_title = _("Keymap Selection") + "..."
 		self["HelpWindow"] = Pixmap()
 		self["HelpWindow"].hide()
 		self["status"] = StaticText()
@@ -611,13 +629,13 @@ class KeymapSel(ConfigListScreen, Screen):
 		ntrkey = eEnv.resolve("${datadir}/enigma2/keymap.ntr")
 		u80key = eEnv.resolve("${datadir}/enigma2/keymap.u80")
 		self.actkeymap = self.getKeymap(config.usage.keymap.value)
-		keySel = [ ('keymap.xml',_("Default  (keymap.xml)"))]
+		keySel = [('keymap.xml', _("Default  (keymap.xml)"))]
 		if os.path.isfile(usrkey):
-			keySel.append(('keymap.usr',_("User  (keymap.usr)")))
+			keySel.append(('keymap.usr', _("User  (keymap.usr)")))
 		if os.path.isfile(ntrkey):
-			keySel.append(('keymap.ntr',_("Neutrino  (keymap.ntr)")))
+			keySel.append(('keymap.ntr', _("Neutrino  (keymap.ntr)")))
 		if os.path.isfile(u80key):
-			keySel.append(('keymap.u80',_("UP80  (keymap.u80)")))
+			keySel.append(('keymap.u80', _("UP80  (keymap.u80)")))
 		if self.actkeymap == usrkey and not os.path.isfile(usrkey):
 			setDefaultKeymap()
 		if self.actkeymap == ntrkey and not os.path.isfile(ntrkey):
@@ -627,9 +645,9 @@ class KeymapSel(ConfigListScreen, Screen):
 		self.keyshow = ConfigSelection(keySel)
 		self.keyshow.value = self.actkeymap
 
-		self.onChangedEntry = [ ]
+		self.onChangedEntry = []
 		self.list = []
-		ConfigListScreen.__init__(self, self.list, session = self.session, on_change = self.changedEntry)
+		ConfigListScreen.__init__(self, self.list, session=self.session, on_change=self.changedEntry)
 		self.createSetup()
 
 		self["actions"] = ActionMap(["SetupActions", 'ColorActions'],
@@ -651,7 +669,7 @@ class KeymapSel(ConfigListScreen, Screen):
 		self.editListEntry = None
 		self.list = []
 		self.list.append(getConfigListEntry(_("Use Keymap"), self.keyshow))
-		
+
 		self["config"].list = self.list
 		self["config"].setList(self.list)
 		if config.usage.sort_settings.value:
@@ -703,10 +721,10 @@ class KeymapSel(ConfigListScreen, Screen):
 			self.close()
 
 	def getKeymap(self, file):
-		return file[file.rfind('/') +1:]
+		return file[file.rfind('/') + 1:]
 
 	def changedFinished(self):
-		self.session.openWithCallback(self.ExecuteRestart, MessageBox, _("Keymap changed, you need to restart the GUI") +"\n"+_("Do you want to restart now?"), MessageBox.TYPE_YESNO)
+		self.session.openWithCallback(self.ExecuteRestart, MessageBox, _("Keymap changed, you need to restart the GUI") + "\n" + _("Do you want to restart now?"), MessageBox.TYPE_YESNO)
 		self.close()
 
 	def ExecuteRestart(self, result):
@@ -714,6 +732,7 @@ class KeymapSel(ConfigListScreen, Screen):
 			quitMainloop(3)
 		else:
 			self.close()
+
 
 class Info(Screen):
 	def __init__(self, session, info):
@@ -723,7 +742,7 @@ class Info(Screen):
 		self.skin = INFO_SKIN
 
 		self["label2"] = Label("INFO")
-		self["label1"] =  ScrollLabel()
+		self["label1"] = ScrollLabel()
 		if info == "InfoPanel":
 			self.InfoPanel()
 		if info == "SystemInfo":
@@ -783,7 +802,7 @@ class Info(Screen):
 			info1 = self.Do_cmd("cat", "/etc/motd", None)
 			if info1.find('wElc0me') > -1:
 				info1 = info1[info1.find('wElc0me'):len(info1)] + "\n"
-				info1 = info1.replace('|','')
+				info1 = info1.replace('|', '')
 			else:
 				info1 = info1[info1.find('INFO'):len(info1)] + "\n"
 			info2 = self.Do_cmd("cat", "/etc/image-version", None)
@@ -853,9 +872,9 @@ class Info(Screen):
 			info0 = self.Do_cmd("cat", "/proc/version", None)
 			info = info0.split('(')
 			info1 = "Name = " + info[0] + "\n"
-			info2 =  "Owner = " + info[1].replace(')','') + "\n"
-			info3 =  "Mainimage = " + info[2][0:info[2].find(')')] + "\n"
-			info4 = "Date = " + info[3][info[3].find('SMP')+4:len(info[3])]
+			info2 = "Owner = " + info[1].replace(')', '') + "\n"
+			info3 = "Mainimage = " + info[2][0:info[2].find(')')] + "\n"
+			info4 = "Date = " + info[3][info[3].find('SMP') + 4:len(info[3])]
 			info5 = self.Do_cut(info1 + info2 + info3 + info4)
 			self["label1"].setText(info5)
 		except:
@@ -928,7 +947,7 @@ class Info(Screen):
 		try:
 			self["label2"].setText(_("Swap"))
 			info0 = self.Do_cmd("cat", "/proc/swaps", None, " | sed 's/\t/ /g; s/[ ]* / /g'")
-			info0 = info0.split("\n");
+			info0 = info0.split("\n")
 			info1 = ""
 			for l in info0[1:]:
 				l1 = l.split(" ")
@@ -937,8 +956,10 @@ class Info(Screen):
 				info1 = info1 + "Size: " + l1[2] + '\n'
 				info1 = info1 + "Used: " + l1[3] + '\n'
 				info1 = info1 + "Prio: " + l1[4] + '\n\n'
-			if info1[-1:] == '\n': info1 = info1[:-1]
-			if info1[-1:] == '\n': info1 = info1[:-1]
+			if info1[-1:] == '\n':
+				info1 = info1[:-1]
+			if info1[-1:] == '\n':
+				info1 = info1[:-1]
 			info1 = self.Do_cut(info1)
 			self["label1"].setText(info1)
 		except:
@@ -952,7 +973,6 @@ class Info(Screen):
 			self["label1"].setText(info1)
 		except:
 			self["label1"].setText(_("an internal error has occur"))
-
 
 	def Do_find(self, text, search):
 		text = text + ' '
@@ -968,10 +988,11 @@ class Info(Screen):
 		text = ""
 		for line in text1:
 			text = text + line[:95] + "\n"
-		if text[-1:] == '\n': text = text[:-1]
+		if text[-1:] == '\n':
+			text = text[:-1]
 		return text
 
-	def Do_cmd(self, cmd , file, arg , pipe = ""):
+	def Do_cmd(self, cmd, file, arg, pipe=""):
 		try:
 			if file != None:
 				if os.path.exists(file) is True:
@@ -987,5 +1008,3 @@ class Info(Screen):
 		except:
 			o = ''
 			return o
-
-

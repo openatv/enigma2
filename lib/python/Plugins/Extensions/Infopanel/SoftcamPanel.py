@@ -14,6 +14,7 @@ from Screens.Console import Console
 from enigma import *
 import os
 
+
 def command(comandline, strip=1):
 	comandline = comandline + " >/tmp/command.txt"
 	os.system(comandline)
@@ -26,13 +27,16 @@ def command(comandline, strip=1):
 		else:
 			for line in file:
 				text = text + line
-				if text[-1:] != '\n': text = text + "\n"
+				if text[-1:] != '\n':
+					text = text + "\n"
 		file.close()
 	# if one or last line then remove linefeed
-	if text[-1:] == '\n': text = text[:-1]
+	if text[-1:] == '\n':
+		text = text[:-1]
 	comandline = text
 	os.system("rm /tmp/command.txt")
 	return comandline
+
 
 class ShowSoftcamPackages(Screen):
 	skin = """
@@ -56,11 +60,11 @@ class ShowSoftcamPackages(Screen):
 				</convert>
 			</widget>
 		</screen>"""
-	
-	def __init__(self, session, args = None):
+
+	def __init__(self, session, args=None):
 		Screen.__init__(self, session)
 		self.session = session
-		
+
 		self["actions"] = ActionMap(["OkCancelActions", "DirectionActions", "ColorActions"],
 		{
 			"red": self.exit,
@@ -68,7 +72,7 @@ class ShowSoftcamPackages(Screen):
 			"cancel": self.exit,
 			"green": self.startupdateList,
 		}, -1)
-		
+
 		self.list = []
 		self.statuslist = []
 		self["list"] = List(self.list)
@@ -85,7 +89,7 @@ class ShowSoftcamPackages(Screen):
 		self.Timer2 = eTimer()
 		self.Timer2.callback.append(self.updateList)
 
-	def go(self, returnValue = None):
+	def go(self, returnValue=None):
 		cur = self["list"].getCurrent()
 		if cur:
 			status = cur[3]
@@ -95,44 +99,44 @@ class ShowSoftcamPackages(Screen):
 
 	def runInstall(self, result):
 		if result:
-			self.session.openWithCallback(self.runInstallCont, Console, cmdlist = ['opkg install ' + self.package], closeOnSuccess = True)
+			self.session.openWithCallback(self.runInstallCont, Console, cmdlist=['opkg install ' + self.package], closeOnSuccess=True)
 
 	def runInstallCont(self):
 			ret = command('opkg list-installed | grep ' + self.package + ' | cut -d " " -f1')
 
 			if ret != self.package:
-				self.session.open(MessageBox, _("Install Failed !!"), MessageBox.TYPE_ERROR, timeout = 10)
+				self.session.open(MessageBox, _("Install Failed !!"), MessageBox.TYPE_ERROR, timeout=10)
 			else:
-				self.session.open(MessageBox, _("Install Finished."), MessageBox.TYPE_INFO, timeout = 10)
+				self.session.open(MessageBox, _("Install Finished."), MessageBox.TYPE_INFO, timeout=10)
 				self.setStatus('list')
 				self.Timer1.start(1000, True)
 
 	def UpgradeReboot(self, result):
 		if result is None:
 			return
-		
+
 	def exit(self):
 		self.close()
-			
+
 	def setWindowTitle(self):
 		self.setTitle(_("Install Softcams"))
 
-	def setStatus(self,status = None):
+	def setStatus(self, status=None):
 		if status:
 			self.statuslist = []
 			divpng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_SKIN, "skin_default/div-h.png"))
 			if status == 'update':
 				statuspng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_PLUGIN, "Extensions/Infopanel/icons/upgrade.png"))
-				self.statuslist.append(( _("Package list update"), '', _("Trying to download a new updatelist. Please wait..." ),'', statuspng, divpng ))
+				self.statuslist.append((_("Package list update"), '', _("Trying to download a new updatelist. Please wait..."), '', statuspng, divpng))
 				self['list'].setList(self.statuslist)
 			if status == 'list':
 				statuspng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_PLUGIN, "Extensions/Infopanel/icons/upgrade.png"))
-				self.statuslist.append(( _("Package list"), '', _("Getting Softcam list. Please wait..." ),'', statuspng, divpng ))
+				self.statuslist.append((_("Package list"), '', _("Getting Softcam list. Please wait..."), '', statuspng, divpng))
 				self['list'].setList(self.statuslist)
 			elif status == 'error':
 				statuspng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_PLUGIN, "Extensions/Infopanel/icons/remove.png"))
-				self.statuslist.append(( _("Error"), '', _("There was an error downloading the updatelist. Please try again." ),'', statuspng, divpng ))
-				self['list'].setList(self.statuslist)				
+				self.statuslist.append((_("Error"), '', _("There was an error downloading the updatelist. Please try again."), '', statuspng, divpng))
+				self['list'].setList(self.statuslist)
 
 	def startupdateList(self):
 		self.setStatus('update')
@@ -190,6 +194,6 @@ class ShowSoftcamPackages(Screen):
 					pass
 
 			self['list'].setList(self.list)
-	
+
 		else:
 			self.setStatus('error')

@@ -12,6 +12,7 @@ from Components.ProgressBar import ProgressBar
 from Components.Pixmap import Pixmap
 from Components.ServiceList import refreshServiceList
 
+
 class CableScan:
 	def __init__(self, text, progressbar, scanTuner, scanNetwork, scanFrequency, scanSymbolRate, scanModulation, keepNumbers, hdList):
 		self.text = text
@@ -53,6 +54,7 @@ class CableScan:
 
 	def isDone(self):
 		return self.done
+
 
 class CableScanStatus(Screen):
 	skin = """
@@ -103,21 +105,22 @@ class CableScanStatus(Screen):
 		self.restoreService()
 		self.close()
 
+
 config.plugins.CableScan = ConfigSubsection()
-config.plugins.CableScan.keepnumbering = ConfigYesNo(default = False)
-config.plugins.CableScan.hdlist = ConfigYesNo(default = False)
-config.plugins.CableScan.frequency = ConfigInteger(default = 330, limits = (1, 999))
-config.plugins.CableScan.symbolrate = ConfigInteger(default = 6900, limits = (1, 9999))
-config.plugins.CableScan.networkid = ConfigInteger(default = 0, limits = (0, 99999))
+config.plugins.CableScan.keepnumbering = ConfigYesNo(default=False)
+config.plugins.CableScan.hdlist = ConfigYesNo(default=False)
+config.plugins.CableScan.frequency = ConfigInteger(default=330, limits=(1, 999))
+config.plugins.CableScan.symbolrate = ConfigInteger(default=6900, limits=(1, 9999))
+config.plugins.CableScan.networkid = ConfigInteger(default=0, limits=(0, 99999))
 config.plugins.CableScan.modulation = ConfigSelection(
-	choices =
-		[(str(eDVBFrontendParametersCable.Modulation_QAM16), "QAM16"),
+	choices=[(str(eDVBFrontendParametersCable.Modulation_QAM16), "QAM16"),
 		(str(eDVBFrontendParametersCable.Modulation_QAM32), "QAM32"),
 		(str(eDVBFrontendParametersCable.Modulation_QAM64), "QAM64"),
 		(str(eDVBFrontendParametersCable.Modulation_QAM128), "QAM128"),
 		(str(eDVBFrontendParametersCable.Modulation_QAM256), "QAM256")],
-	default = str(eDVBFrontendParametersCable.Modulation_QAM64))
-config.plugins.CableScan.auto = ConfigYesNo(default = False)
+	default=str(eDVBFrontendParametersCable.Modulation_QAM64))
+config.plugins.CableScan.auto = ConfigYesNo(default=False)
+
 
 class CableScanScreen(ConfigListScreen, Screen):
 	skin = """
@@ -142,7 +145,7 @@ class CableScanScreen(ConfigListScreen, Screen):
 		for x in nimlist:
 			nim_list.append((nimmanager.nim_slots[x].slot, nimmanager.nim_slots[x].friendly_full_description))
 
-		self.scan_nims = ConfigSelection(choices = nim_list)
+		self.scan_nims = ConfigSelection(choices=nim_list)
 
 		self.list = []
 		self.list.append(getConfigListEntry(_("Tuner"), self.scan_nims))
@@ -172,19 +175,20 @@ class CableScanScreen(ConfigListScreen, Screen):
 		self.startScan()
 
 	def startScan(self):
-		self.session.open(CableScanStatus, scanTuner = int(self.scan_nims.value), scanNetwork = config.plugins.CableScan.networkid.value, scanFrequency = config.plugins.CableScan.frequency.value * 1000, scanSymbolRate = config.plugins.CableScan.symbolrate.value * 1000, scanModulation = int(config.plugins.CableScan.modulation.value), keepNumbers = config.plugins.CableScan.keepnumbering.value, hdList = config.plugins.CableScan.hdlist.value)
+		self.session.open(CableScanStatus, scanTuner=int(self.scan_nims.value), scanNetwork=config.plugins.CableScan.networkid.value, scanFrequency=config.plugins.CableScan.frequency.value * 1000, scanSymbolRate=config.plugins.CableScan.symbolrate.value * 1000, scanModulation=int(config.plugins.CableScan.modulation.value), keepNumbers=config.plugins.CableScan.keepnumbering.value, hdList=config.plugins.CableScan.hdlist.value)
 
 	def keyCancel(self):
 		self.close()
+
 
 class CableScanAutoScreen(CableScanScreen):
 
 	def __init__(self, session, nimlist):
 		print "[AutoCableScan] start"
 		Screen.__init__(self, session)
-		self.skinName="Standby"
+		self.skinName = "Standby"
 
-		self["actions"] = ActionMap( [ "StandbyActions" ],
+		self["actions"] = ActionMap(["StandbyActions"],
 		{
 			"power": self.Power,
 			"discrete_on": self.Power
@@ -204,7 +208,7 @@ class CableScanAutoScreen(CableScanScreen):
 	def scanCompleted(self, result):
 		print "[AutoCableScan] completed result = ", result
 		refreshServiceList()
-		self.close(result>0)
+		self.close(result > 0)
 
 	def Power(self):
 		from Screens.Standby import inStandby
@@ -215,6 +219,7 @@ class CableScanAutoScreen(CableScanScreen):
 	def createSummary(self):
 		from Screens.Standby import StandbySummary
 		return StandbySummary
+
 
 def CableScanMain(session, **kwargs):
 	nims = nimmanager.getNimListOfType("DVB-C")
@@ -230,8 +235,11 @@ def CableScanMain(session, **kwargs):
 			session.open(MessageBox, _("A recording is currently running. Please stop the recording before trying to scan."), MessageBox.TYPE_ERROR)
 		else:
 			session.open(CableScanScreen)
+
+
 Session = None
 CableScanAutoStartTimer = eTimer()
+
 
 def restartScanAutoStartTimer(reply=False):
 	if not reply:
@@ -239,6 +247,7 @@ def restartScanAutoStartTimer(reply=False):
 		CableScanAutoStartTimer.startLongTimer(3600)
 	else:
 		CableScanAutoStartTimer.startLongTimer(86400)
+
 
 def CableScanAuto():
 	nimlist = nimmanager.getNimListOfType("DVB-C")
@@ -248,10 +257,13 @@ def CableScanAuto():
 		else:
 			Session.openWithCallback(restartScanAutoStartTimer, CableScanAutoScreen, nimlist)
 
+
 CableScanAutoStartTimer.callback.append(CableScanAuto)
+
 
 def leaveStandby():
 	CableScanAutoStartTimer.stop()
+
 
 def standbyCountChanged(value):
 	if config.plugins.CableScan.auto.value:
@@ -259,10 +271,12 @@ def standbyCountChanged(value):
 		inStandby.onClose.append(leaveStandby)
 		CableScanAutoStartTimer.startLongTimer(150)
 
+
 def startSession(session, **kwargs):
 	global Session
 	Session = session
 	config.misc.standbyCounter.addNotifier(standbyCountChanged, initial_call=False)
+
 
 def CableScanStart(menuid, **kwargs):
 	if menuid == "scan":
@@ -270,9 +284,10 @@ def CableScanStart(menuid, **kwargs):
 	else:
 		return []
 
+
 def Plugins(**kwargs):
 	if nimmanager.hasNimType("DVB-C"):
-		return [PluginDescriptor(name=_("Cable Scan"), description="Scan cable provider channels", where = PluginDescriptor.WHERE_MENU, fnc=CableScanStart),
+		return [PluginDescriptor(name=_("Cable Scan"), description="Scan cable provider channels", where=PluginDescriptor.WHERE_MENU, fnc=CableScanStart),
 			PluginDescriptor(where=[PluginDescriptor.WHERE_SESSIONSTART], fnc=startSession)]
 	else:
 		return []

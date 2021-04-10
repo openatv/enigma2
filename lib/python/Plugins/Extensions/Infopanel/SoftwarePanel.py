@@ -15,6 +15,7 @@ from os import path as os_path
 import os
 from boxbranding import getMachineBrand, getMachineName
 
+
 class SoftwarePanel(Screen):
 
 	def __init__(self, session, *args):
@@ -98,7 +99,7 @@ class SoftwarePanel(Screen):
 				"boot after online-update, or will show disfunction in running Image.\n\n"
 				"You need to flash new !!\n\n"
 				"Do you want to flash-online ?") % (getMachineBrand(), getMachineName())
-				self.session.openWithCallback(self.checkPackagesCallback, MessageBox, message, default = True)
+				self.session.openWithCallback(self.checkPackagesCallback, MessageBox, message, default=True)
 
 	def checkPackagesCallback(self, ret):
 		print ret
@@ -155,7 +156,7 @@ class SoftwarePanel(Screen):
 			self['a_off'].show()
 		socket.setdefaulttimeout(currentTimeoutDefault)
 
-	def setStatus(self,status = None):
+	def setStatus(self, status=None):
 		if status:
 			self.statuslist = []
 			divpng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_SKIN, "skin_default/div-h.png"))
@@ -164,19 +165,19 @@ class SoftwarePanel(Screen):
 					statuspng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_SKIN, "icons/upgrade.png"))
 				else:
 					statuspng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_PLUGIN, "SystemPlugins/SoftwareManager/upgrade.png"))
-				self.statuslist.append(( _("Package list update"), '', _("Trying to download a new updatelist. Please wait..." ),'',statuspng, divpng ))
+				self.statuslist.append((_("Package list update"), '', _("Trying to download a new updatelist. Please wait..."), '', statuspng, divpng))
 			elif status == 'error':
 				if os_path.exists(resolveFilename(SCOPE_CURRENT_SKIN, "icons/remove.png")):
 					statuspng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_SKIN, "icons/remove.png"))
 				else:
 					statuspng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_PLUGIN, "SystemPlugins/SoftwareManager/remove.png"))
-				self.statuslist.append(( _("Error"), '', _("There was an error downloading the updatelist. Please try again." ),'',statuspng, divpng ))
+				self.statuslist.append((_("Error"), '', _("There was an error downloading the updatelist. Please try again."), '', statuspng, divpng))
 			elif status == 'noupdate':
 				if os_path.exists(resolveFilename(SCOPE_CURRENT_SKIN, "icons/installed.png")):
 					statuspng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_SKIN, "icons/installed.png"))
 				else:
 					statuspng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_PLUGIN, "SystemPlugins/SoftwareManager/installed.png"))
-				self.statuslist.append(( _("Nothing to upgrade"), '', _("There are no updates available." ),'',statuspng, divpng ))
+				self.statuslist.append((_("Nothing to upgrade"), '', _("There are no updates available."), '', statuspng, divpng))
 
 			self['list'].setList(self.statuslist)
 
@@ -194,7 +195,7 @@ class SoftwarePanel(Screen):
 			else:
 				self.buildPacketList()
 		pass
-	
+
 	def buildEntryComponent(self, name, version, description, state):
 		divpng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_SKIN, "skin_default/div-h.png"))
 		if not description:

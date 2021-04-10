@@ -30,6 +30,7 @@ class ResultParser:
 	TYPE_BYORBPOS = 0
 	TYPE_BYINDEX = 1
 	TYPE_ALL = 2
+
 	def setResultType(self, type):
 		self.type = type
 
@@ -39,7 +40,7 @@ class ResultParser:
 		elif self.type == self.TYPE_BYINDEX:
 			self.index = parameter
 
-	def getTextualResultForIndex(self, index, logfulltransponders = False):
+	def getTextualResultForIndex(self, index, logfulltransponders=False):
 		text = ""
 		text += "%s:\n" % self.getTextualIndexRepresentation(index)
 
@@ -128,11 +129,11 @@ class ResultParser:
 				text += "Orbital position %s:" % str(orbpos)
 				text += "\n*****************************************\n"
 				for index in orderedResults[orbpos]:
-					text += self.getTextualResultForIndex(index, logfulltransponders = True)
+					text += self.getTextualResultForIndex(index, logfulltransponders=True)
 					text += "\n-----------------------------------------------------\n"
 
-
 		return text
+
 
 class DiseqcTester(Screen, TuneTest, ResultParser):
 	skin = """
@@ -184,7 +185,7 @@ class DiseqcTester(Screen, TuneTest, ResultParser):
 		</widget>
 		<widget name="Overall_progress" position="20,162" size="480,22" font="Regular;21" halign="center" transparent="1" />
 		<widget source="overall_progress" render="Progress" position="20,192" size="480,20" borderWidth="2" backgroundColor="#254f7497" />
-		
+
 		<widget name="Progress" position="20,222" size="480,22" font="Regular;21" halign="center" transparent="1" />
 		<widget source="sub_progress" render="Progress" position="20,252" size="480,20" borderWidth="2" backgroundColor="#254f7497" />
 
@@ -206,7 +207,8 @@ class DiseqcTester(Screen, TuneTest, ResultParser):
 	TEST_TYPE_QUICK = 0
 	TEST_TYPE_RANDOM = 1
 	TEST_TYPE_COMPLETE = 2
-	def __init__(self, session, feid, test_type = TEST_TYPE_QUICK, loopsfailed = 3, loopssuccessful = 1, log = False):
+
+	def __init__(self, session, feid, test_type=TEST_TYPE_QUICK, loopsfailed=3, loopssuccessful=1, log=False):
 		Screen.__init__(self, session)
 		self.setup_title = _("DiSEqC Tester")
 		self.feid = feid
@@ -219,15 +221,15 @@ class DiseqcTester(Screen, TuneTest, ResultParser):
 		self["Failed"] = Label(_("Failed:"))
 		self["Succeeded"] = Label(_("Succeeded:"))
 		self["Not_tested"] = Label(_("Not tested:"))
-		self["With_errors"] = Label (_("With errors:"))
+		self["With_errors"] = Label(_("With errors:"))
 		self["actions"] = NumberActionMap(["SetupActions"],
 		{
 			"ok": self.select,
 			"cancel": self.keyCancel,
 		}, -2)
 
-		TuneTest.__init__(self, feid, stopOnSuccess = self.loopssuccessful, stopOnError = self.loopsfailed)
-		self["Frontend"] = FrontendStatus(frontend_source = lambda : self.frontend, update_interval = 100)
+		TuneTest.__init__(self, feid, stopOnSuccess=self.loopssuccessful, stopOnError=self.loopsfailed)
+		self["Frontend"] = FrontendStatus(frontend_source=lambda: self.frontend, update_interval=100)
 		self["overall_progress"] = Progress()
 		self["sub_progress"] = Progress()
 
@@ -357,7 +359,7 @@ class DiseqcTester(Screen, TuneTest, ResultParser):
 		if self.test_type == self.TEST_TYPE_QUICK:
 			self.myindex = 0
 			keys = self.indexlist.keys()
-			keys.sort(key = lambda a: a[2]) # sort by orbpos
+			keys.sort(key=lambda a: a[2]) # sort by orbpos
 			self["overall_progress"].setRange(len(keys))
 			self["overall_progress"].setValue(self.myindex)
 			return keys[0]
@@ -400,14 +402,14 @@ class DiseqcTester(Screen, TuneTest, ResultParser):
 			self["overall_progress"].setValue(self.myindex)
 			return self.keylist[0]
 
-
 	# after each index is finished, getNextIndex is called to get the next index to scan
+
 	def getNextIndex(self):
 		# TODO use other function to scan more randomly
 		if self.test_type == self.TEST_TYPE_QUICK:
 			self.myindex += 1
 			keys = self.indexlist.keys()
-			keys.sort(key = lambda a: a[2]) # sort by orbpos
+			keys.sort(key=lambda a: a[2]) # sort by orbpos
 
 			self["overall_progress"].setValue(self.myindex)
 			if self.myindex < len(keys):
@@ -511,7 +513,6 @@ class DiseqcTester(Screen, TuneTest, ResultParser):
 			self["succeeded_counter"].setText(str(int(self["succeeded_counter"].getText()) + 1))
 			self.addResult(self.currentlyTestedIndex, _("successful"), self.failedTune, self.successfullyTune)
 
-
 		#self["failed_counter"].setText(str(int(self["failed_counter"].getText()) + len(self.failedTune)))
 		#self["succeeded_counter"].setText(str(int(self["succeeded_counter"].getText()) + len(self.successfullyTune)))
 		#if len(self.failedTune) == 0 and len(self.successfullyTune) == 0:
@@ -532,7 +533,7 @@ class DiseqcTester(Screen, TuneTest, ResultParser):
 				self.setResultType(ResultParser.TYPE_ALL)
 				file.write(self.getTextualResult())
 				file.close()
-				self.session.open(MessageBox, text=_("The results have been written to %s.") % "/media/hdd/diseqctester.log", type = MessageBox.TYPE_INFO)
+				self.session.open(MessageBox, text=_("The results have been written to %s.") % "/media/hdd/diseqctester.log", type=MessageBox.TYPE_INFO)
 
 	def go(self):
 		self.running = True
@@ -566,18 +567,19 @@ class DiseqcTester(Screen, TuneTest, ResultParser):
 		if len(self.list) > 0 and not self.running:
 			self["CmdText"].setText(_("Press OK to get further details for %s") % str(self["progress_list"].getCurrent()[1]))
 
+
 class DiseqcTesterTestTypeSelection(Screen, ConfigListScreen):
 
 	def __init__(self, session, feid):
 		Screen.__init__(self, session)
 		# for the skin: first try MediaPlayerSettings, then Setup, this allows individual skinning
-		self.skinName = ["DiseqcTesterTestTypeSelection", "Setup" ]
+		self.skinName = ["DiseqcTesterTestTypeSelection", "Setup"]
 		self.setup_title = _("DiSEqC-tester settings")
-		self.onChangedEntry = [ ]
+		self.onChangedEntry = []
 		self.feid = feid
 
 		self.list = []
-		ConfigListScreen.__init__(self, self.list, session = self.session, on_change = self.changedEntry)
+		ConfigListScreen.__init__(self, self.list, session=self.session, on_change=self.changedEntry)
 
 		self["actions"] = ActionMap(["SetupActions", "MenuActions"],
 			{
@@ -597,15 +599,15 @@ class DiseqcTesterTestTypeSelection(Screen, ConfigListScreen):
 		self.setTitle(self.setup_title)
 
 	def createSetup(self):
-		self.testtype = ConfigSelection(choices={"quick": _("Quick"), "random": _("Random"), "complete": _("Complete")}, default = "quick")
+		self.testtype = ConfigSelection(choices={"quick": _("Quick"), "random": _("Random"), "complete": _("Complete")}, default="quick")
 		self.testtypeEntry = getConfigListEntry(_("Test type"), self.testtype)
 		self.list.append(self.testtypeEntry)
 
-		self.loopsfailed = ConfigSelection(choices={"-1": "Every known", "1": "1", "2": "2", "3": "3", "4": "4", "5": "5", "6": "6", "7": "7", "8": "8"}, default = "3")
+		self.loopsfailed = ConfigSelection(choices={"-1": "Every known", "1": "1", "2": "2", "3": "3", "4": "4", "5": "5", "6": "6", "7": "7", "8": "8"}, default="3")
 		self.loopsfailedEntry = getConfigListEntry(_("Stop testing plane after # failed transponders"), self.loopsfailed)
 		self.list.append(self.loopsfailedEntry)
 
-		self.loopssuccessful = ConfigSelection(choices={"-1": "Every known", "1": "1", "2": "2", "3": "3", "4": "4", "5": "5", "6": "6", "7": "7", "8": "8"}, default = "1")
+		self.loopssuccessful = ConfigSelection(choices={"-1": "Every known", "1": "1", "2": "2", "3": "3", "4": "4", "5": "5", "6": "6", "7": "7", "8": "8"}, default="1")
 		self.loopssuccessfulEntry = getConfigListEntry(_("Stop testing plane after # successful transponders"), self.loopssuccessful)
 		self.list.append(self.loopssuccessfulEntry)
 
@@ -626,7 +628,7 @@ class DiseqcTesterTestTypeSelection(Screen, ConfigListScreen):
 			testtype = DiseqcTester.TEST_TYPE_RANDOM
 		elif self.testtype.value == "complete":
 			testtype = DiseqcTester.TEST_TYPE_COMPLETE
-		self.session.open(DiseqcTester, feid = self.feid, test_type = testtype, loopsfailed = int(self.loopsfailed.value), loopssuccessful = int(self.loopssuccessful.value), log = self.log.value)
+		self.session.open(DiseqcTester, feid=self.feid, test_type=testtype, loopsfailed=int(self.loopsfailed.value), loopssuccessful=int(self.loopssuccessful.value), log=self.log.value)
 
 	def keyCancel(self):
 		self.close()
@@ -646,6 +648,7 @@ class DiseqcTesterTestTypeSelection(Screen, ConfigListScreen):
 		from Screens.Setup import SetupSummary
 		return SetupSummary
 
+
 class DiseqcTesterNimSelection(NimSelection):
 	skin = """
 		<screen position="160,123" size="400,330" title="Select a tuner">
@@ -662,7 +665,7 @@ class DiseqcTesterNimSelection(NimSelection):
 		</widget>
 	</screen>"""
 
-	def __init__(self, session, args = None):
+	def __init__(self, session, args=None):
 		NimSelection.__init__(self, session)
 
 	def setResultClass(self):
@@ -680,12 +683,15 @@ class DiseqcTesterNimSelection(NimSelection):
 			return True
 		return False
 
+
 def DiseqcTesterMain(session, **kwargs):
 	session.open(DiseqcTesterNimSelection)
+
 
 def autostart(reason, **kwargs):
 	resourcemanager.addResource("DiseqcTester", DiseqcTesterMain)
 
+
 def Plugins(**kwargs):
-	return [ PluginDescriptor(name="DiSEqC Tester", description=_("Test DiSEqC settings"), where = PluginDescriptor.WHERE_PLUGINMENU, needsRestart = False, fnc=DiseqcTesterMain),
-			PluginDescriptor(where = PluginDescriptor.WHERE_AUTOSTART, needsRestart = False, fnc = autostart)]
+	return [PluginDescriptor(name="DiSEqC Tester", description=_("Test DiSEqC settings"), where=PluginDescriptor.WHERE_PLUGINMENU, needsRestart=False, fnc=DiseqcTesterMain),
+			PluginDescriptor(where=PluginDescriptor.WHERE_AUTOSTART, needsRestart=False, fnc=autostart)]

@@ -1,6 +1,7 @@
 from os import fchmod, fsync, path, rename, unlink
 from tempfile import NamedTemporaryFile
 
+
 def saveFile(filename, data, mode=0644):
 	tmpFilename = None
 	try:

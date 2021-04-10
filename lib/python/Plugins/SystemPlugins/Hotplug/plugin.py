@@ -2,11 +2,13 @@
 from Plugins.Plugin import PluginDescriptor
 from Components.Harddisk import harddiskmanager
 from twisted.internet.protocol import Protocol, Factory
-import os, os.path
+import os
+import os.path
 
 # globals
 hotplugNotifier = []
 audiocd = False
+
 
 def AudiocdAdded():
 	global audiocd
@@ -14,6 +16,7 @@ def AudiocdAdded():
 		return True
 	else:
 		return False
+
 
 def processHotplugData(self, v):
 	print "[Hotplug.plugin.py]:", v
@@ -65,6 +68,7 @@ def processHotplugData(self, v):
 		except AttributeError:
 			hotplugNotifier.remove(callback)
 
+
 class Hotplug(Protocol):
 	def __init__(self):
 		pass
@@ -83,9 +87,10 @@ class Hotplug(Protocol):
 		v = {}
 		for x in data:
 			i = x.find('=')
-			var, val = x[:i], x[i+1:]
+			var, val = x[:i], x[i + 1:]
 			v[var] = val
 		processHotplugData(self, v)
+
 
 def autostart(reason, **kwargs):
 	if reason == 0:
@@ -98,5 +103,6 @@ def autostart(reason, **kwargs):
 		factory.protocol = Hotplug
 		reactor.listenUNIX("/tmp/hotplug.socket", factory)
 
+
 def Plugins(**kwargs):
-	return PluginDescriptor(name = "Hotplug", description = "listens to hotplug events", where = PluginDescriptor.WHERE_AUTOSTART, needsRestart = True, fnc = autostart)
+	return PluginDescriptor(name="Hotplug", description="listens to hotplug events", where=PluginDescriptor.WHERE_AUTOSTART, needsRestart=True, fnc=autostart)

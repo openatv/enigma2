@@ -6,6 +6,8 @@ from Components.config import config
 # some broadcaster do define other types so this list
 # may grow or be replaced..
 #
+
+
 class GenresETSI:
 	maintype = (
 		_("Reserved"),
@@ -138,6 +140,7 @@ class GenresETSI:
 		),
 	}
 
+
 class GenresAUS:
 	maintype = (
 		_("Undefined"),
@@ -215,6 +218,7 @@ class GenresAUS:
 			_("documentary (general)"),
 		),
 	}
+
 
 class GenresAUSIceTV:
 	maintype = (
@@ -388,6 +392,7 @@ class GenresAUSIceTV:
 			_("Rowing"),  # 0xf8 remapped from 0x48
 		),
 	}
+
 
 class GenresDEUIceTV:
 	maintype = (
@@ -602,6 +607,7 @@ class GenresDEUIceTV:
 		),
 	}
 
+
 def __getGenreStringMain(hn, ln, genres):
 	# if hn == 0:
 	# 	return _("Undefined content")
@@ -611,6 +617,7 @@ def __getGenreStringMain(hn, ln, genres):
 		return genres.maintype[hn]
 	# return _("Reserved") + " " + str(hn)
 	return ""
+
 
 def __getGenreStringSub(hn, ln, genres):
 	# if hn == 0:
@@ -626,6 +633,7 @@ def __getGenreStringSub(hn, ln, genres):
 	# return _("Reserved") + " " + str(hn) + "," + str(ln)
 	return ""
 
+
 def __getGenreStringMainIceTV(hn, ln, genres):
 	if hn < len(genres.maintype):
 		return genres.maintype[hn]
@@ -633,12 +641,14 @@ def __getGenreStringMainIceTV(hn, ln, genres):
 		return _("User defined 0x%02x" % ((hn << 4) | ln))
 	return ""
 
+
 def __getGenreStringSubIceTV(hn, ln, genres):
 	if hn in genres.subtype and ln < len(genres.subtype[hn]):
 		return genres.subtype[hn][ln]
 	if hn == 15 or ln == 15:
 		return _("User defined 0x%02x" % ((hn << 4) | ln))
 	return ""
+
 
 countries = {
 	"AUS": (__getGenreStringMain, __getGenreStringMain, GenresAUS()),
@@ -655,6 +665,7 @@ defaultCountryInfo = (__getGenreStringMain, __getGenreStringSub, defaultGenre)
 maintype = defaultGenre.maintype
 subtype = defaultGenre.subtype
 
+
 def __remapCountry(country):
 	if hasattr(config.plugins, "icetv") and config.plugins.icetv.enable_epg.value:
 		if not country:
@@ -664,13 +675,16 @@ def __remapCountry(country):
 			return iceTVCountry
 	return country
 
+
 def getGenreStringMain(hn, ln, country=None):
 	countryInfo = countries.get(__remapCountry(country), defaultCountryInfo)
 	return countryInfo[0](hn, ln, countryInfo[2])
 
+
 def getGenreStringSub(hn, ln, country=None):
 	countryInfo = countries.get(__remapCountry(country), defaultCountryInfo)
 	return countryInfo[1](hn, ln, countryInfo[2])
+
 
 def getGenreStringLong(hn, ln, country=None):
 	# if hn == 0:

@@ -3,6 +3,7 @@ from Components.Element import cached
 from enigma import iPlayableService, iServiceInformation, eServiceReference, eEPGCache
 from Source import Source
 
+
 class EventInfo(PerServiceBase, Source, object):
 	NOW = 0
 	NEXT = 1
@@ -40,4 +41,3 @@ class EventInfo(PerServiceBase, Source, object):
 	def destroy(self):
 		PerServiceBase.destroy(self)
 		Source.destroy(self)
-

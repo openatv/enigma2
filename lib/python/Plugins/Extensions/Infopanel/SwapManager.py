@@ -14,9 +14,10 @@ from glob import glob
 import stat
 
 config.plugins.infopanel = ConfigSubsection()
-config.plugins.infopanel.swapautostart = ConfigYesNo(default = False)
+config.plugins.infopanel.swapautostart = ConfigYesNo(default=False)
 
 startswap = None
+
 
 def SwapAutostart(reason, session=None, **kwargs):
 	global startswap
@@ -25,7 +26,8 @@ def SwapAutostart(reason, session=None, **kwargs):
 			print "[SwapManager] autostart"
 			startswap = StartSwap()
 			startswap.start()
-	
+
+
 class StartSwap:
 	def __init__(self):
 		self.Console = Console()
@@ -33,7 +35,7 @@ class StartSwap:
 	def start(self):
 	 	self.Console.ePopen("sfdisk -l /dev/sd? 2>/dev/null | grep swap", self.startSwap2)
 
-	def startSwap2(self, result = None, retval = None, extra_args = None):
+	def startSwap2(self, result=None, retval=None, extra_args=None):
 		swap_place = ""
 		if result and result.find('sd') != -1:
 			for line in result.split('\n'):
@@ -41,7 +43,7 @@ class StartSwap:
 					parts = line.strip().split()
 					swap_place = parts[0]
 					file('/etc/fstab.tmp', 'w').writelines([l for l in file('/etc/fstab').readlines() if swap_place not in l])
-					rename('/etc/fstab.tmp','/etc/fstab')
+					rename('/etc/fstab.tmp', '/etc/fstab')
 					print "[SwapManager] Found a swap partition:", swap_place
 		else:
 			devicelist = []
@@ -62,8 +64,10 @@ class StartSwap:
 			system('swapon ' + swap_place)
 		else:
 			print "[SwapManager] Swapfile is already active on ", swap_place
-	
+
 #######################################################################
+
+
 class Swap(Screen):
 	skin = """
 	<screen name="Swap" position="center,center" size="420,250" title="Swap File Manager" flags="wfBorder" >
@@ -84,6 +88,7 @@ class Swap(Screen):
 		<widget name="inactive" position="160,200" size="100,30" font="Regular;20" valign="center" halign="center" backgroundColor="red"/>
 		<widget name="active" position="160,200" size="100,30" font="Regular;20" valign="center" halign="center" backgroundColor="green"/>
 	</screen>"""
+
 	def __init__(self, session):
 		Screen.__init__(self, session)
 		Screen.setTitle(self, _("Swap Manager"))
@@ -111,7 +116,7 @@ class Swap(Screen):
 		self.activityTimer.timeout.get().append(self.getSwapDevice)
 		self.updateSwap()
 
-	def updateSwap(self, result = None, retval = None, extra_args = None):
+	def updateSwap(self, result=None, retval=None, extra_args=None):
 		self["actions"].setEnabled(False)
 		self.swap_active = False
 		self['autostart_on'].hide()
@@ -135,7 +140,7 @@ class Swap(Screen):
 			remove('/tmp/swapdevices.tmp')
 		self.Console.ePopen("sfdisk -l /dev/sd? 2>/dev/null | grep swap", self.updateSwap2)
 
-	def updateSwap2(self, result = None, retval = None, extra_args = None):
+	def updateSwap2(self, result=None, retval=None, extra_args=None):
 		self.swapsize = 0
 		self.swap_place = ''
 		self.swap_active = False
@@ -252,7 +257,7 @@ class Swap(Screen):
 			else:
 				self.doCreateSwap()
 
-	def createDel2(self, result, retval, extra_args = None):
+	def createDel2(self, result, retval, extra_args=None):
 		if retval == 0:
 			remove(self.swap_place)
 			if config.plugins.infopanel.swapautostart.value:
@@ -265,14 +270,14 @@ class Swap(Screen):
 		parts = []
 		supported_filesystems = frozenset(('ext4', 'ext3', 'ext2', 'vfat'))
 		candidates = []
-		mounts = getProcMounts() 
+		mounts = getProcMounts()
 		for partition in harddiskmanager.getMountedPartitions(False, mounts):
 			if partition.filesystem(mounts) in supported_filesystems:
-				candidates.append((partition.description, partition.mountpoint)) 
+				candidates.append((partition.description, partition.mountpoint))
 		if len(candidates):
-			self.session.openWithCallback(self.doCSplace, ChoiceBox, title = _("Please select device to use as swapfile location"), list = candidates)
+			self.session.openWithCallback(self.doCSplace, ChoiceBox, title=_("Please select device to use as swapfile location"), list=candidates)
 		else:
-			self.session.open(MessageBox, _("Sorry, no physical devices that supports SWAP attached. Can't create Swapfile on network or fat32 filesystems"), MessageBox.TYPE_INFO, timeout = 10)
+			self.session.open(MessageBox, _("Sorry, no physical devices that supports SWAP attached. Can't create Swapfile on network or fat32 filesystems"), MessageBox.TYPE_INFO, timeout=10)
 
 	def doCSplace(self, name):
 		if name:
@@ -292,7 +297,7 @@ class Swap(Screen):
 			self.commands.append('dd if=/dev/zero of=' + myfile + ' bs=1024 count=' + swapsize + ' 2>/dev/null')
 			self.commands.append('mkswap ' + myfile)
 			self.Console.eBatch(self.commands, self.updateSwap, debug=True)
-		
+
 	def autoSsWap(self):
 		if self.swap_place:
 			if config.plugins.infopanel.swapautostart.value:

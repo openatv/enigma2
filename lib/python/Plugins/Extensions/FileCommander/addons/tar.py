@@ -8,6 +8,7 @@ pname = _("File Commander - tar Addon")
 pdesc = _("unpack tar/compressed tar Files")
 pversion = "0.2-r1"
 
+
 class TarMenuScreen(ArchiverMenuScreen):
 
 	def __init__(self, session, sourcelist, targetlist):
@@ -36,6 +37,7 @@ class TarMenuScreen(ArchiverMenuScreen):
 			elif id == 4:
 				cmd.append(config.usage.default_path.value)
 			self.unpackEConsoleApp(cmd)
+
 
 class UnpackInfoScreen(ArchiverInfoScreen):
 

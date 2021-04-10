@@ -3,6 +3,7 @@ from Screens.MessageBox import MessageBox
 from Screens.Screen import Screen
 from Components.Label import Label
 
+
 class RestartNetwork(Screen):
     def __init__(self, session):
         Screen.__init__(self, session)
@@ -20,7 +21,7 @@ class RestartNetwork(Screen):
 
     def restartLan(self):
         iNetwork.restartNetwork(self.restartLanDataAvail)
-  
+
     def restartLanDataAvail(self, data):
         if data is True:
             iNetwork.getInterfaces(self.getInterfacesDataAvail)

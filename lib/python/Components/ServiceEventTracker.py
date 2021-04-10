@@ -1,9 +1,10 @@
 InfoBarCount = 0
 
+
 class InfoBarBase:
 
-	onInfoBarOpened = [ ]
-	onInfoBarClosed = [ ]
+	onInfoBarOpened = []
+	onInfoBarClosed = []
 
 	@staticmethod
 	def connectInfoBarOpened(fnc):
@@ -35,7 +36,7 @@ class InfoBarBase:
 		for x in InfoBarBase.onInfoBarClosed:
 			x(infobar)
 
-	def __init__(self, steal_current_service = False):
+	def __init__(self, steal_current_service=False):
 		if steal_current_service:
 			ServiceEventTracker.setActiveInfoBar(self, None, None)
 		else:
@@ -52,12 +53,13 @@ class InfoBarBase:
 		global InfoBarCount
 		InfoBarCount -= 1
 
+
 class ServiceEventTracker:
 	"""Tracks service events into a screen"""
-	InfoBarStack = [ ]
+	InfoBarStack = []
 	InfoBarStackSize = 0
 	oldServiceStr = None
-	EventMap = { }
+	EventMap = {}
 	navcore = None
 
 	@staticmethod
@@ -75,8 +77,8 @@ class ServiceEventTracker:
 			stack = set.InfoBarStack
 			for func in func_list:
 				if (func[0] or  # let pass all events to screens not derived from InfoBarBase
-					(not old_service_running and stack[ssize-1] == func[1]) or # let pass events from currently running service just to current active screen (derived from InfoBarBase)
-					(old_service_running and ssize > 1 and stack[ssize-2] == func[1])): # let pass events from old running service just to previous active screen (derived from InfoBarBase)
+					(not old_service_running and stack[ssize - 1] == func[1]) or # let pass events from currently running service just to current active screen (derived from InfoBarBase)
+					(old_service_running and ssize > 1 and stack[ssize - 2] == func[1])): # let pass events from old running service just to previous active screen (derived from InfoBarBase)
 					func[2]()
 
 	@staticmethod

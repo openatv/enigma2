@@ -3,6 +3,7 @@ from MessageBox import MessageBox
 from Components.AVSwitch import AVSwitch
 from Tools import Notifications
 
+
 class Scart(Screen):
 	def __init__(self, session, start_visible=True):
 		Screen.__init__(self, session)
@@ -27,7 +28,7 @@ class Scart(Screen):
 			self.avswitch.setInput("SCART")
 			if not self.session.in_exec:
 				self.notificationVisible = True
-				Notifications.AddNotificationWithCallback(self.MsgBoxClosed, MessageBox, _("If you see this, something is wrong with\nyour scart connection. Press OK to return."), MessageBox.TYPE_ERROR, msgBoxID = "scart_msgbox")
+				Notifications.AddNotificationWithCallback(self.MsgBoxClosed, MessageBox, _("If you see this, something is wrong with\nyour scart connection. Press OK to return."), MessageBox.TYPE_ERROR, msgBoxID="scart_msgbox")
 			else:
 				self.msgBox = self.session.openWithCallback(self.MsgBoxClosed, MessageBox, _("If you see this, something is wrong with\nyour scart connection. Press OK to return."), MessageBox.TYPE_ERROR)
 

@@ -7,14 +7,15 @@ from Tools.Profile import profile
 from Plugins.Plugin import PluginDescriptor
 import keymapparser
 
+
 class PluginComponent:
 	firstRun = True
 	restartRequired = False
 
 	def __init__(self):
 		self.plugins = {}
-		self.pluginList = [ ]
-		self.installedPluginList = [ ]
+		self.pluginList = []
+		self.installedPluginList = []
 		self.setPluginPrefix("Plugins.")
 		self.resetWarnings()
 
@@ -48,7 +49,7 @@ class PluginComponent:
 			for pluginname in os.listdir(directory_category):
 				path = os.path.join(directory_category, pluginname)
 				if os.path.isdir(path):
-						profile('plugin '+pluginname)
+						profile('plugin ' + pluginname)
 						try:
 							plugin = my_import('.'.join(["Plugins", c, pluginname, "plugin"]))
 							plugins = plugin.Plugins(path=path)
@@ -57,7 +58,7 @@ class PluginComponent:
 							# supress errors due to missing plugin.py* files (badly removed plugin)
 							for fn in ('plugin.py', 'plugin.pyc', 'plugin.pyo'):
 								if os.path.exists(os.path.join(path, fn)):
-									self.warnings.append( (c + "/" + pluginname, str(exc)) )
+									self.warnings.append((c + "/" + pluginname, str(exc)))
 									from traceback import print_exc
 									print_exc()
 									break
@@ -70,7 +71,7 @@ class PluginComponent:
 
 						# allow single entry not to be a list
 						if not isinstance(plugins, list):
-							plugins = [ plugins ]
+							plugins = [plugins]
 
 						for p in plugins:
 							p.path = path
@@ -83,7 +84,7 @@ class PluginComponent:
 								keymapparser.readKeymap(keymap)
 							except Exception, exc:
 								print "keymap for plugin %s/%s failed to load: " % (c, pluginname), exc
-								self.warnings.append( (c + "/" + pluginname, str(exc)) )
+								self.warnings.append((c + "/" + pluginname, str(exc)))
 
 		# build a diff between the old list of plugins and the new one
 		# internally, the "fnc" argument will be compared with __eq__
@@ -128,11 +129,11 @@ class PluginComponent:
 		return res
 
 	def getPluginsForMenu(self, menuid):
-		res = [ ]
+		res = []
 		for p in self.getPlugins(PluginDescriptor.WHERE_MENU):
 			res += p(menuid)
 		return res
-	
+
 	def getDescriptionForMenuEntryID(self, menuid, entryid):
 		 for p in self.getPlugins(PluginDescriptor.WHERE_MENU):
 			if p(menuid) and isinstance(p(menuid), (list, tuple)):
@@ -152,7 +153,7 @@ class PluginComponent:
 			self.removePlugin(p)
 
 	def resetWarnings(self):
-		self.warnings = [ ]
+		self.warnings = []
 
 	def getNextWakeupTime(self, getPluginIdent=False):
 		wakeup = -1
@@ -165,5 +166,6 @@ class PluginComponent:
 		if getPluginIdent:
 			return int(wakeup), pident
 		return int(wakeup)
+
 
 plugins = PluginComponent()

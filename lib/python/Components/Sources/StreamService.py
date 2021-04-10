@@ -2,6 +2,7 @@ from Source import Source
 from Components.Element import cached
 from enigma import eServiceReference, pNavigation
 
+
 class StreamService(Source):
 	def __init__(self, navcore):
 		Source.__init__(self)
@@ -35,7 +36,7 @@ class StreamService(Source):
 		print "StreamService execBegin", self.ref.toString()
 		try:
 			#not all images support recording type indicators
-			self.__service = self.navcore.recordService(self.ref,False,pNavigation.isStreaming)
+			self.__service = self.navcore.recordService(self.ref, False, pNavigation.isStreaming)
 		except:
 			self.__service = self.navcore.recordService(self.ref)
 		self.navcore.record_event.append(self.recordEvent)

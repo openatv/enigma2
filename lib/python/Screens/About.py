@@ -19,10 +19,11 @@ from Components.Network import iNetwork
 from Tools.StbHardware import getFPVersion
 from Tools.Multiboot import GetCurrentImage, GetCurrentImageMode
 
-from os import path,popen
+from os import path, popen
 from re import search
 
 import time
+
 
 def parse_ipv4(ip):
 	ret = ""
@@ -36,6 +37,7 @@ def parse_ipv4(ip):
 			idx += 1
 	return ret
 
+
 def parseFile(filename):
 	ret = "N/A"
 	try:
@@ -45,6 +47,7 @@ def parseFile(filename):
 	except IOError:
 		print "[ERROR] failed to open file %s" % filename
 	return ret
+
 
 def parseLines(filename):
 	ret = ["N/A"]
@@ -56,6 +59,7 @@ def parseLines(filename):
 		print "[ERROR] failed to open file %s" % filename
 	return ret
 
+
 def MyDateConverter(StringDate):
 	## StringDate must be a string "YYYY-MM-DD" or "YYYYMMDD"
 	try:
@@ -65,11 +69,12 @@ def MyDateConverter(StringDate):
 			day = StringDate[6:8]
 			StringDate = ' '.join((year, month, day))
 		else:
-			StringDate = StringDate.replace("-"," ")
+			StringDate = StringDate.replace("-", " ")
 		StringDate = time.strftime(config.usage.date.full.value, time.strptime(StringDate, "%Y %m %d"))
 		return StringDate
 	except:
 		return _("unknown")
+
 
 def getAboutText():
 	AboutText = ""
@@ -97,15 +102,15 @@ def getAboutText():
 	if SystemInfo["canMultiBoot"]:
 		slot = image = GetCurrentImage()
 		bootmode = ""
-		part = _("eMMC slot %s") %slot
+		part = _("eMMC slot %s") % slot
 		if SystemInfo["canMode12"]:
-			bootmode = _(" bootmode = %s") %GetCurrentImageMode()
+			bootmode = _(" bootmode = %s") % GetCurrentImageMode()
 		if SystemInfo["HasHiSi"] and "sda" in SystemInfo["canMultiBoot"][slot]['device']:
 			if slot > 4:
-				image -=4
+				image -= 4
 			else:
-				image -=1
-			part = "SDcard slot %s (%s) " %(image, SystemInfo["canMultiBoot"][slot]['device'])
+				image -= 1
+			part = "SDcard slot %s (%s) " % (image, SystemInfo["canMultiBoot"][slot]['device'])
 		AboutText += _("Selected Image:\t\t%s") % _("STARTUP_") + str(slot) + "  (" + part + bootmode + ")\n"
 
 	AboutText += _("Version / Build:\t\t%s  (%s)") % (getImageVersion(), MyDateConverter(getImageBuild())) + "\n"
@@ -148,7 +153,7 @@ def getAboutText():
 		f.close()
 	if tempinfo and int(tempinfo.replace('\n', '')) > 0:
 		mark = str('\xc2\xb0')
-		AboutText += _("System temperature:\t%s") % tempinfo.replace('\n', '').replace(' ','') + mark + "C\n"
+		AboutText += _("System temperature:\t%s") % tempinfo.replace('\n', '').replace(' ', '') + mark + "C\n"
 
 	tempinfo = ""
 	if path.exists('/proc/stb/fp/temp_sensor_avs'):
@@ -175,22 +180,23 @@ def getAboutText():
 					temp = line[1].split("=")
 					temp = line[1].split(" ")
 					tempinfo = temp[2]
-					if getMachineBuild() in ('u41','u42','u43','u45'):
+					if getMachineBuild() in ('u41', 'u42', 'u43', 'u45'):
 						tempinfo = str(int(tempinfo) - 15)
 		except:
 			tempinfo = ""
 	if tempinfo and int(tempinfo.replace('\n', '')) > 0:
 		mark = str('\xc2\xb0')
-		AboutText += _("Processor temperature:\t%s") % tempinfo.replace('\n', '').replace(' ','') + mark + "C\n"
+		AboutText += _("Processor temperature:\t%s") % tempinfo.replace('\n', '').replace(' ', '') + mark + "C\n"
 	AboutLcdText = AboutText.replace('\t', ' ')
 
 	return AboutText, AboutLcdText
+
 
 class About(Screen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
 		Screen.setTitle(self, _("Image Information"))
-		self.skinName = ["AboutOE","About"]
+		self.skinName = ["AboutOE", "About"]
 		self.populate()
 
 		self["key_red"] = Button(_("Exit"))
@@ -206,7 +212,6 @@ class About(Screen):
 				"green": self.showTranslationInfo,
 				"0": self.showID,
 			})
-
 
 	def populate(self):
 		if isVTISkin:
@@ -225,7 +230,7 @@ class About(Screen):
 
 			nims = nimmanager.nimList()
 			self.tuner_list = []
-			if len(nims) <= 4 :
+			if len(nims) <= 4:
 				for count in (0, 1, 2, 3, 4, 5, 6, 7):
 					if count < len(nims):
 						self["Tuner" + str(count)] = StaticText(nims[count])
@@ -243,7 +248,7 @@ class About(Screen):
 					if desc_list and desc_list[cur_idx]['desc'] == desc:
 						desc_list[cur_idx]['end'] = idx
 					else:
-						desc_list.append({'desc' : desc, 'start' : idx, 'end' : idx})
+						desc_list.append({'desc': desc, 'start': idx, 'end': idx})
 						cur_idx += 1
 					count += 1
 
@@ -264,10 +269,9 @@ class About(Screen):
 			hddlist = harddiskmanager.HDDList()
 			hdd = hddlist and hddlist[0][1] or None
 			if hdd is not None and hdd.model() != "":
-				self["hddA"] = StaticText(_("%s\n(%s, %d MB free)") % (hdd.model(), hdd.capacity(),hdd.free()))
+				self["hddA"] = StaticText(_("%s\n(%s, %d MB free)") % (hdd.model(), hdd.capacity(), hdd.free()))
 			else:
 				self["hddA"] = StaticText(_("none"))
-
 
 			self.enigma2_version = _("Version") + ": " + about.getEnigmaVersionString()
 			self.image_version = _("Image") + ": " + about.getImageVersionString()
@@ -289,12 +293,12 @@ class About(Screen):
 				for hddX in hddlist:
 					hdd = hddX[1]
 					if hdd.model() != "":
-						self.hdd_list.append((hdd.model() + "\n   %.2f GB - %.2f GB" % (hdd.diskSize()/1000.0, hdd.free()/1000.0) + " " + _("free") + "\n\n"))
+						self.hdd_list.append((hdd.model() + "\n   %.2f GB - %.2f GB" % (hdd.diskSize() / 1000.0, hdd.free() / 1000.0) + " " + _("free") + "\n\n"))
 
 			ifaces = iNetwork.getConfiguredAdapters()
 			iface_list = []
 			for iface in ifaces:
-				iface_list.append((_("Interface") + " : " + iNetwork.getAdapterName(iface) + " ("+ iNetwork.getFriendlyAdapterName(iface) + ")\n"))
+				iface_list.append((_("Interface") + " : " + iNetwork.getAdapterName(iface) + " (" + iNetwork.getFriendlyAdapterName(iface) + ")\n"))
 				iface_list.append((_("IP") + " : " + parse_ipv4(iNetwork.getAdapterAttribute(iface, "ip")) + "\n"))
 				iface_list.append((_("Netmask") + " : " + parse_ipv4(iNetwork.getAdapterAttribute(iface, "netmask")) + "\n"))
 				iface_list.append((_("Gateway") + " : " + parse_ipv4(iNetwork.getAdapterAttribute(iface, "gateway")) + "\n"))
@@ -342,7 +346,7 @@ class About(Screen):
 				id = f.read()[:-1].split('=')
 				f.close()
 				from Screens.MessageBox import MessageBox
-				self.session.open(MessageBox,id[1], type = MessageBox.TYPE_INFO)
+				self.session.open(MessageBox, id[1], type=MessageBox.TYPE_INFO)
 			except:
 				pass
 
@@ -366,6 +370,7 @@ class About(Screen):
 			self["FullAbout"].pageDown()
 		else:
 			self["AboutScrollLabel"].pageDown()
+
 
 class Devices(Screen):
 	def __init__(self, session):
@@ -440,18 +445,18 @@ class Devices(Screen):
 				if ((float(size) / 1024) / 1024) >= 1:
 					sizeline = _("Size: ") + str(round(((float(size) / 1024) / 1024), 2)) + " " + _("TB")
 				elif (size / 1024) >= 1:
-					sizeline = _("Size: ") + str(round((float(size) / 1024), 2)) +  " " + _("GB")
+					sizeline = _("Size: ") + str(round((float(size) / 1024), 2)) + " " + _("GB")
 				elif size >= 1:
-					sizeline = _("Size: ") + str(size) +  " " + _("MB")
+					sizeline = _("Size: ") + str(size) + " " + _("MB")
 				else:
 					sizeline = _("Size: ") + _("unavailable")
 
 				if ((float(free) / 1024) / 1024) >= 1:
-					freeline = _("Free: ") + str(round(((float(free) / 1024) / 1024), 2)) +  " " + _("TB")
+					freeline = _("Free: ") + str(round(((float(free) / 1024) / 1024), 2)) + " " + _("TB")
 				elif (free / 1024) >= 1:
-					freeline = _("Free: ") + str(round((float(free) / 1024), 2)) +  " " + _("GB")
+					freeline = _("Free: ") + str(round((float(free) / 1024), 2)) + " " + _("GB")
 				elif free >= 1:
-					freeline = _("Free: ") + str(free) +  " " + _("MB")
+					freeline = _("Free: ") + str(free) + " " + _("MB")
 				else:
 					freeline = _("Free: ") + _("full")
 				self.list.append(mount + '\t' + sizeline + ' \t' + freeline)
@@ -508,6 +513,7 @@ class Devices(Screen):
 	def createSummary(self):
 		return AboutSummary
 
+
 class SystemMemoryInfo(Screen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
@@ -555,7 +561,7 @@ class SystemMemoryInfo(Screen):
 		self.Console.ePopen("df -mh / | grep -v '^Filesystem'", self.Stage1Complete)
 
 	def MySize(self, RamText):
-		RamText_End = RamText[len(RamText)-1]
+		RamText_End = RamText[len(RamText) - 1]
 		RamText_End2 = RamText_End
 		if RamText_End == "G":
 			RamText_End = _("GB")
@@ -564,7 +570,7 @@ class SystemMemoryInfo(Screen):
 		elif RamText_End == "K":
 			RamText_End = _("KB")
 		if RamText_End != RamText_End2:
-			RamText = RamText[0:len(RamText)-1] + " " + RamText_End
+			RamText = RamText[0:len(RamText) - 1] + " " + RamText_End
 		return RamText
 
 	def Stage1Complete(self, result, retval, extra_args=None):
@@ -582,6 +588,7 @@ class SystemMemoryInfo(Screen):
 
 	def createSummary(self):
 		return AboutSummary
+
 
 class SystemNetworkInfo(Screen):
 	def __init__(self, session):
@@ -634,18 +641,18 @@ class SystemNetworkInfo(Screen):
 
 	def createscreen(self):
 		def netspeed():
-			netspeed=""
-			for line in popen('ethtool eth0 |grep Speed','r'):
+			netspeed = ""
+			for line in popen('ethtool eth0 |grep Speed', 'r'):
 				line = line.strip().split(":")
-				line =line[1].replace(' ','')
+				line = line[1].replace(' ', '')
 				netspeed += line
 				return str(netspeed)
 
 		def netspeed_eth1():
-			netspeed=""
-			for line in popen('ethtool eth1 |grep Speed','r'):
+			netspeed = ""
+			for line in popen('ethtool eth1 |grep Speed', 'r'):
 				line = line.strip().split(":")
-				line =line[1].replace(' ','')
+				line = line[1].replace(' ', '')
 				netspeed += line
 				return str(netspeed)
 
@@ -830,6 +837,7 @@ class SystemNetworkInfo(Screen):
 	def createSummary(self):
 		return AboutSummary
 
+
 class AboutSummary(Screen):
 	def __init__(self, session, parent):
 		Screen.__init__(self, session, parent=parent)
@@ -838,6 +846,7 @@ class AboutSummary(Screen):
 		AboutText = getAboutText()[1]
 
 		self["AboutText"] = StaticText(AboutText)
+
 
 class ViewGitLog(Screen):
 	def __init__(self, session, args=None):
@@ -861,7 +870,7 @@ class ViewGitLog(Screen):
 			"right": self.pageDown,
 			"down": self.pageDown,
 			"up": self.pageUp
-		},-1)
+		}, -1)
 		self.onLayoutFinish.append(self.getlog)
 
 	def changelogtype(self):
@@ -904,6 +913,7 @@ class ViewGitLog(Screen):
 
 	def closeRecursive(self):
 		self.close((_("Cancel"), ""))
+
 
 class TranslationInfo(Screen):
 	def __init__(self, session):

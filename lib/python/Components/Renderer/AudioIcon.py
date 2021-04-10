@@ -3,18 +3,19 @@ from enigma import ePixmap
 from Tools.Directories import fileExists, SCOPE_CURRENT_SKIN, resolveFilename
 import os
 
+
 class AudioIcon(Renderer):
 	searchPaths = (resolveFilename(SCOPE_CURRENT_SKIN), '/usr/share/enigma2/skin_default/')
 
 	def __init__(self):
 		Renderer.__init__(self)
 		self.size = None
-		self.nameAudioCache = { }
+		self.nameAudioCache = {}
 		self.pngname = ""
 		self.path = ""
 
 	def applySkin(self, desktop, parent):
-		attribs = [ ]
+		attribs = []
 		for (attrib, value) in self.skinAttributes:
 			if attrib == "path":
 				self.path = value
@@ -23,7 +24,7 @@ class AudioIcon(Renderer):
 				else:
 					self.path = value + "/"
 			else:
-				attribs.append((attrib,value))
+				attribs.append((attrib, value))
 			if attrib == "size":
 				value = value.split(',')
 				if len(value) == 2:
@@ -61,4 +62,3 @@ class AudioIcon(Renderer):
 			if os.path.exists(pngname):
 				return pngname
 		return ""
-

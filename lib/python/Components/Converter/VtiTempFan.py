@@ -2,6 +2,7 @@ from Components.Converter.Converter import Converter
 from Components.Element import cached
 from Poll import Poll
 
+
 class VtiTempFan(Poll, Converter, object):
     TEMPINFO = 1
     FANINFO = 2

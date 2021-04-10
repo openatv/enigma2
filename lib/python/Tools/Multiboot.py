@@ -10,7 +10,8 @@ from Components.SystemInfo import SystemInfo
 from Tools.Directories import pathExists
 
 Imagemount = "/tmp/multibootcheck"
-Imageroot = "/tmp/imageroot" 
+Imageroot = "/tmp/imageroot"
+
 
 def getMBbootdevice():
 	if not path.isdir(Imagemount):
@@ -25,8 +26,10 @@ def getMBbootdevice():
 	if not path.ismount(Imagemount):
 		rmdir(Imagemount)
 
+
 def getparam(line, param):
 	return line.replace("userdataroot", "rootuserdata").rsplit('%s=' % param, 1)[1].split(' ', 1)[0]
+
 
 def getMultibootslots():
 	bootslots = {}
@@ -63,11 +66,12 @@ def getMultibootslots():
 						break
 				if slot:
 					bootslots[int(slotnumber)] = slot
-		print "[multiboot1] getMultibootslots bootslots = %s" %bootslots
+		print "[multiboot1] getMultibootslots bootslots = %s" % bootslots
 		Console().ePopen("umount %s" % Imagemount)
 		if not path.ismount(Imagemount):
 			rmdir(Imagemount)
 	return bootslots
+
 
 def GetCurrentImage():
 	if SystemInfo["canMultiBoot"]:
@@ -79,16 +83,21 @@ def GetCurrentImage():
 			for slot in SystemInfo["canMultiBoot"].keys():
 				if SystemInfo["canMultiBoot"][slot]["device"] == device:
 					return slot
+
+
 def GetCurrentKern():
 	if SystemInfo["HasRootSubdir"]:
 		return SystemInfo["HasRootSubdir"] and (int(open("/sys/firmware/devicetree/base/chosen/bootargs", "r").read()[:-1].split("kernel=/dev/mmcblk0p")[1].split(" ")[0]))
+
 
 def GetCurrentRoot():
 	if SystemInfo["HasRootSubdir"]:
 		return SystemInfo["HasRootSubdir"] and (int(open("/sys/firmware/devicetree/base/chosen/bootargs", "r").read()[:-1].split("root=/dev/mmcblk0p")[1].split(" ")[0]))
 
+
 def GetCurrentImageMode():
 	return bool(SystemInfo["canMultiBoot"]) and SystemInfo["canMode12"] and int(open("/sys/firmware/devicetree/base/chosen/bootargs", "r").read().replace("\0", "").split("=")[-1])
+
 
 def GetSTARTUPFile():
 	if SystemInfo["HAScmdline"]:
@@ -96,8 +105,10 @@ def GetSTARTUPFile():
 	else:
 		return "STARTUP"
 
+
 def ReadSTARTUP():
-	return SystemInfo["canMultiBoot"] and open('/tmp/startupmount/%s' %GetSTARTUPFile(), 'r').read()
+	return SystemInfo["canMultiBoot"] and open('/tmp/startupmount/%s' % GetSTARTUPFile(), 'r').read()
+
 
 def GetBoxName():
 	box = getBoxType()
@@ -131,6 +142,7 @@ def GetBoxName():
 	elif box.startswith('twinboxlcdci'):
 		box = "twinboxlcd"
 	return box
+
 
 class GetImagelist():
 	MOUNT = 0
@@ -167,7 +179,7 @@ class GetImagelist():
 			self.imagelist[self.slot] = {"imagename": _("Empty slot")}
 		if retval == 0 and self.phase == self.MOUNT:
 			if SystemInfo["HasRootSubdir"] and SystemInfo["canMultiBoot"][self.slot]["rootsubdir"] != None:
-				imagedir = ('%s/%s' %(Imageroot, SystemInfo["canMultiBoot"][self.slot]["rootsubdir"]))
+				imagedir = ('%s/%s' % (Imageroot, SystemInfo["canMultiBoot"][self.slot]["rootsubdir"]))
 			else:
 				imagedir = Imageroot
 			if path.isfile("%s/usr/bin/enigma2" % imagedir):
@@ -323,12 +335,12 @@ class EmptySlot():
 	def appClosed(self, data="", retval=0, extra_args=None):
 		if retval == 0 and self.phase == self.MOUNT:
 			if SystemInfo["HasRootSubdir"] and SystemInfo["canMultiBoot"][self.slot]["rootsubdir"] != None:
-				imagedir = ('%s/%s' %(Imageroot, SystemInfo["canMultiBoot"][self.slot]["rootsubdir"]))
+				imagedir = ('%s/%s' % (Imageroot, SystemInfo["canMultiBoot"][self.slot]["rootsubdir"]))
 			else:
 				imagedir = Imageroot
-			if path.isfile("%s/usr/bin/enigma2"%imagedir):
-				rename("%s/usr/bin/enigma2" %imagedir, "%s/usr/bin/enigmax.bin" %imagedir)
-				rename("%s/etc" %imagedir, "%s/etcx" %imagedir)
+			if path.isfile("%s/usr/bin/enigma2" % imagedir):
+				rename("%s/usr/bin/enigma2" % imagedir, "%s/usr/bin/enigmax.bin" % imagedir)
+				rename("%s/etc" % imagedir, "%s/etcx" % imagedir)
 			self.phase = self.UNMOUNT
 			self.run()
 		else:

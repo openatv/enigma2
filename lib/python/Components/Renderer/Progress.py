@@ -3,6 +3,7 @@ from Renderer import Renderer
 
 from enigma import eSlider
 
+
 class Progress(VariableValue, Renderer):
 	def __init__(self):
 		Renderer.__init__(self)
@@ -21,8 +22,8 @@ class Progress(VariableValue, Renderer):
 		value = self.source.value
 		if value is None:
 			value = 0
-		if range > 2**31-1:
-			range = 2**31-1
+		if range > 2**31 - 1:
+			range = 2**31 - 1
 		if value > range:
 			value = range
 		if value < 0:

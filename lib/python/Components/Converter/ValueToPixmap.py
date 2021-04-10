@@ -41,4 +41,3 @@ class ValueToPixmap(Converter, object):
 	def changed(self, what):
 		if what[0] != self.CHANGED_SPECIFIC or what[1] == self.type:
 			Converter.changed(self, what)
-

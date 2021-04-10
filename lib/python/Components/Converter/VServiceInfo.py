@@ -4,6 +4,7 @@ from Components.Converter.Converter import Converter
 from enigma import iServiceInformation, iPlayableService
 from Components.Element import cached
 
+
 class VServiceInfo(Converter, object):
 
 	AUDIOTRACKS_AVAILABLE = 1
@@ -16,7 +17,7 @@ class VServiceInfo(Converter, object):
 				"SubtitlesAvailable": (self.SUBTITLES_AVAILABLE, (iPlayableService.evUpdatedInfo,)),
 			}[type]
 
-	def getServiceInfoString(self, info, what, convert = lambda x: "%d" % x):
+	def getServiceInfoString(self, info, what, convert=lambda x: "%d" % x):
 		v = info.getInfo(what)
 		if v == -1:
 			return "N/A"
@@ -46,7 +47,7 @@ class VServiceInfo(Converter, object):
 			return False
 
 	boolean = property(getBoolean)
-	
+
 	@cached
 	def getText(self):
 		service = self.source.service
