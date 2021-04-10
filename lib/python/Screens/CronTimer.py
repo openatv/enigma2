@@ -129,7 +129,7 @@ class CronTimers(Screen):
 				name = ""
 		except:
 			name = ""
-		desc = _("Current Status:") + ' ' +self.summary_running
+		desc = _("Current Status:") + ' ' + self.summary_running
 		for cb in self.onChangedEntry:
 			cb(name, desc)
 
@@ -189,7 +189,7 @@ class CronTimers(Screen):
 			f = open('/etc/cron/crontabs/root', 'r')
 			for line in f.readlines():
 				parts = line.strip().split()
-				if len(parts)>5 and not parts[0].startswith("#"):
+				if len(parts) > 5 and not parts[0].startswith("#"):
 					if parts[1] == '*':
 						line2 = 'H: 00:' + parts[0].zfill(2) + '\t'
 						for i in range(5, len(parts)):

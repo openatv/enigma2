@@ -51,10 +51,10 @@ class pstrCnvrt(Converter, object):
 	text = property(getText)
 
 	def searchPoster(self):
-		url_json = 'https://api.themoviedb.org/3/search/%s?api_key=3c3efcf47c3577558812bb9d64019d65&query=%s'%(self.srch, quote(self.evnt))
+		url_json = 'https://api.themoviedb.org/3/search/%s?api_key=3c3efcf47c3577558812bb9d64019d65&query=%s' % (self.srch, quote(self.evnt))
 		jp = json.load(urllib2.urlopen(url_json))
 		imgP = (jp['results'][0]['poster_path'])
-		url_poster = 'https://image.tmdb.org/t/p/w185_and_h278_bestv2%s'%(imgP)
+		url_poster = 'https://image.tmdb.org/t/p/w185_and_h278_bestv2%s' % (imgP)
 		dwn_poster = '/tmp/poster/poster.jpg'
 
 		with open(dwn_poster,'wb') as f:
@@ -69,7 +69,7 @@ class pstrCnvrt(Converter, object):
 			seg = re.search(i, fd)
 			if seg:
 				if re.search('Episodio',i):
-					return 'S'+seg.group(2).zfill(2)+'E'+seg.group(1).zfill(2)
+					return 'S' + seg.group(2).zfill(2) + 'E' + seg.group(1).zfill(2)
 				else:
-					return 'S'+seg.group(1).zfill(2)+'E'+seg.group(2).zfill(2)
+					return 'S' + seg.group(1).zfill(2) + 'E' + seg.group(2).zfill(2)
 		return ''

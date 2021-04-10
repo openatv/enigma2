@@ -48,7 +48,7 @@ class PluginComponent:
 			for pluginname in os.listdir(directory_category):
 				path = os.path.join(directory_category, pluginname)
 				if os.path.isdir(path):
-						profile('plugin '+pluginname)
+						profile('plugin ' + pluginname)
 						try:
 							plugin = my_import('.'.join(["Plugins", c, pluginname, "plugin"]))
 							plugins = plugin.Plugins(path=path)

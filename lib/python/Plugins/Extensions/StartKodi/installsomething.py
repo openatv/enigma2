@@ -22,7 +22,7 @@ class InstallSomething():
 		self.session = session
 		self.cmdList = []
 		for item in url_to_download:
-			print "----INSTALL SOMETHING---item ",  item
+			print "----INSTALL SOMETHING---item ", item
 			self.cmdList.append((IpkgComponent.CMD_INSTALL, {"package": item}))
 
 # plain install, just finish and exit

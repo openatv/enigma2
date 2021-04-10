@@ -108,7 +108,7 @@ class StartKodi2(Screen):
 		sizeread = os.popen("df | grep %s | tr -s ' '" % 'root')
 		c = sizeread.read().strip().split(" ")
 		sizeread.close()
-		free = int(c[3])/1024
+		free = int(c[3]) / 1024
 		if (free > self.kodineeds):
 			self.caninstall = True
 		else:
@@ -128,7 +128,7 @@ class StartKodi2(Screen):
 		c = sizeread.read().strip().split(" ")
 		sizeread.close()
 		if os.path.exists("/media/uSDextra"): 
-			free = int(c[3])/1024
+			free = int(c[3]) / 1024
 		else:
 			free = "Not available" 
 		return free  
@@ -179,7 +179,7 @@ def menu(menuid, **kwargs):
 
 def Plugins(**kwargs):
 	return [
-	PluginDescriptor(name=_("Start Kodi"), description=_("Kodi media player"), 	where=PluginDescriptor.WHERE_PLUGINMENU, icon="kodi.png", needsRestart=False, fnc=main),
+	PluginDescriptor(name=_("Start Kodi"), description=_("Kodi media player"), where=PluginDescriptor.WHERE_PLUGINMENU, icon="kodi.png", needsRestart=False, fnc=main),
 	PluginDescriptor(name=_("Start Kodi"), description=_("Play back media files"), where=PluginDescriptor.WHERE_MENU, needsRestart=False, fnc=menu)
 ]
 #	PluginDescriptor(name = _("StartKodi"), description = _("Play back media files"), where = PluginDescriptor.WHERE_EXTENSIONSMENU, needsRestart = False, fnc = menu)

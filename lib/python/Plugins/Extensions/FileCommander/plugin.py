@@ -53,7 +53,7 @@ def _make_filter(media_type):
 	return "(?i)^.*\.(" + '|'.join(sorted((ext for ext, type in EXTENSIONS.iteritems() if type == media_type))) + ")$"
 
 def _make_rec_filter():
-	return "(?i)^.*\.(" + '|'.join(sorted(["ts"] + [ext == "eit" and ext or "ts." + ext  for ext in MOVIEEXTENSIONS.iterkeys()])) + ")$"
+	return "(?i)^.*\.(" + '|'.join(sorted(["ts"] + [ext == "eit" and ext or "ts." + ext for ext in MOVIEEXTENSIONS.iterkeys()])) + ")$"
 
 movie = _make_filter("movie")
 music = _make_filter("music")
@@ -106,8 +106,8 @@ config.plugins.filecommander.hashes = ConfigSet(key_actions.hashes.keys(), defau
 config.plugins.filecommander.bookmarks = ConfigLocations()
 config.plugins.filecommander.fake_entry = NoSave(ConfigNothing())
 
-tmpLeft = '%s,%s' %(config.plugins.filecommander.sortDirs.value, config.plugins.filecommander.sortFiles_left.value)
-tmpRight = '%s,%s' %(config.plugins.filecommander.sortDirs.value, config.plugins.filecommander.sortFiles_right.value)
+tmpLeft = '%s,%s' % (config.plugins.filecommander.sortDirs.value, config.plugins.filecommander.sortFiles_left.value)
+tmpRight = '%s,%s' % (config.plugins.filecommander.sortDirs.value, config.plugins.filecommander.sortFiles_right.value)
 config.plugins.filecommander.sortingLeft_tmp = NoSave(ConfigText(default=tmpLeft))
 config.plugins.filecommander.sortingRight_tmp = NoSave(ConfigText(default=tmpRight))
 config.plugins.filecommander.path_left_tmp = NoSave(ConfigText(default=config.plugins.filecommander.path_left.value))
@@ -137,7 +137,7 @@ def formatSortingTyp(sortDirs, sortFiles):
 	sF = ('n','d','s')[sortFiles]
 	rD = ('+','-')[reverseDirs] #normal, reverse
 	rF = ('+','-')[reverseFiles]
-	return '[D]%s%s[F]%s%s' %(sD,rD,sF,rF)
+	return '[D]%s%s[F]%s%s' % (sD,rD,sF,rF)
 
 ###################
 # ## Main Screen ###
@@ -318,7 +318,7 @@ class FileCommanderScreen(Screen, HelpableScreen, key_actions):
 			filtered = "(*)"
 
 		if self.jobs or self.jobs_old:
-			jobs = _("(1 job)") if (self.jobs+self.jobs_old) == 1 else _("(%d jobs)") % (self.jobs+self.jobs_old)
+			jobs = _("(1 job)") if (self.jobs + self.jobs_old) == 1 else _("(%d jobs)") % (self.jobs + self.jobs_old)
 		else:
 			jobs = ""
 		self.setTitle(pname + " " + filtered + " " + jobs)
@@ -420,12 +420,12 @@ class FileCommanderScreen(Screen, HelpableScreen, key_actions):
 		if dirname and dirname.endswith("/"):
 			menu += [("bullet", dirname in config.plugins.filecommander.bookmarks.value
 								and _("Remove selected folder from bookmarks")
-								or	_("Add selected folder to bookmarks"), "bookmark+selected")]
+								or _("Add selected folder to bookmarks"), "bookmark+selected")]
 		dirname = self.SOURCELIST.getCurrentDirectory()
 		if dirname:
 			menu += [("bullet", dirname in config.plugins.filecommander.bookmarks.value
 								and _("Remove current folder from bookmarks")
-								or	_("Add current folder to bookmarks"), "bookmark+current")]
+								or _("Add current folder to bookmarks"), "bookmark+current")]
 
 		self.session.openWithCallback(self.goContextCB, FileCommanderContextMenu, contexts, menu)
 
@@ -638,7 +638,7 @@ class FileCommanderScreen(Screen, HelpableScreen, key_actions):
 			sort += 1
 			if sort > 2:
 				sort = 0
-		return '%d.%d' %(sort, reverse)
+		return '%d.%d' % (sort, reverse)
 
 	def setReverse(self, list, setDirs=False):
 		sortDirs, sortFiles = list.getSortBy().split(',')
@@ -649,7 +649,7 @@ class FileCommanderScreen(Screen, HelpableScreen, key_actions):
 		reverse += 1
 		if reverse > 1:
 			reverse = 0
-		return '%d.%d' %(sort, reverse)
+		return '%d.%d' % (sort, reverse)
 
 # ## sorting files left ###
 	def goRedLong(self):
@@ -1279,11 +1279,11 @@ class FileCommanderScreenFileSelect(Screen, HelpableScreen, key_actions):
 		self.delete_files = []
 		self.delete_updateDirs = [self.SOURCELIST.getCurrentDirectory()]
 		for file in self.selectedFiles:
-			print 'delete: %s' %file
+			print 'delete: %s' % file
 			if not cnt:
-				filename += '%s' %file
+				filename += '%s' % file
 			elif cnt < 5:
-				filename += ', %s' %file
+				filename += ', %s' % file
 			elif cnt < 6:
 				filename += ', ...'
 			cnt += 1
@@ -1292,7 +1292,7 @@ class FileCommanderScreenFileSelect(Screen, HelpableScreen, key_actions):
 			else:
 				self.delete_files.append(file)
 		if cnt > 1:
-			deltext = _("Delete %d elements") %len(self.selectedFiles)
+			deltext = _("Delete %d elements") % len(self.selectedFiles)
 		else:
 			deltext = _("Delete 1 element")
 		self.session.openWithCallback(self.doDelete, ChoiceBox, title=deltext + "?\n%s\n%s\n%s" % (filename, _("from dir"), sourceDir), list=[(_("Yes"), True), (_("No"), False)])
@@ -1321,16 +1321,16 @@ class FileCommanderScreenFileSelect(Screen, HelpableScreen, key_actions):
 		self.move_jobs = []
 		for file in self.selectedFiles:
 			if not cnt:
-				filename += '%s' %file
+				filename += '%s' % file
 			elif cnt < 3:
-				filename += ', %s' %file
+				filename += ', %s' % file
 			elif cnt < 4:
 				filename += ', ...'
 			cnt += 1
 			if os.path.exists(targetDir + '/' + file.rstrip('/').split('/')[-1]):
 				warncnt += 1
 				if warncnt > 1:
-					warntxt = _(" - %d elements exist! Overwrite") %warncnt
+					warntxt = _(" - %d elements exist! Overwrite") % warncnt
 				else:
 					warntxt = _(" - 1 element exist! Overwrite")
 			dst_file = targetDir
@@ -1338,7 +1338,7 @@ class FileCommanderScreenFileSelect(Screen, HelpableScreen, key_actions):
 				targetDir = dst_file[:-1]
 			self.move_jobs.append(FileTransferJob(file, targetDir, False, False, "%s : %s" % (_("move file"), file)))
 		if cnt > 1:
-			movetext = (_("Move %d elements") %len(self.selectedFiles)) + warntxt
+			movetext = (_("Move %d elements") % len(self.selectedFiles)) + warntxt
 		else:
 			movetext = _("Move 1 element") + warntxt
 		self.session.openWithCallback(self.doMove, ChoiceBox, title=movetext + "?\n%s\n%s\n%s\n%s\n%s" % (filename, _("from dir"), sourceDir, _("to dir"), targetDir), list=[(_("Yes"), True), (_("No"), False)])
@@ -1364,16 +1364,16 @@ class FileCommanderScreenFileSelect(Screen, HelpableScreen, key_actions):
 		self.copy_jobs = []
 		for file in self.selectedFiles:
 			if not cnt:
-				filename += '%s' %file
+				filename += '%s' % file
 			elif cnt < 3:
-				filename += ', %s' %file
+				filename += ', %s' % file
 			elif cnt < 4:
 				filename += ', ...'
 			cnt += 1
 			if os.path.exists(targetDir + '/' + file.rstrip('/').split('/')[-1]):
 				warncnt += 1
 				if warncnt > 1:
-					warntxt = _(" - %d elements exist! Overwrite") %warncnt
+					warntxt = _(" - %d elements exist! Overwrite") % warncnt
 				else:
 					warntxt = _(" - 1 element exist! Overwrite")
 			dst_file = targetDir
@@ -1384,7 +1384,7 @@ class FileCommanderScreenFileSelect(Screen, HelpableScreen, key_actions):
 			else:
 				self.copy_jobs.append(FileTransferJob(file, targetDir, False, True, "%s : %s" % (_("copy file"), file)))
 		if cnt > 1:
-			copytext = (_("Copy %d elements") %len(self.selectedFiles)) + warntxt
+			copytext = (_("Copy %d elements") % len(self.selectedFiles)) + warntxt
 		else:
 			copytext = _("Copy 1 element") + warntxt
 		self.session.openWithCallback(self.doCopy, ChoiceBox, title=copytext + "?\n%s\n%s\n%s\n%s\n%s" % (filename, _("from dir"), sourceDir, _("to dir"), targetDir), list=[(_("Yes"), True), (_("No"), False)])
@@ -1615,7 +1615,7 @@ def exit(session, result):
 
 def Plugins(path, **kwargs):
 	desc_mainmenu = PluginDescriptor(name=pname, description=pdesc, where=PluginDescriptor.WHERE_MENU, fnc=start_from_mainmenu)
-	desc_pluginmenu = PluginDescriptor(name=pname, description=pdesc,  where=PluginDescriptor.WHERE_PLUGINMENU, icon="FileCommander.png", fnc=start_from_pluginmenu)
+	desc_pluginmenu = PluginDescriptor(name=pname, description=pdesc, where=PluginDescriptor.WHERE_PLUGINMENU, icon="FileCommander.png", fnc=start_from_pluginmenu)
 	desc_extensionmenu = PluginDescriptor(name=pname, description=pdesc, where=PluginDescriptor.WHERE_EXTENSIONSMENU, fnc=start_from_pluginmenu)
 	desc_filescan = PluginDescriptor(name=pname, where=PluginDescriptor.WHERE_FILESCAN, fnc=start_from_filescan)
 	list = []

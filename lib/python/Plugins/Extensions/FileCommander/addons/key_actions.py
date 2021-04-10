@@ -127,17 +127,17 @@ class task_postconditions(Condition):
 	def check(self, task):
 		global task_Stout, task_Sterr
 		message = ''
-		lines = config.plugins.filecommander.script_messagelen.value*-1
+		lines = config.plugins.filecommander.script_messagelen.value * -1
 		if task_Stout:
 			msg_out = '\n\n' + _("script 'stout':") + '\n' + '\n'.join(task_Stout[lines:])
 		if task_Sterr:
 			msg_err = '\n\n' + _("script 'sterr':") + '\n' + '\n'.join(task_Sterr[lines:])
 		if task.returncode != 0:
 			messageboxtyp = MessageBox.TYPE_ERROR
-			msg_msg = _("Run script") + _(" ('%s') ends with error number [%d].") %(task.name, task.returncode)
+			msg_msg = _("Run script") + _(" ('%s') ends with error number [%d].") % (task.name, task.returncode)
 		else:
 			messageboxtyp = MessageBox.TYPE_INFO
-			msg_msg = _("Run script") + _(" ('%s') ends with error messages.") %task.name
+			msg_msg = _("Run script") + _(" ('%s') ends with error messages.") % task.name
 		if task_Stout and (task.returncode != 0 or task_Sterr):
 			message += msg_msg + msg_out
 		if task_Sterr:
@@ -151,7 +151,7 @@ class task_postconditions(Condition):
 			msg_out = ''
 			if task_Stout:
 				msg_out = '\n\n' + '\n'.join(task_Stout[lines:])
-			message += _("Run script") + _(" ('%s') ends successfully.") %task.name + msg_out
+			message += _("Run script") + _(" ('%s') ends successfully.") % task.name + msg_out
 
 		task_Stout = []
 		task_Sterr = []
@@ -348,13 +348,13 @@ class key_actions(stat_info):
 		stxt = _('python')
 		if self.commando.endswith('.sh'):
 			stxt = _('shell')
-		askList = [(_("Cancel"), "NO"), (_("View or edit this %s script") %stxt, "VIEW"), (_("Run script"), "YES"), (_("Run script in background"), "YES_BG")]
+		askList = [(_("Cancel"), "NO"), (_("View or edit this %s script") % stxt, "VIEW"), (_("Run script"), "YES"), (_("Run script in background"), "YES_BG")]
 		if self.commando.endswith('.pyo'):
-			askList.remove((_("View or edit this %s script") %stxt, "VIEW"))
+			askList.remove((_("View or edit this %s script") % stxt, "VIEW"))
 		if self.parameter:
 			askList.append((_("Run script with optional parameter"), "PAR"))
 			askList.append((_("Run script with optional parameter in background"), "PAR_BG"))
-			filename += _('\noptional parameter:\n%s') %self.parameter
+			filename += _('\noptional parameter:\n%s') % self.parameter
 		self.session.openWithCallback(self.do_run_script, ChoiceBox, title=_("Do you want to view or run the script?\n") + filename, list=askList)
 
 	def do_run_script(self, answer):
@@ -366,26 +366,26 @@ class key_actions(stat_info):
 			nice = config.plugins.filecommander.script_priority_nice.value or ''
 			ionice = config.plugins.filecommander.script_priority_ionice.value or ''
 			if nice:
-				nice = 'nice -n %d ' %nice
+				nice = 'nice -n %d ' % nice
 			if ionice:
-				ionice = 'ionice -c %d ' %ionice
-			priority = '%s%s' %(nice,ionice)
+				ionice = 'ionice -c %d ' % ionice
+			priority = '%s%s' % (nice,ionice)
 			if self.commando.endswith('.sh'):
 				if os.access(self.commando, os.X_OK):
 					if 'PAR' in answer:
-						cmdline = "%s%s '%s'" %(priority, self.commando, self.parameter)
+						cmdline = "%s%s '%s'" % (priority, self.commando, self.parameter)
 					else:
-						cmdline = "%s%s" %(priority, self.commando)
+						cmdline = "%s%s" % (priority, self.commando)
 				else:
 					if 'PAR' in answer:
-						cmdline = "%s/bin/sh %s '%s'" %(priority, self.commando, self.parameter)
+						cmdline = "%s/bin/sh %s '%s'" % (priority, self.commando, self.parameter)
 					else:
-						cmdline = "%s/bin/sh %s" %(priority, self.commando)
+						cmdline = "%s/bin/sh %s" % (priority, self.commando)
 			else:
 				if 'PAR' in answer:
-					cmdline = "%s/usr/bin/python %s '%s'" %(priority, self.commando, self.parameter)
+					cmdline = "%s/usr/bin/python %s '%s'" % (priority, self.commando, self.parameter)
 				else:
-					cmdline = "%s/usr/bin/python %s" %(priority, self.commando)
+					cmdline = "%s/usr/bin/python %s" % (priority, self.commando)
 		elif answer == "VIEW":
 			try:
 				yfile = os.stat(self.commando)
@@ -401,10 +401,10 @@ class key_actions(stat_info):
 				task_Stout = []
 				task_Sterr = []
 				if 'PAR' in answer:
-					name = '%s%s %s' %(priority, self.commando, self.parameter)
+					name = '%s%s %s' % (priority, self.commando, self.parameter)
 				else:
-					name = '%s%s' %(priority, self.commando)
-				job = Job(_("Run script") + " ('%s')" %name)
+					name = '%s%s' % (priority, self.commando)
+				job = Job(_("Run script") + " ('%s')" % name)
 				task = Task(job, name)
 				task.postconditions.append(task_postconditions())
 				task.processStdout = task_processStdout
@@ -675,15 +675,15 @@ class key_actions(stat_info):
 			self.run_script(self.SOURCELIST, self.TARGETLIST)
 		elif filetype == ".mvi":
 			self.file_name = longname
-			self.tmp_file = '/tmp/grab_%s_mvi.png' %filename[:-4]
+			self.tmp_file = '/tmp/grab_%s_mvi.png' % filename[:-4]
 			choice = [(_("No"), "no"),
 					(_("Show as Picture (press any key to close)"), "show")]
 			savetext = ''
 			stat = os.statvfs('/tmp/')
 			if stat.f_bavail * stat.f_bsize > 1000000:
-				choice.append((_("Show as Picture and save as file ('%s')")%self.tmp_file, "save"))
+				choice.append((_("Show as Picture and save as file ('%s')") % self.tmp_file, "save"))
 				savetext = _(" or save additional the picture to a file")
-			self.session.openWithCallback(self.mviFileCB, MessageBox, _("Show '%s' as picture%s?\nThe current service must interrupted!") %(longname,savetext), simple=True, list=choice)
+			self.session.openWithCallback(self.mviFileCB, MessageBox, _("Show '%s' as picture%s?\nThe current service must interrupted!") % (longname,savetext), simple=True, list=choice)
 		elif filetype in TEXT_EXTENSIONS or config.plugins.filecommander.unknown_extension_as_text.value:
 			try:
 				xfile = os.stat(longname)
@@ -705,7 +705,7 @@ class key_actions(stat_info):
 		if ret and ret != 'no':
 			global last_service
 			last_service = self.session.nav.getCurrentlyPlayingServiceReference()
-			cmd = "/usr/bin/showiframe '%s'" %self.file_name
+			cmd = "/usr/bin/showiframe '%s'" % self.file_name
 			self.session.nav.stopService()
 			self.hide()
 		if ret == 'show':
@@ -714,7 +714,7 @@ class key_actions(stat_info):
 		elif ret == 'save':
 			if os.path.isfile(self.tmp_file):
 				os.remove(self.tmp_file)
-			cmd = [cmd, "/usr/bin/grab -v -p %s" %self.tmp_file]
+			cmd = [cmd, "/usr/bin/grab -v -p %s" % self.tmp_file]
 			console().eBatch(cmd, self.saveCB)
 			self.disableActions_Timer.startLongTimer(10)
 
@@ -733,7 +733,7 @@ class key_actions(stat_info):
 				filename = self.tmp_file.split('/')[-1]
 				self.session.open(ImageViewer, [((filename,''),'')],0, self.tmp_file.replace(filename,''), filename)
 			else:
-				self.session.open(MessageBox, _("File not found: %s") %self.tmp_file, type=MessageBox.TYPE_ERROR)
+				self.session.open(MessageBox, _("File not found: %s") % self.tmp_file, type=MessageBox.TYPE_ERROR)
 		else:
 			import NavigationInstance
 			if last_service and NavigationInstance.instance:

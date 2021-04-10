@@ -61,7 +61,7 @@ class ServiceScan:
 							h = _("W")
 						else:
 							h = _("E")
-						if ("%d.%d" % (orb_pos/10, orb_pos%10)) in sat_name:
+						if ("%d.%d" % (orb_pos / 10, orb_pos % 10)) in sat_name:
 							network = sat_name
 						else:
 							network = "%s %d.%d %s" % (sat_name, orb_pos / 10, orb_pos % 10, h)
@@ -71,10 +71,10 @@ class ServiceScan:
 								{tp.Modulation_Auto: "Auto", tp.Modulation_QPSK: "QPSK",
 									tp.Modulation_8PSK: "8PSK", tp.Modulation_QAM16: "QAM16",
 									tp.Modulation_16APSK: "16APSK", tp.Modulation_32APSK: "32APSK"}.get(tp.modulation, ""))
-						tp_text = "%s %d%c / %d / %s" % (tp_text, tp.frequency/1000,
+						tp_text = "%s %d%c / %d / %s" % (tp_text, tp.frequency / 1000,
 							{tp.Polarisation_Horizontal: 'H', tp.Polarisation_Vertical: 'V', tp.Polarisation_CircularLeft: 'L',
 								tp.Polarisation_CircularRight: 'R'}.get(tp.polarisation, ' '),
-							tp.symbol_rate/1000,
+							tp.symbol_rate / 1000,
 							{tp.FEC_Auto: "AUTO", tp.FEC_1_2: "1/2", tp.FEC_2_3: "2/3",
 								tp.FEC_3_4: "3/4", tp.FEC_3_5: "3/5", tp.FEC_4_5: "4/5",
 								tp.FEC_5_6: "5/6", tp.FEC_6_7: "6/7", tp.FEC_7_8: "7/8",
@@ -89,12 +89,12 @@ class ServiceScan:
 					elif tp_type == iDVBFrontend.feCable:
 						network = _("Cable")
 						tp = transponder.getDVBC()
-						tp_text = "DVB-C %s %d / %d / %s" %({tp.Modulation_Auto: "AUTO",
+						tp_text = "DVB-C %s %d / %d / %s" % ({tp.Modulation_Auto: "AUTO",
 							tp.Modulation_QAM16: "QAM16", tp.Modulation_QAM32: "QAM32",
 							tp.Modulation_QAM64: "QAM64", tp.Modulation_QAM128: "QAM128",
 							tp.Modulation_QAM256: "QAM256"}.get(tp.modulation, ""),
 							tp.frequency,
-							tp.symbol_rate/1000,
+							tp.symbol_rate / 1000,
 							{tp.FEC_Auto: "AUTO", tp.FEC_1_2: "1/2", tp.FEC_2_3: "2/3",
 								tp.FEC_3_4: "3/4", tp.FEC_3_5: "3/5", tp.FEC_4_5: "4/5",
 								tp.FEC_5_6: "5/6", tp.FEC_6_7: "6/7", tp.FEC_7_8: "7/8",
@@ -105,8 +105,8 @@ class ServiceScan:
 						channel = channelnumbers.getChannelNumber(tp.frequency, self.scanList[self.run]["feid"])
 						if channel:
 							channel = _("CH") + "%s " % channel
-						freqMHz = "%0.1f MHz" % (tp.frequency/1000000.)
-						tp_text = "%s %s %s %s" %(
+						freqMHz = "%0.1f MHz" % (tp.frequency / 1000000.)
+						tp_text = "%s %s %s %s" % (
 							{
 								tp.System_DVB_T_T2: "DVB-T/T2",
 								tp.System_DVB_T: "DVB-T",
@@ -126,7 +126,7 @@ class ServiceScan:
 					elif tp_type == iDVBFrontend.feATSC:
 						network = _("ATSC")
 						tp = transponder.getATSC()
-						freqMHz = "%0.1f MHz" % (tp.frequency/1000000.)
+						freqMHz = "%0.1f MHz" % (tp.frequency / 1000000.)
 						tp_text = ("%s %s %s %s") % (
 							{
 								tp.System_ATSC: _("ATSC"),

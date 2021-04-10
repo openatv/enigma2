@@ -34,7 +34,7 @@ class Job(object):
 			return self.end
 		t = self.tasks[self.current_task]
 		jobprogress = t.weighting * t.progress / float(t.end) + sum([task.weighting for task in self.tasks[:self.current_task]])
-		return int(jobprogress*self.weightScale)
+		return int(jobprogress * self.weightScale)
 
 	progress = property(getProgress)
 
@@ -211,8 +211,8 @@ class Task(object):
 			i = self.output_line.find('\n')
 			if i == -1:
 				break
-			self.processOutputLine(self.output_line[:i+1])
-			self.output_line = self.output_line[i+1:]
+			self.processOutputLine(self.output_line[:i + 1])
+			self.output_line = self.output_line[i + 1:]
 
 	def processOutputLine(self, line):
 		print "[Task %s]" % self.name, line[:-1]
@@ -482,7 +482,7 @@ class ToolExistsPrecondition(Condition):
 
 	def check(self, task):
 		import os
-		if task.cmd[0]=='/':
+		if task.cmd[0] == '/':
 			self.realpath = task.cmd
 			print "[Task.py][ToolExistsPrecondition] WARNING: usage of absolute paths for tasks should be avoided!"
 			return os.access(self.realpath, os.X_OK)

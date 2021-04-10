@@ -221,7 +221,7 @@ class InfoBarDish:
 
 class InfoBarLongKeyDetection:
 	def __init__(self):
-		eActionMap.getInstance().bindAction('', -maxint -1, self.detection) #highest prio
+		eActionMap.getInstance().bindAction('', -maxint - 1, self.detection) #highest prio
 		self.LongButtonPressed = False
 
 	#this function is called on every keypress!
@@ -240,18 +240,18 @@ class InfoBarUnhandledKey:
 		self.checkUnusedTimer = eTimer()
 		self.checkUnusedTimer.callback.append(self.checkUnused)
 		self.onLayoutFinish.append(self.unhandledKeyDialog.hide)
-		eActionMap.getInstance().bindAction('', -maxint -1, self.actionA) #highest prio
+		eActionMap.getInstance().bindAction('', -maxint - 1, self.actionA) #highest prio
 		eActionMap.getInstance().bindAction('', maxint, self.actionB) #lowest prio
-		self.flags = (1<<1)
+		self.flags = (1 << 1)
 		self.uflags = 0
 
 	#this function is called on every keypress!
 	def actionA(self, key, flag):
 		try:
-			print 'KEY: %s %s %s %s' % (key,flag,(key_name for key_name,value in KEYIDS.items() if value==key).next(),getKeyDescription(key)[0])
+			print 'KEY: %s %s %s %s' % (key,flag,(key_name for key_name,value in KEYIDS.items() if value == key).next(),getKeyDescription(key)[0])
 		except:
 			try:
-				print 'KEY: %s %s %s' % (key,flag,(key_name for key_name,value in KEYIDS.items() if value==key).next()) # inverse dictionary lookup in KEYIDS
+				print 'KEY: %s %s %s' % (key,flag,(key_name for key_name,value in KEYIDS.items() if value == key).next()) # inverse dictionary lookup in KEYIDS
 			except:
 				print 'KEY: %s %s' % (key,flag)
 		self.unhandledKeyDialog.hide()
@@ -260,9 +260,9 @@ class InfoBarUnhandledKey:
 			self.secondInfoBarWasShown = False
 
 		if flag != 4:
-			if self.flags & (1<<1):
+			if self.flags & (1 << 1):
 				self.flags = self.uflags = 0
-			self.flags |= (1<<flag)
+			self.flags |= (1 << flag)
 			if flag == 1: # break
 				self.checkUnusedTimer.start(0, True)
 		return 0
@@ -276,7 +276,7 @@ class InfoBarUnhandledKey:
 	#this function is only called when no other action has handled this key
 	def actionB(self, key, flag):
 		if flag != 4:
-			self.uflags |= (1<<flag)
+			self.uflags |= (1 << flag)
 
 	def checkUnused(self):
 		if self.flags == self.uflags:
@@ -519,7 +519,7 @@ class SecondInfoBar(Screen):
 		self.finishedAdd(answer)
 
 	def setService(self, service):
-		self.currentService=service
+		self.currentService = service
 		if self.isRecording:
 			self["channel"].setText(_("Recording"))
 		else:
@@ -687,7 +687,7 @@ class InfoBarShowHide(InfoBarScreenSaver):
 
 	def doDimming(self):
 		if config.usage.show_infobar_do_dimming.value:
-			self.dimmed = self.dimmed-1
+			self.dimmed = self.dimmed - 1
 		else:
 			self.dimmed = 0
 		self.DimmingTimer.stop()
@@ -699,7 +699,7 @@ class InfoBarShowHide(InfoBarScreenSaver):
 
 	def doWriteAlpha(self, value):
 		if fileExists("/proc/stb/video/alpha"):
-			f=open("/proc/stb/video/alpha","w")
+			f = open("/proc/stb/video/alpha","w")
 			f.write("%i" % (value))
 			f.close()
 			if value == config.av.osd_alpha.value:
@@ -769,12 +769,12 @@ class InfoBarShowHide(InfoBarScreenSaver):
 			self.hideTimer.stop()
 			idx = config.usage.infobar_timeout.index
 			if idx:
-				self.hideTimer.start(idx*1000, True)
+				self.hideTimer.start(idx * 1000, True)
 		elif (self.secondInfoBarScreen and self.secondInfoBarScreen.shown) or ((not config.usage.show_second_infobar.value or isMoviePlayerInfoBar(self)) and self.EventViewIsShown):
 			self.hideTimer.stop()
 			idx = config.usage.second_infobar_timeout.index
 			if idx:
-				self.hideTimer.start(idx*1000, True)
+				self.hideTimer.start(idx * 1000, True)
 		elif hasattr(self, "pvrStateDialog"):
 			self.hideTimer.stop()
 			#idx = config.usage.infobar_timeout.index
@@ -798,14 +798,14 @@ class InfoBarShowHide(InfoBarScreenSaver):
 	def doHide(self):
 		if self.__state != self.STATE_HIDDEN:
 			if self.dimmed > 0:
-				self.doWriteAlpha((config.av.osd_alpha.value*self.dimmed/config.usage.show_infobar_dimming_speed.value))
+				self.doWriteAlpha((config.av.osd_alpha.value * self.dimmed / config.usage.show_infobar_dimming_speed.value))
 				self.DimmingTimer.start(5, True)
 			else:
 				self.DimmingTimer.stop()
 				self.hide()
 		elif self.__state == self.STATE_HIDDEN and self.secondInfoBarScreen and self.secondInfoBarScreen.shown:
 			if self.dimmed > 0:
-				self.doWriteAlpha((config.av.osd_alpha.value*self.dimmed/config.usage.show_infobar_dimming_speed.value))
+				self.doWriteAlpha((config.av.osd_alpha.value * self.dimmed / config.usage.show_infobar_dimming_speed.value))
 				self.DimmingTimer.start(5, True)
 			else:
 				self.DimmingTimer.stop()
@@ -899,7 +899,7 @@ class InfoBarShowHide(InfoBarScreenSaver):
 			self.__locked -= 1
 		except:
 			self.__locked = 0
-		if self.__locked  <0:
+		if self.__locked < 0:
 			self.__locked = 0
 		if self.execing:
 			self.startHideTimer()
@@ -951,9 +951,9 @@ class InfoBarShowHide(InfoBarScreenSaver):
 		if self.eventView and closedScreen == self.eventView:
 			self.eventView = None
 		if ret == True or ret == 'close':
-			dlgs=len(self.dlg_stack)
+			dlgs = len(self.dlg_stack)
 			if dlgs > 0:
-				self.dlg_stack[dlgs-1].close(dlgs > 1)
+				self.dlg_stack[dlgs - 1].close(dlgs > 1)
 		self.reopen(ret)
 
 	def eventViewCallback(self, setEvent, setService, val): #used for now/next displaying
@@ -1197,7 +1197,7 @@ class InfoBarNumberZap:
 	def keyNumberGlobal(self, number):
 		if self.pvrStateDialog.has_key("PTSSeekPointer") and self.timeshiftEnabled() and self.isSeekable():
 			InfoBarTimeshiftState._mayShow(self)
-			self.pvrStateDialog["PTSSeekPointer"].setPosition((self.pvrStateDialog["PTSSeekBack"].instance.size().width()-4)/2, self.pvrStateDialog["PTSSeekPointer"].position[1])
+			self.pvrStateDialog["PTSSeekPointer"].setPosition((self.pvrStateDialog["PTSSeekBack"].instance.size().width() - 4) / 2, self.pvrStateDialog["PTSSeekPointer"].position[1])
 			if self.seekstate != self.SEEK_STATE_PLAY:
 				self.setSeekState(self.SEEK_STATE_PLAY)
 			self.ptsSeekPointerOK()
@@ -1240,7 +1240,7 @@ class InfoBarNumberZap:
 					bqrootstr = '1:7:1:0:0:0:0:0:0:0:FROM BOUQUET "bouquets.tv" ORDER BY bouquet'
 				else:
 					self.service_types = service_types_tv
-					bqrootstr = '%s FROM BOUQUET "userbouquet.favourites.tv" ORDER BY bouquet'% self.service_types
+					bqrootstr = '%s FROM BOUQUET "userbouquet.favourites.tv" ORDER BY bouquet' % self.service_types
 				serviceHandler = eServiceCenter.getInstance()
 				rootbouquet = eServiceReference(bqrootstr)
 				bouquet = eServiceReference(bqrootstr)
@@ -1301,7 +1301,7 @@ class InfoBarNumberZap:
 					if bouquet.flags & eServiceReference.isDirectory:
 						service = self.searchNumberHelper(serviceHandler, number, bouquet)
 						if service:
-							playable = not (service.flags & (eServiceReference.isMarker|eServiceReference.isDirectory)) or (service.flags & eServiceReference.isNumberedMarker)
+							playable = not (service.flags & (eServiceReference.isMarker | eServiceReference.isDirectory)) or (service.flags & eServiceReference.isNumberedMarker)
 							if not playable:
 								service = None
 							break
@@ -1654,7 +1654,7 @@ class InfoBarMenu:
 		ASPECT_MSG = {"auto":"Auto", "16:9":"16:9", "4:3":"4:3"}
 		if config.av.aspect.value in ASPECT:
 			index = ASPECT.index(config.av.aspect.value)
-			config.av.aspect.value = ASPECT[(index+1)%3]
+			config.av.aspect.value = ASPECT[(index + 1) % 3]
 		else:
 			config.av.aspect.value = "auto"
 		config.av.aspect.save()
@@ -1766,7 +1766,7 @@ class SimpleServicelist:
 	def nextService(self):
 		if not self.length:
 			return
-		if self.current+1 < self.length:
+		if self.current + 1 < self.length:
 			self.current += 1
 		else:
 			self.current = 0
@@ -1774,7 +1774,7 @@ class SimpleServicelist:
 	def prevService(self):
 		if not self.length:
 			return
-		if self.current-1 > -1:
+		if self.current - 1 > -1:
 			self.current -= 1
 		else:
 			self.current = self.length - 1
@@ -1806,7 +1806,7 @@ class InfoBarEPG:
 				"IPressed": (self.IPressed, _("show program information...")),
 				"InfoPressed": (self.InfoPressed, _("show program information...")),
 				"showEventInfoPlugin": (self.showEventInfoPlugins, _("List EPG functions...")),
-				"EPGPressed":  (self.showDefaultEPG, _("show EPG...")),
+				"EPGPressed": (self.showDefaultEPG, _("show EPG...")),
 				"showEventGuidePlugin": (self.showEventGuidePlugins, _("List EPG functions...")),
 				"showInfobarOrEpgWhenInfobarAlreadyVisible": self.showEventInfoWhenNotVisible,
 			})
@@ -1824,7 +1824,7 @@ class InfoBarEPG:
 
 	def getDefaultEPGtype(self):
 		pluginlist = self.getEPGPluginList()
-		config.usage.defaultEPGType=ConfigSelection(default="None", choices=pluginlist)
+		config.usage.defaultEPGType = ConfigSelection(default="None", choices=pluginlist)
 		for plugin in pluginlist:
 			if plugin[0] == config.usage.defaultEPGType.value:
 				return plugin[1]
@@ -1853,7 +1853,7 @@ class InfoBarEPG:
 
 	def getDefaultGuidetype(self):
 		pluginlist = self.getEPGPluginList()
-		config.usage.defaultGuideType=ConfigSelection(default="None", choices=pluginlist)
+		config.usage.defaultGuideType = ConfigSelection(default="None", choices=pluginlist)
 		for plugin in pluginlist:
 			if plugin[0] == config.usage.defaultGuideType.value:
 				return plugin[1]
@@ -1993,9 +1993,9 @@ class InfoBarEPG:
 		elif self.eventView and closedScreen == self.eventView:
 			self.eventView = None
 		if ret == True or ret == 'close':
-			dlgs=len(self.dlg_stack)
+			dlgs = len(self.dlg_stack)
 			if dlgs > 0:
-				self.dlg_stack[dlgs-1].close(dlgs > 1)
+				self.dlg_stack[dlgs - 1].close(dlgs > 1)
 		self.reopen(ret)
 
 	def MultiServiceEPG(self):
@@ -2205,8 +2205,8 @@ class InfoBarEPG:
 		epglist = self.epglist
 		if len(epglist) > 1:
 			tmp = epglist[0]
-			epglist[0]=epglist[1]
-			epglist[1]=tmp
+			epglist[0] = epglist[1]
+			epglist[1] = tmp
 			setEvent(epglist[0])
 
 class InfoBarRdsDecoder:
@@ -2298,7 +2298,7 @@ class Seekbar(Screen):
 				self["cursor"].moveTo(x, 15, 1)
 			self["cursor"].startMoving()
 			pts = int(float(self.length[1]) / 100.0 * self.percent)
-			self["time"].setText("%d:%02d" % ((pts/60/90000), ((pts/90000)%60)))
+			self["time"].setText("%d:%02d" % ((pts / 60 / 90000), ((pts / 90000) % 60)))
 
 	def exit(self):
 		self.cursorTimer.stop()
@@ -2357,7 +2357,7 @@ class InfoBarSeek:
 					key = int(action[8:])
 					time = (-config.seek.selfdefined_13.value, False, config.seek.selfdefined_13.value,
 						-config.seek.selfdefined_46.value, False, config.seek.selfdefined_46.value,
-						-config.seek.selfdefined_79.value, False, config.seek.selfdefined_79.value)[key-1]
+						-config.seek.selfdefined_79.value, False, config.seek.selfdefined_79.value)[key - 1]
 					self.screen.doSeekRelative(time * 90000)
 					return 1
 				else:
@@ -2673,7 +2673,7 @@ class InfoBarSeek:
 		if seekable and config.seek.withjumps_avoid_zero.getValue():
 			position = seekable.getPlayPosition()
 			if jump_last_pos and jump_last_pts:
-				if (abs(position[1] - jump_last_pos[1]) < 100*90) and (pts == jump_last_pts): # stalled?
+				if (abs(position[1] - jump_last_pos[1]) < 100 * 90) and (pts == jump_last_pts): # stalled?
 					jump_pts_adder += pts
 					jump_last_pts = pts
 					pts += jump_pts_adder
@@ -2715,7 +2715,7 @@ class InfoBarSeek:
 				self.setSeekState(self.SEEK_STATE_PAUSE)
 			else:
 				self.setSeekState(self.SEEK_STATE_PLAY)
-		seekable.seekRelative(pts<0 and -1 or 1, abs(pts))
+		seekable.seekRelative(pts < 0 and -1 or 1, abs(pts))
 		if (abs(pts) > 100 or not config.usage.show_infobar_locked_on_pause.value) and config.usage.show_infobar_on_skip.value:
 			self.showAfterSeek()
 
@@ -2937,7 +2937,7 @@ class InfoBarSeek:
 			if not len[0] and not pos[0]:
 				if len[1] <= pos[1]:
 					return 0
-				time = (len[1] - pos[1])*speedden/(90*speednom)
+				time = (len[1] - pos[1]) * speedden / (90 * speednom)
 				return time
 		return False
 
@@ -3484,7 +3484,7 @@ class InfoBarJobman:
 			return []
 
 	def getJobName(self, job):
-		return "%s: %s (%d%%)" % (job.getStatustext(), job.name, int(100*job.progress/float(job.end)))
+		return "%s: %s (%d%%)" % (job.getStatustext(), job.name, int(100 * job.progress / float(job.end)))
 
 	def showJobView(self, job):
 		from Screens.TaskView import JobView
@@ -3733,9 +3733,9 @@ class InfoBarINFOpanel:
 
 	def doRedKeyTask(self):
 		try:
-			if config.plugins.infopanel_redpanel.selection.value =='0':
+			if config.plugins.infopanel_redpanel.selection.value == '0':
 				self.instantRecord()
-			elif config.plugins.infopanel_redpanel.selection.value =='1':
+			elif config.plugins.infopanel_redpanel.selection.value == '1':
 				from Plugins.Extensions.Infopanel.plugin import Infopanel
 				self.session.open(Infopanel, services=self.servicelist)
 			elif config.plugins.infopanel_redpanel.selection.value == '2':
@@ -3752,9 +3752,9 @@ class InfoBarINFOpanel:
 		
 	def softcamPanel(self):
 		try:
-			if config.plugins.infopanel_redpanel.selectionLong.value =='0':
+			if config.plugins.infopanel_redpanel.selectionLong.value == '0':
 				self.instantRecord()
-			elif config.plugins.infopanel_redpanel.selectionLong.value =='1':
+			elif config.plugins.infopanel_redpanel.selectionLong.value == '1':
 				from Plugins.Extensions.Infopanel.plugin import Infopanel
 				self.session.open(Infopanel, services=self.servicelist)
 			elif config.plugins.infopanel_redpanel.selectionLong.value == '2':
@@ -3850,7 +3850,7 @@ class InfoBarInstantRecord:
 			pass
 
 		info["event"] = event
-		info["name"]  = name
+		info["name"] = name
 		info["description"] = ""
 		info["eventid"] = None
 
@@ -3956,9 +3956,9 @@ class InfoBarInstantRecord:
 				return
 			self.startInstantRecording(limitEvent=answer[1] in ("event", "manualendtime") or False)
 			if answer[1] == "manualduration":
-				self.changeDuration(len(self.recording)-1)
+				self.changeDuration(len(self.recording) - 1)
 			elif answer[1] == "manualendtime":
-				self.setEndtime(len(self.recording)-1)
+				self.setEndtime(len(self.recording) - 1)
 		elif answer[1] == "savetimeshift":
 			# print 'test1'
 			if self.isSeekable() and self.pts_eventcount != self.pts_currplaying:
@@ -3983,7 +3983,7 @@ class InfoBarInstantRecord:
 	def setEndtime(self, entry):
 		if entry is not None and entry >= 0:
 			self.selectedEntry = entry
-			self.endtime=ConfigClock(default=self.recording[self.selectedEntry].end)
+			self.endtime = ConfigClock(default=self.recording[self.selectedEntry].end)
 			dlg = self.session.openWithCallback(self.TimeDateInputClosed, TimeDateInput, self.endtime)
 			dlg.setTitle(_("Please change recording endtime"))
 
@@ -4055,14 +4055,14 @@ class InfoBarInstantRecord:
 			timeshiftcommon = ()
 
 		if self.isInstantRecordRunning():
-			title =_("A recording is currently running.\nWhat do you want to do?")
+			title = _("A recording is currently running.\nWhat do you want to do?")
 			list = ((_("Stop recording"), "stop"),) + common + \
 				((_("Change recording (duration)"), "changeduration"),
 				(_("Change recording (endtime)"), "changeendtime"),)
 			if self.isTimerRecordRunning():
 				list += ((_("Stop timer recording"), "timer"),)
 		else:
-			title=_("Start recording?")
+			title = _("Start recording?")
 			list = common
 
 			if self.isTimerRecordRunning():
@@ -4406,10 +4406,10 @@ class InfoBarAspectSelection:
 
 	def aspectSelection(self):
 		selection = 0
-		tlist= [(_("Resolution"), "resolution"),("--", ""),(_("4_3_letterbox"), "0"), (_("4_3_panscan"), "1"), (_("16_9"), "2"), (_("16_9_always"), "3"), (_("16_10_letterbox"), "4"), (_("16_10_panscan"), "5"), (_("16_9_letterbox"), "6")]
+		tlist = [(_("Resolution"), "resolution"),("--", ""),(_("4_3_letterbox"), "0"), (_("4_3_panscan"), "1"), (_("16_9"), "2"), (_("16_9_always"), "3"), (_("16_10_letterbox"), "4"), (_("16_10_panscan"), "5"), (_("16_9_letterbox"), "6")]
 		for x in range(len(tlist)):
 			selection = x
-		keys = ["green", "",  "0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]
+		keys = ["green", "", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]
 		self.session.openWithCallback(self.aspectSelected, ChoiceBox, title=_("Please select an aspect ratio..."), list=tlist, selection=selection, keys=keys)
 
 	def aspectSelected(self, aspect):
@@ -4454,7 +4454,7 @@ class InfoBarResolutionSelection:
 		yres = int(yresString, 16)
 		fps = int(fpsString)
 		fpsFloat = float(fps)
-		fpsFloat = fpsFloat/1000
+		fpsFloat = fpsFloat / 1000
 
 		# do we need a new sorting with this way here?
 		# or should we disable some choices?
@@ -4673,11 +4673,11 @@ class InfoBarCueSheetSupport:
 			length = seekable.getLength() or (None,0)
 #			print "seekable.getLength() returns:", length
 			# Hmm, this implies we don't resume if the length is unknown...
-			if (last > 900000) and (not length[1]  or (last < length[1] - 900000)):
+			if (last > 900000) and (not length[1] or (last < length[1] - 900000)):
 				self.resume_point = last
 				l = last / 90000
 				if "ask" in config.usage.on_movie_start.value or not length[1]:
-					Notifications.AddNotificationWithCallback(self.playLastCB, MessageBox, _("Do you want to resume this playback?") + "\n" + (_("Resume position at %s") % ("%d:%02d:%02d" % (l/3600, l%3600/60, l%60))), timeout=30, default="yes" in config.usage.on_movie_start.value)
+					Notifications.AddNotificationWithCallback(self.playLastCB, MessageBox, _("Do you want to resume this playback?") + "\n" + (_("Resume position at %s") % ("%d:%02d:%02d" % (l / 3600, l % 3600 / 60, l % 60))), timeout=30, default="yes" in config.usage.on_movie_start.value)
 				elif config.usage.on_movie_start.value == "resume":
 					Notifications.AddNotificationWithCallback(self.playLastCB, MessageBox, _("Resuming playback"), timeout=2, type=MessageBox.TYPE_INFO)
 
@@ -4733,10 +4733,10 @@ class InfoBarCueSheetSupport:
 	def jumpPreviousMark(self):
 		# we add 5 seconds, so if the play position is <5s after
 		# the mark, the mark before will be used
-		self.jumpPreviousNextMark(lambda x: -x-5*90000, start=True)
+		self.jumpPreviousNextMark(lambda x: -x - 5 * 90000, start=True)
 
 	def jumpNextMark(self):
-		if not self.jumpPreviousNextMark(lambda x: x-90000):
+		if not self.jumpPreviousNextMark(lambda x: x - 90000):
 			self.doSeek(-1)
 
 	def getNearestCutPoint(self, pts, cmp=abs, start=False):
@@ -4771,7 +4771,7 @@ class InfoBarCueSheetSupport:
 					bestdiff = diff
 		return nearest
 
-	def toggleMark(self, onlyremove=False, onlyadd=False, tolerance=5*90000, onlyreturn=False):
+	def toggleMark(self, onlyremove=False, onlyadd=False, tolerance=5 * 90000, onlyreturn=False):
 		current_pos = self.cueGetCurrentPosition()
 		if current_pos is None:
 #			print "not seekable"
@@ -4950,7 +4950,7 @@ class InfoBarSubtitleSupport(object):
 		service = self.session.nav.getCurrentService()
 		subtitle = service and service.subtitle()
 		subtitlelist = subtitle and subtitle.getSubtitleList()
-		if self.selected_subtitle or subtitlelist and len(subtitlelist)>0:
+		if self.selected_subtitle or subtitlelist and len(subtitlelist) > 0:
 			from Screens.AudioSelection import SubtitleSelection
 			self.session.open(SubtitleSelection, self)
 		else:
@@ -5055,8 +5055,8 @@ class InfoBarServiceErrorPopupSupport:
 
 class InfoBarZoom:
 	def __init__(self):
-		self.zoomrate=0
-		self.zoomin=1
+		self.zoomrate = 0
+		self.zoomin = 1
 
 		self["ZoomActions"] = HelpableActionMap(self, "InfobarZoomActions",
 			{
@@ -5065,7 +5065,7 @@ class InfoBarZoom:
 			}, prio=2)
 
 	def ZoomInOut(self):
-		zoomval=0
+		zoomval = 0
 		if self.zoomrate > 3:
 			self.zoomin = 0
 		elif self.zoomrate < -9:
@@ -5077,9 +5077,9 @@ class InfoBarZoom:
 			self.zoomrate -= 1
 
 		if self.zoomrate < 0:
-			zoomval=abs(self.zoomrate)+10
+			zoomval = abs(self.zoomrate) + 10
 		else:
-			zoomval=self.zoomrate
+			zoomval = self.zoomrate
 		# print "zoomRate:", self.zoomrate
 		# print "zoomval:", zoomval
 		file = open("/proc/stb/vmpeg/0/zoomrate", "w")
@@ -5150,21 +5150,21 @@ class InfoBarHdmi:
 
 	def HDMIInPiP(self):
 		if getMachineBuild() in ('dm7080', 'dm820', 'dm900', 'dm920'):
-			f=open("/proc/stb/hdmi-rx/0/hdmi_rx_monitor","r")
-			check=f.read()
+			f = open("/proc/stb/hdmi-rx/0/hdmi_rx_monitor","r")
+			check = f.read()
 			f.close()
 			if check.startswith("off"):
-				f=open("/proc/stb/audio/hdmi_rx_monitor","w")
+				f = open("/proc/stb/audio/hdmi_rx_monitor","w")
 				f.write("on")
 				f.close()
-				f=open("/proc/stb/hdmi-rx/0/hdmi_rx_monitor","w")
+				f = open("/proc/stb/hdmi-rx/0/hdmi_rx_monitor","w")
 				f.write("on")
 				f.close()
 			else:
-				f=open("/proc/stb/audio/hdmi_rx_monitor","w")
+				f = open("/proc/stb/audio/hdmi_rx_monitor","w")
 				f.write("off")
 				f.close()
-				f=open("/proc/stb/hdmi-rx/0/hdmi_rx_monitor","w")
+				f = open("/proc/stb/hdmi-rx/0/hdmi_rx_monitor","w")
 				f.write("off")
 				f.close()
 		else:
@@ -5188,45 +5188,45 @@ class InfoBarHdmi:
 
 	def HDMIInFull(self):
 		if getMachineBuild() in ('dm7080', 'dm820', 'dm900', 'dm920'):
-			f=open("/proc/stb/hdmi-rx/0/hdmi_rx_monitor","r")
-			check=f.read()
+			f = open("/proc/stb/hdmi-rx/0/hdmi_rx_monitor","r")
+			check = f.read()
 			f.close()
 			if check.startswith("off"):
-				f=open("/proc/stb/video/videomode","r")
-				self.oldvideomode=f.read()
+				f = open("/proc/stb/video/videomode","r")
+				self.oldvideomode = f.read()
 				f.close()
-				f=open("/proc/stb/video/videomode_50hz","r")
-				self.oldvideomode_50hz=f.read()
+				f = open("/proc/stb/video/videomode_50hz","r")
+				self.oldvideomode_50hz = f.read()
 				f.close()
-				f=open("/proc/stb/video/videomode_60hz","r")
-				self.oldvideomode_60hz=f.read()
+				f = open("/proc/stb/video/videomode_60hz","r")
+				self.oldvideomode_60hz = f.read()
 				f.close()
-				f=open("/proc/stb/video/videomode","w")
+				f = open("/proc/stb/video/videomode","w")
 				if getMachineBuild() in ('dm900', 'dm920'):
 					f.write("1080p")
 				else:
 					f.write("720p")
 				f.close()
-				f=open("/proc/stb/audio/hdmi_rx_monitor","w")
+				f = open("/proc/stb/audio/hdmi_rx_monitor","w")
 				f.write("on")
 				f.close()
-				f=open("/proc/stb/hdmi-rx/0/hdmi_rx_monitor","w")
+				f = open("/proc/stb/hdmi-rx/0/hdmi_rx_monitor","w")
 				f.write("on")
 				f.close()
 			else:
-				f=open("/proc/stb/audio/hdmi_rx_monitor","w")
+				f = open("/proc/stb/audio/hdmi_rx_monitor","w")
 				f.write("off")
 				f.close()
-				f=open("/proc/stb/hdmi-rx/0/hdmi_rx_monitor","w")
+				f = open("/proc/stb/hdmi-rx/0/hdmi_rx_monitor","w")
 				f.write("off")
 				f.close()
-				f=open("/proc/stb/video/videomode","w")
+				f = open("/proc/stb/video/videomode","w")
 				f.write(self.oldvideomode)
 				f.close()
-				f=open("/proc/stb/video/videomode_50hz","w")
+				f = open("/proc/stb/video/videomode_50hz","w")
 				f.write(self.oldvideomode_50hz)
 				f.close()
-				f=open("/proc/stb/video/videomode_60hz","w")
+				f = open("/proc/stb/video/videomode_60hz","w")
 				f.write(self.oldvideomode_60hz)
 				f.close()
 		else:
@@ -5359,16 +5359,16 @@ class InfoBarHandleBsod:
 		if config.crash.bsodpython.value and self.lastBsod < bsodcnt:
 			maxbs = int(config.crash.bsodmax.value) or 100
 			writelog = bsodcnt == 1 or not bsodcnt > int(config.crash.bsodhide.value) or bsodcnt >= maxbs
-			txt = _("Your Receiver has a Software problem detected. Since the last reboot it has occurred %d times.\n") %bsodcnt
-			txt += _("(Attention: There will be a restart after %d crashes.)") %maxbs
+			txt = _("Your Receiver has a Software problem detected. Since the last reboot it has occurred %d times.\n") % bsodcnt
+			txt += _("(Attention: There will be a restart after %d crashes.)") % maxbs
 			if writelog:
-				txt += "\n" + "-"*80 + "\n"
-				txt += _("A crashlog was %s created in '%s'") %((_('not'),'')[int(writelog)], config.crash.debug_path.value)
+				txt += "\n" + "-" * 80 + "\n"
+				txt += _("A crashlog was %s created in '%s'") % ((_('not'),'')[int(writelog)], config.crash.debug_path.value)
 			#if not writelog:
 			#	txt += "\n" + "-"*80 + "\n"
 			#	txt += _("(It is set that '%s' crash logs are displayed and written.\nInfo: It will always write the first, last but one and lastest crash log.)") % str(int(config.crash.bsodhide.value) or _('never'))
 			if bsodcnt >= maxbs:
-				txt += "\n" + "-"*80 + "\n"
+				txt += "\n" + "-" * 80 + "\n"
 				txt += _("Warning: This is the last crash before an automatic restart is performed.\n")
 				txt += _("Should the crash counter be reset to prevent a restart?")
 				self.lastestBsodWarning = True

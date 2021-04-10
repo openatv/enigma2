@@ -347,7 +347,7 @@ class VideoEnhancementPreview(Screen, ConfigListScreen):
 	def selectionChanged(self):
 		self["introduction"].setText(_("Current value: ") + self.getCurrentValue())
 		try:
-			max_avail=self["config"].getCurrent()[1].max
+			max_avail = self["config"].getCurrent()[1].max
 			if max_avail == 255:
 				self.isStepSlider = True
 			else:

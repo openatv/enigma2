@@ -21,7 +21,7 @@ def DownloadSetting(url):
             list.append((date, name, prelink + link))
 
     except:
-        print"ERROR DownloadSetting %s" %(url)
+        print"ERROR DownloadSetting %s" % (url)
 
     return list
 

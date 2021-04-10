@@ -133,7 +133,7 @@ class TimerEntry(Screen, ConfigListScreen):
 
 		self.timerentry_justplay = ConfigSelection(choices=[
 			("zap", _("zap")), ("record", _("record")), ("zap+record", _("zap and record"))],
-			default={0: "record", 1: "zap", 2: "zap+record"}[justplay + 2*always_zap])
+			default={0: "record", 1: "zap", 2: "zap+record"}[justplay + 2 * always_zap])
 		self.timertyp = self.timerentry_justplay.value
 
 		if SystemInfo["DeepstandbySupport"]:
@@ -210,8 +210,8 @@ class TimerEntry(Screen, ConfigListScreen):
 		try:
 			if self.timerentry_justplay.value != "zap":
 				stat = statvfs(self.timerentry_dirname.value)
-				a = float(stat.f_blocks) * stat.f_bsize / 1024 / 1024 /1024
-				b = float(stat.f_bavail) * stat.f_bsize / 1024 / 1024 /1024
+				a = float(stat.f_blocks) * stat.f_bsize / 1024 / 1024 / 1024
+				b = float(stat.f_bavail) * stat.f_bsize / 1024 / 1024 / 1024
 				c = 100.0 * b / a
 				free = ("%0.f GB (%0.f %s) " + _("free diskspace")) % (b,c,"%")
 				description = _("Current location")
@@ -465,7 +465,7 @@ class TimerEntry(Screen, ConfigListScreen):
 
 		if self.timerentry_endtime.value == self.timerentry_starttime.value and self.timerentry_afterevent.value != "nothing":
 			self.timerentry_afterevent.value = "nothing"
-			self.session.open(MessageBox, _("Difference between timer begin and end must be equal or greater than %d minutes.\nEnd Action was disabled !") %1, MessageBox.TYPE_INFO, timeout=30)
+			self.session.open(MessageBox, _("Difference between timer begin and end must be equal or greater than %d minutes.\nEnd Action was disabled !") % 1, MessageBox.TYPE_INFO, timeout=30)
 
 			
 		self.timer.resetRepeated()

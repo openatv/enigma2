@@ -118,13 +118,13 @@ def getBqRootStr(ref):
 		if config.usage.multibouquet.value:
 			bqrootstr = '1:7:1:0:0:0:0:0:0:0:FROM BOUQUET "bouquets.radio" ORDER BY bouquet'
 		else:
-			bqrootstr = '%s FROM BOUQUET "userbouquet.favourites.radio" ORDER BY bouquet'% service_types
+			bqrootstr = '%s FROM BOUQUET "userbouquet.favourites.radio" ORDER BY bouquet' % service_types
 	else:
 		service_types = service_types_tv
 		if config.usage.multibouquet.value:
 			bqrootstr = '1:7:1:0:0:0:0:0:0:0:FROM BOUQUET "bouquets.tv" ORDER BY bouquet'
 		else:
-			bqrootstr = '%s FROM BOUQUET "userbouquet.favourites.tv" ORDER BY bouquet'% service_types
+			bqrootstr = '%s FROM BOUQUET "userbouquet.favourites.tv" ORDER BY bouquet' % service_types
 
 	return bqrootstr
 
@@ -242,7 +242,7 @@ class RecordTimerEntry(timer.TimerEntry, object):
 
 	def stop_MountTest(self, thread, cmd):
 		if thread and thread.isAlive():
-			print 'timeout thread : %s' %cmd
+			print 'timeout thread : %s' % cmd
 			thread._Thread__stop()
 
 		if cmd == 'writeable':
@@ -274,7 +274,7 @@ class RecordTimerEntry(timer.TimerEntry, object):
 
 		self.MountPathErrorNumber = 0
 		for cmd in ('writeable', 'freespace'):
-			print 'starting thread :%s' %cmd
+			print 'starting thread :%s' % cmd
 			p = threading.Thread(target=self.MountTest, args=(dirname, cmd))
 			t = threading.Timer(3, self.stop_MountTest, args=(p, cmd))
 			t.start()
@@ -282,9 +282,9 @@ class RecordTimerEntry(timer.TimerEntry, object):
 			p.join()
 			t.cancel()
 			if self.MountPathErrorNumber:
-				print 'break - error number: %d' %self.MountPathErrorNumber
+				print 'break - error number: %d' % self.MountPathErrorNumber
 				break
-			print 'finished thread :%s' %cmd
+			print 'finished thread :%s' % cmd
 
 		if WRITEERROR:
 			if self.MountPathErrorNumber == 2:
@@ -384,7 +384,7 @@ class RecordTimerEntry(timer.TimerEntry, object):
 			description = self.description
 			if self.repeated:
 				epgcache = eEPGCache.getInstance()
-				queryTime=self.begin+(self.end-self.begin)/2
+				queryTime = self.begin + (self.end - self.begin) / 2
 				evt = epgcache.lookupEventTime(rec_ref, queryTime)
 				if evt:
 					if self.rename_repeat:
@@ -408,7 +408,7 @@ class RecordTimerEntry(timer.TimerEntry, object):
 				if event_id is None:
 					event_id = -1
 
-			prep_res=self.record_service.prepare(self.Filename + self.record_service.getFilenameExtension(), self.begin, self.end, event_id, name.replace("\n", " "), description.replace("\n", " "), ' '.join(self.tags), bool(self.descramble), bool(self.record_ecm))
+			prep_res = self.record_service.prepare(self.Filename + self.record_service.getFilenameExtension(), self.begin, self.end, event_id, name.replace("\n", " "), description.replace("\n", " "), ' '.join(self.tags), bool(self.descramble), bool(self.record_ecm))
 			if prep_res:
 				if prep_res == -255:
 					self.log(4, "failed to write meta information")
@@ -469,7 +469,7 @@ class RecordTimerEntry(timer.TimerEntry, object):
 					self.start_prepare = time() + 5 # tryPrepare in 5 seconds
 					self.log(0, "next try in 5 seconds ...(%d/3)" % self.MountPathRetryCounter)
 					return False
-				message = _("Write error at start of recording. %s\n%s") % ((_("Disk was not found!"), _("Disk is not writable!"), _("Disk full?"))[self.MountPathErrorNumber-1],self.name)
+				message = _("Write error at start of recording. %s\n%s") % ((_("Disk was not found!"), _("Disk is not writable!"), _("Disk full?"))[self.MountPathErrorNumber - 1],self.name)
 				messageboxtyp = MessageBox.TYPE_ERROR
 				timeout = 20
 				id = "DiskFullMessage"
@@ -757,7 +757,7 @@ class RecordTimerEntry(timer.TimerEntry, object):
 		elif next_state == self.StateEnded or next_state == self.StateFailed:
 			old_end = self.end
 			if self.setAutoincreaseEnd():
-				self.log(12, "autoincrease recording %d minute(s)" % int((self.end - old_end)/60))
+				self.log(12, "autoincrease recording %d minute(s)" % int((self.end - old_end) / 60))
 				self.state -= 1
 				return True
 			if self.justplay:
@@ -839,9 +839,9 @@ class RecordTimerEntry(timer.TimerEntry, object):
 		if not self.autoincrease:
 			return False
 		if entry is None:
-			new_end =  int(time()) + self.autoincreasetime
+			new_end = int(time()) + self.autoincreasetime
 		else:
-			new_end = entry.begin -30
+			new_end = entry.begin - 30
 
 		dummyentry = RecordTimerEntry(self.service_ref, self.begin, new_end, self.name, self.description, self.eit,
 		disabled=True, justplay=self.justplay, afterEvent=self.afterEvent,
@@ -896,17 +896,17 @@ class RecordTimerEntry(timer.TimerEntry, object):
 				self.isStillRecording = True
 				next_day = 0
 				count_day = 0
-				wd_timer = datetime.fromtimestamp(self.begin).isoweekday()*-1
-				wd_repeated = bin(128+int(self.repeated))
+				wd_timer = datetime.fromtimestamp(self.begin).isoweekday() * -1
+				wd_repeated = bin(128 + int(self.repeated))
 
-				for s in range(wd_timer-1,-8,-1):
-					count_day +=1
+				for s in range(wd_timer - 1,-8,-1):
+					count_day += 1
 					if int(wd_repeated[s]):
 						next_day = s
 						break
 				if next_day == 0:
-					for s in range(-1,wd_timer-1,-1):
-						count_day +=1
+					for s in range(-1,wd_timer - 1,-1):
+						count_day += 1
 						if int(wd_repeated[s]):
 							next_day = s
 							break
@@ -1059,14 +1059,14 @@ class RecordTimerEntry(timer.TimerEntry, object):
 				InfoBar.instance.servicelist.radioTV = 1
 			InfoBar.instance.servicelist.clearPath()
 			rootbouquet = eServiceReference('1:7:1:0:0:0:0:0:0:0:FROM BOUQUET "bouquets.radio" ORDER BY bouquet')
-			bouquet = eServiceReference('%s ORDER BY name'% service_types_radio)
+			bouquet = eServiceReference('%s ORDER BY name' % service_types_radio)
 		else:
 			if InfoBar.instance.servicelist.mode != 0:
 				InfoBar.instance.servicelist.setModeTV()
 				InfoBar.instance.servicelist.radioTV = 0
 			InfoBar.instance.servicelist.clearPath()
 			rootbouquet = eServiceReference('1:7:1:0:0:0:0:0:0:0:FROM BOUQUET "bouquets.tv" ORDER BY bouquet')
-			bouquet = eServiceReference('%s ORDER BY name'% service_types_tv)
+			bouquet = eServiceReference('%s ORDER BY name' % service_types_tv)
 		if InfoBar.instance.servicelist.bouquet_root != rootbouquet:
 			InfoBar.instance.servicelist.bouquet_root = rootbouquet
 		InfoBar.instance.servicelist.enterPath(bouquet)
@@ -1107,7 +1107,7 @@ class RecordTimerEntry(timer.TimerEntry, object):
 			# show notification. the 'id' will make sure that it will be
 			# displayed only once, even if more timers are failing at the
 			# same time. (which is very likely in case of disk fullness)
-			Notifications.AddPopup(text=_("Write error while recording. %s") %(_("An unknown error occurred!"), _("Disk was not found!"), _("Disk is not writable!"), _("Disk full?"))[err], type=MessageBox.TYPE_ERROR, timeout=0, id="DiskFullMessage")
+			Notifications.AddPopup(text=_("Write error while recording. %s") % (_("An unknown error occurred!"), _("Disk was not found!"), _("Disk is not writable!"), _("Disk full?"))[err], type=MessageBox.TYPE_ERROR, timeout=0, id="DiskFullMessage")
 			# ok, the recording has been stopped. we need to properly note
 			# that in our state, with also keeping the possibility to re-try.
 			# TODO: this has to be done.
@@ -1416,7 +1416,7 @@ class RecordTimer(timer.Timer):
 	def getNextRecordingTime(self, getNextStbPowerOn=False):
 		#getNextStbPowerOn = True returns tuple -> (timer.begin, set standby)
 		nextrectime = self.getNextRecordingTimeOld(getNextStbPowerOn)
-		faketime = time()+300
+		faketime = time() + 300
 
 		if getNextStbPowerOn:
 			if config.timeshift.isRecording.value:

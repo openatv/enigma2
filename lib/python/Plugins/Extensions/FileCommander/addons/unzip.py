@@ -48,4 +48,4 @@ class UnpackInfoScreen(ArchiverInfoScreen):
 		self.pversion = pversion
 
 		font = skin.fonts.get("FileList", ("Console", 20, 30))
-		self.chooseMenuList.l.setFont(0, gFont('Console', int(font[1]*0.85)))
+		self.chooseMenuList.l.setFont(0, gFont('Console', int(font[1] * 0.85)))

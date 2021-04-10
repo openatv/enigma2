@@ -23,9 +23,9 @@ from os import system, path as os_path
 from Components.ServiceEventTracker import ServiceEventTracker, InfoBarBase
 global ListChange
 ListChange = None
-config.Volume  = ConfigSubsection()
+config.Volume = ConfigSubsection()
 config.Volume.Enabled = ConfigYesNo(default=False)
-config.Volume.AC3_vol  = ConfigInteger(default=10, limits=(0, 99))
+config.Volume.AC3_vol = ConfigInteger(default=10, limits=(0, 99))
 
 
 class Volume_adjust(Screen):
@@ -50,7 +50,7 @@ class Volume_adjust(Screen):
 		self.skin = Volume_adjust.skin
 		Screen.__init__(self, session)
 		# Path of the config file
-		self.filename="/etc/volume.xml"
+		self.filename = "/etc/volume.xml"
 		global offset
 		offset = 0
 		self["key_red"] = StaticText(_("delete"))
@@ -72,7 +72,7 @@ class Volume_adjust(Screen):
 			}, -1)
 
 		self.servicelist = []
-		self.read_volume=[]
+		self.read_volume = []
 		serviceList = ConfigList(self.servicelist)
 		serviceList.list = self.servicelist
 		serviceList.l.setList(self.servicelist)
@@ -134,11 +134,11 @@ class Volume_adjust(Screen):
 	def finishedChannelSelection(self, *args):
 		# update screen
 		if len(args):
-			ref=args[0]
+			ref = args[0]
 			service_ref = ServiceReference(ref)
 			service_name = service_ref.getServiceName()
-			if find_in_list(self.servicelist, service_name, 0)==False:
-				split_ref=service_ref.ref.toString().split(":")
+			if find_in_list(self.servicelist, service_name, 0) == False:
+				split_ref = service_ref.ref.toString().split(":")
 				if split_ref[0] == "1":
 					t = len(self.servicelist)
 					k = len(self.read_volume)
@@ -155,11 +155,11 @@ class Volume_adjust(Screen):
 		# change volume offset after new entry
 		global offset
 		t = len(self.servicelist)
-		tmp = self.servicelist[t-1]
+		tmp = self.servicelist[t - 1]
 		tmp0 = tmp[0][0:-3].strip()
-		self.read_volume[t-1] = str(offset)
+		self.read_volume[t - 1] = str(offset)
 		service_name = tmp0 + self.Tabs(tmp0) + str(offset)
-		self.servicelist[t-1] = ((service_name, ConfigNothing(), 0, tmp[3]))
+		self.servicelist[t - 1] = ((service_name, ConfigNothing(), 0, tmp[3]))
 		self["ServiceList"].l.setList(self.servicelist)
 
 	def Change_vol_now(self, *args):
@@ -178,7 +178,7 @@ class Volume_adjust(Screen):
 		k = 0
 		for let in name:
 			if ord(let) > 1 and ord(let) < 128:
-				k+=1
+				k += 1
 		print '[Volume Adjust] length service name = ' + str(k)
 		if k > 28:
 			return '\t'
@@ -197,18 +197,18 @@ class Volume_adjust(Screen):
 			fp.write("<adjustlist>\n")
 			fp.write("\t<channels>\n")
 			fp.write("\t\t<id>%s</id>\n" % 'services')
-			t=0
+			t = 0
 			for item in self.servicelist:
 				if len(self.servicelist):
 					# remove the volume offset from service name
 					tmp = item[0]
 					tmp = tmp[0:-3].strip()
 					# write line in the XML file
-					if item[2]==1:
+					if item[2] == 1:
 						fp.write("\t\t<provider name=\"%s\" dvbnamespace=\"%s\" volume=\"%s\" />\n" % (tmp, item[3], self.read_volume[t]))
 					else:
-						fp.write("\t\t<service name=\"%s\" ref=\"%s\" volume=\"%s\" />\n"  % (tmp, item[3], self.read_volume[t]))
-					t+=1
+						fp.write("\t\t<service name=\"%s\" ref=\"%s\" volume=\"%s\" />\n" % (tmp, item[3], self.read_volume[t]))
+					t += 1
 			fp.write("\t</channels>\n")
 			fp.write("</adjustlist>\n")
 			fp.close()
@@ -220,12 +220,12 @@ class Volume_adjust(Screen):
 		print "[Volume Adjust] load xml..."
 		if not os_path.exists(self.filename):
 			return
-		self.read_services=[]
-		self.read_volume=[]
+		self.read_services = []
+		self.read_volume = []
 		try:
 			tree = ci_parse(self.filename).getroot()
 			for channels in tree.findall("channels"):
-				for service in  channels.findall("service"):
+				for service in channels.findall("service"):
 					read_service_name = service.get("name").encode("UTF-8")
 					read_service_ref = service.get("ref").encode("UTF-8")
 					read_service_volume = service.get("volume").encode("UTF-8")
@@ -279,12 +279,12 @@ class Change_volume(ConfigListScreen, Screen):
 
 	def greenPressed(self):
 		global offset
-		offset  = self.offset.value
+		offset = self.offset.value
 		self.close()
 
 	def yellowPressed(self):
 		global offset
-		offset  = self.offset.value * -1
+		offset = self.offset.value * -1
 		self.offset.setValue(str(offset))
 		self["config"].list = self.Clist
 		self["config"].l.setList(self.Clist)
@@ -357,7 +357,7 @@ def find_in_list(list, search, listpos=0):
 	for item in list:
 		tmp = item[listpos]
 		tmp0 = tmp[0:-3].strip()
-		if tmp0==search:
+		if tmp0 == search:
 			return True
 	return False
 
@@ -428,8 +428,8 @@ class Volume:
 		self.session = session
 		self.service = None
 		self.onClose = []
-		self.read_services=[]
-		self.read_volume=[]
+		self.read_services = []
+		self.read_volume = []
 		self.__event_tracker = ServiceEventTracker(screen=self,eventmap={
 				iPlayableService.evUpdatedInfo: self.__evUpdatedInfo,
 			})
@@ -437,7 +437,7 @@ class Volume:
 		self.volchange = None
 		self.oldvol = 0
 		self.oldservice = ""
-		self.filen="/etc/volume.xml"
+		self.filen = "/etc/volume.xml"
 		self.startonce = True
 
 	def loadXML(self):
@@ -445,12 +445,12 @@ class Volume:
 		print "[Volume Adjust] load xml..."
 		if not os_path.exists(self.filen):
 			return
-		self.read_services=[]
-		self.read_volume=[]
+		self.read_services = []
+		self.read_volume = []
 		try:
 			tree = ci_parse(self.filen).getroot()
 			for channels in tree.findall("channels"):
-				for service in  channels.findall("service"):
+				for service in channels.findall("service"):
 					read_service_name = service.get("name").encode("UTF-8")
 					read_service_ref = service.get("ref").encode("UTF-8")
 					read_service_volume = service.get("volume").encode("UTF-8")
@@ -501,7 +501,7 @@ class Volume:
 						print '[Volume Adjust] Found adjust volume channel'
 						found = True
 						break
-					tel +=1
+					tel += 1
 				# if channel found in list, search volume offset and change the volume
 				if found:
 					voloffset = self.read_volume[tel]

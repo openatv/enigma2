@@ -62,7 +62,7 @@ class ServicePosition(PerServiceDisplay, object):
 				elif self.type == self.TYPE_REMAINING:
 					l = self.get(self.TYPE_LENGTH) - self.get(self.TYPE_POSITION)
 
-				self.setText("%d:%02d" % (l/60, l%60))
+				self.setText("%d:%02d" % (l / 60, l % 60))
 			else:
 				l = self.get(self.TYPE_POSITION)
 				if l != -1:

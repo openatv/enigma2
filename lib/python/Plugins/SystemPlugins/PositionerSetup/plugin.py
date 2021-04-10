@@ -207,7 +207,7 @@ class PositionerSetup(Screen):
 				self.frontend = None
 				del self.raw_channel
 		else:
-			self.oldref=None
+			self.oldref = None
 		self.close(None)
 
 	def keyCancel(self):
@@ -702,7 +702,7 @@ class PositionerSetup(Screen):
 		self.lock_count = 0.0
 		self.stat_count = 0
 		self.low_rate_adapter_count = 0
-		self.max_count = max(int((time * 1000 + self.UPDATE_INTERVAL / 2)/ self.UPDATE_INTERVAL), 1)
+		self.max_count = max(int((time * 1000 + self.UPDATE_INTERVAL / 2) / self.UPDATE_INTERVAL), 1)
 		self.collectingStatistics = True
 		self.dataAvailable.clear()
 		self.dataAvailable.wait()

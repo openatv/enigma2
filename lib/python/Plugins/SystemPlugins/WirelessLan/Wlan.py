@@ -61,7 +61,7 @@ class Wlan:
 		if self.oldInterfaceState is False:
 			if iNetwork.getAdapterAttribute(self.iface, "up") is False:
 				iNetwork.setAdapterAttribute(self.iface, "up", True)
-				system("ifconfig "+self.iface+" up")
+				system("ifconfig " + self.iface + " up")
 				driver = iNetwork.detectWlanModule(self.iface)
 				if driver in ('brcm-wl', ):
 					system("wl up")
@@ -87,7 +87,7 @@ class Wlan:
 				else:
 					encryption = None
 
-				signal = str(result.quality.siglevel-0x100) + " dBm"
+				signal = str(result.quality.siglevel - 0x100) + " dBm"
 				quality = "%s/%s" % (result.quality.quality,ifobj.getQualityMax().quality)
 
 				extra = []
@@ -96,9 +96,9 @@ class Wlan:
 					extra.append(strip(self.asciify(element)))
 				for element in extra:
 					if 'SignalStrength' in element:
-						signal = element[element.index('SignalStrength')+15:element.index(',L')]
+						signal = element[element.index('SignalStrength') + 15:element.index(',L')]
 					if 'LinkQuality' in element:
-						quality = element[element.index('LinkQuality')+12:len(element)]
+						quality = element[element.index('LinkQuality') + 12:len(element)]
 
 				channel = "Unknown"
 				try:
@@ -127,7 +127,7 @@ class Wlan:
 		if self.oldInterfaceState is not None:
 			if self.oldInterfaceState is False:
 				iNetwork.setAdapterAttribute(self.iface, "up", False)
-				system("ifconfig "+self.iface+" down")
+				system("ifconfig " + self.iface + " down")
 				driver = iNetwork.detectWlanModule(self.iface)
 				if driver in ('brcm-wl', ):
 					system("wl down")
@@ -149,7 +149,7 @@ class brcmWLConfig:
 		
 		fp = file(getWlanConfigName(iface), 'wb')
 		
-		fp.write('ssid='+essid+'\n')
+		fp.write('ssid=' + essid + '\n')
 		if encryption in ('WPA', 'WPA2', 'WPA/WPA2', 'WEP'):
 			if encryption == "WPA/WPA2":
 				encryption = "WPA2"
@@ -205,10 +205,10 @@ class wpaSupplicant:
 
 	def writeBcmWifiConfig(self, iface, essid, encryption, psk):
 		contents = ""
-		contents += "ssid="+essid+"\n"
-		contents += "method="+encryption+"\n"
-		contents += "key="+psk+"\n"
-		print "content = \n"+contents
+		contents += "ssid=" + essid + "\n"
+		contents += "method=" + encryption + "\n"
+		contents += "key=" + psk + "\n"
+		print "content = \n" + contents
 
 		fd = open(getWlConfName(iface), "w")
 		fd.write(contents)
@@ -272,7 +272,7 @@ class wpaSupplicant:
 		fp.write('fast_reauth=1\n')
 		fp.write('ap_scan=1\n')
 		fp.write('network={\n')
-		fp.write('\tssid="'+essid+'"\n')
+		fp.write('\tssid="' + essid + '"\n')
 		if hiddenessid:
 			fp.write('\tscan_ssid=1\n')
 		else:
@@ -291,13 +291,13 @@ class wpaSupplicant:
 				fp.write('\tproto=WPA RSN\n')
 				fp.write('\tpairwise=CCMP TKIP\n')
 				fp.write('\tgroup=CCMP TKIP\n')
-			fp.write('\tpsk="'+psk+'"\n')
+			fp.write('\tpsk="' + psk + '"\n')
 		elif encryption == 'WEP':
 			fp.write('\tkey_mgmt=NONE\n')
 			if wepkeytype == 'ASCII':
-				fp.write('\twep_key0="'+psk+'"\n')
+				fp.write('\twep_key0="' + psk + '"\n')
 			else:
-				fp.write('\twep_key0='+psk+'\n')
+				fp.write('\twep_key0=' + psk + '\n')
 		else:
 			fp.write('\tkey_mgmt=NONE\n')
 		fp.write('}')
@@ -418,64 +418,64 @@ class Status:
 					ssid = "off"
 				else:
 					if "Nickname" in line:
-						ssid=(line[line.index('ESSID')+7:line.index('"  Nickname')])
+						ssid = (line[line.index('ESSID') + 7:line.index('"  Nickname')])
 					else:
-						ssid=(line[line.index('ESSID')+7:len(line)-1])
+						ssid = (line[line.index('ESSID') + 7:len(line) - 1])
 				if ssid is not None:
 					data['essid'] = ssid
 			if "Frequency" in line:
-				frequency = line[line.index('Frequency')+10:line.index(' GHz')]
+				frequency = line[line.index('Frequency') + 10:line.index(' GHz')]
 				if frequency is not None:
 					data['frequency'] = frequency
 			if "Access Point" in line:
 				if "Sensitivity" in line:
-					ap=line[line.index('Access Point')+14:line.index('   Sensitivity')]
+					ap = line[line.index('Access Point') + 14:line.index('   Sensitivity')]
 				else:
-					ap=line[line.index('Access Point')+14:len(line)]
+					ap = line[line.index('Access Point') + 14:len(line)]
 				if ap is not None:
 					data['accesspoint'] = ap
 			if "Bit Rate" in line:
 				if "kb" in line:
-					br = line[line.index('Bit Rate')+9:line.index(' kb/s')]
+					br = line[line.index('Bit Rate') + 9:line.index(' kb/s')]
 				elif "Gb" in line:
-					br = line[line.index('Bit Rate')+9:line.index(' Gb/s')]
+					br = line[line.index('Bit Rate') + 9:line.index(' Gb/s')]
 				else:
-					br = line[line.index('Bit Rate')+9:line.index(' Mb/s')]
+					br = line[line.index('Bit Rate') + 9:line.index(' Mb/s')]
 				if br is not None:
 					data['bitrate'] = br
 			if "Encryption key" in line:
 				if ":off" in line:
 					enc = "off"
 				elif "Security" in line:
-					enc = line[line.index('Encryption key')+15:line.index('   Security')]
+					enc = line[line.index('Encryption key') + 15:line.index('   Security')]
 					if enc is not None:
 						enc = "on"
 				else:
-					enc = line[line.index('Encryption key')+15:len(line)]
+					enc = line[line.index('Encryption key') + 15:len(line)]
 					if enc is not None:
 						enc = "on"
 				if enc is not None:
 					data['encryption'] = enc
 			if 'Quality' in line:
 				if "/100" in line:
-					qual = line[line.index('Quality')+8:line.index('  Signal')]
+					qual = line[line.index('Quality') + 8:line.index('  Signal')]
 				else:
-					qual = line[line.index('Quality')+8:line.index('Sig')]
+					qual = line[line.index('Quality') + 8:line.index('Sig')]
 				if qual is not None:
 					data['quality'] = qual
 			if 'Signal level' in line:
 				if "dBm" in line:
-					signal = line[line.index('Signal level')+13:line.index(' dBm')] + " dBm"
+					signal = line[line.index('Signal level') + 13:line.index(' dBm')] + " dBm"
 				elif "/100" in line:
 					if "Noise" in line:
-						signal = line[line.index('Signal level')+13:line.index('  Noise')]
+						signal = line[line.index('Signal level') + 13:line.index('  Noise')]
 					else:
-						signal = line[line.index('Signal level')+13:len(line)]
+						signal = line[line.index('Signal level') + 13:len(line)]
 				else:
 					if "Noise" in line:
-						signal = line[line.index('Signal level')+13:line.index('  Noise')]
+						signal = line[line.index('Signal level') + 13:line.index('  Noise')]
 					else:
-						signal = line[line.index('Signal level')+13:len(line)]
+						signal = line[line.index('Signal level') + 13:len(line)]
 				if signal is not None:
 					data['signal'] = signal
 

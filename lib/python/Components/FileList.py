@@ -188,9 +188,9 @@ class FileList(MenuList):
 
 		if directory is not None and self.showDirectories and not self.isTop:
 			if directory == self.current_mountpoint and self.showMountpoints:
-				self.list.append(FileEntryComponent(name="<" +_("List of storage devices") + ">", absolute=None, isDir=True))
+				self.list.append(FileEntryComponent(name="<" + _("List of storage devices") + ">", absolute=None, isDir=True))
 			elif (directory != "/") and not (self.inhibitMounts and self.getMountpoint(directory) in self.inhibitMounts):
-				self.list.append(FileEntryComponent(name="<" +_("Parent directory") + ">", absolute='/'.join(directory.split('/')[:-2]) + '/', isDir=True))
+				self.list.append(FileEntryComponent(name="<" + _("Parent directory") + ">", absolute='/'.join(directory.split('/')[:-2]) + '/', isDir=True))
 
 		if self.showDirectories:
 			for x in directories:
@@ -299,12 +299,12 @@ def MultiFileSelectEntryComponent(name, absolute=None, isDir=False, selected=Fal
 
 
 class MultiFileSelectList(FileList):
-	def __init__(self, preselectedFiles, directory, showMountpoints=False, matchingPattern=None, showDirectories=True, showFiles=True,  useServiceRef=False, inhibitDirs=False, inhibitMounts=False, isTop=False, enableWrapAround=False, additionalExtensions=None):
+	def __init__(self, preselectedFiles, directory, showMountpoints=False, matchingPattern=None, showDirectories=True, showFiles=True, useServiceRef=False, inhibitDirs=False, inhibitMounts=False, isTop=False, enableWrapAround=False, additionalExtensions=None):
 		if preselectedFiles is None:
 			self.selectedFiles = []
 		else:
 			self.selectedFiles = preselectedFiles
-		FileList.__init__(self, directory, showMountpoints=showMountpoints, matchingPattern=matchingPattern, showDirectories=showDirectories, showFiles=showFiles,  useServiceRef=useServiceRef, inhibitDirs=inhibitDirs, inhibitMounts=inhibitMounts, isTop=isTop, enableWrapAround=enableWrapAround, additionalExtensions=additionalExtensions)
+		FileList.__init__(self, directory, showMountpoints=showMountpoints, matchingPattern=matchingPattern, showDirectories=showDirectories, showFiles=showFiles, useServiceRef=useServiceRef, inhibitDirs=inhibitDirs, inhibitMounts=inhibitMounts, isTop=isTop, enableWrapAround=enableWrapAround, additionalExtensions=additionalExtensions)
 		self.changeDir(directory)
 		font = skin.fonts.get("FileListMulti", ("Regular", 20, 25))
 		self.l.setFont(0, gFont(font[0], font[1]))
@@ -406,9 +406,9 @@ class MultiFileSelectList(FileList):
 
 		if directory is not None and self.showDirectories and not self.isTop:
 			if directory == self.current_mountpoint and self.showMountpoints:
-				self.list.append(MultiFileSelectEntryComponent(name="<" +_("List of storage devices") + ">", absolute=None, isDir=True))
+				self.list.append(MultiFileSelectEntryComponent(name="<" + _("List of storage devices") + ">", absolute=None, isDir=True))
 			elif (directory != "/") and not (self.inhibitMounts and self.getMountpoint(directory) in self.inhibitMounts):
-				self.list.append(MultiFileSelectEntryComponent(name="<" +_("Parent directory") + ">", absolute='/'.join(directory.split('/')[:-2]) + '/', isDir=True))
+				self.list.append(MultiFileSelectEntryComponent(name="<" + _("Parent directory") + ">", absolute='/'.join(directory.split('/')[:-2]) + '/', isDir=True))
 
 		if self.showDirectories:
 			for x in directories:

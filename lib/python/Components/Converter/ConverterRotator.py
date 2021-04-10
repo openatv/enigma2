@@ -31,7 +31,7 @@ class ConverterRotator(Poll, Converter, object):
 			if suspended:
 				self.poll_enabled = False
 			else:
-				self.sourceIndex = len(self.sourceList)-1
+				self.sourceIndex = len(self.sourceList) - 1
 				self.poll_enabled = True
 				self.poll()
 

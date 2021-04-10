@@ -39,7 +39,7 @@ class RdsInfoDisplay(Screen):
 		self["RassLogo"] = Pixmap()
 
 		self.onLayoutFinish.append(self.hideWidgets)
-		self.rassInteractivePossible=False
+		self.rassInteractivePossible = False
 		self.onRassInteractivePossibilityChanged = []
 		self.onText = []
 
@@ -149,8 +149,8 @@ class RassInteractive(Screen):
 			3: LoadPixmap(resolveFilename(SCOPE_ACTIVE_SKIN, "icons/rass_page3.png")),
 			4: LoadPixmap(resolveFilename(SCOPE_ACTIVE_SKIN, "icons/rass_page4.png"))}
 
-		self.current_page=0
-		self.current_subpage=0
+		self.current_page = 0
+		self.current_subpage = 0
 		self.showRassPage(0,0)
 		self.onLayoutFinish.append(self.updateSubPagePixmaps)
 
@@ -203,7 +203,7 @@ class RassInteractive(Screen):
 				print "NO RDS DECODER in getMaskForPage"
 			masks = decoder.getRassInteractiveMask()
 		if masks:
-			mask = masks[(page*4)/8]
+			mask = masks[(page * 4) / 8]
 			if page % 2:
 				mask >>= 4
 			else:

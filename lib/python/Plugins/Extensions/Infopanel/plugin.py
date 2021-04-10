@@ -19,7 +19,7 @@ from Components.FileList import FileList
 from Components.Label import Label
 from Components.ScrollLabel import ScrollLabel
 from Components.Pixmap import Pixmap
-from Components.config import ConfigSubsection, ConfigInteger, ConfigText, getConfigListEntry, ConfigSelection,  ConfigIP, ConfigYesNo, ConfigSequence, ConfigNumber, NoSave, ConfigEnableDisable, configfile
+from Components.config import ConfigSubsection, ConfigInteger, ConfigText, getConfigListEntry, ConfigSelection, ConfigIP, ConfigYesNo, ConfigSequence, ConfigNumber, NoSave, ConfigEnableDisable, configfile
 from Components.ConfigList import ConfigListScreen
 from Components.Sources.StaticText import StaticText 
 from Components.Sources.Progress import Progress
@@ -57,17 +57,17 @@ def Check_Softcam():
 	return found
 
 def Check_SysSoftcam():
-	syscam="none"
+	syscam = "none"
 	if os.path.isfile('/etc/init.d/softcam'):
 		if (os.path.islink('/etc/init.d/softcam') and not os.readlink('/etc/init.d/softcam').lower().endswith('none')):
 			try:
 				syscam = os.readlink('/etc/init.d/softcam').rsplit('.', 1)[1]
 				if syscam.lower().startswith('oscam'):
-					syscam="oscam"
+					syscam = "oscam"
 				if syscam.lower().startswith('ncam'):
-					syscam="ncam"
+					syscam = "ncam"
 				if syscam.lower().startswith('cccam'):
-					syscam="cccam"
+					syscam = "cccam"
 			except:
 				pass
 	return syscam
@@ -170,23 +170,23 @@ machinebrand = getMachineBrand()
 OEMname = getBrandOEM()
 
 INFO_Panel_Version = 'Info-Panel V1.2'
-print "[Info-Panel] machinebrand: %s"  % (machinebrand)
-print "[Info-Panel] machinename: %s"  % (machinename)
-print "[Info-Panel] oem name: %s"  % (OEMname)
-print "[Info-Panel] boxtype: %s"  % (boxversion)
+print "[Info-Panel] machinebrand: %s" % (machinebrand)
+print "[Info-Panel] machinename: %s" % (machinename)
+print "[Info-Panel] oem name: %s" % (OEMname)
+print "[Info-Panel] boxtype: %s" % (boxversion)
 panel = open("/tmp/infopanel.ver", "w")
 panel.write(INFO_Panel_Version + '\n')
-panel.write("Machinebrand: %s " % (machinebrand)+ '\n')
-panel.write("Machinename: %s " % (machinename)+ '\n')
-panel.write("oem name: %s " % (OEMname)+ '\n')
-panel.write("Boxtype: %s " % (boxversion)+ '\n')
+panel.write("Machinebrand: %s " % (machinebrand) + '\n')
+panel.write("Machinename: %s " % (machinename) + '\n')
+panel.write("oem name: %s " % (OEMname) + '\n')
+panel.write("Boxtype: %s " % (boxversion) + '\n')
 try:
-	panel.write("Keymap: %s " % (config.usage.keymap.value)+ '\n')
+	panel.write("Keymap: %s " % (config.usage.keymap.value) + '\n')
 except:
 	panel.write("Keymap: keymap file not found !!" + '\n')
 panel.close()
 
-ExitSave = "[Exit] = " +_("Cancel") +"              [Ok] =" +_("Save")
+ExitSave = "[Exit] = " + _("Cancel") + "              [Ok] =" + _("Save")
 
 
 class ConfigPORT(ConfigSequence):
@@ -230,12 +230,12 @@ CONFIG_SKIN = """<screen position="center,center" size="600,440" title="PANEL Co
 	<widget name="labelExitsave" position="90,410" size="420,25" halign="center" font="Regular;20" transparent="1" foregroundColor="#f2e000" />
 </screen>"""
 
-INFO_SKIN =  """<screen name="Panel-Info"  position="center,center" size="730,400" title="PANEL-Info" >
+INFO_SKIN = """<screen name="Panel-Info"  position="center,center" size="730,400" title="PANEL-Info" >
 	<widget name="label2" position="0,10" size="730,25" font="Regular;20" transparent="1" halign="center" foregroundColor="#f2e000" />
 	<widget name="label1" position="10,45" size="710,350" font="Console;20" zPosition="1" backgroundColor="#251e1f20" transparent="1" />
 </screen>"""
 
-INFO_SKIN2 =  """<screen name="PANEL-Info2"  position="center,center" size="530,400" title="PANEL-Info" backgroundColor="#251e1f20">
+INFO_SKIN2 = """<screen name="PANEL-Info2"  position="center,center" size="530,400" title="PANEL-Info" backgroundColor="#251e1f20">
 	<widget name="label1" position="10,50" size="510,340" font="Regular;15" zPosition="1" backgroundColor="#251e1f20" transparent="1" />
 </screen>"""
 
@@ -247,13 +247,13 @@ class PanelList(MenuList):
 		sf = getSkinFactor()
 		self.l.setFont(0, gFont("Regular", int(font0 * sf)))
 		self.l.setFont(1, gFont("Regular", int(font1 * sf)))
-		self.l.setItemHeight(int(itemHeight*sf))
+		self.l.setItemHeight(int(itemHeight * sf))
 
 def MenuEntryItem(entry):
 	res = [entry]
 	sf = getSkinFactor()
-	res.append(MultiContentEntryPixmapAlphaBlend(pos=(10*sf, 5*sf), size=(40*sf, 40*sf), flags=BT_SCALE, png=entry[0]))  # png vorn
-	res.append(MultiContentEntryText(pos=(60*sf, 10*sf), size=(540*sf, 40*sf), font=0, text=entry[1]))  # menupunkt
+	res.append(MultiContentEntryPixmapAlphaBlend(pos=(10 * sf, 5 * sf), size=(40 * sf, 40 * sf), flags=BT_SCALE, png=entry[0]))  # png vorn
+	res.append(MultiContentEntryText(pos=(60 * sf, 10 * sf), size=(540 * sf, 40 * sf), font=0, text=entry[1]))  # menupunkt
 	return res
 ###################  Max Test ###################
 
@@ -277,7 +277,7 @@ class Infopanel(Screen, InfoBarPiP, ProtectedScreen):
 	servicelist = None
 	def __init__(self, session, services=None):
 		Screen.__init__(self, session)
-		config.plugins.configurationbackup=BackupRestore_InitConfig()
+		config.plugins.configurationbackup = BackupRestore_InitConfig()
 		if config.ParentalControl.configured.value:
 			ProtectedScreen.__init__(self)
 		self.session = session
@@ -291,7 +291,7 @@ class Infopanel(Screen, InfoBarPiP, ProtectedScreen):
 		global INFOCONF
 		global menu
 		INFOCONF = 0
-		pluginlist="False"
+		pluginlist = "False"
 		try:
 			print '[INFO-Panel] SHOW'
 			global inINFOPanel
@@ -602,7 +602,7 @@ class KeymapSel(ConfigListScreen, Screen):
 		self.session = session
 		self.skinName = ["SetupInfo", "Setup"]
 		Screen.setTitle(self, _("Keymap Selection") + "...")
-		self.setup_title =  _("Keymap Selection") + "..."
+		self.setup_title = _("Keymap Selection") + "..."
 		self["HelpWindow"] = Pixmap()
 		self["HelpWindow"].hide()
 		self["status"] = StaticText()
@@ -705,10 +705,10 @@ class KeymapSel(ConfigListScreen, Screen):
 			self.close()
 
 	def getKeymap(self, file):
-		return file[file.rfind('/') +1:]
+		return file[file.rfind('/') + 1:]
 
 	def changedFinished(self):
-		self.session.openWithCallback(self.ExecuteRestart, MessageBox, _("Keymap changed, you need to restart the GUI") +"\n"+_("Do you want to restart now?"), MessageBox.TYPE_YESNO)
+		self.session.openWithCallback(self.ExecuteRestart, MessageBox, _("Keymap changed, you need to restart the GUI") + "\n" + _("Do you want to restart now?"), MessageBox.TYPE_YESNO)
 		self.close()
 
 	def ExecuteRestart(self, result):
@@ -725,7 +725,7 @@ class Info(Screen):
 		self.skin = INFO_SKIN
 
 		self["label2"] = Label("INFO")
-		self["label1"] =  ScrollLabel()
+		self["label1"] = ScrollLabel()
 		if info == "InfoPanel":
 			self.InfoPanel()
 		if info == "SystemInfo":
@@ -855,9 +855,9 @@ class Info(Screen):
 			info0 = self.Do_cmd("cat", "/proc/version", None)
 			info = info0.split('(')
 			info1 = "Name = " + info[0] + "\n"
-			info2 =  "Owner = " + info[1].replace(')','') + "\n"
-			info3 =  "Mainimage = " + info[2][0:info[2].find(')')] + "\n"
-			info4 = "Date = " + info[3][info[3].find('SMP')+4:len(info[3])]
+			info2 = "Owner = " + info[1].replace(')','') + "\n"
+			info3 = "Mainimage = " + info[2][0:info[2].find(')')] + "\n"
+			info4 = "Date = " + info[3][info[3].find('SMP') + 4:len(info[3])]
 			info5 = self.Do_cut(info1 + info2 + info3 + info4)
 			self["label1"].setText(info5)
 		except:

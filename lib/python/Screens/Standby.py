@@ -205,7 +205,7 @@ class Standby2(Screen):
 				self.paused_service = self.session.current_dialog
 				self.paused_service.pauseService()
 		if not self.paused_service:
-			self.timeHandler =  eDVBLocalTimeHandler.getInstance()
+			self.timeHandler = eDVBLocalTimeHandler.getInstance()
 			if self.timeHandler.ready():
 				if self.session.nav.getCurrentlyPlayingServiceOrGroup():
 					self.stopService()
@@ -358,11 +358,11 @@ class TryQuitMainloop(MessageBox):
 		if inTimeshift:
 			reason = _("You seem to be in timeshift!") + '\n'
 			default_yes = True
-			timeout=30
+			timeout = 30
 		if recordings or (next_rec_time > 0 and (next_rec_time - time()) < 360):
 			reason = _("Recording(s) are in progress or coming up in few seconds!") + '\n'
 			default_yes = False
-			timeout=30
+			timeout = 30
 
 		if reason and inStandby:
 			session.nav.record_event.append(self.getRecordEvent)
@@ -380,7 +380,7 @@ class TryQuitMainloop(MessageBox):
 				QUIT_WOLSHUTDOWN: _("Really WOL now?")
 				}.get(retvalue)
 			if text:
-				MessageBox.__init__(self, session, reason+text, type=MessageBox.TYPE_YESNO, timeout=timeout, default=default_yes)
+				MessageBox.__init__(self, session, reason + text, type=MessageBox.TYPE_YESNO, timeout=timeout, default=default_yes)
 				self.skinName = "MessageBoxSimple"
 				session.nav.record_event.append(self.getRecordEvent)
 				self.connected = True
@@ -410,7 +410,7 @@ class TryQuitMainloop(MessageBox):
 	def close(self, value):
 		global quitMainloopCode
 		if self.connected:
-			self.connected=False
+			self.connected = False
 			self.session.nav.record_event.remove(self.getRecordEvent)
 		if value:
 			self.hide()

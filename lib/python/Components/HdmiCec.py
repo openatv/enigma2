@@ -57,10 +57,10 @@ for i in (500, 1000, 2000, 3000, 4000, 5000):
 config.hdmicec.messages_repeat_slowdown = ConfigSelection(default="1000", choices=[("0", _("None"))] + choicelist)
 choicelist = []
 for i in (5,10,30,60,120,300,600,900,1800,3600):
-	if i/60<1:
+	if i / 60 < 1:
 		choicelist.append(("%d" % i, _("%d sec") % i))
 	else:
-		choicelist.append(("%d" % i, _("%d min") % (i/60)))
+		choicelist.append(("%d" % i, _("%d min") % (i / 60)))
 config.hdmicec.handle_tv_delaytime = ConfigSelection(default="0", choices=[("0", _("None"))] + choicelist)
 config.hdmicec.deepstandby_waitfortimesync = ConfigYesNo(default=True)
 config.hdmicec.tv_wakeup_zaptimer = ConfigYesNo(default=True)
@@ -513,7 +513,7 @@ class HdmiCec:
 			address = message.getAddress()
 			cmdReceived = (config.hdmicec.commandline.value and self.cmdWaitTimer.isActive())
 			if config.hdmicec.debug.value or cmdReceived:
-				self.CECdebug('Rx', address, cmd, data, length-1, cmdReceived)
+				self.CECdebug('Rx', address, cmd, data, length - 1, cmdReceived)
 
 			#// workaround for wrong address vom driver (e.g. hd51, message comes from tv -> address is only sometimes 0, dm920, same tv -> address is always 0)
 			if address > 15:
@@ -523,7 +523,7 @@ class HdmiCec:
 
 			if cmd == 0x00: # feature abort
 				if data[0] == '\x44':
-					self.CECwritedebug('[HdmiCec] volume forwarding not supported by device %02x'%(address), True)
+					self.CECwritedebug('[HdmiCec] volume forwarding not supported by device %02x' % (address), True)
 					self.volumeForwardingEnabled = False
 			elif cmd == 0x46: # request name
 				self.sendMessage(address, 'osdname')
@@ -533,7 +533,7 @@ class HdmiCec:
 				else:
 					self.volumeForwardingDestination = 0 # off: send volume keys to tv
 				if config.hdmicec.volume_forwarding.value:
-					self.CECwritedebug('[HdmiCec] volume forwarding to device %02x enabled'% self.volumeForwardingDestination, True)
+					self.CECwritedebug('[HdmiCec] volume forwarding to device %02x enabled' % self.volumeForwardingDestination, True)
 					self.volumeForwardingEnabled = True
 			elif cmd == 0x8f: # request power status
 				if Screens.Standby.inStandby:
@@ -582,7 +582,7 @@ class HdmiCec:
 				oldaddress = hexstring[0] + '.' + hexstring[1] + '.' + hexstring[2] + '.' + hexstring[3]
 				hexstring = '%04x' % newaddress
 				newaddress = hexstring[0] + '.' + hexstring[1] + '.' + hexstring[2] + '.' + hexstring[3]
-				self.CECwritedebug("[HdmiCec] routing has changed... from '%s' to '%s' (to our address: %s)" %(oldaddress, newaddress, active), True)
+				self.CECwritedebug("[HdmiCec] routing has changed... from '%s' to '%s' (to our address: %s)" % (oldaddress, newaddress, active), True)
 			elif cmd in (0x86, 0x82): # set streaming path, active source changed
 				newaddress = ord(data[0]) * 256 + ord(data[1])
 				ouraddress = eHdmiCEC.getInstance().getPhysicalAddress()
@@ -595,7 +595,7 @@ class HdmiCec:
 						if cmd == 0x86:
 							txt = 'streaming path'
 						txt += ' has changed... to our address'
-					self.CECwritedebug('[HdmiCec] %s: %s' %(txt, active), True)
+					self.CECwritedebug('[HdmiCec] %s: %s' % (txt, active), True)
 				self.activesource = active
 				if not checkstate:
 					if cmd == 0x86 and not Screens.Standby.inStandby and self.activesource:
@@ -638,18 +638,18 @@ class HdmiCec:
 				address = 0x0f # use broadcast address
 				cmd = 0x82
 				physicaladdress = eHdmiCEC.getInstance().getPhysicalAddress()
-				data = str(struct.pack('BB', int(physicaladdress/256), int(physicaladdress%256)))
+				data = str(struct.pack('BB', int(physicaladdress / 256), int(physicaladdress % 256)))
 			elif message == "routinginfo":
 				address = 0x0f # use broadcast address
 				cmd = 0x81
 				physicaladdress = eHdmiCEC.getInstance().getPhysicalAddress()
-				data = str(struct.pack('BB', int(physicaladdress/256), int(physicaladdress%256)))
+				data = str(struct.pack('BB', int(physicaladdress / 256), int(physicaladdress % 256)))
 			elif message == "standby":
 				cmd = 0x36
 			elif message == "sourceinactive":
 				physicaladdress = eHdmiCEC.getInstance().getPhysicalAddress()
 				cmd = 0x9d
-				data = str(struct.pack('BB', int(physicaladdress/256), int(physicaladdress%256)))
+				data = str(struct.pack('BB', int(physicaladdress / 256), int(physicaladdress % 256)))
 			elif message == "menuactive":
 				cmd = 0x8e
 				data = str(struct.pack('B', 0x00))
@@ -661,7 +661,7 @@ class HdmiCec:
 			elif message == "setsystemaudiomode":
 				cmd = 0x70
 				physicaladdress = eHdmiCEC.getInstance().getPhysicalAddress()
-				data = str(struct.pack('BB', int(physicaladdress/256), int(physicaladdress%256)))
+				data = str(struct.pack('BB', int(physicaladdress / 256), int(physicaladdress % 256)))
 			elif message == "activatesystemaudiomode":
 				cmd = 0x72
 				data = str(struct.pack('B', 0x01))
@@ -683,7 +683,7 @@ class HdmiCec:
 				cmd = 0x84
 				physicaladdress = eHdmiCEC.getInstance().getPhysicalAddress()
 				devicetype = eHdmiCEC.getInstance().getDeviceType()
-				data = str(struct.pack('BBB', int(physicaladdress/256), int(physicaladdress%256), devicetype))
+				data = str(struct.pack('BBB', int(physicaladdress / 256), int(physicaladdress % 256), devicetype))
 			elif message == "vendorid":
 				cmd = 0x87
 				data = '\x00\x00\x00'
@@ -726,7 +726,7 @@ class HdmiCec:
 			self.sendMessage(address, message)
 			sendCnt += 1
 		if sendCnt:
-			self.repeatTimer.start((int(config.hdmicec.minimum_send_interval.value)*(len(messages)+1)+self.sendSlower()), True)
+			self.repeatTimer.start((int(config.hdmicec.minimum_send_interval.value) * (len(messages) + 1) + self.sendSlower()), True)
 
 	def repeatMessages(self):
 		if len(self.queue):
@@ -894,7 +894,7 @@ class HdmiCec:
 				target = 'standby'
 				if 'deep' in str(self.handleTimer.callback[0]):
 					target = 'deep ' + target
-				self.CECwritedebug('[HdmiCec] stopping Timer to %s' %target, True)
+				self.CECwritedebug('[HdmiCec] stopping Timer to %s' % target, True)
 
 	def handleTVRequest(self, request):
 		if (request == 'activesource' and self.activesource) or (self.tv_lastrequest == 'tvstandby' and request == 'activesource' and self.handleTimer.isActive()):
@@ -930,14 +930,14 @@ class HdmiCec:
 				if int(config.hdmicec.handle_tv_delaytime.value):
 					self.handleTimer.callback.append(self.standby)
 					self.handleTimer.startLongTimer(int(config.hdmicec.handle_tv_delaytime.value))
-					self.CECwritedebug('[HdmiCec] starting Timer to standby in %s s' %config.hdmicec.handle_tv_delaytime.value, True)
+					self.CECwritedebug('[HdmiCec] starting Timer to standby in %s s' % config.hdmicec.handle_tv_delaytime.value, True)
 				else:
 					self.standby()
 			elif deepstandby:
 				if int(config.hdmicec.handle_tv_delaytime.value):
 					self.handleTimer.callback.append(self.deepstandby)
 					self.handleTimer.startLongTimer(int(config.hdmicec.handle_tv_delaytime.value))
-					self.CECwritedebug('[HdmiCec] starting Timer to deep standby in %s s' %config.hdmicec.handle_tv_delaytime.value, True)
+					self.CECwritedebug('[HdmiCec] starting Timer to deep standby in %s s' % config.hdmicec.handle_tv_delaytime.value, True)
 				else:
 					self.deepstandby()
 
@@ -948,7 +948,7 @@ class HdmiCec:
 		rectimer = abs(NavigationInstance.instance.RecordTimer.getNextRecordingTime() - now) <= 900 or NavigationInstance.instance.RecordTimer.getStillRecording() or abs(NavigationInstance.instance.RecordTimer.getNextZapTime() - now) <= 900
 		pwrtimer = abs(NavigationInstance.instance.PowerTimer.getNextPowerManagerTime() - now) <= 900 or NavigationInstance.instance.PowerTimer.isProcessing(exceptTimer=0) or not NavigationInstance.instance.PowerTimer.isAutoDeepstandbyEnabled()
 		if recording or rectimer or pwrtimer:
-			self.CECwritedebug('[HdmiCec] go not into deepstandby... recording=%s, rectimer=%s, pwrtimer=%s' %(recording, rectimer, pwrtimer), True)
+			self.CECwritedebug('[HdmiCec] go not into deepstandby... recording=%s, rectimer=%s, pwrtimer=%s' % (recording, rectimer, pwrtimer), True)
 			self.standby()
 		else:
 			from Screens.InfoBar import InfoBar
@@ -966,8 +966,8 @@ class HdmiCec:
 				InfoBar.instance.openInfoBarSession(Screens.Standby.Standby)
 
 	def wakeup(self):
-		if int(config.hdmicec.workaround_turnbackon.value) and self.standbytime> time():
-			self.CECwritedebug('[HdmiCec] ignore wakeup for %d seconds ...' %int(self.standbytime - time()), True)
+		if int(config.hdmicec.workaround_turnbackon.value) and self.standbytime > time():
+			self.CECwritedebug('[HdmiCec] ignore wakeup for %d seconds ...' % int(self.standbytime - time()), True)
 			return
 		self.standbytime = 0
 		self.handleTimerStop(True)
@@ -1056,16 +1056,16 @@ class HdmiCec:
 		return powerupWithoutWakingTv
 
 	def CECdebug(self, type, address, cmd, data, length, cmdmsg=False):
-		txt = "<%s:> " %type
-		tmp = "%02X " %address
-		tmp += "%02X " %cmd
+		txt = "<%s:> " % type
+		tmp = "%02X " % address
+		tmp += "%02X " % cmd
 		for i in range(length):
 			tmp += "%02X " % ord(data[i])
 		if cmdmsg:
 			self.CECcmdline(tmp)
 			if not config.hdmicec.debug.value:
 				return
-		txt += "%s " %(tmp.rstrip() + (47-len(tmp.rstrip())) * " ")
+		txt += "%s " % (tmp.rstrip() + (47 - len(tmp.rstrip())) * " ")
 		txt += CECaddr.get(address,"<unknown>")
 		if not cmd and not length:
 			txt += "<Polling Message>"
@@ -1081,18 +1081,18 @@ class HdmiCec:
 					txt += "<wrong data length>"
 			elif cmd in (0x70, 0x80, 0x81, 0x82, 0x84, 0x86, 0x9D):
 				if (cmd == 0x80 and length == 4) or (cmd == 0x84 and length == 3) or (cmd not in (0x80, 0x84) and length == 2):
-					hexstring = "%04x" %(ord(data[0]) * 256 + ord(data[1]))
-					txt += "<%s.%s.%s.%s>" %(hexstring[0], hexstring[1], hexstring[2], hexstring[3])
+					hexstring = "%04x" % (ord(data[0]) * 256 + ord(data[1]))
+					txt += "<%s.%s.%s.%s>" % (hexstring[0], hexstring[1], hexstring[2], hexstring[3])
 					if cmd == 0x80:
-						hexstring = "%04x" %(ord(data[2]) * 256 + ord(data[3]))
-						txt += "<%s.%s.%s.%s>" %(hexstring[0], hexstring[1], hexstring[2], hexstring[3])
+						hexstring = "%04x" % (ord(data[2]) * 256 + ord(data[3]))
+						txt += "<%s.%s.%s.%s>" % (hexstring[0], hexstring[1], hexstring[2], hexstring[3])
 					elif cmd == 0x84:
 						txt += CECdat.get(cmd,"").get(ord(data[2]),"<unknown>")
 				else:
 					txt += "<wrong data length>"
 			elif cmd in (0x87, 0xA0):
 				if length > 2:
-					txt += "<%d>" %(ord(data[0]) * 256 * 256 + ord(data[1]) * 256 + ord(data[2]))
+					txt += "<%d>" % (ord(data[0]) * 256 * 256 + ord(data[1]) * 256 + ord(data[2]))
 					if cmd == 0xA0:
 						txt += "<Vendor Specific Data>"
 				else:
@@ -1105,7 +1105,7 @@ class HdmiCec:
 						txt += CECdat.get(cmd,"").get(ord(data[0]),"<unknown>")
 					txt += "<"
 					for i in range(s, length):
-						txt += "%s" %data[i]
+						txt += "%s" % data[i]
 					txt += ">"
 				else:
 					txt += "<wrong data length>"
@@ -1113,7 +1113,7 @@ class HdmiCec:
 				if length == 1:
 					val = ord(data[0])
 					txt += "<Audio Mute On>" if val >= 0x80 else "<Audio Mute Off>"
-					txt += "<Volume %d>" %(val-0x80) if val >= 0x80 else "<Volume %d>" %val
+					txt += "<Volume %d>" % (val - 0x80) if val >= 0x80 else "<Volume %d>" % val
 				else:
 					txt += "<wrong data length>"
 			elif length:
@@ -1145,16 +1145,16 @@ class HdmiCec:
 			now = datetime.datetime.now()
 			debugfile = os.path.join(log_path, now.strftime("Enigma2-hdmicec-%Y%m%d.log"))
 			timestamp = now.strftime("%H:%M:%S.%f")[:-2]
-			debugtext = "%s %s%s\n" %(timestamp, ("[   ] " if debugprint else ""), debugtext.replace("[HdmiCec] ", ""))
+			debugtext = "%s %s%s\n" % (timestamp, ("[   ] " if debugprint else ""), debugtext.replace("[HdmiCec] ", ""))
 			if self.start_log:
 				self.start_log = False
 				la = eHdmiCEC.getInstance().getLogicalAddress()
-				debugtext = "%s  +++  start logging  +++  physical address: %s  -  logical address: %d  -  device type: %s\n%s" %(timestamp, self.getPhysicalAddress(), la, CECaddr.get(la, "<unknown>"), debugtext)
+				debugtext = "%s  +++  start logging  +++  physical address: %s  -  logical address: %d  -  device type: %s\n%s" % (timestamp, self.getPhysicalAddress(), la, CECaddr.get(la, "<unknown>"), debugtext)
 			if self.disk_full:
 				debugtext += "%s  +++  stop logging  +++  disk full!\n" % timestamp
 			self.CECwritefile(debugfile, "a", debugtext)
 		else:
-			print "[HdmiCec] write debug file failed - log path (%s) not found!" %log_path
+			print "[HdmiCec] write debug file failed - log path (%s) not found!" % log_path
 
 	def CECcmdstart(self, configElement):
 		if config.hdmicec.commandline.value:
@@ -1187,41 +1187,41 @@ class HdmiCec:
 			self.CECremovefiles(files)
 			if len(ceccmd) == 1 and not ceccmd[0]:
 				e = "Empty input file!"
-				self.CECwritedebug("[HdmiCec] CECcmdline - error: %s" %e, True)
-				txt = "%s\n" %e
+				self.CECwritedebug("[HdmiCec] CECcmdline - error: %s" % e, True)
+				txt = "%s\n" % e
 				self.CECwritefile(errfile, "w", txt)
 			elif ceccmd[0] in ("help", "?"):
 				internaltxt = "  Available internal commands: "
 				space = len(internaltxt) * " "
 				addspace = False
 				for key in sorted(CECintcmd.keys()):
-					internaltxt += "%s'%s' or '%s'\n" %(space if addspace else "", key, CECintcmd[key])
+					internaltxt += "%s'%s' or '%s'\n" % (space if addspace else "", key, CECintcmd[key])
 					addspace = True
-				txt  = "Help for the hdmi-cec command line function\n"
+				txt = "Help for the hdmi-cec command line function\n"
 				txt += "-------------------------------------------\n\n"
 				txt += "Files:\n"
-				txt += "- Input file to send the hdmi-cec command line: '%s'\n" %cmdfile
-				txt += "- Output file for received hdmi-cec messages:   '%s'\n" %msgfile
-				txt += "- Error file for hdmi-cec command line errors:  '%s'\n" %errfile
-				txt += "- This help file:                               '%s'\n\n" %hlpfile
+				txt += "- Input file to send the hdmi-cec command line: '%s'\n" % cmdfile
+				txt += "- Output file for received hdmi-cec messages:   '%s'\n" % msgfile
+				txt += "- Error file for hdmi-cec command line errors:  '%s'\n" % errfile
+				txt += "- This help file:                               '%s'\n\n" % hlpfile
 				txt += "Functions:\n"
-				txt += "- Help: Type 'echo help > %s' to create this file.\n\n" %cmdfile
-				txt += "- Send internal commands: address:command (e.g. Type 'echo 00:wakeup > %s' for wakeup the TV device.)\n" %cmdfile
-				txt += "%s\n" %internaltxt
-				txt += "- Send individual commands: address:command:data (e.g. Type 'echo 00:04 > %s' for wakeup the TV device.)\n" %cmdfile
-				txt += "  Available individual commands: %s\n\n" %cecinfo
+				txt += "- Help: Type 'echo help > %s' to create this file.\n\n" % cmdfile
+				txt += "- Send internal commands: address:command (e.g. Type 'echo 00:wakeup > %s' for wakeup the TV device.)\n" % cmdfile
+				txt += "%s\n" % internaltxt
+				txt += "- Send individual commands: address:command:data (e.g. Type 'echo 00:04 > %s' for wakeup the TV device.)\n" % cmdfile
+				txt += "  Available individual commands: %s\n\n" % cecinfo
 				txt += "Info:\n"
 				txt += "- Input and error file will removed with send a new command line. Output file will removed if not waiting for a message.\n"
 				txt += "  (If the command was accepted successfully, the input file is deleted and no error file exist.)\n"
-				txt += "- Poll time for new command line is %d second. Maximum wait time for one received message is %d seconds after send the hdmi-cec command.\n" %(polltime,waittime)
-				txt += "  (After the first incoming message and outside this waiting time no more received messages will be write to '%s'.)\n" %msgfile
+				txt += "- Poll time for new command line is %d second. Maximum wait time for one received message is %d seconds after send the hdmi-cec command.\n" % (polltime,waittime)
+				txt += "  (After the first incoming message and outside this waiting time no more received messages will be write to '%s'.)\n" % msgfile
 				txt += "- Address, command and optional data must write as hex values and text for internal command must write exactly!\n\n"
 				txt += "End\n"
 				self.CECwritefile(hlpfile, "w", txt)
 			else:
 				try:
 					if not ceccmd[0] or (ceccmd[0] and len(ceccmd[0].strip()) > 2):
-						raise Exception("Wrong address detected - '%s'" %ceccmd[0])
+						raise Exception("Wrong address detected - '%s'" % ceccmd[0])
 					address = int(ceccmd[0] or "0",16)
 					if len(ceccmd) > 1:
 						if ceccmd[1] in CECintcmd.keys():
@@ -1231,7 +1231,7 @@ class HdmiCec:
 						else:
 							for x in ceccmd[1:]:
 								if len(x.strip()) > 2:
-									raise Exception("Wrong command or incorrect data detected - '%s'" %x)
+									raise Exception("Wrong command or incorrect data detected - '%s'" % x)
 							data = ""
 							cmd = int(ceccmd[1] or "0",16)
 							if len(ceccmd) > 2:
@@ -1242,8 +1242,8 @@ class HdmiCec:
 							eHdmiCEC.getInstance().sendMessage(address, cmd, data, len(data))
 						self.cmdWaitTimer.startLongTimer(waittime)
 				except Exception, e:
-					self.CECwritedebug("[HdmiCec] CECcmdline - error: %s" %e, True)
-					txt = "%s\n" %e
+					self.CECwritedebug("[HdmiCec] CECcmdline - error: %s" % e, True)
+					txt = "%s\n" % e
 					self.CECwritefile(errfile, "w", txt)
 		self.cmdPollTimer.startLongTimer(polltime)
 
@@ -1252,7 +1252,7 @@ class HdmiCec:
 			with open(FILE) as f: 
 				return f.read()
 		except Exception, e:
-			self.CECwritedebug("[HdmiCec] read file '%s' failed - error: %s" %(FILE, e), True)
+			self.CECwritedebug("[HdmiCec] read file '%s' failed - error: %s" % (FILE, e), True)
 		return ""
 
 	def CECwritefile(self, FILE, MODE, INPUT):
@@ -1260,7 +1260,7 @@ class HdmiCec:
 			with open(FILE, MODE) as f: 
 				f.write(INPUT)
 		except Exception, e:
-			txt = "[HdmiCec] write file '%s' failed - error: %s" %(FILE, e)
+			txt = "[HdmiCec] write file '%s' failed - error: %s" % (FILE, e)
 			print txt if "Enigma2-hdmicec-" in FILE else self.CECwritedebug(txt, True)
 
 	def CECremovefiles(self, FILES):
@@ -1269,6 +1269,6 @@ class HdmiCec:
 				try:
 					os.remove(f)
 				except Exception, e:
-					self.CECwritedebug("[HdmiCec] remove file '%s' failed - error: %s" %(f, e), True)
+					self.CECwritedebug("[HdmiCec] remove file '%s' failed - error: %s" % (f, e), True)
 
 hdmi_cec = HdmiCec()

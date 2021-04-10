@@ -145,15 +145,15 @@ class MediaPlayer(Screen, InfoBarBase, InfoBarScreenSaver, InfoBarSeek, InfoBarA
 
 		self["currenttext"] = Label("")
 
-		self["artisttext"] = Label(_("Artist")+':')
+		self["artisttext"] = Label(_("Artist") + ':')
 		self["artist"] = Label("")
-		self["titletext"] = Label(_("Title")+':')
+		self["titletext"] = Label(_("Title") + ':')
 		self["title"] = Label("")
-		self["albumtext"] = Label(_("Album")+':')
+		self["albumtext"] = Label(_("Album") + ':')
 		self["album"] = Label("")
-		self["yeartext"] = Label(_("Year")+':')
+		self["yeartext"] = Label(_("Year") + ':')
 		self["year"] = Label("")
-		self["genretext"] = Label(_("Genre")+':')
+		self["genretext"] = Label(_("Genre") + ':')
 		self["genre"] = Label("")
 		self["coverArt"] = MediaPixmap()
 		self["repeat"] = MultiPixmap()
@@ -261,13 +261,13 @@ class MediaPlayer(Screen, InfoBarBase, InfoBarScreenSaver, InfoBarSeek, InfoBarA
 		self.__event_tracker = ServiceEventTracker(screen=self, eventmap={
 				iPlayableService.evStart: self.__evStart,
 				iPlayableService.evUpdatedInfo: self.__evUpdatedInfo,
-				iPlayableService.evUser+10: self.__evAudioDecodeError,
-				iPlayableService.evUser+11: self.__evVideoDecodeError,
-				iPlayableService.evUser+12: self.__evPluginError,
+				iPlayableService.evUser + 10: self.__evAudioDecodeError,
+				iPlayableService.evUser + 11: self.__evVideoDecodeError,
+				iPlayableService.evUser + 12: self.__evPluginError,
 				# we dont need that anymore, but keep it for the next two weeks
 				# let us see, if user reports any problems
-				iPlayableService.evUser+13: self["coverArt"].embeddedCoverArt,
-				iPlayableService.evUser+13: self.__embeddedCoverArt
+				iPlayableService.evUser + 13: self["coverArt"].embeddedCoverArt,
+				iPlayableService.evUser + 13: self.__embeddedCoverArt
 			})
 
 	def hideAndInfoBar(self):
@@ -355,7 +355,7 @@ class MediaPlayer(Screen, InfoBarBase, InfoBarScreenSaver, InfoBarSeek, InfoBarA
 
 	def __evPluginError(self):
 		currPlay = self.session.nav.getCurrentService()
-		message = currPlay.info().getInfoString(iServiceInformation.sUser+12)
+		message = currPlay.info().getInfoString(iServiceInformation.sUser + 12)
 		print "[__evPluginError]", message
 		self.session.open(MessageBox, message, type=MessageBox.TYPE_INFO,timeout=20)
 
@@ -739,7 +739,7 @@ class MediaPlayer(Screen, InfoBarBase, InfoBarScreenSaver, InfoBarSeek, InfoBarA
 			idx = len(self.filelist.list)
 			self.filelist.moveToIndex(idx - 1)
 		else:
-			self.playlist.moveToIndex(len(self.playlist)-1)
+			self.playlist.moveToIndex(len(self.playlist) - 1)
 		self.updateCurrentInfo()
 
 	def save_playlist(self):
@@ -944,7 +944,7 @@ class MediaPlayer(Screen, InfoBarBase, InfoBarScreenSaver, InfoBarSeek, InfoBarA
 				self.doSeek(-1)
 
 	def previousMarkOrEntry(self):
-		if not self.jumpPreviousNextMark(lambda x: -x-5*90000, start=True):
+		if not self.jumpPreviousNextMark(lambda x: -x - 5 * 90000, start=True):
 			next = self.playlist.getCurrentIndex() - 1
 			if next >= 0:
 				self.changeEntry(next)
@@ -998,7 +998,7 @@ class MediaPlayer(Screen, InfoBarBase, InfoBarScreenSaver, InfoBarSeek, InfoBarA
 				currref = self.playlist.getServiceRefList()[idx]
 				text = self.getIdentifier(currref)
 				self.ext = os.path.splitext(text)[1].lower()
-				text = ">"+text
+				text = ">" + text
 				# FIXME: the information if the service contains video (and we should hide our window) should com from the service instead
 				if self.ext not in AUDIO_EXTENSIONS and not self.isAudioCD:
 					self.hideAndInfoBar()

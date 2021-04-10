@@ -65,7 +65,7 @@ class TitleProperties(Screen,ConfigListScreen):
 
 	def initConfigList(self, element=None):
 		try:
-			self.properties.position = ConfigInteger(default=self.title_idx+1, limits=(1, len(self.project.titles)))
+			self.properties.position = ConfigInteger(default=self.title_idx + 1, limits=(1, len(self.project.titles)))
 			title = self.project.titles[self.title_idx]
 			self.list = []
 			self.list.append(getConfigListEntry("DVD " + _("Track"), self.properties.position))
@@ -86,11 +86,11 @@ class TitleProperties(Screen,ConfigListScreen):
 					self.list.append(getConfigListEntry("DVD " + "widescreen", self.properties.crop))
 			if len(title.chaptermarks) == 0:
 				self.list.append(getConfigListEntry(_("Auto chapter split every ? minutes (0=never)"), self.properties.autochapter))
-			infotext = "DVB " + _("Title") + ': ' + title.DVBname + "\n" + _("Description") + ': ' + title.DVBdescr + "\n" + _("Channel") + ': ' + title.DVBchannel + '\n' + _("Begin time") + title.formatDVDmenuText(": $D.$M.$Y, $T\n", self.title_idx+1)
+			infotext = "DVB " + _("Title") + ': ' + title.DVBname + "\n" + _("Description") + ': ' + title.DVBdescr + "\n" + _("Channel") + ': ' + title.DVBchannel + '\n' + _("Begin time") + title.formatDVDmenuText(": $D.$M.$Y, $T\n", self.title_idx + 1)
 			chaptermarks = title.getChapterMarks(template="$h:$m:$s")
 			chapters_count = len(chaptermarks)
 			if chapters_count >= 1:
-				infotext += str(chapters_count+1) + ' ' + _("chapters") + ': '
+				infotext += str(chapters_count + 1) + ' ' + _("chapters") + ': '
 				infotext += ' / '.join(chaptermarks)
 			self["serviceinfo"].setText(infotext)
 			self["config"].setList(self.list)
@@ -126,12 +126,12 @@ class TitleProperties(Screen,ConfigListScreen):
 	def applySettings(self):
 		for x in self["config"].list:
 			x[1].save()
-		current_pos = self.title_idx+1
+		current_pos = self.title_idx + 1
 		new_pos = self.properties.position.getValue()
 		if new_pos != current_pos:
 			print "title got repositioned from ", current_pos, "to", new_pos
-			swaptitle = self.project.titles.pop(current_pos-1)
-			self.project.titles.insert(new_pos-1, swaptitle)
+			swaptitle = self.project.titles.pop(current_pos - 1)
+			self.project.titles.insert(new_pos - 1, swaptitle)
 
 	def ok(self):
 		#key = self.keydict[self["config"].getCurrent()[1]]

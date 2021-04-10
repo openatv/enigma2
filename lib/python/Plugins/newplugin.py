@@ -61,7 +61,7 @@ while not stop:
 			targetlist.remove(wherelist[int(target) - 1])
 
 
-pluginpath = category + "/" +  internalname
+pluginpath = category + "/" + internalname
 os.mkdir(pluginpath)
 
 makefile = open(category + "/Makefile.am", "r")

@@ -5,8 +5,8 @@ import os
 filename = sys.argv[1]
 os.rename(filename, filename + ".org")
 
-source=open(filename + ".org", "r")
-dest=open(filename, "w")
+source = open(filename + ".org", "r")
+dest = open(filename, "w")
 
 for line, str in enumerate(source):
 	oldstr = str[:]
@@ -19,10 +19,10 @@ for line, str in enumerate(source):
 			spacepos -= 1
 		tmpstr = str[spacepos:pos]
 		if '_enigma.' not in tmpstr:
-			str = str[:pos]+str[pos+6:]
+			str = str[:pos] + str[pos + 6:]
 
 	if oldstr != str:
-		print "!!! Patch enigma.py line %d\n%s\n%s" %(line, oldstr[:len(oldstr)-1], str)
+		print "!!! Patch enigma.py line %d\n%s\n%s" % (line, oldstr[:len(oldstr) - 1], str)
 
 	dest.write(str)
 

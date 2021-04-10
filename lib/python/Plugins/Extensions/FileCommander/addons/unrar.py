@@ -57,7 +57,7 @@ class RarMenuScreen(ArchiverMenuScreen):
 				print "[RarMenuScreen] pw incorrect!"
 				#length = config.plugins.filecommander.input_length.value
 				#self.session.openWithCallback(self.setPW, InputBox, text="", visible_width=length, overwrite=False, firstpos_end=True, allmarked=False, title=_("Please enter password"), windowTitle=_("%s is password protected.") % self.filename)
-				self.session.openWithCallback(self.setPW, VirtualKeyBoard, title=_("%s is password protected.")% self.filename + " " + _("Please enter password"), text="")
+				self.session.openWithCallback(self.setPW, VirtualKeyBoard, title=_("%s is password protected.") % self.filename + " " + _("Please enter password"), text="")
 			else:
 				print "[RarMenuScreen] pw correct!"
 				self.unpackModus(self.selectId)

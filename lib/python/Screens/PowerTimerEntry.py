@@ -138,7 +138,7 @@ class TimerEntry(Screen, ConfigListScreen):
 		self.timerentry_date = ConfigDateTime(default=self.timer.begin, formatstring=config.usage.date.full.value, increment=86400)
 		self.timerentry_starttime = ConfigClock(default=self.timer.begin)
 		self.timerentry_endtime = ConfigClock(default=self.timer.end)
-		self.timerentry_showendtime = ConfigSelection(default=(((self.timer.end - self.timer.begin) /60) > 4), choices=[(True, _("yes")), (False, _("no"))])
+		self.timerentry_showendtime = ConfigSelection(default=(((self.timer.end - self.timer.begin) / 60) > 4), choices=[(True, _("yes")), (False, _("no"))])
 
 		self.timerentry_repeatedbegindate = ConfigDateTime(default=self.timer.repeatedbegindate, formatstring=config.usage.date.full.value, increment=86400)
 
@@ -201,7 +201,7 @@ class TimerEntry(Screen, ConfigListScreen):
 					if self.timerrntry_netip.value == "yes":
 						self.list.append(self.ipcountEntry)
 						for x in range(0,self.ipcount.value):
-							self.list.append(getConfigListEntry(("%d. " + _("IP address")) %(x+1), self.ipadressEntry[x]))
+							self.list.append(getConfigListEntry(("%d. " + _("IP address")) % (x + 1), self.ipadressEntry[x]))
 
 		else:
 			self.list.append(self.timerTypeEntry)
@@ -343,11 +343,11 @@ class TimerEntry(Screen, ConfigListScreen):
 				self.timer.end += 86400
 
 		endaction = self.timerentry_showendtime.value
-		if (self.timer.end - self.timer.begin)/60 < 5 or self.timerentry_showendtime.value is False:
+		if (self.timer.end - self.timer.begin) / 60 < 5 or self.timerentry_showendtime.value is False:
 			self.timerentry_afterevent.value = "nothing"
 			self.timer.end = self.timer.begin
 			if endaction:
-				self.session.open(MessageBox, _("Difference between timer begin and end must be equal or greater than %d minutes.\nEnd Action was disabled !") %5, MessageBox.TYPE_INFO, timeout=30)
+				self.session.open(MessageBox, _("Difference between timer begin and end must be equal or greater than %d minutes.\nEnd Action was disabled !") % 5, MessageBox.TYPE_INFO, timeout=30)
 
 		self.timer.timerType = {
 			"nothing": TIMERTYPE.NONE,

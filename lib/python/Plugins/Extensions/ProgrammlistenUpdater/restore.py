@@ -16,7 +16,7 @@ Directory = os.path.dirname(sys.modules[__name__].__file__)
 
 class PU_Restore(Screen,ConfigListScreen):
 
-    skin =  """
+    skin = """
         <screen name="PU_Restore" position="center,center" size="600,470">
             <ePixmap pixmap="skin_default/buttons/red.png" position="5,0" size="140,40" alphatest="on" />
             <ePixmap pixmap="skin_default/buttons/green.png" position="155,0" size="140,40" alphatest="on" />
@@ -75,7 +75,7 @@ class PU_Restore(Screen,ConfigListScreen):
 
     def CBremove(self, req):
         if req:
-            os.system('rm -rf %s' %(Directory + '/Settings/enigma2/' + self.filename))
+            os.system('rm -rf %s' % (Directory + '/Settings/enigma2/' + self.filename))
             self.List = self.Search_Settings()
             self.SettingsMenu()
     
@@ -100,7 +100,7 @@ class PU_Restore(Screen,ConfigListScreen):
         os.system('rm -rf /etc/enigma2/*.radio')
         os.system('rm -rf /etc/enigma2/*.tv')
         # Restore settingslist
-        os.system('tar -xzvf %s -C /' %(Directory + '/Settings/enigma2/' + self.filename))
+        os.system('tar -xzvf %s -C /' % (Directory + '/Settings/enigma2/' + self.filename))
         # Reload settingslist
         eDVBDB.getInstance().reloadServicelist()
         eDVBDB.getInstance().reloadBouquets()

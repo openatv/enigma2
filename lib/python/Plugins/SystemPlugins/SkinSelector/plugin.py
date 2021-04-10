@@ -95,9 +95,9 @@ class SkinSelector(Screen):
 		if self["SkinList"].getCurrent() == "Default Skin":
 			skinfile = "skin.xml"
 		else:
-			skinfile = self["SkinList"].getCurrent()+"/skin.xml"
+			skinfile = self["SkinList"].getCurrent() + "/skin.xml"
 
-		print "Skinselector: Selected Skin: "+self.root+skinfile
+		print "Skinselector: Selected Skin: " + self.root + skinfile
 		config.skin.primary_skin.setValue(skinfile)
 		config.skin.primary_skin.save()
 		restartbox = self.session.openWithCallback(self.restartGUI,MessageBox,_("GUI needs a restart to apply a new skin\nDo you want to Restart the GUI now?"), MessageBox.TYPE_YESNO)
@@ -105,9 +105,9 @@ class SkinSelector(Screen):
 
 	def loadPreview(self):
 		if self["SkinList"].getCurrent() == "Default Skin":
-			pngpath = self.root+"/prev.png"
+			pngpath = self.root + "/prev.png"
 		else:
-			pngpath = self.root+self["SkinList"].getCurrent()+"/prev.png"
+			pngpath = self.root + self["SkinList"].getCurrent() + "/prev.png"
 
 		if not path.exists(pngpath):
 			pngpath = resolveFilename(SCOPE_PLUGINS, "SystemPlugins/SkinSelector/noprev.png")

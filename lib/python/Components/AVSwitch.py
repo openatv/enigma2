@@ -35,67 +35,67 @@ class AVSwitch:
 	rates = {} # high-level, use selectable modes.
 	modes = {}  # a list of (high-level) modes for a certain port.
 
-	rates["PAL"] =		{	"50Hz":		{50: "pal"},
-							"60Hz":		{60: "pal60"},
-							"multi":	{50: "pal", 60: "pal60"}}
+	rates["PAL"] = { "50Hz": {50: "pal"},
+							"60Hz": {60: "pal60"},
+							"multi": {50: "pal", 60: "pal60"}}
 
-	rates["NTSC"] =		{	"60Hz":		{60: "ntsc"}}
+	rates["NTSC"] = { "60Hz": {60: "ntsc"}}
 
-	rates["Multi"] =	{	"multi":	{50: "pal", 60: "ntsc"}}
+	rates["Multi"] = { "multi": {50: "pal", 60: "ntsc"}}
 
-	rates["480i"] =		{	"60Hz":		{60: "480i"}}
+	rates["480i"] = { "60Hz": {60: "480i"}}
 
-	rates["576i"] =		{	"50Hz":		{50: "576i"}}
+	rates["576i"] = { "50Hz": {50: "576i"}}
 
-	rates["480p"] =		{	"60Hz":		{60: "480p"}}
+	rates["480p"] = { "60Hz": {60: "480p"}}
 
-	rates["576p"] =		{	"50Hz":		{50: "576p"}}
+	rates["576p"] = { "50Hz": {50: "576p"}}
 
-	rates["720p"] =		{	"50Hz":		{50: "720p50"},
-							"60Hz":		{60: "720p"},
-							"multi":	{50: "720p50", 60: "720p"},
-							"auto":		{50: "720p50", 60: "720p", 24: "720p24"}}
+	rates["720p"] = { "50Hz": {50: "720p50"},
+							"60Hz": {60: "720p"},
+							"multi": {50: "720p50", 60: "720p"},
+							"auto": {50: "720p50", 60: "720p", 24: "720p24"}}
 
-	rates["1080i"] =	{	"50Hz":		{50: "1080i50"},
-							"60Hz":		{60: "1080i"},
-							"multi":	{50: "1080i50", 60: "1080i"},
-							"auto":		{50: "1080i50", 60: "1080i", 24: "1080p24"}}
+	rates["1080i"] = { "50Hz": {50: "1080i50"},
+							"60Hz": {60: "1080i"},
+							"multi": {50: "1080i50", 60: "1080i"},
+							"auto": {50: "1080i50", 60: "1080i", 24: "1080p24"}}
 
-	rates["1080p"] =	{"50Hz":		{50: "1080p50"},
-							"60Hz":		{60: "1080p"},
-							"multi":	{50: "1080p50", 60: "1080p"},
-							"auto":		{50: "1080p50", 60: "1080p", 24: "1080p24"}}
+	rates["1080p"] = {"50Hz": {50: "1080p50"},
+							"60Hz": {60: "1080p"},
+							"multi": {50: "1080p50", 60: "1080p"},
+							"auto": {50: "1080p50", 60: "1080p", 24: "1080p24"}}
 
 	if getBoxType().startswith('dm9'):
-		rates["2160p"] =	{"50Hz":		{50: "2160p50"},
-								"60Hz":		{60: "2160p60"},
-								"multi":	{50: "2160p50", 60: "2160p60"},
-								"auto":		{50: "2160p50", 60: "2160p60", 24: "2160p24"}}
+		rates["2160p"] = {"50Hz": {50: "2160p50"},
+								"60Hz": {60: "2160p60"},
+								"multi": {50: "2160p50", 60: "2160p60"},
+								"auto": {50: "2160p50", 60: "2160p60", 24: "2160p24"}}
 	else:
-		rates["2160p"] =	{"50Hz":		{50: "2160p50"},
-								"60Hz":		{60: "2160p"},
-								"multi":	{50: "2160p50", 60: "2160p"},
-								"auto":		{50: "2160p50", 60: "2160p", 24: "2160p24"}}
+		rates["2160p"] = {"50Hz": {50: "2160p50"},
+								"60Hz": {60: "2160p"},
+								"multi": {50: "2160p50", 60: "2160p"},
+								"auto": {50: "2160p50", 60: "2160p", 24: "2160p24"}}
 
-	rates["2160p30"] =	{"25Hz":		{50: "2160p25"},
-							"30Hz":		{60: "2160p30"},
-							"multi":	{50: "2160p25", 60: "2160p30"},
-							"auto":		{50: "2160p25", 60: "2160p30", 24: "2160p24"}}
+	rates["2160p30"] = {"25Hz": {50: "2160p25"},
+							"30Hz": {60: "2160p30"},
+							"multi": {50: "2160p25", 60: "2160p30"},
+							"auto": {50: "2160p25", 60: "2160p30", 24: "2160p24"}}
 
 	rates["PC"] = {
-		"1024x768":						{60: "1024x768"}, # not possible on DM7025
-		"800x600":						{60: "800x600"},  # also not possible
-		"720x480":						{60: "720x480"},
-		"720x576":						{60: "720x576"},
-		"1280x720":						{60: "1280x720"},
-		"1280x720 multi":				{50: "1280x720_50", 60: "1280x720"},
-		"1920x1080":					{60: "1920x1080"},
-		"1920x1080 multi":				{50: "1920x1080", 60: "1920x1080_50"},
-		"1280x1024":					{60: "1280x1024"},
-		"1366x768":					{60: "1366x768"},
-		"1366x768 multi":				{50: "1366x768", 60: "1366x768_50"},
-		"1280x768":						{60: "1280x768"},
-		"640x480":						{60: "640x480"}
+		"1024x768": {60: "1024x768"}, # not possible on DM7025
+		"800x600": {60: "800x600"},  # also not possible
+		"720x480": {60: "720x480"},
+		"720x576": {60: "720x576"},
+		"1280x720": {60: "1280x720"},
+		"1280x720 multi": {50: "1280x720_50", 60: "1280x720"},
+		"1920x1080": {60: "1920x1080"},
+		"1920x1080 multi": {50: "1920x1080", 60: "1920x1080_50"},
+		"1280x1024": {60: "1280x1024"},
+		"1366x768": {60: "1366x768"},
+		"1366x768 multi": {50: "1366x768", 60: "1366x768_50"},
+		"1280x768": {60: "1280x768"},
+		"640x480": {60: "640x480"}
 	}
 
 	modes["Scart"] = ["PAL", "NTSC", "Multi"]
@@ -138,7 +138,7 @@ class AVSwitch:
 			del modes["YPbPr"]
 
 	def __init__(self):
-		self.last_modes_preferred =  []
+		self.last_modes_preferred = []
 		self.on_hotplug = CList()
 		self.current_mode = None
 		self.current_port = None
@@ -534,10 +534,10 @@ def InitAVSwitch():
 			"60,50": _("60p/50p"),
 			"60,60": _("60p/60p")
 				}  # first value <=720p , second value > 720p
-	config.av.autores_24p =  ConfigSelection(choices=choicelist, default="50,24")
-	config.av.autores_25p =  ConfigSelection(choices=choicelist, default="50,25")
-	config.av.autores_30p =  ConfigSelection(choices=choicelist, default="60,30")
-	config.av.autores_unknownres =  ConfigSelection(choices={"next": _("next higher Resolution"), "highest": _("highest Resolution")}, default="next")
+	config.av.autores_24p = ConfigSelection(choices=choicelist, default="50,24")
+	config.av.autores_25p = ConfigSelection(choices=choicelist, default="50,25")
+	config.av.autores_30p = ConfigSelection(choices=choicelist, default="60,30")
+	config.av.autores_unknownres = ConfigSelection(choices={"next": _("next higher Resolution"), "highest": _("highest Resolution")}, default="next")
 	choicelist = []
 	for i in range(5, 16):
 		choicelist.append(("%d" % i, ngettext("%d second", "%d seconds", i) % i))
@@ -573,14 +573,14 @@ def InitAVSwitch():
 
 	# Some boxes have a redundant proc entry for policy2 choices, but some don't (The choices are from a 16:9 point of view anyways)
 	if os.path.exists("/proc/stb/video/policy2_choices"):
-		policy2_choices_proc="/proc/stb/video/policy2_choices"
+		policy2_choices_proc = "/proc/stb/video/policy2_choices"
 	else:
-		policy2_choices_proc="/proc/stb/video/policy_choices"
+		policy2_choices_proc = "/proc/stb/video/policy_choices"
 
 	try:
-		policy2_choices_raw=open(policy2_choices_proc, "r").read()
+		policy2_choices_raw = open(policy2_choices_proc, "r").read()
 	except:
-		policy2_choices_raw="letterbox"
+		policy2_choices_raw = "letterbox"
 	
 	policy2_choices = {}
 
@@ -614,11 +614,11 @@ def InitAVSwitch():
 
 	config.av.policy_169 = ConfigSelection(choices=policy2_choices, default="letterbox")
 
-	policy_choices_proc="/proc/stb/video/policy_choices"
+	policy_choices_proc = "/proc/stb/video/policy_choices"
 	try:
-		policy_choices_raw=open(policy_choices_proc, "r").read()
+		policy_choices_raw = open(policy_choices_proc, "r").read()
 	except:
-		policy_choices_raw="panscan"
+		policy_choices_raw = "panscan"
 	
 	policy_choices = {}
 
@@ -1063,7 +1063,7 @@ def InitAVSwitch():
 				if can_pcm_multichannel:
 					config.av.pcm_multichannel.setValue(False)
 		if getBoxType() in ('dm900', 'dm920', 'dm7080', 'dm800'):
-			choice_list = [("downmix",  _("Downmix")), ("passthrough", _("Passthrough")), ("multichannel",  _("convert to multi-channel PCM")), ("hdmi_best",  _("use best / controlled by HDMI"))]
+			choice_list = [("downmix", _("Downmix")), ("passthrough", _("Passthrough")), ("multichannel", _("convert to multi-channel PCM")), ("hdmi_best", _("use best / controlled by HDMI"))]
 			config.av.downmix_ac3 = ConfigSelection(choices=choice_list, default="downmix")
 		else:
 			config.av.downmix_ac3 = ConfigYesNo(default=True)
@@ -1084,10 +1084,10 @@ def InitAVSwitch():
 			f.write(configElement.value)
 			f.close()
 		if getBoxType() in ('dm900', 'dm920', 'dm7080', 'dm800'):
-			choice_list = [("use_hdmi_caps", _("controlled by HDMI")), ("force_ac3", _("convert to AC3")), ("multichannel",  _("convert to multi-channel PCM")), ("hdmi_best",  _("use best / controlled by HDMI")), ("force_ddp",  _("force AC3plus"))]
+			choice_list = [("use_hdmi_caps", _("controlled by HDMI")), ("force_ac3", _("convert to AC3")), ("multichannel", _("convert to multi-channel PCM")), ("hdmi_best", _("use best / controlled by HDMI")), ("force_ddp", _("force AC3plus"))]
 			config.av.transcodeac3plus = ConfigSelection(choices=choice_list, default="force_ac3")
 		elif getBoxType() in ('gbquad4k', 'gbue4k', 'gbx34k'):
-			choice_list = [("downmix", _("Downmix")), ("passthrough", _("Passthrough")), ("force_ac3", _("convert to AC3")), ("multichannel",  _("convert to multi-channel PCM")), ("force_dts",  _("convert to DTS"))]
+			choice_list = [("downmix", _("Downmix")), ("passthrough", _("Passthrough")), ("force_ac3", _("convert to AC3")), ("multichannel", _("convert to multi-channel PCM")), ("force_dts", _("convert to DTS"))]
 			config.av.transcodeac3plus = ConfigSelection(choices=choice_list, default="force_ac3")
 		else:
 			choice_list = [("use_hdmi_caps", _("controlled by HDMI")), ("force_ac3", _("convert to AC3"))]
@@ -1109,10 +1109,10 @@ def InitAVSwitch():
 			f.write(configElement.value)
 			f.close()
 		if getBoxType() in ("dm7080", "dm820"):
-			choice_list = [("use_hdmi_caps",  _("controlled by HDMI")), ("force_dts", _("convert to DTS"))]
+			choice_list = [("use_hdmi_caps", _("controlled by HDMI")), ("force_dts", _("convert to DTS"))]
 			config.av.dtshd = ConfigSelection(choices=choice_list, default="use_hdmi_caps")
 		else:
-			choice_list = [("downmix",  _("Downmix")), ("force_dts", _("convert to DTS")), ("use_hdmi_caps",  _("controlled by HDMI")), ("multichannel",  _("convert to multi-channel PCM")), ("hdmi_best",  _("use best / controlled by HDMI"))]
+			choice_list = [("downmix", _("Downmix")), ("force_dts", _("convert to DTS")), ("use_hdmi_caps", _("controlled by HDMI")), ("multichannel", _("convert to multi-channel PCM")), ("hdmi_best", _("use best / controlled by HDMI"))]
 			config.av.dtshd = ConfigSelection(choices=choice_list, default="downmix")
 		config.av.dtshd.addNotifier(setDTSHD)
 
@@ -1130,7 +1130,7 @@ def InitAVSwitch():
 			f = open("/proc/stb/audio/wmapro", "w")
 			f.write(configElement.value)
 			f.close()
-		choice_list = [("downmix",  _("Downmix")), ("passthrough", _("Passthrough")), ("multichannel",  _("convert to multi-channel PCM")), ("hdmi_best",  _("use best / controlled by HDMI"))]
+		choice_list = [("downmix", _("Downmix")), ("passthrough", _("Passthrough")), ("multichannel", _("convert to multi-channel PCM")), ("hdmi_best", _("use best / controlled by HDMI"))]
 		config.av.wmapro = ConfigSelection(choices=choice_list, default="downmix")
 		config.av.wmapro.addNotifier(setWMAPRO)
 
@@ -1169,10 +1169,10 @@ def InitAVSwitch():
 				f.write(configElement.value and "downmix" or "passthrough")
 			f.close()
 		if getBoxType() in ('dm900', 'dm920', 'dm7080', 'dm800'):
-			choice_list = [("downmix",  _("Downmix")), ("passthrough", _("Passthrough")), ("multichannel",  _("convert to multi-channel PCM")), ("hdmi_best",  _("use best / controlled by HDMI"))]
+			choice_list = [("downmix", _("Downmix")), ("passthrough", _("Passthrough")), ("multichannel", _("convert to multi-channel PCM")), ("hdmi_best", _("use best / controlled by HDMI"))]
 			config.av.downmix_aac = ConfigSelection(choices=choice_list, default="downmix")
 		elif getBoxType() in ('gbquad4k', 'gbue4k', 'gbx34k'):
-			choice_list = [("downmix",  _("Downmix")), ("passthrough", _("Passthrough")), ("multichannel",  _("convert to multi-channel PCM")), ("force_ac3", _("convert to AC3")), ("force_dts",  _("convert to DTS")), ("use_hdmi_cacenter",  _("use_hdmi_cacenter")), ("wide",  _("wide")), ("extrawide",  _("extrawide"))]
+			choice_list = [("downmix", _("Downmix")), ("passthrough", _("Passthrough")), ("multichannel", _("convert to multi-channel PCM")), ("force_ac3", _("convert to AC3")), ("force_dts", _("convert to DTS")), ("use_hdmi_cacenter", _("use_hdmi_cacenter")), ("wide", _("wide")), ("extrawide", _("extrawide"))]
 			config.av.downmix_aac = ConfigSelection(choices=choice_list, default="downmix")
 		else:
 			config.av.downmix_aac = ConfigYesNo(default=True)
@@ -1193,7 +1193,7 @@ def InitAVSwitch():
 			f.write(configElement.value)
 			f.close()
 
-		choice_list = [("downmix",  _("Downmix")), ("passthrough", _("Passthrough")), ("multichannel",  _("convert to multi-channel PCM")), ("force_ac3", _("convert to AC3")), ("force_dts",  _("convert to DTS")), ("use_hdmi_cacenter",  _("use_hdmi_cacenter")), ("wide",  _("wide")), ("extrawide",  _("extrawide"))]
+		choice_list = [("downmix", _("Downmix")), ("passthrough", _("Passthrough")), ("multichannel", _("convert to multi-channel PCM")), ("force_ac3", _("convert to AC3")), ("force_dts", _("convert to DTS")), ("use_hdmi_cacenter", _("use_hdmi_cacenter")), ("wide", _("wide")), ("extrawide", _("extrawide"))]
 		config.av.downmix_aacplus = ConfigSelection(choices=choice_list, default="downmix")
 		config.av.downmix_aacplus.addNotifier(setAACDownmixPlus)
 

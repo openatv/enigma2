@@ -36,9 +36,9 @@ class VServiceOrbitalPosition(Converter, object):
 				pos = 3600 - pos
 				direction = 'W'
 			if self.type == self.SHORT:
-				return "%d.%d%s" % (pos/10, pos%10, direction)
+				return "%d.%d%s" % (pos / 10, pos % 10, direction)
 			else:
-				return "%d.%d ° %s" % (pos/10, pos%10, direction)
+				return "%d.%d ° %s" % (pos / 10, pos % 10, direction)
 		else:
 			return ""
 

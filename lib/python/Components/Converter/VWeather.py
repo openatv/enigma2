@@ -175,7 +175,7 @@ class WeatherData:
 		if timeout > 0:
 			self.timer.start(timeout, True)
 			print "AtileHD lookup for ID " + str(config.plugins.AtileHD.woeid.value)
-			url = "http://query.yahooapis.com/v1/public/yql?q=select%20item%20from%20weather.forecast%20where%20woeid%3D%22"+str(config.plugins.AtileHD.woeid.value)+"%22&format=xml"
+			url = "http://query.yahooapis.com/v1/public/yql?q=select%20item%20from%20weather.forecast%20where%20woeid%3D%22" + str(config.plugins.AtileHD.woeid.value) + "%22&format=xml"
 			getPage(url,method='GET').addCallback(self.GotWeatherData).addErrback(self.downloadError)
 
 	def GotWeatherData(self, data=None):
@@ -227,7 +227,7 @@ class WeatherData:
 			self.WeatherInfo["forecastTomorrow3Date"] = self.getWeatherDate(weather)
 			self.WeatherInfo["forecastTomorrow3TempMax"] = self.getTemp(weather.getAttributeNode('high').nodeValue)
 			self.WeatherInfo["forecastTomorrow3TempMin"] = self.getTemp(weather.getAttributeNode('low').nodeValue)
-			self.WeatherInfo["forecastTomorrow3Text"] =_(str(weather.getAttributeNode('text').nodeValue))
+			self.WeatherInfo["forecastTomorrow3Text"] = _(str(weather.getAttributeNode('text').nodeValue))
 			
 	def getText(self,nodelist):
 	    rc = []
@@ -243,7 +243,7 @@ class WeatherData:
 			condition = "S"
 		elif c == 3 or c == 4:
 			condition = "Z"
-		elif c == 5  or c == 6 or c == 7 or c == 18:
+		elif c == 5 or c == 6 or c == 7 or c == 18:
 			condition = "U"
 		elif c == 8 or c == 10 or c == 25:
 			condition = "G"

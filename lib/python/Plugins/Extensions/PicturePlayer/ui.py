@@ -239,11 +239,11 @@ class Pic_Exif(Screen):
 
 		self["key_red"] = StaticText(_("Close"))
 
-		exifdesc = [_("filename")+':', "EXIF-Version:", "Make:", "Camera:", "Date/Time:", "Width / Height:", "Flash used:", "Orientation:", "User Comments:", "Metering Mode:", "Exposure Program:", "Light Source:", "CompressedBitsPerPixel:", "ISO Speed Rating:", "X-Resolution:", "Y-Resolution:", "Resolution Unit:", "Brightness:", "Exposure Time:", "Exposure Bias:", "Distance:", "CCD-Width:", "ApertureFNumber:"]
+		exifdesc = [_("filename") + ':', "EXIF-Version:", "Make:", "Camera:", "Date/Time:", "Width / Height:", "Flash used:", "Orientation:", "User Comments:", "Metering Mode:", "Exposure Program:", "Light Source:", "CompressedBitsPerPixel:", "ISO Speed Rating:", "X-Resolution:", "Y-Resolution:", "Resolution Unit:", "Brightness:", "Exposure Time:", "Exposure Bias:", "Distance:", "CCD-Width:", "ApertureFNumber:"]
 		list = []
 
 		for x in range(len(exiflist)):
-			if x>0:
+			if x > 0:
 				list.append((exifdesc[x], exiflist[x]))
 			else:
 				name = exiflist[x].split('/')[-1]
@@ -267,7 +267,7 @@ class Pic_Thumb(Screen):
 
 		self.textcolor = config.pic.textcolor.value
 		self.color = config.pic.bgcolor.value
-		self.spaceX, self.picX, self.spaceY, self.picY, textsize, thumtxt  = skin.parameters.get("PicturePlayerThumb",(35, 190, 30, 200, 20, 14))
+		self.spaceX, self.picX, self.spaceY, self.picY, textsize, thumtxt = skin.parameters.get("PicturePlayerThumb",(35, 190, 30, 200, 20, 14))
 
 		pic_frame = resolveFilename(SCOPE_ACTIVE_SKIN, "icons/pic_frame.png")
 
@@ -287,17 +287,17 @@ class Pic_Thumb(Screen):
 			if posX >= self.thumbsX:
 				posX = 0
 
-			absX = self.spaceX + (posX*(self.spaceX + self.picX))
-			absY = self.spaceY + (posY*(self.spaceY + self.picY))
+			absX = self.spaceX + (posX * (self.spaceX + self.picX))
+			absY = self.spaceY + (posY * (self.spaceY + self.picY))
 			self.positionlist.append((absX, absY))
-			skincontent += "<widget source=\"label" + str(x) + "\" render=\"Label\" position=\"" + str(absX+5) + "," + str(absY+self.picY-textsize) + "\" size=\"" + str(self.picX - 10) + ","  + str(textsize) \
+			skincontent += "<widget source=\"label" + str(x) + "\" render=\"Label\" position=\"" + str(absX + 5) + "," + str(absY + self.picY - textsize) + "\" size=\"" + str(self.picX - 10) + "," + str(textsize) \
 					+ "\" font=\"Regular;" + str(thumtxt) + "\" zPosition=\"2\" transparent=\"1\" noWrap=\"1\" foregroundColor=\"" + self.textcolor + "\" />"
-			skincontent += "<widget name=\"thumb" + str(x) + "\" position=\"" + str(absX+5)+ "," + str(absY+5) + "\" size=\"" + str(self.picX -10) + "," + str(self.picY - (textsize*2)) + "\" zPosition=\"2\" transparent=\"1\" alphatest=\"on\" />"
+			skincontent += "<widget name=\"thumb" + str(x) + "\" position=\"" + str(absX + 5) + "," + str(absY + 5) + "\" size=\"" + str(self.picX - 10) + "," + str(self.picY - (textsize * 2)) + "\" zPosition=\"2\" transparent=\"1\" alphatest=\"on\" />"
 
 		# Screen, backgroundlabel and MovingPixmap
 		self.skin = "<screen position=\"0,0\" size=\"" + str(self.size_w) + "," + str(self.size_h) + "\" flags=\"wfNoBorder\" > \
-			<eLabel position=\"0,0\" zPosition=\"0\" size=\""+ str(self.size_w) + "," + str(self.size_h) + "\" backgroundColor=\"" + self.color + "\" />" \
-			+ "<widget name=\"frame\" position=\"" + str(self.spaceX)+ "," + str(self.spaceY)+ "\" size=\"" + str(self.picX) + "," + str(self.picY) + "\" pixmap=\"" + pic_frame + "\" zPosition=\"1\" alphatest=\"on\" />" \
+			<eLabel position=\"0,0\" zPosition=\"0\" size=\"" + str(self.size_w) + "," + str(self.size_h) + "\" backgroundColor=\"" + self.color + "\" />" \
+			+ "<widget name=\"frame\" position=\"" + str(self.spaceX) + "," + str(self.spaceY) + "\" size=\"" + str(self.picX) + "," + str(self.picY) + "\" pixmap=\"" + pic_frame + "\" zPosition=\"1\" alphatest=\"on\" />" \
 			+ skincontent + "</screen>"
 
 		Screen.__init__(self, session)
@@ -315,8 +315,8 @@ class Pic_Thumb(Screen):
 
 		self["frame"] = MovingPixmap()
 		for x in range(self.thumbsC):
-			self["label"+str(x)] = StaticText()
-			self["thumb"+str(x)] = Pixmap()
+			self["label" + str(x)] = StaticText()
+			self["thumb" + str(x)] = Pixmap()
 
 		self.Thumbnaillist = []
 		self.filelist = []
@@ -329,16 +329,16 @@ class Pic_Thumb(Screen):
 		Page = 0
 		for x in piclist:
 			if not x[0][1]:
-				self.filelist.append((index, framePos, Page, x[0][0],  path + x[0][0]))
+				self.filelist.append((index, framePos, Page, x[0][0], path + x[0][0]))
 				index += 1
 				framePos += 1
-				if framePos > (self.thumbsC -1):
+				if framePos > (self.thumbsC - 1):
 					framePos = 0
 					Page += 1
 			else:
 				self.dirlistcount += 1
 
-		self.maxentry = len(self.filelist)-1
+		self.maxentry = len(self.filelist) - 1
 		self.index = lastindex - self.dirlistcount
 		if self.index < 0:
 			self.index = 0
@@ -373,12 +373,12 @@ class Pic_Thumb(Screen):
 		self.Thumbnaillist = []
 		#clear Labels and Thumbnail
 		for x in range(self.thumbsC):
-			self["label"+str(x)].setText("")
-			self["thumb"+str(x)].hide()
+			self["label" + str(x)].setText("")
+			self["thumb" + str(x)].hide()
 		#paint Labels and fill Thumbnail-List
 		for x in self.filelist:
 			if x[T_PAGE] == self.currPage:
-				self["label"+str(x[T_FRAME_POS])].setText("(" + str(x[T_INDEX]+1) + ") " + x[T_NAME])
+				self["label" + str(x[T_FRAME_POS])].setText("(" + str(x[T_INDEX] + 1) + ") " + x[T_NAME])
 				self.Thumbnaillist.append([0, x[T_FRAME_POS], x[T_FULL]])
 
 		#paint Thumbnail start
@@ -414,7 +414,7 @@ class Pic_Thumb(Screen):
 	def key_up(self):
 		self.index -= self.thumbsX
 		if self.index < 0:
-			self.index =self.maxentry
+			self.index = self.maxentry
 		self.paintFrame()
 
 	def key_down(self):
@@ -460,10 +460,10 @@ class Pic_Full_View(Screen):
 			getDesktop(0).resize(eSize(size_w, size_h))
 
 		self.skin = "<screen position=\"0,0\" size=\"" + str(size_w) + "," + str(size_h) + "\" flags=\"wfNoBorder\" > \
-			<eLabel position=\"0,0\" zPosition=\"0\" size=\""+ str(size_w) + "," + str(size_h) + "\" backgroundColor=\""+ self.bgcolor +"\" /><widget name=\"pic\" position=\"" + str(space) + "," + str(space) + "\" size=\"" + str(size_w-(space*2)) + "," + str(size_h-(space*2)) + "\" zPosition=\"1\" alphatest=\"on\" /> \
-			<widget name=\"point\" position=\""+ str(space+5) + "," + str(space+2) + "\" size=\"20,20\" zPosition=\"2\" pixmap=\"skin_default/icons/record.png\" alphatest=\"on\" /> \
-			<widget name=\"play_icon\" position=\""+ str(space+25) + "," + str(space+2) + "\" size=\"20,20\" zPosition=\"2\" pixmap=\"skin_default/icons/ico_mp_play.png\"  alphatest=\"on\" /> \
-			<widget source=\"file\" render=\"Label\" position=\""+ str(space+45) + "," + str(space) + "\" size=\""+ str(size_w-(space*2)-50) + ",25\" font=\"Regular;20\" borderWidth=\"1\" borderColor=\"#000000\" halign=\"left\" foregroundColor=\"" + self.textcolor + "\" zPosition=\"2\" noWrap=\"1\" transparent=\"1\" /></screen>"
+			<eLabel position=\"0,0\" zPosition=\"0\" size=\"" + str(size_w) + "," + str(size_h) + "\" backgroundColor=\"" + self.bgcolor + "\" /><widget name=\"pic\" position=\"" + str(space) + "," + str(space) + "\" size=\"" + str(size_w - (space * 2)) + "," + str(size_h - (space * 2)) + "\" zPosition=\"1\" alphatest=\"on\" /> \
+			<widget name=\"point\" position=\"" + str(space + 5) + "," + str(space + 2) + "\" size=\"20,20\" zPosition=\"2\" pixmap=\"skin_default/icons/record.png\" alphatest=\"on\" /> \
+			<widget name=\"play_icon\" position=\"" + str(space + 25) + "," + str(space + 2) + "\" size=\"20,20\" zPosition=\"2\" pixmap=\"skin_default/icons/ico_mp_play.png\"  alphatest=\"on\" /> \
+			<widget source=\"file\" render=\"Label\" position=\"" + str(space + 45) + "," + str(space) + "\" size=\"" + str(size_w - (space * 2) - 50) + ",25\" font=\"Regular;20\" borderWidth=\"1\" borderColor=\"#000000\" halign=\"left\" foregroundColor=\"" + self.textcolor + "\" zPosition=\"2\" noWrap=\"1\" transparent=\"1\" /></screen>"
 
 		Screen.__init__(self, session)
 
@@ -505,7 +505,7 @@ class Pic_Full_View(Screen):
 			else: # thumbnaillist
 				self.filelist.append(x[T_FULL])
 
-		self.maxentry = len(self.filelist)-1
+		self.maxentry = len(self.filelist) - 1
 		self.index = index - self.dirlistcount
 		if self.index < 0:
 			self.index = 0
@@ -549,7 +549,7 @@ class Pic_Full_View(Screen):
 			text = ""
 			try:
 				text = picInfo.split('\n',1)
-				text = "(" + str(self.index+1) + "/" + str(self.maxentry+1) + ") " + text[0].split('/')[-1]
+				text = "(" + str(self.index + 1) + "/" + str(self.maxentry + 1) + ") " + text[0].split('/')[-1]
 			except:
 				pass
 			self.currPic = []
@@ -584,7 +584,7 @@ class Pic_Full_View(Screen):
 			self.slideTimer.stop()
 			self["play_icon"].hide()
 		else:
-			self.slideTimer.start(config.pic.slidetime.value*1000)
+			self.slideTimer.start(config.pic.slidetime.value * 1000)
 			self["play_icon"].show()
 			self.nextPic()
 

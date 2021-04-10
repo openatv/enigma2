@@ -63,7 +63,7 @@ def getMultibootslots():
 						break
 				if slot:
 					bootslots[int(slotnumber)] = slot
-		print "[multiboot1] getMultibootslots bootslots = %s" %bootslots
+		print "[multiboot1] getMultibootslots bootslots = %s" % bootslots
 		Console().ePopen("umount %s" % Imagemount)
 		if not path.ismount(Imagemount):
 			rmdir(Imagemount)
@@ -97,7 +97,7 @@ def GetSTARTUPFile():
 		return "STARTUP"
 
 def ReadSTARTUP():
-	return SystemInfo["canMultiBoot"] and open('/tmp/startupmount/%s' %GetSTARTUPFile(), 'r').read()
+	return SystemInfo["canMultiBoot"] and open('/tmp/startupmount/%s' % GetSTARTUPFile(), 'r').read()
 
 def GetBoxName():
 	box = getBoxType()
@@ -167,7 +167,7 @@ class GetImagelist():
 			self.imagelist[self.slot] = {"imagename": _("Empty slot")}
 		if retval == 0 and self.phase == self.MOUNT:
 			if SystemInfo["HasRootSubdir"] and SystemInfo["canMultiBoot"][self.slot]["rootsubdir"] != None:
-				imagedir = ('%s/%s' %(Imageroot, SystemInfo["canMultiBoot"][self.slot]["rootsubdir"]))
+				imagedir = ('%s/%s' % (Imageroot, SystemInfo["canMultiBoot"][self.slot]["rootsubdir"]))
 			else:
 				imagedir = Imageroot
 			if path.isfile("%s/usr/bin/enigma2" % imagedir):
@@ -323,12 +323,12 @@ class EmptySlot():
 	def appClosed(self, data="", retval=0, extra_args=None):
 		if retval == 0 and self.phase == self.MOUNT:
 			if SystemInfo["HasRootSubdir"] and SystemInfo["canMultiBoot"][self.slot]["rootsubdir"] != None:
-				imagedir = ('%s/%s' %(Imageroot, SystemInfo["canMultiBoot"][self.slot]["rootsubdir"]))
+				imagedir = ('%s/%s' % (Imageroot, SystemInfo["canMultiBoot"][self.slot]["rootsubdir"]))
 			else:
 				imagedir = Imageroot
-			if path.isfile("%s/usr/bin/enigma2"%imagedir):
-				rename("%s/usr/bin/enigma2" %imagedir, "%s/usr/bin/enigmax.bin" %imagedir)
-				rename("%s/etc" %imagedir, "%s/etcx" %imagedir)
+			if path.isfile("%s/usr/bin/enigma2" % imagedir):
+				rename("%s/usr/bin/enigma2" % imagedir, "%s/usr/bin/enigmax.bin" % imagedir)
+				rename("%s/etc" % imagedir, "%s/etcx" % imagedir)
 			self.phase = self.UNMOUNT
 			self.run()
 		else:

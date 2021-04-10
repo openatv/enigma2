@@ -54,7 +54,7 @@ class BackupSetup(Screen):
 	def keyNumberGlobal(self, number):
 		print "You pressed number", number
 		if (self["config"].getCurrent()[1].parent.enabled == True):
-			self["config"].handleKey(KEY_0+number)
+			self["config"].handleKey(KEY_0 + number)
 
 	def keyCancel(self):
 		for x in self["config"].list:

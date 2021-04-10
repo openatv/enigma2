@@ -84,7 +84,7 @@ class Hotplug(Protocol):
 		v = {}
 		for x in data:
 			i = x.find('=')
-			var, val = x[:i], x[i+1:]
+			var, val = x[:i], x[i + 1:]
 			v[var] = val
 		processHotplugData(self, v)
 

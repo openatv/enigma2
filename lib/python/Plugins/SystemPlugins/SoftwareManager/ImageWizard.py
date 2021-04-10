@@ -35,26 +35,26 @@ def checkConfigBackup():
 	if len(parts):
 		for x in parts:
 			if x[1].endswith('/'):
-				fullbackupfile =  x[1] + 'backup_' + distro + '_' +  boxtype + '/' + backupfile
+				fullbackupfile = x[1] + 'backup_' + distro + '_' + boxtype + '/' + backupfile
 				if fileExists(fullbackupfile):
 					config.plugins.configurationbackup.backuplocation.setValue(str(x[1]))
 					config.plugins.configurationbackup.backuplocation.save()
 					config.plugins.configurationbackup.save()
 					return x
-				fullbackupfile =  x[1] + 'backup/' + backupfile
+				fullbackupfile = x[1] + 'backup/' + backupfile
 				if fileExists(fullbackupfile):
 					config.plugins.configurationbackup.backuplocation.setValue(str(x[1]))
 					config.plugins.configurationbackup.backuplocation.save()
 					config.plugins.configurationbackup.save()
 					return x
 			else:
-				fullbackupfile =  x[1] + '/backup_' + distro + '_' +   boxtype + '/' + backupfile
+				fullbackupfile = x[1] + '/backup_' + distro + '_' + boxtype + '/' + backupfile
 				if fileExists(fullbackupfile):
 					config.plugins.configurationbackup.backuplocation.setValue(str(x[1]))
 					config.plugins.configurationbackup.backuplocation.save()
 					config.plugins.configurationbackup.save()
 					return x
-				fullbackupfile =  x[1] + '/backup/' + backupfile
+				fullbackupfile = x[1] + '/backup/' + backupfile
 				if fileExists(fullbackupfile):
 					config.plugins.configurationbackup.backuplocation.setValue(str(x[1]))
 					config.plugins.configurationbackup.backuplocation.save()
@@ -65,21 +65,21 @@ def checkConfigBackup():
 def checkBackupFile():
 	backuplocation = config.plugins.configurationbackup.backuplocation.value
 	if backuplocation.endswith('/'):
-		fullbackupfile =  backuplocation + 'backup_' + distro + '_' + boxtype + '/' + backupfile
+		fullbackupfile = backuplocation + 'backup_' + distro + '_' + boxtype + '/' + backupfile
 		if fileExists(fullbackupfile):
 			return True
 		else:
-			fullbackupfile =  backuplocation + 'backup/' + backupfile
+			fullbackupfile = backuplocation + 'backup/' + backupfile
 			if fileExists(fullbackupfile):
 				return True
 			else:
 				return False
 	else:
-		fullbackupfile =  backuplocation + '/backup_' + distro + '_' + boxtype + '/' + backupfile
+		fullbackupfile = backuplocation + '/backup_' + distro + '_' + boxtype + '/' + backupfile
 		if fileExists(fullbackupfile):
 			return True
 		else:
-			fullbackupfile =  backuplocation + '/backup/' + backupfile
+			fullbackupfile = backuplocation + '/backup/' + backupfile
 			if fileExists(fullbackupfile):
 				return True
 			else:

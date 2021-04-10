@@ -77,7 +77,7 @@ def parseTrans(filename, actionmap, device, keys):
 		assert keyin, "[keymapparser] %s: must specify key to translate from '%s'" % (filename, keyin)
 		assert keyout, "[keymapparser] %s: must specify key to translate to '%s'" % (filename, keyout)
 
-		keyin  = getKeyId(keyin)
+		keyin = getKeyId(keyin)
 		keyout = getKeyId(keyout)
 		toggle = int(toggle)
 		actionmap.bindTranslation(filename, device, keyin, keyout, toggle)

@@ -94,7 +94,7 @@ class TimerEditList(Screen):
 		self.updateState()
 
 	def toggleDisabledState(self):
-		cur=self["timerlist"].getCurrent()
+		cur = self["timerlist"].getCurrent()
 		if cur:
 			t = cur
 			if t.disabled:
@@ -261,8 +261,8 @@ class TimerEditList(Screen):
 					ref = timer.service_ref
 				else:
 					ref = timer.service_ref.ref.toString()
-				begin = timer.begin + config.recording.margin_before.value*60
-				duration = (timer.end - begin - config.recording.margin_after.value*60) / 60
+				begin = timer.begin + config.recording.margin_before.value * 60
+				duration = (timer.end - begin - config.recording.margin_after.value * 60) / 60
 				if duration <= 0:
 					duration = 30 # it seems to be a reminder or a justplay timer without end time, so search epg events for the next 30 min
 				list = epgcache.lookupEvent(['IBDT', (ref, 0, begin, duration)])
@@ -273,7 +273,7 @@ class TimerEditList(Screen):
 							break
 					if not event_id and timer.begin != timer.end: # no match at title search --> search in time span
 						for epgevent in list:
-							if  timer.end >= (begin + epgevent[2]) and timer.begin <= epgevent[1]:
+							if timer.end >= (begin + epgevent[2]) and timer.begin <= epgevent[1]:
 								event_id = epgevent[0]
 								break
 					if event_id:
@@ -289,12 +289,12 @@ class TimerEditList(Screen):
 			self.session.openWithCallback(self.refill, EventViewSimple, event, timer.service_ref)
 
 	def showLog(self):
-		cur=self["timerlist"].getCurrent()
+		cur = self["timerlist"].getCurrent()
 		if cur:
 			self.session.openWithCallback(self.finishedEdit, TimerLog, cur)
 
 	def openEdit(self):
-		cur=self["timerlist"].getCurrent()
+		cur = self["timerlist"].getCurrent()
 		if cur:
 			self.session.openWithCallback(self.finishedEdit, TimerEntry, cur)
 
@@ -378,10 +378,10 @@ class TimerEditList(Screen):
 
 	def MoveToTrash(self, trashpath):
 		if not os.path.exists(trashpath):
-			os.system("mkdir -p %s" %trashpath)
+			os.system("mkdir -p %s" % trashpath)
 		self.removeTimer(True)
 		moviepath = os.path.normpath(resolveFilename(SCOPE_HDD))
-		movedList =[]
+		movedList = []
 		files = os.listdir(moviepath)
 		for file in files:
 			if file.startswith(self.moviename):

@@ -4,11 +4,11 @@ from enigma import eTimer, eActionMap
 import datetime
 
 class TimerEntry:
-	StateWaiting  = 0
+	StateWaiting = 0
 	StatePrepared = 1
-	StateRunning  = 2
-	StateEnded    = 3
-	StateFailed   = 4
+	StateRunning = 2
+	StateEnded = 3
+	StateFailed = 4
 
 	def __init__(self, begin, end):
 		self.begin = begin
@@ -45,7 +45,7 @@ class TimerEntry:
 
 	def addOneDay(self, timedatestruct):
 		oldHour = timedatestruct.tm_hour
-		newdate =  (datetime.datetime(timedatestruct.tm_year, timedatestruct.tm_mon, timedatestruct.tm_mday, timedatestruct.tm_hour, timedatestruct.tm_min, timedatestruct.tm_sec) + datetime.timedelta(days=1)).timetuple()
+		newdate = (datetime.datetime(timedatestruct.tm_year, timedatestruct.tm_mon, timedatestruct.tm_mday, timedatestruct.tm_hour, timedatestruct.tm_min, timedatestruct.tm_sec) + datetime.timedelta(days=1)).timetuple()
 		if localtime(mktime(newdate)).tm_hour != oldHour:
 			return (datetime.datetime(timedatestruct.tm_year, timedatestruct.tm_mon, timedatestruct.tm_mday, timedatestruct.tm_hour, timedatestruct.tm_min, timedatestruct.tm_sec) + datetime.timedelta(days=2)).timetuple()
 		return newdate
@@ -81,7 +81,7 @@ class TimerEntry:
 
 			# if day is NOT in the list of repeated days
 			# OR if the day IS in the list of the repeated days, check, if event is currently running... then if findRunningEvent is false, go to the next event
-			while ((day[localbegin.tm_wday] != 0) or (mktime(localrepeatedbegindate) > mktime(localbegin))  or
+			while ((day[localbegin.tm_wday] != 0) or (mktime(localrepeatedbegindate) > mktime(localbegin)) or
 				(day[localbegin.tm_wday] == 0 and (findRunningEvent and localend < localnow) or ((not findRunningEvent) and localbegin < localnow))):
 				localbegin = self.addOneDay(localbegin)
 				localend = self.addOneDay(localend)

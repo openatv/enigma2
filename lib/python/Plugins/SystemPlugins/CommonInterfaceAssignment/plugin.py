@@ -54,18 +54,18 @@ class CIselectMainMenu(Screen):
 		self.dlg = None
 		self.state = {}
 		self.list = []
-		if  NUM_CI and NUM_CI > 0:
+		if NUM_CI and NUM_CI > 0:
 			for slot in range(NUM_CI):
 				state = eDVBCI_UI.getInstance().getState(slot)
 				if state != -1:
-					appname = _("Slot %d") %(slot+1) + " - " + _("unknown error")
+					appname = _("Slot %d") % (slot + 1) + " - " + _("unknown error")
 					if state == 0:
-						appname = _("Slot %d") %(slot+1) + " - " + _("no module found")
+						appname = _("Slot %d") % (slot + 1) + " - " + _("no module found")
 					elif state == 1:
-						appname = _("Slot %d") %(slot+1) + " - " + _("init modules")
+						appname = _("Slot %d") % (slot + 1) + " - " + _("init modules")
 
 					elif state == 2:
-						appname = _("Slot %d") %(slot+1) + " - " + eDVBCI_UI.getInstance().getAppName(slot)
+						appname = _("Slot %d") % (slot + 1) + " - " + eDVBCI_UI.getInstance().getAppName(slot)
 					self.list.append((appname, ConfigNothing(), 0, slot))
 		else:
 			self.list.append((_("no CI slots found"), ConfigNothing(), 1, -1))
@@ -114,7 +114,7 @@ class CIconfigMenu(Screen):
 	def __init__(self, session, ci_slot="9"):
 		Screen.__init__(self, session)
 		self.setTitle(_("CIselectMainMenu"))
-		self.ci_slot=ci_slot
+		self.ci_slot = ci_slot
 		self.filename = eEnv.resolve("${sysconfdir}/enigma2/ci") + str(self.ci_slot) + ".xml"
 
 		self["key_red"] = StaticText(_("Delete"))
@@ -137,14 +137,14 @@ class CIconfigMenu(Screen):
 
 		print "[CI_Wizzard_Config] Configuring CI Slots : %d  " % self.ci_slot
 
-		i=0
-		self.caidlist=[]
+		i = 0
+		self.caidlist = []
 		print eDVBCIInterfaces.getInstance().readCICaIds(self.ci_slot)
 		for caid in eDVBCIInterfaces.getInstance().readCICaIds(self.ci_slot):
-			i+=1
+			i += 1
 			self.caidlist.append((str(hex(int(caid))),str(caid),i))
 
-		print "[CI_Wizzard_Config_CI%d] read following CAIds from CI: %s" %(self.ci_slot, self.caidlist)
+		print "[CI_Wizzard_Config_CI%d] read following CAIds from CI: %s" % (self.ci_slot, self.caidlist)
 
 		self.selectedcaid = []
 		self.servicelist = []
@@ -158,7 +158,7 @@ class CIconfigMenu(Screen):
 		self.loadXML()
 		# if config mode !=advanced autoselect any caid
 		if config.usage.setup_level.index <= 1: # advanced
-			self.selectedcaid=self.caidlist
+			self.selectedcaid = self.caidlist
 			self.finishedCAidSelection(self.selectedcaid)
 		self.onShown.append(self.setWindowTitle)
 
@@ -231,7 +231,7 @@ class CIconfigMenu(Screen):
 	def finishedCAidSelection(self, *args):
 		if len(args):
 			self.selectedcaid = args[0]
-			self.caids=""
+			self.caids = ""
 			if len(self.selectedcaid):
 				for item in self.selectedcaid:
 					if len(self.caids):
@@ -263,15 +263,15 @@ class CIconfigMenu(Screen):
 					name = name.replace('>', '&gt;')
 					name = name.replace('"', '&quot;')
 					name = name.replace("'", '&apos;')
-					if item[2]==1:
+					if item[2] == 1:
 						fp.write("\t\t<provider name=\"%s\" dvbnamespace=\"%s\" />\n" % (stringToXML(name), item[3]))
 					else:
-						fp.write("\t\t<service name=\"%s\" ref=\"%s\" />\n"  % (stringToXML(name), item[3]))
+						fp.write("\t\t<service name=\"%s\" ref=\"%s\" />\n" % (stringToXML(name), item[3]))
 			fp.write("\t</slot>\n")
 			fp.write("</ci>\n")
 			fp.close()
 		except:
-			print "[CI_Config_CI%d] xml not written" %self.ci_slot
+			print "[CI_Config_CI%d] xml not written" % self.ci_slot
 			os.unlink(self.filename)
 		cihelper.load_ci_assignment(force=True)
 
@@ -283,36 +283,36 @@ class CIconfigMenu(Screen):
 		def getValue(definitions, default):
 			ret = ""
 			Len = len(definitions)
-			return Len > 0 and definitions[Len-1].text or default
-		self.read_services=[]
-		self.read_providers=[]
-		self.usingcaid=[]
-		self.ci_config=[]
+			return Len > 0 and definitions[Len - 1].text or default
+		self.read_services = []
+		self.read_providers = []
+		self.usingcaid = []
+		self.ci_config = []
 		try:
 			tree = ci_parse(self.filename).getroot()
 			for slot in tree.findall("slot"):
 				read_slot = getValue(slot.findall("id"), False).encode("UTF-8")
 				print "ci " + read_slot
-				i=0
+				i = 0
 				for caid in slot.findall("caid"):
 					read_caid = caid.get("id").encode("UTF-8")
 					self.selectedcaid.append((str(read_caid),str(read_caid),i))
 					self.usingcaid.append(long(read_caid,16))
-					i+=1
+					i += 1
 
-				for service in  slot.findall("service"):
+				for service in slot.findall("service"):
 					read_service_name = service.get("name").encode("UTF-8")
 					read_service_ref = service.get("ref").encode("UTF-8")
 					self.read_services.append(read_service_ref)
 
-				for provider in  slot.findall("provider"):
+				for provider in slot.findall("provider"):
 					read_provider_name = provider.get("name").encode("UTF-8")
 					read_provider_dvbname = provider.get("dvbnamespace").encode("UTF-8")
 					self.read_providers.append((read_provider_name,read_provider_dvbname))
 
 				self.ci_config.append((int(read_slot), (self.read_services, self.read_providers, self.usingcaid)))
 		except:
-			print "[CI_Config_CI%d] error parsing xml..." %self.ci_slot
+			print "[CI_Config_CI%d] error parsing xml..." % self.ci_slot
 
 		for item in self.read_services:
 			if len(item):
@@ -341,7 +341,7 @@ class easyCIconfigMenu(CIconfigMenu):
 		</screen>"""
 
 	def __init__(self, session, ci_slot="9"):
-		ci=ci_slot
+		ci = ci_slot
 		CIconfigMenu.__init__(self, session, ci_slot)
 		self.setTitle(_("CI assignment"))
 
@@ -482,20 +482,20 @@ class myProviderSelection(ChannelSelectionBase):
 		if changeMode:
 			return
 		if not self.pathChangeDisabled:
-			refstr = '%s FROM SATELLITES ORDER BY satellitePosition'%(self.service_types)
+			refstr = '%s FROM SATELLITES ORDER BY satellitePosition' % (self.service_types)
 			if not self.preEnterPath(refstr):
 				ref = eServiceReference(refstr)
-				justSet=False
+				justSet = False
 				prev = None
 
 				if self.isBasePathEqual(ref):
 					if self.isPrevPathEqual(ref):
-						justSet=True
+						justSet = True
 					prev = self.pathUp(justSet)
 				else:
 					currentRoot = self.getRoot()
 					if currentRoot is None or currentRoot != ref:
-						justSet=True
+						justSet = True
 						self.clearPath()
 						self.enterPath(ref, True)
 				if justSet:
@@ -608,7 +608,7 @@ def activate_all(session, editcallback=False):
 
 def find_in_list(list, search, listpos=0):
 	for item in list:
-		if item[listpos]==search:
+		if item[listpos] == search:
 			return True
 	return False
 

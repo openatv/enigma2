@@ -56,7 +56,7 @@ def getPNGByExt(name):
 def FileEntryComponent(name, absolute=None, isDir=False, isLink=False):
 	res = [(absolute, isDir, isLink)]
 	x, y, w, h = skin.parameters.get("FileListName",(55, 1, 1175, 25))
-	res.append((eListboxPythonMultiContent.TYPE_TEXT, x, y, w-x, h, 0, RT_HALIGN_LEFT, name))
+	res.append((eListboxPythonMultiContent.TYPE_TEXT, x, y, w - x, h, 0, RT_HALIGN_LEFT, name))
 	if isLink:
 		link_png = LoadPixmap(path=os.path.join(imagePath, "link-arrow.png"))
 	else:
@@ -114,7 +114,7 @@ class FileList(FileListBase):
 			self.sortFiles = sortBy
 
 	def getSortBy(self):
-		return '%s,%s' %(self.sortDirs, self.sortFiles)
+		return '%s,%s' % (self.sortDirs, self.sortFiles)
 
 	def changeDir(self, directory, select=None):
 		self.list = []

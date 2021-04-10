@@ -129,7 +129,7 @@ class TitleList(Screen, HelpableScreen):
 		self.checkBackgroundJobs()
 		if self.backgroundJob:
 			j = self.backgroundJob
-			menu.append(("%s: %s (%d%%)" % (j.getStatustext(), j.name, int(100*j.progress/float(j.end))), self.showBackgroundJob))
+			menu.append(("%s: %s (%d%%)" % (j.getStatustext(), j.name, int(100 * j.progress / float(j.end))), self.showBackgroundJob))
 		menu.append((_("Medium toolbox"), self.toolbox))
 		if self.project.settings.output.getValue() == "medium":
 			if len(self["titles"].list):
@@ -234,9 +234,9 @@ class TitleList(Screen, HelpableScreen):
 
 	def loadTemplate(self, mode=MODE_DVD):
 		if mode == MODE_BLUDISC:
-			filename = resolveFilename(SCOPE_PLUGINS)+"Extensions/DVDBurn/DreamboxBludisc.ddvdp.xml"
+			filename = resolveFilename(SCOPE_PLUGINS) + "Extensions/DVDBurn/DreamboxBludisc.ddvdp.xml"
 		else:
-			filename = resolveFilename(SCOPE_PLUGINS)+"Extensions/DVDBurn/DreamboxDVD.ddvdp.xml"
+			filename = resolveFilename(SCOPE_PLUGINS) + "Extensions/DVDBurn/DreamboxDVD.ddvdp.xml"
 		if self.project.load(filename):
 			self["error_label"].setText("")
 			return True
@@ -299,10 +299,10 @@ class TitleList(Screen, HelpableScreen):
 		self.project.finished_burning = False
 
 	def updateSize(self):
-		size = self.project.size/(1024*1024)
-		MAX_DL = self.project.MAX_DL-100
-		MAX_SL = self.project.MAX_SL-100
-		MAX_BD = self.project.MAX_BD-200
+		size = self.project.size / (1024 * 1024)
+		MAX_DL = self.project.MAX_DL - 100
+		MAX_SL = self.project.MAX_SL - 100
+		MAX_BD = self.project.MAX_BD - 200
 		self["space_bar_bludisc"].value = 100 * size / (MAX_BD)
 
 		if self.project.settings.authormode.value == "bdmv":

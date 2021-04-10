@@ -113,19 +113,19 @@ class SCServicePosition(Poll, Converter, object):
 			if not self.detailed:
 				if self.showHours:
 					if self.showNoSeconds:
-						return sign + "%d:%02d" % (l/3600, l%3600/60)
+						return sign + "%d:%02d" % (l / 3600, l % 3600 / 60)
 					else:
-						return sign + "%d:%02d:%02d" % (l/3600, l%3600/60, l%60)
+						return sign + "%d:%02d:%02d" % (l / 3600, l % 3600 / 60, l % 60)
 				else:
 					if self.showNoSeconds:
-						return sign + "%d" % (l/60)
+						return sign + "%d" % (l / 60)
 					else:
-						return sign + "%d:%02d" % (l/60, l%60)
+						return sign + "%d:%02d" % (l / 60, l % 60)
 			else:
 				if self.showHours:
-					return sign + "%d:%02d:%02d:%03d" % ((l/3600/90000), (l/90000)%3600/60, (l/90000)%60, (l%90000)/90)
+					return sign + "%d:%02d:%02d:%03d" % ((l / 3600 / 90000), (l / 90000) % 3600 / 60, (l / 90000) % 60, (l % 90000) / 90)
 				else:
-					return sign + "%d:%02d:%03d" % ((l/60/90000), (l/90000)%60, (l%90000)/90)
+					return sign + "%d:%02d:%03d" % ((l / 60 / 90000), (l / 90000) % 60, (l % 90000) / 90)
 
 	# range/value are for the Progress renderer
 	range = 10000

@@ -146,7 +146,7 @@ class ParentalControl:
 		else:
 			self.checkPinInterval = True
 			iMinutes = float(self.storeServicePin)
-			iSeconds = int(iMinutes*60)
+			iSeconds = int(iMinutes * 60)
 			self.pinIntervalSeconds = iSeconds
 
 	def standbyCounterCallback(self, configElement):
@@ -201,7 +201,7 @@ class ParentalControl:
 		#I don't like to have two functions with identical code...
 		result = {}
 		try:
-			file =  open(resolveFilename(SCOPE_CONFIG, sWhichList), 'r')
+			file = open(resolveFilename(SCOPE_CONFIG, sWhichList), 'r')
 			for x in file:
 				sPlain = x.strip()
 				self.serviceMethodWrapper(sPlain, self.addServiceToList, result)

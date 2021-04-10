@@ -110,7 +110,7 @@ class SoftcamSetup(Screen, ConfigListScreen):
 			if "c" in what:
 				msg = _("Please wait, restarting softcam and cardserver.")
 			else:
-				msg  = _("Please wait, restarting softcam.")
+				msg = _("Please wait, restarting softcam.")
 		elif "c" in what:
 			msg = _("Please wait, restarting cardserver.")
 		self.mbox = self.session.open(MessageBox, msg, MessageBox.TYPE_INFO)

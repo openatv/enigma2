@@ -34,7 +34,7 @@ def filescan_open(list, session, **kwargs):
 		if cd and (os.path.exists(os.path.join(harddiskmanager.getAutofsMountpoint(cd), "VIDEO_TS"))
 				or os.path.exists(os.path.join(harddiskmanager.getAutofsMountpoint(cd), "video_ts"))):
 			print "[DVDplayer] found device /dev/%s", " mount path ", harddiskmanager.getAutofsMountpoint(cd)
-			session.open(DVD.DVDPlayer, dvd_device="/dev/%s" %(harddiskmanager.getAutofsMountpoint(cd)))
+			session.open(DVD.DVDPlayer, dvd_device="/dev/%s" % (harddiskmanager.getAutofsMountpoint(cd)))
 			return
 	else:
 		dvd_filelist = []

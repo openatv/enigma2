@@ -48,12 +48,12 @@ config.misc.graph_mepg.servicetitle_mode = ConfigSelection(default="picon+servic
 config.misc.graph_mepg.roundTo = ConfigSelection(default="900", choices=[("900", _("%d minutes") % 15), ("1800", _("%d minutes") % 30), ("3600", _("%d minutes") % 60)])
 config.misc.graph_mepg.OKButton = ConfigSelection(default="info", choices=[("info", _("Show detailed event info")), ("zap", _("Zap to selected channel"))])
 possibleAlignmentChoices = [
-	(str(RT_HALIGN_LEFT   | RT_VALIGN_CENTER), _("left")),
+	(str(RT_HALIGN_LEFT | RT_VALIGN_CENTER), _("left")),
 	(str(RT_HALIGN_CENTER | RT_VALIGN_CENTER), _("centered")),
-	(str(RT_HALIGN_RIGHT  | RT_VALIGN_CENTER), _("right")),
-	(str(RT_HALIGN_LEFT   | RT_VALIGN_CENTER | RT_WRAP), _("left, wrapped")),
+	(str(RT_HALIGN_RIGHT | RT_VALIGN_CENTER), _("right")),
+	(str(RT_HALIGN_LEFT | RT_VALIGN_CENTER | RT_WRAP), _("left, wrapped")),
 	(str(RT_HALIGN_CENTER | RT_VALIGN_CENTER | RT_WRAP), _("centered, wrapped")),
-	(str(RT_HALIGN_RIGHT  | RT_VALIGN_CENTER | RT_WRAP), _("right, wrapped"))]
+	(str(RT_HALIGN_RIGHT | RT_VALIGN_CENTER | RT_WRAP), _("right, wrapped"))]
 config.misc.graph_mepg.event_alignment = ConfigSelection(default=possibleAlignmentChoices[0][0], choices=possibleAlignmentChoices)
 config.misc.graph_mepg.servicename_alignment = ConfigSelection(default=possibleAlignmentChoices[0][0], choices=possibleAlignmentChoices)
 config.misc.graph_mepg.extension_menu = ConfigYesNo(default=True)
@@ -75,7 +75,7 @@ class EPGList(HTMLComponent, GUIComponent):
 		self.l.setBuildFunc(self.buildEntry)
 		self.setOverjump_Empty(overjump_empty)
 		self.epgcache = eEPGCache.getInstance()
-		self.clocks =  [LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_SKIN, 'skin_default/icons/epgclock_add.png')),
+		self.clocks = [LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_SKIN, 'skin_default/icons/epgclock_add.png')),
 				 LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_SKIN, 'skin_default/icons/epgclock_pre.png')),
 				 LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_SKIN, 'skin_default/icons/epgclock.png')),
 				 LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_SKIN, 'skin_default/icons/epgclock_prepost.png')),
@@ -271,7 +271,7 @@ class EPGList(HTMLComponent, GUIComponent):
 		if old_service and self.cur_event is not None:
 			events = old_service[2]
 			cur_event = events[self.cur_event] #(event_id, event_title, begin_time, duration)
-			if self.last_time < cur_event[2] or cur_event[2]+cur_event[3] < self.last_time:
+			if self.last_time < cur_event[2] or cur_event[2] + cur_event[3] < self.last_time:
 				self.last_time = cur_event[2]
 		if now > self.last_time:
 			self.last_time = now
@@ -281,7 +281,7 @@ class EPGList(HTMLComponent, GUIComponent):
 			if events and len(events):
 				self.cur_event = idx = 0
 				for event in events: #iterate all events
-					if event[2] <= self.last_time and event[2]+event[3] > self.last_time:
+					if event[2] <= self.last_time and event[2] + event[3] > self.last_time:
 						self.cur_event = idx
 						break
 					idx += 1
@@ -564,7 +564,7 @@ class EPGList(HTMLComponent, GUIComponent):
 				return True
 		if cur_service and valid_event:
 			entry = entries[self.cur_event] #(event_id, event_title, begin_time, duration)
-			time_base = self.time_base + self.offs*self.time_epoch * 60
+			time_base = self.time_base + self.offs * self.time_epoch * 60
 			xpos, width = self.calcEntryPosAndWidth(self.event_rect, time_base, self.time_epoch, entry[2], entry[3])
 			self.select_rect = Rect(xpos,0, width, self.event_rect.height)
 			self.l.setSelectionClip(eRect(xpos, 0, width, self.event_rect.h), visible and update)
@@ -650,12 +650,12 @@ class TimelineText(HTMLComponent, GUIComponent):
 		if self.skinAttributes is not None:
 			attribs = []
 			for (attrib, value) in self.skinAttributes:
-				if   attrib == "foregroundColor":
+				if attrib == "foregroundColor":
 					self.foreColor = parseColor(value).argb()
 				elif attrib == "backgroundColor":
 					self.backColor = parseColor(value).argb()
 				elif attrib == "font":
-					self.font = parseFont(value,  ((1, 1), (1, 1)))
+					self.font = parseFont(value, ((1, 1), (1, 1)))
 				else:
 					attribs.append((attrib,value))
 			self.skinAttributes = attribs
@@ -709,10 +709,10 @@ class TimelineText(HTMLComponent, GUIComponent):
 			xpos = 0 # eventLeft
 			for x in range(0, num_lines):
 				res.append(MultiContentEntryText(
-					pos=(service_rect.width() + xpos-tlMove, 0),
+					pos =(service_rect.width() + xpos - tlMove, 0),
 					size=(incWidth, itemHeight),
 					font=0, flags=tlFlags,
-					text=strftime("%H:%M", localtime(time_base + x*timeStepsCalc)),
+					text =strftime("%H:%M", localtime(time_base + x * timeStepsCalc)),
 					color=self.foreColor, color_sel=self.foreColor,
 					backcolor=self.backColor, backcolor_sel=self.backColor))
 				line = time_lines[x]
@@ -755,7 +755,7 @@ class GraphMultiEPG(Screen, HelpableScreen):
 		global listscreen
 		if listscreen:
 			self["key_yellow"] = Button(_("Normal mode"))
-			self.skinName="GraphMultiEPGList"
+			self.skinName = "GraphMultiEPGList"
 		else:
 			self["key_yellow"] = Button(_("List mode"))
 
@@ -770,7 +770,7 @@ class GraphMultiEPG(Screen, HelpableScreen):
 		for x in range(0, MAX_TIMELINES):
 			pm = Pixmap()
 			self.time_lines.append(pm)
-			self["timeline%d"%(x)] = pm
+			self["timeline%d" % (x)] = pm
 		self["timeline_now"] = Pixmap()
 		self.services = services
 		self.zapFunc = zapFunc
@@ -785,42 +785,42 @@ class GraphMultiEPG(Screen, HelpableScreen):
 		HelpableScreen.__init__(self)
 		self["okactions"] = HelpableActionMap(self, "OkCancelActions",
 			{
-				"cancel": (self.closeScreen,   _("Exit EPG")),
-				"ok":	  (self.eventSelected, _("Zap to selected channel, or show detailed event info (depends on configuration)"))
+				"cancel": (self.closeScreen, _("Exit EPG")),
+				"ok": (self.eventSelected, _("Zap to selected channel, or show detailed event info (depends on configuration)"))
 			}, -1)
 		self["okactions"].csel = self
 		self["epgactions"] = HelpableActionMap(self, "EPGSelectActions",
 			{
-				"timerAdd":    (self.timerAdd,       _("Add/remove change timer for current event")),
-				"info":        (self.infoKeyPressed, _("Show detailed event info")),
-				"red":         (self.zapTo,          _("Zap to selected channel")),
-				"yellow":      (self.swapMode,       _("Switch between normal mode and list mode")),	
-				"blue":        (self.enterDateTime,  _("Goto specific data/time")),
-				"menu":        (self.showSetup,      _("Setup menu")),
-				"nextBouquet": (self.nextBouquet,    _("Show bouquet selection menu")),
-				"prevBouquet": (self.prevBouquet,    _("Show bouquet selection menu")),
-				"nextService": (self.nextPressed,    _("Goto next page of events")),
-				"prevService": (self.prevPressed,    _("Goto previous page of events")),
-				"preview":     (self.preview,        _("Preview selected channel")),
-				"nextDay":     (self.nextDay,        _("Goto next day of events")),
-				"prevDay":     (self.prevDay,        _("Goto previous day of events"))
+				"timerAdd": (self.timerAdd, _("Add/remove change timer for current event")),
+				"info": (self.infoKeyPressed, _("Show detailed event info")),
+				"red": (self.zapTo, _("Zap to selected channel")),
+				"yellow": (self.swapMode, _("Switch between normal mode and list mode")),	
+				"blue": (self.enterDateTime, _("Goto specific data/time")),
+				"menu": (self.showSetup, _("Setup menu")),
+				"nextBouquet": (self.nextBouquet, _("Show bouquet selection menu")),
+				"prevBouquet": (self.prevBouquet, _("Show bouquet selection menu")),
+				"nextService": (self.nextPressed, _("Goto next page of events")),
+				"prevService": (self.prevPressed, _("Goto previous page of events")),
+				"preview": (self.preview, _("Preview selected channel")),
+				"nextDay": (self.nextDay, _("Goto next day of events")),
+				"prevDay": (self.prevDay, _("Goto previous day of events"))
 			}, -1)
 		self["epgactions"].csel = self
 
 		self["inputactions"] = HelpableActionMap(self, "InputActions",
 			{
-				"left":  (self.leftPressed,  _("Go to previous event")),
+				"left": (self.leftPressed, _("Go to previous event")),
 				"right": (self.rightPressed, _("Go to next event")),
-				"1":     (self.key1,         _("Set time window to 1 hour")),
-				"2":     (self.key2,         _("Set time window to 2 hours")),
-				"3":     (self.key3,         _("Set time window to 3 hours")),
-				"4":     (self.key4,         _("Set time window to 4 hours")),
-				"5":     (self.key5,         _("Set time window to 5 hours")),
-				"6":     (self.key6,         _("Set time window to 6 hours")),
-				"7":     (self.prevPage,     _("Go to previous page of service")),
-				"9":     (self.nextPage,     _("Go to next page of service")),
-				"8":     (self.toTop,        _("Go to first service")),
-				"0":     (self.toEnd,        _("Go to last service"))
+				"1": (self.key1, _("Set time window to 1 hour")),
+				"2": (self.key2, _("Set time window to 2 hours")),
+				"3": (self.key3, _("Set time window to 3 hours")),
+				"4": (self.key4, _("Set time window to 4 hours")),
+				"5": (self.key5, _("Set time window to 5 hours")),
+				"6": (self.key6, _("Set time window to 6 hours")),
+				"7": (self.prevPage, _("Go to previous page of service")),
+				"9": (self.nextPage, _("Go to next page of service")),
+				"8": (self.toTop, _("Go to first service")),
+				"0": (self.toEnd, _("Go to last service"))
 			}, -1)
 		self["inputactions"].csel = self
 

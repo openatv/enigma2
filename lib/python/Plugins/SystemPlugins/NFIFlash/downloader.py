@@ -31,8 +31,8 @@ class ImageDownloadJob(Job):
 			if isMount(mountpoint):
 				UmountTask(self, mountpoint)
 			MountTask(self, device, mountpoint)
-		ImageDownloadTask(self, url, mountpoint+filename)
-		ImageDownloadTask(self, url[:-4]+".nfo", mountpoint+filename[:-4]+".nfo")
+		ImageDownloadTask(self, url, mountpoint + filename)
+		ImageDownloadTask(self, url[:-4] + ".nfo", mountpoint + filename[:-4] + ".nfo")
 		#if device:
 			#UmountTask(self, mountpoint)
 
@@ -46,7 +46,7 @@ class MountTask(Task):
 		self.setTool("mount")
 		options = "rw,sync"
 		self.mountpoint = mountpoint
-		self.args += [device, mountpoint, "-o"+options]
+		self.args += [device, mountpoint, "-o" + options]
 		self.weighting = 1
 
 	def processOutput(self, data):
@@ -98,8 +98,8 @@ class ImageDownloadTask(Task):
 	def download_progress(self, recvbytes, totalbytes):
 		#print "[update_progress] recvbytes=%d, totalbytes=%d" % (recvbytes, totalbytes)
 		if (recvbytes - self.last_recvbytes) > 10000: # anti-flicker
-			self.progress = int(100*(float(recvbytes)/float(totalbytes)))
-			self.name = _("Downloading") + ' ' + "%d of %d kBytes" % (recvbytes/1024, totalbytes/1024)
+			self.progress = int(100 * (float(recvbytes) / float(totalbytes)))
+			self.name = _("Downloading") + ' ' + "%d of %d kBytes" % (recvbytes / 1024, totalbytes / 1024)
 			self.last_recvbytes = recvbytes
 
 	def download_failed(self, failure_instance=None, error_message=""):
@@ -395,7 +395,7 @@ class NFIDownload(Screen):
 
 		self.box = HardwareInfo().get_device_name()
 		self.feed_base = "http://www.dreamboxupdate.com/opendreambox" #/1.5/%s/images/" % self.box
-		self.usbmountpoint = resolveFilename(SCOPE_MEDIA)+"usb/"
+		self.usbmountpoint = resolveFilename(SCOPE_MEDIA) + "usb/"
 
 		self.menulist = []
 
@@ -520,7 +520,7 @@ class NFIDownload(Screen):
 			result = mask.match(url)
 			if result:
 				if result.group("version").startswith("20"):
-					version = (result.group("version")[:4]+'-'+result.group("version")[4:6]+'-'+result.group("version")[6:8])
+					version = (result.group("version")[:4] + '-' + result.group("version")[4:6] + '-' + result.group("version")[6:8])
 				else:
 					version = result.group("version")
 				description = "\nOpendreambox %s\n%s image\n%s\n" % (result.group("OE_vers"), result.group("branch"), version)
@@ -574,7 +574,7 @@ class NFIDownload(Screen):
 
 	def ackedDestination(self):
 		print "[ackedDestination]", self.branch, self.target_dir
-		self.container.setCWD(resolveFilename(SCOPE_MEDIA)+"usb/")
+		self.container.setCWD(resolveFilename(SCOPE_MEDIA) + "usb/")
 		if self.target_dir[:8] == "/autofs/":
 			self.target_dir = "/dev/" + self.target_dir[8:-1]
 
@@ -744,8 +744,8 @@ If you already have a prepared bootable USB stick, please insert it now. Otherwi
 		self.updateButtons()
 
 	def nfo_download(self, branch, idx):
-		nfourl = (self.feedlists[branch][idx][1])[:-4]+".nfo"
-		self.nfofilename = (self.feedlists[branch][idx][0])[:-4]+".nfo"
+		nfourl = (self.feedlists[branch][idx][1])[:-4] + ".nfo"
+		self.nfofilename = (self.feedlists[branch][idx][0])[:-4] + ".nfo"
 		print "[check_for_NFO]", nfourl
 		client.getPage(nfourl).addCallback(self.nfo_finished).addErrback(self.nfo_failed)
 
@@ -776,7 +776,7 @@ If you already have a prepared bootable USB stick, please insert it now. Otherwi
 		print "[md5finished]", str(retval)
 		self.container.appClosed.remove(self.md5finished)
 		self.container.dataSent.remove(self.md5ready)
-		if retval==0:
+		if retval == 0:
 			print "check passed! calling", repr(self.md5_passback)
 			self.md5_passback()
 		else:
@@ -801,7 +801,7 @@ def main(session, **kwargs):
 def filescan_open(list, session, **kwargs):
 	dev = "/dev/" + list[0].path.rsplit('/',1)[0][7:]
 	print "mounting device " + dev + " to /media/usb..."
-	usbmountpoint = resolveFilename(SCOPE_MEDIA)+"usb/"
+	usbmountpoint = resolveFilename(SCOPE_MEDIA) + "usb/"
 	system("mount %s %s -o rw,sync" % (dev, usbmountpoint))
 	session.open(NFIDownload,usbmountpoint)
 
@@ -813,5 +813,5 @@ def filescan(**kwargs):
 					ScanPath(path="", with_subdirs=False),
 				],
 			name="NFI",
-			description=(_("Download .NFI-files for USB-flasher")+"..."),
+			description =(_("Download .NFI-files for USB-flasher") + "..."),
 			openfnc=filescan_open, )

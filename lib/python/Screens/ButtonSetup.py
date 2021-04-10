@@ -359,7 +359,7 @@ class ButtonSetup(Screen):
 class ButtonSetupSelect(Screen):
 	def __init__(self, session, key, args=None):
 		Screen.__init__(self, session)
-		self.skinName="ButtonSetupSelect"
+		self.skinName = "ButtonSetupSelect"
 		self['description'] = Label(_('Select the desired function and click on "OK" to assign it. Use "CH+/-" to toggle between the lists. Select an assigned function and click on "OK" to de-assign it. Use "Next/Previous" to change the order of the assigned functions.'))
 		self.session = session
 		self.key = key
@@ -619,7 +619,7 @@ class InfoBarButtonSetup():
 			elif selected[0] == "Module":
 				try:
 					exec "from %s import %s" % (selected[1], selected[2])
-					exec "self.session.open(%s)" %  ",".join(selected[2:])
+					exec "self.session.open(%s)" % ",".join(selected[2:])
 				except:
 					print "[ButtonSetup] error during executing module %s, screen %s" % (selected[1], selected[2])
 			elif selected[0] == "Setup":

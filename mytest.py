@@ -395,14 +395,14 @@ class PowerKey:
 
 	def __init__(self, session):
 		self.session = session
-		globalActionMap.actions["power_down"]=self.powerdown
-		globalActionMap.actions["power_up"]=self.powerup
-		globalActionMap.actions["power_long"]=self.powerlong
-		globalActionMap.actions["deepstandby"]=self.shutdown # frontpanel long power button press
-		globalActionMap.actions["discrete_off"]=self.standby
-		globalActionMap.actions["sleeptimer"]=self.openSleepTimer
-		globalActionMap.actions["powertimer_standby"]=self.sleepStandby
-		globalActionMap.actions["powertimer_deepstandby"]=self.sleepDeepStandby
+		globalActionMap.actions["power_down"] = self.powerdown
+		globalActionMap.actions["power_up"] = self.powerup
+		globalActionMap.actions["power_long"] = self.powerlong
+		globalActionMap.actions["deepstandby"] = self.shutdown # frontpanel long power button press
+		globalActionMap.actions["discrete_off"] = self.standby
+		globalActionMap.actions["sleeptimer"] = self.openSleepTimer
+		globalActionMap.actions["powertimer_standby"] = self.sleepStandby
+		globalActionMap.actions["powertimer_deepstandby"] = self.sleepDeepStandby
 		self.standbyblocked = 1
 
 	def MenuClosed(self, *val):
@@ -721,7 +721,7 @@ def runScreenTest():
 	]
 	wakeupList.sort()
 
-	print "="*100
+	print "=" * 100
 	if wakeupList and wakeupList[0][0] > 0:
 		startTime = wakeupList[0]
 		# wakeup time before timer begins
@@ -760,7 +760,7 @@ def runScreenTest():
 			setFPWakeuptime(int(nowTime) - 3600) #minus one hour -> overwrite old wakeup time
 		print "[mytest.py] no set next wakeup time"
 	config.misc.nextWakeup.save()
-	print "="*100
+	print "=" * 100
 
 	profile("stopService")
 	session.nav.stopService()
@@ -843,18 +843,18 @@ if boxtype in ('uniboxhd1', 'uniboxhd2', 'uniboxhd3', 'sezam5000hd', 'mbtwin', '
 		print "Error disable enable_clock for ini5000 boxes"
 
 if boxtype in ('dm7080', 'dm820', 'dm900', 'dm920', 'gb7252'):
-	f=open("/proc/stb/hdmi-rx/0/hdmi_rx_monitor","r")
-	check=f.read()
+	f = open("/proc/stb/hdmi-rx/0/hdmi_rx_monitor","r")
+	check = f.read()
 	f.close()
 	if check.startswith("on"):
-		f=open("/proc/stb/hdmi-rx/0/hdmi_rx_monitor","w")
+		f = open("/proc/stb/hdmi-rx/0/hdmi_rx_monitor","w")
 		f.write("off")
 		f.close()
-	f=open("/proc/stb/audio/hdmi_rx_monitor","r")
-	check=f.read()
+	f = open("/proc/stb/audio/hdmi_rx_monitor","r")
+	check = f.read()
 	f.close()
 	if check.startswith("on"):
-		f=open("/proc/stb/audio/hdmi_rx_monitor","w")
+		f = open("/proc/stb/audio/hdmi_rx_monitor","w")
 		f.write("off")
 		f.close()
 
@@ -892,8 +892,8 @@ try:
 	Components.ParentalControl.parentalControl.save()
 except:
 	print 'EXCEPTION IN PYTHON STARTUP CODE:'
-	print '-'*60
+	print '-' * 60
 	print_exc(file=stdout)
 	print "[mytest.py] quitMainloop #4"
 	enigma.quitMainloop(5)
-	print '-'*60
+	print '-' * 60

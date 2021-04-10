@@ -75,8 +75,8 @@ class ServiceEventTracker:
 			stack = set.InfoBarStack
 			for func in func_list:
 				if (func[0] or  # let pass all events to screens not derived from InfoBarBase
-					(not old_service_running and stack[ssize-1] == func[1]) or # let pass events from currently running service just to current active screen (derived from InfoBarBase)
-					(old_service_running and ssize > 1 and stack[ssize-2] == func[1])): # let pass events from old running service just to previous active screen (derived from InfoBarBase)
+					(not old_service_running and stack[ssize - 1] == func[1]) or # let pass events from currently running service just to current active screen (derived from InfoBarBase)
+					(old_service_running and ssize > 1 and stack[ssize - 2] == func[1])): # let pass events from old running service just to previous active screen (derived from InfoBarBase)
 					func[2]()
 
 	@staticmethod

@@ -35,7 +35,7 @@ class DVDOverlay(Screen):
 		h = desktop_size.height()
 		if height is not None:
 			h = height
-		DVDOverlay.skin = """<screen name="DVDOverlay" position="0,0" size="%d,%d" flags="wfNoBorder" zPosition="-1" backgroundColor="transparent" />""" %(w, h)
+		DVDOverlay.skin = """<screen name="DVDOverlay" position="0,0" size="%d,%d" flags="wfNoBorder" zPosition="-1" backgroundColor="transparent" />""" % (w, h)
 		Screen.__init__(self, session)
 
 class ChapterZap(Screen):
@@ -167,18 +167,18 @@ class DVDPlayer(Screen, InfoBarBase, InfoBarNotifications, InfoBarSeek, InfoBarP
 				iPlayableService.evEnd: self.__serviceStopped,
 				iPlayableService.evStopped: self.__serviceStopped,
 				iPlayableService.evUser: self.__timeUpdated,
-				iPlayableService.evUser+1: self.__statePlay,
-				iPlayableService.evUser+2: self.__statePause,
-				iPlayableService.evUser+3: self.__osdFFwdInfoAvail,
-				iPlayableService.evUser+4: self.__osdFBwdInfoAvail,
-				iPlayableService.evUser+5: self.__osdStringAvail,
-				iPlayableService.evUser+6: self.__osdAudioInfoAvail,
-				iPlayableService.evUser+7: self.__osdSubtitleInfoAvail,
-				iPlayableService.evUser+8: self.__chapterUpdated,
-				iPlayableService.evUser+9: self.__titleUpdated,
-				iPlayableService.evUser+11: self.__menuOpened,
-				iPlayableService.evUser+12: self.__menuClosed,
-				iPlayableService.evUser+13: self.__osdAngleInfoAvail
+				iPlayableService.evUser + 1: self.__statePlay,
+				iPlayableService.evUser + 2: self.__statePause,
+				iPlayableService.evUser + 3: self.__osdFFwdInfoAvail,
+				iPlayableService.evUser + 4: self.__osdFBwdInfoAvail,
+				iPlayableService.evUser + 5: self.__osdStringAvail,
+				iPlayableService.evUser + 6: self.__osdAudioInfoAvail,
+				iPlayableService.evUser + 7: self.__osdSubtitleInfoAvail,
+				iPlayableService.evUser + 8: self.__chapterUpdated,
+				iPlayableService.evUser + 9: self.__titleUpdated,
+				iPlayableService.evUser + 11: self.__menuOpened,
+				iPlayableService.evUser + 12: self.__menuClosed,
+				iPlayableService.evUser + 13: self.__osdAngleInfoAvail
 			})
 
 		self["DVDPlayerDirectionActions"] = ActionMap(["DirectionActions"],
@@ -374,7 +374,7 @@ class DVDPlayer(Screen, InfoBarBase, InfoBarNotifications, InfoBarSeek, InfoBarP
 
 	def __osdAudioInfoAvail(self):
 		info = self.getServiceInterface("info")
-		audioTuple = info and info.getInfoObject(iServiceInformation.sUser+6)
+		audioTuple = info and info.getInfoObject(iServiceInformation.sUser + 6)
 		print "[DVD] AudioInfoAvail ", repr(audioTuple)
 		if audioTuple:
 			audioString = "%s (%s)" % (audioTuple[1],audioTuple[2])
@@ -385,7 +385,7 @@ class DVDPlayer(Screen, InfoBarBase, InfoBarNotifications, InfoBarSeek, InfoBarP
 
 	def __osdSubtitleInfoAvail(self):
 		info = self.getServiceInterface("info")
-		subtitleTuple = info and info.getInfoObject(iServiceInformation.sUser+7)
+		subtitleTuple = info and info.getInfoObject(iServiceInformation.sUser + 7)
 		print "[DVD] SubtitleInfoAvail ", repr(subtitleTuple)
 		if subtitleTuple:
 			subtitleString = ""
@@ -398,7 +398,7 @@ class DVDPlayer(Screen, InfoBarBase, InfoBarNotifications, InfoBarSeek, InfoBarP
 
 	def __osdAngleInfoAvail(self):
 		info = self.getServiceInterface("info")
-		angleTuple = info and info.getInfoObject(iServiceInformation.sUser+8)
+		angleTuple = info and info.getInfoObject(iServiceInformation.sUser + 8)
 		print "[DVD] AngleInfoAvail ", repr(angleTuple)
 		if angleTuple:
 			angleString = ""
@@ -454,31 +454,31 @@ class DVDPlayer(Screen, InfoBarBase, InfoBarNotifications, InfoBarSeek, InfoBarP
 		self.sendKey(iServiceKeys.keyUser)
 
 	def nextSubtitleTrack(self):
-		self.sendKey(iServiceKeys.keyUser+1)
+		self.sendKey(iServiceKeys.keyUser + 1)
 
 	def enterDVDAudioMenu(self):
-		self.sendKey(iServiceKeys.keyUser+2)
+		self.sendKey(iServiceKeys.keyUser + 2)
 
 	def nextChapter(self):
-		self.sendKey(iServiceKeys.keyUser+3)
+		self.sendKey(iServiceKeys.keyUser + 3)
 
 	def prevChapter(self):
-		self.sendKey(iServiceKeys.keyUser+4)
+		self.sendKey(iServiceKeys.keyUser + 4)
 
 	def nextTitle(self):
-		self.sendKey(iServiceKeys.keyUser+5)
+		self.sendKey(iServiceKeys.keyUser + 5)
 
 	def prevTitle(self):
-		self.sendKey(iServiceKeys.keyUser+6)
+		self.sendKey(iServiceKeys.keyUser + 6)
 
 	def enterDVDMenu(self):
-		self.sendKey(iServiceKeys.keyUser+7)
+		self.sendKey(iServiceKeys.keyUser + 7)
 
 	def nextAngle(self):
-		self.sendKey(iServiceKeys.keyUser+8)
+		self.sendKey(iServiceKeys.keyUser + 8)
 
 	def resumeDvd(self):
-		self.sendKey(iServiceKeys.keyUser+21)
+		self.sendKey(iServiceKeys.keyUser + 21)
 
 	def seekBeginning(self):
 		if self.service:

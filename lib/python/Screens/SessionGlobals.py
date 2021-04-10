@@ -39,9 +39,9 @@ class SessionGlobals(Screen):
 		#    false      true      on   off    off
 		#    true       true     blnk  off    blnk
 
-		PATTERN_ON     = (20, 0xffffffff, 0xffffffff)
-		PATTERN_OFF    = (20, 0, 0)
-		PATTERN_BLINK  = (20, 0x55555555, 0xa7fccf7a)
+		PATTERN_ON = (20, 0xffffffff, 0xffffffff)
+		PATTERN_OFF = (20, 0, 0)
+		PATTERN_BLINK = (20, 0x55555555, 0xa7fccf7a)
 
 		have_display = SystemInfo.get("FrontpanelDisplay", False)
 		have_touch_sensor = SystemInfo.get("HaveTouchSensor", False)

@@ -15,7 +15,7 @@ def readFile(filename):
 	return data
 
 def getextdevices(ext):
-	cmd ='blkid -t TYPE=%s -o device'%ext
+	cmd = 'blkid -t TYPE=%s -o device' % ext
 	extdevices = os.popen(cmd).read().replace('\n', ',').rstrip(",")
 	if extdevices == "":
 		return None
@@ -207,7 +207,7 @@ class Harddisk:
 			return ""
 		if cap < 1000:
 			return _("%03d MB") % cap
-		return _("%d.%03d GB") % (cap/1000, cap%1000)
+		return _("%d.%03d GB") % (cap / 1000, cap % 1000)
 
 	def model(self):
 		try:
@@ -230,7 +230,7 @@ class Harddisk:
 		if dev:
 			try:
 				stat = os.statvfs(dev)
-				return int((stat.f_bfree/1000) * (stat.f_bsize/1024))
+				return int((stat.f_bfree / 1000) * (stat.f_bsize / 1024))
 			except:
 				pass
 		return -1
@@ -792,11 +792,11 @@ class HarddiskManager:
 		devpath = "/sys/block/" + blockdev
 		error = False
 		removable = False
-		BLACKLIST=[]
+		BLACKLIST = []
 		if getMachineBuild() in ('dagsmv200','gbmv200','multibox','multiboxse','i55se','h9se','h9combo','h9combose','h10','h11','v8plus','hd60','hd61','pulse4k','vuduo4k','ustym4kpro','beyonwizv2','viper4k','dags72604','u51','u52','u53','u532','u533','u54','u56','u57','u5','u5pvr','cc1','sf8008','sf8008m','vuzero4k','et1x000','vuuno4k','vuuno4kse','vuultimo4k','vusolo4k','hd51','hd52','sf4008','dm900','dm7080','dm820', 'gb7252', 'gb72604', 'dags7252', 'vs1500','h7','8100s','et13000','sf5008'):
-			BLACKLIST=["mmcblk0"]
+			BLACKLIST = ["mmcblk0"]
 		elif getMachineBuild() in ('xc7439','osmio4k','osmio4kplus','osmini4k'):
-			BLACKLIST=["mmcblk1"]
+			BLACKLIST = ["mmcblk1"]
 
 		blacklisted = False
 		if blockdev[:7] in BLACKLIST:
@@ -910,7 +910,7 @@ class HarddiskManager:
 				self.on_partition_list_change("add", p)
 			# see if this is a harddrive
 			l = len(device)
-			if l and (not device[l-1].isdigit() or (device.startswith('mmcblk') and not re.search(r"mmcblk\dp\d+", device))):
+			if l and (not device[l - 1].isdigit() or (device.startswith('mmcblk') and not re.search(r"mmcblk\dp\d+", device))):
 				self.hdd.append(Harddisk(device, removable))
 				self.hdd.sort()
 				SystemInfo["Harddisk"] = True
@@ -942,7 +942,7 @@ class HarddiskManager:
 				if x.mountpoint: # Plugins won't expect unmounted devices
 					self.on_partition_list_change("remove", x)
 		l = len(device)
-		if l and (not device[l-1].isdigit() or (device.startswith('mmcblk') and not re.search(r"mmcblk\dp\d+", device))):
+		if l and (not device[l - 1].isdigit() or (device.startswith('mmcblk') and not re.search(r"mmcblk\dp\d+", device))):
 			for hdd in self.hdd:
 				if hdd.device == device:
 					hdd.stop()
@@ -1027,7 +1027,7 @@ class HarddiskManager:
 				self.on_partition_list_change("remove", x)
 
 	def setDVDSpeed(self, device, speed=0):
-		ioctl_flag=int(0x5322)
+		ioctl_flag = int(0x5322)
 		if not device.startswith('/'):
 			device = "/dev/" + device
 		try:
@@ -1118,7 +1118,7 @@ class MkfsTask(Task.LoggingTask):
 					d = data.strip(' \x08\r\n').split('/',1)
 					if '\x08' in d[1]:
 						d[1] = d[1].split('\x08',1)[0]
-					self.setProgress(80*int(d[0])/int(d[1]))
+					self.setProgress(80 * int(d[0]) / int(d[1]))
 				except Exception, e:
 					print "[Mkfs] E:", e
 				return # don't log the progess

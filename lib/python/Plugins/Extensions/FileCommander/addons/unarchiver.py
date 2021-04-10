@@ -88,7 +88,7 @@ class ArchiverMenuScreen(Screen):
 		w = self['list_left'].l.getItemSize().width()
 		return [
 			entry,
-			MultiContentEntryText(pos=(x, y), size=(w-x, h), font=0, flags=RT_HALIGN_LEFT, text=entry[0])
+			MultiContentEntryText(pos=(x, y), size=(w - x, h), font=0, flags=RT_HALIGN_LEFT, text=entry[0])
 		]
 
 	def UnpackListEntry(self, entry):
@@ -101,7 +101,7 @@ class ArchiverMenuScreen(Screen):
 		w = self['list_left'].l.getItemSize().width()
 		return [
 			entry,
-			MultiContentEntryProgress(pos=(x+x2, y+int(h/3)), size=(w-(x+x2), int(h/3)), percent=int(currentProgress), borderWidth=1),
+			MultiContentEntryProgress(pos=(x + x2, y + int(h / 3)), size=(w - (x + x2), int(h / 3)), percent=int(currentProgress), borderWidth=1),
 			MultiContentEntryText(pos=(x, y), size=(x2, h), font=0, flags=RT_HALIGN_LEFT, text=str(progpercent))
 		]
 
@@ -263,7 +263,7 @@ class ArchiverInfoScreen(Screen):
 			y *= 2
 		return [
 			entry,
-			MultiContentEntryText(pos=(x, int(y)), size=(w-x, h), font=0, flags=flags, text=entry[0])
+			MultiContentEntryText(pos=(x, int(y)), size=(w - x, h), font=0, flags=flags, text=entry[0])
 		]
 
 	def cancel(self):

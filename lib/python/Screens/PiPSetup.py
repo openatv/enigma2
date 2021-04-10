@@ -130,8 +130,8 @@ class PiPSetup(Screen):
 		if number > 0 and self.mode == "standard":
 			colsize = MAX_X / 3
 			rowsize = MAX_Y / 3
-			col = (number-1) % 3
-			row = (number-1) / 3
+			col = (number - 1) % 3
+			row = (number - 1) / 3
 
 			self.size = (180, 135)
 

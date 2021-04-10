@@ -109,10 +109,10 @@ class ServiceName(Converter, object):
 				if self.system() == None: # catch driver bug
 					return ""
 				if "DVB-T" in self.system():
-					return	self.dvb_t()
+					return self.dvb_t()
 				elif "DVB-C" in self.system():
 					return self.dvb_c()
-				return 	self.dvb_s()
+				return self.dvb_s()
 			if service:
 				result = service.toString()
 			else:

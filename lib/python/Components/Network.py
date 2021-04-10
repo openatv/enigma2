@@ -123,9 +123,9 @@ class Network:
 				self.onlyWoWifaces[ifacename] = True
 				fp.write("#only WakeOnWiFi " + ifacename + "\n")
 			if iface['dhcp']:
-				fp.write("iface "+ ifacename +" inet dhcp\n")
+				fp.write("iface " + ifacename + " inet dhcp\n")
 			if not iface['dhcp']:
-				fp.write("iface "+ ifacename +" inet static\n")
+				fp.write("iface " + ifacename + " inet static\n")
 				fp.write("  hostname $(hostname)\n")
 				if iface.has_key('ip'):
 # 					print tuple(iface['ip'])
@@ -257,7 +257,7 @@ class Network:
 			if iface not in self.wlan_interfaces:
 				name = _("WLAN connection")
 				if len(self.wlan_interfaces):
-					name += " " + str(len(self.wlan_interfaces)+1)
+					name += " " + str(len(self.wlan_interfaces) + 1)
 				self.wlan_interfaces.append(iface)
 		else:
 			if iface not in self.lan_interfaces:
@@ -266,7 +266,7 @@ class Network:
 				else:	
 					name = _("LAN connection")
 				if len(self.lan_interfaces) and not getBoxType() == "et10000" and not iface == "eth1":
-					name += " " + str(len(self.lan_interfaces)+1)
+					name += " " + str(len(self.lan_interfaces) + 1)
 				self.lan_interfaces.append(iface)
 		return name
 
@@ -285,9 +285,9 @@ class Network:
 				name = 'Zydas'
 			elif name == 'r871x_usb_drv':
 				name = 'Realtek'
-			elif name  == 'brcm-systemport':
+			elif name == 'brcm-systemport':
 				name = 'Broadcom'
-			elif name  == 'wlan':
+			elif name == 'wlan':
 				name = name.upper()
 		else:
 			name = _('Unknown')
@@ -498,7 +498,7 @@ class Network:
 		if self.getAdapterAttribute(iface, 'up') is True:
 			return True
 		else:
-			ret=os.system("ifconfig " + iface + " up")
+			ret = os.system("ifconfig " + iface + " up")
 			os.system("ifconfig " + iface + " down")
 			if ret == 0:
 				return True
@@ -533,7 +533,7 @@ class Network:
 			commands.append("ifdown " + iface)
 			commands.append("ip addr flush dev " + iface + " scope global")
 			#wpa_supplicant sometimes doesn't quit properly on SIGTERM
-			if os.path.exists('/var/run/wpa_supplicant/'+ iface):
+			if os.path.exists('/var/run/wpa_supplicant/' + iface):
 				commands.append("wpa_cli -i" + iface + " terminate")
 
 		if not self.deactivateInterfaceConsole:
@@ -623,11 +623,11 @@ class Network:
 		return False
 
 	def canWakeOnWiFi(self, iface):
-		if self.sysfsPath(iface) == "/sys/class/net/wlan3" and os.path.exists("/tmp/bcm/%s"%iface):
+		if self.sysfsPath(iface) == "/sys/class/net/wlan3" and os.path.exists("/tmp/bcm/%s" % iface):
 			return True
 
 	def getWlanModuleDir(self, iface=None):
-		if self.sysfsPath(iface) == "/sys/class/net/wlan3" and os.path.exists("/tmp/bcm/%s"%iface):
+		if self.sysfsPath(iface) == "/sys/class/net/wlan3" and os.path.exists("/tmp/bcm/%s" % iface):
 			devicedir = self.sysfsPath("sys0") + '/device'
 		else:
 			devicedir = self.sysfsPath(iface) + '/device'
@@ -676,15 +676,15 @@ class Network:
 		from struct import pack
 		from socket import inet_ntoa
 
-		mask = 1L<<31
-		xnet = (1L<<32)-1
+		mask = 1L << 31
+		xnet = (1L << 32) - 1
 		cidr_range = range(0, 32)
 		cidr = long(nmask)
 		if cidr not in cidr_range:
 			print 'cidr invalid: %d' % cidr
 			return None
 		else:
-			nm = ((1L<<cidr)-1)<<(32-cidr)
+			nm = ((1L << cidr) - 1) << (32 - cidr)
 			netmask = str(inet_ntoa(pack('>L', nm)))
 			return netmask
 

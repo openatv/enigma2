@@ -271,7 +271,7 @@ class PluginBrowser(Screen, ProtectedScreen):
 			select = False
 			if self.selected_plugin is None:
 				select = True
-			elif  self.selected_plugin != plugin:
+			elif self.selected_plugin != plugin:
 				select = True
 			if not select:
 				self.selected_plugin = None
@@ -441,11 +441,11 @@ class PluginDownloadBrowser(Screen):
 		if os.path.isfile('/usr/bin/opkg'):
 			self.ipkg = '/usr/bin/opkg'
 			self.ipkg_install = self.ipkg + ' install --force-overwrite'
-			self.ipkg_remove =  self.ipkg + ' remove --autoremove --force-depends'
+			self.ipkg_remove = self.ipkg + ' remove --autoremove --force-depends'
 		else:
 			self.ipkg = 'ipkg'
 			self.ipkg_install = 'ipkg install --force-overwrite -force-defaults'
-			self.ipkg_remove =  self.ipkg + ' remove'
+			self.ipkg_remove = self.ipkg + ' remove'
 
 	def createSummary(self):
 		return PluginBrowserSummary
@@ -515,10 +515,10 @@ class PluginDownloadBrowser(Screen):
 			self.updateList()
 		else:
 			if self.type == self.DOWNLOAD:
-				mbox=self.session.openWithCallback(self.runInstall, MessageBox, _("Do you really want to download the plugin \"%s\"?") % sel.name)
+				mbox = self.session.openWithCallback(self.runInstall, MessageBox, _("Do you really want to download the plugin \"%s\"?") % sel.name)
 				mbox.setTitle(_("Download plugins"))
 			elif self.type == self.REMOVE:
-				mbox=self.session.openWithCallback(self.runInstall, MessageBox, _("Do you really want to remove the plugin \"%s\"?") % sel.name, default=False)
+				mbox = self.session.openWithCallback(self.runInstall, MessageBox, _("Do you really want to remove the plugin \"%s\"?") % sel.name, default=False)
 				mbox.setTitle(_("Remove plugins"))
 
 	def requestClose(self):
@@ -776,7 +776,7 @@ class PluginDownloadBrowser(Screen):
 				self.plugins[split[0]].append((PluginDescriptor(name=x[0], description=x[2], icon=verticallineIcon), x[0][14:], x[1]))
 			elif split[0] == "languages":
 				for t in self.LanguageList:
-					if len(x[2])>2:
+					if len(x[2]) > 2:
 						tmpT = t[0].lower()
 						tmpT = tmpT.replace('_','-')
 						if tmpT == x[2]:
@@ -821,7 +821,7 @@ class PluginFilter(ConfigListScreen, Screen):
 		self["status"] = StaticText()
 		self["footnote"] = Label()
 		self["description"] = Label("")
-		self["labelExitsave"] = Label("[Exit] = " +_("Cancel") +"              [Ok] =" +_("Save"))
+		self["labelExitsave"] = Label("[Exit] = " + _("Cancel") + "              [Ok] =" + _("Save"))
 
 		self.onChangedEntry = []
 		self.list = []

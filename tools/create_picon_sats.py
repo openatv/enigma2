@@ -12,7 +12,7 @@ import sys
 
 f = open(sys.argv[1]).readlines()
 
-f = f[f.index("services\n")+1:-3]
+f = f[f.index("services\n") + 1:-3]
 
 while len(f) > 2:
 	ref = [int(x, 0x10) for x in f[0][:-1].split(':')]
@@ -31,7 +31,7 @@ while len(f) > 2:
 		ref[4] = 1
 		servicetype = 'tv'
 
-	sat = str(ref[1]/16/16/16/16)
+	sat = str(ref[1] / 16 / 16 / 16 / 16)
 
 #	SID:NS:TSID:ONID:STYPE:UNUSED(channelnumber in enigma1)
 #	X   X  X    X    D     D
@@ -82,4 +82,4 @@ while len(f) > 2:
 	except:
 		pass
 
-	f =f[3:]
+	f = f[3:]

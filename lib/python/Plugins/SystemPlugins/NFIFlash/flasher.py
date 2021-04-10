@@ -159,13 +159,13 @@ class NFIFlash(Screen):
 			if self["filelist"].getFilename() is None:
 				return
 			if self["filelist"].getCurrentDirectory() is not None:
-				self.nfifile = self["filelist"].getCurrentDirectory()+self["filelist"].getFilename()
+				self.nfifile = self["filelist"].getCurrentDirectory() + self["filelist"].getFilename()
 		else:
 			self.nfifile = nfifile
 
 		if self.nfifile.upper().endswith(".NFI"):
 			self["key_green"].text = _("Flash")
-			nfofilename = self.nfifile[0:-3]+"nfo"
+			nfofilename = self.nfifile[0:-3] + "nfo"
 			print nfofilename, fileExists(nfofilename)
 			if fileExists(nfofilename):
 				nfocontent = open(nfofilename, "r").read()
@@ -173,7 +173,7 @@ class NFIFlash(Screen):
 				self["infolabel"].text = nfocontent
 				pos = nfocontent.find("MD5:")
 				if pos > 0:
-					self.md5sum = nfocontent[pos+5:pos+5+32] + "  " + self.nfifile
+					self.md5sum = nfocontent[pos + 5:pos + 5 + 32] + "  " + self.nfifile
 				else:
 					self.md5sum = ""
 			else:
@@ -200,7 +200,7 @@ class NFIFlash(Screen):
 		print "[flashed]"
 		if self.job.status == self.job.FINISHED:
 			self["status"].text = _("NFI image flashing completed. Press Yellow to Reboot!")
-			filename = self.usbmountpoint+'enigma2settingsbackup.tar.gz'
+			filename = self.usbmountpoint + 'enigma2settingsbackup.tar.gz'
 			if fileExists(filename):
 				import os.path
 				import time

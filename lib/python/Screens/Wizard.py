@@ -560,7 +560,7 @@ class Wizard(Screen):
 				for x in self.lcdCallbacks:
 					x(displaytext)
 
-			self.codeafter=False
+			self.codeafter = False
 			self.runCode(self.wizard[self.currStep]["code"])
 			if self.runCode(self.wizard[self.currStep]["code_async"]):
 				if self.updateValues in self.onShown:

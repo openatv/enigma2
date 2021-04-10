@@ -36,7 +36,7 @@ class MovieReference(Converter, object):
 			path = refstr and eServiceReference(refstr).getPath()
 			if path:
 				try:
-					fd = open("%s.meta"%(path), "r")
+					fd = open("%s.meta" % (path), "r")
 					refstr = fd.readline().strip()
 					fd.close()
 				except:

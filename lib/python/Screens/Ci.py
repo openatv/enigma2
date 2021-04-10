@@ -256,8 +256,8 @@ class MMIDialog(Screen):
 			answer = str(cur[1].value)
 			length = len(answer)
 			while length < cur[1].getLength():
-				answer = '0'+answer
-				length+=1
+				answer = '0' + answer
+				length += 1
 			self.answer = answer
 			if config.ci[self.slotid].use_static_pin.value:
 				self.session.openWithCallback(self.save_PIN_CB, MessageBox, _("Would you save the entered PIN %s persistent?") % self.answer, MessageBox.TYPE_YESNO)
@@ -351,7 +351,7 @@ class MMIDialog(Screen):
 			timeout = screen[0][1]
 			self.mmiclosed = True
 			if timeout > 0:
-				self.timer.start(timeout*1000, True)
+				self.timer.start(timeout * 1000, True)
 			else:
 				self.keyCancel()
 		else:
@@ -364,7 +364,7 @@ class MMIDialog(Screen):
 						length = len(answer)
 						while length < config.ci[self.slotid].static_pin.getLength():
 							answer = '0' + answer
-							length+=1
+							length += 1
 						self.handler.answerEnq(self.slotid, answer)
 						self.showWait()
 						break
@@ -461,7 +461,7 @@ class CiMessageHandler:
 									length = len(answer)
 									while length < config.ci[slot].static_pin.getLength():
 										answer = '0' + answer
-										length+=1
+										length += 1
 									handler.answerEnq(slot, answer)
 									show_ui = False
 									self.auto_close = True
@@ -508,7 +508,7 @@ class CiSelection(Screen):
 		self["entries"] = ConfigList(self.list)
 		self["entries"].list = self.list
 		self["entries"].l.setList(self.list)
-		self["text"] = Label(_("Slot %d")%(1))
+		self["text"] = Label(_("Slot %d") % (1))
 		self.onLayoutFinish.append(self.initialUpdate)
 
 	def initialUpdate(self):
@@ -524,7 +524,7 @@ class CiSelection(Screen):
 
 	def selectionChanged(self):
 		entryData = self.entryData[self["entries"].getCurrentIndex()]
-		self["text"].setText(_("Slot %d")%(entryData[1] + 1))
+		self["text"].setText(_("Slot %d") % (entryData[1] + 1))
 
 	def keyConfigEntry(self, key):
 		current = self["entries"].getCurrent()
@@ -761,12 +761,12 @@ class CIHelper(Screen):
 			self['labstop'].hide()
 			self['labrun'].show()
 			self['key_green'].setText(_("Stop"))
-			status_summary= self['status'].text + ' ' + self['labstop'].text
+			status_summary = self['status'].text + ' ' + self['labstop'].text
 		else:
 			self['labstop'].show()
 			self['labrun'].hide()
 			self['key_green'].setText(_("Start"))
-			status_summary= self['status'].text + ' ' + self['labstop'].text
+			status_summary = self['status'].text + ' ' + self['labstop'].text
 
 		if fileExists('/etc/cihelper.conf'):
 			f = open('/etc/cihelper.conf', 'r')

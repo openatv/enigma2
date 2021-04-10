@@ -161,7 +161,7 @@ class PowerTimerEntry(timer.TimerEntry, object):
 				self.backoff += 300
 				if self.backoff > 900:
 					self.backoff = 900
-		self.log(10, "backoff: retry in %d minutes" % (int(self.backoff)/60))
+		self.log(10, "backoff: retry in %d minutes" % (int(self.backoff) / 60))
 
 	def activate(self):
 		global RSsave, RBsave, DSsave, aeDSsave, wasTimerWakeup, InfoBar
@@ -188,9 +188,9 @@ class PowerTimerEntry(timer.TimerEntry, object):
 					self.autosleepbegin -= 86400
 			if self.getAutoSleepWindow():
 				if now < self.autosleepbegin and now > self.autosleepbegin - self.prepare_time - 3:	#begin is in prepare time window
-					self.begin = self.end = self.autosleepbegin + int(self.autosleepdelay)*60
+					self.begin = self.end = self.autosleepbegin + int(self.autosleepdelay) * 60
 				else:
-					self.begin = self.end = int(now) + int(self.autosleepdelay)*60
+					self.begin = self.end = int(now) + int(self.autosleepdelay) * 60
 			else:
 				return False
 			if self.timerType == TIMERTYPE.AUTODEEPSTANDBY:
@@ -206,13 +206,13 @@ class PowerTimerEntry(timer.TimerEntry, object):
 				return True
 			elif (next_state == self.StateRunning and abs(self.begin - now) > 900) or (next_state == self.StateEnded and abs(self.end - now) > 900):
 				if self.timerType == TIMERTYPE.AUTODEEPSTANDBY or self.timerType == TIMERTYPE.AUTOSTANDBY:
-					print '[Powertimer] time warp detected - set new begin time for %s timer' %self.__repr__(True)
+					print '[Powertimer] time warp detected - set new begin time for %s timer' % self.__repr__(True)
 					if not self.getAutoSleepWindow():
 						return False
 					else:
-						self.begin = self.end = int(now) + int(self.autosleepdelay)*60
+						self.begin = self.end = int(now) + int(self.autosleepdelay) * 60
 						return False
-				print '[Powertimer] time warp detected - timer %s ending without action' %self.__repr__(True)
+				print '[Powertimer] time warp detected - timer %s ending without action' % self.__repr__(True)
 				return True
 
 			if NavigationInstance.instance.isRecordTimerImageStandard:
@@ -290,9 +290,9 @@ class PowerTimerEntry(timer.TimerEntry, object):
 						eActionMap.getInstance().unbindAction('', self.keyPressed)
 						return True
 					else:
-						self.begin = self.end = int(now) + int(self.autosleepdelay)*60
+						self.begin = self.end = int(now) + int(self.autosleepdelay) * 60
 				else:
-					self.begin = self.end = int(now) + int(self.autosleepdelay)*60
+					self.begin = self.end = int(now) + int(self.autosleepdelay) * 60
 
 			elif self.timerType == TIMERTYPE.AUTODEEPSTANDBY:
 				if debug:
@@ -327,7 +327,7 @@ class PowerTimerEntry(timer.TimerEntry, object):
 						if self.autosleeprepeat == "once":
 							eActionMap.getInstance().unbindAction('', self.keyPressed)
 							return True
-					self.begin = self.end = int(now) + int(self.autosleepdelay)*60
+					self.begin = self.end = int(now) + int(self.autosleepdelay) * 60
 
 			elif self.timerType == TIMERTYPE.RESTART:
 				if debug:
@@ -690,7 +690,7 @@ class PowerTimerEntry(timer.TimerEntry, object):
 
 	def keyPressed(self, key, tag):
 		if self.getAutoSleepWindow():
-			self.begin = self.end = int(time()) + int(self.autosleepdelay)*60
+			self.begin = self.end = int(time()) + int(self.autosleepdelay) * 60
 
 	def getAutoSleepWindow(self):
 		now = time()
@@ -753,7 +753,7 @@ class PowerTimerEntry(timer.TimerEntry, object):
 	def getNextWakeup(self, getNextStbPowerOn=False):
 		next_state = self.state + 1
 		if getNextStbPowerOn:
-			if next_state == 3 and (self.timerType == TIMERTYPE.WAKEUP or self.timerType == TIMERTYPE.WAKEUPTOSTANDBY or self.afterEvent == AFTEREVENT.WAKEUP or  self.afterEvent == AFTEREVENT.WAKEUPTOSTANDBY):
+			if next_state == 3 and (self.timerType == TIMERTYPE.WAKEUP or self.timerType == TIMERTYPE.WAKEUPTOSTANDBY or self.afterEvent == AFTEREVENT.WAKEUP or self.afterEvent == AFTEREVENT.WAKEUPTOSTANDBY):
 				if self.start_prepare > time() and (self.timerType == TIMERTYPE.WAKEUP or self.timerType == TIMERTYPE.WAKEUPTOSTANDBY): #timer start time is later as now - begin time was changed while running timer
 					return self.start_prepare
 				elif self.begin > time() and (self.timerType == TIMERTYPE.WAKEUP or self.timerType == TIMERTYPE.WAKEUPTOSTANDBY): #timer start time is later as now - begin time was changed while running timer
@@ -762,16 +762,16 @@ class PowerTimerEntry(timer.TimerEntry, object):
 					return self.end
 				next_day = 0
 				count_day = 0
-				wd_timer = datetime.fromtimestamp(self.begin).isoweekday()*-1
-				wd_repeated = bin(128+self.repeated)
-				for s in range(wd_timer-1,-8,-1):
-					count_day +=1
+				wd_timer = datetime.fromtimestamp(self.begin).isoweekday() * -1
+				wd_repeated = bin(128 + self.repeated)
+				for s in range(wd_timer - 1,-8,-1):
+					count_day += 1
 					if int(wd_repeated[s]):
 						next_day = s
 						break
 				if next_day == 0:
-					for s in range(-1,wd_timer-1,-1):
-						count_day +=1
+					for s in range(-1,wd_timer - 1,-1):
+						count_day += 1
 						if int(wd_repeated[s]):
 							next_day = s
 							break
@@ -831,7 +831,7 @@ class PowerTimerEntry(timer.TimerEntry, object):
 						print '[PowerTimer] Receive/Transmit initialBytes=%d, time is %s' % (self.netbytes, ctime(self.netbytes_time))
 						return
 					oldbytes = self.netbytes
-					seconds = int(now-self.netbytes_time)
+					seconds = int(now - self.netbytes_time)
 					self.netbytes = newbytes
 					self.netbytes_time = now
 					diffbytes = float(newbytes - oldbytes) * 8 / 1024 / seconds 	#in kbit/s
@@ -839,7 +839,7 @@ class PowerTimerEntry(timer.TimerEntry, object):
 						print '[PowerTimer] Receive/Transmit -> overflow interface counter, waiting for next value'
 						return True
 					else:
-						print '[PowerTimer] Receive/Transmit kilobits per second: %0.2f (%0.2f MByte in %d seconds), actualBytes=%d, time is %s' % (diffbytes, diffbytes/8/1024*seconds, seconds, self.netbytes, ctime(self.netbytes_time))
+						print '[PowerTimer] Receive/Transmit kilobits per second: %0.2f (%0.2f MByte in %d seconds), actualBytes=%d, time is %s' % (diffbytes, diffbytes / 8 / 1024 * seconds, seconds, self.netbytes, ctime(self.netbytes_time))
 					if diffbytes > self.trafficlimit:
 						return True
 			except:
@@ -1145,7 +1145,7 @@ class PowerTimer(timer.Timer):
 			if not AFTEREVENT.DEEPSTANDBY in ae:
 				aeDSsave = False
 			if debug:
-				print "RSsave=%s, RBsave=%s, DSsave=%s, aeDSsave=%s, wasTimerWakeup=%s" %(RSsave, RBsave, DSsave, aeDSsave, wasTimerWakeup)
+				print "RSsave=%s, RBsave=%s, DSsave=%s, aeDSsave=%s, wasTimerWakeup=%s" % (RSsave, RBsave, DSsave, aeDSsave, wasTimerWakeup)
 			if debug:
 				print "+++++++++++++++"
 			###

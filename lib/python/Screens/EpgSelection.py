@@ -110,7 +110,7 @@ class EPGSelection(Screen, HelpableScreen):
 			self.servicelist = service
 			self.bouquetlist_active = False
 			self.firststart = True
-			self.lastEventTime = (time(), time()+3600)
+			self.lastEventTime = (time(), time() + 3600)
 			self.lastMinus = 0
 			self.activeList = 1
 			self.myServices = []
@@ -523,11 +523,11 @@ class EPGSelection(Screen, HelpableScreen):
 				}, -1)
 
 		if self.type == EPG_TYPE_GRAPH:
-			time_epoch=int(config.epgselection.graph_prevtimeperiod.value)
+			time_epoch = int(config.epgselection.graph_prevtimeperiod.value)
 		elif self.type == EPG_TYPE_INFOBARGRAPH:
-			time_epoch=int(config.epgselection.infobar_prevtimeperiod.value)
+			time_epoch = int(config.epgselection.infobar_prevtimeperiod.value)
 		else:
-			time_epoch=None
+			time_epoch = None
 		if self.type != EPG_TYPE_VERTICAL:
 			self['list'] = EPGList(type=self.type, selChangedCB=self.onSelectionChanged, timer=session.nav.RecordTimer, time_epoch=time_epoch, overjump_empty=config.epgselection.overjump.value, graphic=graphic)
 		self.onLayoutFinish.append(self.LayoutFinish)
@@ -611,7 +611,7 @@ class EPGSelection(Screen, HelpableScreen):
 			self['list'].recalcEntrySize()
 		if self.type == EPG_TYPE_VERTICAL:
 			self.ask_time = -1
-			self.lastEventTime = (time(), time()+3600)
+			self.lastEventTime = (time(), time() + 3600)
 			self.BouquetRoot = False
 			if self.StartBouquet.toString().startswith('1:7:0'):
 				self.BouquetRoot = True
@@ -631,18 +631,18 @@ class EPGSelection(Screen, HelpableScreen):
 				info = service and service.info()
 				nameROH = info and info.getName().replace('\xc2\x86', '').replace('\xc2\x87', '')
 			if (nameROH is not None) and not ('channel1' in config.epgselection.vertical_startmode.value):
-				idx=0
+				idx = 0
 				for channel in self.myServices:
-					idx+=1
+					idx += 1
 					if channel[1] == nameROH:
 						break
-				page = idx/(self.Fields-1)
-				row = idx%(self.Fields-1)
+				page = idx / (self.Fields - 1)
+				row = idx % (self.Fields - 1)
 				if row:
 					self.activeList = row
 				else:
-					page-=1
-					self.activeList = self.Fields-1
+					page -= 1
+					self.activeList = self.Fields - 1
 				self["list"].moveToIndex(0)
 				for i in range(0,page):
 					self["list"].pageDown()
@@ -725,23 +725,23 @@ class EPGSelection(Screen, HelpableScreen):
 			except:
 				pass
 		elif self.type == EPG_TYPE_VERTICAL:
-			curr = self['list'+str(self.activeList)].getSelectedEventId()
+			curr = self['list' + str(self.activeList)].getSelectedEventId()
 			currPrg = self.myServices[self.getActivePrg()]
-			l = self['list'+str(self.activeList)]
+			l = self['list' + str(self.activeList)]
 			l.recalcEntrySize()
 			service = ServiceReference(currPrg[0])
 			stime = None
 			if self.ask_time > time():
 				stime = self.ask_time
 			l.fillSingleEPG(service, stime)
-			self['list'+str(self.activeList)].moveToEventId(curr)
+			self['list' + str(self.activeList)].moveToEventId(curr)
 
 	def moveUp(self):
 		if self.type == EPG_TYPE_VERTICAL and config.epgselection.vertical_updownbtn.value:
 			if self.getEventTime(self.activeList)[0] is None:
 				return
 			self.saveLastEventTime()
-			idx = self['list'+str(self.activeList)].getCurrentIndex()
+			idx = self['list' + str(self.activeList)].getCurrentIndex()
 			if not idx:
 				tmp = self.lastEventTime
 				self.setMinus24h(True, 6)
@@ -750,7 +750,7 @@ class EPGSelection(Screen, HelpableScreen):
 			elif config.epgselection.vertical_updownbtn.value:
 				if not idx % config.epgselection.vertical_itemsperpage.value:
 					self.syncUp(idx)
-		self['list'+str(self.activeList)].moveTo(self['list'+str(self.activeList)].instance.moveUp)
+		self['list' + str(self.activeList)].moveTo(self['list' + str(self.activeList)].instance.moveUp)
 		if self.type == EPG_TYPE_GRAPH or self.type == EPG_TYPE_INFOBARGRAPH:
 			self.moveTimeLines(True)
 		if self.type == EPG_TYPE_VERTICAL:
@@ -758,10 +758,10 @@ class EPGSelection(Screen, HelpableScreen):
 
 	def moveDown(self):
 		if self.type == EPG_TYPE_VERTICAL and config.epgselection.vertical_updownbtn.value:
-			idx = self['list'+str(self.activeList)].getCurrentIndex()
-			if not (idx+1) % config.epgselection.vertical_itemsperpage.value:
-				self.syncDown(idx+1)
-		self['list'+str(self.activeList)].moveTo(self['list'+str(self.activeList)].instance.moveDown)
+			idx = self['list' + str(self.activeList)].getCurrentIndex()
+			if not (idx + 1) % config.epgselection.vertical_itemsperpage.value:
+				self.syncDown(idx + 1)
+		self['list' + str(self.activeList)].moveTo(self['list' + str(self.activeList)].instance.moveDown)
 		if self.type == EPG_TYPE_GRAPH or self.type == EPG_TYPE_INFOBARGRAPH:
 			self.moveTimeLines(True)
 		if self.type == EPG_TYPE_VERTICAL:
@@ -791,7 +791,7 @@ class EPGSelection(Screen, HelpableScreen):
 					if not reverse and config.epgselection.vertical_channelbtn_invert.value:
 						self.prevPage(reverse=True)
 						return
-				if len(self.list) <= self["list"].getSelectionIndex() + self.Fields-1:
+				if len(self.list) <= self["list"].getSelectionIndex() + self.Fields - 1:
 					self.gotoFirst()
 				else:
 					self["list"].pageDown()
@@ -822,7 +822,7 @@ class EPGSelection(Screen, HelpableScreen):
 					self.gotoLast()
 				else:
 					self['list'].pageUp()
-					self.activeList = (self.Fields-1)
+					self.activeList = (self.Fields - 1)
 					self.updateVerticalEPG()
 				self.gotoLasttime()
 		else:
@@ -845,7 +845,7 @@ class EPGSelection(Screen, HelpableScreen):
 					self.gotoLast()
 				else:
 					self["list"].pageUp()
-					self.activeList = (self.Fields-1)
+					self.activeList = (self.Fields - 1)
 					self.updateVerticalEPG()
 				self.gotoLasttime()
 			self.onSelectionChanged()
@@ -857,7 +857,7 @@ class EPGSelection(Screen, HelpableScreen):
 	def rightPressed(self):
 		if self.type == EPG_TYPE_VERTICAL:
 			end = len(self.list) == self["list"].getSelectionIndex() + self.activeList
-			if self.activeList < (self.Fields-1) and not end:
+			if self.activeList < (self.Fields - 1) and not end:
 				self.activeList += 1
 				self.displayActiveEPG()
 			else:
@@ -1073,7 +1073,7 @@ class EPGSelection(Screen, HelpableScreen):
 			self.infoKeyPressed(True)
 
 	def infoKeyPressed(self, eventviewopen=False):
-		cur = self['list'+str(self.activeList)].getCurrent()
+		cur = self['list' + str(self.activeList)].getCurrent()
 		event = cur[0]
 		service = cur[1]
 		if event is not None and not self.eventviewDialog and not eventviewopen:
@@ -1106,7 +1106,7 @@ class EPGSelection(Screen, HelpableScreen):
 					self.prevService()
 				if config.epgselection.graph_red.value == "timer":
 					self.RecordTimerQuestion(True)
-				if config.epgselection.graph_red.value == "imdb"  or config.epgselection.graph_red.value == None:
+				if config.epgselection.graph_red.value == "imdb" or config.epgselection.graph_red.value == None:
 					self.openIMDb()
 				if config.epgselection.graph_red.value == "autotimer":
 					self.addAutoTimer()
@@ -1135,7 +1135,7 @@ class EPGSelection(Screen, HelpableScreen):
 					self.setMinus24h()
 				if config.epgselection.vertical_red.value == "timer":
 					self.RecordTimerQuestion(True)
-				if config.epgselection.vertical_red.value == "imdb"  or config.epgselection.vertical_red.value == None:
+				if config.epgselection.vertical_red.value == "imdb" or config.epgselection.vertical_red.value == None:
 					self.openIMDb()
 				if config.epgselection.vertical_red.value == "autotimer":
 					self.addAutoTimer()
@@ -1204,7 +1204,7 @@ class EPGSelection(Screen, HelpableScreen):
 					self.setMinus24h()
 				if config.epgselection.vertical_green.value == "timer":
 					self.RecordTimerQuestion(True)
-				if config.epgselection.vertical_green.value == "imdb"  or config.epgselection.vertical_green.value == None:
+				if config.epgselection.vertical_green.value == "imdb" or config.epgselection.vertical_green.value == None:
 					self.openIMDb()
 				if config.epgselection.vertical_green.value == "autotimer":
 					self.addAutoTimer()
@@ -1273,7 +1273,7 @@ class EPGSelection(Screen, HelpableScreen):
 					self.setMinus24h()
 				if config.epgselection.vertical_yellow.value == "timer":
 					self.RecordTimerQuestion(True)
-				if config.epgselection.vertical_yellow.value == "imdb"  or config.epgselection.vertical_yellow.value == None:
+				if config.epgselection.vertical_yellow.value == "imdb" or config.epgselection.vertical_yellow.value == None:
 					self.openIMDb()
 				if config.epgselection.vertical_yellow.value == "autotimer":
 					self.addAutoTimer()
@@ -1335,7 +1335,7 @@ class EPGSelection(Screen, HelpableScreen):
 					self.setMinus24h()
 				if config.epgselection.vertical_blue.value == "timer":
 					self.RecordTimerQuestion(True)
-				if config.epgselection.vertical_blue.value == "imdb"  or config.epgselection.vertical_blue.value == None:
+				if config.epgselection.vertical_blue.value == "imdb" or config.epgselection.vertical_blue.value == None:
 					self.openIMDb()
 				if config.epgselection.vertical_blue.value == "autotimer":
 					self.addAutoTimer()
@@ -1375,7 +1375,7 @@ class EPGSelection(Screen, HelpableScreen):
 		self.onCreate()
 
 	def eventViewCallback(self, setEvent, setService, val):
-		l = self['list'+str(self.activeList)]
+		l = self['list' + str(self.activeList)]
 		old = l.getCurrent()
 		if self.type == EPG_TYPE_GRAPH or self.type == EPG_TYPE_INFOBARGRAPH:
 			self.updEvent(val, False)
@@ -1404,7 +1404,7 @@ class EPGSelection(Screen, HelpableScreen):
 			self['list'].sortSingleEPG(int(config.epgselection.sort.value))
 
 	def OpenSingleEPG(self):
-		cur = self['list'+str(self.activeList)].getCurrent()
+		cur = self['list' + str(self.activeList)].getCurrent()
 		if cur[0] is not None:
 			event = cur[0]
 			serviceref = cur[1].ref
@@ -1415,7 +1415,7 @@ class EPGSelection(Screen, HelpableScreen):
 		try:
 			from Plugins.Extensions.IMDb.plugin import IMDB
 			try:
-				cur = self['list'+str(self.activeList)].getCurrent()
+				cur = self['list' + str(self.activeList)].getCurrent()
 				event = cur[0]
 				name = event.getEventName()
 			except:
@@ -1429,7 +1429,7 @@ class EPGSelection(Screen, HelpableScreen):
 		try:
 			from Plugins.Extensions.EPGSearch.EPGSearch import EPGSearch
 			try:
-				cur = self['list'+str(self.activeList)].getCurrent()
+				cur = self['list' + str(self.activeList)].getCurrent()
 				event = cur[0]
 				name = event.getEventName()
 			except:
@@ -1441,7 +1441,7 @@ class EPGSelection(Screen, HelpableScreen):
 	def addAutoTimer(self):
 		try:
 			from Plugins.Extensions.AutoTimer.AutoTimerEditor import addAutotimerFromEvent
-			cur = self['list'+str(self.activeList)].getCurrent()
+			cur = self['list' + str(self.activeList)].getCurrent()
 			event = cur[0]
 			if not event:
 				return
@@ -1454,7 +1454,7 @@ class EPGSelection(Screen, HelpableScreen):
 	def addAutoTimerSilent(self):
 		try:
 			from Plugins.Extensions.AutoTimer.AutoTimerEditor import addAutotimerFromEventSilent
-			cur = self['list'+str(self.activeList)].getCurrent()
+			cur = self['list' + str(self.activeList)].getCurrent()
 			event = cur[0]
 			if not event:
 				return
@@ -1532,7 +1532,7 @@ class EPGSelection(Screen, HelpableScreen):
 		self.refreshlist()
 
 	def RecordTimerQuestion(self, manual=False):
-		cur = self['list'+str(self.activeList)].getCurrent()
+		cur = self['list' + str(self.activeList)].getCurrent()
 		event = cur[0]
 		serviceref = cur[1]
 		if event is None:
@@ -1579,14 +1579,14 @@ class EPGSelection(Screen, HelpableScreen):
 
 		if title:
 			self.ChoiceBoxDialog = self.session.instantiateDialog(ChoiceBox, title=title, list=menu, keys=['red', 'green', 'yellow', 'blue'], skin_name="RecordTimerQuestion")
-			serviceref = eServiceReference(str(self['list'+str(self.activeList)].getCurrent()[1]))
-			pos = self['list'+str(self.activeList)].getSelectionPosition(serviceref, self.activeList)
+			serviceref = eServiceReference(str(self['list' + str(self.activeList)].getCurrent()[1]))
+			pos = self['list' + str(self.activeList)].getSelectionPosition(serviceref, self.activeList)
 			sf = getSkinFactor()
-			posx = max(self.instance.position().x() + pos[0] - self.ChoiceBoxDialog.instance.size().width() - 20*sf, 0)
+			posx = max(self.instance.position().x() + pos[0] - self.ChoiceBoxDialog.instance.size().width() - 20 * sf, 0)
 			posy = self.instance.position().y() + pos[1]
-			posy += self['list'+str(self.activeList)].itemHeight - 2*sf
-			if posy + self.ChoiceBoxDialog.instance.size().height() > 720*sf:
-				posy -= self['list'+str(self.activeList)].itemHeight - 4*sf + self.ChoiceBoxDialog.instance.size().height()
+			posy += self['list' + str(self.activeList)].itemHeight - 2 * sf
+			if posy + self.ChoiceBoxDialog.instance.size().height() > 720 * sf:
+				posy -= self['list' + str(self.activeList)].itemHeight - 4 * sf + self.ChoiceBoxDialog.instance.size().height()
 			self.ChoiceBoxDialog.instance.move(ePoint(int(posx), int(posy)))
 			self.showChoiceBoxDialog()
 
@@ -1655,7 +1655,7 @@ class EPGSelection(Screen, HelpableScreen):
 		self.doInstantTimer(0, 1)
 
 	def doInstantTimer(self, zap, zaprecord):
-		cur = self['list'+str(self.activeList)].getCurrent()
+		cur = self['list' + str(self.activeList)].getCurrent()
 		event = cur[0]
 		serviceref = cur[1]
 		if event is None:
@@ -1797,7 +1797,7 @@ class EPGSelection(Screen, HelpableScreen):
 	def onSelectionChanged(self):
 		if self.type != EPG_TYPE_VERTICAL:
 			self.activeList = ''
-		cur = self['list'+str(self.activeList)].getCurrent()
+		cur = self['list' + str(self.activeList)].getCurrent()
 		event = cur[0]
 		self['Event'].newEvent(event)
 		if cur[1] is None:
@@ -1937,12 +1937,12 @@ class EPGSelection(Screen, HelpableScreen):
 			self.prevch = self.session.pip.getCurrentService() and str(self.session.pip.getCurrentService().toString()) or None
 		else:
 			self.prevch = self.session.nav.getCurrentlyPlayingServiceReference() and str(self.session.nav.getCurrentlyPlayingServiceReference().toString()) or None
-		lst = self["list"+str(self.activeList)]
+		lst = self["list" + str(self.activeList)]
 		count = lst.getCurrentChangeCount()
 		if count == 0:
 			ref = lst.getCurrent()[1]
 			if ref is None and self.type == EPG_TYPE_VERTICAL and self.myServices[0][0]:
-				ref = ServiceReference(self.myServices[self["list"].getSelectionIndex()+self.activeList-1][0])
+				ref = ServiceReference(self.myServices[self["list"].getSelectionIndex() + self.activeList - 1][0])
 			if ref is not None:
 				if (self.type == EPG_TYPE_INFOBAR or self.type == EPG_TYPE_INFOBARGRAPH) and config.epgselection.infobar_preview_mode.value == '2':
 					if not prev:
@@ -1972,7 +1972,7 @@ class EPGSelection(Screen, HelpableScreen):
 				else:
 					self.zapFunc(ref.ref, bouquet=self.getCurrentBouquet(), preview=prev)
 					self.currch = self.session.nav.getCurrentlyPlayingServiceReference() and str(self.session.nav.getCurrentlyPlayingServiceReference().toString())
-				self['list'+str(self.activeList)].setCurrentlyPlaying(self.session.nav.getCurrentlyPlayingServiceOrGroup())
+				self['list' + str(self.activeList)].setCurrentlyPlaying(self.session.nav.getCurrentlyPlayingServiceOrGroup())
 
 	def zapTo(self):
 		if self.session.nav.getCurrentlyPlayingServiceOrGroup() and '0:0:0:0:0:0:0:0:0' in self.session.nav.getCurrentlyPlayingServiceOrGroup().toString():
@@ -2089,7 +2089,7 @@ class EPGSelection(Screen, HelpableScreen):
 			else:
 				self.NumberZapField += str(number)
 			self.handleServiceName()
-			self["number"].setText(self.zaptoservicename+'\n'+self.NumberZapField)
+			self["number"].setText(self.zaptoservicename + '\n' + self.NumberZapField)
 			self["number"].show()
 			if len(self.NumberZapField) >= 4:
 				self.dozumberzap()
@@ -2413,11 +2413,11 @@ class EPGSelection(Screen, HelpableScreen):
 		self.displayActiveEPG()
 		stime = None
 		now = time()
-		if force or self.ask_time >= now - config.epg.histminutes.value*60:
+		if force or self.ask_time >= now - config.epg.histminutes.value * 60:
 			stime = self.ask_time
 		prgIndex = self["list"].getSelectionIndex()
 		CurrentPrg = self.myServices[prgIndex]
-		x = len(self.list)-1
+		x = len(self.list) - 1
 		if x >= 0 and CurrentPrg[0]:
 			self["list1"].show()
 			self["currCh1"].setText(str(CurrentPrg[1]))
@@ -2432,7 +2432,7 @@ class EPGSelection(Screen, HelpableScreen):
 			self["currCh1"].setText(str(" "))
 			self["list1"].hide()
 		prgIndex = prgIndex + 1
-		if prgIndex < (x+1):
+		if prgIndex < (x + 1):
 			self["list2"].show()
 			CurrentPrg = self.myServices[prgIndex]
 			self["currCh2"].setText(str(CurrentPrg[1]))
@@ -2446,7 +2446,7 @@ class EPGSelection(Screen, HelpableScreen):
 			self["currCh2"].setText(str(" "))
 			self["list2"].hide()
 		prgIndex = prgIndex + 1
-		if prgIndex < (x+1):
+		if prgIndex < (x + 1):
 			self["list3"].show()
 			CurrentPrg = self.myServices[prgIndex]
 			self["currCh3"].setText(str(CurrentPrg[1]))
@@ -2461,7 +2461,7 @@ class EPGSelection(Screen, HelpableScreen):
 			self["list3"].hide()
 		if self.Fields == 6:
 			prgIndex = prgIndex + 1
-			if prgIndex < (x+1):
+			if prgIndex < (x + 1):
 				self["list4"].show()
 				CurrentPrg = self.myServices[prgIndex]
 				self["currCh4"].setText(str(CurrentPrg[1]))
@@ -2476,7 +2476,7 @@ class EPGSelection(Screen, HelpableScreen):
 				self["piconCh4"].newService(None)
 				self["list4"].hide()
 			prgIndex = prgIndex + 1
-			if prgIndex < (x+1):
+			if prgIndex < (x + 1):
 				self["list5"].show()
 				CurrentPrg = self.myServices[prgIndex]
 				self["currCh5"].setText(str(CurrentPrg[1]))
@@ -2501,39 +2501,39 @@ class EPGSelection(Screen, HelpableScreen):
 		marker = config.epgselection.vertical_eventmarker.value
 		for list in range(1,self.Fields):
 			if list == self.activeList:
-				self["list"+str(list)].selectionEnabled(True)
-				self["Active"+str(list)].show()
+				self["list" + str(list)].selectionEnabled(True)
+				self["Active" + str(list)].show()
 			else:
-				self["Active"+str(list)].hide()
-				self["list"+str(list)].selectionEnabled(marker)
+				self["Active" + str(list)].hide()
+				self["list" + str(list)].selectionEnabled(marker)
 
 	def getActivePrg(self):
-		return self["list"].getSelectionIndex()+(self.activeList-1)
+		return self["list"].getSelectionIndex() + (self.activeList - 1)
 
 	def allUp(self):
 		if self.getEventTime(self.activeList)[0] is None:
 			return
-		idx = self['list'+str(self.activeList)].getCurrentIndex()
+		idx = self['list' + str(self.activeList)].getCurrentIndex()
 		if not idx:
 			tmp = self.lastEventTime
 			self.setMinus24h(True, 6)
 			self.lastEventTime = tmp
 			self.gotoLasttime()
 		for list in range(1,self.Fields):
-			self['list'+str(list)].moveTo(self['list'+str(list)].instance.pageUp)
+			self['list' + str(list)].moveTo(self['list' + str(list)].instance.pageUp)
 		self.syncUp(idx)
 		self.saveLastEventTime()
 
 	def syncUp(self, idx):
-		idx = self['list'+str(self.activeList)].getCurrentIndex()
+		idx = self['list' + str(self.activeList)].getCurrentIndex()
 		curTime = self.getEventTime(self.activeList)[0]
 		for list in range(1,self.Fields):
 			if list == self.activeList:
 				continue
-			for x in range(0,int(idx/config.epgselection.vertical_itemsperpage.value)):
+			for x in range(0,int(idx / config.epgselection.vertical_itemsperpage.value)):
 				evTime = self.getEventTime(list)[0]
 				if curTime is None or evTime is None or curTime <= evTime:
-					self['list'+str(list)].moveTo(self['list'+str(list)].instance.pageUp)
+					self['list' + str(list)].moveTo(self['list' + str(list)].instance.pageUp)
 				evTime = self.getEventTime(list)[0]
 				if curTime is None or evTime is None or curTime >= evTime:
 					break
@@ -2543,10 +2543,10 @@ class EPGSelection(Screen, HelpableScreen):
 		for list in range(1,self.Fields):
 			if list == self.activeList:
 				continue
-			for x in range(0,int(idx/config.epgselection.vertical_itemsperpage.value)):
+			for x in range(0,int(idx / config.epgselection.vertical_itemsperpage.value)):
 				evTime = self.getEventTime(list)[0]
 				if curTime is None or evTime is None or curTime >= evTime:
-					self['list'+str(list)].moveTo(self['list'+str(list)].instance.pageDown)
+					self['list' + str(list)].moveTo(self['list' + str(list)].instance.pageDown)
 				evTime = self.getEventTime(list)[0]
 				if curTime is None or evTime is None or curTime <= evTime:
 					break
@@ -2555,8 +2555,8 @@ class EPGSelection(Screen, HelpableScreen):
 		if self.getEventTime(self.activeList)[0] is None:
 			return
 		for list in range(1,self.Fields):
-			self['list'+str(list)].moveTo(self['list'+str(list)].instance.pageDown)
-		idx = self['list'+str(self.activeList)].getCurrentIndex()
+			self['list' + str(list)].moveTo(self['list' + str(list)].instance.pageDown)
+		idx = self['list' + str(self.activeList)].getCurrentIndex()
 		self.syncDown(idx)
 		self.saveLastEventTime()
 
@@ -2572,13 +2572,13 @@ class EPGSelection(Screen, HelpableScreen):
 
 	def gotoLast(self):
 		idx = len(self.list)
-		page = idx/(self.Fields-1)
-		row = idx%(self.Fields-1)
+		page = idx / (self.Fields - 1)
+		row = idx % (self.Fields - 1)
 		if row:
 			self.activeList = row
 		else:
-			page-=1
-			self.activeList = self.Fields-1
+			page -= 1
+			self.activeList = self.Fields - 1
 		self["list"].moveToIndex(0)
 		for i in range(0,page):
 			self["list"].pageDown()
@@ -2592,28 +2592,28 @@ class EPGSelection(Screen, HelpableScreen):
 		return primetime
 
 	def findMaxEventTime(self, stime):
-		curr = self['list'+str(self.activeList)].getSelectedEventId()
-		self['list'+str(self.activeList)].moveTo(self['list'+str(self.activeList)].instance.moveEnd)
+		curr = self['list' + str(self.activeList)].getSelectedEventId()
+		self['list' + str(self.activeList)].moveTo(self['list' + str(self.activeList)].instance.moveEnd)
 		maxtime = self.getEventTime(self.activeList)[0]
-		self['list'+str(self.activeList)].moveToEventId(curr)
+		self['list' + str(self.activeList)].moveToEventId(curr)
 		return maxtime is not None and maxtime >= stime
 
 	def findMinEventTime(self, stime):
-		curr = self['list'+str(self.activeList)].getSelectedEventId()
-		self['list'+str(self.activeList)].moveTo(self['list'+str(self.activeList)].instance.moveTop)
+		curr = self['list' + str(self.activeList)].getSelectedEventId()
+		self['list' + str(self.activeList)].moveTo(self['list' + str(self.activeList)].instance.moveTop)
 		mintime = self.getEventTime(self.activeList)[0]
-		self['list'+str(self.activeList)].moveToEventId(curr)
+		self['list' + str(self.activeList)].moveToEventId(curr)
 		return mintime is not None and mintime <= stime
 
 	def isInTimeRange(self, stime):
 		return self.findMaxEventTime(stime) and self.findMinEventTime(stime)
 
 	def setPlus24h(self):
-		oneDay = 24*3600
+		oneDay = 24 * 3600
 		ev_begin, ev_end = self.getEventTime(self.activeList)
 
 		if ev_begin is not None:
-			if self.findMaxEventTime(ev_begin+oneDay):
+			if self.findMaxEventTime(ev_begin + oneDay):
 				primetime = self.setPrimetime(ev_begin)
 				if primetime >= ev_begin and primetime < ev_end:
 					self.ask_time = primetime + oneDay
@@ -2621,12 +2621,12 @@ class EPGSelection(Screen, HelpableScreen):
 					self.ask_time = ev_begin + oneDay
 				self.updateVerticalEPG()
 			else:
-				self['list'+str(self.activeList)].moveTo(self['list'+str(self.activeList)].instance.moveEnd)
+				self['list' + str(self.activeList)].moveTo(self['list' + str(self.activeList)].instance.moveEnd)
 			self.saveLastEventTime()
 
 	def setMinus24h(self, force=False, daypart=1):
 		now = time()
-		oneDay =  24*3600/daypart
+		oneDay = 24 * 3600 / daypart
 		if not self.lastMinus:
 			self.lastMinus = oneDay
 		ev_begin, ev_end = self.getEventTime(self.activeList)
@@ -2635,7 +2635,7 @@ class EPGSelection(Screen, HelpableScreen):
 			if ev_begin - oneDay < now:
 				self.ask_time = -1
 			else:
-				if self['list'+str(self.activeList)].getCurrentIndex() and not force and self.findMinEventTime(ev_begin - oneDay):
+				if self['list' + str(self.activeList)].getCurrentIndex() and not force and self.findMinEventTime(ev_begin - oneDay):
 					self.lastEventTime = ev_begin - oneDay, ev_end - oneDay
 					self.gotoLasttime()
 					return
@@ -2662,10 +2662,10 @@ class EPGSelection(Screen, HelpableScreen):
 	def gotoPrimetime(self):
 		idx = 0
 		now = time()
-		oneDay = 24*3600
+		oneDay = 24 * 3600
 		if self.firststart:
 			self.ask_time = self.setPrimetime(now)
-			self['list'+str(self.activeList)].moveTo(self['list'+str(self.activeList)].instance.moveTop)
+			self['list' + str(self.activeList)].moveTo(self['list' + str(self.activeList)].instance.moveTop)
 			ev_begin = self.getEventTime(self.activeList)[0]
 			if ev_begin is not None and ev_begin > self.ask_time:
 				self.ask_time += oneDay
@@ -2677,15 +2677,15 @@ class EPGSelection(Screen, HelpableScreen):
 		if ev_begin is None:
 			return
 		for list in range(1, self.Fields):
-			idx += self['list'+str(list)].getCurrentIndex()
+			idx += self['list' + str(list)].getCurrentIndex()
 
 		primetime = self.setPrimetime(ev_begin)
 
 		onlyPT = False #key press primetime always sync
 		gotoNow = False #False -> -24h List expanded, True -> got to current event and sync (onlyPT must set to False!)
-		rPM = self.isInTimeRange(primetime-oneDay)
+		rPM = self.isInTimeRange(primetime - oneDay)
 		rPT = self.isInTimeRange(primetime)
-		rPP = self.isInTimeRange(primetime+oneDay)
+		rPP = self.isInTimeRange(primetime + oneDay)
 		if rPM or rPT or rPP:
 			if onlyPT or idx or not (primetime >= ev_begin and primetime < ev_end): #not sync or not primetime:
 				if rPT:
@@ -2700,38 +2700,38 @@ class EPGSelection(Screen, HelpableScreen):
 					self.gotoNow()
 					return
 				else:
-					self['list'+str(self.activeList)].moveTo(self['list'+str(self.activeList)].instance.moveTop)
+					self['list' + str(self.activeList)].moveTo(self['list' + str(self.activeList)].instance.moveTop)
 					self.setMinus24h(True, 6)
 					for list in range(1, self.Fields):
-						self['list'+str(list)].moveTo(self['list'+str(list)].instance.moveEnd)
-						cnt = self['list'+str(list)].getCurrentIndex()
-						self['list'+str(list)].moveTo(self['list'+str(list)].instance.moveTop)
+						self['list' + str(list)].moveTo(self['list' + str(list)].instance.moveEnd)
+						cnt = self['list' + str(list)].getCurrentIndex()
+						self['list' + str(list)].moveTo(self['list' + str(list)].instance.moveTop)
 						self.findPrimetime(cnt, list, primetime)
 			self.saveLastEventTime()
 
 	def gotoLasttime(self, list=0):
 		if list:
-			self['list'+str(list)].moveTo(self['list'+str(list)].instance.moveEnd)
-			cnt = self['list'+str(list)].getCurrentIndex()
-			self['list'+str(list)].moveTo(self['list'+str(list)].instance.moveTop)
+			self['list' + str(list)].moveTo(self['list' + str(list)].instance.moveEnd)
+			cnt = self['list' + str(list)].getCurrentIndex()
+			self['list' + str(list)].moveTo(self['list' + str(list)].instance.moveTop)
 			self.findLasttime(cnt, list)
 		else:
 			for list in range(1, self.Fields):
-				self['list'+str(list)].moveTo(self['list'+str(list)].instance.moveEnd)
-				cnt = self['list'+str(list)].getCurrentIndex()
-				self['list'+str(list)].moveTo(self['list'+str(list)].instance.moveTop)
+				self['list' + str(list)].moveTo(self['list' + str(list)].instance.moveEnd)
+				cnt = self['list' + str(list)].getCurrentIndex()
+				self['list' + str(list)].moveTo(self['list' + str(list)].instance.moveTop)
 				self.findLasttime(cnt, list)
 
 	def findLasttime(self, cnt, list, idx=0):
 		last_begin, last_end = self.lastEventTime
 		for events in range(0,idx):
-			self['list'+str(list)].moveTo(self['list'+str(list)].instance.moveDown)
+			self['list' + str(list)].moveTo(self['list' + str(list)].instance.moveDown)
 		for events in range(idx, cnt):
 			ev_begin, ev_end = self.getEventTime(list)
 			if ev_begin is not None:
 				if (ev_begin <= last_begin and ev_end > last_begin) or (ev_end >= last_end):
 					break
-				self['list'+str(list)].moveTo(self['list'+str(list)].instance.moveDown)
+				self['list' + str(list)].moveTo(self['list' + str(list)].instance.moveDown)
 			else:
 				break
 
@@ -2741,7 +2741,7 @@ class EPGSelection(Screen, HelpableScreen):
 			if ev_begin is not None:
 				if (primetime >= ev_begin and primetime < ev_end):
 					break
-				self['list'+str(list)].moveTo(self['list'+str(list)].instance.moveDown)
+				self['list' + str(list)].moveTo(self['list' + str(list)].instance.moveDown)
 			else:
 				break
 
@@ -2754,13 +2754,13 @@ class EPGSelection(Screen, HelpableScreen):
 		if self.lastEventTime[0] is None and last[0] is not None:
 			self.lastEventTime = last
 		elif last[0] is None:
-			self.lastEventTime = (now, now+3600)
+			self.lastEventTime = (now, now + 3600)
 
 	def getEventTime(self, list):
-		tmp = self['list'+str(list)].l.getCurrentSelection()
+		tmp = self['list' + str(list)].l.getCurrentSelection()
 		if tmp is None:
 			return None, None
-		return tmp[2], tmp[2]+tmp[3] #event begin, event end
+		return tmp[2], tmp[2] + tmp[3] #event begin, event end
 
 class SingleEPG(EPGSelection):
 	def __init__(self, session, service, EPGtype="single"):

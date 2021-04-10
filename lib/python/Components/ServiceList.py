@@ -411,10 +411,10 @@ class ServiceList(HTMLComponent, GUIComponent):
 			channelNumberWidth = 0
 			channelNumberSpace = self.listMarginLeft
 		else:
-			channelNumberWidth = config.usage.alternative_number_mode.value and getTextBoundarySize(self.instance, self.ServiceNumberFont, self.instance.size(), "0"*int(config.usage.maxchannelnumlen.value)).width() or getTextBoundarySize(self.instance, self.ServiceNumberFont, self.instance.size(), "00000").width()
+			channelNumberWidth = config.usage.alternative_number_mode.value and getTextBoundarySize(self.instance, self.ServiceNumberFont, self.instance.size(), "0" * int(config.usage.maxchannelnumlen.value)).width() or getTextBoundarySize(self.instance, self.ServiceNumberFont, self.instance.size(), "00000").width()
 			channelNumberSpace = self.fieldMargins + self.listMarginLeft
 
-		numberHeight = self.ItemHeight/2 if twoLines and config.usage.servicelist_servicenumber_valign.value == "1" else self.ItemHeight
+		numberHeight = self.ItemHeight / 2 if twoLines and config.usage.servicelist_servicenumber_valign.value == "1" else self.ItemHeight
 		self.l.setElementPosition(self.l.celServiceNumber, eRect(self.listMarginLeft, 0, channelNumberWidth, numberHeight))
 
 		#progress view modes for two lines
@@ -436,8 +436,8 @@ class ServiceList(HTMLComponent, GUIComponent):
 		minuteUnit = _("min")
 		self.l.setProgressUnit(minuteUnit if "mins" in viewType else "%")
 
-		progressHeight = self.ItemHeight/2 if viewMode else self.ItemHeight
-		progressTextWidth = getTextBoundarySize(self.instance, self.ProgressInfoFont, self.instance.size(), "+000 %s" %minuteUnit).width() if "mins" in viewType else getTextBoundarySize(self.instance, self.ProgressInfoFont, self.instance.size(), "100 %").width()
+		progressHeight = self.ItemHeight / 2 if viewMode else self.ItemHeight
+		progressTextWidth = getTextBoundarySize(self.instance, self.ProgressInfoFont, self.instance.size(), "+000 %s" % minuteUnit).width() if "mins" in viewType else getTextBoundarySize(self.instance, self.ProgressInfoFont, self.instance.size(), "100 %").width()
 		self.l.setProgressTextWidth(progressTextWidth)
 
 		if "bar" in viewType:
@@ -451,14 +451,14 @@ class ServiceList(HTMLComponent, GUIComponent):
 			progressWidth = progressTextWidth
 
 		if "left" in viewType:
-			self.l.setElementPosition(self.l.celServiceEventProgressbar, eRect(channelNumberWidth+channelNumberSpace, 0, progressWidth, progressHeight))
-			self.l.setElementPosition(self.l.celServiceName, eRect(channelNumberWidth+channelNumberSpace + progressWidth + self.fieldMargins, 0, rowWidth - (channelNumberWidth+channelNumberSpace + progressWidth + self.fieldMargins), self.ItemHeight))
+			self.l.setElementPosition(self.l.celServiceEventProgressbar, eRect(channelNumberWidth + channelNumberSpace, 0, progressWidth, progressHeight))
+			self.l.setElementPosition(self.l.celServiceName, eRect(channelNumberWidth + channelNumberSpace + progressWidth + self.fieldMargins, 0, rowWidth - (channelNumberWidth + channelNumberSpace + progressWidth + self.fieldMargins), self.ItemHeight))
 		elif "right" in viewType:
 			self.l.setElementPosition(self.l.celServiceEventProgressbar, eRect(rowWidth - progressWidth, 0, progressWidth, progressHeight))
-			self.l.setElementPosition(self.l.celServiceName, eRect(channelNumberWidth+channelNumberSpace, 0, rowWidth - (channelNumberWidth+channelNumberSpace + progressWidth + self.fieldMargins), self.ItemHeight))
+			self.l.setElementPosition(self.l.celServiceName, eRect(channelNumberWidth + channelNumberSpace, 0, rowWidth - (channelNumberWidth + channelNumberSpace + progressWidth + self.fieldMargins), self.ItemHeight))
 		else:
 			self.l.setElementPosition(self.l.celServiceEventProgressbar, eRect(0, 0, 0, 0))
-			self.l.setElementPosition(self.l.celServiceName, eRect(channelNumberWidth+channelNumberSpace, 0, rowWidth - (channelNumberWidth+channelNumberSpace), self.ItemHeight))
+			self.l.setElementPosition(self.l.celServiceName, eRect(channelNumberWidth + channelNumberSpace, 0, rowWidth - (channelNumberWidth + channelNumberSpace), self.ItemHeight))
 		if "perc" in viewType or "mins" in viewType:
 			self.l.setElementFont(self.l.celServiceEventProgressbar, self.ProgressInfoFont)
 

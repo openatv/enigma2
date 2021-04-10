@@ -107,7 +107,7 @@ class ServiceInfo(Screen):
 
 		if serviceref:
 			self.type = TYPE_TRANSPONDER_INFO
-			self.skinName="ServiceInfoSimple"
+			self.skinName = "ServiceInfoSimple"
 			info = eServiceCenter.getInstance().info(serviceref)
 			self.transponder_info = info.getInfoObject(serviceref, iServiceInformation.sTransponderData)
 			# info is a iStaticServiceInformation, not a iServiceInformation
@@ -155,7 +155,7 @@ class ServiceInfo(Screen):
 					resolution += str((self.info.getInfo(iServiceInformation.sFrameRate) + 500) / 1000)
 					aspect = self.getServiceInfoValue(iServiceInformation.sAspect)
 					aspect = aspect in (1, 2, 5, 6, 9, 0xA, 0xD, 0xE) and "4:3" or "16:9"
-					resolution += " - ["+aspect+"]"
+					resolution += " - [" + aspect + "]"
 					gammas = ("SDR", "HDR", "HDR10", "HLG", "")
 					if self.info.getInfo(iServiceInformation.sGamma) < len(gammas):
 						gamma = gammas[self.info.getInfo(iServiceInformation.sGamma)]
@@ -292,9 +292,9 @@ class ServiceInfo(Screen):
 				continue
 			value = item[1]
 			if len(item) < 4:
-				tlist.append(ServiceInfoListEntry(item[0]+":", value, item[2]))
+				tlist.append(ServiceInfoListEntry(item[0] + ":", value, item[2]))
 			else:
-				tlist.append(ServiceInfoListEntry(item[0]+":", value, item[2], item[3]))
+				tlist.append(ServiceInfoListEntry(item[0] + ":", value, item[2], item[3]))
 
 		self["infolist"].l.setList(tlist)
 

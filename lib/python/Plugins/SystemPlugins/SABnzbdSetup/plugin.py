@@ -145,13 +145,13 @@ class SABnzbdSetupScreen(Screen):
 			self['labactive'].show()
 			self['labrun'].show()
 			self['key_green'].setText(_("Stop"))
-			status_summary= self['lab2'].text + ' ' + self['labrun'].text
+			status_summary = self['lab2'].text + ' ' + self['labrun'].text
 		else:
 			self['labrun'].hide()
 			self['labstop'].show()
 			self['labactive'].show()
 			self['key_green'].setText(_("Start"))
-			status_summary= self['lab2'].text + ' ' + self['labstop'].text
+			status_summary = self['lab2'].text + ' ' + self['labstop'].text
 		title = _("SABnzbd Setup")
 		autostartstatus_summary = self['lab1'].text + ' ' + self['labactive'].text
 

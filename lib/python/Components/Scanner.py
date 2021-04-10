@@ -27,7 +27,7 @@ def getType(file):
 		p = file.rfind('.')
 		if p == -1:
 			return None
-		ext = file[p+1:].lower()
+		ext = file[p + 1:].lower()
 
 		if ext == "dat" and file[-11:-6].lower() == "avseq":
 			return "video/x-vcd"

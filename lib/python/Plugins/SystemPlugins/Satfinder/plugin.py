@@ -204,11 +204,11 @@ class Satfinder(ScanSetup, ServiceScan):
 			else:
 				ret = False
 			if not ret:
-				print "%d: tunerTypeChange to '%s' failed" %(fe_id, system)
+				print "%d: tunerTypeChange to '%s' failed" % (fe_id, system)
 			else:
 				print "new system ",system
 		else:
-			print "%d: tunerTypeChange to '%s' failed (BUSY)" %(fe_id, multiType.getText())
+			print "%d: tunerTypeChange to '%s' failed (BUSY)" % (fe_id, multiType.getText())
 		self.retune()
 
 	def createConfig(self):
@@ -260,8 +260,8 @@ class Satfinder(ScanSetup, ServiceScan):
 		if self.initcomplete:
 			if self.scan_typecable.value == "single_transponder":
 				transponder = (
-					self.scan_cab.frequency.value[0]*1000 + self.scan_cab.frequency.value[1],
-					self.scan_cab.symbolrate.value*1000,
+					self.scan_cab.frequency.value[0] * 1000 + self.scan_cab.frequency.value[1],
+					self.scan_cab.symbolrate.value * 1000,
 					self.scan_cab.modulation.value,
 					self.scan_cab.fec.value,
 					self.scan_cab.inversion.value
@@ -354,7 +354,7 @@ class Satfinder(ScanSetup, ServiceScan):
 		if self.initcomplete:
 			if self.scan_typeatsc.value == "single_transponder":
 				transponder = (
-					self.scan_ats.frequency.floatint*1000,
+					self.scan_ats.frequency.floatint * 1000,
 					self.scan_ats.modulation.value,
 					self.scan_ats.inversion.value,
 					self.scan_ats.system.value,
@@ -468,7 +468,7 @@ def SatfinderMain(session, close=None, **kwargs):
 		else:
 			if not (n.isCompatible("DVB-S") or n.isCompatible("DVB-T") or n.isCompatible("DVB-C") or n.isCompatible("ATSC")):
 				continue
-			if n.isCompatible("DVB-S") and n.config.dvbs.configMode.value  in ("loopthrough", "satposdepends", "nothing"):
+			if n.isCompatible("DVB-S") and n.config.dvbs.configMode.value in ("loopthrough", "satposdepends", "nothing"):
 				continue
 			if n.isCompatible("DVB-S") and n.config.dvbs.configMode.value == "advanced" and len(nimmanager.getSatListForNim(n.slot)) < 1:
 				continue
