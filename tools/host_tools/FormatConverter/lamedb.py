@@ -50,8 +50,7 @@ class lamedb(datasource):
 					data = line.strip().split(":")
 					tsid = str(int(data[1], 16))
 					onid = str(int(data[2], 16))
-		satlist = sats.keys()
-		satlist.sort()
+		satlist = sorted(sats.keys())
 
 		for sat in satlist:
 			print(sat)

@@ -1787,8 +1787,7 @@ def InitNimManager(nimmgr, update_slots=None):
 			m_update({product.get("name"): p})								#add dict product to dict manufacturer
 		unicablematrixproducts.update({manufacturer.get("name"): m})						#add dict manufacturer to dict unicablematrixproducts
 
-	UnicableLnbManufacturers = list(unicablelnbproducts.keys())
-	UnicableLnbManufacturers.sort()
+	UnicableLnbManufacturers = sorted(unicablelnbproducts.keys())
 	UnicableMatrixManufacturers = list(unicablematrixproducts.keys())
 	UnicableMatrixManufacturers.sort()
 
@@ -1867,8 +1866,7 @@ def InitNimManager(nimmgr, update_slots=None):
 
 			def fillUnicableConf(sectionDict, unicableproducts, vco_null_check):
 				for manufacturer in unicableproducts:
-					products = list(unicableproducts[manufacturer].keys())
-					products.sort()
+					products = sorted(unicableproducts[manufacturer].keys())
 					products_valide = []
 					products_valide_append = products_valide.append
 					tmp = ConfigSubsection()

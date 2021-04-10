@@ -123,8 +123,7 @@ class ResultParser:
 				orbpos = index[2]
 				orderedResults[orbpos] = orderedResults.get(orbpos, [])
 				orderedResults[orbpos].append(index)
-			ordered_orbpos = orderedResults.keys()
-			ordered_orbpos.sort()
+			ordered_orbpos = sorted(orderedResults.keys())
 			for orbpos in ordered_orbpos:
 				text += "\n*****************************************\n"
 				text += "Orbital position %s:" % str(orbpos)

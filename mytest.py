@@ -737,14 +737,13 @@ def runScreenTest():
 		nextPluginName = nextPluginIdent
 		nextPluginTimeInStandby = 0
 
-	wakeupList = [
+	wakeupList = sorted([
 		x for x in ((nextRecordTime, 0, nextRecordTimeInStandby),
 					(nextZapTime, 1, nextZapTimeInStandby),
 					(nextPowerTime, 2, nextPowerTimeInStandby),
 					(nextPluginTime, 3, nextPluginTimeInStandby))
 		if x[0] != -1
-	]
-	wakeupList.sort()
+	])
 
 	print("=" * 100)
 	if wakeupList and wakeupList[0][0] > 0:
