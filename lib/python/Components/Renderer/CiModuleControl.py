@@ -19,7 +19,7 @@ class CiModuleControl(Renderer, VariableText):
 		for (attrib, value) in self.skinAttributes:
 			if attrib == "allVisible":
 				self.allVisible = value == "1"
-				attribs.remove((attrib,value))
+				attribs.remove((attrib, value))
 				break
 		self.skinAttributes = attribs
 		return Renderer.applySkin(self, desktop, parent)

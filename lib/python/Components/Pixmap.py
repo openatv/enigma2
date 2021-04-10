@@ -113,7 +113,7 @@ class MultiPixmap(Pixmap):
 					if not fileExists(pixmap) and fileExists(resolveFilename(SCOPE_CURRENT_LCDSKIN, value, path_prefix=skin_path_prefix)):
 						pixmap = resolveFilename(SCOPE_CURRENT_LCDSKIN, value, path_prefix=skin_path_prefix)
 				else:
-					attribs.append((attrib,value))
+					attribs.append((attrib, value))
 			if pixmap:
 				attribs.append(("pixmap", pixmap))
 			self.skinAttributes = attribs

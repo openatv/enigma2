@@ -256,7 +256,7 @@ def ConvertToHumanReadable(tp, tunertype=None):
 			eDVBFrontendParametersATSC.System_DVB_C_ANNEX_B: "DVB-C ANNEX B"}.get(tp.get("system"))
 	elif tunertype != "None":
 		print "ConvertToHumanReadable: no or unknown tunertype in tpdata dict for tunertype:", tunertype
-	for k,v in tp.items():
+	for k, v in tp.items():
 		if k not in ret:
 			ret[k] = v
 	return ret

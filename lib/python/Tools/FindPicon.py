@@ -54,7 +54,7 @@ def findPicon(service):
 			break
 	pos = sname.rfind(':')
 	if pos != -1:
-		sname = sname[:pos].rstrip(':').replace(':','_')
+		sname = sname[:pos].rstrip(':').replace(':', '_')
 	pngname = nameCache.get(sname, "")
 	if pngname == "":
 		pngname = findFile(sname)
@@ -64,7 +64,7 @@ def findPicon(service):
 			if service and service is not None:
 				info = serviceHandler.info(service)
 				if info and info is not None:
-					service_name = info.getName(service).replace('\xc2\x86','').replace('\xc2\x87', '').replace('/', '_')
+					service_name = info.getName(service).replace('\xc2\x86', '').replace('\xc2\x87', '').replace('/', '_')
 					print service_name
 					pngname = findFile(service_name)
 		if pngname == "" and sname.startswith("4097_"):

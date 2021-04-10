@@ -117,7 +117,7 @@ class ServiceScan:
 								tp.Modulation_QAM16: "QAM16", tp.Modulation_QAM64: "QAM64",
 								tp.Modulation_Auto: "AUTO", tp.Modulation_QAM256: "QAM256"
 							}.get(tp.modulation, ""),
-							"%s%s" % (channel, freqMHz.replace(".0","")),
+							"%s%s" % (channel, freqMHz.replace(".0", "")),
 							{
 								tp.Bandwidth_8MHz: "Bw 8MHz", tp.Bandwidth_7MHz: "Bw 7MHz", tp.Bandwidth_6MHz: "Bw 6MHz",
 								tp.Bandwidth_Auto: "Bw Auto", tp.Bandwidth_5MHz: "Bw 5MHz",
@@ -142,10 +142,10 @@ class ServiceScan:
 								tp.Modulation_VSB_8: "8VSB",
 								tp.Modulation_VSB_16: "16VSB"
 							}.get(tp.modulation, ""),
-							freqMHz.replace(".0",""),
+							freqMHz.replace(".0", ""),
 							{
 								tp.Inversion_Off: _("Off"),
-								tp.Inversion_On:_("On"),
+								tp.Inversion_On: _("On"),
 								tp.Inversion_Unknown: _("Auto")
 							}.get(tp.inversion, ""))
 					else:

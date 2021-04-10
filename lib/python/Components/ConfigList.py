@@ -13,7 +13,7 @@ class ConfigList(HTMLComponent, GUIComponent, object):
 		self.l = eListboxPythonConfigContent()
 		seperation = skin.parameters.get("ConfigListSeperator", 350)
 		self.l.setSeperation(seperation)
-		height, space = skin.parameters.get("ConfigListSlider",(17, 0))
+		height, space = skin.parameters.get("ConfigListSlider", (17, 0))
 		self.l.setSlider(height, space)
 		self.timer = eTimer()
 		self.list = list
@@ -69,10 +69,10 @@ class ConfigList(HTMLComponent, GUIComponent, object):
 	GUI_WIDGET = eListbox
 
 	def selectionChanged(self):
-		if isinstance(self.current,tuple) and len(self.current) >= 2:
+		if isinstance(self.current, tuple) and len(self.current) >= 2:
 			self.current[1].onDeselect(self.session)
 		self.current = self.getCurrent()
-		if isinstance(self.current,tuple) and len(self.current) >= 2:
+		if isinstance(self.current, tuple) and len(self.current) >= 2:
 			self.current[1].onSelect(self.session)
 		else:
 			return
@@ -85,7 +85,7 @@ class ConfigList(HTMLComponent, GUIComponent, object):
 		self.instance.setWrapAround(True)
 
 	def preWidgetRemove(self, instance):
-		if isinstance(self.current,tuple) and len(self.current) >= 2:
+		if isinstance(self.current, tuple) and len(self.current) >= 2:
 			self.current[1].onDeselect(self.session)
 		instance.selectionChanged.get().remove(self.selectionChanged)
 		instance.setContent(None)
@@ -210,7 +210,7 @@ class ConfigListScreen:
 						if self["config"].getCurrent()[1].help_window.instance is not None:
 							helpwindowpos = self["HelpWindow"].getPosition()
 							from enigma import ePoint
-							self["config"].getCurrent()[1].help_window.instance.move(ePoint(helpwindowpos[0],helpwindowpos[1]))
+							self["config"].getCurrent()[1].help_window.instance.move(ePoint(helpwindowpos[0], helpwindowpos[1]))
 				else:
 					if self.has_key("VKeyIcon"):
 						self["VirtualKB"].setEnabled(False)

@@ -14,7 +14,7 @@ from enigma import *
 
 Directory = os.path.dirname(sys.modules[__name__].__file__)
 
-class PU_Restore(Screen,ConfigListScreen):
+class PU_Restore(Screen, ConfigListScreen):
 
     skin = """
         <screen name="PU_Restore" position="center,center" size="600,470">
@@ -41,7 +41,7 @@ class PU_Restore(Screen,ConfigListScreen):
         self["key_yellow"] = StaticText(_("Delete"))
 
 
-        self["ColorActions"] = ActionMap(['OkCancelActions', 'ShortcutActions',"ColorActions"],
+        self["ColorActions"] = ActionMap(['OkCancelActions', 'ShortcutActions', "ColorActions"],
             {
             "red": self.keyCancel,
             "green": self.keyGreen,

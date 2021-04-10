@@ -484,16 +484,16 @@ class ISO639Language:
 			if syslang not in id_list and 'en' not in id_list:
 				choices.append((lang, lang))
 		choices.sort()
-		choices.insert(0,(self.name_by_shortid[syslang], self.name_by_shortid[syslang]))
+		choices.insert(0, (self.name_by_shortid[syslang], self.name_by_shortid[syslang]))
 		if syslang != "en":
-			choices.insert(1,(self.name_by_shortid["en"], self.name_by_shortid["en"]))
+			choices.insert(1, (self.name_by_shortid["en"], self.name_by_shortid["en"]))
 		return choices
 
 	def determineLanguage(self, string):
 		string = string.lower()
 		language = "Undetermined"
 		for word in ("stereo", "audio", "description", "2ch", "dolby digital", "2.0"):
-			string = string.replace(word,"").strip()
+			string = string.replace(word, "").strip()
 		if len(string) == 2 and string in self.name_by_shortid:
 			language = self.name_by_shortid[string]
 		elif len(string) == 3 and string in self.name_and_shortid_by_longid:

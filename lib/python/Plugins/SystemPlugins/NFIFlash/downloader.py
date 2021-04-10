@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from boxbranding import getImageVersion,getMachineBrand, getMachineName
+from boxbranding import getImageVersion, getMachineBrand, getMachineName
 from os import system, access, R_OK
 import re
 
@@ -84,7 +84,7 @@ class ImageDownloadTask(Task):
 
 	def run(self, callback):
 		self.callback = callback
-		self.download = downloadWithProgress(self.url,self.path)
+		self.download = downloadWithProgress(self.url, self.path)
 		self.download.addProgress(self.download_progress)
 		self.download.start().addCallback(self.download_finished).addErrback(self.download_failed)
 		print "[ImageDownloadTask] downloading", self.url, "to", self.path
@@ -420,7 +420,7 @@ class NFIDownload(Screen):
 			"cancel": self.close,
 		}, -1)
 		self.onShown.append(self.go)
-		self.feedlists = [[],[],[]]
+		self.feedlists = [[], [], []]
 		self.branch = START
 		self.container = eConsoleAppContainer()
 		self.container.dataAvail.append(self.tool_avail)
@@ -562,7 +562,7 @@ class NFIDownload(Screen):
 		else:
 			dev = device_description
 		message = _("Do you want to download the image to %s ?") % dev
-		choices = [(_("Yes"), self.ackedDestination), (_("List of storage devices"),self.openDeviceBrowser), (_("Cancel"),self.keyRed)]
+		choices = [(_("Yes"), self.ackedDestination), (_("List of storage devices"), self.openDeviceBrowser), (_("Cancel"), self.keyRed)]
 		self.session.openWithCallback(self.ackDestination_query, ChoiceBox, title=message, list=choices)
 
 	def ackDestination_query(self, choice):
@@ -642,7 +642,7 @@ class NFIDownload(Screen):
 	def getFeed(self):
 		self.feedDownloader15 = feedDownloader(self.feed_base, self.box, OE_vers="1.5")
 		self.feedDownloader16 = feedDownloader(self.feed_base, self.box, OE_vers="1.6")
-		self.feedlists = [[],[],[]]
+		self.feedlists = [[], [], []]
 		self.feedDownloader15.getList(self.gotFeed, self.feed_failed)
 		self.feedDownloader16.getList(self.gotFeed, self.feed_failed)
 
@@ -698,7 +698,7 @@ class NFIDownload(Screen):
 First, a USB stick needs to be prepared so that it becomes bootable.
 In the next step, an NFI image file can be downloaded from the update server and saved on the USB stick.
 If you already have a prepared bootable USB stick, please insert it now. Otherwise plug in a USB stick with a minimum size of 64 MB!""") % (getMachineBrand(), getMachineName())
-		self.session.openWithCallback(self.wizardDeviceBrowserClosed, DeviceBrowser, None, message, showDirectories=True, showMountpoints=True, inhibitMounts=["/","/autofs/sr0/","/autofs/sda1/","/media/hdd/","/media/net/",self.usbmountpoint,"/media/dvd/"])
+		self.session.openWithCallback(self.wizardDeviceBrowserClosed, DeviceBrowser, None, message, showDirectories=True, showMountpoints=True, inhibitMounts=["/", "/autofs/sr0/", "/autofs/sda1/", "/media/hdd/", "/media/net/", self.usbmountpoint, "/media/dvd/"])
 
 	def wizardDeviceBrowserClosed(self, path):
 		print "[wizardDeviceBrowserClosed]", path
@@ -718,7 +718,7 @@ If you already have a prepared bootable USB stick, please insert it now. Otherwi
 				description = name
 		message = _("You have chosen to create a new .NFI flasher bootable USB stick. This will repartition the USB stick and therefore all data on it will be erased.") + "\n"
 		message += _("The following device was found:\n\n%s\n\nDo you want to write the USB flasher to this stick?") % description
-		choices = [(_("Yes"), self.ackedDestination), (_("List of storage devices"),self.askStartWizard), (_("Cancel"),self.close)]
+		choices = [(_("Yes"), self.ackedDestination), (_("List of storage devices"), self.askStartWizard), (_("Cancel"), self.close)]
 		self.session.openWithCallback(self.ackDestination_query, ChoiceBox, title=message, list=choices)
 
 	def setMenu(self):
@@ -755,7 +755,7 @@ If you already have a prepared bootable USB stick, please insert it now. Otherwi
 		self.nfofilename = ""
 		self.nfo = ""
 
-	def nfo_finished(self,nfodata=""):
+	def nfo_finished(self, nfodata=""):
 		print "[nfo_finished] " + str(nfodata)
 		self["key_blue"].text = _("Changelog")
 		self.nfo = nfodata
@@ -796,14 +796,14 @@ If you already have a prepared bootable USB stick, please insert it now. Otherwi
 		self.umountCallback()
 
 def main(session, **kwargs):
-	session.open(NFIDownload,resolveFilename(SCOPE_HDD))
+	session.open(NFIDownload, resolveFilename(SCOPE_HDD))
 
 def filescan_open(list, session, **kwargs):
-	dev = "/dev/" + list[0].path.rsplit('/',1)[0][7:]
+	dev = "/dev/" + list[0].path.rsplit('/', 1)[0][7:]
 	print "mounting device " + dev + " to /media/usb..."
 	usbmountpoint = resolveFilename(SCOPE_MEDIA) + "usb/"
 	system("mount %s %s -o rw,sync" % (dev, usbmountpoint))
-	session.open(NFIDownload,usbmountpoint)
+	session.open(NFIDownload, usbmountpoint)
 
 def filescan(**kwargs):
 	from Components.Scanner import Scanner, ScanPath

@@ -64,4 +64,4 @@ class NextEvents(VariableText, Renderer):
 	def build_eventstr(self, event):
 		begin = localtime(event[0])
 		end = localtime(event[0] + event[1])
-		return("%02d:%02d - %02d:%02d %s\n" % (begin[3],begin[4],end[3],end[4], event[2]))
+		return("%02d:%02d - %02d:%02d %s\n" % (begin[3], begin[4], end[3], end[4], event[2]))

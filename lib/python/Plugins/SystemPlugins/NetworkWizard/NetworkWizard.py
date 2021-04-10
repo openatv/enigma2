@@ -137,7 +137,7 @@ class NetworkWizard(WizardLanguage, Rc):
 
 	def listInterfaces(self):
 		self.checkOldInterfaceState()
-		list = [(iNetwork.getFriendlyAdapterName(x),x) for x in iNetwork.getAdapterList()]
+		list = [(iNetwork.getFriendlyAdapterName(x), x) for x in iNetwork.getAdapterList()]
 		list.append((_("Exit network wizard"), "end"))
 		return list
 
@@ -158,7 +158,7 @@ class NetworkWizard(WizardLanguage, Rc):
 	def InterfaceSelectionMoved(self):
 		self.InterfaceSelect(self.selection)
 
-	def checkInterface(self,iface):
+	def checkInterface(self, iface):
 		self.stopScan()
 		if self.Adapterlist is None:
 			self.Adapterlist = iNetwork.getAdapterList()
@@ -182,7 +182,7 @@ class NetworkWizard(WizardLanguage, Rc):
 		else:
 			self.resetNetworkConfigFinished(False)
 
-	def resetNetworkConfigFinished(self,data):
+	def resetNetworkConfigFinished(self, data):
 		if data is True:
 			self.currStep = self.getStepWithID(self.NextStep)
 			self.afterAsyncCode()
@@ -190,7 +190,7 @@ class NetworkWizard(WizardLanguage, Rc):
 			self.currStep = self.getStepWithID(self.NextStep)
 			self.afterAsyncCode()
 
-	def resetNetworkConfigCB(self,callback,iface):
+	def resetNetworkConfigCB(self, callback, iface):
 		if callback is not None:
 			if callback is True:
 				iNetwork.getInterfaces(self.getInterfacesFinished)
@@ -214,12 +214,12 @@ class NetworkWizard(WizardLanguage, Rc):
 			self.currStep = self.getStepWithID("confdns")
 			self.afterAsyncCode()
 
-	def AdapterSetupEndCB(self,data):
+	def AdapterSetupEndCB(self, data):
 		if data is True:
 			if iNetwork.isWirelessInterface(self.selectedInterface):
 				if self.WlanPluginInstalled:
 					from Plugins.SystemPlugins.WirelessLan.Wlan import iStatus
-					iStatus.getDataForInterface(self.selectedInterface,self.checkWlanStateCB)
+					iStatus.getDataForInterface(self.selectedInterface, self.checkWlanStateCB)
 				else:
 					self.currStep = self.getStepWithID("checklanstatusend")
 					self.afterAsyncCode()
@@ -227,14 +227,14 @@ class NetworkWizard(WizardLanguage, Rc):
 				self.currStep = self.getStepWithID("checklanstatusend")
 				self.afterAsyncCode()
 
-	def AdapterSetupEndFinished(self,data):
+	def AdapterSetupEndFinished(self, data):
 		if data <= 2:
 			self.InterfaceState = True
 		else:
 			self.InterfaceState = False
 		self.AdapterRef.close(True)
 
-	def checkWlanStateCB(self,data,status):
+	def checkWlanStateCB(self, data, status):
 		if data is not None:
 			if data is True:
 				if status is not None:
@@ -257,12 +257,12 @@ class NetworkWizard(WizardLanguage, Rc):
 		iNetwork.checkNetworkState(self.checkNetworkStateCB)
 		self.checkRef = self.session.openWithCallback(self.checkNetworkCB, MessageBox, _("Please wait while we test your network..."), type=MessageBox.TYPE_INFO, enable_input=False)
 
-	def checkNetworkCB(self,data):
+	def checkNetworkCB(self, data):
 		if data is True:
 			if iNetwork.isWirelessInterface(self.selectedInterface):
 				if self.WlanPluginInstalled:
 					from Plugins.SystemPlugins.WirelessLan.Wlan import iStatus
-					iStatus.getDataForInterface(self.selectedInterface,self.checkWlanStateCB)
+					iStatus.getDataForInterface(self.selectedInterface, self.checkWlanStateCB)
 				else:
 					self.currStep = self.getStepWithID("checklanstatusend")
 					self.afterAsyncCode()
@@ -270,7 +270,7 @@ class NetworkWizard(WizardLanguage, Rc):
 				self.currStep = self.getStepWithID("checklanstatusend")
 				self.afterAsyncCode()
 
-	def checkNetworkStateCB(self,data):
+	def checkNetworkStateCB(self, data):
 		if data <= 2:
 			self.InterfaceState = True
 		else:

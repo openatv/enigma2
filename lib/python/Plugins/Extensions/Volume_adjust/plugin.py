@@ -60,7 +60,7 @@ class Volume_adjust(Screen):
 		self["press_menu"] = StaticText(_("press the menu button to set a general AC3/Dolby offset"))
 		self["ServiceList.desc"] = Label(_("Channel \t\t\tVolume +"))
 
-		self["actions"] = ActionMap(["ColorActions","OkCancelActions","MenuActions"],
+		self["actions"] = ActionMap(["ColorActions", "OkCancelActions", "MenuActions"],
 			{
 				"green": self.greenPressed,
 				"red": self.redPressed,
@@ -264,7 +264,7 @@ class Change_volume(ConfigListScreen, Screen):
 		self["key_red"] = StaticText(_("Cancel"))
 		self["key_green"] = StaticText(_("Ok"))
 		self["key_yellow"] = StaticText(_("+/-"))
-		self["actions"] = ActionMap(["ColorActions","SetupActions"],
+		self["actions"] = ActionMap(["ColorActions", "SetupActions"],
 		{
 			"ok": self.ok, 
 			"cancel": self.cancel, 
@@ -389,7 +389,7 @@ class Volume_Config(ConfigListScreen, Screen):
 		self["key_green"] = StaticText(_("Save"))
 		self["key_yellow"] = StaticText(_("+/-"))
 		self["infotext"] = StaticText(_("this offset will only be used if the channel has not its own volume offset"))
-		self["actions"] = ActionMap(["ColorActions","SetupActions"],
+		self["actions"] = ActionMap(["ColorActions", "SetupActions"],
 		{
 			"ok": self.ok, 
 			"cancel": self.cancel, 
@@ -430,7 +430,7 @@ class Volume:
 		self.onClose = []
 		self.read_services = []
 		self.read_volume = []
-		self.__event_tracker = ServiceEventTracker(screen=self,eventmap={
+		self.__event_tracker = ServiceEventTracker(screen=self, eventmap={
 				iPlayableService.evUpdatedInfo: self.__evUpdatedInfo,
 			})
 		self.volctrl = eDVBVolumecontrol.getInstance()

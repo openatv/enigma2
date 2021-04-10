@@ -123,12 +123,12 @@ class PowerTimerEditList(Screen):
 		cur = self["timerlist"].getCurrent()
 		if cur:
 			if self.key_red_choice != self.DELETE:
-				self["actions"].actions.update({"red":self.removeTimerQuestion})
+				self["actions"].actions.update({"red": self.removeTimerQuestion})
 				self["key_red"].setText(_("Delete"))
 				self.key_red_choice = self.DELETE
 
 			if cur.disabled and (self.key_yellow_choice != self.ENABLE):
-				self["actions"].actions.update({"yellow":self.toggleDisabledState})
+				self["actions"].actions.update({"yellow": self.toggleDisabledState})
 				self["key_yellow"].setText(_("Enable"))
 				self.key_yellow_choice = self.ENABLE
 			elif cur.isRunning() and not cur.repeated and (self.key_yellow_choice != self.EMPTY):
@@ -136,7 +136,7 @@ class PowerTimerEditList(Screen):
 				self["key_yellow"].setText(" ")
 				self.key_yellow_choice = self.EMPTY
 			elif ((not cur.isRunning())or cur.repeated) and (not cur.disabled) and (self.key_yellow_choice != self.DISABLE):
-				self["actions"].actions.update({"yellow":self.toggleDisabledState})
+				self["actions"].actions.update({"yellow": self.toggleDisabledState})
 				self["key_yellow"].setText(_("Disable"))
 				self.key_yellow_choice = self.DISABLE
 		else:
@@ -157,7 +157,7 @@ class PowerTimerEditList(Screen):
 			showCleanup = False
 
 		if showCleanup and (self.key_blue_choice != self.CLEANUP):
-			self["actions"].actions.update({"blue":self.cleanupQuestion})
+			self["actions"].actions.update({"blue": self.cleanupQuestion})
 			self["key_blue"].setText(_("Cleanup"))
 			self.key_blue_choice = self.CLEANUP
 		elif (not showCleanup) and (self.key_blue_choice != self.EMPTY):

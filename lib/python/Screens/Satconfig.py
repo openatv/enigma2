@@ -749,10 +749,10 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 	def keySave(self):
 		if self.nim.canBeCompatible("DVB-S"):
 			if not self.unicableconnection():
-				self.session.open(MessageBox, _("The unicable connection setting is wrong.\n Maybe recursive connection of tuners."),MessageBox.TYPE_ERROR,timeout=10)
+				self.session.open(MessageBox, _("The unicable connection setting is wrong.\n Maybe recursive connection of tuners."), MessageBox.TYPE_ERROR, timeout=10)
 				return
 			if not self.checkLoopthrough():
-				self.session.open(MessageBox, _("The loopthrough setting is wrong."),MessageBox.TYPE_ERROR,timeout=10)
+				self.session.open(MessageBox, _("The loopthrough setting is wrong."), MessageBox.TYPE_ERROR, timeout=10)
 				return
 
 		old_configured_sats = nimmanager.getConfiguredSats()
@@ -1197,7 +1197,7 @@ class SelectSatsEntryScreen(Screen):
 			menu = [(_("Reverse list"), "2"), (_("Standard list"), "1")]
 			connected_sat = [x[0][1] for x in lst if x[0][3]]
 			if len(connected_sat) > 0:
-				menu.insert(0,(_("Connected satellites"), "3"))
+				menu.insert(0, (_("Connected satellites"), "3"))
 			def sortAction(choice):
 				if choice:
 					reverse_flag = False

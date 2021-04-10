@@ -190,7 +190,7 @@ class Language:
 				return
 			elif delLang == "en_GB" or delLang == "pt_BR":
 				delLang = delLang.lower()
-				delLang = delLang.replace('_','-')
+				delLang = delLang.replace('_', '-')
 				os.system("opkg remove --autoremove --force-depends " + Lpackagename + delLang)
 			else:
 				os.system("opkg remove --autoremove --force-depends " + Lpackagename + delLang[:2])
@@ -201,7 +201,7 @@ class Language:
 				if len(x) > 2:
 					if x != lang and x != "de" and x != "fr":
 						x = x.lower()
-						x = x.replace('_','-')
+						x = x.replace('_', '-')
 						os.system("opkg remove --autoremove --force-depends " + Lpackagename + x)
 				else:
 					if x != lang[:2] and x != "en" and x != "de" and x != "fr":
@@ -217,7 +217,7 @@ class Language:
 	def updateLanguageCache(self):
 		t = localtime(time())
 		createdate = strftime("%d.%m.%Y  %H:%M:%S", t)
-		f = open('/usr/lib/enigma2/python/Components/Language_cache.py','w')
+		f = open('/usr/lib/enigma2/python/Components/Language_cache.py', 'w')
 		f.write('# -*- coding: UTF-8 -*-\n')
 		f.write('# date: ' + createdate + '\n#\n\n')
 		f.write('LANG_TEXT = {\n')

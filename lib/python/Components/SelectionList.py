@@ -9,16 +9,16 @@ selectiononpng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_ACTIVE_SKIN,
 selectionoffpng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_ACTIVE_SKIN, "icons/lock_off.png"))
 
 def SelectionEntryComponent(description, value, index, selected):
-	dx, dy, dw, dh = skin.parameters.get("SelectionListDescr",(25, 3, 650, 30))
+	dx, dy, dw, dh = skin.parameters.get("SelectionListDescr", (25, 3, 650, 30))
 	res = [
 		(description, value, index, selected),
 		(eListboxPythonMultiContent.TYPE_TEXT, dx, dy, dw, dh, 0, RT_HALIGN_LEFT, description)
 	]
 	if selected:
-		ix, iy, iw, ih = skin.parameters.get("SelectionListLock",(0, 2, 25, 24))
+		ix, iy, iw, ih = skin.parameters.get("SelectionListLock", (0, 2, 25, 24))
 		res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, ix, iy, iw, ih, selectiononpng))
 	else:
-		ix, iy, iw, ih = skin.parameters.get("SelectionListLockOff",(0, 2, 25, 24))
+		ix, iy, iw, ih = skin.parameters.get("SelectionListLockOff", (0, 2, 25, 24))
 		res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, ix, iy, iw, ih, selectionoffpng))
 	return res
 
@@ -44,7 +44,7 @@ class SelectionList(MenuList):
 		return [(item[0][0], item[0][1], item[0][2]) for item in self.list if item[0][3]]
 
 	def toggleAllSelection(self):
-		for idx,item in enumerate(self.list):
+		for idx, item in enumerate(self.list):
 			item = self.list[idx][0]
 			self.list[idx] = SelectionEntryComponent(item[0], item[1], item[2], not item[3])
 		self.setList(self.list)
@@ -55,5 +55,5 @@ class SelectionList(MenuList):
 		# 1 - value
 		# 2 - index
 		# 3 - selected
-		self.list.sort(key=lambda x: x[0][sortType],reverse=flag)
+		self.list.sort(key=lambda x: x[0][sortType], reverse=flag)
 		self.setList(self.list)

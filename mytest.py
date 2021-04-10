@@ -412,7 +412,7 @@ class PowerKey:
 		recordings = self.session.nav.getRecordingsCheckBeforeActivateDeepStandby()
 		if recordings:
 			from Screens.MessageBox import MessageBox
-			self.session.openWithCallback(self.gotoStandby,MessageBox,_("Recording(s) are in progress or coming up in few seconds!\nEntering standby, after recording the box will shutdown."), type=MessageBox.TYPE_INFO, close_on_any_key=True, timeout=10)
+			self.session.openWithCallback(self.gotoStandby, MessageBox, _("Recording(s) are in progress or coming up in few seconds!\nEntering standby, after recording the box will shutdown."), type=MessageBox.TYPE_INFO, close_on_any_key=True, timeout=10)
 		elif not Screens.Standby.inTryQuitMainloop and self.session.current_dialog and self.session.current_dialog.ALLOW_SUSPEND:
 			self.session.open(Screens.Standby.TryQuitMainloop, 1)
 
@@ -611,7 +611,7 @@ def runScreenTest():
 	profile("Init:PowerKey")
 	power = PowerKey(session)
 	
-	if boxtype in ('alien5','osninopro','osnino','osninoplus','alphatriple','spycat4kmini','tmtwin4k','mbmicrov2','revo4k','force3uhd','wetekplay', 'wetekplay2', 'wetekhub', 'dm7020hd', 'dm7020hdv2', 'osminiplus', 'osmega', 'sf3038', 'spycat', 'e4hd', 'e4hdhybrid', 'mbmicro', 'et7500', 'mixosf5', 'mixosf7', 'mixoslumi', 'gi9196m', 'maram9', 'ixussone', 'ixusszero', 'uniboxhd1', 'uniboxhd2', 'uniboxhd3', 'sezam5000hd', 'mbtwin', 'sezam1000hd', 'mbmini', 'atemio5x00', 'beyonwizt3', '9910lx', '9911lx', '9920lx') or getBrandOEM() in ('fulan') or getMachineBuild() in ('u41','dags7362','dags73625','dags5','ustym4kpro','beyonwizv2','viper4k','sf8008','sf8008m','cc1','gbmv200'):
+	if boxtype in ('alien5', 'osninopro', 'osnino', 'osninoplus', 'alphatriple', 'spycat4kmini', 'tmtwin4k', 'mbmicrov2', 'revo4k', 'force3uhd', 'wetekplay', 'wetekplay2', 'wetekhub', 'dm7020hd', 'dm7020hdv2', 'osminiplus', 'osmega', 'sf3038', 'spycat', 'e4hd', 'e4hdhybrid', 'mbmicro', 'et7500', 'mixosf5', 'mixosf7', 'mixoslumi', 'gi9196m', 'maram9', 'ixussone', 'ixusszero', 'uniboxhd1', 'uniboxhd2', 'uniboxhd3', 'sezam5000hd', 'mbtwin', 'sezam1000hd', 'mbmini', 'atemio5x00', 'beyonwizt3', '9910lx', '9911lx', '9920lx') or getBrandOEM() in ('fulan') or getMachineBuild() in ('u41', 'dags7362', 'dags73625', 'dags5', 'ustym4kpro', 'beyonwizv2', 'viper4k', 'sf8008', 'sf8008m', 'cc1', 'gbmv200'):
 		profile("VFDSYMBOLS")
 		import Components.VfdSymbols
 		Components.VfdSymbols.SymbolsCheck(session)
@@ -744,7 +744,7 @@ def runScreenTest():
 			nextPluginName = " (%s)" % nextPluginName
 		else:
 			nextPluginName = ""
-		print "[mytest.py] set next wakeup type to '%s'%s %s" % ({0:"record-timer",1:"zap-timer",2:"power-timer",3:"plugin-timer"}[startTime[1]], nextPluginName, {0:"and starts normal",1:"and starts in standby"}[setStandby])
+		print "[mytest.py] set next wakeup type to '%s'%s %s" % ({0: "record-timer", 1: "zap-timer", 2: "power-timer", 3: "plugin-timer"}[startTime[1]], nextPluginName, {0: "and starts normal", 1: "and starts in standby"}[setStandby])
 		if forceNextRecord:
 			print "[mytest.py] set from 'vps-plugin' or just before a 'record-timer' starts, set 'record-timer' wakeup flag"
 		print "[mytest.py] set next wakeup time to", strftime("%a, %Y/%m/%d %H:%M:%S", localtime(wptime))
@@ -753,7 +753,7 @@ def runScreenTest():
 		#set next standby only after shutdown in deep standby
 		if Screens.Standby.quitMainloopCode != 1 and Screens.Standby.quitMainloopCode != 45:
 			setStandby = 2 # 0=no standby, but get in standby if wakeup to timer start > 60 sec (not for plugin-timer, here is no standby), 1=standby, 2=no standby, when before was not in deep-standby
-		config.misc.nextWakeup.value = "%d,%d,%d,%d,%d,%d,%d" % (int(nowTime),wptime,startTime[0],startTime[1],setStandby,nextRecordTime,forceNextRecord)
+		config.misc.nextWakeup.value = "%d,%d,%d,%d,%d,%d,%d" % (int(nowTime), wptime, startTime[0], startTime[1], setStandby, nextRecordTime, forceNextRecord)
 	else:
 		config.misc.nextWakeup.value = "%d,-1,-1,0,0,-1,0" % (int(nowTime))
 		if not boxtype.startswith('azboxm'): #skip for Azbox (mini)ME - setting wakeup time to past reboots box 
@@ -843,18 +843,18 @@ if boxtype in ('uniboxhd1', 'uniboxhd2', 'uniboxhd3', 'sezam5000hd', 'mbtwin', '
 		print "Error disable enable_clock for ini5000 boxes"
 
 if boxtype in ('dm7080', 'dm820', 'dm900', 'dm920', 'gb7252'):
-	f = open("/proc/stb/hdmi-rx/0/hdmi_rx_monitor","r")
+	f = open("/proc/stb/hdmi-rx/0/hdmi_rx_monitor", "r")
 	check = f.read()
 	f.close()
 	if check.startswith("on"):
-		f = open("/proc/stb/hdmi-rx/0/hdmi_rx_monitor","w")
+		f = open("/proc/stb/hdmi-rx/0/hdmi_rx_monitor", "w")
 		f.write("off")
 		f.close()
-	f = open("/proc/stb/audio/hdmi_rx_monitor","r")
+	f = open("/proc/stb/audio/hdmi_rx_monitor", "r")
 	check = f.read()
 	f.close()
 	if check.startswith("on"):
-		f = open("/proc/stb/audio/hdmi_rx_monitor","w")
+		f = open("/proc/stb/audio/hdmi_rx_monitor", "w")
 		f.write("off")
 		f.close()
 

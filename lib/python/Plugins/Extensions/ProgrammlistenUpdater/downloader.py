@@ -17,7 +17,7 @@ def DownloadSetting(url):
             print link, name, date
             prelink = ''
             if not link.startswith("http://"):
-                prelink = url.replace('asd.php','')
+                prelink = url.replace('asd.php', '')
             list.append((date, name, prelink + link))
 
     except:

@@ -133,7 +133,7 @@ class ServiceName2(Converter, object):
 			return None, num
 
 		if isinstance(ref, eServiceReference):
-			isRadioService = ref.getData(0) in (2,10)
+			isRadioService = ref.getData(0) in (2, 10)
 			lastpath = isRadioService and config.radio.lastroot.value or config.tv.lastroot.value
 			if 'FROM BOUQUET' not in lastpath:
 				if 'FROM PROVIDERS' in lastpath:
@@ -182,9 +182,9 @@ class ServiceName2(Converter, object):
 	def getProviderName(self, ref):
 		if isinstance(ref, eServiceReference):
 			from Screens.ChannelSelection import service_types_radio, service_types_tv
-			typestr = ref.getData(0) in (2,10) and service_types_radio or service_types_tv
+			typestr = ref.getData(0) in (2, 10) and service_types_radio or service_types_tv
 			pos = typestr.rfind(':')
-			rootstr = '%s (channelID == %08x%04x%04x) && %s FROM PROVIDERS ORDER BY name' % (typestr[:pos + 1],ref.getUnsignedData(4),ref.getUnsignedData(2),ref.getUnsignedData(3),typestr[pos + 1:])
+			rootstr = '%s (channelID == %08x%04x%04x) && %s FROM PROVIDERS ORDER BY name' % (typestr[:pos + 1], ref.getUnsignedData(4), ref.getUnsignedData(2), ref.getUnsignedData(3), typestr[pos + 1:])
 			provider_root = eServiceReference(rootstr)
 			serviceHandler = eServiceCenter.getInstance()
 			providerlist = serviceHandler.list(provider_root)
@@ -221,16 +221,16 @@ class ServiceName2(Converter, object):
 			type = self.tpdata.get('tuner_type', '')
 		if not fmt or fmt == 'T':
 			if type == 'DVB-C':
-				fmt = ["t ","F ","Y ","i ","f ","M"]	#(type frequency symbol_rate inversion fec modulation)
+				fmt = ["t ", "F ", "Y ", "i ", "f ", "M"]	#(type frequency symbol_rate inversion fec modulation)
 			elif type == 'DVB-T':
 				if ref:
-					fmt = ["O ","F ","c ","l ","h ","m ","g "]	#(orbital_position code_rate_hp transmission_mode guard_interval constellation)
+					fmt = ["O ", "F ", "c ", "l ", "h ", "m ", "g "]	#(orbital_position code_rate_hp transmission_mode guard_interval constellation)
 				else:
-					fmt = ["t ","F ","c ","l ","h ","m ","g "]	#(type frequency code_rate_hp transmission_mode guard_interval constellation)
+					fmt = ["t ", "F ", "c ", "l ", "h ", "m ", "g "]	#(type frequency code_rate_hp transmission_mode guard_interval constellation)
 			elif type == 'IP-TV':
 				return _("Streaming")
 			else:
-				fmt = ["O ","s ","M ","F ","p ","Y ","f"]		#(orbital_position frequency polarization symbol_rate fec)
+				fmt = ["O ", "s ", "M ", "F ", "p ", "Y ", "f"]		#(orbital_position frequency polarization symbol_rate fec)
 		for line in fmt:
 			f = line[:1]
 			if f == 't':	# %t - tuner_type (dvb-s/s2/c/t)
@@ -247,26 +247,26 @@ class ServiceName2(Converter, object):
 			elif f == 's':	# %s - system (dvb-s/s2/c/t)
 				if type == 'DVB-S':
 					x = self.tpdata.get('system', 0)
-					result += x in range(2) and {0:'DVB-S',1:'DVB-S2'}[x] or ''
+					result += x in range(2) and {0: 'DVB-S', 1: 'DVB-S2'}[x] or ''
 				else:
 					result += type
 			elif f == 'F':	# %F - frequency (dvb-s/s2/c/t) in KHz
-				if type in ('DVB-S','DVB-C') and self.tpdata.get('frequency', 0) > 0:
+				if type in ('DVB-S', 'DVB-C') and self.tpdata.get('frequency', 0) > 0:
 					result += '%d MHz' % (self.tpdata.get('frequency', 0) / 1000)
 				if type in ('DVB-T'):
 					result += '%.3f MHz' % (((self.tpdata.get('frequency', 0) + 500) / 1000) / 1000.0)
 #					result += '%.3f'%(((self.tpdata.get('frequency', 0) / 1000) +1) / 1000.0) + " MHz " 
 			elif f == 'f':	# %f - fec_inner (dvb-s/s2/c/t)
-				if type in ('DVB-S','DVB-C'):
+				if type in ('DVB-S', 'DVB-C'):
 					x = self.tpdata.get('fec_inner', 15)
-					result += x in range(10) + [15] and {0:'Auto',1:'1/2',2:'2/3',3:'3/4',4:'5/6',5:'7/8',6:'8/9',7:'3/5',8:'4/5',9:'9/10',15:'None'}[x] or ''
+					result += x in range(10) + [15] and {0: 'Auto', 1: '1/2', 2: '2/3', 3: '3/4', 4: '5/6', 5: '7/8', 6: '8/9', 7: '3/5', 8: '4/5', 9: '9/10', 15: 'None'}[x] or ''
 				elif type == 'DVB-T':
 					x = self.tpdata.get('code_rate_lp', 5)
-					result += x in range(6) and {0:'1/2',1:'2/3',2:'3/4',3:'5/6',4:'7/8',5:'Auto'}[x] or ''
+					result += x in range(6) and {0: '1/2', 1: '2/3', 2: '3/4', 3: '5/6', 4: '7/8', 5: 'Auto'}[x] or ''
 			elif f == 'i':	# %i - inversion (dvb-s/s2/c/t)
-				if type in ('DVB-S','DVB-C','DVB-T'):
+				if type in ('DVB-S', 'DVB-C', 'DVB-T'):
 					x = self.tpdata.get('inversion', 2)
-					result += x in range(3) and {0:'On',1:'Off',2:'Auto'}[x] or ''
+					result += x in range(3) and {0: 'On', 1: 'Off', 2: 'Auto'}[x] or ''
 			elif f == 'O':	# %O - orbital_position (dvb-s/s2)
 				if type == 'DVB-S':
 					x = self.tpdata.get('orbital_position', 0)
@@ -280,54 +280,54 @@ class ServiceName2(Converter, object):
 			elif f == 'M':	# %M - modulation (dvb-s/s2/c)
 				x = self.tpdata.get('modulation', 1)
 				if type == 'DVB-S':
-					result += x in range(4) and {0:'Auto',1:'QPSK',2:'8PSK',3:'QAM16'}[x] or ''
+					result += x in range(4) and {0: 'Auto', 1: 'QPSK', 2: '8PSK', 3: 'QAM16'}[x] or ''
 				elif type == 'DVB-C':
-					result += x in range(6) and {0:'Auto',1:'QAM16',2:'QAM32',3:'QAM64',4:'QAM128',5:'QAM256'}[x] or ''
+					result += x in range(6) and {0: 'Auto', 1: 'QAM16', 2: 'QAM32', 3: 'QAM64', 4: 'QAM128', 5: 'QAM256'}[x] or ''
 			elif f == 'p':	# %p - polarization (dvb-s/s2)
 				if type == 'DVB-S':
 					x = self.tpdata.get('polarization', 0)
-					result += x in range(4) and {0:'H',1:'V',2:'LHC',3:'RHC'}[x] or '?'
+					result += x in range(4) and {0: 'H', 1: 'V', 2: 'LHC', 3: 'RHC'}[x] or '?'
 			elif f == 'Y':	# %Y - symbol_rate (dvb-s/s2/c)
-				if type in ('DVB-S','DVB-C'):
+				if type in ('DVB-S', 'DVB-C'):
 					result += '%d' % (self.tpdata.get('symbol_rate', 0) / 1000)
 			elif f == 'r':	# %r - rolloff (dvb-s2)
 				if not self.isStream:
 					x = self.tpdata.get('rolloff')
 					if not x is None:
-						result += x in range(3) and {0:'0.35',1:'0.25',2:'0.20'}[x] or ''
+						result += x in range(3) and {0: '0.35', 1: '0.25', 2: '0.20'}[x] or ''
 			elif f == 'o':	# %o - pilot (dvb-s2)
 				if not self.isStream:
 					x = self.tpdata.get('pilot')
 					if not x is None:
-						result += x in range(3) and {0:'Off',1:'On',2:'Auto'}[x] or ''
+						result += x in range(3) and {0: 'Off', 1: 'On', 2: 'Auto'}[x] or ''
 			elif f == 'c':	# %c - constellation (dvb-t)
 				if type == 'DVB-T':
 					x = self.tpdata.get('constellation', 3)
-					result += x in range(4) and {0:'QPSK',1:'QAM16',2:'QAM64',3:'Auto'}[x] or ''
+					result += x in range(4) and {0: 'QPSK', 1: 'QAM16', 2: 'QAM64', 3: 'Auto'}[x] or ''
 			elif f == 'l':	# %l - code_rate_lp (dvb-t)
 				if type == 'DVB-T':
 					x = self.tpdata.get('code_rate_lp', 5)
-					result += x in range(6) and {0:'1/2',1:'2/3',2:'3/4',3:'5/6',4:'7/8',5:'Auto'}[x] or ''
+					result += x in range(6) and {0: '1/2', 1: '2/3', 2: '3/4', 3: '5/6', 4: '7/8', 5: 'Auto'}[x] or ''
 			elif f == 'h':	# %h - code_rate_hp (dvb-t)
 				if type == 'DVB-T':
 					x = self.tpdata.get('code_rate_hp', 5)
-					result += x in range(6) and {0:'1/2',1:'2/3',2:'3/4',3:'5/6',4:'7/8',5:'Auto'}[x] or ''
+					result += x in range(6) and {0: '1/2', 1: '2/3', 2: '3/4', 3: '5/6', 4: '7/8', 5: 'Auto'}[x] or ''
 			elif f == 'm':	# %m - transmission_mode (dvb-t)
 				if type == 'DVB-T':
 					x = self.tpdata.get('transmission_mode', 2)
-					result += x in range(3) and {0:'2k',1:'8k',2:'Auto'}[x] or ''
+					result += x in range(3) and {0: '2k', 1: '8k', 2: 'Auto'}[x] or ''
 			elif f == 'g':	# %g - guard_interval (dvb-t)
 				if type == 'DVB-T':
 					x = self.tpdata.get('guard_interval', 4)
-					result += x in range(5) and {0:'1/32',1:'1/16',2:'1/8',3:'1/4',4:'Auto'}[x] or ''
+					result += x in range(5) and {0: '1/32', 1: '1/16', 2: '1/8', 3: '1/4', 4: 'Auto'}[x] or ''
 			elif f == 'b':	# %b - bandwidth (dvb-t)
 				if type == 'DVB-T':
 					x = self.tpdata.get('bandwidth', 1)
-					result += x in range(4) and {0:'8 MHz',1:'7 MHz',2:'6 MHz',3:'Auto'}[x] or ''
+					result += x in range(4) and {0: '8 MHz', 1: '7 MHz', 2: '6 MHz', 3: 'Auto'}[x] or ''
 			elif f == 'e':	# %e - hierarchy_information (dvb-t)
 				if type == 'DVB-T':
 					x = self.tpdata.get('hierarchy_information', 4)
-					result += x in range(5) and {0:'None',1:'1',2:'2',3:'4',4:'Auto'}[x] or ''
+					result += x in range(5) and {0: 'None', 1: '1', 2: '2', 3: '4', 4: 'Auto'}[x] or ''
 			result += line[1:]
 		return result
 
@@ -661,7 +661,7 @@ class ServiceName2(Converter, object):
 	def changed(self, what):
 		if what[0] != self.CHANGED_SPECIFIC or what[1] in (iPlayableService.evStart,):
 			self.refstr = self.isStream = self.ref = self.info = self.tpdata = None
-			if self.type in (self.NUMBER,self.BOUQUET) or \
+			if self.type in (self.NUMBER, self.BOUQUET) or \
 				(self.type == self.FORMAT and ('%n' in self.sfmt or '%B' in self.sfmt)):
 				self.what = what
 				self.Timer.start(200, True)

@@ -67,6 +67,6 @@ def log(fnc, base_time=0, test_name="test", *args, **kwargs):
 	try:
 		fnc(*args, **kwargs)
 		event(None, "test_completed", [], {"test_name": test_name})
-	except tests.TestError,c:
+	except tests.TestError, c:
 		event(None, "test_failed", [], {"test_name": test_name, "reason": str(c)})
 	end_log(test_name)

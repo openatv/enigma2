@@ -33,15 +33,15 @@ class pliExpertInfo(Poll, Converter, object):
 		self.poll_interval = 1000
 		self.poll_enabled = True
 		self.idnames = (
-			("0x100", "0x1FF","Seca","S"),
-			("0x500", "0x5FF","Via","V"),
-			("0x600", "0x6FF","Irdeto","I"),
-			("0x900", "0x9FF","NDS","Nd"),
-			("0xB00", "0xBFF","Conax","Co"),
-			("0xD00", "0xDFF","CryptoW","Cw"),
-			("0x1700","0x17FF","Beta","B"),
-			("0x1800","0x18FF","Nagra","N"),
-			("0x2600","0x26FF","BISS","Bi"))
+			("0x100", "0x1FF", "Seca", "S"),
+			("0x500", "0x5FF", "Via", "V"),
+			("0x600", "0x6FF", "Irdeto", "I"),
+			("0x900", "0x9FF", "NDS", "Nd"),
+			("0xB00", "0xBFF", "Conax", "Co"),
+			("0xD00", "0xDFF", "CryptoW", "Cw"),
+			("0x1700", "0x17FF", "Beta", "B"),
+			("0x1800", "0x18FF", "Nagra", "N"),
+			("0x2600", "0x26FF", "BISS", "Bi"))
 		self.ecmdata = GetEcmInfo()
 
 	@cached
@@ -372,7 +372,7 @@ class pliExpertInfo(Poll, Converter, object):
 					else:
 						Sec_Text += ":"
 					if pid != '0':
-						Sec_Text += ":%04x:%04x" % (info.getInfo(iServiceInformation.sSID),int(pid, 16))
+						Sec_Text += ":%04x:%04x" % (info.getInfo(iServiceInformation.sSID), int(pid, 16))
 
 			elif not config.usage.show_cryptoinfo.value:
 				showCryptoInfo = True

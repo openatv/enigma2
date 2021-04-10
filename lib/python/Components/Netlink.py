@@ -19,7 +19,7 @@ class NetlinkSocket(socket.socket):
 				event = {}
 			else:
 				try:
-					k,v = item.split('=', 1)
+					k, v = item.split('=', 1)
 					event[k] = v
 				except:
 					event[None] = item

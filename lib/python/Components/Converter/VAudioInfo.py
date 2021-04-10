@@ -54,7 +54,7 @@ class VAudioInfo(Poll, Converter, object):
 		languages = languages.replace("und ", "")
 		return languages
 
-	def getAudioCodec(self,info):
+	def getAudioCodec(self, info):
 		description_str = _("unknown")
 		if self.getAudio():
 			languages = self.getLanguage()
@@ -67,8 +67,8 @@ class VAudioInfo(Poll, Converter, object):
 			description_str = description + " " + languages
 		return description_str
 
-	def getAudioIcon(self,info):
-		description_str = self.get_short(self.getAudioCodec(info).translate(None,' .').lower())
+	def getAudioIcon(self, info):
+		description_str = self.get_short(self.getAudioCodec(info).translate(None, ' .').lower())
 		return description_str
 
 	def get_short(self, audioName):

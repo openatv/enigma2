@@ -39,9 +39,9 @@ def ServiceInfoListEntry(a, b, valueType=TYPE_TEXT, param=4):
 		else:
 			b = str(b)
 
-	x, y, w, h = skin.parameters.get("ServiceInfo",(0, 0, 300, 30))
-	xa, ya, wa, ha = skin.parameters.get("ServiceInfoLeft",(0, 0, 300, 25))
-	xb, yb, wb, hb = skin.parameters.get("ServiceInfoRight",(300, 0, 600, 25))
+	x, y, w, h = skin.parameters.get("ServiceInfo", (0, 0, 300, 30))
+	xa, ya, wa, ha = skin.parameters.get("ServiceInfoLeft", (0, 0, 300, 25))
+	xb, yb, wb, hb = skin.parameters.get("ServiceInfoRight", (300, 0, 600, 25))
 	return [
 		#PyObject *type, *px, *py, *pwidth, *pheight, *pfnt, *pstring, *pflags;
 		(eListboxPythonMultiContent.TYPE_TEXT, x, y, w, h, 0, RT_HALIGN_LEFT, ""),
@@ -64,13 +64,13 @@ class ServiceInfoList(HTMLComponent, GUIComponent):
 			attribs = []
 			for (attrib, value) in self.skinAttributes:
 				if attrib == "font":
-					font = skin.parseFont(value, ((1,1),(1,1)))
+					font = skin.parseFont(value, ((1, 1), (1, 1)))
 					self.fontName = font.family
 					self.fontSize = font.pointSize
 				elif attrib == "itemHeight":
 					self.ItemHeight = int(value)
 				else:
-					attribs.append((attrib,value))
+					attribs.append((attrib, value))
 			self.skinAttributes = attribs
 		rc = GUIComponent.applySkin(self, desktop, screen)
 		self.setFontsize()
@@ -150,7 +150,7 @@ class ServiceInfo(Screen):
 				width = self.info.getInfo(iServiceInformation.sVideoWidth)
 				height = self.info.getInfo(iServiceInformation.sVideoHeight)
 				if width > 0 and height > 0:
-					resolution = "%dx%d" % (width,height)
+					resolution = "%dx%d" % (width, height)
 					resolution += ("i", "p", "-")[self.info.getInfo(iServiceInformation.sProgressive)]
 					resolution += str((self.info.getInfo(iServiceInformation.sFrameRate) + 500) / 1000)
 					aspect = self.getServiceInfoValue(iServiceInformation.sAspect)
@@ -162,7 +162,7 @@ class ServiceInfo(Screen):
 						if gamma:
 							resolution += " - " + gamma
 				f = open("/proc/stb/video/videomode")
-				videomode = f.read()[:-1].replace('\n','')
+				videomode = f.read()[:-1].replace('\n', '')
 				f.close()
 
 			Labels = ((_("Name"), name, TYPE_TEXT),

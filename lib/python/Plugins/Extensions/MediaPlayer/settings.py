@@ -66,7 +66,7 @@ class DirectoryBrowser(Screen, HelpableScreen):
 	def exit(self):
 		self.close(False)
 
-class MediaPlayerSettings(Screen,ConfigListScreen):
+class MediaPlayerSettings(Screen, ConfigListScreen):
 
 	def __init__(self, session, parent):
 		Screen.__init__(self, session)

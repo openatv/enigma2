@@ -28,7 +28,7 @@ backupfile = "enigma2settingsbackup.tar.gz"
 def checkConfigBackup():
 	parts = [(r.description, r.mountpoint) for r in harddiskmanager.getMountedPartitions(onlyhotplug=False)]
 	if boxtype in ('maram9', 'classm', 'axodin', 'axodinc', 'starsatlx', 'genius', 'evo', 'galaxym6'):
-		parts.append(('mtd backup','/media/backup'))
+		parts.append(('mtd backup', '/media/backup'))
 	for x in parts:
 		if x[1] == '/':
 			parts.remove(x)

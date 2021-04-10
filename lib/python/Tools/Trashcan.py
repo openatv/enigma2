@@ -55,7 +55,7 @@ class Trashcan:
 		self.gotRecordEvent(None, None)
 
 	def gotRecordEvent(self, service, event):
-		self.recordings = len(self.session.nav.getRecordings(False,pNavigation.isRealRecording))
+		self.recordings = len(self.session.nav.getRecordings(False, pNavigation.isRealRecording))
 		if event == enigma.iRecordableService.evEnd:
 			self.cleanIfIdle()
 
@@ -142,20 +142,20 @@ class CleanTrashTask(Components.Task.PythonTask):
 		f.close()
 
 		for mount in mounts:
-			if os.path.isdir(os.path.join(mount,'.Trash')):
-				matches.append(os.path.join(mount,'.Trash'))
-			if os.path.isdir(os.path.join(mount,'movie/.Trash')):
-				matches.append(os.path.join(mount,'movie/.Trash'))
+			if os.path.isdir(os.path.join(mount, '.Trash')):
+				matches.append(os.path.join(mount, '.Trash'))
+			if os.path.isdir(os.path.join(mount, 'movie/.Trash')):
+				matches.append(os.path.join(mount, 'movie/.Trash'))
 
-		print "[Trashcan] found following trashcan's:",matches
+		print "[Trashcan] found following trashcan's:", matches
 		if len(matches):
 			for trashfolder in matches:
-				print "[Trashcan] looking in trashcan",trashfolder
+				print "[Trashcan] looking in trashcan", trashfolder
 				trashsize = get_size(trashfolder)
 				diskstat = os.statvfs(trashfolder)
 				free = diskstat.f_bfree * diskstat.f_bsize
 				bytesToRemove = self.reserveBytes - free
-				print "[Trashcan] " + str(trashfolder) + ": Size:",trashsize
+				print "[Trashcan] " + str(trashfolder) + ": Size:", trashsize
 				candidates = []
 				size = 0
 				for root, dirs, files in os.walk(trashfolder, topdown=False):
@@ -189,7 +189,7 @@ class CleanTrashTask(Components.Task.PythonTask):
 							pass
 						bytesToRemove -= st_size
 						size -= st_size
-					print "[Trashcan] " + str(trashfolder) + ": Size now:",size
+					print "[Trashcan] " + str(trashfolder) + ": Size now:", size
 
 class TrashInfo(VariableText, GUIComponent):
 	FREE = 0

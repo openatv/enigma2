@@ -8,7 +8,7 @@ from Components.ConfigList import ConfigListScreen
 from Components.AVSwitch import AVSwitch
 import Title
 
-class TitleProperties(Screen,ConfigListScreen):
+class TitleProperties(Screen, ConfigListScreen):
 	skin = """
 		<screen name="TitleProperties" position="center,center" size="560,445" title="Properties of current title" >
 			<ePixmap pixmap="skin_default/buttons/red.png" position="0,0" size="140,40" alphatest="on" />
@@ -106,7 +106,7 @@ class TitleProperties(Screen,ConfigListScreen):
 		self.loadThumb()
 
 	def loadThumb(self):
-		thumbfile = self.project.titles[self.title_idx].inputfile.rsplit('.',1)[0] + ".png"
+		thumbfile = self.project.titles[self.title_idx].inputfile.rsplit('.', 1)[0] + ".png"
 		sc = AVSwitch().getFramebufferScale()
 		self.picload.setPara((self["thumbnail"].instance.size().width(), self["thumbnail"].instance.size().height(), sc[0], sc[1], False, 1, "#00000000"))
 		self.picload.startDecode(thumbfile)

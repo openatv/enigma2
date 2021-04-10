@@ -146,7 +146,7 @@ class EPGList(HTMLComponent, GUIComponent):
 				elif attrib == "EntryBorderColor":
 					self.borderColor = parseColor(value).argb()
 				elif attrib == "EntryFont":
-					font = parseFont(value, ((1,1),(1,1)))
+					font = parseFont(value, ((1, 1), (1, 1)))
 					self.entryFontName = font.family
 					self.entryFontSize = font.pointSize
 				elif attrib == "ServiceForegroundColor" or attrib == "ServiceNameForegroundColor":
@@ -164,7 +164,7 @@ class EPGList(HTMLComponent, GUIComponent):
 				elif attrib == "ServiceBorderColor":
 					self.borderColorService = parseColor(value).argb()
 				elif attrib == "ServiceFont":
-					self.serviceFont = parseFont(value, ((1,1),(1,1)))
+					self.serviceFont = parseFont(value, ((1, 1), (1, 1)))
 				elif attrib == "EntryBackgroundColorNow":
 					self.backColorNow = parseColor(value).argb()
 				elif attrib == "EntryForegroundColorNow":
@@ -178,7 +178,7 @@ class EPGList(HTMLComponent, GUIComponent):
 				elif attrib == "EventNamePadding":
 					self.eventNamePadding = int(value)
 				else:
-					attribs.append((attrib,value))
+					attribs.append((attrib, value))
 			self.skinAttributes = attribs
 		self.l.setFont(0, self.serviceFont)
 		self.setEventFontsize()
@@ -566,7 +566,7 @@ class EPGList(HTMLComponent, GUIComponent):
 			entry = entries[self.cur_event] #(event_id, event_title, begin_time, duration)
 			time_base = self.time_base + self.offs * self.time_epoch * 60
 			xpos, width = self.calcEntryPosAndWidth(self.event_rect, time_base, self.time_epoch, entry[2], entry[3])
-			self.select_rect = Rect(xpos,0, width, self.event_rect.height)
+			self.select_rect = Rect(xpos, 0, width, self.event_rect.height)
 			self.l.setSelectionClip(eRect(xpos, 0, width, self.event_rect.h), visible and update)
 		else:
 			self.select_rect = self.event_rect
@@ -657,7 +657,7 @@ class TimelineText(HTMLComponent, GUIComponent):
 				elif attrib == "font":
 					self.font = parseFont(value, ((1, 1), (1, 1)))
 				else:
-					attribs.append((attrib,value))
+					attribs.append((attrib, value))
 			self.skinAttributes = attribs
 		self.l.setFont(0, self.font)
 		return GUIComponent.applySkin(self, desktop, screen)
@@ -1030,7 +1030,7 @@ class GraphMultiEPG(Screen, HelpableScreen):
 		refstr = ':'.join(serviceref.ref.toString().split(':')[:11])
 		for timer in self.session.nav.RecordTimer.timer_list:
 			if timer.eit == eventid and ':'.join(timer.service_ref.ref.toString().split(':')[:11]) == refstr:
-				menu = [(_("Delete timer"), "delete"),(_("Edit timer"), "edit")]
+				menu = [(_("Delete timer"), "delete"), (_("Edit timer"), "edit")]
 				buttons = ["red", "green"]
 				def timerAction(choice):
 					if choice is not None:

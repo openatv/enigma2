@@ -50,7 +50,7 @@ class md5verify(Task):
 
 class writeNAND(Task):
 	def __init__(self, job, param, box):
-		Task.__init__(self,job, "Writing image file to NAND Flash")
+		Task.__init__(self, job, "Writing image file to NAND Flash")
 		self.setTool(eEnv.resolve("${libdir}/enigma2/python/Plugins/SystemPlugins/NFIFlash/writenfi-mipsel-2.6.18-r1"))
 		if box == "dm7025":
 			self.end = 256
@@ -148,7 +148,7 @@ class NFIFlash(Screen):
 				self["filelist"].descent()
 				self.check_for_NFO()
 			elif self["filelist"].getFilename():
-				self.session.openWithCallback(self.queryCB, MessageBox, _("Shall the USB stick wizard proceed and program the image file %s into flash memory?" % self.nfifile.rsplit('/',1)[-1]), MessageBox.TYPE_YESNO)
+				self.session.openWithCallback(self.queryCB, MessageBox, _("Shall the USB stick wizard proceed and program the image file %s into flash memory?" % self.nfifile.rsplit('/', 1)[-1]), MessageBox.TYPE_YESNO)
 
 	def check_for_NFO(self, nfifile=None):
 		print "check_for_NFO", self["filelist"].getFilename(), self["filelist"].getCurrentDirectory()

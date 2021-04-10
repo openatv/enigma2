@@ -55,7 +55,7 @@ class TitleCutter(CutListEditor):
 		self.t.progressive = service.info().getInfo(iServiceInformation.sProgressive)
 
 	def checkAndGrabThumb(self):
-		if not fileExists(self.t.inputfile.rsplit('.',1)[0] + ".png"):
+		if not fileExists(self.t.inputfile.rsplit('.', 1)[0] + ".png"):
 			CutListEditor.grabFrame(self)
 
 	def exit(self):

@@ -180,7 +180,7 @@ def reload_subservice_groupslist(force=False):
 			groupedservices = "/etc/enigma2/groupedservices"
 			if not os.path.isfile(groupedservices):
 				groupedservices = "/usr/share/enigma2/groupedservices"
-			subservice_groupslist = [list(g) for k,g in itertools.groupby([line.split('#')[0].strip() for line in open(groupedservices).readlines()], lambda x:not x) if not k]
+			subservice_groupslist = [list(g) for k, g in itertools.groupby([line.split('#')[0].strip() for line in open(groupedservices).readlines()], lambda x:not x) if not k]
 		except:
 			subservice_groupslist = []
 reload_subservice_groupslist()
@@ -248,12 +248,12 @@ class InfoBarUnhandledKey:
 	#this function is called on every keypress!
 	def actionA(self, key, flag):
 		try:
-			print 'KEY: %s %s %s %s' % (key,flag,(key_name for key_name,value in KEYIDS.items() if value == key).next(),getKeyDescription(key)[0])
+			print 'KEY: %s %s %s %s' % (key, flag, (key_name for key_name, value in KEYIDS.items() if value == key).next(), getKeyDescription(key)[0])
 		except:
 			try:
-				print 'KEY: %s %s %s' % (key,flag,(key_name for key_name,value in KEYIDS.items() if value == key).next()) # inverse dictionary lookup in KEYIDS
+				print 'KEY: %s %s %s' % (key, flag, (key_name for key_name, value in KEYIDS.items() if value == key).next()) # inverse dictionary lookup in KEYIDS
 			except:
-				print 'KEY: %s %s' % (key,flag)
+				print 'KEY: %s %s' % (key, flag)
 		self.unhandledKeyDialog.hide()
 		if self.closeSIB(key) and self.secondInfoBarScreen and self.secondInfoBarScreen.shown:
 			self.secondInfoBarScreen.hide()
@@ -529,7 +529,7 @@ class SecondInfoBar(Screen):
 			else:
 				self["channel"].setText(_("unknown service"))
 
-	def sort_func(self,x,y):
+	def sort_func(self, x, y):
 		if x[1] < y[1]:
 			return -1
 		elif x[1] == y[1]:
@@ -699,7 +699,7 @@ class InfoBarShowHide(InfoBarScreenSaver):
 
 	def doWriteAlpha(self, value):
 		if fileExists("/proc/stb/video/alpha"):
-			f = open("/proc/stb/video/alpha","w")
+			f = open("/proc/stb/video/alpha", "w")
 			f.write("%i" % (value))
 			f.close()
 			if value == config.av.osd_alpha.value:
@@ -973,7 +973,7 @@ class InfoBarShowHide(InfoBarScreenSaver):
 					self.runPlugin(plugin)
 					break
 		else:
-			self.session.open(MessageBox, _("The Cool TV Guide plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO,timeout=10)
+			self.session.open(MessageBox, _("The Cool TV Guide plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10)
 
 	def showCoolSingleGuide(self):
 		if self.servicelist is None:
@@ -984,7 +984,7 @@ class InfoBarShowHide(InfoBarScreenSaver):
 					self.runPlugin(plugin)
 					break
 		else:
-			self.session.open(MessageBox, _("The Cool TV Guide plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO,timeout=10)
+			self.session.open(MessageBox, _("The Cool TV Guide plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10)
 
 	def showCoolTVGuide(self):
 		if self.servicelist is None:
@@ -995,7 +995,7 @@ class InfoBarShowHide(InfoBarScreenSaver):
 					self.runPlugin(plugin)
 					break
 		else:
-			self.session.open(MessageBox, _("The Cool TV Guide plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO,timeout=10)
+			self.session.open(MessageBox, _("The Cool TV Guide plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10)
 
 	def showCoolEasyGuide(self):
 		if self.servicelist is None:
@@ -1006,7 +1006,7 @@ class InfoBarShowHide(InfoBarScreenSaver):
 					self.runPlugin(plugin)
 					break
 		else:
-			self.session.open(MessageBox, _("The Cool TV Guide plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO,timeout=10)
+			self.session.open(MessageBox, _("The Cool TV Guide plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10)
 
 	def showCoolChannelGuide(self):
 		if self.servicelist is None:
@@ -1017,7 +1017,7 @@ class InfoBarShowHide(InfoBarScreenSaver):
 					self.runPlugin(plugin)
 					break
 		else:
-			self.session.open(MessageBox, _("The Cool TV Guide plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO,timeout=10)
+			self.session.open(MessageBox, _("The Cool TV Guide plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10)
 
 	def checkHideVBI(self):
 		service = self.session.nav.getCurrentlyPlayingServiceReference()
@@ -1651,7 +1651,7 @@ class InfoBarMenu:
 
 	def toggleAspectRatio(self):
 		ASPECT = ["auto", "16:9", "4:3"]
-		ASPECT_MSG = {"auto":"Auto", "16:9":"16:9", "4:3":"4:3"}
+		ASPECT_MSG = {"auto": "Auto", "16:9": "16:9", "4:3": "4:3"}
 		if config.av.aspect.value in ASPECT:
 			index = ASPECT.index(config.av.aspect.value)
 			config.av.aspect.value = ASPECT[(index + 1) % 3]
@@ -2076,7 +2076,7 @@ class InfoBarEPG:
 					self.runPlugin(plugin)
 					break
 		else:
-			self.session.open(MessageBox, _("The Cool TV Guide plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO,timeout=10)
+			self.session.open(MessageBox, _("The Cool TV Guide plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10)
 
 	def SingleServiceEPG(self):
 		self.StartBouquet = self.servicelist.getRoot()
@@ -2089,7 +2089,7 @@ class InfoBarEPG:
 			services = self.getBouquetServices(self.StartBouquet)
 			self.serviceSel = SimpleServicelist(services)
 			if self.serviceSel.selectService(ref):
-				self.session.openWithCallback(self.SingleServiceEPGClosed,EPGSelection, self.servicelist, zapFunc=self.zapToService, serviceChangeCB=self.changeServiceCB, EPGtype=self.EPGtype, StartBouquet=self.StartBouquet, StartRef=self.StartRef)
+				self.session.openWithCallback(self.SingleServiceEPGClosed, EPGSelection, self.servicelist, zapFunc=self.zapToService, serviceChangeCB=self.changeServiceCB, EPGtype=self.EPGtype, StartBouquet=self.StartBouquet, StartRef=self.StartRef)
 			else:
 				self.session.openWithCallback(self.SingleServiceEPGClosed, EPGSelection, ref)
 
@@ -2125,7 +2125,7 @@ class InfoBarEPG:
 					self.runPlugin(plugin)
 					break
 		else:
-			self.session.open(MessageBox, _("The Merlin EPG Center plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO,timeout=10)
+			self.session.open(MessageBox, _("The Merlin EPG Center plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10)
 
 	def showCoolInfoGuide(self):
 		if self.servicelist is None:
@@ -2136,7 +2136,7 @@ class InfoBarEPG:
 					self.runPlugin(plugin)
 					break
 		else:
-			self.session.open(MessageBox, _("The Cool TV Guide plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO,timeout=10)
+			self.session.open(MessageBox, _("The Cool TV Guide plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10)
 	
 	def showCoolSingleGuide(self):
 		if self.servicelist is None:
@@ -2147,7 +2147,7 @@ class InfoBarEPG:
 					self.runPlugin(plugin)
 					break
 		else:
-			self.session.open(MessageBox, _("The Cool TV Guide plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO,timeout=10)
+			self.session.open(MessageBox, _("The Cool TV Guide plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10)
 
 	def openSimilarList(self, eventid, refstr):
 		self.session.open(EPGSelection, refstr, eventid=eventid)
@@ -2225,7 +2225,7 @@ class InfoBarRdsDecoder:
 		self["RdsActions"] = ActionMap(["InfobarRdsActions"],
 		{
 			"startRassInteractive": self.startRassInteractive
-		},-1)
+		}, -1)
 
 		self["RdsActions"].setEnabled(False)
 
@@ -3087,9 +3087,9 @@ class InfoBarTimeshiftState(InfoBarPVRState):
 		self["TimeshiftSeekPointerActions"].setEnabled(False)
 		self.pvrStateDialog.hide()
 
-	def __timeshiftEventName(self,state):
-		if self.timeshiftEnabled() and os.path.exists("%spts_livebuffer_%s.meta" % (config.usage.timeshift_path.value,self.pts_currplaying)):
-			readmetafile = open("%spts_livebuffer_%s.meta" % (config.usage.timeshift_path.value,self.pts_currplaying), "r")
+	def __timeshiftEventName(self, state):
+		if self.timeshiftEnabled() and os.path.exists("%spts_livebuffer_%s.meta" % (config.usage.timeshift_path.value, self.pts_currplaying)):
+			readmetafile = open("%spts_livebuffer_%s.meta" % (config.usage.timeshift_path.value, self.pts_currplaying), "r")
 			servicerefname = readmetafile.readline()[0:-1]
 			eventname = readmetafile.readline()[0:-1]
 			readmetafile.close()
@@ -3368,7 +3368,7 @@ class InfoBarExtensions:
 				self.autotimer
 			)
 		else:
-			self.session.open(MessageBox, _("The AutoTimer plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO,timeout=10)
+			self.session.open(MessageBox, _("The AutoTimer plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10)
 
 	def editCallback(self, session):
 		# XXX: canceling of GUI (Overview) won't affect config values which might have been changed - is this intended?
@@ -3402,7 +3402,7 @@ class InfoBarExtensions:
 				name = self.session.nav.getCurrentlyPlayingServiceOrGroup().toString()
 				name = name.split('/')
 				name = name[-1]
-				name = name.replace('.',' ')
+				name = name.replace('.', ' ')
 				name = name.split('-')
 				name = name[0]
 				if name.endswith(' '):
@@ -3424,7 +3424,7 @@ class InfoBarExtensions:
 				name = event and event.getEventName() or ''
 				self.session.open(IMDB, name)
 		else:
-			self.session.open(MessageBox, _("The IMDb plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO,timeout=10)
+			self.session.open(MessageBox, _("The IMDb plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10)
 
 	def showMediaPlayer(self):
 		if isinstance(self, InfoBarExtensions):
@@ -3434,14 +3434,14 @@ class InfoBarExtensions:
 					self.session.open(MediaPlayer)
 					no_plugin = False
 				except Exception, e:
-					self.session.open(MessageBox, _("The MediaPlayer plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO,timeout=10)
+					self.session.open(MessageBox, _("The MediaPlayer plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10)
 
 	def showDreamPlex(self):
 		if os.path.exists("/usr/lib/enigma2/python/Plugins/Extensions/DreamPlex/plugin.pyo"):
 			from Plugins.Extensions.DreamPlex.plugin import DPS_MainMenu
 			self.session.open(DPS_MainMenu)
 		else:
-			self.session.open(MessageBox, _("The DreamPlex plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO,timeout=10)					
+			self.session.open(MessageBox, _("The DreamPlex plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10)					
 
 from Tools.BoundFunction import boundFunction
 import inspect
@@ -3629,9 +3629,9 @@ class InfoBarPiP:
 						self.session.pipshown = False
 						del self.session.pip
 			elif info:
-				self.session.open(MessageBox, _("Your %s %s does not support PiP HD") % (getMachineBrand(), getMachineName()), type=MessageBox.TYPE_INFO,timeout=5)
+				self.session.open(MessageBox, _("Your %s %s does not support PiP HD") % (getMachineBrand(), getMachineName()), type=MessageBox.TYPE_INFO, timeout=5)
 			else:
-				self.session.open(MessageBox, _("No active channel found."), type=MessageBox.TYPE_INFO,timeout=5)
+				self.session.open(MessageBox, _("No active channel found."), type=MessageBox.TYPE_INFO, timeout=5)
 		if self.session.pipshown and hasattr(self, "screenSaverTimer"):
 			self.screenSaverTimer.stop()
 
@@ -3952,7 +3952,7 @@ class InfoBarInstantRecord:
 		elif answer[1] in ("indefinitely", "manualduration", "manualendtime", "event"):
 			from Components.About import about
 			if len(list) >= 2 and about.getChipSetString() in ('meson-6', 'meson-64'):
-				Notifications.AddNotification(MessageBox,_("Sorry only possible to record 2 channels at once"), MessageBox.TYPE_ERROR, timeout=5)
+				Notifications.AddNotification(MessageBox, _("Sorry only possible to record 2 channels at once"), MessageBox.TYPE_ERROR, timeout=5)
 				return
 			self.startInstantRecording(limitEvent=answer[1] in ("event", "manualendtime") or False)
 			if answer[1] == "manualduration":
@@ -3966,7 +3966,7 @@ class InfoBarInstantRecord:
 				InfoBarTimeshift.SaveTimeshift(self, timeshiftfile="pts_livebuffer_%s" % self.pts_currplaying)
 			else:
 				# print 'test3'
-				Notifications.AddNotification(MessageBox,_("Timeshift will get saved at end of event!"), MessageBox.TYPE_INFO, timeout=5)
+				Notifications.AddNotification(MessageBox, _("Timeshift will get saved at end of event!"), MessageBox.TYPE_INFO, timeout=5)
 				self.save_current_timeshift = True
 				config.timeshift.isRecording.value = True
 		elif answer[1] == "savetimeshiftEvent":
@@ -4074,7 +4074,7 @@ class InfoBarInstantRecord:
 			list = list + ((_("Do not record"), "no"),)
 
 		if list:
-			self.session.openWithCallback(self.recordQuestionCallback, ChoiceBox,title=title,list=list)
+			self.session.openWithCallback(self.recordQuestionCallback, ChoiceBox, title=title, list=list)
 		else:
 			return 0
 
@@ -4406,7 +4406,7 @@ class InfoBarAspectSelection:
 
 	def aspectSelection(self):
 		selection = 0
-		tlist = [(_("Resolution"), "resolution"),("--", ""),(_("4_3_letterbox"), "0"), (_("4_3_panscan"), "1"), (_("16_9"), "2"), (_("16_9_always"), "3"), (_("16_10_letterbox"), "4"), (_("16_10_panscan"), "5"), (_("16_9_letterbox"), "6")]
+		tlist = [(_("Resolution"), "resolution"), ("--", ""), (_("4_3_letterbox"), "0"), (_("4_3_panscan"), "1"), (_("16_9"), "2"), (_("16_9_always"), "3"), (_("16_10_letterbox"), "4"), (_("16_10_panscan"), "5"), (_("16_9_letterbox"), "6")]
 		for x in range(len(tlist)):
 			selection = x
 		keys = ["green", "", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]
@@ -4514,7 +4514,7 @@ class InfoBarVmodeButton:
 		self.session.open(VideoMode)
 
 class VideoMode(Screen):
-	def __init__(self,session):
+	def __init__(self, session):
 		Screen.__init__(self, session)
 		self["videomode"] = Label()
 
@@ -4670,7 +4670,7 @@ class InfoBarCueSheetSupport:
 			seekable = self.__getSeekable()
 			if seekable is None:
 				return # Should not happen?
-			length = seekable.getLength() or (None,0)
+			length = seekable.getLength() or (None, 0)
 #			print "seekable.getLength() returns:", length
 			# Hmm, this implies we don't resume if the length is unknown...
 			if (last > 900000) and (not length[1] or (last < length[1] - 900000)):
@@ -4973,7 +4973,7 @@ class InfoBarSubtitleSupport(object):
 		service = self.session.nav.getCurrentService()
 		subtitle = service and service.subtitle()
 		subtitlelist = subtitle and subtitle.getSubtitleList()
-		if self.selected_subtitle and self.selected_subtitle != (0,0,0,0):
+		if self.selected_subtitle and self.selected_subtitle != (0, 0, 0, 0):
 			from Screens.AudioSelection import QuickSubtitlesConfigMenu
 			self.session.open(QuickSubtitlesConfigMenu, self)
 		else:
@@ -5060,8 +5060,8 @@ class InfoBarZoom:
 
 		self["ZoomActions"] = HelpableActionMap(self, "InfobarZoomActions",
 			{
-				"ZoomInOut":(self.ZoomInOut, _("Zoom In/Out TV...")),
-				"ZoomOff":(self.ZoomOff, _("Zoom Off...")),
+				"ZoomInOut": (self.ZoomInOut, _("Zoom In/Out TV...")),
+				"ZoomOff": (self.ZoomOff, _("Zoom Off...")),
 			}, prio=2)
 
 	def ZoomInOut(self):
@@ -5106,8 +5106,8 @@ class InfoBarHdmi:
 				self.addExtension((self.getHDMIInPiPScreen, self.HDMIInPiP, lambda: True), "green")
 		self["HDMIActions"] = HelpableActionMap(self, "InfobarHDMIActions",
 			{
-				"HDMIin":(self.HDMIIn, _("Switch to HDMI in mode")),
-				"HDMIinLong":(self.HDMIInLong, _("Switch to HDMI in mode")),
+				"HDMIin": (self.HDMIIn, _("Switch to HDMI in mode")),
+				"HDMIinLong": (self.HDMIInLong, _("Switch to HDMI in mode")),
 			}, prio=2)
 
 	def HDMIInLong(self):
@@ -5150,21 +5150,21 @@ class InfoBarHdmi:
 
 	def HDMIInPiP(self):
 		if getMachineBuild() in ('dm7080', 'dm820', 'dm900', 'dm920'):
-			f = open("/proc/stb/hdmi-rx/0/hdmi_rx_monitor","r")
+			f = open("/proc/stb/hdmi-rx/0/hdmi_rx_monitor", "r")
 			check = f.read()
 			f.close()
 			if check.startswith("off"):
-				f = open("/proc/stb/audio/hdmi_rx_monitor","w")
+				f = open("/proc/stb/audio/hdmi_rx_monitor", "w")
 				f.write("on")
 				f.close()
-				f = open("/proc/stb/hdmi-rx/0/hdmi_rx_monitor","w")
+				f = open("/proc/stb/hdmi-rx/0/hdmi_rx_monitor", "w")
 				f.write("on")
 				f.close()
 			else:
-				f = open("/proc/stb/audio/hdmi_rx_monitor","w")
+				f = open("/proc/stb/audio/hdmi_rx_monitor", "w")
 				f.write("off")
 				f.close()
-				f = open("/proc/stb/hdmi-rx/0/hdmi_rx_monitor","w")
+				f = open("/proc/stb/hdmi-rx/0/hdmi_rx_monitor", "w")
 				f.write("off")
 				f.close()
 		else:
@@ -5188,45 +5188,45 @@ class InfoBarHdmi:
 
 	def HDMIInFull(self):
 		if getMachineBuild() in ('dm7080', 'dm820', 'dm900', 'dm920'):
-			f = open("/proc/stb/hdmi-rx/0/hdmi_rx_monitor","r")
+			f = open("/proc/stb/hdmi-rx/0/hdmi_rx_monitor", "r")
 			check = f.read()
 			f.close()
 			if check.startswith("off"):
-				f = open("/proc/stb/video/videomode","r")
+				f = open("/proc/stb/video/videomode", "r")
 				self.oldvideomode = f.read()
 				f.close()
-				f = open("/proc/stb/video/videomode_50hz","r")
+				f = open("/proc/stb/video/videomode_50hz", "r")
 				self.oldvideomode_50hz = f.read()
 				f.close()
-				f = open("/proc/stb/video/videomode_60hz","r")
+				f = open("/proc/stb/video/videomode_60hz", "r")
 				self.oldvideomode_60hz = f.read()
 				f.close()
-				f = open("/proc/stb/video/videomode","w")
+				f = open("/proc/stb/video/videomode", "w")
 				if getMachineBuild() in ('dm900', 'dm920'):
 					f.write("1080p")
 				else:
 					f.write("720p")
 				f.close()
-				f = open("/proc/stb/audio/hdmi_rx_monitor","w")
+				f = open("/proc/stb/audio/hdmi_rx_monitor", "w")
 				f.write("on")
 				f.close()
-				f = open("/proc/stb/hdmi-rx/0/hdmi_rx_monitor","w")
+				f = open("/proc/stb/hdmi-rx/0/hdmi_rx_monitor", "w")
 				f.write("on")
 				f.close()
 			else:
-				f = open("/proc/stb/audio/hdmi_rx_monitor","w")
+				f = open("/proc/stb/audio/hdmi_rx_monitor", "w")
 				f.write("off")
 				f.close()
-				f = open("/proc/stb/hdmi-rx/0/hdmi_rx_monitor","w")
+				f = open("/proc/stb/hdmi-rx/0/hdmi_rx_monitor", "w")
 				f.write("off")
 				f.close()
-				f = open("/proc/stb/video/videomode","w")
+				f = open("/proc/stb/video/videomode", "w")
 				f.write(self.oldvideomode)
 				f.close()
-				f = open("/proc/stb/video/videomode_50hz","w")
+				f = open("/proc/stb/video/videomode_50hz", "w")
 				f.write(self.oldvideomode_50hz)
 				f.close()
-				f = open("/proc/stb/video/videomode_60hz","w")
+				f = open("/proc/stb/video/videomode_60hz", "w")
 				f.write(self.oldvideomode_60hz)
 				f.close()
 		else:
@@ -5363,7 +5363,7 @@ class InfoBarHandleBsod:
 			txt += _("(Attention: There will be a restart after %d crashes.)") % maxbs
 			if writelog:
 				txt += "\n" + "-" * 80 + "\n"
-				txt += _("A crashlog was %s created in '%s'") % ((_('not'),'')[int(writelog)], config.crash.debug_path.value)
+				txt += _("A crashlog was %s created in '%s'") % ((_('not'), '')[int(writelog)], config.crash.debug_path.value)
 			#if not writelog:
 			#	txt += "\n" + "-"*80 + "\n"
 			#	txt += _("(It is set that '%s' crash logs are displayed and written.\nInfo: It will always write the first, last but one and lastest crash log.)") % str(int(config.crash.bsodhide.value) or _('never'))

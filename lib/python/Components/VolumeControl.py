@@ -86,7 +86,7 @@ class VolumeControl:
 		else:
 			self.getInputConfig()
 			step = config.av.volume_stepsize.value
-		self.stepVolTimer.start(self.repeat,True)
+		self.stepVolTimer.start(self.repeat, True)
 		return step
 
 	def getInputConfig(self):

@@ -77,8 +77,8 @@ class PliExtraInfo(Poll, Converter, object):
 			("CryptoCaidNagraAvailable", "N", False),
 			("CryptoCaidBissAvailable", "Bi", False),
 			("CryptoCaidDreAvailable", "D", False),
-			("CryptoCaidBulCrypt1Available","B1", False),
-			("CryptoCaidBulCrypt2Available","B2", False),
+			("CryptoCaidBulCrypt1Available", "B1", False),
+			("CryptoCaidBulCrypt2Available", "B2", False),
 			("CryptoCaidTandbergAvailable", "T", False),
 			("CryptoCaidSecaSelected", "S", True),
 			("CryptoCaidViaSelected", "V", True),
@@ -334,21 +334,21 @@ class PliExtraInfo(Poll, Converter, object):
 				if int(caid_entry[0], 16) <= int(self.current_caid, 16) <= int(caid_entry[1], 16):
 					caid_name = caid_entry[2]
 					break
-			return caid_name + ":%04x:%04x:%04x" % (int(self.current_caid,16), int(self.current_provid,16), info.getInfo(iServiceInformation.sSID))
+			return caid_name + ":%04x:%04x:%04x" % (int(self.current_caid, 16), int(self.current_provid, 16), info.getInfo(iServiceInformation.sSID))
 		except:
 			pass
 		return ""
 
 	def createCryptoNameCaid(self, info):
 		caid_name = "FTA"
-		if int(self.current_caid,16) == 0:
+		if int(self.current_caid, 16) == 0:
 			return caid_name
 		try:
 			for caid_entry in self.caid_data:
 				if int(caid_entry[0], 16) <= int(self.current_caid, 16) <= int(caid_entry[1], 16):
 					caid_name = caid_entry[2]
 					break
-			return caid_name + ":%04x" % (int(self.current_caid,16))
+			return caid_name + ":%04x" % (int(self.current_caid, 16))
 		except:
 			pass
 		return ""
@@ -361,21 +361,21 @@ class PliExtraInfo(Poll, Converter, object):
 		if path.exists("/proc/stb/vmpeg/0/yres"):
 			f = open("/proc/stb/vmpeg/0/yres", "r")
 			try:
-				video_height = int(f.read(),16)
+				video_height = int(f.read(), 16)
 			except:
 				pass
 			f.close()
 		if path.exists("/proc/stb/vmpeg/0/xres"):
 			f = open("/proc/stb/vmpeg/0/xres", "r")
 			try:
-				video_width = int(f.read(),16)
+				video_width = int(f.read(), 16)
 			except:
 				pass
 			f.close()
 		if path.exists("/proc/stb/vmpeg/0/progressive"):
 			f = open("/proc/stb/vmpeg/0/progressive", "r")
 			try:
-				video_pol = "p" if int(f.read(),16) else "i"
+				video_pol = "p" if int(f.read(), 16) else "i"
 			except:
 				pass
 			f.close()
@@ -492,13 +492,13 @@ class PliExtraInfo(Poll, Converter, object):
 			return str((float(orbpos)) / 10.0) + "\xc2\xb0 E"
 		return ""
 
-	def createOrbPosOrTunerSystem(self, fedata,feraw):
+	def createOrbPosOrTunerSystem(self, fedata, feraw):
 		orbpos = self.createOrbPos(feraw)
 		if orbpos is not "":
 			return orbpos
 		return self.createTunerSystem(fedata)
 
-	def createTransponderName(self,feraw):
+	def createTransponderName(self, feraw):
 		orbpos = feraw.get("orbital_position")
 		if orbpos is None: # Not satellite
 			return ""
@@ -608,7 +608,7 @@ class PliExtraInfo(Poll, Converter, object):
 		else:
 			return str((float(orbpos)) / 10.0) + "E"
 
-	def createProviderName(self,info):
+	def createProviderName(self, info):
 		return info.getInfoString(iServiceInformation.sProvider)
 
 	def createMisPls(self, fedata):
@@ -815,7 +815,7 @@ class PliExtraInfo(Poll, Converter, object):
 			return self.createTunerSystem(fedata)
 
 		if self.type == "OrbitalPositionOrTunerSystem":
-			return self.createOrbPosOrTunerSystem(fedata,feraw)
+			return self.createOrbPosOrTunerSystem(fedata, feraw)
 
 		if self.type == "TerrestrialChannelNumber":
 			return self.createChannelNumber(fedata, feraw)

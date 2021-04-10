@@ -41,7 +41,7 @@ class StartSwap:
 					parts = line.strip().split()
 					swap_place = parts[0]
 					file('/etc/fstab.tmp', 'w').writelines([l for l in file('/etc/fstab').readlines() if swap_place not in l])
-					rename('/etc/fstab.tmp','/etc/fstab')
+					rename('/etc/fstab.tmp', '/etc/fstab')
 					print "[SwapManager] Found a swap partition:", swap_place
 		else:
 			devicelist = []

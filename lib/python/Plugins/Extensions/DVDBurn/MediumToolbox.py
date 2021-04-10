@@ -87,24 +87,24 @@ class MediumToolbox(Screen):
 		mediatype = ""
 		for line in mediuminfo.splitlines():
 			if line.find("Mounted Media:") > -1:
-				mediatype = line.rsplit(',',1)[1][1:]
+				mediatype = line.rsplit(',', 1)[1][1:]
 				if mediatype.find("RW") > 0 or mediatype.find("RAM") > 0 or mediatype.find("RE"):
 					self.formattable = True
 				else:
 					self.formattable = False
 			elif line.find("Legacy lead-out at:") > -1:
-				used = int(line.rsplit('=',1)[1]) / 1048576.0
+				used = int(line.rsplit('=', 1)[1]) / 1048576.0
 				print "[dvd+rw-mediainfo] lead out used =", used
 			elif line.find("formatted:") > -1:
-				formatted_capacity = int(line.rsplit('=',1)[1]) / 1048576.0
+				formatted_capacity = int(line.rsplit('=', 1)[1]) / 1048576.0
 				print "[dvd+rw-mediainfo] formatted capacity =", formatted_capacity
 			elif formatted_capacity == 0 and line.find("READ CAPACITY:") > -1:
-				read_capacity = int(line.rsplit('=',1)[1]) / 1048576.0
+				read_capacity = int(line.rsplit('=', 1)[1]) / 1048576.0
 				print "[dvd+rw-mediainfo] READ CAPACITY =", read_capacity
 		for line in mediuminfo.splitlines():
 			if line.find("Free Blocks:") > -1:
 				try:
-					size = eval(line[14:].replace("KB","*1024"))
+					size = eval(line[14:].replace("KB", "*1024"))
 				except:
 					size = 0
 				if size > 0:
@@ -212,7 +212,7 @@ class DVDformatTask(Task):
 	def processOutput(self, data):
 		print "[DVDformatTask processOutput]  ", data
 		if data.endswith('%'):
-			data = data.replace('\x08','')
+			data = data.replace('\x08', '')
 			self.progress = int(float(data[:-1]) * 10)
 		else:
 			Task.processOutput(self, data)

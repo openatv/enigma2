@@ -51,7 +51,7 @@ class SwapCheck:
 					swapfree = int(parts[1])
 			f.close()
 			TotalFree = memfree + swapfree
-			print "[SwapCheck] Free Mem",TotalFree
+			print "[SwapCheck] Free Mem", TotalFree
 			if int(TotalFree) < 5000:
 				print "[SwapCheck] Not Enough Ram"
 				self.MemCheck2()
@@ -96,5 +96,5 @@ class SwapCheck:
 
 	def RemoveSwap(self):
 		if swapdevice and os.path.exists(swapdevice):
-			print "[SwapCheck] Removing Swapfile",swapdevice
+			print "[SwapCheck] Removing Swapfile", swapdevice
 			self.Console.ePopen("swapoff " + swapdevice + " && rm " + swapdevice)

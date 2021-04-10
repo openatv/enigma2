@@ -147,7 +147,7 @@ class Satfinder(ScanSetup, ServiceScan):
 			slist = scan_type.choices.choices
 			dlist = []
 			for x in slist:
-				if x[0] in ("single_transponder","predefined_transponder"):
+				if x[0] in ("single_transponder", "predefined_transponder"):
 					dlist.append(x)
 			scan_type.choices.choices = dlist
 
@@ -155,13 +155,13 @@ class Satfinder(ScanSetup, ServiceScan):
 		fe_id = int(self.scan_nims.value)
 		multiType = config.Nims[fe_id].multiType
 		system = multiType.getText()
-		if (system in ('DVB-S','DVB-S2') and config.Nims[fe_id].dvbs.configMode.value == "nothing") or \
-			(system in ('DVB-T','DVB-T2') and config.Nims[fe_id].dvbt.configMode.value == "nothing") or \
+		if (system in ('DVB-S', 'DVB-S2') and config.Nims[fe_id].dvbs.configMode.value == "nothing") or \
+			(system in ('DVB-T', 'DVB-T2') and config.Nims[fe_id].dvbt.configMode.value == "nothing") or \
 			(system in ('DVB-C') and config.Nims[fe_id].dvbc.configMode.value == "nothing") or \
 			(system in ('ATSC') and config.Nims[fe_id].atsc.configMode.value == "nothing"):
 			return
 		slot = nimmanager.nim_slots[fe_id]
-		print "dvb_api_version ",iDVBFrontend.dvb_api_version
+		print "dvb_api_version ", iDVBFrontend.dvb_api_version
 		self.frontend = None
 		if not self.openFrontend():
 			self.session.nav.stopService()
@@ -195,9 +195,9 @@ class Satfinder(ScanSetup, ServiceScan):
 		if self.frontend:
 			if system == 'DVB-C':
 				ret = self.frontend.changeType(iDVBFrontend.feCable)
-			elif system in ('DVB-T','DVB-T2'):
+			elif system in ('DVB-T', 'DVB-T2'):
 				ret = self.frontend.changeType(iDVBFrontend.feTerrestrial)
-			elif system in ('DVB-S','DVB-S2'):
+			elif system in ('DVB-S', 'DVB-S2'):
 				ret = self.frontend.changeType(iDVBFrontend.feSatellite)
 			elif system == 'ATSC':
 				ret = self.frontend.changeType(iDVBFrontend.feATSC)
@@ -206,7 +206,7 @@ class Satfinder(ScanSetup, ServiceScan):
 			if not ret:
 				print "%d: tunerTypeChange to '%s' failed" % (fe_id, system)
 			else:
-				print "new system ",system
+				print "new system ", system
 		else:
 			print "%d: tunerTypeChange to '%s' failed (BUSY)" % (fe_id, multiType.getText())
 		self.retune()

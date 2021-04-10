@@ -69,7 +69,7 @@ class LanguageSelection(Screen):
 
 	def updateCache(self):
 		print"updateCache"
-		self["languages"].setList([('update cache',_('Updating cache, please wait...'),None)])
+		self["languages"].setList([('update cache', _('Updating cache, please wait...'), None)])
 		self.updateTimer = eTimer()
 		self.updateTimer.callback.append(self.startupdateCache)
 		self.updateTimer.start(100)
@@ -100,7 +100,7 @@ class LanguageSelection(Screen):
 			self.close()
 		else:
 			if self.oldActiveLanguage != config.osd.language.value:
-				self.session.openWithCallback(self.restartGUI, MessageBox,_("GUI needs a restart to apply a new language\nDo you want to restart the GUI now?"), MessageBox.TYPE_YESNO)
+				self.session.openWithCallback(self.restartGUI, MessageBox, _("GUI needs a restart to apply a new language\nDo you want to restart the GUI now?"), MessageBox.TYPE_YESNO)
 			else:
 				self.close()
 

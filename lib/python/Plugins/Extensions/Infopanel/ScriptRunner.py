@@ -69,7 +69,7 @@ class ScriptRunner(Screen):
 		else:
 			self.session.open(MessageBox, _("You have no script to run."), MessageBox.TYPE_INFO, timeout=10)
 
-	def Run(self,answer):
+	def Run(self, answer):
 		if answer is True:
 			if not access("/usr/script/" + self.sel, X_OK):
 				chmod("/usr/script/" + self.sel, 0755)

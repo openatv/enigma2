@@ -104,9 +104,9 @@ class WlanStatus(Screen):
 		self.setTitle(_("Wireless network state"))
 
 	def resetList(self):
-		iStatus.getDataForInterface(self.iface,self.getInfoCB)
+		iStatus.getDataForInterface(self.iface, self.getInfoCB)
 
-	def getInfoCB(self,data,status):
+	def getInfoCB(self, data, status):
 		if data is not None:
 			if data is True:
 				if status is not None:
@@ -166,7 +166,7 @@ class WlanStatus(Screen):
 		self["IF"].setText(iNetwork.getFriendlyAdapterName(self.iface))
 		self["Statustext"].setText(_("Link:"))
 
-	def updateStatusLink(self,status):
+	def updateStatusLink(self, status):
 		if status is not None:
 			if status[self.iface]["essid"] == "off" or status[self.iface]["accesspoint"] == "Not-Associated" or status[self.iface]["accesspoint"] == False:
 				self["statuspic"].setPixmapNum(1)

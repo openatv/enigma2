@@ -255,9 +255,9 @@ class PowerTimerEntry(timer.TimerEntry, object):
 			elif self.timerType == TIMERTYPE.STANDBY:
 				if debug:
 					print "self.timerType == TIMERTYPE.STANDBY:"
-				prioPT = [TIMERTYPE.WAKEUP,TIMERTYPE.RESTART,TIMERTYPE.REBOOT,TIMERTYPE.DEEPSTANDBY]
-				prioPTae = [AFTEREVENT.WAKEUP,AFTEREVENT.DEEPSTANDBY]
-				shiftPT,breakPT = self.getPriorityCheck(prioPT,prioPTae)
+				prioPT = [TIMERTYPE.WAKEUP, TIMERTYPE.RESTART, TIMERTYPE.REBOOT, TIMERTYPE.DEEPSTANDBY]
+				prioPTae = [AFTEREVENT.WAKEUP, AFTEREVENT.DEEPSTANDBY]
+				shiftPT, breakPT = self.getPriorityCheck(prioPT, prioPTae)
 				if not Screens.Standby.inStandby and not breakPT: # not already in standby
 					callback = self.sendStandbyNotification
 					message = _("A finished powertimer wants to set your\n%s %s to standby. Do that now?") % (getMachineBrand(), getMachineName())
@@ -333,9 +333,9 @@ class PowerTimerEntry(timer.TimerEntry, object):
 				if debug:
 					print "self.timerType == TIMERTYPE.RESTART:"
 				#check priority
-				prioPT = [TIMERTYPE.RESTART,TIMERTYPE.REBOOT,TIMERTYPE.DEEPSTANDBY]
+				prioPT = [TIMERTYPE.RESTART, TIMERTYPE.REBOOT, TIMERTYPE.DEEPSTANDBY]
 				prioPTae = [AFTEREVENT.DEEPSTANDBY]
-				shiftPT,breakPT = self.getPriorityCheck(prioPT,prioPTae)
+				shiftPT, breakPT = self.getPriorityCheck(prioPT, prioPTae)
 				#a timer with higher priority was shifted - no execution of current timer
 				if RBsave or aeDSsave or DSsave:
 					if debug:
@@ -405,9 +405,9 @@ class PowerTimerEntry(timer.TimerEntry, object):
 				if debug:
 					print "self.timerType == TIMERTYPE.REBOOT:"
 				#check priority
-				prioPT = [TIMERTYPE.REBOOT,TIMERTYPE.DEEPSTANDBY]
+				prioPT = [TIMERTYPE.REBOOT, TIMERTYPE.DEEPSTANDBY]
 				prioPTae = [AFTEREVENT.DEEPSTANDBY]
-				shiftPT,breakPT = self.getPriorityCheck(prioPT,prioPTae)
+				shiftPT, breakPT = self.getPriorityCheck(prioPT, prioPTae)
 				#a timer with higher priority was shifted - no execution of current timer
 				if aeDSsave or DSsave:
 					if debug:
@@ -477,9 +477,9 @@ class PowerTimerEntry(timer.TimerEntry, object):
 				if debug:
 					print "self.timerType == TIMERTYPE.DEEPSTANDBY:"
 				#check priority
-				prioPT = [TIMERTYPE.WAKEUP,TIMERTYPE.WAKEUPTOSTANDBY,TIMERTYPE.DEEPSTANDBY]
-				prioPTae = [AFTEREVENT.WAKEUP,AFTEREVENT.WAKEUPTOSTANDBY,AFTEREVENT.DEEPSTANDBY]
-				shiftPT,breakPT = self.getPriorityCheck(prioPT,prioPTae)
+				prioPT = [TIMERTYPE.WAKEUP, TIMERTYPE.WAKEUPTOSTANDBY, TIMERTYPE.DEEPSTANDBY]
+				prioPTae = [AFTEREVENT.WAKEUP, AFTEREVENT.WAKEUPTOSTANDBY, AFTEREVENT.DEEPSTANDBY]
+				shiftPT, breakPT = self.getPriorityCheck(prioPT, prioPTae)
 				#a timer with higher priority was shifted - no execution of current timer
 				if False:
 					if debug:
@@ -565,9 +565,9 @@ class PowerTimerEntry(timer.TimerEntry, object):
 				if debug:
 					print "self.afterEvent == AFTEREVENT.DEEPSTANDBY:"
 				#check priority
-				prioPT = [TIMERTYPE.WAKEUP,TIMERTYPE.WAKEUPTOSTANDBY,TIMERTYPE.DEEPSTANDBY]
-				prioPTae = [AFTEREVENT.WAKEUP,AFTEREVENT.WAKEUPTOSTANDBY,AFTEREVENT.DEEPSTANDBY]
-				shiftPT,breakPT = self.getPriorityCheck(prioPT,prioPTae)
+				prioPT = [TIMERTYPE.WAKEUP, TIMERTYPE.WAKEUPTOSTANDBY, TIMERTYPE.DEEPSTANDBY]
+				prioPTae = [AFTEREVENT.WAKEUP, AFTEREVENT.WAKEUPTOSTANDBY, AFTEREVENT.DEEPSTANDBY]
+				shiftPT, breakPT = self.getPriorityCheck(prioPT, prioPTae)
 				#a timer with higher priority was shifted - no execution of current timer
 				if DSsave:
 					if debug:
@@ -712,7 +712,7 @@ class PowerTimerEntry(timer.TimerEntry, object):
 				return False
 		return True
 
-	def getPriorityCheck(self,prioPT,prioPTae):
+	def getPriorityCheck(self, prioPT, prioPTae):
 		shiftPT = breakPT = False
 		nextPTlist = NavigationInstance.instance.PowerTimer.getNextPowerManagerTime(getNextTimerTyp=True)
 		for entry in nextPTlist:
@@ -764,13 +764,13 @@ class PowerTimerEntry(timer.TimerEntry, object):
 				count_day = 0
 				wd_timer = datetime.fromtimestamp(self.begin).isoweekday() * -1
 				wd_repeated = bin(128 + self.repeated)
-				for s in range(wd_timer - 1,-8,-1):
+				for s in range(wd_timer - 1, -8, -1):
 					count_day += 1
 					if int(wd_repeated[s]):
 						next_day = s
 						break
 				if next_day == 0:
-					for s in range(-1,wd_timer - 1,-1):
+					for s in range(-1, wd_timer - 1, -1):
 						count_day += 1
 						if int(wd_repeated[s]):
 							next_day = s
@@ -1084,7 +1084,7 @@ class PowerTimer(timer.Timer):
 
 	def getNextPowerManagerTimeOld(self, getNextStbPowerOn=False):
 		now = int(time())
-		nextPTlist = [(-1,None,None,None)]
+		nextPTlist = [(-1, None, None, None)]
 		for timer in self.timer_list:
 			if timer.timerType != TIMERTYPE.AUTOSTANDBY and timer.timerType != TIMERTYPE.AUTODEEPSTANDBY:
 				next_act = timer.getNextWakeup(getNextStbPowerOn)
@@ -1098,13 +1098,13 @@ class PowerTimer(timer.Timer):
 						next_timertype = timer.timerType
 					elif abs(next_act - timer.end) <= 30:
 						next_afterevent = timer.afterEvent
-					nextPTlist = [(next_act,next_timertype,next_afterevent,timer.state)]
+					nextPTlist = [(next_act, next_timertype, next_afterevent, timer.state)]
 				else:
 					if abs(next_act - timer.begin) <= 30:
 						next_timertype = timer.timerType
 					elif abs(next_act - timer.end) <= 30:
 						next_afterevent = timer.afterEvent
-					nextPTlist.append((next_act,next_timertype,next_afterevent,timer.state))
+					nextPTlist.append((next_act, next_timertype, next_afterevent, timer.state))
 		nextPTlist.sort()
 		return nextPTlist
 
@@ -1153,7 +1153,7 @@ class PowerTimer(timer.Timer):
 				if 0 < nextrectime[0][0] < faketime:
 					return nextrectime
 				else:
-					nextrectime.append((faketime,None,None,None))
+					nextrectime.append((faketime, None, None, None))
 					nextrectime.sort()
 					return nextrectime
 			else:
@@ -1175,7 +1175,7 @@ class PowerTimer(timer.Timer):
 
 	def record(self, entry, ignoreTSC=False, dosave=True):		#wird von loadTimer mit dosave=False aufgerufen
 		entry.timeChanged()
-		print "[PowerTimer]",str(entry)
+		print "[PowerTimer]", str(entry)
 		entry.Timer = self
 		self.addTimerEntry(entry)
 		if dosave:
@@ -1183,7 +1183,7 @@ class PowerTimer(timer.Timer):
 		return None
 
 	def removeEntry(self, entry):
-		print "[PowerTimer] Remove",str(entry)
+		print "[PowerTimer] Remove", str(entry)
 
 		# avoid re-enqueuing
 		entry.repeated = False

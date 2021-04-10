@@ -36,7 +36,7 @@ class CIselectMainMenu(Screen):
 		self["key_red"] = StaticText(_("Close"))
 		self["key_green"] = StaticText(_("Edit"))
 
-		self["actions"] = ActionMap(["ColorActions","SetupActions"],
+		self["actions"] = ActionMap(["ColorActions", "SetupActions"],
 			{
 				"green": self.greenPressed,
 				"red": self.close,
@@ -126,7 +126,7 @@ class CIconfigMenu(Screen):
 		self["ServiceList_desc"] = StaticText(_("Assigned services/provider:"))
 		self["ServiceList_info"] = StaticText()
 
-		self["actions"] = ActionMap(["ColorActions","SetupActions"],
+		self["actions"] = ActionMap(["ColorActions", "SetupActions"],
 			{
 				"green": self.greenPressed,
 				"red": self.redPressed,
@@ -142,7 +142,7 @@ class CIconfigMenu(Screen):
 		print eDVBCIInterfaces.getInstance().readCICaIds(self.ci_slot)
 		for caid in eDVBCIInterfaces.getInstance().readCICaIds(self.ci_slot):
 			i += 1
-			self.caidlist.append((str(hex(int(caid))),str(caid),i))
+			self.caidlist.append((str(hex(int(caid))), str(caid), i))
 
 		print "[CI_Wizzard_Config_CI%d] read following CAIds from CI: %s" % (self.ci_slot, self.caidlist)
 
@@ -296,8 +296,8 @@ class CIconfigMenu(Screen):
 				i = 0
 				for caid in slot.findall("caid"):
 					read_caid = caid.get("id").encode("UTF-8")
-					self.selectedcaid.append((str(read_caid),str(read_caid),i))
-					self.usingcaid.append(long(read_caid,16))
+					self.selectedcaid.append((str(read_caid), str(read_caid), i))
+					self.usingcaid.append(long(read_caid, 16))
 					i += 1
 
 				for service in slot.findall("service"):
@@ -308,7 +308,7 @@ class CIconfigMenu(Screen):
 				for provider in slot.findall("provider"):
 					read_provider_name = provider.get("name").encode("UTF-8")
 					read_provider_dvbname = provider.get("dvbnamespace").encode("UTF-8")
-					self.read_providers.append((read_provider_name,read_provider_dvbname))
+					self.read_providers.append((read_provider_name, read_provider_dvbname))
 
 				self.ci_config.append((int(read_slot), (self.read_services, self.read_providers, self.usingcaid)))
 		except:
@@ -320,7 +320,7 @@ class CIconfigMenu(Screen):
 
 		for item in self.read_providers:
 			if len(item):
-				self.finishedProviderSelection(item[0],item[1])
+				self.finishedProviderSelection(item[0], item[1])
 
 		self.finishedCAidSelection(self.selectedcaid)
 		self["ServiceList"].l.setList(self.servicelist)
@@ -345,7 +345,7 @@ class easyCIconfigMenu(CIconfigMenu):
 		CIconfigMenu.__init__(self, session, ci_slot)
 		self.setTitle(_("CI assignment"))
 
-		self["actions"] = ActionMap(["ColorActions","SetupActions"],
+		self["actions"] = ActionMap(["ColorActions", "SetupActions"],
 		{
 			"green": self.greenPressed,
 			"red": self.redPressed,
@@ -373,7 +373,7 @@ class CAidSelect(Screen):
 		self["list"] = self.list
 
 		for listindex in range(len(list)):
-			if find_in_list(selected_caids,list[listindex][0],0):
+			if find_in_list(selected_caids, list[listindex][0], 0):
 				self.list.addSelection(list[listindex][0], list[listindex][1], listindex, True)
 			else:
 				self.list.addSelection(list[listindex][0], list[listindex][1], listindex, False)
@@ -382,7 +382,7 @@ class CAidSelect(Screen):
 		self["key_green"] = StaticText(_("Save"))
 		self["introduction"] = StaticText(_("Press OK to select/deselect a CAId."))
 
-		self["actions"] = ActionMap(["ColorActions","SetupActions"],
+		self["actions"] = ActionMap(["ColorActions", "SetupActions"],
 		{
 			"ok": self.list.toggleSelection, 
 			"cancel": self.cancel, 
@@ -457,7 +457,7 @@ class myProviderSelection(ChannelSelectionBase):
 				self.dvbnamespace = splited_ref[6]
 				self.enterPath(ref)
 			elif (ref.flags & 7) == 7 and 'provider' in ref.toString():
-				menu = [(_("Only provider"), "provider"),(_("All services provider"), "providerlist")]
+				menu = [(_("Only provider"), "provider"), (_("All services provider"), "providerlist")]
 				def addAction(choice):
 					if choice is not None:
 						if choice[1] == "provider":

@@ -332,7 +332,7 @@ class ServicePosition(Poll, Converter, object):
 						else:
 							f /= 60
 							s = r % 3600 / 60
-						return "%2d:%02d" % (f,s)
+						return "%2d:%02d" % (f, s)
 				else:
 					if self.showHours:
 						if self.type == self.TYPE_LENGTH:

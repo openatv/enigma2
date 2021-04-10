@@ -371,7 +371,7 @@ class RecordTimerEntry(timer.TimerEntry, object):
 			self.setRecordingPreferredTuner()
 			try:
 				#not all images support recording type indicators
-				self.record_service = rec_ref and NavigationInstance.instance.recordService(rec_ref,False,pNavigation.isRealRecording)
+				self.record_service = rec_ref and NavigationInstance.instance.recordService(rec_ref, False, pNavigation.isRealRecording)
 			except:
 				self.record_service = rec_ref and NavigationInstance.instance.recordService(rec_ref)
 
@@ -469,7 +469,7 @@ class RecordTimerEntry(timer.TimerEntry, object):
 					self.start_prepare = time() + 5 # tryPrepare in 5 seconds
 					self.log(0, "next try in 5 seconds ...(%d/3)" % self.MountPathRetryCounter)
 					return False
-				message = _("Write error at start of recording. %s\n%s") % ((_("Disk was not found!"), _("Disk is not writable!"), _("Disk full?"))[self.MountPathErrorNumber - 1],self.name)
+				message = _("Write error at start of recording. %s\n%s") % ((_("Disk was not found!"), _("Disk is not writable!"), _("Disk full?"))[self.MountPathErrorNumber - 1], self.name)
 				messageboxtyp = MessageBox.TYPE_ERROR
 				timeout = 20
 				id = "DiskFullMessage"
@@ -568,7 +568,7 @@ class RecordTimerEntry(timer.TimerEntry, object):
 				# (1) try to make a tuner available by aborting pseudo recordings
 				self.first_try_prepare += 1
 				self.backoff = 0
-				if len(NavigationInstance.instance.getRecordings(False,pNavigation.isPseudoRecording)) > 0:
+				if len(NavigationInstance.instance.getRecordings(False, pNavigation.isPseudoRecording)) > 0:
 					if config.recording.ask_to_abort_pseudo_rec.value == "ask":
 						self.log(8, "asking user to abort pseudo recordings")
 						self.messageBoxAnswerPending = True
@@ -593,7 +593,7 @@ class RecordTimerEntry(timer.TimerEntry, object):
 				# (2) try to make a tuner available by aborting streaming
 				self.first_try_prepare += 1
 				self.backoff = 0
-				if len(NavigationInstance.instance.getRecordings(False,pNavigation.isStreaming)) > 0:
+				if len(NavigationInstance.instance.getRecordings(False, pNavigation.isStreaming)) > 0:
 					if config.recording.ask_to_abort_streaming.value == "ask":
 						self.log(8, "asking user to abort streaming")
 						self.messageBoxAnswerPending = True
@@ -899,13 +899,13 @@ class RecordTimerEntry(timer.TimerEntry, object):
 				wd_timer = datetime.fromtimestamp(self.begin).isoweekday() * -1
 				wd_repeated = bin(128 + int(self.repeated))
 
-				for s in range(wd_timer - 1,-8,-1):
+				for s in range(wd_timer - 1, -8, -1):
 					count_day += 1
 					if int(wd_repeated[s]):
 						next_day = s
 						break
 				if next_day == 0:
-					for s in range(-1,wd_timer - 1,-1):
+					for s in range(-1, wd_timer - 1, -1):
 						count_day += 1
 						if int(wd_repeated[s]):
 							next_day = s
@@ -955,7 +955,7 @@ class RecordTimerEntry(timer.TimerEntry, object):
 	def failureCB_pseudo_rec(self, answer):
 		if answer:
 			self.log(13, "ok, abort pseudo recordings")
-			for rec in NavigationInstance.instance.getRecordings(False,pNavigation.isPseudoRecording):
+			for rec in NavigationInstance.instance.getRecordings(False, pNavigation.isPseudoRecording):
 				NavigationInstance.instance.stopRecordService(rec)
 				self.messageString += _("Aborted a pseudo recording.\n")
 			if config.recording.ask_to_abort_pseudo_rec.value in ("ask", "abort_msg"):
@@ -968,7 +968,7 @@ class RecordTimerEntry(timer.TimerEntry, object):
 	def failureCB_streaming(self, answer):
 		if answer:
 			self.log(13, "ok, abort streaming")
-			for rec in NavigationInstance.instance.getRecordings(False,pNavigation.isStreaming):
+			for rec in NavigationInstance.instance.getRecordings(False, pNavigation.isStreaming):
 				NavigationInstance.instance.stopRecordService(rec)
 				self.messageString += _("Aborted a streaming service.\n")
 			if config.recording.ask_to_abort_streaming.value in ("ask", "abort_msg"):
@@ -1447,7 +1447,7 @@ class RecordTimer(timer.Timer):
 
 	def record(self, entry, ignoreTSC=False, dosave=True): # is called by loadTimer with argument dosave=False
 		entry.check_justplay()
-		timersanitycheck = TimerSanityCheck(self.timer_list,entry)
+		timersanitycheck = TimerSanityCheck(self.timer_list, entry)
 		if not timersanitycheck.check():
 			if not ignoreTSC:
 				print "timer conflict detected!"
@@ -1608,7 +1608,7 @@ class RecordTimer(timer.Timer):
 						returnValue = (time_match, type, isAutoTimer, x)
 					else:
 						returnValue = (time_match, type, isAutoTimer)
-					if type in (2,7,12): # when full recording do not look further
+					if type in (2, 7, 12): # when full recording do not look further
 						break
 		return returnValue
 

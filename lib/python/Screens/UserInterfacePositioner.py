@@ -77,7 +77,7 @@ def InitOsd():
 	def set3DMode(configElement):
 		if SystemInfo["CanChange3DOsd"]:
 			value = configElement.value
-			print 'Setting 3D mode:',value
+			print 'Setting 3D mode:', value
 			try:
 				if SystemInfo["CanUse3DModeChoices"]:
 					f = open("/proc/stb/fb/3dmode_choices", "r")
@@ -99,7 +99,7 @@ def InitOsd():
 
 	def set3DZnorm(configElement):
 		if SystemInfo["CanChange3DOsd"]:
-			print 'Setting 3D depth:',configElement.value
+			print 'Setting 3D depth:', configElement.value
 			try:
 				f = open("/proc/stb/fb/znorm", "w")
 				f.write('%d' % int(configElement.value))

@@ -19,7 +19,7 @@ from Components.Network import iNetwork
 from Tools.StbHardware import getFPVersion
 from Tools.Multiboot import GetCurrentImage, GetCurrentImageMode
 
-from os import path,popen
+from os import path, popen
 from re import search
 
 import time
@@ -65,7 +65,7 @@ def MyDateConverter(StringDate):
 			day = StringDate[6:8]
 			StringDate = ' '.join((year, month, day))
 		else:
-			StringDate = StringDate.replace("-"," ")
+			StringDate = StringDate.replace("-", " ")
 		StringDate = time.strftime(config.usage.date.full.value, time.strptime(StringDate, "%Y %m %d"))
 		return StringDate
 	except:
@@ -148,7 +148,7 @@ def getAboutText():
 		f.close()
 	if tempinfo and int(tempinfo.replace('\n', '')) > 0:
 		mark = str('\xc2\xb0')
-		AboutText += _("System temperature:\t%s") % tempinfo.replace('\n', '').replace(' ','') + mark + "C\n"
+		AboutText += _("System temperature:\t%s") % tempinfo.replace('\n', '').replace(' ', '') + mark + "C\n"
 
 	tempinfo = ""
 	if path.exists('/proc/stb/fp/temp_sensor_avs'):
@@ -175,13 +175,13 @@ def getAboutText():
 					temp = line[1].split("=")
 					temp = line[1].split(" ")
 					tempinfo = temp[2]
-					if getMachineBuild() in ('u41','u42','u43','u45'):
+					if getMachineBuild() in ('u41', 'u42', 'u43', 'u45'):
 						tempinfo = str(int(tempinfo) - 15)
 		except:
 			tempinfo = ""
 	if tempinfo and int(tempinfo.replace('\n', '')) > 0:
 		mark = str('\xc2\xb0')
-		AboutText += _("Processor temperature:\t%s") % tempinfo.replace('\n', '').replace(' ','') + mark + "C\n"
+		AboutText += _("Processor temperature:\t%s") % tempinfo.replace('\n', '').replace(' ', '') + mark + "C\n"
 	AboutLcdText = AboutText.replace('\t', ' ')
 
 	return AboutText, AboutLcdText
@@ -190,7 +190,7 @@ class About(Screen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
 		Screen.setTitle(self, _("Image Information"))
-		self.skinName = ["AboutOE","About"]
+		self.skinName = ["AboutOE", "About"]
 		self.populate()
 
 		self["key_red"] = Button(_("Exit"))
@@ -264,7 +264,7 @@ class About(Screen):
 			hddlist = harddiskmanager.HDDList()
 			hdd = hddlist and hddlist[0][1] or None
 			if hdd is not None and hdd.model() != "":
-				self["hddA"] = StaticText(_("%s\n(%s, %d MB free)") % (hdd.model(), hdd.capacity(),hdd.free()))
+				self["hddA"] = StaticText(_("%s\n(%s, %d MB free)") % (hdd.model(), hdd.capacity(), hdd.free()))
 			else:
 				self["hddA"] = StaticText(_("none"))
 
@@ -342,7 +342,7 @@ class About(Screen):
 				id = f.read()[:-1].split('=')
 				f.close()
 				from Screens.MessageBox import MessageBox
-				self.session.open(MessageBox,id[1], type=MessageBox.TYPE_INFO)
+				self.session.open(MessageBox, id[1], type=MessageBox.TYPE_INFO)
 			except:
 				pass
 
@@ -635,17 +635,17 @@ class SystemNetworkInfo(Screen):
 	def createscreen(self):
 		def netspeed():
 			netspeed = ""
-			for line in popen('ethtool eth0 |grep Speed','r'):
+			for line in popen('ethtool eth0 |grep Speed', 'r'):
 				line = line.strip().split(":")
-				line = line[1].replace(' ','')
+				line = line[1].replace(' ', '')
 				netspeed += line
 				return str(netspeed)
 
 		def netspeed_eth1():
 			netspeed = ""
-			for line in popen('ethtool eth1 |grep Speed','r'):
+			for line in popen('ethtool eth1 |grep Speed', 'r'):
 				line = line.strip().split(":")
-				line = line[1].replace(' ','')
+				line = line[1].replace(' ', '')
 				netspeed += line
 				return str(netspeed)
 
@@ -861,7 +861,7 @@ class ViewGitLog(Screen):
 			"right": self.pageDown,
 			"down": self.pageDown,
 			"up": self.pageUp
-		},-1)
+		}, -1)
 		self.onLayoutFinish.append(self.getlog)
 
 	def changelogtype(self):

@@ -47,7 +47,7 @@ class PU_History(Screen):
         self["History"] = ScrollLabel()
 
 
-        self["Actions"] = ActionMap(['OkCancelActions', 'ShortcutActions',"ColorActions","DirectionActions"],
+        self["Actions"] = ActionMap(['OkCancelActions', 'ShortcutActions', "ColorActions", "DirectionActions"],
             {
             "red": self.keyOk,
             "cancel": self.keyOk,

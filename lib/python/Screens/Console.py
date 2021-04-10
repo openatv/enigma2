@@ -133,7 +133,7 @@ class Console(Screen):
 	def saveOutputText(self):
 		from time import time, localtime
 		lt = localtime(time())
-		self.output_file = '/tmp/%02d%02d%02d_console.txt' % (lt[3],lt[4],lt[5])
+		self.output_file = '/tmp/%02d%02d%02d_console.txt' % (lt[3], lt[4], lt[5])
 		self.session.openWithCallback(self.saveOutputTextCB, MessageBox, _("Save the commands and the output to a file?\n('%s')") % self.output_file, type=MessageBox.TYPE_YESNO, default=True)
 
 	def formatCmdList(self, source):

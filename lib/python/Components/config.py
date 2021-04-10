@@ -147,7 +147,7 @@ class ConfigElement(object):
 		#     the entry could just be new.)
 		if initial_call:
 			if extra_args:
-				notifier(self,extra_args)
+				notifier(self, extra_args)
 			else:
 				notifier(self)
 
@@ -398,8 +398,8 @@ class ConfigSelection(ConfigElement):
 		from skin import switchPixmap
 		if self._descr is None:
 			self._descr = self.description[self.value]
-		keywords_true = (_('True'),_('Yes'),_('Enabled'),_('On'))
-		keywords_false = (_('False'),_('No'),_("Disable"),_('Disabled'),_('Off'), _("None"))
+		keywords_true = (_('True'), _('Yes'), _('Enabled'), _('On'))
+		keywords_false = (_('False'), _('No'), _("Disable"), _('Disabled'), _('Off'), _("None"))
 		if self._descr in (keywords_true + keywords_false) and self.graphic and config.usage.boolean_graphic.value and switchPixmap.get("menu_on", False) and switchPixmap.get("menu_off", False):
 			return ('pixmap', self._descr in keywords_true and switchPixmap["menu_on"] or switchPixmap["menu_off"])
 		return ("text", self._descr)
@@ -688,7 +688,7 @@ class ConfigSequence(ConfigElement):
 			self.changedFinal()
 			self.last_value = copy_copy(self._value)
 
-ip_limits = [(0,255),(0,255),(0,255),(0,255)]
+ip_limits = [(0, 255), (0, 255), (0, 255), (0, 255)]
 class ConfigIP(ConfigSequence):
 	def __init__(self, default, auto_jump=False):
 		ConfigSequence.__init__(self, seperator=".", limits=ip_limits, default=default)
@@ -769,7 +769,7 @@ class ConfigIP(ConfigSequence):
 		# we definitely don't want leading zeros
 		return '.'.join(["%d" % d for d in self.value])
 
-mac_limits = [(1,255),(1,255),(1,255),(1,255),(1,255),(1,255)]
+mac_limits = [(1, 255), (1, 255), (1, 255), (1, 255), (1, 255), (1, 255)]
 class ConfigMAC(ConfigSequence):
 	def __init__(self, default):
 		ConfigSequence.__init__(self, seperator=":", limits=mac_limits, default=default)
@@ -912,7 +912,7 @@ class ConfigMacText(ConfigElement, NumericalTextInput):
 
 class ConfigPosition(ConfigSequence):
 	def __init__(self, default, args):
-		ConfigSequence.__init__(self, seperator=",", limits=[(0,args[0]),(0,args[1]),(0,args[2]),(0,args[3])], default=default)
+		ConfigSequence.__init__(self, seperator=",", limits=[(0, args[0]), (0, args[1]), (0, args[2]), (0, args[3])], default=default)
 
 clock_limits = [(0, 23), (0, 59)]
 class ConfigClock(ConfigSequence):
@@ -1820,9 +1820,9 @@ class ConfigLocations(ConfigElement):
 					off = 0
 				else:
 					off = min(ind1 + 1 - self.visible_width / 2, len(valstr) - self.visible_width)
-				return "mtext", valstr[off:off + self.visible_width], range(ind1 - off,ind2 - off)
+				return "mtext", valstr[off:off + self.visible_width], range(ind1 - off, ind2 - off)
 			else:
-				return "mtext", valstr, range(ind1,ind2)
+				return "mtext", valstr, range(ind1, ind2)
 
 	def onDeselect(self, session):
 		self.pos = -1
@@ -1830,7 +1830,7 @@ class ConfigLocations(ConfigElement):
 # nothing.
 class ConfigNothing(ConfigSelection):
 	def __init__(self):
-		ConfigSelection.__init__(self, choices=[("","")])
+		ConfigSelection.__init__(self, choices=[("", "")])
 
 # until here, 'saved_value' always had to be a *string*.
 # now, in ConfigSubsection, and only there, saved_value
@@ -2173,7 +2173,7 @@ def updateConfigElement(element, newelement):
 #config.save()
 #print config.pickle()
 
-cec_limits = [(0,15),(0,15),(0,15),(0,15)]
+cec_limits = [(0, 15), (0, 15), (0, 15), (0, 15)]
 class ConfigCECAddress(ConfigSequence):
 	def __init__(self, default, auto_jump=False):
 		ConfigSequence.__init__(self, seperator=".", limits=cec_limits, default=default)

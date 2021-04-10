@@ -26,8 +26,8 @@ class InputDeviceSelection(Screen, HelpableScreen):
 		self["key_blue"] = StaticText("")
 		self["introduction"] = StaticText(self.edittext)
 
-		self.devices = [(iInputDevices.getDeviceName(x),x) for x in iInputDevices.getDeviceList()]
-		print "[InputDeviceSelection] found devices :->", len(self.devices),self.devices
+		self.devices = [(iInputDevices.getDeviceName(x), x) for x in iInputDevices.getDeviceList()]
+		print "[InputDeviceSelection] found devices :->", len(self.devices), self.devices
 
 		self["OkCancelActions"] = HelpableActionMap(self, "OkCancelActions",
 			{
@@ -93,7 +93,7 @@ class InputDeviceSelection(Screen, HelpableScreen):
 
 		for x in self.devices:
 			dev_type = iInputDevices.getDeviceAttribute(x[1], 'type')
-			self.list.append(self.buildInterfaceList(x[1],_(x[0]), dev_type))
+			self.list.append(self.buildInterfaceList(x[1], _(x[0]), dev_type))
 
 		self["list"].setList(self.list)
 		self["list"].setIndex(self.currentIndex)
@@ -142,7 +142,7 @@ class InputDeviceSetup(Screen, ConfigListScreen):
 		self["introduction"] = StaticText()
 
 		# for generating strings into .po only
-		devicenames = [_("%s %s front panel") % (getMachineBrand(), getMachineName()),_("%s %s front panel") % (getMachineBrand(), getMachineName()),_("%s %s remote control (native)") % (getMachineBrand(), getMachineName()),_("%s %s advanced remote control (native)") % (getMachineBrand(), getMachineName()),_("%s %s ir keyboard") % (getMachineBrand(), getMachineName()),_("%s %s ir mouse") % (getMachineBrand(), getMachineName())]
+		devicenames = [_("%s %s front panel") % (getMachineBrand(), getMachineName()), _("%s %s front panel") % (getMachineBrand(), getMachineName()), _("%s %s remote control (native)") % (getMachineBrand(), getMachineName()), _("%s %s advanced remote control (native)") % (getMachineBrand(), getMachineName()), _("%s %s ir keyboard") % (getMachineBrand(), getMachineName()), _("%s %s ir mouse") % (getMachineBrand(), getMachineName())]
 
 		self.createSetup()
 		self.onLayoutFinish.append(self.layoutFinished)
@@ -257,7 +257,7 @@ class InputDeviceSetup(Screen, ConfigListScreen):
 
 
 class RemoteControlType(Screen, ConfigListScreen):
-	if getBrandOEM() in ('broadmedia','octagon','odin','protek','ultramini') or getBoxType() in ('et7000','et7100','et7200','et7500','et7x00','et8500','et1x000','et13000'):
+	if getBrandOEM() in ('broadmedia', 'octagon', 'odin', 'protek', 'ultramini') or getBoxType() in ('et7000', 'et7100', 'et7200', 'et7500', 'et7x00', 'et8500', 'et1x000', 'et13000'):
 		rcList = [
 				("0", _("Default")),
 				("3", _("MaraM9")),
@@ -291,34 +291,34 @@ class RemoteControlType(Screen, ConfigListScreen):
 				("et5000", 7),
 				("et6000", 7),
 				("et6500", 11),
-				("et7x00",16),
-				("et7100",16),
-				("et7000",16),
-				("et7500",16),
-				("et7000mini",16),
+				("et7x00", 16),
+				("et7100", 16),
+				("et7000", 16),
+				("et7500", 16),
+				("et7000mini", 16),
 				("et8000", 9),
 				("et13000", 9),
-				("et8500",16),
+				("et8500", 16),
 				("et9000", 5),
 				("et9100", 5),
 				("et9200", 11),
 				("et9500", 11),
 				("et10000", 9),
-				("formuler1",18),
-				("formuler3",18),
-				("formuler4",18),
-				("formuler4turbo",18),
-				("hd11",16),
-				("hd51",16),
-				("hd1100",16),
-				("hd1200",16),
-				("hd1265",16),
-				("hd500c",16),
-				("hd530c",16),
-				("vs1000",16),
-				("vs1500",16),
-				("hd2400",19),
-				("triplex",18),
+				("formuler1", 18),
+				("formuler3", 18),
+				("formuler4", 18),
+				("formuler4turbo", 18),
+				("hd11", 16),
+				("hd51", 16),
+				("hd1100", 16),
+				("hd1200", 16),
+				("hd1265", 16),
+				("hd500c", 16),
+				("hd530c", 16),
+				("vs1000", 16),
+				("vs1500", 16),
+				("hd2400", 19),
+				("triplex", 18),
 				("xp1000", 14),
 				("xp3000", 17),
 				("sh1", 20),
@@ -379,21 +379,21 @@ class RemoteControlType(Screen, ConfigListScreen):
 				("et9200", 11),
 				("et9500", 11),
 				("et10000", 9),
-				("formuler1",18),
-				("formuler3",18),
-				("formuler4",18),
-				("formuler4turbo",18),
-				("hd11",16),
-				("hd51",16),
-				("hd1100",16),
-				("hd1200",16),
-				("hd1265",16),
-				("hd500c",16),
-				("hd530c",16),
-				("vs1000",16),
-				("vs1500",16),
-				("hd2400",19),
-				("triplex",18),
+				("formuler1", 18),
+				("formuler3", 18),
+				("formuler4", 18),
+				("formuler4turbo", 18),
+				("hd11", 16),
+				("hd51", 16),
+				("hd1100", 16),
+				("hd1200", 16),
+				("hd1265", 16),
+				("hd500c", 16),
+				("hd530c", 16),
+				("vs1000", 16),
+				("vs1500", 16),
+				("hd2400", 19),
+				("triplex", 18),
 				("xp1000", 14),
 				("xp3000", 17),
 				("sh1", 20),

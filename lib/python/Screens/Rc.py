@@ -21,8 +21,8 @@ class Rc:
 		self.rcheighthalf = 250
 
 		self.selectpics = []
-		self.selectpics.append((self.rcheighthalf, ["arrowdown", "arrowdown2"], (-18,-70)))
-		self.selectpics.append((self.rcheight, ["arrowup", "arrowup2"], (-18,0)))
+		self.selectpics.append((self.rcheighthalf, ["arrowdown", "arrowdown2"], (-18, -70)))
+		self.selectpics.append((self.rcheight, ["arrowup", "arrowup2"], (-18, 0)))
 
 		self.readPositions()
 		self.clearSelectedKeys()

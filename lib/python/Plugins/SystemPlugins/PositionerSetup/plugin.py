@@ -303,7 +303,7 @@ class PositionerSetup(Screen):
 		self.positioner_storage = ConfigInteger(default=rotorposition, limits=(1, self.rotorPositions))
 		self.allocatedIndices = []
 		m = PositionerSetup.satposition2metric(orb_pos)
-		self.orbitalposition = ConfigFloat(default=[int(m[0] / 10), m[0] % 10], limits=[(0,180),(0,9)])
+		self.orbitalposition = ConfigFloat(default=[int(m[0] / 10), m[0] % 10], limits=[(0, 180), (0, 9)])
 		self.orientation = ConfigSelection([("east", _("East")), ("west", _("West"))], m[1])
 
 	def createSetup(self):
@@ -1112,7 +1112,7 @@ class TunerScreen(ConfigListScreen, Screen):
 			"modulation": eDVBFrontendParametersSatellite.Modulation_QPSK,
 			"pls_mode": eDVBFrontendParametersSatellite.PLS_Gold,
 			"pls_code": eDVBFrontendParametersSatellite.PLS_Default_Gold_Code,
-			"t2mi_plp_id":eDVBFrontendParametersSatellite.No_T2MI_PLP_Id}
+			"t2mi_plp_id": eDVBFrontendParametersSatellite.No_T2MI_PLP_Id}
 		if frontendData is not None:
 			ttype = frontendData.get("tuner_type", "UNKNOWN")
 			defaultSat["system"] = frontendData.get("system", eDVBFrontendParametersSatellite.System_DVB_S)
@@ -1181,7 +1181,7 @@ class TunerScreen(ConfigListScreen, Screen):
 			(eDVBFrontendParametersSatellite.Pilot_Off, _("Off")),
 			(eDVBFrontendParametersSatellite.Pilot_On, _("On")),
 			(eDVBFrontendParametersSatellite.Pilot_Unknown, _("Auto"))])
-		self.scan_sat.is_id = ConfigInteger(default=defaultSat.get("is_id",0), limits=(0, 255))
+		self.scan_sat.is_id = ConfigInteger(default=defaultSat.get("is_id", 0), limits=(0, 255))
 		self.scan_sat.pls_mode = ConfigSelection(default=defaultSat["pls_mode"], choices=[
 			(eDVBFrontendParametersSatellite.PLS_Root, _("Root")),
 			(eDVBFrontendParametersSatellite.PLS_Gold, _("Gold")),

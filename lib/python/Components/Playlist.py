@@ -81,7 +81,7 @@ class PlaylistIOM3U(PlaylistIO):
 			if entry == "":
 				break
 			if entry.startswith("#EXTINF:"):
-				extinf = entry.split(',',1)
+				extinf = entry.split(',', 1)
 				if len(extinf) > 1:
 					self.displayname = extinf[1]
 				# TODO: use e2 facilities to create a service ref from file

@@ -29,7 +29,7 @@ class VideoEnhancement:
 				if not VideoEnhancement.firstRun:
 					self.setConfiguredValues()
 
-			config.pep.contrast = ConfigSlider(default=128, limits=(0,255))
+			config.pep.contrast = ConfigSlider(default=128, limits=(0, 255))
 			config.pep.contrast.addNotifier(setContrast)
 		else:
 			config.pep.contrast = NoSave(ConfigNothing())
@@ -48,7 +48,7 @@ class VideoEnhancement:
 				if not VideoEnhancement.firstRun:
 					self.setConfiguredValues()
 
-			config.pep.saturation = ConfigSlider(default=128, limits=(0,255))
+			config.pep.saturation = ConfigSlider(default=128, limits=(0, 255))
 			config.pep.saturation.addNotifier(setSaturation)
 		else:
 			config.pep.saturation = NoSave(ConfigNothing())
@@ -67,7 +67,7 @@ class VideoEnhancement:
 				if not VideoEnhancement.firstRun:
 					self.setConfiguredValues()
 
-			config.pep.hue = ConfigSlider(default=128, limits=(0,255))
+			config.pep.hue = ConfigSlider(default=128, limits=(0, 255))
 			config.pep.hue.addNotifier(setHue)
 		else:
 			config.pep.hue = NoSave(ConfigNothing())
@@ -85,7 +85,7 @@ class VideoEnhancement:
 
 				if not VideoEnhancement.firstRun:
 					self.setConfiguredValues()
-			config.pep.brightness = ConfigSlider(default=128, limits=(0,255))
+			config.pep.brightness = ConfigSlider(default=128, limits=(0, 255))
 			config.pep.brightness.addNotifier(setBrightness)
 		else:
 			config.pep.brightness = NoSave(ConfigNothing())
@@ -104,7 +104,7 @@ class VideoEnhancement:
 				if not VideoEnhancement.firstRun:
 					self.setConfiguredValues()
 
-			config.pep.block_noise_reduction = ConfigSlider(default=0, limits=(0,5))
+			config.pep.block_noise_reduction = ConfigSlider(default=0, limits=(0, 5))
 			config.pep.block_noise_reduction.addNotifier(setBlock_noise_reduction)
 		else:
 			config.pep.block_noise_reduction = NoSave(ConfigNothing())
@@ -123,7 +123,7 @@ class VideoEnhancement:
 				if not VideoEnhancement.firstRun:
 					self.setConfiguredValues()
 
-			config.pep.mosquito_noise_reduction = ConfigSlider(default=0, limits=(0,5))
+			config.pep.mosquito_noise_reduction = ConfigSlider(default=0, limits=(0, 5))
 			config.pep.mosquito_noise_reduction.addNotifier(setMosquito_noise_reduction)
 		else:
 			config.pep.mosquito_noise_reduction = NoSave(ConfigNothing())
@@ -142,7 +142,7 @@ class VideoEnhancement:
 				if not VideoEnhancement.firstRun:
 					self.setConfiguredValues()
 
-			config.pep.digital_contour_removal = ConfigSlider(default=0, limits=(0,5))
+			config.pep.digital_contour_removal = ConfigSlider(default=0, limits=(0, 5))
 			config.pep.digital_contour_removal.addNotifier(setDigital_contour_removal)
 		else:
 			config.pep.digital_contour_removal = NoSave(ConfigNothing())
@@ -150,7 +150,7 @@ class VideoEnhancement:
 		if os_path.exists("/proc/stb/vmpeg/0/pep_split"):
 			def setSplitMode(config):
 				try:
-					print "--> setting splitmode to:",str(config.value)
+					print "--> setting splitmode to:", str(config.value)
 					f = open("/proc/stb/vmpeg/0/pep_split", "w")
 					f.write(str(config.value))
 					f.close()
@@ -184,9 +184,9 @@ class VideoEnhancement:
 					self.setConfiguredValues()
 
 			if getBoxType() in ('gbquad', 'gbquadplus'):
-				config.pep.sharpness = ConfigSlider(default=256, limits=(0,256))
+				config.pep.sharpness = ConfigSlider(default=256, limits=(0, 256))
 			else:
-				config.pep.sharpness = ConfigSlider(default=0, limits=(0,256))
+				config.pep.sharpness = ConfigSlider(default=0, limits=(0, 256))
 			config.pep.sharpness.addNotifier(setSharpness)
 		else:
 			config.pep.sharpness = NoSave(ConfigNothing())
@@ -205,7 +205,7 @@ class VideoEnhancement:
 				if not VideoEnhancement.firstRun:
 					self.setConfiguredValues()
 
-			config.pep.auto_flesh = ConfigSlider(default=0, limits=(0,4))
+			config.pep.auto_flesh = ConfigSlider(default=0, limits=(0, 4))
 			config.pep.auto_flesh.addNotifier(setAutoflesh)
 		else:
 			config.pep.auto_flesh = NoSave(ConfigNothing())
@@ -224,7 +224,7 @@ class VideoEnhancement:
 				if not VideoEnhancement.firstRun:
 					self.setConfiguredValues()
 
-			config.pep.green_boost = ConfigSlider(default=0, limits=(0,4))
+			config.pep.green_boost = ConfigSlider(default=0, limits=(0, 4))
 			config.pep.green_boost.addNotifier(setGreenboost)
 		else:
 			config.pep.green_boost = NoSave(ConfigNothing())
@@ -243,7 +243,7 @@ class VideoEnhancement:
 				if not VideoEnhancement.firstRun:
 					self.setConfiguredValues()
 
-			config.pep.blue_boost = ConfigSlider(default=0, limits=(0,4))
+			config.pep.blue_boost = ConfigSlider(default=0, limits=(0, 4))
 			config.pep.blue_boost.addNotifier(setBlueboost)
 		else:
 			config.pep.blue_boost = NoSave(ConfigNothing())
@@ -263,9 +263,9 @@ class VideoEnhancement:
 					self.setConfiguredValues()
 
 			if getBoxType() in ('gbquad', 'gbquadplus'):
-				config.pep.dynamic_contrast = ConfigSlider(default=3, limits=(0,255))
+				config.pep.dynamic_contrast = ConfigSlider(default=3, limits=(0, 255))
 			else:
-				config.pep.dynamic_contrast = ConfigSlider(default=0, limits=(0,255))
+				config.pep.dynamic_contrast = ConfigSlider(default=0, limits=(0, 255))
 			config.pep.dynamic_contrast.addNotifier(setDynamic_contrast)
 		else:
 			config.pep.dynamic_contrast = NoSave(ConfigNothing())
@@ -287,7 +287,7 @@ class VideoEnhancement:
 					if not VideoEnhancement.firstRun:
 						self.setConfiguredValues()
 
-				config.av.scaler_sharpness = ConfigSlider(default=13, limits=(0,26))
+				config.av.scaler_sharpness = ConfigSlider(default=13, limits=(0, 26))
 				config.av.scaler_sharpness.addNotifier(setScaler_sharpness)
 			else:
 				config.av.scaler_sharpness = NoSave(ConfigNothing())

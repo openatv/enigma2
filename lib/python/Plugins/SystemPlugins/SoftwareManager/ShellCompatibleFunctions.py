@@ -150,7 +150,7 @@ def restoreUserDB():
 
 			# Re-create the user if the group still exists or was successfully re-created ...
 			if groupsuccess:
-				cmd = ["/bin/busybox", "adduser", "-H", "-D","-G",oldgname]
+				cmd = ["/bin/busybox", "adduser", "-H", "-D", "-G", oldgname]
 				if oldhome != "":
 					cmd.append("-h" + oldhome)
 				if oldgecos != "":
@@ -191,7 +191,7 @@ def listpkg(type="installed"):
 	ret = []
 	for line in open(INSTALLEDPACKAGES, 'r'):
 		if line.startswith('Package:'):
-			package = line.split(":",1)[1].strip()
+			package = line.split(":", 1)[1].strip()
 			version = ''
 			status = ''
 			autoinstalled = False
@@ -199,9 +199,9 @@ def listpkg(type="installed"):
 		if package is None:
 			continue
 		if line.startswith('Version:'):
-			version = line.split(":",1)[1].strip()
+			version = line.split(":", 1)[1].strip()
 		if line.startswith('Auto-Installed:'):
-			auto = line.split(":",1)[1].strip()
+			auto = line.split(":", 1)[1].strip()
 			if auto == "yes":
 				autoinstalled = True
 		elif len(line) <= 1:

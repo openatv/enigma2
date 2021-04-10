@@ -27,7 +27,7 @@ def InitParentalControl():
 	config.ParentalControl.retries.servicepin.time = ConfigInteger(default=3)
 	config.ParentalControl.servicepin = ConfigSubList()
 	config.ParentalControl.servicepin.append(ConfigPIN(default=0))
-	config.ParentalControl.age = ConfigSelection(default="18", choices=[("0", _("No age block"))] + list((str(x), "%d+" % x) for x in range(3,19)))
+	config.ParentalControl.age = ConfigSelection(default="18", choices=[("0", _("No age block"))] + list((str(x), "%d+" % x) for x in range(3, 19)))
 	config.ParentalControl.hideBlacklist = ConfigYesNo(default=False)
 	config.ParentalControl.config_sections = ConfigSubsection()
 	config.ParentalControl.config_sections.main_menu = ConfigYesNo(default=False)
@@ -69,7 +69,7 @@ class ParentalControl:
 		#That way all other functions do not need to distinguish between service and bouquet.
 		if "FROM BOUQUET" in service:
 			method(service, TYPE_BOUQUET, *args)
-			servicelist = self.readServicesFromBouquet(service,"C")
+			servicelist = self.readServicesFromBouquet(service, "C")
 			for ref in servicelist:
 				sRef = str(ref[0])
 				method(sRef, TYPE_BOUQUETSERVICE, *args)
@@ -184,11 +184,11 @@ class ParentalControl:
 				else:
 					AddPopup(messageText, MessageBox.TYPE_ERROR, timeout=3)
 
-	def saveListToFile(self,sWhichList,vList):
+	def saveListToFile(self, sWhichList, vList):
 		#Replaces saveWhiteList and saveBlackList:
 		#I don't like to have two functions with identical code...
 		file = open(resolveFilename(SCOPE_CONFIG, sWhichList), 'w')
-		for sService,sType in vList.iteritems():
+		for sService, sType in vList.iteritems():
 			#Only Services that are selected directly and Bouqets are saved.
 			#Services that are added by a bouquet are not saved.
 			#This is the reason for the change in self.whitelist and self.blacklist
@@ -196,7 +196,7 @@ class ParentalControl:
 				file.write(str(sService) + "\n")
 		file.close()
 
-	def openListFromFile(self,sWhichList):
+	def openListFromFile(self, sWhichList):
 		#Replaces openWhiteList and openBlackList:
 		#I don't like to have two functions with identical code...
 		result = {}
@@ -228,7 +228,7 @@ class ParentalControl:
 			if not vList[service]:
 				del vList[service]
 
-	def readServicesFromBouquet(self,sBouquetSelection,formatstring):
+	def readServicesFromBouquet(self, sBouquetSelection, formatstring):
 		#This method gives back a list of services for a given bouquet
 		from enigma import eServiceCenter, eServiceReference
 

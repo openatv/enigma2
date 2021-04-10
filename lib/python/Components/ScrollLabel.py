@@ -38,20 +38,20 @@ class ScrollLabel(HTMLComponent, GUIComponent):
 					self.scrollbarmode = value
 					remove_attribs.append((attrib, value))
 				if "borderColor" in attrib or "borderWidth" in attrib:
-					scrollbar_attribs.append((attrib,value))
+					scrollbar_attribs.append((attrib, value))
 				if "transparent" in attrib or "backgroundColor" in attrib:
-					widget_attribs.append((attrib,value))
+					widget_attribs.append((attrib, value))
 				if "scrollbarSliderForegroundColor" in attrib:
-					scrollbar_attribs.append((attrib,value))
+					scrollbar_attribs.append((attrib, value))
 					remove_attribs.append((attrib, value))
 				if "scrollbarSliderBorderColor" in attrib:
-					scrollbar_attribs.append((attrib,value))
+					scrollbar_attribs.append((attrib, value))
 					remove_attribs.append((attrib, value))
 				if "scrollbarSliderPicture" in attrib:
-					scrollbar_attribs.append((attrib,value))
+					scrollbar_attribs.append((attrib, value))
 					remove_attribs.append((attrib, value))
 				if "scrollbarBackgroundPicture" in attrib:
-					scrollbar_attribs.append((attrib,value))
+					scrollbar_attribs.append((attrib, value))
 					remove_attribs.append((attrib, value))
 				if "scrollbarWidth" in attrib:
 					scrollbarWidth = int(value)
@@ -84,8 +84,8 @@ class ScrollLabel(HTMLComponent, GUIComponent):
 		self.pageHeight = int(lines * self.lineheight)
 		self.instance.move(self.long_text.position())
 		self.instance.resize(eSize(self.pageWidth, self.pageHeight + int(self.lineheight / 6)))
-		self.scrollbar.move(ePoint(self.pageWidth - scrollbarWidth,0))
-		self.scrollbar.resize(eSize(scrollbarWidth,self.pageHeight + int(self.lineheight / 6)))
+		self.scrollbar.move(ePoint(self.pageWidth - scrollbarWidth, 0))
+		self.scrollbar.resize(eSize(scrollbarWidth, self.pageHeight + int(self.lineheight / 6)))
 		self.scrollbar.setOrientation(eSlider.orVertical)
 		self.scrollbar.setRange(0, 100)
 		self.scrollbar.setBorderWidth(scrollbarBorderWidth)

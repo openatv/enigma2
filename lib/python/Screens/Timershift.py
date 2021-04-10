@@ -34,7 +34,7 @@ class SetupSummary(Screen):
 	def selectionChanged(self):
 		self["SetupEntry"].text = self.parent.getCurrentEntry()
 		self["SetupValue"].text = self.parent.getCurrentValue()
-		if hasattr(self.parent,"getCurrentDescription"):
+		if hasattr(self.parent, "getCurrentDescription"):
 			self.parent["description"].text = self.parent.getCurrentDescription()
 		if self.parent.has_key('footnote'):
 			if self.parent.getCurrentEntry().endswith('*'):
@@ -42,7 +42,7 @@ class SetupSummary(Screen):
 			else:
 				self.parent['footnote'].text = (_(" "))
 
-class TimeshiftSettings(Screen,ConfigListScreen):
+class TimeshiftSettings(Screen, ConfigListScreen):
 	def removeNotifier(self):
 		if config.usage.setup_level.notifiers:
 			config.usage.setup_level.notifiers.remove(self.levelChanged)

@@ -48,7 +48,7 @@ class SoftwareUpdateChanges(Screen):
 			"right": self.pageDown,
 			"down": self.pageDown,
 			"up": self.pageUp
-		},-1)
+		}, -1)
 		self.onLayoutFinish.append(self.getlog)
 
 	def changelogtype(self):
@@ -72,8 +72,8 @@ class SoftwareUpdateChanges(Screen):
 		global ocram
 		try:
 			sourcefile = 'https://www.openvix.co.uk/feeds/%s/%s/%s-git.log' % (getImageDistro(), getImageVersion(), self.logtype)
-			sourcefile,headers = urllib.urlretrieve(sourcefile)
-			rename(sourcefile,'/tmp/' + self.logtype + '-git.log')
+			sourcefile, headers = urllib.urlretrieve(sourcefile)
+			rename(sourcefile, '/tmp/' + self.logtype + '-git.log')
 			fd = open('/tmp/' + self.logtype + '-git.log', 'r')
 			releasenotes = fd.read()
 			fd.close()
@@ -81,7 +81,7 @@ class SoftwareUpdateChanges(Screen):
 			releasenotes = '404 Not Found'
 		if '404 Not Found' not in releasenotes:
 			releasenotes = releasenotes.replace('[openvix] Zeus Release.', 'openvix: build 000')
-			releasenotes = releasenotes.replace('\nopenvix: build',"\n\nopenvix: build")
+			releasenotes = releasenotes.replace('\nopenvix: build', "\n\nopenvix: build")
 			releasenotes = releasenotes.split('\n\n')
 			ver = -1
 			releasever = ""
@@ -91,9 +91,9 @@ class SoftwareUpdateChanges(Screen):
 				releasever = releasenotes[int(ver)].split('\n')
 				releasever = releasever[0].split(' ')
 				if len(releasever) > 2:
-					releasever = releasever[2].replace(':',"")
+					releasever = releasever[2].replace(':', "")
 				else:
-					releasever = releasever[0].replace(':',"")
+					releasever = releasever[0].replace(':', "")
 			if self.logtype == 'oe':
 				if int(getImageBuild()) == 1:
 					imagever = int(getImageBuild()) - 1
@@ -110,7 +110,7 @@ class SoftwareUpdateChanges(Screen):
 				ver += 1
 				releasever = releasenotes[int(ver)].split('\n')
 				releasever = releasever[0].split(' ')
-				releasever = releasever[2].replace(':',"")
+				releasever = releasever[2].replace(':', "")
 			if not viewrelease and ocram:
 				viewrelease = ocram
 				ocram = ""
@@ -205,7 +205,7 @@ class UpdatePlugin(Screen):
 		self.CheckConsole = Console()
 		self.CheckConsole.ePopen(cmd1, self.checkNetworkStateFinished)
 
-	def checkNetworkStateFinished(self, result, retval,extra_args=None):
+	def checkNetworkStateFinished(self, result, retval, extra_args=None):
 		if 'bad address' in result:
 			self.session.openWithCallback(self.close, MessageBox, _("Your %s %s is not connected to the internet, please check your network settings and try again.") % (getMachineBrand(), getMachineName()), type=MessageBox.TYPE_INFO, timeout=10, close_on_any_key=True)
 		elif ('wget returned 1' or 'wget returned 255' or '404 Not Found') in result:
@@ -386,7 +386,7 @@ class UpdatePlugin(Screen):
 			upgrademessage = self.session.openWithCallback(self.startActualUpgrade, ChoiceBox, title=message, list=choices, skin_name="SoftwareUpdateChoices", var=self.trafficLight)
 			upgrademessage.setTitle(_('Software update'))
 		elif answer[1] == "changes":
-			self.session.openWithCallback(self.startActualUpgrade,SoftwareUpdateChanges)
+			self.session.openWithCallback(self.startActualUpgrade, SoftwareUpdateChanges)
 		elif answer[1] == "backup":
 			self.doSettingsBackup()
 		elif answer[1] == "imagebackup":
@@ -399,7 +399,7 @@ class UpdatePlugin(Screen):
 			if (config.softwareupdate.autosettingsbackup.value and config.backupmanager.backuplocation.value) or (config.softwareupdate.autoimagebackup.value and config.imagemanager.backuplocation.value):
 				self.doAutoBackup()
 			else:
-				self.session.open(TryQuitMainloop,retvalue=42)
+				self.session.open(TryQuitMainloop, retvalue=42)
 				self.close()
 
 	def modificationCallback(self, res):
@@ -434,7 +434,7 @@ class UpdatePlugin(Screen):
 		elif config.softwareupdate.autoimagebackup.value and config.imagemanager.backuplocation.value and not self.ImageBackupDone:
 			self.doImageBackup()
 		else:
-			self.session.open(TryQuitMainloop,retvalue=42)
+			self.session.open(TryQuitMainloop, retvalue=42)
 			self.close()
 
 	def showJobView(self, job):

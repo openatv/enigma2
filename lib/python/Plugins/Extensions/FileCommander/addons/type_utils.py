@@ -166,7 +166,7 @@ class vEditor(Screen, HelpableScreen):
 						if length > len(editableText):
 							break
 				else:
-					while getTextBoundarySize(self.instance, gFont(font[0], font[1]), eSize(fieldwidth, font[2]), editableText.replace(' ','')[:length], True).width() <= fieldwidth:
+					while getTextBoundarySize(self.instance, gFont(font[0], font[1]), eSize(fieldwidth, font[2]), editableText.replace(' ', '')[:length], True).width() <= fieldwidth:
 						length += 1
 						if length > len(editableText):
 							break

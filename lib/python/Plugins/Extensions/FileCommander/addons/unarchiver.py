@@ -83,7 +83,7 @@ class ArchiverMenuScreen(Screen):
 		self.chooseMenuList.setList(map(self.ListEntry, self.list))
 
 	def ListEntry(self, entry):
-		x, y, w, h = skin.parameters.get("FileListName",(10, 0, 1180, 25))
+		x, y, w, h = skin.parameters.get("FileListName", (10, 0, 1180, 25))
 		x = 10
 		w = self['list_left'].l.getItemSize().width()
 		return [
@@ -95,7 +95,7 @@ class ArchiverMenuScreen(Screen):
 		# print "[ArchiverMenuScreen] UnpackListEntry", entry
 		currentProgress = int(float(100) / float(int(100)) * int(entry))
 		progpercent = str(currentProgress) + "%"
-		x, y, w, h = skin.parameters.get("FileListMultiName",(60, 0, 1180, 25))
+		x, y, w, h = skin.parameters.get("FileListMultiName", (60, 0, 1180, 25))
 		x2 = x
 		x = 10
 		w = self['list_left'].l.getItemSize().width()
@@ -254,7 +254,7 @@ class ArchiverInfoScreen(Screen):
 			self.chooseMenuList.setList(map(self.ListEntry, self.list))
 
 	def ListEntry(self, entry):
-		x, y, w, h = skin.parameters.get("FileListName",(10, 0, 1180, 25))
+		x, y, w, h = skin.parameters.get("FileListName", (10, 0, 1180, 25))
 		x = 10
 		w = self['list_left'].l.getItemSize().width()
 		flags = RT_HALIGN_LEFT

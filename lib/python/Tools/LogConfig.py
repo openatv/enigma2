@@ -19,7 +19,7 @@ class LogConfig(object):
 			from Components.config import config, ConfigSubsection, ConfigOnOff, ConfigSelection
 			config.log = ConfigSubsection()
 			config.log.level = ConfigSelection(
-				choices={str(LOG_LEVEL_DEBUG): "DEBUG", str(LOG_LEVEL_INFO): "INFO", str(LOG_LEVEL_WARNING): "WARNING", str(LOG_LEVEL_ERROR): "ERROR",}, default=str(LOG_LEVEL_INFO))
+				choices={str(LOG_LEVEL_DEBUG): "DEBUG", str(LOG_LEVEL_INFO): "INFO", str(LOG_LEVEL_WARNING): "WARNING", str(LOG_LEVEL_ERROR): "ERROR", }, default=str(LOG_LEVEL_INFO))
 			config.log.verbose = ConfigOnOff(default=False)
 			config.log.colored = ConfigOnOff(default=True)
 			LogConfig._initialized = True
