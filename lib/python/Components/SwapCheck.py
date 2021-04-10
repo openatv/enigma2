@@ -22,7 +22,8 @@ def bigStorage(minFree):
 class SwapCheck:
 	def __init__(self, callback=None, extra_args=None):
 		self.Console = Console()
-		if not extra_args: extra_args = []
+		if not extra_args:
+				extra_args = []
 		self.extra_args = extra_args
 		assert callable(callback), "callback must be callable"
 		self.callback = callback

@@ -333,7 +333,7 @@ class EPGList(HTMLComponent, GUIComponent):
 		width = esize.width()
 		height = esize.height()
 		if self.showServiceTitle:
-			w = width / 10 * 2;
+			w = width / 10 * 2
 		else:     # if self.showPicon:    # this must be set if showServiceTitle is None
 			w = 2 * height - 2 * self.serviceBorderWidth  # FIXME: could do better...
 		self.service_rect = Rect(0, 0, w, height)
@@ -347,10 +347,10 @@ class EPGList(HTMLComponent, GUIComponent):
 	def calcEntryPosAndWidthHelper(self, stime, duration, start, end, width):
 		xpos = (stime - start) * width / (end - start)
 		ewidth = (stime + duration - start) * width / (end - start)
-		ewidth -= xpos;
+		ewidth -= xpos
 		if xpos < 0:
-			ewidth += xpos;
-			xpos = 0;
+			ewidth += xpos
+			xpos = 0
 		if (xpos + ewidth) > width:
 			ewidth = width - xpos
 		return xpos, ewidth
@@ -559,7 +559,7 @@ class EPGList(HTMLComponent, GUIComponent):
 			elif dir == -3: #prev day
 				self.offs -= 60 * 24 / self.time_epoch
 				if self.offs < 0:
-					self.offs = 0;
+					self.offs = 0
 				self.fillMultiEPG(None) # refill
 				return True
 		if cur_service and valid_event:
@@ -637,7 +637,7 @@ class TimelineText(HTMLComponent, GUIComponent):
 		GUIComponent.__init__(self)
 		self.l = eListboxPythonMultiContent()
 		self.l.setSelectionClip(eRect(0, 0, 0, 0))
-		self.l.setItemHeight(25);
+		self.l.setItemHeight(25)
 		self.foreColor = 0xffc000
 		self.backColor = 0x000000
 		self.time_base = 0

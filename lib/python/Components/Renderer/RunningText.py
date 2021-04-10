@@ -181,9 +181,12 @@ class RunningText(Renderer):
 			self.skinAttributes = attribs
 		ret = Renderer.applySkin(self, desktop, screen)
 		
-		if self.mOneShot: self.mOneShot = max(self.mStepTimeout, self.mOneShot)
-		if self.mLoopTimeout: self.mLoopTimeout = max(self.mStepTimeout, self.mLoopTimeout)
-		if self.mPageDelay: self.mPageDelay = max(self.mStepTimeout, self.mPageDelay)
+		if self.mOneShot:
+			self.mOneShot = max(self.mStepTimeout, self.mOneShot)
+		if self.mLoopTimeout:
+			self.mLoopTimeout = max(self.mStepTimeout, self.mLoopTimeout)
+		if self.mPageDelay:
+			self.mPageDelay = max(self.mStepTimeout, self.mPageDelay)
 		
 		self.scroll_label.setFont(self.txfont)
 		if not (self.txtflags & RT_WRAP):
@@ -213,7 +216,8 @@ class RunningText(Renderer):
 		Renderer.connect(self, source)
 
 	def changed(self, what):
-		if not self.mTimer is None: self.mTimer.stop()
+		if not self.mTimer is None:
+			self.mTimer.stop()
 		if what[0] == self.CHANGED_CLEAR:
 			self.txtext = ""
 			if self.instance:
@@ -381,7 +385,8 @@ class RunningText(Renderer):
 			timeout = self.mStepTimeout
 			if (self.mStop is not None) and (self.mStop + abs(self.mStep) > self.P >= self.mStop):
 				if (self.type == RUNNING) and (self.mOneShot > 0):
-					if (self.mRepeat > 0) and (self.mCount-1 <= 0): return
+					if (self.mRepeat > 0) and (self.mCount-1 <= 0):
+						return
 					timeout = self.mOneShot
 				elif (self.type == SWIMMING) and (self.mPageLength > 0) and (self.mPageDelay > 0):
 					if (self.direction == TOP) and (self.mStep < 0):
@@ -397,7 +402,8 @@ class RunningText(Renderer):
 		else:
 			if self.mRepeat > 0:
 				self.mCount -= 1
-				if self.mCount == 0: return
+				if self.mCount == 0:
+					return
 			timeout = self.mLoopTimeout
 			if self.type == RUNNING:
 				if self.P < self.A:

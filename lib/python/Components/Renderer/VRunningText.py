@@ -154,8 +154,10 @@ class VRunningText(Renderer):
 		#if self.type == RUNNING and self.direction in (LEFT,RIGHT):
 		#	self.halign = eLabel.alignLeft
 		#	self.txtflags = RT_HALIGN_LEFT | (self.txtflags & RT_WRAP)
-		if self.mOneShot: self.mOneShot = max(self.mStepTimeout, self.mOneShot)
-		if self.mLoopTimeout: self.mLoopTimeout = max(self.mStepTimeout, self.mLoopTimeout)
+		if self.mOneShot:
+			self.mOneShot = max(self.mStepTimeout, self.mOneShot)
+		if self.mLoopTimeout:
+			self.mLoopTimeout = max(self.mStepTimeout, self.mLoopTimeout)
 		
 		self.test_label.setFont(self.txfont)
 		#self.test_label.setForegroundColor(self.fcolor)
@@ -184,7 +186,8 @@ class VRunningText(Renderer):
 		#self.changed((self.CHANGED_DEFAULT,))
 
 	def changed(self, what):
-		if not self.mTimer is None: self.mTimer.stop()
+		if not self.mTimer is None:
+			self.mTimer.stop()
 		if what[0] == self.CHANGED_CLEAR:
 			self.txtext = ""
 			if self.instance:
@@ -212,9 +215,12 @@ class VRunningText(Renderer):
 			self.instance.writeText( eRect(X, Y, self.W, self.H), self.fcolor, self.scolor, self.txfont, self.txtext, self.txtflags )
 
 	def calcMoving(self):
-		if self.txtext == "": return False
-		if self.type == NONE: return False
-		if self.test_label is None: return False
+		if self.txtext == "":
+			return False
+		if self.type == NONE:
+			return False
+		if self.test_label is None:
+			return False
 		self.test_label.setText(self.txtext)
 		text_size = self.test_label.calculateSize()
 		text_width = text_size.width()
@@ -248,7 +254,8 @@ class VRunningText(Renderer):
 						self.mStop = self.P = max(self.A, min(self.B, self.mStartPoint - text_width + self.soffset[0]))
 			
 			elif self.type == SWIMMING:	# scroll_type == SWIMMING
-				if not self.mAlways and text_width <= self.W: return False
+				if not self.mAlways and text_width <= self.W:
+					return False
 				if text_width < self.W:
 					if self.halign == LEFT:
 						self.A = self.X + 1
@@ -308,7 +315,8 @@ class VRunningText(Renderer):
 						self.mStop = self.P = max(self.A, min(self.B, self.mStartPoint - text_height + self.soffset[1] - 9))
 			
 			elif self.type == SWIMMING:	# scroll_type == SWIMMING
-				if not self.mAlways and text_height <= self.H: return False
+				if not self.mAlways and text_height <= self.H:
+					return False
 				if text_height < self.H:
 					if self.direction == TOP:	# direction == TOP
 						self.A = self.Y
@@ -354,7 +362,8 @@ class VRunningText(Renderer):
 			else: # if self.direction in (TOP,BOTTOM)
 				self.drawText(self.X, self.P)
 			if (self.type == RUNNING) and (self.mOneShot > 0) and (self.mStop+abs(self.mStep) > self.P >= self.mStop):
-				if (self.mRepeat > 0) and (self.mCount-1 == 0): return
+				if (self.mRepeat > 0) and (self.mCount-1 == 0):
+					return
 				timeout = self.mOneShot
 			else:
 				timeout = self.mStepTimeout

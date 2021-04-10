@@ -592,7 +592,8 @@ class HdmiCec:
 						txt = 'our receiver is active source'
 					else:
 						txt = 'active source'
-						if cmd == 0x86: txt = 'streaming path'
+						if cmd == 0x86:
+							txt = 'streaming path'
 						txt += ' has changed... to our address'
 					self.CECwritedebug('[HdmiCec] %s: %s' %(txt, active), True)
 				self.activesource = active
@@ -994,7 +995,8 @@ class HdmiCec:
 			self.volumeForwardingEnabled = False
 
 	def configReportActiveMenu(self, configElement):
-		if self.old_configReportActiveMenu == config.hdmicec.report_active_menu.value: return
+		if self.old_configReportActiveMenu == config.hdmicec.report_active_menu.value:
+			return
 		self.old_configReportActiveMenu = config.hdmicec.report_active_menu.value
 		if config.hdmicec.report_active_menu.value:
 			self.sendMessage(0, 'sourceactive')
@@ -1003,14 +1005,16 @@ class HdmiCec:
 			self.sendMessage(0, 'menuinactive')
 
 	def configTVstate(self, configElement):
-		if self.old_configTVstate == (config.hdmicec.check_tv_state.value or config.hdmicec.check_tv_state.value or (config.hdmicec.tv_standby_notinputactive.value and config.hdmicec.control_tv_standby.value)): return
+		if self.old_configTVstate == (config.hdmicec.check_tv_state.value or config.hdmicec.check_tv_state.value or (config.hdmicec.tv_standby_notinputactive.value and config.hdmicec.control_tv_standby.value)):
+			return
 		self.old_configTVstate = config.hdmicec.check_tv_state.value or config.hdmicec.check_tv_state.value or (config.hdmicec.tv_standby_notinputactive.value and config.hdmicec.control_tv_standby.value)
 		if not self.sendMessagesIsActive() and self.old_configTVstate:
 			self.sendMessage(0, 'powerstate')
 			self.sendMessage(0, 'routinginfo')
 
 	def keyEvent(self, keyCode, keyEvent):
-		if not self.volumeForwardingEnabled: return
+		if not self.volumeForwardingEnabled:
+			return
 		cmd = 0
 		address = keyEvent
 		data = ''

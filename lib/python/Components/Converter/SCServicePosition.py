@@ -101,7 +101,8 @@ class SCServicePosition(Poll, Converter, object):
 			if not self.detailed:
 				l /= 90000
 
-			if self.negate: l = -l
+			if self.negate:
+				l = -l
 
 			if l > 0:
 				sign = ""

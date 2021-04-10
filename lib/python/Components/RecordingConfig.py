@@ -36,8 +36,12 @@ def InitRecordingConfig():
 	config.recording.prepare_time = ConfigSelectionNumber(min = 20, max = 120, stepwidth = 10, default = 20, wraparound = True)
 
 def recType(configString):
-	if   (configString == "any"):            return pNavigation.isAnyRecording
-	elif (configString == "real"):           return pNavigation.isRealRecording
-	elif (configString == "real_streaming"): return pNavigation.isRealRecording|pNavigation.isStreaming
-	elif (configString == "real_pseudo"):    return pNavigation.isRealRecording|pNavigation.isPseudoRecording
+	if   (configString == "any"):
+		return pNavigation.isAnyRecording
+	elif (configString == "real"):
+		return pNavigation.isRealRecording
+	elif (configString == "real_streaming"):
+		return pNavigation.isRealRecording|pNavigation.isStreaming
+	elif (configString == "real_pseudo"):
+		return pNavigation.isRealRecording|pNavigation.isPseudoRecording
 

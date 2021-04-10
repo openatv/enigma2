@@ -713,7 +713,8 @@ class MovieList(GUIComponent):
 			if (len(movies) > 1) or (tag in realtags):
 				movies = tuple(movies) # a tuple can be hashed, but a list not
 				item = rtags.get(movies, [])
-				if not item: rtags[movies] = item
+				if not item:
+					rtags[movies] = item
 				item.append(tag)
 		self.tags = {}
 		for movies, tags in rtags.items():

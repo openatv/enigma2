@@ -122,9 +122,12 @@ class ServicePosition(Poll, Converter, object):
 			p /= 90000
 			r /= 90000
 
-		if self.negate: l = -l
-		if self.negate: p = -p
-		if self.negate: r = -r
+		if self.negate:
+			l = -l
+		if self.negate:
+			p = -p
+		if self.negate:
+			r = -r
 
 		if l >= 0:
 			sign_l = ""

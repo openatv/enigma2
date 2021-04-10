@@ -1047,8 +1047,10 @@ class ChannelSelectionEdit:
 
 		class ChannelSelectionEditActionMap(ActionMap):
 			def __init__(self, csel, contexts=None, actions=None, prio=0):
-				if not contexts: contexts = []
-				if not actions: actions = {}
+				if not contexts:
+					contexts = []
+				if not actions:
+					actions = {}
 				ActionMap.__init__(self, contexts, actions, prio)
 				self.csel = csel
 
@@ -1452,7 +1454,7 @@ class ChannelSelectionEdit:
 			select and self.toggleMoveMarked()
 			self.saved_title = self.getTitle()
 			pos = self.saved_title.find(')')
-			self.setTitle(self.saved_title[:pos+1] + ' ' + _("[move mode]") + self.saved_title[pos+1:]);
+			self.setTitle(self.saved_title[:pos+1] + ' ' + _("[move mode]") + self.saved_title[pos+1:])
 			self.servicelist.setCurrent(self.servicelist.getCurrent())
 		self["Service"].editmode = True
 
@@ -2462,24 +2464,30 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 
 	def historyZap(self, direction):
 		hlen = len(self.history)
-		if hlen < 1: return
+		if hlen < 1:
+			return
 		mark = self.history_pos
 		selpos = self.history_pos + direction
-		if selpos < 0: selpos = 0
-		if selpos > hlen-1: selpos = hlen-1
+		if selpos < 0:
+			selpos = 0
+		if selpos > hlen-1:
+			selpos = hlen-1
 		serviceHandler = eServiceCenter.getInstance()
 		historylist = [ ]
 		for x in self.history:
 			info = serviceHandler.info(x[-1])
-			if info: historylist.append((info.getName(x[-1]), x[-1]))
+			if info:
+				historylist.append((info.getName(x[-1]), x[-1]))
 		self.session.openWithCallback(self.historyMenuClosed, HistoryZapSelector, historylist, selpos, mark, invert_items=True, redirect_buttons=True, wrap_around=True)
 
 	def historyMenuClosed(self, retval):
-		if not retval: return
+		if not retval:
+			return
 		hlen = len(self.history)
 		pos = 0
 		for x in self.history:
-			if x[-1] == retval: break
+			if x[-1] == retval:
+				break
 			pos += 1
 		self.delhistpoint = pos+1
 		if pos < hlen and pos != self.history_pos:
@@ -2976,7 +2984,8 @@ class SimpleChannelSelection(ChannelSelectionBase):
 
 class HistoryZapSelector(Screen):
 	def __init__(self, session, items=None, sel_item=0, mark_item=0, invert_items=False, redirect_buttons=False, wrap_around=True):
-		if not items: items = []
+		if not items:
+			items = []
 		Screen.__init__(self, session)
 		self.redirectButton = redirect_buttons
 		self.invertItems = invert_items

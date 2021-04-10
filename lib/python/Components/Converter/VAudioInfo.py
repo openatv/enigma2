@@ -58,7 +58,7 @@ class VAudioInfo(Poll, Converter, object):
 		description_str = _("unknown")
 		if self.getAudio():
 			languages = self.getLanguage()
-			description = self.audio_info.getDescription();
+			description = self.audio_info.getDescription()
 			description_str = description.split(" ")
 			if len(description_str) and description_str[0] in languages:
 				return languages

@@ -142,8 +142,10 @@ def GetDeviceId(filter, nim_idx):
 			if socket_id == nim_idx:
 				break
 
-			if device_id:	device_id = 0
-			else:			device_id = 1
+			if device_id:
+				device_id = 0
+			else:
+				device_id = 1
 		socket_id += 1
 	return device_id
 
@@ -2025,7 +2027,7 @@ class ScanSimple(ConfigListScreen, Screen, CableTransponderSearchSupport, Terres
 								nimconfig.nim_type = "DVB-S"
 								self.nim_enable.append(nimconfig)
 								self.list.append(getConfigListEntry(_("Scan ") + nim.slot_name + " (DVB-S) " + req_network[1], nimconfig))
-								break;
+								break
 						elif req_type in ("DVB-C", "DVB-C2") and nim.config.dvbc.configMode.value != "nothing"and not tag_dvbc:
 							if req_network in nimmanager.getCableDescription(nim.slot):
 								tag_dvbc = True
@@ -2037,7 +2039,7 @@ class ScanSimple(ConfigListScreen, Screen, CableTransponderSearchSupport, Terres
 								nimconfig.nim_type = "DVB-C"
 								self.nim_enable.append(nimconfig)
 								self.list.append(getConfigListEntry(_("Scan ") + nim.slot_name + " (DVB-C) " + req_network[:45], nimconfig))
-								break;
+								break
 						elif req_type in ("DVB-T", "DVB-T2") and nim.config.dvbt.configMode.value != "nothing" and not tag_dvbt:
 							if req_network in nimmanager.getTerrestrialDescription(nim.slot):
 								tag_dvbt = True
@@ -2049,7 +2051,7 @@ class ScanSimple(ConfigListScreen, Screen, CableTransponderSearchSupport, Terres
 								nimconfig.nim_type = "DVB-T"
 								self.nim_enable.append(nimconfig)
 								self.list.append(getConfigListEntry(_("Scan ") + nim.slot_name + " (DVB-T) " + req_network[:45], nimconfig))
-								break;
+								break
 						elif req_type in ("ATSC") and nim.config.atsc.configMode.value != "nothing" and not tag_atsc:
 							if req_network in nimmanager.getATSCDescription(nim.slot):
 								tag_atsc = True
@@ -2061,7 +2063,7 @@ class ScanSimple(ConfigListScreen, Screen, CableTransponderSearchSupport, Terres
 								nimconfig.nim_type = "ATSC"
 								self.nim_enable.append(nimconfig)
 								self.list.append(getConfigListEntry(_("Scan ") + nim.slot_name + " (ATSC) " + req_network[:45], nimconfig))
-								break;
+								break
 		self.list.sort()
 		ConfigListScreen.__init__(self, self.list)
 		self["header"] = Label(_("Automatic scan"))

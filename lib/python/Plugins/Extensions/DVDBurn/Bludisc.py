@@ -36,7 +36,8 @@ class BludiscTitle(object):
 	def getStreamByPID(self, pid):
 		if pid in self.__streams:
 			return self.__streams[pid]
-		else: return None
+		else:
+			return None
 
 	def getVideoStreams(self):
 		streams = []

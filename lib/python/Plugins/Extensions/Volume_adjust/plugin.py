@@ -540,7 +540,7 @@ class Volume:
 			try: # uhh, servicemp3 leads sometimes to OverflowError Error
 				tracknr = audio.getCurrentTrack()
 				i = audio.getTrackInfo(tracknr)
-				description = i.getDescription();
+				description = i.getDescription()
 				print '[Volume Adjust] description: ' + description
 				if "AC3" in description or "DTS" in description or "Dolby Digital" == description:
 					print '[Volume Adjust] AudioAC3Dolby = YES'

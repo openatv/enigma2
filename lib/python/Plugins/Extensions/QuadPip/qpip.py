@@ -253,8 +253,8 @@ class CreateQuadPipChannelEntry(ChannelSelectionBase):
 
 		self.session = session
 		dh = self.session.desktop.size().height()
-		self.skin = {1080:CreateQuadPipChannelEntry.skin_default_1080p, \
-						720:CreateQuadPipChannelEntry.skin_default_720p, \
+		self.skin = {1080:CreateQuadPipChannelEntry.skin_default_1080p,
+						720:CreateQuadPipChannelEntry.skin_default_720p,
 						576:CreateQuadPipChannelEntry.skin_default_576p}.get(dh, CreateQuadPipChannelEntry.skin_default_1080p)
 
 		self.defaultEntryName = defaultEntryName
@@ -440,23 +440,23 @@ class QuadPiPChannelSelection(Screen, HelpableScreen):
 		button_h = 40
 		list_y = 40+button_margin*3
 		self.fontSize = {1080:(28, 24), 720:(24,20), 576:(20,18)}.get(dh, (28, 24))
-		self.skin = QuadPiPChannelSelection.skin % (pw, ph, \
-														sw, sh+list_y, \
-														sw/8-70, button_margin, \
-														sw/8-70+sw/4, button_margin, \
-														sw/8-70+sw/4*2, button_margin, \
-														sw/8-70+sw/4*3, button_margin, \
-														sw/8-70, button_margin, \
-														sw/8-70+sw/4, button_margin, \
-														sw/8-70+sw/4*2, button_margin, \
-														sw/8-70+sw/4*3, button_margin, \
-														0, list_y, sw, sh, \
-														sw/16, 1, sw-sw/16*2, sh/13, \
-														sw/11, 1+sh/13, 			sw-sw/16*2-sw/8, sh/18, \
-														sw/11, 1+sh/13+sh/18, 	sw-sw/16*2-sw/8, sh/18, \
-														sw/11, 1+sh/13+sh/18*2, 	sw-sw/16*2-sw/8, sh/18, \
-														sw/11, 1+sh/13+sh/18*3, 	sw-sw/16*2-sw/8, sh/18, \
-														self.fontSize[0], self.fontSize[1], \
+		self.skin = QuadPiPChannelSelection.skin % (pw, ph,
+														sw, sh+list_y,
+														sw/8-70, button_margin,
+														sw/8-70+sw/4, button_margin,
+														sw/8-70+sw/4*2, button_margin,
+														sw/8-70+sw/4*3, button_margin,
+														sw/8-70, button_margin,
+														sw/8-70+sw/4, button_margin,
+														sw/8-70+sw/4*2, button_margin,
+														sw/8-70+sw/4*3, button_margin,
+														0, list_y, sw, sh,
+														sw/16, 1, sw-sw/16*2, sh/13,
+														sw/11, 1+sh/13, 			sw-sw/16*2-sw/8, sh/18,
+														sw/11, 1+sh/13+sh/18, 	sw-sw/16*2-sw/8, sh/18,
+														sw/11, 1+sh/13+sh/18*2, 	sw-sw/16*2-sw/8, sh/18,
+														sw/11, 1+sh/13+sh/18*3, 	sw-sw/16*2-sw/8, sh/18,
+														self.fontSize[0], self.fontSize[1],
 														sh/3)
 		self["key_red"] = Label(_("Select"))
 		self["key_green"] = Label(_("Add"))
@@ -675,9 +675,9 @@ class QuadPipScreen(Screen, FocusShowHide, HelpableScreen):
 		self.currentPosition = 1 # 1~4
 		self.updatePositionList()
 
-		self.skin = QuadPipScreen.skin % (self.session.desktop.size().width(), self.session.desktop.size().height(), \
-												self.fontSize, self.fontSize, self.fontSize, self.fontSize, \
-												self.text1Pos[0], self.text1Pos[1], self.text1Pos[2], self.text1Pos[3], self.fontSize, \
+		self.skin = QuadPipScreen.skin % (self.session.desktop.size().width(), self.session.desktop.size().height(),
+												self.fontSize, self.fontSize, self.fontSize, self.fontSize,
+												self.text1Pos[0], self.text1Pos[1], self.text1Pos[2], self.text1Pos[3], self.fontSize,
 												self.text2Pos[0], self.text2Pos[1], self.text2Pos[2], self.text2Pos[3], self.fontSize)
 		self.oldService = None
 		self.curChannel = None

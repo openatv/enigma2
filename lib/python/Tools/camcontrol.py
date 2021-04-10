@@ -45,7 +45,7 @@ class CamControl:
 		except:
 			pass
 		try:
-			os.symlink(dst, self.link);
+			os.symlink(dst, self.link)
 		except:
 			print "Failed to create symlink for softcam:", dst
 			import sys

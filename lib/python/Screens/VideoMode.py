@@ -293,7 +293,8 @@ class VideoSetup(Screen, ConfigListScreen):
 				config.av.autores_1080i_deinterlace.setValue(self.last_good_autores_extra[1])
 				config.av.autores_unknownres.setValue(self.last_good_autores_unknownres)
 				try:
-					if not self.current_mode in iAVSwitch.readAvailableModes(): raise TypeError, "No old video mode saved!"
+					if not self.current_mode in iAVSwitch.readAvailableModes():
+						raise TypeError, "No old video mode saved!"
 					f = open("/proc/stb/video/videomode", "w")
 					f.write(self.current_mode)
 					f.close()
@@ -374,11 +375,12 @@ class VideoSetup(Screen, ConfigListScreen):
 		elif (port, mode, rate) != self.last_good or (config.av.autores.value == 'disabled' and self.last_good_autores != 'disabled'):
 			self.reset_mode = 1
 			self.hw.setMode(port, mode, rate)
-		elif config.av.autores.value in ("native", "simple") and ((port, mode_sd, rate_sd) != self.last_good_autores_sd or (port, mode_hd, rate_hd) != self.last_good_autores_hd or (port, mode_fhd, rate_fhd) != self.last_good_autores_fhd \
-			or (port, mode_uhd, rate_uhd) != self.last_good_autores_uhd or (autores_24p, autores_1080i) != self.last_good_autores_extra or self.last_good_autores != config.av.autores.value or self.reset_mode == 1 \
+		elif config.av.autores.value in ("native", "simple") and ((port, mode_sd, rate_sd) != self.last_good_autores_sd or (port, mode_hd, rate_hd) != self.last_good_autores_hd or (port, mode_fhd, rate_fhd) != self.last_good_autores_fhd
+			or (port, mode_uhd, rate_uhd) != self.last_good_autores_uhd or (autores_24p, autores_1080i) != self.last_good_autores_extra or self.last_good_autores != config.av.autores.value or self.reset_mode == 1
 			or (self.last_good_autores_unknownres != config.av.autores_unknownres.value and config.av.autores.value == "native")):
 			self.reset_mode = 2
-			if self.current_mode == None: self.current_mode = self.getCurrent_mode()
+			if self.current_mode == None:
+				self.current_mode = self.getCurrent_mode()
 			AutoVideoMode(None).VideoChangeDetect()
 		else:
 			self.reset_mode = 0
@@ -405,7 +407,8 @@ class VideoSetup(Screen, ConfigListScreen):
 			cur = self["config"].getCurrent()
 			cur = cur and len(cur) > 3 and cur[3]
 			if cur in ('check', 'check_sd', 'check_hd', 'check_fhd', 'check_uhd'):
-				if self.current_mode == None: self.current_mode = self.getCurrent_mode()
+				if self.current_mode == None:
+					self.current_mode = self.getCurrent_mode()
 				if cur in ('check', 'check_sd'): 
 					self.getVerify_videomode(config.av.autores_mode_sd, config.av.autores_rate_sd)
 				if cur in ('check', 'check_hd'):
@@ -748,7 +751,8 @@ class AutoVideoMode(Screen):
 		print "[VideoMode] detect video height: %s, width: %s, pol: %s, rate: %s (current video mode: %s)" %(video_height,video_width,video_pol,video_rate,current_mode)
 		if video_height and video_width and video_pol and video_rate:
 			label_rate = (video_rate + 500) / 1000
-			if video_pol == 'i': label_rate *= 2
+			if video_pol == 'i':
+				label_rate *= 2
 			resolutionlabel["content"].setText(_("Video content: %ix%i%s %iHz") % (video_width, video_height, video_pol, label_rate))
 			if video_height != -1:
 				if video_height > 720 or video_width > 1280:
@@ -792,19 +796,22 @@ class AutoVideoMode(Screen):
 				new_rate = (video_rate + 500) / 1000
 				if video_height <= 576 and int(config_res) >= 576: #sd
 					if config.av.autores_rate_sd[config.av.autores_mode_sd[config.av.videoport.value].value].value in ("auto","multi"):
-						if video_pol == 'i': new_rate *= 2
+						if video_pol == 'i':
+							new_rate *= 2
 					else:
 						new_rate = config.av.autores_rate_sd[config.av.autores_mode_sd[config.av.videoport.value].value].value.replace('Hz','')
 					new_mode = config.av.autores_mode_sd[config_port].value.replace('p30','p')
 				elif video_height <= 720 and int(config_res) >= 720: #hd
 					if config.av.autores_rate_hd[config.av.autores_mode_hd[config.av.videoport.value].value].value in ("auto","multi"):
-						if video_pol == 'i': new_rate *= 2
+						if video_pol == 'i':
+							new_rate *= 2
 					else:
 						new_rate = config.av.autores_rate_hd[config.av.autores_mode_hd[config.av.videoport.value].value].value.replace('Hz','')
 					new_mode = config.av.autores_mode_hd[config_port].value.replace('p30','p')
 				elif video_height <= 1080 and int(config_res) >= 1080: #fhd
 					if config.av.autores_rate_fhd[config.av.autores_mode_fhd[config.av.videoport.value].value].value in ("auto","multi"):
-						if video_pol == 'i': new_rate *= 2
+						if video_pol == 'i':
+							new_rate *= 2
 					else:
 						new_rate = config.av.autores_rate_fhd[config.av.autores_mode_fhd[config.av.videoport.value].value].value.replace('Hz','')
 					new_mode = config.av.autores_mode_fhd[config_port].value.replace('p30','p')
@@ -812,12 +819,14 @@ class AutoVideoMode(Screen):
 						new_mode = '1080i'
 				elif video_height <= 2160 and int(config_res) >= 2160: #uhd
 					if config.av.autores_rate_uhd[config.av.autores_mode_uhd[config.av.videoport.value].value].value in ("auto","multi"):
-						if video_pol == 'i': new_rate *= 2
+						if video_pol == 'i':
+							new_rate *= 2
 					else:
 						new_rate = config.av.autores_rate_uhd[config.av.autores_mode_uhd[config.av.videoport.value].value].value.replace('Hz','')
 					new_mode = config.av.autores_mode_uhd[config_port].value.replace('p30','p')
 				else:
-					if config_rate not in ("auto","multi"): new_rate = config_rate
+					if config_rate not in ("auto","multi"):
+						new_rate = config_rate
 					new_mode = config_mode
 				new_rate = str(new_rate)
 
@@ -829,7 +838,8 @@ class AutoVideoMode(Screen):
 				elif new_mode in iAVSwitch.readAvailableModes():
 					write_mode = new_mode
 				else:
-					if config_rate not in ("auto","multi") and int(new_rate) > int(config_rate): new_rate = config_rate
+					if config_rate not in ("auto","multi") and int(new_rate) > int(config_rate):
+						new_rate = config_rate
 					if config_mode+new_rate in iAVSwitch.readAvailableModes():
 						write_mode = config_mode+new_rate
 					else:
@@ -840,18 +850,23 @@ class AutoVideoMode(Screen):
 				new_rate = (video_rate + 500) / 1000
 				new_pol = video_pol
 				new_res = str(video_height)
-				if video_pol == 'i': new_rate *= 2
+				if video_pol == 'i':
+					new_rate *= 2
 
 				min_port, min_mode, min_res, min_pol, min_rate = getConfig_videomode(config.av.autores_mode_sd, config.av.autores_rate_sd)
 
 				if video_height <= int(min_res):
-					if new_pol == 'i' and min_pol == 'p': new_pol = min_pol
-					if min_rate not in ("auto","multi") and new_rate < int(min_rate): new_rate = min_rate
+					if new_pol == 'i' and min_pol == 'p':
+						new_pol = min_pol
+					if min_rate not in ("auto","multi") and new_rate < int(min_rate):
+						new_rate = min_rate
 					new_res = min_res
 				if video_height >= int(config_res) or int(new_res) >= int(config_res):
 					new_res = config_res
-					if video_pol == 'p' and config_pol == 'i': new_pol = config_pol
-					if config_rate not in ("auto","multi") and int(config_rate) < new_rate: new_rate = config_rate
+					if video_pol == 'p' and config_pol == 'i':
+						new_pol = config_pol
+					if config_rate not in ("auto","multi") and int(config_rate) < new_rate:
+						new_rate = config_rate
 				new_rate = str(new_rate)
 
 				if new_pol == 'p':
@@ -888,7 +903,8 @@ class AutoVideoMode(Screen):
 					elif new_res+min_pol in iAVSwitch.readAvailableModes():
 						write_mode = new_res+min_pol
 					else:
-						if config_rate not in ("auto","multi") and int(new_rate) > int(config_rate): new_rate = config_rate
+						if config_rate not in ("auto","multi") and int(new_rate) > int(config_rate):
+							new_rate = config_rate
 						if config_mode+new_rate in iAVSwitch.readAvailableModes():
 							write_mode = config_mode+new_rate
 						else:

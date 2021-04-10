@@ -53,7 +53,8 @@ def resetTimerWakeup():
 	global wasTimerWakeup
 	if os.path.exists("/tmp/was_powertimer_wakeup"):
 		os.remove("/tmp/was_powertimer_wakeup")
-		if debug: print "[POWERTIMER] reset wakeup state"
+		if debug:
+			print "[POWERTIMER] reset wakeup state"
 	wasTimerWakeup = False
 
 # parses an event, and gives out a (begin, end, name, duration, eit)-tuple.
@@ -140,7 +141,8 @@ class PowerTimerEntry(timer.TimerEntry, object):
 			TIMERTYPE.REBOOT: "reboot",
 			TIMERTYPE.RESTART: "restart"
 			}[self.timerType]
-		if getType: return timertype
+		if getType:
+			return timertype
 		if not self.disabled:
 			return "PowerTimerEntry(type=%s, begin=%s)" % (timertype, ctime(self.begin))
 		else:
@@ -199,7 +201,8 @@ class PowerTimerEntry(timer.TimerEntry, object):
 				#TODO: running/ended timer at system start has no nav instance
 				#First fix: crash in getPriorityCheck (NavigationInstance.instance.PowerTimer...)
 				#Second fix: suppress the message (A finished powertimer wants to ...)
-				if debug: print "*****NavigationInstance.instance.PowerTimer is None*****", self.timerType, self.state, ctime(self.begin), ctime(self.end)
+				if debug:
+					print "*****NavigationInstance.instance.PowerTimer is None*****", self.timerType, self.state, ctime(self.begin), ctime(self.end)
 				return True
 			elif (next_state == self.StateRunning and abs(self.begin - now) > 900) or (next_state == self.StateEnded and abs(self.end - now) > 900):
 				if self.timerType == TIMERTYPE.AUTODEEPSTANDBY or self.timerType == TIMERTYPE.AUTOSTANDBY:
@@ -237,18 +240,21 @@ class PowerTimerEntry(timer.TimerEntry, object):
 				return True
 
 			elif self.timerType == TIMERTYPE.WAKEUP:
-				if debug: print "self.timerType == TIMERTYPE.WAKEUP:"
+				if debug:
+					print "self.timerType == TIMERTYPE.WAKEUP:"
 				Screens.Standby.TVinStandby.skipHdmiCecNow('wakeuppowertimer')
 				if Screens.Standby.inStandby:
 					Screens.Standby.inStandby.Power()
 				return True
 
 			elif self.timerType == TIMERTYPE.WAKEUPTOSTANDBY:
-				if debug: print "self.timerType == TIMERTYPE.WAKEUPTOSTANDBY:"
+				if debug:
+					print "self.timerType == TIMERTYPE.WAKEUPTOSTANDBY:"
 				return True
 
 			elif self.timerType == TIMERTYPE.STANDBY:
-				if debug: print "self.timerType == TIMERTYPE.STANDBY:"
+				if debug:
+					print "self.timerType == TIMERTYPE.STANDBY:"
 				prioPT = [TIMERTYPE.WAKEUP,TIMERTYPE.RESTART,TIMERTYPE.REBOOT,TIMERTYPE.DEEPSTANDBY]
 				prioPTae = [AFTEREVENT.WAKEUP,AFTEREVENT.DEEPSTANDBY]
 				shiftPT,breakPT = self.getPriorityCheck(prioPT,prioPTae)
@@ -265,7 +271,8 @@ class PowerTimerEntry(timer.TimerEntry, object):
 				return True
 
 			elif self.timerType == TIMERTYPE.AUTOSTANDBY:
-				if debug: print "self.timerType == TIMERTYPE.AUTOSTANDBY:"
+				if debug:
+					print "self.timerType == TIMERTYPE.AUTOSTANDBY:"
 				if not self.getAutoSleepWindow():
 					return False
 				if not Screens.Standby.inStandby and not self.messageBoxAnswerPending: # not already in standby
@@ -288,7 +295,8 @@ class PowerTimerEntry(timer.TimerEntry, object):
 					self.begin = self.end = int(now) + int(self.autosleepdelay)*60
 
 			elif self.timerType == TIMERTYPE.AUTODEEPSTANDBY:
-				if debug: print "self.timerType == TIMERTYPE.AUTODEEPSTANDBY:"
+				if debug:
+					print "self.timerType == TIMERTYPE.AUTODEEPSTANDBY:"
 				if not self.getAutoSleepWindow():
 					return False
 				if isRecTimerWakeup or (self.autosleepinstandbyonly == 'yes' and not Screens.Standby.inStandby) \
@@ -322,18 +330,21 @@ class PowerTimerEntry(timer.TimerEntry, object):
 					self.begin = self.end = int(now) + int(self.autosleepdelay)*60
 
 			elif self.timerType == TIMERTYPE.RESTART:
-				if debug: print "self.timerType == TIMERTYPE.RESTART:"
+				if debug:
+					print "self.timerType == TIMERTYPE.RESTART:"
 				#check priority
 				prioPT = [TIMERTYPE.RESTART,TIMERTYPE.REBOOT,TIMERTYPE.DEEPSTANDBY]
 				prioPTae = [AFTEREVENT.DEEPSTANDBY]
 				shiftPT,breakPT = self.getPriorityCheck(prioPT,prioPTae)
 				#a timer with higher priority was shifted - no execution of current timer
 				if RBsave or aeDSsave or DSsave:
-					if debug: print "break#1"
+					if debug:
+						print "break#1"
 					breakPT = True
 				#a timer with lower priority was shifted - shift now current timer and wait for restore the saved time values from other timer
 				if False:
-					if debug: print "shift#1"
+					if debug:
+						print "shift#1"
 					breakPT = False
 					shiftPT = True
 				#shift or break
@@ -346,7 +357,8 @@ class PowerTimerEntry(timer.TimerEntry, object):
 					if not breakPT:
 						self.do_backoff()
 						#check difference begin to end before shift begin time
-						if RSsave and self.end - self.begin > 3 and self.end - now - self.backoff <= 240: breakPT = True
+						if RSsave and self.end - self.begin > 3 and self.end - now - self.backoff <= 240:
+							breakPT = True
 					#breakPT
 					if breakPT:
 						if self.repeated and RSsave:
@@ -390,18 +402,21 @@ class PowerTimerEntry(timer.TimerEntry, object):
 				return True
 
 			elif self.timerType == TIMERTYPE.REBOOT:
-				if debug: print "self.timerType == TIMERTYPE.REBOOT:"
+				if debug:
+					print "self.timerType == TIMERTYPE.REBOOT:"
 				#check priority
 				prioPT = [TIMERTYPE.REBOOT,TIMERTYPE.DEEPSTANDBY]
 				prioPTae = [AFTEREVENT.DEEPSTANDBY]
 				shiftPT,breakPT = self.getPriorityCheck(prioPT,prioPTae)
 				#a timer with higher priority was shifted - no execution of current timer
 				if aeDSsave or DSsave:
-					if debug: print "break#1"
+					if debug:
+						print "break#1"
 					breakPT = True
 				#a timer with lower priority was shifted - shift now current timer and wait for restore the saved time values from other timer
 				if RSsave:
-					if debug: print "shift#1"
+					if debug:
+						print "shift#1"
 					breakPT = False
 					shiftPT = True
 				#shift or break
@@ -414,7 +429,8 @@ class PowerTimerEntry(timer.TimerEntry, object):
 					if not breakPT:
 						self.do_backoff()
 						#check difference begin to end before shift begin time
-						if RBsave and self.end - self.begin > 3 and self.end - now - self.backoff <= 240: breakPT = True
+						if RBsave and self.end - self.begin > 3 and self.end - now - self.backoff <= 240:
+							breakPT = True
 					#breakPT
 					if breakPT:
 						if self.repeated and RBsave:
@@ -458,18 +474,21 @@ class PowerTimerEntry(timer.TimerEntry, object):
 				return True
 
 			elif self.timerType == TIMERTYPE.DEEPSTANDBY:
-				if debug: print "self.timerType == TIMERTYPE.DEEPSTANDBY:"
+				if debug:
+					print "self.timerType == TIMERTYPE.DEEPSTANDBY:"
 				#check priority
 				prioPT = [TIMERTYPE.WAKEUP,TIMERTYPE.WAKEUPTOSTANDBY,TIMERTYPE.DEEPSTANDBY]
 				prioPTae = [AFTEREVENT.WAKEUP,AFTEREVENT.WAKEUPTOSTANDBY,AFTEREVENT.DEEPSTANDBY]
 				shiftPT,breakPT = self.getPriorityCheck(prioPT,prioPTae)
 				#a timer with higher priority was shifted - no execution of current timer
 				if False:
-					if debug: print "break#1"
+					if debug:
+						print "break#1"
 					breakPT = True
 				#a timer with lower priority was shifted - shift now current timer and wait for restore the saved time values from other timer
 				if RSsave or RBsave or aeDSsave:
-					if debug: print "shift#1"
+					if debug:
+						print "shift#1"
 					breakPT = False
 					shiftPT = True
 				#shift or break
@@ -482,7 +501,8 @@ class PowerTimerEntry(timer.TimerEntry, object):
 					if not breakPT:
 						self.do_backoff()
 						#check difference begin to end before shift begin time
-						if DSsave and self.end - self.begin > 3 and self.end - now - self.backoff <= 240: breakPT = True
+						if DSsave and self.end - self.begin > 3 and self.end - now - self.backoff <= 240:
+							breakPT = True
 					#breakPT
 					if breakPT:
 						if self.repeated and DSsave:
@@ -542,18 +562,21 @@ class PowerTimerEntry(timer.TimerEntry, object):
 					else:
 						Notifications.AddNotificationWithCallback(callback, MessageBox, message, messageboxtyp, timeout = timeout, default = default)
 			elif self.afterEvent == AFTEREVENT.DEEPSTANDBY:
-				if debug: print "self.afterEvent == AFTEREVENT.DEEPSTANDBY:"
+				if debug:
+					print "self.afterEvent == AFTEREVENT.DEEPSTANDBY:"
 				#check priority
 				prioPT = [TIMERTYPE.WAKEUP,TIMERTYPE.WAKEUPTOSTANDBY,TIMERTYPE.DEEPSTANDBY]
 				prioPTae = [AFTEREVENT.WAKEUP,AFTEREVENT.WAKEUPTOSTANDBY,AFTEREVENT.DEEPSTANDBY]
 				shiftPT,breakPT = self.getPriorityCheck(prioPT,prioPTae)
 				#a timer with higher priority was shifted - no execution of current timer
 				if DSsave:
-					if debug: print "break#1"
+					if debug:
+						print "break#1"
 					breakPT = True
 				#a timer with lower priority was shifted - shift now current timer and wait for restore the saved time values
 				if RSsave or RBsave:
-					if debug: print "shift#1"
+					if debug:
+						print "shift#1"
 					breakPT = False
 					shiftPT = True
 				#shift or break
@@ -566,7 +589,8 @@ class PowerTimerEntry(timer.TimerEntry, object):
 						self.savebegin = self.begin
 						self.saveend = self.end
 						aeDSsave = True
-					if not breakPT: self.do_backoff()
+					if not breakPT:
+						self.do_backoff()
 					#breakPT
 					if breakPT:
 						if self.repeated and aeDSsave:
@@ -697,18 +721,21 @@ class PowerTimerEntry(timer.TimerEntry, object):
 				continue
 			#faketime
 			if entry[1] is None and entry[2] is None and entry[3] is None:
-				if debug: print "shift#2 - entry is faketime", ctime(entry[0]), entry
+				if debug:
+					print "shift#2 - entry is faketime", ctime(entry[0]), entry
 				shiftPT = True
 				continue
 			#is timer in list itself?
 			if entry[0] == self.begin and entry[1] == self.timerType and entry[2] is None and entry[3] == self.state \
 				or entry[0] == self.end and entry[1] is None and entry[2] == self.afterEvent and entry[3] == self.state:
-				if debug: print "entry is itself", ctime(entry[0]), entry
+				if debug:
+					print "entry is itself", ctime(entry[0]), entry
 				nextPTitself = True
 			else:
 				nextPTitself = False
 			if (entry[1] in prioPT or entry[2] in prioPTae) and not nextPTitself:
-				if debug: print "break#2 <= 900", ctime(entry[0]), entry
+				if debug:
+					print "break#2 <= 900", ctime(entry[0]), entry
 				breakPT = True
 				break
 		return shiftPT, breakPT
@@ -1100,17 +1127,27 @@ class PowerTimer(timer.Timer):
 			#check entrys and plausibility of shift state (manual canceled timer has shift/save state not reset)
 			tt = ae = []
 			now = time()
-			if debug: print "+++++++++++++++"
+			if debug:
+				print "+++++++++++++++"
 			for entry in nextrectime:
-				if entry[0] < now + 900: tt.append(entry[1])
-				if entry[0] < now + 900: ae.append(entry[2])
-				if debug: print ctime(entry[0]), entry
-			if not TIMERTYPE.RESTART in tt: RSsave = False
-			if not TIMERTYPE.REBOOT in tt: RBsave = False
-			if not TIMERTYPE.DEEPSTANDBY in tt: DSsave = False
-			if not AFTEREVENT.DEEPSTANDBY in ae: aeDSsave = False
-			if debug: print "RSsave=%s, RBsave=%s, DSsave=%s, aeDSsave=%s, wasTimerWakeup=%s" %(RSsave, RBsave, DSsave, aeDSsave, wasTimerWakeup)
-			if debug: print "+++++++++++++++"
+				if entry[0] < now + 900:
+					tt.append(entry[1])
+				if entry[0] < now + 900:
+					ae.append(entry[2])
+				if debug:
+					print ctime(entry[0]), entry
+			if not TIMERTYPE.RESTART in tt:
+				RSsave = False
+			if not TIMERTYPE.REBOOT in tt:
+				RBsave = False
+			if not TIMERTYPE.DEEPSTANDBY in tt:
+				DSsave = False
+			if not AFTEREVENT.DEEPSTANDBY in ae:
+				aeDSsave = False
+			if debug:
+				print "RSsave=%s, RBsave=%s, DSsave=%s, aeDSsave=%s, wasTimerWakeup=%s" %(RSsave, RBsave, DSsave, aeDSsave, wasTimerWakeup)
+			if debug:
+				print "+++++++++++++++"
 			###
 			if config.timeshift.isRecording.value:
 				if 0 < nextrectime[0][0] < faketime:

@@ -82,7 +82,8 @@ class ServiceName2(Converter, object):
 			if not servicelist is None:
 				while True:
 					s = servicelist.getNext()
-					if not s.valid(): break
+					if not s.valid():
+						break
 					if not (s.flags & (eServiceReference.isMarker|eServiceReference.isDirectory)):
 						if type:
 							if s.flags & eServiceReference.isGroup:
@@ -109,10 +110,12 @@ class ServiceName2(Converter, object):
 			if not bouquetlist is None:
 				while True:
 					bouquet = bouquetlist.getNext()
-					if not bouquet.valid(): break
+					if not bouquet.valid():
+						break
 					if bouquet.flags & eServiceReference.isDirectory:
 						isService = searchService(serviceHandler, bouquet)
-						if isService: break
+						if isService:
+							break
 		return isService 
 
 	def getServiceNumber(self, ref):
@@ -121,10 +124,12 @@ class ServiceName2(Converter, object):
 			if not servicelist is None:
 				while True:
 					s = servicelist.getNext()
-					if not s.valid(): break
+					if not s.valid():
+						break
 					if not (s.flags & (eServiceReference.isMarker|eServiceReference.isDirectory)):
 						num += 1
-						if s == ref: return s, num
+						if s == ref:
+							return s, num
 			return None, num
 
 		if isinstance(ref, eServiceReference):
@@ -144,7 +149,8 @@ class ServiceName2(Converter, object):
 				acount = False
 			rootstr = ''
 			for x in lastpath.split(';'):
-				if x != '': rootstr = x
+				if x != '':
+					rootstr = x
 			serviceHandler = eServiceCenter.getInstance()
 			if acount is True or not config.usage.multibouquet.value:
 				bouquet = eServiceReference(rootstr)
@@ -161,10 +167,12 @@ class ServiceName2(Converter, object):
 				if not bouquetlist is None:
 					while True:
 						bouquet = bouquetlist.getNext()
-						if not bouquet.valid(): break
+						if not bouquet.valid():
+							break
 						if bouquet.flags & eServiceReference.isDirectory:
 							service, number = searchHelper(serviceHandler, number, bouquet)
-							if not service is None and cur == bouquet: break
+							if not service is None and cur == bouquet:
+								break
 			if not service is None:
 				info = serviceHandler.info(bouquet)
 				name = info and info.getName(bouquet) or ''
@@ -183,13 +191,15 @@ class ServiceName2(Converter, object):
 			if not providerlist is None:
 				while True:
 					provider = providerlist.getNext()
-					if not provider.valid(): break
+					if not provider.valid():
+						break
 					if provider.flags & eServiceReference.isDirectory:
 						servicelist = serviceHandler.list(provider)
 						if not servicelist is None:
 							while True:
 								service = servicelist.getNext()
-								if not service.valid(): break
+								if not service.valid():
+									break
 								if service == ref:
 									info = serviceHandler.info(provider)
 									return info and info.getName(provider) or "Unknown"
@@ -330,7 +340,8 @@ class ServiceName2(Converter, object):
 				return _("Terrestrial")
 			else: #Satellite
 				orbpos = ref.getData(4) >> 16
-				if orbpos < 0: orbpos += 3600
+				if orbpos < 0:
+					orbpos += 3600
 				try:
 					from Components.NimManager import nimmanager
 					return str(nimmanager.getSatDescription(orbpos))
@@ -474,7 +485,8 @@ class ServiceName2(Converter, object):
 		else: # reference
 			info = service and self.source.info
 			ref = service
-		if not info: return ""
+		if not info:
+			return ""
 		if ref:
 			refstr = ref.toString()
 		else:
@@ -488,7 +500,8 @@ class ServiceName2(Converter, object):
 					self.ref = nref
 					self.info = eServiceCenter.getInstance().info(self.ref)
 					self.refstr = self.ref.toString()
-					if not self.info: return ""
+					if not self.info:
+						return ""
 		if self.IPTVcontrol:
 			if '%3a//' in refstr or (self.refstr and '%3a//' in self.refstr) or refstr.startswith("4097:"):
 				self.isStream = True

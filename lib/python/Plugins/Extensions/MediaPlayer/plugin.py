@@ -168,8 +168,10 @@ class MediaPlayer(Screen, InfoBarBase, InfoBarScreenSaver, InfoBarSeek, InfoBarA
 
 		class MoviePlayerActionMap(NumberActionMap):
 			def __init__(self, player, contexts=None, actions=None, prio=0):
-				if not contexts: contexts = []
-				if not actions: actions = {}
+				if not contexts:
+					contexts = []
+				if not actions:
+					actions = {}
 				NumberActionMap.__init__(self, contexts, actions, prio)
 				self.player = player
 

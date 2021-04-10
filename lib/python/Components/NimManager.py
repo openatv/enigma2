@@ -381,9 +381,10 @@ class SecConfigure:
 					print "No space left on m_lnbs (max No. 144 LNBs exceeded)"
 					return
 
-				posnum = 1;	#default if LNB movable
+				posnum = 1
+				#default if LNB movable
 				if x <= maxFixedLnbPositions:
-					posnum = x;
+					posnum = x
 					sec.setLNBSatCRpositionnumber(x)	# LNB has fixed Position
 				else:
 					sec.setLNBSatCRpositionnumber(0)	# or not (movable LNB)
@@ -717,7 +718,8 @@ class SecConfigure:
 
 class NIM(object):
 	def __init__(self, slot, type, description, has_outputs=True, internally_connectable=None, multi_type=None, frontend_id=None, i2c=None, is_empty=False, input_name = None, supports_blind_scan = False):
-		if not multi_type: multi_type = {}
+		if not multi_type:
+			multi_type = {}
 		self.slot = slot
 
 		if type not in ("DVB-S", "DVB-C", "DVB-T", "DVB-S2", "DVB-S2X", "DVB-T2", "DVB-C2", "ATSC", None):
@@ -1694,7 +1696,7 @@ def InitNimManager(nimmgr, update_slots=None):
 				if scr[len(lscr)-i-1] == "0":
 					scr_pop()
 				else:
-					break;
+					break
 
 			p_update({"frequencies":tuple(scr)})								#add scr frequencies to dict product
 
@@ -1742,7 +1744,7 @@ def InitNimManager(nimmgr, update_slots=None):
 				if scr[len(lscr)-i-1] == "0":
 					scr_pop()
 				else:
-					break;
+					break
 
 			p_update({"frequencies":tuple(scr)})								#add scr frequencies to dict product
 

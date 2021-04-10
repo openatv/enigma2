@@ -449,7 +449,8 @@ class myProviderSelection(ChannelSelectionBase):
 
 	def channelSelected(self): # just return selected service
 		ref = self.getCurrentSelection()
-		if ref is None: return
+		if ref is None:
+			return
 		if not (ref.flags & 64):
 			splited_ref = ref.toString().split(":")
 			if ref.flags == 7 and splited_ref[6] != "0":
