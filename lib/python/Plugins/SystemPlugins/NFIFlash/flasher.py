@@ -202,7 +202,8 @@ class NFIFlash(Screen):
 			self["status"].text = _("NFI image flashing completed. Press Yellow to Reboot!")
 			filename = self.usbmountpoint+'enigma2settingsbackup.tar.gz'
 			if fileExists(filename):
-				import os.path, time
+				import os.path
+				import time
 				date = time.ctime(os.path.getmtime(filename))
 				self.session.openWithCallback(self.askRestoreCB, MessageBox, _("The wizard found a configuration backup. Do you want to restore your old settings from %s?") % date, MessageBox.TYPE_YESNO)
 			else:

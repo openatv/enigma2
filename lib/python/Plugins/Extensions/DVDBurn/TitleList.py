@@ -1,4 +1,10 @@
-import Project, TitleCutter, TitleProperties, ProjectSettings, MediumToolbox, Process, Bludisc
+import Project
+import TitleCutter
+import TitleProperties
+import ProjectSettings
+import MediumToolbox
+import Process
+import Bludisc
 from Screens.Screen import Screen
 from Screens.ChoiceBox import ChoiceBox
 from Screens.MessageBox import MessageBox

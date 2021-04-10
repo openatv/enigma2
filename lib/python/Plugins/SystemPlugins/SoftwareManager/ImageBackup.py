@@ -19,7 +19,9 @@ from Screens.MessageBox import MessageBox
 from time import time, strftime, localtime
 from Tools.BoundFunction import boundFunction
 from Tools.Multiboot import GetImagelist, GetCurrentImage, GetCurrentImageMode, GetCurrentKern, GetCurrentRoot, GetBoxName
-import os, commands, datetime
+import os
+import commands
+import datetime
 from boxbranding import getMachineBrand, getMachineName, getDriverDate, getImageVersion, getImageBuild, getBrandOEM, getMachineBuild, getImageFolder, getMachineUBINIZE, getMachineMKUBIFS, getMachineMtdKernel, getMachineMtdRoot, getMachineKernelFile, getMachineRootFile, getImageFileSystem, getImageDistro, getImageVersion
 
 VERSION = _("Version %s %s") %(getImageDistro(), getImageVersion())

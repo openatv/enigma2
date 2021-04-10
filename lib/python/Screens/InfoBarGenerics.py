@@ -54,10 +54,12 @@ from time import time, localtime, strftime
 from bisect import insort
 from keyids import KEYIDS
 from datetime import datetime
-import itertools, datetime
+import itertools
+import datetime
 from sys import maxint
 
-import os, cPickle
+import os
+import cPickle
 
 # hack alert!
 from Screens.Menu import MainMenu, Menu, mdom

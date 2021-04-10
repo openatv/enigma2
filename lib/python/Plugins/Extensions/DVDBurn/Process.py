@@ -506,7 +506,9 @@ class MenuImageTask(Task):
 	def run(self, callback):
 		self.callback = callback
 		#try:
-		import ImageDraw, Image, os
+		import ImageDraw
+		import Image
+		import os
 		s = self.job.project.menutemplate.settings
 		s_top = s.margin_top.getValue()
 		s_bottom = s.margin_bottom.getValue()

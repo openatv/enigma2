@@ -2,7 +2,10 @@ from Components.ActionMap import ActionMap
 from Components.ScrollLabel import ScrollLabel
 from Components.Sources.StaticText import StaticText
 from Screens.Screen import Screen
-import re, os, urllib2, sys
+import re
+import os
+import urllib2
+import sys
 
 # TODO: this URL now redirects to https://www.receiver-settings.de/
 URL ='http://www.sattechnik.de/programmlisten-update/history.txt'

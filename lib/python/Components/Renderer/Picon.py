@@ -1,4 +1,6 @@
-import os, re, unicodedata
+import os
+import re
+import unicodedata
 from Renderer import Renderer
 from enigma import ePixmap, ePicLoad
 from Tools.Alternatives import GetWithAlternative

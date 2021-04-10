@@ -1,5 +1,12 @@
 from enigma import eTimer
-import re, glob, shutil, os, urllib2, urllib, time, sys
+import re
+import glob
+import shutil
+import os
+import urllib2
+import urllib
+import time
+import sys
 from Screens.Screen import Screen
 from Components.config import ConfigSubsection, ConfigYesNo, ConfigText, config, configfile
 from Screens.MessageBox import MessageBox

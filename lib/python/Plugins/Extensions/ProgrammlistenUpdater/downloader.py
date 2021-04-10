@@ -1,4 +1,7 @@
-import re, os, urllib2, sys
+import re
+import os
+import urllib2
+import sys
 
 
 def DownloadSetting(url):
