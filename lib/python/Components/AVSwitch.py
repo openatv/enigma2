@@ -127,7 +127,7 @@ class AVSwitch:
 	if has_scartyuv:
 		modes["Scart-YPbPr"] = modes["HDMI"]
 
-	# if modes.has_key("DVI-PC") and not getModeList("DVI-PC"):
+	# if "DVI-PC" in modes and not getModeList("DVI-PC"):
 	# 	print "[AVSwitch] remove DVI-PC because of not existing modes"
 	# 	del modes["DVI-PC"]
 	if "YPbPr" in modes and not has_yuv:

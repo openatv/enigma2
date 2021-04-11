@@ -210,7 +210,7 @@ class OscamInfo:
 			if not self.showLog:
 				data = ElementTree.XML(result[1])
 #				if typ=="version":
-#					if data.attrib.has_key("version"):
+#					if "version" in data.attrib:
 #						self.version = data.attrib["version"]
 #					else:
 #						self.version = "n/a"
@@ -1091,13 +1091,13 @@ class oscReaderStats(Screen, OscamInfo):
 				xdata = ElementTree.XML(xmldata[1])
 				rdr = xdata.find("reader")
 #					emms = rdr.find("emmstats")
-#					if emms.attrib.has_key("totalwritten"):
+#					if "totalwritten" in emms.attrib:
 #						emm_wri = emms.attrib["totalwritten"]
-#					if emms.attrib.has_key("totalskipped"):
+#					if "totalskipped" in emms.attrib:
 #						emm_ski = emms.attrib["totalskipped"]
-#					if emms.attrib.has_key("totalblocked"):
+#					if "totalblocked" in emms.attrib:
 #						emm_blk = emms.attrib["totalblocked"]
-#					if emms.attrib.has_key("totalerror"):
+#					if "totalerror" in emms.attrib:
 #						emm_err = emms.attrib["totalerror"]
 
 				ecmstat = rdr.find("ecmstats")
