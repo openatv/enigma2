@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-12-30 14:34+0100\n"
+"POT-Creation-Date: 2021-04-16 19:27+0430\n"
 "PO-Revision-Date: \n"
 "Last-Translator: 王彪 <satfan@163.com>\n"
 "Language-Team: 中國\n"
@@ -34,11 +34,6 @@ msgstr ""
 msgid ""
 "\n"
 " Kodi not present. Proceed with install?"
-msgstr ""
-
-msgid ""
-"\n"
-"%Y/%m/%d  %H:%M - "
 msgstr ""
 
 msgid ""
@@ -203,32 +198,14 @@ msgstr ""
 msgid "     wrong back-up destination "
 msgstr ""
 
-#, python-format
-msgid "   (%s MHz)"
-msgstr ""
-
-msgid "   (1.0 GHz)"
-msgstr ""
-
-msgid "   (1.3 GHz)"
-msgstr ""
-
-msgid "   (1.5 GHz)"
-msgstr ""
-
-msgid "   (1.6 GHz)"
-msgstr ""
-
-msgid "   (1.7 GHz)"
-msgstr ""
-
-msgid "   (2.0 GHz)"
-msgstr ""
-
-msgid "   (2.1 GHz)"
-msgstr ""
+#, fuzzy, python-format
+msgid "  (%s x %s)"
+msgstr "%s (%s)\n"
 
 msgid "  Menu key : Select quad channel"
+msgstr ""
+
+msgid "  REC  "
 msgstr ""
 
 msgid "  Red key : Show/Hide channel name"
@@ -301,6 +278,9 @@ msgstr "頻道"
 msgid " <empty>"
 msgstr "空的"
 
+msgid " HI "
+msgstr ""
+
 msgid " and"
 msgstr ""
 
@@ -310,6 +290,10 @@ msgid ""
 "\n"
 "Do you want to install the new settingslist?"
 msgstr " 是否安裝預設的衛星列表？"
+
+#, python-format
+msgid " bootmode = %s"
+msgstr ""
 
 msgid " of "
 msgstr ""
@@ -326,10 +310,6 @@ msgstr ""
 
 #, fuzzy
 msgid "%-H:%M"
-msgstr "%H:%M"
-
-#, fuzzy
-msgid "%-H:%M - "
 msgstr "%H:%M"
 
 #, fuzzy
@@ -378,6 +358,28 @@ msgid "%-d-%b"
 msgstr ""
 
 msgid "%-d-%b-%Y"
+msgstr ""
+
+#, fuzzy
+msgid "%-d. %B %Y"
+msgstr "%d.%B %Y"
+
+msgid "%-d. %b"
+msgstr ""
+
+msgid "%-d. %b %Y"
+msgstr ""
+
+msgid "%-d.%-m"
+msgstr ""
+
+msgid "%-d.%-m.%Y"
+msgstr ""
+
+msgid "%-d.%m"
+msgstr ""
+
+msgid "%-d.%m.%Y"
 msgstr ""
 
 msgid "%-d/%-m"
@@ -432,7 +434,7 @@ msgid "%.2f GB"
 msgstr ""
 
 #, python-format
-msgid "%02d.%02d - %02d.%02d (%s%d min)"
+msgid "%.3f MHz"
 msgstr ""
 
 #, python-format
@@ -467,7 +469,6 @@ msgstr "A"
 msgid "%A %-d %B"
 msgstr ""
 
-#. TRANSLATORS: full date representation dayname daynum monthname year in strftime() format! See 'man strftime'
 #, fuzzy
 msgid "%A %-d %B %Y"
 msgstr "%d.%B %Y"
@@ -477,6 +478,30 @@ msgstr ""
 
 msgid "%A %-d-%B-%Y"
 msgstr ""
+
+#, fuzzy
+msgid "%A %-d. %B"
+msgstr "%d.%B %Y"
+
+#, fuzzy
+msgid "%A %-d. %B %Y"
+msgstr "%d.%B %Y"
+
+#, fuzzy
+msgid "%A %-d.%-m"
+msgstr "%d.%B %Y"
+
+#, fuzzy
+msgid "%A %-d.%-m.%Y"
+msgstr "%d.%B %Y"
+
+#, fuzzy
+msgid "%A %-d.%m"
+msgstr "%d.%B %Y"
+
+#, fuzzy
+msgid "%A %-d.%m.%Y"
+msgstr "%d.%B %Y"
 
 msgid "%A %-d/%-m"
 msgstr ""
@@ -566,6 +591,30 @@ msgstr ""
 msgid "%A %d-%B-%Y"
 msgstr ""
 
+#, fuzzy
+msgid "%A %d. %B"
+msgstr "%d.%B %Y"
+
+#, fuzzy
+msgid "%A %d. %B %Y"
+msgstr "%d.%B %Y"
+
+#, fuzzy
+msgid "%A %d.%-m"
+msgstr "%d.%B %Y"
+
+#, fuzzy
+msgid "%A %d.%-m.%Y"
+msgstr "%d.%B %Y"
+
+#, fuzzy
+msgid "%A %d.%m"
+msgstr "%d.%B %Y"
+
+#, fuzzy
+msgid "%A %d.%m.%Y"
+msgstr "%d.%B %Y"
+
 msgid "%A %d/%-m"
 msgstr ""
 
@@ -576,9 +625,6 @@ msgid "%A %d/%m"
 msgstr ""
 
 msgid "%A %d/%m/%Y"
-msgstr ""
-
-msgid "%A %e %b"
 msgstr ""
 
 msgid "%A %m/%-d"
@@ -710,6 +756,34 @@ msgstr ""
 msgid "%a %-d-%b-%Y"
 msgstr ""
 
+#, fuzzy
+msgid "%a %-d. %B %Y"
+msgstr "%d.%B %Y"
+
+#, fuzzy
+msgid "%a %-d. %b"
+msgstr "%d.%B %Y"
+
+#, fuzzy
+msgid "%a %-d. %b %Y"
+msgstr "%d.%B %Y"
+
+#, fuzzy
+msgid "%a %-d.%-m"
+msgstr "%d.%B %Y"
+
+#, fuzzy
+msgid "%a %-d.%-m.%Y"
+msgstr "%d.%B %Y"
+
+#, fuzzy
+msgid "%a %-d.%m"
+msgstr "%d.%B %Y"
+
+#, fuzzy
+msgid "%a %-d.%m.%Y"
+msgstr "%d.%B %Y"
+
 msgid "%a %-d/%-m"
 msgstr ""
 
@@ -832,6 +906,34 @@ msgstr ""
 
 msgid "%a %d-%b-%Y"
 msgstr ""
+
+#, fuzzy
+msgid "%a %d. %B %Y"
+msgstr "%d.%B %Y"
+
+#, fuzzy
+msgid "%a %d. %b"
+msgstr "%d.%B %Y"
+
+#, fuzzy
+msgid "%a %d. %b %Y"
+msgstr "%d.%B %Y"
+
+#, fuzzy
+msgid "%a %d.%-m"
+msgstr "%d.%B %Y"
+
+#, fuzzy
+msgid "%a %d.%-m.%Y"
+msgstr "%d.%B %Y"
+
+#, fuzzy
+msgid "%a %d.%m"
+msgstr "%d.%B %Y"
+
+#, fuzzy
+msgid "%a %d.%m.%Y"
+msgstr "%d.%B %Y"
 
 msgid "%a %d/%-m"
 msgstr ""
@@ -1028,15 +1130,34 @@ msgstr ""
 msgid "%d-%m"
 msgstr ""
 
+#, fuzzy
+msgid "%d. %B %Y"
+msgstr "%d.%B %Y"
+
+msgid "%d. %b"
+msgstr ""
+
+msgid "%d. %b %Y"
+msgstr ""
+
+msgid "%d.%-m"
+msgstr ""
+
+#, fuzzy
+msgid "%d.%-m.%Y"
+msgstr "%d.%B %Y"
+
 #, python-format
 msgid "%d.%03d GB"
 msgstr ""
 
-msgid "%d.%B %Y"
+#, fuzzy
+msgid "%d.%m"
 msgstr "%d.%B %Y"
 
-msgid "%d.%m.   "
-msgstr ""
+#, fuzzy
+msgid "%d.%m.%Y"
+msgstr "%d.%B %Y"
 
 msgid "%d/%-m"
 msgstr ""
@@ -1092,11 +1213,12 @@ msgstr ""
 "%s\n"
 "(%s, %d MB 空閒)"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "%s\n"
-"Press ok to close"
-msgstr "按OK鍵更改"
+"Press ok for multiboot selection\n"
+"Press exit to close"
+msgstr ""
 
 #, python-format
 msgid "%s %02d.%02d."
@@ -1147,11 +1269,27 @@ msgid "%s (%s)\n"
 msgstr "%s (%s)\n"
 
 #, fuzzy, python-format
+msgid "%s - %s (%s%d min)"
+msgstr "%s (%s)\n"
+
+#, fuzzy, python-format
 msgid "%s - Setup"
 msgstr "設定"
 
 #, python-format
 msgid "%s - extraction errors."
+msgstr ""
+
+#, python-format
+msgid "%s GHz"
+msgstr ""
+
+#, python-format
+msgid "%s KSymb/s"
+msgstr ""
+
+#, python-format
+msgid "%s MHz"
 msgstr ""
 
 #, fuzzy, python-format
@@ -1161,10 +1299,6 @@ msgstr "設定"
 #, fuzzy, python-format
 msgid "%s additional screens"
 msgstr "掃描更多 SR"
-
-#, python-format
-msgid "%s build date %s"
-msgstr ""
 
 #. TRANSLATORS: The satellite with name '%s' is no longer used after a configuration change. The user is asked whether or not the satellite should be deleted.
 #, python-format
@@ -1270,11 +1404,19 @@ msgid "(Attention: There will be a restart after %d crashes.)"
 msgstr ""
 
 #, fuzzy
+msgid "(FTA Service)"
+msgstr "頻道"
+
+#, fuzzy
 msgid "(Selectmode)"
 msgstr "選擇一部電影"
 
 msgid "(Show only reader:"
 msgstr ""
+
+#, fuzzy
+msgid "(current image)"
+msgstr "當前"
 
 msgid "(e.g. TV wakeup, but not switched to correct input)"
 msgstr ""
@@ -1299,6 +1441,9 @@ msgid "+/-"
 msgstr ""
 
 msgid "+24"
+msgstr ""
+
+msgid "-"
 msgstr ""
 
 msgid "-24"
@@ -2167,6 +2312,14 @@ msgstr ""
 msgid "AFP Setup"
 msgstr "EPG設定"
 
+#, fuzzy
+msgid "ASS File"
+msgstr "文件"
+
+#, fuzzy
+msgid "ASS file"
+msgstr "添加新的檔"
+
 msgid "ATSC"
 msgstr ""
 
@@ -2962,6 +3115,13 @@ msgstr "頻道"
 msgid "Audio PID"
 msgstr ""
 
+#, python-format
+msgid "Audio PID%s, codec & lang"
+msgstr ""
+
+msgid "Audio PID, codec & lang"
+msgstr ""
+
 #, fuzzy
 msgid "Audio Selection"
 msgstr "音頻選擇"
@@ -3106,20 +3266,12 @@ msgid "Automatic image backup"
 msgstr "自動掃描"
 
 #, fuzzy
-msgid "Automatic refresh"
-msgstr "自動"
-
-#, fuzzy
 msgid "Automatic resolution"
 msgstr "自動解析度..."
 
 #, fuzzy
 msgid "Automatic resolution label"
 msgstr "自動解析度..."
-
-#, fuzzy
-msgid "Automatic save"
-msgstr "自動掃描"
 
 msgid "Automatic scan"
 msgstr ""
@@ -3310,6 +3462,13 @@ msgid "Backup Mode"
 msgstr "備份模式"
 
 #, fuzzy
+msgid "Backup Mode: Flash Online\n"
+msgstr "顯示資訊"
+
+msgid "Backup Mode: USB Recovery\n"
+msgstr ""
+
+#, fuzzy
 msgid "Backup Settings"
 msgstr "備份系統設定"
 
@@ -3395,6 +3554,9 @@ msgid "Base transparency for teletext, more options available within teletext sc
 msgstr ""
 
 msgid "Baseball"
+msgstr ""
+
+msgid "Basic PID info"
 msgstr ""
 
 #, fuzzy
@@ -3615,10 +3777,6 @@ msgid "Buffers:"
 msgstr "緩衝"
 
 #, python-format
-msgid "Build:\t\t%s"
-msgstr ""
-
-#, python-format
 msgid "Build: %s"
 msgstr ""
 
@@ -3677,6 +3835,10 @@ msgstr ""
 
 msgid "Bytes sent:"
 msgstr ""
+
+#, fuzzy
+msgid "C"
+msgstr "C"
 
 msgid "C-Band"
 msgstr "C-波段"
@@ -3806,7 +3968,7 @@ msgid "CPU priority for script execution"
 msgstr ""
 
 #, python-format
-msgid "CPU:\t\t%s"
+msgid "CPU:\t\t%s  (%s)  %s cores"
 msgstr ""
 
 #, python-format
@@ -3860,6 +4022,24 @@ msgid "Cameroon"
 msgstr ""
 
 msgid "Can be used for different fps between external subtitles and video."
+msgstr ""
+
+msgid ""
+"Can be used to test defect pixels on TV screen.\n"
+"\n"
+"Available color test screens:\n"
+"\n"
+"red\n"
+"green\n"
+"blue\n"
+"white\n"
+"black\n"
+"cyan\n"
+"magenta\n"
+"yellow\n"
+"\n"
+"Screens change with left/right buttons or use red, green, blue to toggle.\n"
+"Yellow for returning back to this intro"
 msgstr ""
 
 #, fuzzy
@@ -3955,6 +4135,14 @@ msgstr "頻道選擇"
 
 msgid "Cancel save timeshift as movie"
 msgstr ""
+
+#, fuzzy
+msgid "Cancel the image selection and exit"
+msgstr "頻道選擇"
+
+#, fuzzy
+msgid "Cancel the image selection and exit all menus"
+msgstr "頻道選擇"
 
 #, fuzzy
 msgid "Cancel the selection"
@@ -4105,6 +4293,10 @@ msgstr "頻道"
 msgid "Channel \t\t\tVolume +"
 msgstr ""
 
+#, fuzzy
+msgid "Channel +/-"
+msgstr "頻道"
+
 msgid "Channel +/- button mode"
 msgstr ""
 
@@ -4122,10 +4314,6 @@ msgstr "頻道"
 
 #, fuzzy
 msgid "Channel List"
-msgstr "頻道"
-
-#, fuzzy
-msgid "Channel Name"
 msgstr "頻道"
 
 msgid "Channel button always changes sides"
@@ -4483,10 +4671,6 @@ msgid "Clients"
 msgstr "用戶端 IP:"
 
 #, fuzzy
-msgid "Clock"
-msgstr "時鐘"
-
-#, fuzzy
 msgid "Clock:"
 msgstr "時鐘"
 
@@ -4512,17 +4696,14 @@ msgstr "關閉標題選項"
 msgid "Cocos (Keeling) Islands"
 msgstr ""
 
+msgid "Code R. LP-HP & Guard Int."
+msgstr ""
+
 msgid "Code rate HP"
 msgstr ""
 
 msgid "Code rate LP"
 msgstr ""
-
-msgid "Coderate HP"
-msgstr "HP編碼率"
-
-msgid "Coderate LP"
-msgstr "LP編碼率"
 
 msgid "Collapse"
 msgstr ""
@@ -5031,7 +5212,8 @@ msgstr "連接到"
 msgid "Console"
 msgstr ""
 
-msgid "Constellation"
+#, fuzzy
+msgid "Constellation & FFT mode"
 msgstr "星位"
 
 msgid "Consult your SCR device spec sheet for this information."
@@ -5080,6 +5262,9 @@ msgstr ""
 
 msgid "Contrast"
 msgstr "對比度"
+
+msgid "Control LED can be turned on or off here."
+msgstr ""
 
 msgid "Control of the position how finished timer are shown in the Timer List."
 msgstr ""
@@ -5150,10 +5335,6 @@ msgstr ""
 #, fuzzy
 msgid "Copying files"
 msgstr "日誌檔"
-
-#, python-format
-msgid "Cores:\t\t%s"
-msgstr ""
 
 #, python-format
 msgid "Cores: %s"
@@ -5413,6 +5594,9 @@ msgstr "捷克"
 msgid "Czechia"
 msgstr "捷克"
 
+msgid "D"
+msgstr "D"
+
 msgid "DAC"
 msgstr ""
 
@@ -5453,6 +5637,10 @@ msgstr "雙層DVD"
 
 msgid "DVB CI Delay"
 msgstr ""
+
+#, fuzzy
+msgid "DVB Subtitles PID & lang"
+msgstr "字幕選擇"
 
 msgid "DVB subtitle black transparency"
 msgstr ""
@@ -5585,6 +5773,15 @@ msgstr ""
 msgid "Dayname D-Month-Year"
 msgstr ""
 
+msgid "Dayname D. Month Year"
+msgstr ""
+
+msgid "Dayname D.M.Year"
+msgstr ""
+
+msgid "Dayname D.MM.Year"
+msgstr ""
+
 msgid "Dayname D/M/Year"
 msgstr ""
 
@@ -5595,6 +5792,15 @@ msgid "Dayname DD Month Year"
 msgstr ""
 
 msgid "Dayname DD-Month-Year"
+msgstr ""
+
+msgid "Dayname DD. Month Year"
+msgstr ""
+
+msgid "Dayname DD.M.Year"
+msgstr ""
+
+msgid "Dayname DD.MM.Year"
 msgstr ""
 
 msgid "Dayname DD/M/Year"
@@ -5899,10 +6105,14 @@ msgstr ""
 msgid "Delete saved playlist"
 msgstr ""
 
-msgid "Delete the character to the left of text buffer cursor"
+#, fuzzy
+msgid "Delete the all the text"
+msgstr "刪除項目"
+
+msgid "Delete the character to the left of text cursor"
 msgstr ""
 
-msgid "Delete the character under the text buffer cursor"
+msgid "Delete the character under the text cursor"
 msgstr ""
 
 msgid "Delete the current timeshift buffer and restart timeshift"
@@ -6083,10 +6293,6 @@ msgstr "禁用計時器"
 
 msgid "Disable Picture in Picture"
 msgstr "禁用畫中畫"
-
-#, fuzzy
-msgid "Disable all VFD Symbols"
-msgstr "禁用字幕"
 
 msgid "Disable background scanning"
 msgstr ""
@@ -6335,10 +6541,6 @@ msgid "Do you want to produce this collection?"
 msgstr " 是否燒錄這個收藏到DVD光碟?"
 
 #, fuzzy, python-format
-msgid "Do you want to reboot now the image in slot %s?"
-msgstr " 是否重啟您的Dreambox?"
-
-#, fuzzy, python-format
 msgid "Do you want to reboot your %s %s"
 msgstr " 是否重啟您的Dreambox?"
 
@@ -6506,6 +6708,10 @@ msgstr ""
 msgid "Drogen"
 msgstr ""
 
+#, fuzzy
+msgid "Dual Mode"
+msgstr "模式"
+
 msgid "During this time, the transmitter and the recording destination are checked. If the recording destination (eg NAS) does not ready in time for recording, this time can be increased."
 msgstr ""
 
@@ -6519,11 +6725,19 @@ msgid "E"
 msgstr "E"
 
 #, fuzzy
+msgid "E "
+msgstr "E"
+
+#, fuzzy
 msgid "E2 Log"
 msgstr "RS Log"
 
 msgid "E3HD/XPEEDLX/GI"
 msgstr ""
+
+#, fuzzy
+msgid "ECM Info"
+msgstr "CCcam資訊"
 
 msgid "ECM Statistics"
 msgstr ""
@@ -6630,6 +6844,10 @@ msgstr ""
 msgid "Eastern"
 msgstr "東方"
 
+#, fuzzy
+msgid "EasyMedia"
+msgstr "Multimedia"
+
 msgid "Ecuador"
 msgstr ""
 
@@ -6718,6 +6936,9 @@ msgid "Electronic Program Guide"
 msgstr "電子節目指南"
 
 msgid "Email"
+msgstr ""
+
+msgid "Embedded"
 msgstr ""
 
 msgid "Empty slot"
@@ -6909,6 +7130,10 @@ msgstr "加密系統: "
 msgid "Encryption"
 msgstr "加密系統"
 
+#, fuzzy
+msgid "Encryption Type:"
+msgstr "加密類型"
+
 msgid "Encryption key"
 msgstr ""
 
@@ -6957,14 +7182,16 @@ msgstr ""
 "\n"
 "? 2006 - Stephan Reichholf"
 
+#, python-format
+msgid "Enigma2 debug level:\t%d"
+msgstr ""
+
 msgid "Enigma2 skin selector"
 msgstr ""
 
-msgid ""
-"Enjoy how IceTV can enhance your TV viewing experience by downloading the IceTV app to your smartphone or tablet. The IceTV app is available free from the iTunes App Store, the Google Play Store and the Windows Phone Store.\n"
-"\n"
-"Download it today!"
-msgstr ""
+#, fuzzy
+msgid "Enigmalight"
+msgstr "夜晚"
 
 #, fuzzy
 msgid "Enter"
@@ -7174,6 +7401,10 @@ msgstr "愛沙尼亞語"
 msgid "Estonian"
 msgstr "愛沙尼亞語"
 
+#, fuzzy
+msgid "EtPortal"
+msgstr "葡萄牙語"
+
 msgid "Ethernet network interface"
 msgstr ""
 
@@ -7228,6 +7459,16 @@ msgstr "事件檢視"
 msgid "Everyday"
 msgstr "每天"
 
+msgid ""
+"Everything in one place - IceTV does it for you!\n"
+"\n"
+"Using the IceTV app or website, 'My Shows' is your place to go to. See the next 7 days of your recordings, favourite shows, keyword notifications, new series broadcasts, and our recommendations.\n"
+"\n"
+"Everything in one place. Simply select something new and press Record.\n"
+"\n"
+"IceTV's smartphone and tablet apps can be downloaded by scanning the code above."
+msgstr ""
+
 msgid "Everywhere"
 msgstr ""
 
@@ -7259,7 +7500,7 @@ msgstr ""
 msgid "Exif"
 msgstr "Exif"
 
-msgid "Existing or trial user"
+msgid "Existing or trial customer"
 msgstr ""
 
 msgid "Exit"
@@ -7336,6 +7577,10 @@ msgid "Expert mode"
 msgstr "高級"
 
 #, fuzzy
+msgid "Ext. NumberZap"
+msgstr "11月"
+
+#, fuzzy
 msgid "Extend"
 msgstr "擴展"
 
@@ -7349,6 +7594,10 @@ msgstr "擴展軟體"
 
 msgid "Extended Networksetup Plugin..."
 msgstr "擴展網路設定插件..."
+
+#, fuzzy
+msgid "Extended PID info"
+msgstr "擴展軟體"
 
 msgid "Extended Setup..."
 msgstr "擴展設定..."
@@ -7413,6 +7662,10 @@ msgstr ""
 
 msgid "Extrude from left"
 msgstr ""
+
+#, fuzzy
+msgid "F"
+msgstr "1"
 
 #, fuzzy
 msgid "F1"
@@ -7648,6 +7901,9 @@ msgstr ""
 msgid "File/Directory Status Information"
 msgstr "分級資訊"
 
+msgid "Filename"
+msgstr "檔案名"
+
 #, fuzzy
 msgid "Files/folders to exclude from backup"
 msgstr "選擇要備份的檔/目錄"
@@ -7658,6 +7914,9 @@ msgstr "檔系統檢視"
 #, fuzzy
 msgid "Filesystem check your Harddisk"
 msgstr "檔系統檢視"
+
+msgid "Fill in channel EPGs from the broadcast EPG where there is no IceTV EPG for the channel"
+msgstr ""
 
 msgid "Film-Noir"
 msgstr ""
@@ -7684,6 +7943,10 @@ msgstr "全球延遲"
 #, fuzzy
 msgid "Finance"
 msgstr "法國"
+
+#, python-format
+msgid "Find out more at %s"
+msgstr ""
 
 msgid "Fine movement"
 msgstr ""
@@ -7876,6 +8139,18 @@ msgstr ""
 msgid "Frequency"
 msgstr "頻率"
 
+#, fuzzy
+msgid "Frequency & Channel"
+msgstr "頻帶"
+
+#, fuzzy
+msgid "Frequency & Polarization"
+msgstr "極化"
+
+#, fuzzy
+msgid "Frequency Norm:"
+msgstr "頻率:"
+
 msgid "Frequency bands"
 msgstr "頻帶"
 
@@ -7884,6 +8159,10 @@ msgstr "頻率掃描步長(khz)"
 
 msgid "Frequency steps"
 msgstr "頻率步進"
+
+#, fuzzy
+msgid "Frequency:"
+msgstr "頻率:"
 
 #, fuzzy
 msgid "Frequency: "
@@ -7903,6 +8182,10 @@ msgstr ""
 
 msgid "Front USB 3.0"
 msgstr ""
+
+#, fuzzy, python-format
+msgid "Frontprocessor version:\t%s"
+msgstr "前端版本: %d"
 
 #, fuzzy, python-format
 msgid "Frontprocessor version: %s"
@@ -7940,6 +8223,10 @@ msgstr ""
 
 msgid "Für Kinder"
 msgstr ""
+
+#, fuzzy
+msgid "G"
+msgstr "RGB"
 
 #, fuzzy
 msgid "GB"
@@ -8259,8 +8546,9 @@ msgstr ""
 msgid "Guyana"
 msgstr ""
 
-msgid "H7/H9/H9COMBO/H10 new Model"
-msgstr ""
+#, fuzzy
+msgid "H"
+msgstr "C"
 
 msgid "H: = Hourly / D: = Daily / W: = Weekly / M: = Monthly"
 msgstr ""
@@ -8286,7 +8574,7 @@ msgstr ""
 msgid "HD2400"
 msgstr ""
 
-msgid "HD60"
+msgid "HD60/Multibox/Multiboxse"
 msgstr ""
 
 msgid "HDMI"
@@ -8457,9 +8745,6 @@ msgstr ""
 msgid "Hierarchy info"
 msgstr ""
 
-msgid "Hierarchy information"
-msgstr ""
-
 msgid "High bitrate support"
 msgstr "高位元率支援"
 
@@ -8603,8 +8888,19 @@ msgstr "匈牙利語"
 msgid "Hungary"
 msgstr "匈牙利語"
 
+#, fuzzy
+msgid "I"
+msgstr "IP:"
+
 msgid "I/O priority for script execution"
 msgstr ""
+
+msgid "I55SE/H7/H9/H9SE/H9COMBO/H9COMBOSE/H10/H11 new Model"
+msgstr ""
+
+#, fuzzy
+msgid "IMDB Search"
+msgstr "搜索"
 
 #, fuzzy
 msgid "IMDB search"
@@ -8704,6 +9000,10 @@ msgstr ""
 
 #, fuzzy, python-format
 msgid "IceTV version %s"
+msgstr "附件管理"
+
+#, fuzzy, python-format
+msgid "IceTV version %s\n"
 msgstr "附件管理"
 
 #, fuzzy
@@ -8868,16 +9168,8 @@ msgstr "文件管理器"
 msgid "Image Version"
 msgstr "新版本:"
 
-#, fuzzy, python-format
-msgid "Image Version %s"
-msgstr "附件管理"
-
 #, python-format
-msgid "Image created on: %s/%s-%s-%s-backup-%s_mmc.zip"
-msgstr ""
-
-#, python-format
-msgid "Image created on: %s/%s-%s-%s-backup-%s_recovery.zip"
+msgid "Image created on: %s/%s-%s-%s-backup-%s_recovery_emmc.zip"
 msgstr ""
 
 #, python-format
@@ -8920,7 +9212,7 @@ msgstr ""
 msgid ""
 "In order to allow you to access all the features of the IceTV smart recording service, we need to gather some basic information.\n"
 "\n"
-"If you already have an IceTV subscription or trial, please select 'Existing or trial user', if not, then select 'New user'."
+"If you already have an IceTV subscription or trial, please select 'Existing or trial customer', if not, then select 'New customer'."
 msgstr ""
 
 #, fuzzy
@@ -9065,12 +9357,6 @@ msgstr "娛樂"
 
 msgid "Init"
 msgstr "初始化"
-
-msgid "Init SDCARD"
-msgstr ""
-
-msgid "Init SDcard"
-msgstr ""
 
 msgid "Initial fast forward speed"
 msgstr ""
@@ -9310,6 +9596,13 @@ msgstr "手動轉發器掃描"
 msgid "Inversion"
 msgstr "反向"
 
+#, fuzzy
+msgid "Inversion & Bandwidth"
+msgstr "帶寬"
+
+msgid "Inversion, Pilot & Roll-off"
+msgstr ""
+
 msgid "Invert"
 msgstr ""
 
@@ -9372,6 +9665,9 @@ msgstr "義大利語"
 
 msgid "Italy"
 msgstr "義大利"
+
+msgid "J"
+msgstr ""
 
 msgid "JUMP 24 HOURS"
 msgstr ""
@@ -9492,6 +9788,10 @@ msgstr "鍵盤佈局"
 
 #, fuzzy
 msgid "Keyboard data entry"
+msgstr "鍵盤佈局"
+
+#, fuzzy
+msgid "Keyboard long"
 msgstr "鍵盤佈局"
 
 msgid "Keyboard map"
@@ -9655,6 +9955,13 @@ msgstr "語言選擇"
 msgid "Lao People's Democratic Republic"
 msgstr ""
 
+msgid "Large"
+msgstr ""
+
+#, fuzzy, python-format
+msgid "Last E2 update:\t\t%s"
+msgstr "最後更新"
+
 #, fuzzy
 msgid "Last Req."
 msgstr "最快速度"
@@ -9664,10 +9971,6 @@ msgstr "最後一次正確配置"
 
 msgid "Last speed"
 msgstr "最快速度"
-
-#, fuzzy, python-format
-msgid "Last update:\t\t%s"
-msgstr "最後更新"
 
 #, fuzzy, python-format
 msgid "Last update:\t%s"
@@ -10030,6 +10333,13 @@ msgstr ""
 msgid "Magazin"
 msgstr ""
 
+msgid "Magic"
+msgstr ""
+
+#, fuzzy
+msgid "Magic long"
+msgstr "媒體播放器"
+
 msgid "Main menu"
 msgstr "主功能表"
 
@@ -10216,6 +10526,10 @@ msgid "MediaPlayer"
 msgstr "媒體播放器"
 
 #, fuzzy
+msgid "MediaPortal"
+msgstr "媒體播放器"
+
+#, fuzzy
 msgid "Medical"
 msgstr "Multimedia"
 
@@ -10252,6 +10566,9 @@ msgstr "功能表"
 #, fuzzy
 msgid "Menu config"
 msgstr "最後一次正確配置"
+
+msgid "Merge broadcast EPG with IceTV"
+msgstr ""
 
 msgid "Merging Timeshift files"
 msgstr ""
@@ -10313,6 +10630,10 @@ msgstr ""
 
 msgid "Mins Secs"
 msgstr ""
+
+#, fuzzy
+msgid "Minutes:"
+msgstr "分鐘(s)"
 
 msgid "Miscellaneous"
 msgstr ""
@@ -10522,33 +10843,35 @@ msgstr "[移動模式]"
 msgid "Move mode on"
 msgstr "[移動模式]"
 
-msgid "Move the text buffer cursor left"
-msgstr ""
-
-msgid "Move the text buffer cursor right"
-msgstr ""
-
-msgid "Move the text buffer cursor to the first character"
-msgstr ""
-
-msgid "Move the text buffer cursor to the last character"
-msgstr ""
-
 #, fuzzy
-msgid "Move the virtual keyboard cursor down"
+msgid "Move the keyboard cursor down"
 msgstr "打開虛擬鍵盤輸入幫助"
 
 #, fuzzy
-msgid "Move the virtual keyboard cursor left"
+msgid "Move the keyboard cursor left"
 msgstr "打開虛擬鍵盤輸入幫助"
 
 #, fuzzy
-msgid "Move the virtual keyboard cursor right"
+msgid "Move the keyboard cursor right"
 msgstr "打開虛擬鍵盤輸入幫助"
 
 #, fuzzy
-msgid "Move the virtual keyboard cursor up"
+msgid "Move the keyboard cursor up"
 msgstr "打開虛擬鍵盤輸入幫助"
+
+#, fuzzy
+msgid "Move the text cursor left"
+msgstr "打開虛擬鍵盤輸入幫助"
+
+#, fuzzy
+msgid "Move the text cursor right"
+msgstr "打開虛擬鍵盤輸入幫助"
+
+msgid "Move the text cursor to the first character"
+msgstr ""
+
+msgid "Move the text cursor to the last character"
+msgstr ""
 
 #, fuzzy
 msgid "Move to home of list"
@@ -10634,16 +10957,20 @@ msgid "MultiBoot Image Manager"
 msgstr ""
 
 #, fuzzy
+msgid "MultiBoot Image Selector"
+msgstr "容器選擇"
+
+#, fuzzy
+msgid "MultiBootSelector Actions"
+msgstr "EMU 選擇"
+
+#, fuzzy
 msgid "MultiEPG settings"
 msgstr "預設設定"
 
 #, fuzzy
 msgid "MultiQuickButton"
 msgstr "快速按鍵"
-
-#, python-format
-msgid "Multiboot ERROR! - no %s in boot partition."
-msgstr ""
 
 #, fuzzy
 msgid "Multiboot Image Selector"
@@ -10657,23 +10984,11 @@ msgstr ""
 msgid "Multiboot Manager"
 msgstr "安裝(Mount)管理"
 
-msgid "Multiboot manager - Cannot initialize SDcard when running image on SDcard."
-msgstr ""
-
-msgid "Multiboot manager - SDcard initialization run, please restart your Image."
-msgstr ""
-
-msgid "Multiboot manager - The SDcard must be at least 8MB."
-msgstr ""
-
 msgid "Multimedia"
 msgstr "Multimedia"
 
 msgid "Multiple service support"
 msgstr "多系統支援"
-
-msgid "Multiplex"
-msgstr ""
 
 msgid "Multisat"
 msgstr "多星"
@@ -10744,7 +11059,7 @@ msgstr ""
 msgid "NFS Setup"
 msgstr "設定"
 
-msgid "NIM"
+msgid "NIM & Type"
 msgstr ""
 
 msgid "NOW"
@@ -10787,7 +11102,7 @@ msgstr "DNS設定"
 msgid "Nameserver setup"
 msgstr ""
 
-msgid "Namespace"
+msgid "Namespace & Orbital pos."
 msgstr ""
 
 msgid "Namibia"
@@ -10958,6 +11273,10 @@ msgid "New Zealand"
 msgstr "新西蘭"
 
 #, fuzzy
+msgid "New customer"
+msgstr "錯誤的用戶"
+
+#, fuzzy
 msgid "New event info"
 msgstr "ECM資訊"
 
@@ -10981,10 +11300,6 @@ msgstr "硬碟資訊..."
 msgid "New timers location"
 msgstr "<最近一次定時錄影位置>"
 
-#, fuzzy
-msgid "New user"
-msgstr "錯誤的用戶"
-
 msgid "New version:"
 msgstr "新版本:"
 
@@ -11001,6 +11316,14 @@ msgstr "下一個"
 msgctxt "now/next: 'next' event label"
 msgid "Next"
 msgstr ""
+
+#, fuzzy
+msgid "Next bouquet"
+msgstr "選擇自定義組"
+
+#, fuzzy
+msgid "Next page"
+msgstr "下一個頻道"
 
 #, fuzzy
 msgid "Next quad PiP channel"
@@ -11038,6 +11361,10 @@ msgstr "未連接"
 #, fuzzy
 msgid "No Devices Found !!"
 msgstr "找到 %d 個頻道!"
+
+#, fuzzy
+msgid "No ECMPids available"
+msgstr "無可用資訊"
 
 msgid "No HDD found or HDD not initialized!"
 msgstr "未找到硬碟或硬碟未初始化！"
@@ -11571,6 +11898,10 @@ msgstr ""
 msgid "Only on startup"
 msgstr "啟動時載入種子:"
 
+#, fuzzy
+msgid "Only provider"
+msgstr "供應商"
+
 msgid "Only select 'yes' if you are using a multiswich that requires a DiSEqC Port-A command signal. For all other setups select 'no'."
 msgstr ""
 
@@ -11708,6 +12039,10 @@ msgstr "CCcam 資訊"
 msgid "Other"
 msgstr "其他"
 
+#, fuzzy
+msgid "Other Subtitles & lang"
+msgstr "字幕選擇"
+
 msgid "Outdoor"
 msgstr ""
 
@@ -11794,10 +12129,15 @@ msgid "PDC"
 msgstr "C"
 
 #, fuzzy
-msgid "PID"
-msgstr "PIDs"
+msgid "PGS File"
+msgstr "文件"
 
-msgid "PIDs"
+#, fuzzy
+msgid "PGS file"
+msgstr "檔案名"
+
+#, fuzzy
+msgid "PID"
 msgstr "PIDs"
 
 msgid "PIN code needed"
@@ -12108,6 +12448,12 @@ msgstr "Pilot"
 msgid "Pitcairn"
 msgstr ""
 
+msgid "Pixel Test"
+msgstr ""
+
+msgid "Pixels\n"
+msgstr ""
+
 msgid "Play"
 msgstr "播放"
 
@@ -12275,7 +12621,9 @@ msgstr "請輸入一個新的檔案名"
 msgid "Please enter the old PIN code"
 msgstr ""
 
-msgid "Please enter your email address. This is required for us to send you service announcements, account reminders, promotional offers and a welcome email."
+msgid ""
+"Please enter your email address, which will be your login.\n"
+"Via your account on the IceTV website you can choose to receive service announcements, account reminders and promotional offers."
 msgstr ""
 
 #, fuzzy
@@ -12791,10 +13139,6 @@ msgstr "按OK來切換選擇."
 msgid "Press INFO on your remote control for additional information."
 msgstr ""
 
-#, fuzzy
-msgid "Press Init to format SDcard."
-msgstr "按OK鍵開始"
-
 msgid "Press MENU on your remote control for additional options."
 msgstr ""
 
@@ -12876,6 +13220,14 @@ msgstr ""
 
 #, fuzzy
 msgid "Previous"
+msgstr "預覽"
+
+#, fuzzy
+msgid "Previous bouquet"
+msgstr "向上移動到上一個項目"
+
+#, fuzzy
+msgid "Previous page"
 msgstr "預覽"
 
 #, fuzzy
@@ -13131,6 +13483,10 @@ msgstr "快速"
 msgid "Quick Actions"
 msgstr "快速按鍵"
 
+#, fuzzy
+msgid "Quick EPG"
+msgstr "快速"
+
 msgid "Quick Launch Menu"
 msgstr ""
 
@@ -13161,6 +13517,9 @@ msgstr "上午."
 #, fuzzy
 msgid "REC"
 msgstr "FEC"
+
+msgid "REC "
+msgstr ""
 
 #, fuzzy
 msgid "REC Symbol"
@@ -14032,6 +14391,13 @@ msgstr ""
 msgid "SATA"
 msgstr ""
 
+msgid "SATPI"
+msgstr ""
+
+#, fuzzy
+msgid "SATPI Setup"
+msgstr "EPG設定"
+
 msgid "SCPC optimized search range"
 msgstr ""
 
@@ -14042,9 +14408,6 @@ msgstr ""
 msgid "SD"
 msgstr "OSD"
 
-msgid "SDcard is not initialised for multiboot - Exit and use MultiBoot Image Manager to initialise"
-msgstr ""
-
 msgid "SDcard switch ERROR! - H9 root files not transferred to SD card"
 msgstr ""
 
@@ -14052,9 +14415,6 @@ msgid "SDcard switch ERROR! - already on Nand"
 msgstr ""
 
 msgid "SDcard switch ERROR! - already on mmc"
-msgstr ""
-
-msgid "SID"
 msgstr ""
 
 msgid "SINGLE LAYER DVD"
@@ -14065,6 +14425,22 @@ msgstr ""
 
 msgid "SPDIF"
 msgstr ""
+
+#, fuzzy
+msgid "SRT File"
+msgstr "文件"
+
+#, fuzzy
+msgid "SRT file"
+msgstr "刪除檔"
+
+#, fuzzy
+msgid "SSA File"
+msgstr "文件"
+
+#, fuzzy
+msgid "SSA file"
+msgstr "添加新的檔"
 
 msgid "SSID:"
 msgstr ""
@@ -14315,6 +14691,12 @@ msgid "Scanning..."
 msgstr ""
 
 msgid "Scans default lamedbs sorted by satellite with a connected dish positioner"
+msgstr ""
+
+msgid "Scheduled load of epg.dat"
+msgstr ""
+
+msgid "Scheduled save of epg.dat"
 msgstr ""
 
 msgid "Sci-Fi"
@@ -14717,11 +15099,18 @@ msgstr ""
 msgid "Select the User Band frequency to be assigned to this tuner. This is the frequency the SCR switch uses to pass the requested transponder to the tuner."
 msgstr ""
 
-msgid "Select the character or action under the virtual keyboard cursor"
+msgid "Select the character or action under the keyboard cursor"
 msgstr ""
 
 msgid "Select the desired function and click on \"OK\" to assign it. Use \"CH+/-\" to toggle between the lists. Select an assigned function and click on \"OK\" to de-assign it. Use \"Next/Previous\" to change the order of the assigned functions."
 msgstr ""
+
+msgid "Select the highlighted image and reboot"
+msgstr ""
+
+#, fuzzy
+msgid "Select the locale from a menu"
+msgstr "選擇要備份的檔/目錄"
 
 msgid "Select the manufacturer of your SCR device. If the manufacturer is not listed, set 'SCR' to 'user defined' and enter the device parameters manually according to its spec sheet."
 msgstr ""
@@ -14757,8 +15146,19 @@ msgid "Select the satellite your dish receives from. If you are unsure select 'a
 msgstr ""
 
 #, fuzzy
+msgid "Select the shifted character set"
+msgstr "定時休眠:"
+
+msgid "Select the shifted character set for the next character only"
+msgstr ""
+
+#, fuzzy
 msgid "Select the sleep timer action."
 msgstr "定時休眠:"
+
+#, fuzzy
+msgid "Select the time zone within the area or region."
+msgstr "選擇位置來保存錄影."
 
 msgid "Select the tuner that controls the motorised dish."
 msgstr ""
@@ -14773,15 +15173,6 @@ msgid "Select the type of LNB/device being used (normally 'Universal'). If your 
 msgstr ""
 
 msgid "Select the type of Single Cable Reception device you are using."
-msgstr ""
-
-msgid "Select the virtual keyboard locale from a menu"
-msgstr ""
-
-msgid "Select the virtual keyboard shifted character set"
-msgstr ""
-
-msgid "Select the virtual keyboard shifted character set for the next character only"
 msgstr ""
 
 msgid "Select upgrade source"
@@ -14855,6 +15246,10 @@ msgstr ""
 
 msgid "Select your region. If not available change 'Country' to 'all' and select one of the default alternatives."
 msgstr ""
+
+#, fuzzy
+msgid "Select your time zone area or region."
+msgstr "選擇您的選擇."
 
 #, fuzzy, python-format
 msgid "Selected Image:\t\t%s"
@@ -14958,8 +15353,12 @@ msgid "Service"
 msgstr "頻道"
 
 #, fuzzy
-msgid "Service Information"
-msgstr "分級資訊"
+msgid "Service & PIDs"
+msgstr "頻道"
+
+#, fuzzy
+msgid "Service ID"
+msgstr "頻道"
 
 #, fuzzy
 msgid "Service Name"
@@ -14991,6 +15390,28 @@ msgstr "頻道已添加到選定的自定義組."
 
 msgid "Service info"
 msgstr ""
+
+#, fuzzy
+msgid "Service info - ECM Info"
+msgstr "頻道未找到"
+
+msgid "Service info - service & Basic PID Info"
+msgstr ""
+
+msgid "Service info - service & Extended PID Info"
+msgstr ""
+
+#, fuzzy
+msgid "Service info - service & PIDs"
+msgstr "頻道未找到"
+
+#, fuzzy
+msgid "Service info - tuner live values"
+msgstr "頻道未找到"
+
+#, fuzzy
+msgid "Service info - tuner setting values"
+msgstr "頻道未找到"
 
 #, fuzzy
 msgid "Service info font size"
@@ -15337,6 +15758,10 @@ msgid "Setup SABnzbd"
 msgstr "設定模式"
 
 #, fuzzy
+msgid "Setup SATPI"
+msgstr "設定"
+
+#, fuzzy
 msgid "Setup Samba"
 msgstr "設定"
 
@@ -15471,10 +15896,6 @@ msgstr ""
 
 msgid "Setup your satellite equipment"
 msgstr ""
-
-#, fuzzy
-msgid "Setup your timezone."
-msgstr "選擇您的選擇."
 
 msgid "Seychelles"
 msgstr ""
@@ -16043,6 +16464,10 @@ msgstr "這個錄影"
 msgid "Show satellites list"
 msgstr "檢視衛星"
 
+#, fuzzy
+msgid "Show screen menu path"
+msgstr "以列表形式顯示主功能表"
+
 msgid "Show screensaver"
 msgstr ""
 
@@ -16355,6 +16780,10 @@ msgstr "Gemini 設定"
 msgid "Skin setup"
 msgstr "設定"
 
+#, fuzzy, python-format
+msgid "Skin:\t\t%s"
+msgstr "反向:"
+
 #, fuzzy
 msgid "SkinSelector"
 msgstr "皮膚選擇"
@@ -16431,6 +16860,14 @@ msgstr ""
 msgid "Slot %d"
 msgstr "插槽 %d"
 
+#, python-format
+msgid "Slot %s: %s - Mode %d%s"
+msgstr ""
+
+#, fuzzy, python-format
+msgid "Slot %s: %s%s"
+msgstr "插槽 %d"
+
 msgid "Slovak"
 msgstr ""
 
@@ -16449,6 +16886,12 @@ msgid "Slow"
 msgstr "慢的"
 
 msgid "Slow motion speeds"
+msgstr ""
+
+msgid "Small"
+msgstr ""
+
+msgid "Small Test"
 msgstr ""
 
 msgid "Small progress"
@@ -17236,6 +17679,10 @@ msgstr ""
 msgid "Symbol rate"
 msgstr ""
 
+#, fuzzy
+msgid "Symbol rate & FEC"
+msgstr "符號率"
+
 msgid "Symbolic link"
 msgstr ""
 
@@ -17261,6 +17708,10 @@ msgstr ""
 
 msgid "System"
 msgstr "系統設定"
+
+#, fuzzy
+msgid "System & Modulation"
+msgstr "調製"
 
 msgid "System Info"
 msgstr "系統資訊"
@@ -17308,6 +17759,9 @@ msgstr ""
 msgid "TB"
 msgstr "B"
 
+msgid "TEXT"
+msgstr ""
+
 #. TRANSLATORS: Add here whatever should be shown in the "translator" about screen, up to 6 lines (use \n for newline)
 msgid "TRANSLATOR_INFO"
 msgstr ""
@@ -17316,6 +17770,9 @@ msgid "TS file is too large for ISO9660 level 1!"
 msgstr "TS文件太大！"
 
 msgid "TSID"
+msgstr ""
+
+msgid "TUNER:"
 msgstr ""
 
 msgid "TV"
@@ -17330,6 +17787,10 @@ msgstr ""
 
 msgid "TXT PID"
 msgstr ""
+
+#, fuzzy
+msgid "TXT Subtitles page & lang"
+msgstr "字幕選擇"
 
 msgid "Table of content for collection"
 msgstr "內容彙編"
@@ -17408,6 +17869,10 @@ msgstr ""
 
 msgid "Teletext font and resolution"
 msgstr ""
+
+#, fuzzy
+msgid "Teletext long"
+msgstr "刪除"
 
 msgid "Teletext subtitle color"
 msgstr ""
@@ -18081,6 +18546,9 @@ msgstr ""
 msgid "This option allows you to show menu number quick links."
 msgstr ""
 
+msgid "This option allows you to show the screen menu path history."
+msgstr ""
+
 msgid "This option allows you to the SNR as a percentage (not all receivers support this)."
 msgstr ""
 
@@ -18338,6 +18806,14 @@ msgid "Time window for detection of the wakeup by a timer [mins]"
 msgstr ""
 
 #, fuzzy
+msgid "Time zone"
+msgstr "時區"
+
+#, fuzzy
+msgid "Time zone area"
+msgstr "時區"
+
+#, fuzzy
 msgid "Time zone settings"
 msgstr "自動計時器設定"
 
@@ -18416,6 +18892,14 @@ msgid "Timer type"
 msgstr "定時類型"
 
 #, fuzzy
+msgid "Timer+"
+msgstr "計時器"
+
+#, fuzzy
+msgid "Timerlist"
+msgstr "計時器編輯"
+
+#, fuzzy
 msgid "Timers"
 msgstr "計時器"
 
@@ -18470,9 +18954,6 @@ msgstr ""
 #, fuzzy
 msgid "Timeshift-save action on zap"
 msgstr "時光平移位置"
-
-msgid "Timezone"
-msgstr "時區"
 
 msgid "Timor-Leste"
 msgstr ""
@@ -18638,9 +19119,6 @@ msgstr "轉發器"
 msgid "Transponder Time"
 msgstr "轉發器類型"
 
-msgid "Transponder type"
-msgstr ""
-
 #, fuzzy
 msgid "Transport Stream Type"
 msgstr "轉發器類型"
@@ -18744,14 +19222,19 @@ msgid "Tuner is not supported"
 msgstr "不支援的"
 
 #, fuzzy
+msgid "Tuner live values"
+msgstr "調諧器資訊"
+
+#, fuzzy
+msgid "Tuner setting values"
+msgstr "調諧器資訊"
+
+#, fuzzy
 msgid "Tuner settings"
 msgstr "調諧器資訊"
 
 msgid "Tuner slot"
 msgstr ""
-
-msgid "Tuner status"
-msgstr "調諧器資訊"
 
 #, fuzzy
 msgid "Tuner status FAILED"
@@ -18819,6 +19302,9 @@ msgstr ""
 msgid "Turn on HDMI-IN PiP mode"
 msgstr ""
 
+msgid "Turn on the control LED."
+msgstr ""
+
 msgid "Turn on the power LED."
 msgstr ""
 
@@ -18848,6 +19334,9 @@ msgstr "類型:"
 #, fuzzy
 msgid "Type: "
 msgstr "類型:"
+
+msgid "UHD Test"
+msgstr ""
 
 #, fuzzy
 msgid "UI 3D setup"
@@ -19452,7 +19941,17 @@ msgstr "錄影機"
 msgid "VLAN connection"
 msgstr "未連接"
 
+msgid "VMC"
+msgstr ""
+
 msgid "VMGM (intro trailer)"
+msgstr ""
+
+#, fuzzy
+msgid "VOB File"
+msgstr "文件"
+
+msgid "VOB file"
 msgstr ""
 
 #, fuzzy
@@ -19498,7 +19997,7 @@ msgid "Version %s %s"
 msgstr ""
 
 #, fuzzy, python-format
-msgid "Version:\t\t%s"
+msgid "Version / Build:\t\t%s  (%s)"
 msgstr "反向:"
 
 #, fuzzy
@@ -19665,22 +20164,12 @@ msgstr "視頻設定嚮導"
 msgid "Videoclip"
 msgstr "視頻微調"
 
-msgid "Videocodec"
+msgid "Videocodec, size & format"
 msgstr ""
-
-msgid "Videoformat"
-msgstr ""
-
-#, fuzzy
-msgid "Videomode"
-msgstr "視頻大小:"
 
 #, fuzzy
 msgid "Videosetup"
 msgstr "視頻設定"
-
-msgid "Videosize"
-msgstr ""
 
 msgid "Viet Nam"
 msgstr ""
@@ -20577,9 +21066,6 @@ msgstr "時光平移結束"
 msgid "You seem to be in timeshift, Do you want to leave timeshift ?"
 msgstr ""
 
-msgid "You system does not support ext4"
-msgstr ""
-
 msgid "Your %s %s does not have an internet connection"
 msgstr ""
 
@@ -20873,7 +21359,7 @@ msgstr ""
 msgid "Zgemma H.S/H.2S/H.2H/H5/H7 old Model"
 msgstr ""
 
-msgid "Zgemma H9/I55Plus old Model"
+msgid "Zgemma H8/H0/H9/I55Plus old Model"
 msgstr ""
 
 msgid "Zgemma Star S/2S/H1/H2"
@@ -20950,6 +21436,10 @@ msgstr "啟動網卡配置"
 #, fuzzy
 msgid "activatePiP"
 msgstr "啟動交換檔"
+
+#, fuzzy
+msgid "active"
+msgstr "啟動"
 
 #, fuzzy
 msgid "add Current"
@@ -21142,6 +21632,9 @@ msgstr "燒錄單軌 (%s)"
 msgid "by date"
 msgstr ""
 
+msgid "by hmmmdada"
+msgstr ""
+
 msgid "caid:"
 msgstr ""
 
@@ -21331,6 +21824,10 @@ msgstr ""
 msgid "eMMC"
 msgstr ""
 
+#, fuzzy, python-format
+msgid "eMMC slot %s"
+msgstr "未找到CI插座"
+
 msgid "eSATA"
 msgstr ""
 
@@ -21355,6 +21852,9 @@ msgid "education/information (general)"
 msgstr ""
 
 msgid "education/science/factual topics (general)"
+msgstr ""
+
+msgid "embedded"
 msgstr ""
 
 msgid "empty"
@@ -21713,6 +22213,10 @@ msgstr "在這裏標記"
 
 msgid "install/unpack ipk Files"
 msgstr ""
+
+#, fuzzy
+msgid "instant record"
+msgstr "即時記錄"
 
 #, fuzzy, python-format
 msgid "internal flash:  %s %s "
@@ -22118,6 +22622,10 @@ msgid "previous channel page"
 msgstr "上一個頻道"
 
 #, fuzzy
+msgid "previous/next Bouquet"
+msgstr "上一個頻道"
+
+#, fuzzy
 msgid "previous/next Page"
 msgstr "上一個頻道"
 
@@ -22285,10 +22793,6 @@ msgstr "退出時保存目錄"
 
 msgid "save playlist on exit"
 msgstr "退出時保存播放列表"
-
-#, fuzzy
-msgid "scan new"
-msgstr "掃描完成!"
 
 msgid "scan state"
 msgstr "掃描狀態"
@@ -22465,35 +22969,7 @@ msgid "slot%s - %s (current image)"
 msgstr ""
 
 #, python-format
-msgid "slot%s - %s - %s "
-msgstr ""
-
-#, python-format
-msgid "slot%s - %s - %s (current image)"
-msgstr ""
-
-#, python-format
-msgid "slot%s - %s - %s as USB Recovery"
-msgstr ""
-
-#, python-format
-msgid "slot%s - %s mode 1"
-msgstr ""
-
-#, python-format
-msgid "slot%s - %s mode 1 (current image)"
-msgstr ""
-
-#, python-format
-msgid "slot%s - %s mode 12"
-msgstr ""
-
-#, python-format
-msgid "slot%s - %s mode 12 (current image)"
-msgstr ""
-
-#, python-format
-msgid "slot%s - %s- %s "
+msgid "slot%s - %s as USB Recovery"
 msgstr ""
 
 msgid "slow"
@@ -22596,6 +23072,10 @@ msgstr ""
 msgid "technology/natural science"
 msgstr ""
 
+#, fuzzy
+msgid "teletext"
+msgstr "刪除"
+
 msgid "template file"
 msgstr ""
 
@@ -22666,10 +23146,6 @@ msgstr "不可用"
 msgid "unconfirmed"
 msgstr "測驗未通過"
 
-#, fuzzy
-msgid "unknow"
-msgstr "未知"
-
 msgid "unknown"
 msgstr "未知"
 
@@ -22738,6 +23214,9 @@ msgstr "用戶定義"
 msgid "using:"
 msgstr ""
 
+msgid "v"
+msgstr ""
+
 msgid "variety show"
 msgstr ""
 
@@ -22798,9 +23277,6 @@ msgid "width"
 msgstr ""
 
 msgid "will take about 1-15 minutes for this system\n"
-msgstr ""
-
-msgid "will take about 30 minutes for this system\n"
 msgstr ""
 
 msgid "winter sport"
@@ -22868,4696 +23344,5 @@ msgstr "轉自"
 msgid "zapping"
 msgstr "轉自"
 
-#~ msgid ""
-#~ "\n"
-#~ "Enigma2 will restart after the restore"
-#~ msgstr ""
-#~ "\n"
-#~ "Enigma2將在恢復以後重新啟動"
-
-#~ msgid ""
-#~ "\n"
-#~ "Manage extensions or plugins for your Dreambox."
-#~ msgstr ""
-#~ "\n"
-#~ "管理Dreambox的軟體和插件。"
-
-#~ msgid ""
-#~ "\n"
-#~ "Scan for local packages and install them."
-#~ msgstr ""
-#~ "\n"
-#~ "掃描本地套裝軟體並安裝它們。"
-
-#~ msgid ""
-#~ "\n"
-#~ "System will restart after the restore!"
-#~ msgstr ""
-#~ "\n"
-#~ "系統將在恢復後重新啟動"
-
-#~ msgid ""
-#~ "\n"
-#~ "new password is:\n"
-#~ "\""
-#~ msgstr ""
-#~ "\n"
-#~ "新的密碼:\n"
-#~ "\""
-
-#~ msgid " Logtyp"
-#~ msgstr " Logtyp"
-
-#~ msgid " Minute(s)"
-#~ msgstr " 分鐘(n)"
-
-#~ msgid " Results"
-#~ msgstr " 結果"
-
-#~ msgid " Second(s)"
-#~ msgstr " 秒(n)"
-
-#~ msgid " free "
-#~ msgstr " 空閒"
-
-#~ msgid " used "
-#~ msgstr "已使用"
-
-#~ msgid " wireless networks found!"
-#~ msgstr " 發現無線網路!"
-
-#~ msgid ""
-#~ "\"\n"
-#~ "already exists"
-#~ msgstr ""
-#~ "\"\n"
-#~ "已存在"
-
-#~ msgid "#000000"
-#~ msgstr "#000000"
-
-#~ msgid "#0064c7"
-#~ msgstr "#0064c7"
-
-#~ msgid "#25062748"
-#~ msgstr "#25062748"
-
-#~ msgid "#389416"
-#~ msgstr "#389416"
-
-#~ msgid "#80000000"
-#~ msgstr "#80000000"
-
-#~ msgid "#80ffffff"
-#~ msgstr "#80ffffff"
-
-#~ msgid "#bab329"
-#~ msgstr "#bab329"
-
-#~ msgid "#f23d21"
-#~ msgstr "#f23d21"
-
-#~ msgid "#ffffff"
-#~ msgstr "#ffffff"
-
-#~ msgid "#ffffffff"
-#~ msgstr "#ffffffff"
-
-#~ msgid "%d jobs are running in the background!"
-#~ msgstr "%d 正在後臺運行!"
-
-#~ msgid "%i ms"
-#~ msgstr "%i ms"
-
-#, fuzzy
-#~ msgid "%s (%sB"
-#~ msgstr "%s (%s)\n"
-
-#~ msgid "* Only available when entering hidden SSID or network key"
-#~ msgstr "* 僅在輸入了SSID或網路密鑰後才有效"
-
-#~ msgid "** ATTENTION ! **"
-#~ msgstr "** 警   告 ! **"
-
-#, fuzzy
-#~ msgid "---Weather---"
-#~ msgstr "天氣"
-
-#~ msgid ".NFI Download failed:"
-#~ msgstr ".NFI 下載失敗:"
-
-#~ msgid ".NFI file passed md5sum signature check. You can safely flash this image!"
-#~ msgstr ".NFI檔通過了md5sum署名檢視. 用此檔案刷機是安全的! "
-
-#~ msgid "/ close"
-#~ msgstr "/ 關閉"
-
-#, fuzzy
-#~ msgid "0 (disabled)"
-#~ msgstr "不可用"
-
-#~ msgid "1 second"
-#~ msgstr "1 秒"
-
-#~ msgid "1 wireless network found!"
-#~ msgstr "搜尋到一個無線網路!"
-
-#, fuzzy
-#~ msgid "10"
-#~ msgstr "1.0"
-
-#, fuzzy
-#~ msgid "10 (default)"
-#~ msgstr "預設"
-
-#~ msgid "10 seconds"
-#~ msgstr "10 秒"
-
-#, fuzzy
-#~ msgid "120"
-#~ msgstr "1.2"
-
-#, fuzzy
-#~ msgid "15 seconds"
-#~ msgstr "5 秒"
-
-#, fuzzy
-#~ msgid "1:1"
-#~ msgstr "16:10"
-
-#, fuzzy
-#~ msgid "20"
-#~ msgstr "2"
-
-#~ msgid "20 minutes"
-#~ msgstr "20 分鐘"
-
-#, fuzzy
-#~ msgid "20 seconds"
-#~ msgstr "2 秒"
-
-#~ msgid "3 seconds"
-#~ msgstr "3 秒"
-
-#~ msgid "30 seconds"
-#~ msgstr "30 秒"
-
-#~ msgid "4 seconds"
-#~ msgstr "4 秒"
-
-#, fuzzy
-#~ msgid "5 (default)"
-#~ msgstr "預設"
-
-#~ msgid "5 seconds"
-#~ msgstr "5 秒"
-
-#~ msgid "50 Hz"
-#~ msgstr "50 Hz"
-
-#, fuzzy
-#~ msgid "5:3"
-#~ msgstr "4:3"
-
-#~ msgid "6 seconds"
-#~ msgstr "6 秒"
-
-#, fuzzy
-#~ msgid "60"
-#~ msgstr "6"
-
-#~ msgid "7 seconds"
-#~ msgstr "7 秒"
-
-#, fuzzy
-#~ msgid "7:3"
-#~ msgstr "4:3"
-
-#~ msgid "8 seconds"
-#~ msgstr "8 秒"
-
-#~ msgid "9 seconds"
-#~ msgstr "9 秒"
-
-#~ msgid ": not set\n"
-#~ msgstr ": 未設定\n"
-
-#~ msgid "<  select  >"
-#~ msgstr "<  選擇  >"
-
-#~ msgid "A graphical EPG for all services of an specific bouquet"
-#~ msgstr "圖形EPG包含自定義組所有頻道"
-
-#~ msgid ""
-#~ "A mount entry with this name already exists!\n"
-#~ "Update existing entry and continue?\n"
-#~ msgstr ""
-#~ "已存在此名稱的安裝條目s!\n"
-#~ "更新現有的條目?\n"
-
-#~ msgid "A new device was found, where open?"
-#~ msgstr "找到一個新的裝置, 以什麼方式打開?"
-
-#~ msgid "A/V Settings (Scart)"
-#~ msgstr "音視頻設定(Scart)"
-
-#~ msgid "AA"
-#~ msgstr "AA"
-
-#~ msgid "AB"
-#~ msgstr "AB"
-
-#~ msgid "AC3 default"
-#~ msgstr "標準 AC3 "
-
-#~ msgid "AM Clouds / PM Sun"
-#~ msgstr "上午多雲/下午晴"
-
-#~ msgid "AM Drizzle"
-#~ msgstr "上午小雨 "
-
-#~ msgid "AM Fog / PM Clouds"
-#~ msgstr "上午有霧/下午多雲"
-
-#~ msgid "AM Fog / PM Sun"
-#~ msgstr "上午有霧/下午晴"
-
-#~ msgid "AM Ice"
-#~ msgstr "上午結冰"
-
-#~ msgid "AM Light Rain"
-#~ msgstr "上午小雨"
-
-#~ msgid "AM Light Snow"
-#~ msgstr "上午小雪"
-
-#~ msgid "AM Rain / Snow"
-#~ msgstr "上午有雨/雪"
-
-#~ msgid "AM Showers"
-#~ msgstr "上午驟雨"
-
-#~ msgid "AM Snow Showers"
-#~ msgstr "上午陣雪"
-
-#~ msgid "ATTENTION: Some Plugins must be installed before activation!"
-#~ msgstr "注意:某些插件必須安裝後才能啟動!"
-
-#~ msgid "About Cccam"
-#~ msgstr "CCcam 資訊"
-
-#~ msgid "Account"
-#~ msgstr "帳戶"
-
-#~ msgid "Acoustics Harddisk"
-#~ msgstr "硬碟雜訊"
-
-#~ msgid "Activate please Torrent-List"
-#~ msgstr "啟動 種子列表"
-
-#~ msgid "Active addon server:"
-#~ msgstr "插件伺服器選擇"
-
-#~ msgid ""
-#~ "Active/\n"
-#~ "Inactive"
-#~ msgstr ""
-#~ "活動/\n"
-#~ "非活動"
-
-#~ msgid "Add Bookmark"
-#~ msgstr "增加書簽"
-
-#~ msgid "Add Playlist Dialog"
-#~ msgstr "添加播放列表對話方塊"
-
-#~ msgid "Add WLAN configuration?"
-#~ msgstr "添加WLAN配置?"
-
-#~ msgid "Add a new NFS or CIFS mount point to your Dreambox."
-#~ msgstr "活加一個新的NFS或CIFS安裝點."
-
-#~ msgid "Add network configuration?"
-#~ msgstr "添加網路配置?"
-
-#~ msgid "Add new directory"
-#~ msgstr "添加新的目錄"
-
-#~ msgid "Add new file"
-#~ msgstr "添加新的檔"
-
-#~ msgid "Add new network mount point"
-#~ msgstr "添加新的網路安裝點"
-
-#~ msgid "Add timer as disabled on conflict"
-#~ msgstr "添加計時器失敗(計時器衝突)"
-
-#~ msgid "Add to favourites"
-#~ msgstr "添加到喜歡頻道"
-
-#~ msgid "Add zap timer instead of record timer?"
-#~ msgstr "添加定時切換而不是定時錄製？"
-
-#~ msgid "Added: "
-#~ msgstr "附加的: "
-
-#~ msgid "Addon Server"
-#~ msgstr "插件伺服器"
-
-#~ msgid "Addons"
-#~ msgstr "附件設定"
-
-#~ msgid "Addons Overview"
-#~ msgstr "附件概覽"
-
-#~ msgid "Addons download..."
-#~ msgstr "下載插件..."
-
-#~ msgid "Addons install..."
-#~ msgstr "安裝插件..."
-
-#~ msgid "Addons/Plugins..."
-#~ msgstr "擴展/插件..."
-
-#~ msgid "Adds enigma2 settings and dreambox model informations like SN, rev... if enabled."
-#~ msgstr "添加 enigma2 設定和接收機型號資訊..."
-
-#~ msgid "Adds network configuration if enabled."
-#~ msgstr "添加網路配置."
-
-#~ msgid "Adds wlan configuration if enabled."
-#~ msgstr "添加WLAN配置."
-
-#~ msgid "Advanced Software"
-#~ msgstr "高級軟體"
-
-#~ msgid "Advanced Software Plugin"
-#~ msgstr "高級插件"
-
-#~ msgid "Advanced Video Enhancement Setup"
-#~ msgstr "視頻增強設定"
-
-#~ msgid "Advanced Video Setup"
-#~ msgstr "視頻設定(高級)"
-
-#~ msgid "After the start wizard is completed, you need to protect single services. Refer to your dreambox's manual on how to do that."
-#~ msgstr "在開始嚮導完成後，您需要保護單一服務.詳細請查閱Dreambox手冊。"
-
-#~ msgid "Alarm clock"
-#~ msgstr "鬧鐘"
-
-#~ msgid "Alarm: equal the starting time\n"
-#~ msgstr "警告: 起始時間相同\n"
-
-#~ msgid "Album (search in ID3-Tag)"
-#~ msgstr "唱片 (在ID3-Tag中搜索)"
-
-#~ msgid "All data on the device will be lost!"
-#~ msgstr "裝置上所有資料都將丟失!"
-
-#~ msgid "All(*) or IP: "
-#~ msgstr "所有(*) 或 IP: "
-
-#~ msgid "Allow zapping via Webinterface"
-#~ msgstr "允許通過網路切換頻道"
-
-#~ msgid "Always ask before sending"
-#~ msgstr "發送前始終詢問"
-
-#~ msgid "Ammount of recordings left"
-#~ msgstr "Ammount of recordings left"
-
-#~ msgid "An error occured."
-#~ msgstr "出錯."
-
-#~ msgid "An error occurred updating the password file !!!"
-#~ msgstr "更新密碼檔時出錯 !!!"
-
-#~ msgid "An error occurred updating the password file."
-#~ msgstr "更新密碼檔發生錯誤."
-
-#~ msgid "An unknown error occured!"
-#~ msgstr "發現未知錯誤!"
-
-#~ msgid "Anonymize crashlog?"
-#~ msgstr "匿名 crashlog?"
-
-#~ msgid "Apr"
-#~ msgstr "4月"
-
-#~ msgid "April"
-#~ msgstr "4月"
-
-#~ msgid ""
-#~ "Are you sure you want to download\n"
-#~ "the new satellites.xml?\n"
-#~ msgstr "確定要下載新的satellites.xml ?\n"
-
-#~ msgid ""
-#~ "Are you sure you want to download and install\n"
-#~ "the new satellites.xml?\n"
-#~ msgstr ""
-#~ "確定要下載和安裝\n"
-#~ "新的satellites.xml ?\n"
-
-#~ msgid ""
-#~ "Are you sure you want to install\n"
-#~ "the new satellites.xml?\n"
-#~ msgstr "您確定要安裝新的satellites.xml ?\n"
-
-#~ msgid ""
-#~ "Are you sure you want to restore\n"
-#~ "following backup:\n"
-#~ msgstr ""
-#~ "確定要恢復\n"
-#~ "下列備份檔案?\n"
-
-#~ msgid "Artist (search in ID3-Tag)"
-#~ msgstr "藝術家 (在ID3-Tag中搜索)"
-
-#~ msgid "Ascending"
-#~ msgstr "上行"
-
-#~ msgid "Ask before shutdown:"
-#~ msgstr "關機前詢問："
-
-#~ msgid "Audio Options..."
-#~ msgstr "音頻選擇..."
-
-#~ msgid "Aug"
-#~ msgstr "8月"
-
-#~ msgid "August"
-#~ msgstr "8月"
-
-#~ msgid "AutoTimer Editor"
-#~ msgstr "自動計時器編輯"
-
-#~ msgid "AutoTimer Filters"
-#~ msgstr "自動計時器過濾"
-
-#~ msgid "AutoTimer overview"
-#~ msgstr "自動計時器概要"
-
-#~ msgid "Automatic network state examination of the Dreambox"
-#~ msgstr "自動測驗網路狀態"
-
-#~ msgid "Automount Editor"
-#~ msgstr "自動安裝設定"
-
-#~ msgid "Automount Editor..."
-#~ msgstr "自動安裝編輯器..."
-
-#~ msgid "Autoresolution settings"
-#~ msgstr "自動解析度設定"
-
-#~ msgid "Autos & Vehicles"
-#~ msgstr "Autos & Vehicles"
-
-#~ msgid "Autosave "
-#~ msgstr "自動保存 "
-
-#~ msgid "Autotimer Preview"
-#~ msgstr "自動計時器預覽"
-
-#~ msgid "Autoupdate after ? Minutes"
-#~ msgstr "幾分鐘後自動更新"
-
-#~ msgid "Availabie EMU's"
-#~ msgstr "已經安裝的 EMU:"
-
-#~ msgid "Availbale Provider(s)"
-#~ msgstr "現有提供商"
-
-#~ msgid "BA"
-#~ msgstr "BA"
-
-#~ msgid "BB"
-#~ msgstr "BB"
-
-#~ msgid "BER"
-#~ msgstr "BER"
-
-#~ msgid "BP-Browser"
-#~ msgstr "BP-流覽器"
-
-#~ msgid "BP-Browser Favorites"
-#~ msgstr "BP-流覽器收藏夾"
-
-#~ msgid "BP-Browser Setup"
-#~ msgstr "BP-流覽器設定"
-
-#~ msgid "Background (Change only restart)"
-#~ msgstr "背景 (重啟生效)"
-
-#~ msgid "Backup is done. Please press OK to see the result."
-#~ msgstr "備份已完成.按 OK鍵檢視結果."
-
-#~ msgid "Begin of \"after event\" timespan"
-#~ msgstr "開始 \"事件後\" 時間跨度"
-
-#~ msgid "Begin of timespan"
-#~ msgstr "開始時間跨度"
-
-#~ msgid "Behaviour of 'pause' when paused"
-#~ msgstr "按 'pause'鍵暫停"
-
-#~ msgid "Bit Error Rate"
-#~ msgstr "誤碼率"
-
-#~ msgid "Blue - Panel"
-#~ msgstr "藍色面板"
-
-#~ msgid "Blue Button (long time press)"
-#~ msgstr "藍鍵 (長按)"
-
-#~ msgid "Bootup Music..."
-#~ msgstr "開機音樂..."
-
-#~ msgid "Browser"
-#~ msgstr "流覽器"
-
-#~ msgid "Buffersize in kB:"
-#~ msgstr "緩衝區大小（kb）:"
-
-#~ msgid "Burn to DVD..."
-#~ msgstr "DVD燒錄中..."
-
-#~ msgid "By pressing the OK Button on your remote control, the info bar is being displayed."
-#~ msgstr "按下遙控器上的 'OK' 鍵，可以顯示資訊條."
-
-#~ msgid "CCcamd"
-#~ msgstr "CCcam 資訊"
-
-#, fuzzy
-#~ msgid "CI settings"
-#~ msgstr "編輯設定"
-
-#~ msgid "CIFS share"
-#~ msgstr "CIFS 共用"
-
-#~ msgid "Cache Thumbnails"
-#~ msgstr "緩存縮略圖"
-
-#~ msgid "Calendar"
-#~ msgstr "日曆"
-
-#~ msgid "Calendar..."
-#~ msgstr "日曆..."
-
-#~ msgid "Camd Scritp Editor"
-#~ msgstr "Softcam腳本編輯器"
-
-#~ msgid "Camd-ID not found"
-#~ msgstr "Softcam-ID未找到"
-
-#~ msgid "Camd: "
-#~ msgstr "Softcam:"
-
-#~ msgid "Cancel synchronization ?"
-#~ msgstr "取消同步 ?"
-
-#~ msgid "Catalan"
-#~ msgstr "加泰羅尼亞語"
-
-#~ msgid "Center screen at the upper border"
-#~ msgstr "中心在螢幕上邊"
-
-#~ msgid "Change hostname"
-#~ msgstr "更改主機名稱"
-
-#~ msgid "Change service pin"
-#~ msgstr "更改密碼"
-
-#~ msgid "Change service pins"
-#~ msgstr "更改頻道密碼"
-
-#~ msgid "Change the hostname of your Dreambox."
-#~ msgstr "更改Dreambox主機名稱."
-
-#~ msgid "Changing Password for "
-#~ msgstr "更改密碼"
-
-#~ msgid "Changing password for "
-#~ msgstr "更改密碼"
-
-#~ msgid "Check for LT news:"
-#~ msgstr "檢視LT新聞"
-
-#~ msgid "Choose a wireless network"
-#~ msgstr "選擇無線網路"
-
-#~ msgid "Choose backup location"
-#~ msgstr "選擇備份位置"
-
-#~ msgid "Choose source"
-#~ msgstr "選擇來源"
-
-#~ msgid "Choose the destination directory"
-#~ msgstr "選擇目標目錄"
-
-#~ msgid "Choose upgrade source"
-#~ msgstr "選擇升級來源"
-
-#~ msgid "Cities found"
-#~ msgstr "找到城市"
-
-#~ msgid "City"
-#~ msgstr "城市"
-
-#~ msgid "City %s added"
-#~ msgstr "城市 %s 已添加"
-
-#~ msgid "Cleanup Wizard"
-#~ msgstr "清理嚮導"
-
-#~ msgid "Cleanup Wizard settings"
-#~ msgstr "清理嚮導設定"
-
-#~ msgid "CleanupWizard"
-#~ msgstr "清理嚮導"
-
-#~ msgid "Clear history on Exit:"
-#~ msgstr "退出時清除歷史記錄:"
-
-#~ msgid "Close and forget changes"
-#~ msgstr "退出而不保存設定"
-
-#~ msgid "Close and save changes"
-#~ msgstr "退出並保存設定"
-
-#~ msgid "Clouds Early / Clearing Late"
-#~ msgstr "早雲/晚晴"
-
-#~ msgid "Cloudy"
-#~ msgstr "雲"
-
-#~ msgid "Code rate high"
-#~ msgstr "高編碼率"
-
-#~ msgid "Code rate low"
-#~ msgstr "低編碼率"
-
-#~ msgid "Color Format"
-#~ msgstr "色彩模式"
-
-#~ msgid "Committed DiSEqC command"
-#~ msgstr "Committed DiSEqC 命令"
-
-#~ msgid "CommonInterface"
-#~ msgstr "通用介面"
-
-#~ msgid "Compact flash card"
-#~ msgstr "CF卡"
-
-#, fuzzy
-#~ msgid "Compress"
-#~ msgstr "按 OK"
-
-#~ msgid "Configuration for the Webinterface"
-#~ msgstr "配置 Webinterface"
-
-#~ msgid "Configure AutoTimer behavior"
-#~ msgstr "配置自動計時器行為"
-
-#~ msgid "Connect to a Wireless Network"
-#~ msgstr "連接到無線網路"
-
-#~ msgid "Connected to Fritz!Box!"
-#~ msgstr "連接到Dreambox!"
-
-#~ msgid "Connected!"
-#~ msgstr "已連接!"
-
-#~ msgid "Connecting to Fritz!Box..."
-#~ msgstr "連接到Dreambox..."
-
-#~ msgid ""
-#~ "Connection to Fritz!Box\n"
-#~ "failed! (%s)\n"
-#~ "retrying..."
-#~ msgstr ""
-#~ "連接Dreambox\n"
-#~ "出錯! (%s)\n"
-#~ "重試..."
-
-#~ msgid "Continue without saving?"
-#~ msgstr "繼續而不保存?"
-
-#~ msgid "Couldn't record due to conflicting timer %s"
-#~ msgstr "不能錄製,因為計時器 %s 衝突"
-
-#~ msgid "Count user"
-#~ msgstr "用戶數"
-
-#~ msgid "CrashlogAutoSubmit"
-#~ msgstr "Crashlog自動提交"
-
-#~ msgid "CrashlogAutoSubmit settings"
-#~ msgstr "Crashlog自動提交設定"
-
-#~ msgid "CrashlogAutoSubmit settings..."
-#~ msgstr "Crashlog自動提交設定..."
-
-#~ msgid ""
-#~ "Crashlogs found!\n"
-#~ "Send them to Dream Multimedia?"
-#~ msgstr ""
-#~ "找到Crashlogs!\n"
-#~ "發送他們到 Dream Multimedia?"
-
-#~ msgid "Create Satellites.xml"
-#~ msgstr "生成 Satellites.xml"
-
-#~ msgid "Create a new timer using the classic editor"
-#~ msgstr "使用編輯器創建一個新的計時器"
-
-#~ msgid "Create a new timer using the wizard"
-#~ msgstr "利用嚮導創建一新的計時器"
-
-#~ msgid "Create account"
-#~ msgstr "創建連接"
-
-#~ msgid "Create movie folder failed"
-#~ msgstr "創建movie檔夾失敗"
-
-#~ msgid "Current Transponder"
-#~ msgstr "當前轉發器"
-
-#~ msgid "Current:"
-#~ msgstr "當前:"
-
-#~ msgid "Custom (%s)"
-#~ msgstr "自定義 (%s)"
-
-#~ msgid "Custom skip time for '1'/'3'-keys"
-#~ msgstr "自定義跳過時間 '1'/'3'-鍵"
-
-#~ msgid "Custom skip time for '4'/'6'-keys"
-#~ msgstr "自定義跳過時間 '4'/'6'-鍵"
-
-#~ msgid "Custom skip time for '7'/'9'-keys"
-#~ msgstr "自定義跳過時間 '7'/'9'-鍵"
-
-#~ msgid "Cut servername after (x) letters:"
-#~ msgstr "伺服器名稱長度:"
-
-#~ msgid "D"
-#~ msgstr "D"
-
-#~ msgid "Daemon for the manufacturer-spreading"
-#~ msgstr "UPnP（Universal Plug and Play）,通用即插即用"
-
-#~ msgid "Day(s)"
-#~ msgstr "日期(s)"
-
-#~ msgid "Day(s) "
-#~ msgstr "日期(S) "
-
-#~ msgid "Dccamd is restarted.It will start as soon as the restart script is done.\n"
-#~ msgstr "CAM 正在重啟中，即將重啟完成.\n"
-
-#~ msgid "Dec"
-#~ msgstr "12月"
-
-#~ msgid "December"
-#~ msgstr "12月"
-
-#~ msgid "Decide if you want to enable or disable the Cleanup Wizard."
-#~ msgstr "是否決定要啟用或禁用清理嚮導."
-
-#~ msgid "Decide what should be done when crashlogs are found."
-#~ msgstr "當發現crashlogs時決定做什麼."
-
-#~ msgid "Decide what should happen to the crashlogs after submission."
-#~ msgstr "Decide what should happen to the crashlogs after submission."
-
-#~ msgid "Decrease delay"
-#~ msgstr "減少延遲"
-
-#~ msgid "Decrease delay by %i ms (can be set)"
-#~ msgstr "減少延遲 %i ms (可設定)"
-
-#~ msgid "Deinterlacer mode"
-#~ msgstr "去交錯模式"
-
-#~ msgid "Delay x seconds after service started"
-#~ msgstr "服務啟動後延時"
-
-#~ msgid "Delete Addon..."
-#~ msgstr "刪除附件..."
-
-#~ msgid "Delete Favourites"
-#~ msgstr "刪除收藏夾"
-
-#~ msgid "Delete Symlink '"
-#~ msgstr "刪除軟鏈結 '"
-
-#~ msgid "Delete crashlogs"
-#~ msgstr "刪除crashlogs"
-
-#~ msgid ""
-#~ "Delete no more configured satellite\n"
-#~ "%s?"
-#~ msgstr "刪除其他沒有配置的衛星%s?"
-
-#~ msgid "Delte"
-#~ msgstr "刪除"
-
-#~ msgid "Descending"
-#~ msgstr "遞減"
-
-#~ msgid "Destination and name for the Symlink"
-#~ msgstr "軟鏈結目標和名稱"
-
-#~ msgid "Destination directory"
-#~ msgstr "目標目錄"
-
-#~ msgid "Destination directory:"
-#~ msgstr "目標目錄:"
-
-#~ msgid "Details for extension: "
-#~ msgstr "擴展明細:"
-
-#~ msgid "Device Label"
-#~ msgstr "標籤"
-
-#~ msgid "Device can now be safely removed!"
-#~ msgstr "裝置現在可以安全移除!"
-
-#~ msgid "Device is in the etc/fstab already exists"
-#~ msgstr "裝置資訊已存在於 etc/fstab 中"
-
-#~ msgid "Dir:"
-#~ msgstr "目錄:"
-
-#~ msgid "Directory %s nonexistent."
-#~ msgstr "目錄 %s 不存在."
-
-#~ msgid "Directory for Cache (i.e. Cover, Audio-CD)"
-#~ msgstr "緩存目錄 (i.e. Cover, Audio-CD)"
-
-#~ msgid "Directory to scan for Logos"
-#~ msgstr "掃描目錄(Logos)"
-
-#~ msgid "Directory(s)"
-#~ msgstr "目錄(S)"
-
-#~ msgid "Disable crashlog reporting"
-#~ msgstr "禁用crashlog報告"
-
-#~ msgid "Disable parental control"
-#~ msgstr "禁用家長控制"
-
-#~ msgid "Discard changes and close plugin"
-#~ msgstr "關閉插件而不保存更改"
-
-#~ msgid "Disconnect"
-#~ msgstr "斷開"
-
-#~ msgid ""
-#~ "Disconnected from\n"
-#~ "Fritz!Box! (%s)\n"
-#~ "retrying..."
-#~ msgstr ""
-#~ "從Dreambox! (%s)斷開\n"
-#~ "重試..."
-
-#~ msgid "Display search results by:"
-#~ msgstr "顯示搜索結果以:"
-
-#~ msgid ""
-#~ "Do you really want to REMOVE\n"
-#~ "the plugin \"%s\"?"
-#~ msgstr " 是否移除插件\"%s\"?"
-
-#~ msgid ""
-#~ "Do you really want to initialize the device?\n"
-#~ "All data on the device will be lost!"
-#~ msgstr ""
-#~ " 是否初始化這個裝置?\n"
-#~ "裝置上所有資料都會丟失!"
-
-#~ msgid ""
-#~ "Do you really want to initialize the harddisk?\n"
-#~ "All data on the disk will be lost!"
-#~ msgstr ""
-#~ " 是否初始化硬碟?\n"
-#~ "硬碟上所有資料都會丟失!"
-
-#~ msgid "Do you want to enable the parental control feature on your dreambox?"
-#~ msgstr " 是否啟用家長控制?"
-
-#~ msgid "Do you want to enter a username and password for this host?\n"
-#~ msgstr " 是否為此主機鍵入用戶名和密碼?\n"
-
-#~ msgid "Do you want to submit your email address and name so that we can contact you if needed?"
-#~ msgstr " 是否提交您的電子郵件位址和姓名以便我們與您聯繫?"
-
-#~ msgid ""
-#~ "Do you want to update your Dreambox?\n"
-#~ "After pressing OK, please wait!"
-#~ msgstr ""
-#~ " 是否升級您的Dreambox?\n"
-#~ "按OK鍵後請稍等!"
-
-#~ msgid "Does not show hidden files"
-#~ msgstr "不顯示隱藏檔"
-
-#~ msgid "Don't ask, just send"
-#~ msgstr "不再詢問,只是發送"
-
-#~ msgid "Done - Installed or upgraded %d packages with %d errors"
-#~ msgstr "完成 - 安裝或升級 %d 套裝軟體出現 %d 錯誤"
-
-#~ msgid "Doubled size of the RAM"
-#~ msgstr "一倍記憶體大小"
-
-#~ msgid "Download .NFI-Files for USB-Flasher"
-#~ msgstr "為USB安裝下載.NFI文件"
-
-#~ msgid "Download E2 Plugins"
-#~ msgstr "下載 E2 插件"
-
-#~ msgid "Download LT Addons"
-#~ msgstr "下載 LT 插件"
-
-#~ msgid "Download Video"
-#~ msgstr "下載視頻"
-
-#~ msgid "Download aborted."
-#~ msgstr "放棄下載."
-
-#~ msgid "Download of USB flasher boot image failed: "
-#~ msgstr "下載的USB引導檔失敗："
-
-#~ msgid "Download..."
-#~ msgstr "下載中..."
-
-#~ msgid "Downloadable new plugins"
-#~ msgstr "可下載的新插件"
-
-#~ msgid "Downloading cover from Internet"
-#~ msgstr "從互聯網下載封面"
-
-#~ msgid "Downloading lyrics for song from Internet"
-#~ msgstr "從互聯網下載歌詞"
-
-#~ msgid "Downloading screenshots. Please wait..."
-#~ msgstr "正在下載截屏. 請稍候..."
-
-#~ msgid "Dreambox"
-#~ msgstr "Dreambox"
-
-#~ msgid "Dreambox Keyboard Deutsch"
-#~ msgstr "德文鍵盤佈局"
-
-#~ msgid "Driver (Kernel Modules)"
-#~ msgstr "驅動 (內核模組)"
-
-#~ msgid "Drizzle"
-#~ msgstr "細雨"
-
-#~ msgid "Drizzle / Fog"
-#~ msgstr "細雨 / 霧"
-
-#~ msgid "Dropbear is a relatively small SSH 2 server and client"
-#~ msgstr "Dropbear是一個SSH2服務端和用戶端"
-
-#~ msgid "Duration in percent"
-#~ msgstr "時間百分比"
-
-#~ msgid "Duration to Execution"
-#~ msgstr "運行持續時間"
-
-#~ msgid "Duration: "
-#~ msgstr "持續時間: "
-
-#~ msgid "DynDNS Daemon to update automatically your IP"
-#~ msgstr "DDNS動態IP更新服務"
-
-#~ msgid ""
-#~ "E2 needs a restart to apply the settings.\n"
-#~ "Do you want to restart E2 now?"
-#~ msgstr ""
-#~ "需要重啟Enigma2使設定生效.\n"
-#~ "是否立即重啟?"
-
-#~ msgid "EMU Restart"
-#~ msgstr "EMU 重新啟動"
-
-#~ msgid "EMU Restarted!"
-#~ msgstr "EMU 重新啟動中!"
-
-#~ msgid "EPG type (long-holding Info-button):"
-#~ msgstr "EPG類型 (長按Info鍵)"
-
-#~ msgid "EXIT key in movie mode"
-#~ msgstr "EXIT鍵在電影模式"
-
-#~ msgid "Edit AutoTimer filters"
-#~ msgstr "編輯自動計時器過濾"
-
-#~ msgid "Edit AutoTimer services"
-#~ msgstr "編輯自動計時器服務"
-
-#~ msgid "Edit DNS"
-#~ msgstr "編輯 DNS"
-
-#~ msgid "Edit account"
-#~ msgstr "編輯帳戶"
-
-#~ msgid "Edit new timer defaults"
-#~ msgstr "預設編輯新的計時器"
-
-#~ msgid "Edit selected AutoTimer"
-#~ msgstr "編輯選定的計時器"
-
-#~ msgid "Edit services list"
-#~ msgstr "編輯節目列表"
-
-#~ msgid "Editor for new AutoTimers"
-#~ msgstr "編輯新的自動計時器"
-
-#~ msgid "Eject"
-#~ msgstr "彈出"
-
-#~ msgid "Enable 1080p24 Mode"
-#~ msgstr "啟用 1080p24 模式"
-
-#~ msgid "Enable 1080p25 Mode"
-#~ msgstr "啟用 1080p25 模式"
-
-#~ msgid "Enable 1080p30 Mode"
-#~ msgstr "啟用 1080p30 模式"
-
-#~ msgid "Enable 720p24 Mode"
-#~ msgstr "啟用 720p24 模式"
-
-#~ msgid "Enable Cleanup Wizard?"
-#~ msgstr "啟用清理嚮導?"
-
-#~ msgid "Enable Filtering"
-#~ msgstr "啟用過濾"
-
-#~ msgid "Enable HTTP Access"
-#~ msgstr "啟用HTTP訪問"
-
-#~ msgid "Enable HTTPS Access"
-#~ msgstr "啟用HTTPS訪問"
-
-#~ msgid "Enable HTTPS Authentication"
-#~ msgstr "啟用HTTPS認證"
-
-#~ msgid "Enable Streaming Authentication"
-#~ msgstr "啟用串流認證"
-
-#~ msgid "Enable parental control"
-#~ msgstr "啟用家長控制"
-
-#~ msgid "Enable this to be able to access the AutoTimer Overview from within the extension menu."
-#~ msgstr "Enable this to be able to access the AutoTimer Overview from within the extension menu."
-
-#~ msgid "Enable/Disable"
-#~ msgstr "啟用 / 禁用"
-
-#~ msgid "Enables access by CIFS on Dreambox"
-#~ msgstr "啟用CIFS訪問支援"
-
-#~ msgid "Enables access by NFS on Dreambox"
-#~ msgstr "啟用NFS訪問支援"
-
-#~ msgid "Encoding the channel uses for it's EPG data. You only need to change this if you're searching for special characters like the german umlauts."
-#~ msgstr "Encoding the channel uses for it's EPG data. You only need to change this if you're searching for special characters like the german umlauts."
-
-#~ msgid "Encryption Key"
-#~ msgstr "WLAN 密鑰"
-
-#~ msgid "Encryption Keytype"
-#~ msgstr "密鑰類型"
-
-#~ msgid "Encryption Type"
-#~ msgstr "加密類型"
-
-#~ msgid "End of \"after event\" timespan"
-#~ msgstr "結束 \"事件後\" 時間跨度"
-
-#~ msgid "End of timespan"
-#~ msgstr "結束時間跨度"
-
-#~ msgid "EndTime"
-#~ msgstr "結束時間"
-
-#~ msgid "Enigma-Debug"
-#~ msgstr "Enigma-Debug"
-
-#~ msgid "Enter Fast Forward at speed"
-#~ msgstr "輸入快進速度"
-
-#~ msgid "Enter Rewind at speed"
-#~ msgstr "輸入快退速度"
-
-#~ msgid "Enter WLAN network name/SSID:"
-#~ msgstr "輸入WLAN網路名稱/SSID:"
-
-#~ msgid "Enter WLAN passphrase/key:"
-#~ msgstr "輸入WLAN 密碼/ key:"
-
-#~ msgid "Enter new hostname for your Dreambox"
-#~ msgstr "設定新的主機名"
-
-#~ msgid "Enter share directory:"
-#~ msgstr "輸入共用目錄:"
-
-#~ msgid "Enter share name:"
-#~ msgstr "輸入共用名稱稱:"
-
-#~ msgid "Enter user and password for host: "
-#~ msgstr "輸入用戶名和密碼: "
-
-#~ msgid "Enter your choise..."
-#~ msgstr "請選擇..."
-
-#~ msgid "Enter your email address so that we can contact you if needed."
-#~ msgstr "輸入您的Email地址方便我們與您聯繫."
-
-#~ msgid "Enter your search term(s)"
-#~ msgstr "輸入搜索關鍵字"
-
-#~ msgid "Entries"
-#~ msgstr "條目"
-
-#~ msgid "Entry Context Menu"
-#~ msgstr "上下文功能表專案"
-
-#~ msgid "Entry(s) found"
-#~ msgstr "發現專案(s)"
-
-#~ msgid "Error !!!"
-#~ msgstr "錯誤 !!!"
-
-#~ msgid "Ethernet (eth0)"
-#~ msgstr "網卡(eth0)"
-
-#~ msgid "Everything is fine"
-#~ msgstr "一切完好"
-
-#~ msgid "Exact match"
-#~ msgstr "精確匹配"
-
-#~ msgid "Exclude"
-#~ msgstr "排除"
-
-#~ msgid "Execute \"after event\" during timespan"
-#~ msgstr "執行 \"事件後\" 時間跨度"
-
-#~ msgid "Execution Progress:"
-#~ msgstr "執行進度:"
-
-#~ msgid "Exit the cleanup wizard"
-#~ msgstr "退出清理嚮導"
-
-#~ msgid "Exit while seed hours later"
-#~ msgstr "在做種時間之後退出"
-
-#~ msgid "Exit wizard"
-#~ msgstr "退出嚮導"
-
-#~ msgid "Extras"
-#~ msgstr "附加設定"
-
-#~ msgid "Extras (Tools)"
-#~ msgstr "其他(工具)"
-
-#~ msgid "Extras / Settings"
-#~ msgstr "擴展 / 設定"
-
-#~ msgid "FTP-Mount"
-#~ msgstr "FTP安裝(Mount)"
-
-#~ msgid "Fan %d PWM"
-#~ msgstr "Fan %d PWM"
-
-#~ msgid "Fan %d Speed"
-#~ msgstr "Fan %d Speed"
-
-#~ msgid "Fan %d Voltage"
-#~ msgstr "Fan %d Voltage"
-
-#~ msgid "Fast Forward speeds"
-#~ msgstr "快進速度"
-
-#~ msgid "Feb"
-#~ msgstr "2月"
-
-#~ msgid "February"
-#~ msgstr "2月"
-
-#~ msgid "Fetching feed entries"
-#~ msgstr "提取feed條目"
-
-#~ msgid "Fetching search entries"
-#~ msgstr "提取搜索條目"
-
-#~ msgid "Few Snow Shower"
-#~ msgstr "很少有陣雪"
-
-#~ msgid "File could not be saved"
-#~ msgstr "檔無法保存"
-
-#~ msgid "File(s)"
-#~ msgstr "文件(S)"
-
-#~ msgid "Filename"
-#~ msgstr "檔案名"
-
-#~ msgid "Filename:"
-#~ msgstr "檔案名:"
-
-#~ msgid "Filesize: "
-#~ msgstr "文件大小: "
-
-#~ msgid "Filesystem Check..."
-#~ msgstr "檔系統檢視..."
-
-#~ msgid "Filesystem contains uncorrectable errors"
-#~ msgstr "檔系統發現無法校正的錯誤"
-
-#~ msgid "Filesystem:"
-#~ msgstr "檔系統:"
-
-#~ msgid "Filter"
-#~ msgstr "過濾"
-
-#~ msgid "First start Favorites?"
-#~ msgstr "首次啟動喜歡頻道?"
-
-#~ msgid "First we need to download the latest boot environment for the USB flasher."
-#~ msgstr "首先我們需要為USB安裝下載最新的啟動環境."
-
-#~ msgid "Foggy"
-#~ msgstr "霧"
-
-#~ msgid "For all share?"
-#~ msgstr "For all share?"
-
-#~ msgid ""
-#~ "Found a total of %d matching Events.\n"
-#~ "%d Timer were added and %d modified."
-#~ msgstr ""
-#~ "Found a total of %d matching Events.\n"
-#~ "%d Timer were added and %d modified."
-
-#~ msgid "Frame repeat count during non-smooth winding"
-#~ msgstr "幀重複計數"
-
-#~ msgid "Free Disk-size to small !!!"
-#~ msgstr "剩餘磁碟空間太小 !!!"
-
-#~ msgid "Free-to-Air"
-#~ msgstr "Free-to-Air"
-
-#~ msgid "Frisian"
-#~ msgstr "弗裏斯蘭語"
-
-#~ msgid "Fritz!Box FON IP address"
-#~ msgstr "Dreambox IP地址"
-
-#~ msgid "From"
-#~ msgstr "從"
-
-#~ msgid "Frontprocessor version: %d"
-#~ msgstr "前端版本: %d"
-
-#~ msgid "Fsck failed"
-#~ msgstr "Fsck檢視失敗"
-
-#~ msgid "Functions at a certain time would drive out automatically"
-#~ msgstr "計畫任務(根據命令和執行時間來按時來調用度作業任務)"
-
-#~ msgid "Funk (wifi0)"
-#~ msgstr "WLAN (wifi0)"
-
-#~ msgid "GP2 Settings Manager"
-#~ msgstr "GP2 設定管理"
-
-#~ msgid "GUI needs a restart to apply the new settings !!!"
-#~ msgstr "為使新設定生效必須重啟GUI !!!"
-
-#~ msgid "Gemini Extras"
-#~ msgstr "Gemini 擴展"
-
-#~ msgid "General AC3 delay (ms)"
-#~ msgstr "AC3 延遲 (ms)"
-
-#~ msgid "General PCM Delay"
-#~ msgstr "PCM 延遲"
-
-#~ msgid "General PCM delay (ms)"
-#~ msgstr "PCM 延遲 (ms)"
-
-#~ msgid "Genre (search in ID3-Tag)"
-#~ msgstr "Genre (從 ID3-Tag搜索)"
-
-#~ msgid "Genre List"
-#~ msgstr "類型列表"
-
-#~ msgid "Go Up"
-#~ msgstr "向上"
-
-#~ msgid "Great Britain"
-#~ msgstr "英國"
-
-#, fuzzy
-#~ msgid "Greek (Modern)"
-#~ msgstr "每週(星期一)"
-
-#~ msgid "Guess existing timer based on begin/end"
-#~ msgstr "Guess existing timer based on begin/end"
-
-#~ msgid "HD Progressive Mode"
-#~ msgstr "HD 逐行模式"
-
-#~ msgid "HD videos"
-#~ msgstr "HD 視頻"
-
-#~ msgid "HDD-Temperature"
-#~ msgstr "硬碟溫度"
-
-#~ msgid "HTTPS Port"
-#~ msgstr "HTTPS 埠"
-
-#~ msgid "Half size of the Ram"
-#~ msgstr "一半記憶體大小"
-
-#~ msgid "Harddisk is sleeping"
-#~ msgstr "硬碟休眠中"
-
-#~ msgid "Hardware"
-#~ msgstr "硬體資訊"
-
-#~ msgid "Heavy Rain"
-#~ msgstr "大雨"
-
-#~ msgid "Heavy Rain/Wind"
-#~ msgstr "大雨/風"
-
-#~ msgid "Hidden network SSID"
-#~ msgstr "隱藏網路 SSID"
-
-#~ msgid "Hidden networkname"
-#~ msgstr "隱藏 SSID"
-
-#~ msgid "Hide"
-#~ msgstr "隱藏"
-
-#~ msgid "Hide Dreamnetcast after"
-#~ msgstr "隱藏Dreamnetcast後"
-
-#~ msgid "Hide Infobar if Second-InfoBar shown"
-#~ msgstr "如果第二資訊欄顯示隱藏資訊欄"
-
-#~ msgid "Hide Jukebox after"
-#~ msgstr "隱藏Jukebox後"
-
-#~ msgid "Hide ecm.info after (x) seconds:"
-#~ msgstr "ECM資訊顯示時間"
-
-#~ msgid "Hide ecm.info with InfoBar:"
-#~ msgstr "隨資訊條顯示"
-
-#~ msgid "Hierarchy mode"
-#~ msgstr "分級模式"
-
-#~ msgid "Holland"
-#~ msgstr "荷蘭"
-
-#~ msgid "Howto & Style"
-#~ msgstr "提示和技巧"
-
-#~ msgid "IPKGMenu"
-#~ msgstr "IPKG功能表"
-
-#~ msgid "If this is enabled an existing timer will also be considered recording an event if it records at least 80% of the it."
-#~ msgstr "If this is enabled an existing timer will also be considered recording an event if it records at least 80% of the it."
-
-#~ msgid "If you can see this page, please press OK."
-#~ msgstr "如果您能看以這個頁面，請按 OK."
-
-#~ msgid "Image-Upgrade"
-#~ msgstr "韧體升級"
-
-#~ msgid "Immediate exit"
-#~ msgstr "直接退出"
-
-#~ msgid "Immediately ID3-tag read"
-#~ msgstr "直接讀取ID3-tag"
-
-#~ msgid "Import existing Timer"
-#~ msgstr "導入已有的自動計時器"
-
-#~ msgid "Import from EPG"
-#~ msgstr "從EPG中導入"
-
-#~ msgid "In Progress"
-#~ msgstr "進行中"
-
-#~ msgid "Include"
-#~ msgstr "包含"
-
-#~ msgid "Include your email and name (optional) in the mail?"
-#~ msgstr "這個郵件裏包含您的emial和姓名(可選)?"
-
-#~ msgid "Incorrect old password !!!"
-#~ msgstr "舊的密碼錯誤 !!!"
-
-#~ msgid "Increase delay by %i ms (can be set)"
-#~ msgstr "增大延時 %i ms (可設定)"
-
-#~ msgid "Info:"
-#~ msgstr "資訊:"
-
-#~ msgid "Infobar type:"
-#~ msgstr "資訊欄類型"
-
-#, fuzzy
-#~ msgid "Init.d"
-#~ msgstr "初始化"
-
-#~ msgid "Initialization..."
-#~ msgstr "初始化..."
-
-#~ msgid "Initializing Harddisk..."
-#~ msgstr "正在初始化硬碟..."
-
-#~ msgid "Input 10"
-#~ msgstr "輸入 10"
-
-#~ msgid "Input 11"
-#~ msgstr "輸入 11"
-
-#~ msgid "Input 12"
-#~ msgstr "輸入 12"
-
-#~ msgid "Input 13"
-#~ msgstr "輸入 13"
-
-#~ msgid "Input 14"
-#~ msgstr "輸入 14"
-
-#~ msgid "Input 15"
-#~ msgstr "輸入 15"
-
-#~ msgid "Input 16"
-#~ msgstr "輸入 16"
-
-#~ msgid "Input 2"
-#~ msgstr "輸入 2"
-
-#~ msgid "Input 3"
-#~ msgstr "輸入 3"
-
-#~ msgid "Input 4"
-#~ msgstr "輸入 4"
-
-#~ msgid "Input 5"
-#~ msgstr "輸入 5"
-
-#~ msgid "Input 6"
-#~ msgstr "輸入 6"
-
-#~ msgid "Input 7"
-#~ msgstr "輸入 7"
-
-#~ msgid "Input 8"
-#~ msgstr "輸入 8"
-
-#~ msgid "Input 9"
-#~ msgstr "輸入 9"
-
-#~ msgid "Install from"
-#~ msgstr "安裝從"
-
-#~ msgid "Install local IPKG"
-#~ msgstr "安裝本地.ipk文件"
-
-#~ msgid "Installed Camds"
-#~ msgstr "已安裝的SoftCam"
-
-#~ msgid "Integrated Ethernet"
-#~ msgstr "集成網卡"
-
-#~ msgid "Integrated Wireless"
-#~ msgstr "集成WLAN"
-
-#~ msgid "Interval (min)"
-#~ msgstr "間隔時間(分鐘)"
-
-#~ msgid "Interval for updating"
-#~ msgstr "更新間隔"
-
-#~ msgid "Interval(min)"
-#~ msgstr "間隔時間(分鐘)"
-
-#~ msgid "Interval(min) "
-#~ msgstr "間隔時間(分鐘)"
-
-#~ msgid "Invalid directory"
-#~ msgstr "目錄錯誤"
-
-#~ msgid "Invalid selection"
-#~ msgstr "選擇無效"
-
-#~ msgid "Is a message bus system,"
-#~ msgstr "是一個匯流排系統消息"
-
-#~ msgid "Is this videomode ok?"
-#~ msgstr "這個模式顯示正常?"
-
-#~ msgid "Jan"
-#~ msgstr "1月"
-
-#~ msgid "January"
-#~ msgstr "1月"
-
-#~ msgid "Jul"
-#~ msgstr "7月"
-
-#~ msgid "July"
-#~ msgstr "7月"
-
-#~ msgid "Jump after finish to the destination directory"
-#~ msgstr "完成後跳轉到目標目錄"
-
-#~ msgid "Jun"
-#~ msgstr "6月"
-
-#~ msgid "June"
-#~ msgstr "6月"
-
-#~ msgid "Kernel Modules..."
-#~ msgstr "內核模組..."
-
-#~ msgid "Kernellog-Daemon"
-#~ msgstr "Kernellog-Daemon"
-
-#~ msgid "Key %(Key)s successfully set to %(delay)i ms"
-#~ msgstr "Key %(Key)s successfully set to %(delay)i ms"
-
-#~ msgid "Key %(key)s (current value: %(value)i ms)"
-#~ msgstr "Key %(key)s (current value: %(value)i ms)"
-
-#~ msgid "Keyboard English"
-#~ msgstr "英文鍵盤佈局"
-
-#~ msgid "Keyboard..."
-#~ msgstr "鍵盤..."
-
-#~ msgid "LAN Adapter"
-#~ msgstr "網卡"
-
-#~ msgid "LCD/OLED Display"
-#~ msgstr "液晶/ OLED顯示"
-
-#~ msgid "LT Menu"
-#~ msgstr "LT 功能表"
-
-#~ msgid "LT News Bulletin"
-#~ msgstr "LT 新聞公告"
-
-#~ msgid "Language files..."
-#~ msgstr "語言檔..."
-
-#~ msgid "Language..."
-#~ msgstr "語言選擇..."
-
-#~ msgid "Leave DVD Player?"
-#~ msgstr "退出DVD播放器?"
-
-#~ msgid "Light Rain"
-#~ msgstr "小雨"
-
-#~ msgid "Light Rain / Fog"
-#~ msgstr "小雨 / 霧"
-
-#~ msgid "Light Rain / Wind"
-#~ msgstr "小雨 / 風"
-
-#~ msgid "Light Rain Late"
-#~ msgstr "晚間小雨"
-
-#~ msgid "Light Snow"
-#~ msgstr "小雪"
-
-#~ msgid "Light Snow Late"
-#~ msgstr "夜間小雪"
-
-#~ msgid "Limited character set for recording filenames"
-#~ msgstr "限制錄影檔的名稱字數"
-
-#~ msgid "Little Apache is a small http Webserver"
-#~ msgstr "Web伺服器"
-
-#~ msgid "Load Length of Movies in Movielist"
-#~ msgstr "載入電影列表裏的內容"
-
-#~ msgid "Load movie-length"
-#~ msgstr "載入電影長度"
-
-#~ msgid "Local Network"
-#~ msgstr "本地網路"
-
-#~ msgid "Location for Logfile:"
-#~ msgstr "log檔位置:"
-
-#~ msgid "Location for instant recordings"
-#~ msgstr "即時錄製位置"
-
-#~ msgid "Location for the Crashlogs"
-#~ msgstr "Crashlogs位置"
-
-#~ msgid "Logfile:"
-#~ msgstr "日誌檔:"
-
-#~ msgid "Logmode"
-#~ msgstr "日誌模式"
-
-#~ msgid "Lower bound of timespan."
-#~ msgstr "時間跨度下限."
-
-#~ msgid "Lower bound of timespan. Nothing before this time will be matched. Offsets are not taken into account!"
-#~ msgstr "時間跨度下限,在此之前的任何時間將被匹配,偏移不考慮!"
-
-#~ msgid "MMC Card"
-#~ msgstr "MMC Card"
-
-#~ msgid "MVI create"
-#~ msgstr "創建MVI"
-
-#~ msgid "MVI create / preview"
-#~ msgstr "創建 / 預覽 MVI"
-
-#~ msgid "Mail"
-#~ msgstr "郵件"
-
-#~ msgid "Manage extensions or plugins for your Dreambox."
-#~ msgstr "管理Dreambox的軟體和插件。"
-
-#~ msgid "Manual install"
-#~ msgstr "手動安裝"
-
-#~ msgid "Manufactur: "
-#~ msgstr "製造商: "
-
-#~ msgid "March"
-#~ msgstr "3月"
-
-#~ msgid "Margin before record (minutes)"
-#~ msgstr "錄製前的空白時間(分鐘)"
-
-#~ msgid "Match Title"
-#~ msgstr "匹配標題"
-
-#~ msgid "Match title"
-#~ msgstr "匹配標題"
-
-#~ msgid "Max bandwidth download"
-#~ msgstr "最大帶寬下載"
-
-#~ msgid "Max bandwidth upload"
-#~ msgstr "最大帶寬上傳"
-
-#~ msgid "Maximum duration (in m)"
-#~ msgstr "最長時間 (分鐘)"
-
-#~ msgid "Maximum event duration to match. If an event is longer than this ammount of time (without offset) it won't be matched."
-#~ msgstr "事件持續時間的最大匹配.如果某項活動的時間比這個時間更長(不帶偏移).不會被匹配."
-
-#~ msgid "May"
-#~ msgstr "5月"
-
-#~ msgid "Medium-Infos"
-#~ msgstr "媒介資訊"
-
-#~ msgid "Messages from Kernel"
-#~ msgstr "內核資訊"
-
-#~ msgid "Minute(s)"
-#~ msgstr "分鐘(s)"
-
-#~ msgid "Mkfs failed"
-#~ msgstr "Mkfs 失敗"
-
-#~ msgid "Modify existing timers"
-#~ msgstr "修改現有的計時器"
-
-#~ msgid "Modus:"
-#~ msgstr "作業模式"
-
-#~ msgid "Month"
-#~ msgstr "月份"
-
-#~ msgid "Most discussed"
-#~ msgstr "討論最多"
-
-#~ msgid "Most popular"
-#~ msgstr "最受歡迎"
-
-#~ msgid "Most responded"
-#~ msgstr "最多回應數"
-
-#~ msgid "Most viewed"
-#~ msgstr "最多檢視數"
-
-#~ msgid "Mostly Clear"
-#~ msgstr "Mostly Clear"
-
-#~ msgid "Mostly Cloudy"
-#~ msgstr "Mostly Cloudy"
-
-#~ msgid "Mostly Sunny"
-#~ msgstr "Mostly Sunny"
-
-#~ msgid "Mount failed!"
-#~ msgstr "安裝失敗!"
-
-#~ msgid "Mount options"
-#~ msgstr "安裝選項"
-
-#~ msgid "Mount points"
-#~ msgstr "安裝點"
-
-#~ msgid "Mount/Umount/Check"
-#~ msgstr "安裝/解除安裝/檢視"
-
-#~ msgid ""
-#~ "Mounted/\n"
-#~ "Unmounted"
-#~ msgstr ""
-#~ "Mounted/\n"
-#~ "Unmounted"
-
-#~ msgid "Mountname"
-#~ msgstr "安裝名"
-
-#~ msgid "Mountname (Please write without / on beginning):"
-#~ msgstr "安裝名稱(留空或輸入):"
-
-#~ msgid "Mountpath:"
-#~ msgstr "安裝路徑:"
-
-#~ msgid "Mountpoint not found or too little space"
-#~ msgstr "安裝點找不到或空間過小"
-
-#~ msgid "Mountpoint:"
-#~ msgstr "安裝點:"
-
-#~ msgid "Mountpoints management"
-#~ msgstr "安裝點管理"
-
-#~ msgid "Mounts editor"
-#~ msgstr "安裝編輯器"
-
-#~ msgid "Move screen down"
-#~ msgstr "螢幕下移"
-
-#~ msgid "Move screen to the center of your TV"
-#~ msgstr "螢幕上移到電視機中心位置"
-
-#~ msgid "Move screen to the lower left corner"
-#~ msgstr "移動螢幕到左下角"
-
-#~ msgid "Move screen to the lower right corner"
-#~ msgstr "移動螢幕到右下角"
-
-#~ msgid "Move screen to the middle of the left border"
-#~ msgstr "移動螢幕到左邊框中間"
-
-#~ msgid "Move screen to the middle of the right border"
-#~ msgstr "移動螢幕到右邊框中間"
-
-#~ msgid "Move screen to the right"
-#~ msgstr "螢幕右移"
-
-#~ msgid "Move screen to the upper left corner"
-#~ msgstr "移動螢幕到左上角"
-
-#~ msgid "Move screen to the upper right corner"
-#~ msgstr "移動螢幕到右上角"
-
-#~ msgid "Move screen up"
-#~ msgstr "螢幕上移"
-
-#, fuzzy
-#~ msgid "MultiBootSelector"
-#~ msgstr "EMU 選擇"
-
-#~ msgid "My TubePlayer"
-#~ msgstr "My TubePlayer"
-
-#~ msgid "MyTubePlayer"
-#~ msgstr "MyTubePlayer"
-
-#~ msgid "MyTubePlayer Help"
-#~ msgstr "MyTubePlayer説明"
-
-#~ msgid "MyTubePlayer active video downloads"
-#~ msgstr "MyTubePlayer啟動視頻下載"
-
-#~ msgid "MyTubePlayer settings"
-#~ msgstr "MyTubePlayer設定"
-
-#~ msgid "MyTubeVideoInfoScreen"
-#~ msgstr "MyTubeVideo資訊螢幕"
-
-#~ msgid "MyTubeVideohelpScreen"
-#~ msgstr "MyTubeVideo幫助螢幕"
-
-#~ msgid "NFS Server"
-#~ msgstr "NFS伺服器"
-
-#~ msgid "NFS Server..."
-#~ msgstr "NFS伺服器..."
-
-#~ msgid "NFS share"
-#~ msgstr "NFS 共用"
-
-#~ msgid "NO displayable files on this medium found!"
-#~ msgstr "當前位置未找到文件"
-
-#~ msgid "Name for Volume:"
-#~ msgstr "標籤名:"
-
-#~ msgid "Name or IP"
-#~ msgstr "名稱或IP"
-
-#~ msgid "Name_or_IP"
-#~ msgstr "功能變數名稱_或_IP"
-
-#~ msgid "Namespace:"
-#~ msgstr "空間名稱:"
-
-#~ msgid "Necessary for Genuine Dreambox plugin"
-#~ msgstr "需要正版Dreambox插件"
-
-#~ msgid "Net-Devices"
-#~ msgstr "網路裝置"
-
-#~ msgid "Network SSID"
-#~ msgstr "網路 SSID"
-
-#~ msgid "Network..."
-#~ msgstr "網路配置..."
-
-#~ msgid "Never"
-#~ msgstr "從不"
-
-#~ msgid "New Password (5-8 characters)"
-#~ msgstr "新的密碼 (5-8 位元組)"
-
-#~ msgid "New position"
-#~ msgstr "新位置"
-
-#~ msgid "News & Politics"
-#~ msgstr "新聞 & 政治"
-
-#~ msgid "Next download:"
-#~ msgstr "下一個下載:"
-
-#~ msgid "No 50 Hz, sorry. :("
-#~ msgstr "50Hz不作業,抱歉. :("
-
-#~ msgid "No Networks found"
-#~ msgstr "未找到網路"
-
-#~ msgid "No network devices found!"
-#~ msgstr "未找到網路裝置!"
-
-#~ msgid "No picture on TV? Press EXIT and retry."
-#~ msgstr "電視沒有圖像？按EXIT鍵並重試."
-
-#~ msgid "No playable video found! Stop playing this movie?"
-#~ msgstr "未找到視頻資料! 是否停止播放?"
-
-#~ msgid ""
-#~ "No valid service PIN found!\n"
-#~ "Do you like to change the service PIN now?\n"
-#~ "When you say 'No' here the service protection stay disabled!"
-#~ msgstr ""
-#~ "未找到有效的服務密碼!\n"
-#~ "是否更改當前的服務密碼?\n"
-#~ "選NO保持當前狀態!"
-
-#~ msgid ""
-#~ "No valid setup PIN found!\n"
-#~ "Do you like to change the setup PIN now?\n"
-#~ "When you say 'No' here the setup protection stay disabled!"
-#~ msgstr ""
-#~ "未找到有效的設定密碼!\n"
-#~ "是否更改當前的設定密碼?\n"
-#~ "選NO保持當前狀態!"
-
-#~ msgid "No wireless networks found! Please refresh."
-#~ msgstr "未發現無線網路! 請刷新."
-
-#~ msgid "No, but play video again"
-#~ msgstr "否, 重新開始播放 "
-
-#~ msgid "No, but switch to video entries."
-#~ msgstr "否, 切換到視頻列表."
-
-#~ msgid "No, but switch to video search."
-#~ msgstr "否, 切換到視頻搜索."
-
-#~ msgid "No, send them never"
-#~ msgstr "否, 從不發送"
-
-#~ msgid "Nonprofits & Activism"
-#~ msgstr "非盈利組織 & 行動組織"
-
-#~ msgid "Not enough diskspace. Please free up some diskspace and try again. (%d MB required, %d MB available)"
-#~ msgstr "磁碟空間不足. 請釋放一部分磁碟空間後重試. (需要 %d MB,只有 %d MB 可用)"
-
-#~ msgid "Not fetching feed entries"
-#~ msgstr "不提取feed條目"
-
-#~ msgid "Not necessary,if this box connect to another"
-#~ msgstr "沒有必要,如果這個盒子連接到其他的"
-
-#~ msgid "Nov"
-#~ msgstr "11月"
-
-#~ msgid "Now Playing"
-#~ msgstr "現在上影"
-
-#~ msgid "Number of scheduled recordings left."
-#~ msgstr "計畫錄製數量."
-
-#~ msgid "OFDb"
-#~ msgstr "OFDb"
-
-#~ msgid "OK to reloaded Camd-List"
-#~ msgstr "按OK鍵重載Softcam列表"
-
-#~ msgid "OK, remove another extensions"
-#~ msgstr "OK, 移除其他擴展"
-
-#~ msgid "OK, remove some extensions"
-#~ msgstr "OK, 移除一些擴展"
-
-#~ msgid "Oct"
-#~ msgstr "10月"
-
-#~ msgid "October"
-#~ msgstr "10月"
-
-#~ msgid "Offset after recording (in m)"
-#~ msgstr "錄製後偏移 (分鐘)"
-
-#~ msgid "Offset before recording (in m)"
-#~ msgstr "錄製前偏移 (分鐘)"
-
-#~ msgid "Old EPG-Data to keep it for"
-#~ msgstr "保留舊的EPG數據"
-
-#~ msgid "Old Password"
-#~ msgstr "舊的密碼"
-
-#~ msgid "On/Off Auto-Cam"
-#~ msgstr "啟動/禁用 Auto-Cam"
-
-#~ msgid "One moment please..."
-#~ msgstr "請稍候..."
-
-#~ msgid "Online-Upgrade"
-#~ msgstr "線上升級"
-
-#~ msgid "Only AutoTimers created during this session"
-#~ msgstr "Only AutoTimers created during this session"
-
-#~ msgid "Only Free scan"
-#~ msgstr "只搜索免費頻道"
-
-#~ msgid "Only match during timespan"
-#~ msgstr "僅匹配某一時間段"
-
-#~ msgid "Only on Service: %s"
-#~ msgstr "只在頻道: %s"
-
-#~ msgid "Open Context Menu"
-#~ msgstr "打開上下文功能表"
-
-#~ msgid "Optionally enter your name if you want to."
-#~ msgstr "請輸入你的名字(可選)."
-
-#~ msgid "Options: "
-#~ msgstr "選項: "
-
-#~ msgid "Orbital Position"
-#~ msgstr "軌道位置"
-
-#~ msgid "Original position"
-#~ msgstr "原始位置"
-
-#, fuzzy
-#~ msgid "OscamInfo"
-#~ msgstr "CCcam資訊"
-
-#~ msgid "Outer Bound (+/-)"
-#~ msgstr "其他限制 (+/-)"
-
-#~ msgid "Override found with alternative service"
-#~ msgstr "Override found with alternative service"
-
-#~ msgid "PM Light Rain"
-#~ msgstr "PM Light Rain"
-
-#~ msgid "PM Light Snow"
-#~ msgstr "PM Light Snow"
-
-#~ msgid "PM Rain"
-#~ msgstr "PM Rain"
-
-#~ msgid "PM Snow Showers"
-#~ msgstr "PM Snow Showers"
-
-#~ msgid "Package removal failed.\n"
-#~ msgstr "套裝軟體移除失敗.\n"
-
-#~ msgid "Package removed successfully.\n"
-#~ msgstr "套裝軟體移除完畢.\n"
-
-#~ msgid "Parameters:"
-#~ msgstr "參數:"
-
-#~ msgid "Parental control type"
-#~ msgstr "家長控制類型"
-
-#~ msgid "Partition(s): "
-#~ msgstr "分區(S): "
-
-#~ msgid "Partly Cloudy"
-#~ msgstr "少雲"
-
-#~ msgid "Partly Cloudy / Wind"
-#~ msgstr "少雲 / 風"
-
-#~ msgid "Password is too short !!!"
-#~ msgstr "密碼太短 !!!"
-
-#~ msgid "Path for Manual install:"
-#~ msgstr "手動安裝路徑:"
-
-#~ msgid "Path: "
-#~ msgstr "路徑: "
-
-#~ msgid "Pause / Resume"
-#~ msgstr "暫停 / 恢復"
-
-#~ msgid "People & Blogs"
-#~ msgstr "Leute & Blogs"
-
-#~ msgid "Permanent Clock"
-#~ msgstr "時鐘設定"
-
-#~ msgid "Phone number"
-#~ msgstr "電話號碼"
-
-#~ msgid "Picon Place"
-#~ msgstr "Picon 位置"
-
-#~ msgid "Pictures do not rotate"
-#~ msgstr "不旋轉圖片"
-
-#~ msgid "Pin code needed"
-#~ msgstr "需要密碼"
-
-#~ msgid "Pion directory:"
-#~ msgstr "圖示目錄"
-
-#~ msgid "Pion type:"
-#~ msgstr "圖示類型"
-
-#~ msgid "Place"
-#~ msgstr "位置"
-
-#~ msgid "Place:"
-#~ msgstr "位置:"
-
-#~ msgid "Play Audio-CD..."
-#~ msgstr "播放 Audio-CD"
-
-#~ msgid "Play Music..."
-#~ msgstr "播放音樂..."
-
-#~ msgid "Play YouTube movies"
-#~ msgstr "播放YouTube電影"
-
-#~ msgid "Play next video"
-#~ msgstr "播放下一個視頻"
-
-#~ msgid "Play title as a loop"
-#~ msgstr "光碟標題播放"
-
-#~ msgid "Play title randomly"
-#~ msgstr "隨機標題播放"
-
-#~ msgid "Play video again"
-#~ msgstr "重新播放視頻"
-
-#~ msgid "Player "
-#~ msgstr "播放器"
-
-#~ msgid "Playing"
-#~ msgstr "正在播放"
-
-#~ msgid "Playlist editor"
-#~ msgstr "編輯播放列表"
-
-#~ msgid "Playlists"
-#~ msgstr "播放列表"
-
-#~ msgid "Please Select Medium to be Scanned"
-#~ msgstr "請選擇要掃描的媒介"
-
-#~ msgid "Please choose .NFI image file from feed server to download"
-#~ msgstr "從伺服器上選擇.NFI文件下載"
-
-#~ msgid "Please disconnect all USB devices from your Dreambox and (re-)attach the target USB stick (minimum size is 64 MB) now!"
-#~ msgstr "現在請斷開Dreambox上的USB裝置並重新插入U盤(最小容量是64MB)!"
-
-#~ msgid "Please enter a name for search"
-#~ msgstr "輸入要查找的名稱"
-
-#~ msgid "Please enter the old pin code"
-#~ msgstr "請輸入舊密碼"
-
-#~ msgid "Please enter your email address here:"
-#~ msgstr "請在這裏輸入您的Email位址:"
-
-#~ msgid "Please label the device"
-#~ msgstr "請設定裝置標籤"
-
-#~ msgid "Please press OK!"
-#~ msgstr "請按OK鍵!"
-
-#~ msgid "Please provide a Text to match"
-#~ msgstr "請提供文本以匹配"
-
-#~ msgid "Please select .NFI flash image file from medium"
-#~ msgstr "從媒介選擇一個.NFI文件"
-
-#~ msgid "Please select Options"
-#~ msgstr "請選擇選項"
-
-#~ msgid "Please select Weather show typ"
-#~ msgstr "請選擇天氣預報顯示類型"
-
-#~ msgid "Please select a Torrent"
-#~ msgstr "請選擇一個種子(Torrent)"
-
-#~ msgid "Please select a standard feed or try searching for videos."
-#~ msgstr "請選擇一個標準的來源位址或嘗試搜索視頻."
-
-#~ msgid "Please select addon"
-#~ msgstr "請選擇附件"
-
-#~ msgid "Please select addon group"
-#~ msgstr "請選擇插件組"
-
-#~ msgid "Please select an extension to remove."
-#~ msgstr "請選擇一個擴展刪除."
-
-#~ msgid "Please select an option below."
-#~ msgstr "請選擇下面的選項."
-
-#~ msgid "Please select target directory or medium"
-#~ msgstr "請選擇目標目錄或媒介"
-
-#~ msgid "Please select to dowload"
-#~ msgstr "請選擇一個下載"
-
-#~ msgid "Please unmount the device first"
-#~ msgstr "請先解除安裝裝置"
-
-#~ msgid "Please wait for activation of your network mount..."
-#~ msgstr "請待您的網路安裝啟動..."
-
-#~ msgid "Please wait while removing your network mount..."
-#~ msgstr "請稍候,正在刪除網路安裝..."
-
-#~ msgid "Please wait while searching for removable packages..."
-#~ msgstr "請稍候,正在搜尋可移除的套裝軟體..."
-
-#, fuzzy
-#~ msgid "Plugin Filter..."
-#~ msgstr "流覽插件"
-
-#~ msgid "Plugin: %(plugin)s , Version: %(version)s"
-#~ msgstr "插件: %(插件)s , 版本: %(版本)s"
-
-#~ msgid "Polarity"
-#~ msgstr "極化"
-
-#~ msgid "Polarization:"
-#~ msgstr "極化:"
-
-#~ msgid "Poll Interval (in h)"
-#~ msgstr "輪詢間隔(小時)"
-
-#~ msgid "Poll automatically"
-#~ msgstr "自動輪詢"
-
-#~ msgid "Port: "
-#~ msgstr "埠:"
-
-#~ msgid "Position:"
-#~ msgstr "調整資訊條顯示位置:"
-
-#~ msgid "Positioner fine movement"
-#~ msgstr "Rotor微調"
-
-#~ msgid "Positioner movement"
-#~ msgstr "Rotor移動"
-
-#~ msgid "Positioner storage"
-#~ msgstr "存貯位置"
-
-#~ msgid "Power state to change to after recordings. Select \"standard\" to not change the default behavior of enigma2 or values changed by yourself."
-#~ msgstr "錄製結束後改變電源狀態. 設定 \"standard\" 不作任何改變或您自行設定."
-
-#~ msgid "Press '0' current Day,  Press '1' on/off Reminder"
-#~ msgstr "按 '0' ＝當前日期,  按 '1' ＝提醒 開/關"
-
-#~ msgid "Press 'OK' for Info"
-#~ msgstr "按 'OK' 顯示資訊"
-
-#~ msgid "Press OK to edit selected settings."
-#~ msgstr "按OK鍵編輯選定的設定."
-
-#~ msgid "Press OK to mount!"
-#~ msgstr "按OK鍵啟動安裝!"
-
-#~ msgid "Press OK to save settings."
-#~ msgstr "按OK鍵保存設定"
-
-#~ msgid "Press OK to view full changelog"
-#~ msgstr "按OK檢視完整的changelog"
-
-#~ msgid "Press number field to edit"
-#~ msgstr "按數位欄位編輯"
-
-#~ msgid "Preview AutoTimer"
-#~ msgstr "預覽自動計時器"
-
-#~ msgid "Printer (LPD)"
-#~ msgstr "印表機 (LPD)"
-
-#~ msgid "Private"
-#~ msgstr "私用"
-
-#~ msgid "Process-Info"
-#~ msgstr "進程資訊"
-
-#~ msgid "Provider to scan"
-#~ msgstr "掃描供應商"
-
-#~ msgid "Published"
-#~ msgstr "發佈"
-
-#~ msgid "Quickzap"
-#~ msgstr "快速切換"
-
-#~ msgid "RC Menu"
-#~ msgstr "RC功能表"
-
-#~ msgid "RS Search"
-#~ msgstr "RS搜索"
-
-#~ msgid "RSS Feed URI"
-#~ msgstr "RSS來源網址"
-
-#~ msgid "RSS Reader"
-#~ msgstr "RSS閱讀器"
-
-#~ msgid "Rain"
-#~ msgstr "雨"
-
-#~ msgid "Rain / Snow"
-#~ msgstr "雨 / 雪"
-
-#~ msgid "Rain / Snow Early"
-#~ msgstr "Rain / Snow Early"
-
-#~ msgid "Rain / Snow Showers"
-#~ msgstr "Rain / Snow Showers"
-
-#~ msgid "Rain / Thunder"
-#~ msgstr "雨 / 雷"
-
-#~ msgid "Rain Late"
-#~ msgstr "Rain Late"
-
-#~ msgid "Rain to Snow"
-#~ msgstr "Rain to Snow"
-
-#~ msgid "Rain/Snow"
-#~ msgstr "Rain/Snow"
-
-#~ msgid "Rain/Wind"
-#~ msgstr "雨/風"
-
-#~ msgid "Ram Disk"
-#~ msgstr "快閃記憶體盤"
-
-#~ msgid "Ratings: "
-#~ msgstr "等級: "
-
-#, fuzzy
-#~ msgid "ReStart"
-#~ msgstr "重新啟動"
-
-#~ msgid "ReZapp"
-#~ msgstr "頻道回看"
-
-#~ msgid "Read-Buffer:"
-#~ msgstr "讀取緩衝:"
-
-#~ msgid "Really quit MyTube Player?"
-#~ msgstr "是否退出 MyTube播放器?"
-
-#~ msgid "Receives printing jobs of yours network"
-#~ msgstr "印表機連接程式"
-
-#~ msgid "Record Location"
-#~ msgstr "錄製位置"
-
-#~ msgid "Record Paths Settings"
-#~ msgstr "錄影位置設定"
-
-#~ msgid "Record a maximum of x times"
-#~ msgstr "錄製最大數"
-
-#~ msgid "Recorded files..."
-#~ msgstr "錄製檔..."
-
-#~ msgid "Recording as an individual title"
-#~ msgstr "錄製一個個性的標題"
-
-#~ msgid "Reduce-size logging"
-#~ msgstr "減少大小的日誌"
-
-#, fuzzy
-#~ msgid "Refresh"
-#~ msgstr "EPG 刷新"
-
-#~ msgid "Refresh Interval"
-#~ msgstr "刷新間隔"
-
-#, fuzzy
-#~ msgid "Refresh interval in minutes:"
-#~ msgstr "間隔時間(分鐘):"
-
-#~ msgid "Related video entries."
-#~ msgstr "相關的視頻作品."
-
-#~ msgid "Reload Settings now"
-#~ msgstr "立即重新載入設定"
-
-#~ msgid "Remote Control style:"
-#~ msgstr "遠程控制風格"
-
-#~ msgid "Remove Bookmark"
-#~ msgstr "移除書簽"
-
-#~ msgid "Remove E2 Plugins"
-#~ msgstr "刪除E2插件"
-
-#~ msgid "Remove LT Addons"
-#~ msgstr "刪除 LT 插件"
-
-#~ msgid "Remove the broken .NFI file?"
-#~ msgstr "移除殘破的.NFI文件？"
-
-#~ msgid "Remove the incomplete .NFI file?"
-#~ msgstr "移除不完整的 .NFI文件?"
-
-#~ msgid "Rename crashlogs"
-#~ msgstr "重命名crashlogs"
-
-#~ msgid "Repeat Type"
-#~ msgstr "重複類型"
-
-#~ msgid "Require description to be unique"
-#~ msgstr "唯一需要說明"
-
-#~ msgid "Reset count"
-#~ msgstr "重置計數"
-
-#~ msgid "Reset saved position"
-#~ msgstr "重設已存位置"
-
-#~ msgid "Response video entries."
-#~ msgstr "視頻輸入回應."
-
-#~ msgid "Restore Backups"
-#~ msgstr "恢復備份"
-
-#~ msgid "Restore backups..."
-#~ msgstr "恢復備份..."
-
-#~ msgid "Restore running..."
-#~ msgstr "正在恢復..."
-
-#~ msgid "Restoring the settings is done. Please press OK to activate the restored settings now."
-#~ msgstr "恢復設定完成。請按OK重新啟動。"
-
-#~ msgid "Return to file browser"
-#~ msgstr "返回文件流覽器"
-
-#~ msgid "Rewrite keymap xml on bootup:"
-#~ msgstr "啟動時重建鍵盤佈局"
-
-#~ msgid "Rolloff"
-#~ msgstr "信號衰減"
-
-#~ msgid "Running Time"
-#~ msgstr "運行時間"
-
-#~ msgid "Running in testmode"
-#~ msgstr "運行測驗模式"
-
-#~ msgid "Russia"
-#~ msgstr "俄羅斯"
-
-#~ msgid "SD 25/50HZ Interlace Mode"
-#~ msgstr "SD 25/50HZ 隔行模式"
-
-#~ msgid "SD 25/50HZ Progressive Mode"
-#~ msgstr "SD 25/50HZ 逐行模式"
-
-#~ msgid "SD 30/60HZ Interlace Mode"
-#~ msgstr "SD 30/60HZ 隔行模式"
-
-#~ msgid "SD 30/60HZ Progressive Mode"
-#~ msgstr "SD 30/60HZ 逐行模式"
-
-#~ msgid "Same size as the Ram"
-#~ msgstr "與記憶體大小相同"
-
-#~ msgid "Satellite Equipment Setup"
-#~ msgstr "衛星裝置設定"
-
-#~ msgid "Satellites create"
-#~ msgstr "添加衛星"
-
-#~ msgid "Satteliteequipment"
-#~ msgstr "衛星裝置"
-
-#~ msgid "Save current delay to key"
-#~ msgstr "保存當前延遲"
-
-#~ msgid "Save to key"
-#~ msgstr "保存"
-
-#~ msgid "Save values and close plugin"
-#~ msgstr "關閉插件並保存"
-
-#~ msgid "Save values and close screen"
-#~ msgstr "關閉螢幕並保存"
-
-#~ msgid "Scaling Mode"
-#~ msgstr "縮放模式"
-
-#~ msgid "Scan QAM128"
-#~ msgstr "掃描 QAM128"
-
-#~ msgid "Scan QAM16"
-#~ msgstr "掃描 QAM16"
-
-#~ msgid "Scan QAM256"
-#~ msgstr "掃描 QAM256"
-
-#~ msgid "Scan QAM32"
-#~ msgstr "掃描 QAM32"
-
-#~ msgid "Scan QAM64"
-#~ msgstr "掃描 QAM64"
-
-#~ msgid "Scan SR6875"
-#~ msgstr "掃描 SR6875"
-
-#~ msgid "Scan SR6900"
-#~ msgstr "掃描 SR6900"
-
-#~ msgid "Scan Wireless Networks"
-#~ msgstr "掃描無線網路"
-
-#~ msgid "Scan band EU HYPER"
-#~ msgstr "掃描 EU HYPER"
-
-#~ msgid "Scan band EU MID"
-#~ msgstr "掃描 EU MID"
-
-#~ msgid "Scan band EU SUPER"
-#~ msgstr "掃描 EU SUPER"
-
-#~ msgid "Scan band EU UHF IV"
-#~ msgstr "掃描 EU UHF IV"
-
-#~ msgid "Scan band EU UHF V"
-#~ msgstr "掃描 EU UHF V"
-
-#~ msgid "Scan band EU VHF I"
-#~ msgstr "掃描 EU VHF I"
-
-#~ msgid "Scan band EU VHF III"
-#~ msgstr "掃描 EU VHF III"
-
-#~ msgid "Scan band US HIGH"
-#~ msgstr "掃描 US HIGH"
-
-#~ msgid "Scan band US HYPER"
-#~ msgstr "掃描 US HYPER"
-
-#~ msgid "Scan band US LOW"
-#~ msgstr "掃描 US LOW"
-
-#~ msgid "Scan band US MID"
-#~ msgstr "掃描 US MID"
-
-#~ msgid "Scan band US SUPER"
-#~ msgstr "掃描 US SUPER"
-
-#~ msgid "Scan your network for wireless Access Points and connect to them using your WLAN USB Stick\n"
-#~ msgstr "掃描無線網路接入點並通過USB無線網卡連接\n"
-
-#~ msgid "Scan your network for wireless Access Points and connect to them using your selected wireless device.\n"
-#~ msgstr "掃描您的無線網路接入點並使用選定的無線裝置連接.\n"
-
-#~ msgid "Scattered Showers"
-#~ msgstr "Scattered Showers"
-
-#~ msgid "Scattered T-Storms"
-#~ msgstr "Scattered T-Storms"
-
-#~ msgid "Script running..."
-#~ msgstr "正在執行腳本 ..."
-
-#~ msgid "Script:"
-#~ msgstr "腳本:"
-
-#~ msgid "Scripts"
-#~ msgstr "腳本"
-
-#~ msgid "Scripts..."
-#~ msgstr "腳本..."
-
-#~ msgid "Search Term(s)"
-#~ msgstr "搜尋條件(s)"
-
-#~ msgid "Search category:"
-#~ msgstr "搜尋類別:"
-
-#~ msgid "Search for network shares..."
-#~ msgstr "搜尋網路共用..."
-
-#~ msgid "Search region:"
-#~ msgstr "搜尋區域:"
-
-#~ msgid "Search restricted content:"
-#~ msgstr "搜尋指定內容:"
-
-#~ msgid "Search strictness"
-#~ msgstr "嚴格搜索"
-
-#~ msgid "Search type"
-#~ msgstr "搜尋類型"
-
-#~ msgid "Second(s)"
-#~ msgstr "秒(s)"
-
-#~ msgid "Second-InfoBar Timeout (in Sec. , 0 = wait for OK)"
-#~ msgstr "第二資訊條超時 (秒. , 0 = 等待按OK鍵)"
-
-#~ msgid "Second-InfoBar setup"
-#~ msgstr "第二資訊條設定"
-
-#~ msgid "Second-InfoBar working mode"
-#~ msgstr "第二資訊條作業模式"
-
-#~ msgid "Seconds"
-#~ msgstr "秒"
-
-#~ msgid "Select \"exact match\" to enforce \"Match title\" to match exactly or \"partial match\" if you only want to search for a part of the event title."
-#~ msgstr "選擇 \"精確匹配\" 執行 \"匹配標題\" 完全匹配 \"部分匹配\" 如果你想搜尋一個事件標題的一部分."
-
-#~ msgid "Select Cam (left/right)"
-#~ msgstr "選擇Softcam (左/右)"
-
-#, fuzzy
-#~ msgid "Select Cam 1"
-#~ msgstr "選擇Softcam:"
-
-#, fuzzy
-#~ msgid "Select Cam 2"
-#~ msgstr "選擇Softcam:"
-
-#~ msgid "Select IPKG source to edit..."
-#~ msgstr "選澤一個IPKG源開始編輯"
-
-#~ msgid "Select Location:"
-#~ msgstr "選擇位置:"
-
-#, fuzzy
-#~ msgid "Select all"
-#~ msgstr "選擇"
-
-#~ msgid "Select bouquet to record on"
-#~ msgstr "選擇要錄製的自定義組"
-
-#~ msgid "Select files for backup. Currently selected:\n"
-#~ msgstr "選擇要備份的檔.當前已選的:\n"
-
-#~ msgid "Select files/folders to backup..."
-#~ msgstr "選擇 檔/目錄 備份..."
-
-#~ msgid "Select new feed to view."
-#~ msgstr "選擇並檢視新的來源."
-
-#~ msgid "Select package"
-#~ msgstr "選擇套裝軟體"
-
-#~ msgid "Select video input"
-#~ msgstr "選擇視頻輸入"
-
-#~ msgid "Select whether or not you want to enforce case correctness."
-#~ msgstr "Select whether or not you want to enforce case correctness."
-
-#~ msgid "Selected Camd (left, right)"
-#~ msgstr "選擇Softcam (左, 右)"
-
-#~ msgid "Selected Camd:"
-#~ msgstr "選擇Softcam:"
-
-#~ msgid "Selected EMU:"
-#~ msgstr "選擇 EMU:"
-
-#~ msgid "Selected source image"
-#~ msgstr "選擇圖片來源"
-
-#~ msgid "Sep"
-#~ msgstr "9月"
-
-#~ msgid "September"
-#~ msgstr "9月"
-
-#~ msgid "Server IP"
-#~ msgstr "伺服器IP"
-
-#~ msgid "Server connection(s)"
-#~ msgstr "伺服器連接數(s)"
-
-#~ msgid "Server share"
-#~ msgstr "伺服器共用"
-
-#~ msgid "Service Reference:"
-#~ msgstr "頻道參考:"
-
-#~ msgid "Service Scan"
-#~ msgstr "頻道管理"
-
-#~ msgid "Services / Daemons"
-#~ msgstr "服務/守護進程"
-
-#~ msgid "Set Port for httpd:"
-#~ msgstr "設定HTTPD埠:"
-
-#~ msgid "Set Voltage and 22KHz"
-#~ msgstr "設定電壓和22KHz"
-
-#~ msgid "Set as default Interface"
-#~ msgstr "將網卡設為預設"
-
-#~ msgid "Set available internal memory threshold for the warning."
-#~ msgstr "設定記憶體最小值警告."
-
-#~ msgid "Set delay to %i ms (can be set)"
-#~ msgstr "設定延遲 %i ms (可設定)"
-
-#~ msgid "Set mark after x minutes"
-#~ msgstr "?分鐘後設定標記"
-
-#~ msgid "Set maximum duration"
-#~ msgstr "設定最長時間"
-
-#~ msgid "Set this NO to disable this AutoTimer."
-#~ msgstr "選擇NO禁用自動計時器."
-
-#~ msgid "Setting key canceled"
-#~ msgstr "Setting key canceled"
-
-#~ msgid "Share (Please write without / on beginning)"
-#~ msgstr "共用(留空或輸入)"
-
-#~ msgid "Shift source file: "
-#~ msgstr "移動原始檔案: "
-
-#~ msgid "Should this AutoTimer only match up to a certain event duration?"
-#~ msgstr "Should this AutoTimer only match up to a certain event duration?"
-
-#~ msgid "Should timers created by this AutoTimer be recorded to a custom location?"
-#~ msgstr "Should timers created by this AutoTimer be recorded to a custom location?"
-
-#~ msgid "Show Camdstart for ..."
-#~ msgstr "顯示Camd啟動 ..."
-
-#~ msgid "Show Camstart for ..."
-#~ msgstr "顯示Camd啟動 ..."
-
-#~ msgid "Show Crypt Symbole"
-#~ msgstr "顯示加密符號"
-
-#~ msgid "Show Expert Ecm-Info"
-#~ msgstr "顯示擴展的ECM資訊"
-
-#~ msgid "Show Message when Recording starts"
-#~ msgstr "錄影開始時提示消息"
-
-#~ msgid "Show ONLY Second-InfoBar"
-#~ msgstr "只顯示第二資訊條"
-
-#~ msgid "Show Sat position"
-#~ msgstr "顯示衛星位置"
-
-#~ msgid "Show Second-InfoBar"
-#~ msgstr "顯示第二資訊條"
-
-#~ msgid "Show WLAN Status"
-#~ msgstr "檢視無線網路狀態"
-
-#~ msgid "Show blinking clock in display during recording"
-#~ msgstr "在錄製期間閃動面板時鐘"
-
-#~ msgid "Show no TS-help-files"
-#~ msgstr "Show no TS-help-files"
-
-#~ msgid "Show orbital info:"
-#~ msgstr "檢視軌道資訊"
-
-#~ msgid "Show providee info:"
-#~ msgstr "檢視提供商資訊"
-
-#~ msgid "Show service numder:"
-#~ msgstr "檢視numde服務"
-
-#~ msgid "Show services beginning with"
-#~ msgstr "檢視服務開始"
-
-#~ msgid "Show “No data on transponder!”"
-#~ msgstr "檢視沒有資料轉發器"
-
-#~ msgid "Show “No free tuner!”"
-#~ msgstr "檢視沒有免費的調諧器"
-
-#~ msgid "Show “Service invalid!” "
-#~ msgstr "檢視服務無效"
-
-#~ msgid "Show “Service not found!”"
-#~ msgstr "檢視服務未找到"
-
-#~ msgid "Show “Tune failed!”"
-#~ msgstr "檢視調失敗"
-
-#~ msgid "Showers Early"
-#~ msgstr "Showers Early"
-
-#, fuzzy
-#~ msgid "Shows available pluigns. Here you can download and install them"
-#~ msgstr "確定要下載和安裝?\n"
-
-#~ msgid "Shutdown Dreambox after"
-#~ msgstr "Dreambox 關機後"
-
-#~ msgid "Signal Quality"
-#~ msgstr "信號品質"
-
-#~ msgid "Signal Strength"
-#~ msgstr "信號強度"
-
-#~ msgid "Single transponder"
-#~ msgstr "單個轉發器"
-
-#~ msgid "Singlestep (GOP)"
-#~ msgstr "單步 (GOP)"
-
-#~ msgid "Size (total "
-#~ msgstr "大小 (總"
-
-#~ msgid "Skin Positioner..."
-#~ msgstr "皮膚定位"
-
-#~ msgid "Skin Selector..."
-#~ msgstr "皮膚選擇"
-
-#~ msgid "Skins/GUI stuff..."
-#~ msgstr "皮膚/介面..."
-
-#~ msgid "Slideshow Interval (sec.)"
-#~ msgstr "幻燈片放映間隔（秒）"
-
-#~ msgid "Slow Motion speeds"
-#~ msgstr "慢動作（低速）"
-
-#~ msgid "Snow"
-#~ msgstr "Snow"
-
-#~ msgid "Snow Late"
-#~ msgstr "Snow Late"
-
-#~ msgid "Snow Shower"
-#~ msgstr "Snow Shower"
-
-#~ msgid "Snow Showers Early"
-#~ msgstr "Snow Showers Early"
-
-#~ msgid "Snow Showers Late"
-#~ msgstr "Snow Showers Late"
-
-#~ msgid "SoftCAMs/Cardservers..."
-#~ msgstr "CCcam下載"
-
-#, fuzzy
-#~ msgid "Softcam Panel"
-#~ msgstr "軟體管理"
-
-#, fuzzy
-#~ msgid "SoftcamPanel"
-#~ msgstr "軟體管理"
-
-#~ msgid "Software manager..."
-#~ msgstr "軟體管理..."
-
-#~ msgid "Solutions for creating secure point-to-point connections"
-#~ msgstr "創建安全的點對點連接"
-
-#~ msgid "Somewhere else"
-#~ msgstr "別的地方"
-
-#~ msgid ""
-#~ "Sorry your backup destination is not writeable.\n"
-#~ "Please choose an other one."
-#~ msgstr ""
-#~ "抱歉, 您的備份目錄是不可寫.\n"
-#~ "請選擇其他的目錄."
-
-#~ msgid "Sorry, no Details available!"
-#~ msgstr "抱歉, 沒有可用明細!"
-
-#~ msgid ""
-#~ "Sorry, your backup destination is not writeable.\n"
-#~ "\n"
-#~ "Please choose another one."
-#~ msgstr ""
-#~ "抱歉, 您的備份目錄是不可寫.\n"
-#~ "\n"
-#~ "請選擇其他的目錄."
-
-#~ msgid "Sort A-Z"
-#~ msgstr "按字母排序"
-
-#~ msgid "Sort Peers by..."
-#~ msgstr "按類型排序"
-
-#~ msgid "Sort by Name"
-#~ msgstr "按名稱排序"
-
-#~ msgid "Soundcarrier"
-#~ msgstr "聲音"
-
-#~ msgid "Source directory"
-#~ msgstr "原始目錄"
-
-#~ msgid "Source directory:"
-#~ msgstr "原始目錄:"
-
-#~ msgid "Source file from the Symlink"
-#~ msgstr "鏈結到原始目錄"
-
-#~ msgid "Speed"
-#~ msgstr "速度"
-
-#~ msgid "Speed for OSD fading"
-#~ msgstr "OSD淡出時間"
-
-#~ msgid "SpinDown"
-#~ msgstr "睡眠"
-
-#~ msgid "SpinUp"
-#~ msgstr "喚醒"
-
-#~ msgid "Spinner"
-#~ msgstr "旋轉圖示"
-
-#~ msgid "Spinner Selector..."
-#~ msgstr "旋轉圖示選擇"
-
-#, fuzzy
-#~ msgid "Start Mode"
-#~ msgstr "開始"
-
-#~ msgid "Start Search"
-#~ msgstr "啟動搜索"
-
-#~ msgid "Start Webinterface"
-#~ msgstr "啟動 Webinterface"
-
-#, fuzzy
-#~ msgid "Start attempts"
-#~ msgstr "開始測驗"
-
-#~ msgid "Start sync ?"
-#~ msgstr "啟動同步 ?"
-
-#~ msgid "Start up"
-#~ msgstr "啟動"
-
-#~ msgid "Start with favorite mode"
-#~ msgstr "以喜愛模式啟動"
-
-#~ msgid "Start with following feed:"
-#~ msgstr "從以下源開始:"
-
-#~ msgid "Start/Restart Camd"
-#~ msgstr "啟動/重啟 SoftCam"
-
-#~ msgid "Start/Stop"
-#~ msgstr "啟動/重啟"
-
-#, fuzzy
-#~ msgid "Starting Cam 1: "
-#~ msgstr "啟動 SoftCam: "
-
-#, fuzzy
-#~ msgid "Starting Cam 2: "
-#~ msgstr "啟動 SoftCam: "
-
-#~ msgid "Status: Alarm clock is off"
-#~ msgstr "狀態: 鬧鈴關閉"
-
-#~ msgid "Status: Alarm clock is on"
-#~ msgstr "狀態: 鬧鈴打開"
-
-#~ msgid "Status: Printer not found"
-#~ msgstr "狀態: 未找到印表機"
-
-#~ msgid "Status: disconnected"
-#~ msgstr "狀態: 斷開"
-
-#~ msgid "Status: hdd is active"
-#~ msgstr "狀態: 硬碟處於活動狀態"
-
-#~ msgid "Status: stopped"
-#~ msgstr "狀態: 停止"
-
-#~ msgid "Std Feed Selection"
-#~ msgstr "Std Feed選擇"
-
-#~ msgid "Std. Feeds"
-#~ msgstr "Std. Feeds"
-
-#~ msgid "Step in ms for key %i"
-#~ msgstr "Step in ms for key %i"
-
-#~ msgid "Step in ms for keys '%s'"
-#~ msgstr "Step in ms for keys '%s'"
-
-#~ msgid "Stereo"
-#~ msgstr "身歷聲"
-
-#~ msgid "Stop camd: "
-#~ msgstr "停止SoftCam: "
-
-#~ msgid "Stript executed"
-#~ msgstr "腳本已執行"
-
-#~ msgid "Subdirectory"
-#~ msgstr "子目錄"
-
-#~ msgid "Subject"
-#~ msgstr "主題"
-
-#~ msgid "Suggestions List"
-#~ msgstr "Suggestions List"
-
-#~ msgid "Sunny"
-#~ msgstr "晴朗"
-
-#~ msgid "Swap Services"
-#~ msgstr "交換檔服務"
-
-#~ msgid "Swap Size"
-#~ msgstr "交換檔大小"
-
-#~ msgid "Swap activate with:"
-#~ msgstr "交換檔啟動和:"
-
-#~ msgid "Swap active by "
-#~ msgstr "交換檔啟動以"
-
-#~ msgid "Swap deactivated"
-#~ msgstr "禁用交換檔"
-
-#~ msgid "Switch 4:3 Output between (Pillarbox/PanScan)"
-#~ msgstr "4:3 輸出之間切換 (Pillarbox/PanScan)"
-
-#~ msgid "Switch to next subservice"
-#~ msgstr "切換到下一個子頻道"
-
-#~ msgid "Switch to previous subservice"
-#~ msgstr "切換到前一個子頻道"
-
-#~ msgid "SymLink:"
-#~ msgstr "符號鏈結:"
-
-#~ msgid "Symbol Rate"
-#~ msgstr "符號率"
-
-#~ msgid "Symbolrate:"
-#~ msgstr "符號率:"
-
-#~ msgid "SyncTool"
-#~ msgstr "同步工具"
-
-#~ msgid "Synchronization is not required"
-#~ msgstr "不需要同步"
-
-#~ msgid "Synchronizations is still active"
-#~ msgstr "始終開啟同步"
-
-#~ msgid "Sys/Kernel Log"
-#~ msgstr "Sys/Kernel Log"
-
-#~ msgid "Syslog"
-#~ msgstr "Syslog"
-
-#~ msgid "Syslog-Daemon"
-#~ msgstr "Syslog-Daemon"
-
-#~ msgid "Syslogd..."
-#~ msgstr "系統日記"
-
-#~ msgid "Sytem Logging, to view log events in data or remote"
-#~ msgstr "系統日誌(系統和內核日誌記錄)"
-
-#~ msgid "T-Storms"
-#~ msgstr "T-Storms"
-
-#~ msgid "TV System"
-#~ msgstr "電視系統"
-
-#~ msgid "TV sound on when activate pause"
-#~ msgstr "暫停時保持節目聲音"
-
-#~ msgid "Tags the Timer/Recording will have."
-#~ msgstr "將要標記的計時器/制像."
-
-#~ msgid "Tags: "
-#~ msgstr "標籤: "
-
-#~ msgid "Technique for the networking of devices in a local network,"
-#~ msgstr "本地網路DNS支援,"
-
-#~ msgid "Temperature and Fan control"
-#~ msgstr "溫度和風扇控制"
-
-#, fuzzy
-#~ msgid "Temperature unit:"
-#~ msgstr "溫度"
-
-#~ msgid "Terminate"
-#~ msgstr "終止"
-
-#~ msgid "Terrestrial provider"
-#~ msgstr "地面波提供商"
-
-#~ msgid "Test Type"
-#~ msgstr "測驗類型"
-
-#~ msgid "That can last some time\n"
-#~ msgstr "這可能需要一些時間\n"
-
-#~ msgid "The '/etc/fstab' has been changed successfully."
-#~ msgstr "'/etc/fstab' 已成功修改."
-
-#~ msgid "The Channel \""
-#~ msgstr "頻道 \""
-
-#~ msgid "The DVD standard doesn't support H.264 (HDTV) video streams. Do you want to create a Dreambox format data DVD (which will not play in stand-alone DVD players) instead?"
-#~ msgstr "DVD標準並不支援H.264（HDTV）的視頻。是否創建一個Dreambox資料格式的DVD？"
-
-#~ msgid "The Gemini Project"
-#~ msgstr "Gemini中文團隊"
-
-#~ msgid "The Provider \""
-#~ msgstr "供應商 \""
-
-#~ msgid "The USB stick is now bootable. Do you want to download the latest image from the feed server and save it on the stick?"
-#~ msgstr "現在是用U盤啟動系統.是否從伺服器下載最新的Image並保存到U盤上？"
-
-#~ msgid "The counter can automatically be reset to the limit at certain intervals."
-#~ msgstr "The counter can automatically be reset to the limit at certain intervals."
-
-#~ msgid "The editor to be used for new AutoTimers. This can either be the Wizard or the classic editor."
-#~ msgstr "The editor to be used for new AutoTimers. This can either be the Wizard or the classic editor."
-
-#~ msgid "The following tasks on"
-#~ msgstr "下列事件上"
-
-#~ msgid ""
-#~ "The input port should be configured now.\n"
-#~ "You can now configure the screen by displaying some test pictures. Do you want to do that now?"
-#~ msgstr ""
-#~ "輸入端現在應該配置完畢。.\n"
-#~ "現在您可以設定螢幕顯示一些測驗圖片，確定嗎？"
-
-#~ msgid "The installation of the default services lists is finished."
-#~ msgstr "預設頻道清單已經安裝完成。"
-
-#~ msgid "The match attribute is mandatory."
-#~ msgstr "強制匹配."
-
-#~ msgid "The md5sum validation failed, the file may be corrupted! Are you sure that you want to burn this image to flash memory? You are doing this at your own risk!"
-#~ msgstr "md5sum驗證失敗,該檔可能已損壞!!!你確定你要燒錄這個韧體到FLASH?請自行承擔風險!!!"
-
-#~ msgid "The md5sum validation failed, the file may be downloaded incompletely or be corrupted!"
-#~ msgstr "md5sum驗證失敗,該檔可能下載不完全或已損壞!!!"
-
-#~ msgid "The package doesn't contain anything."
-#~ msgstr "該套裝軟體不包含任何東西."
-
-#~ msgid "The pin codes you entered are different."
-#~ msgstr "密碼輸入不相同."
-
-#~ msgid "There are no default services lists in your image."
-#~ msgstr "安裝檔裏沒有預設頻道列表."
-
-#~ msgid "There are no default settings in your image."
-#~ msgstr "安裝檔裏沒有預設定."
-
-#~ msgid "There are now "
-#~ msgstr "現在有 "
-
-#~ msgid "There was an error getting the feed entries. Please try again."
-#~ msgstr "有一個下載源錯誤. 請重試."
-
-#~ msgid "This .NFI file does not contain a valid %s image!"
-#~ msgstr "這個.NFI檔不包含有效的 %s 韧體!"
-
-#~ msgid "This .NFI file does not have a md5sum signature and is not guaranteed to work. Do you really want to burn this image to flash memory?"
-#~ msgstr "這個.NFI檔沒有md5sum簽名，不能保證正常作業, 確定要安裝嗎?"
-
-#~ msgid "This .NFI file has a valid md5 signature. Continue programming this image to flash memory?"
-#~ msgstr "這個.NFI檔有md5sum簽名，是否安裝到FLASH ?"
-
-#~ msgid "This Dreambox can't decode %s video streams!"
-#~ msgstr "Dreambox不能解碼 %s 的視頻流!"
-
-#~ msgid "This Month"
-#~ msgstr "這個月"
-
-#~ msgid "This Week"
-#~ msgstr "這個星期"
-
-#~ msgid "This is a name you can give the AutoTimer. It will be shown in the Overview and the Preview."
-#~ msgstr "為自動計時器命名. 它將顯示在描述和預覽裏."
-
-#~ msgid "This is step number 2."
-#~ msgstr "這是第2步."
-
-#~ msgid "This is the delay in hours that the AutoTimer will wait after a search to search the EPG again."
-#~ msgstr "This is the delay in hours that the AutoTimer will wait after a search to search the EPG again."
-
-#~ msgid "This is unsupported at the moment."
-#~ msgstr "此功能目前還不支援."
-
-#~ msgid "This is what will be looked for in event titles. Note that looking for e.g. german umlauts can be tricky as you have to know the encoding the channel uses."
-#~ msgstr "This is what will be looked for in event titles. Note that looking for e.g. german umlauts can be tricky as you have to know the encoding the channel uses."
-
-#~ msgid "This setting controls the behavior when a timer matches a found event."
-#~ msgstr "當找到一個匹配的計時器事件時."
-
-#~ msgid ""
-#~ "This test checks for configured Nameservers.\n"
-#~ "If you get a \"unconfirmed\" message:\n"
-#~ "- please check your DHCP, cabling and Adapter setup\n"
-#~ "- if you configured your Nameservers manually please verify your entries in the \"Nameserver\" Configuration"
-#~ msgstr ""
-#~ "該測驗檢視您的DNS配置.\n"
-#~ "如果顯示 \"測驗未通過\" 資訊:\n"
-#~ "- 請檢視DHCP伺服器,網線還有網路配置\n"
-#~ "- 如果您手動配置您的DNS伺服器，請確認您的\"Nameserver\"配置正確."
-
-#~ msgid ""
-#~ "This test checks whether a network cable is connected to your LAN-Adapter.\n"
-#~ "If you get a \"disconnected\" message:\n"
-#~ "- verify that a network cable is attached\n"
-#~ "- verify that the cable is not broken"
-#~ msgstr ""
-#~ "該測驗檢視您的網線是否已連接到網卡.\n"
-#~ "如果顯示 \"斷開\" 資訊:\n"
-#~ "- 檢視您的網線連接\n"
-#~ "- 確認線纜沒有破損"
-
-#~ msgid ""
-#~ "This test checks whether a valid IP Address is found for your LAN Adapter.\n"
-#~ "If you get a \"unconfirmed\" message:\n"
-#~ "- no valid IP Address was found\n"
-#~ "- please check your DHCP, cabling and adapter setup"
-#~ msgstr ""
-#~ "該測驗檢視您的網卡有沒有獲取到IP位址.\n"
-#~ "如果您得到 \"測驗未通過\" 資訊:\n"
-#~ "- 沒有配置有效的IP位址\n"
-#~ "- 請檢視DHCP伺服器, 線纜和網卡配置"
-
-#~ msgid "This test detects your configured LAN-Adapter."
-#~ msgstr "該測驗會偵測您的網路配置。."
-
-#~ msgid "This toggles the behavior on timer conflicts. If an AutoTimer matches an event that conflicts with an existing timer it will not ignore this event but add it disabled."
-#~ msgstr "定時事件衝突.如果一個自動定時事件與現有的定時事件發生衝突,此事件不會被忽略但其添加禁用."
-
-#~ msgid "Time in minutes to prepend to recording."
-#~ msgstr "計畫錄製時間."
-
-#~ msgid "Time/Date Input"
-#~ msgstr "日期/時間輸入"
-
-#~ msgid "Timeout Harddisk in min"
-#~ msgstr "硬碟超時(分鐘)"
-
-#~ msgid "Timer Type"
-#~ msgstr "計時器類型"
-
-#~ msgid "Timer View..."
-#~ msgstr "計時器檢視..."
-
-#~ msgid "Timer status:"
-#~ msgstr "計時器資訊:"
-
-#~ msgid "Timeshift path..."
-#~ msgstr "時光平移路徑..."
-
-#~ msgid "Tip of the day..."
-#~ msgstr "提示..."
-
-#~ msgid "Top List"
-#~ msgstr "熱門列表"
-
-#~ msgid "Top favorites"
-#~ msgstr "熱門收藏"
-
-#~ msgid "Top rated"
-#~ msgstr "最高評分"
-
-#~ msgid "Transmission Mode"
-#~ msgstr "傳輸模式"
-
-#~ msgid "Travel & Events"
-#~ msgstr "Travel & Events"
-
-#~ msgid "Try to find used Transponders in cable network.. please wait..."
-#~ msgstr "嘗試從電纜找尋可用的轉發器.. 請稍候..."
-
-#~ msgid "Trying to download the Youtube feed entries. Please wait..."
-#~ msgstr "要下載Youtube上的源項目. 請稍候..."
-
-#~ msgid "Trying to download the Youtube search results. Please wait..."
-#~ msgstr "要下載YouTube上的搜索結果.請稍候..."
-
-#~ msgid "UPnP client (djmount)..."
-#~ msgstr "UPnP用戶端"
-
-#~ msgid "UPnP server (uShare)..."
-#~ msgstr "UPnP伺服器"
-
-#~ msgid "USB"
-#~ msgstr "USB"
-
-#~ msgid "USB/IDE Devices"
-#~ msgstr "USB/IDE 裝置"
-
-#~ msgid ""
-#~ "Unable to complete filesystem check.\n"
-#~ "Error: "
-#~ msgstr ""
-#~ "無法完成檔系統檢視.\n"
-#~ "錯誤: "
-
-#~ msgid ""
-#~ "Unable to initialize harddisk.\n"
-#~ "Error: "
-#~ msgstr ""
-#~ "無法初始化硬碟.\n"
-#~ "錯誤: "
-
-#~ msgid "Uncommitted DiSEqC command"
-#~ msgstr "Uncommitted DiSEqC command"
-
-#~ msgid "Unless this is enabled AutoTimer will NOT automatically look for events matching your AutoTimers but only when you leave the GUI with the green button."
-#~ msgstr "Unless this is enabled AutoTimer will NOT automatically look for events matching your AutoTimers but only when you leave the GUI with the green button."
-
-#~ msgid "Unmount failed"
-#~ msgstr "解除安裝失敗"
-
-#~ msgid "Unmount failed!"
-#~ msgstr "解除安裝失敗!"
-
-#~ msgid "Unrar Manager"
-#~ msgstr "RAR解壓管理"
-
-#~ msgid "Unrar Selector"
-#~ msgstr "RAR解壓選擇"
-
-#~ msgid "Update after x minutes:"
-#~ msgstr "多少分鐘後更新:"
-
-#~ msgid "Updates your receiver's software"
-#~ msgstr "升級Dreambox的軟體"
-
-#~ msgid "Updates..."
-#~ msgstr "線上更新..."
-
-#~ msgid "Updating finished. Here is the result:"
-#~ msgstr "更新成功.結果如下:"
-
-#~ msgid "Updating... Please wait... This can take some minutes..."
-#~ msgstr "正在更新... 請稍候... 這需要一些時間..."
-
-#~ msgid "Upgrade finished. Do you want to reboot your Dreambox?"
-#~ msgstr "升級完成. 是否重啟Dreambox?"
-
-#~ msgid "Upgrading Dreambox... Please wait"
-#~ msgstr "Dreambox天在升級... 請稍候..."
-
-#~ msgid "Upper bound of timespan."
-#~ msgstr "Upper bound of timespan."
-
-#~ msgid "Upper bound of timespan. Nothing after this time will be matched. Offsets are not taken into account!"
-#~ msgstr "Upper bound of timespan. Nothing after this time will be matched. Offsets are not taken into account!"
-
-#~ msgid "Use LCD/OLED picon:"
-#~ msgstr "使用液晶/OLED的圖示"
-
-#~ msgid "Use LTEPG (as MultiEPG):"
-#~ msgstr "使用LTEPG (MultiEPG)"
-
-#~ msgid "Use Power Measurement"
-#~ msgstr "使用功率測量"
-
-#~ msgid "Use Telnetinfo Parameters !!!"
-#~ msgstr "使用Telnetinfo的參數 !!!"
-
-#~ msgid "Use a custom location"
-#~ msgstr "使用自定義位置"
-
-#~ msgid "Use non-smooth winding at speeds above"
-#~ msgstr "使用高速平滑播放"
-
-#~ msgid ""
-#~ "Use the left and right buttons to change an option.\n"
-#~ "\n"
-#~ "Please set up tuner A"
-#~ msgstr ""
-#~ "使用 左 / 右 鍵改變選擇.\n"
-#~ "\n"
-#~ "設定調諧器 A"
-
-#~ msgid "Use usals for this sat"
-#~ msgstr "這顆衛星使用USALS"
-
-#~ msgid "Use wizard to set up basic features"
-#~ msgstr "使用嚮導建立基本設定"
-
-#~ msgid "User - Bouquets"
-#~ msgstr "自定義組"
-
-#~ msgid "User - bouquets (File)"
-#~ msgstr "自定義組 (檔)"
-
-#~ msgid "User - bouquets (Radio)"
-#~ msgstr "自定義組 (廣播)"
-
-#~ msgid "User List"
-#~ msgstr "用戶列表"
-
-#~ msgid "User-Script"
-#~ msgstr "用戶腳本"
-
-#~ msgid "User-bouquets"
-#~ msgstr "自定義組"
-
-#~ msgid "Usermanager"
-#~ msgstr "用戶管理"
-
-#~ msgid "Values stored"
-#~ msgstr "存貯值"
-
-#~ msgid "Video Fine-Tuning Wizard"
-#~ msgstr "視頻微調嚮導"
-
-#~ msgid "Video enhancement settings"
-#~ msgstr "視頻增強"
-
-#~ msgid "VideoPid or AudioPid not found"
-#~ msgstr "VPID或APID未找到"
-
-#~ msgid "Videobrowser exit behavior:"
-#~ msgstr "視頻流覽器退出後:"
-
-#~ msgid "Videoenhancement Setup"
-#~ msgstr "視頻增強設定"
-
-#~ msgid "Videoplayer stop/exit behavior:"
-#~ msgstr "視頻播放器 停止/退出 行為:"
-
-#~ msgid "View Count"
-#~ msgstr "流覽次數"
-
-#~ msgid "View Movies..."
-#~ msgstr "觀看電影..."
-
-#~ msgid "View Photos..."
-#~ msgstr "觀看照片..."
-
-#~ msgid "View Video CD..."
-#~ msgstr "觀看 Video CD..."
-
-#~ msgid "View active downloads"
-#~ msgstr "檢視已啟動下載"
-
-#~ msgid "View as Text"
-#~ msgstr "以文本方式打開"
-
-#~ msgid "View list of available Display and Userinterface extensions."
-#~ msgstr "檢視可用的顯示裝置和用戶介面列表."
-
-#~ msgid "View list of available Satteliteequipment extensions."
-#~ msgstr "檢視可用的衛星裝置列表."
-
-#~ msgid "View related videos"
-#~ msgstr "檢視相關視頻"
-
-#~ msgid "View response videos"
-#~ msgstr "檢視視頻"
-
-#~ msgid "View, edit or delete mountpoints on your Dreambox."
-#~ msgstr "檢視,編輯或刪除您的Dreambox掛接點."
-
-#~ msgid "View, edit or delete usernames and passwords for your network."
-#~ msgstr "檢視,編輯或刪除您的網路用戶名和密碼."
-
-#, fuzzy
-#~ msgid "Wait time before start Cam 2"
-#~ msgstr "等待啟動時間(ms):"
-
-#, fuzzy
-#~ msgid "Waiting..."
-#~ msgstr "等待"
-
-#~ msgid "Warn if free space drops below (kB):"
-#~ msgstr "如果空閒空間低於多少(kB)警告:"
-
-#~ msgid ""
-#~ "We will now test if your TV can also display this resolution at 50hz. If your screen goes black, wait 20 seconds and it will switch back to 60hz.\n"
-#~ "Please press OK to begin."
-#~ msgstr ""
-#~ "我們將測驗您的電視能不能作業在50hz.如果出現黑屏, 等待20秒自動返回60hz.\n"
-#~ "按OK鍵開始."
-
-#~ msgid "Webinterface: Main Setup"
-#~ msgstr "Webinterface: 主程序設定"
-
-#~ msgid "Weekly (Sunday)"
-#~ msgstr "每週(星期日)"
-
-#~ msgid "Weeks start on Monday:"
-#~ msgstr "每週星期一開始:"
-
-#~ msgid ""
-#~ "Welcome to the MyTube Youtube Player.\n"
-#~ "\n"
-#~ "Use the Bouqet+ button to navigate to the search field and the Bouqet- to navigate to the video entries.\n"
-#~ "\n"
-#~ "To play a movie just press OK on your remote control.\n"
-#~ "\n"
-#~ "Press info to see the movie description.\n"
-#~ "\n"
-#~ "Press the Menu button for additional options.\n"
-#~ "\n"
-#~ "The Help button shows this help again."
-#~ msgstr ""
-#~ "歡迎使用MyTube YouTube播放器.\n"
-#~ "\n"
-#~ "使用 Bouqet+ 鍵定位到搜索欄,Bouqet- 鍵定位到視頻列表.\n"
-#~ "\n"
-#~ "按OK鍵播放視頻.\n"
-#~ "\n"
-#~ "按info鍵檢視視頻介紹.\n"
-#~ "\n"
-#~ "其他選項請按Menu鍵.\n"
-#~ "\n"
-#~ "按Help鍵顯示幫助."
-
-#~ msgid ""
-#~ "Welcome to the MyTube Youtube Player.\n"
-#~ "\n"
-#~ "While entering your search term(s) you will get suggestions displayed matching your search term.\n"
-#~ "\n"
-#~ "To select a suggestion press DOWN on your remote, select the desired result and press OK on your remote to start the search.\n"
-#~ "\n"
-#~ "Press exit to get back to the input field."
-#~ msgstr ""
-#~ "歡迎使用MyTube YouTube播放器.\n"
-#~ "\n"
-#~ "當您輸入關鍵字進行搜索時將會顯示建議的關鍵字.\n"
-#~ "\n"
-#~ "按遙控DOWN鍵選擇一個關鍵字, 然後按下OK鍵開始搜索.\n"
-#~ "\n"
-#~ "按EXIT鍵返回輸入欄."
-
-#~ msgid ""
-#~ "Welcome to the cleanup wizard.\n"
-#~ "\n"
-#~ "We have detected that your available internal memory has dropped below 2MB.\n"
-#~ "To ensure stable operation of your Dreambox, the internal memory should be cleaned up.\n"
-#~ "You can use this wizard to remove some extensions.\n"
-#~ msgstr ""
-#~ "歡迎使用清理嚮導.\n"
-#~ "\n"
-#~ "我們測驗到您的Flash可用空間低於2MB.\n"
-#~ "為確保您的Dreambox穩定運行必須進行清理.\n"
-#~ "你可以使用此工具刪除無用插件.\n"
-
-#~ msgid "What to do with submitted crashlogs?"
-#~ msgstr "如何處理提交crashlogs?"
-
-#~ msgid "When this option is enabled the AutoTimer won't match events where another timer with the same description already exists in the timer list."
-#~ msgstr "When this option is enabled the AutoTimer won't match events where another timer with the same description already exists in the timer list."
-
-#~ msgid "Window"
-#~ msgstr "視窗"
-
-#~ msgid "Wireless"
-#~ msgstr "無線"
-
-#~ msgid "Wireless Network"
-#~ msgstr "無線網路"
-
-#~ msgid "Wireless Network State"
-#~ msgstr "WLAN狀態"
-
-#~ msgid "With this option enabled the channel to record on can be changed to a alternative service it is restricted to."
-#~ msgstr "With this option enabled the channel to record on can be changed to a alternative service it is restricted to."
-
-#~ msgid "With this option you can restrict the AutoTimer to a certain ammount of scheduled recordings. Set this to 0 to disable this functionality."
-#~ msgstr "With this option you can restrict the AutoTimer to a certain ammount of scheduled recordings. Set this to 0 to disable this functionality."
-
-#~ msgid "Write"
-#~ msgstr "寫入"
-
-#~ msgid "Write-Buffer:"
-#~ msgstr "寫入緩衝:"
-
-#~ msgid "Writing NFI image file to flash completed"
-#~ msgstr "寫入NFI映射到內部FLASH已完成."
-
-#~ msgid "Yes, but play next video"
-#~ msgstr "是, 播放下一個視頻"
-
-#~ msgid "Yes, but play previous video"
-#~ msgstr "是, 播放上一個視頻"
-
-#~ msgid "Yes, view the tutorial"
-#~ msgstr "是，檢視教程"
-
-#, fuzzy
-#~ msgid "Yes, with backup"
-#~ msgstr "恢復備份"
-
-#, fuzzy
-#~ msgid "Yes, without backup"
-#~ msgstr "恢復備份"
-
-#~ msgid "You can choose some default settings now. Please select the settings you want to be installed."
-#~ msgstr "現在您可以選擇一些預設設定。請您選擇想要安裝的設定。"
-
-#~ msgid "You can choose, what you want to install..."
-#~ msgstr "您可以選擇您想安裝的內容..."
-
-#~ msgid "You chose not to install any default services lists."
-#~ msgstr "您選擇不安裝任何預設的頻道列表."
-
-#~ msgid "You chose not to install any default settings. You can however install the default settings later in the settings menu."
-#~ msgstr "您選擇不安裝任何預設設定.但是您可以安裝後在設定功能表中再次選擇."
-
-#~ msgid "You chose not to install anything. Please press OK finish the install wizard."
-#~ msgstr "您選擇不安裝任何軟體。請按OK完成安裝嚮導。"
-
-#~ msgid "You do not seem to have a harddisk in your Dreambox. So backing up to a harddisk is not an option for you."
-#~ msgstr "您的Dreambox似乎沒有安裝硬碟.所以備份到硬碟不適合您。"
-
-#~ msgid ""
-#~ "You entered \"%s\" as Text to match.\n"
-#~ "Do you want to remove trailing whitespaces?"
-#~ msgstr ""
-#~ "你輸入的 \"%s\" 為文本匹配.\n"
-#~ "是否刪除末尾空格?"
-
-#~ msgid ""
-#~ "You have chosen to backup to a compact flash card. The card must be in the slot. We do not verify if it is really used at the moment. So better backup to the harddisk!\n"
-#~ "Please press OK to start the backup now."
-#~ msgstr ""
-#~ "您已選擇要備份到CF卡,該卡必須插入在插槽。我們不確認您些刻是不是真的在使用CF卡。因此，最好備份到硬碟!\n"
-#~ "請按OK鍵開始備份."
-
-#~ msgid ""
-#~ "You have chosen to backup to an usb drive. Better backup to the harddisk!\n"
-#~ "Please press OK to start the backup now."
-#~ msgstr ""
-#~ "您已選擇要備份到USB驅動器。最好是備份到硬碟！\n"
-#~ "請按OK鍵開始備份."
-
-#~ msgid "You have chosen to backup to your harddisk. Please press OK to start the backup now."
-#~ msgstr "您已選擇要備份到硬碟.請按OK鍵開始備份."
-
-#~ msgid ""
-#~ "You have to restart enigma\n"
-#~ "to apply the new skin\n"
-#~ "\n"
-#~ "Restart now?"
-#~ msgstr ""
-#~ "您不得不重啟Enigma,\n"
-#~ "以應用新的皮膚.\n"
-#~ "\n"
-#~ "立即重啟?"
-
-#~ msgid ""
-#~ "You need to set a pin code and hide it from your children.\n"
-#~ "\n"
-#~ "Do you want to set the pin now?"
-#~ msgstr ""
-#~ "您需要設定一個密碼並且不讓您的孩子知道.\n"
-#~ "\n"
-#~ "立即設定密碼?"
-
-#~ msgid "YouTube Playlist"
-#~ msgstr "YouTube播放列表"
-
-#~ msgid "Your TV works with 50 Hz. Good!"
-#~ msgstr "您的電視作業在50Hz模式下,非常好!"
-
-#~ msgid "Your email address:"
-#~ msgstr "您的Email地址:"
-
-#~ msgid "Your name (optional):"
-#~ msgstr "您的名字 (可選):"
-
-#~ msgid ""
-#~ "Your network configuration has been activated.\n"
-#~ "A second configured interface has been found.\n"
-#~ "\n"
-#~ "Do you want to disable the second network interface?"
-#~ msgstr ""
-#~ "您的網路配置已被啟動.\n"
-#~ "發現第二個網卡.\n"
-#~ "\n"
-#~ "是否禁用第二個網卡?"
-
-#~ msgid "Your network mount has been activated."
-#~ msgstr "您的網路安裝已啟動."
-
-#~ msgid "Your network mount has been removed."
-#~ msgstr "您的網路安裝已刪除."
-
-#~ msgid "Your network mount has been updated."
-#~ msgstr "您的網路安裝已更新."
-
-#~ msgid "Your_Password"
-#~ msgstr "您的密碼"
-
-#~ msgid "Your_Share"
-#~ msgstr "您的共用"
-
-#~ msgid "Your_Username"
-#~ msgstr "您的用戶名:"
-
-#~ msgid "Zap back to service before satfinder?"
-#~ msgstr "切換回尋星之前的頻道?"
-
-#~ msgid "a simple way for applications to talk to one another"
-#~ msgstr "一個簡單的互動程式"
-
-#~ msgid "activate Swap"
-#~ msgstr "啟動交換檔"
-
-#~ msgid "add Provider"
-#~ msgstr "添加提供商"
-
-#~ msgid "add a nameserver entry"
-#~ msgstr "增加DNS項目"
-
-#~ msgid "add directory to playlist"
-#~ msgstr "添加目錄到播放列表"
-
-#~ msgid "add file to playlist"
-#~ msgstr "添加檔到播放列表"
-
-#~ msgid "add files to playlist"
-#~ msgstr "添加檔到播放列表"
-
-#~ msgid "add filters"
-#~ msgstr "添加過濾"
-
-#~ msgid "add recording (enter recording duration)"
-#~ msgstr "添加錄影 (輸入錄影時長)"
-
-#~ msgid "add recording (indefinitely)"
-#~ msgstr "添加錄影 (不限時)"
-
-#~ msgid "add services"
-#~ msgstr "添加頻道"
-
-#~ msgid "addon install not successful!"
-#~ msgstr "附件安裝不成功!"
-
-#~ msgid "addon install successful!"
-#~ msgstr "附件安裝成功!"
-
-#~ msgid "addon size: "
-#~ msgstr "附件大小: "
-
-#~ msgid "always"
-#~ msgstr "始終"
-
-#~ msgid "and leads to printer which is attached to the Dreambox"
-#~ msgstr "連接到Dreambox的印表機"
-
-#~ msgid "are you sure want"
-#~ msgstr "您確定？"
-
-#~ msgid ""
-#~ "are you sure want to delete\n"
-#~ "\n"
-#~ msgstr ""
-#~ "您確定要刪除?\n"
-#~ "\n"
-
-#~ msgid ""
-#~ "are you sure you want to delete\n"
-#~ "following addon:\n"
-#~ "\n"
-#~ msgstr ""
-#~ "您確定要刪除\n"
-#~ "下列附件: \n"
-#~ "\n"
-
-#~ msgid "are you sure you want to reboot"
-#~ msgstr "您確定要重新啟動(reboot)?"
-
-#~ msgid "are you sure you want to restart"
-#~ msgstr "您確定要重新啟動嗎(restart)?"
-
-#~ msgid "as"
-#~ msgstr "選項"
-
-#~ msgid "assigned CAIds"
-#~ msgstr "已分配CAIds"
-
-#~ msgid "assigned CAIds:"
-#~ msgstr "已分配CAIds:"
-
-#~ msgid "assigned Services/Provider:"
-#~ msgstr "已分配的 頻道/供應商:"
-
-#~ msgid "asynchronously with"
-#~ msgstr "非同步"
-
-#~ msgid "automatically set the last index"
-#~ msgstr "自動設定的最後指數"
-
-#~ msgid "average"
-#~ msgstr "平均"
-
-#~ msgid "backdrop"
-#~ msgstr "後臺"
-
-#~ msgid "background"
-#~ msgstr "後臺"
-
-#~ msgid ""
-#~ "basic setting for\n"
-#~ "Driver (Kernel Modules)"
-#~ msgstr ""
-#~ "驅動基本設定\n"
-#~ "(Kernel Modules)"
-
-#~ msgid "becomes terminates"
-#~ msgstr "退出"
-
-#~ msgid "bootlogo"
-#~ msgstr "Bootlogo"
-
-#~ msgid "by"
-#~ msgstr "按"
-
-#~ msgid "by %d clock"
-#~ msgstr "由 %d 時鐘"
-
-#~ msgid "cache size"
-#~ msgstr "緩存大小"
-
-#~ msgid "can not start stream"
-#~ msgstr "無法啟動流"
-
-#~ msgid "can not stop Service"
-#~ msgstr "不能停止服務"
-
-#~ msgid "cancel synchronization ?"
-#~ msgstr "退出同步工具?"
-
-#~ msgid "case-insensitive search"
-#~ msgstr "不區分大小寫"
-
-#~ msgid "case-sensitive search"
-#~ msgstr "區分大小寫"
-
-#~ msgid "change recording (duration)"
-#~ msgstr "更改錄影 (持續時間)"
-
-#~ msgid "choose destination directory"
-#~ msgstr "選擇目標目錄"
-
-#~ msgid "circular logging"
-#~ msgstr "重複記錄"
-
-#~ msgid "cities found"
-#~ msgstr "城市名已找到"
-
-#~ msgid "city"
-#~ msgstr "城市"
-
-#~ msgid "city %s added"
-#~ msgstr "城市 %s 已添加"
-
-#~ msgid "clear playlist"
-#~ msgstr "清除播放列表"
-
-#~ msgid "close"
-#~ msgstr "關閉"
-
-#~ msgid "coding systems:"
-#~ msgstr "加密系統:"
-
-#~ msgid "complex"
-#~ msgstr "複雜"
-
-#~ msgid "connections"
-#~ msgstr "連接"
-
-#~ msgid "constant stream"
-#~ msgstr "連續的流"
-
-#~ msgid "control of devices over a IP-based network (Clientmode)"
-#~ msgstr "一個基於IP網路的控制程式(用戶端模式)"
-
-#~ msgid "control of devices over a IP-based network (Servermode)"
-#~ msgstr "一個基於IP網路的控制程式(服務端模式)"
-
-#~ msgid "copy Source: "
-#~ msgstr "複製來源: "
-
-#~ msgid "could not be removed"
-#~ msgstr "不能移除"
-
-#~ msgid "count user"
-#~ msgstr "用戶數"
-
-#~ msgid "creat"
-#~ msgstr "提出"
-
-#~ msgid "create"
-#~ msgstr "創建"
-
-#~ msgid "create account"
-#~ msgstr "創建帳戶"
-
-#~ msgid "create new Swap File"
-#~ msgstr "創建新的交換檔"
-
-#~ msgid "create satellites.xml"
-#~ msgstr "生成 satellites.xml"
-
-#~ msgid ""
-#~ "create/delete Swapfile\n"
-#~ "please wait..."
-#~ msgstr ""
-#~ "創建/刪除交換檔\n"
-#~ "請稍候..."
-
-#~ msgid "creator: "
-#~ msgstr "創建者: "
-
-#~ msgid "current"
-#~ msgstr "當前"
-
-#~ msgid "days"
-#~ msgstr "天"
-
-#~ msgid "delete Symlink '"
-#~ msgstr "刪除 Symlink '"
-
-#~ msgid "delete account"
-#~ msgstr "刪除帳戶"
-
-#~ msgid "delete playlist entry"
-#~ msgstr "刪除播放列表項目"
-
-#~ msgid "delete saved playlist"
-#~ msgstr "刪除已有的播放列表"
-
-#~ msgid "delete..."
-#~ msgstr "刪除..."
-
-#~ msgid "destination"
-#~ msgstr "目標"
-
-#~ msgid "destination directory"
-#~ msgstr "目標目錄"
-
-#~ msgid "directory"
-#~ msgstr "目錄"
-
-#~ msgid "directory for Cache (i.e. Cover, Audio-CD)"
-#~ msgstr "緩存目錄 (i.e. Cover, Audio-CD)"
-
-#~ msgid "does not show hidden files"
-#~ msgstr "不顯示隱藏檔"
-
-#~ msgid "don't record"
-#~ msgstr "什麼也不做"
-
-#~ msgid "download"
-#~ msgstr "下載"
-
-#~ msgid ""
-#~ "download not successful!\n"
-#~ "Error: "
-#~ msgstr ""
-#~ "下載未完成!\n"
-#~ "錯誤: "
-
-#~ msgid "downloaded size: "
-#~ msgstr "下載大小: "
-
-#~ msgid "downloading cover from Internet"
-#~ msgstr "從互聯網下載覆蓋"
-
-#~ msgid "downloading lyrics"
-#~ msgstr "下載歌詞"
-
-#~ msgid "downloading lyrics for song from Internet"
-#~ msgstr "從互聯網下載歌詞"
-
-#~ msgid "eMail-Checker"
-#~ msgstr "郵件檢驗程式"
-
-#~ msgid "edit account"
-#~ msgstr "修改帳戶"
-
-#~ msgid "edit filters"
-#~ msgstr "編輯篩檢程式"
-
-#~ msgid "edit services"
-#~ msgstr "編輯頻道"
-
-#~ msgid "edit/create playlist"
-#~ msgstr "編輯/創建播放列表"
-
-#~ msgid "editor playlist"
-#~ msgstr "編輯播放列表"
-
-#~ msgid "eject"
-#~ msgstr "彈出"
-
-#~ msgid "enable/disable"
-#~ msgstr "允許/禁止"
-
-#~ msgid "enter hidden network SSID"
-#~ msgstr "隱藏輸入的SSID"
-
-#~ msgid "entries"
-#~ msgstr "項目"
-
-#~ msgid "entrys"
-#~ msgstr "entrys"
-
-#~ msgid "erase eMail"
-#~ msgstr "刪除 eMail"
-
-#~ msgid "every"
-#~ msgstr "每次"
-
-#~ msgid "every %s"
-#~ msgstr "每 %s"
-
-#~ msgid "every month"
-#~ msgstr "每個月"
-
-#~ msgid "exact match"
-#~ msgstr "精確匹配"
-
-#~ msgid "exceeds dual layer medium!"
-#~ msgstr "超出雙層介質!"
-
-#~ msgid "execute"
-#~ msgstr "執行"
-
-#~ msgid "exit key in movie mode"
-#~ msgstr "退出短片模式"
-
-#~ msgid "exit network adapter setup menu"
-#~ msgstr "退出網卡設定功能表"
-
-#~ msgid "exit network interface list"
-#~ msgstr "退出網卡列表"
-
-#~ msgid "few"
-#~ msgstr "少數"
-
-#~ msgid "flash total: "
-#~ msgstr "FLASH大小: "
-
-#~ msgid "folders are the same"
-#~ msgstr "文件夾是相同的"
-
-#~ msgid "for"
-#~ msgstr "為"
-
-#~ msgid "for all share?"
-#~ msgstr "為所有用戶共用?"
-
-#~ msgid "group"
-#~ msgstr "組"
-
-#~ msgid "guest ok"
-#~ msgstr "來賓訪問"
-
-#~ msgid "half the size of the Ram"
-#~ msgstr "記憶體一半大小"
-
-#~ msgid "harddisk is sleeping"
-#~ msgstr "硬碟已休眠"
-
-#~ msgid "hear radio..."
-#~ msgstr "收聽廣播..."
-
-#~ msgid "hidden network"
-#~ msgstr "隱藏網路"
-
-#~ msgid "hide Background"
-#~ msgstr "隱藏背景"
-
-#~ msgid "hide Dreamnetcast after"
-#~ msgstr "隱藏Dreamnetcast後"
-
-#~ msgid "hide Dreamnetcast after 15 Sec."
-#~ msgstr "15秒後隱藏Dreamnetcast."
-
-#~ msgid "hide Jukebox after"
-#~ msgstr "隱藏Jukebox後"
-
-#~ msgid "hide Jukebox after 15 Sec."
-#~ msgstr "15秒後隱藏Jukebox"
-
-#~ msgid "hour"
-#~ msgstr "小時"
-
-#~ msgid "hours"
-#~ msgstr "小時"
-
-#~ msgid "httpd root:"
-#~ msgstr "httpd root:"
-
-#~ msgid "humidity"
-#~ msgstr "濕度"
-
-#~ msgid "immediate exit"
-#~ msgstr "立即退出"
-
-#~ msgid "immediately ID3-tag read"
-#~ msgstr "立即讀取ID3標籤"
-
-#~ msgid "in"
-#~ msgstr "在"
-
-#~ msgid "in %d days interval"
-#~ msgstr "間隔 %d 天"
-
-#~ msgid "in %d hours interval"
-#~ msgstr "間隔 %d 小時"
-
-#~ msgid "in %d minutes interval"
-#~ msgstr "間隔 %d 分鐘"
-
-#~ msgid "in %dst minutes"
-#~ msgstr "in %dst minutes"
-
-#~ msgid "in Description"
-#~ msgstr "in Description"
-
-#~ msgid "in Shortdescription"
-#~ msgstr "in Shortdescription"
-
-#~ msgid "in Title"
-#~ msgstr "in Title"
-
-#~ msgid "in month %s"
-#~ msgstr "在一個月裏 %s"
-
-#~ msgid "in routed configurations to the Dreambox"
-#~ msgstr "im Routing-Modus zur Dreambox"
-
-#~ msgid "in the Jukebox take ?"
-#~ msgstr "in the Jukebox take ?"
-
-#~ msgid ""
-#~ "incoming call!\n"
-#~ "%s calls on %s!"
-#~ msgstr ""
-#~ "傳入呼叫!\n"
-#~ "%s 呼叫在 %s!"
-
-#~ msgid "info"
-#~ msgstr "資訊"
-
-#~ msgid "install"
-#~ msgstr "安裝"
-
-#~ msgid "ipkg Packages (ipk)"
-#~ msgstr "IPKG套裝軟體 (ipk)"
-
-#~ msgid "jump to listbegin"
-#~ msgstr "跳轉到列表開頭"
-
-#~ msgid "jump to listend"
-#~ msgstr "跳轉到列表結尾"
-
-#~ msgid "jump to next marked position"
-#~ msgstr "跳轉到下一個標記位置"
-
-#~ msgid "last actualization"
-#~ msgstr "最後更新"
-
-#~ msgid "list style compact"
-#~ msgstr "列表樣式"
-
-#~ msgid "list style compact with description"
-#~ msgstr "帶描述的列表樣式"
-
-#~ msgid "list style default"
-#~ msgstr "預設列表樣式"
-
-#~ msgid "list style single line"
-#~ msgstr "單行列表樣式"
-
-#~ msgid "liste"
-#~ msgstr "清單"
-
-#~ msgid "lists always reload"
-#~ msgstr "總是刷新列表"
-
-#~ msgid "little Apache"
-#~ msgstr "little Apache"
-
-#~ msgid "loaded modules"
-#~ msgstr "載入模組"
-
-#~ msgid "logfile"
-#~ msgstr "日誌檔"
-
-#~ msgid "logfile:"
-#~ msgstr "日誌檔:"
-
-#~ msgid "lyrics for song"
-#~ msgstr "歌詞"
-
-#~ msgid "many"
-#~ msgstr "很多"
-
-#~ msgid "mark new recordings"
-#~ msgstr "標記新錄製的內容"
-
-#~ msgid "medium"
-#~ msgstr "媒介"
-
-#~ msgid "menulist"
-#~ msgstr "功能列表"
-
-#~ msgid "minimum Bitrate"
-#~ msgstr "最低位元率"
-
-#~ msgid "mount"
-#~ msgstr "安裝"
-
-#~ msgid "mounted on"
-#~ msgstr "安裝到"
-
-#~ msgid "mounted on ("
-#~ msgstr "安裝到 ("
-
-#~ msgid "move PiP to main picture"
-#~ msgstr "切換畫中畫到主顯示"
-
-#~ msgid "move Source: "
-#~ msgstr "移動來源: "
-
-#~ msgid "movies"
-#~ msgstr "電影"
-
-#~ msgid "music"
-#~ msgstr "音樂"
-
-#~ msgid "new Directory"
-#~ msgstr "新建目錄"
-
-#~ msgid "new File"
-#~ msgstr "新建文件"
-
-#~ msgid "new Passwd (5-8 characters)"
-#~ msgstr "新的密碼 (5-8 位元組)"
-
-#~ msgid ""
-#~ "new USB device found\n"
-#~ "view Information?"
-#~ msgstr ""
-#~ "發現新的USB裝置\n"
-#~ "檢視資訊?"
-
-#~ msgid "new name:"
-#~ msgstr "新的名稱:"
-
-#~ msgid "new password (5-8 characters)"
-#~ msgstr "新密碼 (5-8 位元組)"
-
-#~ msgid "next Autosave"
-#~ msgstr "下一個自動保存"
-
-#~ msgid "next Autosave in"
-#~ msgstr "下一個自動保存在"
-
-#~ msgid "night"
-#~ msgstr "夜晚"
-
-#~ msgid "no CD/DVD Devices found!"
-#~ msgstr "未找到 CD/DVD 驅動器!"
-
-#~ msgid "no HDD found"
-#~ msgstr "未找到硬碟"
-
-#~ msgid "no Hdd found"
-#~ msgstr "未找到硬碟"
-
-#~ msgid "no Mount points found"
-#~ msgstr "未找到安裝點"
-
-#~ msgid "no Services/Providers selected"
-#~ msgstr "未選擇 頻道/供應商"
-
-#~ msgid "no entries available"
-#~ msgstr "無可用專案"
-
-#~ msgid "no name"
-#~ msgstr "沒有名稱"
-
-#~ msgid "no preview available"
-#~ msgstr "無可用預覽"
-
-#~ msgid "no standby"
-#~ msgstr "一直開著"
-
-#~ msgid "no timeout"
-#~ msgstr "未超時"
-
-#~ msgid ""
-#~ "none picon png found in\n"
-#~ "\n"
-#~ msgstr ""
-#~ "沒有找到PICON在\n"
-#~ "\n"
-
-#~ msgid "not by PiP !"
-#~ msgstr "不能使用畫中國 !"
-
-#~ msgid "not by Record !"
-#~ msgstr "沒有錄影 !"
-
-#~ msgid "not found"
-#~ msgstr "未找到"
-
-#~ msgid "number of covers"
-#~ msgstr "封面數"
-
-#~ msgid "occupied"
-#~ msgstr "已使用"
-
-#~ msgid "old EPG-Data to keep it for"
-#~ msgstr "舊的EPG數據跳過"
-
-#~ msgid "old Passwd"
-#~ msgstr "舊密碼"
-
-#~ msgid "on %dth day"
-#~ msgstr "on %dth day"
-
-#~ msgid "on Weekday"
-#~ msgstr "on Weekday"
-
-#~ msgid "on any weekday"
-#~ msgstr "on any weekday"
-
-#~ msgid "on your DynDNS account"
-#~ msgstr "您的DynDNS帳戶"
-
-#~ msgid "on/off Auto-Camd"
-#~ msgstr "允許/禁止 自動Softcam"
-
-#~ msgid "only one month:"
-#~ msgstr "僅一個月:"
-
-#~ msgid "open / close"
-#~ msgstr "打開 / 關閉"
-
-#~ msgid "open servicelist(down)"
-#~ msgstr "打開頻道列表(下)"
-
-#~ msgid "open servicelist(up)"
-#~ msgstr "打開頻道列表(上)"
-
-#~ msgid "partial match"
-#~ msgstr "部分匹配"
-
-#~ msgid "permission"
-#~ msgstr "允許"
-
-#~ msgid "pictures"
-#~ msgstr "圖片"
-
-#~ msgid "play entry"
-#~ msgstr "播放項目"
-
-#~ msgid "play from next mark or playlist entry"
-#~ msgstr "播放下一個標記或列表專案"
-
-#~ msgid "play from previous mark or playlist entry"
-#~ msgstr "播放上一個標記或列表專案"
-
-#~ msgid "play title as a loop"
-#~ msgstr "迴圈播放"
-
-#~ msgid "play title randomly"
-#~ msgstr "隨機播放"
-
-#~ msgid "position"
-#~ msgstr "調整顯示位置"
-
-#~ msgid "precipitation"
-#~ msgstr "precipitation"
-
-#~ msgid "press BLUE to change"
-#~ msgstr "按藍色鍵更改"
-
-#~ msgid "press left or right to change"
-#~ msgstr "按 左/右 鍵更改"
-
-#~ msgid "previous channel in history"
-#~ msgstr "歷史記錄裏的上一個頻道"
-
-#~ msgid "read Buffer:"
-#~ msgstr "讀取緩衝:"
-
-#~ msgid "recording as an individual title"
-#~ msgstr "作為一個自定義名錄製"
-
-#~ msgid "reduce-size logging"
-#~ msgstr "減少日誌體積"
-
-#~ msgid "reloaded Camd-List"
-#~ msgstr "重載Camd列表"
-
-#~ msgid "reminder enable:"
-#~ msgstr "記憶開關:"
-
-#~ msgid "remove / unmount"
-#~ msgstr "移除 / 解除安裝"
-
-#~ msgid "restart"
-#~ msgstr "重啟"
-
-#~ msgid "same size of the Ram"
-#~ msgstr "與記憶體大小相同"
-
-#~ msgid "saving"
-#~ msgstr "保存"
-
-#~ msgid "scan in progress - %d%% done!"
-#~ msgstr "掃描 %d%% 完成!"
-
-#~ msgid "search Server"
-#~ msgstr "搜索伺服器"
-
-#~ msgid "search next Server"
-#~ msgstr "搜索下一個伺服器"
-
-#~ msgid "second"
-#~ msgstr "秒"
-
-#~ msgid "select .NFI flash file"
-#~ msgstr "選擇.NFI文件"
-
-#~ msgid "select CAId"
-#~ msgstr "選擇 CAId"
-
-#~ msgid "select image from server"
-#~ msgstr "從伺服器選擇韧體"
-
-#~ msgid "select interface"
-#~ msgstr "選擇介面"
-
-#~ msgid "select movie"
-#~ msgstr "選擇電影"
-
-#~ msgid "select the movie path"
-#~ msgstr "選擇電影路徑"
-
-#~ msgid "send signal to this process..."
-#~ msgstr "發送信號 ..."
-
-#~ msgid "service pin"
-#~ msgstr "頻道密碼"
-
-#~ msgid "set Port for httpd:"
-#~ msgstr "設定HTTPD埠:"
-
-#~ msgid "set iCalendar Directory:"
-#~ msgstr "設定日曆目錄:"
-
-#~ msgid "set mark after x minutes"
-#~ msgstr "X分鐘後設定標記"
-
-#~ msgid "set upload limit"
-#~ msgstr "設定上傳極限"
-
-#~ msgid "sets the Audio Delay (LipSync)"
-#~ msgstr "設定音頻延遲 (LipSync)"
-
-#~ msgid "shares"
-#~ msgstr "共用"
-
-#~ msgid "show Background"
-#~ msgstr "顯示後臺運行"
-
-#~ msgid "show Crypt Symbole"
-#~ msgstr "顯示加密方式"
-
-#~ msgid "show Expert Ecm-Info"
-#~ msgstr "顯示Ecm擴展資訊"
-
-#~ msgid "show Satposition"
-#~ msgstr "顯示星位元"
-
-#~ msgid "show Tuner status"
-#~ msgstr "顯示調諧器資訊"
-
-#~ msgid "show at TS-files"
-#~ msgstr "顯示TS檔"
-
-#~ msgid "show camd name"
-#~ msgstr "顯示Camd名稱"
-
-#~ msgid "show camd-Info"
-#~ msgstr "顯示SoftCam資訊"
-
-#~ msgid "show extended description"
-#~ msgstr "顯示擴展描述"
-
-#~ msgid "show first selected tag"
-#~ msgstr "顯示第一個標籤"
-
-#~ msgid "show last ? mails:"
-#~ msgstr "顯示幾個最新郵件:"
-
-#~ msgid "show no TS-help-files"
-#~ msgstr "不顯示TS幫助檔"
-
-#~ msgid "show second selected tag"
-#~ msgstr "顯示第二個標籤"
-
-#~ msgid "show shutdown menu"
-#~ msgstr "顯示關機功能表"
-
-#~ msgid "show time inverted"
-#~ msgstr "顯示剩餘時間"
-
-#~ msgid "shuffle playlist"
-#~ msgstr "隨機播放"
-
-#~ msgid "shutdown"
-#~ msgstr "關機"
-
-#~ msgid "side"
-#~ msgstr "旁邊"
-
-#~ msgid "simply save playlist"
-#~ msgstr "只需保存播放列表"
-
-#~ msgid "size in use: "
-#~ msgstr "已使用大小: "
-
-#~ msgid "skip ? seconds"
-#~ msgstr "跳過多少秒"
-
-#~ msgid "slide picture in loop"
-#~ msgstr "迴圈播放幻燈片"
-
-#~ msgid "sort"
-#~ msgstr "排序"
-
-#~ msgid "sort by date"
-#~ msgstr "按日期排序"
-
-#~ msgid "source directory"
-#~ msgstr "原始目錄"
-
-#~ msgid "standby"
-#~ msgstr "待機"
-
-#~ msgid "start sync ?"
-#~ msgstr "開始同步 ?"
-
-#~ msgid "start/stop"
-#~ msgstr "啟動/停止"
-
-#~ msgid "stop PiP"
-#~ msgstr "停止畫中畫"
-
-#~ msgid "stop enigma"
-#~ msgstr "停止運行enigma"
-
-#~ msgid "stop entry"
-#~ msgstr "播放暫停"
-
-#~ msgid "stopped"
-#~ msgstr "停止"
-
-#~ msgid "subdirectory"
-#~ msgstr "子目錄"
-
-#~ msgid "sunrise"
-#~ msgstr "日出"
-
-#~ msgid "sunset"
-#~ msgstr "日落"
-
-#~ msgid "swap PiP and main picture"
-#~ msgstr "交換畫中畫和主顯示"
-
-#~ msgid "switch (16:9 Letterbox) (16:9 always)"
-#~ msgstr "切換 (16:9 信箱模式) (總是 16:9)"
-
-#~ msgid "switch off please"
-#~ msgstr "請關掉"
-
-#~ msgid "synchronization is not required"
-#~ msgstr "不需要同步"
-
-#~ msgid "synchronizations is still active"
-#~ msgstr "始終啟動同步"
-
-#~ msgid "textcolor"
-#~ msgstr "字體顏色"
-
-#~ msgid "this attitude require that start again\n"
-#~ msgstr "此設定需要重新啟動\n"
-
-#~ msgid "this install require that start again\n"
-#~ msgstr "此安裝需要重新開始\n"
-
-#~ msgid "time too briefly"
-#~ msgstr "時間太短"
-
-#~ msgid "to"
-#~ msgstr "到"
-
-#~ msgid "toggle a cut mark at the current position"
-#~ msgstr "標記當前位置"
-
-#, fuzzy
-#~ msgid "unknown error!"
-#~ msgstr "發現未知錯誤!"
-
-#~ msgid "unmount"
-#~ msgstr "解除安裝"
-
-#~ msgid "until restart"
-#~ msgstr "直到重新啟動"
-
-#~ msgid "update after ? minutes:"
-#~ msgstr "在幾分鐘後更新:"
-
-#~ msgid "update all accounts"
-#~ msgstr "更新所有帳戶"
-
-#~ msgid "update current account"
-#~ msgstr "更新當前帳戶"
-
-#~ msgid "used"
-#~ msgstr "正在使用"
-
-#~ msgid "view as Text"
-#~ msgstr "以文本方式打開"
-
-#~ msgid "view recordings..."
-#~ msgstr "檢視已錄節目"
-
-#~ msgid "view/choose"
-#~ msgstr "檢視/選擇"
-
-#~ msgid "wait for ci..."
-#~ msgstr "等待CI..."
-
-#~ msgid "week started:"
-#~ msgstr "本周開始:"
-
-#~ msgid "whitelist"
-#~ msgstr "白名單"
-
-#~ msgid "without these must be configured manually"
-#~ msgstr "如果沒有這些,必須手動配置"
-
-#~ msgid "work in Background"
-#~ msgstr "後臺運行"
-
-#~ msgid "working in Background"
-#~ msgstr "後臺運行"
-
-#~ msgid "write Buffer:"
-#~ msgstr "寫入緩存:"
-
-#~ msgid "wrong name"
-#~ msgstr "錯誤的用戶名"
-
-#~ msgid "wrong server"
-#~ msgstr "錯誤的伺服器"
-
-#~ msgid "xml to big"
-#~ msgstr "xml變大"
+msgid "®"
+msgstr ""
