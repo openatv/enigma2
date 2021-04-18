@@ -903,7 +903,7 @@ class EPGSelection(Screen, HelpableScreen):
 	def getCurrentBouquet(self):
 		if self.BouquetRoot:
 			return self.StartBouquet
-		elif self.has_key('bouquetlist'):
+		elif 'bouquetlist' in self:
 			cur = self["bouquetlist"].l.getCurrentSelection()
 			return cur and cur[1]
 		else:
@@ -1618,7 +1618,7 @@ class EPGSelection(Screen, HelpableScreen):
 
 	def showChoiceBoxDialog(self):
 		self['okactions'].setEnabled(False)
-		if self.has_key('epgcursoractions'):
+		if 'epgcursoractions' in self:
 			self['epgcursoractions'].setEnabled(False)
 		self['colouractions'].setEnabled(False)
 		self['recordingactions'].setEnabled(False)
@@ -1626,7 +1626,7 @@ class EPGSelection(Screen, HelpableScreen):
 		self["dialogactions"].setEnabled(True)
 		self.ChoiceBoxDialog['actions'].execBegin()
 		self.ChoiceBoxDialog.show()
-		if self.has_key('input_actions'):
+		if 'input_actions' in self:
 			self['input_actions'].setEnabled(False)
 
 	def closeChoiceBoxDialog(self):
@@ -1635,12 +1635,12 @@ class EPGSelection(Screen, HelpableScreen):
 			self.ChoiceBoxDialog['actions'].execEnd()
 			self.session.deleteDialog(self.ChoiceBoxDialog)
 		self['okactions'].setEnabled(True)
-		if self.has_key('epgcursoractions'):
+		if 'epgcursoractions' in self:
 			self['epgcursoractions'].setEnabled(True)
 		self['colouractions'].setEnabled(True)
 		self['recordingactions'].setEnabled(True)
 		self['epgactions'].setEnabled(True)
-		if self.has_key('input_actions'):
+		if 'input_actions' in self:
 			self['input_actions'].setEnabled(True)
 
 	def doRecordTimer(self, rec=False):
