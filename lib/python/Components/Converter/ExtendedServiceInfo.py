@@ -134,7 +134,7 @@ class ExtendedServiceInfo(Converter, object):
         if transponderData is not None:
             if isinstance(transponderData, float):
                 return ''
-            if transponderData.has_key('tuner_type'):
+            if 'tuner_type' in transponderData:
                 if transponderData['tuner_type'] == 'DVB-S' or transponderData['tuner_type'] == 'DVB-S2':
                     orbital = transponderData['orbital_position']
                     orbital = int(orbital)

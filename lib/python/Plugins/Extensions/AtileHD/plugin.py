@@ -460,10 +460,10 @@ class AtileHD_Config(Screen, ConfigListScreen):
 	def search_weather_id_callback(self, res):
 		if res:
 			id_dic = get_woeid_from_yahoo(res)
-			if id_dic.has_key('error'):
+			if 'error' in id_dic:
 				error_txt = id_dic['error']
 				self.session.open(MessageBox, _("Sorry, there was a problem:") + "\n%s" % error_txt, MessageBox.TYPE_ERROR)
-			elif id_dic.has_key('count'):
+			elif 'count' in id_dic:
 				result_no = int(id_dic['count'])
 				location_list = []
 				for i in range(0, result_no):

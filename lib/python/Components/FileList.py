@@ -47,7 +47,7 @@ def FileEntryComponent(name, absolute=None, isDir=False):
 	else:
 		extension = name.split('.')
 		extension = extension[-1].lower()
-		if EXTENSIONS.has_key(extension):
+		if extension in EXTENSIONS:
 			png = LoadPixmap(resolveFilename(SCOPE_ACTIVE_SKIN, "extensions/" + EXTENSIONS[extension] + ".png"))
 		else:
 			png = None
@@ -283,7 +283,7 @@ def MultiFileSelectEntryComponent(name, absolute=None, isDir=False, selected=Fal
 	else:
 		extension = name.split('.')
 		extension = extension[-1].lower()
-		if EXTENSIONS.has_key(extension):
+		if extension in EXTENSIONS:
 			png = LoadPixmap(resolveFilename(SCOPE_ACTIVE_SKIN, "extensions/" + EXTENSIONS[extension] + ".png"))
 		else:
 			png = None
