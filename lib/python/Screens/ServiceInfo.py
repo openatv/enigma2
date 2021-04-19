@@ -170,15 +170,17 @@ class ServiceInfo(Screen):
 				videomode = f.read()[:-1].replace('\n', '')
 				f.close()
 
-			Labels = ((_("Name"), name, TYPE_TEXT),
+			Labels = [(_("Name"), name, TYPE_TEXT),
 					(_("Provider"), self.getServiceInfoValue(iServiceInformation.sProvider), TYPE_TEXT),
 					(_("Videoformat"), aspect, TYPE_TEXT),
 					(_("Videomode"), videomode, TYPE_TEXT),
 					(_("Videosize"), resolution, TYPE_TEXT),
 					(_("Videocodec"), videocodec, TYPE_TEXT),
 					(_("Namespace"), self.getServiceInfoValue(iServiceInformation.sNamespace), TYPE_VALUE_HEX, 8),
-					(_("Service reference"), ":".join(refstr.split(":")[:10]), TYPE_TEXT),
-					(_("URL"), refstr.split(":")[10].replace("%3a", ":"), TYPE_TEXT))
+					(_("Service reference"), ":".join(refstr.split(":")[:10]), TYPE_TEXT)]
+
+			if "%3a//" in refstr:
+				Labels.append((_("URL"), refstr.split(":")[10].replace("%3a", ":"), TYPE_TEXT))
 
 			self.fillList(Labels)
 		else:
