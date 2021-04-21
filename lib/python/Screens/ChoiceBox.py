@@ -83,24 +83,7 @@ class ChoiceBox(Screen):
 		if self.reorderConfig:
 			self.config_type = eval("config.misc.pluginlist." + self.reorderConfig)
 			if self.config_type.value:
-				prev_list = zip(list, self.__keys)
-				new_list = []
-				for x in self.config_type.value.split(","):
-					for entry in prev_list:
-						if entry[0][0] == x:
-							new_list.append(entry)
-							prev_list.remove(entry)
-				list = zip(*(new_list + prev_list))
-				list, self.__keys = list[0], list[1]
-				number = 1
-				new_keys = []
-				for x in self.__keys:
-					if (not x or x.isdigit()) and number <= 10:
-						new_keys.append(str(number % 10))
-						number += 1
-					else:
-						new_keys.append(not x.isdigit() and x or "")
-				self.__keys = new_keys
+				list = self.makeList(list)
 		for x in list:
 			strpos = str(self.__keys[pos])
 			self.list.append(ChoiceEntryComponent(key=strpos, text=x))
@@ -147,6 +130,27 @@ class ChoiceBox(Screen):
 			"back": self.cancel,
 		}, prio=-1)
 		self.onShown.append(self.onshow)
+
+	def makeList(self, items):
+		prev_list = list(zip(items, self.__keys))
+		new_list = []
+		for x in self.config_type.value.split(","):
+			for entry in prev_list:
+				if entry[0][0] == x:
+					new_list.append(entry)
+					prev_list.remove(entry)
+		items = list(zip(*(new_list + prev_list)))
+		items, self.__keys = items[0], items[1]
+		number = 1
+		new_keys = []
+		for x in self.__keys:
+			if (not x or x.isdigit()) and number <= 10:
+				new_keys.append(str(number % 10))
+				number += 1
+			else:
+				new_keys.append(not x.isdigit() and x or "")
+		self.__keys = new_keys
+		return items
 
 	def onshow(self):
 		if self.skinName and 'SoftwareUpdateChoices' in self.skinName and self.var:
