@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-04-16 19:27+0430\n"
-"PO-Revision-Date: 2021-01-02 14:59+0100\n"
+"PO-Revision-Date: 2021-04-22 10:02+0100\n"
 "Last-Translator: pololoko111 <pololoko111@o2.pl>\n"
 "Language-Team: Poland\n"
 "Language: pl\n"
@@ -13,7 +13,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: Poedit 2.4.1\n"
+"X-Generator: Poedit 2.4.2\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 
 msgid ""
@@ -1391,9 +1391,8 @@ msgstr ""
 msgid "(Attention: There will be a restart after %d crashes.)"
 msgstr "(Uwaga: Nastąpi ponowne uruchomienie po %d awariach.)"
 
-#, fuzzy
 msgid "(FTA Service)"
-msgstr "Kanały"
+msgstr "(Usługa FTA)"
 
 msgid "(Selectmode)"
 msgstr "(Wybierz tryb)"
@@ -2980,10 +2979,10 @@ msgstr "PID dźwięku"
 
 #, python-format
 msgid "Audio PID%s, codec & lang"
-msgstr ""
+msgstr "Audio PID%s, Kode & język"
 
 msgid "Audio PID, codec & lang"
-msgstr ""
+msgstr "Audio PID, kodek & język"
 
 msgid "Audio Selection"
 msgstr "Wybór dźwięku"
@@ -3373,7 +3372,7 @@ msgid "Baseball"
 msgstr ""
 
 msgid "Basic PID info"
-msgstr ""
+msgstr "Podstawowe info o PID"
 
 msgid "Basic settings"
 msgstr "Ustawienia Podstawowe"
@@ -4440,7 +4439,7 @@ msgid "Cocos (Keeling) Islands"
 msgstr "Wyspy Kokosowe"
 
 msgid "Code R. LP-HP & Guard Int."
-msgstr ""
+msgstr "Kod R. LP-HP & Guard Int."
 
 msgid "Code rate HP"
 msgstr "Wskaźnik kodowania HP"
@@ -4940,9 +4939,8 @@ msgstr "Podłączony: "
 msgid "Console"
 msgstr "Konsola"
 
-#, fuzzy
 msgid "Constellation & FFT mode"
-msgstr "Konstelacja"
+msgstr "Tryb konstelacji & FFT"
 
 msgid "Consult your SCR device spec sheet for this information."
 msgstr "Aby uzyskać te informacje, zapoznaj się z arkuszem specyfikacji urządzenia SCR."
@@ -5331,9 +5329,8 @@ msgstr "Dwuwarstwowe DVD"
 msgid "DVB CI Delay"
 msgstr "Opóżnienie DVB CI"
 
-#, fuzzy
 msgid "DVB Subtitles PID & lang"
-msgstr "Napisy (długo)"
+msgstr "Napisy DVB PID & język"
 
 msgid "DVB subtitle black transparency"
 msgstr "DVB napisy czarne przezroczyste"
@@ -5763,7 +5760,6 @@ msgstr "Usuń pozycję z listy"
 msgid "Delete saved playlist"
 msgstr "Usuń zapisaną listę odtwarzania"
 
-#, fuzzy
 msgid "Delete the all the text"
 msgstr "Usuń cały tekst"
 
@@ -6359,9 +6355,8 @@ msgstr ""
 msgid "E3HD/XPEEDLX/GI"
 msgstr ""
 
-#, fuzzy
 msgid "ECM Info"
-msgstr "Brak informacji o ECM"
+msgstr "Informacje ECM"
 
 msgid "ECM Statistics"
 msgstr "Statystyki ECM"
@@ -6547,10 +6542,10 @@ msgid "Email"
 msgstr ""
 
 msgid "Embedded"
-msgstr ""
+msgstr "Osadzony"
 
 msgid "Empty slot"
-msgstr ""
+msgstr "Puste gniazdo"
 
 msgid "Enable"
 msgstr "Włącz"
@@ -6722,9 +6717,8 @@ msgstr "Szyfrowany: "
 msgid "Encryption"
 msgstr "Szyfrowanie"
 
-#, fuzzy
 msgid "Encryption Type:"
-msgstr "Typ klucza szyfrowania"
+msgstr "Typ szyfrowania:"
 
 msgid "Encryption key"
 msgstr "Klucz szyfrujący"
@@ -6773,7 +6767,7 @@ msgstr ""
 
 #, python-format
 msgid "Enigma2 debug level:\t%d"
-msgstr ""
+msgstr "Poziom debugowania Enigma2:\t%d"
 
 msgid "Enigma2 skin selector"
 msgstr "Enigma2 wybór skóry"
@@ -7187,9 +7181,8 @@ msgstr "Rozszerzone GUI"
 msgid "Extended Networksetup Plugin..."
 msgstr "Wtyczka Rozszerzonej Konfiguracji Sieci..."
 
-#, fuzzy
 msgid "Extended PID info"
-msgstr "Rozszerzone GUI"
+msgstr "Rozszerzone info o PID"
 
 msgid "Extended Setup..."
 msgstr "Rozszerzona Konfiguracja..."
@@ -7472,9 +7465,8 @@ msgstr "Błąd zapisu pliku: '%s'"
 msgid "File/Directory Status Information"
 msgstr "Informacje o statusie Pliku/Katalogu"
 
-#, fuzzy
 msgid "Filename"
-msgstr "nazwa pliku"
+msgstr "Nazwa pliku"
 
 msgid "Files/folders to exclude from backup"
 msgstr "Pliki/Foldery do wykluczenia z kopii zapasowej"
@@ -7686,17 +7678,14 @@ msgstr "Francuskie Terytoria Południowe i Antarktyczne"
 msgid "Frequency"
 msgstr "Częstotliwość"
 
-#, fuzzy
 msgid "Frequency & Channel"
-msgstr "Skanowanie częstotliwości lub kanału"
+msgstr "Częstotliwość & Kanał"
 
-#, fuzzy
 msgid "Frequency & Polarization"
-msgstr "Polaryzacja"
+msgstr "Częstotliwość & Polaryzacja"
 
-#, fuzzy
 msgid "Frequency Norm:"
-msgstr "Częstotliwość: "
+msgstr "Norma Częstotliwości:"
 
 msgid "Frequency bands"
 msgstr "Pasma częstotliwości"
@@ -7707,9 +7696,8 @@ msgstr "Częstotliwość rozmiaru skanowania(khz)"
 msgid "Frequency steps"
 msgstr "Częstotliwość kroków"
 
-#, fuzzy
 msgid "Frequency:"
-msgstr "Częstotliwość: "
+msgstr "Częstotliwość:"
 
 msgid "Frequency: "
 msgstr "Częstotliwość: "
@@ -9025,12 +9013,11 @@ msgstr "Nieprawidłowe dane transpondera"
 msgid "Inversion"
 msgstr "Odwracanie"
 
-#, fuzzy
 msgid "Inversion & Bandwidth"
-msgstr "Info.szerokość icon"
+msgstr "Inwersja & Przepustowość"
 
 msgid "Inversion, Pilot & Roll-off"
-msgstr ""
+msgstr "Inwersja, Pilot & Roll-off"
 
 msgid "Invert"
 msgstr "Zaznacz/Odznacz"
@@ -9376,7 +9363,7 @@ msgstr "Ostatnia prędkość"
 # normalised
 #, python-format
 msgid "Last update:\t%s"
-msgstr ""
+msgstr "Ostatnia aktualizacja:\t%s"
 
 msgid "Last used share: "
 msgstr "Ostatnio używane udziały: "
@@ -10359,9 +10346,8 @@ msgstr ""
 msgid "NFS Setup"
 msgstr "Ustawienia NFS"
 
-#, fuzzy
 msgid "NIM & Type"
-msgstr "Rodzaj HDMI HDR "
+msgstr "NIM & Typ"
 
 msgid "NOW"
 msgstr "Teraz"
@@ -10401,7 +10387,7 @@ msgid "Nameserver setup"
 msgstr "Ustawienie nazwy serwera (DNS)"
 
 msgid "Namespace & Orbital pos."
-msgstr ""
+msgstr "Przestrzeń nazw & Poz. Orbitalna"
 
 msgid "Namibia"
 msgstr ""
@@ -10626,9 +10612,8 @@ msgstr "Brak połączenia"
 msgid "No Devices Found !!"
 msgstr "Nie znaleziono urządzeń !!"
 
-#, fuzzy
 msgid "No ECMPids available"
-msgstr "Brak dostępnego demux"
+msgstr "Brak dostępnych ECMPid"
 
 msgid "No HDD found or HDD not initialized!"
 msgstr "Nie znaleziono HDD lub dysk nie jest zainicjowany!"
@@ -11255,9 +11240,8 @@ msgstr "OscamInfo Menu główne"
 msgid "Other"
 msgstr "Inne"
 
-#, fuzzy
 msgid "Other Subtitles & lang"
-msgstr "Napisy (długo)"
+msgstr "Inne napisy & język"
 
 msgid "Outdoor"
 msgstr "Plener"
@@ -11266,7 +11250,7 @@ msgid "Overall progress:"
 msgstr "Ogólny postęp:"
 
 msgid "Overscan Test"
-msgstr ""
+msgstr "Test Overscan"
 
 msgid "Overwrite Bootlogo Files ?"
 msgstr "Nadpisać Pliki loga startowego?"
@@ -11337,13 +11321,11 @@ msgstr ""
 msgid "PDC"
 msgstr ""
 
-#, fuzzy
 msgid "PGS File"
-msgstr "Plik"
+msgstr "Plik PGS"
 
-#, fuzzy
 msgid "PGS file"
-msgstr "Nazwa pliku EPG"
+msgstr "plik PGS"
 
 msgid "PID"
 msgstr ""
@@ -12999,9 +12981,8 @@ msgstr "Kod do pilota zdalnego sterowania"
 msgid "Remote box"
 msgstr "Zdalny odbiornik"
 
-#, fuzzy
 msgid "Remote control model shown"
-msgstr "Kod do pilota zdalnego sterowania"
+msgstr "Pokazano model pilota"
 
 msgid "Remote control type"
 msgstr "Typ zdalnego sterowania"
@@ -13426,9 +13407,8 @@ msgstr "SAT (dlugo)"
 msgid "SATA"
 msgstr ""
 
-#, fuzzy
 msgid "SATPI"
-msgstr "Ustawienia SATPI"
+msgstr "SATPI"
 
 msgid "SATPI Setup"
 msgstr "Ustawienia SATPI"
@@ -13460,20 +13440,17 @@ msgstr ""
 msgid "SPDIF"
 msgstr ""
 
-#, fuzzy
 msgid "SRT File"
-msgstr "Plik"
+msgstr "Plik SRT"
 
-#, fuzzy
 msgid "SRT file"
-msgstr "Zwykły plik"
+msgstr "plik SRT"
 
-#, fuzzy
 msgid "SSA File"
-msgstr "Plik"
+msgstr "Plik SSA"
 
 msgid "SSA file"
-msgstr ""
+msgstr "plik SSA"
 
 msgid "SSID:"
 msgstr ""
@@ -14325,13 +14302,11 @@ msgstr "Kanały:"
 msgid "Service"
 msgstr "Kanał"
 
-#, fuzzy
 msgid "Service & PIDs"
-msgstr "Kanały"
+msgstr "Usługa & PIDy"
 
-#, fuzzy
 msgid "Service ID"
-msgstr "Kanał"
+msgstr "ID Usługi"
 
 msgid "Service Name"
 msgstr "Nazwa Kanału"
@@ -14360,27 +14335,23 @@ msgstr "Kanał został dodany do wybranego bukietu."
 msgid "Service info"
 msgstr "Info. o kanale"
 
-#, fuzzy
 msgid "Service info - ECM Info"
-msgstr "Info. o kanale"
+msgstr "Informacje serwisowe - Informacje ECM"
 
 msgid "Service info - service & Basic PID Info"
-msgstr ""
+msgstr "Informacje serwisowe - serwis & Podstawowe info o PID"
 
 msgid "Service info - service & Extended PID Info"
-msgstr ""
+msgstr "Informacje serwisowe - serwis & Rozszerzone info o PID"
 
-#, fuzzy
 msgid "Service info - service & PIDs"
-msgstr "Rozmiar czcionki-Info. o kanale"
+msgstr "Informacje serwisowe - serwis & PIDy"
 
-#, fuzzy
 msgid "Service info - tuner live values"
-msgstr "Rozmiar czcionki-Info. o kanale"
+msgstr "Informacje serwisowe - wartości na żywo tunera"
 
-#, fuzzy
 msgid "Service info - tuner setting values"
-msgstr "Rozmiar czcionki-Info. o kanale"
+msgstr "Informacje serwisowe - wartości ustawień tunera"
 
 msgid "Service info font size"
 msgstr "Rozmiar czcionki-Info. o kanale"
@@ -15689,12 +15660,11 @@ msgstr "Prędkości odtwarzania w zwolnionym tempie"
 msgid "Small"
 msgstr "Mała"
 
-#, fuzzy
 msgid "Small Test"
-msgstr "Powolny postęp"
+msgstr "Mały Test"
 
 msgid "Small progress"
-msgstr "Powolny postęp"
+msgstr "Mały postęp"
 
 msgid "Smartcard PIN"
 msgstr ""
@@ -16319,7 +16289,7 @@ msgid "Swap buttons right/left with channel plus/minus or the channel button cha
 msgstr "Zamień przyciski prawo/lewo z kanałem plus/minus lub przycisk kanału zmieniany zawsze z boku."
 
 msgid "Swap services"
-msgstr "Okno PiP <---Zamiana Kanału--> Główne Okno"
+msgstr ""
 
 msgid "SwapManager"
 msgstr ""
@@ -16417,9 +16387,8 @@ msgstr "Szwajcaria"
 msgid "Symbol rate"
 msgstr "Wartość SR"
 
-#, fuzzy
 msgid "Symbol rate & FEC"
-msgstr "Wartość SR"
+msgstr "Szybkość transmisji symboli & FEC"
 
 msgid "Symbolic link"
 msgstr ""
@@ -16445,9 +16414,8 @@ msgstr "Syria"
 msgid "System"
 msgstr ""
 
-#, fuzzy
 msgid "System & Modulation"
-msgstr "Info.o Systemie"
+msgstr "System & Modulacja"
 
 msgid "System Info"
 msgstr ""
@@ -16517,9 +16485,8 @@ msgstr "Raportuj fizyczny adres TV"
 msgid "TXT PID"
 msgstr ""
 
-#, fuzzy
 msgid "TXT Subtitles page & lang"
-msgstr "Napisy (długo)"
+msgstr "Strona napisów TXT & język"
 
 msgid "Table of content for collection"
 msgstr "Spis treści dla kolekcji"
@@ -17920,13 +17887,11 @@ msgstr "Konfiguracja Tunera"
 msgid "Tuner is not supported"
 msgstr "Tuner nie obsługiwany"
 
-#, fuzzy
 msgid "Tuner live values"
-msgstr "Status tunera"
+msgstr "Wartości na żywo tunera"
 
-#, fuzzy
 msgid "Tuner setting values"
-msgstr "Ustawienia tunera"
+msgstr "Wartości ustawień tunera"
 
 msgid "Tuner settings"
 msgstr "Ustawienia tunera"
@@ -18601,12 +18566,11 @@ msgstr ""
 msgid "VMGM (intro trailer)"
 msgstr ""
 
-#, fuzzy
 msgid "VOB File"
-msgstr "Plik"
+msgstr "Plik VOB"
 
 msgid "VOB file"
-msgstr ""
+msgstr "plik VOB"
 
 msgid "VOD"
 msgstr ""
@@ -18791,9 +18755,8 @@ msgstr "Kreator Wideo"
 msgid "Videoclip"
 msgstr "Wideo"
 
-#, fuzzy
 msgid "Videocodec, size & format"
-msgstr "Format Wideo"
+msgstr "Wideokodek, rozmiar & format"
 
 msgid "Videosetup"
 msgstr "Ustawienia wideo"
@@ -20063,9 +20026,8 @@ msgstr "aktywuj konfigurację adaptera sieciowego"
 msgid "activatePiP"
 msgstr "Włącz PiP"
 
-#, fuzzy
 msgid "active"
-msgstr "Nieaktywny"
+msgstr "aktywny"
 
 msgid "add Current"
 msgstr "dodaj bieżący"
@@ -20462,7 +20424,7 @@ msgid "education/science/factual topics (general)"
 msgstr "edukacja/nauka/fakty"
 
 msgid "embedded"
-msgstr ""
+msgstr "osadzony"
 
 msgid "empty"
 msgstr "pusty"
