@@ -291,26 +291,26 @@ eXMLRPCResponse::~eXMLRPCResponse()
 
 int eXMLRPCResponse::doCall()
 {
-	eDebug("[eXMLRPCVariant] doing call");
+	eDebug("[eXMLRPCResponse] doing call");
 	result="";
 		// get method name
 	std::string methodName("");
 
 	if (connection->remote_header["Content-Type"]!="text/xml")
 	{
-		eDebug("[eXMLRPCVariant] remote header failure (%s != text/xml)", (connection->remote_header["Content-Type"]).c_str());
+		eDebug("[eXMLRPCResponse] remote header failure (%s != text/xml)", (connection->remote_header["Content-Type"]).c_str());
 		return -3;
 	}
 
 	XMLTreeNode *methodCall=parser.RootNode();
 	if (!methodCall)
 	{
-		eDebug("[eXMLRPCVariant] empty xml");
+		eDebug("[eXMLRPCResponse] empty xml");
 		return -1;
 	}
 	if (strcmp(methodCall->GetType(), "methodCall"))
 	{
-		eDebug("[eXMLRPCVariant] no methodCall found");
+		eDebug("[eXMLRPCResponse] no methodCall found");
 		return -2;
 	}
 
@@ -329,18 +329,18 @@ int eXMLRPCResponse::doCall()
 					params.push_back(fromXML(p->GetChild()));
 		} else
 		{
-			eDebug("[eXMLRPCVariant] unknown stuff found");
+			eDebug("[eXMLRPCResponse] unknown stuff found");
 			return 0;
 		}
 	}
 
 	if (methodName.empty())
 	{
-		eDebug("[eXMLRPCVariant] no methodName found!");
+		eDebug("[eXMLRPCResponse] no methodName found!");
 		return -3;
 	}
 
-	eDebug("[eXMLRPCVariant] methodName: %s", methodName.c_str() );
+	eDebug("[eXMLRPCResponse] methodName: %s", methodName.c_str() );
 
 	result="<?xml version=\"1.0\"?>\n"
 		"<methodResponse>";
@@ -363,7 +363,7 @@ int eXMLRPCResponse::doCall()
 
 	delete v;
 
-	eDebug("[eXMLRPCVariant] converting to text...");
+	eDebug("[eXMLRPCResponse] converting to text...");
 
 	if (fault)
 	{
@@ -416,7 +416,7 @@ void eXMLRPCResponse::haveData(void *data, int len)
 		char temp[len+1];
 		temp[len]=0;
 		memcpy(temp, data, len);
-		eDebug("[eXMLRPCVariant] %s: %s", temp, parser.ErrorString(parser.GetErrorCode()));
+		eDebug("[eXMLRPCResponse] %s: %s", temp, parser.ErrorString(parser.GetErrorCode()));
 		err=1;
 	}
 
@@ -425,7 +425,7 @@ void eXMLRPCResponse::haveData(void *data, int len)
 
 	if (err)
 	{
-		eDebug("[eXMLRPCVariant] connection error: %d", err);
+		eDebug("[eXMLRPCResponse] connection error: %d", err);
 		connection->code=400;
 		connection->code_descr="Bad request";
 		char buffer[10];
