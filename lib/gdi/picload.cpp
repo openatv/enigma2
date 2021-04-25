@@ -3,6 +3,7 @@
 #include <fcntl.h>
 
 #include <lib/base/cfile.h>
+#include <lib/base/wrappers.h>
 #include <lib/gdi/picload.h>
 #include <lib/gdi/picexif.h>
 
@@ -1084,7 +1085,7 @@ int ePicLoad::startThread(int what, const char *file, int x, int y, bool async)
 	else if(id[0] == 'B' && id[1] == 'M' )					file_id = F_BMP;
 	else if(id[0] == 'G' && id[1] == 'I' && id[2] == 'F')			file_id = F_GIF;
 	else if(id[0] == '<' && id[1] == 's' && id[2] == 'v' && id[3] == 'g') file_id = F_SVG;
-	else if(strstr(file, ".svg"))	file_id = F_SVG;
+	else if(endsWith(file, ".svg"))	file_id = F_SVG;
 
 	m_filepara = new Cfilepara(file, file_id, getSize(file));
 	m_filepara->max_x = x > 0 ? x : m_conf.max_x;
