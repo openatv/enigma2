@@ -244,7 +244,6 @@ public:
 
 private:
 	gPixmapDisposeCallback on_dispose;
-	bool must_delete_surface;
 
 	friend class gDC;
 	void fill(const gRegion &clip, const gColor &color);

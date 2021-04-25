@@ -125,7 +125,7 @@ int loadPNG(ePtr<gPixmap> &result, const char *filename, int accel, int cached)
 	png_get_IHDR(png_ptr, info_ptr, &width, &height, &bit_depth, &color_type, 0, 0, 0);
 	channels = png_get_channels(png_ptr, info_ptr);
 
-	result = new gPixmap(eSize(width, height), bit_depth * channels, cached ? PixmapCache::PixmapDisposed : NULL, accel);
+	result = new gPixmap(width, height, bit_depth * channels, cached ? PixmapCache::PixmapDisposed : NULL, accel);
 	gUnmanagedSurface *surface = result->surface;
 
 	png_bytep *rowptr = new png_bytep[height];
@@ -252,7 +252,7 @@ int loadJPG(ePtr<gPixmap> &result, const char *filename, ePtr<gPixmap> alpha, in
 		}
 	}
 
-	result = new gPixmap(eSize(cinfo.output_width, cinfo.output_height), grayscale ? 8 : 32, cached ? PixmapCache::PixmapDisposed : NULL);
+	result = new gPixmap(cinfo.output_width, cinfo.output_height, grayscale ? 8 : 32, cached ? PixmapCache::PixmapDisposed : NULL);
 
 	row_stride = cinfo.output_width * cinfo.output_components;
 	buffer = (*cinfo.mem->alloc_sarray)((j_common_ptr) &cinfo, JPOOL_IMAGE, row_stride, 1);
