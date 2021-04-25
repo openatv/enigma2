@@ -36,11 +36,11 @@ void ePixmap::setPixmap(ePtr<gPixmap> &pixmap)
 
 void ePixmap::setPixmapFromFile(const char *filename)
 {
-	loadPNG(m_pixmap, filename);
+	loadImage(m_pixmap, filename, m_scale, m_scale ? size().width() : 0, m_scale ? size().height() : 0);
 
 	if (!m_pixmap)
 	{
-		eDebug("[ePixmap] setPixmapFromFile: loadPNG failed");
+		eDebug("[ePixmap] setPixmapFromFile: load %s failed", filename);
 		return;
 	}
 
