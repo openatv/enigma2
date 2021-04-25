@@ -867,8 +867,6 @@ class ChannelSelectionEPG(InfoBarButtonSetup):
 		if self.ChoiceBoxDialog:
 			self.ChoiceBoxDialog['actions'].execEnd()
 			self.session.deleteDialog(self.ChoiceBoxDialog)
-		else:
-			self.close()
 		self['actions'].setEnabled(True)
 		self['recordingactions'].setEnabled(True)
 		self['ChannelSelectEPGActions'].setEnabled(True)
@@ -2136,9 +2134,6 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 
 	def __init__(self, session):
 		ChannelSelectionBase.__init__(self, session)
-		ChannelSelectionEdit.__init__(self)
-		ChannelSelectionEPG.__init__(self)
-		SelectionEventInfo.__init__(self)
 		if config.usage.use_pig.value:
 			self.skinName = ["ChannelSelection_PIG", "ChannelSelection"]
 		elif config.usage.servicelist_mode.value == 'simple':
@@ -2153,6 +2148,10 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 				"keyRadio": self.toogleTvRadio,
 				"keyTV": self.toogleTvRadio,
 			})
+
+		ChannelSelectionEPG.__init__(self)
+		ChannelSelectionEdit.__init__(self)
+		SelectionEventInfo.__init__(self)
 
 		self.radioTV = 0
 
