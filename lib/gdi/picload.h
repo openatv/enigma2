@@ -55,7 +55,7 @@ class ePicLoad: public eMainloop, public eThread, public sigc::trackable, public
 {
 	DECLARE_REF(ePicLoad);
 
-	enum{ F_PNG, F_JPEG, F_BMP, F_GIF};
+	enum{ F_PNG, F_JPEG, F_BMP, F_GIF, F_SVG};
 
 	void decodePic();
 	void decodeThumb();
