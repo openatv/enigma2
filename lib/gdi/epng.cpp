@@ -5,7 +5,7 @@
 #include <lib/base/cfile.h>
 #include <lib/base/wrappers.h>
 #include <lib/gdi/epng.h>
-//#include <lib/gdi/pixmapcache.h>
+#include <lib/gdi/pixmapcache.h>
 #include <unistd.h>
 
 #include <map>
@@ -22,8 +22,8 @@ extern "C" {
 /* TODO: I wonder why this function ALWAYS returns 0 */
 int loadPNG(ePtr<gPixmap> &result, const char *filename, int accel, int cached)
 {
-	//if (cached && (result = PixmapCache::Get(filename)))
-	//	return 0;
+	if (cached && (result = PixmapCache::Get(filename)))
+		return 0;
 
 	CFile fp(filename, "rb");
 
@@ -125,8 +125,7 @@ int loadPNG(ePtr<gPixmap> &result, const char *filename, int accel, int cached)
 	png_get_IHDR(png_ptr, info_ptr, &width, &height, &bit_depth, &color_type, 0, 0, 0);
 	channels = png_get_channels(png_ptr, info_ptr);
 
-	result = new gPixmap(eSize(width, height), bit_depth * channels, accel);
-//	result = new gPixmap(eSize(width, height), bit_depth * channels, cached ? PixmapCache::PixmapDisposed : NULL, accel);
+	result = new gPixmap(eSize(width, height), bit_depth * channels, cached ? PixmapCache::PixmapDisposed : NULL, accel);
 	gUnmanagedSurface *surface = result->surface;
 
 	png_bytep *rowptr = new png_bytep[height];
@@ -168,8 +167,10 @@ int loadPNG(ePtr<gPixmap> &result, const char *filename, int accel, int cached)
 		}
 		surface->clut.start = 0;
 	}
-	//if (cached)
-	//	PixmapCache::Set(filename, result);
+
+	if (cached)
+		PixmapCache::Set(filename, result);
+
 	//eDebug("[ePNG] %s: after  %dx%dx%dbpcx%dchan coltyp=%d cols=%d trans=%d", filename, (int)width, (int)height, bit_depth, channels, color_type, num_palette, num_trans);
 
 	png_read_end(png_ptr, end_info);
@@ -199,8 +200,8 @@ int loadJPG(ePtr<gPixmap> &result, const char *filename, int cached)
 
 int loadJPG(ePtr<gPixmap> &result, const char *filename, ePtr<gPixmap> alpha, int cached)
 {
-	//if (cached && (result = PixmapCache::Get(filename)))
-	//	return 0;
+	if (cached && (result = PixmapCache::Get(filename)))
+		return 0;
 
 	struct jpeg_decompress_struct cinfo;
 	struct my_error_mgr jerr;
@@ -251,8 +252,7 @@ int loadJPG(ePtr<gPixmap> &result, const char *filename, ePtr<gPixmap> alpha, in
 		}
 	}
 
-	result = new gPixmap(eSize(cinfo.output_width, cinfo.output_height), grayscale ? 8 : 32);
-//	result = new gPixmap(eSize(cinfo.output_width, cinfo.output_height), grayscale ? 8 : 32, cached ? PixmapCache::PixmapDisposed : NULL);
+	result = new gPixmap(eSize(cinfo.output_width, cinfo.output_height), grayscale ? 8 : 32, cached ? PixmapCache::PixmapDisposed : NULL);
 
 	row_stride = cinfo.output_width * cinfo.output_components;
 	buffer = (*cinfo.mem->alloc_sarray)((j_common_ptr) &cinfo, JPOOL_IMAGE, row_stride, 1);
@@ -290,8 +290,10 @@ int loadJPG(ePtr<gPixmap> &result, const char *filename, ePtr<gPixmap> alpha, in
 			}
 		}
 	}
-	//if (cached)
-	//	PixmapCache::Set(filename, result);
+
+	if (cached)
+		PixmapCache::Set(filename, result);
+
 	(void) jpeg_finish_decompress(&cinfo);
 	jpeg_destroy_decompress(&cinfo);
 	return 0;
@@ -378,9 +380,9 @@ int loadSVG(ePtr<gPixmap> &result, const char *filename, int cached, int width, 
 	char cachefile[strlen(filename) + 10];
 	sprintf(cachefile, "%s%d", filename, size);
 
-	//if (cached && (result = PixmapCache::Get(cachefile)))
-	//	return 0;
-	
+	if (cached && (result = PixmapCache::Get(cachefile)))
+		return 0;
+
 	NSVGimage *image = nullptr;
 	NSVGrasterizer *rast = nullptr;
 	double xscale = 1.0;
@@ -439,24 +441,27 @@ int loadSVG(ePtr<gPixmap> &result, const char *filename, int cached, int width, 
 	// Rasterizes SVG image, returns RGBA image (non-premultiplied alpha)
 	nsvgRasterizeFull(rast, image, 0, 0, xscale, yscale, (unsigned char*)result->surface->data, width, height, width * 4, 1);
 
-	//if (cached)
-	//	PixmapCache::Set(cachefile, result);
+	if (cached)
+		PixmapCache::Set(cachefile, result);
+
 	nsvgDeleteRasterizer(rast);
 	nsvgDelete(image);
 
 	return 0;
 }
+
 int loadImage(ePtr<gPixmap> &result, const char *filename, int accel, int width, int height)
 {
 	if (endsWith(filename, ".png"))
-		return loadPNG(result, filename, accel, 0);
+		return loadPNG(result, filename, accel, 1);
 	else if (endsWith(filename, ".svg"))
-		return loadSVG(result, filename, 0, width, height, 0);
+		return loadSVG(result, filename, 1, width, height, 0);
 	else if (endsWith(filename, ".jpg"))
 		return loadJPG(result, filename, 0);
 
 	return 0;
 }
+
 int savePNG(const char *filename, gPixmap *pixmap)
 {
 	int result;
