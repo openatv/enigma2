@@ -9,7 +9,7 @@ from Components.Sources.StaticText import StaticText
 
 import os
 from Tools.camcontrol import CamControl
-from enigma import eTimer, getPyExt
+from enigma import eTimer
 
 
 class SoftcamSetup(Screen, ConfigListScreen):
@@ -94,13 +94,13 @@ class SoftcamSetup(Screen, ConfigListScreen):
 
 	def ppanelShortcut(self):
 		ppanelFileName = '/etc/ppanels/' + self.softcams.value + '.xml'
-		if "oscam" in self.softcams.value.lower() and os.path.isfile('/usr/lib/enigma2/python/Screens/OScamInfo.', getPyExt()):
+		if "oscam" in self.softcams.value.lower() and os.path.isfile('/usr/lib/enigma2/python/Screens/OScamInfo.pyo'):
 			from Screens.OScamInfo import OscamInfoMenu
 			self.session.open(OscamInfoMenu)
-		elif "cccam" in self.softcams.value.lower() and os.path.isfile('/usr/lib/enigma2/python/Screens/CCcamInfo.', getPyExt()):
+		elif "cccam" in self.softcams.value.lower() and os.path.isfile('/usr/lib/enigma2/python/Screens/CCcamInfo.pyo'):
 			from Screens.CCcamInfo import CCcamInfoMain
 			self.session.open(CCcamInfoMain)
-		elif os.path.isfile(ppanelFileName) and os.path.isfile('/usr/lib/enigma2/python/Plugins/Extensions/PPanel/plugin.', getPyExt()):
+		elif os.path.isfile(ppanelFileName) and os.path.isfile('/usr/lib/enigma2/python/Plugins/Extensions/PPanel/plugin.pyo'):
 			from Plugins.Extensions.PPanel.ppanel import PPanel
 			self.session.open(PPanel, name=self.softcams.value + ' PPanel', node=None, filename=ppanelFileName, deletenode=None)
 		else:
