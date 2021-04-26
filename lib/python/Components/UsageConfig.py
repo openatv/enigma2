@@ -2,7 +2,7 @@ import locale
 import os
 import skin
 from time import time
-from enigma import eDVBDB, eEPGCache, setTunerTypePriorityOrder, setPreferredTuner, setSpinnerOnOff, setEnableTtCachingOnOff, eEnv, Misc_Options, eBackgroundFileEraser, eServiceEvent, eDVBFrontend, RT_HALIGN_LEFT, RT_HALIGN_RIGHT, RT_HALIGN_CENTER, RT_VALIGN_CENTER, RT_WRAP
+from enigma import eDVBDB, eEPGCache, setTunerTypePriorityOrder, setPreferredTuner, setSpinnerOnOff, setEnableTtCachingOnOff, eEnv, Misc_Options, eBackgroundFileEraser, eServiceEvent, eDVBFrontend, RT_HALIGN_LEFT, RT_HALIGN_RIGHT, RT_HALIGN_CENTER, RT_VALIGN_CENTER, RT_WRAP, getPyExt
 
 from Components.About import about
 from Components.Harddisk import harddiskmanager
@@ -489,7 +489,7 @@ def InitUsageConfig():
 	config.usage.updownbutton_mode = ConfigSelection(default="1", choices=[
 					("0", _("Just change channels")),
 					("1", _("Channel List"))])
-	if fileExists("/usr/lib/enigma2/python/Plugins/Extensions/CoolTVGuide/plugin.pyo"):
+	if fileExists("/usr/lib/enigma2/python/Plugins/Extensions/CoolTVGuide/plugin.", getPyExt()):
 		config.usage.okbutton_mode = ConfigSelection(default="0", choices=[
 						("0", _("InfoBar")),
 						("1", _("Channel List")),
@@ -1417,7 +1417,7 @@ def InitUsageConfig():
 					("1", _("with long OK press")),
 					("2", _("with exit button")),
 					("3", _("with left/right buttons"))])
-	if fileExists("/usr/lib/enigma2/python/Plugins/Extensions/CoolTVGuide/plugin.pyo"):
+	if fileExists("/usr/lib/enigma2/python/Plugins/Extensions/CoolTVGuide/plugin.", getPyExt()):
 		config.plisettings.PLIEPG_mode = ConfigSelection(default="cooltvguide", choices=[
 					("pliepg", _("Show Graphical EPG")),
 					("single", _("Show Single EPG")),

@@ -39,6 +39,7 @@ EXTRA_OECONF = " \
     STAGING_LIBDIR=${STAGING_LIBDIR} \
     --with-boxtype=${MACHINE} \
     --with-machinebuild="${MACHINEBUILD}" \
+    --with-pyext=${PYTHONEXTENSION} \
     --with-libsdl=no \
     ${@bb.utils.contains("GST_VERSION", "1.0", "--with-gstversion=1.0", "", d)} \
     ${@bb.utils.contains("MACHINE_FEATURES", "textlcd", "--with-textlcd" , "", d)} \

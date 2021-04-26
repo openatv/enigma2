@@ -1,5 +1,5 @@
 
-from enigma import eListboxPythonMultiContent, gFont, eEnv, getDesktop, pNavigation
+from enigma import eListboxPythonMultiContent, gFont, eEnv, getDesktop, pNavigation, getPyExt
 from boxbranding import getMachineBrand, getMachineName, getBoxType, getBrandOEM
 from Components.ActionMap import ActionMap
 from Components.Label import Label
@@ -61,7 +61,7 @@ if path.exists("/usr/lib/enigma2/python/Plugins/Extensions/AudioSync"):
 else:
 	AUDIOSYNC = False
 
-if path.exists("/usr/lib/enigma2/python/Plugins/SystemPlugins/VideoEnhancement/plugin.pyo"):
+if path.exists("/usr/lib/enigma2/python/Plugins/SystemPlugins/VideoEnhancement/plugin.", getPyExt()):
 	from Plugins.SystemPlugins.VideoEnhancement.plugin import VideoEnhancementSetup
 	VIDEOENH = True
 else:
@@ -79,13 +79,13 @@ if path.exists("/usr/lib/enigma2/python/Plugins/Extensions/dBackup"):
 else:
 	DBACKUP = False
 
-if path.exists("/usr/lib/enigma2/python/Plugins/SystemPlugins/PositionerSetup/plugin.pyo"):
+if path.exists("/usr/lib/enigma2/python/Plugins/SystemPlugins/PositionerSetup/plugin.", getPyExt()):
 	from Plugins.SystemPlugins.PositionerSetup.plugin import PositionerSetup, RotorNimSelection
 	POSSETUP = True
 else:
 	POSSETUP = False
 
-if path.exists("/usr/lib/enigma2/python/Plugins/SystemPlugins/Satfinder/plugin.pyo"):
+if path.exists("/usr/lib/enigma2/python/Plugins/SystemPlugins/Satfinder/plugin.", getPyExt()):
 	from Plugins.SystemPlugins.Satfinder.plugin import Satfinder
 	SATFINDER = True
 else:

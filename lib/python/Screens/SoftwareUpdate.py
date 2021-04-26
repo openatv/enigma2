@@ -3,7 +3,7 @@ from os import rename, path, remove
 from gettext import dgettext
 import urllib
 
-from enigma import eTimer, eDVBDB
+from enigma import eTimer, eDVBDB, getPyExt
 
 import Components.Task
 from Screens.ChoiceBox import ChoiceBox
@@ -315,7 +315,7 @@ class UpdatePlugin(Screen):
 					config.softwareupdate.updatefound.setValue(True)
 					choices = [(_("View the changes"), "changes"),
 						(_("Upgrade and reboot system"), "cold")]
-					if path.exists("/usr/lib/enigma2/python/Plugins/SystemPlugins/ViX/BackupManager.pyo"):
+					if path.exists("/usr/lib/enigma2/python/Plugins/SystemPlugins/ViX/BackupManager.", getPyExt()):
 						if not config.softwareupdate.autosettingsbackup.value and config.backupmanager.backuplocation.value:
 							choices.append((_("Perform a settings backup,") + '\n\t' + _("making a backup before updating") + '\n\t' + _("is strongly advised."), "backup"))
 						if not config.softwareupdate.autoimagebackup.value and config.imagemanager.backuplocation.value:

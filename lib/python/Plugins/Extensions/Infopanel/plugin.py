@@ -109,7 +109,7 @@ config.plugins.showinfopanelextensions = ConfigYesNo(default=False)
 config.plugins.infopanel_frozencheck = ConfigSubsection()
 config.plugins.infopanel_frozencheck.list = ConfigSelection([('0', _("Off")), ('1', _("1 min.")), ('5', _("5 min.")), ('10', _("10 min.")), ('15', _("15 min.")), ('30', _("30 min."))])
 
-if os.path.isfile("/usr/lib/enigma2/python/Plugins/Extensions/MultiQuickButton/plugin.pyo") is True:
+if os.path.isfile("/usr/lib/enigma2/python/Plugins/Extensions/MultiQuickButton/plugin.", getPyExt()) is True:
 	try:
 		from Plugins.Extensions.MultiQuickButton.plugin import *
 	except:
@@ -527,7 +527,7 @@ class Infopanel(Screen, InfoBarPiP, ProtectedScreen):
 		self.tlist.append(MenuEntryItem((InfoEntryComponent('CronTimer'), _("CronManager"), 'CronTimer')))
 		self.tlist.append(MenuEntryItem((InfoEntryComponent('JobManager'), _("JobManager"), 'JobManager')))
 		self.tlist.append(MenuEntryItem((InfoEntryComponent('SwapManager'), _("SwapManager"), 'SwapManager')))
-		if os.path.isfile("/usr/lib/enigma2/python/Plugins/Extensions/MultiQuickButton/plugin.pyo") is True:
+		if os.path.isfile("/usr/lib/enigma2/python/Plugins/Extensions/MultiQuickButton/plugin.", getPyExt()) is True:
 			self.tlist.append(MenuEntryItem((InfoEntryComponent('MultiQuickButton'), _("MultiQuickButton"), 'MultiQuickButton')))
 		self["Mlist"].moveToIndex(0)
 		self["Mlist"].l.setList(self.tlist)

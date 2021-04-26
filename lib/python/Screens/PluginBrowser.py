@@ -3,7 +3,7 @@ import os
 from Screen import Screen
 from Screens.ParentalControlSetup import ProtectedScreen
 from Components.Language import language
-from enigma import eConsoleAppContainer, eDVBDB
+from enigma import eConsoleAppContainer, eDVBDB, getPyExt
 from Components.ActionMap import ActionMap, NumberActionMap
 from Components.PluginComponent import plugins
 from Components.PluginList import *
@@ -385,7 +385,7 @@ class PluginBrowser(Screen, ProtectedScreen):
 		self.checkWarnings()
 
 	def openExtensionmanager(self):
-		if fileExists(resolveFilename(SCOPE_PLUGINS, "SystemPlugins/SoftwareManager/plugin.pyo")):
+		if fileExists(resolveFilename(SCOPE_PLUGINS, "SystemPlugins/SoftwareManager/plugin.", getPyExt())):
 			try:
 				from Plugins.SystemPlugins.SoftwareManager.plugin import PluginManager
 			except ImportError:

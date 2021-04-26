@@ -465,6 +465,7 @@ extern void resetBsodCounter();
 extern void addFont(const char *filename, const char *alias, int scale_factor, int is_replacement, int renderflags = 0);
 extern const char *getEnigmaVersionString();
 extern const char *getGStreamerVersionString();
+extern const char *getPyExt();
 extern void dump_malloc_stats(void);
 #ifndef HAVE_OSDANIMATION
 extern void setAnimation_current(int a);
@@ -484,6 +485,7 @@ extern void quitMainloop(int exit_code);
 extern eApplication *getApplication();
 extern const char *getEnigmaVersionString();
 extern const char *getGStreamerVersionString();
+extern const char *getPyExt();
 extern void dump_malloc_stats(void);
 #ifndef HAVE_OSDANIMATION
 extern void setAnimation_current(int a);
