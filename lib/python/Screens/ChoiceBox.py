@@ -83,14 +83,14 @@ class ChoiceBox(Screen):
 		if self.reorderConfig:
 			self.config_type = eval("config.misc.pluginlist." + self.reorderConfig)
 			if self.config_type.value:
-				prev_list = self.wrapWithList(zip(list, self.__keys))
+				prev_list = [i for i in zip(list, self.__keys)]
 				new_list = []
 				for x in self.config_type.value.split(","):
 					for entry in prev_list:
 						if entry[0][0] == x:
 							new_list.append(entry)
 							prev_list.remove(entry)
-				list = self.wrapWithList(zip(*(new_list + prev_list)))
+				list = [i for i in zip(*(new_list + prev_list))]
 				list, self.__keys = list[0], list[1]
 				number = 1
 				new_keys = []
@@ -148,9 +148,6 @@ class ChoiceBox(Screen):
 			"back": self.cancel,
 		}, prio=-1)
 		self.onShown.append(self.onshow)
-
-	def wrapWithList(self, iterable):
-		return list(iterable)
 
 
 	def onshow(self):
