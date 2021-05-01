@@ -538,3 +538,6 @@ def isPluginExtensionInstalled(pluginname, pluginfile="plugin"):
 
 def isSystemPluginInstalled(pluginname, pluginfile="plugin"):
 	return _isExtensionInstalled(pluginname, "SystemPlugins", pluginfile)
+
+def isPluginInstalled(pluginname, pluginfile="plugin"):
+	return isSystemPluginInstalled(pluginname, pluginfile) or isPluginExtensionInstalled(pluginname, pluginfile)
