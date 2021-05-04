@@ -531,18 +531,10 @@ def shellquote(s):
 	return "'%s'" % s.replace("'", "'\\''")
 
 
-def _isExtensionInstalled(pluginname, plugintype, pluginfile):
+def isPluginInstalled(pluginname, pluginfile="plugin"):
 	path, flags = defaultPaths.get(SCOPE_PLUGINS)
-	for fileext in [".py", ".pyc", ".pyo"]:
-		fullpath = os.path.join(path, plugintype, pluginname, pluginfile + fileext)
-		if os.path.isfile(fullpath):
-			return True
-	return False
-
-
-def isPluginExtensionInstalled(pluginname, pluginfile="plugin"):
-	return _isExtensionInstalled(pluginname, "Extensions", pluginfile)
-
-
-def isSystemPluginInstalled(pluginname, pluginfile="plugin"):
-	return _isExtensionInstalled(pluginname, "SystemPlugins", pluginfile)
+	for plugintype in ["Extensions", "SystemPlugins"]:
+		for fileext in [".py", ".pyc"]:
+			fullpath = os.path.join(path, plugintype, pluginname, pluginfile + fileext)
+			if os.path.isfile(fullpath):
+				return True

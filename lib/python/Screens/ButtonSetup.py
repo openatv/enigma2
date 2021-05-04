@@ -11,7 +11,7 @@ from Screens.Screen import Screen
 from Screens.MessageBox import MessageBox
 from Plugins.Plugin import PluginDescriptor
 from Tools.BoundFunction import boundFunction
-from Tools.Directories import isPluginExtensionInstalled, isSystemPluginInstalled
+from Tools.Directories import isPluginInstalled
 from ServiceReference import ServiceReference
 from enigma import eServiceReference, eActionMap
 from Components.Label import Label
@@ -282,15 +282,15 @@ def getButtonSetupFunctions():
 		for x in [x for x in os.listdir("/usr/script") if x.endswith(".sh")]:
 			x = x[:-3]
 			ButtonSetupFunctions.append((_("Shellscript") + " " + x, "Shellscript/" + x, "Shellscripts"))
-	if isPluginExtensionInstalled("Infopanel", "ScriptRunner"):
+	if isPluginInstalled("Infopanel", "ScriptRunner"):
 		ButtonSetupFunctions.append((_("ScriptRunner"), "ScriptRunner/", "Plugins"))
-	if isPluginExtensionInstalled("Infopanel", "QuickMenu"):
+	if isPluginInstalled("Infopanel", "QuickMenu"):
 		ButtonSetupFunctions.append((_("QuickMenu"), "QuickMenu/", "Plugins"))
-	if isPluginExtensionInstalled("Kodi"):
+	if isPluginInstalled("Kodi"):
 		ButtonSetupFunctions.append((_("Kodi MediaCenter"), "Kodi/", "Plugins"))
-	if isSystemPluginInstalled("BluetoothSetup"):
+	if isPluginInstalled("BluetoothSetup"):
 		ButtonSetupFunctions.append((_("Bluetooth Setup"), "Bluetooth/", "Plugins"))
-	if isPluginExtensionInstalled("Chromium"):
+	if isPluginInstalled("Chromium"):
 		ButtonSetupFunctions.append((_("Youtube TV"), "YoutubeTV/", "Plugins"))
 	return ButtonSetupFunctions
 
@@ -671,23 +671,23 @@ class InfoBarButtonSetup():
 				except Exception as e:
 					print('[EMCPlayer] showMovies exception:\n' + str(e))
 			elif selected[0] == "ScriptRunner":
-				if isPluginExtensionInstalled("Infopanel", "ScriptRunner"):
+				if isPluginInstalled("Infopanel", "ScriptRunner"):
 					from Plugins.Extensions.Infopanel.ScriptRunner import ScriptRunner
 					self.session.open(ScriptRunner)
 			elif selected[0] == "QuickMenu":
-				if isPluginExtensionInstalled("Infopanel", "QuickMenu"):
+				if isPluginInstalled("Infopanel", "QuickMenu"):
 					from Plugins.Extensions.Infopanel.QuickMenu import QuickMenu
 					self.session.open(QuickMenu)
 			elif selected[0] == "Kodi":
-				if isPluginExtensionInstalled("Kodi"):
+				if isPluginInstalled("Kodi"):
 					from Plugins.Extensions.Kodi.plugin import KodiMainScreen
 					self.session.open(KodiMainScreen)
 			elif selected[0] == "Bluetooth":
-				if isSystemPluginInstalled("BluetoothSetup"):
+				if isPluginInstalled("BluetoothSetup"):
 					from Plugins.SystemPlugins.BluetoothSetup.plugin import BluetoothSetup
 					self.session.open(BluetoothSetup)
 			elif selected[0] == "YoutubeTV":
-				if isPluginExtensionInstalled("Chromium"):
+				if isPluginInstalled("Chromium"):
 					from Plugins.Extensions.Chromium.youtube import YoutubeTVWindow
 					self.session.open(YoutubeTVWindow)
 

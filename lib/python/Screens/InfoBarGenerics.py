@@ -47,7 +47,7 @@ from RecordTimer import RecordTimer, RecordTimerEntry, parseEvent, AFTEREVENT, f
 from Screens.TimerEntry import TimerEntry as TimerEntry
 
 from Tools import Directories, Notifications
-from Tools.Directories import pathExists, fileExists, getRecordingFilename, copyfile, moveFiles, resolveFilename, SCOPE_TIMESHIFT, SCOPE_CURRENT_SKIN, isPluginExtensionInstalled
+from Tools.Directories import pathExists, fileExists, getRecordingFilename, copyfile, moveFiles, resolveFilename, SCOPE_TIMESHIFT, SCOPE_CURRENT_SKIN, isPluginInstalled
 from Tools.KeyBindings import getKeyDescription
 from Tools.ServiceReference import hdmiInServiceRef
 from enigma import eTimer, eServiceCenter, eDVBServicePMTHandler, iServiceInformation, iPlayableService, eServiceReference, eEPGCache, eActionMap, eDVBVolumecontrol, getDesktop, quitMainloop, eDVBDB
@@ -76,7 +76,7 @@ jump_pts_adder = 0
 jump_last_pts = None
 jump_last_pos = None
 
-if isPluginExtensionInstalled("CoolTVGuide"):
+if isPluginInstalled("CoolTVGuide"):
 	COOLTVGUIDE = True
 else:
 	COOLTVGUIDE = False
@@ -2162,7 +2162,7 @@ class InfoBarEPG:
 	def openMerlinEPGCenter(self):
 		if self.servicelist is None:
 			return
-		if isPluginExtensionInstalled("MerlinEPGCenter"):
+		if isPluginInstalled("MerlinEPGCenter"):
 			for plugin in plugins.getPlugins([PluginDescriptor.WHERE_EXTENSIONSMENU, PluginDescriptor.WHERE_EVENTINFO]):
 				if plugin.name == _("Merlin EPG Center"):
 					self.runPlugin(plugin)
@@ -3392,7 +3392,7 @@ class InfoBarExtensions:
 			print('[INFOBARGENERICS] failed to restart network')
 
 	def showAutoTimerList(self):
-		if isPluginExtensionInstalled("AutoTimer"):
+		if isPluginInstalled("AutoTimer"):
 			from Plugins.Extensions.AutoTimer.plugin import main, autostart
 			from Plugins.Extensions.AutoTimer.AutoTimer import AutoTimer
 			from Plugins.Extensions.AutoTimer.AutoPoller import AutoPoller
@@ -3467,7 +3467,7 @@ class InfoBarExtensions:
 			self.session.open(EPGSearch)
 
 	def showIMDB(self):
-		if isPluginExtensionInstalled("IMDb"):
+		if isPluginInstalled("IMDb"):
 			from Plugins.Extensions.IMDb.plugin import IMDB
 			s = self.session.nav.getCurrentService()
 			if s:
@@ -3489,7 +3489,7 @@ class InfoBarExtensions:
 					self.session.open(MessageBox, _("The MediaPlayer plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10)
 
 	def showDreamPlex(self):
-		if isPluginExtensionInstalled("DreamPlex"):
+		if isPluginInstalled("DreamPlex"):
 			from Plugins.Extensions.DreamPlex.plugin import DPS_MainMenu
 			self.session.open(DPS_MainMenu)
 		else:
@@ -3759,21 +3759,21 @@ class InfoBarINFOpanel:
 	def selectRedKeytask(self):
 		isWEBBROWSER = None
 		isHBBTV = None
-		if isPluginExtensionInstalled("WebBrowser", "browser"):
+		if isPluginInstalled("WebBrowser", "browser"):
 			isWEBBROWSER = True
-		if isPluginExtensionInstalled("HbbTV"):
+		if isPluginInstalled("HbbTV"):
 			isHBBTV = True
-		if isPluginExtensionInstalled("E3Opera"):
+		if isPluginInstalled("E3Opera"):
 			isHBBTV = True
-		if isPluginExtensionInstalled("NXHbbTV"):
+		if isPluginInstalled("NXHbbTV"):
 			isHBBTV = True
-		if isPluginExtensionInstalled("OpenOpera"):
+		if isPluginInstalled("OpenOpera"):
 			isHBBTV = True
-		if isPluginExtensionInstalled("WebkitHbbTV"):
+		if isPluginInstalled("WebkitHbbTV"):
 			isHBBTV = True
-		if isPluginExtensionInstalled("QtHbbtv"):
+		if isPluginInstalled("QtHbbtv"):
 			isHBBTV = True
-		if isPluginExtensionInstalled("Hbbtv"):
+		if isPluginInstalled("Hbbtv"):
 			isHBBTV = True
 
 		if isWEBBROWSER or isHBBTV:

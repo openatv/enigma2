@@ -14,7 +14,7 @@ from Screens.ParentalControlSetup import ProtectedScreen
 from Screens.ChoiceBox import ChoiceBox
 from Tools.BoundFunction import boundFunction
 from Tools.LoadPixmap import LoadPixmap
-from Tools.Directories import resolveFilename, SCOPE_CURRENT_SKIN, SCOPE_PLUGINS, fileExists, pathExists, isPluginExtensionInstalled
+from Tools.Directories import resolveFilename, SCOPE_CURRENT_SKIN, SCOPE_PLUGINS, fileExists, pathExists, isPluginInstalled
 from Components.MenuList import MenuList
 from Components.FileList import FileList
 from Components.Label import Label
@@ -110,7 +110,7 @@ config.plugins.showinfopanelextensions = ConfigYesNo(default=False)
 config.plugins.infopanel_frozencheck = ConfigSubsection()
 config.plugins.infopanel_frozencheck.list = ConfigSelection([('0', _("Off")), ('1', _("1 min.")), ('5', _("5 min.")), ('10', _("10 min.")), ('15', _("15 min.")), ('30', _("30 min."))])
 
-if isPluginExtensionInstalled("MultiQuickButton"):
+if isPluginInstalled("MultiQuickButton"):
 	try:
 		from Plugins.Extensions.MultiQuickButton.plugin import *
 	except:
