@@ -64,7 +64,7 @@ class downloadWithProgress:
 			path = uri.path
 
 		self.factory = HTTPProgressDownloader(url, outputfile, *args, **kwargs)
-		if scheme == "https":
+		if scheme == b"https":
 			self.connection = reactor.connectSSL(host, port, self.factory, ssl.ClientContextFactory())
 		else:
 			self.connection = reactor.connectTCP(host, port, self.factory)
