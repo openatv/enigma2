@@ -225,11 +225,11 @@
 			<convert type="ClockToText">Format:%H:%M</convert>
 		</widget>
 		<widget source="session.RecordState" render="Pixmap" pixmap="recklein.png"  position="100,22" size="19,10">
-			<convert type="ConfigEntryTest">config.usage.blinking_rec_symbol_during_recording,True,CheckSourceBoolean</convert>
+			<convert type="ConfigEntryTest">config.usage.blinking_display_clock_during_recording,True,CheckSourceBoolean</convert>
 			<convert type="ConditionalShowHide">Blink</convert>
 		</widget>
 		<widget source="session.RecordState" render="Pixmap" pixmap="recklein.png"  position="100,22" size="19,10">
-			<convert type="ConfigEntryTest">config.usage.blinking_rec_symbol_during_recording,False,CheckSourceBoolean</convert>
+			<convert type="ConfigEntryTest">config.usage.blinking_display_clock_during_recording,False,CheckSourceBoolean</convert>
 			<convert type="ConditionalShowHide" />
 		</widget>
 		<widget source="session.TunerInfo" render="Pixmap" pixmap="tuner-a.png" position="68,19" size="9,14">
