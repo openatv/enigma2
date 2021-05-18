@@ -1183,7 +1183,7 @@ def readSkin(screen, skin, names, desktop):
 	def processScreen(widget, context):
 		for w in widget.findall('constant-widget'):
 			processConstant(w, context)
-		for w in widget.getchildren():
+		for w in widget:
 			conditional = w.attrib.get("conditional")
 			if conditional and not [i for i in conditional.split(",") if i in screen.keys()]:
 				continue
