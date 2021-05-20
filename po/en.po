@@ -113,7 +113,7 @@ msgid ""
 "Online update of your %s %s software."
 msgstr ""
 "\n"
-"Update your %s %s's software online."
+"Update your %s %s's software online.\n"
 
 msgid ""
 "\n"
@@ -2762,7 +2762,7 @@ msgid "Allows you to show/hide OScam in extensions (blue button)."
 msgstr "Choose whether to show OScam on the Extensions screen (Blue button)."
 
 msgid "Almost there... "
-msgstr ""
+msgstr "Nearly there... "
 
 msgid "Alpha"
 msgstr "Letter"
@@ -3391,7 +3391,7 @@ msgid "Backup Date: %s\n"
 msgstr ""
 
 msgid "Backup Image"
-msgstr "Backup image"
+msgstr "Back up image"
 
 msgid "Backup Location"
 msgstr ""
@@ -3414,7 +3414,7 @@ msgid "Backup Mode: USB Recovery\n"
 msgstr ""
 
 msgid "Backup Settings"
-msgstr "Back up settings now"
+msgstr "Would you like to back up ypur settings now"
 
 msgid "Backup completed."
 msgstr "Backup complete!"
@@ -4579,7 +4579,7 @@ msgstr "Press the button on your remote that you'd like to change."
 
 #, python-format
 msgid "Client Info ( Oscam-Version: %s )"
-msgstr "Client Info ( Oscam Version: %s )"
+msgstr "Client Info ( OScam Version: %s )"
 
 msgid "ClientIP"
 msgstr "Client IP"
@@ -4752,7 +4752,7 @@ msgstr "Configure whether, and how, crypto icons should appear in the channel se
 
 # needs improvement
 msgid "Configure if and how long the latest service in the PiP will be remembered."
-msgstr "Configure whether, and for how long, the latest channel in PiP mode should be remembered."
+msgstr "Configure whether, and for how long, the most recent channel in PiP mode should be remembered."
 
 msgid "Configure if and how service type icons will be shown."
 msgstr "Configure whether, and how, service type icons should appear."
@@ -5953,10 +5953,10 @@ msgstr "External subtitle delay"
 
 # needs improvement
 msgid "Delay in milliseconds after finish scrolling text on display."
-msgstr ""
+msgstr "Delay after scrolling text ends (in milliseconds)."
 
 msgid "Delay in milliseconds before start of scrolling text on display."
-msgstr "Delay in milliseconds before display text should start scrolling."
+msgstr "Delay before text starts scrolling (in milliseconds)."
 
 msgid "Delay time"
 msgstr ""
@@ -6965,11 +6965,11 @@ msgstr ""
 
 # needs improvement
 msgid "Enable remote enigma2 receiver to be tried to tune into services that cannot be tuned into locally (e.g. tuner is occupied or service type is unavailable on the local tuner. Specify complete URL including http:// and port number (normally ...:8001), e.g. http://second_box:8001."
-msgstr "Enable remote Enigma2 receiver to be tried to tune into services which can't be tuned into locally (e.g. tuner is occupied or service type is unavailable on the local tuner. Specify complete URL including http:// and port number (usually :8001), e.g. http://second_box:8001."
+msgstr "Enable remote Enigma2 receiver to be tried to tune into services which can't be tuned into locally (if the tuner is occupied, service type is unavailable locally, etc. Specify a complete URL including http:// and port number (usually :8001), e.g. http://receiver2:8001"
 
 # needs improvement
 msgid "Enable screenshot of LCD in /tmp"
-msgstr "Enable screenshot of the front panel display to /tmp"
+msgstr "Enable front panel display screenshots (saved to /tmp)"
 
 msgid "Enable teletext caching"
 msgstr ""
@@ -7350,7 +7350,7 @@ msgid "Exceeds dual layer medium!"
 msgstr "Exceeds dual-layer disc capacity!"
 
 msgid "Execute after current event"
-msgstr "Activate after current the event"
+msgstr "Activate after the current event"
 
 msgid "Execute in "
 msgstr "Activate in "
@@ -8823,15 +8823,15 @@ msgstr ""
 
 # needs improvement
 msgid "If 'never', will force restart despite that after 100 crashes."
-msgstr ""
+msgstr "When set to 'never', the Enigma2 will be restarted no matter how many times it has already crashed."
 
 # needs improvement
 msgid "If 'never', will write crash log despite that for the first crash."
-msgstr ""
+msgstr "When set to 'never', Enigma2 will write a debug log entry except for the first occurrence of a crash."
 
 # needs improvement
 msgid "If editing a file, can you set the cursor start position at end or begin of the line."
-msgstr ""
+msgstr "Choose whether to put the cursor at the start or end of the line when editing a file."
 
 msgid "If enabled the output resolution of the box will try to match the resolution of the video contents resolution"
 msgstr "If enabled, the output resolution of the box will try to match the resolution of the video contents resolution."
@@ -8844,10 +8844,10 @@ msgstr "If enabled, AIT data will be included in recordings."
 
 # needs improvement
 msgid "If enabled, using a time window to detect a wakeup from deep standby by a timer. Default setting ist disabled and used a special signal from the receiver. But some devices set a wrong or none signal and the wakeup detection can fails."
-msgstr "If enabled, using a time window to detect a wake-up from deep standby by a timer. Default setting is disabled and uses a special signal from the receiver. But some devices set an incorrect or no signal and the wake-up detection fails."
+msgstr "If enabled, using a time window to detect a wake-up from deep standby by a timer. Default setting is disabled and uses a special signal from the receiver. However, some devices set an incorrect signal or none at all, in which case wakeup detection will fail."
 
 msgid "If logs are using the set maximum space used the eldest will be deleted."
-msgstr "When log files use up the allowed space, the eldest will be deleted."
+msgstr "The oldest log file will be deleted when the allowed space is exceeded."
 
 msgid "If muted, hide mute icon or mute information after few seconds."
 msgstr "Choose whether to hide the mute icon or mute information after a few seconds when muted."
@@ -11663,7 +11663,7 @@ msgid "Open long"
 msgstr "OPEN button hold"
 
 msgid "Open satellites list"
-msgstr ""
+msgstr "Open satellite list"
 
 msgid "Open service list"
 msgstr "Open channel list"
@@ -11675,7 +11675,7 @@ msgid "Open service list and select next channel for PiP"
 msgstr "Open channel list and select next channel for PiP"
 
 msgid "Open service list and select previous channel"
-msgstr ""
+msgstr "Open channel list and select previous channel"
 
 msgid "Open service list and select previous channel for PiP"
 msgstr "Open channel list and select previous channel for PiP"
@@ -11736,17 +11736,17 @@ msgid "Original"
 msgstr "original"
 
 msgid "Oscam Info - Configuration"
-msgstr ""
+msgstr "OScam Info - Configuration"
 
 msgid "Oscam Info - Main Menu"
-msgstr ""
+msgstr "OScam Info - Main Menu"
 
 #, python-format
 msgid "Oscam Log ( Oscam-Version: %s )"
-msgstr "Oscam Log ( Oscam Version: %s )"
+msgstr "OScam Log ( OScam Version: %s )"
 
 msgid "OscamInfo Mainmenu"
-msgstr "Oscam Info Main Menu"
+msgstr "OScam Info Main Menu"
 
 # TRANSLATORS: EPG ETSI genre
 msgid "Other"
@@ -12400,8 +12400,8 @@ msgid ""
 "Please select what to do after flashing the image:\n"
 "(In addition, if it exists, a local script will be executed as well at /media/hdd/images/config/myrestore.sh)"
 msgstr ""
-"Please select what to do after flashing the image:\n"
-"(Additionally, a script will be executed if one exists at /media/hdd/images/config/myrestore.sh)"
+"Please choose what you'd like to happen after flashing the image...\n"
+"(If a script exists at /media/hdd/images/config/myrestore.sh, it will also be run)"
 
 msgid "Please set up tuner A"
 msgstr ""
@@ -12841,16 +12841,16 @@ msgid "Press OK to get further details for %s"
 msgstr ""
 
 msgid "Press OK to scan"
-msgstr "Press OK to start scanning."
+msgstr "Press OK to start scanning..."
 
 msgid "Press OK to select a group of satellites to configure in one block."
 msgstr "Press OK to select several satellites to configure together."
 
 msgid "Press OK to select a provider."
-msgstr ""
+msgstr "Press OK to select a provider..."
 
 msgid "Press OK to select a service."
-msgstr ""
+msgstr "Press OK to select a service..."
 
 msgid "Press OK to select satellites"
 msgstr "Press OK to select satellites."
@@ -12859,10 +12859,10 @@ msgid "Press OK to select/deselect a CAId."
 msgstr ""
 
 msgid "Press OK to set the MAC-address."
-msgstr "Press OK to set the MAC address."
+msgstr "Press OK to set a MAC address."
 
 msgid "Press OK to start the scan"
-msgstr "Press OK to start scanning"
+msgstr "Press OK to start scanning..."
 
 msgid "Press OK to toggle the selection"
 msgstr ""
@@ -13218,7 +13218,7 @@ msgid "Re-enter new PIN"
 msgstr ""
 
 msgid "Read Userdata from oscam.conf"
-msgstr ""
+msgstr "Read config from oscam.conf"
 
 msgid "Reader"
 msgstr ""
@@ -13800,7 +13800,7 @@ msgid "Restore backups"
 msgstr "Manage Backups"
 
 msgid "Restore is running..."
-msgstr "Restoring..."
+msgstr "Restoring Settings..."
 
 msgid "Restore settings from a backup"
 msgstr ""
@@ -13957,7 +13957,7 @@ msgid "Running"
 msgstr ""
 
 msgid "Running Myrestore script, Please wait ..."
-msgstr "Running Myrestore script, please wait..."
+msgstr "Running myrestore.sh script..."
 
 # TRANSLATORS: language option label
 msgid "Russian"
@@ -14898,7 +14898,7 @@ msgstr ""
 
 #, python-format
 msgid "Server Info ( Oscam-Version: %s )"
-msgstr "Server Info ( Oscam Version: %s )"
+msgstr "Server Info ( OScam Version: %s )"
 
 msgid "Server down"
 msgstr ""
@@ -15552,7 +15552,7 @@ msgid "Show Log Manager in extensions list ?"
 msgstr "Show log manager on Extensions screen"
 
 msgid "Show Main Menu as"
-msgstr "Show Main menu as"
+msgstr ""
 
 msgid "Show Media playback Remaining/Elapsed as"
 msgstr "Show media playback remaining/elapsed time as"
@@ -19699,7 +19699,7 @@ msgid "Warning"
 msgstr ""
 
 msgid "Warning: This is the last crash before an automatic restart is performed.\n"
-msgstr "* Note that your receiver will restart after the next crash.\n"
+msgstr "* Note that your receiver will restart after the next crash!\n"
 
 msgid "Warning: no LNB; using factory defaults."
 msgstr ""
@@ -19877,7 +19877,7 @@ msgid "When enabled, Enigma2 will load unlinked bouquets. This means that bouque
 msgstr "Choose whether to load bouquets that are available in the /etc/enigma2 settings folder (e.g. userbouquet.[mychannels].tv) but not included in bouquets.tv or bouquets.radio, to let you keep your custom bouquets while installed settings are upgraded."
 
 msgid "When enabled, a popup message will be shown when a movie has finished and the next one will start."
-msgstr "Choose whether to show a notification when a movie has finished and the next one is about to start."
+msgstr "Choose whether to show a notification when a movie has finished playing and the next one is about to begin."
 
 msgid "When enabled, a popup message will be shown when a recording starts."
 msgstr "Choose whether to show a notification when a recording begins."
@@ -20346,7 +20346,7 @@ msgid ""
 "You have chosen to save the current timeshift event, but the event has not yet finished\n"
 "What do you want to do ?"
 msgstr ""
-"You have chosen to save the current timeshift buffer, but the event hasn't finished yet.\n"
+"You've chosen to save the current timeshift buffer, but the event hasn't finished yet.\n"
 "What would you like do?"
 
 msgid "You have no script to run."
@@ -20472,11 +20472,11 @@ msgstr ""
 
 #, python-format
 msgid "Your %s %s will Reboot..."
-msgstr "Your %s %s is about to restart..."
+msgstr "Rebooting your %s %s now..."
 
 #, python-format
 msgid "Your %s %s will Restart..."
-msgstr "Your %s %s is about to restart..."
+msgstr "Restarting your %s %s now..."
 
 #, python-format
 msgid ""
@@ -20595,7 +20595,8 @@ msgid ""
 "Please choose what you want to do next."
 msgstr ""
 "Your internet connection doesn't seem to be working!\n"
-"Please choose what you'd like to do next."
+"\n"
+"Please choose what you'd like to do next..."
 
 msgid "Your network configuration has been activated."
 msgstr ""
@@ -20615,10 +20616,10 @@ msgid ""
 "\n"
 "Please choose what you want to do next."
 msgstr ""
-"Your wireless network connection could't be activated!\n"
-"Have you attached a USB wireless network adapter?\n"
+"Your wireless network connection couldn't be activated!\n"
+"Have you connected a wireless network adapter?\n"
 "\n"
-"Please choose what you'd like to do next."
+"Please choose what you'd like to do next..."
 
 # TRANSLATORS: EPG/IceTV genre subcategory
 msgid "Youth"
@@ -22328,7 +22329,7 @@ msgstr ""
 # normalised
 #, python-format
 msgid "slot%s - %s as USB Recovery"
-msgstr ""
+msgstr "slot%s - %s as USB recovery"
 
 msgid "slow"
 msgstr ""
