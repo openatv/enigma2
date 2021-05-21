@@ -1902,7 +1902,7 @@ class NetworkFtp(Screen):
 
 	def activateFtp(self):
 		commands = []
-		if fileExists('/etc/rc2.d/S20vsftpd'):
+		if fileExists('/etc/rc2.d/S80vsftpd'):
 			commands.append('update-rc.d -f vsftpd remove')
 		else:
 			commands.append('update-rc.d -f vsftpd defaults')
@@ -1916,7 +1916,7 @@ class NetworkFtp(Screen):
 		self['labstop'].hide()
 		self['labactive'].setText(_("Disabled"))
 		self.my_ftp_active = False
-		if fileExists('/etc/rc2.d/S20vsftpd'):
+		if fileExists('/etc/rc2.d/S80vsftpd'):
 			self['labactive'].setText(_("Enabled"))
 			self['labactive'].show()
 			self.my_ftp_active = True
