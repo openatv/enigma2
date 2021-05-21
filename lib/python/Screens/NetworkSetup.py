@@ -1817,7 +1817,7 @@ class NetworkAfp(Screen):
 		if fileExists('/etc/rc2.d/S20atalk'):
 			self.Console.ePopen('update-rc.d -f atalk remove', self.StartStopCallback)
 		else:
-			self.Console.ePopen('update-rc.d -f atalk defaults', self.StartStopCallback)
+			self.Console.ePopen('update-rc.d -f atalk defaults 20', self.StartStopCallback)
 
 	def updateService(self, result=None, retval=None, extra_args=None):
 		import process
@@ -1905,7 +1905,7 @@ class NetworkFtp(Screen):
 		if fileExists('/etc/rc2.d/S80vsftpd'):
 			commands.append('update-rc.d -f vsftpd remove')
 		else:
-			commands.append('update-rc.d -f vsftpd defaults')
+			commands.append('update-rc.d -f vsftpd defaults 80')
 		self.Console.eBatch(commands, self.StartStopCallback, debug=True)
 
 	def updateService(self):
@@ -2202,7 +2202,7 @@ class NetworkOpenvpn(Screen):
 		if fileExists('/etc/rc2.d/S20openvpn'):
 			self.Console.ePopen('update-rc.d -f openvpn remove', self.StartStopCallback)
 		else:
-			self.Console.ePopen('update-rc.d -f openvpn defaults', self.StartStopCallback)
+			self.Console.ePopen('update-rc.d -f openvpn defaults 20', self.StartStopCallback)
 
 	def updateService(self):
 		import process
@@ -2395,7 +2395,7 @@ class NetworkSamba(Screen):
 		if fileExists('/etc/rc2.d/S20samba'):
 			commands.append('update-rc.d -f samba remove')
 		else:
-			commands.append('update-rc.d -f samba defaults')
+			commands.append('update-rc.d -f samba defaults 20')
 		self.Console.eBatch(commands, self.StartStopCallback, debug=True)
 
 	def updateService(self):
@@ -2609,7 +2609,7 @@ class NetworkTelnet(Screen):
 			if fileExists('/etc/rc2.d/S20telnetd.busybox'):
 				commands.append('update-rc.d -f telnetd.busybox remove')
 			else:
-				commands.append('update-rc.d -f telnetd.busybox defaults')
+				commands.append('update-rc.d -f telnetd.busybox defaults 20')
 		self.Console.eBatch(commands, self.StartStopCallback, debug=True)
 
 	def updateService(self):
@@ -2765,7 +2765,7 @@ class NetworkInadyn(Screen):
 		if fileExists('/etc/rc2.d/S20inadyn-mt'):
 			self.Console.ePopen('update-rc.d -f inadyn-mt remove', self.StartStopCallback)
 		else:
-			self.Console.ePopen('update-rc.d -f inadyn-mt defaults', self.StartStopCallback)
+			self.Console.ePopen('update-rc.d -f inadyn-mt defaults 20', self.StartStopCallback)
 
 	def updateService(self):
 		import process
@@ -3134,7 +3134,7 @@ class NetworkuShare(Screen):
 		if fileExists('/etc/rc2.d/S20ushare'):
 			self.Console.ePopen('update-rc.d -f ushare remove', self.StartStopCallback)
 		else:
-			self.Console.ePopen('update-rc.d -f ushare defaults', self.StartStopCallback)
+			self.Console.ePopen('update-rc.d -f ushare defaults 20', self.StartStopCallback)
 
 	def updateService(self):
 		import process
@@ -3658,7 +3658,7 @@ class NetworkMiniDLNA(Screen):
 		if fileExists('/etc/rc2.d/S20minidlna'):
 			self.Console.ePopen('update-rc.d -f minidlna remove', self.StartStopCallback)
 		else:
-			self.Console.ePopen('update-rc.d -f minidlna defaults', self.StartStopCallback)
+			self.Console.ePopen('update-rc.d -f minidlna defaults 20', self.StartStopCallback)
 
 	def updateService(self):
 		import process
