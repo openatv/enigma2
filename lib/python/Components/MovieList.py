@@ -880,7 +880,7 @@ class MovieList(GUIComponent):
 			# otherwise the entry will be dropped.
 			if self.filter_tags is not None:
 				# convert space-separated list of tags into a set
-				info = self.getServiceInfo(serviceref)
+				info = self.getServiceInfo(serviceHandler, serviceref)
 				name = info.getName(serviceref)
 				this_tags = info.getInfoString(serviceref, iServiceInformation.sTags).split(' ')
 				if len(this_tags) == 1 and (not this_tags[0] or this_tags[0].startswith("Tuner-")):
