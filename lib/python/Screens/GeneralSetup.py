@@ -98,12 +98,6 @@ try:
 except:
 	HAVE_FAN_CONTROL = False
 
-try:
-	from Plugins.SystemPlugins.AutomaticVolumeAdjustment.AutomaticVolumeAdjustmentSetup import AutomaticVolumeAdjustmentConfigScreen
-	HAVE_AUTOMATIC_VOLUME_ADJUSTMENT = True
-except:
-	HAVE_AUTOMATIC_VOLUME_ADJUSTMENT = False
-
 
 def isFileSystemSupported(filesystem):
 	try:
@@ -272,8 +266,6 @@ class GeneralSetup(Screen):
 		if SystemInfo["HDMIin"]:
 			self.sublist.append(QuickSubMenuEntryComponent(_("HDMI Recording settings"), _("HDMI Recording setup"), _("Configure recording from HDMI input")))
 		self.sublist.append(QuickSubMenuEntryComponent(_("Timeshift settings"), _("Timeshift setup"), _("Set up your timeshift configuration")))
-		if HAVE_AUTOMATIC_VOLUME_ADJUSTMENT:
-			self.sublist.append(QuickSubMenuEntryComponent(_("Automatic volume settings"), _("Automatic volume setup"), _("Set up your automatic volume adjustment configuration")))
 		self.sublist.append(QuickSubMenuEntryComponent(_("Auto language"), _("Auto language selection"), _("Select your Language for audio/subtitles")))
 		self.sublist.append(QuickSubMenuEntryComponent(_("Subtitle settings"), _("Subtitle setup"), _("Set up subtitle behaviour")))
 		self.sublist.append(QuickSubMenuEntryComponent(_("EPG settings"), _("EPG setup"), _("Set up your EPG configuration")))
@@ -533,8 +525,6 @@ class GeneralSetup(Screen):
 			self.session.open(FanSetupScreen)
 		elif selected == _("Fan speed"):
 			self.openSetup("fanspeed")
-		elif selected == _("Automatic volume settings"):
-			self.session.open(AutomaticVolumeAdjustmentConfigScreen)
 		elif selected == _("Log settings"):
 			self.openSetup("logs")
 		elif selected == _("Factory reset"):
