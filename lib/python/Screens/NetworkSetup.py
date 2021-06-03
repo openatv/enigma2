@@ -534,6 +534,7 @@ class AdapterSetup(Screen, ConfigListScreen, HelpableScreen):
 	def layoutFinished(self):
 		self["DNS1"].setText(self.primaryDNS.getText())
 		self["DNS2"].setText(self.secondaryDNS.getText())
+
 		try:
 			if self.ipConfigEntry.getText() is not None:
 				if self.ipConfigEntry.getText() == "0.0.0.0":
@@ -551,7 +552,8 @@ class AdapterSetup(Screen, ConfigListScreen, HelpableScreen):
 			else:
 				self["Mask"].setText(self.netmaskConfigEntry.getText())
 		else:
-			self["IP"].setText(_("N/A"))
+			self["Mask"].setText(_("N/A"))
+
 		if iNetwork.getAdapterAttribute(self.iface, "gateway"):
 			if self.gatewayConfigEntry.getText() == "0.0.0.0":
 				self["Gatewaytext"].setText(_("Gateway"))
@@ -562,6 +564,7 @@ class AdapterSetup(Screen, ConfigListScreen, HelpableScreen):
 		else:
 			self["Gateway"].setText("")
 			self["Gatewaytext"].setText("")
+
 		self["Adapter"].setText(iNetwork.getFriendlyAdapterName(self.iface))
 
 	def createConfig(self):
