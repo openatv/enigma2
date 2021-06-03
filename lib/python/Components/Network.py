@@ -216,6 +216,8 @@ class Network:
 					if "predown" in self.ifaces[currif]:
 						self.ifaces[currif]["predown"] = i
 
+		print "[Network] parsed /etc/network/interfaces and got ", ifaces
+
 		for ifacename, iface in ifaces.items():
 			if ifacename in self.ifaces:
 				self.ifaces[ifacename]["dhcp"] = iface["dhcp"]
