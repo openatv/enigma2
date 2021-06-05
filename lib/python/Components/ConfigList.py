@@ -288,7 +288,7 @@ class ConfigListScreen:
 		selection = self["config"].getCurrent()
 		if selection and selection[1].enabled and hasattr(selection[1], "description"):
 			self.session.openWithCallback(self.handleKeyFileCallback, ChoiceBox, selection[0],
-				list=zip(selection[1].description, selection[1].choices),
+				list=list(zip(selection[1].description, selection[1].choices)),
 				selection=selection[1].choices.index(selection[1].value),
 				keys=[],
 				text=self.getCurrentDescription())
