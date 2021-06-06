@@ -5,11 +5,11 @@
 
 > Ubuntu 20.04.1 LTS (Kernel 5.4.0)
 
-## openATV 6.5 is build using oe-alliance build-environment and several git repositories: ##
+## openATV 7.0 is build using oe-alliance build-environment and several git repositories: ##
 
 > [https://github.com/oe-alliance/oe-alliance-core/tree/5.0](https://github.com/oe-alliance/oe-alliance-core/tree/5.0 "OE-Alliance")
 > 
-> [https://github.com/openatv/enigma2/tree/6.5](https://github.com/openatv/enigma2/tree/7.0 "openATV E2")
+> [https://github.com/openatv/enigma2/tree/7.0](https://github.com/openatv/enigma2/tree/7.0 "openATV E2")
 > 
 > [https://github.com/openatv/MetrixHD](https://github.com/openatv/MetrixHD/tree/dev "openATV Skin")
 
