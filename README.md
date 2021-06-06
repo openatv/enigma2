@@ -1,5 +1,5 @@
-## Build Status - branch 6.5  develop: ##
-[![Build Status](https://travis-ci.org/openatv/enigma2.svg?branch=6.5)](https://travis-ci.org/openatv/enigma2)
+## Build Status - branch 7.0  develop: ##
+[![Build Status](https://travis-ci.org/openatv/enigma2.svg?branch=7.0)](https://travis-ci.org/openatv/enigma2)
 
 ## Our buildserver is currently running on: ##
 
@@ -7,9 +7,9 @@
 
 ## openATV 6.5 is build using oe-alliance build-environment and several git repositories: ##
 
-> [https://github.com/oe-alliance/oe-alliance-core/tree/nextp3](https://github.com/oe-alliance/oe-alliance-core/tree/nextp3 "OE-Alliance")
+> [https://github.com/oe-alliance/oe-alliance-core/tree/5.0](https://github.com/oe-alliance/oe-alliance-core/tree/5.0 "OE-Alliance")
 > 
-> [https://github.com/openatv/enigma2/tree/6.5](https://github.com/openatv/enigma2/tree/6.5 "openATV E2")
+> [https://github.com/openatv/enigma2/tree/6.5](https://github.com/openatv/enigma2/tree/7.0 "openATV E2")
 > 
 > [https://github.com/openatv/MetrixHD](https://github.com/openatv/MetrixHD/tree/dev "openATV Skin")
 
@@ -74,7 +74,7 @@
 ----------
 10 - Clone oe-alliance git
 
-    git clone git://github.com/oe-alliance/build-enviroment.git -b nextp3
+    git clone git://github.com/oe-alliance/build-enviroment.git -b 5.0
 
 ----------
 11 - Switch to folder build-enviroment
