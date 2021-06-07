@@ -616,6 +616,9 @@ class DevicePanelConf(Screen, ConfigListScreen):
 	def add_fstab(self, result=None, retval=None, extra_args=None):
 		self.device = extra_args[0]
 		self.mountp = extra_args[1]
+		if len(result) == 0:
+			print("[MountManager] error get UUID for device %s" % self.device)
+			return
 		self.device_tmp = six.ensure_str(result).split(' ')
 		if self.device_tmp[0].startswith('UUID='):
 			self.device_uuid = self.device_tmp[0].replace('"', "")
