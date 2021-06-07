@@ -276,8 +276,8 @@ class ServiceInfo(Screen):
 					subList += [(_("TXT Subtitles page & lang"), "%s - %s" % (subNumber, subLang), TYPE_TEXT)]
 
 				elif x[0] == 2: # File
-					types = (_("unknown"), _("Embedded"), _("SSA File"), _("ASS File"),
-							_("SRT File"), _("VOB File"), _("PGS File"))
+					types = (_("unknown"), _("Embedded"), _("SSA file"), _("ASS file"),
+							_("SRT file"), _("VOB file"), _("PGS file"))
 					try:
 						description = types[x[2]]
 					except:
