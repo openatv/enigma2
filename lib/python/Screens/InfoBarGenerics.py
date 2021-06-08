@@ -4010,8 +4010,8 @@ class InfoBarInstantRecord:
 			else:
 				self.session.openWithCallback(self.setEndtime, TimerSelection, list)
 		elif answer[1] == "timer":
-			import Screens.TimerEdit
-			self.session.open(TimerEdit.TimerEditList)
+			from Screens.TimerEdit import TimerEditList
+			self.session.open(TimerEditList)
 		elif answer[1] == "stop":
 			self.session.openWithCallback(self.stopCurrentRecording, TimerSelection, list)
 		elif answer[1] in ("indefinitely", "manualduration", "manualendtime", "event"):
