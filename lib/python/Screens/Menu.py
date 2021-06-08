@@ -26,8 +26,11 @@ from Screens.Setup import Setup, getSetupTitle, getSetupTitleLevel
 mainmenu = _("Main menu")
 lastMenuID = None
 
+nomainmenupath = False if os.path.exists(resolveFilename(SCOPE_CURRENT_SKIN, "mainmenu")) else True
 
 def MenuEntryPixmap(entryID, png_cache, lastMenuID):
+	if nomainmenupath:
+		return None
 	png = png_cache.get(entryID, None)
 	if png is None:
 		pngPath = resolveFilename(SCOPE_CURRENT_SKIN, 'mainmenu/' + entryID + '.png')
