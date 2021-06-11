@@ -227,11 +227,11 @@ def getBoxUptime():
 	secs = int(upTime.split(".")[0])
 	times = []
 	if secs > 86400:
-		days = secs / 86400
+		days = secs // 86400
 		secs = secs % 86400
 		times.append(ngettext("%d day", "%d days", days) % days)
-	h = secs / 3600
-	m = (secs % 3600) / 60
+	h = secs // 3600
+	m = (secs % 3600) // 60
 	times.append(ngettext("%d hour", "%d hours", h) % h)
 	times.append(ngettext("%d minute", "%d minutes", m) % m)
 	return " ".join(times)
