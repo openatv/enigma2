@@ -136,6 +136,7 @@ def getAboutText():
 		AboutText += _("Installed:\t\t%s") % MyDateConverter(MyFlashDate) + "\n"
 
 	AboutText += _("Last E2 update:\t\t%s") % MyDateConverter(getEnigmaVersionString()) + "\n"
+	AboutText += _("Uptime:\t\t%s") % about.getBoxUptime() + "\n"
 	AboutText += _("Enigma2 debug level:\t%d") % eGetEnigmaDebugLvl() + "\n"
 
 	fp_version = getFPVersion()

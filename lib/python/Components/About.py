@@ -1,6 +1,6 @@
 from __future__ import print_function
 from boxbranding import getBoxType, getMachineBuild, getImageVersion
-from Tools.Directories import fileReadLines
+from Tools.Directories import fileReadLine, fileReadLines
 from sys import modules, version_info
 import socket
 import fcntl
@@ -219,6 +219,22 @@ def getPythonVersionString():
 		return output.split(' ')[1]
 	except:
 		return _("unknown")
+
+def getBoxUptime():
+	upTime = fileReadLine("/proc/uptime", source=MODULE_NAME)
+	if upTime is None:
+		return "-"
+	secs = int(upTime.split(".")[0])
+	times = []
+	if secs > 86400:
+		days = secs / 86400
+		secs = secs % 86400
+		times.append(ngettext("%d day", "%d days", days) % days)
+	h = secs / 3600
+	m = (secs % 3600) / 60
+	times.append(ngettext("%d hour", "%d hours", h) % h)
+	times.append(ngettext("%d minute", "%d minutes", m) % m)
+	return " ".join(times)
 
 def getopensslVersionString():
 	lines = fileReadLines("/var/lib/opkg/info/openssl.control", source=MODULE_NAME)
