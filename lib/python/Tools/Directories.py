@@ -344,7 +344,9 @@ def fileHas(f, content, mode="r"):
 		if content in text:
 			result = True
 	return result
-def fileHas(file, content, mode="r"):
+
+
+def fileContains(file, content, mode="r"):
 	return fileHas(file, content, mode)
 
 
@@ -633,6 +635,6 @@ def isPluginInstalled(pluginName, pluginFile="plugin"):
 	path, flags = defaultPaths.get(SCOPE_PLUGINS)
 	for plugintype in ["Extensions", "SystemPlugins"]:
 		for extension in ["c", ""]:
-			if isfile(pathjoin(path, type, pluginName, "%s.py%s" % (pluginFile, extension))):
+			if isfile(pathjoin(path, plugintype, pluginName, "%s.py%s" % (pluginFile, extension))):
 				return True
 	return False
