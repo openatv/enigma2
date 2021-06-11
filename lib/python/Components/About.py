@@ -1,5 +1,6 @@
 from __future__ import print_function
 from boxbranding import getBoxType, getMachineBuild, getImageVersion
+from Tools.Directories import fileReadLines
 from sys import modules, version_info
 import socket
 import fcntl
@@ -219,6 +220,15 @@ def getPythonVersionString():
 	except:
 		return _("unknown")
 
+def getopensslVersionString():
+	lines = fileReadLines("/var/lib/opkg/info/openssl.control", source=MODULE_NAME)
+	if lines:
+		for line in lines:
+			if line[0:8] == "Version:":
+				return line[9:].split("+")[0]
+	return _("Not Installed")
+
+MODULE_NAME = __name__.split(".")[-1]
 
 # For modules that do "from About import about"
 about = modules[__name__]

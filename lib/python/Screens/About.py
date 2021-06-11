@@ -120,6 +120,7 @@ def getAboutText():
 
 	AboutText += _("Version / Build:\t\t%s  (%s)") % (getImageVersion(), MyDateConverter(getImageBuild())) + "\n"
 	AboutText += _("Kernel:\t\t%s") % about.getKernelVersionString() + "\n"
+	AboutText += _("OpenSSL:\t\t%s") % about.getopensslVersionString() + "\n"
 	AboutText += _("Drivers:\t\t%s") % MyDateConverter(getDriverDate()) + "\n"
 
 	skinWidth = getDesktop(0).size().width()
