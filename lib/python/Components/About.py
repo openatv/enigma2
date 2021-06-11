@@ -1,13 +1,15 @@
 from __future__ import print_function
+from sys import modules, version as pyversion
+from fcntl import ioctl
+from struct import pack
+from socket import socket, inet_ntoa, AF_INET, SOCK_DGRAM
+from time import localtime, strftime
+from os import stat
+
 from boxbranding import getBoxType, getMachineBuild, getImageVersion
 from Tools.Directories import fileReadLine, fileReadLines
-from sys import modules, version_info
-import socket
-import fcntl
-import struct
-import time
-import os
 
+MODULE_NAME = __name__.split(".")[-1]
 
 def getImageVersionString():
 	return getImageVersion()
@@ -19,9 +21,9 @@ def getVersionString():
 
 def getFlashDateString():
 	try:
-		tm = time.localtime(os.stat("/boot").st_ctime)
+		tm = localtime(stat("/boot").st_ctime)
 		if tm.tm_year >= 2011:
-			return time.strftime(_("%Y-%m-%d"), tm)
+			return strftime(_("%Y-%m-%d"), tm)
 		else:
 			return _("unknown")
 	except:
@@ -33,8 +35,8 @@ def getEnigmaVersionString():
 
 
 def getGStreamerVersionString():
-	import enigma
-	return enigma.getGStreamerVersionString()
+	from enigma import getGStreamerVersionString
+	return getGStreamerVersionString()
 
 
 def getKernelVersionString():
@@ -90,11 +92,11 @@ def getCPUSpeedString():
 		return "2,1 GHz"
 	elif getMachineBuild() in ('hd51', 'hd52', 'sf4008', 'vs1500', 'et1x000', 'h7', 'et13000', 'sf5008', 'osmio4k', 'osmio4kplus', 'osmini4k'):
 		try:
-			import binascii
+			from binascii import hexlify
 			f = open('/sys/firmware/devicetree/base/cpus/cpu@0/clock-frequency', 'rb')
 			clockfrequency = f.read()
 			f.close()
-			CPUSpeed_Int = round(int(binascii.hexlify(clockfrequency), 16) / 1000000, 1)
+			CPUSpeed_Int = round(int(hexlify(clockfrequency), 16) / 1000000, 1)
 			if CPUSpeed_Int >= 1000:
 				return _("%s GHz") % str(round(CPUSpeed_Int / 1000, 1))
 			else:
@@ -171,18 +173,18 @@ def getCpuCoresString():
 
 
 def _ifinfo(sock, addr, ifname):
-	iface = struct.pack('256s', bytes(ifname[:15], 'utf-8'))
-	info = fcntl.ioctl(sock.fileno(), addr, iface)
+	iface = pack('256s', bytes(ifname[:15], 'utf-8'))
+	info = ioctl(sock.fileno(), addr, iface)
 	if addr == 0x8927:
 		return ''.join(['%02x:' % ord(chr(char)) for char in info[18:24]])[:-1].upper()
 	else:
-		return socket.inet_ntoa(info[20:24])
+		return inet_ntoa(info[20:24])
 
 
 def getIfConfig(ifname):
 	ifreq = {'ifname': ifname}
 	infos = {}
-	sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+	sock = socket(AF_INET, SOCK_DGRAM)
 	# offsets defined in /usr/include/linux/sockios.h on linux 2.6
 	infos['addr'] = 0x8915 # SIOCGIFADDR
 	infos['brdaddr'] = 0x8919 # SIOCGIFBRDADDR
@@ -210,15 +212,10 @@ def getIfTransferredData(ifname):
 
 def getPythonVersionString():
 	try:
-		if version_info[0] >= 3:
-			import subprocess
-			status, output = subprocess.getstatusoutput("python3 -V")
-		else:
-			import commands
-			status, output = commands.getstatusoutput("python -V")
-		return output.split(' ')[1]
+		return pyversion.split(' ')[0]
 	except:
 		return _("unknown")
+
 
 def getBoxUptime():
 	upTime = fileReadLine("/proc/uptime", source=MODULE_NAME)
@@ -236,6 +233,7 @@ def getBoxUptime():
 	times.append(ngettext("%d minute", "%d minutes", m) % m)
 	return " ".join(times)
 
+
 def getopensslVersionString():
 	lines = fileReadLines("/var/lib/opkg/info/openssl.control", source=MODULE_NAME)
 	if lines:
@@ -244,7 +242,6 @@ def getopensslVersionString():
 				return line[9:].split("+")[0]
 	return _("Not Installed")
 
-MODULE_NAME = __name__.split(".")[-1]
 
 # For modules that do "from About import about"
 about = modules[__name__]
