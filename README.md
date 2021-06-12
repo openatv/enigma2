@@ -96,5 +96,5 @@
 ----------
 13 - Finally you can start building a image
 
-    MACHINE=zgemmah9combo DISTRO=openatv DISTRO_TYPE=dev make image
+    MACHINE=zgemmah9combo DISTRO=openatv DISTRO_TYPE=release make image
 
