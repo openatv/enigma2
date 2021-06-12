@@ -7,7 +7,7 @@
 
 ## minimum hardware requirement : ##
 
-> RAM:  24GB
+> RAM:  16GB
 > SWAP: 8GB
 > CPU:  Multi core\thread Model
 > HDD:  for Single Build 250GB Free, for Multibuild 500GB or more
