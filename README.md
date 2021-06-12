@@ -3,7 +3,14 @@
 
 ## Our buildserver is currently running on: ##
 
-> Ubuntu 20.04.1 LTS (Kernel 5.4.0)
+> Ubuntu 20.04.2 LTS (Kernel 5.4.0) 64 Bit Server OS
+
+## Min minimum hardware requirement : ##
+
+> RAM:  24GB
+> SWAP: 8GB
+> CPU:  Multi core\thread Model
+> HDD:  for Single Build 250GB Free, for Multibuild 500GB or more
 
 ## openATV 7.0 is build using oe-alliance build-environment and several git repositories: ##
 
