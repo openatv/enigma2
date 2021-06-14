@@ -234,7 +234,7 @@ msgid "  Menu key : Select quad channel"
 msgstr "  Кнопка Меню : Вибір 4 канальної доріжки"
 
 msgid "  REC  "
-msgstr ""
+msgstr "  ЗАП  "
 
 msgid "  Red key : Show/Hide channel name"
 msgstr "  Червона кнопка : Показати/сховати назву каналу"
@@ -382,30 +382,26 @@ msgstr "%-d-%b"
 msgid "%-d-%b-%Y"
 msgstr "%-d-%b-%Y"
 
-#, fuzzy
 msgid "%-d. %B %Y"
-msgstr "%-d %B %Y"
+msgstr "%-d. %B %Y"
 
 msgid "%-d. %b"
 msgstr ""
 
-#, fuzzy
 msgid "%-d. %b %Y"
-msgstr "%-d %b %Y"
+msgstr "%-d. %b %Y"
 
 msgid "%-d.%-m"
-msgstr ""
+msgstr "%-d.%-m"
 
 msgid "%-d.%-m.%Y"
-msgstr ""
+msgstr "%-d.%-m.%Y"
 
-#, fuzzy
 msgid "%-d.%m"
-msgstr "%d.%m.   "
+msgstr "%-d.%m"
 
-#, fuzzy
 msgid "%-d.%m.%Y"
-msgstr "%d.%m.   "
+msgstr "%-d.%m.%Y"
 
 msgid "%-d/%-m"
 msgstr "%-d/%-m"
@@ -502,29 +498,23 @@ msgstr "%A %-d-%B"
 msgid "%A %-d-%B-%Y"
 msgstr "%A %-d-%B-%Y"
 
-#, fuzzy
 msgid "%A %-d. %B"
-msgstr "%A %-d %B"
+msgstr ""
 
-#, fuzzy
 msgid "%A %-d. %B %Y"
-msgstr "%A %-d %B %Y"
+msgstr ""
 
-#, fuzzy
 msgid "%A %-d.%-m"
-msgstr "%A %-d/%-m"
+msgstr ""
 
-#, fuzzy
 msgid "%A %-d.%-m.%Y"
-msgstr "%A %-d/%-m/%Y"
+msgstr ""
 
-#, fuzzy
 msgid "%A %-d.%m"
-msgstr "%A %-d/%m"
+msgstr ""
 
-#, fuzzy
 msgid "%A %-d.%m.%Y"
-msgstr "%A %-d/%m/%Y"
+msgstr ""
 
 msgid "%A %-d/%-m"
 msgstr "%A %-d/%-m"
@@ -610,29 +600,23 @@ msgstr "%A %d-%B"
 msgid "%A %d-%B-%Y"
 msgstr "%A %d-%B-%Y"
 
-#, fuzzy
 msgid "%A %d. %B"
-msgstr "%A %d %B"
+msgstr ""
 
-#, fuzzy
 msgid "%A %d. %B %Y"
-msgstr "%A %d %B %Y"
+msgstr ""
 
-#, fuzzy
 msgid "%A %d.%-m"
-msgstr "%A %d/%-m"
+msgstr ""
 
-#, fuzzy
 msgid "%A %d.%-m.%Y"
-msgstr "%A %d/%-m/%Y"
+msgstr ""
 
-#, fuzzy
 msgid "%A %d.%m"
-msgstr "%A %d/%m"
+msgstr ""
 
-#, fuzzy
 msgid "%A %d.%m.%Y"
-msgstr "%A %d/%m/%Y"
+msgstr ""
 
 msgid "%A %d/%-m"
 msgstr "%A %d/%-m"
@@ -772,33 +756,26 @@ msgstr "%a %-d-%b"
 msgid "%a %-d-%b-%Y"
 msgstr ""
 
-#, fuzzy
 msgid "%a %-d. %B %Y"
-msgstr "%a %-d %B %Y"
+msgstr ""
 
-#, fuzzy
 msgid "%a %-d. %b"
-msgstr "%a %-d %b"
+msgstr ""
 
-#, fuzzy
 msgid "%a %-d. %b %Y"
-msgstr "%a %-d %b %Y"
+msgstr ""
 
-#, fuzzy
 msgid "%a %-d.%-m"
-msgstr "%A %-d/%-m"
+msgstr ""
 
-#, fuzzy
 msgid "%a %-d.%-m.%Y"
-msgstr "%a %-d-%B-%Y"
+msgstr ""
 
-#, fuzzy
 msgid "%a %-d.%m"
-msgstr "%a %-d"
+msgstr ""
 
-#, fuzzy
 msgid "%a %-d.%m.%Y"
-msgstr "%a %-d %B %Y"
+msgstr ""
 
 msgid "%a %-d/%-m"
 msgstr ""
@@ -920,33 +897,26 @@ msgstr ""
 msgid "%a %d-%b-%Y"
 msgstr ""
 
-#, fuzzy
 msgid "%a %d. %B %Y"
-msgstr "%a %-d %B %Y"
+msgstr ""
 
-#, fuzzy
 msgid "%a %d. %b"
-msgstr "%a %d %b"
+msgstr ""
 
-#, fuzzy
 msgid "%a %d. %b %Y"
-msgstr "%a %-d %b %Y"
+msgstr ""
 
-#, fuzzy
 msgid "%a %d.%-m"
-msgstr "%a %d"
+msgstr ""
 
-#, fuzzy
 msgid "%a %d.%-m.%Y"
-msgstr "%a %d-%B-%Y"
+msgstr ""
 
-#, fuzzy
 msgid "%a %d.%m"
-msgstr "%a %d"
+msgstr ""
 
-#, fuzzy
 msgid "%a %d.%m.%Y"
-msgstr "%a %d-%B-%Y"
+msgstr ""
 
 msgid "%a %d/%-m"
 msgstr ""
@@ -1019,7 +989,7 @@ msgid "%d %B %Y"
 msgstr "%d %B %Y"
 
 msgid "%d %b"
-msgstr ""
+msgstr "%d %b"
 
 msgid "%d %b %Y"
 msgstr "%d %b %Y"
@@ -1155,7 +1125,7 @@ msgid "%d. %B %Y"
 msgstr "%d %B %Y"
 
 msgid "%d. %b"
-msgstr ""
+msgstr "%d. %b"
 
 #, fuzzy
 msgid "%d. %b %Y"
@@ -1293,9 +1263,9 @@ msgstr " %s (%s)"
 msgid "%s (%s)\n"
 msgstr "%s (%s)\n"
 
-#, fuzzy, python-format
+#, python-format
 msgid "%s - %s (%s%d min)"
-msgstr "слот%s - %s- %s "
+msgstr "%s - %s (%s%d хв)"
 
 #, python-format
 msgid "%s - Setup"
@@ -1465,7 +1435,7 @@ msgid "+24"
 msgstr "+24"
 
 msgid "-"
-msgstr ""
+msgstr "-"
 
 msgid "-24"
 msgstr "-24"
@@ -2278,9 +2248,8 @@ msgstr "Налаштування AFP"
 msgid "ASS File"
 msgstr "ASS Файл"
 
-#, fuzzy
 msgid "ASS file"
-msgstr "ASS Файл"
+msgstr "ASS файл"
 
 msgid "ATSC"
 msgstr "ATSC"
@@ -3017,9 +2986,8 @@ msgstr "Аудіо ПІД"
 msgid "Audio PID%s, codec & lang"
 msgstr "Aудіо ПІД%s, кодек & мова"
 
-#, fuzzy
 msgid "Audio PID, codec & lang"
-msgstr "Aудіо ПІД%s, кодек & мова"
+msgstr "Aудіо ПІД, кодек & мова"
 
 msgid "Audio Selection"
 msgstr "Вибір аудіо"
@@ -3966,13 +3934,11 @@ msgstr "Скасувати виконання?"
 msgid "Cancel save timeshift as movie"
 msgstr "Скасувати збереження таймшифт як фільм"
 
-#, fuzzy
 msgid "Cancel the image selection and exit"
-msgstr "Скасувати вибір"
+msgstr "Скасувати вибір іміджу і вийти"
 
-#, fuzzy
 msgid "Cancel the image selection and exit all menus"
-msgstr "Скасувати вибір"
+msgstr "Скасувати вибір іміджу та вийдіть із усіх меню"
 
 msgid "Cancel the selection"
 msgstr "Скасувати вибір"
@@ -4108,9 +4074,8 @@ msgstr "Канал"
 msgid "Channel \t\t\tVolume +"
 msgstr "Канал \t\t\tЗвук +"
 
-#, fuzzy
 msgid "Channel +/-"
-msgstr "Канал 1"
+msgstr "Канал  +/-"
 
 msgid "Channel +/- button mode"
 msgstr "Режим кнопок Channel +/-"
@@ -5025,9 +4990,8 @@ msgstr "Безперервне відтворення (петля)"
 msgid "Contrast"
 msgstr "Контрастність"
 
-#, fuzzy
 msgid "Control LED can be turned on or off here."
-msgstr "Яскравість LED тут можна ввімкнути або вимкнути."
+msgstr "Тут можна ввімкнути або вимкнути LED."
 
 msgid "Control of the position how finished timer are shown in the Timer List."
 msgstr "Налаштуйте позицію завершених таймерів в списку таймерів."
@@ -5329,9 +5293,8 @@ msgstr "Чешська"
 msgid "Czechia"
 msgstr "Чехія"
 
-#, fuzzy
 msgid "D"
-msgstr "SD"
+msgstr ""
 
 msgid "DAC"
 msgstr "DAC"
@@ -5804,17 +5767,14 @@ msgstr "Видалити запис з списку відтворення"
 msgid "Delete saved playlist"
 msgstr "Видалити збережений список відтворення"
 
-#, fuzzy
 msgid "Delete the all the text"
 msgstr "Видалити весь текст"
 
-#, fuzzy
 msgid "Delete the character to the left of text cursor"
-msgstr "Видалити символ ліворуч від курсору текстового буфера"
+msgstr "Видалити символ ліворуч від текстового курсору"
 
-#, fuzzy
 msgid "Delete the character under the text cursor"
-msgstr "Видалити символ під курсором текстового буфера"
+msgstr "Видалити символ під текстовим курсором"
 
 msgid "Delete the current timeshift buffer and restart timeshift"
 msgstr "Видалити файл поточного таймшифта і перезапустити таймшифт"
@@ -5977,9 +5937,8 @@ msgstr "Виключити IceTV"
 msgid "Disable MiniTV"
 msgstr "Вимкнути Міні-ТБ"
 
-#, fuzzy
 msgid "Disable Picture in Picture"
-msgstr "Ввімкнути Картинка в Картинці"
+msgstr "Вимкнути Картинка в Картинці"
 
 msgid "Disable background scanning"
 msgstr "Вимкнути сканування у фоні"
@@ -6394,9 +6353,8 @@ msgstr "Динамічний контраст"
 msgid "E"
 msgstr "Е"
 
-#, fuzzy
 msgid "E "
-msgstr " "
+msgstr ""
 
 msgid "E2 Log"
 msgstr "Лог E2"
@@ -6511,9 +6469,8 @@ msgstr "Встановлення ліміту на схід"
 msgid "Eastern"
 msgstr "Східний"
 
-#, fuzzy
 msgid "EasyMedia"
-msgstr "Медіа"
+msgstr ""
 
 msgid "Ecuador"
 msgstr "Еквадор"
@@ -6774,9 +6731,8 @@ msgstr "Кодовано: "
 msgid "Encryption"
 msgstr "Шифрування"
 
-#, fuzzy
 msgid "Encryption Type:"
-msgstr "Шифрування:"
+msgstr "Тип шифрування:"
 
 msgid "Encryption key"
 msgstr "Ключ шифрування"
@@ -7055,9 +7011,8 @@ msgstr "Естонія"
 msgid "Estonian"
 msgstr "Естонська"
 
-#, fuzzy
 msgid "EtPortal"
-msgstr "Португалія"
+msgstr ""
 
 msgid "Ethernet network interface"
 msgstr "Інтерфейс локальної мережі"
@@ -7223,9 +7178,8 @@ msgstr "Експерт"
 msgid "Expert mode"
 msgstr "Режим експерт"
 
-#, fuzzy
 msgid "Ext. NumberZap"
-msgstr "Номер"
+msgstr ""
 
 msgid "Extend"
 msgstr "Розширити"
@@ -7300,9 +7254,8 @@ msgstr "Екстримальні види спорту"
 msgid "Extrude from left"
 msgstr "Витісняти зліва"
 
-#, fuzzy
 msgid "F"
-msgstr "F1"
+msgstr "F"
 
 msgid "F1"
 msgstr "F1"
@@ -7353,7 +7306,7 @@ msgid "FTA"
 msgstr "Не кодований"
 
 msgid "FTP"
-msgstr ""
+msgstr "FTP"
 
 msgid "FTP Setup"
 msgstr "Налаштування FTP"
@@ -7524,9 +7477,8 @@ msgstr "Помилка запису файлу: '%s'"
 msgid "File/Directory Status Information"
 msgstr "Файл/Каталог Інформація про статус"
 
-#, fuzzy
 msgid "Filename"
-msgstr "назва файлу"
+msgstr "Назва файлу"
 
 msgid "Files/folders to exclude from backup"
 msgstr "Файли/папки виключити з резервної копії"
@@ -7744,7 +7696,6 @@ msgstr "Частота & Канал"
 msgid "Frequency & Polarization"
 msgstr "Частота & Поляризація"
 
-#, fuzzy
 msgid "Frequency Norm:"
 msgstr "Частота: "
 
@@ -7757,9 +7708,8 @@ msgstr "Розмір кроку пошуку (кГц)"
 msgid "Frequency steps"
 msgstr "Кроки частоти"
 
-#, fuzzy
 msgid "Frequency:"
-msgstr "Частота: "
+msgstr "Частота:"
 
 msgid "Frequency: "
 msgstr "Частота: "
@@ -7818,9 +7768,8 @@ msgstr "Фудбол"
 msgid "Für Kinder"
 msgstr "Для дітей"
 
-#, fuzzy
 msgid "G"
-msgstr "ГБ"
+msgstr ""
 
 msgid "GB"
 msgstr "ГБ"
@@ -8111,9 +8060,8 @@ msgstr "Гвінея-Бісау"
 msgid "Guyana"
 msgstr "Гуана"
 
-#, fuzzy
 msgid "H"
-msgstr "КАН"
+msgstr ""
 
 msgid "H: = Hourly / D: = Daily / W: = Weekly / M: = Monthly"
 msgstr "H: = Щогодини / D: = Щодня / W: = Щотижня / M: = Щомісяця"
@@ -8143,7 +8091,7 @@ msgid "HD60/Multibox/Multiboxse"
 msgstr ""
 
 msgid "HDMI"
-msgstr ""
+msgstr "HDMI"
 
 msgid "HDMI CEC"
 msgstr "HDMI CEC"
@@ -8322,9 +8270,8 @@ msgstr "Історія довге натискання"
 msgid "History next"
 msgstr "Вперед в історії"
 
-#, fuzzy
 msgid "History zap..."
-msgstr "Історія Перемикань..."
+msgstr "Історія перемикань..."
 
 msgid "Hobbys"
 msgstr "Хоббі"
@@ -8425,20 +8372,17 @@ msgstr "Венгерська"
 msgid "Hungary"
 msgstr "Венгрія"
 
-#, fuzzy
 msgid "I"
-msgstr "АП"
+msgstr ""
 
 msgid "I/O priority for script execution"
 msgstr "I/O пріоритет для виконання скриптів"
 
-#, fuzzy
 msgid "I55SE/H7/H9/H9SE/H9COMBO/H9COMBOSE/H10/H11 new Model"
-msgstr "H7/H9/H9COMBO/H10 нова Модель"
+msgstr ""
 
-#, fuzzy
 msgid "IMDB Search"
-msgstr "IMDB пошук"
+msgstr "IMDB Пошук"
 
 msgid "IMDB search"
 msgstr "IMDB пошук"
@@ -8531,9 +8475,9 @@ msgstr ""
 msgid "IceTV version %s"
 msgstr "IceTV версія %s"
 
-#, fuzzy, python-format
+#, python-format
 msgid "IceTV version %s\n"
-msgstr "IceTV версія %s"
+msgstr "IceTV версія %s\n"
 
 msgid "Iceland"
 msgstr "Ісландія"
@@ -9977,7 +9921,7 @@ msgid "Menu config"
 msgstr "Налаштування меню"
 
 msgid "Merge broadcast EPG with IceTV"
-msgstr ""
+msgstr "Об'єднати EPG з трансляцію IceTV"
 
 msgid "Merging Timeshift files"
 msgstr "З'єднання файлів таймшифта"
@@ -11698,10 +11642,10 @@ msgid "Pitcairn"
 msgstr "Піткерн"
 
 msgid "Pixel Test"
-msgstr ""
+msgstr "Піксельний тест"
 
 msgid "Pixels\n"
-msgstr ""
+msgstr "Пікселі\n"
 
 msgid "Play"
 msgstr "Відтворення"
@@ -13782,10 +13726,10 @@ msgid "Scans default lamedbs sorted by satellite with a connected dish positione
 msgstr "Просканувати стандартні супутники записані в позиціонері"
 
 msgid "Scheduled load of epg.dat"
-msgstr ""
+msgstr "Заплановане завантаження epg.dat"
 
 msgid "Scheduled save of epg.dat"
-msgstr ""
+msgstr "Заплановане збереження epg.dat"
 
 msgid "Sci-Fi"
 msgstr "Наукова фантастика"
@@ -14154,7 +14098,7 @@ msgid "Select the desired function and click on \"OK\" to assign it. Use \"CH+/-
 msgstr "Виберіть потрібну функцію і натисніть на \" OK \", щоб призначити. Використовуйте\" CH +/- \"для перемикання між списками. Виберіть призначену функцію і натисніть на \" OK \" щоб скасувати призначення. Використовуйте \" Наступний/Попередній \", щоб змінити порядок призначеної функції."
 
 msgid "Select the highlighted image and reboot"
-msgstr ""
+msgstr "Виберіть виділений іьідж та перезавантажтесь"
 
 #, fuzzy
 msgid "Select the locale from a menu"
@@ -16557,7 +16501,7 @@ msgstr ""
 #. TRANSLATORS: Add here whatever should be shown in the "translator" about screen, up to 6 lines (use \n for newline)
 msgid "TRANSLATOR_INFO"
 msgstr ""
-"Переклад:  kvinto - 19.03.2020\n"
+"Переклад:  kvinto - 14.06.2021\n"
 "Сторінка:    https://gisclub.tv\n"
 "                  kvinto@rambler.ru"
 
@@ -16568,7 +16512,7 @@ msgid "TSID"
 msgstr "TSID"
 
 msgid "TUNER:"
-msgstr ""
+msgstr "ТЮНЕР:"
 
 msgid "TV"
 msgstr "ТВ"
@@ -21939,4 +21883,4 @@ msgid "zapping"
 msgstr "переключення"
 
 msgid "®"
-msgstr ""
+msgstr "®"
