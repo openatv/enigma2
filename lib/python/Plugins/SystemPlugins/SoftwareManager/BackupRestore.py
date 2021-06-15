@@ -20,7 +20,8 @@ from Components.Network import iNetwork
 from Plugins.Plugin import PluginDescriptor
 from enigma import eTimer, eEnv, eConsoleAppContainer, eEPGCache
 from Tools.Directories import *
-from os import system, popen, path, makedirs, listdir, access, stat, rename, remove, W_OK, R_OK
+from os import system, popen, makedirs, listdir, access, stat, rename, remove, W_OK, R_OK
+from os.path import exists as pathexists, isdir
 from time import gmtime, strftime, localtime, sleep
 from datetime import date
 from boxbranding import getBoxType, getMachineBrand, getMachineName, getImageDistro
@@ -86,12 +87,12 @@ def InitConfig():
 	# Drop non existant paths from list
 	tmpfiles = []
 	for f in BACKUPFILES:
-		if path.exists(f):
+		if pathexists(f):
 			tmpfiles.append(f)
 	backupset = tmpfiles
 
 	config.plugins.configurationbackup = ConfigSubsection()
-	if boxtype in ('maram9', 'classm', 'axodin', 'axodinc', 'starsatlx', 'genius', 'evo', 'galaxym6') and not path.exists("/media/hdd/backup_%s" % boxtype):
+	if boxtype in ('maram9', 'classm', 'axodin', 'axodinc', 'starsatlx', 'genius', 'evo', 'galaxym6') and not pathexists("/media/hdd/backup_%s" % boxtype):
 		config.plugins.configurationbackup.backuplocation = ConfigText(default='/media/backup/', visible_width=50, fixed_size=False)
 	else:
 		config.plugins.configurationbackup.backuplocation = ConfigText(default='/media/hdd/', visible_width=50, fixed_size=False)
@@ -176,7 +177,7 @@ class BackupScreen(Screen, ConfigListScreen):
 		except:
 			pass
 		try:
-			if path.exists(self.backuppath) == False:
+			if pathexists(self.backuppath) == False:
 				makedirs(self.backuppath)
 			InitConfig()
 			self.backupdirs = " ".join(f.strip("/") for f in config.plugins.configurationbackup.backupdirs_default.value)
@@ -205,10 +206,10 @@ class BackupScreen(Screen, ConfigListScreen):
 				cmd3 = cmd3 + " --exclude " + f.strip("/")
 			cmd3 = cmd3 + " " + self.backupdirs
 			cmd = [cmd2, cmd3]
-			if path.exists(self.fullbackupfilename):
+			if pathexists(self.fullbackupfilename):
 				dt = str(date.fromtimestamp(stat(self.fullbackupfilename).st_ctime))
 				self.newfilename = self.backuppath + "/" + dt + '-' + self.backupfile
-				if path.exists(self.newfilename):
+				if pathexists(self.newfilename):
 					remove(self.newfilename)
 				rename(self.fullbackupfilename, self.newfilename)
 			if self.finished_cb:
@@ -404,7 +405,7 @@ class RestoreMenu(Screen):
 	def fill_list(self):
 		self.flist = []
 		self.path = getBackupPath()
-		if path.exists(self.path) == False:
+		if pathexists(self.path) == False:
 			makedirs(self.path)
 		for file in listdir(self.path):
 			if file.endswith(".tar.gz"):
@@ -459,7 +460,7 @@ class RestoreMenu(Screen):
 		if ret == True:
 			self.exe = True
 			print("removing:", self.val)
-			if path.exists(self.val) == True:
+			if pathexists(self.val) == True:
 				remove(self.val)
 			self.exe = False
 			self.fill_list()
@@ -486,7 +487,7 @@ class RestoreScreen(Screen, ConfigListScreen):
 			"cancel": self.close,
 		}, -1)
 		self.backuppath = getBackupPath()
-		if not path.isdir(self.backuppath):
+		if not isdir(self.backuppath):
 			self.backuppath = getOldBackupPath()
 		self.backupfile = getBackupFilename()
 		self.fullbackupfilename = self.backuppath + "/" + self.backupfile
@@ -507,7 +508,7 @@ class RestoreScreen(Screen, ConfigListScreen):
 		for f in BLACKLISTED:
 				tarcmd = tarcmd + " --exclude " + f.strip("/")
 		restorecmdlist = ["rm -R /etc/enigma2", tarcmd, MANDATORY_RIGHTS]
-		if path.exists("/proc/stb/vmpeg/0/dst_width"):
+		if pathexists("/proc/stb/vmpeg/0/dst_width"):
 			restorecmdlist += ["echo 0 > /proc/stb/vmpeg/0/dst_height", "echo 0 > /proc/stb/vmpeg/0/dst_left", "echo 0 > /proc/stb/vmpeg/0/dst_top", "echo 0 > /proc/stb/vmpeg/0/dst_width"]
 		restorecmdlist.append("/etc/init.d/autofs restart")
 		print("[SOFTWARE MANAGER] Restore Settings !!!!")
@@ -519,8 +520,8 @@ class RestoreScreen(Screen, ConfigListScreen):
 		self.session.openWithCallback(self.checkPlugins, RestartNetwork)
 
 	def checkPlugins(self):
-		if path.exists("/tmp/installed-list.txt"):
-			if os.path.exists("/media/hdd/images/config/noplugins") and config.misc.firstrun.value:
+		if pathexists("/tmp/installed-list.txt"):
+			if pathexists("/media/hdd/images/config/noplugins") and config.misc.firstrun.value:
 				self.userRestoreScript()
 			else:
 				self.session.openWithCallback(self.userRestoreScript, installedPlugins)
@@ -536,7 +537,7 @@ class RestoreScreen(Screen, ConfigListScreen):
 
 		startSH = None
 		for SH in SH_List:
-			if path.exists(SH):
+			if pathexists(SH):
 				startSH = SH
 				break
 
@@ -718,7 +719,7 @@ class installedPlugins(Screen):
 		if len(self.Menulist) == 0:
 			self.close()
 		else:
-			if os.path.exists("/media/hdd/images/config/plugins") and config.misc.firstrun.value:
+			if pathexists("/media/hdd/images/config/plugins") and config.misc.firstrun.value:
 				self.startInstall(True)
 			else:
 				self.session.openWithCallback(self.startInstall, MessageBox, _("Backup plugins found\ndo you want to install now?"))
@@ -764,7 +765,7 @@ class RestorePlugins(Screen):
 	def setWindowTitle(self):
 		self.selectionChanged()
 		self.setTitle(_("Restore Plugins"))
-		if os.path.exists("/media/hdd/images/config/plugins") and config.misc.firstrun.value:
+		if pathexists("/media/hdd/images/config/plugins") and config.misc.firstrun.value:
 			self.green()
 
 	def exit(self):
