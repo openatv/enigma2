@@ -8,8 +8,11 @@
 ## minimum hardware requirement : ##
 
 > RAM:  16GB
+> 
 > SWAP: 8GB
+> 
 > CPU:  Multi core\thread Model
+> 
 > HDD:  for Single Build 250GB Free, for Multibuild 500GB or more
 
 ## openATV 7.0 is build using oe-alliance build-environment and several git repositories: ##
