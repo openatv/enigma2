@@ -26,7 +26,7 @@ from Components.Sources.List import List
 from Components.SystemInfo import SystemInfo
 from enigma import eTimer, eConsoleAppContainer
 from Plugins.Plugin import PluginDescriptor
-from random import Random 
+from random import Random
 from Screens.Screen import Screen
 from Components.MultiContent import MultiContentEntryText, MultiContentEntryPixmapAlphaTest
 from Screens.MessageBox import MessageBox
@@ -40,7 +40,7 @@ from Tools.LoadPixmap import LoadPixmap
 from subprocess import call
 import commands
 import string
-import sys 
+import sys
 if float(getVersionString()) >= 4.0:
 	basegroup = "packagegroup-base"
 else:
@@ -66,7 +66,7 @@ class NetworkSummary(Screen):
 		self["desc"].text = desc
 
 class NetworkAdapterSelection(Screen, HelpableScreen):
-	def __init__(self, session, menu_path = ""):
+	def __init__(self, session, menu_path=""):
 		Screen.__init__(self, session)
 		HelpableScreen.__init__(self)
 		screentitle = _("Device")
@@ -287,7 +287,7 @@ class NetworkAdapterSelection(Screen, HelpableScreen):
 
 
 class NameserverSetup(Screen, ConfigListScreen, HelpableScreen):
-	def __init__(self, session, menu_path = ""):
+	def __init__(self, session, menu_path=""):
 		Screen.__init__(self, session)
 		HelpableScreen.__init__(self)
 		screentitle = _("Nameserver settings")
@@ -372,7 +372,7 @@ class NameserverSetup(Screen, ConfigListScreen, HelpableScreen):
 			self.createSetup()
 
 class NetworkMacSetup(Screen, ConfigListScreen, HelpableScreen):
-	def __init__(self, session, menu_path = ""):
+	def __init__(self, session, menu_path=""):
 		Screen.__init__(self, session)
 		HelpableScreen.__init__(self)
 		screentitle = _("MAC address settings")
@@ -534,6 +534,7 @@ class AdapterSetup(Screen, ConfigListScreen, HelpableScreen):
 	def layoutFinished(self):
 		self["DNS1"].setText(self.primaryDNS.getText())
 		self["DNS2"].setText(self.secondaryDNS.getText())
+
 		try:
 			if self.ipConfigEntry.getText() is not None:
 				if self.ipConfigEntry.getText() == "0.0.0.0":
@@ -551,7 +552,8 @@ class AdapterSetup(Screen, ConfigListScreen, HelpableScreen):
 			else:
 				self["Mask"].setText(self.netmaskConfigEntry.getText())
 		else:
-			self["IP"].setText(_("N/A"))
+			self["Mask"].setText(_("N/A"))
+
 		if iNetwork.getAdapterAttribute(self.iface, "gateway"):
 			if self.gatewayConfigEntry.getText() == "0.0.0.0":
 				self["Gatewaytext"].setText(_("Gateway"))
@@ -562,6 +564,7 @@ class AdapterSetup(Screen, ConfigListScreen, HelpableScreen):
 		else:
 			self["Gateway"].setText("")
 			self["Gatewaytext"].setText("")
+
 		self["Adapter"].setText(iNetwork.getFriendlyAdapterName(self.iface))
 
 	def createConfig(self):
@@ -641,7 +644,7 @@ class AdapterSetup(Screen, ConfigListScreen, HelpableScreen):
 			for p in plugins.getPlugins(PluginDescriptor.WHERE_NETWORKSETUP):
 				callFnc = p.__call__["ifaceSupported"](self.iface)
 				if callFnc is not None:
-					if "WlanPluginEntry" in p.__call__: # internally used only for WLAN Plugin
+					if "WlanPluginEntry" in p.__call__:  # internally used only for WLAN Plugin
 						self.extended = callFnc
 						if "configStrings" in p.__call__:
 							self.configStrings = p.__call__["configStrings"]
@@ -895,6 +898,7 @@ class AdapterSetupConfiguration(Screen, HelpableScreen):
 			self["menulist"].onSelectionChanged.append(self.selectionChanged)
 		self.selectionChanged()
 		self.onLayoutFinish.append(self.updateStatusbar)
+
 	def queryWirelessDevice(self, iface):
 		try:
 			from pythonwifi.iwlibs import Wireless
@@ -909,7 +913,7 @@ class AdapterSetupConfiguration(Screen, HelpableScreen):
 				if error_no in (errno.EOPNOTSUPP, errno.ENODEV, errno.EPERM):
 					return False
 				else:
-					print "[AdapterSetupConfiguration] error: ",error_no,error_str
+					print "[AdapterSetupConfiguration] error: ", error_no, error_str
 					return True
 			else:
 				return True
@@ -930,11 +934,11 @@ class AdapterSetupConfiguration(Screen, HelpableScreen):
 			else:
 				self.session.openWithCallback(self.AdapterSetupClosed, AdapterSetup, self.iface, None, self.menu_path)
 		if self["menulist"].getCurrent()[0] == 'test':
-			self.session.open(NetworkAdapterTest,self.iface,self.menu_path)
+			self.session.open(NetworkAdapterTest, self.iface, self.menu_path)
 		if self["menulist"].getCurrent()[0] == 'dns':
-			self.session.open(NameserverSetup,self.menu_path)
+			self.session.open(NameserverSetup, self.menu_path)
 		if self["menulist"].getCurrent()[0] == 'mac':
-			self.session.open(NetworkMacSetup,self.menu_path)
+			self.session.open(NetworkMacSetup, self.menu_path)
 		if self["menulist"].getCurrent()[0] == 'scanwlan':
 			try:
 				from Plugins.SystemPlugins.WirelessLan.plugin import WlanScan
@@ -999,7 +1003,7 @@ class AdapterSetupConfiguration(Screen, HelpableScreen):
 		if self["menulist"].getCurrent()[0][0] == 'extendedSetup':
 			self["description"].setText(_(self["menulist"].getCurrent()[1][1]) + self.oktext)
 		if self["menulist"].getCurrent()[0] == 'mac':
-			self["description"].setText(_("Set the MAC address of your %s %s.\n" ) % (getMachineBrand(), getMachineName()) + self.oktext )
+			self["description"].setText(_("Set the MAC address of your %s %s.\n") % (getMachineBrand(), getMachineName()) + self.oktext)
 		item = self["menulist"].getCurrent()[0]
 		if item:
 			name = str(self["menulist"].getCurrent())
@@ -1047,7 +1051,7 @@ class AdapterSetupConfiguration(Screen, HelpableScreen):
 			callFnc = p.__call__["ifaceSupported"](self.iface)
 			if callFnc is not None:
 				self.extended = callFnc
-				if "WlanPluginEntry" in p.__call__: # internally used only for WLAN Plugin
+				if "WlanPluginEntry" in p.__call__:  # internally used only for WLAN Plugin
 					menu.append(SubNetworkMenuEntryComponent((_("Scan wireless networks")), "scanwlan"))
 					if iNetwork.getAdapterAttribute(self.iface, "up"):
 						menu.append(SubNetworkMenuEntryComponent((_("Show WLAN status")), "wlanstatus"))
@@ -1745,9 +1749,15 @@ class NetworkAfp(Screen):
 
 	def checkNetworkState(self, str, retval, extra_args):
 		if 'Collected errors' in str:
-			self.session.openWithCallback(self.close, MessageBox, _("A background update check is in progress, please wait a few minutes and then try again."), type=MessageBox.TYPE_INFO, timeout=10, close_on_any_key=True)
+			self.session.openWithCallback(
+				self.close, MessageBox,
+				_("A background update check is in progress, please wait a few minutes and then try again."),
+				type=MessageBox.TYPE_INFO, timeout=10, close_on_any_key=True)
 		elif not str:
-			self.session.openWithCallback(self.InstallPackage,MessageBox,_('Your %s %s will be restarted after the installation of the service\nAre you ready to install "%s" ?') % (getMachineBrand(), getMachineName(), self.service_name), MessageBox.TYPE_YESNO)
+			self.session.openWithCallback(
+				self.InstallPackage, MessageBox,
+				_('Your %s %s will be restarted after the installation of the service\nAre you ready to install "%s" ?') %
+				(getMachineBrand(), getMachineName(), self.service_name), MessageBox.TYPE_YESNO)
 		else:
 			self.updateService()
 
@@ -1761,7 +1771,7 @@ class NetworkAfp(Screen):
 		self.close()
 
 	def doInstall(self, callback, pkgname):
-		self.message = self.session.open(MessageBox,_("Please wait..."), MessageBox.TYPE_INFO, enable_input = False)
+		self.message = self.session.open(MessageBox, _("Please wait..."), MessageBox.TYPE_INFO, enable_input=False)
 		self.message.setTitle(_('Installing service'))
 		self.Console.ePopen('/usr/bin/opkg install ' + pkgname, callback)
 
@@ -1773,7 +1783,10 @@ class NetworkAfp(Screen):
 
 	def RemovedataAvail(self, str, retval, extra_args):
 		if str:
-			restartbox = self.session.openWithCallback(self.RemovePackage,MessageBox,_('Your %s %s will be restarted after the removal of the service\nDo you want to remove the service now ?') % (getMachineBrand(), getMachineName()), MessageBox.TYPE_YESNO)
+			restartbox = self.session.openWithCallback(
+				self.RemovePackage, MessageBox,
+				_('Your %s %s will be restarted after the removal of the service\nDo you want to remove the service now ?') % (getMachineBrand(), getMachineName()),
+				MessageBox.TYPE_YESNO)
 			restartbox.setTitle(_('Are you ready to remove "%s" ?') % self.service_name)
 		else:
 			self.updateService()
@@ -1783,7 +1796,7 @@ class NetworkAfp(Screen):
 			self.doRemove(self.removeComplete, self.service_name)
 
 	def doRemove(self, callback, pkgname):
-		self.message = self.session.open(MessageBox,_("Please wait..."), MessageBox.TYPE_INFO, enable_input = False)
+		self.message = self.session.open(MessageBox, _("Please wait..."), MessageBox.TYPE_INFO, enable_input=False)
 		self.message.setTitle(_('Removing service'))
 		self.Console.ePopen('/usr/bin/opkg remove ' + pkgname + ' --force-remove --autoremove', callback)
 
@@ -1807,7 +1820,7 @@ class NetworkAfp(Screen):
 		if fileExists('/etc/rc2.d/S20atalk'):
 			self.Console.ePopen('update-rc.d -f atalk remove', self.StartStopCallback)
 		else:
-			self.Console.ePopen('update-rc.d -f atalk defaults', self.StartStopCallback)
+			self.Console.ePopen('update-rc.d -f atalk defaults 20', self.StartStopCallback)
 
 	def updateService(self, result=None, retval=None, extra_args=None):
 		import process
@@ -1867,7 +1880,7 @@ class NetworkFtp(Screen):
 		self['key_green'] = Label(_("Start"))
 		self["key_red"] = Label()
 		self['key_yellow'] = Label(_("Autostart"))
-		self["key_blue"] =  Label()
+		self["key_blue"] = Label()
 		self.Console = Console()
 		self.my_ftp_active = False
 		self.my_ftp_run = False
@@ -1886,27 +1899,27 @@ class NetworkFtp(Screen):
 			commands.append('/etc/init.d/vsftpd stop')
 		self.Console.eBatch(commands, self.StartStopCallback, debug=True)
 
-	def StartStopCallback(self, result = None, retval = None, extra_args = None):
+	def StartStopCallback(self, result=None, retval=None, extra_args=None):
 		time.sleep(3)
 		self.updateService()
 
 	def activateFtp(self):
 		commands = []
-		if fileExists('/etc/rc2.d/S20vsftpd'):
+		if fileExists('/etc/rc2.d/S80vsftpd'):
 			commands.append('update-rc.d -f vsftpd remove')
 		else:
-			commands.append('update-rc.d -f vsftpd defaults')
+			commands.append('update-rc.d -f vsftpd defaults 80')
 		self.Console.eBatch(commands, self.StartStopCallback, debug=True)
 
 	def updateService(self):
-		import process		
-		p = process.ProcessList()		
+		import process
+		p = process.ProcessList()
 		ftp_process = str(p.named('vsftpd')).strip('[]')
 		self['labrun'].hide()
 		self['labstop'].hide()
 		self['labactive'].setText(_("Disabled"))
 		self.my_ftp_active = False
-		if fileExists('/etc/rc2.d/S20vsftpd'):
+		if fileExists('/etc/rc2.d/S80vsftpd'):
 			self['labactive'].setText(_("Enabled"))
 			self['labactive'].show()
 			self.my_ftp_active = True
@@ -1976,9 +1989,15 @@ class NetworkNfs(Screen):
 
 	def checkNetworkState(self, str, retval, extra_args):
 		if 'Collected errors' in str:
-			self.session.openWithCallback(self.close, MessageBox, _("A background update check is in progress, please wait a few minutes and then try again."), type=MessageBox.TYPE_INFO, timeout=10, close_on_any_key=True)
+			self.session.openWithCallback(
+				self.close, MessageBox,
+				_("A background update check is in progress, please wait a few minutes and then try again."),
+				type=MessageBox.TYPE_INFO, timeout=10, close_on_any_key=True)
 		elif not str:
-			self.session.openWithCallback(self.InstallPackage,MessageBox,_('Your %s %s will be restarted after the installation of the service\nAre you ready to install "%s" ?') % (getMachineBrand(), getMachineName(), self.service_name), MessageBox.TYPE_YESNO)
+			self.session.openWithCallback(
+				self.InstallPackage, MessageBox,
+				_('Your %s %s will be restarted after the installation of the service\nAre you ready to install "%s" ?') % (getMachineBrand(), getMachineName(), self.service_name),
+				MessageBox.TYPE_YESNO)
 		else:
 			self.updateService()
 
@@ -1992,7 +2011,7 @@ class NetworkNfs(Screen):
 		self.close()
 
 	def doInstall(self, callback, pkgname):
-		self.message = self.session.open(MessageBox,_("Please wait..."), MessageBox.TYPE_INFO, enable_input = False)
+		self.message = self.session.open(MessageBox, _("Please wait..."), MessageBox.TYPE_INFO, enable_input=False)
 		self.message.setTitle(_('Installing service'))
 		self.Console.ePopen('/usr/bin/opkg install ' + pkgname, callback)
 
@@ -2004,7 +2023,10 @@ class NetworkNfs(Screen):
 
 	def RemovedataAvail(self, str, retval, extra_args):
 		if str:
-			restartbox = self.session.openWithCallback(self.RemovePackage,MessageBox,_('Your %s %s will be restarted after the removal of the service\nDo you want to remove the service now ?') % (getMachineBrand(), getMachineName()), MessageBox.TYPE_YESNO)
+			restartbox = self.session.openWithCallback(
+				self.RemovePackage, MessageBox,
+				_('Your %s %s will be restarted after the removal of the service\nDo you want to remove the service now ?') % (getMachineBrand(), getMachineName()),
+				MessageBox.TYPE_YESNO)
 			restartbox.setTitle(_('Are you ready to remove "%s" ?') % self.service_name)
 		else:
 			self.updateService()
@@ -2014,7 +2036,7 @@ class NetworkNfs(Screen):
 			self.doRemove(self.removeComplete, self.service_name)
 
 	def doRemove(self, callback, pkgname):
-		self.message = self.session.open(MessageBox,_("Please wait..."), MessageBox.TYPE_INFO, enable_input = False)
+		self.message = self.session.open(MessageBox, _("Please wait..."), MessageBox.TYPE_INFO, enable_input=False)
 		self.message.setTitle(_('Removing service'))
 		self.Console.ePopen('/usr/bin/opkg remove ' + pkgname + ' --force-remove --autoremove', callback)
 
@@ -2133,7 +2155,7 @@ class NetworkOpenvpn(Screen):
 		self.close()
 
 	def doInstall(self, callback, pkgname):
-		self.message = self.session.open(MessageBox,_("Please wait..."), MessageBox.TYPE_INFO, enable_input = False)
+		self.message = self.session.open(MessageBox, _("Please wait..."), MessageBox.TYPE_INFO, enable_input=False)
 		self.message.setTitle(_('Installing service'))
 		self.Console.ePopen('/usr/bin/opkg install ' + pkgname, callback)
 
@@ -2155,7 +2177,7 @@ class NetworkOpenvpn(Screen):
 			self.doRemove(self.removeComplete, self.service_name)
 
 	def doRemove(self, callback, pkgname):
-		self.message = self.session.open(MessageBox,_("Please wait..."), MessageBox.TYPE_INFO, enable_input = False)
+		self.message = self.session.open(MessageBox, _("Please wait..."), MessageBox.TYPE_INFO, enable_input=False)
 		self.message.setTitle(_('Removing service'))
 		self.Console.ePopen('/usr/bin/opkg remove ' + pkgname + ' --force-remove --autoremove', callback)
 
@@ -2183,7 +2205,7 @@ class NetworkOpenvpn(Screen):
 		if fileExists('/etc/rc2.d/S20openvpn'):
 			self.Console.ePopen('update-rc.d -f openvpn remove', self.StartStopCallback)
 		else:
-			self.Console.ePopen('update-rc.d -f openvpn defaults', self.StartStopCallback)
+			self.Console.ePopen('update-rc.d -f openvpn defaults 20', self.StartStopCallback)
 
 	def updateService(self):
 		import process
@@ -2297,9 +2319,15 @@ class NetworkSamba(Screen):
 
 	def checkNetworkState(self, str, retval, extra_args):
 		if 'Collected errors' in str:
-			self.session.openWithCallback(self.close, MessageBox, _("A background update check is in progress, please wait a few minutes and then try again."), type=MessageBox.TYPE_INFO, timeout=10, close_on_any_key=True)
+			self.session.openWithCallback(
+				self.close, MessageBox,
+				_("A background update check is in progress, please wait a few minutes and then try again."),
+				type=MessageBox.TYPE_INFO, timeout=10, close_on_any_key=True)
 		elif not str:
-			self.session.openWithCallback(self.InstallPackage, MessageBox,_('Your %s %s will be restarted after the installation of the service\nAre you ready to install "%s" ?')  % (getMachineBrand(), getMachineName(), self.service_name), MessageBox.TYPE_YESNO)
+			self.session.openWithCallback(
+				self.InstallPackage, MessageBox,
+				_('Your %s %s will be restarted after the installation of the service\nAre you ready to install "%s" ?') % (getMachineBrand(), getMachineName(), self.service_name),
+				MessageBox.TYPE_YESNO)
 		else:
 			self.updateService()
 
@@ -2313,7 +2341,7 @@ class NetworkSamba(Screen):
 		self.close()
 
 	def doInstall(self, callback, pkgname):
-		self.message = self.session.open(MessageBox,_("Please wait..."), MessageBox.TYPE_INFO, enable_input = False)
+		self.message = self.session.open(MessageBox, _("Please wait..."), MessageBox.TYPE_INFO, enable_input=False)
 		self.message.setTitle(_('Installing service'))
 		self.Console.ePopen('/usr/bin/opkg install --force-maintainer ' + pkgname, callback)
 
@@ -2325,7 +2353,10 @@ class NetworkSamba(Screen):
 
 	def RemovedataAvail(self, str, retval, extra_args):
 		if str:
-			restartbox = self.session.openWithCallback(self.RemovePackage,MessageBox,_('Your %s %s will be restarted after the removal of the service\nDo you want to remove the service now ?') % (getMachineBrand(), getMachineName()), MessageBox.TYPE_YESNO)
+			restartbox = self.session.openWithCallback(
+				self.RemovePackage, MessageBox,
+				_('Your %s %s will be restarted after the removal of the service\nDo you want to remove the service now ?') % (getMachineBrand(), getMachineName()),
+				MessageBox.TYPE_YESNO)
 			restartbox.setTitle(_('Ready to remove "%s" ?') % self.service_name)
 		else:
 			self.updateService()
@@ -2335,7 +2366,7 @@ class NetworkSamba(Screen):
 			self.doRemove(self.removeComplete, self.service_name)
 
 	def doRemove(self, callback, pkgname):
-		self.message = self.session.open(MessageBox,_("Please wait..."), MessageBox.TYPE_INFO, enable_input = False)
+		self.message = self.session.open(MessageBox, _("Please wait..."), MessageBox.TYPE_INFO, enable_input=False)
 		self.message.setTitle(_('Removing service'))
 		self.Console.ePopen('/usr/bin/opkg remove ' + pkgname + ' --force-remove --autoremove', callback)
 
@@ -2367,12 +2398,12 @@ class NetworkSamba(Screen):
 		if fileExists('/etc/rc2.d/S20samba'):
 			commands.append('update-rc.d -f samba remove')
 		else:
-			commands.append('update-rc.d -f samba defaults')
+			commands.append('update-rc.d -f samba defaults 20')
 		self.Console.eBatch(commands, self.StartStopCallback, debug=True)
 
 	def updateService(self):
-		import process		
-		p = process.ProcessList()		
+		import process
+		p = process.ProcessList()
 		samba_process = str(p.named('smbd')).strip('[]')
 		self['labrun'].hide()
 		self['labstop'].hide()
@@ -2571,7 +2602,7 @@ class NetworkTelnet(Screen):
 				commands.append('/bin/su -l -c "/etc/init.d/telnetd.busybox start"')
 			self.Console.eBatch(commands, self.StartStopCallback, debug=True)
 
-	def StartStopCallback(self, result = None, retval = None, extra_args = None):
+	def StartStopCallback(self, result=None, retval=None, extra_args=None):
 		time.sleep(3)
 		self.updateService()
 
@@ -2581,7 +2612,7 @@ class NetworkTelnet(Screen):
 			if fileExists('/etc/rc2.d/S20telnetd.busybox'):
 				commands.append('update-rc.d -f telnetd.busybox remove')
 			else:
-				commands.append('update-rc.d -f telnetd.busybox defaults')
+				commands.append('update-rc.d -f telnetd.busybox defaults 20')
 		self.Console.eBatch(commands, self.StartStopCallback, debug=True)
 
 	def updateService(self):
@@ -2690,7 +2721,7 @@ class NetworkInadyn(Screen):
 		self.close()
 
 	def doInstall(self, callback, pkgname):
-		self.message = self.session.open(MessageBox,_("Please wait..."), MessageBox.TYPE_INFO, enable_input = False)
+		self.message = self.session.open(MessageBox, _("Please wait..."), MessageBox.TYPE_INFO, enable_input=False)
 		self.message.setTitle(_('Installing service'))
 		self.Console.ePopen('/usr/bin/opkg install ' + pkgname, callback)
 
@@ -2712,7 +2743,7 @@ class NetworkInadyn(Screen):
 			self.doRemove(self.removeComplete, self.service_name)
 
 	def doRemove(self, callback, pkgname):
-		self.message = self.session.open(MessageBox,_("Please wait..."), MessageBox.TYPE_INFO, enable_input = False)
+		self.message = self.session.open(MessageBox, _("Please wait..."), MessageBox.TYPE_INFO, enable_input=False)
 		self.message.setTitle(_('Removing service'))
 		self.Console.ePopen('/usr/bin/opkg remove ' + pkgname + ' --force-remove --autoremove', callback)
 
@@ -2737,7 +2768,7 @@ class NetworkInadyn(Screen):
 		if fileExists('/etc/rc2.d/S20inadyn-mt'):
 			self.Console.ePopen('update-rc.d -f inadyn-mt remove', self.StartStopCallback)
 		else:
-			self.Console.ePopen('update-rc.d -f inadyn-mt defaults', self.StartStopCallback)
+			self.Console.ePopen('update-rc.d -f inadyn-mt defaults 20', self.StartStopCallback)
 
 	def updateService(self):
 		import process
@@ -3059,7 +3090,7 @@ class NetworkuShare(Screen):
 		self.close()
 
 	def doInstall(self, callback, pkgname):
-		self.message = self.session.open(MessageBox,_("Please wait..."), MessageBox.TYPE_INFO, enable_input = False)
+		self.message = self.session.open(MessageBox, _("Please wait..."), MessageBox.TYPE_INFO, enable_input=False)
 		self.message.setTitle(_('Installing service'))
 		self.Console.ePopen('/usr/bin/opkg install ' + pkgname, callback)
 
@@ -3081,7 +3112,7 @@ class NetworkuShare(Screen):
 			self.doRemove(self.removeComplete, self.service_name)
 
 	def doRemove(self, callback, pkgname):
-		self.message = self.session.open(MessageBox,_("Please wait..."), MessageBox.TYPE_INFO, enable_input = False)
+		self.message = self.session.open(MessageBox, _("Please wait..."), MessageBox.TYPE_INFO, enable_input=False)
 		self.message.setTitle(_('Removing service'))
 		self.Console.ePopen('/usr/bin/opkg remove ' + pkgname + ' --force-remove --autoremove', callback)
 
@@ -3106,7 +3137,7 @@ class NetworkuShare(Screen):
 		if fileExists('/etc/rc2.d/S20ushare'):
 			self.Console.ePopen('update-rc.d -f ushare remove', self.StartStopCallback)
 		else:
-			self.Console.ePopen('update-rc.d -f ushare defaults', self.StartStopCallback)
+			self.Console.ePopen('update-rc.d -f ushare defaults 20', self.StartStopCallback)
 
 	def updateService(self):
 		import process
@@ -3583,7 +3614,7 @@ class NetworkMiniDLNA(Screen):
 		self.close()
 
 	def doInstall(self, callback, pkgname):
-		self.message = self.session.open(MessageBox,_("Please wait..."), MessageBox.TYPE_INFO, enable_input = False)
+		self.message = self.session.open(MessageBox, _("Please wait..."), MessageBox.TYPE_INFO, enable_input=False)
 		self.message.setTitle(_('Installing service'))
 		self.Console.ePopen('/usr/bin/opkg install ' + pkgname, callback)
 
@@ -3605,7 +3636,7 @@ class NetworkMiniDLNA(Screen):
 			self.doRemove(self.removeComplete, self.service_name)
 
 	def doRemove(self, callback, pkgname):
-		self.message = self.session.open(MessageBox,_("Please wait..."), MessageBox.TYPE_INFO, enable_input = False)
+		self.message = self.session.open(MessageBox, _("Please wait..."), MessageBox.TYPE_INFO, enable_input=False)
 		self.message.setTitle(_('Removing service'))
 		self.Console.ePopen('/usr/bin/opkg remove ' + pkgname + ' --force-remove --autoremove', callback)
 
@@ -3630,7 +3661,7 @@ class NetworkMiniDLNA(Screen):
 		if fileExists('/etc/rc2.d/S20minidlna'):
 			self.Console.ePopen('update-rc.d -f minidlna remove', self.StartStopCallback)
 		else:
-			self.Console.ePopen('update-rc.d -f minidlna defaults', self.StartStopCallback)
+			self.Console.ePopen('update-rc.d -f minidlna defaults 20', self.StartStopCallback)
 
 	def updateService(self):
 		import process
@@ -4064,7 +4095,7 @@ class NetworkPassword(ConfigListScreen, Screen):
 		self["HelpWindow"] = Pixmap()
 		self["HelpWindow"].hide()
 
-		self.user="root"
+		self.user = "root"
 		self.output_line = ""
 
 		self.updateList()
@@ -4083,52 +4114,51 @@ class NetworkPassword(ConfigListScreen, Screen):
 	def newRandom(self):
 		self.password.value = self.GeneratePassword()
 		self["config"].invalidateCurrent()
-	
+
 	def updateList(self):
 		self.password = NoSave(ConfigPassword(default=""))
-		instructions = _("You must set a root password in order to be able to use network services,"
-						" such as FTP, telnet or ssh.")
+		instructions = _("You must set a root password in order to be able to use network services, such as FTP, telnet or ssh.")
 		self.list.append(getConfigListEntry(_('New password'), self.password, instructions))
 		self['config'].list = self.list
 		self['config'].l.setList(self.list)
 
-	def GeneratePassword(self): 
+	def GeneratePassword(self):
 		passwdChars = string.letters + string.digits
 		passwdLength = 10
-		return ''.join(Random().sample(passwdChars, passwdLength)) 
+		return ''.join(Random().sample(passwdChars, passwdLength))
 
 	def SetPasswd(self):
 		password = self.password.value
 		if not password:
-			self.session.open(MessageBox, _("The password can not be blank.") , MessageBox.TYPE_ERROR)
+			self.session.open(MessageBox, _("The password can not be blank."), MessageBox.TYPE_ERROR)
 			return
-		#print "[NetworkPassword] Changing the password for %s to %s" % (self.user,self.password) 
+		# print "[NetworkPassword] Changing the password for %s to %s" % (self.user,self.password)
 		self.container = eConsoleAppContainer()
 		self.container.appClosed.append(self.runFinished)
 		self.container.dataAvail.append(self.dataAvail)
-		retval = self.container.execute("echo -e '%s\n%s' | (passwd %s)"  % (password, password, self.user))
+		retval = self.container.execute("echo -e '%s\n%s' | (passwd %s)" % (password, password, self.user))
 		if retval:
-			message=_("Unable to change password")
-			self.session.open(MessageBox, message , MessageBox.TYPE_ERROR)
+			message = _("Unable to change password")
+			self.session.open(MessageBox, message, MessageBox.TYPE_ERROR)
 		else:
-			message=_("Password changed")
-			self.session.open(MessageBox, message , MessageBox.TYPE_INFO, timeout=5)
+			message = _("Password changed")
+			self.session.open(MessageBox, message, MessageBox.TYPE_INFO, timeout=5)
 			self.close()
 
-	def dataAvail(self,data):
+	def dataAvail(self, data):
 		self.output_line += data
 		while True:
 			i = self.output_line.find('\n')
 			if i == -1:
 				break
-			self.processOutputLine(self.output_line[:i+1])
-			self.output_line = self.output_line[i+1:]
+			self.processOutputLine(self.output_line[:i + 1])
+			self.output_line = self.output_line[i + 1:]
 
-	def processOutputLine(self,line):
+	def processOutputLine(self, line):
 		if line.find('password: '):
 			self.container.write("%s\n" % self.password.value)
 
-	def runFinished(self,retval):
+	def runFinished(self, retval):
 		del self.container.dataAvail[:]
 		del self.container.appClosed[:]
 		del self.container
