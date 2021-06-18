@@ -1,0 +1,90 @@
+name: enigma2 build
+
+on:
+  push:
+    branches: [ 7.0 ]
+  pull_request:
+    branches: [ 7.0 ]
+
+jobs:
+  build:
+    name: Build enigma2
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        gcc: [8, 9, 10, 11]
+    steps:
+      - name: Install prerequisites
+        run: |
+          sudo add-apt-repository -y ppa:ubuntu-toolchain-r/test
+          sudo apt-get -q update
+          sudo apt-get install g++-${{ matrix.gcc }}
+          sudo apt-get install linux-libc-dev
+          sudo apt-get install git
+          sudo apt-get install build-essential
+          sudo apt-get install automake
+          sudo apt-get install libtool
+          sudo apt-get install python3.9-dev
+          sudo apt-get install zlib1g-dev
+          sudo apt-get install gettext
+          sudo apt-get install swig
+          sudo apt-get install libgstreamer1.0-dev
+          sudo apt-get install libgstreamer-plugins-base1.0-dev
+          sudo apt-get install libfreetype6-dev
+          sudo apt-get install libsigc++-2.0-dev
+          sudo apt-get install libfribidi-dev
+          sudo apt-get install libssl-dev
+          sudo apt-get install libavahi-client-dev
+          sudo apt-get install libjpeg-turbo8-dev
+          sudo apt-get install libgif-dev
+
+      - uses: actions/checkout@v2
+        with:
+          ref: '7.0'
+      - uses: actions/setup-python@v2
+        with:
+          python-version: '3.9'
+
+      - name: Build enigma2 dependencies, gcc-${{ matrix.gcc }}
+        env:
+          CC: "gcc-${{ matrix.gcc }}"
+          CXX: "g++-${{ matrix.gcc }}"
+        run: |
+          echo "installing libdvbsi++"
+          pushd .
+          cd /tmp
+          git clone --depth 1 git://git.opendreambox.org/git/obi/libdvbsi++.git
+          cd libdvbsi++
+          autoreconf -i
+          ./configure
+          make
+          sudo make install
+          popd
+          echo "installing tuxbox"
+          pushd .
+          cd /tmp
+          git clone --depth 1 https://github.com/OpenPLi/tuxtxt.git
+          cd tuxtxt/libtuxtxt
+          autoreconf -i
+          ./configure --with-boxtype=generic DVB_API_VERSION=5
+          make
+          sudo make install
+          cd ../tuxtxt
+          autoreconf -i
+          ./configure --with-boxtype=generic DVB_API_VERSION=5
+          make
+          sudo make install
+          popd
+
+      - name: Build enigma2
+        env:
+          CC: "gcc-${{ matrix.gcc }}"
+          CXX: "g++-${{ matrix.gcc }}"
+        run: |
+          pip3 install six
+          echo "compiling enigma2"
+          autoreconf -i
+          ./configure --with-libsdl=no --with-boxtype=nobox --enable-dependency-tracking ac_cv_prog_c_openmp=-fopenmp --with-gstversion=1.0 --with-textlcd
+          make
+          python -m compileall .
+          echo done!
