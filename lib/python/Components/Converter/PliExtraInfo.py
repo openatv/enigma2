@@ -27,18 +27,92 @@ caid_data = (
 	("0x5581", "0x5581", "BulCrypt", "B2", False )
 )
 
+# Unused in this module & deprecated - retained for backwards capability
+
 def addspace(text):
 	if text:
 		text += "  "
 	return text
 
 class PliExtraInfo(Poll, Converter, object):
+
 	def __init__(self, type):
 		Converter.__init__(self, type)
 		Poll.__init__(self)
 		self.type = type
 		self.poll_interval = 1000
 		self.poll_enabled = True
+		self.info_fields = {
+			"All": (
+				(  # config.usage.show_cryptoinfo.value <= 0
+					"ProviderName",
+					"TransponderInfo",
+					"TransponderName",
+					"NewLine",
+					"CryptoBar",
+					"CurrentSource",
+					"NewLine",
+					"CryptoSpecial",
+					"VideoCodec",
+					"ResolutionString",
+				), (  # config.usage.show_cryptoinfo.value > 0
+					"ProviderName",
+					"TransponderInfo",
+					"TransponderName",
+					"NewLine",
+					"CryptoBar",
+					"CryptoSpecial",
+					"NewLine",
+					"PIDInfo",
+					"VideoCodec",
+					"ResolutionString",
+				)
+			),
+			"CryptoInfo": (
+				(  # config.usage.show_cryptoinfo.value <= 0
+					"CryptoBar",
+					"CurrentSource",
+					"CryptoSpecial",
+				), (  # config.usage.show_cryptoinfo.value > 0
+					"CryptoBar",
+					"CryptoSpecial",
+				)
+			),
+			"ServiceInfo": (
+				"ProviderName",
+				"TunerSystem",
+				"TransponderFrequency",
+				"TransponderPolarization",
+				"TransponderSymbolRate",
+				"TransponderFEC",
+				"TransponderModulation",
+				"OrbitalPosition",
+				"TransponderName",
+				"VideoCodec",
+				"ResolutionString",
+			),
+			"TransponderInfo": (
+				"TunerSystem",
+				"TerrestrialChannelNumber",
+				"TransponderFrequency",
+				"TransponderPolarization",
+				"TransponderSymbolRate",
+				"TransponderFEC",
+				"TransponderModulation",
+				"OrbitalPosition",
+			),
+			"TransponderInfo2line": (
+				"ProviderName",
+				"TunerSystem",
+				"TransponderName",
+				"NewLine",
+				"TransponderFrequency",
+				"TransponderPolarization",
+				"TransponderSymbolRate",
+				"TransponderModulationFEC",
+			),
+			"User": (),
+		}
 		self.ca_table = (
 			("CryptoCaidSecaAvailable",	"S",	False),
 			("CryptoCaidViaAvailable",	"V",	False),
@@ -69,8 +143,13 @@ class PliExtraInfo(Poll, Converter, object):
 			("CryptoCaidBulCrypt2Selected",	"B2",	True),
 			("CryptoCaidTandbergSelected",	"T",	True)
 		)
+		self.type = self.type.split(',')
+		if self.type[0] == "User":
+			self.info_fields[self.type[0]] = tuple(self.type[1:])
+		self.type = self.type[0]
 		self.ecmdata = GetEcmInfo()
 		self.feraw = self.fedata = self.updateFEdata = None
+		self.recursionCheck = set()
 
 	def getCryptoInfo(self, info):
 		if info.getInfo(iServiceInformation.sIsCrypted) == 1:
@@ -385,13 +464,45 @@ class PliExtraInfo(Poll, Converter, object):
 		if onid < 0 : onid = 0
 		return "%d-%d:%05d:%04d:%04d:%04d" % (onid, tsid, sidpid, vpid, apid, pcrpid)
 
+	def createInfoString(self, fieldGroup, fedata, feraw, info=None):
+		if fieldGroup in self.recursionCheck:
+			return _("?%s-recursive?") % fieldGroup
+		self.recursionCheck.add(fieldGroup)
+
+		fields = self.info_fields[fieldGroup]
+		if fields and isinstance(fields[0], (tuple, list)):
+			fields = fields[int(config.usage.show_cryptoinfo.value) > 0]
+
+		ret = ""
+		vals = []
+		for field in fields:
+			val = None
+			if field == "CurrentSource":
+				if self.current_source is None:
+					if info is None:
+						info = self.source.service and service.info()
+						if not info:
+							continue
+				vals.append(self.current_source)
+			elif field == "TransponderModulationFEC":
+				val = self.createModulation(fedata) + '-' + self.createFEC(fedata, feraw)
+			elif field == "TransponderName":
+				val = self.createTransponderName(feraw)
+			elif field == "ProviderName":
+				val = self.createProviderName(info)
+			elif field in ("NewLine", "NL"):
+				ret += "  ".join(vals) + "\n"
+				vals = []
+			else:
+				val = self.getTextType(field)
+
+			if val:
+				vals.append(val)
+
+		return ret + "  ".join(vals)
+
 	def createTransponderInfo(self, fedata, feraw):
-		if "DVB-T" in feraw.get("tuner_type"):
-			tmp = addspace(self.createChannelNumber(fedata, feraw)) + addspace(self.createFrequency(fedata)) + addspace(self.createPolarization(fedata))
-		else:
-			tmp = addspace(self.createFrequency(fedata)) + addspace(self.createPolarization(fedata))
-		return addspace(self.createTunerSystem(fedata)) + tmp + addspace(self.createSymbolRate(fedata, feraw)) + addspace(self.createFEC(fedata, feraw)) \
-			+ addspace(self.createModulation(fedata)) + addspace(self.createOrbPos(feraw))
+		return self.createInfoString("TransponderInfo", fedata, feraw)
 
 	def createFrequency(self, fedata):
 		frequency = fedata.get("frequency")
@@ -574,6 +685,10 @@ class PliExtraInfo(Poll, Converter, object):
 
 	@cached
 	def getText(self):
+		self.recursionCheck.clear()
+		return self.getTextType(self.type)
+
+	def getTextType(self, textType):
 		service = self.source.service
 		if service is None:
 			return ""
@@ -582,115 +697,112 @@ class PliExtraInfo(Poll, Converter, object):
 		if not info:
 			return ""
 
-		if self.type == "CryptoInfo":
+		if textType == "CryptoInfo":
 			self.getCryptoInfo(info)
-			if int(config.usage.show_cryptoinfo.value) > 0:
-				return addspace(self.createCryptoBar(info)) + self.createCryptoSpecial(info)
-			else:
-				return addspace(self.createCryptoBar(info)) + addspace(self.current_source) + self.createCryptoSpecial(info)
+			return self.createInfoString(textType, None, None, info)
 
-		if self.type == "CryptoBar":
+		if textType == "CryptoBar":
 			if int(config.usage.show_cryptoinfo.value) > 0:
 				self.getCryptoInfo(info)
 				return self.createCryptoBar(info)
 			else:
 				return ""
 
-		if self.type == "CryptoSeca":
+		if textType == "CryptoSeca":
 			if int(config.usage.show_cryptoinfo.value) > 0:
 				self.getCryptoInfo(info)
 				return self.createCryptoSeca(info)
 			else:
 				return ""
 
-		if self.type == "CryptoVia":
+		if textType == "CryptoVia":
 			if int(config.usage.show_cryptoinfo.value) > 0:
 				self.getCryptoInfo(info)
 				return self.createCryptoVia(info)
 			else:
 				return ""
 
-		if self.type == "CryptoIrdeto":
+		if textType == "CryptoIrdeto":
 			if int(config.usage.show_cryptoinfo.value) > 0:
 				self.getCryptoInfo(info)
 				return self.createCryptoIrdeto(info)
 			else:
 				return ""
 
-		if self.type == "CryptoNDS":
+		if textType == "CryptoNDS":
 			if int(config.usage.show_cryptoinfo.value) > 0:
 				self.getCryptoInfo(info)
 				return self.createCryptoNDS(info)
 			else:
 				return ""
 
-		if self.type == "CryptoConax":
+		if textType == "CryptoConax":
 			if int(config.usage.show_cryptoinfo.value) > 0:
 				self.getCryptoInfo(info)
 				return self.createCryptoConax(info)
 			else:
 				return ""
 
-		if self.type == "CryptoCryptoW":
+		if textType == "CryptoCryptoW":
 			if int(config.usage.show_cryptoinfo.value) > 0:
 				self.getCryptoInfo(info)
 				return self.createCryptoCryptoW(info)
 			else:
 				return ""
 
-		if self.type == "CryptoBeta":
+		if textType == "CryptoBeta":
 			if int(config.usage.show_cryptoinfo.value) > 0:
 				self.getCryptoInfo(info)
 				return self.createCryptoBeta(info)
 			else:
 				return ""
 
-		if self.type == "CryptoNagra":
+		if textType == "CryptoNagra":
 			if int(config.usage.show_cryptoinfo.value) > 0:
 				self.getCryptoInfo(info)
 				return self.createCryptoNagra(info)
 			else:
 				return ""
 
-		if self.type == "CryptoBiss":
+		if textType == "CryptoBiss":
 			if int(config.usage.show_cryptoinfo.value) > 0:
 				self.getCryptoInfo(info)
 				return self.createCryptoBiss(info)
 			else:
 				return ""
 
-		if self.type == "CryptoDre":
+		if textType == "CryptoDre":
 			if int(config.usage.show_cryptoinfo.value) > 0:
 				self.getCryptoInfo(info)
 				return self.createCryptoDre(info)
 			else:
 				return ""
 				
-		if self.type == "CryptoTandberg":
+		if textType == "CryptoTandberg":
 			if int(config.usage.show_cryptoinfo.value) > 0:
 				self.getCryptoInfo(info)
 				return self.createCryptoTandberg(info)
 			else:
 				return ""				
 
-		if self.type == "CryptoSpecial":
+		if textType == "CryptoSpecial":
 			if int(config.usage.show_cryptoinfo.value) > 0:
 				self.getCryptoInfo(info)
 				return self.createCryptoSpecial(info)
 			else:
 				return ""
 
-		if self.type == "CryptoNameCaid":
+		if textType == "CryptoNameCaid":
 			if int(config.usage.show_cryptoinfo.value) > 0:
 				self.getCryptoInfo(info)
 				return self.createCryptoNameCaid(info)
 			else:
 				return ""
 
-		if self.type == "ResolutionString":
+		if textType == "ResolutionString":
 			return self.createResolution(info)
 
-		if self.type == "VideoCodec":
+		if textType == "VideoCodec":
 			return self.createVideoCodec(info)
 
 		if self.updateFEdata:
@@ -708,70 +820,58 @@ class PliExtraInfo(Poll, Converter, object):
 			fedata = ConvertToHumanReadable(feraw)
 		else:
 			fedata = self.fedata
-		if self.type == "All":
-			self.getCryptoInfo(info)
-			if int(config.usage.show_cryptoinfo.value) > 0:
-				return addspace(self.createProviderName(info)) + self.createTransponderInfo(fedata,feraw) + addspace(self.createTransponderName(feraw)) + "\n"\
-				+ addspace(self.createCryptoBar(info)) + addspace(self.createCryptoSpecial(info)) + "\n"\
-				+ addspace(self.createPIDInfo(info)) + addspace(self.createVideoCodec(info)) + self.createResolution(info)
-			else:
-				return addspace(self.createProviderName(info)) + self.createTransponderInfo(fedata,feraw) + addspace(self.createTransponderName(feraw)) + "\n" \
-				+ addspace(self.createCryptoBar(info)) + self.current_source + "\n" \
-				+ addspace(self.createCryptoSpecial(info)) + addspace(self.createVideoCodec(info)) + self.createResolution(info)
 
-		if self.type == "ServiceInfo":
-			return addspace(self.createProviderName(info)) + addspace(self.createTunerSystem(fedata)) + addspace(self.createFrequency(feraw)) + addspace(self.createPolarization(fedata)) \
-			+ addspace(self.createSymbolRate(fedata, feraw)) + addspace(self.createFEC(fedata, feraw)) + addspace(self.createModulation(fedata)) + addspace(self.createOrbPos(feraw)) + addspace(self.createTransponderName(feraw))\
-			+ addspace(self.createVideoCodec(info)) + self.createResolution(info)
+		if textType in ("All", "ServiceInfo", "TransponderInfo2line", "User"):
+			if textType in ("All", "User"):
+				self.getCryptoInfo(info)
+			return self.createInfoString(textType, fedata, feraw, info)
 
-		if self.type == "TransponderInfo2line":
-			return addspace(self.createProviderName(info)) + addspace(self.createTunerSystem(fedata)) + addspace(self.createTransponderName(feraw)) + '\n'\
-			+ addspace(self.createFrequency(fedata)) + addspace(self.createPolarization(fedata))\
-			+ addspace(self.createSymbolRate(fedata, feraw)) + self.createModulation(fedata) + '-' + addspace(self.createFEC(fedata, feraw))
-
-		if self.type == "PIDInfo":
+		if textType == "PIDInfo":
 			return self.createPIDInfo(info)
 
-		if self.type == "ServiceRef":
+		if textType == "ServiceRef":
 			return self.createServiceRef(info)
 
 		if not feraw:
 			return ""
 
-		if self.type == "TransponderInfo":
+		if textType == "TransponderInfo":
 			return self.createTransponderInfo(fedata, feraw)
 
-		if self.type == "TransponderFrequency":
+		if textType == "TransponderFrequency":
 			return self.createFrequency(feraw)
 
-		if self.type == "TransponderSymbolRate":
+		if textType == "TransponderFrequencyMHz":
+			return _("%.3f MHz") % (float(self.createFrequency(feraw)) / 1000000.0)
+
+		if textType == "TransponderSymbolRate":
 			return self.createSymbolRate(fedata, feraw)
 
-		if self.type == "TransponderPolarization":
+		if textType == "TransponderPolarization":
 			return self.createPolarization(fedata)
 
-		if self.type == "TransponderFEC":
+		if textType == "TransponderFEC":
 			return self.createFEC(fedata, feraw)
 
-		if self.type == "TransponderModulation":
+		if textType == "TransponderModulation":
 			return self.createModulation(fedata)
 
-		if self.type == "OrbitalPosition":
+		if textType == "OrbitalPosition":
 			return self.createOrbPos(feraw)
 
-		if self.type == "TunerType":
+		if textType == "TunerType":
 			return self.createTunerType(feraw)
 
-		if self.type == "TunerSystem":
+		if textType == "TunerSystem":
 			return self.createTunerSystem(fedata)
 
-		if self.type == "OrbitalPositionOrTunerSystem":
+		if textType == "OrbitalPositionOrTunerSystem":
 			return self.createOrbPosOrTunerSystem(fedata,feraw)
 
-		if self.type == "TerrestrialChannelNumber":
+		if textType == "TerrestrialChannelNumber":
 			return self.createChannelNumber(fedata, feraw)
 
-		return _("invalid type")
+		return _("?%s?") % textType
 
 	text = property(getText)
 
