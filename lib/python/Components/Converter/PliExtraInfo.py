@@ -619,12 +619,15 @@ class PliExtraInfo(Poll, Converter, object):
 
 	def createMisPls(self, fedata):
 		tmp = ""
-		if fedata.get("is_id") > -1:
-			tmp = "MIS %d" % fedata.get("is_id")
-		if fedata.get("pls_code") > 0:
-			tmp = addspace(tmp) + "%s %d" % (fedata.get("pls_mode"), fedata.get("pls_code"))
-		if fedata.get("t2mi_plp_id") > -1:
-			tmp = addspace(tmp) + "T2MI %d PID %d" % (fedata.get("t2mi_plp_id"), fedata.get("t2mi_pid"))
+		if fedata.get("is_id"):
+			if fedata.get("is_id") > -1:
+				tmp = "MIS %d" % fedata.get("is_id")
+		if fedata.get("pls_code"):
+			if fedata.get("pls_code") > 0:
+				tmp = addspace(tmp) + "%s %d" % (fedata.get("pls_mode"), fedata.get("pls_code"))
+		if fedata.get("t2mi_plp_id"):
+			if fedata.get("t2mi_plp_id") > -1:
+				tmp = addspace(tmp) + "T2MI %d PID %d" % (fedata.get("t2mi_plp_id"), fedata.get("t2mi_pid"))
 		return tmp
 
 	@cached
