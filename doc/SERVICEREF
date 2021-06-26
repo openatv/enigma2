@@ -49,9 +49,8 @@ Defined in class eServiceReference in enigma2/lib/service/iservice.h.
 === STYPE ===
 
 From:
-Digital Video Broadcasting (DVB);
-Specification for Service Information (SI) in DVB systems
-DVB Document  A038 July 2014
+ETSI EN 300 468 V1.16.1 (2019-08)
+https://www.etsi.org/deliver/etsi_en/300400_300499/300468/01.16.01_60/en_300468v011601p.pdf
 
 DVB BlueBook A038 97
 Table 87: Service type coding
@@ -85,8 +84,9 @@ nvodAvcHdRef	     0x1B/ 27             H.264/AVC HD NVOD reference service
 avcHdStereo	     0x1C/ 28             H.264/AVC frame compatible plano - stereoscopic HD digital television service (see note 3)
 nvodAvcHdStereoTs    0x1D/ 29             H.264/AVC frame compatible plano - stereoscopic HD NVOD time - shifted service (see note 3)
 nvodAvcHdStereoRef   0x1E/ 30             H.264/AVC frame compatible plano - stereoscopic HD NVOD reference service (see note 3)
-hvecTv		     0x1F/ 31             HEVC digital television service
-		     0x20/ 32 to 0x7F/127 reserved for future use
+hvecTv		     0x1F/ 31             HEVC digital television service (see note 4)
+hvecTv2          0x20/ 32             HEVC UHD digital television service with HDR and/or a frame rate of 100 Hz, 120 000/1 001 Hz, or 120 Hz, or any combination of HDR and these frame rates (see note 5) 
+		     0x21/ 33 to 0x7F/127 reserved for future use
 		     0x80/128 to 0xFE/254 user defined
 user134	 	     0x86/134             ???
 user195	 	     0xC3/195             ???
@@ -95,6 +95,11 @@ user195	 	     0xC3/195             ???
 NOTE 1: MPEG-2 SD material should use this type.
 NOTE 2: MPEG-1 Layer 2 audio material should use this type.
 NOTE 3: For discussion of the use of these values, see clause I.2.3 and TS 101 547-2 (3D Guidelines of Frame Compatible 3D-TV).
+NOTE 4: For rules on the use of this value, see clause I.2.5 and ETSI TS 101 547-4 [52].
+This value should be used for backward compatible HLG10 HDR services, and/or
+backward compatible high frame rate (HFR) services which are decodable by
+HEVC_UHDTV_IRD as defined in ETSI TS 101 154 [9], see clause I.2.5.2.
+NOTE 5: For rules on the use of these values, see clause I.2.6. 
 
 Defined in class eServiceID in enigma2/lib/dvb/idvb.h.
 
