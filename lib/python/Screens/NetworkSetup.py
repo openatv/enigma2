@@ -1550,41 +1550,43 @@ class NetworkAdapterTest(Screen):
 		self["NetworkInfo_Check"].show()
 
 	def NetworkStatedataAvail(self, data):
-		if data <= 2:
-			self["IP"].setForegroundColorNum(2)
-			self["IP"].setText(_("confirmed"))
-			self["IPInfo_Check"].setPixmapNum(0)
-		else:
-			self["IP"].setForegroundColorNum(1)
-			self["IP"].setText(_("unconfirmed"))
-			self["IPInfo_Check"].setPixmapNum(1)
-		self["IPInfo_Check"].show()
-		self["IPInfo_Text"].setForegroundColorNum(1)
-		self.steptimer = True
-		self.nextStepTimer.start(300)
+		if "IP" in self:
+			if data <= 2:
+				self["IP"].setForegroundColorNum(2)
+				self["IP"].setText(_("confirmed"))
+				self["IPInfo_Check"].setPixmapNum(0)
+			else:
+				self["IP"].setForegroundColorNum(1)
+				self["IP"].setText(_("unconfirmed"))
+				self["IPInfo_Check"].setPixmapNum(1)
+			self["IPInfo_Check"].show()
+			self["IPInfo_Text"].setForegroundColorNum(1)
+			self.steptimer = True
+			self.nextStepTimer.start(300)
 
 	def DNSLookupdataAvail(self, data):
-		if data <= 2:
-			self["DNS"].setForegroundColorNum(2)
-			self["DNS"].setText(_("confirmed"))
-			self["DNSInfo_Check"].setPixmapNum(0)
-		else:
-			self["DNS"].setForegroundColorNum(1)
-			self["DNS"].setText(_("unconfirmed"))
-			self["DNSInfo_Check"].setPixmapNum(1)
-		self["DNSInfo_Check"].show()
-		self["DNSInfo_Text"].setForegroundColorNum(1)
-		self["EditSettings_Text"].show()
-		self["EditSettingsButton"].setPixmapNum(1)
-		self["EditSettings_Text"].setForegroundColorNum(2) # active
-		self["EditSettingsButton"].show()
-		self["key_yellow"].setText("")
-		self["key_green"].setText(_("Restart test"))
-		self["shortcutsgreen"].setEnabled(False)
-		self["shortcutsgreen_restart"].setEnabled(True)
-		self["shortcutsyellow"].setEnabled(False)
-		self["updown_actions"].setEnabled(True)
-		self.activebutton = 6
+		if "DNS" in self:
+			if data <= 2:
+				self["DNS"].setForegroundColorNum(2)
+				self["DNS"].setText(_("confirmed"))
+				self["DNSInfo_Check"].setPixmapNum(0)
+			else:
+				self["DNS"].setForegroundColorNum(1)
+				self["DNS"].setText(_("unconfirmed"))
+				self["DNSInfo_Check"].setPixmapNum(1)
+			self["DNSInfo_Check"].show()
+			self["DNSInfo_Text"].setForegroundColorNum(1)
+			self["EditSettings_Text"].show()
+			self["EditSettingsButton"].setPixmapNum(1)
+			self["EditSettings_Text"].setForegroundColorNum(2) # active
+			self["EditSettingsButton"].show()
+			self["key_yellow"].setText("")
+			self["key_green"].setText(_("Restart test"))
+			self["shortcutsgreen"].setEnabled(False)
+			self["shortcutsgreen_restart"].setEnabled(True)
+			self["shortcutsyellow"].setEnabled(False)
+			self["updown_actions"].setEnabled(True)
+			self.activebutton = 6
 
 	def getInfoCB(self, data, status):
 		if data != None:
