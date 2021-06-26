@@ -10,8 +10,10 @@ from os.path import basename, dirname, exists, getsize, isdir, isfile, islink, j
 from enigma import eEnv, getDesktop
 from re import compile
 from stat import S_IMODE
+from traceback import print_exc
+from xml.etree.cElementTree import ParseError, fromstring, parse
 import six
-
+forceDebug = False
 pathExists = exists
 isMount = ismount  # Only used in OpenATV /lib/python/Plugins/SystemPlugins/NFIFlash/downloader.py.
 
@@ -321,33 +323,27 @@ def fileAccess(file, mode="r"):
 	return result
 
 
-def fileExists(f, mode="r"):
-	if mode == "r":
-		acc_mode = R_OK
-	elif mode == "w":
-		acc_mode = W_OK
-	else:
-		acc_mode = F_OK
-	return access(f, acc_mode)
+def fileCheck(file, mode="r"):
+	return fileAccess(file, mode) and file
 
 
-def fileCheck(f, mode="r"):
-	return fileExists(f, mode) and f
+def fileExists(file, mode="r"):
+	return fileAccess(file, mode) and file
 
 
-def fileHas(f, content, mode="r"):
+def fileContains(file, content, mode="r"):
 	result = False
-	if fileExists(f, mode):
-		fh = open(f, mode)
-		text = fh.read()
-		fh.close()
+	if fileExists(file, mode):
+		fd = open(file, mode)
+		text = fd.read()
+		fd.close()
 		if content in text:
 			result = True
 	return result
 
 
-def fileContains(file, content, mode="r"):
-	return fileHas(file, content, mode)
+def fileHas(file, content, mode="r"):
+	return fileContains(file, content, mode)
 
 
 def fileReadLine(filename, default=None, source=DEFAULT_MODULE_NAME, debug=False):
@@ -361,8 +357,8 @@ def fileReadLine(filename, default=None, source=DEFAULT_MODULE_NAME, debug=False
 			print("[%s] Error %d: Unable to read a line from file '%s'! (%s)" % (source, err.errno, filename, err.strerror))
 		line = default
 		msg = "Default"
-	#if debug or forceDebug:
-	#	print("[%s] Line %d: %s '%s' from file '%s'." % (source, stack()[1][0].f_lineno, msg, line, filename))
+	if debug or forceDebug:
+		print("[%s] Line %d: %s '%s' from file '%s'." % (source, stack()[1][0].f_lineno, msg, line, filename))
 	return line
 
 
@@ -376,8 +372,8 @@ def fileWriteLine(filename, line, source=DEFAULT_MODULE_NAME, debug=False):
 		print("[%s] Error %d: Unable to write a line to file '%s'! (%s)" % (source, err.errno, filename, err.strerror))
 		msg = "Failed to write"
 		result = 0
-	#if debug or forceDebug:
-	#	print("[%s] Line %d: %s '%s' to file '%s'." % (source, stack()[1][0].f_lineno, msg, line, filename))
+	if debug or forceDebug:
+		print("[%s] Line %d: %s '%s' to file '%s'." % (source, stack()[1][0].f_lineno, msg, line, filename))
 	return result
 
 
@@ -392,9 +388,9 @@ def fileReadLines(filename, default=None, source=DEFAULT_MODULE_NAME, debug=Fals
 			print("[%s] Error %d: Unable to read lines from file '%s'! (%s)" % (source, err.errno, filename, err.strerror))
 		lines = default
 		msg = "Default"
-	#if debug or forceDebug:
-	#	length = len(lines) if lines else 0
-	#	print("[%s] Line %d: %s %d lines from file '%s'." % (source, stack()[1][0].f_lineno, msg, length, filename))
+	if debug or forceDebug:
+		length = len(lines) if lines else 0
+		print("[%s] Line %d: %s %d lines from file '%s'." % (source, stack()[1][0].f_lineno, msg, length, filename))
 	return lines
 
 
@@ -411,9 +407,45 @@ def fileWriteLines(filename, lines, source=DEFAULT_MODULE_NAME, debug=False):
 		print("[%s] Error %d: Unable to write %d lines to file '%s'! (%s)" % (source, err.errno, len(lines), filename, err.strerror))
 		msg = "Failed to write"
 		result = 0
-	#if debug or forceDebug:
-	#	print("[%s] Line %d: %s %d lines to file '%s'." % (source, stack()[1][0].f_lineno, msg, len(lines), filename))
+	if debug or forceDebug:
+		print("[%s] Line %d: %s %d lines to file '%s'." % (source, stack()[1][0].f_lineno, msg, len(lines), filename))
 	return result
+
+
+def fileReadXML(filename, default=None, source=DEFAULT_MODULE_NAME, debug=False):
+	dom = None
+	try:
+		with open(filename, "r") as fd:  # This open gets around a possible file handle leak in Python's XML parser.
+			try:
+				dom = parse(fd).getroot()
+				msg = "Read"
+			except ParseError as err:
+				fd.seek(0)
+				content = fd.readlines()
+				line, column = err.position
+				print("[%s] XML Parse Error: '%s' in '%s'!" % (source, err, filename))
+				data = content[line - 1].replace("\t", " ").rstrip()
+				print("[%s] XML Parse Error: '%s'" % (source, data))
+				print("[%s] XML Parse Error: '%s^%s'" % (source, "-" * column, " " * (len(data) - column - 1)))
+			except Exception as err:
+				print("[%s] Error: Unable to parse data in '%s' - '%s'!" % (source, filename, err))
+	except (IOError, OSError) as err:
+		if err.errno == ENOENT:  # ENOENT - No such file or directory.
+			print("[%s] Warning: File '%s' does not exist!" % (source, filename))
+		else:
+			print("[%s] Error %d: Opening file '%s'! (%s)" % (source, err.errno, filename, err.strerror))
+	except Exception as err:
+		print("[%s] Error: Unexpected error opening/parsing file '%s'! (%s)" % (source, filename, err))
+		print_exc()
+	if dom is None:
+		if default:
+			dom = fromstring(default)
+			msg = "Default"
+		else:
+			msg = "Failed to read"
+	if debug or forceDebug:
+		print("[%s] Line %d: %s from XML file '%s'." % (source, stack()[1][0].f_lineno, msg, filename))
+	return dom
 
 
 def getRecordingFilename(basename, dirname=None):
@@ -450,21 +482,19 @@ def getRecordingFilename(basename, dirname=None):
 		path = "%s_%03d" % (filename, i)
 		i += 1
 
+
 # This is clearly a hack:
 #
-
-
 def InitFallbackFiles():
 	resolveFilename(SCOPE_CONFIG, "userbouquet.favourites.tv")
 	resolveFilename(SCOPE_CONFIG, "bouquets.tv")
 	resolveFilename(SCOPE_CONFIG, "userbouquet.favourites.radio")
 	resolveFilename(SCOPE_CONFIG, "bouquets.radio")
 
+
 # Returns a list of tuples containing pathname and filename matching the given pattern
 # Example-pattern: match all txt-files: ".*\.txt$"
 #
-
-
 def crawlDirectory(directory, pattern):
 	list = []
 	if directory:
@@ -546,11 +576,10 @@ def copytree(src, dst, symlinks=False):
 	except (IOError, OSError) as err:
 		print("[Directories] Error %d: Obtaining stats from '%s' to '%s'! (%s)" % (err.errno, src, dst, err.strerror))
 
+
 # Renames files or if source and destination are on different devices moves them in background
 # input list of (source, destination)
 #
-
-
 def moveFiles(fileList):
 	errorFlag = False
 	movedList = []
@@ -559,7 +588,7 @@ def moveFiles(fileList):
 			rename(item[0], item[1])
 			movedList.append(item)
 	except (IOError, OSError) as err:
-		if err.errno == EXDEV:  # Invalid cross-device link
+		if err.errno == EXDEV:  # EXDEV - Invalid cross-device link.
 			print("[Directories] Warning: Cannot rename across devices, trying slower move.")
 			from Tools.CopyFiles import moveFiles as extMoveFiles  # OpenViX, OpenATV, Beyonwiz
 			# from Screens.CopyFiles import moveFiles as extMoveFiles  # OpenPLi
@@ -621,14 +650,13 @@ def mediafilesInUse(session):
 			filename = basename(filename)
 	return set([file for file in files if not(filename and file == filename and files.count(filename) < 2)])
 
+
 # Prepare filenames for use in external shell processing. Filenames may
 # contain spaces or other special characters.  This method adjusts the
 # filename to be a safe and single entity for passing to a shell.
 #
-
-
-def shellquote(s):
-	return "'%s'" % s.replace("'", "'\\''")
+def shellquote(string):
+	return "'%s'" % string.replace("'", "'\\''")
 
 
 def isPluginInstalled(pluginName, pluginFile="plugin"):

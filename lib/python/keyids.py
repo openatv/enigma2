@@ -251,6 +251,7 @@ KEYIDS = {
 	"BtnTR2": 313,
 	"BtnSelect": 314,
 	"BtnStart": 315,
+	"KEY_SHIFT": 351,  # This is not a transmitted key but rather a place holder for remote controls that have a SHIFT function.
 	"KEY_OK": 352,
 	"KEY_SELECT": 353,
 	"KEY_GOTO": 354,
@@ -352,5 +353,8 @@ def invertKeyIds():
 			if value in knownAlisaes and key in knownAlisaes[value]:
 				invKeyIds[value] = knownAlisaes[value][0]
 			else:
-				print("[Keyids] Error: Key code %d is mapped to both '%s' and '%s'!" % (value, invKeyIds[value], key))
+				print("[keyids] Error: Key code %d is mapped to both '%s' and '%s'!" % (value, invKeyIds[value], key))
 	return invKeyIds
+
+
+KEYIDNAMES = invertKeyIds()
