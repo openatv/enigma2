@@ -1,15 +1,154 @@
-from os import listdir
+from os import R_OK, access, listdir, walk
+from os.path import exists as fileAccess, isdir, isfile, join as pathjoin
+from re import findall
+from subprocess import PIPE, Popen
 
 from boxbranding import getBoxType, getBrandOEM, getDisplayType, getHaveAVJACK, getHaveDVI, getHaveHDMI, getHaveRCA, getHaveSCART, getHaveSCARTYUV, getHaveYUV, getMachineBuild, getMachineMtdRoot
 from enigma import Misc_Options, eDVBResourceManager
 
-from Tools.Directories import fileCheck, fileExists, fileHas, pathExists
+from Tools.Directories import SCOPE_SKIN, fileCheck, fileExists, fileHas, pathExists, fileReadLine, fileReadLines, resolveFilename
 from Tools.HardwareInfo import HardwareInfo
+MODULE_NAME = __name__.split(".")[-1]
+ENIGMA_KERNEL_MODULE = "enigma.ko"
+PROC_PATH = "/proc/enigma"
 
 SystemInfo = {}
 
+
+class BoxInformation:  # To maintain data integrity class variables should not be accessed from outside of this class!
+	def __init__(self):
+		self.enigmaList = []
+		self.enigmaInfo = {}
+		self.immutableList = []
+		self.boxInfo = {}
+		self.procList = [file for file in listdir(PROC_PATH) if isfile(pathjoin(PROC_PATH, file))] if isdir(PROC_PATH) else []
+		lines = fileReadLines("/etc/enigma.conf", source=MODULE_NAME)
+		if lines:
+			for line in lines:
+				if line.startswith("#") or line.strip() == "":
+					continue
+				if "=" in line:
+					item, value = [x.strip() for x in line.split("=", 1)]
+					if item:
+						self.enigmaList.append(item)
+						self.enigmaInfo[item] = self.processValue(value)
+			print("[SystemInfo] Enigma config override file available and data loaded into BoxInfo.")
+		modulePath = ""
+		for dirpath, dirnames, filenames in walk("/lib/modules"):
+			if ENIGMA_KERNEL_MODULE in filenames:
+				modulePath = pathjoin(dirpath, ENIGMA_KERNEL_MODULE)
+				self.boxInfo["enigmamodule"] = modulePath
+				self.immutableList.append("enigmamodule")
+				break
+		# As the /proc values are static we can save time by using cached
+		# values loaded here.  If the values become dynamic this code
+		# should be disabled and the dynamic code below enabled.
+		if self.procList:
+			for item in self.procList:
+				self.boxInfo[item] = self.processValue(fileReadLine(pathjoin(PROC_PATH, item), source=MODULE_NAME))
+				self.immutableList.append(item)
+			print("[SystemInfo] Enigma kernel module available and data loaded into BoxInfo.")
+		else:
+			process = Popen(("/sbin/modinfo", "-d", modulePath), stdout=PIPE, stderr=PIPE, text=True)
+			stdout, stderr = process.communicate()
+			if process.returncode == 0:
+				print("[SystemInfo] stdout %s" % stdout)
+				for line in stdout.split("\n"):
+					if "=" in line:
+						item, value = line.split("=", 1)
+						if item:
+							self.procList.append(item)
+							self.boxInfo[item] = self.processValue(value)
+							self.immutableList.append(item)
+				print("[SystemInfo] Enigma kernel module not available but modinfo data loaded into BoxInfo!")
+			else:
+				print("[SystemInfo] Error: Unable to load Enigma kernel module data!  (Error %d: %s)" % (process.returncode, stderr.strip()))
+		self.enigmaList = sorted(self.enigmaList)
+		self.procList = sorted(self.procList)
+
+	def processValue(self, value):
+		if value is None:
+			pass
+		elif value.startswith("\"") or value.startswith("'") and value.endswith(value[0]):
+			value = value[1:-1]
+		elif value.startswith("(") and value.endswith(")"):
+			data = []
+			for item in [x.strip() for x in value[1:-1].split(",")]:
+				data.append(self.processValue(item))
+			value = tuple(data)
+		elif value.startswith("[") and value.endswith("]"):
+			data = []
+			for item in [x.strip() for x in value[1:-1].split(",")]:
+				data.append(self.processValue(item))
+			value = list(data)
+		elif value.upper() == "NONE":
+			value = None
+		elif value.upper() in ("FALSE", "NO", "OFF", "DISABLED"):
+			value = False
+		elif value.upper() in ("TRUE", "YES", "ON", "ENABLED"):
+			value = True
+		elif value.isdigit() or (value[0:1] == "-" and value[1:].isdigit()):
+			value = int(value)
+		elif value.startswith("0x") or value.startswith("0X"):
+			value = int(value, 16)
+		elif value.startswith("0o") or value.startswith("0O"):
+			value = int(value, 8)
+		elif value.startswith("0b") or value.startswith("0B"):
+			value = int(value, 2)
+		else:
+			try:
+				value = float(value)
+			except ValueError:
+				pass
+		return value
+
+	def getEnigmaList(self):
+		return self.enigmaList
+
+	def getProcList(self):
+		return self.procList
+
+	def getItemsList(self):
+		return sorted(list(self.boxInfo.keys()))
+
+	def getItem(self, item, default=None):
+		if item in self.enigmaList:
+			value = self.enigmaInfo[item]
+		# As the /proc values are static we can save time by uusing cached
+		# values loaded above.  If the values become dynamic this code
+		# should be enabled.
+		# elif item in self.procList:
+		# 	value = self.processValue(fileReadLine(pathjoin(PROC_PATH, item), source=MODULE_NAME))
+		elif item in self.boxInfo:
+			value = self.boxInfo[item]
+		elif item in SystemInfo:
+			value = SystemInfo[item]
+		else:
+			value = default
+		return value
+
+	def setItem(self, item, value, immutable=False):
+		if item in self.immutableList or item in self.procList:
+			print("[BoxInfo] Error: Item '%s' is immutable and can not be %s!" % (item, "changed" if item in self.boxInfo else "added"))
+			return False
+		if immutable:
+			self.immutableList.append(item)
+		self.boxInfo[item] = value
+		SystemInfo[item] = value
+		return True
+
+	def deleteItem(self, item):
+		if item in self.immutableListor or item in self.procList:
+			print("[BoxInfo] Error: Item '%s' is immutable and can not be deleted!" % item)
+		elif item in self.boxInfo:
+			del self.boxInfo[item]
+			return True
+		return False
+
+
 SystemInfo["HasRootSubdir"] = False	# This needs to be here so it can be reset by getMultibootslots!
 SystemInfo["RecoveryMode"] = False or fileCheck("/proc/stb/fp/boot_mode")	# This needs to be here so it can be reset by getMultibootslots!
+BoxInfo = BoxInformation()
 from Tools.Multiboot import getMBbootdevice, getMultibootslots  # This import needs to be here to avoid a SystemInfo load loop!
 
 
@@ -34,6 +173,16 @@ def haveInitCam():
 		elif cam.startswith("cardserver.") and not cam.endswith("None"):
 			return True
 	return False
+
+def getRCFile(ext):
+	filename = resolveFilename(SCOPE_SKIN, pathjoin("rc", "%s.%s" % (BoxInfo.getItem("rcname"), ext)))
+	if not isfile(filename):
+		filename = resolveFilename(SCOPE_SKIN, pathjoin("rc", "dmm1.%s" % ext))
+	return filename
+
+BoxInfo.setItem("rcname", "vu")
+BoxInfo.setItem("RCImage", getRCFile("png"))
+BoxInfo.setItem("RCMapping", getRCFile("xml"))
 
 
 SystemInfo["NumVideoDecoders"] = getNumVideoDecoders()

@@ -1133,6 +1133,12 @@ def InitUsageConfig():
 	config.seek.withjumps_avoid_zero = ConfigYesNo(default=True)
 
 	config.crash = ConfigSubsection()
+
+	config.crash.debugActionMaps = ConfigYesNo(default=False)
+	config.crash.debugKeyboards = ConfigYesNo(default=False)
+	config.crash.debugRemoteControls = ConfigYesNo(default=False)
+	config.crash.debugScreens = ConfigYesNo(default=False)
+
 	#// handle python crashes
 	config.crash.bsodpython = ConfigYesNo(default=True)
 	config.crash.bsodpython_ready = NoSave(ConfigYesNo(default=False))

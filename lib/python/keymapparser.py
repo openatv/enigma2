@@ -2,7 +2,7 @@
 # to continue to function until such time that they are updated to use the
 # newer modules and methods.
 
-from ActionMap import loadKeymap, parseKeymap, removeKeymap as removeKeymapNew
+from Components.ActionMap import loadKeymap, parseKeymap, removeKeymap as removeKeymapNew
 
 
 class KeymapError(Exception):
