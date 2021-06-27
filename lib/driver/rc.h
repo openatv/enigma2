@@ -8,7 +8,9 @@
 
 #include <lib/base/ebase.h>
 #include <libsig_comp.h>
+#include <lib/python/python.h>
 #include <string>
+#include <unordered_map>
 
 class eRCInput;
 class eRCDriver;
@@ -56,6 +58,12 @@ public:
 	 * \result User readable description of given key.
 	 */
 	virtual void setExclusive(bool b) { };
+	/**
+	 * \brief set key remappngs.
+	 * \param remaps The the keyy remappings.
+	 * \result The status indicators defined in eRCInput.
+	 */
+	virtual int setKeyMapping(const std::unordered_map<unsigned int, unsigned int>& remaps);
 };
 
 /**
@@ -244,8 +252,10 @@ public:
 	eRCConfig config;
 #endif
 	enum { kmNone, kmAscii, kmAll };
+	enum { remapOk, remapUnsupported, remapFormatErr, remapNoSuchDevice };
 	void setKeyboardMode(int mode) { keyboardMode = mode; }
 	int  getKeyboardMode() { return keyboardMode; }
+	int setKeyMapping(const std::string &id, SWIG_PYOBJECT(ePyObject) keyRemap);
 	static eRCInput *getInstance() { return instance; }
 	void lock();
 	void unlock();
