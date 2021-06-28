@@ -15,4 +15,4 @@ install_PYTHON = \
 	mytest.py \
 	timer.py \
 	PowerTimer.py \
-	Upgrade.py
+	upgrade.py

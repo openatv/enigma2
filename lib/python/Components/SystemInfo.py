@@ -33,13 +33,14 @@ class BoxInformation:  # To maintain data integrity class variables should not b
 						self.enigmaList.append(item)
 						self.enigmaInfo[item] = self.processValue(value)
 			print("[SystemInfo] Enigma config override file available and data loaded into BoxInfo.")
-		modulePath = ""
 		for dirpath, dirnames, filenames in walk("/lib/modules"):
 			if ENIGMA_KERNEL_MODULE in filenames:
 				modulePath = pathjoin(dirpath, ENIGMA_KERNEL_MODULE)
 				self.boxInfo["enigmamodule"] = modulePath
 				self.immutableList.append("enigmamodule")
 				break
+		else:
+			modulePath = ""
 		# As the /proc values are static we can save time by using cached
 		# values loaded here.  If the values become dynamic this code
 		# should be disabled and the dynamic code below enabled.
@@ -52,7 +53,6 @@ class BoxInformation:  # To maintain data integrity class variables should not b
 			process = Popen(("/sbin/modinfo", "-d", modulePath), stdout=PIPE, stderr=PIPE, text=True)
 			stdout, stderr = process.communicate()
 			if process.returncode == 0:
-				print("[SystemInfo] stdout %s" % stdout)
 				for line in stdout.split("\n"):
 					if "=" in line:
 						item, value = line.split("=", 1)
@@ -151,17 +151,20 @@ SystemInfo["RecoveryMode"] = False or fileCheck("/proc/stb/fp/boot_mode")	# This
 BoxInfo = BoxInformation()
 from Tools.Multiboot import getMBbootdevice, getMultibootslots  # This import needs to be here to avoid a SystemInfo load loop!
 
+# Parse the boot commandline.
+cmdline = fileReadLine("/proc/cmdline", source=MODULE_NAME)
+cmdline = {k: v.strip('"') for k, v in findall(r'(\S+)=(".*?"|\S+)', cmdline)}
 
 def getNumVideoDecoders():
 	numVideoDecoders = 0
-	while fileExists("/dev/dvb/adapter0/video%d" % numVideoDecoders, "f"):
+	while fileAccess("/dev/dvb/adapter0/video%d" % numVideoDecoders):
 		numVideoDecoders += 1
 	return numVideoDecoders
 
 
 def countFrontpanelLEDs():
-	numLeds = fileExists("/proc/stb/fp/led_set_pattern") and 1 or 0
-	while fileExists("/proc/stb/fp/led%d_pattern" % numLeds):
+	numLeds = fileAccess("/proc/stb/fp/led_set_pattern") and 1 or 0
+	while fileAccess("/proc/stb/fp/led%d_pattern" % numLeds):
 		numLeds += 1
 	return numLeds
 
@@ -174,12 +177,37 @@ def haveInitCam():
 			return True
 	return False
 
+def getBootdevice():
+	dev = ("root" in cmdline and cmdline["root"].startswith("/dev/")) and cmdline["root"][5:]
+	while dev and not fileAccess("/sys/block/%s" % dev):
+		dev = dev[:-1]
+	return dev
+
+
 def getRCFile(ext):
 	filename = resolveFilename(SCOPE_SKIN, pathjoin("rc", "%s.%s" % (BoxInfo.getItem("rcname"), ext)))
 	if not isfile(filename):
 		filename = resolveFilename(SCOPE_SKIN, pathjoin("rc", "dmm1.%s" % ext))
 	return filename
 
+
+def getModuleLayout():
+	modulePath = BoxInfo.getItem("enigmamodule")
+	if modulePath:
+		process = Popen(("/sbin/modprobe", "--dump-modversions", modulePath), stdout=PIPE, stderr=PIPE, text=True)
+		stdout, stderr = process.communicate()
+		if process.returncode == 0:
+			for detail in stdout.split("\n"):
+				if "module_layout" in detail:
+					return detail.split("\t")[0]
+	return None
+
+model = BoxInfo.getItem("model")
+brand = BoxInfo.getItem("brand")
+platform = BoxInfo.getItem("platform")
+displaytype = BoxInfo.getItem("displaytype")
+architecture = BoxInfo.getItem("architecture")
+socfamily = BoxInfo.getItem("socfamily")
 BoxInfo.setItem("rcname", "vu")
 BoxInfo.setItem("RCImage", getRCFile("png"))
 BoxInfo.setItem("RCMapping", getRCFile("xml"))
