@@ -1,11 +1,61 @@
 from __future__ import print_function
 from __future__ import absolute_import
+from copy import copy as shallowcopy
+
 from enigma import getPrevAsciiCode
 from Tools.NumericalTextInput import NumericalTextInput
 from Tools.Directories import resolveFilename, SCOPE_CONFIG, fileExists
 from Components.Harddisk import harddiskmanager
 from Tools.LoadPixmap import LoadPixmap
 from copy import copy as copy_copy
+ACTIONKEY_LEFT = 0
+ACTIONKEY_RIGHT = 1
+ACTIONKEY_SELECT = 2
+ACTIONKEY_DELETE = 3
+ACTIONKEY_BACKSPACE = 4
+ACTIONKEY_FIRST = 5
+ACTIONKEY_LAST = 6
+ACTIONKEY_TOGGLE = 7
+ACTIONKEY_ASCII = 8
+ACTIONKEY_TIMEOUT = 9
+ACTIONKEY_NUMBERS = list(range(12, 12 + 10))
+ACTIONKEY_0 = 12
+ACTIONKEY_1 = 13
+ACTIONKEY_2 = 14
+ACTIONKEY_3 = 15
+ACTIONKEY_4 = 16
+ACTIONKEY_5 = 17
+ACTIONKEY_6 = 18
+ACTIONKEY_7 = 19
+ACTIONKEY_8 = 20
+ACTIONKEY_9 = 21
+ACTIONKEY_PAGEUP = 22
+ACTIONKEY_PAGEDOWN = 23
+ACTIONKEY_PREV = 24
+ACTIONKEY_NEXT = 25
+ACTIONKEY_ERASE = 26
+
+
+
+# Deprecated / Legacy action key names...
+#
+# (These should be removed when all Enigma2 uses the new and less confusing names.)
+#
+KEY_LEFT = ACTIONKEY_LEFT
+KEY_RIGHT = ACTIONKEY_RIGHT
+KEY_OK = ACTIONKEY_SELECT
+KEY_DELETE = ACTIONKEY_DELETE
+KEY_BACKSPACE = ACTIONKEY_BACKSPACE
+KEY_HOME = ACTIONKEY_FIRST
+KEY_END = ACTIONKEY_LAST
+KEY_TOGGLEOW = ACTIONKEY_TOGGLE
+KEY_ASCII = ACTIONKEY_ASCII
+KEY_TIMEOUT = ACTIONKEY_TIMEOUT
+KEY_NUMBERS = ACTIONKEY_NUMBERS
+KEY_0 = ACTIONKEY_0
+KEY_9 = ACTIONKEY_9
+
+
 from os import path as os_path
 from time import localtime, strftime
 import six
@@ -1565,92 +1615,94 @@ class ConfigSatlist(ConfigSelection):
 
 	orbital_position = property(getOrbitalPosition)
 
-
+# This is the control, and base class, for a set/list of selection value toggle settings.
+#
 class ConfigSet(ConfigElement):
 	def __init__(self, choices, default=None):
-		if not default:
-			default = []
 		ConfigElement.__init__(self)
 		if isinstance(choices, list):
 			choices.sort()
 			self.choices = choicesList(choices, choicesList.LIST_TYPE_LIST)
 		else:
-			assert False, "ConfigSet choices must be a list!"
+			assert False, "[Config] Error: 'ConfigSet' choices must be a list!"
 		if default is None:
 			default = []
-		self.pos = -1
 		default.sort()
-		self.last_value = self.default = default
-		self.value = default[:]
-
-	def toggleChoice(self, choice):
-		value = self.value
-		if choice in value:
-			value.remove(choice)
-		else:
-			value.append(choice)
-			value.sort()
-		self.changed()
+		self.lastValue = self.default = default
+		self.value = shallowcopy(default)
+		self.pos = 0
 
 	def handleKey(self, key):
-		if key in KEY_NUMBERS + [KEY_DELETE, KEY_BACKSPACE]:
-			if self.pos != -1:
-				self.toggleChoice(self.choices[self.pos])
-		elif key == KEY_LEFT:
-			if self.pos < 0:
-				self.pos = len(self.choices) - 1
+		if key in [ACTIONKEY_TOGGLE, ACTIONKEY_SELECT, ACTIONKEY_DELETE, ACTIONKEY_BACKSPACE] + ACTIONKEY_NUMBERS:
+			value = self.value
+			choice = self.choices[self.pos]
+			if choice in value:
+				value.remove(choice)
 			else:
+				value.append(choice)
+				value.sort()
+			self.changed()
+		elif key == ACTIONKEY_LEFT:
+			if self.pos > 0:
 				self.pos -= 1
-		elif key == KEY_RIGHT:
-			if self.pos >= len(self.choices) - 1:
-				self.pos = -1
 			else:
+				self.pos = len(self.choices) - 1
+		elif key == ACTIONKEY_RIGHT:
+			if self.pos < len(self.choices) - 1:
 				self.pos += 1
-		elif key in (KEY_HOME, KEY_END):
-			self.pos = -1
-
-	def genString(self, lst):
-		res = ""
-		for x in lst:
-			res += self.description[x] + " "
-		return res
-
-	def getText(self):
-		return self.genString(self.value)
-
-	def getMulti(self, selected):
-		if not selected or self.pos == -1:
-			return "text", self.genString(self.value)
-		else:
-			tmp = self.value[:]
-			ch = self.choices[self.pos]
-			mem = ch in self.value
-			if not mem:
-				tmp.append(ch)
-				tmp.sort()
-			ind = tmp.index(ch)
-			val1 = self.genString(tmp[:ind])
-			val2 = " " + self.genString(tmp[ind + 1:])
-			if mem:
-				chstr = " " + self.description[ch] + " "
 			else:
-				chstr = "(" + self.description[ch] + ")"
-			len_val1 = len(val1)
-			return "mtext", val1 + chstr + val2, list(range(len_val1, len_val1 + len(chstr)))
+				self.pos = 0
+		elif key == ACTIONKEY_FIRST:
+			self.pos = 0
+		elif key == ACTIONKEY_LAST:
+			self.pos = len(self.choices) - 1
 
-	def onDeselect(self, session):
-		self.pos = -1
-		if not self.last_value == self.value:
-			self.changedFinal()
-			self.last_value = self.value[:]
-
-	def tostring(self, value):
-		return str(value)
+	def load(self):
+		ConfigElement.load(self)
+		if not self.value:
+			self.value = []
+		if not isinstance(self.value, list):
+			self.value = list(self.value)
+		self.value.sort()
 
 	def fromstring(self, val):
 		return eval(val)
 
+	def tostring(self, val):
+		return str(val)
+
+	def toDisplayString(self, val):
+		return ", ".join([self.description[x] for x in val])
+
+	def getText(self):
+		return " ".join([self.description[x] for x in self.value])
+
+	def getMulti(self, selected):
+		if selected:
+			text = []
+			pos = 0
+			start = 0
+			end = 0
+			for item in self.choices:
+				itemStr = str(item)
+				text.append(" %s " % itemStr if item in self.value else "(%s)" % itemStr)
+				length = 2 + len(itemStr)
+				if item == self.choices[self.pos]:
+					start = pos
+					end = start + length
+				pos += length
+			return ("mtext", "".join(text), list(range(start, end)))
+		else:
+			return ("text", " ".join([self.description[x] for x in self.value]))
+
+	def onDeselect(self, session):
+		# self.pos = 0  # Enable this to reset the position marker to the first element.
+		if self.lastValue != self.value:
+			self.changedFinal()
+			self.lastValue = shallowcopy(self.value)
+
 	description = property(lambda self: descriptionList(self.choices.choices, choicesList.LIST_TYPE_LIST))
+
 
 
 class ConfigDictionarySet(ConfigElement):
