@@ -100,7 +100,7 @@ void eTimer::changeInterval(long msek)
 	else
 		bActive=true; // then activate Timer
 
-	interval = msek;   			 			// set new Interval
+	interval = msek;	 			// set new Interval
 	nextActivation += interval;		// calc nextActivation
 
 	context.addTimer(this);				// add Timer to context TimerList
@@ -277,7 +277,7 @@ int eMainloop::processOneEvent(long user_timeout, PyObject **res, ePyObject addi
 					m_inActivate = 0;
 				}
 				if (pfd[i].revents & (POLLERR|POLLHUP|POLLNVAL))
-					eLog(5, "[eMainloop::processOneEvent] unhandled POLLERR/HUP/NVAL for fd %d(%d)", pfd[i].fd, pfd[i].revents);
+					eTrace("[eMainloop::processOneEvent] unhandled POLLERR/HUP/NVAL for fd %d(%d)", pfd[i].fd, pfd[i].revents);
 			}
 		}
 		for (; i < fdcount; ++i)
