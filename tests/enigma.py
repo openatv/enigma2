@@ -361,7 +361,7 @@ def init_parental_control():
 
 
 def init_all():
-	# this is stuff from mytest.py
+	# this is stuff from StartEnigma.py
 	init_nav()
 
 	init_record_config()

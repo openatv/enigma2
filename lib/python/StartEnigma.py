@@ -617,7 +617,7 @@ def runScreenTest():
 
 	def runNextScreen(session, screensToRun, *result):
 		if result:
-			print("[mytest.py] quitMainloop #3")
+			print("[StartEnigma.py] quitMainloop #3")
 			enigma.quitMainloop(*result)
 			return
 
@@ -679,7 +679,7 @@ def runScreenTest():
 
 	runReactor()
 
-	print("[mytest.py] normal shutdown")
+	print("[StartEnigma.py] normal shutdown")
 	config.misc.startCounter.save()
 	config.usage.shutdownOK.setValue(True)
 	config.usage.shutdownOK.save()
@@ -769,10 +769,10 @@ def runScreenTest():
 			nextPluginName = " (%s)" % nextPluginName
 		else:
 			nextPluginName = ""
-		print("[mytest.py] set next wakeup type to '%s'%s %s" % ({0: "record-timer", 1: "zap-timer", 2: "power-timer", 3: "plugin-timer"}[startTime[1]], nextPluginName, {0: "and starts normal", 1: "and starts in standby"}[setStandby]))
+		print("[StartEnigma.py] set next wakeup type to '%s'%s %s" % ({0: "record-timer", 1: "zap-timer", 2: "power-timer", 3: "plugin-timer"}[startTime[1]], nextPluginName, {0: "and starts normal", 1: "and starts in standby"}[setStandby]))
 		if forceNextRecord:
-			print("[mytest.py] set from 'vps-plugin' or just before a 'record-timer' starts, set 'record-timer' wakeup flag")
-		print("[mytest.py] set next wakeup time to", strftime("%a, %Y/%m/%d %H:%M:%S", localtime(wptime)))
+			print("[StartEnigma.py] set from 'vps-plugin' or just before a 'record-timer' starts, set 'record-timer' wakeup flag")
+		print("[StartEnigma.py] set next wakeup time to", strftime("%a, %Y/%m/%d %H:%M:%S", localtime(wptime)))
 		#set next wakeup
 		setFPWakeuptime(wptime)
 		#set next standby only after shutdown in deep standby
@@ -783,7 +783,7 @@ def runScreenTest():
 		config.misc.nextWakeup.value = "%d,-1,-1,0,0,-1,0" % (int(nowTime))
 		if not boxtype.startswith('azboxm'): #skip for Azbox (mini)ME - setting wakeup time to past reboots box
 			setFPWakeuptime(int(nowTime) - 3600) #minus one hour -> overwrite old wakeup time
-		print("[mytest.py] no set next wakeup time")
+		print("[StartEnigma.py] no set next wakeup time")
 	config.misc.nextWakeup.save()
 	print("=" * 100)
 
@@ -920,6 +920,6 @@ except:
 	print('EXCEPTION IN PYTHON STARTUP CODE:')
 	print('-' * 60)
 	print_exc(file=stdout)
-	print("[mytest.py] quitMainloop #4")
+	print("[StartEnigma.py] quitMainloop #4")
 	enigma.quitMainloop(5)
 	print('-' * 60)
