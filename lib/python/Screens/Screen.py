@@ -1,5 +1,5 @@
 from __future__ import print_function
-from enigma import eRCInput, eTimer, eWindow  # , getDesktop
+from enigma import eRCInput, eTimer, eWindow, getDesktop
 
 from skin import GUI_SKIN_ID, applyAllAttributes
 from Components.config import config
@@ -7,21 +7,22 @@ from Components.GUIComponent import GUIComponent
 from Components.Sources.Source import Source
 from Components.Sources.StaticText import StaticText
 from Tools.CList import CList
+from six import exec_
 
 # The lines marked DEBUG: are proposals for further fixes or improvements.
 # Other commented out code is historic and should probably be deleted if it is not going to be used.
-
-
+#
 class Screen(dict):
 	NO_SUSPEND, SUSPEND_STOPS, SUSPEND_PAUSES = list(range(3))
 	ALLOW_SUSPEND = NO_SUSPEND
 	globalScreen = None
 
-	def __init__(self, session, parent=None):
+	def __init__(self, session, parent=None, mandatoryWidgets=None):
 		dict.__init__(self)
 		self.skinName = self.__class__.__name__
 		self.session = session
 		self.parent = parent
+		self.mandatoryWidgets = mandatoryWidgets
 		self.onClose = []
 		self.onFirstExecBegin = []
 		self.onExecBegin = []
@@ -141,25 +142,34 @@ class Screen(dict):
 			if isinstance(val, GUIComponent) or isinstance(val, Source):
 				val.onHide()
 
+	def isAlreadyShown(self):  # Already shown is false until the screen is really shown (after creation).
+		return self.already_shown
+
+	def isStandAlone(self):  # Stand alone screens (for example web screens) don't care about having or not having focus.
+		return self.stand_alone
+
 	def getScreenPath(self):
 		return self.screenPath
 
-	def setTitle(self, title):
-		try:
-			if self.session and len(self.session.dialog_stack) > 1:
-				self.screenPath = " > ".join(ds[0].getTitle() for ds in self.session.dialog_stack[1:])
-			else:
-				self.screenPath = ""
+	def setTitle(self, title, showPath=True):
+		try:  # This protects against calls to setTitle() before being fully initialised like self.session is accessed *before* being defined.
+			self.screenPath = ""
+			if self.session.dialog_stack:
+				screenclasses = [ds[0].__class__.__name__ for ds in self.session.dialog_stack]
+				if "MainMenu" in screenclasses:
+					index = screenclasses.index("MainMenu")
+					if self.session and len(screenclasses) > index:
+						self.screenPath = " > ".join(ds[0].getTitle() for ds in self.session.dialog_stack[index:])
 			if self.instance:
 				self.instance.setTitle(title)
 			self.summaries.setTitle(title)
 		except AttributeError:
 			pass
 		self.screenTitle = title
-		if config.usage.showScreenPath.value == "large":
+		if showPath and config.usage.showScreenPath.value == "large" and title:
 			screenPath = ""
 			screenTitle = "%s > %s" % (self.screenPath, title) if self.screenPath else title
-		elif config.usage.showScreenPath.value == "small":
+		elif showPath and config.usage.showScreenPath.value == "small":
 			screenPath = "%s >" % self.screenPath if self.screenPath else ""
 			screenTitle = title
 		else:
@@ -215,31 +225,23 @@ class Screen(dict):
 		self.__callLaterTimer.start(0, True)
 
 	def applySkin(self):
-		z = 0
-		# DEBUG: baseRes = (getDesktop(GUI_SKIN_ID).size().width(), getDesktop(GUI_SKIN_ID).size().height())
-		baseRes = (720, 576)  # FIXME: A skin might have set another resolution, which should be the base res.
-		idx = 0
-		skinTitleIndex = -1
-		title = self.title
+		bounds = (getDesktop(GUI_SKIN_ID).size().width(), getDesktop(GUI_SKIN_ID).size().height())
+		resolution = bounds
+		zPosition = 0
 		for (key, value) in self.skinAttributes:
-			if key == "zPosition":
-				z = int(value)
-			elif key == "title":
-				skinTitleIndex = idx
-				if title:
-					self.skinAttributes[skinTitleIndex] = ("title", title)
-				else:
-					self["Title"].text = value
-					self.summaries.setTitle(value)
-			elif key == "baseResolution":
-				baseRes = tuple([int(x) for x in value.split(",")])
-			idx += 1
-		self.scale = ((baseRes[0], baseRes[0]), (baseRes[1], baseRes[1]))
+			if key == "resolution":
+				resolution = tuple([int(x.strip()) for x in value.split(",")])
+			elif key == "zPosition":
+				zPosition = int(value)
 		if not self.instance:
-			self.instance = eWindow(self.desktop, z)
-		if skinTitleIndex == -1 and title:
-			self.skinAttributes.append(("title", title))
-		self.skinAttributes.sort(key=lambda a: {"position": 1}.get(a[0], 0))  # We need to make sure that certain attributes come last.
+			self.instance = eWindow(self.desktop, zPosition)
+		if "title" not in self.skinAttributes and self.screenTitle:
+			self.skinAttributes.append(("title", self.screenTitle))
+		else:
+			for attribute in self.skinAttributes:
+				if attribute[0] == "title":
+					self.setTitle(_(attribute[1]))
+		self.scale = ((bounds[0], resolution[0]), (bounds[1], resolution[1]))
 		applyAllAttributes(self.instance, self.desktop, self.skinAttributes, self.scale)
 		self.createGUIScreen(self.instance, self.desktop)
 
@@ -271,7 +273,7 @@ class Screen(dict):
 			# DEBUG: if type(f) is not type(self.close):  # Is this the best way to do this?
 			# DEBUG: Is the following an acceptable fix?
 			if not isinstance(f, type(self.close)):
-				exec(f, globals(), locals())
+				six.exec_(f, globals(), locals())
 			else:
 				f()
 
@@ -290,3 +292,23 @@ class Screen(dict):
 	def removeSummary(self, summary):
 		if summary is not None:
 			self.summaries.remove(summary)
+
+
+class ScreenSummary(Screen):
+	skin = """
+	<screen position="fill" flags="wfNoBorder">
+		<widget source="global.CurrentTime" render="Label" position="0,0" size="e,20" font="Regular;16" halign="center" valign="center">
+			<convert type="ClockToText">WithSeconds</convert>
+		</widget>
+		<widget source="Title" render="Label" position="0,25" size="e,45" font="Regular;18" halign="center" valign="center" />
+	</screen>"""
+
+	def __init__(self, session, parent):
+		Screen.__init__(self, session, parent=parent)
+		self["Title"] = StaticText(parent.getTitle())
+		names = parent.skinName
+		if not isinstance(names, list):
+			names = [names]
+		self.skinName = ["%sSummary" % x for x in names]
+		self.skinName.append("ScreenSummary")
+		self.skin = parent.__dict__.get("skinSummary", self.skin)  # If parent has a "skinSummary" defined, use that as default.
