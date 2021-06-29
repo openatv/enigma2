@@ -60,7 +60,7 @@ def getValue(line):
 
 
 # get list of upgradable packages
-p = Popen("opkg list-upgradable", stdout=PIPE, stderr=PIPE, shell=True)
+p = Popen("opkg list-upgradable", stdout=PIPE, stderr=PIPE, shell=True, text=True)
 stdout, stderr = p.communicate()
 
 if stderr != "":

@@ -9,7 +9,6 @@ import re
 import subprocess
 from Plugins.Extensions.FileCommander.InputBox import InputBox
 from Screens.VirtualKeyBoard import VirtualKeyBoard
-import six
 
 pname = _("File Commander - unrar Addon")
 pdesc = _("unpack Rar Files")
@@ -46,7 +45,7 @@ class RarMenuScreen(ArchiverMenuScreen):
 		print("[RarMenuScreen] Current pw:", self.defaultPW)
 		cmd = (self.unrar, "t", "-p" + self.defaultPW, self.sourceDir + self.filename)
 		try:
-			p = subprocess.Popen(cmd, shell=False, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+			p = subprocess.Popen(cmd, shell=False, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True)
 		except OSError as ex:
 			msg = _("Can not run %s: %s.\n%s may be in a plugin that is not installed.") % (cmd[0], ex.strerror, cmd[0])
 			print("[RarMenuScreen]", msg)
@@ -54,7 +53,6 @@ class RarMenuScreen(ArchiverMenuScreen):
 			return
 		stdlog = p.stdout.read()
 		if stdlog:
-			stdlog = six.ensure_str(stdlog)
 			print("[RarMenuScreen] checkPW stdout", len(stdlog))
 			print(stdlog)
 			if 'Corrupt file or wrong password.' in stdlog:

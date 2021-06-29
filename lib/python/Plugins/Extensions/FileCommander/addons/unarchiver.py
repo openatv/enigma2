@@ -134,7 +134,7 @@ class ArchiverMenuScreen(Screen):
 		print("[ArchiverMenuScreen] unpackPopen", cmd)
 		try:
 			shellcmd = type(cmd) not in (tuple, list)
-			p = subprocess.Popen(cmd, shell=shellcmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+			p = subprocess.Popen(cmd, shell=shellcmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
 		except OSError as ex:
 			cmdname = cmd.split()[0] if shellcmd else cmd[0]
 			msg = _("Can not run %s: %s.\n%s may be in a plugin that is not installed.") % (cmdname, ex.strerror, cmdname)
@@ -143,8 +143,6 @@ class ArchiverMenuScreen(Screen):
 			return
 		stdout, stderr = p.communicate()
 		output = []
-		stdout = six.ensure_str(stdout)
-		stderr = six.ensure_str(stderr)
 		output.append(stdout.split('\n'))
 		output.append(stderr.split('\n'))
 		if stdout and stderr:

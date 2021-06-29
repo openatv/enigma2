@@ -386,7 +386,7 @@ int main(int argc, char **argv)
 	eVideoWidget::setFullsize(true);
 
 	//	python.execute("mytest", "__main__");
-	python.execFile(eEnv::resolve("${libdir}/enigma2/python/mytest.py").c_str());
+	python.execFile(eEnv::resolve("${libdir}/enigma2/python/StartEnigma.py").c_str());
 
 	/* restore both decoders to full size */
 	eVideoWidget::setFullsize(true);

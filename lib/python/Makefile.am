@@ -4,6 +4,7 @@ SUBDIRS = Components Tools Screens Plugins
 
 install_PYTHON = \
 	e2reactor.py \
+	BoxBrandingTest.py \
 	GlobalActions.py \
 	keyids.py \
 	keymapparser.py \
@@ -12,7 +13,8 @@ install_PYTHON = \
 	RecordTimer.py \
 	ServiceReference.py \
 	skin.py \
-	mytest.py \
+	StartEnigma.py \
 	timer.py \
-	PowerTimer.py \
-	upgrade.py
+	upgrade.py \
+	pyo_patcher.py \
+	PowerTimer.py
