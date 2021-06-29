@@ -13,7 +13,7 @@
 #define ISO8859_10			0x06	// Latin 6
 #define ISO8859_11			0x07	// Latin/Thai
 #define ISO8859_12			0x08	// Reserved
-#define ISO8859_13			0x08	// Latin 7
+#define ISO8859_13			0x09	// Latin 7
 #define ISO8859_14			0x0A	// Latin 8 (Celtic)
 #define ISO8859_15			0x0B	// Latin 9
 #define ISO8859_xx			0x10	// encoded in next two bytes
@@ -24,6 +24,7 @@
 #define UTF8_ENCODING			0x15	// ISO10646 Basic Multilingual Plane in UTF8 encoding
 #define UTF16BE_ENCODING		0x16
 #define UTF16LE_ENCODING		0x17
+#define GEOSTD8_ENCODING		0x1E	// GEOSTD8 Georgian
 #define HUFFMAN_ENCODING		0x1F
 
 #define MASK_NO_TABLEID			0x0800
