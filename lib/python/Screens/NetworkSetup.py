@@ -2841,7 +2841,7 @@ class NetworkInadyn(Screen):
 					self['labalias'].setText(line)
 				elif line.startswith('update_period_sec '):
 					line = line[18:]
-					line = (int(line) / 60)
+					line = (int(line) // 60)
 					self['labtime'].setText(str(line))
 				elif line.startswith('dyndns_system ') or line.startswith('#dyndns_system '):
 					if line.startswith('#'):
@@ -2923,7 +2923,7 @@ class NetworkInadynSetup(Screen, ConfigListScreen):
 					self.list.append(ina_alias1)
 				elif line.startswith('update_period_sec '):
 					line = line[18:]
-					line = (int(line) / 60)
+					line = (int(line) // 60)
 					self.ina_period.value = line
 					ina_period1 = getConfigListEntry(_("Time Update in Minutes") + ":", self.ina_period)
 					self.list.append(ina_period1)
