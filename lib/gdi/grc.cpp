@@ -866,6 +866,23 @@ void gDC::exec(const gOpcode *o)
 				while (top + height <= btop)
 					top += height;
 			}
+			else if (markedpos > 0xFFFF)
+			{
+				int markedlen = markedpos >> 16;
+				markedpos &= 0xFFFF;
+				int markedlast = markedpos + markedlen - 1;
+				if (markedlast < glyphs)
+				{
+					bbox = para->getGlyphBBox(markedpos);
+					eRect bbox1 = para->getGlyphBBox(markedlast);
+					left = bbox.left();
+					// Assume the mark is on the one line.
+					width = bbox1.right() - left;
+					int btop = bbox.top();
+					while (top + height <= btop)
+						top += height;
+				}
+			}
 			if (width)
 			{
 				bbox = eRect(left, top, width, height);
