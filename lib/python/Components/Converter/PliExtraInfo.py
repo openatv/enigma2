@@ -191,6 +191,7 @@ class PliExtraInfo(Poll, Converter, object):
 		self.ecmdata = GetEcmInfo()
 		self.feraw = self.fedata = self.updateFEdata = None
 		self.recursionCheck = set()
+		self.cryptocolors = parameters.get("PliExtraInfoCryptoColors", (0x004C7D3F, 0x009F9F9F, 0x00EEEE00, 0x00FFFFFF))
 
 	def getCryptoInfo(self, info):
 		if info.getInfo(iServiceInformation.sIsCrypted) == 1:
@@ -233,193 +234,193 @@ class PliExtraInfo(Poll, Converter, object):
 	def createCryptoSeca(self, info):
 		available_caids = info.getInfoObject(iServiceInformation.sCAIDs)
 		if int('0x100', 16) <= int(self.current_caid, 16) <= int('0x1ff', 16):
-			color = "\c004c7d3f"
+			color = Hex2strColor(self.cryptocolors[0])
 		else:
-			color = "\c009f9f9f"
+			color = Hex2strColor(self.cryptocolors[1])
 			try:
 				for caid in available_caids:
 					if int('0x100', 16) <= caid <= int('0x1ff', 16):
-						color = "\c00eeee00"
+						color = Hex2strColor(self.cryptocolors[2])
 			except:
 				pass
 		res = color + 'S'
-		res += "\c00ffffff"
+		res += Hex2strColor(self.cryptocolors[3])
 		return res
 
 	def createCryptoVia(self, info):
 		available_caids = info.getInfoObject(iServiceInformation.sCAIDs)
 		if int('0x500', 16) <= int(self.current_caid, 16) <= int('0x5ff', 16):
-			color = "\c004c7d3f"
+			color = Hex2strColor(self.cryptocolors[0])
 		else:
-			color = "\c009f9f9f"
+			color = Hex2strColor(self.cryptocolors[1])
 			try:
 				for caid in available_caids:
 					if int('0x500', 16) <= caid <= int('0x5ff', 16):
-						color = "\c00eeee00"
+						color = Hex2strColor(self.cryptocolors[2])
 			except:
 				pass
 		res = color + 'V'
-		res += "\c00ffffff"
+		res += Hex2strColor(self.cryptocolors[3])
 		return res
 
 	def createCryptoIrdeto(self, info):
 		available_caids = info.getInfoObject(iServiceInformation.sCAIDs)
 		if int('0x600', 16) <= int(self.current_caid, 16) <= int('0x6ff', 16):
-			color = "\c004c7d3f"
+			color = Hex2strColor(self.cryptocolors[0])
 		else:
-			color = "\c009f9f9f"
+			color = Hex2strColor(self.cryptocolors[1])
 			try:
 				for caid in available_caids:
 					if int('0x600', 16) <= caid <= int('0x6ff', 16):
-						color = "\c00eeee00"
+						color = Hex2strColor(self.cryptocolors[2])
 			except:
 				pass
 		res = color + 'I'
-		res += "\c00ffffff"
+		res += Hex2strColor(self.cryptocolors[3])
 		return res
 
 	def createCryptoNDS(self, info):
 		available_caids = info.getInfoObject(iServiceInformation.sCAIDs)
 		if int('0x900', 16) <= int(self.current_caid, 16) <= int('0x9ff', 16):
-			color = "\c004c7d3f"
+			color = Hex2strColor(self.cryptocolors[0])
 		else:
-			color = "\c009f9f9f"
+			color = Hex2strColor(self.cryptocolors[1])
 			try:
 				for caid in available_caids:
 					if int('0x900', 16) <= caid <= int('0x9ff', 16):
-						color = "\c00eeee00"
+						color = Hex2strColor(self.cryptocolors[2])
 			except:
 				pass
 		res = color + 'NDS'
-		res += "\c00ffffff"
+		res += Hex2strColor(self.cryptocolors[3])
 		return res
 
 	def createCryptoConax(self, info):
 		available_caids = info.getInfoObject(iServiceInformation.sCAIDs)
 		if int('0xb00', 16) <= int(self.current_caid, 16) <= int('0xbff', 16):
-			color = "\c004c7d3f"
+			color = Hex2strColor(self.cryptocolors[0])
 		else:
-			color = "\c009f9f9f"
+			color = Hex2strColor(self.cryptocolors[1])
 			try:
 				for caid in available_caids:
 					if int('0xb00', 16) <= caid <= int('0xbff', 16):
-						color = "\c00eeee00"
+						color = Hex2strColor(self.cryptocolors[2])
 			except:
 				pass
 		res = color + 'CO'
-		res += "\c00ffffff"
+		res += Hex2strColor(self.cryptocolors[3])
 		return res
 
 	def createCryptoCryptoW(self, info):
 		available_caids = info.getInfoObject(iServiceInformation.sCAIDs)
 		if int('0xd00', 16) <= int(self.current_caid, 16) <= int('0xdff', 16):
-			color = "\c004c7d3f"
+			color = Hex2strColor(self.cryptocolors[0])
 		else:
-			color = "\c009f9f9f"
+			color = Hex2strColor(self.cryptocolors[1])
 			try:
 				for caid in available_caids:
 					if int('0xd00', 16) <= caid <= int('0xdff', 16):
-						color = "\c00eeee00"
+						color = Hex2strColor(self.cryptocolors[2])
 			except:
 				pass
 		res = color + 'CW'
-		res += "\c00ffffff"
+		res += Hex2strColor(self.cryptocolors[3])
 		return res
 
 	def createCryptoPowerVU(self, info):
 		available_caids = info.getInfoObject(iServiceInformation.sCAIDs)
 		if int('0xe00', 16) <= int(self.current_caid, 16) <= int('0xeff', 16):
-			color = "\c004c7d3f"
+			color = Hex2strColor(self.cryptocolors[0])
 		else:
-			color = "\c009f9f9f"
+			color = Hex2strColor(self.cryptocolors[1])
 			try:
 				for caid in available_caids:
 					if int('0xe00', 16) <= caid <= int('0xeff', 16):
-						color = "\c00eeee00"
+						color = Hex2strColor(self.cryptocolors[2])
 			except:
 				pass
 		res = color + 'P'
-		res += "\c00ffffff"
+		res += Hex2strColor(self.cryptocolors[3])
 		return res
 
 	def createCryptoTandberg(self, info):
 		available_caids = info.getInfoObject(iServiceInformation.sCAIDs)
 		if int('0x1010', 16) <= int(self.current_caid, 16) <= int('0x1010', 16):
-			color = "\c004c7d3f"
+			color = Hex2strColor(self.cryptocolors[0])
 		else:
-			color = "\c009f9f9f"
+			color = Hex2strColor(self.cryptocolors[1])
 			try:
 				for caid in available_caids:
 					if int('0x1010', 16) <= caid <= int('0x1010', 16):
-						color = "\c00eeee00"
+						color = Hex2strColor(self.cryptocolors[2])
 			except:
 				pass
 		res = color + 'T'
-		res += "\c00ffffff"
+		res += Hex2strColor(self.cryptocolors[3])
 		return res
 
 	def createCryptoBeta(self, info):
 		available_caids = info.getInfoObject(iServiceInformation.sCAIDs)
 		if int('0x1700', 16) <= int(self.current_caid, 16) <= int('0x17ff', 16):
-			color = "\c004c7d3f"
+			color = Hex2strColor(self.cryptocolors[0])
 		else:
-			color = "\c009f9f9f"
+			color = Hex2strColor(self.cryptocolors[1])
 			try:
 				for caid in available_caids:
 					if int('0x1700', 16) <= caid <= int('0x17ff', 16):
-						color = "\c00eeee00"
+						color = Hex2strColor(self.cryptocolors[2])
 			except:
 				pass
 		res = color + 'B'
-		res += "\c00ffffff"
+		res += Hex2strColor(self.cryptocolors[3])
 		return res
 
 	def createCryptoNagra(self, info):
 		available_caids = info.getInfoObject(iServiceInformation.sCAIDs)
 		if int('0x1800', 16) <= int(self.current_caid, 16) <= int('0x18ff', 16):
-			color = "\c004c7d3f"
+			color = Hex2strColor(self.cryptocolors[0])
 		else:
-			color = "\c009f9f9f"
+			color = Hex2strColor(self.cryptocolors[1])
 			try:
 				for caid in available_caids:
 					if int('0x1800', 16) <= caid <= int('0x18ff', 16):
-						color = "\c00eeee00"
+						color = Hex2strColor(self.cryptocolors[2])
 			except:
 				pass
 		res = color + 'N'
-		res += "\c00ffffff"
+		res += Hex2strColor(self.cryptocolors[3])
 		return res
 
 	def createCryptoBiss(self, info):
 		available_caids = info.getInfoObject(iServiceInformation.sCAIDs)
 		if int('0x2600', 16) <= int(self.current_caid, 16) <= int('0x26ff', 16):
-			color = "\c004c7d3f"
+			color = Hex2strColor(self.cryptocolors[0])
 		else:
-			color = "\c009f9f9f"
+			color = Hex2strColor(self.cryptocolors[1])
 			try:
 				for caid in available_caids:
 					if int('0x2600', 16) <= caid <= int('0x26ff', 16):
-						color = "\c00eeee00"
+						color = Hex2strColor(self.cryptocolors[2])
 			except:
 				pass
 		res = color + 'BI'
-		res += "\c00ffffff"
+		res += Hex2strColor(self.cryptocolors[3])
 		return res
 
 	def createCryptoDre(self, info):
 		available_caids = info.getInfoObject(iServiceInformation.sCAIDs)
 		if int('0x4ae0', 16) <= int(self.current_caid, 16) <= int('0x4ae1', 16):
-			color = "\c004c7d3f"
+			color = Hex2strColor(self.cryptocolors[0])
 		else:
-			color = "\c009f9f9f"
+			color = Hex2strColor(self.cryptocolors[1])
 			try:
 				for caid in available_caids:
 					if int('0x4ae0', 16) <= caid <= int('0x4ae1', 16):
-						color = "\c00eeee00"
+						color = Hex2strColor(self.cryptocolors[2])
 			except:
 				pass
 		res = color + 'DC'
-		res += "\c00ffffff"
+		res += Hex2strColor(self.cryptocolors[3])
 		return res
 
 	def createCryptoSpecial(self, info):
