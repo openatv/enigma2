@@ -4601,7 +4601,7 @@ class VideoMode(Screen):
 
 	def selectVMode(self):
 		policy = config.av.policy_43
-		if self.isWideScreen():
+		if hasattr(config.av, 'policy_169') and self.isWideScreen():
 			policy = config.av.policy_169
 		idx = policy.choices.index(policy.value)
 		idx = (idx + 1) % len(policy.choices)
