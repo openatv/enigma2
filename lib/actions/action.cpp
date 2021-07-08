@@ -80,16 +80,15 @@ void eActionMap::unbindAction(const std::string &context, ePyObject function)
 {
 	//eDebug("[eActionMap] unbind function from %s", context.c_str());
 	for (std::multimap<int64_t, eActionBinding>::iterator i(m_bindings.begin()); i != m_bindings.end(); ++i)
-	{
 		if (i->second.m_fnc && (PyObject_RichCompareBool(i->second.m_fnc, function, Py_EQ) == 1))
 		{
 			Py_DECREF(i->second.m_fnc);
 			m_bindings.erase(i);
 			return;
 		}
-	}
 	eFatal("[eActionMap] unbindAction with illegal python reference");
 }
+
 
 void eActionMap::bindKey(const std::string &domain, const std::string &device, int key, int flags, const std::string &context, const std::string &action)
 {
@@ -215,7 +214,7 @@ struct call_entry
 	ePyObject m_fnc, m_arg;
 	eWidget *m_widget;
 	void *m_widget_arg, *m_widget_arg2;
-	call_entry(ePyObject fnc, ePyObject arg): m_fnc(fnc), m_arg(arg), m_widget(0), m_widget_arg(0) { }
+	call_entry(ePyObject fnc, ePyObject arg): m_fnc(fnc), m_arg(arg), m_widget(0), m_widget_arg(0), m_widget_arg2(0) { }
 	call_entry(eWidget *widget, void *arg, void *arg2): m_widget(widget), m_widget_arg(arg), m_widget_arg2(arg2) { }
 };
 
@@ -251,10 +250,16 @@ void eActionMap::keyPressed(const std::string &device, int key, int flags)
 	for (std::multimap<int64_t,eActionBinding>::iterator c(m_bindings.begin()); c != m_bindings.end(); ++c)
 	{
 		if (flags == eRCKey::flagMake)
+		{
 			c->second.m_prev_seen_make_key = key;
+			c->second.m_long_key_pressed = false;
+		}
 		else if (c->second.m_prev_seen_make_key != key)  // ignore repeat or break when the make code for this key was not visible
 			continue;
-
+		if (flags == eRCKey::flagLong)
+			c->second.m_long_key_pressed = true;
+		else if (flags == eRCKey::flagBreak && c->second.m_long_key_pressed)
+			continue;
 		// is this a native context?
 		if (c->second.m_widget)
 		{
@@ -268,11 +273,9 @@ void eActionMap::keyPressed(const std::string &device, int key, int flags)
 
 				for (; k != e; ++k)
 				{
-					if (
-							(k->second.m_key == key) &&
-							(k->second.m_flags & (1<<flags)) &&
-						  ((k->second.m_device == device) || (k->second.m_device == "generic"))
-						  )
+					if (	k->second.m_key == key &&
+						k->second.m_flags & (1<<flags) &&
+						(k->second.m_device == device || k->second.m_device == "generic") )
 						call_list.push_back(call_entry(c->second.m_widget, reinterpret_cast<void*>(c->second.m_id), reinterpret_cast<void*>(k->second.m_action)));
 				}
 			}
@@ -295,11 +298,9 @@ void eActionMap::keyPressed(const std::string &device, int key, int flags)
 
 				for (; k != e; ++k)
 				{
-					if (
-						(k->second.m_key == key) &&
-						(k->second.m_flags & (1<<flags)) &&
-						((k->second.m_device == device) || (k->second.m_device == "generic"))
-						)
+					if (	k->second.m_key == key &&
+						k->second.m_flags & (1<<flags) &&
+						(k->second.m_device == device || k->second.m_device == "generic") )
 					{
 						ePyObject pArgs = PyTuple_New(2);
 						PyTuple_SET_ITEM(pArgs, 0, PyString_FromString(k->first.c_str()));

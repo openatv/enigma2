@@ -6,7 +6,7 @@
 
 #include <lib/python/python.h>
 #include <string>
-#include <map>    
+#include <map>
 #include <vector>
 
 SWIG_IGNORE(eActionMap);
@@ -44,7 +44,7 @@ private:
 	struct eActionBinding
 	{
 		eActionBinding()
-			:m_prev_seen_make_key(-1)
+			:m_prev_seen_make_key(-1), m_long_key_pressed(false)
 		{}
 //		eActionContext *m_context;
 		std::string m_context; // FIXME
@@ -55,6 +55,7 @@ private:
 		eWidget *m_widget;
 		int m_id;
 		int m_prev_seen_make_key;
+		bool m_long_key_pressed;
 	};
 
 	std::multimap<int64_t, eActionBinding> m_bindings;

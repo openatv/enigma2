@@ -46,7 +46,7 @@ int Select(int maxfd, fd_set *readfds, fd_set *writefds, fd_set *exceptfds, stru
 			if (exceptfds) *exceptfds = xset;
 			if (timeout) *timeout = interval;
 			if (errno == EINTR) continue;
-			eDebug("Select] error: %m");
+			eDebug("[Select] error: %m");
 			break;
 		}
 
