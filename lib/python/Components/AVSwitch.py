@@ -574,48 +574,50 @@ def InitAVSwitch():
 			"auto": _("Automatic")},
 			default="16:9")
 
-	# Some boxes have a redundant proc entry for policy2 choices, but some don't (The choices are from a 16:9 point of view anyways)
-	if os.path.exists("/proc/stb/video/policy2_choices"):
-		policy2_choices_proc = "/proc/stb/video/policy2_choices"
-	else:
-		policy2_choices_proc = "/proc/stb/video/policy_choices"
+	# Only add a setting for 16:9+ policy when /proc/stb/video/policy2 exists
+	if os.path.exists("/proc/stb/video/policy2"):
+		# Some boxes have a redundant proc entry for policy2 choices, but some don't (The choices are from a 16:9 point of view anyways)
+		if os.path.exists("/proc/stb/video/policy2_choices"):
+			policy2_choices_proc = "/proc/stb/video/policy2_choices"
+		else:
+			policy2_choices_proc = "/proc/stb/video/policy_choices"
 
-	try:
-		policy2_choices_raw = open(policy2_choices_proc, "r").read()
-	except:
-		policy2_choices_raw = "letterbox"
+		try:
+			policy2_choices_raw = open(policy2_choices_proc, "r").read()
+		except:
+			policy2_choices_raw = "letterbox"
 
-	policy2_choices = {}
+		policy2_choices = {}
 
-	if "letterbox" in policy2_choices_raw:
-		# TRANSLATORS: (aspect ratio policy: black bars on top/bottom) in doubt, keep english term.
-		policy2_choices.update({"letterbox": _("Letterbox")})
+		if "letterbox" in policy2_choices_raw:
+			# TRANSLATORS: (aspect ratio policy: black bars on top/bottom) in doubt, keep english term.
+			policy2_choices.update({"letterbox": _("Letterbox")})
 
-	if "panscan" in policy2_choices_raw:
-		# TRANSLATORS: (aspect ratio policy: cropped content on left/right) in doubt, keep english term
-		policy2_choices.update({"panscan": _("Pan&scan")})
+		if "panscan" in policy2_choices_raw:
+			# TRANSLATORS: (aspect ratio policy: cropped content on left/right) in doubt, keep english term
+			policy2_choices.update({"panscan": _("Pan&scan")})
 
-	if "nonliner" in policy2_choices_raw and not "nonlinear" in policy2_choices_raw:
-		# TRANSLATORS: (aspect ratio policy: display as fullscreen, with stretching the top/bottom (Center of picture maintains aspect, top/bottom lose aspect heaver than on linear stretch))
-		policy2_choices.update({"nonliner": _("Stretch nonlinear")})
-	if "nonlinear" in policy2_choices_raw:
-		# TRANSLATORS: (aspect ratio policy: display as fullscreen, with stretching the top/bottom (Center of picture maintains aspect, top/bottom lose aspect heaver than on linear stretch))
-		policy2_choices.update({"nonlinear": _("Stretch nonlinear")})
+		if "nonliner" in policy2_choices_raw and not "nonlinear" in policy2_choices_raw:
+			# TRANSLATORS: (aspect ratio policy: display as fullscreen, with stretching the top/bottom (Center of picture maintains aspect, top/bottom lose aspect heaver than on linear stretch))
+			policy2_choices.update({"nonliner": _("Stretch nonlinear")})
+		if "nonlinear" in policy2_choices_raw:
+			# TRANSLATORS: (aspect ratio policy: display as fullscreen, with stretching the top/bottom (Center of picture maintains aspect, top/bottom lose aspect heaver than on linear stretch))
+			policy2_choices.update({"nonlinear": _("Stretch nonlinear")})
 
-	if "scale" in policy2_choices_raw and not "auto" in policy2_choices_raw and not "bestfit" in policy2_choices_raw:
-		# TRANSLATORS: (aspect ratio policy: display as fullscreen, with stretching all parts of the picture with the same factor (All parts lose aspect))
-		policy2_choices.update({"scale": _("Stretch linear")})
-	if "full" in policy2_choices_raw:
-		# TRANSLATORS: (aspect ratio policy: display as fullscreen, with stretching all parts of the picture with the same factor (force aspect))
-		policy2_choices.update({"full": _("Stretch full")})
-	if "auto" in policy2_choices_raw and not "bestfit" in policy2_choices_raw:
-		# TRANSLATORS: (aspect ratio policy: display as fullscreen, with stretching all parts of the picture with the same factor (All parts lose aspect))
-		policy2_choices.update({"auto": _("Stretch linear")})
-	if "bestfit" in policy2_choices_raw:
-		# TRANSLATORS: (aspect ratio policy: display as fullscreen, with stretching all parts of the picture with the same factor (All parts lose aspect))
-		policy2_choices.update({"bestfit": _("Stretch linear")})
+		if "scale" in policy2_choices_raw and not "auto" in policy2_choices_raw and not "bestfit" in policy2_choices_raw:
+			# TRANSLATORS: (aspect ratio policy: display as fullscreen, with stretching all parts of the picture with the same factor (All parts lose aspect))
+			policy2_choices.update({"scale": _("Stretch linear")})
+		if "full" in policy2_choices_raw:
+			# TRANSLATORS: (aspect ratio policy: display as fullscreen, with stretching all parts of the picture with the same factor (force aspect))
+			policy2_choices.update({"full": _("Stretch full")})
+		if "auto" in policy2_choices_raw and not "bestfit" in policy2_choices_raw:
+			# TRANSLATORS: (aspect ratio policy: display as fullscreen, with stretching all parts of the picture with the same factor (All parts lose aspect))
+			policy2_choices.update({"auto": _("Stretch linear")})
+		if "bestfit" in policy2_choices_raw:
+			# TRANSLATORS: (aspect ratio policy: display as fullscreen, with stretching all parts of the picture with the same factor (All parts lose aspect))
+			policy2_choices.update({"bestfit": _("Stretch linear")})
 
-	config.av.policy_169 = ConfigSelection(choices=policy2_choices, default="letterbox")
+		config.av.policy_169 = ConfigSelection(choices=policy2_choices, default="letterbox")
 
 	policy_choices_proc = "/proc/stb/video/policy_choices"
 	try:
@@ -679,7 +681,8 @@ def InitAVSwitch():
 	config.av.aspect.addNotifier(iAVSwitch.setAspect)
 	config.av.wss.addNotifier(iAVSwitch.setWss)
 	config.av.policy_43.addNotifier(iAVSwitch.setPolicy43)
-	config.av.policy_169.addNotifier(iAVSwitch.setPolicy169)
+	if hasattr(config.av, 'policy_169'):
+		config.av.policy_169.addNotifier(iAVSwitch.setPolicy169)
 
 	def setColorFormat(configElement):
 		if config.av.videoport and config.av.videoport.value in ("YPbPr", "Scart-YPbPr"):
