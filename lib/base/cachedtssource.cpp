@@ -23,7 +23,7 @@ ssize_t eCachedSource::read(off_t offset, void *buf, size_t count)
 	/* Not quite optimal, but just enough to read bit more efficient than tiny 188 byte chunks */
 	if (count >= CACHE_SIZE)
 		return m_source->read(offset, buf, count);
-	if ((offset < m_cache_offset) || (offset+count >= m_cache_offset + m_cache_bytes))
+	if ((offset < m_cache_offset) || (static_cast<size_t>(offset+count) >= static_cast<size_t>(m_cache_offset+m_cache_bytes)))
 	{
 		/* Update the cache */
 		ssize_t bytes = m_source->read(offset, m_cache_buffer, CACHE_SIZE);

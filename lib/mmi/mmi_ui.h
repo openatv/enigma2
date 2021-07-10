@@ -2,7 +2,7 @@
 #define __mmi_ui_h
 
 #include <string>
-                /* avoid warnigs :) */
+		/* avoid warnigs :) */
 #undef _POSIX_C_SOURCE
 #define _POSIX_C_SOURCE 200112L
 #include <lib/python/python.h>

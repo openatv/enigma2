@@ -115,25 +115,8 @@ public:
 		return std::list<T*>::rend();
 	}
 
-	iterator erase(iterator it)
-	{
-	// 	Remove the item it, if auto-deletion is enabled, than the list call delete for this item
-	//  If current is equal to the item that was removed, current is set to the next item in the list
-		if (cur == it)
-			return cur = std::list<T*>::erase(it);
-		else
-			return std::list<T*>::erase(it);
-	}
-
-	iterator erase(iterator from, iterator to)
-	{
-	// 	Remove all items between the to iterators from and to
-	//	If auto-deletion is enabled, than the list call delete for all removed items
-		while (from != to)
-			from = erase(from);
-
-		return from;
-	}
+	iterator erase(iterator it);
+	iterator erase(iterator from, iterator to);
 
 	operator iterator()
 	{
@@ -175,7 +158,7 @@ public:
 	{
 		// added a new item to the list... in order
 		// returns a iterator to the new item
-		return this->insert( std::lower_bound( std::list<T*>::begin(), std::list<T*>::end(), e, less()), e );
+		return std::list<T*>::insert( std::lower_bound( std::list<T*>::begin(), std::list<T*>::end(), e, less()), e );
 	}
 
 };
@@ -762,26 +745,8 @@ public:
 		return std::list<ePtr<T> >::rend();
 	}
 
-	iterator erase(iterator it)
-	{
-	// 	Remove the item it, if auto-deletion is enabled, than the list call delete for this item
-	//  If current is equal to the item that was removed, current is set to the next item in the list
-
-		if (cur == it)
-			return cur = std::list<ePtr<T> >::erase(it);
-		else
-			return std::list<ePtr<T> >::erase(it);
-	}
-
-	iterator erase(iterator from, iterator to)
-	{
-	// 	Remove all items between the to iterators from and to
-	//	If auto-deletion is enabled, than the list call delete for all removed items
-		while (from != to)
-			from = erase(from);
-
-		return from;
-	}
+	iterator erase(iterator it);
+	iterator erase(iterator from, iterator to);
 
 	operator iterator()
 	{
@@ -1263,6 +1228,51 @@ bool eSmartPtrList<T>::operator!() const
 {
 //	Returns a bool that contains true, when the list is empty otherwise false
 	return std::list<T>::empty();
+}
+
+template <class T>
+typename ePtrList<T>::iterator ePtrList<T>::erase(ePtrList<T>::iterator it)
+{
+// 	Remove the item it, if auto-deletion is enabled, than the list call delete for this item
+//  If current is equal to the item that was removed, current is set to the next item in the list
+	if (cur == it)
+		return cur = std::list<T*>::erase(it);
+	else
+		return std::list<T*>::erase(it);
+}
+
+template <class T>
+typename ePtrList<T>::iterator ePtrList<T>::erase(ePtrList<T>::iterator from, ePtrList<T>::iterator to)
+{
+// 	Remove all items between the to iterators from and to
+//	If auto-deletion is enabled, than the list call delete for all removed items
+	while (from != to)
+		from = erase(from);
+
+	return from;
+}
+
+template <class T>
+typename eSmartPtrList<T>::iterator eSmartPtrList<T>::erase(eSmartPtrList<T>::iterator it)
+{
+// 	Remove the item it, if auto-deletion is enabled, than the list call delete for this item
+//  If current is equal to the item that was removed, current is set to the next item in the list
+
+	if (cur == it)
+		return cur = std::list<ePtr<T> >::erase(it);
+	else
+		return std::list<ePtr<T> >::erase(it);
+}
+
+template <class T>
+typename eSmartPtrList<T>::iterator eSmartPtrList<T>::erase(eSmartPtrList<T>::iterator from, eSmartPtrList<T>::iterator to)
+{
+// 	Remove all items between the to iterators from and to
+//	If auto-deletion is enabled, than the list call delete for all removed items
+	while (from != to)
+		from = erase(from);
+
+	return from;
 }
 
 #endif // _E_PTRLIST

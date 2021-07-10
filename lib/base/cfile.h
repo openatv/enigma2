@@ -3,7 +3,8 @@
 
 #include <stdio.h>
 #include <string>
-#include <lib/base/eerror.h>
+
+typedef long long pts_t;
 
 /* Wrapper around FILE to prevent leaks and to make your code a bit more OO */
 struct CFile
@@ -11,20 +12,10 @@ struct CFile
 	FILE *handle;
 	CFile(const char *filename, const char *mode)
 		: handle(fopen(filename, mode))
-	{
-/*#ifdef DEBUG
-		if (!handle)
-			eDebug("error %s [%m]",filename);
-#endif*/
-	}
+	{}
 	CFile(const std::string &filename, const char *mode)
 		: handle(fopen(filename.c_str(), mode))
-	{
-/*#ifdef DEBUG
-		if (!handle)
-			eDebug("error %s [%m]",filename.c_str());
-#endif*/
-	}
+	{}
 	~CFile()
 	{
 		if (handle)
@@ -37,6 +28,7 @@ struct CFile
 	/* Fetch integer from /proc files and such */
 	static int parseIntHex(int *result, const char *filename);
 	static int parseInt(int *result, const char *filename);
+	static int parsePts_t(pts_t *result, const char *filename);
 	static int writeIntHex(const char *filename, int value);
 	static int writeInt(const char *filename, int value);
 	static int writeStr(const char *filename, std::string value);

@@ -1,3 +1,4 @@
+#include <lib/base/wrappers.h>
 #include <lib/gui/epixmap.h>
 #include <lib/gdi/epng.h>
 #include <lib/gui/ewidgetdesktop.h>
