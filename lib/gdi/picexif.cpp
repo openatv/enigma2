@@ -1,5 +1,6 @@
 #include "picexif.h"
 #include <lib/base/cfile.h>
+#include <lib/base/eerror.h>
 
 #define M_SOF0  0xC0
 #define M_SOF1  0xC1
