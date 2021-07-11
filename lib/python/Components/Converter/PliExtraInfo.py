@@ -565,10 +565,10 @@ class PliExtraInfo(Poll, Converter, object):
 		return ""
 
 	def createChannelNumber(self, fedata, feraw):
-		return "DVB-T" in feraw.get("tuner_type") and fedata.get("channel") or ""
+		return "DVB-T" in feraw.get("tuner_type", "") and fedata.get("channel") or ""
 
 	def createSymbolRate(self, fedata, feraw):
-		if "DVB-T" in feraw.get("tuner_type"):
+		if "DVB-T" in feraw.get("tuner_type", ""):
 			bandwidth = fedata.get("bandwidth")
 			if bandwidth:
 				return bandwidth
@@ -582,7 +582,7 @@ class PliExtraInfo(Poll, Converter, object):
 		return fedata.get("polarization_abbreviation") or ""
 
 	def createFEC(self, fedata, feraw):
-		if "DVB-T" in feraw.get("tuner_type"):
+		if "DVB-T" in feraw.get("tuner_type", ""):
 			code_rate_lp = fedata.get("code_rate_lp")
 			code_rate_hp = fedata.get("code_rate_hp")
 			guard_interval = fedata.get('guard_interval')
