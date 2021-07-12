@@ -447,18 +447,20 @@ void eListboxPythonConfigContent::paint(gPainter &painter, eWindowStyle &style, 
 						{
 							if (PyTuple_Size(value) >= 3)
 							{
-								// FIXME: only one or all is supported
 								ePyObject plist = PyTuple_GET_ITEM(value, 2);
+								int entries = 0;
 								if (plist && PyList_Check(plist))
+									entries = PyList_Size(plist);
+								if (entries != 0)
 								{
-									if (PyList_Size(plist) == 1)
+									ePyObject entry = PyList_GET_ITEM(plist, 0);
+									if (PyInt_Check(entry))
 									{
-										ePyObject entry = PyList_GET_ITEM(plist, 0);
-										if (PyInt_Check(entry))
-											markedpos = PyInt_AsLong(entry);
+										markedpos = PyInt_AsLong(entry);
+										// Assume sequential.
+										if (entries > 1)
+											markedpos |= entries << 16;
 									}
-									else
-										markedpos = -2;
 								}
 								/* entry is borrowed */
 								/* plist is 0 or borrowed */
