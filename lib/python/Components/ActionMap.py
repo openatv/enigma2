@@ -162,7 +162,7 @@ class ActionMap:
 					undefinedAction.remove(action)
 					break
 		if undefinedAction:
-			print("[ActionMap] Keymap(s) '%s' -> Undefined action(s) '%s'." % (", ".join(contexts), ", ".join(unknown)))
+			print("[ActionMap] Keymap(s) '%s': Undefined action(s) '%s'." % ("', '".join(sorted(contexts)), "', '".join(sorted(undefinedAction))))
 
 	def setEnabled(self, enabled):
 		self.enabled = enabled
