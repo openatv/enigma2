@@ -5348,12 +5348,13 @@ msgstr "Couldn't open the file %s"
 #, python-format
 msgid "Could not record due to conflicting timer %s"
 msgstr ""
-"Couldn't record because of a conflicting timer:\n"
+"Couldn't start recording because of a conflicting timer:\n"
 "%s"
 
 #, python-format
 msgid "Could not record due to invalid service %s"
-msgstr "Couldn't record because of an invalid service:\n"
+msgstr ""
+"Couldn't record because of an invalid service:\n"
 "%s"
 
 #, python-format
@@ -13390,7 +13391,9 @@ msgstr "Started recording! Stopping timeshift..."
 
 #, python-format
 msgid "Record time limited due to conflicting timer %s"
-msgstr "Record time limited due to conflicting timer %s"
+msgstr ""
+"Recording time is limited because of a conflicting timer:\n"
+"%s"
 
 msgid "Record write error (no space on disk?)"
 msgstr "Record write error (no space on disk?)"
