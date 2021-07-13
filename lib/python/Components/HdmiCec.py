@@ -12,7 +12,7 @@ from time import time
 import Screens.Standby
 
 from sys import maxsize
-import six
+from six import PY3, ensure_binary
 
 config.hdmicec = ConfigSubsection()
 config.hdmicec.enabled = ConfigYesNo(default=False) # query from this value in hdmi_cec.cpp
@@ -639,7 +639,7 @@ class HdmiCec:
 	def sendMessage(self, address, message):
 		if config.hdmicec.enabled.value:
 			cmd = 0
-			data = ''
+			data = b''
 			if message == "wakeup":
 				cmd = 0x04
 			elif message == "sourceactive":
@@ -679,7 +679,7 @@ class HdmiCec:
 			elif message == "osdname":
 				cmd = 0x47
 				data = os.uname()[1]
-				data = data[:14]
+				data = ensure_binary(data[:14])
 			elif message == "poweractive":
 				cmd = 0x90
 				data = struct.pack('B', 0x00)
@@ -694,7 +694,7 @@ class HdmiCec:
 				data = struct.pack('BBB', int(physicaladdress / 256), int(physicaladdress % 256), devicetype)
 			elif message == "vendorid":
 				cmd = 0x87
-				data = '\x00\x00\x00'
+				data = b'\x00\x00\x00'
 			elif message == "keypoweron":
 				cmd = 0x44
 				data = struct.pack('B', 0x6d)
@@ -704,16 +704,16 @@ class HdmiCec:
 			elif message == "powerstate":
 				cmd = 0x8f
 			if cmd:
+				# TODO : Test
+				if PY3:
+					try:
+						data = data.decode("UTF-8")
+					except:
+						data = data.decode("ISO-8859-1")
 				if config.misc.DeepStandby.value: # no delay for messages before go in to deep-standby
 					if config.hdmicec.debug.value:
 						self.CECdebug('Tx', address, cmd, data, len(data))
-					# FIXME sendMessage needs to have binary string
-					# encode to utf-8 will not work
-					try:
-						data = six.ensure_str(data)
-						eHdmiCEC.getInstance().sendMessage(address, cmd, data, len(data))
-					except:
-						print("[HdmiCec] Error convert binary to string")
+					eHdmiCEC.getInstance().sendMessage(address, cmd, data, len(data))
 				else:
 					self.queue.append((address, cmd, data))
 					if not self.wait.isActive():
@@ -724,14 +724,8 @@ class HdmiCec:
 			(address, cmd, data) = self.queue.pop(0)
 			if config.hdmicec.debug.value:
 				self.CECdebug('Tx', address, cmd, data, len(data))
-			# FIXME sendMessage needs to have binary string
-			# encode to utf-8 will not work
-			try:
-				data = six.ensure_str(data)
-				eHdmiCEC.getInstance().sendMessage(address, cmd, data, len(data))
-				self.wait.start(int(config.hdmicec.minimum_send_interval.value), True)
-			except:
-				print("[HdmiCec] Error convert binary to string")
+			eHdmiCEC.getInstance().sendMessage(address, cmd, data, len(data))
+			self.wait.start(int(config.hdmicec.minimum_send_interval.value), True)
 
 	def sendMessages(self, messages):
 		self.firstrun = False
@@ -1037,7 +1031,7 @@ class HdmiCec:
 			return
 		cmd = 0
 		address = keyEvent
-		data = ''
+		data = b''
 		if keyEvent in (0, 2):
 			if keyCode == 115:
 				cmd = 0x44
@@ -1051,15 +1045,15 @@ class HdmiCec:
 		elif keyEvent == 1 and keyCode in (113, 114, 115):
 			cmd = 0x45
 		if cmd:
+			if PY3:
+				try:
+					data = data.decode("UTF-8")
+				except:
+					data = data.decode("ISO-8859-1")
+
 			if config.hdmicec.debug.value:
 				self.CECdebug('Tx', address, cmd, data, len(data))
-			# FIXME sendMessage needs to have binary string
-			# encode to utf-8 will not work
-			try:
-				data = six.ensure_str(data)
-				eHdmiCEC.getInstance().sendMessage(self.volumeForwardingDestination, cmd, data, len(data))
-			except:
-				print("[HdmiCec] Error convert binary to string")
+			eHdmiCEC.getInstance().sendMessage(self.volumeForwardingDestination, cmd, data, len(data))
 			return 1
 		else:
 			return 0
@@ -1258,21 +1252,23 @@ class HdmiCec:
 							for x in ceccmd[1:]:
 								if len(x.strip()) > 2:
 									raise Exception("Wrong command or incorrect data detected - '%s'" % x)
-							data = ""
+							data = b''
 							cmd = int(ceccmd[1] or "0", 16)
 							if len(ceccmd) > 2:
 								for d in ceccmd[2:]:
 									data += struct.pack("B", int(d or "0", 16))
+
+							# TODO : Test
+							if PY3:
+								try:
+									data = data.decode("UTF-8")
+								except:
+									data = data.decode("ISO-8859-1")
+
 							if config.hdmicec.debug.value:
 								self.CECdebug('Tx', address, cmd, data, len(data))
-							# FIXME sendMessage needs to have binary string
-							# encode to utf-8 will not work
-							try:
-								data = six.ensure_str(data)
-								eHdmiCEC.getInstance().sendMessage(address, cmd, data, len(data))
-							except:
-								print("[HdmiCec] Error convert binary to string")
-								return
+							
+							eHdmiCEC.getInstance().sendMessage(address, cmd, data, len(data))
 						self.cmdWaitTimer.startLongTimer(waittime)
 				except Exception as e:
 					self.CECwritedebug("[HdmiCec] CECcmdline - error: %s" % e, True)
