@@ -223,7 +223,8 @@ class PliExtraInfo(Poll, Converter, object):
 					pass
 
 			if color != Hex2strColor(colors[2]) or caid_entry[4]:
-				if res: res += " "
+				if res:
+					res += " "
 				res += color + caid_entry[3]
 
 		res += Hex2strColor(colors[3]) # white (this acts like a color "reset" for following strings
