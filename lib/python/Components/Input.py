@@ -1,5 +1,4 @@
 from __future__ import absolute_import
-from Components.HTMLComponent import HTMLComponent
 from Components.GUIComponent import GUIComponent
 from Components.VariableText import VariableText
 
@@ -9,7 +8,7 @@ import six
 from Tools.NumericalTextInput import NumericalTextInput
 
 
-class Input(VariableText, HTMLComponent, GUIComponent, NumericalTextInput):
+class Input(VariableText, GUIComponent, NumericalTextInput):
 	TEXT = 0
 	PIN = 1
 	NUMBER = 2

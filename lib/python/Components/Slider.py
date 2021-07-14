@@ -1,12 +1,11 @@
 from __future__ import absolute_import
-from Components.HTMLComponent import HTMLComponent
 from Components.GUIComponent import GUIComponent
 from Components.VariableValue import VariableValue
 
 from enigma import eSlider
 
 
-class Slider(VariableValue, HTMLComponent, GUIComponent):
+class Slider(VariableValue, GUIComponent):
 	def __init__(self, min, max):
 		VariableValue.__init__(self)
 		GUIComponent.__init__(self)

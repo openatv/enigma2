@@ -1,5 +1,4 @@
 from __future__ import absolute_import
-from Components.HTMLComponent import HTMLComponent
 from Components.GUIComponent import GUIComponent
 from Components.VariableValue import VariableValue
 
@@ -8,7 +7,7 @@ from enigma import eSlider
 # a general purpose progress bar
 
 
-class ProgressBar(VariableValue, HTMLComponent, GUIComponent, object):
+class ProgressBar(VariableValue, GUIComponent, object):
 	def __init__(self):
 		GUIComponent.__init__(self)
 		VariableValue.__init__(self)

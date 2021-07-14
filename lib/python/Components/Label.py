@@ -1,6 +1,5 @@
 from __future__ import print_function
 from __future__ import absolute_import
-from Components.HTMLComponent import HTMLComponent
 from Components.GUIComponent import GUIComponent
 from Components.VariableText import VariableText
 from skin import parseColor
@@ -9,7 +8,7 @@ from Components.ConditionalWidget import ConditionalWidget, BlinkingWidget, Blin
 from enigma import eLabel
 
 
-class Label(VariableText, HTMLComponent, GUIComponent):
+class Label(VariableText, GUIComponent):
 	def __init__(self, text=""):
 		GUIComponent.__init__(self)
 		VariableText.__init__(self)
@@ -24,10 +23,6 @@ class Label(VariableText, HTMLComponent, GUIComponent):
 
 	def disconnectDownstream(self, downstream):
 		pass
-
-# html:
-	def produceHTML(self):
-		return self.getText()
 
 # GUI:
 	GUI_WIDGET = eLabel

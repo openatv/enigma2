@@ -2,7 +2,6 @@ from __future__ import absolute_import
 from enigma import eListboxPythonMultiContent, eListbox, gFont, getDesktop, \
 	RT_HALIGN_LEFT, RT_HALIGN_RIGHT, RT_VALIGN_TOP, RT_VALIGN_BOTTOM
 
-from Components.HTMLComponent import HTMLComponent
 from Components.GUIComponent import GUIComponent
 from skin import parseFont
 from Tools.FuzzyDate import FuzzyTime
@@ -38,7 +37,7 @@ def getafterEvent(timer):
 	return afterevent
 
 
-class PowerTimerList(HTMLComponent, GUIComponent, object):
+class PowerTimerList(GUIComponent, object):
 #
 #  | <Name of the Timer>  <action after Timer > |
 #  | <state>          <time range> <start, end> |

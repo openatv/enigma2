@@ -1,5 +1,4 @@
 from __future__ import absolute_import
-from Components.HTMLComponent import HTMLComponent
 from Components.GUIComponent import GUIComponent
 from skin import parseFont
 
@@ -16,7 +15,7 @@ import six
 SIGN = '°' if six.PY3 else str('\xc2\xb0')
 
 
-class TimerList(HTMLComponent, GUIComponent, object):
+class TimerList(GUIComponent, object):
 #
 #  | <Name of the Timer>    <Service> |
 #  | <state>  <orb.pos>  <start, end> |

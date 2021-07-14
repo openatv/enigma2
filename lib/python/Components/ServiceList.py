@@ -1,6 +1,5 @@
 from __future__ import print_function
 from __future__ import absolute_import
-from Components.HTMLComponent import HTMLComponent
 from Components.GUIComponent import GUIComponent
 from skin import parseColor, parseFont
 
@@ -23,7 +22,7 @@ def refreshServiceList(configElement=None):
 			servicelist.setMode()
 
 
-class ServiceList(HTMLComponent, GUIComponent):
+class ServiceList(GUIComponent):
 	MODE_NORMAL = 0
 	MODE_FAVOURITES = 1
 
