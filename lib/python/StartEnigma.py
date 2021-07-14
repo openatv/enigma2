@@ -29,6 +29,17 @@ if getImageArch() in ("aarch64"):
 
 from traceback import print_exc
 
+profile("Bouquets")
+from Components.config import config, ConfigYesNo, ConfigSubsection
+config.misc.load_unlinked_userbouquets = ConfigYesNo(default=False)
+# These entries should be moved back to UsageConfig.py when it is safe to bring UsageConfig init to this location in StartEnigma2.py.
+#
+config.crash = ConfigSubsection()
+config.crash.debugActionMaps = ConfigYesNo(default=False)
+config.crash.debugKeyboards = ConfigYesNo(default=False)
+config.crash.debugRemoteControls = ConfigYesNo(default=False)
+config.crash.debugScreens = ConfigYesNo(default=False)
+
 profile("Geolocation")
 import Tools.Geolocation
 Tools.Geolocation.InitGeolocation()
@@ -40,12 +51,7 @@ Components.SetupDevices.InitSetupDevices()
 profile("SimpleSummary")
 from Screens import InfoBar
 from Screens.SimpleSummary import SimpleSummary
-
 from sys import stdout, exc_info
-
-profile("Bouquets")
-from Components.config import config, configfile, ConfigText, ConfigYesNo, ConfigInteger, NoSave
-config.misc.load_unlinked_userbouquets = ConfigYesNo(default=False)
 
 
 def setLoadUnlinkedUserbouquets(configElement):
@@ -66,8 +72,8 @@ profile("LOAD:skin")
 from skin import readSkin
 
 profile("LOAD:Tools")
+from Components.config import configfile, ConfigText, ConfigInteger, ConfigSelection, NoSave, ConfigSubsection
 from Tools.Directories import InitFallbackFiles, resolveFilename, SCOPE_PLUGINS, SCOPE_ACTIVE_SKIN, SCOPE_CURRENT_SKIN, SCOPE_CONFIG
-from Components.config import config, configfile, ConfigText, ConfigYesNo, ConfigInteger, ConfigSelection, NoSave
 import Components.RecordingConfig
 InitFallbackFiles()
 
