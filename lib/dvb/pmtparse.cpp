@@ -453,14 +453,15 @@ int eDVBPMTParser::getProgramInfo(program &program)
 				}
 				case 0x89: /* User private */
 				{
-					for (const auto desc : *es->getDescriptors())
+					for (DescriptorConstIterator desc = (*es)->getDescriptors()->begin();
+						desc != (*es)->getDescriptors()->end(); ++desc)
 					{
-						switch (desc->getTag())
+						switch ((*desc)->getTag())
 						{
 						case ANCILLARY_DATA_DESCRIPTOR:
-							AncillaryDataDescriptor* d = (AncillaryDataDescriptor*) desc;
+							AncillaryDataDescriptor* d = (AncillaryDataDescriptor*)(*desc);
 							if ((d->getAncillaryDataIdentifier() == 0x40) && prev_audio) /* RDS via UECP */
-								prev_audio->rdsPid = es->getPid();
+								prev_audio->rdsPid = (*es)->getPid();
 							prev_audio = 0;
 							break;
 						}
