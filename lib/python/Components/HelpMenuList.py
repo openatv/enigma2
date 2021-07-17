@@ -3,7 +3,8 @@ from __future__ import absolute_import
 from Components.GUIComponent import GUIComponent
 
 from enigma import eListboxPythonMultiContent, eListbox, gFont
-from Tools.KeyBindings import queryKeyBinding, getKeyDescription
+from Tools.KeyBindings import getKeyDescription
+from Components.ActionMap import queryKeyBinding
 import skin
 #getKeyPositions
 
