@@ -64,8 +64,10 @@ def getKeyNumber(key):
 	return key - ACTIONKEY_0
 
 
+# don't change this
 def getConfigListEntry(*args):
-	assert len(args) > 1, "[Config] Error: 'getConfigListEntry' needs a minimum of two arguments (description, configElement)!"
+	# assert len(args) > 1, "[Config] Error: 'getConfigListEntry' needs a minimum of two arguments (description, configElement)!"
+	assert len(args) > 0, "[Config] Error: 'getConfigListEntry' needs a minimum of on arguments (descr)!"
 	return args
 
 
