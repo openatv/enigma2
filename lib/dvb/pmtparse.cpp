@@ -13,6 +13,7 @@
 #include <dvbsi++/simple_application_location_descriptor.h>
 #include <dvbsi++/simple_application_boundary_descriptor.h>
 #include <dvbsi++/transport_protocol_descriptor.h>
+#include <dvbsi++/ancillary_data_descriptor.h>
 
 eDVBPMTParser::eDVBPMTParser()
 {
@@ -445,6 +446,22 @@ int eDVBPMTParser::getProgramInfo(program &program)
 							program.dsmccPid = (*es)->getPid();
 							break;
 						case STREAM_IDENTIFIER_DESCRIPTOR:
+							break;
+						}
+					}
+					break;
+				}
+				case 0x89: /* User private */
+				{
+					for (const auto desc : *es->getDescriptors())
+					{
+						switch (desc->getTag())
+						{
+						case ANCILLARY_DATA_DESCRIPTOR:
+							AncillaryDataDescriptor* d = (AncillaryDataDescriptor*) desc;
+							if ((d->getAncillaryDataIdentifier() == 0x40) && prev_audio) /* RDS via UECP */
+								prev_audio->rdsPid = es->getPid();
+							prev_audio = 0;
 							break;
 						}
 					}
