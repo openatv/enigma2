@@ -15,16 +15,19 @@ inline char tolower(char c)
 
 int mapEncoding(char *s_table)
 {
-	int encoding = -1;
+	int encoding = 0;
 	int ex_table_flag = 0;
 
 	//if encoding string has a option 'N' or 'NOID' first split by ':' , it indicates that the string has no
-	//     encoding id char in the first byte, and the bit 0x80 of encoding id will be set.
+	//encoding id char in the first byte, and the bit 0x0800 of encoding id will be set. if encoding string 
+        //has a option 'E' or 'ENFORCE' first split by ':' , it indicates that the string encode by provide value,
+        //and skip the first encode byte, and the bit 0x0100 of encoding id will be set.
+
 	char *colon=strrchr(s_table, ':');
 	if(colon != NULL){
 		if(strncmp(s_table,"n:",2) == 0 || strncmp(s_table,"noid:",5) == 0 )
 			ex_table_flag |= MASK_NO_TABLEID;
-                else if(strncmp(s_table,"e:",2) == 0 || strncmp(s_table,"enforce:",8) == 0 )
+		else if(strncmp(s_table,"e:",2) == 0 || strncmp(s_table,"enforce:",8) == 0 )
 			ex_table_flag |= MASK_IGNORE_TABLEID;
 		s_table = colon + 1;
 	}
@@ -67,8 +70,19 @@ eDVBTextEncodingHandler::eDVBTextEncodingHandler()
 	{
 		size_t bufsize = 256;
 		char *line = (char*) malloc(bufsize);
+		if (line == NULL)
+		{
+			eDebug("[eDVBTextEncodingHandler] unable to allocate memory");
+			return;
+		}
 		char countrycode[bufsize];
 		char *s_table = (char*) malloc(bufsize);
+		if (s_table == NULL)
+		{
+			eDebug("[eDVBTextEncodingHandler] unable to allocate memory");
+			free(line);
+			return;
+		}
 		while (getline(&line, &bufsize, f) != -1)
 		{
 			int i, j = 0;	   // remove leading whitespace and control chars, and comments
