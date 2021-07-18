@@ -172,13 +172,13 @@ class WeatherData:
 			self.GetWeather()
 
 	def downloadError(self, error=None):
-		print("[WeatherUpdate] error fetching weather data")
+		print("[VWeather] error fetching weather data")
 
 	def GetWeather(self):
 		timeout = config.plugins.AtileHD.refreshInterval.value * 1000 * 60
 		if timeout > 0:
 			self.timer.start(timeout, True)
-			print("AtileHD lookup for ID " + str(config.plugins.AtileHD.woeid.value))
+			print("[VWeather] lookup for ID " + str(config.plugins.AtileHD.woeid.value))
 			url = "http://query.yahooapis.com/v1/public/yql?q=select%20item%20from%20weather.forecast%20where%20woeid%3D%22" + str(config.plugins.AtileHD.woeid.value) + "%22&format=xml"
 			url = six.ensure_binary(url)
 			getPage(url, method='GET').addCallback(self.GotWeatherData).addErrback(self.downloadError)
@@ -235,11 +235,11 @@ class WeatherData:
 			self.WeatherInfo["forecastTomorrow3Text"] = _(str(weather.getAttributeNode('text').nodeValue))
 
 	def getText(self, nodelist):
-	    rc = []
-	    for node in nodelist:
-	        if node.nodeType == node.TEXT_NODE:
-	            rc.append(node.data)
-	    return ''.join(rc)
+		rc = []
+		for node in nodelist:
+			if node.nodeType == node.TEXT_NODE:
+				rc.append(node.data)
+		return ''.join(rc)
 
 	def ConvertCondition(self, c):
 		c = int(c)
