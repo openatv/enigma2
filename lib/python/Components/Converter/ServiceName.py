@@ -5,9 +5,8 @@ from enigma import iServiceInformation, iPlayableService, iPlayableServicePtr, e
 from Components.Element import cached
 from ServiceReference import resolveAlternate, ServiceReference
 from Tools.Directories import fileExists
-from Tools.Transponder import ConvertToHumanReadable
+from Tools.Transponder import ConvertToHumanReadable, getChannelNumber
 from Components.NimManager import nimmanager
-from Components.Converter.ChannelNumbers import channelnumbers
 import Screens.InfoBar
 
 
@@ -169,7 +168,7 @@ class ServiceName(Converter, object):
 	def ch_number(self):
 		for n in nimmanager.nim_slots:
 			if n.isCompatible("DVB-T"):
-				channel = channelnumbers.getChannelNumber(self.freq(), n.slot)
+				channel = getChannelNumber(self.freq(), n.slot)
 				if channel:
 					return _("CH") + "%s" % channel
 		return ""

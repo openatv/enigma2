@@ -2,6 +2,7 @@ from __future__ import print_function
 from Components.NimManager import nimmanager
 
 
+# FIXME Do we need this ?
 class ChannelNumbers:
 
 	def __init__(self):
