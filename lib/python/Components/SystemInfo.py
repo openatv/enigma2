@@ -1,3 +1,4 @@
+from hashlib import md5
 from os import R_OK, access, listdir, walk
 from os.path import exists as fileAccess, isdir, isfile, join as pathjoin
 from re import findall
@@ -6,25 +7,47 @@ from subprocess import PIPE, Popen
 from boxbranding import getBoxType, getBrandOEM, getDisplayType, getHaveAVJACK, getHaveDVI, getHaveHDMI, getHaveRCA, getHaveSCART, getHaveSCARTYUV, getHaveYUV, getMachineBuild, getMachineMtdRoot
 from enigma import Misc_Options, eDVBCIInterfaces, eDVBResourceManager, eGetEnigmaDebugLvl
 
-from Tools.Directories import SCOPE_SKIN, fileCheck, fileContains, fileReadLine, fileReadLines, resolveFilename, fileExists, fileHas, fileReadLine, pathExists
+from Tools.Directories import SCOPE_LIBDIR, SCOPE_SKIN, fileCheck, fileContains, fileReadLine, fileReadLines, resolveFilename, fileExists, fileHas, fileReadLine, pathExists
 from Tools.HardwareInfo import HardwareInfo
 
 MODULE_NAME = __name__.split(".")[-1]
-ENIGMA_KERNEL_MODULE = "enigma.ko"
-PROC_PATH = "/proc/enigma"
 
 SystemInfo = {}
 
 
 class BoxInformation:  # To maintain data integrity class variables should not be accessed from outside of this class!
 	def __init__(self):
+		self.immutableList = []
+		self.procList = []
+		self.boxInfo = {}
 		self.enigmaList = []
 		self.enigmaInfo = {}
-		self.immutableList = []
-		self.boxInfo = {}
-		self.procList = [file for file in listdir(PROC_PATH) if isfile(pathjoin(PROC_PATH, file))] if isdir(PROC_PATH) else []
-		lines = fileReadLines("/etc/enigma.conf", source=MODULE_NAME)
+		lines = fileReadLines(pathjoin(resolveFilename(SCOPE_LIBDIR), "enigma.info"), source=MODULE_NAME)
 		if lines:
+			modified = self.checkChecksum(lines)
+			if modified:
+				print("[SystemInfo] WARNING: Enigma information file checksum is incorrect!  File appears to have been modified.")
+				self.boxInfo["checksumerror"] = True
+			else:
+				print("[SystemInfo] Enigma information file checksum is correct.")
+				self.boxInfo["checksumerror"] = False
+			for line in lines:
+				if line.startswith("#") or line.strip() == "":
+					continue
+				if "=" in line:
+					item, value = [x.strip() for x in line.split("=", 1)]
+					if item:
+						self.immutableList.append(item)
+						self.procList.append(item)
+						self.boxInfo[item] = self.processValue(value)
+			self.procList = sorted(self.procList)
+			print("[SystemInfo] Enigma information file data loaded into BoxInfo.")
+		else:
+			print("[SystemInfo] ERROR: Enigma information file is not available!  The system is unlikely to boot or operate correctly.")
+		lines = fileReadLines(pathjoin(resolveFilename(SCOPE_LIBDIR), "enigma.conf"), source=MODULE_NAME)
+		if lines:
+			print("[SystemInfo] Enigma config override file available and data loaded into BoxInfo.")
+			self.boxInfo["overrideactive"] = True
 			for line in lines:
 				if line.startswith("#") or line.strip() == "":
 					continue
@@ -33,39 +56,23 @@ class BoxInformation:  # To maintain data integrity class variables should not b
 					if item:
 						self.enigmaList.append(item)
 						self.enigmaInfo[item] = self.processValue(value)
-			print("[SystemInfo] Enigma config override file available and data loaded into BoxInfo.")
-		for dirpath, dirnames, filenames in walk("/lib/modules"):
-			if ENIGMA_KERNEL_MODULE in filenames:
-				modulePath = pathjoin(dirpath, ENIGMA_KERNEL_MODULE)
-				self.boxInfo["enigmamodule"] = modulePath
-				self.immutableList.append("enigmamodule")
-				break
+						if item in self.boxInfo:
+							print("[SystemInfo] Note: Enigma information value '%s' with value '%s' being overridden to '%s'." % (item, self.boxInfo[item], value))
+			self.enigmaList = sorted(self.enigmaList)
 		else:
-			modulePath = ""
-		# As the /proc values are static we can save time by using cached
-		# values loaded here.  If the values become dynamic this code
-		# should be disabled and the dynamic code below enabled.
-		if self.procList:
-			for item in self.procList:
-				self.boxInfo[item] = self.processValue(fileReadLine(pathjoin(PROC_PATH, item), source=MODULE_NAME))
-				self.immutableList.append(item)
-			print("[SystemInfo] Enigma kernel module available and data loaded into BoxInfo.")
-		else:
-			process = Popen(("/sbin/modinfo", "-d", modulePath), stdout=PIPE, stderr=PIPE, universal_newlines=True)
-			stdout, stderr = process.communicate()
-			if process.returncode == 0:
-				for line in stdout.split("\n"):
-					if "=" in line:
-						item, value = line.split("=", 1)
-						if item:
-							self.procList.append(item)
-							self.boxInfo[item] = self.processValue(value)
-							self.immutableList.append(item)
-				print("[SystemInfo] Enigma kernel module not available but modinfo data loaded into BoxInfo!")
+			self.boxInfo["overrideactive"] = False
+
+	def checkChecksum(self, lines):
+		value = "Undefined!"
+		data = []
+		for line in lines:
+			if line.startswith("checksum"):
+				item, value = [x.strip() for x in line.split("=", 1)]
 			else:
-				print("[SystemInfo] Error: Unable to load Enigma kernel module data!  (Error %d: %s)" % (process.returncode, stderr.strip()))
-		self.enigmaList = sorted(self.enigmaList)
-		self.procList = sorted(self.procList)
+				data.append(line)
+		data.append("")
+		result = md5(bytearray("\n".join(data), "UTF-8", errors="ignore")).hexdigest()
+		return value != result
 
 	def processValue(self, value):
 		if value is None:
@@ -103,11 +110,11 @@ class BoxInformation:  # To maintain data integrity class variables should not b
 				pass
 		return value
 
-	def getEnigmaList(self):
-		return self.enigmaList
-
 	def getProcList(self):
 		return self.procList
+
+	def getEnigmaList(self):
+		return self.enigmaList
 
 	def getItemsList(self):
 		return sorted(list(self.boxInfo.keys()))
@@ -115,11 +122,6 @@ class BoxInformation:  # To maintain data integrity class variables should not b
 	def getItem(self, item, default=None):
 		if item in self.enigmaList:
 			value = self.enigmaInfo[item]
-		# As the /proc values are static we can save time by uusing cached
-		# values loaded above.  If the values become dynamic this code
-		# should be enabled.
-		# elif item in self.procList:
-		# 	value = self.processValue(fileReadLine(pathjoin(PROC_PATH, item), source=MODULE_NAME))
 		elif item in self.boxInfo:
 			value = self.boxInfo[item]
 		elif item in SystemInfo:
