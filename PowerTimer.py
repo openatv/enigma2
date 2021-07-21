@@ -23,12 +23,18 @@ def parseEvent(ev):
 	end = begin + ev.getDuration()
 	return begin, end
 
-def recordingsActive(margin):
+# from_time allows the recordingsActive() test to be done relative
+# to a particular time (normally the activation time when comparing
+# two timers).
+def recordingsActive(margin, from_time=None):
 	recordTimer = NavigationInstance.instance.RecordTimer
+	now = time()
+	if from_time is None:
+		from_time = now
 	return (
 		recordTimer.isRecording() or
-		abs(recordTimer.getNextRecordingTime() - time()) <= margin or
-		abs(recordTimer.getNextZapTime() - time()) <= margin
+		abs(recordTimer.getNextRecordingTime(from_time=from_time) - now) <= margin or
+		abs(recordTimer.getNextZapTime(from_time=from_time) - now) <= margin
 	)
 
 class AFTEREVENT:
@@ -134,6 +140,14 @@ class PowerTimerEntry(timer.TimerEntry, object):
 			if self.end <= self.begin:
 				self.end = self.begin
 
+		# Do recordingsActive() tests relative to the nominal
+		# start time of the power timer, rather than the
+		# curent time, to avoid incorrect time calculatuons
+		# when a power timer and record or zap timer run
+		# at the same time.
+
+		from_time = NavigationInstance.instance.PowerTimer.next
+
 		if next_state == self.StatePrepared:
 			self.log(6, "prepare ok, waiting for begin")
 			self.next_activation = self.begin
@@ -212,7 +226,7 @@ class PowerTimerEntry(timer.TimerEntry, object):
 					) or
 					(int(ClientsStreaming("NUMBER").getText()) > 0)
 				) or
-					recordingsActive(900) or
+					recordingsActive(900, from_time=from_time) or
 					(self.autosleepinstandbyonly == 'yes' and not Screens.Standby.inStandby) or
 					(self.autosleepinstandbyonly == 'yes' and Screens.Standby.inStandby and internalHDDNotSleeping())
 				):
@@ -240,7 +254,7 @@ class PowerTimerEntry(timer.TimerEntry, object):
 				return True
 
 			elif self.timerType == TIMERTYPE.DEEPSTANDBY and not self.wasPowerTimerWakeup:
-				if recordingsActive(900):
+				if recordingsActive(900, from_time=from_time):
 					self.do_backoff()
 					# Retry
 					self.begin = time() + self.backoff
@@ -255,7 +269,7 @@ class PowerTimerEntry(timer.TimerEntry, object):
 				return True
 
 			elif self.timerType == TIMERTYPE.REBOOT:
-				if recordingsActive(900):
+				if recordingsActive(900, from_time=from_time):
 					self.do_backoff()
 					# Retry
 					self.begin = time() + self.backoff
@@ -270,7 +284,7 @@ class PowerTimerEntry(timer.TimerEntry, object):
 				return True
 
 			elif self.timerType == TIMERTYPE.RESTART:
-				if recordingsActive(900):
+				if recordingsActive(900, from_time=from_time):
 					self.do_backoff()
 					# Retry
 					self.begin = time() + self.backoff
@@ -290,7 +304,7 @@ class PowerTimerEntry(timer.TimerEntry, object):
 				if not Screens.Standby.inStandby:  # Not already in standby
 					Notifications.AddNotificationWithUniqueIDCallback(self.sendStandbyNotification, "PT_StateChange", MessageBox, _("A power timer wants to set your %s %s to standby mode.\nGo to standby mode now?") % (getMachineBrand(), getMachineName()), timeout=180)
 			elif self.afterEvent == AFTEREVENT.DEEPSTANDBY:
-				if recordingsActive(900):
+				if recordingsActive(900, from_time=from_time):
 					self.do_backoff()
 					# Retry
 					self.begin = time() + self.backoff

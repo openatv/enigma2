@@ -1184,8 +1184,8 @@ class RecordTimer(timer.Timer):
 		except:
 			print "There is not /etc/enigma2/timers.xml file !!! Why ?? "
 
-	def getNextZapTime(self):
-		now = time()
+	def getNextZapTime(self, from_time=None):
+		now = from_time if from_time is not None else time()
 		for timer in self.timer_list:
 			if not timer.justplay or timer.begin < now:
 				continue
@@ -1204,8 +1204,8 @@ class RecordTimer(timer.Timer):
 				break
 		return isStillRecording
 
-	def getNextRecordingTimeOld(self):
-		now = time()
+	def getNextRecordingTimeOld(self, from_time=None):
+		now = from_time if from_time is not None else time()
 		for timer in self.timer_list:
 			next_act = timer.getNextActivation()
 			if timer.justplay or next_act < now:
@@ -1213,8 +1213,8 @@ class RecordTimer(timer.Timer):
 			return next_act
 		return -1
 
-	def getNextRecordingTime(self):
-		nextrectime = self.getNextRecordingTimeOld()
+	def getNextRecordingTime(self, from_time=None):
+		nextrectime = self.getNextRecordingTimeOld(from_time=from_time)
 		faketime = time() + 300
 
 		if config.timeshift.isRecording.value:
