@@ -86,10 +86,10 @@ class ServiceInfo(Converter, object):
 
 	def getServiceInfoString(self, info, what, convert=lambda x: "%d" % x):
 		if self._isHDMIIn(info):
-			return "N/A"
+			return _("N/A")
 		v = info.getInfo(what)
 		if v == -1:
-			return "N/A"
+			return _("N/A")
 		if v == -2:
 			return info.getInfoString(what)
 		return convert(v)
@@ -119,7 +119,7 @@ class ServiceInfo(Converter, object):
 
 	def _getValStr(self, pathname, info, infoVal, base=10, convert=lambda x: "%d" % x):
 		if self._isHDMIIn(info):
-			return "N/A"
+			return _("N/A")
 		val = self._getProcVal(pathname, base=base)
 
 		return convert(val) if val is not None else self.getServiceInfoString(info, infoVal, convert)

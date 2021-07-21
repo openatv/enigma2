@@ -110,7 +110,7 @@ class ClientsStreaming(Converter, Poll, object):
 		elif self.type == self.INFO or self.type == self.INFO_RESOLVE or self.type == self.INFO_RESOLVE_SHORT:
 			return info
 		else:
-			return "(unknown)"
+			return _("(unknown)")
 
 		return ""
 

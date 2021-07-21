@@ -7,25 +7,26 @@ from Components.Element import cached
 from Components.config import config
 from Tools.Transponder import ConvertToHumanReadable, getChannelNumber
 from Tools.GetEcmInfo import GetEcmInfo
+from Tools.Hex2strColor import Hex2strColor
 from Poll import Poll
 from skin import parameters
 
 caid_data = (
-	( "0x100",  "0x1ff", "Seca",     "S",  True  ),
-	( "0x500",  "0x5ff", "Via",      "V",  True  ),
-	( "0x600",  "0x6ff", "Irdeto",   "I",  True  ),
-	( "0x900",  "0x9ff", "NDS",      "Nd", True  ),
-	( "0xb00",  "0xbff", "Conax",    "Co", True  ),
-	( "0xd00",  "0xdff", "CryptoW",  "Cw", True  ),
-	( "0xe00",  "0xeff", "PowerVU",  "P",  False ),
-	("0x1000", "0x10FF", "Tandberg", "TB", False ),
-	("0x1700", "0x17ff", "Beta",     "B",  True  ),
-	("0x1800", "0x18ff", "Nagra",    "N",  True  ),
-	("0x2600", "0x2600", "Biss",     "Bi", False ),
-	("0x2700", "0x2710", "Dre3",     "D3", False),
-	("0x4ae0", "0x4ae1", "Dre",      "D",  False ),
-	("0x4aee", "0x4aee", "BulCrypt", "B1", False ),
-	("0x5581", "0x5581", "BulCrypt", "B2", False )
+	("0x100", "0x1ff", "Seca", "S", True),
+	("0x500", "0x5ff", "Via", "V", True),
+	("0x600", "0x6ff", "Irdeto", "I", True),
+	("0x900", "0x9ff", "NDS", "Nd", True),
+	("0xb00", "0xbff", "Conax", "Co", True),
+	("0xd00", "0xdff", "CryptoW", "Cw", True),
+	("0xe00", "0xeff", "PowerVU", "P", False),
+	("0x1000", "0x10FF", "Tandberg", "TB", False),
+	("0x1700", "0x17ff", "Beta", "B", True),
+	("0x1800", "0x18ff", "Nagra", "N", True),
+	("0x2600", "0x2600", "Biss", "Bi", False),
+	("0x2700", "0x2710", "Dre3", "D3", False),
+	("0x4ae0", "0x4ae1", "Dre", "D", False),
+	("0x4aee", "0x4aee", "BulCrypt", "B1", False),
+	("0x5581", "0x5581", "BulCrypt", "B2", False)
 )
 
 # stream type to codec map
@@ -152,36 +153,36 @@ class PliExtraInfo(Poll, Converter, object):
 			"User": (),
 		}
 		self.ca_table = (
-			("CryptoCaidSecaAvailable",	"S",	False),
-			("CryptoCaidViaAvailable",	"V",	False),
-			("CryptoCaidIrdetoAvailable",	"I",	False),
-			("CryptoCaidNDSAvailable",	"Nd",	False),
-			("CryptoCaidConaxAvailable",	"Co",	False),
-			("CryptoCaidCryptoWAvailable",	"Cw",	False),
-			("CryptoCaidPowerVUAvailable",	"P",	False),
-			("CryptoCaidBetaAvailable",	"B",	False),
-			("CryptoCaidNagraAvailable",	"N",	False),
-			("CryptoCaidBissAvailable",	"Bi",	False),
-			("CryptoCaidDre3Available",     "D3", False),
-			("CryptoCaidDreAvailable",	"D",	False),
-			("CryptoCaidBulCrypt1Available","B1",	False),
-			("CryptoCaidBulCrypt2Available","B2",	False),
-			("CryptoCaidTandbergAvailable",	"T",	False),
-			("CryptoCaidSecaSelected",	"S",	True),
-			("CryptoCaidViaSelected",	"V",	True),
-			("CryptoCaidIrdetoSelected",	"I",	True),
-			("CryptoCaidNDSSelected",	"Nd",	True),
-			("CryptoCaidConaxSelected",	"Co",	True),
-			("CryptoCaidCryptoWSelected",	"Cw",	True),
-			("CryptoCaidPowerVUSelected",	"P",	True),
-			("CryptoCaidBetaSelected",	"B",	True),
-			("CryptoCaidNagraSelected",	"N",	True),
-			("CryptoCaidBissSelected",	"Bi",	True),
-			("CryptoCaidDre3Selected",      "D3", True),
-			("CryptoCaidDreSelected",	"D",	True),
-			("CryptoCaidBulCrypt1Selected",	"B1",	True),
-			("CryptoCaidBulCrypt2Selected",	"B2",	True),
-			("CryptoCaidTandbergSelected",	"T",	True)
+			("CryptoCaidSecaAvailable", "S", False),
+			("CryptoCaidViaAvailable", "V", False),
+			("CryptoCaidIrdetoAvailable", "I", False),
+			("CryptoCaidNDSAvailable", "Nd", False),
+			("CryptoCaidConaxAvailable", "Co", False),
+			("CryptoCaidCryptoWAvailable", "Cw", False),
+			("CryptoCaidPowerVUAvailable", "P", False),
+			("CryptoCaidBetaAvailable", "B", False),
+			("CryptoCaidNagraAvailable", "N", False),
+			("CryptoCaidBissAvailable", "Bi", False),
+			("CryptoCaidDre3Available", "D3", False),
+			("CryptoCaidDreAvailable", "D", False),
+			("CryptoCaidBulCrypt1Available", "B1", False),
+			("CryptoCaidBulCrypt2Available", "B2", False),
+			("CryptoCaidTandbergAvailable", "T", False),
+			("CryptoCaidSecaSelected", "S", True),
+			("CryptoCaidViaSelected", "V", True),
+			("CryptoCaidIrdetoSelected", "I", True),
+			("CryptoCaidNDSSelected", "Nd", True),
+			("CryptoCaidConaxSelected", "Co", True),
+			("CryptoCaidCryptoWSelected", "Cw", True),
+			("CryptoCaidPowerVUSelected", "P", True),
+			("CryptoCaidBetaSelected", "B", True),
+			("CryptoCaidNagraSelected", "N", True),
+			("CryptoCaidBissSelected", "Bi", True),
+			("CryptoCaidDre3Selected", "D3", True),
+			("CryptoCaidDreSelected", "D", True),
+			("CryptoCaidBulCrypt1Selected", "B1", True),
+			("CryptoCaidBulCrypt2Selected", "B2", True),
+			("CryptoCaidTandbergSelected", "T", True)
 		)
 		self.type = self.type.split(',')
 		if self.type[0] == "User":
@@ -190,6 +191,7 @@ class PliExtraInfo(Poll, Converter, object):
 		self.ecmdata = GetEcmInfo()
 		self.feraw = self.fedata = self.updateFEdata = None
 		self.recursionCheck = set()
+		self.cryptocolors = parameters.get("PliExtraInfoCryptoColors", (0x004C7D3F, 0x009F9F9F, 0x00EEEE00, 0x00FFFFFF))
 
 	def getCryptoInfo(self, info):
 		if info.getInfo(iServiceInformation.sIsCrypted) == 1:
@@ -211,214 +213,214 @@ class PliExtraInfo(Poll, Converter, object):
 
 		for caid_entry in caid_data:
 			if int(caid_entry[0], 16) <= int(self.current_caid, 16) <= int(caid_entry[1], 16):
-				color = "\c%08x" % colors[0] # green
+				color = Hex2strColor(colors[0]) # green
 			else:
-				color = "\c%08x" % colors[2] # grey
+				color = Hex2strColor(colors[2]) # grey
 				try:
 					for caid in available_caids:
 						if int(caid_entry[0], 16) <= caid <= int(caid_entry[1], 16):
-							color = "\c%08x" % colors[1] # yellow
+							color = Hex2strColor(colors[1]) # yellow
 				except:
 					pass
 
-			if color != "\c%08x" % colors[2] or caid_entry[4]:
+			if color != Hex2strColor(colors[2]) or caid_entry[4]:
 				if res:
 					res += " "
 				res += color + caid_entry[3]
 
-		res += "\c%08x" % colors[3] # white (this acts like a color "reset" for following strings
+		res += Hex2strColor(colors[3]) # white (this acts like a color "reset" for following strings
 		return res
 
 	def createCryptoSeca(self, info):
 		available_caids = info.getInfoObject(iServiceInformation.sCAIDs)
 		if int('0x100', 16) <= int(self.current_caid, 16) <= int('0x1ff', 16):
-			color = "\c004c7d3f"
+			color = Hex2strColor(self.cryptocolors[0])
 		else:
-			color = "\c009f9f9f"
+			color = Hex2strColor(self.cryptocolors[1])
 			try:
 				for caid in available_caids:
 					if int('0x100', 16) <= caid <= int('0x1ff', 16):
-						color = "\c00eeee00"
+						color = Hex2strColor(self.cryptocolors[2])
 			except:
 				pass
 		res = color + 'S'
-		res += "\c00ffffff"
+		res += Hex2strColor(self.cryptocolors[3])
 		return res
 
 	def createCryptoVia(self, info):
 		available_caids = info.getInfoObject(iServiceInformation.sCAIDs)
 		if int('0x500', 16) <= int(self.current_caid, 16) <= int('0x5ff', 16):
-			color = "\c004c7d3f"
+			color = Hex2strColor(self.cryptocolors[0])
 		else:
-			color = "\c009f9f9f"
+			color = Hex2strColor(self.cryptocolors[1])
 			try:
 				for caid in available_caids:
 					if int('0x500', 16) <= caid <= int('0x5ff', 16):
-						color = "\c00eeee00"
+						color = Hex2strColor(self.cryptocolors[2])
 			except:
 				pass
 		res = color + 'V'
-		res += "\c00ffffff"
+		res += Hex2strColor(self.cryptocolors[3])
 		return res
 
 	def createCryptoIrdeto(self, info):
 		available_caids = info.getInfoObject(iServiceInformation.sCAIDs)
 		if int('0x600', 16) <= int(self.current_caid, 16) <= int('0x6ff', 16):
-			color = "\c004c7d3f"
+			color = Hex2strColor(self.cryptocolors[0])
 		else:
-			color = "\c009f9f9f"
+			color = Hex2strColor(self.cryptocolors[1])
 			try:
 				for caid in available_caids:
 					if int('0x600', 16) <= caid <= int('0x6ff', 16):
-						color = "\c00eeee00"
+						color = Hex2strColor(self.cryptocolors[2])
 			except:
 				pass
 		res = color + 'I'
-		res += "\c00ffffff"
+		res += Hex2strColor(self.cryptocolors[3])
 		return res
 
 	def createCryptoNDS(self, info):
 		available_caids = info.getInfoObject(iServiceInformation.sCAIDs)
 		if int('0x900', 16) <= int(self.current_caid, 16) <= int('0x9ff', 16):
-			color = "\c004c7d3f"
+			color = Hex2strColor(self.cryptocolors[0])
 		else:
-			color = "\c009f9f9f"
+			color = Hex2strColor(self.cryptocolors[1])
 			try:
 				for caid in available_caids:
 					if int('0x900', 16) <= caid <= int('0x9ff', 16):
-						color = "\c00eeee00"
+						color = Hex2strColor(self.cryptocolors[2])
 			except:
 				pass
 		res = color + 'NDS'
-		res += "\c00ffffff"
+		res += Hex2strColor(self.cryptocolors[3])
 		return res
 
 	def createCryptoConax(self, info):
 		available_caids = info.getInfoObject(iServiceInformation.sCAIDs)
 		if int('0xb00', 16) <= int(self.current_caid, 16) <= int('0xbff', 16):
-			color = "\c004c7d3f"
+			color = Hex2strColor(self.cryptocolors[0])
 		else:
-			color = "\c009f9f9f"
+			color = Hex2strColor(self.cryptocolors[1])
 			try:
 				for caid in available_caids:
 					if int('0xb00', 16) <= caid <= int('0xbff', 16):
-						color = "\c00eeee00"
+						color = Hex2strColor(self.cryptocolors[2])
 			except:
 				pass
 		res = color + 'CO'
-		res += "\c00ffffff"
+		res += Hex2strColor(self.cryptocolors[3])
 		return res
 
 	def createCryptoCryptoW(self, info):
 		available_caids = info.getInfoObject(iServiceInformation.sCAIDs)
 		if int('0xd00', 16) <= int(self.current_caid, 16) <= int('0xdff', 16):
-			color = "\c004c7d3f"
+			color = Hex2strColor(self.cryptocolors[0])
 		else:
-			color = "\c009f9f9f"
+			color = Hex2strColor(self.cryptocolors[1])
 			try:
 				for caid in available_caids:
 					if int('0xd00', 16) <= caid <= int('0xdff', 16):
-						color = "\c00eeee00"
+						color = Hex2strColor(self.cryptocolors[2])
 			except:
 				pass
 		res = color + 'CW'
-		res += "\c00ffffff"
+		res += Hex2strColor(self.cryptocolors[3])
 		return res
 
 	def createCryptoPowerVU(self, info):
 		available_caids = info.getInfoObject(iServiceInformation.sCAIDs)
 		if int('0xe00', 16) <= int(self.current_caid, 16) <= int('0xeff', 16):
-			color = "\c004c7d3f"
+			color = Hex2strColor(self.cryptocolors[0])
 		else:
-			color = "\c009f9f9f"
+			color = Hex2strColor(self.cryptocolors[1])
 			try:
 				for caid in available_caids:
 					if int('0xe00', 16) <= caid <= int('0xeff', 16):
-						color = "\c00eeee00"
+						color = Hex2strColor(self.cryptocolors[2])
 			except:
 				pass
 		res = color + 'P'
-		res += "\c00ffffff"
+		res += Hex2strColor(self.cryptocolors[3])
 		return res
 
 	def createCryptoTandberg(self, info):
 		available_caids = info.getInfoObject(iServiceInformation.sCAIDs)
 		if int('0x1010', 16) <= int(self.current_caid, 16) <= int('0x1010', 16):
-			color = "\c004c7d3f"
+			color = Hex2strColor(self.cryptocolors[0])
 		else:
-			color = "\c009f9f9f"
+			color = Hex2strColor(self.cryptocolors[1])
 			try:
 				for caid in available_caids:
 					if int('0x1010', 16) <= caid <= int('0x1010', 16):
-						color = "\c00eeee00"
+						color = Hex2strColor(self.cryptocolors[2])
 			except:
 				pass
 		res = color + 'T'
-		res += "\c00ffffff"
+		res += Hex2strColor(self.cryptocolors[3])
 		return res
 
 	def createCryptoBeta(self, info):
 		available_caids = info.getInfoObject(iServiceInformation.sCAIDs)
 		if int('0x1700', 16) <= int(self.current_caid, 16) <= int('0x17ff', 16):
-			color = "\c004c7d3f"
+			color = Hex2strColor(self.cryptocolors[0])
 		else:
-			color = "\c009f9f9f"
+			color = Hex2strColor(self.cryptocolors[1])
 			try:
 				for caid in available_caids:
 					if int('0x1700', 16) <= caid <= int('0x17ff', 16):
-						color = "\c00eeee00"
+						color = Hex2strColor(self.cryptocolors[2])
 			except:
 				pass
 		res = color + 'B'
-		res += "\c00ffffff"
+		res += Hex2strColor(self.cryptocolors[3])
 		return res
 
 	def createCryptoNagra(self, info):
 		available_caids = info.getInfoObject(iServiceInformation.sCAIDs)
 		if int('0x1800', 16) <= int(self.current_caid, 16) <= int('0x18ff', 16):
-			color = "\c004c7d3f"
+			color = Hex2strColor(self.cryptocolors[0])
 		else:
-			color = "\c009f9f9f"
+			color = Hex2strColor(self.cryptocolors[1])
 			try:
 				for caid in available_caids:
 					if int('0x1800', 16) <= caid <= int('0x18ff', 16):
-						color = "\c00eeee00"
+						color = Hex2strColor(self.cryptocolors[2])
 			except:
 				pass
 		res = color + 'N'
-		res += "\c00ffffff"
+		res += Hex2strColor(self.cryptocolors[3])
 		return res
 
 	def createCryptoBiss(self, info):
 		available_caids = info.getInfoObject(iServiceInformation.sCAIDs)
 		if int('0x2600', 16) <= int(self.current_caid, 16) <= int('0x26ff', 16):
-			color = "\c004c7d3f"
+			color = Hex2strColor(self.cryptocolors[0])
 		else:
-			color = "\c009f9f9f"
+			color = Hex2strColor(self.cryptocolors[1])
 			try:
 				for caid in available_caids:
 					if int('0x2600', 16) <= caid <= int('0x26ff', 16):
-						color = "\c00eeee00"
+						color = Hex2strColor(self.cryptocolors[2])
 			except:
 				pass
 		res = color + 'BI'
-		res += "\c00ffffff"
+		res += Hex2strColor(self.cryptocolors[3])
 		return res
 
 	def createCryptoDre(self, info):
 		available_caids = info.getInfoObject(iServiceInformation.sCAIDs)
 		if int('0x4ae0', 16) <= int(self.current_caid, 16) <= int('0x4ae1', 16):
-			color = "\c004c7d3f"
+			color = Hex2strColor(self.cryptocolors[0])
 		else:
-			color = "\c009f9f9f"
+			color = Hex2strColor(self.cryptocolors[1])
 			try:
 				for caid in available_caids:
 					if int('0x4ae0', 16) <= caid <= int('0x4ae1', 16):
-						color = "\c00eeee00"
+						color = Hex2strColor(self.cryptocolors[2])
 			except:
 				pass
 		res = color + 'DC'
-		res += "\c00ffffff"
+		res += Hex2strColor(self.cryptocolors[3])
 		return res
 
 	def createCryptoSpecial(self, info):
@@ -563,10 +565,10 @@ class PliExtraInfo(Poll, Converter, object):
 		return ""
 
 	def createChannelNumber(self, fedata, feraw):
-		return "DVB-T" in feraw.get("tuner_type") and fedata.get("channel") or ""
+		return "DVB-T" in feraw.get("tuner_type", "") and fedata.get("channel") or ""
 
 	def createSymbolRate(self, fedata, feraw):
-		if "DVB-T" in feraw.get("tuner_type"):
+		if "DVB-T" in feraw.get("tuner_type", ""):
 			bandwidth = fedata.get("bandwidth")
 			if bandwidth:
 				return bandwidth
@@ -580,7 +582,7 @@ class PliExtraInfo(Poll, Converter, object):
 		return fedata.get("polarization_abbreviation") or ""
 
 	def createFEC(self, fedata, feraw):
-		if "DVB-T" in feraw.get("tuner_type"):
+		if "DVB-T" in feraw.get("tuner_type", ""):
 			code_rate_lp = fedata.get("code_rate_lp")
 			code_rate_hp = fedata.get("code_rate_hp")
 			guard_interval = fedata.get('guard_interval')
@@ -635,48 +637,48 @@ class PliExtraInfo(Poll, Converter, object):
 				orbpos -= 1
 
 		sat_names = {
-			30:   'Rascom/Eutelsat 3E',
-			48:   'SES 5',
-			70:   'Eutelsat 7E',
-			90:   'Eutelsat 9E',
-			100:  'Eutelsat 10E',
-			130:  'Hot Bird',
-			160:  'Eutelsat 16E',
-			192:  'Astra 1KR/1L/1M/1N',
-			200:  'Arabsat 20E',
-			216:  'Eutelsat 21.5E',
-			235:  'Astra 3',
-			255:  'Eutelsat 25.5E',
-			260:  'Badr 4/5/6',
-			282:  'Astra 2E/2F/2G',
-			305:  'Arabsat 30.5E',
-			315:  'Astra 5',
-			330:  'Eutelsat 33E',
-			360:  'Eutelsat 36E',
-			380:  'Paksat',
-			390:  'Hellas Sat',
-			400:  'Express 40E',
-			420:  'Turksat',
-			450:  'Intelsat 45E',
-			480:  'Afghansat',
-			490:  'Yamal 49E',
-			530:  'Express 53E',
-			570:  'NSS 57E',
-			600:  'Intelsat 60E',
-			620:  'Intelsat 62E',
-			685:  'Intelsat 68.5E',
-			705:  'Eutelsat 70.5E',
-			720:  'Intelsat 72E',
-			750:  'ABS',
-			765:  'Apstar',
-			785:  'ThaiCom',
-			800:  'Express 80E',
-			830:  'Insat',
-			851:  'Intelsat/Horizons',
-			880:  'ST2',
-			900:  'Yamal 90E',
-			915:  'Mesat',
-			950:  'NSS/SES 95E',
+			30: 'Rascom/Eutelsat 3E',
+			48: 'SES 5',
+			70: 'Eutelsat 7E',
+			90: 'Eutelsat 9E',
+			100: 'Eutelsat 10E',
+			130: 'Hot Bird',
+			160: 'Eutelsat 16E',
+			192: 'Astra 1KR/1L/1M/1N',
+			200: 'Arabsat 20E',
+			216: 'Eutelsat 21.5E',
+			235: 'Astra 3',
+			255: 'Eutelsat 25.5E',
+			260: 'Badr 4/5/6',
+			282: 'Astra 2E/2F/2G',
+			305: 'Arabsat 30.5E',
+			315: 'Astra 5',
+			330: 'Eutelsat 33E',
+			360: 'Eutelsat 36E',
+			380: 'Paksat',
+			390: 'Hellas Sat',
+			400: 'Express 40E',
+			420: 'Turksat',
+			450: 'Intelsat 45E',
+			480: 'Afghansat',
+			490: 'Yamal 49E',
+			530: 'Express 53E',
+			570: 'NSS 57E',
+			600: 'Intelsat 60E',
+			620: 'Intelsat 62E',
+			685: 'Intelsat 68.5E',
+			705: 'Eutelsat 70.5E',
+			720: 'Intelsat 72E',
+			750: 'ABS',
+			765: 'Apstar',
+			785: 'ThaiCom',
+			800: 'Express 80E',
+			830: 'Insat',
+			851: 'Intelsat/Horizons',
+			880: 'ST2',
+			900: 'Yamal 90E',
+			915: 'Mesat',
+			950: 'NSS/SES 95E',
 			1005: 'AsiaSat 100E',
 			1030: 'Express 103E',
 			1055: 'Asiasat 105E',
