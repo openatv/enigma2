@@ -110,7 +110,7 @@ class SoftwarePanel(Screen):
 		self.close()
 
 	def layoutFinished(self):
-		self.checkTraficLight()
+		self.checkTrafficLight()
 		self.rebuildList()
 
 	def UpdatePackageNr(self):
@@ -125,8 +125,8 @@ class SoftwarePanel(Screen):
 			self['key_green'].show()
 			self['key_green_pic'].show()
 
-	def checkTraficLight(self):
-		print("checkTraficLight")
+	def checkTrafficLight(self):
+		print("checkTrafficLight")
 		from six.moves.urllib.request import urlopen
 		import socket
 		self['a_red'].hide()
@@ -141,15 +141,15 @@ class SoftwarePanel(Screen):
 			urlopenATV = "http://ampel.mynonpublic.com/Ampel/index.php"
 			d = urlopen(urlopenATV)
 			tmpStatus = d.read()
-			if 'rot.png' in tmpStatus:
+			if b'rot.png' in tmpStatus:
 				self['a_off'].hide()
 				self['a_red'].show()
 				self['feedstatusRED'].show()
-			elif 'gelb.png' in tmpStatus:
+			elif b'gelb.png' in tmpStatus:
 				self['a_off'].hide()
 				self['a_yellow'].show()
 				self['feedstatusYELLOW'].show()
-			elif 'gruen.png' in tmpStatus:
+			elif b'gruen.png' in tmpStatus:
 				self['a_off'].hide()
 				self['a_green'].show()
 				self['feedstatusGREEN'].show()

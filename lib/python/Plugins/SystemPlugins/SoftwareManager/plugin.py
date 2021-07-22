@@ -1559,8 +1559,8 @@ class UpdatePlugin(Screen):
 		self.processed_packages = []
 		self.total_packages = None
 		self.skin_path = plugin_path
-		self.TraficCheck = False
-		self.TraficResult = False
+		self.TrafficCheck = False
+		self.TrafficResult = False
 		self.CheckDateDone = False
 
 		self.activity = 0
@@ -1611,7 +1611,7 @@ class UpdatePlugin(Screen):
 			self.close()
 			return
 
-	def checkTraficLight(self):
+	def checkTrafficLight(self):
 		from six.moves.urllib.request import urlopen
 		import socket
 		currentTimeoutDefault = socket.getdefaulttimeout()
@@ -1656,12 +1656,12 @@ class UpdatePlugin(Screen):
 				self.runUpgrade(False)
 
 	def runUpgrade(self, result):
-		self.TraficResult = result
+		self.TrafficResult = result
 		if result:
-			self.TraficCheck = True
+			self.TrafficCheck = True
 			self.ipkg.startCmd(IpkgComponent.CMD_UPGRADE_LIST)
 		else:
-			self.TraficCheck = False
+			self.TrafficCheck = False
 			self.activityTimer.stop()
 			self.activityslider.setValue(0)
 			self.exit()
@@ -1720,10 +1720,10 @@ class UpdatePlugin(Screen):
 				self.ipkg.startCmd(IpkgComponent.CMD_UPGRADE_LIST)
 			elif self.ipkg.currentCommand == IpkgComponent.CMD_UPGRADE_LIST:
 				self.total_packages = len(self.ipkg.getFetchedList())
-				if self.total_packages and not self.TraficCheck:
-					self.checkTraficLight()
+				if self.total_packages and not self.TrafficCheck:
+					self.checkTrafficLight()
 					return
-				if self.total_packages and self.TraficCheck and self.TraficResult:
+				if self.total_packages and self.TrafficCheck and self.TrafficResult:
 					#message = _("Do you want to update your %s %s?") % (getMachineBrand(), getMachineName()) + "                 \n(%s " % self.total_packages + _("Packages") + ")"
 					try:
 						if config.plugins.softwaremanager.updatetype.value == "cold":
