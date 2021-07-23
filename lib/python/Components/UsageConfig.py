@@ -1044,7 +1044,6 @@ def InitUsageConfig():
 	config.misc.epggenrecountry = ConfigSelection(default="", choices=[("", _("Auto Detect")), ("ETSI", _("Generic")), ("AUS", _("Australia"))])
 
 	config.misc.showradiopic = ConfigYesNo(default=True)
-	config.misc.load_unlinked_userbouquets = ConfigYesNo(default=False)
 
 	def setHDDStandby(configElement):
 		for hdd in harddiskmanager.HDDList():
@@ -1133,12 +1132,8 @@ def InitUsageConfig():
 	config.seek.withjumps_repeat_ms = ConfigSelection([("200", _("0.2s")), ("300", _("0.3s")), ("400", _("0.4s")), ("500", _("0.5s")), ("600", _("0.6s")), ("700", _("0.7s")), ("800", _("0.8s")), ("900", _("0.9s")), ("1000", _("1s"))], default="200")
 	config.seek.withjumps_avoid_zero = ConfigYesNo(default=True)
 
-	config.crash = ConfigSubsection()
-
-	config.crash.debugActionMaps = ConfigYesNo(default=False)
-	config.crash.debugKeyboards = ConfigYesNo(default=False)
-	config.crash.debugRemoteControls = ConfigYesNo(default=False)
-	config.crash.debugScreens = ConfigYesNo(default=False)
+	# this is already in StartEniga.py
+	#config.crash = ConfigSubsection()
 
 	#// handle python crashes
 	config.crash.bsodpython = ConfigYesNo(default=True)

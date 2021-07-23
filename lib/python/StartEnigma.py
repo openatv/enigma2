@@ -29,6 +29,9 @@ if getImageArch() in ("aarch64"):
 
 from traceback import print_exc
 
+# Init Language
+from Components.Language import language
+
 profile("Bouquets")
 from Components.config import config, ConfigYesNo, ConfigSubsection
 config.misc.load_unlinked_userbouquets = ConfigYesNo(default=False)
