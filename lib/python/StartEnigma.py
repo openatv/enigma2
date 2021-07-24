@@ -29,20 +29,6 @@ if getImageArch() in ("aarch64"):
 
 from traceback import print_exc
 
-# Init Language
-from Components.Language import language
-
-profile("Bouquets")
-from Components.config import config, ConfigYesNo, ConfigSubsection
-config.misc.load_unlinked_userbouquets = ConfigYesNo(default=False)
-# These entries should be moved back to UsageConfig.py when it is safe to bring UsageConfig init to this location in StartEnigma2.py.
-#
-config.crash = ConfigSubsection()
-config.crash.debugActionMaps = ConfigYesNo(default=False)
-config.crash.debugKeyboards = ConfigYesNo(default=False)
-config.crash.debugRemoteControls = ConfigYesNo(default=False)
-config.crash.debugScreens = ConfigYesNo(default=False)
-
 profile("Geolocation")
 import Tools.Geolocation
 Tools.Geolocation.InitGeolocation()
@@ -51,16 +37,25 @@ profile("SetupDevices")
 import Components.SetupDevices
 Components.SetupDevices.InitSetupDevices()
 
+from Components.config import config, ConfigYesNo, ConfigSubsection
+# These entries should be moved back to UsageConfig.py when it is safe to bring UsageConfig init to this location in StartEnigma2.py.
+#
+config.crash = ConfigSubsection()
+config.crash.debugActionMaps = ConfigYesNo(default=False)
+config.crash.debugKeyboards = ConfigYesNo(default=False)
+config.crash.debugRemoteControls = ConfigYesNo(default=False)
+config.crash.debugScreens = ConfigYesNo(default=False)
+
 profile("SimpleSummary")
 from Screens import InfoBar
 from Screens.SimpleSummary import SimpleSummary
 from sys import stdout, exc_info
 
-
 def setLoadUnlinkedUserbouquets(configElement):
 	enigma.eDVBDB.getInstance().setLoadUnlinkedUserbouquets(configElement.value)
 
-
+profile("Bouquets")
+config.misc.load_unlinked_userbouquets = ConfigYesNo(default=False)
 config.misc.load_unlinked_userbouquets.addNotifier(setLoadUnlinkedUserbouquets)
 enigma.eDVBDB.getInstance().reloadBouquets()
 
