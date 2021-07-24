@@ -7,7 +7,7 @@
 DEFINE_REF(eDVBRdsDecoder);
 
 eDVBRdsDecoder::eDVBRdsDecoder(iDVBDemux *demux, int type)
-	:msgPtr(0), bsflag(0), qdar_pos(0), t_ptr(0), qdarmvi_show(0), state(0)
+	:msgPtr(0), bsflag(0), qdar_pos(0), t_ptr(0), qdarmvi_show(0), state(0), m_rtp_togglebit(0), m_rtp_runningbit(0)
 	,m_type(type), m_pid(-1), m_abortTimer(eTimer::create(eApp))
 {
 	setStreamID(0xC0, 0xC0);
@@ -613,6 +613,18 @@ void eDVBRdsDecoder::gotAncillaryData(const uint8_t *buf, int len)
 						state = 0;
 						break;
 					}
+					short current_tooglebit = rtp_buf[0]>>4;
+					short current_runningbit = (rtp_buf[0]>>3) & 0x1;
+					if ( current_tooglebit != m_rtp_togglebit  // current togglebit different than last stored togglebit -> item/song has changed
+					    || (m_rtp_runningbit == 1 && current_runningbit == 0)) // item/song has ended
+					{
+						memset(rtp_item, 0, sizeof(rtp_item));
+						m_rtplus_message = "";
+						/*emit*/ m_event(RtpTextChanged);
+					}
+					m_rtp_togglebit = current_tooglebit;
+					m_rtp_runningbit = current_runningbit;
+
 					int rtp_typ[2],rtp_start[2],rtp_len[2];
 					rtp_typ[0]   = (0x38 & rtp_buf[0]<<3) | rtp_buf[1]>>5;
 					rtp_start[0] = (0x3e & rtp_buf[1]<<1) | rtp_buf[2]>>7;

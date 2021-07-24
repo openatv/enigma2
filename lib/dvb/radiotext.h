@@ -14,6 +14,7 @@ class eDVBRdsDecoder: public iObject, public ePESParser, public sigc::trackable
 	std::string m_rt_message;     // radiotext message
 	std::string m_rtplus_message; // radiotext plus message
 	unsigned char rtp_item[64][64], rtplus_osd[128]; //rtp
+	short m_rtp_togglebit, m_rtp_runningbit;
 	unsigned char qdar[60*1024]; //60 kB for holding Rass qdar archive
 	unsigned short crc16, crc;
 	long part, parts, partcnt;
