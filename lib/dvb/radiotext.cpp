@@ -12,7 +12,7 @@ eDVBRdsDecoder::eDVBRdsDecoder(iDVBDemux *demux, int type)
 {
 	setStreamID(0xC0, 0xC0);
 
-	memset(message, 0, sizeof(message));
+	memset(m_message_buffer, 0, sizeof(m_message_buffer));
 	memset(lastmessage, 0, sizeof(lastmessage));
 	memset(datamessage, 0, sizeof(datamessage));
 	memset(rass_picture_mask, 0, sizeof(rass_picture_mask));
@@ -97,6 +97,36 @@ static int frequency[3][4] = {
 	// MPEG2.5 - 11.025, 12, 8khz
 	{ 11025,12000,8000,0 }
 };
+
+static const std::array<std::string, 256> rds_charset({
+	" ",      " ",      " ",      " ",      " ",      " ",      " ",      " ",      " ",      " ",      "\n",     " ",      " ",      "\r",     " ",      " ",
+	" ",      " ",      " ",      " ",      " ",      " ",      " ",      " ",      " ",      " ",      " ",      " ",      " ",      " ",      " ",      "\u00ad",
+	" ",      "!",      "\"",     "#",      "\u00a4", "%",      "&",      "'",      "(",      ")",      "*",      "+",      ",",      "-",      ".",      "/",
+	"0",      "1",      "2",      "3",      "4",      "5",      "6",      "7",      "8",      "9",      ":",      ";",      "<",      "=",      ">",      "?",
+	"@",      "A",      "B",      "C",      "D",      "E",      "F",      "G",      "H",      "I",      "J",      "K",      "L",      "M",      "N",      "O",
+	"P",      "Q",      "R",      "S",      "T",      "U",      "V",      "W",      "X",      "Y",      "Z",      "[",      "\\",     "]",      "\u2015", "_",
+	"\u2016", "a",      "b",      "c",      "d",      "e",      "f",      "g",      "h",      "i",      "j",      "k",      "l",      "m",      "n",      "o",
+	"p",      "q",      "r",      "s",      "t",      "u",      "v",      "w",      "x",      "y",      "z",      "{",      "|",      "}",      "\u00af", " ",
+	"\u00e1", "\u00e0", "\u00e9", "\u00e8", "\u00ed", "\u00ec", "\u00f3", "\u00f2", "\u00fa", "\u00f9", "\u00d1", "\u00c7", "\u015e", "\u00df", "\u00a1", "\u0132",
+	"\u00e2", "\u00e4", "\u00ea", "\u00eb", "\u00ee", "\u00ef", "\u00f4", "\u00f6", "\u00fb", "\u00fc", "\u00f1", "\u00e7", "\u015f", "\u011f", "\u0131", "\u0133",
+	"\u00aa", "\u03b1", "\u00a9", "\u2030", "\u01e6", "\u011b", "\u0148", "\u0151", "\u03c0", "\u20ac", "\u00a3", "$",      "\u2190", "\u2191", "\u2192", "\u2193",
+	"\u00ba", "\u00b9", "\u00b2", "\u00b3", "\u00b1", "\u0130", "\u0144", "\u0171", "\u00b5", "\u00bf", "\u00f7", "\u00b0", "\u00bc", "\u00bd", "\u00be", "\u00a7",
+	"\u00c1", "\u00c0", "\u00c9", "\u00c8", "\u00cd", "\u00cc", "\u00d3", "\u00d2", "\u00da", "\u00d9", "\u0158", "\u010c", "\u0160", "\u017d", "\u0110", "\u013f",
+	"\u00c2", "\u00c4", "\u00ca", "\u00cb", "\u00ce", "\u00cf", "\u00d4", "\u00d6", "\u00db", "\u00dc", "\u0159", "\u010d", "\u0161", "\u017e", "\u0111", "\u0140",
+	"\u00c3", "\u00c5", "\u00c6", "\u0152", "\u0177", "\u00dd", "\u00d5", "\u00d8", "\u00de", "\u014a", "\u0154", "\u0106", "\u015a", "\u0179", "\u0166", "\u00f0",
+	"\u00e3", "\u00e5", "\u00e6", "\u0153", "\u0175", "\u00fd", "\u00f5", "\u00f8", "\u00fe", "\u014b", "\u0155", "\u0107", "\u015b", "\u017a", "\u0167", " "
+});
+
+void eDVBRdsDecoder::convertRdsMessageToUTF8(unsigned char* buffer, std::string& message)
+{
+	int i = 0;
+	message = "";
+	while (buffer[i] != 0 && i < 66)
+	{
+		message.append(rds_charset[buffer[i]]);
+		i++;
+	}
+}
 
 void eDVBRdsDecoder::connectEvent(const sigc::slot1<void, int> &slot, ePtr<eConnection> &connection)
 {
@@ -415,6 +445,7 @@ void eDVBRdsDecoder::gotAncillaryData(const uint8_t *buf, int len)
 						++state;
 						text_len-=2;
 						msgPtr=0;
+						memset(m_message_buffer, 0, sizeof(m_message_buffer));
 					}
 					break;
 				case 9: // Radio Text Status bit:
@@ -424,20 +455,7 @@ void eDVBRdsDecoder::gotAncillaryData(const uint8_t *buf, int len)
 					++state; // ignore ...
 					break;
 				case 10:
-					// TODO build a complete radiotext charcode to UTF8 conversion table for all character > 0x80
-					switch (c)
-					{
-						case 0 ... 0x7f: break;
-						case 0x8d: c='ß'; break;
-						case 0x91: c='ä'; break;
-						case 0xd1: c='Ä'; break;
-						case 0x97: c='ö'; break;
-						case 0xd7: c='Ö'; break;
-						case 0x99: c='ü'; break;
-						case 0xd9: c='Ü'; break;
-						default: c=' '; break;  // convert all unknown to space
-					}
-					message[msgPtr++]=c;
+					m_message_buffer[msgPtr++]=c;
 					if(text_len)
 						--text_len;
 					else
@@ -449,17 +467,18 @@ void eDVBRdsDecoder::gotAncillaryData(const uint8_t *buf, int len)
 					break;
 				case 12:
 					crc16|=c;
-					message[msgPtr--]=0;
-					while(message[msgPtr] == ' ' && msgPtr > 0)
-						message[msgPtr--] = 0;
+					m_message_buffer[msgPtr--]=0;
+					while(m_message_buffer[msgPtr] == ' ' && msgPtr > 0)
+						m_message_buffer[msgPtr--] = 0;
 					if ( crc16 == (crc^0xFFFF) )
 					{
-						eDebug("[RDS] radiotext: (%s)", message);
+						memcpy(lastmessage, m_message_buffer, 66);
+						convertRdsMessageToUTF8(m_message_buffer, m_rt_message);
+						eDebug("[RDS] radiotext str: (%s)", m_rt_message.c_str());
 						/*emit*/ m_event(RadioTextChanged);
-						memcpy(lastmessage,message,66);
 					}
 					else
-						eDebug("[RDS] invalid radiotext crc (%s)", message);
+						eDebug("[RDS] invalid radiotext crc (%s)", m_message_buffer);
 					state=0;
 					break;
 
@@ -642,8 +661,9 @@ void eDVBRdsDecoder::gotAncillaryData(const uint8_t *buf, int len)
 
 					if ( rtplus_osd[0] != 0 )
 					{
+						convertRdsMessageToUTF8(rtplus_osd, m_rtplus_message);
 						/*emit*/ m_event(RtpTextChanged);
-						eDebug("[RDS] RTPlus: %s",rtplus_osd);
+						eDebug("[RDS] RTPlus: %s",m_rtplus_message.c_str());
 					}
 
 					state=0;
