@@ -589,7 +589,7 @@ void eDVBRdsDecoder::gotAncillaryData(const uint8_t *buf, int len)
 					// bit 10#3 = Item Runningbit
 					// Tag1: bit 10#2..11#5 = Contenttype, 11#4..12#7 = Startmarker, 12#6..12#1 = Length
 					rtp_buf[4]=c;
-					if (lastmessage[0] == 0) // no rds message till now ? quit ...
+					if (lastmessage[0] == 0) // radiotext message is needed as radiotext plus uses this data to extract strings from it
 					{
 						state = 0;
 						break;
