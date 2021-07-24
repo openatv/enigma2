@@ -6,8 +6,6 @@ import math
 from Components.Renderer.Renderer import Renderer
 from skin import parseColor
 from enigma import eCanvas, eSize, gRGB, eRect
-from Components.VariableText import VariableText
-from Components.config import config
 
 
 class AnalogClockLCD(Renderer):
@@ -60,16 +58,13 @@ class AnalogClockLCD(Renderer):
 		height = self.positionheight
 		r = (width / 2)
 		r1 = (height / 2)
-		l = self.linesize
 		if opt == 'sec':
-			l = self.linesize
 			self.fColor = self.fColors
 		elif opt == 'min':
-			l = self.linesize
 			self.fColor = self.fColorm
 		else:
 			self.fColor = self.fColorh
-		(endX, endY,) = self.calc(self.forend, l, r, r1)
+		(endX, endY,) = self.calc(self.forend, self.linesize, r, r1)
 		self.line_draw(r, r1, endX, endY)
 
 	def line_draw(self, x0, y0, x1, y1):
@@ -87,8 +82,8 @@ class AnalogClockLCD(Renderer):
 		deltax = (x1 - x0)
 		deltay = abs((y1 - y0))
 		error = (-deltax / 2)
-		y = y0
-		for x in list(range(x0, (x1 + 1))):
+		y = int(y0)
+		for x in list(range(int(x0), (int(x1) + 1))):
 			if steep:
 				self.instance.fillRect(eRect(y, x, self.linewidth, self.linewidth), self.fColor)
 			else:
