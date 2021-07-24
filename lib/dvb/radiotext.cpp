@@ -623,6 +623,7 @@ void eDVBRdsDecoder::gotAncillaryData(const uint8_t *buf, int len)
 					rtp_len[1]   = 0x1f & rtp_buf[4];
 
 					unsigned char rtplus_osd_tmp[64];
+					memset(rtplus_osd_tmp, 0, sizeof(rtplus_osd_tmp));
 
 					if (rtp_start[0] < 66 && (rtp_len[0]+rtp_start[0]) < 66)
 					{
@@ -651,10 +652,10 @@ void eDVBRdsDecoder::gotAncillaryData(const uint8_t *buf, int len)
 					// todo: make a window to display all saved items ...
 
 					//create RTPlus OSD for title/artist
-					rtplus_osd[0]=0;
+					memset(rtplus_osd, 0, sizeof(rtplus_osd));
 
 					if ( rtp_item[4][0] != 0 )//artist
-						sprintf((char*)rtplus_osd_tmp," (%s)",rtp_item[4]);
+						sprintf((char*)rtplus_osd_tmp," (%.60s)",rtp_item[4]);
 
 					if ( rtp_item[1][0] != 0 )//title
 						sprintf((char*)rtplus_osd,"%s%s",rtp_item[1],rtplus_osd_tmp);
