@@ -12,6 +12,9 @@ eDVBRdsDecoder::eDVBRdsDecoder(iDVBDemux *demux, int type)
 {
 	setStreamID(0xC0, 0xC0);
 
+	memset(message, 0, sizeof(message));
+	memset(lastmessage, 0, sizeof(lastmessage));
+	memset(datamessage, 0, sizeof(datamessage));
 	memset(rass_picture_mask, 0, sizeof(rass_picture_mask));
 	memset(rtp_item, 0, sizeof(rtp_item));
 
@@ -329,9 +332,18 @@ void eDVBRdsDecoder::gotAncillaryData(const uint8_t *buf, int len)
 
 		--len;
 
-		if (bsflag == 1) // byte stuffing
+		if (c == 0xFF) // stop byte: force reset state
+			state = 0;
+
+		// recognize byte stuffing
+		if (c == 0xFD && bsflag == 0 && state > 0)
 		{
-			bsflag=2;
+			bsflag = 1; // replace next character
+			continue;
+		}
+		else if (bsflag == 1) // byte stuffing
+		{
+			bsflag = 0;
 			switch (c)
 			{
 				case 0x00: c=0xFD; break;
@@ -339,11 +351,8 @@ void eDVBRdsDecoder::gotAncillaryData(const uint8_t *buf, int len)
 				case 0x02: c=0xFF; break;
 			}
 		}
-
-		if (c == 0xFD && bsflag ==0)
-			bsflag=1;
 		else
-			bsflag=0;
+			bsflag = 0;
 
 		if (bsflag == 0)
 		{
@@ -355,7 +364,7 @@ void eDVBRdsDecoder::gotAncillaryData(const uint8_t *buf, int len)
 			switch (state)
 			{
 				case 0:
-					if ( c==0xFE )  // Startkennung
+					if ( c==0xFE )  // start byte
 						state=1;
 					break;
 				case 1: // 10bit Site Address + 6bit Encoder Address
@@ -537,9 +546,19 @@ void eDVBRdsDecoder::gotAncillaryData(const uint8_t *buf, int len)
 					text_len=c;
 					++state;
 					break;
-				case 39: // Application ID
-				case 40: // always 0x4BD7 so we ignore it ;)
-				case 41: // Applicationgroup Typecode/PTY ... ignore
+				case 39: // Application ID (2 bytes); RT+ uses 0x4BD7; ignore all other ids
+					if (c != 0x4B)
+						state = 0;
+					else
+						++state;
+					break;
+				case 40:
+					if (c != 0xD7)
+						state = 0;
+					else
+						++state;
+					break;
+				case 41: // configuration ... ignore
 					++state;
 					break;
 				case 42:
@@ -563,7 +582,10 @@ void eDVBRdsDecoder::gotAncillaryData(const uint8_t *buf, int len)
 					// Tag1: bit 10#2..11#5 = Contenttype, 11#4..12#7 = Startmarker, 12#6..12#1 = Length
 					rtp_buf[4]=c;
 					if (lastmessage[0] == 0) // no rds message till now ? quit ...
+					{
+						state = 0;
 						break;
+					}
 					int rtp_typ[2],rtp_start[2],rtp_len[2];
 					rtp_typ[0]   = (0x38 & rtp_buf[0]<<3) | rtp_buf[1]>>5;
 					rtp_start[0] = (0x3e & rtp_buf[1]<<1) | rtp_buf[2]>>7;
