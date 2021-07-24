@@ -10,7 +10,9 @@ class eDVBRdsDecoder: public iObject, public ePESParser, public sigc::trackable
 {
 	DECLARE_REF(eDVBRdsDecoder);
 	int msgPtr, bsflag, qdar_pos, t_ptr, qdarmvi_show;
-	unsigned char message[66], lastmessage[66], datamessage[256], rtp_buf[5], leninfo, text_len, text_len2, state;
+	unsigned char m_message_buffer[66], lastmessage[66], datamessage[256], rtp_buf[5], leninfo, text_len, text_len2, state;
+	std::string m_rt_message;     // radiotext message
+	std::string m_rtplus_message; // radiotext plus message
 	unsigned char rtp_item[64][64], rtplus_osd[64]; //rtp
 	unsigned char qdar[60*1024]; //60 kB for holding Rass qdar archive
 	unsigned short crc16, crc;
@@ -26,8 +28,8 @@ public:
 	~eDVBRdsDecoder();
 	int start(int pid);
 	void connectEvent(const sigc::slot1<void, int> &slot, ePtr<eConnection> &connection);
-	const char *getRadioText() { return (const char*)message; }
-	const char *getRtpText() { return (const char*)rtplus_osd; }
+	std::string getRadioText() { return m_rt_message; }
+	std::string getRtpText() { return m_rtplus_message; }
 	ePyObject getRassPictureMask();
 	std::string getRassPicture(int page, int subpage);
 	std::string getRassSlideshowPicture() { return "/tmp/RassLast.mvi"; }
@@ -37,6 +39,7 @@ private:
 	void processPESPacket(uint8_t *pkt, int len);
 	void gotAncillaryData(const uint8_t *data, int len);
 	void process_qdar(unsigned char*);
+	void convertRdsMessageToUTF8(unsigned char* buffer, std::string& message);
 	ePtr<iDVBPESReader> m_pes_reader;
 	ePtr<eConnection> m_read_connection;
 	sigc::signal1<void, int> m_event;
