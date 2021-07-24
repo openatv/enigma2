@@ -401,7 +401,7 @@ class ConfigBoolean(ConfigElement):
 		elif key == ACTIONKEY_LAST:
 			self.value = True
 
-	def fromstring(self, val):
+	def fromstring(self, value):
 		return str(value).lower() in self.trueValues
 
 	def tostring(self, value):
@@ -1019,7 +1019,7 @@ class ConfigSequence(ConfigElement):
 				value += self.seperator
 				if mPos >= len(value) - 1:
 					mPos += 1
-			if self.censor_char == "" or not self.hidden::
+			if self.censor_char == "" or not self.hidden:
 				value += ("%0" + str(len(str(self.limits[num][1]))) + "d") % i
 			else:
 				value += (self.censor_char * len(str(self.limits[num][1])))
