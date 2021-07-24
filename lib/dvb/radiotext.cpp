@@ -323,12 +323,20 @@ void eDVBRdsDecoder::gotAncillaryData(const uint8_t *buf, int len)
 {
 	if (len <= 0)
 		return;
+
 	int pos = m_type ? 0 : len-1;
+	int dir = m_type ? 1 : -1;
+
+	//eTraceNoNewLineStart("[RDS] data: ");
+	//for (int j = pos; j < len && j >= 0; j += dir)
+	//	eTraceNoNewLine("%02x ", buf[j]);
+	//eTrace("\n");
+
 	while ( len )
 	{
 		unsigned char c = buf[pos];
 
-		pos += m_type ? 1 : -1;
+		pos += dir;
 
 		--len;
 
@@ -446,12 +454,12 @@ void eDVBRdsDecoder::gotAncillaryData(const uint8_t *buf, int len)
 						message[msgPtr--] = 0;
 					if ( crc16 == (crc^0xFFFF) )
 					{
-						eDebug("radiotext: (%s)", message);
+						eDebug("[RDS] radiotext: (%s)", message);
 						/*emit*/ m_event(RadioTextChanged);
 						memcpy(lastmessage,message,66);
 					}
 					else
-						eDebug("invalid radiotext crc (%s)", message);
+						eDebug("[RDS] invalid radiotext crc (%s)", message);
 					state=0;
 					break;
 
@@ -635,7 +643,7 @@ void eDVBRdsDecoder::gotAncillaryData(const uint8_t *buf, int len)
 					if ( rtplus_osd[0] != 0 )
 					{
 						/*emit*/ m_event(RtpTextChanged);
-						eDebug("RTPlus: %s",rtplus_osd);
+						eDebug("[RDS] RTPlus: %s",rtplus_osd);
 					}
 
 					state=0;
@@ -680,7 +688,7 @@ int eDVBRdsDecoder::start(int pid)
 
 void eDVBRdsDecoder::abortNonAvail()
 {
-	eDebug("no ancillary data in audio stream... abort radiotext pes parser");
+	eDebug("[RDS] no ancillary data in audio stream... abort radiotext pes parser");
 	if (m_pes_reader)
 		m_pes_reader->stop();
 }
