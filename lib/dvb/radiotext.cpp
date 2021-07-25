@@ -396,7 +396,7 @@ void eDVBRdsDecoder::gotAncillaryData(const uint8_t *buf, int len)
 		{
 			if ( state == 1 )
 				crc=0xFFFF;
-			if (( state >= 1 && state < 11 ) || ( state >=26 && state < 36 ))
+			if (( state >= 1 && state < 11 ) || ( state >=26 && state < 36 ) || ( state >=38 && state < 47 ))
 				crc = crc_ccitt_byte(crc, c);
 
 			switch (state)
@@ -604,81 +604,96 @@ void eDVBRdsDecoder::gotAncillaryData(const uint8_t *buf, int len)
 					rtp_buf[3]=c;
 					++state;
 					break;
-				case 46: // bit 10#4 = Item Togglebit
-					// bit 10#3 = Item Runningbit
-					// Tag1: bit 10#2..11#5 = Contenttype, 11#4..12#7 = Startmarker, 12#6..12#1 = Length
+				case 46:
 					rtp_buf[4]=c;
-					if (lastmessage[0] == 0) // radiotext message is needed as radiotext plus uses this data to extract strings from it
+					++state;
+					break;
+				case 47:
+					crc16=c<<8;
+					++state;
+					break;
+				case 48:
+					crc16 |= c;
+					if ( crc16 == (crc^0xFFFF) )
 					{
-						state = 0;
-						break;
-					}
-					short current_tooglebit = rtp_buf[0]>>4;
-					short current_runningbit = (rtp_buf[0]>>3) & 0x1;
-					if ( current_tooglebit != m_rtp_togglebit  // current togglebit different than last stored togglebit -> item/song has changed
-					    || (m_rtp_runningbit == 1 && current_runningbit == 0)) // item/song has ended
-					{
-						memset(rtp_item, 0, sizeof(rtp_item));
-						m_rtplus_message = "";
-						/*emit*/ m_event(RtpTextChanged);
-					}
-					m_rtp_togglebit = current_tooglebit;
-					m_rtp_runningbit = current_runningbit;
-
-					int rtp_typ[2],rtp_start[2],rtp_len[2];
-					rtp_typ[0]   = (0x38 & rtp_buf[0]<<3) | rtp_buf[1]>>5;
-					rtp_start[0] = (0x3e & rtp_buf[1]<<1) | rtp_buf[2]>>7;
-					rtp_len[0]   = 0x3f & rtp_buf[2]>>1;
-					// Tag2: bit 12#0..13#3 = Contenttype, 13#2..14#5 = Startmarker, 14#4..14#0 = Length(5bit)
-					rtp_typ[1]   = (0x20 & rtp_buf[2]<<5) | rtp_buf[3]>>3;
-					rtp_start[1] = (0x38 & rtp_buf[3]<<3) | rtp_buf[4]>>5;
-					rtp_len[1]   = 0x1f & rtp_buf[4];
-
-					unsigned char rtplus_osd_tmp[64];
-					memset(rtplus_osd_tmp, 0, sizeof(rtplus_osd_tmp));
-
-					if (rtp_start[0] < 66 && (rtp_len[0]+rtp_start[0]) < 66)
-					{
-						memcpy(rtp_item[rtp_typ[0]],lastmessage+rtp_start[0],rtp_len[0]+1);
-						rtp_item[rtp_typ[0]][rtp_len[0]+1]=0;
-					}
-
-					if (rtp_typ[0] != rtp_typ[1])
-					{
-						if (rtp_start[1] < 66 && (rtp_len[1]+rtp_start[1]) < 66)
+						// bit 10#4 = Item Togglebit
+						// bit 10#3 = Item Runningbit
+						// Tag1: bit 10#2..11#5 = Contenttype, 11#4..12#7 = Startmarker, 12#6..12#1 = Length
+						if (lastmessage[0] == 0) // radiotext message is needed as radiotext plus uses this data to extract strings from it
 						{
-							memcpy(rtp_item[rtp_typ[1]],lastmessage+rtp_start[1],rtp_len[1]+1);
-							rtp_item[rtp_typ[1]][rtp_len[1]+1]=0;
+							state = 0;
+							break;
+						}
+						short current_tooglebit = rtp_buf[0]>>4;
+						short current_runningbit = (rtp_buf[0]>>3) & 0x1;
+						if ( current_tooglebit != m_rtp_togglebit  // current togglebit different than last stored togglebit -> item/song has changed
+							|| (m_rtp_runningbit == 1 && current_runningbit == 0)) // item/song has ended
+						{
+							memset(rtp_item, 0, sizeof(rtp_item));
+							m_rtplus_message = "";
+							/*emit*/ m_event(RtpTextChanged);
+						}
+						m_rtp_togglebit = current_tooglebit;
+						m_rtp_runningbit = current_runningbit;
+
+						int rtp_typ[2],rtp_start[2],rtp_len[2];
+						rtp_typ[0]   = (0x38 & rtp_buf[0]<<3) | rtp_buf[1]>>5;
+						rtp_start[0] = (0x3e & rtp_buf[1]<<1) | rtp_buf[2]>>7;
+						rtp_len[0]   = 0x3f & rtp_buf[2]>>1;
+						// Tag2: bit 12#0..13#3 = Contenttype, 13#2..14#5 = Startmarker, 14#4..14#0 = Length(5bit)
+						rtp_typ[1]   = (0x20 & rtp_buf[2]<<5) | rtp_buf[3]>>3;
+						rtp_start[1] = (0x38 & rtp_buf[3]<<3) | rtp_buf[4]>>5;
+						rtp_len[1]   = 0x1f & rtp_buf[4];
+
+						unsigned char rtplus_osd_tmp[64];
+						memset(rtplus_osd_tmp, 0, sizeof(rtplus_osd_tmp));
+
+						if (rtp_start[0] < 66 && (rtp_len[0]+rtp_start[0]) < 66)
+						{
+							memcpy(rtp_item[rtp_typ[0]],lastmessage+rtp_start[0],rtp_len[0]+1);
+							rtp_item[rtp_typ[0]][rtp_len[0]+1]=0;
+						}
+
+						if (rtp_typ[0] != rtp_typ[1])
+						{
+							if (rtp_start[1] < 66 && (rtp_len[1]+rtp_start[1]) < 66)
+							{
+								memcpy(rtp_item[rtp_typ[1]],lastmessage+rtp_start[1],rtp_len[1]+1);
+								rtp_item[rtp_typ[1]][rtp_len[1]+1]=0;
+							}
+						}
+
+						// main RTPlus item_types used by the radio stations:
+						// 1 title
+						// 4 artist
+						// 24 info.date_time
+						// 31 stationname
+						// 32 program.now
+						// 39 homepage
+						// 41 phone.hotline
+						// 46 email.hotline
+						// todo: make a window to display all saved items ...
+
+						//create RTPlus OSD for title/artist
+						memset(rtplus_osd, 0, sizeof(rtplus_osd));
+
+						if ( rtp_item[4][0] != 0 )//artist
+							sprintf((char*)rtplus_osd_tmp," (%.60s)",rtp_item[4]);
+
+						if ( rtp_item[1][0] != 0 )//title
+							sprintf((char*)rtplus_osd,"%s%s",rtp_item[1],rtplus_osd_tmp);
+
+						if ( rtplus_osd[0] != 0 )
+						{
+							convertRdsMessageToUTF8(rtplus_osd, m_rtplus_message);
+							/*emit*/ m_event(RtpTextChanged);
+							eDebug("[RDS] RTPlus: %s",m_rtplus_message.c_str());
 						}
 					}
-
-					// main RTPlus item_types used by the radio stations:
-					// 1 title
-					// 4 artist
-					// 24 info.date_time
-					// 31 stationname
-					// 32 program.now
-					// 39 homepage
-					// 41 phone.hotline
-					// 46 email.hotline
-					// todo: make a window to display all saved items ...
-
-					//create RTPlus OSD for title/artist
-					memset(rtplus_osd, 0, sizeof(rtplus_osd));
-
-					if ( rtp_item[4][0] != 0 )//artist
-						sprintf((char*)rtplus_osd_tmp," (%.60s)",rtp_item[4]);
-
-					if ( rtp_item[1][0] != 0 )//title
-						sprintf((char*)rtplus_osd,"%s%s",rtp_item[1],rtplus_osd_tmp);
-
-					if ( rtplus_osd[0] != 0 )
+					else
 					{
-						convertRdsMessageToUTF8(rtplus_osd, m_rtplus_message);
-						/*emit*/ m_event(RtpTextChanged);
-						eDebug("[RDS] RTPlus: %s",m_rtplus_message.c_str());
+						eDebug("[RDS] RT+ invalid CRC read: %04X CRC calculated: %04X", crc16, crc^0xFFFF);
 					}
-
 					state=0;
 					break;
 			}
