@@ -1526,7 +1526,7 @@ class NimManager:
 				for x in list(range(3605, 3607)):
 					if int(nim.advanced.sat[x].lnb.value) != 0:
 						for user_sat in self.satList:
-							if str(user_sat[0]) in nim.advanced.sat[x].userSatellitesList.value and user_sat not in list:
+							if str(user_sat[0]) in nim.advanced.sat[x].userSatellitesList.value and user_sat not in result:
 								result.append(user_sat)
 		return result
 
@@ -1561,7 +1561,7 @@ class NimManager:
 				for x in list(range(3605, 3607)):
 					if int(nim.advanced.sat[x].lnb.value) != 0:
 						for user_sat in self.satList:
-							if str(user_sat[0]) in nim.advanced.sat[x].userSatellitesList.value and user_sat not in list:
+							if str(user_sat[0]) in nim.advanced.sat[x].userSatellitesList.value and user_sat not in result:
 								result.append(user_sat)
 		return result
 
