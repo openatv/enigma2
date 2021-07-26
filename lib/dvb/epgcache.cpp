@@ -3659,7 +3659,7 @@ PyObject *eEPGCache::search(ePyObject arg)
 						case PARTIAL_TITLE_SEARCH:
 							eDebug("[eEPGCache] lookup events with '%s' in title (%s)", str, ctype);
 							break;
-						case PARTIAL_DESCRIPTION_SEARCH:
+						case START_TITLE_SEARCH:
 							eDebug("[eEPGCache] lookup events, title starting with '%s' (%s)", str, ctype);
 							break;
 					}
@@ -3780,9 +3780,6 @@ PyObject *eEPGCache::search(ePyObject arg)
 									contentptr = content.data();
 									content_len = content.length();
 								}
-								#ifdef DEBUG
-								int dbglen=content_len;
-								#endif
 								if (content_len < textlen)
 									/*Doesn't fit, so cannot match anything */
 									continue;
@@ -3793,20 +3790,6 @@ PyObject *eEPGCache::search(ePyObject arg)
 										if (!strncasecmp(contentptr, str, textlen))
 										{
 											descr.push_back(it->first);
-											#ifdef DEBUG
-											eDebug("[eEPGCache] IC Debug: Content length %x, Content %s\n",content_len,contentptr);
-											char buff[1000]={0};
-											eDebug("[eEPGCache] EIT data:\n");
-											std::string tmp="";
-											int z=0;
-											for (lloop=0x0;lloop<(dbglen+EIT_EXTENDED_EVENT_DESCRIPTOR_SIZE+2);lloop++)
-											{
-												if ((lloop>0) && (lloop%16==0)) { eDebug(buff); z=0; }
-												snprintf(&buff[z*3], sizeof(buff), "%02X ", data[lloop]);
-												z++;
-											}
-											if (z>1) { eDebug(buff);}
-											#endif
 											break;
 										}
 										content_len--;
@@ -3820,20 +3803,6 @@ PyObject *eEPGCache::search(ePyObject arg)
 										if (!memcmp(contentptr, str, textlen))
 										{
 											descr.push_back(it->first);
-											#ifdef DEBUG
-											eDebug("[eEPGCache] CC Debug: Content length %x, Content %s\n",content_len,contentptr);
-											char buff[1000]={0};
-											eDebug("[eEPGCache] EIT data:\n");
-											std::string tmp="";
-											int z=0;
-											for (lloop=0x0;lloop<(dbglen+EIT_EXTENDED_EVENT_DESCRIPTOR_SIZE+2);lloop++)
-											{
-												if ((lloop>0) && (lloop%16==0)) { eDebug(buff); z=0; }
-												snprintf(&buff[z*3], sizeof(buff), "%02X ", data[lloop]);
-												z++;
-											}
-											if (z>1) { eDebug(buff);}
-											#endif
 											break;
 										}
 										content_len--;
