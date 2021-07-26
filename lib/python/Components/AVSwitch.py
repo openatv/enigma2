@@ -1200,10 +1200,25 @@ def InitAVSwitch():
 		config.av.downmix_aacplus = ConfigSelection(choices=choice_list, default="downmix")
 		config.av.downmix_aacplus.addNotifier(setAACDownmixPlus)
 
+	def read_choices(procx, defchoice):
+		with open(procx, 'r') as myfile:
+			choices = myfile.read().strip()
+		myfile.close()
+		if choices:
+			choiceslist = choices.split(" ")
+			choicesx = [(item, _(item)) for item in choiceslist]
+			defaultx = choiceslist[0]
+			for item in choiceslist:
+				if "%s" %defchoice.upper in item.upper():
+					defaultx = item
+					break
+		return (choicesx, defaultx)
+
 	if os.path.exists("/proc/stb/audio/aac_transcode_choices"):
-		f = open("/proc/stb/audio/aac_transcode_choices", "r")
-		can_aactranscode = f.read().strip().split(" ")
-		f.close()
+		can_aactranscode = [("off", _("off")), ("ac3", _("AC3")), ("dts", _("DTS"))]
+		default = "off"
+		f = "/proc/stb/audio/aac_transcode_choices"
+		(can_aactranscode, default) = read_choices(f, default)
 	else:
 		can_aactranscode = False
 
@@ -1214,8 +1229,7 @@ def InitAVSwitch():
 			f = open("/proc/stb/audio/aac_transcode", "w")
 			f.write(configElement.value)
 			f.close()
-		choice_list = [("off", _("off")), ("ac3", _("AC3")), ("dts", _("DTS"))]
-		config.av.transcodeaac = ConfigSelection(choices=choice_list, default="off")
+		config.av.transcodeaac = ConfigSelection(choices=can_aactranscode, default=default)
 		config.av.transcodeaac.addNotifier(setAACTranscode)
 	else:
 		config.av.transcodeaac = ConfigNothing()
