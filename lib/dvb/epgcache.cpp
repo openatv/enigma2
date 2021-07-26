@@ -3767,13 +3767,25 @@ PyObject *eEPGCache::search(ePyObject arg)
 						for (DescriptorMap::iterator it(eventData::descriptors.begin());
 							it != eventData::descriptors.end(); ++it)
 						{
+							int content_len = 0;
+							const char *contentptr = NULL;
 							uint8_t *data = it->second.data;
+							eit_short_event_descriptor_struct *short_event_descriptor = (eit_short_event_descriptor_struct *) ((u_char *) data);
 							eit_extended_descriptor_struct *extended_event_descriptor = (eit_extended_descriptor_struct *) ((u_char *) data);
-							if ( (u_char)extended_event_descriptor->descriptor_tag == (u_char)EXTENDED_EVENT_DESCRIPTOR ) // extended event descriptor
+							if ((u_char)short_event_descriptor->descriptor_tag == (u_char)SHORT_EVENT_DESCRIPTOR ) // short event descriptor
 							{
-								int content_len = data[EIT_EXTENDED_EVENT_DESCRIPTOR_SIZE+1]; //struct extended_event_descriptor+item information (always "0", see epg.dat for structure)
-								const char *contentptr = (const char*)&data[EIT_EXTENDED_EVENT_DESCRIPTOR_SIZE+2];
-								if (data[EIT_EXTENDED_EVENT_DESCRIPTOR_SIZE+2] < 0x20) //Codepage
+								int title_len = (int)short_event_descriptor->event_name_length;
+								content_len = data[EIT_SHORT_EVENT_DESCRIPTOR_SIZE+title_len];
+								contentptr = (const char*)&data[EIT_SHORT_EVENT_DESCRIPTOR_SIZE+1+title_len];
+							}
+							else if ( (u_char)extended_event_descriptor->descriptor_tag == (u_char)EXTENDED_EVENT_DESCRIPTOR ) // extended event descriptor
+							{
+								content_len = data[EIT_EXTENDED_EVENT_DESCRIPTOR_SIZE+1]; //struct extended_event_descriptor+item information (always "0", see epg.dat for structure)
+								contentptr = (const char*)&data[EIT_EXTENDED_EVENT_DESCRIPTOR_SIZE+2];
+							}
+							if (content_len)
+							{
+								if (*contentptr < 0x20) //Codepage
 								{
 									/* custom encoding */
 									content = convertDVBUTF8((unsigned char*)contentptr, content_len, 0x40, 0);
