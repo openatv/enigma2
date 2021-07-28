@@ -105,7 +105,7 @@ class HddMount(Screen):
 			device = parts[3]
 			if not search('sd[a-z][1-9]', device) and not search('mmcblk[0-9]p[1-9]', device):
 				continue
-			if getMachineBuild() in ('dagsmv200', 'gbmv200', 'i55se', 'h9se', 'h9combose', 'h9combo', 'h10', 'h11', 'v8plus', 'hd60', 'hd61', 'pulse4k', 'pulse4kmini', 'vuduo4k', 'vuduo4kse', 'ustym4kpro', 'beyonwizv2', 'viper4k', 'sf8008', 'sf8008m', 'cc1', 'dags72604', 'u51', 'u52', 'u53', 'u532', 'u533', 'u54', 'u56', 'u57', 'vuzero4k', 'u5', 'sf5008', 'et13000', 'et1x000', 'vuuno4k', 'vuuno4kse', 'vuultimo4k', 'vusolo4k', 'hd51', 'hd52', 'dm820', 'dm7080', 'sf4008', 'dm900', 'dm920', 'gb7252', 'gb72604', 'dags7252', 'vs1500', 'h7', '8100s') and search('mmcblk0p[1-9]', device):
+			if getMachineBuild() in ('dagsmv200', 'gbmv200', 'i55se', 'h9se', 'h9combose', 'h9combo', 'h10', 'h11', 'v8plus', 'hd60', 'hd61', 'pulse4k', 'pulse4kmini', 'vuduo4k', 'vuduo4kse', 'ustym4kpro', 'beyonwizv2', 'viper4k', 'sf8008', 'sf8008m', 'cc1', 'dags72604', 'u51', 'u52', 'u53', 'u532', 'u533', 'u54', 'u56', 'u57', 'u571', 'vuzero4k', 'u5', 'sf5008', 'et13000', 'et1x000', 'vuuno4k', 'vuuno4kse', 'vuultimo4k', 'vusolo4k', 'hd51', 'hd52', 'dm820', 'dm7080', 'sf4008', 'dm900', 'dm920', 'gb7252', 'gb72604', 'dags7252', 'vs1500', 'h7', '8100s') and search('mmcblk0p[1-9]', device):
 				continue
 			if getMachineBuild() in ('xc7439', 'osmio4k', 'osmio4kplus', 'osmini4k') and search('mmcblk1p[1-9]', device):
 				continue
@@ -423,7 +423,7 @@ class DevicePanelConf(Screen, ConfigListScreen):
 			device = parts[3]
 			if not search('sd[a-z][1-9]', device) and not search('mmcblk[0-9]p[1-9]', device):
 				continue
-			if getMachineBuild() in ('dagsmv200', 'gbmv200', 'multibox', 'multiboxse', 'i55se', 'h9se', 'h9combose', 'h9combo', 'h10', 'h11', 'v8plus', 'hd60', 'hd61', 'pulse4k', 'pulse4kmini', 'vuduo4k', 'vuduo4kse', 'ustym4kpro', 'beyonwizv2', 'viper4k', 'sf8008', 'sf8008m', 'cc1', 'dags72604', 'u51', 'u52', 'u53', 'u532', 'u533', 'u54', 'u56', 'u57', 'vuzero4k', 'u5', 'sf5008', 'et13000', 'et1x000', 'vuuno4k', 'vuuno4kse', 'vuultimo4k', 'vusolo4k', 'hd51', 'hd52', 'dm820', 'dm7080', 'sf4008', 'dm900', 'dm920', 'gb7252', 'gb72604', 'dags7252', 'vs1500', 'h7', '8100s') and search('mmcblk0p[1-9]', device):
+			if getMachineBuild() in ('dagsmv200', 'gbmv200', 'multibox', 'multiboxse', 'i55se', 'h9se', 'h9combose', 'h9combo', 'h10', 'h11', 'v8plus', 'hd60', 'hd61', 'pulse4k', 'pulse4kmini', 'vuduo4k', 'vuduo4kse', 'ustym4kpro', 'beyonwizv2', 'viper4k', 'sf8008', 'sf8008m', 'cc1', 'dags72604', 'u51', 'u52', 'u53', 'u532', 'u533', 'u54', 'u56', 'u57', 'u571', 'vuzero4k', 'u5', 'sf5008', 'et13000', 'et1x000', 'vuuno4k', 'vuuno4kse', 'vuultimo4k', 'vusolo4k', 'hd51', 'hd52', 'dm820', 'dm7080', 'sf4008', 'dm900', 'dm920', 'gb7252', 'gb72604', 'dags7252', 'vs1500', 'h7', '8100s') and search('mmcblk0p[1-9]', device):
 				continue
 			if getMachineBuild() in ('xc7439', 'osmio4k', 'osmio4kplus', 'osmini4k') and search('mmcblk1p[1-9]', device):
 				continue
