@@ -337,7 +337,7 @@ class InfoBarScreenSaver:
 			ref = self.session.nav.getCurrentlyPlayingServiceOrGroup()
 			if ref and not (hasattr(self.session, "pipshown") and self.session.pipshown):
 				ref = ref.toString().split(":")
-				flag = ref[2] == "2" or os.path.splitext(ref[10])[1].lower() in AUDIO_EXTENSIONS
+				flag = ref[2] == "2" or ref[2] == "A" or os.path.splitext(ref[10])[1].lower() in AUDIO_EXTENSIONS
 		if time and flag:
 			self.screenSaverTimer.startLongTimer(time)
 		else:
