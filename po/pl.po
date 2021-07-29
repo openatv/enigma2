@@ -1043,6 +1043,13 @@ msgstr[1] "znaleziono %d kanały"
 msgstr[2] "znaleziono %d kanałów"
 
 #, python-format
+msgid "%d day"
+msgid_plural "%d days"
+msgstr[0] "%d dzień"
+msgstr[1] "%d dni"
+msgstr[2] "%d dni"
+
+#, python-format
 msgid "%d hour"
 msgid_plural "%d hours"
 msgstr[0] "%d godzina"
@@ -6650,6 +6657,30 @@ msgstr "Włącz obsługę wycinania plików dla plików innych niż *.ts (n.p. m
 
 msgid "Enable debug log *"
 msgstr "Włącz dziennik debugowania *"
+
+msgid "Include keyboard data"
+msgstr "Dołącz dane klawiatury"
+
+msgid "Include remote control data"
+msgstr "Dołącz dane zdalnego sterowania"
+
+msgid "Include action map data"
+msgstr "Dołącz dane mapy działań"
+
+msgid "Include screen load data"
+msgstr "Dołąćż dane ładowania ekranu"
+
+msgid "Enable this option to add keyboard keymap data to the debug log file."
+msgstr "Włącz tę opcję, aby dodać dane mapy klawiatury do pliku dziennika debugowania."
+
+msgid "Enable this option to add remote control data to the debug log file."
+msgstr "Włącz tę opcję, aby dodać dane zdalnego sterowania do pliku dziennika debugowania."
+
+msgid "Enable this option to add action map / remote control mapping data to the debug log file."
+msgstr "Włącz tę opcję, aby dodać dane map akcji / mapowania zdalnego sterowania do pliku dziennika debugowania."
+
+msgid "Enable this option to add screen names and resolution data to the debug log file."
+msgstr "Włącz tę opcję, aby dodać nazwy ekranów i dane rozdzielczości do pliku dziennika debugowania."
 
 msgid "Enable digital downmix"
 msgstr "Włącz cyfrowy downmix"
