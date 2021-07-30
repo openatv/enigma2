@@ -130,8 +130,8 @@ class FrontendInfo(Converter):
 		elif self.type == self.SNR:
 			return self.source.snr or 0
 		elif self.type == self.BER:
-			if self.BER < self.range:
-				return self.BER or 0
+			if self.source.ber < self.range:
+				return self.source.ber or 0
 			else:
 				return self.range
 		elif self.type == self.TUNER_TYPE:
