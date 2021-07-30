@@ -53,6 +53,7 @@ class UpdatePlugin(Screen, ProtectedScreen):
 		self.autobackuprunning = False
 		self.updating = False
 
+		self.updated_feed_count = 0
 		self.packages = 0
 		self.error = 0
 		self.processed_packages = []
@@ -65,14 +66,8 @@ class UpdatePlugin(Screen, ProtectedScreen):
 		self.CheckConsole.ePopen(cmd1, self.checkNetworkStateFinished)
 
 	def checkNetworkStateFinished(self, result, retval, extra_args=None):
-		if 'bad address' in result:
-			self.session.openWithCallback(self.close, MessageBox, _("Your %s %s is not connected to the Internet, please check your network settings and try again.") % (getMachineBrand(), getMachineName()), type=MessageBox.TYPE_INFO, timeout=10, close_on_any_key=True)
-		elif any(x in result for x in ('wget returned 1', 'wget returned 255', '404 Not Found')):
-			self.session.openWithCallback(self.close, MessageBox, _("Can not retrieve data from feed server. Check your Internet connection and try again later."), type=MessageBox.TYPE_INFO, timeout=10, close_on_any_key=True)
-		elif 'Collected errors' in result:
-			self.session.openWithCallback(self.close, MessageBox, _("A background update check is in progress, please wait a few minutes and try again."), type=MessageBox.TYPE_INFO, timeout=10, close_on_any_key=True)
-		else:
-			self.startCheck()
+		# Intentionally ignore any errors to prevent a single malfunctioning feed halting all updates, even those from working feeds
+		self.startCheck()
 
 	def startCheck(self):
 		self.updating = True
@@ -102,7 +97,10 @@ class UpdatePlugin(Screen, ProtectedScreen):
 		self.setEndMessage(ngettext("Update completed, %d package was installed.", "Update completed, %d packages were installed.", self.packages) % self.packages)
 
 	def ipkgCallback(self, event, param):
-		if event == IpkgComponent.EVENT_DOWNLOAD:
+		print "[SoftwareUpdate] event %s, param %s" % (event, param)
+		if event == IpkgComponent.EVENT_UPDATED:
+			self.updated_feed_count += 1
+		elif event == IpkgComponent.EVENT_DOWNLOAD:
 			self.status.setText(_("Downloading"))
 			self.package.setText(param.rpartition("/")[2].rstrip("."))
 		elif event == IpkgComponent.EVENT_UPGRADE:
@@ -131,10 +129,10 @@ class UpdatePlugin(Screen, ProtectedScreen):
 			self.ipkg.write(config.softwareupdate.overwriteConfigFiles.value and "Y" or "N")
 		elif event == IpkgComponent.EVENT_ERROR:
 			self.error += 1
-			self.updating = False
 		elif event == IpkgComponent.EVENT_DONE:
-			if self.updating:
+			if self.updating and self.updated_feed_count > 0:
 				self.updating = False
+				self.error = 0
 				self.ipkg.startCmd(IpkgComponent.CMD_UPGRADE_LIST)
 			elif self.ipkg.currentCommand == IpkgComponent.CMD_UPGRADE_LIST:
 				self.total_packages = None
@@ -178,14 +176,12 @@ class UpdatePlugin(Screen, ProtectedScreen):
 				self.activityTimer.stop()
 				self.activityslider.setValue(0)
 				error = _("Errors were encountered during update.\nUSB update is recommended.")
-				if self.packages == 0:
-					if self.error != 0:
-						error = _("Problem retrieving update list.\nIf this issue persists please check/report on forum")
-					else:
-						error = _("A background update check is in progress,\nplease wait a few minutes and try again.")
 				if self.updating:
-					error = _("Update failed. Your %s %s does not have a working Internet connection.") % (getMachineBrand(), getMachineName())
+					error = _("Update failed. Your %s %s can not connect to an update server.") % (getMachineBrand(), getMachineName())
+				elif self.packages == 0:
+					error = _("Problem retrieving updates.\nIf this issue persists please check/report on forum")
 				self.status.setText(_("Error") + " - " + error)
+				self.updating = False
 				self["actions"].setEnabled(True)
 		elif event == IpkgComponent.EVENT_LISTITEM:
 			if 'enigma2-plugin-settings-' in param[0] and self.channellist_only > 0:

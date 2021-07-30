@@ -53,6 +53,7 @@ class IpkgComponent:
 	EVENT_DONE = 10
 	EVENT_ERROR = 11
 	EVENT_MODIFIED = 12
+	EVENT_UPDATED = 13
 
 	CMD_INSTALL = 0
 	CMD_LIST = 1
@@ -146,7 +147,9 @@ class IpkgComponent:
 			return
 
 		try:
-			if data.startswith('Downloading'):
+			if data.startswith('Updated source'):
+				self.callCallbacks(self.EVENT_UPDATED, data.split(' ')[2].strip("'."))
+			elif data.startswith('Downloading'):
 				self.callCallbacks(self.EVENT_DOWNLOAD, data.split(' ', 5)[1].strip())
 			elif data.startswith('Upgrading'):
 				self.callCallbacks(self.EVENT_UPGRADE, data.split(' ', 2)[1])
