@@ -37,7 +37,7 @@ profile("SetupDevices")
 import Components.SetupDevices
 Components.SetupDevices.InitSetupDevices()
 
-from Components.config import config, ConfigYesNo, ConfigSubsection
+from Components.config import config, ConfigYesNo, ConfigSubsection, ConfigInteger
 # These entries should be moved back to UsageConfig.py when it is safe to bring UsageConfig init to this location in StartEnigma2.py.
 #
 config.crash = ConfigSubsection()
@@ -45,6 +45,12 @@ config.crash.debugActionMaps = ConfigYesNo(default=False)
 config.crash.debugKeyboards = ConfigYesNo(default=False)
 config.crash.debugRemoteControls = ConfigYesNo(default=False)
 config.crash.debugScreens = ConfigYesNo(default=False)
+
+# config.plugins needs to be defined before InputDevice < HelpMenu < MessageBox < InfoBar
+config.plugins = ConfigSubsection()
+config.plugins.remotecontroltype = ConfigSubsection()
+config.plugins.remotecontroltype.rctype = ConfigInteger(default=0)
+
 
 profile("SimpleSummary")
 from Screens import InfoBar
@@ -70,7 +76,7 @@ profile("LOAD:skin")
 from skin import readSkin
 
 profile("LOAD:Tools")
-from Components.config import configfile, ConfigText, ConfigInteger, ConfigSelection, NoSave, ConfigSubsection
+from Components.config import configfile, ConfigText, ConfigSelection, NoSave, ConfigSubsection
 from Tools.Directories import InitFallbackFiles, resolveFilename, SCOPE_PLUGINS, SCOPE_ACTIVE_SKIN, SCOPE_CURRENT_SKIN, SCOPE_CONFIG
 import Components.RecordingConfig
 InitFallbackFiles()
