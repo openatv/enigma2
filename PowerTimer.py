@@ -112,7 +112,7 @@ class PowerTimerEntry(timer.TimerEntry, object):
 		# A repeat timer (self.repeat != 0) is one set for a given time on a
 		# day.
 		# A timer that repeats every <n> mins has autosleeprepeat="repeated" and
-		# is a different beast, whcih doesn't need, and mustn't have, this.
+		# is a different beast, which doesn't need, and mustn't have, this.
 		#
 		if self.repeated and not hasattr(self, "real_begin"):
 			self.real_begin = self.begin
@@ -130,8 +130,8 @@ class PowerTimerEntry(timer.TimerEntry, object):
 
 		# Do RecordTimer.recordingsActive() tests relative
 		# to the nominal start time of the power timer, rather
-		# than the curent time, to avoid incorrect time
-		# calculatuons when a power timer and record or zap
+		# than the current time, to avoid incorrect time
+		# calculations when a power timer and record or zap
 		# timer run at the same time.
 
 		from_time = NavigationInstance.instance.PowerTimer.next
