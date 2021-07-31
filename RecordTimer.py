@@ -267,8 +267,9 @@ class RecordTimerEntry(timer.TimerEntry, object):
 		return "RecordTimerEntry(name=%s, begin=%s, end=%s, serviceref=%s, justplay=%s, isAutoTimer=%s%s%s)" % (self.name, ctime(self.begin), ctime(self.end), self.service_ref, self.justplay, self.isAutoTimer, ice, disabled)
 
 	def log(self, code, msg):
-		self.log_entries.append((int(time()), code, msg))
-		print "[RecordTimer]", msg
+		t = int(time())
+		self.log_entries.append((t, code, msg))
+		print "[RecordTimer]", ctime(t), msg
 
 	def MountTest(self, dirname, cmd):
 		if cmd == 'writeable':
