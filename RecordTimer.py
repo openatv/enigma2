@@ -672,7 +672,7 @@ class RecordTimerEntry(timer.TimerEntry, object):
 				if not Screens.Standby.inStandby:  # Not already in standby
 					Notifications.AddNotificationWithCallback(self.sendStandbyNotification, MessageBox, _("A finished record timer wants to set your %s %s to standby mode.\nGo to standby mode now?") % (getMachineBrand(), getMachineName()), timeout=180)
 			elif self.afterEvent == AFTEREVENT.DEEPSTANDBY or (wasRecTimerWakeup and self.afterEvent == AFTEREVENT.AUTO and Screens.Standby.inStandby):
-				if (abs(NavigationInstance.instance.RecordTimer.getNextRecordingTime() - time()) <= 900 or abs(NavigationInstance.instance.RecordTimer.getNextZapTime() - time()) <= 900) or NavigationInstance.instance.RecordTimer.getStillRecording():
+				if NavigationInstance.instance.RecordTimer.recordingsActive(900, useStillRecording=True):
 					print '[RecordTimer] Recording or Recording due is next 15 mins, not return to deepstandby'
 					return True
 
@@ -1224,6 +1224,19 @@ class RecordTimer(timer.Timer):
 				return faketime
 		else:
 			return nextrectime
+
+	# from_time allows the recordingsActive() test to be done
+	# relative to a particular time (normally the activation time
+	# when comparing two timers).
+	def recordingsActive(self, margin, from_time=None, useStillRecording=False):
+		now = time()
+		if from_time is None:
+			from_time = now
+		return (
+			(self.getStillRecording() if useStillRecording else self.isRecording()) or
+			abs(self.getNextRecordingTime(from_time=from_time) - now) <= margin or
+			abs(self.getNextZapTime(from_time=from_time) - now) <= margin
+		)
 
 	def isNextRecordAfterEventActionAuto(self):
 		for timer in self.timer_list:
