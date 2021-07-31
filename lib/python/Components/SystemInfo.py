@@ -181,6 +181,13 @@ def haveInitCam():
 	return False
 
 
+def getRCFile(ext):
+	filename = resolveFilename(SCOPE_SKIN, pathjoin("rc", "%s.%s" % (BoxInfo.getItem("rcname"), ext)))
+	if not isfile(filename):
+		filename = resolveFilename(SCOPE_SKIN, pathjoin("rc", "dmm1.%s" % ext))
+	return filename
+
+
 def getModuleLayout():
 	modulePath = BoxInfo.getItem("enigmamodule")
 	if modulePath:
@@ -197,6 +204,8 @@ BoxInfo.setItem("DebugLevel", eGetEnigmaDebugLvl())
 BoxInfo.setItem("InDebugMode", eGetEnigmaDebugLvl() >= 4)
 BoxInfo.setItem("ModuleLayout", getModuleLayout(), immutable=True)
 
+BoxInfo.setItem("RCImage", getRCFile("png"))
+BoxInfo.setItem("RCMapping", getRCFile("xml"))
 SystemInfo["HasRootSubdir"] = False	# This needs to be here so it can be reset by getMultibootslots!
 SystemInfo["RecoveryMode"] = False or fileCheck("/proc/stb/fp/boot_mode")	# This needs to be here so it can be reset by getMultibootslots!
 

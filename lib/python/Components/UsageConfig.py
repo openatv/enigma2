@@ -358,6 +358,21 @@ def InitUsageConfig():
 		("intermediate", _("Intermediate")),
 		("expert", _("Expert"))])
 
+	config.usage.helpSortOrder = ConfigSelection(default="headings+alphabetic", choices=[
+		("headings+alphabetic", _("Alphabetical under headings")),
+		("flat+alphabetic", _("Flat alphabetical")),
+		("flat+remotepos", _("Flat by position on remote")),
+		("flat+remotegroups", _("Flat by key group on remote"))
+	])
+
+	config.usage.helpAnimationSpeed = ConfigSelection(default="10", choices=[
+		("1", _("Very fast")),
+		("5", _("Fast")),
+		("10", _("Default")),
+		("20", _("Slow")),
+		("50", _("Very slow"))
+	])
+
 	choicelist = [("standby", _("Standby")), ("deepstandby", _("Deep Standby"))]
 	config.usage.sleep_timer_action = ConfigSelection(default="deepstandby", choices=choicelist)
 	choicelist = [("0", _("Disabled")), ("event_standby", _("Execute after current event"))]
