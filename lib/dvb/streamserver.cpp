@@ -185,8 +185,13 @@ void eStreamClient::notifier(int what)
 				{
 					request = serviceref.substr(pos);
 					serviceref = serviceref.substr(0, pos);
-					pos = request.find("?bitrate=");
-					posdur = request.find("?duration=");
+					/* BC support for ? instead of & as URL argument seperator */
+					while((pos = request.find('?')) != std::string::npos)
+					{
+						request.replace(pos, 1, "&");
+					}
+					pos = request.find("&bitrate=");
+					posdur = request.find("&duration=");
 					eDebug("[eDVBServiceStream] stream ref: %s", serviceref.c_str());
 					if (posdur != std::string::npos)
 					{
@@ -197,7 +202,7 @@ void eStreamClient::notifier(int what)
 							m_useencoder = false;
 						}
 						int timeout = 0;
-						sscanf(request.substr(posdur).c_str(), "?duration=%d", &timeout);
+						sscanf(request.substr(posdur).c_str(), "&duration=%d", &timeout);
 						eDebug("[eDVBServiceStream] duration: %d seconds", timeout);
 						if (timeout)
 						{
@@ -213,57 +218,66 @@ void eStreamClient::notifier(int what)
 						int framerate = 25000;
 						int interlaced = 0;
 						int aspectratio = 0;
-						std::string vcodec, acodec;
-						sscanf(request.substr(pos).c_str(), "?bitrate=%d", &bitrate);
-						pos = request.find("?width=");
+						int buffersize;
+						std::string vcodec = "h264";
+						std::string acodec = "aac";
+
+						sscanf(request.substr(pos).c_str(), "&bitrate=%d", &bitrate);
+						pos = request.find("&width=");
 						if (pos != std::string::npos)
-							sscanf(request.substr(pos).c_str(), "?width=%d", &width);
-						pos = request.find("?height=");
+							sscanf(request.substr(pos).c_str(), "&width=%d", &width);
+						pos = request.find("&height=");
 						if (pos != std::string::npos)
-							sscanf(request.substr(pos).c_str(), "?height=%d", &height);
-						pos = request.find("?framerate=");
+							sscanf(request.substr(pos).c_str(), "&height=%d", &height);
+						pos = request.find("&framerate=");
 						if (pos != std::string::npos)
-							sscanf(request.substr(pos).c_str(), "?framerate=%d", &framerate);
-						pos = request.find("?interlaced=");
+							sscanf(request.substr(pos).c_str(), "&framerate=%d", &framerate);
+						pos = request.find("&interlaced=");
 						if (pos != std::string::npos)
-							sscanf(request.substr(pos).c_str(), "?interlaced=%d", &interlaced);
-						pos = request.find("?aspectratio=");
+							sscanf(request.substr(pos).c_str(), "&interlaced=%d", &interlaced);
+						pos = request.find("&aspectratio=");
 						if (pos != std::string::npos)
-							sscanf(request.substr(pos).c_str(), "?aspectratio=%d", &aspectratio);
-						pos = request.find("?vcodec=");
+							sscanf(request.substr(pos).c_str(), "&aspectratio=%d", &aspectratio);
+						pos = request.find("&vcodec=");
 						if (pos != std::string::npos)
 						{
 							vcodec = request.substr(pos + 8);
-							pos = vcodec.find('?');
+							pos = vcodec.find('&');
 							if (pos != std::string::npos)
 							{
 								vcodec = vcodec.substr(0, pos);
 							}
 						}
-						pos = request.find("?acodec=");
+						pos = request.find("&acodec=");
 						if (pos != std::string::npos)
 						{
 							acodec = request.substr(pos + 8);
-							pos = acodec.find('?');
+							pos = acodec.find('&');
 							if (pos != std::string::npos)
 							{
 								acodec = acodec.substr(0, pos);
 							}
 						}
+
 						encoderFd = -1;
-						if (eEncoder::getInstance())
-							encoderFd = eEncoder::getInstance()->allocateEncoder(serviceref, bitrate, width, height, framerate, !!interlaced, aspectratio, vcodec, acodec);
-						if (encoderFd >= 0)
+
+						if(eEncoder::getInstance())
+							encoderFd = eEncoder::getInstance()->allocateEncoder(serviceref, buffersize, bitrate, width, height, framerate, !!interlaced, aspectratio,
+									vcodec, acodec);
+
+						if(encoderFd >= 0)
 						{
-							running = true;
-							streamThread = new eDVBRecordStreamThread(188);
+							m_serviceref = serviceref;
+							m_useencoder = true;
+
+							streamThread = new eDVBRecordStreamThread(188, buffersize);
+
 							if (streamThread)
 							{
 								streamThread->setTargetFD(streamFd);
 								streamThread->start(encoderFd);
+								running = true;
 							}
-							m_serviceref = serviceref;
-							m_useencoder = true;
 						}
 					}
 				}

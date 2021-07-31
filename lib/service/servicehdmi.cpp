@@ -195,6 +195,7 @@ eServiceHDMIRecord::eServiceHDMIRecord(const eServiceReference &ref)
 	m_target_fd = -1;
 	m_error = 0;
 	m_encoder_fd = -1;
+	m_buffersize = -1;
 	m_thread = NULL;
 }
 
@@ -264,7 +265,7 @@ int eServiceHDMIRecord::doPrepare()
 			int framerate = eConfigManager::getConfigIntValue("config.hdmirecord.framerate", 50000);
 			int interlaced = eConfigManager::getConfigIntValue("config.hdmirecord.interlaced", 0);
 			int aspectratio = eConfigManager::getConfigIntValue("config.hdmirecord.aspectratio", 0);
-			m_encoder_fd = eEncoder::getInstance()->allocateEncoder(m_ref.toString(), bitrate, width, height, framerate, interlaced, aspectratio);
+			m_encoder_fd = eEncoder::getInstance()->allocateEncoder(m_ref.toString(), m_buffersize, bitrate, width, height, framerate, interlaced, aspectratio);
 		}
 		if (m_encoder_fd < 0) return -1;
 	}
@@ -295,7 +296,7 @@ int eServiceHDMIRecord::doRecord()
 			return errOpenRecordFile;
 		}
 
-		m_thread = new eDVBRecordFileThread(188, 20);
+		m_thread = new eDVBRecordFileThread(188, 20, m_buffersize);
 		m_thread->setTargetFD(fd);
 
 		m_target_fd = fd;
