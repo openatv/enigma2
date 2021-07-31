@@ -112,10 +112,10 @@ def SetIconDisplay(nrec):
 	return
 
 # Define a function that is called at the start and stop of all
-# recordings. This allows us to track the number of actual recorings.
-# Other recording-related accouting codul also be added here.
+# recordings. This allows us to track the number of actual recordings.
+# Other recording-related accounting could also be added here.
 # alter is 1 at a recording start, -1 at a stop and 0 as enigma2 starts
-# 9to initialzie things).
+# to initialize things).
 
 
 def RecordingsState(alter):
@@ -267,8 +267,9 @@ class RecordTimerEntry(timer.TimerEntry, object):
 		return "RecordTimerEntry(name=%s, begin=%s, end=%s, serviceref=%s, justplay=%s, isAutoTimer=%s%s%s)" % (self.name, ctime(self.begin), ctime(self.end), self.service_ref, self.justplay, self.isAutoTimer, ice, disabled)
 
 	def log(self, code, msg):
-		self.log_entries.append((int(time()), code, msg))
-		print "[RecordTimer]", msg
+		t = int(time())
+		self.log_entries.append((t, code, msg))
+		print "[RecordTimer]", ctime(t), msg
 
 	def MountTest(self, dirname, cmd):
 		if cmd == 'writeable':
@@ -613,7 +614,7 @@ class RecordTimerEntry(timer.TimerEntry, object):
 #
 						from Screens.InfoBar import MoviePlayer
 						if MoviePlayer.instance is not None and MoviePlayer.instance.execing:
-							# This is one of the more wierdly named functions, it actually
+							# This is one of the more weirdly named functions, it actually
 							# functions as setMoviePlayerInactive
 							NavigationInstance.instance.isMovieplayerActive()
 # next_state is StateRunning but we can leave self.begin unchanged
@@ -672,7 +673,7 @@ class RecordTimerEntry(timer.TimerEntry, object):
 				if not Screens.Standby.inStandby:  # Not already in standby
 					Notifications.AddNotificationWithCallback(self.sendStandbyNotification, MessageBox, _("A finished record timer wants to set your %s %s to standby mode.\nGo to standby mode now?") % (getMachineBrand(), getMachineName()), timeout=180)
 			elif self.afterEvent == AFTEREVENT.DEEPSTANDBY or (wasRecTimerWakeup and self.afterEvent == AFTEREVENT.AUTO and Screens.Standby.inStandby):
-				if (abs(NavigationInstance.instance.RecordTimer.getNextRecordingTime() - time()) <= 900 or abs(NavigationInstance.instance.RecordTimer.getNextZapTime() - time()) <= 900) or NavigationInstance.instance.RecordTimer.getStillRecording():
+				if NavigationInstance.instance.RecordTimer.recordingsActive(900, useStillRecording=True):
 					print '[RecordTimer] Recording or Recording due is next 15 mins, not return to deepstandby'
 					return True
 
@@ -1184,8 +1185,8 @@ class RecordTimer(timer.Timer):
 		except:
 			print "There is not /etc/enigma2/timers.xml file !!! Why ?? "
 
-	def getNextZapTime(self):
-		now = time()
+	def getNextZapTime(self, from_time=None):
+		now = from_time if from_time is not None else time()
 		for timer in self.timer_list:
 			if not timer.justplay or timer.begin < now:
 				continue
@@ -1204,8 +1205,8 @@ class RecordTimer(timer.Timer):
 				break
 		return isStillRecording
 
-	def getNextRecordingTimeOld(self):
-		now = time()
+	def getNextRecordingTimeOld(self, from_time=None):
+		now = from_time if from_time is not None else time()
 		for timer in self.timer_list:
 			next_act = timer.getNextActivation()
 			if timer.justplay or next_act < now:
@@ -1213,8 +1214,8 @@ class RecordTimer(timer.Timer):
 			return next_act
 		return -1
 
-	def getNextRecordingTime(self):
-		nextrectime = self.getNextRecordingTimeOld()
+	def getNextRecordingTime(self, from_time=None):
+		nextrectime = self.getNextRecordingTimeOld(from_time=from_time)
 		faketime = time() + 300
 
 		if config.timeshift.isRecording.value:
@@ -1224,6 +1225,19 @@ class RecordTimer(timer.Timer):
 				return faketime
 		else:
 			return nextrectime
+
+	# from_time allows the recordingsActive() test to be done
+	# relative to a particular time (normally the activation time
+	# when comparing two timers).
+	def recordingsActive(self, margin, from_time=None, useStillRecording=False):
+		now = time()
+		if from_time is None:
+			from_time = now
+		return (
+			(self.getStillRecording() if useStillRecording else self.isRecording()) or
+			abs(self.getNextRecordingTime(from_time=from_time) - now) <= margin or
+			abs(self.getNextZapTime(from_time=from_time) - now) <= margin
+		)
 
 	def isNextRecordAfterEventActionAuto(self):
 		for timer in self.timer_list:
