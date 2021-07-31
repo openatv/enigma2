@@ -101,7 +101,9 @@ class PowerTimerEntry(timer.TimerEntry, object):
 			return "PowerTimerEntry(type=%s, begin=%s Disabled)" % (timertype, ctime(self.begin))
 
 	def log(self, code, msg):
-		self.log_entries.append((int(time()), code, msg))
+		t = int(time())
+		self.log_entries.append((t, code, msg))
+		print "[PowerTimer]", ctime(t), msg
 
 	def do_backoff(self):
 		if self.backoff == 0:
