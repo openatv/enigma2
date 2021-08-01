@@ -347,7 +347,7 @@ class HelpMenuNew(Screen, ShowRemoteControl):
 			_("Other buttons will jump to the help information for that button, if there is help available."),
 			_("If an action is user-configurable, its help entry will be flagged with a '(C)' suffix."),
 			_("A highlight on the remote control image shows which button the help refers to. If more than one button performs the indicated function, more than one highlight will be shown. Text below the list lists the active buttons and whether the function requires a long press or SHIFT of the button(s)."),
-			_("Configuration options for the HELP screen can be found in 'MENU > Setup > User Interface > User Interface Setup'."),
+			_("Configuration options for the HELP screen can be found in 'MENU > Setup > Usage & User Interface > Settings'."),
 			_("Press EXIT to return to the help screen.")
 		])
 		self.session.open(MessageBox, helpText, type=MessageBox.TYPE_INFO, title=_("Help Screen Information"))
