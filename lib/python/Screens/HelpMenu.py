@@ -32,7 +32,7 @@ class HelpableScreen:
 				self.secondInfoBarScreen.hide()
 		except:
 			pass
-		self.session.openWithCallback(self.callHelpAction, HelpMenu, self.helpList)
+		self.session.openWithCallback(self.callHelpAction, HelpMenuNew, self.helpList)
 
 	def callHelpAction(self, *args):
 		if args:
