@@ -133,8 +133,11 @@ class PowerTimerEntry(timer.TimerEntry, object):
 		# than the current time, to avoid incorrect time
 		# calculations when a power timer and record or zap
 		# timer run at the same time.
+		# At startup NavigationInstance.instance.PowerTimer
+		# will not have been created when PowerTimer.loadTimer()
+		# is called, which (indirectly) calls activate().
 
-		from_time = NavigationInstance.instance.PowerTimer.next
+		from_time = NavigationInstance.instance.PowerTimer.next if hasattr(NavigationInstance.instance, "PowerTimer") else time()
 		recordTimer = NavigationInstance.instance.RecordTimer
 
 		if next_state == self.StatePrepared:
