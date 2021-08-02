@@ -16,7 +16,7 @@ from Components.Button import Button
 from Components.Label import Label
 from Components.Sources.StaticText import StaticText
 from Components.Pixmap import Pixmap
-from Components.SystemInfo import SystemInfo
+from Components.SystemInfo import BoxInfo
 from Components.UsageConfig import defaultMoviePath
 from Components.Sources.Boolean import Boolean
 from Screens.MovieSelection import getPreferredTagEditor
@@ -139,7 +139,7 @@ class TimerEntry(Screen, ConfigListScreen):
 			default={0: "record", 1: "zap", 2: "zap+record"}[justplay + 2 * always_zap])
 		self.timertyp = self.timerentry_justplay.value
 
-		if SystemInfo["DeepstandbySupport"]:
+		if BoxInfo.getItem("DeepstandbySupport"):
 			shutdownString = _("go to deep standby")
 		else:
 			shutdownString = _("shut down")

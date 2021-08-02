@@ -5,7 +5,7 @@ from enigma import iPlayableService, iServiceInformation, eTimer, eServiceCenter
 
 from Screens.Screen import Screen
 from Screens.ChannelSelection import FLAG_IS_DEDICATED_3D
-from Components.SystemInfo import SystemInfo
+from Components.SystemInfo import BoxInfo
 from Components.ConfigList import ConfigListScreen
 from Components.config import config, configfile, getConfigListEntry, ConfigNothing
 from Components.Label import Label
@@ -226,31 +226,31 @@ class VideoSetup(Screen, ConfigListScreen):
 			self.list.append(getConfigListEntry(_("Color format"), config.av.colorformat, _("Configure which color format should be used on the SCART output.")))
 			if level >= 1:
 				self.list.append(getConfigListEntry(_("WSS on 4:3"), config.av.wss, _("When enabled, content with an aspect ratio of 4:3 will be stretched to fit the screen.")))
-				if SystemInfo["ScartSwitch"]:
+				if BoxInfo.getItem("ScartSwitch"):
 					self.list.append(getConfigListEntry(_("Auto scart switching"), config.av.vcrswitch, _("When enabled, your receiver will detect activity on the VCR SCART input.")))
 
 		if not isinstance(config.av.scaler_sharpness, ConfigNothing) and not path.exists("/usr/lib/enigma2/python/Plugins/SystemPlugins/VideoEnhancement/plugin.py"):
 			self.list.append(getConfigListEntry(_("Scaler sharpness"), config.av.scaler_sharpness, _("This option configures the picture sharpness.")))
 
-		if SystemInfo["havecolorspace"]:
+		if BoxInfo.getItem("havecolorspace"):
 			self.list.append(getConfigListEntry(_("HDMI Colorspace"), config.av.hdmicolorspace, _("This option allows you can config the Colorspace from Auto to RGB")))
 
-		if SystemInfo["havecolorimetry"]:
+		if BoxInfo.getItem("havecolorimetry"):
 			self.list.append(getConfigListEntry(_("HDMI Colorimetry"), config.av.hdmicolorimetry, _("This option allows you can config the Colorimetry for HDR")))
 
-		if SystemInfo["havehdmicolordepth"]:
+		if BoxInfo.getItem("havehdmicolordepth"):
 			self.list.append(getConfigListEntry(_("HDMI Colordepth"), config.av.hdmicolordepth, _("This option allows you can config the Colordepth for UHD")))
 
-		if SystemInfo["havehdmihdrtype"]:
+		if BoxInfo.getItem("havehdmihdrtype"):
 			self.list.append(getConfigListEntry(_("HDMI HDR Type"), config.av.hdmihdrtype, _("This option allows you can force the HDR Modes for UHD")))
 
-		if SystemInfo["Canedidchecking"]:
+		if BoxInfo.getItem("Canedidchecking"):
 			self.list.append(getConfigListEntry(_("Bypass HDMI EDID Check"), config.av.bypass_edid_checking, _("This option allows you to bypass HDMI EDID check")))
 
-		if SystemInfo["haveboxmode"]:
+		if BoxInfo.getItem("haveboxmode"):
 			self.list.append(getConfigListEntry(_("Change Boxmode to control Hardware Chip Modes*"), config.av.boxmode, _("Switch Mode to enable HDR Modes or PIP Functions")))
 
-		if SystemInfo["HDRSupport"]:
+		if BoxInfo.getItem("HDRSupport"):
 			self.list.append(getConfigListEntry(_("HLG Support"), config.av.hlg_support, _("This option allows you can force the HLG Modes for UHD")))
 			self.list.append(getConfigListEntry(_("HDR10 Support"), config.av.hdr10_support, _("This option allows you can force the HDR10 Modes for UHD")))
 			self.list.append(getConfigListEntry(_("Allow 12bit"), config.av.allow_12bit, _("This option allows you can enable or disable the 12 Bit Color Mode")))
@@ -495,46 +495,46 @@ class AudioSetup(Screen, ConfigListScreen):
 		self.list = []
 
 		if level >= 1:
-			if SystemInfo["CanPcmMultichannel"]:
+			if BoxInfo.getItem("CanPcmMultichannel"):
 				self.list.append(getConfigListEntry(_("PCM Multichannel"), config.av.pcm_multichannel, _("Choose whether multi channel sound tracks should be output as PCM.")))
-			if SystemInfo["CanDownmixAC3"]:
+			if BoxInfo.getItem("CanDownmixAC3"):
 				self.list.append(getConfigListEntry(_("AC3 downmix"), config.av.downmix_ac3, _("Choose whether AC3 sound tracks should be downmixed to stereo.")))
-			if SystemInfo["CanAC3plusTranscode"]:
+			if BoxInfo.getItem("CanAC3plusTranscode"):
 				self.list.append(getConfigListEntry(_("AC3 plus transcoding"), config.av.transcodeac3plus, _("Choose whether AC3 Plus sound tracks should be transcoded to AC3.")))
-			if SystemInfo["CanDownmixDTS"]:
+			if BoxInfo.getItem("CanDownmixDTS"):
 				self.list.append(getConfigListEntry(_("DTS downmix"), config.av.downmix_dts, _("Choose whether DTS channel sound tracks should be downmixed to stereo.")))
-			if SystemInfo["CanDTSHD"]:
+			if BoxInfo.getItem("CanDTSHD"):
 				self.list.append(getConfigListEntry(_("DTS/DTS-HD HR/DTS-HD MA/DTS:X"), config.av.dtshd, _("Choose whether DTS channel sound tracks should be downmixed or transcoded.")))
-			if SystemInfo["CanWMAPRO"]:
+			if BoxInfo.getItem("CanWMAPRO"):
 				self.list.append(getConfigListEntry(_("WMA Pro"), config.av.wmapro, _("Choose whether WMA Pro channel sound tracks should be downmixed or transcoded.")))
-			if SystemInfo["CanDownmixAAC"]:
+			if BoxInfo.getItem("CanDownmixAAC"):
 				self.list.append(getConfigListEntry(_("AAC downmix"), config.av.downmix_aac, _("Choose whether multi channel sound tracks should be downmixed to stereo.")))
-			if SystemInfo["CanDownmixAACPlus"]:
+			if BoxInfo.getItem("CanDownmixAACPlus"):
 				self.list.append(getConfigListEntry(_("AAC plus downmix"), config.av.downmix_aacplus, _("Configure whether multi channel sound tracks should be downmixed to stereo.")))
-			if SystemInfo["Canaudiosource"]:
+			if BoxInfo.getItem("Canaudiosource"):
 				self.list.append(getConfigListEntry(_("Audio Source"), config.av.audio_source, _("Choose whether multi channel sound tracks should be convert to PCM or SPDIF.")))
-			if SystemInfo["CanAACTranscode"]:
+			if BoxInfo.getItem("CanAACTranscode"):
 				self.list.append(getConfigListEntry(_("AAC transcoding"), config.av.transcodeaac, _("Choose whether AAC sound tracks should be transcoded.")))
 			self.list.extend((
 				getConfigListEntry(_("General AC3 delay"), config.av.generalAC3delay, _("This option configures the general audio delay of Dolby Digital sound tracks.")),
 				getConfigListEntry(_("General PCM delay"), config.av.generalPCMdelay, _("This option configures the general audio delay of stereo sound tracks."))
 			))
 
-			if SystemInfo["Can3DSurround"]:
+			if BoxInfo.getItem("Can3DSurround"):
 				self.list.append(getConfigListEntry(_("3D Surround"), config.av.surround_3d, _("This option allows you to enable 3D Surround Sound.")))
 
-			if SystemInfo["Can3DSpeaker"] and config.av.surround_3d.value != "none":
+			if BoxInfo.getItem("Can3DSpeaker") and config.av.surround_3d.value != "none":
 				self.list.append(getConfigListEntry(_("3D Surround Speaker Position"), config.av.surround_3d_speaker, _("This option allows you to change the virtuell loadspeaker position.")))
 
-			if SystemInfo["CanAutoVolume"]:
+			if BoxInfo.getItem("CanAutoVolume"):
 				self.list.append(getConfigListEntry(_("Audio Auto Volume Level"), config.av.autovolume, _("This option configures you can set Auto Volume Level.")))
 			self.list.append(getConfigListEntry(_("Audio volume step size"), config.av.volume_stepsize, _("Configure the general audio volume step size (limit 1-10).")))
 			self.list.append(getConfigListEntry(_("Audio volume step size fast mode"), config.av.volume_stepsize_fastmode, _("Configure the fast mode audio volume step size (limit 1-10). Activated when volume key permanent press or press fast in a row.")))
 			self.list.append(getConfigListEntry(_("Hide mute notification"), config.av.volume_hide_mute, _("If muted, hide mute icon or mute information after few seconds.")))
 
-			if SystemInfo["CanBTAudio"]:
+			if BoxInfo.getItem("CanBTAudio"):
 				self.list.append(getConfigListEntry(_("Enable BT Audio"), config.av.btaudio, _("This Option allows you to switch Audio to BT Speakers.")))
-			if SystemInfo["CanBTAudioDelay"]:
+			if BoxInfo.getItem("CanBTAudioDelay"):
 				self.list.append(getConfigListEntry(_("General BT Audio delay"), config.av.btaudiodelay, _("This option configures the general audio delay for BT Speakers.")))
 
 		self["config"].list = self.list
@@ -604,7 +604,7 @@ def applySettings(mode=config.osd.threeDmode.value, znorm=int(config.osd.threeDz
 	if previous != (mode, znorm):
 		try:
 			previous = (mode, znorm)
-			if SystemInfo["CanUse3DModeChoices"]:
+			if BoxInfo.getItem("CanUse3DModeChoices"):
 				f = open("/proc/stb/fb/3dmode_choices", "r")
 				choices = f.readlines()[0].split()
 				f.close()
@@ -615,8 +615,8 @@ def applySettings(mode=config.osd.threeDmode.value, znorm=int(config.osd.threeDz
 						mode = "tab"
 					elif mode == "auto":
 						mode = "off"
-			open(SystemInfo["3DMode"], "w").write(mode)
-			open(SystemInfo["3DZNorm"], "w").write('%d' % znorm)
+			open(BoxInfo.getItem("3DMode"), "w").write(mode)
+			open(BoxInfo.getItem("3DZNorm"), "w").write('%d' % znorm)
 		except:
 			return
 

@@ -7,7 +7,7 @@ from Screens.Screen import Screen
 
 from Components.Pixmap import Pixmap
 from Components.config import config, ConfigBoolean, configfile
-from Components.SystemInfo import SystemInfo
+from Components.SystemInfo import BoxInfo
 
 from Tools.Directories import resolveFilename, SCOPE_SKIN, SCOPE_ACTIVE_SKIN
 from Tools.HardwareInfo import HardwareInfo
@@ -21,10 +21,10 @@ has_jack = False
 has_scart = False
 
 
-has_rca = SystemInfo["HaveRCA"]
-has_dvi = SystemInfo["HaveDVI"]
-has_jack = SystemInfo["HaveAVJACK"]
-has_scart = SystemInfo["HAVESCART"]
+has_rca = BoxInfo.getItem("HaveRCA")
+has_dvi = BoxInfo.getItem("HaveDVI")
+has_jack = BoxInfo.getItem("HaveAVJACK")
+has_scart = BoxInfo.getItem("HAVESCART")
 
 
 class VideoWizardSummary(WizardSummary):
@@ -185,7 +185,7 @@ class VideoWizard(WizardLanguage, Rc):
 			print(mode)
 			if mode[0] == querymode:
 				for rate in mode[1]:
-					if rate in ("auto") and not SystemInfo["have24hz"]:
+					if rate in ("auto") and not BoxInfo.getItem("have24hz"):
 						continue
 					if self.port == "DVI-PC":
 						print("rate:", rate)

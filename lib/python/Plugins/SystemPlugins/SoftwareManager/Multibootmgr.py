@@ -6,7 +6,7 @@ from Components.ActionMap import ActionMap
 from Components.ChoiceList import ChoiceList, ChoiceEntryComponent
 from Components.Label import Label
 from Components.Sources.StaticText import StaticText
-from Components.SystemInfo import SystemInfo
+from Components.SystemInfo import BoxInfo
 from Components.Harddisk import Harddisk
 from Tools.BoundFunction import boundFunction
 from Tools.Directories import pathExists
@@ -75,7 +75,7 @@ class MultiBootWizard(Screen):
 		list = []
 		mode = GetCurrentImageMode() or 0
 		currentimageslot = GetCurrentImage()
-		if SystemInfo["HasSDmmc"]:
+		if BoxInfo.getItem("HasSDmmc"):
 			currentimageslot += 1
 		for x in sorted(imagedict.keys()):
 			if imagedict[x]["imagename"] != _("Empty slot") and x != currentimageslot:
@@ -85,7 +85,7 @@ class MultiBootWizard(Screen):
 	def erase(self):
 		self.currentSelected = self["config"].l.getCurrentSelection()
 		if self.currentSelected[0][1] != "Queued":
-			if SystemInfo["HasRootSubdir"]:
+			if BoxInfo.getItem("HasRootSubdir"):
 				message = _("Removal of this slot will not show in %s Gui.  Are you sure you want to delete image slot %s ?") % (getMachineName(), self.currentSelected[0][1])
 				ybox = self.session.openWithCallback(self.doErase, MessageBox, message, MessageBox.TYPE_YESNO, default=True)
 				ybox.setTitle(_("Remove confirmation"))

@@ -7,7 +7,7 @@ from os import mkdir, path, rmdir, rename, remove, stat
 
 from boxbranding import getMachineBuild, getMachineMtdRoot, getBoxType, getMachineName
 from Components.Console import Console
-from Components.SystemInfo import SystemInfo
+from Components.SystemInfo import BoxInfo
 from Tools.Directories import pathExists
 
 Imagemount = "/tmp/multibootcheck"
@@ -34,14 +34,14 @@ def getparam(line, param):
 
 def getMultibootslots():
 	bootslots = {}
-	if SystemInfo["MBbootdevice"]:
+	if BoxInfo.getItem("MBbootdevice"):
 		if not path.isdir(Imagemount):
 			mkdir(Imagemount)
-		Console().ePopen("/bin/mount %s %s" % (SystemInfo["MBbootdevice"], Imagemount))
+		Console().ePopen("/bin/mount %s %s" % (BoxInfo.getItem("MBbootdevice"), Imagemount))
 		for file in glob.glob(path.join(Imagemount, "STARTUP_*")):
 			if "STARTUP_RECOVERY" in file:
-				SystemInfo["RecoveryMode"] = True
-				print("[multiboot] [getMultibootslots] RecoveryMode is set to:%s" % SystemInfo["RecoveryMode"])
+				BoxInfo.setItem("RecoveryMode", True)
+				print("[multiboot] [getMultibootslots] RecoveryMode is set to:%s" % BoxInfo.getItem("RecoveryMode"))
 			slotnumber = file.rsplit("_", 3 if "BOXMODE" in file else 1)[1]
 			if slotnumber.isdigit() and slotnumber not in bootslots:
 				slot = {}
@@ -59,8 +59,8 @@ def getMultibootslots():
 							else:
 								slot["kernel"] = "%sp%s" % (device.split("p")[0], int(device.split("p")[1]) - 1)
 							if "rootsubdir" in line:
-								SystemInfo["HasRootSubdir"] = True
-								print("[multiboot] [getMultibootslots] HasRootSubdir is set to:%s" % SystemInfo["HasRootSubdir"])
+								BoxInfo.setItem("HasRootSubdir", True)
+								print("[multiboot] [getMultibootslots] HasRootSubdir is set to:%s" % BoxInfo.getItem("HasRootSubdir"))
 								slot["rootsubdir"] = getparam(line, "rootsubdir")
 								slot["kernel"] = getparam(line, "kernel")
 
@@ -75,40 +75,40 @@ def getMultibootslots():
 
 
 def GetCurrentImage():
-	if SystemInfo["canMultiBoot"]:
+	if BoxInfo.getItem("canMultiBoot"):
 		slot = [x[-1] for x in open("/sys/firmware/devicetree/base/chosen/bootargs", "r").read().split() if x.startswith("rootsubdir")]
 		if slot:
 			return int(slot[0])
 		else:
 			device = getparam(open("/sys/firmware/devicetree/base/chosen/bootargs", "r").read(), "root")
-			for slot in list(SystemInfo["canMultiBoot"].keys()):
-				if SystemInfo["canMultiBoot"][slot]["device"] == device:
+			for slot in list(BoxInfo.getItem("canMultiBoot").keys()):
+				if BoxInfo.getItem("canMultiBoot")[slot]["device"] == device:
 					return slot
 
 
 def GetCurrentKern():
-	if SystemInfo["HasRootSubdir"]:
-		return SystemInfo["HasRootSubdir"] and (int(open("/sys/firmware/devicetree/base/chosen/bootargs", "r").read()[:-1].split("kernel=/dev/mmcblk0p")[1].split(" ")[0]))
+	if BoxInfo.getItem("HasRootSubdir"):
+		return BoxInfo.getItem("HasRootSubdir") and (int(open("/sys/firmware/devicetree/base/chosen/bootargs", "r").read()[:-1].split("kernel=/dev/mmcblk0p")[1].split(" ")[0]))
 
 
 def GetCurrentRoot():
-	if SystemInfo["HasRootSubdir"]:
-		return SystemInfo["HasRootSubdir"] and (int(open("/sys/firmware/devicetree/base/chosen/bootargs", "r").read()[:-1].split("root=/dev/mmcblk0p")[1].split(" ")[0]))
+	if BoxInfo.getItem("HasRootSubdir"):
+		return BoxInfo.getItem("HasRootSubdir") and (int(open("/sys/firmware/devicetree/base/chosen/bootargs", "r").read()[:-1].split("root=/dev/mmcblk0p")[1].split(" ")[0]))
 
 
 def GetCurrentImageMode():
-	return bool(SystemInfo["canMultiBoot"]) and SystemInfo["canMode12"] and int(open("/sys/firmware/devicetree/base/chosen/bootargs", "r").read().replace("\0", "").split("=")[-1])
+	return bool(BoxInfo.getItem("canMultiBoot")) and BoxInfo.getItem("canMode12") and int(open("/sys/firmware/devicetree/base/chosen/bootargs", "r").read().replace("\0", "").split("=")[-1])
 
 
 def GetSTARTUPFile():
-	if SystemInfo["HAScmdline"]:
+	if BoxInfo.getItem("HAScmdline"):
 		return "cmdline.txt"
 	else:
 		return "STARTUP"
 
 
 def ReadSTARTUP():
-	return SystemInfo["canMultiBoot"] and open('/tmp/startupmount/%s' % GetSTARTUPFile(), 'r').read()
+	return BoxInfo.getItem("canMultiBoot") and open('/tmp/startupmount/%s' % GetSTARTUPFile(), 'r').read()
 
 
 def GetBoxName():
@@ -150,8 +150,8 @@ class GetImagelist():
 	UNMOUNT = 1
 
 	def __init__(self, callback):
-		if SystemInfo["canMultiBoot"]:
-			self.slots = sorted(list(SystemInfo["canMultiBoot"].keys()))
+		if BoxInfo.getItem("canMultiBoot"):
+			self.slots = sorted(list(BoxInfo.getItem("canMultiBoot").keys()))
 			self.callback = callback
 			self.imagelist = {}
 			if not path.isdir(Imageroot):
@@ -167,7 +167,7 @@ class GetImagelist():
 			self.container.ePopen("umount %s" % Imageroot, self.appClosed)
 		else:
 			self.slot = self.slots.pop(0)
-			self.container.ePopen("mount %s %s" % (SystemInfo["canMultiBoot"][self.slot]["device"], Imageroot), self.appClosed)
+			self.container.ePopen("mount %s %s" % (BoxInfo.getItem("canMultiBoot")[self.slot]["device"], Imageroot), self.appClosed)
 
 	def appClosed(self, data="", retval=0, extra_args=None):
 		BuildVersion = "  "
@@ -179,8 +179,8 @@ class GetImagelist():
 		if retval:
 			self.imagelist[self.slot] = {"imagename": _("Empty slot")}
 		if retval == 0 and self.phase == self.MOUNT:
-			if SystemInfo["HasRootSubdir"] and SystemInfo["canMultiBoot"][self.slot]["rootsubdir"] != None:
-				imagedir = ('%s/%s' % (Imageroot, SystemInfo["canMultiBoot"][self.slot]["rootsubdir"]))
+			if BoxInfo.getItem("HasRootSubdir") and BoxInfo.getItem("canMultiBoot")[self.slot]["rootsubdir"] != None:
+				imagedir = ('%s/%s' % (Imageroot, BoxInfo.getItem("canMultiBoot")[self.slot]["rootsubdir"]))
 			else:
 				imagedir = Imageroot
 			if path.isfile("%s/usr/bin/enigma2" % imagedir):
@@ -204,7 +204,7 @@ class GetImagelist():
 				self.imagelist[self.slot] = {"imagename": "%s" % BuildVersion}
 			else:
 				self.imagelist[self.slot] = {"imagename": _("Empty slot")}
-			if self.slots and SystemInfo["canMultiBoot"][self.slot]["device"] == SystemInfo["canMultiBoot"][self.slots[0]]["device"]:
+			if self.slots and BoxInfo.getItem("canMultiBoot")[self.slot]["device"] == BoxInfo.getItem("canMultiBoot")[self.slots[0]]["device"]:
 				self.slot = self.slots.pop(0)
 				self.appClosed()
 			else:
@@ -314,8 +314,8 @@ class EmptySlot():
 	UNMOUNT = 1
 
 	def __init__(self, Contents, callback):
-		if SystemInfo["canMultiBoot"]:
-			self.slots = sorted(SystemInfo["canMultiBoot"].keys())
+		if BoxInfo.getItem("canMultiBoot"):
+			self.slots = sorted(BoxInfo.getItem("canMultiBoot").keys())
 			self.callback = callback
 			self.imagelist = {}
 			self.slot = Contents
@@ -331,12 +331,12 @@ class EmptySlot():
 		if self.phase == self.UNMOUNT:
 			self.container.ePopen("umount %s" % Imageroot, self.appClosed)
 		else:
-			self.container.ePopen("mount %s %s" % (SystemInfo["canMultiBoot"][self.slot]["device"], Imageroot), self.appClosed)
+			self.container.ePopen("mount %s %s" % (BoxInfo.getItem("canMultiBoot")[self.slot]["device"], Imageroot), self.appClosed)
 
 	def appClosed(self, data="", retval=0, extra_args=None):
 		if retval == 0 and self.phase == self.MOUNT:
-			if SystemInfo["HasRootSubdir"] and SystemInfo["canMultiBoot"][self.slot]["rootsubdir"] != None:
-				imagedir = ('%s/%s' % (Imageroot, SystemInfo["canMultiBoot"][self.slot]["rootsubdir"]))
+			if BoxInfo.getItem("HasRootSubdir") and BoxInfo.getItem("canMultiBoot")[self.slot]["rootsubdir"] != None:
+				imagedir = ('%s/%s' % (Imageroot, BoxInfo.getItem("canMultiBoot")[self.slot]["rootsubdir"]))
 			else:
 				imagedir = Imageroot
 			if path.isfile("%s/usr/bin/enigma2" % imagedir):

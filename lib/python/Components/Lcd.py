@@ -7,7 +7,7 @@ from usb import busses
 from enigma import eActionMap, eDBoxLCD, eTimer
 
 from Components.config import config, ConfigSubsection, ConfigSelection, ConfigSlider, ConfigYesNo, ConfigNothing
-from Components.SystemInfo import SystemInfo, BoxInfo
+from Components.SystemInfo import BoxInfo
 from Screens.InfoBar import InfoBar
 from Screens.Screen import Screen
 import Screens.Standby
@@ -193,8 +193,6 @@ class LCD:
 			print("[Lcd] setLCDMode='%s'." % value)
 			fileWriteLine("/proc/stb/lcd/show_symbols", value)
 		if config.lcd.mode.value == "0":
-			SystemInfo["SeekStatePlay"] = False
-			SystemInfo["StatePlayPause"] = False
 			BoxInfo.setItem("SeekStatePlay", False)
 			BoxInfo.setItem("StatePlayPause", False)
 			if exists("/proc/stb/lcd/symbol_hdd"):
@@ -283,7 +281,6 @@ def InitLcd():
 		detected = False
 	else:
 		detected = eDBoxLCD.getInstance().detected()
-	SystemInfo["Display"] = detected
 	BoxInfo.setItem("Display", detected)
 	config.lcd = ConfigSubsection()
 
@@ -292,7 +289,6 @@ def InitLcd():
 	else:
 		can_lcdmodechecking = False
 	BoxInfo.setItem("LCDMiniTV", can_lcdmodechecking)
-	SystemInfo["LCDMiniTV"] = can_lcdmodechecking
 
 	if detected:
 		ilcd = LCD()
@@ -530,7 +526,7 @@ def InitLcd():
 		else:
 			config.lcd.standby = ConfigSlider(default=standby_default, limits=(0, 10))
 			config.lcd.dimbright = ConfigSlider(default=standby_default, limits=(0, 10))
-			config.lcd.bright = ConfigSlider(default=SystemInfo["DefaultDisplayBrightness"], limits=(0, 10))
+			config.lcd.bright = ConfigSlider(default=BoxInfo.getItem("DefaultDisplayBrightness"), limits=(0, 10))
 		config.lcd.dimbright.addNotifier(setLCDdimbright)
 		config.lcd.dimbright.apply = lambda: setLCDdimbright(config.lcd.dimbright)
 		config.lcd.dimdelay = ConfigSelection(choices=[
@@ -556,9 +552,9 @@ def InitLcd():
 		config.lcd.flip = ConfigYesNo(default=False)
 		config.lcd.flip.addNotifier(setLCDflipped)
 
-		if SystemInfo["LcdLiveTV"]:
+		if BoxInfo.getItem("LcdLiveTV"):
 			def lcdLiveTvChanged(configElement):
-				open(SystemInfo["LcdLiveTV"], "w").write(configElement.value and "0" or "1")
+				open(BoxInfo.getItem("LcdLiveTV"), "w").write(configElement.value and "0" or "1")
 				try:
 					InfoBarInstance = InfoBar.instance
 					InfoBarInstance and InfoBarInstance.session.open(dummyScreen)
@@ -568,7 +564,7 @@ def InitLcd():
 			config.lcd.showTv = ConfigYesNo(default=False)
 			config.lcd.showTv.addNotifier(lcdLiveTvChanged)
 
-		if SystemInfo["LCDMiniTV"] and config.misc.boxtype.value not in ('gbquad', 'gbquadplus', 'gbquad4k', 'gbue4k'):
+		if BoxInfo.getItem("LCDMiniTV") and config.misc.boxtype.value not in ('gbquad', 'gbquadplus', 'gbquad4k', 'gbue4k'):
 			config.lcd.minitvmode = ConfigSelection([("0", _("normal")), ("1", _("MiniTV")), ("2", _("OSD")), ("3", _("MiniTV with OSD"))], "0")
 			config.lcd.minitvmode.addNotifier(setLCDminitvmode)
 			config.lcd.minitvpipmode = ConfigSelection([("0", _("off")), ("5", _("PIP")), ("7", _("PIP with OSD"))], "0")
@@ -576,22 +572,22 @@ def InitLcd():
 			config.lcd.minitvfps = ConfigSlider(default=30, limits=(0, 30))
 			config.lcd.minitvfps.addNotifier(setLCDminitvfps)
 
-		if SystemInfo["VFD_scroll_repeats"] and model not in ('ixussone', 'ixusszero') and getDisplayType() not in ('7segment',):
+		if BoxInfo.getItem("VFD_scroll_repeats") and model not in ('ixussone', 'ixusszero') and getDisplayType() not in ('7segment',):
 			def scroll_repeats(el):
-				open(SystemInfo["VFD_scroll_repeats"], "w").write(el.value)
+				open(BoxInfo.getItem("VFD_scroll_repeats"), "w").write(el.value)
 			choicelist = [("0", _("None")), ("1", _("1X")), ("2", _("2X")), ("3", _("3X")), ("4", _("4X")), ("500", _("Continues"))]
 			config.usage.vfd_scroll_repeats = ConfigSelection(default="3", choices=choicelist)
 			config.usage.vfd_scroll_repeats.addNotifier(scroll_repeats, immediate_feedback=False)
 		else:
 			config.usage.vfd_scroll_repeats = ConfigNothing()
 
-		if SystemInfo["VFD_scroll_delay"] and model not in ('ixussone', 'ixusszero') and getDisplayType() not in ('7segment',):
+		if BoxInfo.getItem("VFD_scroll_delay") and model not in ('ixussone', 'ixusszero') and getDisplayType() not in ('7segment',):
 			def scroll_delay(el):
 				# add workaround for Boxes who need hex code
 				if model in ('sf4008', 'beyonwizu4'):
-					open(SystemInfo["VFD_scroll_delay"], "w").write(hex(int(el.value)))
+					open(BoxInfo.getItem("VFD_scroll_delay"), "w").write(hex(int(el.value)))
 				else:
-					open(SystemInfo["VFD_scroll_delay"], "w").write(str(el.value))
+					open(BoxInfo.getItem("VFD_scroll_delay"), "w").write(str(el.value))
 			config.usage.vfd_scroll_delay = ConfigSlider(default=150, increment=10, limits=(0, 500))
 			config.usage.vfd_scroll_delay.addNotifier(scroll_delay, immediate_feedback=False)
 			config.lcd.hdd = ConfigSelection([("0", _("No")), ("1", _("Yes"))], "1")
@@ -599,13 +595,13 @@ def InitLcd():
 			config.lcd.hdd = ConfigNothing()
 			config.usage.vfd_scroll_delay = ConfigNothing()
 
-		if SystemInfo["VFD_initial_scroll_delay"] and model not in ('ixussone', 'ixusszero') and getDisplayType() not in ('7segment',):
+		if BoxInfo.getItem("VFD_initial_scroll_delay") and model not in ('ixussone', 'ixusszero') and getDisplayType() not in ('7segment',):
 			def initial_scroll_delay(el):
 				if model in ('sf4008', 'beyonwizu4'):
 					# add workaround for Boxes who need hex code
-					open(SystemInfo["VFD_initial_scroll_delay"], "w").write(hex(int(el.value)))
+					open(BoxInfo.getItem("VFD_initial_scroll_delay"), "w").write(hex(int(el.value)))
 				else:
-					open(SystemInfo["VFD_initial_scroll_delay"], "w").write(el.value)
+					open(BoxInfo.getItem("VFD_initial_scroll_delay"), "w").write(el.value)
 
 			config.usage.vfd_initial_scroll_delay = ConfigSelection(choices=[
 				("3000", "3 %s" % _("seconds")),
@@ -619,13 +615,13 @@ def InitLcd():
 		else:
 			config.usage.vfd_initial_scroll_delay = ConfigNothing()
 
-		if SystemInfo["VFD_final_scroll_delay"] and model not in ('ixussone', 'ixusszero') and getDisplayType() not in ('7segment',):
+		if BoxInfo.getItem("VFD_final_scroll_delay") and model not in ('ixussone', 'ixusszero') and getDisplayType() not in ('7segment',):
 			def final_scroll_delay(el):
 				if model in ('sf4008', 'beyonwizu4'):
 					# add workaround for Boxes who need hex code
-					open(SystemInfo["VFD_final_scroll_delay"], "w").write(hex(int(el.value)))
+					open(BoxInfo.getItem("VFD_final_scroll_delay"), "w").write(hex(int(el.value)))
 				else:
-					open(SystemInfo["VFD_final_scroll_delay"], "w").write(el.value)
+					open(BoxInfo.getItem("VFD_final_scroll_delay"), "w").write(el.value)
 
 			config.usage.vfd_final_scroll_delay = ConfigSelection(choices=[
 				("3000", "3 %s" % _("seconds")),
