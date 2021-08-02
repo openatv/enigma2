@@ -17,6 +17,7 @@ from Screens.Screen import Screen
 from Tools.KeyBindings import getKeyDescription
 from Tools.LoadPixmap import LoadPixmap
 from skin import parameters, fonts
+from functools import cmp_to_key
 
 
 class HelpableScreen:
@@ -501,8 +502,10 @@ class HelpMenuListNew(List):
 		for (actionmap, context, actions) in helpList:
 			amId = actMapId()
 			if headings and amId in actionMapHelp and getattr(actionmap, "description", None):
-#				if sortCmp or sortKey:
-#					actionMapHelp[amId].sort(cmp=sortCmp, key=sortKey)
+				if sortCmp:
+					actionMapHelp[amId].sort(key=cmp_to_key(sortCmp))
+				elif sortKey:
+					actionMapHelp[amId].sort(key=sortKey)
 				self.addListBoxContext(actionMapHelp[amId], formatFlags)
 				helpMenuList.append((None, actionmap.description, None) + extendedPadding)
 				helpMenuList.extend(actionMapHelp[amId])
@@ -516,8 +519,10 @@ class HelpMenuListNew(List):
 				if amId in actionMapHelp:
 					otherHelp.extend(actionMapHelp[amId])
 					del actionMapHelp[amId]
-#			if sortCmp or sortKey:
-#				otherHelp.sort(cmp=sortCmp, key=sortKey)
+			if sortCmp:
+				otherHelp.sort(key=cmp_to_key(sortCmp))
+			elif sortKey:
+				otherHelp.sort(key=sortKey)
 			self.addListBoxContext(otherHelp, formatFlags)
 			helpMenuList.extend(otherHelp)
 		ignoredKeyIds = (KEYIDS.get("KEY_OK"), KEYIDS.get("KEY_EXIT"))
