@@ -61,7 +61,6 @@ class Console(object):
 	def ePopen(self, cmd, callback=None, extra_args=None):
 		if not extra_args:
 			extra_args = []
-		print("[Console] command: %s" % cmd)
 		return ConsoleItem(self.appContainers, cmd, callback, extra_args)
 
 	def eBatch(self, cmds, callback, extra_args=None, debug=False):
