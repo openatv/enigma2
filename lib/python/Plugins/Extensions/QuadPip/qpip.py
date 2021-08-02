@@ -16,9 +16,7 @@ from Components.ActionMap import HelpableActionMap
 from Components.MenuList import MenuList
 
 from Screens.ChannelSelection import ChannelSelectionBase
-from enigma import eServiceReference
-from enigma import eListboxPythonMultiContent
-from enigma import eTimer
+from enigma import eServiceReference, eListboxPythonMultiContent, eTimer
 from ServiceReference import ServiceReference
 from Components.FileList import FileList
 from Components.Button import Button
@@ -34,7 +32,7 @@ import os
 from Components.config import config, ConfigSubsection, ConfigNumber
 from Components.Slider import Slider
 
-from Components.SystemInfo import SystemInfo
+from Components.SystemInfo import BoxInfo
 
 config.plugins.quadpip = ConfigSubsection()
 config.plugins.quadpip.lastchannel = ConfigNumber(default=1)
@@ -736,10 +734,10 @@ class QuadPipScreen(Screen, FocusShowHide, HelpableScreen):
 		self.oldService = self.session.nav.getCurrentlyPlayingServiceReference()
 		self.session.nav.stopService()
 
-		if SystemInfo.get("FastChannelChange", False):
+		if BoxInfo.getItem("FastChannelChange", False):
 			self.disableFCC()
 
-		if SystemInfo.get("MiniTV", False):
+		if BoxInfo.getItem("MiniTV", False):
 			self.disableMiniTV()
 
 		ret = setDecoderMode("mosaic")
@@ -758,10 +756,10 @@ class QuadPipScreen(Screen, FocusShowHide, HelpableScreen):
 		self.disableQuadPip()
 		setDecoderMode("normal")
 
-		if SystemInfo.get("FastChannelChange", False):
+		if BoxInfo.getItem(("FastChannelChange", False):
 			self.enableFCC()
 
-		if SystemInfo.get("MiniTV", False):
+		if BoxInfo.getItem(("MiniTV", False):
 			self.enableMiniTV()
 
 		self.qpipChannelList.saveAll()

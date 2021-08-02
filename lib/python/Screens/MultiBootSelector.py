@@ -6,7 +6,7 @@ from Components.ActionMap import HelpableActionMap
 from Components.ChoiceList import ChoiceEntryComponent, ChoiceList
 from Components.Console import Console
 from Components.Sources.StaticText import StaticText
-from Components.SystemInfo import SystemInfo
+from Components.SystemInfo import BoxInfo
 from Screens.HelpMenu import HelpableScreen
 from Screens.Screen import Screen
 from Screens.Standby import QUIT_REBOOT, TryQuitMainloop
@@ -43,7 +43,7 @@ class MultiBootSelector(Screen, HelpableScreen):
 			MultiBootSelector.skin = MultiBootSelector.skinTemplate % tuple([x * getDesktop(0).size().height() / 720 for x in MultiBootSelector.scaleData])
 		Screen.setTitle(self, _("MultiBoot Image Selector"))
 		self["config"] = ChoiceList(list=[ChoiceEntryComponent("", ((_("Retrieving image slots - Please wait...")), "Queued"))])
-		self["options"] = StaticText(_("Mode 1 suppports Kodi, PiP may not work.\nMode 12 supports PiP, Kodi may not work.") if SystemInfo["canMode12"] else "")
+		self["options"] = StaticText(_("Mode 1 suppports Kodi, PiP may not work.\nMode 12 supports PiP, Kodi may not work.") if BoxInfo.getItem("canMode12") else "")
 		self["description"] = StaticText(_("Use the cursor keys to select an installed image and then Reboot button."))
 		self["key_red"] = StaticText(_("Cancel"))
 		self["key_green"] = StaticText(_("Reboot"))
@@ -84,7 +84,7 @@ class MultiBootSelector(Screen, HelpableScreen):
 		else:
 			if not path.isdir(self.mountDir):
 				mkdir(self.mountDir)
-			self.container.ePopen("mount %s %s" % (SystemInfo["MBbootdevice"], self.mountDir), self.getImagesList)
+			self.container.ePopen("mount %s %s" % (BoxInfo.getItem("MBbootdevice"), self.mountDir), self.getImagesList)
 
 	def getImagesList(self, data=None, retval=None, extra_args=None):
 		self.container.killAll()
@@ -102,13 +102,13 @@ class MultiBootSelector(Screen, HelpableScreen):
 			indextot = 0
 			for index, x in enumerate(sorted(imagedict.keys())):
 				if imagedict[x]["imagename"] != _("Empty slot"):
-					if SystemInfo["canMode12"]:
+					if BoxInfo.getItem("canMode12"):
 						list.insert(index, ChoiceEntryComponent("", (slotMulti % (x, imagedict[x]["imagename"], 1, current if x == currentimageslot and mode != 12 else ""), (x, 1))))
 						list.append(ChoiceEntryComponent("", (slotMulti % (x, imagedict[x]["imagename"], 12, current if x == currentimageslot and mode == 12 else ""), (x, 12))))
 						indextot = index + 1
 					else:
 						list.append(ChoiceEntryComponent("", (slotSingle % (x, imagedict[x]["imagename"], current if x == currentimageslot else ""), (x, 1))))
-			if SystemInfo["canMode12"]:
+			if BoxInfo.getItem("canMode12"):
 				list.insert(indextot, " ")
 		else:
 			list.append(ChoiceEntryComponent("", ((_("No images found")), "Waiter")))
@@ -122,19 +122,19 @@ class MultiBootSelector(Screen, HelpableScreen):
 			boxmode = self.currentSelected[0][1][1]
 			print("[MultiBootSelector] reboot2 reboot slot = %s, " % slot)
 			print("[MultiBootSelector] reboot2 reboot boxmode = %s, " % boxmode)
-			print("[MultiBootSelector] reboot3 slotinfo = %s" % SystemInfo["canMultiBoot"])
-			if SystemInfo["canMode12"]:
-				if "BOXMODE" in SystemInfo["canMultiBoot"][slot]['startupfile']:
-					startupfile = path.join(self.mountDir, "%s_%s" % (SystemInfo["canMultiBoot"][slot]['startupfile'].rsplit('_', 1)[0], boxmode))
+			print("[MultiBootSelector] reboot3 slotinfo = %s" % BoxInfo.getItem("canMultiBoot"))
+			if BoxInfo.getItem("canMode12"):
+				if "BOXMODE" in BoxInfo.getItem("canMultiBoot")[slot]['startupfile']:
+					startupfile = path.join(self.mountDir, "%s_%s" % (BoxInfo.getItem("canMultiBoot")[slot]['startupfile'].rsplit('_', 1)[0], boxmode))
 					copyfile(startupfile, path.join(self.mountDir, "STARTUP"))
 				else:
-					f = open(path.join(self.mountDir, SystemInfo["canMultiBoot"][slot]['startupfile']), "r").read()
+					f = open(path.join(self.mountDir, BoxInfo.getItem("canMultiBoot")[slot]['startupfile']), "r").read()
 					if boxmode == 12:
-						f = f.replace("boxmode=1'", "boxmode=12'").replace("%s" % SystemInfo["canMode12"][0], "%s" % SystemInfo["canMode12"][1])
+						f = f.replace("boxmode=1'", "boxmode=12'").replace("%s" % BoxInfo.getItem("canMode12")[0], "%s" % BoxInfo.getItem("canMode12")[1])
 					open(path.join(self.mountDir, "STARTUP"), "w").write(f)
 			else:
-				copyfile(path.join(self.mountDir, SystemInfo["canMultiBoot"][slot]["startupfile"]), path.join(self.mountDir, "STARTUP"))
-				if SystemInfo["canDualBoot"]:
+				copyfile(path.join(self.mountDir, BoxInfo.getItem("canMultiBoot")[slot]["startupfile"]), path.join(self.mountDir, "STARTUP"))
+				if BoxInfo.getItem("canDualBoot"):
 					with open('/dev/block/by-name/flag', 'wb') as f:
 						f.write(struct.pack("B", int(slot)))
 			self.session.open(TryQuitMainloop, QUIT_REBOOT)

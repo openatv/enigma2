@@ -2,7 +2,7 @@ from Plugins.Plugin import PluginDescriptor
 from Components.PluginComponent import plugins
 from Components.config import config, ConfigSubsection, ConfigSelection
 from enigma import eDBoxLCD
-from Components.SystemInfo import SystemInfo
+from Components.SystemInfo import BoxInfo
 
 config.plugins.minitv = ConfigSubsection()
 config.plugins.minitv.enable = ConfigSelection(default="disable", choices=[("enable", "enable"), ("disable", "disable")])
@@ -52,7 +52,7 @@ class MiniTV:
 			open("/proc/stb/lcd/live_enable", "w").write(value)
 
 	def setMiniTVDecoder(self, value):
-		if SystemInfo["LcdLiveTVPiP"]:
+		if BoxInfo.getItem("LcdLiveTVPiP"):
 			cur_value = open("/proc/stb/lcd/live_decoder", "r").read()
 			if cur_value != value:
 				open("/proc/stb/lcd/live_decoder", "w").write(value)
@@ -75,7 +75,7 @@ minitv_instance = MiniTV()
 
 def addExtentions(infobarExtensions):
 	infobarExtensions.addExtension((minitv_instance.getExtensionName, minitv_instance.showMiniTV, lambda: True), None)
-	if SystemInfo["LcdLiveTVPiP"]:
+	if BoxInfo.getItem("LcdLiveTVPiP"):
 		infobarExtensions.addExtension((minitv_instance.getExtensionNameDecoder, minitv_instance.showMiniTVDecoder, lambda: True), None)
 
 

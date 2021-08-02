@@ -26,10 +26,10 @@ from Components.Sources.StaticText import StaticText
 from Components.Sources.Progress import Progress
 from Components.Button import Button
 from Components.ActionMap import ActionMap
-from Components.SystemInfo import SystemInfo
+from Components.SystemInfo import BoxInfo
 from Screens.VirtualKeyBoard import VirtualKeyBoard
 from Components.MultiContent import MultiContentEntryText, MultiContentEntryPixmapAlphaBlend
-from boxbranding import getBoxType, getMachineName, getMachineBrand, getBrandOEM
+from boxbranding import getMachineName, getMachineBrand, getBrandOEM
 from skin import getSkinFactor
 
 import os
@@ -86,7 +86,7 @@ def timerEvent():
 	pluginlist = plugins.getPlugins(PluginDescriptor.WHERE_PLUGINMENU)
 	for p in pluginlist:
 		redSelection.append((p.name, _(p.name)))
-	if getBoxType() == "dm800":
+	if BoxInfo.getItem("model") == "dm800":
 		config.plugins.infopanel_redpanel.selection = ConfigSelection(redSelection, default='0')
 		config.plugins.infopanel_redpanel.selectionLong = ConfigSelection(redSelection, default='1')
 	else:
@@ -100,7 +100,7 @@ timer.startLongTimer(1)
 
 choicelist = [('0', _("Audio Selection")), ('1', _("Default (Timeshift)")), ('2', _("Toggle Pillarbox <> Pan&Scan")), ('3', _("Teletext"))]
 config.plugins.infopanel_yellowkey = ConfigSubsection()
-if getBoxType() == "dm800":
+if BoxInfo.getItem("model") == "dm800":
 	config.plugins.infopanel_yellowkey.list = ConfigSelection(default='1', choices=choicelist)
 	config.plugins.infopanel_yellowkey.listLong = ConfigSelection(default='1', choices=choicelist)
 else:
@@ -125,7 +125,7 @@ from Plugins.Extensions.Infopanel.SoftwarePanel import SoftwarePanel
 from Plugins.SystemPlugins.SoftwareManager.BackupRestore import BackupScreen, RestoreScreen, BackupSelection, getBackupPath, getBackupFilename
 from Plugins.SystemPlugins.SoftwareManager.BackupRestore import InitConfig as BackupRestore_InitConfig
 
-SystemInfo["SoftCam"] = Check_Softcam()
+BoxInfo.setItem("SoftCam", Check_Softcam())
 
 # Hide Softcam-Panel Setup when no softcams installed
 if not Check_Softcam() and config.plugins.showinfopanelextensions.value:
@@ -174,7 +174,7 @@ def command(comandline, strip=1):
   return comandline
 
 
-boxversion = getBoxType()
+boxversion = BoxInfo.getItem("model")
 machinename = getMachineName()
 machinebrand = getMachineBrand()
 OEMname = getBrandOEM()
@@ -548,7 +548,7 @@ class Infopanel(Screen, InfoBarPiP, ProtectedScreen):
 		self.tlist.append(MenuEntryItem((InfoEntryComponent('Network'), _("Network"), 'Network')))
 		self.tlist.append(MenuEntryItem((InfoEntryComponent('Ram'), _("Ram"), 'Ram')))
 		self.tlist.append(MenuEntryItem((InfoEntryComponent('SystemInfo'), _("SystemInfo"), 'SystemInfo')))
-		if SystemInfo["HAVEEDIDDECODE"]:
+		if BoxInfo.getItem("HAVEEDIDDECODE"):
 			self.tlist.append(MenuEntryItem((InfoEntryComponent('Edid'), _("EDID decode"), 'Edid')))
 		self["Mlist"].moveToIndex(0)
 		self["Mlist"].l.setList(self.tlist)

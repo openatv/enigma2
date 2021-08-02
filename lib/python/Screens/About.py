@@ -10,7 +10,7 @@ from Components.NimManager import nimmanager
 from Components.About import about
 from Components.ScrollLabel import ScrollLabel
 from Components.Console import Console
-from Components.SystemInfo import SystemInfo
+from Components.SystemInfo import BoxInfo
 from Components.config import config
 from enigma import eTimer, getEnigmaVersionString, getDesktop, eGetEnigmaDebugLvl
 from boxbranding import getBoxType, getMachineBuild, getMachineBrand, getMachineName, getImageVersion, getImageBuild, getDriverDate
@@ -104,18 +104,18 @@ def getAboutText():
 		f = open('/boot/bootname', 'r')
 		bootname = f.readline().split('=')[1]
 		f.close()
-	if SystemInfo["canMultiBoot"]:
+	if BoxInfo.getItem("canMultiBoot"):
 		slot = image = GetCurrentImage()
 		bootmode = ""
 		part = _("eMMC slot %s") % slot
-		if SystemInfo["canMode12"]:
+		if BoxInfo.getItem("canMode12"):
 			bootmode = _(" bootmode = %s") % GetCurrentImageMode()
-		if SystemInfo["HasHiSi"] and "sda" in SystemInfo["canMultiBoot"][slot]['device']:
+		if BoxInfo.getItem("HasHiSi") and "sda" in BoxInfo.getItem("canMultiBoot")[slot]['device']:
 			if slot > 4:
 				image -= 4
 			else:
 				image -= 1
-			part = "SDcard slot %s (%s) " % (image, SystemInfo["canMultiBoot"][slot]['device'])
+			part = "SDcard slot %s (%s) " % (image, BoxInfo.getItem("canMultiBoot")[slot]['device'])
 		AboutText += _("Selected Image:\t\t%s") % _("STARTUP_") + str(slot) + "  (" + part + bootmode + ")\n"
 
 	AboutText += _("Version / Build:\t\t%s  (%s)") % (getImageVersion(), MyDateConverter(getImageBuild())) + "\n"
@@ -346,7 +346,7 @@ class About(Screen):
 		pass
 
 	def showID(self):
-		if SystemInfo["HaveID"]:
+		if BoxInfo.getItem("HaveID"):
 			try:
 				f = open("/etc/.id")
 				id = f.read()[:-1].split('=')

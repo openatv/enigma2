@@ -3,7 +3,7 @@ from GlobalActions import globalActionMap
 from Components.ActionMap import ActionMap, HelpableActionMap
 from Components.Button import Button
 from Components.ChoiceList import ChoiceList, ChoiceEntryComponent
-from Components.SystemInfo import SystemInfo
+from Components.SystemInfo import BoxInfo
 from Components.config import config, ConfigSubsection, ConfigText, ConfigYesNo
 from Components.PluginComponent import plugins
 from Screens.ChoiceBox import ChoiceBox
@@ -122,7 +122,7 @@ def getButtonSetupKeys():
 		(_("Power"), "power", ""),
 		(_("Power long"), "power_long", ""),
 		(_("HDMIin"), "HDMIin", "Infobar/HDMIIn"),
-		(_("HDMIin") + " " + _("long"), "HDMIin_long", (SystemInfo["LcdLiveTV"] and "Infobar/ToggleLCDLiveTV") or ""),
+		(_("HDMIin") + " " + _("long"), "HDMIin_long", (BoxInfo.getItem("LcdLiveTV") and "Infobar/ToggleLCDLiveTV") or ""),
 		(_("Context"), "contextMenu", "Infobar/showExtensionSelection"),
 		(_("Context long"), "context_long", ""),
 		(_("SAT"), "sat", "Infobar/openSatellites"),
@@ -223,7 +223,7 @@ def getButtonSetupFunctions():
 	ButtonSetupFunctions.append((_("Show subtitle quick menu"), "Infobar/subtitleQuickMenu", "InfoBar"))
 	ButtonSetupFunctions.append((_("Letterbox zoom"), "Infobar/vmodeSelection", "InfoBar"))
 	ButtonSetupFunctions.append((_("Seekbar"), "Infobar/seekFwdVod", "InfoBar"))
-	if SystemInfo["PIPAvailable"]:
+	if BoxInfo.getItem("PIPAvailable"):
 		ButtonSetupFunctions.append((_("Show PIP"), "Infobar/showPiP", "InfoBar"))
 		ButtonSetupFunctions.append((_("Swap PIP"), "Infobar/swapPiP", "InfoBar"))
 		ButtonSetupFunctions.append((_("Move PIP"), "Infobar/movePiP", "InfoBar"))
@@ -232,9 +232,9 @@ def getButtonSetupFunctions():
 	if getHaveHDMIinHD() == 'True' or getHaveHDMIinFHD() == 'True':
 		ButtonSetupFunctions.append((_("Toggle HDMI-In full screen"), "Infobar/HDMIInFull", "InfoBar"))
 		ButtonSetupFunctions.append((_("Toggle HDMI-In PiP"), "Infobar/HDMIInPiP", "InfoBar"))
-	if SystemInfo["LcdLiveTV"]:
+	if BoxInfo.getItem("LcdLiveTV"):
 		ButtonSetupFunctions.append((_("Toggle LCD LiveTV"), "Infobar/ToggleLCDLiveTV", "InfoBar"))
-	if SystemInfo["canMultiBoot"]:
+	if BoxInfo.getItem("canMultiBoot"):
 		ButtonSetupFunctions.append((_("Multiboot Image Selector"), "Module/Screens.MultiBootSelector/MultiBootSelector", "InfoBar"))
 	ButtonSetupFunctions.append((_("Hotkey Setup"), "Module/Screens.ButtonSetup/ButtonSetup", "Setup"))
 	ButtonSetupFunctions.append((_("Software update"), "Module/Screens.SoftwareUpdate/UpdatePlugin", "Setup"))
@@ -252,7 +252,7 @@ def getButtonSetupFunctions():
 	ButtonSetupFunctions.append((_("Plugin Browser"), "Module/Screens.PluginBrowser/PluginBrowser", "Setup"))
 	ButtonSetupFunctions.append((_("Channel Info"), "Module/Screens.ServiceInfo/ServiceInfo", "Setup"))
 	ButtonSetupFunctions.append((_("SkinSelector"), "Module/Screens.SkinSelector/SkinSelector", "Setup"))
-	if SystemInfo["LCDSKINSetup"]:
+	if BoxInfo.getItem("LCDSKINSetup"):
 		ButtonSetupFunctions.append((_("LCD SkinSelector"), "Module/Screens.SkinSelector/LcdSkinSelector", "Setup"))
 	ButtonSetupFunctions.append((_("Timer"), "Module/Screens.TimerEdit/TimerEditList", "Setup"))
 	ButtonSetupFunctions.append((_("Open AutoTimer"), "Infobar/showAutoTimerList", "Setup"))

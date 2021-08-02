@@ -1,7 +1,7 @@
 from __future__ import print_function, division
 
 from enigma import eListboxPythonMultiContent, gFont, eEnv, getDesktop, pNavigation
-from boxbranding import getMachineBrand, getMachineName, getBoxType, getBrandOEM
+from boxbranding import getMachineBrand, getMachineName, getBrandOEM
 from Components.ActionMap import ActionMap
 from Components.Label import Label
 from Components.Sources.StaticText import StaticText
@@ -10,7 +10,7 @@ from Components.MenuList import MenuList
 from Components.MultiContent import MultiContentEntryText, MultiContentEntryPixmapAlphaBlend
 from Components.Network import iNetwork
 from Components.NimManager import nimmanager
-from Components.SystemInfo import SystemInfo
+from Components.SystemInfo import BoxInfo
 
 from Screens.Screen import Screen
 from Screens.SoftcamSetup import *
@@ -263,9 +263,9 @@ class QuickMenu(Screen, ProtectedScreen):
 		self.sublist.append(QuickSubMenuEntryComponent("Customise", _("Setup Enigma2"), _("Customise enigma2 personal settings")))
 		self.sublist.append(QuickSubMenuEntryComponent("OSD settings", _("OSD Setup"), _("Setup your OSD")))
 		self.sublist.append(QuickSubMenuEntryComponent("Button Setup", _("Button Setup"), _("Setup your remote buttons")))
-		if SystemInfo["FrontpanelDisplay"] and SystemInfo["Display"]:
+		if BoxInfo.getItem("FrontpanelDisplay") and BoxInfo.getItem("Display"):
 			self.sublist.append(QuickSubMenuEntryComponent("Display Settings", _("Display Setup"), _("Setup your display")))
-		if SystemInfo["LCDSKINSetup"]:
+		if BoxInfo.getItem("LCDSKINSetup"):
 			self.sublist.append(QuickSubMenuEntryComponent("LCD Skin Setup", _("Select LCD Skin"), _("Setup your LCD")))
 		self.sublist.append(QuickSubMenuEntryComponent("Skin Setup", _("Select Enigma2 Skin"), _("Setup your Skin")))
 		self.sublist.append(QuickSubMenuEntryComponent("Channel selection", _("Channel selection configuration"), _("Setup your Channel selection configuration")))
@@ -345,11 +345,12 @@ class QuickMenu(Screen, ProtectedScreen):
 
 ######## Software Manager Menu ##############################
 	def Qsoftware(self):
+		model = BoxInfo.getItem("model")
 		self.sublist = []
 		self.sublist.append(QuickSubMenuEntryComponent("Software Update", _("Online software update"), _("Check/Install online updates (you must have a working internet connection)")))
-		if not getBoxType().startswith('az') and not getBoxType() in ('dm500hd', 'dm500hdv2', 'dm520', 'dm800', 'dm800se', 'dm800sev2', 'dm820', 'dm7020hd', 'dm7020hdv2', 'dm7080', 'dm8000') and not getBrandOEM().startswith('cube') and not getBrandOEM().startswith('wetek') and not getBoxType().startswith('alien'):
+		if not model.startswith('az') and not model in ('dm500hd', 'dm500hdv2', 'dm520', 'dm800', 'dm800se', 'dm800sev2', 'dm820', 'dm7020hd', 'dm7020hdv2', 'dm7080', 'dm8000') and not getBrandOEM().startswith('cube') and not getBrandOEM().startswith('wetek') and not model.startswith('alien'):
 			self.sublist.append(QuickSubMenuEntryComponent("Flash Online", _("Flash Online a new image"), _("Flash on the fly your your Receiver software.")))
-		if not getBoxType().startswith('az') and not getBrandOEM().startswith('cube') and not getBrandOEM().startswith('wetek') and not getBoxType().startswith('alien'):
+		if not model.startswith('az') and not getBrandOEM().startswith('cube') and not getBrandOEM().startswith('wetek') and not model.startswith('alien'):
 			self.sublist.append(QuickSubMenuEntryComponent("Complete Backup", _("Backup your current image"), _("Backup your current image to HDD or USB. This will make a 1:1 copy of your box")))
 		self.sublist.append(QuickSubMenuEntryComponent("Backup Settings", _("Backup your current settings"), _("Backup your current settings. This includes E2-setup, channels, network and all selected files")))
 		self.sublist.append(QuickSubMenuEntryComponent("Restore Settings", _("Restore settings from a backup"), _("Restore your settings back from a backup. After restore the box will restart to activated the new settings")))

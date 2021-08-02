@@ -10,7 +10,6 @@ from Components.Sources.Boolean import Boolean
 from Components.Sources.RecordState import RecordState
 from Components.Converter.Combine import Combine
 from Components.Renderer.FrontpanelLed import FrontpanelLed
-from boxbranding import getBoxType
 
 
 class SessionGlobals(Screen):
@@ -27,7 +26,7 @@ class SessionGlobals(Screen):
 		self["RecordState"] = RecordState(session)
 		self["Standby"] = Boolean(fixed=False)
 
-		from Components.SystemInfo import SystemInfo
+		from Components.SystemInfo import BoxInfo
 
 		combine = Combine(func=lambda s: {(False, False): 0, (False, True): 1, (True, False): 2, (True, True): 3}[(s[0].boolean, s[1].boolean)])
 		combine.connect(self["Standby"])
@@ -44,9 +43,9 @@ class SessionGlobals(Screen):
 		PATTERN_OFF = (20, 0, 0)
 		PATTERN_BLINK = (20, 0x55555555, 0xa7fccf7a)
 
-		have_display = SystemInfo.get("FrontpanelDisplay", False)
-		have_touch_sensor = SystemInfo.get("HaveTouchSensor", False)
-		nr_leds = SystemInfo.get("NumFrontpanelLEDs", 0)
+		have_display = BoxInfo.getItem("FrontpanelDisplay", False)
+		have_touch_sensor = BoxInfo.getItem("HaveTouchSensor", False)
+		nr_leds = BoxInfo.getItem("NumFrontpanelLEDs", 0)
 
 		if nr_leds == 1:
 			FrontpanelLed(which=0, boolean=False, patterns=[PATTERN_OFF if have_display else PATTERN_ON, PATTERN_BLINK, PATTERN_OFF, PATTERN_BLINK]).connect(combine)

@@ -17,7 +17,7 @@ from Components.Pixmap import Pixmap
 from Components.MenuList import MenuList
 from Components.Sources.List import List
 from Components.Slider import Slider
-from Components.SystemInfo import SystemInfo
+from Components.SystemInfo import BoxInfo
 from Components.Harddisk import harddiskmanager
 from Components.config import config, getConfigListEntry, ConfigSubsection, ConfigText, ConfigLocations, ConfigYesNo, ConfigSelection
 from Components.ConfigList import ConfigListScreen
@@ -55,7 +55,7 @@ from six.moves.cPickle import dump, load
 from six.moves import reload_module, range
 
 
-boxtype = getBoxType()
+boxtype = BoxInfo.getItem("model")
 brandoem = getBrandOEM()
 
 if os.path.exists("/usr/lib/enigma2/python/Plugins/Extensions/dFlash"):
@@ -198,7 +198,7 @@ class UpdatePluginMenu(Screen):
 				self.list.append(("flash-online", _("Flash Online"), _("\nFlash on the fly your %s %s.") % (getMachineBrand(), getMachineName()) + self.oktext, None))
 			if not boxtype.startswith('az') and not brandoem.startswith('cube') and not brandoem.startswith('wetek') and not boxtype.startswith('alien'):
 				self.list.append(("backup-image", _("Backup Image"), _("\nBackup your running %s %s image to HDD or USB.") % (getMachineBrand(), getMachineName()) + self.oktext, None))
-			if SystemInfo["canMultiBoot"]:
+			if BoxInfo.getItem("canMultiBoot"):
 				self.list.append(("multiboot-manager", _("Multiboot Manager"), _("\nMaintain your multiboot device.") + self.oktext, None))
 			self.list.append(("system-backup", _("Backup system settings"), _("\nBackup your %s %s settings.") % (getMachineBrand(), getMachineName()) + self.oktext + "\n\n" + self.infotext, None))
 			self.list.append(("system-restore", _("Restore system settings"), _("\nRestore your %s %s settings.") % (getMachineBrand(), getMachineName()) + self.oktext, None))

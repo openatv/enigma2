@@ -33,7 +33,7 @@ from __future__ import absolute_import
 from Components.ActionMap import ActionMap, HelpableActionMap
 from Components.ServiceEventTracker import ServiceEventTracker
 from Components.config import config
-from Components.SystemInfo import SystemInfo
+from Components.SystemInfo import BoxInfo
 from Components.Task import job_manager as JobManager
 
 from Screens.ChoiceBox import ChoiceBox
@@ -50,7 +50,7 @@ from Tools.Directories import pathExists, fileExists, getRecordingFilename, copy
 from Tools.TimeShift import CopyTimeshiftJob, MergeTimeshiftJob, CreateAPSCFilesJob
 
 from enigma import eBackgroundFileEraser, eTimer, eServiceCenter, iServiceInformation, iPlayableService, eEPGCache, eServiceReference
-from boxbranding import getBoxType, getBrandOEM, getMachineBuild
+from boxbranding import getBrandOEM, getMachineBuild
 
 from time import time, localtime, strftime
 from random import randint
@@ -616,7 +616,7 @@ class InfoBarTimeshift:
 		if ts and (not ts.startTimeshift() or self.pts_eventcount == 0):
 			# Update internal Event Counter
 			self.pts_eventcount += 1
-			if (getBoxType() == 'vuuno' or getBoxType() == 'vuduo') and os.path.exists("/proc/stb/lcd/symbol_timeshift"):
+			if (BoxInfo.getItem("model") == 'vuuno' or BoxInfo.getItem("model") == 'vuduo') and os.path.exists("/proc/stb/lcd/symbol_timeshift"):
 				if self.session.nav.RecordTimer.isRecording():
 					f = open("/proc/stb/lcd/symbol_timeshift", "w")
 					f.write("0")
@@ -1122,7 +1122,7 @@ class InfoBarTimeshift:
 			self.pts_curevent_eventid = curEvent[4]
 
 	def ptsFrontpanelActions(self, action=None):
-		if self.session.nav.RecordTimer.isRecording() or SystemInfo.get("NumFrontpanelLEDs", 0) == 0:
+		if self.session.nav.RecordTimer.isRecording() or BoxInfo.getItem("NumFrontpanelLEDs", 0) == 0:
 			return
 
 		if action == "start":

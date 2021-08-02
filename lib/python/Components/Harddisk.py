@@ -4,10 +4,10 @@ from __future__ import division
 import os
 import time
 from Tools.CList import CList
-from Components.SystemInfo import SystemInfo
+from Components.SystemInfo import BoxInfo
 from Components.Console import Console
 from Tools.HardwareInfo import HardwareInfo
-from boxbranding import getBoxType, getMachineBuild
+from boxbranding import getMachineBuild
 import Components.Task
 import re
 import six
@@ -932,7 +932,7 @@ class HarddiskManager:
 			if l and (not device[l - 1].isdigit() or (device.startswith('mmcblk') and not re.search(r"mmcblk\dp\d+", device))):
 				self.hdd.append(Harddisk(device, removable))
 				self.hdd.sort()
-				SystemInfo["Harddisk"] = True
+				BoxInfo.setItem("Harddisk", True)
 		return error, blacklisted, removable, is_cdrom, partitions, medium_found
 
 	def addHotplugAudiocd(self, device, physdev=None):
@@ -951,7 +951,7 @@ class HarddiskManager:
 			p = Partition(mountpoint="/media/audiocd", description=description, force_mounted=True, device=device)
 			self.partitions.append(p)
 			self.on_partition_list_change("add", p)
-			SystemInfo["Harddisk"] = False
+			BoxInfo.setItem("Harddisk", False)
 		return error, blacklisted, removable, is_cdrom, partitions, medium_found
 
 	def removeHotplugPartition(self, device):
@@ -967,7 +967,7 @@ class HarddiskManager:
 					hdd.stop()
 					self.hdd.remove(hdd)
 					break
-			SystemInfo["Harddisk"] = len(self.hdd) > 0
+			BoxInfo.setItem("Harddisk", len(self.hdd) > 0)
 
 	def HDDCount(self):
 		return len(self.hdd)
@@ -1147,4 +1147,4 @@ class MkfsTask(Components.Task.LoggingTask):
 
 
 harddiskmanager = HarddiskManager()
-SystemInfo["ext4"] = isFileSystemSupported("ext4")
+BoxInfo.setItem("ext4", isFileSystemSupported("ext4"))

@@ -10,7 +10,7 @@ from Components.Pixmap import Pixmap
 from Tools.Directories import fileExists
 from Components.Sources.Boolean import Boolean
 from Components.Sources.StaticText import StaticText
-from Components.SystemInfo import SystemInfo
+from Components.SystemInfo import BoxInfo
 import six
 
 
@@ -337,11 +337,11 @@ class TimeshiftSettings(Screen, ConfigListScreen):
 				if requires and requires.startswith('config.'):
 					item = eval(requires or "")
 					if item.value and not item.value == "0":
-						SystemInfo[requires] = True
+						BoxInfo.setItem(requires, True)
 					else:
-						SystemInfo[requires] = False
+						BoxInfo.setItem(requires, False)
 
-				if requires and not SystemInfo.get(requires, False):
+				if requires and not BoxInfo.getItem(requires, False):
 					continue
 
 				item_text = _(six.ensure_str(x.get("text", "??")))

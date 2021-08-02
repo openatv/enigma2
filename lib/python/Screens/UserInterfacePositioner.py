@@ -3,7 +3,7 @@ from Screens.Screen import Screen
 from Components.ActionMap import ActionMap
 from Components.config import config, configfile, getConfigListEntry
 from Components.ConfigList import ConfigListScreen
-from Components.SystemInfo import SystemInfo
+from Components.SystemInfo import BoxInfo
 from Components.Sources.StaticText import StaticText
 from Components.Pixmap import Pixmap
 from Components.Console import Console
@@ -11,7 +11,7 @@ from Components.Label import Label
 from Tools.Directories import fileExists
 from enigma import getDesktop
 from os import access, R_OK
-from boxbranding import getBoxType, getBrandOEM
+from boxbranding import getBrandOEM
 
 
 def getFilePath(setting):
@@ -32,45 +32,46 @@ def setPositionParameter(parameter, configElement):
 
 
 def InitOsd():
-	SystemInfo["CanChange3DOsd"] = access('/proc/stb/fb/3dmode', R_OK) and True or False
-	SystemInfo["CanChangeOsdAlpha"] = access('/proc/stb/video/alpha', R_OK) and True or False
-	SystemInfo["CanChangeOsdPosition"] = access('/proc/stb/fb/dst_left', R_OK) and True or False
-	SystemInfo["OsdSetup"] = SystemInfo["CanChangeOsdPosition"]
-	if SystemInfo["CanChangeOsdAlpha"] == True or SystemInfo["CanChangeOsdPosition"] == True:
-		SystemInfo["OsdMenu"] = True
+	
+	BoxInfo.setItem("CanChange3DOsd", access('/proc/stb/fb/3dmode', R_OK) and True or False)
+	BoxInfo.setItem("CanChangeOsdAlpha", access('/proc/stb/video/alpha', R_OK) and True or False)
+	BoxInfo.setItem("CanChangeOsdPosition", access('/proc/stb/fb/dst_left', R_OK) and True or False)
+	BoxInfo.setItem("OsdSetup", BoxInfo.getItem("CanChangeOsdPosition"))
+	if BoxInfo.getItem("CanChangeOsdAlpha") == True or BoxInfo.getItem("CanChangeOsdPosition") == True:
+		BoxInfo.setItem("OsdMenu", True)
 	else:
-		SystemInfo["OsdMenu"] = False
+		BoxInfo.setItem("OsdMenu", False)
 
 	if getBrandOEM() in ('fulan',):
-		SystemInfo["CanChangeOsdPosition"] = False
-		SystemInfo["CanChange3DOsd"] = False
+		BoxInfo.setItem("CanChangeOsdPosition", False)
+		BoxInfo.setItem("CanChange3DOsd", False)
 
 	if getBrandOEM() in ('dreambox',):
-		SystemInfo["CanChangeOsdPosition"] = True
+		BoxInfo.setItem("CanChangeOsdPosition", True)
 
 	def setOSDLeft(configElement):
-		if SystemInfo["CanChangeOsdPosition"]:
+		if BoxInfo.getItem("CanChangeOsdPosition"):
 			setPositionParameter("left", configElement)
 	config.osd.dst_left.addNotifier(setOSDLeft)
 
 	def setOSDWidth(configElement):
-		if SystemInfo["CanChangeOsdPosition"]:
+		if BoxInfo.getItem("CanChangeOsdPosition"):
 			setPositionParameter("width", configElement)
 	config.osd.dst_width.addNotifier(setOSDWidth)
 
 	def setOSDTop(configElement):
-		if SystemInfo["CanChangeOsdPosition"]:
+		if BoxInfo.getItem("CanChangeOsdPosition"):
 			setPositionParameter("top", configElement)
 	config.osd.dst_top.addNotifier(setOSDTop)
 
 	def setOSDHeight(configElement):
-		if SystemInfo["CanChangeOsdPosition"]:
+		if BoxInfo.getItem("CanChangeOsdPosition"):
 			setPositionParameter("height", configElement)
 	config.osd.dst_height.addNotifier(setOSDHeight)
 	print('[UserInterfacePositioner] Setting OSD position: %s %s %s %s' % (config.osd.dst_left.value, config.osd.dst_width.value, config.osd.dst_top.value, config.osd.dst_height.value))
 
 	def setOSDAlpha(configElement):
-		if SystemInfo["CanChangeOsdAlpha"]:
+		if BoxInfo.getItem("CanChangeOsdAlpha"):
 			print('[UserInterfacePositioner] Setting OSD alpha:', str(configElement.value))
 			config.av.osd_alpha.setValue(configElement.value)
 			f = open("/proc/stb/video/alpha", "w")
@@ -79,11 +80,11 @@ def InitOsd():
 	config.osd.alpha.addNotifier(setOSDAlpha)
 
 	def set3DMode(configElement):
-		if SystemInfo["CanChange3DOsd"]:
+		if BoxInfo.getItem("CanChange3DOsd"):
 			value = configElement.value
 			print('[UserInterfacePositioner] Setting 3D mode:', value)
 			try:
-				if SystemInfo["CanUse3DModeChoices"]:
+				if BoxInfo.getItem("CanUse3DModeChoices"):
 					f = open("/proc/stb/fb/3dmode_choices", "r")
 					choices = f.readlines()[0].split()
 					f.close()
@@ -102,7 +103,7 @@ def InitOsd():
 	config.osd.threeDmode.addNotifier(set3DMode)
 
 	def set3DZnorm(configElement):
-		if SystemInfo["CanChange3DOsd"]:
+		if BoxInfo.getItem("CanChange3DOsd"):
 			print('[UserInterfacePositioner] Setting 3D depth:', configElement.value)
 			try:
 				f = open("/proc/stb/fb/znorm", "w")
@@ -281,11 +282,11 @@ class UserInterfacePositioner2(Screen, ConfigListScreen):
 		self.onChangedEntry = []
 		self.list = []
 		ConfigListScreen.__init__(self, self.list, session=self.session, on_change=self.changedEntry)
-		if SystemInfo["CanChangeOsdAlpha"]:
+		if BoxInfo.getItem("CanChangeOsdAlpha"):
 			self.list.append(getConfigListEntry(_("User interface visibility"), config.osd.alpha, _("This option lets you adjust the transparency of the user interface")))
 			self.list.append(getConfigListEntry(_("Teletext base visibility"), config.osd.alpha_teletext, _("Base transparency for teletext, more options available within teletext screen.")))
 			self.list.append(getConfigListEntry(_("Web browser base visibility"), config.osd.alpha_webbrowser, _("Base transparency for OpenOpera web browser")))
-		if SystemInfo["CanChangeOsdPosition"]:
+		if BoxInfo.getItem("CanChangeOsdPosition"):
 			self.list.append(getConfigListEntry(_("Move Left/Right"), config.osd.dst_left, _("Use the Left/Right buttons on your remote to move the user interface left/right")))
 			self.list.append(getConfigListEntry(_("Width"), config.osd.dst_width, _("Use the Left/Right buttons on your remote to adjust the size of the user interface. Left button decreases the size, Right increases the size.")))
 			self.list.append(getConfigListEntry(_("Move Up/Down"), config.osd.dst_top, _("Use the Left/Right buttons on your remote to move the user interface up/down")))
@@ -299,7 +300,7 @@ class UserInterfacePositioner2(Screen, ConfigListScreen):
 		self.selectionChanged()
 
 	def selectionChanged(self):
-		if getBoxType().startswith('azbox'):
+		if BoxInfo.getItem("model").startswith('azbox'):
 			pass
 		else:
 			self["status"].setText(self["config"].getCurrent()[2])
@@ -419,11 +420,11 @@ class UserInterfacePositioner(Screen, ConfigListScreen):
 		self.onChangedEntry = []
 		self.list = []
 		ConfigListScreen.__init__(self, self.list, session=self.session, on_change=self.changedEntry)
-		if SystemInfo["CanChangeOsdAlpha"] == True:
+		if BoxInfo.getItem("CanChangeOsdAlpha") == True:
 			self.list.append(getConfigListEntry(_("User interface visibility"), config.osd.alpha, _("This option lets you adjust the transparency of the user interface")))
 			self.list.append(getConfigListEntry(_("Teletext base visibility"), config.osd.alpha_teletext, _("Base transparency for teletext, more options available within teletext screen.")))
 			self.list.append(getConfigListEntry(_("Web browser base visibility"), config.osd.alpha_webbrowser, _("Base transparency for OpenOpera web browser")))
-		if SystemInfo["CanChangeOsdPosition"] == True:
+		if BoxInfo.getItem("CanChangeOsdPosition") == True:
 			self.list.append(getConfigListEntry(_("Move Left/Right"), config.osd.dst_left, _("Use the Left/Right buttons on your remote to move the user interface left/right")))
 			self.list.append(getConfigListEntry(_("Width"), config.osd.dst_width, _("Use the Left/Right buttons on your remote to adjust the size of the user interface. Left button decreases the size, Right increases the size.")))
 			self.list.append(getConfigListEntry(_("Move Up/Down"), config.osd.dst_top, _("Use the Left/Right buttons on your remote to move the user interface up/down")))
@@ -437,7 +438,7 @@ class UserInterfacePositioner(Screen, ConfigListScreen):
 		self.selectionChanged()
 
 	def selectionChanged(self):
-		if getBoxType().startswith('azbox'):
+		if BoxInfo.getItem("model").startswith('azbox'):
 			pass
 		else:
 			self["status"].setText(self["config"].getCurrent()[2])

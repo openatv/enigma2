@@ -4,7 +4,6 @@ from os import listdir, unlink
 from six import PY2
 from xml.etree.cElementTree import Element, ElementTree, fromstring
 
-from boxbranding import getBoxType
 from enigma import addFont, eLabel, ePixmap, ePoint, eRect, eSize, eWindow, eWindowStyleManager, eWindowStyleSkinned, getDesktop, gFont, getFontFaces, gMainDC, gRGB
 
 from Components.config import ConfigSubsection, ConfigText, config
@@ -26,7 +25,7 @@ USER_SKIN_TEMPLATE = "skin_user_%s.xml"
 SUBTITLE_SKIN = "skin_subtitles.xml"
 
 GUI_SKIN_ID = 0  # Main frame-buffer.
-DISPLAY_SKIN_ID = 2 if getBoxType().startswith("dm") else 1  # Front panel / display / LCD.
+DISPLAY_SKIN_ID = 2 if BoxInfo.getItem("model").startswith("dm") else 1  # Front panel / display / LCD.
 
 domScreens = {}  # Dictionary of skin based screens.
 colors = {  # Dictionary of skin color names.

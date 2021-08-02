@@ -13,9 +13,9 @@ from Tools.Directories import resolveFilename, SCOPE_HDD, SCOPE_TIMESHIFT, SCOPE
 from Components.NimManager import nimmanager
 from Components.RcModel import rc_model
 from Components.ServiceList import refreshServiceList
-from Components.SystemInfo import SystemInfo
+from Components.SystemInfo import BoxInfo
 from Tools.HardwareInfo import HardwareInfo
-from boxbranding import getBoxType, getDisplayType
+from boxbranding import getDisplayType
 from keyids import KEYIDS
 from sys import maxsize
 import glob
@@ -185,9 +185,9 @@ def InitUsageConfig():
 
 	def showsecondinfobarChanged(configElement):
 		if config.usage.show_second_infobar.value != "INFOBAREPG":
-			SystemInfo["InfoBarEpg"] = True
+			BoxInfo.setItem("InfoBarEpg", True)
 		else:
-			SystemInfo["InfoBarEpg"] = False
+			BoxInfo.setItem("InfoBarEpg", False)
 	config.usage.show_second_infobar.addNotifier(showsecondinfobarChanged, immediate_feedback=True)
 	config.usage.infobar_frontend_source = ConfigSelection(default="tuner", choices=[("settings", _("Settings")), ("tuner", _("Tuner"))])
 
@@ -1065,7 +1065,7 @@ def InitUsageConfig():
 			hdd[1].setIdleTime(int(configElement.value))
 	config.usage.hdd_standby.addNotifier(setHDDStandby, immediate_feedback=False)
 
-	if SystemInfo["12V_Output"]:
+	if BoxInfo.getItem("12V_Output"):
 		def set12VOutput(configElement):
 			Misc_Options.getInstance().set_12V_output(configElement.value == "on" and 1 or 0)
 		config.usage.output_12V.addNotifier(set12VOutput, immediate_feedback=False)
@@ -1075,12 +1075,12 @@ def InitUsageConfig():
 	config.usage.keymap_usermod = ConfigText(default=eEnv.resolve("${datadir}/enigma2/keymap_usermod.xml"))
 
 	config.network = ConfigSubsection()
-	if SystemInfo["WakeOnLAN"]:
+	if BoxInfo.getItem("WakeOnLAN"):
 		def wakeOnLANChanged(configElement):
-			if getBoxType() in ('multibox', 'multiboxse', 'hd61', 'pulse4k', 'pulse4kmini', 'hd60', 'h9twin', 'i55se', 'h9se', 'h9combose', 'h9combo', 'h10', 'h11', 'h9', 'et7000', 'et7100', 'et7500', 'gbx1', 'gbx2', 'gbx3', 'gbx3h', 'et10000', 'gbquadplus', 'gbquad', 'gb800ueplus', 'gb800seplus', 'gbultraue', 'gbultraueh', 'gbultrase', 'gbipbox', 'quadbox2400', 'mutant2400', 'et7x00', 'et8500', 'et8500s', 'hzero', 'h8'):
-				open(SystemInfo["WakeOnLAN"], "w").write(configElement.value and "on" or "off")
+			if BoxInfo.getItem("model") in ('multibox', 'multiboxse', 'hd61', 'pulse4k', 'pulse4kmini', 'hd60', 'h9twin', 'i55se', 'h9se', 'h9combose', 'h9combo', 'h10', 'h11', 'h9', 'et7000', 'et7100', 'et7500', 'gbx1', 'gbx2', 'gbx3', 'gbx3h', 'et10000', 'gbquadplus', 'gbquad', 'gb800ueplus', 'gb800seplus', 'gbultraue', 'gbultraueh', 'gbultrase', 'gbipbox', 'quadbox2400', 'mutant2400', 'et7x00', 'et8500', 'et8500s', 'hzero', 'h8'):
+				open(BoxInfo.getItem("WakeOnLAN"), "w").write(configElement.value and "on" or "off")
 			else:
-				open(SystemInfo["WakeOnLAN"], "w").write(configElement.value and "enable" or "disable")
+				open(BoxInfo.getItem("WakeOnLAN"), "w").write(configElement.value and "enable" or "disable")
 		config.network.wol = ConfigYesNo(default=False)
 		config.network.wol.addNotifier(wakeOnLANChanged)
 	config.network.AFP_autostart = ConfigYesNo(default=False)
@@ -1239,9 +1239,9 @@ def InitUsageConfig():
 		("3", _("Everywhere"))])
 	config.misc.erase_flags.addNotifier(updateEraseFlags, immediate_feedback=False)
 
-	if SystemInfo["ZapMode"]:
+	if BoxInfo.getItem("ZapMode"):
 		def setZapmode(el):
-			open(SystemInfo["ZapMode"], "w").write(el.value)
+			open(BoxInfo.getItem("ZapMode"), "w").write(el.value)
 		config.misc.zapmode = ConfigSelection(default="mute", choices=[
 			("mute", _("Black screen")), ("hold", _("Hold screen")), ("mutetilllock", _("Black screen till locked")), ("holdtilllock", _("Hold till locked"))])
 		config.misc.zapmode.addNotifier(setZapmode, immediate_feedback=False)
@@ -1470,7 +1470,7 @@ def InitUsageConfig():
 	config.epgselection.sort = ConfigSelection(default="0", choices=[("0", _("Time")), ("1", _("Alphanumeric"))])
 	config.epgselection.overjump = ConfigYesNo(default=False)
 	config.epgselection.infobar_type_mode = ConfigSelection(choices=[("text", _("Text")), ("graphics", _("Multi EPG")), ("single", _("Single EPG"))], default="text")
-	if SystemInfo.get("NumVideoDecoders", 1) > 1:
+	if BoxInfo.getItem("NumVideoDecoders", 1) > 1:
 		config.epgselection.infobar_preview_mode = ConfigSelection(choices=[("0", _("Disabled")), ("1", _("Fullscreen")), ("2", _("PiP"))], default="1")
 	else:
 		config.epgselection.infobar_preview_mode = ConfigSelection(choices=[("0", _("Disabled")), ("1", _("Fullscreen"))], default="1")
@@ -1606,7 +1606,7 @@ def InitUsageConfig():
 	config.oscaminfo.ip = ConfigIP(default=[127, 0, 0, 1], auto_jump=True)
 	config.oscaminfo.port = ConfigInteger(default=16002, limits=(0, 65536))
 	config.oscaminfo.intervall = ConfigSelectionNumber(min=1, max=600, stepwidth=1, default=10, wraparound=True)
-	SystemInfo["OScamInstalled"] = False
+	BoxInfo.setItem("OScamInstalled", False)
 
 	config.cccaminfo = ConfigSubsection()
 	config.cccaminfo.showInExtensions = ConfigYesNo(default=False)

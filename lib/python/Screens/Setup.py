@@ -3,7 +3,7 @@ from Screens.Screen import Screen
 from Components.ActionMap import NumberActionMap, ActionMap
 from Components.config import config, ConfigNothing, ConfigYesNo, ConfigSelection, ConfigText, ConfigPassword
 from Tools.Directories import resolveFilename, SCOPE_CURRENT_PLUGIN
-from Components.SystemInfo import SystemInfo
+from Components.SystemInfo import BoxInfo
 from Components.ConfigList import ConfigListScreen
 from Components.Pixmap import Pixmap
 from Components.Sources.StaticText import StaticText
@@ -265,12 +265,13 @@ class Setup(ConfigListScreen, Screen):
 						if requires.startswith('config.'):
 							try:
 								item = eval(requires)
-								SystemInfo[requires] = True if item.value and item.value not in ("0", "False", "false", "off") else False
+								val = True if item.value and item.value not in ("0", "False", "false", "off") else False
+								BoxInfo.setItem(requires, val)
 							except AttributeError:
 								print('[Setup] unknown "requires" config element:', requires)
 
 						if requires:
-							if not SystemInfo.get(requires, False):
+							if not BoxInfo.getItem(requires, False):
 								if not negate:
 									meets = False
 									break
