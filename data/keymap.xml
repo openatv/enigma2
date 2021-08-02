@@ -35,11 +35,47 @@
 	-->
 
 	<map context="HelpActions">
+		<key id="KEY_EXIT" mapto="cancel" flags="m" />
+		<key id="KEY_OK" mapto="select" flags="m" />
+		<!-- <key id="KEY_HELP" mapto="displayHelp" flags="m" /> -->
+		<!-- <key id="KEY_HELP" mapto="DISPLAYHELP" flags="b" /> -->
 		<key id="KEY_HELP" mapto="displayHelp" flags="b" />
-		<key id="KEY_OPTION" mapto="displayHelp" flags="b" />
+		<key id="KEY_HELP" mapto="displayHelpLong" flags="l" />
 		<!-- Keyboard specific buttons -->
+		<key id="KEY_ESC" mapto="cancel" flags="m" />
+		<key id="KEY_ENTER" mapto="select" flags="m" />
+		<!-- <key id="KEY_F1" mapto="displayHelp" flags="m" /> -->
+		<!-- <key id="KEY_F1" mapto="DISPLAYHELP" flags="b" /> -->
 		<key id="KEY_F1" mapto="displayHelp" flags="b" />
+		<key id="KEY_F1" mapto="displayHelpLong" flags="l" />
 	</map>
+
+	<map context="HelpMenuListboxActions">
+		<!--
+		Map to catch break events for the ListboxActions keys
+		in Screens.HelpMenu so that those are not passed through
+		to the HelpMenu wildcard actions as unhandled keypresses.
+		-->
+		<device name="keyboard">
+			<key id="a" mapto="ignore" flags="b" />
+			<key id="b" mapto="ignore" flags="b" />
+		</device>
+		<key id="KEY_UP" mapto="ignore" flags="b" />
+		<key id="KEY_DOWN" mapto="ignore" flags="b" />
+		<key id="KEY_HOME" mapto="ignore" flags="b" />
+		<key id="KEY_END" mapto="ignore" flags="b" />
+		<key id="KEY_PAGEUP" mapto="ignore" flags="b" />
+		<key id="KEY_PAGEDOWN" mapto="ignore" flags="b" />
+		<key id="KEY_LEFT" mapto="ignore" flags="b" />
+		<key id="KEY_RIGHT" mapto="ignore" flags="b" />
+		<key id="KEY_CHANNELUP" mapto="ignore" flags="b" />
+		<key id="KEY_CHANNELDOWN" mapto="ignore" flags="b" />
+		<key id="KEY_REWIND" mapto="ignore" flags="b" />
+		<key id="KEY_FASTFORWARD" mapto="ignore" flags="b" />
+		<key id="1" mapto="ignore" flags="b" />
+		<key id="2" mapto="ignore" flags="b" />
+	</map>
+
 
 	<map context="NavigationActions">
 		<key id="KEY_REWIND" mapto="top" flags="m" />
