@@ -72,14 +72,14 @@
     cd ~
 
 ----------
-8 - Create folder openatv
+8 - Create folder openatv7.0
 
-    mkdir -p ~/openatv
+    mkdir -p ~/openatv7.0
 
 ----------
-9 - Switch to folder openatv
+9 - Switch to folder openatv7.0
 
-    cd openatv
+    cd openatv7.0
 
 ----------
 10 - Clone oe-alliance git
