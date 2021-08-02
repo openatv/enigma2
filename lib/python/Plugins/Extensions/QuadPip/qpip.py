@@ -756,10 +756,10 @@ class QuadPipScreen(Screen, FocusShowHide, HelpableScreen):
 		self.disableQuadPip()
 		setDecoderMode("normal")
 
-		if BoxInfo.getItem(("FastChannelChange", False):
+		if BoxInfo.getItem("FastChannelChange", False):
 			self.enableFCC()
 
-		if BoxInfo.getItem(("MiniTV", False):
+		if BoxInfo.getItem("MiniTV", False):
 			self.enableMiniTV()
 
 		self.qpipChannelList.saveAll()
