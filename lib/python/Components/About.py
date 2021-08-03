@@ -6,9 +6,8 @@ from socket import socket, inet_ntoa, AF_INET, SOCK_DGRAM
 from time import localtime, strftime
 from os import stat
 
-from boxbranding import getMachineBuild, getImageVersion
+from boxbranding import getBoxType, getMachineBuild, getImageVersion
 from Tools.Directories import fileReadLine, fileReadLines
-from Components.SystemInfo import BoxInfo
 
 MODULE_NAME = __name__.split(".")[-1]
 
@@ -51,7 +50,8 @@ def getKernelVersionString():
 
 
 def getModelString():
-	return BoxInfo.getItem("model")
+	model = getBoxType()
+	return model
 
 
 def getChipSetString():
