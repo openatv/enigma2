@@ -174,9 +174,9 @@ def loadKeymap(filename):
 					parseKeymap(filename, context, actionMapInstance, domDevice.attrib.get("name"), domDevice)
 
 # FIME Remove keytranslation.xml
-#		for domMap in domKeymap.findall("translate"):
-#			for domDevice in domMap.findall("device"):
-#				parseTrans(filename, actionMapInstance, domDevice.attrib.get("name"), domDevice)
+		for domMap in domKeymap.findall("translate"):
+			for domDevice in domMap.findall("device"):
+				parseTrans(filename, actionMapInstance, domDevice.attrib.get("name"), domDevice)
 
 
 def removeKeymap(filename):
