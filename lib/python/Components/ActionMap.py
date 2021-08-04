@@ -52,6 +52,74 @@ def removeKeyBindings(filename):  # Remove all entries of filename "domain".
 	for keyBinding in keyBindings:
 		keyBindings[keyBinding] = filter(lambda x: x[1] != filename, keyBindings[keyBinding])
 
+
+def parseKeymap(filename, context, actionMapInstance, device, domKeys):
+	unmapDict = {}
+	error = False
+	keyId = -1
+	for key in domKeys.findall("key"):
+		keyName = key.attrib.get("id")
+		if keyName is None:
+			print("[ActionMap] Error: Keymap attribute 'id' in context '%s' in file '%s' must be specified!" % (context, filename))
+			error = True
+		else:
+			try:
+				if len(keyName) == 1:
+					keyId = ord(keyName) | 0x8000
+				elif keyName[0] == "\\":
+					if keyName[1].lower() == "x":
+						keyId = int(keyName[2:], 16) | 0x8000
+					elif keyName[1].lower() == "d":
+						keyId = int(keyName[2:], 10) | 0x8000
+					elif keyName[1].lower() == "o":
+						keyId = int(keyName[2:], 8) | 0x8000
+					elif keyName[1].lower() == "b":
+						keyId = int(keyName[2:], 2) | 0x8000
+					else:
+						print("[ActionMap] Error: Keymap id '%s' in context '%s' in file '%s' is not a hex, decimal, octal or binary number!" % (keyName, context, filename))
+						error = True
+				else:
+					keyId = KEYIDS.get(keyName, -1)
+					if keyId is None:
+						print("[ActionMap] Error: Keymap id '%s' in context '%s' in file '%s' is undefined/invalid!" % (keyName, context, filename))
+						error = True
+			except ValueError:
+				print("[ActionMap] Error: Keymap id '%s' in context '%s' in file '%s' can not be evaluated!" % (keyName, context, filename))
+				keyId = -1
+				error = True
+		mapto = key.attrib.get("mapto")
+		unmap = key.attrib.get("unmap")
+		if mapto is None and unamp is None:
+			print("[ActionMap] Error: At least one of the attributes 'mapto' or 'unmap' in context '%s' id '%s' (%d) in file '%s' must be specified!" % (context, keyName, keyId, filename))
+			error = True
+		flags = key.attrib.get("flags")
+		if flags is None:
+			print("[ActionMap] Error: Attribute 'flag' in context '%s' id '%s' (%d) in file '%s' must be specified!" % (context, keyName, keyId, filename))
+			error = True
+		else:
+			flagToValue = lambda x: {
+				'm': 1,
+				'b': 2,
+				'r': 4,
+				'l': 8
+			}[x]
+			newFlags = sum(map(flagToValue, flags))
+			if not newFlags:
+				print("[ActionMap] Error: Attribute 'flag' value '%s' in context '%s' id '%s' (%d) in file '%s' appears invalid!" % (flags, context, keyName, keyId, filename))
+				errors += 1
+			flags = newFlags
+		if not error:
+			if unmap is None:  # If a key was unmapped, it can only be assigned a new function in the same keymap file (avoid file parsing sequence dependency).
+				if unmapDict.get((context, keyName, mapto)) in [filename, None]:
+					if config.crash.debugActionMaps.value:
+						print("[ActionMap] Context '%s' keyName '%s' (%d) mapped to '%s' (Device: %s)." % (context, keyName, keyId, mapto, device.capitalize()))
+					actionMapInstance.bindKey(filename, device, keyId, flags, context, mapto)
+					addKeyBinding(filename, keyId, context, mapto, flags)
+			else:
+				actionMapInstance.unbindPythonKey(context, keyId, unmap)
+				unmapDict.update({(context, keyName, unmap): filename})
+
+# FIME Remove keytranslation.xml
 def getKeyId(id):
 	if len(id) == 1:
 		keyid = ord(id) | 0x8000
@@ -70,6 +138,7 @@ def getKeyId(id):
 	return keyid
 
 
+# FIME Remove keytranslation.xml
 def parseTrans(filename, actionmap, device, keys):
 	for x in keys.findall("toggle"):
 		get_attr = x.attrib.get
@@ -91,37 +160,6 @@ def parseTrans(filename, actionmap, device, keys):
 		actionmap.bindTranslation(filename, device, keyin, keyout, toggle)
 
 
-def parseKeymap(filename, context, actionmap, device, keys):
-	for x in keys.findall("key"):
-		get_attr = x.attrib.get
-		mapto = get_attr("mapto")
-		unmap = get_attr("unmap")
-		id = get_attr("id")
-		flags = get_attr("flags")
-
-		if unmap is not None:
-			assert id, "[keymapparser] %s: must specify id in context %s, unmap '%s'" % (filename, context, unmap)
-			keyid = getKeyId(id)
-			actionmap.unbindPythonKey(context, keyid, unmap)
-			unmapDict.update({(context, id, unmap): filename})
-		else:
-			assert mapto, "[keymapparser] %s: must specify mapto (or unmap) in context %s, id '%s'" % (filename, context, id)
-			assert id, "[keymapparser] %s: must specify id in context %s, mapto '%s'" % (filename, context, mapto)
-			keyid = getKeyId(id)
-
-			flag_ascii_to_id = lambda x: {'m': 1, 'b': 2, 'r': 4, 'l': 8}[x]
-
-			flags = sum(map(flag_ascii_to_id, flags))
-
-			assert flags, "[keymapparser] %s: must specify at least one flag in context %s, id '%s'" % (filename, context, id)
-
-			# if a key was unmapped, it can only be assigned a new function in the same keymap file (avoid file parsing sequence dependency)
-			if unmapDict.get((context, id, mapto)) in [filename, None]:
-#				print "[keymapparser] " + context + "::" + mapto + " -> " + device + "." + hex(keyid)
-				actionmap.bindKey(filename, device, keyid, flags, context, mapto)
-				addKeyBinding(filename, keyid, context, mapto, flags)
-
-
 def loadKeymap(filename):
 	actionMapInstance = eActionMap.getInstance()
 	domKeymap = fileReadXML(filename, source=MODULE_NAME)
@@ -135,9 +173,10 @@ def loadKeymap(filename):
 				for domDevice in domMap.findall("device"):
 					parseKeymap(filename, context, actionMapInstance, domDevice.attrib.get("name"), domDevice)
 
-		for domMap in domKeymap.findall("translate"):
-			for domDevice in domMap.findall("device"):
-				parseTrans(filename, actionMapInstance, domDevice.attrib.get("name"), domDevice)
+# FIME Remove keytranslation.xml
+#		for domMap in domKeymap.findall("translate"):
+#			for domDevice in domMap.findall("device"):
+#				parseTrans(filename, actionMapInstance, domDevice.attrib.get("name"), domDevice)
 
 
 def removeKeymap(filename):
@@ -232,13 +271,7 @@ class HelpableActionMap(ActionMap):
 	# be picked up by the "HelpableScreen".
 	#
 	def __init__(self, parent, contexts, actions=None, prio=0, description=None):
-		def exists(record):
-			for context in parent.helpList:
-				if record in context[2]:
-					print("[HelpActionMap] removed duplicity: %s %s" % (context[1], record))
-					return True
-			return False
-		if not type(contexts) is list:
+		if isinstance(contexts, str):
 			contexts = [contexts]
 		actions = actions or {}
 		self.description = description
@@ -246,17 +279,11 @@ class HelpableActionMap(ActionMap):
 		for context in contexts:
 			actionList = []
 			for (action, response) in actions.items():
-				# Check if this is a tuple.
-				if isinstance(response, tuple):
-					if queryKeyBinding(context, action):
-						if not exists((action, response[1])):
-							actionList.append((action, response[1]))
-					actionDict[action] = response[0]
-				else:
-					if queryKeyBinding(context, action):
-						if not exists((action, None)):
-							actionList.append((action, None))
-					actionDict[action] = response
+				if not isinstance(response, (list, tuple)):
+					response = (response, None)
+				if queryKeyBinding(context, action):
+					actionList.append((action, response[1]))
+				actionDict[action] = response[0]
 			parent.helpList.append((self, context, actionList))
 		ActionMap.__init__(self, contexts, actionDict, prio)
 
