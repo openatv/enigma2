@@ -4,6 +4,42 @@ from Components.Element import cached
 from enigma import iPlayableService, iServiceInformation, eServiceReference, eEPGCache
 from Components.Sources.Source import Source
 
+# Fake eServiceEvent to fill EPG data for Streams
+class eServiceEvent(object):
+	def __init__(self, info):
+		EventName = info.getInfoString(iServiceInformation.sTagTitle)
+		self.m_EventName = None
+		if EventName:
+			self.m_EventName = EventName
+		self.m_ShortDescription = ""
+		self.m_ExtendedDescriptionation = ""
+
+	def getEventName(self):
+		return self.m_EventName
+	
+	def getShortDescription(self):
+		return self.m_ShortDescription
+
+	def getExtendedDescriptionation(self):
+		return self.m_ExtendedDescriptionation
+
+	def getBeginTime(self):
+		return 0
+
+	def getEndTime(self):
+		return 0
+
+	def getDuration(self):
+		return 0
+
+	def getEventId(self):
+		return 0
+
+	def getExtraEventData(self):
+		return None
+
+	def getBeginTimeString(self):
+		return ""
 
 class EventInfo(PerServiceBase, Source, object):
 	NOW = 0
@@ -29,6 +65,10 @@ class EventInfo(PerServiceBase, Source, object):
 			if not ret or ret.getEventName() == "":
 				refstr = info.getInfoString(iServiceInformation.sServiceref)
 				ret = self.epgQuery(eServiceReference(refstr), -1, self.now_or_next and 1 or 0)
+				if self.now_or_next == 0 and not ret and refstr.split(':')[0] in ['4097', '5001', '5002', '5003']: # No EPG Try to get Meta
+					ev = eServiceEvent(info)
+					if ev.getEventName:
+						return ev
 		return ret
 
 	event = property(getEvent)
