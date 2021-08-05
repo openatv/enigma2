@@ -12,7 +12,7 @@ static PeerMapping peers;
 
 static void peer_register(const char *name,	const char *host_name, uint16_t port)
 {
-	eWarning("ADD Peer %s=%s:%u", name, host_name, port);
+	eWarning("[eServicePeer] ADD Peer %s=%s:%u", name, host_name, port);
 	std::ostringstream url;
 	url << "http://" << host_name << ":" << port;
 	peers[std::string(name)] = url.str();
@@ -20,7 +20,7 @@ static void peer_register(const char *name,	const char *host_name, uint16_t port
 
 static void peer_remove(const char *name)
 {
-	eWarning("REMOVE Peer %s", name);
+	eWarning("[eServicePeer] REMOVE Peer %s", name);
 	PeerMapping::iterator it = peers.find(std::string(name));
 	if (it != peers.end())
 		peers.erase(it);

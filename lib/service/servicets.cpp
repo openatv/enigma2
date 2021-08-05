@@ -95,7 +95,7 @@ void TSAudioInfo::addAudio(int pid, std::string lang, std::string desc, int type
 
 eServiceTS::eServiceTS(const eServiceReference &url): m_pump(eApp, 1)
 {
-	eDebug("ServiceTS construct!");
+	eDebug("[eServiceTS] construct!");
 	m_filename = url.path.c_str();
 	m_vpid = url.getData(0) == 0 ? 0x44 : url.getData(0);
 	m_apid = url.getData(1) == 0 ? 0x45 : url.getData(1);
@@ -105,7 +105,7 @@ eServiceTS::eServiceTS(const eServiceReference &url): m_pump(eApp, 1)
 
 eServiceTS::~eServiceTS()
 {
-	eDebug("ServiceTS destruct!");
+	eDebug("[eServiceTS] destruct!");
 	stop();
 }
 
@@ -177,7 +177,7 @@ int eServiceTS::openHttpConnection(std::string url)
 	addr.sin_addr.s_addr = *((in_addr_t*)h->h_addr_list[0]);
 	addr.sin_port = htons(port);
 
-	eDebug("connecting to %s", url.c_str());
+	eDebug("[eServiceTS] connecting to %s", url.c_str());
 
 	if (connect(fd, (sockaddr*)&addr, sizeof(addr)) == -1) {
 		std::string msg = "connect failed for: " + url;
@@ -192,7 +192,10 @@ int eServiceTS::openHttpConnection(std::string url)
 	request.append("Connection: close\n");
 	request.append("\n");
 	//eDebug(request.c_str());
-	write(fd, request.c_str(), request.length());
+	if (write(fd, request.c_str(), request.length()) == -1)
+	{
+		eDebug("[eServiceTS] failed to write response %m");
+	}
 
 	int rc;
 	size_t buflen = 1000;
@@ -212,12 +215,12 @@ int eServiceTS::openHttpConnection(std::string url)
 	char statusmsg[100];
 	rc = sscanf(linebuf, "%99s %d %99s", proto, &statuscode, statusmsg);
 	if (rc != 3 || statuscode != 200) {
-		eDebug("wrong response: \"200 OK\" expected.");
+		eDebug("[eServiceTS] wrong response: \"200 OK\" expected.");
 		free(linebuf);
 		close(fd);
 		return -1;
 	}
-	eDebug("proto=%s, code=%d, msg=%s", proto, statuscode, statusmsg);
+	eDebug("[eServiceTS] proto=%s, code=%d, msg=%s", proto, statuscode, statusmsg);
 	while (rc > 0)
 	{
 		rc = getline(&linebuf, &buflen, fd);
@@ -240,11 +243,11 @@ RESULT eServiceTS::start()
 	eDVBResourceManager::getInstance(rmgr);
 	eDVBChannel dvbChannel(rmgr, 0);
 	if (dvbChannel.getDemux(m_decodedemux, iDVBChannel::capDecode) != 0) {
-		eDebug("Cannot allocate decode-demux");
+		eDebug("[eServiceTS] Cannot allocate decode-demux");
 		return -1;
 	}
 	if (m_decodedemux->getMPEGDecoder(m_decoder) != 0) {
-		eDebug("Cannot allocate MPEGDecoder");
+		eDebug("[eServiceTS] Cannot allocate MPEGDecoder");
 		return -1;
 	}
 	if (m_destfd == -1)
@@ -252,7 +255,7 @@ RESULT eServiceTS::start()
 		m_destfd = m_decodedemux->openDVR(O_WRONLY);
 		if (m_destfd < 0)
 		{
-			eDebug("openDVR failed");
+			eDebug("[eServiceTS] openDVR failed");
 			return -1;
 		}
 	}
@@ -285,7 +288,7 @@ RESULT eServiceTS::stop()
 
 void eServiceTS::recv_event(int evt)
 {
-	eDebug("eServiceTS::recv_event: %d", evt);
+	eDebug("[eServiceTS] recv_event: %d", evt);
 	switch (evt) {
 	case eStreamThread::evtEOS:
 		m_decodedemux->flush();
@@ -303,7 +306,7 @@ void eServiceTS::recv_event(int evt)
 		bool wasnull = !m_audioInfo;
 		m_streamthread->getAudioInfo(m_audioInfo);
 		if (m_audioInfo)
-			eDebug("[servicets] %zu audiostreams found", m_audioInfo->audioStreams.size());
+			eDebug("[eServiceTS] %zu audiostreams found", m_audioInfo->audioStreams.size());
 		if (m_audioInfo && wasnull) {
 			int sel = getCurrentTrack();
 			if (sel < 0)
@@ -342,7 +345,7 @@ RESULT eServiceTS::unpause()
 			srcfd = ::open(m_filename.c_str(), O_RDONLY);
 
 		if (srcfd < 0) {
-			eDebug("Cannot open source stream: %s", m_filename.c_str());
+			eDebug("[eServiceTS] Cannot open source stream: %s", m_filename.c_str());
 			return 1;
 		}
 
@@ -351,7 +354,7 @@ RESULT eServiceTS::unpause()
 		m_decoder->play();
 	}
 	else
-		eDebug("unpause but thread already running!");
+		eDebug("[eServiceTS] unpause but thread already running!");
 	return 0;
 }
 
@@ -427,7 +430,7 @@ int eServiceTS::getNumberOfTracks() {
 RESULT eServiceTS::selectTrack(unsigned int i) {
 	if (m_audioInfo) {
 		m_apid = m_audioInfo->audioStreams[i].pid;
-		eDebug("[servicets] audio track %d PID 0x%02x type %d\n", i, m_apid, m_audioInfo->audioStreams[i].type);
+		eDebug("[eServiceTS] audio track %d PID 0x%02x type %d\n", i, m_apid, m_audioInfo->audioStreams[i].type);
 		m_decoder->setAudioPID(m_apid, m_audioInfo->audioStreams[i].type);
 		m_decoder->set();
 		return 0;
@@ -623,7 +626,7 @@ void eStreamThread::thread() {
 
 	r = w = 0;
 	hasStarted();
-	eDebug("eStreamThread started");
+	eDebug("[eServiceTS] eStreamThread started");
 	while (!m_stop) {
 		pthread_testcancel();
 		FD_ZERO(&rfds);
@@ -641,17 +644,17 @@ void eStreamThread::thread() {
 		}
 		rc = select(maxfd+1, &rfds, &wfds, NULL, &timeout);
 		if (rc == 0) {
-			eDebug("eStreamThread::thread: timeout!");
+			eDebug("[eServiceTS] eStreamThread::thread: timeout!");
 			continue;
 		}
 		if (rc < 0) {
-			eDebug("eStreamThread::thread: error in select (%d)", errno);
+			eDebug("[eServiceTS] eStreamThread::thread: error in select (%d)", errno);
 			break;
 		}
 		if (FD_ISSET(m_srcfd, &rfds)) {
 			rc = ::read(m_srcfd, buf+r, bufsize - r);
 			if (rc < 0) {
-				eDebug("eStreamThread::thread: error in read (%d)", errno);
+				eDebug("[eServiceTS] eStreamThread::thread: error in read (%d)", errno);
 				m_messagepump.send(evtReadError);
 				break;
 			} else if (rc == 0) {
@@ -662,13 +665,13 @@ void eStreamThread::thread() {
 					m_messagepump.send(evtSOS);
 				}
 				r += rc;
-				if (r == bufsize) eDebug("eStreamThread::thread: buffer full");
+				if (r == bufsize) eDebug("[eServiceTS] eStreamThread::thread: buffer full");
 			}
 		}
 		if (FD_ISSET(m_destfd, &wfds) && (w < r) && ((r > bufsize/4) || eof)) {
 			rc = ::write(m_destfd, buf+w, r-w);
 			if (rc < 0) {
-				eDebug("eStreamThread::thread: error in write (%d)", errno);
+				eDebug("[eServiceTS] eStreamThread::thread: error in write (%d)", errno);
 				m_messagepump.send(evtWriteError);
 				break;
 			}
@@ -689,13 +692,13 @@ void eStreamThread::thread() {
 			break;
 		}
 	}
-	eDebug("eStreamThread end");
+	eDebug("[eServiceTS] eStreamThread end");
 }
 
 void eStreamThread::thread_finished() {
 	if (m_srcfd >= 0)
 		::close(m_srcfd);
-	eDebug("eStreamThread closed");
+	eDebug("[eServiceTS] eStreamThread closed");
 	m_running = false;
 }
 
