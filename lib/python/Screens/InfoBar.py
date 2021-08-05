@@ -58,32 +58,31 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 		if config.usage.show_infobar_lite.value and (config.skin.primary_skin.value == "DMConcinnity-HD/skin.xml" or config.skin.primary_skin.value.startswith('MetrixHD/')):
 			self.skinName = "InfoBarLite"
 
-		self["actions"] = HelpableActionMap(self, "InfobarActions",
-			{
-				"showMovies": (self.showMovies, _("Play recorded movies...")),
-				"showRadio": (self.showRadioButton, _("Show the radio player...")),
-				"showTv": (self.showTvButton, _("Show the tv player...")),
-				"toogleTvRadio": (self.toogleTvRadio, _("Toggels between tv and radio...")),
-				"openBouquetList": (self.openBouquetList, _("Open bouquetlist...")),
-				"showMediaPlayer": (self.showMediaPlayer, _("Show the media player...")),
-				"openTimerList": (self.openTimerList, _("Open Timerlist...")),
-				"openAutoTimerList": (self.openAutoTimerList, _("Open AutoTimerlist...")),
-				"openEPGSearch": (self.openEPGSearch, _("Open EPGSearch...")),
-				"openIMDB": (self.openIMDB, _("Open IMDB...")),
-				"showMC": (self.showMediaCenter, _("Show the media center...")),
-				"openSleepTimer": (self.openSleepTimer, _("Show the Sleep Timer...")),
-				"openPowerTimerList": (self.openPowerTimerList, _("Show the Power Timer...")),
-				'ZoomInOut': (self.ZoomInOut, _('Zoom In/Out TV...')),
-				'ZoomOff': (self.ZoomOff, _('Zoom Off...')),
-				'HarddiskSetup': (self.HarddiskSetup, _('Select HDD')),
-				"showWWW": (self.showPORTAL, _("Open MediaPortal...")),
-				"showSetup": (self.showSetup, _("Show setup...")),
-				"showInformation": (self.showInformation, _("Show Information...")),
-				"showFormat": (self.showFormat, _("Show Format Setup...")),
-				"showPluginBrowser": (self.showPluginBrowser, _("Show the plugins...")),
-				"showBoxPortal": (self.showBoxPortal, _("Show Box Portal...")),
-				"openSimpleUnmount": (self.openSimpleUnmount, _("Simple umounter mass storage device.")),
-			}, prio=2)
+		self["actions"] = HelpableActionMap(self, "InfobarActions",{
+			"showMovies": (self.showMovies, _("Play recorded movies")),
+			"showRadio": (self.showRadioButton, _("Show the radio player")),
+			"showTv": (self.showTvButton, _("Show the tv player")),
+			"toogleTvRadio": (self.toogleTvRadio, _("Toggels between tv and radio")),
+			"openBouquetList": (self.openBouquetList, _("Open bouquetlist")),
+			"showMediaPlayer": (self.showMediaPlayer, _("Show the media player")),
+			"openTimerList": (self.openTimerList, _("Open Timerlist")),
+			"openAutoTimerList": (self.openAutoTimerList, _("Open AutoTimerlist")),
+			"openEPGSearch": (self.openEPGSearch, _("Open EPGSearch")),
+			"openIMDB": (self.openIMDB, _("Open IMDB")),
+			"showMC": (self.showMediaCenter, _("Show the media center")),
+			"openSleepTimer": (self.openSleepTimer, _("Show the Sleep Timer")),
+			"openPowerTimerList": (self.openPowerTimerList, _("Show the Power Timer")),
+			'ZoomInOut': (self.ZoomInOut, _('Zoom In/Out TV')),
+			'ZoomOff': (self.ZoomOff, _('Zoom Off')),
+			'HarddiskSetup': (self.HarddiskSetup, _('Select HDD')),
+			"showWWW": (self.showPORTAL, _("Open MediaPortal")),
+			"showSetup": (self.showSetup, _("Show setup")),
+			"showInformation": (self.showInformation, _("Show Information")),
+			"showFormat": (self.showFormat, _("Show Format Setup")),
+			"showPluginBrowser": (self.showPluginBrowser, _("Show the plugins")),
+			"showBoxPortal": (self.showBoxPortal, _("Show Box Portal")),
+			"openSimpleUnmount": (self.openSimpleUnmount, _("Simple umounter mass storage device.")),
+			}, prio=2, description=_("Live TV Actions"))
 
 		self["key_red"] = Label()
 		self["key_yellow"] = Label()
@@ -103,8 +102,8 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 				InfoBarHdmi, InfoBarPlugins, InfoBarServiceErrorPopupSupport, InfoBarButtonSetup:
 			x.__init__(self)
 
-		self.helpList.append((self["actions"], "InfobarActions", [("showMovies", _("Watch recordings..."))]))
-		self.helpList.append((self["actions"], "InfobarActions", [("showRadio", _("Listen to the radio..."))]))
+		self.helpList.append((self["actions"], "InfobarActions", [("showMovies", _("Watch recordings"))]))
+		self.helpList.append((self["actions"], "InfobarActions", [("showRadio", _("Listen to the radio"))]))
 
 		self.__event_tracker = ServiceEventTracker(screen=self, eventmap={
 				enigma.iPlayableService.evUpdatedEventInfo: self.__eventInfoChanged
@@ -527,11 +526,10 @@ class MoviePlayer(InfoBarAspectSelection, InfoBarSimpleEventView, InfoBarBase, I
 		self["speed"] = Label()
 		self["statusicon"] = MultiPixmap()
 
-		self["actions"] = HelpableActionMap(self, "MoviePlayerActions",
-			{
-				"leavePlayer": (self.leavePlayer, _("leave movie player...")),
-				"leavePlayerOnExit": (self.leavePlayerOnExit, _("leave movie player..."))
-			})
+		self["actions"] = HelpableActionMap(self, "MoviePlayerActions",{
+			"leavePlayer": (self.leavePlayer, _("leave movie player")),
+			"leavePlayerOnExit": (self.leavePlayerOnExit, _("leave movie player"))
+		}, prio=0, description=_("Movie Player Actions"))
 
 		self.allowPiP = True
 
