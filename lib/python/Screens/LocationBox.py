@@ -19,7 +19,7 @@ import os
 from Tools.NumericalTextInput import NumericalTextInput
 
 # GUI (Components)
-from Components.ActionMap import NumberActionMap, HelpableActionMap
+from Components.ActionMap import HelpableNumberActionMap, HelpableActionMap
 from Components.Label import Label
 from Components.Pixmap import Pixmap
 from Components.Button import Button
@@ -147,19 +147,19 @@ class LocationBox(Screen, NumericalTextInput, HelpableScreen):
 			}, -2)
 
 		# Actions used by quickselect
-		self["NumberActions"] = NumberActionMap(["NumberActions"],
-		{
-			"1": self.keyNumberGlobal,
-			"2": self.keyNumberGlobal,
-			"3": self.keyNumberGlobal,
-			"4": self.keyNumberGlobal,
-			"5": self.keyNumberGlobal,
-			"6": self.keyNumberGlobal,
-			"7": self.keyNumberGlobal,
-			"8": self.keyNumberGlobal,
-			"9": self.keyNumberGlobal,
-			"0": self.keyNumberGlobal
-		})
+		smsMsg = _("SMS style QuickSelect location selection")
+		self["numberActions"] = HelpableNumberActionMap(self, "NumberActions", {
+			"1": (self.keyNumberGlobal, smsMsg),
+			"2": (self.keyNumberGlobal, smsMsg),
+			"3": (self.keyNumberGlobal, smsMsg),
+			"4": (self.keyNumberGlobal, smsMsg),
+			"5": (self.keyNumberGlobal, smsMsg),
+			"6": (self.keyNumberGlobal, smsMsg),
+			"7": (self.keyNumberGlobal, smsMsg),
+			"8": (self.keyNumberGlobal, smsMsg),
+			"9": (self.keyNumberGlobal, smsMsg),
+			"0": (self.keyNumberGlobal, smsMsg)
+		}, prio=0, description=_("Quick Select Actions"))
 
 		# Run some functions when shown
 		self.onShown.extend((
