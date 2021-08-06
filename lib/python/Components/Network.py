@@ -4,6 +4,7 @@ import re
 import os
 import netifaces as ni
 from socket import *
+from Components.config import config
 from Components.Console import Console
 from Components.PluginComponent import plugins
 from Plugins.Plugin import PluginDescriptor
@@ -150,13 +151,20 @@ class Network:
 
 	def writeNameserverConfig(self):
 		try:
-			os.system('rm -rf /etc/resolv.conf')
+			Console().ePopen('rm -f /etc/resolv.conf')
 			fp = open('/etc/resolv.conf', 'w')
 			for nameserver in self.nameservers:
 				fp.write("nameserver %d.%d.%d.%d\n" % tuple(nameserver))
 			fp.close()
+			if config.usage.dns.value.lower() not in ("dhcp-router", "custom"):
+				Console().ePopen('rm -f /etc/enigma2/nameserversdns.conf')
+				fp = open('/etc/enigma2/nameserversdns.conf', 'w')
+				for nameserver in self.nameservers:
+					fp.write("nameserver %d.%d.%d.%d\n" % tuple(nameserver))
+				fp.close()
+			#self.restartNetwork()
 		except:
-			print("[Network.py] interfaces - resolv.conf write failed")
+			print("[Network] resolv.conf or nameserversdns.conf - writing failed")
 
 	def loadNetworkConfig(self, iface, callback=None):
 		interfaces = []
@@ -225,12 +233,15 @@ class Network:
 
 		resolv = []
 		try:
-			fp = open('/etc/resolv.conf', 'r')
+			if config.usage.dns.value.lower() in ("dhcp-router", "custom"):
+				fp = open('/etc/resolv.conf', 'r')
+			else:
+				fp = open('/etc/enigma2/nameserversdns.conf', 'r')
 			resolv = fp.readlines()
 			fp.close()
 			self.nameservers = []
 		except:
-			print("[Network.py] resolv.conf - opening failed")
+			print("[Network] resolv.conf or nameserversdns.conf - opening failed")
 
 		for line in resolv:
 			if self.regExpMatch(nameserverPattern, line) is not None:
