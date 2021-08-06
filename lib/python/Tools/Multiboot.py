@@ -5,7 +5,7 @@ import subprocess
 
 from os import mkdir, path, rmdir, rename, remove, stat
 
-from boxbranding import getMachineBuild, getMachineMtdRoot, getMachineName
+from boxbranding import getMachineBuild, getMachineMtdRoot, getBoxType, getMachineName
 from Components.Console import Console
 from Components.SystemInfo import BoxInfo
 from Tools.Directories import pathExists
@@ -112,7 +112,7 @@ def ReadSTARTUP():
 
 
 def GetBoxName():
-	box = BoxInfo.getItem("model")
+	box = getBoxType()
 	machinename = getMachineName()
 	if box in ('uniboxhd1', 'uniboxhd2', 'uniboxhd3'):
 		box = "ventonhdx"
