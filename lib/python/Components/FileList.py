@@ -1,14 +1,14 @@
-from __future__ import print_function
-from __future__ import absolute_import
-import os
-import re
-from Components.MenuList import MenuList
+from os import listdir
+from os.path import basename, dirname, isdir, join as pathjoin, normpath, realpath, exists
+from re import compile
+
+from enigma import RT_HALIGN_LEFT, eListboxPythonMultiContent, eServiceReference, eServiceReferenceFS, eServiceCenter, gFont
+
+from skin import fonts, parameters
 from Components.Harddisk import harddiskmanager
-from Tools.Directories import SCOPE_ACTIVE_SKIN, resolveFilename, fileExists, pathExists
-from enigma import RT_HALIGN_LEFT, eListboxPythonMultiContent, \
-	eServiceReference, eServiceReferenceFS, eServiceCenter, gFont
+from Components.MenuList import MenuList
+from Tools.Directories import SCOPE_ACTIVE_SKIN, resolveFilename
 from Tools.LoadPixmap import LoadPixmap
-import skin
 
 EXTENSIONS = {
 		"m4a": "music",
@@ -42,19 +42,19 @@ EXTENSIONS = {
 
 def FileEntryComponent(name, absolute=None, isDir=False):
 	res = [(absolute, isDir)]
-	x, y, w, h = skin.parameters.get("FileListName", (35, 1, 470, 20))
+	x, y, w, h = parameters.get("FileListName", (35, 1, 470, 20))
 	res.append((eListboxPythonMultiContent.TYPE_TEXT, x, y, w, h, 0, RT_HALIGN_LEFT, name))
 	if isDir:
 		png = LoadPixmap(cached=True, path=resolveFilename(SCOPE_ACTIVE_SKIN, "extensions/directory.png"))
 	else:
-		extension = name.split('.')
+		extension = name.split(".")
 		extension = extension[-1].lower()
 		if extension in EXTENSIONS:
-			png = LoadPixmap(resolveFilename(SCOPE_ACTIVE_SKIN, "extensions/" + EXTENSIONS[extension] + ".png"))
+			png = LoadPixmap(resolveFilename(SCOPE_ACTIVE_SKIN, "extensions/%s.png" % EXTENSIONS[extension]))
 		else:
 			png = None
 	if png is not None:
-		x, y, w, h = skin.parameters.get("FileListIcon", (10, 2, 20, 20))
+		x, y, w, h = parameters.get("FileListIcon", (10, 2, 20, 20))
 		res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, x, y, w, h, png))
 
 	return res
@@ -72,9 +72,13 @@ class FileList(MenuList):
 		self.showMountpoints = showMountpoints
 		self.showFiles = showFiles
 		self.isTop = isTop
+		if isTop:
+			self.topDirectory = directory
+		else:
+			self.topDirectory = "/"
 		# example: matching .nfi and .ts files: "^.*\.(nfi|ts)"
 		if matchingPattern:
-			self.matchingPattern = re.compile(matchingPattern)
+			self.matchingPattern = compile(matchingPattern)
 		else:
 			self.matchingPattern = None
 		self.inhibitDirs = inhibitDirs or []
@@ -82,35 +86,35 @@ class FileList(MenuList):
 
 		self.refreshMountpoints()
 		self.changeDir(directory)
-		font = skin.fonts.get("FileList", ("Regular", 18, 23))
+		font = fonts.get("FileList", ("Regular", 18, 23))
 		self.l.setFont(0, gFont(font[0], font[1]))
 		self.l.setItemHeight(font[2])
 		self.serviceHandler = eServiceCenter.getInstance()
 
 	def refreshMountpoints(self):
-		self.mountpoints = [os.path.join(p.mountpoint, "") for p in harddiskmanager.getMountedPartitions()]
+		self.mountpoints = [pathjoin(p.mountpoint, "") for p in harddiskmanager.getMountedPartitions()]
 		self.mountpoints.sort(reverse=True)
 
 	def getMountpoint(self, file):
-		file = os.path.join(os.path.realpath(file), "")
+		file = pathjoin(realpath(file), "")
 		for m in self.mountpoints:
 			if file.startswith(m):
 				return m
 		return False
 
 	def getMountpointLink(self, file):
-		if os.path.realpath(file) == file:
+		if realpath(file) == file:
 			return self.getMountpoint(file)
 		else:
 			if file[-1] == "/":
 				file = file[:-1]
 			mp = self.getMountpoint(file)
 			last = file
-			file = os.path.dirname(file)
+			file = dirname(file)
 			while last != "/" and mp == self.getMountpoint(file):
 				last = file
-				file = os.path.dirname(file)
-			return os.path.join(last, "")
+				file = dirname(file)
+			return pathjoin(last, "")
 
 	def getSelection(self):
 		if self.l.getCurrentSelection() is None:
@@ -128,7 +132,7 @@ class FileList(MenuList):
 		return self.list
 
 	def inParentDirs(self, dir, parents):
-		dir = os.path.realpath(dir)
+		dir = realpath(dir)
 		for p in parents:
 			if dir.startswith(p):
 				return True
@@ -149,7 +153,7 @@ class FileList(MenuList):
 
 		if directory is None and self.showMountpoints: # present available mountpoints
 			for p in harddiskmanager.getMountedPartitions():
-				path = os.path.join(p.mountpoint, "")
+				path = pathjoin(p.mountpoint, "")
 				if path not in self.inhibitMounts and not self.inParentDirs(path, self.inhibitDirs):
 					self.list.append(FileEntryComponent(name=p.description, absolute=path, isDir=True))
 			files = []
@@ -178,25 +182,24 @@ class FileList(MenuList):
 			directories.sort()
 			files.sort()
 		else:
-			if fileExists(directory):
+			if isdir(directory):
 				try:
-					files = os.listdir(directory)
+					files = listdir(directory)
 				except:
 					files = []
 				files.sort()
 				tmpfiles = files[:]
 				for x in tmpfiles:
-					if os.path.isdir(directory + x):
+					if isdir(directory + x):
 						directories.append(directory + x + "/")
 						files.remove(x)
 
-		if directory is not None and self.showDirectories and not self.isTop:
-			if directory == self.current_mountpoint and self.showMountpoints:
-				self.list.append(FileEntryComponent(name="<" + _("List of storage devices") + ">", absolute=None, isDir=True))
-			elif (directory != "/") and not (self.inhibitMounts and self.getMountpoint(directory) in self.inhibitMounts):
-				self.list.append(FileEntryComponent(name="<" + _("Parent directory") + ">", absolute='/'.join(directory.split('/')[:-2]) + '/', isDir=True))
-
 		if self.showDirectories:
+			if directory:
+				if self.showMountpoints and directory == self.current_mountpoint:
+					self.list.append(FileEntryComponent(name="<" + _("List of storage devices") + ">", absolute=None, isDir=True))
+				elif (directory != self.topDirectory) and not (self.inhibitMounts and self.getMountpoint(directory) in self.inhibitMounts):
+					self.list.append(FileEntryComponent(name="<" + _("Parent directory") + ">", absolute='/'.join(directory.split('/')[:-2]) + '/', isDir=True))
 			for x in directories:
 				if not (self.inhibitMounts and self.getMountpoint(x) in self.inhibitMounts) and not self.inParentDirs(x, self.inhibitDirs):
 					name = x.split('/')[-2]
@@ -278,7 +281,7 @@ class FileList(MenuList):
 
 def MultiFileSelectEntryComponent(name, absolute=None, isDir=False, selected=False):
 	res = [(absolute, isDir, selected, name)]
-	x, y, w, h = skin.parameters.get("FileListMultiName", (55, 0, 470, 25))
+	x, y, w, h = parameters.get("FileListMultiName", (55, 0, 470, 25))
 	res.append((eListboxPythonMultiContent.TYPE_TEXT, x, y, w, h, 0, RT_HALIGN_LEFT, name))
 	if isDir:
 		png = LoadPixmap(cached=True, path=resolveFilename(SCOPE_ACTIVE_SKIN, "extensions/directory.png"))
@@ -286,18 +289,18 @@ def MultiFileSelectEntryComponent(name, absolute=None, isDir=False, selected=Fal
 		extension = name.split('.')
 		extension = extension[-1].lower()
 		if extension in EXTENSIONS:
-			png = LoadPixmap(resolveFilename(SCOPE_ACTIVE_SKIN, "extensions/" + EXTENSIONS[extension] + ".png"))
+			png = LoadPixmap(resolveFilename(SCOPE_ACTIVE_SKIN, "extensions/%s.png" % EXTENSIONS[extension]))
 		else:
 			png = None
 	if png is not None:
-		x, y, w, h = skin.parameters.get("FileListMultiIcon", (30, 2, 20, 20))
+		x, y, w, h = parameters.get("FileListMultiIcon", (30, 2, 20, 20))
 		res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, x, y, w, h, png))
 	if not name.startswith('<'):
 		if selected:
 			icon = LoadPixmap(cached=True, path=resolveFilename(SCOPE_ACTIVE_SKIN, "icons/lock_on.png"))
 		else:
 			icon = LoadPixmap(cached=True, path=resolveFilename(SCOPE_ACTIVE_SKIN, "icons/lock_off.png"))
-		x, y, w, h = skin.parameters.get("FileListMultiLock", (2, 0, 25, 25))
+		x, y, w, h = parameters.get("FileListMultiLock", (2, 0, 25, 25))
 		res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, x, y, w, h, icon))
 	return res
 
@@ -310,7 +313,7 @@ class MultiFileSelectList(FileList):
 			self.selectedFiles = preselectedFiles
 		FileList.__init__(self, directory, showMountpoints=showMountpoints, matchingPattern=matchingPattern, showDirectories=showDirectories, showFiles=showFiles, useServiceRef=useServiceRef, inhibitDirs=inhibitDirs, inhibitMounts=inhibitMounts, isTop=isTop, enableWrapAround=enableWrapAround, additionalExtensions=additionalExtensions)
 		self.changeDir(directory)
-		font = skin.fonts.get("FileListMulti", ("Regular", 20, 25))
+		font = fonts.get("FileListMulti", ("Regular", 20, 25))
 		self.l.setFont(0, gFont(font[0], font[1]))
 		self.l.setItemHeight(font[2])
 		self.onSelectionChanged = []
@@ -335,12 +338,12 @@ class MultiFileSelectList(FileList):
 						self.selectedFiles.remove(realPathname)
 					except:
 						try:
-							self.selectedFiles.remove(os.path.normpath(realPathname))
-						except:
-							print("Couldn't remove:", realPathname)
+							self.selectedFiles.remove(normpath(realPathname))
+						except (IOError, OSError) as err:
+							print("[FileList] Error: Can't remove '%s'!  (%s)" % (err.errno, realPathname, err.strerror))
 				else:
 					SelectState = True
-					if (realPathname not in self.selectedFiles) and (os.path.normpath(realPathname) not in self.selectedFiles):
+					if (realPathname not in self.selectedFiles) and (normpath(realPathname) not in self.selectedFiles):
 						self.selectedFiles.append(realPathname)
 				newList[idx] = MultiFileSelectEntryComponent(name=x[0][3], absolute=x[0][0], isDir=x[0][1], selected=SelectState)
 			self.list = newList
@@ -349,7 +352,7 @@ class MultiFileSelectList(FileList):
 	def getSelectedList(self):
 		selectedFilesExist = []
 		for x in self.selectedFiles:
-			if pathExists(x):
+			if exists(x):
 				selectedFilesExist.append(x)
 		return selectedFilesExist
 
@@ -368,7 +371,7 @@ class MultiFileSelectList(FileList):
 
 		if directory is None and self.showMountpoints: # present available mountpoints
 			for p in harddiskmanager.getMountedPartitions():
-				path = os.path.join(p.mountpoint, "")
+				path = pathjoin(p.mountpoint, "")
 				if path not in self.inhibitMounts and not self.inParentDirs(path, self.inhibitDirs):
 					self.list.append(MultiFileSelectEntryComponent(name=p.description, absolute=path, isDir=True))
 			files = []
@@ -396,29 +399,28 @@ class MultiFileSelectList(FileList):
 			directories.sort()
 			files.sort()
 		else:
-			if fileExists(directory):
+			if isdir(directory):
 				try:
-					files = os.listdir(directory)
+					files = listdir(directory)
 				except:
 					files = []
 				files.sort()
 				tmpfiles = files[:]
 				for x in tmpfiles:
-					if os.path.isdir(directory + x):
+					if isdir(directory + x):
 						directories.append(directory + x + "/")
 						files.remove(x)
 
-		if directory is not None and self.showDirectories and not self.isTop:
-			if directory == self.current_mountpoint and self.showMountpoints:
-				self.list.append(MultiFileSelectEntryComponent(name="<" + _("List of storage devices") + ">", absolute=None, isDir=True))
-			elif (directory != "/") and not (self.inhibitMounts and self.getMountpoint(directory) in self.inhibitMounts):
-				self.list.append(MultiFileSelectEntryComponent(name="<" + _("Parent directory") + ">", absolute='/'.join(directory.split('/')[:-2]) + '/', isDir=True))
-
 		if self.showDirectories:
+			if directory:
+				if self.showMountpoints and directory == self.current_mountpoint:
+					self.list.append(MultiFileSelectEntryComponent(name="<" + _("List of storage devices") + ">", absolute=None, isDir=True))
+				elif (directory != self.topDirectory) and not (self.inhibitMounts and self.getMountpoint(directory) in self.inhibitMounts):
+					self.list.append(MultiFileSelectEntryComponent(name="<" + _("Parent directory") + ">", absolute='/'.join(directory.split('/')[:-2]) + '/', isDir=True))
 			for x in directories:
 				if not (self.inhibitMounts and self.getMountpoint(x) in self.inhibitMounts) and not self.inParentDirs(x, self.inhibitDirs):
 					name = x.split('/')[-2]
-					alreadySelected = (x in self.selectedFiles) or (os.path.normpath(x) in self.selectedFiles)
+					alreadySelected = (x in self.selectedFiles) or (normpath(x) in self.selectedFiles)
 					self.list.append(MultiFileSelectEntryComponent(name=name, absolute=x, isDir=True, selected=alreadySelected))
 
 		if self.showFiles:
