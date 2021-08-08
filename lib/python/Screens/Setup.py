@@ -1,6 +1,7 @@
 from __future__ import print_function
+from Screens.HelpMenu import HelpableScreen
 from Screens.Screen import Screen
-from Components.ActionMap import NumberActionMap, ActionMap
+from Components.ActionMap import HelpableNumberActionMap, HelpableActionMap
 from Components.config import config, ConfigNothing, ConfigYesNo, ConfigSelection, ConfigText, ConfigPassword
 from Tools.Directories import resolveFilename, SCOPE_CURRENT_PLUGIN
 from Components.SystemInfo import BoxInfo
@@ -79,7 +80,7 @@ class SetupSummary(Screen):
 				self.parent['footnote'].text = (_(" "))
 
 
-class Setup(ConfigListScreen, Screen):
+class Setup(ConfigListScreen, Screen, HelpableScreen):
 
 	ALLOW_SUSPEND = True
 
@@ -102,6 +103,7 @@ class Setup(ConfigListScreen, Screen):
 
 	def __init__(self, session, setup, plugin=None, PluginLanguageDomain=None):
 		Screen.__init__(self, session)
+		HelpableScreen.__init__(self)
 		# for the skin: first try a setup_<setupID>, then Setup
 		self.skinName = ["setup_" + setup, "Setup"]
 
@@ -126,18 +128,16 @@ class Setup(ConfigListScreen, Screen):
 		self["key_green"] = StaticText(_("OK"))
 		self["description"] = Label("")
 
-		self["actions"] = NumberActionMap(["SetupActions", "MenuActions"],
-			{
-				"cancel": self.keyCancel,
-				"save": self.keySave,
-				"ok": self.keySave,
-				"menu": self.closeRecursive,
-			}, -2)
+		self["actions"] = HelpableNumberActionMap(self, ["SetupActions", "MenuActions"], {
+			"cancel": (self.keyCancel, _("Cancel any changed settings and exit")),
+			"save": (self.keySave, _("Save all changed settings and exit")),
+			"ok": (self.keySave, _("Save all changed settings and exit")),
+			"menu": (self.closeRecursive, _("Cancel any changed settings and exit all menus"))
+		}, prio=-2, description=_("Common Setup Actions"))
 
-		self["VirtualKB"] = ActionMap(["VirtualKeyboardActions"],
-		{
-			"showVirtualKeyboard": self.KeyText,
-		}, -2)
+		self["VirtualKB"] = HelpableActionMap(self, ["VirtualKeyboardActions"], {
+			"showVirtualKeyboard": (self.KeyText, _("Display the virtual keyboard for data entry"))
+		}, prio=-2, description=_("Common Setup Actions"))
 		self["VirtualKB"].setEnabled(False)
 
 		if not self.handleInputHelpers in self["config"].onSelectionChanged:
