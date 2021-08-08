@@ -439,7 +439,7 @@ class Status:
 					data['bitrate'] = br
 
 		if ssid != None and ssid != "off":
-			scanresults = list(Cell.all(iface, 5))
+			scanresults = list(Cell.all(iface))
 			aps = {}
 			if scanresults is not None:
 				for i in range(len(scanresults)):
