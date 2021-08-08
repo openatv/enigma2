@@ -86,7 +86,7 @@ class Wlan:
 				if driver in ('brcm-wl', ):
 					system("wl up")
 
-		scanresults = list(Cell.all(self.iface, 5))
+		scanresults = list(Cell.all(self.iface))
 		aps = {}
 		if scanresults is not None:
 			for i in range(len(scanresults)):
