@@ -1,6 +1,5 @@
-from __future__ import absolute_import
-from Components.Sources.Source import Source
 from Components.Element import cached
+from Components.Sources.Source import Source
 
 
 class List(Source, object):
@@ -15,18 +14,27 @@ to generate HTML."""
 	def __init__(self, list=[], enableWrapAround=False, item_height=25, fonts=[]):
 		Source.__init__(self)
 		self.__list = list
-		self.onSelectionChanged = []
+		self.enableWrapAround = enableWrapAround
 		self.item_height = item_height
 		self.fonts = fonts
+		self.onSelectionChanged = []
 		self.disable_callbacks = False
-		self.enableWrapAround = enableWrapAround
-		self.__style = "default" # style might be an optional string which can be used to define different visualisations in the skin
+		self.__style = "default"  # Style might be an optional string which can be used to define different visualisations in the skin.
 
 	def setList(self, list):
 		self.__list = list
 		self.changed((self.CHANGED_ALL,))
 
 	list = property(lambda self: self.__list, setList)
+
+	def updateList(self, list):
+		"""Changes the list without changing the selection or emitting changed Events"""
+		maxIndex = len(list) - 1
+		oldIndex = min(self.index, maxIndex)
+		self.disable_callbacks = True
+		self.list = list
+		self.index = oldIndex
+		self.disable_callbacks = False
 
 	def entry_changed(self, index):
 		if not self.disable_callbacks:
@@ -36,18 +44,13 @@ to generate HTML."""
 		self.__list[index] = data
 		self.entry_changed(index)
 
-	def count(self):
-		return len(self.__list)
-
 	def selectionChanged(self, index):
 		if self.disable_callbacks:
 			return
-
-		# update all non-master targets
+		# Update all non-master targets.
 		for x in self.downstream_elements:
 			if x is not self.master:
 				x.index = index
-
 		for x in self.onSelectionChanged:
 			x()
 
@@ -57,37 +60,18 @@ to generate HTML."""
 
 	current = property(getCurrent)
 
+	@cached
+	def getIndex(self):
+		return self.master.index if self.master is not None else 0  # None - The 0 is a hack to avoid badly written code from crashing!
+
 	def setIndex(self, index):
 		if self.master is not None:
 			self.master.index = index
 			self.selectionChanged(index)
 
-	@cached
-	def getIndex(self):
-		if self.master is not None:
-			return self.master.index
-		else:
-			return 0
-
-	setCurrentIndex = setIndex
-
 	index = property(getIndex, setIndex)
 
-	def selectNext(self):
-		if self.getIndex() + 1 >= self.count():
-			if self.enableWrapAround:
-				self.index = 0
-		else:
-			self.index += 1
-		self.setIndex(self.index)
-
-	def selectPrevious(self):
-		if self.getIndex() - 1 < 0:
-			if self.enableWrapAround:
-				self.index = self.count() - 1
-		else:
-			self.index -= 1
-		self.setIndex(self.index)
+	setCurrentIndex = setIndex
 
 	@cached
 	def getStyle(self):
@@ -100,32 +84,39 @@ to generate HTML."""
 
 	style = property(getStyle, setStyle)
 
-	def updateList(self, list):
-		"""Changes the list without changing the selection or emitting changed Events"""
-		max_index = len(list) - 1
-		old_index = min(max_index, self.index)
-		self.disable_callbacks = True
-		self.list = list
-		self.index = old_index
-		self.disable_callbacks = False
+	def getSelectedIndex(self):
+		return self.getIndex()
+
+	def count(self):
+		return len(self.__list)
+
+	def selectPrevious(self):
+		if self.getIndex() > 0:
+			self.index -= 1
+		elif self.enableWrapAround:
+			self.index = self.count() - 1
+		self.setIndex(self.index)
+
+	def selectNext(self):
+		if self.getIndex < self.count() - 1:
+			self.index += 1
+		elif self.enableWrapAround:
+			self.index = 0
+		self.setIndex(self.index)
+
+	def top(self):
+		try:
+			instance = self.master.master.instance
+			instance.moveSelection(instance.moveTop)
+		except AttributeError:
+			return
 
 	def pageUp(self):
-		if self.getIndex() == 0:
-			self.index = self.count() - 1
-		elif self.getIndex() - 10 < 0:
-			self.index = 0
-		else:
-			self.index -= 10
-		self.setIndex(self.index)
-
-	def pageDown(self):
-		if self.getIndex() == self.count() - 1:
-			self.index = 0
-		elif self.getIndex() + 10 >= self.count():
-			self.index = self.count() - 1
-		else:
-			self.index += 10
-		self.setIndex(self.index)
+		try:
+			instance = self.master.master.instance
+			instance.moveSelection(instance.pageUp)
+		except AttributeError:
+			return
 
 	def up(self):
 		self.selectPrevious()
@@ -133,5 +124,16 @@ to generate HTML."""
 	def down(self):
 		self.selectNext()
 
-	def getSelectedIndex(self):
-		return self.getIndex()
+	def pageDown(self):
+		try:
+			instance = self.master.master.instance
+			instance.moveSelection(instance.pageDown)
+		except AttributeError:
+			return
+
+	def bottom(self):
+		try:
+			instance = self.master.master.instance
+			instance.moveSelection(instance.moveEnd)
+		except AttributeError:
+			return
