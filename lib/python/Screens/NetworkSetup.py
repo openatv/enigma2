@@ -323,6 +323,7 @@ class NameserverSetup(Screen, ConfigListScreen, HelpableScreen):
 		for nameserver in self.nameserverEntries:
 			iNetwork.addNameserver(nameserver.value)
 		iNetwork.writeNameserverConfig()
+		config.usage.dns.save()
 		self.close()
 
 	def run(self):

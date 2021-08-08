@@ -156,7 +156,7 @@ class Network:
 			for nameserver in self.nameservers:
 				fp.write("nameserver %d.%d.%d.%d\n" % tuple(nameserver))
 			fp.close()
-			if config.usage.dns.value.lower() not in ("dhcp-router", "custom"):
+			if config.usage.dns.value.lower() not in ("dhcp-router"):
 				Console().ePopen('rm -f /etc/enigma2/nameserversdns.conf')
 				fp = open('/etc/enigma2/nameserversdns.conf', 'w')
 				for nameserver in self.nameservers:
@@ -219,6 +219,8 @@ class Network:
 				self.configuredNetworkAdapters = self.configuredInterfaces
 				# load ns only once
 				self.loadNameserverConfig()
+				if config.usage.dns.value.lower() not in ("dhcp-router"):
+					self.writeNameserverConfig()
 #				print "read configured interface:", ifaces
 #				print "self.ifaces after loading:", self.ifaces
 				self.config_ready = True
@@ -233,7 +235,7 @@ class Network:
 
 		resolv = []
 		try:
-			if config.usage.dns.value.lower() in ("dhcp-router", "custom"):
+			if config.usage.dns.value.lower() in ("dhcp-router"):
 				fp = open('/etc/resolv.conf', 'r')
 			else:
 				fp = open('/etc/enigma2/nameserversdns.conf', 'r')
