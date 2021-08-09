@@ -7,21 +7,22 @@ LANGPO = $(LANGS:=.po)
 EXTRA_DIST = $(LANGPO)
 
 # the TRANSLATORS: allows putting translation comments before the to-be-translated line.
-enigma2-py.pot: $(top_srcdir)/lib/python/*.py $(top_srcdir)/lib/python/*/*.py $(top_srcdir)/lib/python/*/*/*.py $(top_srcdir)/lib/python/Plugins/*/*/*.py $(top_srcdir)/lib/python/Plugins/*/*/*/*.py
+enigma2-py.pot: $(top_srcdir)/lib/python/*.py $(top_srcdir)/lib/python/*/*.py $(top_srcdir)/lib/python/*/*/*.py $(top_srcdir)/lib/python/Plugins/*/*/*/*.py
 	$(XGETTEXT) --no-wrap -L Python --from-code=UTF-8 -kpgettext:1c,2 --add-comments="TRANSLATORS:" -d @PACKAGE_NAME@ -s -o $@ $^
-	$(SED) --regexp-extended --in-place $@ --expression="s/(#:\s).*\/(.*\/plugin\.py|[^.*\/plugin\.py].*)(:\d*)/\1\2\3/"
+	$(SED) --in-place $@ --expression=s/CHARSET/UTF-8/
 
 enigma2-xml.pot: $(srcdir)/xml2po.py $(top_srcdir)/data/*.xml $(top_srcdir)/lib/python/Plugins/SystemPlugins/*/*.xml $(top_srcdir)/lib/python/Plugins/Extensions/*/*.xml
 	$(PYTHON) $^ > $@
-	$(SED) --regexp-extended --in-place $@ --expression="s/(#:\s).*\/(.*\.xml)/\1\2/"
+																				  
 
 enigma2.pot: enigma2-py.pot enigma2-xml.pot
-	$(SED) --in-place $^ --expression="s/CHARSET/UTF-8/"
-	cat $^ | $(MSGUNIQ) --no-wrap -o $@ -
+													 
+	cat $^ | $(MSGUNIQ) --no-wrap --no-location -o $@ -
 
 %.po: enigma2.pot
 	if [ -f $@ ]; then \
-		$(MSGMERGE) --backup=none --no-wrap -s -U $@ $< && touch $@; \
+		$(MSGMERGE) --backup=none --no-wrap --no-location -s -U $@ $< && touch $@; \
+		$(MSGATTRIB) --no-wrap --no-obsolete $@ -o $@; \
 	else \
 		$(MSGINIT) -l $@ -o $@ -i $< --no-translator; \
 	fi
