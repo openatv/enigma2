@@ -91,17 +91,19 @@ to generate HTML."""
 		return len(self.__list)
 
 	def selectPrevious(self):
-		if self.getIndex() > 0:
+		if self.getIndex() - 1 < 0:
+			if self.enableWrapAround:
+				self.index = self.count() - 1
+		else:
 			self.index -= 1
-		elif self.enableWrapAround:
-			self.index = self.count() - 1
 		self.setIndex(self.index)
 
 	def selectNext(self):
-		if self.getIndex < self.count() - 1:
+		if self.getIndex() + 1 >= self.count():
+			if self.enableWrapAround:
+				self.index = 0
+		else:
 			self.index += 1
-		elif self.enableWrapAround:
-			self.index = 0
 		self.setIndex(self.index)
 
 	def top(self):
