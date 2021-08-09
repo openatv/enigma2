@@ -680,7 +680,7 @@ void eDVBRdsDecoder::gotAncillaryData(const uint8_t *buf, int len)
 						//create RTPlus OSD for title/artist
 						memset(rtplus_osd, 0, sizeof(rtplus_osd));
 
-						if ( rtp_item[4][0] != 0 )//artist
+						if ( rtp_item[4][0] != 0 && (rtp_item[4][1] != 0 || rtp_item[4][0] != 0x20))//artist
 							sprintf((char*)rtplus_osd_tmp," (%.60s)",rtp_item[4]);
 
 						if ( rtp_item[1][0] != 0 )//title
