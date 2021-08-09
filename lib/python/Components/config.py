@@ -917,10 +917,10 @@ class ConfigSequence(ConfigElement):
 	def __init__(self, seperator, limits, default, censor_char=""):
 		ConfigElement.__init__(self)
 		assert isinstance(limits, list) and len(limits[0]) == 2, "limits must be [(min, max),...]-tuple-list"
-		assert censor_char == "" or len(censor_char) == 1, "censor char must be a single char (or \"\")"
-		#assert isinstance(default, list), "default must be a list"
-		#assert isinstance(default[0], int), "list must contain numbers"
-		#assert len(default) == len(limits), "length must match"
+		# assert censor_char == "" or len(censor_char) == 1, "censor char must be a single char (or \"\")"
+		# assert isinstance(default, list), "default must be a list"
+		# assert isinstance(default[0], int), "list must contain numbers"
+		# assert len(default) == len(limits), "length must match"
 
 		self.marked_pos = 0
 		self.seperator = seperator
@@ -1241,7 +1241,7 @@ class ConfigInteger(ConfigSequence):
 class ConfigPIN(ConfigInteger):
 	def __init__(self, default, pinlength=4, censor=""):
 		assert isinstance(default, int), "[Config] Error: 'ConfigPIN' default must be an integer!"
-		assert censor == "" or len(censor) == 1, "[Config] Error: Censor must be a single char (or \"\")!"
+		# assert censor == "" or len(censor) == 1, "[Config] Error: Censor must be a single char (or \"\")!"
 		ConfigSequence.__init__(self, seperator=":", limits=[(0, (10**pinlength) - 1)], censor_char=censor, default=default)
 		self.len = pinlength
 
