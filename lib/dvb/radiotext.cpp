@@ -478,7 +478,10 @@ void eDVBRdsDecoder::gotAncillaryData(const uint8_t *buf, int len)
 						/*emit*/ m_event(RadioTextChanged);
 					}
 					else
+					{
 						eDebug("[RDS] invalid radiotext crc (%s)", m_message_buffer);
+						lastmessage[0] = 0; // don't use message for next radiotext plus messages as it's the old/wrong message
+					}
 					state=0;
 					break;
 
