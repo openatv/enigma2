@@ -1239,11 +1239,11 @@ class ConfigInteger(ConfigSequence):
 
 
 class ConfigPIN(ConfigInteger):
-	def __init__(self, default, len=4, censor=""):
+	def __init__(self, default, pinlength=4, censor=""):
 		assert isinstance(default, int), "[Config] Error: 'ConfigPIN' default must be an integer!"
 		assert censor == "" or len(censor) == 1, "[Config] Error: Censor must be a single char (or \"\")!"
-		ConfigSequence.__init__(self, seperator=":", limits=[(0, (10**len) - 1)], censor_char=censor, default=default)
-		self.len = len
+		ConfigSequence.__init__(self, seperator=":", limits=[(0, (10**pinlength) - 1)], censor_char=censor, default=default)
+		self.len = pinlength
 
 	def getLength(self):
 		return self.len
