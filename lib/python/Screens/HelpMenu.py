@@ -22,10 +22,10 @@ from functools import cmp_to_key
 
 class HelpableScreen:
 	def __init__(self):
-		self["helpActions"] = ActionMap(["HelpActions"],
-			{
-				"displayHelp": self.showHelp,
-			})
+		self["helpActions"] = ActionMap(["HelpActions"], {
+			"displayHelp": self.showHelp
+		}, prio=0)
+		self["key_help"] = StaticText(_("HELP"))
 
 	def showHelp(self):
 		try:
