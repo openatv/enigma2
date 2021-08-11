@@ -79,7 +79,7 @@ class RecordingSettings(Screen, ConfigListScreen):
 
 		self["key_red"] = StaticText(_("Cancel"))
 		self["key_green"] = StaticText(_("Save"))
-		self["description"] = Label(_(""))
+		self["description"] = Label("")
 
 		self.onChangedEntry = []
 		self.setup = "recording"
