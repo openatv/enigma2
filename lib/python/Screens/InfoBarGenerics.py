@@ -271,7 +271,7 @@ class InfoBarUnhandledKey:
 		self.uflags = 0
 		self.sibIgnoreKeys = (
 			KEYIDS["KEY_VOLUMEDOWN"], KEYIDS["KEY_VOLUMEUP"],
-			KEYIDS["KEY_EXIT"], KEYIDS["KEY_OK"],
+			KEYIDS["KEY_INFO"], KEYIDS["KEY_OK"],
 			KEYIDS["KEY_UP"], KEYIDS["KEY_DOWN"],
 			KEYIDS["KEY_CHANNELUP"], KEYIDS["KEY_CHANNELDOWN"],
 			KEYIDS["KEY_NEXT"], KEYIDS["KEY_PREVIOUS"]
@@ -279,22 +279,27 @@ class InfoBarUnhandledKey:
 
 	def actionA(self, key, flag):  # This function is called on every keypress!
 		print("[InfoBarGenerics] Key: %s (%s) KeyID='%s'." % (key, KEYFLAGS.get(flag, _("Unknown")), KEYIDNAMES.get(key, _("Unknown"))))
-		if flag != 2: # Don't hide on repeat.
-			self.unhandledKeyDialog.hide()
-			if self.closeSIB(key) and self.secondInfoBarScreen and self.secondInfoBarScreen.shown:
-				self.secondInfoBarScreen.hide()
-				self.secondInfoBarWasShown = False
+# TODO : TEST
+#		if flag != 2: # Don't hide on repeat.
+		self.unhandledKeyDialog.hide()
+		if self.closeSIB(key) and self.secondInfoBarScreen and self.secondInfoBarScreen.shown:
+			self.secondInfoBarScreen.hide()
+			self.secondInfoBarWasShown = False
 		if flag != 4:
-			if flag == 0:
+# TODO: TEST
+#			if flag == 0:
+			if self.flags & (1 << 1):
 				self.flags = self.uflags = 0
 			self.flags |= (1 << flag)
-			if flag == 1 or flag == 3:  # Break and Long.
+# TODO : TEST
+#			if flag == 1 or flag == 3:  # Break and Long.
+			if flag == 1:  # Break
 				self.checkUnusedTimer.start(0, True)
 		return 0
 
 	def closeSIB(self, key):
-		return True if key >= 12 and key not in self.sibIgnoreKeys else False  # (114, 115, 174, 352, 103, 108, 402, 403, 407, 412)
-
+		return True if key >= 12 and key not in self.sibIgnoreKeys else False  # (114, 115, 103, 108, 402, 403, 407, 412, 352, 358)
+		
 	def actionB(self, key, flag):  # This function is only called when no other action has handled this key.
 		if flag != 4:
 			self.uflags |= (1 << flag)
