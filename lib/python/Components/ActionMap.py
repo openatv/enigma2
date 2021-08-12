@@ -271,6 +271,12 @@ class HelpableActionMap(ActionMap):
 	# be picked up by the "HelpableScreen".
 	#
 	def __init__(self, parent, contexts, actions=None, prio=0, description=None):
+		def exists(record):
+			for context in parent.helpList:
+				if record in context[2]:
+					print("[HelpActionMap] removed duplicity: %s %s" % (context[1], record))
+					return True
+			return False
 		if isinstance(contexts, str):
 			contexts = [contexts]
 		actions = actions or {}
@@ -282,7 +288,8 @@ class HelpableActionMap(ActionMap):
 				if not isinstance(response, (list, tuple)):
 					response = (response, None)
 				if queryKeyBinding(context, action):
-					actionList.append((action, response[1]))
+					if not exists((action, response[1])):
+						actionList.append((action, response[1]))
 				actionDict[action] = response[0]
 			parent.helpList.append((self, context, actionList))
 		ActionMap.__init__(self, contexts, actionDict, prio)
