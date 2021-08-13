@@ -169,12 +169,12 @@ class ShowRemoteControl:
 		pixmap.startMoving(callback)
 
 
-class HelpMenu(Screen, Rc):
+class HelpMenuOld(Screen, Rc):
 	def __init__(self, session, list):
 		Screen.__init__(self, session)
 		Screen.setTitle(self, _("Help"))
 		self.onSelChanged = []
-		self["list"] = HelpMenuList(list, self.close)
+		self["list"] = HelpMenuListOld(list, self.close)
 		self["list"].onSelChanged.append(self.SelectionChanged)
 		Rc.__init__(self)
 		self["long_key"] = Label("")
@@ -211,7 +211,7 @@ class HelpMenu(Screen, Rc):
 		#	arrow.show()
 
 
-class HelpMenuList(GUIComponent):
+class HelpMenuListOld(GUIComponent):
 	def __init__(self, helplist, callback):
 		GUIComponent.__init__(self)
 		self.onSelChanged = []
@@ -304,12 +304,12 @@ class HelpMenuList(GUIComponent):
 		for x in self.onSelChanged:
 			x()
 
-class HelpMenuNew(Screen, ShowRemoteControl):
+class HelpMenu(Screen, ShowRemoteControl):
 	def __init__(self, session, helpList):
 		Screen.__init__(self, session)
 		ShowRemoteControl.__init__(self)
 		self.setTitle(_("Help"))
-		self["list"] = HelpMenuListNew(helpList, self.close)
+		self["list"] = HelpMenuList(helpList, self.close)
 		self["list"].onSelectionChanged.append(self.selectionChanged)
 		self["buttonlist"] = Label("")
 		self["description"] = Label("")
@@ -422,7 +422,7 @@ class HelpMenuNew(Screen, ShowRemoteControl):
 # and data[2:] = [helpText, None, extText, None] for non-indented text
 # and data[2:] = [None, helpText, None, extText] for indented text
 #
-class HelpMenuListNew(List):
+class HelpMenuList(List):
 	HEADINGS = 1
 	EXTENDED = 2
 
@@ -595,7 +595,7 @@ class HelpMenuListNew(List):
 			actionMapHelp[index] = tuple(entry)
 
 	def getCurrent(self):
-		selection = super(HelpMenuListNew, self).getCurrent()
+		selection = super(HelpMenuList, self).getCurrent()
 		return selection and selection[0]
 
 	def handleButton(self, keyId, flag):

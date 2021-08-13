@@ -1,7 +1,7 @@
 from __future__ import print_function
+from Screens.HelpMenu import ShowRemoteControl
 from Screens.Wizard import WizardSummary
 from Screens.WizardLanguage import WizardLanguage
-from Screens.Rc import Rc
 from Components.AVSwitch import iAVSwitch
 from Screens.Screen import Screen
 
@@ -49,7 +49,7 @@ class VideoWizardSummary(WizardSummary):
 		self["pic"].instance.setPixmapFromFile(file)
 
 
-class VideoWizard(WizardLanguage, Rc):
+class VideoWizard(WizardLanguage, ShowRemoteControl):
 	skin = """
 		<screen position="fill" title="Welcome..." flags="wfNoBorder" >
 			<panel name="WizardMarginsTemplate"/>
@@ -79,7 +79,7 @@ class VideoWizard(WizardLanguage, Rc):
 		self.hw = iAVSwitch
 
 		WizardLanguage.__init__(self, session, showSteps=False, showStepSlider=False)
-		Rc.__init__(self)
+		ShowRemoteControl.__init__(self)
 		self["wizard"] = Pixmap()
 		self["HelpWindow"] = Pixmap()
 		self["HelpWindow"].hide()

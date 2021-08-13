@@ -6,7 +6,7 @@ from Components.config import config, ConfigInteger
 from Components.RcModel import rc_model
 from boxbranding import getBoxType
 
-config.misc.rcused = ConfigInteger(default=1)
+#config.misc.rcused = ConfigInteger(default=1)
 
 
 class Rc:
@@ -17,7 +17,7 @@ class Rc:
 		self["arrowup"] = MovingPixmap()
 		self["arrowup2"] = MovingPixmap()
 
-		config.misc.rcused = ConfigInteger(default=1)
+#		config.misc.rcused = ConfigInteger(default=1)
 		self.isDefaultRc = rc_model.rcIsDefault()
 		self.rcheight = 500
 		self.rcheighthalf = 250

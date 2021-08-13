@@ -1,8 +1,8 @@
 from __future__ import absolute_import
+from Screens.HelpMenu import ShowRemoteControl
 from Screens.Wizard import wizardManager
 from Screens.WizardLanguage import WizardLanguage
 from Screens.VideoWizard import VideoWizard
-from Screens.Rc import Rc
 from Screens.Screen import Screen
 
 from boxbranding import getBoxType
@@ -17,11 +17,11 @@ config.misc.languageselected = ConfigBoolean(default=True)
 config.misc.videowizardenabled = ConfigBoolean(default=True)
 
 
-class StartWizard(WizardLanguage, Rc):
+class StartWizard(WizardLanguage, ShowRemoteControl):
 	def __init__(self, session, silent=True, showSteps=False, neededTag=None):
 		self.xmlfile = ["startwizard.xml"]
 		WizardLanguage.__init__(self, session, showSteps=False)
-		Rc.__init__(self)
+		ShowRemoteControl.__init__(self)
 		self["wizard"] = Pixmap()
 		self["HelpWindow"] = Pixmap()
 		self["HelpWindow"].hide()
