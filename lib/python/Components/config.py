@@ -150,6 +150,9 @@ class ConfigElement(object):
 	def tostring(self, value):
 		return str(value)
 
+	def toDisplayString(self, value):
+		return str(value)
+
 	def isChanged(self):
 		sv = self.saved_value
 		if sv is None and self.value == self.default:
@@ -406,6 +409,9 @@ class ConfigBoolean(ConfigElement):
 
 	def tostring(self, value):
 		return "true" if value and str(value).lower() in self.trueValues else "false"
+
+	def toDisplayString(self, value):
+		return self.descriptions[True] if value or str(value).lower() in self.trueValues else self.descriptions[False]
 
 	def getText(self):
 		return self.descriptions[self.value]
@@ -760,6 +766,9 @@ class ConfigSelection(ConfigElement):
 
 	def tostring(self, val):
 		return val
+
+	def toDisplayString(self, val):
+		return self.description[val]
 
 	def getValue(self):
 		return self._value
