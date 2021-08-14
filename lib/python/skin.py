@@ -1162,8 +1162,16 @@ def readSkin(screen, skin, names, desktop):
 	for n in names:  # Try all skins, first existing one has priority.
 		myScreen, path = domScreens.get(n, (None, None))
 		if myScreen is not None:
-			name = n  # Use this name for debug output.
-			break
+			if screen.mandatoryWidgets is None:
+				screen.mandatoryWidgets = []
+			else:
+				widgets = findWidgets(n)
+			if screen.mandatoryWidgets == [] or all(item in widgets for item in screen.mandatoryWidgets):
+				name = n  # Use this name for debug output.
+				break
+			else:
+				print("[Skin] Warning: Skin screen '%s' rejected as it does not offer all the mandatory widgets '%s'!" % (n, ", ".join(screen.mandatoryWidgets)))
+				myScreen = None
 	else:
 		name = "<embedded-in-%s>" % screen.__class__.__name__
 	if myScreen is None:  # Otherwise try embedded skin.
