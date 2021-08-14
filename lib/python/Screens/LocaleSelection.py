@@ -177,7 +177,7 @@ class LocaleSelection(Screen, HelpableScreen):
 			package = international.getPackage(inUseLoc)
 			self.list.append((png, LANGUAGE_DATA[data[0]][LANG_NATIVE], name, inUseLoc, self["icons"].pixmaps[self.PACK_IN_USE], self.PACK_IN_USE, package))
 		sortBy = int(config.locales.localesSortBy.value)
-		order = sortBy / 10 if sortBy > 9 else sortBy
+		order = int(sortBy / 10) if sortBy > 9 else sortBy
 		reverse = True if sortBy > 9 else False
 		self.list = sorted(self.list, key=lambda x: x[order], reverse=reverse)
 		self["locales"].updateList(self.list)
