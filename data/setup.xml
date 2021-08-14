@@ -556,4 +556,8 @@
 		<item level="2" text="Show translation packages" description="If set to 'yes' it will show the 'PO' packages in browser.">config.pluginbrowser.po</item>
 		<item level="2" text="Show source packages" description="If set to 'yes' it will show the 'SRC' packages in browser.">config.pluginbrowser.src</item>
 	</setup>
-	</setupxml>
+	<setup key="Locale" title="Locale Selection Setup" menuTitle="Locale">
+		<item level="0" text="Locales to be displayed" description="Display the base locales or all locales for a language.">config.locales.packageLocales</item>
+		<item level="0" text="Locale list sort order" description="Sort order for the language list.">config.locales.localesSortBy</item>
+	</setup>
+</setupxml>
