@@ -1,11 +1,11 @@
 # The ISO3166 list of countries is built by the International module.
 #
-# The list contains 4 fields:
+# The list contains 5 fields:
 # 	1: Country name translated to local language
 # 	2: ISO3166 ALPHA-2 code
 #	3: ISO3166 ALPHA-3 code
 #	4: ISO3166 Numeric code
-# 	4: English name of the country
+# 	5: English name of the country
 #
 # The list is sorted by the English name.
 
