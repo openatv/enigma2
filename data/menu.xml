@@ -97,7 +97,7 @@ self.session.open(RemoteControlCode)
 				<item weight="40" level="1" text="Keyboard" entryID="keyboard"><setup id="keyboard" /></item>
 				<item weight="50" level="2" text="OSD 3D Setup" entryID="osd3dsetup" requires="CanChange3DOsd"><screen module="UserInterfacePositioner" screen="OSD3DSetupScreen"/></item>
 			</menu>
-			<item weight="70" level="0" text="Language" entryID="language_setup"><screen module="LanguageSelection" /></item>
+			<item weight="70" level="0" text="Language" entryID="locale_setup"><screen module="LocaleSelection" /></item>
 		</menu>
 
 		<!-- Menu / Settings / EPG -->

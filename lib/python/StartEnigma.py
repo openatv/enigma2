@@ -11,7 +11,7 @@ profile("PYTHON_START")
 
 import Tools.RedirectOutput
 import enigma
-from boxbranding import getBoxType, getBrandOEM, getMachineBuild, getImageArch
+from boxbranding import getBoxType, getBrandOEM, getMachineBuild, getImageArch, getMachineBrand
 import eConsoleImpl
 import eBaseImpl
 enigma.eTimer = eBaseImpl.eTimer
@@ -37,7 +37,40 @@ profile("SetupDevices")
 import Components.SetupDevices
 Components.SetupDevices.InitSetupDevices()
 
-from Components.config import config, ConfigYesNo, ConfigSubsection, ConfigInteger
+from Components.config import config, ConfigYesNo, ConfigSubsection, ConfigInteger, ConfigText
+
+# Initialize the country, language and locale data.
+#
+profile("InternationalLocalization")
+from Components.International import international
+
+
+def localeNotifier(configElement):
+	international.activateLocale(configElement.value)
+
+config.osd = ConfigSubsection()
+if getMachineBrand() == 'Atto.TV':
+	defaultLanguage = "pt_BR"
+elif getMachineBrand() == 'Zgemma':
+	defaultLanguage = "en_US"
+elif getMachineBrand() == 'Beyonwiz':
+	defaultLanguage = "en_GB"
+else:
+	defaultLanguage = "de_DE"
+
+defaultCountry = defaultLanguage[-2:]
+defaultShortLanguage = defaultLanguage[0:2]
+
+config.osd.language = ConfigText(default=defaultLanguage)
+config.osd.language.addNotifier(localeNotifier)
+
+config.misc.country = ConfigText(default=defaultCountry)
+config.misc.language = ConfigText(default=defaultShortLanguage)
+config.misc.locale = ConfigText(default=defaultLanguage)
+# TODO
+# config.misc.locale.addNotifier(localeNotifier)
+
+
 # These entries should be moved back to UsageConfig.py when it is safe to bring UsageConfig init to this location in StartEnigma2.py.
 #
 config.crash = ConfigSubsection()
@@ -76,7 +109,7 @@ profile("LOAD:skin")
 from skin import readSkin
 
 profile("LOAD:Tools")
-from Components.config import configfile, ConfigText, ConfigSelection, NoSave, ConfigSubsection
+from Components.config import configfile, ConfigSelection, NoSave, ConfigSubsection
 from Tools.Directories import InitFallbackFiles, resolveFilename, SCOPE_PLUGINS, SCOPE_ACTIVE_SKIN, SCOPE_CURRENT_SKIN, SCOPE_CONFIG
 import Components.RecordingConfig
 InitFallbackFiles()
