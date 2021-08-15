@@ -18,7 +18,7 @@ from Screens.ParentalControlSetup import ProtectedScreen
 from Screens.NetworkSetup import *
 from Screens.About import About
 from Screens.PluginBrowser import PluginDownloadBrowser, PluginFilter, PluginBrowser
-from Screens.LanguageSelection import LanguageSelection
+from Screens.LocaleSelection import LocaleSelection
 from Screens.Satconfig import NimSelection
 from Screens.ScanSetup import ScanSimple, ScanSetup
 from Screens.Setup import Setup, getSetupTitle
