@@ -45,6 +45,12 @@ class Language:
 			languageList.append((locale, (international.getLanguageNative(language), language, country, international.getLanguageEncoding(language))))
 		return languageList
 
+	def getLanguageListSelection(self):
+		languageListSelection = []
+		for data in self.getLanguageList():
+			self.languageListSelection.append((data[0], data[1][0]))
+		return languageListSelection
+
 	def getActiveCatalog(self):
 		return international.getActiveCatalog()
 
