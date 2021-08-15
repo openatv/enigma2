@@ -3,15 +3,16 @@ msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-04-16 19:27+0430\n"
-"PO-Revision-Date: 2020-10-13 22:23+0200\n"
-"Last-Translator: Marián Hikaník <https://www.mojepreklady.net>\n"
-"Language-Team: \n"
-"Language: sk_SK\n"
+"PO-Revision-Date: 2021-08-15 16:10+0000\n"
+"Last-Translator: NickerSK <nickersk@gmail.com>\n"
+"Language-Team: Slovak <https://hosted.weblate.org/projects/openatv/"
+"enigma2-7-0-po/sk/>\n"
+"Language: sk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
-"X-Generator: Poedit 2.4.1\n"
+"X-Generator: Weblate 4.8-dev\n"
 
 msgid ""
 "\n"
@@ -231,7 +232,7 @@ msgid "  Menu key : Select quad channel"
 msgstr "  Tlačidlo Menu: Výber kanála Quad"
 
 msgid "  REC  "
-msgstr ""
+msgstr "  REC  "
 
 msgid "  Red key : Show/Hide channel name"
 msgstr "  Červené tlač.: Zobraziť/skryť názov kanála"
@@ -451,9 +452,9 @@ msgstr "%.0f MB"
 msgid "%.2f GB"
 msgstr "%.2f GB"
 
-#, fuzzy, python-format
+#, python-format
 msgid "%.3f MHz"
-msgstr "%s MHz"
+msgstr "%.3f MHz"
 
 #, python-format
 msgid "%02d.%02d."
@@ -1268,7 +1269,7 @@ msgstr "%s GHz"
 
 #, python-format
 msgid "%s KSymb/s"
-msgstr ""
+msgstr "%s KSymb/s"
 
 #, python-format
 msgid "%s MHz"
@@ -1385,9 +1386,8 @@ msgstr "(1 úloha)"
 msgid "(Attention: There will be a restart after %d crashes.)"
 msgstr "(Pozor: po %d pádoch bude nasledovať reštart.)"
 
-#, fuzzy
 msgid "(FTA Service)"
-msgstr "Všetky stanice"
+msgstr "(Nekódovaná stanica)"
 
 msgid "(Selectmode)"
 msgstr "(Režim výberu)"
@@ -1423,7 +1423,7 @@ msgid "+24"
 msgstr "+24"
 
 msgid "-"
-msgstr ""
+msgstr "-"
 
 msgid "-24"
 msgstr "-24"
@@ -2233,12 +2233,11 @@ msgstr "AFP"
 msgid "AFP Setup"
 msgstr "Nastavenie AFP"
 
-#, fuzzy
 msgid "ASS File"
-msgstr "Súbor"
+msgstr "Súbor ASS"
 
 msgid "ASS file"
-msgstr ""
+msgstr "Súbor ASS"
 
 msgid "ATSC"
 msgstr "ATSC"
@@ -2973,10 +2972,10 @@ msgstr "Zvuk PID"
 
 #, python-format
 msgid "Audio PID%s, codec & lang"
-msgstr ""
+msgstr "Audio PID %s, kodek & jazyk"
 
 msgid "Audio PID, codec & lang"
-msgstr ""
+msgstr "Audio PID, kodek & jazyk"
 
 msgid "Audio Selection"
 msgstr "Výber zvuku"
@@ -3366,7 +3365,7 @@ msgid "Baseball"
 msgstr "Baseball"
 
 msgid "Basic PID info"
-msgstr ""
+msgstr "Základné info o PID"
 
 msgid "Basic settings"
 msgstr "Základné nastavenie"
@@ -3623,9 +3622,8 @@ msgstr "Prijaté bajty:"
 msgid "Bytes sent:"
 msgstr "Odoslané bajty:"
 
-#, fuzzy
 msgid "C"
-msgstr "CH"
+msgstr "C"
 
 msgid "C-Band"
 msgstr "Pásmo C"
@@ -4933,9 +4931,8 @@ msgstr "Pripojené: "
 msgid "Console"
 msgstr "Konzola"
 
-#, fuzzy
 msgid "Constellation & FFT mode"
-msgstr "Zostava"
+msgstr "Zostava & FFT mód"
 
 msgid "Consult your SCR device spec sheet for this information."
 msgstr "Túto informáciu získate v liste so špecifikáciou zariadenia SCR."
@@ -5214,11 +5211,9 @@ msgstr "Práve nainštalované"
 msgid "Current location"
 msgstr "Aktuálne umiestnenie"
 
-#, fuzzy, python-format
+#, python-format
 msgid "Current mode: %s \n"
-msgstr ""
-"Aktuálny režim:   %s\n"
-"\n"
+msgstr "Aktuálny režim: %s \n"
 
 msgid "Current settings:"
 msgstr "Aktuálne nastavenia:"
@@ -5285,7 +5280,7 @@ msgstr "Česká republika"
 
 #, fuzzy
 msgid "D"
-msgstr "SD"
+msgstr "D"
 
 msgid "DAC"
 msgstr "DAC"
@@ -5327,9 +5322,8 @@ msgstr "DVOJVRSTVOVÉ DVD"
 msgid "DVB CI Delay"
 msgstr "Oneskorenie DVB CI"
 
-#, fuzzy
 msgid "DVB Subtitles PID & lang"
-msgstr "Titulky - dlho"
+msgstr "DVB Titulky - PID a jazyk"
 
 msgid "DVB subtitle black transparency"
 msgstr "Priehľadnosť pozadia DVD titulkov"
@@ -5759,7 +5753,6 @@ msgstr "Vymazať položku playlistu"
 msgid "Delete saved playlist"
 msgstr "Vymazať uložený playlist"
 
-#, fuzzy
 msgid "Delete the all the text"
 msgstr "Vymazať všetok text"
 
@@ -6330,9 +6323,8 @@ msgstr "Ovládače:\t%s"
 msgid "Drogen"
 msgstr "Drogy"
 
-#, fuzzy
 msgid "Dual Mode"
-msgstr "Režim 3D"
+msgstr "Duálny režim"
 
 msgid "During this time, the transmitter and the recording destination are checked. If the recording destination (eg NAS) does not ready in time for recording, this time can be increased."
 msgstr "Počas tohto času sa skontroluje prenosová súčasť a cieľ pre nahrávku. Ak nie je cieľ pre nahrávku (napr. NAS) pripravený v čase pre nahrávku, je možné tento časový limit zvýšiť."
@@ -6348,7 +6340,7 @@ msgstr "Východný"
 
 #, fuzzy
 msgid "E "
-msgstr " "
+msgstr "E "
 
 msgid "E2 Log"
 msgstr "Záznam E2"
@@ -6356,9 +6348,8 @@ msgstr "Záznam E2"
 msgid "E3HD/XPEEDLX/GI"
 msgstr "E3HD/XPEEDLX/GI"
 
-#, fuzzy
 msgid "ECM Info"
-msgstr "ECM Info CCcam"
+msgstr "ECM Info"
 
 msgid "ECM Statistics"
 msgstr "Štatistika ECM"
@@ -6464,9 +6455,8 @@ msgstr "Východný limit nastavený"
 msgid "Eastern"
 msgstr "Východné"
 
-#, fuzzy
 msgid "EasyMedia"
-msgstr "Médium"
+msgstr "EasyMedia"
 
 msgid "Ecuador"
 msgstr "Ekvádor"
@@ -6552,7 +6542,7 @@ msgid "Email"
 msgstr "E-mail"
 
 msgid "Embedded"
-msgstr ""
+msgstr "Vložené"
 
 msgid "Empty slot"
 msgstr "Prázdny slot"
@@ -6727,7 +6717,6 @@ msgstr "Zakódované: "
 msgid "Encryption"
 msgstr "Šifrovanie"
 
-#, fuzzy
 msgid "Encryption Type:"
 msgstr "Šifrovanie:"
 
@@ -6778,13 +6767,13 @@ msgstr ""
 
 #, python-format
 msgid "Enigma2 debug level:\t%d"
-msgstr ""
+msgstr "Enigma2 debug level:\t%d"
 
 msgid "Enigma2 skin selector"
 msgstr "Enigma2 - volič vzhľadu"
 
 msgid "Enigmalight"
-msgstr ""
+msgstr "Enigmalight"
 
 msgid "Enter"
 msgstr "Zadať"
@@ -7008,9 +6997,8 @@ msgstr "Estónsko"
 msgid "Estonian"
 msgstr "Estónčina"
 
-#, fuzzy
 msgid "EtPortal"
-msgstr "Portugalsko"
+msgstr "EtPortál"
 
 msgid "Ethernet network interface"
 msgstr "Rozhranie siete Ethernet"
@@ -7176,9 +7164,8 @@ msgstr "Expert"
 msgid "Expert mode"
 msgstr "Režim pre expertov"
 
-#, fuzzy
 msgid "Ext. NumberZap"
-msgstr "Počet"
+msgstr "Rozš. prepínanie číslami"
 
 msgid "Extend"
 msgstr "Rozšíriť"
@@ -7192,9 +7179,8 @@ msgstr "Rozšírené GUI"
 msgid "Extended Networksetup Plugin..."
 msgstr "Plugin rozšíreného nastavenia siete..."
 
-#, fuzzy
 msgid "Extended PID info"
-msgstr "Rozšírené GUI"
+msgstr "Rozšírené info o PID"
 
 msgid "Extended Setup..."
 msgstr "Rozšírené nastavenie..."
@@ -7254,9 +7240,8 @@ msgstr "Extrémne športy"
 msgid "Extrude from left"
 msgstr "Vytlačenie z ľavej strany"
 
-#, fuzzy
 msgid "F"
-msgstr "F1"
+msgstr "F"
 
 msgid "F1"
 msgstr "F1"
@@ -7478,9 +7463,8 @@ msgstr "Chyba pri zápise súboru: '%s'"
 msgid "File/Directory Status Information"
 msgstr "Informácia o stave súboru/priečinka"
 
-#, fuzzy
 msgid "Filename"
-msgstr "názov súboru"
+msgstr "Názov súboru"
 
 msgid "Files/folders to exclude from backup"
 msgstr "Súbory/priečinky vylúčené zo zálohy"
@@ -7692,17 +7676,14 @@ msgstr "Francúzske južné územia"
 msgid "Frequency"
 msgstr "Frekvencia"
 
-#, fuzzy
 msgid "Frequency & Channel"
-msgstr "Použiť frekvenciu alebo kanál"
+msgstr "Frekvencia a kanál"
 
-#, fuzzy
 msgid "Frequency & Polarization"
-msgstr "Polarizácia"
+msgstr "Frekvencia a polarizácia"
 
-#, fuzzy
 msgid "Frequency Norm:"
-msgstr "Frekvencia: "
+msgstr "Frekvencia:"
 
 msgid "Frequency bands"
 msgstr "Frekvenčné pásma"
@@ -7713,9 +7694,8 @@ msgstr "Frekvenčný krok pri vyhľadávaní (kHz)"
 msgid "Frequency steps"
 msgstr "Frekvenčné kroky"
 
-#, fuzzy
 msgid "Frequency:"
-msgstr "Frekvencia: "
+msgstr "Frekvencia:"
 
 msgid "Frequency: "
 msgstr "Frekvencia: "
@@ -7774,9 +7754,8 @@ msgstr "Futbal"
 msgid "Für Kinder"
 msgstr "Pre deti"
 
-#, fuzzy
 msgid "G"
-msgstr "GB"
+msgstr "G"
 
 msgid "GB"
 msgstr "GB"
@@ -8067,9 +8046,8 @@ msgstr "Guinea-Bissau"
 msgid "Guyana"
 msgstr "Guyana"
 
-#, fuzzy
 msgid "H"
-msgstr "CH"
+msgstr "H"
 
 msgid "H: = Hourly / D: = Daily / W: = Weekly / M: = Monthly"
 msgstr "H: = hodinovo / D: = denne / W: = týždenne / M: = mesačne"
@@ -8096,7 +8074,7 @@ msgid "HD2400"
 msgstr "HD2400"
 
 msgid "HD60/Multibox/Multiboxse"
-msgstr ""
+msgstr "HD60/Multibox/Multiboxse"
 
 msgid "HDMI"
 msgstr "HDMI"
@@ -8380,18 +8358,15 @@ msgstr "Maďarčina"
 msgid "Hungary"
 msgstr "Maďarsko"
 
-#, fuzzy
 msgid "I"
-msgstr "IP"
+msgstr "I"
 
 msgid "I/O priority for script execution"
 msgstr "I/O priorita pre vykonávanie skriptu"
 
-#, fuzzy
 msgid "I55SE/H7/H9/H9SE/H9COMBO/H9COMBOSE/H10/H11 new Model"
-msgstr "H7/H9/H9COMBO/H10 nový model"
+msgstr "I55SE/H7/H9/H9SE/H9COMBO/H9COMBOSE/H10/H11 nový model"
 
-#, fuzzy
 msgid "IMDB Search"
 msgstr "Hľadať v IMDB"
 
@@ -9035,12 +9010,11 @@ msgstr "Neplatné údaje o transpondéri"
 msgid "Inversion"
 msgstr "Inverzia"
 
-#, fuzzy
 msgid "Inversion & Bandwidth"
-msgstr "Šírka ikony Info"
+msgstr "Inverzia a šírka pásma"
 
 msgid "Inversion, Pilot & Roll-off"
-msgstr ""
+msgstr "Inverzia, pilot a roll-off"
 
 msgid "Invert"
 msgstr "Označiť všetko"
@@ -9104,7 +9078,7 @@ msgid "Italy"
 msgstr "Taliansko"
 
 msgid "J"
-msgstr ""
+msgstr "J"
 
 msgid "JUMP 24 HOURS"
 msgstr "PRESKOČIŤ O 24 HODÍN"
@@ -10143,9 +10117,8 @@ msgstr "Presunúť 1 prvok"
 msgid "Move Left/Right"
 msgstr "Pohyb doľava/doprava"
 
-#, fuzzy
 msgid "Move PIP"
-msgstr "Presunúť"
+msgstr "Presunúť PIP"
 
 msgid "Move PiP to main picture"
 msgstr "Presunúť PIP do hlavného obrazu"
@@ -10370,9 +10343,8 @@ msgstr "NFS"
 msgid "NFS Setup"
 msgstr "Nastavenie NFS"
 
-#, fuzzy
 msgid "NIM & Type"
-msgstr "Typ HDMI HDR"
+msgstr "NIM a typ"
 
 msgid "NOW"
 msgstr "TERAZ"
@@ -10412,7 +10384,7 @@ msgid "Nameserver setup"
 msgstr "Nastavenie DNS"
 
 msgid "Namespace & Orbital pos."
-msgstr ""
+msgstr "Názov a orbitálna pozícia"
 
 msgid "Namibia"
 msgstr "Namíbia"
@@ -10637,9 +10609,8 @@ msgstr "Bez pripojenia"
 msgid "No Devices Found !!"
 msgstr "Nenašli sa žiadne zariadenia!"
 
-#, fuzzy
 msgid "No ECMPids available"
-msgstr "Nie je dostupné žiadne demultiplexovanie"
+msgstr "Nie sú dostupné žiadne ECMPids"
 
 msgid "No HDD found or HDD not initialized!"
 msgstr "Pevný disk sa nenašiel alebo nie je inicializovaný!"
@@ -11263,9 +11234,8 @@ msgstr "Hlavné menu OscamInfo"
 msgid "Other"
 msgstr "Ďalší"
 
-#, fuzzy
 msgid "Other Subtitles & lang"
-msgstr "Titulky - dlho"
+msgstr "Iné titulky a jazyk"
 
 msgid "Outdoor"
 msgstr "Outdoor"
@@ -11345,13 +11315,11 @@ msgstr "PCR PID"
 msgid "PDC"
 msgstr "PDC"
 
-#, fuzzy
 msgid "PGS File"
-msgstr "Súbor"
+msgstr "Súbor PGS"
 
-#, fuzzy
 msgid "PGS file"
-msgstr "Názov súboru EPG"
+msgstr "Súbor PGS"
 
 msgid "PID"
 msgstr "PID"
@@ -11590,13 +11558,13 @@ msgid "PiP"
 msgstr "PiP"
 
 msgid "PiP-Zap"
-msgstr ""
+msgstr "PiP-prepnutie"
 
 msgid "PiPSetup"
 msgstr "PiP - nastavenie"
 
 msgid "PiPZap"
-msgstr ""
+msgstr "PiPPrepnutie"
 
 msgid "Picon"
 msgstr "Prog. ikony"
@@ -11613,9 +11581,8 @@ msgstr "Prog. ikony - šírka"
 msgid "Picture in EPG"
 msgstr "Obraz v EPG"
 
-#, fuzzy
 msgid "Picture in Picture Setup"
-msgstr "Zatvoriť obrazovku funkcie PiP"
+msgstr "Nastavenie PiP"
 
 msgid "Picture in graphics"
 msgstr "Obraz v grafike"
@@ -12011,15 +11978,14 @@ msgstr ""
 "Prosím nastavte používateľské rozhranie upravovaním hodnôt, až kým sa rohy červeného rámčeka nedotknú rohov vašej obrazovky.\n"
 "Po skončení stlačte zelené tlačidlo pre pokračovanie."
 
-#, fuzzy
 msgid ""
 "Please use direction keys to move the PiP window.\n"
 "Press Bouquet +/- to resize the window.\n"
 "Press OK to go back to the TV mode or EXIT to cancel the moving."
 msgstr ""
-"Zmena pozície:  Na presúvanie okna PiP použite smerové tlačidlá\n"
-"Zmena veľkosti:  Stlačením tlačidla pre kanál +/- zmeníte veľkosť okna\n"
-"OK  -  uložiť zmeny  |  EXIT  -  zrušiť"
+"Zmena pozície: Na presúvanie okna PiP použite smerové tlačidlá\n"
+"Zmena veľkosti: Stlačením tlačidla pre kanál +/- zmeníte veľkosť okna\n"
+"OK - uložiť zmeny | EXIT - zrušiť"
 
 msgid "Please use the UP and DOWN keys to select your language. Afterwards press the OK button."
 msgstr "Šipkami NAHOR alebo NADOL vyberte jazyk, prosím. Potom stlačte OK."
