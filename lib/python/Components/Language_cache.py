@@ -165,7 +165,7 @@ LANG_TEXT = {
 	 "T3": "Cancel",
 	 "T4": "Save",
 },
-"no_NO": {
+"nn_NO": {
 	 "T1": "Vennligst bruk OPP og NED tastene for å velge ditt språk. Deretter trykk OK.",
 	 "T2": "Språkvalg",
 	 "T3": "Avbryte",
