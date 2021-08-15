@@ -492,10 +492,11 @@ class PliExtraInfo(Poll, Converter, object):
 
 	def createOrbPos(self, feraw):
 		orbpos = feraw.get("orbital_position")
-		if orbpos > 1800:
-			return str((float(3600 - orbpos)) / 10.0) + SIGN + "W"
-		elif orbpos > 0:
-			return str((float(orbpos)) / 10.0) + SIGN + "E"
+		if orbpos:
+			if orbpos > 1800:
+				return str((float(3600 - orbpos)) / 10.0) + SIGN + "W"
+			elif orbpos > 0:
+				return str((float(orbpos)) / 10.0) + SIGN + "E"
 		return ""
 
 	def createOrbPosOrTunerSystem(self, fedata, feraw):
