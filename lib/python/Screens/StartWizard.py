@@ -10,7 +10,7 @@ from boxbranding import getBoxType
 from Components.Pixmap import Pixmap
 from Components.config import config, ConfigBoolean, configfile
 
-from Screens.LanguageSelection import LanguageWizard
+from Screens.LocaleSelection import LocaleWizard
 
 config.misc.firstrun = ConfigBoolean(default=True)
 config.misc.languageselected = ConfigBoolean(default=True)
@@ -43,7 +43,7 @@ class StartWizard(WizardLanguage, ShowRemoteControl):
 
 # StartEnigma.py#L528ff - RestoreSettings
 wizardManager.registerWizard(VideoWizard, config.misc.videowizardenabled.value, priority=0)
-wizardManager.registerWizard(LanguageWizard, config.misc.languageselected.value, priority=2)
+wizardManager.registerWizard(LocaleWizard, config.misc.languageselected.value, priority=2)
 # FrontprocessorUpgrade FPUpgrade priority = 8
 # FrontprocessorUpgrade SystemMessage priority = 9
 wizardManager.registerWizard(StartWizard, config.misc.firstrun.value, priority=20)
