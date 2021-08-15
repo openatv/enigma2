@@ -48,7 +48,7 @@ class Language:
 	def getLanguageListSelection(self):
 		languageListSelection = []
 		for data in self.getLanguageList():
-			self.languageListSelection.append((data[0], data[1][0]))
+			languageListSelection.append((data[0], data[1][0]))
 		return languageListSelection
 
 	def getActiveCatalog(self):
