@@ -8,11 +8,12 @@ from Components.International import international
 class Language:
 	def __init__(self):
 		self.lang = {}
-		for package in international.getPackageDirectories():
-			locales = international.packageToLocales(package)
-			if len(locales):
-				language, country = international.splitLocale(locales[0])
-				self.lang[locales[0]] = ((international.getLanguageNative(language), language, country, international.getLanguageEncoding(language)))
+		if international.packageDirectories:
+			for package in international.packageDirectories:
+				locales = international.packageToLocales(package)
+				if len(locales):
+					language, country = international.splitLocale(locales[0])
+					self.lang[locales[0]] = ((international.getLanguageNative(language), language, country, international.getLanguageEncoding(language)))
 
 	def InitLang(self):
 		pass
@@ -43,6 +44,12 @@ class Language:
 			locale = "%s_%s" % (language, country if country else "??")
 			languageList.append((locale, (international.getLanguageNative(language), language, country, international.getLanguageEncoding(language))))
 		return languageList
+
+	def getLanguageListSelection(self):
+		languageListSelection = []
+		for data in self.getLanguageList():
+			languageListSelection.append((data[0], data[1][0]))
+		return languageListSelection
 
 	def getActiveCatalog(self):
 		return international.getActiveCatalog()
