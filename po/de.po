@@ -5,8 +5,8 @@ msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-08-15 11:54+0000\n"
-"PO-Revision-Date: 2021-08-15 12:27+0000\n"
-"Last-Translator: openATV <openatv@gmail.com>\n"
+"PO-Revision-Date: 2021-08-15 13:12+0000\n"
+"Last-Translator: jbleyel <jbleyel@gmx.net>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/openatv/"
 "enigma2-7-0/de/>\n"
 "Language: de\n"
@@ -43,11 +43,12 @@ msgstr ""
 "  Nicht genug Speicher zum Installieren von Kodi!"
 
 #
-#, fuzzy
 msgid ""
 "\n"
 " Do you want to switch Enigma2 with Android...?"
-msgstr "Wollen Sie jetzt neu starten?"
+msgstr ""
+"\n"
+" Wollen Sie jetzt von Enigma nach Android wechseln?"
 
 msgid ""
 "\n"
@@ -472,7 +473,7 @@ msgstr "%.2f GB"
 
 #, python-format
 msgid "%.3f MHz"
-msgstr ""
+msgstr "%.3f MHz"
 
 #, python-format
 msgid "%02d.%02d."
@@ -1063,8 +1064,8 @@ msgstr[1] "%d Kanäle gefunden"
 #, python-format
 msgid "%d day"
 msgid_plural "%d days"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d Tag"
+msgstr[1] "%d Tage"
 
 #, python-format
 msgid "%d hour"
@@ -1300,15 +1301,15 @@ msgstr "%s - Extraktionsfehler."
 
 #, python-format
 msgid "%s GHz"
-msgstr ""
+msgstr "%s GHz"
 
 #, python-format
 msgid "%s KSymb/s"
-msgstr ""
+msgstr "%s KSymb/s"
 
 #, python-format
 msgid "%s MHz"
-msgstr ""
+msgstr "%s MHz"
 
 #, python-format
 msgid "%s Setup"
@@ -1809,9 +1810,8 @@ msgstr "Zweite Infoleiste Anzeigedauer"
 msgid "2nd infobar"
 msgstr "Zweite Infoleiste"
 
-#, fuzzy
 msgid "2ndInfobar Actions"
-msgstr "Zweite Infoleiste Anzeigedauer"
+msgstr "Aktionen der 2. Infoleiste"
 
 msgid "2s"
 msgstr "2s"
@@ -2360,7 +2360,7 @@ msgid "Abenteuer"
 msgstr "Abenteuer"
 
 msgid "Abkhazian"
-msgstr ""
+msgstr "Abchasien"
 
 #
 msgid "Abort"
@@ -2385,7 +2385,7 @@ msgid "About..."
 msgstr "Über..."
 
 msgid "Accept the current selection"
-msgstr ""
+msgstr "Aktuelle Auswahl akzeptieren"
 
 msgid "Accessed:"
 msgstr "Zugegriffen:"
@@ -2470,7 +2470,7 @@ msgid "Add"
 msgstr "Hinzufügen"
 
 msgid "Add / Delete the currently highlighted locale / language"
-msgstr ""
+msgstr "Hinzufügen / Löschen der aktuell markierten Sprache"
 
 msgid "Add AutoTimer"
 msgstr "AutoTimer hinzufügen"
@@ -2582,7 +2582,7 @@ msgid "Add/Remove timer for current event"
 msgstr "Timer für ausgewählte Sendung hinzufügen/entfernen"
 
 msgid "Add/remove change timer for current event"
-msgstr ""
+msgstr "Hinzufügen/Löschen des Timer für die aktuelle Sendung"
 
 msgid "Adding schedule..."
 msgstr "Zeitplan hinzufügen..."
@@ -2654,13 +2654,13 @@ msgid "Adventure"
 msgstr "Abenteuer"
 
 msgid "Afar"
-msgstr ""
+msgstr "Afar"
 
 msgid "Afghanistan"
 msgstr "Afghanistan"
 
 msgid "Afrikaans"
-msgstr ""
+msgstr "Afrikaans"
 
 # Powerlost setup.xml
 msgid "After PowerLost"
@@ -2680,7 +2680,7 @@ msgid "Agenten"
 msgstr "Agenten"
 
 msgid "Akan"
-msgstr ""
+msgstr "Akan"
 
 msgid "Aland Islands"
 msgstr "Ålandinseln"
@@ -2863,7 +2863,7 @@ msgid "Always include ECM messages in recordings. This overrides the individual 
 msgstr "Bei 'Ja' setzt diese Funktion die Timer Einstellung außer Kraft. Aufzeichnungen werden immer verschlüsselt gespeichert und nachträglich entschlüsselt, wenn die Hardware diese Funktion unterstützt. Standard ist 'Nein'."
 
 msgid "Always select OK"
-msgstr ""
+msgstr "Immer OK wählen"
 
 msgid "Always show bouquets"
 msgstr "Favoritenlisten anzeigen"
@@ -2881,7 +2881,7 @@ msgid "American Sports"
 msgstr "Amerikanischer Sport"
 
 msgid "Amharic"
-msgstr ""
+msgstr "Amharic"
 
 msgid ""
 "An attempt is made to capture the current TV status. If this is not possible due to incorrect or missing status messages, it may cause the receiver to respond unexpectedly.\n"
@@ -2937,13 +2937,13 @@ msgid "Any activity"
 msgstr "Jede Aktivität"
 
 msgid "Apply any changes to the active locale/langauge and exit"
-msgstr ""
+msgstr "Änderungen anwenden um die aktive Sprache zu ändern und Beenden"
 
 msgid "Arabic"
 msgstr "Arabisch"
 
 msgid "Aragonese"
-msgstr ""
+msgstr "Aragonese"
 
 msgid "Architektur"
 msgstr "Architektur"
@@ -3136,7 +3136,7 @@ msgid "Aspect ratio"
 msgstr "Seitenverhältnis"
 
 msgid "Assamese"
-msgstr ""
+msgstr "Assamese"
 
 #
 msgid "Assigned CAIds:"
@@ -3370,10 +3370,10 @@ msgid "Available shares:"
 msgstr "Verfügbare Netzlaufwerke:"
 
 msgid "Avaric"
-msgstr ""
+msgstr "Avaric"
 
 msgid "Avestan"
-msgstr ""
+msgstr "Avestan"
 
 msgid "Avoid getting stuck (at the expense of some stuttering) when the jump time is smaller than the time between I-frames."
 msgstr "Bei 'Ja' wird ein Hängenbleiben beim Spulen verhindert, wenn die Sprungdistanz kleiner ist als der Abstand zwischen I-Frames (ein gewisses Ruckeln ist dabei unvermeidbar)."
@@ -3382,7 +3382,7 @@ msgid "Axas E4HD Ultra"
 msgstr "Axas E4HD Ultra"
 
 msgid "Aymara"
-msgstr ""
+msgstr "Aymara"
 
 msgid "Azerbaijan"
 msgstr "Aserbaidschan"
@@ -3589,9 +3589,8 @@ msgstr "Bahamas"
 msgid "Bahrain"
 msgstr "Bahrain"
 
-#, fuzzy
 msgid "Bambara"
-msgstr "Samba"
+msgstr "Bambara"
 
 msgid "Band"
 msgstr "Band"
@@ -3621,7 +3620,7 @@ msgid "Baseball"
 msgstr "Baseball"
 
 msgid "Bashkir"
-msgstr ""
+msgstr "Baschkirisch"
 
 msgid "Basic PID info"
 msgstr "Basis PID Info"
@@ -3765,13 +3764,13 @@ msgid "Bluetooth Setup"
 msgstr "Bluetooth-Einstellungen"
 
 msgid "Bolivia"
-msgstr ""
+msgstr "Bolivien"
 
 msgid "Bollywood"
 msgstr "Bollywood"
 
 msgid "Bonaire"
-msgstr ""
+msgstr "Bonaire"
 
 #
 msgid "Bookmarks"
@@ -3798,9 +3797,8 @@ msgstr "Bootloader:\t\t%s\n"
 msgid "Bosnia and Herzegovina"
 msgstr "Bosnien und Herzegowina"
 
-#, fuzzy
 msgid "Bosnian"
-msgstr "Estnisch"
+msgstr "Bosnisch"
 
 msgid "Botswana"
 msgstr "Botswana"
