@@ -1,12 +1,13 @@
 # German translations for Enigma2.
 #
+# jbleyel <jbleyel@gmx.net>, 2021.
 msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-08-15 18:24+0200\n"
-"PO-Revision-Date: 2021-08-15 20:27+0000\n"
-"Last-Translator: Mike <mike99@gmx.net>\n"
+"PO-Revision-Date: 2021-08-15 21:07+0000\n"
+"Last-Translator: jbleyel <jbleyel@gmx.net>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/openatv/"
 "enigma2-7-0-po/de/>\n"
 "Language: de\n"
@@ -2100,10 +2101,11 @@ msgid ""
 "Extend sleep timer 30 minutes. Your %s %s\n"
 "will shut down after Recording or Powertimer event. Get in Standby now?"
 msgstr ""
-"Eine Aufnahme, Aufnahmetimer oder PowerTimer ist aktiv oder beginnt in 15 Minuten.\n"
+"Eine Aufnahme, Aufnahmetimer oder PowerTimer ist aktiv oder beginnt in 15 "
+"Minuten.\n"
 "Der Ausschalttimer wird um 30 Minuten verlängert und schaltet Ihre\n"
-"%s %s nach dem Aufnahme- oder PowerTimer-Ereignis ab.\n"
-"Jetzt in den Standby gehen?"
+"%s %s nach dem Aufnahme- oder PowerTimer-Ereignis ab. Jetzt in den Standby "
+"gehen?"
 
 msgid "A background update check is in progress, please wait a few minutes and try again."
 msgstr "Eine Updateprüfung läuft im Hintergrund. Bitte ein paar Minuten warten und erneut versuchen."
@@ -2657,8 +2659,9 @@ msgstr "Erweiterte Software"
 msgid "Advanced software plugin"
 msgstr "Erweitertes Software-Plugin"
 
+#, fuzzy
 msgid "Advanced video enhancement setup"
-msgstr ""
+msgstr "Erweiterte Einrichtung der Videoverbesserung"
 
 msgid "Adventure"
 msgstr "Abenteuer"
@@ -2736,17 +2739,21 @@ msgstr "Jedes Alter"
 msgid "All resolutions"
 msgstr "Alle Auflösungen"
 
+#, fuzzy
 msgid "All satellites 1 (USALS)"
-msgstr ""
+msgstr "Alle Satelliten 1 (USALS)"
 
+#, fuzzy
 msgid "All satellites 2 (USALS)"
-msgstr ""
+msgstr "Alle Satelliten 2 (USALS)"
 
+#, fuzzy
 msgid "All satellites 3 (USALS)"
-msgstr ""
+msgstr "Alle Satelliten 3 (USALS)"
 
+#, fuzzy
 msgid "All satellites 4 (USALS)"
-msgstr ""
+msgstr "Alle Satelliten 4 (USALS)"
 
 msgid "All services provider"
 msgstr "Alle Sendergruppen"
@@ -3042,10 +3049,10 @@ msgid ""
 "%s\n"
 "Your receiver will restart after the backup has been restored!"
 msgstr ""
-"Sind Sie sicher, dass folgende Einstellungen wiederhergestellt werden sollen?\n"
+"Sind Sie sicher, dass folgende Einstellungen wiederhergestellt werden sollen?"
 "\n"
-"Backup: %s\n"
-"\n"
+"Backup:\n"
+" %s\n"
 "Nach der Wiederherstellung wird Ihr Receiver neu gestartet!"
 
 #
@@ -3450,23 +3457,28 @@ msgstr "BT709 XvYCC"
 msgid "Back"
 msgstr "Zurück"
 
+#, fuzzy
 msgid "Back USB"
-msgstr ""
+msgstr "Rückseite USB"
 
 msgid "Back USB 3.0"
 msgstr "USB-3.0 (Rückseite)"
 
+#, fuzzy
 msgid "Back, inner USB"
-msgstr ""
+msgstr "Rückseite, innen USB"
 
+#, fuzzy
 msgid "Back, lower USB"
-msgstr ""
+msgstr "Rückseite, unterer USB-Anschluss"
 
+#, fuzzy
 msgid "Back, outer USB"
-msgstr ""
+msgstr "Rückseite, außen USB"
 
+#, fuzzy
 msgid "Back, upper USB"
-msgstr ""
+msgstr "Rückseite, oberer USB-Anschluss"
 
 #
 #, python-format
@@ -4180,8 +4192,13 @@ msgstr "Timer können nicht aktualisiert werden"
 msgid "Can not upload timer"
 msgstr "Timer kann nicht hochgeladen werden"
 
+#, fuzzy
 msgid "Can only find a network drive to store the backup this means after the flash the autorestore will not work. Alternatively you can mount the network drive after the flash and perform a manufacturer reset to autorestore"
 msgstr ""
+"Es kann nur ein Netzlaufwerk gefunden werden, um das Backup zu speichern, "
+"was bedeutet, dass der Autorestore nach dem Flash nicht funktioniert. "
+"Alternativ können Sie das Netzlaufwerk nach dem Flashen mounten und einen "
+"Hersteller-Reset auf Autorestore durchführen"
 
 msgid "Can't allocate program source (e.g. tuner)"
 msgstr "Programmquelle (z.B. Tuner) kann nicht zugeordnet werden"
@@ -4311,8 +4328,9 @@ msgstr "Seriennummer der Smartcard"
 msgid "Cartoon"
 msgstr "Cartoon"
 
+#, fuzzy
 msgid "Cascade PiP"
-msgstr ""
+msgstr "Kaskadiertes PiP"
 
 msgid "Casting"
 msgstr "Casting"
@@ -4645,8 +4663,9 @@ msgstr "Wählen Sie einen Tag aus, um die Aufnahme später leichter wieder zu fi
 msgid "Choose between Daily, Weekly, Weekdays or user defined."
 msgstr "Wählen Sie zwischen täglich, wöchentlich oder benutzerdefinierten Tagen."
 
+#, fuzzy
 msgid "Choose dvb wait delay for ci response."
-msgstr ""
+msgstr "Wählen Sie die DVB-Warteverzögerung für die Ci-Antwort."
 
 msgid "Choose how often to connect to IceTV server to check for updates."
 msgstr "Wählen Sie das Intervall aus, wie oft eine Verbindung zum IceTV Server hergestellt werden soll, um nach Updates zu suchen."
@@ -4718,8 +4737,11 @@ msgstr "Wählen Sie, ob DTS-Tonspuren zu Stereo heruntergerechnet werden sollen.
 msgid "Choose whether WMA Pro channel sound tracks should be downmixed or transcoded."
 msgstr "Wählen Sie, ob WMA-Pro-Tonspuren zu Stereo heruntergerechnet oder transkodiert werden sollen."
 
+#, fuzzy
 msgid "Choose whether multi channel sound tracks should be convert to PCM or SPDIF."
 msgstr ""
+"Wählen Sie, ob Mehrkanal-Tonspuren in PCM oder SPDIF konvertiert werden "
+"sollen."
 
 msgid "Choose whether multi channel sound tracks should be downmixed to stereo."
 msgstr "Wählen Sie, ob Mehrkanalton zu Stereo heruntergerechnet werden soll."
@@ -5782,7 +5804,7 @@ msgid "D"
 msgstr ""
 
 msgid "DAC"
-msgstr ""
+msgstr "DAC"
 
 #
 msgid "DHCP"
@@ -6360,7 +6382,7 @@ msgid "Detected NIMs:"
 msgstr "Erkannte Tuner:"
 
 msgid "Detektiv"
-msgstr ""
+msgstr "Detektiv"
 
 msgid "Device Information"
 msgstr "Geräte-Informationen"
@@ -6389,14 +6411,17 @@ msgstr "Geräte"
 msgid "DiSEqC"
 msgstr "DiSEqC"
 
+#, fuzzy
 msgid "DiSEqC 1.0 command"
-msgstr ""
+msgstr "DiSEqC 1.0 Befehl"
 
+#, fuzzy
 msgid "DiSEqC 1.1 command"
-msgstr ""
+msgstr "DiSEqC 1.1 Befehl"
 
+#, fuzzy
 msgid "DiSEqC 1.1 repeats"
-msgstr ""
+msgstr "DiSEqC 1.1 Wiederholungen"
 
 #
 msgid "DiSEqC A/B"
@@ -6406,8 +6431,9 @@ msgstr "DiSEqC A/B"
 msgid "DiSEqC A/B/C/D"
 msgstr "DiSEqC A/B/C/D"
 
+#, fuzzy
 msgid "DiSEqC Tester"
-msgstr ""
+msgstr "DiSEqC-Prüfgerät"
 
 #
 msgid "DiSEqC mode"
@@ -6417,11 +6443,13 @@ msgstr "DiSEqC-Modus"
 msgid "DiSEqC port %s: %s"
 msgstr "DiSEqC-Port %s: %s"
 
+#, fuzzy
 msgid "DiSEqC-tester settings"
-msgstr ""
+msgstr "DiSEqC-Tester-Einstellungen"
 
+#, fuzzy
 msgid "Diction"
-msgstr ""
+msgstr "Diktion"
 
 # PowerTimerEntry.py
 #, python-format
@@ -6762,8 +6790,9 @@ msgstr "Die DVD im Laufwerk abspielen?"
 msgid "Do you want to preview this DVD before burning?"
 msgstr "Vor dem Brennen eine Vorschau der DVD ansehen?"
 
+#, fuzzy
 msgid "Do you want to produce this collection?"
-msgstr ""
+msgstr "Möchten Sie diese Sammlung produzieren?"
 
 #, python-format
 msgid "Do you want to reboot your %s %s"
@@ -6915,17 +6944,21 @@ msgstr "Lade Image herunter"
 msgid "Downloading plugin information. Please wait..."
 msgstr "Lade Plugin-Informationen herunter. Bitte warten..."
 
+#, fuzzy
 msgid "Downmix"
-msgstr ""
+msgstr "Downmix"
 
 msgid "Drama"
 msgstr "Drama"
 
+#, fuzzy
 msgid "Dreambox format data DVD (HDTV compatible)"
-msgstr ""
+msgstr "Daten-DVD im Dreambox-Format (HDTV-kompatibel)"
 
+#, fuzzy
 msgid "Dreambox format data DVD (won't work in other DVD players)"
 msgstr ""
+"Daten-DVD im Dreambox-Format (funktioniert nicht in anderen DVD-Playern)"
 
 #, python-format
 msgid "Drivers:\t\t%s"
@@ -7076,8 +7109,9 @@ msgstr "FEHLER - Suche nach (%s) fehlgeschlagen!"
 msgid "East"
 msgstr "Ost"
 
+#, fuzzy
 msgid "East limit set"
-msgstr ""
+msgstr "Grenzwert Ost festgelegt"
 
 #
 #, fuzzy
@@ -7938,8 +7972,9 @@ msgstr "Erweiterungen/Schnellstartmenü"
 msgid "External"
 msgstr "Extern"
 
+#, fuzzy
 msgid "External PiP"
-msgstr ""
+msgstr "Externes PiP"
 
 #, python-format
 msgid "External Storage %s"
@@ -8013,8 +8048,9 @@ msgstr ""
 msgid "FP Upgrade"
 msgstr "FP-Upgrade"
 
+#, fuzzy
 msgid "FSBL Update Check"
-msgstr ""
+msgstr "FSBL-Update-Prüfung"
 
 msgid "FTA"
 msgstr "FreeTV (FTA)"
@@ -8236,11 +8272,13 @@ msgstr "Filtererweiterung (*) erscheint im Titel"
 msgid "Filter visible file classes by extension."
 msgstr "Sichtbare Dateiklassen nach Erweiterung filtern."
 
+#, fuzzy
 msgid "Final position at"
-msgstr ""
+msgstr "Endposition bei"
 
+#, fuzzy
 msgid "Final position at index"
-msgstr ""
+msgstr "Endgültige Position am Index"
 
 # Display neu 5.1
 msgid "Final scroll delay"
@@ -8478,7 +8516,7 @@ msgid "Frequency:"
 msgstr "Frequenz:"
 
 msgid "Frequency: "
-msgstr "Frequenz"
+msgstr "Frequenz: "
 
 #
 msgid "Fri"
@@ -8488,14 +8526,17 @@ msgstr "Fr."
 msgid "Friday"
 msgstr "Freitag"
 
+#, fuzzy
 msgid "From :"
-msgstr ""
+msgstr "Von :"
 
+#, fuzzy
 msgid "Front USB"
-msgstr ""
+msgstr "Vorderseite USB"
 
+#, fuzzy
 msgid "Front USB 3.0"
-msgstr ""
+msgstr "Vorderseite USB 3.0"
 
 #, python-format
 msgid "Frontprocessor version:\t%s"
@@ -8512,8 +8553,9 @@ msgstr "Fula"
 msgid "Full Image Backup "
 msgstr "Vollständige Image-Sicherung "
 
+#, fuzzy
 msgid "Full Range RGB"
-msgstr ""
+msgstr "Full Range RGB"
 
 #
 #, python-format
@@ -8550,8 +8592,9 @@ msgstr "GB"
 msgid "GB"
 msgstr "GB"
 
+#, fuzzy
 msgid "GIGABLUE Black"
-msgstr ""
+msgstr "GIGABLUE Schwarz"
 
 #, python-format
 msgid "GStreamer:\t\t%s"
@@ -8726,8 +8769,9 @@ msgstr ""
 msgid "Golf"
 msgstr "Golf"
 
+#, fuzzy
 msgid "Google DNS"
-msgstr ""
+msgstr "Google-DNS"
 
 msgid "Goto"
 msgstr "Gehe zu"
@@ -8790,8 +8834,9 @@ msgstr "Gehe zur vorherigen Seite mit Sendungen"
 msgid "Goto specific data/time"
 msgstr "Gehe zum angegebenen Datum/Uhrzeit"
 
+#, fuzzy
 msgid "GotoX calibration"
-msgstr ""
+msgstr "GotoX-Kalibrierung"
 
 msgid "Graphical EPG"
 msgstr "Grafischer EPG"
@@ -8881,8 +8926,9 @@ msgstr "H:mm"
 msgid "H:mm:ss"
 msgstr "H:mm:ss"
 
+#, fuzzy
 msgid "HARD DISK: "
-msgstr ""
+msgstr "FESTPLATTE: "
 
 msgid "HD list"
 msgstr "HD-Liste"
@@ -8929,8 +8975,9 @@ msgstr "HDMI-IN-Aktionen"
 msgid "HDMI-IN Recording settings"
 msgstr "HDMI-IN Aufnahmen"
 
+#, fuzzy
 msgid "HDMIin"
-msgstr ""
+msgstr "HDMI-Eingang"
 
 msgid "HDR10 Support"
 msgstr "HDR10 Unterstützung"
@@ -9576,7 +9623,7 @@ msgid "Inactive"
 msgstr "Inaktiv"
 
 msgid "Inadyn"
-msgstr ""
+msgstr "Inadyn"
 
 msgid "Inadyn Log"
 msgstr "Inadyn-Log"
@@ -9622,8 +9669,9 @@ msgstr "Erhöhe Zeitspanne"
 msgid "Increased voltage"
 msgstr "Erhöhte Spannung"
 
+#, fuzzy
 msgid "Independent"
-msgstr ""
+msgstr "Unabhängig"
 
 #
 msgid "Index"
@@ -9651,8 +9699,9 @@ msgstr "Info/EPG"
 msgid "Info (EPG) Long"
 msgstr "Info/EPG lang"
 
+#, fuzzy
 msgid "Info Panel"
-msgstr ""
+msgstr "Info-Panel"
 
 #
 msgid "Info button (long)"
@@ -9707,8 +9756,9 @@ msgstr "Infoleiste:"
 msgid "InfobarEPG settings"
 msgstr "Infoleisten-EPG"
 
+#, fuzzy
 msgid "Infopanel"
-msgstr ""
+msgstr "Info-Panel"
 
 #
 msgid "Information"
@@ -9719,8 +9769,9 @@ msgid "Infos"
 msgstr "Informationen"
 
 #
+#, fuzzy
 msgid "Infotainment"
-msgstr ""
+msgstr "Infotainment"
 
 #
 msgid "Init"
@@ -9739,11 +9790,13 @@ msgstr "Anfängliche Rücklaufgeschwindigkeit"
 msgid "Initial scroll delay"
 msgstr "Verzögerung vor Text-Durchlauf"
 
+#, fuzzy
 msgid "Initial signal quality"
-msgstr ""
+msgstr "Ursprüngliche Signalqualität"
 
+#, fuzzy
 msgid "Initial signal quality:"
-msgstr ""
+msgstr "Ursprüngliche Signalqualität:"
 
 #
 msgid "Initialization"
@@ -9756,11 +9809,13 @@ msgstr "Initialisieren"
 msgid "Initializing storage device..."
 msgstr "Speichergerät initialisieren..."
 
+#, fuzzy
 msgid "Inode:"
-msgstr ""
+msgstr "Inode:"
 
+#, fuzzy
 msgid "Inotify Monitoring"
-msgstr ""
+msgstr "Inotify Überwachung"
 
 #
 msgid "Input"
@@ -9775,8 +9830,9 @@ msgstr "Input Stream ID"
 msgid "Input channel name."
 msgstr "Gebe einen Sendergruppennamen ein:"
 
+#, fuzzy
 msgid "Input config file name:"
-msgstr ""
+msgstr "Name der Eingabekonfigurationsdatei:"
 
 msgid "Input devices"
 msgstr "Eingabegeräte"
@@ -10254,8 +10310,9 @@ msgstr "Kodi installiert:"
 msgid "Kodi media player"
 msgstr "Kodi Mediaplayer"
 
+#, fuzzy
 msgid "Kodi/extra partition free space:"
-msgstr ""
+msgstr "Kodi/extra Partition freier Speicherplatz:"
 
 msgid "Komi"
 msgstr "Komi"
@@ -10311,7 +10368,7 @@ msgid "Kyrgyzstan"
 msgstr "Kirgisistan"
 
 msgid "LAN"
-msgstr ""
+msgstr "LAN"
 
 msgid "LAN adapter"
 msgstr "LAN-Adapter"
@@ -10331,11 +10388,13 @@ msgstr "LCD-Skinauswahl"
 msgid "LCD scroll speed"
 msgstr "LCD-Scrollgeschwindigkeit"
 
+#, fuzzy
 msgid "LCN plugin for DVB-T/T2 services"
-msgstr ""
+msgstr "LCN-Plugin für DVB-T/T2-Dienste"
 
+#, fuzzy
 msgid "LCN rules:"
-msgstr ""
+msgstr "LCN-Regeln:"
 
 msgid "LED Deep Standby"
 msgstr "LED Deep-Standby"
@@ -10359,8 +10418,9 @@ msgstr "LED Helligkeit im Standby."
 msgid "LNB"
 msgstr "LNB"
 
+#, fuzzy
 msgid "LNB/Switch Bootup time [ms]"
-msgstr ""
+msgstr "LNB/Switch-Startzeit [ms]"
 
 #
 msgid "LOF"
@@ -10399,8 +10459,9 @@ msgstr "Laotisch"
 msgid "Lao People's Democratic Republic"
 msgstr "Demokratische Volksrepublik Laos"
 
+#, fuzzy
 msgid "Large"
-msgstr ""
+msgstr "Groß"
 
 #, python-format
 msgid "Last E2 update:\t\t%s"
@@ -10525,11 +10586,13 @@ msgstr "Bei 'Ja' werden die Zeichen, die in Aufnahme-Dateinamen (7 Bit ASCII) ve
 msgid "Limit west"
 msgstr "West-Limit"
 
+#, fuzzy
 msgid "Limits cancelled"
-msgstr ""
+msgstr "Limits aufgehoben"
 
+#, fuzzy
 msgid "Limits enabled"
-msgstr ""
+msgstr "Limits aktiviert"
 
 #
 msgid "Limits off"
@@ -10550,8 +10613,9 @@ msgstr "Verbindungs-Qualität:"
 msgid "Link quality:"
 msgstr "Verbindungs-Qualität:"
 
+#, fuzzy
 msgid "Link target:"
-msgstr ""
+msgstr "Link-Ziel:"
 
 #
 msgid "Link:"
@@ -10561,8 +10625,9 @@ msgstr "Verbindung:"
 msgid "Linked titles with a DVD menu"
 msgstr "Verknüpfte Titel mit einem DVD-Menü"
 
+#, fuzzy
 msgid "Links:"
-msgstr ""
+msgstr "Links:"
 
 #
 msgid "List EPG functions..."
@@ -10574,8 +10639,9 @@ msgstr "Aktionen zur Listennavigation"
 msgid "List available networks"
 msgstr "Zeige verfügbare Netzwerke"
 
+#, fuzzy
 msgid "List mode"
-msgstr ""
+msgstr "Listenmodus"
 
 #
 msgid "List of Storage Devices"
@@ -10782,8 +10848,9 @@ msgstr "Verbunden mit"
 msgid "Lower Framerate save CPU Time"
 msgstr "Geringe Wiederholrate reduziert die CPU Belastung"
 
+#, fuzzy
 msgid "Lower USB"
-msgstr ""
+msgstr "Unterer USB-Anschluss"
 
 #
 msgid "Lower case"
@@ -10812,8 +10879,9 @@ msgstr "Luxemburgisch"
 msgid "Luxembourgish / Letzeburgesch"
 msgstr "Luxemburgisch"
 
+#, fuzzy
 msgid "MAC"
-msgstr ""
+msgstr "MAC"
 
 # NetworkSetup.py
 msgid "MAC-address"
@@ -10826,8 +10894,9 @@ msgstr "MAC-Adresse einstellen"
 msgid "MAC:"
 msgstr "MAC:"
 
+#, fuzzy
 msgid "MB"
-msgstr ""
+msgstr "MB"
 
 msgid "MENU"
 msgstr "MENÜ"
@@ -10835,8 +10904,9 @@ msgstr "MENÜ"
 msgid "MIRACLEBOX_TWINPLUS"
 msgstr ""
 
+#, fuzzy
 msgid "MMA"
-msgstr ""
+msgstr "MMA"
 
 #
 msgid "MORE"
@@ -11069,8 +11139,9 @@ msgstr "Mayotte"
 msgid "Media"
 msgstr "Medien"
 
+#, fuzzy
 msgid "Media Center"
-msgstr ""
+msgstr "Media Center"
 
 msgid "Media Player"
 msgstr "Mediaplayer"
@@ -11150,8 +11221,9 @@ msgstr "Standard EPG mit IceTV EPG zusammenführen"
 msgid "Merging Timeshift files"
 msgstr "Zusammenführen der Timeshift-Dateien"
 
+#, fuzzy
 msgid "Merlin EPG Center"
-msgstr ""
+msgstr "Merlin EPG-Center"
 
 #
 msgid "Message"
@@ -11489,8 +11561,9 @@ msgstr "Bewegen Sie den Text-Cursor im Textfeld zum Ende"
 msgid "Move to home of list"
 msgstr "Springe zum Anfang der Liste"
 
+#, fuzzy
 msgid "Move to position X"
-msgstr ""
+msgstr "Position X anfahren"
 
 #
 msgid "Move up a line"
@@ -11576,20 +11649,25 @@ msgstr "Film/Drama"
 msgid "Movieplayer"
 msgstr "Movieplayer"
 
+#, fuzzy
 msgid "Moving"
-msgstr ""
+msgstr "Verschieben"
 
+#, fuzzy
 msgid "Moving east ..."
-msgstr ""
+msgstr "Nach Osten verschieben..."
 
+#, fuzzy
 msgid "Moving files"
-msgstr ""
+msgstr "Verschieben von Dateien"
 
+#, fuzzy
 msgid "Moving to position"
-msgstr ""
+msgstr "Verschieben zur Position"
 
+#, fuzzy
 msgid "Moving west ..."
-msgstr ""
+msgstr "Nach Westen verschieben..."
 
 msgid "Mozambique"
 msgstr "Mosambik"
@@ -11646,8 +11724,9 @@ msgstr "Mehrere Satelliten"
 msgid "Multisat all select"
 msgstr "Alle Satelliten"
 
+#, fuzzy
 msgid "Multistream"
-msgstr ""
+msgstr "Multistream"
 
 msgid "Murder"
 msgstr "Mord"
@@ -12121,8 +12200,9 @@ msgstr "Keine Details zum Image verfügbar"
 msgid "No displayable files on this medium found!"
 msgstr "Keine anzeigbaren Dateien auf diesem Medium gefunden!"
 
+#, fuzzy
 msgid "No entry in lcn db. Please do a service scan."
-msgstr ""
+msgstr "Kein Eintrag in der lcn db. Bitte führen Sie einen Service-Scan durch."
 
 msgid "No error"
 msgstr "Kein Fehler"
@@ -12138,21 +12218,24 @@ msgstr "Spulen nicht möglich, aber springen mit Hilfe der Zahlen-Tasten möglic
 msgid "No files found."
 msgstr "Keine Dateien gefunden."
 
+#, fuzzy
 msgid "No free index available"
-msgstr ""
+msgstr "Kein freier Index verfügbar"
 
 #
 msgid "No free tuner!"
 msgstr "Kein freier Tuner!"
 
+#, fuzzy
 msgid "No hash calculations configured"
-msgstr ""
+msgstr "Keine Hash-Berechnungen konfiguriert"
 
 msgid "No images found"
 msgstr "Keine Images gefunden"
 
+#, fuzzy
 msgid "No matching place names found"
-msgstr ""
+msgstr "Keine übereinstimmenden Ortsnamen gefunden"
 
 #
 msgid "No network connection available."
@@ -12182,8 +12265,9 @@ msgstr ""
 "Es ist kein Satelliten-, terrestrischer oder Kabel-Tuner konfiguriert. Bitte "
 "überprüfen Sie Ihre Tuner-Einstellungen."
 
+#, fuzzy
 msgid "No service"
-msgstr ""
+msgstr "Kein Dienst"
 
 #
 msgid "No services/providers selected"
@@ -12320,9 +12404,9 @@ msgstr "NodeID: "
 msgid "None"
 msgstr "Keine"
 
-#, python-format
+#, fuzzy, python-format
 msgid "None of the hash programs for the hashes %s are available"
-msgstr ""
+msgstr "Keines der Hash-Programme für die Hashes %s ist verfügbar"
 
 msgid "Norfolk Island"
 msgstr "Norfolkinsel"
@@ -12589,8 +12673,9 @@ msgstr "Oman"
 msgid "On"
 msgstr "An"
 
+#, fuzzy
 msgid "On device:"
-msgstr ""
+msgstr "Auf dem Gerät:"
 
 msgid "On end of movie"
 msgstr "Am Ende des Films"
@@ -12721,8 +12806,9 @@ msgstr "Filmliste öffnen"
 msgid "Open with File Commander"
 msgstr "Mit File Commander öffnen"
 
+#, fuzzy
 msgid "OpenDNS FamilyShield"
-msgstr ""
+msgstr "OpenDNS FamilyShield"
 
 #, fuzzy
 msgid "OpenDNS Home"
@@ -13833,8 +13919,9 @@ msgstr "Portugal"
 msgid "Portuguese"
 msgstr "Portugiesisch"
 
+#, fuzzy
 msgid "Position Setup"
-msgstr ""
+msgstr "Rotoreinstellungen"
 
 msgid "Position of finished Timers in Timerlist"
 msgstr "Position beendeter Timeraufnahmen in der Timerliste"
@@ -13842,8 +13929,9 @@ msgstr "Position beendeter Timeraufnahmen in der Timerliste"
 msgid "Position of recording icons"
 msgstr "Position der Aufnahme-Symbole"
 
+#, fuzzy
 msgid "Position stored at index"
-msgstr ""
+msgstr "Position am Index gespeichert"
 
 #
 msgid "Positioner"
@@ -14536,8 +14624,9 @@ msgstr "Neustart"
 msgid "Rebuild"
 msgstr "Wiederaufbau"
 
+#, fuzzy
 msgid "Rebuild LCN bouquet now?"
-msgstr ""
+msgstr "LCN-Bouquet jetzt umbauen?"
 
 msgid "Rec"
 msgstr "Aufnahme"
@@ -14581,8 +14670,9 @@ msgstr "Aufnahmezeit aufgrund kollidierender Timer '%s' begrenzt"
 msgid "Record write error (no space on disk?)"
 msgstr "Aufnahmefehler (kein Speicherplatz auf der Festplatte?)"
 
+#, fuzzy
 msgid "Recordable media toolbox"
-msgstr ""
+msgstr "Werkzeugkasten für beschreibbare Medien"
 
 #
 msgid "Recording"
