@@ -16,7 +16,7 @@ class Streaming2(Converter):
 	def getText(self):
 		service = self.source.service
 		if service is None:
-			return _("-NO SERVICE\n")
+			return "-NO SERVICE\n"
 
 		streaming = service.stream()
 		s = streaming and streaming.getStreamingData()
@@ -24,9 +24,9 @@ class Streaming2(Converter):
 		if s is None or not any(s):
 			err = hasattr(service, 'getError') and service.getError()
 			if err:
-				return _("-SERVICE ERROR:%d\n") % err
+				return "-SERVICE ERROR:%d\n" % err
 			else:
-				return _("=NO STREAM\n")
+				return "=NO STREAM\n"
 
 		retval = "+%d:%s" % (s["demux"], ','.join(["%x:%s" % (x[0], x[1]) for x in s["pids"]]))
 
