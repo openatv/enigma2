@@ -409,6 +409,13 @@ class Wizard(Screen):
 			self.configInstance.keyLeft()
 		elif self.wizard[self.currStep]["config"]["type"] == "dynamic":
 			self["config"].handleKey(KEY_LEFT)
+		elif self.showList and len(self.wizard[self.currStep]["evaluatedlist"]) > 0:
+			self["list"].pageUp()
+			if "onselect" in self.wizard[self.currStep]:
+				print "[Wizard] current:", self["list"].current
+				self.selection = self["list"].current[-1]
+				# self.selection = self.wizard[self.currStep]["evaluatedlist"][self["list"].l.getCurrentSelectionIndex()][1]
+				exec("self." + self.wizard[self.currStep]["onselect"] + "()")
 		# print "left"
 
 	def right(self):
@@ -417,6 +424,13 @@ class Wizard(Screen):
 			self.configInstance.keyRight()
 		elif self.wizard[self.currStep]["config"]["type"] == "dynamic":
 			self["config"].handleKey(KEY_RIGHT)
+		elif self.showList and len(self.wizard[self.currStep]["evaluatedlist"]) > 0:
+			self["list"].pageDown()
+			if "onselect" in self.wizard[self.currStep]:
+				print "[Wizard] current:", self["list"].current
+				self.selection = self["list"].current[-1]
+				# self.selection = self.wizard[self.currStep]["evaluatedlist"][self["list"].l.getCurrentSelectionIndex()][1]
+				exec("self." + self.wizard[self.currStep]["onselect"] + "()")
 		# print "right"
 
 	def up(self):
