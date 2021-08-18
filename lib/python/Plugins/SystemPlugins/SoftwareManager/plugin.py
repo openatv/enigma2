@@ -1693,7 +1693,7 @@ class PacketManager(Screen, NumericalTextInput):
 					statuspng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_ACTIVE_SKIN, "icons/remove.png"))
 				else:
 					statuspng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_PLUGIN, "SystemPlugins/SoftwareManager/remove.png"))
-				self.statuslist.append((_("Error"), '', _("An error occurred while downloading the package list. Please try again."), '', statuspng, divpng))
+				self.statuslist.append((_("Error"), '', _("Some errors occurred while downloading the package list. Attempting to continue anyway..."), '', statuspng, divpng))
 				self['list'].setList(self.statuslist)
 
 	def rebuildList(self):
@@ -1774,7 +1774,6 @@ class PacketManager(Screen, NumericalTextInput):
 
 	def ipkgCallback(self, event, param):
 		if event == IpkgComponent.EVENT_ERROR:
-			self.list_updating = False
 			self.setStatus('error')
 		elif event == IpkgComponent.EVENT_DONE:
 			if self.list_updating:
