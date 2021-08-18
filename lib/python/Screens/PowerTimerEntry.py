@@ -317,6 +317,8 @@ class TimerEntry(Screen, ConfigListScreen, HelpableScreen):
 		self.close((True, self.timer))
 
 	def incrementStart(self):
+		if self.timerentry_timertype.value == "autostandby" or self.timerentry_timertype.value == "autodeepstandby":
+			return
 		self.timerentry_starttime.increment()
 		self["config"].invalidate(self.entryStartTime)
 		if self.timerentry_type.value == "once" and self.timerentry_starttime.value == [0, 0]:
@@ -324,6 +326,8 @@ class TimerEntry(Screen, ConfigListScreen, HelpableScreen):
 			self["config"].invalidate(self.entryDate)
 
 	def decrementStart(self):
+		if self.timerentry_timertype.value == "autostandby" or self.timerentry_timertype.value == "autodeepstandby":
+			return
 		self.timerentry_starttime.decrement()
 		self["config"].invalidate(self.entryStartTime)
 		if self.timerentry_type.value == "once" and self.timerentry_starttime.value == [23, 59]:
@@ -331,11 +335,15 @@ class TimerEntry(Screen, ConfigListScreen, HelpableScreen):
 			self["config"].invalidate(self.entryDate)
 
 	def incrementEnd(self):
+		if self.timerentry_timertype.value == "autostandby" or self.timerentry_timertype.value == "autodeepstandby":
+			return
 		if self.entryEndTime is not None:
 			self.timerentry_endtime.increment()
 			self["config"].invalidate(self.entryEndTime)
 
 	def decrementEnd(self):
+		if self.timerentry_timertype.value == "autostandby" or self.timerentry_timertype.value == "autodeepstandby":
+			return
 		if self.entryEndTime is not None:
 			self.timerentry_endtime.decrement()
 			self["config"].invalidate(self.entryEndTime)
