@@ -403,6 +403,12 @@ class Wizard(Screen):
 		elif self.wizard[self.currStep]["config"]["type"] == "dynamic":
 			self["config"].handleKey(KEY_ASCII)
 
+	def doOnselect(self):
+		if "onselect" in self.wizard[self.currStep]:
+			self.selection = self["list"].current[-1]
+			print "[Wizard] self.selection:", self.selection
+			exec("self." + self.wizard[self.currStep]["onselect"] + "()")
+
 	def left(self):
 		self.resetCounter()
 		if self.wizard[self.currStep]["config"]["screen"] is not None:
@@ -411,11 +417,7 @@ class Wizard(Screen):
 			self["config"].handleKey(KEY_LEFT)
 		elif self.showList and len(self.wizard[self.currStep]["evaluatedlist"]) > 0:
 			self["list"].pageUp()
-			if "onselect" in self.wizard[self.currStep]:
-				print "[Wizard] current:", self["list"].current
-				self.selection = self["list"].current[-1]
-				# self.selection = self.wizard[self.currStep]["evaluatedlist"][self["list"].l.getCurrentSelectionIndex()][1]
-				exec("self." + self.wizard[self.currStep]["onselect"] + "()")
+			self.doOnselect()
 		# print "left"
 
 	def right(self):
@@ -426,11 +428,7 @@ class Wizard(Screen):
 			self["config"].handleKey(KEY_RIGHT)
 		elif self.showList and len(self.wizard[self.currStep]["evaluatedlist"]) > 0:
 			self["list"].pageDown()
-			if "onselect" in self.wizard[self.currStep]:
-				print "[Wizard] current:", self["list"].current
-				self.selection = self["list"].current[-1]
-				# self.selection = self.wizard[self.currStep]["evaluatedlist"][self["list"].l.getCurrentSelectionIndex()][1]
-				exec("self." + self.wizard[self.currStep]["onselect"] + "()")
+			self.doOnselect()
 		# print "right"
 
 	def up(self):
@@ -440,11 +438,7 @@ class Wizard(Screen):
 			self.handleInputHelpers()
 		elif self.showList and len(self.wizard[self.currStep]["evaluatedlist"]) > 0:
 			self["list"].selectPrevious()
-			if "onselect" in self.wizard[self.currStep]:
-				print "[Wizard] current:", self["list"].current
-				self.selection = self["list"].current[-1]
-				# self.selection = self.wizard[self.currStep]["evaluatedlist"][self["list"].l.getCurrentSelectionIndex()][1]
-				exec("self." + self.wizard[self.currStep]["onselect"] + "()")
+			self.doOnselect()
 		# print "up"
 
 	def down(self):
@@ -453,15 +447,8 @@ class Wizard(Screen):
 			self["config"].instance.moveSelection(self["config"].instance.moveDown)
 			self.handleInputHelpers()
 		elif self.showList and len(self.wizard[self.currStep]["evaluatedlist"]) > 0:
-			# self["list"].instance.moveSelection(self["list"].instance.moveDown)
 			self["list"].selectNext()
-			if "onselect" in self.wizard[self.currStep]:
-				# print "current:", self["list"].current
-				# self.selection = self.wizard[self.currStep]["evaluatedlist"][self["list"].l.getCurrentSelectionIndex()][1]
-				# exec("self." + self.wizard[self.currStep]["onselect"] + "()")
-				self.selection = self["list"].current[-1]
-				# self.selection = self.wizard[self.currStep]["evaluatedlist"][self["list"].l.getCurrentSelectionIndex()][1]
-				exec("self." + self.wizard[self.currStep]["onselect"] + "()")
+			self.doOnselect()
 		# print "down"
 
 	def selChanged(self):
@@ -470,10 +457,7 @@ class Wizard(Screen):
 		if self.showConfig and self.wizard[self.currStep]["config"]["screen"] is not None:
 			self["config"].instance.moveSelection(self["config"].instance.moveUp)
 		elif self.showList and len(self.wizard[self.currStep]["evaluatedlist"]) > 0:
-			if "onselect" in self.wizard[self.currStep]:
-				self.selection = self["list"].current[-1]
-				print "[Wizard] self.selection:", self.selection
-				exec("self." + self.wizard[self.currStep]["onselect"] + "()")
+			self.doOnselect()
 
 	def resetCounter(self):
 		self.timeoutCounter = self.wizard[self.currStep]["timeout"]
