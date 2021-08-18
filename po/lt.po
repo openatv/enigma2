@@ -1,21 +1,24 @@
 # Copyright (C) 2005 THE tuxbox-enigma'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the tuxbox-enigma package.
 # Automatically generated, 2005.
+# Adga56 <adga45@gmail.com>, 2021.
 msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-08-15 18:24+0200\n"
-"PO-Revision-Date: 2020-07-16 23:12+0300\n"
-"Last-Translator: Audronis Grincevicius <adga45@gmail.com>\n"
-"Language-Team: adga (c) <adga45@gmail.com>\n"
-"Language: lt_LT\n"
+"PO-Revision-Date: 2021-08-18 15:56+0000\n"
+"Last-Translator: Adga56 <adga45@gmail.com>\n"
+"Language-Team: Lithuanian <https://hosted.weblate.org/projects/openatv/"
+"enigma2-7-0-po/lt/>\n"
+"Language: lt\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && (n"
+"%100<10 || n%100>=20) ? 1 : 2);\n"
+"X-Generator: Weblate 4.8-dev\n"
 "X-Poedit-SourceCharset: UTF-8\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: Poedit 2.4\n"
 
 msgid ""
 "\n"
@@ -241,7 +244,7 @@ msgid "  Menu key : Select quad channel"
 msgstr "  Menu mygtukas : pasirinkite 4 PIP kanalą"
 
 msgid "  REC  "
-msgstr ""
+msgstr "  ĮRAŠ.  "
 
 msgid "  Red key : Show/Hide channel name"
 msgstr "  Raudonas mygtukas: rodyti/slėpti kanalo pavadinimą"
@@ -310,7 +313,7 @@ msgid " <empty>"
 msgstr " <tuščia>"
 
 msgid " HI "
-msgstr ""
+msgstr " HI "
 
 msgid " and"
 msgstr " ir"
@@ -461,9 +464,9 @@ msgstr "%.0f MB"
 msgid "%.2f GB"
 msgstr "%.2f GB"
 
-#, fuzzy, python-format
+#, python-format
 msgid "%.3f MHz"
-msgstr "%s MHz"
+msgstr "%.3f MHz"
 
 #, python-format
 msgid "%02d.%02d."
@@ -1293,7 +1296,7 @@ msgstr "%s GHz"
 
 #, python-format
 msgid "%s KSymb/s"
-msgstr ""
+msgstr "%s KSymb/s"
 
 #, python-format
 msgid "%s MHz"
@@ -1412,9 +1415,8 @@ msgstr "(1 darbas)"
 msgid "(Attention: There will be a restart after %d crashes.)"
 msgstr "(Dėmesio: Bus paleista iš naujo po %d gedimų.)"
 
-#, fuzzy
 msgid "(FTA Service)"
-msgstr "Visi kanalai"
+msgstr "(Nekoduoti kanalai)"
 
 msgid "(Selectmode)"
 msgstr "(Pasirinkimo būsena)"
@@ -1455,7 +1457,7 @@ msgid ", "
 msgstr " "
 
 msgid "-"
-msgstr ""
+msgstr "-"
 
 msgid "-24"
 msgstr "-24"
@@ -2271,7 +2273,7 @@ msgid "AFP Setup"
 msgstr "AFP nustatymas"
 
 msgid "ASS file"
-msgstr ""
+msgstr "ASS failas"
 
 msgid "ATSC"
 msgstr "ATSC"
@@ -3059,10 +3061,10 @@ msgstr "Garso PID"
 
 #, python-format
 msgid "Audio PID%s, codec & lang"
-msgstr ""
+msgstr "Garso PID %s, kodavimas ir kalba"
 
 msgid "Audio PID, codec & lang"
-msgstr ""
+msgstr "Garso PID, kodekas ir kalba"
 
 msgid "Audio Selection"
 msgstr "Garso pasirinkimas"
@@ -3472,7 +3474,7 @@ msgid "Bashkir"
 msgstr ""
 
 msgid "Basic PID info"
-msgstr ""
+msgstr "Pagrindinė PID info"
 
 msgid "Basic settings"
 msgstr "Pagrindiniai nustatymai"
@@ -3753,9 +3755,8 @@ msgstr "Gauta baitų:"
 msgid "Bytes sent:"
 msgstr "Išsiųsta baitų:"
 
-#, fuzzy
 msgid "C"
-msgstr "KAN."
+msgstr "C"
 
 msgid "C-Band"
 msgstr "C-juosta"
@@ -4620,7 +4621,7 @@ msgid "Cocos (Keeling) Islands"
 msgstr "Kokosų (Kylingo) salos"
 
 msgid "Code R. LP-HP & Guard Int."
-msgstr ""
+msgstr "Kodas R. LP-HP ir Guard Int."
 
 msgid "Code rate HP"
 msgstr "Aukšto prioriteto kodavimo greitis HP"
@@ -5136,9 +5137,8 @@ msgstr "Prisijungta: "
 msgid "Console"
 msgstr "Konsolė"
 
-#, fuzzy
 msgid "Constellation & FFT mode"
-msgstr "Konsteliacija"
+msgstr "Konsteliacija ir FFT režimas"
 
 msgid "Consult your SCR device spec sheet for this information."
 msgstr "Dėl šios informacijos kreipkitės į savo SCR įrenginio specifikacijų lapą."
@@ -5431,11 +5431,9 @@ msgstr "Dabar įdiegtas atvaizdas"
 msgid "Current location"
 msgstr "Dabartinė vieta"
 
-#, fuzzy, python-format
+#, python-format
 msgid "Current mode: %s \n"
-msgstr ""
-"Dabartinis režimas:   %s\n"
-"\n"
+msgstr "Dabartinis režimas: %s \n"
 
 msgid "Current settings:"
 msgstr "Dabartiniai nustatymai:"
@@ -5504,9 +5502,8 @@ msgstr "Centrinė Afrikos Respublika"
 msgid "Czechia"
 msgstr "Čekija"
 
-#, fuzzy
 msgid "D"
-msgstr "SD"
+msgstr "D"
 
 msgid "DAC"
 msgstr "DAC"
@@ -5552,9 +5549,8 @@ msgstr "DVISLUOKSNIS DVD"
 msgid "DVB CI Delay"
 msgstr "DVB CI delsa"
 
-#, fuzzy
 msgid "DVB Subtitles PID & lang"
-msgstr "Subtitrai ilgai spaudžiant"
+msgstr "DVB subtitrai PID ir kalba"
 
 msgid "DVB subtitle black transparency"
 msgstr "DVB subtitrų juodas skaidrumas"
@@ -5992,9 +5988,8 @@ msgstr "Trinti įrašą iš grojaraščio"
 msgid "Delete saved playlist"
 msgstr "Trinti išsaugotą grojaraštį"
 
-#, fuzzy
 msgid "Delete the all the text"
-msgstr "Ištrinti visą tekstą"
+msgstr "Trinti visą tekstą"
 
 msgid "Delete the character to the left of text cursor"
 msgstr "Trinti simbolį teksto žymeklio kairėje"
@@ -6588,9 +6583,8 @@ msgstr "Tvarkyklės:\t%s"
 msgid "Drogen"
 msgstr "Narkotikai"
 
-#, fuzzy
 msgid "Dual Mode"
-msgstr "3D režimas"
+msgstr "Dvigubas režimas"
 
 msgid "During this time, the transmitter and the recording destination are checked. If the recording destination (eg NAS) does not ready in time for recording, this time can be increased."
 msgstr "Per šį laiką tikrinamas siųstuvas ir įrašymo vieta. Jei įrašymo paskirties vieta (pvz., NAS) nėra parengta įrašyti, šį laiką galima padidinti."
@@ -6610,9 +6604,8 @@ msgstr ""
 msgid "E"
 msgstr "E"
 
-#, fuzzy
 msgid "E "
-msgstr " "
+msgstr "Е "
 
 msgid "E2 Log"
 msgstr "E2 žurnalas"
@@ -6620,9 +6613,8 @@ msgstr "E2 žurnalas"
 msgid "E3HD/XPEEDLX/GI"
 msgstr "E3HD/XPEEDLX/GI"
 
-#, fuzzy
 msgid "ECM Info"
-msgstr "ECM informacijos nėra"
+msgstr "ECM informacija"
 
 msgid "ECM Statistics"
 msgstr "ECM statistika"
@@ -6728,9 +6720,8 @@ msgstr "Rytinė kraštutinė riba"
 msgid "Eastern"
 msgstr "Rytų"
 
-#, fuzzy
 msgid "EasyMedia"
-msgstr "Medija"
+msgstr "Paprasta medija"
 
 msgid "Ecuador"
 msgstr "Ekvadoras"
@@ -6816,7 +6807,7 @@ msgid "Email"
 msgstr "El. paštas"
 
 msgid "Embedded"
-msgstr ""
+msgstr "Įterpta"
 
 msgid "Empty slot"
 msgstr "Tuščias lizdas"
@@ -7003,9 +6994,8 @@ msgstr "Koduota: "
 msgid "Encryption"
 msgstr "Kodavimas"
 
-#, fuzzy
 msgid "Encryption Type:"
-msgstr "Kodavimo rakto tipas"
+msgstr "Šifravimo tipas:"
 
 msgid "Encryption key"
 msgstr "Kodavimo raktas"
@@ -7060,13 +7050,13 @@ msgstr ""
 
 #, python-format
 msgid "Enigma2 debug level:\t%d"
-msgstr ""
+msgstr "Enigma2 derinimo lygis:\t%d"
 
 msgid "Enigma2 skin selector"
 msgstr "Enigma2 temos parinkimas"
 
 msgid "Enigmalight"
-msgstr ""
+msgstr "Paprasta Enigma"
 
 msgid "Enter"
 msgstr "Įrašykite"
@@ -7301,9 +7291,8 @@ msgstr "Estija"
 msgid "Estonian"
 msgstr "Estų"
 
-#, fuzzy
 msgid "EtPortal"
-msgstr "Portugalija"
+msgstr "EtPortalas"
 
 msgid "Ethernet network interface"
 msgstr "Vietinio laidinio tinklo sąsaja"
@@ -7472,9 +7461,8 @@ msgstr "Ekspertinis"
 msgid "Expert mode"
 msgstr "Ekspertinis režimas"
 
-#, fuzzy
 msgid "Ext. NumberZap"
-msgstr "Skaičius"
+msgstr "Išor. Numerio jungimas"
 
 msgid "Extend"
 msgstr "Praplėsti"
@@ -7488,9 +7476,8 @@ msgstr "Išplėstinė grafinė aplinka"
 msgid "Extended Networksetup Plugin..."
 msgstr "Išplėstinis tinklo valdymo priedas..."
 
-#, fuzzy
 msgid "Extended PID info"
-msgstr "Išplėstinė grafinė aplinka"
+msgstr "Išplėstinė PID info"
 
 msgid "Extended Setup..."
 msgstr "Išplėstinis valdymas..."
@@ -7554,9 +7541,8 @@ msgstr "Ekstremalus sportas"
 msgid "Extrude from left"
 msgstr "Išstumti iš kairės"
 
-#, fuzzy
 msgid "F"
-msgstr "F1"
+msgstr "F"
 
 msgid "F1"
 msgstr "F1"
@@ -7790,9 +7776,8 @@ msgstr "Failo rašymo klaida: '%s'"
 msgid "File/Directory Status Information"
 msgstr "Failo/katalogo būsenos informacija"
 
-#, fuzzy
 msgid "Filename"
-msgstr "failo pavadinimas"
+msgstr "Failo pavadinimas"
 
 msgid "Files/folders to exclude from backup"
 msgstr "Failai/aplankai, neįtraukti į atsarginę kopiją"
@@ -8015,17 +8000,14 @@ msgstr "Prancūzijos pietinės teritorijos"
 msgid "Frequency"
 msgstr "Dažnis"
 
-#, fuzzy
 msgid "Frequency & Channel"
-msgstr "Naudokite dažnį arba kanalą"
+msgstr "Dažnis ir kanalas"
 
-#, fuzzy
 msgid "Frequency & Polarization"
-msgstr "Poliarizacija"
+msgstr "Dažnis ir poliarizacija"
 
-#, fuzzy
 msgid "Frequency Norm:"
-msgstr "Dažnis: "
+msgstr "Dažnio norma:"
 
 msgid "Frequency bands"
 msgstr "Dažnio juostos"
@@ -8036,9 +8018,8 @@ msgstr "Paieškos dažnio žingsnio dydis(khz)"
 msgid "Frequency steps"
 msgstr "Dažnio žingsniai"
 
-#, fuzzy
 msgid "Frequency:"
-msgstr "Dažnis: "
+msgstr "Dažnis:"
 
 msgid "Frequency: "
 msgstr "Dažnis: "
@@ -8100,9 +8081,8 @@ msgstr "Futbolas"
 msgid "Für Kinder"
 msgstr "Vaikams"
 
-#, fuzzy
 msgid "G"
-msgstr "GB"
+msgstr "G"
 
 msgid "GB"
 msgstr "GB"
@@ -8416,9 +8396,8 @@ msgstr ""
 msgid "Guyana"
 msgstr "Gajana"
 
-#, fuzzy
 msgid "H"
-msgstr "KAN."
+msgstr "H"
 
 msgid "H: = Hourly / D: = Daily / W: = Weekly / M: = Monthly"
 msgstr "H: = kas valandą / D: = kas dieną / W: = kas savaitę / M: = kas mėnesį"
@@ -8445,7 +8424,7 @@ msgid "HD2400"
 msgstr "HD2400"
 
 msgid "HD60/Multibox/Multiboxse"
-msgstr ""
+msgstr "HD60/Multibox/Multiboxse"
 
 msgid "HDMI"
 msgstr "HDMI"
@@ -8759,18 +8738,15 @@ msgstr "Vengrų"
 msgid "Hungary"
 msgstr "Vengrija"
 
-#, fuzzy
 msgid "I"
-msgstr "IP adresas"
+msgstr "I"
 
 msgid "I/O priority for script execution"
 msgstr "I/O prioritetas scenarijų vykdymui"
 
-#, fuzzy
 msgid "I55SE/H7/H9/H9SE/H9COMBO/H9COMBOSE/H10/H11 new Model"
-msgstr "H7/H9/H9COMBO/H10 naujas modelis"
+msgstr "I55SE/H7/H9/H9SE/H9COMBO/H9COMBOSE/H10/H11 naujas modelis"
 
-#, fuzzy
 msgid "IMDB Search"
 msgstr "IMDB paieška"
 
@@ -9485,12 +9461,11 @@ msgstr "Netinkami transponderio duomenys"
 msgid "Inversion"
 msgstr "Pervertimas"
 
-#, fuzzy
 msgid "Inversion & Bandwidth"
-msgstr "Info logotipo plotis"
+msgstr "Inversija ir dažnių juostos plotis"
 
 msgid "Inversion, Pilot & Roll-off"
-msgstr ""
+msgstr "Inversija, Pilot ir Roll-off"
 
 msgid "Invert"
 msgstr "Perversti"
@@ -9558,7 +9533,7 @@ msgid "Italy"
 msgstr "Italija"
 
 msgid "J"
-msgstr ""
+msgstr "J"
 
 msgid "JUMP 24 HOURS"
 msgstr "PERŠOKTI 24 VAL"
@@ -9880,7 +9855,7 @@ msgid "Lao People's Democratic Republic"
 msgstr "Laoso Liaudies Demokratinė Respublika"
 
 msgid "Large"
-msgstr ""
+msgstr "Didelis"
 
 #, python-format
 msgid "Last E2 update:\t\t%s"
@@ -10296,11 +10271,10 @@ msgid "Magazin"
 msgstr "Parduotuvė"
 
 msgid "Magic"
-msgstr ""
+msgstr "Magija"
 
-#, fuzzy
 msgid "Magic long"
-msgstr "Media ilgai"
+msgstr "Magija ilgai"
 
 msgid "Main menu"
 msgstr "Pagrindinis meniu"
@@ -10513,9 +10487,8 @@ msgstr "Medija failų paieška"
 msgid "MediaPlayer"
 msgstr "Medija grotuvas"
 
-#, fuzzy
 msgid "MediaPortal"
-msgstr "Atverti Medija Portalą"
+msgstr "Medija portalas"
 
 msgid "Medical"
 msgstr "Medicinos"
@@ -11051,9 +11024,8 @@ msgstr "NFS"
 msgid "NFS Setup"
 msgstr "NFS valdymas"
 
-#, fuzzy
 msgid "NIM & Type"
-msgstr "HDMI HDR tipas"
+msgstr "IMTUVAS IR TIPAS"
 
 msgid "NOW"
 msgstr "DABAR"
@@ -11097,7 +11069,7 @@ msgid "Nameserver setup"
 msgstr "DNS serverio valdymas"
 
 msgid "Namespace & Orbital pos."
-msgstr ""
+msgstr "Pavadinimo vieta ir orbitinė poz."
 
 msgid "Namibia"
 msgstr "Namibija"
@@ -11342,9 +11314,8 @@ msgstr "Nėra prisijungimo"
 msgid "No Devices Found !!"
 msgstr "Įrenginių nerasta !!"
 
-#, fuzzy
 msgid "No ECMPids available"
-msgstr "Nėra demux"
+msgstr "ECMPids nėra"
 
 msgid "No HDD found or HDD not initialized!"
 msgstr "Kietas diskas nerastas arba neinicializuotas!"
@@ -12036,9 +12007,8 @@ msgstr "Kita"
 msgid "Other Actions"
 msgstr "aukštasis mokslas"
 
-#, fuzzy
 msgid "Other Subtitles & lang"
-msgstr "Subtitrai ilgai spaudžiant"
+msgstr "Kiti subtitrai ir kalba"
 
 msgid "Other buttons will jump to the help information for that button, if there is help available."
 msgstr ""
@@ -12121,9 +12091,8 @@ msgstr "PCR PID"
 msgid "PDC"
 msgstr "PDC"
 
-#, fuzzy
 msgid "PGS file"
-msgstr "EPG failo pavadinimas"
+msgstr "PGS failas"
 
 msgid "PID"
 msgstr "PID"
@@ -12800,7 +12769,6 @@ msgstr ""
 "Susiderinkite ekrane matomą vaizdą, koreguodami reikšmes pagal tai, kiek raudonojo rėmo kraštai liečia jūsų TV ekrano kraštus.\n"
 "Kai tai atliksite, spauskite 'ŽALIĄ' mygtuką, kad tęsti."
 
-#, fuzzy
 msgid ""
 "Please use direction keys to move the PiP window.\n"
 "Press Bouquet +/- to resize the window.\n"
@@ -13074,9 +13042,8 @@ msgstr "Ruošiama... prašome laukti"
 msgid "Preschool"
 msgstr "Ikimokyklinis"
 
-#, fuzzy
 msgid "Press '0' to toggle PiP mode"
-msgstr "Paspauskite '0', kad perjungtumėte PiP dabartinį režimą"
+msgstr "PiP langams sukeisti spauskite '0'"
 
 #, fuzzy
 msgid "Press EXIT to return to the help screen."
@@ -13416,9 +13383,8 @@ msgstr "Greitas"
 msgid "Quick Actions"
 msgstr "Greiti veiksmai"
 
-#, fuzzy
 msgid "Quick EPG"
-msgstr "Greitas EPG režimas"
+msgstr "Greitas EPG"
 
 msgid "Quick Launch Menu"
 msgstr "Greitosios paleisties meniu"
@@ -13456,7 +13422,7 @@ msgid "REC"
 msgstr "ĮRAŠ."
 
 msgid "REC "
-msgstr ""
+msgstr "ĮRAŠ. "
 
 msgid "REC Symbol"
 msgstr "Simbolis REC"
@@ -14265,11 +14231,10 @@ msgid "SATA"
 msgstr "SATA"
 
 msgid "SATPI"
-msgstr ""
+msgstr "SATPI"
 
-#, fuzzy
 msgid "SATPI Setup"
-msgstr "AFP nustatymas"
+msgstr "SATPI sąranka"
 
 msgid "SCPC optimized search range"
 msgstr "SCPC optimizuotas paieškos diapazonas"
@@ -14301,12 +14266,11 @@ msgstr "SNR:"
 msgid "SPDIF"
 msgstr "SPDIF"
 
-#, fuzzy
 msgid "SRT file"
-msgstr "Pervadinti failą"
+msgstr "SRT failas"
 
 msgid "SSA file"
-msgstr ""
+msgstr "SSA failas"
 
 msgid "SSID:"
 msgstr "Tinklo pavadinimas (SSID):"
@@ -14564,10 +14528,10 @@ msgid "Scans default lamedbs sorted by satellite with a connected dish positione
 msgstr "Skenuokite numatytą lamedbs, surūšiuotą pagal palydovą, ir prijungtą prie pozicionieriaus antenos"
 
 msgid "Scheduled load of epg.dat"
-msgstr ""
+msgstr "Suplanuota epg.dat užkrova"
 
 msgid "Scheduled save of epg.dat"
-msgstr ""
+msgstr "Planuojama išsaugoti epg.dat"
 
 msgid "Sci-Fi"
 msgstr "Mokslinė fantastika"
@@ -15199,13 +15163,11 @@ msgstr "Serveriai:"
 msgid "Service"
 msgstr "Kanalas"
 
-#, fuzzy
 msgid "Service & PIDs"
-msgstr "Kanalai"
+msgstr "Kanalai ir PIDs"
 
-#, fuzzy
 msgid "Service ID"
-msgstr "Kanalas"
+msgstr "Kanalo ID"
 
 msgid "Service Name"
 msgstr "Kanalo pavadinimas"
@@ -15246,27 +15208,23 @@ msgstr "Kanalas įtrauktas į pasirinktą paketą."
 msgid "Service info"
 msgstr "Informacija apie kanalą"
 
-#, fuzzy
 msgid "Service info - ECM Info"
-msgstr "Informacija apie kanalą"
+msgstr "Kanalo info - ECM info"
 
 msgid "Service info - service & Basic PID Info"
-msgstr ""
+msgstr "Kanalo info - kanalas ir pagrindinė PID info"
 
 msgid "Service info - service & Extended PID Info"
-msgstr ""
+msgstr "Kanalo info - kanalas ir išplėstinė PID info"
 
-#, fuzzy
 msgid "Service info - service & PIDs"
-msgstr "Kanalo informacijos šrifto dydis"
+msgstr "Kanalo informacija - kanalas ir PID's"
 
-#, fuzzy
 msgid "Service info - tuner live values"
-msgstr "Kanalo informacijos šrifto dydis"
+msgstr "Kanalo informacija - imtuvo tiesioginės reikšmės"
 
-#, fuzzy
 msgid "Service info - tuner setting values"
-msgstr "Kanalo informacijos šrifto dydis"
+msgstr "Kanalo informacija - imtuvo nustatymų reikšmės"
 
 msgid "Service info font size"
 msgstr "Kanalo informacijos šrifto dydis"
@@ -15573,9 +15531,8 @@ msgstr "Sukonfigūruoti priedus"
 msgid "Setup SABnzbd"
 msgstr "Sukonfigūruoti SABnzbd"
 
-#, fuzzy
 msgid "Setup SATPI"
-msgstr "AFP nustatymas"
+msgstr "Nustatyti SATPI"
 
 msgid "Setup Samba"
 msgstr "Sukonfigūruoti Samba"
@@ -16211,9 +16168,8 @@ msgstr "Rodyti įrašymo simbolį"
 msgid "Show satellites list"
 msgstr "Rodyti palydovų sąrašą"
 
-#, fuzzy
 msgid "Show screen menu path"
-msgstr "Rodyti ekrano užsklandą"
+msgstr "Rodyti ekrano meniu kelią"
 
 msgid "Show screensaver"
 msgstr "Rodyti ekrano užsklandą"
@@ -16606,13 +16562,11 @@ msgstr "Lėtas"
 msgid "Slow motion speeds"
 msgstr "Sulėtinto judėjimo greitis"
 
-#, fuzzy
 msgid "Small"
-msgstr "Mažas testas"
+msgstr "Mažas"
 
-#, fuzzy
 msgid "Small Test"
-msgstr "Maža eigos juosta"
+msgstr "Mažas testas"
 
 msgid "Small progress"
 msgstr "Maža eigos juosta"
@@ -17404,9 +17358,8 @@ msgstr "Šveicarų"
 msgid "Symbol rate"
 msgstr "Simbolių greitis"
 
-#, fuzzy
 msgid "Symbol rate & FEC"
-msgstr "Simbolių greitis"
+msgstr "Simbolių sparta ir FEC"
 
 msgid "Symbolic link"
 msgstr "Simbolinė nuoroda"
@@ -17432,9 +17385,8 @@ msgstr "Sirijos Arabų Respublika"
 msgid "System"
 msgstr "Sistema"
 
-#, fuzzy
 msgid "System & Modulation"
-msgstr "Atminties Informacija"
+msgstr "Sistema ir moduliacija"
 
 msgid "System Info"
 msgstr "Informacija apie sistemą"
@@ -17481,7 +17433,9 @@ msgstr "TEKSTAS"
 
 #. TRANSLATORS: Add here whatever should be shown in the "translator" about screen, up to 6 lines (use \n for newline)
 msgid "TRANSLATOR_INFO"
-msgstr "Adga, v. 2020-07-16"
+msgstr ""
+"Adga, adga45@gmail.com\n"
+"Pasvalys, 2021-08-16 versija"
 
 msgid "TS file is too large for ISO9660 level 1!"
 msgstr "TS failas yra per didelis ISO9660 lygmeniui 1!"
@@ -17490,7 +17444,7 @@ msgid "TSID"
 msgstr "TSID"
 
 msgid "TUNER:"
-msgstr ""
+msgstr "IMTUVAS:"
 
 msgid "TV"
 msgstr "TV"
@@ -17504,9 +17458,8 @@ msgstr "TV fizinio adreso ataskaita"
 msgid "TXT PID"
 msgstr "TXT PID"
 
-#, fuzzy
 msgid "TXT Subtitles page & lang"
-msgstr "Subtitrai ilgai spaudžiant"
+msgstr "TXT subtitrų puslapis ir kalba"
 
 msgid "Table of content for collection"
 msgstr "Turinio lentelė kolekcijai"
@@ -17606,9 +17559,8 @@ msgstr "Teleteksto bazinis matomumas"
 msgid "Teletext font and resolution"
 msgstr "Teleteksto šriftas ir rezoliucija"
 
-#, fuzzy
 msgid "Teletext long"
-msgstr "Teletekstas"
+msgstr "Teletekstas (ilgai spausti)"
 
 msgid "Teletext subtitle color"
 msgstr "Teleteksto subtitrų spalva"
@@ -18289,9 +18241,8 @@ msgstr "Ši parinktis leidžia jums paslėpti ir rūšiuoti naršyklės priedus.
 msgid "This option allows you to show menu number quick links."
 msgstr "Ši parinktis leidžia jums parodyti greitų nuorodų meniu numerį."
 
-#, fuzzy
 msgid "This option allows you to show the screen menu path history."
-msgstr "Ši parinktis leidžia padidinti žalio atspalvio kiekį."
+msgstr "Ši parinktis leidžia parodyti ekrano meniu kelio istoriją."
 
 msgid "This option allows you to the SNR as a percentage (not all receivers support this)."
 msgstr "Ši parinktis leidžia jums rodyti SNR procentais (ne visi imtuvai tai palaiko)."
@@ -18644,11 +18595,9 @@ msgstr "Laikmačio pasirinkimas..."
 msgid "Timer type"
 msgstr "Laikmačio tipas"
 
-#, fuzzy
 msgid "Timer+"
-msgstr "Laikmatis"
+msgstr "Laikmatis+"
 
-#, fuzzy
 msgid "Timerlist"
 msgstr "Laikmačių sąrašas"
 
@@ -18967,13 +18916,11 @@ msgstr "Imtuvo konfigūravimas"
 msgid "Tuner is not supported"
 msgstr "Imtuvas nepalaiko"
 
-#, fuzzy
 msgid "Tuner live values"
-msgstr "Imtuvo būsena"
+msgstr "Imtuvo tiesioginės reikšmės"
 
-#, fuzzy
 msgid "Tuner setting values"
-msgstr "Imtuvo nustatymai"
+msgstr "Nustatymo reikšmės"
 
 msgid "Tuner settings"
 msgstr "Imtuvo nustatymai"
@@ -19668,15 +19615,14 @@ msgstr "VCR skartas"
 msgid "VLAN connection"
 msgstr "VLAN prisijungimas"
 
-#, fuzzy
 msgid "VMC"
-msgstr "MAC adresas"
+msgstr "VMC"
 
 msgid "VMGM (intro trailer)"
 msgstr "VMGM (anonsas)"
 
 msgid "VOB file"
-msgstr ""
+msgstr "VOB failas"
 
 msgid "VOD"
 msgstr "VOD parametrai"
@@ -19872,9 +19818,8 @@ msgstr "Vaizdo vedlys"
 msgid "Videoclip"
 msgstr "Vaizdo įrašas"
 
-#, fuzzy
 msgid "Videocodec, size & format"
-msgstr "Vaizdo formatas"
+msgstr "Vaizdo kodavimas, dydis ir formatas"
 
 msgid "Videosetup"
 msgstr "Vaizdo nustatymas"
@@ -21100,9 +21045,8 @@ msgstr "Zgemma H.S/H.2S/H.2H/H5/H7"
 msgid "Zgemma H.S/H.2S/H.2H/H5/H7 old Model"
 msgstr "Zgemma H.S/H.2S/H.2H/H5/H7 senas modelis"
 
-#, fuzzy
 msgid "Zgemma H8/H0/H9/I55Plus old Model"
-msgstr "Zgemma H9/I55Plus senas modelis"
+msgstr "Zgemma H8/H0/H9/I55Plus senas modelis"
 
 msgid "Zgemma Star S/2S/H1/H2"
 msgstr "Zgemma Star S/2S/H1/H2"
@@ -21194,9 +21138,8 @@ msgstr "aktyvuokite tinklo adapterio konfigūraciją"
 msgid "activatePiP"
 msgstr "aktyvuoti PiP"
 
-#, fuzzy
 msgid "active"
-msgstr "Neaktyvus"
+msgstr "aktyvus"
 
 msgid "add Current"
 msgstr "įtraukti šį"
@@ -21381,7 +21324,7 @@ msgid "by date"
 msgstr "pagal datą"
 
 msgid "by hmmmdada"
-msgstr ""
+msgstr "pagal hmmmdada"
 
 msgid "caid:"
 msgstr "caid:"
@@ -21597,7 +21540,7 @@ msgid "education/science/factual topics (general)"
 msgstr "švietimas, mokslas, faktai (bendrai)"
 
 msgid "embedded"
-msgstr ""
+msgstr "integruotas"
 
 msgid "empty"
 msgstr "tuščias"
@@ -21943,9 +21886,8 @@ msgstr "įdiegti/išpakuoti ipk failus"
 msgid "installed"
 msgstr "Išinstaliuoti"
 
-#, fuzzy
 msgid "instant record"
-msgstr "Momentinis įrašymas"
+msgstr "momentinis įrašymas"
 
 #, python-format
 msgid "internal flash:  %s %s "
@@ -22749,9 +22691,8 @@ msgstr "komandinės sporto šakos"
 msgid "technology/natural science"
 msgstr "technologijos/gamtos mokslai"
 
-#, fuzzy
 msgid "teletext"
-msgstr "Teletekstas"
+msgstr "teletekstas"
 
 msgid "template file"
 msgstr "šablono failas"
@@ -22880,7 +22821,7 @@ msgid "using:"
 msgstr "naudojamas:"
 
 msgid "v"
-msgstr ""
+msgstr "V"
 
 msgid "variety show"
 msgstr "varjetė šou"
@@ -23009,4 +22950,4 @@ msgid "zapping"
 msgstr "perjungimas"
 
 msgid "®"
-msgstr ""
+msgstr "®"
