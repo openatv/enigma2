@@ -34,9 +34,9 @@ LANG_COUNTRYCODES = 4
 LANG_MAX = 4
 
 # In this code the following meanings are used:
-#	Country: An official country as recognised by ISO, eg "AU" for Australia.
+# 	Country: An official country as recognised by ISO, eg "AU" for Australia.
 # 	Language: An official language as recognised by ISO, eg "en" for English.
-#	Locale: An official language as spoken in a country, eg "en_AU" for English (Australian).
+# 	Locale: An official language as spoken in a country, eg "en_AU" for English (Australian).
 
 LANGUAGE_DATA = {
 	# DEVELOPER NOTE:
@@ -577,7 +577,7 @@ class International:
 			if language not in self.languageList:
 				self.languageList.append(language)
 			count = len(packageLocales)
-			print("[International] Package '%s' has %d locale%s '%s'." % (package, count, "" if count == 1 else "s", "', '".join(packageLocales)))
+			print("[International] Package '%s' supports %d locale%s '%s'." % (package, count, "" if count == 1 else "s", "', '".join(packageLocales)))
 		self.localeList.sort()
 		self.languageList.sort()
 
@@ -810,7 +810,7 @@ class International:
 					print("[International] Warning: Package manager error:\n%s" % errorText)
 					status = _("Error: %s %s not %s!  Please try again later.") % (msg, ", ".join(languages), action)
 				else:
-					status = _("%s %s %s.") % (msg, ", ".join(languages), action)
+					status = "%s %s %s." % (msg, ", ".join(languages), action)
 			except (IOError, OSError) as err:
 				print("[International] Error %d: %s for command '%s'!" % (err.errno, err.strerror, " ".join(cmdList)))
 				status = _("Error: Unable to process the command!  Please try again later.")
