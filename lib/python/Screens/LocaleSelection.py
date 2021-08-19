@@ -38,10 +38,12 @@ class LocaleSelection(Screen, HelpableScreen):
 	LIST_STATICON = 4
 	LIST_STATUS = 5
 	LIST_PACKAGE = 6
+	MAX_LIST = 7
 
 	PACK_INSTALLED = 0
 	PACK_AVAILABLE = 1
 	PACK_IN_USE = 2
+	MAX_PACK = 3
 
 	skin = """
 	<screen name="LocaleSelection" position="center,center" size="1000,560" resolution="1280,720">
@@ -51,11 +53,12 @@ class LocaleSelection(Screen, HelpableScreen):
 				{
 				"template":
 					[
-					MultiContentEntryPixmapAlphaBlend(pos = (5, 2), size = (60, 30), flags = BT_SCALE, png = 0),
-					MultiContentEntryText(pos = (80, 0), size = (400, 34), font = 0, flags = RT_HALIGN_LEFT | RT_VALIGN_CENTER, text = 1),
-					MultiContentEntryText(pos = (490, 0), size = (330, 34), font = 0, flags = RT_HALIGN_LEFT | RT_VALIGN_CENTER, text = 2),
-					MultiContentEntryText(pos = (830, 0), size = (90, 34), font = 0, flags = RT_HALIGN_LEFT | RT_VALIGN_CENTER, text = 3),
-					MultiContentEntryPixmapAlphaBlend(pos = (930, 3), size = (30, 27), flags = BT_SCALE, png = 4)
+					MultiContentEntryPixmapAlphaBlend(pos = (5, 2), size = (60, 30), flags = BT_SCALE, png = 0),  # Flag.
+					MultiContentEntryText(pos = (80, 0), size = (400, 34), font = 0, flags = RT_HALIGN_LEFT | RT_VALIGN_CENTER, text = 1),  # Language name (Native).
+					MultiContentEntryText(pos = (490, 0), size = (330, 34), font = 0, flags = RT_HALIGN_LEFT | RT_VALIGN_CENTER, text = 2),  # Lanuage name (English).
+					MultiContentEntryText(pos = (830, 0), size = (90, 34), font = 0, flags = RT_HALIGN_LEFT | RT_VALIGN_CENTER, text = 3),  # Locale.
+					MultiContentEntryPixmapAlphaBlend(pos = (930, 3), size = (30, 27), flags = BT_SCALE, png = 4)  # Status icon.
+					# MultiContentEntryText(pos = (0, 0), size = (0, 0), font = 0, flags = RT_HALIGN_LEFT | RT_VALIGN_CENTER, text = 5),  # Package name.
 					],
 				"fonts": [parseFont("MultiLingual;25")],
 				"itemHeight": 34
@@ -140,6 +143,8 @@ class LocaleSelection(Screen, HelpableScreen):
 		self.onLayoutFinish.append(self.layoutFinished)
 
 	def layoutFinished(self):
+		while len(self["icons"].pixmaps) < self.MAX_PACK:
+			self["icons"].pixmaps.append(None) 
 		self.updateLocaleList(self.initialLocale)
 		self.moveToLocale(self.currentLocale)
 		self.updateText(updateDescription=True)
