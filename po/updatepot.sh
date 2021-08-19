@@ -56,8 +56,8 @@ printf "Creating temporary file enigma2-xml.pot\n"
 find $findoptions .. -name "*.xml" -exec python xml2po.py {} \+ > enigma2-xml.pot
 printf "Merging pot files to create: enigma2.pot\n"
 cat enigma2-py.pot enigma2-xml.pot | msguniq --no-wrap --no-location -o enigma2.pot -
-printf "remove pot Creation date\n"
-$localgsed -i -e’/POT-Creation/d’ enigma2.pot
+#printf "remove pot Creation date\n"
+#$localgsed -i -e'/POT-Creation/d' enigma2.pot
 printf "remove temp pot files\n"
 rm enigma2-py.pot enigma2-xml.pot
 printf "pot update from script finished!\n"
