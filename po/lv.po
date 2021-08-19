@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-04-16 19:27+0430\n"
+"POT-Creation-Date: 2021-08-15 18:24+0200\n"
 "PO-Revision-Date: 2016-04-02 23:17+0200\n"
 "Last-Translator: Andy Blackburn <andyblac@icloud.com>\n"
 "Language-Team: Ivo / enigma2 (c) <ivog@apolllo.lv>\n"
@@ -33,6 +33,11 @@ msgid ""
 "\n"
 "  WARNING: \n"
 "  There is not enough space to install Kodi!"
+msgstr ""
+
+msgid ""
+"\n"
+" Do you want to switch Enigma2 with Android...?"
 msgstr ""
 
 msgid ""
@@ -1109,6 +1114,12 @@ msgstr[0] "%d kanāli atrasti!"
 msgstr[1] "%d kanāli atrasti!"
 
 #, python-format
+msgid "%d day"
+msgid_plural "%d days"
+msgstr[0] ""
+msgstr[1] ""
+
+#, python-format
 msgid "%d hour"
 msgid_plural "%d hours"
 msgstr[0] ""
@@ -1275,9 +1286,19 @@ msgid ""
 "Press exit to close"
 msgstr ""
 
+#
+#, fuzzy, python-format
+msgid "%s  (%s)"
+msgstr "%s (%s)\n"
+
 #, python-format
 msgid "%s %02d.%02d."
 msgstr ""
+
+#
+#, fuzzy, python-format
+msgid "%s %s %s."
+msgstr "Jauna versija:"
 
 #, python-format
 msgid "%s %s advanced remote control (native)"
@@ -1520,6 +1541,10 @@ msgstr ""
 #, fuzzy
 msgid "+24"
 msgstr "2"
+
+msgctxt "Text list separator"
+msgid ", "
+msgstr ""
 
 msgid "-"
 msgstr ""
@@ -1893,6 +1918,11 @@ msgstr ""
 msgid "2nd infobar"
 msgstr ""
 
+#
+#, fuzzy
+msgid "2ndInfobar Actions"
+msgstr "Adaptera iestatījumi"
+
 msgid "2s"
 msgstr ""
 
@@ -2253,6 +2283,9 @@ msgstr ""
 "Taimeris ir beidzis ierakstu un vēlas izslēgt\n"
 "%s %s. Vai darīt to tagad?"
 
+msgid "A highlight on the remote control image shows which button the help refers to. If more than one button performs the indicated function, more than one highlight will be shown. Text below the list lists the active buttons and whether the function requires a long press or SHIFT of the button(s)."
+msgstr ""
+
 #, python-format
 msgid ""
 "A recording has been started:\n"
@@ -2392,9 +2425,6 @@ msgstr ""
 msgid "AFP Setup"
 msgstr ""
 
-msgid "ASS File"
-msgstr ""
-
 msgid "ASS file"
 msgstr ""
 
@@ -2419,6 +2449,9 @@ msgid "AZPlay"
 msgstr "Atskaņot"
 
 msgid "Abenteuer"
+msgstr ""
+
+msgid "Abkhazian"
 msgstr ""
 
 #
@@ -2533,6 +2566,9 @@ msgstr "Adaptera iestatījumi"
 #
 msgid "Add"
 msgstr "Pievienot"
+
+msgid "Add / Delete the currently highlighted locale / language"
+msgstr ""
 
 msgid "Add AutoTimer"
 msgstr ""
@@ -2739,8 +2775,14 @@ msgstr ""
 msgid "Adventure"
 msgstr ""
 
+msgid "Afar"
+msgstr ""
+
 msgid "Afghanistan"
 msgstr "Afganistāna"
+
+msgid "Afrikaans"
+msgstr ""
 
 msgid "After PowerLost"
 msgstr ""
@@ -2760,10 +2802,17 @@ msgstr ""
 msgid "Agenten"
 msgstr ""
 
+msgid "Akan"
+msgstr ""
+
 msgid "Aland Islands"
 msgstr ""
 
 msgid "Albania"
+msgstr "Albānija"
+
+#, fuzzy
+msgid "Albanian"
 msgstr "Albānija"
 
 #
@@ -2827,6 +2876,9 @@ msgstr ""
 #, fuzzy
 msgid "All services provider"
 msgstr "Zemes operators"
+
+msgid "All supported"
+msgstr ""
 
 msgid "Allocate"
 msgstr ""
@@ -2901,6 +2953,9 @@ msgstr ""
 msgid "Alpha"
 msgstr "Alpha"
 
+msgid "Alphabetical under headings"
+msgstr ""
+
 msgid "Alphanumeric"
 msgstr ""
 
@@ -2963,6 +3018,9 @@ msgstr ""
 msgid "American Sports"
 msgstr ""
 
+msgid "Amharic"
+msgstr ""
+
 msgid ""
 "An attempt is made to capture the current TV status. If this is not possible due to incorrect or missing status messages, it may cause the receiver to respond unexpectedly.\n"
 "On the other hand, tries to respond better to different operating conditions."
@@ -3000,6 +3058,9 @@ msgstr ""
 msgid "Animation Speed"
 msgstr ""
 
+msgid "Animation speed of help indicators"
+msgstr ""
+
 msgid "Animations"
 msgstr ""
 
@@ -3015,9 +3076,15 @@ msgstr ""
 msgid "Any activity"
 msgstr ""
 
+msgid "Apply any changes to the active locale/langauge and exit"
+msgstr ""
+
 #
 msgid "Arabic"
 msgstr "Arābu"
+
+msgid "Aragonese"
+msgstr ""
 
 msgid "Architektur"
 msgstr "Arhitektūra"
@@ -3141,6 +3208,10 @@ msgstr "Argentīna"
 msgid "Armenia"
 msgstr "Armēnija"
 
+#, fuzzy
+msgid "Armenian"
+msgstr "Armēnija"
+
 #
 msgid "Artist"
 msgstr "Izpildītājs"
@@ -3173,6 +3244,11 @@ msgstr ""
 msgid "Aspect Ratio"
 msgstr ""
 
+#
+#, fuzzy
+msgid "Aspect Ratio Actions"
+msgstr "Izvēlēties atrašanās vietu"
+
 msgid "Aspect list..."
 msgstr ""
 
@@ -3180,6 +3256,9 @@ msgid "Aspect long"
 msgstr ""
 
 msgid "Aspect ratio"
+msgstr ""
+
+msgid "Assamese"
 msgstr ""
 
 msgid "Assigned CAIds:"
@@ -3208,6 +3287,10 @@ msgstr ""
 
 msgid "Audio"
 msgstr ""
+
+#, fuzzy
+msgid "Audio Actions"
+msgstr "Audio iestatījumi"
 
 msgid "Audio Auto Volume Level"
 msgstr ""
@@ -3432,13 +3515,25 @@ msgstr "Pieejamie mainīgo formāti"
 msgid "Available shares:"
 msgstr ""
 
+msgid "Avaric"
+msgstr ""
+
+msgid "Avestan"
+msgstr ""
+
 msgid "Avoid getting stuck (at the expense of some stuttering) when the jump time is smaller than the time between I-frames."
 msgstr ""
 
 msgid "Axas E4HD Ultra"
 msgstr ""
 
+msgid "Aymara"
+msgstr ""
+
 msgid "Azerbaijan"
+msgstr ""
+
+msgid "Azerbaijani"
 msgstr ""
 
 #
@@ -3644,6 +3739,9 @@ msgstr ""
 msgid "Bahrain"
 msgstr ""
 
+msgid "Bambara"
+msgstr ""
+
 #
 msgid "Band"
 msgstr "Josla"
@@ -3670,6 +3768,9 @@ msgid "Base transparency for teletext, more options available within teletext sc
 msgstr ""
 
 msgid "Baseball"
+msgstr ""
+
+msgid "Bashkir"
 msgstr ""
 
 msgid "Basic PID info"
@@ -3715,6 +3816,10 @@ msgstr "Darbība kad filma beidzas"
 msgid "Belarus"
 msgstr "Baltkrievija"
 
+#, fuzzy
+msgid "Belarusian"
+msgstr "Baltkrievija"
+
 #
 #, fuzzy
 msgid "Belgian"
@@ -3724,6 +3829,9 @@ msgid "Belgium"
 msgstr "Beļģija"
 
 msgid "Belize"
+msgstr ""
+
+msgid "Bengali"
 msgstr ""
 
 msgid "Benin"
@@ -3750,6 +3858,9 @@ msgstr ""
 msgid "Big PiP"
 msgstr ""
 
+msgid "Bihari languages"
+msgstr ""
+
 msgid "Bildung"
 msgstr ""
 
@@ -3757,6 +3868,9 @@ msgid "Biografie"
 msgstr ""
 
 msgid "Biography"
+msgstr ""
+
+msgid "Bislama"
 msgstr ""
 
 msgid "Bitrate"
@@ -3807,13 +3921,13 @@ msgstr ""
 msgid "Bluetooth Setup"
 msgstr "Tīkla iestatne"
 
-msgid "Bolivia (Plurinational State of)"
+msgid "Bolivia"
 msgstr ""
 
 msgid "Bollywood"
 msgstr ""
 
-msgid "Bonaire, Sint Eustatius and Saba"
+msgid "Bonaire"
 msgstr ""
 
 #
@@ -3837,6 +3951,9 @@ msgid "Bootloader:\t\t%s\n"
 msgstr ""
 
 msgid "Bosnia and Herzegovina"
+msgstr ""
+
+msgid "Bosnian"
 msgstr ""
 
 msgid "Botswana"
@@ -3866,6 +3983,9 @@ msgid "Boxing"
 msgstr ""
 
 msgid "Brazil"
+msgstr ""
+
+msgid "Breton"
 msgstr ""
 
 #
@@ -3907,6 +4027,9 @@ msgid "Bulgarian"
 msgstr ""
 
 msgid "Burkina Faso"
+msgstr ""
+
+msgid "Burmese"
 msgstr ""
 
 msgid "Burn Bludisc"
@@ -4093,9 +4216,6 @@ msgstr "Kabeļu"
 msgid "Cable Scan"
 msgstr ""
 
-msgid "Cabo Verde"
-msgstr ""
-
 #
 # ???
 #, fuzzy
@@ -4242,6 +4362,24 @@ msgstr ""
 msgid "Cancel"
 msgstr "Atcelt"
 
+#
+#, fuzzy
+msgid "Cancel any changed settings and exit"
+msgstr "Kanālu izvēle"
+
+#
+#, fuzzy
+msgid "Cancel any changed settings and exit all menus"
+msgstr "Kanālu izvēle"
+
+#
+#, fuzzy
+msgid "Cancel any changes the active locale/language and exit all menus"
+msgstr "Kanālu izvēle"
+
+msgid "Cancel any changes to the active locale/language and exit"
+msgstr ""
+
 msgid "Cancel any text changes and exit"
 msgstr ""
 
@@ -4252,6 +4390,11 @@ msgstr "Kanālu izvēle"
 
 msgid "Cancel save timeshift as movie"
 msgstr ""
+
+#
+#, fuzzy
+msgid "Cancel selection"
+msgstr "Kanālu izvēle"
 
 #
 #, fuzzy
@@ -4305,6 +4448,9 @@ msgstr "Ietilpība: "
 msgid "Capacity: "
 msgstr "Ietilpība: "
 
+msgid "Cape Verde"
+msgstr ""
+
 msgid "Card infos (CCcam-Reader)"
 msgstr ""
 
@@ -4331,6 +4477,9 @@ msgstr ""
 msgid "Casting"
 msgstr "Gaida"
 
+msgid "Catalan / Valencian"
+msgstr ""
+
 msgid "Caution update not yet tested !!"
 msgstr ""
 
@@ -4343,11 +4492,22 @@ msgstr ""
 msgid "Central African Republic"
 msgstr ""
 
+msgid "Central Khmer"
+msgstr ""
+
 msgid "Chad"
+msgstr ""
+
+msgid "Chamorro"
 msgstr ""
 
 msgid "Change Boxmode to control Hardware Chip Modes*"
 msgstr ""
+
+#
+#, fuzzy
+msgid "Change Language"
+msgstr "Valoda"
 
 msgid "Change PIN"
 msgstr ""
@@ -4551,6 +4711,11 @@ msgid "Character device"
 msgstr "Atmiņas ierīču saraksts"
 
 #
+#, fuzzy
+msgid "Chechen"
+msgstr "Pārbaude"
+
+#
 msgid "Check"
 msgstr "Pārbaude"
 
@@ -4595,6 +4760,9 @@ msgid ""
 "DiSEqC port %s for %s"
 msgstr ""
 
+msgid "Chichewa / Chewa / Nyanja"
+msgstr ""
+
 msgid "Children"
 msgstr ""
 
@@ -4608,6 +4776,9 @@ msgid "Chile"
 msgstr ""
 
 msgid "China"
+msgstr ""
+
+msgid "Chinese"
 msgstr ""
 
 msgid "Chipset"
@@ -4687,6 +4858,9 @@ msgstr ""
 msgid "Choose the name of the file that holds the EPG data when the %s %s is shut down. This can be handy to differentiate between several boxes."
 msgstr ""
 
+msgid "Choose the order in which items are displayed in Help windows"
+msgstr ""
+
 msgid "Choose time interval to which the graphics will be rounded off."
 msgstr ""
 
@@ -4739,6 +4913,12 @@ msgid "Christmas Island"
 msgstr ""
 
 msgid "Chronik"
+msgstr ""
+
+msgid "Church Slavic"
+msgstr ""
+
+msgid "Chuvash"
 msgstr ""
 
 msgid "Circular LNB"
@@ -4830,6 +5010,9 @@ msgstr ""
 msgid "Close title selection"
 msgstr ""
 
+msgid "Cloudflare"
+msgstr ""
+
 msgid "Cocos (Keeling) Islands"
 msgstr ""
 
@@ -4908,6 +5091,9 @@ msgstr ""
 msgid "Common Interface assignment"
 msgstr "Common Interface"
 
+msgid "Common Setup Actions"
+msgstr ""
+
 #
 msgid "Communication"
 msgstr ""
@@ -4952,6 +5138,12 @@ msgstr ""
 msgid "Configfile %s saved."
 msgstr ""
 
+#
+#, fuzzy
+msgctxt "Abbreviation of 'Configurable'"
+msgid "Configurable"
+msgstr "Konfigurē"
+
 msgid "Configuration mode"
 msgstr ""
 
@@ -4959,6 +5151,9 @@ msgstr ""
 #, fuzzy, python-format
 msgid "Configuration mode: %s"
 msgstr "Konfigurē"
+
+msgid "Configuration options for the HELP screen can be found in 'MENU > Setup > Usage & User Interface > Settings'."
+msgstr ""
 
 msgid "Configure an additional delay to improve external subtitle synchronisation."
 msgstr ""
@@ -5336,9 +5531,6 @@ msgstr "Taimera konflikts"
 msgid "Congo"
 msgstr ""
 
-msgid "Congo (Democratic Republic of the)"
-msgstr ""
-
 #, python-format
 msgid "Congratulations, you have successfully configured your %s %s for use with the IceTV Smart Recording service. Your IceTV guide will now download in the background."
 msgstr ""
@@ -5433,6 +5625,9 @@ msgstr ""
 msgid "Control the Infobar fading speed"
 msgstr ""
 
+msgid "Control the animation speed of the button indicators in the Help screen. 'Disabled' turns off animation so that indicators jump between buttons."
+msgstr ""
+
 msgid "Control your Softcams"
 msgstr ""
 
@@ -5506,10 +5701,18 @@ msgstr "Pārbauda datņu sistēmu..."
 msgid "Cores: %s"
 msgstr ""
 
+#
+#, fuzzy
+msgid "Cornish"
+msgstr "Dāņu"
+
+msgid "Corsican"
+msgstr ""
+
 msgid "Costa Rica"
 msgstr ""
 
-msgid "Cote d'Ivoire"
+msgid "Cote d'Ivoire / Ivory Coast"
 msgstr ""
 
 #
@@ -5627,6 +5830,9 @@ msgid "Creating filesystem"
 msgstr "Pārbauda datņu sistēmu..."
 
 msgid "Creating partition"
+msgstr ""
+
+msgid "Cree"
 msgstr ""
 
 #
@@ -5770,6 +5976,9 @@ msgstr ""
 msgid "Czech"
 msgstr "Čehu"
 
+msgid "Czech Republic"
+msgstr ""
+
 #
 #, fuzzy
 msgid "Czechia"
@@ -5784,6 +5993,11 @@ msgstr ""
 #
 msgid "DHCP"
 msgstr "DHCP"
+
+#
+#, fuzzy
+msgid "DHCP Router"
+msgstr "Gatavs"
 
 msgid "DLNA support"
 msgstr ""
@@ -6266,8 +6480,18 @@ msgstr ""
 msgid "Delete EPG"
 msgstr "Dzēst"
 
+#
+#, fuzzy
+msgid "Delete Lang"
+msgstr "dzēst datni"
+
 msgid "Delete Language"
 msgstr ""
+
+#
+#, fuzzy
+msgid "Delete Loc"
+msgstr "Dzēst"
 
 msgid "Delete Plugins"
 msgstr ""
@@ -6349,11 +6573,19 @@ msgid "Deleted items"
 msgstr ""
 
 #
+#, fuzzy, python-format
+msgid "Deleting %s (%s)..."
+msgstr "dzēst datni"
+
+#
 #, fuzzy
 msgid "Deleting files"
 msgstr "dzēst datni"
 
 msgid "Delivery system workaround"
+msgstr ""
+
+msgid "Democratic Republic of the Congo"
 msgstr ""
 
 msgid "Denmark"
@@ -6466,6 +6698,11 @@ msgid ""
 "Difference between timer begin and end must be equal or greater than %d minutes.\n"
 "End Action was disabled !"
 msgstr ""
+
+#
+#, fuzzy
+msgid "Digit entry for service selection"
+msgstr "Taimeru izvēle"
 
 #
 msgid "Digital contour removal"
@@ -6590,6 +6827,15 @@ msgid "Display settings"
 msgstr ""
 
 msgid "Display the EIT now/next eventdata in infobar."
+msgstr ""
+
+msgid "Display the base locales or all locales for a language."
+msgstr ""
+
+msgid "Display the virtual keyboard for data entry"
+msgstr ""
+
+msgid "Divehi / Dhivehi / Maldivian"
 msgstr ""
 
 #
@@ -6850,6 +7096,9 @@ msgstr ""
 msgid "Don't save"
 msgstr ""
 
+msgid "Don't show default"
+msgstr ""
+
 #
 msgid "Don't stop current event but disable coming events"
 msgstr "Neapturēt pašreizējo notikumu bet izslēgt nākamos notikumus"
@@ -6960,8 +7209,14 @@ msgstr ""
 msgid "Dutch"
 msgstr "Holandiešu"
 
+msgid "Dutch / Flemish"
+msgstr ""
+
 #
 msgid "Dynamic contrast"
+msgstr ""
+
+msgid "Dzongkha"
 msgstr ""
 
 #
@@ -7360,6 +7615,18 @@ msgstr ""
 msgid "Enable the current value of the slider at end of the slider bar."
 msgstr ""
 
+msgid "Enable this option to add action map / remote control mapping data to the debug log file."
+msgstr ""
+
+msgid "Enable this option to add keyboard keymap data to the debug log file."
+msgstr ""
+
+msgid "Enable this option to add remote control data to the debug log file."
+msgstr ""
+
+msgid "Enable this option to add screen names and resolution data to the debug log file."
+msgstr ""
+
 msgid "Enable this setting if your aerial system needs power"
 msgstr ""
 
@@ -7422,6 +7689,12 @@ msgstr ""
 #
 msgid "English"
 msgstr "Angļu"
+
+msgid "English name (Ascending)"
+msgstr ""
+
+msgid "English name (Descending)"
+msgstr ""
 
 msgid "Enhanced Movie Center"
 msgstr ""
@@ -7649,10 +7922,20 @@ msgstr ""
 "Kļūda: %s\n"
 "Atkārtot??"
 
+#, python-format
+msgid "Error: %s %s not %s!  Please try again later."
+msgstr ""
+
+msgid "Error: Unable to process the command!  Please try again later."
+msgstr ""
+
 msgid "Es folgt:"
 msgstr ""
 
 msgid "Esoterik"
+msgstr ""
+
+msgid "Esperanto"
 msgstr ""
 
 msgid "Essen"
@@ -7729,6 +8012,9 @@ msgid ""
 msgstr ""
 
 msgid "Everywhere"
+msgstr ""
+
+msgid "Ewe"
 msgstr ""
 
 msgid "Exceeds Bludisc medium!"
@@ -7904,6 +8190,11 @@ msgid "Extended setup..."
 msgstr "Paplašinātā iestatne..."
 
 #
+#, fuzzy
+msgid "Extension Actions"
+msgstr "Paplašinājumi"
+
+#
 msgid "Extensions"
 msgstr "Paplašinājumi"
 
@@ -8050,6 +8341,12 @@ msgstr ""
 msgid "Faroe Islands"
 msgstr ""
 
+msgid "Faroese"
+msgstr ""
+
+msgid "Farsi / Persian"
+msgstr ""
+
 #
 msgid "Fast"
 msgstr "Ātrs"
@@ -8097,6 +8394,9 @@ msgid "Fetch EPG and update timers now"
 msgstr ""
 
 msgid "Fiji"
+msgstr ""
+
+msgid "Fijian"
 msgstr ""
 
 msgid "File"
@@ -8311,6 +8611,19 @@ msgid ""
 msgstr ""
 
 #
+#, fuzzy
+msgid "Flat alphabetical"
+msgstr "Vertikālā"
+
+msgid "Flat by key group on remote"
+msgstr ""
+
+#
+#, fuzzy
+msgid "Flat by position on remote"
+msgstr "Iet uz pozīciju"
+
+#
 msgid "Following tasks will be done after you press OK!"
 msgstr ""
 
@@ -8488,6 +8801,9 @@ msgstr "Frontprocesora versija: %d"
 msgid "Frontprocessor version: %s"
 msgstr ""
 
+msgid "Fulah"
+msgstr ""
+
 msgid "Full Image Backup "
 msgstr ""
 
@@ -8560,11 +8876,22 @@ msgstr ""
 msgid "Gabon"
 msgstr ""
 
+msgid "Gaelic"
+msgstr ""
+
+msgid "Galician"
+msgstr ""
+
 msgid "Gambia"
 msgstr ""
 
 msgid "Game Show"
 msgstr ""
+
+#
+#, fuzzy
+msgid "Ganda"
+msgstr "standarta"
 
 msgid "Gangster"
 msgstr ""
@@ -8600,6 +8927,11 @@ msgstr "Žanrs"
 
 msgid "Georgia"
 msgstr ""
+
+#
+#, fuzzy
+msgid "Georgian"
+msgstr "Norvēģu"
 
 #
 msgid "German"
@@ -8697,6 +9029,9 @@ msgid "Gold"
 msgstr ""
 
 msgid "Golf"
+msgstr ""
+
+msgid "Google DNS"
 msgstr ""
 
 msgid "Goto"
@@ -8826,6 +9161,9 @@ msgstr ""
 msgid "Guam"
 msgstr ""
 
+msgid "Guarani"
+msgstr ""
+
 msgid "Guard interval"
 msgstr ""
 
@@ -8839,6 +9177,9 @@ msgid "Guinea"
 msgstr ""
 
 msgid "Guinea-Bissau"
+msgstr ""
+
+msgid "Gujarati"
 msgstr ""
 
 msgid "Guyana"
@@ -8900,6 +9241,9 @@ msgstr ""
 msgid "HDMI Recording"
 msgstr "Ieraksta"
 
+msgid "HDMI-IN Actions"
+msgstr ""
+
 msgid "HDMI-IN Recording settings"
 msgstr ""
 
@@ -8910,6 +9254,9 @@ msgid "HDR10 Support"
 msgstr ""
 
 msgid "HELP"
+msgstr ""
+
+msgid "HELP provides brief information for buttons in your current context."
 msgstr ""
 
 msgid "HH:mm"
@@ -8928,6 +9275,9 @@ msgstr ""
 #, fuzzy
 msgid "Haiti"
 msgstr "Gaida"
+
+msgid "Haitian / Haitian Creole"
+msgstr ""
 
 msgid "Handball"
 msgstr ""
@@ -8963,6 +9313,9 @@ msgstr ""
 msgid "Harddisk Setup"
 msgstr ""
 
+msgid "Hausa"
+msgstr ""
+
 msgid "Heard Island and McDonald Islands"
 msgstr ""
 
@@ -8980,6 +9333,11 @@ msgstr ""
 
 msgid "Help"
 msgstr ""
+
+#
+#, fuzzy
+msgid "Help Screen Information"
+msgstr "Informācija"
 
 msgid "Help long"
 msgstr ""
@@ -9003,6 +9361,9 @@ msgid "Here you can set what is called when pressing the 'Info' key."
 msgstr ""
 
 msgid "Here you can specify additional files that should be added to the backup file."
+msgstr ""
+
+msgid "Herero"
 msgstr ""
 
 msgid "Hidden / Blank"
@@ -9038,6 +9399,9 @@ msgstr ""
 msgid "Hide player"
 msgstr "slēpt atskaņotāju"
 
+msgid "Hide the InfoBar"
+msgstr ""
+
 msgid "Hide zap errors"
 msgstr ""
 
@@ -9046,6 +9410,12 @@ msgstr ""
 
 #
 msgid "High bitrate support"
+msgstr ""
+
+msgid "Hindi"
+msgstr ""
+
+msgid "Hiri Motu"
 msgstr ""
 
 msgid "Hispasat 30.0w"
@@ -9086,7 +9456,7 @@ msgstr ""
 msgid "Hold till locked"
 msgstr ""
 
-msgid "Holy See"
+msgid "Holy See (Vatican City State)"
 msgstr ""
 
 msgid "Home"
@@ -9310,16 +9680,25 @@ msgstr "Jauna versija:"
 msgid "Iceland"
 msgstr ""
 
+msgid "Icelandic"
+msgstr ""
+
 msgid "Icons"
 msgstr ""
 
 msgid "Idle Time: "
 msgstr ""
 
+msgid "Ido"
+msgstr ""
+
 msgid "If 'never', will force restart despite that after 100 crashes."
 msgstr ""
 
 msgid "If 'never', will write crash log despite that for the first crash."
+msgstr ""
+
+msgid "If an action is user-configurable, its help entry will be flagged with a '(C)' suffix."
 msgstr ""
 
 msgid "If editing a file, can you set the cursor start position at end or begin of the line."
@@ -9438,6 +9817,9 @@ msgstr ""
 "Pašreiz nepievērsiet uzmanību spilgtajiem toņiem. Tie tiks uzstādīti nākamajā solī.\n"
 "Ja esat apmierināts ar rezultātu, spiediet OK."
 
+msgid "Igbo"
+msgstr ""
+
 msgid "Ignore DVB-C namespace sub network"
 msgstr ""
 
@@ -9554,6 +9936,22 @@ msgstr ""
 msgid "Include EIT in http streams"
 msgstr ""
 
+msgid "Include action map data"
+msgstr ""
+
+#
+#, fuzzy
+msgid "Include keyboard data"
+msgstr "Klaviatūras izkārtojums"
+
+#
+#, fuzzy
+msgid "Include remote control data"
+msgstr "Spiediet OK uz tālvadības pults, lai turpinātu."
+
+msgid "Include screen load data"
+msgstr ""
+
 msgid "Incorrect type service for PiP!"
 msgstr ""
 
@@ -9609,11 +10007,32 @@ msgstr ""
 
 #
 #, fuzzy
+msgid "InfoBar EPG Actions"
+msgstr "Infojosla"
+
+#
+#, fuzzy
 msgid "InfoBar EPG mode"
 msgstr "Infojosla"
 
+msgid "InfoBar Event View Actions"
+msgstr ""
+
+#
+#, fuzzy
+msgid "InfoBar RDS Actions"
+msgstr "Informācija"
+
+msgid "InfoBar Show/Hide Actions"
+msgstr ""
+
 msgid "InfoPanel"
 msgstr ""
+
+#
+#, fuzzy
+msgid "InfoPanel Actions"
+msgstr "Informācija"
 
 msgid "Infobar EPG"
 msgstr ""
@@ -9733,6 +10152,16 @@ msgstr ""
 msgid "Install Finished."
 msgstr ""
 
+#
+#, fuzzy
+msgid "Install Lang"
+msgstr "Uzstādīšana"
+
+#
+#, fuzzy
+msgid "Install Loc"
+msgstr "Uzstādīšana"
+
 msgid "Install Plugins"
 msgstr ""
 
@@ -9784,6 +10213,11 @@ msgstr ""
 
 #
 msgid "Installing"
+msgstr "Uzstādīšana"
+
+#
+#, fuzzy, python-format
+msgid "Installing %s (%s)..."
 msgstr "Uzstādīšana"
 
 #
@@ -9858,6 +10292,14 @@ msgid "Interlaced"
 msgstr "Iekšējā atmiņa"
 
 #
+#, fuzzy
+msgid "Interlingua"
+msgstr "Iekšējā atmiņa"
+
+msgid "Interlingue / Occidental"
+msgstr ""
+
+#
 msgid "Intermediate"
 msgstr "Vidējs"
 
@@ -9891,6 +10333,12 @@ msgid "Internet"
 msgstr ""
 
 msgid "Interval between keys when repeating:"
+msgstr ""
+
+msgid "Inuktitut"
+msgstr ""
+
+msgid "Inupiaq"
 msgstr ""
 
 #
@@ -9935,16 +10383,19 @@ msgstr ""
 msgid "Ipkg"
 msgstr "Ipkg"
 
-msgid "Iran (Islamic Republic of)"
+msgid "Iran, Islamic Republic"
 msgstr ""
 
-msgid "Iran, Islamic Republic"
+msgid "Iran, Islamic Republic of"
 msgstr ""
 
 msgid "Iraq"
 msgstr ""
 
 msgid "Ireland"
+msgstr ""
+
+msgid "Irish"
 msgstr ""
 
 msgid "Is not necessary in most cases."
@@ -10002,6 +10453,12 @@ msgid "Jamaica"
 msgstr ""
 
 msgid "Japan"
+msgstr ""
+
+msgid "Japanese"
+msgstr ""
+
+msgid "Javanese"
 msgstr ""
 
 msgid "Jersey"
@@ -10079,10 +10536,25 @@ msgstr ""
 msgid "KB"
 msgstr "B"
 
+msgid "Kalaallisut / Greenlandic"
+msgstr ""
+
 msgid "Kampfsport"
 msgstr ""
 
+msgid "Kannada"
+msgstr ""
+
+msgid "Kanuri"
+msgstr ""
+
+msgid "Kashmiri"
+msgstr ""
+
 msgid "Katastrophe"
+msgstr ""
+
+msgid "Kazakh"
 msgstr ""
 
 msgid "Kazakhstan"
@@ -10138,10 +10610,19 @@ msgstr ""
 msgid "Keymap changed, you need to restart the GUI"
 msgstr ""
 
+msgid "Kikuyu / Gikuyu"
+msgstr ""
+
 #
 #, fuzzy
 msgid "Kinder"
 msgstr "Sat-meklētājs"
+
+msgid "Kinyarwanda"
+msgstr ""
+
+msgid "Kirghiz / Kyrgyz"
+msgstr ""
 
 msgid "Kiribati"
 msgstr ""
@@ -10166,13 +10647,22 @@ msgstr "iziet no mediju atskaņotāja"
 msgid "Kodi/extra partition free space:"
 msgstr ""
 
+msgid "Komi"
+msgstr ""
+
 msgid "Komödie"
 msgstr ""
 
-msgid "Korea (Democratic People's Republic of)"
+msgid "Kongo"
 msgstr ""
 
-msgid "Korea (Republic of)"
+msgid "Korea, Democratic People's Republic of"
+msgstr ""
+
+msgid "Korea, Republic of"
+msgstr ""
+
+msgid "Korean"
 msgstr ""
 
 msgid "Kraftsport"
@@ -10187,10 +10677,16 @@ msgstr ""
 msgid "Kriminalität"
 msgstr ""
 
+msgid "Kuanyama / Kwanyama"
+msgstr ""
+
 msgid "Kultur"
 msgstr ""
 
 msgid "Kunst"
+msgstr ""
+
+msgid "Kurdish"
 msgstr ""
 
 msgid "Kurzfilm"
@@ -10283,6 +10779,14 @@ msgstr "Valoda"
 msgid "Language selection"
 msgstr "Valodas izvēle"
 
+#
+#, fuzzy
+msgid "Languages"
+msgstr "Valoda"
+
+msgid "Lao"
+msgstr ""
+
 msgid "Lao People's Democratic Republic"
 msgstr ""
 
@@ -10319,6 +10823,11 @@ msgstr ""
 msgctxt "third event: 'third' event label"
 msgid "Later"
 msgstr ""
+
+#
+#, fuzzy
+msgid "Latin"
+msgstr "Gaida"
 
 #
 msgid "Latitude"
@@ -10400,6 +10909,9 @@ msgstr "Taimeru izvēle"
 msgid "Light Grey"
 msgstr ""
 
+msgid "Limburgan / Limburger / Limburgish"
+msgstr ""
+
 msgid "Limit character set for recording filenames"
 msgstr ""
 
@@ -10435,6 +10947,9 @@ msgstr "Limiti izslēgti"
 msgid "Limits on"
 msgstr "Limiti ieslēgti"
 
+msgid "Lingala"
+msgstr ""
+
 #
 msgid "Link Quality:"
 msgstr ""
@@ -10459,6 +10974,9 @@ msgid "Links:"
 msgstr "Saite:"
 
 msgid "List EPG functions..."
+msgstr ""
+
+msgid "List Navigation Actions"
 msgstr ""
 
 msgid "List available networks"
@@ -10491,7 +11009,7 @@ msgstr ""
 
 #
 #, fuzzy
-msgid "Listen to the radio..."
+msgid "Listen to the radio"
 msgstr "klausīties radio..."
 
 msgid "Lists reloaded!"
@@ -10513,6 +11031,9 @@ msgid "Lithuanian"
 msgstr "Lietuviešu"
 
 msgid "Live"
+msgstr ""
+
+msgid "Live TV Actions"
 msgstr ""
 
 #
@@ -10550,6 +11071,46 @@ msgstr "Lokālais tīkls"
 #, fuzzy
 msgid "Locale"
 msgstr "Lokālais tīkls"
+
+#, python-format
+msgid "Locale %s (%s) has been installed and selected as the active locale."
+msgstr ""
+
+#, python-format
+msgid "Locale %s (%s) has been selected as the active locale."
+msgstr ""
+
+msgid "Locale (Ascending)"
+msgstr ""
+
+msgid "Locale (Descending)"
+msgstr ""
+
+#
+#, fuzzy
+msgid "Locale Selection Setup"
+msgstr "Pozicioniera iestatne"
+
+msgid "Locale list sort order"
+msgstr ""
+
+#
+#, fuzzy
+msgid "Locale/Language Selection"
+msgstr "Valodas izvēle"
+
+#
+#, fuzzy
+msgid "Locale/Language Selection Actions"
+msgstr "Valodas izvēle"
+
+#
+#, fuzzy
+msgid "Locales"
+msgstr "Lokālais tīkls"
+
+msgid "Locales to be displayed"
+msgstr ""
 
 #
 msgid "Location"
@@ -10620,6 +11181,11 @@ msgid "Long press emulation with button"
 msgstr ""
 
 #
+#, fuzzy, python-format
+msgid "Long press: %s"
+msgstr "Ilgstošs taustiņa nospiediens"
+
+#
 msgid "Longitude"
 msgstr "Garums"
 
@@ -10646,10 +11212,16 @@ msgstr "Testa režīms"
 msgid "Lowest Video output mode"
 msgstr ""
 
+msgid "Luba-Katanga"
+msgstr ""
+
 msgid "Luxembourg"
 msgstr ""
 
 msgid "Luxembourgish"
+msgstr ""
+
+msgid "Luxembourgish / Letzeburgesch"
 msgstr ""
 
 msgid "MAC"
@@ -10671,6 +11243,9 @@ msgstr ""
 msgid "MB"
 msgstr ""
 
+msgid "MENU"
+msgstr ""
+
 msgid "MIRACLEBOX_TWINPLUS"
 msgstr ""
 
@@ -10689,7 +11264,7 @@ msgstr ""
 msgid "Macao"
 msgstr ""
 
-msgid "Macedonia (the former Yugoslav Republic of)"
+msgid "Macedonian"
 msgstr ""
 
 msgid "Madagascar"
@@ -10735,7 +11310,17 @@ msgstr "Padarīt šo zīmi par 'izejas' punktu"
 msgid "Make this mark just a mark"
 msgstr "Padarīt šo iezīmi vienkārši par zīmi"
 
+#, fuzzy
+msgid "Malagasy"
+msgstr "Madagaskara"
+
 msgid "Malawi"
+msgstr ""
+
+msgid "Malay"
+msgstr ""
+
+msgid "Malayalam"
 msgstr ""
 
 msgid "Malaysia"
@@ -10749,6 +11334,14 @@ msgstr ""
 
 msgid "Malta"
 msgstr ""
+
+msgid "Maltese"
+msgstr ""
+
+#
+#, fuzzy
+msgid "Manage Locale/Language Selection settings"
+msgstr "Kolekcijas iestatījumi"
 
 #
 msgid "Manage extensions"
@@ -10797,7 +11390,16 @@ msgstr "Manuāls transponderis"
 msgid "Manufacturer"
 msgstr "Ražotājs"
 
+msgid "Manx"
+msgstr ""
+
+msgid "Maori"
+msgstr ""
+
 msgid "MaraM9"
+msgstr ""
+
+msgid "Marathi"
 msgstr ""
 
 #
@@ -10819,7 +11421,15 @@ msgstr ""
 msgid "Mark/Portal/Playlist long"
 msgstr ""
 
+#
+#, fuzzy
+msgid "Marker Actions"
+msgstr "Atrašanās vieta"
+
 msgid "Marshall Islands"
+msgstr ""
+
+msgid "Marshallese"
 msgstr ""
 
 msgid "Martinique"
@@ -10944,6 +11554,11 @@ msgstr ""
 msgid "Menu"
 msgstr "Izvēlne"
 
+#
+#, fuzzy
+msgid "Menu Actions"
+msgstr "Atrašanās vieta"
+
 msgid "Menu config"
 msgstr ""
 
@@ -10971,7 +11586,7 @@ msgstr ""
 msgid "Mexico"
 msgstr ""
 
-msgid "Micronesia (Federated States of)"
+msgid "Micronesia, Federated States of"
 msgstr ""
 
 #
@@ -11079,7 +11694,7 @@ msgstr "Modulators"
 msgid "Module"
 msgstr ""
 
-msgid "Moldova (Republic of)"
+msgid "Moldova, Republic of"
 msgstr ""
 
 #
@@ -11099,6 +11714,10 @@ msgstr "Pirmdiena"
 
 msgid "Mongolia"
 msgstr ""
+
+#, fuzzy
+msgid "Mongolian"
+msgstr "Angola"
 
 msgid "Montenegro"
 msgstr ""
@@ -11202,6 +11821,32 @@ msgid "Move down list"
 msgstr "Griezt uz rietumiem"
 
 #
+#, fuzzy
+msgid "Move down one line"
+msgstr "Griezt uz rietumiem"
+
+msgid "Move down one line.  Move to the top of the next screen if this is the last line of the screen.  Move to the first line of the list if this is the last line on the list."
+msgstr ""
+
+#
+#, fuzzy
+msgid "Move down one screen"
+msgstr "pārvietot lejup uz nākamo ierakstu"
+
+msgid "Move down one screen.  Move to the last line of the screen if this is the last screen."
+msgstr ""
+
+#
+#, fuzzy
+msgid "Move down to last line"
+msgstr "Griezt uz rietumiem"
+
+#
+#, fuzzy
+msgid "Move down to the last line in the list."
+msgstr "pārvietot lejup uz pēdējo ierakstu"
+
+#
 msgid "Move east"
 msgstr "Griezt uz austrumiem"
 
@@ -11277,6 +11922,32 @@ msgid "Move up list"
 msgstr "Griezt uz austrumiem"
 
 #
+#, fuzzy
+msgid "Move up one line"
+msgstr "Griezt uz austrumiem"
+
+msgid "Move up one line.  Move to the bottom of the previous screen if this is the first line of the screen.  Move to the last of the entry / list if this is the first line of the list."
+msgstr ""
+
+#
+#, fuzzy
+msgid "Move up one screen"
+msgstr "Griezt uz austrumiem"
+
+msgid "Move up one screen.  Move to the first line of the screen if this is the first screen."
+msgstr ""
+
+#
+#, fuzzy
+msgid "Move up to first line"
+msgstr "pārvietot augšup uz pirmo ierakstu"
+
+#
+#, fuzzy
+msgid "Move up to the first line in the list."
+msgstr "pārvietot augšup uz pirmo ierakstu"
+
+#
 msgid "Move west"
 msgstr "Griezt uz rietumiem"
 
@@ -11303,8 +11974,18 @@ msgstr "Dzēšana"
 msgid "Movie List"
 msgstr ""
 
+#
+#, fuzzy
+msgid "Movie List Actions"
+msgstr "Taimeru izvēle"
+
 msgid "Movie List Setup"
 msgstr ""
+
+#
+#, fuzzy
+msgid "Movie Player Actions"
+msgstr "Taimeru izvēle"
 
 #
 msgid "Movie location"
@@ -11507,6 +12188,11 @@ msgid "Nameserver %d"
 msgstr "Domēna vārdu serveris %d"
 
 #
+#, fuzzy
+msgid "Nameserver configuration"
+msgstr "iziet no vārdu servera konfigurācijas"
+
+#
 msgid "Nameserver settings"
 msgstr "Domēna vārdu servera iestatījumi"
 
@@ -11527,6 +12213,12 @@ msgstr "Atrašanās vieta"
 msgid "Native"
 msgstr ""
 
+msgid "Native name (Ascdending)"
+msgstr ""
+
+msgid "Native name (Descending)"
+msgstr ""
+
 #
 #, fuzzy
 msgid "Natur"
@@ -11538,10 +12230,22 @@ msgstr ""
 msgid "Nauru"
 msgstr ""
 
+msgid "Navajo / Navaho"
+msgstr ""
+
+msgid "Navigate up/down with UP/DOWN buttons and page up/down with LEFT/RIGHT. OK to perform the action described in the currently highlighted help."
+msgstr ""
+
 msgid "NcamInfo"
 msgstr ""
 
+msgid "Ndonga"
+msgstr ""
+
 msgid "Nepal"
+msgstr ""
+
+msgid "Nepali"
 msgstr ""
 
 msgid "Netball"
@@ -11794,6 +12498,9 @@ msgid "No TS recorder available"
 msgstr ""
 
 msgid "No Timeshift found to save as recording!"
+msgstr ""
+
+msgid "No action required."
 msgstr ""
 
 msgid "No active channel found."
@@ -12068,7 +12775,16 @@ msgstr ""
 msgid "North"
 msgstr "Ziemeļi"
 
+msgid "North Macedonia, Republic of"
+msgstr ""
+
+msgid "North Ndebele"
+msgstr ""
+
 msgid "Northern Mariana Islands"
+msgstr ""
+
+msgid "Northern Sami"
 msgstr ""
 
 #
@@ -12080,6 +12796,16 @@ msgstr "Norvēģu"
 msgid "Norwegian"
 msgstr "Norvēģu"
 
+#
+#, fuzzy
+msgid "Norwegian Bokml"
+msgstr "Norvēģu"
+
+#
+#, fuzzy
+msgid "Norwegian Nynorsk"
+msgstr "Norvēģu"
+
 msgid "Not Classified"
 msgstr ""
 
@@ -12088,6 +12814,11 @@ msgstr ""
 
 msgid "Not Flashing"
 msgstr ""
+
+#
+#, fuzzy
+msgid "Not Installed"
+msgstr "Pašreizējie iestatījumi:"
 
 msgid "Not Shown"
 msgstr ""
@@ -12266,11 +12997,17 @@ msgstr ""
 msgid "OVR"
 msgstr ""
 
+msgid "Occitan"
+msgstr ""
+
 #
 msgid "Off"
 msgstr "Izslēgt"
 
 msgid "Offline decode delay (ms)"
+msgstr ""
+
+msgid "Ojibwa"
 msgstr ""
 
 msgid "Ok"
@@ -12357,23 +13094,34 @@ msgstr ""
 msgid "Open AutoTimer"
 msgstr ""
 
-msgid "Open AutoTimerlist..."
+#
+#, fuzzy
+msgid "Open AutoTimerlist"
+msgstr "Pievienot taimeri"
+
+msgid "Open EPGSearch"
 msgstr ""
 
-msgid "Open EPGSearch..."
+msgid "Open IMDB"
 msgstr ""
 
-msgid "Open IMDB..."
+#
+#, fuzzy
+msgid "Open MediaPortal"
+msgstr "Vertikālā"
+
+msgid "Open Similar List Channel List"
 msgstr ""
 
-msgid "Open MediaPortal..."
-msgstr ""
+#
+#, fuzzy
+msgid "Open Timerlist"
+msgstr "Rediģēt taimeri"
 
-msgid "Open Timerlist..."
-msgstr ""
-
-msgid "Open bouquetlist..."
-msgstr ""
+#
+#, fuzzy
+msgid "Open bouquetlist"
+msgstr "beigt buķešu rediģēšanu"
 
 msgid "Open favourites list"
 msgstr ""
@@ -12409,6 +13157,16 @@ msgid "Open the movie list"
 msgstr ""
 
 msgid "Open with File Commander"
+msgstr ""
+
+msgid "OpenDNS FamilyShield"
+msgstr ""
+
+msgid "OpenDNS Home"
+msgstr ""
+
+#, python-format
+msgid "OpenSSL:\t\t%s"
 msgstr ""
 
 msgid "OpenVPN"
@@ -12455,6 +13213,12 @@ msgstr ""
 msgid "Original"
 msgstr ""
 
+msgid "Oriya"
+msgstr ""
+
+msgid "Oromo"
+msgstr ""
+
 msgid "Oscam Info - Configuration"
 msgstr ""
 
@@ -12468,10 +13232,21 @@ msgstr ""
 msgid "OscamInfo Mainmenu"
 msgstr ""
 
+msgid "Ossetian / Ossetic"
+msgstr ""
+
 msgid "Other"
 msgstr ""
 
+#
+#, fuzzy
+msgid "Other Actions"
+msgstr "Atrašanās vieta"
+
 msgid "Other Subtitles & lang"
+msgstr ""
+
+msgid "Other buttons will jump to the help information for that button, if there is help available."
 msgstr ""
 
 msgid "Outdoor"
@@ -12559,9 +13334,6 @@ msgstr ""
 msgid "PDC"
 msgstr "PIDs"
 
-msgid "PGS File"
-msgstr ""
-
 msgid "PGS file"
 msgstr ""
 
@@ -12613,7 +13385,13 @@ msgstr ""
 msgid "Package list update"
 msgstr "Pakotņu saraksta atjaunināšana"
 
+msgid "Packaged locales only"
+msgstr ""
+
 msgid "Packages"
+msgstr ""
+
+msgid "Packages and associated locales"
 msgstr ""
 
 #
@@ -12664,6 +13442,9 @@ msgstr ""
 msgid "Palestine, State of"
 msgstr ""
 
+msgid "Pali"
+msgstr ""
+
 #
 #. TRANSLATORS: (aspect ratio policy: cropped content on left/right) in doubt, keep english term
 #. TRANSLATORS: (aspect ratio policy: Fit width, cut/crop top and bottom (Maintain aspect ratio))
@@ -12678,6 +13459,9 @@ msgid "Panic channel"
 msgstr ""
 
 msgid "Panic to"
+msgstr ""
+
+msgid "Panjabi / Punjabi"
 msgstr ""
 
 msgid "Papua New Guinea"
@@ -12832,6 +13616,11 @@ msgstr ""
 msgid "PiP"
 msgstr ""
 
+#
+#, fuzzy
+msgid "PiP Actions"
+msgstr "Atrašanās vieta"
+
 msgid "PiP-Zap"
 msgstr ""
 
@@ -12959,7 +13748,8 @@ msgid "Play previous"
 msgstr ""
 
 #
-msgid "Play recorded movies..."
+#, fuzzy
+msgid "Play recorded movies"
 msgstr "Atskaņot ierakstītās filmas..."
 
 #
@@ -13305,10 +14095,6 @@ msgstr ""
 "Spiediet OK, lai atgrieztos TV režīmā vai EXIT, lai atceltu pārvietošanu."
 
 #
-msgid "Please use the UP and DOWN keys to select your language. Afterwards press the OK button."
-msgstr "Lūdzu lietojiet UP un DOWN taustiņus, lai izvēlētos valodu. Pēc tam spiediet OK."
-
-#
 #, fuzzy
 msgid "Please wait"
 msgstr "Lūdzu gaidiet..."
@@ -13634,6 +14420,11 @@ msgstr ""
 msgid "Press '0' to toggle PiP mode"
 msgstr ""
 
+#
+#, fuzzy
+msgid "Press EXIT to return to the help screen."
+msgstr "Spiediet OK, lai uzsāktu meklēšanu."
+
 msgid "Press INFO on your remote control for additional information."
 msgstr ""
 
@@ -13663,6 +14454,11 @@ msgstr "Spiediet OK, lai rediģētu iestatījumus."
 #, python-format
 msgid "Press OK to get further details for %s"
 msgstr "Spiediet OK turpmākai informācijai priekš %s"
+
+#
+#, fuzzy
+msgid "Press OK to install and use this locale."
+msgstr "Spiediet OK, lai uzsāktu meklēšanu."
 
 #
 msgid "Press OK to scan"
@@ -13701,6 +14497,11 @@ msgstr ""
 #
 msgid "Press OK to toggle the selection."
 msgstr ""
+
+#
+#, fuzzy
+msgid "Press OK to use this locale."
+msgstr "Spiediet OK, lai uzsāktu meklēšanu."
 
 msgid "Press this button to emulate a long press on a button pressed afterwards (this also overrides any other actions assigned to emulation button)."
 msgstr ""
@@ -13939,6 +14740,9 @@ msgstr ""
 msgid "Puppentrick"
 msgstr ""
 
+msgid "Pushto / Pashto"
+msgstr ""
+
 msgid "Put TV in standby"
 msgstr ""
 
@@ -13972,6 +14776,9 @@ msgstr "%d kanāli atrasti!"
 msgid "Quad PiP is not available."
 msgstr ""
 
+msgid "Quechua"
+msgstr ""
+
 msgid "Question"
 msgstr ""
 
@@ -13995,6 +14802,11 @@ msgstr ""
 
 #
 #, fuzzy
+msgid "Quick Select Actions"
+msgstr "Izvēlēties atrašanās vietu"
+
+#
+#, fuzzy
 msgid "Quick zap"
 msgstr "Ātrā pārslēgšana"
 
@@ -14002,6 +14814,9 @@ msgid "QuickEPG mode"
 msgstr ""
 
 msgid "QuickMenu"
+msgstr ""
+
+msgid "QuickMenu Actions"
 msgstr ""
 
 msgid "QuickMenu/Extensions"
@@ -14223,6 +15038,11 @@ msgstr ""
 msgid "Recording"
 msgstr "Ieraksta"
 
+#
+#, fuzzy
+msgid "Recording Actions"
+msgstr "Dzēst pabeigtos."
+
 msgid "Recording Setup"
 msgstr ""
 
@@ -14322,6 +15142,9 @@ msgid "Red colored"
 msgstr ""
 
 msgid "Red long"
+msgstr ""
+
+msgid "Red/HbbTV Button Actions"
 msgstr ""
 
 msgid "Reduce the size of the service picons for more line spacing between them."
@@ -14799,9 +15622,6 @@ msgstr "Atgriezties uz filmu sarakstu"
 msgid "Return to previous service"
 msgstr "Atgriezties uz iepriekšējo kanālu"
 
-msgid "Reunion"
-msgstr ""
-
 msgid "Reverse bouquet buttons"
 msgstr ""
 
@@ -14852,6 +15672,11 @@ msgstr ""
 
 msgid "Romanian"
 msgstr ""
+
+#
+#, fuzzy
+msgid "Romansh"
+msgstr "Atcelt"
 
 msgid "Romantik"
 msgstr ""
@@ -14910,6 +15735,9 @@ msgstr ""
 msgid "Run script with optional parameter in background"
 msgstr ""
 
+msgid "Rundi"
+msgstr ""
+
 msgid "Running"
 msgstr ""
 
@@ -14924,6 +15752,9 @@ msgid "Russian Federation"
 msgstr ""
 
 msgid "Rwanda"
+msgstr ""
+
+msgid "Réunion"
 msgstr ""
 
 #
@@ -14975,22 +15806,19 @@ msgstr ""
 msgid "SINGLE LAYER DVD"
 msgstr ""
 
+msgid "SMS style QuickSelect location selection"
+msgstr ""
+
 msgid "SNR:"
 msgstr ""
 
 msgid "SPDIF"
 msgstr ""
 
-msgid "SRT File"
-msgstr ""
-
 #
 #, fuzzy
 msgid "SRT file"
 msgstr "šablona datne"
-
-msgid "SSA File"
-msgstr ""
 
 msgid "SSA file"
 msgstr ""
@@ -15055,10 +15883,22 @@ msgstr ""
 msgid "Samoa"
 msgstr ""
 
+msgid "Samoan"
+msgstr ""
+
 msgid "San Marino"
 msgstr ""
 
+msgid "Sango"
+msgstr ""
+
+msgid "Sanskrit"
+msgstr ""
+
 msgid "Sao Tome and Principe"
+msgstr ""
+
+msgid "Sardinian"
 msgstr ""
 
 #
@@ -15136,6 +15976,11 @@ msgstr ""
 
 msgid "Save EPG data"
 msgstr ""
+
+#
+#, fuzzy
+msgid "Save all changed settings and exit"
+msgstr "saglabāt pēdējo mapi, izejot"
 
 msgid "Save and record"
 msgstr ""
@@ -15385,6 +16230,16 @@ msgstr "rādīt transpondera informāciju"
 msgid "Seek"
 msgstr "Meklēt"
 
+#
+#, fuzzy
+msgid "Seek Actions"
+msgstr "Izvēlēties atrašanās vietu"
+
+#
+#, fuzzy
+msgid "Seek back short"
+msgstr "Meklēt"
+
 msgid "Seek backward"
 msgstr ""
 
@@ -15394,8 +16249,16 @@ msgstr ""
 msgid "Seek forward"
 msgstr ""
 
+msgid "Seek forward  short"
+msgstr ""
+
 msgid "Seek forward (enter time)"
 msgstr ""
+
+#
+#, fuzzy
+msgid "Seek forward long"
+msgstr "Klaviatūras izkārtojums"
 
 #
 #, fuzzy
@@ -15687,6 +16550,9 @@ msgstr ""
 msgid "Select the character or action under the keyboard cursor"
 msgstr ""
 
+msgid "Select the currently highlighted locale/language to be used in the user interface"
+msgstr ""
+
 msgid "Select the desired function and click on \"OK\" to assign it. Use \"CH+/-\" to toggle between the lists. Select an assigned function and click on \"OK\" to de-assign it. Use \"Next/Previous\" to change the order of the assigned functions."
 msgstr ""
 
@@ -15840,6 +16706,11 @@ msgstr ""
 msgid "Select your time zone area or region."
 msgstr ""
 
+#
+#, fuzzy
+msgid "Select/Zap to selected service"
+msgstr "Lūdzu izvēlieties papildkanālu..."
+
 #, python-format
 msgid "Selected Image:\t\t%s"
 msgstr ""
@@ -15961,8 +16832,21 @@ msgstr ""
 msgid "Service Number, Picon and Service Name"
 msgstr ""
 
+#
+#, fuzzy
+msgid "Service Selection Actions"
+msgstr "Taimeru izvēle"
+
+msgid "Service Selection/Zap Actions"
+msgstr ""
+
 msgid "Service Title mode"
 msgstr ""
+
+#
+#, fuzzy
+msgid "Service Zap Actions"
+msgstr "Rādīt kanālus, kas sākas ar"
 
 #
 #, fuzzy
@@ -16484,6 +17368,13 @@ msgstr ""
 msgid "Shift"
 msgstr ""
 
+#, python-format
+msgid "Shift: %s"
+msgstr ""
+
+msgid "Shona"
+msgstr ""
+
 #
 #, fuzzy
 msgid "Shopping"
@@ -16563,7 +17454,7 @@ msgstr ""
 msgid "Show AutoTimer List"
 msgstr ""
 
-msgid "Show Box Portal..."
+msgid "Show Box Portal"
 msgstr ""
 
 msgid "Show CCcam in extensions ?"
@@ -16608,8 +17499,10 @@ msgstr ""
 msgid "Show Eventview"
 msgstr ""
 
-msgid "Show Format Setup..."
-msgstr ""
+#
+#, fuzzy
+msgid "Show Format Setup"
+msgstr "rādīt etiķetes izvēlni"
 
 msgid "Show Graphical EPG"
 msgstr ""
@@ -16631,7 +17524,7 @@ msgstr ""
 
 #
 #, fuzzy
-msgid "Show Information..."
+msgid "Show Information"
 msgstr "Informācija"
 
 #
@@ -16811,8 +17704,18 @@ msgstr ""
 msgid "Show crypto info in infobar"
 msgstr ""
 
+#
+#, fuzzy
+msgid "Show default after description"
+msgstr "rādīt paplašināto aprakstu"
+
 msgid "Show default backup files"
 msgstr ""
+
+#
+#, fuzzy
+msgid "Show default on new line"
+msgstr "rādīt infojoslu"
 
 msgid "Show detailed event info"
 msgstr ""
@@ -17039,8 +17942,10 @@ msgstr "Rādīt kanālus, kas sākas ar"
 msgid "Show servicelist or movies"
 msgstr ""
 
-msgid "Show setup..."
-msgstr ""
+#
+#, fuzzy
+msgid "Show setup"
+msgstr "rādīt etiķetes izvēlni"
 
 #
 #, fuzzy
@@ -17087,11 +17992,13 @@ msgstr ""
 
 #
 #, fuzzy
-msgid "Show the Power Timer..."
+msgid "Show the Power Timer"
 msgstr "Skatīties TV..."
 
-msgid "Show the Sleep Timer..."
-msgstr ""
+#
+#, fuzzy
+msgid "Show the Sleep Timer"
+msgstr "Skatīties TV..."
 
 #
 #, fuzzy
@@ -17104,8 +18011,15 @@ msgstr ""
 msgid "Show the list of timers."
 msgstr ""
 
-msgid "Show the media center..."
-msgstr ""
+#
+#, fuzzy
+msgid "Show the media center"
+msgstr "Klausīties radio..."
+
+#
+#, fuzzy
+msgid "Show the media player"
+msgstr "Klausīties radio..."
 
 msgid "Show the media player..."
 msgstr ""
@@ -17113,15 +18027,19 @@ msgstr ""
 msgid "Show the plugin browser.."
 msgstr ""
 
-msgid "Show the plugins..."
-msgstr ""
+#
+#, fuzzy
+msgid "Show the plugins"
+msgstr "Dzēst spraudņus"
 
 #
-msgid "Show the radio player..."
+#, fuzzy
+msgid "Show the radio player"
 msgstr "Klausīties radio..."
 
 #
-msgid "Show the tv player..."
+#, fuzzy
+msgid "Show the tv player"
 msgstr "Skatīties TV..."
 
 msgid "Show time elapsed as positive"
@@ -17206,6 +18124,9 @@ msgstr "jaukts repertuārs"
 msgid "Shutdown"
 msgstr ""
 
+msgid "Sichuan Yi / Nuosu"
+msgstr ""
+
 msgid "Side by Side"
 msgstr ""
 
@@ -17270,6 +18191,9 @@ msgstr "Vienkāršs"
 msgid "Simplified Chinese"
 msgstr ""
 
+msgid "Sindhi"
+msgstr ""
+
 #
 #, fuzzy
 msgid "Singapore"
@@ -17298,7 +18222,10 @@ msgstr "Viensolis (GOP)"
 msgid "SingleEPG settings"
 msgstr "Rediģēt iestatījumus"
 
-msgid "Sint Maarten (Dutch part)"
+msgid "Sinhala / Sinhalese"
+msgstr ""
+
+msgid "Sint Maarten"
 msgstr ""
 
 msgid "Sitcom"
@@ -17572,6 +18499,9 @@ msgstr ""
 msgid "Solomon Islands"
 msgstr ""
 
+msgid "Somali"
+msgstr ""
+
 msgid "Somalia"
 msgstr ""
 
@@ -17583,6 +18513,9 @@ msgstr ""
 #
 msgid "Some plugins are not available:\n"
 msgstr "Daži spraudņi nav pieejami:\n"
+
+msgid "Sorbian"
+msgstr ""
 
 msgid "Sorry CIHelper Config is Missing"
 msgstr ""
@@ -17665,7 +18598,13 @@ msgstr ""
 msgid "Sort list:"
 msgstr ""
 
+msgid "Sort order for help screen"
+msgstr ""
+
 msgid "Sort order for menu entries"
+msgstr ""
+
+msgid "Sort order for the language list."
 msgstr ""
 
 msgid "Sort plug-in browser entries"
@@ -17679,6 +18618,11 @@ msgstr ""
 
 msgid "Sorting right files by name, date or size"
 msgstr ""
+
+#
+#, fuzzy
+msgid "Sotho, Southern"
+msgstr "Dienvidi"
 
 #
 msgid "Sound"
@@ -17702,6 +18646,9 @@ msgstr ""
 msgid "South Georgia and the South Sandwich Islands"
 msgstr ""
 
+msgid "South Ndebele"
+msgstr ""
+
 #
 #, fuzzy
 msgid "South Sudan"
@@ -17716,6 +18663,9 @@ msgstr ""
 #
 msgid "Spanish"
 msgstr "Spāņu"
+
+msgid "Spanish / Castilian"
+msgstr ""
 
 msgid "Special"
 msgstr ""
@@ -17793,6 +18743,12 @@ msgid "Start Kodi"
 msgstr "Sākuma laiks"
 
 #
+# ???
+#, fuzzy
+msgid "Start RDS interactive"
+msgstr "Skatīt Rass interaktīvi..."
+
+#
 msgid "Start from the beginning"
 msgstr "Sākt no sākuma"
 
@@ -17847,6 +18803,9 @@ msgid "Starting on"
 msgstr "Palaižas uz"
 
 msgid "Starts in a few seconds"
+msgstr ""
+
+msgid "Static IP or Custom"
 msgstr ""
 
 msgid "Status"
@@ -18038,6 +18997,11 @@ msgstr ""
 
 #
 #, fuzzy
+msgid "Sub Service Actions"
+msgstr "Rādīt kanālus, kas sākas ar"
+
+#
+#, fuzzy
 msgid "Subservice list..."
 msgstr "Papildkanāli"
 
@@ -18050,6 +19014,11 @@ msgstr "Papildkanāli"
 
 msgid "Subtitle"
 msgstr ""
+
+#
+#, fuzzy
+msgid "Subtitle Actions"
+msgstr "Subtitru izvēle"
 
 #
 #, fuzzy
@@ -18120,6 +19089,11 @@ msgid "Sun"
 msgstr "Sv"
 
 #
+#, fuzzy
+msgid "Sundanese"
+msgstr "Svētdiena"
+
+#
 msgid "Sunday"
 msgstr "Svētdiena"
 
@@ -18132,6 +19106,9 @@ msgid "Suriname"
 msgstr "datnes nosaukums"
 
 msgid "Svalbard and Jan Mayen"
+msgstr ""
+
+msgid "Swahili"
 msgstr ""
 
 msgid "Swap"
@@ -18178,7 +19155,10 @@ msgstr ""
 msgid "SwaptoSD"
 msgstr ""
 
-msgid "Swaziland"
+msgid "Swati"
+msgstr ""
+
+msgid "Swaziland / Eswatini"
 msgstr ""
 
 #
@@ -18194,6 +19174,12 @@ msgid "Swimming"
 msgstr ""
 
 msgid "Switch Blue-Short (QuickMenu) with Blue-Long (Extensions)"
+msgstr ""
+
+msgid "Switch EPG Page Down"
+msgstr ""
+
+msgid "Switch EPG Page Up"
 msgstr ""
 
 msgid "Switch Mode to enable HDR Modes or PIP Functions"
@@ -18239,6 +19225,11 @@ msgstr ""
 msgid "Switch to filelist"
 msgstr "iet uz datņu sarakstu"
 
+#
+#, fuzzy
+msgid "Switch to next EPG Event"
+msgstr "Pārslēgt nākamo papildkanālu"
+
 msgid "Switch to next channel in history"
 msgstr ""
 
@@ -18251,6 +19242,11 @@ msgstr "Pārslēgt nākamo papildkanālu"
 #, fuzzy
 msgid "Switch to playlist"
 msgstr "iet uz repertuāru"
+
+#
+#, fuzzy
+msgid "Switch to previous EPG Event"
+msgstr "Pārslēgt iepriekšējo papildkanālu"
 
 msgid "Switch to previous channel"
 msgstr ""
@@ -18388,11 +19384,22 @@ msgstr ""
 msgid "Table of content for collection"
 msgstr ""
 
+msgid "Tagalog"
+msgstr ""
+
 #
 msgid "Tags"
 msgstr "Etiķetes"
 
+#
+#, fuzzy
+msgid "Tahitian"
+msgstr "Horvātu"
+
 msgid "Taiwan"
+msgstr ""
+
+msgid "Tajik"
 msgstr ""
 
 msgid "Tajikistan"
@@ -18402,6 +19409,9 @@ msgid "Talk"
 msgstr ""
 
 msgid "Talk Show"
+msgstr ""
+
+msgid "Tamil"
 msgstr ""
 
 msgid "Tanz"
@@ -18415,11 +19425,19 @@ msgstr ""
 msgid "Task list"
 msgstr "melnais saraksts"
 
+msgid "Tatar"
+msgstr ""
+
 msgid "Technik"
 msgstr ""
 
 msgid "Teletext"
 msgstr ""
+
+#
+#, fuzzy
+msgid "Teletext Actions"
+msgstr "Miega taimeris"
 
 msgid "Teletext CleanAlgo (resolution reset algorithm)"
 msgstr ""
@@ -18481,6 +19499,9 @@ msgid "Telnet Port"
 msgstr ""
 
 msgid "Telnet Setup"
+msgstr ""
+
+msgid "Telugu"
 msgstr ""
 
 #
@@ -18984,6 +20005,14 @@ msgstr ""
 msgid "This is a workaround for some devices there wakeup again after switching in standby. The wak up command's from other devices will ignored for few seconds."
 msgstr ""
 
+msgid "This is already the active locale."
+msgstr ""
+
+#
+#, fuzzy
+msgid "This is the currently selected locale."
+msgstr "Dzēst pašreiz atlasīto virsrakstu"
+
 msgid "This is the order in which DiSEqC commands are sent to the aerial system. The order must correspond exactly with the order the physical devices are arranged along the signal cable (starting from the receiver end)."
 msgstr ""
 
@@ -19323,7 +20352,13 @@ msgstr "Ceturtdiena"
 msgid "TiVo support"
 msgstr ""
 
+msgid "Tibetan"
+msgstr ""
+
 msgid "Tiere"
+msgstr ""
+
+msgid "Tigrinya"
 msgstr ""
 
 #
@@ -19430,6 +20465,11 @@ msgstr ""
 
 msgid "Timer"
 msgstr ""
+
+#
+#, fuzzy
+msgid "Timer Actions"
+msgstr "Taimeru izvēle"
 
 msgid "Timer List"
 msgstr ""
@@ -19571,7 +20611,7 @@ msgstr ""
 msgid "Timeshift-save action on zap"
 msgstr ""
 
-msgid "Timor-Leste"
+msgid "Timor-Leste / East Timor"
 msgstr ""
 
 #
@@ -19603,7 +20643,7 @@ msgstr ""
 msgid "Today"
 msgstr "Šodien"
 
-msgid "Toggels between tv and radio..."
+msgid "Toggels between tv and radio"
 msgstr ""
 
 msgid "Toggle Digital downmix..."
@@ -19636,8 +20676,16 @@ msgstr ""
 msgid "Toggle between bouquet/epg lists"
 msgstr ""
 
+msgid "Toggle display of the InfoBar"
+msgstr ""
+
 msgid "Toggle new text inserts before or overwrites existing text"
 msgstr ""
+
+#
+#, fuzzy
+msgid "Toggle service name display"
+msgstr "Kanālu meklēšana"
 
 msgid "Togo"
 msgstr ""
@@ -19800,6 +20848,12 @@ msgstr ""
 msgid "Trying to download a new updatelist. Please wait..."
 msgstr ""
 
+msgid "Tsonga"
+msgstr ""
+
+msgid "Tswana"
+msgstr ""
+
 #
 msgid "Tue"
 msgstr "Ot"
@@ -19925,6 +20979,11 @@ msgstr "Turku"
 
 #
 #, fuzzy
+msgid "Turkmen"
+msgstr "Turku"
+
+#
+#, fuzzy
 msgid "Turkmenistan"
 msgstr "Turku"
 
@@ -19954,6 +21013,11 @@ msgstr ""
 
 msgid "Tuvalu"
 msgstr ""
+
+#
+#, fuzzy
+msgid "Twi"
+msgstr "Divi"
 
 #
 msgid "Two"
@@ -20020,6 +21084,9 @@ msgid "USB switch ERROR! - root files not transferred to USB"
 msgstr ""
 
 msgid "Uganda"
+msgstr ""
+
+msgid "Uighur / Uyghur"
 msgstr ""
 
 msgid "Ukraine"
@@ -20323,6 +21390,14 @@ msgstr ""
 msgid "Uptime"
 msgstr ""
 
+#
+#, fuzzy, python-format
+msgid "Uptime:\t\t%s"
+msgstr "Jauna versija:"
+
+msgid "Urdu"
+msgstr ""
+
 msgid "Uruguay"
 msgstr ""
 
@@ -20359,9 +21434,6 @@ msgid "Use Keymap"
 msgstr ""
 
 msgid "Use MHW EPG information when it is available."
-msgstr ""
-
-msgid "Use Manual dns-nameserver"
 msgstr ""
 
 msgid "Use Netmed EPG information when it is available."
@@ -20457,6 +21529,11 @@ msgstr ""
 
 msgid "Use the Softcam Panel to control your Cam. This let you start/stop/select a cam"
 msgstr ""
+
+#
+#, fuzzy
+msgid "Use the UP and DOWN buttons to select your locale/language then press the OK or GREEN button to continue."
+msgstr "Lūdzu lietojiet UP un DOWN taustiņus, lai izvēlētos valodu. Pēc tam spiediet OK."
 
 msgid "Use the alternative or the conventional radio mode."
 msgstr ""
@@ -20586,6 +21663,9 @@ msgstr ""
 msgid "Usually when the subtitle language is the same as the audio language, the subtitles will not be used. Enable this option to allow these subtitles to be used."
 msgstr ""
 
+msgid "Uzbek"
+msgstr ""
+
 msgid "Uzbekistan"
 msgstr ""
 
@@ -20602,9 +21682,6 @@ msgstr ""
 #
 msgid "VMGM (intro trailer)"
 msgstr "VMGM (ievada treileris)"
-
-msgid "VOB File"
-msgstr ""
 
 msgid "VOB file"
 msgstr ""
@@ -20632,7 +21709,10 @@ msgstr ""
 msgid "Various"
 msgstr ""
 
-msgid "Venezuela (Bolivarian Republic of)"
+msgid "Venda"
+msgstr ""
+
+msgid "Venezuela, Bolivarian Republic of"
 msgstr ""
 
 msgid "Verkehr"
@@ -20691,7 +21771,13 @@ msgstr ""
 msgid "VerticalEPG settings"
 msgstr "Grafiskais daudzkanālu EPG"
 
+msgid "Very fast"
+msgstr ""
+
 msgid "Very short filenames"
+msgstr ""
+
+msgid "Very slow"
 msgstr ""
 
 msgid "Very very short filenames - Warning"
@@ -20829,6 +21915,11 @@ msgstr "Tīkla iestatne"
 msgid "Viet Nam"
 msgstr ""
 
+#
+#, fuzzy
+msgid "Vietnamese"
+msgstr "datnes nosaukums"
+
 msgid "View"
 msgstr ""
 
@@ -20923,7 +22014,7 @@ msgstr ""
 msgid "Virgin Islands (British)"
 msgstr ""
 
-msgid "Virgin Islands (U.S.)"
+msgid "Virgin Islands (US)"
 msgstr ""
 
 msgid "Virtual KeyBoard Functions"
@@ -20936,6 +22027,9 @@ msgid "Virtual keyboard"
 msgstr ""
 
 msgid "Vol"
+msgstr ""
+
+msgid "Volapük"
 msgstr ""
 
 #
@@ -21059,6 +22153,9 @@ msgstr "iet uz gaidstāvi"
 msgid "Wallis and Futuna"
 msgstr ""
 
+msgid "Walloon"
+msgstr ""
+
 msgid "War"
 msgstr ""
 
@@ -21081,7 +22178,7 @@ msgstr "Atskaņot ierakstītās filmas..."
 
 #
 #, fuzzy
-msgid "Watch recordings..."
+msgid "Watch recordings"
 msgstr "ieraksta..."
 
 #, python-format
@@ -21179,6 +22276,9 @@ msgstr ""
 msgid "Welcome..."
 msgstr ""
 
+msgid "Welsh"
+msgstr ""
+
 msgid "Werbung"
 msgstr ""
 
@@ -21192,6 +22292,11 @@ msgstr ""
 #
 #, fuzzy
 msgid "Western"
+msgstr "Rietumi"
+
+#
+#, fuzzy
+msgid "Western Frisian"
 msgstr "Rietumi"
 
 msgid "Western Sahara"
@@ -21485,6 +22590,9 @@ msgstr ""
 msgid "Without popup"
 msgstr ""
 
+msgid "Wolof"
+msgstr ""
+
 msgid "Workaround for old tuner driver"
 msgstr ""
 
@@ -21529,6 +22637,9 @@ msgid "XP3000"
 msgstr ""
 
 msgid "XPicon, ZZZPicon"
+msgstr ""
+
+msgid "Xhosa"
 msgstr ""
 
 msgid "YCbCr420"
@@ -21635,6 +22746,12 @@ msgid "Yes, shut down now."
 msgstr "Jā, veikt izslēgšanu tagad."
 
 msgid "Yesterday"
+msgstr ""
+
+msgid "Yiddish"
+msgstr ""
+
+msgid "Yoruba"
 msgstr ""
 
 #, python-format
@@ -22061,13 +23178,27 @@ msgstr ""
 msgid "Zgemma i55"
 msgstr ""
 
+msgid "Zhuang / Chuang"
+msgstr ""
+
 msgid "Zimbabwe"
 msgstr ""
 
 msgid "Zirkus"
 msgstr ""
 
+#
+#, fuzzy
+msgid "Zoom Actions"
+msgstr "Atrašanās vieta"
+
+msgid "Zoom In/Out TV"
+msgstr ""
+
 msgid "Zoom In/Out TV..."
+msgstr ""
+
+msgid "Zoom Off"
 msgstr ""
 
 msgid "Zoom Off..."
@@ -22077,6 +23208,9 @@ msgid "Zoom from left"
 msgstr ""
 
 msgid "Zoom from right"
+msgstr ""
+
+msgid "Zulu"
 msgstr ""
 
 msgid "[Enigma2 Settings]\n"
@@ -22493,6 +23627,11 @@ msgstr ""
 #
 msgid "delete cut"
 msgstr "dzēst griešanu"
+
+#
+#, fuzzy
+msgid "deleted"
+msgstr "Dzēst"
 
 msgid "descramble and record ecm"
 msgstr ""
@@ -22962,6 +24101,11 @@ msgstr ""
 
 #
 #, fuzzy
+msgid "installed"
+msgstr "Pašreizējie iestatījumi:"
+
+#
+#, fuzzy
 msgid "instant record"
 msgstr "Tūlītējs ieraksts..."
 
@@ -23019,7 +24163,8 @@ msgid "languages"
 msgstr ""
 
 #
-msgid "leave movie player..."
+#, fuzzy
+msgid "leave movie player"
 msgstr "iziet no filmu atskaņotāja..."
 
 #

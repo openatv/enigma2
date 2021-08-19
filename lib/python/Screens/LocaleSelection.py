@@ -38,10 +38,12 @@ class LocaleSelection(Screen, HelpableScreen):
 	LIST_STATICON = 4
 	LIST_STATUS = 5
 	LIST_PACKAGE = 6
+	MAX_LIST = 7
 
 	PACK_INSTALLED = 0
 	PACK_AVAILABLE = 1
 	PACK_IN_USE = 2
+	MAX_PACK = 3
 
 	skin = """
 	<screen name="LocaleSelection" position="center,center" size="1000,560" resolution="1280,720">
@@ -51,11 +53,12 @@ class LocaleSelection(Screen, HelpableScreen):
 				{
 				"template":
 					[
-					MultiContentEntryPixmapAlphaBlend(pos = (5, 2), size = (60, 30), flags = BT_SCALE, png = 0),
-					MultiContentEntryText(pos = (80, 0), size = (400, 34), font = 0, flags = RT_HALIGN_LEFT | RT_VALIGN_CENTER, text = 1),
-					MultiContentEntryText(pos = (490, 0), size = (330, 34), font = 0, flags = RT_HALIGN_LEFT | RT_VALIGN_CENTER, text = 2),
-					MultiContentEntryText(pos = (830, 0), size = (90, 34), font = 0, flags = RT_HALIGN_LEFT | RT_VALIGN_CENTER, text = 3),
-					MultiContentEntryPixmapAlphaBlend(pos = (930, 3), size = (30, 27), flags = BT_SCALE, png = 4)
+					MultiContentEntryPixmapAlphaBlend(pos = (5, 2), size = (60, 30), flags = BT_SCALE, png = 0),  # Flag.
+					MultiContentEntryText(pos = (80, 0), size = (400, 34), font = 0, flags = RT_HALIGN_LEFT | RT_VALIGN_CENTER, text = 1),  # Language name (Native).
+					MultiContentEntryText(pos = (490, 0), size = (330, 34), font = 0, flags = RT_HALIGN_LEFT | RT_VALIGN_CENTER, text = 2),  # Lanuage name (English).
+					MultiContentEntryText(pos = (830, 0), size = (90, 34), font = 0, flags = RT_HALIGN_LEFT | RT_VALIGN_CENTER, text = 3),  # Locale.
+					MultiContentEntryPixmapAlphaBlend(pos = (930, 3), size = (30, 27), flags = BT_SCALE, png = 4)  # Status icon.
+					# MultiContentEntryText(pos = (0, 0), size = (0, 0), font = 0, flags = RT_HALIGN_LEFT | RT_VALIGN_CENTER, text = 5),  # Package name.
 					],
 				"fonts": [parseFont("MultiLingual;25")],
 				"itemHeight": 34
@@ -140,6 +143,8 @@ class LocaleSelection(Screen, HelpableScreen):
 		self.onLayoutFinish.append(self.layoutFinished)
 
 	def layoutFinished(self):
+		while len(self["icons"].pixmaps) < self.MAX_PACK:
+			self["icons"].pixmaps.append(None) 
 		self.updateLocaleList(self.initialLocale)
 		self.moveToLocale(self.currentLocale)
 		self.updateText(updateDescription=True)
@@ -196,12 +201,12 @@ class LocaleSelection(Screen, HelpableScreen):
 		self.updateText(updateDescription=True)
 
 	def updateText(self, updateDescription=True):
-		current = self["locales"].getCurrent()
 		Screen.setTitle(self, _("Locale/Language Selection"))
 		self["key_red"].text = _("Cancel")
 		self["key_green"].text = _("Save")
 		self["key_menu"].text = _("MENU")
 		self["key_help"].text = _("HELP")
+		current = self["locales"].getCurrent()
 		if current[self.LIST_PACKAGE] == international.getPackage(self.currentLocale):
 			self["key_yellow"].text = ""
 			self["manageActions"].setEnabled(False)
@@ -385,10 +390,80 @@ class LocaleWizard(LocaleSelection, ShowRemoteControl):
 		ShowRemoteControl.__init__(self)
 		global inWizard
 		inWizard = True
+		saveText = _("Apply the currently highlighted locale/language and exit")
+		cancelText = _("Cancel any changes to the active locale/language and exit")
+		self["selectionActions"] = HelpableActionMap(self, "LocaleSelectionActions", {
+			"select": (self.keySelect, saveText),
+			"close": (self.keyCancel, cancelText),
+			"cancel": (self.keyCancel, cancelText),
+			"save": (self.keySelect, saveText),
+		}, prio=0, description=_("Locale/Language Selection Actions"))
+		self["manageActions"].setEnabled(False)
 		self.onLayoutFinish.append(self.selectKeys)
 		self["summarytext"] = StaticText()
 		self["text"] = Label()
-		self.setText()
+
+	def updateLocaleList(self, inUseLoc=None):
+		if inUseLoc is None:
+			inUseLoc = self.currentLocale
+		self.list = []
+		for package in international.installedPackages:
+			locales = international.packageToLocales(package)
+			for locale in locales:
+				data = international.splitLocale(locale)
+				if len(locales) > 1 and "%s-%s" % (data[0], data[1].lower()) in international.availablePackages:  # Is this still needed?
+					continue
+				png = LoadPixmap(resolveFilename(SCOPE_CURRENT_SKIN, "countries/%s.png" % data[1].lower()))
+				if png is None:
+					png = LoadPixmap(resolveFilename(SCOPE_CURRENT_SKIN, "countries/missing.png"))
+				name = "%s (%s)" % (LANGUAGE_DATA[data[0]][LANG_NAME], data[1])
+				if locale == inUseLoc:
+					status = self.PACK_IN_USE
+					icon = self["icons"].pixmaps[self.PACK_IN_USE]
+				else:
+					status = self.PACK_INSTALLED
+					icon = self["icons"].pixmaps[self.PACK_INSTALLED]
+				self.list.append((png, LANGUAGE_DATA[data[0]][LANG_NATIVE], name, locale, icon, status, package))
+				if config.locales.packageLocales.value == "P":
+					break
+		if inUseLoc not in [x[self.LIST_LOCALE] for x in self.list]:
+			data = international.splitLocale(inUseLoc)
+			png = LoadPixmap(resolveFilename(SCOPE_CURRENT_SKIN, "countries/%s.png" % data[1].lower()))
+			if png is None:
+				png = LoadPixmap(resolveFilename(SCOPE_CURRENT_SKIN, "countries/missing.png"))
+			name = "%s (%s)" % (LANGUAGE_DATA[data[0]][LANG_NAME], data[1])
+			package = international.getPackage(inUseLoc)
+			self.list.append((png, LANGUAGE_DATA[data[0]][LANG_NATIVE], name, inUseLoc, self["icons"].pixmaps[self.PACK_IN_USE], self.PACK_IN_USE, package))
+		sortBy = int(config.locales.localesSortBy.value)
+		order = int(sortBy / 10) if sortBy > 9 else sortBy
+		reverse = True if sortBy > 9 else False
+		self.list = sorted(self.list, key=lambda x: x[order], reverse=reverse)
+		self["locales"].updateList(self.list)
+
+	def updateText(self, updateDescription=True):
+		Screen.setTitle(self, _("Locale/Language Selection"))
+		self["key_red"].text = _("Cancel")
+		self["key_green"].text = _("Save")
+		self["key_yellow"].text = ""
+		self["key_menu"].text = ""
+		self["key_help"].text = _("HELP")
+		self["manageActions"].setEnabled(False)
+		current = self["locales"].getCurrent()
+		msg = _("This is the currently selected locale.") if current[self.LIST_STATUS] == self.PACK_IN_USE else _("Press OK to use this locale.")
+		if updateDescription:
+			self["description"].text = "%s  [%s (%s) %s]" % (msg, _(international.getLanguageName(current[self.LIST_LOCALE])), _(international.getCountryName(current[self.LIST_LOCALE])), current[self.LIST_LOCALE])
+		self["text"].setText(_("Use the UP and DOWN buttons to select your locale/language then press the OK button to continue."))
+		self["summarytext"].setText(_("Use the UP and DOWN buttons to select your locale/language then press the OK button to continue."))
+
+	def keySelect(self):
+		current = self["locales"].getCurrent()
+		self.currentLocale = current[self.LIST_LOCALE]
+		self.updateLocaleList(self.currentLocale)
+		if current[self.LIST_STATUS] == self.PACK_INSTALLED:
+			self["description"].text = _("Locale %s (%s) has been selected as the active locale.") % (current[self.LIST_NATIVE], current[self.LIST_NAME])
+		else:
+			self["description"].text = _("This is already the active locale.")
+		self.keySave()
 
 	def selectKeys(self):
 		self.clearSelectedKeys()
@@ -398,10 +473,6 @@ class LocaleWizard(LocaleSelection, ShowRemoteControl):
 	def changed(self):
 		self.run(justlocal=True)
 		self.setText()
-
-	def setText(self):
-		self["text"].setText(_("Use the UP and DOWN buttons to select your locale/language then press the OK or GREEN button to continue."))
-		self["summarytext"].setText(_("Use the UP and DOWN buttons to select your locale/language then press the OK or GREEN button to continue."))
 
 	def createSummary(self):
 		return ScreenSummary

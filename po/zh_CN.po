@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openATV [E2+webif_V5.3_6.0]\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-04-16 19:27+0430\n"
+"POT-Creation-Date: 2021-08-15 18:24+0200\n"
 "PO-Revision-Date: 2018-11-29 20:58+0800\n"
 "Last-Translator: touch时代 2017-2-9 ATV-Full Version: 1.5\n"
 "Language-Team: nobody  2017-3-10 Version: 1.8\n"
@@ -35,6 +35,12 @@ msgid ""
 "  WARNING: \n"
 "  There is not enough space to install Kodi!"
 msgstr ""
+
+#, fuzzy
+msgid ""
+"\n"
+" Do you want to switch Enigma2 with Android...?"
+msgstr "是否要马上重启？"
 
 msgid ""
 "\n"
@@ -1155,6 +1161,11 @@ msgid_plural "%d channels found"
 msgstr[0] "找到 %d 个频道!"
 
 #, python-format
+msgid "%d day"
+msgid_plural "%d days"
+msgstr[0] ""
+
+#, python-format
 msgid "%d hour"
 msgid_plural "%d hours"
 msgstr[0] "%d 小时"
@@ -1312,9 +1323,17 @@ msgid ""
 "Press exit to close"
 msgstr ""
 
+#, fuzzy, python-format
+msgid "%s  (%s)"
+msgstr "%s (%s)\n"
+
 #, python-format
 msgid "%s %02d.%02d."
 msgstr "%s %02d.%02d."
+
+#, fuzzy, python-format
+msgid "%s %s %s."
+msgstr "重启%s %s."
 
 #, python-format
 msgid "%s %s advanced remote control (native)"
@@ -1532,6 +1551,10 @@ msgstr "+/-"
 
 msgid "+24"
 msgstr "+24"
+
+msgctxt "Text list separator"
+msgid ", "
+msgstr ""
 
 msgid "-"
 msgstr ""
@@ -1885,6 +1908,10 @@ msgstr "第二个信息栏 超时"
 msgid "2nd infobar"
 msgstr "第二个信息栏"
 
+#, fuzzy
+msgid "2ndInfobar Actions"
+msgstr "第二个信息栏 超时"
+
 msgid "2s"
 msgstr "2s"
 
@@ -2235,6 +2262,9 @@ msgstr ""
 "定时事件完成,关机助手想要关闭你 %s %s \n"
 "现在关闭吗？"
 
+msgid "A highlight on the remote control image shows which button the help refers to. If more than one button performs the indicated function, more than one highlight will be shown. Text below the list lists the active buttons and whether the function requires a long press or SHIFT of the button(s)."
+msgstr ""
+
 #, python-format
 msgid ""
 "A recording has been started:\n"
@@ -2382,10 +2412,6 @@ msgstr "AFP"
 msgid "AFP Setup"
 msgstr "AFP 设置"
 
-#, fuzzy
-msgid "ASS File"
-msgstr "文件"
-
 msgid "ASS file"
 msgstr ""
 
@@ -2410,6 +2436,9 @@ msgstr "播放"
 #, fuzzy
 msgid "Abenteuer"
 msgstr "中央"
+
+msgid "Abkhazian"
+msgstr ""
 
 msgid "Abort"
 msgstr "中止"
@@ -2511,6 +2540,9 @@ msgstr "适配器设置"
 
 msgid "Add"
 msgstr "添加"
+
+msgid "Add / Delete the currently highlighted locale / language"
+msgstr ""
 
 msgid "Add AutoTimer"
 msgstr "添加自动定时器"
@@ -2683,7 +2715,13 @@ msgstr "视频增强设置"
 msgid "Adventure"
 msgstr ""
 
+msgid "Afar"
+msgstr ""
+
 msgid "Afghanistan"
+msgstr ""
+
+msgid "Afrikaans"
 msgstr ""
 
 msgid "After PowerLost"
@@ -2702,11 +2740,18 @@ msgstr "按下OK键后，请等待！"
 msgid "Agenten"
 msgstr "中央"
 
+msgid "Akan"
+msgstr ""
+
 msgid "Aland Islands"
 msgstr ""
 
 msgid "Albania"
 msgstr ""
+
+#, fuzzy
+msgid "Albanian"
+msgstr "罗马尼亚语"
 
 msgid "Album"
 msgstr "相册"
@@ -2757,6 +2802,10 @@ msgstr "选择卫星4 (USALS)"
 
 msgid "All services provider"
 msgstr "所有频道供应商"
+
+#, fuzzy
+msgid "All supported"
+msgstr "不支持的"
 
 msgid "Allocate"
 msgstr "分配"
@@ -2832,6 +2881,9 @@ msgstr ""
 msgid "Alpha"
 msgstr "內测版"
 
+msgid "Alphabetical under headings"
+msgstr ""
+
 msgid "Alphanumeric"
 msgstr "字母数字"
 
@@ -2891,6 +2943,9 @@ msgstr ""
 msgid "American Sports"
 msgstr "武术运动"
 
+msgid "Amharic"
+msgstr ""
+
 msgid ""
 "An attempt is made to capture the current TV status. If this is not possible due to incorrect or missing status messages, it may cause the receiver to respond unexpectedly.\n"
 "On the other hand, tries to respond better to different operating conditions."
@@ -2924,6 +2979,9 @@ msgstr "动画设置"
 msgid "Animation Speed"
 msgstr "动画速度"
 
+msgid "Animation speed of help indicators"
+msgstr ""
+
 msgid "Animations"
 msgstr "动画"
 
@@ -2939,8 +2997,14 @@ msgstr ""
 msgid "Any activity"
 msgstr "任何活动"
 
+msgid "Apply any changes to the active locale/langauge and exit"
+msgstr ""
+
 msgid "Arabic"
 msgstr "阿拉伯语"
+
+msgid "Aragonese"
+msgstr ""
 
 msgid "Architektur"
 msgstr ""
@@ -3067,6 +3131,10 @@ msgstr ""
 msgid "Armenia"
 msgstr ""
 
+#, fuzzy
+msgid "Armenian"
+msgstr "土耳其语"
+
 msgid "Artist"
 msgstr "艺术家"
 
@@ -3099,6 +3167,10 @@ msgstr "屏幕比例"
 msgid "Aspect Ratio"
 msgstr "屏幕比例"
 
+#, fuzzy
+msgid "Aspect Ratio Actions"
+msgstr "屏幕比例"
+
 msgid "Aspect list..."
 msgstr "方位列表..."
 
@@ -3108,6 +3180,9 @@ msgstr "录像 长按"
 
 msgid "Aspect ratio"
 msgstr "屏幕比例"
+
+msgid "Assamese"
+msgstr ""
 
 msgid "Assigned CAIds:"
 msgstr "指定CAIds:"
@@ -3136,6 +3211,10 @@ msgstr "附加文件"
 
 msgid "Audio"
 msgstr "音频"
+
+#, fuzzy
+msgid "Audio Actions"
+msgstr "音频选择"
 
 msgid "Audio Auto Volume Level"
 msgstr "音频自动音量级别"
@@ -3331,13 +3410,25 @@ msgstr "可用的共享:"
 msgid "Available shares:"
 msgstr "可用的共享:"
 
+msgid "Avaric"
+msgstr ""
+
+msgid "Avestan"
+msgstr ""
+
 msgid "Avoid getting stuck (at the expense of some stuttering) when the jump time is smaller than the time between I-frames."
 msgstr "当跳转时间少于介于 I－frame 的时间时避免卡顿（以损失某些卡顿）."
 
 msgid "Axas E4HD Ultra"
 msgstr ""
 
+msgid "Aymara"
+msgstr ""
+
 msgid "Azerbaijan"
+msgstr ""
+
+msgid "Azerbaijani"
 msgstr ""
 
 msgid "B"
@@ -3538,6 +3629,10 @@ msgstr ""
 msgid "Bahrain"
 msgstr ""
 
+#, fuzzy
+msgid "Bambara"
+msgstr "Samba"
+
 msgid "Band"
 msgstr "波段"
 
@@ -3560,6 +3655,9 @@ msgid "Base transparency for teletext, more options available within teletext sc
 msgstr "图文电视透明度，在图文电视屏幕更多的选项可用."
 
 msgid "Baseball"
+msgstr ""
+
+msgid "Bashkir"
 msgstr ""
 
 msgid "Basic PID info"
@@ -3599,6 +3697,10 @@ msgid "Belarus"
 msgstr ""
 
 #, fuzzy
+msgid "Belarusian"
+msgstr "波斯语"
+
+#, fuzzy
 msgid "Belgian"
 msgstr "挪威语"
 
@@ -3606,6 +3708,9 @@ msgid "Belgium"
 msgstr ""
 
 msgid "Belize"
+msgstr ""
+
+msgid "Bengali"
 msgstr ""
 
 msgid "Benin"
@@ -3632,6 +3737,10 @@ msgstr ""
 msgid "Big PiP"
 msgstr "大 画中画"
 
+#, fuzzy
+msgid "Bihari languages"
+msgstr "语言 languages"
+
 msgid "Bildung"
 msgstr ""
 
@@ -3639,6 +3748,9 @@ msgid "Biografie"
 msgstr ""
 
 msgid "Biography"
+msgstr ""
+
+msgid "Bislama"
 msgstr ""
 
 #, fuzzy
@@ -3687,13 +3799,13 @@ msgstr "蓝键切换:蓝键－短按/蓝键－长按"
 msgid "Bluetooth Setup"
 msgstr "按键设置"
 
-msgid "Bolivia (Plurinational State of)"
+msgid "Bolivia"
 msgstr ""
 
 msgid "Bollywood"
 msgstr ""
 
-msgid "Bonaire, Sint Eustatius and Saba"
+msgid "Bonaire"
 msgstr ""
 
 msgid "Bookmarks"
@@ -3717,6 +3829,10 @@ msgstr "引导程序:\t\t%s\n"
 
 msgid "Bosnia and Herzegovina"
 msgstr ""
+
+#, fuzzy
+msgid "Bosnian"
+msgstr "爱沙尼亚语"
 
 msgid "Botswana"
 msgstr ""
@@ -3744,6 +3860,9 @@ msgid "Boxing"
 msgstr ""
 
 msgid "Brazil"
+msgstr ""
+
+msgid "Breton"
 msgstr ""
 
 msgid "Brightness"
@@ -3783,6 +3902,9 @@ msgid "Bulgarian"
 msgstr "保加利亚语"
 
 msgid "Burkina Faso"
+msgstr ""
+
+msgid "Burmese"
 msgstr ""
 
 msgid "Burn Bludisc"
@@ -3968,9 +4090,6 @@ msgstr "有线电视"
 msgid "Cable Scan"
 msgstr "有线电视扫描"
 
-msgid "Cabo Verde"
-msgstr ""
-
 msgid "Cache thumbnails"
 msgstr "缓存缩略图"
 
@@ -4111,6 +4230,21 @@ msgstr ""
 msgid "Cancel"
 msgstr "取消"
 
+#, fuzzy
+msgid "Cancel any changed settings and exit"
+msgstr "频道选择"
+
+#, fuzzy
+msgid "Cancel any changed settings and exit all menus"
+msgstr "频道选择"
+
+#, fuzzy
+msgid "Cancel any changes the active locale/language and exit all menus"
+msgstr "频道选择"
+
+msgid "Cancel any changes to the active locale/language and exit"
+msgstr ""
+
 msgid "Cancel any text changes and exit"
 msgstr ""
 
@@ -4120,6 +4254,10 @@ msgstr "频道选择"
 
 msgid "Cancel save timeshift as movie"
 msgstr "取消保存时移为电影"
+
+#, fuzzy
+msgid "Cancel selection"
+msgstr "频道选择"
 
 #, fuzzy
 msgid "Cancel the image selection and exit"
@@ -4165,6 +4303,9 @@ msgstr "功能: "
 msgid "Capacity: "
 msgstr "容量: "
 
+msgid "Cape Verde"
+msgstr ""
+
 msgid "Card infos (CCcam-Reader)"
 msgstr "CA卡信息 (CCcam-读卡器)"
 
@@ -4190,6 +4331,9 @@ msgstr "层叠画中画"
 msgid "Casting"
 msgstr "等待"
 
+msgid "Catalan / Valencian"
+msgstr ""
+
 msgid "Caution update not yet tested !!"
 msgstr "注意更新还未测试！！"
 
@@ -4202,11 +4346,21 @@ msgstr ""
 msgid "Central African Republic"
 msgstr ""
 
+msgid "Central Khmer"
+msgstr ""
+
 msgid "Chad"
+msgstr ""
+
+msgid "Chamorro"
 msgstr ""
 
 msgid "Change Boxmode to control Hardware Chip Modes*"
 msgstr ""
+
+#, fuzzy
+msgid "Change Language"
+msgstr "语言Language"
 
 msgid "Change PIN"
 msgstr "更改 PIN 码"
@@ -4386,6 +4540,10 @@ msgstr "章节:"
 msgid "Character device"
 msgstr "存储设备"
 
+#, fuzzy
+msgid "Chechen"
+msgstr "检查"
+
 msgid "Check"
 msgstr "检查"
 
@@ -4430,6 +4588,9 @@ msgstr ""
 "正在检查调谐器 %d\n"
 "DiSEqC 端口 %s 为 %s 提供支持"
 
+msgid "Chichewa / Chewa / Nyanja"
+msgstr ""
+
 #, fuzzy
 msgid "Children"
 msgstr "儿童/青少年"
@@ -4445,6 +4606,9 @@ msgid "Chile"
 msgstr ""
 
 msgid "China"
+msgstr ""
+
+msgid "Chinese"
 msgstr ""
 
 #, fuzzy
@@ -4524,6 +4688,9 @@ msgstr "选择 %s %s 关闭时 EPG 数据的保存位置.该位置在启动时�
 msgid "Choose the name of the file that holds the EPG data when the %s %s is shut down. This can be handy to differentiate between several boxes."
 msgstr "选择关闭 %s %s 时保存 EPG 数据用的文件名.这可以方便区分几个不同的机顶盒."
 
+msgid "Choose the order in which items are displayed in Help windows"
+msgstr ""
+
 msgid "Choose time interval to which the graphics will be rounded off."
 msgstr "选择图形 切换的时间间隔."
 
@@ -4581,6 +4748,12 @@ msgid "Christmas Island"
 msgstr ""
 
 msgid "Chronik"
+msgstr ""
+
+msgid "Church Slavic"
+msgstr ""
+
+msgid "Chuvash"
 msgstr ""
 
 msgid "Circular LNB"
@@ -4654,6 +4827,9 @@ msgstr "关闭对话框"
 msgid "Close title selection"
 msgstr "关闭标题选择"
 
+msgid "Cloudflare"
+msgstr ""
+
 msgid "Cocos (Keeling) Islands"
 msgstr ""
 
@@ -4720,6 +4896,10 @@ msgstr "指定 CI 模块"
 msgid "Common Interface assignment"
 msgstr "指定 CI 模块"
 
+#, fuzzy
+msgid "Common Setup Actions"
+msgstr "启动执行"
+
 msgid "Communication"
 msgstr "通信"
 
@@ -4757,12 +4937,20 @@ msgstr ""
 msgid "Configfile %s saved."
 msgstr "配置文件 %s 已保存."
 
+#, fuzzy
+msgctxt "Abbreviation of 'Configurable'"
+msgid "Configurable"
+msgstr "正在配置"
+
 msgid "Configuration mode"
 msgstr "配置模式"
 
 #, python-format
 msgid "Configuration mode: %s"
 msgstr "配置模式: %s"
+
+msgid "Configuration options for the HELP screen can be found in 'MENU > Setup > Usage & User Interface > Settings'."
+msgstr ""
 
 msgid "Configure an additional delay to improve external subtitle synchronisation."
 msgstr "配置额外的延迟时间，以改善外挂字幕同步."
@@ -5146,9 +5334,6 @@ msgstr "配置定时器"
 msgid "Congo"
 msgstr ""
 
-msgid "Congo (Democratic Republic of the)"
-msgstr ""
-
 #, python-format
 msgid "Congratulations, you have successfully configured your %s %s for use with the IceTV Smart Recording service. Your IceTV guide will now download in the background."
 msgstr ""
@@ -5234,6 +5419,9 @@ msgstr "定位控制，已结束的定时器在定时器列表中如何显示."
 msgid "Control the Infobar fading speed"
 msgstr "控制信息栏淡出速度"
 
+msgid "Control the animation speed of the button indicators in the Help screen. 'Disabled' turns off animation so that indicators jump between buttons."
+msgstr ""
+
 msgid "Control your Softcams"
 msgstr "控制 Softcam"
 
@@ -5302,10 +5490,17 @@ msgstr "正复制文件"
 msgid "Cores: %s"
 msgstr " 核心数: %s"
 
+#, fuzzy
+msgid "Cornish"
+msgstr "丹麦语"
+
+msgid "Corsican"
+msgstr ""
+
 msgid "Costa Rica"
 msgstr ""
 
-msgid "Cote d'Ivoire"
+msgid "Cote d'Ivoire / Ivory Coast"
 msgstr ""
 
 #, python-format
@@ -5417,6 +5612,9 @@ msgstr "正在创建文件系统"
 
 msgid "Creating partition"
 msgstr "正在创建分区"
+
+msgid "Cree"
+msgstr ""
 
 #, fuzzy
 msgid "Cricket"
@@ -5537,6 +5735,9 @@ msgstr ""
 msgid "Czech"
 msgstr "捷克语"
 
+msgid "Czech Republic"
+msgstr ""
+
 #, fuzzy
 msgid "Czechia"
 msgstr "捷克语"
@@ -5550,6 +5751,10 @@ msgstr "DAC"
 
 msgid "DHCP"
 msgstr "自动分配（DHCP）"
+
+#, fuzzy
+msgid "DHCP Router"
+msgstr "完成"
 
 msgid "DLNA support"
 msgstr "DLNA 支持"
@@ -5999,8 +6204,16 @@ msgstr "确认删除"
 msgid "Delete EPG"
 msgstr "删除EPG"
 
+#, fuzzy
+msgid "Delete Lang"
+msgstr "删除语言"
+
 msgid "Delete Language"
 msgstr "删除语言"
+
+#, fuzzy
+msgid "Delete Loc"
+msgstr "删除"
 
 msgid "Delete Plugins"
 msgstr "删除插件"
@@ -6068,11 +6281,18 @@ msgstr "已删除 %s!"
 msgid "Deleted items"
 msgstr "已删除项目"
 
+#, fuzzy, python-format
+msgid "Deleting %s (%s)..."
+msgstr "正在删除文件"
+
 msgid "Deleting files"
 msgstr "正在删除文件"
 
 msgid "Delivery system workaround"
 msgstr "提交系统解决方案"
+
+msgid "Democratic Republic of the Congo"
+msgstr ""
 
 msgid "Denmark"
 msgstr ""
@@ -6175,6 +6395,10 @@ msgid ""
 msgstr ""
 "计时器开始和结束之间的区别必须等于或大于 %d 分钟.\n"
 "结束动作被禁用！"
+
+#, fuzzy
+msgid "Digit entry for service selection"
+msgstr "退出输入设备选择."
 
 msgid "Digital contour removal"
 msgstr "数字等高线消除"
@@ -6287,6 +6511,15 @@ msgstr "显示设置"
 
 msgid "Display the EIT now/next eventdata in infobar."
 msgstr "在信息栏显示 EIT 当前/下一个 事件数据."
+
+msgid "Display the base locales or all locales for a language."
+msgstr ""
+
+msgid "Display the virtual keyboard for data entry"
+msgstr ""
+
+msgid "Divehi / Dhivehi / Maldivian"
+msgstr ""
 
 #, fuzzy
 msgid "Djibouti"
@@ -6533,6 +6766,10 @@ msgstr "不保存"
 msgid "Don't save"
 msgstr "不保存"
 
+#, fuzzy
+msgid "Don't show default"
+msgstr "默认排序"
+
 msgid "Don't stop current event but disable coming events"
 msgstr "不停止当前事件但禁用接下来的事件"
 
@@ -6633,8 +6870,14 @@ msgstr ""
 msgid "Dutch"
 msgstr "荷兰语"
 
+msgid "Dutch / Flemish"
+msgstr ""
+
 msgid "Dynamic contrast"
 msgstr "动态对比度"
+
+msgid "Dzongkha"
+msgstr ""
 
 msgid "E"
 msgstr "E"
@@ -7007,6 +7250,18 @@ msgstr "启用地面波 LCN:"
 msgid "Enable the current value of the slider at end of the slider bar."
 msgstr ""
 
+msgid "Enable this option to add action map / remote control mapping data to the debug log file."
+msgstr ""
+
+msgid "Enable this option to add keyboard keymap data to the debug log file."
+msgstr ""
+
+msgid "Enable this option to add remote control data to the debug log file."
+msgstr ""
+
+msgid "Enable this option to add screen names and resolution data to the debug log file."
+msgstr ""
+
 msgid "Enable this setting if your aerial system needs power"
 msgstr ""
 
@@ -7060,6 +7315,12 @@ msgstr ""
 
 msgid "English"
 msgstr "英语English"
+
+msgid "English name (Ascending)"
+msgstr ""
+
+msgid "English name (Descending)"
+msgstr ""
 
 #, fuzzy
 msgid "Enhanced Movie Center"
@@ -7301,10 +7562,21 @@ msgstr ""
 "错误: %s\n"
 "重试?"
 
+#, fuzzy, python-format
+msgid "Error: %s %s not %s!  Please try again later."
+msgstr "没有可用更新.请稍后再试."
+
+#, fuzzy
+msgid "Error: Unable to process the command!  Please try again later."
+msgstr "对不起订阅需要进行维护,请稍后再试."
+
 msgid "Es folgt:"
 msgstr ""
 
 msgid "Esoterik"
+msgstr ""
+
+msgid "Esperanto"
 msgstr ""
 
 msgid "Essen"
@@ -7384,6 +7656,9 @@ msgstr ""
 
 msgid "Everywhere"
 msgstr "任何位置"
+
+msgid "Ewe"
+msgstr ""
 
 msgid "Exceeds Bludisc medium!"
 msgstr "超过蓝光介质！"
@@ -7526,6 +7801,10 @@ msgstr "扩展设置"
 
 msgid "Extended setup..."
 msgstr "扩展设置..."
+
+#, fuzzy
+msgid "Extension Actions"
+msgstr "附件."
 
 msgid "Extensions"
 msgstr "附件."
@@ -7672,6 +7951,13 @@ msgstr ""
 msgid "Faroe Islands"
 msgstr ""
 
+msgid "Faroese"
+msgstr ""
+
+#, fuzzy
+msgid "Farsi / Persian"
+msgstr "波斯语"
+
 msgid "Fast"
 msgstr "快速"
 
@@ -7716,6 +8002,9 @@ msgid "Fetch EPG and update timers now"
 msgstr ""
 
 msgid "Fiji"
+msgstr ""
+
+msgid "Fijian"
 msgstr ""
 
 msgid "File"
@@ -7917,6 +8206,17 @@ msgid ""
 "%s"
 msgstr ""
 
+#, fuzzy
+msgid "Flat alphabetical"
+msgstr "按字母顺序"
+
+msgid "Flat by key group on remote"
+msgstr ""
+
+#, fuzzy
+msgid "Flat by position on remote"
+msgstr "最终位置在"
+
 msgid "Following tasks will be done after you press OK!"
 msgstr "按下OK键后将完成以下任务!"
 
@@ -8076,6 +8376,9 @@ msgstr "前端处理器版本：%s"
 msgid "Frontprocessor version: %s"
 msgstr "前端处理器版本：%s"
 
+msgid "Fulah"
+msgstr ""
+
 msgid "Full Image Backup "
 msgstr "完整固件备份"
 
@@ -8148,12 +8451,22 @@ msgstr ""
 msgid "Gabon"
 msgstr ""
 
+msgid "Gaelic"
+msgstr ""
+
+msgid "Galician"
+msgstr ""
+
 msgid "Gambia"
 msgstr ""
 
 #, fuzzy
 msgid "Game Show"
 msgstr "显示游戏秀"
+
+#, fuzzy
+msgid "Ganda"
+msgstr "标准"
 
 msgid "Gangster"
 msgstr ""
@@ -8190,6 +8503,10 @@ msgstr "流派"
 
 msgid "Georgia"
 msgstr ""
+
+#, fuzzy
+msgid "Georgian"
+msgstr "挪威语"
 
 msgid "German"
 msgstr "德语"
@@ -8278,6 +8595,9 @@ msgid "Gold"
 msgstr ""
 
 msgid "Golf"
+msgstr ""
+
+msgid "Google DNS"
 msgstr ""
 
 msgid "Goto"
@@ -8398,6 +8718,9 @@ msgstr ""
 msgid "Guam"
 msgstr ""
 
+msgid "Guarani"
+msgstr ""
+
 msgid "Guard interval"
 msgstr "保护间隔"
 
@@ -8411,6 +8734,9 @@ msgid "Guinea"
 msgstr ""
 
 msgid "Guinea-Bissau"
+msgstr ""
+
+msgid "Gujarati"
 msgstr ""
 
 msgid "Guyana"
@@ -8473,6 +8799,10 @@ msgid "HDMI Recording"
 msgstr "录像中..."
 
 #, fuzzy
+msgid "HDMI-IN Actions"
+msgstr "录像设置"
+
+#, fuzzy
 msgid "HDMI-IN Recording settings"
 msgstr "录像设置"
 
@@ -8484,6 +8814,9 @@ msgid "HDR10 Support"
 msgstr "DLNA 支持"
 
 msgid "HELP"
+msgstr ""
+
+msgid "HELP provides brief information for buttons in your current context."
 msgstr ""
 
 msgid "HH:mm"
@@ -8502,6 +8835,9 @@ msgstr "DLNA 支持"
 #, fuzzy
 msgid "Haiti"
 msgstr "等待"
+
+msgid "Haitian / Haitian Creole"
+msgstr ""
 
 msgid "Handball"
 msgstr ""
@@ -8534,6 +8870,9 @@ msgstr "硬盘"
 msgid "Harddisk Setup"
 msgstr "硬盘设置"
 
+msgid "Hausa"
+msgstr ""
+
 msgid "Heard Island and McDonald Islands"
 msgstr ""
 
@@ -8551,6 +8890,10 @@ msgstr ""
 
 msgid "Help"
 msgstr "帮助"
+
+#, fuzzy
+msgid "Help Screen Information"
+msgstr "设备信息"
 
 msgid "Help long"
 msgstr "帮助 长按"
@@ -8575,6 +8918,9 @@ msgstr ""
 
 msgid "Here you can specify additional files that should be added to the backup file."
 msgstr "在这里您可以指定应添加到备份文件的其他文件."
+
+msgid "Herero"
+msgstr ""
 
 #, fuzzy
 msgid "Hidden / Blank"
@@ -8605,6 +8951,10 @@ msgstr "隐藏家长锁定的频道"
 msgid "Hide player"
 msgstr "隐藏播放器"
 
+#, fuzzy
+msgid "Hide the InfoBar"
+msgstr "隐藏时信息栏渐淡"
+
 msgid "Hide zap errors"
 msgstr "隐藏切换错误"
 
@@ -8613,6 +8963,12 @@ msgstr "等级信息"
 
 msgid "High bitrate support"
 msgstr "高比特率支持"
+
+msgid "Hindi"
+msgstr ""
+
+msgid "Hiri Motu"
+msgstr ""
 
 msgid "Hispasat 30.0w"
 msgstr ""
@@ -8654,9 +9010,8 @@ msgstr "保持屏幕"
 msgid "Hold till locked"
 msgstr "保持直到锁定"
 
-#, fuzzy
-msgid "Holy See"
-msgstr "热键设置"
+msgid "Holy See (Vatican City State)"
+msgstr ""
 
 msgid "Home"
 msgstr "首页"
@@ -8866,16 +9221,25 @@ msgstr "固件版本"
 msgid "Iceland"
 msgstr ""
 
+msgid "Icelandic"
+msgstr ""
+
 msgid "Icons"
 msgstr "图标"
 
 msgid "Idle Time: "
 msgstr "空闲时间:"
 
+msgid "Ido"
+msgstr ""
+
 msgid "If 'never', will force restart despite that after 100 crashes."
 msgstr ""
 
 msgid "If 'never', will write crash log despite that for the first crash."
+msgstr ""
+
+msgid "If an action is user-configurable, its help entry will be flagged with a '(C)' suffix."
 msgstr ""
 
 msgid "If editing a file, can you set the cursor start position at end or begin of the line."
@@ -8992,6 +9356,9 @@ msgstr ""
 "然后尽量调低“亮度”， 但确保最下端的两个灰色阶梯可辨别.\n"
 "现在，不必关心亮度的色调，它们将在下一步设置.\n"
 "如果您满意当前的结果，按 OK 键."
+
+msgid "Igbo"
+msgstr ""
 
 msgid "Ignore DVB-C namespace sub network"
 msgstr ""
@@ -9112,6 +9479,21 @@ msgstr "在Http串流中包含ECM信息"
 msgid "Include EIT in http streams"
 msgstr "在Http串流中包含EIT信息"
 
+#, fuzzy
+msgid "Include action map data"
+msgstr "在Http串流中包含AIT信息"
+
+#, fuzzy
+msgid "Include keyboard data"
+msgstr "键盘设置"
+
+#, fuzzy
+msgid "Include remote control data"
+msgstr "配置遥控器类型"
+
+msgid "Include screen load data"
+msgstr ""
+
 msgid "Incorrect type service for PiP!"
 msgstr "画中画的频道类型不正确"
 
@@ -9163,10 +9545,28 @@ msgstr "信息图标宽度"
 msgid "InfoBar"
 msgstr "信息栏"
 
+#, fuzzy
+msgid "InfoBar EPG Actions"
+msgstr "信息栏 EPG 模式"
+
 msgid "InfoBar EPG mode"
 msgstr "信息栏 EPG 模式"
 
+msgid "InfoBar Event View Actions"
+msgstr ""
+
+#, fuzzy
+msgid "InfoBar RDS Actions"
+msgstr "详细信息"
+
+msgid "InfoBar Show/Hide Actions"
+msgstr ""
+
 msgid "InfoPanel"
+msgstr "信息"
+
+#, fuzzy
+msgid "InfoPanel Actions"
 msgstr "信息"
 
 msgid "Infobar EPG"
@@ -9275,6 +9675,14 @@ msgstr "安装失败!!"
 msgid "Install Finished."
 msgstr "安装完成."
 
+#, fuzzy
+msgid "Install Lang"
+msgstr "正在安裝..."
+
+#, fuzzy
+msgid "Install Loc"
+msgstr "安裝"
+
 msgid "Install Plugins"
 msgstr "安装插件"
 
@@ -9320,6 +9728,10 @@ msgstr "已安装:\t%s"
 
 msgid "Installing"
 msgstr "正在安裝..."
+
+#, fuzzy, python-format
+msgid "Installing %s (%s)..."
+msgstr "正在安装插件..."
 
 #, fuzzy
 msgid "Installing Plugin ..."
@@ -9380,6 +9792,13 @@ msgstr "界面："
 msgid "Interlaced"
 msgstr "界面"
 
+#, fuzzy
+msgid "Interlingua"
+msgstr "内置"
+
+msgid "Interlingue / Occidental"
+msgstr ""
+
 msgid "Intermediate"
 msgstr "中级"
 
@@ -9408,6 +9827,12 @@ msgstr "互联网"
 
 msgid "Interval between keys when repeating:"
 msgstr "重复时两个键之间的间隔"
+
+msgid "Inuktitut"
+msgstr ""
+
+msgid "Inupiaq"
+msgstr ""
 
 #, fuzzy
 msgid "Invalid"
@@ -9442,16 +9867,19 @@ msgstr ""
 msgid "Ipkg"
 msgstr "Ipkg"
 
-msgid "Iran (Islamic Republic of)"
+msgid "Iran, Islamic Republic"
 msgstr ""
 
-msgid "Iran, Islamic Republic"
+msgid "Iran, Islamic Republic of"
 msgstr ""
 
 msgid "Iraq"
 msgstr ""
 
 msgid "Ireland"
+msgstr ""
+
+msgid "Irish"
 msgstr ""
 
 msgid "Is not necessary in most cases."
@@ -9506,6 +9934,12 @@ msgid "Jamaica"
 msgstr ""
 
 msgid "Japan"
+msgstr ""
+
+msgid "Japanese"
+msgstr ""
+
+msgid "Javanese"
 msgstr ""
 
 msgid "Jersey"
@@ -9576,11 +10010,26 @@ msgstr ""
 msgid "KB"
 msgstr "B"
 
+msgid "Kalaallisut / Greenlandic"
+msgstr ""
+
 #, fuzzy
 msgid "Kampfsport"
 msgstr "团队运动"
 
+msgid "Kannada"
+msgstr ""
+
+msgid "Kanuri"
+msgstr ""
+
+msgid "Kashmiri"
+msgstr ""
+
 msgid "Katastrophe"
+msgstr ""
+
+msgid "Kazakh"
 msgstr ""
 
 msgid "Kazakhstan"
@@ -9629,9 +10078,18 @@ msgstr "键盘选择"
 msgid "Keymap changed, you need to restart the GUI"
 msgstr "键盘映射已更改，您需要重新启动GUI"
 
+msgid "Kikuyu / Gikuyu"
+msgstr ""
+
 #, fuzzy
 msgid "Kinder"
 msgstr "寻星器"
+
+msgid "Kinyarwanda"
+msgstr ""
+
+msgid "Kirghiz / Kyrgyz"
+msgstr ""
 
 msgid "Kiribati"
 msgstr ""
@@ -9656,13 +10114,22 @@ msgstr "退出媒体播放器?"
 msgid "Kodi/extra partition free space:"
 msgstr ""
 
+msgid "Komi"
+msgstr ""
+
 msgid "Komödie"
 msgstr ""
 
-msgid "Korea (Democratic People's Republic of)"
+msgid "Kongo"
 msgstr ""
 
-msgid "Korea (Republic of)"
+msgid "Korea, Democratic People's Republic of"
+msgstr ""
+
+msgid "Korea, Republic of"
+msgstr ""
+
+msgid "Korean"
 msgstr ""
 
 #, fuzzy
@@ -9678,10 +10145,16 @@ msgstr ""
 msgid "Kriminalität"
 msgstr ""
 
+msgid "Kuanyama / Kwanyama"
+msgstr ""
+
 msgid "Kultur"
 msgstr ""
 
 msgid "Kunst"
+msgstr ""
+
+msgid "Kurdish"
 msgstr ""
 
 msgid "Kurzfilm"
@@ -9768,6 +10241,14 @@ msgstr "语言Language"
 msgid "Language selection"
 msgstr "语言选择"
 
+#, fuzzy
+msgid "Languages"
+msgstr "语言Language"
+
+#, fuzzy
+msgid "Lao"
+msgstr "Enigma2 日志"
+
 msgid "Lao People's Democratic Republic"
 msgstr ""
 
@@ -9801,6 +10282,10 @@ msgstr "页面右侧"
 msgctxt "third event: 'third' event label"
 msgid "Later"
 msgstr ""
+
+#, fuzzy
+msgid "Latin"
+msgstr "等待"
 
 msgid "Latitude"
 msgstr "纬度"
@@ -9872,6 +10357,9 @@ msgstr "时间刻度"
 msgid "Light Grey"
 msgstr "淺灰色"
 
+msgid "Limburgan / Limburger / Limburgish"
+msgstr ""
+
 msgid "Limit character set for recording filenames"
 msgstr "限制录像文件名称的字符集"
 
@@ -9899,6 +10387,9 @@ msgstr "限制 关闭"
 msgid "Limits on"
 msgstr "限制 开启"
 
+msgid "Lingala"
+msgstr ""
+
 msgid "Link Quality:"
 msgstr "链接质量:"
 
@@ -9921,6 +10412,9 @@ msgstr "链接:"
 
 msgid "List EPG functions..."
 msgstr "EPG 功能列表..."
+
+msgid "List Navigation Actions"
+msgstr ""
 
 msgid "List available networks"
 msgstr "可用网络列表"
@@ -9946,7 +10440,8 @@ msgstr "列表/收藏"
 msgid "List/Fav long"
 msgstr "列表/收藏 长按"
 
-msgid "Listen to the radio..."
+#, fuzzy
+msgid "Listen to the radio"
 msgstr "收听广播..."
 
 msgid "Lists reloaded!"
@@ -9969,6 +10464,10 @@ msgstr "立陶宛语"
 
 msgid "Live"
 msgstr ""
+
+#, fuzzy
+msgid "Live TV Actions"
+msgstr "快速操作"
 
 msgid "Load"
 msgstr "加载"
@@ -9998,6 +10497,42 @@ msgstr "局域网"
 #, fuzzy
 msgid "Locale"
 msgstr "本地"
+
+#, python-format
+msgid "Locale %s (%s) has been installed and selected as the active locale."
+msgstr ""
+
+#, python-format
+msgid "Locale %s (%s) has been selected as the active locale."
+msgstr ""
+
+msgid "Locale (Ascending)"
+msgstr ""
+
+msgid "Locale (Descending)"
+msgstr ""
+
+#, fuzzy
+msgid "Locale Selection Setup"
+msgstr "位置设置"
+
+msgid "Locale list sort order"
+msgstr ""
+
+#, fuzzy
+msgid "Locale/Language Selection"
+msgstr "自动选择语言"
+
+#, fuzzy
+msgid "Locale/Language Selection Actions"
+msgstr "自动选择语言"
+
+#, fuzzy
+msgid "Locales"
+msgstr "本地"
+
+msgid "Locales to be displayed"
+msgstr ""
 
 msgid "Location"
 msgstr "位置"
@@ -10062,6 +10597,10 @@ msgstr "长按此键"
 msgid "Long press emulation with button"
 msgstr "长按 EMU 按钮"
 
+#, fuzzy, python-format
+msgid "Long press: %s"
+msgstr "长按此键"
+
 msgid "Longitude"
 msgstr "经度"
 
@@ -10087,11 +10626,18 @@ msgstr "最低速的模式"
 msgid "Lowest Video output mode"
 msgstr "最低的视频输出模式"
 
+msgid "Luba-Katanga"
+msgstr ""
+
 #, fuzzy
 msgid "Luxembourg"
 msgstr "卢森堡语"
 
 msgid "Luxembourgish"
+msgstr "卢森堡语"
+
+#, fuzzy
+msgid "Luxembourgish / Letzeburgesch"
 msgstr "卢森堡语"
 
 #, fuzzy
@@ -10109,6 +10655,9 @@ msgstr "MAC:"
 
 msgid "MB"
 msgstr "MB"
+
+msgid "MENU"
+msgstr ""
 
 msgid "MIRACLEBOX_TWINPLUS"
 msgstr ""
@@ -10130,7 +10679,7 @@ msgstr "ΟΚ 长按"
 msgid "Macao"
 msgstr ""
 
-msgid "Macedonia (the former Yugoslav Republic of)"
+msgid "Macedonian"
 msgstr ""
 
 msgid "Madagascar"
@@ -10171,7 +10720,16 @@ msgstr "这个标记作为'出'节点"
 msgid "Make this mark just a mark"
 msgstr "这仅仅只是一个标记"
 
+msgid "Malagasy"
+msgstr ""
+
 msgid "Malawi"
+msgstr ""
+
+msgid "Malay"
+msgstr ""
+
+msgid "Malayalam"
 msgstr ""
 
 msgid "Malaysia"
@@ -10185,6 +10743,13 @@ msgstr ""
 
 msgid "Malta"
 msgstr ""
+
+msgid "Maltese"
+msgstr ""
+
+#, fuzzy
+msgid "Manage Locale/Language Selection settings"
+msgstr "频道选择设置"
 
 msgid "Manage extensions"
 msgstr "管理附件"
@@ -10226,7 +10791,17 @@ msgstr "手动转发器扫描"
 msgid "Manufacturer"
 msgstr "制造商"
 
+msgid "Manx"
+msgstr ""
+
+msgid "Maori"
+msgstr ""
+
 msgid "MaraM9"
+msgstr "MaraM9"
+
+#, fuzzy
+msgid "Marathi"
 msgstr "MaraM9"
 
 msgid "Margin after recording (minutes)"
@@ -10246,7 +10821,15 @@ msgid "Mark/Portal/Playlist long"
 msgstr "标记/波特/播放列表"
 
 #, fuzzy
+msgid "Marker Actions"
+msgstr "快速操作"
+
+#, fuzzy
 msgid "Marshall Islands"
+msgstr "显示所有卡"
+
+#, fuzzy
+msgid "Marshallese"
 msgstr "显示所有卡"
 
 msgid "Martinique"
@@ -10362,6 +10945,10 @@ msgstr "内存索引"
 msgid "Menu"
 msgstr "菜单"
 
+#, fuzzy
+msgid "Menu Actions"
+msgstr "快速操作"
+
 msgid "Menu config"
 msgstr "菜单配置"
 
@@ -10390,7 +10977,7 @@ msgstr ""
 msgid "Mexico"
 msgstr ""
 
-msgid "Micronesia (Federated States of)"
+msgid "Micronesia, Federated States of"
 msgstr ""
 
 #, fuzzy
@@ -10491,7 +11078,7 @@ msgstr "调制器"
 msgid "Module"
 msgstr "模块"
 
-msgid "Moldova (Republic of)"
+msgid "Moldova, Republic of"
 msgstr ""
 
 msgid "Mon"
@@ -10507,6 +11094,9 @@ msgid "Monday"
 msgstr "星期一"
 
 msgid "Mongolia"
+msgstr ""
+
+msgid "Mongolian"
 msgstr ""
 
 msgid "Montenegro"
@@ -10603,6 +11193,28 @@ msgstr "向下移动一页"
 msgid "Move down list"
 msgstr "下拉列表"
 
+#, fuzzy
+msgid "Move down one line"
+msgstr "向下移动一页"
+
+msgid "Move down one line.  Move to the top of the next screen if this is the last line of the screen.  Move to the first line of the list if this is the last line on the list."
+msgstr ""
+
+#, fuzzy
+msgid "Move down one screen"
+msgstr "向下移动到下一个项目"
+
+msgid "Move down one screen.  Move to the last line of the screen if this is the last screen."
+msgstr ""
+
+#, fuzzy
+msgid "Move down to last line"
+msgstr "向下移动一页"
+
+#, fuzzy
+msgid "Move down to the last line in the list."
+msgstr "向下移到最后一个条目"
+
 msgid "Move east"
 msgstr "向东移动"
 
@@ -10669,6 +11281,28 @@ msgstr "向上移动一页"
 msgid "Move up list"
 msgstr "上拉列表"
 
+#, fuzzy
+msgid "Move up one line"
+msgstr "向上移动一页"
+
+msgid "Move up one line.  Move to the bottom of the previous screen if this is the first line of the screen.  Move to the last of the entry / list if this is the first line of the list."
+msgstr ""
+
+#, fuzzy
+msgid "Move up one screen"
+msgstr "向上移动一页"
+
+msgid "Move up one screen.  Move to the first line of the screen if this is the first screen."
+msgstr ""
+
+#, fuzzy
+msgid "Move up to first line"
+msgstr "向上移到第一个条目"
+
+#, fuzzy
+msgid "Move up to the first line in the list."
+msgstr "向上移到第一个条目"
+
 msgid "Move west"
 msgstr "向西移动"
 
@@ -10688,8 +11322,16 @@ msgstr "电影"
 msgid "Movie List"
 msgstr "电影列表"
 
+#, fuzzy
+msgid "Movie List Actions"
+msgstr "电影选择"
+
 msgid "Movie List Setup"
 msgstr "电影列表设置"
+
+#, fuzzy
+msgid "Movie Player Actions"
+msgstr "电影选择"
 
 msgid "Movie location"
 msgstr "影片位置"
@@ -10863,6 +11505,10 @@ msgstr "DNS服务器"
 msgid "Nameserver %d"
 msgstr "DNS 服务器 %d"
 
+#, fuzzy
+msgid "Nameserver configuration"
+msgstr "退出 DNS 服务器配置"
+
 msgid "Nameserver settings"
 msgstr "DNS设置"
 
@@ -10882,6 +11528,12 @@ msgstr "位置"
 msgid "Native"
 msgstr "本机"
 
+msgid "Native name (Ascdending)"
+msgstr ""
+
+msgid "Native name (Descending)"
+msgstr ""
+
 #, fuzzy
 msgid "Natur"
 msgstr "星期六"
@@ -10893,11 +11545,23 @@ msgstr "文学"
 msgid "Nauru"
 msgstr ""
 
+msgid "Navajo / Navaho"
+msgstr ""
+
+msgid "Navigate up/down with UP/DOWN buttons and page up/down with LEFT/RIGHT. OK to perform the action described in the currently highlighted help."
+msgstr ""
+
 #, fuzzy
 msgid "NcamInfo"
 msgstr "CCcam 信息"
 
+msgid "Ndonga"
+msgstr ""
+
 msgid "Nepal"
+msgstr ""
+
+msgid "Nepali"
 msgstr ""
 
 #, fuzzy
@@ -11135,6 +11799,9 @@ msgstr "没有剩余索引可用"
 
 msgid "No Timeshift found to save as recording!"
 msgstr "没有发现要保存为录像的时移！"
+
+msgid "No action required."
+msgstr ""
 
 msgid "No active channel found."
 msgstr "没有找到活动的频道."
@@ -11377,7 +12044,16 @@ msgstr "正常模式"
 msgid "North"
 msgstr "北"
 
+msgid "North Macedonia, Republic of"
+msgstr ""
+
+msgid "North Ndebele"
+msgstr ""
+
 msgid "Northern Mariana Islands"
+msgstr ""
+
+msgid "Northern Sami"
 msgstr ""
 
 #, fuzzy
@@ -11385,6 +12061,14 @@ msgid "Norway"
 msgstr "挪威语"
 
 msgid "Norwegian"
+msgstr "挪威语"
+
+#, fuzzy
+msgid "Norwegian Bokml"
+msgstr "挪威语"
+
+#, fuzzy
+msgid "Norwegian Nynorsk"
 msgstr "挪威语"
 
 #, fuzzy
@@ -11396,6 +12080,10 @@ msgstr "未定义"
 
 msgid "Not Flashing"
 msgstr "不闪烁"
+
+#, fuzzy
+msgid "Not Installed"
+msgstr "撤销安装"
 
 msgid "Not Shown"
 msgstr "不显示"
@@ -11567,11 +12255,17 @@ msgstr "Oscam 信息"
 msgid "OVR"
 msgstr "PVR"
 
+msgid "Occitan"
+msgstr ""
+
 msgid "Off"
 msgstr "关"
 
 msgid "Offline decode delay (ms)"
 msgstr "离线解码延迟(ms)"
+
+msgid "Ojibwa"
+msgstr ""
 
 msgid "Ok"
 msgstr "确定"
@@ -11650,22 +12344,31 @@ msgstr "打开"
 msgid "Open AutoTimer"
 msgstr "打开自动定时器"
 
-msgid "Open AutoTimerlist..."
+#, fuzzy
+msgid "Open AutoTimerlist"
 msgstr "打开自动定时器列表..."
 
-msgid "Open EPGSearch..."
+#, fuzzy
+msgid "Open EPGSearch"
 msgstr "开源EPG搜索"
 
-msgid "Open IMDB..."
+#, fuzzy
+msgid "Open IMDB"
 msgstr "打开 IMDB..."
 
-msgid "Open MediaPortal..."
+#, fuzzy
+msgid "Open MediaPortal"
 msgstr "打开媒体端口"
 
-msgid "Open Timerlist..."
+msgid "Open Similar List Channel List"
+msgstr ""
+
+#, fuzzy
+msgid "Open Timerlist"
 msgstr "打开定时器列表..."
 
-msgid "Open bouquetlist..."
+#, fuzzy
+msgid "Open bouquetlist"
 msgstr "打开频道组列表..."
 
 msgid "Open favourites list"
@@ -11703,6 +12406,17 @@ msgstr "打开电影列表"
 
 msgid "Open with File Commander"
 msgstr ""
+
+msgid "OpenDNS FamilyShield"
+msgstr ""
+
+#, fuzzy
+msgid "OpenDNS Home"
+msgstr "打开自动定时器"
+
+#, fuzzy, python-format
+msgid "OpenSSL:\t\t%s"
+msgstr "内核:\t%s"
 
 msgid "OpenVPN"
 msgstr "OpenVPN"
@@ -11750,6 +12464,12 @@ msgstr ""
 msgid "Original"
 msgstr "原始"
 
+msgid "Oriya"
+msgstr ""
+
+msgid "Oromo"
+msgstr ""
+
 msgid "Oscam Info - Configuration"
 msgstr "Oscam 信息 - 配置"
 
@@ -11763,12 +12483,22 @@ msgstr ""
 msgid "OscamInfo Mainmenu"
 msgstr "Oscam 信息主菜单"
 
+msgid "Ossetian / Ossetic"
+msgstr ""
+
 msgid "Other"
 msgstr "其它"
 
 #, fuzzy
+msgid "Other Actions"
+msgstr "继续教育"
+
+#, fuzzy
 msgid "Other Subtitles & lang"
 msgstr "字幕 长按"
+
+msgid "Other buttons will jump to the help information for that button, if there is help available."
+msgstr ""
 
 msgid "Outdoor"
 msgstr ""
@@ -11854,10 +12584,6 @@ msgid "PDC"
 msgstr "PCM"
 
 #, fuzzy
-msgid "PGS File"
-msgstr "文件"
-
-#, fuzzy
 msgid "PGS file"
 msgstr "EPG 文件名"
 
@@ -11908,8 +12634,15 @@ msgstr "软件包列表"
 msgid "Package list update"
 msgstr "更新软件包列表"
 
+#, fuzzy
+msgid "Packaged locales only"
+msgstr "软件包列表"
+
 msgid "Packages"
 msgstr "软件包"
+
+msgid "Packages and associated locales"
+msgstr ""
 
 msgid "Packet management"
 msgstr "软件包管理"
@@ -11955,6 +12688,9 @@ msgstr ""
 msgid "Palestine, State of"
 msgstr ""
 
+msgid "Pali"
+msgstr ""
+
 #. TRANSLATORS: (aspect ratio policy: cropped content on left/right) in doubt, keep english term
 #. TRANSLATORS: (aspect ratio policy: Fit width, cut/crop top and bottom (Maintain aspect ratio))
 msgid "Pan&scan"
@@ -11968,6 +12704,9 @@ msgstr "应急频道"
 
 msgid "Panic to"
 msgstr "应急到"
+
+msgid "Panjabi / Punjabi"
+msgstr ""
 
 msgid "Papua New Guinea"
 msgstr ""
@@ -12111,6 +12850,10 @@ msgstr ""
 msgid "PiP"
 msgstr "画中画"
 
+#, fuzzy
+msgid "PiP Actions"
+msgstr "快速操作"
+
 msgid "PiP-Zap"
 msgstr "切换画中画"
 
@@ -12215,7 +12958,8 @@ msgstr "播放下一个（返回到上一频道）"
 msgid "Play previous"
 msgstr "播放上一个"
 
-msgid "Play recorded movies..."
+#, fuzzy
+msgid "Play recorded movies"
 msgstr "播放录制的影片..."
 
 #, fuzzy
@@ -12531,9 +13275,6 @@ msgstr ""
 "按遥控器上 自定义 +/- 键改变窗口大小.\n"
 "按 OK 键返回到电视模式，按 EXIT 键放弃移动."
 
-msgid "Please use the UP and DOWN keys to select your language. Afterwards press the OK button."
-msgstr "按 上/下 键选择语言, 选定后按OK键."
-
 #, fuzzy
 msgid "Please wait"
 msgstr "请等待"
@@ -12817,6 +13558,10 @@ msgstr ""
 msgid "Press '0' to toggle PiP mode"
 msgstr "按 0 键切换画中画模式"
 
+#, fuzzy
+msgid "Press EXIT to return to the help screen."
+msgstr "按OK键开始扫描."
+
 msgid "Press INFO on your remote control for additional information."
 msgstr "按INFO键显示附加的信息."
 
@@ -12842,6 +13587,10 @@ msgstr "按OK键编辑设置."
 #, python-format
 msgid "Press OK to get further details for %s"
 msgstr "按OK键获取 %s 详细说明"
+
+#, fuzzy
+msgid "Press OK to install and use this locale."
+msgstr "按OK键来选择频道."
 
 msgid "Press OK to scan"
 msgstr "按OK键开始扫描."
@@ -12873,6 +13622,10 @@ msgstr "按OK键切换选项"
 
 msgid "Press OK to toggle the selection."
 msgstr "按OK键切换选择."
+
+#, fuzzy
+msgid "Press OK to use this locale."
+msgstr "按OK键开始扫描."
 
 msgid "Press this button to emulate a long press on a button pressed afterwards (this also overrides any other actions assigned to emulation button)."
 msgstr "按此按钮可模拟长按之后按下的按钮（这也会覆盖分配给仿真按钮的任何其他操作）."
@@ -13111,6 +13864,9 @@ msgstr ""
 msgid "Puppentrick"
 msgstr ""
 
+msgid "Pushto / Pashto"
+msgstr ""
+
 msgid "Put TV in standby"
 msgstr "将电视转为待机"
 
@@ -13143,6 +13899,9 @@ msgstr "应急频道"
 msgid "Quad PiP is not available."
 msgstr "调谐器不可用."
 
+msgid "Quechua"
+msgstr ""
+
 msgid "Question"
 msgstr "问题"
 
@@ -13162,6 +13921,10 @@ msgstr "快捷启动菜单"
 msgid "Quick Menu..."
 msgstr "快速导航"
 
+#, fuzzy
+msgid "Quick Select Actions"
+msgstr "快速操作"
+
 msgid "Quick zap"
 msgstr "快速切换"
 
@@ -13170,6 +13933,10 @@ msgstr "快捷EPG模式"
 
 msgid "QuickMenu"
 msgstr "快捷菜单"
+
+#, fuzzy
+msgid "QuickMenu Actions"
+msgstr "快速操作"
 
 msgid "QuickMenu/Extensions"
 msgstr "快捷菜单/附件"
@@ -13367,6 +14134,10 @@ msgstr "可录制的媒体工具箱"
 msgid "Recording"
 msgstr "录像中..."
 
+#, fuzzy
+msgid "Recording Actions"
+msgstr "录像设置"
+
 msgid "Recording Setup"
 msgstr "录像设置"
 
@@ -13457,6 +14228,9 @@ msgstr "红色"
 
 msgid "Red long"
 msgstr "红键 长按"
+
+msgid "Red/HbbTV Button Actions"
+msgstr ""
 
 msgid "Reduce the size of the service picons for more line spacing between them."
 msgstr "减少频道 picon 的大小，以便在它们之间有更多的行间距."
@@ -13881,9 +14655,6 @@ msgstr "返回到影片列表"
 msgid "Return to previous service"
 msgstr "返回到上一频道"
 
-msgid "Reunion"
-msgstr ""
-
 msgid "Reverse bouquet buttons"
 msgstr "反向自定义按钮"
 
@@ -13932,6 +14703,10 @@ msgstr "罗马尼亚语"
 
 msgid "Romanian"
 msgstr "罗马尼亚语"
+
+#, fuzzy
+msgid "Romansh"
+msgstr "浪漫"
 
 #, fuzzy
 msgid "Romantik"
@@ -13988,6 +14763,9 @@ msgstr ""
 msgid "Run script with optional parameter in background"
 msgstr ""
 
+msgid "Rundi"
+msgstr ""
+
 msgid "Running"
 msgstr "运行中"
 
@@ -14001,6 +14779,9 @@ msgid "Russian Federation"
 msgstr ""
 
 msgid "Rwanda"
+msgstr ""
+
+msgid "Réunion"
 msgstr ""
 
 msgid "S-Video"
@@ -14049,6 +14830,9 @@ msgstr ""
 msgid "SINGLE LAYER DVD"
 msgstr "单层 DVD"
 
+msgid "SMS style QuickSelect location selection"
+msgstr ""
+
 msgid "SNR:"
 msgstr "信号:"
 
@@ -14056,16 +14840,8 @@ msgid "SPDIF"
 msgstr "SPDIF"
 
 #, fuzzy
-msgid "SRT File"
-msgstr "文件"
-
-#, fuzzy
 msgid "SRT file"
 msgstr "模板文件"
-
-#, fuzzy
-msgid "SSA File"
-msgstr "文件"
 
 msgid "SSA file"
 msgstr ""
@@ -14131,12 +14907,25 @@ msgstr "分辨率与皮肤相同"
 msgid "Samoa"
 msgstr ""
 
+msgid "Samoan"
+msgstr ""
+
 msgid "San Marino"
+msgstr ""
+
+msgid "Sango"
+msgstr ""
+
+msgid "Sanskrit"
 msgstr ""
 
 #, fuzzy
 msgid "Sao Tome and Principe"
 msgstr "与活动的相同"
+
+#, fuzzy
+msgid "Sardinian"
+msgstr "乌克兰语"
 
 msgid "Sat"
 msgstr "周六"
@@ -14196,6 +14985,10 @@ msgstr "保存EPG"
 
 msgid "Save EPG data"
 msgstr "保存EPG数据"
+
+#, fuzzy
+msgid "Save all changed settings and exit"
+msgstr "退出时保存最后目录"
 
 msgid "Save and record"
 msgstr "保存并录像"
@@ -14417,6 +15210,14 @@ msgstr "第二信息栏"
 msgid "Seek"
 msgstr "搜索"
 
+#, fuzzy
+msgid "Seek Actions"
+msgstr "快速操作"
+
+#, fuzzy
+msgid "Seek back short"
+msgstr "向后搜索"
+
 msgid "Seek backward"
 msgstr "向后搜索"
 
@@ -14426,8 +15227,16 @@ msgstr "向后搜索（输入时间）"
 msgid "Seek forward"
 msgstr "向前搜索"
 
+#, fuzzy
+msgid "Seek forward  short"
+msgstr "向前搜索"
+
 msgid "Seek forward (enter time)"
 msgstr "向前搜索（输入时间）"
+
+#, fuzzy
+msgid "Seek forward long"
+msgstr "向前搜索"
 
 #, fuzzy
 msgid "Seekbar"
@@ -14689,6 +15498,9 @@ msgstr ""
 msgid "Select the character or action under the keyboard cursor"
 msgstr ""
 
+msgid "Select the currently highlighted locale/language to be used in the user interface"
+msgstr ""
+
 msgid "Select the desired function and click on \"OK\" to assign it. Use \"CH+/-\" to toggle between the lists. Select an assigned function and click on \"OK\" to de-assign it. Use \"Next/Previous\" to change the order of the assigned functions."
 msgstr "选择所需的功能,然后点击OK键分配它.使用 \"CH+/-\" 在列表之间切换.选择一个指定的函数,然后单击OK键去分配它.使用 \"下一个/以前的\" 更改指定功能的顺序."
 
@@ -14835,6 +15647,10 @@ msgstr ""
 msgid "Select your time zone area or region."
 msgstr "设置时区."
 
+#, fuzzy
+msgid "Select/Zap to selected service"
+msgstr "切换到选择的频道"
+
 #, fuzzy, python-format
 msgid "Selected Image:\t\t%s"
 msgstr "选择的固件:\t%s"
@@ -14960,8 +15776,20 @@ msgstr "Picon 和频道名"
 msgid "Service Number, Picon and Service Name"
 msgstr "Picon 和频道名"
 
+#, fuzzy
+msgid "Service Selection Actions"
+msgstr "显示子频道选择"
+
+#, fuzzy
+msgid "Service Selection/Zap Actions"
+msgstr "缩小频道picons图标"
+
 msgid "Service Title mode"
 msgstr "频道标题模式"
+
+#, fuzzy
+msgid "Service Zap Actions"
+msgstr "显示频道类型图标"
 
 msgid "Service cant been added to the favourites."
 msgstr "频道无法添加到收藏夹."
@@ -15456,6 +16284,13 @@ msgstr "Shell 脚本"
 msgid "Shift"
 msgstr ""
 
+#, python-format
+msgid "Shift: %s"
+msgstr ""
+
+msgid "Shona"
+msgstr ""
+
 #, fuzzy
 msgid "Shopping"
 msgstr "切换中"
@@ -15537,7 +16372,8 @@ msgstr "显示音频选择"
 msgid "Show AutoTimer List"
 msgstr "显示自动定时器列表"
 
-msgid "Show Box Portal..."
+#, fuzzy
+msgid "Show Box Portal"
 msgstr "显示机顶盒端口..."
 
 msgid "Show CCcam in extensions ?"
@@ -15582,7 +16418,8 @@ msgstr "显示当前频道的EPG..."
 msgid "Show Eventview"
 msgstr "显示事件查看器"
 
-msgid "Show Format Setup..."
+#, fuzzy
+msgid "Show Format Setup"
 msgstr "显示格式设置..."
 
 msgid "Show Graphical EPG"
@@ -15605,7 +16442,7 @@ msgid "Show Infobar"
 msgstr "显示信息栏"
 
 #, fuzzy
-msgid "Show Information..."
+msgid "Show Information"
 msgstr "显示程序信息..."
 
 #, fuzzy
@@ -15771,7 +16608,15 @@ msgstr "显示加密标识icons图标"
 msgid "Show crypto info in infobar"
 msgstr "在信息条上显示加密信息"
 
+#, fuzzy
+msgid "Show default after description"
+msgstr "显示附件描述"
+
 msgid "Show default backup files"
+msgstr "显示默认备份文件"
+
+#, fuzzy
+msgid "Show default on new line"
 msgstr "显示默认备份文件"
 
 msgid "Show detailed event info"
@@ -15974,7 +16819,8 @@ msgstr "显示频道类型图标"
 msgid "Show servicelist or movies"
 msgstr "显示频道列表或影片"
 
-msgid "Show setup..."
+#, fuzzy
+msgid "Show setup"
 msgstr "显示设置..."
 
 msgid "Show shutdown menu"
@@ -16018,10 +16864,12 @@ msgstr "显示频道列表"
 msgid "Show the DreamPlex player..."
 msgstr "显示DreamPlex播放器……"
 
-msgid "Show the Power Timer..."
+#, fuzzy
+msgid "Show the Power Timer"
 msgstr "显示电源定时器..."
 
-msgid "Show the Sleep Timer..."
+#, fuzzy
+msgid "Show the Sleep Timer"
 msgstr "显示休眠定时器..."
 
 #, fuzzy
@@ -16034,8 +16882,13 @@ msgstr "显示自动定时器列表."
 msgid "Show the list of timers."
 msgstr "显示定时器列表."
 
-msgid "Show the media center..."
+#, fuzzy
+msgid "Show the media center"
 msgstr "显示媒体中心"
+
+#, fuzzy
+msgid "Show the media player"
+msgstr "显示媒体播放器…"
 
 msgid "Show the media player..."
 msgstr "显示媒体播放器…"
@@ -16043,13 +16896,16 @@ msgstr "显示媒体播放器…"
 msgid "Show the plugin browser.."
 msgstr "显示插件浏览器.."
 
-msgid "Show the plugins..."
+#, fuzzy
+msgid "Show the plugins"
 msgstr "显示插件..."
 
-msgid "Show the radio player..."
+#, fuzzy
+msgid "Show the radio player"
 msgstr "显示广播播放器..."
 
-msgid "Show the tv player..."
+#, fuzzy
+msgid "Show the tv player"
 msgstr "电视回放模式..."
 
 msgid "Show time elapsed as positive"
@@ -16130,6 +16986,9 @@ msgstr "随机播放列表"
 msgid "Shutdown"
 msgstr "关机"
 
+msgid "Sichuan Yi / Nuosu"
+msgstr ""
+
 msgid "Side by Side"
 msgstr "左右并列"
 
@@ -16186,6 +17045,9 @@ msgstr "简洁"
 msgid "Simplified Chinese"
 msgstr ""
 
+msgid "Sindhi"
+msgstr ""
+
 #, fuzzy
 msgid "Singapore"
 msgstr "单个"
@@ -16205,7 +17067,10 @@ msgstr "单步执行 (GOP)"
 msgid "SingleEPG settings"
 msgstr "单个EPG设置"
 
-msgid "Sint Maarten (Dutch part)"
+msgid "Sinhala / Sinhalese"
+msgstr ""
+
+msgid "Sint Maarten"
 msgstr ""
 
 msgid "Sitcom"
@@ -16455,6 +17320,9 @@ msgstr "软件更新"
 msgid "Solomon Islands"
 msgstr ""
 
+msgid "Somali"
+msgstr ""
+
 msgid "Somalia"
 msgstr ""
 
@@ -16465,6 +17333,10 @@ msgstr ""
 
 msgid "Some plugins are not available:\n"
 msgstr "这些插件不可用:\n"
+
+#, fuzzy
+msgid "Sorbian"
+msgstr "塞尔维亚语"
 
 msgid "Sorry CIHelper Config is Missing"
 msgstr "抱歉，CI 助手配置丢失"
@@ -16552,7 +17424,15 @@ msgstr ""
 msgid "Sort list:"
 msgstr "排序列表:"
 
+#, fuzzy
+msgid "Sort order for help screen"
+msgstr "菜单项的排序顺序"
+
 msgid "Sort order for menu entries"
+msgstr "菜单项的排序顺序"
+
+#, fuzzy
+msgid "Sort order for the language list."
 msgstr "菜单项的排序顺序"
 
 msgid "Sort plug-in browser entries"
@@ -16566,6 +17446,10 @@ msgstr ""
 
 msgid "Sorting right files by name, date or size"
 msgstr ""
+
+#, fuzzy
+msgid "Sotho, Southern"
+msgstr "南"
 
 msgid "Sound"
 msgstr "声音"
@@ -16585,6 +17469,9 @@ msgstr ""
 msgid "South Georgia and the South Sandwich Islands"
 msgstr ""
 
+msgid "South Ndebele"
+msgstr ""
+
 #, fuzzy
 msgid "South Sudan"
 msgstr "南"
@@ -16597,6 +17484,9 @@ msgstr ""
 
 msgid "Spanish"
 msgstr "西班牙语"
+
+msgid "Spanish / Castilian"
+msgstr ""
 
 #, fuzzy
 msgid "Special"
@@ -16670,6 +17560,10 @@ msgstr "开始"
 msgid "Start Kodi"
 msgstr "启动模式"
 
+#, fuzzy
+msgid "Start RDS interactive"
+msgstr "与活动的相同"
+
 msgid "Start from the beginning"
 msgstr "从头开始"
 
@@ -16720,6 +17614,9 @@ msgstr "开始于"
 #, fuzzy
 msgid "Starts in a few seconds"
 msgstr "开始离线解码"
+
+msgid "Static IP or Custom"
+msgstr ""
 
 msgid "Status"
 msgstr "状态"
@@ -16878,6 +17775,10 @@ msgid "Style:"
 msgstr ""
 
 #, fuzzy
+msgid "Sub Service Actions"
+msgstr "快速操作"
+
+#, fuzzy
 msgid "Subservice list..."
 msgstr "子频道"
 
@@ -16890,6 +17791,10 @@ msgstr "子频道"
 
 msgid "Subtitle"
 msgstr "字幕"
+
+#, fuzzy
+msgid "Subtitle Actions"
+msgstr "字幕选择"
 
 msgid "Subtitle Quickmenu"
 msgstr "字幕快捷菜单"
@@ -16955,6 +17860,10 @@ msgstr ""
 msgid "Sun"
 msgstr "周日"
 
+#, fuzzy
+msgid "Sundanese"
+msgstr "星期日"
+
 msgid "Sunday"
 msgstr "星期日"
 
@@ -16966,6 +17875,9 @@ msgid "Suriname"
 msgstr "重命名"
 
 msgid "Svalbard and Jan Mayen"
+msgstr ""
+
+msgid "Swahili"
 msgstr ""
 
 msgid "Swap"
@@ -17011,7 +17923,10 @@ msgstr ""
 msgid "SwaptoSD"
 msgstr "Swap"
 
-msgid "Swaziland"
+msgid "Swati"
+msgstr ""
+
+msgid "Swaziland / Eswatini"
 msgstr ""
 
 #, fuzzy
@@ -17026,6 +17941,12 @@ msgstr ""
 
 msgid "Switch Blue-Short (QuickMenu) with Blue-Long (Extensions)"
 msgstr "蓝键－短按(快速菜单)蓝键－长按(附件)"
+
+msgid "Switch EPG Page Down"
+msgstr ""
+
+msgid "Switch EPG Page Up"
+msgstr ""
 
 msgid "Switch Mode to enable HDR Modes or PIP Functions"
 msgstr ""
@@ -17067,6 +17988,10 @@ msgstr "切换到电视模式"
 msgid "Switch to filelist"
 msgstr "切换到文件列表"
 
+#, fuzzy
+msgid "Switch to next EPG Event"
+msgstr "切换到下一个子频道"
+
 msgid "Switch to next channel in history"
 msgstr "切换到下一个历史频道"
 
@@ -17075,6 +18000,10 @@ msgstr "切换到下一个子频道"
 
 msgid "Switch to playlist"
 msgstr "切换到播放列表"
+
+#, fuzzy
+msgid "Switch to previous EPG Event"
+msgstr "切换到上一个子频道"
 
 msgid "Switch to previous channel"
 msgstr "切换到上一个频道"
@@ -17210,10 +18139,20 @@ msgstr "字幕 长按"
 msgid "Table of content for collection"
 msgstr "收集的内容表"
 
+msgid "Tagalog"
+msgstr ""
+
 msgid "Tags"
 msgstr "标签"
 
+#, fuzzy
+msgid "Tahitian"
+msgstr "克罗地亚语"
+
 msgid "Taiwan"
+msgstr ""
+
+msgid "Tajik"
 msgstr ""
 
 msgid "Tajikistan"
@@ -17226,6 +18165,9 @@ msgstr ""
 msgid "Talk Show"
 msgstr "脱口秀"
 
+msgid "Tamil"
+msgstr ""
+
 msgid "Tanz"
 msgstr ""
 
@@ -17236,10 +18178,17 @@ msgstr ""
 msgid "Task list"
 msgstr "软件包列表"
 
+msgid "Tatar"
+msgstr ""
+
 msgid "Technik"
 msgstr ""
 
 msgid "Teletext"
+msgstr "图文电视"
+
+#, fuzzy
+msgid "Teletext Actions"
 msgstr "图文电视"
 
 msgid "Teletext CleanAlgo (resolution reset algorithm)"
@@ -17305,6 +18254,9 @@ msgstr "Telnet 端口"
 
 msgid "Telnet Setup"
 msgstr "Telnet 设置"
+
+msgid "Telugu"
+msgstr ""
 
 #, fuzzy
 msgid "Tennis"
@@ -17826,6 +18778,14 @@ msgstr ""
 msgid "This is a workaround for some devices there wakeup again after switching in standby. The wak up command's from other devices will ignored for few seconds."
 msgstr ""
 
+#, fuzzy
+msgid "This is already the active locale."
+msgstr "此设备已挂载为硬盘."
+
+#, fuzzy
+msgid "This is the currently selected locale."
+msgstr "删除当前选择的标题"
+
 msgid "This is the order in which DiSEqC commands are sent to the aerial system. The order must correspond exactly with the order the physical devices are arranged along the signal cable (starting from the receiver end)."
 msgstr ""
 
@@ -18174,7 +19134,13 @@ msgstr "星期四"
 msgid "TiVo support"
 msgstr "TiVo 支持"
 
+msgid "Tibetan"
+msgstr ""
+
 msgid "Tiere"
+msgstr ""
+
+msgid "Tigrinya"
 msgstr ""
 
 msgid "Time"
@@ -18272,6 +19238,10 @@ msgstr "时间线字体大小"
 
 msgid "Timer"
 msgstr "定时器"
+
+#, fuzzy
+msgid "Timer Actions"
+msgstr "定时器动作"
 
 msgid "Timer List"
 msgstr "定时器列表"
@@ -18392,7 +19362,7 @@ msgstr "时移将在事件结束时保存！"
 msgid "Timeshift-save action on zap"
 msgstr "切换时移－保存操作"
 
-msgid "Timor-Leste"
+msgid "Timor-Leste / East Timor"
 msgstr ""
 
 msgid "Title"
@@ -18423,7 +19393,8 @@ msgstr ""
 msgid "Today"
 msgstr "今天"
 
-msgid "Toggels between tv and radio..."
+#, fuzzy
+msgid "Toggels between tv and radio"
 msgstr "在电视和广播之间切换..."
 
 msgid "Toggle Digital downmix..."
@@ -18456,8 +19427,15 @@ msgstr "切换宽高比..."
 msgid "Toggle between bouquet/epg lists"
 msgstr "在 频道组/EPG列表 之间切换"
 
+msgid "Toggle display of the InfoBar"
+msgstr ""
+
 msgid "Toggle new text inserts before or overwrites existing text"
 msgstr ""
+
+#, fuzzy
+msgid "Toggle service name display"
+msgstr "频道名对齐方式."
 
 msgid "Togo"
 msgstr ""
@@ -18603,6 +19581,12 @@ msgstr "尝试下载新的软件包列表，请稍候..."
 msgid "Trying to download a new updatelist. Please wait..."
 msgstr "正在尝试下载新的更新列表.请稍等..."
 
+msgid "Tsonga"
+msgstr ""
+
+msgid "Tswana"
+msgstr ""
+
 msgid "Tue"
 msgstr "周二"
 
@@ -18705,6 +19689,10 @@ msgid "Turkish"
 msgstr "土耳其语"
 
 #, fuzzy
+msgid "Turkmen"
+msgstr "土耳其语"
+
+#, fuzzy
 msgid "Turkmenistan"
 msgstr "土耳其语"
 
@@ -18734,6 +19722,10 @@ msgstr "调谐步进大小"
 
 msgid "Tuvalu"
 msgstr ""
+
+#, fuzzy
+msgid "Twi"
+msgstr "2"
 
 msgid "Two"
 msgstr "2"
@@ -18792,6 +19784,9 @@ msgid "USB switch ERROR! - root files not transferred to USB"
 msgstr ""
 
 msgid "Uganda"
+msgstr ""
+
+msgid "Uighur / Uyghur"
 msgstr ""
 
 #, fuzzy
@@ -19083,6 +20078,13 @@ msgstr "上面的USB"
 msgid "Uptime"
 msgstr "运行时间"
 
+#, fuzzy, python-format
+msgid "Uptime:\t\t%s"
+msgstr "运行时间"
+
+msgid "Urdu"
+msgstr ""
+
 msgid "Uruguay"
 msgstr ""
 
@@ -19118,9 +20120,6 @@ msgstr "使用键盘映射"
 
 msgid "Use MHW EPG information when it is available."
 msgstr "MHW-EPG可用时可用作EPG信息"
-
-msgid "Use Manual dns-nameserver"
-msgstr ""
 
 msgid "Use Netmed EPG information when it is available."
 msgstr "网络EPG可用时可用作EPG信息"
@@ -19213,6 +20212,10 @@ msgstr "使用网络向导配置网络.此向导将帮助您设置网络."
 
 msgid "Use the Softcam Panel to control your Cam. This let you start/stop/select a cam"
 msgstr "使用 Softcam 面板控制 CAM.这让您启动/停止/选择一个 CAM"
+
+#, fuzzy
+msgid "Use the UP and DOWN buttons to select your locale/language then press the OK or GREEN button to continue."
+msgstr "按 上/下 键选择语言, 选定后按OK键."
 
 msgid "Use the alternative or the conventional radio mode."
 msgstr "使用备选或传统收音机模式."
@@ -19328,6 +20331,9 @@ msgstr "使用调谐器 %s"
 msgid "Usually when the subtitle language is the same as the audio language, the subtitles will not be used. Enable this option to allow these subtitles to be used."
 msgstr "通常在音频语言与字幕语言相同时，字幕将不会被使用.启用此选项可使用这些字幕."
 
+msgid "Uzbek"
+msgstr ""
+
 msgid "Uzbekistan"
 msgstr ""
 
@@ -19343,10 +20349,6 @@ msgstr "MAC:"
 
 msgid "VMGM (intro trailer)"
 msgstr "VMGM（预告片简介）"
-
-#, fuzzy
-msgid "VOB File"
-msgstr "文件"
 
 msgid "VOB file"
 msgstr ""
@@ -19378,7 +20380,10 @@ msgstr "综艺节目"
 msgid "Various"
 msgstr "前一个"
 
-msgid "Venezuela (Bolivarian Republic of)"
+msgid "Venda"
+msgstr ""
+
+msgid "Venezuela, Bolivarian Republic of"
 msgstr ""
 
 msgid "Verkehr"
@@ -19428,8 +20433,16 @@ msgstr "垂直旋转速度"
 msgid "VerticalEPG settings"
 msgstr "图形化EPG设置"
 
+#, fuzzy
+msgid "Very fast"
+msgstr "快速"
+
 msgid "Very short filenames"
 msgstr "短文件名"
+
+#, fuzzy
+msgid "Very slow"
+msgstr "调谐器插槽"
 
 msgid "Very very short filenames - Warning"
 msgstr "非常非常短文件名 - 警告"
@@ -19558,6 +20571,10 @@ msgstr "画面大小"
 msgid "Viet Nam"
 msgstr "频道名称"
 
+#, fuzzy
+msgid "Vietnamese"
+msgstr "文件名"
+
 msgid "View"
 msgstr "查看"
 
@@ -19634,7 +20651,7 @@ msgstr ""
 msgid "Virgin Islands (British)"
 msgstr ""
 
-msgid "Virgin Islands (U.S.)"
+msgid "Virgin Islands (US)"
 msgstr ""
 
 #, fuzzy
@@ -19650,6 +20667,9 @@ msgstr "虚拟键盘"
 
 msgid "Vol"
 msgstr "电压"
+
+msgid "Volapük"
+msgstr ""
 
 msgid "Voltage mode"
 msgstr "电压模式"
@@ -19762,6 +20782,9 @@ msgstr "唤醒你的 %s %s 从待机状态"
 msgid "Wallis and Futuna"
 msgstr ""
 
+msgid "Walloon"
+msgstr ""
+
 #, fuzzy
 msgid "War"
 msgstr "三月"
@@ -19782,7 +20805,8 @@ msgstr "水上运动"
 msgid "Watch movies..."
 msgstr "观看影片..."
 
-msgid "Watch recordings..."
+#, fuzzy
+msgid "Watch recordings"
 msgstr "观看录像..."
 
 #, python-format
@@ -19886,6 +20910,9 @@ msgstr ""
 msgid "Welcome..."
 msgstr "欢迎..."
 
+msgid "Welsh"
+msgstr ""
+
 msgid "Werbung"
 msgstr ""
 
@@ -19897,6 +20924,10 @@ msgstr "西极限位置"
 
 #, fuzzy
 msgid "Western"
+msgstr "西"
+
+#, fuzzy
+msgid "Western Frisian"
 msgstr "西"
 
 msgid "Western Sahara"
@@ -20183,6 +21214,9 @@ msgstr ""
 msgid "Without popup"
 msgstr "不弹出"
 
+msgid "Wolof"
+msgstr ""
+
 msgid "Workaround for old tuner driver"
 msgstr ""
 
@@ -20227,6 +21261,9 @@ msgid "XP3000"
 msgstr "XP3000"
 
 msgid "XPicon, ZZZPicon"
+msgstr ""
+
+msgid "Xhosa"
 msgstr ""
 
 msgid "YCbCr420"
@@ -20320,6 +21357,12 @@ msgstr "是，马上关机."
 
 msgid "Yesterday"
 msgstr "昨天"
+
+msgid "Yiddish"
+msgstr ""
+
+msgid "Yoruba"
+msgstr ""
 
 #, python-format
 msgid ""
@@ -20784,14 +21827,29 @@ msgstr "Zgemma Star S/2S/H1/H2"
 msgid "Zgemma i55"
 msgstr ""
 
+msgid "Zhuang / Chuang"
+msgstr ""
+
 msgid "Zimbabwe"
 msgstr ""
 
 msgid "Zirkus"
 msgstr ""
 
+#, fuzzy
+msgid "Zoom Actions"
+msgstr "词典"
+
+#, fuzzy
+msgid "Zoom In/Out TV"
+msgstr "缩放/电视输出…"
+
 msgid "Zoom In/Out TV..."
 msgstr "缩放/电视输出…"
+
+#, fuzzy
+msgid "Zoom Off"
+msgstr "缩放关闭…"
 
 msgid "Zoom Off..."
 msgstr "缩放关闭…"
@@ -20801,6 +21859,9 @@ msgstr "从左缩放"
 
 msgid "Zoom from right"
 msgstr "从右缩放"
+
+msgid "Zulu"
+msgstr ""
 
 msgid "[Enigma2 Settings]\n"
 msgstr "[Enigma2 设置]\n"
@@ -21179,6 +22240,10 @@ msgstr "删除"
 
 msgid "delete cut"
 msgstr "删除剪辑"
+
+#, fuzzy
+msgid "deleted"
+msgstr "删除"
 
 msgid "descramble and record ecm"
 msgstr "解扰并录制ECM"
@@ -21621,6 +22686,10 @@ msgid "install/unpack ipk Files"
 msgstr ""
 
 #, fuzzy
+msgid "installed"
+msgstr "撤销安装"
+
+#, fuzzy
 msgid "instant record"
 msgstr "即时录像"
 
@@ -21676,7 +22745,8 @@ msgstr "内核模块"
 msgid "languages"
 msgstr "语言 languages"
 
-msgid "leave movie player..."
+#, fuzzy
+msgid "leave movie player"
 msgstr "退出影片播放..."
 
 msgid "left"

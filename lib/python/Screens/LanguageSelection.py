@@ -12,7 +12,7 @@ from Components.Pixmap import Pixmap
 from Components.Language_cache import LANG_TEXT
 from enigma import eTimer
 
-from Screens.Rc import Rc
+from Screens.HelpMenu import ShowRemoteControl
 
 from Tools.Directories import resolveFilename, SCOPE_ACTIVE_SKIN
 from Tools.LoadPixmap import LoadPixmap
@@ -194,10 +194,10 @@ class LanguageSelection(Screen):
 		self.run(justlocal=True)
 
 
-class LanguageWizard(LanguageSelection, Rc):
+class LanguageWizard(LanguageSelection, ShowRemoteControl):
 	def __init__(self, session):
 		LanguageSelection.__init__(self, session)
-		Rc.__init__(self)
+		ShowRemoteControl.__init__(self)
 		global inWizzard
 		inWizzard = True
 		self.onLayoutFinish.append(self.selectKeys)

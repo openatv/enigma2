@@ -1,6 +1,10 @@
 ## Build Status - branch 7.0  develop: ##
 [![Build Status](https://travis-ci.org/openatv/enigma2.svg?branch=7.0)](https://travis-ci.org/openatv/enigma2) [![enigma2 build](https://github.com/openatv/enigma2/actions/workflows/enigma2.yml/badge.svg)](https://github.com/openatv/enigma2/actions/workflows/enigma2.yml)
 
+## Translation - branch 7.0  status: ##
+
+[![Übersetzungsstatus](https://hosted.weblate.org/widgets/openatv/-/open-graph.png)](https://hosted.weblate.org/engage/openatv/)
+
 ## Our buildserver is currently running on: ##
 
 > Ubuntu 20.04.2 LTS (Kernel 5.4.0) 64 Bit Server OS
