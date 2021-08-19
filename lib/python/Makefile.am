@@ -16,5 +16,4 @@ install_PYTHON = \
 	StartEnigma.py \
 	timer.py \
 	upgrade.py \
-	pyo_patcher.py \
 	PowerTimer.py
