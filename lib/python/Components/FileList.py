@@ -190,13 +190,13 @@ class FileList(MenuList):
 						directories.append(directory + x + "/")
 						files.remove(x)
 
-		if directory is not None and self.showDirectories and not self.isTop:
-			if directory == self.current_mountpoint and self.showMountpoints:
-				self.list.append(FileEntryComponent(name="<" + _("List of storage devices") + ">", absolute=None, isDir=True))
-			elif (directory != "/") and not (self.inhibitMounts and self.getMountpoint(directory) in self.inhibitMounts):
-				self.list.append(FileEntryComponent(name="<" + _("Parent directory") + ">", absolute='/'.join(directory.split('/')[:-2]) + '/', isDir=True))
-
 		if self.showDirectories:
+			if directory is not None and not self.isTop:
+				if directory == self.current_mountpoint and self.showMountpoints:
+					self.list.append(FileEntryComponent(name="<" + _("List of storage devices") + ">", absolute=None, isDir=True))
+				elif (directory != "/") and not (self.inhibitMounts and self.getMountpoint(directory) in self.inhibitMounts):
+					self.list.append(FileEntryComponent(name="<" + _("Parent directory") + ">", absolute='/'.join(directory.split('/')[:-2]) + '/', isDir=True))
+
 			for x in directories:
 				if not (self.inhibitMounts and self.getMountpoint(x) in self.inhibitMounts) and not self.inParentDirs(x, self.inhibitDirs):
 					name = x.split('/')[-2]
@@ -408,13 +408,13 @@ class MultiFileSelectList(FileList):
 						directories.append(directory + x + "/")
 						files.remove(x)
 
-		if directory is not None and self.showDirectories and not self.isTop:
-			if directory == self.current_mountpoint and self.showMountpoints:
-				self.list.append(MultiFileSelectEntryComponent(name="<" + _("List of storage devices") + ">", absolute=None, isDir=True))
-			elif (directory != "/") and not (self.inhibitMounts and self.getMountpoint(directory) in self.inhibitMounts):
-				self.list.append(MultiFileSelectEntryComponent(name="<" + _("Parent directory") + ">", absolute='/'.join(directory.split('/')[:-2]) + '/', isDir=True))
-
 		if self.showDirectories:
+			if directory is not None and not self.isTop:
+				if directory == self.current_mountpoint and self.showMountpoints:
+					self.list.append(MultiFileSelectEntryComponent(name="<" + _("List of storage devices") + ">", absolute=None, isDir=True))
+				elif (directory != "/") and not (self.inhibitMounts and self.getMountpoint(directory) in self.inhibitMounts):
+					self.list.append(MultiFileSelectEntryComponent(name="<" + _("Parent directory") + ">", absolute='/'.join(directory.split('/')[:-2]) + '/', isDir=True))
+
 			for x in directories:
 				if not (self.inhibitMounts and self.getMountpoint(x) in self.inhibitMounts) and not self.inParentDirs(x, self.inhibitDirs):
 					name = x.split('/')[-2]
