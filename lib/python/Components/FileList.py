@@ -72,10 +72,6 @@ class FileList(MenuList):
 		self.showMountpoints = showMountpoints
 		self.showFiles = showFiles
 		self.isTop = isTop
-		if isTop:
-			self.topDirectory = directory
-		else:
-			self.topDirectory = "/"
 		# example: matching .nfi and .ts files: "^.*\.(nfi|ts)"
 		if matchingPattern:
 			self.matchingPattern = compile(matchingPattern)
@@ -168,12 +164,12 @@ class FileList(MenuList):
 			if self.additional_extensions:
 				root.setName(self.additional_extensions)
 			serviceHandler = eServiceCenter.getInstance()
-			list = serviceHandler.list(root)
+			_list = serviceHandler.list(root)
 
 			while True:
-				s = list.getNext()
+				s = _list.getNext()
 				if not s.valid():
-					del list
+					del _list
 					break
 				if s.flags & s.mustDescent:
 					directories.append(s.getPath())
@@ -195,11 +191,12 @@ class FileList(MenuList):
 						files.remove(x)
 
 		if self.showDirectories:
-			if directory:
-				if self.showMountpoints and directory == self.current_mountpoint:
+			if directory is not None and not self.isTop:
+				if directory == self.current_mountpoint and self.showMountpoints:
 					self.list.append(FileEntryComponent(name="<" + _("List of storage devices") + ">", absolute=None, isDir=True))
-				elif (directory != self.topDirectory) and not (self.inhibitMounts and self.getMountpoint(directory) in self.inhibitMounts):
+				elif (directory != "/") and not (self.inhibitMounts and self.getMountpoint(directory) in self.inhibitMounts):
 					self.list.append(FileEntryComponent(name="<" + _("Parent directory") + ">", absolute='/'.join(directory.split('/')[:-2]) + '/', isDir=True))
+
 			for x in directories:
 				if not (self.inhibitMounts and self.getMountpoint(x) in self.inhibitMounts) and not self.inParentDirs(x, self.inhibitDirs):
 					name = x.split('/')[-2]
@@ -385,12 +382,12 @@ class MultiFileSelectList(FileList):
 			if self.additional_extensions:
 				root.setName(self.additional_extensions)
 			serviceHandler = eServiceCenter.getInstance()
-			list = serviceHandler.list(root)
+			_list = serviceHandler.list(root)
 
 			while True:
-				s = list.getNext()
+				s = _list.getNext()
 				if not s.valid():
-					del list
+					del _list
 					break
 				if s.flags & s.mustDescent:
 					directories.append(s.getPath())
@@ -412,11 +409,12 @@ class MultiFileSelectList(FileList):
 						files.remove(x)
 
 		if self.showDirectories:
-			if directory:
-				if self.showMountpoints and directory == self.current_mountpoint:
+			if directory is not None and not self.isTop:
+				if directory == self.current_mountpoint and self.showMountpoints:
 					self.list.append(MultiFileSelectEntryComponent(name="<" + _("List of storage devices") + ">", absolute=None, isDir=True))
-				elif (directory != self.topDirectory) and not (self.inhibitMounts and self.getMountpoint(directory) in self.inhibitMounts):
+				elif (directory != "/") and not (self.inhibitMounts and self.getMountpoint(directory) in self.inhibitMounts):
 					self.list.append(MultiFileSelectEntryComponent(name="<" + _("Parent directory") + ">", absolute='/'.join(directory.split('/')[:-2]) + '/', isDir=True))
+
 			for x in directories:
 				if not (self.inhibitMounts and self.getMountpoint(x) in self.inhibitMounts) and not self.inParentDirs(x, self.inhibitDirs):
 					name = x.split('/')[-2]
