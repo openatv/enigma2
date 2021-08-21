@@ -2,13 +2,14 @@
 #
 # jbleyel <jbleyel@gmx.net>, 2021.
 # hd75hd <hd75hd.hd75hd@gmail.com>, 2021.
+# openATV <openatv@gmail.com>, 2021.
 msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-08-15 18:24+0200\n"
-"PO-Revision-Date: 2021-08-21 03:35+0000\n"
-"Last-Translator: hd75hd <hd75hd.hd75hd@gmail.com>\n"
+"PO-Revision-Date: 2021-08-21 07:45+0000\n"
+"Last-Translator: openATV <openatv@gmail.com>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/openatv/"
 "enigma2-7-0-po/de/>\n"
 "Language: de\n"
@@ -300,13 +301,13 @@ msgid " (disabled)"
 msgstr " (deaktiviert)"
 
 msgid " (higher than any auto)"
-msgstr ""
+msgstr " (höher als automatisch)"
 
 msgid " (higher than rotor any auto)"
-msgstr ""
+msgstr " (höher als rotor automatisch)"
 
 msgid " (lower than any auto)"
-msgstr ""
+msgstr " (niedriger als automatisch)"
 
 #, python-format
 msgid " - %d elements exist! Overwrite"
@@ -1468,9 +1469,10 @@ msgstr "+/-"
 msgid "+24"
 msgstr "+24"
 
+#, fuzzy
 msgctxt "Text list separator"
 msgid ", "
-msgstr ""
+msgstr ", "
 
 msgid "-"
 msgstr "-"
@@ -3508,7 +3510,7 @@ msgid "Backgroundselected:"
 msgstr "Hintergrund ausgewählt:"
 
 msgid "Backup"
-msgstr "Sicherung"
+msgstr "Sichern"
 
 #, python-format
 msgid "Backup Date: %s\n"
@@ -3857,7 +3859,7 @@ msgstr "Brunei Darussalam"
 
 #, python-format
 msgid "Buffering %d%%"
-msgstr "Buffering %d%%"
+msgstr "Pufferung %d%%"
 
 msgid "Buffers:"
 msgstr "Puffer:"
@@ -3989,12 +3991,13 @@ msgstr "CCcam Info - Hauptmenü"
 msgid "CF Drive"
 msgstr "CF-Laufwerk"
 
+#, fuzzy
 msgid "CH"
-msgstr ""
+msgstr "CH"
 
-#, python-format
+#, fuzzy, python-format
 msgid "CH%s"
-msgstr ""
+msgstr "CH%s"
 
 msgid "CHANGE BOUQUET"
 msgstr "Bouquet wechseln"
@@ -4091,7 +4094,7 @@ msgid "Calibrate"
 msgstr "Kalibrieren"
 
 msgid "Call-in"
-msgstr ""
+msgstr "Teleshopping"
 
 msgid "Cambodia"
 msgstr "Kambodscha"
@@ -4494,7 +4497,7 @@ msgstr "Kanalliste Konfiguration"
 
 #
 msgid "Channel selection settings"
-msgstr "Kanalliste"
+msgstr "Kanalliste Einstellungen"
 
 msgid "Channel up"
 msgstr "Nächster Sender"
@@ -4567,7 +4570,7 @@ msgid "Check/Install online updates (you must have a working internet connection
 msgstr "Zeige verfügbare Updates, die Sie installieren können. Internetverbindung vorausgesetzt"
 
 msgid "Checking Feeds"
-msgstr "Prüfe Feeds"
+msgstr "Überprüfe Feeds"
 
 msgid "Checking Logs..."
 msgstr "Überprüfe Log-Dateien..."
@@ -6139,7 +6142,7 @@ msgid "Default sorting method for files on the right side."
 msgstr "Standardsortierung für Dateien auf der rechten Seite."
 
 msgid "Defaults"
-msgstr "Standards"
+msgstr "Standard"
 
 msgid "Defines how fast the time jumps are repeated. Values lower than 500ms may be problematic with NAS."
 msgstr "Legt fest, in wie schneller Folge Zeitsprünge erfolgen. Werte unter 500ms können mit NAS problematisch sein."
@@ -8055,7 +8058,7 @@ msgid "Fallback remote receiver URL"
 msgstr "Reservereceiver URL"
 
 msgid "False"
-msgstr ""
+msgstr "Falsch"
 
 msgid "Familie"
 msgstr "Familie"
@@ -8801,7 +8804,7 @@ msgid "Graphical InfobarEPG settings"
 msgstr "Grafischer Infoleisten-EPG"
 
 msgid "GraphicalEPG settings"
-msgstr "Grafischer-EPG"
+msgstr "Grafischer EPG - Einstellungen"
 
 #
 msgid "Graphics"
@@ -9121,7 +9124,7 @@ msgid "Hobbys"
 msgstr "Hobbys"
 
 msgid "Hockey"
-msgstr "Hockey"
+msgstr "Eishockey"
 
 msgid "Hold screen"
 msgstr "Bildschirm beibehalten"
@@ -9151,7 +9154,7 @@ msgid "Hong Kong"
 msgstr "Hong Kong"
 
 msgid "Hops"
-msgstr ""
+msgstr "Hops"
 
 msgid "Hops:"
 msgstr "Hops:"
@@ -9830,7 +9833,7 @@ msgid "Install extensions."
 msgstr "Erweiterungen installieren..."
 
 msgid "Install lcd picons on"
-msgstr ""
+msgstr "Installieren Sie LCD-Picons auf"
 
 #
 msgid "Install local extension"
@@ -10624,9 +10627,8 @@ msgid "Live"
 msgstr "Live"
 
 # UsageConfig.py:295
-#, fuzzy
 msgid "Live TV Actions"
-msgstr "Nur Nummern"
+msgstr "Live-TV-Aktionen"
 
 #
 msgid "Load"
@@ -10675,9 +10677,8 @@ msgstr "Gebietsschema (aufsteigend)"
 msgid "Locale (Descending)"
 msgstr "Gebietsschema (absteigend)"
 
-#, fuzzy
 msgid "Locale Selection Setup"
-msgstr "Gerätedisplay-Skinauswahl"
+msgstr "Einrichtung der Sprachauswahl"
 
 msgid "Locale list sort order"
 msgstr "Sortierreihenfolge der Gebietsschemaliste"
@@ -11240,7 +11241,7 @@ msgstr "Modus"
 
 #, python-format
 msgid "Mode %s (%04o)"
-msgstr ""
+msgstr "Modus %s (%04o)"
 
 msgid "Mode 1"
 msgstr "Modus 1"
@@ -11548,7 +11549,7 @@ msgid "Moved to position 0"
 msgstr "Position 0 anfahren"
 
 msgid "Moved to position at index"
-msgstr ""
+msgstr "Bewege die Position zum Index"
 
 msgid "Movement"
 msgstr "Steuerung"
@@ -11564,7 +11565,7 @@ msgid "Movie List Actions"
 msgstr "Filmauswahl"
 
 msgid "Movie List Setup"
-msgstr "Filmliste-Einstellungen"
+msgstr "Movie Center"
 
 #, fuzzy
 msgid "Movie Player Actions"
@@ -12561,7 +12562,7 @@ msgid "OSD position setup"
 msgstr "OSD-Positionseinstellungen"
 
 msgid "OSD settings"
-msgstr "OSD"
+msgstr "OSD Einstellungen"
 
 msgid "OScam Info"
 msgstr "OSCam Info"
@@ -12687,7 +12688,7 @@ msgid "Open MediaPortal"
 msgstr "Öffne MediaPortal"
 
 msgid "Open Similar List Channel List"
-msgstr ""
+msgstr "Ähnliche Kanalliste öffnen"
 
 #
 msgid "Open Timerlist"
@@ -13041,7 +13042,7 @@ msgid "Panic channel"
 msgstr "Panik-Kanal"
 
 msgid "Panic to"
-msgstr ""
+msgstr "Panik zu"
 
 msgid "Panjabi / Punjabi"
 msgstr "Panjabi / Punjabi"
@@ -14718,6 +14719,9 @@ msgid ""
 "Please wait until your %s %s reboots\n"
 "This may take a few minutes"
 msgstr ""
+"Aktualisieren im Gange\n"
+"Bitte warten Sie, bis Ihr %s %s neu starten\n"
+"Das kann ein paar minuten dauern"
 
 msgid "Refresh every (in hours)"
 msgstr "Aktualisierungsintervall (in Stunden)"
@@ -14763,7 +14767,7 @@ msgid "Release Notes"
 msgstr "Veröffentlichungshinweis"
 
 msgid "Relevant PIDs Routing"
-msgstr ""
+msgstr "Relevante PIDs-Routing"
 
 #
 msgid "Religion"
@@ -15036,7 +15040,7 @@ msgid "Restart Enigma2 to apply the changes?"
 msgstr "Zum Anwenden der Einstellungen Enigma2 neu starten?"
 
 msgid "Restart GUI"
-msgstr "GUI Neustart"
+msgstr "GUI neu starten"
 
 msgid "Restart GUI after x crashes"
 msgstr "Nach wie vielen Abstürzen soll die GUI neu starten?"
@@ -15323,6 +15327,8 @@ msgstr "SCPC optimierter Suchbereich"
 
 msgid "SCR timing adjustment, in conjunction with SCR socket and operation of several SCR devices with one cable."
 msgstr ""
+"Timing-Einstellung, in Verbindung mit Unicabel Dose und Betrieb mehrerer "
+"Geräte über einem Kabel."
 
 #, fuzzy
 msgid "SD"
@@ -15354,9 +15360,8 @@ msgstr "SNR:"
 msgid "SPDIF"
 msgstr "S/PDIF"
 
-#, fuzzy
 msgid "SRT file"
-msgstr "Umbenennen Ordner/Datei"
+msgstr "SRT-Datei"
 
 msgid "SSA file"
 msgstr "SSA-Datei"
@@ -15661,8 +15666,9 @@ msgstr "LCD Screenshot in /tmp erstellen"
 msgid "Script '%s' must have read permission to be able to run it"
 msgstr "Skript '% s' muss über Leseberechtigung verfügen, um es ausführen zu können."
 
+#, fuzzy
 msgid "ScriptRunner"
-msgstr ""
+msgstr "ScriptRunner"
 
 msgid "Scrolling Speed"
 msgstr "Display-Nachricht Geschwindigkeit"
@@ -15717,7 +15723,7 @@ msgid "Searching"
 msgstr "Suche"
 
 msgid "Searching east ..."
-msgstr ""
+msgstr "Suche nach Osten..."
 
 #
 msgid "Searching for available updates. Please wait..."
@@ -15728,7 +15734,7 @@ msgid "Searching for new installed or removed packages. Please wait..."
 msgstr "Suche nach neu installierten oder deinstallierten Erweiterungen. Bitte warten..."
 
 msgid "Searching west ..."
-msgstr ""
+msgstr "Suche nach Westen..."
 
 #
 msgid "Second cable of motorized LNB"
@@ -15749,9 +15755,8 @@ msgid "Seek"
 msgstr "Ermitteln"
 
 # UsageConfig.py:295
-#, fuzzy
 msgid "Seek Actions"
-msgstr "Nur Nummern"
+msgstr "Suche Aktionen"
 
 #
 #, fuzzy
@@ -16053,6 +16058,9 @@ msgstr "Wählen Sie die Frequenz, die diesem Empfänger zugewiesen werden soll. 
 
 msgid "Select the User Band frequency to be assigned to this tuner. This is the frequency the SCR switch uses to pass the requested transponder to the tuner."
 msgstr ""
+"Wählen Sie die User Band Frequenz aus, die diesem Tuner zugewiesen werden "
+"soll. Mit dieser Frequenz leitet der Unicable Switch den angeforderten "
+"Transponder an den Tuner weiter."
 
 #
 msgid "Select the character or action under the keyboard cursor"
@@ -16258,10 +16266,10 @@ msgstr ""
 "Möchten Sie die Programmliste wiederherstellen?"
 
 msgid "Selecting satellites 1 (USALS)"
-msgstr ""
+msgstr "Auswählen von Satelliten 1 (USALS)"
 
 msgid "Selecting satellites 2 (USALS)"
-msgstr ""
+msgstr "Auswählen von Satelliten 2 (USALS)"
 
 msgid "Selecting this option allows you to configure a group of satellites in one block."
 msgstr "Wenn Sie diese Option auswählen, können Sie eine Gruppe von Satelliten in einem Block konfigurieren."
@@ -16324,7 +16332,7 @@ msgstr "Server:"
 
 #
 msgid "Service"
-msgstr "Kanal"
+msgstr "Sendername"
 
 msgid "Service & PIDs"
 msgstr "Service und PIDs"
@@ -16426,7 +16434,7 @@ msgstr "Schriftgröße für Sendernummern"
 
 #
 msgid "Service off-air"
-msgstr ""
+msgstr "Dienst nicht Online"
 
 msgid "Service picons aspect ratio"
 msgstr "Senderlogos (Picons) Seitenverhältnis"
@@ -17630,7 +17638,7 @@ msgid "Signal Finder"
 msgstr "Signal-Finder"
 
 msgid "Signal OK, proceeding"
-msgstr ""
+msgstr "Signal OK, fortfahren"
 
 msgid "Signal Strength:"
 msgstr "Signalstärke:\t"
@@ -17666,13 +17674,13 @@ msgid "Simple titleset (compatibility for legacy players)"
 msgstr "Schlicht (bessere Kompatibilität mit alten DVD-Playern)"
 
 msgid "Simple umounter mass storage device."
-msgstr ""
+msgstr "Einfache Entfernung von Massenspeicher."
 
 msgid "Simple zoom"
 msgstr "Einfacher Zoom"
 
 msgid "SimpleUmount"
-msgstr ""
+msgstr "Einfaches Entfernen"
 
 msgid "Simplified Chinese"
 msgstr "Vereinfachtes Chinesisch"
@@ -17872,11 +17880,13 @@ msgstr "PIN der Smartcard"
 msgid "Smooth"
 msgstr "Glätten"
 
+#, fuzzy
 msgid "Smpte 170M"
-msgstr ""
+msgstr "Smpte 170M"
 
+#, fuzzy
 msgid "Smpte 240M"
-msgstr ""
+msgstr "Smpte 240M"
 
 msgid "Soap"
 msgstr "Soap"
@@ -18112,7 +18122,7 @@ msgid "Sound"
 msgstr "Ton"
 
 msgid "Sound carrier"
-msgstr ""
+msgstr "Tonträger"
 
 msgid "Source request"
 msgstr "Quellenauswahl"
@@ -18436,7 +18446,7 @@ msgid "Stretch nonlinear"
 msgstr "Nichtlinear gestreckt"
 
 msgid "Strict DLNA"
-msgstr ""
+msgstr "Genaue DLNA"
 
 msgid "Stripes"
 msgstr "Streifen"
@@ -19417,7 +19427,7 @@ msgstr ""
 "Wollen Sie jetzt online Flashen?"
 
 msgid "There is no signal to lock on !"
-msgstr ""
+msgstr "Es gibt kein Signal zum Einrasten!"
 
 msgid ""
 "There might not be enough space on the selected partition..\n"
@@ -19849,6 +19859,10 @@ msgid ""
 "This will (re-)calculate all positions of your rotor and may remove previously memorised positions and fine-tuning!\n"
 "Are you sure?"
 msgstr ""
+"Dadurch werden alle Positionen Ihres Rotors (neu) berechnet und "
+"möglicherweise zuvor gespeicherte Positionen und Feineinstellungen entfernt!"
+"\n"
+"Bist du sicher?"
 
 msgid "This will go fast forward/backward with time frames of x secs"
 msgstr "Bei 'Ja' werden beim schnellen Vorlauf/Rücklauf Zeitsprünge von x Sekunden benutzt."
@@ -21270,7 +21284,7 @@ msgid "Vertical"
 msgstr "Vertikal"
 
 msgid "Vertical EPG"
-msgstr "Vertikaler-EPG"
+msgstr "Vertikaler EPG"
 
 msgid "Vertical alignement for the event-progress."
 msgstr "Vertikale Ausrichtung des Sendungsfortschrittes."
@@ -21725,7 +21739,7 @@ msgstr "Mittwoch"
 
 #
 msgid "Weekday"
-msgstr "Wochentags"
+msgstr "Wochentag"
 
 #
 msgid "Weekend"
@@ -23109,7 +23123,7 @@ msgid "by date"
 msgstr "Datum"
 
 msgid "by hmmmdada"
-msgstr ""
+msgstr "von hmmmdada"
 
 msgid "caid:"
 msgstr "CAID:"
@@ -23650,6 +23664,8 @@ msgid ""
 "has been sent to the SVN team team.\n"
 "please quote"
 msgstr ""
+"wurde an das Team des SVN gesendet.\n"
+"bitte zitieren"
 
 msgid "hdr10"
 msgstr "HDR10"
