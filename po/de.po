@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-08-21 11:25+0000\n"
-"PO-Revision-Date: 2021-08-21 11:18+0000\n"
+"PO-Revision-Date: 2021-08-21 12:17+0000\n"
 "Last-Translator: jbleyel <jbleyel@gmx.net>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/openatv/"
 "enigma2-7-0-po/de/>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.8-dev\n"
+"X-Generator: Weblate 4.8.1-dev\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 
 msgid ""
@@ -1348,7 +1348,7 @@ msgstr "%s%d Min"
 
 #, python-format
 msgid "%s%s(Default: %s)"
-msgstr ""
+msgstr "%s%s(Standard: %s)"
 
 #, python-format
 msgid "%s/%s: %s"
@@ -2879,7 +2879,7 @@ msgid "Apply any changes to the active locale/langauge and exit"
 msgstr "Änderungen anwenden um die aktive Sprache zu aktivieren und Beenden"
 
 msgid "Apply the currently highlighted locale/language and exit"
-msgstr ""
+msgstr "Die aktuell markierte Sprache anwenden und beenden"
 
 msgid "Arabic"
 msgstr "Arabisch"
@@ -5481,7 +5481,7 @@ msgstr "Standard-Einstellungen"
 
 #, python-format
 msgid "Default: '%s'."
-msgstr ""
+msgstr "Standardwert: '%s'."
 
 msgid "Defaults"
 msgstr "Standards"
@@ -5575,7 +5575,7 @@ msgid "Delete Plugins"
 msgstr "Entfernen der Erweiterungen"
 
 msgid "Delete all the text"
-msgstr ""
+msgstr "Den gesamten Text löschen"
 
 msgid "Delete and uninstall Plugins. This will remove the Plugin from your box"
 msgstr ""
@@ -5583,10 +5583,10 @@ msgstr ""
 "entfernt"
 
 msgid "Delete character to left of cursor or select AM times"
-msgstr ""
+msgstr "Löschen Sie das Zeichen links vom Cursor oder wählen Sie AM-Zeiten"
 
 msgid "Delete character under cursor or select PM times"
-msgstr ""
+msgstr "Zeichen unter Cursor löschen oder PM-Zeiten auswählen"
 
 msgid "Delete current line"
 msgstr "Aktuelle Zeile löschen"
@@ -5866,7 +5866,7 @@ msgid "Display and user interface"
 msgstr "Anzeige und Oberfläche"
 
 msgid "Display selection list as a selection menu"
-msgstr ""
+msgstr "Auswahlliste als Auswahlmenü anzeigen"
 
 msgid "Display the virtual keyboard for data entry"
 msgstr "Anzeige der virtuellen Tastatur für die Dateneingabe"
@@ -9031,10 +9031,10 @@ msgid "Jump to end of list"
 msgstr "Zum Ende der Liste springen"
 
 msgid "Jump to first item in list or the start of text"
-msgstr ""
+msgstr "Sprung zum ersten Eintrag in der Liste oder zum Textanfang"
 
 msgid "Jump to last item in list or the end of text"
-msgstr ""
+msgstr "Sprung zum letzten Eintrag in der Liste oder zum Textende"
 
 #
 msgid "Jump to next marked position"
@@ -10181,7 +10181,7 @@ msgid "Move down a page"
 msgstr "Seitenweise nach unten blättern"
 
 msgid "Move down a screen"
-msgstr ""
+msgstr "Einen Bildschirm nach unten gehen"
 
 msgid "Move down list"
 msgstr "Eintrag runter"
@@ -10277,13 +10277,13 @@ msgid "Move the text cursor to the last character"
 msgstr "Bewegen Sie den Text-Cursor im Textfeld zum Ende"
 
 msgid "Move to first line / screen"
-msgstr ""
+msgstr "Zur ersten Zeile / Bildschirm wechseln"
 
 msgid "Move to home of list"
 msgstr "Springe zum Anfang der Liste"
 
 msgid "Move to last line / screen"
-msgstr ""
+msgstr "Zur letzten Zeile / Bildschirm wechseln"
 
 #, fuzzy
 msgid "Move to position X"
@@ -10297,7 +10297,7 @@ msgid "Move up a page"
 msgstr "Seitenweise nach oben blättern"
 
 msgid "Move up a screen"
-msgstr ""
+msgstr "Bildschirm nach oben gehen"
 
 msgid "Move up list"
 msgstr "Eintrag hoch"
@@ -13136,7 +13136,7 @@ msgid ""
 msgstr ""
 "Aktualisieren im Gange\n"
 "Bitte warten Sie, bis Ihr %s %s neu starten\n"
-"Das kann ein paar minuten dauern"
+"Das kann ein paar Minuten dauern"
 
 #
 msgid "Refresh rate"
@@ -14476,10 +14476,11 @@ msgid "Select the movie path"
 msgstr "Den Filmpfad auswählen"
 
 msgid "Select the next item in list or move cursor right"
-msgstr ""
+msgstr "Nächstes Element in der Liste auswählen oder Cursor nach rechts bewegen"
 
 msgid "Select the previous item in list or move cursor left"
 msgstr ""
+"Vorheriges Element in der Liste auswählen oder den Cursor nach links bewegen"
 
 msgid ""
 "Select the protocol used by your SCR device. Choices are 'SCR "
@@ -14612,7 +14613,7 @@ msgstr ""
 "wählen Sie eine der Standardalternativen."
 
 msgid "Select, toggle, process or edit the current entry"
-msgstr ""
+msgstr "Auswählen, umschalten, bearbeiten oder editieren des aktuellen Eintrags"
 
 #, fuzzy
 msgid "Select/Zap to selected service"
@@ -16773,8 +16774,9 @@ msgstr "T2MI PLP ID"
 msgid "T2MI RAW Mode"
 msgstr "T2MI RAW Mode"
 
+#, fuzzy
 msgid "TB"
-msgstr ""
+msgstr "TB"
 
 msgid "TEXT"
 msgstr "TEXT"
@@ -17291,7 +17293,7 @@ msgid "There are currently no outstanding actions."
 msgstr "Es sind keine Aktivitäten geplant."
 
 msgid "There are no items currently available for this screen."
-msgstr ""
+msgstr "Für diesen Bildschirm sind derzeit keine Elemente verfügbar."
 
 #
 msgid "There are no updates available."
@@ -18883,6 +18885,8 @@ msgid ""
 "Use the UP and DOWN buttons to select your locale/language then press the OK "
 "button to continue."
 msgstr ""
+"Verwenden Sie die Tasten UP und DOWN, um Ihr Gebietsschema/Ihre Sprache "
+"auszuwählen, und drücken Sie dann die Taste OK, um fortzufahren."
 
 msgid "Use the alternative screen"
 msgstr "Legen Sie fest, ob eine alternative Anzeige benutzt werden soll."
@@ -25373,7 +25377,7 @@ msgid "Show service type icons"
 msgstr "Anzeige des Servicetyps"
 
 msgid "Show setup default value"
-msgstr ""
+msgstr "Setup-Standardwert anzeigen"
 
 msgid "Show source packages"
 msgstr "Zeige Quellpakete"
@@ -25757,6 +25761,8 @@ msgid ""
 "This option allows you to select if the default value for a setup item is "
 "shown and, if so, where it is displayed in relation to the description."
 msgstr ""
+"Mit dieser Option können Sie festlegen, ob der Standardwert angezeigt wird, "
+"und wenn ja, wo er im Verhältnis zur Beschreibung angezeigt wird."
 
 msgid "This option allows you to show menu number quick links."
 msgstr ""
