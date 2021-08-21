@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-08-21 11:25+0000\n"
-"PO-Revision-Date: 2021-08-21 03:35+0000\n"
+"PO-Revision-Date: 2021-08-21 20:39+0000\n"
 "Last-Translator: Adga56 <adga45@gmail.com>\n"
 "Language-Team: Lithuanian <https://hosted.weblate.org/projects/openatv/"
 "enigma2-7-0-po/lt/>\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && (n"
 "%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: Weblate 4.8-dev\n"
+"X-Generator: Weblate 4.8.1-dev\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 
 msgid ""
@@ -340,7 +340,7 @@ msgid "!! Bootloader Upgrade !!"
 msgstr "!! Įkrovos tvarkyklės atnaujinimas !!"
 
 msgid "%-H:%M"
-msgstr "%-H:%M"
+msgstr "%-V:%M"
 
 msgid "%-H:%M:%S"
 msgstr "%-H:%M:%S"
@@ -365,28 +365,28 @@ msgstr "%-I:%M:%S%^p"
 
 #. TRANSLATORS: full date representation daynum monthname year in strftime() format! See 'man strftime'
 msgid "%-d %B %Y"
-msgstr "%-d %B %Y"
+msgstr "%Y %B %-d"
 
 #. TRANSLATORS: small date representation daynum short monthname in strftime() format! See 'man strftime'
 #. TRANSLATORS: compact date representation (for VFD) daynum short monthname in strftime() format! See 'man strftime'
 msgid "%-d %b"
-msgstr "%-d %b"
+msgstr "%B %-d"
 
 #. TRANSLATORS: long date representation daynum short monthname year in strftime() format! See 'man strftime'
 msgid "%-d %b %Y"
-msgstr "%-d %b %Y"
+msgstr "%Y %b %-d"
 
 msgid "%-d+%b_"
 msgstr "%-d+%b_"
 
 msgid "%-d-%B-%Y"
-msgstr "%-d-%B-%Y"
+msgstr "%Y-%b-%-d"
 
 msgid "%-d-%b"
-msgstr "%-d-%b"
+msgstr "%b-%-d"
 
 msgid "%-d-%b-%Y"
-msgstr "%-d-%b-%Y"
+msgstr "%Y-%b-%-d"
 
 msgid "%-d. %B %Y"
 msgstr "%-d. %B %Y"
@@ -410,31 +410,31 @@ msgid "%-d.%m.%Y"
 msgstr "%-d.%m.%Y"
 
 msgid "%-d/%-m"
-msgstr "%-d/%-m"
+msgstr "%-m.%-d"
 
 msgid "%-d/%-m "
-msgstr "%-d/%-m "
+msgstr "%-m/%-d "
 
 msgid "%-d/%-m/%Y"
-msgstr "%-d/%-m/%Y"
+msgstr "%Y/%-m/%-d"
 
 msgid "%-d/%m"
-msgstr "%-d/%m"
+msgstr "%m/%-d"
 
 msgid "%-d/%m "
-msgstr "%-d/%m "
+msgstr "%m%-d "
 
 msgid "%-d/%m/%Y"
-msgstr "%-d/%m/%Y"
+msgstr "%Y/%m/%-d"
 
 msgid "%-d=%b_"
 msgstr "%-d=%b_"
 
 msgid "%-m/%-d"
-msgstr "%-m/%-d"
+msgstr "%-d/%-m"
 
 msgid "%-m/%-d "
-msgstr "%-m/%-d "
+msgstr "%-d/%-m "
 
 msgid "%-m/%-d/%Y"
 msgstr "%-m/%-d/%Y"
@@ -470,7 +470,7 @@ msgstr "%02d.%02d."
 
 #, python-format
 msgid "%02d.%02d.%d"
-msgstr "%02d.%02d.%d"
+msgstr "%2d:%02d:%02d"
 
 #, python-format
 msgid "%02d:%02d"
@@ -486,23 +486,23 @@ msgstr "%03d MB"
 
 #, python-format
 msgid "%2.1f sec"
-msgstr "%2.1f sec"
+msgstr "%2.1f sek."
 
 msgid "%A"
 msgstr "%A"
 
 #. TRANSLATORS: short date representation dayname daynum short monthname in strftime() format! See 'man strftime'
 msgid "%A %-d %B"
-msgstr "%A %-d %B"
+msgstr "%B %-d, %A"
 
 msgid "%A %-d %B %Y"
-msgstr "%A %-d %B %Y"
+msgstr "%Y %B %-d, %A"
 
 msgid "%A %-d-%B"
-msgstr "%A %-d-%B"
+msgstr "%B %-d, %A"
 
 msgid "%A %-d-%B-%Y"
-msgstr "%A %-d-%B-%Y"
+msgstr "%Y-%B-%-d, %A"
 
 msgid "%A %-d. %B"
 msgstr "%A %-d. %B"
@@ -1032,13 +1032,13 @@ msgstr "%d MB"
 #, python-format
 msgid "%d Min"
 msgid_plural "%d Mins"
-msgstr[0] "%d minutė"
-msgstr[1] "%d minutės"
-msgstr[2] "%d minučių"
+msgstr[0] "%d min."
+msgstr[1] "%d min."
+msgstr[2] "%d min."
 
 #, python-format
 msgid "%d Mins"
-msgstr "%d minutės"
+msgstr "%d min."
 
 #. TRANSLATORS: Intermediate scanning result, '%d' channel(s) have been found so far
 #, python-format
@@ -1058,9 +1058,9 @@ msgstr[2] "%d dienų"
 #, python-format
 msgid "%d hour"
 msgid_plural "%d hours"
-msgstr[0] "%d valanda"
-msgstr[1] "%d valandos"
-msgstr[2] "%d valandų"
+msgstr[0] "%d val."
+msgstr[1] "%d val."
+msgstr[2] "%d val."
 
 #, python-format
 msgid "%d kB"
@@ -1068,7 +1068,7 @@ msgstr "%d kB"
 
 #, python-format
 msgid "%d min"
-msgstr "%d min"
+msgstr "%d min."
 
 #, python-format
 msgid "%d minute"
@@ -1079,11 +1079,11 @@ msgstr[2] "%d minučių"
 
 #, python-format
 msgid "%d minutes"
-msgstr "%d minutės"
+msgstr "%d min."
 
 #, python-format
 msgid "%d ms"
-msgstr "%d ms"
+msgstr "%d msek."
 
 #, python-format
 msgid "%d pixel wide"
@@ -1094,7 +1094,7 @@ msgstr[2] "%d pikselių pločio"
 
 #, python-format
 msgid "%d sec"
-msgstr "%d sek"
+msgstr "%d sek."
 
 #, python-format
 msgid "%d second"
@@ -1176,7 +1176,7 @@ msgid "%d=%b_"
 msgstr "%d=%b_"
 
 msgid "%e/%m, %-H:%M"
-msgstr "%m/%e, %a %-H:%M"
+msgstr "%m/%e, %a  %-H:%M"
 
 msgid "%m/%-d"
 msgstr "%m/%-d"
@@ -1328,11 +1328,11 @@ msgstr[2] "prieinama %s atnaujinimo paketų"
 
 #, python-format
 msgid "%s%d min"
-msgstr "%s%d min"
+msgstr "%s%d min."
 
 #, python-format
 msgid "%s%s(Default: %s)"
-msgstr ""
+msgstr "%s%s(Default: %s)"
 
 #, python-format
 msgid "%s/%s: %s"
@@ -2018,8 +2018,8 @@ msgid ""
 "A configuration file (%s) has been modified since it was installed.\n"
 "Do you want to keep your modifications?"
 msgstr ""
-"Konfigūracijos failas (%s) buvo pakeistas, nes jis buvo įdiegtas.\n"
-"Ar norite išsaugoti savo pakeitimus?"
+"Konfigūracijos failas (%s) buvo pakeistas, nes jis buvo įdiegtas. Ar norite "
+"išsaugoti savo pakeitimus?"
 
 #, python-format
 msgid ""
@@ -2760,7 +2760,7 @@ msgid "Apply any changes to the active locale/langauge and exit"
 msgstr "Taikyti bet kokius pakeitimus aktyviai lokalei / kalbai ir išeiti"
 
 msgid "Apply the currently highlighted locale/language and exit"
-msgstr ""
+msgstr "Taikyti šiuo metu paryškintą lokalę / kalbą ir išeiti"
 
 msgid "Arabic"
 msgstr "Arabų"
@@ -3937,7 +3937,7 @@ msgid "Cannot determine"
 msgstr "Negalima nustatyti"
 
 msgid "Cannot find any signal ..., aborting !"
-msgstr "Jokio signalo nerasta …, nutraukiama !"
+msgstr "Jokio signalo nerasta …,  nutraukiama !"
 
 msgid "Cannot find images - please try later"
 msgstr "Negalima sukurti atvaizdų sąrašo - bandykite vėliau"
@@ -5205,7 +5205,7 @@ msgstr "Numatytieji nustatymai"
 
 #, python-format
 msgid "Default: '%s'."
-msgstr ""
+msgstr "Numatytasis: '%s'."
 
 msgid "Defaults"
 msgstr "Numatytieji"
@@ -5297,16 +5297,16 @@ msgid "Delete Plugins"
 msgstr "Ištrinti priedus"
 
 msgid "Delete all the text"
-msgstr ""
+msgstr "Ištrinti visą tekstą"
 
 msgid "Delete and uninstall Plugins. This will remove the Plugin from your box"
 msgstr "Trinti ir išdiegti priedus. Priedas bus pašalintas iš jūsų imtuvo"
 
 msgid "Delete character to left of cursor or select AM times"
-msgstr ""
+msgstr "Naikinti simbolį į kairę nuo žymeklio arba pasirinkti AM laiką"
 
 msgid "Delete character under cursor or select PM times"
-msgstr ""
+msgstr "Naikinti simbolį po žymekliu arba pasirinkti PM laiką"
 
 msgid "Delete current line"
 msgstr "Ištrinti dabartinę eilutę"
@@ -5556,7 +5556,7 @@ msgid "Display and user interface"
 msgstr "Monitorius ir vartotojo sąsaja"
 
 msgid "Display selection list as a selection menu"
-msgstr ""
+msgstr "Rodyti pasirinkimo sąrašą kaip pasirinkimo meniu"
 
 msgid "Display the virtual keyboard for data entry"
 msgstr "Rodyti virtualiąją duomenų įvedimo klaviatūrą"
@@ -7449,7 +7449,7 @@ msgid "Greek"
 msgstr "Graikų"
 
 msgid "Green"
-msgstr "Žalia"
+msgstr "Žalias"
 
 msgid "Green long"
 msgstr "Žalia ilgai"
@@ -7561,7 +7561,7 @@ msgid "HDR10 Support"
 msgstr "HDR10 palaikymas"
 
 msgid "HELP"
-msgstr "PAGALBA"
+msgstr "Pagalba"
 
 msgid "HELP provides brief information for buttons in your current context."
 msgstr "HELP pateikia trumpą informaciją apie mygtukus dabartiniame kontekste."
@@ -7675,7 +7675,7 @@ msgid "Hide player"
 msgstr "Paslėpti grotuvą"
 
 msgid "Hide the InfoBar"
-msgstr "Nustatykite laiką, kad paslėpti info juostą"
+msgstr "Nustatykite laiką, kad paslėpti info juostą."
 
 msgid "Hierarchy info"
 msgstr "Informacijos lygis"
@@ -7825,7 +7825,7 @@ msgid "IMDb Search"
 msgstr "IMDb paieška"
 
 msgid "INFO"
-msgstr "INFORMACIJA"
+msgstr "Informacija"
 
 msgid "INFO-Panel..."
 msgstr "INFO-skydas..."
@@ -8508,10 +8508,10 @@ msgid "Jump to end of list"
 msgstr "Peršokti į pabaigos sąrašą"
 
 msgid "Jump to first item in list or the start of text"
-msgstr ""
+msgstr "Peršokti į pirmą sąrašo elementą arba teksto pradžią"
 
 msgid "Jump to last item in list or the end of text"
-msgstr ""
+msgstr "Peršokti į paskutinį sąrašo elementą arba teksto pabaigą"
 
 msgid "Jump to next marked position"
 msgstr "Peršokti į sekančią pažymėtą poziciją"
@@ -9358,7 +9358,7 @@ msgid "Mins"
 msgstr "Min."
 
 msgid "Mins Secs"
-msgstr "Min. sek"
+msgstr "Min. sek."
 
 msgid "Minutes:"
 msgstr "Minučių:"
@@ -9531,7 +9531,7 @@ msgid "Move down a page"
 msgstr "Perkelti žemyn puslapį"
 
 msgid "Move down a screen"
-msgstr ""
+msgstr "Pereiti vienu ekranu žemyn"
 
 msgid "Move down list"
 msgstr "Perkelti žemyn sąrašą"
@@ -9610,13 +9610,13 @@ msgid "Move the text cursor to the last character"
 msgstr "Perkelkite teksto žymeklį į paskutinį simbolį"
 
 msgid "Move to first line / screen"
-msgstr ""
+msgstr "Pereiti į pirmąją eilutę / ekraną"
 
 msgid "Move to home of list"
 msgstr "Perkelti į titulinį sąrašą"
 
 msgid "Move to last line / screen"
-msgstr ""
+msgstr "Pereiti į paskutinę eilutę / ekraną"
 
 msgid "Move to position X"
 msgstr "Perkelti į poziciją X"
@@ -9628,7 +9628,7 @@ msgid "Move up a page"
 msgstr "Perkelti aukštyn puslapį"
 
 msgid "Move up a screen"
-msgstr ""
+msgstr "Pereiti vienu ekranu aukštyn"
 
 msgid "Move up list"
 msgstr "Perkelti sąrašą"
@@ -9683,7 +9683,7 @@ msgid "Movie List Actions"
 msgstr "Filmų sąrašo veiksmai"
 
 msgid "Movie List Setup"
-msgstr "Filmų sąrašo nustatymai"
+msgstr "Filmų sąrašo valdymas"
 
 msgid "Movie Player Actions"
 msgstr "Filmo grotuvo veiksmai"
@@ -9789,7 +9789,7 @@ msgid "Märchen"
 msgstr "Pasakos"
 
 msgid "N/A"
-msgstr "Nėra"
+msgstr "Nėra duomenų"
 
 msgid "NFI image flashing"
 msgstr "NFI atvaizdo įdiegimas"
@@ -10132,7 +10132,7 @@ msgid "No demux available"
 msgstr "Nėra demux"
 
 msgid "No description available."
-msgstr "Nėra apibūdinimo."
+msgstr "Nėra aprašymo."
 
 msgid "No details for this image file"
 msgstr "Nėra informacijos apie šį atvaizdą"
@@ -10317,7 +10317,7 @@ msgid "NodeID: "
 msgstr "Mazgo ID: "
 
 msgid "None"
-msgstr "Nieko"
+msgstr "Nėra"
 
 #, python-format
 msgid "None of the hash programs for the hashes %s are available"
@@ -10481,7 +10481,7 @@ msgid "OEM Model:\t\t%s\n"
 msgstr "OEM modelis:\t\t%s\n"
 
 msgid "OK"
-msgstr "GERAI"
+msgstr "Gerai"
 
 msgid "OK long"
 msgstr "OK ilgai"
@@ -10923,7 +10923,7 @@ msgid "Panic to"
 msgstr "Panikos mygtukas"
 
 msgid "Panjabi / Punjabi"
-msgstr "Panžabi"
+msgstr "Pandžabi / Pandžabis"
 
 msgid "Papua New Guinea"
 msgstr "Papua Naujoji Gvinėja"
@@ -11208,7 +11208,7 @@ msgid "Please enter new description:"
 msgstr "Įrašykite naują aprašymą:"
 
 msgid "Please enter new name:"
-msgstr "Prašome įrašyti naują pavadinimą:"
+msgstr "Įrašykite naują pavadinimą:"
 
 msgid "Please enter password"
 msgstr "Prašome įrašyti slaptažodį"
@@ -11649,7 +11649,7 @@ msgid "Primary DNS"
 msgstr "Pirminis DNS"
 
 msgid "Primetime"
-msgstr "Geriausias laikas"
+msgstr "Žiūrimiausias laikas"
 
 msgid "Priority"
 msgstr "Pirmenybė"
@@ -11829,7 +11829,7 @@ msgid "Puppentrick"
 msgstr "Lėlių"
 
 msgid "Pushto / Pashto"
-msgstr "Puštūnų"
+msgstr "Puštūnų / Puštūnai"
 
 msgid "Put TV in standby"
 msgstr "Jungti TV į budėjimo būseną"
@@ -12112,7 +12112,7 @@ msgid "Records"
 msgstr "Įrašai"
 
 msgid "Red"
-msgstr "Raudona"
+msgstr "Raudonas"
 
 msgid "Red button..."
 msgstr "Raudonas mygtukas..."
@@ -12393,7 +12393,7 @@ msgid "Restart Enigma2 to apply the changes?"
 msgstr "Kad įsigaliotų, paleisti enigma2 iš naujo?"
 
 msgid "Restart GUI"
-msgstr "Iš naujo paleiskite grafinę aplinką"
+msgstr "Paleisti iš naujo grafinę aplinką"
 
 msgid "Restart GUI now?"
 msgstr "Paleisti iš naujo grafinę aplinką dabar?"
@@ -12785,7 +12785,7 @@ msgid "Saudi Arabia"
 msgstr "Saudo Arabija"
 
 msgid "Save"
-msgstr "Išsaugoti"
+msgstr "Saugoti"
 
 msgid "Save / Enter text and exit"
 msgstr "Išsaugoti / įvesti tekstą ir išeiti"
@@ -13341,10 +13341,10 @@ msgid "Select the movie path"
 msgstr "Pasirinkite filmo kelią"
 
 msgid "Select the next item in list or move cursor right"
-msgstr ""
+msgstr "Pasirinkti paskesnį sąrašo elementą arba perkelti žymeklį į dešinę"
 
 msgid "Select the previous item in list or move cursor left"
-msgstr ""
+msgstr "Pasirinkti ankstesnį sąrašo elementą arba perkelti žymeklį į kairę"
 
 msgid ""
 "Select the protocol used by your SCR device. Choices are 'SCR "
@@ -13469,7 +13469,7 @@ msgstr ""
 "pasirinkite vieną iš numatytųjų alternatyvų."
 
 msgid "Select, toggle, process or edit the current entry"
-msgstr ""
+msgstr "Pasirinkti, perjungti, apdoroti arba redaguoti dabartinį įrašą"
 
 msgid "Select/Zap to selected service"
 msgstr "Pasirinkti/Zap pasirinktai paslaugai"
@@ -13937,7 +13937,7 @@ msgid "Setup your Channel selection configuration"
 msgstr "Sukonfigūruoti kanalų pasirinkimą"
 
 msgid "Setup your Device mounts (USB, HDD, others...)"
-msgstr "Sukonfigūruoti jūsų įrenginių prijungimą (USB, HDD, kiti...)"
+msgstr "Sukonfigūruoti  jūsų įrenginių prijungimą (USB, HDD, kiti...)"
 
 msgid "Setup your EPG config"
 msgstr "Valdykite savo EPG konfigūraciją"
@@ -13958,7 +13958,7 @@ msgid "Setup your System"
 msgstr "Sukonfigūruoti savo sistemą"
 
 msgid "Setup your Tuner and search for channels"
-msgstr "Sukonfigūruoti savo imtuvą ir ieškokite kanalų"
+msgstr "Sukonfigūruoti  savo imtuvą ir ieškokite kanalų"
 
 msgid "Setup your Video Mode, Video Output and other Video Settings"
 msgstr ""
@@ -14392,7 +14392,7 @@ msgid "Show the DreamPlex player..."
 msgstr "Rodyti DreamPlex grotuvą..."
 
 msgid "Show the Power Timer"
-msgstr "Rodyti išjungimo laikmatį"
+msgstr "Rodyti išjungimo laikmatį..."
 
 msgid "Show the Sleep Timer"
 msgstr "Rodyti miego laikmatį"
@@ -14503,7 +14503,7 @@ msgid "Similar broadcasts:"
 msgstr "Kartojamos laidos:"
 
 msgid "Simple"
-msgstr "Supaprastintas"
+msgstr "Paprastas"
 
 msgid "Simple fade"
 msgstr "Tiesiog išblukti"
@@ -14542,7 +14542,7 @@ msgid "Single step (GOP)"
 msgstr "Viengubas žingsnis (GOP)"
 
 msgid "Sinhala / Sinhalese"
-msgstr "Sinhalai"
+msgstr "Sinhalai / Sinhalajų"
 
 msgid "Sint Maarten"
 msgstr "Sint Martenas"
@@ -15420,7 +15420,9 @@ msgstr "TEKSTAS"
 
 #. TRANSLATORS: Add here whatever should be shown in the "translator" about screen, up to 6 lines (use \n for newline)
 msgid "TRANSLATOR_INFO"
-msgstr "Adga, 2021-08-18"
+msgstr ""
+"Adga, adga45@gmail.com\n"
+"Pasvalys, 2021-08-21 versija"
 
 msgid "TS file is too large for ISO9660 level 1!"
 msgstr "TS failas yra per didelis ISO9660 lygmeniui 1!"
@@ -15570,9 +15572,7 @@ msgstr "DVD standartas nepalaiko H.264 (HDTV) vaizdo srautų."
 msgid ""
 "The DreamPlex plugin is not installed!\n"
 "Please install it."
-msgstr ""
-"DreamPlex priedas neįdiegtas!\n"
-"Prašome jį įdiegti."
+msgstr "DreamPlex priedas neįdiegtas! Prašome jį įdiegti."
 
 msgid ""
 "The EPGSearch plugin is not installed!\n"
@@ -15885,7 +15885,7 @@ msgid "There are currently no outstanding actions."
 msgstr "Šiuo metu nėra jokių neįvykdytų veiksmų."
 
 msgid "There are no items currently available for this screen."
-msgstr ""
+msgstr "Šiuo metu šiame ekrane nėra elementų."
 
 msgid "There are no updates available."
 msgstr "Galimų atnaujinimų nėra."
@@ -15903,9 +15903,8 @@ msgid ""
 msgstr ""
 "Yra daug atnaujinamų paketų!\n"
 "\n"
-"Yra rizika, kad jūsų %s %s \n"
-"nepasileis po atnaujinimo internetu, arba parodys sutrikimus veikiančio "
-"atvaizdo.\n"
+"Yra rizika, kad jūsų %s %s nepasileis po atnaujinimo internetu, arba parodys "
+"sutrikimus veikiančio atvaizdo.\n"
 "\n"
 "Jums reikia įdiegti iš naujo!\n"
 "\n"
@@ -16531,7 +16530,7 @@ msgid "Timeshift save recording (Select event)"
 msgstr "Išsaugoti laiko poslinkio įrašą (pasirinkite įvykį)"
 
 msgid "Timeshift save recording (stop after current event)"
-msgstr "Išsaugoti laiko poslinkio įrašą (sustabdyti po dabartinio įvykio)"
+msgstr "Išsaugoti laiko poslinkio įrašą  (sustabdyti po dabartinio įvykio)"
 
 msgid "Timeshift saved to your harddisk!"
 msgstr "Laiko poslinkis išsaugotas jūsų kietame diske!"
@@ -16574,7 +16573,7 @@ msgid "Today"
 msgstr "Šiandien"
 
 msgid "Toggels between tv and radio"
-msgstr "Perjungia tarp tv ir radijo"
+msgstr "Perjungia tarp tv ir radijo..."
 
 msgid "Toggle Digital downmix..."
 msgstr "Perjungti skaitmeninį suliejimą..."
@@ -16638,7 +16637,7 @@ msgid "Tonga"
 msgstr "Tongų"
 
 msgid "Top"
-msgstr "Viršus"
+msgstr "Pagrindiniai (procesai)"
 
 msgid "Top and Bottom"
 msgstr "Viršuje ir apačioje"
@@ -16693,7 +16692,7 @@ msgid "Transmission mode"
 msgstr "Perdavimo būdas"
 
 msgid "Transparent"
-msgstr "Skaidrus"
+msgstr "Permatomas"
 
 msgid "Transponder"
 msgstr "Transponderis"
@@ -16946,7 +16945,7 @@ msgid "Uganda"
 msgstr "Uganda"
 
 msgid "Uighur / Uyghur"
-msgstr "Uigūrai"
+msgstr "Uigūrai / Uigūrų"
 
 msgid "Ukraine"
 msgstr "Ukraina"
@@ -17342,6 +17341,8 @@ msgid ""
 "Use the UP and DOWN buttons to select your locale/language then press the OK "
 "button to continue."
 msgstr ""
+"Norėdami pasirinkti lokalę / kalbą, naudokite mygtukus AUKŠTYN ir ŽEMYN, "
+"tada paspauskite mygtuką Gerai (OK), kad tęstumėte."
 
 msgid "Use the alternative screen"
 msgstr "Naudoti alternatyvų ekraną"
@@ -18152,7 +18153,7 @@ msgid "Year"
 msgstr "Metai"
 
 msgid "Yellow"
-msgstr "Geltona"
+msgstr "Geltonas"
 
 msgid "Yellow long"
 msgstr "Geltonas, ilgai spausti"
@@ -18440,6 +18441,7 @@ msgid ""
 "Do you want to remove now ?"
 msgstr ""
 "Po kanalų pašalinimo, jūsų %s %s bus paleistas iš naujo.\n"
+"\n"
 "Ar norite pašalinti dabar?"
 
 msgid "Your Hardware can detect ci mode self or work only in legacy mode."
@@ -18521,8 +18523,7 @@ msgid ""
 "Do you still want to update?"
 msgstr ""
 "Jūsų atvaizdas yra pasenęs!\n"
-"\n"
-"Po tokio ilgo laiko, yra rizika, kad jūsų %s %s neužsikraus\n"
+"Po tokio ilgo laiko, yra rizika, kad jūsų %s%s neužsikraus\n"
 "Po internetinio atnaujinimo, arba parodys sutrikimus veikiančiam atvaizdui.\n"
 "\n"
 "Naujas įdiegimas padidina stabilumą\n"
@@ -18668,7 +18669,7 @@ msgid "Zoom In/Out TV..."
 msgstr "Priartinti/nutolinti TV..."
 
 msgid "Zoom Off"
-msgstr "Priartinimas išjungtas"
+msgstr "Priartinimas išjungtas..."
 
 msgid "Zoom Off..."
 msgstr "Priartinimas išjungtas..."
@@ -19519,7 +19520,7 @@ msgid "leave movie player"
 msgstr "užverti filmų grotuvą"
 
 msgid "left"
-msgstr "kairė"
+msgstr "kairys"
 
 msgid "left, wrapped"
 msgstr "kairėje, suvyniota"
@@ -19819,7 +19820,7 @@ msgid "please wait, loading picture..."
 msgstr "palaukite, įkeliamas paveikslėlis..."
 
 msgid "please wait..."
-msgstr "prašome laukti..."
+msgstr "palaukite..."
 
 msgid "pli"
 msgstr "pli"
@@ -19967,7 +19968,7 @@ msgid "rgb"
 msgstr "rgb"
 
 msgid "right"
-msgstr "dešinė"
+msgstr "dešinys"
 
 msgid "right, wrapped"
 msgstr "dešinėn, suvynioti"
@@ -20438,7 +20439,6 @@ msgid ""
 "A copy has been sent to yourself."
 msgstr ""
 "kai klausia klausimą apie šį žurnalą\n"
-"\n"
 "Kopija buvo išsiųsta sau."
 
 msgid "white"
@@ -20985,7 +20985,7 @@ msgid "Save EPG"
 msgstr "Išsaugoti EPG"
 
 msgid "Service"
-msgstr "Kanalai"
+msgstr "Kanalas"
 
 msgid "Shutdown"
 msgstr "Išjungti"
@@ -21259,7 +21259,7 @@ msgid "Channel list preview"
 msgstr "Kanalų sąrašo peržiūra"
 
 msgid "Channel list service mode*"
-msgstr "Kanalo sąrašo paslaugų režimas*"
+msgstr "Kanalų sąrašo paslaugų režimas*"
 
 msgid "Channel list show MiniTV when Skin use."
 msgstr "Kanalų sąraše rodyti MiniTV, kai tą naudoja vartotojo aplinkos tema."
@@ -21271,7 +21271,7 @@ msgid "Channel preview mode"
 msgstr "Kanalo peržiūros režimas"
 
 msgid "Channel selection settings"
-msgstr "Kanalo pasirinkimo nustatymai"
+msgstr "Kanalų pasirinkimo nustatymai"
 
 msgid "Channel zap delay another button"
 msgstr "Kanalo jungimo delsa kitu mygtuku"
@@ -21432,10 +21432,13 @@ msgid ""
 "with time: Date Time - Title Short: Date - Title Long: Date Time - Channel - "
 "Title - Info"
 msgstr ""
-"Konfigūruokite įrašų pavadinimų sukūrimą. Standartas: data laikas - kanalas "
-"- pavadinimas Labai labai trumpas: pavadinimas Labai trumpas: pavadinimas - "
-"data laikas Trumpas su laiku: data laikas - pavadinimas Trumpas: data - "
-"pavadinimas Ilgas: data laikas - kanalas - pavadinimas - informacija"
+"Konfigūruokite įrašų pavadinimų sukūrimą.\n"
+"Standartas: data laikas - kanalas - pavadinimas\n"
+"Labai labai trumpas: pavadinimas\n"
+"Labai trumpas: pavadinimas - data laikas\n"
+"Trumpas su laiku: data laikas - pavadinimas\n"
+"Trumpas: data - pavadinimas\n"
+"Ilgas: data laikas - kanalas - pavadinimas - informacija"
 
 msgid ""
 "Configure if and how crypto icons will be shown in the channel selection "
@@ -23103,7 +23106,7 @@ msgid "Show PIP in the Front Display"
 msgstr "Rodyti PIP priekiniame monitoriuje"
 
 msgid "Show PVR status in MoviePlayer infobar"
-msgstr "Rodyti PVR stovį filmų grotuvo info juostoje"
+msgstr "Rodyti PVR būseną filmų grotuvo info juostoje"
 
 msgid "Show Restart Network in Extensions list *"
 msgstr "Rodyti 'paleisti iš naujo tinklą' plėtinių sąraše *"
@@ -23243,7 +23246,7 @@ msgid "Show service type icons"
 msgstr "Rodyti kanalo tipo piktogramas"
 
 msgid "Show setup default value"
-msgstr ""
+msgstr "Rodyti numatytąją nustatymo vertę"
 
 msgid "Show source packages"
 msgstr "Rodyti paketų šaltinį"
@@ -23609,6 +23612,8 @@ msgid ""
 "This option allows you to select if the default value for a setup item is "
 "shown and, if so, where it is displayed in relation to the description."
 msgstr ""
+"Ši pasirinktis leidžia pasirinkti, ar rodoma numatytoji nustatymo prekės "
+"vertė ir, jei taip, kur ji rodoma aprašymo atžvilgiu."
 
 msgid "This option allows you to show menu number quick links."
 msgstr "Ši parinktis leidžia jums parodyti greitų nuorodų meniu numerį."
@@ -23818,9 +23823,10 @@ msgid ""
 "keep your own user bouquet while installed settings are upgraded"
 msgstr ""
 "Kai čia įjungta, enigma2 įkels nesusietus vartotojo paketus. Tai reiškia, "
-"kad vartotojo paketai, kurie yra prieinami, tačiau nėra įtraukti į bouquets."
-"tv, ar bouquets.radio failus, vis tiek bus įkelti. Tai leidžia jums pvz. "
-"išsaugoti savo vartotojo paketus, kai bus atnaujinami įdiegti nustatymai"
+"kad vartotojo paketai, kurie yra prieinami, tačiau nėra įtraukti į  "
+"bouquets.tv, ar  bouquets.radio failus, vis tiek bus įkelti. Tai leidžia "
+"jums pvz. išsaugoti savo vartotojo paketus, kai bus atnaujinami įdiegti "
+"nustatymai"
 
 msgid "When enabled the PiP can be closed by the exit button."
 msgstr "Kai čia įjungta, PiP gali būti išjungtas su 'EXIT' mygtuku."
@@ -23995,7 +24001,7 @@ msgstr ""
 
 msgid "When enabled, teletext pages will be cached, allowing faster access."
 msgstr ""
-"Kai čia įjungta, teleteksto puslapiai bus išsaugojami atminties podėlyje, "
+"Kai čia įjungta,  teleteksto puslapiai bus išsaugojami atminties podėlyje, "
 "taip paspartinant jų naudojimą."
 
 msgid ""
@@ -24569,7 +24575,7 @@ msgid ""
 msgstr ""
 "Sveiki.\n"
 "\n"
-"Šis pradinis vedlys padės nustatyti pagrindinius jūsų %s %s parametrus.\n"
+"Šis pradinis vedlys padės nustatyti pagrindinius jūsų  %s %s parametrus.\n"
 "Kad pereiti į sekantį žingsnį, spauskite 'OK'."
 
 msgid "What do you want to scan?"
