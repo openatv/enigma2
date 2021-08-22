@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Enigma2 Official Greek Translation\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-08-21 11:25+0000\n"
+"POT-Creation-Date: 2021-08-22 21:17+0000\n"
 "PO-Revision-Date: 2021-08-19 12:59+0000\n"
 "Last-Translator: MCelliotG <mcelliotg@gmail.com>\n"
 "Language-Team: Greek <https://hosted.weblate.org/projects/openatv/"
@@ -2653,9 +2653,6 @@ msgstr ""
 "αυτό το LNB ξανά για άλλους δορυφόρους (π.χ. σε κινητά κάτοπτρα) για την "
 "αποφυγή ρύθμισης του ίδιου LNB πολλές φορές."
 
-msgid "Allocate unused memory index"
-msgstr "Κατανομή μη χρησιμοποιημένων θέσεων μνήμης"
-
 msgid "Allow 10bit"
 msgstr "Να επιτρέπονται τα 10bit"
 
@@ -3776,9 +3773,6 @@ msgstr "Σε προσωρινή μνήμη:"
 msgid "Calculate"
 msgstr "Υπολογισμός"
 
-msgid "Calculate all positions"
-msgstr "Υπολογισμός όλων των θέσεων"
-
 msgid "Calculate file checksums"
 msgstr "Υπολογισμός συνόλου ελέγχου αρχείου"
 
@@ -4486,10 +4480,6 @@ msgstr "Παραμετροποίηση"
 
 msgid "Configuration mode"
 msgstr "Τύπος ρύθμισης"
-
-#, python-format
-msgid "Configuration mode: %s"
-msgstr "Τύπος ρύθμισης: %s"
 
 msgid ""
 "Configuration options for the HELP screen can be found in 'MENU > Setup > "
@@ -5542,6 +5532,22 @@ msgstr "Φάκελος"
 #, python-format
 msgid "Directory %s does not exist."
 msgstr "Ο φάκελος %s δεν υπάρχει."
+
+#, python-format
+msgid "Directory '%s' can't be linked to recordings!"
+msgstr ""
+
+#, python-format
+msgid "Directory '%s' does not exist!"
+msgstr ""
+
+#, python-format
+msgid "Directory '%s' not writable!"
+msgstr ""
+
+#, python-format
+msgid "Directory '%s' not writeable!"
+msgstr ""
 
 msgid "Directory browser"
 msgstr "Πλοηγός φακέλων"
@@ -7060,6 +7066,10 @@ msgstr "Διαδικτυακό φλασάρισμα"
 msgid "Flash Online a new image"
 msgstr "Διαδικτυακό φλασάρισμα ενός νέου image"
 
+#, python-format
+msgid "Flash directory '%s' not allowed!"
+msgstr ""
+
 msgid "Flash on the fly your your Receiver software."
 msgstr "Φλασάρισμα σε πραγματικό χρόνο του λογισμικού του δέκτη σας."
 
@@ -7468,9 +7478,6 @@ msgstr "Μετάβαση στη ζώνη αιχμής"
 
 msgid "Goto X"
 msgstr "Μετάβαση στη θέση Χ"
-
-msgid "Goto index position"
-msgstr "Μετάβαση στην αποθηκευμένη θέση"
 
 msgid "Goto next bouquet"
 msgstr "Μετάβαση στο επόμενο μπουκέτο"
@@ -8264,15 +8271,6 @@ msgstr "Ινφοτέιντμεντ"
 
 msgid "Init"
 msgstr "Αρχ."
-
-msgid "Initial lock ratio"
-msgstr "Αρχική αναλογία κλειδώματος"
-
-msgid "Initial signal quality"
-msgstr "Αρχική ποιότητα σήματος"
-
-msgid "Initial signal quality:"
-msgstr "Αρχική ποιότητα σήματος:"
 
 msgid "Initialization"
 msgstr "Αρχικοποίηση"
@@ -9093,9 +9091,6 @@ msgstr "Τοποθεσία"
 msgid "Location list"
 msgstr "Λίστα τοποθεσιών"
 
-msgid "Lock ratio"
-msgstr "Κλείδωμα αναλογιών"
-
 msgid "Log"
 msgstr "Καταγραφή"
 
@@ -9750,9 +9745,6 @@ msgstr "Μετακίνηση στην αρχή της λίστας"
 
 msgid "Move to last line / screen"
 msgstr ""
-
-msgid "Move to position X"
-msgstr "Κίνηση στη θέση Χ"
 
 msgid "Move up a line"
 msgstr "Μετακίνηση μία γραμμή επάνω"
@@ -11448,6 +11440,9 @@ msgstr "Επιλέξτε μια υπό-υπηρεσία..."
 msgid "Please select an NFI file and press green key to flash!"
 msgstr "Επιλέξτε ένα αρχείο NFI και πιέστε το πράσινο για φλασάρισμα!"
 
+msgid "Please select an acceptable directory."
+msgstr ""
+
 msgid "Please select an aspect ratio..."
 msgstr "Παρακαλώ επιλέξτε έναν λόγο πλευρών..."
 
@@ -12721,9 +12716,6 @@ msgstr "Root"
 msgid "Root directory"
 msgstr "Αρχικός φάκελος"
 
-msgid "Rotor step position:"
-msgstr "Θέση βήματος του μοτέρ:"
-
 msgid "Rotor turning speed"
 msgstr "Ταχύτητα περιστροφής του μοτέρ"
 
@@ -12943,9 +12935,6 @@ msgstr "Δορυφορικός εξοπλισμός"
 
 msgid "Satellite equipment setup"
 msgstr "Ρυθμίσεις δορυφορικού εξοπλισμού"
-
-msgid "Satellite longitude:"
-msgstr "Γεωγραφικό μήκος δορυφόρου:"
 
 #
 msgid "Satellites"
@@ -14717,14 +14706,8 @@ msgstr "Σιέρρα Λεόνε"
 msgid "Signal Finder"
 msgstr "Εύρεση σήματος"
 
-msgid "Signal OK, proceeding"
-msgstr "Το σήμα είναι ΟΚ, συνέχεια"
-
 msgid "Signal Strength:"
 msgstr "Ισχύς σήματος:"
-
-msgid "Signal quality"
-msgstr "Ποιότητα σήματος"
 
 msgid "Signal strength:"
 msgstr "Ένταση σήματος:"
@@ -14786,12 +14769,6 @@ msgstr "Άγιος Μαρτίνος (Ολλανδία)"
 
 msgid "Sitcom"
 msgstr "Καθημερινή σειρά"
-
-msgid "Site latitude"
-msgstr "Γεωγραφικό πλάτος"
-
-msgid "Site longitude"
-msgstr "Γεωγραφικό μήκος"
 
 msgid "Size"
 msgstr "Μέγεθος"
@@ -15352,9 +15329,6 @@ msgstr "Σταματημένο"
 msgid "Storage devices"
 msgstr "Συσκευές αποθήκευσης"
 
-msgid "Store at index"
-msgstr "Αποθήκευση στη θέση"
-
 msgid "Store position"
 msgstr "Αποθήκευση θέσης"
 
@@ -15397,9 +15371,6 @@ msgstr "Αυστηρό DLNA"
 
 msgid "Stripes"
 msgstr "Ρίγες"
-
-msgid "Strongest position"
-msgstr "Ισχυρότερη θέση"
 
 msgid "Stumm"
 msgstr "Βουβός κινηματογράφος"
@@ -17219,9 +17190,6 @@ msgstr ""
 "συντεταγμένες που δίνει ο χρήστης. Χωρίς το USALS κάθε δορυφόρος απαιτεί "
 "ξεχωριστή ρύθμιση και αποθήκευση."
 
-msgid "USALS calibration"
-msgstr "Υπολογισμός USALS"
-
 msgid "USB Stick"
 msgstr "USB στικ"
 
@@ -17711,19 +17679,11 @@ msgstr "Όνομα χρήστη (httpuser)"
 msgid "Username:"
 msgstr "Όνομα χρήστη:"
 
-#, python-format
-msgid "Using LNB %d"
-msgstr "Χρήση του LNB %d"
-
 msgid "Using fixed address"
 msgstr "Χρήση σταθερής διεύθυνσης"
 
 msgid "Using old profile: "
 msgstr "Χρήση παλιού προφίλ: "
-
-#, python-format
-msgid "Using tuner %s"
-msgstr "Χρήση του tuner %s"
 
 #, fuzzy
 msgid "Uzbek"
@@ -18173,9 +18133,6 @@ msgstr "Σαββατοκύριακο"
 
 msgid "Weekly"
 msgstr "Εβδομαδιαία"
-
-msgid "Weighted position"
-msgstr "Σταθμισμένη θέση"
 
 msgid "Welcome to IceTV"
 msgstr "Καλωσορίσατε στο IceTV"
@@ -22159,13 +22116,6 @@ msgstr ""
 "ίδιου ζωντανού καναλιού TV."
 
 msgid ""
-"Configure whether another tuner from the preferred list is allocated instead "
-"of sharing a tuner that is already active recording the same channel."
-msgstr ""
-"Ρυθμίστε εάν ένα άλλο tuner από τη λίστα προτιμώμενων θα διατίθεται αντί να "
-"μοιράζεται ένα tuner που είναι ήδη ενεργό για εγγραφή του ίδιου καναλιού."
-
-msgid ""
 "Configure whether the 'recording' symbol (in the display skin and LCD skin) "
 "is visible for real recordings only or also for streaming and pseuso "
 "recordings (e.g. EPGrefresh)."
@@ -22509,9 +22459,6 @@ msgstr ""
 msgid "Event font size"
 msgstr "Μέγεθος γραμματοσειράς εκπομπής"
 
-msgid "Experimental: strict limitation to preferred tuners"
-msgstr "Πειραματικό: αυστηρός περιορισμός στα πρωτιμώμενα tuners"
-
 msgid "Experimental: strict limitation to preferred tuners for recordings"
 msgstr "Πειραματικό: αυστηρός περιορισμός στα πρωτιμώμενα tuners για εγγραφές"
 
@@ -22762,13 +22709,6 @@ msgid ""
 msgstr ""
 "Στην προχωρημένη λειτουργία, ρυθμίστε ποια tuners θα προτιμώνται για "
 "εγγραφές, όταν περισσότερα του ενός είναι διαθέσιμα."
-
-msgid ""
-"In expert mode, configure which tuners will be preferred, when more than one "
-"tuner is available."
-msgstr ""
-"Στην προχωρημένη λειτουργία, ρυθμίστε ποια tuners θα προτιμώνται, όταν "
-"περισσότερα του ενός είναι διαθέσιμα."
 
 msgid ""
 "In most cases this should be set to No. Only enable if you have a very "
@@ -23081,9 +23021,6 @@ msgstr "Προτιμώμενο tuner για εγγραφές"
 
 msgid "Preferred tuners for recordings, multiple selection allowed"
 msgstr "Προτιμώμενα tuners για εγγραφές, επιτρέπεται η πολλαπλή επιλογή"
-
-msgid "Preferred tuners, multiple selection allowed"
-msgstr "Προτιμώμενα tuners, επιτρέπεται η πολλαπλή επιλογή"
 
 msgid "Preparation time for recording (seconds)"
 msgstr "Χρόνος προετοιμασίας για εγγραφή (δευτερόλεπτα)"
@@ -25059,6 +24996,91 @@ msgstr "IP"
 
 msgid "J"
 msgstr ""
+
+#~ msgid "Allocate unused memory index"
+#~ msgstr "Κατανομή μη χρησιμοποιημένων θέσεων μνήμης"
+
+#~ msgid "Calculate all positions"
+#~ msgstr "Υπολογισμός όλων των θέσεων"
+
+#~ msgid "Configuration mode: %s"
+#~ msgstr "Τύπος ρύθμισης: %s"
+
+#~ msgid "Goto index position"
+#~ msgstr "Μετάβαση στην αποθηκευμένη θέση"
+
+#~ msgid "Initial lock ratio"
+#~ msgstr "Αρχική αναλογία κλειδώματος"
+
+#~ msgid "Initial signal quality"
+#~ msgstr "Αρχική ποιότητα σήματος"
+
+#~ msgid "Initial signal quality:"
+#~ msgstr "Αρχική ποιότητα σήματος:"
+
+#~ msgid "Lock ratio"
+#~ msgstr "Κλείδωμα αναλογιών"
+
+#~ msgid "Move to position X"
+#~ msgstr "Κίνηση στη θέση Χ"
+
+#~ msgid "Rotor step position:"
+#~ msgstr "Θέση βήματος του μοτέρ:"
+
+#~ msgid "Satellite longitude:"
+#~ msgstr "Γεωγραφικό μήκος δορυφόρου:"
+
+#~ msgid "Signal OK, proceeding"
+#~ msgstr "Το σήμα είναι ΟΚ, συνέχεια"
+
+#~ msgid "Signal quality"
+#~ msgstr "Ποιότητα σήματος"
+
+#~ msgid "Site latitude"
+#~ msgstr "Γεωγραφικό πλάτος"
+
+#~ msgid "Site longitude"
+#~ msgstr "Γεωγραφικό μήκος"
+
+#~ msgid "Store at index"
+#~ msgstr "Αποθήκευση στη θέση"
+
+#~ msgid "Strongest position"
+#~ msgstr "Ισχυρότερη θέση"
+
+#~ msgid "USALS calibration"
+#~ msgstr "Υπολογισμός USALS"
+
+#~ msgid "Using LNB %d"
+#~ msgstr "Χρήση του LNB %d"
+
+#~ msgid "Using tuner %s"
+#~ msgstr "Χρήση του tuner %s"
+
+#~ msgid "Weighted position"
+#~ msgstr "Σταθμισμένη θέση"
+
+#~ msgid ""
+#~ "Configure whether another tuner from the preferred list is allocated "
+#~ "instead of sharing a tuner that is already active recording the same "
+#~ "channel."
+#~ msgstr ""
+#~ "Ρυθμίστε εάν ένα άλλο tuner από τη λίστα προτιμώμενων θα διατίθεται αντί "
+#~ "να μοιράζεται ένα tuner που είναι ήδη ενεργό για εγγραφή του ίδιου "
+#~ "καναλιού."
+
+#~ msgid "Experimental: strict limitation to preferred tuners"
+#~ msgstr "Πειραματικό: αυστηρός περιορισμός στα πρωτιμώμενα tuners"
+
+#~ msgid ""
+#~ "In expert mode, configure which tuners will be preferred, when more than "
+#~ "one tuner is available."
+#~ msgstr ""
+#~ "Στην προχωρημένη λειτουργία, ρυθμίστε ποια tuners θα προτιμώνται, όταν "
+#~ "περισσότερα του ενός είναι διαθέσιμα."
+
+#~ msgid "Preferred tuners, multiple selection allowed"
+#~ msgstr "Προτιμώμενα tuners, επιτρέπεται η πολλαπλή επιλογή"
 
 #, fuzzy
 #~ msgid "%s %s %s."
