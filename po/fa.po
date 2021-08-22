@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-08-21 11:25+0000\n"
+"POT-Creation-Date: 2021-08-22 21:17+0000\n"
 "PO-Revision-Date: 2021-08-15 18:50+0000\n"
 "Last-Translator: openATV <openatv@gmail.com>\n"
 "Language-Team: Persian <https://hosted.weblate.org/projects/openatv/"
@@ -2699,9 +2699,6 @@ msgid ""
 "save setting up the same LNB multiple times."
 msgstr ""
 
-msgid "Allocate unused memory index"
-msgstr ""
-
 msgid "Allow 10bit"
 msgstr ""
 
@@ -3834,9 +3831,6 @@ msgstr ""
 msgid "Calculate"
 msgstr "محاسبه"
 
-msgid "Calculate all positions"
-msgstr "محاسبه همه موقعیت ها"
-
 msgid "Calculate file checksums"
 msgstr ""
 
@@ -4542,10 +4536,6 @@ msgstr "پیکربندی"
 
 msgid "Configuration mode"
 msgstr ""
-
-#, fuzzy, python-format
-msgid "Configuration mode: %s"
-msgstr "پیکربندی"
 
 msgid ""
 "Configuration options for the HELP screen can be found in 'MENU > Setup > "
@@ -5595,6 +5585,22 @@ msgstr "پوشه"
 #, fuzzy, python-format
 msgid "Directory %s does not exist."
 msgstr "پوشه %s وجود ندارد"
+
+#, python-format
+msgid "Directory '%s' can't be linked to recordings!"
+msgstr ""
+
+#, python-format
+msgid "Directory '%s' does not exist!"
+msgstr ""
+
+#, python-format
+msgid "Directory '%s' not writable!"
+msgstr ""
+
+#, python-format
+msgid "Directory '%s' not writeable!"
+msgstr ""
 
 msgid "Directory browser"
 msgstr "مرورگر شاخه"
@@ -7081,6 +7087,10 @@ msgstr ""
 msgid "Flash Online a new image"
 msgstr ""
 
+#, python-format
+msgid "Flash directory '%s' not allowed!"
+msgstr ""
+
 msgid "Flash on the fly your your Receiver software."
 msgstr ""
 
@@ -7496,10 +7506,6 @@ msgstr ""
 
 msgid "Goto X"
 msgstr "مراجعه به X"
-
-#, fuzzy
-msgid "Goto index position"
-msgstr "مراجعه به موقعیت"
 
 msgid "Goto next bouquet"
 msgstr ""
@@ -8267,16 +8273,6 @@ msgstr "CI وظیفه"
 
 msgid "Init"
 msgstr "Init"
-
-msgid "Initial lock ratio"
-msgstr "نسبت قفل اولیه"
-
-msgid "Initial signal quality"
-msgstr "آماده سازی کیفیت سیگنال"
-
-#
-msgid "Initial signal quality:"
-msgstr "آماده سازی کیفیت سیگنال:"
 
 msgid "Initialization"
 msgstr "مقدار دهی اولیه"
@@ -9126,9 +9122,6 @@ msgstr "محل"
 msgid "Location list"
 msgstr "محل"
 
-msgid "Lock ratio"
-msgstr "نسبت قفل"
-
 msgid "Log"
 msgstr ""
 
@@ -9790,9 +9783,6 @@ msgstr ""
 
 msgid "Move to last line / screen"
 msgstr ""
-
-msgid "Move to position X"
-msgstr "جابجایی به موقعت X"
 
 #, fuzzy
 msgid "Move up a line"
@@ -11532,6 +11522,9 @@ msgstr "لطفا یک کانال فرعی انتخاب کنید"
 msgid "Please select an NFI file and press green key to flash!"
 msgstr ""
 
+msgid "Please select an acceptable directory."
+msgstr ""
+
 msgid "Please select an aspect ratio..."
 msgstr ""
 
@@ -12852,10 +12845,6 @@ msgstr ""
 msgid "Root directory"
 msgstr "پوشه root"
 
-#, fuzzy
-msgid "Rotor step position:"
-msgstr "ذخیره مکان"
-
 msgid "Rotor turning speed"
 msgstr "سرعت چرخش موتور"
 
@@ -13074,9 +13063,6 @@ msgstr "تجهیزات ماهواره"
 #, fuzzy
 msgid "Satellite equipment setup"
 msgstr "تجهیزات ماهواره"
-
-msgid "Satellite longitude:"
-msgstr "طول جغرافیایی ماهواره:"
 
 msgid "Satellites"
 msgstr "ماهواره ها"
@@ -14747,16 +14733,9 @@ msgstr "سیرا لئون"
 msgid "Signal Finder"
 msgstr ""
 
-msgid "Signal OK, proceeding"
-msgstr ""
-
 #
 msgid "Signal Strength:"
 msgstr "قدرت سیگنال:"
-
-#
-msgid "Signal quality"
-msgstr "کیفیت سیگنال"
 
 #
 msgid "Signal strength:"
@@ -14824,12 +14803,6 @@ msgstr ""
 
 msgid "Sitcom"
 msgstr ""
-
-msgid "Site latitude"
-msgstr "عرض جغرافیایی سایت"
-
-msgid "Site longitude"
-msgstr "طول جغرافیایی سایت"
 
 msgid "Size"
 msgstr ""
@@ -15394,10 +15367,6 @@ msgstr "متوقف شده"
 msgid "Storage devices"
 msgstr "لیست دستگاه های ذخیره سازی"
 
-#, fuzzy
-msgid "Store at index"
-msgstr "ذخیره مکان"
-
 msgid "Store position"
 msgstr "ذخیره مکان"
 
@@ -15441,9 +15410,6 @@ msgstr ""
 
 msgid "Stripes"
 msgstr ""
-
-msgid "Strongest position"
-msgstr "قوی ترین مکان"
 
 msgid "Stumm"
 msgstr ""
@@ -17102,9 +17068,6 @@ msgid ""
 "to be setup and saved individually."
 msgstr ""
 
-msgid "USALS calibration"
-msgstr ""
-
 msgid "USB Stick"
 msgstr ""
 
@@ -17588,18 +17551,10 @@ msgstr ""
 msgid "Username:"
 msgstr ""
 
-#, python-format
-msgid "Using LNB %d"
-msgstr ""
-
 msgid "Using fixed address"
 msgstr ""
 
 msgid "Using old profile: "
-msgstr ""
-
-#, python-format
-msgid "Using tuner %s"
 msgstr ""
 
 msgid "Uzbek"
@@ -18073,10 +18028,6 @@ msgstr "روز هفته"
 #, fuzzy
 msgid "Weekly"
 msgstr "هفته ای"
-
-#, fuzzy
-msgid "Weighted position"
-msgstr "مکان ذخیره شد"
 
 msgid "Welcome to IceTV"
 msgstr ""
@@ -21827,11 +21778,6 @@ msgid ""
 msgstr ""
 
 msgid ""
-"Configure whether another tuner from the preferred list is allocated instead "
-"of sharing a tuner that is already active recording the same channel."
-msgstr ""
-
-msgid ""
 "Configure whether the 'recording' symbol (in the display skin and LCD skin) "
 "is visible for real recordings only or also for streaming and pseuso "
 "recordings (e.g. EPGrefresh)."
@@ -22129,9 +22075,6 @@ msgstr ""
 msgid "Event font size"
 msgstr ""
 
-msgid "Experimental: strict limitation to preferred tuners"
-msgstr ""
-
 msgid "Experimental: strict limitation to preferred tuners for recordings"
 msgstr ""
 
@@ -22339,11 +22282,6 @@ msgstr ""
 msgid ""
 "In expert mode, configure which tuners will be preferred for recordings, "
 "when more than one tuner is available."
-msgstr ""
-
-msgid ""
-"In expert mode, configure which tuners will be preferred, when more than one "
-"tuner is available."
 msgstr ""
 
 msgid ""
@@ -22651,9 +22589,6 @@ msgid "Preferred tuner for recordings"
 msgstr "تیونر ارجح برای ضبط"
 
 msgid "Preferred tuners for recordings, multiple selection allowed"
-msgstr ""
-
-msgid "Preferred tuners, multiple selection allowed"
 msgstr ""
 
 #, fuzzy
@@ -24393,6 +24328,61 @@ msgstr ""
 
 msgid "J"
 msgstr ""
+
+#~ msgid "Calculate all positions"
+#~ msgstr "محاسبه همه موقعیت ها"
+
+#, fuzzy
+#~ msgid "Configuration mode: %s"
+#~ msgstr "پیکربندی"
+
+#, fuzzy
+#~ msgid "Goto index position"
+#~ msgstr "مراجعه به موقعیت"
+
+#~ msgid "Initial lock ratio"
+#~ msgstr "نسبت قفل اولیه"
+
+#~ msgid "Initial signal quality"
+#~ msgstr "آماده سازی کیفیت سیگنال"
+
+#
+#~ msgid "Initial signal quality:"
+#~ msgstr "آماده سازی کیفیت سیگنال:"
+
+#~ msgid "Lock ratio"
+#~ msgstr "نسبت قفل"
+
+#~ msgid "Move to position X"
+#~ msgstr "جابجایی به موقعت X"
+
+#, fuzzy
+#~ msgid "Rotor step position:"
+#~ msgstr "ذخیره مکان"
+
+#~ msgid "Satellite longitude:"
+#~ msgstr "طول جغرافیایی ماهواره:"
+
+#
+#~ msgid "Signal quality"
+#~ msgstr "کیفیت سیگنال"
+
+#~ msgid "Site latitude"
+#~ msgstr "عرض جغرافیایی سایت"
+
+#~ msgid "Site longitude"
+#~ msgstr "طول جغرافیایی سایت"
+
+#, fuzzy
+#~ msgid "Store at index"
+#~ msgstr "ذخیره مکان"
+
+#~ msgid "Strongest position"
+#~ msgstr "قوی ترین مکان"
+
+#, fuzzy
+#~ msgid "Weighted position"
+#~ msgstr "مکان ذخیره شد"
 
 #, fuzzy
 #~ msgid "%s %s %s."
