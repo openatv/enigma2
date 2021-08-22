@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: hu_po v3.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-08-21 11:25+0000\n"
+"POT-Creation-Date: 2021-08-22 21:17+0000\n"
 "PO-Revision-Date: 2020-06-04 11:20+0200\n"
 "Last-Translator: Alec <alex1vagyok@gmail.com>\n"
 "Language-Team: Alec <alex1vagyok@gmail.com>\n"
@@ -2652,9 +2652,6 @@ msgstr ""
 "kiválaszthatja más műholdak számára (például motoros dishezhez), hogy "
 "elmenthesse ugyanazon LNB beállítását többször."
 
-msgid "Allocate unused memory index"
-msgstr "Használatlan memóriaindex hozzárendelés"
-
 msgid "Allow 10bit"
 msgstr "A 10bit engedélyezése"
 
@@ -3785,9 +3782,6 @@ msgstr "Cached:"
 msgid "Calculate"
 msgstr "Számítás"
 
-msgid "Calculate all positions"
-msgstr "Minden pozíció kiszámítása"
-
 msgid "Calculate file checksums"
 msgstr "Fájlellenőrző összegek számítása"
 
@@ -4497,10 +4491,6 @@ msgstr "Konfigurálás"
 
 msgid "Configuration mode"
 msgstr "Konfigurációs mód"
-
-#, python-format
-msgid "Configuration mode: %s"
-msgstr "Konfigurációs mód: %s"
 
 msgid ""
 "Configuration options for the HELP screen can be found in 'MENU > Setup > "
@@ -5552,6 +5542,22 @@ msgstr "Mappa"
 #, python-format
 msgid "Directory %s does not exist."
 msgstr "A %s mappa nem létezik."
+
+#, python-format
+msgid "Directory '%s' can't be linked to recordings!"
+msgstr ""
+
+#, python-format
+msgid "Directory '%s' does not exist!"
+msgstr ""
+
+#, python-format
+msgid "Directory '%s' not writable!"
+msgstr ""
+
+#, python-format
+msgid "Directory '%s' not writeable!"
+msgstr ""
 
 msgid "Directory browser"
 msgstr "Mappa tallózása"
@@ -7067,6 +7073,10 @@ msgstr "Flash Online"
 msgid "Flash Online a new image"
 msgstr "Egy új lemezkép Online Flashelése"
 
+#, python-format
+msgid "Flash directory '%s' not allowed!"
+msgstr ""
+
 msgid "Flash on the fly your your Receiver software."
 msgstr "A készülék szoftverének Flashelése."
 
@@ -7474,9 +7484,6 @@ msgstr "Ugrás a Főműsoridőre"
 
 msgid "Goto X"
 msgstr "Goto X"
-
-msgid "Goto index position"
-msgstr "Ugrás az indexre"
 
 msgid "Goto next bouquet"
 msgstr "Következő csatornacsomagra"
@@ -8275,15 +8282,6 @@ msgstr "Infotainment"
 
 msgid "Init"
 msgstr "Inicializálás"
-
-msgid "Initial lock ratio"
-msgstr "Kezdeti hangolási arány"
-
-msgid "Initial signal quality"
-msgstr "Eredeti jelminőség"
-
-msgid "Initial signal quality:"
-msgstr "Eredeti jelminőség:"
 
 msgid "Initialization"
 msgstr "Inicializálás"
@@ -9095,9 +9093,6 @@ msgstr "Hely"
 msgid "Location list"
 msgstr "Helylista"
 
-msgid "Lock ratio"
-msgstr "Hangolási arány"
-
 msgid "Log"
 msgstr "Napló"
 
@@ -9751,9 +9746,6 @@ msgstr "A lista elejére"
 
 msgid "Move to last line / screen"
 msgstr ""
-
-msgid "Move to position X"
-msgstr "Mozgatás az X pozícióra"
 
 msgid "Move up a line"
 msgstr "Feljebb lép egy sorral"
@@ -11449,6 +11441,9 @@ msgstr ""
 "Kérem, válasszon egy NFI fájlt, majd nyomja meg a Zöld gombot a flash-"
 "eléshez!"
 
+msgid "Please select an acceptable directory."
+msgstr ""
+
 msgid "Please select an aspect ratio..."
 msgstr "Válasszon egy képarányt..."
 
@@ -12721,9 +12716,6 @@ msgstr "Root"
 msgid "Root directory"
 msgstr "Gyökérmappa"
 
-msgid "Rotor step position:"
-msgstr "Motor léptető pozíció:"
-
 msgid "Rotor turning speed"
 msgstr "Fogratómotor sebesség"
 
@@ -12942,9 +12934,6 @@ msgstr "Műholdvevő eszköz"
 
 msgid "Satellite equipment setup"
 msgstr "Műholdvevö eszköz beállítása"
-
-msgid "Satellite longitude:"
-msgstr "Műhold hosszúsági fok:"
 
 msgid "Satellites"
 msgstr "Műholdak"
@@ -14732,14 +14721,8 @@ msgstr "Sierra Leone"
 msgid "Signal Finder"
 msgstr "Jelkereső"
 
-msgid "Signal OK, proceeding"
-msgstr "Jelszint rendben, kezdem"
-
 msgid "Signal Strength:"
 msgstr "Jelerősség:"
-
-msgid "Signal quality"
-msgstr "Jelminőség"
 
 msgid "Signal strength:"
 msgstr "Jelerősség:"
@@ -14801,12 +14784,6 @@ msgstr "Szent Martin (Holland rész)"
 
 msgid "Sitcom"
 msgstr "Sitcom"
-
-msgid "Site latitude"
-msgstr "Földrajzi szélességi fok"
-
-msgid "Site longitude"
-msgstr "Földrajzi hosszúsági fok"
 
 msgid "Size"
 msgstr "Méret"
@@ -15368,9 +15345,6 @@ msgstr "Leállítva"
 msgid "Storage devices"
 msgstr "Tárolóeszközök"
 
-msgid "Store at index"
-msgstr "Tárolás az Index pozícióban"
-
 msgid "Store position"
 msgstr "Pozíció tárolása"
 
@@ -15413,9 +15387,6 @@ msgstr "Szigorú DLNA"
 
 msgid "Stripes"
 msgstr "Sávok"
-
-msgid "Strongest position"
-msgstr "Legerősebb pozíció"
 
 msgid "Stumm"
 msgstr "Néma"
@@ -17220,9 +17191,6 @@ msgstr ""
 "a felhasználó által megadott koordináták alapján. USALS nélkül minden "
 "műholdat külön-külön kell beállítani és menteni."
 
-msgid "USALS calibration"
-msgstr "USALS kalibrálás"
-
 msgid "USB Stick"
 msgstr "USB-stick"
 
@@ -17714,19 +17682,11 @@ msgstr "Felhasználónév (httpuser)"
 msgid "Username:"
 msgstr "Felhasználói név:"
 
-#, python-format
-msgid "Using LNB %d"
-msgstr "%d fej használatával"
-
 msgid "Using fixed address"
 msgstr "Fix cím használatával"
 
 msgid "Using old profile: "
 msgstr "Régi profil használata: "
-
-#, python-format
-msgid "Using tuner %s"
-msgstr "%s tuner használatával"
 
 #, fuzzy
 msgid "Uzbek"
@@ -18177,9 +18137,6 @@ msgstr "Hétvége"
 
 msgid "Weekly"
 msgstr "Hetente"
-
-msgid "Weighted position"
-msgstr "Kiegyensúlyzozott pozíció"
 
 msgid "Welcome to IceTV"
 msgstr "Üdvözöljük az IceTV-ben"
@@ -22158,13 +22115,6 @@ msgstr ""
 "tuner megosztása helyett, amely ugyanazt az élő TV-csatornát használja."
 
 msgid ""
-"Configure whether another tuner from the preferred list is allocated instead "
-"of sharing a tuner that is already active recording the same channel."
-msgstr ""
-"Állítsa be, hogy a preferált listából egy másik tuner kerül-e kiosztásra "
-"olyan tuner megosztása helyett, amely már ugyanazt a csatornát rögzíti."
-
-msgid ""
 "Configure whether the 'recording' symbol (in the display skin and LCD skin) "
 "is visible for real recordings only or also for streaming and pseuso "
 "recordings (e.g. EPGrefresh)."
@@ -22508,9 +22458,6 @@ msgstr ""
 msgid "Event font size"
 msgstr "Esemény betűmérete"
 
-msgid "Experimental: strict limitation to preferred tuners"
-msgstr "Kísérleti: szigorú korlátozás az előnyben részesített tunerekre"
-
 msgid "Experimental: strict limitation to preferred tuners for recordings"
 msgstr "Kísérleti: szigorú korlátozás a preferált felvételi tunerekhez"
 
@@ -22770,13 +22717,6 @@ msgid ""
 msgstr ""
 "Az előnyben részesített tunereket lehet itt beállítani a felvételekhez, több "
 "tuner is kiválasztható amennyiben azokkal rendelkezik a készülék."
-
-msgid ""
-"In expert mode, configure which tuners will be preferred, when more than one "
-"tuner is available."
-msgstr ""
-"Az előnyben részesített tunereket lehet itt beállítani a műsorok nézéséhez, "
-"több tuner is kiválasztható amennyiben azokkal rendelkezik a készülék."
 
 msgid ""
 "In most cases this should be set to No. Only enable if you have a very "
@@ -23089,9 +23029,6 @@ msgid "Preferred tuner for recordings"
 msgstr "Felvételek számára előnyben részesített tuner"
 
 msgid "Preferred tuners for recordings, multiple selection allowed"
-msgstr "Tuner(ek) kiválasztása"
-
-msgid "Preferred tuners, multiple selection allowed"
 msgstr "Tuner(ek) kiválasztása"
 
 msgid "Preparation time for recording (seconds)"
@@ -25038,6 +24975,91 @@ msgstr "IP"
 
 msgid "J"
 msgstr ""
+
+#~ msgid "Allocate unused memory index"
+#~ msgstr "Használatlan memóriaindex hozzárendelés"
+
+#~ msgid "Calculate all positions"
+#~ msgstr "Minden pozíció kiszámítása"
+
+#~ msgid "Configuration mode: %s"
+#~ msgstr "Konfigurációs mód: %s"
+
+#~ msgid "Goto index position"
+#~ msgstr "Ugrás az indexre"
+
+#~ msgid "Initial lock ratio"
+#~ msgstr "Kezdeti hangolási arány"
+
+#~ msgid "Initial signal quality"
+#~ msgstr "Eredeti jelminőség"
+
+#~ msgid "Initial signal quality:"
+#~ msgstr "Eredeti jelminőség:"
+
+#~ msgid "Lock ratio"
+#~ msgstr "Hangolási arány"
+
+#~ msgid "Move to position X"
+#~ msgstr "Mozgatás az X pozícióra"
+
+#~ msgid "Rotor step position:"
+#~ msgstr "Motor léptető pozíció:"
+
+#~ msgid "Satellite longitude:"
+#~ msgstr "Műhold hosszúsági fok:"
+
+#~ msgid "Signal OK, proceeding"
+#~ msgstr "Jelszint rendben, kezdem"
+
+#~ msgid "Signal quality"
+#~ msgstr "Jelminőség"
+
+#~ msgid "Site latitude"
+#~ msgstr "Földrajzi szélességi fok"
+
+#~ msgid "Site longitude"
+#~ msgstr "Földrajzi hosszúsági fok"
+
+#~ msgid "Store at index"
+#~ msgstr "Tárolás az Index pozícióban"
+
+#~ msgid "Strongest position"
+#~ msgstr "Legerősebb pozíció"
+
+#~ msgid "USALS calibration"
+#~ msgstr "USALS kalibrálás"
+
+#~ msgid "Using LNB %d"
+#~ msgstr "%d fej használatával"
+
+#~ msgid "Using tuner %s"
+#~ msgstr "%s tuner használatával"
+
+#~ msgid "Weighted position"
+#~ msgstr "Kiegyensúlyzozott pozíció"
+
+#~ msgid ""
+#~ "Configure whether another tuner from the preferred list is allocated "
+#~ "instead of sharing a tuner that is already active recording the same "
+#~ "channel."
+#~ msgstr ""
+#~ "Állítsa be, hogy a preferált listából egy másik tuner kerül-e kiosztásra "
+#~ "olyan tuner megosztása helyett, amely már ugyanazt a csatornát rögzíti."
+
+#~ msgid "Experimental: strict limitation to preferred tuners"
+#~ msgstr "Kísérleti: szigorú korlátozás az előnyben részesített tunerekre"
+
+#~ msgid ""
+#~ "In expert mode, configure which tuners will be preferred, when more than "
+#~ "one tuner is available."
+#~ msgstr ""
+#~ "Az előnyben részesített tunereket lehet itt beállítani a műsorok "
+#~ "nézéséhez, több tuner is kiválasztható amennyiben azokkal rendelkezik a "
+#~ "készülék."
+
+#~ msgid "Preferred tuners, multiple selection allowed"
+#~ msgstr "Tuner(ek) kiválasztása"
 
 #, fuzzy
 #~ msgid "%s %s %s."
