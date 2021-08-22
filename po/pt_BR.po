@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-08-21 11:25+0000\n"
+"POT-Creation-Date: 2021-08-22 21:17+0000\n"
 "PO-Revision-Date: 2021-08-15 18:50+0000\n"
 "Last-Translator: openATV <openatv@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) <https://hosted.weblate.org/projects/"
@@ -2737,9 +2737,6 @@ msgid ""
 "save setting up the same LNB multiple times."
 msgstr ""
 
-msgid "Allocate unused memory index"
-msgstr "Alocar índice de memória não utilizada"
-
 msgid "Allow 10bit"
 msgstr ""
 
@@ -3894,9 +3891,6 @@ msgstr ""
 msgid "Calculate"
 msgstr "Calcular"
 
-msgid "Calculate all positions"
-msgstr "Calcular todas as posições"
-
 msgid "Calculate file checksums"
 msgstr ""
 
@@ -4631,10 +4625,6 @@ msgstr "Configurando"
 
 msgid "Configuration mode"
 msgstr "Modo de configuração"
-
-#, python-format
-msgid "Configuration mode: %s"
-msgstr "Modo de configuração: %s"
 
 msgid ""
 "Configuration options for the HELP screen can be found in 'MENU > Setup > "
@@ -5700,6 +5690,22 @@ msgstr "Diretório"
 #, python-format
 msgid "Directory %s does not exist."
 msgstr "O diretório %s não existe."
+
+#, python-format
+msgid "Directory '%s' can't be linked to recordings!"
+msgstr ""
+
+#, python-format
+msgid "Directory '%s' does not exist!"
+msgstr ""
+
+#, python-format
+msgid "Directory '%s' not writable!"
+msgstr ""
+
+#, python-format
+msgid "Directory '%s' not writeable!"
+msgstr ""
 
 msgid "Directory browser"
 msgstr "Navegador de arquivos"
@@ -7207,6 +7213,10 @@ msgstr ""
 msgid "Flash Online a new image"
 msgstr ""
 
+#, python-format
+msgid "Flash directory '%s' not allowed!"
+msgstr ""
+
 msgid "Flash on the fly your your Receiver software."
 msgstr ""
 
@@ -7632,9 +7642,6 @@ msgstr "Saltar para posição marc. anteriormente"
 
 msgid "Goto X"
 msgstr "Ir para X"
-
-msgid "Goto index position"
-msgstr "Ir para a posição de índice"
 
 #, fuzzy
 msgid "Goto next bouquet"
@@ -8424,16 +8431,6 @@ msgstr "Escolha de CI"
 
 msgid "Init"
 msgstr "Início"
-
-#, fuzzy
-msgid "Initial lock ratio"
-msgstr "Localização inválida"
-
-msgid "Initial signal quality"
-msgstr "Qualidade de sinal inicial"
-
-msgid "Initial signal quality:"
-msgstr "Qualidade de sinal inicial:"
 
 msgid "Initialization"
 msgstr "Formatar disco rígido"
@@ -9293,10 +9290,6 @@ msgstr "Caminho"
 msgid "Location list"
 msgstr "Localização"
 
-#, fuzzy
-msgid "Lock ratio"
-msgstr "Localização"
-
 msgid "Log"
 msgstr ""
 
@@ -9960,9 +9953,6 @@ msgstr "Saltar parea o fim da lista"
 
 msgid "Move to last line / screen"
 msgstr ""
-
-msgid "Move to position X"
-msgstr "Mover para posição X"
 
 #, fuzzy
 msgid "Move up a line"
@@ -11712,6 +11702,9 @@ msgid "Please select an NFI file and press green key to flash!"
 msgstr ""
 "Por favor escolha um arquivo .NFI e pressione verde para iniciar o flash!"
 
+msgid "Please select an acceptable directory."
+msgstr ""
+
 msgid "Please select an aspect ratio..."
 msgstr ""
 
@@ -13039,9 +13032,6 @@ msgstr ""
 msgid "Root directory"
 msgstr "Diretório raiz"
 
-msgid "Rotor step position:"
-msgstr "Posição de passo do motor:"
-
 msgid "Rotor turning speed"
 msgstr "Velocidade de giro do motor"
 
@@ -13258,9 +13248,6 @@ msgstr "Equipamento de satélite"
 
 msgid "Satellite equipment setup"
 msgstr "Configurar receptor de satélite"
-
-msgid "Satellite longitude:"
-msgstr "Longitude do satélite:"
 
 msgid "Satellites"
 msgstr "Satélites"
@@ -14952,15 +14939,9 @@ msgstr ""
 msgid "Signal Finder"
 msgstr ""
 
-msgid "Signal OK, proceeding"
-msgstr "Sinal OK. Procedendo..."
-
 #, fuzzy
 msgid "Signal Strength:"
 msgstr "Força do sinal:"
-
-msgid "Signal quality"
-msgstr "Qualidade do sinal"
 
 msgid "Signal strength:"
 msgstr "Força do sinal:"
@@ -15024,12 +15005,6 @@ msgstr ""
 
 msgid "Sitcom"
 msgstr ""
-
-msgid "Site latitude"
-msgstr "Latitude local"
-
-msgid "Site longitude"
-msgstr "Longitude local"
 
 msgid "Size"
 msgstr ""
@@ -15597,9 +15572,6 @@ msgstr "Parado"
 msgid "Storage devices"
 msgstr "Listar dispositivos de armazenamento"
 
-msgid "Store at index"
-msgstr "Salvar no índice"
-
 msgid "Store position"
 msgstr "Salvar posição"
 
@@ -15643,9 +15615,6 @@ msgstr ""
 
 msgid "Stripes"
 msgstr ""
-
-msgid "Strongest position"
-msgstr "Posição mais forte"
 
 msgid "Stumm"
 msgstr ""
@@ -17379,9 +17348,6 @@ msgid ""
 "to be setup and saved individually."
 msgstr ""
 
-msgid "USALS calibration"
-msgstr "Calibração USALS"
-
 msgid "USB Stick"
 msgstr ""
 
@@ -17867,19 +17833,11 @@ msgstr ""
 msgid "Username:"
 msgstr "Utilizador"
 
-#, python-format
-msgid "Using LNB %d"
-msgstr "Usando LNB %d"
-
 msgid "Using fixed address"
 msgstr "Usando endereço fixo"
 
 msgid "Using old profile: "
 msgstr ""
-
-#, python-format
-msgid "Using tuner %s"
-msgstr "Usando tuner %s"
 
 msgid "Uzbek"
 msgstr ""
@@ -18348,9 +18306,6 @@ msgstr "Dia de semana"
 #, fuzzy
 msgid "Weekly"
 msgstr "semanal"
-
-msgid "Weighted position"
-msgstr "Posição pesada"
 
 msgid "Welcome to IceTV"
 msgstr ""
@@ -22282,11 +22237,6 @@ msgid ""
 msgstr ""
 
 msgid ""
-"Configure whether another tuner from the preferred list is allocated instead "
-"of sharing a tuner that is already active recording the same channel."
-msgstr ""
-
-msgid ""
 "Configure whether the 'recording' symbol (in the display skin and LCD skin) "
 "is visible for real recordings only or also for streaming and pseuso "
 "recordings (e.g. EPGrefresh)."
@@ -22598,9 +22548,6 @@ msgstr ""
 msgid "Event font size"
 msgstr "Tamanho de letra"
 
-msgid "Experimental: strict limitation to preferred tuners"
-msgstr ""
-
 msgid "Experimental: strict limitation to preferred tuners for recordings"
 msgstr ""
 
@@ -22813,14 +22760,6 @@ msgid ""
 "In expert mode, configure which tuners will be preferred for recordings, "
 "when more than one tuner is available."
 msgstr ""
-
-#, fuzzy
-msgid ""
-"In expert mode, configure which tuners will be preferred, when more than one "
-"tuner is available."
-msgstr ""
-"Configurar o tipo de tuner/sintonizador preferido, quando o mesmo serviço "
-"está disponível em diferentes tipos de tuners/sintonizadores."
 
 msgid ""
 "In most cases this should be set to No. Only enable if you have a very "
@@ -23141,9 +23080,6 @@ msgid "Preferred tuner for recordings"
 msgstr ""
 
 msgid "Preferred tuners for recordings, multiple selection allowed"
-msgstr ""
-
-msgid "Preferred tuners, multiple selection allowed"
 msgstr ""
 
 #, fuzzy
@@ -24973,6 +24909,79 @@ msgstr ""
 
 msgid "J"
 msgstr ""
+
+#~ msgid "Allocate unused memory index"
+#~ msgstr "Alocar índice de memória não utilizada"
+
+#~ msgid "Calculate all positions"
+#~ msgstr "Calcular todas as posições"
+
+#~ msgid "Configuration mode: %s"
+#~ msgstr "Modo de configuração: %s"
+
+#~ msgid "Goto index position"
+#~ msgstr "Ir para a posição de índice"
+
+#, fuzzy
+#~ msgid "Initial lock ratio"
+#~ msgstr "Localização inválida"
+
+#~ msgid "Initial signal quality"
+#~ msgstr "Qualidade de sinal inicial"
+
+#~ msgid "Initial signal quality:"
+#~ msgstr "Qualidade de sinal inicial:"
+
+#, fuzzy
+#~ msgid "Lock ratio"
+#~ msgstr "Localização"
+
+#~ msgid "Move to position X"
+#~ msgstr "Mover para posição X"
+
+#~ msgid "Rotor step position:"
+#~ msgstr "Posição de passo do motor:"
+
+#~ msgid "Satellite longitude:"
+#~ msgstr "Longitude do satélite:"
+
+#~ msgid "Signal OK, proceeding"
+#~ msgstr "Sinal OK. Procedendo..."
+
+#~ msgid "Signal quality"
+#~ msgstr "Qualidade do sinal"
+
+#~ msgid "Site latitude"
+#~ msgstr "Latitude local"
+
+#~ msgid "Site longitude"
+#~ msgstr "Longitude local"
+
+#~ msgid "Store at index"
+#~ msgstr "Salvar no índice"
+
+#~ msgid "Strongest position"
+#~ msgstr "Posição mais forte"
+
+#~ msgid "USALS calibration"
+#~ msgstr "Calibração USALS"
+
+#~ msgid "Using LNB %d"
+#~ msgstr "Usando LNB %d"
+
+#~ msgid "Using tuner %s"
+#~ msgstr "Usando tuner %s"
+
+#~ msgid "Weighted position"
+#~ msgstr "Posição pesada"
+
+#, fuzzy
+#~ msgid ""
+#~ "In expert mode, configure which tuners will be preferred, when more than "
+#~ "one tuner is available."
+#~ msgstr ""
+#~ "Configurar o tipo de tuner/sintonizador preferido, quando o mesmo serviço "
+#~ "está disponível em diferentes tipos de tuners/sintonizadores."
 
 #, fuzzy
 #~ msgid "%s %s %s."
