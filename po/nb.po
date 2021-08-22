@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-08-21 11:25+0000\n"
+"POT-Creation-Date: 2021-08-22 21:17+0000\n"
 "PO-Revision-Date: 2021-08-19 14:13+0000\n"
 "Last-Translator: Allan Nordhøy <epost@anotheragency.no>\n"
 "Language-Team: Norwegian Bokmål <https://hosted.weblate.org/projects/openatv/"
@@ -2508,9 +2508,6 @@ msgstr ""
 "denne LNB igjen for andre satellitter (f.eks motorisert parabol) lagre og "
 "sette opp samme LNB flere ganger."
 
-msgid "Allocate unused memory index"
-msgstr "Tildel ubrukt minneregister"
-
 msgid "Allow 10bit"
 msgstr "Tillat 10bit"
 
@@ -3598,9 +3595,6 @@ msgstr ""
 msgid "Calculate"
 msgstr "Beregner"
 
-msgid "Calculate all positions"
-msgstr "Beregner alle posisjoner"
-
 msgid "Calculate file checksums"
 msgstr ""
 
@@ -4281,10 +4275,6 @@ msgstr ""
 
 msgid "Configuration mode"
 msgstr "Aktiveringsvalg"
-
-#, python-format
-msgid "Configuration mode: %s"
-msgstr "Oppsettstype: %s"
 
 msgid ""
 "Configuration options for the HELP screen can be found in 'MENU > Setup > "
@@ -5287,6 +5277,22 @@ msgstr "Mappe"
 #, python-format
 msgid "Directory %s does not exist."
 msgstr "Mappe %s finnes ikke."
+
+#, python-format
+msgid "Directory '%s' can't be linked to recordings!"
+msgstr ""
+
+#, python-format
+msgid "Directory '%s' does not exist!"
+msgstr ""
+
+#, python-format
+msgid "Directory '%s' not writable!"
+msgstr ""
+
+#, python-format
+msgid "Directory '%s' not writeable!"
+msgstr ""
 
 msgid "Directory browser"
 msgstr "Filutforsker"
@@ -6731,6 +6737,10 @@ msgstr ""
 msgid "Flash Online a new image"
 msgstr ""
 
+#, python-format
+msgid "Flash directory '%s' not allowed!"
+msgstr ""
+
 msgid "Flash on the fly your your Receiver software."
 msgstr ""
 
@@ -7125,9 +7135,6 @@ msgstr ""
 
 msgid "Goto X"
 msgstr "Gå til X"
-
-msgid "Goto index position"
-msgstr "Gå til startposisjon"
 
 msgid "Goto next bouquet"
 msgstr ""
@@ -7882,15 +7889,6 @@ msgstr ""
 
 msgid "Init"
 msgstr "Igangsett"
-
-msgid "Initial lock ratio"
-msgstr "Låse forhold"
-
-msgid "Initial signal quality"
-msgstr "Signal kvalitet"
-
-msgid "Initial signal quality:"
-msgstr "Signal kvalitet:"
 
 msgid "Initialization"
 msgstr "Oppstart"
@@ -8681,9 +8679,6 @@ msgstr "Opptaksmappe"
 msgid "Location list"
 msgstr ""
 
-msgid "Lock ratio"
-msgstr "Låsforhold"
-
 msgid "Log"
 msgstr ""
 
@@ -9305,9 +9300,6 @@ msgstr ""
 
 msgid "Move to last line / screen"
 msgstr ""
-
-msgid "Move to position X"
-msgstr "Flytt til posisjon X"
 
 msgid "Move up a line"
 msgstr ""
@@ -10935,6 +10927,9 @@ msgstr "Velg en underleverandør..."
 msgid "Please select an NFI file and press green key to flash!"
 msgstr ""
 
+msgid "Please select an acceptable directory."
+msgstr ""
+
 msgid "Please select an aspect ratio..."
 msgstr ""
 
@@ -12163,9 +12158,6 @@ msgstr "Root"
 msgid "Root directory"
 msgstr "Rot katalog"
 
-msgid "Rotor step position:"
-msgstr "Rotor trinn posisjon:"
-
 msgid "Rotor turning speed"
 msgstr "Rotor dreiehastighet"
 
@@ -12375,9 +12367,6 @@ msgstr "Satellittutstyr"
 
 msgid "Satellite equipment setup"
 msgstr "DiSEqC oppsett"
-
-msgid "Satellite longitude:"
-msgstr "Satellitt lengdegrad:"
 
 msgid "Satellites"
 msgstr "Leverandørlister"
@@ -14018,14 +14007,8 @@ msgstr "Sierra Leone"
 msgid "Signal Finder"
 msgstr ""
 
-msgid "Signal OK, proceeding"
-msgstr "Signal ok, fortsetter"
-
 msgid "Signal Strength:"
 msgstr ""
-
-msgid "Signal quality"
-msgstr "Signalkvalitet"
 
 msgid "Signal strength:"
 msgstr "Signalstyrke:"
@@ -14086,12 +14069,6 @@ msgstr ""
 
 msgid "Sitcom"
 msgstr ""
-
-msgid "Site latitude"
-msgstr "Mottakers breddegrad"
-
-msgid "Site longitude"
-msgstr "Mottakers lengdegrad"
 
 msgid "Size"
 msgstr "Størrelse"
@@ -14628,9 +14605,6 @@ msgstr "Stoppet"
 msgid "Storage devices"
 msgstr ""
 
-msgid "Store at index"
-msgstr "Lagre i meny"
-
 msgid "Store position"
 msgstr "Lagre posisjon"
 
@@ -14673,9 +14647,6 @@ msgstr ""
 
 msgid "Stripes"
 msgstr ""
-
-msgid "Strongest position"
-msgstr "Sterkeste posisjon"
 
 msgid "Stumm"
 msgstr ""
@@ -16290,9 +16261,6 @@ msgstr ""
 "koordinatene angitt av brukeren. Uten USALS må hver satellitt installeres og "
 "lagres enkeltvis."
 
-msgid "USALS calibration"
-msgstr "USALS kalibrering"
-
 msgid "USB Stick"
 msgstr ""
 
@@ -16755,19 +16723,11 @@ msgstr ""
 msgid "Username:"
 msgstr ""
 
-#, python-format
-msgid "Using LNB %d"
-msgstr "Bruker LNB %d"
-
 msgid "Using fixed address"
 msgstr "Bruker fast adresse"
 
 msgid "Using old profile: "
 msgstr ""
-
-#, python-format
-msgid "Using tuner %s"
-msgstr "Bruker tuner %s"
 
 msgid "Uzbek"
 msgstr ""
@@ -17201,9 +17161,6 @@ msgstr ""
 
 msgid "Weekly"
 msgstr ""
-
-msgid "Weighted position"
-msgstr "Hoved posisjon"
 
 msgid "Welcome to IceTV"
 msgstr ""
@@ -20902,11 +20859,6 @@ msgid ""
 msgstr ""
 
 msgid ""
-"Configure whether another tuner from the preferred list is allocated instead "
-"of sharing a tuner that is already active recording the same channel."
-msgstr ""
-
-msgid ""
 "Configure whether the 'recording' symbol (in the display skin and LCD skin) "
 "is visible for real recordings only or also for streaming and pseuso "
 "recordings (e.g. EPGrefresh)."
@@ -21208,9 +21160,6 @@ msgstr ""
 msgid "Event font size"
 msgstr ""
 
-msgid "Experimental: strict limitation to preferred tuners"
-msgstr ""
-
 msgid "Experimental: strict limitation to preferred tuners for recordings"
 msgstr ""
 
@@ -21411,11 +21360,6 @@ msgstr ""
 msgid ""
 "In expert mode, configure which tuners will be preferred for recordings, "
 "when more than one tuner is available."
-msgstr ""
-
-msgid ""
-"In expert mode, configure which tuners will be preferred, when more than one "
-"tuner is available."
 msgstr ""
 
 msgid ""
@@ -21717,9 +21661,6 @@ msgid "Preferred tuner for recordings"
 msgstr "Foretrukket tuner for opptak"
 
 msgid "Preferred tuners for recordings, multiple selection allowed"
-msgstr ""
-
-msgid "Preferred tuners, multiple selection allowed"
 msgstr ""
 
 msgid "Preparation time for recording (seconds)"
@@ -23448,6 +23389,69 @@ msgstr "I"
 
 msgid "J"
 msgstr "J"
+
+#~ msgid "Allocate unused memory index"
+#~ msgstr "Tildel ubrukt minneregister"
+
+#~ msgid "Calculate all positions"
+#~ msgstr "Beregner alle posisjoner"
+
+#~ msgid "Configuration mode: %s"
+#~ msgstr "Oppsettstype: %s"
+
+#~ msgid "Goto index position"
+#~ msgstr "Gå til startposisjon"
+
+#~ msgid "Initial lock ratio"
+#~ msgstr "Låse forhold"
+
+#~ msgid "Initial signal quality"
+#~ msgstr "Signal kvalitet"
+
+#~ msgid "Initial signal quality:"
+#~ msgstr "Signal kvalitet:"
+
+#~ msgid "Lock ratio"
+#~ msgstr "Låsforhold"
+
+#~ msgid "Move to position X"
+#~ msgstr "Flytt til posisjon X"
+
+#~ msgid "Rotor step position:"
+#~ msgstr "Rotor trinn posisjon:"
+
+#~ msgid "Satellite longitude:"
+#~ msgstr "Satellitt lengdegrad:"
+
+#~ msgid "Signal OK, proceeding"
+#~ msgstr "Signal ok, fortsetter"
+
+#~ msgid "Signal quality"
+#~ msgstr "Signalkvalitet"
+
+#~ msgid "Site latitude"
+#~ msgstr "Mottakers breddegrad"
+
+#~ msgid "Site longitude"
+#~ msgstr "Mottakers lengdegrad"
+
+#~ msgid "Store at index"
+#~ msgstr "Lagre i meny"
+
+#~ msgid "Strongest position"
+#~ msgstr "Sterkeste posisjon"
+
+#~ msgid "USALS calibration"
+#~ msgstr "USALS kalibrering"
+
+#~ msgid "Using LNB %d"
+#~ msgstr "Bruker LNB %d"
+
+#~ msgid "Using tuner %s"
+#~ msgstr "Bruker tuner %s"
+
+#~ msgid "Weighted position"
+#~ msgstr "Hoved posisjon"
 
 #~ msgid "-NO SERVICE\n"
 #~ msgstr "-INGEN TJENESTE\n"
