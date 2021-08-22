@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Apachi70 (OpenATV)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-08-21 11:25+0000\n"
+"POT-Creation-Date: 2021-08-22 21:17+0000\n"
 "PO-Revision-Date: 2021-08-20 04:04+0000\n"
 "Last-Translator: openATV <openatv@gmail.com>\n"
 "Language-Team: Turkish <https://hosted.weblate.org/projects/openatv/"
@@ -2784,9 +2784,6 @@ msgstr ""
 "ayarlayarak tasarruf etmek için diğer uydularda (örneğin motorlu "
 "bulaşıklarda) bu LNB'yi tekrar seçebileceksiniz."
 
-msgid "Allocate unused memory index"
-msgstr "Kullanılmayan belleği ayır"
-
 msgid "Allow 10bit"
 msgstr "10 bit'e izin ver"
 
@@ -3973,9 +3970,6 @@ msgstr "Önbellekte:"
 msgid "Calculate"
 msgstr "Hesapla"
 
-msgid "Calculate all positions"
-msgstr "Tüm konumları hesapla"
-
 msgid "Calculate file checksums"
 msgstr "Dosya sağlama toplamlarını hesapla"
 
@@ -4748,11 +4742,6 @@ msgstr "Yapılandırılıyor"
 
 msgid "Configuration mode"
 msgstr "Yapılandırma modu"
-
-#
-#, python-format
-msgid "Configuration mode: %s"
-msgstr "Yapılandırılıyor: %s"
 
 msgid ""
 "Configuration options for the HELP screen can be found in 'MENU > Setup > "
@@ -5875,6 +5864,22 @@ msgstr "Klasör"
 #, python-format
 msgid "Directory %s does not exist."
 msgstr "%s klasörü oluşturulmamış."
+
+#, python-format
+msgid "Directory '%s' can't be linked to recordings!"
+msgstr ""
+
+#, python-format
+msgid "Directory '%s' does not exist!"
+msgstr ""
+
+#, python-format
+msgid "Directory '%s' not writable!"
+msgstr ""
+
+#, python-format
+msgid "Directory '%s' not writeable!"
+msgstr ""
 
 #
 msgid "Directory browser"
@@ -7526,6 +7531,10 @@ msgstr "Çevrimiçi flaş"
 msgid "Flash Online a new image"
 msgstr "Flash Çevrimiçi yeni bir görüntü"
 
+#, python-format
+msgid "Flash directory '%s' not allowed!"
+msgstr ""
+
 msgid "Flash on the fly your your Receiver software."
 msgstr "Uçan Flash'ı, Receiver yazılımınız."
 
@@ -7970,10 +7979,6 @@ msgstr "Primetime git"
 #
 msgid "Goto X"
 msgstr "Goto X"
-
-#
-msgid "Goto index position"
-msgstr "Endeks pozisyonuna git"
 
 msgid "Goto next bouquet"
 msgstr "Sonraki bukete git"
@@ -8799,17 +8804,6 @@ msgstr "CCcamInfo Mainmenu"
 #
 msgid "Init"
 msgstr "Sıfırla"
-
-#
-msgid "Initial lock ratio"
-msgstr "İlk kilitlenme oranı"
-
-msgid "Initial signal quality"
-msgstr "Başlangıç sinyal kalitesi"
-
-#
-msgid "Initial signal quality:"
-msgstr "Bağlantı kalitesi:"
 
 msgid "Initialization"
 msgstr "Sıfırlama"
@@ -9711,10 +9705,6 @@ msgstr "Konum"
 msgid "Location list"
 msgstr "Konum listesi"
 
-#
-msgid "Lock ratio"
-msgstr "Kilitlenme oranı"
-
 msgid "Log"
 msgstr "Log"
 
@@ -10420,10 +10410,6 @@ msgstr "Listenin başına taşı"
 
 msgid "Move to last line / screen"
 msgstr ""
-
-#
-msgid "Move to position X"
-msgstr "X Konumuna git"
 
 #, fuzzy
 msgid "Move up a line"
@@ -12275,6 +12261,9 @@ msgstr "Lütfen bir alt servis seçin..."
 msgid "Please select an NFI file and press green key to flash!"
 msgstr "Lütfen NFI dosyasını seçtikten sonra flaşlamak için yeşil tuşa basın!"
 
+msgid "Please select an acceptable directory."
+msgstr ""
+
 msgid "Please select an aspect ratio..."
 msgstr "Lütfen bir en boy oranı seçin ..."
 
@@ -13693,10 +13682,6 @@ msgid "Root directory"
 msgstr "Kök klasör"
 
 #
-msgid "Rotor step position:"
-msgstr "Rotor adım pozisyonu:"
-
-#
 msgid "Rotor turning speed"
 msgstr "Motor dönüş hızı"
 
@@ -13923,10 +13908,6 @@ msgstr "Uydu ekipmanı"
 #
 msgid "Satellite equipment setup"
 msgstr "Uydu Ekipmanı Kurulumu"
-
-#
-msgid "Satellite longitude:"
-msgstr "Uydu boylamı:"
 
 #
 #, fuzzy
@@ -15771,16 +15752,9 @@ msgstr "Sierra Leone"
 msgid "Signal Finder"
 msgstr "Sinyal Bulucu"
 
-msgid "Signal OK, proceeding"
-msgstr "Sinyal tamam, devam ediliyor"
-
 #
 msgid "Signal Strength:"
 msgstr "Sinyal gücü:"
-
-#
-msgid "Signal quality"
-msgstr "Sinyal kalitesi"
 
 #
 msgid "Signal strength:"
@@ -15855,14 +15829,6 @@ msgstr "Sint Maarten (Hollandaca bölüm)"
 
 msgid "Sitcom"
 msgstr ""
-
-#
-msgid "Site latitude"
-msgstr "Enlem"
-
-#
-msgid "Site longitude"
-msgstr "Boylam"
 
 msgid "Size"
 msgstr "Boyut"
@@ -16466,10 +16432,6 @@ msgid "Storage devices"
 msgstr "Depolama Aygıtları"
 
 #
-msgid "Store at index"
-msgstr "Konumu kaydet"
-
-#
 msgid "Store position"
 msgstr "Konumu kaydet"
 
@@ -16514,10 +16476,6 @@ msgstr "Tam DLNA"
 
 msgid "Stripes"
 msgstr "Çizgili"
-
-#
-msgid "Strongest position"
-msgstr "En güçlü konum"
 
 msgid "Stumm"
 msgstr ""
@@ -18416,9 +18374,6 @@ msgstr ""
 "dayanarak doğru uyduya taşır. USALS olmadan her uydunun ayarlanması ve ayrı "
 "ayrı kaydedilmesi gerekir."
 
-msgid "USALS calibration"
-msgstr "USALS ayarlama"
-
 msgid "USB Stick"
 msgstr "USB Bellek"
 
@@ -18946,19 +18901,11 @@ msgstr "Kullanıcı Adı (httpuser)"
 msgid "Username:"
 msgstr "Kullanıcı Adı:"
 
-#, python-format
-msgid "Using LNB %d"
-msgstr "LNB %d kullanılıyor"
-
 msgid "Using fixed address"
 msgstr "Sabit adres kullanılıyor"
 
 msgid "Using old profile: "
 msgstr "Eski profil kullanılıyor: "
-
-#, python-format
-msgid "Using tuner %s"
-msgstr "Tuner %s kullanılıyor"
 
 #, fuzzy
 msgid "Uzbek"
@@ -19457,10 +19404,6 @@ msgstr "Hafta sonu"
 #
 msgid "Weekly"
 msgstr "Haftalık"
-
-#
-msgid "Weighted position"
-msgstr "Ağırlıklı konum"
 
 msgid "Welcome to IceTV"
 msgstr ""
@@ -23721,13 +23664,6 @@ msgstr ""
 "yapılandırın."
 
 msgid ""
-"Configure whether another tuner from the preferred list is allocated instead "
-"of sharing a tuner that is already active recording the same channel."
-msgstr ""
-"Tercih edilen listeden başka bir tunerin, aynı kanalı kaydeden aktif olan "
-"bir tuneri paylaşmak yerine tahsis edilip edilmediğini yapılandırın."
-
-msgid ""
 "Configure whether the 'recording' symbol (in the display skin and LCD skin) "
 "is visible for real recordings only or also for streaming and pseuso "
 "recordings (e.g. EPGrefresh)."
@@ -24076,9 +24012,6 @@ msgstr ""
 msgid "Event font size"
 msgstr "Etkinlik yazı tipi boyutu"
 
-msgid "Experimental: strict limitation to preferred tuners"
-msgstr "Deneysel: tercih edilen alıcılara kesin sınırlama"
-
 msgid "Experimental: strict limitation to preferred tuners for recordings"
 msgstr "Deneysel: kayıtlar için tercih edilen tunerlere katı sınırlama"
 
@@ -24323,13 +24256,6 @@ msgid ""
 msgstr ""
 "Uzman modunda, birden fazla alıcı mevcut olduğunda, kayıtlar için hangi "
 "tarayıcıların tercih edileceğini yapılandırın."
-
-msgid ""
-"In expert mode, configure which tuners will be preferred, when more than one "
-"tuner is available."
-msgstr ""
-"Uzman modunda, birden fazla tuner mevcut olduğunda hangi tunerlerin tercih "
-"edileceğini konfigüre edin."
 
 msgid ""
 "In most cases this should be set to No. Only enable if you have a very "
@@ -24645,9 +24571,6 @@ msgstr "Kayıtlar için tercih edilen radyo"
 
 msgid "Preferred tuners for recordings, multiple selection allowed"
 msgstr "Kayıtlar için tercih edilen tunerler, çoklu seçime izin verilir"
-
-msgid "Preferred tuners, multiple selection allowed"
-msgstr "Tercih edilen tunerler, çoklu seçime izin verilir"
 
 #
 msgid "Preparation time for recording (seconds)"
@@ -26612,6 +26535,104 @@ msgstr "IP"
 
 msgid "J"
 msgstr ""
+
+#~ msgid "Allocate unused memory index"
+#~ msgstr "Kullanılmayan belleği ayır"
+
+#~ msgid "Calculate all positions"
+#~ msgstr "Tüm konumları hesapla"
+
+#
+#~ msgid "Configuration mode: %s"
+#~ msgstr "Yapılandırılıyor: %s"
+
+#
+#~ msgid "Goto index position"
+#~ msgstr "Endeks pozisyonuna git"
+
+#
+#~ msgid "Initial lock ratio"
+#~ msgstr "İlk kilitlenme oranı"
+
+#~ msgid "Initial signal quality"
+#~ msgstr "Başlangıç sinyal kalitesi"
+
+#
+#~ msgid "Initial signal quality:"
+#~ msgstr "Bağlantı kalitesi:"
+
+#
+#~ msgid "Lock ratio"
+#~ msgstr "Kilitlenme oranı"
+
+#
+#~ msgid "Move to position X"
+#~ msgstr "X Konumuna git"
+
+#
+#~ msgid "Rotor step position:"
+#~ msgstr "Rotor adım pozisyonu:"
+
+#
+#~ msgid "Satellite longitude:"
+#~ msgstr "Uydu boylamı:"
+
+#~ msgid "Signal OK, proceeding"
+#~ msgstr "Sinyal tamam, devam ediliyor"
+
+#
+#~ msgid "Signal quality"
+#~ msgstr "Sinyal kalitesi"
+
+#
+#~ msgid "Site latitude"
+#~ msgstr "Enlem"
+
+#
+#~ msgid "Site longitude"
+#~ msgstr "Boylam"
+
+#
+#~ msgid "Store at index"
+#~ msgstr "Konumu kaydet"
+
+#
+#~ msgid "Strongest position"
+#~ msgstr "En güçlü konum"
+
+#~ msgid "USALS calibration"
+#~ msgstr "USALS ayarlama"
+
+#~ msgid "Using LNB %d"
+#~ msgstr "LNB %d kullanılıyor"
+
+#~ msgid "Using tuner %s"
+#~ msgstr "Tuner %s kullanılıyor"
+
+#
+#~ msgid "Weighted position"
+#~ msgstr "Ağırlıklı konum"
+
+#~ msgid ""
+#~ "Configure whether another tuner from the preferred list is allocated "
+#~ "instead of sharing a tuner that is already active recording the same "
+#~ "channel."
+#~ msgstr ""
+#~ "Tercih edilen listeden başka bir tunerin, aynı kanalı kaydeden aktif olan "
+#~ "bir tuneri paylaşmak yerine tahsis edilip edilmediğini yapılandırın."
+
+#~ msgid "Experimental: strict limitation to preferred tuners"
+#~ msgstr "Deneysel: tercih edilen alıcılara kesin sınırlama"
+
+#~ msgid ""
+#~ "In expert mode, configure which tuners will be preferred, when more than "
+#~ "one tuner is available."
+#~ msgstr ""
+#~ "Uzman modunda, birden fazla tuner mevcut olduğunda hangi tunerlerin "
+#~ "tercih edileceğini konfigüre edin."
+
+#~ msgid "Preferred tuners, multiple selection allowed"
+#~ msgstr "Tercih edilen tunerler, çoklu seçime izin verilir"
 
 #, fuzzy
 #~ msgid "%s %s %s."

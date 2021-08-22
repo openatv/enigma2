@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-08-21 11:25+0000\n"
+"POT-Creation-Date: 2021-08-22 21:17+0000\n"
 "PO-Revision-Date: 2019-07-27 12:19+0700\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -2650,9 +2650,6 @@ msgstr ""
 "LNB này cho các vệ tinh khác (ví dụ: các món ăn có động cơ) để lưu thiết lập "
 "cùng một LNB nhiều lần."
 
-msgid "Allocate unused memory index"
-msgstr "Phân bổ chỉ số bộ nhớ không sử dụng"
-
 msgid "Allow 10bit"
 msgstr "Cho phép 10 bit"
 
@@ -3778,9 +3775,6 @@ msgstr "Lưu trữ:"
 msgid "Calculate"
 msgstr "Tính toán"
 
-msgid "Calculate all positions"
-msgstr "Tính toán tất cả các vị trí"
-
 msgid "Calculate file checksums"
 msgstr "Tính toán tổng kiểm tra"
 
@@ -4500,10 +4494,6 @@ msgstr "Cấu hình"
 
 msgid "Configuration mode"
 msgstr "Chế độ cấu hình"
-
-#, python-format
-msgid "Configuration mode: %s"
-msgstr "Chế độ cấu hình:%s"
 
 msgid ""
 "Configuration options for the HELP screen can be found in 'MENU > Setup > "
@@ -5545,6 +5535,22 @@ msgstr "Danh mục"
 #, python-format
 msgid "Directory %s does not exist."
 msgstr "Thư mục%s không tồn tại."
+
+#, python-format
+msgid "Directory '%s' can't be linked to recordings!"
+msgstr ""
+
+#, python-format
+msgid "Directory '%s' does not exist!"
+msgstr ""
+
+#, python-format
+msgid "Directory '%s' not writable!"
+msgstr ""
+
+#, python-format
+msgid "Directory '%s' not writeable!"
+msgstr ""
 
 msgid "Directory browser"
 msgstr "Trình duyệt thư mục"
@@ -7085,6 +7091,10 @@ msgstr "Flash trực tuyến"
 msgid "Flash Online a new image"
 msgstr "Flash trực tuyến một hình ảnh mới"
 
+#, python-format
+msgid "Flash directory '%s' not allowed!"
+msgstr ""
+
 msgid "Flash on the fly your your Receiver software."
 msgstr "Flash khi đang bay phần mềm Nhận của bạn."
 
@@ -7498,9 +7508,6 @@ msgstr "Giờ nguyên thủy"
 
 msgid "Goto X"
 msgstr "Đi X"
-
-msgid "Goto index position"
-msgstr "Vị trí chỉ số Goto"
 
 msgid "Goto next bouquet"
 msgstr "Tới gói kênh tiếp theo"
@@ -8295,15 +8302,6 @@ msgstr "CCcam Thông tin Menu chính"
 
 msgid "Init"
 msgstr "Trong đó"
-
-msgid "Initial lock ratio"
-msgstr "Tỷ lệ khóa ban đầu"
-
-msgid "Initial signal quality"
-msgstr "Chất lượng tín hiệu ban đầu"
-
-msgid "Initial signal quality:"
-msgstr "Chất lượng tín hiệu ban đầu:"
 
 msgid "Initialization"
 msgstr "Khởi tạo"
@@ -9124,9 +9122,6 @@ msgstr "Vị trí"
 msgid "Location list"
 msgstr "Danh sách địa điểm"
 
-msgid "Lock ratio"
-msgstr "Tỷ lệ khóa"
-
 msgid "Log"
 msgstr "Đăng nhập"
 
@@ -9790,9 +9785,6 @@ msgstr "Chuyển đến nhà của danh sách"
 
 msgid "Move to last line / screen"
 msgstr ""
-
-msgid "Move to position X"
-msgstr "Di chuyển đến vị trí X"
 
 #, fuzzy
 msgid "Move up a line"
@@ -11498,6 +11490,9 @@ msgstr "Vui lòng chọn một dịch vụ phụ ..."
 msgid "Please select an NFI file and press green key to flash!"
 msgstr "Vui lòng chọn một tệp NFI và nhấn phím màu xanh lá cây để flash!"
 
+msgid "Please select an acceptable directory."
+msgstr ""
+
 msgid "Please select an aspect ratio..."
 msgstr "Vui lòng chọn tỷ lệ khung hình ..."
 
@@ -12789,9 +12784,6 @@ msgstr "Nguồn gốc"
 msgid "Root directory"
 msgstr "Thư mục gốc"
 
-msgid "Rotor step position:"
-msgstr "Vị trí bước rôto:"
-
 msgid "Rotor turning speed"
 msgstr "Tốc độ quay của rôto"
 
@@ -13010,9 +13002,6 @@ msgstr "Thiết bị vệ tinh"
 
 msgid "Satellite equipment setup"
 msgstr "Thiết lập thiết bị vệ tinh"
-
-msgid "Satellite longitude:"
-msgstr "Kinh độ vệ tinh:"
 
 msgid "Satellites"
 msgstr "Vệ tinh"
@@ -14763,14 +14752,8 @@ msgstr "Sierra Leone"
 msgid "Signal Finder"
 msgstr "Công cụ tìm tín hiệu"
 
-msgid "Signal OK, proceeding"
-msgstr "Tín hiệu TỐT, tiến hành"
-
 msgid "Signal Strength:"
 msgstr "Cường độ tín hiệu:"
-
-msgid "Signal quality"
-msgstr "Chất lượng tín hiệu"
 
 msgid "Signal strength:"
 msgstr "Cường độ tín hiệu:"
@@ -14832,12 +14815,6 @@ msgstr "Sint Maarten (phần Hà Lan)"
 
 msgid "Sitcom"
 msgstr ""
-
-msgid "Site latitude"
-msgstr "Vĩ độ trang web"
-
-msgid "Site longitude"
-msgstr "Kinh độ trang web"
 
 msgid "Size"
 msgstr "Kích thước"
@@ -15396,9 +15373,6 @@ msgstr "Ngừng"
 msgid "Storage devices"
 msgstr "Thiết bị lưu trữ"
 
-msgid "Store at index"
-msgstr "Lưu trữ tại chỉ mục"
-
 msgid "Store position"
 msgstr "Vị trí cửa hàng"
 
@@ -15442,9 +15416,6 @@ msgstr "DLNA nghiêm ngặt"
 
 msgid "Stripes"
 msgstr "Sọc"
-
-msgid "Strongest position"
-msgstr "Vị trí mạnh nhất"
 
 msgid "Stumm"
 msgstr ""
@@ -17238,9 +17209,6 @@ msgstr ""
 "mà người dùng nhập vào. Không có USALS, mỗi vệ tinh sẽ cần được thiết lập và "
 "lưu riêng lẻ."
 
-msgid "USALS calibration"
-msgstr "Hiệu chuẩn USALS"
-
 msgid "USB Stick"
 msgstr "Thanh USB"
 
@@ -17731,19 +17699,11 @@ msgstr "Tên người dùng (httpuser)"
 msgid "Username:"
 msgstr "Tên đăng nhập:"
 
-#, python-format
-msgid "Using LNB %d"
-msgstr "Sử dụng LNB %d"
-
 msgid "Using fixed address"
 msgstr "Sử dụng địa chỉ cố định"
 
 msgid "Using old profile: "
 msgstr "Sử dụng hồ sơ cũ: "
-
-#, python-format
-msgid "Using tuner %s"
-msgstr "Sử dụng bộ chỉnh%s"
 
 #, fuzzy
 msgid "Uzbek"
@@ -18197,9 +18157,6 @@ msgstr "Ngày cuối tuần"
 
 msgid "Weekly"
 msgstr "Hàng tuần"
-
-msgid "Weighted position"
-msgstr "Vị trí trọng số"
 
 msgid "Welcome to IceTV"
 msgstr ""
@@ -22171,13 +22128,6 @@ msgstr ""
 "truyền hình trực tiếp hay không."
 
 msgid ""
-"Configure whether another tuner from the preferred list is allocated instead "
-"of sharing a tuner that is already active recording the same channel."
-msgstr ""
-"Định cấu hình xem một bộ chỉnh khác từ danh sách ưa thích có được phân bổ "
-"thay vì chia sẻ bộ chỉnh đã hoạt động ghi cùng kênh không."
-
-msgid ""
 "Configure whether the 'recording' symbol (in the display skin and LCD skin) "
 "is visible for real recordings only or also for streaming and pseuso "
 "recordings (e.g. EPGrefresh)."
@@ -22518,9 +22468,6 @@ msgstr ""
 msgid "Event font size"
 msgstr "Cỡ chữ sự kiện"
 
-msgid "Experimental: strict limitation to preferred tuners"
-msgstr "Thử nghiệm: giới hạn nghiêm ngặt đối với bộ chỉnh ưa thích"
-
 msgid "Experimental: strict limitation to preferred tuners for recordings"
 msgstr "Thử nghiệm: giới hạn nghiêm ngặt đối với bộ chỉnh ưa thích cho bản ghi"
 
@@ -22766,13 +22713,6 @@ msgid ""
 msgstr ""
 "Trong chế độ chuyên gia, định cấu hình bộ chỉnh nào sẽ được ưu tiên cho bản "
 "ghi, khi có nhiều hơn một bộ chỉnh."
-
-msgid ""
-"In expert mode, configure which tuners will be preferred, when more than one "
-"tuner is available."
-msgstr ""
-"Trong chế độ chuyên gia, định cấu hình bộ chỉnh nào sẽ được ưu tiên, khi có "
-"nhiều hơn một bộ chỉnh."
 
 msgid ""
 "In most cases this should be set to No. Only enable if you have a very "
@@ -23082,9 +23022,6 @@ msgstr "Bộ chỉnh ưu tiên cho bản ghi"
 
 msgid "Preferred tuners for recordings, multiple selection allowed"
 msgstr "Bộ điều chỉnh ưa thích cho bản ghi, cho phép nhiều lựa chọn"
-
-msgid "Preferred tuners, multiple selection allowed"
-msgstr "Điều chỉnh ưa thích, cho phép nhiều lựa chọn"
 
 msgid "Preparation time for recording (seconds)"
 msgstr "Thời gian chuẩn bị để ghi âm (giây)"
@@ -25000,6 +24937,90 @@ msgstr "IP"
 
 msgid "J"
 msgstr ""
+
+#~ msgid "Allocate unused memory index"
+#~ msgstr "Phân bổ chỉ số bộ nhớ không sử dụng"
+
+#~ msgid "Calculate all positions"
+#~ msgstr "Tính toán tất cả các vị trí"
+
+#~ msgid "Configuration mode: %s"
+#~ msgstr "Chế độ cấu hình:%s"
+
+#~ msgid "Goto index position"
+#~ msgstr "Vị trí chỉ số Goto"
+
+#~ msgid "Initial lock ratio"
+#~ msgstr "Tỷ lệ khóa ban đầu"
+
+#~ msgid "Initial signal quality"
+#~ msgstr "Chất lượng tín hiệu ban đầu"
+
+#~ msgid "Initial signal quality:"
+#~ msgstr "Chất lượng tín hiệu ban đầu:"
+
+#~ msgid "Lock ratio"
+#~ msgstr "Tỷ lệ khóa"
+
+#~ msgid "Move to position X"
+#~ msgstr "Di chuyển đến vị trí X"
+
+#~ msgid "Rotor step position:"
+#~ msgstr "Vị trí bước rôto:"
+
+#~ msgid "Satellite longitude:"
+#~ msgstr "Kinh độ vệ tinh:"
+
+#~ msgid "Signal OK, proceeding"
+#~ msgstr "Tín hiệu TỐT, tiến hành"
+
+#~ msgid "Signal quality"
+#~ msgstr "Chất lượng tín hiệu"
+
+#~ msgid "Site latitude"
+#~ msgstr "Vĩ độ trang web"
+
+#~ msgid "Site longitude"
+#~ msgstr "Kinh độ trang web"
+
+#~ msgid "Store at index"
+#~ msgstr "Lưu trữ tại chỉ mục"
+
+#~ msgid "Strongest position"
+#~ msgstr "Vị trí mạnh nhất"
+
+#~ msgid "USALS calibration"
+#~ msgstr "Hiệu chuẩn USALS"
+
+#~ msgid "Using LNB %d"
+#~ msgstr "Sử dụng LNB %d"
+
+#~ msgid "Using tuner %s"
+#~ msgstr "Sử dụng bộ chỉnh%s"
+
+#~ msgid "Weighted position"
+#~ msgstr "Vị trí trọng số"
+
+#~ msgid ""
+#~ "Configure whether another tuner from the preferred list is allocated "
+#~ "instead of sharing a tuner that is already active recording the same "
+#~ "channel."
+#~ msgstr ""
+#~ "Định cấu hình xem một bộ chỉnh khác từ danh sách ưa thích có được phân bổ "
+#~ "thay vì chia sẻ bộ chỉnh đã hoạt động ghi cùng kênh không."
+
+#~ msgid "Experimental: strict limitation to preferred tuners"
+#~ msgstr "Thử nghiệm: giới hạn nghiêm ngặt đối với bộ chỉnh ưa thích"
+
+#~ msgid ""
+#~ "In expert mode, configure which tuners will be preferred, when more than "
+#~ "one tuner is available."
+#~ msgstr ""
+#~ "Trong chế độ chuyên gia, định cấu hình bộ chỉnh nào sẽ được ưu tiên, khi "
+#~ "có nhiều hơn một bộ chỉnh."
+
+#~ msgid "Preferred tuners, multiple selection allowed"
+#~ msgstr "Điều chỉnh ưa thích, cho phép nhiều lựa chọn"
 
 #, fuzzy
 #~ msgid "%s %s %s."

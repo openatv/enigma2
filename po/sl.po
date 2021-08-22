@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-08-21 11:25+0000\n"
+"POT-Creation-Date: 2021-08-22 21:17+0000\n"
 "PO-Revision-Date: 2016-04-02 23:18+0200\n"
 "Last-Translator: Andy Blackburn <andyblac@icloud.com>\n"
 "Language-Team: OldSkul from www.linux-sprejemniki.info\n"
@@ -2859,9 +2859,6 @@ msgid ""
 "save setting up the same LNB multiple times."
 msgstr ""
 
-msgid "Allocate unused memory index"
-msgstr ""
-
 msgid "Allow 10bit"
 msgstr ""
 
@@ -4063,9 +4060,6 @@ msgstr ""
 msgid "Calculate"
 msgstr ""
 
-msgid "Calculate all positions"
-msgstr ""
-
 msgid "Calculate file checksums"
 msgstr ""
 
@@ -4849,11 +4843,6 @@ msgstr "Nastavljam..."
 
 msgid "Configuration mode"
 msgstr ""
-
-#
-#, fuzzy, python-format
-msgid "Configuration mode: %s"
-msgstr "Nastavljam..."
 
 msgid ""
 "Configuration options for the HELP screen can be found in 'MENU > Setup > "
@@ -5993,6 +5982,22 @@ msgstr "Mapa"
 #, fuzzy, python-format
 msgid "Directory %s does not exist."
 msgstr "Mapa %s ne obstaja."
+
+#, python-format
+msgid "Directory '%s' can't be linked to recordings!"
+msgstr ""
+
+#, python-format
+msgid "Directory '%s' does not exist!"
+msgstr ""
+
+#, python-format
+msgid "Directory '%s' not writable!"
+msgstr ""
+
+#, python-format
+msgid "Directory '%s' not writeable!"
+msgstr ""
 
 #
 msgid "Directory browser"
@@ -7641,6 +7646,10 @@ msgstr ""
 msgid "Flash Online a new image"
 msgstr ""
 
+#, python-format
+msgid "Flash directory '%s' not allowed!"
+msgstr ""
+
 msgid "Flash on the fly your your Receiver software."
 msgstr ""
 
@@ -8099,11 +8108,6 @@ msgstr ""
 #, fuzzy
 msgid "Goto X"
 msgstr "Pojdi na 0"
-
-#
-#, fuzzy
-msgid "Goto index position"
-msgstr "Pojdi na"
 
 msgid "Goto next bouquet"
 msgstr ""
@@ -8923,19 +8927,6 @@ msgstr "CI dodelitev"
 #
 msgid "Init"
 msgstr "Inicializacija"
-
-#
-#, fuzzy
-msgid "Initial lock ratio"
-msgstr "Neveljavna lokacija"
-
-msgid "Initial signal quality"
-msgstr ""
-
-#
-#, fuzzy
-msgid "Initial signal quality:"
-msgstr "Kvaliteta povezave:"
 
 #
 msgid "Initialization"
@@ -9892,11 +9883,6 @@ msgstr "Lokacija"
 
 #
 #, fuzzy
-msgid "Lock ratio"
-msgstr "Lokacija"
-
-#
-#, fuzzy
 msgid "Log"
 msgstr "Dnevniki"
 
@@ -10613,11 +10599,6 @@ msgstr ""
 
 msgid "Move to last line / screen"
 msgstr ""
-
-#
-#, fuzzy
-msgid "Move to position X"
-msgstr "Pojdi na"
 
 #
 #, fuzzy
@@ -12553,6 +12534,9 @@ msgstr "Izberite pod-storitev:"
 msgid "Please select an NFI file and press green key to flash!"
 msgstr "Izberite .NFI datoteko in pritisnite zeleno tipko za začetek postopka!"
 
+msgid "Please select an acceptable directory."
+msgstr ""
+
 msgid "Please select an aspect ratio..."
 msgstr ""
 
@@ -14040,11 +14024,6 @@ msgid "Root directory"
 msgstr ""
 
 #
-#, fuzzy
-msgid "Rotor step position:"
-msgstr "Shranite položaj"
-
-#
 msgid "Rotor turning speed"
 msgstr "Hitrost premikanja rotorja"
 
@@ -14272,11 +14251,6 @@ msgstr "Satelitska oprema"
 #
 #, fuzzy
 msgid "Satellite equipment setup"
-msgstr "Nastavitve satelitske opreme"
-
-#
-#, fuzzy
-msgid "Satellite longitude:"
 msgstr "Nastavitve satelitske opreme"
 
 #
@@ -16088,17 +16062,9 @@ msgstr ""
 msgid "Signal Finder"
 msgstr ""
 
-msgid "Signal OK, proceeding"
-msgstr ""
-
 #
 msgid "Signal Strength:"
 msgstr "Moč signala:"
-
-#
-#, fuzzy
-msgid "Signal quality"
-msgstr "Kvaliteta povezave:"
 
 #
 #, fuzzy
@@ -16177,16 +16143,6 @@ msgstr ""
 
 msgid "Sitcom"
 msgstr ""
-
-#
-#, fuzzy
-msgid "Site latitude"
-msgstr "Zemljepisna širina [Lat]"
-
-#
-#, fuzzy
-msgid "Site longitude"
-msgstr "Zemljepisna dolžina [Lon]"
 
 msgid "Size"
 msgstr ""
@@ -16810,11 +16766,6 @@ msgid "Storage devices"
 msgstr "Seznam naprav za shranjevanje"
 
 #
-#, fuzzy
-msgid "Store at index"
-msgstr "Shranite položaj"
-
-#
 msgid "Store position"
 msgstr "Shranite položaj"
 
@@ -16860,11 +16811,6 @@ msgstr ""
 
 msgid "Stripes"
 msgstr ""
-
-#
-#, fuzzy
-msgid "Strongest position"
-msgstr "Shranite položaj"
 
 msgid "Stumm"
 msgstr ""
@@ -18678,9 +18624,6 @@ msgid ""
 "to be setup and saved individually."
 msgstr ""
 
-msgid "USALS calibration"
-msgstr ""
-
 msgid "USB Stick"
 msgstr ""
 
@@ -19203,18 +19146,10 @@ msgstr ""
 msgid "Username:"
 msgstr "Uporab. ime"
 
-#, python-format
-msgid "Using LNB %d"
-msgstr ""
-
 msgid "Using fixed address"
 msgstr ""
 
 msgid "Using old profile: "
-msgstr ""
-
-#, python-format
-msgid "Using tuner %s"
 msgstr ""
 
 msgid "Uzbek"
@@ -19729,11 +19664,6 @@ msgstr "Delovni dan"
 #, fuzzy
 msgid "Weekly"
 msgstr "vsak teden"
-
-#
-#, fuzzy
-msgid "Weighted position"
-msgstr "Shranjeni položaji"
 
 msgid "Welcome to IceTV"
 msgstr ""
@@ -23855,11 +23785,6 @@ msgid ""
 msgstr ""
 
 msgid ""
-"Configure whether another tuner from the preferred list is allocated instead "
-"of sharing a tuner that is already active recording the same channel."
-msgstr ""
-
-msgid ""
 "Configure whether the 'recording' symbol (in the display skin and LCD skin) "
 "is visible for real recordings only or also for streaming and pseuso "
 "recordings (e.g. EPGrefresh)."
@@ -24182,9 +24107,6 @@ msgstr ""
 msgid "Event font size"
 msgstr ""
 
-msgid "Experimental: strict limitation to preferred tuners"
-msgstr ""
-
 msgid "Experimental: strict limitation to preferred tuners for recordings"
 msgstr ""
 
@@ -24404,11 +24326,6 @@ msgstr ""
 msgid ""
 "In expert mode, configure which tuners will be preferred for recordings, "
 "when more than one tuner is available."
-msgstr ""
-
-msgid ""
-"In expert mode, configure which tuners will be preferred, when more than one "
-"tuner is available."
 msgstr ""
 
 msgid ""
@@ -24749,9 +24666,6 @@ msgid "Preferred tuner for recordings"
 msgstr ""
 
 msgid "Preferred tuners for recordings, multiple selection allowed"
-msgstr ""
-
-msgid "Preferred tuners, multiple selection allowed"
 msgstr ""
 
 #
@@ -26596,6 +26510,76 @@ msgstr ""
 
 msgid "J"
 msgstr ""
+
+#
+#, fuzzy
+#~ msgid "Configuration mode: %s"
+#~ msgstr "Nastavljam..."
+
+#
+#, fuzzy
+#~ msgid "Goto index position"
+#~ msgstr "Pojdi na"
+
+#
+#, fuzzy
+#~ msgid "Initial lock ratio"
+#~ msgstr "Neveljavna lokacija"
+
+#
+#, fuzzy
+#~ msgid "Initial signal quality:"
+#~ msgstr "Kvaliteta povezave:"
+
+#
+#, fuzzy
+#~ msgid "Lock ratio"
+#~ msgstr "Lokacija"
+
+#
+#, fuzzy
+#~ msgid "Move to position X"
+#~ msgstr "Pojdi na"
+
+#
+#, fuzzy
+#~ msgid "Rotor step position:"
+#~ msgstr "Shranite položaj"
+
+#
+#, fuzzy
+#~ msgid "Satellite longitude:"
+#~ msgstr "Nastavitve satelitske opreme"
+
+#
+#, fuzzy
+#~ msgid "Signal quality"
+#~ msgstr "Kvaliteta povezave:"
+
+#
+#, fuzzy
+#~ msgid "Site latitude"
+#~ msgstr "Zemljepisna širina [Lat]"
+
+#
+#, fuzzy
+#~ msgid "Site longitude"
+#~ msgstr "Zemljepisna dolžina [Lon]"
+
+#
+#, fuzzy
+#~ msgid "Store at index"
+#~ msgstr "Shranite položaj"
+
+#
+#, fuzzy
+#~ msgid "Strongest position"
+#~ msgstr "Shranite položaj"
+
+#
+#, fuzzy
+#~ msgid "Weighted position"
+#~ msgstr "Shranjeni položaji"
 
 #
 #, fuzzy

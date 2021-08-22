@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-08-21 11:25+0000\n"
+"POT-Creation-Date: 2021-08-22 21:17+0000\n"
 "PO-Revision-Date: 2021-08-21 20:39+0000\n"
 "Last-Translator: openATV <openatv@gmail.com>\n"
 "Language-Team: Ukrainian <https://hosted.weblate.org/projects/openatv/"
@@ -2630,9 +2630,6 @@ msgstr ""
 "вибрати для інших супутників (наприклад, з мотором) для збереження "
 "налаштувань одного і того ж LNB кілька разів."
 
-msgid "Allocate unused memory index"
-msgstr "Призначити невикористаний номер позиції"
-
 msgid "Allow 10bit"
 msgstr "Вихід 10біт"
 
@@ -3752,9 +3749,6 @@ msgstr "Кешовано:"
 msgid "Calculate"
 msgstr "Обчислення"
 
-msgid "Calculate all positions"
-msgstr "Обчислення всіх позицій"
-
 msgid "Calculate file checksums"
 msgstr "Обчислення контрольної суми файлу"
 
@@ -4475,10 +4469,6 @@ msgstr "Налаштування"
 
 msgid "Configuration mode"
 msgstr "Режим конфігурації"
-
-#, python-format
-msgid "Configuration mode: %s"
-msgstr "Режим конфігурації: %s"
 
 msgid ""
 "Configuration options for the HELP screen can be found in 'MENU > Setup > "
@@ -5510,6 +5500,22 @@ msgstr "Каталог"
 #, python-format
 msgid "Directory %s does not exist."
 msgstr "Каталогу %s не існує."
+
+#, python-format
+msgid "Directory '%s' can't be linked to recordings!"
+msgstr ""
+
+#, python-format
+msgid "Directory '%s' does not exist!"
+msgstr ""
+
+#, python-format
+msgid "Directory '%s' not writable!"
+msgstr ""
+
+#, python-format
+msgid "Directory '%s' not writeable!"
+msgstr ""
 
 msgid "Directory browser"
 msgstr "Провідник каталогів"
@@ -7025,6 +7031,10 @@ msgstr "Прошити приймач он-лайн"
 msgid "Flash Online a new image"
 msgstr "Прошити приймач новим іміджем"
 
+#, python-format
+msgid "Flash directory '%s' not allowed!"
+msgstr ""
+
 msgid "Flash on the fly your your Receiver software."
 msgstr "Прошити приймач Вашим ПЗ."
 
@@ -7426,9 +7436,6 @@ msgstr "Перейти Прайм-тайм"
 
 msgid "Goto X"
 msgstr "Перейти на позицію Х"
-
-msgid "Goto index position"
-msgstr "Перейти на позицію"
 
 msgid "Goto next bouquet"
 msgstr "Перейти на наступний фаворит"
@@ -8218,15 +8225,6 @@ msgstr "Інформаційно-розважальна"
 
 msgid "Init"
 msgstr "Ініціалізувати"
-
-msgid "Initial lock ratio"
-msgstr "Початкове захоплення сигналу"
-
-msgid "Initial signal quality"
-msgstr "Початкова якість сигналу"
-
-msgid "Initial signal quality:"
-msgstr "Початкова якість сигналу:"
 
 msgid "Initialization"
 msgstr "Ініціалізація"
@@ -9029,9 +9027,6 @@ msgstr "Розташування"
 msgid "Location list"
 msgstr "Перелік місць розташування"
 
-msgid "Lock ratio"
-msgstr "Блокування Співвідношення"
-
 msgid "Log"
 msgstr "Лог"
 
@@ -9678,9 +9673,6 @@ msgstr "Переміститися на домашню сторінку"
 
 msgid "Move to last line / screen"
 msgstr "Перейти до останнього рядка/екрана"
-
-msgid "Move to position X"
-msgstr "Переміститися на позицію Х"
 
 msgid "Move up a line"
 msgstr "Перемістити на позицію вгору"
@@ -11362,6 +11354,9 @@ msgstr "Будь ласка, виберіть підканал..."
 msgid "Please select an NFI file and press green key to flash!"
 msgstr "Будь ласка, виберіть файл NFI і натисніть зелену кнопку для запису!"
 
+msgid "Please select an acceptable directory."
+msgstr ""
+
 msgid "Please select an aspect ratio..."
 msgstr "Будь ласка, виберіть співвідношення сторін..."
 
@@ -12627,9 +12622,6 @@ msgstr ""
 msgid "Root directory"
 msgstr "Кореневий каталог"
 
-msgid "Rotor step position:"
-msgstr "Двигун на позицію:"
-
 msgid "Rotor turning speed"
 msgstr "Швидкість обертання двигуна"
 
@@ -12845,9 +12837,6 @@ msgstr "Супутникове обладнання"
 
 msgid "Satellite equipment setup"
 msgstr "Налаштування супутникового обладнання"
-
-msgid "Satellite longitude:"
-msgstr "Довгота супутника:"
 
 msgid "Satellites"
 msgstr "Супутники"
@@ -14574,14 +14563,8 @@ msgstr "Сьєрра-Леоне"
 msgid "Signal Finder"
 msgstr "Пошук сигналу"
 
-msgid "Signal OK, proceeding"
-msgstr "Сигнал ОК, працюємо"
-
 msgid "Signal Strength:"
 msgstr "Сила сигналу:"
-
-msgid "Signal quality"
-msgstr "Якість сигналу"
 
 msgid "Signal strength:"
 msgstr "Сила cигналу:"
@@ -14643,12 +14626,6 @@ msgstr "Сінт-Маартен (голландська частина)"
 
 msgid "Sitcom"
 msgstr "Сітком"
-
-msgid "Site latitude"
-msgstr "Ширина місця"
-
-msgid "Site longitude"
-msgstr "Довгота місця"
 
 msgid "Size"
 msgstr "Розмір"
@@ -15203,9 +15180,6 @@ msgstr "Зупинено"
 msgid "Storage devices"
 msgstr "Пристрої зберігання"
 
-msgid "Store at index"
-msgstr "Зберігати під номером"
-
 msgid "Store position"
 msgstr "Зберегти позицію"
 
@@ -15248,9 +15222,6 @@ msgstr "Суворий режим DLNA"
 
 msgid "Stripes"
 msgstr "Смуги"
-
-msgid "Strongest position"
-msgstr "Кінцева позиція"
 
 msgid "Stumm"
 msgstr "Німий"
@@ -17033,9 +17004,6 @@ msgstr ""
 "координат, введених користувачем. Без USALS кожний супутник потрібно буде "
 "налаштувати та зберігати індивідуально."
 
-msgid "USALS calibration"
-msgstr "Салібрування USALS"
-
 msgid "USB Stick"
 msgstr "USB Носій"
 
@@ -17525,19 +17493,11 @@ msgstr "Ім'я користувача (httpuser)"
 msgid "Username:"
 msgstr "Ім'я користувача:"
 
-#, python-format
-msgid "Using LNB %d"
-msgstr "Використання конвертора %d"
-
 msgid "Using fixed address"
 msgstr "Використання фіксованї адреси"
 
 msgid "Using old profile: "
 msgstr "Використання старого профілю: "
-
-#, python-format
-msgid "Using tuner %s"
-msgstr "Використання тюнера %s"
 
 #, fuzzy
 msgid "Uzbek"
@@ -17985,9 +17945,6 @@ msgstr "Вихідні"
 
 msgid "Weekly"
 msgstr "Щотижня"
-
-msgid "Weighted position"
-msgstr "Початкова позиція"
 
 msgid "Welcome to IceTV"
 msgstr "Ласкаво просимо до IceTV"
@@ -21913,13 +21870,6 @@ msgstr ""
 "в даний момент приймає цей же канал."
 
 msgid ""
-"Configure whether another tuner from the preferred list is allocated instead "
-"of sharing a tuner that is already active recording the same channel."
-msgstr ""
-"Налаштуйте, чи застосувати інший тюнер замість того, що в даний момент "
-"активний, для запису цього ж каналу."
-
-msgid ""
 "Configure whether the 'recording' symbol (in the display skin and LCD skin) "
 "is visible for real recordings only or also for streaming and pseuso "
 "recordings (e.g. EPGrefresh)."
@@ -22257,9 +22207,6 @@ msgstr ""
 msgid "Event font size"
 msgstr "Розмір шрифту передачі"
 
-msgid "Experimental: strict limitation to preferred tuners"
-msgstr "Експериментальний: суворе обмеження пріорітетних тюнерів"
-
 msgid "Experimental: strict limitation to preferred tuners for recordings"
 msgstr "Експериментальний: суворе обмеження пріорітетних тюнерів для записів"
 
@@ -22500,13 +22447,6 @@ msgid ""
 msgstr ""
 "У режимі експерт налаштуйте, які тюнери будуть мати перевагу для записів, "
 "коли доступно більш ніж один тюнер."
-
-msgid ""
-"In expert mode, configure which tuners will be preferred, when more than one "
-"tuner is available."
-msgstr ""
-"У режимі експерт налаштуйте, які тюнери будуть мати перевагу, коли доступно "
-"більш ніж один тюнер."
 
 msgid ""
 "In most cases this should be set to No. Only enable if you have a very "
@@ -22814,9 +22754,6 @@ msgstr "Пріоритетний тюнер для запису"
 
 msgid "Preferred tuners for recordings, multiple selection allowed"
 msgstr "Пріоритетний тюнер для запису, дозволений багаторазовий вибір"
-
-msgid "Preferred tuners, multiple selection allowed"
-msgstr "Пріоритетний тюнер, дозволений багаторазовий вибір"
 
 msgid "Preparation time for recording (seconds)"
 msgstr "Час підготовки до запису (у секундах)"
@@ -24715,6 +24652,90 @@ msgstr ""
 
 msgid "J"
 msgstr ""
+
+#~ msgid "Allocate unused memory index"
+#~ msgstr "Призначити невикористаний номер позиції"
+
+#~ msgid "Calculate all positions"
+#~ msgstr "Обчислення всіх позицій"
+
+#~ msgid "Configuration mode: %s"
+#~ msgstr "Режим конфігурації: %s"
+
+#~ msgid "Goto index position"
+#~ msgstr "Перейти на позицію"
+
+#~ msgid "Initial lock ratio"
+#~ msgstr "Початкове захоплення сигналу"
+
+#~ msgid "Initial signal quality"
+#~ msgstr "Початкова якість сигналу"
+
+#~ msgid "Initial signal quality:"
+#~ msgstr "Початкова якість сигналу:"
+
+#~ msgid "Lock ratio"
+#~ msgstr "Блокування Співвідношення"
+
+#~ msgid "Move to position X"
+#~ msgstr "Переміститися на позицію Х"
+
+#~ msgid "Rotor step position:"
+#~ msgstr "Двигун на позицію:"
+
+#~ msgid "Satellite longitude:"
+#~ msgstr "Довгота супутника:"
+
+#~ msgid "Signal OK, proceeding"
+#~ msgstr "Сигнал ОК, працюємо"
+
+#~ msgid "Signal quality"
+#~ msgstr "Якість сигналу"
+
+#~ msgid "Site latitude"
+#~ msgstr "Ширина місця"
+
+#~ msgid "Site longitude"
+#~ msgstr "Довгота місця"
+
+#~ msgid "Store at index"
+#~ msgstr "Зберігати під номером"
+
+#~ msgid "Strongest position"
+#~ msgstr "Кінцева позиція"
+
+#~ msgid "USALS calibration"
+#~ msgstr "Салібрування USALS"
+
+#~ msgid "Using LNB %d"
+#~ msgstr "Використання конвертора %d"
+
+#~ msgid "Using tuner %s"
+#~ msgstr "Використання тюнера %s"
+
+#~ msgid "Weighted position"
+#~ msgstr "Початкова позиція"
+
+#~ msgid ""
+#~ "Configure whether another tuner from the preferred list is allocated "
+#~ "instead of sharing a tuner that is already active recording the same "
+#~ "channel."
+#~ msgstr ""
+#~ "Налаштуйте, чи застосувати інший тюнер замість того, що в даний момент "
+#~ "активний, для запису цього ж каналу."
+
+#~ msgid "Experimental: strict limitation to preferred tuners"
+#~ msgstr "Експериментальний: суворе обмеження пріорітетних тюнерів"
+
+#~ msgid ""
+#~ "In expert mode, configure which tuners will be preferred, when more than "
+#~ "one tuner is available."
+#~ msgstr ""
+#~ "У режимі експерт налаштуйте, які тюнери будуть мати перевагу, коли "
+#~ "доступно більш ніж один тюнер."
+
+#~ msgid "Preferred tuners, multiple selection allowed"
+#~ msgstr "Пріоритетний тюнер, дозволений багаторазовий вибір"
 
 #, fuzzy
 #~ msgid "%s %s %s."

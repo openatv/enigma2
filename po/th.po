@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-08-21 11:25+0000\n"
+"POT-Creation-Date: 2021-08-22 21:17+0000\n"
 "PO-Revision-Date: 2021-08-15 18:50+0000\n"
 "Last-Translator: openATV <openatv@gmail.com>\n"
 "Language-Team: Thai <https://hosted.weblate.org/projects/openatv/enigma2-7-0-"
@@ -2626,9 +2626,6 @@ msgid ""
 "save setting up the same LNB multiple times."
 msgstr ""
 
-msgid "Allocate unused memory index"
-msgstr ""
-
 msgid "Allow 10bit"
 msgstr ""
 
@@ -3747,9 +3744,6 @@ msgstr ""
 msgid "Calculate"
 msgstr ""
 
-msgid "Calculate all positions"
-msgstr ""
-
 msgid "Calculate file checksums"
 msgstr ""
 
@@ -4458,10 +4452,6 @@ msgstr "กำลังตั้งค่า"
 
 msgid "Configuration mode"
 msgstr ""
-
-#, fuzzy, python-format
-msgid "Configuration mode: %s"
-msgstr "กำลังตั้งค่า"
 
 msgid ""
 "Configuration options for the HELP screen can be found in 'MENU > Setup > "
@@ -5503,6 +5493,22 @@ msgstr ""
 #, fuzzy, python-format
 msgid "Directory %s does not exist."
 msgstr "ไม่พบโฟล์เดอร์ %s ในระบบ"
+
+#, python-format
+msgid "Directory '%s' can't be linked to recordings!"
+msgstr ""
+
+#, python-format
+msgid "Directory '%s' does not exist!"
+msgstr ""
+
+#, python-format
+msgid "Directory '%s' not writable!"
+msgstr ""
+
+#, python-format
+msgid "Directory '%s' not writeable!"
+msgstr ""
 
 msgid "Directory browser"
 msgstr "ดูโฟล์เดอร์"
@@ -6982,6 +6988,10 @@ msgstr ""
 msgid "Flash Online a new image"
 msgstr ""
 
+#, python-format
+msgid "Flash directory '%s' not allowed!"
+msgstr ""
+
 msgid "Flash on the fly your your Receiver software."
 msgstr ""
 
@@ -7399,10 +7409,6 @@ msgstr ""
 #, fuzzy
 msgid "Goto X"
 msgstr "ไปยัง 0"
-
-#, fuzzy
-msgid "Goto index position"
-msgstr "ไปยังตำแหน่ง"
 
 msgid "Goto next bouquet"
 msgstr ""
@@ -8168,17 +8174,6 @@ msgstr "CI assignment"
 
 msgid "Init"
 msgstr "เตรียม"
-
-#, fuzzy
-msgid "Initial lock ratio"
-msgstr "ปลายทางไม่ถูกต้อง"
-
-msgid "Initial signal quality"
-msgstr ""
-
-#, fuzzy
-msgid "Initial signal quality:"
-msgstr "คุณภาพการเชื่อมต่อ:"
 
 msgid "Initialization"
 msgstr ""
@@ -9028,10 +9023,6 @@ msgstr "สถานที่"
 msgid "Location list"
 msgstr "สถานที่"
 
-#, fuzzy
-msgid "Lock ratio"
-msgstr "สถานที่"
-
 msgid "Log"
 msgstr ""
 
@@ -9685,10 +9676,6 @@ msgstr ""
 
 msgid "Move to last line / screen"
 msgstr ""
-
-#, fuzzy
-msgid "Move to position X"
-msgstr "ไปยังตำแหน่ง"
 
 #, fuzzy
 msgid "Move up a line"
@@ -11410,6 +11397,9 @@ msgstr "กรุณาเลือกบริการย่อย..."
 msgid "Please select an NFI file and press green key to flash!"
 msgstr ""
 
+msgid "Please select an acceptable directory."
+msgstr ""
+
 msgid "Please select an aspect ratio..."
 msgstr ""
 
@@ -12707,10 +12697,6 @@ msgstr ""
 msgid "Root directory"
 msgstr ""
 
-#, fuzzy
-msgid "Rotor step position:"
-msgstr "บันทึกตำแหน่ง"
-
 msgid "Rotor turning speed"
 msgstr "ความเร็วในการหมุนของ Rotor"
 
@@ -12925,10 +12911,6 @@ msgstr ""
 
 #, fuzzy
 msgid "Satellite equipment setup"
-msgstr "ตั้งค่าอุปกรณ์ดาวเทียม"
-
-#, fuzzy
-msgid "Satellite longitude:"
 msgstr "ตั้งค่าอุปกรณ์ดาวเทียม"
 
 msgid "Satellites"
@@ -14595,15 +14577,8 @@ msgstr ""
 msgid "Signal Finder"
 msgstr ""
 
-msgid "Signal OK, proceeding"
-msgstr ""
-
 msgid "Signal Strength:"
 msgstr "ความเข้มสัญญาณ:"
-
-#, fuzzy
-msgid "Signal quality"
-msgstr "คุณภาพการเชื่อมต่อ:"
 
 #, fuzzy
 msgid "Signal strength:"
@@ -14669,14 +14644,6 @@ msgstr ""
 
 msgid "Sitcom"
 msgstr ""
-
-#, fuzzy
-msgid "Site latitude"
-msgstr "ละติจูด"
-
-#, fuzzy
-msgid "Site longitude"
-msgstr "ลองจิจูด"
 
 msgid "Size"
 msgstr ""
@@ -15240,10 +15207,6 @@ msgstr ""
 msgid "Storage devices"
 msgstr "อุปกรณ์สำหรับบันทึก"
 
-#, fuzzy
-msgid "Store at index"
-msgstr "บันทึกตำแหน่ง"
-
 msgid "Store position"
 msgstr "บันทึกตำแหน่ง"
 
@@ -15287,10 +15250,6 @@ msgstr ""
 
 msgid "Stripes"
 msgstr ""
-
-#, fuzzy
-msgid "Strongest position"
-msgstr "บันทึกตำแหน่ง"
 
 msgid "Stumm"
 msgstr ""
@@ -16939,9 +16898,6 @@ msgid ""
 "to be setup and saved individually."
 msgstr ""
 
-msgid "USALS calibration"
-msgstr ""
-
 msgid "USB Stick"
 msgstr ""
 
@@ -17416,18 +17372,10 @@ msgstr ""
 msgid "Username:"
 msgstr ""
 
-#, python-format
-msgid "Using LNB %d"
-msgstr ""
-
 msgid "Using fixed address"
 msgstr ""
 
 msgid "Using old profile: "
-msgstr ""
-
-#, python-format
-msgid "Using tuner %s"
 msgstr ""
 
 msgid "Uzbek"
@@ -17883,10 +17831,6 @@ msgstr "วันธรรมดา"
 #, fuzzy
 msgid "Weekly"
 msgstr "รายสัปดาห์"
-
-#, fuzzy
-msgid "Weighted position"
-msgstr "บันทึกตำแหน่งแล้ว"
 
 msgid "Welcome to IceTV"
 msgstr ""
@@ -21641,11 +21585,6 @@ msgid ""
 msgstr ""
 
 msgid ""
-"Configure whether another tuner from the preferred list is allocated instead "
-"of sharing a tuner that is already active recording the same channel."
-msgstr ""
-
-msgid ""
 "Configure whether the 'recording' symbol (in the display skin and LCD skin) "
 "is visible for real recordings only or also for streaming and pseuso "
 "recordings (e.g. EPGrefresh)."
@@ -21942,9 +21881,6 @@ msgstr ""
 msgid "Event font size"
 msgstr ""
 
-msgid "Experimental: strict limitation to preferred tuners"
-msgstr ""
-
 msgid "Experimental: strict limitation to preferred tuners for recordings"
 msgstr ""
 
@@ -22151,11 +22087,6 @@ msgstr ""
 msgid ""
 "In expert mode, configure which tuners will be preferred for recordings, "
 "when more than one tuner is available."
-msgstr ""
-
-msgid ""
-"In expert mode, configure which tuners will be preferred, when more than one "
-"tuner is available."
 msgstr ""
 
 msgid ""
@@ -22466,9 +22397,6 @@ msgid "Preferred tuner for recordings"
 msgstr ""
 
 msgid "Preferred tuners for recordings, multiple selection allowed"
-msgstr ""
-
-msgid "Preferred tuners, multiple selection allowed"
 msgstr ""
 
 #, fuzzy
@@ -24204,6 +24132,62 @@ msgstr ""
 
 msgid "J"
 msgstr ""
+
+#, fuzzy
+#~ msgid "Configuration mode: %s"
+#~ msgstr "กำลังตั้งค่า"
+
+#, fuzzy
+#~ msgid "Goto index position"
+#~ msgstr "ไปยังตำแหน่ง"
+
+#, fuzzy
+#~ msgid "Initial lock ratio"
+#~ msgstr "ปลายทางไม่ถูกต้อง"
+
+#, fuzzy
+#~ msgid "Initial signal quality:"
+#~ msgstr "คุณภาพการเชื่อมต่อ:"
+
+#, fuzzy
+#~ msgid "Lock ratio"
+#~ msgstr "สถานที่"
+
+#, fuzzy
+#~ msgid "Move to position X"
+#~ msgstr "ไปยังตำแหน่ง"
+
+#, fuzzy
+#~ msgid "Rotor step position:"
+#~ msgstr "บันทึกตำแหน่ง"
+
+#, fuzzy
+#~ msgid "Satellite longitude:"
+#~ msgstr "ตั้งค่าอุปกรณ์ดาวเทียม"
+
+#, fuzzy
+#~ msgid "Signal quality"
+#~ msgstr "คุณภาพการเชื่อมต่อ:"
+
+#, fuzzy
+#~ msgid "Site latitude"
+#~ msgstr "ละติจูด"
+
+#, fuzzy
+#~ msgid "Site longitude"
+#~ msgstr "ลองจิจูด"
+
+#, fuzzy
+#~ msgid "Store at index"
+#~ msgstr "บันทึกตำแหน่ง"
+
+#, fuzzy
+#~ msgid "Strongest position"
+#~ msgstr "บันทึกตำแหน่ง"
+
+#, fuzzy
+#~ msgid "Weighted position"
+#~ msgstr "บันทึกตำแหน่งแล้ว"
 
 #, fuzzy
 #~ msgid "%s %s %s."

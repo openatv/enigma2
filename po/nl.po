@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-08-21 11:25+0000\n"
+"POT-Creation-Date: 2021-08-22 21:17+0000\n"
 "PO-Revision-Date: 2021-08-19 12:59+0000\n"
 "Last-Translator: Walter <info@wt-electronic.nl>\n"
 "Language-Team: Dutch <https://hosted.weblate.org/projects/openatv/"
@@ -2613,9 +2613,6 @@ msgstr ""
 "toewijzen aan andere satellieten (b.v. bij een gemotoriseerde schotel) en "
 "bespaart u het wederom instellen van dezelfde LNB."
 
-msgid "Allocate unused memory index"
-msgstr "Wijs niet gebruikte geheugen index toe"
-
 msgid "Allow 10bit"
 msgstr "10bit toestaan"
 
@@ -3740,9 +3737,6 @@ msgstr "Cached:"
 msgid "Calculate"
 msgstr "Bereken"
 
-msgid "Calculate all positions"
-msgstr "Bereken alle posities"
-
 msgid "Calculate file checksums"
 msgstr "Bereken bestand checksums"
 
@@ -4461,10 +4455,6 @@ msgstr "Configureren"
 
 msgid "Configuration mode"
 msgstr "Configuratie modus"
-
-#, python-format
-msgid "Configuration mode: %s"
-msgstr "Configuratie modus: %s"
 
 msgid ""
 "Configuration options for the HELP screen can be found in 'MENU > Setup > "
@@ -5518,6 +5508,22 @@ msgstr "Map"
 #, python-format
 msgid "Directory %s does not exist."
 msgstr "Map %s bestaat niet."
+
+#, python-format
+msgid "Directory '%s' can't be linked to recordings!"
+msgstr ""
+
+#, python-format
+msgid "Directory '%s' does not exist!"
+msgstr ""
+
+#, python-format
+msgid "Directory '%s' not writable!"
+msgstr ""
+
+#, python-format
+msgid "Directory '%s' not writeable!"
+msgstr ""
 
 msgid "Directory browser"
 msgstr "Bestandsverkenner"
@@ -7044,6 +7050,10 @@ msgstr "Flash online/lokaal"
 msgid "Flash Online a new image"
 msgstr "Flash een image online of lokaal"
 
+#, python-format
+msgid "Flash directory '%s' not allowed!"
+msgstr ""
+
 msgid "Flash on the fly your your Receiver software."
 msgstr "Flash een image online of via usb naar uw ontvanger."
 
@@ -7450,9 +7460,6 @@ msgstr "Ga naar Primetime"
 
 msgid "Goto X"
 msgstr "Goto X"
-
-msgid "Goto index position"
-msgstr "Naar indexpositie draaien"
 
 msgid "Goto next bouquet"
 msgstr "Ga naar volgende favorietenlijst"
@@ -8247,15 +8254,6 @@ msgstr "Infotainment"
 
 msgid "Init"
 msgstr "Initialiseren"
-
-msgid "Initial lock ratio"
-msgstr "Initiële lock ratio"
-
-msgid "Initial signal quality"
-msgstr "Initiële signaalkwaliteit"
-
-msgid "Initial signal quality:"
-msgstr "Initiële signaalkwaliteit:"
 
 msgid "Initialization"
 msgstr "Initialiseren"
@@ -9071,9 +9069,6 @@ msgstr "Locatie"
 msgid "Location list"
 msgstr "Locatie lijst"
 
-msgid "Lock ratio"
-msgstr "Lock-ratio"
-
 msgid "Log"
 msgstr "Log"
 
@@ -9718,9 +9713,6 @@ msgstr "Ga naar begin van de lijst"
 
 msgid "Move to last line / screen"
 msgstr ""
-
-msgid "Move to position X"
-msgstr "Ga naar positie X"
 
 msgid "Move up a line"
 msgstr "Ga een regel omhoog"
@@ -11403,6 +11395,9 @@ msgstr ""
 "Selecteer een NFI bestand en druk op de groene knop om het flashproces te "
 "starten!"
 
+msgid "Please select an acceptable directory."
+msgstr ""
+
 msgid "Please select an aspect ratio..."
 msgstr "Selecteer een beeldverhouding..."
 
@@ -12670,9 +12665,6 @@ msgstr "Root"
 msgid "Root directory"
 msgstr "Hoofd map"
 
-msgid "Rotor step position:"
-msgstr "Rotor stap positie:"
-
 msgid "Rotor turning speed"
 msgstr "Rotor draaisnelheid"
 
@@ -12890,9 +12882,6 @@ msgstr "Satelliet apparatuur"
 
 msgid "Satellite equipment setup"
 msgstr "Apparatuurinstellingen"
-
-msgid "Satellite longitude:"
-msgstr "Lengtegraad satelliet:"
 
 msgid "Satellites"
 msgstr "Satellieten"
@@ -14656,14 +14645,8 @@ msgstr "Sierra Leone"
 msgid "Signal Finder"
 msgstr "Signaalzoeker"
 
-msgid "Signal OK, proceeding"
-msgstr "Signaal ok, doorgaan"
-
 msgid "Signal Strength:"
 msgstr "Signaal sterkte:"
-
-msgid "Signal quality"
-msgstr "Signaalkwaliteit"
 
 msgid "Signal strength:"
 msgstr "Signaalsterkte:"
@@ -14725,12 +14708,6 @@ msgstr "Sint Maarten (Nederlands gedeelte)"
 
 msgid "Sitcom"
 msgstr "Sitcom"
-
-msgid "Site latitude"
-msgstr "Breedtegraad van de locatie"
-
-msgid "Site longitude"
-msgstr "Lengtegraad van de locatie"
 
 msgid "Size"
 msgstr "Grootte"
@@ -15285,9 +15262,6 @@ msgstr "Gestopt"
 msgid "Storage devices"
 msgstr "Opslagmedia"
 
-msgid "Store at index"
-msgstr "Opslaan op index"
-
 msgid "Store position"
 msgstr "Positie opslaan"
 
@@ -15330,9 +15304,6 @@ msgstr "Strict DLNA"
 
 msgid "Stripes"
 msgstr "Strepen"
-
-msgid "Strongest position"
-msgstr "Sterkste positie"
 
 msgid "Stumm"
 msgstr "Stom"
@@ -17128,9 +17099,6 @@ msgstr ""
 "draaien, gebaseerd op de coördinaten die de gebruiker ingeeft. Zonder USALS "
 "moet de positie voor elke satelliet apart worden ingesteld en opgeslagen."
 
-msgid "USALS calibration"
-msgstr "USALS calibratie"
-
 msgid "USB Stick"
 msgstr "USB stick"
 
@@ -17612,19 +17580,11 @@ msgstr "Gebruikersnaam (httpuser)"
 msgid "Username:"
 msgstr "Gebruikersnaam:"
 
-#, python-format
-msgid "Using LNB %d"
-msgstr "Gebruik LNB %d"
-
 msgid "Using fixed address"
 msgstr "Gebruik vast ingesteld adres"
 
 msgid "Using old profile: "
 msgstr "Gebruik oud profiel: "
-
-#, python-format
-msgid "Using tuner %s"
-msgstr "Gebruik tuner %s"
 
 #, fuzzy
 msgid "Uzbek"
@@ -18075,9 +18035,6 @@ msgstr "Weekend"
 
 msgid "Weekly"
 msgstr "Wekelijks"
-
-msgid "Weighted position"
-msgstr "Gewogen positie"
 
 msgid "Welcome to IceTV"
 msgstr "Welkom bij IceTV"
@@ -22129,14 +22086,6 @@ msgstr ""
 "ontvangt van dezelfde live Tv-zender."
 
 msgid ""
-"Configure whether another tuner from the preferred list is allocated instead "
-"of sharing a tuner that is already active recording the same channel."
-msgstr ""
-"Configureren of een ander tuner van de voorkeurslijst is toegewezen in "
-"plaats van het delen van een tuner die reeds actief is met een opname op "
-"dezelfde zender."
-
-msgid ""
 "Configure whether the 'recording' symbol (in the display skin and LCD skin) "
 "is visible for real recordings only or also for streaming and pseuso "
 "recordings (e.g. EPGrefresh)."
@@ -22482,9 +22431,6 @@ msgstr ""
 msgid "Event font size"
 msgstr "Programma omschrijving lettergrootte"
 
-msgid "Experimental: strict limitation to preferred tuners"
-msgstr "Experimenteel: strikte beperking naar voorkeurs tuners"
-
 msgid "Experimental: strict limitation to preferred tuners for recordings"
 msgstr "Experimenteel: strikte beperking tot voorkeur tuners voor de opnames"
 
@@ -22742,13 +22688,6 @@ msgid ""
 msgstr ""
 "In expert modus, configureer welke tuners de voorkeur hebben voor opnames, "
 "wanneer meer dan een tuner beschikbaar is."
-
-msgid ""
-"In expert mode, configure which tuners will be preferred, when more than one "
-"tuner is available."
-msgstr ""
-"In expert modus, configureer welke tuners de voorkeur hebben, wanneer meer "
-"dan een tuner beschikbaar is."
 
 msgid ""
 "In most cases this should be set to No. Only enable if you have a very "
@@ -23060,9 +22999,6 @@ msgstr "Voorkeurstuner voor opnames"
 
 msgid "Preferred tuners for recordings, multiple selection allowed"
 msgstr "Voorkeurstuners voor opnames, meerdere selecteren toegestaan"
-
-msgid "Preferred tuners, multiple selection allowed"
-msgstr "Voorkeurstuners, meerdere selecteren toegestaan"
 
 msgid "Preparation time for recording (seconds)"
 msgstr "Voorbereidingstijd voor opnames (seconden)"
@@ -25069,6 +25005,91 @@ msgstr "IP"
 
 msgid "J"
 msgstr ""
+
+#~ msgid "Allocate unused memory index"
+#~ msgstr "Wijs niet gebruikte geheugen index toe"
+
+#~ msgid "Calculate all positions"
+#~ msgstr "Bereken alle posities"
+
+#~ msgid "Configuration mode: %s"
+#~ msgstr "Configuratie modus: %s"
+
+#~ msgid "Goto index position"
+#~ msgstr "Naar indexpositie draaien"
+
+#~ msgid "Initial lock ratio"
+#~ msgstr "Initiële lock ratio"
+
+#~ msgid "Initial signal quality"
+#~ msgstr "Initiële signaalkwaliteit"
+
+#~ msgid "Initial signal quality:"
+#~ msgstr "Initiële signaalkwaliteit:"
+
+#~ msgid "Lock ratio"
+#~ msgstr "Lock-ratio"
+
+#~ msgid "Move to position X"
+#~ msgstr "Ga naar positie X"
+
+#~ msgid "Rotor step position:"
+#~ msgstr "Rotor stap positie:"
+
+#~ msgid "Satellite longitude:"
+#~ msgstr "Lengtegraad satelliet:"
+
+#~ msgid "Signal OK, proceeding"
+#~ msgstr "Signaal ok, doorgaan"
+
+#~ msgid "Signal quality"
+#~ msgstr "Signaalkwaliteit"
+
+#~ msgid "Site latitude"
+#~ msgstr "Breedtegraad van de locatie"
+
+#~ msgid "Site longitude"
+#~ msgstr "Lengtegraad van de locatie"
+
+#~ msgid "Store at index"
+#~ msgstr "Opslaan op index"
+
+#~ msgid "Strongest position"
+#~ msgstr "Sterkste positie"
+
+#~ msgid "USALS calibration"
+#~ msgstr "USALS calibratie"
+
+#~ msgid "Using LNB %d"
+#~ msgstr "Gebruik LNB %d"
+
+#~ msgid "Using tuner %s"
+#~ msgstr "Gebruik tuner %s"
+
+#~ msgid "Weighted position"
+#~ msgstr "Gewogen positie"
+
+#~ msgid ""
+#~ "Configure whether another tuner from the preferred list is allocated "
+#~ "instead of sharing a tuner that is already active recording the same "
+#~ "channel."
+#~ msgstr ""
+#~ "Configureren of een ander tuner van de voorkeurslijst is toegewezen in "
+#~ "plaats van het delen van een tuner die reeds actief is met een opname op "
+#~ "dezelfde zender."
+
+#~ msgid "Experimental: strict limitation to preferred tuners"
+#~ msgstr "Experimenteel: strikte beperking naar voorkeurs tuners"
+
+#~ msgid ""
+#~ "In expert mode, configure which tuners will be preferred, when more than "
+#~ "one tuner is available."
+#~ msgstr ""
+#~ "In expert modus, configureer welke tuners de voorkeur hebben, wanneer "
+#~ "meer dan een tuner beschikbaar is."
+
+#~ msgid "Preferred tuners, multiple selection allowed"
+#~ msgstr "Voorkeurstuners, meerdere selecteren toegestaan"
 
 #, fuzzy
 #~ msgid "%s %s %s."

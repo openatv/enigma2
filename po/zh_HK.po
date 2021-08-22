@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-08-21 11:25+0000\n"
+"POT-Creation-Date: 2021-08-22 21:17+0000\n"
 "PO-Revision-Date: 2021-08-15 18:50+0000\n"
 "Last-Translator: openATV <openatv@gmail.com>\n"
 "Language-Team: Chinese (Traditional, Hong Kong) <https://hosted.weblate.org/"
@@ -2698,9 +2698,6 @@ msgid ""
 "save setting up the same LNB multiple times."
 msgstr ""
 
-msgid "Allocate unused memory index"
-msgstr ""
-
 msgid "Allow 10bit"
 msgstr ""
 
@@ -3893,9 +3890,6 @@ msgstr "緩存文件:"
 msgid "Calculate"
 msgstr ""
 
-msgid "Calculate all positions"
-msgstr ""
-
 msgid "Calculate file checksums"
 msgstr ""
 
@@ -4623,10 +4617,6 @@ msgid "Configurable"
 msgstr "配置"
 
 msgid "Configuration mode"
-msgstr ""
-
-#, python-format
-msgid "Configuration mode: %s"
 msgstr ""
 
 msgid ""
@@ -5704,6 +5694,22 @@ msgstr "目錄"
 
 #, python-format
 msgid "Directory %s does not exist."
+msgstr ""
+
+#, python-format
+msgid "Directory '%s' can't be linked to recordings!"
+msgstr ""
+
+#, python-format
+msgid "Directory '%s' does not exist!"
+msgstr ""
+
+#, python-format
+msgid "Directory '%s' not writable!"
+msgstr ""
+
+#, python-format
+msgid "Directory '%s' not writeable!"
 msgstr ""
 
 msgid "Directory browser"
@@ -7263,6 +7269,10 @@ msgstr "顯示資訊"
 msgid "Flash Online a new image"
 msgstr "請輸入一個新的檔案名"
 
+#, python-format
+msgid "Flash directory '%s' not allowed!"
+msgstr ""
+
 #, fuzzy
 msgid "Flash on the fly your your Receiver software."
 msgstr "管理Dreambox軟體."
@@ -7696,9 +7706,6 @@ msgid "Goto Primetime"
 msgstr "計時器自動寫入"
 
 msgid "Goto X"
-msgstr ""
-
-msgid "Goto index position"
 msgstr ""
 
 #, fuzzy
@@ -8516,15 +8523,6 @@ msgstr "娛樂"
 
 msgid "Init"
 msgstr "初始化"
-
-msgid "Initial lock ratio"
-msgstr ""
-
-msgid "Initial signal quality"
-msgstr ""
-
-msgid "Initial signal quality:"
-msgstr ""
 
 msgid "Initialization"
 msgstr ""
@@ -9397,9 +9395,6 @@ msgstr "位置"
 msgid "Location list"
 msgstr "位置"
 
-msgid "Lock ratio"
-msgstr ""
-
 #, fuzzy
 msgid "Log"
 msgstr "RS Log"
@@ -10092,9 +10087,6 @@ msgid "Move to home of list"
 msgstr "螢幕左移"
 
 msgid "Move to last line / screen"
-msgstr ""
-
-msgid "Move to position X"
 msgstr ""
 
 #, fuzzy
@@ -11890,6 +11882,9 @@ msgstr "請選擇一個字幕..."
 msgid "Please select an NFI file and press green key to flash!"
 msgstr ""
 
+msgid "Please select an acceptable directory."
+msgstr ""
+
 #, fuzzy
 msgid "Please select an aspect ratio..."
 msgstr "請選擇一個字幕..."
@@ -13268,9 +13263,6 @@ msgstr ""
 msgid "Root directory"
 msgstr ""
 
-msgid "Rotor step position:"
-msgstr ""
-
 msgid "Rotor turning speed"
 msgstr "Rotor轉速"
 
@@ -13495,9 +13487,6 @@ msgid "Satellite equipment"
 msgstr ""
 
 msgid "Satellite equipment setup"
-msgstr ""
-
-msgid "Satellite longitude:"
 msgstr ""
 
 msgid "Satellites"
@@ -15281,14 +15270,8 @@ msgstr ""
 msgid "Signal Finder"
 msgstr "信號: "
 
-msgid "Signal OK, proceeding"
-msgstr ""
-
 msgid "Signal Strength:"
 msgstr "信號強度:"
-
-msgid "Signal quality"
-msgstr ""
 
 msgid "Signal strength:"
 msgstr ""
@@ -15352,12 +15335,6 @@ msgid "Sint Maarten"
 msgstr ""
 
 msgid "Sitcom"
-msgstr ""
-
-msgid "Site latitude"
-msgstr ""
-
-msgid "Site longitude"
 msgstr ""
 
 msgid "Size"
@@ -15948,9 +15925,6 @@ msgstr "停止"
 msgid "Storage devices"
 msgstr "存貯裝置列表"
 
-msgid "Store at index"
-msgstr ""
-
 msgid "Store position"
 msgstr "存貯位置"
 
@@ -15996,9 +15970,6 @@ msgid "Strict DLNA"
 msgstr ""
 
 msgid "Stripes"
-msgstr ""
-
-msgid "Strongest position"
 msgstr ""
 
 msgid "Stumm"
@@ -17725,9 +17696,6 @@ msgid ""
 "to be setup and saved individually."
 msgstr ""
 
-msgid "USALS calibration"
-msgstr ""
-
 msgid "USB Stick"
 msgstr "USB-Stick"
 
@@ -18227,18 +18195,10 @@ msgstr ""
 msgid "Username:"
 msgstr "用戶名:"
 
-#, python-format
-msgid "Using LNB %d"
-msgstr ""
-
 msgid "Using fixed address"
 msgstr ""
 
 msgid "Using old profile: "
-msgstr ""
-
-#, python-format
-msgid "Using tuner %s"
 msgstr ""
 
 msgid "Uzbek"
@@ -18718,9 +18678,6 @@ msgstr "週末"
 #, fuzzy
 msgid "Weekly"
 msgstr "每週"
-
-msgid "Weighted position"
-msgstr ""
 
 msgid "Welcome to IceTV"
 msgstr ""
@@ -22603,11 +22560,6 @@ msgid ""
 msgstr ""
 
 msgid ""
-"Configure whether another tuner from the preferred list is allocated instead "
-"of sharing a tuner that is already active recording the same channel."
-msgstr ""
-
-msgid ""
 "Configure whether the 'recording' symbol (in the display skin and LCD skin) "
 "is visible for real recordings only or also for streaming and pseuso "
 "recordings (e.g. EPGrefresh)."
@@ -22912,9 +22864,6 @@ msgstr ""
 msgid "Event font size"
 msgstr ""
 
-msgid "Experimental: strict limitation to preferred tuners"
-msgstr ""
-
 msgid "Experimental: strict limitation to preferred tuners for recordings"
 msgstr ""
 
@@ -23126,11 +23075,6 @@ msgstr ""
 msgid ""
 "In expert mode, configure which tuners will be preferred for recordings, "
 "when more than one tuner is available."
-msgstr ""
-
-msgid ""
-"In expert mode, configure which tuners will be preferred, when more than one "
-"tuner is available."
 msgstr ""
 
 msgid ""
@@ -23454,9 +23398,6 @@ msgid "Preferred tuner for recordings"
 msgstr "標記新錄製內容"
 
 msgid "Preferred tuners for recordings, multiple selection allowed"
-msgstr ""
-
-msgid "Preferred tuners, multiple selection allowed"
 msgstr ""
 
 #, fuzzy

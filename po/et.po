@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV-Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-08-21 11:25+0000\n"
+"POT-Creation-Date: 2021-08-22 21:17+0000\n"
 "PO-Revision-Date: 2021-08-21 11:46+0000\n"
 "Last-Translator: openATV <openatv@gmail.com>\n"
 "Language-Team: Estonian <https://hosted.weblate.org/projects/openatv/"
@@ -2621,9 +2621,6 @@ msgstr ""
 "satelliitidele (nt. ajamiga antenn), et salvestada sätted sama LNB jaoks "
 "mitu korda."
 
-msgid "Allocate unused memory index"
-msgstr "Jaota vaba mäluindeks"
-
 msgid "Allow 10bit"
 msgstr "Luba 10bit"
 
@@ -3759,9 +3756,6 @@ msgstr "Vahemälus:"
 msgid "Calculate"
 msgstr "Arvuta"
 
-msgid "Calculate all positions"
-msgstr "Arvuta kõik positsioonid"
-
 msgid "Calculate file checksums"
 msgstr "Arvuta failide kontrollsummad"
 
@@ -4474,10 +4468,6 @@ msgstr "Seadistamine"
 
 msgid "Configuration mode"
 msgstr "Häälestamine"
-
-#, python-format
-msgid "Configuration mode: %s"
-msgstr "Häälestamine: %s"
 
 msgid ""
 "Configuration options for the HELP screen can be found in 'MENU > Setup > "
@@ -5529,6 +5519,22 @@ msgstr "Kataloog"
 #, python-format
 msgid "Directory %s does not exist."
 msgstr "Kataloogi %s ei eksisteeri."
+
+#, python-format
+msgid "Directory '%s' can't be linked to recordings!"
+msgstr ""
+
+#, python-format
+msgid "Directory '%s' does not exist!"
+msgstr ""
+
+#, python-format
+msgid "Directory '%s' not writable!"
+msgstr ""
+
+#, python-format
+msgid "Directory '%s' not writeable!"
+msgstr ""
 
 msgid "Directory browser"
 msgstr "Kataloogilehitseja"
@@ -7079,6 +7085,10 @@ msgstr "Püsivara paigaldus"
 msgid "Flash Online a new image"
 msgstr "Paigalda vastuvõtjale uus püsivara"
 
+#, python-format
+msgid "Flash directory '%s' not allowed!"
+msgstr ""
+
 msgid "Flash on the fly your your Receiver software."
 msgstr "Paigalda vastuvõtjale uus püsivara."
 
@@ -7496,9 +7506,6 @@ msgstr "Mine tippajale"
 
 msgid "Goto X"
 msgstr "Mine X"
-
-msgid "Goto index position"
-msgstr "Mine asukohta indeksis"
 
 msgid "Goto next bouquet"
 msgstr "Liigu järgmisse lemmiknimekirja"
@@ -8282,15 +8289,6 @@ msgstr "CCcam info peamenüü"
 
 msgid "Init"
 msgstr "Init"
-
-msgid "Initial lock ratio"
-msgstr "Algne lukustussuhe"
-
-msgid "Initial signal quality"
-msgstr "Algne signaali kvaliteet"
-
-msgid "Initial signal quality:"
-msgstr "Algne signaali kvaliteet:"
 
 msgid "Initialization"
 msgstr "Vormindamine"
@@ -9125,9 +9123,6 @@ msgstr "Asukoht"
 msgid "Location list"
 msgstr "Asukohaloend"
 
-msgid "Lock ratio"
-msgstr "Lukusta suhe"
-
 msgid "Log"
 msgstr "Logi"
 
@@ -9805,9 +9800,6 @@ msgstr "Liigu nimekirja kodukataloogi"
 
 msgid "Move to last line / screen"
 msgstr ""
-
-msgid "Move to position X"
-msgstr "Liigu positsioonile X"
 
 #, fuzzy
 msgid "Move up a line"
@@ -11542,6 +11534,9 @@ msgstr "Vali alamkanal"
 msgid "Please select an NFI file and press green key to flash!"
 msgstr "Vali NFI fail ja vajuta paigaldamiseks rohelist nuppu!"
 
+msgid "Please select an acceptable directory."
+msgstr ""
+
 # ******************************************************************************
 msgid "Please select an aspect ratio..."
 msgstr "Vali kuvasuhe"
@@ -12847,9 +12842,6 @@ msgstr "Juur"
 msgid "Root directory"
 msgstr "Tüvikataloog"
 
-msgid "Rotor step position:"
-msgstr "Ajami sammu asukoht:"
-
 msgid "Rotor turning speed"
 msgstr "Ajami pööramise kiirus"
 
@@ -13070,9 +13062,6 @@ msgstr "Satelliidivarustus"
 
 msgid "Satellite equipment setup"
 msgstr "Satelliidivarustuse seaded"
-
-msgid "Satellite longitude:"
-msgstr "Satelliidi pikkuskraad:"
 
 msgid "Satellites"
 msgstr "Satelliidid"
@@ -14821,14 +14810,8 @@ msgstr "Sierra Leone"
 msgid "Signal Finder"
 msgstr "Signaalimõõdik"
 
-msgid "Signal OK, proceeding"
-msgstr "Korralik signaal, jätkame"
-
 msgid "Signal Strength:"
 msgstr "Signaali tugevus:"
-
-msgid "Signal quality"
-msgstr "Signaali kvaliteet"
 
 msgid "Signal strength:"
 msgstr "Signaali tugevus:"
@@ -14890,12 +14873,6 @@ msgstr "Sint Maarten (Hollandi osa)"
 
 msgid "Sitcom"
 msgstr ""
-
-msgid "Site latitude"
-msgstr "Koha laiuskraad"
-
-msgid "Site longitude"
-msgstr "Koha pikkuskraad"
 
 msgid "Size"
 msgstr "Suurus"
@@ -15465,9 +15442,6 @@ msgstr "Peatatud"
 msgid "Storage devices"
 msgstr "Andmekandjad"
 
-msgid "Store at index"
-msgstr "Salvesta indeksis"
-
 msgid "Store position"
 msgstr "Salvesta asukoht"
 
@@ -15511,9 +15485,6 @@ msgstr "Puhas DLNA"
 
 msgid "Stripes"
 msgstr "Triibud"
-
-msgid "Strongest position"
-msgstr "Tugevaim positsioon"
 
 msgid "Stumm"
 msgstr ""
@@ -17312,9 +17283,6 @@ msgstr ""
 "kasutaja antud koordinaatidele. USALS'ita tuleb iga satelliit eraldi "
 "seadistada ja salvestada."
 
-msgid "USALS calibration"
-msgstr "USALS kalibreerimine"
-
 #
 msgid "USB Stick"
 msgstr "USB mälupulk"
@@ -17811,19 +17779,11 @@ msgstr "Kasutajanimi (httpuser)"
 msgid "Username:"
 msgstr "Kasutajanimi:"
 
-#, python-format
-msgid "Using LNB %d"
-msgstr "Kasutuses LNB %d"
-
 msgid "Using fixed address"
 msgstr "Püsiaadress kasutuses"
 
 msgid "Using old profile: "
 msgstr "Kasutuses vana profiil: "
-
-#, python-format
-msgid "Using tuner %s"
-msgstr "Kasutuses tuuner %s"
 
 #, fuzzy
 msgid "Uzbek"
@@ -18285,9 +18245,6 @@ msgstr "Nädalavahetus"
 
 msgid "Weekly"
 msgstr "Iga nädal"
-
-msgid "Weighted position"
-msgstr "Korrigeeritud asukoht"
 
 #, fuzzy
 msgid "Welcome to IceTV"
@@ -22218,13 +22175,6 @@ msgstr ""
 "Määra, kas kasutada salvestusteks määratud tuunerit või juba sama saate "
 "vastuvõtuga hõivatud tuunerit."
 
-msgid ""
-"Configure whether another tuner from the preferred list is allocated instead "
-"of sharing a tuner that is already active recording the same channel."
-msgstr ""
-"Määra, kas kasutada salvestusteks määratud tuunerit või juba sama kanali "
-"vastuvõtuga hõivatud tuunerit."
-
 # data/setup.xml
 msgid ""
 "Configure whether the 'recording' symbol (in the display skin and LCD skin) "
@@ -22566,9 +22516,6 @@ msgstr ""
 msgid "Event font size"
 msgstr "Saatenime tähesuurus"
 
-msgid "Experimental: strict limitation to preferred tuners"
-msgstr "Eksperimentaalne: rangelt piiratud eelistatud tuuneritega"
-
 msgid "Experimental: strict limitation to preferred tuners for recordings"
 msgstr ""
 "Eksperimentaalne: rangelt piiratud salvestusteks eelistatud tuuneritega"
@@ -22802,12 +22749,6 @@ msgid ""
 msgstr ""
 "Määra, millist tuunerit eelistatakse salvestamisel, kui saadaval on rohkem "
 "kui üks tuuner."
-
-msgid ""
-"In expert mode, configure which tuners will be preferred, when more than one "
-"tuner is available."
-msgstr ""
-"Määra, millist tuunerit eelistatakse, kui saadaval on rohkem kui üks tuuner."
 
 msgid ""
 "In most cases this should be set to No. Only enable if you have a very "
@@ -23122,9 +23063,6 @@ msgstr "Eelistatud tuuner salvestamiseks"
 
 msgid "Preferred tuners for recordings, multiple selection allowed"
 msgstr "Eelistatud tuunerid salvestamiseks. Lubatud on mitu valikut"
-
-msgid "Preferred tuners, multiple selection allowed"
-msgstr "Eelistatud tuunerid. Lubatud on mitu valikut"
 
 msgid "Preparation time for recording (seconds)"
 msgstr "Salvestuseks valmistumise aeg (sek)"
@@ -25043,6 +24981,90 @@ msgstr "IP"
 
 msgid "J"
 msgstr ""
+
+#~ msgid "Allocate unused memory index"
+#~ msgstr "Jaota vaba mäluindeks"
+
+#~ msgid "Calculate all positions"
+#~ msgstr "Arvuta kõik positsioonid"
+
+#~ msgid "Configuration mode: %s"
+#~ msgstr "Häälestamine: %s"
+
+#~ msgid "Goto index position"
+#~ msgstr "Mine asukohta indeksis"
+
+#~ msgid "Initial lock ratio"
+#~ msgstr "Algne lukustussuhe"
+
+#~ msgid "Initial signal quality"
+#~ msgstr "Algne signaali kvaliteet"
+
+#~ msgid "Initial signal quality:"
+#~ msgstr "Algne signaali kvaliteet:"
+
+#~ msgid "Lock ratio"
+#~ msgstr "Lukusta suhe"
+
+#~ msgid "Move to position X"
+#~ msgstr "Liigu positsioonile X"
+
+#~ msgid "Rotor step position:"
+#~ msgstr "Ajami sammu asukoht:"
+
+#~ msgid "Satellite longitude:"
+#~ msgstr "Satelliidi pikkuskraad:"
+
+#~ msgid "Signal OK, proceeding"
+#~ msgstr "Korralik signaal, jätkame"
+
+#~ msgid "Signal quality"
+#~ msgstr "Signaali kvaliteet"
+
+#~ msgid "Site latitude"
+#~ msgstr "Koha laiuskraad"
+
+#~ msgid "Site longitude"
+#~ msgstr "Koha pikkuskraad"
+
+#~ msgid "Store at index"
+#~ msgstr "Salvesta indeksis"
+
+#~ msgid "Strongest position"
+#~ msgstr "Tugevaim positsioon"
+
+#~ msgid "USALS calibration"
+#~ msgstr "USALS kalibreerimine"
+
+#~ msgid "Using LNB %d"
+#~ msgstr "Kasutuses LNB %d"
+
+#~ msgid "Using tuner %s"
+#~ msgstr "Kasutuses tuuner %s"
+
+#~ msgid "Weighted position"
+#~ msgstr "Korrigeeritud asukoht"
+
+#~ msgid ""
+#~ "Configure whether another tuner from the preferred list is allocated "
+#~ "instead of sharing a tuner that is already active recording the same "
+#~ "channel."
+#~ msgstr ""
+#~ "Määra, kas kasutada salvestusteks määratud tuunerit või juba sama kanali "
+#~ "vastuvõtuga hõivatud tuunerit."
+
+#~ msgid "Experimental: strict limitation to preferred tuners"
+#~ msgstr "Eksperimentaalne: rangelt piiratud eelistatud tuuneritega"
+
+#~ msgid ""
+#~ "In expert mode, configure which tuners will be preferred, when more than "
+#~ "one tuner is available."
+#~ msgstr ""
+#~ "Määra, millist tuunerit eelistatakse, kui saadaval on rohkem kui üks "
+#~ "tuuner."
+
+#~ msgid "Preferred tuners, multiple selection allowed"
+#~ msgstr "Eelistatud tuunerid. Lubatud on mitu valikut"
 
 #~ msgid "%s %s %s."
 #~ msgstr "%s %s %s."

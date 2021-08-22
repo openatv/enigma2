@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-08-21 11:25+0000\n"
+"POT-Creation-Date: 2021-08-22 21:17+0000\n"
 "PO-Revision-Date: 2021-08-21 20:39+0000\n"
 "Last-Translator: Adga56 <adga45@gmail.com>\n"
 "Language-Team: Lithuanian <https://hosted.weblate.org/projects/openatv/"
@@ -2626,9 +2626,6 @@ msgstr ""
 "pasirinkti kituose palydovuose (pvz., motorizuotuose antenose), kad "
 "išsaugotumėte tą patį LNB nustatymą keletą kartų."
 
-msgid "Allocate unused memory index"
-msgstr "Paskirti nenaudojamos atminties indeksą"
-
 msgid "Allow 10bit"
 msgstr "Leisti 10 bitų"
 
@@ -3738,9 +3735,6 @@ msgstr "Sukaupta talpykloje:"
 msgid "Calculate"
 msgstr "Apskaičiuoti"
 
-msgid "Calculate all positions"
-msgstr "Apskaičiuoti visas pozicijas"
-
 msgid "Calculate file checksums"
 msgstr "Apskaičiuoti failo kontrolines sumas"
 
@@ -4456,10 +4450,6 @@ msgstr "Konfigūruojama"
 
 msgid "Configuration mode"
 msgstr "Konfigūracijos režimas"
-
-#, python-format
-msgid "Configuration mode: %s"
-msgstr "Konfigūravimo būdas: %s"
 
 msgid ""
 "Configuration options for the HELP screen can be found in 'MENU > Setup > "
@@ -5485,6 +5475,22 @@ msgstr "Katalogas"
 #, python-format
 msgid "Directory %s does not exist."
 msgstr "Katalogo %s nėra."
+
+#, python-format
+msgid "Directory '%s' can't be linked to recordings!"
+msgstr ""
+
+#, python-format
+msgid "Directory '%s' does not exist!"
+msgstr ""
+
+#, python-format
+msgid "Directory '%s' not writable!"
+msgstr ""
+
+#, python-format
+msgid "Directory '%s' not writeable!"
+msgstr ""
 
 msgid "Directory browser"
 msgstr "Katalogų naršyklė"
@@ -6995,6 +7001,10 @@ msgstr "Įdiegti tiesiai iš interneto"
 msgid "Flash Online a new image"
 msgstr "Įdiegti naują atvaizdą tiesiai iš interneto"
 
+#, python-format
+msgid "Flash directory '%s' not allowed!"
+msgstr ""
+
 msgid "Flash on the fly your your Receiver software."
 msgstr "Įdiegti jūsų imtuvo programinę įrangą."
 
@@ -7393,9 +7403,6 @@ msgstr "Į žiūrimiausią laiką"
 
 msgid "Goto X"
 msgstr "Eiti į X"
-
-msgid "Goto index position"
-msgstr "Į žymės poziciją"
 
 msgid "Goto next bouquet"
 msgstr "Į kitą paketą"
@@ -8183,15 +8190,6 @@ msgstr "Informacijos ir pramogų"
 
 msgid "Init"
 msgstr "Inicializacija"
-
-msgid "Initial lock ratio"
-msgstr "Pradinis fiksuotas santykis"
-
-msgid "Initial signal quality"
-msgstr "Pradinė signalo kokybė"
-
-msgid "Initial signal quality:"
-msgstr "Pradinė signalo kokybė:"
 
 msgid "Initialization"
 msgstr "Inicializavimas"
@@ -8984,9 +8982,6 @@ msgstr "Vieta"
 msgid "Location list"
 msgstr "Vietovių sąrašas"
 
-msgid "Lock ratio"
-msgstr "Fiksavimo santykis"
-
 msgid "Log"
 msgstr "Žurnalas"
 
@@ -9617,9 +9612,6 @@ msgstr "Perkelti į titulinį sąrašą"
 
 msgid "Move to last line / screen"
 msgstr "Pereiti į paskutinę eilutę / ekraną"
-
-msgid "Move to position X"
-msgstr "Perkelti į poziciją X"
 
 msgid "Move up a line"
 msgstr "Judėkite linija aukštyn"
@@ -11285,6 +11277,9 @@ msgid "Please select an NFI file and press green key to flash!"
 msgstr ""
 "Prašome išsirinkti NFI failą ir spauskite žalią mygtuką atvaizdo įkėlimui!"
 
+msgid "Please select an acceptable directory."
+msgstr ""
+
 msgid "Please select an aspect ratio..."
 msgstr "Pasirinkite vaizdo formato santykį..."
 
@@ -12547,9 +12542,6 @@ msgstr "Pagrindinis"
 msgid "Root directory"
 msgstr "Pagrindinis katalogas"
 
-msgid "Rotor step position:"
-msgstr "Rotoriaus žingsnio pozicija:"
-
 msgid "Rotor turning speed"
 msgstr "Rotoriaus sukimosi greitis"
 
@@ -12762,9 +12754,6 @@ msgstr "Palydovinė įranga"
 
 msgid "Satellite equipment setup"
 msgstr "Palydovinės įrangos sąranka"
-
-msgid "Satellite longitude:"
-msgstr "Palydovinė ilguma:"
 
 msgid "Satellites"
 msgstr "Palydovai"
@@ -14481,14 +14470,8 @@ msgstr "Siera Leonė"
 msgid "Signal Finder"
 msgstr "Signalų ieškiklis"
 
-msgid "Signal OK, proceeding"
-msgstr "Signalas ОК, tęsiame"
-
 msgid "Signal Strength:"
 msgstr "Signalo stiprumas:"
-
-msgid "Signal quality"
-msgstr "Signalo kokybė"
 
 msgid "Signal strength:"
 msgstr "Signalo stiprumas:"
@@ -14549,12 +14532,6 @@ msgstr "Sint Martenas"
 
 msgid "Sitcom"
 msgstr "Sitcom"
-
-msgid "Site latitude"
-msgstr "Svetainės platuma"
-
-msgid "Site longitude"
-msgstr "Svetainės ilguma"
 
 msgid "Size"
 msgstr "Dydis"
@@ -15109,9 +15086,6 @@ msgstr "Sustabdyta"
 msgid "Storage devices"
 msgstr "Saugojimo įrenginiai"
 
-msgid "Store at index"
-msgstr "Išsaugoti ties žyme"
-
 msgid "Store position"
 msgstr "Išsaugoti padėtį"
 
@@ -15154,9 +15128,6 @@ msgstr "Тikslus DLNA"
 
 msgid "Stripes"
 msgstr "Juostos"
-
-msgid "Strongest position"
-msgstr "Stipriausia pozicija"
 
 msgid "Stumm"
 msgstr "Begarsis"
@@ -16926,9 +16897,6 @@ msgstr ""
 "vartotojo įrašytomis koordinatėmis. Be USALS kiekvienas palydovas turės būti "
 "nustatytas ir išsaugotas atskirai."
 
-msgid "USALS calibration"
-msgstr "USALS kalibravimas"
-
 msgid "USB Stick"
 msgstr "USB laikmena"
 
@@ -17424,19 +17392,11 @@ msgstr "Vartotojo vardas (httpuser)"
 msgid "Username:"
 msgstr "Vartotojas:"
 
-#, python-format
-msgid "Using LNB %d"
-msgstr "Naudojama LNB %d"
-
 msgid "Using fixed address"
 msgstr "Naudojamas pastovus adresas"
 
 msgid "Using old profile: "
 msgstr "Naudoti seną profilį: "
-
-#, python-format
-msgid "Using tuner %s"
-msgstr "Naudojamas imtuvas %s"
 
 msgid "Uzbek"
 msgstr "Uzbekų"
@@ -17877,9 +17837,6 @@ msgstr "Savaitgalis"
 
 msgid "Weekly"
 msgstr "Kas savaitę"
-
-msgid "Weighted position"
-msgstr "Subalansuota padėtis"
 
 msgid "Welcome to IceTV"
 msgstr "Sveiki apsilankę IceTV"
@@ -21810,13 +21767,6 @@ msgstr ""
 "pačią transliaciją televizijos kanalu."
 
 msgid ""
-"Configure whether another tuner from the preferred list is allocated instead "
-"of sharing a tuner that is already active recording the same channel."
-msgstr ""
-"Konfigūruokite ar kitas imtuvas, iš pageidaujamo sąrašo, yra skirtas vietoj "
-"bendrinamo imtuvo, kuris jau aktyviai įrašinėja tą patį kanalą."
-
-msgid ""
 "Configure whether the 'recording' symbol (in the display skin and LCD skin) "
 "is visible for real recordings only or also for streaming and pseuso "
 "recordings (e.g. EPGrefresh)."
@@ -22161,9 +22111,6 @@ msgstr ""
 msgid "Event font size"
 msgstr "Įvykio šrifto dydis"
 
-msgid "Experimental: strict limitation to preferred tuners"
-msgstr "Eksperimentinis: griežtas pageidaujamų imtuvų apribojimas"
-
 msgid "Experimental: strict limitation to preferred tuners for recordings"
 msgstr "Eksperimentinis: griežtas, įrašams pageidaujamų imtuvų, apribojimas"
 
@@ -22409,13 +22356,6 @@ msgid ""
 msgstr ""
 "Eksperimentiniame režime nustatykite, kuris imtuvas turės įrašymo pirmenybę, "
 "kai galimas daugiau, nei vienas imtuvas."
-
-msgid ""
-"In expert mode, configure which tuners will be preferred, when more than one "
-"tuner is available."
-msgstr ""
-"Nustatykite, kuris imtuvas turės įrašymo pirmenybę, kai galimas daugiau, nei "
-"vienas imtuvas."
 
 msgid ""
 "In most cases this should be set to No. Only enable if you have a very "
@@ -22721,9 +22661,6 @@ msgstr "Pageidautinas imtuvas įrašams"
 
 msgid "Preferred tuners for recordings, multiple selection allowed"
 msgstr "Įrašams pageidaujami imtuvai, galima pasirinkti keletą"
-
-msgid "Preferred tuners, multiple selection allowed"
-msgstr "Pageidaujami imtuvai, galima pasirinkti keletą"
 
 msgid "Preparation time for recording (seconds)"
 msgstr "Pasirengimas įrašymui (sek.)"
@@ -23823,10 +23760,9 @@ msgid ""
 "keep your own user bouquet while installed settings are upgraded"
 msgstr ""
 "Kai čia įjungta, enigma2 įkels nesusietus vartotojo paketus. Tai reiškia, "
-"kad vartotojo paketai, kurie yra prieinami, tačiau nėra įtraukti į  "
-"bouquets.tv, ar  bouquets.radio failus, vis tiek bus įkelti. Tai leidžia "
-"jums pvz. išsaugoti savo vartotojo paketus, kai bus atnaujinami įdiegti "
-"nustatymai"
+"kad vartotojo paketai, kurie yra prieinami, tačiau nėra įtraukti į  bouquets."
+"tv, ar  bouquets.radio failus, vis tiek bus įkelti. Tai leidžia jums pvz. "
+"išsaugoti savo vartotojo paketus, kai bus atnaujinami įdiegti nustatymai"
 
 msgid "When enabled the PiP can be closed by the exit button."
 msgstr "Kai čia įjungta, PiP gali būti išjungtas su 'EXIT' mygtuku."
@@ -24622,6 +24558,90 @@ msgstr "I"
 
 msgid "J"
 msgstr "J"
+
+#~ msgid "Allocate unused memory index"
+#~ msgstr "Paskirti nenaudojamos atminties indeksą"
+
+#~ msgid "Calculate all positions"
+#~ msgstr "Apskaičiuoti visas pozicijas"
+
+#~ msgid "Configuration mode: %s"
+#~ msgstr "Konfigūravimo būdas: %s"
+
+#~ msgid "Goto index position"
+#~ msgstr "Į žymės poziciją"
+
+#~ msgid "Initial lock ratio"
+#~ msgstr "Pradinis fiksuotas santykis"
+
+#~ msgid "Initial signal quality"
+#~ msgstr "Pradinė signalo kokybė"
+
+#~ msgid "Initial signal quality:"
+#~ msgstr "Pradinė signalo kokybė:"
+
+#~ msgid "Lock ratio"
+#~ msgstr "Fiksavimo santykis"
+
+#~ msgid "Move to position X"
+#~ msgstr "Perkelti į poziciją X"
+
+#~ msgid "Rotor step position:"
+#~ msgstr "Rotoriaus žingsnio pozicija:"
+
+#~ msgid "Satellite longitude:"
+#~ msgstr "Palydovinė ilguma:"
+
+#~ msgid "Signal OK, proceeding"
+#~ msgstr "Signalas ОК, tęsiame"
+
+#~ msgid "Signal quality"
+#~ msgstr "Signalo kokybė"
+
+#~ msgid "Site latitude"
+#~ msgstr "Svetainės platuma"
+
+#~ msgid "Site longitude"
+#~ msgstr "Svetainės ilguma"
+
+#~ msgid "Store at index"
+#~ msgstr "Išsaugoti ties žyme"
+
+#~ msgid "Strongest position"
+#~ msgstr "Stipriausia pozicija"
+
+#~ msgid "USALS calibration"
+#~ msgstr "USALS kalibravimas"
+
+#~ msgid "Using LNB %d"
+#~ msgstr "Naudojama LNB %d"
+
+#~ msgid "Using tuner %s"
+#~ msgstr "Naudojamas imtuvas %s"
+
+#~ msgid "Weighted position"
+#~ msgstr "Subalansuota padėtis"
+
+#~ msgid ""
+#~ "Configure whether another tuner from the preferred list is allocated "
+#~ "instead of sharing a tuner that is already active recording the same "
+#~ "channel."
+#~ msgstr ""
+#~ "Konfigūruokite ar kitas imtuvas, iš pageidaujamo sąrašo, yra skirtas "
+#~ "vietoj bendrinamo imtuvo, kuris jau aktyviai įrašinėja tą patį kanalą."
+
+#~ msgid "Experimental: strict limitation to preferred tuners"
+#~ msgstr "Eksperimentinis: griežtas pageidaujamų imtuvų apribojimas"
+
+#~ msgid ""
+#~ "In expert mode, configure which tuners will be preferred, when more than "
+#~ "one tuner is available."
+#~ msgstr ""
+#~ "Nustatykite, kuris imtuvas turės įrašymo pirmenybę, kai galimas daugiau, "
+#~ "nei vienas imtuvas."
+
+#~ msgid "Preferred tuners, multiple selection allowed"
+#~ msgstr "Pageidaujami imtuvai, galima pasirinkti keletą"
 
 #~ msgid "%s %s %s."
 #~ msgstr "%s %s %s."

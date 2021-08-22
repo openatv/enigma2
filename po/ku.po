@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2 Kurdish translation\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-08-21 11:25+0000\n"
+"POT-Creation-Date: 2021-08-22 21:17+0000\n"
 "PO-Revision-Date: 2021-08-15 18:50+0000\n"
 "Last-Translator: openATV <openatv@gmail.com>\n"
 "Language-Team: Kurdish <https://hosted.weblate.org/projects/openatv/"
@@ -2745,9 +2745,6 @@ msgid ""
 "save setting up the same LNB multiple times."
 msgstr ""
 
-msgid "Allocate unused memory index"
-msgstr "Allocate unused memory index"
-
 msgid "Allow 10bit"
 msgstr ""
 
@@ -3905,9 +3902,6 @@ msgstr ""
 msgid "Calculate"
 msgstr "hesab bike"
 
-msgid "Calculate all positions"
-msgstr "Her daim hesab bike"
-
 msgid "Calculate file checksums"
 msgstr ""
 
@@ -4644,10 +4638,6 @@ msgstr "Configuring"
 
 msgid "Configuration mode"
 msgstr "Çékirina Ru"
-
-#, python-format
-msgid "Configuration mode: %s"
-msgstr "Configuration mode: %s"
 
 msgid ""
 "Configuration options for the HELP screen can be found in 'MENU > Setup > "
@@ -5710,6 +5700,22 @@ msgstr "Directory"
 #, python-format
 msgid "Directory %s does not exist."
 msgstr "Directory %s does not exist."
+
+#, python-format
+msgid "Directory '%s' can't be linked to recordings!"
+msgstr ""
+
+#, python-format
+msgid "Directory '%s' does not exist!"
+msgstr ""
+
+#, python-format
+msgid "Directory '%s' not writable!"
+msgstr ""
+
+#, python-format
+msgid "Directory '%s' not writeable!"
+msgstr ""
 
 msgid "Directory browser"
 msgstr "Directory browser"
@@ -7216,6 +7222,10 @@ msgstr ""
 msgid "Flash Online a new image"
 msgstr ""
 
+#, python-format
+msgid "Flash directory '%s' not allowed!"
+msgstr ""
+
 msgid "Flash on the fly your your Receiver software."
 msgstr ""
 
@@ -7642,9 +7652,6 @@ msgstr "Jump to previous marked position"
 
 msgid "Goto X"
 msgstr "Goto X"
-
-msgid "Goto index position"
-msgstr "Goto index position"
 
 #, fuzzy
 msgid "Goto next bouquet"
@@ -8434,15 +8441,6 @@ msgstr "CI assignment"
 
 msgid "Init"
 msgstr "Init"
-
-msgid "Initial lock ratio"
-msgstr "Initial lock ratio"
-
-msgid "Initial signal quality"
-msgstr "Initial signal quality"
-
-msgid "Initial signal quality:"
-msgstr "Initial signal quality:"
 
 msgid "Initialization"
 msgstr "Initialization"
@@ -9304,9 +9302,6 @@ msgstr "Location"
 msgid "Location list"
 msgstr "Location"
 
-msgid "Lock ratio"
-msgstr "Lock ratio"
-
 msgid "Log"
 msgstr ""
 
@@ -9971,9 +9966,6 @@ msgstr "Jump to end of list"
 
 msgid "Move to last line / screen"
 msgstr ""
-
-msgid "Move to position X"
-msgstr "Move to position X"
 
 #, fuzzy
 msgid "Move up a line"
@@ -11725,6 +11717,9 @@ msgstr "Please select a subservice..."
 msgid "Please select an NFI file and press green key to flash!"
 msgstr "Please select an NFI file and press green key to flash!"
 
+msgid "Please select an acceptable directory."
+msgstr ""
+
 msgid "Please select an aspect ratio..."
 msgstr ""
 
@@ -13055,9 +13050,6 @@ msgstr ""
 msgid "Root directory"
 msgstr "Root directory"
 
-msgid "Rotor step position:"
-msgstr "Rotor step position:"
-
 msgid "Rotor turning speed"
 msgstr "Rotor turning speed"
 
@@ -13274,9 +13266,6 @@ msgstr "Satellite equipment"
 
 msgid "Satellite equipment setup"
 msgstr "Satellite equipment setup"
-
-msgid "Satellite longitude:"
-msgstr "Satellite longitude:"
 
 msgid "Satellites"
 msgstr "Satellites"
@@ -14970,15 +14959,9 @@ msgstr ""
 msgid "Signal Finder"
 msgstr ""
 
-msgid "Signal OK, proceeding"
-msgstr "Signal OK, proceeding"
-
 #, fuzzy
 msgid "Signal Strength:"
 msgstr "Signal strength:"
-
-msgid "Signal quality"
-msgstr "Signal quality"
 
 msgid "Signal strength:"
 msgstr "Signal strength:"
@@ -15042,12 +15025,6 @@ msgstr ""
 
 msgid "Sitcom"
 msgstr ""
-
-msgid "Site latitude"
-msgstr "Site latitude"
-
-msgid "Site longitude"
-msgstr "Site longitude"
 
 msgid "Size"
 msgstr ""
@@ -15616,9 +15593,6 @@ msgstr "Stopped"
 msgid "Storage devices"
 msgstr "List of storage devices"
 
-msgid "Store at index"
-msgstr "Store at index"
-
 msgid "Store position"
 msgstr "Store position"
 
@@ -15662,9 +15636,6 @@ msgstr ""
 
 msgid "Stripes"
 msgstr ""
-
-msgid "Strongest position"
-msgstr "Strongest position"
 
 msgid "Stumm"
 msgstr ""
@@ -17388,9 +17359,6 @@ msgid ""
 "to be setup and saved individually."
 msgstr ""
 
-msgid "USALS calibration"
-msgstr "USALS calibration"
-
 msgid "USB Stick"
 msgstr ""
 
@@ -17877,19 +17845,11 @@ msgstr ""
 msgid "Username:"
 msgstr "Username"
 
-#, python-format
-msgid "Using LNB %d"
-msgstr "Using LNB %d"
-
 msgid "Using fixed address"
 msgstr "Using fixed address"
 
 msgid "Using old profile: "
 msgstr ""
-
-#, python-format
-msgid "Using tuner %s"
-msgstr "Using tuner %s"
 
 msgid "Uzbek"
 msgstr ""
@@ -18358,9 +18318,6 @@ msgstr "Weekday"
 #, fuzzy
 msgid "Weekly"
 msgstr "weekly"
-
-msgid "Weighted position"
-msgstr "Weighted position"
 
 msgid "Welcome to IceTV"
 msgstr ""
@@ -22291,11 +22248,6 @@ msgid ""
 msgstr ""
 
 msgid ""
-"Configure whether another tuner from the preferred list is allocated instead "
-"of sharing a tuner that is already active recording the same channel."
-msgstr ""
-
-msgid ""
 "Configure whether the 'recording' symbol (in the display skin and LCD skin) "
 "is visible for real recordings only or also for streaming and pseuso "
 "recordings (e.g. EPGrefresh)."
@@ -22608,9 +22560,6 @@ msgstr ""
 msgid "Event font size"
 msgstr "Subtitle font size"
 
-msgid "Experimental: strict limitation to preferred tuners"
-msgstr ""
-
 msgid "Experimental: strict limitation to preferred tuners for recordings"
 msgstr ""
 
@@ -22823,14 +22772,6 @@ msgid ""
 "In expert mode, configure which tuners will be preferred for recordings, "
 "when more than one tuner is available."
 msgstr ""
-
-#, fuzzy
-msgid ""
-"In expert mode, configure which tuners will be preferred, when more than one "
-"tuner is available."
-msgstr ""
-"Configure which tuner type will be preferred, when the same service is "
-"available on different types of tuners."
 
 msgid ""
 "In most cases this should be set to No. Only enable if you have a very "
@@ -23151,9 +23092,6 @@ msgid "Preferred tuner for recordings"
 msgstr ""
 
 msgid "Preferred tuners for recordings, multiple selection allowed"
-msgstr ""
-
-msgid "Preferred tuners, multiple selection allowed"
 msgstr ""
 
 #, fuzzy
@@ -24973,6 +24911,77 @@ msgstr ""
 
 msgid "J"
 msgstr ""
+
+#~ msgid "Allocate unused memory index"
+#~ msgstr "Allocate unused memory index"
+
+#~ msgid "Calculate all positions"
+#~ msgstr "Her daim hesab bike"
+
+#~ msgid "Configuration mode: %s"
+#~ msgstr "Configuration mode: %s"
+
+#~ msgid "Goto index position"
+#~ msgstr "Goto index position"
+
+#~ msgid "Initial lock ratio"
+#~ msgstr "Initial lock ratio"
+
+#~ msgid "Initial signal quality"
+#~ msgstr "Initial signal quality"
+
+#~ msgid "Initial signal quality:"
+#~ msgstr "Initial signal quality:"
+
+#~ msgid "Lock ratio"
+#~ msgstr "Lock ratio"
+
+#~ msgid "Move to position X"
+#~ msgstr "Move to position X"
+
+#~ msgid "Rotor step position:"
+#~ msgstr "Rotor step position:"
+
+#~ msgid "Satellite longitude:"
+#~ msgstr "Satellite longitude:"
+
+#~ msgid "Signal OK, proceeding"
+#~ msgstr "Signal OK, proceeding"
+
+#~ msgid "Signal quality"
+#~ msgstr "Signal quality"
+
+#~ msgid "Site latitude"
+#~ msgstr "Site latitude"
+
+#~ msgid "Site longitude"
+#~ msgstr "Site longitude"
+
+#~ msgid "Store at index"
+#~ msgstr "Store at index"
+
+#~ msgid "Strongest position"
+#~ msgstr "Strongest position"
+
+#~ msgid "USALS calibration"
+#~ msgstr "USALS calibration"
+
+#~ msgid "Using LNB %d"
+#~ msgstr "Using LNB %d"
+
+#~ msgid "Using tuner %s"
+#~ msgstr "Using tuner %s"
+
+#~ msgid "Weighted position"
+#~ msgstr "Weighted position"
+
+#, fuzzy
+#~ msgid ""
+#~ "In expert mode, configure which tuners will be preferred, when more than "
+#~ "one tuner is available."
+#~ msgstr ""
+#~ "Configure which tuner type will be preferred, when the same service is "
+#~ "available on different types of tuners."
 
 #, fuzzy
 #~ msgid "%s %s %s."

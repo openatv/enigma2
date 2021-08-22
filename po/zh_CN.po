@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openATV [E2+webif_V5.3_6.0]\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-08-21 11:25+0000\n"
+"POT-Creation-Date: 2021-08-22 21:17+0000\n"
 "PO-Revision-Date: 2021-08-19 12:59+0000\n"
 "Last-Translator: openATV <openatv@gmail.com>\n"
 "Language-Team: Chinese (Simplified) <https://hosted.weblate.org/projects/"
@@ -2762,9 +2762,6 @@ msgid ""
 "save setting up the same LNB multiple times."
 msgstr ""
 
-msgid "Allocate unused memory index"
-msgstr "分配未使用的内存"
-
 msgid "Allow 10bit"
 msgstr ""
 
@@ -3908,9 +3905,6 @@ msgstr "缓存:"
 msgid "Calculate"
 msgstr "计算"
 
-msgid "Calculate all positions"
-msgstr "计算所有位置"
-
 msgid "Calculate file checksums"
 msgstr ""
 
@@ -4626,10 +4620,6 @@ msgstr "正在配置"
 
 msgid "Configuration mode"
 msgstr "配置模式"
-
-#, python-format
-msgid "Configuration mode: %s"
-msgstr "配置模式: %s"
 
 msgid ""
 "Configuration options for the HELP screen can be found in 'MENU > Setup > "
@@ -5672,6 +5662,22 @@ msgstr "目录"
 #, python-format
 msgid "Directory %s does not exist."
 msgstr "不存在 %s 目录 ."
+
+#, python-format
+msgid "Directory '%s' can't be linked to recordings!"
+msgstr ""
+
+#, python-format
+msgid "Directory '%s' does not exist!"
+msgstr ""
+
+#, python-format
+msgid "Directory '%s' not writable!"
+msgstr ""
+
+#, python-format
+msgid "Directory '%s' not writeable!"
+msgstr ""
 
 msgid "Directory browser"
 msgstr "目录浏览"
@@ -7205,6 +7211,10 @@ msgstr "在线刷机"
 msgid "Flash Online a new image"
 msgstr "在线刷写新固件"
 
+#, python-format
+msgid "Flash directory '%s' not allowed!"
+msgstr ""
+
 msgid "Flash on the fly your your Receiver software."
 msgstr "直接刷写接收机中的固件."
 
@@ -7630,9 +7640,6 @@ msgstr "跳转到黄金时间"
 
 msgid "Goto X"
 msgstr "转到 X"
-
-msgid "Goto index position"
-msgstr "转到索引位置"
 
 msgid "Goto next bouquet"
 msgstr "转到下个频道组"
@@ -8413,15 +8420,6 @@ msgstr "CCcam 信息 主菜单"
 
 msgid "Init"
 msgstr "Init"
-
-msgid "Initial lock ratio"
-msgstr "初始锁定比率"
-
-msgid "Initial signal quality"
-msgstr "初始信号质量"
-
-msgid "Initial signal quality:"
-msgstr "初始信号质量:"
 
 msgid "Initialization"
 msgstr "初始化"
@@ -9266,9 +9264,6 @@ msgstr "位置"
 msgid "Location list"
 msgstr "位置"
 
-msgid "Lock ratio"
-msgstr "锁定比例"
-
 #, fuzzy
 msgid "Log"
 msgstr "Enigma2 日志"
@@ -9932,9 +9927,6 @@ msgstr "移动到主列表"
 
 msgid "Move to last line / screen"
 msgstr ""
-
-msgid "Move to position X"
-msgstr "移动到位置 X"
 
 #, fuzzy
 msgid "Move up a line"
@@ -11668,6 +11660,9 @@ msgstr "请选择一个子频道..."
 msgid "Please select an NFI file and press green key to flash!"
 msgstr "请选择一个NFI文件，按绿键写入闪存."
 
+msgid "Please select an acceptable directory."
+msgstr ""
+
 msgid "Please select an aspect ratio..."
 msgstr "请选择宽高比..."
 
@@ -12982,9 +12977,6 @@ msgstr ""
 msgid "Root directory"
 msgstr "根目录"
 
-msgid "Rotor step position:"
-msgstr "极轴步长位置:"
-
 msgid "Rotor turning speed"
 msgstr "极轴转速"
 
@@ -13204,9 +13196,6 @@ msgstr "卫星设备"
 
 msgid "Satellite equipment setup"
 msgstr "卫星设备设置"
-
-msgid "Satellite longitude:"
-msgstr "卫星经度:"
 
 msgid "Satellites"
 msgstr "卫星"
@@ -14873,14 +14862,8 @@ msgstr ""
 msgid "Signal Finder"
 msgstr "卫星寻星"
 
-msgid "Signal OK, proceeding"
-msgstr "信号 OK，继续"
-
 msgid "Signal Strength:"
 msgstr "信号强度:"
-
-msgid "Signal quality"
-msgstr "信号质量"
 
 msgid "Signal strength:"
 msgstr "信号强度:"
@@ -14944,12 +14927,6 @@ msgstr ""
 
 msgid "Sitcom"
 msgstr ""
-
-msgid "Site latitude"
-msgstr "网站纬度"
-
-msgid "Site longitude"
-msgstr "网站经度"
 
 #, fuzzy
 msgid "Size"
@@ -15516,9 +15493,6 @@ msgstr "已停止"
 msgid "Storage devices"
 msgstr "存储设备"
 
-msgid "Store at index"
-msgstr "存储根目录"
-
 msgid "Store position"
 msgstr "存储位置"
 
@@ -15562,9 +15536,6 @@ msgstr "精确DLNA"
 
 msgid "Stripes"
 msgstr "条纹"
-
-msgid "Strongest position"
-msgstr "最强位置"
 
 msgid "Stumm"
 msgstr ""
@@ -17294,9 +17265,6 @@ msgid ""
 "to be setup and saved individually."
 msgstr ""
 
-msgid "USALS calibration"
-msgstr "极轴 校准"
-
 msgid "USB Stick"
 msgstr "U 盘"
 
@@ -17775,19 +17743,11 @@ msgstr "用户名（HTTP用户）"
 msgid "Username:"
 msgstr "用户名:"
 
-#, python-format
-msgid "Using LNB %d"
-msgstr "使用 LNB %d"
-
 msgid "Using fixed address"
 msgstr "使用固定地址"
 
 msgid "Using old profile: "
 msgstr "使用旧的配置:"
-
-#, python-format
-msgid "Using tuner %s"
-msgstr "使用调谐器 %s"
 
 msgid "Uzbek"
 msgstr ""
@@ -18251,9 +18211,6 @@ msgstr "工作日"
 
 msgid "Weekly"
 msgstr "每周"
-
-msgid "Weighted position"
-msgstr "加权位置"
 
 msgid "Welcome to IceTV"
 msgstr ""
@@ -22133,11 +22090,6 @@ msgid ""
 msgstr ""
 
 msgid ""
-"Configure whether another tuner from the preferred list is allocated instead "
-"of sharing a tuner that is already active recording the same channel."
-msgstr ""
-
-msgid ""
 "Configure whether the 'recording' symbol (in the display skin and LCD skin) "
 "is visible for real recordings only or also for streaming and pseuso "
 "recordings (e.g. EPGrefresh)."
@@ -22451,9 +22403,6 @@ msgstr ""
 msgid "Event font size"
 msgstr "事件的字体大小"
 
-msgid "Experimental: strict limitation to preferred tuners"
-msgstr ""
-
 #, fuzzy
 msgid "Experimental: strict limitation to preferred tuners for recordings"
 msgstr "录像首选调谐器"
@@ -22667,12 +22616,6 @@ msgstr ""
 msgid ""
 "In expert mode, configure which tuners will be preferred for recordings, "
 "when more than one tuner is available."
-msgstr "有多个调谐器可用时，配置哪个调谐器优先用于录像."
-
-#, fuzzy
-msgid ""
-"In expert mode, configure which tuners will be preferred, when more than one "
-"tuner is available."
 msgstr "有多个调谐器可用时，配置哪个调谐器优先用于录像."
 
 msgid ""
@@ -22986,9 +22929,6 @@ msgstr "录像首选调谐器"
 #, fuzzy
 msgid "Preferred tuners for recordings, multiple selection allowed"
 msgstr "录像首选调谐器"
-
-msgid "Preferred tuners, multiple selection allowed"
-msgstr ""
 
 #, fuzzy
 msgid "Preparation time for recording (seconds)"
@@ -24771,6 +24711,75 @@ msgstr "IP:"
 
 msgid "J"
 msgstr ""
+
+#~ msgid "Allocate unused memory index"
+#~ msgstr "分配未使用的内存"
+
+#~ msgid "Calculate all positions"
+#~ msgstr "计算所有位置"
+
+#~ msgid "Configuration mode: %s"
+#~ msgstr "配置模式: %s"
+
+#~ msgid "Goto index position"
+#~ msgstr "转到索引位置"
+
+#~ msgid "Initial lock ratio"
+#~ msgstr "初始锁定比率"
+
+#~ msgid "Initial signal quality"
+#~ msgstr "初始信号质量"
+
+#~ msgid "Initial signal quality:"
+#~ msgstr "初始信号质量:"
+
+#~ msgid "Lock ratio"
+#~ msgstr "锁定比例"
+
+#~ msgid "Move to position X"
+#~ msgstr "移动到位置 X"
+
+#~ msgid "Rotor step position:"
+#~ msgstr "极轴步长位置:"
+
+#~ msgid "Satellite longitude:"
+#~ msgstr "卫星经度:"
+
+#~ msgid "Signal OK, proceeding"
+#~ msgstr "信号 OK，继续"
+
+#~ msgid "Signal quality"
+#~ msgstr "信号质量"
+
+#~ msgid "Site latitude"
+#~ msgstr "网站纬度"
+
+#~ msgid "Site longitude"
+#~ msgstr "网站经度"
+
+#~ msgid "Store at index"
+#~ msgstr "存储根目录"
+
+#~ msgid "Strongest position"
+#~ msgstr "最强位置"
+
+#~ msgid "USALS calibration"
+#~ msgstr "极轴 校准"
+
+#~ msgid "Using LNB %d"
+#~ msgstr "使用 LNB %d"
+
+#~ msgid "Using tuner %s"
+#~ msgstr "使用调谐器 %s"
+
+#~ msgid "Weighted position"
+#~ msgstr "加权位置"
+
+#, fuzzy
+#~ msgid ""
+#~ "In expert mode, configure which tuners will be preferred, when more than "
+#~ "one tuner is available."
+#~ msgstr "有多个调谐器可用时，配置哪个调谐器优先用于录像."
 
 #, fuzzy
 #~ msgid "%s %s %s."

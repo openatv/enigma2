@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-08-21 11:25+0000\n"
+"POT-Creation-Date: 2021-08-22 21:17+0000\n"
 "PO-Revision-Date: 2021-08-15 18:49+0000\n"
 "Last-Translator: openATV <openatv@gmail.com>\n"
 "Language-Team: Arabic <https://hosted.weblate.org/projects/openatv/"
@@ -2743,9 +2743,6 @@ msgstr ""
 "اللاقط مره أخرى للأقمار الصناعية الأخرى (علي سبيل المثال الاطباق المتحركة) "
 "لحفظ اعداد نفس اللاقط عده مرات."
 
-msgid "Allocate unused memory index"
-msgstr "تخصيص فهرس الذاكرة غير المستخدمة"
-
 msgid "Allow 10bit"
 msgstr ""
 
@@ -3889,9 +3886,6 @@ msgstr ""
 msgid "Calculate"
 msgstr "أحسب"
 
-msgid "Calculate all positions"
-msgstr "حساب جميع المواقع"
-
 msgid "Calculate file checksums"
 msgstr ""
 
@@ -4628,10 +4622,6 @@ msgstr "تكوين"
 
 msgid "Configuration mode"
 msgstr "وضع التكوين"
-
-#, python-format
-msgid "Configuration mode: %s"
-msgstr "وضع التكوين: %s"
 
 msgid ""
 "Configuration options for the HELP screen can be found in 'MENU > Setup > "
@@ -5693,6 +5683,22 @@ msgstr "الدليل"
 #, python-format
 msgid "Directory %s does not exist."
 msgstr "المجلد %s غير موجود."
+
+#, python-format
+msgid "Directory '%s' can't be linked to recordings!"
+msgstr ""
+
+#, python-format
+msgid "Directory '%s' does not exist!"
+msgstr ""
+
+#, python-format
+msgid "Directory '%s' not writable!"
+msgstr ""
+
+#, python-format
+msgid "Directory '%s' not writeable!"
+msgstr ""
 
 #
 msgid "Directory browser"
@@ -7207,6 +7213,10 @@ msgstr ""
 msgid "Flash Online a new image"
 msgstr ""
 
+#, python-format
+msgid "Flash directory '%s' not allowed!"
+msgstr ""
+
 msgid "Flash on the fly your your Receiver software."
 msgstr ""
 
@@ -7643,9 +7653,6 @@ msgstr ""
 #
 msgid "Goto X"
 msgstr "الإنتقال الى أكس"
-
-msgid "Goto index position"
-msgstr "الانتقال إلى مكان الفهرس"
 
 msgid "Goto next bouquet"
 msgstr ""
@@ -8426,15 +8433,6 @@ msgstr "معلومات"
 #
 msgid "Init"
 msgstr "التهيئة"
-
-msgid "Initial lock ratio"
-msgstr "نسبه القفل الاوليه"
-
-msgid "Initial signal quality"
-msgstr "جوده الاشاره الاولية"
-
-msgid "Initial signal quality:"
-msgstr "جوده الاشاره الاولية:"
 
 msgid "Initialization"
 msgstr "تهيئه"
@@ -9309,9 +9307,6 @@ msgstr "مكان"
 msgid "Location list"
 msgstr "مكان"
 
-msgid "Lock ratio"
-msgstr "إقفال توسيع الشاشة"
-
 msgid "Log"
 msgstr ""
 
@@ -9991,9 +9986,6 @@ msgstr ""
 
 msgid "Move to last line / screen"
 msgstr ""
-
-msgid "Move to position X"
-msgstr "الانتقال إلى المكان إكس"
 
 #, fuzzy
 msgid "Move up a line"
@@ -11783,6 +11775,9 @@ msgstr "من فضلك أختار الخدمه الفرعيه..."
 msgid "Please select an NFI file and press green key to flash!"
 msgstr ""
 
+msgid "Please select an acceptable directory."
+msgstr ""
+
 msgid "Please select an aspect ratio..."
 msgstr ""
 
@@ -13128,9 +13123,6 @@ msgstr "الجذر"
 msgid "Root directory"
 msgstr "دليل الملفات"
 
-msgid "Rotor step position:"
-msgstr "مواقع وخطوات النظام المتحرك:"
-
 #
 msgid "Rotor turning speed"
 msgstr "سرعة تؤليف الموتور"
@@ -13353,10 +13345,6 @@ msgstr "معدات القمر"
 #
 msgid "Satellite equipment setup"
 msgstr "ضبط معدات القمر"
-
-#
-msgid "Satellite longitude:"
-msgstr "خط طول القمر الصناعي:"
 
 #
 msgid "Satellites"
@@ -15103,16 +15091,9 @@ msgstr "سيراليون"
 msgid "Signal Finder"
 msgstr ""
 
-msgid "Signal OK, proceeding"
-msgstr "إشارة موافق ، قيد التقدم"
-
 #
 msgid "Signal Strength:"
 msgstr "قوة الاشاره"
-
-#
-msgid "Signal quality"
-msgstr "جوده الاشاره"
 
 #
 msgid "Signal strength:"
@@ -15186,14 +15167,6 @@ msgstr ""
 
 msgid "Sitcom"
 msgstr ""
-
-#
-msgid "Site latitude"
-msgstr "موقع خط العرض"
-
-#
-msgid "Site longitude"
-msgstr "موقع خط طول"
 
 msgid "Size"
 msgstr ""
@@ -15777,9 +15750,6 @@ msgstr "توقفت"
 msgid "Storage devices"
 msgstr "قائمة أجهزة التخزين"
 
-msgid "Store at index"
-msgstr "تخزين الفهرس"
-
 msgid "Store position"
 msgstr "متجر الموقع"
 
@@ -15824,9 +15794,6 @@ msgstr ""
 
 msgid "Stripes"
 msgstr ""
-
-msgid "Strongest position"
-msgstr "مكان قوي"
 
 msgid "Stumm"
 msgstr ""
@@ -17567,9 +17534,6 @@ msgstr ""
 "الصحيح استنادا إلى الإحداثيات التي ادخلها المستخدم. بدون نظام الأقمار "
 "العالمي كل الأقمار الصناعية ونحن بحاجه إلى ان يكون إعدادها وحفظها بشكل فردي."
 
-msgid "USALS calibration"
-msgstr ""
-
 msgid "USB Stick"
 msgstr ""
 
@@ -18070,19 +18034,11 @@ msgstr ""
 msgid "Username:"
 msgstr ""
 
-#, python-format
-msgid "Using LNB %d"
-msgstr "استخدام لاقط %d"
-
 msgid "Using fixed address"
 msgstr "إستخدام عناوين محددة"
 
 msgid "Using old profile: "
 msgstr ""
-
-#, python-format
-msgid "Using tuner %s"
-msgstr "استخدام المؤالف %s"
 
 msgid "Uzbek"
 msgstr ""
@@ -18562,10 +18518,6 @@ msgstr "يوم الاسبوع"
 #, fuzzy
 msgid "Weekly"
 msgstr "اسبوعى"
-
-#
-msgid "Weighted position"
-msgstr "الموقع الموزون"
 
 msgid "Welcome to IceTV"
 msgstr ""
@@ -22450,11 +22402,6 @@ msgid ""
 msgstr ""
 
 msgid ""
-"Configure whether another tuner from the preferred list is allocated instead "
-"of sharing a tuner that is already active recording the same channel."
-msgstr ""
-
-msgid ""
 "Configure whether the 'recording' symbol (in the display skin and LCD skin) "
 "is visible for real recordings only or also for streaming and pseuso "
 "recordings (e.g. EPGrefresh)."
@@ -22755,9 +22702,6 @@ msgstr ""
 msgid "Event font size"
 msgstr ""
 
-msgid "Experimental: strict limitation to preferred tuners"
-msgstr ""
-
 msgid "Experimental: strict limitation to preferred tuners for recordings"
 msgstr ""
 
@@ -22966,11 +22910,6 @@ msgstr ""
 msgid ""
 "In expert mode, configure which tuners will be preferred for recordings, "
 "when more than one tuner is available."
-msgstr ""
-
-msgid ""
-"In expert mode, configure which tuners will be preferred, when more than one "
-"tuner is available."
 msgstr ""
 
 msgid ""
@@ -23286,9 +23225,6 @@ msgid "Preferred tuner for recordings"
 msgstr "المؤالف المفضل في التسجيلات"
 
 msgid "Preferred tuners for recordings, multiple selection allowed"
-msgstr ""
-
-msgid "Preferred tuners, multiple selection allowed"
 msgstr ""
 
 #, fuzzy
@@ -25077,6 +25013,71 @@ msgstr ""
 
 msgid "J"
 msgstr ""
+
+#~ msgid "Allocate unused memory index"
+#~ msgstr "تخصيص فهرس الذاكرة غير المستخدمة"
+
+#~ msgid "Calculate all positions"
+#~ msgstr "حساب جميع المواقع"
+
+#~ msgid "Configuration mode: %s"
+#~ msgstr "وضع التكوين: %s"
+
+#~ msgid "Goto index position"
+#~ msgstr "الانتقال إلى مكان الفهرس"
+
+#~ msgid "Initial lock ratio"
+#~ msgstr "نسبه القفل الاوليه"
+
+#~ msgid "Initial signal quality"
+#~ msgstr "جوده الاشاره الاولية"
+
+#~ msgid "Initial signal quality:"
+#~ msgstr "جوده الاشاره الاولية:"
+
+#~ msgid "Lock ratio"
+#~ msgstr "إقفال توسيع الشاشة"
+
+#~ msgid "Move to position X"
+#~ msgstr "الانتقال إلى المكان إكس"
+
+#~ msgid "Rotor step position:"
+#~ msgstr "مواقع وخطوات النظام المتحرك:"
+
+#
+#~ msgid "Satellite longitude:"
+#~ msgstr "خط طول القمر الصناعي:"
+
+#~ msgid "Signal OK, proceeding"
+#~ msgstr "إشارة موافق ، قيد التقدم"
+
+#
+#~ msgid "Signal quality"
+#~ msgstr "جوده الاشاره"
+
+#
+#~ msgid "Site latitude"
+#~ msgstr "موقع خط العرض"
+
+#
+#~ msgid "Site longitude"
+#~ msgstr "موقع خط طول"
+
+#~ msgid "Store at index"
+#~ msgstr "تخزين الفهرس"
+
+#~ msgid "Strongest position"
+#~ msgstr "مكان قوي"
+
+#~ msgid "Using LNB %d"
+#~ msgstr "استخدام لاقط %d"
+
+#~ msgid "Using tuner %s"
+#~ msgstr "استخدام المؤالف %s"
+
+#
+#~ msgid "Weighted position"
+#~ msgstr "الموقع الموزون"
 
 #
 #, fuzzy

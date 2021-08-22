@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-08-21 11:25+0000\n"
+"POT-Creation-Date: 2021-08-22 21:17+0000\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Jjezevec <jjezevecc@seznam.cz>\n"
 "Language-Team: \n"
@@ -2776,9 +2776,6 @@ msgid ""
 "save setting up the same LNB multiple times."
 msgstr ""
 
-msgid "Allocate unused memory index"
-msgstr "Přidělení neužívaného indexu paměti"
-
 msgid "Allow 10bit"
 msgstr ""
 
@@ -3953,9 +3950,6 @@ msgstr "V cache:"
 msgid "Calculate"
 msgstr "Výpočet"
 
-msgid "Calculate all positions"
-msgstr "Vypočítat všechny pozice"
-
 msgid "Calculate file checksums"
 msgstr ""
 
@@ -4682,10 +4676,6 @@ msgstr "Nastavuji"
 
 msgid "Configuration mode"
 msgstr "Konfigurační mód"
-
-#, python-format
-msgid "Configuration mode: %s"
-msgstr "Konfigurační mód: %s"
 
 msgid ""
 "Configuration options for the HELP screen can be found in 'MENU > Setup > "
@@ -5750,6 +5740,22 @@ msgstr "Adresář"
 #, python-format
 msgid "Directory %s does not exist."
 msgstr "Adresář %s neexistuje."
+
+#, python-format
+msgid "Directory '%s' can't be linked to recordings!"
+msgstr ""
+
+#, python-format
+msgid "Directory '%s' does not exist!"
+msgstr ""
+
+#, python-format
+msgid "Directory '%s' not writable!"
+msgstr ""
+
+#, python-format
+msgid "Directory '%s' not writeable!"
+msgstr ""
 
 msgid "Directory browser"
 msgstr "Prohlížeč adresářů"
@@ -7314,6 +7320,10 @@ msgstr "Změna Image ONLINE / DISK"
 msgid "Flash Online a new image"
 msgstr "Flešnutí nové image Online"
 
+#, python-format
+msgid "Flash directory '%s' not allowed!"
+msgstr ""
+
 msgid "Flash on the fly your your Receiver software."
 msgstr "Flash nové image za běhu software vašeho přijímače"
 
@@ -7740,9 +7750,6 @@ msgstr "Hlavní vysílací čas"
 
 msgid "Goto X"
 msgstr "Přejít na X"
-
-msgid "Goto index position"
-msgstr "Přejít na indexovou pozici"
 
 msgid "Goto next bouquet"
 msgstr "Na další přehled"
@@ -8543,15 +8550,6 @@ msgstr "Oscam Info - Menu"
 
 msgid "Init"
 msgstr "Inicializace"
-
-msgid "Initial lock ratio"
-msgstr "Zachovat původní poměr"
-
-msgid "Initial signal quality"
-msgstr "Počáteční kvalita signálu"
-
-msgid "Initial signal quality:"
-msgstr "Počáteční kvalita signálu:"
 
 msgid "Initialization"
 msgstr "Inicializace disku"
@@ -9407,9 +9405,6 @@ msgstr "Umístění"
 msgid "Location list"
 msgstr "Umístění"
 
-msgid "Lock ratio"
-msgstr "Zachovat poměr"
-
 #, fuzzy
 msgid "Log"
 msgstr "Zprávy"
@@ -10092,9 +10087,6 @@ msgstr "Přesun na začátek seznamu"
 
 msgid "Move to last line / screen"
 msgstr ""
-
-msgid "Move to position X"
-msgstr "Natáčí se na pozici X"
 
 #, fuzzy
 msgid "Move up a line"
@@ -11875,6 +11867,9 @@ msgstr "Prosím vyberte podprogram..."
 msgid "Please select an NFI file and press green key to flash!"
 msgstr "Zvolte NFI soubor a stiskněte zelené tlačítko pro naprogramování!"
 
+msgid "Please select an acceptable directory."
+msgstr ""
+
 msgid "Please select an aspect ratio..."
 msgstr "Nastavení poměru stran obrazu"
 
@@ -13212,9 +13207,6 @@ msgstr ""
 msgid "Root directory"
 msgstr "Kořenový adresář"
 
-msgid "Rotor step position:"
-msgstr "Pozice motoru (kroky):"
-
 msgid "Rotor turning speed"
 msgstr "Rychlost otáčení rotoru"
 
@@ -13437,9 +13429,6 @@ msgstr "Satelitní zařízení"
 
 msgid "Satellite equipment setup"
 msgstr "Nastavení satelitního zařízení"
-
-msgid "Satellite longitude:"
-msgstr "Zeměpisná délka satelitu:"
 
 msgid "Satellites"
 msgstr "Satelity"
@@ -15152,14 +15141,8 @@ msgstr ""
 msgid "Signal Finder"
 msgstr "Hledání signálu"
 
-msgid "Signal OK, proceeding"
-msgstr "Signál OK, pokračuji"
-
 msgid "Signal Strength:"
 msgstr "Síla signálu:"
-
-msgid "Signal quality"
-msgstr "Kvalita signálu"
 
 msgid "Signal strength:"
 msgstr "Síla signálu:"
@@ -15223,12 +15206,6 @@ msgstr ""
 
 msgid "Sitcom"
 msgstr ""
-
-msgid "Site latitude"
-msgstr "Zeměpisná šířka"
-
-msgid "Site longitude"
-msgstr "Zeměpisná délka"
 
 #, fuzzy
 msgid "Size"
@@ -15812,9 +15789,6 @@ msgstr "Zastaveno"
 msgid "Storage devices"
 msgstr "Zařízení pro ukládání dat"
 
-msgid "Store at index"
-msgstr "Uložit na pozici"
-
 msgid "Store position"
 msgstr "Ulož pozici"
 
@@ -15862,9 +15836,6 @@ msgstr "Přímo DLNA"
 
 msgid "Stripes"
 msgstr "Pruhy"
-
-msgid "Strongest position"
-msgstr "Nejsilnější pozice"
 
 msgid "Stumm"
 msgstr ""
@@ -17679,9 +17650,6 @@ msgid ""
 "to be setup and saved individually."
 msgstr ""
 
-msgid "USALS calibration"
-msgstr "USALS kalibrace"
-
 #, fuzzy
 msgid "USB Stick"
 msgstr "USB zařízení"
@@ -18178,19 +18146,11 @@ msgstr "Uživatel (http)"
 msgid "Username:"
 msgstr "Uživatel:"
 
-#, python-format
-msgid "Using LNB %d"
-msgstr "Používá se LNB %d"
-
 msgid "Using fixed address"
 msgstr "Použít pevnou adresu"
 
 msgid "Using old profile: "
 msgstr "Použít starý profil:"
-
-#, python-format
-msgid "Using tuner %s"
-msgstr "Používá se tuner %s"
 
 msgid "Uzbek"
 msgstr ""
@@ -18667,9 +18627,6 @@ msgstr "Všední den "
 
 msgid "Weekly"
 msgstr "Týdně"
-
-msgid "Weighted position"
-msgstr "Uložená pozice"
 
 #, fuzzy
 msgid "Welcome to IceTV"
@@ -22672,11 +22629,6 @@ msgid ""
 msgstr ""
 
 msgid ""
-"Configure whether another tuner from the preferred list is allocated instead "
-"of sharing a tuner that is already active recording the same channel."
-msgstr ""
-
-msgid ""
 "Configure whether the 'recording' symbol (in the display skin and LCD skin) "
 "is visible for real recordings only or also for streaming and pseuso "
 "recordings (e.g. EPGrefresh)."
@@ -23006,9 +22958,6 @@ msgstr ""
 msgid "Event font size"
 msgstr "Velikost písma události"
 
-msgid "Experimental: strict limitation to preferred tuners"
-msgstr ""
-
 #, fuzzy
 msgid "Experimental: strict limitation to preferred tuners for recordings"
 msgstr "Upřednostnit tuner pro nahrávání"
@@ -23245,14 +23194,6 @@ msgstr ""
 msgid ""
 "In expert mode, configure which tuners will be preferred for recordings, "
 "when more than one tuner is available."
-msgstr ""
-"Nastavuje, který tuner bude mít prioritu při nahrávání, jestliže je k "
-"dispozici více než jeden tuner."
-
-#, fuzzy
-msgid ""
-"In expert mode, configure which tuners will be preferred, when more than one "
-"tuner is available."
 msgstr ""
 "Nastavuje, který tuner bude mít prioritu při nahrávání, jestliže je k "
 "dispozici více než jeden tuner."
@@ -23574,9 +23515,6 @@ msgstr "Upřednostnit tuner pro nahrávání"
 #, fuzzy
 msgid "Preferred tuners for recordings, multiple selection allowed"
 msgstr "Upřednostnit tuner pro nahrávání"
-
-msgid "Preferred tuners, multiple selection allowed"
-msgstr ""
 
 #, fuzzy
 msgid "Preparation time for recording (seconds)"
@@ -25477,6 +25415,77 @@ msgstr "IP:"
 
 msgid "J"
 msgstr ""
+
+#~ msgid "Allocate unused memory index"
+#~ msgstr "Přidělení neužívaného indexu paměti"
+
+#~ msgid "Calculate all positions"
+#~ msgstr "Vypočítat všechny pozice"
+
+#~ msgid "Configuration mode: %s"
+#~ msgstr "Konfigurační mód: %s"
+
+#~ msgid "Goto index position"
+#~ msgstr "Přejít na indexovou pozici"
+
+#~ msgid "Initial lock ratio"
+#~ msgstr "Zachovat původní poměr"
+
+#~ msgid "Initial signal quality"
+#~ msgstr "Počáteční kvalita signálu"
+
+#~ msgid "Initial signal quality:"
+#~ msgstr "Počáteční kvalita signálu:"
+
+#~ msgid "Lock ratio"
+#~ msgstr "Zachovat poměr"
+
+#~ msgid "Move to position X"
+#~ msgstr "Natáčí se na pozici X"
+
+#~ msgid "Rotor step position:"
+#~ msgstr "Pozice motoru (kroky):"
+
+#~ msgid "Satellite longitude:"
+#~ msgstr "Zeměpisná délka satelitu:"
+
+#~ msgid "Signal OK, proceeding"
+#~ msgstr "Signál OK, pokračuji"
+
+#~ msgid "Signal quality"
+#~ msgstr "Kvalita signálu"
+
+#~ msgid "Site latitude"
+#~ msgstr "Zeměpisná šířka"
+
+#~ msgid "Site longitude"
+#~ msgstr "Zeměpisná délka"
+
+#~ msgid "Store at index"
+#~ msgstr "Uložit na pozici"
+
+#~ msgid "Strongest position"
+#~ msgstr "Nejsilnější pozice"
+
+#~ msgid "USALS calibration"
+#~ msgstr "USALS kalibrace"
+
+#~ msgid "Using LNB %d"
+#~ msgstr "Používá se LNB %d"
+
+#~ msgid "Using tuner %s"
+#~ msgstr "Používá se tuner %s"
+
+#~ msgid "Weighted position"
+#~ msgstr "Uložená pozice"
+
+#, fuzzy
+#~ msgid ""
+#~ "In expert mode, configure which tuners will be preferred, when more than "
+#~ "one tuner is available."
+#~ msgstr ""
+#~ "Nastavuje, který tuner bude mít prioritu při nahrávání, jestliže je k "
+#~ "dispozici více než jeden tuner."
 
 #, fuzzy
 #~ msgid "%s %s %s."

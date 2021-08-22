@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-08-21 11:25+0000\n"
+"POT-Creation-Date: 2021-08-22 21:17+0000\n"
 "PO-Revision-Date: 2021-08-15 18:50+0000\n"
 "Last-Translator: openATV <openatv@gmail.com>\n"
 "Language-Team: Swedish <https://hosted.weblate.org/projects/openatv/"
@@ -2856,9 +2856,6 @@ msgid ""
 "save setting up the same LNB multiple times."
 msgstr ""
 
-msgid "Allocate unused memory index"
-msgstr "Allokera oanvänt minne"
-
 msgid "Allow 10bit"
 msgstr ""
 
@@ -4063,9 +4060,6 @@ msgstr "Cachad:"
 msgid "Calculate"
 msgstr "Beräkna"
 
-msgid "Calculate all positions"
-msgstr "Beräkna alla positioner"
-
 msgid "Calculate file checksums"
 msgstr ""
 
@@ -4837,10 +4831,6 @@ msgstr "Konfigurering"
 
 msgid "Configuration mode"
 msgstr "Konfigurationsläge"
-
-#, python-format
-msgid "Configuration mode: %s"
-msgstr "Konfigurationsläge : %s"
 
 msgid ""
 "Configuration options for the HELP screen can be found in 'MENU > Setup > "
@@ -5968,6 +5958,22 @@ msgstr "Katalog"
 #, python-format
 msgid "Directory %s does not exist."
 msgstr "Bibliotek %s finns ej."
+
+#, python-format
+msgid "Directory '%s' can't be linked to recordings!"
+msgstr ""
+
+#, python-format
+msgid "Directory '%s' does not exist!"
+msgstr ""
+
+#, python-format
+msgid "Directory '%s' not writable!"
+msgstr ""
+
+#, python-format
+msgid "Directory '%s' not writeable!"
+msgstr ""
 
 #
 msgid "Directory browser"
@@ -7610,6 +7616,10 @@ msgstr ""
 msgid "Flash Online a new image"
 msgstr ""
 
+#, python-format
+msgid "Flash directory '%s' not allowed!"
+msgstr ""
+
 msgid "Flash on the fly your your Receiver software."
 msgstr ""
 
@@ -8065,10 +8075,6 @@ msgstr "Hoppa till prime time"
 #
 msgid "Goto X"
 msgstr "Gå till X"
-
-#
-msgid "Goto index position"
-msgstr "Gå till indexpositionen"
 
 msgid "Goto next bouquet"
 msgstr "Gå till nästa favoritlista"
@@ -8889,17 +8895,6 @@ msgstr "CI tilldelning"
 #
 msgid "Init"
 msgstr "Initiera"
-
-#
-msgid "Initial lock ratio"
-msgstr "Initial låst ratio"
-
-msgid "Initial signal quality"
-msgstr "Initial signalkvalitet"
-
-#
-msgid "Initial signal quality:"
-msgstr "Initial signalkvalitet :"
 
 #
 msgid "Initialization"
@@ -9834,10 +9829,6 @@ msgstr "Sökväg"
 msgid "Location list"
 msgstr "Sökväg"
 
-#
-msgid "Lock ratio"
-msgstr "Lås ratio"
-
 #, fuzzy
 msgid "Log"
 msgstr "Loggar"
@@ -10547,10 +10538,6 @@ msgstr "Flytta till början av listan"
 
 msgid "Move to last line / screen"
 msgstr ""
-
-#
-msgid "Move to position X"
-msgstr "Flytta till position X"
 
 #, fuzzy
 msgid "Move up a line"
@@ -12471,6 +12458,9 @@ msgstr "Vänligen välj en tjänst..."
 msgid "Please select an NFI file and press green key to flash!"
 msgstr "Vänligen välj en NFI fil och tryck på grön knapp för att flasha!"
 
+msgid "Please select an acceptable directory."
+msgstr ""
+
 msgid "Please select an aspect ratio..."
 msgstr ""
 
@@ -13936,10 +13926,6 @@ msgid "Root directory"
 msgstr "Rotkatalog"
 
 #
-msgid "Rotor step position:"
-msgstr "Rotorns stegposition :"
-
-#
 msgid "Rotor turning speed"
 msgstr "Rotorns rotationsfart"
 
@@ -14166,10 +14152,6 @@ msgstr "Satellitutrustning"
 #
 msgid "Satellite equipment setup"
 msgstr "Satellit utrustningsinstallation"
-
-#
-msgid "Satellite longitude:"
-msgstr "Satellit longitud :"
 
 #
 msgid "Satellites"
@@ -15961,16 +15943,9 @@ msgstr ""
 msgid "Signal Finder"
 msgstr ""
 
-msgid "Signal OK, proceeding"
-msgstr "Signal OK, fortsätter"
-
 #
 msgid "Signal Strength:"
 msgstr "Signalstyrka:"
-
-#
-msgid "Signal quality"
-msgstr "Signalkvalitet"
 
 #
 msgid "Signal strength:"
@@ -16046,14 +16021,6 @@ msgstr ""
 
 msgid "Sitcom"
 msgstr ""
-
-#
-msgid "Site latitude"
-msgstr "Platsens latitud"
-
-#
-msgid "Site longitude"
-msgstr "Platsens longitud"
 
 #, fuzzy
 msgid "Size"
@@ -16673,10 +16640,6 @@ msgid "Storage devices"
 msgstr "Lagringsenheter"
 
 #
-msgid "Store at index"
-msgstr "Spara vid index"
-
-#
 msgid "Store position"
 msgstr "Lagra position"
 
@@ -16723,10 +16686,6 @@ msgstr "Strict DLNA"
 
 msgid "Stripes"
 msgstr ""
-
-#
-msgid "Strongest position"
-msgstr "Starkaste positionen"
 
 msgid "Stumm"
 msgstr ""
@@ -18617,9 +18576,6 @@ msgid ""
 "to be setup and saved individually."
 msgstr ""
 
-msgid "USALS calibration"
-msgstr "USALS Kalibrering"
-
 msgid "USB Stick"
 msgstr ""
 
@@ -19139,19 +19095,11 @@ msgstr "Användarnamn (httpuser)"
 msgid "Username:"
 msgstr "Användarnamn:"
 
-#, python-format
-msgid "Using LNB %d"
-msgstr "Använder LNB %d"
-
 msgid "Using fixed address"
 msgstr "Använder fixerad adress"
 
 msgid "Using old profile: "
 msgstr "Använder den gamla profilen:"
-
-#, python-format
-msgid "Using tuner %s"
-msgstr "Använder Tuner %s"
 
 msgid "Uzbek"
 msgstr ""
@@ -19657,10 +19605,6 @@ msgstr "Veckodag"
 #
 msgid "Weekly"
 msgstr "Veckovis"
-
-#
-msgid "Weighted position"
-msgstr "Uppskattad position"
 
 msgid "Welcome to IceTV"
 msgstr ""
@@ -23891,11 +23835,6 @@ msgid ""
 msgstr ""
 
 msgid ""
-"Configure whether another tuner from the preferred list is allocated instead "
-"of sharing a tuner that is already active recording the same channel."
-msgstr ""
-
-msgid ""
 "Configure whether the 'recording' symbol (in the display skin and LCD skin) "
 "is visible for real recordings only or also for streaming and pseuso "
 "recordings (e.g. EPGrefresh)."
@@ -24218,9 +24157,6 @@ msgstr ""
 msgid "Event font size"
 msgstr "Fontstorlek för evenemang"
 
-msgid "Experimental: strict limitation to preferred tuners"
-msgstr ""
-
 #, fuzzy
 msgid "Experimental: strict limitation to preferred tuners for recordings"
 msgstr "Föredragen mottagare för inspelning"
@@ -24442,14 +24378,6 @@ msgid ""
 "In expert mode, configure which tuners will be preferred for recordings, "
 "when more than one tuner is available."
 msgstr ""
-
-#, fuzzy
-msgid ""
-"In expert mode, configure which tuners will be preferred, when more than one "
-"tuner is available."
-msgstr ""
-"Konfigurera vilken typ av mottagare som föredras, när samma kanaler är "
-"tillgängliga på flera typer mottagare. "
 
 msgid ""
 "In most cases this should be set to No. Only enable if you have a very "
@@ -24780,9 +24708,6 @@ msgstr "Föredragen tuner för inspelningar"
 #, fuzzy
 msgid "Preferred tuners for recordings, multiple selection allowed"
 msgstr "Föredragen mottagare för inspelning"
-
-msgid "Preferred tuners, multiple selection allowed"
-msgstr ""
 
 #
 #, fuzzy
@@ -26668,6 +26593,90 @@ msgstr "IP:"
 
 msgid "J"
 msgstr ""
+
+#~ msgid "Allocate unused memory index"
+#~ msgstr "Allokera oanvänt minne"
+
+#~ msgid "Calculate all positions"
+#~ msgstr "Beräkna alla positioner"
+
+#~ msgid "Configuration mode: %s"
+#~ msgstr "Konfigurationsläge : %s"
+
+#
+#~ msgid "Goto index position"
+#~ msgstr "Gå till indexpositionen"
+
+#
+#~ msgid "Initial lock ratio"
+#~ msgstr "Initial låst ratio"
+
+#~ msgid "Initial signal quality"
+#~ msgstr "Initial signalkvalitet"
+
+#
+#~ msgid "Initial signal quality:"
+#~ msgstr "Initial signalkvalitet :"
+
+#
+#~ msgid "Lock ratio"
+#~ msgstr "Lås ratio"
+
+#
+#~ msgid "Move to position X"
+#~ msgstr "Flytta till position X"
+
+#
+#~ msgid "Rotor step position:"
+#~ msgstr "Rotorns stegposition :"
+
+#
+#~ msgid "Satellite longitude:"
+#~ msgstr "Satellit longitud :"
+
+#~ msgid "Signal OK, proceeding"
+#~ msgstr "Signal OK, fortsätter"
+
+#
+#~ msgid "Signal quality"
+#~ msgstr "Signalkvalitet"
+
+#
+#~ msgid "Site latitude"
+#~ msgstr "Platsens latitud"
+
+#
+#~ msgid "Site longitude"
+#~ msgstr "Platsens longitud"
+
+#
+#~ msgid "Store at index"
+#~ msgstr "Spara vid index"
+
+#
+#~ msgid "Strongest position"
+#~ msgstr "Starkaste positionen"
+
+#~ msgid "USALS calibration"
+#~ msgstr "USALS Kalibrering"
+
+#~ msgid "Using LNB %d"
+#~ msgstr "Använder LNB %d"
+
+#~ msgid "Using tuner %s"
+#~ msgstr "Använder Tuner %s"
+
+#
+#~ msgid "Weighted position"
+#~ msgstr "Uppskattad position"
+
+#, fuzzy
+#~ msgid ""
+#~ "In expert mode, configure which tuners will be preferred, when more than "
+#~ "one tuner is available."
+#~ msgstr ""
+#~ "Konfigurera vilken typ av mottagare som föredras, när samma kanaler är "
+#~ "tillgängliga på flera typer mottagare. "
 
 #
 #, fuzzy

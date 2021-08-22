@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-08-21 11:25+0000\n"
+"POT-Creation-Date: 2021-08-22 21:17+0000\n"
 "PO-Revision-Date: 2021-08-15 18:49+0000\n"
 "Last-Translator: openATV <openatv@gmail.com>\n"
 "Language-Team: Catalan <https://hosted.weblate.org/projects/openatv/"
@@ -2792,9 +2792,6 @@ msgstr ""
 "aquest LNB de nou per a altres satèl·lits (per exemple, plats motoritzats) "
 "per estalviar la configuració del mateix LNB diverses vegades."
 
-msgid "Allocate unused memory index"
-msgstr "Assigna l’índex de memòria no utilitzat"
-
 msgid "Allow 10bit"
 msgstr "Deixeu 10 bits"
 
@@ -3973,9 +3970,6 @@ msgstr ""
 msgid "Calculate"
 msgstr "Calcular"
 
-msgid "Calculate all positions"
-msgstr "Calcula les posicions"
-
 msgid "Calculate file checksums"
 msgstr ""
 
@@ -4755,11 +4749,6 @@ msgstr "Configurant"
 
 msgid "Configuration mode"
 msgstr "Configuració mode"
-
-#
-#, python-format
-msgid "Configuration mode: %s"
-msgstr "Configuració mode: %s"
 
 msgid ""
 "Configuration options for the HELP screen can be found in 'MENU > Setup > "
@@ -5872,6 +5861,22 @@ msgstr "Directori"
 #, python-format
 msgid "Directory %s does not exist."
 msgstr "El directori% s no existeix."
+
+#, python-format
+msgid "Directory '%s' can't be linked to recordings!"
+msgstr ""
+
+#, python-format
+msgid "Directory '%s' does not exist!"
+msgstr ""
+
+#, python-format
+msgid "Directory '%s' not writable!"
+msgstr ""
+
+#, python-format
+msgid "Directory '%s' not writeable!"
+msgstr ""
 
 #
 msgid "Directory browser"
@@ -7476,6 +7481,10 @@ msgstr ""
 msgid "Flash Online a new image"
 msgstr ""
 
+#, python-format
+msgid "Flash directory '%s' not allowed!"
+msgstr ""
+
 msgid "Flash on the fly your your Receiver software."
 msgstr ""
 
@@ -7919,10 +7928,6 @@ msgstr ""
 #
 msgid "Goto X"
 msgstr "Anar a X"
-
-#
-msgid "Goto index position"
-msgstr "Posició de l’índex de Goto"
 
 msgid "Goto next bouquet"
 msgstr ""
@@ -8735,15 +8740,6 @@ msgstr "Informació"
 #
 msgid "Init"
 msgstr "Iniciar"
-
-msgid "Initial lock ratio"
-msgstr "Relació de bloqueig inicial"
-
-msgid "Initial signal quality"
-msgstr "Qualitat inicial del senyal"
-
-msgid "Initial signal quality:"
-msgstr "Qualitat inicial del senyal:"
 
 #
 msgid "Initialization"
@@ -9650,9 +9646,6 @@ msgstr "Localitzar"
 msgid "Location list"
 msgstr "carregar llista"
 
-msgid "Lock ratio"
-msgstr "Relació de bloqueig"
-
 msgid "Log"
 msgstr ""
 
@@ -10348,10 +10341,6 @@ msgstr ""
 
 msgid "Move to last line / screen"
 msgstr ""
-
-#
-msgid "Move to position X"
-msgstr "Desplaceu-vos a la posició X"
 
 #
 #, fuzzy
@@ -12217,6 +12206,9 @@ msgstr "Sisplau selecciona un subservei..."
 msgid "Please select an NFI file and press green key to flash!"
 msgstr ""
 
+msgid "Please select an acceptable directory."
+msgstr ""
+
 msgid "Please select an aspect ratio..."
 msgstr ""
 
@@ -13657,10 +13649,6 @@ msgid "Root directory"
 msgstr "Root directory"
 
 #
-msgid "Rotor step position:"
-msgstr "Posició del pas del rotor:"
-
-#
 msgid "Rotor turning speed"
 msgstr "Velocitat de rotació del motor"
 
@@ -13884,10 +13872,6 @@ msgstr "Equips de satèl·lit"
 
 #
 msgid "Satellite equipment setup"
-msgstr "Configuració d’equips per satèl·lit"
-
-#
-msgid "Satellite longitude:"
 msgstr "Configuració d’equips per satèl·lit"
 
 #
@@ -15697,15 +15681,9 @@ msgstr "Sierra Leona"
 msgid "Signal Finder"
 msgstr ""
 
-msgid "Signal OK, proceeding"
-msgstr "Senyal d’acord, continua"
-
 #
 msgid "Signal Strength:"
 msgstr ""
-
-msgid "Signal quality"
-msgstr "Qualitat del senyal"
 
 msgid "Signal strength:"
 msgstr "Potència del senyal:"
@@ -15779,14 +15757,6 @@ msgstr ""
 
 msgid "Sitcom"
 msgstr ""
-
-#
-msgid "Site latitude"
-msgstr "Latitud del lloc"
-
-#
-msgid "Site longitude"
-msgstr "Longitud del lloc"
 
 msgid "Size"
 msgstr ""
@@ -16388,10 +16358,6 @@ msgid "Storage devices"
 msgstr "Dispositius d'emmagatzematge"
 
 #
-msgid "Store at index"
-msgstr "Emmagatzemar-los a l’índex"
-
-#
 msgid "Store position"
 msgstr "Guardar la posició"
 
@@ -16437,10 +16403,6 @@ msgstr ""
 
 msgid "Stripes"
 msgstr ""
-
-#
-msgid "Strongest position"
-msgstr "La posició més forta"
 
 msgid "Stumm"
 msgstr ""
@@ -18214,9 +18176,6 @@ msgstr ""
 "funció de les coordenades introduïdes per l’usuari. Sense USALS, cada "
 "satèl·lit haurà de configurar-se i desar-los individualment."
 
-msgid "USALS calibration"
-msgstr "Calibració USALS"
-
 msgid "USB Stick"
 msgstr ""
 
@@ -18723,19 +18682,11 @@ msgstr ""
 msgid "Username:"
 msgstr ""
 
-#, python-format
-msgid "Using LNB %d"
-msgstr "Utilitzant LNB% d"
-
 msgid "Using fixed address"
 msgstr "Utilitzant una adreça fixa"
 
 msgid "Using old profile: "
 msgstr ""
-
-#, python-format
-msgid "Using tuner %s"
-msgstr "Usant el sintonitzador% s"
 
 msgid "Uzbek"
 msgstr ""
@@ -19241,10 +19192,6 @@ msgstr "DiaSetmana"
 #, fuzzy
 msgid "Weekly"
 msgstr "setmanalment"
-
-#
-msgid "Weighted position"
-msgstr "Posició ponderada"
 
 msgid "Welcome to IceTV"
 msgstr ""
@@ -23327,11 +23274,6 @@ msgid ""
 msgstr ""
 
 msgid ""
-"Configure whether another tuner from the preferred list is allocated instead "
-"of sharing a tuner that is already active recording the same channel."
-msgstr ""
-
-msgid ""
 "Configure whether the 'recording' symbol (in the display skin and LCD skin) "
 "is visible for real recordings only or also for streaming and pseuso "
 "recordings (e.g. EPGrefresh)."
@@ -23645,9 +23587,6 @@ msgstr ""
 msgid "Event font size"
 msgstr ""
 
-msgid "Experimental: strict limitation to preferred tuners"
-msgstr ""
-
 msgid "Experimental: strict limitation to preferred tuners for recordings"
 msgstr ""
 
@@ -23857,11 +23796,6 @@ msgstr ""
 msgid ""
 "In expert mode, configure which tuners will be preferred for recordings, "
 "when more than one tuner is available."
-msgstr ""
-
-msgid ""
-"In expert mode, configure which tuners will be preferred, when more than one "
-"tuner is available."
 msgstr ""
 
 msgid ""
@@ -24188,9 +24122,6 @@ msgid "Preferred tuner for recordings"
 msgstr "Sintonitzador preferit per a enregistraments"
 
 msgid "Preferred tuners for recordings, multiple selection allowed"
-msgstr ""
-
-msgid "Preferred tuners, multiple selection allowed"
 msgstr ""
 
 #
@@ -26033,6 +25964,79 @@ msgstr ""
 
 msgid "J"
 msgstr ""
+
+#~ msgid "Allocate unused memory index"
+#~ msgstr "Assigna l’índex de memòria no utilitzat"
+
+#~ msgid "Calculate all positions"
+#~ msgstr "Calcula les posicions"
+
+#
+#~ msgid "Configuration mode: %s"
+#~ msgstr "Configuració mode: %s"
+
+#
+#~ msgid "Goto index position"
+#~ msgstr "Posició de l’índex de Goto"
+
+#~ msgid "Initial lock ratio"
+#~ msgstr "Relació de bloqueig inicial"
+
+#~ msgid "Initial signal quality"
+#~ msgstr "Qualitat inicial del senyal"
+
+#~ msgid "Initial signal quality:"
+#~ msgstr "Qualitat inicial del senyal:"
+
+#~ msgid "Lock ratio"
+#~ msgstr "Relació de bloqueig"
+
+#
+#~ msgid "Move to position X"
+#~ msgstr "Desplaceu-vos a la posició X"
+
+#
+#~ msgid "Rotor step position:"
+#~ msgstr "Posició del pas del rotor:"
+
+#
+#~ msgid "Satellite longitude:"
+#~ msgstr "Configuració d’equips per satèl·lit"
+
+#~ msgid "Signal OK, proceeding"
+#~ msgstr "Senyal d’acord, continua"
+
+#~ msgid "Signal quality"
+#~ msgstr "Qualitat del senyal"
+
+#
+#~ msgid "Site latitude"
+#~ msgstr "Latitud del lloc"
+
+#
+#~ msgid "Site longitude"
+#~ msgstr "Longitud del lloc"
+
+#
+#~ msgid "Store at index"
+#~ msgstr "Emmagatzemar-los a l’índex"
+
+#
+#~ msgid "Strongest position"
+#~ msgstr "La posició més forta"
+
+#~ msgid "USALS calibration"
+#~ msgstr "Calibració USALS"
+
+#~ msgid "Using LNB %d"
+#~ msgstr "Utilitzant LNB% d"
+
+#~ msgid "Using tuner %s"
+#~ msgstr "Usant el sintonitzador% s"
+
+#
+#~ msgid "Weighted position"
+#~ msgstr "Posició ponderada"
 
 #
 #, fuzzy

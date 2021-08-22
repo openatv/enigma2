@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-08-21 11:25+0000\n"
+"POT-Creation-Date: 2021-08-22 21:17+0000\n"
 "PO-Revision-Date: 2021-08-22 19:01+0000\n"
 "Last-Translator: Grzegorz <grzegorz914@icloud.com>\n"
 "Language-Team: Polish <https://hosted.weblate.org/projects/openatv/"
@@ -2635,9 +2635,6 @@ msgstr ""
 "zmotoryzowanych), aby uniknąć wielokrotnego ustawiania tego samego "
 "konwertera."
 
-msgid "Allocate unused memory index"
-msgstr "Przydziel nieużywany indeks pamięci"
-
 msgid "Allow 10bit"
 msgstr "Pozwól 10bit"
 
@@ -3753,9 +3750,6 @@ msgstr "W Pamięci Podręcznej:"
 msgid "Calculate"
 msgstr "Obliczanie"
 
-msgid "Calculate all positions"
-msgstr "Oblicz wszystkie pozycje"
-
 msgid "Calculate file checksums"
 msgstr "Oblicz sumy kontrolne plików"
 
@@ -4475,10 +4469,6 @@ msgstr "Konfigurowalne"
 
 msgid "Configuration mode"
 msgstr "Tryb konfiguracji"
-
-#, python-format
-msgid "Configuration mode: %s"
-msgstr "Tryb konfiguracji: %s"
 
 msgid ""
 "Configuration options for the HELP screen can be found in 'MENU > Setup > "
@@ -5507,6 +5497,22 @@ msgstr "Katalog"
 #, python-format
 msgid "Directory %s does not exist."
 msgstr "Katalog %s nie istnieje."
+
+#, python-format
+msgid "Directory '%s' can't be linked to recordings!"
+msgstr ""
+
+#, python-format
+msgid "Directory '%s' does not exist!"
+msgstr ""
+
+#, python-format
+msgid "Directory '%s' not writable!"
+msgstr ""
+
+#, python-format
+msgid "Directory '%s' not writeable!"
+msgstr ""
 
 msgid "Directory browser"
 msgstr "Przeglądarka katalogów"
@@ -7022,6 +7028,10 @@ msgstr "Wgrywanie Oprogramowania Online"
 msgid "Flash Online a new image"
 msgstr "Wgrywanie Online Nowego Oprogramowania"
 
+#, python-format
+msgid "Flash directory '%s' not allowed!"
+msgstr ""
+
 msgid "Flash on the fly your your Receiver software."
 msgstr "Wgrywanie Oprogramowania do odbiornika."
 
@@ -7420,9 +7430,6 @@ msgstr "IdX do Primetime"
 
 msgid "Goto X"
 msgstr "Idź do X"
-
-msgid "Goto index position"
-msgstr "Idź do index position"
 
 msgid "Goto next bouquet"
 msgstr "Idż do następnej pozycji ulubionych"
@@ -8208,15 +8215,6 @@ msgstr "Info o programie"
 
 msgid "Init"
 msgstr "Zainicjować"
-
-msgid "Initial lock ratio"
-msgstr "Początkowy współczynnik blokady"
-
-msgid "Initial signal quality"
-msgstr "Początkowa jakość sygnału"
-
-msgid "Initial signal quality:"
-msgstr "Początkowa jakość sygnału:"
 
 msgid "Initialization"
 msgstr "Inicjalizacja"
@@ -9016,9 +9014,6 @@ msgstr "Lokalizacja"
 msgid "Location list"
 msgstr "Lista lokalizacji"
 
-msgid "Lock ratio"
-msgstr "Współczynnik blokady"
-
 msgid "Log"
 msgstr "Log"
 
@@ -9650,9 +9645,6 @@ msgstr "Przenieś do domowej listy"
 
 msgid "Move to last line / screen"
 msgstr ""
-
-msgid "Move to position X"
-msgstr "Przenieś do pozycji X"
 
 msgid "Move up a line"
 msgstr "Przesuń w górę linii"
@@ -11313,6 +11305,9 @@ msgstr "Wybierz wydarzenie..."
 msgid "Please select an NFI file and press green key to flash!"
 msgstr "Wybierz NFI plik i naciśnij przycisk zielony!"
 
+msgid "Please select an acceptable directory."
+msgstr ""
+
 msgid "Please select an aspect ratio..."
 msgstr "Proszę wybrać proporcje ekranu..."
 
@@ -12571,9 +12566,6 @@ msgstr "Root"
 msgid "Root directory"
 msgstr "Katalog root"
 
-msgid "Rotor step position:"
-msgstr "Pozycja kroku obrotnicy:"
-
 msgid "Rotor turning speed"
 msgstr "Prędkość obrotu obrotnicy"
 
@@ -12787,9 +12779,6 @@ msgstr "Wyposażenie sat"
 
 msgid "Satellite equipment setup"
 msgstr "Konfiguracja sprzętu sat"
-
-msgid "Satellite longitude:"
-msgstr "Długość geograficzna satelity:"
 
 msgid "Satellites"
 msgstr "Satelity"
@@ -14507,14 +14496,8 @@ msgstr "Sierra Leone"
 msgid "Signal Finder"
 msgstr "Siła Sygnału"
 
-msgid "Signal OK, proceeding"
-msgstr "Sygnał OK, kontynuowanie"
-
 msgid "Signal Strength:"
 msgstr "Siła Sygnału:"
-
-msgid "Signal quality"
-msgstr "Jakość sygnału"
 
 msgid "Signal strength:"
 msgstr "Siła sygnału:"
@@ -14575,12 +14558,6 @@ msgstr "Sint Maarten"
 
 msgid "Sitcom"
 msgstr "Sitcom"
-
-msgid "Site latitude"
-msgstr "Szerokość strony"
-
-msgid "Site longitude"
-msgstr "Długość strony"
 
 msgid "Size"
 msgstr "Rozmiar"
@@ -15135,9 +15112,6 @@ msgstr "Zatrzymany"
 msgid "Storage devices"
 msgstr "Urządzenia Pamięci Masowej"
 
-msgid "Store at index"
-msgstr "Zapisz w indeksie"
-
 msgid "Store position"
 msgstr "Zapamiętaj pozycję"
 
@@ -15180,9 +15154,6 @@ msgstr "Ścisły DLNA"
 
 msgid "Stripes"
 msgstr "Paski Animacji"
-
-msgid "Strongest position"
-msgstr "Najsilniejsza pozycja"
 
 msgid "Stumm"
 msgstr "Stumm"
@@ -16933,9 +16904,6 @@ msgstr ""
 "podstawie współrzędnych wprowadzonych przez użytkownika. Bez USALS każdy "
 "satelita będzie musiał być ustawiony i zapisany indywidualnie."
 
-msgid "USALS calibration"
-msgstr "Kalibracja USALS"
-
 msgid "USB Stick"
 msgstr "Pamięć USB"
 
@@ -17427,19 +17395,11 @@ msgstr "Nazwa użytkownika (http.user)"
 msgid "Username:"
 msgstr "Nazwa użytkownika:"
 
-#, python-format
-msgid "Using LNB %d"
-msgstr "Użyyj LNB %d"
-
 msgid "Using fixed address"
 msgstr "Użyj stały adres"
 
 msgid "Using old profile: "
 msgstr "Użyj starego profilu: "
-
-#, python-format
-msgid "Using tuner %s"
-msgstr "Użyj tunera %s"
 
 msgid "Uzbek"
 msgstr "Uzbecki"
@@ -17881,9 +17841,6 @@ msgstr "Weekend"
 
 msgid "Weekly"
 msgstr "Co Tydzień"
-
-msgid "Weighted position"
-msgstr "Pozycja ważona"
 
 msgid "Welcome to IceTV"
 msgstr "Witamy w IceTV"
@@ -20607,8 +20564,8 @@ msgid ""
 "instructions from the website, your new firmware will ask you to restore "
 "your settings."
 msgstr ""
-"Potrzebujesz PC połączonego z %s %s. Więcej informacji na stronie https://www"
-".opena.tv.\n"
+"Potrzebujesz PC połączonego z %s %s. Więcej informacji na stronie https://"
+"www.opena.tv.\n"
 "Teraz %s %s zostanie wyłączony. Po wykonaniu instrukcji aktualizacji ze "
 "strony, nowe oprogramowanie zapyta czy przywrócić ustawienia."
 
@@ -21814,13 +21771,6 @@ msgstr ""
 "telewizyjny na żywo."
 
 msgid ""
-"Configure whether another tuner from the preferred list is allocated instead "
-"of sharing a tuner that is already active recording the same channel."
-msgstr ""
-"Skonfiguruj, czy inny tuner z preferowanej listy jest przydzielany zamiast "
-"dzielić tuner, który jest już aktywny, nagrywając ten sam kanał."
-
-msgid ""
 "Configure whether the 'recording' symbol (in the display skin and LCD skin) "
 "is visible for real recordings only or also for streaming and pseuso "
 "recordings (e.g. EPGrefresh)."
@@ -22168,9 +22118,6 @@ msgstr ""
 msgid "Event font size"
 msgstr "Rozmiar czcionki wydarzenia"
 
-msgid "Experimental: strict limitation to preferred tuners"
-msgstr "Eksperymentalne: ścisłe ograniczenie do preferowanych tunerów"
-
 msgid "Experimental: strict limitation to preferred tuners for recordings"
 msgstr ""
 "Eksperymentalne: ścisłe ograniczenie do preferowanych tunerów do nagrań"
@@ -22405,8 +22352,8 @@ msgid ""
 "detected earlier."
 msgstr ""
 "Oprócz kontroli na początku wydarzenia,powtarzalna kontrola może być używana "
-"-warunki \"ograniczenie bufora godzin\" lub \"sprawdzić ilość wolnego "
-"miejsca\" są wykrywane wcześniej."
+"-warunki \"ograniczenie bufora godzin\" lub \"sprawdzić ilość wolnego miejsca"
+"\" są wykrywane wcześniej."
 
 msgid ""
 "In expert mode, configure which tuners will be preferred for recordings, "
@@ -22414,13 +22361,6 @@ msgid ""
 msgstr ""
 "W trybie eksperta skonfiguruj, które tunery będą preferowane dla nagrań, gdy "
 "dostępny jest więcej niż jeden tuner."
-
-msgid ""
-"In expert mode, configure which tuners will be preferred, when more than one "
-"tuner is available."
-msgstr ""
-"W trybie eksperta skonfiguruj, które tunery będą preferowane, gdy dostępny "
-"jest więcej niż jeden tuner."
 
 msgid ""
 "In most cases this should be set to No. Only enable if you have a very "
@@ -22727,9 +22667,6 @@ msgstr "Tuner preferowany do nagrań"
 
 msgid "Preferred tuners for recordings, multiple selection allowed"
 msgstr "Preferowane tunery do nagrań, można zaznaczać kilka"
-
-msgid "Preferred tuners, multiple selection allowed"
-msgstr "Preferowane tunery, można wybrać kilka"
 
 msgid "Preparation time for recording (seconds)"
 msgstr "Czas przygotowania do nagrania (sekundy)"
@@ -24639,6 +24576,90 @@ msgstr "I"
 
 msgid "J"
 msgstr "J"
+
+#~ msgid "Allocate unused memory index"
+#~ msgstr "Przydziel nieużywany indeks pamięci"
+
+#~ msgid "Calculate all positions"
+#~ msgstr "Oblicz wszystkie pozycje"
+
+#~ msgid "Configuration mode: %s"
+#~ msgstr "Tryb konfiguracji: %s"
+
+#~ msgid "Goto index position"
+#~ msgstr "Idź do index position"
+
+#~ msgid "Initial lock ratio"
+#~ msgstr "Początkowy współczynnik blokady"
+
+#~ msgid "Initial signal quality"
+#~ msgstr "Początkowa jakość sygnału"
+
+#~ msgid "Initial signal quality:"
+#~ msgstr "Początkowa jakość sygnału:"
+
+#~ msgid "Lock ratio"
+#~ msgstr "Współczynnik blokady"
+
+#~ msgid "Move to position X"
+#~ msgstr "Przenieś do pozycji X"
+
+#~ msgid "Rotor step position:"
+#~ msgstr "Pozycja kroku obrotnicy:"
+
+#~ msgid "Satellite longitude:"
+#~ msgstr "Długość geograficzna satelity:"
+
+#~ msgid "Signal OK, proceeding"
+#~ msgstr "Sygnał OK, kontynuowanie"
+
+#~ msgid "Signal quality"
+#~ msgstr "Jakość sygnału"
+
+#~ msgid "Site latitude"
+#~ msgstr "Szerokość strony"
+
+#~ msgid "Site longitude"
+#~ msgstr "Długość strony"
+
+#~ msgid "Store at index"
+#~ msgstr "Zapisz w indeksie"
+
+#~ msgid "Strongest position"
+#~ msgstr "Najsilniejsza pozycja"
+
+#~ msgid "USALS calibration"
+#~ msgstr "Kalibracja USALS"
+
+#~ msgid "Using LNB %d"
+#~ msgstr "Użyyj LNB %d"
+
+#~ msgid "Using tuner %s"
+#~ msgstr "Użyj tunera %s"
+
+#~ msgid "Weighted position"
+#~ msgstr "Pozycja ważona"
+
+#~ msgid ""
+#~ "Configure whether another tuner from the preferred list is allocated "
+#~ "instead of sharing a tuner that is already active recording the same "
+#~ "channel."
+#~ msgstr ""
+#~ "Skonfiguruj, czy inny tuner z preferowanej listy jest przydzielany "
+#~ "zamiast dzielić tuner, który jest już aktywny, nagrywając ten sam kanał."
+
+#~ msgid "Experimental: strict limitation to preferred tuners"
+#~ msgstr "Eksperymentalne: ścisłe ograniczenie do preferowanych tunerów"
+
+#~ msgid ""
+#~ "In expert mode, configure which tuners will be preferred, when more than "
+#~ "one tuner is available."
+#~ msgstr ""
+#~ "W trybie eksperta skonfiguruj, które tunery będą preferowane, gdy "
+#~ "dostępny jest więcej niż jeden tuner."
+
+#~ msgid "Preferred tuners, multiple selection allowed"
+#~ msgstr "Preferowane tunery, można wybrać kilka"
 
 #~ msgid "%s %s %s."
 #~ msgstr "%s %s %s."
