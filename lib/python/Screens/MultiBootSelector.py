@@ -1,6 +1,7 @@
 from __future__ import print_function
 from enigma import getDesktop
-from os import mkdir, path
+from os import mkdir, rmdir
+from os.path import ismount, isdir, join as pathjoin
 
 from Components.ActionMap import HelpableActionMap
 from Components.ChoiceList import ChoiceEntryComponent, ChoiceList
@@ -11,7 +12,7 @@ from Screens.HelpMenu import HelpableScreen
 from Screens.Screen import Screen
 from Screens.Standby import QUIT_REBOOT, TryQuitMainloop
 from Tools.BoundFunction import boundFunction
-from Tools.Directories import copyfile, pathExists
+from Tools.Directories import copyfile
 from Tools.Multiboot import GetCurrentImage, GetCurrentImageMode, GetImagelist
 import struct
 
@@ -73,16 +74,16 @@ class MultiBootSelector(Screen, HelpableScreen):
 
 	def unmountCallback(self, value, data=None, retval=None, extra_args=None):
 		self.container.killAll()
-		if not path.ismount(self.mountDir):
+		if not ismount(self.mountDir):
 			rmdir(self.mountDir)
 		self.close(value)
 
 	def getBootOptions(self, value=None):
 		self.container = Console()
-		if path.isdir(self.mountDir) and path.ismount(self.mountDir):
+		if isdir(self.mountDir) and ismount(self.mountDir):
 			self.getImagesList()
 		else:
-			if not path.isdir(self.mountDir):
+			if not isdir(self.mountDir):
 				mkdir(self.mountDir)
 			self.container.ePopen("mount %s %s" % (BoxInfo.getItem("MBbootdevice"), self.mountDir), self.getImagesList)
 
@@ -125,15 +126,15 @@ class MultiBootSelector(Screen, HelpableScreen):
 			print("[MultiBootSelector] reboot3 slotinfo = %s" % BoxInfo.getItem("canMultiBoot"))
 			if BoxInfo.getItem("canMode12"):
 				if "BOXMODE" in BoxInfo.getItem("canMultiBoot")[slot]['startupfile']:
-					startupfile = path.join(self.mountDir, "%s_%s" % (BoxInfo.getItem("canMultiBoot")[slot]['startupfile'].rsplit('_', 1)[0], boxmode))
-					copyfile(startupfile, path.join(self.mountDir, "STARTUP"))
+					startupfile = pathjoin(self.mountDir, "%s_%s" % (BoxInfo.getItem("canMultiBoot")[slot]['startupfile'].rsplit('_', 1)[0], boxmode))
+					copyfile(startupfile, pathjoin(self.mountDir, "STARTUP"))
 				else:
-					f = open(path.join(self.mountDir, BoxInfo.getItem("canMultiBoot")[slot]['startupfile']), "r").read()
+					f = open(pathjoin(self.mountDir, BoxInfo.getItem("canMultiBoot")[slot]['startupfile']), "r").read()
 					if boxmode == 12:
 						f = f.replace("boxmode=1'", "boxmode=12'").replace("%s" % BoxInfo.getItem("canMode12")[0], "%s" % BoxInfo.getItem("canMode12")[1])
-					open(path.join(self.mountDir, "STARTUP"), "w").write(f)
+					open(pathjoin(self.mountDir, "STARTUP"), "w").write(f)
 			else:
-				copyfile(path.join(self.mountDir, BoxInfo.getItem("canMultiBoot")[slot]["startupfile"]), path.join(self.mountDir, "STARTUP"))
+				copyfile(pathjoin(self.mountDir, BoxInfo.getItem("canMultiBoot")[slot]["startupfile"]), pathjoin(self.mountDir, "STARTUP"))
 				if BoxInfo.getItem("canDualBoot"):
 					with open('/dev/block/by-name/flag', 'wb') as f:
 						f.write(struct.pack("B", int(slot)))
