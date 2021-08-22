@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-08-21 11:25+0000\n"
+"POT-Creation-Date: 2021-08-22 21:17+0000\n"
 "PO-Revision-Date: 2021-08-21 18:25+0000\n"
 "Last-Translator: Tommi Raami <tomzza89@gmail.com>\n"
 "Language-Team: Finnish <https://hosted.weblate.org/projects/openatv/"
@@ -2617,9 +2617,6 @@ msgstr ""
 "uudelleen muille satelliiteille (esim. Moottoroiduille lautanen), tallentaa "
 "saman LNB:n asetukset useita kertoja."
 
-msgid "Allocate unused memory index"
-msgstr "Varaa käyttämätön muistipaikka"
-
 msgid "Allow 10bit"
 msgstr "Salli 10bit"
 
@@ -3729,9 +3726,6 @@ msgstr "Välimuisti:"
 msgid "Calculate"
 msgstr "Laske"
 
-msgid "Calculate all positions"
-msgstr "Laske kaikki sijainnit"
-
 msgid "Calculate file checksums"
 msgstr "Laske tiedostojen tarkistus"
 
@@ -4430,10 +4424,6 @@ msgstr "Määritettävissä"
 
 msgid "Configuration mode"
 msgstr "Asetustila"
-
-#, python-format
-msgid "Configuration mode: %s"
-msgstr "Toimintatila: %s"
 
 msgid ""
 "Configuration options for the HELP screen can be found in 'MENU > Setup > "
@@ -5457,6 +5447,22 @@ msgstr "Hakemisto"
 #, python-format
 msgid "Directory %s does not exist."
 msgstr "Hakemistoa %s ei löydy."
+
+#, python-format
+msgid "Directory '%s' can't be linked to recordings!"
+msgstr ""
+
+#, python-format
+msgid "Directory '%s' does not exist!"
+msgstr ""
+
+#, python-format
+msgid "Directory '%s' not writable!"
+msgstr ""
+
+#, python-format
+msgid "Directory '%s' not writeable!"
+msgstr ""
 
 msgid "Directory browser"
 msgstr "Hakemistoselain"
@@ -6967,6 +6973,10 @@ msgstr "Lataa ohjelmisto image internetin kautta"
 msgid "Flash Online a new image"
 msgstr "Lataa internetistä uusi ohjelmisto image"
 
+#, python-format
+msgid "Flash directory '%s' not allowed!"
+msgstr ""
+
 msgid "Flash on the fly your your Receiver software."
 msgstr "Päivitä vastaanottimesi ohjelmisto internetin kautta."
 
@@ -7365,9 +7375,6 @@ msgstr "Siirry parhaaseen katseluaikaan"
 
 msgid "Goto X"
 msgstr "Mene X"
-
-msgid "Goto index position"
-msgstr "Mene indeksiin"
 
 msgid "Goto next bouquet"
 msgstr "Mene seuraavalle suosikkilistalle"
@@ -8152,15 +8159,6 @@ msgstr "Ajankohtaisviihde"
 
 msgid "Init"
 msgstr "Palauta CA-moduulin oletus asetukset"
-
-msgid "Initial lock ratio"
-msgstr "Alustava lukitussuhde"
-
-msgid "Initial signal quality"
-msgstr "Alustava signaalin laatu"
-
-msgid "Initial signal quality:"
-msgstr "Alustava signaalin laatu:"
 
 msgid "Initialization"
 msgstr "Alusta kiintolevy"
@@ -8952,9 +8950,6 @@ msgstr "Kohdehakemisto"
 msgid "Location list"
 msgstr "Kohdehakemisto lista"
 
-msgid "Lock ratio"
-msgstr "Lukitse kuvasuhde"
-
 msgid "Log"
 msgstr "Loki"
 
@@ -9585,9 +9580,6 @@ msgstr "Siirry luettelon alkuun"
 
 msgid "Move to last line / screen"
 msgstr "Siirry viimeiselle riville/näytölle"
-
-msgid "Move to position X"
-msgstr "Mene sijaintiin X"
 
 msgid "Move up a line"
 msgstr "Siirry ylöspäin yhdellä rivillä"
@@ -11253,6 +11245,9 @@ msgstr "Valitse alipalvelu."
 msgid "Please select an NFI file and press green key to flash!"
 msgstr "Valitse NFI-tiedosto ja aloita päivitys vihreällä näppäimellä!"
 
+msgid "Please select an acceptable directory."
+msgstr ""
+
 msgid "Please select an aspect ratio..."
 msgstr "Valitse kuvasuhde."
 
@@ -12506,9 +12501,6 @@ msgstr "Root"
 msgid "Root directory"
 msgstr "Root hakemisto"
 
-msgid "Rotor step position:"
-msgstr "Moottorin askeleen paikka:"
-
 msgid "Rotor turning speed"
 msgstr "Moottorin kääntönopeus"
 
@@ -12721,9 +12713,6 @@ msgstr "Satelliittilaitteet"
 
 msgid "Satellite equipment setup"
 msgstr "Satelliittilaitteiden asetukset"
-
-msgid "Satellite longitude:"
-msgstr "Satelliitin pituusaste:"
 
 msgid "Satellites"
 msgstr "Satelliitit"
@@ -14438,14 +14427,8 @@ msgstr "Sierra Leone"
 msgid "Signal Finder"
 msgstr "Signaalin hakutyökalu"
 
-msgid "Signal OK, proceeding"
-msgstr "Signaali OK, jatketaan"
-
 msgid "Signal Strength:"
 msgstr "Signaalinvoimakkuus:"
-
-msgid "Signal quality"
-msgstr "Yhteyden laatu"
 
 msgid "Signal strength:"
 msgstr "Signaalinvoimakkuus:"
@@ -14506,12 +14489,6 @@ msgstr "Sint Maarten"
 
 msgid "Sitcom"
 msgstr "Sitcom"
-
-msgid "Site latitude"
-msgstr "Leveysaste"
-
-msgid "Site longitude"
-msgstr "Pituusaste"
 
 msgid "Size"
 msgstr "Koko"
@@ -15062,9 +15039,6 @@ msgstr "Pysäytetty"
 msgid "Storage devices"
 msgstr "Tallennusvälineet"
 
-msgid "Store at index"
-msgstr "Tallenna indeksiin"
-
 msgid "Store position"
 msgstr "Tallenna sijainti"
 
@@ -15107,9 +15081,6 @@ msgstr "Strict DLNA"
 
 msgid "Stripes"
 msgstr "Nauhat"
-
-msgid "Strongest position"
-msgstr "Vahvin sijainti"
 
 msgid "Stumm"
 msgstr "Stumm"
@@ -16073,8 +16044,8 @@ msgid ""
 "This option allows you to choose how to display 2160p 24Hz on your TV. (as "
 "not all TV's support these resolutions)"
 msgstr ""
-"Määrittää, kuinka 2160p 24Hz näytetään sinun TV:ssä (koska kaikki televisiot:"
-" eivät suoraan tue tätä resoluutiota)"
+"Määrittää, kuinka 2160p 24Hz näytetään sinun TV:ssä (koska kaikki "
+"televisiot: eivät suoraan tue tätä resoluutiota)"
 
 msgid ""
 "This option allows you to choose how to display 2160p 25Hz on your TV. (as "
@@ -16853,9 +16824,6 @@ msgstr ""
 "käyttäjän syöttämien koordinaattien mukaisesti. Ilman USALS:a jokainen "
 "satelliitti pitää määrittää ja tallentaa yksitellen."
 
-msgid "USALS calibration"
-msgstr "USALS kalibrointi"
-
 msgid "USB Stick"
 msgstr "USB muistitikku"
 
@@ -17340,19 +17308,11 @@ msgstr "Käyttäjänimi (httpkäyttäjä)"
 msgid "Username:"
 msgstr "Käyttäjänimi:"
 
-#, python-format
-msgid "Using LNB %d"
-msgstr "Käytössä LNB %d"
-
 msgid "Using fixed address"
 msgstr "Käytössä kiinteä osoite"
 
 msgid "Using old profile: "
 msgstr "Käytössä vanha profiili: "
-
-#, python-format
-msgid "Using tuner %s"
-msgstr "Käytössä viritin %s"
 
 msgid "Uzbek"
 msgstr "Uzbek"
@@ -17793,9 +17753,6 @@ msgstr "Viikonloppu"
 
 msgid "Weekly"
 msgstr "Viikoittain"
-
-msgid "Weighted position"
-msgstr "Painotettu sijainti"
 
 msgid "Welcome to IceTV"
 msgstr "Tervetuloa IceTV"
@@ -21700,13 +21657,6 @@ msgstr ""
 "käyttää samaa viritintä, joka vastaanottaa samaa kanavaa suorana."
 
 msgid ""
-"Configure whether another tuner from the preferred list is allocated instead "
-"of sharing a tuner that is already active recording the same channel."
-msgstr ""
-"Määritä, käytetäänkö toista viritintä, vaikka myös toista viritintä, joka "
-"tallentaa saman kanavan, voitaisiin käyttää."
-
-msgid ""
 "Configure whether the 'recording' symbol (in the display skin and LCD skin) "
 "is visible for real recordings only or also for streaming and pseuso "
 "recordings (e.g. EPGrefresh)."
@@ -22057,9 +22007,6 @@ msgstr ""
 msgid "Event font size"
 msgstr "Ohjelmatiedon tekstikoko"
 
-msgid "Experimental: strict limitation to preferred tuners"
-msgstr "Kokeellinen: Rajoitus ensisijaisiin virittimiin"
-
 msgid "Experimental: strict limitation to preferred tuners for recordings"
 msgstr "Kokeellinen: Rajoitus ensisijaisiin virittimiin tallennuksia varten"
 
@@ -22304,13 +22251,6 @@ msgid ""
 msgstr ""
 "Asiantuntia tilassa, määrittää ensisijaisen virittimen tallennuksille jos "
 "useampia on käytettävissä."
-
-msgid ""
-"In expert mode, configure which tuners will be preferred, when more than one "
-"tuner is available."
-msgstr ""
-"Asiantuntia tilassa, määrittää ensisijaisen virittimen jos useampia on "
-"käytettävissä."
 
 msgid ""
 "In most cases this should be set to No. Only enable if you have a very "
@@ -22617,9 +22557,6 @@ msgstr "Tallennusten ensisijainen viritin"
 
 msgid "Preferred tuners for recordings, multiple selection allowed"
 msgstr "Ensisijainen viritin tallennuksiin, monivalinta sallittu"
-
-msgid "Preferred tuners, multiple selection allowed"
-msgstr "Ensisijaiset virittimet, useita valintoja sallittu"
 
 msgid "Preparation time for recording (seconds)"
 msgstr "Tallennuksen valmisteluaika (sekuntia)"
@@ -24500,6 +24437,90 @@ msgstr "I"
 
 msgid "J"
 msgstr "J"
+
+#~ msgid "Allocate unused memory index"
+#~ msgstr "Varaa käyttämätön muistipaikka"
+
+#~ msgid "Calculate all positions"
+#~ msgstr "Laske kaikki sijainnit"
+
+#~ msgid "Configuration mode: %s"
+#~ msgstr "Toimintatila: %s"
+
+#~ msgid "Goto index position"
+#~ msgstr "Mene indeksiin"
+
+#~ msgid "Initial lock ratio"
+#~ msgstr "Alustava lukitussuhde"
+
+#~ msgid "Initial signal quality"
+#~ msgstr "Alustava signaalin laatu"
+
+#~ msgid "Initial signal quality:"
+#~ msgstr "Alustava signaalin laatu:"
+
+#~ msgid "Lock ratio"
+#~ msgstr "Lukitse kuvasuhde"
+
+#~ msgid "Move to position X"
+#~ msgstr "Mene sijaintiin X"
+
+#~ msgid "Rotor step position:"
+#~ msgstr "Moottorin askeleen paikka:"
+
+#~ msgid "Satellite longitude:"
+#~ msgstr "Satelliitin pituusaste:"
+
+#~ msgid "Signal OK, proceeding"
+#~ msgstr "Signaali OK, jatketaan"
+
+#~ msgid "Signal quality"
+#~ msgstr "Yhteyden laatu"
+
+#~ msgid "Site latitude"
+#~ msgstr "Leveysaste"
+
+#~ msgid "Site longitude"
+#~ msgstr "Pituusaste"
+
+#~ msgid "Store at index"
+#~ msgstr "Tallenna indeksiin"
+
+#~ msgid "Strongest position"
+#~ msgstr "Vahvin sijainti"
+
+#~ msgid "USALS calibration"
+#~ msgstr "USALS kalibrointi"
+
+#~ msgid "Using LNB %d"
+#~ msgstr "Käytössä LNB %d"
+
+#~ msgid "Using tuner %s"
+#~ msgstr "Käytössä viritin %s"
+
+#~ msgid "Weighted position"
+#~ msgstr "Painotettu sijainti"
+
+#~ msgid ""
+#~ "Configure whether another tuner from the preferred list is allocated "
+#~ "instead of sharing a tuner that is already active recording the same "
+#~ "channel."
+#~ msgstr ""
+#~ "Määritä, käytetäänkö toista viritintä, vaikka myös toista viritintä, joka "
+#~ "tallentaa saman kanavan, voitaisiin käyttää."
+
+#~ msgid "Experimental: strict limitation to preferred tuners"
+#~ msgstr "Kokeellinen: Rajoitus ensisijaisiin virittimiin"
+
+#~ msgid ""
+#~ "In expert mode, configure which tuners will be preferred, when more than "
+#~ "one tuner is available."
+#~ msgstr ""
+#~ "Asiantuntia tilassa, määrittää ensisijaisen virittimen jos useampia on "
+#~ "käytettävissä."
+
+#~ msgid "Preferred tuners, multiple selection allowed"
+#~ msgstr "Ensisijaiset virittimet, useita valintoja sallittu"
 
 #~ msgid "%s %s %s."
 #~ msgstr "%s %s %s."
