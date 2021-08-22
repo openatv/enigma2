@@ -509,7 +509,7 @@ def getRecordingFilename(basename, dirname=None):
 
 def hasHardLinks(path):  # Test if the volume containing path supports hard links.
 	try:
-		srcName = mkstemp(prefix="HardLink_", suffix=".test", dir=path, text=False)
+		level, srcName = mkstemp(prefix="HardLink_", suffix=".test", dir=path, text=False)
 	except (IOError, OSError) as err:
 		print("[Directories] Error %d: Creating temp file!  (%s)" % (err.errno, err.strerror))
 		return False
