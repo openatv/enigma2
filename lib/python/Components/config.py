@@ -1708,8 +1708,6 @@ class ConfigDirectory(ConfigText):
 			value = ""
 		ConfigText.setValue(self, value)
 
-	value = property(getValue, setValue)
-
 	def onSelect(self, session):
 		self.allmarked = (self.value != "")
 
