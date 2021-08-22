@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-08-21 11:25+0000\n"
+"POT-Creation-Date: 2021-08-22 21:17+0000\n"
 "PO-Revision-Date: 2021-08-21 03:35+0000\n"
 "Last-Translator: NickerSK <nickersk@gmail.com>\n"
 "Language-Team: Slovak <https://hosted.weblate.org/projects/openatv/"
@@ -2619,9 +2619,6 @@ msgstr ""
 "rovnaké LNB pre iné družice (napr. paraboly s motorom) a nebude nutné "
 "nastavovať rovnaké LNB viackrát."
 
-msgid "Allocate unused memory index"
-msgstr "Prideliť nepoužitú pamäť"
-
 msgid "Allow 10bit"
 msgstr "Povoliť 10 bitov"
 
@@ -3741,9 +3738,6 @@ msgstr "Vo vyrov. pamäti:"
 msgid "Calculate"
 msgstr "Prepočítať"
 
-msgid "Calculate all positions"
-msgstr "Prepočítať všetky pozície"
-
 msgid "Calculate file checksums"
 msgstr "Vypočítať kontrolné súčty súboru"
 
@@ -4464,10 +4458,6 @@ msgstr "Konfiguruje sa"
 
 msgid "Configuration mode"
 msgstr "Konfiguračný režim"
-
-#, python-format
-msgid "Configuration mode: %s"
-msgstr "Konfiguračný režim: %s"
 
 msgid ""
 "Configuration options for the HELP screen can be found in 'MENU > Setup > "
@@ -5497,6 +5487,22 @@ msgstr "Adresár"
 #, python-format
 msgid "Directory %s does not exist."
 msgstr "Adresár %s neexistuje."
+
+#, python-format
+msgid "Directory '%s' can't be linked to recordings!"
+msgstr ""
+
+#, python-format
+msgid "Directory '%s' does not exist!"
+msgstr ""
+
+#, python-format
+msgid "Directory '%s' not writable!"
+msgstr ""
+
+#, python-format
+msgid "Directory '%s' not writeable!"
+msgstr ""
 
 msgid "Directory browser"
 msgstr "Prehliadač priečinkov"
@@ -7023,6 +7029,10 @@ msgstr "Flashovanie online"
 msgid "Flash Online a new image"
 msgstr "Flashovanie nového image online"
 
+#, python-format
+msgid "Flash directory '%s' not allowed!"
+msgstr ""
+
 msgid "Flash on the fly your your Receiver software."
 msgstr "Umožňuje inštaláciu softvéru pre váš prijímač v režime on the fly."
 
@@ -7425,9 +7435,6 @@ msgstr "Prejsť na hlavný vysielací čas (Prime Time)"
 
 msgid "Goto X"
 msgstr "Prejsť na X"
-
-msgid "Goto index position"
-msgstr "Prejsť na indexovou pozíciu"
 
 msgid "Goto next bouquet"
 msgstr "Prejsť na ďalší prehľad"
@@ -8219,15 +8226,6 @@ msgstr "Informačný panel"
 
 msgid "Init"
 msgstr "Inic"
-
-msgid "Initial lock ratio"
-msgstr "Zachovať pôvodný pomer"
-
-msgid "Initial signal quality"
-msgstr "Počiatočná kvalita signálu"
-
-msgid "Initial signal quality:"
-msgstr "Počiatočná kvalita signálu:"
 
 msgid "Initialization"
 msgstr "Inicializácia"
@@ -9036,9 +9034,6 @@ msgstr "Umiestnenie"
 msgid "Location list"
 msgstr "Zoznam lokalít"
 
-msgid "Lock ratio"
-msgstr "Uzamknúť pomer"
-
 msgid "Log"
 msgstr "Záznam"
 
@@ -9683,9 +9678,6 @@ msgstr "Presunúť zoznam domov"
 
 msgid "Move to last line / screen"
 msgstr ""
-
-msgid "Move to position X"
-msgstr "Presun na pozíciu X"
 
 msgid "Move up a line"
 msgstr "Posun línie hore"
@@ -11362,6 +11354,9 @@ msgid "Please select an NFI file and press green key to flash!"
 msgstr ""
 "Prosím vyberte súbor NFI a stlačením zeleného tlačidla spustite flashovanie!"
 
+msgid "Please select an acceptable directory."
+msgstr ""
+
 msgid "Please select an aspect ratio..."
 msgstr "Prosím vyberte pomer strán..."
 
@@ -12627,9 +12622,6 @@ msgstr "Root"
 msgid "Root directory"
 msgstr "Koreňový priečinok"
 
-msgid "Rotor step position:"
-msgstr "Pozícia rotoru (kroky):"
-
 msgid "Rotor turning speed"
 msgstr "Rýchlosť otáčania motora"
 
@@ -12848,9 +12840,6 @@ msgstr "Satelitná výbava"
 
 msgid "Satellite equipment setup"
 msgstr "Nastavenie satelitnej výbavy"
-
-msgid "Satellite longitude:"
-msgstr "Zemepisná dĺžka družice:"
 
 msgid "Satellites"
 msgstr "Družice"
@@ -14605,14 +14594,8 @@ msgstr "Sierra Leone"
 msgid "Signal Finder"
 msgstr "Vyhľadávač signálu"
 
-msgid "Signal OK, proceeding"
-msgstr "Signál OK, pokračujem"
-
 msgid "Signal Strength:"
 msgstr "Sila signálu:"
-
-msgid "Signal quality"
-msgstr "Kvalita signálu"
 
 msgid "Signal strength:"
 msgstr "Sila signálu:"
@@ -14674,12 +14657,6 @@ msgstr "Sint Maarten (holandská časť)"
 
 msgid "Sitcom"
 msgstr "Sitkom"
-
-msgid "Site latitude"
-msgstr "Zemepisná šírka"
-
-msgid "Site longitude"
-msgstr "Zemepisná dĺžka"
 
 msgid "Size"
 msgstr "Veľkosť"
@@ -15239,9 +15216,6 @@ msgstr "Zastavené"
 msgid "Storage devices"
 msgstr "Úložné zariadenia"
 
-msgid "Store at index"
-msgstr "Uložiť na indexe"
-
 msgid "Store position"
 msgstr "Uložiť pozíciu"
 
@@ -15284,9 +15258,6 @@ msgstr "Striktné DLNA"
 
 msgid "Stripes"
 msgstr "Pruhy"
-
-msgid "Strongest position"
-msgstr "Najsilnejšia pozícia"
 
 msgid "Stumm"
 msgstr "Nemé"
@@ -17065,9 +17036,6 @@ msgstr ""
 "podľa súradníc zadaných používateľom. Bez systému USALS sa musí každá "
 "družica nastaviť a uložiť individuálne."
 
-msgid "USALS calibration"
-msgstr "USALS kalibrácia"
-
 msgid "USB Stick"
 msgstr "USB kľúč"
 
@@ -17558,19 +17526,11 @@ msgstr "Meno používateľa (httpuser)"
 msgid "Username:"
 msgstr "Meno používateľa:"
 
-#, python-format
-msgid "Using LNB %d"
-msgstr "Používa sa LNB %d"
-
 msgid "Using fixed address"
 msgstr "Používaná pevná adresa"
 
 msgid "Using old profile: "
 msgstr "Použitie starého profilu: "
-
-#, python-format
-msgid "Using tuner %s"
-msgstr "Používa sa tuner %s"
 
 #, fuzzy
 msgid "Uzbek"
@@ -18021,9 +17981,6 @@ msgstr "Víkend"
 
 msgid "Weekly"
 msgstr "Týždenne"
-
-msgid "Weighted position"
-msgstr "Vážená pozícia"
 
 msgid "Welcome to IceTV"
 msgstr "Vitajte v IceTV"
@@ -21968,13 +21925,6 @@ msgstr ""
 "rovnakého TV kanála."
 
 msgid ""
-"Configure whether another tuner from the preferred list is allocated instead "
-"of sharing a tuner that is already active recording the same channel."
-msgstr ""
-"Nastavte, či sa alokuje ďalší tuner spomedzi preferovaných tunerov, namiesto "
-"zdieľania toho tunera, ktorý je už aktívny pri nahrávaní rovnakého kanála."
-
-msgid ""
 "Configure whether the 'recording' symbol (in the display skin and LCD skin) "
 "is visible for real recordings only or also for streaming and pseuso "
 "recordings (e.g. EPGrefresh)."
@@ -22312,9 +22262,6 @@ msgstr ""
 msgid "Event font size"
 msgstr "Veľkosť písma pre udalosť"
 
-msgid "Experimental: strict limitation to preferred tuners"
-msgstr "Experimentálne: prísne obmedzenie na preferované tunery"
-
 msgid "Experimental: strict limitation to preferred tuners for recordings"
 msgstr "Experimentálne: prísne obmedzenie na preferované tunery pre nahrávky"
 
@@ -22562,13 +22509,6 @@ msgid ""
 msgstr ""
 "V režime pre expertov stanovuje, ktoré tunery budú preferované pre "
 "nahrávanie, ak je dostupný viac ako jeden tuner."
-
-msgid ""
-"In expert mode, configure which tuners will be preferred, when more than one "
-"tuner is available."
-msgstr ""
-"V režime pre expertov stanovuje, ktoré tunery budú preferované ak je "
-"dostupný viac ako jeden tuner."
 
 msgid ""
 "In most cases this should be set to No. Only enable if you have a very "
@@ -22879,9 +22819,6 @@ msgstr "Preferovaný tuner pre nahrávky"
 
 msgid "Preferred tuners for recordings, multiple selection allowed"
 msgstr "Preferované tunery pre nahrávky, je možný aj výber viacerých"
-
-msgid "Preferred tuners, multiple selection allowed"
-msgstr "Preferované tunery, je možný aj výber viacerých"
 
 msgid "Preparation time for recording (seconds)"
 msgstr "Čas prípravy pred nahrávaním (v sek.)"
@@ -24784,6 +24721,91 @@ msgstr "I"
 
 msgid "J"
 msgstr "J"
+
+#~ msgid "Allocate unused memory index"
+#~ msgstr "Prideliť nepoužitú pamäť"
+
+#~ msgid "Calculate all positions"
+#~ msgstr "Prepočítať všetky pozície"
+
+#~ msgid "Configuration mode: %s"
+#~ msgstr "Konfiguračný režim: %s"
+
+#~ msgid "Goto index position"
+#~ msgstr "Prejsť na indexovou pozíciu"
+
+#~ msgid "Initial lock ratio"
+#~ msgstr "Zachovať pôvodný pomer"
+
+#~ msgid "Initial signal quality"
+#~ msgstr "Počiatočná kvalita signálu"
+
+#~ msgid "Initial signal quality:"
+#~ msgstr "Počiatočná kvalita signálu:"
+
+#~ msgid "Lock ratio"
+#~ msgstr "Uzamknúť pomer"
+
+#~ msgid "Move to position X"
+#~ msgstr "Presun na pozíciu X"
+
+#~ msgid "Rotor step position:"
+#~ msgstr "Pozícia rotoru (kroky):"
+
+#~ msgid "Satellite longitude:"
+#~ msgstr "Zemepisná dĺžka družice:"
+
+#~ msgid "Signal OK, proceeding"
+#~ msgstr "Signál OK, pokračujem"
+
+#~ msgid "Signal quality"
+#~ msgstr "Kvalita signálu"
+
+#~ msgid "Site latitude"
+#~ msgstr "Zemepisná šírka"
+
+#~ msgid "Site longitude"
+#~ msgstr "Zemepisná dĺžka"
+
+#~ msgid "Store at index"
+#~ msgstr "Uložiť na indexe"
+
+#~ msgid "Strongest position"
+#~ msgstr "Najsilnejšia pozícia"
+
+#~ msgid "USALS calibration"
+#~ msgstr "USALS kalibrácia"
+
+#~ msgid "Using LNB %d"
+#~ msgstr "Používa sa LNB %d"
+
+#~ msgid "Using tuner %s"
+#~ msgstr "Používa sa tuner %s"
+
+#~ msgid "Weighted position"
+#~ msgstr "Vážená pozícia"
+
+#~ msgid ""
+#~ "Configure whether another tuner from the preferred list is allocated "
+#~ "instead of sharing a tuner that is already active recording the same "
+#~ "channel."
+#~ msgstr ""
+#~ "Nastavte, či sa alokuje ďalší tuner spomedzi preferovaných tunerov, "
+#~ "namiesto zdieľania toho tunera, ktorý je už aktívny pri nahrávaní "
+#~ "rovnakého kanála."
+
+#~ msgid "Experimental: strict limitation to preferred tuners"
+#~ msgstr "Experimentálne: prísne obmedzenie na preferované tunery"
+
+#~ msgid ""
+#~ "In expert mode, configure which tuners will be preferred, when more than "
+#~ "one tuner is available."
+#~ msgstr ""
+#~ "V režime pre expertov stanovuje, ktoré tunery budú preferované ak je "
+#~ "dostupný viac ako jeden tuner."
+
+#~ msgid "Preferred tuners, multiple selection allowed"
+#~ msgstr "Preferované tunery, je možný aj výber viacerých"
 
 #, fuzzy
 #~ msgid "%s %s %s."
