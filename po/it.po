@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Italian translation\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-08-21 11:25+0000\n"
+"POT-Creation-Date: 2021-08-22 21:17+0000\n"
 "PO-Revision-Date: 2019-09-01 14:09+0100\n"
 "Last-Translator: Massimo Bambi - Insanity\n"
 "Language-Team: Massimo Bambi <maxbambi@libero.it>\n"
@@ -2660,9 +2660,6 @@ msgstr ""
 "selezionarlo per altri satelliti (ad es. con parabole motorizzate) per "
 "salvare più volte le impostazioni dello stesso LNB."
 
-msgid "Allocate unused memory index"
-msgstr "Assegnare indice di memoria non usata"
-
 msgid "Allow 10bit"
 msgstr "Consenti 10 bit"
 
@@ -3793,9 +3790,6 @@ msgstr "In cache:"
 msgid "Calculate"
 msgstr "Calcolare"
 
-msgid "Calculate all positions"
-msgstr "Calcolare tutte le posizioni"
-
 msgid "Calculate file checksums"
 msgstr "Calcola i checksum dei file"
 
@@ -4507,10 +4501,6 @@ msgstr "Configurazione in corso..."
 
 msgid "Configuration mode"
 msgstr "Modalità di configurazione"
-
-#, python-format
-msgid "Configuration mode: %s"
-msgstr "Modalità configurazione %s"
 
 msgid ""
 "Configuration options for the HELP screen can be found in 'MENU > Setup > "
@@ -5562,6 +5552,22 @@ msgstr "Cartella"
 #, python-format
 msgid "Directory %s does not exist."
 msgstr "La cartella %s non esiste."
+
+#, python-format
+msgid "Directory '%s' can't be linked to recordings!"
+msgstr ""
+
+#, python-format
+msgid "Directory '%s' does not exist!"
+msgstr ""
+
+#, python-format
+msgid "Directory '%s' not writable!"
+msgstr ""
+
+#, python-format
+msgid "Directory '%s' not writeable!"
+msgstr ""
 
 msgid "Directory browser"
 msgstr "Navigatore cartelle"
@@ -7096,6 +7102,10 @@ msgstr "FLASH online"
 msgid "Flash Online a new image"
 msgstr "FLASH online una nuova immagine"
 
+#, python-format
+msgid "Flash directory '%s' not allowed!"
+msgstr ""
+
 msgid "Flash on the fly your your Receiver software."
 msgstr "FLASH al volo il tuo ricevitore."
 
@@ -7509,9 +7519,6 @@ msgstr "Vai a PRIMA SERATA"
 
 msgid "Goto X"
 msgstr "Vai a X"
-
-msgid "Goto index position"
-msgstr "Vai alla posizione dell'indice"
 
 msgid "Goto next bouquet"
 msgstr "Vai al prossimo bouquet"
@@ -8303,15 +8310,6 @@ msgstr "Menu principale CCcamInfo"
 
 msgid "Init"
 msgstr "Init"
-
-msgid "Initial lock ratio"
-msgstr "Rapporto di blocco iniziale"
-
-msgid "Initial signal quality"
-msgstr "Qualità iniziale del segnale"
-
-msgid "Initial signal quality:"
-msgstr "Qualità iniziale del segnale:"
 
 msgid "Initialization"
 msgstr "Inizializzazione"
@@ -9137,9 +9135,6 @@ msgstr "Percorso"
 msgid "Location list"
 msgstr "Elenco dei percorsi"
 
-msgid "Lock ratio"
-msgstr "Rapporto di blocco"
-
 msgid "Log"
 msgstr "Log"
 
@@ -9804,9 +9799,6 @@ msgstr "Sposta a inizio lista"
 
 msgid "Move to last line / screen"
 msgstr ""
-
-msgid "Move to position X"
-msgstr "Sposta alla posizione X"
 
 #, fuzzy
 msgid "Move up a line"
@@ -11512,6 +11504,9 @@ msgstr "Seleziona un sottocanale..."
 msgid "Please select an NFI file and press green key to flash!"
 msgstr "Selezionare un file immagine e premere il tasto verde per il Flash!"
 
+msgid "Please select an acceptable directory."
+msgstr ""
+
 msgid "Please select an aspect ratio..."
 msgstr "Seleziona il rapporto TV"
 
@@ -12805,9 +12800,6 @@ msgstr "Root"
 msgid "Root directory"
 msgstr "Root directory"
 
-msgid "Rotor step position:"
-msgstr "Posizione di passo del rotore:"
-
 msgid "Rotor turning speed"
 msgstr "Velocità rotazione motore"
 
@@ -13027,9 +13019,6 @@ msgstr "Dispositivo satellitare"
 
 msgid "Satellite equipment setup"
 msgstr "Conf. dispositivo satellitare"
-
-msgid "Satellite longitude:"
-msgstr "Longitudine Satellite:"
 
 msgid "Satellites"
 msgstr "Satelliti"
@@ -14790,14 +14779,8 @@ msgstr "Sierra Leone"
 msgid "Signal Finder"
 msgstr "Ricerca segnale"
 
-msgid "Signal OK, proceeding"
-msgstr "Segnale OK, procedere"
-
 msgid "Signal Strength:"
 msgstr "Potenza Segnale:"
-
-msgid "Signal quality"
-msgstr "Qualità segnale:"
 
 msgid "Signal strength:"
 msgstr "Potenza segnale:"
@@ -14859,12 +14842,6 @@ msgstr "Sint Maarten (parte olandese)"
 
 msgid "Sitcom"
 msgstr ""
-
-msgid "Site latitude"
-msgstr "Latitudine del sito"
-
-msgid "Site longitude"
-msgstr "Longitudine del sito"
 
 msgid "Size"
 msgstr "Dimensione:"
@@ -15423,9 +15400,6 @@ msgstr "Arrestato"
 msgid "Storage devices"
 msgstr "Dispositivi di archiviazione"
 
-msgid "Store at index"
-msgstr "Memorizzare all'indice"
-
 msgid "Store position"
 msgstr "Memorizza posizione"
 
@@ -15469,9 +15443,6 @@ msgstr "DLNA accurato"
 
 msgid "Stripes"
 msgstr "Strisce"
-
-msgid "Strongest position"
-msgstr "Posizione migliore"
 
 msgid "Stumm"
 msgstr ""
@@ -17275,9 +17246,6 @@ msgstr ""
 "necessario creare e salvare una configurazione individuale per ogni "
 "satellite."
 
-msgid "USALS calibration"
-msgstr "Calibrazione USALS"
-
 msgid "USB Stick"
 msgstr "USB Stick"
 
@@ -17768,19 +17736,11 @@ msgstr "Nome utente (http)"
 msgid "Username:"
 msgstr "Nome utente:"
 
-#, python-format
-msgid "Using LNB %d"
-msgstr "LNB %d in uso"
-
 msgid "Using fixed address"
 msgstr "Indirizzo fisico in uso"
 
 msgid "Using old profile: "
 msgstr "Vecchio profilo in uso: "
-
-#, python-format
-msgid "Using tuner %s"
-msgstr "Tuner %s in uso"
 
 #, fuzzy
 msgid "Uzbek"
@@ -18235,9 +18195,6 @@ msgstr "Fine settimana"
 
 msgid "Weekly"
 msgstr "Settimanali"
-
-msgid "Weighted position"
-msgstr "Posizione ponderata"
 
 msgid "Welcome to IceTV"
 msgstr ""
@@ -22226,14 +22183,6 @@ msgstr ""
 "attivo per ricevere il segnale del canale TV in diretta."
 
 msgid ""
-"Configure whether another tuner from the preferred list is allocated instead "
-"of sharing a tuner that is already active recording the same channel."
-msgstr ""
-"Configura se deve essere utilizzato un altro Tuner della lista preferita "
-"invece di usare in maniera condivisa il Tuner che è già attivo per "
-"registrare lo stesso canale TV."
-
-msgid ""
 "Configure whether the 'recording' symbol (in the display skin and LCD skin) "
 "is visible for real recordings only or also for streaming and pseuso "
 "recordings (e.g. EPGrefresh)."
@@ -22574,9 +22523,6 @@ msgstr ""
 msgid "Event font size"
 msgstr "Dimensione carattere programma"
 
-msgid "Experimental: strict limitation to preferred tuners"
-msgstr "Sperimentale: restrizioni ai tuner preferiti"
-
 msgid "Experimental: strict limitation to preferred tuners for recordings"
 msgstr "Sperimentale: restrizioni ai tuner preferiti per la registrazione"
 
@@ -22823,13 +22769,6 @@ msgid ""
 msgstr ""
 "In modalità esperti, configurare quali Tuner saranno preferiti per le "
 "registrazioni quando più di uno è disponibile."
-
-msgid ""
-"In expert mode, configure which tuners will be preferred, when more than one "
-"tuner is available."
-msgstr ""
-"In modalità esperti, configura quali Tuner preferire quando più di uno è "
-"disponibile."
 
 msgid ""
 "In most cases this should be set to No. Only enable if you have a very "
@@ -23139,9 +23078,6 @@ msgstr "Tuner preferito per le registrazioni"
 
 msgid "Preferred tuners for recordings, multiple selection allowed"
 msgstr "Tuner preferiti per le registrazioni, selezione multipla consentita"
-
-msgid "Preferred tuners, multiple selection allowed"
-msgstr "Tuner preferiti, selezione multipla consentita"
 
 msgid "Preparation time for recording (seconds)"
 msgstr "Tempo di preparazione per la registrazione (in secondi)"
@@ -25098,6 +25034,91 @@ msgstr "IP"
 
 msgid "J"
 msgstr ""
+
+#~ msgid "Allocate unused memory index"
+#~ msgstr "Assegnare indice di memoria non usata"
+
+#~ msgid "Calculate all positions"
+#~ msgstr "Calcolare tutte le posizioni"
+
+#~ msgid "Configuration mode: %s"
+#~ msgstr "Modalità configurazione %s"
+
+#~ msgid "Goto index position"
+#~ msgstr "Vai alla posizione dell'indice"
+
+#~ msgid "Initial lock ratio"
+#~ msgstr "Rapporto di blocco iniziale"
+
+#~ msgid "Initial signal quality"
+#~ msgstr "Qualità iniziale del segnale"
+
+#~ msgid "Initial signal quality:"
+#~ msgstr "Qualità iniziale del segnale:"
+
+#~ msgid "Lock ratio"
+#~ msgstr "Rapporto di blocco"
+
+#~ msgid "Move to position X"
+#~ msgstr "Sposta alla posizione X"
+
+#~ msgid "Rotor step position:"
+#~ msgstr "Posizione di passo del rotore:"
+
+#~ msgid "Satellite longitude:"
+#~ msgstr "Longitudine Satellite:"
+
+#~ msgid "Signal OK, proceeding"
+#~ msgstr "Segnale OK, procedere"
+
+#~ msgid "Signal quality"
+#~ msgstr "Qualità segnale:"
+
+#~ msgid "Site latitude"
+#~ msgstr "Latitudine del sito"
+
+#~ msgid "Site longitude"
+#~ msgstr "Longitudine del sito"
+
+#~ msgid "Store at index"
+#~ msgstr "Memorizzare all'indice"
+
+#~ msgid "Strongest position"
+#~ msgstr "Posizione migliore"
+
+#~ msgid "USALS calibration"
+#~ msgstr "Calibrazione USALS"
+
+#~ msgid "Using LNB %d"
+#~ msgstr "LNB %d in uso"
+
+#~ msgid "Using tuner %s"
+#~ msgstr "Tuner %s in uso"
+
+#~ msgid "Weighted position"
+#~ msgstr "Posizione ponderata"
+
+#~ msgid ""
+#~ "Configure whether another tuner from the preferred list is allocated "
+#~ "instead of sharing a tuner that is already active recording the same "
+#~ "channel."
+#~ msgstr ""
+#~ "Configura se deve essere utilizzato un altro Tuner della lista preferita "
+#~ "invece di usare in maniera condivisa il Tuner che è già attivo per "
+#~ "registrare lo stesso canale TV."
+
+#~ msgid "Experimental: strict limitation to preferred tuners"
+#~ msgstr "Sperimentale: restrizioni ai tuner preferiti"
+
+#~ msgid ""
+#~ "In expert mode, configure which tuners will be preferred, when more than "
+#~ "one tuner is available."
+#~ msgstr ""
+#~ "In modalità esperti, configura quali Tuner preferire quando più di uno è "
+#~ "disponibile."
+
+#~ msgid "Preferred tuners, multiple selection allowed"
+#~ msgstr "Tuner preferiti, selezione multipla consentita"
 
 #, fuzzy
 #~ msgid "%s %s %s."
