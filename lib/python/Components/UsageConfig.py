@@ -9,7 +9,7 @@ from enigma import eDVBDB, eEPGCache, setTunerTypePriorityOrder, setPreferredTun
 from Components.About import about
 from Components.Harddisk import harddiskmanager
 from Components.config import ConfigSubsection, ConfigYesNo, config, ConfigSelection, ConfigText, ConfigNumber, ConfigSet, ConfigLocations, NoSave, ConfigClock, ConfigInteger, ConfigBoolean, ConfigPassword, ConfigIP, ConfigSlider, ConfigSelectionNumber, ConfigFloat, ConfigDictionarySet, ConfigDirectory
-from Tools.Directories import resolveFilename, SCOPE_HDD, SCOPE_TIMESHIFT, SCOPE_AUTORECORD, SCOPE_SYSETC, defaultRecordingLocation, isPluginInstalled, fileContains
+from Tools.Directories import resolveFilename, SCOPE_HDD, SCOPE_TIMESHIFT, SCOPE_SYSETC, defaultRecordingLocation, isPluginInstalled, fileContains
 from Components.NimManager import nimmanager
 from Components.RcModel import rc_model
 from Components.ServiceList import refreshServiceList
@@ -288,9 +288,6 @@ def InitUsageConfig():
 		choicelist.append(("%d" % i, ngettext("%d minute", "%d minutes", m) % m))
 	config.usage.pip_last_service_timeout = ConfigSelection(default="-1", choices=choicelist)
 
-	#
-	# Start of new recording path code.
-	#
 	defaultValue = resolveFilename(SCOPE_HDD)
 	if not os.path.exists(defaultValue):
 		try:
@@ -335,52 +332,6 @@ def InitUsageConfig():
 	config.usage.autorecord_path.save()
 	config.usage.allowed_autorecord_paths = ConfigLocations(default=[defaultValue])
 
-	#
-	# Start of old recording path code.
-	#
-	# config.usage.default_path = ConfigText(default=resolveFilename(SCOPE_HDD))
-	# if not config.usage.default_path.value.endswith('/'):
-	# 	tmpvalue = config.usage.default_path.value
-	# 	config.usage.default_path.setValue(tmpvalue + '/')
-	# 	config.usage.default_path.save()
-	#
-	# def defaultpathChanged(configElement):
-	# 	tmpvalue = config.usage.default_path.value
-	# 	try:
-	# 		if not os.path.exists(tmpvalue):
-	# 			os.system("mkdir -p %s" % tmpvalue)
-	# 	except:
-	# 		print("Failed to create recording path: %s" % tmpvalue)
-	# 	if not config.usage.default_path.value.endswith('/'):
-	# 		config.usage.default_path.setValue(tmpvalue + '/')
-	# 		config.usage.default_path.save()
-	#
-	# config.usage.default_path.addNotifier(defaultpathChanged, immediate_feedback=False)
-	# config.usage.timer_path = ConfigText(default="<default>")
-	# config.usage.autorecord_path = ConfigText(default="<default>")
-	# config.usage.instantrec_path = ConfigText(default="<default>")
-	# if not os.path.exists(resolveFilename(SCOPE_AUTORECORD)):
-	# 	try:
-	# 		os.mkdir(resolveFilename(SCOPE_AUTORECORD), 0o755)
-	# 	except:
-	# 		pass
-	# config.usage.autorecord_path = ConfigText(default=resolveFilename(SCOPE_AUTORECORD))
-	# if not config.usage.default_path.value.endswith('/'):
-	# 	tmpvalue = config.usage.autorecord_path.value
-	# 	config.usage.autorecord_path.setValue(tmpvalue + '/')
-	# 	config.usage.autorecord_path.save()
-	#
-	# def autorecordpathChanged(configElement):
-	# 	if not config.usage.autorecord_path.value.endswith('/'):
-	# 		tmpvalue = config.usage.autorecord_path.value
-	# 		config.usage.autorecord_path.setValue(tmpvalue + '/')
-	# 		config.usage.autorecord_path.save()
-	# config.usage.autorecord_path.addNotifier(autorecordpathChanged, immediate_feedback=False)
-	# config.usage.allowed_autorecord_paths = ConfigLocations(default=[resolveFilename(SCOPE_AUTORECORD)])
-
-	#
-	# Start of new timeshift path code.
-	#
 	defaultValue = resolveFilename(SCOPE_TIMESHIFT)
 	if not os.path.exists(defaultValue):
 		try:
@@ -396,28 +347,6 @@ def InitUsageConfig():
 			config.usage.timeshift_path.value = savedValue
 	config.usage.timeshift_path.save()
 	config.usage.allowed_timeshift_paths = ConfigLocations(default=[defaultValue])
-
-	#
-	# Start of old timeshift path code.
-	#
-	# if not os.path.exists(resolveFilename(SCOPE_TIMESHIFT)):
-	# 	try:
-	# 		os.mkdir(resolveFilename(SCOPE_TIMESHIFT), 0o755)
-	# 	except:
-	# 		pass
-	# config.usage.timeshift_path = ConfigText(default=resolveFilename(SCOPE_TIMESHIFT))
-	# if not config.usage.default_path.value.endswith('/'):
-	# 	tmpvalue = config.usage.timeshift_path.value
-	# 	config.usage.timeshift_path.setValue(tmpvalue + '/')
-	# 	config.usage.timeshift_path.save()
-	#
-	# def timeshiftpathChanged(configElement):
-	# 	if not config.usage.timeshift_path.value.endswith('/'):
-	# 		tmpvalue = config.usage.timeshift_path.value
-	# 		config.usage.timeshift_path.setValue(tmpvalue + '/')
-	# 		config.usage.timeshift_path.save()
-	# config.usage.timeshift_path.addNotifier(timeshiftpathChanged, immediate_feedback=False)
-	# config.usage.allowed_timeshift_paths = ConfigLocations(default=[resolveFilename(SCOPE_TIMESHIFT)])
 
 	config.usage.movielist_trashcan = ConfigYesNo(default=True)
 	config.usage.movielist_trashcan_network_clean = ConfigYesNo(default=False)
