@@ -1646,12 +1646,15 @@ class ConfigText(ConfigElement, NumericalTextInput):
 			print("Broken UTF8!")
 			return self.text
 
-	def setValue(self, val):
-		try:
-			self.text = six.ensure_text(val)
-		except UnicodeDecodeError:
-			self.text = six.ensure_text(val, errors='ignore')
-			print("Broken UTF8!")
+	def setValue(self, value):
+		if value is not None:
+			try:
+				self.text = six.ensure_text(value)
+			except UnicodeDecodeError:
+				self.text = six.ensure_text(value, errors='ignore')
+				print("Broken UTF8!")
+		else:
+			self.text = ""
 
 	value = property(getValue, setValue)
 	_value = property(getValue, setValue)
