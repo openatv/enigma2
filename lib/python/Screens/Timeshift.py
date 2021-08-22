@@ -1,12 +1,11 @@
-from os import link, remove, stat
-from os.path import isdir, join as pathjoin, splitext
-from tempfile import NamedTemporaryFile
+from os import stat
+from os.path import isdir, join as pathjoin
 
 from Components.config import config
 from Screens.LocationBox import defaultInhibitDirs, TimeshiftLocationBox
 from Screens.MessageBox import MessageBox
 from Screens.Setup import Setup
-from Tools.Directories import fileAccess
+from Tools.Directories import fileAccess, hasHardLinks
 
 
 class TimeshiftSettings(Setup):
@@ -59,7 +58,7 @@ class TimeshiftSettings(Setup):
 		pathList = [(x, x) for x in configList]
 		configEntry.value = path
 		configEntry.setChoices(pathList, default=configEntry.default)
-		print("[Timeshift] %s: Current='%s', Default='%s', Choices='%s'" % (item, configEntry.value, configEntry.default, configList))
+		print("[Timeshift] DEBUG %s: Current='%s', Default='%s', Choices='%s'" % (item, configEntry.value, configEntry.default, configList))
 
 	def pathSelect(self, path):
 		if path is not None:
@@ -81,7 +80,7 @@ class TimeshiftSettings(Setup):
 			self.errorItem = self["config"].getCurrentIndex()
 			footnote = _("Directory '%s' not writeable!") % path
 			green = ""
-		elif not self.hasHardLinks(path):
+		elif not hasHardLinks(path):
 			self.errorItem = self["config"].getCurrentIndex()
 			footnote = _("Directory '%s' can't be linked to recordings!") % path
 			green = ""
@@ -91,30 +90,3 @@ class TimeshiftSettings(Setup):
 			green = self.greenText
 		self.setFootnote(footnote)
 		self["key_green"].text = green
-
-	def hasHardLinks(self, path):
-		try:
-			tmpfile = NamedTemporaryFile(suffix='.file', prefix='tmp', dir=path, delete=False)
-		except (IOError, OSError) as err:
-			print("[Timeshift] DEBUG: Create temp file - I/O Error %d: %s!" % (err.errno, err.strerror))
-			return False
-		srcname = tmpfile.name
-		tmpfile.close()
-		dstname = "%s.link" % splitext(srcname)[0]
-		try:
-			link(srcname, dstname)
-			result = True
-		except (IOError, OSError) as err:
-			print("[Timeshift] DEBUG: Create link - I/O Error %d: %s!" % (err.errno, err.strerror))
-			result = False
-		try:
-			remove(srcname)
-		except (IOError, OSError) as err:
-			print("[Timeshift] DEBUG: Remove source - I/O Error %d: %s!" % (err.errno, err.strerror))
-			pass
-		try:
-			remove(dstname)
-		except (IOError, OSError) as err:
-			print("[Timeshift] DEBUG: Remove target - I/O Error %d: %s!" % (err.errno, err.strerror))
-			pass
-		return result
