@@ -6,7 +6,7 @@ from Components.UsageConfig import preferredPath
 from Screens.LocationBox import defaultInhibitDirs, MovieLocationBox
 from Screens.MessageBox import MessageBox
 from Screens.Setup import Setup
-from Tools.Directories import fileAccess
+from Tools.Directories import fileAccess, hasHardLinks
 
 
 class RecordingSettings(Setup):
@@ -26,7 +26,7 @@ class RecordingSettings(Setup):
 		Setup.__init__(self, session=session, setup="Recording")
 		self.greenText = self["key_green"].text
 		self.errorItem = -1
-		if self.getCurrentItem() in (config.usage.default_path, config.usage.timer_path, config.usage.instantrec_path):
+		if self.getCurrentItem() in (config.usage.default_path, config.usage.timer_path, config.usage.instantrec_path, config.usage.autorecord_path):
 			self.pathStatus(self.getCurrentValue())
 
 	def selectionChanged(self):
@@ -108,6 +108,10 @@ class RecordingSettings(Setup):
 		elif not fileAccess(path, "w"):
 			self.errorItem = self["config"].getCurrentIndex()
 			footnote = _("Directory '%s' not writable!") % path
+			green = ""
+		elif self.getCurrentItem() is config.usage.autorecord_path and not hasHardLinks(path): 
+			self.errorItem = self["config"].getCurrentIndex()
+			footnote = _("Directory '%s' can't be linked to recordings!") % path
 			green = ""
 		else:
 			self.errorItem = -1
