@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-08-21 11:25+0000\n"
+"POT-Creation-Date: 2021-08-22 21:17+0000\n"
 "PO-Revision-Date: 2021-08-19 12:59+0000\n"
 "Last-Translator: openATV <openatv@gmail.com>\n"
 "Language-Team: Portuguese <https://hosted.weblate.org/projects/openatv/"
@@ -2864,9 +2864,6 @@ msgid ""
 "save setting up the same LNB multiple times."
 msgstr ""
 
-msgid "Allocate unused memory index"
-msgstr "Alocar memória de índices inutilizados"
-
 msgid "Allow 10bit"
 msgstr ""
 
@@ -4088,9 +4085,6 @@ msgstr "Em cache:"
 msgid "Calculate"
 msgstr "Calcular"
 
-msgid "Calculate all positions"
-msgstr "Calcular todas as posições"
-
 msgid "Calculate file checksums"
 msgstr ""
 
@@ -4872,11 +4866,6 @@ msgstr "A configurar"
 
 msgid "Configuration mode"
 msgstr "Modo de configuração"
-
-#
-#, python-format
-msgid "Configuration mode: %s"
-msgstr "Modo de configuração: %s"
 
 msgid ""
 "Configuration options for the HELP screen can be found in 'MENU > Setup > "
@@ -5993,6 +5982,22 @@ msgstr "Directório"
 #, fuzzy, python-format
 msgid "Directory %s does not exist."
 msgstr "A pasta %s não existe."
+
+#, python-format
+msgid "Directory '%s' can't be linked to recordings!"
+msgstr ""
+
+#, python-format
+msgid "Directory '%s' does not exist!"
+msgstr ""
+
+#, python-format
+msgid "Directory '%s' not writable!"
+msgstr ""
+
+#, python-format
+msgid "Directory '%s' not writeable!"
+msgstr ""
 
 #
 msgid "Directory browser"
@@ -7622,6 +7627,10 @@ msgstr "Flash online"
 msgid "Flash Online a new image"
 msgstr ""
 
+#, python-format
+msgid "Flash directory '%s' not allowed!"
+msgstr ""
+
 msgid "Flash on the fly your your Receiver software."
 msgstr ""
 
@@ -8077,10 +8086,6 @@ msgstr ""
 #
 msgid "Goto X"
 msgstr "Ir para X"
-
-#
-msgid "Goto index position"
-msgstr "Ir para a posição de índice"
 
 msgid "Goto next bouquet"
 msgstr ""
@@ -8898,17 +8903,6 @@ msgstr "CCcamInfo Menu principal"
 #
 msgid "Init"
 msgstr "Início"
-
-#
-msgid "Initial lock ratio"
-msgstr "Rácio inicial de estabilização"
-
-msgid "Initial signal quality"
-msgstr "Qualidade de sinal inicial"
-
-#
-msgid "Initial signal quality:"
-msgstr "Qualidade de sinal inicial:"
 
 #
 msgid "Initialization"
@@ -9839,10 +9833,6 @@ msgstr "Localização"
 msgid "Location list"
 msgstr "Localização"
 
-#
-msgid "Lock ratio"
-msgstr "Bloquear rácio"
-
 msgid "Log"
 msgstr ""
 
@@ -10550,10 +10540,6 @@ msgstr ""
 
 msgid "Move to last line / screen"
 msgstr ""
-
-#
-msgid "Move to position X"
-msgstr "Mover para posição X"
 
 #, fuzzy
 msgid "Move up a line"
@@ -12456,6 +12442,9 @@ msgstr "Por favor seleccione um subcanal..."
 msgid "Please select an NFI file and press green key to flash!"
 msgstr "Por favor escolha um ficheiro .NFI e prima verde para iniciar o flash!"
 
+msgid "Please select an acceptable directory."
+msgstr ""
+
 msgid "Please select an aspect ratio..."
 msgstr ""
 
@@ -13922,10 +13911,6 @@ msgid "Root directory"
 msgstr "Directório raíz"
 
 #
-msgid "Rotor step position:"
-msgstr "Posição de passo do motor:"
-
-#
 msgid "Rotor turning speed"
 msgstr "Velocidade do motor"
 
@@ -14153,10 +14138,6 @@ msgstr "Equipamento satélite"
 #
 msgid "Satellite equipment setup"
 msgstr "Definições do equipamento de satélite"
-
-#
-msgid "Satellite longitude:"
-msgstr "Longitude do satélite:"
 
 #
 msgid "Satellites"
@@ -15936,16 +15917,9 @@ msgstr ""
 msgid "Signal Finder"
 msgstr "Pesquisa de sinal"
 
-msgid "Signal OK, proceeding"
-msgstr "Sinal OK, a proceder"
-
 #
 msgid "Signal Strength:"
 msgstr "Força do sinal:"
-
-#
-msgid "Signal quality"
-msgstr "Qualidade do sinal"
 
 #
 #, fuzzy
@@ -16025,14 +15999,6 @@ msgstr ""
 
 msgid "Sitcom"
 msgstr ""
-
-#
-msgid "Site latitude"
-msgstr "Latitude local"
-
-#
-msgid "Site longitude"
-msgstr "Longitude local"
 
 #, fuzzy
 msgid "Size"
@@ -16640,10 +16606,6 @@ msgid "Storage devices"
 msgstr "Dispositivos de armazenamento"
 
 #
-msgid "Store at index"
-msgstr "Guardar no índice"
-
-#
 msgid "Store position"
 msgstr "Guardar posição"
 
@@ -16689,10 +16651,6 @@ msgstr ""
 
 msgid "Stripes"
 msgstr ""
-
-#
-msgid "Strongest position"
-msgstr "Posição mais forte"
 
 msgid "Stumm"
 msgstr ""
@@ -18525,9 +18483,6 @@ msgid ""
 "to be setup and saved individually."
 msgstr ""
 
-msgid "USALS calibration"
-msgstr ""
-
 msgid "USB Stick"
 msgstr ""
 
@@ -19046,19 +19001,11 @@ msgstr ""
 msgid "Username:"
 msgstr ""
 
-#, python-format
-msgid "Using LNB %d"
-msgstr "LNB em uso: %d"
-
 msgid "Using fixed address"
 msgstr "Usar endereço fixo"
 
 msgid "Using old profile: "
 msgstr ""
-
-#, python-format
-msgid "Using tuner %s"
-msgstr "Sintonizador em uso: %s"
 
 msgid "Uzbek"
 msgstr ""
@@ -19571,10 +19518,6 @@ msgstr "Dia de Semana"
 #
 msgid "Weekly"
 msgstr "Semanalmente"
-
-#
-msgid "Weighted position"
-msgstr "Posição ponderada"
 
 msgid "Welcome to IceTV"
 msgstr ""
@@ -23729,11 +23672,6 @@ msgid ""
 msgstr ""
 
 msgid ""
-"Configure whether another tuner from the preferred list is allocated instead "
-"of sharing a tuner that is already active recording the same channel."
-msgstr ""
-
-msgid ""
 "Configure whether the 'recording' symbol (in the display skin and LCD skin) "
 "is visible for real recordings only or also for streaming and pseuso "
 "recordings (e.g. EPGrefresh)."
@@ -24055,9 +23993,6 @@ msgstr ""
 msgid "Event font size"
 msgstr ""
 
-msgid "Experimental: strict limitation to preferred tuners"
-msgstr ""
-
 #, fuzzy
 msgid "Experimental: strict limitation to preferred tuners for recordings"
 msgstr "Tuner preferido para gravações"
@@ -24270,14 +24205,6 @@ msgid ""
 "In expert mode, configure which tuners will be preferred for recordings, "
 "when more than one tuner is available."
 msgstr ""
-
-#, fuzzy
-msgid ""
-"In expert mode, configure which tuners will be preferred, when more than one "
-"tuner is available."
-msgstr ""
-"Configure que tipo de tune será preferido, quando o mesmo canal está "
-"disponível em tipos diferentes de tuners."
 
 msgid ""
 "In most cases this should be set to No. Only enable if you have a very "
@@ -24605,9 +24532,6 @@ msgstr "Sintonizador preferido para gravações"
 #, fuzzy
 msgid "Preferred tuners for recordings, multiple selection allowed"
 msgstr "Tuner preferido para gravações"
-
-msgid "Preferred tuners, multiple selection allowed"
-msgstr ""
 
 #
 #, fuzzy
@@ -26474,6 +26398,88 @@ msgstr ""
 
 msgid "J"
 msgstr ""
+
+#~ msgid "Allocate unused memory index"
+#~ msgstr "Alocar memória de índices inutilizados"
+
+#~ msgid "Calculate all positions"
+#~ msgstr "Calcular todas as posições"
+
+#
+#~ msgid "Configuration mode: %s"
+#~ msgstr "Modo de configuração: %s"
+
+#
+#~ msgid "Goto index position"
+#~ msgstr "Ir para a posição de índice"
+
+#
+#~ msgid "Initial lock ratio"
+#~ msgstr "Rácio inicial de estabilização"
+
+#~ msgid "Initial signal quality"
+#~ msgstr "Qualidade de sinal inicial"
+
+#
+#~ msgid "Initial signal quality:"
+#~ msgstr "Qualidade de sinal inicial:"
+
+#
+#~ msgid "Lock ratio"
+#~ msgstr "Bloquear rácio"
+
+#
+#~ msgid "Move to position X"
+#~ msgstr "Mover para posição X"
+
+#
+#~ msgid "Rotor step position:"
+#~ msgstr "Posição de passo do motor:"
+
+#
+#~ msgid "Satellite longitude:"
+#~ msgstr "Longitude do satélite:"
+
+#~ msgid "Signal OK, proceeding"
+#~ msgstr "Sinal OK, a proceder"
+
+#
+#~ msgid "Signal quality"
+#~ msgstr "Qualidade do sinal"
+
+#
+#~ msgid "Site latitude"
+#~ msgstr "Latitude local"
+
+#
+#~ msgid "Site longitude"
+#~ msgstr "Longitude local"
+
+#
+#~ msgid "Store at index"
+#~ msgstr "Guardar no índice"
+
+#
+#~ msgid "Strongest position"
+#~ msgstr "Posição mais forte"
+
+#~ msgid "Using LNB %d"
+#~ msgstr "LNB em uso: %d"
+
+#~ msgid "Using tuner %s"
+#~ msgstr "Sintonizador em uso: %s"
+
+#
+#~ msgid "Weighted position"
+#~ msgstr "Posição ponderada"
+
+#, fuzzy
+#~ msgid ""
+#~ "In expert mode, configure which tuners will be preferred, when more than "
+#~ "one tuner is available."
+#~ msgstr ""
+#~ "Configure que tipo de tune será preferido, quando o mesmo canal está "
+#~ "disponível em tipos diferentes de tuners."
 
 #, fuzzy
 #~ msgid "%s %s %s."
