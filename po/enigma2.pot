@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-08-21 11:25+0000\n"
+"POT-Creation-Date: 2021-08-22 21:17+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -2440,9 +2440,6 @@ msgstr ""
 msgid "Allocate a number to the physical LNB you are configuring. You will be able to select this LNB again for other satellites (e.g. motorised dishes) to save setting up the same LNB multiple times."
 msgstr ""
 
-msgid "Allocate unused memory index"
-msgstr ""
-
 msgid "Allow 10bit"
 msgstr ""
 
@@ -3504,9 +3501,6 @@ msgstr ""
 msgid "Calculate"
 msgstr ""
 
-msgid "Calculate all positions"
-msgstr ""
-
 msgid "Calculate file checksums"
 msgstr ""
 
@@ -4158,10 +4152,6 @@ msgid "Configurable"
 msgstr ""
 
 msgid "Configuration mode"
-msgstr ""
-
-#, python-format
-msgid "Configuration mode: %s"
 msgstr ""
 
 msgid "Configuration options for the HELP screen can be found in 'MENU > Setup > Usage & User Interface > Settings'."
@@ -5128,6 +5118,22 @@ msgstr ""
 
 #, python-format
 msgid "Directory %s does not exist."
+msgstr ""
+
+#, python-format
+msgid "Directory '%s' can't be linked to recordings!"
+msgstr ""
+
+#, python-format
+msgid "Directory '%s' does not exist!"
+msgstr ""
+
+#, python-format
+msgid "Directory '%s' not writable!"
+msgstr ""
+
+#, python-format
+msgid "Directory '%s' not writeable!"
 msgstr ""
 
 msgid "Directory browser"
@@ -6527,6 +6533,10 @@ msgstr ""
 msgid "Flash Online a new image"
 msgstr ""
 
+#, python-format
+msgid "Flash directory '%s' not allowed!"
+msgstr ""
+
 msgid "Flash on the fly your your Receiver software."
 msgstr ""
 
@@ -6916,9 +6926,6 @@ msgid "Goto Primetime"
 msgstr ""
 
 msgid "Goto X"
-msgstr ""
-
-msgid "Goto index position"
 msgstr ""
 
 msgid "Goto next bouquet"
@@ -7621,15 +7628,6 @@ msgid "Infotainment"
 msgstr ""
 
 msgid "Init"
-msgstr ""
-
-msgid "Initial lock ratio"
-msgstr ""
-
-msgid "Initial signal quality"
-msgstr ""
-
-msgid "Initial signal quality:"
 msgstr ""
 
 msgid "Initialization"
@@ -8419,9 +8417,6 @@ msgstr ""
 msgid "Location list"
 msgstr ""
 
-msgid "Lock ratio"
-msgstr ""
-
 msgid "Log"
 msgstr ""
 
@@ -9037,9 +9032,6 @@ msgid "Move to home of list"
 msgstr ""
 
 msgid "Move to last line / screen"
-msgstr ""
-
-msgid "Move to position X"
 msgstr ""
 
 msgid "Move up a line"
@@ -10609,6 +10601,9 @@ msgstr ""
 msgid "Please select an NFI file and press green key to flash!"
 msgstr ""
 
+msgid "Please select an acceptable directory."
+msgstr ""
+
 msgid "Please select an aspect ratio..."
 msgstr ""
 
@@ -11823,9 +11818,6 @@ msgstr ""
 msgid "Root directory"
 msgstr ""
 
-msgid "Rotor step position:"
-msgstr ""
-
 msgid "Rotor turning speed"
 msgstr ""
 
@@ -12032,9 +12024,6 @@ msgid "Satellite equipment"
 msgstr ""
 
 msgid "Satellite equipment setup"
-msgstr ""
-
-msgid "Satellite longitude:"
 msgstr ""
 
 msgid "Satellites"
@@ -13503,13 +13492,7 @@ msgstr ""
 msgid "Signal Finder"
 msgstr ""
 
-msgid "Signal OK, proceeding"
-msgstr ""
-
 msgid "Signal Strength:"
-msgstr ""
-
-msgid "Signal quality"
 msgstr ""
 
 msgid "Signal strength:"
@@ -13570,12 +13553,6 @@ msgid "Sint Maarten"
 msgstr ""
 
 msgid "Sitcom"
-msgstr ""
-
-msgid "Site latitude"
-msgstr ""
-
-msgid "Site longitude"
 msgstr ""
 
 msgid "Size"
@@ -14103,9 +14080,6 @@ msgstr ""
 msgid "Storage devices"
 msgstr ""
 
-msgid "Store at index"
-msgstr ""
-
 msgid "Store position"
 msgstr ""
 
@@ -14147,9 +14121,6 @@ msgid "Strict DLNA"
 msgstr ""
 
 msgid "Stripes"
-msgstr ""
-
-msgid "Strongest position"
 msgstr ""
 
 msgid "Stumm"
@@ -15629,9 +15600,6 @@ msgstr ""
 msgid "USALS automatically moves a motorised dish to the correct satellite based on the coordinates entered by the user. Without USALS each satellite will need to be setup and saved individually."
 msgstr ""
 
-msgid "USALS calibration"
-msgstr ""
-
 msgid "USB Stick"
 msgstr ""
 
@@ -16076,18 +16044,10 @@ msgstr ""
 msgid "Username:"
 msgstr ""
 
-#, python-format
-msgid "Using LNB %d"
-msgstr ""
-
 msgid "Using fixed address"
 msgstr ""
 
 msgid "Using old profile: "
-msgstr ""
-
-#, python-format
-msgid "Using tuner %s"
 msgstr ""
 
 msgid "Uzbek"
@@ -16519,9 +16479,6 @@ msgid "Weekend"
 msgstr ""
 
 msgid "Weekly"
-msgstr ""
-
-msgid "Weighted position"
 msgstr ""
 
 msgid "Welcome to IceTV"
@@ -19946,9 +19903,6 @@ msgstr ""
 msgid "Configure whether another tuner from the preferred list is allocated for recordings instead of sharing a tuner that is already active receiving the same live TV channel."
 msgstr ""
 
-msgid "Configure whether another tuner from the preferred list is allocated instead of sharing a tuner that is already active recording the same channel."
-msgstr ""
-
 msgid "Configure whether the 'recording' symbol (in the display skin and LCD skin) is visible for real recordings only or also for streaming and pseuso recordings (e.g. EPGrefresh)."
 msgstr ""
 
@@ -20192,9 +20146,6 @@ msgstr ""
 msgid "Event font size"
 msgstr ""
 
-msgid "Experimental: strict limitation to preferred tuners"
-msgstr ""
-
 msgid "Experimental: strict limitation to preferred tuners for recordings"
 msgstr ""
 
@@ -20361,9 +20312,6 @@ msgid "In addition to the check at an event start, a repetitive check can be use
 msgstr ""
 
 msgid "In expert mode, configure which tuners will be preferred for recordings, when more than one tuner is available."
-msgstr ""
-
-msgid "In expert mode, configure which tuners will be preferred, when more than one tuner is available."
 msgstr ""
 
 msgid "In most cases this should be set to No. Only enable if you have a very specific need."
@@ -20649,9 +20597,6 @@ msgid "Preferred tuner for recordings"
 msgstr ""
 
 msgid "Preferred tuners for recordings, multiple selection allowed"
-msgstr ""
-
-msgid "Preferred tuners, multiple selection allowed"
 msgstr ""
 
 msgid "Preparation time for recording (seconds)"
