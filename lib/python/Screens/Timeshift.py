@@ -3,7 +3,7 @@ from os.path import isdir, join as pathjoin, splitext
 from tempfile import NamedTemporaryFile
 
 from Components.config import config
-from Screens.LocationBox import defaultInhibitDirs, TimeshiftLocationBox, AutorecordLocationBox
+from Screens.LocationBox import defaultInhibitDirs, TimeshiftLocationBox
 from Screens.MessageBox import MessageBox
 from Screens.Setup import Setup
 from Tools.Directories import fileAccess
@@ -11,8 +11,6 @@ from Tools.Directories import fileAccess
 
 class TimeshiftSettings(Setup):
 	def __init__(self, session):
-		self.styles = [("<default>", _("<Default movie location>")), ("<current>", _("<Current movielist location>")), ("<timer>", _("<Last timer location>"))]
-		self.styleKeys = [x[0] for x in self.styles]
 		self.inhibitDevs = []
 		for dir in defaultInhibitDirs + ["/", "/media"]:
 			if isdir(dir):
@@ -20,11 +18,10 @@ class TimeshiftSettings(Setup):
 				if device not in self.inhibitDevs:
 					self.inhibitDevs.append(device)
 		self.buildChoices("TimeshiftPath", config.usage.timeshift_path, None)
-		self.buildChoices("AutorecordPath", config.usage.autorecord_path, None)
 		Setup.__init__(self, session=session, setup="Timeshift")
 		self.greenText = self["key_green"].text
 		self.errorItem = -1
-		if self.getCurrentItem() in (config.usage.timeshift_path, config.usage.autorecord_path):
+		if self.getCurrentItem() is config.usage.timeshift_path:
 			self.pathStatus(self.getCurrentValue())
 
 	def selectionChanged(self):
@@ -34,15 +31,13 @@ class TimeshiftSettings(Setup):
 			self["config"].setCurrentIndex(self.errorItem)
 
 	def changedEntry(self):
-		if self.getCurrentItem() in (config.usage.timeshift_path, config.usage.autorecord_path):
+		if self.getCurrentItem() is config.usage.timeshift_path:
 			self.pathStatus(self.getCurrentValue())
 		Setup.changedEntry(self)
 
 	def keySelect(self):
 		if self.getCurrentItem() is config.usage.timeshift_path:
 			self.session.openWithCallback(self.pathSelect, TimeshiftLocationBox)
-		elif self.getCurrentItem() is config.usage.autorecord_path:
-			self.session.openWithCallback(self.pathSelect, AutorecordLocationBox)
 		else:
 			Setup.keySelect(self)
 
@@ -53,23 +48,15 @@ class TimeshiftSettings(Setup):
 			self.session.open(MessageBox, "%s\n\n%s" % (self.getFootnote() % _("Please select an acceptable directory.")), type=MessageBox.TYPE_ERROR)
 
 	def buildChoices(self, item, configEntry, path):
-		styleList = []
-		if item is config.usage.autorecord_path:
-			styleList = [] if item == "DefaultPath" else self.styleKeys
-			configList = config.usage.allowed_autorecord_paths.value[:]
-		else:
-			configList = config.usage.allowed_timeshift_paths.value[:]
-		if configEntry.saved_value and configEntry.saved_value not in styleList + configList:
+		configList = config.usage.allowed_timeshift_paths.value[:]
+		if configEntry.saved_value and configEntry.saved_value not in configList:
 			configList.append(configEntry.saved_value)
 			configEntry.value = configEntry.saved_value
 		if path is None:
 			path = configEntry.value
-		if path and path not in styleList + configList:
+		if path and path not in configList:
 			configList.append(path)
-		if item is config.usage.autorecord_path:
-			pathList = [(x, x) for x in configList] if item == "DefaultPath" else self.styles + [(x, x) for x in configList]
-		else:
-			pathList = [(x, x) for x in configList]
+		pathList = [(x, x) for x in configList]
 		configEntry.value = path
 		configEntry.setChoices(pathList, default=configEntry.default)
 		print("[Timeshift] %s: Current='%s', Default='%s', Choices='%s'" % (item, configEntry.value, configEntry.default, configList))
@@ -77,15 +64,7 @@ class TimeshiftSettings(Setup):
 	def pathSelect(self, path):
 		if path is not None:
 			path = pathjoin(path, "")
-			item = self.getCurrentItem()
-			if item is config.usage.autorecord_path:
-				self.buildChoices("AutorecordPath", config.usage.autorecord_path, path)
-			else:
-				self.buildChoices("AutorecordPath", config.usage.autorecord_path, None)
-			if item is config.usage.timeshift_path:
-				self.buildChoices("TimeshiftPath", config.usage.timeshift_path, path)
-			else:
-				self.buildChoices("TimeshiftPath", config.usage.timeshift_path, None)
+			self.buildChoices("TimeshiftPath", config.usage.timeshift_path, path)
 		self["config"].invalidateCurrent()
 		self.changedEntry()
 

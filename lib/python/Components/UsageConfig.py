@@ -2,7 +2,6 @@ from __future__ import print_function
 from __future__ import absolute_import
 import locale
 import os
-from os.path import join as pathjoin
 import skin
 from time import time
 from enigma import eDVBDB, eEPGCache, setTunerTypePriorityOrder, setPreferredTuner, setSpinnerOnOff, setEnableTtCachingOnOff, eEnv, Misc_Options, eBackgroundFileEraser, eServiceEvent, eDVBFrontend, RT_HALIGN_LEFT, RT_HALIGN_RIGHT, RT_HALIGN_CENTER, RT_VALIGN_CENTER, RT_WRAP
@@ -288,6 +287,7 @@ def InitUsageConfig():
 		m = i / 60
 		choicelist.append(("%d" % i, ngettext("%d minute", "%d minutes", m) % m))
 	config.usage.pip_last_service_timeout = ConfigSelection(default="-1", choices=choicelist)
+
 	#
 	# Start of new recording path code.
 	#
@@ -310,7 +310,7 @@ def InitUsageConfig():
 	config.usage.timer_path = ConfigSelection(default="<default>", choices=choiceList)
 	config.usage.timer_path.load()
 	if config.usage.timer_path.saved_value:
-		savedValue = config.usage.timer_path.saved_value if config.usage.timer_path.saved_value.startswith("<") else pathjoin(config.usage.timer_path.saved_value, "")
+		savedValue = config.usage.timer_path.saved_value if config.usage.timer_path.saved_value.startswith("<") else os.path.join(config.usage.timer_path.saved_value, "")
 		if savedValue and savedValue not in choiceList:
 			config.usage.timer_path.setChoices(choiceList + [(savedValue, savedValue)], default="<default>")
 			config.usage.timer_path.value = savedValue
@@ -319,27 +319,21 @@ def InitUsageConfig():
 	config.usage.instantrec_path = ConfigSelection(default="<default>", choices=choiceList)
 	config.usage.instantrec_path.load()
 	if config.usage.instantrec_path.saved_value:
-		savedValue = config.usage.instantrec_path.saved_value if config.usage.instantrec_path.saved_value.startswith("<") else pathjoin(config.usage.instantrec_path.saved_value, "")
+		savedValue = config.usage.instantrec_path.saved_value if config.usage.instantrec_path.saved_value.startswith("<") else os.path.join(config.usage.instantrec_path.saved_value, "")
 		if savedValue and savedValue not in choiceList:
 			config.usage.instantrec_path.setChoices(choiceList + [(savedValue, savedValue)], default="<default>")
 			config.usage.instantrec_path.value = savedValue
 	config.usage.instantrec_path.save()
-#	defaultValue = resolveFilename(SCOPE_AUTORECORD)
-#	if not os.path.exists(defaultValue):
-#		try:
-#			os.mkdir(defaultValue, 0o755)
-#		except (IOError, OSError) as err:
-#			pass
 
 	config.usage.autorecord_path = ConfigSelection(default="<default>", choices=choiceList)
 	config.usage.autorecord_path.load()
 	if config.usage.autorecord_path.saved_value:
-		savedValue = config.usage.instantrec_path.saved_value if config.usage.autorecord_path.saved_value.startswith("<") else pathjoin(config.usage.autorecord_path.saved_value, "")
+		savedValue = config.usage.instantrec_path.saved_value if config.usage.autorecord_path.saved_value.startswith("<") else os.path.join(config.usage.autorecord_path.saved_value, "")
 		if savedValue and savedValue not in choiceList:
 			config.usage.autorecord_path.setChoices(choiceList + [(savedValue, savedValue)], default="<default>")
 			config.usage.autorecord_path.value = savedValue
 	config.usage.autorecord_path.save()
-	config.usage.allowed_autorecord_paths = ConfigLocations(default=[resolveFilename(SCOPE_HDD)])
+	config.usage.allowed_autorecord_paths = ConfigLocations(default=[defaultValue])
 
 	#
 	# Start of old recording path code.
@@ -383,6 +377,7 @@ def InitUsageConfig():
 	# 		config.usage.autorecord_path.save()
 	# config.usage.autorecord_path.addNotifier(autorecordpathChanged, immediate_feedback=False)
 	# config.usage.allowed_autorecord_paths = ConfigLocations(default=[resolveFilename(SCOPE_AUTORECORD)])
+
 	#
 	# Start of new timeshift path code.
 	#
@@ -395,12 +390,13 @@ def InitUsageConfig():
 	config.usage.timeshift_path = ConfigSelection(default=defaultValue, choices=[(defaultValue, defaultValue)])
 	config.usage.timeshift_path.load()
 	if config.usage.timeshift_path.saved_value:
-		savedValue = pathjoin(config.usage.timeshift_path.saved_value, "")
+		savedValue = os.path.join(config.usage.timeshift_path.saved_value, "")
 		if savedValue and savedValue != defaultValue:
 			config.usage.timeshift_path.setChoices([(defaultValue, defaultValue), (savedValue, savedValue)], default=defaultValue)
 			config.usage.timeshift_path.value = savedValue
 	config.usage.timeshift_path.save()
 	config.usage.allowed_timeshift_paths = ConfigLocations(default=[defaultValue])
+
 	#
 	# Start of old timeshift path code.
 	#
@@ -422,6 +418,7 @@ def InitUsageConfig():
 	# 		config.usage.timeshift_path.save()
 	# config.usage.timeshift_path.addNotifier(timeshiftpathChanged, immediate_feedback=False)
 	# config.usage.allowed_timeshift_paths = ConfigLocations(default=[resolveFilename(SCOPE_TIMESHIFT)])
+
 	config.usage.movielist_trashcan = ConfigYesNo(default=True)
 	config.usage.movielist_trashcan_network_clean = ConfigYesNo(default=False)
 	config.usage.movielist_trashcan_days = ConfigSelectionNumber(min=1, max=31, stepwidth=1, default=8, wraparound=True)
