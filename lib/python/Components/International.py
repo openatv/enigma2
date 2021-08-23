@@ -832,5 +832,20 @@ class International:
 			self.initInternational()
 		return status
 
+	def removeLangs(self, currentLang='', excludeLangs=[]):
+		delLangs = []
+		print("[International] Delete all language packages except current:'%s' and excludes:'%s'" % (currentLang , ''.join(excludeLangs)))
+		installedlanguages = listdir(languagePath)
+		for l in installedlanguages:
+			if l != currentLang and l not in excludeLangs:
+				if len(l) > 2:
+					l = l.lower()
+					l = l.replace('_', '-')
+					delLangs.append(l)
+				else:
+					if l != currentLang[:2]:
+						delLangs.append(l)
+		if delLangs:
+			return international.deleteLanguagePackages(delLangs)
 
 international = International()
