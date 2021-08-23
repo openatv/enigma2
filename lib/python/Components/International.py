@@ -514,10 +514,10 @@ CAT_ENVIRONMENT = 0
 CAT_PYTHON = 1
 
 CATEGORIES = [
-	("LC_ALL", LC_ALL),
+	("LC_ALL", None),
 	("LC_ADDRESS", None),
-	("LC_COLLATE", LC_COLLATE),
-	("LC_CTYPE", LC_CTYPE),
+	("LC_COLLATE", None),
+	("LC_CTYPE", None),
 	("LC_DATE", None),
 	("LC_IDENTIFICATION", None),
 	("LC_MEASUREMENT", None),
@@ -600,6 +600,21 @@ class International:
 				print("[International] Error: The language translation data in '%s' for '%s' ('%s') has failed to initialise!" % (languagePath, self.getLanguage(locale), locale))
 				self.catalog = translation("enigma2", "/", fallback=True)
 			self.catalog.install(names=("ngettext", "pgettext"))
+
+			# These should always be C.UTF-8 (or POSIX if C.UTF-8 is unavaible) or program code might behave
+			# differently depending on language setting
+			try:
+				setlocale(LC_CTYPE, ('C', 'UTF-8'))
+			except:
+				pass
+			try:
+				setlocale(LC_COLLATE, ('C', 'UTF-8'))
+			except:
+				try:
+					setlocale(LC_COLLATE, ('POSIX', ''))
+				except:
+					pass
+
 			for category in CATEGORIES:
 				environ[category[CAT_ENVIRONMENT]] = "%s.UTF-8" % locale
 				localeError = None
