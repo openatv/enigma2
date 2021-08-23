@@ -107,7 +107,7 @@ class RecordingSettings(Setup):
 			green = ""
 		elif not fileAccess(path, "w"):
 			self.errorItem = self["config"].getCurrentIndex()
-			footnote = _("Directory '%s' not writable!") % path
+			footnote = _("Directory '%s' not writeable!") % path
 			green = ""
 		elif self.getCurrentItem() is config.usage.autorecord_path and not hasHardLinks(path): 
 			self.errorItem = self["config"].getCurrentIndex()
