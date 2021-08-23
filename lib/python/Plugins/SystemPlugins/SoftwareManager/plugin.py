@@ -1774,8 +1774,9 @@ class UpdatePlugin(Screen):
 	def exit(self):
 		if not self.ipkg.isRunning():
 			if self.packages != 0 and self.error == 0:
-				if fileExists("/etc/enigma2/.removelang"):
-					language.delLanguage()
+				# TO DO - Check if previously removed/deleted languages get re-installed on updating enigma2. If yes - previously deleted language packages should be removed here again. If no - the remark and code can be removed.
+				#if fileExists("/etc/enigma2/.removelang"):
+				#	language.delLanguage()
 				#self.session.openWithCallback(self.exitAnswer, MessageBox, _("Upgrade finished.") +" "+_("Do you want to reboot your %s %s?") % (getMachineBrand(), getMachineName()))
 				self.restoreMetrixHD()
 			else:
