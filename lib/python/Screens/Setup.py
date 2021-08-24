@@ -61,15 +61,10 @@ class Setup(ConfigListScreen, Screen, HelpableScreen):
 		self.setup = setup
 		self.plugin = plugin
 		self.pluginLanguageDomain = PluginLanguageDomain
-		if hasattr(self, "skinName"):
-			if not isinstance(self.skinName, list):
-				self.skinName = [self.skinName]
-		else:
-			self.skinName = []
-		if setup:
-			self.skinName.append("Setup%s" % setup)  # DEBUG: Proposed for new setup screens.
-			self.skinName.append("setup_%s" % setup)
-		self.skinName.append("Setup")
+		if not isinstance(self.skinName, list):
+			self.skinName = [self.skinName]
+		self.skinName.insert(0, "Setup%s" % setup)
+		self.skinName.insert(0, "setup_%s" % setup)
 		self.list = []
 		ConfigListScreen.__init__(self, self.list, session=session, on_change=self.changedEntry, fullUI=True)
 		self["footnote"] = Label()
@@ -88,10 +83,8 @@ class Setup(ConfigListScreen, Screen, HelpableScreen):
 				print("[Setup] Error: Unable to load image '%s'!" % setupImage)
 		else:
 			self.setupImage = None
-		if self.layoutFinished not in self.onLayoutFinish:
-			self.onLayoutFinish.append(self.layoutFinished)
-		if self.selectionChanged not in self["config"].onSelectionChanged:
-			self["config"].onSelectionChanged.append(self.selectionChanged)
+		self["config"].onSelectionChanged.append(self.selectionChanged)
+		self.onLayoutFinish.append(self.layoutFinished)
 
 	def changedEntry(self):
 		if isinstance(self["config"].getCurrent()[1], (ConfigBoolean, ConfigSelection)):
@@ -116,7 +109,6 @@ class Setup(ConfigListScreen, Screen, HelpableScreen):
 				break
 		self.setTitle(_(title) if title and title != "" else _("Setup"))
 		if self.list != oldList or self.showDefaultChanged or self.graphicSwitchChanged:
-			# print("[Setup] DEBUG: Config list has changed!")
 			currentItem = self["config"].getCurrent()
 			self["config"].setList(self.list)
 			if config.usage.sort_settings.value:
@@ -173,25 +165,37 @@ class Setup(ConfigListScreen, Screen, HelpableScreen):
 			return False
 		requires = element.get("requires")
 		if requires:
-			for require in requires.split(";"):
+			for require in [x.strip() for x in requires.split(";")]:
 				negate = require.startswith("!")
 				if negate:
 					require = require[1:]
 				if require.startswith("config."):
-					item = eval(require)
-					result = bool(item.value and item.value not in ("0", "Disable", "disable", "False", "false", "No", "no", "Off", "off"))
+					try:
+						result = eval(require)
+						result = bool(result.value and str(result.value).lower() not in ("0", "disable", "false", "no", "off"))
+					except Exception:
+						return self.logIncludeElementError(element, "requires", require)
 				else:
 					result = bool(BoxInfo.getItem(require, False))
 				if require and negate == result:  # The item requirements are not met.
 					return False
 		conditional = element.get("conditional")
-		return not conditional or eval(conditional)
+		if conditional:
+			try:
+				if not bool(eval(conditional)):
+					return False
+			except Exception:
+				return self.logIncludeElementError(element, "conditional", conditional)
+		return True
 
-	def layoutFinished(self):
-		if self.setupImage:
-			self["setupimage"].instance.setPixmap(self.setupImage)
-		if not self["config"]:
-			print("[Setup] No setup items available!")
+	def logIncludeElementError(self, element, type, token):
+		item = "title" if element.tag == "screen" else "text"
+		text = element.get(item)
+		print("[Setup]")
+		print("[Setup] Error: Tag '%s' with %s of '%s' has a %s '%s' that can't be evaluated!" % (element.tag, item, text, type, token))
+		print("[Setup] NOTE: Ignoring this error may have consequences like unexpected operation or system failures!")
+		print("[Setup]")
+		return False
 
 	def selectionChanged(self):
 		if self["config"]:
@@ -199,6 +203,12 @@ class Setup(ConfigListScreen, Screen, HelpableScreen):
 			self["description"].text = self.getCurrentDescription()
 		else:
 			self["description"].text = _("There are no items currently available for this screen.")
+
+	def layoutFinished(self):
+		if self.setupImage:
+			self["setupimage"].instance.setPixmap(self.setupImage)
+		if not self["config"]:
+			print("[Setup] No setup items available!")
 
 	def setFootnote(self, footnote):
 		if footnote is None:
