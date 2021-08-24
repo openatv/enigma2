@@ -1117,13 +1117,13 @@ def InitUsageConfig():
 	config.autolanguage.audio_epglanguage_alternative = ConfigSelection(audio_language_choices[:-1], default="---")
 	config.autolanguage.audio_epglanguage_alternative.addNotifier(setEpgLanguageAlternative)
 
-	config.autolanguage.audio_autoselect1 = ConfigSelection(choices=audio_language_choices, default="---")
+	config.autolanguage.audio_autoselect1 = ConfigSelection(choices=audio_language_choices, default="eng en")
 	config.autolanguage.audio_autoselect2 = ConfigSelection(choices=audio_language_choices, default="---")
 	config.autolanguage.audio_autoselect3 = ConfigSelection(choices=audio_language_choices, default="---")
 	config.autolanguage.audio_autoselect4 = ConfigSelection(choices=audio_language_choices, default="---")
 	config.autolanguage.audio_defaultac3 = ConfigYesNo(default=True)
 	config.autolanguage.audio_defaultddp = ConfigYesNo(default=False)
-	config.autolanguage.audio_usecache = ConfigYesNo(default=True)
+	config.autolanguage.audio_usecache = ConfigYesNo(default=False)
 
 	subtitle_language_choices = audio_language_choices[:1] + audio_language_choices[2:]
 	config.autolanguage.subtitle_autoselect1 = ConfigSelection(choices=subtitle_language_choices, default="---")
