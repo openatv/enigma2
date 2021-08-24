@@ -1061,55 +1061,60 @@ def InitUsageConfig():
 	config.subtitles.hide_teletext_undetermined_cycle = ConfigYesNo(default=True)
 
 	config.autolanguage = ConfigSubsection()
+	# Language codes are always lowercase; 3 letter codes should appear before 2 letter codes
 	audio_language_choices = [
+		("eng en", _("English")),
+		("aus", _("Audio Description")),  # hack to deal with Australian broadcasters AD tracks
 		("---", _("None")),
-		("und", _("Undetermined")),
-		("orj dos ory org esl qaa und mis mul ORY ORJ Audio_ORJ", _("Original")),
-		("ara", _("Arabic")),
-		("eus baq", _("Basque")),
-		("bul", _("Bulgarian")),
-		("hrv", _("Croatian")),
-		("ces cze", _("Czech")),
-		("dan", _("Danish")),
-		("dut ndl nld Dutch", _("Dutch")),
-		("eng qaa Englisch", _("English")),
-		("est", _("Estonian")),
-		("fin", _("Finnish")),
-		("fra fre", _("French")),
-		("deu ger", _("German")),
-		("ell gre", _("Greek")),
-		("heb", _("Hebrew")),
-		("hun", _("Hungarian")),
-		("ita", _("Italian")),
-		("lav", _("Latvian")),
-		("lit", _("Lithuanian")),
-		("ltz", _("Luxembourgish")),
-		("nor", _("Norwegian")),
-		("pol", _("Polish")),
-		("por dub Dub DUB ud1", _("Portuguese")),
-		("fas per fa pes", _("Persian")),
-		("ron rum", _("Romanian")),
-		("rus", _("Russian")),
-		("srp", _("Serbian")),
+		("ara ar", _("Arabic")),
+		("eus baq eu", _("Basque")),
+		("bul bg", _("Bulgarian")),
+		("zho chi zh", _("Chinese")),
+		("hrv hr", _("Croatian")),
+		("ces cze cs", _("Czech")),
+		("dan da", _("Danish")),
+		("nld dut nl", _("Dutch")),
+		("ekk est et", _("Estonian")),
+		("fin fi", _("Finnish")),
+		("fra fre fr", _("French")),
+		("deu ger de", _("German")),
+		("ell gre el", _("Greek")),
+		("heb he", _("Hebrew")),
+		("hun hu", _("Hungarian")),
+		("ita it", _("Italian")),
+		("jpn ja", _("Japanese")),
+		("kor ko", _("Korean")),
+		("lav lvs lv", _("Latvian")),
+		("lit lt", _("Lithuanian")),
+		("ltz lb", _("Luxembourgish")),
+		("nor no", _("Norwegian")),
+		("pol pl", _("Polish")),
+		("por pt", _("Portuguese")),
+		("fas per pes fa", _("Persian")),
+		("ron rum ro", _("Romanian")),
+		("rus ru", _("Russian")),
+		("srp sr", _("Serbian")),
 		("slk slo", _("Slovak")),
-		("slv", _("Slovenian")),
-		("spa", _("Spanish")),
-		("swe", _("Swedish")),
-		("tha", _("Thai")),
-		("tur Audio_TUR", _("Turkish")),
-		("ukr Ukr", _("Ukrainian")),
-		("NAR", _("Visual impaired commentary"))]
+		("slv sl", _("Slovenian")),
+		("spa es", _("Spanish")),
+		("swe sv", _("Swedish")),
+		("tha th", _("Thai")),
+		("tur tr", _("Turkish")),
+		("ukr uk", _("Ukrainian")),
+		("vie vi", _("Vietnamese")),
+		("und", _("Undetermined"))
+		]
 
 	def setEpgLanguage(configElement):
 		eServiceEvent.setEPGLanguage(configElement.value)
 
-	config.autolanguage.audio_epglanguage = ConfigSelection(audio_language_choices[:1] + audio_language_choices[2:], default="---")
+	config.autolanguage.audio_epglanguage = ConfigSelection(audio_language_choices[:-1], default="---")
 	config.autolanguage.audio_epglanguage.addNotifier(setEpgLanguage)
 
 	def setEpgLanguageAlternative(configElement):
 		eServiceEvent.setEPGLanguageAlternative(configElement.value)
 
-	config.autolanguage.audio_epglanguage_alternative = ConfigSelection(audio_language_choices[:1] + audio_language_choices[2:], default="---")
+	config.autolanguage.audio_epglanguage_alternative = ConfigSelection(audio_language_choices[:-1], default="---")
 	config.autolanguage.audio_epglanguage_alternative.addNotifier(setEpgLanguageAlternative)
 
 	config.autolanguage.audio_autoselect1 = ConfigSelection(choices=audio_language_choices, default="---")
