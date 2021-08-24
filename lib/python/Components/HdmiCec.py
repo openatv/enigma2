@@ -522,10 +522,9 @@ class HdmiCec:
 			cmd = message.getCommand()
 			_CECcmd = CECcmd.get(cmd, "<Polling Message>")
 			length = message.getData(data, len(data))
-			bdata = data.encode('utf-8', errors='surrogateescape')
-			ctrl0 = bdata[0]
-			ctrl1 = bdata[1]
-			ctrl2 = bdata[2]
+			ctrl0 = message.getControl0()
+			ctrl1 = message.getControl1()
+			ctrl2 = message.getControl2()
 			address = message.getAddress()
 			print("[hdmiCEC][messageReceived]1: msgaddress=%s  CECcmd=%s, cmd = %s, ctrl0=%s, length=%s \n" % (address, _CECcmd, cmd, ctrl0, length))
 			cmdReceived = (config.hdmicec.commandline.value and self.cmdWaitTimer.isActive())
@@ -599,7 +598,7 @@ class HdmiCec:
 					self.handleTVRequest('tvstandby')
 				self.checkTVstate('tvstandby')
 			elif cmd == 0x80: # routing changed
-				ctrl3 = bdata[3]
+				ctrl3 = message.getControl3()
 				oldaddress = ctrl0 * 256 + ctrl1
 #				oldaddress = ord(data[0]) * 256 + ord(data[1])
 				newaddress = ctrl2 * 256 + ctrl3
