@@ -119,7 +119,6 @@ class AudioSelection(Screen, ConfigListScreen):
 		self.settings.menupage.addNotifier(self.fillList)
 
 	def fillList(self, arg=None):
-		from Tools.ISO639 import LanguageCodes
 		streams = []
 		conflist = []
 		selectedidx = 0
