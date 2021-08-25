@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-08-22 21:17+0000\n"
-"PO-Revision-Date: 2021-08-21 20:39+0000\n"
+"PO-Revision-Date: 2021-08-24 03:36+0000\n"
 "Last-Translator: Adga56 <adga45@gmail.com>\n"
 "Language-Team: Lithuanian <https://hosted.weblate.org/projects/openatv/"
 "enigma2-7-0-po/lt/>\n"
@@ -258,7 +258,7 @@ msgstr " ('%s') baigėsi su klaidų pranešimais."
 
 #, python-format
 msgid " ('%s') ends with error number [%d]."
-msgstr " ('%s') baigiasi klaidos numeriu [%d]."
+msgstr " ('%s') baigiasi klaidos numeriu [% d]."
 
 #, python-format
 msgid " (Channel %s)"
@@ -486,7 +486,7 @@ msgstr "%03d MB"
 
 #, python-format
 msgid "%2.1f sec"
-msgstr "%2.1f sek."
+msgstr "%2.1f sek"
 
 msgid "%A"
 msgstr "%A"
@@ -1176,7 +1176,7 @@ msgid "%d=%b_"
 msgstr "%d=%b_"
 
 msgid "%e/%m, %-H:%M"
-msgstr "%m/%e, %a  %-H:%M"
+msgstr "%m/%e, %a %-H:%M"
 
 msgid "%m/%-d"
 msgstr "%m/%-d"
@@ -3931,7 +3931,7 @@ msgid "Cannot determine"
 msgstr "Negalima nustatyti"
 
 msgid "Cannot find any signal ..., aborting !"
-msgstr "Jokio signalo nerasta …,  nutraukiama !"
+msgstr "Jokio signalo nerasta …, nutraukiama !"
 
 msgid "Cannot find images - please try later"
 msgstr "Negalima sukurti atvaizdų sąrašo - bandykite vėliau"
@@ -5478,19 +5478,19 @@ msgstr "Katalogo %s nėra."
 
 #, python-format
 msgid "Directory '%s' can't be linked to recordings!"
-msgstr ""
+msgstr "Katalogas \"%s\" negali būti susietas su įrašais!"
 
 #, python-format
 msgid "Directory '%s' does not exist!"
-msgstr ""
+msgstr "Katalogo %s nėra!"
 
 #, python-format
 msgid "Directory '%s' not writable!"
-msgstr ""
+msgstr "Katalogas \"%s\" neįrašomas!"
 
 #, python-format
 msgid "Directory '%s' not writeable!"
-msgstr ""
+msgstr "Katalogas \"%s\" nerašomas!"
 
 msgid "Directory browser"
 msgstr "Katalogų naršyklė"
@@ -7003,7 +7003,7 @@ msgstr "Įdiegti naują atvaizdą tiesiai iš interneto"
 
 #, python-format
 msgid "Flash directory '%s' not allowed!"
-msgstr ""
+msgstr "Įdiegimo katalogas \"%s\" neleidžiamas!"
 
 msgid "Flash on the fly your your Receiver software."
 msgstr "Įdiegti jūsų imtuvo programinę įrangą."
@@ -10915,7 +10915,7 @@ msgid "Panic to"
 msgstr "Panikos mygtukas"
 
 msgid "Panjabi / Punjabi"
-msgstr "Pandžabi / Pandžabis"
+msgstr "Pandžabi / Pundžabi"
 
 msgid "Papua New Guinea"
 msgstr "Papua Naujoji Gvinėja"
@@ -11278,7 +11278,7 @@ msgstr ""
 "Prašome išsirinkti NFI failą ir spauskite žalią mygtuką atvaizdo įkėlimui!"
 
 msgid "Please select an acceptable directory."
-msgstr ""
+msgstr "Pasirinkite priimtiną katalogą."
 
 msgid "Please select an aspect ratio..."
 msgstr "Pasirinkite vaizdo formato santykį..."
@@ -11824,7 +11824,7 @@ msgid "Puppentrick"
 msgstr "Lėlių"
 
 msgid "Pushto / Pashto"
-msgstr "Puštūnų / Puštūnai"
+msgstr "Puštūnų / Paštūnų"
 
 msgid "Put TV in standby"
 msgstr "Jungti TV į budėjimo būseną"
@@ -13721,35 +13721,35 @@ msgid ""
 "locations, select left/right to select an existing location."
 msgstr ""
 "Nustatykite numatytąją automatinių įrašų failų vietą. Kad pridėti naujas "
-"vietas, paspauskite 'OK', esamą vietą pasirinkite su kairėn/dešinėn."
+"vietas, paspauskite 'OK', esamą vietą pasirinkite su '<' / '>'."
 
 msgid ""
 "Set the default location for your instant recordings. Press 'OK' to add new "
 "locations, select left/right to select an existing location."
 msgstr ""
 "Nustatykite numatytąją neplaninių įrašų vietą. Kad pridėti naujas vietas, "
-"paspauskite 'OK', esamą vietą pasirinkite su kairėn/dešinėn."
+"paspauskite 'OK', esamą vietą pasirinkite su '<' / '>'."
 
 msgid ""
 "Set the default location for your recordings. Press 'OK' to add new "
 "locations, select left/right to select an existing location."
 msgstr ""
 "Nustatykite numatytąją savo įrašų vietą. Kad pridėti naujas vietas, "
-"paspauskite 'OK', esamą vietą pasirinkite su kairėn/dešinėn."
+"paspauskite 'OK', esamą vietą pasirinkite su '<' / '>'."
 
 msgid ""
 "Set the default location for your timers. Press 'OK' to add new locations, "
 "select left/right to select an existing location."
 msgstr ""
 "Nustatykite numatytąją savo laikmačių vietą. Kad pridėti naujas vietas, "
-"paspauskite 'OK', esamą vietą pasirinkite su kairėn/dešinėn."
+"paspauskite 'OK', esamą vietą pasirinkite su '<' / '>'."
 
 msgid ""
 "Set the default location for your timeshift-files. Press 'OK' to add new "
 "locations, select left/right to select an existing location."
 msgstr ""
 "Nustatykite numatytąją laiko poslinkio failų vietą. Kad pridėti naujas "
-"vietas, paspauskite 'OK', esamą vietą pasirinkite su kairėn/dešinėn."
+"vietas, paspauskite 'OK', esamą vietą pasirinkite su '<' / '>'."
 
 msgid "Set the default sorting method."
 msgstr "Nustatykite numatytąjį rūšiavimo būdą."
@@ -13926,7 +13926,7 @@ msgid "Setup your Channel selection configuration"
 msgstr "Sukonfigūruoti kanalų pasirinkimą"
 
 msgid "Setup your Device mounts (USB, HDD, others...)"
-msgstr "Sukonfigūruoti  jūsų įrenginių prijungimą (USB, HDD, kiti...)"
+msgstr "Sukonfigūruoti jūsų įrenginių prijungimą (USB, HDD, kiti...)"
 
 msgid "Setup your EPG config"
 msgstr "Valdykite savo EPG konfigūraciją"
@@ -13947,7 +13947,7 @@ msgid "Setup your System"
 msgstr "Sukonfigūruoti savo sistemą"
 
 msgid "Setup your Tuner and search for channels"
-msgstr "Sukonfigūruoti  savo imtuvą ir ieškokite kanalų"
+msgstr "Sukonfigūruoti savo imtuvą ir ieškokite kanalų"
 
 msgid "Setup your Video Mode, Video Output and other Video Settings"
 msgstr ""
@@ -14525,7 +14525,7 @@ msgid "Single step (GOP)"
 msgstr "Viengubas žingsnis (GOP)"
 
 msgid "Sinhala / Sinhalese"
-msgstr "Sinhalai / Sinhalajų"
+msgstr "Sinhalai / Sinhalesų"
 
 msgid "Sint Maarten"
 msgstr "Sint Martenas"
@@ -15256,7 +15256,7 @@ msgid "Switch TV to correct input"
 msgstr "Perjungti TV į teisingą įvestį"
 
 msgid "Switch between Audio-, Subtitlepage"
-msgstr "Perjungti iš garso į subtitrų puslapį"
+msgstr "Perjungti iš garso į subtitrų puslapį < >"
 
 msgid "Switch between filelist/playlist"
 msgstr "Perjungti iš failų sąrašo į grojaraštį"
@@ -15393,7 +15393,7 @@ msgstr "TEKSTAS"
 msgid "TRANSLATOR_INFO"
 msgstr ""
 "Adga, adga45@gmail.com\n"
-"Pasvalys, 2021-08-21 versija"
+"Pasvalys, 2021-08-23 versija"
 
 msgid "TS file is too large for ISO9660 level 1!"
 msgstr "TS failas yra per didelis ISO9660 lygmeniui 1!"
@@ -16501,7 +16501,7 @@ msgid "Timeshift save recording (Select event)"
 msgstr "Išsaugoti laiko poslinkio įrašą (pasirinkite įvykį)"
 
 msgid "Timeshift save recording (stop after current event)"
-msgstr "Išsaugoti laiko poslinkio įrašą  (sustabdyti po dabartinio įvykio)"
+msgstr "Išsaugoti laiko poslinkio įrašą (sustabdyti po dabartinio įvykio)"
 
 msgid "Timeshift saved to your harddisk!"
 msgstr "Laiko poslinkis išsaugotas jūsų kietame diske!"
@@ -16913,7 +16913,7 @@ msgid "Uganda"
 msgstr "Uganda"
 
 msgid "Uighur / Uyghur"
-msgstr "Uigūrai / Uigūrų"
+msgstr "Uigūrai / Uygūrai"
 
 msgid "Ukraine"
 msgstr "Ukraina"
@@ -19963,7 +19963,7 @@ msgid "scan state"
 msgstr "skenavimo eiga"
 
 msgid "science fiction/fantasy/horror"
-msgstr "mokslinė fantastika/siaubo"
+msgstr "mokslas/fantastika/siaubo"
 
 msgid "script 'sterr':"
 msgstr "scenarijus 'sterr':"
@@ -23760,9 +23760,9 @@ msgid ""
 "keep your own user bouquet while installed settings are upgraded"
 msgstr ""
 "Kai čia įjungta, enigma2 įkels nesusietus vartotojo paketus. Tai reiškia, "
-"kad vartotojo paketai, kurie yra prieinami, tačiau nėra įtraukti į  bouquets."
-"tv, ar  bouquets.radio failus, vis tiek bus įkelti. Tai leidžia jums pvz. "
-"išsaugoti savo vartotojo paketus, kai bus atnaujinami įdiegti nustatymai"
+"kad vartotojo paketai, kurie yra prieinami, tačiau nėra įtraukti į "
+"bouquets.tv, ar bouquets.radio failus, vis tiek bus įkelti. Tai leidžia jums "
+"pvz. išsaugoti savo vartotojo paketus, kai bus atnaujinami įdiegti nustatymai"
 
 msgid "When enabled the PiP can be closed by the exit button."
 msgstr "Kai čia įjungta, PiP gali būti išjungtas su 'EXIT' mygtuku."
@@ -23937,7 +23937,7 @@ msgstr ""
 
 msgid "When enabled, teletext pages will be cached, allowing faster access."
 msgstr ""
-"Kai čia įjungta,  teleteksto puslapiai bus išsaugojami atminties podėlyje, "
+"Kai čia įjungta, teleteksto puslapiai bus išsaugojami atminties podėlyje, "
 "taip paspartinant jų naudojimą."
 
 msgid ""
@@ -24511,7 +24511,7 @@ msgid ""
 msgstr ""
 "Sveiki.\n"
 "\n"
-"Šis pradinis vedlys padės nustatyti pagrindinius jūsų  %s %s parametrus.\n"
+"Šis pradinis vedlys padės nustatyti pagrindinius jūsų %s %s parametrus.\n"
 "Kad pereiti į sekantį žingsnį, spauskite 'OK'."
 
 msgid "What do you want to scan?"
