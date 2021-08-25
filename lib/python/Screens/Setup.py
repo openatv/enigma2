@@ -61,23 +61,11 @@ class Setup(ConfigListScreen, Screen, HelpableScreen):
 		self.setup = setup
 		self.plugin = plugin
 		self.pluginLanguageDomain = PluginLanguageDomain
-# OLD START
-		if hasattr(self, "skinName"):
-			if not isinstance(self.skinName, list):
-				self.skinName = [self.skinName]
-		else:
-			self.skinName = []
-		if setup:
-			self.skinName.append("Setup%s" % setup)  # DEBUG: Proposed for new setup screens.
-			self.skinName.append("setup_%s" % setup)
+		if not isinstance(self.skinName, list):
+			self.skinName = [self.skinName]
+		self.skinName.append("setup_%s" % setup)
+		self.skinName.append("Setup%s" % setup)
 		self.skinName.append("Setup")
-# OLD END
-# NEW START / This will cause a problem with embedded skins and needs to investigate
-#		if not isinstance(self.skinName, list):
-#			self.skinName = [self.skinName]
-#		self.skinName.insert(0, "Setup%s" % setup)
-#		self.skinName.insert(0, "setup_%s" % setup)
-# NEW END
 		self.list = []
 		ConfigListScreen.__init__(self, self.list, session=session, on_change=self.changedEntry, fullUI=True)
 		self["footnote"] = Label()
@@ -393,7 +381,7 @@ def getConfigMenuItem(configElement):
 	return "", None
 
 
-# Temporary legacy interface.  Only used in Menu screen.
+# Temporary legacy interfaces.  Only used in Menu screen.
 #
 def getSetupTitle(id):
 	xmlData = setupDom()
