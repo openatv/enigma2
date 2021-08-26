@@ -1,3 +1,4 @@
+# Converts ISO-693-3 code table file downloaded from https://iso639-3.sil.org/code_tables/download_tables 
 import sys
 import cPickle
 

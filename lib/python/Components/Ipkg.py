@@ -96,7 +96,7 @@ class IpkgComponent:
 			append = ""
 			if args["test_only"]:
 				append = " -test"
-			self.runCmdEx("upgrade" + append)
+			self.runCmdEx("upgrade --autoremove --force-remove" + append)
 		elif cmd == self.CMD_LIST:
 			self.fetchedList = []
 			if args['installed_only']:
@@ -106,7 +106,7 @@ class IpkgComponent:
 		elif cmd == self.CMD_INSTALL:
 			self.runCmd(" install " + args['package'])
 		elif cmd == self.CMD_REMOVE:
-			self.runCmd("remove " + args['package'])
+			self.runCmd("remove --autoremove --force-remove " + args['package'])
 		elif cmd == self.CMD_UPGRADE_LIST:
 			self.fetchedList = []
 			self.runCmd("list-upgradable")
