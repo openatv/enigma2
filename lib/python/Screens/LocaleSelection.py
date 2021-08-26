@@ -8,6 +8,7 @@ from Components.Pixmap import MultiPixmap
 from Components.Sources.List import List
 from Components.Sources.StaticText import StaticText
 from Screens.HelpMenu import HelpableScreen, ShowRemoteControl
+from Screens.MessageBox import MessageBox
 from Screens.Screen import Screen, ScreenSummary
 from Screens.Setup import Setup
 from Tools.Directories import SCOPE_CURRENT_SKIN, resolveFilename
@@ -75,6 +76,9 @@ class LocaleSelection(Screen, HelpableScreen):
 		<widget source="key_yellow" render="Label" position="310,e-50" size="140,40" backgroundColor="key_yellow" font="Regular;20" foregroundColor="key_text" halign="center" valign="center">
 			<convert type="ConditionalShowHide" />
 		</widget>
+		<widget source="key_blue" render="Label" position="460,e-50" size="140,40" backgroundColor="key_blue" font="Regular;20" foregroundColor="key_text" halign="center" valign="center">
+			<convert type="ConditionalShowHide" />
+		</widget>
 		<widget source="key_menu" render="Label" position="e-300,e-50" size="140,40" backgroundColor="key_back" font="Regular;20" foregroundColor="key_text" halign="center" valign="center">
 			<convert type="ConditionalShowHide" />
 		</widget>
@@ -90,6 +94,7 @@ class LocaleSelection(Screen, HelpableScreen):
 		self["key_red"] = StaticText()
 		self["key_green"] = StaticText()
 		self["key_yellow"] = StaticText()
+		self["key_blue"] = StaticText()
 		self["icons"] = MultiPixmap()
 		self["icons"].hide()
 		self["locales"] = List(None, enableWrapAround=True)
@@ -98,6 +103,7 @@ class LocaleSelection(Screen, HelpableScreen):
 		self["selectionActions"] = HelpableActionMap(self, "LocaleSelectionActions", {
 			"menu": (self.keySettings, _("Manage Locale/Language Selection settings")),
 			"select": (self.keySelect, _("Select the currently highlighted locale/language to be used in the user interface")),
+			"cleanup": (self.keyCleanup, _("Remove all locales/languages except the current, en, de and fr")),
 			"close": (self.closeRecursive, _("Cancel any changes the active locale/language and exit all menus")),
 			"cancel": (self.keyCancel, _("Cancel any changes to the active locale/language and exit")),
 			"save": (self.keySave, _("Apply any changes to the active locale/langauge and exit"))
@@ -204,6 +210,7 @@ class LocaleSelection(Screen, HelpableScreen):
 		Screen.setTitle(self, _("Locale/Language Selection"))
 		self["key_red"].text = _("Cancel")
 		self["key_green"].text = _("Save")
+		self["key_blue"].text = _("Cleanup")
 		self["key_menu"].text = _("MENU")
 		self["key_help"].text = _("HELP")
 		current = self["locales"].getCurrent()
@@ -299,6 +306,17 @@ class LocaleSelection(Screen, HelpableScreen):
 	def processPackageDone(self):
 		self.packageDoneTimer.stop()
 		self.updateText(updateDescription=False)
+
+	def keyCleanup(self):
+		curlang = config.osd.language.value
+		self.session.openWithCallback(self.processCleanup, MessageBox, _("Do you want to delete all other languages?\nExcept English, French, German and your selection:\n\n") + _("%s") % (curlang), default=False)
+
+	def processCleanup(self, anwser):
+		if anwser:
+			currentLang = config.osd.language.value
+			status = international.removeLangs(currentLang=currentLang, excludeLangs=['de', 'en', 'fr'])
+			self["description"].text = status
+			self.packageDoneTimer.start(750)
 
 	def moveToLocale(self, locale):
 		found = False
