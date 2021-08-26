@@ -1,14 +1,10 @@
-from __future__ import print_function
-from __future__ import absolute_import
-import errno
-import xml.etree.cElementTree
-
+from errno import ENOENT
 from os import environ, path, symlink, unlink, walk
 import six
 from time import gmtime, localtime, strftime, time
+from xml.etree.cElementTree import ParseError, parse
 
 from Components.config import ConfigSelection, ConfigSubsection, config
-from Tools.Geolocation import geolocation
 from Tools.StbHardware import setRTCoffset
 
 # The DEFAULT_AREA setting is usable by the image maintainers to select the
@@ -59,46 +55,30 @@ def InitTimeZones():
 	config.timezone = ConfigSubsection()
 	config.timezone.area = ConfigSelection(default=DEFAULT_AREA, choices=timezones.getTimezoneAreaList())
 	config.timezone.val = ConfigSelection(default=DEFAULT_ZONE, choices=timezones.getTimezoneList())
-	if config.misc.firstrun.value:
-		proxy = geolocation.get("proxy", False)
-		tz = geolocation.get("timezone", None)
-		if proxy is True or tz is None:
-			msg = " - proxy in use" if proxy else ""
-			print("[Timezones] Warning: Geolocation not available%s!  (area='%s', zone='%s')" % (msg, config.timezone.area.value, config.timezone.val.value))
+	if not config.timezone.area.value and config.timezone.val.value.find("/") == -1:
+		config.timezone.area.value = "Generic"
+	try:
+		tzLink = path.realpath("/etc/localtime")[20:]
+		msgs = []
+		if config.timezone.area.value == "Classic":
+			if config.timezone.val.value != tzLink:
+				msgs.append("time zone '%s' != '%s'" % (config.timezone.val.value, tzLink))
 		else:
-			area, zone = tz.split("/", 1)
-			if area != DEFAULT_AREA:
-				config.timezone.area.value = area
-				choices = timezones.getTimezoneList(area=area)
-				config.timezone.val.setChoices(choices, default=timezones.getTimezoneDefault(area, choices))
-			config.timezone.val.value = zone
-			config.timezone.save()
-			print("[Timezones] Initial time zone set by geolocation tz='%s'.  (area='%s', zone='%s')" % (tz, area, zone))
-	else:
-		if not config.timezone.area.value and config.timezone.val.value.find("/") == -1:
-			config.timezone.area.value = "Generic"
-		try:
-			tzLink = path.realpath("/etc/localtime")[20:]
-			msgs = []
-			if config.timezone.area.value == "Classic":
-				if config.timezone.val.value != tzLink:
-					msgs.append("time zone '%s' != '%s'" % (config.timezone.val.value, tzLink))
+			tzSplit = tzLink.find("/")
+			if tzSplit == -1:
+				tzArea = "Generic"
+				tzVal = tzLink
 			else:
-				tzSplit = tzLink.find("/")
-				if tzSplit == -1:
-					tzArea = "Generic"
-					tzVal = tzLink
-				else:
-					tzArea = tzLink[:tzSplit]
-					tzVal = tzLink[tzSplit + 1:]
-				if config.timezone.area.value != tzArea:
-					msgs.append("area '%s' != '%s'" % (config.timezone.area.value, tzArea))
-				if config.timezone.val.value != tzVal:
-					msgs.append("zone '%s' != '%s'" % (config.timezone.val.value, tzVal))
-			if len(msgs):
-				print("[Timezones] Warning: Enigma2 time zone does not match system time zone (%s), setting system to Enigma2 time zone!" % ",".join(msgs))
-		except (IOError, OSError):
-			pass
+				tzArea = tzLink[:tzSplit]
+				tzVal = tzLink[tzSplit + 1:]
+			if config.timezone.area.value != tzArea:
+				msgs.append("area '%s' != '%s'" % (config.timezone.area.value, tzArea))
+			if config.timezone.val.value != tzVal:
+				msgs.append("zone '%s' != '%s'" % (config.timezone.val.value, tzVal))
+		if len(msgs):
+			print("[Timezones] Warning: Enigma2 time zone does not match system time zone (%s), setting system to Enigma2 time zone!" % ",".join(msgs))
+	except (IOError, OSError) as err:
+		pass
 
 	def timezoneAreaChoices(configElement):
 		choices = timezones.getTimezoneList(area=configElement.value)
@@ -109,9 +89,11 @@ def InitTimeZones():
 	def timezoneNotifier(configElement):
 		timezones.activateTimezone(configElement.value, config.timezone.area.value)
 
-	config.timezone.area.addNotifier(timezoneAreaChoices, initial_call=False, immediate_feedback=True)
-	config.timezone.val.addNotifier(timezoneNotifier, initial_call=True, immediate_feedback=True)
-	config.timezone.val.callNotifiersOnSaveAndCancel = True
+	# config.timezone.area.addNotifier(timezoneAreaChoices, initial_call=False, immediate_feedback=True)
+	# config.timezone.val.addNotifier(timezoneNotifier, initial_call=True, immediate_feedback=True)
+	# config.timezone.val.callNotifiersOnSaveAndCancel = True
+	config.timezone.area.addNotifier(timezoneAreaChoices, initial_call=False)
+	config.timezone.val.addNotifier(timezoneNotifier)
 
 
 class Timezones:
@@ -120,11 +102,6 @@ class Timezones:
 		self.loadTimezones()
 		self.readTimezones()
 		self.callbacks = []
-		# This is a work around to maintain support of AutoTimers
-		# until AutoTimers are updated to use the Timezones
-		# callbacks.  Once AutoTimers are updated *all* AutoTimer
-		# code should be removed from the Timezones.py code!
-		self.autotimerInit()
 
 	# Scan the zoneinfo directory tree and all load all time zones found.
 	#
@@ -207,8 +184,8 @@ class Timezones:
 		try:
 			with open(filename, "r") as fd:  # This open gets around a possible file handle leak in Python's XML parser.
 				try:
-					root = xml.etree.cElementTree.parse(fd).getroot()
-				except xml.etree.cElementTree.ParseError as err:
+					root = parse(fd).getroot()
+				except ParseError as err:
 					root = None
 					fd.seek(0)
 					content = fd.readlines()
@@ -221,7 +198,7 @@ class Timezones:
 					root = None
 					print("[Timezones] Error: Unable to parse time zone data in '%s' - '%s'!" % (filename, err))
 		except (IOError, OSError) as err:
-			if err.errno == errno.ENOENT:  # No such file or directory
+			if err.errno == ENOENT:  # No such file or directory.
 				print("[Timezones] Note: Classic time zones in '%s' are not available." % filename)
 			else:
 				print("[Timezones] Error %d: Opening time zone file '%s'! (%s)" % (err.errno, filename, err.strerror))
@@ -285,7 +262,7 @@ class Timezones:
 		try:
 			unlink("/etc/localtime")
 		except (IOError, OSError) as err:
-			if err.errno != errno.ENOENT:  # No such file or directory
+			if err.errno != ENOENT:  # No such file or directory.
 				print("[Timezones] Error %d: Unlinking '/etc/localtime'! (%s)" % (err.errno, err.strerror))
 		try:
 			symlink(file, "/etc/localtime")
@@ -319,43 +296,6 @@ class Timezones:
 	def removeCallback(self, callback):
 		if callback in self.callbacks:
 			self.callbacks.remove(callback)
-
-	def autotimerInit(self):  # This code should be moved into the AutoTimer plugin!
-		try:
-			# Create attributes autotimer & autopoller for backwards compatibility.
-			# Their use is deprecated.
-			from enigma import eTimer
-			from Plugins.Extensions.AutoTimer.plugin import autotimer, autopoller
-			self.autotimerPoller = autopoller
-			self.autotimerTimer = autotimer
-			self.pollDelay = 3  # Poll delay in minutes.
-			try:
-				self.autotimerPollDelay = config.plugins.autotimer.delay.value
-			except AttributeError:
-				self.autotimerPollDelay = self.pollDelay
-			self.timer = eTimer()
-			self.timer.callback.append(self.autotimeQuery)
-			self.addCallback(self.autotimerCallback)
-		except ImportError:
-			self.autotimerPoller = None
-			self.autotimerTimer = None
-
-	def autotimerCallback(self):
-		if config.plugins.autotimer.autopoll.value:
-			self.timer.stop()
-			print("[Timezones] Trying to stop main AutoTimer poller.")
-			if self.autotimerPoller is not None:
-				self.autotimerPoller.stop()
-			print("[Timezones] AutoTimer poller will be run in %d minutes." % self.pollDelay)
-			self.timer.startLongTimer(self.pollDelay * 60)
-
-	def autotimeQuery(self):
-		print("[Timezones] AutoTimer poll is running.")
-		if self.autotimerTimer is not None:
-			print("[Timezones] AutoTimer is parsing the EPG.")
-			self.autotimerTimer.parseEPG(autoPoll=True)
-		if self.autotimerPoller is not None:
-			self.autotimerPoller.start()
 
 
 timezones = Timezones()
