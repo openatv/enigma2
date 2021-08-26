@@ -1063,6 +1063,7 @@ class ConfigMacText(ConfigElement, NumericalTextInput):
 		except UnicodeDecodeError:
 			self.text = val.decode("utf-8", "ignore")
 			print "[Config] Broken UTF8!"
+		self.changed()
 
 	value = property(getValue, setValue)
 	_value = property(getValue, setValue)
@@ -1526,6 +1527,7 @@ class ConfigText(ConfigElement, NumericalTextInput):
 		except UnicodeDecodeError:
 			self.text = val.decode("utf-8", "ignore")
 			print "[Config] Broken UTF8!"
+		self.changed()
 
 	value = property(getValue, setValue)
 	_value = property(getValue, setValue)
@@ -1674,6 +1676,7 @@ class ConfigNumber(ConfigText):
 
 	def setValue(self, val):
 		self.text = str(val)
+		self.changed()
 
 	value = property(getValue, setValue)
 	_value = property(getValue, setValue)
