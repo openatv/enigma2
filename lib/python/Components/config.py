@@ -890,7 +890,7 @@ class ConfigSelectionNumber(ConfigSelection):
 	value = property(getValue, setValue)
 
 	def getIndex(self):
-		return self.choices.index(self.value)
+		return self.choices.index(str(self.value))
 
 	index = property(getIndex)
 
