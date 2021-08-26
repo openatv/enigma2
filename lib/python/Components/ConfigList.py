@@ -315,7 +315,8 @@ class ConfigListScreen:
 		elif isinstance(self.getCurrentItem(), ConfigText) and not isinstance(self.getCurrentItem(), (ConfigMACText, ConfigNumber)):
 			self.keyText()
 		else:
-			self["config"].handleKey(ACTIONKEY_SELECT, self.entryChanged)
+			self["config"].handleKey(ACTIONKEY_SELECT)
+			self.entryChanged()
 
 	def keyOK(self):  # This is the deprecated version of keySelect!
 		self.keySelect()

@@ -1425,7 +1425,7 @@ class ConfigSet(ConfigElement):
 					start = pos
 					end = start + length
 				pos += length
-			return ("mtext", "".join(text), range(start, end))
+			return ("mtext", "".join(text), list(range(start, end)))
 		else:
 			return ("text", " ".join([self.description[x] for x in self.value]))
 
