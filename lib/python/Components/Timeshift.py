@@ -46,7 +46,7 @@ from timer import TimerEntry
 
 from Tools import ASCIItranslit, Notifications
 from Tools.BoundFunction import boundFunction
-from Tools.Directories import pathExists, fileExists, getRecordingFilename, copyfile, resolveFilename, SCOPE_TIMESHIFT, SCOPE_AUTORECORD
+from Tools.Directories import pathExists, fileExists, getRecordingFilename, copyfile, resolveFilename, SCOPE_TIMESHIFT
 from Tools.TimeShift import CopyTimeshiftJob, MergeTimeshiftJob, CreateAPSCFilesJob
 
 from enigma import eBackgroundFileEraser, eTimer, eServiceCenter, iServiceInformation, iPlayableService, eEPGCache, eServiceReference

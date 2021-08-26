@@ -2,6 +2,7 @@
 from __future__ import print_function
 from boxbranding import getImageVersion, getMachineBrand, getMachineName
 from os import system, access, R_OK
+from os.path import ismount
 import re
 import six
 
@@ -21,7 +22,7 @@ from Components.FileList import FileList
 from Components.ScrollLabel import ScrollLabel
 from Components.Harddisk import harddiskmanager
 from Components.Task import Task, Job, job_manager, Condition
-from Tools.Directories import isMount, resolveFilename, SCOPE_HDD, SCOPE_MEDIA
+from Tools.Directories import resolveFilename, SCOPE_HDD, SCOPE_MEDIA
 from Tools.HardwareInfo import HardwareInfo
 from Tools.Downloader import downloadWithProgress
 
@@ -30,7 +31,7 @@ class ImageDownloadJob(Job):
 	def __init__(self, url, filename, device=None, mountpoint="/"):
 		Job.__init__(self, _("Download .NFI-files for USB-flasher"))
 		if device:
-			if isMount(mountpoint):
+			if ismount(mountpoint):
 				UmountTask(self, mountpoint)
 			MountTask(self, device, mountpoint)
 		ImageDownloadTask(self, url, mountpoint + filename)

@@ -27,7 +27,7 @@ from Components.SelectionList import SelectionList
 from Components.PluginComponent import plugins
 from Plugins.Extensions.Infopanel.SoftwarePanel import SoftwarePanel
 from Components.PackageInfo import PackageInfoHandler
-from Components.Language import language
+from Components.International import international
 from Components.AVSwitch import AVSwitch
 from Components.Task import job_manager
 from Tools.Directories import pathExists, fileExists, resolveFilename, SCOPE_PLUGINS, SCOPE_CURRENT_PLUGIN, SCOPE_ACTIVE_SKIN, SCOPE_METADIR, SCOPE_CURRENT_SKIN
@@ -1340,7 +1340,7 @@ class PluginDetails(Screen, PackageInfoHandler):
 		Screen.__init__(self, session)
 		Screen.setTitle(self, _("Plugin details"))
 		self.skin_path = plugin_path
-		self.language = language.getLanguage()[:2] # getLanguage returns e.g. "fi_FI" for "language_country"
+		self.language = international.getLocale()[:2]  # getLocale returns e.g. "fi_FI" for "language_country"
 		self.attributes = None
 		PackageInfoHandler.__init__(self, self.statusCallback, blocking=False)
 		self.directory = resolveFilename(SCOPE_METADIR)
@@ -1774,9 +1774,11 @@ class UpdatePlugin(Screen):
 	def exit(self):
 		if not self.ipkg.isRunning():
 			if self.packages != 0 and self.error == 0:
+				# Check and remove previously removed/deleted languages get re-installed on updating enigma2.
 				if fileExists("/etc/enigma2/.removelang"):
-					language.delLanguage()
-				#self.session.openWithCallback(self.exitAnswer, MessageBox, _("Upgrade finished.") +" "+_("Do you want to reboot your %s %s?") % (getMachineBrand(), getMachineName()))
+					currentLang = config.osd.language.value
+					international.removeLangs(currentLang=currentLang, excludeLangs=['de', 'en', 'fr'])
+					os_system("touch /etc/enigma2/.removelang")
 				self.restoreMetrixHD()
 			else:
 				self.close()

@@ -11,7 +11,8 @@ from Components.ConfigList import ConfigList
 from Plugins.Plugin import PluginDescriptor
 
 from Tools.Directories import *
-from os import path, makedirs, listdir
+from os import makedirs, listdir
+from os.path import ismount, exists
 from time import localtime
 from datetime import date
 
@@ -115,7 +116,7 @@ class BackupSetup(Screen):
 	def createBackupfolders(self):
 		self.path = BackupPath[self.backup.location.value]
 		print("Creating Backup Folder if not already there...")
-		if (path.exists(self.path) == False):
+		if (exists(self.path) == False):
 			makedirs(self.path)
 
 	def Backup(self):
@@ -128,7 +129,7 @@ class BackupSetup(Screen):
 
 	def runBackup(self, result):
 		if result:
-			if path.ismount(MountPoints[self.backup.location.value]):
+			if ismount(MountPoints[self.backup.location.value]):
 				self.createBackupfolders()
 				d = localtime()
 				dt = date(d.tm_year, d.tm_mon, d.tm_mday)
@@ -191,7 +192,7 @@ class RestoreMenu(Screen):
 	def fill_list(self):
 		self.flist = []
 		self.path = BackupPath[self.backup.location.value]
-		if (path.exists(self.path) == False):
+		if (exists(self.path) == False):
 			makedirs(self.path)
 		for file in listdir(self.path):
 			if (file.endswith(".tar.gz")):

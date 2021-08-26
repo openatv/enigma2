@@ -112,7 +112,7 @@ class Standby2(Screen):
 		if os.path.exists("/usr/script/StandbyLeave.sh"):
 			Console().ePopen("/usr/script/StandbyLeave.sh &")
 
-		if (getBrandOEM() in ('fulan', 'clap', 'dinobot') or getMachineBuild() in ('gbmv200', 'sf8008', 'sf8008m', 'sf8008ta', 'ustym4kpro', 'beyonwizv2', 'viper4k')):
+		if (getBrandOEM() in ('fulan', 'clap', 'dinobot') or getMachineBuild() in ('gbmv200', 'sf8008', 'sf8008m', 'sf8008opt', 'ustym4kpro', 'beyonwizv2', 'viper4k')):
 			try:
 				open("/proc/stb/hdmi/output", "w").write("on")
 			except:
@@ -229,7 +229,7 @@ class Standby2(Screen):
 			self.avswitch.setInput("SCART")
 		else:
 			self.avswitch.setInput("AUX")
-		if (getBrandOEM() in ('fulan', 'clap', 'dinobot') or getMachineBuild() in ('gbmv200', 'sf8008', 'sf8008m', 'sf8008ta', 'ustym4kpro', 'beyonwizv2', 'viper4k')):
+		if (getBrandOEM() in ('fulan', 'clap', 'dinobot') or getMachineBuild() in ('gbmv200', 'sf8008', 'sf8008m', 'sf8008opt', 'ustym4kpro', 'beyonwizv2', 'viper4k')):
 			try:
 				open("/proc/stb/hdmi/output", "w").write("off")
 			except:

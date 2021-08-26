@@ -268,7 +268,7 @@ class PositionerSetup(Screen):
 					if lnbnum:
 						break
 			if lnbnum:
-				self.printMsg(_("Using LNB %d") % lnbnum)
+				self.printMsg("Using LNB %d" % lnbnum)
 				lnb = self.advancedconfig.lnb[lnbnum]
 		if not lnb:
 			self.logMsg(_("Warning: no LNB; using factory defaults."), timeout=4)
@@ -277,9 +277,9 @@ class PositionerSetup(Screen):
 	def createConfig(self):
 		rotorposition = 1
 		orb_pos = 0
-		self.printMsg(_("Using tuner %s") % chr(0x41 + self.feid))
+		self.printMsg("Using tuner %s" % chr(0x41 + self.feid))
 		if not self.advanced:
-			self.printMsg(_("Configuration mode: %s") % _("simple"))
+			self.printMsg("Configuration mode: simple")
 			nim = config.Nims[self.feid].dvbs
 			self.sitelon = nim.longitude.float
 			self.longitudeOrientation = nim.longitudeOrientation.value
@@ -292,7 +292,7 @@ class PositionerSetup(Screen):
 			self.turningspeedH = nim.turningspeedH.float
 			self.turningspeedV = nim.turningspeedV.float
 		else:	# it is advanced
-			self.printMsg(_("Configuration mode: %s") % _("advanced"))
+			self.printMsg("Configuration mode: advanced")
 			fe_data = {}
 			self.frontend.getFrontendData(fe_data)
 			self.frontend.getTransponderData(fe_data, True)
@@ -396,7 +396,7 @@ class PositionerSetup(Screen):
 		print(msg, file=log)
 
 	def stopMoving(self):
-		self.printMsg(_("Stop"))
+		self.printMsg("Stop")
 		self.diseqccommand("stop")
 		self.isMoving = False
 		self.stopOnLock = False
@@ -408,13 +408,13 @@ class PositionerSetup(Screen):
 			if self.isMoving:
 				self.stopMoving()
 			else:
-				self.printMsg(_("Move west"))
+				self.printMsg("Move west")
 				self.diseqccommand("moveWest", 0)
 				self.isMoving = True
 				self.statusMsg(_("Moving west ..."), blinking=True)
 			self.updateColors("move")
 		elif entry == "limits":
-			self.printMsg(_("Limits off"))
+			self.printMsg("Limits off")
 			self.diseqccommand("limitOff")
 			self.statusMsg(_("Limits cancelled"), timeout=self.STATUS_MSG_TIMEOUT)
 		elif entry == "tune":
@@ -430,35 +430,35 @@ class PositionerSetup(Screen):
 		entry = self.getCurrentConfigPath()
 		if entry == "tune":
 			# Auto focus
-			self.printMsg(_("Auto focus"))
-			print((_("Site latitude") + "      : %5.1f %s") % PositionerSetup.latitude2orbital(self.sitelat), file=log)
-			print((_("Site longitude") + "     : %5.1f %s") % PositionerSetup.longitude2orbital(self.sitelon), file=log)
+			self.printMsg("Auto focus")
+			print("Site latitude      : %5.1f %s" % PositionerSetup.latitude2orbital(self.sitelat), file=log)
+			print("Site longitude     : %5.1f %s" % PositionerSetup.longitude2orbital(self.sitelon), file=log)
 			Thread(target=self.autofocus).start()
 		elif entry == "move":
 			if self.isMoving:
 				self.stopMoving()
 			else:
-				self.printMsg(_("Search west"))
+				self.printMsg("Search west")
 				self.isMoving = True
 				self.stopOnLock = True
 				self.diseqccommand("moveWest", 0)
 				self.statusMsg(_("Searching west ..."), blinking=True)
 			self.updateColors("move")
 		elif entry == "finemove":
-			self.printMsg(_("Step west"))
+			self.printMsg("Step west")
 			self.diseqccommand("moveWest", 0xFF) # one step
 			self.statusMsg(_("Stepped west"), timeout=self.STATUS_MSG_TIMEOUT)
 		elif entry == "storage":
-			self.printMsg(_("Store at index"))
+			self.printMsg("Store at index")
 			index = int(self.positioner_storage.value)
 			self.diseqccommand("store", index)
 			self.statusMsg((_("Position stored at index") + " %2d") % index, timeout=self.STATUS_MSG_TIMEOUT)
 		elif entry == "limits":
-			self.printMsg(_("Limit west"))
+			self.printMsg("Limit west")
 			self.diseqccommand("limitWest")
 			self.statusMsg(_("West limit set"), timeout=self.STATUS_MSG_TIMEOUT)
 		elif entry == "goto":
-			self.printMsg(_("Goto 0"))
+			self.printMsg("Goto 0")
 			self.diseqccommand("moveTo", 0)
 			self.statusMsg(_("Moved to position 0"), timeout=self.STATUS_MSG_TIMEOUT)
 
@@ -468,38 +468,38 @@ class PositionerSetup(Screen):
 			if self.isMoving:
 				self.stopMoving()
 			else:
-				self.printMsg(_("Move east"))
+				self.printMsg("Move east")
 				self.isMoving = True
 				self.stopOnLock = True
 				self.diseqccommand("moveEast", 0)
 				self.statusMsg(_("Searching east ..."), blinking=True)
 			self.updateColors("move")
 		elif entry == "finemove":
-			self.printMsg(_("Step east"))
+			self.printMsg("Step east")
 			self.diseqccommand("moveEast", 0xFF) # one step
 			self.statusMsg(_("Stepped east"), timeout=self.STATUS_MSG_TIMEOUT)
 		elif entry == "storage":
-			self.printMsg(_("Goto index position"))
+			self.printMsg("Goto index position")
 			index = int(self.positioner_storage.value)
 			self.diseqccommand("moveTo", index)
 			self.statusMsg((_("Moved to position at index") + " %2d") % index, timeout=self.STATUS_MSG_TIMEOUT)
 		elif entry == "limits":
-			self.printMsg(_("Limit east"))
+			self.printMsg("Limit east")
 			self.diseqccommand("limitEast")
 			self.statusMsg(_("East limit set"), timeout=self.STATUS_MSG_TIMEOUT)
 		elif entry == "goto":
-			self.printMsg(_("Move to position X"))
+			self.printMsg("Move to position X")
 			satlon = self.orbitalposition.float
 			position = "%5.1f %s" % (satlon, self.orientation.value)
-			print((_("Satellite longitude:") + " %s") % position, file=log)
+			print("Satellite longitude: %s" % position, file=log)
 			satlon = PositionerSetup.orbital2metric(satlon, self.orientation.value)
 			self.statusMsg((_("Moving to position") + " %s") % position, timeout=self.STATUS_MSG_TIMEOUT)
 			self.gotoX(satlon)
 		elif entry == "tune":
 			# Start USALS calibration
-			self.printMsg(_("USALS calibration"))
-			print((_("Site latitude") + "      : %5.1f %s") % PositionerSetup.latitude2orbital(self.sitelat), file=log)
-			print((_("Site longitude") + "     : %5.1f %s") % PositionerSetup.longitude2orbital(self.sitelon), file=log)
+			self.printMsg("USALS calibration")
+			print("Site latitude      : %5.1f %s" % PositionerSetup.latitude2orbital(self.sitelat), file=log)
+			print("Site longitude     : %5.1f %s" % PositionerSetup.longitude2orbital(self.sitelon), file=log)
 			Thread(target=self.gotoXcalibration).start()
 
 	def blueKey(self):
@@ -508,13 +508,13 @@ class PositionerSetup(Screen):
 			if self.isMoving:
 				self.stopMoving()
 			else:
-				self.printMsg(_("Move east"))
+				self.printMsg("Move east")
 				self.diseqccommand("moveEast", 0)
 				self.isMoving = True
 				self.statusMsg(_("Moving east ..."), blinking=True)
 			self.updateColors("move")
 		elif entry == "limits":
-			self.printMsg(_("Limits on"))
+			self.printMsg("Limits on")
 			self.diseqccommand("limitOn")
 			self.statusMsg(_("Limits enabled"), timeout=self.STATUS_MSG_TIMEOUT)
 		elif entry == "tune":
@@ -522,7 +522,7 @@ class PositionerSetup(Screen):
 			self.session.openWithCallback(self.recalcConfirmed, MessageBox, _("This will (re-)calculate all positions of your rotor and may remove previously memorised positions and fine-tuning!\nAre you sure?"), MessageBox.TYPE_YESNO, default=False, timeout=10)
 		elif entry == "storage":
 			if self.advanced:
-				self.printMsg(_("Allocate unused memory index"))
+				self.printMsg("Allocate unused memory index")
 				while True:
 					if not len(self.allocatedIndices):
 						for sat in self.availablesats:
@@ -549,9 +549,9 @@ class PositionerSetup(Screen):
 
 	def recalcConfirmed(self, yesno):
 		if yesno:
-			self.printMsg(_("Calculate all positions"))
-			print((_("Site latitude") + "      : %5.1f %s") % PositionerSetup.latitude2orbital(self.sitelat), file=log)
-			print((_("Site longitude") + "     : %5.1f %s") % PositionerSetup.longitude2orbital(self.sitelon), file=log)
+			self.printMsg("Calculate all positions")
+			print("Site latitude      : %5.1f %s" % PositionerSetup.latitude2orbital(self.sitelat), file=log)
+			print("Site longitude     : %5.1f %s" % PositionerSetup.longitude2orbital(self.sitelon), file=log)
 			lon = self.sitelon
 			if lon >= 180:
 				lon -= 360
@@ -685,7 +685,7 @@ class PositionerSetup(Screen):
 		rotorCmd = PositionerSetup.gotoXcalc(satlon, self.sitelat, self.sitelon)
 		self.diseqccommand("gotoX", rotorCmd)
 		x = PositionerSetup.rotorCmd2Step(rotorCmd, self.tuningstepsize)
-		print((_("Rotor step position:") + " %4d") % x, file=log)
+		print("Rotor step position: %4d" % x, file=log)
 		return x
 
 	def getTurningspeed(self):
@@ -741,8 +741,8 @@ class PositionerSetup(Screen):
 			return z
 
 		def reportlevels(pos, level, lock):
-			print((_("Signal quality") + " %5.1f" + chr(176) + "   : %6.2f") % (pos, level), file=log)
-			print((_("Lock ratio") + "     %5.1f" + chr(176) + "   : %6.2f") % (pos, lock), file=log)
+			print(("Signal quality %5.1f" + chr(176) + "   : %6.2f") % (pos, level), file=log)
+			print(("Lock ratio     %5.1f" + chr(176) + "   : %6.2f") % (pos, lock), file=log)
 
 		def optimise(readings):
 			xi = list(readings.keys())
@@ -765,7 +765,7 @@ class PositionerSetup(Screen):
 
 		self.logMsg(_("GotoX calibration"))
 		satlon = self.orbitalposition.float
-		print((_("Satellite longitude:") + " %5.1f" + chr(176) + " %s") % (satlon, self.orientation.value), file=log)
+		print(("Satellite longitude: %5.1f" + chr(176) + " %s") % (satlon, self.orientation.value), file=log)
 		satlon = PositionerSetup.orbital2metric(satlon, self.orientation.value)
 		prev_pos = 0.0						# previous relative position w.r.t. satlon
 		turningspeed = self.getTurningspeed()
@@ -802,8 +802,8 @@ class PositionerSetup(Screen):
 		prev_pos = x
 		measurements = {}
 		self.measure()
-		print((_("Initial signal quality") + " %5.1f" + chr(176) + ": %6.2f") % (x, self.snr_percentage), file=log)
-		print((_("Initial lock ratio") + "     %5.1f" + chr(176) + ": %6.2f") % (x, self.lock_count), file=log)
+		print(("Initial signal quality %5.1f" + chr(176) + ": %6.2f") % (x, self.snr_percentage), file=log)
+		print(("Initial lock ratio     %5.1f" + chr(176) + ": %6.2f") % (x, self.lock_count), file=log)
 		measurements[x] = (self.snr_percentage, self.lock_count)
 
 		start_pos = x
@@ -860,8 +860,8 @@ class PositionerSetup(Screen):
 			satlon -= 360
 		x0 += satlon
 		xm += satlon
-		print((_("Weighted position") + "     : %5.1f" + chr(176) + " %s") % (abs(x0), toGeopos(x0)), file=log)
-		print((_("Strongest position") + "    : %5.1f" + chr(176) + " %s") % (abs(xm), toGeopos(xm)), file=log)
+		print(("Weighted position     : %5.1f" + chr(176) + " %s") % (abs(x0), toGeopos(x0)), file=log)
+		print(("Strongest position    : %5.1f" + chr(176) + " %s") % (abs(xm), toGeopos(xm)), file=log)
 		self.logMsg((_("Final position at") + " %5.1f" + chr(176) + " %s / %d; " + _("offset is") + " %4.1f" + chr(176)) % (abs(x0), toGeopos(x0), x, x0 - satlon), timeout=10)
 
 	def autofocus(self):
@@ -876,8 +876,8 @@ class PositionerSetup(Screen):
 				sleep(time * self.MAX_LOW_RATE_ADAPTER_COUNT)
 
 		def reportlevels(pos, level, lock):
-			print((_("Signal quality") + " [%2d]   : %6.2f") % (pos, level), file=log)
-			print((_("Lock ratio") + " [%2d]       : %6.2f") % (pos, lock), file=log)
+			print("Signal quality [%2d]   : %6.2f" % (pos, level), file=log)
+			print("Lock ratio [%2d]       : %6.2f" % (pos, lock), file=log)
 
 		def optimise(readings):
 			xi = list(readings.keys())
@@ -897,15 +897,15 @@ class PositionerSetup(Screen):
 		measurements = {}
 		maxsteps = max(min(round(self.MAX_FOCUS_ANGLE / self.tuningstepsize), 0x1F), 3)
 		self.measure()
-		print((_("Initial signal quality:") + " %6.2f") % self.snr_percentage, file=log)
-		print((_("Initial lock ratio") + "    : %6.2f") % self.lock_count, file=log)
+		print("Initial signal quality: %6.2f" % self.snr_percentage, file=log)
+		print("Initial lock ratio    : %6.2f" % self.lock_count, file=log)
 		if self.lock_count < 1 - self.LOCK_LIMIT:
 			msg = _("There is no signal to lock on !")
 			self.printMsg(msg)
 			self.statusMsg("")
 			self.session.open(MessageBox, msg, MessageBox.TYPE_ERROR, timeout=5)
 			return
-		print(_("Signal OK, proceeding"), file=log)
+		print("Signal OK, proceeding", file=log)
 		x = 0
 		dir = 1
 		if self.randomBool():
@@ -956,8 +956,8 @@ class PositionerSetup(Screen):
 			self.session.open(MessageBox, msg, MessageBox.TYPE_ERROR, timeout=5)
 			return
 		(x0, xm) = optimise(measurements)
-		print((_("Weighted position") + "     : %2d") % x0, file=log)
-		print((_("Strongest position") + "    : %2d") % xm, file=log)
+		print("Weighted position     : %2d" % x0, file=log)
+		print("Strongest position    : %2d" % xm, file=log)
 		self.logMsg((_("Final position at index") + " %2d (%5.1f" + chr(176) + ")") % (x0, x0 * self.tuningstepsize), timeout=6)
 		move(x0 - x)
 

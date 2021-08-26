@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-08-17 19:48+0200\n"
+"POT-Creation-Date: 2021-08-22 21:17+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1149,10 +1149,6 @@ msgid "%s %02d.%02d."
 msgstr ""
 
 #, python-format
-msgid "%s %s %s."
-msgstr ""
-
-#, python-format
 msgid "%s %s advanced remote control (native)"
 msgstr ""
 
@@ -1253,6 +1249,10 @@ msgstr[1] ""
 
 #, python-format
 msgid "%s%d min"
+msgstr ""
+
+#, python-format
+msgid "%s%s(Default: %s)"
 msgstr ""
 
 #, python-format
@@ -2440,9 +2440,6 @@ msgstr ""
 msgid "Allocate a number to the physical LNB you are configuring. You will be able to select this LNB again for other satellites (e.g. motorised dishes) to save setting up the same LNB multiple times."
 msgstr ""
 
-msgid "Allocate unused memory index"
-msgstr ""
-
 msgid "Allow 10bit"
 msgstr ""
 
@@ -3504,9 +3501,6 @@ msgstr ""
 msgid "Calculate"
 msgstr ""
 
-msgid "Calculate all positions"
-msgstr ""
-
 msgid "Calculate file checksums"
 msgstr ""
 
@@ -4158,10 +4152,6 @@ msgid "Configurable"
 msgstr ""
 
 msgid "Configuration mode"
-msgstr ""
-
-#, python-format
-msgid "Configuration mode: %s"
 msgstr ""
 
 msgid "Configuration options for the HELP screen can be found in 'MENU > Setup > Usage & User Interface > Settings'."
@@ -4859,6 +4849,10 @@ msgstr ""
 msgid "Default settings"
 msgstr ""
 
+#, python-format
+msgid "Default: '%s'."
+msgstr ""
+
 msgid "Defaults"
 msgstr ""
 
@@ -4948,7 +4942,16 @@ msgstr ""
 msgid "Delete Plugins"
 msgstr ""
 
+msgid "Delete all the text"
+msgstr ""
+
 msgid "Delete and uninstall Plugins. This will remove the Plugin from your box"
+msgstr ""
+
+msgid "Delete character to left of cursor or select AM times"
+msgstr ""
+
+msgid "Delete character under cursor or select PM times"
 msgstr ""
 
 msgid "Delete current line"
@@ -5117,6 +5120,22 @@ msgstr ""
 msgid "Directory %s does not exist."
 msgstr ""
 
+#, python-format
+msgid "Directory '%s' can't be linked to recordings!"
+msgstr ""
+
+#, python-format
+msgid "Directory '%s' does not exist!"
+msgstr ""
+
+#, python-format
+msgid "Directory '%s' not writable!"
+msgstr ""
+
+#, python-format
+msgid "Directory '%s' not writeable!"
+msgstr ""
+
 msgid "Directory browser"
 msgstr ""
 
@@ -5184,6 +5203,9 @@ msgid "Display Setup"
 msgstr ""
 
 msgid "Display and user interface"
+msgstr ""
+
+msgid "Display selection list as a selection menu"
 msgstr ""
 
 msgid "Display the virtual keyboard for data entry"
@@ -6511,6 +6533,10 @@ msgstr ""
 msgid "Flash Online a new image"
 msgstr ""
 
+#, python-format
+msgid "Flash directory '%s' not allowed!"
+msgstr ""
+
 msgid "Flash on the fly your your Receiver software."
 msgstr ""
 
@@ -6900,9 +6926,6 @@ msgid "Goto Primetime"
 msgstr ""
 
 msgid "Goto X"
-msgstr ""
-
-msgid "Goto index position"
 msgstr ""
 
 msgid "Goto next bouquet"
@@ -7607,15 +7630,6 @@ msgstr ""
 msgid "Init"
 msgstr ""
 
-msgid "Initial lock ratio"
-msgstr ""
-
-msgid "Initial signal quality"
-msgstr ""
-
-msgid "Initial signal quality:"
-msgstr ""
-
 msgid "Initialization"
 msgstr ""
 
@@ -7928,6 +7942,12 @@ msgid "Jump to current time"
 msgstr ""
 
 msgid "Jump to end of list"
+msgstr ""
+
+msgid "Jump to first item in list or the start of text"
+msgstr ""
+
+msgid "Jump to last item in list or the end of text"
 msgstr ""
 
 msgid "Jump to next marked position"
@@ -8395,9 +8415,6 @@ msgid "Location"
 msgstr ""
 
 msgid "Location list"
-msgstr ""
-
-msgid "Lock ratio"
 msgstr ""
 
 msgid "Log"
@@ -8939,6 +8956,9 @@ msgstr ""
 msgid "Move down a page"
 msgstr ""
 
+msgid "Move down a screen"
+msgstr ""
+
 msgid "Move down list"
 msgstr ""
 
@@ -9005,16 +9025,22 @@ msgstr ""
 msgid "Move the text cursor to the last character"
 msgstr ""
 
+msgid "Move to first line / screen"
+msgstr ""
+
 msgid "Move to home of list"
 msgstr ""
 
-msgid "Move to position X"
+msgid "Move to last line / screen"
 msgstr ""
 
 msgid "Move up a line"
 msgstr ""
 
 msgid "Move up a page"
+msgstr ""
+
+msgid "Move up a screen"
 msgstr ""
 
 msgid "Move up list"
@@ -9818,9 +9844,6 @@ msgstr ""
 msgid "OSD Adjustment"
 msgstr ""
 
-msgid "OSD Settings"
-msgstr ""
-
 msgid "OSD Setup"
 msgstr ""
 
@@ -10576,6 +10599,9 @@ msgid "Please select a subservice..."
 msgstr ""
 
 msgid "Please select an NFI file and press green key to flash!"
+msgstr ""
+
+msgid "Please select an acceptable directory."
 msgstr ""
 
 msgid "Please select an aspect ratio..."
@@ -11792,9 +11818,6 @@ msgstr ""
 msgid "Root directory"
 msgstr ""
 
-msgid "Rotor step position:"
-msgstr ""
-
 msgid "Rotor turning speed"
 msgstr ""
 
@@ -12001,9 +12024,6 @@ msgid "Satellite equipment"
 msgstr ""
 
 msgid "Satellite equipment setup"
-msgstr ""
-
-msgid "Satellite longitude:"
 msgstr ""
 
 msgid "Satellites"
@@ -12466,6 +12486,12 @@ msgstr ""
 msgid "Select the movie path"
 msgstr ""
 
+msgid "Select the next item in list or move cursor right"
+msgstr ""
+
+msgid "Select the previous item in list or move cursor left"
+msgstr ""
+
 msgid "Select the protocol used by your SCR device. Choices are 'SCR Unicable' (Unicable), or 'SCR JESS' (JESS, also known as Unicable II)."
 msgstr ""
 
@@ -12533,6 +12559,9 @@ msgid "Select your provider, and press OK to start the scan"
 msgstr ""
 
 msgid "Select your region. If not available change 'Country' to 'all' and select one of the default alternatives."
+msgstr ""
+
+msgid "Select, toggle, process or edit the current entry"
 msgstr ""
 
 msgid "Select/Zap to selected service"
@@ -13322,9 +13351,6 @@ msgstr ""
 msgid "Show next picture"
 msgstr ""
 
-msgid "Show on Display"
-msgstr ""
-
 msgid "Show or hide the extended description, (skin dependent)."
 msgstr ""
 
@@ -13466,13 +13492,7 @@ msgstr ""
 msgid "Signal Finder"
 msgstr ""
 
-msgid "Signal OK, proceeding"
-msgstr ""
-
 msgid "Signal Strength:"
-msgstr ""
-
-msgid "Signal quality"
 msgstr ""
 
 msgid "Signal strength:"
@@ -13533,12 +13553,6 @@ msgid "Sint Maarten"
 msgstr ""
 
 msgid "Sitcom"
-msgstr ""
-
-msgid "Site latitude"
-msgstr ""
-
-msgid "Site longitude"
 msgstr ""
 
 msgid "Size"
@@ -14066,9 +14080,6 @@ msgstr ""
 msgid "Storage devices"
 msgstr ""
 
-msgid "Store at index"
-msgstr ""
-
 msgid "Store position"
 msgstr ""
 
@@ -14110,9 +14121,6 @@ msgid "Strict DLNA"
 msgstr ""
 
 msgid "Stripes"
-msgstr ""
-
-msgid "Strongest position"
 msgstr ""
 
 msgid "Stumm"
@@ -14750,6 +14758,9 @@ msgid "There are at least %s updates available."
 msgstr ""
 
 msgid "There are currently no outstanding actions."
+msgstr ""
+
+msgid "There are no items currently available for this screen."
 msgstr ""
 
 msgid "There are no updates available."
@@ -15589,9 +15600,6 @@ msgstr ""
 msgid "USALS automatically moves a motorised dish to the correct satellite based on the coordinates entered by the user. Without USALS each satellite will need to be setup and saved individually."
 msgstr ""
 
-msgid "USALS calibration"
-msgstr ""
-
 msgid "USB Stick"
 msgstr ""
 
@@ -16036,18 +16044,10 @@ msgstr ""
 msgid "Username:"
 msgstr ""
 
-#, python-format
-msgid "Using LNB %d"
-msgstr ""
-
 msgid "Using fixed address"
 msgstr ""
 
 msgid "Using old profile: "
-msgstr ""
-
-#, python-format
-msgid "Using tuner %s"
 msgstr ""
 
 msgid "Uzbek"
@@ -16479,9 +16479,6 @@ msgid "Weekend"
 msgstr ""
 
 msgid "Weekly"
-msgstr ""
-
-msgid "Weighted position"
 msgstr ""
 
 msgid "Welcome to IceTV"
@@ -18942,76 +18939,285 @@ msgstr ""
 msgid "zapping"
 msgstr ""
 
-msgid " HI "
+msgid "Small Test"
 msgstr ""
 
-msgid "REC "
+msgid "instant record"
 msgstr ""
 
-msgid "C"
+msgid "Exit the wizard"
 msgstr ""
 
-msgid "D"
+msgid "Install a new image with a USB stick"
 msgstr ""
 
-msgid "IMDB Search"
+msgid "Install a new image with your web browser"
 msgstr ""
 
-msgid "Quick EPG"
+msgid "No backup needed"
 msgstr ""
 
-msgid "TUNER:"
+msgid "No, do nothing."
 msgstr ""
 
-msgid "E "
+msgid "No, just start my %s %s"
 msgstr ""
 
-msgid "F"
+msgid "OK, guide me through the upgrade process"
 msgstr ""
 
-msgid "G"
+msgid "The backup failed. Please choose a different backup location."
 msgstr ""
 
-msgid "H"
+msgid "The wizard is finished now."
 msgstr ""
 
-msgid "I"
+msgid "Welcome to the image upgrade wizard. The wizard will assist you in upgrading the firmware of your %s %s by providing a backup facility for your current settings and a short explanation of how to upgrade your firmware."
 msgstr ""
 
-msgid "J"
+msgid "Where do you want to backup your settings?"
 msgstr ""
 
-msgid "EtPortal"
+msgid "Yes, backup my settings!"
 msgstr ""
 
-msgid "®"
+msgid "Yes, restore the settings now"
 msgstr ""
 
-msgid "Enigmalight"
+msgid "Yes, shut down now."
 msgstr ""
 
-msgid "VMC"
+msgid "You have chosen to backup your settings. Please press OK to start the backup now."
 msgstr ""
 
-msgid "by hmmmdada"
+msgid "You have chosen to restore your settings. Enigma2 will restart after restore. Please press OK to start the restore now."
 msgstr ""
 
-msgid "-"
+msgid ""
+"You need a PC connected to your %s %s. If you need further instructions, please visit the website https://www.opena.tv.\n"
+"Your %s %s will now be halted. After you have performed the update instructions from the website, your new firmware will ask you to restore your settings."
 msgstr ""
 
-msgid "  REC  "
+msgid "Your %s %s is shutting down. Please wait..."
 msgstr ""
 
-msgid "EasyMedia"
+msgid "Your backup succeeded. We will now continue to explain the further upgrade process."
 msgstr ""
 
-msgid "Ext. NumberZap"
+msgid "Configure interface"
 msgstr ""
 
-msgid "Timer+"
+msgid "Configure nameservers"
 msgstr ""
 
-msgid "Timerlist"
+msgid "Configure your network again"
+msgstr ""
+
+msgid "List available networks"
+msgstr ""
+
+msgid "Manual configuration"
+msgstr ""
+
+msgid ""
+"Please configure or verify your Nameservers by filling out the required values.\n"
+"When you are ready press OK to continue."
+msgstr ""
+
+msgid ""
+"Please configure your internet connection by filling out the required values.\n"
+"When you are ready press OK to continue."
+msgstr ""
+
+msgid "Please follow the instructions on the TV"
+msgstr ""
+
+msgid ""
+"Please select the network interface that you want to use for your internet connection.\n"
+"\n"
+"Please press OK to continue."
+msgstr ""
+
+msgid ""
+"Please select the wireless network that you want to connect to.\n"
+"\n"
+"Please press OK to continue."
+msgstr ""
+
+msgid "Select wireless network"
+msgstr ""
+
+msgid ""
+"Thank you for using the wizard.\n"
+"Please press OK to continue."
+msgstr ""
+
+msgid ""
+"The wireless LAN plugin is not installed!\n"
+"Please install it and choose what you want to do next."
+msgstr ""
+
+msgid ""
+"Welcome.\n"
+"\n"
+"If you want to connect your %s %s to the Internet, this wizard will guide you through the basic network setup of your %s %s.\n"
+"\n"
+"Press OK to start configuring your network"
+msgstr ""
+
+msgid "Wireless network connection setup"
+msgstr ""
+
+msgid "Wireless network connection setup."
+msgstr ""
+
+msgid ""
+"Your %s %s is now ready to use.\n"
+"\n"
+"Your internet connection is working now.\n"
+"\n"
+"Please press OK to continue."
+msgstr ""
+
+msgid ""
+"Your internet connection is not working!\n"
+"Please choose what you want to do next."
+msgstr ""
+
+msgid ""
+"Your wireless LAN internet connection could not be started!\n"
+"Have you attached your USB WLAN Stick?\n"
+"\n"
+"Please choose what you want to do next."
+msgstr ""
+
+msgid "Add plugin to Extensions menu*"
+msgstr ""
+
+msgid "Add plugin to main menu*"
+msgstr ""
+
+msgid "CPU priority for script execution"
+msgstr ""
+
+msgid "Change buttons for list navigation"
+msgstr ""
+
+msgid "Default CPU priority (nice) for executed scripts. This can reduce the load so that scripts do not interfere with the rest of the system. (higher values = lower priority)"
+msgstr ""
+
+msgid "Default I/O priority (ionice) for executed scripts. This can reduce the load so that scripts do not interfere with the rest of the system. (higher values = lower priority)"
+msgstr ""
+
+msgid "Default directory sorting"
+msgstr ""
+
+msgid "Default file sorting left"
+msgstr ""
+
+msgid "Default file sorting right"
+msgstr ""
+
+msgid "Default folder"
+msgstr ""
+
+msgid "Default folder if the left or right folder isn't saved, and target folder for button 5."
+msgstr ""
+
+msgid "Default sorting method for directories on both sides."
+msgstr ""
+
+msgid "Default sorting method for files on the left side."
+msgstr ""
+
+msgid "Default sorting method for files on the right side."
+msgstr ""
+
+msgid "Edit position is the line end"
+msgstr ""
+
+msgid "File Commander Settings"
+msgstr ""
+
+msgid "File checksums to calculate for button 9"
+msgstr ""
+
+msgid "File checksums/hashes"
+msgstr ""
+
+msgid "Filter extension for 'My Extension' setting of 'Filter extension'. Use the extension name without a '.'."
+msgstr ""
+
+msgid "Filter extension, (*) appears in title"
+msgstr ""
+
+msgid "Filter visible file classes by extension."
+msgstr ""
+
+msgid "I/O priority for script execution"
+msgstr ""
+
+msgid "If editing a file, can you set the cursor start position at end or begin of the line."
+msgstr ""
+
+msgid "Make File Commander accessible from the Extensions menu."
+msgstr ""
+
+msgid "Make File Commander accessible from the main menu."
+msgstr ""
+
+msgid "My extension"
+msgstr ""
+
+msgid "Number of lines in script messages"
+msgstr ""
+
+msgid "Save left folder on exit"
+msgstr ""
+
+msgid "Save right folder on exit"
+msgstr ""
+
+msgid "Save the left folder list location on exit."
+msgstr ""
+
+msgid "Save the right folder list location on exit."
+msgstr ""
+
+msgid "Set for 'stout' and 'sterr' the number of lines in script info or script error messages."
+msgstr ""
+
+msgid "Show Script completed message"
+msgstr ""
+
+msgid "Show Task's completed message"
+msgstr ""
+
+msgid "Show directories first"
+msgstr ""
+
+msgid "Show directories on first or last in list.(must restart File Commander)"
+msgstr ""
+
+msgid "Show message if File Commander is not running and all Task's are completed."
+msgstr ""
+
+msgid "Show message if a background script ends successfully. Has 'stout', then this is displayed as additional info."
+msgstr ""
+
+msgid "Show unknown extension as text"
+msgstr ""
+
+msgid "Show unknown file extensions with 'Addon File-Viewer'."
+msgstr ""
+
+msgid "Swap buttons right/left with channel plus/minus or the channel button changed always the side."
+msgstr ""
+
+msgid "Time between slides in image viewer slideshow."
+msgstr ""
+
+msgid "Time for Slideshow"
 msgstr ""
 
 msgid "Basic settings"
@@ -19117,6 +19323,14 @@ msgid "Video"
 msgstr ""
 
 msgid "WOL Standby"
+msgstr ""
+
+msgid "MediaPortal"
+msgstr ""
+
+msgid ""
+"Please setup your user interface by adjusting the values till the edges of the red box are touching the edges of your TV.\n"
+"When you are ready press OK to continue."
 msgstr ""
 
 msgid "'Buffer in hours' or 'number of last events'. For deleting older timeshift files, the condition which occurred first has priority."
@@ -19689,9 +19903,6 @@ msgstr ""
 msgid "Configure whether another tuner from the preferred list is allocated for recordings instead of sharing a tuner that is already active receiving the same live TV channel."
 msgstr ""
 
-msgid "Configure whether another tuner from the preferred list is allocated instead of sharing a tuner that is already active recording the same channel."
-msgstr ""
-
 msgid "Configure whether the 'recording' symbol (in the display skin and LCD skin) is visible for real recordings only or also for streaming and pseuso recordings (e.g. EPGrefresh)."
 msgstr ""
 
@@ -19935,9 +20146,6 @@ msgstr ""
 msgid "Event font size"
 msgstr ""
 
-msgid "Experimental: strict limitation to preferred tuners"
-msgstr ""
-
 msgid "Experimental: strict limitation to preferred tuners for recordings"
 msgstr ""
 
@@ -20104,9 +20312,6 @@ msgid "In addition to the check at an event start, a repetitive check can be use
 msgstr ""
 
 msgid "In expert mode, configure which tuners will be preferred for recordings, when more than one tuner is available."
-msgstr ""
-
-msgid "In expert mode, configure which tuners will be preferred, when more than one tuner is available."
 msgstr ""
 
 msgid "In most cases this should be set to No. Only enable if you have a very specific need."
@@ -20392,9 +20597,6 @@ msgid "Preferred tuner for recordings"
 msgstr ""
 
 msgid "Preferred tuners for recordings, multiple selection allowed"
-msgstr ""
-
-msgid "Preferred tuners, multiple selection allowed"
 msgstr ""
 
 msgid "Preparation time for recording (seconds)"
@@ -20844,6 +21046,9 @@ msgstr ""
 msgid "Show service type icons"
 msgstr ""
 
+msgid "Show setup default value"
+msgstr ""
+
 msgid "Show source packages"
 msgstr ""
 
@@ -21127,6 +21332,9 @@ msgid "This option allows you to hide and sorting of the menus"
 msgstr ""
 
 msgid "This option allows you to hide and sorting of the plugin browser."
+msgstr ""
+
+msgid "This option allows you to select if the default value for a setup item is shown and, if so, where it is displayed in relation to the description."
 msgstr ""
 
 msgid "This option allows you to show menu number quick links."
@@ -21495,6 +21703,68 @@ msgstr ""
 msgid "userdefined"
 msgstr ""
 
+msgid "EasyMedia"
+msgstr ""
+
+msgid "Ext. NumberZap"
+msgstr ""
+
+msgid "Timer+"
+msgstr ""
+
+msgid "Timerlist"
+msgstr ""
+
+msgid "IMDB Search"
+msgstr ""
+
+msgid "Quick EPG"
+msgstr ""
+
+msgid "C"
+msgstr ""
+
+msgid "D"
+msgstr ""
+
+msgid "TUNER:"
+msgstr ""
+
+msgid "Auto Modes Selected."
+msgstr ""
+
+msgid "Default Modes Selected."
+msgstr ""
+
+msgid "Refresh rate selection."
+msgstr ""
+
+msgid "Select refresh rate"
+msgstr ""
+
+msgid "Select video input with up/down buttons"
+msgstr ""
+
+msgid "Select video mode"
+msgstr ""
+
+msgid ""
+"Use automatic mode detection.\n"
+" This option reads all supported modes from your TV.\n"
+" Please disable it only if you want to customize the preferred configuration."
+msgstr ""
+
+msgid ""
+"Video input selection\n"
+"\n"
+"Please press OK if you can see this page on your TV (or select a different input port).\n"
+"\n"
+"The next input port will be automatically probed in 10 seconds."
+msgstr ""
+
+msgid "Video mode selection."
+msgstr ""
+
 msgid "0"
 msgstr ""
 
@@ -21678,6 +21948,24 @@ msgstr ""
 msgid "help..."
 msgstr ""
 
+msgid "  REC  "
+msgstr ""
+
+msgid "VMC"
+msgstr ""
+
+msgid "by hmmmdada"
+msgstr ""
+
+msgid "Enigmalight"
+msgstr ""
+
+msgid "EtPortal"
+msgstr ""
+
+msgid "®"
+msgstr ""
+
 msgid "Check the internet connection"
 msgstr ""
 
@@ -21694,9 +21982,6 @@ msgid "Do you want to do another manual service scan?"
 msgstr ""
 
 msgid "Do you want to install a channel list?"
-msgstr ""
-
-msgid "Exit the wizard"
 msgstr ""
 
 msgid "No, scan later manually"
@@ -21819,323 +22104,29 @@ msgstr ""
 msgid "Your %s %s is not connected to the internet"
 msgstr ""
 
-msgid "Configure interface"
+msgid "-"
 msgstr ""
 
-msgid ""
-"Please setup your user interface by adjusting the values till the edges of the red box are touching the edges of your TV.\n"
-"When you are ready press OK to continue."
+msgid " HI "
 msgstr ""
 
-msgid "MediaPortal"
+msgid "REC "
 msgstr ""
 
-msgid "Auto Modes Selected."
+msgid "E "
 msgstr ""
 
-msgid "Default Modes Selected."
+msgid "F"
 msgstr ""
 
-msgid "Refresh rate selection."
+msgid "G"
 msgstr ""
 
-msgid "Select refresh rate"
+msgid "H"
 msgstr ""
 
-msgid "Select video input with up/down buttons"
+msgid "I"
 msgstr ""
 
-msgid "Select video mode"
-msgstr ""
-
-msgid ""
-"Use automatic mode detection.\n"
-" This option reads all supported modes from your TV.\n"
-" Please disable it only if you want to customize the preferred configuration."
-msgstr ""
-
-msgid ""
-"Video input selection\n"
-"\n"
-"Please press OK if you can see this page on your TV (or select a different input port).\n"
-"\n"
-"The next input port will be automatically probed in 10 seconds."
-msgstr ""
-
-msgid "Video mode selection."
-msgstr ""
-
-msgid "Add plugin to Extensions menu*"
-msgstr ""
-
-msgid "Add plugin to main menu*"
-msgstr ""
-
-msgid "CPU priority for script execution"
-msgstr ""
-
-msgid "Change buttons for list navigation"
-msgstr ""
-
-msgid "Default CPU priority (nice) for executed scripts. This can reduce the load so that scripts do not interfere with the rest of the system. (higher values = lower priority)"
-msgstr ""
-
-msgid "Default I/O priority (ionice) for executed scripts. This can reduce the load so that scripts do not interfere with the rest of the system. (higher values = lower priority)"
-msgstr ""
-
-msgid "Default directory sorting"
-msgstr ""
-
-msgid "Default file sorting left"
-msgstr ""
-
-msgid "Default file sorting right"
-msgstr ""
-
-msgid "Default folder"
-msgstr ""
-
-msgid "Default folder if the left or right folder isn't saved, and target folder for button 5."
-msgstr ""
-
-msgid "Default sorting method for directories on both sides."
-msgstr ""
-
-msgid "Default sorting method for files on the left side."
-msgstr ""
-
-msgid "Default sorting method for files on the right side."
-msgstr ""
-
-msgid "Edit position is the line end"
-msgstr ""
-
-msgid "File Commander Settings"
-msgstr ""
-
-msgid "File checksums to calculate for button 9"
-msgstr ""
-
-msgid "File checksums/hashes"
-msgstr ""
-
-msgid "Filter extension for 'My Extension' setting of 'Filter extension'. Use the extension name without a '.'."
-msgstr ""
-
-msgid "Filter extension, (*) appears in title"
-msgstr ""
-
-msgid "Filter visible file classes by extension."
-msgstr ""
-
-msgid "I/O priority for script execution"
-msgstr ""
-
-msgid "If editing a file, can you set the cursor start position at end or begin of the line."
-msgstr ""
-
-msgid "Make File Commander accessible from the Extensions menu."
-msgstr ""
-
-msgid "Make File Commander accessible from the main menu."
-msgstr ""
-
-msgid "My extension"
-msgstr ""
-
-msgid "Number of lines in script messages"
-msgstr ""
-
-msgid "Save left folder on exit"
-msgstr ""
-
-msgid "Save right folder on exit"
-msgstr ""
-
-msgid "Save the left folder list location on exit."
-msgstr ""
-
-msgid "Save the right folder list location on exit."
-msgstr ""
-
-msgid "Set for 'stout' and 'sterr' the number of lines in script info or script error messages."
-msgstr ""
-
-msgid "Show Script completed message"
-msgstr ""
-
-msgid "Show Task's completed message"
-msgstr ""
-
-msgid "Show directories first"
-msgstr ""
-
-msgid "Show directories on first or last in list.(must restart File Commander)"
-msgstr ""
-
-msgid "Show message if File Commander is not running and all Task's are completed."
-msgstr ""
-
-msgid "Show message if a background script ends successfully. Has 'stout', then this is displayed as additional info."
-msgstr ""
-
-msgid "Show unknown extension as text"
-msgstr ""
-
-msgid "Show unknown file extensions with 'Addon File-Viewer'."
-msgstr ""
-
-msgid "Swap buttons right/left with channel plus/minus or the channel button changed always the side."
-msgstr ""
-
-msgid "Time between slides in image viewer slideshow."
-msgstr ""
-
-msgid "Time for Slideshow"
-msgstr ""
-
-msgid "Configure nameservers"
-msgstr ""
-
-msgid "Configure your network again"
-msgstr ""
-
-msgid "List available networks"
-msgstr ""
-
-msgid "Manual configuration"
-msgstr ""
-
-msgid ""
-"Please configure or verify your Nameservers by filling out the required values.\n"
-"When you are ready press OK to continue."
-msgstr ""
-
-msgid ""
-"Please configure your internet connection by filling out the required values.\n"
-"When you are ready press OK to continue."
-msgstr ""
-
-msgid "Please follow the instructions on the TV"
-msgstr ""
-
-msgid ""
-"Please select the network interface that you want to use for your internet connection.\n"
-"\n"
-"Please press OK to continue."
-msgstr ""
-
-msgid ""
-"Please select the wireless network that you want to connect to.\n"
-"\n"
-"Please press OK to continue."
-msgstr ""
-
-msgid "Select wireless network"
-msgstr ""
-
-msgid ""
-"Thank you for using the wizard.\n"
-"Please press OK to continue."
-msgstr ""
-
-msgid ""
-"The wireless LAN plugin is not installed!\n"
-"Please install it and choose what you want to do next."
-msgstr ""
-
-msgid ""
-"Welcome.\n"
-"\n"
-"If you want to connect your %s %s to the Internet, this wizard will guide you through the basic network setup of your %s %s.\n"
-"\n"
-"Press OK to start configuring your network"
-msgstr ""
-
-msgid "Wireless network connection setup"
-msgstr ""
-
-msgid "Wireless network connection setup."
-msgstr ""
-
-msgid ""
-"Your %s %s is now ready to use.\n"
-"\n"
-"Your internet connection is working now.\n"
-"\n"
-"Please press OK to continue."
-msgstr ""
-
-msgid ""
-"Your internet connection is not working!\n"
-"Please choose what you want to do next."
-msgstr ""
-
-msgid ""
-"Your wireless LAN internet connection could not be started!\n"
-"Have you attached your USB WLAN Stick?\n"
-"\n"
-"Please choose what you want to do next."
-msgstr ""
-
-msgid "Install a new image with a USB stick"
-msgstr ""
-
-msgid "Install a new image with your web browser"
-msgstr ""
-
-msgid "No backup needed"
-msgstr ""
-
-msgid "No, do nothing."
-msgstr ""
-
-msgid "No, just start my %s %s"
-msgstr ""
-
-msgid "OK, guide me through the upgrade process"
-msgstr ""
-
-msgid "The backup failed. Please choose a different backup location."
-msgstr ""
-
-msgid "The wizard is finished now."
-msgstr ""
-
-msgid "Welcome to the image upgrade wizard. The wizard will assist you in upgrading the firmware of your %s %s by providing a backup facility for your current settings and a short explanation of how to upgrade your firmware."
-msgstr ""
-
-msgid "Where do you want to backup your settings?"
-msgstr ""
-
-msgid "Yes, backup my settings!"
-msgstr ""
-
-msgid "Yes, restore the settings now"
-msgstr ""
-
-msgid "Yes, shut down now."
-msgstr ""
-
-msgid "You have chosen to backup your settings. Please press OK to start the backup now."
-msgstr ""
-
-msgid "You have chosen to restore your settings. Enigma2 will restart after restore. Please press OK to start the restore now."
-msgstr ""
-
-msgid ""
-"You need a PC connected to your %s %s. If you need further instructions, please visit the website https://www.opena.tv.\n"
-"Your %s %s will now be halted. After you have performed the update instructions from the website, your new firmware will ask you to restore your settings."
-msgstr ""
-
-msgid "Your %s %s is shutting down. Please wait..."
-msgstr ""
-
-msgid "Your backup succeeded. We will now continue to explain the further upgrade process."
-msgstr ""
-
-msgid "Small Test"
-msgstr ""
-
-msgid "instant record"
+msgid "J"
 msgstr ""

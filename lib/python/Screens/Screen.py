@@ -309,4 +309,6 @@ class ScreenSummary(Screen):
 			names = [names]
 		self.skinName = ["%sSummary" % x for x in names]
 		self.skinName.append("ScreenSummary")
+		self.skinName += ["%s_summary" % x for x in names]  # DEBUG: Old summary screens currently kept for compatibility.
+		self.skinName.append("SimpleSummary")  # DEBUG: Old summary screens currently kept for compatibility.
 		self.skin = parent.__dict__.get("skinSummary", self.skin)  # If parent has a "skinSummary" defined, use that as default.
