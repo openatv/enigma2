@@ -95,7 +95,7 @@ self.session.open(RemoteControlCode)
 </code>
 				</item>
 				<item weight="40" level="1" text="Keyboard" entryID="keyboard"><setup id="keyboard" /></item>
-				<item weight="50" level="2" text="OSD 3D Setup" entryID="osd3dsetup" requires="CanChange3DOsd"><screen module="UserInterfacePositioner" screen="OSD3DSetupScreen"/></item>
+				<item weight="50" level="2" text="OSD 3D Setup" entryID="setup_osd3d" requires="CanChange3DOsd"><setup id="osd3d"/></item>
 			</menu>
 			<item weight="70" level="0" text="Language" entryID="locale_setup"><screen module="LocaleSelection" /></item>
 		</menu>

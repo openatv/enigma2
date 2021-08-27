@@ -569,4 +569,11 @@
 		<item level="0" text="Select cardserver" description="Select a cardserver from the available list." conditional="config.misc.cardservers.value != ''">config.misc.cardservers</item>
 		<item level="0" text="Restart" description="Reset the selected devices and save changes of your config when the GREEN button is pressed.">config.misc.restarts</item>
 	</setup>
+
+	<setup key="osd3d" title="OSD 3D Setup">
+		<item level="0" text="3D Mode" description="This option lets you choose the 3D mode">config.osd.threeDmode</item>
+		<item level="0" text="Depth" description="This option lets you adjust the 3D depth">config.osd.threeDznorm</item>
+		<item level="0" text="Show in extensions list ?" description="This option lets you show the option in the extension screen">config.osd.show3dextensions</item>
+	</setup>
+
 </setupxml>

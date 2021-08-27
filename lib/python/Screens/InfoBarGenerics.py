@@ -3260,7 +3260,7 @@ class InfoBarExtensions:
 		return _("OSD 3D Setup")
 
 	def getOsd3DSetup(self):
-		if config.osd.show3dextensions .value:
+		if config.osd.show3dextensions.value:
 			return [((boundFunction(self.get3DSetupname), boundFunction(self.open3DSetup), lambda: True), None)]
 		else:
 			return []
@@ -3373,8 +3373,8 @@ class InfoBarExtensions:
 		self.session.open(LogManager)
 
 	def open3DSetup(self):
-		from Screens.UserInterfacePositioner import OSD3DSetupScreen
-		self.session.open(OSD3DSetupScreen)
+		from Screens.Setup import Setup
+		self.session.open(Setup, "osd3d")
 
 	def openSoftcamPanel(self):
 		from Plugins.Extensions.Infopanel.SoftcamPanel import SoftcamPanel
