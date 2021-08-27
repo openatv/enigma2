@@ -94,6 +94,7 @@ class VideoSetup(Screen, ConfigListScreen):
 		self.current_mode = None
 		self.createSetup()
 		self.grabLastGoodMode()
+		self["config"].onSelectionChanged.append(self.selectionChanged)
 		self.onLayoutFinish.append(self.layoutFinished)
 
 	def layoutFinished(self):
@@ -443,6 +444,12 @@ class VideoSetup(Screen, ConfigListScreen):
 		from Screens.Setup import SetupSummary
 		return SetupSummary
 
+	def selectionChanged(self):
+		if self["config"]:
+			self["description"].text = self.getCurrentDescription()
+		else:
+			self["description"].text = _("There are no items currently available for this screen.")
+
 
 class AudioSetup(Screen, ConfigListScreen):
 	def __init__(self, session):
@@ -478,6 +485,7 @@ class AudioSetup(Screen, ConfigListScreen):
 		self["description"] = Label("")
 
 		self.createSetup()
+		self["config"].onSelectionChanged.append(self.selectionChanged)
 		self.onLayoutFinish.append(self.layoutFinished)
 
 	def layoutFinished(self):
@@ -573,6 +581,12 @@ class AudioSetup(Screen, ConfigListScreen):
 	def createSummary(self):
 		from Screens.Setup import SetupSummary
 		return SetupSummary
+
+	def selectionChanged(self):
+		if self["config"]:
+			self["description"].text = self.getCurrentDescription()
+		else:
+			self["description"].text = _("There are no items currently available for this screen.")
 
 
 class AutoVideoModeLabel(Screen):
