@@ -101,7 +101,17 @@
     make update
 
 ----------
-13 - Finally you can start building a image
+13 - Finally you can start building a image with feed (Build time 5-12h)
 
     MACHINE=zgemmah9combo DISTRO=openatv DISTRO_TYPE=release make image
+
+----------
+14 - Finally you can start building a image without feed (Build time 1-2h)
+
+    MACHINE=zgemmah9combo DISTRO=openatv DISTRO_TYPE=release make enigma2-image
+
+----------
+15 - Finally you can start building a feed only
+
+    MACHINE=zgemmah9combo DISTRO=openatv DISTRO_TYPE=release make feed
 
