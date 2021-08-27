@@ -83,11 +83,10 @@ class VideoSetup(Screen, ConfigListScreen):
 			{
 				"cancel": self.keyCancel,
 				"save": self.apply,
-				"menu": self.closeRecursive,
 			}, -2)
 
 		self["key_red"] = StaticText(_("Cancel"))
-		self["key_green"] = StaticText(_("OK"))
+		self["key_green"] = StaticText(_("Save"))
 		self["description"] = Label("")
 
 		config.av.autores_preview.value = False
@@ -477,11 +476,10 @@ class AudioSetup(Screen, ConfigListScreen):
 			{
 				"cancel": self.keyCancel,
 				"save": self.apply,
-				"menu": self.closeRecursive,
 			}, -2)
 
 		self["key_red"] = StaticText(_("Cancel"))
-		self["key_green"] = StaticText(_("OK"))
+		self["key_green"] = StaticText(_("Save"))
 		self["description"] = Label("")
 
 		self.createSetup()
