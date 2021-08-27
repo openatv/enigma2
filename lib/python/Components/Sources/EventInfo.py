@@ -87,6 +87,7 @@ class EventInfo(PerServiceBase, Source, object):
 			{
 				iPlayableService.evStart: self.gotEvent,
 				iPlayableService.evUpdatedEventInfo: self.gotEvent,
+				iPlayableService.evUpdatedInfo: self.gotEvent,
 				iPlayableService.evEnd: self.gotEvent
 			}, with_event=True)
 		self.now_or_next = now_or_next
