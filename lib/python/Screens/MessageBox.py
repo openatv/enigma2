@@ -204,7 +204,7 @@ class MessageBox(Screen, HelpableScreen):
 			for l in self["list"].list:
 				# print "[MessageBox] DEBUG: (cancel) '%s' -> '%s'" % (str(l[0]), str(l[1]))
 				# Should we be looking at the second element to get the boolean value rather than the word?
-				if l[0].lower() == _('no') or l[0].lower() == _('false'):
+				if l[0].lower() == _('No').lower() or l[0].lower() == _('False').lower():
 					if len(l) > 2:
 						l[2](None)
 					else:
@@ -236,7 +236,7 @@ class MessageBox(Screen, HelpableScreen):
 			for l in self["list"].list:
 				# print "[MessageBox] DEBUG: (cancel) '%s' -> '%s'" % (str(l[0]), str(l[1]))
 				# Should we be looking at the second element to get the boolean value rather than the word?
-				if l[0].lower() == _('yes') or l[0].lower() == _('true'):
+				if l[0].lower() == _('Yes').lower() or l[0].lower() == _('True').lower():
 					if len(l) > 2:
 						self.goEntry(l)
 					else:
