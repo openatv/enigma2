@@ -389,7 +389,7 @@ class ConfigAction(ConfigElement):
 # Several customized versions exist for different descriptions.
 #
 class ConfigBoolean(ConfigElement):
-	def __init__(self, default=False, descriptions={False: _("false"), True: _("true")}, graphic=True):
+	def __init__(self, default=False, descriptions={False: _("False"), True: _("True")}, graphic=True):
 		ConfigElement.__init__(self)
 		self.value = self.last_value = self.default = default
 		self.descriptions = descriptions
@@ -442,17 +442,17 @@ class ConfigBoolean(ConfigElement):
 
 class ConfigEnableDisable(ConfigBoolean):
 	def __init__(self, default=False):
-		ConfigBoolean.__init__(self, default=default, descriptions={False: _("disable"), True: _("enable")})
+		ConfigBoolean.__init__(self, default=default, descriptions={False: _("Disable"), True: _("Enable")})
 
 
 class ConfigOnOff(ConfigBoolean):
 	def __init__(self, default=False):
-		ConfigBoolean.__init__(self, default=default, descriptions={False: _("off"), True: _("on")})
+		ConfigBoolean.__init__(self, default=default, descriptions={False: _("Off"), True: _("On")})
 
 
 class ConfigYesNo(ConfigBoolean):
 	def __init__(self, default=False):
-		ConfigBoolean.__init__(self, default=default, descriptions={False: _("no"), True: _("yes")})
+		ConfigBoolean.__init__(self, default=default, descriptions={False: _("No"), True: _("Yes")})
 
 
 # This is the control, and base class, for date and time settings.

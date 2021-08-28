@@ -619,7 +619,7 @@ class AtileHDScreens(Screen):
 			print('self["title"] was not found in skin')
 
 		self["key_red"] = StaticText(_("Exit"))
-		self["key_green"] = StaticText(_("on"))
+		self["key_green"] = StaticText(_("On"))
 
 		self["Picture"] = Pixmap()
 
@@ -657,9 +657,9 @@ class AtileHDScreens(Screen):
 		if sel is not None:
 			self.setPicture(sel[0])
 			if sel[2] == self.enabled_pic:
-				self["key_green"].setText(_("off"))
+				self["key_green"].setText(_("Off"))
 			elif sel[2] == self.disabled_pic:
-				self["key_green"].setText(_("on"))
+				self["key_green"].setText(_("On"))
 
 	def createMenuList(self):
 		chdir(self.skin_base_dir)
