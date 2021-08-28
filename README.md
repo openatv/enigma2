@@ -7,7 +7,7 @@
 
 ## Our buildserver is currently running on: ##
 
-> Ubuntu 20.04.2 LTS (Kernel 5.4.0) 64 Bit Server OS
+> Ubuntu 20.04.3 LTS (Kernel 5.4.0) 64 Bit Server OS
 
 ## minimum hardware requirement : ##
 
