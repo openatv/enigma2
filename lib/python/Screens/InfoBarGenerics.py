@@ -2502,7 +2502,7 @@ class InfoBarSeek:
 			self.session.openWithCallback(self.fwdSeekTo, MinuteInput, title=_("Skip forward (min)"))
 
 	def fwdSeekTo(self, minutes):
-		if minutes is not None:
+		if minutes:
 			self.doSeekRelative(min(9999, minutes) * 60 * 90000)
 
 	def seekBackSeekbar(self, fwd=False):
@@ -2512,7 +2512,7 @@ class InfoBarSeek:
 			self.session.openWithCallback(self.rwdSeekTo, MinuteInput, title=_("Skip back (min)"))
 
 	def rwdSeekTo(self, minutes):
-		if minutes is not None:
+		if minutes:
 			self.doSeekRelative(-min(9999, minutes) * 60 * 90000)
 
 	def checkSkipShowHideLock(self):
