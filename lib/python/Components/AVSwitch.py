@@ -556,7 +556,7 @@ def InitAVSwitch():
 	config.av.autores_2160p24 = ConfigSelection(choices={"2160p24": _("2160p 24Hz"), "2160p25": _("2160p 25Hz"), "2160p30": _("2160p 30Hz")}, default="2160p24")
 	config.av.autores_2160p25 = ConfigSelection(choices={"2160p25": _("2160p 25Hz"), "2160p50": _("2160p 50Hz")}, default="2160p25")
 	config.av.autores_2160p30 = ConfigSelection(choices={"2160p30": _("2160p 30Hz"), "2160p60": _("2160p 60Hz")}, default="2160p30")
-	config.av.smart1080p = ConfigSelection(choices={"false": _("off"), "true": _("1080p50: 24p/50p/60p"), "2160p50": _("2160p50: 24p/50p/60p"), "1080i50": _("1080i50: 24p/50i/60i"), "720p50": _("720p50: 24p/50p/60p")}, default="false")
+	config.av.smart1080p = ConfigSelection(choices={"false": _("Off"), "true": _("1080p50: 24p/50p/60p"), "2160p50": _("2160p50: 24p/50p/60p"), "1080i50": _("1080i50: 24p/50i/60i"), "720p50": _("720p50: 24p/50p/60p")}, default="false")
 	config.av.colorformat = ConfigSelection(choices=colorformat_choices, default="rgb")
 	config.av.aspectratio = ConfigSelection(choices={
 			"4_3_letterbox": _("4:3 Letterbox"),
@@ -973,7 +973,7 @@ def InitAVSwitch():
 			f = open("/proc/stb/audio/3d_surround", "w")
 			f.write(configElement.value)
 			f.close()
-		choice_list = [("none", _("off")), ("hdmi", _("HDMI")), ("spdif", _("SPDIF")), ("dac", _("DAC"))]
+		choice_list = [("none", _("Off")), ("hdmi", _("HDMI")), ("spdif", _("SPDIF")), ("dac", _("DAC"))]
 		config.av.surround_3d = ConfigSelection(choices=choice_list, default="none")
 		config.av.surround_3d.addNotifier(set3DSurround)
 	else:
@@ -1016,7 +1016,7 @@ def InitAVSwitch():
 			f = open("/proc/stb/audio/avl", "w")
 			f.write(configElement.value)
 			f.close()
-		choice_list = [("none", _("off")), ("hdmi", _("HDMI")), ("spdif", _("SPDIF")), ("dac", _("DAC"))]
+		choice_list = [("none", _("Off")), ("hdmi", _("HDMI")), ("spdif", _("SPDIF")), ("dac", _("DAC"))]
 		config.av.autovolume = ConfigSelection(choices=choice_list, default="none")
 		config.av.autovolume.addNotifier(setAutoVolume)
 	else:
@@ -1215,7 +1215,7 @@ def InitAVSwitch():
 		return (choicesx, defaultx)
 
 	if os.path.exists("/proc/stb/audio/aac_transcode_choices"):
-		can_aactranscode = [("off", _("off")), ("ac3", _("AC3")), ("dts", _("DTS"))]
+		can_aactranscode = [("off", _("Off")), ("ac3", _("AC3")), ("dts", _("DTS"))]
 		default = "off"
 		f = "/proc/stb/audio/aac_transcode_choices"
 		(can_aactranscode, default) = read_choices(f, default)
@@ -1248,7 +1248,7 @@ def InitAVSwitch():
 			f = open("/proc/stb/audio/btaudio", "w")
 			f.write(configElement.value)
 			f.close()
-		choice_list = [("off", _("off")), ("on", _("on"))]
+		choice_list = [("off", _("Off")), ("on", _("On"))]
 		config.av.btaudio = ConfigSelection(choices=choice_list, default="off")
 		config.av.btaudio.addNotifier(setBTAudio)
 	else:

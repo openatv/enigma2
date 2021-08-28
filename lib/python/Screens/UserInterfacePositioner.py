@@ -535,7 +535,7 @@ class UserInterfacePositioner(Screen, ConfigListScreen):
 		configfile.save()
 		self.close()
 
-
+# FIXME Can be removed
 class OSD3DSetupScreen(Screen, ConfigListScreen):
 	def __init__(self, session):
 		Screen.__init__(self, session)

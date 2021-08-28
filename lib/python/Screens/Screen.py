@@ -294,7 +294,7 @@ class Screen(dict):
 
 class ScreenSummary(Screen):
 	skin = """
-	<screen position="fill" flags="wfNoBorder">
+	<screen name="ScreenSummary" position="fill" flags="wfNoBorder">
 		<widget source="global.CurrentTime" render="Label" position="0,0" size="e,20" font="Regular;16" halign="center" valign="center">
 			<convert type="ClockToText">WithSeconds</convert>
 		</widget>
@@ -304,11 +304,11 @@ class ScreenSummary(Screen):
 	def __init__(self, session, parent):
 		Screen.__init__(self, session, parent=parent)
 		self["Title"] = StaticText(parent.getTitle())
-		names = parent.skinName
-		if not isinstance(names, list):
-			names = [names]
-		self.skinName = ["%sSummary" % x for x in names]
+		skinNames = parent.skinName
+		if not isinstance(skinNames, list):
+			skinNames = [skinNames]
+		self.skinName = ["%sSummary" % x for x in skinNames]
 		self.skinName.append("ScreenSummary")
-		self.skinName += ["%s_summary" % x for x in names]  # DEBUG: Old summary screens currently kept for compatibility.
+		self.skinName += ["%s_summary" % x for x in skinNames]  # DEBUG: Old summary screens currently kept for compatibility.
 		self.skinName.append("SimpleSummary")  # DEBUG: Old summary screens currently kept for compatibility.
 		self.skin = parent.__dict__.get("skinSummary", self.skin)  # If parent has a "skinSummary" defined, use that as default.

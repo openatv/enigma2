@@ -67,7 +67,7 @@ def InitUsageConfig():
 	config.usage.showdish = ConfigSelection(default="flashing", choices=[("flashing", _("Flashing")), ("normal", _("Not Flashing")), ("off", _("Off"))])
 	config.usage.multibouquet = ConfigYesNo(default=True)
 	config.usage.maxchannelnumlen = ConfigSelection(default="4", choices=[("1", _("1")), ("2", _("2")), ("3", _("3")), ("4", _("4")), ("5", _("5"))])
-	config.usage.numzaptimeoutmode = ConfigSelection(default="standard", choices=[("standard", _("Standard")), ("userdefined", _("User defined")), ("off", _("off"))])
+	config.usage.numzaptimeoutmode = ConfigSelection(default="standard", choices=[("standard", _("Standard")), ("userdefined", _("User defined")), ("off", _("Off"))])
 	config.usage.numzaptimeout1 = ConfigSlider(default=3000, increment=250, limits=(500, 5000))
 	config.usage.numzaptimeout2 = ConfigSlider(default=1000, increment=250, limits=(0, 5000))
 	config.usage.numzappicon = ConfigYesNo(default=False)
@@ -612,7 +612,7 @@ def InitUsageConfig():
 		("30000", "30 " + _("seconds")),
 		("60000", "1 " + _("minute")),
 		("300000", "5 " + _("minutes")),
-		("noscrolling", _("off"))])
+		("noscrolling", _("Off"))])
 	config.usage.lcd_scroll_speed = ConfigSelection(default="300", choices=[
 		("500", _("slow")),
 		("300", _("normal")),
