@@ -6,7 +6,7 @@ from Components.UsageConfig import preferredPath
 from Screens.LocationBox import defaultInhibitDirs, MovieLocationBox
 from Screens.MessageBox import MessageBox
 from Screens.Setup import Setup
-from Tools.Directories import fileAccess, hasHardLinks
+from Tools.Directories import fileAccess
 
 
 class RecordingSettings(Setup):
@@ -22,11 +22,10 @@ class RecordingSettings(Setup):
 		self.buildChoices("DefaultPath", config.usage.default_path, None)
 		self.buildChoices("TimerPath", config.usage.timer_path, None)
 		self.buildChoices("InstantPath", config.usage.instantrec_path, None)
-		self.buildChoices("AutoPath", config.usage.autorecord_path, None)
 		Setup.__init__(self, session=session, setup="Recording")
 		self.greenText = self["key_green"].text
 		self.errorItem = -1
-		if self.getCurrentItem() in (config.usage.default_path, config.usage.timer_path, config.usage.instantrec_path, config.usage.autorecord_path):
+		if self.getCurrentItem() in (config.usage.default_path, config.usage.timer_path, config.usage.instantrec_path):
 			self.pathStatus(self.getCurrentValue())
 
 	def selectionChanged(self):
@@ -36,13 +35,13 @@ class RecordingSettings(Setup):
 			self["config"].setCurrentIndex(self.errorItem)
 
 	def changedEntry(self):
-		if self.getCurrentItem() in (config.usage.default_path, config.usage.timer_path, config.usage.instantrec_path, config.usage.autorecord_path):
+		if self.getCurrentItem() in (config.usage.default_path, config.usage.timer_path, config.usage.instantrec_path):
 			self.pathStatus(self.getCurrentValue())
 		Setup.changedEntry(self)
 
 	def keySelect(self):
 		item = self.getCurrentItem()
-		if item in (config.usage.default_path, config.usage.timer_path, config.usage.instantrec_path, config.usage.autorecord_path):
+		if item in (config.usage.default_path, config.usage.timer_path, config.usage.instantrec_path):
 			# print("[Recordings] DEBUG: '%s', '%s', '%s'." % (self.getCurrentEntry(), item.value, preferredPath(item.value)))
 			self.session.openWithCallback(self.pathSelect, MovieLocationBox, self.getCurrentEntry(), preferredPath(item.value))
 		else:
@@ -85,10 +84,6 @@ class RecordingSettings(Setup):
 				self.buildChoices("InstantPath", config.usage.instantrec_path, path)
 			else:
 				self.buildChoices("InstantPath", config.usage.instantrec_path, None)
-			if item is config.usage.autorecord_path:
-				self.buildChoices("AutoPath", config.usage.autorecord_path, path)
-			else:
-				self.buildChoices("AutoPath", config.usage.autorecord_path, None)
 		self["config"].invalidateCurrent()
 		self.changedEntry()
 
@@ -108,10 +103,6 @@ class RecordingSettings(Setup):
 		elif not fileAccess(path, "w"):
 			self.errorItem = self["config"].getCurrentIndex()
 			footnote = _("Directory '%s' not writable!") % path
-			green = ""
-		elif self.getCurrentItem() is config.usage.autorecord_path and not hasHardLinks(path): 
-			self.errorItem = self["config"].getCurrentIndex()
-			footnote = _("Directory '%s' can't be linked to recordings!") % path
 			green = ""
 		else:
 			self.errorItem = -1

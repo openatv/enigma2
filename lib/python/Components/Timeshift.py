@@ -148,7 +148,7 @@ class InfoBarTimeshift:
 
 		# Init PTS Delay-Timer
 		self.pts_delay_timer = eTimer()
-		self.pts_delay_timer.callback.append(self.autostartAutorecordTimeshift)
+		self.pts_delay_timer.callback.append(self.autostartPermanentTimeshift)
 
 		# Init PTS MergeRecords-Timer
 		self.pts_mergeRecords_timer = eTimer()
@@ -370,7 +370,7 @@ class InfoBarTimeshift:
 			if self.save_current_timeshift and self.timeshiftEnabled():
 				if config.recording.margin_after.value > 0 and len(self.recording) == 0:
 					self.SaveTimeshift(mergelater=True)
-					recording = RecordTimerEntry(ServiceReference(self.session.nav.getCurrentlyPlayingServiceOrGroup()), time(), time() + (config.recording.margin_after.value * 60), self.pts_curevent_name, self.pts_curevent_description, self.pts_curevent_eventid, afterEvent=AFTEREVENT.AUTO, justplay=False, always_zap=False, dirname=config.usage.autorecord_path.value)
+					recording = RecordTimerEntry(ServiceReference(self.session.nav.getCurrentlyPlayingServiceOrGroup()), time(), time() + (config.recording.margin_after.value * 60), self.pts_curevent_name, self.pts_curevent_description, self.pts_curevent_eventid, afterEvent=AFTEREVENT.AUTO, justplay=False, always_zap=False, dirname=config.usage.default_path.value)
 					recording.dontSave = True
 					self.session.nav.RecordTimer.record(recording)
 					self.recording.append(recording)
@@ -434,7 +434,7 @@ class InfoBarTimeshift:
 			print("[TIMESHIFT] - hu, timeshift already enabled?")
 			self.activateTimeshiftEndAndPause()
 		else:
-			self.activateAutorecordTimeshift()
+			self.activatePermanentTimeshift()
 			self.activateTimeshiftEndAndPause()
 
 	def stopTimeshift(self):
@@ -571,7 +571,7 @@ class InfoBarTimeshift:
 			if filename.startswith("timeshift.") and not filename.endswith(".del") and not filename.endswith(".copy"):
 				self.BgFileEraser.erase("%s%s" % (config.usage.timeshift_path.value, filename))
 
-	def autostartAutorecordTimeshift(self):
+	def autostartPermanentTimeshift(self):
 		ts = self.getTimeshift()
 		if ts is None:
 			print('[TIMESHIFT] - tune lock failed, so could not start.')
@@ -581,9 +581,9 @@ class InfoBarTimeshift:
 			self.pts_delay_timer.stop()
 
 		if (int(config.timeshift.startdelay.value) and not self.timeshiftEnabled()) or self.event_changed:
-			self.activateAutorecordTimeshift()
+			self.activatePermanentTimeshift()
 
-	def activateAutorecordTimeshift(self):
+	def activatePermanentTimeshift(self):
 		self.createTimeshiftFolder()
 		if self.pts_eventcount == 0: #only cleanup folder after switching channels, not when a new event starts, to allow saving old events from timeshift buffer
 			self.ptsCleanTimeshiftFolder(justZapped=True)  #remove all timeshift files
@@ -662,7 +662,7 @@ class InfoBarTimeshift:
 				print("[TIMESHIFT] - Failed to create %s !!" % timeshiftdir)
 
 	def restartTimeshift(self):
-		self.activateAutorecordTimeshift()
+		self.activatePermanentTimeshift()
 		Notifications.AddNotification(MessageBox, _("[TimeShift] Restarting Timeshift!"), MessageBox.TYPE_INFO, timeout=5)
 
 	def saveTimeshiftEventPopup(self):
@@ -772,7 +772,7 @@ class InfoBarTimeshift:
 					if config.recording.ascii_filenames.value:
 						ptsfilename = ASCIItranslit.legacyEncode(ptsfilename)
 
-					fullname = getRecordingFilename(ptsfilename, config.usage.autorecord_path.value)
+					fullname = getRecordingFilename(ptsfilename, config.usage.default_path.value)
 					os.link("%s%s" % (config.usage.timeshift_path.value, savefilename), "%s.ts" % fullname)
 					metafile = open("%s.ts.meta" % fullname, "w")
 					metafile.write("%s\n%s\n%s\n%i\n%s" % (self.pts_curevent_servicerefname, self.pts_curevent_name.replace("\n", ""), self.pts_curevent_description.replace("\n", ""), int(self.pts_starttime), metamergestring))
@@ -809,7 +809,7 @@ class InfoBarTimeshift:
 					if config.recording.ascii_filenames.value:
 						ptsfilename = ASCIItranslit.legacyEncode(ptsfilename)
 
-					fullname = getRecordingFilename(ptsfilename, config.usage.autorecord_path.value)
+					fullname = getRecordingFilename(ptsfilename, config.usage.default_path.value)
 					os.link("%s%s" % (config.usage.timeshift_path.value, timeshiftfile), "%s.ts" % fullname)
 					os.link("%s%s.meta" % (config.usage.timeshift_path.value, timeshiftfile), "%s.ts.meta" % fullname)
 					if os.path.exists("%s%s.eit" % (config.usage.timeshift_path.value, timeshiftfile)):
@@ -833,7 +833,7 @@ class InfoBarTimeshift:
 			# Let's try to copy the file in background now! This might take a while ...
 			if not timeshift_saved:
 				try:
-					stat = os.statvfs(config.usage.autorecord_path.value)
+					stat = os.statvfs(config.usage.default_path.value)
 					freespace = stat.f_bfree / 1000 * stat.f_bsize / 1000
 					randomint = randint(1, 999)
 
@@ -887,7 +887,7 @@ class InfoBarTimeshift:
 					else:
 						timeshift_saved = False
 						timeshift_saveerror1 = ""
-						timeshift_saveerror2 = _("Not enough free Diskspace!\n\nFilesize: %sMB\nFree Space: %sMB\nPath: %s" % (filesize, freespace, config.usage.autorecord_path.value))
+						timeshift_saveerror2 = _("Not enough free Diskspace!\n\nFilesize: %sMB\nFree Space: %sMB\nPath: %s" % (filesize, freespace, config.usage.default_path.value))
 
 				except Exception as errormsg:
 					timeshift_saved = False
@@ -1178,21 +1178,8 @@ class InfoBarTimeshift:
 				# Create EIT File
 				self.ptsCreateEITFile("%spts_livebuffer_%s" % (config.usage.timeshift_path.value, self.pts_eventcount))
 
-				# Autorecord
-				# removed from settings
-				#if config.timeshift.autorecord.value:
-				#	try:
-				#		fullname = getRecordingFilename("%s - %s - %s" % (strftime("%Y%m%d %H%M", localtime(self.pts_starttime)), self.pts_curevent_station, self.pts_curevent_name), config.usage.autorecord_path.value)
-				#		os.link("%s%s" % (config.usage.timeshift_path.value, filename), "%s.ts" % fullname)
-				#		# Create a Meta File
-				#		metafile = open("%s.ts.meta" % fullname, "w")
-				#		metafile.write("%s\n%s\n%s\n%i\nautosaved\n" % (self.pts_curevent_servicerefname, self.pts_curevent_name.replace("\n", ""), self.pts_curevent_description.replace("\n", ""), int(self.pts_starttime)))
-				#		metafile.close()
-				#	except Exception as errormsg:
-				#		print("[TIMESHIFT] - %s" % errormsg)
-
 	def ptsRecordCurrentEvent(self):
-		recording = RecordTimerEntry(ServiceReference(self.session.nav.getCurrentlyPlayingServiceOrGroup()), time(), self.pts_curevent_end, self.pts_curevent_name, self.pts_curevent_description, self.pts_curevent_eventid, afterEvent=AFTEREVENT.AUTO, justplay=False, always_zap=False, dirname=config.usage.autorecord_path.value)
+		recording = RecordTimerEntry(ServiceReference(self.session.nav.getCurrentlyPlayingServiceOrGroup()), time(), self.pts_curevent_end, self.pts_curevent_name, self.pts_curevent_description, self.pts_curevent_eventid, afterEvent=AFTEREVENT.AUTO, justplay=False, always_zap=False, dirname=config.usage.default_path.value)
 		recording.dontSave = True
 		self.session.nav.RecordTimer.record(recording)
 		self.recording.append(recording)
@@ -1208,7 +1195,7 @@ class InfoBarTimeshift:
 		ptsgetnextfile = False
 		ptsfilemerged = False
 
-		filelist = os.listdir(config.usage.autorecord_path.value)
+		filelist = os.listdir(config.usage.default_path.value)
 
 		if filelist is not None:
 			filelist.sort()
@@ -1216,7 +1203,7 @@ class InfoBarTimeshift:
 		for filename in filelist:
 			if filename.endswith(".meta"):
 				# Get Event Info from meta file
-				readmetafile = open("%s%s" % (config.usage.autorecord_path.value, filename), "r")
+				readmetafile = open("%s%s" % (config.usage.default_path.value, filename), "r")
 				servicerefname = readmetafile.readline()[0:-1]
 				eventname = readmetafile.readline()[0:-1]
 				eventtitle = readmetafile.readline()[0:-1]
@@ -1230,17 +1217,17 @@ class InfoBarTimeshift:
 
 					if ASCIItranslit.legacyEncode(eventname) == ASCIItranslit.legacyEncode(ptsmergeeventname):
 						# Copy EIT File
-						if fileExists("%s%s.eit" % (config.usage.autorecord_path.value, ptsmergeSRC[0:-3])):
-							copyfile("%s%s.eit" % (config.usage.autorecord_path.value, ptsmergeSRC[0:-3]), "%s%s.eit" % (config.usage.autorecord_path.value, ptsmergeDEST[0:-3]))
+						if fileExists("%s%s.eit" % (config.usage.default_path.value, ptsmergeSRC[0:-3])):
+							copyfile("%s%s.eit" % (config.usage.default_path.value, ptsmergeSRC[0:-3]), "%s%s.eit" % (config.usage.default_path.value, ptsmergeDEST[0:-3]))
 
 						# Delete AP and SC Files
-						if os.path.exists("%s%s.ap" % (config.usage.autorecord_path.value, ptsmergeDEST)):
-							self.BgFileEraser.erase("%s%s.ap" % (config.usage.autorecord_path.value, ptsmergeDEST))
-						if os.path.exists("%s%s.sc" % (config.usage.autorecord_path.value, ptsmergeDEST)):
-							self.BgFileEraser.erase("%s%s.sc" % (config.usage.autorecord_path.value, ptsmergeDEST))
+						if os.path.exists("%s%s.ap" % (config.usage.default_path.value, ptsmergeDEST)):
+							self.BgFileEraser.erase("%s%s.ap" % (config.usage.default_path.value, ptsmergeDEST))
+						if os.path.exists("%s%s.sc" % (config.usage.default_path.value, ptsmergeDEST)):
+							self.BgFileEraser.erase("%s%s.sc" % (config.usage.default_path.value, ptsmergeDEST))
 
 						# Add Merge Job to JobManager
-						JobManager.AddJob(MergeTimeshiftJob(self, "cat \"%s%s\" >> \"%s%s\"" % (config.usage.autorecord_path.value, ptsmergeSRC, config.usage.autorecord_path.value, ptsmergeDEST), ptsmergeSRC, ptsmergeDEST, eventname))
+						JobManager.AddJob(MergeTimeshiftJob(self, "cat \"%s%s\" >> \"%s%s\"" % (config.usage.default_path.value, ptsmergeSRC, config.usage.default_path.value, ptsmergeDEST), ptsmergeSRC, ptsmergeDEST, eventname))
 						config.timeshift.isRecording.value = True
 						ptsfilemerged = True
 					else:
@@ -1253,14 +1240,14 @@ class InfoBarTimeshift:
 					ptsfilemerged = False
 
 					# If still recording or transfering, try again later ...
-					if fileExists("%s%s" % (config.usage.autorecord_path.value, ptsmergeDEST)):
-						statinfo = os.stat("%s%s" % (config.usage.autorecord_path.value, ptsmergeDEST))
+					if fileExists("%s%s" % (config.usage.default_path.value, ptsmergeDEST)):
+						statinfo = os.stat("%s%s" % (config.usage.default_path.value, ptsmergeDEST))
 						if statinfo.st_mtime > (time() - 10.0):
 							self.pts_mergeRecords_timer.start(120000, True)
 							return
 
 					# Rewrite Meta File to get rid of pts_merge tag
-					metafile = open("%s%s.meta" % (config.usage.autorecord_path.value, ptsmergeDEST), "w")
+					metafile = open("%s%s.meta" % (config.usage.default_path.value, ptsmergeDEST), "w")
 					metafile.write("%s\n%s\n%s\n%i\n" % (servicerefname, eventname.replace("\n", ""), eventtitle.replace("\n", ""), int(eventtime)))
 					metafile.close()
 
@@ -1342,10 +1329,10 @@ class InfoBarTimeshift:
 		self.ptsFrontpanelActions("stop")
 		config.timeshift.isRecording.value = False
 
-		filelist = os.listdir(config.usage.autorecord_path.value)
+		filelist = os.listdir(config.usage.default_path.value)
 		for filename in filelist:
 			if filename.endswith(".pts.del"):
-				srcfile = config.usage.autorecord_path.value + "/" + filename[0:-8] + ".ts"
+				srcfile = config.usage.default_path.value + "/" + filename[0:-8] + ".ts"
 				self.BgFileEraser.erase("%s" % srcfile)
 				self.BgFileEraser.erase("%s.ap" % srcfile)
 				self.BgFileEraser.erase("%s.sc" % srcfile)
@@ -1569,7 +1556,7 @@ class InfoBarTimeshift:
 		if fileExists(config.usage.timeshift_path.value, 'w'):
 			return True
 		else:
-			# Notifications.AddNotification(MessageBox, _("Could not activate Autorecord-Timeshift!\nTimeshift-Path does not exist"), MessageBox.TYPE_ERROR, timeout=15)
+			# Notifications.AddNotification(MessageBox, _("Could not activate Permanent-Timeshift!\nTimeshift-Path does not exist"), MessageBox.TYPE_ERROR, timeout=15)
 			if self.pts_delay_timer.isActive():
 				self.pts_delay_timer.stop()
 			if self.pts_cleanUp_timer.isActive():
@@ -1600,7 +1587,7 @@ class InfoBarTimeshift:
 		if timer.state == TimerEntry.StateEnded:
 			# Restart Timeshift when all records stopped
 			if not self.timeshiftEnabled() and not self.pts_record_running:
-				self.autostartAutorecordTimeshift()
+				self.autostartPermanentTimeshift()
 			if self.pts_mergeRecords_timer.isActive():
 				# Restart Merge-Timer when all records stopped
 				self.pts_mergeRecords_timer.stop()

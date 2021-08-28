@@ -322,16 +322,6 @@ def InitUsageConfig():
 			config.usage.instantrec_path.value = savedValue
 	config.usage.instantrec_path.save()
 
-	config.usage.autorecord_path = ConfigSelection(default="<default>", choices=choiceList)
-	config.usage.autorecord_path.load()
-	if config.usage.autorecord_path.saved_value:
-		savedValue = config.usage.instantrec_path.saved_value if config.usage.autorecord_path.saved_value.startswith("<") else os.path.join(config.usage.autorecord_path.saved_value, "")
-		if savedValue and savedValue not in choiceList:
-			config.usage.autorecord_path.setChoices(choiceList + [(savedValue, savedValue)], default="<default>")
-			config.usage.autorecord_path.value = savedValue
-	config.usage.autorecord_path.save()
-	config.usage.allowed_autorecord_paths = ConfigLocations(default=[defaultValue])
-
 	defaultValue = resolveFilename(SCOPE_TIMESHIFT)
 	if not os.path.exists(defaultValue):
 		try:
@@ -1131,7 +1121,6 @@ def InitUsageConfig():
 	config.timeshift.showinfobar = ConfigYesNo(default=True)
 	config.timeshift.stopwhilerecording = ConfigYesNo(default=False)
 	config.timeshift.favoriteSaveAction = ConfigSelection([("askuser", _("Ask user")), ("savetimeshift", _("Save and stop")), ("savetimeshiftandrecord", _("Save and record")), ("noSave", _("Don't save"))], "askuser")
-	config.timeshift.autorecord = ConfigYesNo(default=False)
 	config.timeshift.isRecording = NoSave(ConfigYesNo(default=False))
 	config.timeshift.timeshiftMaxHours = ConfigSelectionNumber(min=1, max=999, stepwidth=1, default=12, wraparound=True)
 	config.timeshift.timeshiftMaxEvents = ConfigSelectionNumber(min=1, max=999, stepwidth=1, default=12, wraparound=True)

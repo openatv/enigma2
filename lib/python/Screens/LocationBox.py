@@ -536,29 +536,3 @@ class TimeshiftLocationBox(LocationBox):
 			config.usage.timeshift_path.value = self.getPreferredFolder()
 			config.usage.timeshift_path.save()
 			LocationBox.selectConfirmed(self, ret)
-
-
-class AutorecordLocationBox(LocationBox):
-	def __init__(self, session):
-		LocationBox.__init__(
-				self,
-				session,
-				text=_("Where to save temporary timeshift recordings?"),
-				currDir=config.usage.autorecord_path.value,
-				bookmarks=config.usage.allowed_autorecord_paths,
-				autoAdd=True,
-				editDir=True,
-				inhibitDirs=defaultInhibitDirs,
-				minFree=1024 # the same requirement is hardcoded in servicedvb.cpp
-		)
-		self.skinName = "LocationBox"
-
-	def cancel(self):
-		config.usage.autorecord_path.cancel()
-		LocationBox.cancel(self)
-
-	def selectConfirmed(self, ret):
-		if ret:
-			config.usage.autorecord_path.setValue(self.getPreferredFolder())
-			config.usage.autorecord_path.save()
-			LocationBox.selectConfirmed(self, ret)

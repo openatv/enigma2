@@ -56,8 +56,8 @@ class AddMergeTimeshiftTask(Task):
 		Task.__init__(self, job, eventname)
 		self.toolbox = job.toolbox
 		self.setCmdline(cmdline)
-		self.srcfile = config.usage.autorecord_path.value + srcfile
-		self.destfile = config.usage.autorecord_path.value + destfile
+		self.srcfile = config.usage.default_path.value + srcfile
+		self.destfile = config.usage.default_path.value + destfile
 
 		self.ProgressTimer = eTimer()
 		self.ProgressTimer.callback.append(self.ProgressUpdate)
