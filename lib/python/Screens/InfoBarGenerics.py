@@ -2503,7 +2503,7 @@ class InfoBarSeek:
 
 	def fwdSeekTo(self, minutes):
 		if minutes is not None:
-			self.doSeekRelative(minutes * 60 * 90000)
+			self.doSeekRelative(min(9999, minutes) * 60 * 90000)
 
 	def seekBackSeekbar(self, fwd=False):
 		if not config.seek.baractivation.value == "leftright":
@@ -2512,9 +2512,8 @@ class InfoBarSeek:
 			self.session.openWithCallback(self.rwdSeekTo, MinuteInput, title=_("Skip back (min)"))
 
 	def rwdSeekTo(self, minutes):
-#		print "[InfoBarGenerics] rwdSeekTo"
 		if minutes is not None:
-			self.doSeekRelative(-minutes * 60 * 90000)
+			self.doSeekRelative(-min(9999, minutes) * 60 * 90000)
 
 	def checkSkipShowHideLock(self):
 		if self.seekstate in (self.SEEK_STATE_PLAY, self.SEEK_STATE_EOF):
