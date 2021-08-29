@@ -260,7 +260,7 @@ def InitUsageConfig():
 	config.usage.sort_extensionslist = ConfigYesNo(default=False)
 	config.usage.show_restart_network_extensionslist = ConfigYesNo(default=True)
 	config.usage.movieplayer_pvrstate = ConfigYesNo(default=False)
-	config.usage.rc_model = ConfigSelection(default=DefaultRemote, choices=RemoteChoices)
+#	config.usage.rc_model = ConfigSelection(default=DefaultRemote, choices=RemoteChoices)
 
 	choicelist = []
 	for i in (10, 30):
