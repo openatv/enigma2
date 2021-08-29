@@ -221,6 +221,11 @@ class ConfigListScreen:
 			"showVirtualKeyboard": (self.keyText, _("Display the virtual keyboard for data entry"))
 		}, prio=1, description=_("Common Setup Actions"))
 		self["virtualKeyBoardActions"].setEnabled(False)
+		# REGRESSION PATCH: Legacy actions for older plugins (next 4 lines):
+		self["config_actions"] = DummyActions()
+		self["config_actions"].setEnabled = self.dummyConfigActions
+		self["VirtualKB"] = DummyActions()
+		self["VirtualKB"].setEnabled = self.dummyVKBActions
 		self["config"] = ConfigList(list, session=session)
 		self.setCancelMessage(None)
 		self.setRestartMessage(None)
@@ -456,3 +461,19 @@ class ConfigListScreen:
 
 	def run(self):  # Allow ConfigList based screens to be processed from the Wizard.
 		self.keySave()
+
+	def dummyConfigActions(self, value):
+		self["configActions"].setEnabled(value)
+		self["navigationActions"].setEnabled(value)
+		self["menuConfigActions"].setEnabled(value)
+		self["charConfigActions"].setEnabled(value)
+		self["editConfigActions"].setEnabled(value)
+		self["eraseConfigActions"].setEnabled(value)
+
+	def dummyVKBActions(self, value):
+		self["virtualKeyBoardActions"].setEnabled(value)
+
+
+class DummyActions:
+	def setEnabled(self, enabled):
+		pass
