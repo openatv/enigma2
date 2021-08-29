@@ -8,12 +8,11 @@ from Components.International import international
 class Language:
 	def __init__(self):
 		self.lang = {}
-		if international.packageDirectories:
-			for package in international.packageDirectories:
-				locales = international.packageToLocales(package)
-				if len(locales):
-					language, country = international.splitLocale(locales[0])
-					self.lang[locales[0]] = ((international.getLanguageNative(language), language, country, international.getLanguageEncoding(language)))
+		for package in international.getPackageDirectories():
+			locales = international.packageToLocales(package)
+			if len(locales):
+				language, country = international.splitLocale(locales[0])
+				self.lang[locales[0]] = ((international.getLanguageNative(language), language, country, international.getLanguageEncoding(language)))
 
 	def InitLang(self):
 		pass

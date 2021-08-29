@@ -1776,8 +1776,9 @@ class UpdatePlugin(Screen):
 			if self.packages != 0 and self.error == 0:
 				# Check and remove previously removed/deleted languages get re-installed on updating enigma2.
 				if fileExists("/etc/enigma2/.removelang"):
-					currentLang = config.osd.language.value
-					international.removeLangs(currentLang=currentLang, excludeLangs=['de', 'en', 'fr'])
+					packages = international.getPurgablePackages(config.osd.language.value)
+					if packages:
+						international.deleteLanguagePackages(packages)
 					os_system("touch /etc/enigma2/.removelang")
 				self.restoreMetrixHD()
 			else:
