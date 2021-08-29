@@ -263,7 +263,7 @@ class UserInterfacePositioner2(Screen, ConfigListScreen):
 #		self.Console = Console()
 		self["status"] = StaticText()
 		self["key_red"] = StaticText(_("Cancel"))
-		self["key_green"] = StaticText(_("save"))
+		self["key_green"] = StaticText(_("Save"))
 		self["key_yellow"] = StaticText(_("Defaults"))
 		self["key_blue"] = StaticText()
 
@@ -405,7 +405,7 @@ class UserInterfacePositioner(Screen, ConfigListScreen):
 #		self.Console = Console()
 		self["status"] = StaticText()
 		self["key_red"] = StaticText(_("Cancel"))
-		self["key_green"] = StaticText(_("save"))
+		self["key_green"] = StaticText(_("Save"))
 		self["key_yellow"] = StaticText(_("Defaults"))
 
 		self["actions"] = ActionMap(["SetupActions", "ColorActions"],
