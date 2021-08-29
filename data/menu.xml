@@ -212,7 +212,7 @@ from Plugins.SystemPlugins.HdmiCEC.plugin import HdmiCECSetupScreen
 self.session.open(HdmiCECSetupScreen)
 </code>
 			</item>
-			<item weight="60" level="0" entryID="time_setup"><setup id="time"/></item>
+			<item weight="60" level="0" text="Time" entryID="time_setup"><screen module="Time" screen="Time" /></item>
 			<item weight="70" level="0" entryID="logs_setup"><setup id="logs" /></item>
 			<item weight="80" level="1" entryID="rfmod_setup" requires="RfModulator"><setup id="RFmod"/></item>
 			<item weight="99" level="0" text="Factory reset" entryID="factory_reset">
