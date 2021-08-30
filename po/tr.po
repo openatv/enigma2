@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Apachi70 (OpenATV)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-08-22 21:17+0000\n"
+"POT-Creation-Date: 2021-08-29 19:28+0000\n"
 "PO-Revision-Date: 2021-08-20 04:04+0000\n"
 "Last-Translator: openATV <openatv@gmail.com>\n"
 "Language-Team: Turkish <https://hosted.weblate.org/projects/openatv/"
@@ -2497,9 +2497,6 @@ msgstr "Ağ adaptör ayarları"
 msgid "Add"
 msgstr "Ekle"
 
-msgid "Add / Delete the currently highlighted locale / language"
-msgstr ""
-
 msgid "Add AutoTimer"
 msgstr "Oto-zamanlayıcı ekle"
 
@@ -3301,9 +3298,6 @@ msgstr "İstemci/Sunucu izlemesini otomatik güncelle?"
 #, fuzzy
 msgid "Automobil"
 msgstr "Otomatik"
-
-msgid "Autorecord location"
-msgstr "Autorecord konumu"
 
 msgid "Autostart"
 msgstr "Otobaşlama"
@@ -5542,10 +5536,6 @@ msgid "Default files/folders to backup"
 msgstr "Yedeklenecek varsayılan dosyalar / klasörler"
 
 #
-msgid "Default movie location"
-msgstr "Varsayılan film konumu"
-
-#
 msgid "Default settings"
 msgstr "Varsayılan ayarlar"
 
@@ -5965,6 +5955,9 @@ msgstr "Görünüm Kurulumu"
 msgid "Display and user interface"
 msgstr "Görünüm ve kullanıcı arayüzü"
 
+msgid "Display oscam information."
+msgstr ""
+
 msgid "Display selection list as a selection menu"
 msgstr ""
 
@@ -6151,6 +6144,10 @@ msgstr "DVD'yi yazmadan önce önizleme yapmak istiyor musunuz?"
 msgid "Do you want to produce this collection?"
 msgstr "Bu koleksiyonu oluşturmak istiyor musunuz?"
 
+#, python-format
+msgid "Do you want to purge all locales/languages except %s?"
+msgstr ""
+
 #
 #, python-format
 msgid "Do you want to reboot your %s %s"
@@ -6224,6 +6221,9 @@ msgstr "Bu kaydı eklemeyin"
 
 msgid "Don't ask again!"
 msgstr "Bir daha sorma!"
+
+msgid "Don't restart"
+msgstr ""
 
 msgid "Don't save"
 msgstr "Saklama"
@@ -7856,6 +7856,15 @@ msgstr "Genel"
 msgid "Genre"
 msgstr "Tür"
 
+msgid "Geolocation does not contain time zone information."
+msgstr ""
+
+msgid "Geolocation has been used to set the time zone."
+msgstr ""
+
+msgid "Geolocation is not available."
+msgstr ""
+
 msgid "Georgia"
 msgstr "Georgia"
 
@@ -8686,6 +8695,9 @@ msgstr "Image Sihirbazı"
 msgid "Immediate shutdown"
 msgstr "Hemen kapatma"
 
+msgid "Immediately restart selected devices."
+msgstr ""
+
 msgid ""
 "In order to allow you to access all the features of the IceTV smart "
 "recording service, we need to gather some basic information.\n"
@@ -8943,18 +8955,8 @@ msgid "Instant record"
 msgstr "Anlık kayıt"
 
 #
-msgid "Instant record location"
-msgstr "Anlık kayıt konumu"
-
-msgid "Instant recording location"
-msgstr "Anlık kayıtlar konumu"
-
-#
 msgid "Instant recording..."
 msgstr "Anlık Kayıt..."
-
-msgid "Instant recordings location"
-msgstr "Anlık kayıtlar konumu"
 
 msgid "Interface"
 msgstr "Arayüz"
@@ -9173,6 +9175,9 @@ msgstr "İşaretlenmiş önceki konuma atla"
 
 msgid "Jump to prime time"
 msgstr "Seçkin zamana atla"
+
+msgid "Jump to the currently active locale/language"
+msgstr ""
 
 msgid "Just change Bouquet"
 msgstr "Sadece buketi değiştir"
@@ -9406,6 +9411,17 @@ msgstr ""
 #
 msgid "Language"
 msgstr "Dil"
+
+#, python-format
+msgid "Language %s (%s) installed and selected."
+msgstr ""
+
+#, python-format
+msgid "Language %s (%s) selected."
+msgstr ""
+
+msgid "Language already selected."
+msgstr ""
 
 #
 msgid "Language selection"
@@ -9672,17 +9688,20 @@ msgid "Locale"
 msgstr "Yerel"
 
 #, python-format
-msgid "Locale %s (%s) has been installed and selected as the active locale."
+msgid "Locale %s (%s) installed and selected."
 msgstr ""
 
 #, python-format
-msgid "Locale %s (%s) has been selected as the active locale."
+msgid "Locale %s (%s) selected."
 msgstr ""
 
 msgid "Locale (Ascending)"
 msgstr ""
 
 msgid "Locale (Descending)"
+msgstr ""
+
+msgid "Locale already selected."
 msgstr ""
 
 #, fuzzy
@@ -10490,10 +10509,6 @@ msgid "Movie Player Actions"
 msgstr "Film seçimi"
 
 #
-msgid "Movie location"
-msgstr "Film konumu"
-
-#
 msgid "Movie selection"
 msgstr "Film seçimi"
 
@@ -10861,9 +10876,6 @@ msgstr "Yeni profil: "
 msgid "New program info"
 msgstr "program bigisini göster..."
 
-msgid "New timers location"
-msgstr "Yeni zamanlayıcılar konumu"
-
 #
 msgid "New version:"
 msgstr "Yeni sürüm:"
@@ -10951,10 +10963,6 @@ msgstr "Ücretsiz dizin yok"
 
 msgid "No Timeshift found to save as recording!"
 msgstr "Kayıt olarak saklanacak zaman-kaydırma bulunamadı!"
-
-#, fuzzy
-msgid "No action required."
-msgstr "Güncelleme gerekmez!"
 
 msgid "No active channel found."
 msgstr "Aktif kanal bulunamadı."
@@ -12373,14 +12381,9 @@ msgstr "Besleme durumu kontrol edilirken bekleyin."
 msgid "Please wait, Loading image."
 msgstr "Lütfen bekleyiniz, Image yükleniyor."
 
-msgid "Please wait, restarting cardserver."
-msgstr "Lütfen bekleyin, kart sunucusunu yeniden başlatın."
-
-msgid "Please wait, restarting softcam and cardserver."
-msgstr "Lütfen softcam ve cardserver'ı yeniden başlatarak bekleyin."
-
-msgid "Please wait, restarting softcam."
-msgstr "Lütfen softcam'ı yeniden başlatarak bekleyin."
+#, python-format
+msgid "Please wait, restarting %s."
+msgstr ""
 
 msgid "Please wait."
 msgstr "Lütfen bekle."
@@ -12596,9 +12599,13 @@ msgstr "Ayarları düzenlemek için OK tuşuna basın."
 msgid "Press OK to get further details for %s"
 msgstr "Hakkında daha ayrıntılı bilgi almak için OK tuşuna basın %s"
 
-#, fuzzy
-msgid "Press OK to install and use this locale."
-msgstr "Bir kanal seçmek için OK tuşuna basın."
+#, python-format
+msgid "Press OK to install and use this language.  [%s]"
+msgstr ""
+
+#, python-format
+msgid "Press OK to install and use this locale.  [%s]"
+msgstr ""
 
 #
 msgid "Press OK to scan"
@@ -12636,10 +12643,13 @@ msgstr "Seçiminde geçiş yapmak için OK tuşuna basın"
 msgid "Press OK to toggle the selection."
 msgstr "Seçiminde geçiş yapmak için OK tuşuna basın."
 
-#
-#, fuzzy
-msgid "Press OK to use this locale."
-msgstr "Taramayı başlatmak için OK düğmesine basın"
+#, python-format
+msgid "Press OK to use this language.  [%s]"
+msgstr ""
+
+#, python-format
+msgid "Press OK to use this locale.  [%s]"
+msgstr ""
 
 msgid "Press yellow to set this interface as the default interface."
 msgstr "Bu arayüzü varsayılan arayüz olarak ayarlamak için sarı tuşa basın."
@@ -12868,6 +12878,21 @@ msgid "Puerto Rico"
 msgstr "Porto Riko"
 
 msgid "Puppentrick"
+msgstr ""
+
+msgid "Purge"
+msgstr ""
+
+msgid "Purge all but / Add / Delete the currently highlighted locale/language"
+msgstr ""
+
+msgid ""
+"Purge all but the current and permanent locales/languages.  Add the current "
+"locale/language if it is not installed.  Delete the current locale/language "
+"if it is installed."
+msgstr ""
+
+msgid "Purging all unused locales/languages..."
 msgstr ""
 
 msgid "Pushto / Pashto"
@@ -14269,9 +14294,6 @@ msgstr "Seçin (kaynak listesi) veya dizini girin (hedef listesi)"
 msgid "Select CAId"
 msgstr "CAId seç"
 
-msgid "Select Card Server"
-msgstr "Kart Sunucusunu Seçin"
-
 msgid "Select Enigma2 Skin"
 msgstr "Enigma2 Skin'i seçin"
 
@@ -14296,9 +14318,6 @@ msgstr "Yer Seç"
 
 msgid "Select Quad Channels"
 msgstr "Dört Kanal Seç"
-
-msgid "Select Softcam"
-msgstr "Softcam'ı seçin"
 
 msgid "Select Software Update"
 msgstr "Yazılım Güncelleme Seç"
@@ -14482,9 +14501,7 @@ msgstr ""
 msgid "Select the character or action under the keyboard cursor"
 msgstr "Sanal klavye imlecinin altındaki karakteri veya eylemi seçin"
 
-msgid ""
-"Select the currently highlighted locale/language to be used in the user "
-"interface"
+msgid "Select the currently highlighted locale/language for the user interface"
 msgstr ""
 
 msgid ""
@@ -14949,44 +14966,6 @@ msgstr "Kanalı bu zamanlayıcıya ayarla."
 
 msgid "Set the date the timer must start."
 msgstr "Zamanlayıcının başlaması gereken tarihi ayarlayın."
-
-msgid ""
-"Set the default location for your autorecord-files. Press 'OK' to add new "
-"locations, select left/right to select an existing location."
-msgstr ""
-"Autorecord dosyalarınız için varsayılan konumu ayarlayın. Yeni yerler "
-"eklemek için 'Tamam'a basın, mevcut bir konumu seçmek için sol / sağ'ı seçin."
-
-msgid ""
-"Set the default location for your instant recordings. Press 'OK' to add new "
-"locations, select left/right to select an existing location."
-msgstr ""
-"Anlık kayıtlarınızın varsayılan konumunu belirtin. Yeni konumlar eklemek "
-"için 'OK' e basın, mevcut konumlardan birini seçmek için sağ/sol tuşlarını "
-"kullanın."
-
-msgid ""
-"Set the default location for your recordings. Press 'OK' to add new "
-"locations, select left/right to select an existing location."
-msgstr ""
-"Kayıtlarınızın varsayılan konumunu belirtin. Yeni konumlar eklemek için 'OK' "
-"e basın, mevcut konumlardan birini seçmek için sağ/sol tuşlarını kullanın."
-
-msgid ""
-"Set the default location for your timers. Press 'OK' to add new locations, "
-"select left/right to select an existing location."
-msgstr ""
-"Zamanlayıcılarınızın varsayılan konumunu belirtin. Yeni konumlar eklemek "
-"için 'OK' e basın, mevcut konumlardan birini seçmek için sağ/sol tuşlarını "
-"kullanın."
-
-msgid ""
-"Set the default location for your timeshift-files. Press 'OK' to add new "
-"locations, select left/right to select an existing location."
-msgstr ""
-"Zamankaydırma dosyalarınızın varsayılan konumunu belirtin. Yeni konumlar "
-"eklemek için 'OK' e basın, mevcut konumlardan birini seçmek için sağ/sol "
-"tuşlarını kullanın."
 
 msgid "Set the default sorting method."
 msgstr "Varsayılan sıralama yöntemini ayarlayın."
@@ -15996,11 +15975,11 @@ msgstr "Soket"
 msgid "Softcam"
 msgstr "Softcam"
 
+msgid "Softcam Actions"
+msgstr ""
+
 msgid "Softcam Setup"
 msgstr "Softcam Kurulumu"
-
-msgid "Softcam setup"
-msgstr "Softcam kurulumu"
 
 msgid "Softcam-Panel"
 msgstr "Softcam Panel"
@@ -17069,23 +17048,6 @@ msgstr ""
 "Varsayılan yedekleme seçimi değiştirilemez.\n"
 "Lütfen 'ek' ve 'hariç' yedek seçimini kullanın."
 
-#, python-format
-msgid ""
-"The directory %s is not a EXT2, EXT3, EXT4, NFS or CIFS partition.\n"
-"Make sure you select a valid partition type."
-msgstr ""
-"Dizini %s bir EXT2, EXT3, EXT4, NFS veya CIFS bölümü değil.\n"
-"Geçerli bir bölüm türü seçtiğinizden emin olun."
-
-#
-#, python-format
-msgid ""
-"The directory %s is not writable.\n"
-"Make sure you select a writable directory instead."
-msgstr ""
-"%s klasörüne yazma izni yok.\n"
-"Seçtiğiniz klasörün yazılabilir olduğuna emin olun."
-
 #
 #, python-format
 msgid ""
@@ -17396,14 +17358,13 @@ msgstr ""
 "sonra geçici bir çözümdür. Diğer cihazlardan gelen uyandırma komutu birkaç "
 "saniye boyunca yoksayılır."
 
-#, fuzzy
-msgid "This is already the active locale."
-msgstr "Bu Cihaz zaten HDD olarak monte edilmiştir."
+#, python-format
+msgid "This is the currently selected language.  [%s]"
+msgstr ""
 
-#
-#, fuzzy
-msgid "This is the currently selected locale."
-msgstr "Seçilen geçerli başlığı kaldır"
+#, python-format
+msgid "This is the currently selected locale.  [%s]"
+msgstr ""
 
 msgid ""
 "This is the order in which DiSEqC commands are sent to the aerial system. "
@@ -17810,6 +17771,9 @@ msgstr ""
 msgid "Time"
 msgstr "Süre"
 
+msgid "Time Setup Actions"
+msgstr ""
+
 msgid "Time Update in Minutes"
 msgstr "Zaman güncelle Dakika"
 
@@ -17884,14 +17848,6 @@ msgid "Timer overview"
 msgstr "Zamanlayıcı Görünümü"
 
 #
-msgid "Timer record location"
-msgstr "Zamanlayıcı kayıdı konumu"
-
-#
-msgid "Timer recording location"
-msgstr "Zamanlayıcı kayıt konumu"
-
-#
 msgid "Timer sanity error"
 msgstr "Zamanlayıcı hatası"
 
@@ -17912,9 +17868,6 @@ msgstr "Zamanlayıcılar"
 
 msgid "Timeshift"
 msgstr "Zaman kaydırma"
-
-msgid "Timeshift location"
-msgstr "Zaman kaydırma kayıt konumu"
 
 msgid "Timeshift not possible!"
 msgstr "Zaman kaydırma kullanılamaz!"
@@ -18717,6 +18670,9 @@ msgstr "DHCP Kullan"
 msgid "Use Deinterlacing for 1080i Videosignal?"
 msgstr "1080i Videosignal için Deinterlacing kullanın?"
 
+msgid "Use Geolocation"
+msgstr ""
+
 msgid "Use HDMI-preemphasis"
 msgstr "HDMI preemphasis kullan"
 
@@ -18753,6 +18709,9 @@ msgstr "Hızlı tarama kanal numaralama kullan"
 
 msgid "Use frequency or channel"
 msgstr "Kanal veya frekans kullan"
+
+msgid "Use geolocation to set the current time zone location"
+msgstr ""
 
 msgid "Use individual settings for each directory"
 msgstr "Bu ayarları her klasör için uygula"
@@ -19882,16 +19841,17 @@ msgstr ""
 msgid "You must set at least one Command"
 msgstr "En az bir Komut ayarlamanız gerekir"
 
-msgid ""
-"You seem to be in timeshft, the service will briefly stop as timeshfit stops."
-msgstr "Timeshfitte gözüküyorsun, hizmet timeshfit durur gibi durur."
-
 msgid "You seem to be in timeshift!"
 msgstr "Zaman kaydırmada görünüyorsunuz!"
 
 msgid "You seem to be in timeshift, Do you want to leave timeshift ?"
 msgstr ""
 "Zaman kaydırmada görünüyorsunuz, zaman kaydırmadan ayrılmak ister misiniz ?"
+
+msgid ""
+"You seem to be in timeshift, the service will briefly stop as timeshift "
+"stops."
+msgstr ""
 
 #, python-format
 msgid "Your %s %s does not support PiP HD"
@@ -20398,6 +20358,9 @@ msgstr "am"
 msgid "an internal error has occur"
 msgstr "dahili bir hata oluştu"
 
+msgid "and"
+msgstr ""
+
 msgid "and never ask again this session again"
 msgstr "ve bir daha asla tekrar bu soruyu sorma"
 
@@ -20521,6 +20484,9 @@ msgstr "kart"
 
 msgid "card reader"
 msgstr "kart okuyucu"
+
+msgid "cardserver"
+msgstr ""
 
 msgid "cartoon/puppets"
 msgstr "çizgifilm/kukla"
@@ -20665,10 +20631,6 @@ msgid "detective/thriller"
 msgstr "polisiye/heyecan"
 
 #
-msgid "disable"
-msgstr "kapat"
-
-#
 msgid "disable move mode"
 msgstr "taşıma kipini kapat"
 
@@ -20754,10 +20716,6 @@ msgstr ""
 #
 msgid "empty"
 msgstr "boş"
-
-#
-msgid "enable"
-msgstr "etkinleştir"
 
 msgid "enable PIP no HDR"
 msgstr "hdp yok PIP etkinleştir"
@@ -20882,9 +20840,6 @@ msgstr "ekstra geniş"
 
 msgid "failed"
 msgstr "başarısız"
-
-msgid "false"
-msgstr "yanlış"
 
 msgid "fashion"
 msgstr "moda"
@@ -21443,19 +21398,11 @@ msgstr "çift katmanlı ortam kullanıldığında."
 msgid "of a SINGLE layer medium used."
 msgstr "tek katmanlı ortam kullanıldığında."
 
-#
-msgid "off"
-msgstr "kapalı"
-
 msgid "off or wpa2 on"
 msgstr "kapalı veya wpa2 açık"
 
 msgid "offset is"
 msgstr "ofset"
-
-#
-msgid "on"
-msgstr "açık"
 
 #
 msgid "on READ ONLY medium."
@@ -21723,9 +21670,6 @@ msgstr ""
 "ancak yeni TV kanalları aramak mümkün değil\n"
 "veya tuner ayarlarını yapılandırmak için"
 
-msgid "save"
-msgstr "kaydet"
-
 #
 msgid "save last directory on exit"
 msgstr "çıkarken, son klasörü kaydet"
@@ -21925,6 +21869,9 @@ msgstr "sosyal/politik/ekonomik konular (genel)"
 msgid "social/spiritual science"
 msgstr "sosyal/manevi bilimler"
 
+msgid "softcam"
+msgstr ""
+
 msgid "softcams"
 msgstr "softcams"
 
@@ -22061,9 +22008,6 @@ msgstr "geleneksel (hızlı)"
 
 msgid "traditional (fast), retune"
 msgstr "geleneksel (hızlı), yeniden ayar"
-
-msgid "true"
-msgstr "doğru"
 
 msgid "turbo"
 msgstr "turbo"
@@ -23766,6 +23710,10 @@ msgstr "Varsayılan 'Etkinlikten Sonra' *"
 msgid "Default 'Timer type' *"
 msgstr "Varsayılan 'Zamanlayıcı türü' *"
 
+#
+msgid "Default movie location"
+msgstr "Varsayılan film konumu"
+
 msgid "Default recording type"
 msgstr "Varsayılan Kayıt tipi"
 
@@ -23878,9 +23826,6 @@ msgstr "EPG 2. dil seçimi"
 
 msgid "EPG location"
 msgstr "EPG konumu"
-
-msgid "Enable Autorecord"
-msgstr "Autorecord'u etkinleştir"
 
 msgid "Enable EIT EPG"
 msgstr "EIT EPG etkinleştir"
@@ -24200,12 +24145,6 @@ msgstr ""
 "çubuğunu kullanmanıza izin verir."
 
 msgid ""
-"If set to 'yes', enable autorecord for automatically background timeshift"
-msgstr ""
-"'Evet' olarak ayarlanırsa, otomatik arka plan zaman kaymasını otomatik "
-"olarak etkinleştirin"
-
-msgid ""
 "If set to 'yes; the infobar will be displayed when Fast Forwarding or "
 "Rewinding during media playback."
 msgstr ""
@@ -24327,6 +24266,9 @@ msgstr "Geri sarma başlangıç hızı"
 
 msgid "Initial scroll delay"
 msgstr "İlk kaydırma gecikmesi"
+
+msgid "Instant recording location"
+msgstr "Anlık kayıtlar konumu"
 
 msgid "Interlaced"
 msgstr "Interlaced"
@@ -24641,9 +24583,6 @@ msgstr "Her (saat) yenile"
 msgid "Remember last service in PiP"
 msgstr "PiP'de son servisi hatırla"
 
-msgid "Remote control model shown"
-msgstr "Gösterilen uzaktan kumanda modeli"
-
 msgid "Remove completed timers after (days)"
 msgstr "Biten zamanlayıcıları (gün) sonra kaldır"
 
@@ -24668,6 +24607,11 @@ msgstr ""
 
 msgid "Require authentication for http streams"
 msgstr "Http akışları için kimlik doğrulaması iste"
+
+msgid ""
+"Reset the selected devices and save changes of your config when the GREEN "
+"button is pressed."
+msgstr ""
 
 msgid "Restart GUI after x crashes"
 msgstr "X kilitlendikten sonra GUI'yi yeniden başlatın"
@@ -24725,6 +24669,15 @@ msgstr "Sarı Anahtar Eylemini Seç"
 msgid "Select Yellow Key Action long"
 msgstr "Sarı Anahtar Eylem uzun seçin"
 
+msgid "Select a cardserver from the available list."
+msgstr ""
+
+msgid "Select a softcam from the available list."
+msgstr ""
+
+msgid "Select cardserver"
+msgstr ""
+
 msgid "Select how to activate the Quick EPG mode:"
 msgstr "Quick EPG kipini nasıl etkinleştireceğinizi seçin:"
 
@@ -24740,6 +24693,9 @@ msgid "Select seekbar to be activated by arrow L/R (long) or << >> (long)."
 msgstr ""
 "Arama çubuğunun Sağ/sol (uzun) oklarıyla veya << >> (uzun) tuşlarıyla "
 "etkinleşmesini seçin."
+
+msgid "Select softcam"
+msgstr ""
 
 msgid ""
 "Select the method of restoring screen resolution and framebuffer when "
@@ -24845,6 +24801,37 @@ msgstr "Harici altyazılar için fps ayarla"
 
 msgid "Set the aspect ratio of the service picons."
 msgstr "Servis pikonlarının en boy oranını ayarlayın."
+
+msgid ""
+"Set the default location for your instant recordings. Press 'OK' to add new "
+"locations, select left/right to select an existing location."
+msgstr ""
+"Anlık kayıtlarınızın varsayılan konumunu belirtin. Yeni konumlar eklemek "
+"için 'OK' e basın, mevcut konumlardan birini seçmek için sağ/sol tuşlarını "
+"kullanın."
+
+msgid ""
+"Set the default location for your recordings. Press 'OK' to add new "
+"locations, select left/right to select an existing location."
+msgstr ""
+"Kayıtlarınızın varsayılan konumunu belirtin. Yeni konumlar eklemek için 'OK' "
+"e basın, mevcut konumlardan birini seçmek için sağ/sol tuşlarını kullanın."
+
+msgid ""
+"Set the default location for your timers. Press 'OK' to add new locations, "
+"select left/right to select an existing location."
+msgstr ""
+"Zamanlayıcılarınızın varsayılan konumunu belirtin. Yeni konumlar eklemek "
+"için 'OK' e basın, mevcut konumlardan birini seçmek için sağ/sol tuşlarını "
+"kullanın."
+
+msgid ""
+"Set the default location for your timeshift-files. Press 'OK' to add new "
+"locations, select left/right to select an existing location."
+msgstr ""
+"Zamankaydırma dosyalarınızın varsayılan konumunu belirtin. Yeni konumlar "
+"eklemek için 'OK' e basın, mevcut konumlardan birini seçmek için sağ/sol "
+"tuşlarını kullanın."
 
 msgid ""
 "Set the delay time between repeated loops, this is used by software renderer "
@@ -25559,6 +25546,10 @@ msgstr "Zaman Çizelgesi 24 Saat"
 msgid "Timeline font size"
 msgstr "Zaman-satırı yazı tipi boyutu"
 
+#
+msgid "Timer recording location"
+msgstr "Zamanlayıcı kayıt konumu"
+
 msgid "Timeshift buffer delete after zap?"
 msgstr "Timeshift tampon zap sonra silinsin mi?"
 
@@ -25577,6 +25568,9 @@ msgstr "Timeshift olayı tabanlı dosya bölme"
 msgid "Timeshift last events limit [number of events]"
 msgstr "Timeshift son olaylar [etkinlik sayısı] sınırını"
 
+msgid "Timeshift location"
+msgstr "Zaman kaydırma kayıt konumu"
+
 msgid "Timeshift-save action on zap"
 msgstr "Zap eylemi Timeshift kaydetmek"
 
@@ -25590,12 +25584,11 @@ msgstr ""
 msgid "Tuner slot"
 msgstr "Tuner yuvası"
 
-#, fuzzy
-msgid "Turn on the control LED."
-msgstr "Güç LED'ini açın."
+msgid "Turn on the control LED"
+msgstr ""
 
-msgid "Turn on the power LED."
-msgstr "Güç LED'ini açın."
+msgid "Turn on the power LED"
+msgstr ""
 
 msgid "URL of fallback remote receiver"
 msgstr "Yedek uzaktan kumandanın URL'si"
@@ -25948,11 +25941,6 @@ msgstr ""
 "Bir servise ayarlandığında, sistem normal olarak herhangi bir değişiklik "
 "için transponder tarar ve bunları kaydeder. Ne yaptığınızdan kesinlikle "
 "eminseniz sadece “evet” e ayarlayınız."
-
-msgid ""
-"Which remote control gets shown. Only influences graphical representation."
-msgstr ""
-"Hangi uzaktan kumanda gösteriliyor? Sadece grafiksel gösterimi etkiler."
 
 msgid ""
 "With this option set to 'yes' the channel lists will always show you the "
@@ -26441,8 +26429,14 @@ msgstr ""
 "Lütfen tuner R ayarını yapın\n"
 "Hibrit Tuner Modelleri için Tuner Tipini sol ve sağ tuşlarla değiştirin"
 
-msgid "Please set your time zone"
-msgstr "Lütfen saat diliminizi ayarlayın"
+msgid "Please set your time options"
+msgstr ""
+
+msgid ""
+"Please set your time options.\n"
+"\n"
+"Press YELLOW to set the time zone via geolocation."
+msgstr ""
 
 msgid ""
 "Skip internet connection check (disables automatic package installation)"
@@ -26535,6 +26529,147 @@ msgstr "IP"
 
 msgid "J"
 msgstr ""
+
+#~ msgid "Autorecord location"
+#~ msgstr "Autorecord konumu"
+
+#
+#~ msgid "Instant record location"
+#~ msgstr "Anlık kayıt konumu"
+
+#~ msgid "Instant recordings location"
+#~ msgstr "Anlık kayıtlar konumu"
+
+#
+#~ msgid "Movie location"
+#~ msgstr "Film konumu"
+
+#~ msgid "New timers location"
+#~ msgstr "Yeni zamanlayıcılar konumu"
+
+#, fuzzy
+#~ msgid "No action required."
+#~ msgstr "Güncelleme gerekmez!"
+
+#~ msgid "Please wait, restarting cardserver."
+#~ msgstr "Lütfen bekleyin, kart sunucusunu yeniden başlatın."
+
+#~ msgid "Please wait, restarting softcam and cardserver."
+#~ msgstr "Lütfen softcam ve cardserver'ı yeniden başlatarak bekleyin."
+
+#~ msgid "Please wait, restarting softcam."
+#~ msgstr "Lütfen softcam'ı yeniden başlatarak bekleyin."
+
+#, fuzzy
+#~ msgid "Press OK to install and use this locale."
+#~ msgstr "Bir kanal seçmek için OK tuşuna basın."
+
+#
+#, fuzzy
+#~ msgid "Press OK to use this locale."
+#~ msgstr "Taramayı başlatmak için OK düğmesine basın"
+
+#~ msgid "Select Card Server"
+#~ msgstr "Kart Sunucusunu Seçin"
+
+#~ msgid "Select Softcam"
+#~ msgstr "Softcam'ı seçin"
+
+#~ msgid ""
+#~ "Set the default location for your autorecord-files. Press 'OK' to add new "
+#~ "locations, select left/right to select an existing location."
+#~ msgstr ""
+#~ "Autorecord dosyalarınız için varsayılan konumu ayarlayın. Yeni yerler "
+#~ "eklemek için 'Tamam'a basın, mevcut bir konumu seçmek için sol / sağ'ı "
+#~ "seçin."
+
+#~ msgid "Softcam setup"
+#~ msgstr "Softcam kurulumu"
+
+#~ msgid ""
+#~ "The directory %s is not a EXT2, EXT3, EXT4, NFS or CIFS partition.\n"
+#~ "Make sure you select a valid partition type."
+#~ msgstr ""
+#~ "Dizini %s bir EXT2, EXT3, EXT4, NFS veya CIFS bölümü değil.\n"
+#~ "Geçerli bir bölüm türü seçtiğinizden emin olun."
+
+#
+#~ msgid ""
+#~ "The directory %s is not writable.\n"
+#~ "Make sure you select a writable directory instead."
+#~ msgstr ""
+#~ "%s klasörüne yazma izni yok.\n"
+#~ "Seçtiğiniz klasörün yazılabilir olduğuna emin olun."
+
+#, fuzzy
+#~ msgid "This is already the active locale."
+#~ msgstr "Bu Cihaz zaten HDD olarak monte edilmiştir."
+
+#
+#, fuzzy
+#~ msgid "This is the currently selected locale."
+#~ msgstr "Seçilen geçerli başlığı kaldır"
+
+#
+#~ msgid "Timer record location"
+#~ msgstr "Zamanlayıcı kayıdı konumu"
+
+#~ msgid ""
+#~ "You seem to be in timeshft, the service will briefly stop as timeshfit "
+#~ "stops."
+#~ msgstr "Timeshfitte gözüküyorsun, hizmet timeshfit durur gibi durur."
+
+#
+#~ msgid "disable"
+#~ msgstr "kapat"
+
+#
+#~ msgid "enable"
+#~ msgstr "etkinleştir"
+
+#~ msgid "false"
+#~ msgstr "yanlış"
+
+#
+#~ msgid "off"
+#~ msgstr "kapalı"
+
+#
+#~ msgid "on"
+#~ msgstr "açık"
+
+#~ msgid "save"
+#~ msgstr "kaydet"
+
+#~ msgid "true"
+#~ msgstr "doğru"
+
+#~ msgid "Enable Autorecord"
+#~ msgstr "Autorecord'u etkinleştir"
+
+#~ msgid ""
+#~ "If set to 'yes', enable autorecord for automatically background timeshift"
+#~ msgstr ""
+#~ "'Evet' olarak ayarlanırsa, otomatik arka plan zaman kaymasını otomatik "
+#~ "olarak etkinleştirin"
+
+#~ msgid "Remote control model shown"
+#~ msgstr "Gösterilen uzaktan kumanda modeli"
+
+#, fuzzy
+#~ msgid "Turn on the control LED."
+#~ msgstr "Güç LED'ini açın."
+
+#~ msgid "Turn on the power LED."
+#~ msgstr "Güç LED'ini açın."
+
+#~ msgid ""
+#~ "Which remote control gets shown. Only influences graphical representation."
+#~ msgstr ""
+#~ "Hangi uzaktan kumanda gösteriliyor? Sadece grafiksel gösterimi etkiler."
+
+#~ msgid "Please set your time zone"
+#~ msgstr "Lütfen saat diliminizi ayarlayın"
 
 #~ msgid "Allocate unused memory index"
 #~ msgstr "Kullanılmayan belleği ayır"
