@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-08-22 21:17+0000\n"
-"PO-Revision-Date: 2021-08-24 03:36+0000\n"
+"POT-Creation-Date: 2021-08-29 19:28+0000\n"
+"PO-Revision-Date: 2021-08-30 14:03+0000\n"
 "Last-Translator: Adga56 <adga45@gmail.com>\n"
 "Language-Team: Lithuanian <https://hosted.weblate.org/projects/openatv/"
 "enigma2-7-0-po/lt/>\n"
@@ -486,7 +486,7 @@ msgstr "%03d MB"
 
 #, python-format
 msgid "%2.1f sec"
-msgstr "%2.1f sek"
+msgstr "%2.1f sek."
 
 msgid "%A"
 msgstr "%A"
@@ -1176,7 +1176,7 @@ msgid "%d=%b_"
 msgstr "%d=%b_"
 
 msgid "%e/%m, %-H:%M"
-msgstr "%m/%e, %a %-H:%M"
+msgstr "%m/%e, %a  %-H:%M"
 
 msgid "%m/%-d"
 msgstr "%m/%-d"
@@ -1380,7 +1380,9 @@ msgstr "%s1080i rodyti kaip 1080p"
 
 #, python-format
 msgid "'%s' contains %d file(s) and %d sub-directories.\n"
-msgstr "'%s' turi %d failą(ų) ir %d sub-katalogų.\n"
+msgstr ""
+"'%s' turi %d failą(ų) ir %d sub-katalogų.\n"
+"\n"
 
 #, python-format
 msgid "'%s' not installed and no known package"
@@ -2366,9 +2368,6 @@ msgstr "Adapterio nustatymai"
 msgid "Add"
 msgstr "Pridėti"
 
-msgid "Add / Delete the currently highlighted locale / language"
-msgstr "Pridėti / ištrinti šiuo metu paryškintą lokalę / kalbą"
-
 msgid "Add AutoTimer"
 msgstr "Pridėti auto laikmatį"
 
@@ -3100,9 +3099,6 @@ msgstr "Automatiškai atnaujinti klientas/serveris sąsają?"
 
 msgid "Automobil"
 msgstr "Automobilis"
-
-msgid "Autorecord location"
-msgstr "Automatiniai įrašai saugomi"
 
 msgid "Autostart"
 msgstr "Auto paleidimas"
@@ -3931,7 +3927,7 @@ msgid "Cannot determine"
 msgstr "Negalima nustatyti"
 
 msgid "Cannot find any signal ..., aborting !"
-msgstr "Jokio signalo nerasta …, nutraukiama !"
+msgstr "Jokio signalo nerasta …,  nutraukiama !"
 
 msgid "Cannot find images - please try later"
 msgstr "Negalima sukurti atvaizdų sąrašo - bandykite vėliau"
@@ -5187,9 +5183,6 @@ msgstr "Numatytoji kanalų paieška"
 msgid "Default files/folders to backup"
 msgstr "Numatytoji failų/aplankų atsarginė kopija"
 
-msgid "Default movie location"
-msgstr "Numatytoji filmų vieta"
-
 msgid "Default settings"
 msgstr "Numatytieji nustatymai"
 
@@ -5561,6 +5554,9 @@ msgstr "Monitoriaus valdymas"
 msgid "Display and user interface"
 msgstr "Monitorius ir vartotojo sąsaja"
 
+msgid "Display oscam information."
+msgstr "Rodyti oscam informaciją."
+
 msgid "Display selection list as a selection menu"
 msgstr "Rodyti pasirinkimo sąrašą kaip pasirinkimo meniu"
 
@@ -5736,6 +5732,10 @@ msgid "Do you want to produce this collection?"
 msgstr "Ar norite parengti šį rinkinį?"
 
 #, python-format
+msgid "Do you want to purge all locales/languages except %s?"
+msgstr "Ar norite išvalyti visas lokales / kalbas, išskyrus %s?"
+
+#, python-format
 msgid "Do you want to reboot your %s %s"
 msgstr "Ar norite savo %s %s paleisti iš naujo"
 
@@ -5798,6 +5798,9 @@ msgstr "Negalima pridėti šio įrašo"
 
 msgid "Don't ask again!"
 msgstr "Daugiau neklausti!"
+
+msgid "Don't restart"
+msgstr "Nepaleisti iš naujo"
 
 msgid "Don't save"
 msgstr "Neišsaugoti"
@@ -7290,6 +7293,15 @@ msgstr "Bendras"
 msgid "Genre"
 msgstr "Žanras"
 
+msgid "Geolocation does not contain time zone information."
+msgstr "Geografinėje lokacijoje nėra laiko juostos informacijos."
+
+msgid "Geolocation has been used to set the time zone."
+msgstr "Geografinė vieta buvo naudojama laiko juostai nustatyti."
+
+msgid "Geolocation is not available."
+msgstr "Geografinė vieta negalima."
+
 msgid "Georgia"
 msgstr "Gruzija"
 
@@ -8077,6 +8089,9 @@ msgstr "Atvaizdo vedlys"
 msgid "Immediate shutdown"
 msgstr "Nedelsiant išjungti"
 
+msgid "Immediately restart selected devices."
+msgstr "Nedelsdami iš naujo paleiskite pasirinktus įrenginius."
+
 msgid ""
 "In order to allow you to access all the features of the IceTV smart "
 "recording service, we need to gather some basic information.\n"
@@ -8314,17 +8329,8 @@ msgstr "Priedų diegimas iš šaltinių ..."
 msgid "Instant record"
 msgstr "Momentinis įrašymas"
 
-msgid "Instant record location"
-msgstr "Momentinio įrašo vieta"
-
-msgid "Instant recording location"
-msgstr "Momentinio įrašymo vieta"
-
 msgid "Instant recording..."
 msgstr "Momentinis įrašymas..."
-
-msgid "Instant recordings location"
-msgstr "Momentinio įrašymo vieta"
 
 msgid "Interface"
 msgstr "Sąsaja"
@@ -8519,6 +8525,9 @@ msgstr "Peršokti į ankstesnę pažymėtą poziciją"
 
 msgid "Jump to prime time"
 msgstr "Peršokti į žiūrimiausią laiką"
+
+msgid "Jump to the currently active locale/language"
+msgstr "Peršokti į šiuo metu aktyvią lokalę/kalbą"
 
 msgid "Just change Bouquet"
 msgstr "Tiesiog pakeisti paketą"
@@ -8728,6 +8737,17 @@ msgstr "Vietinė virtuvė"
 
 msgid "Language"
 msgstr "Kalba"
+
+#, python-format
+msgid "Language %s (%s) installed and selected."
+msgstr "Įdiegta ir pasirinkta kalba %s (%s)."
+
+#, python-format
+msgid "Language %s (%s) selected."
+msgstr "Pasirinkta kalba %s (%s)."
+
+msgid "Language already selected."
+msgstr "Kalba jau pasirinkta."
 
 msgid "Language selection"
 msgstr "Kalbos pasirinkimas"
@@ -8954,18 +8974,21 @@ msgid "Locale"
 msgstr "Vieta"
 
 #, python-format
-msgid "Locale %s (%s) has been installed and selected as the active locale."
-msgstr "Lokalė %s (%s) įdiegta ir pasirinkta kaip aktyvi lokalė."
+msgid "Locale %s (%s) installed and selected."
+msgstr "Lokalė %s (%s) įdiegta ir pasirinkta."
 
 #, python-format
-msgid "Locale %s (%s) has been selected as the active locale."
-msgstr "Lokalė %s (%s) pasirinkta kaip aktyvi lokalė."
+msgid "Locale %s (%s) selected."
+msgstr "Pasirinkta Lokalė %s (%s)."
 
 msgid "Locale (Ascending)"
 msgstr "Lokalė (didėjimo tvarka)"
 
 msgid "Locale (Descending)"
 msgstr "Lokalė (mažėjimo tvarka)"
+
+msgid "Locale already selected."
+msgstr "Lokalė jau pasirinkta."
 
 msgid "Locale/Language Selection"
 msgstr "Lokalės / kalbos pasirinkimas"
@@ -9680,9 +9703,6 @@ msgstr "Filmų sąrašo valdymas"
 msgid "Movie Player Actions"
 msgstr "Filmo grotuvo veiksmai"
 
-msgid "Movie location"
-msgstr "Filmo vieta"
-
 msgid "Movie selection"
 msgstr "Filmo pasirinkimas"
 
@@ -10007,9 +10027,6 @@ msgstr "Naujas profilis: "
 msgid "New program info"
 msgstr "Nauja programos informacija"
 
-msgid "New timers location"
-msgstr "Naujų laikmačių vieta"
-
 msgid "New version:"
 msgstr "Nauja versija:"
 
@@ -10085,9 +10102,6 @@ msgstr "Nėra TS įrašymo įrenginio"
 
 msgid "No Timeshift found to save as recording!"
 msgstr "Laiko poslinkis nenustatytas, kad išsaugoti tuos įrašus!"
-
-msgid "No action required."
-msgstr "Nereikia imtis jokių veiksmų."
 
 msgid "No active channel found."
 msgstr "Aktyvaus kanalo nerasta."
@@ -10915,7 +10929,7 @@ msgid "Panic to"
 msgstr "Panikos mygtukas"
 
 msgid "Panjabi / Punjabi"
-msgstr "Pandžabi / Pundžabi"
+msgstr "Pandžabi / Pandžabi"
 
 msgid "Papua New Guinea"
 msgstr "Papua Naujoji Gvinėja"
@@ -11376,15 +11390,9 @@ msgstr "Palaukite, kol tikrinama šaltinių būklė."
 msgid "Please wait, Loading image."
 msgstr "Palaukite, įkeliamas atvaizdas."
 
-msgid "Please wait, restarting cardserver."
-msgstr "Prašome laukti, kortelių serveris paleidžiamas iš naujo."
-
-msgid "Please wait, restarting softcam and cardserver."
-msgstr ""
-"Prašome laukti, emuliatorius ir kortelių serveris paleidžiami iš naujo."
-
-msgid "Please wait, restarting softcam."
-msgstr "Prašome laukti, emuliatorius paleidžiamas iš naujo."
+#, python-format
+msgid "Please wait, restarting %s."
+msgstr "Palaukite, paleidžiama iš naujo %s."
 
 msgid "Please wait."
 msgstr "Palaukite..."
@@ -11572,8 +11580,13 @@ msgstr "Paspauskite OK ir redaguokite nustatymus."
 msgid "Press OK to get further details for %s"
 msgstr "Papildomai informacijai apie %s gauti, spauskite OK"
 
-msgid "Press OK to install and use this locale."
-msgstr "Paspauskite OK, kad įdiegtumėte ir naudotumėte šią lokalę."
+#, python-format
+msgid "Press OK to install and use this language.  [%s]"
+msgstr "Paspauskite OK, kad įdiegtumėte ir naudotumėte šią kalbą.  [%s]"
+
+#, python-format
+msgid "Press OK to install and use this locale.  [%s]"
+msgstr "Paspauskite OK, kad įdiegtumėte ir naudotumėte šią lokalę.  [%s]"
 
 msgid "Press OK to scan"
 msgstr "Spauskite OK, jei norite pradėti paiešką"
@@ -11607,8 +11620,13 @@ msgstr "Paspauskite OK, kad atlikti pasirinkimą"
 msgid "Press OK to toggle the selection."
 msgstr "Paspauskite OK, kad atlikti pasirinkimą."
 
-msgid "Press OK to use this locale."
-msgstr "Paspauskite Gerai, kad naudotumėte šią lokalę."
+#, python-format
+msgid "Press OK to use this language.  [%s]"
+msgstr "Paspauskite OK, kad naudotumėte šią kalbą.  [%s]"
+
+#, python-format
+msgid "Press OK to use this locale.  [%s]"
+msgstr "Paspauskite OK, kad naudotumėte šią lokalę.  [%s]"
 
 msgid "Press yellow to set this interface as the default interface."
 msgstr "Kad nustatyti šią sąsają numatytąja, spauskite 'GELTONĄ' mygtuką."
@@ -11823,8 +11841,28 @@ msgstr "Puerto Rikas"
 msgid "Puppentrick"
 msgstr "Lėlių"
 
+msgid "Purge"
+msgstr "Valymas"
+
+msgid "Purge all but / Add / Delete the currently highlighted locale/language"
+msgstr ""
+"Išvalyti viską, išskyrus / Pridėti / Ištrinti šiuo metu paryškintą lokalę / "
+"kalbą"
+
+msgid ""
+"Purge all but the current and permanent locales/languages.  Add the current "
+"locale/language if it is not installed.  Delete the current locale/language "
+"if it is installed."
+msgstr ""
+"Išvalo visas, išskyrus dabartines ir nuolatines lokales / kalbas.  Įtraukite "
+"dabartinę lokalę / kalbą, jei ji neįdiegta.  Panaikinkite dabartinę lokalę / "
+"kalbą, jei ji įdiegta."
+
+msgid "Purging all unused locales/languages..."
+msgstr "Išvalomos visos nepanaudotos lokalės / kalbos..."
+
 msgid "Pushto / Pashto"
-msgstr "Puštūnų / Paštūnų"
+msgstr "Puštūnų / Puštūnų"
 
 msgid "Put TV in standby"
 msgstr "Jungti TV į budėjimo būseną"
@@ -13084,9 +13122,6 @@ msgstr "Pasirinkite (šaltinių sąrašą) arba įveskite katalogą (tikslinį s
 msgid "Select CAId"
 msgstr "Pasirinkite CAId"
 
-msgid "Select Card Server"
-msgstr "Pasirinkite kortelių serverį"
-
 msgid "Select Enigma2 Skin"
 msgstr "Pasirinkite Enigma2 temą"
 
@@ -13111,9 +13146,6 @@ msgstr "Pasirinkite vietą"
 
 msgid "Select Quad Channels"
 msgstr "Pasirinkite 4 PIP kanalus"
-
-msgid "Select Softcam"
-msgstr "Pasirinkite emuliatorių"
 
 msgid "Select Software Update"
 msgstr "Pasirinkite programinės įrangos atnaujinimą"
@@ -13284,12 +13316,8 @@ msgstr ""
 msgid "Select the character or action under the keyboard cursor"
 msgstr "Pasirinkite simbolį arba veiksmą po klaviatūros žymekliu"
 
-msgid ""
-"Select the currently highlighted locale/language to be used in the user "
-"interface"
-msgstr ""
-"Pasirinkite šiuo metu paryškintą lokalę / kalbą, kuri bus naudojama "
-"vartotojo sąsajoje"
+msgid "Select the currently highlighted locale/language for the user interface"
+msgstr "Pasirinkti šiuo metu paryškintą vartotojo sąsajos lokalę / kalbą"
 
 msgid ""
 "Select the desired function and click on \"OK\" to assign it. Use \"CH+/-\" "
@@ -13716,41 +13744,6 @@ msgstr "Nustatykite kanalą šiam laikmačiui."
 msgid "Set the date the timer must start."
 msgstr "Nustatykite laikmačio pradžios datą."
 
-msgid ""
-"Set the default location for your autorecord-files. Press 'OK' to add new "
-"locations, select left/right to select an existing location."
-msgstr ""
-"Nustatykite numatytąją automatinių įrašų failų vietą. Kad pridėti naujas "
-"vietas, paspauskite 'OK', esamą vietą pasirinkite su '<' / '>'."
-
-msgid ""
-"Set the default location for your instant recordings. Press 'OK' to add new "
-"locations, select left/right to select an existing location."
-msgstr ""
-"Nustatykite numatytąją neplaninių įrašų vietą. Kad pridėti naujas vietas, "
-"paspauskite 'OK', esamą vietą pasirinkite su '<' / '>'."
-
-msgid ""
-"Set the default location for your recordings. Press 'OK' to add new "
-"locations, select left/right to select an existing location."
-msgstr ""
-"Nustatykite numatytąją savo įrašų vietą. Kad pridėti naujas vietas, "
-"paspauskite 'OK', esamą vietą pasirinkite su '<' / '>'."
-
-msgid ""
-"Set the default location for your timers. Press 'OK' to add new locations, "
-"select left/right to select an existing location."
-msgstr ""
-"Nustatykite numatytąją savo laikmačių vietą. Kad pridėti naujas vietas, "
-"paspauskite 'OK', esamą vietą pasirinkite su '<' / '>'."
-
-msgid ""
-"Set the default location for your timeshift-files. Press 'OK' to add new "
-"locations, select left/right to select an existing location."
-msgstr ""
-"Nustatykite numatytąją laiko poslinkio failų vietą. Kad pridėti naujas "
-"vietas, paspauskite 'OK', esamą vietą pasirinkite su '<' / '>'."
-
 msgid "Set the default sorting method."
 msgstr "Nustatykite numatytąjį rūšiavimo būdą."
 
@@ -13926,7 +13919,7 @@ msgid "Setup your Channel selection configuration"
 msgstr "Sukonfigūruoti kanalų pasirinkimą"
 
 msgid "Setup your Device mounts (USB, HDD, others...)"
-msgstr "Sukonfigūruoti jūsų įrenginių prijungimą (USB, HDD, kiti...)"
+msgstr "Sukonfigūruoti  jūsų įrenginių prijungimą (USB, HDD, kiti...)"
 
 msgid "Setup your EPG config"
 msgstr "Valdykite savo EPG konfigūraciją"
@@ -13947,7 +13940,7 @@ msgid "Setup your System"
 msgstr "Sukonfigūruoti savo sistemą"
 
 msgid "Setup your Tuner and search for channels"
-msgstr "Sukonfigūruoti savo imtuvą ir ieškokite kanalų"
+msgstr "Sukonfigūruoti  savo imtuvą ir ieškokite kanalų"
 
 msgid "Setup your Video Mode, Video Output and other Video Settings"
 msgstr ""
@@ -14525,7 +14518,7 @@ msgid "Single step (GOP)"
 msgstr "Viengubas žingsnis (GOP)"
 
 msgid "Sinhala / Sinhalese"
-msgstr "Sinhalai / Sinhalesų"
+msgstr "Sinhalai / Sinhalai"
 
 msgid "Sint Maarten"
 msgstr "Sint Martenas"
@@ -14687,11 +14680,11 @@ msgstr "Lizdas"
 msgid "Softcam"
 msgstr "Emuliatorius"
 
+msgid "Softcam Actions"
+msgstr "Emuliatoriaus nustatymai"
+
 msgid "Softcam Setup"
 msgstr "Emuliatoriaus valdymas"
-
-msgid "Softcam setup"
-msgstr "Emuliatoriaus sąranka"
 
 msgid "Softcam-Panel"
 msgstr "Emuliatoriaus skydelis"
@@ -15393,7 +15386,7 @@ msgstr "TEKSTAS"
 msgid "TRANSLATOR_INFO"
 msgstr ""
 "Adga, adga45@gmail.com\n"
-"Pasvalys, 2021-08-23 versija"
+"Pasvalys, 2021-08-29 versija"
 
 msgid "TS file is too large for ISO9660 level 1!"
 msgstr "TS failas yra per didelis ISO9660 lygmeniui 1!"
@@ -15678,22 +15671,6 @@ msgid ""
 msgstr ""
 "Numatytasis atsarginės kopijos pasirinkimas negali būti keičiamas.\n"
 "Naudokite 'papildomus' ir 'neįtrauktinus' atsarginės kopijos pasirinkimus."
-
-#, python-format
-msgid ""
-"The directory %s is not a EXT2, EXT3, EXT4, NFS or CIFS partition.\n"
-"Make sure you select a valid partition type."
-msgstr ""
-"Katalogas %s nėra ext2, ext3, ext4, NFS ar CIFS skaidinyje.\n"
-"Įsitikinkite, kad jūs pasirinkote tinkamą skaidinio tipą."
-
-#, python-format
-msgid ""
-"The directory %s is not writable.\n"
-"Make sure you select a writable directory instead."
-msgstr ""
-"Katalogas %s nėra įrašomas.\n"
-"Įsitikinkite, kad pasirinkote rašymui tinkamą katalogą."
 
 #, python-format
 msgid ""
@@ -16000,11 +15977,13 @@ msgstr ""
 "režimą pabunda. Kitų įrenginių pabudimo komandos bus ignoruojamos kelias "
 "sekundes."
 
-msgid "This is already the active locale."
-msgstr "Tai jau aktyvi lokalė."
+#, python-format
+msgid "This is the currently selected language.  [%s]"
+msgstr "Tai šiuo metu pasirinkta kalba.  [%s]"
 
-msgid "This is the currently selected locale."
-msgstr "Tai šiuo metu pasirinkta lokalė."
+#, python-format
+msgid "This is the currently selected locale.  [%s]"
+msgstr "Tai šiuo metu pasirinkta lokalė.  [%s]"
 
 msgid ""
 "This is the order in which DiSEqC commands are sent to the aerial system. "
@@ -16397,6 +16376,9 @@ msgstr "Tigrinija"
 msgid "Time"
 msgstr "Laiką"
 
+msgid "Time Setup Actions"
+msgstr "Laiko nustatymo veiksmai"
+
 msgid "Time Update in Minutes"
 msgstr "Laiko atnaujinimas minutėmis"
 
@@ -16464,12 +16446,6 @@ msgstr ""
 msgid "Timer overview"
 msgstr "Laikmačio apžvalga"
 
-msgid "Timer record location"
-msgstr "Laikmačio įrašo vieta"
-
-msgid "Timer recording location"
-msgstr "Laikmačio įrašymo vieta"
-
 msgid "Timer sanity error"
 msgstr "Laikmačio padėties klaida"
 
@@ -16488,9 +16464,6 @@ msgstr "Laikmačiai"
 msgid "Timeshift"
 msgstr "Laiko poslinkis"
 
-msgid "Timeshift location"
-msgstr "Laiko poslinkio vieta"
-
 msgid "Timeshift not possible!"
 msgstr "Laiko poslinkis negalimas!"
 
@@ -16501,7 +16474,7 @@ msgid "Timeshift save recording (Select event)"
 msgstr "Išsaugoti laiko poslinkio įrašą (pasirinkite įvykį)"
 
 msgid "Timeshift save recording (stop after current event)"
-msgstr "Išsaugoti laiko poslinkio įrašą (sustabdyti po dabartinio įvykio)"
+msgstr "Išsaugoti laiko poslinkio įrašą  (sustabdyti po dabartinio įvykio)"
 
 msgid "Timeshift saved to your harddisk!"
 msgstr "Laiko poslinkis išsaugotas jūsų kietame diske!"
@@ -16913,7 +16886,7 @@ msgid "Uganda"
 msgstr "Uganda"
 
 msgid "Uighur / Uyghur"
-msgstr "Uigūrai / Uygūrai"
+msgstr "Uigūrai / Uigūrai"
 
 msgid "Ukraine"
 msgstr "Ukraina"
@@ -17216,6 +17189,9 @@ msgstr "Naudoti DHCP"
 msgid "Use Deinterlacing for 1080i Videosignal?"
 msgstr "Naudoti progresinį kodavimą 1080i vaizdo signalui?"
 
+msgid "Use Geolocation"
+msgstr "Naudoti geolokaciją"
+
 msgid "Use HDMI-preemphasis"
 msgstr "Naudokite HDMI išankstinį dėmesį"
 
@@ -17251,6 +17227,9 @@ msgstr "Greitai paieškai naudoti kanalų numerius"
 
 msgid "Use frequency or channel"
 msgstr "Naudokite dažnį arba kanalą"
+
+msgid "Use geolocation to set the current time zone location"
+msgstr "Naudoti geografinę vietą norint nustatyti dabartinę laiko juostos vietą"
 
 msgid "Use individual settings for each directory"
 msgstr "Naudokite atskirus nustatymus kiekvienam katalogui"
@@ -18287,18 +18266,19 @@ msgstr ""
 msgid "You must set at least one Command"
 msgstr "Turite nustatyti bent vieną komandą"
 
-msgid ""
-"You seem to be in timeshft, the service will briefly stop as timeshfit stops."
-msgstr ""
-"Jums, atrodo, laiko poslinkio kanalas bus trumpai sustabdytas, laiko "
-"poslinkio nustatytais sustojimais."
-
 msgid "You seem to be in timeshift!"
 msgstr "Panašu, kad naudojamas laiko poslinkis!"
 
 msgid "You seem to be in timeshift, Do you want to leave timeshift ?"
 msgstr ""
 "Panašu, kad naudojamas laiko poslinkis. Ar norite išjungti laiko poslinkį?"
+
+msgid ""
+"You seem to be in timeshift, the service will briefly stop as timeshift "
+"stops."
+msgstr ""
+"Jums, atrodo, kad kanalas bus trumpai sustabdytas, laiko poslinkio "
+"nustatytais sustojimais."
 
 #, python-format
 msgid "Your %s %s does not support PiP HD"
@@ -18326,7 +18306,6 @@ msgstr ""
 "Jūsų %s %s dabar paruoštas naudoti.\n"
 "\n"
 "Jūsų interneto ryšys dabar veikia.\n"
-"\n"
 
 #, python-format
 msgid "Your %s %s is rebooting"
@@ -18770,6 +18749,9 @@ msgstr "priešpiet"
 msgid "an internal error has occur"
 msgstr "įvyko vidinė klaida"
 
+msgid "and"
+msgstr "ir"
+
 msgid "and never ask again this session again"
 msgstr "ir niekada neklausti šios sesijos dar kartą"
 
@@ -18882,6 +18864,9 @@ msgstr "kortelė"
 
 msgid "card reader"
 msgstr "kortelių skaitytuvas"
+
+msgid "cardserver"
+msgstr "Paleisti kortelių serverį iš naujo"
 
 msgid "cartoon/puppets"
 msgstr "animacija/lėlės"
@@ -19010,9 +18995,6 @@ msgstr "iškoduoti ir įrašyti ECM"
 msgid "detective/thriller"
 msgstr "detektyvas/trileris"
 
-msgid "disable"
-msgstr "išjungti"
-
 msgid "disable move mode"
 msgstr "išjungti perkėlimą"
 
@@ -19088,9 +19070,6 @@ msgstr "integruotas"
 
 msgid "empty"
 msgstr "tuščias"
-
-msgid "enable"
-msgstr "įjungti"
 
 msgid "enable PIP no HDR"
 msgstr "įjungti PIP be HDR"
@@ -19202,9 +19181,6 @@ msgstr "ypač plačiai"
 
 msgid "failed"
 msgstr "nepavyko"
-
-msgid "false"
-msgstr "klaidingas"
 
 msgid "fashion"
 msgstr "stilius"
@@ -19701,17 +19677,11 @@ msgstr "naudojama DVISLUOKSNĖ laikmena."
 msgid "of a SINGLE layer medium used."
 msgstr "naudojama VIENASLUOKSNĖ laikmena."
 
-msgid "off"
-msgstr "išjungta"
-
 msgid "off or wpa2 on"
 msgstr "išjungti arba wpa2 ant"
 
 msgid "offset is"
 msgstr "kompensuoti, yra"
-
-msgid "on"
-msgstr "įjungta"
 
 msgid "on READ ONLY medium."
 msgstr "diskas TIK SKAITYMUI."
@@ -19950,9 +19920,6 @@ msgstr ""
 "bet neįmanoma ieškoti naujų TV kanalų,\n"
 "arba konfigūruoti imtuvo parametrų"
 
-msgid "save"
-msgstr "išsaugoti"
-
 msgid "save last directory on exit"
 msgstr "uždarant, išsaugoti paskutinį katalogą"
 
@@ -19963,7 +19930,7 @@ msgid "scan state"
 msgstr "skenavimo eiga"
 
 msgid "science fiction/fantasy/horror"
-msgstr "mokslas/fantastika/siaubo"
+msgstr "mokslinė fantastika/fantastika/siaubo"
 
 msgid "script 'sterr':"
 msgstr "scenarijus 'sterr':"
@@ -20134,6 +20101,9 @@ msgstr "socialiniai/politiniai klausimai/ekonomika (bendra)"
 msgid "social/spiritual science"
 msgstr "socialinis/dvasinis mokslas"
 
+msgid "softcam"
+msgstr "Emuliatorius"
+
 msgid "softcams"
 msgstr "emuliatoriai"
 
@@ -20256,9 +20226,6 @@ msgstr "tradicinis (greitas)"
 
 msgid "traditional (fast), retune"
 msgstr "tradicinis (greitas), sureguliuokite"
-
-msgid "true"
-msgstr "teisingas"
 
 msgid "turbo"
 msgstr "turbo"
@@ -20408,7 +20375,9 @@ msgid "width"
 msgstr "plotis"
 
 msgid "will take about 1-15 minutes for this system\n"
-msgstr "šiai sistemai užtruks apie 1-15 minučių\n"
+msgstr ""
+"šiai sistemai užtruks apie 1-15 minučių\n"
+"\n"
 
 msgid "winter sport"
 msgstr "žiemos sportas"
@@ -21862,6 +21831,9 @@ msgstr "Numatytasis 'po įvykio' *"
 msgid "Default 'Timer type' *"
 msgstr "Numatytasis 'Laikmačio tipas' *"
 
+msgid "Default movie location"
+msgstr "Numatytoji filmų vieta"
+
 msgid "Default recording type"
 msgstr "Numatytasis įrašymo tipas"
 
@@ -21972,9 +21944,6 @@ msgstr "2-a pasirinkta EPG kalba"
 
 msgid "EPG location"
 msgstr "EPG vieta"
-
-msgid "Enable Autorecord"
-msgstr "Įjungti auto įrašymą"
 
 msgid "Enable EIT EPG"
 msgstr "Įjungti EIT EPG"
@@ -22299,12 +22268,6 @@ msgstr ""
 "dabartinio įvykio viduje."
 
 msgid ""
-"If set to 'yes', enable autorecord for automatically background timeshift"
-msgstr ""
-"Jei nustatyta 'taip', įjungiamas auto įrašymas, naudojamas automatiniam fono "
-"laiko poslinkiui"
-
-msgid ""
 "If set to 'yes; the infobar will be displayed when Fast Forwarding or "
 "Rewinding during media playback."
 msgstr ""
@@ -22423,6 +22386,9 @@ msgstr "Pradinis spartaus atsukimo atgal greitis"
 
 msgid "Initial scroll delay"
 msgstr "Pradinė slinkties delsa"
+
+msgid "Instant recording location"
+msgstr "Momentinio įrašymo vieta"
 
 msgid "Interlaced"
 msgstr "Dvieilio pynimo"
@@ -22724,9 +22690,6 @@ msgstr "Atnaujinama kas (valandomis)"
 msgid "Remember last service in PiP"
 msgstr "Prisiminti paskutinį kanalo PiP"
 
-msgid "Remote control model shown"
-msgstr "Pateiktas nuotolinio valdymo pulto modelis"
-
 msgid "Remove completed timers after (days)"
 msgstr "Pašalinti užbaigtus laikmačius po (dienų)"
 
@@ -22751,6 +22714,13 @@ msgstr ""
 
 msgid "Require authentication for http streams"
 msgstr "Reikalauti autentifikavimo http srautams"
+
+msgid ""
+"Reset the selected devices and save changes of your config when the GREEN "
+"button is pressed."
+msgstr ""
+"Iš naujo nustatykite pasirinktus įrenginius ir išsaugokite konfigūracijos "
+"pakeitimus, paspausdami ŽALIĄ mygtuką."
 
 msgid "Restart GUI after x crashes"
 msgstr "Iš naujo paleisti grafinę aplinką po x gedimų"
@@ -22806,6 +22776,15 @@ msgstr "Pasirinkite geltoną mygtuką veiksmui"
 msgid "Select Yellow Key Action long"
 msgstr "Pasirinkite geltoną mygtuką veiksmui - ilgai spaudžiant"
 
+msgid "Select a cardserver from the available list."
+msgstr "Iš galimų sąrašų pasirinkite kortelių serverį."
+
+msgid "Select a softcam from the available list."
+msgstr "Iš galimų sąrašų pasirinkite emuliatorių."
+
+msgid "Select cardserver"
+msgstr "Pasirinkite kortelių serverį"
+
 msgid "Select how to activate the Quick EPG mode:"
 msgstr "Pasirinkite, kaip įjungti greitąjį EPG:"
 
@@ -22819,6 +22798,9 @@ msgid "Select seekbar to be activated by arrow L/R (long) or << >> (long)."
 msgstr ""
 "Pasirinkite, kad paieškos juostą aktyvuoti rodyklėmis '</>' (ilgai), arba "
 "'<</>>' (ilgai)."
+
+msgid "Select softcam"
+msgstr "Pasirinkite emuliatorių"
 
 msgid ""
 "Select the method of restoring screen resolution and framebuffer when "
@@ -22926,6 +22908,34 @@ msgstr "Nustatykite fps išoriniams subtitrams"
 
 msgid "Set the aspect ratio of the service picons."
 msgstr "Nustatykite kanalų logotipų proporciją."
+
+msgid ""
+"Set the default location for your instant recordings. Press 'OK' to add new "
+"locations, select left/right to select an existing location."
+msgstr ""
+"Nustatykite numatytąją neplaninių įrašų vietą. Kad pridėti naujas vietas, "
+"paspauskite 'OK', esamą vietą pasirinkite su '<' / '>'."
+
+msgid ""
+"Set the default location for your recordings. Press 'OK' to add new "
+"locations, select left/right to select an existing location."
+msgstr ""
+"Nustatykite numatytąją savo įrašų vietą. Kad pridėti naujas vietas, "
+"paspauskite 'OK', esamą vietą pasirinkite su '<' / '>'."
+
+msgid ""
+"Set the default location for your timers. Press 'OK' to add new locations, "
+"select left/right to select an existing location."
+msgstr ""
+"Nustatykite numatytąją savo laikmačių vietą. Kad pridėti naujas vietas, "
+"paspauskite 'OK', esamą vietą pasirinkite su '<' / '>'."
+
+msgid ""
+"Set the default location for your timeshift-files. Press 'OK' to add new "
+"locations, select left/right to select an existing location."
+msgstr ""
+"Nustatykite numatytąją laiko poslinkio failų vietą. Kad pridėti naujas "
+"vietas, paspauskite 'OK', esamą vietą pasirinkite su '<' / '>'."
 
 msgid ""
 "Set the delay time between repeated loops, this is used by software renderer "
@@ -23052,7 +23062,7 @@ msgid "Show Time Remaining/Elapsed"
 msgstr "Rodyti likusį / praėjusį laiką"
 
 msgid "Show Transponder Remaining/Elapsed as"
-msgstr "Rodyti likusį / praėjusį transponderio laiką, kaip"
+msgstr "Rodyti likusį / praėjusį transponderio laiką, kaip "
 
 msgid "Show True/False as graphical switch"
 msgstr "Rodyti grafinį jungiklį"
@@ -23626,6 +23636,9 @@ msgstr "Laiko juosta 24 val"
 msgid "Timeline font size"
 msgstr "Laiko juostos šrifto dydis"
 
+msgid "Timer recording location"
+msgstr "Laikmačio įrašymo vieta"
+
 msgid "Timeshift buffer delete after zap?"
 msgstr "Išvalyti laiko poslinkio atmintį po perjungimo?"
 
@@ -23644,6 +23657,9 @@ msgstr "Laiko poslinkio įvykio pagrindu, įvykio failų skaidymas"
 msgid "Timeshift last events limit [number of events]"
 msgstr "Laiko poslinkio įvykių limitas [įvykių skaičius]"
 
+msgid "Timeshift location"
+msgstr "Laiko poslinkio vieta"
+
 msgid "Timeshift-save action on zap"
 msgstr "Išsaugoti laiko poslinkį, perjungiant kanalą"
 
@@ -23657,10 +23673,10 @@ msgstr ""
 msgid "Tuner slot"
 msgstr "Imtuvo lizdas"
 
-msgid "Turn on the control LED."
+msgid "Turn on the control LED"
 msgstr "Įjunkite LED valdymą."
 
-msgid "Turn on the power LED."
+msgid "Turn on the power LED"
 msgstr "Įjunkite maitinimo LED indikatorių."
 
 msgid "URL of fallback remote receiver"
@@ -23760,9 +23776,10 @@ msgid ""
 "keep your own user bouquet while installed settings are upgraded"
 msgstr ""
 "Kai čia įjungta, enigma2 įkels nesusietus vartotojo paketus. Tai reiškia, "
-"kad vartotojo paketai, kurie yra prieinami, tačiau nėra įtraukti į "
-"bouquets.tv, ar bouquets.radio failus, vis tiek bus įkelti. Tai leidžia jums "
-"pvz. išsaugoti savo vartotojo paketus, kai bus atnaujinami įdiegti nustatymai"
+"kad vartotojo paketai, kurie yra prieinami, tačiau nėra įtraukti į  "
+"bouquets.tv, ar  bouquets.radio failus, vis tiek bus įkelti. Tai leidžia "
+"jums pvz. išsaugoti savo vartotojo paketus, kai bus atnaujinami įdiegti "
+"nustatymai"
 
 msgid "When enabled the PiP can be closed by the exit button."
 msgstr "Kai čia įjungta, PiP gali būti išjungtas su 'EXIT' mygtuku."
@@ -23937,7 +23954,7 @@ msgstr ""
 
 msgid "When enabled, teletext pages will be cached, allowing faster access."
 msgstr ""
-"Kai čia įjungta, teleteksto puslapiai bus išsaugojami atminties podėlyje, "
+"Kai čia įjungta,  teleteksto puslapiai bus išsaugojami atminties podėlyje, "
 "taip paspartinant jų naudojimą."
 
 msgid ""
@@ -24004,11 +24021,6 @@ msgstr ""
 "Įjungus kanalą, sistema paprastai patikrina visus pasikeitimus "
 "transponderyje ir juos išsaugo. Nustatykite čia 'taip' tik tada, kai "
 "tiksliai žinote, kam tą darote."
-
-msgid ""
-"Which remote control gets shown. Only influences graphical representation."
-msgstr ""
-"Kuris nuotolinio valdymo pultas bus rodomas. Įtakoja tik grafinį vaizdą."
 
 msgid ""
 "With this option set to 'yes' the channel lists will always show you the "
@@ -24478,8 +24490,17 @@ msgstr ""
 "Prašome nustatyti imtuvą R\n"
 "Hibridinio imtuvo modelio tipą perjunkite su mygtukais kairėn ir dešinėn"
 
-msgid "Please set your time zone"
-msgstr "Nustatykite savo laiko juostą"
+msgid "Please set your time options"
+msgstr "Nustatykite laiko parinktis"
+
+msgid ""
+"Please set your time options.\n"
+"\n"
+"Press YELLOW to set the time zone via geolocation."
+msgstr ""
+"Nustatykite laiko parinktis.\n"
+"\n"
+"Paspauskite GELTONA, kad nustatytumėte laiko juostą per geografinę vietą."
 
 msgid ""
 "Skip internet connection check (disables automatic package installation)"
@@ -24511,7 +24532,7 @@ msgid ""
 msgstr ""
 "Sveiki.\n"
 "\n"
-"Šis pradinis vedlys padės nustatyti pagrindinius jūsų %s %s parametrus.\n"
+"Šis pradinis vedlys padės nustatyti pagrindinius jūsų  %s %s parametrus.\n"
 "Kad pereiti į sekantį žingsnį, spauskite 'OK'."
 
 msgid "What do you want to scan?"
@@ -24558,6 +24579,149 @@ msgstr "I"
 
 msgid "J"
 msgstr "J"
+
+#~ msgid "Add / Delete the currently highlighted locale / language"
+#~ msgstr "Pridėti / ištrinti šiuo metu paryškintą lokalę / kalbą"
+
+#~ msgid "Autorecord location"
+#~ msgstr "Automatiniai įrašai saugomi"
+
+#~ msgid "Instant record location"
+#~ msgstr "Momentinio įrašo vieta"
+
+#~ msgid "Instant recordings location"
+#~ msgstr "Momentinio įrašymo vieta"
+
+#~ msgid "Locale %s (%s) has been installed and selected as the active locale."
+#~ msgstr "Lokalė %s (%s) įdiegta ir pasirinkta kaip aktyvi lokalė."
+
+#~ msgid "Locale %s (%s) has been selected as the active locale."
+#~ msgstr "Lokalė %s (%s) pasirinkta kaip aktyvi lokalė."
+
+#~ msgid "Movie location"
+#~ msgstr "Filmo vieta"
+
+#~ msgid "New timers location"
+#~ msgstr "Naujų laikmačių vieta"
+
+#~ msgid "No action required."
+#~ msgstr "Nereikia imtis jokių veiksmų."
+
+#~ msgid "Please wait, restarting cardserver."
+#~ msgstr "Prašome laukti, kortelių serveris paleidžiamas iš naujo."
+
+#~ msgid "Please wait, restarting softcam and cardserver."
+#~ msgstr ""
+#~ "Prašome laukti, emuliatorius ir kortelių serveris paleidžiami iš naujo."
+
+#~ msgid "Please wait, restarting softcam."
+#~ msgstr "Prašome laukti, emuliatorius paleidžiamas iš naujo."
+
+#~ msgid "Press OK to install and use this locale."
+#~ msgstr "Paspauskite OK, kad įdiegtumėte ir naudotumėte šią lokalę."
+
+#~ msgid "Press OK to use this locale."
+#~ msgstr "Paspauskite Gerai, kad naudotumėte šią lokalę."
+
+#~ msgid "Select Card Server"
+#~ msgstr "Pasirinkite kortelių serverį"
+
+#~ msgid "Select Softcam"
+#~ msgstr "Pasirinkite emuliatorių"
+
+#~ msgid ""
+#~ "Select the currently highlighted locale/language to be used in the user "
+#~ "interface"
+#~ msgstr ""
+#~ "Pasirinkite šiuo metu paryškintą lokalę / kalbą, kuri bus naudojama "
+#~ "vartotojo sąsajoje"
+
+#~ msgid ""
+#~ "Set the default location for your autorecord-files. Press 'OK' to add new "
+#~ "locations, select left/right to select an existing location."
+#~ msgstr ""
+#~ "Nustatykite numatytąją automatinių įrašų failų vietą. Kad pridėti naujas "
+#~ "vietas, paspauskite 'OK', esamą vietą pasirinkite su '<' / '>'."
+
+#~ msgid "Softcam setup"
+#~ msgstr "Emuliatoriaus sąranka"
+
+#~ msgid ""
+#~ "The directory %s is not a EXT2, EXT3, EXT4, NFS or CIFS partition.\n"
+#~ "Make sure you select a valid partition type."
+#~ msgstr ""
+#~ "Katalogas %s nėra ext2, ext3, ext4, NFS ar CIFS skaidinyje.\n"
+#~ "Įsitikinkite, kad jūs pasirinkote tinkamą skaidinio tipą."
+
+#~ msgid ""
+#~ "The directory %s is not writable.\n"
+#~ "Make sure you select a writable directory instead."
+#~ msgstr ""
+#~ "Katalogas %s nėra įrašomas.\n"
+#~ "Įsitikinkite, kad pasirinkote rašymui tinkamą katalogą."
+
+#~ msgid "This is already the active locale."
+#~ msgstr "Tai jau aktyvi lokalė."
+
+#~ msgid "This is the currently selected locale."
+#~ msgstr "Tai šiuo metu pasirinkta lokalė."
+
+#~ msgid "Timer record location"
+#~ msgstr "Laikmačio įrašo vieta"
+
+#~ msgid ""
+#~ "You seem to be in timeshft, the service will briefly stop as timeshfit "
+#~ "stops."
+#~ msgstr ""
+#~ "Jums, atrodo, laiko poslinkio kanalas bus trumpai sustabdytas, laiko "
+#~ "poslinkio nustatytais sustojimais."
+
+#~ msgid "disable"
+#~ msgstr "išjungti"
+
+#~ msgid "enable"
+#~ msgstr "įjungti"
+
+#~ msgid "false"
+#~ msgstr "klaidingas"
+
+#~ msgid "off"
+#~ msgstr "išjungta"
+
+#~ msgid "on"
+#~ msgstr "įjungta"
+
+#~ msgid "save"
+#~ msgstr "išsaugoti"
+
+#~ msgid "true"
+#~ msgstr "teisingas"
+
+#~ msgid "Enable Autorecord"
+#~ msgstr "Įjungti auto įrašymą"
+
+#~ msgid ""
+#~ "If set to 'yes', enable autorecord for automatically background timeshift"
+#~ msgstr ""
+#~ "Jei nustatyta 'taip', įjungiamas auto įrašymas, naudojamas automatiniam "
+#~ "fono laiko poslinkiui"
+
+#~ msgid "Remote control model shown"
+#~ msgstr "Pateiktas nuotolinio valdymo pulto modelis"
+
+#~ msgid "Turn on the control LED."
+#~ msgstr "Įjunkite LED valdymą."
+
+#~ msgid "Turn on the power LED."
+#~ msgstr "Įjunkite maitinimo LED indikatorių."
+
+#~ msgid ""
+#~ "Which remote control gets shown. Only influences graphical representation."
+#~ msgstr ""
+#~ "Kuris nuotolinio valdymo pultas bus rodomas. Įtakoja tik grafinį vaizdą."
+
+#~ msgid "Please set your time zone"
+#~ msgstr "Nustatykite savo laiko juostą"
 
 #~ msgid "Allocate unused memory index"
 #~ msgstr "Paskirti nenaudojamos atminties indeksą"

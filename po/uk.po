@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-08-22 21:17+0000\n"
-"PO-Revision-Date: 2021-08-26 17:53+0000\n"
+"POT-Creation-Date: 2021-08-29 19:28+0000\n"
+"PO-Revision-Date: 2021-08-30 14:03+0000\n"
 "Last-Translator: kvinto <badsystem@ukr.net>\n"
 "Language-Team: Ukrainian <https://hosted.weblate.org/projects/openatv/"
 "enigma2-7-0-po/uk/>\n"
@@ -2369,9 +2369,6 @@ msgstr "Налаштування адаптера"
 msgid "Add"
 msgstr "Додати"
 
-msgid "Add / Delete the currently highlighted locale / language"
-msgstr "Додати/Видалити поточну виділену локаль/мову"
-
 msgid "Add AutoTimer"
 msgstr "Додати АвтоТаймер"
 
@@ -3103,9 +3100,6 @@ msgstr "Автоматичне оновлення перегляду Клієн�
 
 msgid "Automobil"
 msgstr "Автомобілі"
-
-msgid "Autorecord location"
-msgstr "Каталог для автоматичного запису"
 
 msgid "Autostart"
 msgstr "Автостарт"
@@ -4850,7 +4844,7 @@ msgstr "Поточне розташування"
 
 #, python-format
 msgid "Current mode: %s \n"
-msgstr "Поточний режим:   %s \n"
+msgstr "Поточний режим: %s \n"
 
 msgid "Current settings:"
 msgstr "Поточні налаштування:"
@@ -5182,9 +5176,6 @@ msgstr "Сканування Каналів за замовчуванням"
 
 msgid "Default files/folders to backup"
 msgstr "Файли/папки для резервної копії за замовчуванням"
-
-msgid "Default movie location"
-msgstr "Розташування фільмів типово"
 
 msgid "Default settings"
 msgstr "Стандарні Налаштування"
@@ -5557,6 +5548,9 @@ msgstr "Налаштування LCD"
 msgid "Display and user interface"
 msgstr "Дисплей і графічний інтерфейс користувача"
 
+msgid "Display oscam information."
+msgstr "Відображення інформації oscam."
+
 msgid "Display selection list as a selection menu"
 msgstr "Відображення списку вибору у меню вибору"
 
@@ -5733,6 +5727,10 @@ msgid "Do you want to produce this collection?"
 msgstr "Ви бажаєте створити цю колекцію?"
 
 #, python-format
+msgid "Do you want to purge all locales/languages except %s?"
+msgstr "Ви хочете очистити всі регіони/мови, крім %s?"
+
+#, python-format
 msgid "Do you want to reboot your %s %s"
 msgstr "Ви хочете перезавантажити свій %s %s"
 
@@ -5795,6 +5793,9 @@ msgstr "Не потрібно додавати цей запис"
 
 msgid "Don't ask again!"
 msgstr "Не потрібно запитувати знову!"
+
+msgid "Don't restart"
+msgstr "Не перезавантажуйте"
 
 msgid "Don't save"
 msgstr "Не зберігати"
@@ -7284,6 +7285,15 @@ msgstr "Загальний"
 msgid "Genre"
 msgstr "Жанр"
 
+msgid "Geolocation does not contain time zone information."
+msgstr "Геолокація не містить інформації про часовий пояс."
+
+msgid "Geolocation has been used to set the time zone."
+msgstr "Для встановлення часового поясу було використано геолокацію."
+
+msgid "Geolocation is not available."
+msgstr "Геолокація недоступна."
+
 msgid "Georgia"
 msgstr "Грузія"
 
@@ -7853,7 +7863,7 @@ msgid "ISO path"
 msgstr "ISO шлях"
 
 msgid "IceTV"
-msgstr "IceTV"
+msgstr "Ice-TV"
 
 msgid "IceTV - Account selection"
 msgstr "IceTV - Вибір облікового запису"
@@ -8067,6 +8077,9 @@ msgstr "Майстер іміджу"
 
 msgid "Immediate shutdown"
 msgstr "Негайне вимкнення"
+
+msgid "Immediately restart selected devices."
+msgstr "Негайно перезавантажте вибрані пристрої."
 
 msgid ""
 "In order to allow you to access all the features of the IceTV smart "
@@ -8304,17 +8317,8 @@ msgstr "Встановлення плагінів з фіду..."
 msgid "Instant record"
 msgstr "Негайний запис"
 
-msgid "Instant record location"
-msgstr "Розташування миттєвого запису"
-
-msgid "Instant recording location"
-msgstr "Розташування миттєвих записів"
-
 msgid "Instant recording..."
 msgstr "Негайний запис..."
-
-msgid "Instant recordings location"
-msgstr "Розташування миттєвих записів"
 
 msgid "Interface"
 msgstr "Інтерфейс"
@@ -8509,6 +8513,9 @@ msgstr "Перейти до попередньої мітки"
 
 msgid "Jump to prime time"
 msgstr "Перейти до прайм-тайм"
+
+msgid "Jump to the currently active locale/language"
+msgstr "Перейти до поточної активного регіону/мови"
 
 msgid "Just change Bouquet"
 msgstr "Тільки змінити фаворит"
@@ -8718,6 +8725,17 @@ msgstr "Місцева кухня"
 
 msgid "Language"
 msgstr "Мова"
+
+#, python-format
+msgid "Language %s (%s) installed and selected."
+msgstr "Мова %s (%s) встановлена та вибрана."
+
+#, python-format
+msgid "Language %s (%s) selected."
+msgstr "Вибрано мову %s (%s)."
+
+msgid "Language already selected."
+msgstr "Мова вже вибрана."
 
 msgid "Language selection"
 msgstr "Вибір мови"
@@ -8942,18 +8960,21 @@ msgid "Locale"
 msgstr "Регіон"
 
 #, python-format
-msgid "Locale %s (%s) has been installed and selected as the active locale."
-msgstr "Мову %s (%s) встановлено та вибрано, як активну мову."
+msgid "Locale %s (%s) installed and selected."
+msgstr "Мова %s (%s) встановлена та вибрана."
 
 #, python-format
-msgid "Locale %s (%s) has been selected as the active locale."
-msgstr "Мовою %s (%s) вибрано активну локаль."
+msgid "Locale %s (%s) selected."
+msgstr "Вибрано регіон %s (%s)."
 
 msgid "Locale (Ascending)"
-msgstr ""
+msgstr "Мова (за зростанням)"
 
 msgid "Locale (Descending)"
-msgstr ""
+msgstr "Мова (за спаданням)"
+
+msgid "Locale already selected."
+msgstr "Мова вже вибрана."
 
 msgid "Locale/Language Selection"
 msgstr "Вибір Регіону/Мови"
@@ -9668,9 +9689,6 @@ msgstr "Налаштування списку записів"
 msgid "Movie Player Actions"
 msgstr "Дії для Плеєра записів"
 
-msgid "Movie location"
-msgstr "Розташування записів"
-
 msgid "Movie selection"
 msgstr "Вибір записів"
 
@@ -9993,9 +10011,6 @@ msgstr "Новий профіль: "
 msgid "New program info"
 msgstr "Інформацію про нову програму"
 
-msgid "New timers location"
-msgstr "Розташування нових таймерів"
-
 msgid "New version:"
 msgstr "Нова версія:"
 
@@ -10071,9 +10086,6 @@ msgstr "Немає можливості запису TS"
 
 msgid "No Timeshift found to save as recording!"
 msgstr "Файл таймшифта для збереження у вигляді запису не знайдено!"
-
-msgid "No action required."
-msgstr "Ніяких дій не потрібно."
 
 msgid "No active channel found."
 msgstr "Активного каналу не знайдено."
@@ -11361,14 +11373,9 @@ msgstr "Будь ласка, почекайте, перевіряється пі
 msgid "Please wait, Loading image."
 msgstr "Будь ласка, почекайте, імідж завантажується."
 
-msgid "Please wait, restarting cardserver."
-msgstr "Будь ласка, почекайте, поки перезавантажиться carderverа."
-
-msgid "Please wait, restarting softcam and cardserver."
-msgstr "Будь ласка, почекайте, перезавантажується softcam і cardserver."
-
-msgid "Please wait, restarting softcam."
-msgstr "Будь ласка, почекайте, поки перезавантажиться softcam."
+#, python-format
+msgid "Please wait, restarting %s."
+msgstr "Зачекайте, перезапустіть %s."
 
 msgid "Please wait."
 msgstr "Будь ласка, почекайте."
@@ -11555,8 +11562,13 @@ msgstr "Натисніть ОК для редагування налаштува
 msgid "Press OK to get further details for %s"
 msgstr "Натисніть OK для отримання додаткових відомостей %s"
 
-msgid "Press OK to install and use this locale."
-msgstr "Натисніть OK, щоб встановити та використовувати цю мову."
+#, python-format
+msgid "Press OK to install and use this language.  [%s]"
+msgstr "Натисніть OK, щоб встановити та використовувати цю мову.  [%s]"
+
+#, python-format
+msgid "Press OK to install and use this locale.  [%s]"
+msgstr "Натисніть OK, щоб встановити та використовувати цей регіон.  [%s]"
 
 msgid "Press OK to scan"
 msgstr "Натисніть ОК для пошуку"
@@ -11589,8 +11601,13 @@ msgstr "Натисніть OK для зміни вибору"
 msgid "Press OK to toggle the selection."
 msgstr "Натисніть OK для зміни вибору."
 
-msgid "Press OK to use this locale."
-msgstr "Натисніть OK, щоб використовувати цей регіон."
+#, python-format
+msgid "Press OK to use this language.  [%s]"
+msgstr "Натисніть OK, щоб використовувати цю мову.  [%s]"
+
+#, python-format
+msgid "Press OK to use this locale.  [%s]"
+msgstr "Натисніть OK, щоб використовувати цей регіон.  [%s]"
 
 msgid "Press yellow to set this interface as the default interface."
 msgstr "Натисніть жовту для встановлення даного інтерфейсу за замовчуванням."
@@ -11804,6 +11821,24 @@ msgstr "Пуерто Ріко"
 
 msgid "Puppentrick"
 msgstr "Ляльковий трюк"
+
+msgid "Purge"
+msgstr "Очистити"
+
+msgid "Purge all but / Add / Delete the currently highlighted locale/language"
+msgstr "Очистіть усі, крім / Додати / Видалити поточно виділені регіон/мову"
+
+msgid ""
+"Purge all but the current and permanent locales/languages.  Add the current "
+"locale/language if it is not installed.  Delete the current locale/language "
+"if it is installed."
+msgstr ""
+"Очистіть усі, крім поточних та постійних регіонів/мов.  Додайте поточний "
+"регіон/мову, якщо вона не встановлена.  Видаліть поточний регіон/мову, якщо "
+"вона встановлена."
+
+msgid "Purging all unused locales/languages..."
+msgstr "Очищення всіх невикористаних регіонів/мов ..."
 
 msgid "Pushto / Pashto"
 msgstr ""
@@ -13058,9 +13093,6 @@ msgstr "Виберіть (список джерел) або введіть ка�
 msgid "Select CAId"
 msgstr "Вибрати CAID"
 
-msgid "Select Card Server"
-msgstr "Вибір Card Server"
-
 msgid "Select Enigma2 Skin"
 msgstr "Вибір Enigma2 скіну"
 
@@ -13085,9 +13117,6 @@ msgstr "Вибрати місце розташування"
 
 msgid "Select Quad Channels"
 msgstr "Вибір чотирьохекранних каналів"
-
-msgid "Select Softcam"
-msgstr "Вибір Емулятора"
 
 msgid "Select Software Update"
 msgstr "Вибір оновлення ПЗ"
@@ -13260,10 +13289,8 @@ msgstr ""
 msgid "Select the character or action under the keyboard cursor"
 msgstr "Виберіть символ, або дію під курсором клавіатури"
 
-msgid ""
-"Select the currently highlighted locale/language to be used in the user "
-"interface"
-msgstr "Виберіть даний регіон/мову для використання в інтерфейсі користувача"
+msgid "Select the currently highlighted locale/language for the user interface"
+msgstr "Виберіть підсвічуваний регіон/мову для інтерфейсу користувача"
 
 msgid ""
 "Select the desired function and click on \"OK\" to assign it. Use \"CH+/-\" "
@@ -13686,41 +13713,6 @@ msgstr "Встановити канал для цього таймера."
 
 msgid "Set the date the timer must start."
 msgstr "Встановити дату запуску таймера."
-
-msgid ""
-"Set the default location for your autorecord-files. Press 'OK' to add new "
-"locations, select left/right to select an existing location."
-msgstr ""
-"Призначте розташування для файлів автозапису. Натисніть 'OK' щоб додати "
-"новий каталог, або кнопками вправо/вліво виберіть існуючий каталог."
-
-msgid ""
-"Set the default location for your instant recordings. Press 'OK' to add new "
-"locations, select left/right to select an existing location."
-msgstr ""
-"Призначте розташування для файлів миттєвого запису. Натисніть 'OK' щоб "
-"додати новий каталог, або кнопками вправо/вліво виберіть існуючийкаталог."
-
-msgid ""
-"Set the default location for your recordings. Press 'OK' to add new "
-"locations, select left/right to select an existing location."
-msgstr ""
-"Призначте розташування для файлів запису. Натисніть 'OK' щоб додати новий "
-"каталог, або кнопками вправо/вліво виберіть існуючий каталог."
-
-msgid ""
-"Set the default location for your timers. Press 'OK' to add new locations, "
-"select left/right to select an existing location."
-msgstr ""
-"Призначте розташування для файлів таймера. Натисніть 'OK' щоб додати новий "
-"каталог, або кнопками вправо/вліво виберіть існуючий каталог."
-
-msgid ""
-"Set the default location for your timeshift-files. Press 'OK' to add new "
-"locations, select left/right to select an existing location."
-msgstr ""
-"Призначте розташування для файлів таймшифта. Натисніть 'OK' щоб додати новий "
-"каталог, або кнопками вправо/вліво виберіть існуючий каталог."
 
 msgid "Set the default sorting method."
 msgstr "Встановіть метод сортування за умовчанням."
@@ -14656,10 +14648,10 @@ msgstr "Сокет"
 msgid "Softcam"
 msgstr "Емулятор"
 
-msgid "Softcam Setup"
-msgstr "Налаштування Ему"
+msgid "Softcam Actions"
+msgstr ""
 
-msgid "Softcam setup"
+msgid "Softcam Setup"
 msgstr "Налаштування Ему"
 
 msgid "Softcam-Panel"
@@ -15185,7 +15177,7 @@ msgid "Swap Size:"
 msgstr "Розмір файлу підкачки:"
 
 msgid "Swap services"
-msgstr ""
+msgstr "Змінити канал"
 
 msgid "SwapManager"
 msgstr "Управління підкачкою"
@@ -15359,7 +15351,7 @@ msgstr "TEXT"
 #. TRANSLATORS: Add here whatever should be shown in the "translator" about screen, up to 6 lines (use \n for newline)
 msgid "TRANSLATOR_INFO"
 msgstr ""
-"Переклад:  kvinto - 26.08.2021\n"
+"Переклад:  kvinto - 30.08.2021\n"
 "Сторінка:    https://gisclub.tv\n"
 "                  kvinto@rambler.ru"
 
@@ -15644,22 +15636,6 @@ msgid ""
 msgstr ""
 "Вибір резервного копіювання за замовчуванням не може бути змінений.\n"
 "Використовуйте 'додатково' і 'вилучений' вибір для резервних копій."
-
-#, python-format
-msgid ""
-"The directory %s is not a EXT2, EXT3, EXT4, NFS or CIFS partition.\n"
-"Make sure you select a valid partition type."
-msgstr ""
-"Вибрана папка %s не є розділом EXT2, EXT3, EXT4, NFS або CIFS.\n"
-"Будь ласка, переконайтеся, що вибрали правильний розділ."
-
-#, python-format
-msgid ""
-"The directory %s is not writable.\n"
-"Make sure you select a writable directory instead."
-msgstr ""
-"Папка %s не має прав на запис.\n"
-"Впевніться чи дійсно є права на запис папки."
 
 #, python-format
 msgid ""
@@ -15956,11 +15932,13 @@ msgstr ""
 "режим очікування. Команди включення з інших пристроїв будуть ігноруватися "
 "протягом декількох секунд."
 
-msgid "This is already the active locale."
-msgstr "Це вже активна локаль."
+#, python-format
+msgid "This is the currently selected language.  [%s]"
+msgstr "Це вибрана мова.  [%s]"
 
-msgid "This is the currently selected locale."
-msgstr "Це вибрана зараз локаль."
+#, python-format
+msgid "This is the currently selected locale.  [%s]"
+msgstr "Це вибраний зараз регіон.  [%s]"
 
 msgid ""
 "This is the order in which DiSEqC commands are sent to the aerial system. "
@@ -16357,6 +16335,9 @@ msgstr ""
 msgid "Time"
 msgstr "Час"
 
+msgid "Time Setup Actions"
+msgstr ""
+
 msgid "Time Update in Minutes"
 msgstr "Оновлення часу у хвилинах"
 
@@ -16424,12 +16405,6 @@ msgstr ""
 msgid "Timer overview"
 msgstr "Огляд завдань таймера"
 
-msgid "Timer record location"
-msgstr "Місце розташування Таймеру запису"
-
-msgid "Timer recording location"
-msgstr "Розташування записів таймера"
-
 msgid "Timer sanity error"
 msgstr "Помилка таймера"
 
@@ -16447,9 +16422,6 @@ msgstr "Таймери"
 
 msgid "Timeshift"
 msgstr "ТаймШифт"
-
-msgid "Timeshift location"
-msgstr "Розміщення таймшифт"
 
 msgid "Timeshift not possible!"
 msgstr "Timeshift неможливий!"
@@ -16519,7 +16491,7 @@ msgid "Toggle LCD LiveTV"
 msgstr "Перемикання LCD LiveTV"
 
 msgid "Toggle PIPzap"
-msgstr ""
+msgstr "Переключення PIPzap"
 
 msgid "Toggle Picture In Graphics"
 msgstr "Переключити Зображення в Графіку"
@@ -17176,6 +17148,9 @@ msgstr "Використовувати DHCP"
 msgid "Use Deinterlacing for 1080i Videosignal?"
 msgstr "Використовувати деінтерлейсінг для відеосигналу 1080i?"
 
+msgid "Use Geolocation"
+msgstr "Використовуйте геолокацію"
+
 msgid "Use HDMI-preemphasis"
 msgstr "Використання HDMI-preemphasis"
 
@@ -17211,6 +17186,10 @@ msgstr "Швидкий пошук по номерам каналів"
 
 msgid "Use frequency or channel"
 msgstr "Використовувати частоту або канал"
+
+msgid "Use geolocation to set the current time zone location"
+msgstr ""
+"За допомогою геолокації встановіть поточне місце розташування часового поясу"
 
 msgid "Use individual settings for each directory"
 msgstr "Використовуйте окремі налаштування для кожного каталогу"
@@ -18241,15 +18220,18 @@ msgstr ""
 msgid "You must set at least one Command"
 msgstr "Ви повинні встановити хочаб одну команду"
 
-msgid ""
-"You seem to be in timeshft, the service will briefly stop as timeshfit stops."
-msgstr "Ви находитеся в timeshft, який буде зупинено для даного каналу."
-
 msgid "You seem to be in timeshift!"
 msgstr "Спочатку завершіть таймшифт!"
 
 msgid "You seem to be in timeshift, Do you want to leave timeshift ?"
 msgstr "Спочатку завершіть таймшифт, бажаєте відключити таймшифт?"
+
+msgid ""
+"You seem to be in timeshift, the service will briefly stop as timeshift "
+"stops."
+msgstr ""
+"Ви, здається, перебуваєте у timeshift, канал ненадовго зупиниться, коли "
+"зупинитьсяtimeshift."
 
 #, python-format
 msgid "Your %s %s does not support PiP HD"
@@ -18721,6 +18703,9 @@ msgstr "до обіду"
 msgid "an internal error has occur"
 msgstr "виникла внутрішня помилка"
 
+msgid "and"
+msgstr "і"
+
 msgid "and never ask again this session again"
 msgstr "і більше не питати в цій сесії"
 
@@ -18833,6 +18818,9 @@ msgstr "карта"
 
 msgid "card reader"
 msgstr "кард-рідер"
+
+msgid "cardserver"
+msgstr ""
 
 msgid "cartoon/puppets"
 msgstr "мультфільм/ляльки"
@@ -18961,9 +18949,6 @@ msgstr "розкодувати і записати ecm"
 msgid "detective/thriller"
 msgstr "детектив/трілер"
 
-msgid "disable"
-msgstr "вимкнути"
-
 msgid "disable move mode"
 msgstr "вимкнути режим переміщення"
 
@@ -19039,9 +19024,6 @@ msgstr "вбудований"
 
 msgid "empty"
 msgstr "порожній"
-
-msgid "enable"
-msgstr "ввімкнути"
 
 msgid "enable PIP no HDR"
 msgstr "ввімкнути ПІП без HDR"
@@ -19153,9 +19135,6 @@ msgstr "екстра широкий"
 
 msgid "failed"
 msgstr "невдале"
-
-msgid "false"
-msgstr "помилковий"
 
 msgid "fashion"
 msgstr "мода"
@@ -19652,17 +19631,11 @@ msgstr "на Двошаровому диску використано."
 msgid "of a SINGLE layer medium used."
 msgstr "на Одношаровому диску використано."
 
-msgid "off"
-msgstr "вимкн"
-
 msgid "off or wpa2 on"
 msgstr "викл. чи вкл. wpa2"
 
 msgid "offset is"
 msgstr "зміщення є"
-
-msgid "on"
-msgstr "включено"
 
 msgid "on READ ONLY medium."
 msgstr "на READ ONLY носії."
@@ -19901,9 +19874,6 @@ msgstr ""
 "але немає можливості пошуку нових телевізійних каналів\n"
 "або зміни параметрів тюнера"
 
-msgid "save"
-msgstr "зберегти"
-
 msgid "save last directory on exit"
 msgstr "зберегти останню директорію при виході"
 
@@ -20085,6 +20055,9 @@ msgstr "соціальні/політичні проблеми/економік�
 msgid "social/spiritual science"
 msgstr "соціальна/духовна наука"
 
+msgid "softcam"
+msgstr "softcam"
+
 msgid "softcams"
 msgstr "емулятори"
 
@@ -20206,9 +20179,6 @@ msgstr "звичайний (швидко)"
 
 msgid "traditional (fast), retune"
 msgstr "звичайний (швидкий), переналаштування"
-
-msgid "true"
-msgstr "правдивий"
 
 msgid "turbo"
 msgstr "турбо"
@@ -21800,6 +21770,9 @@ msgstr "За замовчуванням 'Після запису' *"
 msgid "Default 'Timer type' *"
 msgstr "За замовчуванням 'Тип таймера' *"
 
+msgid "Default movie location"
+msgstr "Розташування фільмів типово"
+
 msgid "Default recording type"
 msgstr "Тип запису за замовчуванням"
 
@@ -21912,9 +21885,6 @@ msgstr "Вибір мови ЕПГ 2"
 
 msgid "EPG location"
 msgstr "Розташування ЕПГ"
-
-msgid "Enable Autorecord"
-msgstr "Активувати автозапис"
 
 msgid "Enable EIT EPG"
 msgstr "Включити EIT ЕПГ"
@@ -22236,12 +22206,6 @@ msgstr ""
 "подією."
 
 msgid ""
-"If set to 'yes', enable autorecord for automatically background timeshift"
-msgstr ""
-"Якщо вибрано 'так', буде включений автоматичний запис таймшифта у фоновому "
-"режимі"
-
-msgid ""
 "If set to 'yes; the infobar will be displayed when Fast Forwarding or "
 "Rewinding during media playback."
 msgstr "Якщо вибрано 'так', при перемотуванні записів буде показаний інфобар."
@@ -22357,6 +22321,9 @@ msgstr "Початкова швидкість перемотування наз�
 
 msgid "Initial scroll delay"
 msgstr "Початкова затримка прокрутки"
+
+msgid "Instant recording location"
+msgstr "Розташування миттєвих записів"
 
 msgid "Interlaced"
 msgstr "Черезстрочна"
@@ -22660,9 +22627,6 @@ msgstr "Інтервал оновлення (в годинах)"
 msgid "Remember last service in PiP"
 msgstr "Запам’ятати останній канал в ПІП"
 
-msgid "Remote control model shown"
-msgstr "Модель дистанційного пульта"
-
 msgid "Remove completed timers after (days)"
 msgstr "Видалення завершених таймерів через (в днях)"
 
@@ -22687,6 +22651,13 @@ msgstr ""
 
 msgid "Require authentication for http streams"
 msgstr "Вимагати перевірку автентичності для http потоків"
+
+msgid ""
+"Reset the selected devices and save changes of your config when the GREEN "
+"button is pressed."
+msgstr ""
+"Скиньте вибрані пристрої та збережіть зміни у Вашій конфігурації натиснувши "
+"ЗЕЛЕНУ кнопку."
 
 msgid "Restart GUI after x crashes"
 msgstr "Перезавантажте графічний інтерфейс після х збоїв"
@@ -22742,6 +22713,15 @@ msgstr "Дія для жовтої кнопки"
 msgid "Select Yellow Key Action long"
 msgstr "Дія для жовтої кнопки довге натискання"
 
+msgid "Select a cardserver from the available list."
+msgstr "Виберіть cardserver з наявного списку."
+
+msgid "Select a softcam from the available list."
+msgstr "Виберіть softcam зі списку доступних."
+
+msgid "Select cardserver"
+msgstr "Виберіть cardserver"
+
 msgid "Select how to activate the Quick EPG mode:"
 msgstr "Вибір активації режиму швидкого ЕПГ:"
 
@@ -22756,6 +22736,9 @@ msgstr "Виберіть, якщо хочете активувати режим 
 msgid "Select seekbar to be activated by arrow L/R (long) or << >> (long)."
 msgstr ""
 "Виберіть кнопку активації Seekbar вправо/вліво або << >> (довге натискання)."
+
+msgid "Select softcam"
+msgstr "Виберіть softcam"
 
 msgid ""
 "Select the method of restoring screen resolution and framebuffer when "
@@ -22859,6 +22842,34 @@ msgstr "Вибір fps для зовнішніх субтитрів"
 
 msgid "Set the aspect ratio of the service picons."
 msgstr "Встановити співвідношення сторін піконів каналу."
+
+msgid ""
+"Set the default location for your instant recordings. Press 'OK' to add new "
+"locations, select left/right to select an existing location."
+msgstr ""
+"Призначте розташування для файлів миттєвого запису. Натисніть 'OK' щоб "
+"додати новий каталог, або кнопками вправо/вліво виберіть існуючийкаталог."
+
+msgid ""
+"Set the default location for your recordings. Press 'OK' to add new "
+"locations, select left/right to select an existing location."
+msgstr ""
+"Призначте розташування для файлів запису. Натисніть 'OK' щоб додати новий "
+"каталог, або кнопками вправо/вліво виберіть існуючий каталог."
+
+msgid ""
+"Set the default location for your timers. Press 'OK' to add new locations, "
+"select left/right to select an existing location."
+msgstr ""
+"Призначте розташування для файлів таймера. Натисніть 'OK' щоб додати новий "
+"каталог, або кнопками вправо/вліво виберіть існуючий каталог."
+
+msgid ""
+"Set the default location for your timeshift-files. Press 'OK' to add new "
+"locations, select left/right to select an existing location."
+msgstr ""
+"Призначте розташування для файлів таймшифта. Натисніть 'OK' щоб додати новий "
+"каталог, або кнопками вправо/вліво виберіть існуючий каталог."
 
 msgid ""
 "Set the delay time between repeated loops, this is used by software renderer "
@@ -23552,6 +23563,9 @@ msgstr "Лінія часу 24 години"
 msgid "Timeline font size"
 msgstr "Розмір шрифту для шкали часу"
 
+msgid "Timer recording location"
+msgstr "Розташування записів таймера"
+
 msgid "Timeshift buffer delete after zap?"
 msgstr "Після перемикання видалити буфер таймшифта?"
 
@@ -23570,6 +23584,9 @@ msgstr "Поділ файлів таймшифта за назвою перед�
 msgid "Timeshift last events limit [number of events]"
 msgstr "Обмеження за останніми передачам [кількість передач]"
 
+msgid "Timeshift location"
+msgstr "Розміщення таймшифт"
+
 msgid "Timeshift-save action on zap"
 msgstr "Збереження таймшифта при перемиканні"
 
@@ -23583,11 +23600,11 @@ msgstr ""
 msgid "Tuner slot"
 msgstr "Слот Тюнера"
 
-msgid "Turn on the control LED."
-msgstr "Включення індикатора LED."
+msgid "Turn on the control LED"
+msgstr "Увімкнути LED контроль"
 
-msgid "Turn on the power LED."
-msgstr "Включення індикатора живлення LED."
+msgid "Turn on the power LED"
+msgstr "Увімкнути LED живлення"
 
 msgid "URL of fallback remote receiver"
 msgstr "URL-адреса віддаленого резервного приймача"
@@ -23943,12 +23960,6 @@ msgstr ""
 "При від'ємному значенні, система буде сканувати транспондер у фоновому "
 "режимі на предмет змін і зберігати їх. Виберіть 'так', якщо тільки абсолютно "
 "впевнені, що робите."
-
-msgid ""
-"Which remote control gets shown. Only influences graphical representation."
-msgstr ""
-"Відображення пульта дистанційного керування. Впливає тільки на графічне "
-"представлення."
 
 msgid ""
 "With this option set to 'yes' the channel lists will always show you the "
@@ -24410,8 +24421,17 @@ msgstr ""
 "Будь ласка, налаштуйте тюнер R\n"
 "Для моделей гібридного тюнера перемикайте тип тюнера лівою і правою клавішами"
 
-msgid "Please set your time zone"
-msgstr "Будь-ласка, встановіть Ваш часовий пояс"
+msgid "Please set your time options"
+msgstr "Будь ласка, встановіть параметри часу"
+
+msgid ""
+"Please set your time options.\n"
+"\n"
+"Press YELLOW to set the time zone via geolocation."
+msgstr ""
+"Будь ласка, встановіть параметри часу.\n"
+"\n"
+"Натисніть ЖОВТУ кнопку, щоб встановити часовий пояс за допомогою геолокації."
 
 msgid ""
 "Skip internet connection check (disables automatic package installation)"
@@ -24492,6 +24512,146 @@ msgstr ""
 
 msgid "J"
 msgstr ""
+
+#~ msgid "Add / Delete the currently highlighted locale / language"
+#~ msgstr "Додати/Видалити поточну виділену локаль/мову"
+
+#~ msgid "Autorecord location"
+#~ msgstr "Каталог для автоматичного запису"
+
+#~ msgid "Instant record location"
+#~ msgstr "Розташування миттєвого запису"
+
+#~ msgid "Instant recordings location"
+#~ msgstr "Розташування миттєвих записів"
+
+#~ msgid "Locale %s (%s) has been installed and selected as the active locale."
+#~ msgstr "Мову %s (%s) встановлено та вибрано, як активну мову."
+
+#~ msgid "Locale %s (%s) has been selected as the active locale."
+#~ msgstr "Мовою %s (%s) вибрано активну локаль."
+
+#~ msgid "Movie location"
+#~ msgstr "Розташування записів"
+
+#~ msgid "New timers location"
+#~ msgstr "Розташування нових таймерів"
+
+#~ msgid "No action required."
+#~ msgstr "Ніяких дій не потрібно."
+
+#~ msgid "Please wait, restarting cardserver."
+#~ msgstr "Будь ласка, почекайте, поки перезавантажиться carderverа."
+
+#~ msgid "Please wait, restarting softcam and cardserver."
+#~ msgstr "Будь ласка, почекайте, перезавантажується softcam і cardserver."
+
+#~ msgid "Please wait, restarting softcam."
+#~ msgstr "Будь ласка, почекайте, поки перезавантажиться softcam."
+
+#~ msgid "Press OK to install and use this locale."
+#~ msgstr "Натисніть OK, щоб встановити та використовувати цю мову."
+
+#~ msgid "Press OK to use this locale."
+#~ msgstr "Натисніть OK, щоб використовувати цей регіон."
+
+#~ msgid "Select Card Server"
+#~ msgstr "Вибір Card Server"
+
+#~ msgid "Select Softcam"
+#~ msgstr "Вибір Емулятора"
+
+#~ msgid ""
+#~ "Select the currently highlighted locale/language to be used in the user "
+#~ "interface"
+#~ msgstr ""
+#~ "Виберіть даний регіон/мову для використання в інтерфейсі користувача"
+
+#~ msgid ""
+#~ "Set the default location for your autorecord-files. Press 'OK' to add new "
+#~ "locations, select left/right to select an existing location."
+#~ msgstr ""
+#~ "Призначте розташування для файлів автозапису. Натисніть 'OK' щоб додати "
+#~ "новий каталог, або кнопками вправо/вліво виберіть існуючий каталог."
+
+#~ msgid "Softcam setup"
+#~ msgstr "Налаштування Ему"
+
+#~ msgid ""
+#~ "The directory %s is not a EXT2, EXT3, EXT4, NFS or CIFS partition.\n"
+#~ "Make sure you select a valid partition type."
+#~ msgstr ""
+#~ "Вибрана папка %s не є розділом EXT2, EXT3, EXT4, NFS або CIFS.\n"
+#~ "Будь ласка, переконайтеся, що вибрали правильний розділ."
+
+#~ msgid ""
+#~ "The directory %s is not writable.\n"
+#~ "Make sure you select a writable directory instead."
+#~ msgstr ""
+#~ "Папка %s не має прав на запис.\n"
+#~ "Впевніться чи дійсно є права на запис папки."
+
+#~ msgid "This is already the active locale."
+#~ msgstr "Це вже активна локаль."
+
+#~ msgid "This is the currently selected locale."
+#~ msgstr "Це вибрана зараз локаль."
+
+#~ msgid "Timer record location"
+#~ msgstr "Місце розташування Таймеру запису"
+
+#~ msgid ""
+#~ "You seem to be in timeshft, the service will briefly stop as timeshfit "
+#~ "stops."
+#~ msgstr "Ви находитеся в timeshft, який буде зупинено для даного каналу."
+
+#~ msgid "disable"
+#~ msgstr "вимкнути"
+
+#~ msgid "enable"
+#~ msgstr "ввімкнути"
+
+#~ msgid "false"
+#~ msgstr "помилковий"
+
+#~ msgid "off"
+#~ msgstr "вимкн"
+
+#~ msgid "on"
+#~ msgstr "включено"
+
+#~ msgid "save"
+#~ msgstr "зберегти"
+
+#~ msgid "true"
+#~ msgstr "правдивий"
+
+#~ msgid "Enable Autorecord"
+#~ msgstr "Активувати автозапис"
+
+#~ msgid ""
+#~ "If set to 'yes', enable autorecord for automatically background timeshift"
+#~ msgstr ""
+#~ "Якщо вибрано 'так', буде включений автоматичний запис таймшифта у "
+#~ "фоновому режимі"
+
+#~ msgid "Remote control model shown"
+#~ msgstr "Модель дистанційного пульта"
+
+#~ msgid "Turn on the control LED."
+#~ msgstr "Включення індикатора LED."
+
+#~ msgid "Turn on the power LED."
+#~ msgstr "Включення індикатора живлення LED."
+
+#~ msgid ""
+#~ "Which remote control gets shown. Only influences graphical representation."
+#~ msgstr ""
+#~ "Відображення пульта дистанційного керування. Впливає тільки на графічне "
+#~ "представлення."
+
+#~ msgid "Please set your time zone"
+#~ msgstr "Будь-ласка, встановіть Ваш часовий пояс"
 
 #~ msgid "Allocate unused memory index"
 #~ msgstr "Призначити невикористаний номер позиції"

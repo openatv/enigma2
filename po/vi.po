@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-08-22 21:17+0000\n"
+"POT-Creation-Date: 2021-08-29 19:28+0000\n"
 "PO-Revision-Date: 2019-07-27 12:19+0700\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -2387,9 +2387,6 @@ msgstr "Cài đặt bộ điều hợp"
 msgid "Add"
 msgstr "Thêm vào"
 
-msgid "Add / Delete the currently highlighted locale / language"
-msgstr ""
-
 msgid "Add AutoTimer"
 msgstr "Thêm vThêm tự động trả lờiào"
 
@@ -3134,9 +3131,6 @@ msgstr "Tự động cập nhật Chế độ xem Máy khách / Máy chủ?"
 #, fuzzy
 msgid "Automobil"
 msgstr "Tự động"
-
-msgid "Autorecord location"
-msgstr "Vị trí Autorecord"
 
 msgid "Autostart"
 msgstr "Tự động bắt đầu"
@@ -5240,9 +5234,6 @@ msgstr "Máy quét dịch vụ mặc định"
 msgid "Default files/folders to backup"
 msgstr "Chọn tập tin / thư mục để sao lưu"
 
-msgid "Default movie location"
-msgstr "Vị trí phim mặc định"
-
 msgid "Default settings"
 msgstr "Thiết lập mặc định"
 
@@ -5626,6 +5617,9 @@ msgstr "Cài đặt hiển thị"
 msgid "Display and user interface"
 msgstr "Giao diện hiển thị và người dùng"
 
+msgid "Display oscam information."
+msgstr ""
+
 msgid "Display selection list as a selection menu"
 msgstr ""
 
@@ -5806,6 +5800,10 @@ msgid "Do you want to produce this collection?"
 msgstr "Bạn có muốn sản xuất bộ sưu tập này?"
 
 #, python-format
+msgid "Do you want to purge all locales/languages except %s?"
+msgstr ""
+
+#, python-format
 msgid "Do you want to reboot your %s %s"
 msgstr "Bạn có muốn khởi động lại%s%s"
 
@@ -5870,6 +5868,9 @@ msgstr "Đừng thêm bản ghi này"
 
 msgid "Don't ask again!"
 msgstr "Đừng hỏi lại!"
+
+msgid "Don't restart"
+msgstr ""
 
 msgid "Don't save"
 msgstr "Đừng tiết kiệm"
@@ -7392,6 +7393,15 @@ msgstr "Chung"
 msgid "Genre"
 msgstr "Thể loại"
 
+msgid "Geolocation does not contain time zone information."
+msgstr ""
+
+msgid "Geolocation has been used to set the time zone."
+msgstr ""
+
+msgid "Geolocation is not available."
+msgstr ""
+
 msgid "Georgia"
 msgstr "Georgia"
 
@@ -8192,6 +8202,9 @@ msgstr "Hình ảnh"
 msgid "Immediate shutdown"
 msgstr "Tắt máy ngay lập tức"
 
+msgid "Immediately restart selected devices."
+msgstr ""
+
 msgid ""
 "In order to allow you to access all the features of the IceTV smart "
 "recording service, we need to gather some basic information.\n"
@@ -8428,17 +8441,8 @@ msgstr "Cài đặt plugin từ nguồn cấp dữ liệu ..."
 msgid "Instant record"
 msgstr "Ghi lại ngay lập tức"
 
-msgid "Instant record location"
-msgstr "Vị trí ghi ngay lập tức"
-
-msgid "Instant recording location"
-msgstr "Vị trí ghi âm tức thì"
-
 msgid "Instant recording..."
 msgstr "Ghi âm tức thì ..."
-
-msgid "Instant recordings location"
-msgstr "Vị trí ghi âm tức thì"
 
 msgid "Interface"
 msgstr "Giao diện"
@@ -8638,6 +8642,9 @@ msgstr "Chuyển đến vị trí được đánh dấu trước đó"
 
 msgid "Jump to prime time"
 msgstr "Chuyển đến thời gian chính"
+
+msgid "Jump to the currently active locale/language"
+msgstr ""
 
 msgid "Just change Bouquet"
 msgstr "Chỉ cần thay đổi Gói kênh"
@@ -8857,6 +8864,17 @@ msgstr ""
 
 msgid "Language"
 msgstr "Ngôn ngữ"
+
+#, python-format
+msgid "Language %s (%s) installed and selected."
+msgstr ""
+
+#, python-format
+msgid "Language %s (%s) selected."
+msgstr ""
+
+msgid "Language already selected."
+msgstr ""
 
 msgid "Language selection"
 msgstr "Lựa chọn ngôn ngữ"
@@ -9091,17 +9109,20 @@ msgid "Locale"
 msgstr "Địa phương"
 
 #, python-format
-msgid "Locale %s (%s) has been installed and selected as the active locale."
+msgid "Locale %s (%s) installed and selected."
 msgstr ""
 
 #, python-format
-msgid "Locale %s (%s) has been selected as the active locale."
+msgid "Locale %s (%s) selected."
 msgstr ""
 
 msgid "Locale (Ascending)"
 msgstr ""
 
 msgid "Locale (Descending)"
+msgstr ""
+
+msgid "Locale already selected."
 msgstr ""
 
 #, fuzzy
@@ -9855,9 +9876,6 @@ msgstr "Thiết lập danh sách phim"
 msgid "Movie Player Actions"
 msgstr "Lựa chọn phim"
 
-msgid "Movie location"
-msgstr "Địa điểm chiếu phim"
-
 msgid "Movie selection"
 msgstr "Lựa chọn phim"
 
@@ -10194,9 +10212,6 @@ msgstr "Hồ sơ mới: "
 msgid "New program info"
 msgstr "hiển thị thông tin chương trình ..."
 
-msgid "New timers location"
-msgstr "Vị trí giờ mới"
-
 msgid "New version:"
 msgstr "Phiên bản mới:"
 
@@ -10277,10 +10292,6 @@ msgstr "Không có chỉ số miễn phí có sẵn"
 
 msgid "No Timeshift found to save as recording!"
 msgstr "Không tìm thấy Timeshift để lưu dưới dạng ghi âm!"
-
-#, fuzzy
-msgid "No action required."
-msgstr "Không cần cập nhật!"
 
 msgid "No active channel found."
 msgstr "Không tìm thấy kênh hoạt động."
@@ -11590,14 +11601,9 @@ msgstr "Xin vui lòng chờ trong khi trạng thái thức ăn được kiểm t
 msgid "Please wait, Loading image."
 msgstr "Xin vui lòng chờ, Đang tải hình ảnh."
 
-msgid "Please wait, restarting cardserver."
-msgstr "Xin vui lòng chờ, khởi động lại máy chủ thẻ."
-
-msgid "Please wait, restarting softcam and cardserver."
-msgstr "Xin vui lòng chờ, khởi động lại softcam và máy chủ thẻ."
-
-msgid "Please wait, restarting softcam."
-msgstr "Xin vui lòng chờ, khởi động lại softcam."
+#, python-format
+msgid "Please wait, restarting %s."
+msgstr ""
 
 msgid "Please wait."
 msgstr "Xin vui lòng chờ."
@@ -11787,9 +11793,13 @@ msgstr "Nhấn OK để chỉnh sửa cài đặt."
 msgid "Press OK to get further details for %s"
 msgstr "Nhấn OK để biết thêm chi tiết cho%s"
 
-#, fuzzy
-msgid "Press OK to install and use this locale."
-msgstr "Nhấn OK để chọn dịch vụ."
+#, python-format
+msgid "Press OK to install and use this language.  [%s]"
+msgstr ""
+
+#, python-format
+msgid "Press OK to install and use this locale.  [%s]"
+msgstr ""
 
 msgid "Press OK to scan"
 msgstr "Nhấn OK để quét"
@@ -11821,9 +11831,13 @@ msgstr "Nhấn OK để chuyển đổi lựa chọn"
 msgid "Press OK to toggle the selection."
 msgstr "Nhấn OK để chuyển đổi lựa chọn."
 
-#, fuzzy
-msgid "Press OK to use this locale."
-msgstr "Nhấn OK để bắt đầu quét"
+#, python-format
+msgid "Press OK to use this language.  [%s]"
+msgstr ""
+
+#, python-format
+msgid "Press OK to use this locale.  [%s]"
+msgstr ""
 
 msgid "Press yellow to set this interface as the default interface."
 msgstr "Nhấn màu vàng để đặt giao diện này làm giao diện mặc định."
@@ -12044,6 +12058,21 @@ msgid "Puerto Rico"
 msgstr "Puerto Rico"
 
 msgid "Puppentrick"
+msgstr ""
+
+msgid "Purge"
+msgstr ""
+
+msgid "Purge all but / Add / Delete the currently highlighted locale/language"
+msgstr ""
+
+msgid ""
+"Purge all but the current and permanent locales/languages.  Add the current "
+"locale/language if it is not installed.  Delete the current locale/language "
+"if it is installed."
+msgstr ""
+
+msgid "Purging all unused locales/languages..."
 msgstr ""
 
 msgid "Pushto / Pashto"
@@ -13330,9 +13359,6 @@ msgstr "Chọn (danh sách nguồn) hoặc nhập thư mục (danh sách đích)
 msgid "Select CAId"
 msgstr "Chọn CAId"
 
-msgid "Select Card Server"
-msgstr "Chọn máy chủ thẻ"
-
 msgid "Select Enigma2 Skin"
 msgstr "Chọn da Enigma2"
 
@@ -13357,9 +13383,6 @@ msgstr "Chọn địa điểm"
 
 msgid "Select Quad Channels"
 msgstr "Chọn kênh Quad"
-
-msgid "Select Softcam"
-msgstr "Chọn Softcam"
 
 msgid "Select Software Update"
 msgstr "Chọn Cập nhật phần mềm"
@@ -13531,9 +13554,7 @@ msgstr ""
 msgid "Select the character or action under the keyboard cursor"
 msgstr "Chọn nhân vật hoặc hành động dưới con trỏ bàn phím ảo"
 
-msgid ""
-"Select the currently highlighted locale/language to be used in the user "
-"interface"
+msgid "Select the currently highlighted locale/language for the user interface"
 msgstr ""
 
 msgid ""
@@ -13973,41 +13994,6 @@ msgstr "Đặt kênh cho bộ hẹn giờ này."
 
 msgid "Set the date the timer must start."
 msgstr "Đặt ngày hẹn giờ phải bắt đầu."
-
-msgid ""
-"Set the default location for your autorecord-files. Press 'OK' to add new "
-"locations, select left/right to select an existing location."
-msgstr ""
-"Đặt vị trí mặc định cho tệp autorecord của bạn. Nhấn 'OK' để thêm các vị trí "
-"mới, chọn trái / phải để chọn một vị trí hiện có."
-
-msgid ""
-"Set the default location for your instant recordings. Press 'OK' to add new "
-"locations, select left/right to select an existing location."
-msgstr ""
-"Đặt vị trí mặc định cho bản ghi tức thì của bạn. Nhấn 'OK' để thêm các vị "
-"trí mới, chọn trái / phải để chọn một vị trí hiện có."
-
-msgid ""
-"Set the default location for your recordings. Press 'OK' to add new "
-"locations, select left/right to select an existing location."
-msgstr ""
-"Đặt vị trí mặc định cho bản ghi của bạn. Nhấn 'OK' để thêm các vị trí mới, "
-"chọn trái / phải để chọn một vị trí hiện có."
-
-msgid ""
-"Set the default location for your timers. Press 'OK' to add new locations, "
-"select left/right to select an existing location."
-msgstr ""
-"Đặt vị trí mặc định cho bộ hẹn giờ của bạn. Nhấn 'OK' để thêm các vị trí "
-"mới, chọn trái / phải để chọn một vị trí hiện có."
-
-msgid ""
-"Set the default location for your timeshift-files. Press 'OK' to add new "
-"locations, select left/right to select an existing location."
-msgstr ""
-"Đặt vị trí mặc định cho các tập tin timeshift của bạn. Nhấn 'OK' để thêm các "
-"vị trí mới, chọn trái / phải để chọn một vị trí hiện có."
 
 msgid "Set the default sorting method."
 msgstr "Đặt phương thức sắp xếp mặc định."
@@ -14970,10 +14956,10 @@ msgstr "Ổ cắm"
 msgid "Softcam"
 msgstr "Softcam"
 
-msgid "Softcam Setup"
-msgstr "Softcam cài đặt"
+msgid "Softcam Actions"
+msgstr ""
 
-msgid "Softcam setup"
+msgid "Softcam Setup"
 msgstr "Softcam cài đặt"
 
 msgid "Softcam-Panel"
@@ -15979,22 +15965,6 @@ msgstr ""
 
 #, python-format
 msgid ""
-"The directory %s is not a EXT2, EXT3, EXT4, NFS or CIFS partition.\n"
-"Make sure you select a valid partition type."
-msgstr ""
-"Thư mục % s không phải là phân vùng EXT2, EXT3, EXT4, NFS hoặc CIFS.\n"
-"Hãy chắc chắn rằng bạn chọn một loại phân vùng hợp lệ."
-
-#, python-format
-msgid ""
-"The directory %s is not writable.\n"
-"Make sure you select a writable directory instead."
-msgstr ""
-"Thư mục%s không thể ghi.\n"
-"Hãy chắc chắn rằng bạn chọn một thư mục có thể ghi thay thế."
-
-#, python-format
-msgid ""
 "The following device was found:\n"
 "\n"
 "%s\n"
@@ -16293,13 +16263,13 @@ msgstr ""
 "Đây là một cách giải quyết cho một số thiết bị thức dậy sau khi chuyển sang "
 "chế độ chờ. Lệnh wak up từ các thiết bị khác sẽ bị bỏ qua trong vài giây."
 
-#, fuzzy
-msgid "This is already the active locale."
-msgstr "Thiết bị này đã được gắn dưới dạng ổ cứng."
+#, python-format
+msgid "This is the currently selected language.  [%s]"
+msgstr ""
 
-#, fuzzy
-msgid "This is the currently selected locale."
-msgstr "Xóa tiêu đề hiện được chọn"
+#, python-format
+msgid "This is the currently selected locale.  [%s]"
+msgstr ""
 
 msgid ""
 "This is the order in which DiSEqC commands are sent to the aerial system. "
@@ -16695,6 +16665,9 @@ msgstr ""
 msgid "Time"
 msgstr "Thời gian"
 
+msgid "Time Setup Actions"
+msgstr ""
+
 msgid "Time Update in Minutes"
 msgstr "Cập nhật thời gian trong vài phút"
 
@@ -16763,12 +16736,6 @@ msgstr ""
 msgid "Timer overview"
 msgstr "Tổng quan về bộ đếm thời gian"
 
-msgid "Timer record location"
-msgstr "Vị trí ghi thời gian"
-
-msgid "Timer recording location"
-msgstr "Vị trí ghi thời gian"
-
 msgid "Timer sanity error"
 msgstr "Lỗi hẹn giờ"
 
@@ -16786,9 +16753,6 @@ msgstr "Bộ hẹn giờ"
 
 msgid "Timeshift"
 msgstr "Timeshift"
-
-msgid "Timeshift location"
-msgstr "Địa điểm hẹn giờ"
 
 msgid "Timeshift not possible!"
 msgstr "Timeshift không thể!"
@@ -17527,6 +17491,9 @@ msgstr "Sử dụng DHCP"
 msgid "Use Deinterlacing for 1080i Videosignal?"
 msgstr "Sử dụng Khử xen kẽ cho 1080i Videoignal?"
 
+msgid "Use Geolocation"
+msgstr ""
+
 msgid "Use HDMI-preemphasis"
 msgstr "Sử dụng định kiến- HDMI"
 
@@ -17562,6 +17529,9 @@ msgstr "Sử dụng đánh số kênh fastscan"
 
 msgid "Use frequency or channel"
 msgstr "Sử dụng tần số hoặc kênh"
+
+msgid "Use geolocation to set the current time zone location"
+msgstr ""
 
 msgid "Use individual settings for each directory"
 msgstr "Sử dụng các cài đặt riêng cho từng thư mục"
@@ -18609,17 +18579,16 @@ msgstr ""
 msgid "You must set at least one Command"
 msgstr "Bạn phải đặt ít nhất một Lệnh"
 
-msgid ""
-"You seem to be in timeshft, the service will briefly stop as timeshfit stops."
-msgstr ""
-"Bạn dường như đang ở trong timeshift, dịch vụ sẽ dừng trong thời gian ngắn "
-"khi timeshift dừng lại."
-
 msgid "You seem to be in timeshift!"
 msgstr "Bạn dường như đang ở trong timeshift!"
 
 msgid "You seem to be in timeshift, Do you want to leave timeshift ?"
 msgstr "Bạn dường như đang ở trong timeshift, Bạn có muốn rời khỏi timeshift?"
+
+msgid ""
+"You seem to be in timeshift, the service will briefly stop as timeshift "
+"stops."
+msgstr ""
 
 #, python-format
 msgid "Your %s %s does not support PiP HD"
@@ -19099,6 +19068,9 @@ msgstr "am"
 msgid "an internal error has occur"
 msgstr "một lỗi nội bộ đã xảy ra"
 
+msgid "and"
+msgstr ""
+
 msgid "and never ask again this session again"
 msgstr "và không bao giờ hỏi lại phiên này một lần nữa"
 
@@ -19212,6 +19184,9 @@ msgstr "thẻ"
 
 msgid "card reader"
 msgstr "đọc thẻ"
+
+msgid "cardserver"
+msgstr ""
 
 msgid "cartoon/puppets"
 msgstr "phim hoạt hình / con rối"
@@ -19344,9 +19319,6 @@ msgstr "giải mã và ghi lại ecm"
 msgid "detective/thriller"
 msgstr "thám tử / phim kinh dị"
 
-msgid "disable"
-msgstr "vô hiệu hóa"
-
 msgid "disable move mode"
 msgstr "tắt chế độ di chuyển"
 
@@ -19425,9 +19397,6 @@ msgstr ""
 
 msgid "empty"
 msgstr "trống"
-
-msgid "enable"
-msgstr "cho phép"
 
 msgid "enable PIP no HDR"
 msgstr "bật PIP không có HDR"
@@ -19540,9 +19509,6 @@ msgstr "rộng thêm"
 
 msgid "failed"
 msgstr "thất bại"
-
-msgid "false"
-msgstr "sai"
 
 msgid "fashion"
 msgstr "thời trang"
@@ -20046,17 +20012,11 @@ msgstr "của một môi trường lớp DUAL được sử dụng."
 msgid "of a SINGLE layer medium used."
 msgstr "của một phương tiện lớp SINGLE được sử dụng."
 
-msgid "off"
-msgstr "tắt"
-
 msgid "off or wpa2 on"
 msgstr "tắt hoặc wpa2 trên"
 
 msgid "offset is"
 msgstr "bù là"
-
-msgid "on"
-msgstr "trên"
 
 msgid "on READ ONLY medium."
 msgstr "trên phương tiện ĐỌC."
@@ -20296,9 +20256,6 @@ msgstr ""
 "nhưng không thể tìm kiếm các kênh truyền hình mới\n"
 "hoặc để định cấu hình cài đặt bộ chỉnh tần số"
 
-msgid "save"
-msgstr "lưu lại"
-
 msgid "save last directory on exit"
 msgstr "lưu thư mục cuối cùng khi thoát"
 
@@ -20480,6 +20437,9 @@ msgstr "các vấn đề xã hội / chính trị / kinh tế (nói chung)"
 msgid "social/spiritual science"
 msgstr "khoa học xã hội / tâm linh"
 
+msgid "softcam"
+msgstr ""
+
 msgid "softcams"
 msgstr "softcams"
 
@@ -20604,9 +20564,6 @@ msgstr "truyền thống (nhanh)"
 
 msgid "traditional (fast), retune"
 msgstr "truyền thống (nhanh), nghỉ hưu"
-
-msgid "true"
-msgstr "đúng"
 
 msgid "turbo"
 msgstr "turbo"
@@ -22225,6 +22182,9 @@ msgstr "Mặc định 'Sau sự kiện' *"
 msgid "Default 'Timer type' *"
 msgstr "Mặc định 'Kiểu hẹn giờ' *"
 
+msgid "Default movie location"
+msgstr "Vị trí phim mặc định"
+
 msgid "Default recording type"
 msgstr "Kiểu ghi mặc định"
 
@@ -22339,9 +22299,6 @@ msgstr "Lựa chọn ngôn ngữ EPG 2"
 
 msgid "EPG location"
 msgstr "Vị trí EPG"
-
-msgid "Enable Autorecord"
-msgstr "Bật tự động ghi"
 
 msgid "Enable EIT EPG"
 msgstr "Kích hoạt EIT EPG"
@@ -22657,11 +22614,6 @@ msgstr ""
 "một điểm trong sự kiện."
 
 msgid ""
-"If set to 'yes', enable autorecord for automatically background timeshift"
-msgstr ""
-"Nếu được đặt thành 'có', hãy bật autorecord để tự động chuyển nền thời gian"
-
-msgid ""
 "If set to 'yes; the infobar will be displayed when Fast Forwarding or "
 "Rewinding during media playback."
 msgstr ""
@@ -22783,6 +22735,9 @@ msgstr "Tốc độ tua lại ban đầu"
 
 msgid "Initial scroll delay"
 msgstr "Độ trễ cuộn ban đầu"
+
+msgid "Instant recording location"
+msgstr "Vị trí ghi âm tức thì"
 
 msgid "Interlaced"
 msgstr "Xen kẽ"
@@ -23088,9 +23043,6 @@ msgstr "Làm mới mỗi (tính theo giờ)"
 msgid "Remember last service in PiP"
 msgstr "Ghi nhớ dịch vụ cuối cùng trong PiP"
 
-msgid "Remote control model shown"
-msgstr "Mô hình điều khiển từ xa hiển thị"
-
 msgid "Remove completed timers after (days)"
 msgstr "Xóa bộ định thời đã hoàn thành sau (ngày)"
 
@@ -23114,6 +23066,11 @@ msgstr ""
 
 msgid "Require authentication for http streams"
 msgstr "Yêu cầu xác thực cho các luồng http"
+
+msgid ""
+"Reset the selected devices and save changes of your config when the GREEN "
+"button is pressed."
+msgstr ""
 
 msgid "Restart GUI after x crashes"
 msgstr "Khởi động lại GUI sau khi x gặp sự cố"
@@ -23169,6 +23126,15 @@ msgstr "Chọn hành động phím vàng"
 msgid "Select Yellow Key Action long"
 msgstr "Chọn hành động phím vàng dài"
 
+msgid "Select a cardserver from the available list."
+msgstr ""
+
+msgid "Select a softcam from the available list."
+msgstr ""
+
+msgid "Select cardserver"
+msgstr ""
+
 msgid "Select how to activate the Quick EPG mode:"
 msgstr "Chọn cách kích hoạt chế độ EPG nhanh:"
 
@@ -23181,6 +23147,9 @@ msgstr "Chọn nếu bạn muốn chế độ Dịch vụ phụ được kích h
 msgid "Select seekbar to be activated by arrow L/R (long) or << >> (long)."
 msgstr ""
 "Chọn thanh tìm kiếm được kích hoạt bằng mũi tên L / R (dài) hoặc << >> (dài)."
+
+msgid "Select softcam"
+msgstr ""
 
 msgid ""
 "Select the method of restoring screen resolution and framebuffer when "
@@ -23286,6 +23255,34 @@ msgstr "Đặt khung hình / giây cho phụ đề bên ngoài"
 
 msgid "Set the aspect ratio of the service picons."
 msgstr "Đặt tỷ lệ khung hình của các picons dịch vụ."
+
+msgid ""
+"Set the default location for your instant recordings. Press 'OK' to add new "
+"locations, select left/right to select an existing location."
+msgstr ""
+"Đặt vị trí mặc định cho bản ghi tức thì của bạn. Nhấn 'OK' để thêm các vị "
+"trí mới, chọn trái / phải để chọn một vị trí hiện có."
+
+msgid ""
+"Set the default location for your recordings. Press 'OK' to add new "
+"locations, select left/right to select an existing location."
+msgstr ""
+"Đặt vị trí mặc định cho bản ghi của bạn. Nhấn 'OK' để thêm các vị trí mới, "
+"chọn trái / phải để chọn một vị trí hiện có."
+
+msgid ""
+"Set the default location for your timers. Press 'OK' to add new locations, "
+"select left/right to select an existing location."
+msgstr ""
+"Đặt vị trí mặc định cho bộ hẹn giờ của bạn. Nhấn 'OK' để thêm các vị trí "
+"mới, chọn trái / phải để chọn một vị trí hiện có."
+
+msgid ""
+"Set the default location for your timeshift-files. Press 'OK' to add new "
+"locations, select left/right to select an existing location."
+msgstr ""
+"Đặt vị trí mặc định cho các tập tin timeshift của bạn. Nhấn 'OK' để thêm các "
+"vị trí mới, chọn trái / phải để chọn một vị trí hiện có."
 
 msgid ""
 "Set the delay time between repeated loops, this is used by software renderer "
@@ -23987,6 +23984,9 @@ msgstr "Mốc thời gian 24 giờ"
 msgid "Timeline font size"
 msgstr "Cỡ chữ thời gian"
 
+msgid "Timer recording location"
+msgstr "Vị trí ghi thời gian"
+
 msgid "Timeshift buffer delete after zap?"
 msgstr "Timeshift đệm xóa sau zap?"
 
@@ -24005,6 +24005,9 @@ msgstr "Timeshift chia tách tập tin dựa trên sự kiện"
 msgid "Timeshift last events limit [number of events]"
 msgstr "Timeshift các sự kiện cuối cùng giới hạn [số lượng sự kiện]"
 
+msgid "Timeshift location"
+msgstr "Địa điểm hẹn giờ"
+
 msgid "Timeshift-save action on zap"
 msgstr "Timeshift-lưu hành động trên zap"
 
@@ -24018,12 +24021,11 @@ msgstr ""
 msgid "Tuner slot"
 msgstr "Khe điều chỉnh"
 
-#, fuzzy
-msgid "Turn on the control LED."
-msgstr "Bật đèn LED nguồn."
+msgid "Turn on the control LED"
+msgstr ""
 
-msgid "Turn on the power LED."
-msgstr "Bật đèn LED nguồn."
+msgid "Turn on the power LED"
+msgstr ""
 
 msgid "URL of fallback remote receiver"
 msgstr "URL của máy thu từ xa dự phòng"
@@ -24367,10 +24369,6 @@ msgstr ""
 "Khi được điều chỉnh đến một dịch vụ, hệ thống thường sẽ quét bộ phát đáp xem "
 "có bất kỳ thay đổi nào không và lưu chúng. Chỉ đặt thành 'có' nếu bạn hoàn "
 "toàn chắc chắn những gì bạn đang làm."
-
-msgid ""
-"Which remote control gets shown. Only influences graphical representation."
-msgstr "Điều khiển từ xa nào được hiển thị. Chỉ ảnh hưởng đến đại diện đồ họa."
 
 msgid ""
 "With this option set to 'yes' the channel lists will always show you the "
@@ -24852,8 +24850,14 @@ msgstr ""
 "Đối với Kiểu điều chỉnh lai Bộ chuyển đổi Loại bộ chỉnh với các phím trái và "
 "phải"
 
-msgid "Please set your time zone"
-msgstr "Vui lòng đặt múi giờ của bạn"
+msgid "Please set your time options"
+msgstr ""
+
+msgid ""
+"Please set your time options.\n"
+"\n"
+"Press YELLOW to set the time zone via geolocation."
+msgstr ""
 
 msgid ""
 "Skip internet connection check (disables automatic package installation)"
@@ -24937,6 +24941,138 @@ msgstr "IP"
 
 msgid "J"
 msgstr ""
+
+#~ msgid "Autorecord location"
+#~ msgstr "Vị trí Autorecord"
+
+#~ msgid "Instant record location"
+#~ msgstr "Vị trí ghi ngay lập tức"
+
+#~ msgid "Instant recordings location"
+#~ msgstr "Vị trí ghi âm tức thì"
+
+#~ msgid "Movie location"
+#~ msgstr "Địa điểm chiếu phim"
+
+#~ msgid "New timers location"
+#~ msgstr "Vị trí giờ mới"
+
+#, fuzzy
+#~ msgid "No action required."
+#~ msgstr "Không cần cập nhật!"
+
+#~ msgid "Please wait, restarting cardserver."
+#~ msgstr "Xin vui lòng chờ, khởi động lại máy chủ thẻ."
+
+#~ msgid "Please wait, restarting softcam and cardserver."
+#~ msgstr "Xin vui lòng chờ, khởi động lại softcam và máy chủ thẻ."
+
+#~ msgid "Please wait, restarting softcam."
+#~ msgstr "Xin vui lòng chờ, khởi động lại softcam."
+
+#, fuzzy
+#~ msgid "Press OK to install and use this locale."
+#~ msgstr "Nhấn OK để chọn dịch vụ."
+
+#, fuzzy
+#~ msgid "Press OK to use this locale."
+#~ msgstr "Nhấn OK để bắt đầu quét"
+
+#~ msgid "Select Card Server"
+#~ msgstr "Chọn máy chủ thẻ"
+
+#~ msgid "Select Softcam"
+#~ msgstr "Chọn Softcam"
+
+#~ msgid ""
+#~ "Set the default location for your autorecord-files. Press 'OK' to add new "
+#~ "locations, select left/right to select an existing location."
+#~ msgstr ""
+#~ "Đặt vị trí mặc định cho tệp autorecord của bạn. Nhấn 'OK' để thêm các vị "
+#~ "trí mới, chọn trái / phải để chọn một vị trí hiện có."
+
+#~ msgid "Softcam setup"
+#~ msgstr "Softcam cài đặt"
+
+#~ msgid ""
+#~ "The directory %s is not a EXT2, EXT3, EXT4, NFS or CIFS partition.\n"
+#~ "Make sure you select a valid partition type."
+#~ msgstr ""
+#~ "Thư mục % s không phải là phân vùng EXT2, EXT3, EXT4, NFS hoặc CIFS.\n"
+#~ "Hãy chắc chắn rằng bạn chọn một loại phân vùng hợp lệ."
+
+#~ msgid ""
+#~ "The directory %s is not writable.\n"
+#~ "Make sure you select a writable directory instead."
+#~ msgstr ""
+#~ "Thư mục%s không thể ghi.\n"
+#~ "Hãy chắc chắn rằng bạn chọn một thư mục có thể ghi thay thế."
+
+#, fuzzy
+#~ msgid "This is already the active locale."
+#~ msgstr "Thiết bị này đã được gắn dưới dạng ổ cứng."
+
+#, fuzzy
+#~ msgid "This is the currently selected locale."
+#~ msgstr "Xóa tiêu đề hiện được chọn"
+
+#~ msgid "Timer record location"
+#~ msgstr "Vị trí ghi thời gian"
+
+#~ msgid ""
+#~ "You seem to be in timeshft, the service will briefly stop as timeshfit "
+#~ "stops."
+#~ msgstr ""
+#~ "Bạn dường như đang ở trong timeshift, dịch vụ sẽ dừng trong thời gian "
+#~ "ngắn khi timeshift dừng lại."
+
+#~ msgid "disable"
+#~ msgstr "vô hiệu hóa"
+
+#~ msgid "enable"
+#~ msgstr "cho phép"
+
+#~ msgid "false"
+#~ msgstr "sai"
+
+#~ msgid "off"
+#~ msgstr "tắt"
+
+#~ msgid "on"
+#~ msgstr "trên"
+
+#~ msgid "save"
+#~ msgstr "lưu lại"
+
+#~ msgid "true"
+#~ msgstr "đúng"
+
+#~ msgid "Enable Autorecord"
+#~ msgstr "Bật tự động ghi"
+
+#~ msgid ""
+#~ "If set to 'yes', enable autorecord for automatically background timeshift"
+#~ msgstr ""
+#~ "Nếu được đặt thành 'có', hãy bật autorecord để tự động chuyển nền thời "
+#~ "gian"
+
+#~ msgid "Remote control model shown"
+#~ msgstr "Mô hình điều khiển từ xa hiển thị"
+
+#, fuzzy
+#~ msgid "Turn on the control LED."
+#~ msgstr "Bật đèn LED nguồn."
+
+#~ msgid "Turn on the power LED."
+#~ msgstr "Bật đèn LED nguồn."
+
+#~ msgid ""
+#~ "Which remote control gets shown. Only influences graphical representation."
+#~ msgstr ""
+#~ "Điều khiển từ xa nào được hiển thị. Chỉ ảnh hưởng đến đại diện đồ họa."
+
+#~ msgid "Please set your time zone"
+#~ msgstr "Vui lòng đặt múi giờ của bạn"
 
 #~ msgid "Allocate unused memory index"
 #~ msgstr "Phân bổ chỉ số bộ nhớ không sử dụng"

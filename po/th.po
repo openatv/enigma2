@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-08-22 21:17+0000\n"
+"POT-Creation-Date: 2021-08-29 19:28+0000\n"
 "PO-Revision-Date: 2021-08-15 18:50+0000\n"
 "Last-Translator: openATV <openatv@gmail.com>\n"
 "Language-Team: Thai <https://hosted.weblate.org/projects/openatv/enigma2-7-0-"
@@ -2353,9 +2353,6 @@ msgstr "ตั้งค่าอะแด๊ปเตอร์"
 msgid "Add"
 msgstr "เพิ่ม"
 
-msgid "Add / Delete the currently highlighted locale / language"
-msgstr ""
-
 msgid "Add AutoTimer"
 msgstr ""
 
@@ -3107,9 +3104,6 @@ msgstr ""
 #, fuzzy
 msgid "Automobil"
 msgstr "อัตโนมัติ"
-
-msgid "Autorecord location"
-msgstr ""
 
 msgid "Autostart"
 msgstr ""
@@ -5194,9 +5188,6 @@ msgstr "ค้นหาเอง"
 msgid "Default files/folders to backup"
 msgstr ""
 
-msgid "Default movie location"
-msgstr ""
-
 #, fuzzy
 msgid "Default settings"
 msgstr "ตั้งค่าเริ่มต้น"
@@ -5584,6 +5575,9 @@ msgstr ""
 msgid "Display and user interface"
 msgstr "การแสดงผลและส่วนติดต่อผู้ใช้"
 
+msgid "Display oscam information."
+msgstr ""
+
 msgid "Display selection list as a selection menu"
 msgstr ""
 
@@ -5745,6 +5739,10 @@ msgstr "ดูเนื้อหาดีวีดีก่อนเขียน
 msgid "Do you want to produce this collection?"
 msgstr ""
 
+#, python-format
+msgid "Do you want to purge all locales/languages except %s?"
+msgstr ""
+
 #, fuzzy, python-format
 msgid "Do you want to reboot your %s %s"
 msgstr "ท่านต้องการที่จะนำการตั้งค่าต่างๆ กลับมาใช้หรือไม่?"
@@ -5807,6 +5805,9 @@ msgid "Don't add this recording"
 msgstr ""
 
 msgid "Don't ask again!"
+msgstr ""
+
+msgid "Don't restart"
 msgstr ""
 
 msgid "Don't save"
@@ -7289,6 +7290,15 @@ msgstr ""
 msgid "Genre"
 msgstr "ชนิด"
 
+msgid "Geolocation does not contain time zone information."
+msgstr ""
+
+msgid "Geolocation has been used to set the time zone."
+msgstr ""
+
+msgid "Geolocation is not available."
+msgstr ""
+
 msgid "Georgia"
 msgstr ""
 
@@ -8063,6 +8073,9 @@ msgstr ""
 msgid "Immediate shutdown"
 msgstr "ปิดเครื่องทันที (Shutdown)"
 
+msgid "Immediately restart selected devices."
+msgstr ""
+
 msgid ""
 "In order to allow you to access all the features of the IceTV smart "
 "recording service, we need to gather some basic information.\n"
@@ -8307,19 +8320,9 @@ msgstr "กำลังติดตั้ง"
 msgid "Instant record"
 msgstr ""
 
-msgid "Instant record location"
-msgstr ""
-
-#, fuzzy
-msgid "Instant recording location"
-msgstr "บันทึกรายการ..."
-
 #, fuzzy
 msgid "Instant recording..."
 msgstr "บันทึกรายการ..."
-
-msgid "Instant recordings location"
-msgstr ""
 
 msgid "Interface"
 msgstr ""
@@ -8526,6 +8529,9 @@ msgid "Jump to previous marked position"
 msgstr ""
 
 msgid "Jump to prime time"
+msgstr ""
+
+msgid "Jump to the currently active locale/language"
 msgstr ""
 
 msgid "Just change Bouquet"
@@ -8747,6 +8753,17 @@ msgstr ""
 
 msgid "Language"
 msgstr "ภาษา"
+
+#, python-format
+msgid "Language %s (%s) installed and selected."
+msgstr ""
+
+#, python-format
+msgid "Language %s (%s) selected."
+msgstr ""
+
+msgid "Language already selected."
+msgstr ""
 
 msgid "Language selection"
 msgstr "เลือกภาษา"
@@ -8991,17 +9008,20 @@ msgid "Locale"
 msgstr "Local Network"
 
 #, python-format
-msgid "Locale %s (%s) has been installed and selected as the active locale."
+msgid "Locale %s (%s) installed and selected."
 msgstr ""
 
 #, python-format
-msgid "Locale %s (%s) has been selected as the active locale."
+msgid "Locale %s (%s) selected."
 msgstr ""
 
 msgid "Locale (Ascending)"
 msgstr ""
 
 msgid "Locale (Descending)"
+msgstr ""
+
+msgid "Locale already selected."
 msgstr ""
 
 #, fuzzy
@@ -9751,9 +9771,6 @@ msgstr ""
 msgid "Movie Player Actions"
 msgstr "เลือกการตั้งเวลา"
 
-msgid "Movie location"
-msgstr ""
-
 #, fuzzy
 msgid "Movie selection"
 msgstr "เลือกการตั้งเวลา"
@@ -10095,9 +10112,6 @@ msgstr ""
 msgid "New program info"
 msgstr ""
 
-msgid "New timers location"
-msgstr ""
-
 msgid "New version:"
 msgstr "เวอร์ชั่นใหม่:"
 
@@ -10173,9 +10187,6 @@ msgid "No TS recorder available"
 msgstr "ไม่มีรายละเอียดเพิ่มเติม"
 
 msgid "No Timeshift found to save as recording!"
-msgstr ""
-
-msgid "No action required."
 msgstr ""
 
 msgid "No active channel found."
@@ -11493,16 +11504,9 @@ msgstr ""
 msgid "Please wait, Loading image."
 msgstr "กำลังโหลด... รอสักครู่..."
 
-#, fuzzy
-msgid "Please wait, restarting cardserver."
-msgstr "กำลังโหลดภาพ กรุณารอสักครู่..."
-
-msgid "Please wait, restarting softcam and cardserver."
+#, python-format
+msgid "Please wait, restarting %s."
 msgstr ""
-
-#, fuzzy
-msgid "Please wait, restarting softcam."
-msgstr "กรุณารอสักครู่... กำลังตรวจสอบเครือข่าย"
 
 msgid "Please wait."
 msgstr ""
@@ -11696,9 +11700,13 @@ msgstr "กดปุ่ม OK เพื่อแก้ไข"
 msgid "Press OK to get further details for %s"
 msgstr "กดปุ่ม OK เพื่อดูข้อมูลอื่นของ %s เพิ่มเติม"
 
-#, fuzzy
-msgid "Press OK to install and use this locale."
-msgstr "กดปุ่ม OK เพื่อเริ่มค้นหา"
+#, python-format
+msgid "Press OK to install and use this language.  [%s]"
+msgstr ""
+
+#, python-format
+msgid "Press OK to install and use this locale.  [%s]"
+msgstr ""
 
 msgid "Press OK to scan"
 msgstr "กดปุ่ม OK เพื่อเริ่มค้นหา"
@@ -11732,9 +11740,13 @@ msgstr ""
 msgid "Press OK to toggle the selection."
 msgstr "กดปุ่ม OK เพื่อเปลี่ยน"
 
-#, fuzzy
-msgid "Press OK to use this locale."
-msgstr "กดปุ่ม OK เพื่อเริ่มค้นหา"
+#, python-format
+msgid "Press OK to use this language.  [%s]"
+msgstr ""
+
+#, python-format
+msgid "Press OK to use this locale.  [%s]"
+msgstr ""
 
 msgid "Press yellow to set this interface as the default interface."
 msgstr ""
@@ -11942,6 +11954,21 @@ msgid "Puerto Rico"
 msgstr ""
 
 msgid "Puppentrick"
+msgstr ""
+
+msgid "Purge"
+msgstr ""
+
+msgid "Purge all but / Add / Delete the currently highlighted locale/language"
+msgstr ""
+
+msgid ""
+"Purge all but the current and permanent locales/languages.  Add the current "
+"locale/language if it is not installed.  Delete the current locale/language "
+"if it is installed."
+msgstr ""
+
+msgid "Purging all unused locales/languages..."
 msgstr ""
 
 msgid "Pushto / Pashto"
@@ -13230,10 +13257,6 @@ msgstr ""
 msgid "Select CAId"
 msgstr "เลือก CAId"
 
-#, fuzzy
-msgid "Select Card Server"
-msgstr "เลือกอัตราการปรับหน้าจอ"
-
 msgid "Select Enigma2 Skin"
 msgstr ""
 
@@ -13257,10 +13280,6 @@ msgstr ""
 
 msgid "Select Quad Channels"
 msgstr ""
-
-#, fuzzy
-msgid "Select Softcam"
-msgstr "เลือกตำแหน่ง"
 
 msgid "Select Software Update"
 msgstr ""
@@ -13422,9 +13441,7 @@ msgstr ""
 msgid "Select the character or action under the keyboard cursor"
 msgstr ""
 
-msgid ""
-"Select the currently highlighted locale/language to be used in the user "
-"interface"
+msgid "Select the currently highlighted locale/language for the user interface"
 msgstr ""
 
 msgid ""
@@ -13813,31 +13830,6 @@ msgid "Set the channel for this timer."
 msgstr ""
 
 msgid "Set the date the timer must start."
-msgstr ""
-
-msgid ""
-"Set the default location for your autorecord-files. Press 'OK' to add new "
-"locations, select left/right to select an existing location."
-msgstr ""
-
-msgid ""
-"Set the default location for your instant recordings. Press 'OK' to add new "
-"locations, select left/right to select an existing location."
-msgstr ""
-
-msgid ""
-"Set the default location for your recordings. Press 'OK' to add new "
-"locations, select left/right to select an existing location."
-msgstr ""
-
-msgid ""
-"Set the default location for your timers. Press 'OK' to add new locations, "
-"select left/right to select an existing location."
-msgstr ""
-
-msgid ""
-"Set the default location for your timeshift-files. Press 'OK' to add new "
-"locations, select left/right to select an existing location."
 msgstr ""
 
 msgid "Set the default sorting method."
@@ -14809,12 +14801,11 @@ msgstr "ล๊อคแล้ว"
 msgid "Softcam"
 msgstr ""
 
-msgid "Softcam Setup"
+msgid "Softcam Actions"
 msgstr ""
 
-#, fuzzy
-msgid "Softcam setup"
-msgstr "ป้องกันการตั้งค่า"
+msgid "Softcam Setup"
+msgstr ""
 
 msgid "Softcam-Panel"
 msgstr ""
@@ -15785,18 +15776,6 @@ msgstr ""
 
 #, python-format
 msgid ""
-"The directory %s is not a EXT2, EXT3, EXT4, NFS or CIFS partition.\n"
-"Make sure you select a valid partition type."
-msgstr ""
-
-#, python-format
-msgid ""
-"The directory %s is not writable.\n"
-"Make sure you select a writable directory instead."
-msgstr ""
-
-#, python-format
-msgid ""
 "The following device was found:\n"
 "\n"
 "%s\n"
@@ -16054,12 +16033,13 @@ msgid ""
 "seconds."
 msgstr ""
 
-msgid "This is already the active locale."
+#, python-format
+msgid "This is the currently selected language.  [%s]"
 msgstr ""
 
-#, fuzzy
-msgid "This is the currently selected locale."
-msgstr "ลบเชื่อเรื่องที่เลือกออก"
+#, python-format
+msgid "This is the currently selected locale.  [%s]"
+msgstr ""
 
 msgid ""
 "This is the order in which DiSEqC commands are sent to the aerial system. "
@@ -16386,6 +16366,9 @@ msgstr ""
 msgid "Time"
 msgstr "เวลา"
 
+msgid "Time Setup Actions"
+msgstr ""
+
 msgid "Time Update in Minutes"
 msgstr ""
 
@@ -16457,13 +16440,6 @@ msgstr ""
 msgid "Timer overview"
 msgstr "ตั้งเวลา"
 
-msgid "Timer record location"
-msgstr ""
-
-#, fuzzy
-msgid "Timer recording location"
-msgstr "เลือกการตั้งเวลา"
-
 msgid "Timer sanity error"
 msgstr "การตั้งเวลามีปัญหา"
 
@@ -16483,9 +16459,6 @@ msgstr ""
 
 msgid "Timeshift"
 msgstr "ควบคุมรายการสด"
-
-msgid "Timeshift location"
-msgstr ""
 
 msgid "Timeshift not possible!"
 msgstr "ไม่สามารถใช้งานควบคุมรายการสดได้!"
@@ -17210,6 +17183,9 @@ msgstr "เลือกใช้ DHCP"
 msgid "Use Deinterlacing for 1080i Videosignal?"
 msgstr ""
 
+msgid "Use Geolocation"
+msgstr ""
+
 msgid "Use HDMI-preemphasis"
 msgstr ""
 
@@ -17244,6 +17220,9 @@ msgid "Use fastscan channel numbering"
 msgstr ""
 
 msgid "Use frequency or channel"
+msgstr ""
+
+msgid "Use geolocation to set the current time zone location"
 msgstr ""
 
 msgid "Use individual settings for each directory"
@@ -18242,14 +18221,15 @@ msgstr ""
 msgid "You must set at least one Command"
 msgstr ""
 
-msgid ""
-"You seem to be in timeshft, the service will briefly stop as timeshfit stops."
-msgstr ""
-
 msgid "You seem to be in timeshift!"
 msgstr ""
 
 msgid "You seem to be in timeshift, Do you want to leave timeshift ?"
+msgstr ""
+
+msgid ""
+"You seem to be in timeshift, the service will briefly stop as timeshift "
+"stops."
 msgstr ""
 
 #, python-format
@@ -18681,6 +18661,9 @@ msgstr ""
 msgid "an internal error has occur"
 msgstr ""
 
+msgid "and"
+msgstr ""
+
 msgid "and never ask again this session again"
 msgstr ""
 
@@ -18792,6 +18775,9 @@ msgid "card"
 msgstr ""
 
 msgid "card reader"
+msgstr ""
+
+msgid "cardserver"
 msgstr ""
 
 msgid "cartoon/puppets"
@@ -18923,9 +18909,6 @@ msgstr ""
 msgid "detective/thriller"
 msgstr ""
 
-msgid "disable"
-msgstr "ไม่ใช้"
-
 msgid "disable move mode"
 msgstr "เลิกโหมดเคลื่อนย้าย"
 
@@ -19002,9 +18985,6 @@ msgstr ""
 
 msgid "empty"
 msgstr "ว่าง"
-
-msgid "enable"
-msgstr "ใช้งาน"
 
 msgid "enable PIP no HDR"
 msgstr ""
@@ -19115,9 +19095,6 @@ msgid "extrawide"
 msgstr ""
 
 msgid "failed"
-msgstr ""
-
-msgid "false"
 msgstr ""
 
 msgid "fashion"
@@ -19630,17 +19607,11 @@ msgstr "ของสื่อบันทึกสองชั้น"
 msgid "of a SINGLE layer medium used."
 msgstr "ของสื่อบันทึกแบบชั้นเดียว"
 
-msgid "off"
-msgstr "ปิด"
-
 msgid "off or wpa2 on"
 msgstr ""
 
 msgid "offset is"
 msgstr ""
-
-msgid "on"
-msgstr "เปิด"
 
 msgid "on READ ONLY medium."
 msgstr "บนสื่อบันทึกอ่านได้อย่างเดียว"
@@ -19881,9 +19852,6 @@ msgid ""
 "or to configure tuner settings"
 msgstr ""
 
-msgid "save"
-msgstr ""
-
 msgid "save last directory on exit"
 msgstr "บันทึกโฟล์เดอร์ปัจจุบันเมื่อออก"
 
@@ -20065,6 +20033,9 @@ msgstr ""
 msgid "social/spiritual science"
 msgstr ""
 
+msgid "softcam"
+msgstr ""
+
 msgid "softcams"
 msgstr ""
 
@@ -20187,9 +20158,6 @@ msgid "traditional (fast)"
 msgstr ""
 
 msgid "traditional (fast), retune"
-msgstr ""
-
-msgid "true"
 msgstr ""
 
 msgid "turbo"
@@ -21668,6 +21636,9 @@ msgstr "หลังจากจบรายการ"
 msgid "Default 'Timer type' *"
 msgstr "กำลังถูกบันทึก"
 
+msgid "Default movie location"
+msgstr ""
+
 #, fuzzy
 msgid "Default recording type"
 msgstr "กำลังถูกบันทึก"
@@ -21764,9 +21735,6 @@ msgid "EPG language selection 2"
 msgstr ""
 
 msgid "EPG location"
-msgstr ""
-
-msgid "Enable Autorecord"
 msgstr ""
 
 msgid "Enable EIT EPG"
@@ -22046,10 +22014,6 @@ msgid ""
 msgstr ""
 
 msgid ""
-"If set to 'yes', enable autorecord for automatically background timeshift"
-msgstr ""
-
-msgid ""
 "If set to 'yes; the infobar will be displayed when Fast Forwarding or "
 "Rewinding during media playback."
 msgstr ""
@@ -22157,6 +22121,10 @@ msgstr ""
 
 msgid "Initial scroll delay"
 msgstr ""
+
+#, fuzzy
+msgid "Instant recording location"
+msgstr "บันทึกรายการ..."
 
 #, fuzzy
 msgid "Interlaced"
@@ -22460,9 +22428,6 @@ msgstr ""
 msgid "Remember last service in PiP"
 msgstr ""
 
-msgid "Remote control model shown"
-msgstr ""
-
 msgid "Remove completed timers after (days)"
 msgstr ""
 
@@ -22481,6 +22446,11 @@ msgid ""
 msgstr ""
 
 msgid "Require authentication for http streams"
+msgstr ""
+
+msgid ""
+"Reset the selected devices and save changes of your config when the GREEN "
+"button is pressed."
 msgstr ""
 
 msgid "Restart GUI after x crashes"
@@ -22538,6 +22508,15 @@ msgstr ""
 msgid "Select Yellow Key Action long"
 msgstr ""
 
+msgid "Select a cardserver from the available list."
+msgstr ""
+
+msgid "Select a softcam from the available list."
+msgstr ""
+
+msgid "Select cardserver"
+msgstr ""
+
 msgid "Select how to activate the Quick EPG mode:"
 msgstr ""
 
@@ -22548,6 +22527,9 @@ msgid "Select if you want the Subservice mode to be activated."
 msgstr ""
 
 msgid "Select seekbar to be activated by arrow L/R (long) or << >> (long)."
+msgstr ""
+
+msgid "Select softcam"
 msgstr ""
 
 msgid ""
@@ -22645,6 +22627,26 @@ msgid "Set fps for external subtitles"
 msgstr ""
 
 msgid "Set the aspect ratio of the service picons."
+msgstr ""
+
+msgid ""
+"Set the default location for your instant recordings. Press 'OK' to add new "
+"locations, select left/right to select an existing location."
+msgstr ""
+
+msgid ""
+"Set the default location for your recordings. Press 'OK' to add new "
+"locations, select left/right to select an existing location."
+msgstr ""
+
+msgid ""
+"Set the default location for your timers. Press 'OK' to add new locations, "
+"select left/right to select an existing location."
+msgstr ""
+
+msgid ""
+"Set the default location for your timeshift-files. Press 'OK' to add new "
+"locations, select left/right to select an existing location."
 msgstr ""
 
 msgid ""
@@ -23305,6 +23307,10 @@ msgstr ""
 msgid "Timeline font size"
 msgstr ""
 
+#, fuzzy
+msgid "Timer recording location"
+msgstr "เลือกการตั้งเวลา"
+
 msgid "Timeshift buffer delete after zap?"
 msgstr ""
 
@@ -23323,6 +23329,9 @@ msgstr ""
 msgid "Timeshift last events limit [number of events]"
 msgstr ""
 
+msgid "Timeshift location"
+msgstr ""
+
 msgid "Timeshift-save action on zap"
 msgstr ""
 
@@ -23334,10 +23343,10 @@ msgstr ""
 msgid "Tuner slot"
 msgstr ""
 
-msgid "Turn on the control LED."
+msgid "Turn on the control LED"
 msgstr ""
 
-msgid "Turn on the power LED."
+msgid "Turn on the power LED"
 msgstr ""
 
 msgid "URL of fallback remote receiver"
@@ -23616,10 +23625,6 @@ msgid ""
 "When tuned to a service the system will normally scan the transponder for "
 "any changes and save them. Only set to 'yes' if you're absolutely sure what "
 "you're doing."
-msgstr ""
-
-msgid ""
-"Which remote control gets shown. Only influences graphical representation."
 msgstr ""
 
 msgid ""
@@ -24052,9 +24057,14 @@ msgid ""
 "For Hybrid Tuner Models switch Tuner Type with left and right keys"
 msgstr ""
 
-#, fuzzy
-msgid "Please set your time zone"
-msgstr "กรุณาตั้งค่า Tuner B"
+msgid "Please set your time options"
+msgstr ""
+
+msgid ""
+"Please set your time options.\n"
+"\n"
+"Press YELLOW to set the time zone via geolocation."
+msgstr ""
 
 msgid ""
 "Skip internet connection check (disables automatic package installation)"
@@ -24132,6 +24142,54 @@ msgstr ""
 
 msgid "J"
 msgstr ""
+
+#, fuzzy
+#~ msgid "Please wait, restarting cardserver."
+#~ msgstr "กำลังโหลดภาพ กรุณารอสักครู่..."
+
+#, fuzzy
+#~ msgid "Please wait, restarting softcam."
+#~ msgstr "กรุณารอสักครู่... กำลังตรวจสอบเครือข่าย"
+
+#, fuzzy
+#~ msgid "Press OK to install and use this locale."
+#~ msgstr "กดปุ่ม OK เพื่อเริ่มค้นหา"
+
+#, fuzzy
+#~ msgid "Press OK to use this locale."
+#~ msgstr "กดปุ่ม OK เพื่อเริ่มค้นหา"
+
+#, fuzzy
+#~ msgid "Select Card Server"
+#~ msgstr "เลือกอัตราการปรับหน้าจอ"
+
+#, fuzzy
+#~ msgid "Select Softcam"
+#~ msgstr "เลือกตำแหน่ง"
+
+#, fuzzy
+#~ msgid "Softcam setup"
+#~ msgstr "ป้องกันการตั้งค่า"
+
+#, fuzzy
+#~ msgid "This is the currently selected locale."
+#~ msgstr "ลบเชื่อเรื่องที่เลือกออก"
+
+#~ msgid "disable"
+#~ msgstr "ไม่ใช้"
+
+#~ msgid "enable"
+#~ msgstr "ใช้งาน"
+
+#~ msgid "off"
+#~ msgstr "ปิด"
+
+#~ msgid "on"
+#~ msgstr "เปิด"
+
+#, fuzzy
+#~ msgid "Please set your time zone"
+#~ msgstr "กรุณาตั้งค่า Tuner B"
 
 #, fuzzy
 #~ msgid "Configuration mode: %s"

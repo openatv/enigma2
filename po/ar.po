@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-08-22 21:17+0000\n"
+"POT-Creation-Date: 2021-08-29 19:28+0000\n"
 "PO-Revision-Date: 2021-08-15 18:49+0000\n"
 "Last-Translator: openATV <openatv@gmail.com>\n"
 "Language-Team: Arabic <https://hosted.weblate.org/projects/openatv/"
@@ -2452,9 +2452,6 @@ msgstr "إعدادات المحول"
 msgid "Add"
 msgstr "إضافة"
 
-msgid "Add / Delete the currently highlighted locale / language"
-msgstr ""
-
 msgid "Add AutoTimer"
 msgstr ""
 
@@ -3238,9 +3235,6 @@ msgstr ""
 #, fuzzy
 msgid "Automobil"
 msgstr "آلى"
-
-msgid "Autorecord location"
-msgstr ""
 
 msgid "Autostart"
 msgstr ""
@@ -5378,9 +5372,6 @@ msgstr "المكان الافتراضى للفيلم"
 msgid "Default files/folders to backup"
 msgstr ""
 
-msgid "Default movie location"
-msgstr "المكان الافتراضي للفيلم"
-
 msgid "Default settings"
 msgstr "الإعدادات الافتراضية"
 
@@ -5777,6 +5768,9 @@ msgstr ""
 msgid "Display and user interface"
 msgstr "عرض و واجهه مستخدم"
 
+msgid "Display oscam information."
+msgstr ""
+
 msgid "Display selection list as a selection menu"
 msgstr ""
 
@@ -5939,6 +5933,10 @@ msgstr "هل تريد معاينة هذا الديفيدي قبل الحرق؟"
 msgid "Do you want to produce this collection?"
 msgstr ""
 
+#, python-format
+msgid "Do you want to purge all locales/languages except %s?"
+msgstr ""
+
 #, fuzzy, python-format
 msgid "Do you want to reboot your %s %s"
 msgstr "هل تريد إستعادة الاعدادات ؟"
@@ -6002,6 +6000,9 @@ msgid "Don't add this recording"
 msgstr ""
 
 msgid "Don't ask again!"
+msgstr ""
+
+msgid "Don't restart"
 msgstr ""
 
 msgid "Don't save"
@@ -7527,6 +7528,15 @@ msgstr ""
 msgid "Genre"
 msgstr "تصنيف"
 
+msgid "Geolocation does not contain time zone information."
+msgstr ""
+
+msgid "Geolocation has been used to set the time zone."
+msgstr ""
+
+msgid "Geolocation is not available."
+msgstr ""
+
 msgid "Georgia"
 msgstr "جورجيا"
 
@@ -8313,6 +8323,9 @@ msgstr ""
 msgid "Immediate shutdown"
 msgstr "إغلاق فورى"
 
+msgid "Immediately restart selected devices."
+msgstr ""
+
 msgid ""
 "In order to allow you to access all the features of the IceTV smart "
 "recording service, we need to gather some basic information.\n"
@@ -8569,17 +8582,8 @@ msgstr "جارى التثبيت"
 msgid "Instant record"
 msgstr "تسجيل سريع"
 
-msgid "Instant record location"
-msgstr "مكان التسجيل السريع"
-
-msgid "Instant recording location"
-msgstr "مكان التسجيلات السريعة"
-
 msgid "Instant recording..."
 msgstr "جاري التسجيل السريع..."
-
-msgid "Instant recordings location"
-msgstr ""
 
 msgid "Interface"
 msgstr ""
@@ -8788,6 +8792,9 @@ msgid "Jump to previous marked position"
 msgstr ""
 
 msgid "Jump to prime time"
+msgstr ""
+
+msgid "Jump to the currently active locale/language"
 msgstr ""
 
 msgid "Just change Bouquet"
@@ -9009,6 +9016,17 @@ msgstr ""
 #
 msgid "Language"
 msgstr "اللغـة"
+
+#, python-format
+msgid "Language %s (%s) installed and selected."
+msgstr ""
+
+#, python-format
+msgid "Language %s (%s) selected."
+msgstr ""
+
+msgid "Language already selected."
+msgstr ""
 
 #
 msgid "Language selection"
@@ -9273,17 +9291,20 @@ msgid "Locale"
 msgstr "شبكه محليه"
 
 #, python-format
-msgid "Locale %s (%s) has been installed and selected as the active locale."
+msgid "Locale %s (%s) installed and selected."
 msgstr ""
 
 #, python-format
-msgid "Locale %s (%s) has been selected as the active locale."
+msgid "Locale %s (%s) selected."
 msgstr ""
 
 msgid "Locale (Ascending)"
 msgstr ""
 
 msgid "Locale (Descending)"
+msgstr ""
+
+msgid "Locale already selected."
 msgstr ""
 
 #
@@ -10058,9 +10079,6 @@ msgstr ""
 msgid "Movie Player Actions"
 msgstr "مكان الفيلم"
 
-msgid "Movie location"
-msgstr "مكان الفيلم"
-
 msgid "Movie selection"
 msgstr "أختيار الأفلام"
 
@@ -10416,9 +10434,6 @@ msgstr ""
 msgid "New program info"
 msgstr ""
 
-msgid "New timers location"
-msgstr ""
-
 #
 msgid "New version:"
 msgstr "إصدار جديد:"
@@ -10500,9 +10515,6 @@ msgid "No TS recorder available"
 msgstr "لا يوجد وصف"
 
 msgid "No Timeshift found to save as recording!"
-msgstr ""
-
-msgid "No action required."
 msgstr ""
 
 msgid "No active channel found."
@@ -11870,16 +11882,9 @@ msgstr ""
 msgid "Please wait, Loading image."
 msgstr "انتظر من فضلك ...يتم تحميل القائمه..."
 
-#, fuzzy
-msgid "Please wait, restarting cardserver."
-msgstr "رجاء الانتظار... جارى تحميل الصوره"
-
-msgid "Please wait, restarting softcam and cardserver."
+#, python-format
+msgid "Please wait, restarting %s."
 msgstr ""
-
-#, fuzzy
-msgid "Please wait, restarting softcam."
-msgstr "رجاء الانتظار.... جارى إختبار الشبكه"
 
 msgid "Please wait."
 msgstr ""
@@ -12092,10 +12097,13 @@ msgstr "أضغط موافق لتحرير الاعدادات."
 msgid "Press OK to get further details for %s"
 msgstr "أضغط موافق للحصول على تفاصيل أكثر %s"
 
-#
-#, fuzzy
-msgid "Press OK to install and use this locale."
-msgstr "اضغط موافق لبدأ البحث"
+#, python-format
+msgid "Press OK to install and use this language.  [%s]"
+msgstr ""
+
+#, python-format
+msgid "Press OK to install and use this locale.  [%s]"
+msgstr ""
 
 #
 msgid "Press OK to scan"
@@ -12130,10 +12138,13 @@ msgstr "أضغط موافق لتغيير الأختيار"
 msgid "Press OK to toggle the selection."
 msgstr "أضغط موافق لتغيير الأختيار."
 
-#
-#, fuzzy
-msgid "Press OK to use this locale."
-msgstr "اضغط موافق لبدأ البحث"
+#, python-format
+msgid "Press OK to use this language.  [%s]"
+msgstr ""
+
+#, python-format
+msgid "Press OK to use this locale.  [%s]"
+msgstr ""
 
 msgid "Press yellow to set this interface as the default interface."
 msgstr ""
@@ -12345,6 +12356,21 @@ msgid "Puerto Rico"
 msgstr "بورتوريكو"
 
 msgid "Puppentrick"
+msgstr ""
+
+msgid "Purge"
+msgstr ""
+
+msgid "Purge all but / Add / Delete the currently highlighted locale/language"
+msgstr ""
+
+msgid ""
+"Purge all but the current and permanent locales/languages.  Add the current "
+"locale/language if it is not installed.  Delete the current locale/language "
+"if it is installed."
+msgstr ""
+
+msgid "Purging all unused locales/languages..."
 msgstr ""
 
 msgid "Pushto / Pashto"
@@ -13689,10 +13715,6 @@ msgstr ""
 msgid "Select CAId"
 msgstr "أختيار كايد"
 
-#, fuzzy
-msgid "Select Card Server"
-msgstr "أختار معدل الأنعاش"
-
 msgid "Select Enigma2 Skin"
 msgstr ""
 
@@ -13718,10 +13740,6 @@ msgstr ""
 
 msgid "Select Quad Channels"
 msgstr ""
-
-#, fuzzy
-msgid "Select Softcam"
-msgstr "أختار الموقع"
 
 msgid "Select Software Update"
 msgstr ""
@@ -13883,9 +13901,7 @@ msgstr ""
 msgid "Select the character or action under the keyboard cursor"
 msgstr ""
 
-msgid ""
-"Select the currently highlighted locale/language to be used in the user "
-"interface"
+msgid "Select the currently highlighted locale/language for the user interface"
 msgstr ""
 
 msgid ""
@@ -14311,31 +14327,6 @@ msgid "Set the channel for this timer."
 msgstr ""
 
 msgid "Set the date the timer must start."
-msgstr ""
-
-msgid ""
-"Set the default location for your autorecord-files. Press 'OK' to add new "
-"locations, select left/right to select an existing location."
-msgstr ""
-
-msgid ""
-"Set the default location for your instant recordings. Press 'OK' to add new "
-"locations, select left/right to select an existing location."
-msgstr ""
-
-msgid ""
-"Set the default location for your recordings. Press 'OK' to add new "
-"locations, select left/right to select an existing location."
-msgstr ""
-
-msgid ""
-"Set the default location for your timers. Press 'OK' to add new locations, "
-"select left/right to select an existing location."
-msgstr ""
-
-msgid ""
-"Set the default location for your timeshift-files. Press 'OK' to add new "
-"locations, select left/right to select an existing location."
 msgstr ""
 
 msgid "Set the default sorting method."
@@ -15335,12 +15326,11 @@ msgstr "مغلق"
 msgid "Softcam"
 msgstr ""
 
-msgid "Softcam Setup"
+msgid "Softcam Actions"
 msgstr ""
 
-#, fuzzy
-msgid "Softcam setup"
-msgstr "إحمى الضبط"
+msgid "Softcam Setup"
+msgstr ""
 
 msgid "Softcam-Panel"
 msgstr ""
@@ -16348,21 +16338,6 @@ msgstr ""
 
 #, python-format
 msgid ""
-"The directory %s is not a EXT2, EXT3, EXT4, NFS or CIFS partition.\n"
-"Make sure you select a valid partition type."
-msgstr ""
-
-#
-#, python-format
-msgid ""
-"The directory %s is not writable.\n"
-"Make sure you select a writable directory instead."
-msgstr ""
-"الدليل %s غير قابل للكتابة.\n"
-"تأكد من إختيار دليل يمكنك الكتابة فيه."
-
-#, python-format
-msgid ""
 "The following device was found:\n"
 "\n"
 "%s\n"
@@ -16634,12 +16609,13 @@ msgid ""
 "seconds."
 msgstr ""
 
-msgid "This is already the active locale."
+#, python-format
+msgid "This is the currently selected language.  [%s]"
 msgstr ""
 
-#, fuzzy
-msgid "This is the currently selected locale."
-msgstr "حذف العنوان الحالى المختار"
+#, python-format
+msgid "This is the currently selected locale.  [%s]"
+msgstr ""
 
 msgid ""
 "This is the order in which DiSEqC commands are sent to the aerial system. "
@@ -16988,6 +16964,9 @@ msgstr ""
 msgid "Time"
 msgstr "الوقت"
 
+msgid "Time Setup Actions"
+msgstr ""
+
 msgid "Time Update in Minutes"
 msgstr ""
 
@@ -17061,14 +17040,6 @@ msgid "Timer overview"
 msgstr "إدخال المؤقت"
 
 #
-msgid "Timer record location"
-msgstr "موضع تسجيل المؤقت"
-
-#
-msgid "Timer recording location"
-msgstr "مكان المؤقتات المسجلة"
-
-#
 msgid "Timer sanity error"
 msgstr "خطأ إستقامة المؤقت"
 
@@ -17090,10 +17061,6 @@ msgstr ""
 #
 msgid "Timeshift"
 msgstr "التحكم الزمني في البث المباشر"
-
-#
-msgid "Timeshift location"
-msgstr "موقع ملفات التايم شفت"
 
 #
 msgid "Timeshift not possible!"
@@ -17869,6 +17836,9 @@ msgstr "إستخدام بروتوكول العناوين الآلي"
 msgid "Use Deinterlacing for 1080i Videosignal?"
 msgstr ""
 
+msgid "Use Geolocation"
+msgstr ""
+
 msgid "Use HDMI-preemphasis"
 msgstr ""
 
@@ -17905,6 +17875,9 @@ msgstr "إستخدم البحث السريع بأرقام القنوات"
 
 msgid "Use frequency or channel"
 msgstr "استخدام التردد أو القناة"
+
+msgid "Use geolocation to set the current time zone location"
+msgstr ""
 
 msgid "Use individual settings for each directory"
 msgstr "استخدام الإعدادات الفردية لكل دليل"
@@ -18937,14 +18910,15 @@ msgstr ""
 msgid "You must set at least one Command"
 msgstr ""
 
-msgid ""
-"You seem to be in timeshft, the service will briefly stop as timeshfit stops."
-msgstr ""
-
 msgid "You seem to be in timeshift!"
 msgstr "يبدو أنك في التحكم الزمني في البث المباشر!"
 
 msgid "You seem to be in timeshift, Do you want to leave timeshift ?"
+msgstr ""
+
+msgid ""
+"You seem to be in timeshift, the service will briefly stop as timeshift "
+"stops."
 msgstr ""
 
 #, python-format
@@ -19396,6 +19370,9 @@ msgstr ""
 msgid "an internal error has occur"
 msgstr ""
 
+msgid "and"
+msgstr ""
+
 msgid "and never ask again this session again"
 msgstr ""
 
@@ -19509,6 +19486,9 @@ msgid "card"
 msgstr ""
 
 msgid "card reader"
+msgstr ""
+
+msgid "cardserver"
 msgstr ""
 
 msgid "cartoon/puppets"
@@ -19645,9 +19625,6 @@ msgstr "فتح التشفير و تسجيل معلومات شفرة القنوا
 msgid "detective/thriller"
 msgstr "تحقيق/مثير"
 
-msgid "disable"
-msgstr "تعطيل"
-
 msgid "disable move mode"
 msgstr "تعطيل وضع التحريك"
 
@@ -19723,9 +19700,6 @@ msgstr "مدمج"
 
 msgid "empty"
 msgstr "فارغ"
-
-msgid "enable"
-msgstr "تمكين"
 
 msgid "enable PIP no HDR"
 msgstr ""
@@ -19842,9 +19816,6 @@ msgstr ""
 
 msgid "failed"
 msgstr "فشل"
-
-msgid "false"
-msgstr "خاطئ"
 
 msgid "fashion"
 msgstr "أزياء"
@@ -20374,19 +20345,11 @@ msgstr "من الطبقة الثنائية أستخدم الوسط."
 msgid "of a SINGLE layer medium used."
 msgstr "من الطبقة الأحادية أستخدم الوسط."
 
-#
-msgid "off"
-msgstr "لا يعمـل"
-
 msgid "off or wpa2 on"
 msgstr "إغلاق أو تشغيل الدخول المحمي لشبكة الوايفاي الثاني"
 
 msgid "offset is"
 msgstr "يوازن هو"
-
-#
-msgid "on"
-msgstr "يعمل"
 
 msgid "on READ ONLY medium."
 msgstr "قراءة الوسيط فقط."
@@ -20633,9 +20596,6 @@ msgid ""
 "or to configure tuner settings"
 msgstr ""
 
-msgid "save"
-msgstr ""
-
 msgid "save last directory on exit"
 msgstr "حفظ الدليل عند الخروج"
 
@@ -20822,6 +20782,9 @@ msgstr "القضايا الاجتماعية/السياسية/الاقتصاد (�
 msgid "social/spiritual science"
 msgstr "العلوم الاجتماعية/الروحية"
 
+msgid "softcam"
+msgstr ""
+
 msgid "softcams"
 msgstr ""
 
@@ -20948,9 +20911,6 @@ msgstr ""
 
 msgid "traditional (fast), retune"
 msgstr ""
-
-msgid "true"
-msgstr "صحيح"
 
 msgid "turbo"
 msgstr ""
@@ -22488,6 +22448,9 @@ msgstr "بعد الحدث"
 msgid "Default 'Timer type' *"
 msgstr "هذا التسجيل"
 
+msgid "Default movie location"
+msgstr "المكان الافتراضي للفيلم"
+
 #, fuzzy
 msgid "Default recording type"
 msgstr "هذا التسجيل"
@@ -22584,9 +22547,6 @@ msgid "EPG language selection 2"
 msgstr "إختيار لغة دليل البرامج الإلكترونية الثانية"
 
 msgid "EPG location"
-msgstr ""
-
-msgid "Enable Autorecord"
 msgstr ""
 
 msgid "Enable EIT EPG"
@@ -22869,10 +22829,6 @@ msgid ""
 msgstr ""
 
 msgid ""
-"If set to 'yes', enable autorecord for automatically background timeshift"
-msgstr ""
-
-msgid ""
 "If set to 'yes; the infobar will be displayed when Fast Forwarding or "
 "Rewinding during media playback."
 msgstr ""
@@ -22984,6 +22940,9 @@ msgstr "أولوية التسريع إلى الخلف"
 
 msgid "Initial scroll delay"
 msgstr "تاخير التمرير الاولي"
+
+msgid "Instant recording location"
+msgstr "مكان التسجيلات السريعة"
 
 #, fuzzy
 msgid "Interlaced"
@@ -23289,9 +23248,6 @@ msgstr ""
 msgid "Remember last service in PiP"
 msgstr ""
 
-msgid "Remote control model shown"
-msgstr ""
-
 msgid "Remove completed timers after (days)"
 msgstr "إزالة المؤقتات المكتملة بعد (أيام)"
 
@@ -23313,6 +23269,11 @@ msgstr ""
 
 msgid "Require authentication for http streams"
 msgstr "طلب توثيق روابط المشاركة"
+
+msgid ""
+"Reset the selected devices and save changes of your config when the GREEN "
+"button is pressed."
+msgstr ""
 
 msgid "Restart GUI after x crashes"
 msgstr ""
@@ -23370,6 +23331,15 @@ msgstr ""
 msgid "Select Yellow Key Action long"
 msgstr ""
 
+msgid "Select a cardserver from the available list."
+msgstr ""
+
+msgid "Select a softcam from the available list."
+msgstr ""
+
+msgid "Select cardserver"
+msgstr ""
+
 msgid "Select how to activate the Quick EPG mode:"
 msgstr ""
 
@@ -23380,6 +23350,9 @@ msgid "Select if you want the Subservice mode to be activated."
 msgstr ""
 
 msgid "Select seekbar to be activated by arrow L/R (long) or << >> (long)."
+msgstr ""
+
+msgid "Select softcam"
 msgstr ""
 
 msgid ""
@@ -23478,6 +23451,26 @@ msgid "Set fps for external subtitles"
 msgstr "ضبط معدل الإطارات في الثانية لترجمة الوسائط الخارجية"
 
 msgid "Set the aspect ratio of the service picons."
+msgstr ""
+
+msgid ""
+"Set the default location for your instant recordings. Press 'OK' to add new "
+"locations, select left/right to select an existing location."
+msgstr ""
+
+msgid ""
+"Set the default location for your recordings. Press 'OK' to add new "
+"locations, select left/right to select an existing location."
+msgstr ""
+
+msgid ""
+"Set the default location for your timers. Press 'OK' to add new locations, "
+"select left/right to select an existing location."
+msgstr ""
+
+msgid ""
+"Set the default location for your timeshift-files. Press 'OK' to add new "
+"locations, select left/right to select an existing location."
 msgstr ""
 
 msgid ""
@@ -24151,6 +24144,10 @@ msgstr ""
 msgid "Timeline font size"
 msgstr ""
 
+#
+msgid "Timer recording location"
+msgstr "مكان المؤقتات المسجلة"
+
 msgid "Timeshift buffer delete after zap?"
 msgstr ""
 
@@ -24169,6 +24166,10 @@ msgstr ""
 msgid "Timeshift last events limit [number of events]"
 msgstr ""
 
+#
+msgid "Timeshift location"
+msgstr "موقع ملفات التايم شفت"
+
 msgid "Timeshift-save action on zap"
 msgstr ""
 
@@ -24180,10 +24181,10 @@ msgstr ""
 msgid "Tuner slot"
 msgstr "فتحة المؤالف"
 
-msgid "Turn on the control LED."
+msgid "Turn on the control LED"
 msgstr ""
 
-msgid "Turn on the power LED."
+msgid "Turn on the power LED"
 msgstr ""
 
 msgid "URL of fallback remote receiver"
@@ -24496,10 +24497,6 @@ msgid ""
 "When tuned to a service the system will normally scan the transponder for "
 "any changes and save them. Only set to 'yes' if you're absolutely sure what "
 "you're doing."
-msgstr ""
-
-msgid ""
-"Which remote control gets shown. Only influences graphical representation."
 msgstr ""
 
 msgid ""
@@ -24940,9 +24937,14 @@ msgid ""
 "For Hybrid Tuner Models switch Tuner Type with left and right keys"
 msgstr ""
 
-#, fuzzy
-msgid "Please set your time zone"
-msgstr "من فضلك أضبط الموالف B"
+msgid "Please set your time options"
+msgstr ""
+
+msgid ""
+"Please set your time options.\n"
+"\n"
+"Press YELLOW to set the time zone via geolocation."
+msgstr ""
 
 msgid ""
 "Skip internet connection check (disables automatic package installation)"
@@ -25013,6 +25015,82 @@ msgstr ""
 
 msgid "J"
 msgstr ""
+
+#~ msgid "Instant record location"
+#~ msgstr "مكان التسجيل السريع"
+
+#~ msgid "Movie location"
+#~ msgstr "مكان الفيلم"
+
+#, fuzzy
+#~ msgid "Please wait, restarting cardserver."
+#~ msgstr "رجاء الانتظار... جارى تحميل الصوره"
+
+#, fuzzy
+#~ msgid "Please wait, restarting softcam."
+#~ msgstr "رجاء الانتظار.... جارى إختبار الشبكه"
+
+#
+#, fuzzy
+#~ msgid "Press OK to install and use this locale."
+#~ msgstr "اضغط موافق لبدأ البحث"
+
+#
+#, fuzzy
+#~ msgid "Press OK to use this locale."
+#~ msgstr "اضغط موافق لبدأ البحث"
+
+#, fuzzy
+#~ msgid "Select Card Server"
+#~ msgstr "أختار معدل الأنعاش"
+
+#, fuzzy
+#~ msgid "Select Softcam"
+#~ msgstr "أختار الموقع"
+
+#, fuzzy
+#~ msgid "Softcam setup"
+#~ msgstr "إحمى الضبط"
+
+#
+#~ msgid ""
+#~ "The directory %s is not writable.\n"
+#~ "Make sure you select a writable directory instead."
+#~ msgstr ""
+#~ "الدليل %s غير قابل للكتابة.\n"
+#~ "تأكد من إختيار دليل يمكنك الكتابة فيه."
+
+#, fuzzy
+#~ msgid "This is the currently selected locale."
+#~ msgstr "حذف العنوان الحالى المختار"
+
+#
+#~ msgid "Timer record location"
+#~ msgstr "موضع تسجيل المؤقت"
+
+#~ msgid "disable"
+#~ msgstr "تعطيل"
+
+#~ msgid "enable"
+#~ msgstr "تمكين"
+
+#~ msgid "false"
+#~ msgstr "خاطئ"
+
+#
+#~ msgid "off"
+#~ msgstr "لا يعمـل"
+
+#
+#~ msgid "on"
+#~ msgstr "يعمل"
+
+#~ msgid "true"
+#~ msgstr "صحيح"
+
+#, fuzzy
+#~ msgid "Please set your time zone"
+#~ msgstr "من فضلك أضبط الموالف B"
 
 #~ msgid "Allocate unused memory index"
 #~ msgstr "تخصيص فهرس الذاكرة غير المستخدمة"

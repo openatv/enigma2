@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: hu_po v3.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-08-22 21:17+0000\n"
+"POT-Creation-Date: 2021-08-29 19:28+0000\n"
 "PO-Revision-Date: 2020-06-04 11:20+0200\n"
 "Last-Translator: Alec <alex1vagyok@gmail.com>\n"
 "Language-Team: Alec <alex1vagyok@gmail.com>\n"
@@ -2390,9 +2390,6 @@ msgstr "Adapter beállításai"
 msgid "Add"
 msgstr "Hozzáadás"
 
-msgid "Add / Delete the currently highlighted locale / language"
-msgstr ""
-
 msgid "Add AutoTimer"
 msgstr "AutoTimer hozzáadása"
 
@@ -3137,9 +3134,6 @@ msgstr "A kliens/szerver nézet automatikus frissítése?"
 
 msgid "Automobil"
 msgstr "Automobil"
-
-msgid "Autorecord location"
-msgstr "Automatikus Timeshift felvétel helye"
 
 msgid "Autostart"
 msgstr "Automatikus indítás"
@@ -5244,9 +5238,6 @@ msgstr "Alapértelmezett csatorna keresés"
 msgid "Default files/folders to backup"
 msgstr "Alapértelmezett fájlok/könyvtárak a mentéshez"
 
-msgid "Default movie location"
-msgstr "Alapértelmezett felvételek tárhelye"
-
 msgid "Default settings"
 msgstr "Alapértelmezett beállítások"
 
@@ -5628,6 +5619,9 @@ msgstr "Kijelző beállítás"
 msgid "Display and user interface"
 msgstr "Kijelző és felhasználói felület"
 
+msgid "Display oscam information."
+msgstr ""
+
 msgid "Display selection list as a selection menu"
 msgstr ""
 
@@ -5803,6 +5797,10 @@ msgid "Do you want to produce this collection?"
 msgstr "Szeretné ezt a gyűjteményt elkészíteni?"
 
 #, python-format
+msgid "Do you want to purge all locales/languages except %s?"
+msgstr ""
+
+#, python-format
 msgid "Do you want to reboot your %s %s"
 msgstr "Szeretné újraindítani a(z) %s %s"
 
@@ -5865,6 +5863,9 @@ msgstr "Ne vegye fel ezt a felvételt"
 
 msgid "Don't ask again!"
 msgstr "Ne kérdezze újra!"
+
+msgid "Don't restart"
+msgstr ""
 
 msgid "Don't save"
 msgstr "Ne mentse"
@@ -7370,6 +7371,15 @@ msgstr "Általános"
 msgid "Genre"
 msgstr "Műfaj"
 
+msgid "Geolocation does not contain time zone information."
+msgstr ""
+
+msgid "Geolocation has been used to set the time zone."
+msgstr ""
+
+msgid "Geolocation is not available."
+msgstr ""
+
 msgid "Georgia"
 msgstr "Grúzia"
 
@@ -8165,6 +8175,9 @@ msgstr "ImageWizard"
 msgid "Immediate shutdown"
 msgstr "Azonnali kikapcsolás"
 
+msgid "Immediately restart selected devices."
+msgstr ""
+
 #, fuzzy
 msgid ""
 "In order to allow you to access all the features of the IceTV smart "
@@ -8408,17 +8421,8 @@ msgstr "Bővítmény telepítése Feed-ből..."
 msgid "Instant record"
 msgstr "Azonnali felvétel"
 
-msgid "Instant record location"
-msgstr "Azonnali felvétel helye"
-
-msgid "Instant recording location"
-msgstr "Azonnali felvételek helye"
-
 msgid "Instant recording..."
 msgstr "Felvétel azonnali indítása..."
-
-msgid "Instant recordings location"
-msgstr "Azonnali felvételek helye"
 
 msgid "Interface"
 msgstr "Interfész"
@@ -8617,6 +8621,9 @@ msgstr "Ugrás az előző megjelölt ponthoz"
 
 msgid "Jump to prime time"
 msgstr "Ugrás a főidőhöz"
+
+msgid "Jump to the currently active locale/language"
+msgstr ""
 
 msgid "Just change Bouquet"
 msgstr "Csak csatornacsomag váltás"
@@ -8832,6 +8839,17 @@ msgstr "Helyi konyha"
 
 msgid "Language"
 msgstr "Kezelő felület nyelve"
+
+#, python-format
+msgid "Language %s (%s) installed and selected."
+msgstr ""
+
+#, python-format
+msgid "Language %s (%s) selected."
+msgstr ""
+
+msgid "Language already selected."
+msgstr ""
 
 msgid "Language selection"
 msgstr "Nyelvválasztás"
@@ -9062,17 +9080,20 @@ msgid "Locale"
 msgstr "Helyi"
 
 #, python-format
-msgid "Locale %s (%s) has been installed and selected as the active locale."
+msgid "Locale %s (%s) installed and selected."
 msgstr ""
 
 #, python-format
-msgid "Locale %s (%s) has been selected as the active locale."
+msgid "Locale %s (%s) selected."
 msgstr ""
 
 msgid "Locale (Ascending)"
 msgstr ""
 
 msgid "Locale (Descending)"
+msgstr ""
+
+msgid "Locale already selected."
 msgstr ""
 
 #, fuzzy
@@ -9815,9 +9836,6 @@ msgstr "Film Lista Beállítás"
 msgid "Movie Player Actions"
 msgstr "Filmválasztás"
 
-msgid "Movie location"
-msgstr "Fájlok helye"
-
 msgid "Movie selection"
 msgstr "Filmválasztás"
 
@@ -10145,9 +10163,6 @@ msgstr "Új profil: "
 msgid "New program info"
 msgstr "Új programinformáció"
 
-msgid "New timers location"
-msgstr "Új időzítők helye"
-
 msgid "New version:"
 msgstr "Új verzió:"
 
@@ -10224,10 +10239,6 @@ msgstr "Nem áll rendelkezésre TS felvevő"
 
 msgid "No Timeshift found to save as recording!"
 msgstr "Nem talált menthető Timeshift fájlt!"
-
-#, fuzzy
-msgid "No action required."
-msgstr "Nincs elérhető frissítés!"
 
 msgid "No active channel found."
 msgstr "Nem található aktív csatorna."
@@ -11541,14 +11552,9 @@ msgstr "Várjon, amíg az állapotellenőrzés zajlik."
 msgid "Please wait, Loading image."
 msgstr "Várj, kép betöltése."
 
-msgid "Please wait, restarting cardserver."
-msgstr "Kérem, várjon a kártyaszerver újraindul."
-
-msgid "Please wait, restarting softcam and cardserver."
-msgstr "Kérem, várjon a kártyaszerver és a softcam újraindul."
-
-msgid "Please wait, restarting softcam."
-msgstr "Kérem, várjon a softcam újraindul."
+#, python-format
+msgid "Please wait, restarting %s."
+msgstr ""
 
 msgid "Please wait."
 msgstr "Kérjük, várjon."
@@ -11736,9 +11742,13 @@ msgstr "Az OK gombbal módosíthatja a beállításokat."
 msgid "Press OK to get further details for %s"
 msgstr "Nyomja le az OK gombot több részletért %s kapcsán"
 
-#, fuzzy
-msgid "Press OK to install and use this locale."
-msgstr "Nyomja le az OK gombot egy csatorna kiválasztásához."
+#, python-format
+msgid "Press OK to install and use this language.  [%s]"
+msgstr ""
+
+#, python-format
+msgid "Press OK to install and use this locale.  [%s]"
+msgstr ""
 
 msgid "Press OK to scan"
 msgstr "Az OK gombbal indíthatja a keresést"
@@ -11772,9 +11782,13 @@ msgstr "Nyomja le az OK gombot a kijelölés változtatásához"
 msgid "Press OK to toggle the selection."
 msgstr "Nyomja le az OK gombot a kijelölés változtatásához."
 
-#, fuzzy
-msgid "Press OK to use this locale."
-msgstr "Az OK gombbal indíthatja a keresést"
+#, python-format
+msgid "Press OK to use this language.  [%s]"
+msgstr ""
+
+#, python-format
+msgid "Press OK to use this locale.  [%s]"
+msgstr ""
 
 msgid "Press yellow to set this interface as the default interface."
 msgstr ""
@@ -11990,6 +12004,21 @@ msgstr "Puerto Rico"
 
 msgid "Puppentrick"
 msgstr "Báb"
+
+msgid "Purge"
+msgstr ""
+
+msgid "Purge all but / Add / Delete the currently highlighted locale/language"
+msgstr ""
+
+msgid ""
+"Purge all but the current and permanent locales/languages.  Add the current "
+"locale/language if it is not installed.  Delete the current locale/language "
+"if it is installed."
+msgstr ""
+
+msgid "Purging all unused locales/languages..."
+msgstr ""
 
 msgid "Pushto / Pashto"
 msgstr ""
@@ -13275,9 +13304,6 @@ msgstr "Kijelölés (forráslista) vagy könyvtár megadása (céllista)"
 msgid "Select CAId"
 msgstr "CAId kiválasztása"
 
-msgid "Select Card Server"
-msgstr "Kártyakiszolgáló kiválasztása"
-
 msgid "Select Enigma2 Skin"
 msgstr "Enigma2 kinézet kiválasztás"
 
@@ -13302,9 +13328,6 @@ msgstr "Hely kiválasztása"
 
 msgid "Select Quad Channels"
 msgstr "Quad Csatorna választása"
-
-msgid "Select Softcam"
-msgstr "Softcam kiválasztása"
 
 msgid "Select Software Update"
 msgstr "Szoftverfrissítés választása"
@@ -13480,9 +13503,7 @@ msgid "Select the character or action under the keyboard cursor"
 msgstr ""
 "A karakter vagy művelet kijelölése a virtuális billentyűzet kurzora alatt"
 
-msgid ""
-"Select the currently highlighted locale/language to be used in the user "
-"interface"
+msgid "Select the currently highlighted locale/language for the user interface"
 msgstr ""
 
 msgid ""
@@ -13936,46 +13957,6 @@ msgstr "Állítsa be a csatornát ehhez a időzítőhez."
 
 msgid "Set the date the timer must start."
 msgstr "Állítsa be az időzítés kezdetének dátumát."
-
-msgid ""
-"Set the default location for your autorecord-files. Press 'OK' to add new "
-"locations, select left/right to select an existing location."
-msgstr ""
-"Állítsa be a Timeshift automatikus felvétel fájának az alapértelmezett "
-"helyét. Új helyek hozzáadásához nyomja meg az \"OK\" gombot, válassza ki a "
-"meglévő hely kiválasztásához balra vagy jobbra gombot."
-
-msgid ""
-"Set the default location for your instant recordings. Press 'OK' to add new "
-"locations, select left/right to select an existing location."
-msgstr ""
-"Állítsa be az azonnali felvételek alapértelmezett helyét. Új helyek "
-"hozzáadásához nyomja meg az \"OK\" gombot, válassza ki a meglévő hely "
-"kiválasztásához balra vagy jobbra gombot."
-
-msgid ""
-"Set the default location for your recordings. Press 'OK' to add new "
-"locations, select left/right to select an existing location."
-msgstr ""
-"Állítsa be a felvételek alapértelmezett helyét. Új helyek hozzáadásához "
-"nyomja meg az \"OK\" gombot, válassza ki a meglévő hely kiválasztásához "
-"balra vagy jobbra gombot."
-
-msgid ""
-"Set the default location for your timers. Press 'OK' to add new locations, "
-"select left/right to select an existing location."
-msgstr ""
-"Állítsa be az időzítők alapértelmezett helyét. Új helyek hozzáadásához "
-"nyomja meg az \"OK\" gombot, válassza ki a meglévő hely kiválasztásához "
-"balra vagy jobbra gombot."
-
-msgid ""
-"Set the default location for your timeshift-files. Press 'OK' to add new "
-"locations, select left/right to select an existing location."
-msgstr ""
-"Állítsa be a rögzítésre kerülő Timeshift fájl alapértelmezett helyét. Új "
-"helyek hozzáadásához nyomja meg az 'OK' gombot, válassza ki a meglévő hely "
-"kiválasztásához balra vagy jobbra gombot."
 
 msgid "Set the default sorting method."
 msgstr "Alapértelmezett rendezési mód beállítása."
@@ -14939,10 +14920,10 @@ msgstr "Aljzat"
 msgid "Softcam"
 msgstr "Softcam"
 
-msgid "Softcam Setup"
-msgstr "Softcam beállítások"
+msgid "Softcam Actions"
+msgstr ""
 
-msgid "Softcam setup"
+msgid "Softcam Setup"
 msgstr "Softcam beállítások"
 
 msgid "Softcam-Panel"
@@ -15960,22 +15941,6 @@ msgstr ""
 
 #, python-format
 msgid ""
-"The directory %s is not a EXT2, EXT3, EXT4, NFS or CIFS partition.\n"
-"Make sure you select a valid partition type."
-msgstr ""
-"A %s mappa nem egy EXT2, EXT3, EXT4, NFS vagy CIFS partíció.\n"
-"Kérem, válasszon egy érvényes partíció típust."
-
-#, python-format
-msgid ""
-"The directory %s is not writable.\n"
-"Make sure you select a writable directory instead."
-msgstr ""
-"%s mappa nem írható.\n"
-"Kérem, válasszon egy írási jogosultságokkal rendelkező mappát."
-
-#, python-format
-msgid ""
 "The following device was found:\n"
 "\n"
 "%s\n"
@@ -16277,13 +16242,13 @@ msgstr ""
 "után újra felébred. A más eszközökből származó ébresztés parancsot néhány "
 "másodpercre figyelmen kívül hagyják."
 
-#, fuzzy
-msgid "This is already the active locale."
-msgstr "Ez az eszköz már csatlakoztatva van Merevlemezként."
+#, python-format
+msgid "This is the currently selected language.  [%s]"
+msgstr ""
 
-#, fuzzy
-msgid "This is the currently selected locale."
-msgstr "Kijelölt címek eltávolítása"
+#, python-format
+msgid "This is the currently selected locale.  [%s]"
+msgstr ""
 
 msgid ""
 "This is the order in which DiSEqC commands are sent to the aerial system. "
@@ -16677,6 +16642,9 @@ msgstr ""
 msgid "Time"
 msgstr "Idő"
 
+msgid "Time Setup Actions"
+msgstr ""
+
 msgid "Time Update in Minutes"
 msgstr "Az idő frissítése percekben"
 
@@ -16745,12 +16713,6 @@ msgstr ""
 msgid "Timer overview"
 msgstr "Időzítések áttekintése"
 
-msgid "Timer record location"
-msgstr "Időzített felvétel helye"
-
-msgid "Timer recording location"
-msgstr "Időzített felvételek helye"
-
 msgid "Timer sanity error"
 msgstr "Időzítési logikai hiba"
 
@@ -16768,9 +16730,6 @@ msgstr "Időzítők"
 
 msgid "Timeshift"
 msgstr "Timeshift"
-
-msgid "Timeshift location"
-msgstr "Timeshift helye"
 
 msgid "Timeshift not possible!"
 msgstr "Timeshift nem lehetséges!"
@@ -17508,6 +17467,9 @@ msgstr "DHCP használata"
 msgid "Use Deinterlacing for 1080i Videosignal?"
 msgstr "Használjon felbontást 1080i videójelre?"
 
+msgid "Use Geolocation"
+msgstr ""
+
 msgid "Use HDMI-preemphasis"
 msgstr "HDMI előerősítés használata"
 
@@ -17543,6 +17505,9 @@ msgstr "Szolgáltató által megadott csatorna számozás"
 
 msgid "Use frequency or channel"
 msgstr "Frekvencia vagy csatorna használata"
+
+msgid "Use geolocation to set the current time zone location"
+msgstr ""
 
 msgid "Use individual settings for each directory"
 msgstr "Beállítások mentése egyedileg mappánként"
@@ -18585,17 +18550,16 @@ msgstr ""
 msgid "You must set at least one Command"
 msgstr "Meg kell adnia legalább egy parancsot"
 
-msgid ""
-"You seem to be in timeshft, the service will briefly stop as timeshfit stops."
-msgstr ""
-"Úgy tűnik, hogy Timeshift módban van, a szolgáltatás rövid időre megáll, "
-"ahogy a Timeshift-t megállítja."
-
 msgid "You seem to be in timeshift!"
 msgstr "Úgy tűnik, Timeshift módban van!"
 
 msgid "You seem to be in timeshift, Do you want to leave timeshift ?"
 msgstr "Ki szeretne lépni a Timeshift módból?"
+
+msgid ""
+"You seem to be in timeshift, the service will briefly stop as timeshift "
+"stops."
+msgstr ""
 
 #, python-format
 msgid "Your %s %s does not support PiP HD"
@@ -19081,6 +19045,9 @@ msgstr "de"
 msgid "an internal error has occur"
 msgstr "belső hiba történt"
 
+msgid "and"
+msgstr ""
+
 msgid "and never ask again this session again"
 msgstr "és ne kérdezze újra ebben a munkamenetben"
 
@@ -19193,6 +19160,9 @@ msgstr "kártya"
 
 msgid "card reader"
 msgstr "kártyaolvasó"
+
+msgid "cardserver"
+msgstr ""
 
 msgid "cartoon/puppets"
 msgstr "rajzfilm/báb"
@@ -19322,9 +19292,6 @@ msgstr "ecm felvétel és dekódolás"
 msgid "detective/thriller"
 msgstr "dekektív/thriller"
 
-msgid "disable"
-msgstr "letiltás"
-
 msgid "disable move mode"
 msgstr "mozgatási mód letiltása"
 
@@ -19400,9 +19367,6 @@ msgstr ""
 
 msgid "empty"
 msgstr "üres"
-
-msgid "enable"
-msgstr "engedélyezés"
 
 msgid "enable PIP no HDR"
 msgstr "engedélyezze a Kép-a-Képben funkciót mikor nincs HDR"
@@ -19514,9 +19478,6 @@ msgstr "extra széles"
 
 msgid "failed"
 msgstr "sikertelen"
-
-msgid "false"
-msgstr "nem"
 
 msgid "fashion"
 msgstr "divat"
@@ -20015,17 +19976,11 @@ msgstr "a kétréteges lemezből felhasználva."
 msgid "of a SINGLE layer medium used."
 msgstr "egyoldalas (single layer) medium felhasználva."
 
-msgid "off"
-msgstr "ki"
-
 msgid "off or wpa2 on"
 msgstr "ki vagy wpa2 be"
 
 msgid "offset is"
 msgstr "offszet"
-
-msgid "on"
-msgstr "be"
 
 msgid "on READ ONLY medium."
 msgstr "a csak olvasható hordozón."
@@ -20265,9 +20220,6 @@ msgstr ""
 "de nem lehet új csatornákat keresni\n"
 "vagy konfigurálja a tuner beállításait"
 
-msgid "save"
-msgstr "mentés"
-
 msgid "save last directory on exit"
 msgstr "az utolsó mappa mentése kilépéskor"
 
@@ -20449,6 +20401,9 @@ msgstr "szociális/politikai/gazdasági (általános)"
 msgid "social/spiritual science"
 msgstr "szociális/spirituális"
 
+msgid "softcam"
+msgstr ""
+
 msgid "softcams"
 msgstr "softcams"
 
@@ -20570,9 +20525,6 @@ msgstr "hagyományos (gyors)"
 
 msgid "traditional (fast), retune"
 msgstr "hagyományos (gyors), újra hangolás"
-
-msgid "true"
-msgstr "igaz"
 
 msgid "turbo"
 msgstr "turbo"
@@ -22208,6 +22160,9 @@ msgstr "Alapértelmezett 'Esemény után' *"
 msgid "Default 'Timer type' *"
 msgstr "Alapértelmezett 'Időzítés típusa' *"
 
+msgid "Default movie location"
+msgstr "Alapértelmezett felvételek tárhelye"
+
 msgid "Default recording type"
 msgstr "Alapértelmezett felvétel típusa"
 
@@ -22325,9 +22280,6 @@ msgstr "EPG nyelvválasztás 2"
 
 msgid "EPG location"
 msgstr "EPG helye"
-
-msgid "Enable Autorecord"
-msgstr "Automatikus Timeshift felvétel engedélyezése"
 
 msgid "Enable EIT EPG"
 msgstr "EIT EPG engedélyezése"
@@ -22660,12 +22612,6 @@ msgstr ""
 "pontra az eseményen belül."
 
 msgid ""
-"If set to 'yes', enable autorecord for automatically background timeshift"
-msgstr ""
-"Ha az 'igen'-t választja, akkor a Timeshift fájl automatikusan mentve lesz a "
-"háttérben"
-
-msgid ""
 "If set to 'yes; the infobar will be displayed when Fast Forwarding or "
 "Rewinding during media playback."
 msgstr ""
@@ -22787,6 +22733,9 @@ msgstr "Kezdeti visszatekerési sebesség"
 
 msgid "Initial scroll delay"
 msgstr "Görgetés kezdeti késleltetése"
+
+msgid "Instant recording location"
+msgstr "Azonnali felvételek helye"
 
 msgid "Interlaced"
 msgstr "Sorváltással"
@@ -23097,9 +23046,6 @@ msgstr "Ennyi óránként frissít mindent"
 msgid "Remember last service in PiP"
 msgstr "Utolsó csatorna megjegyzése Kép-a-Képben módban"
 
-msgid "Remote control model shown"
-msgstr "Távirányító modell mutatása"
-
 msgid "Remove completed timers after (days)"
 msgstr "Lejárt időzítések törlése ennyi nap után"
 
@@ -23124,6 +23070,11 @@ msgstr ""
 
 msgid "Require authentication for http streams"
 msgstr "Azonosítás megkövetelése HTTP streamek esetén"
+
+msgid ""
+"Reset the selected devices and save changes of your config when the GREEN "
+"button is pressed."
+msgstr ""
 
 msgid "Restart GUI after x crashes"
 msgstr "A GUI újraindítása x összeomlás után"
@@ -23179,6 +23130,15 @@ msgstr "Sárga gomb művelete"
 msgid "Select Yellow Key Action long"
 msgstr "Sárga gomb művelete (hosszan)"
 
+msgid "Select a cardserver from the available list."
+msgstr ""
+
+msgid "Select a softcam from the available list."
+msgstr ""
+
+msgid "Select cardserver"
+msgstr ""
+
 msgid "Select how to activate the Quick EPG mode:"
 msgstr "Válassza ki, hogyan aktiválja a Gyors EPG módot:"
 
@@ -23192,6 +23152,9 @@ msgid "Select seekbar to be activated by arrow L/R (long) or << >> (long)."
 msgstr ""
 "Használja a keresősáv aktiválásához az L / R (hosszan) vagy << >> (hosszan) "
 "nyilat."
+
+msgid "Select softcam"
+msgstr ""
 
 msgid ""
 "Select the method of restoring screen resolution and framebuffer when "
@@ -23303,6 +23266,38 @@ msgstr "Külső feliratokhoz FPS"
 
 msgid "Set the aspect ratio of the service picons."
 msgstr "Állítsa be a csatorna képek képarányát."
+
+msgid ""
+"Set the default location for your instant recordings. Press 'OK' to add new "
+"locations, select left/right to select an existing location."
+msgstr ""
+"Állítsa be az azonnali felvételek alapértelmezett helyét. Új helyek "
+"hozzáadásához nyomja meg az \"OK\" gombot, válassza ki a meglévő hely "
+"kiválasztásához balra vagy jobbra gombot."
+
+msgid ""
+"Set the default location for your recordings. Press 'OK' to add new "
+"locations, select left/right to select an existing location."
+msgstr ""
+"Állítsa be a felvételek alapértelmezett helyét. Új helyek hozzáadásához "
+"nyomja meg az \"OK\" gombot, válassza ki a meglévő hely kiválasztásához "
+"balra vagy jobbra gombot."
+
+msgid ""
+"Set the default location for your timers. Press 'OK' to add new locations, "
+"select left/right to select an existing location."
+msgstr ""
+"Állítsa be az időzítők alapértelmezett helyét. Új helyek hozzáadásához "
+"nyomja meg az \"OK\" gombot, válassza ki a meglévő hely kiválasztásához "
+"balra vagy jobbra gombot."
+
+msgid ""
+"Set the default location for your timeshift-files. Press 'OK' to add new "
+"locations, select left/right to select an existing location."
+msgstr ""
+"Állítsa be a rögzítésre kerülő Timeshift fájl alapértelmezett helyét. Új "
+"helyek hozzáadásához nyomja meg az 'OK' gombot, válassza ki a meglévő hely "
+"kiválasztásához balra vagy jobbra gombot."
 
 msgid ""
 "Set the delay time between repeated loops, this is used by software renderer "
@@ -24011,6 +24006,9 @@ msgstr "24 órás idővonal"
 msgid "Timeline font size"
 msgstr "Idővonal betű méreté"
 
+msgid "Timer recording location"
+msgstr "Időzített felvételek helye"
+
 msgid "Timeshift buffer delete after zap?"
 msgstr "Csatorna váltásakor a Timeshift puffer törlődjön?"
 
@@ -24029,6 +24027,9 @@ msgstr "Minden Timeshift külön felvételi pufferben legyen"
 msgid "Timeshift last events limit [number of events]"
 msgstr "Timeshift felvételek korlátozása [felvételek száma]"
 
+msgid "Timeshift location"
+msgstr "Timeshift helye"
+
 msgid "Timeshift-save action on zap"
 msgstr "Timeshift mentése csatornaváltáskor"
 
@@ -24042,12 +24043,11 @@ msgstr ""
 msgid "Tuner slot"
 msgstr "Tuner foglalat"
 
-#, fuzzy
-msgid "Turn on the control LED."
-msgstr "Kapcsolja be a POWER LED-et."
+msgid "Turn on the control LED"
+msgstr ""
 
-msgid "Turn on the power LED."
-msgstr "Kapcsolja be a POWER LED-et."
+msgid "Turn on the power LED"
+msgstr ""
 
 msgid "URL of fallback remote receiver"
 msgstr "A távoli tartalék háttér vevőegység elérhetőségének URL címe"
@@ -24397,12 +24397,6 @@ msgid ""
 msgstr ""
 "Ha letiltja a csatornakeresést a háttérben, akkor a keresés során megtalált "
 "csatorna nem lesz elmentve."
-
-msgid ""
-"Which remote control gets shown. Only influences graphical representation."
-msgstr ""
-"Miként, milyen néven jelenjen meg a távirányító a megjelenítésekben. Csak a "
-"grafikus ábrázolást befolyásolja."
 
 msgid ""
 "With this option set to 'yes' the channel lists will always show you the "
@@ -24888,8 +24882,14 @@ msgstr ""
 "A Hibrid Tuner Modellek esetében a bal és jobb gombokkal válthat a Tuner "
 "típusok között"
 
-msgid "Please set your time zone"
-msgstr "Kérjük, állítsa be az időzónát"
+msgid "Please set your time options"
+msgstr ""
+
+msgid ""
+"Please set your time options.\n"
+"\n"
+"Press YELLOW to set the time zone via geolocation."
+msgstr ""
 
 msgid ""
 "Skip internet connection check (disables automatic package installation)"
@@ -24975,6 +24975,140 @@ msgstr "IP"
 
 msgid "J"
 msgstr ""
+
+#~ msgid "Autorecord location"
+#~ msgstr "Automatikus Timeshift felvétel helye"
+
+#~ msgid "Instant record location"
+#~ msgstr "Azonnali felvétel helye"
+
+#~ msgid "Instant recordings location"
+#~ msgstr "Azonnali felvételek helye"
+
+#~ msgid "Movie location"
+#~ msgstr "Fájlok helye"
+
+#~ msgid "New timers location"
+#~ msgstr "Új időzítők helye"
+
+#, fuzzy
+#~ msgid "No action required."
+#~ msgstr "Nincs elérhető frissítés!"
+
+#~ msgid "Please wait, restarting cardserver."
+#~ msgstr "Kérem, várjon a kártyaszerver újraindul."
+
+#~ msgid "Please wait, restarting softcam and cardserver."
+#~ msgstr "Kérem, várjon a kártyaszerver és a softcam újraindul."
+
+#~ msgid "Please wait, restarting softcam."
+#~ msgstr "Kérem, várjon a softcam újraindul."
+
+#, fuzzy
+#~ msgid "Press OK to install and use this locale."
+#~ msgstr "Nyomja le az OK gombot egy csatorna kiválasztásához."
+
+#, fuzzy
+#~ msgid "Press OK to use this locale."
+#~ msgstr "Az OK gombbal indíthatja a keresést"
+
+#~ msgid "Select Card Server"
+#~ msgstr "Kártyakiszolgáló kiválasztása"
+
+#~ msgid "Select Softcam"
+#~ msgstr "Softcam kiválasztása"
+
+#~ msgid ""
+#~ "Set the default location for your autorecord-files. Press 'OK' to add new "
+#~ "locations, select left/right to select an existing location."
+#~ msgstr ""
+#~ "Állítsa be a Timeshift automatikus felvétel fájának az alapértelmezett "
+#~ "helyét. Új helyek hozzáadásához nyomja meg az \"OK\" gombot, válassza ki "
+#~ "a meglévő hely kiválasztásához balra vagy jobbra gombot."
+
+#~ msgid "Softcam setup"
+#~ msgstr "Softcam beállítások"
+
+#~ msgid ""
+#~ "The directory %s is not a EXT2, EXT3, EXT4, NFS or CIFS partition.\n"
+#~ "Make sure you select a valid partition type."
+#~ msgstr ""
+#~ "A %s mappa nem egy EXT2, EXT3, EXT4, NFS vagy CIFS partíció.\n"
+#~ "Kérem, válasszon egy érvényes partíció típust."
+
+#~ msgid ""
+#~ "The directory %s is not writable.\n"
+#~ "Make sure you select a writable directory instead."
+#~ msgstr ""
+#~ "%s mappa nem írható.\n"
+#~ "Kérem, válasszon egy írási jogosultságokkal rendelkező mappát."
+
+#, fuzzy
+#~ msgid "This is already the active locale."
+#~ msgstr "Ez az eszköz már csatlakoztatva van Merevlemezként."
+
+#, fuzzy
+#~ msgid "This is the currently selected locale."
+#~ msgstr "Kijelölt címek eltávolítása"
+
+#~ msgid "Timer record location"
+#~ msgstr "Időzített felvétel helye"
+
+#~ msgid ""
+#~ "You seem to be in timeshft, the service will briefly stop as timeshfit "
+#~ "stops."
+#~ msgstr ""
+#~ "Úgy tűnik, hogy Timeshift módban van, a szolgáltatás rövid időre megáll, "
+#~ "ahogy a Timeshift-t megállítja."
+
+#~ msgid "disable"
+#~ msgstr "letiltás"
+
+#~ msgid "enable"
+#~ msgstr "engedélyezés"
+
+#~ msgid "false"
+#~ msgstr "nem"
+
+#~ msgid "off"
+#~ msgstr "ki"
+
+#~ msgid "on"
+#~ msgstr "be"
+
+#~ msgid "save"
+#~ msgstr "mentés"
+
+#~ msgid "true"
+#~ msgstr "igaz"
+
+#~ msgid "Enable Autorecord"
+#~ msgstr "Automatikus Timeshift felvétel engedélyezése"
+
+#~ msgid ""
+#~ "If set to 'yes', enable autorecord for automatically background timeshift"
+#~ msgstr ""
+#~ "Ha az 'igen'-t választja, akkor a Timeshift fájl automatikusan mentve "
+#~ "lesz a háttérben"
+
+#~ msgid "Remote control model shown"
+#~ msgstr "Távirányító modell mutatása"
+
+#, fuzzy
+#~ msgid "Turn on the control LED."
+#~ msgstr "Kapcsolja be a POWER LED-et."
+
+#~ msgid "Turn on the power LED."
+#~ msgstr "Kapcsolja be a POWER LED-et."
+
+#~ msgid ""
+#~ "Which remote control gets shown. Only influences graphical representation."
+#~ msgstr ""
+#~ "Miként, milyen néven jelenjen meg a távirányító a megjelenítésekben. Csak "
+#~ "a grafikus ábrázolást befolyásolja."
+
+#~ msgid "Please set your time zone"
+#~ msgstr "Kérjük, állítsa be az időzónát"
 
 #~ msgid "Allocate unused memory index"
 #~ msgstr "Használatlan memóriaindex hozzárendelés"
