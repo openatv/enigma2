@@ -2869,15 +2869,23 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase, Pr
 			return  # huh?
 		current = item[0]
 		info = item[1]
-		cur_path = os.path.realpath(current.getPath())
-		if not os.path.exists(cur_path):
-			# file does not exist.
+		cur_path = current.getPath().rstrip(os.sep)
+		if os.path.islink(cur_path):
+			head, tail = os.path.split(cur_path)
+			cur_path = os.path.join(os.path.realpath(head), tail)
+		else:
+			cur_path = os.path.realpath(cur_path)
+		if not os.path.lexists(cur_path):
+			# file or link does not exist.
 			return
 		name = info and info.getName(current) or _("This recording")
 		try:
 			# already confirmed...
 			# but not implemented yet...
-			Tools.CopyFiles.deleteFiles(cur_path, name)
+			if os.path.islink(cur_path):
+				os.remove(cur_path)
+			else:
+				Tools.CopyFiles.deleteFiles(cur_path, name)
 			from Screens.InfoBarGenerics import delResumePoint
 			delResumePoint(current)
 			self["list"].removeService(current)
