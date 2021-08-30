@@ -232,6 +232,8 @@ class CutListEditor(Screen, InfoBarBase, InfoBarSeek, InfoBarCueSheetSupport, He
 		self["key_yellow"] = Label(_("Step back"))
 		self["key_blue"]   = Label(_("Step forward"))
 
+		self["SeekActions"].actions.update({"stepBack": self.stepBack})
+		self.helpList.append((self["SeekActions"], "CutlistSeekActions", [("stepBack", _("Step back"))]))
 		self["SeekActions"].actions.update({"stepFwd": self.stepFwd})
 		self.helpList.append((self["SeekActions"], "CutlistSeekActions", [("stepFwd", _("Step forward"))]))
 
@@ -658,6 +660,9 @@ class CutListEditor(Screen, InfoBarBase, InfoBarSeek, InfoBarCueSheetSupport, He
 			self.putCuesheet(inhibit_seek=True)
 			if result[1] == self.BACK_RESTOREEXIT:
 				self.close()
+
+	def stepBack(self):
+		self.doSeekRelative(-1)
 
 	def stepFwd(self):
 		self.doSeekRelative(1)
