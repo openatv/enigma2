@@ -480,3 +480,9 @@ class DummyActions:
 
 	def destroy(self):
 		pass
+
+	def execBegin(self):
+		pass
+
+	def execEnd(self):
+		pass
