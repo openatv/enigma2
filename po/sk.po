@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-08-22 21:17+0000\n"
+"POT-Creation-Date: 2021-08-29 19:28+0000\n"
 "PO-Revision-Date: 2021-08-23 13:32+0000\n"
 "Last-Translator: NickerSK <nickersk@gmail.com>\n"
 "Language-Team: Slovak <https://hosted.weblate.org/projects/openatv/"
@@ -2360,9 +2360,6 @@ msgstr "Nastavenia adaptéra"
 msgid "Add"
 msgstr "Pridať"
 
-msgid "Add / Delete the currently highlighted locale / language"
-msgstr "Pridať / Odstrániť aktuálne zvýraznené národné prostredie / jazyk"
-
 msgid "Add AutoTimer"
 msgstr "Pridať autom. časovač"
 
@@ -3097,9 +3094,6 @@ msgstr "Automatická aktualizácia zobrazenia klient/server?"
 
 msgid "Automobil"
 msgstr "Automobily"
-
-msgid "Autorecord location"
-msgstr "Umiestnenie automatického nahrávania"
 
 msgid "Autostart"
 msgstr "Autoštart"
@@ -5178,9 +5172,6 @@ msgstr "Predvolený vyhľadávač staníc"
 msgid "Default files/folders to backup"
 msgstr "Predvolené zálohované súbory/priečinky"
 
-msgid "Default movie location"
-msgstr "Predvolené umiestnenie filmov"
-
 msgid "Default settings"
 msgstr "Predvolené nastavenia"
 
@@ -5552,6 +5543,9 @@ msgstr "Nastavenie displeja"
 msgid "Display and user interface"
 msgstr "Zobrazenie a používateľské rozhranie"
 
+msgid "Display oscam information."
+msgstr ""
+
 msgid "Display selection list as a selection menu"
 msgstr "Zobraziť zoznam výberu ako ponuku výberu"
 
@@ -5728,6 +5722,10 @@ msgid "Do you want to produce this collection?"
 msgstr "Chcete produkovať túto zbierku?"
 
 #, python-format
+msgid "Do you want to purge all locales/languages except %s?"
+msgstr ""
+
+#, python-format
 msgid "Do you want to reboot your %s %s"
 msgstr "Chcete reštartovať %s %s"
 
@@ -5790,6 +5788,9 @@ msgstr "Nepridávať túto nahrávku"
 
 msgid "Don't ask again!"
 msgstr "Už sa nepýtať!"
+
+msgid "Don't restart"
+msgstr ""
 
 msgid "Don't save"
 msgstr "Neukladať"
@@ -7295,6 +7296,15 @@ msgstr "Všeobecné"
 msgid "Genre"
 msgstr "Žáner"
 
+msgid "Geolocation does not contain time zone information."
+msgstr ""
+
+msgid "Geolocation has been used to set the time zone."
+msgstr ""
+
+msgid "Geolocation is not available."
+msgstr ""
+
 msgid "Georgia"
 msgstr "Gruzínsko"
 
@@ -8083,6 +8093,9 @@ msgstr "Sprievodca pre image"
 msgid "Immediate shutdown"
 msgstr "Ihneď vypnúť"
 
+msgid "Immediately restart selected devices."
+msgstr ""
+
 msgid ""
 "In order to allow you to access all the features of the IceTV smart "
 "recording service, we need to gather some basic information.\n"
@@ -8322,17 +8335,8 @@ msgstr "Inštalácia pluginov z feedu..."
 msgid "Instant record"
 msgstr "Okamžité nahrávanie"
 
-msgid "Instant record location"
-msgstr "Okamžité nahrávanie"
-
-msgid "Instant recording location"
-msgstr "Umiestnenie okamžitej nahrávky"
-
 msgid "Instant recording..."
 msgstr "Okamžité nahrávanie..."
-
-msgid "Instant recordings location"
-msgstr "Umiestnenie okamžitých nahrávok"
 
 msgid "Interface"
 msgstr "Rozhranie"
@@ -8529,6 +8533,9 @@ msgstr "Preskočiť na predošlú označenú pozíciu"
 
 msgid "Jump to prime time"
 msgstr "Preskočiť na Prime Time"
+
+msgid "Jump to the currently active locale/language"
+msgstr ""
 
 msgid "Just change Bouquet"
 msgstr "Len zmeniť prehľad"
@@ -8743,6 +8750,17 @@ msgstr "Typické pre krajinu"
 
 msgid "Language"
 msgstr "Jazyk"
+
+#, python-format
+msgid "Language %s (%s) installed and selected."
+msgstr ""
+
+#, python-format
+msgid "Language %s (%s) selected."
+msgstr ""
+
+msgid "Language already selected."
+msgstr ""
 
 msgid "Language selection"
 msgstr "Výber jazyka"
@@ -8972,21 +8990,21 @@ msgid "Locale"
 msgstr "Jazyková verzia"
 
 #, python-format
-msgid "Locale %s (%s) has been installed and selected as the active locale."
+msgid "Locale %s (%s) installed and selected."
 msgstr ""
-"Miestne prostredie %s ( %s) bolo nainštalované a vybrané ako aktívne miestne "
-"nastavenie."
 
 #, python-format
-msgid "Locale %s (%s) has been selected as the active locale."
+msgid "Locale %s (%s) selected."
 msgstr ""
-"Miestne prostredie %s ( %s) bolo vybrané ako aktívne miestne nastavenie."
 
 msgid "Locale (Ascending)"
 msgstr "Miestne prostredie (vzostupne)"
 
 msgid "Locale (Descending)"
 msgstr "Miestne prostredie (zostupne)"
+
+msgid "Locale already selected."
+msgstr ""
 
 #, fuzzy
 msgid "Locale/Language Selection"
@@ -9729,9 +9747,6 @@ msgstr "Nastavenie zoznamu filmov"
 msgid "Movie Player Actions"
 msgstr "Výber filmov"
 
-msgid "Movie location"
-msgstr "Umiestnenie filmu"
-
 msgid "Movie selection"
 msgstr "Výber filmov"
 
@@ -10058,9 +10073,6 @@ msgstr "Nový profil: "
 msgid "New program info"
 msgstr "Info o novom programe"
 
-msgid "New timers location"
-msgstr "Umiestnenie nových časovačov"
-
 msgid "New version:"
 msgstr "Nová verzia:"
 
@@ -10135,10 +10147,6 @@ msgstr "Nie je dostupný žiadny TS rekordér"
 
 msgid "No Timeshift found to save as recording!"
 msgstr "Nenašiel sa žiadny timeshift na uloženie vo forme nahrávky!"
-
-#, fuzzy
-msgid "No action required."
-msgstr "Nevyžaduje sa žiadna aktualizácia!"
 
 msgid "No active channel found."
 msgstr "Nenašiel sa žiadny aktívny kanál."
@@ -11440,14 +11448,9 @@ msgstr "Prosím čakajte, prebieha kontrola stavu zdrojov softvéru."
 msgid "Please wait, Loading image."
 msgstr "Prosím čakajte, načítava sa image."
 
-msgid "Please wait, restarting cardserver."
-msgstr "Prosím čakajte, reštartuje sa kartový server."
-
-msgid "Please wait, restarting softcam and cardserver."
-msgstr "Prosím čakajte, reštartuje sa softcam a kartový server."
-
-msgid "Please wait, restarting softcam."
-msgstr "Prosím čakajte, reštartuje sa softcam."
+#, python-format
+msgid "Please wait, restarting %s."
+msgstr ""
 
 msgid "Please wait."
 msgstr "Prosím čakajte."
@@ -11634,9 +11637,13 @@ msgstr "Stlačte OK pre zmenu nastavení."
 msgid "Press OK to get further details for %s"
 msgstr "Pre ďalšie podrobnosti o %s, stlačte OK"
 
-#, fuzzy
-msgid "Press OK to install and use this locale."
-msgstr "Stanicu vyberiete stlačením OK."
+#, python-format
+msgid "Press OK to install and use this language.  [%s]"
+msgstr ""
+
+#, python-format
+msgid "Press OK to install and use this locale.  [%s]"
+msgstr ""
 
 msgid "Press OK to scan"
 msgstr "Pre vyhľadávanie stlačte OK"
@@ -11669,9 +11676,13 @@ msgstr "Na prepnutie výber stlačte OK"
 msgid "Press OK to toggle the selection."
 msgstr "Stlačte OK pre prepnutie výberu."
 
-#, fuzzy
-msgid "Press OK to use this locale."
-msgstr "Stlačením tlačidla OK spustíte vyhľadávanie"
+#, python-format
+msgid "Press OK to use this language.  [%s]"
+msgstr ""
+
+#, python-format
+msgid "Press OK to use this locale.  [%s]"
+msgstr ""
 
 msgid "Press yellow to set this interface as the default interface."
 msgstr ""
@@ -11887,6 +11898,21 @@ msgstr "Puerto Rico"
 
 msgid "Puppentrick"
 msgstr "Bábkové a trikové"
+
+msgid "Purge"
+msgstr ""
+
+msgid "Purge all but / Add / Delete the currently highlighted locale/language"
+msgstr ""
+
+msgid ""
+"Purge all but the current and permanent locales/languages.  Add the current "
+"locale/language if it is not installed.  Delete the current locale/language "
+"if it is installed."
+msgstr ""
+
+msgid "Purging all unused locales/languages..."
+msgstr ""
 
 msgid "Pushto / Pashto"
 msgstr ""
@@ -13163,9 +13189,6 @@ msgstr "Vyberte (zdrojový zoznam) alebo zadajte priečinok (cieľový zoznam)"
 msgid "Select CAId"
 msgstr "Vyberte CAId"
 
-msgid "Select Card Server"
-msgstr "Vyberte kartový server"
-
 msgid "Select Enigma2 Skin"
 msgstr "Výber vzhľadu systému Enigma2"
 
@@ -13190,9 +13213,6 @@ msgstr "Vybrať umiestnenie"
 
 msgid "Select Quad Channels"
 msgstr "Vyberte kanály Quad"
-
-msgid "Select Softcam"
-msgstr "Výber softcam"
 
 msgid "Select Software Update"
 msgstr "Výber SW aktualizácie"
@@ -13366,12 +13386,8 @@ msgstr ""
 msgid "Select the character or action under the keyboard cursor"
 msgstr "Vybrať znak alebo akciu pod kurzorom klávesnice"
 
-msgid ""
-"Select the currently highlighted locale/language to be used in the user "
-"interface"
+msgid "Select the currently highlighted locale/language for the user interface"
 msgstr ""
-"Vyberte aktuálne zvýraznené národné prostredie/jazyk, ktoré sa má použiť v "
-"používateľskom rozhraní"
 
 msgid ""
 "Select the desired function and click on \"OK\" to assign it. Use \"CH+/-\" "
@@ -13807,46 +13823,6 @@ msgstr "Nastavte kanál pre tento časovač."
 
 msgid "Set the date the timer must start."
 msgstr "Nastavte dátum časovača pre spustenie."
-
-msgid ""
-"Set the default location for your autorecord-files. Press 'OK' to add new "
-"locations, select left/right to select an existing location."
-msgstr ""
-"Nastavenie umiestnenia pre automatické nahrávanie. Stlačte tlačidlo 'OK' pre "
-"pridanie nového umiestnenia, potom stlačte ' P+ ' alebo ' Menu ' a vyberte "
-"nové umiestnenie."
-
-msgid ""
-"Set the default location for your instant recordings. Press 'OK' to add new "
-"locations, select left/right to select an existing location."
-msgstr ""
-"Nastavenie umiestnenia pre okamžité nahrávanie. Stlačte tlačidlo 'OK' pre "
-"pridanie nového umiestnenia, potom stlačte ' P+ ' alebo ' Menu ' a vyberte "
-"nové umiestnenie."
-
-msgid ""
-"Set the default location for your recordings. Press 'OK' to add new "
-"locations, select left/right to select an existing location."
-msgstr ""
-"Nastavenie predvoleného umiestnenia pre nahrávania. Stlačte tlačidlo 'OK' "
-"pre pridanie nového umiestnenia, potom stlačte ' P+ ' alebo ' Menu ' a "
-"vyberte nové umiestnenie."
-
-msgid ""
-"Set the default location for your timers. Press 'OK' to add new locations, "
-"select left/right to select an existing location."
-msgstr ""
-"Nastavenie predvoleného umiestnenia pre časovač. Stlačte tlačidlo 'OK' pre "
-"pridanie nového umiestnenia, potom stlačte ' P+ ' alebo ' Menu ' a vyberte "
-"nové umiestnenie."
-
-msgid ""
-"Set the default location for your timeshift-files. Press 'OK' to add new "
-"locations, select left/right to select an existing location."
-msgstr ""
-"Nastavenie umiestnenia pre súbory timeshift. Stlačte tlačidlo 'OK' pre "
-"pridanie nového umiestnenia, výberom doľava/doprava vyberte existujúce "
-"umiestnenie."
 
 msgid "Set the default sorting method."
 msgstr "Nastavenie predvolenej metódy zoradenia."
@@ -14801,10 +14777,10 @@ msgstr "Socket"
 msgid "Softcam"
 msgstr "Softcam"
 
-msgid "Softcam Setup"
-msgstr "Inštalácia softcamu"
+msgid "Softcam Actions"
+msgstr ""
 
-msgid "Softcam setup"
+msgid "Softcam Setup"
 msgstr "Inštalácia softcamu"
 
 msgid "Softcam-Panel"
@@ -15815,22 +15791,6 @@ msgstr ""
 
 #, python-format
 msgid ""
-"The directory %s is not a EXT2, EXT3, EXT4, NFS or CIFS partition.\n"
-"Make sure you select a valid partition type."
-msgstr ""
-"Priečinok %s nie je partíciou EXT2, EXT3, EXT4, NFS alebo CIFS.\n"
-"Uistite sa, že ste vybrali platný typ partície."
-
-#, python-format
-msgid ""
-"The directory %s is not writable.\n"
-"Make sure you select a writable directory instead."
-msgstr ""
-"Do priečinka %s sa nedá zapisovať.\n"
-"Vyberte taký priečinok, do ktorého sa dá zapisovať."
-
-#, python-format
-msgid ""
 "The following device was found:\n"
 "\n"
 "%s\n"
@@ -16118,13 +16078,13 @@ msgstr ""
 "prepnutí do pohotovostného režimu. Príkazy na zobudenie z iných zariadení "
 "budú na pár sekúnd ignorované."
 
-#, fuzzy
-msgid "This is already the active locale."
-msgstr "Toto zariadenie je už pripojené ako HDD."
+#, python-format
+msgid "This is the currently selected language.  [%s]"
+msgstr ""
 
-#, fuzzy
-msgid "This is the currently selected locale."
-msgstr "Odstrániť aktuálne zvolený titul"
+#, python-format
+msgid "This is the currently selected locale.  [%s]"
+msgstr ""
 
 msgid ""
 "This is the order in which DiSEqC commands are sent to the aerial system. "
@@ -16514,6 +16474,9 @@ msgstr ""
 msgid "Time"
 msgstr "Čas"
 
+msgid "Time Setup Actions"
+msgstr ""
+
 msgid "Time Update in Minutes"
 msgstr "Čas aktualizácie v minútach"
 
@@ -16582,12 +16545,6 @@ msgstr ""
 msgid "Timer overview"
 msgstr "Prehľad časovačov"
 
-msgid "Timer record location"
-msgstr "Umiestnenie nahrávky časovača"
-
-msgid "Timer recording location"
-msgstr "Umiestnenie nahrávok časovača"
-
 msgid "Timer sanity error"
 msgstr "Nerozumné časovanie"
 
@@ -16605,9 +16562,6 @@ msgstr "Časovač"
 
 msgid "Timeshift"
 msgstr "Timeshift"
-
-msgid "Timeshift location"
-msgstr "Umiestnenie pre timeshift"
 
 msgid "Timeshift not possible!"
 msgstr "Timeshift nie je možný!"
@@ -17340,6 +17294,9 @@ msgstr "Použiť DHCP"
 msgid "Use Deinterlacing for 1080i Videosignal?"
 msgstr "Odstrániť prekladanie snímok pre signál 1080i?"
 
+msgid "Use Geolocation"
+msgstr ""
+
 msgid "Use HDMI-preemphasis"
 msgstr "Použiť HDMI-Preemphasis"
 
@@ -17375,6 +17332,9 @@ msgstr "Použiť číslovanie kanálov podľa fastscan"
 
 msgid "Use frequency or channel"
 msgstr "Použiť frekvenciu alebo kanál"
+
+msgid "Use geolocation to set the current time zone location"
+msgstr ""
 
 msgid "Use individual settings for each directory"
 msgstr "Použiť individuálne nastavenie pre každý priečinok"
@@ -18423,17 +18383,16 @@ msgstr ""
 msgid "You must set at least one Command"
 msgstr "Musíte nastaviť aspoň jeden príkaz"
 
-msgid ""
-"You seem to be in timeshft, the service will briefly stop as timeshfit stops."
-msgstr ""
-"Zdá sa, že je aktívny timeshift, služba sa zastaví krátko po zastavení "
-"timeshiftu."
-
 msgid "You seem to be in timeshift!"
 msgstr "Pravdepodobne je spustený timeshift!"
 
 msgid "You seem to be in timeshift, Do you want to leave timeshift ?"
 msgstr "Pravdepodobne je spustený timeshift. Chcete ho ukončiť?"
+
+msgid ""
+"You seem to be in timeshift, the service will briefly stop as timeshift "
+"stops."
+msgstr ""
 
 #, python-format
 msgid "Your %s %s does not support PiP HD"
@@ -18912,6 +18871,9 @@ msgstr "am"
 msgid "an internal error has occur"
 msgstr "nastala interná chyba"
 
+msgid "and"
+msgstr ""
+
 msgid "and never ask again this session again"
 msgstr "a počas tejto relácie sa už nepýtať"
 
@@ -19024,6 +18986,9 @@ msgstr "karta"
 
 msgid "card reader"
 msgstr "čítačka kariet"
+
+msgid "cardserver"
+msgstr ""
 
 msgid "cartoon/puppets"
 msgstr "rozprávka/bábky"
@@ -19153,9 +19118,6 @@ msgstr "dekódovať a nahrať ECM"
 msgid "detective/thriller"
 msgstr "detektívka/thriller"
 
-msgid "disable"
-msgstr "vypnúť"
-
 msgid "disable move mode"
 msgstr "vypnúť režim pre presun"
 
@@ -19231,9 +19193,6 @@ msgstr "vložené"
 
 msgid "empty"
 msgstr "prázdne"
-
-msgid "enable"
-msgstr "zapnúť"
 
 msgid "enable PIP no HDR"
 msgstr "zapnúť PIP, žiadne HDR"
@@ -19345,9 +19304,6 @@ msgstr "mimoriadne široké"
 
 msgid "failed"
 msgstr "neúspešné"
-
-msgid "false"
-msgstr "nie"
 
 msgid "fashion"
 msgstr "móda"
@@ -19847,17 +19803,11 @@ msgstr "dvojvrstvového média využitých."
 msgid "of a SINGLE layer medium used."
 msgstr "jednovrstvového média využitých."
 
-msgid "off"
-msgstr "vyp."
-
 msgid "off or wpa2 on"
 msgstr "vyp. alebo wpa2 zap."
 
 msgid "offset is"
 msgstr "posun je"
-
-msgid "on"
-msgstr "zap."
 
 msgid "on READ ONLY medium."
 msgstr "na nezapisovateľné médium."
@@ -20096,9 +20046,6 @@ msgstr ""
 "ale nie je možné vyhľadávať nové TV kanály\n"
 "alebo konfigurovať nastavenia tunera"
 
-msgid "save"
-msgstr "uložiť"
-
 msgid "save last directory on exit"
 msgstr "pri ukončení uložiť posledný priečinok"
 
@@ -20280,6 +20227,9 @@ msgstr "spoločnosť/politické problémy/ekonomika (všeobecne)"
 msgid "social/spiritual science"
 msgstr "sociálne/duchovné vedy"
 
+msgid "softcam"
+msgstr ""
+
 msgid "softcams"
 msgstr "softcamy"
 
@@ -20402,9 +20352,6 @@ msgstr "tradičné (rýchle)"
 
 msgid "traditional (fast), retune"
 msgstr "tradičné (rýchle), znovu naladiť"
-
-msgid "true"
-msgstr "áno"
 
 msgid "turbo"
 msgstr "turbo"
@@ -21477,7 +21424,8 @@ msgstr ""
 "užitočné na rozlíšenie medzi viacerými prijímačmi."
 
 msgid "Choose the order in which items are displayed in Help windows"
-msgstr "Vyberte poradie, v ktorom sa položky majú zobrazovať v oknách pomocníka"
+msgstr ""
+"Vyberte poradie, v ktorom sa položky majú zobrazovať v oknách pomocníka"
 
 msgid "Choose time interval to which the graphics will be rounded off."
 msgstr "Vyberte časový interval, po ktorom sa bude opakovať grafika."
@@ -22011,6 +21959,9 @@ msgstr "Predvolene 'Po udalosti' *"
 msgid "Default 'Timer type' *"
 msgstr "Predvolený 'Typ časovača' *"
 
+msgid "Default movie location"
+msgstr "Predvolené umiestnenie filmov"
+
 msgid "Default recording type"
 msgstr "Predvolený typ nahrávania"
 
@@ -22124,9 +22075,6 @@ msgstr "EPG výber jazyka 2"
 
 msgid "EPG location"
 msgstr "Umiestnenie EPG"
-
-msgid "Enable Autorecord"
-msgstr "Zapnúť automatické nahrávanie"
 
 msgid "Enable EIT EPG"
 msgstr "Povoliť EIT EPG"
@@ -22453,12 +22401,6 @@ msgstr ""
 "určitého bodu v udalosti."
 
 msgid ""
-"If set to 'yes', enable autorecord for automatically background timeshift"
-msgstr ""
-"Ak je nastavené na 'áno', zapne sa automatické nahrávanie pre automatický "
-"timeshift na pozadí"
-
-msgid ""
 "If set to 'yes; the infobar will be displayed when Fast Forwarding or "
 "Rewinding during media playback."
 msgstr ""
@@ -22580,6 +22522,9 @@ msgstr "Počiatočná rýchlosť pre pretočenie dozadu"
 
 msgid "Initial scroll delay"
 msgstr "Počiatočné oneskorenie rolovania"
+
+msgid "Instant recording location"
+msgstr "Umiestnenie okamžitej nahrávky"
 
 msgid "Interlaced"
 msgstr "Prekladané"
@@ -22885,10 +22830,6 @@ msgstr "Obnovenie vždy po (v hodinách)"
 msgid "Remember last service in PiP"
 msgstr "Zapamätať si poslednú stanicu v PiP"
 
-#, fuzzy
-msgid "Remote control model shown"
-msgstr "Kód diaľkového ovládania"
-
 msgid "Remove completed timers after (days)"
 msgstr "Dokončené časovače odstraňovať po (dňoch)"
 
@@ -22913,6 +22854,11 @@ msgstr ""
 
 msgid "Require authentication for http streams"
 msgstr "Vyžadovať prihlásenie pre http stream"
+
+msgid ""
+"Reset the selected devices and save changes of your config when the GREEN "
+"button is pressed."
+msgstr ""
 
 msgid "Restart GUI after x crashes"
 msgstr "Po x zlyhaniach reštartovať prostredie GUI"
@@ -22968,6 +22914,15 @@ msgstr "Výber akcie žltého tlačidla"
 msgid "Select Yellow Key Action long"
 msgstr "Výber akcie žltého tlačidla - dlhé stlačenie"
 
+msgid "Select a cardserver from the available list."
+msgstr ""
+
+msgid "Select a softcam from the available list."
+msgstr ""
+
+msgid "Select cardserver"
+msgstr ""
+
 msgid "Select how to activate the Quick EPG mode:"
 msgstr "Vyberte spôsob aktivácie režimu pre rýchle EPG:"
 
@@ -22981,6 +22936,9 @@ msgid "Select seekbar to be activated by arrow L/R (long) or << >> (long)."
 msgstr ""
 "Vyberte tlačidlá na aktivovanie panela pre vyhľadávanie: šípky L/R (dlhé "
 "stlačenie) alebo << >> (dlhé stlačenie)."
+
+msgid "Select softcam"
+msgstr ""
 
 msgid ""
 "Select the method of restoring screen resolution and framebuffer when "
@@ -23084,6 +23042,38 @@ msgstr "Nastaviť fps pre externé titulky"
 
 msgid "Set the aspect ratio of the service picons."
 msgstr "Nastavte pomer strán prog. ikon staníc."
+
+msgid ""
+"Set the default location for your instant recordings. Press 'OK' to add new "
+"locations, select left/right to select an existing location."
+msgstr ""
+"Nastavenie umiestnenia pre okamžité nahrávanie. Stlačte tlačidlo 'OK' pre "
+"pridanie nového umiestnenia, potom stlačte ' P+ ' alebo ' Menu ' a vyberte "
+"nové umiestnenie."
+
+msgid ""
+"Set the default location for your recordings. Press 'OK' to add new "
+"locations, select left/right to select an existing location."
+msgstr ""
+"Nastavenie predvoleného umiestnenia pre nahrávania. Stlačte tlačidlo 'OK' "
+"pre pridanie nového umiestnenia, potom stlačte ' P+ ' alebo ' Menu ' a "
+"vyberte nové umiestnenie."
+
+msgid ""
+"Set the default location for your timers. Press 'OK' to add new locations, "
+"select left/right to select an existing location."
+msgstr ""
+"Nastavenie predvoleného umiestnenia pre časovač. Stlačte tlačidlo 'OK' pre "
+"pridanie nového umiestnenia, potom stlačte ' P+ ' alebo ' Menu ' a vyberte "
+"nové umiestnenie."
+
+msgid ""
+"Set the default location for your timeshift-files. Press 'OK' to add new "
+"locations, select left/right to select an existing location."
+msgstr ""
+"Nastavenie umiestnenia pre súbory timeshift. Stlačte tlačidlo 'OK' pre "
+"pridanie nového umiestnenia, výberom doľava/doprava vyberte existujúce "
+"umiestnenie."
 
 msgid ""
 "Set the delay time between repeated loops, this is used by software renderer "
@@ -23786,6 +23776,9 @@ msgstr "Časová os - 24 hodín"
 msgid "Timeline font size"
 msgstr "Veľkosť písma na časovej osi"
 
+msgid "Timer recording location"
+msgstr "Umiestnenie nahrávok časovača"
+
 msgid "Timeshift buffer delete after zap?"
 msgstr "Odstrániť vyrov. pamäť pre timeshift po prepnutí?"
 
@@ -23804,6 +23797,9 @@ msgstr "Timeshift - delenie súboru podľa udalosti"
 msgid "Timeshift last events limit [number of events]"
 msgstr "Timeshift - limit posledných udalostí [počet udalostí]"
 
+msgid "Timeshift location"
+msgstr "Umiestnenie pre timeshift"
+
 msgid "Timeshift-save action on zap"
 msgstr "Timeshift - uložiť akciu pri prepnutí"
 
@@ -23817,11 +23813,11 @@ msgstr ""
 msgid "Tuner slot"
 msgstr "Slot tunera"
 
-msgid "Turn on the control LED."
-msgstr "Zapnúť kontrolku LED."
+msgid "Turn on the control LED"
+msgstr ""
 
-msgid "Turn on the power LED."
-msgstr "Zapnúť LED napájania."
+msgid "Turn on the power LED"
+msgstr ""
 
 msgid "URL of fallback remote receiver"
 msgstr "Adresa (URL) pre použitie iného tunera prijímača"
@@ -24173,11 +24169,6 @@ msgstr ""
 "Pri naladení stanice systém za normálnych okolností preskenuje celý "
 "transpondér, zaznamená zmeny a uloží ich. Možnosť 'áno' zvoľte iba vtedy, "
 "keď presne viete, čo robíte."
-
-msgid ""
-"Which remote control gets shown. Only influences graphical representation."
-msgstr ""
-"Ktoré diaľkové ovládanie sa zobrazí. Ovplyvňuje iba grafické zobrazenie."
 
 msgid ""
 "With this option set to 'yes' the channel lists will always show you the "
@@ -24642,8 +24633,14 @@ msgstr ""
 "Prosím nastavte tuner R\n"
 "Pre modely s hybridným tunerom prepnite typ tunera tlačidlom doľava/doprava"
 
-msgid "Please set your time zone"
-msgstr "Prosím nastavte svoju časovú zónu"
+msgid "Please set your time options"
+msgstr ""
+
+msgid ""
+"Please set your time options.\n"
+"\n"
+"Press YELLOW to set the time zone via geolocation."
+msgstr ""
 
 msgid ""
 "Skip internet connection check (disables automatic package installation)"
@@ -24725,6 +24722,158 @@ msgstr "I"
 
 msgid "J"
 msgstr "J"
+
+#~ msgid "Add / Delete the currently highlighted locale / language"
+#~ msgstr "Pridať / Odstrániť aktuálne zvýraznené národné prostredie / jazyk"
+
+#~ msgid "Autorecord location"
+#~ msgstr "Umiestnenie automatického nahrávania"
+
+#~ msgid "Instant record location"
+#~ msgstr "Okamžité nahrávanie"
+
+#~ msgid "Instant recordings location"
+#~ msgstr "Umiestnenie okamžitých nahrávok"
+
+#~ msgid "Locale %s (%s) has been installed and selected as the active locale."
+#~ msgstr ""
+#~ "Miestne prostredie %s ( %s) bolo nainštalované a vybrané ako aktívne "
+#~ "miestne nastavenie."
+
+#~ msgid "Locale %s (%s) has been selected as the active locale."
+#~ msgstr ""
+#~ "Miestne prostredie %s ( %s) bolo vybrané ako aktívne miestne nastavenie."
+
+#~ msgid "Movie location"
+#~ msgstr "Umiestnenie filmu"
+
+#~ msgid "New timers location"
+#~ msgstr "Umiestnenie nových časovačov"
+
+#, fuzzy
+#~ msgid "No action required."
+#~ msgstr "Nevyžaduje sa žiadna aktualizácia!"
+
+#~ msgid "Please wait, restarting cardserver."
+#~ msgstr "Prosím čakajte, reštartuje sa kartový server."
+
+#~ msgid "Please wait, restarting softcam and cardserver."
+#~ msgstr "Prosím čakajte, reštartuje sa softcam a kartový server."
+
+#~ msgid "Please wait, restarting softcam."
+#~ msgstr "Prosím čakajte, reštartuje sa softcam."
+
+#, fuzzy
+#~ msgid "Press OK to install and use this locale."
+#~ msgstr "Stanicu vyberiete stlačením OK."
+
+#, fuzzy
+#~ msgid "Press OK to use this locale."
+#~ msgstr "Stlačením tlačidla OK spustíte vyhľadávanie"
+
+#~ msgid "Select Card Server"
+#~ msgstr "Vyberte kartový server"
+
+#~ msgid "Select Softcam"
+#~ msgstr "Výber softcam"
+
+#~ msgid ""
+#~ "Select the currently highlighted locale/language to be used in the user "
+#~ "interface"
+#~ msgstr ""
+#~ "Vyberte aktuálne zvýraznené národné prostredie/jazyk, ktoré sa má použiť "
+#~ "v používateľskom rozhraní"
+
+#~ msgid ""
+#~ "Set the default location for your autorecord-files. Press 'OK' to add new "
+#~ "locations, select left/right to select an existing location."
+#~ msgstr ""
+#~ "Nastavenie umiestnenia pre automatické nahrávanie. Stlačte tlačidlo 'OK' "
+#~ "pre pridanie nového umiestnenia, potom stlačte ' P+ ' alebo ' Menu ' a "
+#~ "vyberte nové umiestnenie."
+
+#~ msgid "Softcam setup"
+#~ msgstr "Inštalácia softcamu"
+
+#~ msgid ""
+#~ "The directory %s is not a EXT2, EXT3, EXT4, NFS or CIFS partition.\n"
+#~ "Make sure you select a valid partition type."
+#~ msgstr ""
+#~ "Priečinok %s nie je partíciou EXT2, EXT3, EXT4, NFS alebo CIFS.\n"
+#~ "Uistite sa, že ste vybrali platný typ partície."
+
+#~ msgid ""
+#~ "The directory %s is not writable.\n"
+#~ "Make sure you select a writable directory instead."
+#~ msgstr ""
+#~ "Do priečinka %s sa nedá zapisovať.\n"
+#~ "Vyberte taký priečinok, do ktorého sa dá zapisovať."
+
+#, fuzzy
+#~ msgid "This is already the active locale."
+#~ msgstr "Toto zariadenie je už pripojené ako HDD."
+
+#, fuzzy
+#~ msgid "This is the currently selected locale."
+#~ msgstr "Odstrániť aktuálne zvolený titul"
+
+#~ msgid "Timer record location"
+#~ msgstr "Umiestnenie nahrávky časovača"
+
+#~ msgid ""
+#~ "You seem to be in timeshft, the service will briefly stop as timeshfit "
+#~ "stops."
+#~ msgstr ""
+#~ "Zdá sa, že je aktívny timeshift, služba sa zastaví krátko po zastavení "
+#~ "timeshiftu."
+
+#~ msgid "disable"
+#~ msgstr "vypnúť"
+
+#~ msgid "enable"
+#~ msgstr "zapnúť"
+
+#~ msgid "false"
+#~ msgstr "nie"
+
+#~ msgid "off"
+#~ msgstr "vyp."
+
+#~ msgid "on"
+#~ msgstr "zap."
+
+#~ msgid "save"
+#~ msgstr "uložiť"
+
+#~ msgid "true"
+#~ msgstr "áno"
+
+#~ msgid "Enable Autorecord"
+#~ msgstr "Zapnúť automatické nahrávanie"
+
+#~ msgid ""
+#~ "If set to 'yes', enable autorecord for automatically background timeshift"
+#~ msgstr ""
+#~ "Ak je nastavené na 'áno', zapne sa automatické nahrávanie pre automatický "
+#~ "timeshift na pozadí"
+
+#, fuzzy
+#~ msgid "Remote control model shown"
+#~ msgstr "Kód diaľkového ovládania"
+
+#~ msgid "Turn on the control LED."
+#~ msgstr "Zapnúť kontrolku LED."
+
+#~ msgid "Turn on the power LED."
+#~ msgstr "Zapnúť LED napájania."
+
+#~ msgid ""
+#~ "Which remote control gets shown. Only influences graphical representation."
+#~ msgstr ""
+#~ "Ktoré diaľkové ovládanie sa zobrazí. Ovplyvňuje iba grafické zobrazenie."
+
+#~ msgid "Please set your time zone"
+#~ msgstr "Prosím nastavte svoju časovú zónu"
 
 #~ msgid "Allocate unused memory index"
 #~ msgstr "Prideliť nepoužitú pamäť"
