@@ -8,7 +8,7 @@ from Components.International import international
 class Language:
 	def __init__(self):
 		self.lang = {}
-		for package in international.getPackageDirectories():
+		for package in international.getInstalledPackages():
 			locales = international.packageToLocales(package)
 			if len(locales):
 				language, country = international.splitLocale(locales[0])

@@ -115,7 +115,7 @@ LANGUAGE_DATA = {
 	"fy": ("Western Frisian", _("Western Frisian"), "Frysk", "ISO-8859-15", ("NL", "DE")),
 	"ga": ("Irish", _("Irish"), "Gaeilge", "UTF-8", ("IE",)),
 	"gd": ("Gaelic", _("Gaelic"), "Gàidhlig", "UTF-8", ("GB",)),
-	"gl": ("Galician", _("Galician"), "Galego", "UTF-8", ("ES",)),
+	"gl": ("Galician", _("Galician"), "Galego", "UTF-8", ("ES-GA",)),
 	"gn": ("Guarani", _("Guarani"), "Avañe'ẽ", "UTF-8", ("PY",)),
 	"gu": ("Gujarati", _("Gujarati"), "ગુજરાતી", "UTF-8", ("IN",)),
 	"gv": ("Manx", _("Manx"), "Gaelg / Gailck", "UTF-8", ("GB",)),
@@ -261,6 +261,9 @@ COUNTRY_MAX = 4
 COUNTRY_DATA = {
 	# https://www.iso.org/obp/ui/#search/code/
 	# https://www.worldatlas.com/aatlas/ctycodes.htm
+	# https://en.wikipedia.org/wiki/List_of_ISO_3166_country_codes
+	# https://en.wikipedia.org/wiki/ISO_3166-2
+	# https://en.wikipedia.org/wiki/ISO_3166-3
 	"AD": ("AND", "020", "Andorra", _("Andorra"), "d'Andorra"),
 	"AE": ("ARE", "784", "United Arab Emirates", _("United Arab Emirates"), "الإمارات العربية المتحدة‎ al-ʾImārāt al-ʿArabīyyah al-Muttaḥidah"),
 	"AF": ("AFG", "004", "Afghanistan", _("Afghanistan"), "افغانستان"),
@@ -329,6 +332,7 @@ COUNTRY_DATA = {
 	"EH": ("ESH", "732", "Western Sahara", _("Western Sahara"), "الصحراء الغربية"),
 	"ER": ("ERI", "232", "Eritrea", _("Eritrea"), "ኤርትራ"),
 	"ES": ("ESP", "724", "Spain", _("Spain"), "España"),
+	"ES-GA": ("ESP", "724", "Galicia (Spain)", _("Galicia (Spain)"), "Galicia (España)"),
 	"ET": ("ETH", "231", "Ethiopia", _("Ethiopia"), "ኢትዮጵያ"),
 	"FI": ("FIN", "246", "Finland", _("Finland"), "Suomi"),
 	"FJ": ("FJI", "242", "Fiji", _("Fiji"), "Viti"),
@@ -537,7 +541,8 @@ class International:
 	def __init__(self):
 		self.availablePackages = []
 		self.installedPackages = []
-		self.packageDirectories = []
+		self.installedDirectories = []
+		self.packageLocales = {}
 		self.localeList = ["en_US"]
 		self.languageList = ["en"]
 		self.activeLocale = "en_US"
@@ -564,9 +569,10 @@ class International:
 	def initInternational(self):
 		self.availablePackages = self.getAvailablePackages(update=True)
 		self.installedPackages = self.getInstalledPackages(update=True)
-		self.packageDirectories = self.getPackageDirectories(update=True)
-		if len(self.packageDirectories) != len(self.installedPackages):
+		self.installedDirectories = self.getInstalledDirectories(update=True)
+		if len(self.installedDirectories) != len(self.installedPackages):
 			print("[International] Warning: Count of installed locale/language packages and locale/language directory entries do not match!")
+		self.packageLocales = {}
 		for package in self.installedPackages:
 			locales = self.packageToLocales(package)
 			packageLocales = []
@@ -575,6 +581,7 @@ class International:
 					packageLocales.append(locale)
 				if locale not in self.localeList:
 					self.localeList.append(locale)
+			self.packageLocales[package] = packageLocales
 			language = self.splitPackage(package)[0]
 			if language not in self.languageList:
 				self.languageList.append(language)
@@ -688,26 +695,27 @@ class International:
 			installedPackages = self.installedPackages
 		return installedPackages
 
-	def getPackageDirectories(self, update=False):  # Adapt language directory entries to match the package format.
+	def getInstalledDirectories(self, update=False):  # Adapt language directory entries to match the package format.
 		if update:
 			global languagePath
-			packageDirectories = sorted(listdir(languagePath)) if isdir(languagePath) else []
-			print("[International] There are %d installed locale/language directories '%s'." % (len(packageDirectories), "', '".join(packageDirectories)))
+			installedDirectories = sorted(listdir(languagePath)) if isdir(languagePath) else []
+			print("[International] There are %d installed locale/language directories '%s'." % (len(installedDirectories), "', '".join(installedDirectories)))
 		else:
-			packageDirectories = self.packageDirectories
-		return packageDirectories
+			installedDirectories = self.installedDirectories
+		return installedDirectories
 
 	def getPurgablePackages(self, locale=None):
 		if locale is None:
 			locale = self.getLocale()
-		packages = self.getPackageDirectories()
 		locales = PERMANENT_LOCALES[:]
 		if locale not in locales:
 			locales.append(locale)
+		locales.sort()
+		packages = sorted(self.getInstalledPackages())
 		for locale in locales:
-			package = self.getPackage(locale)
-			if package in packages:
-				packages.remove(package)
+			for package in packages:
+				if locale in self.packageLocales[package]:
+					packages.remove(package)
 		return packages
 
 	def getPermanentLocales(self, locale=None):
@@ -732,8 +740,25 @@ class International:
 				locales.append("%s_%s" % (data[0], country))
 		return locales
 
+	def localeToPackage(self, locale=None):
+		if locale is None:
+			locale = self.getLocale()
+		for package in self.getAvailablePackages():
+			if locale in self.packageLocales[package]:
+				return package
+		return None
+
+	def languageToPackage(self, language=None):
+		if language is None:
+			language = self.getLanguage()
+		for package in self.getAvailablePackages():
+			for locale in self.packageLocales[package]:
+				if language == self.getLanguage(locale):
+					return package
+		return None
+
 	def splitPackage(self, package):
-		data = package.split("-")
+		data = package.split("-", 1)
 		if len(data) < 2:
 			data.append(None)
 		else:
@@ -744,7 +769,7 @@ class International:
 		return "en_US" if self.activeLocale is None else self.activeLocale
 
 	def splitLocale(self, locale):
-		data = locale.split("_")
+		data = locale.split("_", 1)
 		if len(data) < 2:
 			data.append(None)
 		return data
