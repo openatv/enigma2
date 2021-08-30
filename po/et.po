@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV-Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-08-22 21:17+0000\n"
+"POT-Creation-Date: 2021-08-29 19:28+0000\n"
 "PO-Revision-Date: 2021-08-21 11:46+0000\n"
 "Last-Translator: openATV <openatv@gmail.com>\n"
 "Language-Team: Estonian <https://hosted.weblate.org/projects/openatv/"
@@ -2360,9 +2360,6 @@ msgstr "Võrgukaardi seaded"
 msgid "Add"
 msgstr "Lisa"
 
-msgid "Add / Delete the currently highlighted locale / language"
-msgstr "Lisa või eemalda esiletõstetud keel"
-
 msgid "Add AutoTimer"
 msgstr "Lisa autotaimer"
 
@@ -3111,9 +3108,6 @@ msgstr "Uuenda kliendi/serveri vaade automaatselt"
 
 msgid "Automobil"
 msgstr "Auto"
-
-msgid "Autorecord location"
-msgstr "Autosalvestuse asukoht"
 
 msgid "Autostart"
 msgstr "Autostart"
@@ -5221,9 +5215,6 @@ msgstr "Vaikimisi teenuste otsija"
 msgid "Default files/folders to backup"
 msgstr "Vaikimisi varundatavad failid/kataloogid"
 
-msgid "Default movie location"
-msgstr "Salvestuste tavaasukoht"
-
 msgid "Default settings"
 msgstr "Vaikeväärtused"
 
@@ -5612,6 +5603,9 @@ msgstr "Esipaneeli seadistamine"
 msgid "Display and user interface"
 msgstr "Esipaneel ja kasutajaliides"
 
+msgid "Display oscam information."
+msgstr ""
+
 msgid "Display selection list as a selection menu"
 msgstr ""
 
@@ -5786,6 +5780,10 @@ msgid "Do you want to produce this collection?"
 msgstr "Kas kirjutada see kogumik?"
 
 #, python-format
+msgid "Do you want to purge all locales/languages except %s?"
+msgstr ""
+
+#, python-format
 msgid "Do you want to reboot your %s %s"
 msgstr "Kas taaskäivitada %s %s"
 
@@ -5852,6 +5850,9 @@ msgstr "Ära lisa seda salvestust"
 
 msgid "Don't ask again!"
 msgstr "Ära enam küsi!"
+
+msgid "Don't restart"
+msgstr ""
 
 msgid "Don't save"
 msgstr "Ära talleta"
@@ -7390,6 +7391,15 @@ msgstr "Üldine"
 msgid "Genre"
 msgstr "Žanr"
 
+msgid "Geolocation does not contain time zone information."
+msgstr ""
+
+msgid "Geolocation has been used to set the time zone."
+msgstr ""
+
+msgid "Geolocation is not available."
+msgstr ""
+
 msgid "Georgia"
 msgstr "Gruusia"
 
@@ -8175,6 +8185,9 @@ msgstr "Püsivara abiline"
 msgid "Immediate shutdown"
 msgstr "Kohene seiskamine"
 
+msgid "Immediately restart selected devices."
+msgstr ""
+
 msgid ""
 "In order to allow you to access all the features of the IceTV smart "
 "recording service, we need to gather some basic information.\n"
@@ -8421,17 +8434,8 @@ msgstr "Pluginate paigaldamine."
 msgid "Instant record"
 msgstr "Kohese salvestuse valikud"
 
-msgid "Instant record location"
-msgstr "Kohese salvestuse asukoht"
-
-msgid "Instant recording location"
-msgstr "Kohese salvestuse asukoht"
-
 msgid "Instant recording..."
 msgstr "Kohene salvestus."
-
-msgid "Instant recordings location"
-msgstr "Kohese salvestuse asukoht"
 
 msgid "Interface"
 msgstr "Liides"
@@ -8633,6 +8637,9 @@ msgstr "Hüpe eelmise märgini"
 
 msgid "Jump to prime time"
 msgstr "Hüpe tippajale"
+
+msgid "Jump to the currently active locale/language"
+msgstr ""
 
 msgid "Just change Bouquet"
 msgstr "Vaheta lemmiknimekirja"
@@ -8854,6 +8861,17 @@ msgstr ""
 
 msgid "Language"
 msgstr "Keel"
+
+#, python-format
+msgid "Language %s (%s) installed and selected."
+msgstr ""
+
+#, python-format
+msgid "Language %s (%s) selected."
+msgstr ""
+
+msgid "Language already selected."
+msgstr ""
 
 msgid "Language selection"
 msgstr "Keele valik"
@@ -9090,17 +9108,20 @@ msgid "Locale"
 msgstr "Keel"
 
 #, python-format
-msgid "Locale %s (%s) has been installed and selected as the active locale."
+msgid "Locale %s (%s) installed and selected."
 msgstr ""
 
 #, python-format
-msgid "Locale %s (%s) has been selected as the active locale."
+msgid "Locale %s (%s) selected."
 msgstr ""
 
 msgid "Locale (Ascending)"
 msgstr ""
 
 msgid "Locale (Descending)"
+msgstr ""
+
+msgid "Locale already selected."
 msgstr ""
 
 #
@@ -9870,9 +9891,6 @@ msgstr "Filmilisti seaded"
 msgid "Movie Player Actions"
 msgstr "Salvestised"
 
-msgid "Movie location"
-msgstr "Salvestuskataloog"
-
 msgid "Movie selection"
 msgstr "Salvestised"
 
@@ -10219,9 +10237,6 @@ msgstr "Uus profiil: "
 msgid "New program info"
 msgstr "Saateinfo"
 
-msgid "New timers location"
-msgstr "Uue taimeri asukoht"
-
 msgid "New version:"
 msgstr "Uus versioon:"
 
@@ -10302,10 +10317,6 @@ msgstr "Vaba indeks puudub"
 
 msgid "No Timeshift found to save as recording!"
 msgstr "Ajanihke faile ei leitud!"
-
-#, fuzzy
-msgid "No action required."
-msgstr "Uuendamine ei ole vajalik!"
 
 msgid "No active channel found."
 msgstr "Aktiivset kanalit ei leitud."
@@ -11637,14 +11648,9 @@ msgstr "Hoidlate oleku kontrollimine."
 msgid "Please wait, Loading image."
 msgstr "Oota. Tõmmise laadimine."
 
-msgid "Please wait, restarting cardserver."
-msgstr "Oota, kaardiserver taaskäivitub."
-
-msgid "Please wait, restarting softcam and cardserver."
-msgstr "EMU ja kaardiserver taaskäivitatakse. Palun oota."
-
-msgid "Please wait, restarting softcam."
-msgstr "Oota. EMU taaskäivitub."
+#, python-format
+msgid "Please wait, restarting %s."
+msgstr ""
 
 msgid "Please wait."
 msgstr "Palun oota."
@@ -11832,9 +11838,13 @@ msgstr "Seadistuste muutmiseks vajuta OK."
 msgid "Press OK to get further details for %s"
 msgstr "%s üksikasjade nägemiseks vajuta OK"
 
-#, fuzzy
-msgid "Press OK to install and use this locale."
-msgstr "Kanali valikuks vajuta OK."
+#, python-format
+msgid "Press OK to install and use this language.  [%s]"
+msgstr ""
+
+#, python-format
+msgid "Press OK to install and use this locale.  [%s]"
+msgstr ""
 
 msgid "Press OK to scan"
 msgstr "Otsingu alustamiseks vajuta OK"
@@ -11869,9 +11879,13 @@ msgstr "Valiku muutmiseks vajuta OK"
 msgid "Press OK to toggle the selection."
 msgstr "Valiku muutmiseks vajuta OK."
 
-#, fuzzy
-msgid "Press OK to use this locale."
-msgstr "Otsingu alustamiseks vajuta OK"
+#, python-format
+msgid "Press OK to use this language.  [%s]"
+msgstr ""
+
+#, python-format
+msgid "Press OK to use this locale.  [%s]"
+msgstr ""
 
 msgid "Press yellow to set this interface as the default interface."
 msgstr ""
@@ -12092,6 +12106,21 @@ msgid "Puerto Rico"
 msgstr "Puerto Rico"
 
 msgid "Puppentrick"
+msgstr ""
+
+msgid "Purge"
+msgstr ""
+
+msgid "Purge all but / Add / Delete the currently highlighted locale/language"
+msgstr ""
+
+msgid ""
+"Purge all but the current and permanent locales/languages.  Add the current "
+"locale/language if it is not installed.  Delete the current locale/language "
+"if it is installed."
+msgstr ""
+
+msgid "Purging all unused locales/languages..."
 msgstr ""
 
 msgid "Pushto / Pashto"
@@ -13396,10 +13425,6 @@ msgstr "Vali (allikaloend) või sisene kataloogi (sihtloend)"
 msgid "Select CAId"
 msgstr "Vali CAId"
 
-#
-msgid "Select Card Server"
-msgstr "Vali kaardiserver"
-
 msgid "Select Enigma2 Skin"
 msgstr "Vali Enigma2 kujundus"
 
@@ -13425,9 +13450,6 @@ msgstr "Vali asukoht"
 
 msgid "Select Quad Channels"
 msgstr "Vali Quad PiP kanalid"
-
-msgid "Select Softcam"
-msgstr "Vali EMU"
 
 #
 msgid "Select Software Update"
@@ -13589,9 +13611,7 @@ msgstr ""
 msgid "Select the character or action under the keyboard cursor"
 msgstr "Kustuta teksti puhvri kursori alla jääv tähemärk"
 
-msgid ""
-"Select the currently highlighted locale/language to be used in the user "
-"interface"
+msgid "Select the currently highlighted locale/language for the user interface"
 msgstr ""
 
 msgid ""
@@ -14029,41 +14049,6 @@ msgstr "Määra sellele taimerile kanal."
 
 msgid "Set the date the timer must start."
 msgstr "Määra taimeri alguskuupäev."
-
-msgid ""
-"Set the default location for your autorecord-files. Press 'OK' to add new "
-"locations, select left/right to select an existing location."
-msgstr ""
-"Määra autosalvestuste tavaasukoht. Uue asukoha lisamiseks vajuta 'OK', "
-"olemasoleva asukoha valimiseks kasuta vasak/parem nuppe."
-
-msgid ""
-"Set the default location for your instant recordings. Press 'OK' to add new "
-"locations, select left/right to select an existing location."
-msgstr ""
-"Määra kohese salvestamise tavaasukoht. Uue asukoha lisamiseks vajuta 'OK', "
-"olemasoleva asukoha valimiseks kasuta vasak/parem nuppe."
-
-msgid ""
-"Set the default location for your recordings. Press 'OK' to add new "
-"locations, select left/right to select an existing location."
-msgstr ""
-"Määra salvestuste tavaasukoht. Uue asukoha lisamiseks vajuta 'OK', "
-"olemasoleva asukoha valimiseks kasuta vasak/parem nuppe."
-
-msgid ""
-"Set the default location for your timers. Press 'OK' to add new locations, "
-"select left/right to select an existing location."
-msgstr ""
-"Määra taimerite tavaasukoht. Uue asukoha lisamiseks vajuta 'OK', olemasoleva "
-"asukoha valimiseks kasuta vasak/parem nuppe."
-
-msgid ""
-"Set the default location for your timeshift-files. Press 'OK' to add new "
-"locations, select left/right to select an existing location."
-msgstr ""
-"Määra ajanihke failide tavaasukoht. Uue asukoha lisamiseks vajuta 'OK', "
-"olemasoleva asukoha valimiseks kasuta vasak/parem nuppe."
 
 msgid "Set the default sorting method."
 msgstr "Määra järjestusviis."
@@ -15035,10 +15020,10 @@ msgstr "Pesa"
 msgid "Softcam"
 msgstr "Emulaator"
 
-msgid "Softcam Setup"
-msgstr "EMU seadistamine"
+msgid "Softcam Actions"
+msgstr ""
 
-msgid "Softcam setup"
+msgid "Softcam Setup"
 msgstr "EMU seadistamine"
 
 msgid "Softcam-Panel"
@@ -16061,22 +16046,6 @@ msgstr ""
 
 #, python-format
 msgid ""
-"The directory %s is not a EXT2, EXT3, EXT4, NFS or CIFS partition.\n"
-"Make sure you select a valid partition type."
-msgstr ""
-"Kataloog %s ei ole EXT2, EXT3, EXT4, NTFS või CIFS partitsioon.\n"
-"Veendu, et valisid kehtiva partitsiooni tüübi."
-
-#, python-format
-msgid ""
-"The directory %s is not writable.\n"
-"Make sure you select a writable directory instead."
-msgstr ""
-"Kataloog %s on kirjutuskaitstud.\n"
-"Veendu, et valitud on kirjutuskaitseta kataloog."
-
-#, python-format
-msgid ""
 "The following device was found:\n"
 "\n"
 "%s\n"
@@ -16376,13 +16345,13 @@ msgstr ""
 "käivituvad. Muudest seadmetest tulevat äratuskäske eiratakse mõne sekundi "
 "jooksul."
 
-#, fuzzy
-msgid "This is already the active locale."
-msgstr "Andmekandja on juba kõvakettana haagitud."
+#, python-format
+msgid "This is the currently selected language.  [%s]"
+msgstr ""
 
-#, fuzzy
-msgid "This is the currently selected locale."
-msgstr "Eemalda valitud nimetus"
+#, python-format
+msgid "This is the currently selected locale.  [%s]"
+msgstr ""
 
 msgid ""
 "This is the order in which DiSEqC commands are sent to the aerial system. "
@@ -16768,6 +16737,9 @@ msgstr ""
 msgid "Time"
 msgstr "Aeg"
 
+msgid "Time Setup Actions"
+msgstr ""
+
 msgid "Time Update in Minutes"
 msgstr "Kellaaja uuendamine (min)"
 
@@ -16837,12 +16809,6 @@ msgstr ""
 msgid "Timer overview"
 msgstr "Taimeri ülevaade"
 
-msgid "Timer record location"
-msgstr "Taimeri salvestuse asukoht"
-
-msgid "Timer recording location"
-msgstr "Taimeriga salvestuse asukoht"
-
 msgid "Timer sanity error"
 msgstr "Taimeri viga"
 
@@ -16861,9 +16827,6 @@ msgstr "Taimerid"
 
 msgid "Timeshift"
 msgstr "Ajanihe"
-
-msgid "Timeshift location"
-msgstr "Ajanihke failide asukoht"
 
 msgid "Timeshift not possible!"
 msgstr "Ajanihke kasutamine pole võimalik!"
@@ -17607,6 +17570,9 @@ msgstr "Luba DHCP"
 msgid "Use Deinterlacing for 1080i Videosignal?"
 msgstr "Kasuta 1080i sisuga pildil täiskaadrilaotust"
 
+msgid "Use Geolocation"
+msgstr ""
+
 msgid "Use HDMI-preemphasis"
 msgstr "HDMI-preemphasis"
 
@@ -17644,6 +17610,9 @@ msgstr "Kasuta kiirotsingu kanalinumeratsiooni"
 
 msgid "Use frequency or channel"
 msgstr "Kasuta sagedust või kanalit"
+
+msgid "Use geolocation to set the current time zone location"
+msgstr ""
 
 msgid "Use individual settings for each directory"
 msgstr "Omadused jäetakse iga kataloogi puhul meelde"
@@ -18689,15 +18658,16 @@ msgstr ""
 msgid "You must set at least one Command"
 msgstr "Valida tuleb vähemalt üks käsk"
 
-msgid ""
-"You seem to be in timeshft, the service will briefly stop as timeshfit stops."
-msgstr "Ajanihe on kasutusel. Ajanihke peatamisel pilt hetkeks kaob."
-
 msgid "You seem to be in timeshift!"
 msgstr "Ajanihe on kasutusel!"
 
 msgid "You seem to be in timeshift, Do you want to leave timeshift ?"
 msgstr "Ajanihe on kasutusel. Kas see tuleks peatada?"
+
+msgid ""
+"You seem to be in timeshift, the service will briefly stop as timeshift "
+"stops."
+msgstr ""
 
 #, python-format
 msgid "Your %s %s does not support PiP HD"
@@ -19178,6 +19148,9 @@ msgstr "hommikul"
 msgid "an internal error has occur"
 msgstr "toimus sisemine viga"
 
+msgid "and"
+msgstr ""
+
 msgid "and never ask again this session again"
 msgstr "ja selle seansi jooksul enam ei küsita"
 
@@ -19297,6 +19270,9 @@ msgstr "kaart"
 
 msgid "card reader"
 msgstr "kaardilugeja"
+
+msgid "cardserver"
+msgstr ""
 
 msgid "cartoon/puppets"
 msgstr "joonis/nukufilm"
@@ -19429,9 +19405,6 @@ msgstr "Dekodeeri ja salvesta ecm"
 msgid "detective/thriller"
 msgstr "detektiiv/triller"
 
-msgid "disable"
-msgstr "Keela"
-
 msgid "disable move mode"
 msgstr "Lõpeta liigutamine"
 
@@ -19510,9 +19483,6 @@ msgstr ""
 
 msgid "empty"
 msgstr "tühi"
-
-msgid "enable"
-msgstr "Luba"
 
 msgid "enable PIP no HDR"
 msgstr "PIP lubatud, HDR puudub"
@@ -19626,9 +19596,6 @@ msgstr "eriti lai"
 
 msgid "failed"
 msgstr "nurjus"
-
-msgid "false"
-msgstr "ei"
 
 msgid "fashion"
 msgstr "mood"
@@ -20141,17 +20108,11 @@ msgstr "kasutatud kahekihilisest kettast."
 msgid "of a SINGLE layer medium used."
 msgstr "kasutatud ühekihilisest kettast."
 
-msgid "off"
-msgstr "Väljas"
-
 msgid "off or wpa2 on"
 msgstr "väljas või wpa2 "
 
 msgid "offset is"
 msgstr "nihe on"
-
-msgid "on"
-msgstr "Sees"
 
 msgid "on READ ONLY medium."
 msgstr "kirjutuskaitstud meedial."
@@ -20396,9 +20357,6 @@ msgstr ""
 "aga kanaliotsing ja tuunerite seadistamine \n"
 "ei ole võimalik"
 
-msgid "save"
-msgstr "Salvesta"
-
 msgid "save last directory on exit"
 msgstr "Pea väljumisel asukoht meeles"
 
@@ -20580,6 +20538,9 @@ msgstr "sotsiaalteemad/poliitika/majandus"
 msgid "social/spiritual science"
 msgstr "sotsiaalteemad/hingeteadus"
 
+msgid "softcam"
+msgstr ""
+
 msgid "softcams"
 msgstr "Emulaatorid"
 
@@ -20704,9 +20665,6 @@ msgstr "klassikaline (kiire)"
 
 msgid "traditional (fast), retune"
 msgstr "klassikaline (kiire)"
-
-msgid "true"
-msgstr "jah"
 
 msgid "turbo"
 msgstr "Turbo"
@@ -22273,6 +22231,9 @@ msgstr "'Pärast sündmust' vaikeväärtus *"
 msgid "Default 'Timer type' *"
 msgstr "'Taimeri tüüp' vaikeväärtus*"
 
+msgid "Default movie location"
+msgstr "Salvestuste tavaasukoht"
+
 msgid "Default recording type"
 msgstr "Vaikimisi salvestuse tüüp"
 
@@ -22386,9 +22347,6 @@ msgstr "EPG keelevalik 2"
 
 msgid "EPG location"
 msgstr "EPG faili asukoht"
-
-msgid "Enable Autorecord"
-msgstr "Autosalvestus lubatud"
 
 msgid "Enable EIT EPG"
 msgstr "EIT EPG lubatud"
@@ -22698,10 +22656,6 @@ msgstr ""
 "Määrates 'jah', saad kasutada saates soovitud kohani liikumiseks otsiriba."
 
 msgid ""
-"If set to 'yes', enable autorecord for automatically background timeshift"
-msgstr "Määrates 'jah', töötab autosalvestus automaatselt ajanihke taustal"
-
-msgid ""
 "If set to 'yes; the infobar will be displayed when Fast Forwarding or "
 "Rewinding during media playback."
 msgstr "Kui lubatud, kuvatakse edasi/tagasi kerimisel inforiba."
@@ -22819,6 +22773,9 @@ msgstr "Tagasikerimise algkiirus"
 # Display neu 5.1
 msgid "Initial scroll delay"
 msgstr "Kerimise algne viiteaeg"
+
+msgid "Instant recording location"
+msgstr "Kohese salvestuse asukoht"
 
 msgid "Interlaced"
 msgstr "Ülerealaotusega"
@@ -23129,9 +23086,6 @@ msgstr "Värskenda iga (tund)"
 msgid "Remember last service in PiP"
 msgstr "Viimane PiP kanal jääb meelde"
 
-msgid "Remote control model shown"
-msgstr "Kuvatav puldi mudel"
-
 msgid "Remove completed timers after (days)"
 msgstr "Aegunud taimerite eemaldamine pärast (päeva)"
 
@@ -23157,6 +23111,11 @@ msgstr ""
 
 msgid "Require authentication for http streams"
 msgstr "Nõua http voogude autentimist"
+
+msgid ""
+"Reset the selected devices and save changes of your config when the GREEN "
+"button is pressed."
+msgstr ""
 
 msgid "Restart GUI after x crashes"
 msgstr "Taaskäivita E2 pärast x krahhi"
@@ -23214,6 +23173,15 @@ msgstr "Kollase nupu vajutus"
 msgid "Select Yellow Key Action long"
 msgstr "Kollase nupu pikk vajutus"
 
+msgid "Select a cardserver from the available list."
+msgstr ""
+
+msgid "Select a softcam from the available list."
+msgstr ""
+
+msgid "Select cardserver"
+msgstr ""
+
 msgid "Select how to activate the Quick EPG mode:"
 msgstr "Vali, kuidas käivitada Inforiba EPG:"
 
@@ -23227,6 +23195,9 @@ msgid "Select seekbar to be activated by arrow L/R (long) or << >> (long)."
 msgstr ""
 "Määra, kas otsiriba aktiveeritakse VASAK/PAREM (pikk) noolenuppude või << >> "
 "(pikk) vajutusel."
+
+msgid "Select softcam"
+msgstr ""
 
 msgid ""
 "Select the method of restoring screen resolution and framebuffer when "
@@ -23330,6 +23301,34 @@ msgstr "Väliste subtiitrite kaadrisagedus"
 
 msgid "Set the aspect ratio of the service picons."
 msgstr "Määra pikonite kuvasuhe."
+
+msgid ""
+"Set the default location for your instant recordings. Press 'OK' to add new "
+"locations, select left/right to select an existing location."
+msgstr ""
+"Määra kohese salvestamise tavaasukoht. Uue asukoha lisamiseks vajuta 'OK', "
+"olemasoleva asukoha valimiseks kasuta vasak/parem nuppe."
+
+msgid ""
+"Set the default location for your recordings. Press 'OK' to add new "
+"locations, select left/right to select an existing location."
+msgstr ""
+"Määra salvestuste tavaasukoht. Uue asukoha lisamiseks vajuta 'OK', "
+"olemasoleva asukoha valimiseks kasuta vasak/parem nuppe."
+
+msgid ""
+"Set the default location for your timers. Press 'OK' to add new locations, "
+"select left/right to select an existing location."
+msgstr ""
+"Määra taimerite tavaasukoht. Uue asukoha lisamiseks vajuta 'OK', olemasoleva "
+"asukoha valimiseks kasuta vasak/parem nuppe."
+
+msgid ""
+"Set the default location for your timeshift-files. Press 'OK' to add new "
+"locations, select left/right to select an existing location."
+msgstr ""
+"Määra ajanihke failide tavaasukoht. Uue asukoha lisamiseks vajuta 'OK', "
+"olemasoleva asukoha valimiseks kasuta vasak/parem nuppe."
 
 msgid ""
 "Set the delay time between repeated loops, this is used by software renderer "
@@ -24026,6 +24025,9 @@ msgstr "Ajaskaala 24 tundi"
 msgid "Timeline font size"
 msgstr "Ajaskaala tähesuurus"
 
+msgid "Timer recording location"
+msgstr "Taimeriga salvestuse asukoht"
+
 msgid "Timeshift buffer delete after zap?"
 msgstr "Ajanihke puhvri kustutamine pärast kanalivahetust"
 
@@ -24044,6 +24046,9 @@ msgstr "Ajanihkefaili tükeldamine saadete järgi"
 msgid "Timeshift last events limit [number of events]"
 msgstr "Ajanihke saadete piirarv (saadete arv)"
 
+msgid "Timeshift location"
+msgstr "Ajanihke failide asukoht"
+
 msgid "Timeshift-save action on zap"
 msgstr "Ajanihke talletamine kanalivahetusel"
 
@@ -24055,12 +24060,11 @@ msgstr ""
 msgid "Tuner slot"
 msgstr "Tuuneri pesa"
 
-#, fuzzy
-msgid "Turn on the control LED."
-msgstr "Näidik on ooteseisundis sees."
+msgid "Turn on the control LED"
+msgstr ""
 
-msgid "Turn on the power LED."
-msgstr "Näidik on ooteseisundis sees."
+msgid "Turn on the power LED"
+msgstr ""
 
 msgid "URL of fallback remote receiver"
 msgstr "Kaugvastuvõtja URL"
@@ -24394,10 +24398,6 @@ msgstr ""
 "Olles häälestatud kanalile, uurib süsteem tavaliselt transponderi muudatusi "
 "ja salvestab need. Määra 'jah' ainult juhul, kui oled täiesti kindel, et "
 "tead, mida teed."
-
-msgid ""
-"Which remote control gets shown. Only influences graphical representation."
-msgstr "Millist pulti kuvatakse. Mõjutab ainult graafilist esitlust."
 
 msgid ""
 "With this option set to 'yes' the channel lists will always show you the "
@@ -24897,8 +24897,14 @@ msgstr ""
 "Seadista tuuner R\n"
 "Hübriidtuuneril vaheta tuuneri tüüpi parem/vasak nooleklahvidega"
 
-msgid "Please set your time zone"
-msgstr "Määra ajavöönd"
+msgid "Please set your time options"
+msgstr ""
+
+msgid ""
+"Please set your time options.\n"
+"\n"
+"Press YELLOW to set the time zone via geolocation."
+msgstr ""
 
 msgid ""
 "Skip internet connection check (disables automatic package installation)"
@@ -24981,6 +24987,137 @@ msgstr "IP"
 
 msgid "J"
 msgstr ""
+
+#~ msgid "Add / Delete the currently highlighted locale / language"
+#~ msgstr "Lisa või eemalda esiletõstetud keel"
+
+#~ msgid "Autorecord location"
+#~ msgstr "Autosalvestuse asukoht"
+
+#~ msgid "Instant record location"
+#~ msgstr "Kohese salvestuse asukoht"
+
+#~ msgid "Instant recordings location"
+#~ msgstr "Kohese salvestuse asukoht"
+
+#~ msgid "Movie location"
+#~ msgstr "Salvestuskataloog"
+
+#~ msgid "New timers location"
+#~ msgstr "Uue taimeri asukoht"
+
+#, fuzzy
+#~ msgid "No action required."
+#~ msgstr "Uuendamine ei ole vajalik!"
+
+#~ msgid "Please wait, restarting cardserver."
+#~ msgstr "Oota, kaardiserver taaskäivitub."
+
+#~ msgid "Please wait, restarting softcam and cardserver."
+#~ msgstr "EMU ja kaardiserver taaskäivitatakse. Palun oota."
+
+#~ msgid "Please wait, restarting softcam."
+#~ msgstr "Oota. EMU taaskäivitub."
+
+#, fuzzy
+#~ msgid "Press OK to install and use this locale."
+#~ msgstr "Kanali valikuks vajuta OK."
+
+#, fuzzy
+#~ msgid "Press OK to use this locale."
+#~ msgstr "Otsingu alustamiseks vajuta OK"
+
+#
+#~ msgid "Select Card Server"
+#~ msgstr "Vali kaardiserver"
+
+#~ msgid "Select Softcam"
+#~ msgstr "Vali EMU"
+
+#~ msgid ""
+#~ "Set the default location for your autorecord-files. Press 'OK' to add new "
+#~ "locations, select left/right to select an existing location."
+#~ msgstr ""
+#~ "Määra autosalvestuste tavaasukoht. Uue asukoha lisamiseks vajuta 'OK', "
+#~ "olemasoleva asukoha valimiseks kasuta vasak/parem nuppe."
+
+#~ msgid "Softcam setup"
+#~ msgstr "EMU seadistamine"
+
+#~ msgid ""
+#~ "The directory %s is not a EXT2, EXT3, EXT4, NFS or CIFS partition.\n"
+#~ "Make sure you select a valid partition type."
+#~ msgstr ""
+#~ "Kataloog %s ei ole EXT2, EXT3, EXT4, NTFS või CIFS partitsioon.\n"
+#~ "Veendu, et valisid kehtiva partitsiooni tüübi."
+
+#~ msgid ""
+#~ "The directory %s is not writable.\n"
+#~ "Make sure you select a writable directory instead."
+#~ msgstr ""
+#~ "Kataloog %s on kirjutuskaitstud.\n"
+#~ "Veendu, et valitud on kirjutuskaitseta kataloog."
+
+#, fuzzy
+#~ msgid "This is already the active locale."
+#~ msgstr "Andmekandja on juba kõvakettana haagitud."
+
+#, fuzzy
+#~ msgid "This is the currently selected locale."
+#~ msgstr "Eemalda valitud nimetus"
+
+#~ msgid "Timer record location"
+#~ msgstr "Taimeri salvestuse asukoht"
+
+#~ msgid ""
+#~ "You seem to be in timeshft, the service will briefly stop as timeshfit "
+#~ "stops."
+#~ msgstr "Ajanihe on kasutusel. Ajanihke peatamisel pilt hetkeks kaob."
+
+#~ msgid "disable"
+#~ msgstr "Keela"
+
+#~ msgid "enable"
+#~ msgstr "Luba"
+
+#~ msgid "false"
+#~ msgstr "ei"
+
+#~ msgid "off"
+#~ msgstr "Väljas"
+
+#~ msgid "on"
+#~ msgstr "Sees"
+
+#~ msgid "save"
+#~ msgstr "Salvesta"
+
+#~ msgid "true"
+#~ msgstr "jah"
+
+#~ msgid "Enable Autorecord"
+#~ msgstr "Autosalvestus lubatud"
+
+#~ msgid ""
+#~ "If set to 'yes', enable autorecord for automatically background timeshift"
+#~ msgstr "Määrates 'jah', töötab autosalvestus automaatselt ajanihke taustal"
+
+#~ msgid "Remote control model shown"
+#~ msgstr "Kuvatav puldi mudel"
+
+#, fuzzy
+#~ msgid "Turn on the control LED."
+#~ msgstr "Näidik on ooteseisundis sees."
+
+#~ msgid "Turn on the power LED."
+#~ msgstr "Näidik on ooteseisundis sees."
+
+#~ msgid ""
+#~ "Which remote control gets shown. Only influences graphical representation."
+#~ msgstr "Millist pulti kuvatakse. Mõjutab ainult graafilist esitlust."
+
+#~ msgid "Please set your time zone"
+#~ msgstr "Määra ajavöönd"
 
 #~ msgid "Allocate unused memory index"
 #~ msgstr "Jaota vaba mäluindeks"
