@@ -477,3 +477,6 @@ class ConfigListScreen:
 class DummyActions:
 	def setEnabled(self, enabled):
 		pass
+
+	def destroy(self):
+		pass
