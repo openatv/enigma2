@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-08-22 21:17+0000\n"
+"POT-Creation-Date: 2021-08-29 19:28+0000\n"
 "PO-Revision-Date: 2021-08-15 18:49+0000\n"
 "Last-Translator: openATV <openatv@gmail.com>\n"
 "Language-Team: Catalan <https://hosted.weblate.org/projects/openatv/"
@@ -2497,9 +2497,6 @@ msgstr "Adaptar configuracions"
 msgid "Add"
 msgstr "Afegir"
 
-msgid "Add / Delete the currently highlighted locale / language"
-msgstr ""
-
 msgid "Add AutoTimer"
 msgstr ""
 
@@ -3315,9 +3312,6 @@ msgstr ""
 #, fuzzy
 msgid "Automobil"
 msgstr "Auto"
-
-msgid "Autorecord location"
-msgstr ""
 
 msgid "Autostart"
 msgstr ""
@@ -5537,10 +5531,6 @@ msgid "Default files/folders to backup"
 msgstr ""
 
 #
-msgid "Default movie location"
-msgstr "Ubicació predeterminada de la pel·lícula"
-
-#
 msgid "Default settings"
 msgstr "Configuració per defecte"
 
@@ -5959,6 +5949,9 @@ msgstr ""
 msgid "Display and user interface"
 msgstr ""
 
+msgid "Display oscam information."
+msgstr ""
+
 msgid "Display selection list as a selection menu"
 msgstr ""
 
@@ -6136,6 +6129,10 @@ msgstr "Voleu una vista prèvia d’aquest DVD abans de gravar-lo?"
 msgid "Do you want to produce this collection?"
 msgstr ""
 
+#, python-format
+msgid "Do you want to purge all locales/languages except %s?"
+msgstr ""
+
 #
 #, fuzzy, python-format
 msgid "Do you want to reboot your %s %s"
@@ -6206,6 +6203,9 @@ msgid "Don't add this recording"
 msgstr ""
 
 msgid "Don't ask again!"
+msgstr ""
+
+msgid "Don't restart"
 msgstr ""
 
 msgid "Don't save"
@@ -7802,6 +7802,15 @@ msgstr ""
 msgid "Genre"
 msgstr "Gènere"
 
+msgid "Geolocation does not contain time zone information."
+msgstr ""
+
+msgid "Geolocation has been used to set the time zone."
+msgstr ""
+
+msgid "Geolocation is not available."
+msgstr ""
+
 msgid "Georgia"
 msgstr "Geòrgia"
 
@@ -8620,6 +8629,9 @@ msgstr ""
 msgid "Immediate shutdown"
 msgstr ""
 
+msgid "Immediately restart selected devices."
+msgstr ""
+
 msgid ""
 "In order to allow you to access all the features of the IceTV smart "
 "recording service, we need to gather some basic information.\n"
@@ -8890,19 +8902,8 @@ msgid "Instant record"
 msgstr "Registre instantani"
 
 #
-msgid "Instant record location"
-msgstr ""
-
-#
-msgid "Instant recording location"
-msgstr "Canviar la gravació (durada)"
-
-#
 msgid "Instant recording..."
 msgstr "Enregistrament instantani …"
-
-msgid "Instant recordings location"
-msgstr ""
 
 msgid "Interface"
 msgstr ""
@@ -9118,6 +9119,9 @@ msgid "Jump to previous marked position"
 msgstr "Salta a l'anterior posició marcada"
 
 msgid "Jump to prime time"
+msgstr ""
+
+msgid "Jump to the currently active locale/language"
 msgstr ""
 
 msgid "Just change Bouquet"
@@ -9344,6 +9348,17 @@ msgstr ""
 #
 msgid "Language"
 msgstr "Idioma"
+
+#, python-format
+msgid "Language %s (%s) installed and selected."
+msgstr ""
+
+#, python-format
+msgid "Language %s (%s) selected."
+msgstr ""
+
+msgid "Language already selected."
+msgstr ""
 
 #
 msgid "Language selection"
@@ -9609,17 +9624,20 @@ msgid "Locale"
 msgstr "Locale"
 
 #, python-format
-msgid "Locale %s (%s) has been installed and selected as the active locale."
+msgid "Locale %s (%s) installed and selected."
 msgstr ""
 
 #, python-format
-msgid "Locale %s (%s) has been selected as the active locale."
+msgid "Locale %s (%s) selected."
 msgstr ""
 
 msgid "Locale (Ascending)"
 msgstr ""
 
 msgid "Locale (Descending)"
+msgstr ""
+
+msgid "Locale already selected."
 msgstr ""
 
 #
@@ -10423,10 +10441,6 @@ msgid "Movie Player Actions"
 msgstr "Selecció de gravació"
 
 #
-msgid "Movie location"
-msgstr "Ubicació de la pel·lícula"
-
-#
 msgid "Movie selection"
 msgstr "Selecció de pel·lícules"
 
@@ -10796,9 +10810,6 @@ msgstr ""
 msgid "New program info"
 msgstr ""
 
-msgid "New timers location"
-msgstr ""
-
 #
 msgid "New version:"
 msgstr "Nova versió:"
@@ -10881,9 +10892,6 @@ msgid "No TS recorder available"
 msgstr ""
 
 msgid "No Timeshift found to save as recording!"
-msgstr ""
-
-msgid "No action required."
 msgstr ""
 
 msgid "No active channel found."
@@ -12317,18 +12325,9 @@ msgstr ""
 msgid "Please wait, Loading image."
 msgstr "Carregant la llista... espera..."
 
-#
-#, fuzzy
-msgid "Please wait, restarting cardserver."
-msgstr "sisplau espera, carregant imatge..."
-
-msgid "Please wait, restarting softcam and cardserver."
+#, python-format
+msgid "Please wait, restarting %s."
 msgstr ""
-
-#
-#, fuzzy
-msgid "Please wait, restarting softcam."
-msgstr "Carregant la llista... espera..."
 
 msgid "Please wait."
 msgstr ""
@@ -12552,10 +12551,13 @@ msgstr "Premeu OK per editar la configuració."
 msgid "Press OK to get further details for %s"
 msgstr "Premeu OK per obtenir més detalls per a% s"
 
-#
-#, fuzzy
-msgid "Press OK to install and use this locale."
-msgstr "Prem OK per a començar la recerca"
+#, python-format
+msgid "Press OK to install and use this language.  [%s]"
+msgstr ""
+
+#, python-format
+msgid "Press OK to install and use this locale.  [%s]"
+msgstr ""
 
 #
 msgid "Press OK to scan"
@@ -12595,10 +12597,13 @@ msgstr "Premeu OK per canviar la selecció"
 msgid "Press OK to toggle the selection."
 msgstr "Premeu OK per canviar la selecció."
 
-#
-#, fuzzy
-msgid "Press OK to use this locale."
-msgstr "Prem OK per a començar la recerca"
+#, python-format
+msgid "Press OK to use this language.  [%s]"
+msgstr ""
+
+#, python-format
+msgid "Press OK to use this locale.  [%s]"
+msgstr ""
 
 msgid "Press yellow to set this interface as the default interface."
 msgstr ""
@@ -12817,6 +12822,21 @@ msgid "Puerto Rico"
 msgstr "Puerto Rico"
 
 msgid "Puppentrick"
+msgstr ""
+
+msgid "Purge"
+msgstr ""
+
+msgid "Purge all but / Add / Delete the currently highlighted locale/language"
+msgstr ""
+
+msgid ""
+"Purge all but the current and permanent locales/languages.  Add the current "
+"locale/language if it is not installed.  Delete the current locale/language "
+"if it is installed."
+msgstr ""
+
+msgid "Purging all unused locales/languages..."
 msgstr ""
 
 msgid "Pushto / Pashto"
@@ -14236,11 +14256,6 @@ msgstr ""
 msgid "Select CAId"
 msgstr "Seleccionar CAid"
 
-#
-#, fuzzy
-msgid "Select Card Server"
-msgstr "Seleccionar una pel·lícula"
-
 msgid "Select Enigma2 Skin"
 msgstr ""
 
@@ -14267,11 +14282,6 @@ msgstr ""
 
 msgid "Select Quad Channels"
 msgstr ""
-
-#
-#, fuzzy
-msgid "Select Softcam"
-msgstr "Selecció EPG"
 
 msgid "Select Software Update"
 msgstr ""
@@ -14449,9 +14459,7 @@ msgstr ""
 msgid "Select the character or action under the keyboard cursor"
 msgstr "Seleccioneu el personatge o l’acció sota el cursor del teclat"
 
-msgid ""
-"Select the currently highlighted locale/language to be used in the user "
-"interface"
+msgid "Select the currently highlighted locale/language for the user interface"
 msgstr ""
 
 msgid ""
@@ -14903,31 +14911,6 @@ msgid "Set the channel for this timer."
 msgstr ""
 
 msgid "Set the date the timer must start."
-msgstr ""
-
-msgid ""
-"Set the default location for your autorecord-files. Press 'OK' to add new "
-"locations, select left/right to select an existing location."
-msgstr ""
-
-msgid ""
-"Set the default location for your instant recordings. Press 'OK' to add new "
-"locations, select left/right to select an existing location."
-msgstr ""
-
-msgid ""
-"Set the default location for your recordings. Press 'OK' to add new "
-"locations, select left/right to select an existing location."
-msgstr ""
-
-msgid ""
-"Set the default location for your timers. Press 'OK' to add new locations, "
-"select left/right to select an existing location."
-msgstr ""
-
-msgid ""
-"Set the default location for your timeshift-files. Press 'OK' to add new "
-"locations, select left/right to select an existing location."
 msgstr ""
 
 msgid "Set the default sorting method."
@@ -15929,13 +15912,11 @@ msgstr "bloquejat"
 msgid "Softcam"
 msgstr ""
 
+msgid "Softcam Actions"
+msgstr ""
+
 msgid "Softcam Setup"
 msgstr "Instal·lació de softcam"
-
-#
-#, fuzzy
-msgid "Softcam setup"
-msgstr "Protegir configuració"
 
 msgid "Softcam-Panel"
 msgstr ""
@@ -16958,21 +16939,6 @@ msgid ""
 "Please use the 'additional' and 'excluded' backup selection."
 msgstr ""
 
-#, python-format
-msgid ""
-"The directory %s is not a EXT2, EXT3, EXT4, NFS or CIFS partition.\n"
-"Make sure you select a valid partition type."
-msgstr ""
-
-#
-#, python-format
-msgid ""
-"The directory %s is not writable.\n"
-"Make sure you select a writable directory instead."
-msgstr ""
-"El directori% s no es pot escriure.\n"
-"Assegureu-vos que seleccioneu un directori que es pugui escriure."
-
 #
 #, python-format
 msgid ""
@@ -17242,13 +17208,13 @@ msgid ""
 "seconds."
 msgstr ""
 
-msgid "This is already the active locale."
+#, python-format
+msgid "This is the currently selected language.  [%s]"
 msgstr ""
 
-#
-#, fuzzy
-msgid "This is the currently selected locale."
-msgstr "Esborra el títol seleccionat"
+#, python-format
+msgid "This is the currently selected locale.  [%s]"
+msgstr ""
 
 msgid ""
 "This is the order in which DiSEqC commands are sent to the aerial system. "
@@ -17611,6 +17577,9 @@ msgstr ""
 msgid "Time"
 msgstr "Hora"
 
+msgid "Time Setup Actions"
+msgstr ""
+
 msgid "Time Update in Minutes"
 msgstr ""
 
@@ -17685,14 +17654,6 @@ msgid "Timer overview"
 msgstr "Visió general del temporitzador"
 
 #
-msgid "Timer record location"
-msgstr ""
-
-#
-msgid "Timer recording location"
-msgstr "Canviar la gravació (durada)"
-
-#
 msgid "Timer sanity error"
 msgstr "Error de programació"
 
@@ -17714,10 +17675,6 @@ msgstr ""
 #
 msgid "Timeshift"
 msgstr "Pausa"
-
-#
-msgid "Timeshift location"
-msgstr "Timeshift s’està executant. Seleccioneu una acció."
 
 #
 msgid "Timeshift not possible!"
@@ -18514,6 +18471,9 @@ msgstr "Utilitzar DHCP"
 msgid "Use Deinterlacing for 1080i Videosignal?"
 msgstr ""
 
+msgid "Use Geolocation"
+msgstr ""
+
 msgid "Use HDMI-preemphasis"
 msgstr ""
 
@@ -18550,6 +18510,9 @@ msgstr "Utilitzeu la numeració de canals de fastscan"
 
 msgid "Use frequency or channel"
 msgstr "Utilitzeu freqüència o canal"
+
+msgid "Use geolocation to set the current time zone location"
+msgstr ""
 
 msgid "Use individual settings for each directory"
 msgstr "Utilitzeu la configuració individual per a cada directori"
@@ -19629,14 +19592,15 @@ msgstr ""
 msgid "You must set at least one Command"
 msgstr ""
 
-msgid ""
-"You seem to be in timeshft, the service will briefly stop as timeshfit stops."
-msgstr ""
-
 msgid "You seem to be in timeshift!"
 msgstr "Amb aquesta opció, podeu canviar el color del LED o desactivar el LED."
 
 msgid "You seem to be in timeshift, Do you want to leave timeshift ?"
+msgstr ""
+
+msgid ""
+"You seem to be in timeshift, the service will briefly stop as timeshift "
+"stops."
 msgstr ""
 
 #, python-format
@@ -20103,6 +20067,9 @@ msgstr ""
 msgid "an internal error has occur"
 msgstr ""
 
+msgid "and"
+msgstr ""
+
 msgid "and never ask again this session again"
 msgstr ""
 
@@ -20224,6 +20191,9 @@ msgid "card"
 msgstr ""
 
 msgid "card reader"
+msgstr ""
+
+msgid "cardserver"
 msgstr ""
 
 msgid "cartoon/puppets"
@@ -20367,10 +20337,6 @@ msgid "detective/thriller"
 msgstr "detectiu / thriller"
 
 #
-msgid "disable"
-msgstr "desactivar"
-
-#
 msgid "disable move mode"
 msgstr "desactivar mode moviment"
 
@@ -20453,10 +20419,6 @@ msgstr "encastat"
 #
 msgid "empty"
 msgstr "buit"
-
-#
-msgid "enable"
-msgstr "habilitar"
 
 msgid "enable PIP no HDR"
 msgstr ""
@@ -20580,9 +20542,6 @@ msgstr ""
 
 msgid "failed"
 msgstr "fracassat"
-
-msgid "false"
-msgstr "fals"
 
 msgid "fashion"
 msgstr "moda"
@@ -21149,19 +21108,11 @@ msgstr "d’un mitjà de capa DUAL utilitzat."
 msgid "of a SINGLE layer medium used."
 msgstr "d’un mitjà SINGLE capa utilitzat."
 
-#
-msgid "off"
-msgstr "desactivat"
-
 msgid "off or wpa2 on"
 msgstr "desactivat o wpa2 activat"
 
 msgid "offset is"
 msgstr "desactivat està"
-
-#
-msgid "on"
-msgstr "activat"
 
 #
 msgid "on READ ONLY medium."
@@ -21429,9 +21380,6 @@ msgid ""
 "or to configure tuner settings"
 msgstr ""
 
-msgid "save"
-msgstr ""
-
 #
 msgid "save last directory on exit"
 msgstr ""
@@ -21631,6 +21579,9 @@ msgstr "qüestions socials / polítiques / economia (general)"
 msgid "social/spiritual science"
 msgstr "ciències socials / espirituals"
 
+msgid "softcam"
+msgstr ""
+
 msgid "softcams"
 msgstr ""
 
@@ -21770,9 +21721,6 @@ msgstr ""
 
 msgid "traditional (fast), retune"
 msgstr ""
-
-msgid "true"
-msgstr "cert"
 
 msgid "turbo"
 msgstr ""
@@ -23364,6 +23312,10 @@ msgid "Default 'Timer type' *"
 msgstr "aquesta gravació"
 
 #
+msgid "Default movie location"
+msgstr "Ubicació predeterminada de la pel·lícula"
+
+#
 #, fuzzy
 msgid "Default recording type"
 msgstr "aquesta gravació"
@@ -23461,9 +23413,6 @@ msgid "EPG language selection 2"
 msgstr "Selecció d’idioma EPG 2"
 
 msgid "EPG location"
-msgstr ""
-
-msgid "Enable Autorecord"
 msgstr ""
 
 msgid "Enable EIT EPG"
@@ -23755,10 +23704,6 @@ msgid ""
 msgstr ""
 
 msgid ""
-"If set to 'yes', enable autorecord for automatically background timeshift"
-msgstr ""
-
-msgid ""
 "If set to 'yes; the infobar will be displayed when Fast Forwarding or "
 "Rewinding during media playback."
 msgstr ""
@@ -23866,6 +23811,10 @@ msgstr "Velocitat de rebobinat inicial"
 
 msgid "Initial scroll delay"
 msgstr "Retard de desplaçament inicial"
+
+#
+msgid "Instant recording location"
+msgstr "Canviar la gravació (durada)"
 
 #
 #, fuzzy
@@ -24189,9 +24138,6 @@ msgstr ""
 msgid "Remember last service in PiP"
 msgstr "Enrutament dels rellevants PID"
 
-msgid "Remote control model shown"
-msgstr ""
-
 msgid "Remove completed timers after (days)"
 msgstr "Treure els temporitzadors finalitzats després de (dies)"
 
@@ -24213,6 +24159,11 @@ msgstr ""
 
 msgid "Require authentication for http streams"
 msgstr "Requereix autenticació per als streams http"
+
+msgid ""
+"Reset the selected devices and save changes of your config when the GREEN "
+"button is pressed."
+msgstr ""
 
 msgid "Restart GUI after x crashes"
 msgstr ""
@@ -24271,6 +24222,15 @@ msgstr ""
 msgid "Select Yellow Key Action long"
 msgstr ""
 
+msgid "Select a cardserver from the available list."
+msgstr ""
+
+msgid "Select a softcam from the available list."
+msgstr ""
+
+msgid "Select cardserver"
+msgstr ""
+
 msgid "Select how to activate the Quick EPG mode:"
 msgstr ""
 
@@ -24281,6 +24241,9 @@ msgid "Select if you want the Subservice mode to be activated."
 msgstr ""
 
 msgid "Select seekbar to be activated by arrow L/R (long) or << >> (long)."
+msgstr ""
+
+msgid "Select softcam"
 msgstr ""
 
 msgid ""
@@ -24381,6 +24344,26 @@ msgid "Set fps for external subtitles"
 msgstr "Estableix fps per a subtítols externs"
 
 msgid "Set the aspect ratio of the service picons."
+msgstr ""
+
+msgid ""
+"Set the default location for your instant recordings. Press 'OK' to add new "
+"locations, select left/right to select an existing location."
+msgstr ""
+
+msgid ""
+"Set the default location for your recordings. Press 'OK' to add new "
+"locations, select left/right to select an existing location."
+msgstr ""
+
+msgid ""
+"Set the default location for your timers. Press 'OK' to add new locations, "
+"select left/right to select an existing location."
+msgstr ""
+
+msgid ""
+"Set the default location for your timeshift-files. Press 'OK' to add new "
+"locations, select left/right to select an existing location."
 msgstr ""
 
 msgid ""
@@ -25064,6 +25047,10 @@ msgstr ""
 msgid "Timeline font size"
 msgstr ""
 
+#
+msgid "Timer recording location"
+msgstr "Canviar la gravació (durada)"
+
 msgid "Timeshift buffer delete after zap?"
 msgstr ""
 
@@ -25082,6 +25069,10 @@ msgstr ""
 msgid "Timeshift last events limit [number of events]"
 msgstr ""
 
+#
+msgid "Timeshift location"
+msgstr "Timeshift s’està executant. Seleccioneu una acció."
+
 msgid "Timeshift-save action on zap"
 msgstr ""
 
@@ -25093,11 +25084,11 @@ msgstr ""
 msgid "Tuner slot"
 msgstr "Ranura sintonitzadora"
 
-msgid "Turn on the control LED."
+msgid "Turn on the control LED"
 msgstr ""
 
-msgid "Turn on the power LED."
-msgstr "Enceneu el LED d’alimentació durant el mode d’espera."
+msgid "Turn on the power LED"
+msgstr ""
 
 msgid "URL of fallback remote receiver"
 msgstr "URL del receptor remot de caiguda"
@@ -25424,10 +25415,6 @@ msgid ""
 "When tuned to a service the system will normally scan the transponder for "
 "any changes and save them. Only set to 'yes' if you're absolutely sure what "
 "you're doing."
-msgstr ""
-
-msgid ""
-"Which remote control gets shown. Only influences graphical representation."
 msgstr ""
 
 msgid ""
@@ -25880,10 +25867,14 @@ msgid ""
 "For Hybrid Tuner Models switch Tuner Type with left and right keys"
 msgstr ""
 
-#
-#, fuzzy
-msgid "Please set your time zone"
-msgstr "Configura el sintonitzador B"
+msgid "Please set your time options"
+msgstr ""
+
+msgid ""
+"Please set your time options.\n"
+"\n"
+"Press YELLOW to set the time zone via geolocation."
+msgstr ""
 
 msgid ""
 "Skip internet connection check (disables automatic package installation)"
@@ -25964,6 +25955,88 @@ msgstr ""
 
 msgid "J"
 msgstr ""
+
+#
+#~ msgid "Movie location"
+#~ msgstr "Ubicació de la pel·lícula"
+
+#
+#, fuzzy
+#~ msgid "Please wait, restarting cardserver."
+#~ msgstr "sisplau espera, carregant imatge..."
+
+#
+#, fuzzy
+#~ msgid "Please wait, restarting softcam."
+#~ msgstr "Carregant la llista... espera..."
+
+#
+#, fuzzy
+#~ msgid "Press OK to install and use this locale."
+#~ msgstr "Prem OK per a començar la recerca"
+
+#
+#, fuzzy
+#~ msgid "Press OK to use this locale."
+#~ msgstr "Prem OK per a començar la recerca"
+
+#
+#, fuzzy
+#~ msgid "Select Card Server"
+#~ msgstr "Seleccionar una pel·lícula"
+
+#
+#, fuzzy
+#~ msgid "Select Softcam"
+#~ msgstr "Selecció EPG"
+
+#
+#, fuzzy
+#~ msgid "Softcam setup"
+#~ msgstr "Protegir configuració"
+
+#
+#~ msgid ""
+#~ "The directory %s is not writable.\n"
+#~ "Make sure you select a writable directory instead."
+#~ msgstr ""
+#~ "El directori% s no es pot escriure.\n"
+#~ "Assegureu-vos que seleccioneu un directori que es pugui escriure."
+
+#
+#, fuzzy
+#~ msgid "This is the currently selected locale."
+#~ msgstr "Esborra el títol seleccionat"
+
+#
+#~ msgid "disable"
+#~ msgstr "desactivar"
+
+#
+#~ msgid "enable"
+#~ msgstr "habilitar"
+
+#~ msgid "false"
+#~ msgstr "fals"
+
+#
+#~ msgid "off"
+#~ msgstr "desactivat"
+
+#
+#~ msgid "on"
+#~ msgstr "activat"
+
+#~ msgid "true"
+#~ msgstr "cert"
+
+#~ msgid "Turn on the power LED."
+#~ msgstr "Enceneu el LED d’alimentació durant el mode d’espera."
+
+#
+#, fuzzy
+#~ msgid "Please set your time zone"
+#~ msgstr "Configura el sintonitzador B"
 
 #~ msgid "Allocate unused memory index"
 #~ msgstr "Assigna l’índex de memòria no utilitzat"
