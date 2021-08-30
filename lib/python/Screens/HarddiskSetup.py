@@ -71,11 +71,15 @@ class HarddiskSetup(Screen):
 		if not confirmed:
 			return
 		try:
-			job_manager.AddJob(self.action())
-			for job in job_manager.getPendingJobs():
-				if job.name in (_("Initializing storage device..."), _("Checking file system..."),_("Converting ext3 to ext4...")):
-					self.showJobView(job)
-					break
+			job = self.action()
+			if job:
+				job_manager.AddJob(job)
+				for job in job_manager.getPendingJobs():
+					if job.name in (_("Initializing storage device..."), _("Checking file system..."),_("Converting ext3 to ext4...")):
+						self.showJobView(job)
+						break
+			else:
+				self.session.open(MessageBox, "Job can not be run on the device", type=MessageBox.TYPE_ERROR, timeout=10)
 		except Exception, ex:
 			self.session.open(MessageBox, str(ex), type=MessageBox.TYPE_ERROR, timeout=10)
 

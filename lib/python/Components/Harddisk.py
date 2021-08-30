@@ -7,6 +7,7 @@ from boxbranding import getMachineName, getMachineBuild
 import Task
 from About import getModelString
 import re
+import subprocess
 
 def readFile(filename):
 	file = open(filename)
@@ -30,6 +31,20 @@ def getPartitionNames():
 		print "[Harddisk] Failed to open /proc/partitions", ex
 	return partitions
 
+def getRealFsType(dev, default):
+	blkid = "blkid"
+	try:
+		p = subprocess.Popen((blkid, "-s", "TYPE", "-o", "value", dev), stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+	except OSError as ex:
+		print "[Harddisk] Could not run %s: %s" % (blkid, ex)
+		return default
+	output = map(str.splitlines, p.communicate())
+	retcode = p.wait()
+	if len(output[0]) == 1 and not output[1] and retcode == 0:
+		return output[0][0]
+	print "[Harddisk] %s returned bad output: %s" % (blkid, output)
+	return default
+
 def getProcMounts():
 	try:
 		mounts = open("/proc/mounts", 'r')
@@ -39,6 +54,8 @@ def getProcMounts():
 		for item in tmp:
 			# Spaces are encoded as \040 in mounts
 			item[1] = item[1].replace('\\040', ' ')
+			if item[2] == "fuseblk":
+				item[2] = getRealFsType(item[0], item[2])
 			result.append(item)
 		return result
 	except IOError, ex:
@@ -69,6 +86,13 @@ DEVTYPE_UDEV = 0
 DEVTYPE_DEVFS = 1
 
 class Harddisk:
+	fsckOpts = {
+		"ext2": ("fsck.ext2", "-D", "-f", "-p"),
+		"ext3": ("fsck.ext3", "-D", "-f", "-p"),
+		"ext4": ("fsck.ext4", "-D", "-f", "-p"),
+		"vfat": ("fsck.vfat", "-p"),
+	}
+
 	def __init__(self, device, removable=False):
 		self.device = device
 
@@ -90,6 +114,7 @@ class Harddisk:
 		self.disk_path = ''
 		self.mount_path = None
 		self.mount_device = None
+		self.fs_type = None
 		self.phys_path = os.path.realpath(self.sysfsPath('device'))
 
 		if self.type == DEVTYPE_UDEV:
@@ -231,6 +256,7 @@ class Harddisk:
 			if os.path.realpath(parts[0]).startswith(self.dev_path):
 				self.mount_device = parts[0]
 				self.mount_path = parts[1]
+				self.fs_type = parts[2]
 				return parts[1]
 
 	def enumMountDevices(self):
@@ -417,11 +443,11 @@ class Harddisk:
 		else:
 			# otherwise, assume there is one partition
 			dev = self.partitionPath("1")
+		if self.fs_type not in self.fsckOpts:
+			return None
 		task = Task.LoggingTask(job, "fsck")
-		if isFileSystemSupported("ext4"):
-			task.setTool("fsck.ext4")
-		else:
-			task.setTool('fsck.ext3')
+		fsckCmd = self.fsckOpts[self.fs_type]
+		task.setTool(fsckCmd[0])
 
 		# fsck.ext? return codes less than 4 are not real errors
 		class FsckReturncodePostCondition(Task.ReturncodePostcondition):
@@ -429,7 +455,7 @@ class Harddisk:
 				return task.returncode < 4
 
 		task.postconditions = [FsckReturncodePostCondition()]
-		task.args += ["-D", "-f", "-p", dev]
+		task.args += fsckCmd[1:] + (dev, )
 		MountTask(job, self)
 		task = Task.ConditionTask(job, _("Waiting for mount"))
 		task.check = self.mountDevice
