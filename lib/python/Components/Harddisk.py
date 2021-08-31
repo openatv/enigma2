@@ -269,6 +269,9 @@ class Harddisk:
 			return self.mountDevice()
 		return self.mount_path
 
+	def getFsUserFriendlyType(self):
+		return Partition.getFsUserFriendlyType(self.fs_type)
+
 	def unmount(self):
 		dev = self.mountDevice()
 		if dev is None:
@@ -426,6 +429,14 @@ class Harddisk:
 
 		return job
 
+	def checkIsSupported(self):
+		if self.fs_type in self.fsckOpts:
+			prog = self.fsckOpts[self.fs_type][0]
+			for path_dir in os.environ["PATH"].split(":"):
+				if os.access(os.path.join(path_dir, prog), os.X_OK):
+					return True
+		return False
+
 	def initialize(self):
 		# no longer supported
 		return -5
@@ -572,6 +583,22 @@ class Harddisk:
 		return self.is_sleeping
 
 class Partition:
+
+	fsUserFriendlyTypes = {
+		"exfat": _("exFAT"),
+		"hfs": _("HFS"),
+		"hfsplus": _("HFS+"),
+		"iso9660": _("ISO9660"),
+		"msdos": _("FAT"),
+		"ntfs": _("NTFS"),
+		"squashfs": _("Squashfs"),
+		"ubifs": _("UBIFS"),
+		"udf": _("UDF"),
+		"vfat": _("FAT"),
+		"yaffs": _("YAFFS1"),
+		"yaffs2": _("YAFFS2"),
+	}
+
 	# for backward compatibility, force_mounted actually means "hotplug"
 	def __init__(self, mountpoint, device=None, description="", shortdescription="", force_mounted=False):
 		self.mountpoint = mountpoint
@@ -617,6 +644,10 @@ class Partition:
 			# Network devices have a user defined name
 			return self.shortdescription
 		return self.shortdescription + '\t' + self.mountpoint
+
+	@staticmethod
+	def getFsUserFriendlyType(fs_type):
+		return Partition.fsUserFriendlyTypes.get(fs_type, fs_type or "Unknown")
 
 	def mounted(self, mounts=None):
 		# THANK YOU PYTHON FOR STRIPPING AWAY f_fsid.

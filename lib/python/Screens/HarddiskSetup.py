@@ -11,7 +11,7 @@ from Screens.MessageBox import MessageBox
 from Tools.BoundFunction import boundFunction
 import Screens.InfoBar
 
-from enigma import eListboxPythonMultiContent, gFont
+from enigma import eListboxPythonMultiContent, gFont, eSize, RT_HALIGN_LEFT, RT_HALIGN_RIGHT, RT_VALIGN_CENTER
 from Components.MultiContent import MultiContentEntryText
 
 class HarddiskSetup(Screen):
@@ -79,7 +79,7 @@ class HarddiskSetup(Screen):
 						self.showJobView(job)
 						break
 			else:
-				self.session.open(MessageBox, "Job can not be run on the device", type=MessageBox.TYPE_ERROR, timeout=10)
+				self.session.open(MessageBox, _("Internal error: Job can not be run on the device"), type=MessageBox.TYPE_ERROR, timeout=10)
 		except Exception, ex:
 			self.session.open(MessageBox, str(ex), type=MessageBox.TYPE_ERROR, timeout=10)
 
@@ -99,13 +99,20 @@ class HarddiskMenuList(MenuList):
 	def __init__(self, list, enableWrapAround = False):
 		MenuList.__init__(self, list, enableWrapAround, eListboxPythonMultiContent)
 		self.l.setFont(0, gFont("Regular", 22))
-		self.l.setFont(1, gFont("Regular", 14))
-		self.l.setItemHeight(50)
 	
-def SubHarddiskMenuEntryComponent(name, item):
+def SubHarddiskMenuEntryComponent(name, fstype, item, item_size):
+	y = 0
+	h = item_size.height()
+	space = 5
+	w2 = 100
+	x2 = item_size.width() - w2 - space
+	x1 = space
+	w1 = x2 - space - x1
+	color = None if item else "darkgrey"
 	return [
-		_(item),
-		MultiContentEntryText(pos=(20, 10), size=(540, 50), font=0, text = _(name)),
+		item,
+		MultiContentEntryText(pos=(x1, y), size=(w1, h), color=color, font=0, flags = RT_HALIGN_LEFT | RT_VALIGN_CENTER, text = name),
+		MultiContentEntryText(pos=(x2, y), size=(w2, h), color=color, font=0, flags = RT_HALIGN_RIGHT | RT_VALIGN_CENTER, text = fstype),
 	]
 	
 class HarddiskSelection(Screen):
@@ -134,14 +141,7 @@ class HarddiskSelection(Screen):
 
 		self.skinName = "HarddiskSelection" # For derived classes
 		
-		menu = []
-		if harddiskmanager.HDDCount() == 0:
-			menu.append(SubHarddiskMenuEntryComponent((_("no storage devices found")), 0))
-		else:
-			for x in harddiskmanager.HDDList():
-				menu.append(SubHarddiskMenuEntryComponent(x[0], x))
-
-		self["hddlist"] = HarddiskMenuList(menu)
+		self["hddlist"] = HarddiskMenuList([])
 		
 		self["key_red"] = Label(_("Exit"))
 		self["key_green"] = Label(_("Select"))
@@ -154,6 +154,29 @@ class HarddiskSelection(Screen):
 			"cancel": self.close,
 			"red": self.close
 		})
+
+		self.onLayoutFinish.append(self.makeMenu)
+
+	def makeMenu(self):
+		# Force the eListbox to recalculate the item_size
+		# to accommodate space for the scrollbar.
+		self["hddlist"].setList([SubHarddiskMenuEntryComponent(_("no storage devices found"), "", None, eSize(400, 45))])
+		item_size = self["hddlist"].l.getItemSize()
+
+		menu = []
+		if harddiskmanager.HDDCount() == 0:
+			menu.append(SubHarddiskMenuEntryComponent(_("no storage devices found"), "", None, item_size))
+		else:
+			for x in harddiskmanager.HDDList():
+				fstype = x[1].getFsUserFriendlyType()
+				name = x[0]
+				if not self.isSelectable(x[1]):
+					x = None
+				menu.append(SubHarddiskMenuEntryComponent(name, fstype, x, item_size))
+		self["hddlist"].setList(menu)
+
+	def isSelectable(self, part):
+		return True
 
 	def doIt(self, selection):
 		self.session.openWithCallback(self.close, HarddiskSetup, selection,
@@ -192,6 +215,9 @@ class HarddiskFsckSelection(HarddiskSelection):
 			self["menu_path_compressed"] = StaticText("")
 		Screen.setTitle(self, title)
 		self.skinName = "HarddiskSelection"
+
+	def isSelectable(self, part):
+		return part.checkIsSupported()
 
 	def doIt(self, selection):
 		self.session.openWithCallback(self.close, HarddiskSetup, selection,
