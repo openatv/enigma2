@@ -251,14 +251,6 @@ class Devices(AboutBase):
 
 	FSTABIPMATCH = "(//)?\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}/"
 
-# Mapping fuseblk is a hack that only works if NTFS
-# is the only FUSE file system loaded.
-	fsNameMap = {
-		"fuseblk": "NTFS", "hfs": "HFS", "hfsplus": "HFS+",
-		"iso9660": "ISO9660", "msdos": "FAT",
-		"ubifs": "UBIFS", "udf": "UDF", "vfat": "FAT",
-	}
-
 	def __init__(self, session, menu_path=""):
 		AboutBase.__init__(self, session, menu_path)
 
@@ -346,15 +338,7 @@ class Devices(AboutBase):
 			for part in [p for p in partitions if p.startswith(hdd.device)]:
 				if part in mountIndex:
 					mount = mountIndex[part]
-					fs = mount[2]
-					if fs:
-						fs = fs.upper()
-					else:
-						fs = "Unknown"
-					fsType = mount[2]
-					if fsType in Devices.fsNameMap:
-						fsType = Devices.fsNameMap[fsType]
-					self.mountinfo += self.mountInfo(mount[0], mount[1], fsType)
+					self.mountinfo += self.mountInfo(mount[0], mount[1], Partition.getFsUserFriendlyType(mount[2]))
 				else:
 					self.mountinfo.append(self.makeInfoEntry(part, _('Not mounted')))
 		if not self.mountinfo:
