@@ -246,22 +246,22 @@ class Wizard(Screen):
 		self["VirtualKB"].setEnabled(False)
 
 	def red(self):
-		print("[Wizard] In red.")
+		# print("[Wizard] In red.")
 		if self.wizard[self.currStep]["config"]["screen"] is not None and hasattr(self.configInstance, "red") and callable(self.configInstance.red):
 			self.configInstance.red()
 
 	def green(self):
-		print("[Wizard] In green.")
+		# print("[Wizard] In green.")
 		if self.wizard[self.currStep]["config"]["screen"] is not None and hasattr(self.configInstance, "green") and callable(self.configInstance.green):
 			self.configInstance.green()
 
 	def yellow(self):
-		print("[Wizard] In yellow.")
+		# print("[Wizard] In yellow.")
 		if self.wizard[self.currStep]["config"]["screen"] is not None and hasattr(self.configInstance, "yellow") and callable(self.configInstance.yellow):
 			self.configInstance.yellow()
 
 	def blue(self):
-		print("[Wizard] In blue.")
+		# print("[Wizard] In blue.")
 		if self.wizard[self.currStep]["config"]["screen"] is not None and hasattr(self.configInstance, "blue") and callable(self.configInstance.blue):
 			self.configInstance.blue()
 
