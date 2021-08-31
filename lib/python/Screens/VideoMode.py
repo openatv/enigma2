@@ -169,9 +169,9 @@ class VideoSetup(Screen, ConfigListScreen):
 			if config.av.videomode[config.av.videoport.value].value == 'PC':
 				self.list.append(getConfigListEntry(_("Resolution"), config.av.videorate[config.av.videomode[config.av.videoport.value].value], _("Configure screen resolution in PC output mode.")))
 			elif config.av.videoport.value != 'Scart':
-				self.list.append(getConfigListEntry(_("Refresh rate"), config.av.videorate[config.av.videomode[config.av.videoport.value].value], _("Configure refresh rate of the screen. Multi means refresh rate depends on the source 24/50/60Hz")))
+				self.list.append(getConfigListEntry(_("Refresh rate"), config.av.videorate[config.av.videomode[config.av.videoport.value].value], _("Configure refresh rate of the screen. Multi means refresh rate depends on the source 24/50/60Hz.")))
 		if config.av.autores.value in ('all', 'hd') or config.av.videorate[config.av.videomode[config.av.videoport.value].value].value == 'multi':
-			self.list.append(getConfigListEntry(_("Delay time"), config.av.autores_delay, _("Set the time before checking video source for resolution/refresh rate infomation.")))
+			self.list.append(getConfigListEntry(_("Delay time"), config.av.autores_delay, _("Set the time before checking video source for resolution/refresh rate information.")))
 
 		port = config.av.videoport.value
 		if port not in config.av.videomode:
@@ -194,7 +194,7 @@ class VideoSetup(Screen, ConfigListScreen):
 			self.list.append(getConfigListEntry(_("Display 16:9 content as"), config.av.policy_169, _("When the content has an aspect ratio of 16:9, choose whether to scale/stretch the picture.")))
 
 		if config.av.videoport.value == "Scart":
-			self.list.append(getConfigListEntry(_("Color format"), config.av.colorformat, _("Configure which color format should be used on the SCART output.")))
+			self.list.append(getConfigListEntry(_("Colour format"), config.av.colorformat, _("Configure which colour format should be used on the SCART output.")))
 			if level >= 1:
 				self.list.append(getConfigListEntry(_("WSS on 4:3"), config.av.wss, _("When enabled, content with an aspect ratio of 4:3 will be stretched to fit the screen.")))
 				if SystemInfo["ScartSwitch"]:
@@ -204,13 +204,13 @@ class VideoSetup(Screen, ConfigListScreen):
 			self.list.append(getConfigListEntry(_("HDMI Colorspace"), config.av.hdmicolorspace, _("Change the HDMI colour space.")))
 
 		if SystemInfo["havecolorimetry"]:
-			self.list.append(getConfigListEntry(_("HDMI Colorimetry"), config.av.hdmicolorimetry, _("Change the HDMI colourimetry for HDR")))
+			self.list.append(getConfigListEntry(_("HDMI Colorimetry"), config.av.hdmicolorimetry, _("Change the HDMI colorimetry for HDR.")))
 
 		if SystemInfo["havehdmicolordepth"]:
-			self.list.append(getConfigListEntry(_("HDMI Colordepth"), config.av.hdmicolordepth, _("Change the HDMI colour depth for UHD")))
+			self.list.append(getConfigListEntry(_("HDMI Colordepth"), config.av.hdmicolordepth, _("Change the HDMI colour depth for UHD.")))
 
 		if SystemInfo["havehdmihdrtype"]:
-			self.list.append(getConfigListEntry(_("HDMI HDR Type"), config.av.hdmihdrtype,_("Change the HDMI HDR mode for UHD")))
+			self.list.append(getConfigListEntry(_("HDMI HDR Type"), config.av.hdmihdrtype,_("Change the HDMI HDR mode for UHD.")))
 
 		if level >= 1:
 			if SystemInfo["CanDownmixAC3"]:
