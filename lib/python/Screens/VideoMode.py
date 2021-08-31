@@ -334,6 +334,13 @@ isDedicated3D = False
 def applySettings(mode=config.osd.threeDmode.value, znorm=int(config.osd.threeDznorm.value)):
 	global previous, isDedicated3D
 	mode = isDedicated3D and mode == "auto" and "sidebyside" or mode
+	if "/primary/" in SystemInfo["3DMode"]:  # Convert to DreamBox compatible API
+		if mode == "sidebyside":
+			mode = "sbs"
+		elif mode == "topandbottom":
+			mode = "tab"
+		else:
+			mode = "off"
 	if previous != (mode, znorm):
 		try:
 			open(SystemInfo["3DMode"], "w").write(mode)
