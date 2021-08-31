@@ -334,7 +334,6 @@ isDedicated3D = False
 def applySettings(mode=config.osd.threeDmode.value, znorm=int(config.osd.threeDznorm.value)):
 	global previous, isDedicated3D
 	mode = isDedicated3D and mode == "auto" and "sidebyside" or mode
-	mode == "3dmode" in SystemInfo["3DMode"] and mode or mode == 'sidebyside' and 'sbs' or mode == 'topandbottom' and 'tab' or 'off'
 	if previous != (mode, znorm):
 		try:
 			open(SystemInfo["3DMode"], "w").write(mode)
@@ -347,8 +346,7 @@ class AutoVideoMode(Screen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
 		self.current3dmode = config.osd.threeDmode.value
-		self.__event_tracker = ServiceEventTracker(screen=self, eventmap=
-			{
+		self.__event_tracker = ServiceEventTracker(screen=self, eventmap={
 				iPlayableService.evStart: self.__evStart,
 				iPlayableService.evVideoSizeChanged: self.VideoChanged,
 				iPlayableService.evVideoProgressiveChanged: self.VideoChanged,
@@ -487,7 +485,7 @@ class AutoVideoMode(Screen):
 			new_res = "480"
 		elif (700 < video_width <= 720) and video_height <= 576 and video_framerate in (25000, 50000):
 			new_res = "576"
-		elif (video_width == 1280) and video_height <=720:
+		elif (video_width == 1280) and video_height <= 720:
 			new_res = "720"
 		else:
 			new_res = config_res
