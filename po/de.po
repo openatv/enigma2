@@ -11,8 +11,8 @@ msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-08-29 19:28+0000\n"
-"PO-Revision-Date: 2021-08-30 16:03+0000\n"
-"Last-Translator: hd75hd <hd75hd.hd75hd@gmail.com>\n"
+"PO-Revision-Date: 2021-08-31 16:31+0000\n"
+"Last-Translator: Makumbo <tokioplo@web.de>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/openatv/"
 "enigma2-7-0-po/de/>\n"
 "Language: de\n"
@@ -1252,7 +1252,7 @@ msgstr "%s %s erweiterte Fernbedienung (nativ)"
 
 #, python-format
 msgid "%s %s front panel"
-msgstr "%s %s Frontpanel"
+msgstr "%s %s Gerätedisplay"
 
 #, python-format
 msgid "%s %s ir keyboard"
@@ -2974,10 +2974,10 @@ msgid ""
 "%s\n"
 "Your receiver will restart after the backup has been restored!"
 msgstr ""
-"Sind Sie sicher, dass folgende Einstellungen wiederhergestellt werden "
-"sollen?\n"
-"Backup:\n"
-" %s\n"
+"Sind Sie sicher, dass folgende Einstellungen wiederhergestellt werden sollen?"
+"\n"
+"Backup: %s\n"
+"\n"
 "Nach der Wiederherstellung wird Ihr Receiver neu gestartet!"
 
 #
@@ -4337,7 +4337,7 @@ msgid ""
 "Check/Install online updates (you must have a working internet connection)"
 msgstr ""
 "Zeige verfügbare Updates, die Sie installieren können. Internetverbindung "
-"vorausgesetzt"
+"vorausgesetzt."
 
 msgid "Checking Feeds"
 msgstr "Überprüfe Feeds"
@@ -10330,7 +10330,7 @@ msgid "Movie List Setup"
 msgstr "Filmliste-Einstellungen"
 
 msgid "Movie Player Actions"
-msgstr "Movie Player Aktionen"
+msgstr "Movieplayer Aktionen"
 
 msgid "Movie selection"
 msgstr "Filmauswahl"
@@ -12179,11 +12179,11 @@ msgstr "Bitte warten während das Netzwerk konfiguriert wird..."
 
 #
 msgid "Please wait while we prepare your network interfaces..."
-msgstr "Bitte warten während Ausführung der Netzwerk-Konfiguration."
+msgstr "Bitte warten während Ausführung der Netzwerk-Konfiguration..."
 
 #
 msgid "Please wait while we test your network..."
-msgstr "Bitte warten während Überprüfung des Netzwerks."
+msgstr "Bitte warten während Überprüfung des Netzwerks..."
 
 #
 msgid "Please wait while your network is restarting..."
@@ -19090,11 +19090,11 @@ msgid "Wait please while creating swapfile..."
 msgstr "Swap File wird erstellt. Bitte warten..."
 
 msgid "Wait please while scanning for devices..."
-msgstr "Bitte warten Sie während des Suchlaufes nach Geräten..."
+msgstr "Bitte warten während des Suchlaufes nach Geräten..."
 
 #, python-format
 msgid "Wait please while scanning your %s %s devices..."
-msgstr "Bitte warten Sie während des Suchlaufes nach Geräten Ihrer %s %s..."
+msgstr "Bitte warten während des Suchlaufes nach Geräten Ihrer %s %s..."
 
 msgid "Wait please while scanning..."
 msgstr "Während Suchlauf bitte warten..."
@@ -20119,7 +20119,7 @@ msgid "activate network adapter configuration"
 msgstr "Einstellungen des Netzwerkadapters aktivieren"
 
 msgid "activatePiP"
-msgstr "Aktiviere Bild im Bild"
+msgstr "Aktiviere Bild im Bild (PiP)"
 
 msgid "active"
 msgstr "Aktiv"
@@ -20223,9 +20223,7 @@ msgstr "Alle Aufnahmen"
 msgid ""
 "are you sure you want to restore\n"
 "following backup:\n"
-msgstr ""
-"Wiederherstellen des\n"
-"folgenden Backups:\n"
+msgstr "Wiederherstellen des folgenden Backups:\n"
 
 #
 msgid "arts/culture (general)"
@@ -20709,7 +20707,7 @@ msgid "feed status"
 msgstr "Feed-Status"
 
 msgid "file can not displayed - file not found"
-msgstr "Datei kann nicht angezeigt werden! Datei nicht gefunden"
+msgstr "Datei kann nicht angezeigt werden! Datei nicht gefunden!"
 
 # 5.1 /Plugins\Extensions\PicturePlayer
 msgid "fileformats (BMP, PNG, JPG, GIF)"
@@ -21233,7 +21231,7 @@ msgid "not used"
 msgstr "Nicht verwendet"
 
 msgid "not_tested"
-msgstr "Nicht_getestet"
+msgstr "Nicht getestet"
 
 #
 msgid "nothing connected"
@@ -21323,7 +21321,7 @@ msgid "please wait, loading picture..."
 msgstr "Bild wird geladen. Bitte warten..."
 
 msgid "please wait..."
-msgstr "Bitte warten ..."
+msgstr "Bitte warten..."
 
 msgid "pli"
 msgstr "pli"
@@ -21827,7 +21825,7 @@ msgstr "Tennis/Squash"
 
 #
 msgid "this bouquet is protected by a parental control pin"
-msgstr "Dieser Bouquet ist durch einen Jugendschutz-PIN-Code geschützt."
+msgstr "Dieses Bouquet ist durch einen Jugendschutz-PIN-Code geschützt."
 
 msgid ""
 "this offset will only be used if the channel has not its own volume offset"
@@ -22140,7 +22138,7 @@ msgstr "OK, führen Sie mich durch den Upgrade-Vorgang"
 #
 msgid "The backup failed. Please choose a different backup location."
 msgstr ""
-"Die Sicherung ist fehlgeschlagen. Bitte einen anderen Sicherungs-Ort "
+"Die Sicherung ist fehlgeschlagen! Bitte einen anderen Sicherungs-Ort "
 "auswählen."
 
 #
@@ -22240,7 +22238,7 @@ msgid ""
 msgstr ""
 "Stellen Sie Ihre DNS-Server durch Ausfüllen der entsprechenden Werte ein.\n"
 "\n"
-"OK drücken zum Fortfahren."
+"Drücken Sie OK zum Fortfahren."
 
 #
 msgid ""
@@ -22286,7 +22284,8 @@ msgid ""
 "Please press OK to continue."
 msgstr ""
 "Vielen Dank, dass Sie den Assistenten benutzt haben.\n"
-"OK drücken zum Fortfahren."
+"\n"
+"Drücken Sie OK zum Fortfahren."
 
 #
 msgid ""
@@ -22441,7 +22440,7 @@ msgid ""
 "If editing a file, can you set the cursor start position at end or begin of "
 "the line."
 msgstr ""
-"Wenn eine Datei bearbeitet wird, kann man hier festlegen ob sich die "
+"Wenn eine Datei bearbeitet wird, kann man hier festlegen, ob sich die "
 "Cursorposition am Anfang oder am Ende der Zeile befindet."
 
 msgid "Make File Commander accessible from the Extensions menu."
@@ -22936,7 +22935,7 @@ msgid "Channel zap delay mode"
 msgstr "Umschaltverzögerung"
 
 msgid "ChannelEPG settings"
-msgstr "Sender-EPG-Einstellungen"
+msgstr "Sender-EPG Einstellungen"
 
 msgid "Check every (hours)"
 msgstr "Alle x Stunden prüfen"
@@ -23016,6 +23015,7 @@ msgid ""
 msgstr ""
 "Wählen Sie den Dateinamen für die EPG-Daten, wenn die %s %s ausgeschaltet "
 "wird. Das kann nützlich sein, wenn mehrere Boxen verwendet werden.\n"
+"\n"
 "Mit der TXT (Videotext) Taste erhalten Sie eine virtuelle Tastatur."
 
 msgid "Choose the order in which items are displayed in Help windows"
@@ -24558,12 +24558,11 @@ msgstr ""
 msgid "Require authentication for http streams"
 msgstr "Verlange Authentifizierung für HTTP-Streams"
 
-#, fuzzy
 msgid ""
 "Reset the selected devices and save changes of your config when the GREEN "
 "button is pressed."
 msgstr ""
-"Mit der GRÜNEN-Taste, ausgewählte Geräte zurücksetzen und die geänderte "
+"Mit der Taste GRÜN ausgewählte Geräte zurücksetzen und die geänderte "
 "Konfiguration speichern."
 
 msgid "Restart GUI after x crashes"
