@@ -1089,7 +1089,7 @@ class HdmiCec:
 				for i in range(len(data)):
 					tmp += "%02X" % ord(data[i]) + " "
 		tmp += 48 * " "
-		self.fdeCECwritedebugbug(txt + tmp[:48] + "[0x%02X]" % (address))
+		self.CECwritedebug(txt + tmp[:48] + "[0x%02X]" % (address))
 
 	def debugRx(self, length, cmd, ctrl):
 		txt = self.now()
