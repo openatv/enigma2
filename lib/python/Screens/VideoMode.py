@@ -78,7 +78,7 @@ class VideoSetup(Screen, ConfigListScreen):
 		self.list = [
 			getConfigListEntry(
 				_("Video output"), config.av.videoport,
-				_("Configures which video output connector will be used."))
+				_("Configure which video output connector will be used."))
 		]
 		if config.av.videoport.value in ('HDMI', 'YPbPr', 'Scart-YPbPr') and not path.exists(resolveFilename(SCOPE_PLUGINS) + 'SystemPlugins/AutoResolution'):
 			self.list.append(getConfigListEntry(
@@ -90,88 +90,88 @@ class VideoSetup(Screen, ConfigListScreen):
 					_("Set the time before checking video source for resolution information.")))
 				self.list.append(getConfigListEntry(
 					_("Automatic resolution label"), config.av.autores_label_timeout,
-					_("Allows you to adjust the amount of time the resolution information display stays on screen.")))
+					_("Adjust the amount of time the resolution information display stays on screen.")))
 
 				self.list.append(getConfigListEntry(
 					_("Show 480 24Hz as"), config.av.autores_sd24,
-					_("This option allows you to choose how to display 480 24Hz content.")))
+					_("Choose how to display 480 24Hz content.")))
 				self.list.append(getConfigListEntry(
 					_("Show 576 25Hz as"), config.av.autores_sd25,
-					_("This option allows you to choose how to display 576 25Hz content.")))
+					_("Choose how to display 576 25Hz content.")))
 				self.list.append(getConfigListEntry(
 					_("Show 480 30Hz as"), config.av.autores_sd30,
-					_("This option allows you to choose how to display 480 30Hz content.")))
+					_("Choose how to display 480 30Hz content.")))
 				self.list.append(getConfigListEntry(
 					_("Show 576i 50Hz as"), config.av.autores_sd50i,
-					_("This option allows you to choose how to display 576i 50Hz content.")))
+					_("Choose how to display 576i 50Hz content.")))
 				self.list.append(getConfigListEntry(
 					_("Show 576p 50Hz as"), config.av.autores_sd50p,
-					_("This option allows you to choose how to display 576p 50Hz content.")))
+					_("Choose how to display 576p 50Hz content.")))
 				self.list.append(getConfigListEntry(
 					_("Show 480i 60Hz as"), config.av.autores_sd60i,
-					_("This option allows you to choose how to display 480i 60Hz content.")))
+					_("Choose how to display 480i 60Hz content.")))
 				self.list.append(getConfigListEntry(
 					_("Show 480p 60Hz as"), config.av.autores_sd60p,
-					_("This option allows you to choose how to display 480p 60Hz content.")))
+					_("Choose how to display 480p 60Hz content.")))
 
 				self.list.append(getConfigListEntry(
 					_("Show 720 24Hz as"), config.av.autores_ed24,
-					_("This option allows you to choose how to display 720 24Hz content.")))
+					_("Choose how to display 720 24Hz content.")))
 				self.list.append(getConfigListEntry(
 					_("Show 720 25Hz as"), config.av.autores_ed25,
-					_("This option allows you to choose how to display 720 25Hz content.")))
+					_("Choose how to display 720 25Hz content.")))
 				self.list.append(getConfigListEntry(
 					_("Show 720 30Hz as"), config.av.autores_ed30,
-					_("This option allows you to choose how to display 720 30Hz content.")))
+					_("Choose how to display 720 30Hz content.")))
 				self.list.append(getConfigListEntry(
 					_("Show 720 50Hz as"), config.av.autores_ed50,
-					_("This option allows you to choose how to display 720 50Hz content.")))
+					_("Choose how to display 720 50Hz content.")))
 				self.list.append(getConfigListEntry(
 					_("Show 720 60Hz as"), config.av.autores_ed60,
-					_("This option allows you to choose how to display 720 60Hz content.")))
+					_("Choose how to display 720 60Hz content.")))
 
 				self.list.append(getConfigListEntry(
 					_("Show 1080 24Hz as"), config.av.autores_hd24,
-					_("This option allows you to choose how to display 1080 24Hz content.")))
+					_("Choose how to display 1080 24Hz content.")))
 				self.list.append(getConfigListEntry(
 					_("Show 1080 25Hz as"), config.av.autores_hd25,
-					_("This option allows you to choose how to display 1080 25Hz content.")))
+					_("Choose how to display 1080 25Hz content.")))
 				self.list.append(getConfigListEntry(
 					_("Show 1080 30Hz as"), config.av.autores_hd30,
-					_("This option allows you to choose how to display 1080 30Hz content.")))
+					_("Choose how to display 1080 30Hz content.")))
 				self.list.append(getConfigListEntry(
 					_("Show 1080 50Hz as"), config.av.autores_hd50,
-					_("This option allows you to choose how to display 1080 50Hz content.")))
+					_("Choose how to display 1080 50Hz content.")))
 				self.list.append(getConfigListEntry(
 					_("Show 1080 60Hz as"), config.av.autores_hd60,
-					_("This option allows you to choose how to display 1080 60Hz content.")))
+					_("Choose how to display 1080 60Hz content.")))
 
 				self.list.append(getConfigListEntry(
 					_("Show 2160 24Hz as"), config.av.autores_uhd24,
-					_("This option allows you to choose how to display 2160 24Hz content.")))
+					_("Choose how to display 2160 24Hz content.")))
 				self.list.append(getConfigListEntry(
 					_("Show 2160 25Hz as"), config.av.autores_uhd25,
-					_("This option allows you to choose how to display 2160 25Hz content.")))
+					_("Choose how to display 2160 25Hz content.")))
 				self.list.append(getConfigListEntry(
 					_("Show 2160 30Hz as"), config.av.autores_uhd30,
-					_("This option allows you to choose how to display 2160 30Hz content.")))
+					_("Choose how to display 2160 30Hz content.")))
 				self.list.append(getConfigListEntry(
 					_("Show 2160 50Hz as"), config.av.autores_uhd50,
-					_("This option allows you to choose how to display 2160 50Hz content.")))
+					_("Choose how to display 2160 50Hz content.")))
 				self.list.append(getConfigListEntry(
 					_("Show 2160 60Hz as"), config.av.autores_uhd60,
-					_("This option allows you to choose how to display 2160 60Hz content.")))
+					_("Choose how to display 2160 60Hz content.")))
 
 		# if we have modes for this port:
 		if (config.av.videoport.value in config.av.videomode and not config.av.autores.value) or config.av.videoport.value == 'Scart':
 			# add mode- and rate-selection:
-			self.list.append(getConfigListEntry(pgettext("Video output mode", "Mode"), config.av.videomode[config.av.videoport.value], _("This option configures the video output mode (or resolution).")))
+			self.list.append(getConfigListEntry(pgettext("Video output mode", "Mode"), config.av.videomode[config.av.videoport.value], _("Configure video output mode (or resolution).")))
 			if config.av.videomode[config.av.videoport.value].value == 'PC':
-				self.list.append(getConfigListEntry(_("Resolution"), config.av.videorate[config.av.videomode[config.av.videoport.value].value], _("This option configures the screen resolution in PC output mode.")))
+				self.list.append(getConfigListEntry(_("Resolution"), config.av.videorate[config.av.videomode[config.av.videoport.value].value], _("Configure screen resolution in PC output mode.")))
 			elif config.av.videoport.value != 'Scart':
-				self.list.append(getConfigListEntry(_("Refresh rate"), config.av.videorate[config.av.videomode[config.av.videoport.value].value], _("Configure the refresh rate of the screen. Multi means refresh rate depends on the source 24/50/60Hz")))
+				self.list.append(getConfigListEntry(_("Refresh rate"), config.av.videorate[config.av.videomode[config.av.videoport.value].value], _("Configure refresh rate of the screen. Multi means refresh rate depends on the source 24/50/60Hz.")))
 		if config.av.autores.value in ('all', 'hd') or config.av.videorate[config.av.videomode[config.av.videoport.value].value].value == 'multi':
-			self.list.append(getConfigListEntry(_("Delay time"), config.av.autores_delay,_("Set the time before checking video source for resolution/refresh rate infomation.")))
+			self.list.append(getConfigListEntry(_("Delay time"), config.av.autores_delay, _("Set the time before checking video source for resolution/refresh rate information.")))
 
 		port = config.av.videoport.value
 		if port not in config.av.videomode:
@@ -194,23 +194,23 @@ class VideoSetup(Screen, ConfigListScreen):
 			self.list.append(getConfigListEntry(_("Display 16:9 content as"), config.av.policy_169, _("When the content has an aspect ratio of 16:9, choose whether to scale/stretch the picture.")))
 
 		if config.av.videoport.value == "Scart":
-			self.list.append(getConfigListEntry(_("Color format"), config.av.colorformat, _("Configure which color format should be used on the SCART output.")))
+			self.list.append(getConfigListEntry(_("Colour format"), config.av.colorformat, _("Configure which colour format should be used on the SCART output.")))
 			if level >= 1:
 				self.list.append(getConfigListEntry(_("WSS on 4:3"), config.av.wss, _("When enabled, content with an aspect ratio of 4:3 will be stretched to fit the screen.")))
 				if SystemInfo["ScartSwitch"]:
 					self.list.append(getConfigListEntry(_("Auto scart switching"), config.av.vcrswitch, _("When enabled, your receiver will detect activity on the VCR SCART input.")))
 
 		if SystemInfo["havecolorspace"]:
-			self.list.append(getConfigListEntry(_("HDMI Colorspace"), config.av.hdmicolorspace,_("This option allows you to change the Colorspace from Auto to RGB")))
+			self.list.append(getConfigListEntry(_("HDMI Colorspace"), config.av.hdmicolorspace, _("Change the HDMI colour space.")))
 
 		if SystemInfo["havecolorimetry"]:
-			self.list.append(getConfigListEntry(_("HDMI Colorimetry"), config.av.hdmicolorimetry,_("This option allows you to change the Colorimetry for HDR")))
+			self.list.append(getConfigListEntry(_("HDMI Colorimetry"), config.av.hdmicolorimetry, _("Change the HDMI colorimetry for HDR.")))
 
 		if SystemInfo["havehdmicolordepth"]:
-			self.list.append(getConfigListEntry(_("HDMI Colordepth"), config.av.hdmicolordepth,_("This option allows you to change the Colordepth for UHD")))
+			self.list.append(getConfigListEntry(_("HDMI Colordepth"), config.av.hdmicolordepth, _("Change the HDMI colour depth for UHD.")))
 
 		if SystemInfo["havehdmihdrtype"]:
-			self.list.append(getConfigListEntry(_("HDMI HDR Type"), config.av.hdmihdrtype,_("This option allows you to change the HDR mode for UHD")))
+			self.list.append(getConfigListEntry(_("HDMI HDR Type"), config.av.hdmihdrtype,_("Change the HDMI HDR mode for UHD.")))
 
 		if level >= 1:
 			if SystemInfo["CanDownmixAC3"]:
@@ -224,30 +224,27 @@ class VideoSetup(Screen, ConfigListScreen):
 			if SystemInfo["CanPcmMultichannel"]:
 				self.list.append(getConfigListEntry(_("PCM Multichannel"), config.av.pcm_multichannel, _("Choose whether multi-channel sound tracks should be output as PCM.")))
 			self.list.extend((
-				getConfigListEntry(_("General AC3 delay"), config.av.generalAC3delay, _("This option configures the general audio delay of Dolby Digital (AC3) sound tracks.")),
-				getConfigListEntry(_("General PCM delay"), config.av.generalPCMdelay, _("This option configures the general audio delay of stereo sound tracks."))
+				getConfigListEntry(_("General AC3 delay"), config.av.generalAC3delay, _("Configure the general audio delay of Dolby Digital (AC3) sound tracks.")),
+				getConfigListEntry(_("General PCM delay"), config.av.generalPCMdelay, _("Configure the general audio delay of stereo sound tracks."))
 			))
 
 			if SystemInfo["Can3DSurround"]:
-				self.list.append(getConfigListEntry(_("3D Surround"), config.av.surround_3d,_("This option allows you to enable 3D Surround Sound for an output.")))
+				self.list.append(getConfigListEntry(_("3D Surround"), config.av.surround_3d, _("Enable 3D Surround Sound for an output.")))
 
 			if SystemInfo["Can3DSpeaker"] and config.av.surround_3d.value != "none":
-				self.list.append(getConfigListEntry(_("3D Surround Speaker Position"), config.av.surround_3d_speaker,_("This option allows you to change the virtual loudspeaker position.")))
+				self.list.append(getConfigListEntry(_("3D Surround Speaker Position"), config.av.surround_3d_speaker, _("Change the virtual loudspeaker position.")))
 
 			if SystemInfo["CanAutoVolume"]:
-				self.list.append(getConfigListEntry(_("Auto Volume Level"), config.av.autovolume,_("This option configures output for Auto Volume Level.")))
-
-			if SystemInfo["CanAutoVolume"]:
-				self.list.append(getConfigListEntry(_("Audio Auto Volume Level"), config.av.autovolume, _("This option configures you can set Auto Volume Level.")))
+				self.list.append(getConfigListEntry(_("Auto Volume Level"), config.av.autovolume, _("Configure output for Auto Volume Level.")))
 
 			if SystemInfo["Canedidchecking"]:
-				self.list.append(getConfigListEntry(_("Bypass HDMI EDID Check"), config.av.bypass_edid_checking, _("This option allows you to bypass HDMI EDID check")))
+				self.list.append(getConfigListEntry(_("Bypass HDMI EDID Check"), config.av.bypass_edid_checking, _("Bypass HDMI EDID check.")))
 
 		if SystemInfo["haveboxmode"]:
-			self.list.append(getConfigListEntry(_("Video Chip Mode*"), config.av.boxmode,_("Choose between High Dynamic Range (HDR) or Picture in Picture (PIP). Both are not possible at the same time. A FULL REBOOT is required for it to take effect")))
+			self.list.append(getConfigListEntry(_("Video Chip Mode*"), config.av.boxmode, _("Choose between High Dynamic Range (HDR) or Picture in Picture (PIP). Both are not possible at the same time. To take effect a FULL REBOOT is required.")))
 
 		# if not isinstance(config.av.scaler_sharpness, ConfigNothing):
-		# 	self.list.append(getConfigListEntry(_("Scaler sharpness"), config.av.scaler_sharpness, _("This option configures the picture sharpness.")))
+		# 	self.list.append(getConfigListEntry(_("Scaler sharpness"), config.av.scaler_sharpness, _("Configure the picture sharpness.")))
 
 		self["config"].list = self.list
 		self["config"].l.setList(self.list)
@@ -337,7 +334,13 @@ isDedicated3D = False
 def applySettings(mode=config.osd.threeDmode.value, znorm=int(config.osd.threeDznorm.value)):
 	global previous, isDedicated3D
 	mode = isDedicated3D and mode == "auto" and "sidebyside" or mode
-	mode == "3dmode" in SystemInfo["3DMode"] and mode or mode == 'sidebyside' and 'sbs' or mode == 'topandbottom' and 'tab' or 'off'
+	if "/primary/" in SystemInfo["3DMode"]:  # Convert to DreamBox compatible API
+		if mode == "sidebyside":
+			mode = "sbs"
+		elif mode == "topandbottom":
+			mode = "tab"
+		else:
+			mode = "off"
 	if previous != (mode, znorm):
 		try:
 			open(SystemInfo["3DMode"], "w").write(mode)
@@ -350,8 +353,7 @@ class AutoVideoMode(Screen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
 		self.current3dmode = config.osd.threeDmode.value
-		self.__event_tracker = ServiceEventTracker(screen=self, eventmap=
-			{
+		self.__event_tracker = ServiceEventTracker(screen=self, eventmap={
 				iPlayableService.evStart: self.__evStart,
 				iPlayableService.evVideoSizeChanged: self.VideoChanged,
 				iPlayableService.evVideoProgressiveChanged: self.VideoChanged,
@@ -490,7 +492,7 @@ class AutoVideoMode(Screen):
 			new_res = "480"
 		elif (700 < video_width <= 720) and video_height <= 576 and video_framerate in (25000, 50000):
 			new_res = "576"
-		elif (video_width == 1280) and video_height <=720:
+		elif (video_width == 1280) and video_height <= 720:
 			new_res = "720"
 		else:
 			new_res = config_res
