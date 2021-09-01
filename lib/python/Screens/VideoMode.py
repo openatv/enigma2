@@ -334,7 +334,7 @@ isDedicated3D = False
 def applySettings(mode=config.osd.threeDmode.value, znorm=int(config.osd.threeDznorm.value)):
 	global previous, isDedicated3D
 	mode = isDedicated3D and mode == "auto" and "sidebyside" or mode
-	if "/primary/" in SystemInfo["3DMode"]:  # Convert to DreamBox compatible API
+	if SystemInfo["3DMode"] and "/primary/" in SystemInfo["3DMode"]:  # Convert to DreamBox compatible API
 		if mode == "sidebyside":
 			mode = "sbs"
 		elif mode == "topandbottom":
@@ -343,8 +343,10 @@ def applySettings(mode=config.osd.threeDmode.value, znorm=int(config.osd.threeDz
 			mode = "off"
 	if previous != (mode, znorm):
 		try:
-			open(SystemInfo["3DMode"], "w").write(mode)
-			open(SystemInfo["3DZNorm"], "w").write('%d' % znorm)
+			if SystemInfo["3DMode"]:
+				open(SystemInfo["3DMode"], "w").write(mode)
+			if SystemInfo["3DZNorm"]:
+				open(SystemInfo["3DZNorm"], "w").write('%d' % znorm)
 			previous = (mode, znorm)
 		except:
 			return
