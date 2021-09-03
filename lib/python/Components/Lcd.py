@@ -486,14 +486,24 @@ def InitLcd():
 		], default="on")
 		config.usage.lcd_deepstandbypowerled.addNotifier(setPowerLEDdeepstanbystate)
 
-		config.usage.lcd_ledpowercolor = ConfigSelection(default="1", choices=[("0", _("Off")), ("1", _("blue")), ("2", _("red")), ("3", _("violet"))])
-		config.usage.lcd_ledpowercolor.addNotifier(setLedPowerColor)
+		if getBoxType() in ('dual',):
+			config.usage.lcd_ledpowercolor = ConfigSelection(default="1", choices=[("0", _("off")), ("1", _("blue"))])
+			config.usage.lcd_ledpowercolor.addNotifier(setLedPowerColor)
 
-		config.usage.lcd_ledstandbycolor = ConfigSelection(default="3", choices=[("0", _("Off")), ("1", _("blue")), ("2", _("red")), ("3", _("violet"))])
-		config.usage.lcd_ledstandbycolor.addNotifier(setLedStandbyColor)
+			config.usage.lcd_ledstandbycolor = ConfigSelection(default="1", choices=[("0", _("off")), ("1", _("blue"))])
+			config.usage.lcd_ledstandbycolor.addNotifier(setLedStandbyColor)
 
-		config.usage.lcd_ledsuspendcolor = ConfigSelection(default="2", choices=[("0", _("Off")), ("1", _("blue")), ("2", _("red")), ("3", _("violet"))])
-		config.usage.lcd_ledsuspendcolor.addNotifier(setLedSuspendColor)
+			config.usage.lcd_ledsuspendcolor = ConfigSelection(default="1", choices=[("0", _("off")), ("1", _("blue"))])
+			config.usage.lcd_ledsuspendcolor.addNotifier(setLedSuspendColor)
+		else:
+			config.usage.lcd_ledpowercolor = ConfigSelection(default="1", choices=[("0", _("Off")), ("1", _("blue")), ("2", _("red")), ("3", _("violet"))])
+			config.usage.lcd_ledpowercolor.addNotifier(setLedPowerColor)
+
+			config.usage.lcd_ledstandbycolor = ConfigSelection(default="3", choices=[("0", _("Off")), ("1", _("blue")), ("2", _("red")), ("3", _("violet"))])
+			config.usage.lcd_ledstandbycolor.addNotifier(setLedStandbyColor)
+
+			config.usage.lcd_ledsuspendcolor = ConfigSelection(default="2", choices=[("0", _("Off")), ("1", _("blue")), ("2", _("red")), ("3", _("violet"))])
+			config.usage.lcd_ledsuspendcolor.addNotifier(setLedSuspendColor)
 
 		config.usage.lcd_power4x7on = ConfigSelection(default="on", choices=[("off", _("Off")), ("on", _("On"))])
 		config.usage.lcd_power4x7on.addNotifier(setPower4x7On)
