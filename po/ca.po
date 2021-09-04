@@ -1,13 +1,14 @@
 # Catalan translations for Enigma2.
 #
 # Oriol Pellicer i Sabrià <oriol@elsud.org>, 2006, 2007.
+# Víctor Pont <victor@pont.cat>, 2021.
 msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-08-29 19:28+0000\n"
-"PO-Revision-Date: 2021-08-15 18:49+0000\n"
-"Last-Translator: openATV <openatv@gmail.com>\n"
+"PO-Revision-Date: 2021-09-04 21:08+0000\n"
+"Last-Translator: Víctor Pont <victor@pont.cat>\n"
 "Language-Team: Catalan <https://hosted.weblate.org/projects/openatv/"
 "enigma2-7-0-po/ca/>\n"
 "Language: ca\n"
@@ -15,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.8-dev\n"
+"X-Generator: Weblate 4.8.1-dev\n"
 "X-Poedit-SourceCharset: iso-8859-1\n"
 
 msgid ""
@@ -67,7 +68,7 @@ msgid ""
 "After pressing OK, please wait!"
 msgstr ""
 "\n"
-"Després de prémer d'acord, si us plau esperi!"
+"Després de prémer OK, si us plau esperi!"
 
 #
 #, fuzzy, python-format
@@ -117,7 +118,7 @@ msgid ""
 "Press OK on your remote control to continue."
 msgstr ""
 "\n"
-"Premeu bé al comandament a distància per continuar."
+"Premeu OK al comandament a distància per continuar."
 
 msgid ""
 "\n"
@@ -222,13 +223,13 @@ msgstr " (Canal %s)"
 
 #, python-format
 msgid " (Partition %d)"
-msgstr " (Partició% d)"
+msgstr " (Partició %d)"
 
 msgid " (PiP)"
 msgstr " (PiP)"
 
 msgid " (Radio)"
-msgstr " (Radio)"
+msgstr " (Ràdio)"
 
 msgid " (TV)"
 msgstr " (TV)"
@@ -237,16 +238,16 @@ msgid " (current channel)"
 msgstr ""
 
 msgid " (disabled)"
-msgstr " (Desactivat)"
+msgstr " (desactivat)"
 
 msgid " (higher than any auto)"
-msgstr " (superior a qualsevol autol)"
+msgstr " (superior a qualsevol auto)"
 
 msgid " (higher than rotor any auto)"
 msgstr " (superior al rotor qualsevol auto)"
 
 msgid " (lower than any auto)"
-msgstr " (superior a qualsevol autol)"
+msgstr " (superior a qualsevol auto)"
 
 #, python-format
 msgid " - %d elements exist! Overwrite"
@@ -423,7 +424,7 @@ msgstr "%.0f GB"
 
 #, python-format
 msgid "%.0f MB"
-msgstr "%.0f GB"
+msgstr "%.0f MB"
 
 #, python-format
 msgid "%.2f GB"
@@ -455,7 +456,7 @@ msgstr "%03d MB"
 
 #, python-format
 msgid "%2.1f sec"
-msgstr "%2.1f sec"
+msgstr "%2.1f seg"
 
 #
 #, fuzzy
@@ -1088,7 +1089,7 @@ msgstr ""
 #, python-format
 msgid "%d channel found"
 msgid_plural "%d channels found"
-msgstr[0] "% d canal trobat"
+msgstr[0] "%d canal trobat"
 msgstr[1] "%d canals trobats"
 
 #, python-format
@@ -1101,7 +1102,7 @@ msgstr[1] "%d dies"
 msgid "%d hour"
 msgid_plural "%d hours"
 msgstr[0] "%d hora"
-msgstr[1] "%d horas"
+msgstr[1] "%d hores"
 
 #, python-format
 msgid "%d kB"
@@ -1115,7 +1116,7 @@ msgstr "%d min"
 #, python-format
 msgid "%d minute"
 msgid_plural "%d minutes"
-msgstr[0] "% d minut"
+msgstr[0] "%d minut"
 msgstr[1] "%d minuts"
 
 #, python-format
@@ -1130,18 +1131,18 @@ msgstr "%d ms"
 #, python-format
 msgid "%d pixel wide"
 msgid_plural "%d pixels wide"
-msgstr[0] "% d píxel d’ample"
-msgstr[1] "% d píxel d’amples"
+msgstr[0] "%d píxel d'amplada"
+msgstr[1] "%d píxels d'amplada"
 
 #, python-format
 msgid "%d sec"
-msgstr "% d s"
+msgstr "%d seg"
 
 #, python-format
 msgid "%d second"
 msgid_plural "%d seconds"
-msgstr[0] "% d segon"
-msgstr[1] "% d segons"
+msgstr[0] "%d segon"
+msgstr[1] "%d segons"
 
 #
 #, fuzzy, python-format
@@ -1151,8 +1152,8 @@ msgstr "Hora final"
 #, python-format
 msgid "%d wireless network found!"
 msgid_plural "%d wireless networks found!"
-msgstr[0] "s’ha trobat% d xarxa sense fils!"
-msgstr[1] "s’ha trobat% d xarxes sense fils!"
+msgstr[0] "s'ha trobat %d xarxa sense fils!"
+msgstr[1] "s'han trobat %d xarxes sense fils!"
 
 msgid "%d+%b_"
 msgstr ""
@@ -1262,9 +1263,9 @@ msgid ""
 "Press ok for multiboot selection\n"
 "Press exit to close"
 msgstr ""
-"% s\n"
+"%s\n"
 "Premeu OK per a la selecció multiboot\n"
-"Premeu la sortida per tancar"
+"Premeu EXIT per tancar"
 
 #
 #, fuzzy, python-format
@@ -1363,7 +1364,7 @@ msgstr "Escanejar SR addicional"
 #. TRANSLATORS: The satellite with name '%s' is no longer used after a configuration change. The user is asked whether or not the satellite should be deleted.
 #, python-format
 msgid "%s is no longer used. Should it be deleted?"
-msgstr "% s ja no s’utilitza. S’ha d’esborrar?"
+msgstr "%s ja no s’utilitza. El voleu esborrar?"
 
 #, python-format
 msgid "%s is password protected."
@@ -1381,8 +1382,8 @@ msgstr ""
 #, python-format
 msgid "%s updated package available"
 msgid_plural "%s updated packages available"
-msgstr[0] "paquet actualitzat% s disponible"
-msgstr[1] "paquets actualitzats% s disponible"
+msgstr[0] "%s actualització disponible"
+msgstr[1] "%s actualitzacions disponibles"
 
 #
 #, python-format
@@ -1493,14 +1494,14 @@ msgstr "(buit)"
 
 #
 msgid "(show optional DVD audio menu)"
-msgstr "(mostrar un menú d’àudio opcional de DVD)"
+msgstr "(mostrar un menú d'àudio opcional de DVD)"
 
 msgid "* = Restart Required"
 msgstr ""
 
 #
 msgid "* Only available if more than one interface is active."
-msgstr "* Només disponible si hi ha més d’una interfície activa."
+msgstr "* Només disponible si hi ha més d'una interfície activa."
 
 msgid "* current animation"
 msgstr ""
@@ -1928,7 +1929,7 @@ msgid "3X"
 msgstr ""
 
 msgid "3d mode"
-msgstr "3d mode"
+msgstr "mode 3D"
 
 msgid "3s"
 msgstr ""
@@ -2089,11 +2090,11 @@ msgstr ""
 
 #
 msgid "<Current movielist location>"
-msgstr "<Ubicació pel-liculas actual>"
+msgstr "<Ubicació actual de pel·lícules>"
 
 #
 msgid "<Default movie location>"
-msgstr "<Ubicació per defecte de la pel·lícula>"
+msgstr "<Ubicació per defecte de pel·lícules>"
 
 #
 msgid "<Last timer location>"
@@ -2133,7 +2134,7 @@ msgid ""
 "A configuration file (%s) has been modified since it was installed.\n"
 "Do you want to keep your modifications?"
 msgstr ""
-"S’ha modificat un fitxer de configuració (% s) des que es va instal·lar.\n"
+"S'ha modificat un fitxer de configuració (%s) des que es va instal·lar.\n"
 "Voleu mantenir les vostres modificacions?"
 
 #
@@ -2142,7 +2143,7 @@ msgid ""
 "A configuration file (%s) was modified since Installation.\n"
 "Do you want to keep your version?"
 msgstr ""
-"Un fitxer de configuració (% s) es va modificar des de la instal·lació.\n"
+"Un fitxer de configuració (%s) es va modificar des de la instal·lació.\n"
 "Voleu conservar la vostra versió?"
 
 #, python-format
@@ -2222,30 +2223,30 @@ msgid ""
 "What do you want to do?"
 msgstr ""
 "En aquests moments s'està realitzant una gravació.\n"
-"Què vols fer?"
+"Què voleu fer?"
 
 #
 msgid ""
 "A recording is currently running. Please stop the recording before trying to "
 "configure the positioner."
 msgstr ""
-"En aquests moments s'està realitzant una gravació. Sisplau, atura-la abans "
-"de configurar el motor."
+"En aquests moments s'està realitzant una gravació. Si us plau, atureu-la "
+"abans de configurar el motor."
 
 msgid ""
 "A recording is currently running. Please stop the recording before trying to "
 "scan."
 msgstr ""
-"Actualment s’està executant una gravació. Atureu la gravació abans "
-"d’intentar escanejar."
+"Actualment s'està executant una gravació. Atureu la gravació abans "
+"d'intentar escanejar."
 
 #
 msgid ""
 "A recording is currently running. Please stop the recording before trying to "
 "start the satfinder."
 msgstr ""
-"En aquests moments s'està realitzant una gravació. Sisplau, atura-la abans "
-"de posar en marxa el satfinder."
+"En aquests moments s'està realitzant una gravació. Si us plau, atureu-la "
+"abans de posar en marxa el satfinder."
 
 msgid "A repeating timer or just once?"
 msgstr ""
@@ -2253,11 +2254,11 @@ msgstr ""
 #
 #, python-format
 msgid "A required tool (%s) was not found."
-msgstr "No s’ha trobat una eina necessària (% s)."
+msgstr "No s'ha trobat una eina necessària (%s)."
 
 #
 msgid "A search for available updates is currently in progress."
-msgstr "Una cerca d’actualitzacions disponibles està en curs."
+msgstr "Una cerca d'actualitzacions es troba en curs."
 
 #
 msgid ""
@@ -2265,7 +2266,7 @@ msgid ""
 "\n"
 "Do you want to disable the second network interface?"
 msgstr ""
-"S’ha trobat una segona interfície configurada.\n"
+"S'ha trobat una segona interfície configurada.\n"
 "\n"
 "Voleu desactivar la segona interfície de xarxa?"
 
@@ -2301,8 +2302,7 @@ msgstr ""
 
 #
 msgid "A small overview of the available icon states and actions."
-msgstr ""
-"Una petita visió general dels estats i accions d’els icones disponibles."
+msgstr "Petita visió general de les icones d'estat i accions disponibles."
 
 msgid ""
 "A timer failed to record!\n"
@@ -2325,7 +2325,7 @@ msgid ""
 "Disable TV and try again?\n"
 msgstr ""
 "Ha fallat la gravació!\n"
-"Vols desactivar la TV i tornar-ho a provar?\n"
+"Voleu desactivar la TV i tornar-ho a provar?\n"
 
 msgid "AAC Plus downmix"
 msgstr ""
@@ -2366,14 +2366,14 @@ msgid "AFP Setup"
 msgstr ""
 
 msgid "ASS file"
-msgstr "ASS file"
+msgstr "Fitxer ASS"
 
 msgid "ATSC"
 msgstr "ATSC"
 
 #
 msgid "ATSC provider"
-msgstr "ATSC proveidor"
+msgstr "Proveïdor ATSC"
 
 msgid "AV Setup"
 msgstr ""
@@ -2422,7 +2422,7 @@ msgstr ""
 
 #
 msgid "Accesspoint:"
-msgstr "Punt d’accés:"
+msgstr "Punt d'accés:"
 
 #
 #, fuzzy
@@ -2442,7 +2442,7 @@ msgstr "Configuració del sintonitzador"
 
 #
 msgid "Activate Picture in Picture"
-msgstr "Activar PiP"
+msgstr "Activa PiP"
 
 #, python-format
 msgid ""
@@ -2453,7 +2453,7 @@ msgstr ""
 
 #
 msgid "Activate current configuration"
-msgstr "Activar configuració del sintonitzador"
+msgstr "Activa configuració del sintonitzador"
 
 msgid "Activate left-hand file list as multi-select source"
 msgstr ""
@@ -2468,10 +2468,10 @@ msgid "Activate right-hand file list as source"
 msgstr ""
 
 msgid "Activate timeshift End"
-msgstr "Activa el final de la hora de canvis"
+msgstr "Activa el final del timeshift"
 
 msgid "Activate timeshift end and pause"
-msgstr "Activeu el final d’horari i la pausa"
+msgstr "Activa el final del timeshift i la pausa"
 
 msgid ""
 "Activation takes place immediately. If it does feature not work, then try "
@@ -2491,11 +2491,11 @@ msgstr ""
 
 #
 msgid "Adapter settings"
-msgstr "Adaptar configuracions"
+msgstr "Configuració de l'adaptador"
 
 #
 msgid "Add"
-msgstr "Afegir"
+msgstr "Afegeix"
 
 msgid "Add AutoTimer"
 msgstr ""
@@ -2526,15 +2526,15 @@ msgstr ""
 
 #
 msgid "Add a mark"
-msgstr "Afegir una marca"
+msgstr "Afegeix una marca"
 
 #
 msgid "Add a nameserver entry"
-msgstr "Afegiu una entrada del servidor"
+msgstr "Afegeix una entrada al servidor de noms"
 
 #
 msgid "Add a new title"
-msgstr "Afegir un nou títol"
+msgstr "Afegeix un títol nou"
 
 #
 #, fuzzy
@@ -2552,53 +2552,53 @@ msgstr ""
 
 #
 msgid "Add bookmark"
-msgstr "Afegir Punt de llibre"
+msgstr "Afegeix un marcador"
 
 msgid "Add current folder to bookmarks"
 msgstr ""
 
 #
 msgid "Add directory to playlist"
-msgstr "Afegir el directori a la llista"
+msgstr "Afegeix un directori a la llista de reproducció"
 
 #
 msgid "Add file to playlist"
-msgstr "Afegir el fitxer a la llista"
+msgstr "Afegeix un fitxer a la llista de reproducció"
 
 #
 msgid "Add files to playlist"
-msgstr "Afegir fitxers a la llista"
+msgstr "Afegeix fitxers a la llista de reproducció"
 
 #
 msgid "Add provider"
-msgstr "Afegir Proveïdor"
+msgstr "Afegeix proveïdor"
 
 msgid "Add recording (enter recording duration)"
-msgstr "Afegir gravació (introduint la durada)"
+msgstr "Afegeix gravació (introduint la durada)"
 
 msgid "Add recording (enter recording endtime)"
-msgstr "Afegir gravació (introduint l'hora d'acabada)"
+msgstr "Afegeix gravació (introduint l'hora d'acabada)"
 
 msgid "Add recording (indefinitely)"
-msgstr "Afegir gravació (indefinidament)"
+msgstr "Afegeix gravació (indefinidament)"
 
 msgid "Add recording (stop after current event)"
-msgstr "Afegir enregistrament (aturar-se després de l’esdeveniment actual)"
+msgstr "Afegeix gravació (aturar-se després de l'esdeveniment actual)"
 
 msgid "Add selected folder to bookmarks"
 msgstr ""
 
 #
 msgid "Add service"
-msgstr "Afegir canal"
+msgstr "Afegeix canal"
 
 #
 msgid "Add timer"
-msgstr "Gravar"
+msgstr "Afegeix temporitzador"
 
 #
 msgid "Add title"
-msgstr "Afegir  títol"
+msgstr "Afegeix títol"
 
 #
 #, fuzzy
@@ -2609,7 +2609,7 @@ msgid "Add/Remove timer for current event"
 msgstr ""
 
 msgid "Add/remove change timer for current event"
-msgstr "Afegiu / traieu el temporitzador de canvis per a l’esdeveniment actual"
+msgstr "Afegeix/elimina el temporitzador per a l'esdeveniment actual"
 
 msgid "Adding schedule..."
 msgstr ""
@@ -2625,18 +2625,18 @@ msgid ""
 "sheet so enigma can work out how long it will take to move the dish from one "
 "satellite to another satellite."
 msgstr ""
-"Les opcions addicionals del motor us permeten introduir detalls de la fitxa "
-"d’especificacions del motor de manera que l’enigma es pugui determinar quant "
-"trigarà a moure el plat d’un satèl·lit a un altre satèl·lit."
+"Les opcions addicionals del motor permeten introduir detalls de la fitxa "
+"d'especificacions del motor de manera que Enigma pugui determinar quant "
+"trigarà a moure el plat d'un satèl·lit a un altre."
 
 msgid ""
 "Additional motor options allow you to enter details from your motor's spec "
 "sheet so enigma can work out how long it will take to move to another "
 "satellite."
 msgstr ""
-"Les opcions addicionals del motor us permeten introduir detalls de la fitxa "
-"d’especificacions del vostre motor per tal que l’enigma es pugui determinar "
-"quant trigarà a passar a un altre satèl·lit."
+"Les opcions de motor addicionals permeten introduir detalls de la fitxa "
+"d'especificacions del vostre motor per tal que Enigma pugui determinar quant "
+"trigarà a passar a un altre satèl·lit."
 
 msgid "Address"
 msgstr ""
@@ -2645,7 +2645,7 @@ msgid "Adel"
 msgstr ""
 
 msgid "Adjust 3D settings"
-msgstr "Ajusteu la configuració en 3D"
+msgstr "Ajusta la configuració 3D"
 
 #
 msgid ""
@@ -2656,7 +2656,7 @@ msgid ""
 msgstr ""
 "Ajusteu la configuració del color de manera que es distingeixin totes les "
 "tonalitats del color, però apareguin el més saturades possible. Si està "
-"satisfet amb el resultat, premeu OK per tancar l’ajustament del vídeo o bé "
+"satisfet amb el resultat, premeu OK per tancar l'ajustament del vídeo o bé "
 "utilitzeu les tecles numèriques per seleccionar altres pantalles de prova."
 
 msgid "Adult"
@@ -2677,17 +2677,17 @@ msgid "Advanced Settings"
 msgstr "Configuracions"
 
 msgid "Advanced options"
-msgstr "Avançat opcions"
+msgstr "Opcions avançades"
 
 #
 msgid "Advanced restore"
 msgstr "Restauració avançada"
 
 msgid "Advanced software"
-msgstr "Programa avançat"
+msgstr "Programari avançat"
 
 msgid "Advanced software plugin"
-msgstr "Programa avançat plugin"
+msgstr "Plugins de programari avançats"
 
 msgid "Advanced video enhancement setup"
 msgstr "Configuració avançada de millora de vídeo"
@@ -2699,7 +2699,7 @@ msgid "Afar"
 msgstr ""
 
 msgid "Afghanistan"
-msgstr "Afghanistan"
+msgstr "Afganistan"
 
 msgid "Afrikaans"
 msgstr ""
