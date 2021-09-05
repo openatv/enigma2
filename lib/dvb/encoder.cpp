@@ -135,30 +135,35 @@ int eEncoder::allocateEncoder(const std::string &serviceref, int &buffersize,
 		return(-1);
 	}
 
+	// Fixme : change the encoder parameter for bcm encoding
+
 	if(bcm_encoder)
 	{
 		vcodec_node = "video_codec";
 		acodec_node = "audio_codec";
 		encoder[encoder_index].navigation_instance = encoder[encoder_index].navigation_instance_alternative;
-	}
-	else
-	{
-		vcodec_node = "vcodec";
-		acodec_node = "acodec";
-		encoder[encoder_index].navigation_instance = encoder[encoder_index].navigation_instance_normal;
-	}
 
-	snprintf(filename, sizeof(filename), "/proc/stb/encoder/%d/bitrate", encoder_index);
-	CFile::writeInt(filename, bitrate);
+		/*
 
-	snprintf(filename, sizeof(filename), "/proc/stb/encoder/%d/width", encoder_index);
-	CFile::writeInt(filename, width);
+		snprintf(filename, sizeof(filename), "/proc/stb/encoder/%d/bitrate", encoder_index);
+		CFile::writeInt(filename, bitrate);
 
-	snprintf(filename, sizeof(filename), "/proc/stb/encoder/%d/height", encoder_index);
-	CFile::writeInt(filename, height);
+		snprintf(filename, sizeof(filename), "/proc/stb/encoder/%d/width", encoder_index);
+		CFile::writeInt(filename, width);
 
-	if(bcm_encoder)
-	{
+		snprintf(filename, sizeof(filename), "/proc/stb/encoder/%d/height", encoder_index);
+		CFile::writeInt(filename, height);
+
+		snprintf(filename, sizeof(filename), "/proc/stb/encoder/%d/framerate", encoder_index);
+		CFile::writeInt(filename, framerate);
+
+		snprintf(filename, sizeof(filename), "/proc/stb/encoder/%d/interlaced", encoder_index);
+		CFile::writeInt(filename, interlaced);
+
+		snprintf(filename, sizeof(filename), "/proc/stb/encoder/%d/aspectratio", encoder_index);
+		CFile::writeInt(filename, aspectratio);
+
+
 		snprintf(filename, sizeof(filename), "/proc/stb/encoder/%d/display_format", encoder_index);
 
 		if(height > 576)
@@ -168,16 +173,37 @@ int eEncoder::allocateEncoder(const std::string &serviceref, int &buffersize,
 				CFile::write(filename, "576p");
 			else
 				CFile::write(filename, "480p");
+		*/
+
+		vcodec = "";
+		acodec = "";
+
 	}
+	else
+	{
+		vcodec_node = "vcodec";
+		acodec_node = "acodec";
+		encoder[encoder_index].navigation_instance = encoder[encoder_index].navigation_instance_normal;
 
-	snprintf(filename, sizeof(filename), "/proc/stb/encoder/%d/framerate", encoder_index);
-	CFile::writeInt(filename, framerate);
+		snprintf(filename, sizeof(filename), "/proc/stb/encoder/%d/bitrate", encoder_index);
+		CFile::writeInt(filename, bitrate);
 
-	snprintf(filename, sizeof(filename), "/proc/stb/encoder/%d/interlaced", encoder_index);
-	CFile::writeInt(filename, interlaced);
+		snprintf(filename, sizeof(filename), "/proc/stb/encoder/%d/width", encoder_index);
+		CFile::writeInt(filename, width);
 
-	snprintf(filename, sizeof(filename), "/proc/stb/encoder/%d/aspectratio", encoder_index);
-	CFile::writeInt(filename, aspectratio);
+		snprintf(filename, sizeof(filename), "/proc/stb/encoder/%d/height", encoder_index);
+		CFile::writeInt(filename, height);
+
+		snprintf(filename, sizeof(filename), "/proc/stb/encoder/%d/framerate", encoder_index);
+		CFile::writeInt(filename, framerate);
+
+		snprintf(filename, sizeof(filename), "/proc/stb/encoder/%d/interlaced", encoder_index);
+		CFile::writeInt(filename, interlaced);
+
+		snprintf(filename, sizeof(filename), "/proc/stb/encoder/%d/aspectratio", encoder_index);
+		CFile::writeInt(filename, aspectratio);
+
+	}
 
 	if(!vcodec.empty())
 	{
@@ -199,8 +225,12 @@ int eEncoder::allocateEncoder(const std::string &serviceref, int &buffersize,
 		}
 	}
 
-	snprintf(filename, sizeof(filename), "/proc/stb/encoder/%d/apply", encoder_index);
-	CFile::writeInt(filename, 1);
+	if(!bcm_encoder) {
+
+		snprintf(filename, sizeof(filename), "/proc/stb/encoder/%d/apply", encoder_index);
+		CFile::writeInt(filename, 1);
+
+	}
 
 	if(source_file.empty())
 		encoder[encoder_index].file_fd = -1;
