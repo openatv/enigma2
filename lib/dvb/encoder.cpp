@@ -175,9 +175,6 @@ int eEncoder::allocateEncoder(const std::string &serviceref, int &buffersize,
 				CFile::write(filename, "480p");
 		*/
 
-		vcodec = "";
-		acodec = "";
-
 	}
 	else
 	{
