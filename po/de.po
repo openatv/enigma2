@@ -1217,7 +1217,7 @@ msgstr "%s %s erweiterte Fernbedienung (nativ)"
 
 #, python-format
 msgid "%s %s front panel"
-msgstr "%s %s Frontpanel"
+msgstr "%s %s Gerätedisplay"
 
 #, python-format
 msgid "%s %s ir keyboard"
@@ -5993,7 +5993,7 @@ msgid "Disable IceTV"
 msgstr "IceTV deaktivieren"
 
 msgid "Disable MiniTV"
-msgstr "Entferne MiniTV im Display"
+msgstr "Entferne MiniTV aus Display"
 
 msgid "Disable Picture in Picture"
 msgstr "Bild im Bild deaktivieren"
@@ -7535,7 +7535,7 @@ msgid ""
 "Please enter username/password manually."
 msgstr ""
 "Datei 'oscam.conf' nicht gefunden.\n"
-"Benutzernamen/Passwort manuell eingeben."
+"Nutzernamen und Passwort manuell eingeben."
 
 msgid "File transfer was cancelled by user"
 msgstr "Dateiübertragung durch den Benutzer abgebrochen!"
@@ -9944,7 +9944,7 @@ msgid "Media"
 msgstr "Medien"
 
 msgid "Media Center"
-msgstr ""
+msgstr "MediaCenter"
 
 msgid "Media Player"
 msgstr "Mediaplayer"
@@ -10160,7 +10160,7 @@ msgid "Morocco"
 msgstr "Marokko"
 
 msgid "Mosquito noise reduction"
-msgstr "Mosquito-Noise Reduzierung"
+msgstr "Mosquito-Rauschen Reduzierung"
 
 msgid "Motor Sport"
 msgstr "Motorsport"
@@ -11708,13 +11708,13 @@ msgid "Picon width"
 msgstr "Picon Breite"
 
 msgid "Picture in EPG"
-msgstr "Mini-TV im vertikalen EPG anzeigen"
+msgstr "MiniTV im vertikalen EPG anzeigen"
 
 msgid "Picture in Picture Setup"
 msgstr "Bild im Bild Einstellungen"
 
 msgid "Picture in graphics"
-msgstr "Mini-TV Bild im grafischen EPG anzeigen"
+msgstr "MiniTV im grafischen EPG anzeigen"
 
 # 5.1 /Plugins\Extensions\PicturePlayer
 msgid "Picture player"
@@ -12871,10 +12871,10 @@ msgid "Really shutdown now?"
 msgstr "Wirklich herunterfahren?"
 
 msgid "Really upgrade the front panel and reboot now?"
-msgstr ""
+msgstr "Wirklich das Gerätedisplay aktualisieren und neu starten?"
 
 msgid "Really upgrade the frontprocessor and reboot now?"
-msgstr ""
+msgstr "Wirklich den Frontprozessor aktualisieren und jetzt neu starten?"
 
 #, python-format
 msgid "Really upgrade your %s %s and reboot now?"
@@ -13841,10 +13841,10 @@ msgid "Scans default lamedbs sorted by satellite with a connected dish positione
 msgstr "DefaultServiceScanner führt eine Sendersuche über alle Satelliten durch, wenn Sie einen Rotor an Ihre Satellitenschüssel angeschlossen haben."
 
 msgid "Scheduled load of epg.dat"
-msgstr "Geplantes Laden der epg.dat"
+msgstr "Geplantes Laden der 'epg.dat'"
 
 msgid "Scheduled save of epg.dat"
-msgstr "Geplantes Speichern der epg.dat"
+msgstr "Geplantes Speichern der 'epg.dat'"
 
 msgid "Sci-Fi"
 msgstr ""
@@ -14347,7 +14347,7 @@ msgid "Select your provider, and press OK to start the scan"
 msgstr "Wählen Sie den Anbieter und drücken OK, um den Suchlauf zu starten"
 
 msgid "Select your region. If not available change 'Country' to 'all' and select one of the default alternatives."
-msgstr "Wählen Sie Ihre Region. Wenn nicht verfügbar ändern Sie 'Land' in 'alle' und wählen Sie eine der Standardalternativen."
+msgstr "Wählen Sie Ihre Region. Wenn nicht verfügbar ändern Sie 'Land' in 'alle' und wählen eine der Standardalternativen."
 
 # Zeitenstellung
 msgid "Select your time zone area or region."
@@ -15470,7 +15470,7 @@ msgstr "Zeige Kanalliste"
 msgid "Show service name and event description among each other instead of side by side. After a change, an adjustment of the number of lines is required."
 msgstr ""
 "'Ja' zeigt den Namen des Senders und die Sendungsbeschreibung untereinander statt nebeneinander an.\n"
-"Nach einer Änderung ist die Anpassung der Zeilenanzahl erforderlich."
+"Nach einer Änderung ist eine Anpassung der Zeilenanzahl erforderlich."
 
 msgid "Show service type icons"
 msgstr "Anzeige des Servicetyps"
@@ -15501,7 +15501,7 @@ msgid "Show spinning logo when system is busy."
 msgstr "Bei 'Ja' wird der Spinner (Beschäftigungsanzeige) angezeigt, wenn die %s %s ausgelastet ist."
 
 msgid "Show status icons in movielist"
-msgstr "Zeige Status Icon in Filmliste"
+msgstr "Zeige Status Icon in der Filmliste"
 
 msgid "Show status messages when switch to live TV"
 msgstr "Zeige Statusmeldungen wenn zum Live-TV geschaltet wird"
@@ -15537,16 +15537,16 @@ msgid "Show the list of timers."
 msgstr "Liste der Timer anzeigen."
 
 msgid "Show the media center..."
-msgstr ""
+msgstr "Zeige MediaCenter..."
 
 msgid "Show the media player..."
-msgstr "Zeige Mediaplayer"
+msgstr "Zeige Mediaplayer..."
 
 msgid "Show the plugin browser.."
-msgstr ""
+msgstr "Pluginbrowser anzeigen."
 
 msgid "Show the plugins..."
-msgstr ""
+msgstr "Plugins anzeigen..."
 
 msgid "Show the radio player..."
 msgstr "Radio-Wiedergabemodus"
@@ -16008,6 +16008,8 @@ msgstr "Keine Details verfügbar!"
 
 msgid "Sorry, no physical devices that supports SWAP attached. Can't create Swapfile on network or fat32 filesystems"
 msgstr ""
+"Leider sind keine physischen Geräte angeschlossen, die SWAP unterstützen.\n"
+"Eine Auslagerungsdatei kann nicht auf Netzwerk- oder Fat32-Dateisystemen erstellt werden!"
 
 msgid "Sorry, there was a problem:"
 msgstr "Achtung, es gibt ein Problem:"
@@ -16319,7 +16321,7 @@ msgid "Stream request"
 msgstr "Streamauswahl"
 
 msgid "Stream-tv"
-msgstr ""
+msgstr "Stream-TV"
 
 msgid "Streaming"
 msgstr ""
@@ -16833,14 +16835,14 @@ msgid ""
 "Please install it."
 msgstr ""
 "Das AutoTimer Plugin ist nicht installiert!\n"
-"Bitte installieren."
+"Bitte installieren Sie es."
 
 msgid ""
 "The Cool TV Guide plugin is not installed!\n"
 "Please install it."
 msgstr ""
 "Das CoolTVGuide Plugin ist nicht installiert!\n"
-"Bitte installieren."
+"Bitte installieren Sie es."
 
 msgid "The DVD standard doesn't support H.264 (HDTV) video streams."
 msgstr ""
@@ -16849,13 +16851,15 @@ msgid ""
 "The DreamPlex plugin is not installed!\n"
 "Please install it."
 msgstr ""
+"Das DreamPlex Plugin ist nicht installiert!\n"
+"Bitte installieren Sie es."
 
 msgid ""
 "The EPGSearch plugin is not installed!\n"
 "Please install it."
 msgstr ""
 "Das EPGSearch Plugin ist nicht installiert!\n"
-"Bitte installieren."
+"Bitte installieren Sie es."
 
 msgid ""
 "The Filesystem on your Timeshift-Device does not support hardlinks.\n"
@@ -16869,8 +16873,8 @@ msgid ""
 "The IMDb plugin is not installed!\n"
 "Please install it."
 msgstr ""
-"Das IMDb Plugin ist nicht installiert.\n"
-"Bitte installieren."
+"Das IMDb Plugin ist nicht installiert!\n"
+"Bitte installieren Sie es."
 
 #, python-format
 msgid ""
@@ -16892,28 +16896,28 @@ msgid ""
 "Please install it."
 msgstr ""
 "Das MediaCenter Plugin ist nicht installiert!\n"
-"Bitte installieren."
+"Bitte installieren Sie es."
 
 msgid ""
 "The MediaPlayer plugin is not installed!\n"
 "Please install it."
 msgstr ""
-"Das MediaPlayer Plugin ist nicht installiert!\n"
-"Bitte installieren."
+"Das Mediaplayer Plugin ist nicht installiert!\n"
+"Bitte installieren Sie es."
 
 msgid ""
 "The MediaPortal plugin is not installed!\n"
 "Please install it."
 msgstr ""
 "Das MediaPortal Plugin ist nicht installiert!\n"
-"Bitte installieren."
+"Bitte installieren Sie es."
 
 msgid ""
 "The Merlin EPG Center plugin is not installed!\n"
 "Please install it."
 msgstr ""
 "Das Merlin EPG Center Plugin ist nicht installiert!\n"
-"Bitte installieren."
+"Bitte installieren Sie es."
 
 msgid "The PIN code has been changed successfully."
 msgstr "Der PIN-Code wurde erfolgreich geändert."
@@ -16928,6 +16932,8 @@ msgid ""
 "The SimpleUmount plugin is not installed!\n"
 "Please install it."
 msgstr ""
+"Das SimpleUmount-Plugin ist nicht installiert!\n"
+"Bitte installieren Sie es."
 
 # RecordTimer.py
 msgid "The TV was switched to the recording service!\n"
@@ -16945,7 +16951,7 @@ msgid ""
 "Please install it."
 msgstr ""
 "Das VideoMode Plugin ist nicht installiert!\n"
-"Bitte installieren."
+"Bitte installieren Sie es."
 
 msgid "The aspect ratio of the recording."
 msgstr "Das Seitenverhältnis der Aufnahme."
@@ -16974,7 +16980,7 @@ msgstr ""
 "Was wollen Sie tun?"
 
 msgid "The current update may be unstable"
-msgstr ""
+msgstr "Das aktuelle Update ist möglicherweise instabil"
 
 msgid ""
 "The default backup selection cannot be changed.\n"
@@ -17086,6 +17092,8 @@ msgid ""
 "The software management extension is not installed!\n"
 "Please install it."
 msgstr ""
+"Die Softwaremanagement-Erweiterung ist nicht installiert!\n"
+"Bitte installieren Sie sie."
 
 msgid "The status of the current update could not be checked because http://www.opena.tv could not be reached for some reason"
 msgstr "Der Update Status kann nicht überprüft werden da die Seite 'https://www.opena.tv' nicht erreichbar ist"
@@ -17124,7 +17132,7 @@ msgid ""
 "Please install it and choose what you want to do next."
 msgstr ""
 "Das WLAN Plugin ist nicht installiert!\n"
-"Bitte installieren Sie es und wählen Sie dann eine Option zum Fortfahren."
+"Bitte installieren Sie es und wählen dann eine Option zum Fortfahren."
 
 msgid ""
 "The wireless LAN plugin is not installed!\n"
@@ -17206,7 +17214,7 @@ msgid "This %s %s cannot decode %s streams!"
 msgstr "Die %s %s kann %s streams nicht entschlüsseln!"
 
 msgid "This DVD RW medium is already formatted - reformatting will erase all content on the disc."
-msgstr "Dieses wiederbeschreibbare Medium ist bereits formatiert - durch eine Neuformatierung wird der gesamte Inhalt gelöscht."
+msgstr "Dieses wiederbeschreibbare Medium ist bereits formatiert. Durch eine Neuformatierung wird der gesamte Inhalt gelöscht!"
 
 msgid "This Device is already mounted as HDD."
 msgstr "Das Gerät ist bereits als HDD eingehängt."
@@ -17475,7 +17483,9 @@ msgid "This option moves the PVR status from the separate window into the MovieP
 msgstr "Bei 'Ja' wird der PVR Status aus einem separaten Fenster in die Infoleiste des Medienplayers verschoben."
 
 msgid "This option set the level of suppression of mosquito noise (Mosquito Noise is random aliasing as a result of strong compression). Obviously this goes at the cost of picture details."
-msgstr "Die Stufe der Unterdrückung von Mosquito Rauschen einstellen. Mosquito Rauschen ist eine zufällige Abtaststörung durch zu hohe Kompression. Es geht auf Kosten von Bildeinzelheiten."
+msgstr ""
+"Die Stufe der Unterdrückung von Mosquito Rauschen einstellen.\n"
+"Mosquito Rauschen ist eine zufällige Abtaststörung durch zu hohe Kompression. Es geht auf Kosten von Bildeinzelheiten."
 
 msgid "This option sets  the picture contrast."
 msgstr "Den Bildkontrast einstellen."
@@ -18673,7 +18683,7 @@ msgid "Use the wizard to set up basic features"
 msgstr "Assistenten für die Grundeinstellung benutzen"
 
 msgid "Use these input device settings?"
-msgstr "Diese Eingabegeräte Einstellungen verwenden?"
+msgstr "Diese Eingabegeräte-Einstellungen verwenden?"
 
 msgid "Use these settings?"
 msgstr "Diese Einstellungen verwenden?"
@@ -18733,7 +18743,7 @@ msgid "Userlogo:"
 msgstr "Benutzerlogo:"
 
 msgid "Username"
-msgstr "Benutzername"
+msgstr "Nutzername"
 
 msgid "Username (httpuser)"
 msgstr "Nutzername (httpuser)"
@@ -19791,7 +19801,7 @@ msgstr "Sie können diese Funktion überspringen und den TV ausschalten, wenn Si
 #, python-format
 msgid "You can switch with left and right this tuner types %s"
 msgstr ""
-"Hier können Sie mit Pfeiltasten Links/Rechts\n"
+"Hier können Sie mit den Pfeiltasten Links/Rechts\n"
 "den Tuner-Typ ändern. %s"
 
 #, python-format
@@ -19949,7 +19959,9 @@ msgstr "Ihre %s %s ist nicht korrekt mit dem Internet verbunden. Bitte prüfen u
 
 #, python-format
 msgid "Your %s %s might be unusable now. Please consult the manual for further assistance before rebooting your %s %s."
-msgstr "Die %s %s könnte jetzt unbenutzbar sein. Bitte im Handbuch nach Hinweisen suchen bevor die %s %s neu gestartet wird."
+msgstr ""
+"Die %s %s könnte jetzt unbenutzbar sein!\n"
+"Bitte im Handbuch nach Hinweisen suchen, bevor Sie die %s %s neu starten."
 
 # PowerLost
 #, python-format
@@ -20017,7 +20029,7 @@ msgid ""
 "Your config file is not well-formed:\n"
 "%s"
 msgstr ""
-"Die config-Datei ist inkorrekt:\n"
+"Die Config-Datei ist inkorrekt:\n"
 "%s"
 
 msgid "Your current collection will get lost!"
@@ -20032,9 +20044,7 @@ msgstr "Ihr bestehendes IceTV Passwort."
 msgid ""
 "Your front panel will be upgraded\n"
 "This may take a few minutes"
-msgstr ""
-"Ihr Front-Panel wird aktualisiert\n"
-"Dies kann einige Minuten dauern"
+msgstr "Das Gerätedisplay wird aktualisiert. Dies kann einige Minuten dauern..."
 
 msgid ""
 "Your frontprocessor firmware must be upgraded.\n"
@@ -20050,8 +20060,7 @@ msgid ""
 "This may take a few minutes"
 msgstr ""
 "Der Frontprozessor wird jetzt aktualisiert.\n"
-"Bitte warten Sie bis die %s %s neu startet,\n"
-"es dauert einige Minuten..."
+"Bitte warten Sie bis die %s %s neu startet, es dauert einige Minuten..."
 
 # SoftwareManager
 #, python-format
@@ -22049,7 +22058,7 @@ msgid "with long OK press"
 msgstr "OK Taste lang"
 
 msgid "with_errors"
-msgstr "Mit_Fehlern"
+msgstr "Mit Fehlern"
 
 msgid "without"
 msgstr "Ohne"
@@ -22071,7 +22080,9 @@ msgstr "Ja (Feeds behalten)"
 
 #, python-format
 msgid "your %s %s might be unusable now. Please consult the manual for further assistance before rebooting your %s %s."
-msgstr "Ihre %s %s könnte jetzt unbenutzbar sein. Bitte konsultieren Sie das Handbuch bevor Sie Ihre %s %s rebooten."
+msgstr ""
+"Ihre %s %s könnte jetzt unbenutzbar sein!\n"
+"Bitte im Handbuch nach Hinweisen suchen, bevor Sie Ihre %s %s neu starten."
 
 msgid "zap"
 msgstr "Umschalten"
