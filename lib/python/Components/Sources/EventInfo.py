@@ -3,6 +3,7 @@ from Components.PerServiceDisplay import PerServiceBase
 from Components.Element import cached
 from enigma import iPlayableService, iServiceInformation, eServiceReference, eEPGCache
 from Components.Sources.Source import Source
+import NavigationInstance
 
 # Fake eServiceEvent to fill Event_Now and Event_Next in Infobar for Streams
 #
@@ -71,8 +72,10 @@ class pServiceEvent(object):
 	def getEventId(self):
 		return 0
 
+	# eServiceEvent::getExtraEventData from lib/service/event.h ruturns std::string
+	# this fake class also return string
 	def getExtraEventData(self):
-		return None
+		return self.m_EventNameNext
 
 	def getBeginTimeString(self):
 		return ""
@@ -113,6 +116,13 @@ class EventInfo(PerServiceBase, Source, object):
 	def gotEvent(self, what):
 		if what == iPlayableService.evEnd:
 			self.changed((self.CHANGED_CLEAR,))
+		elif what == iPlayableService.evUpdatedInfo:
+			nav = NavigationInstance.instance
+			if nav:
+				service = nav.getCurrentlyPlayingServiceReference()
+				servicestring = service.toString()
+				if servicestring.split(':')[0] in ['4097', '5001', '5002', '5003']:
+					self.changed((self.CHANGED_ALL,))
 		else:
 			self.changed((self.CHANGED_ALL,))
 
