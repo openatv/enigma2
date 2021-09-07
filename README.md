@@ -113,5 +113,5 @@
 ----------
 15 - Finally you can start building a feed only
 
-    MACHINE=zgemmah9combo DISTRO=openatv DISTRO_TYPE=release make feed
+    MACHINE=zgemmah9combo DISTRO=openatv DISTRO_TYPE=release make feeds
 
