@@ -8,7 +8,7 @@ def DownloadSetting(url):
     list = []
     try:
         req = urllib2.Request(url)
-        req.add_header('User-Agent', 'VAS')
+        #req.add_header('User-Agent', 'VAS')
         response = urllib2.urlopen(req)
         link = response.read()
         response.close()

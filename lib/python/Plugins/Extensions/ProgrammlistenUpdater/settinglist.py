@@ -25,7 +25,7 @@ def InstallSettings(name, link, date):
 
     def DownloadSetting(link):
         req = urllib2.Request(link)
-        req.add_header('User-Agent', 'VAS')
+        #req.add_header('User-Agent', 'VAS')
         response = urllib2.urlopen(req)
         newlink = response.read()
         response.close()
