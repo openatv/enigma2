@@ -18,7 +18,7 @@ def InstallSettings(name, link, date):
 
     def DownloadSetting(link):
         req = Request(link)
-        req.add_header('User-Agent', 'VAS')
+        #req.add_header('User-Agent', 'VAS')
         response = urlopen(req)
         newlink = response.read()
         response.close()

@@ -9,7 +9,7 @@ def DownloadSetting(url):
     _list = []
     try:
         req = Request(url)
-        req.add_header('User-Agent', 'VAS')
+        #req.add_header('User-Agent', 'VAS')
         response = urlopen(req)
         link = six.ensure_str(response.read())
         response.close()
