@@ -106,8 +106,7 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 		self.helpList.append((self["actions"], "InfobarActions", [("showRadio", _("Listen to the radio"))]))
 
 		self.__event_tracker = ServiceEventTracker(screen=self, eventmap={
-				enigma.iPlayableService.evUpdatedEventInfo: self.__eventInfoChanged,
-				enigma.iPlayableService.evUpdatedInfo: self.__infoChanged
+				enigma.iPlayableService.evUpdatedEventInfo: self.__eventInfoChanged
 			})
 
 		self.current_begin_time = 0
@@ -157,14 +156,6 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 			self.current_begin_time = ptr and ptr.getBeginTime() or 0
 			if config.usage.show_infobar_on_event_change.value:
 				if old_begin_time and old_begin_time != self.current_begin_time:
-					self.doShow()
-
-	def __infoChanged(self):
-		if self.execing:
-			if config.usage.show_infobar_on_event_change.value:
-				service = self.session.nav.getCurrentlyPlayingServiceReference()
-				servicestring = service and service.toString()
-				if servicestring.split(':')[0] in ['4097', '5001', '5002', '5003']:
 					self.doShow()
 
 	def __checkServiceStarted(self):

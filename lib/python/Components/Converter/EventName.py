@@ -124,7 +124,6 @@ class EventName(Converter, object):
 		"NameNextOnly": ("type", NAME_NEXT2),
 		"Genre": ("type", GENRE),
 		"GenreList": ("type", GENRELIST),
-		"EventExtraData": ("type", EVENT_EXTRADATA),
 		"Rating": ("type", RATING),
 		"SmallRating": ("type", SRATING),
 		"Pdc": ("type", PDC),
@@ -252,8 +251,9 @@ class EventName(Converter, object):
 		elif self.type == self.ID:
 			return self.trimText(event.getEventId())
 		elif self.type == self.EVENT_EXTRADATA:
-			# This calls lib/python/Components/Sources/EventInfo.py's getExtraEventData 
-			return event.getExtraEventData()
+			pass
+			#not include yet
+			#ret = event.getExtraEventData()
 		elif self.type == self.EPG_SOURCE:
 			pass
 			#not include yet
