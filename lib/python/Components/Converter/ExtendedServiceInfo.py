@@ -114,15 +114,15 @@ class ExtendedServiceInfo(Converter, object):
                     self.satNames[position] = name
 
     def getServiceNumber(self, name, ref):
-        list = []
+        _list = []
         if ref.startswith('1:0:2'):
-            list = self.radio_list
+            _list = self.radio_list
         elif ref.startswith('1:0:1'):
-            list = self.tv_list
+            _list = self.tv_list
         number = ''
-        if name in list:
-            for idx in list(range(1, len(list))):
-                if name == list[idx - 1]:
+        if name in _list:
+            for idx in list(range(1, len(_list))):
+                if name == _list[idx - 1]:
                     number = str(idx)
                     break
 
