@@ -2645,7 +2645,7 @@ msgid "Allows you to enable the debug log. They contain very detailed informatio
 msgstr "Debug-Log erlauben. Das Debug-Log enthält detaillierte Informationen über alles was das System macht."
 
 msgid "Allows you to enable the twisted log. They contain very detailed information of everything the twisted does. ('/tmp/twisted.log')"
-msgstr "Twisted-Log erlauben. Das Twisted-Log enthält detaillierte Informationen über alles was das Twisted macht. ('/tmp/twisted.log')"
+msgstr "Twisted-Log erlauben. Das Twisted-Log ('/tmp/twisted.log') enthält detaillierte Informationen über alles was das Twisted macht."
 
 msgid "Allows you to enable/disable displaying icons on the frontpanel."
 msgstr "Anzeige von Icons auf dem Gerätedisplay erlauben."
@@ -5996,7 +5996,7 @@ msgid "Disable MiniTV"
 msgstr "Entferne MiniTV aus Display"
 
 msgid "Disable Picture in Picture"
-msgstr "Bild im Bild deaktivieren"
+msgstr "Bild im Bild (PiP) deaktivieren"
 
 msgid "Disable background scanning"
 msgstr "Suchlauf im Hintergrund deaktivieren"
@@ -6050,11 +6050,11 @@ msgstr "Inhalt > 16:9 anzeigen als"
 
 # Quick Menue
 msgid "Display Settings"
-msgstr "Display einstellen"
+msgstr "Gerätedisplay einstellen"
 
 # Quick Menue
 msgid "Display Setup"
-msgstr "Boxdisplay LED/LCD einstellen"
+msgstr "Gerätedisplay LED/LCD einstellen"
 
 # SoftwareManager/plugin.py
 msgid "Display and user interface"
@@ -6086,7 +6086,7 @@ msgid "Do not flash image"
 msgstr "Jetzt nicht flashen"
 
 msgid "Do not record"
-msgstr "Nicht aufzeichnen"
+msgstr "Nicht aufnehmen"
 
 msgid ""
 "Do you really want to check the filesystem?\n"
@@ -6768,8 +6768,7 @@ msgstr "Mit 'Ja' Reserve-Enigma2-Receiver aktivieren der versucht wird, wenn ein
 
 msgid "Enable screenshot of LCD in /tmp"
 msgstr ""
-"Wenn aktiviert, wird ein Screenshot\n"
-"vom LCD-Display in /tmp gespeichert."
+"Wenn aktiviert, wird ein Screenshot vom LCD-Display in '/tmp' gespeichert."
 
 msgid "Enable teletext caching"
 msgstr "Videotext Zwischenspeicher aktivieren"
@@ -7235,10 +7234,10 @@ msgid "Experimental mode"
 msgstr "Experimenteller Modus"
 
 msgid "Experimental: strict limitation to preferred tuners"
-msgstr "Exp.: Beschränkung auf bevorzugte Tuner"
+msgstr "Experimentell: Beschränkung auf bevorzugte Tuner"
 
 msgid "Experimental: strict limitation to preferred tuners for recordings"
-msgstr "Exp.: Beschränkung auf bevorzugte Tuner bei Aufnahmen"
+msgstr "Experimentell: Beschränkung auf bevorzugte Tuner bei Aufnahmen"
 
 msgid "Expert"
 msgstr "Experte"
@@ -8515,7 +8514,7 @@ msgid "IceTV - Region"
 msgstr ""
 
 msgid "IceTV - Service selection"
-msgstr "IceTV - Service Auswahl"
+msgstr "IceTV - Kanalwahl"
 
 msgid "IceTV - Setup"
 msgstr "IceTV - Einstellung"
@@ -10724,8 +10723,7 @@ msgstr "!! Keine Geräte gefunden !!"
 
 msgid "No HDD found or HDD not initialized!"
 msgstr ""
-"Keine Festplatte gefunden oder\n"
-"Festplatte nicht initialisiert!"
+"Keine Festplatte gefunden oder Festplatte nicht initialisiert!"
 
 msgid ""
 "No Settings loaded !!\n"
@@ -13859,7 +13857,7 @@ msgid "Science-Fiction"
 msgstr ""
 
 msgid "Screenshot of LCD in /tmp"
-msgstr "LCD Screenshot in /tmp erstellen"
+msgstr "LCD Screenshot in '/tmp' erstellen"
 
 #, python-format
 msgid "Script '%s' must have read permission to be able to run it"
@@ -14731,7 +14729,7 @@ msgstr "Wählen Sie, was die Taste machen soll."
 
 # data/setup.xml
 msgid "Set to yes for debugging the root cause of a spinner."
-msgstr "Auf 'Ja' setzen, um die Ursache eines Spinners zu debuggen."
+msgstr "Auf 'Ja' setzen, um die Ursache eines Spinners zu ermitteln."
 
 msgid "Set voltage and 22KHz"
 msgstr "Setze Spannung und 22kHz"
@@ -15231,7 +15229,7 @@ msgstr "Zeige als Bild (beliebige Taste, um die Anzeige zu schließen)"
 
 #, python-format
 msgid "Show as Picture and save as file ('%s')"
-msgstr "Zeige als Bild und speichere in Datei ('%s'))"
+msgstr "Zeige als Bild und speichere in Datei '%s'"
 
 msgid "Show background in Radio Mode"
 msgstr "Im Radiomodus einen Hintergrund anzeigen"
@@ -15414,7 +15412,7 @@ msgid "Show multi channel EPG"
 msgstr "Mehr-Kanal EPG anzeigen"
 
 msgid "Show network mounts ..."
-msgstr ""
+msgstr "Netzwerk-Mounts anzeigen..."
 
 msgid "Show next picture"
 msgstr "Nächstes Bild anzeigen"
@@ -16416,7 +16414,7 @@ msgid "Subtitle selection"
 msgstr "Untertitel auswählen"
 
 msgid "Subtitle selection..."
-msgstr "Auswahl Untertitel..."
+msgstr "Untertitel auswählen..."
 
 msgid "Subtitle settings"
 msgstr "Untertitel"
@@ -17036,7 +17034,7 @@ msgid ""
 "Don't press in the next time any key until the picture from mvi-file is displayed!"
 msgstr ""
 "Die Funktion wurde unterbrochen.\n"
-"Drücken Sie beim nächsten Mal keine Taste bis das Bild aus der mvi-Datei angezeigt wird!"
+"Drücken Sie beim nächsten Mal keine Taste, bis das Bild aus der 'mvi'-Datei angezeigt wird!"
 
 msgid "The hash of a directory can't be calculated."
 msgstr "Der Hash eines Verzeichnisses kann nicht berechnet werden."
@@ -18044,7 +18042,7 @@ msgid "Try to send repeated commands if not all commands are executed.\n"
 msgstr "Versuchen Sie wiederholte Befehle zu senden, wenn nicht alle Kommandos ausgeführt werden.\n"
 
 msgid "Try to slow down the send interval if not all commands are executed."
-msgstr "Versuchen Sie das Sendeintervall zu verlangsamen wenn nicht alle Kommandos ausgeführt werden."
+msgstr "Versuchen Sie das Sendeintervall zu verlangsamen, wenn nicht alle Kommandos ausgeführt werden."
 
 msgid "Trying to download a new packetlist. Please wait..."
 msgstr "Versuche eine neue Paketliste herunterzuladen. Bitte warten..."
@@ -19634,7 +19632,7 @@ msgstr ""
 
 #, python-format
 msgid "Write error while recording. %s"
-msgstr "Schreibfehler bei der Aufnahme. %s"
+msgstr "Schreibfehler bei der Aufnahme! %s"
 
 msgid "Write failed!"
 msgstr "Schreiben fehlgeschlagen!"
@@ -19740,7 +19738,7 @@ msgid "Yes, restore the settings now"
 msgstr "Ja, die Einstellungen jetzt wiederherstellen"
 
 msgid "Yes, returning to movie list"
-msgstr "Ja, zurück zur Filmauswahl"
+msgstr "Ja, und zurück zur Filmauswahl"
 
 msgid "Yes, shut down now."
 msgstr "Ja, jetzt herunterfahren."
@@ -19819,7 +19817,7 @@ msgid "You didn't select a channel to record from."
 msgstr "Sie haben keinen Sender zum Aufnehmen ausgewählt."
 
 msgid "You have already sent this log, are you sure you want to resend this log:\n"
-msgstr "Sie haben dieses Log bereits versendet. Das Log nochmals versenden.\n"
+msgstr "Sie haben dieses Log bereits versendet. Das Log nochmals versenden?\n"
 
 msgid "You have chosen to backup your settings. Please press OK to start the backup now."
 msgstr "Sie haben sich entschieden Ihre Einstellungen zu sichern. Drücken Sie OK, um den Vorgang zu starten."
@@ -19896,7 +19894,7 @@ msgid "You system does not support ext4"
 msgstr "Das System unterstützt kein EXT4"
 
 msgid "Your %s %s does not have an internet connection"
-msgstr "Ihre %s %s hat keine Internetverbindung"
+msgstr "Ihre %s %s hat keine Internetverbindung!"
 
 #, python-format
 msgid "Your %s %s does not support PiP HD"
@@ -19911,7 +19909,7 @@ msgstr "Ihre %s %s ist nicht mit dem Internet verbunden"
 
 #, python-format
 msgid "Your %s %s is not connected to the internet, please check your network settings and try again."
-msgstr "Ihre %s %s hat keine Internetverbindung, bitte prüfen Sie die Netzwerkeinstellungen."
+msgstr "Ihre %s %s hat keine Internetverbindung! Bitte prüfen Sie die Netzwerkeinstellungen."
 
 #, python-format
 msgid ""
@@ -19987,8 +19985,8 @@ msgid ""
 "Your %s %s will be restarted after the installation of service\n"
 "Ready to install %s ?"
 msgstr ""
-"Ihre %s %s wird nach der Installation des Services neu gestartet\n"
-" Wollen Sie - %s - installieren?"
+"Ihre %s %s wird nach der Installation des Services neu gestartet.\n"
+" Wollen Sie '%s' installieren?"
 
 #, python-format
 msgid ""
@@ -19996,7 +19994,7 @@ msgid ""
 "\n"
 "Do you want to install now ?"
 msgstr ""
-"Ihre %s %s wird nach installieren des Services neu gestartet\n"
+"Ihre %s %s wird nach installieren des Services neu gestartet.\n"
 "\n"
 "Service jetzt installieren?"
 
@@ -20005,8 +20003,8 @@ msgid ""
 "Your %s %s will be restarted after the removal of service\n"
 "Do you want to remove now ?"
 msgstr ""
-"Ihre %s %s wird nach dem Entfernen des Services neu gestartet\n"
-" Wollen Sie nun entfernen?"
+"Ihre %s %s wird nach dem Entfernen des Services neu gestartet.\n"
+"Wollen Sie nun entfernen?"
 
 msgid "Your Hardware can detect ci mode self or work only in legacy mode."
 msgstr "Hardware erkennt das CI Protokoll selber oder Hardware arbeitet nur im Legacy Mode."
@@ -20083,7 +20081,7 @@ msgstr ""
 "\n"
 "Ein neues Flashen wird die Stabilität Ihres Images erhöhen!\n"
 "\n"
-"Sollten Sie sich dennoch für ein Online-Update entscheiden, erfolgt dies auf eigene Verantwortung!!!\n"
+"Sollten Sie sich dennoch für ein Online-Update entscheiden, erfolgt dies auf eigene Verantwortung!\n"
 "\n"
 "\n"
 "Wollen Sie trotzdem noch ein Online-Update durchführen?"
@@ -21101,7 +21099,7 @@ msgid "length"
 msgstr "Länge"
 
 msgid "limit ..., aborting !"
-msgstr "Limit..., Abbruch!"
+msgstr "Limit erreicht - Abbruch!"
 
 msgid "literature"
 msgstr "Literatur"
@@ -21919,19 +21917,19 @@ msgid "unknown service"
 msgstr "Unbekannter Kanal"
 
 msgid "unpack Rar Files"
-msgstr "Rar-Archive entpacken"
+msgstr "'.rar'-Archive entpacken"
 
 msgid "unpack archives"
 msgstr "Archive entpacken"
 
 msgid "unpack gzip Files"
-msgstr "gzip entpacken"
+msgstr "'.gzip'-Archive entpacken"
 
 msgid "unpack tar/compressed tar Files"
-msgstr "tar-Archive entpacken"
+msgstr "'.tar'-Archive entpacken"
 
 msgid "unpack zip Files"
-msgstr "Zip-Archive entpacken"
+msgstr "'.zip'-Archive entpacken"
 
 msgid "unpublished"
 msgstr "unveröffentlicht"
