@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-08-29 19:28+0000\n"
-"PO-Revision-Date: 2021-09-06 16:55+0000\n"
+"PO-Revision-Date: 2021-09-11 04:05+0000\n"
 "Last-Translator: Makumbo <tokioplo@web.de>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/openatv/"
 "enigma2-7-0-po/de/>\n"
@@ -20,7 +20,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.8.1-dev\n"
+"X-Generator: Weblate 4.9-dev\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 
 msgid ""
@@ -5850,11 +5850,11 @@ msgstr "Inhalt > 16:9 anzeigen als"
 
 # Quick Menue
 msgid "Display Settings"
-msgstr "Display einstellen"
+msgstr "Gerätedisplay einstellen"
 
 # Quick Menue
 msgid "Display Setup"
-msgstr "Boxdisplay LED/LCD einstellen"
+msgstr "Gerätedisplay LED/LCD einstellen"
 
 # SoftwareManager/plugin.py
 msgid "Display and user interface"
@@ -5889,7 +5889,7 @@ msgstr "Jetzt nicht flashen"
 
 #
 msgid "Do not record"
-msgstr "Nicht aufzeichnen"
+msgstr "Nicht aufnehmen"
 
 #
 msgid ""
@@ -10345,7 +10345,7 @@ msgid "Moving"
 msgstr "Verschieben"
 
 msgid "Moving east ..."
-msgstr "Nach Osten verschieben ..."
+msgstr "Nach Osten verschieben..."
 
 msgid "Moving files"
 msgstr "Verschieben von Dateien"
@@ -10354,7 +10354,7 @@ msgid "Moving to position"
 msgstr "Verschieben zu Position"
 
 msgid "Moving west ..."
-msgstr "Nach Westen verschieben ..."
+msgstr "Nach Westen verschieben..."
 
 msgid "Mozambique"
 msgstr "Mosambik"
@@ -10764,9 +10764,7 @@ msgstr "Keine ECM PIDs verfügbar"
 
 #
 msgid "No HDD found or HDD not initialized!"
-msgstr ""
-"Keine Festplatte gefunden oder\n"
-"Festplatte nicht initialisiert!"
+msgstr "Keine Festplatte gefunden oder Festplatte nicht initialisiert!"
 
 msgid ""
 "No Settings loaded !!\n"
@@ -11470,7 +11468,7 @@ msgid ""
 "Other buttons will jump to the help information for that button, if there is "
 "help available."
 msgstr ""
-"Tasten springen zu den Hilfe Informationen für entsprechende Tasten, wenn "
+"Tasten springen zu den Hilfe-Informationen für entsprechende Tasten, wenn "
 "Hilfe verfügbar ist."
 
 msgid "Outdoor"
@@ -11816,7 +11814,7 @@ msgstr "Bild im Bild"
 
 # UsageConfig.py:295
 msgid "PiP Actions"
-msgstr "PiP-Aktionen"
+msgstr "Bild im Bild (PiP) Aktionen"
 
 msgid "Picon"
 msgstr "Picon"
@@ -15008,7 +15006,7 @@ msgstr ""
 
 # Quick Menue
 msgid "Setup your display"
-msgstr "Stellen Sie das Box-Display auf Ihre persönlichen Bedürfnisse ein."
+msgstr "Stellen Sie das Gerätedisplay auf Ihre persönlichen Bedürfnisse ein."
 
 msgid "Setup your local network"
 msgstr "Konfiguration Netzwerk"
@@ -15298,7 +15296,7 @@ msgstr "Zeige als Bild (beliebige Taste, um die Anzeige zu schließen)"
 
 #, python-format
 msgid "Show as Picture and save as file ('%s')"
-msgstr "Zeige als Bild und speichere in Datei ('%s'))"
+msgstr "Zeige als Bild und speichere in Datei '%s'"
 
 msgid "Show bouquet selection menu"
 msgstr "Bouquet-Auswahlmenü anzeigen"
@@ -15396,7 +15394,7 @@ msgid "Show multi channel EPG"
 msgstr "Mehr-Kanal EPG anzeigen"
 
 msgid "Show network mounts ..."
-msgstr "Netzwerk-Mounts anzeigen ..."
+msgstr "Netzwerk-Mounts anzeigen..."
 
 msgid "Show next picture"
 msgstr "Nächstes Bild anzeigen"
@@ -16890,7 +16888,7 @@ msgid ""
 "displayed!"
 msgstr ""
 "Die Funktion wurde unterbrochen.\n"
-"Drücken Sie beim nächsten Mal keine Taste bis das Bild aus der mvi-Datei "
+"Drücken Sie beim nächsten Mal keine Taste, bis das Bild aus der 'mvi'-Datei "
 "angezeigt wird!"
 
 msgid "The hash of a directory can't be calculated."
@@ -19445,12 +19443,12 @@ msgid ""
 "Write error at start of recording. %s\n"
 "%s"
 msgstr ""
-"Schreibfehler beim Start der Aufnahme. %s\n"
+"Schreibfehler beim Start der Aufnahme! %s\n"
 "%s"
 
 #, python-format
 msgid "Write error while recording. %s"
-msgstr "Schreibfehler bei der Aufnahme. %s"
+msgstr "Schreibfehler bei der Aufnahme! %s"
 
 msgid "Write failed!"
 msgstr "Schreiben fehlgeschlagen!"
@@ -19544,7 +19542,7 @@ msgstr "Ja, diesen Film löschen und zurück zur Filmauswahl"
 
 #
 msgid "Yes, returning to movie list"
-msgstr "Ja, zurück zur Filmauswahl"
+msgstr "Ja, und zurück zur Filmauswahl"
 
 msgid "Yesterday"
 msgstr "Gestern"
@@ -19786,7 +19784,7 @@ msgid ""
 "Your %s %s will be restarted after the installation of service\n"
 "Ready to install %s ?"
 msgstr ""
-"Ihre %s %s wird nach der Installation des Services neu gestartet\n"
+"Ihre %s %s wird nach der Installation des Services neu gestartet.\n"
 " Wollen Sie - %s - installieren?"
 
 #, python-format
@@ -19795,7 +19793,7 @@ msgid ""
 "\n"
 "Do you want to install now ?"
 msgstr ""
-"Ihre %s %s wird nach installieren des Services neu gestartet\n"
+"Ihre %s %s wird nach installieren des Services neu gestartet.\n"
 "\n"
 "Service jetzt installieren?"
 
@@ -19804,7 +19802,7 @@ msgid ""
 "Your %s %s will be restarted after the removal of service\n"
 "Do you want to remove now ?"
 msgstr ""
-"Ihre %s %s wird nach dem Entfernen des Services neu gestartet\n"
+"Ihre %s %s wird nach dem Entfernen des Services neu gestartet.\n"
 " Wollen Sie nun entfernen?"
 
 msgid "Your Hardware can detect ci mode self or work only in legacy mode."
@@ -21004,7 +21002,7 @@ msgid "length"
 msgstr "Länge"
 
 msgid "limit ..., aborting !"
-msgstr "Limit..., Abbruch!"
+msgstr "Limit erreicht - Abbruch!"
 
 msgid "literature"
 msgstr "Literatur"
@@ -22422,8 +22420,12 @@ msgid ""
 "Filter extension for 'My Extension' setting of 'Filter extension'. Use the "
 "extension name without a '.'."
 msgstr ""
-"Filtererweiterung für 'meine Erweiterung' Einstellung von "
-"'Filtererweiterung'. Verwenden Sie den Erweiterungsnamen ohne '.' ein."
+"\"Einstellung der 'Filtererweiterung'.\\n"
+"\"\n"
+"\"Geben Sie den Erweiterungsnamen ohne '.' ein.\"\n"
+"\"\\n"
+"\"\n"
+"\"Mit der TXT (Videotext) Taste erhalten Sie eine virtuelle Tastatur.\""
 
 msgid "Filter extension, (*) appears in title"
 msgstr "Filtererweiterung (*) erscheint im Titel"
@@ -23691,7 +23693,7 @@ msgstr "Zeige Info bevor der nächste Film abgespielt wird"
 
 #
 msgid "Display settings"
-msgstr "Gerätedisplay"
+msgstr "Gerätedisplay einstellen"
 
 # EPG Setup
 msgid "Display the EIT now/next eventdata in infobar."
@@ -23815,8 +23817,7 @@ msgstr ""
 
 msgid "Enable screenshot of LCD in /tmp"
 msgstr ""
-"Wenn aktiviert, wird ein Screenshot\n"
-"vom LCD-Display in /tmp gespeichert."
+"Wenn aktiviert, wird ein Screenshot vom LCD-Display in '/tmp' gespeichert."
 
 msgid "Enable teletext caching"
 msgstr "Videotext Zwischenspeicher aktivieren"
@@ -23873,7 +23874,7 @@ msgid "Event font size"
 msgstr "Schriftgröße für Sendungsnamen"
 
 msgid "Experimental: strict limitation to preferred tuners for recordings"
-msgstr "Exp.: Beschränkung auf bevorzugte Tuner bei Aufnahmen"
+msgstr "Experimentell: Beschränkung auf bevorzugte Tuner bei Aufnahmen"
 
 msgid "External subtitle color"
 msgstr "Farbe für externe Untertitel"
@@ -23935,7 +23936,7 @@ msgid "Hard disk standby after"
 msgstr "Festplatten-Standby nach"
 
 msgid "Hard disk standby in box standby after"
-msgstr "Festplatten-Standby wenn Box in Standby nach"
+msgstr "Festplatten-Standby wenn Box im Standby nach"
 
 msgid ""
 "Here can set the EPG will alway open at the current channel, the first "
@@ -24352,8 +24353,8 @@ msgstr "Offline Decodierungsverzögerung (ms)"
 msgid ""
 "Older files in the timeshift directory are removed on every event change."
 msgstr ""
-"Ältere Dateien im Timeshift-Verzeichnis,\n"
-"nach eingestellter Zeit automatisch löschen."
+"Ältere Dateien im Timeshift-Verzeichnis nach eingestellter Zeit automatisch "
+"löschen."
 
 msgid "On valid ONIDs, ignore frequency sub network part"
 msgstr "Bei 'Ja' werden Subnetzwerk Frequenzen bei gültigen ONIDs ignoriert."
@@ -24589,7 +24590,7 @@ msgid "Scheduled save of epg.dat"
 msgstr "Geplantes Speichern der 'epg.dat'"
 
 msgid "Screenshot of LCD in /tmp"
-msgstr "LCD Screenshot in /tmp erstellen"
+msgstr "LCD Screenshot in '/tmp' erstellen"
 
 msgid "Scrolling Speed"
 msgstr "Display-Nachricht Geschwindigkeit"
@@ -24853,7 +24854,7 @@ msgstr "Wählen Sie, was die Taste machen soll."
 
 # data/setup.xml
 msgid "Set to yes for debugging the root cause of a spinner."
-msgstr "Auf 'Ja' setzen, um die Ursache eines Spinners zu debuggen."
+msgstr "Auf 'Ja' setzen, um die Ursache eines Spinners zu ermitteln."
 
 msgid "Setup delay mode to zap to channels."
 msgstr "Verzögerungsmodus beim Umschalten ein- oder ausstellen."
@@ -26529,7 +26530,7 @@ msgid "Yes, do another manual scan now"
 msgstr "Ja, einen weiteren manuellen Suchlauf durchführen"
 
 msgid "Your %s %s does not have an internet connection"
-msgstr "Ihre %s %s hat keine Internetverbindung"
+msgstr "Ihre %s %s hat keine Internetverbindung!"
 
 msgid "Your %s %s is not connected to the internet"
 msgstr "Ihre %s %s ist nicht mit dem Internet verbunden!"
