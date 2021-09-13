@@ -665,12 +665,28 @@ except ImportError:
 	def runReactor():
 		enigma.runMainloop()
 
-from twisted.python import log
+
+def quietEmit(self, eventDict):
+	text = log.textFromEventDict(eventDict)
+	if text is None:
+		return
+	if "/api/statusinfo" in text: # do not log OWF statusinfo
+		return
+
+	timeStr = self.formatTime(eventDict["time"])
+	fmtDict = {"system": eventDict["system"], "text": text.replace("\n", "\n\t")}
+	msgStr = log._safeFormat("[%(system)s] %(text)s\n", fmtDict)
+	util.untilConcludes(self.write, timeStr + " " + msgStr)
+	util.untilConcludes(self.flush)
+
+from twisted.python import log, util
 config.misc.enabletwistedlog = ConfigYesNo(default=False)
 if config.misc.enabletwistedlog.value == True:
 	log.startLogging(open('/tmp/twisted.log', 'w'))
 else:
-	log.startLogging(stdout)
+	logger = log.FileLogObserver(stdout)
+	log.FileLogObserver.emit = quietEmit
+	log.startLoggingWithObserver(logger.emit)
 
 
 from boxbranding import getBoxType, getBrandOEM, getMachineBuild, getImageArch, getMachineBrand
