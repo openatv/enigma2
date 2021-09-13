@@ -1,4 +1,3 @@
-# -*- coding: iso-8859-2 -*-
 import six
 
 LanguageCodes = {}
@@ -152,7 +151,7 @@ LanguageCodes["grb"] = ("Grebo", "")
 LanguageCodes["grc"] = ("Greek, Ancient (to 1453)", "")
 LanguageCodes["grn"] = LanguageCodes["gn"] = ("Guarani", "Amerindian")
 LanguageCodes["guj"] = LanguageCodes["gu"] = ("Gujarati", "Indian")
-LanguageCodes["gwi"] = ("Gwich´in", "")
+LanguageCodes["gwi"] = ("GwichÊ¼in", "")
 LanguageCodes["hai"] = ("Haida", "")
 LanguageCodes["hau"] = LanguageCodes["ha"] = ("Hausa", "Negro-african")
 LanguageCodes["haw"] = ("Hawaiian", "")
@@ -286,7 +285,7 @@ LanguageCodes["nic"] = ("Niger-Kordofanian (Other)", "")
 LanguageCodes["niu"] = ("Niuean", "")
 LanguageCodes["nld"] = LanguageCodes["dut"] = LanguageCodes["nl"] = ("Dutch", "Germanic")
 LanguageCodes["nno"] = LanguageCodes["nn"] = ("Norwegian Nynorsk", "")
-LanguageCodes["nob"] = LanguageCodes["nb"] = ("Norwegian Bokmål", "")
+LanguageCodes["nob"] = LanguageCodes["nb"] = ("Norwegian BokmÃ¥l", "")
 LanguageCodes["non"] = ("Norse, Old", "")
 LanguageCodes["nor"] = LanguageCodes["no"] = ("Norwegian", "Germanic")
 LanguageCodes["nso"] = ("Sotho, Northern", "")
@@ -296,7 +295,7 @@ LanguageCodes["nym"] = ("Nyamwezi", "")
 LanguageCodes["nyn"] = ("Nyankole", "")
 LanguageCodes["nyo"] = ("Nyoro", "")
 LanguageCodes["nzi"] = ("Nzima", "")
-LanguageCodes["oci"] = LanguageCodes["oc"] = ("Occitan (post 1500); Provençal", "Romance")
+LanguageCodes["oci"] = LanguageCodes["oc"] = ("Occitan (post 1500)", "Romance")
 LanguageCodes["oji"] = ("Ojibwa", "")
 LanguageCodes["ori"] = LanguageCodes["or"] = ("Oriya", "Indian")
 LanguageCodes["orm"] = LanguageCodes["om"] = ("Oromo", "Hamitic")
@@ -318,7 +317,7 @@ LanguageCodes["pol"] = LanguageCodes["pl"] = ("Polish", "Slavic")
 LanguageCodes["pon"] = ("Pohnpeian", "")
 LanguageCodes["por"] = LanguageCodes["pt"] = ("Portuguese", "Romance")
 LanguageCodes["pra"] = ("Prakrit languages", "")
-LanguageCodes["pro"] = ("Provençal, Old (to 1500)", "")
+LanguageCodes["pro"] = ("ProvenÃ§al, Old (to 1500)", "")
 LanguageCodes["pus"] = LanguageCodes["ps"] = ("Pushto", "Iranian")
 LanguageCodes["que"] = LanguageCodes["qu"] = ("Quechua", "Amerindian")
 LanguageCodes["raj"] = ("Rajasthani", "")
@@ -415,7 +414,7 @@ LanguageCodes["uzb"] = LanguageCodes["uz"] = ("Uzbek", "Turkic/altaic")
 LanguageCodes["vai"] = ("Vai", "")
 LanguageCodes["ven"] = ("Venda", "")
 LanguageCodes["vie"] = LanguageCodes["vi"] = ("Vietnamese", "Asian")
-LanguageCodes["vol"] = LanguageCodes["vo"] = ("Volapük", "International aux.")
+LanguageCodes["vol"] = LanguageCodes["vo"] = ("VolapÃ¼k", "International aux.")
 LanguageCodes["vot"] = ("Votic", "")
 LanguageCodes["wak"] = ("Wakashan languages", "")
 LanguageCodes["wal"] = ("Walamo", "")
@@ -481,8 +480,8 @@ class ISO639Language:
 				self.name_and_shortid_by_longid[long_id] = (short_id, lang)
 
 	def getChoices(self):
-		from Components.Language import language as syslanguage
-		syslang = syslanguage.getLanguage()[:2]
+		from Components.International import international
+		syslang = international.getLocale()[:2]
 		choices = []
 		for lang, id_list in six.iteritems(self.idlist_by_name):
 			if syslang not in id_list and 'en' not in id_list:
