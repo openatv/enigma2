@@ -887,7 +887,9 @@ void gDC::exec(const gOpcode *o)
 			{
 				bbox = eRect(left, top, width, height);
 				bbox.moveBy(offset);
-				gRegion clip = m_current_clip & bbox;
+				eRect area = o->parm.renderText->area;
+				area.moveBy(offset);
+				gRegion clip = m_current_clip & bbox & area;
 				if (m_pixmap->needClut())
 					m_pixmap->fill(clip, m_foreground_color);
 				else
