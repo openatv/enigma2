@@ -39,8 +39,7 @@ class PU_History(Screen):
     def __init__(self, session):
         Screen.__init__(self, session)
         self.skinName = "PU_History"
-        self.setup_title = _("Programmlisten History")
-        self.setTitle(self.setup_title)
+        self.setTitle(_("Programmlisten History"))
 
         self["key_red"] = StaticText(_("Exit"))
         self["History"] = ScrollLabel()

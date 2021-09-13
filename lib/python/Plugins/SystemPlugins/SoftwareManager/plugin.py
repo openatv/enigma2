@@ -444,7 +444,7 @@ class SoftwareManagerSetup(Screen, ConfigListScreen):
 			self.skin_path = resolveFilename(SCOPE_CURRENT_PLUGIN, "SystemPlugins/SoftwareManager")
 
 		self.onChangedEntry = []
-		self.setup_title = _("Software manager setup")
+		self.setTitle(_("Software manager setup"))
 		self.overwriteConfigfilesEntry = None
 		self.overwriteSettingsfilesEntry = None
 		self.overwriteDriversfilesEntry = None
@@ -473,10 +473,6 @@ class SoftwareManagerSetup(Screen, ConfigListScreen):
 
 		Load_defaults()
 		self.createSetup()
-		self.onLayoutFinish.append(self.layoutFinished)
-
-	def layoutFinished(self):
-		self.setTitle(self.setup_title)
 
 	def createSetup(self):
 		self.list = []

@@ -76,7 +76,7 @@ class MediaPlayerSettings(Screen, ConfigListScreen):
 		Screen.__init__(self, session)
 		# for the skin: first try MediaPlayerSettings, then Setup, this allows individual skinning
 		self.skinName = ["MediaPlayerSettings", "Setup"]
-		self.setup_title = _("Edit settings")
+		self.setTitle(_("Edit settings"))
 		self.onChangedEntry = []
 		self["HelpWindow"] = Pixmap()
 		self["HelpWindow"].hide()
@@ -97,10 +97,6 @@ class MediaPlayerSettings(Screen, ConfigListScreen):
 		    "cancel": self.cancel,
 		    "ok": self.ok,
 		}, -2)
-		self.onLayoutFinish.append(self.layoutFinished)
-
-	def layoutFinished(self):
-		self.setTitle(self.setup_title)
 
 	def initConfigList(self, element=None):
 		print("[initConfigList]", element)

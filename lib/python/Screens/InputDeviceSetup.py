@@ -120,7 +120,7 @@ class InputDeviceSetup(Screen, ConfigListScreen):
 		self.inputDevice = device
 		iInputDevices.currentDevice = self.inputDevice
 		self.onChangedEntry = []
-		self.setup_title = (_("Setup InputDevice"))
+		self.setTitle(_("Setup InputDevice"))
 		self.isStepSlider = None
 		self.enableEntry = None
 		self.repeatEntry = None
@@ -152,7 +152,6 @@ class InputDeviceSetup(Screen, ConfigListScreen):
 		self.onClose.append(self.cleanup)
 
 	def layoutFinished(self):
-		self.setTitle(self.setup_title)
 		listWidth = self["config"].l.getItemSize().width()
 		# use 20% of list width for sliders
 		self["config"].l.setSeperation(int(listWidth * .8))

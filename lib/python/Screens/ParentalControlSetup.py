@@ -35,7 +35,7 @@ class ParentalControlSetup(Screen, ConfigListScreen, ProtectedScreen):
 		ProtectedScreen.__init__(self)
 		# for the skin: first try ParentalControlSetup, then Setup, this allows individual skinning
 		self.skinName = ["ParentalControlSetup", "Setup"]
-		self.setup_title = _("Parental control setup")
+		self.setTitle(_("Parental control setup"))
 		self.onChangedEntry = []
 
 		self.list = []
@@ -51,10 +51,6 @@ class ParentalControlSetup(Screen, ConfigListScreen, ProtectedScreen):
 		self["key_red"] = StaticText(_("Cancel"))
 		self["key_green"] = StaticText(_("Save"))
 		self.recursive = False
-		self.onLayoutFinish.append(self.layoutFinished)
-
-	def layoutFinished(self):
-		self.setTitle(self.setup_title)
 
 	def isProtected(self):
 		return (not config.ParentalControl.setuppinactive.value and config.ParentalControl.servicepinactive.value) or\
@@ -164,7 +160,7 @@ class ParentalControlChangePin(Screen, ConfigListScreen, ProtectedScreen):
 		Screen.__init__(self, session)
 		# for the skin: first try ParentalControlChangePin, then Setup, this allows individual skinning
 		self.skinName = ["ParentalControlChangePin", "Setup"]
-		self.setup_title = _("Change pin code")
+		self.setTitle(_("Change pin code"))
 		self.onChangedEntry = []
 
 		self.pin = pin
@@ -187,10 +183,6 @@ class ParentalControlChangePin(Screen, ConfigListScreen, ProtectedScreen):
 		}, -1)
 		self["key_red"] = StaticText(_("Cancel"))
 		self["key_green"] = StaticText(_("OK"))
-		self.onLayoutFinish.append(self.layoutFinished)
-
-	def layoutFinished(self):
-		self.setTitle(self.setup_title)
 
 	def valueChanged(self, pin, value):
 		if pin == 1:

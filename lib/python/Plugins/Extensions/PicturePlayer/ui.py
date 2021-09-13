@@ -151,10 +151,9 @@ class Pic_Setup(Screen, ConfigListScreen):
 
 	def __init__(self, session):
 		Screen.__init__(self, session)
-		self.setTitle(_("PicturePlayer"))
 		# for the skin: first try MediaPlayerSettings, then Setup, this allows individual skinning
 		self.skinName = ["PicturePlayerSetup", "Setup"]
-		self.setup_title = _("Settings")
+		self.setTitle(_("Settings"))
 		self.onChangedEntry = []
 		ConfigListScreen.__init__(self, [], session=session, on_change=self.changedEntry)
 		self["actions"] = ActionMap(["SetupActions", "MenuActions"],
@@ -171,10 +170,6 @@ class Pic_Setup(Screen, ConfigListScreen):
 		self["footnote"] = StaticText("")
 		self["description"] = StaticText("")
 		self.createSetup()
-		self.onLayoutFinish.append(self.layoutFinished)
-
-	def layoutFinished(self):
-		self.setTitle(self.setup_title)
 
 	def createSetup(self):
 		setup_list = [

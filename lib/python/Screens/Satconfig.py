@@ -61,7 +61,7 @@ class TunerSetup(Screen, ConfigListScreen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
 		self.skinName = ["Setup"]
-		self.setup_title = _("Tuner settings")
+		self.setTitle(_("Tuner settings"))
 		self["HelpWindow"] = Pixmap()
 		self["HelpWindow"].hide()
 		self["VKeyIcon"] = Boolean(False)
@@ -85,10 +85,6 @@ class TunerSetup(Screen, ConfigListScreen):
 		self["description"] = Label("")
 
 		self.createSetup()
-		self.onLayoutFinish.append(self.layoutFinished)
-
-	def layoutFinished(self):
-		self.setTitle(self.setup_title)
 
 	def createSetup(self):
 		level = config.usage.setup_level.index

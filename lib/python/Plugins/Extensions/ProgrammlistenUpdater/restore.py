@@ -33,8 +33,7 @@ class PU_Restore(Screen, ConfigListScreen):
         Screen.__init__(self, session)
         self['ListSetting'] = MenuList([])
         self.skinName = "PU_Restore"
-        self.setup_title = _("Programmlisten Restore")
-        self.setTitle(self.setup_title)
+        self.setTitle(_("Programmlisten Restore"))
 
         self["key_red"] = StaticText(_("Exit"))
         self["key_green"] = StaticText(_("Restore"))

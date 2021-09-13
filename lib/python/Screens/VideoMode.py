@@ -62,7 +62,7 @@ class VideoSetup(Screen, ConfigListScreen):
 		Screen.__init__(self, session)
 		# for the skin: first try VideoSetup, then Setup, this allows individual skinning
 		self.skinName = ["VideoSetup", "Setup"]
-		self.setup_title = _("Video settings")
+		self.setTitle(_("Video settings"))
 		self["HelpWindow"] = Pixmap()
 		self["HelpWindow"].hide()
 		self["VKeyIcon"] = Boolean(False)
@@ -94,10 +94,6 @@ class VideoSetup(Screen, ConfigListScreen):
 		self.createSetup()
 		self.grabLastGoodMode()
 		self["config"].onSelectionChanged.append(self.selectionChanged)
-		self.onLayoutFinish.append(self.layoutFinished)
-
-	def layoutFinished(self):
-		self.setTitle(self.setup_title)
 
 	def startHotplug(self):
 		self.hw.on_hotplug.append(self.createSetup)
@@ -455,7 +451,7 @@ class AudioSetup(Screen, ConfigListScreen):
 		Screen.__init__(self, session)
 		# for the skin: first try AudioSetup, then Setup, this allows individual skinning
 		self.skinName = ["AudioSetup", "Setup"]
-		self.setup_title = _("Audio settings")
+		self.setTitle(_("Audio settings"))
 		self["HelpWindow"] = Pixmap()
 		self["HelpWindow"].hide()
 		self["VKeyIcon"] = Boolean(False)
@@ -484,10 +480,6 @@ class AudioSetup(Screen, ConfigListScreen):
 
 		self.createSetup()
 		self["config"].onSelectionChanged.append(self.selectionChanged)
-		self.onLayoutFinish.append(self.layoutFinished)
-
-	def layoutFinished(self):
-		self.setTitle(self.setup_title)
 
 	def startHotplug(self):
 		self.hw.on_hotplug.append(self.createSetup)

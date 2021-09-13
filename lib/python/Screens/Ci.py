@@ -98,7 +98,7 @@ class CISetup(Screen, ConfigListScreen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
 		self.skinName = ["Setup"]
-		self.setup_title = _("CI Basic settings")
+		self.setTitle(_("CI Basic settings"))
 		self["HelpWindow"] = Pixmap()
 		self["HelpWindow"].hide()
 		self["VKeyIcon"] = Boolean(False)
@@ -122,10 +122,6 @@ class CISetup(Screen, ConfigListScreen):
 		self["description"] = Label("")
 
 		self.createSetup()
-		self.onLayoutFinish.append(self.layoutFinished)
-
-	def layoutFinished(self):
-		self.setTitle(self.setup_title)
 
 	def createSetup(self):
 		level = config.usage.setup_level.index
@@ -641,7 +637,7 @@ class PermanentPinEntry(Screen, ConfigListScreen):
 	def __init__(self, session, pin, pin_slot):
 		Screen.__init__(self, session)
 		self.skinName = ["ParentalControlChangePin", "Setup"]
-		self.setup_title = _("Enter pin code")
+		self.setTitle(_("Enter pin code"))
 		self.onChangedEntry = []
 
 		self.slot = pin_slot
@@ -663,10 +659,6 @@ class PermanentPinEntry(Screen, ConfigListScreen):
 		}, -1)
 		self["key_red"] = StaticText(_("Cancel"))
 		self["key_green"] = StaticText(_("OK"))
-		self.onLayoutFinish.append(self.layoutFinished)
-
-	def layoutFinished(self):
-		self.setTitle(self.setup_title)
 
 	def valueChanged(self, pin, value):
 		if pin == 1:
