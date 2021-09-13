@@ -58,6 +58,7 @@ public:
 	int currentCursorSelectable();
 private:
 	int m_seperation;
+	std::map<int, int> m_text_offset;
 };
 
 class eListboxPythonMultiContent: public eListboxPythonStringContent
