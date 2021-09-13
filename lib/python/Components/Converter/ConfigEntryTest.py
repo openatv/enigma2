@@ -6,7 +6,7 @@ from Components.Element import cached
 from Components.config import configfile
 
 
-class ConfigEntryTest(Converter, object):
+class ConfigEntryTest(Converter):
 	def __init__(self, argstr):
 		Converter.__init__(self, argstr)
 		args = argstr.split(',')

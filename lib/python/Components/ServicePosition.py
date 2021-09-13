@@ -6,24 +6,22 @@ from enigma import eTimer, iPlayableService, ePositionGauge
 import time
 
 
-class ServicePosition(PerServiceDisplay, object):
+class ServicePosition(PerServiceDisplay):
 	TYPE_LENGTH = 0,
 	TYPE_POSITION = 1,
 	TYPE_REMAINING = 2,
 	TYPE_RELATIVE = 3
 
 	def __init__(self, navcore, type):
-		object.__init__(self)
-		self.updateTimer = eTimer()
-		self.updateTimer.callback.append(self.update)
 		PerServiceDisplay.__init__(self, navcore,
 			{
 				iPlayableService.evStart: self.newService,
 				iPlayableService.evEnd: self.stopEvent
 			})
+		self.updateTimer = eTimer()
+		self.updateTimer.callback.append(self.update)
 		self.type = type
 		self.relative_base = 0
-#		self.setType(type)
 
 	def newService(self):
 		self.setType(self.type)

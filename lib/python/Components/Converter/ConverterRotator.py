@@ -11,7 +11,7 @@ from Components.Converter.Poll import Poll
 from Components.Element import cached
 
 
-class ConverterRotator(Poll, Converter, object):
+class ConverterRotator(Poll, Converter):
 	"""Static Text Converter Rotator"""
 
 	def __init__(self, type):

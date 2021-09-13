@@ -80,7 +80,7 @@ countries = {
 }
 
 
-class EventName(Converter, object):
+class EventName(Converter):
 	NAME = 0
 	SHORT_DESCRIPTION = 1
 	EXTENDED_DESCRIPTION = 2

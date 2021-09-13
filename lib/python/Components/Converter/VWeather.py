@@ -32,7 +32,7 @@ config.plugins.AtileHD.tempUnit = ConfigSelection(default="Celsius", choices=[("
 weather_data = None
 
 
-class VWeather(Converter, object):
+class VWeather(Converter):
 
 	def __init__(self, type):
 		Converter.__init__(self, type)

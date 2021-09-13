@@ -2,7 +2,7 @@ from Components.Converter.Converter import Converter
 from Components.Element import cached
 
 
-class MenuEntryCompare(Converter, object):
+class MenuEntryCompare(Converter):
 	def __init__(self, type):
 		Converter.__init__(self, type)
 		self.entry_id = type

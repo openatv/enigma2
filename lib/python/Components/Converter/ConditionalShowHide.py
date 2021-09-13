@@ -3,7 +3,7 @@ from enigma import eTimer
 from Components.Converter.Converter import Converter
 
 
-class ConditionalShowHide(Converter, object):
+class ConditionalShowHide(Converter):
 	def __init__(self, argstr):
 		Converter.__init__(self, argstr)
 		args = argstr.split(',')

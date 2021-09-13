@@ -5,7 +5,7 @@ from Components.Element import cached
 from Components.Converter.Poll import Poll
 
 
-class VAudioInfo(Poll, Converter, object):
+class VAudioInfo(Poll, Converter):
 	GET_AUDIO_ICON = 0
 	GET_AUDIO_CODEC = 1
 

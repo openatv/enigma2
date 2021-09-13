@@ -7,7 +7,7 @@ from Components.config import config
 from enigma import eEPGCache
 
 
-class EventTime(Poll, Converter, object):
+class EventTime(Poll, Converter):
 	STARTTIME = 0
 	ENDTIME = 1
 	REMAINING = 2

@@ -6,7 +6,7 @@ from Components.Converter.Converter import Converter
 from Components.Element import cached
 
 
-class VfdDisplay(Poll, Converter, object):
+class VfdDisplay(Poll, Converter):
 	def __init__(self, type):
 		Converter.__init__(self, type)
 		Poll.__init__(self)

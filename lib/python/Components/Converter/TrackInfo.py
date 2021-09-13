@@ -6,7 +6,7 @@ from Tools.ISO639 import LanguageCodes
 from Tools.Directories import isPluginInstalled
 
 
-class TrackInfo(Poll, Converter, object):
+class TrackInfo(Poll, Converter):
 	AUDIO = 0
 	SUBTITLE = 1
 	AUDIO_CODEC = 2

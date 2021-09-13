@@ -15,7 +15,7 @@ from enigma import eListbox
 # of the eListbox class. more or less.
 
 
-class Listbox(Renderer, object):
+class Listbox(Renderer):
 	def __init__(self):
 		Renderer.__init__(self)
 		self.__content = None

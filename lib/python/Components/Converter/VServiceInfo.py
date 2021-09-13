@@ -5,7 +5,7 @@ from enigma import iServiceInformation, iPlayableService
 from Components.Element import cached
 
 
-class VServiceInfo(Converter, object):
+class VServiceInfo(Converter):
 
 	AUDIOTRACKS_AVAILABLE = 1
 	SUBTITLES_AVAILABLE = 2

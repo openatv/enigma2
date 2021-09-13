@@ -7,7 +7,7 @@ from time import localtime, strftime
 from Components.Element import cached
 
 
-class AnalogClock(Converter, object):
+class AnalogClock(Converter):
 	DEFAULT = 0
 	OMA_SEC = 1
 	OMA_MIN = 2

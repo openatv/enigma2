@@ -37,7 +37,7 @@ def getafterEvent(timer):
 	return afterevent
 
 
-class PowerTimerList(GUIComponent, object):
+class PowerTimerList(GUIComponent):
 #
 #  | <Name of the Timer>  <action after Timer > |
 #  | <state>          <time range> <start, end> |

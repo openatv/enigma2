@@ -12,7 +12,7 @@ from Tools.GetEcmInfo import GetEcmInfo
 from Components.Converter.Poll import Poll
 
 
-class pliExpertInfo(Poll, Converter, object):
+class pliExpertInfo(Poll, Converter):
 	SMART_LABEL = 0
 	SMART_INFO_H = 1
 	SMART_INFO_V = 2

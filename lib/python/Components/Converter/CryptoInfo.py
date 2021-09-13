@@ -6,7 +6,7 @@ from Tools.GetEcmInfo import GetEcmInfo
 from Components.Converter.Poll import Poll
 
 
-class CryptoInfo(Poll, Converter, object):
+class CryptoInfo(Poll, Converter):
 	def __init__(self, type):
 		Converter.__init__(self, type)
 		Poll.__init__(self)

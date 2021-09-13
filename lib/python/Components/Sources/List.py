@@ -2,7 +2,7 @@ from Components.Element import cached
 from Components.Sources.Source import Source
 
 
-class List(Source, object):
+class List(Source):
 	"""The datasource of a listbox. Currently, the format depends on the used converter. So
 if you put a simple string list in here, you need to use a StringList converter, if you are
 using a "multi content list styled"-list, you need to use the StaticMultiList converter, and

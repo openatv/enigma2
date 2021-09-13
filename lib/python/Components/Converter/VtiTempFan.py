@@ -7,7 +7,7 @@ from six import PY3
 SIGN = ' °' if PY3 else str(' \xc2\xb0')
 
 
-class VtiTempFan(Poll, Converter, object):
+class VtiTempFan(Poll, Converter):
 	TEMPINFO = 1
 	FANINFO = 2
 	ALL = 5

@@ -64,7 +64,7 @@ def addspace(text):
 	return text
 
 
-class PliExtraInfo(Poll, Converter, object):
+class PliExtraInfo(Poll, Converter):
 	def __init__(self, type):
 		Converter.__init__(self, type)
 		Poll.__init__(self)

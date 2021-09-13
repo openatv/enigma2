@@ -4,7 +4,7 @@ from Tools.Directories import SCOPE_SKIN_IMAGE, SCOPE_ACTIVE_SKIN, resolveFilena
 from Tools.LoadPixmap import LoadPixmap
 
 
-class ValueToPixmap(Converter, object):
+class ValueToPixmap(Converter):
 	LANGUAGE_CODE = 0
 	PATH = 1
 

@@ -13,7 +13,7 @@ from Screens.Standby import QUIT_RESTART, TryQuitMainloop
 from Screens.VirtualKeyBoard import VirtualKeyBoard
 
 
-class ConfigList(GUIComponent, object):
+class ConfigList(GUIComponent):
 	def __init__(self, list, session=None):
 		GUIComponent.__init__(self)
 		self.l = eListboxPythonConfigContent()

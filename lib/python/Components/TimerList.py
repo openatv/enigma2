@@ -15,7 +15,7 @@ import six
 SIGN = '°' if six.PY3 else str('\xc2\xb0')
 
 
-class TimerList(GUIComponent, object):
+class TimerList(GUIComponent):
 #
 #  | <Name of the Timer>    <Service> |
 #  | <state>  <orb.pos>  <start, end> |

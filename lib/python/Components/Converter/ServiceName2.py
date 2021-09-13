@@ -30,7 +30,7 @@ except:
 	correctChannelNumber = False
 
 
-class ServiceName2(Converter, object):
+class ServiceName2(Converter):
 	NAME = 0
 	NUMBER = 1
 	BOUQUET = 2

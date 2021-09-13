@@ -20,7 +20,7 @@ from Components.Element import cached
 from time import localtime, strftime
 
 
-class VExtraNumText(Converter, object):
+class VExtraNumText(Converter):
 	SNRNUM = 0
 	AGCNUM = 1
 	BERNUM = 2

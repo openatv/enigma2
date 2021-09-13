@@ -5,7 +5,7 @@ from Components.Element import cached
 from time import localtime, strftime
 
 
-class EGAnalogic(Converter, object):
+class EGAnalogic(Converter):
 
 	def __init__(self, type):
 		Converter.__init__(self, type)

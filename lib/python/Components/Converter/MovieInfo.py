@@ -4,7 +4,7 @@ from enigma import iServiceInformation, eServiceReference
 from ServiceReference import ServiceReference
 
 
-class MovieInfo(Converter, object):
+class MovieInfo(Converter):
 	MOVIE_SHORT_DESCRIPTION = 0 # meta description when available.. when not .eit short description
 	MOVIE_META_DESCRIPTION = 1 # just meta description when available
 	MOVIE_REC_SERVICE_NAME = 2 # name of recording service
