@@ -21,18 +21,25 @@ class SoftcamSetup(Setup):
 			("", _("Don't restart")),
 			("s", _("Restart softcam"))
 		]
-		config.misc.softcams = ConfigSelection(default="None", choices=self.softcam.getList())
+		defaultrestart = ""
+		softcams = self.softcam.getList()
+		defaultsoftcam = self.softcam.current()
+		if softcams and defaultsoftcam != "None":
+			defaultrestart = "s"
+		else:
+			softcams = [("", _("None"))]
+		config.misc.softcams = ConfigSelection(default=defaultsoftcam, choices=softcams)
 		config.misc.softcams.value == ""
 		cardservers = self.cardserver.getList()
-		if cardservers:
-			default = self.cardserver.current()
+		defaultcardserver = self.cardserver.current()
+		if cardservers and defaultcardserver != "None":
 			restartOptions.extend([("c", _("Restart cardserver")), ("sc", _("Restart both"))])
+			defaultrestart += "c"
 		else:
 			cardservers = [("", _("None"))]
-			default = ""
-		config.misc.cardservers = ConfigSelection(choices=cardservers)
+		config.misc.cardservers = ConfigSelection(default=defaultcardserver, choices=cardservers)
 		config.misc.cardservers.value == ""
-		config.misc.restarts = ConfigSelection(default="", choices=restartOptions)
+		config.misc.restarts = ConfigSelection(default=defaultrestart, choices=restartOptions)
 		Setup.__init__(self, session=session, setup="Softcam")
 		self["key_yellow"] = StaticText()
 		self["key_blue"] = StaticText()
