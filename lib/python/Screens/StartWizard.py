@@ -13,7 +13,6 @@ from Components.config import config, ConfigBoolean, configfile
 from Screens.LocaleSelection import LocaleWizard
 
 config.misc.firstrun = ConfigBoolean(default=True)
-config.misc.languageselected = ConfigBoolean(default=True)
 config.misc.videowizardenabled = ConfigBoolean(default=True)
 
 
