@@ -52,6 +52,7 @@ class ScrollLabel(HTMLComponent, GUIComponent):
 		self.pageHeight = int(lines * lineheight)
 		self.instance.move(self.long_text.position())
 		self.instance.resize(eSize(self.pageWidth, self.pageHeight + int(lineheight/6)))
+		self.long_text.resize(eSize(self.pageWidth - 30, self.pageHeight + int(lineheight/6)))
 		self.scrollbar.move(ePoint(self.pageWidth - 10, 0))
 		self.scrollbar.resize(eSize(10, self.pageHeight + int(lineheight / 6)))
 		self.scrollbar.setOrientation(eSlider.orVertical)
