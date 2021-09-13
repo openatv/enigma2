@@ -2,11 +2,11 @@
 from enigma import eConsoleAppContainer
 from Components.Console import Console
 from Components.PackageInfo import PackageInfoHandler
-from Components.Language import language
+from Components.International import international
 from Components.Sources.List import List
 from Components.Ipkg import IpkgComponent
 from Components.Network import iNetwork
-from Tools.Directories import pathExists, fileExists, resolveFilename, SCOPE_METADIR
+from Tools.Directories import resolveFilename, SCOPE_METADIR
 from Tools.HardwareInfo import HardwareInfo
 from time import time
 from boxbranding import getImageVersion
@@ -28,7 +28,7 @@ class SoftwareTools(PackageInfoHandler):
 			self.ImageVersion = 'Experimental'
 		else:
 			self.ImageVersion = 'Stable'
-		self.language = language.getLanguage()[:2] # getLanguage returns e.g. "fi_FI" for "language_country"
+		self.language = international.getLocale()[:2] # getLocale returns e.g. "fi_FI" for "language_country"
 		PackageInfoHandler.__init__(self, self.statusCallback, blocking=False, neededTag='ALL_TAGS', neededFlag=self.ImageVersion)
 		self.directory = resolveFilename(SCOPE_METADIR)
 		self.hardware_info = HardwareInfo()

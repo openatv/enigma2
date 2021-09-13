@@ -3,7 +3,6 @@ from __future__ import absolute_import
 from os import listdir
 
 from Components.Console import Console
-# from Components.Language import language
 from Tools.Directories import SCOPE_KEYMAPS, pathExists, resolveFilename
 
 

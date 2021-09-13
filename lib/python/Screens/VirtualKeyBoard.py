@@ -8,7 +8,7 @@ from skin import fonts, parameters
 from Components.ActionMap import HelpableNumberActionMap
 from Components.Input import Input
 from Components.Label import Label
-from Components.Language import language
+from Components.International import international
 from Components.MenuList import MenuList
 from Components.MultiContent import MultiContentEntryText, MultiContentEntryPixmapAlphaTest
 from Components.Sources.StaticText import StaticText
@@ -522,7 +522,7 @@ class VirtualKeyBoard(Screen, HelpableScreen):
 			"9": (self.keyNumberGlobal, _("Number or SMS style data entry")),
 			"gotAsciiCode": (self.keyGotAscii, _("Keyboard data entry"))
 		}, -2, description=_("Virtual KeyBoard Functions"))
-		self.lang = language.getLanguage()
+		self.lang = international.getLocale()
 		self["prompt"] = Label(prompt)
 		self["text"] = Input(text=text, maxSize=maxSize, visible_width=visible_width, type=type, currPos=len(six.ensure_text(text, errors='ignore')) if currPos is None else currPos, allMarked=allMarked)
 		self["list"] = VirtualKeyBoardList([])

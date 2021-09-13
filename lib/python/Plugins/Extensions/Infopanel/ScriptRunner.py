@@ -4,7 +4,6 @@ from Screens.Console import Console
 from Screens.MessageBox import MessageBox
 from Components.ActionMap import ActionMap, HelpableActionMap
 from Components.Label import Label
-from Components.Language import language
 from Components.Button import Button
 from Components.MenuList import MenuList
 from Components.Sources.List import List

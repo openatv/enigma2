@@ -442,8 +442,8 @@ def setAudioTrack(service):
 		seltrack = tracks.getCurrentTrack()
 		# we need default selected language from image
 		# to set the audiotrack if "config.autolanguage.audio_autoselect...values" are not set
-		from Components.Language import language
-		syslang = language.getLanguage()[:2]
+		from Components.International import international
+		syslang = international.getLocale()[:2]
 		syslang = langC[syslang][0]
 		if (config.autolanguage.audio_autoselect1.value or config.autolanguage.audio_autoselect2.value or config.autolanguage.audio_autoselect3.value or config.autolanguage.audio_autoselect4.value) != "---":
 			audiolang = [config.autolanguage.audio_autoselect1.value, config.autolanguage.audio_autoselect2.value, config.autolanguage.audio_autoselect3.value, config.autolanguage.audio_autoselect4.value]
