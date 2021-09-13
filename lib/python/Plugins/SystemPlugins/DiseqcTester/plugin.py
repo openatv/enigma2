@@ -580,7 +580,7 @@ class DiseqcTesterTestTypeSelection(Screen, ConfigListScreen):
 		self.feid = feid
 
 		self.list = []
-		ConfigListScreen.__init__(self, self.list, session=self.session, on_change=self.changedEntry)
+		ConfigListScreen.__init__(self, self.list, session=session, on_change=self.changedEntry)
 
 		self["actions"] = ActionMap(["SetupActions", "MenuActions"],
 			{

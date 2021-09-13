@@ -56,7 +56,6 @@ class Programmlisten_Updater(Screen, ConfigListScreen):
 
     def __init__(self, session):
         Screen.__init__(self, session)
-        self.session = session
         self["description"] = Label("description")
         self['MenuListSetting'] = MenuListSetting([])
         self.skinName = "Programmlisten_Updater"

@@ -61,7 +61,7 @@ class HdmiCECSetupScreen(Screen, ConfigListScreen):
 
 		self.onChangedEntry = []
 		self.list = []
-		ConfigListScreen.__init__(self, self.list, session=self.session, on_change=self.changedEntry)
+		ConfigListScreen.__init__(self, self.list, session=session, on_change=self.changedEntry)
 		self.advancedSettings("start")
 		self.createSetup()
 

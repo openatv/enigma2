@@ -40,7 +40,7 @@ class UI3DSetupScreen(Screen, ConfigListScreen):
 		}, -2)
 
 		self.list = []
-		ConfigListScreen.__init__(self, self.list, session=self.session)
+		ConfigListScreen.__init__(self, self.list, session=session)
 
 		mode = config.plugins.UI3DSetup.mode.value
 		znorm = config.plugins.UI3DSetup.znorm.value

@@ -299,7 +299,6 @@ class ButtonSetup(Screen):
 	def __init__(self, session, args=None):
 		Screen.__init__(self, session)
 		self['description'] = Label(_('Click on your remote on the button you want to change'))
-		self.session = session
 		self.setTitle(_("Hotkey Setup"))
 		self["key_red"] = Button(_("Exit"))
 		self.list = []
@@ -368,7 +367,6 @@ class ButtonSetupSelect(Screen):
 		Screen.__init__(self, session)
 		self.skinName = "ButtonSetupSelect"
 		self['description'] = Label(_('Select the desired function and click on "OK" to assign it. Use "CH+/-" to toggle between the lists. Select an assigned function and click on "OK" to de-assign it. Use "Next/Previous" to change the order of the assigned functions.'))
-		self.session = session
 		self.key = key
 		self.setTitle(_("Hotkey Setup for") + ": " + key[0][0])
 		self["key_red"] = Button(_("Cancel"))

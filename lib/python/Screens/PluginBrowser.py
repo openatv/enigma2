@@ -823,7 +823,6 @@ class PluginDownloadBrowser(Screen):
 class PluginFilter(ConfigListScreen, Screen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
-		self.session = session
 		self.skinName = "Setup"
 		Screen.setTitle(self, _("Plugin Filter"))
 		self["HelpWindow"] = Pixmap()
@@ -835,7 +834,7 @@ class PluginFilter(ConfigListScreen, Screen):
 
 		self.onChangedEntry = []
 		self.list = []
-		ConfigListScreen.__init__(self, self.list, session=self.session, on_change=self.changedEntry)
+		ConfigListScreen.__init__(self, self.list, session=session, on_change=self.changedEntry)
 		self.createSetup()
 
 		self["actions"] = ActionMap(["SetupActions", 'ColorActions', 'VirtualKeyboardActions'],

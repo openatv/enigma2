@@ -18,7 +18,6 @@ from . import VideoEnhancement
 class VideoEnhancementSetup(Screen, ConfigListScreen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
-		self.session = session
 		self.onChangedEntry = []
 		self.skinName = ["VideoEnhancementSetup"]
 		self.setup_title = _("Video enhancement setup")
@@ -31,7 +30,7 @@ class VideoEnhancementSetup(Screen, ConfigListScreen):
 
 		self.list = []
 		self.xtdlist = []
-		ConfigListScreen.__init__(self, self.list, session=self.session, on_change=self.changedEntry)
+		ConfigListScreen.__init__(self, self.list, session=session, on_change=self.changedEntry)
 		self.createSetup()
 
 		self["actions"] = ActionMap(["SetupActions", "ColorActions", "MenuActions"],

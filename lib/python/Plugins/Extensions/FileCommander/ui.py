@@ -234,7 +234,6 @@ class FileCommanderScreen(Screen, HelpableScreen, key_actions):
 		if path_right == "":
 			path_right = None
 
-		self.session = session
 		Screen.__init__(self, session)
 		HelpableScreen.__init__(self)
 

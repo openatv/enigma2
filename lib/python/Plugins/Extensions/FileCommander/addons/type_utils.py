@@ -40,9 +40,8 @@ pversion = "1.0-r0"
 
 class MoviePlayer(Movie_Audio_Player):
 	def __init__(self, session, service):
-		self.session = session
 		self.WithoutStopClose = False
-		Movie_Audio_Player.__init__(self, self.session, service)
+		Movie_Audio_Player.__init__(self, session, service)
 
 	def leavePlayer(self):
 		self.is_closing = True
@@ -92,7 +91,6 @@ class vEditor(Screen, HelpableScreen):
 		pname = _("File Commander - Addon File-Viewer")
 		self.skin = vEditor.skin
 		Screen.__init__(self, session)
-		self.session = session
 		HelpableScreen.__init__(self)
 		self.file_name = file
 		self.list = []

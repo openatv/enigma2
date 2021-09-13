@@ -820,7 +820,7 @@ class CIHelperSetup(Screen, ConfigListScreen):
 		Screen.setTitle(self, _("CIHelper Setup"))
 		self.onChangedEntry = []
 		self.list = []
-		ConfigListScreen.__init__(self, self.list, session=self.session, on_change=self.selectionChanged)
+		ConfigListScreen.__init__(self, self.list, session=session, on_change=self.selectionChanged)
 		Screen.setTitle(self, _("CIHelper Setup"))
 		self['key_red'] = Label(_("Save"))
 		self['actions'] = ActionMap(['WizardActions', 'ColorActions'], {'red': self.saveCIHelper, 'back': self.close})

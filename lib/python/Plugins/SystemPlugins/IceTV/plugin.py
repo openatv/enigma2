@@ -1314,7 +1314,6 @@ class IceTVServerSetup(Screen, IceTVUIBase):
     _instructions = _("Please select the IceTV service that you wish to use.")
 
     def __init__(self, session):
-        self.session = session
         self.have_region_list = False
         Screen.__init__(self, session)
         IceTVUIBase.__init__(self, title=_("IceTV - Service selection"))
@@ -1375,7 +1374,6 @@ class IceTVUserTypeScreen(Screen, IceTVUIBase):
                       "'Existing or trial customer', if not, then select 'New customer'.")
 
     def __init__(self, session):
-        self.session = session
         Screen.__init__(self, session)
         self["title"] = Label(_("Welcome to IceTV"))
         IceTVUIBase.__init__(self, title=_("IceTV - Account selection"))
@@ -1433,7 +1431,6 @@ class IceTVNewUserSetup(ConfigListScreen, Screen, IceTVUIBase):
     _merge_eit = _("Merge broadcast EPG with IceTV")
 
     def __init__(self, session):
-        self.session = session
         Screen.__init__(self, session)
         IceTVUIBase.__init__(self, title=_("IceTV - User Information"), description="")
         self["instructions"] = Label(self._instructions)
@@ -1528,7 +1525,6 @@ class IceTVRegionSetup(Screen, IceTVUIBase):
     _wait = _("Please wait while the list downloads...")
 
     def __init__(self, session):
-        self.session = session
         self.have_region_list = False
         Screen.__init__(self, session)
         IceTVUIBase.__init__(self, title=_("IceTV - Region"), description=self._wait)
@@ -1607,7 +1603,6 @@ class IceTVLogin(Screen, IceTVUIBase):
     _banner = None
 
     def __init__(self, session):
-        self.session = session
         self.success = False
         Screen.__init__(self, session)
         IceTVUIBase.__init__(self, title=_("IceTV - Login"))
@@ -1746,7 +1741,6 @@ class IceTVNeedPassword(ConfigListScreen, Screen, IceTVUIBase):
     _update_interval = _("Connect to IceTV server every")
 
     def __init__(self, session):
-        self.session = session
         Screen.__init__(self, session)
         # This creates a new instance variable.
         # It doesn't change the class variable of the same name.

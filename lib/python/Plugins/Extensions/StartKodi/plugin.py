@@ -35,7 +35,6 @@ class StartKodi2(Screen):
 		</screen>"""
 
 	def __init__(self, session, args=0):
-		self.session = session
 		Screen.__init__(self, session)
 
 		freembsd = str(self.getFreeSD())

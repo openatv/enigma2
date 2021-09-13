@@ -7,7 +7,6 @@ from Screens.ChoiceBox import ChoiceBox
 class ResolutionSelection(Screen):
 	def __init__(self, session, infobar=None):
 		Screen.__init__(self, session)
-		self.session = session
 
 		xresString = open("/proc/stb/vmpeg/0/xres", "r").read()
 		yresString = open("/proc/stb/vmpeg/0/yres", "r").read()

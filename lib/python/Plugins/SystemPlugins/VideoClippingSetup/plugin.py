@@ -41,7 +41,7 @@ class VideoClippingCoordinates(Screen, ConfigListScreen):
 		}, -2)
 
 		self.list = []
-		ConfigListScreen.__init__(self, self.list, session=self.session)
+		ConfigListScreen.__init__(self, self.list, session=session)
 
 		left = config.plugins.VideoClippingSetup.clip_left.value
 		width = config.plugins.VideoClippingSetup.clip_width.value

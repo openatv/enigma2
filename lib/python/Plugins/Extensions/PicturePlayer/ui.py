@@ -156,7 +156,6 @@ class Pic_Setup(Screen, ConfigListScreen):
 		self.skinName = ["PicturePlayerSetup", "Setup"]
 		self.setup_title = _("Settings")
 		self.onChangedEntry = []
-		self.session = session
 		ConfigListScreen.__init__(self, [], session=session, on_change=self.changedEntry)
 		self["actions"] = ActionMap(["SetupActions", "MenuActions"],
 			{

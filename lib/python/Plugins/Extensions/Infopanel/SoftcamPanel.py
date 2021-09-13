@@ -63,7 +63,6 @@ class ShowSoftcamPackages(Screen):
 
 	def __init__(self, session, args=None):
 		Screen.__init__(self, session)
-		self.session = session
 
 		self["actions"] = ActionMap(["OkCancelActions", "DirectionActions", "ColorActions"],
 		{

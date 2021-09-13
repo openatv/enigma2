@@ -296,7 +296,6 @@ class Infopanel(Screen, InfoBarPiP, ProtectedScreen):
 		config.plugins.configurationbackup = BackupRestore_InitConfig()
 		if config.ParentalControl.configured.value:
 			ProtectedScreen.__init__(self)
-		self.session = session
 		self.skin = MENU_SKIN
 		self.onShown.append(self.setWindowTitle)
 		ProtectedScreen.__init__(self)
@@ -614,7 +613,6 @@ class Infopanel(Screen, InfoBarPiP, ProtectedScreen):
 class KeymapSel(ConfigListScreen, Screen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
-		self.session = session
 		self.skinName = ["SetupInfo", "Setup"]
 		Screen.setTitle(self, _("Keymap Selection") + "...")
 		self.setup_title = _("Keymap Selection") + "..."
@@ -646,7 +644,7 @@ class KeymapSel(ConfigListScreen, Screen):
 
 		self.onChangedEntry = []
 		self.list = []
-		ConfigListScreen.__init__(self, self.list, session=self.session, on_change=self.changedEntry)
+		ConfigListScreen.__init__(self, self.list, session=session, on_change=self.changedEntry)
 		self.createSetup()
 
 		self["actions"] = ActionMap(["SetupActions", 'ColorActions'],

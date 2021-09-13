@@ -445,7 +445,7 @@ class RemoteControlType(Screen, ConfigListScreen):
 		self["description"] = StaticText()
 
 		self.list = []
-		ConfigListScreen.__init__(self, self.list, session=self.session)
+		ConfigListScreen.__init__(self, self.list, session=session)
 
 		rctype = config.plugins.remotecontroltype.rctype.value
 		self.rctype = ConfigSelection(choices=self.rcList, default=str(rctype))

@@ -39,7 +39,7 @@ class ParentalControlSetup(Screen, ConfigListScreen, ProtectedScreen):
 		self.onChangedEntry = []
 
 		self.list = []
-		ConfigListScreen.__init__(self, self.list, session=self.session, on_change=self.changedEntry)
+		ConfigListScreen.__init__(self, self.list, session=session, on_change=self.changedEntry)
 		self.createSetup()
 
 		self["actions"] = NumberActionMap(["SetupActions", "MenuActions"],

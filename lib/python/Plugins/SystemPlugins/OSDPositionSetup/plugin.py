@@ -40,7 +40,7 @@ class OSDScreenPosition(Screen, ConfigListScreen):
 		}, -2)
 
 		self.list = []
-		ConfigListScreen.__init__(self, self.list, session=self.session)
+		ConfigListScreen.__init__(self, self.list, session=session)
 
 		left = config.plugins.OSDPositionSetup.dst_left.value
 		width = config.plugins.OSDPositionSetup.dst_width.value

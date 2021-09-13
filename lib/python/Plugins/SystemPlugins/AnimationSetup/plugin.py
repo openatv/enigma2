@@ -53,7 +53,6 @@ class AnimationSetupConfig(ConfigListScreen, Screen):
 		"""
 
 	def __init__(self, session):
-		self.session = session
 		self.entrylist = []
 
 		Screen.__init__(self, session)

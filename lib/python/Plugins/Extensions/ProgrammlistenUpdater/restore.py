@@ -31,7 +31,6 @@ class PU_Restore(Screen, ConfigListScreen):
 
     def __init__(self, session):
         Screen.__init__(self, session)
-        self.session = session
         self['ListSetting'] = MenuList([])
         self.skinName = "PU_Restore"
         self.setup_title = _("Programmlisten Restore")

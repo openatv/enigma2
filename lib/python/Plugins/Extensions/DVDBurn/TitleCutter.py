@@ -10,7 +10,6 @@ class TitleCutter(CutListEditor):
 	def __init__(self, session, t):
 		CutListEditor.__init__(self, session, t.source)
 		self.skin = CutListEditor.skin
-		self.session = session
 		self.t = t
 		self.__event_tracker = ServiceEventTracker(screen=self, eventmap={
 				iPlayableService.evUpdatedInfo: self.getPMTInfo,

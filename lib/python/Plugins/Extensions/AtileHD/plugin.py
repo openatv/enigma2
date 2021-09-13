@@ -82,7 +82,6 @@ class WeatherLocationChoiceList(Screen):
 		"""
 
 	def __init__(self, session, location_list):
-		self.session = session
 		self.location_list = location_list
 		list = []
 		Screen.__init__(self, session)
@@ -136,7 +135,6 @@ class AtileHD_Config(Screen, ConfigListScreen):
 	"""
 
 	def __init__(self, session, args=0):
-		self.session = session
 		self.skin_lines = []
 		self.changed_screens = False
 		Screen.__init__(self, session)
@@ -147,7 +145,7 @@ class AtileHD_Config(Screen, ConfigListScreen):
 			self.getInitConfig()
 
 		self.list = []
-		ConfigListScreen.__init__(self, self.list, session=self.session, on_change=self.changedEntry)
+		ConfigListScreen.__init__(self, self.list, session=session, on_change=self.changedEntry)
 
 		self["key_red"] = Label(_("Cancel"))
 		self["key_green"] = Label(_("OK"))
@@ -563,7 +561,6 @@ class AtileHD_Config(Screen, ConfigListScreen):
 class AtileHD_About(Screen):
 
 	def __init__(self, session, args=0):
-		self.session = session
 		Screen.__init__(self, session)
 		self["setupActions"] = ActionMap(["SetupActions", "ColorActions"],
 			{
@@ -605,7 +602,6 @@ class AtileHDScreens(Screen):
 
 	def __init__(self, session):
 		Screen.__init__(self, session)
-		self.session = session
 
 		global cur_skin
 		self.is_atile = False

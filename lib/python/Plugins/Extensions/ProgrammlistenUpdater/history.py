@@ -38,7 +38,6 @@ class PU_History(Screen):
 
     def __init__(self, session):
         Screen.__init__(self, session)
-        self.session = session
         self.skinName = "PU_History"
         self.setup_title = _("Programmlisten History")
         self.setTitle(self.setup_title)

@@ -142,7 +142,6 @@ class BackupScreen(Screen, ConfigListScreen):
 
 	def __init__(self, session, runBackup=False):
 		Screen.__init__(self, session)
-		self.session = session
 		self.runBackup = runBackup
 		self["actions"] = ActionMap(["WizardActions", "DirectionActions"],
 		{
@@ -478,7 +477,6 @@ class RestoreScreen(Screen, ConfigListScreen):
 
 	def __init__(self, session, runRestore=False):
 		Screen.__init__(self, session)
-		self.session = session
 		self.runRestore = runRestore
 		self["actions"] = ActionMap(["WizardActions", "DirectionActions"],
 		{
@@ -586,7 +584,6 @@ class RestoreMyMetrixHD(Screen):
 			<widget name="label" position="10,30" size="500,50" halign="center" font="Regular;20" transparent="1" foregroundColor="white" />
 			</screen> """
 		self.skin = skin
-		self.session = session
 		self["label"] = Label(_("Please wait while your skin setting is restoring..."))
 		self["summary_description"] = StaticText(_("Please wait while your skin setting is restoring..."))
 		self.onShown.append(self.setWindowTitle)

@@ -36,7 +36,6 @@ class ArchiverMenuScreen(Screen):
 		</screen>"""
 
 	def __init__(self, session, sourcelist, targetlist):
-		self.session = session
 
 		self.pname = pname
 		self.pdesc = pdesc
@@ -224,7 +223,6 @@ class ArchiverInfoScreen(Screen):
 		</screen>"""
 
 	def __init__(self, session, liste, sourceDir, filename):
-		self.session = session
 
 		self.pname = pname
 		self.pdesc = pdesc

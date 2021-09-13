@@ -69,7 +69,6 @@ class WlanStatus(Screen):
 
 	def __init__(self, session, iface):
 		Screen.__init__(self, session)
-		self.session = session
 		self.iface = iface
 
 		self["LabelBSSID"] = StaticText(_('Accesspoint:'))
@@ -248,7 +247,6 @@ class WlanScan(Screen):
 
 	def __init__(self, session, iface):
 		Screen.__init__(self, session)
-		self.session = session
 		self.iface = iface
 		self.skin_path = plugin_path
 		self.oldInterfaceState = iNetwork.getAdapterAttribute(self.iface, "up")

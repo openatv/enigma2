@@ -257,7 +257,6 @@ class CreateQuadPipChannelEntry(ChannelSelectionBase):
 			"down": self.goDown,
 		}, -1)
 
-		self.session = session
 		dh = self.session.desktop.size().height()
 		self.skin = {1080: CreateQuadPipChannelEntry.skin_default_1080p,
 						720: CreateQuadPipChannelEntry.skin_default_720p,
@@ -435,7 +434,6 @@ class QuadPiPChannelSelection(Screen, HelpableScreen):
 		"""
 
 	def __init__(self, session):
-		self.session = session
 		Screen.__init__(self, session)
 		HelpableScreen.__init__(self)
 		self.setTitle(_("Quad PiP Channel Selection"))

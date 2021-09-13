@@ -2301,7 +2301,6 @@ class Seekbar(Screen):
 	def __init__(self, session, fwd):
 		Screen.__init__(self, session)
 		self.setTitle(_("Seek"))
-		self.session = session
 		self.fwd = fwd
 		self.percent = 0.0
 		self.length = None

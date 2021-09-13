@@ -34,7 +34,6 @@ class TaskListScreen(Screen):
 
 	def __init__(self, session, tasklist):
 		Screen.__init__(self, session)
-		self.session = session
 		self.tasklist = tasklist
 		self["tasklist"] = List(self.tasklist)
 

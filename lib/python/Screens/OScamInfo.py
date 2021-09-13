@@ -394,7 +394,6 @@ class oscMenuList(MenuList):
 
 class OscamInfoMenu(Screen):
 	def __init__(self, session):
-		self.session = session
 		self.menu = [_("Show /tmp/ecm.info"), _("Show Clients"), _("Show Readers/Proxies"), _("Show Log"), _("Card infos (CCcam-Reader)"), _("ECM Statistics"), _("Setup")]
 		Screen.__init__(self, session)
 		self.osc = OscamInfo()
@@ -599,7 +598,6 @@ class oscECMInfo(Screen, OscamInfo):
 class oscInfo(Screen, OscamInfo):
 	def __init__(self, session, what):
 		global HDSKIN, sizeH
-		self.session = session
 		self.what = what
 		self.firstrun = True
 		self.listchange = True
@@ -1154,7 +1152,6 @@ class oscReaderStats(Screen, OscamInfo):
 class OscamInfoConfigScreen(Screen, ConfigListScreen):
 	def __init__(self, session, msg=None):
 		Screen.__init__(self, session)
-		self.session = session
 		if msg is not None:
 			self.msg = "Error:\n%s" % msg
 		else:
@@ -1172,7 +1169,7 @@ class OscamInfoConfigScreen(Screen, ConfigListScreen):
 			"cancel": self.cancel,
 			"ok": self.save,
 		}, -2)
-		ConfigListScreen.__init__(self, self.oscamconfig, session=self.session)
+		ConfigListScreen.__init__(self, self.oscamconfig, session=session)
 		self.createSetup()
 		config.oscaminfo.userdatafromconf.addNotifier(self.elementChanged, initial_call=False)
 		config.oscaminfo.autoupdate.addNotifier(self.elementChanged, initial_call=False)
