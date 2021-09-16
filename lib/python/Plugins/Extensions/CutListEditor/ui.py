@@ -69,80 +69,42 @@ class CutListContextMenu(FixedMenu):
 		menu = [(_("back"), self.close)] #, (None, )]
 
 		if state == self.SHOW_STARTCUT:
-			menu.append((_("start cut here (reset)"), self.startCut))
+			menu.append((_("start cut here (reset)"), self.close, self.RET_STARTCUT))
 		else:
-			menu.append((_("start cut here"), self.startCut))
+			menu.append((_("start cut here"), self.close, self.RET_STARTCUT))
 
 		if state == self.SHOW_ENDCUT:
-			menu.append((_("end cut here (reset)"), self.endCut))
+			menu.append((_("end cut here (reset)"), self.close, self.RET_ENDCUT))
 		else:
-			menu.append((_("end cut here"), self.endCut))
+			menu.append((_("end cut here"), self.close, self.RET_ENDCUT))
 
 		if state == self.SHOW_DELETECUT:
-			menu.append((_("delete cut"), self.deleteCut))
+			menu.append((_("delete cut"), self.close, self.RET_DELETECUT))
 		else:
 			menu.append((_("delete cut (disabled)"), ))
 
-		menu.append((_("remove before this position"), self.removeBefore))
-		menu.append((_("remove after this position"), self.removeAfter))
+		menu.append((_("remove before this position"), self.close, self.RET_REMOVEBEFORE))
+		menu.append((_("remove after this position"), self.close, self.RET_REMOVEAFTER))
 
 		if cut_state == 2:
-			menu.append((_("enable cuts (preview)"), self.enableCuts))
+			menu.append((_("enable cuts (preview)"), self.close, self.RET_ENABLECUTS))
 		else:
-			menu.append((_("disable cuts (edit)"), self.disableCuts))
+			menu.append((_("disable cuts (edit)"), self.close, self.RET_DISABLECUTS))
 
-		menu.append((_("execute cuts and exit"), self.executeCuts))
-		menu.append((_("quick execute"), self.quickExecute))
+		menu.append((_("execute cuts and exit"), self.close, self.RET_EXECUTECUTS))
+		menu.append((_("quick execute"), self.close, self.RET_QUICKEXECUTE))
 
-		menu.append((_("insert mark after each in"), self.markIn))
+		menu.append((_("insert mark after each in"), self.close, self.RET_MARKIN))
 
 		if not nearmark:
-			menu.append((_("insert mark here"), self.insertMark))
+			menu.append((_("insert mark here"), self.close, self.RET_MARK))
 		else:
-			menu.append((_("remove this mark"), self.removeMark))
+			menu.append((_("remove this mark"), self.close, self.RET_DELETEMARK))
 
-		menu.append((_("grab this frame as bitmap"), self.grabFrame))
+		menu.append((_("grab this frame as bitmap"), self.close, self.RET_GRABFRAME))
 		FixedMenu.__init__(self, session, _("Cut"), menu)
 		self.skinName = "CutListMenu"
 
-	def startCut(self):
-		self.close(self.RET_STARTCUT)
-
-	def endCut(self):
-		self.close(self.RET_ENDCUT)
-
-	def deleteCut(self):
-		self.close(self.RET_DELETECUT)
-
-	def markIn(self):
-		self.close(self.RET_MARKIN)
-
-	def insertMark(self):
-		self.close(self.RET_MARK)
-
-	def removeMark(self):
-		self.close(self.RET_DELETEMARK)
-
-	def removeBefore(self):
-		self.close(self.RET_REMOVEBEFORE)
-
-	def removeAfter(self):
-		self.close(self.RET_REMOVEAFTER)
-
-	def enableCuts(self):
-		self.close(self.RET_ENABLECUTS)
-
-	def disableCuts(self):
-		self.close(self.RET_DISABLECUTS)
-
-	def executeCuts(self):
-		self.close(self.RET_EXECUTECUTS)
-
-	def quickExecute(self):
-		self.close(self.RET_QUICKEXECUTE)
-
-	def grabFrame(self):
-		self.close(self.RET_GRABFRAME)
 
 class CutListEditor(Screen, InfoBarBase, InfoBarSeek, InfoBarCueSheetSupport, HelpableScreen):
 	skin = """
