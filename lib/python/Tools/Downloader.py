@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-from __future__ import print_function
 from boxbranding import getMachineBrand, getMachineName
 
 from twisted.web import client

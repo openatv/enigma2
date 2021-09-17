@@ -481,7 +481,7 @@ class ISO639Language:
 
 	def getChoices(self):
 		from Components.International import international
-		syslang = international.getLocale()[:2]
+		syslang = international.getLanguage()
 		choices = []
 		for lang, id_list in six.iteritems(self.idlist_by_name):
 			if syslang not in id_list and 'en' not in id_list:

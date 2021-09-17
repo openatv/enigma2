@@ -1331,7 +1331,7 @@ class PluginDetails(Screen, PackageInfoHandler):
 		Screen.__init__(self, session)
 		Screen.setTitle(self, _("Plugin details"))
 		self.skin_path = plugin_path
-		self.language = international.getLocale()[:2]  # getLocale returns e.g. "fi_FI" for "language_country"
+		self.language = international.getLanguage()
 		self.attributes = None
 		PackageInfoHandler.__init__(self, self.statusCallback, blocking=False)
 		self.directory = resolveFilename(SCOPE_METADIR)

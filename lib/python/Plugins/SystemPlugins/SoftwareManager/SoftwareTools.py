@@ -28,7 +28,7 @@ class SoftwareTools(PackageInfoHandler):
 			self.ImageVersion = 'Experimental'
 		else:
 			self.ImageVersion = 'Stable'
-		self.language = international.getLocale()[:2] # getLocale returns e.g. "fi_FI" for "language_country"
+		self.language = international.getLanguage()
 		PackageInfoHandler.__init__(self, self.statusCallback, blocking=False, neededTag='ALL_TAGS', neededFlag=self.ImageVersion)
 		self.directory = resolveFilename(SCOPE_METADIR)
 		self.hardware_info = HardwareInfo()
