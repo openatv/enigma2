@@ -89,7 +89,7 @@ class ParentalControlSetup(Screen, ConfigListScreen, ProtectedScreen):
 		self["config"].list = self.list
 		self["config"].setList(self.list)
 
-	def keyOK(self):
+	def keySelect(self):
 		if self["config"].l.getCurrentSelection() == self.changePin:
 			self.session.open(ParentalControlChangePin, config.ParentalControl.servicepin[0], _("service PIN"))
 		elif self["config"].l.getCurrentSelection() == self.reloadLists:
