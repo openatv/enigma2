@@ -19,7 +19,7 @@ eDVBRdsDecoder::eDVBRdsDecoder(iDVBDemux *demux, int type)
 	memset(rtp_item, 0, sizeof(rtp_item));
 
 	if (demux->createPESReader(eApp, m_pes_reader))
-		eDebug("failed to create PES reader!");
+		eDebug("[RDS/Rass] failed to create PES reader!");
 	else if (type == 0)
 		m_pes_reader->connectRead(sigc::mem_fun(*this, &eDVBRdsDecoder::processData), m_read_connection);
 	else
@@ -302,7 +302,7 @@ void eDVBRdsDecoder::process_qdar(unsigned char *buf)
 								addToPictureMask(id);
 							}
 							else
-								eDebug("ignore recv interactive picture id %lu", id);
+								eDebug("[RDS/Rass] ignore recv interactive picture id %lu", id);
 						}
 						if (ctrl&0x04) // display slide if nothing had been displayed yet
 						{
@@ -319,16 +319,16 @@ void eDVBRdsDecoder::process_qdar(unsigned char *buf)
 						}
 						if (ctrl&0x08) // delete slide
 						{
-							eDebug("delete slide id %lu, item_no %lu", id, item_no);
+							eDebug("[RDS/Rass] delete slide id %lu, item_no %lu", id, item_no);
 							if (id == 0 || id >= 1000)
 							{
-								eDebug("delete %lu", id);
+								eDebug("[RDS/Rass] delete %lu", id);
 								removeFromPictureMask(id);
 								sprintf(fname,"/tmp/Rass%04d.mvi",(int)id); // was item_no ? ! ?
 								remove(fname);
 							}
 							else
-								eDebug("ignore del interactive picture id %lu", id);
+								eDebug("[RDS/Rass] ignore del interactive picture id %lu", id);
 						}
 						break;
 					default: //nothing more yet defined

@@ -201,7 +201,7 @@ OpenTvTitle::~OpenTvTitle(void)
 
 std::string OpenTvTitle::getTitle(void) const
 {
-    return title;
+	return title;
 }
 
 uint32_t OpenTvTitle::getCRC32(void) const
@@ -224,7 +224,7 @@ uint16_t OpenTvTitle::getEventId(void) const
 	return eventId;
 }
 
-uint16_t OpenTvTitle::getDuration(void) const
+uint32_t OpenTvTitle::getDuration(void) const
 {
 	return duration;
 }
@@ -344,7 +344,7 @@ OpenTvSummary::~OpenTvSummary(void)
 
 std::string OpenTvSummary::getSummary(void) const
 {
-    return summary;
+	return summary;
 }
 
 uint16_t OpenTvSummary::getChannelId(void) const

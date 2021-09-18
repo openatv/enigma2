@@ -77,7 +77,7 @@ public:
 	uint16_t getChannelId(void) const;
 	uint32_t getStartTime(void) const;
 	uint16_t getEventId(void) const;
-	uint16_t getDuration(void) const;
+	uint32_t getDuration(void) const;
 	void setChannelId(uint16_t channelid);
 	void setEventId(uint16_t eventId);
 };

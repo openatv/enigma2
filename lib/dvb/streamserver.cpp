@@ -52,13 +52,13 @@ void eStreamClient::start()
 void eStreamClient::set_socket_option(int fd, int optid, int option)
 {
 	if(::setsockopt(fd, SOL_SOCKET, optid, &option, sizeof(option)))
-		eDebug("Failed to set socket option: %m");
+		eDebug("[eStreamClient] Failed to set socket option: %m");
 }
 
 void eStreamClient::set_tcp_option(int fd, int optid, int option)
 {
 	if(::setsockopt(fd, SOL_TCP, optid, &option, sizeof(option)))
-		eDebug("Failed to set TCP parameter: %m");
+		eDebug("[eStreamClient] Failed to set TCP parameter: %m");
 }
 
 void eStreamClient::notifier(int what)
@@ -258,14 +258,13 @@ void eStreamClient::notifier(int what)
 								acodec = acodec.substr(0, pos);
 							}
 						}
-
 						encoderFd = -1;
 
-						if(eEncoder::getInstance())
+						if (eEncoder::getInstance())
 							encoderFd = eEncoder::getInstance()->allocateEncoder(serviceref, buffersize, bitrate, width, height, framerate, !!interlaced, aspectratio,
 									vcodec, acodec);
 
-						if(encoderFd >= 0)
+						if (encoderFd >= 0)
 						{
 							m_serviceref = serviceref;
 							m_useencoder = true;
