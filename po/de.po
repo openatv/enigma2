@@ -90,7 +90,7 @@ msgid ""
 "Backup your running %s %s image to HDD or USB."
 msgstr ""
 "\n"
-"Backup des laufenden Images Ihrer %s %s auf HDD oder USB."
+"Sicherung des laufenden Images Ihrer %s %s auf Festplatte oder USB."
 
 msgid ""
 "\n"
@@ -221,15 +221,15 @@ msgstr ""
 
 # ImageBackup.py
 msgid "     no space left on back-up device"
-msgstr "     kein Platz mehr auf dem Backup-Gerät"
+msgstr "     kein Platz mehr auf dem Sicherungsgerät"
 
 # ImageBackup.py
 msgid "     no writing permission on back-up device"
-msgstr "     keine Schreibrechte für das Backup-Gerät"
+msgstr "     keine Schreibrechte für das Sicherungsgerät"
 
 # ImageBackup.py
 msgid "     wrong back-up destination "
-msgstr "     falsches Backup-Ziel "
+msgstr "     falsches Sicherungsziel "
 
 #, python-format
 msgid "  (%s x %s)"
@@ -2824,7 +2824,7 @@ msgid ""
 "the following backup:\n"
 msgstr ""
 "Sicher, dass folgendes gelöscht werden soll?\n"
-"Backup(s):\n"
+"Sicherung(en):\n"
 
 msgid "Are you sure you want to delete all selected logs:\n"
 msgstr "Alle ausgewählten Logs löschen:\n"
@@ -2868,7 +2868,7 @@ msgid ""
 msgstr ""
 "Sind Sie sicher, dass folgende Einstellungen wiederhergestellt werden sollen?\n"
 "\n"
-"Backup: %s\n"
+"Sicherung: %s\n"
 "\n"
 "Nach der Wiederherstellung wird Ihre Box neu gestartet!"
 
@@ -3285,7 +3285,7 @@ msgid "Backup Location"
 msgstr "Speicherort für die Sicherung"
 
 msgid "Backup Log"
-msgstr "Backup-Log"
+msgstr "Sicherungslog"
 
 msgid "Backup Manager"
 msgstr "Sicherungs-Verwaltung"
@@ -3294,11 +3294,11 @@ msgid "Backup Mode"
 msgstr "Sicherungsmodus"
 
 msgid "Backup Mode: Flash Online\n"
-msgstr "Backup Modus: Flash Online\n"
+msgstr "Sicherungsmodus: Flash Online\n"
 
 # ImageBackup.py
 msgid "Backup Mode: USB Recovery\n"
-msgstr "Backup Modus: USB Recovery\n"
+msgstr "Sicherungsmodus: USB Recovery\n"
 
 msgid "Backup Settings"
 msgstr "Einstellungen sichern"
@@ -3331,13 +3331,13 @@ msgstr "Systemeinstellungen sichern"
 
 #, python-format
 msgid "Backup to destination: %s"
-msgstr "Backup nach: %s"
+msgstr "Sicherung nach: %s"
 
 msgid "Backup your current image"
-msgstr "Backup vom ganzen Image"
+msgstr "Sicherung vom ganzen Image"
 
 msgid "Backup your current image to HDD or USB. This will make a 1:1 copy of your box"
-msgstr "Backup vom ganzen Image auf HDD oder USB. Dies erzeugt eine 1:1 Kopie Ihrer Box."
+msgstr "Sicherung vom ganzen Image auf Festplatte oder USB. Dies erzeugt eine 1:1 Kopie Ihrer Box."
 
 msgid "Backup your current settings"
 msgstr "Einstellungen sichern"
@@ -3346,10 +3346,10 @@ msgid "Backup your current settings. This includes E2-setup, channels, network a
 msgstr "Sichern der E2-Einstellungen, Kanäle, Netzwerk und alle ausgewählten Dateien"
 
 msgid "Backup, flash and restore settings and no plugins"
-msgstr "Backup, flashen und wiederherstellen der Einstellungen, ohne Plugins"
+msgstr "Sichern, flashen und wiederherstellen der Einstellungen, ohne Plugins"
 
 msgid "Backup, flash and restore settings and selected plugins (ask user)"
-msgstr "Backup, flashen und wiederherstellen der Einstellungen, Plugins abfragen"
+msgstr "Sichern, flashen und wiederherstellen der Einstellungen, Plugins abfragen"
 
 msgid "Bahamas"
 msgstr ""
@@ -4199,7 +4199,7 @@ msgid "Check"
 msgstr "Prüfung"
 
 msgid "Check HDD"
-msgstr "Prüfen der HDD"
+msgstr "Prüfen der Festplatte"
 
 msgid "Check every (hours)"
 msgstr "Alle x Stunden prüfen"
@@ -5208,7 +5208,7 @@ msgstr "Erstelle:"
 # ImageBackup.py
 #, python-format
 msgid "Create: Recovery Fullbackup %s"
-msgstr "Erstelle: Recovery Fullbackup %s"
+msgstr "Erstelle: Komplettsicherung %s"
 
 msgid "Creating AP and SC Files"
 msgstr "Erstelle AP- und SC-Dateien"
@@ -5887,7 +5887,7 @@ msgid "Detected Devices:"
 msgstr "Erkannte Speichermedien:"
 
 msgid "Detected HDD:"
-msgstr "Erkannte HDD:"
+msgstr "Erkannte Festplatte:"
 
 msgid "Detected NIMs:"
 msgstr "Erkannte Tuner:"
@@ -6011,7 +6011,7 @@ msgstr "Begrüßungsbildschirm abschalten"
 
 # Box Display
 msgid "Disable the HDD Process on VFD"
-msgstr "Einstellen, ob das HDD Symbol auf dem Display angezeigt wird."
+msgstr "Einstellen, ob das Festplattensymbol auf dem Display angezeigt wird."
 
 msgid "Disable timer"
 msgstr "Timer deaktivieren"
@@ -7712,7 +7712,7 @@ msgid "Format"
 msgstr "Formatieren"
 
 msgid "Format HDD"
-msgstr "Formatieren der HDD"
+msgstr "Formatieren der Festplatte"
 
 msgid "Format your Harddisk"
 msgstr "Formatieren der Festplatte"
@@ -7806,14 +7806,14 @@ msgid "Frontprocessor version: %s"
 msgstr ""
 
 msgid "Full Image Backup "
-msgstr ""
+msgstr "Vollständige Image-Sicherung "
 
 msgid "Full Range RGB"
 msgstr ""
 
 #, python-format
 msgid "Full back-up on %s"
-msgstr "Komplett Backup auf %s"
+msgstr "Komplettsicherung auf %s"
 
 msgid "Full transparency"
 msgstr "Volle Transparenz"
@@ -8226,7 +8226,7 @@ msgid "Handle wakeup from TV"
 msgstr "TV-Wakeup verwalten"
 
 msgid "Hard disk setup"
-msgstr "Konfiguration der HDD"
+msgstr "Konfiguration der Festplatte"
 
 msgid "Hard disk standby after"
 msgstr "Festplatten-Standby nach"
@@ -10936,7 +10936,7 @@ msgid "No, but restart from begin"
 msgstr "Nein, aber vom Anfang neu beginnen"
 
 msgid "No, do not backup a image"
-msgstr "Nein, kein Backup sichern"
+msgstr "Nein, kein Image sichern"
 
 msgid "No, do not flash an image"
 msgstr "Nein, kein Image flashen"
@@ -11063,7 +11063,7 @@ msgstr "Jetzt"
 
 # ImageBackup.py
 msgid "Now building the Backup Image"
-msgstr "Backup-Image wird jetzt gebaut..."
+msgstr "Image-Sicherung wird jetzt gebaut..."
 
 msgid "Now save timeshift as movie and continues recording"
 msgstr ""
@@ -11340,7 +11340,7 @@ msgstr "Bei 'Ja' werden Senderlogos (Picons) (falls vorhanden) in der Infoleiste
 
 # HDD Standby
 msgid "Option to enable the Hardware Standby Timer"
-msgstr "Bei 'Ja' wird der interne Standby-Timer der HDD verwendet."
+msgstr "Bei 'Ja' wird der interne Standby-Timer der Festplatte verwendet."
 
 msgid "Orbital position"
 msgstr "Orbitposition"
@@ -11820,7 +11820,7 @@ msgid "Please add titles to the compilation."
 msgstr "Titel zur Zusammenstellung hinzufügen."
 
 msgid "Please be patient, a backup will now be made,\n"
-msgstr "Bitte etwas Geduld, das Backup wird erstellt.\n"
+msgstr "Bitte etwas Geduld, die Sicherung wird erstellt.\n"
 
 msgid "Please change recording endtime"
 msgstr "Aufnahmeendzeit ändern"
@@ -13396,7 +13396,7 @@ msgid "Restore system settings"
 msgstr "Systemeinstellungen wiederherstellen"
 
 msgid "Restore your settings back from a backup. After restore the box will restart to activated the new settings"
-msgstr "Wiederherstellen der Settings vom Backup. Nach Wiederherstellung wird Ihre Box neu starten, um die Settings zu aktivieren."
+msgstr "Wiederherstellen der Einstellungen von der Sicherung. Nach Wiederherstellung wird Ihre Box neu starten."
 
 msgid "Restoring..."
 msgstr "Wiederherstellen..."
@@ -14783,7 +14783,7 @@ msgid "Setup FTP"
 msgstr "Einstellungen FTP"
 
 msgid "Setup Harddisk"
-msgstr "Konfiguration der HDD"
+msgstr "Konfiguration der Festplatte"
 
 msgid "Setup Inadyn"
 msgstr "Einstellungen Inadyn"
@@ -14887,14 +14887,14 @@ msgid "Setup your Channel selection configuration"
 msgstr "Stellen Sie Ihre Kanallistenkonfiguration ein."
 
 msgid "Setup your Device mounts (USB, HDD, others...)"
-msgstr "Einstellungen der Laufwerk-Mounts (USB, HDD etc.)"
+msgstr "Einstellungen der Laufwerk-Mounts (USB, Festplatte, etc.)"
 
 # Quick Menue
 msgid "Setup your EPG config"
 msgstr "EPG Einstellungen konfigurieren."
 
 msgid "Setup your Harddisk"
-msgstr "Einstellen der Festplatte."
+msgstr "Konfiguration der Festplatte."
 
 msgid "Setup your LCD"
 msgstr "Einstellen des LCDs."
@@ -15109,7 +15109,7 @@ msgid "Show Graphical EPG"
 msgstr "Zeige grafischen EPG"
 
 msgid "Show HDD progress"
-msgstr "Zeige HDD Fortschritt"
+msgstr "Zeige Festplattenfortschritt"
 
 # Box Display
 msgid "Show HDMI Output Resolution"
@@ -15999,9 +15999,9 @@ msgid ""
 "\n"
 "Please choose an other one."
 msgstr ""
-"Dieser Backup-Zielort existiert nicht!\n"
+"Dieses Sicherungsziel existiert nicht!\n"
 "\n"
-"Bitte anderen Zielort wählen."
+"Bitte anderes Ziel wählen."
 
 #, python-format
 msgid "Sorry, %s has not been installed!"
@@ -16025,6 +16025,8 @@ msgid ""
 "Sorry, your backup destination is not writeable.\n"
 "Please select a different one."
 msgstr ""
+"Ihr Sicherungsziel ist leider nicht beschreibbar!\n"
+"Bitte wählen Sie ein anderes aus."
 
 msgid "Sort"
 msgstr "Sortieren"
@@ -16974,7 +16976,7 @@ msgstr ""
 "Was wollen Sie tun?"
 
 msgid "The backup failed. Please choose a different backup location."
-msgstr "Die Sicherung ist fehlgeschlagen. Bitte einen anderen Sicherungs-Ort auswählen."
+msgstr "Die Sicherung ist fehlgeschlagen! Bitte ein anderes Sicherungsziel auswählen."
 
 msgid "The bitrate of the video encoder. Larger value improves quality and increases file size."
 msgstr "Die Bitrate des Videoencoders. Größerer Wert verbessert die Qualität und erhöht die Dateigröße."
@@ -17224,7 +17226,7 @@ msgid "This DVD RW medium is already formatted - reformatting will erase all con
 msgstr "Dieses wiederbeschreibbare Medium ist bereits formatiert. Durch eine Neuformatierung wird der gesamte Inhalt gelöscht!"
 
 msgid "This Device is already mounted as HDD."
-msgstr "Das Gerät ist bereits als HDD eingehängt."
+msgstr "Das Gerät ist bereits als Festplatte eingehängt."
 
 msgid "This Option allows you to switch Audio to BT Speakers."
 msgstr "Diese Option leitet den Ton auf Ihre Bluetooth-Lautsprecher um."
@@ -18459,7 +18461,7 @@ msgid "Update/Backup your firmware, Backup/Restore settings"
 msgstr "Sichern/Wiederherstellen des Images oder der Einstellungen."
 
 msgid "Update/Backup/Restore your box"
-msgstr "Update/Backup/Restore Ihrer Box"
+msgstr "Update/Sicherung/Wiederherstellung Ihrer Box"
 
 msgid "Updatefeed not available."
 msgstr "Update-Feed nicht verfügbar."
@@ -18480,7 +18482,7 @@ msgid "Updating software catalog"
 msgstr "Softwarekatalog wird aktualisiert."
 
 msgid "Upgrade (Backup, Flash & Restore All)"
-msgstr "Upgrade (Backup, flashen & alles wiederherstellen)"
+msgstr "Upgrade (Sicherung, flashen & alles wiederherstellen)"
 
 msgid "Upgrade and reboot system"
 msgstr "Aktualisieren und das Systen neu starten"
@@ -18584,7 +18586,7 @@ msgid "Use a gateway"
 msgstr "Ein Gateway verwenden"
 
 msgid "Use as HDD"
-msgstr "Mount HDD"
+msgstr "Als Festplatte verwenden"
 
 msgid ""
 "Use automatic mode detection.\n"
@@ -18661,14 +18663,14 @@ msgid "Use the alternative screen"
 msgstr "Legen Sie fest, ob eine alternative Anzeige benutzt werden soll."
 
 msgid "Use the cursor keys to select an installed image and then Erase button."
-msgstr "Ein installiertes Image auswählen und danach die Taste GRÜN drücken, um es zu löschen."
+msgstr "Ein installiertes Image auswählen (falls es mehrere gibt) und danach die Taste GRÜN drücken, um es zu löschen."
 
 msgid "Use the cursor keys to select an installed image and then Reboot button."
-msgstr "Ein installiertes Image auswählen und danach die Taste GRÜN für den Neustart drücken."
+msgstr "Ein installiertes Image auswählen (falls es mehrere gibt) und danach die Taste GRÜN für einen Neustart drücken."
 
 # ImageBackup.py
 msgid "Use the cursor keys to select an installed image and then Start button."
-msgstr "Ein installiertes Image auswählen und danach die Taste GRÜN drücken, um das Fullbackup zu starten."
+msgstr "Ein installiertes Image auswählen (falls es mehrere gibt) und danach die Taste GRÜN drücken, um die Komplettsicherung zu starten."
 
 msgid "Use the extended List"
 msgstr "Die erweiterte Liste verwenden"
@@ -20378,9 +20380,7 @@ msgstr "Alle Aufnahmen"
 msgid ""
 "are you sure you want to restore\n"
 "following backup:\n"
-msgstr ""
-"Wiederherstellen des\n"
-"folgenden Backups:\n"
+msgstr "Wiederherstellen der folgenden Sicherung:\n"
 
 msgid "arts/culture (general)"
 msgstr "Kunst/Kultur (allgemein)"
@@ -20444,7 +20444,7 @@ msgid "bc%d"
 msgstr ""
 
 msgid "because of the used filesystem the back-up\n"
-msgstr "Abhängig vom System dauert das Backup\n"
+msgstr "Abhängig vom System dauert die Sicherung\n"
 
 msgid "better"
 msgstr "Besser"
@@ -21032,7 +21032,7 @@ msgid "insert mark here"
 msgstr "Markierung hier einfügen"
 
 msgid "install/unpack ipk Files"
-msgstr "Installieren/entpacken von IPK-Dateien"
+msgstr "Installieren/entpacken von '.ipk' Dateien"
 
 #, fuzzy
 msgid "instant record"
@@ -21132,7 +21132,7 @@ msgid "magazines/reports/documentary"
 msgstr "Magazine/Berichte/Dokumentationen"
 
 msgid "making a backup before updating"
-msgstr "Vor dem Aktualisieren ein Backup anlegen"
+msgstr "Vor dem Aktualisieren eine Sicherung anlegen"
 
 msgid "manage local Files"
 msgstr "Lokale Dateien verwalten"
