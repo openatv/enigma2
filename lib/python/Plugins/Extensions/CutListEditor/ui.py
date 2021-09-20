@@ -618,7 +618,7 @@ class CutListEditor(Screen, InfoBarBase, InfoBarSeek, InfoBarCueSheetSupport, He
 			elif result[1] == self.BACK_REMOVECUTS:
 				self.cut_list = [x for x in self.cut_list if x[1] not in (self.CUT_TYPE_IN, self.CUT_TYPE_OUT)]
 			else:
-				self.cut_list = self.prev_cuts
+				self.cut_list = self.prev_cuts[:]
 			self.putCuesheet(inhibit_seek=True)
 			if result[1] == self.BACK_RESTOREEXIT:
 				self.close()
