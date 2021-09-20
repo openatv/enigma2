@@ -23,6 +23,7 @@ from Screens.MovieSelection import MovieSelection
 apscParser = Struct(">qq")    # big-endian, 64-bit offset and 64-bit PTS/data
 
 config.usage.cutlisteditor_tutorial_seen = ConfigYesNo(default=False)
+config.usage.cutlisteditor_keep_bookmarks = ConfigYesNo(default=False)
 
 def SecToMSS(sec):
 	return "%d:%02d" % (sec / 60, sec % 60)
@@ -60,6 +61,7 @@ class CutListContextMenu(FixedMenu):
 	RET_EXECUTECUTS = 9
 	RET_QUICKEXECUTE = 10
 	RET_GRABFRAME = 11
+	RET_KEEPBOOKMARKS = 13
 
 	SHOW_STARTCUT = 0
 	SHOW_ENDCUT = 1
@@ -85,6 +87,10 @@ class CutListContextMenu(FixedMenu):
 
 		menu.append((_("remove before this position"), self.close, self.RET_REMOVEBEFORE))
 		menu.append((_("remove after this position"), self.close, self.RET_REMOVEAFTER))
+		if config.usage.cutlisteditor_keep_bookmarks.value:
+			menu.append((_("remove bookmarks in cuts"), self.close, self.RET_KEEPBOOKMARKS))
+		else:
+			menu.append((_("preserve bookmarks in cuts"), self.close, self.RET_KEEPBOOKMARKS))
 
 		if cut_state == 2:
 			menu.append((_("enable cuts (preview)"), self.close, self.RET_ENABLECUTS))
@@ -475,7 +481,8 @@ class CutListEditor(Screen, InfoBarBase, InfoBarSeek, InfoBarCueSheetSupport, He
 			self["Timeline"].instance.setCutMark(0, self.CUT_TYPE_NONE)
 			# remove marks between the new cut
 			for (where, what) in self.cut_list[:]:
-				if self.cut_start <= where <= self.cut_end:
+				if (self.cut_start <= where <= self.cut_end
+						and (not config.usage.cutlisteditor_keep_bookmarks.value or what != self.CUT_TYPE_MARK)):
 					self.cut_list.remove((where, what))
 
 			bisect.insort(self.cut_list, (self.cut_start, self.CUT_TYPE_OUT))
@@ -519,7 +526,8 @@ class CutListEditor(Screen, InfoBarBase, InfoBarSeek, InfoBarCueSheetSupport, He
 		elif result == CutListContextMenu.RET_REMOVEBEFORE:
 			# remove marks before current position
 			for (where, what) in self.cut_list[:]:
-				if where <= self.context_position:
+				if (where <= self.context_position
+						and (not config.usage.cutlisteditor_keep_bookmarks.value or what != self.CUT_TYPE_MARK)):
 					self.cut_list.remove((where, what))
 			# add 'in' point
 			bisect.insort(self.cut_list, (self.context_position, self.CUT_TYPE_IN))
@@ -527,11 +535,15 @@ class CutListEditor(Screen, InfoBarBase, InfoBarSeek, InfoBarCueSheetSupport, He
 		elif result == CutListContextMenu.RET_REMOVEAFTER:
 			# remove marks after current position
 			for (where, what) in self.cut_list[:]:
-				if where >= self.context_position:
+				if (where >= self.context_position
+						and (not config.usage.cutlisteditor_keep_bookmarks.value or what != self.CUT_TYPE_MARK)):
 					self.cut_list.remove((where, what))
 			# add 'out' point
 			bisect.insort(self.cut_list, (self.context_position, self.CUT_TYPE_OUT))
 			self.putCuesheet(inhibit_seek=True)
+		elif result == CutListContextMenu.RET_KEEPBOOKMARKS:
+			config.usage.cutlisteditor_keep_bookmarks.value ^= True
+			config.usage.cutlisteditor_keep_bookmarks.save()
 		elif result == CutListContextMenu.RET_QUICKEXECUTE:
 			menu = [(_("cancel"), 0),
 					(_("end at this position"), 1),
