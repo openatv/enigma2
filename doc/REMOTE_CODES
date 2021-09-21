@@ -3,12 +3,44 @@ Beyonwiz remote control codes
 Infra Red (IR) remote control codes for Beyonwiz series are sent using
 the NEC protocol. This protocol uses 4 bytes of data. The first two bytes
 form a 16-bit "vendor" code. The remaining two bytes are used to encode
-an 8-bit "key" code by sending the 8-bit value for the key as the first
-byte and an inverted bit pattern for the second byte.
+an 8-bit "key" code by sending an 8-bit value for the key as the first
+byte followed by an inverted bit pattern in the second byte.
 
 The hardware and drivers decode the protocol and translate the raw IR
 values into standard Linux input events. enigma2 uses keymap.xml to
 convert the Linux events into enigma2 events.
+
+The set of decoded IR codes is selected using /proc/stb/ir/rc/type
+The accepted values are dependent on the hardware model:
+
+_______________________
+Beyonwiz T2 / T3 / T4
+=======================
+Value  Vendor code set
+-----  ---------------
+0      All supported*
+3      HDx (0x0933)
+5      Beyonwiz T3 (0xABCD)
+6      Beyonwiz (0x02F2)
+7      Beyonwiz (0x02F3)
+8      Beyonwiz (0x02F4)
+10     Beyonwiz U4 (0xAE97)
+
+_______________________
+Beyonwiz U4
+=======================
+Value  Vendor code set
+-----  ---------------
+506    Beyonwiz T3 (0xABCD)
+507    Beyonwiz U4 (0xAE97)
+508    Beyonwiz T2/T4 (0x02F2)
+509    Beyonwiz U4/T4/T2 (0x02F3)
+510    Beyonwiz T2/T4 (0x02F4)
+
+The "All supported*" mode (/proc/stb/ir/rc/type value 0) is the default
+on Beyonwiz T2/T3/T4 models. The driver will decode all the supported
+vendor codes and as a result the device will respond to any of the
+supported remote controls. Beyonwiz U4 does not support this mode.
 
 The following tables show the IR code to Linux input event mapping for
 various Beyonwiz remote controls. Please consult keymap.xml and source
