@@ -170,7 +170,7 @@ int eDVBTSTools::getPTS(off_t &offset, pts_t &pts, int fixed)
 			const unsigned char* match = (const unsigned char*)memchr(packet+1, 0x47, 188-1);
 			if (match != NULL)
 			{
-				eDebug("[eDVBTSTools] getPTS resync %d", match - packet);
+				eDebug("[eDVBTSTools] getPTS resync %ld", match - packet);
 				offset += (match - packet) - 188;
 			}
 			else

@@ -515,7 +515,7 @@ int eFilePushThreadRecorder::read_dmx(int fd, void *m_buffer, int size)
 			pos = m_reply.size();
 			buf[0] = 0;
 			memcpy(m_buffer, m_reply.data(), pos);
-			eDebug("added reply of %d bytes", pos, m_buffer);
+			eDebug("added reply of %d bytes", pos);
 			m_reply.clear();
 			break; // reply to the server ASAP
 		}
