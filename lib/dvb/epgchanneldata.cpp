@@ -1383,8 +1383,8 @@ void eEPGChannelData::readMHWData(const uint8_t *data)
 			eDebug("[eEPGChannelData] mhw %zu titles(%zu with summary) found",
 				m_titles.size(),
 				m_program_ids.size());
-			log_add("Titles Nbr.: %d",m_titles.size());
-			log_add("Titles Nbr. with summary: %d",m_program_ids.size());
+			log_add("Titles Nbr.: %zu",m_titles.size());
+			log_add("Titles Nbr. with summary: %zu",m_program_ids.size());
 			startMHWTimeout(5000);
 			return;
 		}
@@ -2080,9 +2080,9 @@ void eEPGChannelData::readMHWData2_old(const uint8_t *data)
 		}
 		if (finish)
 		{
-			eDebug("[eEPGChannelData] mhw2 %zu titles(%d with summary) found", m_titles.size(), m_program_ids.size());
-			log_add("Titles Nbr.: %d",m_titles.size());
-			log_add("Titles Nbr. with summary: %d",m_program_ids.size());
+			eDebug("[eEPGChannelData] mhw2 %zu titles(%zu with summary) found", m_titles.size(), m_program_ids.size());
+			log_add("Titles Nbr.: %zu",m_titles.size());
+			log_add("Titles Nbr. with summary: %zu",m_program_ids.size());
 			if (!m_program_ids.empty())
 			{
 				// Titles table has been read, there are summaries to read.
