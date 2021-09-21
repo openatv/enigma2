@@ -724,7 +724,7 @@ void eRTSPStreamClient::eventUpdate(int event)
 				eDebug("[eRTSPStreamServer] Adapter %d slot %d frequency %d", f->getDVBID(), f->getSlotID(), frontend->readFrontendData(iFrontendInformation_ENUMS::frequency));
 		}
 	}
-	if (event == eDVBServicePMTHandler::eventNoPMT || event == eDVBServicePMTHandler::eventNoPMT || event == eDVBServicePMTHandler::eventNoPATEntry)
+	if (event == eDVBServicePMTHandler::eventNoPMT || event == eDVBServicePMTHandler::eventNoPATEntry)
 		clear_previous_channel = 0;
 
 	if (running && m_record)
