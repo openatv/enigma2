@@ -182,6 +182,7 @@ int eServiceTS::openHttpConnection(std::string url)
 	if (connect(fd, (sockaddr*)&addr, sizeof(addr)) == -1) {
 		std::string msg = "connect failed for: " + url;
 		eDebug("[eServiceTS] %s", msg.c_str());
+		close(fd);
 		return -1;
 	}
 
