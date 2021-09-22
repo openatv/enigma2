@@ -97,7 +97,11 @@ static char* readInputCI(int NimNumber)
 static std::string getTunerLetterDM(int NimNumber)
 {
 	char *srcCI = readInputCI(NimNumber);
-	if (srcCI) return std::string(srcCI);
+	if (srcCI) {
+		std::string ret = std::string(srcCI);
+		free(srcCI);
+		return ret;
+	}
 	return eDVBCISlot::getTunerLetter(NimNumber);
 }
 
@@ -1068,6 +1072,7 @@ int eDVBCIInterfaces::setInputSource(int tuner_no, const std::string &source)
 		if (srcCI && CFile::write(buf, srcCI) == -1)
 		{
 			eDebug("[CI] eDVBCIInterfaces setInputSource for input %s failed!", srcCI);
+			free(srcCI);
 		}
 		else if (CFile::write(buf, source.c_str()) == -1)
 		{
@@ -1830,6 +1835,7 @@ int eDVBCISlot::setSource(const std::string &source)
 	if(srcCI && CFile::write(buf, srcCI) == -1)
 	{
 		eDebug("[CI] Slot: %d setSource: %s failed!", getSlotID(), srcCI);
+		free(srcCI);
 		return 0;
 	}
 	else if(CFile::write(buf, source.c_str()) == -1)
