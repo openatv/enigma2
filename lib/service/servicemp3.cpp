@@ -798,8 +798,10 @@ eServiceMP3::eServiceMP3(eServiceReference ref):
 			strcat(srt_filename, ".srt");
 			if (::access(srt_filename, R_OK) >= 0)
 			{
-				eDebug("[eServiceMP3] subtitle uri: %s", g_filename_to_uri(srt_filename, NULL, NULL));
-				g_object_set (m_gst_playbin, "suburi", g_filename_to_uri(srt_filename, NULL, NULL), NULL);
+				gchar *luri = g_filename_to_uri(srt_filename, NULL, NULL);
+				eDebug("[eServiceMP3] subtitle uri: %s", luri);
+				g_object_set (m_gst_playbin, "suburi", luri, NULL);
+				g_free(luri);
 			}
 		}
 	} else
