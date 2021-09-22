@@ -184,15 +184,18 @@ static unsigned char *bmp_load(const char *file,  int *x, int *y)
 
 	int fd = open(file, O_RDONLY);
 	if (fd == -1) return NULL;
-	if (lseek(fd, BMP_SIZE_OFFSET, SEEK_SET) == -1) return NULL;
+	if (lseek(fd, BMP_SIZE_OFFSET, SEEK_SET) == -1)
+		goto err;
 	read(fd, buff, 4);
 	*x = buff[0] + (buff[1] << 8) + (buff[2] << 16) + (buff[3] << 24);
 	read(fd, buff, 4);
 	*y = buff[0] + (buff[1] << 8) + (buff[2] << 16) + (buff[3] << 24);
-	if (lseek(fd, BMP_TORASTER_OFFSET, SEEK_SET) == -1) return NULL;
+	if (lseek(fd, BMP_TORASTER_OFFSET, SEEK_SET) == -1)
+		goto err;
 	read(fd, buff, 4);
 	int raster = buff[0] + (buff[1] << 8) + (buff[2] << 16) + (buff[3] << 24);
-	if (lseek(fd, BMP_BPP_OFFSET, SEEK_SET) == -1) return NULL;
+	if (lseek(fd, BMP_BPP_OFFSET, SEEK_SET) == -1)
+		goto err;
 	read(fd, buff, 2);
 	int bpp = buff[0] + (buff[1] << 8);
 
@@ -208,7 +211,7 @@ static unsigned char *bmp_load(const char *file,  int *x, int *y)
 			lseek(fd, raster, SEEK_SET);
 			unsigned char * tbuffer = new unsigned char[*x / 2 + 1];
 			if (tbuffer == NULL)
-				return NULL;
+				goto err;
 			for (int i = 0; i < *y; i++)
 			{
 				read(fd, tbuffer, (*x) / 2 + *x % 2);
@@ -245,7 +248,7 @@ static unsigned char *bmp_load(const char *file,  int *x, int *y)
 			lseek(fd, raster, SEEK_SET);
 			unsigned char * tbuffer = new unsigned char[*x];
 			if (tbuffer == NULL)
-				return NULL;
+				goto err;
 			for (int i = 0; i < *y; i++)
 			{
 				read(fd, tbuffer, *x);
@@ -288,6 +291,10 @@ static unsigned char *bmp_load(const char *file,  int *x, int *y)
 
 	close(fd);
 	return(pic_buffer);
+
+err:
+	close(fd);
+	return NULL;
 }
 
 //---------------------------------------------------------------------
