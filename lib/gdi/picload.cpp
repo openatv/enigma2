@@ -1236,16 +1236,17 @@ PyObject *ePicLoad::getInfo(const char *filename)
 
 int ePicLoad::getData(ePtr<gPixmap> &result)
 {
-	result = 0;
 	if (m_filepara == NULL)
 	{
 		eDebug("[ePicLoad] - Weird situation, I wasn't decoding anything!");
+		result = 0;
 		return 1;
 	}
 	if(m_filepara->pic_buffer == NULL)
 	{
 		delete m_filepara;
 		m_filepara = NULL;
+		result = 0;
 		return 0;
 	}
 
@@ -1440,9 +1441,7 @@ RESULT ePicLoad::setPara(int width, int height, double aspectRatio, int as, bool
 SWIG_VOID(int) loadPic(ePtr<gPixmap> &result, std::string filename, int x, int y, int aspect, int resize_mode, int rotate, unsigned int background, std::string cachefile)
 {
 	long asp1, asp2;
-	result = 0;
 	eDebug("[ePicLoad] deprecated loadPic function used!!! please use the non blocking version! you can see demo code in Pictureplayer plugin... this function is removed in the near future!");
-	ePicLoad mPL;
 
 	switch(aspect)
 	{
@@ -1464,10 +1463,13 @@ SWIG_VOID(int) loadPic(ePtr<gPixmap> &result, std::string filename, int x, int y
 	else
 		PyTuple_SET_ITEM(tuple, 6,  PyString_FromString("#00000000"));
 
+	ePicLoad mPL;
 	mPL.setPara(tuple);
 
 	if(!mPL.startDecode(filename.c_str(), 0, 0, false))
 		mPL.getData(result);
+	else
+		result = 0;
 
 	return 0;
 }
