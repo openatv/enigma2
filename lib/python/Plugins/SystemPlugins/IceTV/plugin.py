@@ -780,7 +780,7 @@ class EPGFetcher(object):
                 timeError = False
                 for which, t in ("start", start), ("stop", stop):
                     if not (self.TIME_MIN <= t <= self.TIME_MAX):
-                        self.addLog("[EPGFetcher] ERROR: invalid EPG %s start time: %d event id: %s title: %s" % (which, t, show["id"].encode("utf-8"), title))
+                        self.addLog("[EPGFetcher] ERROR: invalid EPG %s time: %d event id: %s title: %s" % (which, t, show["id"].encode("utf-8"), title))
                         timeError = True
                 if not (0 < duration <= self.DURATION_MAX):
                     self.addLog("[EPGFetcher] ERROR: invalid EPG duration: %d start time: %d event id: %s title: %s" % (duration, start, show["id"].encode("utf-8"), title))
