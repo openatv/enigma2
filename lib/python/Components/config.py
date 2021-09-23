@@ -1926,7 +1926,7 @@ class ConfigPassword(ConfigText):
 	def getMulti(self, selected):
 		mtext, text, mark = ConfigText.getMulti(self, selected)
 		if self.hidden:
-			text = self.censor * len(text)  # For more security a fixed length string can be used!
+			text = self.censor_char * len(text)  # For more security a fixed length string can be used!
 		return (mtext, text, mark)
 
 	def onSelect(self, session):

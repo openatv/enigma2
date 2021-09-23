@@ -1303,7 +1303,7 @@ void eEPGChannelData::readMHWData(const uint8_t *data)
 		fclose(f);
 		log_open();
 		log_add("EPG download in Mediahighway");
-		log_add("Channels nbr.: %d",m_channels.size());
+		log_add("Channels nbr.: %zu",m_channels.size());
 		log_add("Equivalences Nbr.: %d",nb_equiv);
 
 		// Channels table has been read, start reading the themes table.
