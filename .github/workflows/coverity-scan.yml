@@ -49,6 +49,37 @@ jobs:
           chmod go-w $HOME
           sudo chmod -R go-w /usr/share
 
+      - name: Build enigma2 dependencies
+        env:
+          CC: "gcc-11"
+          CXX: "g++-11"
+        run: |
+          echo "installing libdvbsi++"
+          pushd .
+          cd /tmp
+          git clone --depth 1 git://git.opendreambox.org/git/obi/libdvbsi++.git
+          cd libdvbsi++
+          autoreconf -i
+          ./configure
+          make
+          sudo make install
+          popd
+          echo "installing tuxbox"
+          pushd .
+          cd /tmp
+          git clone --depth 1 https://github.com/OpenPLi/tuxtxt.git
+          cd tuxtxt/libtuxtxt
+          autoreconf -i
+          ./configure --with-boxtype=generic DVB_API_VERSION=5
+          make
+          sudo make install
+          cd ../tuxtxt
+          autoreconf -i
+          ./configure --with-boxtype=generic DVB_API_VERSION=5
+          make
+          sudo make install
+          popd
+
       - name: configure enigma2
         env:
           CC: "gcc-11"
