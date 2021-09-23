@@ -93,6 +93,10 @@ jobs:
           export PATH=`pwd`/cov-analysis-linux64/bin:$PATH
           cov-build --dir cov-int make
 
+      - name: print cov-build
+        run: |
+          echo ./cov-int/build-log.txt
+
       - name: Submit the result to Coverity Scan
         run: |
           tar czvf enigma2.tgz cov-int
@@ -102,7 +106,7 @@ jobs:
             --form email=openatv@gmail.com \
             --form file=@enigma2.tgz \
             --form version=7.0 \
-            --form description="`./enigma2 -v`" \
+            --form description="`git rev-parse --abbrev-ref HEAD` `git rev-parse --short HEAD`" \
             https://scan.coverity.com/builds?project=openatv/enigma2
         env:
           TOKEN: ${{ secrets.COVERITY_SCAN_TOKEN }}
