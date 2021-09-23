@@ -4270,7 +4270,7 @@ msgstr "Bitte treffen Sie eine Auswahl"
 
 #, python-format
 msgid "Choice where to put \"%s\""
-msgstr "Positionsauswahl für \"%s\""
+msgstr "Positionsauswahl für '%s'"
 
 msgid "Choose Bouquet"
 msgstr "Favoritenliste auswählen"
@@ -4697,7 +4697,7 @@ msgstr "Einstellen der Kontraststufe des Gerätedisplays."
 msgid "Configure the cursor behaviour in the channel selection list. When opening the channel selection list you can remain on the current service or already select up/down and you are able to revert the B+/B- buttons."
 msgstr ""
 "Position des Cursors beim Öffnen der Kanalliste festlegen.\n"
-"Auf dem laufenden Kanal, oder, bei 'Standard', einen Eintrag darüber/darunter positionieren. Außerdem kann die Belegung der P+/CH+ und P-/CH- Tasten getauscht werden."
+"Auf dem laufenden Kanal, oder, bei 'Standard', einen Eintrag darüber/darunter positionieren. Außerdem kann die Belegung der Tasten P+/CH+ und P-/CH- getauscht werden."
 
 msgid "Configure the display resolution and the font used for teletext."
 msgstr "Bestimmt die Bildschirmauflösung und den Zeichensatz für die Videotext Darstellung."
@@ -6106,9 +6106,7 @@ msgstr ""
 
 #, python-format
 msgid "Do you really want to delete %s ?"
-msgstr ""
-"Wollen Sie \"%s\"\n"
-" wirklich löschen?"
+msgstr "Wollen Sie '%s' wirklich löschen?"
 
 #, python-format
 msgid "Do you really want to delete %s?"
@@ -6125,7 +6123,7 @@ msgstr "Timer wirklich löschen?"
 
 #, python-format
 msgid "Do you really want to download the plugin \"%s\"?"
-msgstr "Das Plugin \"%s\" wirklich herunterladen?"
+msgstr "Das Plugin '%s' wirklich herunterladen?"
 
 msgid "Do you really want to exit?"
 msgstr "Wirklich beenden?"
@@ -6155,11 +6153,11 @@ msgstr "Das Verzeichnis %s wirklich von der Festplatte löschen?"
 
 #, python-format
 msgid "Do you really want to remove the plugin \"%s\"?"
-msgstr "Das Plugin \"%s\" wirklich entfernen?"
+msgstr "Das Plugin '%s' wirklich entfernen?"
 
 #, python-format
 msgid "Do you really want to remove the timer for %s?"
-msgstr "Wollen Sie den Timer für \"%s\" wirklich entfernen?"
+msgstr "Wollen Sie den Timer für '%s' wirklich entfernen?"
 
 #, python-format
 msgid "Do you really want to remove your bookmark of %s?"
@@ -6692,7 +6690,7 @@ msgid "Enable Swap at startup"
 msgstr "Aktiviere Swap Start"
 
 msgid "Enable Up / Down buttons for the 'all up / down' function? (at the beginning / end of the column)"
-msgstr "Aktivieren Sie die Hoch/Runter Tasten für die Funktion \"Alle hoch/runter\" (am Anfang/Ende der Spalte)."
+msgstr "Aktivieren Sie die Tasten Hoch/Runter für die Funktion 'Alle hoch/runter' (am Anfang/Ende der Spalte)."
 
 msgid "Enable ViaSat EPG"
 msgstr "ViaSat EPG aktivieren"
@@ -6785,7 +6783,7 @@ msgid "Enable this setting if your aerial system needs power"
 msgstr "Aktivieren Sie diese Einstellung, wenn Ihr Antennensystem Strom benötigt"
 
 msgid "Enable to display all true/false, yes/no, on/off and enable/disable set up options as a graphical switch."
-msgstr "Bei 'Ja' werden alle Optionen für \"Wahr / Falsch\", \"Ja / Nein\", \"Ein / Aus\" und \"Einschalten / Ausschalten\" als grafischer Schalter dargestellt."
+msgstr "Bei 'Ja' werden alle Optionen für 'Wahr / Falsch', 'Ja / Nein', 'Ein / Aus' und 'Einschalten / Ausschalten' als grafischer Schalter dargestellt."
 
 msgid "Enable twisted log *"
 msgstr "Twisted-Log aktivieren *"
@@ -8684,7 +8682,7 @@ msgid ""
 "Do not care about the bright shades now. They will be set up in the next step.\n"
 "If you are happy with the result, press OK."
 msgstr ""
-"Falls Ihr Fernseher über Helligkeits- oder Kontraststeigerung verfügt, deaktivieren Sie diese. Falls es eine \"Dynamik\"-Einstellung gibt, sollte sie auf Standard gesetzt werden. Verändern Sie die Intensität der Hintergrundbeleuchtung nach Ihrem Geschmack. Verringern Sie den Kontrast Ihres Fernsehers so weit wie möglich.\n"
+"Falls Ihr Fernseher über Helligkeits- oder Kontraststeigerung verfügt, deaktivieren Sie diese. Falls es eine 'Dynamik'-Einstellung gibt, sollte sie auf Standard gesetzt werden. Verändern Sie die Intensität der Hintergrundbeleuchtung nach Ihrem Geschmack. Verringern Sie den Kontrast Ihres Fernsehers so weit wie möglich.\n"
 "Verringern Sie anschließend die Helligkeit so weit wie möglich. Stellen Sie dabei sicher, dass die beiden obersten Grauschattierungen erkennbar bleiben. Die hellen Schattierungen werden im folgenden Schritt eingestellt.\n"
 "Drücken Sie OK, wenn Sie mit dem Ergebnis zufrieden sind."
 
@@ -9814,10 +9812,10 @@ msgid "Make File Commander accessible from the main menu."
 msgstr "File Commander vom Hauptmenü aus zugänglich machen."
 
 msgid "Make this mark an 'in' point"
-msgstr "Aus dieser Markierung einen \"Anfangs\"-Punkt machen"
+msgstr "Aus dieser Markierung einen 'Anfangs'-Punkt machen"
 
 msgid "Make this mark an 'out' point"
-msgstr "Aus dieser Markierung einen \"End\"-Punkt machen"
+msgstr "Aus dieser Markierung einen 'End'-Punkt machen"
 
 msgid "Make this mark just a mark"
 msgstr "Aus dieser Markierung nur eine Markierung machen"
@@ -10083,6 +10081,8 @@ msgid ""
 "Misconfigured unicable connection from tuner %s to tuner %s!\n"
 "Tuner %s option \"connected to\" are disabled now"
 msgstr ""
+"Falsch konfigurierte Unicable Verbindung von Tuner %s zu %s!\n"
+"Tuner %s Option 'Verbunden mit' ist jetzt deaktiviert."
 
 msgid "Missing "
 msgstr "Fehlend "
@@ -12140,7 +12140,7 @@ msgstr ""
 "OK zum Speichern, EXIT zum Abbrechen."
 
 msgid "Please use the UP and DOWN keys to select your language. Afterwards press the OK button."
-msgstr "Für Sprachauswahl die Hoch/Runter Tasten nutzen. Danach OK drücken."
+msgstr "Für Sprachauswahl die Tasten Hoch/Runter nutzen. Danach OK drücken."
 
 msgid "Please wait"
 msgstr "Bitte warten"
@@ -13096,7 +13096,7 @@ msgid "Reload Services"
 msgstr "Kanallisten aktualisieren"
 
 msgid "Reload blacklists"
-msgstr "\"Schwarze\" Liste neu laden"
+msgstr Sperrliste neu laden"
 
 msgid "Reloading EPG Cache..."
 msgstr "EPG Cache neu laden..."
@@ -14295,7 +14295,7 @@ msgid "Select upgrade source to edit."
 msgstr "Upgrade-Quelle zum Bearbeiten auswählen."
 
 msgid "Select video input with up/down buttons"
-msgstr "Video-Eingang mit den Hoch/Runter Tasten auswählen"
+msgstr "Video-Eingang mit den Tasten Hoch/Runter auswählen"
 
 msgid "Select video mode"
 msgstr "Videomodus auswählen"
@@ -14308,7 +14308,7 @@ msgid "Select what should be done when the %s %s was shutdown incorrectly, or af
 msgstr "Wählen Sie, was geschehen soll, nachdem Ihre %s %s nicht ordnungsgemäß heruntergefahren wurde (z.B. nach einem Stromausfall)."
 
 msgid "Select what you want the Channel +/- button to activate:"
-msgstr "Wählen Sie, was die Tasten Programm +/- bewirken sollen."
+msgstr "Wählen Sie, was die Tasten Kanal +/- bewirken sollen."
 
 msgid "Select what you want the EPG button to activate:"
 msgstr "Wählen Sie, was die Taste EPG bewirken soll."
@@ -14691,13 +14691,13 @@ msgid "Set the time the timer must start."
 msgstr ""
 "Wählen Sie die Startzeit der Aufnahme.\n"
 "\n"
-"Mit den VOL +/- Tasten können Sie die Startzeit Minutenweise ändern, auch wenn der Cursorbalken auf einem anderen Menüeintrag steht."
+"Mit den Tasten VOL +/- können Sie die Startzeit minutenweise ändern, auch wenn der Cursorbalken auf einem anderen Menüeintrag steht."
 
 msgid "Set the time the timer must stop."
 msgstr ""
 "Wählen Sie die Endzeit der Aufnahme.\n"
 "\n"
-"Mit den CH +/- Tasten können Sie die Endzeit Minutenweise ändern, auch wenn der Cursorbalken auf einem anderen Menüeintrag steht."
+"Mit den Tasten CH +/- können Sie die Endzeit minutenweise ändern, auch wenn der Cursorbalken auf einem anderen Menüeintrag steht."
 
 msgid "Set the time to hide the infobar."
 msgstr "Einstellen der Anzeigedauer der Infoleiste."
@@ -14746,7 +14746,7 @@ msgid "Set voltage and 22KHz"
 msgstr "Setze Spannung und 22kHz"
 
 msgid "Sets the root folder of movie list, to remove the '..' from benign shown in that folder."
-msgstr "Wählen Sie das Root-Verzeichnis der Aufnahmeliste, um \"..\" in der Ansicht zu unterdrücken."
+msgstr "Wählen Sie das Root-Verzeichnis der Aufnahmeliste, um '..' in der Ansicht zu unterdrücken."
 
 msgid "Setting Restored "
 msgstr "Wiederhergestellte Programmliste "
@@ -15214,7 +15214,7 @@ msgid "Show Transponder Remaining/Elapsed as"
 msgstr "Transponder als verbleibende/verstrichene Zeit in"
 
 msgid "Show True/False as graphical switch"
-msgstr "Zeige \"Ja / Nein\" als grafischen Schalter"
+msgstr "Zeige 'Ja / Nein' als grafischen Schalter"
 
 msgid "Show VCR scart on main menu"
 msgstr "Zeige Scart-Videorekorder im Hauptmenü"
@@ -17562,9 +17562,9 @@ msgid ""
 "- if you configured your nameservers manually please verify your entries in the \"Nameserver\" configuration"
 msgstr ""
 "Dieser Test sucht nach konfigurierten Nameservern\n"
-"Wenn Sie eine \"Unbestätigt\"-Meldung erhalten:\n"
+"Wenn Sie eine 'Unbestätigt'-Meldung erhalten:\n"
 "- Überprüfen Sie Ihr DHCP, Ihre Verkabelung und Ihre Adapter-Konfiguration.\n"
-"- Haben Sie Ihre Namensserver manuell konfiguriert, überprüfen Sie bitte Ihre Konfiguration in den \"DNS\"-Einstellungen"
+"- Haben Sie Ihre Namensserver manuell konfiguriert, überprüfen Sie bitte Ihre Konfiguration in den 'DNS'-Einstellungen"
 
 msgid ""
 "This test checks whether a network cable is connected to your LAN adapter.\n"
@@ -17573,7 +17573,7 @@ msgid ""
 "- verify that the cable is not broken"
 msgstr ""
 "Dieser Test überprüft, ob ein Netzwerkkabel angeschlossen ist.\n"
-"Wenn Sie eine \"Nicht verbunden\"-Meldung erhalten:\n"
+"Wenn Sie eine 'Nicht verbunden'-Meldung erhalten:\n"
 "- Überprüfen Sie, ob ein Netzwerkkabel angeschlossen ist.\n"
 "- Stellen Sie sicher, dass das Netzwerkkabel nicht defekt ist."
 
@@ -17584,7 +17584,7 @@ msgid ""
 "- please check your DHCP, cabling and adapter setup"
 msgstr ""
 "Dieser Test überprüft, ob eine gültige IP-Adresse gefunden wurde.\n"
-"Wenn Sie eine \"Unbestätigt\"-Meldung erhalten:\n"
+"Wenn Sie eine 'Unbestätigt'-Meldung erhalten:\n"
 "- Wurde keine gültige IP-Adresse gefunden.\n"
 "- Überprüfen Sie Ihr DHCP, Ihre Verkabelung und Ihre Adapter-Konfiguration."
 
@@ -17597,10 +17597,10 @@ msgid ""
 "-verify that you have a configured and working DHCP server in your network."
 msgstr ""
 "Dieser Test überprüft, ob Ihr Netzwerkadapter für automatische IP-Adressen-Konfiguration über DHCP eingerichtet ist.\n"
-"Wenn Sie eine \"Deaktiviert\"-Meldung erhalten:\n"
+"Wenn Sie eine 'Deaktiviert'-Meldung erhalten:\n"
 "- Dann ist Ihr Netzwerkadapter für manuelle IP-Adressen-Konfiguration eingerichtet.\n"
 "- Überprüfen Sie die Richtigkeit Ihrer Einstellungen im Netzwerkadapter-Einstellungen-Menü.\n"
-"Wenn Sie eine \"Aktiviert\"-Meldung erhalten:\n"
+"Wenn Sie eine 'Aktiviert'-Meldung erhalten:\n"
 "- Überprüfen Sie, dass sich ein funktionierender DHCP-Server in Ihrem Netzwerk befindet."
 
 msgid "This test detects your configured LAN adapter."
@@ -17872,9 +17872,9 @@ msgid ""
 "3) Wait for bootup and follow instructions of the wizard."
 msgstr ""
 "Um Ihre %s %s-Firmware zu aktualisieren, folgen Sie bitte diesen Anweisungen:\n"
-"1) Schalten Sie Ihre Box mit dem Schalter auf der Rückseite aus und achten Sie darauf, dass der bootfähige USB-Stick eingesteckt ist.\n"
-"2) Schalten Sie den Netzschalter wieder ein und halten dabei den \"nach unten\"-Knopf auf der Vorderseite für 10 Sekunden gedrückt.\n"
-"3) Nach dem Bootvorgang folgen Sie bitte den Instruktionen des Assistenten."
+"1) Schalten Sie Ihre Box mit dem Schalter auf der Rückseite aus und achten Sie darauf, dass ein bootfähiger USB-Stick eingesteckt ist.\n"
+"2) Schalten Sie den Netzschalter wieder ein und halten dabei den Knopf 'nach unten' auf der Vorderseite für 10 Sekunden gedrückt.\n"
+"3) Nach dem Bootvorgang folgen Sie bitte den Anweisungen des Assistenten."
 
 msgid "Today"
 msgstr "Heute"
@@ -18410,10 +18410,10 @@ msgid "Up/Down button mode"
 msgstr "Funktion der Tasten Hoch/Runter"
 
 msgid "Up/Down buttons also for 'all up/down'?"
-msgstr "Hoch/Runter Tasten für \"alle hoch/runter\""
+msgstr "Tasten Hoch/Runter für 'alle hoch/runter'?"
 
 msgid "Update"
-msgstr ""
+msgstr "Update"
 
 msgid "Update Cache"
 msgstr "Aktualisiere Puffer"
@@ -18642,14 +18642,14 @@ msgid "Use slim screen"
 msgstr "Slim Screen verwenden"
 
 msgid "Use the Left/Right buttons on your remote to adjust the size of the user interface. Left button decreases the size, Right increases the size."
-msgstr "Die Links/Rechts Tasten benutzen, um die Größe der GUI einzustellen. Links und OSD wird kleiner, Rechts und OSD wird größer."
+msgstr "Die Tasten Links/Rechts benutzen, um die Größe der Benutzeroberfläche anzupassen. Taste Links verkleinert, Taste Rechts vergrößert sie."
 
 # OSD
 msgid "Use the Left/Right buttons on your remote to move the user interface left/right"
-msgstr "Die Links/Rechts Tasten benutzen, um die Position des OSD nach links/rechts zu verschieben"
+msgstr "Die Tasten Links/Rechts benutzen, um die Benutzeroberfläche nach links oder rechts zu verschiebenn."
 
 msgid "Use the Left/Right buttons on your remote to move the user interface up/down"
-msgstr "Die Links/Rechts Tasten benutzen, um das OSD nach oben/unten zu verschieben"
+msgstr "Die Tasten Links/Rechts benutzen, um die Benutzeroberfläche nach oben oder unten zu verschieben."
 
 msgid "Use the Networkwizard to configure your Network. The wizard will help you to setup your network"
 msgstr "Verwenden Sie den Netzwerkassistenten, um Ihr Netzwerk zu konfigurieren"
@@ -18686,7 +18686,7 @@ msgstr "Den Netzwerkassistenten zur Konfiguration des Netzwerks verwenden\n"
 
 msgid "Use the up/down keys on your remote control to select an option. After that, press OK."
 msgstr ""
-"Eine Option mit den Hoch/Runter Tasten auswählen.\n"
+"Eine Option mit den Tasten Hoch/Runter auswählen.\n"
 "Danach OK drücken."
 
 # Erstassi
@@ -19765,9 +19765,8 @@ msgid ""
 "would you like to remove\n"
 "\"%s\"?"
 msgstr ""
-"Sie haben bereits ein Bootlogo installiert\n"
-"soll es entfernt werden\n"
-"\"%s\"?"
+"Sie haben bereits ein Bootlogo installiert.\n"
+"Soll '%s' entfernt werden?"
 
 #, python-format
 msgid ""
@@ -19776,7 +19775,7 @@ msgid ""
 "\"%s\"?"
 msgstr ""
 "Es ist bereits eine Kanalliste installiert.\n"
-"Soll \"%s\" entfernt werden?"
+"Soll '%s' entfernt werden?"
 
 msgid "You can Display MiniTV with or without OSD Menu"
 msgstr "Zeige MiniTV im Display mit oder ohne OSD-Menü"
@@ -20458,7 +20457,7 @@ msgid "black & white"
 msgstr "s/w"
 
 msgid "blacklist"
-msgstr "Blacklist"
+msgstr "Sperrliste"
 
 msgid "blue"
 msgstr "Blau"
@@ -20525,7 +20524,7 @@ msgid "circular right"
 msgstr "Rechtszirkular"
 
 msgid "clip overscan / letterbox borders"
-msgstr "Clip \"Overscan\" / Letterbox Grenzen"
+msgstr "Clip 'Overscan' / Letterbox Grenzen"
 
 msgid "close share view"
 msgstr "Share-View schließen"
@@ -22058,13 +22057,13 @@ msgid "with errors"
 msgstr "Mit Fehlern"
 
 msgid "with exit button"
-msgstr "EXIT Taste"
+msgstr "Taste EXIT"
 
 msgid "with left/right buttons"
-msgstr "Links/Rechts Tasten"
+msgstr "Tasten Links/Rechts"
 
 msgid "with long OK press"
-msgstr "OK Taste lang"
+msgstr "Taste OK lang"
 
 msgid "with_errors"
 msgstr "Mit Fehlern"
