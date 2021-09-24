@@ -144,7 +144,7 @@ static unsigned char *color_resize(unsigned char * orgin, int ox, int oy, int dx
 			p[2] = b / sq;
 		}
 	}
-	free(orgin);
+	delete [] orgin;
 	return cr;
 }
 
