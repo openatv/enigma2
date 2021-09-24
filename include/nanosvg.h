@@ -2936,7 +2936,6 @@ NSVGimage* nsvgParseFromFile(const char* filename, const char* units, double dpi
 error:
 	if (fp) fclose(fp);
 	if (data) free(data);
-	if (image) nsvgDelete(image);
 	return nullptr;
 }
 
