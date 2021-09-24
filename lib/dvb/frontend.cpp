@@ -3859,7 +3859,7 @@ bool eDVBFrontend::changeType(int type)
 	eDebug("[eDVBFrontend] data %d",p[1].u.data );
 	if (ioctl(m_fd, FE_SET_PROPERTY, &cmdseq) == -1)
 	{
-		eDebug("[eDVBFrontend] FE_SET_PROPERTY failed %m, -> use procfs to switch delivery system tuner %d mode %s",m_slotid ,mode);
+		eDebug("[eDVBFrontend] FE_SET_PROPERTY use use procfs to switch delivery system tuner %d mode %s / failed %m", m_slotid, mode);
 		closeFrontend();
 		char filename[256];
 		snprintf(filename, sizeof(filename), "/proc/stb/frontend/%d/mode", m_slotid);
