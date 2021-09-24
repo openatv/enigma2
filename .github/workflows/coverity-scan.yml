@@ -12,7 +12,7 @@ jobs:
         run: |
           sudo add-apt-repository -y ppa:ubuntu-toolchain-r/test
           sudo apt-get -q update
-          sudo apt-get install g++-11
+          sudo apt-get install g++-10
           sudo apt-get install linux-libc-dev
           sudo apt-get install git
           sudo apt-get install build-essential
@@ -49,10 +49,14 @@ jobs:
           chmod go-w $HOME
           sudo chmod -R go-w /usr/share
 
+      - uses: actions/setup-python@v2
+        with:
+          python-version: '3.9'
+          
       - name: Build enigma2 dependencies
         env:
-          CC: "gcc-11"
-          CXX: "g++-11"
+          CC: "gcc-10"
+          CXX: "g++-10"
         run: |
           echo "installing libdvbsi++"
           pushd .
@@ -82,20 +86,26 @@ jobs:
 
       - name: configure enigma2
         env:
-          CC: "gcc-11"
-          CXX: "g++-11"
+          CC: "gcc-10"
+          CXX: "g++-10"
         run: |
+          sed -i 's/include lib main data po tools/include lib main tools/g' Makefile.am
           autoreconf -i
           ./configure --with-libsdl=no --with-boxtype=nobox --enable-dependency-tracking ac_cv_prog_c_openmp=-fopenmp --with-gstversion=1.0 --with-textlcd
           
       - name: Build with cov-build
+        env:
+          CC: "gcc-10"
+          CXX: "g++-10"
         run: |
+          pip3 install six
           export PATH=`pwd`/cov-analysis-linux64/bin:$PATH
+          cov-configure --template --compiler gcc-10 --comptype gcc
           cov-build --dir cov-int make
 
       - name: print cov-build
         run: |
-          echo ./cov-int/build-log.txt
+          cat ./cov-int/build-log.txt
 
       - name: Submit the result to Coverity Scan
         run: |
