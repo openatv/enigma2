@@ -696,7 +696,6 @@ int eRTSPStreamClient::set_demux_buffer(int size)
 {
 	if (!m_record)
 		return -1;
-	return 0;
 	int rv;
 	eDVBTSRecorder *rec = (eDVBTSRecorder *)(iDVBTSRecorder *)m_record;
 
