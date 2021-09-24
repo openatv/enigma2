@@ -951,7 +951,8 @@ static void nsvg__addShape(NSVGparser* p)
 		return;
 
 	shape = static_cast<NSVGshape*>(malloc(sizeof(NSVGshape)));
-	if (shape == nullptr) goto error;
+	if (shape == nullptr)
+		return;
 	memset(shape, 0, sizeof(NSVGshape));
 
 	memcpy(shape->id, attr->id, sizeof shape->id);
@@ -1025,10 +1026,6 @@ static void nsvg__addShape(NSVGparser* p)
 		p->shapesTail->next = shape;
 	p->shapesTail = shape;
 
-	return;
-
-error:
-	if (shape) free(shape);
 }
 
 static void nsvg__addPath(NSVGparser* p, char closed)
