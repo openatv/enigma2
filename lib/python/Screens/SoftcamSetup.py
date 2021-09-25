@@ -37,10 +37,10 @@ class SoftcamSetup(Setup):
 			defaultrestart += "c"
 		else:
 			cardservers = [("", _("None"))]
-		if defaultrestart == "sc":
-			restartOptions.extend([("sc", _("Restart both"))])
 		config.misc.cardservers = ConfigSelection(default=defaultcardserver, choices=cardservers)
 		config.misc.cardservers.value == ""
+		if defaultrestart == "sc":
+			restartOptions.extend([("sc", _("Restart both"))])
 		config.misc.restarts = ConfigSelection(default=defaultrestart, choices=restartOptions)
 		Setup.__init__(self, session=session, setup="Softcam")
 		self["key_yellow"] = StaticText()
