@@ -97,11 +97,20 @@ class BoxInformation:  # To maintain data integrity class variables should not b
 		elif value.isdigit() or (value[0:1] == "-" and value[1:].isdigit()):
 			value = int(value)
 		elif value.startswith("0x") or value.startswith("0X"):
-			value = int(value, 16)
+			try:
+				value = int(value, 16)
+			except ValueError:
+				pass
 		elif value.startswith("0o") or value.startswith("0O"):
-			value = int(value, 8)
+			try:
+				value = int(value, 8)
+			except ValueError:
+				pass
 		elif value.startswith("0b") or value.startswith("0B"):
-			value = int(value, 2)
+			try:
+				value = int(value, 2)
+			except ValueError:
+				pass
 		else:
 			try:
 				value = float(value)
