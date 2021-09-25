@@ -18,25 +18,27 @@ class SoftcamSetup(Setup):
 		self.cardserver = CamControl("cardserver")
 		self.ecminfo = GetEcmInfo()
 		restartOptions = [
-			("", _("Don't restart")),
-			("s", _("Restart softcam"))
+			("", _("Don't restart"))
 		]
 		defaultrestart = ""
 		softcams = self.softcam.getList()
 		defaultsoftcam = self.softcam.current()
-		if len(softcams) > 1:
-			defaultrestart = "s"
+		if len(softcams) > 1 and defaultsoftcam != "None":
+			restartOptions.extend([("s", _("Restart softcam"))])
+			defaultrestart += "s"
 		else:
 			softcams = [("", _("None"))]
 		config.misc.softcams = ConfigSelection(default=defaultsoftcam, choices=softcams)
 		config.misc.softcams.value == ""
 		cardservers = self.cardserver.getList()
 		defaultcardserver = self.cardserver.current()
-		if len(cardservers) > 1:
-			restartOptions.extend([("c", _("Restart cardserver")), ("sc", _("Restart both"))])
+		if len(cardservers) > 1 and defaultcardserver != "None":
+			restartOptions.extend([("c", _("Restart cardserver"))])
 			defaultrestart += "c"
 		else:
 			cardservers = [("", _("None"))]
+		if defaultrestart == "sc":
+			restartOptions.extend([("sc", _("Restart both"))])
 		config.misc.cardservers = ConfigSelection(default=defaultcardserver, choices=cardservers)
 		config.misc.cardservers.value == ""
 		config.misc.restarts = ConfigSelection(default=defaultrestart, choices=restartOptions)
