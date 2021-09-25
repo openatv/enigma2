@@ -241,8 +241,8 @@ class Dish(Screen):
 			return "N/A"
 		if orbpos > 1800:
 			orbpos = 3600 - orbpos
-			return "%d.%d°W" % (orbpos / 10, orbpos % 10)
-		return "%d.%d°E" % (orbpos / 10, orbpos % 10)
+			return "%d.%d%sW" % (orbpos / 10, orbpos % 10, u"\u00B0")
+		return "%d.%d%sE" % (orbpos / 10, orbpos % 10, u"\u00B0")
 
 	def FormatTurnTime(self, time):
 		t = abs(time)

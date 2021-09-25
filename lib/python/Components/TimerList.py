@@ -10,9 +10,6 @@ from Tools.LoadPixmap import LoadPixmap
 from Tools.TextBoundary import getTextBoundarySize
 from timer import TimerEntry
 from Tools.Directories import resolveFilename, SCOPE_ACTIVE_SKIN
-import six
-
-SIGN = '°' if six.PY3 else str('\xc2\xb0')
 
 
 class TimerList(GUIComponent):
@@ -218,4 +215,4 @@ class TimerList(GUIComponent):
 		if op > 1800:
 			op = 3600 - op
 			direction = 'W'
-		return ("%d.%d%s%s") % (op // 10, op % 10, SIGN, direction)
+		return ("%d.%d%s%s") % (op // 10, op % 10, u"\u00B0", direction)

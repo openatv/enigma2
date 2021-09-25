@@ -27,7 +27,7 @@ from re import search
 import time
 import six
 
-SIGN = '°' if six.PY3 else str('\xc2\xb0')
+SIGN = u"\u00B0"
 
 
 def parse_ipv4(ip):

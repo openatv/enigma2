@@ -1,8 +1,7 @@
 from enigma import eDVBFrontendParametersSatellite, eDVBFrontendParametersCable, eDVBFrontendParametersTerrestrial, eDVBFrontendParametersATSC
 from Components.NimManager import nimmanager
-import six
 
-SIGN = '°' if six.PY3 else str('\xc2\xb0')
+SIGN = u"\u00B0"
 
 
 def orbpos(pos):

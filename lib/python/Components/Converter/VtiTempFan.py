@@ -2,9 +2,6 @@ from __future__ import absolute_import
 from Components.Converter.Converter import Converter
 from Components.Element import cached
 from Components.Converter.Poll import Poll
-from six import PY3
-
-SIGN = ' °' if PY3 else str(' \xc2\xb0')
 
 
 class VtiTempFan(Poll, Converter):
@@ -44,7 +41,7 @@ class VtiTempFan(Poll, Converter):
 				temp = fd.readline().strip()
 			with open('/proc/stb/sensors/temp0/unit', 'rb') as fd:
 				unit = fd.readline().strip()
-			return 'TEMP: %s%s%s' % (str(temp), SIGN, str(unit))
+			return 'TEMP: %s %s%s' % (str(temp), u'\u00B0', str(unit))
 		except:
 			pass
 
