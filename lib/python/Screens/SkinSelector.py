@@ -8,7 +8,7 @@ from Components.Pixmap import Pixmap
 from Components.Sources.StaticText import StaticText
 from Components.MenuList import MenuList
 from Components.config import config
-from Tools.Directories import resolveFilename, SCOPE_ACTIVE_SKIN
+from Tools.Directories import resolveFilename, SCOPE_CURRENT_SKIN
 from enigma import eEnv, ePicLoad
 import os
 
@@ -142,7 +142,7 @@ class SkinSelectorBase:
 				pass
 
 		if not os.path.exists(pngpath):
-			pngpath = resolveFilename(SCOPE_ACTIVE_SKIN, "noprev.png")
+			pngpath = resolveFilename(SCOPE_CURRENT_SKIN, "noprev.png")
 
 		if self.previewPath != pngpath:
 			self.previewPath = pngpath

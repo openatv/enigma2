@@ -21,7 +21,7 @@ from Screens.LocationBox import LocationBox
 from Screens.MessageBox import MessageBox
 from Screens.Screen import Screen
 from Screens.VirtualKeyBoard import VirtualKeyBoard
-from Tools.Directories import fileExists, SCOPE_ACTIVE_SKIN, resolveFilename
+from Tools.Directories import fileExists, SCOPE_CURRENT_SKIN, resolveFilename
 from six.moves.urllib.parse import urlparse, urlunparse
 from twisted.internet import reactor
 from twisted.web.client import HTTPClientFactory
@@ -213,13 +213,13 @@ menu_list = [
 
 #############################################################
 
-if path.exists(resolveFilename(SCOPE_ACTIVE_SKIN, "icons/lock_on.png")):
-	lock_on = loadPNG(resolveFilename(SCOPE_ACTIVE_SKIN, "icons/lock_on.png"))
+if path.exists(resolveFilename(SCOPE_CURRENT_SKIN, "icons/lock_on.png")):
+	lock_on = loadPNG(resolveFilename(SCOPE_CURRENT_SKIN, "icons/lock_on.png"))
 else:
 	lock_on = loadPNG("/usr/share/enigma2/skin_default/icons/lock_on.png")
 
-if path.exists(resolveFilename(SCOPE_ACTIVE_SKIN, "icons/lock_off.png")):
-	lock_off = loadPNG(resolveFilename(SCOPE_ACTIVE_SKIN, "icons/lock_off.png"))
+if path.exists(resolveFilename(SCOPE_CURRENT_SKIN, "icons/lock_off.png")):
+	lock_off = loadPNG(resolveFilename(SCOPE_CURRENT_SKIN, "icons/lock_off.png"))
 else:
 	lock_off = loadPNG("/usr/share/enigma2/skin_default/icons/lock_off.png")
 
@@ -287,8 +287,8 @@ def CCcamListEntry(name, idx):
 		idx = "menu"
 	elif idx == 15:
 		idx = "info"
-	if path.exists(resolveFilename(SCOPE_ACTIVE_SKIN, "buttons/key_%s.png" % str(idx))):
-		png = resolveFilename(SCOPE_ACTIVE_SKIN, "buttons/key_%s.png" % str(idx))
+	if path.exists(resolveFilename(SCOPE_CURRENT_SKIN, "buttons/key_%s.png" % str(idx))):
+		png = resolveFilename(SCOPE_CURRENT_SKIN, "buttons/key_%s.png" % str(idx))
 	else:
 		png = "/usr/share/enigma2/skin_default/buttons/key_%s.png" % str(idx)
 	if fileExists(png):
@@ -301,8 +301,8 @@ def CCcamListEntry(name, idx):
 
 def CCcamServerListEntry(name, color):
 	res = [name]
-	if path.exists(resolveFilename(SCOPE_ACTIVE_SKIN, "buttons/key_%s.png" % color)):
-		png = resolveFilename(SCOPE_ACTIVE_SKIN, "buttons/key_%s.png" % color)
+	if path.exists(resolveFilename(SCOPE_CURRENT_SKIN, "buttons/key_%s.png" % color)):
+		png = resolveFilename(SCOPE_CURRENT_SKIN, "buttons/key_%s.png" % color)
 	else:
 		png = "/usr/share/enigma2/skin_default/buttons/key_%s.png" % color
 	if fileExists(png):

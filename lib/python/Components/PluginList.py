@@ -1,7 +1,7 @@
 from __future__ import absolute_import
 from Components.MenuList import MenuList
 
-from Tools.Directories import resolveFilename, SCOPE_ACTIVE_SKIN
+from Tools.Directories import resolveFilename, SCOPE_CURRENT_SKIN
 from Components.MultiContent import MultiContentEntryText, MultiContentEntryPixmapAlphaBlend, MultiContentEntryPixmapAlphaTest
 
 from enigma import eListboxPythonMultiContent, gFont, BT_SCALE, BT_KEEP_ASPECT_RATIO, BT_HALIGN_CENTER, BT_VALIGN_CENTER
@@ -10,7 +10,7 @@ import skin
 
 
 def PluginEntryComponent(plugin, width=440):
-	png = plugin.icon or LoadPixmap(resolveFilename(SCOPE_ACTIVE_SKIN, "icons/plugin.png"))
+	png = plugin.icon or LoadPixmap(resolveFilename(SCOPE_CURRENT_SKIN, "icons/plugin.png"))
 	nx, ny, nh = skin.parameters.get("PluginBrowserName", (120, 5, 25))
 	dx, dy, dh = skin.parameters.get("PluginBrowserDescr", (120, 26, 17))
 	ix, iy, iw, ih = skin.parameters.get("PluginBrowserIcon", (10, 5, 100, 40))
@@ -23,7 +23,7 @@ def PluginEntryComponent(plugin, width=440):
 
 
 def PluginEntryComponentSelected(plugin, width=440):
-	png = plugin.icon or LoadPixmap(resolveFilename(SCOPE_ACTIVE_SKIN, "icons/plugin.png"))
+	png = plugin.icon or LoadPixmap(resolveFilename(SCOPE_CURRENT_SKIN, "icons/plugin.png"))
 	nx, ny, nh = skin.parameters.get("PluginBrowserName", (120, 5, 25))
 	dx, dy, dh = skin.parameters.get("PluginBrowserDescr", (120, 26, 17))
 	ix, iy, iw, ih = skin.parameters.get("PluginBrowserIcon", (10, 5, 100, 40))
@@ -48,7 +48,7 @@ def PluginCategoryComponent(name, png, width=440):
 
 
 def PluginDownloadComponent(plugin, name, version=None, width=440):
-	png = plugin.icon or LoadPixmap(resolveFilename(SCOPE_ACTIVE_SKIN, "icons/plugin.png"))
+	png = plugin.icon or LoadPixmap(resolveFilename(SCOPE_CURRENT_SKIN, "icons/plugin.png"))
 	if version:
 		if "+git" in version:
 			# remove git "hash"

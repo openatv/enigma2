@@ -5,7 +5,7 @@ from Components.Converter.Converter import Converter
 from Components.Element import cached
 from Components.Converter.genre import getGenreStringSub
 from Components.config import config
-from Tools.Directories import resolveFilename, SCOPE_ACTIVE_SKIN
+from Tools.Directories import resolveFilename, SCOPE_CURRENT_SKIN
 from time import localtime, mktime, strftime
 
 
@@ -224,7 +224,7 @@ class EventName(Converter):
 						return self.trimText(rating[self.RATLONG])
 					elif self.type == self.SRATING:
 						return self.trimText(rating[self.RATSHORT])
-					return resolveFilename(SCOPE_ACTIVE_SKIN, rating[self.RATICON])
+					return resolveFilename(SCOPE_CURRENT_SKIN, rating[self.RATICON])
 		elif self.type in (self.GENRE, self.GENRELIST):
 			if not config.usage.show_genre_info.value:
 				return ""

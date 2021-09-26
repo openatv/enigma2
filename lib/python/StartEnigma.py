@@ -766,14 +766,14 @@ from skin import readSkin
 
 profile("LOAD:Tools")
 from Components.config import configfile, ConfigSelection, NoSave, ConfigSubsection
-from Tools.Directories import InitFallbackFiles, resolveFilename, SCOPE_PLUGINS, SCOPE_ACTIVE_SKIN, SCOPE_CURRENT_SKIN, SCOPE_CONFIG
+from Tools.Directories import InitFallbackFiles, resolveFilename, SCOPE_PLUGINS, SCOPE_CURRENT_SKIN, SCOPE_CONFIG
 import Components.RecordingConfig
 InitFallbackFiles()
 
 profile("config.misc")
 config.misc.boxtype = ConfigText(default=boxtype)
-config.misc.blackradiopic = ConfigText(default=resolveFilename(SCOPE_ACTIVE_SKIN, "black.mvi"))
-radiopic = resolveFilename(SCOPE_ACTIVE_SKIN, "radio.mvi")
+config.misc.blackradiopic = ConfigText(default=resolveFilename(SCOPE_CURRENT_SKIN, "black.mvi"))
+radiopic = resolveFilename(SCOPE_CURRENT_SKIN, "radio.mvi")
 if os.path.exists(resolveFilename(SCOPE_CONFIG, "radio.mvi")):
 	radiopic = resolveFilename(SCOPE_CONFIG, "radio.mvi")
 config.misc.radiopic = ConfigText(default=radiopic)
