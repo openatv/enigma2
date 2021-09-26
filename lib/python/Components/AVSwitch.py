@@ -1200,25 +1200,22 @@ def InitAVSwitch():
 		config.av.downmix_aacplus = ConfigSelection(choices=choice_list, default="downmix")
 		config.av.downmix_aacplus.addNotifier(setAACDownmixPlus)
 
-	def read_choices(procx, defchoice):
-		with open(procx, 'r') as myfile:
-			choices = myfile.read().strip()
-		myfile.close()
-		if choices:
-			choiceslist = choices.split(" ")
-			choicesx = [(item, _(item)) for item in choiceslist]
-			defaultx = choiceslist[0]
-			for item in choiceslist:
-				if "%s" %defchoice.upper in item.upper():
-					defaultx = item
-					break
-		return (choicesx, defaultx)
+	def readChoices(procx, choices, default):
+		with open(procx, "r") as myfile:
+			procChoices = myfile.read().strip()
+		if procChoices:
+			choiceslist = procChoices.split(" ")
+			choices = [(item, _(item)) for item in choiceslist]
+			default = choiceslist[0]
+			print("[AVSwitch][readChoices from Proc] choices=%s, default=%s" % (choices, default))
+		return (choices, default)
 
 	if os.path.exists("/proc/stb/audio/aac_transcode_choices"):
-		can_aactranscode = [("off", _("Off")), ("ac3", _("AC3")), ("dts", _("DTS"))]
+		can_aactranscode = [("off", _("off")), ("ac3", _("ac3")), ("dts", _("dts"))]
+		#The translation text must look exactly like the read value. It is then adjusted with the PO file
 		default = "off"
 		f = "/proc/stb/audio/aac_transcode_choices"
-		(can_aactranscode, default) = read_choices(f, default)
+		(can_aactranscode, default) = readChoices(f, can_aactranscode, default)
 	else:
 		can_aactranscode = False
 
