@@ -74,6 +74,7 @@ class BoxInformation:  # To maintain data integrity class variables should not b
 		return value != result
 
 	def processValue(self, value):
+		valueTest = value.upper() if value else ""
 		if value is None:
 			pass
 		elif value.startswith("\"") or value.startswith("'") and value.endswith(value[0]):
@@ -88,25 +89,25 @@ class BoxInformation:  # To maintain data integrity class variables should not b
 			for item in [x.strip() for x in value[1:-1].split(",")]:
 				data.append(self.processValue(item))
 			value = list(data)
-		elif value.upper() == "NONE":
+		elif valueTest == "NONE":
 			value = None
-		elif value.upper() in ("FALSE", "NO", "OFF", "DISABLED"):
+		elif valueTest in ("FALSE", "NO", "OFF", "DISABLED"):
 			value = False
-		elif value.upper() in ("TRUE", "YES", "ON", "ENABLED"):
+		elif valueTest in ("TRUE", "YES", "ON", "ENABLED"):
 			value = True
 		elif value.isdigit() or (value[0:1] == "-" and value[1:].isdigit()):
 			value = int(value)
-		elif value.startswith("0x") or value.startswith("0X"):
+		elif valueTest.startswith("0X"):
 			try:
 				value = int(value, 16)
 			except ValueError:
 				pass
-		elif value.startswith("0o") or value.startswith("0O"):
+		elif valueTest.startswith("0O"):
 			try:
 				value = int(value, 8)
 			except ValueError:
 				pass
-		elif value.startswith("0b") or value.startswith("0B"):
+		elif valueTest.startswith("0B"):
 			try:
 				value = int(value, 2)
 			except ValueError:
