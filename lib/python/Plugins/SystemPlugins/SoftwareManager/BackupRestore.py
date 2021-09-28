@@ -797,7 +797,7 @@ class RestorePlugins(Screen):
 		if len(self.myipklistfirst) > 0:
 			self.session.open(Console, title=_("Installing feeds from IPK ..."), cmdlist=['opkg install ' + ' '.join(self.myipklistfirst) + ' ; opkg update'], finishedCallback=self.installLocalIPK, closeOnSuccess=True)
 		else:
-			self.installPlugins()
+			self.installLocalIPK()
 
 	def installLocalIPK(self):
 		if len(self.myipklist) > 0:
