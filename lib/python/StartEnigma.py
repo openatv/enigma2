@@ -680,8 +680,12 @@ def quietEmit(self, eventDict):
 	util.untilConcludes(self.flush)
 
 from twisted.python import log, util
-config.misc.enabletwistedlog = ConfigYesNo(default=False)
-if config.misc.enabletwistedlog.value == True:
+etl = config.content.stored_values
+if 'misc' in etl:
+	etl = etl['misc']
+	if 'enabletwistedlog' in etl:
+		etl = etl['enabletwistedlog']
+if etl.lower() == 'true':
 	log.startLogging(open('/tmp/twisted.log', 'w'))
 else:
 	logger = log.FileLogObserver(stdout)
@@ -730,6 +734,7 @@ config.misc.locale = ConfigText(default=defaultLanguage)
 # TODO
 # config.misc.locale.addNotifier(localeNotifier)
 
+config.misc.enabletwistedlog = ConfigYesNo(default=False)
 
 # These entries should be moved back to UsageConfig.py when it is safe to bring UsageConfig init to this location in StartEnigma2.py.
 #
