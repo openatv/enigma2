@@ -435,7 +435,7 @@ bool isFBCLink(int);
 bool isFBCLink(int fe)
 {
         eFBCTunerManager *mgr = eFBCTunerManager::getInstance();
-        if (mgr) return mgr->isFBCLink(fe);
+        if (mgr) return mgr->IsFBCLink(fe);
         return false;
 }
 %}

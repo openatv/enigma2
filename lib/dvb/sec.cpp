@@ -1421,7 +1421,7 @@ RESULT eDVBSatelliteEquipmentControl::clear()
 		{
 			eFBCTunerManager *fbcmng = eFBCTunerManager::getInstance();
 			if (fbcmng)
-				fbcmng->setDefaultFBCID(*it);
+				fbcmng->SetDefaultFBCID(*it);
 		}
 	}
 
@@ -1888,7 +1888,7 @@ RESULT eDVBSatelliteEquipmentControl::setTunerLinked(int tu1, int tu2)
 			eFBCTunerManager *fbcmng = eFBCTunerManager::getInstance();
 			if (p1->m_frontend->is_FBCTuner() && fbcmng)
 			{
-				fbcmng->updateFBCID(p1, p2);
+				fbcmng->UpdateFBCID(p1, p2);
 			}
 		}
 
