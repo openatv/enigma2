@@ -684,8 +684,8 @@ etl = config.content.stored_values
 if 'misc' in etl:
 	etl = etl['misc']
 	if 'enabletwistedlog' in etl:
-		etl = etl['enabletwistedlog']
-if etl.lower() == 'true':
+		etl = etl['enabletwistedlog'].lower()
+if etl == 'true':
 	log.startLogging(open('/tmp/twisted.log', 'w'))
 else:
 	logger = log.FileLogObserver(stdout)
