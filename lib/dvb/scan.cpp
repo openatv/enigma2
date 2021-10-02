@@ -470,7 +470,7 @@ void eDVBScan::PMTready(int err)
 				case 0x02: // MPEG 2 video
 					isvideo = 1;
 					forced_video = 1;
-					//break; fall through !!!
+					[[fallthrough]];
 				case 0x03: // MPEG 1 audio
 				case 0x04: // MPEG 2 audio
 				case 0x0f: // MPEG 2 AAC
@@ -480,6 +480,7 @@ void eDVBScan::PMTready(int err)
 						forced_audio = 1;
 						isaudio = 1;
 					}
+					[[fallthrough]];
 				case 0x06: // PES Private
 				case 0x81: // user private
 				case 0xEA: // TS_PSI_ST_SMPTE_VC1
@@ -848,6 +849,7 @@ void eDVBScan::channelDone()
 							break; // when current locked transponder is no satellite transponder ignore this descriptor
 
 						S2SatelliteDeliverySystemDescriptor &d = (S2SatelliteDeliverySystemDescriptor&)**desc;
+						[[fallthrough]];
 					}
 					case SATELLITE_DELIVERY_SYSTEM_DESCRIPTOR:
 					{
