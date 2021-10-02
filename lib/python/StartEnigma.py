@@ -771,9 +771,9 @@ from skin import readSkin
 
 profile("LOAD:Tools")
 from Components.config import configfile, ConfigSelection, NoSave, ConfigSubsection
-from Tools.Directories import InitFallbackFiles, resolveFilename, SCOPE_PLUGINS, SCOPE_CURRENT_SKIN, SCOPE_CONFIG
+from Tools.Directories import InitDefaultPaths, resolveFilename, SCOPE_PLUGINS, SCOPE_CURRENT_SKIN, SCOPE_CONFIG
 import Components.RecordingConfig
-InitFallbackFiles()
+InitDefaultPaths()
 
 profile("config.misc")
 config.misc.boxtype = ConfigText(default=boxtype)
