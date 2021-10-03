@@ -10,7 +10,7 @@ from Components.config import ConfigSubsection, ConfigText, config
 from Components.RcModel import rc_model
 from Components.Sources.Source import ObsoleteSource
 from Components.SystemInfo import BoxInfo
-from Tools.Directories import SCOPE_CONFIG, SCOPE_CURRENT_LCDSKIN, SCOPE_CURRENT_SKIN, SCOPE_FONTS, SCOPE_SKIN, SCOPE_SKIN_IMAGE, pathExists, resolveFilename, fileReadXML
+from Tools.Directories import SCOPE_CONFIG, SCOPE_LCDSKIN, SCOPE_CURRENT_SKIN, SCOPE_FONTS, SCOPE_SKIN, SCOPE_SKIN_IMAGE, pathExists, resolveFilename, fileReadXML
 from Tools.Import import my_import
 from Tools.LoadPixmap import LoadPixmap
 
@@ -73,7 +73,7 @@ runCallbacks = False
 # SCOPE_SKIN.  The full path is NOT saved.  E.g. "MySkin/skin.xml"
 #
 # Display skins are saved in the settings file as the path relative to
-# SCOPE_CURRENT_LCDSKIN.  The full path is NOT saved.
+# SCOPE_LCDSKIN.  The full path is NOT saved.
 # E.g. "MySkin/skin_display.xml"
 #
 def InitSkins():
@@ -121,7 +121,7 @@ def InitSkins():
 		if skin in result:  # Don't try to add a skin that has already failed.
 			continue
 		config.skin.display_skin.value = skin
-		if loadSkin(config.skin.display_skin.value, scope=SCOPE_CURRENT_LCDSKIN, desktop=getDesktop(DISPLAY_SKIN_ID), screenID=DISPLAY_SKIN_ID):
+		if loadSkin(config.skin.display_skin.value, scope=SCOPE_LCDSKIN, desktop=getDesktop(DISPLAY_SKIN_ID), screenID=DISPLAY_SKIN_ID):
 			currentDisplaySkin = config.skin.display_skin.value
 			break
 		print("[Skin] Error: Adding %s display skin '%s' has failed!" % (name, config.skin.display_skin.value))
@@ -450,10 +450,10 @@ def collectAttributes(skinAttributes, node, context, skinPath=None, ignore=(), f
 	for attrib, value in node.items():  # Walk all attributes.
 		if attrib not in ignore:
 			if attrib in filenames:
-				# DEBUG: Why does a SCOPE_CURRENT_LCDSKIN image replace the GUI image?!?!?!
+				# DEBUG: Why does a SCOPE_LCDSKIN image replace the GUI image?!?!?!
 				pngfile = resolveFilename(SCOPE_CURRENT_SKIN, value, path_prefix=skinPath)
-				if not isfile(pngfile) and isfile(resolveFilename(SCOPE_CURRENT_LCDSKIN, value, path_prefix=skinPath)):
-					pngfile = resolveFilename(SCOPE_CURRENT_LCDSKIN, value, path_prefix=skinPath)
+				if not isfile(pngfile) and isfile(resolveFilename(SCOPE_LCDSKIN, value, path_prefix=skinPath)):
+					pngfile = resolveFilename(SCOPE_LCDSKIN, value, path_prefix=skinPath)
 				value = pngfile
 			# Bit of a hack this, really.  When a window has a flag (e.g. wfNoBorder)
 			# it needs to be set at least before the size is set, in order for the
