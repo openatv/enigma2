@@ -37,7 +37,7 @@ from Plugins.SystemPlugins.SoftwareManager.ImageBackup import ImageBackup
 from Plugins.SystemPlugins.SoftwareManager.plugin import SoftwareManagerSetup, Load_defaults
 from Plugins.SystemPlugins.SoftwareManager.BackupRestore import BackupScreen, RestoreScreen, BackupSelection, getBackupPath, getOldBackupPath, getBackupFilename
 
-from Tools.Directories import resolveFilename, SCOPE_PLUGINS, SCOPE_SKIN_IMAGE, SCOPE_SKIN, fileExists
+from Tools.Directories import resolveFilename, SCOPE_PLUGINS, SCOPE_SKIN, fileExists
 from Tools.LoadPixmap import LoadPixmap
 
 from os import path, listdir
