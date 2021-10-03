@@ -263,7 +263,7 @@ class FlashImage(Screen):
 				self.session.openWithCallback(self.backupQuestionCB, MessageBox, _('Backup Settings') + '?', default=True, timeout=10)
 				return
 
-			def findmedia(path):
+			def findmedia(paths):
 				def avail(path):
 					if not '/mmc' in path and os.path.isdir(path) and os.access(path, os.W_OK):
 						try:
@@ -277,8 +277,9 @@ class FlashImage(Screen):
 					return (os.major(st_dev), os.minor(st_dev)) in diskstats
 
 				diskstats = [(int(x[0]), int(x[1])) for x in [x.split()[0:3] for x in open('/proc/diskstats').readlines()] if x[2].startswith("sd")]
-				if os.path.isdir(path) and checkIfDevice(path, diskstats) and avail(path) > 500:
-					return (path, True)
+				for path in paths:
+					if os.path.isdir(path) and checkIfDevice(path, diskstats) and avail(path) > 500:
+						return (path, True)
 				mounts = []
 				devices = []
 				for path in ['/media/%s' % x for x in os.listdir('/media')] + (['/media/net/%s' % x for x in os.listdir('/media/net')] if os.path.isdir('/media/net') else []):
@@ -290,7 +291,7 @@ class FlashImage(Screen):
 				mounts.sort(key=lambda x: x[1], reverse=True)
 				return ((devices[0][1] > 500 and (devices[0][0], True)) if devices else mounts and mounts[0][1] > 500 and (mounts[0][0], False)) or (None, None)
 
-			self.destination, isDevice = findmedia("/media/hdd" or "/media/usb")
+			self.destination, isDevice = findmedia(["/media/hdd", "/media/usb"])
 
 			if self.destination:
 
