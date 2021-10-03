@@ -4621,10 +4621,10 @@ msgid "Configure if epg.dat should be saved at all."
 msgstr "Einstellen, ob die EPG-Daten gespeichert werden sollen."
 
 msgid "Configure if service picons will be shown in quickzap."
-msgstr "Bei 'Ja' werden Picons (falls vorhanden) beim Quickzap (Umschalten) angezeigt."
+msgstr "Bei 'Ja' werden, falls vorhanden, Senderlogos (Picons) beim Quickzap (Umschalten) angezeigt."
 
 msgid "Configure if service picons will be shown in the servicelist."
-msgstr "Bei 'Ja' werden Picons (falls vorhanden) in der Kanalliste angezeigt."
+msgstr "Bei 'Ja' werden, falls vorhanden, Senderlogos (Picons) in der Kanalliste angezeigt."
 
 # Subtitle neu 5.1
 msgid "Configure if the subtitle should switch between normal, italic, bold and bolditalic"
@@ -4889,10 +4889,10 @@ msgid "Configure this tuner using simple or advanced options, or loop it through
 msgstr "Einstellen dieses Tuners mit einfachen oder erweiterten Optionen, ihn zu einem anderen Tuner durchführen, eine Konfiguration von einem anderen Tuner kopieren oder deaktivieren."
 
 msgid "Configure to show channel names, numbers, picons or all three inside EPG."
-msgstr "Einstellen, ob Sendernamen, Kanalnummern, Picons oder alle drei im EPG angezeigt werden sollen."
+msgstr "Einstellen, ob Sendernamen, Sendernummern oder Senderlogos (Picons) oder alle drei im EPG angezeigt werden sollen."
 
 msgid "Configure to show the channel names, picons, or both in the EPG."
-msgstr "Einstellen, ob Sendernamen, Kanalnummern, Picons oder alle drei im EPG angezeigt werden sollen."
+msgstr "Einstellen, ob Sendernamen oder Senderlogos (Picons) oder beide im EPG angezeigt werden sollen."
 
 msgid "Configure whether a bold TrueType font is used for teletext."
 msgstr "Bestimmt, ob ein regulärer oder ein fetter Zeichensatz für die Videotext Darstellung verwendet wird."
@@ -8288,7 +8288,7 @@ msgid "Hidden network"
 msgstr "Verstecktes Netzwerk"
 
 msgid "Hide VBI line for this service"
-msgstr "Verstecke VBI Line für diesen Kanal"
+msgstr "Verstecke VBI Line für diesen Sender"
 
 msgid "Hide any zap error messages."
 msgstr "Bei 'Ja' werden Fehlermeldungen beim Umschalten (Zappen) unterdrückt."
@@ -8303,7 +8303,7 @@ msgid "Hide number markers"
 msgstr "Nummerierte Marker verstecken"
 
 msgid "Hide parental locked services"
-msgstr "Jugendschutz geschützte Kanäle verbergen"
+msgstr "Durch Jugendschutz geschützte Kanäle verbergen"
 
 # Mediaplayer playlist Menue
 msgid "Hide player"
@@ -11334,7 +11334,7 @@ msgstr "Option lang"
 
 # Menue Anpassungen OSD
 msgid "Option to disable picons on the Infobar"
-msgstr "Bei 'Ja' werden Senderlogos (Picons) (falls vorhanden) in der Infoleiste angezeigt."
+msgstr "Bei 'Ja' werden, falls vorhanden, Senderlogos (Picons) in der Infoleiste angezeigt."
 
 # HDD Standby
 msgid "Option to enable the Hardware Standby Timer"
@@ -13027,7 +13027,7 @@ msgid "Red long"
 msgstr "Taste ROT lang"
 
 msgid "Reduce the size of the service picons for more line spacing between them."
-msgstr "Reduzieren Sie die Größe der Senderlogos für einen größeren Zeilenabstand."
+msgstr "Reduzieren Sie die Größe der Senderlogos (Picons) für einen größeren Zeilenabstand."
 
 msgid "Reduce time scale"
 msgstr "Reduziere Zeitspanne"
@@ -13183,7 +13183,7 @@ msgid "Remove finished."
 msgstr "Entfernen abgeschlossen."
 
 msgid "Remove hide VBI line for this service"
-msgstr "Verstecken der VBI Line deaktivieren"
+msgstr "VBI Line für diesen Sender wieder anzeigen"
 
 msgid "Remove items from trash can after (days)"
 msgstr "Gelöschte Aufnahmen nach x Tagen aus dem Papierkorb entfernen"
@@ -14543,10 +14543,10 @@ msgid "Service width"
 msgstr "Sendernamen Breite"
 
 msgid "ServiceName"
-msgstr "Sender-Name"
+msgstr "Sendername"
 
 msgid "ServicePicon"
-msgstr "Sender-Picon"
+msgstr "Senderlogo (Picon)"
 
 msgid "Serviceinfo"
 msgstr "Kanal-Informationen"
@@ -14618,7 +14618,7 @@ msgid "Set the MAC-address of your %s %s.\n"
 msgstr "Einstellen der MAC-Adresse Ihrer %s %s.\n"
 
 msgid "Set the aspect ratio of the service picons."
-msgstr "Einstellung des Seitenverhältnisses der Senderlogos."
+msgstr "Einstellung des Seitenverhältnisses der Senderlogos (Picons)."
 
 msgid "Set the channel for this timer."
 msgstr "Wählen Sie den Kanal von dem aufgenommen werden soll."
@@ -14735,7 +14735,7 @@ msgstr "Wählen Sie, was die Taste machen soll."
 
 # data/setup.xml
 msgid "Set to yes for debugging the root cause of a spinner."
-msgstr "Auf 'Ja' setzen, um die Ursache eines Spinners zu ermitteln."
+msgstr "Auf 'Ja' setzen, um die Ursache eines Spinners (Beschäftigungsanzeige) zu ermitteln."
 
 msgid "Set voltage and 22KHz"
 msgstr "Setze Spannung und 22kHz"
@@ -15094,7 +15094,7 @@ msgid "Show EPG"
 msgstr "Zeige EPG"
 
 msgid "Show EPG for current channel..."
-msgstr "Zeige EPG vom aktuellen Kanal"
+msgstr "Zeige EPG vom aktuellen Sender"
 
 msgid "Show Eventview"
 msgstr "Zeige Sendungsinformation"
@@ -15376,7 +15376,7 @@ msgid "Show infobar permanently while paused"
 msgstr "Zeige Infoleiste permanent während Pause"
 
 msgid "Show infobar picons"
-msgstr "Zeige Senderlogo in der Infoleiste"
+msgstr "Zeige Senderlogo (Picon) in der Infoleiste"
 
 msgid "Show job tasks in extensions"
 msgstr "Zeige Job Tasks in Erweiterungen"
@@ -15415,7 +15415,7 @@ msgid "Show movies"
 msgstr "Filmliste"
 
 msgid "Show multi channel EPG"
-msgstr "Mehr-Kanal EPG anzeigen"
+msgstr "Multi-EPG anzeigen"
 
 msgid "Show network mounts ..."
 msgstr "Netzwerk-Mounts anzeigen..."
@@ -15436,7 +15436,7 @@ msgid "Show parting lines between events."
 msgstr "Bei 'Ja' werden Trennlinien zwischen den Ereignissen angezeigt."
 
 msgid "Show picon background colour"
-msgstr "Hintergrundfarbe des Senderlogos"
+msgstr "Hintergrundfarbe des Senderlogos (Picon)"
 
 msgid "Show positioner movement"
 msgstr "Rotorbewegung anzeigen"
@@ -15502,7 +15502,7 @@ msgstr "Zeige Quellpakete"
 
 # Menue Anpassungen OSD
 msgid "Show spinning logo when system is busy."
-msgstr "Bei 'Ja' wird der Spinner (Beschäftigungsanzeige) angezeigt, wenn die %s %s ausgelastet ist."
+msgstr "Bei 'Ja' wird ein Spinner (Beschäftigungsanzeige) angezeigt, wenn die %s %s ausgelastet ist."
 
 msgid "Show status icons in movielist"
 msgstr "Zeige Status Icon in der Filmliste"
@@ -17256,7 +17256,7 @@ msgid "This allows you to show m2k modules in downloads"
 msgstr "M2K Erweiterungen im Downloadbereich anzeigen."
 
 msgid "This allows you to show picons modules in downloads"
-msgstr "Picons (Senderlogos) im Downloadbereich anzeigen."
+msgstr "Senderlogos (Picons) im Downloadbereich anzeigen."
 
 msgid "This allows you to show pli modules in downloads"
 msgstr "PLI Erweiterungen im Downloadbereich anzeigen."
