@@ -1,12 +1,12 @@
 from __future__ import absolute_import
 from Components.Renderer.Renderer import Renderer
 from enigma import ePixmap
-from Tools.Directories import fileExists, SCOPE_CURRENT_SKIN, resolveFilename
+from Tools.Directories import fileExists, SCOPE_GUISKIN, resolveFilename
 import os
 
 
 class AudioIcon(Renderer):
-	searchPaths = (resolveFilename(SCOPE_CURRENT_SKIN), '/usr/share/enigma2/skin_default/')
+	searchPaths = (resolveFilename(SCOPE_GUISKIN), '/usr/share/enigma2/skin_default/')
 
 	def __init__(self):
 		Renderer.__init__(self)

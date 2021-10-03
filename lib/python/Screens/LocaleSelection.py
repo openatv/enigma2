@@ -11,7 +11,7 @@ from Screens.HelpMenu import HelpableScreen, ShowRemoteControl
 from Screens.MessageBox import MessageBox
 from Screens.Screen import Screen, ScreenSummary
 from Screens.Setup import Setup
-from Tools.Directories import SCOPE_CURRENT_SKIN, resolveFilename
+from Tools.Directories import SCOPE_GUISKIN, resolveFilename
 from Tools.LoadPixmap import LoadPixmap
 
 config.locales = ConfigSubsection()
@@ -161,9 +161,9 @@ class LocaleSelection(Screen, HelpableScreen):
 				data = international.splitLocale(locale)
 				if len(locales) > 1 and "%s-%s" % (data[0], data[1].lower()) in international.getAvailablePackages():
 					continue
-				png = LoadPixmap(resolveFilename(SCOPE_CURRENT_SKIN, "countries/%s.png" % data[1].lower()))
+				png = LoadPixmap(resolveFilename(SCOPE_GUISKIN, "countries/%s.png" % data[1].lower()))
 				if png is None:
-					png = LoadPixmap(resolveFilename(SCOPE_CURRENT_SKIN, "countries/missing.png"))
+					png = LoadPixmap(resolveFilename(SCOPE_GUISKIN, "countries/missing.png"))
 				name = "%s (%s)" % (LANGUAGE_DATA[data[0]][LANG_NAME], data[1])
 				icon = self["icons"].pixmaps[self.PACK_INSTALLED] if installStatus == self.PACK_INSTALLED else self["icons"].pixmaps[self.PACK_AVAILABLE]
 				if locale == inUseLoc:
@@ -176,9 +176,9 @@ class LocaleSelection(Screen, HelpableScreen):
 					break
 		if inUseLoc not in [x[self.LIST_LOCALE] for x in self.localeList]:
 			data = international.splitLocale(inUseLoc)
-			png = LoadPixmap(resolveFilename(SCOPE_CURRENT_SKIN, "countries/%s.png" % data[1].lower()))
+			png = LoadPixmap(resolveFilename(SCOPE_GUISKIN, "countries/%s.png" % data[1].lower()))
 			if png is None:
-				png = LoadPixmap(resolveFilename(SCOPE_CURRENT_SKIN, "countries/missing.png"))
+				png = LoadPixmap(resolveFilename(SCOPE_GUISKIN, "countries/missing.png"))
 			name = "%s (%s)" % (LANGUAGE_DATA[data[0]][LANG_NAME], data[1])
 			package = international.getPackage(inUseLoc)
 			self.localeList.append((png, LANGUAGE_DATA[data[0]][LANG_NATIVE], name, inUseLoc, package, self["icons"].pixmaps[self.PACK_IN_USE], self.PACK_IN_USE))
@@ -442,9 +442,9 @@ class LocaleWizard(LocaleSelection, ShowRemoteControl):
 			locales = international.packageToLocales(package)
 			for locale in locales:
 				data = international.splitLocale(locale)
-				png = LoadPixmap(resolveFilename(SCOPE_CURRENT_SKIN, "countries/%s.png" % data[1].lower()))
+				png = LoadPixmap(resolveFilename(SCOPE_GUISKIN, "countries/%s.png" % data[1].lower()))
 				if png is None:
-					png = LoadPixmap(resolveFilename(SCOPE_CURRENT_SKIN, "countries/missing.png"))
+					png = LoadPixmap(resolveFilename(SCOPE_GUISKIN, "countries/missing.png"))
 				name = "%s (%s)" % (LANGUAGE_DATA[data[0]][LANG_NAME], data[1])
 				if locale == inUseLoc:
 					status = self.PACK_IN_USE
@@ -457,9 +457,9 @@ class LocaleWizard(LocaleSelection, ShowRemoteControl):
 					break
 		if inUseLoc not in [x[self.LIST_LOCALE] for x in self.localeList]:
 			data = international.splitLocale(inUseLoc)
-			png = LoadPixmap(resolveFilename(SCOPE_CURRENT_SKIN, "countries/%s.png" % data[1].lower()))
+			png = LoadPixmap(resolveFilename(SCOPE_GUISKIN, "countries/%s.png" % data[1].lower()))
 			if png is None:
-				png = LoadPixmap(resolveFilename(SCOPE_CURRENT_SKIN, "countries/missing.png"))
+				png = LoadPixmap(resolveFilename(SCOPE_GUISKIN, "countries/missing.png"))
 			name = "%s (%s)" % (LANGUAGE_DATA[data[0]][LANG_NAME], data[1])
 			package = international.getPackage(inUseLoc)
 			self.localeList.append((png, LANGUAGE_DATA[data[0]][LANG_NATIVE], name, inUseLoc, package, self["icons"].pixmaps[self.PACK_IN_USE], self.PACK_IN_USE))

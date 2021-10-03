@@ -4,7 +4,7 @@ import re
 from Components.FileList import FileList as FileListBase, EXTENSIONS as BASE_EXTENSIONS
 from Components.Harddisk import harddiskmanager
 
-from Tools.Directories import fileExists, resolveFilename, SCOPE_PLUGINS, SCOPE_CURRENT_SKIN
+from Tools.Directories import fileExists, resolveFilename, SCOPE_PLUGINS, SCOPE_GUISKIN
 
 from enigma import RT_HALIGN_LEFT, BT_SCALE, eListboxPythonMultiContent, \
 	eServiceReference, eServiceReferenceFS, eServiceCenter
@@ -34,7 +34,7 @@ LOCAL_EXTENSIONS.update(((ext[1:], "txt") for ext in TEXT_EXTENSIONS if ext[1:] 
 EXTENSIONS = BASE_EXTENSIONS.copy()
 EXTENSIONS.update(LOCAL_EXTENSIONS)
 
-imagePath = resolveFilename(SCOPE_CURRENT_SKIN, 'FCimages')
+imagePath = resolveFilename(SCOPE_GUISKIN, 'FCimages')
 if not os.path.isdir(imagePath):
 	imagePath = resolveFilename(SCOPE_PLUGINS, base="Extensions/FileCommander/images/")
 
@@ -277,12 +277,12 @@ def MultiFileSelectEntryComponent(name, absolute=None, isDir=False, isLink=False
 	if not name.startswith('<'):
 		x, y, w, h = skin.parameters.get("FileListMultiLock", (4, 0, 25, 25))
 		if selected is False:
-			icon = LoadPixmap(path=resolveFilename(SCOPE_CURRENT_SKIN, "skin_default/icons/lock_off.png"))
+			icon = LoadPixmap(path=resolveFilename(SCOPE_GUISKIN, "skin_default/icons/lock_off.png"))
 			if not icon:
 				icon = LoadPixmap(path=os.path.join(imagePath, "lock_off.png"))
 			res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, x, y, w, h, icon, None, None, BT_SCALE))
 		else:
-			icon = LoadPixmap(path=resolveFilename(SCOPE_CURRENT_SKIN, "skin_default/icons/lock_on.png"))
+			icon = LoadPixmap(path=resolveFilename(SCOPE_GUISKIN, "skin_default/icons/lock_on.png"))
 			if not icon:
 				icon = LoadPixmap(path=os.path.join(imagePath, "lock_on.png"))
 			res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, x, y, w, h, icon, None, None, BT_SCALE))

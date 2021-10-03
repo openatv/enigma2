@@ -7,7 +7,7 @@ from enigma import eListboxServiceContent, eListbox, eServiceCenter, eServiceRef
 from Tools.LoadPixmap import LoadPixmap
 from Tools.TextBoundary import getTextBoundarySize
 
-from Tools.Directories import resolveFilename, SCOPE_CURRENT_SKIN
+from Tools.Directories import resolveFilename, SCOPE_GUISKIN
 
 from Components.Renderer.Picon import getPiconName
 from Components.config import config
@@ -31,31 +31,31 @@ class ServiceList(GUIComponent):
 		GUIComponent.__init__(self)
 		self.l = eListboxServiceContent()
 
-		pic = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_SKIN, "icons/folder.png"))
+		pic = LoadPixmap(cached=True, path=resolveFilename(SCOPE_GUISKIN, "icons/folder.png"))
 		pic and self.l.setPixmap(self.l.picFolder, pic)
 
-		pic = LoadPixmap(resolveFilename(SCOPE_CURRENT_SKIN, "icons/marker.png"))
+		pic = LoadPixmap(resolveFilename(SCOPE_GUISKIN, "icons/marker.png"))
 		pic and self.l.setPixmap(self.l.picMarker, pic)
 
-		pic = LoadPixmap(resolveFilename(SCOPE_CURRENT_SKIN, "icons/ico_dvb-s.png"))
+		pic = LoadPixmap(resolveFilename(SCOPE_GUISKIN, "icons/ico_dvb-s.png"))
 		pic and self.l.setPixmap(self.l.picDVB_S, pic)
 
-		pic = LoadPixmap(resolveFilename(SCOPE_CURRENT_SKIN, "icons/ico_dvb-c.png"))
+		pic = LoadPixmap(resolveFilename(SCOPE_GUISKIN, "icons/ico_dvb-c.png"))
 		pic and self.l.setPixmap(self.l.picDVB_C, pic)
 
-		pic = LoadPixmap(resolveFilename(SCOPE_CURRENT_SKIN, "icons/ico_dvb-t.png"))
+		pic = LoadPixmap(resolveFilename(SCOPE_GUISKIN, "icons/ico_dvb-t.png"))
 		pic and self.l.setPixmap(self.l.picDVB_T, pic)
 
-		pic = LoadPixmap(resolveFilename(SCOPE_CURRENT_SKIN, "icons/ico_stream.png"))
+		pic = LoadPixmap(resolveFilename(SCOPE_GUISKIN, "icons/ico_stream.png"))
 		pic and self.l.setPixmap(self.l.picStream, pic)
 
-		pic = LoadPixmap(resolveFilename(SCOPE_CURRENT_SKIN, "icons/ico_service_group.png"))
+		pic = LoadPixmap(resolveFilename(SCOPE_GUISKIN, "icons/ico_service_group.png"))
 		pic and self.l.setPixmap(self.l.picServiceGroup, pic)
 
-		pic = LoadPixmap(resolveFilename(SCOPE_CURRENT_SKIN, "icons/icon_crypt.png"))
+		pic = LoadPixmap(resolveFilename(SCOPE_GUISKIN, "icons/icon_crypt.png"))
 		pic and self.l.setPixmap(self.l.picCrypto, pic)
 
-		pic = LoadPixmap(resolveFilename(SCOPE_CURRENT_SKIN, "icons/record.png"))
+		pic = LoadPixmap(resolveFilename(SCOPE_GUISKIN, "icons/record.png"))
 		pic and self.l.setPixmap(self.l.picRecord, pic)
 
 		self.root = None
@@ -152,7 +152,7 @@ class ServiceList(GUIComponent):
 			self.l.setColor(eListboxServiceContent.serviceAdvertismentColor, parseColor(value))
 
 		def picServiceEventProgressbar(value):
-			pic = LoadPixmap(resolveFilename(SCOPE_CURRENT_SKIN, value))
+			pic = LoadPixmap(resolveFilename(SCOPE_GUISKIN, value))
 			pic and self.l.setPixmap(self.l.picServiceEventProgressbar, pic)
 
 		def serviceItemHeight(value):

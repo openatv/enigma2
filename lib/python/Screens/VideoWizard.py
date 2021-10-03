@@ -9,7 +9,7 @@ from Components.Pixmap import Pixmap
 from Components.config import config, ConfigBoolean, configfile
 from Components.SystemInfo import BoxInfo
 
-from Tools.Directories import resolveFilename, SCOPE_SKIN, SCOPE_CURRENT_SKIN
+from Tools.Directories import resolveFilename, SCOPE_SKIN, SCOPE_GUISKIN
 from Tools.HardwareInfo import HardwareInfo
 
 
@@ -138,7 +138,7 @@ class VideoWizard(WizardLanguage, ShowRemoteControl):
 				picname = "RCA"
 			if picname == 'Scart' and has_jack:
 				picname = "JACK"
-			self["portpic"].instance.setPixmapFromFile(resolveFilename(SCOPE_CURRENT_SKIN, "icons/" + picname + ".png"))
+			self["portpic"].instance.setPixmapFromFile(resolveFilename(SCOPE_GUISKIN, "icons/" + picname + ".png"))
 
 	def inputSelect(self, port):
 		print("inputSelect:", port)

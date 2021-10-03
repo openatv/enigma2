@@ -10,7 +10,7 @@ from Components.SystemInfo import BoxInfo
 from Components.Label import Label
 from Tools.BoundFunction import boundFunction
 from Plugins.Plugin import PluginDescriptor
-from Tools.Directories import resolveFilename, SCOPE_SKIN, SCOPE_CURRENT_SKIN
+from Tools.Directories import resolveFilename, SCOPE_SKIN, SCOPE_GUISKIN
 from enigma import eTimer
 from Components.Pixmap import Pixmap, MovingPixmap
 from Components.Button import Button
@@ -26,14 +26,14 @@ from Screens.Setup import Setup, getSetupTitle, getSetupTitleLevel
 mainmenu = _("Main menu")
 lastMenuID = None
 
-nomainmenupath = False if os.path.exists(resolveFilename(SCOPE_CURRENT_SKIN, "mainmenu")) else True
+nomainmenupath = False if os.path.exists(resolveFilename(SCOPE_GUISKIN, "mainmenu")) else True
 
 def MenuEntryPixmap(entryID, png_cache, lastMenuID):
 	if nomainmenupath:
 		return None
 	png = png_cache.get(entryID, None)
 	if png is None:
-		pngPath = resolveFilename(SCOPE_CURRENT_SKIN, 'mainmenu/' + entryID + '.png')
+		pngPath = resolveFilename(SCOPE_GUISKIN, 'mainmenu/' + entryID + '.png')
 		pos = config.skin.primary_skin.value.rfind('/')
 		if pos > -1:
 			current_skin = config.skin.primary_skin.value[:pos + 1]
@@ -48,7 +48,7 @@ def MenuEntryPixmap(entryID, png_cache, lastMenuID):
 	if png is None:
 		png = png_cache.get('missing', None)
 		if png is None:
-			png = LoadPixmap(resolveFilename(SCOPE_CURRENT_SKIN, 'mainmenu/missing.png'), cached=True)
+			png = LoadPixmap(resolveFilename(SCOPE_GUISKIN, 'mainmenu/missing.png'), cached=True)
 			png_cache['missing'] = png
 	return png
 

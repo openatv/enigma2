@@ -14,7 +14,7 @@ from Screens.ParentalControlSetup import ProtectedScreen
 from Screens.ChoiceBox import ChoiceBox
 from Tools.BoundFunction import boundFunction
 from Tools.LoadPixmap import LoadPixmap
-from Tools.Directories import resolveFilename, SCOPE_CURRENT_SKIN, SCOPE_PLUGINS, fileExists, pathExists, isPluginInstalled
+from Tools.Directories import resolveFilename, SCOPE_GUISKIN, SCOPE_PLUGINS, fileExists, pathExists, isPluginInstalled
 from Components.MenuList import MenuList
 from Components.FileList import FileList
 from Components.Label import Label
@@ -277,11 +277,11 @@ from Screens.InfoBarGenerics import InfoBarPiP
 
 
 def InfoEntryComponent(file):
-	png = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_SKIN, "icons/" + file + ".png"))
+	png = LoadPixmap(cached=True, path=resolveFilename(SCOPE_GUISKIN, "icons/" + file + ".png"))
 	if png == None:
 		png = LoadPixmap("/usr/lib/enigma2/python/Plugins/Extensions/Infopanel/icons/" + file + ".png")
 		if png == None:
-			png = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_SKIN, "icons/default.png"))
+			png = LoadPixmap(cached=True, path=resolveFilename(SCOPE_GUISKIN, "icons/default.png"))
 			if png == None:
 				png = LoadPixmap("/usr/lib/enigma2/python/Plugins/Extensions/Infopanel/icons/default.png")
 	res = (png)

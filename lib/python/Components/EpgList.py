@@ -12,7 +12,7 @@ from Tools.Alternatives import CompareWithAlternatives
 from Tools.LoadPixmap import LoadPixmap
 from Components.config import config
 from ServiceReference import ServiceReference
-from Tools.Directories import resolveFilename, SCOPE_CURRENT_SKIN
+from Tools.Directories import resolveFilename, SCOPE_GUISKIN
 from Tools.TextBoundary import getTextBoundarySize
 
 EPG_TYPE_SINGLE = 0
@@ -105,41 +105,41 @@ class EPGList(GUIComponent):
 			self.l.setBuildFunc(self.buildSimilarEntry)
 		self.epgcache = eEPGCache.getInstance()
 
-		self.clocks = [LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_SKIN, 'icons/epgclock_add.png')),
-				LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_SKIN, 'icons/epgclock_pre.png')),
-				LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_SKIN, 'icons/epgclock.png')),
-				LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_SKIN, 'icons/epgclock_prepost.png')),
-				LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_SKIN, 'icons/epgclock_post.png')),
-				LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_SKIN, 'icons/epgclock_add.png')),
-				LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_SKIN, 'icons/epgclock_pre.png')),
-				LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_SKIN, 'icons/epgclock_zap.png')),
-				LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_SKIN, 'icons/epgclock_prepost.png')),
-				LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_SKIN, 'icons/epgclock_post.png')),
-				LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_SKIN, 'icons/epgclock_add.png')),
-				LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_SKIN, 'icons/epgclock_pre.png')),
-				LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_SKIN, 'icons/epgclock_zaprec.png')),
-				LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_SKIN, 'icons/epgclock_prepost.png')),
-				LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_SKIN, 'icons/epgclock_post.png'))]
+		self.clocks = [LoadPixmap(cached=True, path=resolveFilename(SCOPE_GUISKIN, 'icons/epgclock_add.png')),
+				LoadPixmap(cached=True, path=resolveFilename(SCOPE_GUISKIN, 'icons/epgclock_pre.png')),
+				LoadPixmap(cached=True, path=resolveFilename(SCOPE_GUISKIN, 'icons/epgclock.png')),
+				LoadPixmap(cached=True, path=resolveFilename(SCOPE_GUISKIN, 'icons/epgclock_prepost.png')),
+				LoadPixmap(cached=True, path=resolveFilename(SCOPE_GUISKIN, 'icons/epgclock_post.png')),
+				LoadPixmap(cached=True, path=resolveFilename(SCOPE_GUISKIN, 'icons/epgclock_add.png')),
+				LoadPixmap(cached=True, path=resolveFilename(SCOPE_GUISKIN, 'icons/epgclock_pre.png')),
+				LoadPixmap(cached=True, path=resolveFilename(SCOPE_GUISKIN, 'icons/epgclock_zap.png')),
+				LoadPixmap(cached=True, path=resolveFilename(SCOPE_GUISKIN, 'icons/epgclock_prepost.png')),
+				LoadPixmap(cached=True, path=resolveFilename(SCOPE_GUISKIN, 'icons/epgclock_post.png')),
+				LoadPixmap(cached=True, path=resolveFilename(SCOPE_GUISKIN, 'icons/epgclock_add.png')),
+				LoadPixmap(cached=True, path=resolveFilename(SCOPE_GUISKIN, 'icons/epgclock_pre.png')),
+				LoadPixmap(cached=True, path=resolveFilename(SCOPE_GUISKIN, 'icons/epgclock_zaprec.png')),
+				LoadPixmap(cached=True, path=resolveFilename(SCOPE_GUISKIN, 'icons/epgclock_prepost.png')),
+				LoadPixmap(cached=True, path=resolveFilename(SCOPE_GUISKIN, 'icons/epgclock_post.png'))]
 
-		self.selclocks = [LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_SKIN, 'icons/epgclock_add.png')),
-				LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_SKIN, 'icons/epgclock_selpre.png')),
-				LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_SKIN, 'icons/epgclock.png')),
-				LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_SKIN, 'icons/epgclock_selprepost.png')),
-				LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_SKIN, 'icons/epgclock_selpost.png')),
-				LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_SKIN, 'icons/epgclock_add.png')),
-				LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_SKIN, 'icons/epgclock_selpre.png')),
-				LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_SKIN, 'icons/epgclock_zap.png')),
-				LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_SKIN, 'icons/epgclock_selprepost.png')),
-				LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_SKIN, 'icons/epgclock_selpost.png')),
-				LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_SKIN, 'icons/epgclock_add.png')),
-				LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_SKIN, 'icons/epgclock_selpre.png')),
-				LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_SKIN, 'icons/epgclock_zaprec.png')),
-				LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_SKIN, 'icons/epgclock_selprepost.png')),
-				LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_SKIN, 'icons/epgclock_selpost.png'))]
+		self.selclocks = [LoadPixmap(cached=True, path=resolveFilename(SCOPE_GUISKIN, 'icons/epgclock_add.png')),
+				LoadPixmap(cached=True, path=resolveFilename(SCOPE_GUISKIN, 'icons/epgclock_selpre.png')),
+				LoadPixmap(cached=True, path=resolveFilename(SCOPE_GUISKIN, 'icons/epgclock.png')),
+				LoadPixmap(cached=True, path=resolveFilename(SCOPE_GUISKIN, 'icons/epgclock_selprepost.png')),
+				LoadPixmap(cached=True, path=resolveFilename(SCOPE_GUISKIN, 'icons/epgclock_selpost.png')),
+				LoadPixmap(cached=True, path=resolveFilename(SCOPE_GUISKIN, 'icons/epgclock_add.png')),
+				LoadPixmap(cached=True, path=resolveFilename(SCOPE_GUISKIN, 'icons/epgclock_selpre.png')),
+				LoadPixmap(cached=True, path=resolveFilename(SCOPE_GUISKIN, 'icons/epgclock_zap.png')),
+				LoadPixmap(cached=True, path=resolveFilename(SCOPE_GUISKIN, 'icons/epgclock_selprepost.png')),
+				LoadPixmap(cached=True, path=resolveFilename(SCOPE_GUISKIN, 'icons/epgclock_selpost.png')),
+				LoadPixmap(cached=True, path=resolveFilename(SCOPE_GUISKIN, 'icons/epgclock_add.png')),
+				LoadPixmap(cached=True, path=resolveFilename(SCOPE_GUISKIN, 'icons/epgclock_selpre.png')),
+				LoadPixmap(cached=True, path=resolveFilename(SCOPE_GUISKIN, 'icons/epgclock_zaprec.png')),
+				LoadPixmap(cached=True, path=resolveFilename(SCOPE_GUISKIN, 'icons/epgclock_selprepost.png')),
+				LoadPixmap(cached=True, path=resolveFilename(SCOPE_GUISKIN, 'icons/epgclock_selpost.png'))]
 
-		self.autotimericon = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_SKIN, 'icons/epgclock_autotimer.png'))
-		self.icetvicon = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_SKIN, 'icons/epgclock_icetv.png'))
-		self.primetimeicon = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_SKIN, 'icons/epgclock_primetime.png'))
+		self.autotimericon = LoadPixmap(cached=True, path=resolveFilename(SCOPE_GUISKIN, 'icons/epgclock_autotimer.png'))
+		self.icetvicon = LoadPixmap(cached=True, path=resolveFilename(SCOPE_GUISKIN, 'icons/epgclock_icetv.png'))
+		self.primetimeicon = LoadPixmap(cached=True, path=resolveFilename(SCOPE_GUISKIN, 'icons/epgclock_primetime.png'))
 
 		self.nowEvPix = None
 		self.nowSelEvPix = None
@@ -1489,29 +1489,29 @@ class EPGList(GUIComponent):
 	def fillGraphEPG(self, services, stime=None, getnow=False):
 		if (self.type == EPG_TYPE_GRAPH or self.type == EPG_TYPE_INFOBARGRAPH) and not self.graphicsloaded:
 			if self.graphic:
-				self.nowEvPix = loadPNG(resolveFilename(SCOPE_CURRENT_SKIN, 'epg/CurrentEvent.png'))
-				self.nowSelEvPix = loadPNG(resolveFilename(SCOPE_CURRENT_SKIN, 'epg/SelectedCurrentEvent.png'))
-				self.othEvPix = loadPNG(resolveFilename(SCOPE_CURRENT_SKIN, 'epg/OtherEvent.png'))
-				self.selEvPix = loadPNG(resolveFilename(SCOPE_CURRENT_SKIN, 'epg/SelectedEvent.png'))
-				self.othServPix = loadPNG(resolveFilename(SCOPE_CURRENT_SKIN, 'epg/OtherService.png'))
-				self.nowServPix = loadPNG(resolveFilename(SCOPE_CURRENT_SKIN, 'epg/CurrentService.png'))
-				self.recEvPix = loadPNG(resolveFilename(SCOPE_CURRENT_SKIN, 'epg/RecordEvent.png'))
-				self.recSelEvPix = loadPNG(resolveFilename(SCOPE_CURRENT_SKIN, 'epg/SelectedRecordEvent.png'))
-				self.recordingEvPix = loadPNG(resolveFilename(SCOPE_CURRENT_SKIN, 'epg/RecordingEvent.png'))
-				self.zapEvPix = loadPNG(resolveFilename(SCOPE_CURRENT_SKIN, 'epg/ZapEvent.png'))
-				self.zapSelEvPix = loadPNG(resolveFilename(SCOPE_CURRENT_SKIN, 'epg/SelectedZapEvent.png'))
+				self.nowEvPix = loadPNG(resolveFilename(SCOPE_GUISKIN, 'epg/CurrentEvent.png'))
+				self.nowSelEvPix = loadPNG(resolveFilename(SCOPE_GUISKIN, 'epg/SelectedCurrentEvent.png'))
+				self.othEvPix = loadPNG(resolveFilename(SCOPE_GUISKIN, 'epg/OtherEvent.png'))
+				self.selEvPix = loadPNG(resolveFilename(SCOPE_GUISKIN, 'epg/SelectedEvent.png'))
+				self.othServPix = loadPNG(resolveFilename(SCOPE_GUISKIN, 'epg/OtherService.png'))
+				self.nowServPix = loadPNG(resolveFilename(SCOPE_GUISKIN, 'epg/CurrentService.png'))
+				self.recEvPix = loadPNG(resolveFilename(SCOPE_GUISKIN, 'epg/RecordEvent.png'))
+				self.recSelEvPix = loadPNG(resolveFilename(SCOPE_GUISKIN, 'epg/SelectedRecordEvent.png'))
+				self.recordingEvPix = loadPNG(resolveFilename(SCOPE_GUISKIN, 'epg/RecordingEvent.png'))
+				self.zapEvPix = loadPNG(resolveFilename(SCOPE_GUISKIN, 'epg/ZapEvent.png'))
+				self.zapSelEvPix = loadPNG(resolveFilename(SCOPE_GUISKIN, 'epg/SelectedZapEvent.png'))
 
-				self.borderTopPix = loadPNG(resolveFilename(SCOPE_CURRENT_SKIN, 'epg/BorderTop.png'))
-				self.borderBottomPix = loadPNG(resolveFilename(SCOPE_CURRENT_SKIN, 'epg/BorderBottom.png'))
-				self.borderLeftPix = loadPNG(resolveFilename(SCOPE_CURRENT_SKIN, 'epg/BorderLeft.png'))
-				self.borderRightPix = loadPNG(resolveFilename(SCOPE_CURRENT_SKIN, 'epg/BorderRight.png'))
-				self.borderSelectedTopPix = loadPNG(resolveFilename(SCOPE_CURRENT_SKIN, 'epg/SelectedBorderTop.png'))
-				self.borderSelectedBottomPix = loadPNG(resolveFilename(SCOPE_CURRENT_SKIN, 'epg/SelectedBorderBottom.png'))
-				self.borderSelectedLeftPix = loadPNG(resolveFilename(SCOPE_CURRENT_SKIN, 'epg/SelectedBorderLeft.png'))
-				self.borderSelectedRightPix = loadPNG(resolveFilename(SCOPE_CURRENT_SKIN, 'epg/SelectedBorderRight.png'))
+				self.borderTopPix = loadPNG(resolveFilename(SCOPE_GUISKIN, 'epg/BorderTop.png'))
+				self.borderBottomPix = loadPNG(resolveFilename(SCOPE_GUISKIN, 'epg/BorderBottom.png'))
+				self.borderLeftPix = loadPNG(resolveFilename(SCOPE_GUISKIN, 'epg/BorderLeft.png'))
+				self.borderRightPix = loadPNG(resolveFilename(SCOPE_GUISKIN, 'epg/BorderRight.png'))
+				self.borderSelectedTopPix = loadPNG(resolveFilename(SCOPE_GUISKIN, 'epg/SelectedBorderTop.png'))
+				self.borderSelectedBottomPix = loadPNG(resolveFilename(SCOPE_GUISKIN, 'epg/SelectedBorderBottom.png'))
+				self.borderSelectedLeftPix = loadPNG(resolveFilename(SCOPE_GUISKIN, 'epg/SelectedBorderLeft.png'))
+				self.borderSelectedRightPix = loadPNG(resolveFilename(SCOPE_GUISKIN, 'epg/SelectedBorderRight.png'))
 
-			self.InfoPix = loadPNG(resolveFilename(SCOPE_CURRENT_SKIN, 'epg/information.png'))
-			self.selInfoPix = loadPNG(resolveFilename(SCOPE_CURRENT_SKIN, 'epg/SelectedInformation.png'))
+			self.InfoPix = loadPNG(resolveFilename(SCOPE_GUISKIN, 'epg/information.png'))
+			self.selInfoPix = loadPNG(resolveFilename(SCOPE_GUISKIN, 'epg/SelectedInformation.png'))
 
 			self.graphicsloaded = True
 
@@ -1673,8 +1673,8 @@ class TimelineText(GUIComponent):
 		self.listWidth = self.instance.size().width()
 		self.l.setItemHeight(self.itemHeight)
 		if self.graphic:
-			self.TlDate = loadPNG(resolveFilename(SCOPE_CURRENT_SKIN, 'epg/TimeLineDate.png'))
-			self.TlTime = loadPNG(resolveFilename(SCOPE_CURRENT_SKIN, 'epg/TimeLineTime.png'))
+			self.TlDate = loadPNG(resolveFilename(SCOPE_GUISKIN, 'epg/TimeLineDate.png'))
+			self.TlTime = loadPNG(resolveFilename(SCOPE_GUISKIN, 'epg/TimeLineTime.png'))
 		self.setTimeLineFontsize()
 		return rc
 
@@ -2054,17 +2054,17 @@ class EPGBouquetList(GUIComponent):
 
 	def fillBouquetList(self, bouquets):
 		if self.graphic and not self.graphicsloaded:
-			self.othPix = loadPNG(resolveFilename(SCOPE_CURRENT_SKIN, 'epg/OtherEvent.png'))
-			self.selPix = loadPNG(resolveFilename(SCOPE_CURRENT_SKIN, 'epg/SelectedCurrentEvent.png'))
+			self.othPix = loadPNG(resolveFilename(SCOPE_GUISKIN, 'epg/OtherEvent.png'))
+			self.selPix = loadPNG(resolveFilename(SCOPE_GUISKIN, 'epg/SelectedCurrentEvent.png'))
 
-			self.borderTopPix = loadPNG(resolveFilename(SCOPE_CURRENT_SKIN, 'epg/BorderTop.png'))
-			self.borderBottomPix = loadPNG(resolveFilename(SCOPE_CURRENT_SKIN, 'epg/BorderLeft.png'))
-			self.borderLeftPix = loadPNG(resolveFilename(SCOPE_CURRENT_SKIN, 'epg/BorderBottom.png'))
-			self.borderRightPix = loadPNG(resolveFilename(SCOPE_CURRENT_SKIN, 'epg/BorderRight.png'))
-			self.borderSelectedTopPix = loadPNG(resolveFilename(SCOPE_CURRENT_SKIN, 'epg/SelectedBorderTop.png'))
-			self.borderSelectedLeftPix = loadPNG(resolveFilename(SCOPE_CURRENT_SKIN, 'epg/SelectedBorderLeft.png'))
-			self.borderSelectedBottomPix = loadPNG(resolveFilename(SCOPE_CURRENT_SKIN, 'epg/SelectedBorderBottom.png'))
-			self.borderSelectedRightPix = loadPNG(resolveFilename(SCOPE_CURRENT_SKIN, 'epg/SelectedBorderRight.png'))
+			self.borderTopPix = loadPNG(resolveFilename(SCOPE_GUISKIN, 'epg/BorderTop.png'))
+			self.borderBottomPix = loadPNG(resolveFilename(SCOPE_GUISKIN, 'epg/BorderLeft.png'))
+			self.borderLeftPix = loadPNG(resolveFilename(SCOPE_GUISKIN, 'epg/BorderBottom.png'))
+			self.borderRightPix = loadPNG(resolveFilename(SCOPE_GUISKIN, 'epg/BorderRight.png'))
+			self.borderSelectedTopPix = loadPNG(resolveFilename(SCOPE_GUISKIN, 'epg/SelectedBorderTop.png'))
+			self.borderSelectedLeftPix = loadPNG(resolveFilename(SCOPE_GUISKIN, 'epg/SelectedBorderLeft.png'))
+			self.borderSelectedBottomPix = loadPNG(resolveFilename(SCOPE_GUISKIN, 'epg/SelectedBorderBottom.png'))
+			self.borderSelectedRightPix = loadPNG(resolveFilename(SCOPE_GUISKIN, 'epg/SelectedBorderRight.png'))
 
 			self.graphicsloaded = True
 		self.bouquetslist = bouquets

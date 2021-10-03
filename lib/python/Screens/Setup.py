@@ -12,7 +12,7 @@ from Components.SystemInfo import BoxInfo
 from Components.Sources.StaticText import StaticText
 from Screens.HelpMenu import HelpableScreen
 from Screens.Screen import Screen, ScreenSummary
-from Tools.Directories import SCOPE_CURRENT_SKIN, SCOPE_PLUGINS, SCOPE_SKIN, fileReadXML, resolveFilename
+from Tools.Directories import SCOPE_GUISKIN, SCOPE_PLUGINS, SCOPE_SKIN, fileReadXML, resolveFilename
 from Tools.LoadPixmap import LoadPixmap
 
 MODULE_NAME = __name__.split(".")[-1]
@@ -76,7 +76,7 @@ class Setup(ConfigListScreen, Screen, HelpableScreen):
 		setupImage = setups.get(setup, defaultSetupImage)
 		if setupImage:
 			print("[Setup] %s image '%s'." % ("Default" if setupImage is defaultSetupImage else "Setup", setupImage))
-			setupImage = resolveFilename(SCOPE_CURRENT_SKIN, setupImage)
+			setupImage = resolveFilename(SCOPE_GUISKIN, setupImage)
 			self.setupImage = LoadPixmap(setupImage)
 			if self.setupImage:
 				self["setupimage"] = Pixmap()

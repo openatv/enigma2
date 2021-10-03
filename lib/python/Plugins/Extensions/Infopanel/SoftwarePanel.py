@@ -11,7 +11,7 @@ from Components.Ipkg import IpkgComponent
 from Components.MultiContent import MultiContentEntryText, MultiContentEntryPixmapAlphaBlend
 from Tools.LoadPixmap import LoadPixmap
 from enigma import ePixmap
-from Tools.Directories import resolveFilename, SCOPE_CURRENT_PLUGIN, SCOPE_CURRENT_SKIN, SCOPE_METADIR
+from Tools.Directories import resolveFilename, SCOPE_CURRENT_PLUGIN, SCOPE_GUISKIN, SCOPE_METADIR
 from os import path as os_path
 import os
 from boxbranding import getMachineBrand, getMachineName
@@ -160,22 +160,22 @@ class SoftwarePanel(Screen):
 	def setStatus(self, status=None):
 		if status:
 			self.statuslist = []
-			divpng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_SKIN, "skin_default/div-h.png"))
+			divpng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_GUISKIN, "skin_default/div-h.png"))
 			if status == 'update':
-				if os_path.exists(resolveFilename(SCOPE_CURRENT_SKIN, "icons/upgrade.png")):
-					statuspng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_SKIN, "icons/upgrade.png"))
+				if os_path.exists(resolveFilename(SCOPE_GUISKIN, "icons/upgrade.png")):
+					statuspng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_GUISKIN, "icons/upgrade.png"))
 				else:
 					statuspng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_PLUGIN, "SystemPlugins/SoftwareManager/upgrade.png"))
 				self.statuslist.append((_("Package list update"), '', _("Trying to download a new updatelist. Please wait..."), '', statuspng, divpng))
 			elif status == 'error':
-				if os_path.exists(resolveFilename(SCOPE_CURRENT_SKIN, "icons/remove.png")):
-					statuspng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_SKIN, "icons/remove.png"))
+				if os_path.exists(resolveFilename(SCOPE_GUISKIN, "icons/remove.png")):
+					statuspng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_GUISKIN, "icons/remove.png"))
 				else:
 					statuspng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_PLUGIN, "SystemPlugins/SoftwareManager/remove.png"))
 				self.statuslist.append((_("Error"), '', _("There was an error downloading the updatelist. Please try again."), '', statuspng, divpng))
 			elif status == 'noupdate':
-				if os_path.exists(resolveFilename(SCOPE_CURRENT_SKIN, "icons/installed.png")):
-					statuspng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_SKIN, "icons/installed.png"))
+				if os_path.exists(resolveFilename(SCOPE_GUISKIN, "icons/installed.png")):
+					statuspng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_GUISKIN, "icons/installed.png"))
 				else:
 					statuspng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_PLUGIN, "SystemPlugins/SoftwareManager/installed.png"))
 				self.statuslist.append((_("Nothing to upgrade"), '', _("There are no updates available."), '', statuspng, divpng))
@@ -198,24 +198,24 @@ class SoftwarePanel(Screen):
 		pass
 
 	def buildEntryComponent(self, name, version, description, state):
-		divpng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_SKIN, "skin_default/div-h.png"))
+		divpng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_GUISKIN, "skin_default/div-h.png"))
 		if not description:
 			description = "No description available."
 		if state == 'installed':
-			if os_path.exists(resolveFilename(SCOPE_CURRENT_SKIN, "icons/installed.png")):
-				installedpng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_SKIN, "icons/installed.png"))
+			if os_path.exists(resolveFilename(SCOPE_GUISKIN, "icons/installed.png")):
+				installedpng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_GUISKIN, "icons/installed.png"))
 			else:
 				installedpng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_PLUGIN, "SystemPlugins/SoftwareManager/installed.png"))
 			return((name, version, _(description), state, installedpng, divpng))
 		elif state == 'upgradeable':
-			if os_path.exists(resolveFilename(SCOPE_CURRENT_SKIN, "icons/upgradeable.png")):
-				upgradeablepng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_SKIN, "icons/upgradeable.png"))
+			if os_path.exists(resolveFilename(SCOPE_GUISKIN, "icons/upgradeable.png")):
+				upgradeablepng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_GUISKIN, "icons/upgradeable.png"))
 			else:
 				upgradeablepng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_PLUGIN, "SystemPlugins/SoftwareManager/upgradeable.png"))
 			return((name, version, _(description), state, upgradeablepng, divpng))
 		else:
-			if os_path.exists(resolveFilename(SCOPE_CURRENT_SKIN, "icons/installable.png")):
-				installablepng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_SKIN, "icons/installable.png"))
+			if os_path.exists(resolveFilename(SCOPE_GUISKIN, "icons/installable.png")):
+				installablepng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_GUISKIN, "icons/installable.png"))
 			else:
 				installablepng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_PLUGIN, "SystemPlugins/SoftwareManager/installable.png"))
 			return((name, version, _(description), state, installablepng, divpng))

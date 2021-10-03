@@ -4,7 +4,7 @@ from boxbranding import getMachineBrand
 from enigma import ePicLoad, eTimer, getDesktop, gMainDC, eSize
 
 from Screens.Screen import Screen
-from Tools.Directories import resolveFilename, pathExists, SCOPE_MEDIA, SCOPE_CURRENT_SKIN
+from Tools.Directories import resolveFilename, pathExists, SCOPE_MEDIA, SCOPE_GUISKIN
 
 from Components.Pixmap import Pixmap, MovingPixmap
 from Components.ActionMap import ActionMap
@@ -271,7 +271,7 @@ class Pic_Thumb(Screen):
 		self.color = config.pic.bgcolor.value
 		self.spaceX, self.picX, self.spaceY, self.picY, textsize, thumtxt = skin.parameters.get("PicturePlayerThumb", (35, 190, 30, 200, 20, 14))
 
-		pic_frame = resolveFilename(SCOPE_CURRENT_SKIN, "icons/pic_frame.png")
+		pic_frame = resolveFilename(SCOPE_GUISKIN, "icons/pic_frame.png")
 
 		self.size_w = getDesktop(0).size().width()
 		self.size_h = getDesktop(0).size().height()

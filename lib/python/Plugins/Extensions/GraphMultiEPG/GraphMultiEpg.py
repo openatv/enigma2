@@ -21,7 +21,7 @@ from Screens.EpgSelection import EPGSelection
 from Screens.TimerEdit import TimerSanityConflict
 from Screens.MessageBox import MessageBox
 from Screens.ChoiceBox import ChoiceBox
-from Tools.Directories import resolveFilename, SCOPE_CURRENT_SKIN
+from Tools.Directories import resolveFilename, SCOPE_GUISKIN
 from RecordTimer import RecordTimerEntry, parseEvent, AFTEREVENT
 from ServiceReference import ServiceReference, isPlayableForCur
 from Tools.LoadPixmap import LoadPixmap
@@ -77,21 +77,21 @@ class EPGList(GUIComponent):
 		self.l.setBuildFunc(self.buildEntry)
 		self.setOverjump_Empty(overjump_empty)
 		self.epgcache = eEPGCache.getInstance()
-		self.clocks = [LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_SKIN, 'skin_default/icons/epgclock_add.png')),
-				 LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_SKIN, 'skin_default/icons/epgclock_pre.png')),
-				 LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_SKIN, 'skin_default/icons/epgclock.png')),
-				 LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_SKIN, 'skin_default/icons/epgclock_prepost.png')),
-				 LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_SKIN, 'skin_default/icons/epgclock_post.png')),
-				 LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_SKIN, 'skin_default/icons/zapclock_add.png')),
-				 LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_SKIN, 'skin_default/icons/zapclock_pre.png')),
-				 LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_SKIN, 'skin_default/icons/zapclock.png')),
-				 LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_SKIN, 'skin_default/icons/zapclock_prepost.png')),
-				 LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_SKIN, 'skin_default/icons/zapclock_post.png')),
-				 LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_SKIN, 'skin_default/icons/zaprecclock_add.png')),
-				 LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_SKIN, 'skin_default/icons/zaprecclock_pre.png')),
-				 LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_SKIN, 'skin_default/icons/zaprecclock.png')),
-				 LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_SKIN, 'skin_default/icons/zaprecclock_prepost.png')),
-				 LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_SKIN, 'skin_default/icons/zaprecclock_post.png'))]
+		self.clocks = [LoadPixmap(cached=True, path=resolveFilename(SCOPE_GUISKIN, 'skin_default/icons/epgclock_add.png')),
+				 LoadPixmap(cached=True, path=resolveFilename(SCOPE_GUISKIN, 'skin_default/icons/epgclock_pre.png')),
+				 LoadPixmap(cached=True, path=resolveFilename(SCOPE_GUISKIN, 'skin_default/icons/epgclock.png')),
+				 LoadPixmap(cached=True, path=resolveFilename(SCOPE_GUISKIN, 'skin_default/icons/epgclock_prepost.png')),
+				 LoadPixmap(cached=True, path=resolveFilename(SCOPE_GUISKIN, 'skin_default/icons/epgclock_post.png')),
+				 LoadPixmap(cached=True, path=resolveFilename(SCOPE_GUISKIN, 'skin_default/icons/zapclock_add.png')),
+				 LoadPixmap(cached=True, path=resolveFilename(SCOPE_GUISKIN, 'skin_default/icons/zapclock_pre.png')),
+				 LoadPixmap(cached=True, path=resolveFilename(SCOPE_GUISKIN, 'skin_default/icons/zapclock.png')),
+				 LoadPixmap(cached=True, path=resolveFilename(SCOPE_GUISKIN, 'skin_default/icons/zapclock_prepost.png')),
+				 LoadPixmap(cached=True, path=resolveFilename(SCOPE_GUISKIN, 'skin_default/icons/zapclock_post.png')),
+				 LoadPixmap(cached=True, path=resolveFilename(SCOPE_GUISKIN, 'skin_default/icons/zaprecclock_add.png')),
+				 LoadPixmap(cached=True, path=resolveFilename(SCOPE_GUISKIN, 'skin_default/icons/zaprecclock_pre.png')),
+				 LoadPixmap(cached=True, path=resolveFilename(SCOPE_GUISKIN, 'skin_default/icons/zaprecclock.png')),
+				 LoadPixmap(cached=True, path=resolveFilename(SCOPE_GUISKIN, 'skin_default/icons/zaprecclock_prepost.png')),
+				 LoadPixmap(cached=True, path=resolveFilename(SCOPE_GUISKIN, 'skin_default/icons/zaprecclock_post.png'))]
 		self.time_base = None
 		self.time_epoch = time_epoch
 		self.list = None
@@ -311,11 +311,11 @@ class EPGList(GUIComponent):
 			self.instance.resize(eSize(self.listWidth, itemHeight * config.misc.graph_mepg.items_per_page.value))
 		self.l.setItemHeight(itemHeight)
 
-		self.nowEvPix = LoadPixmap(resolveFilename(SCOPE_CURRENT_SKIN, 'epg/CurrentEvent.png'))
-		self.othEvPix = LoadPixmap(resolveFilename(SCOPE_CURRENT_SKIN, 'epg/OtherEvent.png'))
-		self.selEvPix = LoadPixmap(resolveFilename(SCOPE_CURRENT_SKIN, 'epg/SelectedEvent.png'))
-		self.recEvPix = LoadPixmap(resolveFilename(SCOPE_CURRENT_SKIN, 'epg/RecordingEvent.png'))
-		self.curSerPix = LoadPixmap(resolveFilename(SCOPE_CURRENT_SKIN, 'epg/CurrentService.png'))
+		self.nowEvPix = LoadPixmap(resolveFilename(SCOPE_GUISKIN, 'epg/CurrentEvent.png'))
+		self.othEvPix = LoadPixmap(resolveFilename(SCOPE_GUISKIN, 'epg/OtherEvent.png'))
+		self.selEvPix = LoadPixmap(resolveFilename(SCOPE_GUISKIN, 'epg/SelectedEvent.png'))
+		self.recEvPix = LoadPixmap(resolveFilename(SCOPE_GUISKIN, 'epg/RecordingEvent.png'))
+		self.curSerPix = LoadPixmap(resolveFilename(SCOPE_GUISKIN, 'epg/CurrentService.png'))
 
 		# if no background png's are present at all, use the solid background borders for further calculations
 		if (self.nowEvPix, self.othEvPix, self.selEvPix, self.recEvPix, self.curSerPix) == (None, None, None, None, None):
