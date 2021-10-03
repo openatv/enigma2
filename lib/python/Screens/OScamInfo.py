@@ -581,7 +581,7 @@ class oscECMInfo(Screen, OscamInfo):
 		return [
 			"",
 			(eListboxPythonMultiContent.TYPE_TEXT, 10 * sf, 2 * sf, 300 * sf, 30 * sf, 0, RT_HALIGN_LEFT, listentry[0]),
-			(eListboxPythonMultiContent.TYPE_TEXT, 300 * sf, 2 * sf, 300 * sf, 30 * sf, 0, RT_HALIGN_LEFT, listentry[1])
+			(eListboxPythonMultiContent.TYPE_TEXT, 280 * sf, 2 * sf, 320 * sf, 30 * sf, 0, RT_HALIGN_LEFT, listentry[1])
 			]
 
 	def showData(self):
@@ -733,7 +733,7 @@ class oscInfo(Screen, OscamInfo):
 			useFont = 3
 		else:
 			self.fieldsize = [150 * sf, 150 * sf, 150 * sf, 300 * sf, 150 * sf, 200 * sf]
-			self.startPos = [50 * sf, 200 * sf, 350 * sf, 500 * sf, 800 * sf, 950 * sf]
+			self.startPos = [10 * sf, 240 * sf, 420 * sf, 540 * sf, 780 * sf, 950 * sf]
 			useFont = 2
 
 		ypos = 2
