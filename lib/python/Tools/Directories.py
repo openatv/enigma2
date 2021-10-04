@@ -58,7 +58,7 @@ defaultPaths = {
 	SCOPE_HOME: ("", PATH_DONTCREATE),  # User home directory
 	SCOPE_LANGUAGE: (eEnv.resolve("${datadir}/enigma2/po/"), PATH_DONTCREATE),
 	SCOPE_KEYMAPS: (eEnv.resolve("${datadir}/keymaps/"), PATH_CREATE),
-	SCOPE_METADIR: (eEnv.resolve("${datadir}/meta"), PATH_CREATE),
+	SCOPE_METADIR: (eEnv.resolve("${datadir}/meta/"), PATH_CREATE),
 	SCOPE_SKINS: (eEnv.resolve("${datadir}/enigma2/"), PATH_DONTCREATE),
 	SCOPE_GUISKIN: (eEnv.resolve("${datadir}/enigma2/"), PATH_DONTCREATE),
 	SCOPE_LCDSKIN: (eEnv.resolve("${datadir}/enigma2/display/"), PATH_DONTCREATE),
@@ -75,8 +75,8 @@ defaultPaths = {
 	SCOPE_HDD: ("/media/hdd/movie/", PATH_DONTCREATE),
 	SCOPE_TIMESHIFT: ("/media/hdd/timeshift/", PATH_DONTCREATE),
 	SCOPE_DEFAULTDIR: (eEnv.resolve("${datadir}/enigma2/defaults/"), PATH_CREATE),
-	SCOPE_DEFAULTPARTITION: ("/dev/mtdblock6", PATH_DONTCREATE),
-	SCOPE_DEFAULTPARTITIONMOUNTDIR: (eEnv.resolve("${datadir}/enigma2/dealer"), PATH_CREATE),
+	SCOPE_DEFAULTPARTITION: ("/dev/mtdblock6/", PATH_DONTCREATE),
+	SCOPE_DEFAULTPARTITIONMOUNTDIR: (eEnv.resolve("${datadir}/enigma2/dealer/"), PATH_CREATE),
 	SCOPE_LIBDIR: (eEnv.resolve("${libdir}/"), PATH_DONTCREATE)
 }
 
