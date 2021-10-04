@@ -634,13 +634,13 @@ class AtileHDScreens(Screen):
 		self.screen_dir = "allScreens"
 		self.skinparts_dir = "skinparts"
 		self.file_dir = "mySkin_off"
-		my_path = resolveFilename(SCOPE_SKIN, "%s/icons/lock_on.png" % cur_skin)
+		my_path = resolveFilename(SCOPE_SKINS, "%s/icons/lock_on.png" % cur_skin)
 		if not path.exists(my_path):
-			my_path = resolveFilename(SCOPE_SKIN, "skin_default/icons/lock_on.png")
+			my_path = resolveFilename(SCOPE_SKINS, "skin_default/icons/lock_on.png")
 		self.enabled_pic = LoadPixmap(cached=True, path=my_path)
-		my_path = resolveFilename(SCOPE_SKIN, "%s/icons/lock_off.png" % cur_skin)
+		my_path = resolveFilename(SCOPE_SKINS, "%s/icons/lock_off.png" % cur_skin)
 		if not path.exists(my_path):
-			my_path = resolveFilename(SCOPE_SKIN, "skin_default/icons/lock_off.png")
+			my_path = resolveFilename(SCOPE_SKINS, "skin_default/icons/lock_off.png")
 		self.disabled_pic = LoadPixmap(cached=True, path=my_path)
 
 		if not self.selectionChanged in self["menu"].onSelectionChanged:
@@ -669,7 +669,7 @@ class AtileHDScreens(Screen):
 		file_dir_path = self.skin_base_dir + self.file_dir
 		if not path.exists(file_dir_path):
 			makedirs(file_dir_path)
-		dir_global_skinparts = resolveFilename(SCOPE_SKIN, "skinparts")
+		dir_global_skinparts = resolveFilename(SCOPE_SKINS, "skinparts")
 		if path.exists(dir_global_skinparts):
 			for pack in listdir(dir_global_skinparts):
 				if path.isdir(dir_global_skinparts + "/" + pack):

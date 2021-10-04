@@ -1,6 +1,6 @@
 from __future__ import print_function
 from Components.Pixmap import MovingPixmap, MultiPixmap
-from Tools.Directories import resolveFilename, SCOPE_SKIN
+from Tools.Directories import resolveFilename, SCOPE_SKINS
 from xml.etree.ElementTree import ElementTree
 from Components.config import config, ConfigInteger
 from Components.RcModel import rc_model
@@ -41,7 +41,7 @@ class Rc:
 
 	def readPositions(self):
 		if self.isDefaultRc:
-			target = resolveFilename(SCOPE_SKIN, "rcpositions.xml")
+			target = resolveFilename(SCOPE_SKINS, "rcpositions.xml")
 		else:
 			target = rc_model.getRcLocation() + 'rcpositions.xml'
 		tree = ElementTree(file=target)

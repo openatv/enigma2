@@ -316,7 +316,7 @@ chroot = "."
 for (x, (y, z)) in Tools.Directories.defaultPaths.items():
 	Tools.Directories.defaultPaths[x] = (chroot + y, z)
 
-Tools.Directories.defaultPaths[Tools.Directories.SCOPE_SKIN] = ("../data/", Tools.Directories.PATH_DONTCREATE)
+Tools.Directories.defaultPaths[Tools.Directories.SCOPE_SKINS] = ("../data/", Tools.Directories.PATH_DONTCREATE)
 Tools.Directories.defaultPaths[Tools.Directories.SCOPE_CONFIG] = ("/etc/enigma2/", Tools.Directories.PATH_DONTCREATE)
 
 ##################### ENIGMA CONFIG

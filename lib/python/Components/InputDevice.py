@@ -10,7 +10,7 @@ from enigma import eRCInput
 from keyids import KEYIDS, KEYIDNAMES
 from Components.config import ConfigSubsection, ConfigInteger, ConfigSelection, ConfigYesNo, ConfigText, ConfigSlider, config
 from Components.SystemInfo import BoxInfo
-from Tools.Directories import SCOPE_KEYMAPS, SCOPE_SKIN, fileReadLine, fileWriteLine, fileReadLines, fileReadXML, resolveFilename, pathExists
+from Tools.Directories import SCOPE_KEYMAPS, SCOPE_SKINS, fileReadLine, fileWriteLine, fileReadLines, fileReadXML, resolveFilename, pathExists
 
 from six import ensure_str
 MODULE_NAME = __name__.split(".")[-1]
@@ -157,7 +157,7 @@ class RemoteControl:
 		self.model = BoxInfo.getItem("model")
 		self.rcName = BoxInfo.getItem("rcname")
 		self.rcType = self.readRemoteControlType()
-		remotes = fileReadXML(resolveFilename(SCOPE_SKIN, "remotes.xml"), source=MODULE_NAME)
+		remotes = fileReadXML(resolveFilename(SCOPE_SKINS, "remotes.xml"), source=MODULE_NAME)
 		self.remotes = []
 		if remotes:
 			for remote in sorted(remotes.findall("remote"), key=lambda remote: (remote.tag, remote.get("displayName"))):

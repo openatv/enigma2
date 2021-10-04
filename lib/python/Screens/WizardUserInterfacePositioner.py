@@ -3,13 +3,13 @@ from Screens.Screen import Screen
 from Screens.WizardLanguage import WizardLanguage
 from Components.Pixmap import Pixmap
 from Components.Sources.Boolean import Boolean
-from Tools.Directories import resolveFilename, SCOPE_SKIN
+from Tools.Directories import resolveFilename, SCOPE_SKINS
 from Components.Console import Console
 
 
 class UserInterfacePositionerWizard(WizardLanguage, ShowRemoteControl):
 	def __init__(self, session, interface=None):
-		self.xmlfile = resolveFilename(SCOPE_SKIN, "userinterfacepositionerwizard.xml")
+		self.xmlfile = resolveFilename(SCOPE_SKINS, "userinterfacepositionerwizard.xml")
 		WizardLanguage.__init__(self, session, showSteps=False, showStepSlider=False)
 		ShowRemoteControl.__init__(self)
 		self.skinName = "StartWizard"

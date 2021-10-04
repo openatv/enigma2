@@ -9,7 +9,7 @@ from Components.Pixmap import Pixmap
 from Components.config import config, ConfigBoolean, configfile
 from Components.SystemInfo import BoxInfo
 
-from Tools.Directories import resolveFilename, SCOPE_SKIN, SCOPE_GUISKIN
+from Tools.Directories import resolveFilename, SCOPE_SKINS, SCOPE_GUISKIN
 from Tools.HardwareInfo import HardwareInfo
 
 
@@ -75,7 +75,7 @@ class VideoWizard(WizardLanguage, ShowRemoteControl):
 
 	def __init__(self, session):
 		# FIXME anyone knows how to use relative paths from the plugin's directory?
-		self.xmlfile = resolveFilename(SCOPE_SKIN, "videowizard.xml")
+		self.xmlfile = resolveFilename(SCOPE_SKINS, "videowizard.xml")
 		self.hw = iAVSwitch
 
 		WizardLanguage.__init__(self, session, showSteps=False, showStepSlider=False)

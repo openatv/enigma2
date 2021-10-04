@@ -10,7 +10,7 @@ from Components.SystemInfo import BoxInfo
 from Components.Label import Label
 from Tools.BoundFunction import boundFunction
 from Plugins.Plugin import PluginDescriptor
-from Tools.Directories import resolveFilename, SCOPE_SKIN, SCOPE_GUISKIN
+from Tools.Directories import resolveFilename, SCOPE_SKINS, SCOPE_GUISKIN
 from enigma import eTimer
 from Components.Pixmap import Pixmap, MovingPixmap
 from Components.Button import Button
@@ -96,7 +96,7 @@ def MenuEntryName(name):
 
 
 # read the menu
-file = open(resolveFilename(SCOPE_SKIN, 'menu.xml'), 'r')
+file = open(resolveFilename(SCOPE_SKINS, 'menu.xml'), 'r')
 mdom = xml.etree.cElementTree.parse(file)
 file.close()
 

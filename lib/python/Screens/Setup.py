@@ -12,7 +12,7 @@ from Components.SystemInfo import BoxInfo
 from Components.Sources.StaticText import StaticText
 from Screens.HelpMenu import HelpableScreen
 from Screens.Screen import Screen, ScreenSummary
-from Tools.Directories import SCOPE_GUISKIN, SCOPE_PLUGINS, SCOPE_SKIN, fileReadXML, resolveFilename
+from Tools.Directories import SCOPE_GUISKIN, SCOPE_PLUGINS, SCOPE_SKINS, fileReadXML, resolveFilename
 from Tools.LoadPixmap import LoadPixmap
 
 MODULE_NAME = __name__.split(".")[-1]
@@ -338,7 +338,7 @@ def setupDom(setup=None, plugin=None):
 				pass
 
 	setupFileDom = fromstring("<setupxml></setupxml>")
-	setupFile = resolveFilename(SCOPE_PLUGINS, pathjoin(plugin, "setup.xml")) if plugin else resolveFilename(SCOPE_SKIN, "setup.xml")
+	setupFile = resolveFilename(SCOPE_PLUGINS, pathjoin(plugin, "setup.xml")) if plugin else resolveFilename(SCOPE_SKINS, "setup.xml")
 	global domSetups, setupModTimes
 	try:
 		modTime = getmtime(setupFile)

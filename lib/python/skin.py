@@ -10,7 +10,7 @@ from Components.config import ConfigSubsection, ConfigText, config
 from Components.RcModel import rc_model
 from Components.Sources.Source import ObsoleteSource
 from Components.SystemInfo import BoxInfo
-from Tools.Directories import SCOPE_CONFIG, SCOPE_LCDSKIN, SCOPE_GUISKIN, SCOPE_FONTS, SCOPE_SKIN, pathExists, resolveFilename, fileReadXML
+from Tools.Directories import SCOPE_CONFIG, SCOPE_LCDSKIN, SCOPE_GUISKIN, SCOPE_FONTS, SCOPE_SKINS, pathExists, resolveFilename, fileReadXML
 from Tools.Import import my_import
 from Tools.LoadPixmap import LoadPixmap
 
@@ -51,7 +51,7 @@ variables = {}
 isVTISkin = False  # Temporary flag to suppress errors in OpenATV.
 
 config.skin = ConfigSubsection()
-skin = resolveFilename(SCOPE_SKIN, DEFAULT_SKIN)
+skin = resolveFilename(SCOPE_SKINS, DEFAULT_SKIN)
 if not isfile(skin):
 	print("[Skin] Error: Default skin '%s' is not readable or is not a file!  Using emergency skin." % skin)
 	DEFAULT_SKIN = EMERGENCY_SKIN
@@ -70,7 +70,7 @@ runCallbacks = False
 # with a higher priority.
 #
 # GUI skins are saved in the settings file as the path relative to
-# SCOPE_SKIN.  The full path is NOT saved.  E.g. "MySkin/skin.xml"
+# SCOPE_GUISKIN.  The full path is NOT saved.  E.g. "MySkin/skin.xml"
 #
 # Display skins are saved in the settings file as the path relative to
 # SCOPE_LCDSKIN.  The full path is NOT saved.
@@ -138,7 +138,7 @@ def InitSkins():
 	# Add an optional skin related user skin "user_skin_<SkinName>.xml".  If there is
 	# not a skin related user skin then try to add am optional generic user skin.
 	result = None
-	if isfile(resolveFilename(SCOPE_SKIN, config.skin.primary_skin.value)):
+	if isfile(resolveFilename(SCOPE_SKINS, config.skin.primary_skin.value)):
 		name = USER_SKIN_TEMPLATE % dirname(config.skin.primary_skin.value)
 		if isfile(resolveFilename(SCOPE_GUISKIN, name)):
 			result = loadSkin(name, scope=SCOPE_GUISKIN, desktop=getDesktop(GUI_SKIN_ID), screenID=GUI_SKIN_ID)
@@ -153,7 +153,7 @@ def InitSkins():
 
 # Method to load a skin XML file into the skin data structures.
 #
-def loadSkin(filename, scope=SCOPE_SKIN, desktop=getDesktop(GUI_SKIN_ID), screenID=GUI_SKIN_ID):
+def loadSkin(filename, scope=SCOPE_SKINS, desktop=getDesktop(GUI_SKIN_ID), screenID=GUI_SKIN_ID):
 	global windowStyles, resolutions
 	filename = resolveFilename(scope, filename)
 	print("[Skin] Loading skin file '%s'." % filename)

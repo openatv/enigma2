@@ -7,7 +7,7 @@ from subprocess import PIPE, Popen
 from boxbranding import getBrandOEM, getDisplayType, getHaveAVJACK, getHaveDVI, getHaveHDMI, getHaveRCA, getHaveSCART, getHaveSCARTYUV, getHaveYUV, getMachineBuild, getMachineMtdRoot
 from enigma import Misc_Options, eDVBCIInterfaces, eDVBResourceManager, eGetEnigmaDebugLvl
 
-from Tools.Directories import SCOPE_LIBDIR, SCOPE_SKIN, fileCheck, fileReadLine, fileReadLines, resolveFilename, fileExists, fileHas, fileReadLine, pathExists
+from Tools.Directories import SCOPE_LIBDIR, SCOPE_SKINS, fileCheck, fileReadLine, fileReadLines, resolveFilename, fileExists, fileHas, fileReadLine, pathExists
 
 MODULE_NAME = __name__.split(".")[-1]
 
@@ -191,9 +191,9 @@ def haveInitCam():
 
 
 def getRCFile(ext):
-	filename = resolveFilename(SCOPE_SKIN, pathjoin("rc", "%s.%s" % (BoxInfo.getItem("rcname"), ext)))
+	filename = resolveFilename(SCOPE_SKINS, pathjoin("rc", "%s.%s" % (BoxInfo.getItem("rcname"), ext)))
 	if not isfile(filename):
-		filename = resolveFilename(SCOPE_SKIN, pathjoin("rc", "dmm1.%s" % ext))
+		filename = resolveFilename(SCOPE_SKINS, pathjoin("rc", "dmm1.%s" % ext))
 	return filename
 
 
