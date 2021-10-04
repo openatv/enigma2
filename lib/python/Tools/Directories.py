@@ -37,9 +37,7 @@ SCOPE_MEDIA = 16
 SCOPE_HDD = 17
 SCOPE_TIMESHIFT = 18
 SCOPE_DEFAULTDIR = 19
-SCOPE_DEFAULTPARTITION = 20
-SCOPE_DEFAULTPARTITIONMOUNTDIR = 21
-SCOPE_LIBDIR = 22
+SCOPE_LIBDIR = 20
 
 # Deprecated scopes:
 SCOPE_ACTIVE_LCDSKIN = SCOPE_LCDSKIN
@@ -75,8 +73,6 @@ defaultPaths = {
 	SCOPE_HDD: ("/media/hdd/movie/", PATH_DONTCREATE),
 	SCOPE_TIMESHIFT: ("/media/hdd/timeshift/", PATH_DONTCREATE),
 	SCOPE_DEFAULTDIR: (eEnv.resolve("${datadir}/enigma2/defaults/"), PATH_CREATE),
-	SCOPE_DEFAULTPARTITION: ("/dev/mtdblock6/", PATH_DONTCREATE),
-	SCOPE_DEFAULTPARTITIONMOUNTDIR: (eEnv.resolve("${datadir}/enigma2/dealer/"), PATH_CREATE),
 	SCOPE_LIBDIR: (eEnv.resolve("${libdir}/"), PATH_DONTCREATE)
 }
 
