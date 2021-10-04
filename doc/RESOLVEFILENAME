@@ -73,8 +73,6 @@ SCOPE_MEDIA                    /media/                          PATH_DONTCREATE
 SCOPE_HDD                      /media/hdd/movie/                PATH_DONTCREATE
 SCOPE_TIMESHIFT                /media/hdd/timeshift/            PATH_DONTCREATE
 SCOPE_DEFAULTDIR               /usr/share/enigma2/defaults/     PATH_CREATE
-SCOPE_DEFAULTPARTITION         /dev/mtdblock6/                  PATH_DONTCREATE
-SCOPE_DEFAULTPARTITIONMOUNTDIR /usr/share/enigma2/dealer/       PATH_CREATE
 SCOPE_LIBDIR                   /usr/lib/                        PATH_DONTCREATE
 
 *1 Current home directory of the enigma2 process, effectively /home/root/
