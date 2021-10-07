@@ -16,7 +16,7 @@ from socket import socket, create_connection, AF_INET, SOCK_DGRAM, SHUT_RDWR, er
 from . import config, saveConfigFile, getIceTVDeviceType
 from boxbranding import getMachineBrand, getMachineName, getImageBuild
 
-_version_string = "20201118"
+_version_string = "20211007"
 _protocol = "http://"
 _device_type_id = getIceTVDeviceType()
 _debug_level = 0  # 1 = request/reply, 2 = 1+headers, 3 = 2+partial body, 4 = 2+full body
@@ -66,8 +66,12 @@ def clearCredentials():
     saveConfigFile()
 
 def showIdToEventId(show_id):
-    # Fit within 16 bits, but avoid 0 and 0xFFF8 - 0xFFFF
-    return (int(show_id) % 0xFFF7) + 1
+    try:
+        # Fit within 16 bits, but avoid 0 and 0xFFF8 - 0xFFFF
+        return (int(show_id) % 0xFFF7) + 1
+    except:
+        # Invalid input converts to zero
+        return 0
 
 class Request(object):
     def __init__(self, resource):
