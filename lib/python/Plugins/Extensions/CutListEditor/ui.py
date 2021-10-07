@@ -23,6 +23,7 @@ from Screens.MovieSelection import MovieSelection
 apscParser = Struct(">qq")    # big-endian, 64-bit offset and 64-bit PTS/data
 
 config.usage.cutlisteditor_tutorial_seen = ConfigYesNo(default=False)
+config.usage.cutlisteditor_keep_bookmarks = ConfigYesNo(default=False)
 
 def SecToMSS(sec):
 	return "%d:%02d" % (sec / 60, sec % 60)
@@ -60,6 +61,7 @@ class CutListContextMenu(FixedMenu):
 	RET_EXECUTECUTS = 9
 	RET_QUICKEXECUTE = 10
 	RET_GRABFRAME = 11
+	RET_KEEPBOOKMARKS = 13
 
 	SHOW_STARTCUT = 0
 	SHOW_ENDCUT = 1
@@ -69,80 +71,46 @@ class CutListContextMenu(FixedMenu):
 		menu = [(_("back"), self.close)] #, (None, )]
 
 		if state == self.SHOW_STARTCUT:
-			menu.append((_("start cut here (reset)"), self.startCut))
+			menu.append((_("start cut here (reset)"), self.close, self.RET_STARTCUT))
 		else:
-			menu.append((_("start cut here"), self.startCut))
+			menu.append((_("start cut here"), self.close, self.RET_STARTCUT))
 
 		if state == self.SHOW_ENDCUT:
-			menu.append((_("end cut here (reset)"), self.endCut))
+			menu.append((_("end cut here (reset)"), self.close, self.RET_ENDCUT))
 		else:
-			menu.append((_("end cut here"), self.endCut))
+			menu.append((_("end cut here"), self.close, self.RET_ENDCUT))
 
 		if state == self.SHOW_DELETECUT:
-			menu.append((_("delete cut"), self.deleteCut))
+			menu.append((_("delete cut"), self.close, self.RET_DELETECUT))
 		else:
 			menu.append((_("delete cut (disabled)"), ))
 
-		menu.append((_("remove before this position"), self.removeBefore))
-		menu.append((_("remove after this position"), self.removeAfter))
+		menu.append((_("remove before this position"), self.close, self.RET_REMOVEBEFORE))
+		menu.append((_("remove after this position"), self.close, self.RET_REMOVEAFTER))
+		if config.usage.cutlisteditor_keep_bookmarks.value:
+			menu.append((_("remove bookmarks in cuts"), self.close, self.RET_KEEPBOOKMARKS))
+		else:
+			menu.append((_("preserve bookmarks in cuts"), self.close, self.RET_KEEPBOOKMARKS))
 
 		if cut_state == 2:
-			menu.append((_("enable cuts (preview)"), self.enableCuts))
+			menu.append((_("enable cuts (preview)"), self.close, self.RET_ENABLECUTS))
 		else:
-			menu.append((_("disable cuts (edit)"), self.disableCuts))
+			menu.append((_("disable cuts (edit)"), self.close, self.RET_DISABLECUTS))
 
-		menu.append((_("execute cuts and exit"), self.executeCuts))
-		menu.append((_("quick execute"), self.quickExecute))
+		menu.append((_("execute cuts and exit"), self.close, self.RET_EXECUTECUTS))
+		menu.append((_("quick execute"), self.close, self.RET_QUICKEXECUTE))
 
-		menu.append((_("insert mark after each in"), self.markIn))
+		menu.append((_("insert mark after each in"), self.close, self.RET_MARKIN))
 
 		if not nearmark:
-			menu.append((_("insert mark here"), self.insertMark))
+			menu.append((_("insert mark here"), self.close, self.RET_MARK))
 		else:
-			menu.append((_("remove this mark"), self.removeMark))
+			menu.append((_("remove this mark"), self.close, self.RET_DELETEMARK))
 
-		menu.append((_("grab this frame as bitmap"), self.grabFrame))
+		menu.append((_("grab this frame as bitmap"), self.close, self.RET_GRABFRAME))
 		FixedMenu.__init__(self, session, _("Cut"), menu)
 		self.skinName = "CutListMenu"
 
-	def startCut(self):
-		self.close(self.RET_STARTCUT)
-
-	def endCut(self):
-		self.close(self.RET_ENDCUT)
-
-	def deleteCut(self):
-		self.close(self.RET_DELETECUT)
-
-	def markIn(self):
-		self.close(self.RET_MARKIN)
-
-	def insertMark(self):
-		self.close(self.RET_MARK)
-
-	def removeMark(self):
-		self.close(self.RET_DELETEMARK)
-
-	def removeBefore(self):
-		self.close(self.RET_REMOVEBEFORE)
-
-	def removeAfter(self):
-		self.close(self.RET_REMOVEAFTER)
-
-	def enableCuts(self):
-		self.close(self.RET_ENABLECUTS)
-
-	def disableCuts(self):
-		self.close(self.RET_DISABLECUTS)
-
-	def executeCuts(self):
-		self.close(self.RET_EXECUTECUTS)
-
-	def quickExecute(self):
-		self.close(self.RET_QUICKEXECUTE)
-
-	def grabFrame(self):
-		self.close(self.RET_GRABFRAME)
 
 class CutListEditor(Screen, InfoBarBase, InfoBarSeek, InfoBarCueSheetSupport, HelpableScreen):
 	skin = """
@@ -513,7 +481,8 @@ class CutListEditor(Screen, InfoBarBase, InfoBarSeek, InfoBarCueSheetSupport, He
 			self["Timeline"].instance.setCutMark(0, self.CUT_TYPE_NONE)
 			# remove marks between the new cut
 			for (where, what) in self.cut_list[:]:
-				if self.cut_start <= where <= self.cut_end:
+				if (self.cut_start <= where <= self.cut_end
+						and (not config.usage.cutlisteditor_keep_bookmarks.value or what != self.CUT_TYPE_MARK)):
 					self.cut_list.remove((where, what))
 
 			bisect.insort(self.cut_list, (self.cut_start, self.CUT_TYPE_OUT))
@@ -557,7 +526,8 @@ class CutListEditor(Screen, InfoBarBase, InfoBarSeek, InfoBarCueSheetSupport, He
 		elif result == CutListContextMenu.RET_REMOVEBEFORE:
 			# remove marks before current position
 			for (where, what) in self.cut_list[:]:
-				if where <= self.context_position:
+				if (where <= self.context_position
+						and (not config.usage.cutlisteditor_keep_bookmarks.value or what != self.CUT_TYPE_MARK)):
 					self.cut_list.remove((where, what))
 			# add 'in' point
 			bisect.insort(self.cut_list, (self.context_position, self.CUT_TYPE_IN))
@@ -565,11 +535,15 @@ class CutListEditor(Screen, InfoBarBase, InfoBarSeek, InfoBarCueSheetSupport, He
 		elif result == CutListContextMenu.RET_REMOVEAFTER:
 			# remove marks after current position
 			for (where, what) in self.cut_list[:]:
-				if where >= self.context_position:
+				if (where >= self.context_position
+						and (not config.usage.cutlisteditor_keep_bookmarks.value or what != self.CUT_TYPE_MARK)):
 					self.cut_list.remove((where, what))
 			# add 'out' point
 			bisect.insort(self.cut_list, (self.context_position, self.CUT_TYPE_OUT))
 			self.putCuesheet(inhibit_seek=True)
+		elif result == CutListContextMenu.RET_KEEPBOOKMARKS:
+			config.usage.cutlisteditor_keep_bookmarks.value ^= True
+			config.usage.cutlisteditor_keep_bookmarks.save()
 		elif result == CutListContextMenu.RET_QUICKEXECUTE:
 			menu = [(_("cancel"), 0),
 					(_("end at this position"), 1),
@@ -656,7 +630,7 @@ class CutListEditor(Screen, InfoBarBase, InfoBarSeek, InfoBarCueSheetSupport, He
 			elif result[1] == self.BACK_REMOVECUTS:
 				self.cut_list = [x for x in self.cut_list if x[1] not in (self.CUT_TYPE_IN, self.CUT_TYPE_OUT)]
 			else:
-				self.cut_list = self.prev_cuts
+				self.cut_list = self.prev_cuts[:]
 			self.putCuesheet(inhibit_seek=True)
 			if result[1] == self.BACK_RESTOREEXIT:
 				self.close()

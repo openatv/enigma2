@@ -7,7 +7,10 @@ class FixedMenu(Screen):
 	def okbuttonClick(self):
 		selection = self["menu"].getCurrent()
 		if selection and len(selection) > 1:
-			selection[1]()
+			if len(selection) > 2:
+				selection[1](selection[2])
+			else:
+				selection[1]()
 
 	def __init__(self, session, title, list):
 		Screen.__init__(self, session)
