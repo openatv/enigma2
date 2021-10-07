@@ -780,10 +780,10 @@ class EPGFetcher(object):
                 timeError = False
                 for which, t in ("start", start), ("stop", stop):
                     if not (self.TIME_MIN <= t <= self.TIME_MAX):
-                        self.addLog("[EPGFetcher] ERROR: invalid EPG %s start time: %d event id: %s title: %s" % (which, t, show["id"], title))
+                        self.addLog("[EPGFetcher] ERROR: invalid EPG %s time: %d event id: %s title: %s" % (which, t, show["id"].encode("utf-8"), title))
                         timeError = True
                 if not (0 < duration <= self.DURATION_MAX):
-                    self.addLog("[EPGFetcher] ERROR: invalid EPG duration: %d start time: %d event id: %s title: %s" % (duration, start, show["id"], title))
+                    self.addLog("[EPGFetcher] ERROR: invalid EPG duration: %d start time: %d event id: %s title: %s" % (duration, start, show["id"].encode("utf-8"), title))
                     timeError = True
                 if timeError:
                     continue
@@ -796,7 +796,7 @@ class EPGFetcher(object):
                 else:
                     eit = int(g.get("eit", "0"), 0) or 0x01
                     if eit & ~0xFF:
-                        self.addLog("[EPGFetcher] ERROR: invalid eit genre id: %s genre name: %s show_id: %s title: %s" % (eit, name, show["id"], title))
+                        self.addLog("[EPGFetcher] ERROR: invalid eit genre id: %s genre name: %s show_id: %s title: %s" % (eit, name, show["id"].encode("utf-8"), title))
                         continue
                     eit_remap = genre_remaps.get(country_code, {}).get(name, eit)
                     mapped_name = getGenreStringSub((eit_remap >> 4) & 0xf, eit_remap & 0xf, country=country_code)
