@@ -442,6 +442,8 @@ void eListboxPythonConfigContent::paint(gPainter &painter, eWindowStyle &style, 
 						painter.setFont(fnt2);
 						int flags = value_alignment_left ? gPainter::RT_HALIGN_LEFT : gPainter::RT_HALIGN_RIGHT;
 						int markedpos = -1;
+						if (m_text_offset.find(m_cursor) == m_text_offset.end())
+							m_text_offset[m_cursor] = 0;
 
 						if (!strcmp(atype, "mtext"))
 						{
@@ -479,7 +481,7 @@ void eListboxPythonConfigContent::paint(gPainter &painter, eWindowStyle &style, 
 						}
 						valueoffset.setX(valueoffset.x() + 15 + labelwidth);
 						valuesize.setWidth(valuesize.width() - 15 - labelwidth - 15);
-						painter.renderText(eRect(valueoffset, valuesize), text, flags | gPainter::RT_VALIGN_CENTER, border_color, border_size, markedpos);
+						painter.renderText(eRect(valueoffset, valuesize), text, flags | gPainter::RT_VALIGN_CENTER, border_color, border_size, markedpos, &m_text_offset[m_cursor]);
 					/* pvalue is borrowed */
 					} else if (!strcmp(atype, "slider"))
 					{

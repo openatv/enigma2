@@ -383,7 +383,7 @@ void gPainter::setFont(gFont *font)
 	m_rc->submit(o);
 }
 
-void gPainter::renderText(const eRect &pos, const std::string &string, int flags, gRGB bordercolor, int border, int markedpos)
+void gPainter::renderText(const eRect &pos, const std::string &string, int flags, gRGB bordercolor, int border, int markedpos, int *offset)
 {
 	if (string.empty()) return;
 	if ( m_dc->islocked() ) {
@@ -400,6 +400,7 @@ void gPainter::renderText(const eRect &pos, const std::string &string, int flags
 	o.parm.renderText->border = border;
 	o.parm.renderText->bordercolor = bordercolor;
 	o.parm.renderText->markedpos = markedpos;
+	o.parm.renderText->offset = offset;
 	if (markedpos >= 0)
 		o.parm.renderText->scrollpos = eConfigManager::getConfigIntValue("config.usage.cursorscroll");
 	m_rc->submit(o);
@@ -805,7 +806,8 @@ void gDC::exec(const gOpcode *o)
 		para->renderString(o->parm.renderText->text, (flags & gPainter::RT_WRAP) ? RS_WRAP : 0, border, markedpos);
 		if (o->parm.renderText->text)
 			free(o->parm.renderText->text);
-		para->setTextOffset(m_text_offset);
+		if (o->parm.renderText->offset)
+			para->setTextOffset(*o->parm.renderText->offset);
 		if (flags & gPainter::RT_HALIGN_LEFT)
 			para->realign(eTextPara::dirLeft, markedpos, scrollpos);
 		else if (flags & gPainter::RT_HALIGN_RIGHT)
@@ -816,7 +818,8 @@ void gDC::exec(const gOpcode *o)
 			para->realign(eTextPara::dirBlock, markedpos, scrollpos);
 		else
 			para->realign(eTextPara::dirBidi, markedpos, scrollpos);
-		m_text_offset = para->getTextOffset();
+		if (o->parm.renderText->offset)
+			*o->parm.renderText->offset = para->getTextOffset();
 
 		ePoint offset = m_current_offset;
 
@@ -887,7 +890,9 @@ void gDC::exec(const gOpcode *o)
 			{
 				bbox = eRect(left, top, width, height);
 				bbox.moveBy(offset);
-				gRegion clip = m_current_clip & bbox;
+				eRect area = o->parm.renderText->area;
+				area.moveBy(offset);
+				gRegion clip = m_current_clip & bbox & area;
 				if (m_pixmap->needClut())
 					m_pixmap->fill(clip, m_foreground_color);
 				else

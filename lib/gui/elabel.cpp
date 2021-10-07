@@ -18,6 +18,8 @@ eLabel::eLabel(eWidget *parent, int markedPos): eWidget(parent)
 
 	m_nowrap = 0;
 	m_border_size = 0;
+
+	m_text_offset = 0;
 }
 
 int eLabel::event(int event, void *data, void *data2)
@@ -63,7 +65,7 @@ int eLabel::event(int event, void *data, void *data2)
 			flags |= gPainter::RT_WRAP;
 
 			/* if we don't have shadow, m_shadow_offset will be 0,0 */
-		painter.renderText(eRect(-m_shadow_offset.x(), -m_shadow_offset.y(), size().width(), size().height()), m_text, flags, m_border_color, m_border_size, m_pos);
+		painter.renderText(eRect(-m_shadow_offset.x(), -m_shadow_offset.y(), size().width(), size().height()), m_text, flags, m_border_color, m_border_size, m_pos, &m_text_offset);
 
 		if (m_have_shadow_color)
 		{
