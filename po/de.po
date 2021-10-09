@@ -258,7 +258,7 @@ msgstr " ('%s') endet mit Fehlernummer [%d]."
 
 #, python-format
 msgid " (Channel %s)"
-msgstr " (Kanal %s)"
+msgstr " (Sender %s)"
 
 #, python-format
 msgid " (Partition %d)"
@@ -302,7 +302,7 @@ msgid " - folder exist! Overwrite"
 msgstr " - Ordner vorhanden! Überschreiben"
 
 msgid " <No Channel>"
-msgstr " <Kein Kanal>"
+msgstr " <Kein Sender>"
 
 msgid " <empty>"
 msgstr " <leer>"
@@ -1045,8 +1045,8 @@ msgstr "%d Min"
 #, python-format
 msgid "%d channel found"
 msgid_plural "%d channels found"
-msgstr[0] "%d Kanal gefunden"
-msgstr[1] "%d Kanäle gefunden"
+msgstr[0] "%d Sender gefunden"
+msgstr[1] "%d Sender gefunden"
 
 #, python-format
 msgid "%d hour"
@@ -2445,7 +2445,7 @@ msgid "Add selected folder to bookmarks"
 msgstr "Ausgewählten Ordner zu Lesezeichen hinzufügen"
 
 msgid "Add service"
-msgstr "Kanal hinzufügen"
+msgstr "Sender hinzufügen"
 
 msgid "Add timer"
 msgstr "Timer hinzufügen"
@@ -2564,10 +2564,10 @@ msgid "Alias"
 msgstr ""
 
 msgid "Alignment channel number"
-msgstr "Ausrichtung Kanalnummer"
+msgstr "Ausrichtung der Sendernummer"
 
 msgid "Alignment event-progress"
-msgstr "Ausrichtung Sendungsfortschritt"
+msgstr "Ausrichtung des Sendungsfortschritts"
 
 msgid "Alignment of events"
 msgstr "Ausrichtung der Sendungsnamen"
@@ -2787,7 +2787,7 @@ msgid "Architektur"
 msgstr ""
 
 msgid "Are you ready to run the script ?"
-msgstr "Wollen Sie das Script jetzt starten?"
+msgstr "Wollen Sie das Skript jetzt starten?"
 
 msgid "Are you sure to cancel all changes?"
 msgstr "Alle Änderungen verwerfen?"
@@ -3109,7 +3109,7 @@ msgid "Automatic Scan"
 msgstr "Automatischer Suchlauf"
 
 msgid "Automatic Service Searching"
-msgstr "Automatischer Kanalsuchlauf"
+msgstr "Automatischer Sendersuchlauf"
 
 msgid "Automatic image backup"
 msgstr "Automatische Image-Sicherung"
@@ -3343,7 +3343,7 @@ msgid "Backup your current settings"
 msgstr "Einstellungen sichern"
 
 msgid "Backup your current settings. This includes E2-setup, channels, network and all selected files"
-msgstr "Sichern der E2-Einstellungen, Kanäle, Netzwerk und alle ausgewählten Dateien"
+msgstr "Sichern der E2-Einstellungen, Sender, Netzwerk und alle ausgewählten Dateien"
 
 msgid "Backup, flash and restore settings and no plugins"
 msgstr "Sichern, flashen und wiederherstellen der Einstellungen, ohne Plugins"
@@ -3777,7 +3777,7 @@ msgid "Cable"
 msgstr "Kabel"
 
 msgid "Cable Scan"
-msgstr "Kabel-Suchlauf"
+msgstr "Kabelsuchlauf"
 
 msgid "Cabo Verde"
 msgstr "Kap Verde"
@@ -3875,7 +3875,7 @@ msgid "Can not retrieve IceTV settings"
 msgstr "IceTV Einstellungen können nicht abgerufen werden"
 
 msgid "Can not retrieve channel map"
-msgstr "Kanalliste kann nicht abgerufen werden"
+msgstr "Senderliste kann nicht abgerufen werden"
 
 #, python-format
 msgid ""
@@ -4085,76 +4085,76 @@ msgid "Channel \t\t\tVolume +"
 msgstr "Kanal                                                                  Lautstärke"
 
 msgid "Channel +/-"
-msgstr "Kanal +/-"
+msgstr "Tasten P+/CH+ und P-/CH-"
 
 msgid "Channel +/- button mode"
-msgstr "Funktion der Tasten Kanal +/-"
+msgstr "Funktion der Tasten P+/CH+ und P-/CH-"
 
 msgid "Channel 1"
-msgstr "Kanal 1"
+msgstr "Sender 1"
 
 msgid "Channel 1 with Primetime"
-msgstr "Kanal 1 mit Primetime"
+msgstr "Sender 1 mit Primetime"
 
 msgid "Channel Info"
 msgstr "Programm-Informationen"
 
 msgid "Channel List"
-msgstr "Kanalliste"
+msgstr "Senderliste"
 
 msgid "Channel button always changes sides"
-msgstr "Kanaltaste wechselt immer die Seite"
+msgstr "Tasten P+/CH+ und P-/CH- wechseln immer die Seite"
 
 msgid "Channel buttons"
-msgstr "Kanaltasten"
+msgstr "Tasten P+/CH+ und P-/CH-"
 
 msgid "Channel buttons invert"
-msgstr "Kanaltasten invertieren"
+msgstr "Tasten P+/CH+ und P-/CH- vertauschen"
 
 msgid "Channel down"
 msgstr "Sender zurück"
 
 msgid "Channel list context menu"
-msgstr "Kontextmenü der Kanalliste"
+msgstr "Kontextmenü der Senderliste"
 
 # setup.xml
 msgid "Channel list cursor behavior"
 msgstr "Cursorverhalten"
 
 msgid "Channel list on mode change"
-msgstr "Kanalliste bei Moduswechsel"
+msgstr "Senderliste bei Moduswechsel"
 
 msgid "Channel list preview"
-msgstr "Kanal Vorschaumodus"
+msgstr "Sender Vorschaumodus"
 
 msgid "Channel list service mode*"
 msgstr "Servicemodus *"
 
 # setup.xml 6.1 Version
 msgid "Channel list show MiniTV when Skin use."
-msgstr "Bei 'Ja' wird MiniTV in der Kanalliste angezeigt, wenn der Skin es ermöglicht."
+msgstr "Bei 'Ja' wird MiniTV in der Senderliste angezeigt, wenn der Skin es ermöglicht."
 
 # setup.xml 6.1 Version
 msgid "Channel list show MiniTV*"
-msgstr "MiniTV in der Kanalliste anzeigen*"
+msgstr "MiniTV in der Senderliste anzeigen*"
 
 msgid "Channel list type"
-msgstr "Typ der Kanalliste"
+msgstr "Typ der Senderliste"
 
 msgid "Channel not in services list"
-msgstr "Kanal nicht in der Gesamtliste"
+msgstr "Sender nicht in der Senderliste"
 
 msgid "Channel preview mode"
-msgstr "Kanal Vorschaumodus"
+msgstr "Sender Vorschaumodus"
 
 msgid "Channel selection"
-msgstr "Kanalliste"
+msgstr "Senderliste"
 
 msgid "Channel selection configuration"
-msgstr "Kanalliste Konfiguration"
+msgstr "Senderliste Konfiguration"
 
 msgid "Channel selection settings"
-msgstr "Kanalliste"
+msgstr "Senderliste"
 
 msgid "Channel up"
 msgstr "Nächster Sender"
@@ -4169,19 +4169,19 @@ msgid "Channel zap delay mode"
 msgstr "Umschaltverzögerung"
 
 msgid "Channel:"
-msgstr "Kanal:"
+msgstr "Sender:"
 
 msgid "ChannelEPG settings"
-msgstr "Sender-EPG-Einstellungen"
+msgstr "Sender-EPG Einstellungen"
 
 msgid "Channellist menu"
-msgstr "Menü Kanalliste"
+msgstr "Menü Senderliste"
 
 msgid "Channelname"
-msgstr "Kanalname"
+msgstr "Sendername"
 
 msgid "Channelselection:"
-msgstr "Kanalliste:"
+msgstr "Senderliste:"
 
 msgid "Chap."
 msgstr "Kap."
@@ -4624,7 +4624,7 @@ msgid "Configure if service picons will be shown in quickzap."
 msgstr "Bei 'Ja' werden, falls vorhanden, Senderlogos (Picons) beim Quickzap (Umschalten) angezeigt."
 
 msgid "Configure if service picons will be shown in the servicelist."
-msgstr "Bei 'Ja' werden, falls vorhanden, Senderlogos (Picons) in der Kanalliste angezeigt."
+msgstr "Bei 'Ja' werden, falls vorhanden, Senderlogos (Picons) in der Senderliste angezeigt."
 
 # Subtitle neu 5.1
 msgid "Configure if the subtitle should switch between normal, italic, bold and bolditalic"
@@ -4696,8 +4696,8 @@ msgstr "Einstellen der Kontraststufe des Gerätedisplays."
 # 5.1 Version
 msgid "Configure the cursor behaviour in the channel selection list. When opening the channel selection list you can remain on the current service or already select up/down and you are able to revert the B+/B- buttons."
 msgstr ""
-"Position des Cursors beim Öffnen der Kanalliste festlegen.\n"
-"Auf dem laufenden Kanal, oder, bei 'Standard', einen Eintrag darüber/darunter positionieren. Außerdem kann die Belegung der Tasten P+/CH+ und P-/CH- getauscht werden."
+"Position des Cursors beim Öffnen der Senderliste festlegen.\n"
+"Auf dem laufenden Sender, oder, bei 'Standard', einen Eintrag darüber/darunter positionieren. Außerdem kann die Belegung der Tasten P+/CH+ und P-/CH- getauscht werden."
 
 msgid "Configure the display resolution and the font used for teletext."
 msgstr "Bestimmt die Bildschirmauflösung und den Zeichensatz für die Videotext Darstellung."
@@ -4901,10 +4901,10 @@ msgid "Configure whether a fixed font or a scalable TrueType font is used for te
 msgstr "Bestimmt, ob ein fester Zeichensatz oder ein skalierbarer TrueType-Zeichensatz für die Videotext Darstellung verwendet wird."
 
 msgid "Configure whether another tuner from the preferred list is allocated for recordings instead of sharing a tuner that is already active receiving the same live TV channel."
-msgstr "Einstellen, ob bei Aufnahmen ein weiterer bevorzugter Tuner belegt wird, selbst wenn ein anderer Tuner mit verwendet werden könnte, der den gleichen Kanal Live empfängt."
+msgstr "Einstellen, ob bei Aufnahmen ein weiterer bevorzugter Tuner belegt wird, selbst wenn ein anderer Tuner mit verwendet werden könnte, der den gleichen Sender Live empfängt."
 
 msgid "Configure whether another tuner from the preferred list is allocated instead of sharing a tuner that is already active recording the same channel."
-msgstr "Einstellen, ob ein weiterer bevorzugter Tuner belegt wird, selbst wenn ein anderer Tuner mit verwendet werden könnte, der den gleichen Kanal aufnimmt."
+msgstr "Einstellen, ob ein weiterer bevorzugter Tuner belegt wird, selbst wenn ein anderer Tuner mit verwendet werden könnte, der den gleichen Sender aufnimmt."
 
 msgid "Configure whether multi channel sound tracks should be downmixed to stereo."
 msgstr "Heruntermischen von Mehrkanalton zu Stereo."
@@ -5126,7 +5126,7 @@ msgid "Could not connect to server"
 msgstr "Konnte nicht mit dem Server verbinden"
 
 msgid "Could not find installed channel list."
-msgstr "Kann keine installierte Kanalliste finden."
+msgstr "Kann keine installierte Senderliste finden."
 
 msgid "Could not find suitable media - Please remove some downloaded images or insert a media (e.g. USB stick) with sufficient free space and try again!"
 msgstr "Es konnte kein geeignetes Medium gefunden werden. Bitte entfernen Sie einige heruntergeladene Images oder legen Sie ein Medium (z.B. USB-Stick) mit ausreichend freiem Speicherplatz ein und versuchen es dann erneut."
@@ -6218,7 +6218,7 @@ msgid "Do you want to delete the old settings in /etc/enigma2 first?"
 msgstr "Wollen Sie zuerst die alten Einstellungen in '/etc/enigma2' löschen?"
 
 msgid "Do you want to do a service scan?"
-msgstr "Jetzt nach Kanälen suchen?"
+msgstr "Jetzt nach Sendern suchen?"
 
 msgid "Do you want to do another manual service scan?"
 msgstr "Eine weitere manuelle Suche durchführen?"
@@ -6237,7 +6237,7 @@ msgstr ""
 
 # Erstassi
 msgid "Do you want to install a channel list?"
-msgstr "Wollen Sie eine Kanalliste installieren?"
+msgstr "Wollen Sie eine Senderliste installieren?"
 
 msgid "Do you want to install the package:\n"
 msgstr "Das Paket installieren:\n"
@@ -6889,7 +6889,7 @@ msgid "Enter the number stored in the positioner that corresponds to this satell
 msgstr "Geben Sie die Nummer ein, die im Stellungsregler für diesen Satelliten gespeichert ist."
 
 msgid "Enter the service pin"
-msgstr "Geben Sie den PIN-Code des Kanals ein"
+msgstr "Geben Sie den PIN-Code des Senders ein"
 
 msgid "Enter your current latitude. This is the number of degrees you are from the equator as a decimal."
 msgstr "Geben Sie Ihren aktuellen Breitengrad ein. Dies ist die Anzahl der Grade, die Sie vom Äquator als Dezimalzahl haben."
@@ -7183,7 +7183,7 @@ msgid "Exit MAC-address configuration"
 msgstr "Konfiguration der MAC-Addresse verlassen"
 
 msgid "Exit Quad Channel Selection"
-msgstr "Beende Quad Bild im Bild Kanalauswahl"
+msgstr "Beende Quad Bild im Bild Senderauswahl"
 
 msgid "Exit editor"
 msgstr "Editor beenden"
@@ -8262,10 +8262,10 @@ msgid "Helps setting up your signal"
 msgstr ""
 
 msgid "Here can set the EPG will alway open at the current channel, the first channel or one of both with primetime. If no primetime selected, the current time is used."
-msgstr "Einstellen, ob der EPG mit dem aktuellen Kanal, dem ersten Kanal oder einem von beiden mit der Primetime geöffnet wird. Wenn keine Primetime ausgewählt ist, wird die aktuelle Zeit verwendet."
+msgstr "Einstellen, ob der EPG mit dem aktuellen Sender, dem ersten Sender oder einem von beiden mit der Primetime geöffnet wird. Wenn keine Primetime ausgewählt ist, wird die aktuelle Zeit verwendet."
 
 msgid "Here you can browse (but not modify) the files that are added to the backupfile by default (E2-setup, channels, network)."
-msgstr "Hier können die Dateien durchsucht (aber nicht verändert) werden, die standardmäßig gesichert werden (E2-Einstellungen, Kanäle, Netzwerk)."
+msgstr "Hier können die Dateien durchsucht (aber nicht verändert) werden, die standardmäßig gesichert werden (E2-Einstellungen, Sender, Netzwerk)."
 
 msgid "Here you can select which files should be excluded from the backup."
 msgstr "Hier kann festgelegt werden, welche Dateien aus der Standardliste von der Sicherung ausgeschlossen werden sollen."
@@ -8303,7 +8303,7 @@ msgid "Hide number markers"
 msgstr "Nummerierte Marker verstecken"
 
 msgid "Hide parental locked services"
-msgstr "Durch Jugendschutz geschützte Kanäle verbergen"
+msgstr "Durch Jugendschutz geschützte Sender verbergen"
 
 # Mediaplayer playlist Menue
 msgid "Hide player"
@@ -8617,10 +8617,10 @@ msgid "If set to 'yes' the bouquets will be shown each time you open the EPG."
 msgstr "Bei 'Ja' werden Favoriten jedes Mal beim Öffnen vom EPG angezeigt."
 
 msgid "If set to 'yes' the channel list will be shown after switching between radio and TV modes."
-msgstr "Bei 'Ja' wird die Kanalliste angezeigt, wenn zwischen Fernsehen und Radio gewechselt wird."
+msgstr "Bei 'Ja' wird die Senderliste angezeigt, wenn zwischen Fernsehen und Radio gewechselt wird."
 
 msgid "If set to 'yes' the channel number will be displayed in the infobar."
-msgstr "Bei 'Ja' wird die Kanalnummer in der Infoleiste angezeigt."
+msgstr "Bei 'Ja' wird die Sendernummer in der Infoleiste angezeigt."
 
 msgid "If set to 'yes' the infobar will be displayed when a new event starts."
 msgstr "Bei 'Ja' wird die Infoleiste angezeigt, wenn ein neues Programm anfängt."
@@ -8632,7 +8632,7 @@ msgid "If set to 'yes' you can preview channels in the EPG list."
 msgstr "Wenn aktiviert, wird mit OK im Hintergrund auf den markierten Sender geschaltet. Ein zweites OK beendet den EPG und zeigt diesen Sender, EXIT dagegen beendet den EPG und schaltet zum ursprünglichen Sender zurück."
 
 msgid "If set to 'yes' you can preview channels in the channel list. Press 'OK' to preview the selected channel, press a 2nd 'OK' to exit and zap to that channel, pressing 'EXIT' to return to the channel you started at."
-msgstr "Bei 'Ja' wird in der Kanalliste mit OK im Hintergrund auf den markierten Sender geschaltet. Ein zweites OK beendet die Kanalliste und zeigt diesen Sender, EXIT dagegen beendet die Kanalliste und schaltet zum ursprünglichen Sender zurück."
+msgstr "Bei 'Ja' wird in der Senderliste mit OK im Hintergrund auf den markierten Sender geschaltet. Ein zweites OK beendet die Senderliste und zeigt diesen Sender, EXIT dagegen beendet die Senderliste und schaltet zum ursprünglichen Sender zurück."
 
 msgid "If set to 'yes', allows you use the seekbar to jump to a point within the event."
 msgstr "Bei 'Ja' können Sie innerhalb der Suchleiste zu jedem beliebigen Zeitpunkt vor oder zurück springen."
@@ -8939,7 +8939,7 @@ msgid "Input Stream ID"
 msgstr ""
 
 msgid "Input channel name."
-msgstr "Einen Kanalnamen eingeben:"
+msgstr "Einen Sendernamen eingeben:"
 
 msgid "Input config file name:"
 msgstr "Name der Konfigurationsdatei:"
@@ -9112,7 +9112,7 @@ msgid "Invert"
 msgstr "Invertieren"
 
 msgid "Inverts the button function."
-msgstr "Bei 'Ja' werden die Funktionen der Kanaltasten umgekehrt."
+msgstr "Bei 'Ja' werden die Funktionen der Tasten P+/CH+ und P-/CH- umgekehrt."
 
 msgid "Ipkg"
 msgstr ""
@@ -9194,7 +9194,7 @@ msgid "Job overview"
 msgstr "Jobübersicht"
 
 msgid "JobManager"
-msgstr "Script-Verwaltung"
+msgstr "Skript-Verwaltung"
 
 msgid "Jordan"
 msgstr "Jordanien"
@@ -9233,7 +9233,7 @@ msgid "Just change Bouquet"
 msgstr "Nur Bouquet wechseln"
 
 msgid "Just change channels"
-msgstr "Nur Kanäle wechseln"
+msgstr "Nur Sender wechseln"
 
 msgid "Just zap"
 msgstr "Zap-Verlauf"
@@ -9257,7 +9257,7 @@ msgid "Kazakhstan"
 msgstr "Kasachstan"
 
 msgid "Keep service"
-msgstr "Laufender Kanal"
+msgstr "Laufender Sender"
 
 msgid "Keeps MovieList open whilst playing audio files."
 msgstr "Filmliste offen lassen, wenn Musikdateien abgespielt werden?"
@@ -9857,7 +9857,7 @@ msgid "Manual Scan"
 msgstr "Manueller Suchlauf"
 
 msgid "Manual Service Searching"
-msgstr "Manueller Kanalsuchlauf"
+msgstr "Manueller Sendersuchlauf"
 
 msgid "Manual configuration"
 msgstr "Manuelle Konfiguration"
@@ -9884,7 +9884,7 @@ msgid "Margin before recording (minutes)"
 msgstr "Vorlauf vor Aufnahme (in Minuten)"
 
 msgid "Mark service as dedicated 3D service"
-msgstr "Als 3D Kanal markieren"
+msgstr "Als 3D Sender markieren"
 
 msgid "Mark/Portal/Playlist"
 msgstr ""
@@ -10600,7 +10600,7 @@ msgid "Network scan"
 msgstr "Netzwerksuchlauf"
 
 msgid "Network setup"
-msgstr "Netzwerk-Einrichtung"
+msgstr "Netzwerkeinrichtung"
 
 msgid "Network test"
 msgstr "Netzwerktest"
@@ -10745,7 +10745,7 @@ msgid "No Timeshift found to save as recording!"
 msgstr "Kein Timeshift zur Speicherung als Aufnahme gefunden!"
 
 msgid "No active channel found."
-msgstr "Kein aktiver Kanal gefunden."
+msgstr "Keinen aktiven Sender gefunden."
 
 msgid "No age block"
 msgstr "Keine Altersbeschränkung"
@@ -10760,7 +10760,7 @@ msgid "No card inserted!"
 msgstr "Keine Smartcard eingesteckt!"
 
 msgid "No channel"
-msgstr "Kein Kanal"
+msgstr "Kein Sender"
 
 msgid "No clients streaming"
 msgstr "Keine Streaming-Clients"
@@ -10891,7 +10891,7 @@ msgid ""
 "Please setup your tuner settings before you start a service scan."
 msgstr ""
 "Kein Tuner angeschaltet!\n"
-"Bitte die Tuner konfigurieren bevor ein Kanalsuchlauf gestartet wird."
+"Bitte die Tuner konfigurieren bevor ein Sendersuchlauf gestartet wird."
 
 msgid "No update required!"
 msgstr "Kein Update erforderlich!"
@@ -11074,7 +11074,7 @@ msgid "Number"
 msgstr "Nummer"
 
 msgid "Number of digits in channel number"
-msgstr "Anzahl der Stellen in der Kanalnummer"
+msgstr "Anzahl der Stellen in der Sendernummer"
 
 msgid "Number of lines in script messages"
 msgstr "Anzahl der Zeilen in Skriptmeldungen"
@@ -11282,16 +11282,16 @@ msgid "Open service list"
 msgstr "Öffne Senderliste"
 
 msgid "Open service list and select next channel"
-msgstr "Öffne Kanalliste und wähle nächsten Kanal"
+msgstr "Öffne Senderliste und wähle nächsten Sender"
 
 msgid "Open service list and select next channel for PiP"
-msgstr "Öffne Kanalliste und wähle nächsten Kanal für Bild im Bild"
+msgstr "Öffne Senderliste und wähle nächsten Sender für Bild im Bild"
 
 msgid "Open service list and select previous channel"
-msgstr "Öffne Kanalliste und wähle vorherigen Kanal"
+msgstr "Öffne Senderliste und wähle vorherigen Sender"
 
 msgid "Open service list and select previous channel for PiP"
-msgstr "Öffne Kanalliste und wähle vorherigen Kanal für Bild im Bild"
+msgstr "Öffne Senderliste und wähle vorherigen Sender für Bild im Bild"
 
 msgid "Open settings/actions menu"
 msgstr "Menü Einstellungen / Aktionen öffnen"
@@ -11408,7 +11408,7 @@ msgid "Overwrite picon files during software upgrade?"
 msgstr "Überschreiben der Picon-Dateien beim Update?"
 
 msgid "Overwrite setting files (channellist) during software upgrade?"
-msgstr "Überschreiben der Sender/Kanallisten beim Update?"
+msgstr "Überschreiben der Senderlisten beim Update?"
 
 msgid "Overwrite softcam files during software upgrade?"
 msgstr "Überschreiben der Softcam-Dateien beim Update?"
@@ -11549,7 +11549,7 @@ msgid "Panama"
 msgstr ""
 
 msgid "Panic channel"
-msgstr "Panik-Kanal"
+msgstr "Panik-Sender"
 
 msgid "Panic to"
 msgstr ""
@@ -11994,7 +11994,7 @@ msgstr ""
 "OK drücken zum Fortfahren."
 
 msgid "Please select the region that most closely matches your physical location. The region is required to enable us to provide the correct guide information for the channels you can receive."
-msgstr "Bitte wählen Sie die Region aus, die Ihrem physischen Standort am ehesten entspricht. Die Region ist erforderlich, damit wir die richtigen EPG Informationen für die Kanäle, die Sie empfangen, bereitstellen können."
+msgstr "Bitte wählen Sie die Region aus, die Ihrem physischen Standort am ehesten entspricht. Die Region ist erforderlich, damit wir die richtigen EPG Informationen für die Sender, die Sie empfangen, bereitstellen können."
 
 msgid ""
 "Please select the wireless network that you want to connect to.\n"
@@ -12010,7 +12010,7 @@ msgid ""
 "(In addition, if it exists, a local script will be executed as well at /media/hdd/images/config/myrestore.sh)"
 msgstr ""
 "Wählen Sie, was geschehen soll:\n"
-"Wenn ein Script '/media/hdd/images/config/myrestore.sh' vorhanden ist, wird es ausgeführt."
+"Wenn ein Skript '/media/hdd/images/config/myrestore.sh' vorhanden ist, wird es ausgeführt."
 
 msgid "Please set up tuner A"
 msgstr "Bitte Tuner A einrichten"
@@ -12134,7 +12134,7 @@ msgid ""
 "Press OK to go back to the TV mode or EXIT to cancel the moving."
 msgstr ""
 "Verschieben des Bild im Bild über die Navigationstasten.\n"
-"Kanal +/- drücken, um die Größe zu ändern.\n"
+"Taste P+/CH+ oder P-/CH- drücken, um die Größe zu ändern.\n"
 "OK zum Speichern, EXIT zum Abbrechen."
 
 msgid "Please use the UP and DOWN keys to select your language. Afterwards press the OK button."
@@ -12479,7 +12479,7 @@ msgid "Press yellow to set this interface as the default interface."
 msgstr "Drücken Sie die Taste GELB, um diese Schnittstelle als Standardschnittstelle festzulegen."
 
 msgid "Pressing the panic button will zap you to this channelnumber in your first bouquet."
-msgstr "Die Kanalnummer (in Ihrem ersten Bouquet) einstellen, zu der bei Drücken der Panik-Taste umgeschaltet wird."
+msgstr "Die Sendernummer (in Ihrem ersten Bouquet) einstellen, zu der bei Drücken der Panik-Taste umgeschaltet wird."
 
 msgid "Prev quad PiP channel"
 msgstr "Auf die vorherige Sendergruppe schalten"
@@ -12714,13 +12714,13 @@ msgid "Qatar"
 msgstr "Katar"
 
 msgid "Quad PiP Channel Selection"
-msgstr "Quad Bild im Bild Kanalauswahl"
+msgstr "Quad Bild im Bild Senderauswahl"
 
 msgid "Quad PiP Screen"
 msgstr "Quad Bild im Bild Bildschirm"
 
 msgid "Quad PiP channel "
-msgstr "Quad Bild im Bild Kanal"
+msgstr "Quad Bild im Bild Sender"
 
 msgid "Quad PiP is not available."
 msgstr "Quad Bild im Bild ist nicht verfügbar!"
@@ -12788,7 +12788,7 @@ msgid "Radio"
 msgstr ""
 
 msgid "Radio Channel Selection"
-msgstr "Radio Kanalliste"
+msgstr "Radio Senderliste"
 
 msgid "Radio long"
 msgstr "Radio lang"
@@ -13091,7 +13091,7 @@ msgid "Reload"
 msgstr "Aktualisieren"
 
 msgid "Reload Services"
-msgstr "Kanallisten aktualisieren"
+msgstr "Senderlisten aktualisieren"
 
 msgid "Reloading EPG Cache..."
 msgstr "EPG Cache neu laden..."
@@ -13532,7 +13532,7 @@ msgid "Running"
 msgstr "Läuft"
 
 msgid "Running Myrestore script, Please wait ..."
-msgstr "Myrestore Script wird ausgeführt..."
+msgstr "Myrestore Skript wird ausgeführt..."
 
 msgid "Russian"
 msgstr "Russisch"
@@ -13796,7 +13796,7 @@ msgstr "Suchlauf "
 
 #, python-format
 msgid "Scan %s"
-msgstr ""
+msgstr "Suchlauf %s"
 
 #. TRANSLATORS: option name, indicating which type of (DVB-C) band should be scanned. The name of the band is printed in '%s'. E.g.: 'Scan EU MID band'
 #, python-format
@@ -13832,8 +13832,8 @@ msgstr[1] "Suchlauf zu %d%% erledigt"
 #, python-format
 msgid "Scanning completed, %d channel found"
 msgid_plural "Scanning completed, %d channels found"
-msgstr[0] "Suchlauf beendet, %d Kanal gefunden"
-msgstr[1] "Suchlauf beendet, %d Kanäle gefunden"
+msgstr[0] "Suchlauf beendet. %d Sender gefunden."
+msgstr[1] "Suchlauf beendet. %d Sender gefunden."
 
 msgid "Scanning failed!"
 msgstr "Suchlauf fehlgeschlagen!"
@@ -14072,7 +14072,7 @@ msgstr "Pfad auswählen:"
 
 # ScriptRunner
 msgid "Select a script to run:"
-msgstr "Zu startendes Script wählen:"
+msgstr "Zu startendes Skript wählen:"
 
 msgid "Select a tuner"
 msgstr "Tuner auswählen"
@@ -14106,7 +14106,7 @@ msgid "Select channel audio"
 msgstr "Kanalauswahl für die Tonausgabe"
 
 msgid "Select channel to record from"
-msgstr "Kanal auswählen, von dem aufgenommen werden soll"
+msgstr "Sender auswählen, von dem aufgenommen werden soll"
 
 msgid "Select copy destination for:"
 msgstr "Auswahl Speicherort für Kopie:"
@@ -14215,7 +14215,7 @@ msgid "Select the character or action under the keyboard cursor"
 msgstr "Wählen Sie das Zeichen oder die Aktion beim Cursor der Tastatur aus"
 
 msgid "Select the desired function and click on \"OK\" to assign it. Use \"CH+/-\" to toggle between the lists. Select an assigned function and click on \"OK\" to de-assign it. Use \"Next/Previous\" to change the order of the assigned functions."
-msgstr "Gewünschte Funktion auswählen und OK drücken, um sie zu belegen. Mit CH+/CH- zwischen den Listen umschalten. Zugeordnete Funktion wählen und OK drücken, um die Belegung zu entfernen. Mit '<' oder '>' die Funktionen sortieren."
+msgstr "Gewünschte Funktion auswählen und OK drücken, um sie zu belegen. Mit der Taste P+/CH+ oder P-/CH- zwischen den Listen umschalten. Zugeordnete Funktion wählen und OK drücken, um die Belegung zu entfernen. Mit '<' oder '>' die Funktionen sortieren."
 
 msgid "Select the highlighted image and reboot"
 msgstr "Ausgewähltes Image benutzen und neu starten"
@@ -14303,7 +14303,7 @@ msgid "Select what should be done when the %s %s was shutdown incorrectly, or af
 msgstr "Wählen Sie, was geschehen soll, nachdem Ihre %s %s nicht ordnungsgemäß heruntergefahren wurde (z.B. nach einem Stromausfall)."
 
 msgid "Select what you want the Channel +/- button to activate:"
-msgstr "Wählen Sie, was die Tasten Kanal +/- bewirken sollen."
+msgstr "Wählen Sie, was die Tasten P+/CH+ und P-/CH- bewirken sollen."
 
 msgid "Select what you want the EPG button to activate:"
 msgstr "Wählen Sie, was die Taste EPG bewirken soll."
@@ -14348,7 +14348,7 @@ msgid "Select your provider and region. If not present in this list you will nee
 msgstr "Wählen Sie Ihren Anbieter und die Region aus. Wenn Sie in dieser Liste nicht vorhanden sind, müssen Sie einen der anderen Service-Scan-Typen auswählen."
 
 msgid "Select your provider, and press OK to start the scan"
-msgstr "Wählen Sie den Anbieter und drücken OK, um den Suchlauf zu starten"
+msgstr "Wählen Sie den Anbieter und drücken dann OK, um den Suchlauf zu starten"
 
 msgid "Select your region. If not available change 'Country' to 'all' and select one of the default alternatives."
 msgstr "Wählen Sie Ihre Region. Wenn nicht verfügbar ändern Sie 'Land' in 'alle' und wählen eine der Standardalternativen."
@@ -14459,34 +14459,34 @@ msgid "Servers:"
 msgstr "Server:"
 
 msgid "Service"
-msgstr "Kanal"
+msgstr "Sender"
 
 msgid "Service Information"
-msgstr "Kanal-Informationen"
+msgstr "Senderinformationen"
 
 msgid "Service Name"
 msgstr "Sendername"
 
 msgid "Service Number and Service Name"
-msgstr "Kanalnummer und Sendername"
+msgstr "Sendernummer und Sendername"
 
 msgid "Service Number, Picon and Service Name"
-msgstr "Kanalnummer, Picon und Sendername"
+msgstr "Sendernummer, Senderlogo (Picon) und Sendername"
 
 msgid "Service Title mode"
 msgstr "Einstellungen Anzeigemodus"
 
 msgid "Service cant been added to the favourites."
-msgstr "Kanal kann nicht zu den Favoriten hinzugefügt werden."
+msgstr "Sender kann nicht zu den Favoriten hinzugefügt werden."
 
 msgid "Service font size"
 msgstr "Schriftgröße für Sendernamen"
 
 msgid "Service has been added to the favourites."
-msgstr "Kanal wurde den Favoriten zugefügt."
+msgstr "Sender wurde den Favoriten zugefügt."
 
 msgid "Service has been added to the selected bouquet."
-msgstr "Kanal wurde dem gewählten Bouquet zugefügt."
+msgstr "Sender wurde dem gewählten Bouquet zugefügt."
 
 msgid "Service info"
 msgstr "Sender-Infos"
@@ -14498,7 +14498,7 @@ msgid ""
 "Service invalid!\n"
 "(Timeout reading PMT)"
 msgstr ""
-"Kanal ist ungültig!\n"
+"Sender ist ungültig!\n"
 "(Zeit lief beim Lesen der PMT ab)"
 
 msgid "Service name"
@@ -14511,7 +14511,7 @@ msgid ""
 "Service not found!\n"
 "(SID not found in PAT)"
 msgstr ""
-"Kanal nicht gefunden!\n"
+"Sender nicht gefunden!\n"
 "(SID nicht in PAT gefunden)"
 
 msgid "Service number font size"
@@ -14530,13 +14530,13 @@ msgid "Service reference"
 msgstr "Service-Referenz"
 
 msgid "Service scan"
-msgstr "Kanalsuche"
+msgstr "Sendersuche"
 
 msgid ""
 "Service unavailable!\n"
 "Check tuner configuration!"
 msgstr ""
-"Kanal nicht verfügbar!\n"
+"Sender nicht verfügbar!\n"
 "Bitte Tuner-Konfiguration überprüfen!"
 
 msgid "Service width"
@@ -14549,10 +14549,10 @@ msgid "ServicePicon"
 msgstr "Senderlogo (Picon)"
 
 msgid "Serviceinfo"
-msgstr "Kanal-Informationen"
+msgstr "Sender-Informationen"
 
 msgid "Services"
-msgstr "Kanäle"
+msgstr "Sender"
 
 msgid "Services may be grouped in bouquets. When enabled, you can use more than one bouquet."
 msgstr ""
@@ -14563,7 +14563,7 @@ msgid "Set Basetime"
 msgstr "Setze Basiszeit"
 
 msgid "Set CI assignment for detection of available services."
-msgstr "Bei 'Ja' Ermittlung verfügbarer Kanäle inklusive Berücksichtigung der CI-Zuweisung."
+msgstr "Bei 'Ja' Ermittlung verfügbarer Sender inklusive Berücksichtigung der CI-Zuweisung."
 
 msgid "Set Framerate for MiniTV"
 msgstr "Setze Wiederholrate für MiniTV"
@@ -14610,7 +14610,7 @@ msgstr "Die Sequenzeinstellung wird wiederholt, wenn Ihr Antennensystem dies erf
 
 # ChannelSelection.py
 msgid "Set startup service"
-msgstr "Startkanal auswählen"
+msgstr "Startsender auswählen"
 
 # NetworkSetup.py
 #, python-format
@@ -14621,7 +14621,7 @@ msgid "Set the aspect ratio of the service picons."
 msgstr "Einstellung des Seitenverhältnisses der Senderlogos (Picons)."
 
 msgid "Set the channel for this timer."
-msgstr "Wählen Sie den Kanal von dem aufgenommen werden soll."
+msgstr "Wählen Sie den Sender von dem aufgenommen werden soll."
 
 msgid "Set the date the timer must start."
 msgstr "Wählen Sie das Startdatum der Aufnahme."
@@ -14704,7 +14704,7 @@ msgid "Set the time to wait for execute the default action in shutdown, standby 
 msgstr "Einstellen der Wartezeit für die Ausführung der Standardaktion in den Meldungen Ausschalten, Standby oder Neustart (z.B. verwendet in Timer, PowerTimer, Ausschalttimer etc.)."
 
 msgid "Set the type of the progress indication in the channel selection screen."
-msgstr "Einstellen, ob und wie die Fortschrittsanzeige in der Kanalliste angezeigt wird."
+msgstr "Einstellen, ob und wie die Fortschrittsanzeige in der Senderliste angezeigt wird."
 
 msgid "Set time window to 1 hour"
 msgstr "Setzt das Zeitfenster auf 1 Stunde."
@@ -14881,7 +14881,7 @@ msgstr "Ton-Einstellungen"
 
 # Quick Menue
 msgid "Setup your Channel selection configuration"
-msgstr "Stellen Sie Ihre Kanallistenkonfiguration ein."
+msgstr "Senderlistenkonfiguration einstellen."
 
 msgid "Setup your Device mounts (USB, HDD, others...)"
 msgstr "Einstellungen der Laufwerk-Mounts (USB, Festplatte, etc.)"
@@ -14908,7 +14908,7 @@ msgid "Setup your System"
 msgstr "Stellen Sie Ihr System ein."
 
 msgid "Setup your Tuner and search for channels"
-msgstr "Einstellungen Tuner und Kanalsuche."
+msgstr "Einstellungen Tuner und Sendersuche."
 
 msgid "Setup your Video Mode, Video Output and other Video Settings"
 msgstr "Einstellungen Video Mode, Video Ausgang und andere Video-Einstellungen."
@@ -15251,10 +15251,10 @@ msgid "Show bouquet selection menu"
 msgstr ""
 
 msgid "Show channel number in infobar"
-msgstr "Zeige Kanalnummer in der Infoleiste"
+msgstr "Zeige Sendernummer in der Infoleiste"
 
 msgid "Show channel numbers in channel selection"
-msgstr "Kanalnummer anzeigen"
+msgstr "Sendernummer anzeigen"
 
 msgid "Show channel selection"
 msgstr "Zeige die Sendergruppen"
@@ -15364,7 +15364,7 @@ msgid "Show infobar lite *"
 msgstr "Zeige einfache Infoleiste *"
 
 msgid "Show infobar on channel change"
-msgstr "Zeige Infoleiste beim Kanalwechsel"
+msgstr "Zeige Infoleiste beim Senderwechsel"
 
 msgid "Show infobar on event change"
 msgstr "Zeige Infoleiste beim Sendungswechsel"
@@ -15469,7 +15469,7 @@ msgid "Show screensaver"
 msgstr "Zeige Bildschirmschoner"
 
 msgid "Show service list"
-msgstr "Zeige Kanalliste"
+msgstr "Zeige Senderliste"
 
 msgid "Show service name and event description among each other instead of side by side. After a change, an adjustment of the number of lines is required."
 msgstr ""
@@ -15480,7 +15480,7 @@ msgid "Show service type icons"
 msgstr "Anzeige des Servicetyps"
 
 msgid "Show servicelist or movies"
-msgstr "Zeige Kanalliste oder Filme"
+msgstr "Zeige Senderliste oder Filme"
 
 msgid "Show setup..."
 msgstr ""
@@ -15492,7 +15492,7 @@ msgid "Show single epg for current channel"
 msgstr "Zeige Einzel-EPG vom aktuellen Programm"
 
 msgid "Show single epg for current channel (setup in menu)"
-msgstr "Zeige Einzel-EPG für den aktuellen Kanal (Einstellung im Menü)"
+msgstr "Zeige Einzel-EPG für den aktuellen Sender (Einstellung im Menü)"
 
 msgid "Show single service EPG"
 msgstr "Einfachen EPG anzeigen"
@@ -15986,7 +15986,7 @@ msgid "Sorry no backups found!"
 msgstr "Keine Sicherungen gefunden!"
 
 msgid "Sorry only possible to record 2 channels at once"
-msgstr "Es können nur 2 Kanäle auf einmal aufgenommen werden"
+msgstr "Es können nur 2 Sender auf einmal aufgenommen werden"
 
 msgid "Sorry uShare Config is Missing"
 msgstr "Keine uShare-Config vorhanden!"
@@ -16482,7 +16482,7 @@ msgid "Swap Size:"
 msgstr "Swap Größe:"
 
 msgid "Swap buttons right/left with channel plus/minus or the channel button changed always the side."
-msgstr "Tauschen Sie die Tasten Rechts/Links mit Kanal Plus/Minus, oder die Kanaltaste wechselt immer die Seite."
+msgstr "Tauschen Sie die Tasten Rechts/Links mit den Tasten P+/CH+ und P-/CH-, oder die Tasten P+/CH+ und P-/CH- wechseln immer die Seite."
 
 msgid "Swap services"
 msgstr "Tausche Bild im Bild"
@@ -17083,7 +17083,7 @@ msgid "The saved PIN was cleared."
 msgstr "Die PIN wurde zurückgesetzt."
 
 msgid "The servicelist is reloaded."
-msgstr "Die Kanallisten wurden aktualisiert."
+msgstr "Die Senderlisten wurden aktualisiert."
 
 msgid "The setting 'without query' is the same as 'standard' without additional confirmation query. All other dependencies (e.g. recordings, time range) stay persist."
 msgstr "Die Einstellung 'ohne Rückfrage' ist das gleiche wie 'Standard' ohne zusätzliche Bestätigungsabfrage. Alle anderen Abhängigkeiten (z.B. Aufnahmen, Zeitbereich) bleiben bestehen."
@@ -17235,7 +17235,7 @@ msgid "This allows you change the number of rows shown."
 msgstr "Einstellen, wie viele Zeilen angezeigt werden sollen."
 
 msgid "This allows you to set the number of digits to 5, if you have more than 9999 channels."
-msgstr "Stellen Sie die Anzahl der Stellen auf 5, wenn Sie mehr als 9999 Kanäle haben."
+msgstr "Stellen Sie die Anzahl der Stellen auf 5, wenn Sie mehr als 9999 Sender haben."
 
 msgid "This allows you to show drivers modules in downloads"
 msgstr "Treiber im Downloadbereich anzeigen."
@@ -17378,7 +17378,7 @@ msgid "This option allows you to change the virtuell loadspeaker position."
 msgstr "Diese Option erlaubt es Ihnen, die virtuelle Position der Lautsprecher zu verändern."
 
 msgid "This option allows you to choose from the two channel lists that are available."
-msgstr "Das Aussehen der verfügbaren Kanallisten einstellen."
+msgstr "Das Aussehen der verfügbaren Senderlisten einstellen."
 
 msgid "This option allows you to choose how to display 1080p 24Hz on your TV. (as not all TV's support these resolutions)"
 msgstr "Einstellen, wie 1080p 24Hz angezeigt werden soll (einige Fernseher unterstützen diese Auflösung nicht)."
@@ -17409,8 +17409,8 @@ msgstr "Einstellen, mit welcher Auflösung SD-Video angezeigt werden soll."
 
 msgid "This option allows you to choose what the first button press jumps to in channel list screen, (so pressing '2' jumps to 'A' or '2' first), when 'Quick Actions' preset actions are performed. "
 msgstr ""
-"Einstellen, was der erste Tastendruck in der Kanalliste bewirken soll.\n"
-"'2' zum Beispiel springt zu '2' wenn es Kanalnummern gibt, oder, wenn nicht, zum ersten Kanal der mit 'A' anfängt."
+"Einstellen, was der erste Tastendruck in der Senderliste bewirken soll.\n"
+"'2' zum Beispiel springt zu '2' wenn es Sendernummern gibt, oder, wenn nicht, zum ersten Sender der mit 'A' anfängt."
 
 msgid "This option allows you to choose whether or not to display genre information for the event."
 msgstr "Bei 'Ja' werden Genreinformationen für das Ereignis angezeigt."
@@ -17700,7 +17700,7 @@ msgid "Time style"
 msgstr "Zeitformat"
 
 msgid "Time to execute command or script"
-msgstr "Startzeit für Befehls- / Script-Ausführung"
+msgstr "Startzeit für Befehls- oder Skript-Ausführung"
 
 msgid "Time window for detection of the wakeup by a timer [mins]"
 msgstr "Zeitfenster für die Erkennung des Aufwachens durch einen Timer (Min)"
@@ -17893,7 +17893,7 @@ msgid "Toggle PIPzap"
 msgstr "Bild im Bild umschalten"
 
 msgid "Toggle Picture In Graphics"
-msgstr "Kanal-Vorschau im grafischen EPG ein/ausblenden"
+msgstr "Sendervorschau im grafischen EPG ein/ausblenden"
 
 msgid "Toggle Pillarbox <> Pan&Scan"
 msgstr "Wechsel Pillarbox <> Pan & Scan"
@@ -18604,13 +18604,13 @@ msgid "Use fastscan channel names"
 msgstr "Nutze Programmnamen des Schnellsuchlaufs"
 
 msgid "Use fastscan channel numbering"
-msgstr "Nutze Kanalnummerierung des Schnellsuchlaufs"
+msgstr "Nutze Sendernummerierung des Schnellsuchlaufs"
 
 msgid "Use for load only x days in EPG"
 msgstr "Einstellen, wieviele Tage der EPG laden soll."
 
 msgid "Use frequency or channel"
-msgstr "Frequenz oder Kanal-Suchlauf"
+msgstr "Frequenz- oder Sendersuchlauf"
 
 msgid "Use individual settings for each directory"
 msgstr "Einstellungen für jedes Verzeichnis"
@@ -18619,7 +18619,7 @@ msgid "Use interface"
 msgstr "Netzwerkadapter aktivieren"
 
 msgid "Use official channel numbering"
-msgstr "Offizielle Kanalnummerierung verwenden"
+msgstr "Offizielle Sendernummerierung verwenden"
 
 msgid "Use only for Wake on WLan (WoW)"
 msgstr "Nur für Wake on WLAN (WoW) aktivieren"
@@ -18711,7 +18711,7 @@ msgid "Use workaround for wakeup from deep-standby?"
 msgstr "Workaround für das Aufwachen aus dem Deep-Standby benutzen"
 
 msgid "Used service scan type"
-msgstr "Verwendeter Kanalsuchlauf"
+msgstr "Verwendeter Sendersuchlauf"
 
 msgid "Used:"
 msgstr "Verwendet:"
@@ -18851,7 +18851,7 @@ msgid "Vertical alignement for the event-progress."
 msgstr "Vertikale Ausrichtung des Sendungsfortschrittes."
 
 msgid "Vertical alignement for the service number."
-msgstr "Vertikale Ausrichtung der Kanalnummer."
+msgstr "Vertikale Ausrichtung der Sendernummer."
 
 # satconfig.py
 msgid "Vertical turning speed"
@@ -19167,7 +19167,7 @@ msgid "Wait please while scanning your %s %s devices..."
 msgstr "Bitte warten Sie während des Suchlaufes nach Geräten Ihrer %s %s..."
 
 msgid "Wait please while scanning..."
-msgstr "Während Suchlauf bitte warten..."
+msgstr "Während dem Suchlauf bitte warten..."
 
 msgid "Waiting"
 msgstr "Warte"
@@ -19450,7 +19450,7 @@ msgid "When enabled, reformat subtitles to match the width of the screen."
 msgstr "Bei 'Ja' werden Untertitel auf die Größe des Bildschirms neu formatiert."
 
 msgid "When enabled, show channel numbers in the channel selection screen."
-msgstr "Bei 'Ja' werden Sendernummern in der Kanalliste angezeigt."
+msgstr "Bei 'Ja' werden Sendernummern in der Senderliste angezeigt."
 
 msgid "When enabled, show status or error messages."
 msgstr "Bei 'Ja' werden Status- oder Fehlermeldungen angezeigt."
@@ -19527,7 +19527,7 @@ msgid ""
 "\n"
 "Really do a factory reset?"
 msgstr ""
-"Wenn Sie die Werkseinstellungen wiederherstellen, verlieren Sie sämtliche Konfigurationsdateien (einschließlich Kanalliste, Tuner-Konfiguration etc.).\n"
+"Wenn Sie die Werkseinstellungen wiederherstellen, verlieren Sie sämtliche Konfigurationsdateien (einschließlich Senderliste, Tuner-Konfiguration etc.).\n"
 "\n"
 "Nach der Wiederherstellung wird die %s %s automatisch neu starten.\n"
 "\n"
@@ -19597,7 +19597,7 @@ msgid "With popup"
 msgstr "Mit Meldung"
 
 msgid "With this option set to 'yes' the channel lists will always show you the bouquet screen first. If set to 'no' the current bouquet will be opened."
-msgstr "Bei 'Ja' wird bei Aufruf der Kanalliste stattdessen die Favoritenliste gezeigt, bei 'Nein' die aktuelle Kanalliste geöffnet."
+msgstr "Bei 'Ja' wird bei Aufruf der Senderliste stattdessen die Favoritenliste gezeigt, bei 'Nein' die aktuelle Senderliste geöffnet."
 
 msgid "With this option you can hide Job Tasks from the extension screen (short blue button press)."
 msgstr "Bei 'Ja' werden noch im Hintergrund laufende Aktionen (Jobs) im Erweiterungsmenü (Taste BLAU lang oder kurz, je nach Einstellung) angezeigt."
@@ -19769,7 +19769,7 @@ msgid ""
 "would you like to remove\n"
 "\"%s\"?"
 msgstr ""
-"Es ist bereits eine Kanalliste installiert.\n"
+"Es ist bereits eine Senderliste installiert!\n"
 "Soll '%s' entfernt werden?"
 
 msgid "You can Display MiniTV with or without OSD Menu"
@@ -19850,7 +19850,7 @@ msgstr ""
 "Was wollen Sie tun?"
 
 msgid "You have no script to run."
-msgstr "Kein Script gefunden!"
+msgstr "Kein Skript gefunden!"
 
 msgid ""
 "You have not setup your user info in the setup screen\n"
@@ -20166,7 +20166,7 @@ msgid "Zap back to service before tuner setup?"
 msgstr "Zurückschalten zum vorher laufenden Sender?"
 
 msgid "Zap down"
-msgstr "Kanal +"
+msgstr "Runter mit P+/CH+"
 
 msgid "Zap focus to Picture in Picture"
 msgstr "Fokus umschalten zu Bild im Bild"
@@ -20196,10 +20196,10 @@ msgid "Zap to selected channel"
 msgstr "Schalte zum ausgewählten Sender um"
 
 msgid "Zap to selected channel, or show detailed event info (depends on configuration)"
-msgstr "Zum ausgewählten Kanal umschalten oder detaillierte Ereignisinformationen anzeigen (abhängig von der Konfiguration)"
+msgstr "Zum ausgewählten Sender umschalten oder detaillierte Ereignisinformationen anzeigen (abhängig von der Konfiguration)"
 
 msgid "Zap up"
-msgstr "Kanal -"
+msgstr "Hoch mit P-/CH-"
 
 msgid "Zap+Record next"
 msgstr "Nächste Sendung umschalten und aufnehmen"
@@ -20292,7 +20292,7 @@ msgid "add Current"
 msgstr "Hinzufügen"
 
 msgid "add Service"
-msgstr "Kanal hinzufügen"
+msgstr "Sender hinzufügen"
 
 msgid "add alternatives"
 msgstr "Alternativen hinzufügen"
@@ -20310,10 +20310,10 @@ msgid "add marker"
 msgstr "Marker einfügen"
 
 msgid "add service to bouquet"
-msgstr "Kanal zu Bouquet hinzufügen"
+msgstr "Sender zu Bouquet hinzufügen"
 
 msgid "add service to favourites"
-msgstr "Kanal zu Favoriten hinzufügen"
+msgstr "Sender zu Favoriten hinzufügen"
 
 msgid "add to parental protection"
 msgstr "Zum Jugendschutz hinzufügen"
@@ -20726,7 +20726,7 @@ msgid "enigma2 and network"
 msgstr "Enigma2 und Netzwerk"
 
 msgid "enter number to jump to channel."
-msgstr "Nummer, um zum Kanal zu wechseln"
+msgstr "Nummer, um zum Sender zu wechseln"
 
 msgid "entertainment (10-16 year old)"
 msgstr "Unterhaltung (10-16 Jahre)"
@@ -20831,7 +20831,7 @@ msgid "film/cinema"
 msgstr "Kino/Film"
 
 msgid "find currently played service"
-msgstr "Springe zum aktuellen Kanal"
+msgstr "Springe zum aktuellen Sender"
 
 msgid "fine arts"
 msgstr "Kunst"
@@ -20903,17 +20903,17 @@ msgid "go to standby"
 msgstr "In Standby gehen"
 
 msgid "goto current channel and now"
-msgstr "Gehe zum aktuellen Kanal"
+msgstr "Gehe zum aktuellen Sender"
 
 # Powerlost usage.config
 msgid "goto deep-standby"
 msgstr "Ausschalten"
 
 msgid "goto first channel"
-msgstr "Gehe zum ersten Kanal"
+msgstr "Gehe zum ersten Sender"
 
 msgid "goto last channel"
-msgstr "Gehe zum letzten Kanal"
+msgstr "Gehe zum letzten Sender"
 
 msgid "goto now"
 msgstr "Gehe zur aktuellen Uhrzeit"
@@ -21246,7 +21246,7 @@ msgid "news/weather report"
 msgstr "Nachrichten/Wetterbericht"
 
 msgid "next channel page"
-msgstr "Nächste Kanalseite"
+msgstr "Nächste Senderseite"
 
 msgid "next higher Resolution"
 msgstr "nächsthöhere Auflösung"
@@ -21412,7 +21412,7 @@ msgid "press the menu button to set a general AC3/Dolby offset"
 msgstr "Drücken Sie die MENU Taste, um einen allgemeinen AC3/Dolby Offset zu setzen."
 
 msgid "previous channel page"
-msgstr "Vorherige Kanalseite"
+msgstr "Vorherige Senderseite"
 
 msgid "previous/next Bouquet"
 msgstr "vorherige/nächste Seite"
@@ -21613,7 +21613,7 @@ msgid "select CAId's"
 msgstr "CAIDs auswählen"
 
 msgid "select channels to add a offset to the Volume"
-msgstr "Kanäle wählen, um einen Lautstärke Offset hinzuzufügen"
+msgstr "Sender wählen, um einen Lautstärke Offset hinzuzufügen"
 
 msgid "select menu entry"
 msgstr "Wählen Sie einen Menüpunkt"
@@ -21628,7 +21628,7 @@ msgid "service PIN"
 msgstr "Service-PIN"
 
 msgid "set as startup service"
-msgstr "Kanal als Startkanal auswählen"
+msgstr "Sender als Startsender auswählen"
 
 msgid "settings"
 msgstr "Einstellungen"
@@ -21804,7 +21804,7 @@ msgid "stop recording"
 msgstr "Aufnahme anhalten"
 
 msgid "stop using as startup service"
-msgstr "Kanal als Startkanal entfernen"
+msgstr "Sender als Startsender entfernen"
 
 msgid "successful"
 msgstr "Erfolgreich"
@@ -21859,13 +21859,13 @@ msgid "this bouquet is protected by a parental control pin"
 msgstr "Dieser Bouquet ist durch einen Jugendschutz-PIN-Code geschützt."
 
 msgid "this offset will only be used if the channel has not its own volume offset"
-msgstr "Dieser Offset wird nur genutzt, wenn ein Kanal selbst keine eigene Lautstärkeanpassung hat, und unter 'Ton - Grundeinstellungen' 'AC3 Downmix' auf 'Nein' gestellt ist."
+msgstr "Dieser Offset wird nur genutzt, wenn ein Sender selbst keine eigene Lautstärkeanpassung hat, und unter 'Ton - Grundeinstellungen' 'AC3 Downmix' auf 'Nein' gestellt ist."
 
 msgid "this recording"
 msgstr "Diese Aufnahme"
 
 msgid "this service is protected by a parental control pin"
-msgstr "Dieser Kanal ist durch einen Jugendschutz-PIN-Code geschützt."
+msgstr "Dieser Sender ist durch einen Jugendschutz-PIN-Code geschützt."
 
 msgid "to dir"
 msgstr "Zielordner"
@@ -21919,7 +21919,7 @@ msgid "unknown error"
 msgstr "unbekannter Fehler"
 
 msgid "unknown service"
-msgstr "Unbekannter Kanal"
+msgstr "Unbekannter Sender"
 
 msgid "unpack Rar Files"
 msgstr "'.rar'-Archive entpacken"
