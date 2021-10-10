@@ -2089,6 +2089,10 @@ class ConfigSubsection(object):
 		for x in list(self.content.items.values()):
 			x.load()
 
+	def cancel(self):
+		for x in self.content.items.values():
+			x.cancel()
+
 	def save(self):
 		for x in list(self.content.items.values()):
 			x.save()
