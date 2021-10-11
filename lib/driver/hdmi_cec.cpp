@@ -176,7 +176,6 @@ void eHdmiCEC::reportPhysicalAddress()
 {
 	struct cec_message txmessage;
 	memset(&txmessage, 0, sizeof(txmessage));
-
 	txmessage.address = 0x0f; /* broadcast */
 	txmessage.data[0] = 0x84; /* report address */
 	txmessage.data[1] = physicalAddress[0];
@@ -392,6 +391,7 @@ void eHdmiCEC::hdmiEvent(int what)
 					case 0x44: /* key pressed */
 						keypressed = true;
 						pressedkey = rxmessage.data[1];
+						[[fallthrough]];
 					case 0x45: /* key released */
 					{
 						long code = translateKey(pressedkey);
@@ -522,6 +522,7 @@ long eHdmiCEC::translateKey(unsigned char code)
 			break;
 		default:
 			key = 0x8b;
+			eDebug("eHdmiCEC: unknown code 0x%02X", (unsigned int)(code & 0xFF));
 			break;
 	}
 	return key;
