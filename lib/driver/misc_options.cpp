@@ -33,9 +33,8 @@ int Misc_Options::set_12V_output(int state)
 		str = "off";
 	else if (state == 1)
 		str = "on";
-	if (str)
-		write(fd, str, strlen(str));
-	m_12V_output_state = state;
+	if (str && write(fd, str, strlen(str)) > 0)
+		m_12V_output_state = state;
 	close(fd);
 	return 0;
 }

@@ -23,7 +23,7 @@ struct AvahiTimeout: public sigc::trackable
 
 	void timeout()
 	{
-		eDebug("[Avahi] timeout elapsed");
+//		eDebug("[Avahi] timeout elapsed");
 		callback(this, userdata);
 	}
 
@@ -127,13 +127,13 @@ static void avahi_service_try_register(AvahiServiceEntry *entry)
 
 	if ((!avahi_client) || (avahi_client_get_state(avahi_client) != AVAHI_CLIENT_S_RUNNING))
 	{
-		eDebug("[Avahi] Not running yet, cannot register type %s.\n", entry->service_type);
+		eDebug("[Avahi] Not running yet, cannot register type %s.", entry->service_type);
 		return;
 	}
 
 	entry->group = avahi_entry_group_new(avahi_client, avahi_group_callback, NULL);
 	if (!entry->group) {
-		eDebug("[Avahi] avahi_entry_group_new failed, cannot register %s %s.\n", entry->service_type, entry->service_name);
+		eDebug("[Avahi] avahi_entry_group_new failed, cannot register %s %s.", entry->service_type, entry->service_name);
 		return;
 	}
 
@@ -154,7 +154,7 @@ static void avahi_service_try_register(AvahiServiceEntry *entry)
 			NULL, NULL, entry->port_num, NULL))
 	{
 		avahi_entry_group_commit(entry->group);
-		eDebug("[Avahi] Registered %s (%s) on %s:%u\n",
+		eDebug("[Avahi] Registered %s (%s) on %s:%u",
 			service_name, entry->service_type,
 			avahi_client_get_host_name(avahi_client), entry->port_num);
 	}
@@ -176,7 +176,7 @@ static void avahi_resolver_callback(AvahiServiceResolver *resolver,
 
 	switch (event) {
 		case AVAHI_RESOLVER_FAILURE:
-			eDebug("[Avahi] Failed to resolve service '%s' of type '%s': %s\n",
+			eDebug("[Avahi] Failed to resolve service '%s' of type '%s': %s",
 				name, type, avahi_strerror(avahi_client_errno(avahi_service_resolver_get_client(resolver))));
 			break;
 		case AVAHI_RESOLVER_FOUND:
@@ -241,7 +241,7 @@ static void avahi_browser_try_register(AvahiBrowserEntry *entry)
 			entry->service_type, NULL, (AvahiLookupFlags)0,
 			avahi_browser_callback, entry);
 	if (!entry->browser) {
-		eDebug("[Avahi] avahi_service_browser_new failed: %s\n",
+		eDebug("[Avahi] avahi_service_browser_new failed: %s",
 				avahi_strerror(avahi_client_errno(avahi_client)));
 	}
 }
@@ -365,7 +365,7 @@ callback function will be called and the timeout is disabled. You
 can reenable it by calling timeout_update()  */
 AvahiTimeout* avahi_timeout_new(const AvahiPoll *api, const struct timeval *tv, AvahiTimeoutCallback callback, void *userdata)
 {
-	eDebug("[Avahi] %s", __func__);
+//	eDebug("[Avahi] %s", __func__);
 
 	AvahiTimeout* result = new AvahiTimeout((eMainloop*)api->userdata, callback, userdata);
 	avahi_set_timer(result, tv);
@@ -377,7 +377,7 @@ AvahiTimeout* avahi_timeout_new(const AvahiPoll *api, const struct timeval *tv, 
  * NULL, the timeout is disabled. It is safe to call this function from an AvahiTimeoutCallback */
 void avahi_timeout_update(AvahiTimeout *t, const struct timeval *tv)
 {
-	eDebug("[Avahi] %s", __func__);
+//	eDebug("[Avahi] %s", __func__);
 	t->timer->stop();
 	avahi_set_timer(t, tv);
 }
@@ -385,7 +385,7 @@ void avahi_timeout_update(AvahiTimeout *t, const struct timeval *tv)
 /** Free a timeout. It is safe to call this function from an AvahiTimeoutCallback */
 void avahi_timeout_free(AvahiTimeout *t)
 {
-	eDebug("[Avahi] %s", __func__);
+//	eDebug("[Avahi] %s", __func__);
 	t->timer->stop();
 	delete t;
 }
