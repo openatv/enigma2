@@ -2602,6 +2602,8 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 			self.setHistoryPath()
 
 	def cancel(self):
+		if self.movemode:
+			self.toggleMoveMode()
 		if self.revertMode is None:
 			self.restoreRoot()
 			if self.dopipzap:
@@ -2808,8 +2810,6 @@ class ChannelSelectionRadio(ChannelSelectionBase, ChannelSelectionEdit, ChannelS
 
 	def __init__(self, session, infobar):
 		ChannelSelectionBase.__init__(self, session)
-		ChannelSelectionEdit.__init__(self)
-		ChannelSelectionEPG.__init__(self)
 		InfoBarBase.__init__(self)
 		SelectionEventInfo.__init__(self)
 		self.infobar = infobar
@@ -2826,6 +2826,9 @@ class ChannelSelectionRadio(ChannelSelectionBase, ChannelSelectionEdit, ChannelS
 				"cancel": self.cancel,
 				"ok": self.channelSelected,
 			})
+
+		ChannelSelectionEPG.__init__(self)
+		ChannelSelectionEdit.__init__(self)
 
 		self.__event_tracker = ServiceEventTracker(screen=self, eventmap={
 				iPlayableService.evStart: self.__evServiceStart,
