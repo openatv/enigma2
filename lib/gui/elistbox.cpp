@@ -8,8 +8,9 @@
 
 eListbox::eListbox(eWidget *parent) :
 	eWidget(parent), m_scrollbar_mode(showNever), m_prev_scrollbar_page(-1),
-	m_content_changed(false), m_enabled_wrap_around(false), m_scrollbar_width(10), m_top(0), m_selected(0), m_itemheight(25),
-	m_items_per_page(0), m_selection_enabled(1), m_scrollbar(NULL), m_native_keys_bound(false)
+	m_content_changed(false), m_enabled_wrap_around(false), m_scrollbar_width(10),
+	m_top(0), m_selected(0), m_itemheight(25),
+	m_items_per_page(0), m_selection_enabled(1), m_scrollbar(nullptr), m_native_keys_bound(false)
 {
 	memset(static_cast<void*>(&m_style), 0, sizeof(m_style));
 	m_style.m_text_offset = ePoint(1,1);
@@ -116,7 +117,7 @@ void eListbox::moveSelection(long dir)
 	if (!m_content)
 		return;
 	/* if our list does not have one entry, don't do anything. */
-	if (!m_items_per_page)
+	if (!m_items_per_page || !m_content->size())
 		return;
 	/* we need the old top/sel to see what we have to redraw */
 	int oldtop = m_top;
@@ -130,7 +131,7 @@ void eListbox::moveSelection(long dir)
 	{
 	case moveEnd:
 		m_content->cursorEnd();
-		// falltrough
+		[[fallthrough]];
 	case moveUp:
 		do
 		{
@@ -158,11 +159,11 @@ void eListbox::moveSelection(long dir)
 		break;
 	case moveTop:
 		m_content->cursorHome();
-		// falltrough
+		[[fallthrough]];
 	case justCheck:
 		if (m_content->cursorValid() && m_content->currentCursorSelectable())
 			break;
-		// falltrough
+		[[fallthrough]];
 	case moveDown:
 		do
 		{
@@ -268,6 +269,10 @@ void eListbox::moveSelection(long dir)
 	/* now, look wether the current selection is out of screen */
 	m_selected = m_content->cursorGet();
 	m_top = m_selected - (m_selected % m_items_per_page);
+
+	// if it is, then the old selection clip is irrelevant, clear it or we'll get artifacts
+	if (m_top != oldtop && m_content)
+		m_content->resetClip();
 
 	if (oldsel != m_selected)
 		/* emit */ selectionChanged();

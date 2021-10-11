@@ -43,6 +43,7 @@ protected:
 	std::string m_text;
 	int event(int event, void *data=0, void *data2=0);
 	int m_pos;
+	int m_text_offset;
 private:
 	int m_have_foreground_color, m_have_shadow_color;
 	gRGB m_foreground_color, m_shadow_color, m_border_color;

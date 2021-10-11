@@ -40,7 +40,7 @@ gRegion::~gRegion()
 
 int gRegion::do_coalesce(int prevStart, unsigned int curStart)
 {
-		// Figure out how many rectangles are in the band.
+	// Figure out how many rectangles are in the band.
 	unsigned int numRects = curStart - prevStart;
 	ASSERT(numRects == rects.size() - curStart);
 	if (!numRects)
@@ -48,35 +48,35 @@ int gRegion::do_coalesce(int prevStart, unsigned int curStart)
 	std::vector<eRect>::iterator prevBox = rects.begin() + prevStart;
 	std::vector<eRect>::const_iterator  curBox = rects.begin() + curStart;
 
-		// The bands may only be coalesced if the bottom of the previous
-		// matches the top scanline of the current.
+	// The bands may only be coalesced if the bottom of the previous
+	// matches the top scanline of the current.
 	if (prevBox->y2 != curBox->y1)
 		return curStart;
 
-		// Make sure the bands have boxes in the same places. This
-		// assumes that boxes have been added in such a way that they
-		// cover the most area possible. I.e. two boxes in a band must
-		// have some horizontal space between them.
+	// Make sure the bands have boxes in the same places. This
+	// assumes that boxes have been added in such a way that they
+	// cover the most area possible. I.e. two boxes in a band must
+	// have some horizontal space between them.
 
 	int y2 = curBox->y2;
 
 	do {
 		if ((prevBox->x1 != curBox->x1) || (prevBox->x2 != curBox->x2))
 			return curStart;
-		prevBox++;
-		curBox++;
-		numRects--;
+		++prevBox;
+		++curBox;
+		--numRects;
 	} while ( numRects );
 
-		// The bands may be merged, so set the bottom y of each box
-		// in the previous band to the bottom y of the current band.
+	// The bands may be merged, so set the bottom y of each box
+	// in the previous band to the bottom y of the current band.
 	numRects = curStart - prevStart;
-	rects.resize(rects.size() - numRects);
 	do {
-		prevBox--;
+		--prevBox;
 		prevBox->y2 = y2;
 		numRects--;
 	} while (numRects);
+	rects.resize(rects.size() - (curStart - prevStart));
 	return prevStart;
 }
 
@@ -90,7 +90,7 @@ void gRegion::appendNonO(std::vector<eRect>::const_iterator r,
 	do {
 		ASSERT(r->x1 < r->x2);
 		rects.push_back(eRect(r->x1, y1, r->x2 - r->x1, y2 - y1));
-		r++;
+		++r;
 	} while (r != rEnd);
 }
 
@@ -114,9 +114,9 @@ void gRegion::intersectO(
 		if (x1 < x2)
 			rects.push_back(eRect(x1, y1, x2 - x1, y2 - y1));
 		if (r1->x2 == x2)
-			r1++;
+			++r1;
 		if (r2->x2 == x2)
-			r2++;
+			++r2;
 	} while ( (r1 != r1End) && (r2 != r2End));
 }
 
@@ -186,7 +186,7 @@ void gRegion::subtractO(
 		x1 = r->x1;                                             \
 		x2 = r->x2;                                             \
 	}                                                         \
-	r++;                                                      \
+	++r;                                                      \
 }
 
 void gRegion::mergeO(
