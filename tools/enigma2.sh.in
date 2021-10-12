@@ -60,13 +60,7 @@ if [ -x "@bindir@/showiframe" ]; then
 		SEARCHDIRS="@sysconfdir@/enigma2/skin_common @sysconfdir@/enigma2 @datadir@/enigma2/skin_default @datadir@/enigma2"
 	fi
 	for DIR in $SEARCHDIRS; do
-		if [ -d "${DIR}" ] && [ -f "@bindir@/exteplayer3" ] && [ -f "${DIR}/bootlogo.mp4" ]; then
-			"@bindir@/exteplayer3" "${DIR}/bootlogo.mp4"
-			break
-		elif [ -d "${DIR}" ] && [ -f "${DIR}/backdrop.mvi" ]; then
-			if [ "${SOCFAMILY}" == "hisi" ]; then
-				killall -9 showiframe; sleep 0.1
-			fi
+		if [ -d "${DIR}" ] && [ -f "${DIR}/backdrop.mvi" ]; then
 			"@bindir@/showiframe" "${DIR}/backdrop.mvi"
 			break
 		fi
