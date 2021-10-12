@@ -53,7 +53,7 @@ msgid ""
 "* Logs location: logs settings, Filename: Enigma2-hdmicec-[date].log"
 msgstr ""
 "\n"
-"* Logs Speicherort: Log Einstellungen, Dateiname: 'Enigma2-hdmicec-[Datum].log'"
+"* Speicherort für Logs. Dateiname dort: 'Enigma2-hdmicec-[Datum].log'"
 
 msgid ""
 "\n"
@@ -1045,8 +1045,8 @@ msgstr "%d Min"
 #, python-format
 msgid "%d channel found"
 msgid_plural "%d channels found"
-msgstr[0] "%d Sender gefunden"
-msgstr[1] "%d Sender gefunden"
+msgstr[0] "%d Sender gefunden."
+msgstr[1] "%d Sender gefunden."
 
 #, python-format
 msgid "%d hour"
@@ -2421,10 +2421,10 @@ msgid "Add files to playlist"
 msgstr "Zur Playliste hinzufügen"
 
 msgid "Add plugin to Extensions menu*"
-msgstr "Plugin zum Erweiterungsmenü hinzufügen*"
+msgstr "Plugin zum Erweiterungsmenü hinzufügen *"
 
 msgid "Add plugin to main menu*"
-msgstr "Plugin zum Hauptmenü hinzufügen*"
+msgstr "Plugin zum Hauptmenü hinzufügen *"
 
 msgid "Add provider"
 msgstr "Provider hinzufügen"
@@ -4136,7 +4136,7 @@ msgstr "Bei 'Ja' wird MiniTV in der Senderliste angezeigt, wenn der Skin es erm�
 
 # setup.xml 6.1 Version
 msgid "Channel list show MiniTV*"
-msgstr "MiniTV in der Senderliste anzeigen*"
+msgstr "MiniTV in der Senderliste anzeigen *"
 
 msgid "Channel list type"
 msgstr "Typ der Senderliste"
@@ -7024,10 +7024,10 @@ msgid "Error opening recording file"
 msgstr "Fehler beim Öffnen der Aufnahmedatei"
 
 msgid "Error reading bouquets.radio"
-msgstr "Fehler beim Lesen von 'bouquets.radio'"
+msgstr "Fehler beim Lesen von 'bouquets.radio'!"
 
 msgid "Error reading bouquets.tv"
-msgstr "Fehler beim Lesen von 'bouquets.tv'"
+msgstr "Fehler beim Lesen von 'bouquets.tv'!"
 
 msgid "Error reading webpage!"
 msgstr "Fehler beim Lesen der Webseite!"
@@ -8276,7 +8276,7 @@ msgstr ""
 "welche Dateien mit einem Online-Update aktualisiert werden sollen"
 
 msgid "Here you can set what is called when pressing the 'Info' key."
-msgstr "Einstellen, was beim Betätigen der Taste INFO aufgerufen werden soll."
+msgstr "Einstellen, was beim Betätigen der Taste INFO/HELP aufgerufen werden soll."
 
 msgid "Here you can specify additional files that should be added to the backup file."
 msgstr "Hier kann festgelegt werden, welche Dateien zusätzlich zu denen der Standardliste gesichert werden."
@@ -8475,7 +8475,7 @@ msgid "INFO"
 msgstr ""
 
 msgid "INFO button mode"
-msgstr "Funktion der Taste INFO"
+msgstr "Funktion der Taste INFO/HELP"
 
 msgid "INFO-Panel..."
 msgstr "Info-Panel..."
@@ -8847,10 +8847,10 @@ msgid "Info Panel"
 msgstr ""
 
 msgid "Info button (long)"
-msgstr "Taste INFO lang"
+msgstr "Taste INFO/HELP lang"
 
 msgid "Info button (short)"
-msgstr "Taste INFO kurz"
+msgstr "Taste INFO/HELP kurz"
 
 msgid "Info icon width"
 msgstr "Info-Icon anzeigen Breite"
@@ -12416,7 +12416,7 @@ msgid "Press '0' to toggle PiP mode"
 msgstr "Drücken Sie die Taste '0' zum Wechseln des Bild im Bild Modus"
 
 msgid "Press INFO on your remote control for additional information."
-msgstr "Taste INFO für zusätzliche Informationen."
+msgstr "Taste INFO/HELP für zusätzliche Informationen."
 
 msgid "Press MENU on your remote control for additional options."
 msgstr "Taste MENU für zusätzliche Optionen."
@@ -13431,7 +13431,7 @@ msgid "Reunion"
 msgstr "Réunion"
 
 msgid "Reverse bouquet buttons"
-msgstr "Bouquettasten tauschen"
+msgstr "Tasten P+/CH+ und P-/CH- tauschen"
 
 msgid "Reverse left file sorting"
 msgstr "Linke Seite Sortierung umkehren"
@@ -13826,8 +13826,8 @@ msgstr "Suchlauf %s..."
 #, python-format
 msgid "Scanning - %d%% completed"
 msgid_plural "Scanning - %d%% completed"
-msgstr[0] "Suchlauf zu %d%% erledigt"
-msgstr[1] "Suchlauf zu %d%% erledigt"
+msgstr[0] "Suchlauf zu %d%% erledigt."
+msgstr[1] "Suchlauf zu %d%% erledigt."
 
 #, python-format
 msgid "Scanning completed, %d channel found"
@@ -13867,7 +13867,7 @@ msgstr "LCD Screenshot in '/tmp' erstellen"
 
 #, python-format
 msgid "Script '%s' must have read permission to be able to run it"
-msgstr "Skript '% s' muss über Leseberechtigung verfügen, um es ausführen zu können."
+msgstr "Skript '%s' muss über Leseberechtigung verfügen, um es ausführen zu können."
 
 msgid "ScriptRunner"
 msgstr ""
@@ -14309,7 +14309,7 @@ msgid "Select what you want the EPG button to activate:"
 msgstr "Wählen Sie, was die Taste EPG bewirken soll."
 
 msgid "Select what you want the INFO button to activate:"
-msgstr "Wählen Sie, was die Taste INFO bewirken soll."
+msgstr "Wählen Sie, was die Taste INFO/HELP bewirken soll."
 
 msgid "Select what you want the OK button to activate:"
 msgstr "Wählen Sie, was die Taste OK bewirken soll."
@@ -14572,7 +14572,7 @@ msgid "Set System"
 msgstr "System einstellen"
 
 msgid "Set action for 'Info' key"
-msgstr "Aktion der Taste INFO einstellen"
+msgstr "Aktion der Taste INFO/HELP einstellen"
 
 msgid "Set archive mode (644)"
 msgstr "Archivmodus einstellen (644)"
@@ -19356,7 +19356,7 @@ msgstr "Was wollen Sie scannen?"
 
 # Customize neu 5.1
 msgid "When enabled enigma2 will load unlinked userbouquets. This means that userbouquets that are available, but not included in the bouquets.tv or bouquets.radio files, will still be loaded. This allows you for example to keep your own user bouquet while installed settings are upgraded"
-msgstr "Bei 'Ja' werden alle vorhandenen Bouquets geladen, auch wenn sie nicht in 'bouquets.tv' oder 'bouquets.radio' enthalten sind. Dies erlaubt Ihnen z.B. Ihre eigenen Bouquets zu erhalten, wenn Upgrades der installierten Bouquets erfolgen."
+msgstr "Bei 'Ja' werden alle vorhandenen Favoritenlisten geladen, auch wenn sie nicht in 'bouquets.tv' oder 'bouquets.radio' enthalten sind. Dies erlaubt Ihnen z.B. Ihre eigenen Favoritenlisten zu erhalten, wenn Upgrades der installierten Settings erfolgen."
 
 # /data/setup.xml
 msgid "When enabled the PiP can be closed by the exit button."
@@ -19373,7 +19373,7 @@ msgstr "Bei 'Ja' werden EIT Daten in HTTP Streams eingebettet. Dies erlaubt es K
 
 # channelselection 5.1
 msgid "When enabled, Enigma2 will load unlinked bouquets. This means that bouquets that are available, but not included in the bouquets.tv or bouquets.radio files, will still be loaded. This allows you for example to keep your own user bouquet while installed settings are upgraded"
-msgstr "Bei 'Ja' werden alle vorhandenen Favoritenlisten geladen, auch wenn sie nicht in 'bouquets.tv' oder 'bouquets.radio' enthalten sind. Dies erlaubt Ihnen z.B. Ihre eigenen Favoritenlisten zu erhalten, wenn Upgrades der installierten Bouquets erfolgen."
+msgstr "Bei 'Ja' werden alle vorhandenen Favoritenlisten geladen, auch wenn sie nicht in 'bouquets.tv' oder 'bouquets.radio' enthalten sind. Dies erlaubt Ihnen z.B. Ihre eigenen Favoritenlisten zu erhalten, wenn Upgrades der installierten Settings erfolgen."
 
 msgid "When enabled, a popup message will be shown when a movie has finished and the next one will start."
 msgstr "Bei 'Ja' wird eine Info angezeigt sobald ein Film beendet ist und der nächste beginnt."
@@ -20818,7 +20818,7 @@ msgid "feed status"
 msgstr "Feed-Status"
 
 msgid "file can not displayed - file not found"
-msgstr "Datei kann nicht angezeigt werden! Datei nicht gefunden"
+msgstr "Datei kann nicht angezeigt werden! Datei nicht gefunden!"
 
 # 5.1 /Plugins\Extensions\PicturePlayer
 msgid "fileformats (BMP, PNG, JPG, GIF)"
@@ -21415,7 +21415,7 @@ msgid "previous channel page"
 msgstr "Vorherige Senderseite"
 
 msgid "previous/next Bouquet"
-msgstr "vorherige/nächste Seite"
+msgstr "vorheriges/nächstes Bouquet"
 
 msgid "previous/next Page"
 msgstr "vorherige/nächste Seite"
@@ -21856,7 +21856,7 @@ msgid "tennis/squash"
 msgstr "Tennis/Squash"
 
 msgid "this bouquet is protected by a parental control pin"
-msgstr "Dieser Bouquet ist durch einen Jugendschutz-PIN-Code geschützt."
+msgstr "Dieses Bouquet ist durch einen Jugendschutz-PIN-Code geschützt."
 
 msgid "this offset will only be used if the channel has not its own volume offset"
 msgstr "Dieser Offset wird nur genutzt, wenn ein Sender selbst keine eigene Lautstärkeanpassung hat, und unter 'Ton - Grundeinstellungen' 'AC3 Downmix' auf 'Nein' gestellt ist."
