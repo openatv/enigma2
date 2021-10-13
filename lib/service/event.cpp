@@ -9,8 +9,10 @@
 #include <dvbsi++/linkage_descriptor.h>
 #include <dvbsi++/component_descriptor.h>
 #include <dvbsi++/content_descriptor.h>
+#include <dvbsi++/content_identifier_descriptor.h>
 #include <dvbsi++/parental_rating_descriptor.h>
 #include <dvbsi++/descriptor_tag.h>
+#include <dvbsi++/pdc_descriptor.h>
 
 #include <sys/types.h>
 #include <fcntl.h>
@@ -142,11 +144,37 @@ bool eServiceEvent::loadLanguage(Event *evt, const std::string &lang, int tsidon
 					for (ContentClassificationConstIterator it = con->begin(); it != con->end(); ++it)
 					{
 						eGenreData data;
-				                data.m_level1 = (*it)->getContentNibbleLevel1();
+						data.m_level1 = (*it)->getContentNibbleLevel1();
 						data.m_level2 = (*it)->getContentNibbleLevel2();
 						data.m_user1  = (*it)->getUserNibble1();
 						data.m_user2  = (*it)->getUserNibble2();
 						m_genres.push_back(data);
+					}
+					break;
+				}
+				case CONTENT_IDENTIFIER_DESCRIPTOR:
+				{
+					auto cid = (ContentIdentifierDescriptor *)*desc;
+					auto cril = cid->getIdentifier();
+					for (auto it = cril->begin(); it != cril->end(); ++it)
+					{
+						auto crid = std::string((const char*)(*it)->getBytes()->data(), (*it)->getLength());
+						switch ((*it)->getType())
+						{
+							case 0x01:
+							case 0x31:
+								m_episode_crid = crid;
+								break;
+							case 0x02:
+							case 0x32:
+								m_series_crid = crid;
+								break;
+							case 0x03:
+								break;
+							default:
+								eDebug("[Event] Unrecognised crid type %d %s", (*it)->getType(), crid.c_str());
+								break;
+						}
 					}
 					break;
 				}
@@ -164,11 +192,17 @@ bool eServiceEvent::loadLanguage(Event *evt, const std::string &lang, int tsidon
 					}
 					break;
 				}
+				case PDC_DESCRIPTOR:
+				{
+					const PdcDescriptor *pdcd = (PdcDescriptor *)*desc;
+					m_pdc_pil = pdcd->getProgrammeIdentificationLabel();
+					break;
+				}
 			}
 		}
 	}
 	if ( m_extended_description.find(m_short_description) == 0 )
-		m_short_description="";
+		m_short_description = "";
 
 	if ( ! m_extended_description_items.empty() )
 	{
@@ -186,6 +220,8 @@ RESULT eServiceEvent::parseFrom(Event *evt, int tsidonid)
 	m_event_id = evt->getEventId();
 	uint32_t duration = evt->getDuration();
 	m_duration = fromBCD(duration>>16)*3600+fromBCD(duration>>8)*60+fromBCD(duration);
+	uint8_t running_status = evt->getRunningStatus();
+	m_running_status = running_status;
 	if (m_language != "---" && loadLanguage(evt, m_language, tsidonid))
 		return 0;
 	if (m_language_alternative != "---" && loadLanguage(evt, m_language_alternative, tsidonid))

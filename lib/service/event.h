@@ -24,6 +24,7 @@ struct eComponentData
 	std::string m_text;
 public:
 	eComponentData(const eComponentData& d) { *this = d; }
+	eComponentData& operator =(const eComponentData &) = default;
 	eComponentData() { m_streamContent = m_componentType = m_componentTag = 0; }
 	int getStreamContent(void) const { return m_streamContent; }
 	int getComponentType(void) const { return m_componentType; }
@@ -44,6 +45,7 @@ struct eGenreData
 	uint8_t m_user2;
 public:
 	eGenreData(const eGenreData& d) { *this = d; }
+	eGenreData& operator =(const eGenreData &) = default;
 	eGenreData() { m_level1 = m_level2 = m_user1 = m_user2 = 0; }
 	int getLevel1(void) const { return m_level1; }
 	int getLevel2(void) const { return m_level2; }
@@ -61,6 +63,7 @@ struct eParentalData
 	uint8_t m_rating;
 public:
 	eParentalData(const eParentalData& d) { *this = d; }
+	eParentalData& operator =(const eParentalData &) = default;
 	eParentalData() { m_country_code = ""; m_rating = 0; }
 	std::string getCountryCode(void) const { return m_country_code; }
 	int getRating(void) const { return m_rating; }
@@ -82,7 +85,10 @@ class eServiceEvent: public iObject
 	time_t m_begin;
 	int m_duration;
 	int m_event_id;
+	int m_pdc_pil;
+	int m_running_status;
 	std::string m_event_name, m_short_description, m_extended_description, m_extra_event_data, m_epg_source, m_extended_description_items;
+	std::string m_series_crid, m_episode_crid;
 	static std::string m_language, m_language_alternative;
 	// .. additional info
 public:
@@ -98,12 +104,16 @@ public:
 	time_t getBeginTime() const { return m_begin; }
 	int getDuration() const { return m_duration; }
 	int getEventId() const { return m_event_id; }
+	int getPdcPil() const { return m_pdc_pil; }
+	int getRunningStatus() const { return m_running_status; }
 	std::string getEventName() const { return m_event_name; }
 	std::string getShortDescription() const { return m_short_description; }
 	std::string getExtendedDescription() const { return m_extended_description; }
 	std::string getExtraEventData() const { return m_extra_event_data; }
 	std::string getEPGSource() const { return m_epg_source; }
 	std::string getBeginTimeString() const;
+	std::string getSeriesCrid() const { return m_series_crid; }
+	std::string getEpisodeCrid() const { return m_episode_crid; }
 	SWIG_VOID(RESULT) getComponentData(ePtr<eComponentData> &SWIG_OUTPUT, int tagnum) const;
 	// Naming to parallel getGenreDataList & getParentalDataList
 	PyObject *getComponentDataList() const;
