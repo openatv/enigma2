@@ -203,7 +203,7 @@ static const std::string getConfigCurrentSpinner(const std::string &key)
 	}
 	else
 		return "spinner";  // if value is NOT empty, means config.skin.primary_skin exist in settings file, so return "spinner" ( /usr/share/enigma2/MYSKIN/spinner/wait1.png DOES NOT exist )
-} 
+}
 
 int exit_code;
 
@@ -261,7 +261,7 @@ void catchTermSignal()
 
 int main(int argc, char **argv)
 {
-	eLog(0, "Enigma starting.\n");
+	eLog(0, "Enigma is starting.\n");
 #ifdef MEMLEAK_CHECK
 	atexit(DumpUnfreed);
 #endif
@@ -274,7 +274,7 @@ int main(int argc, char **argv)
 
 	// set pythonpath if unset
 	setenv("PYTHONPATH", eEnv::resolve("${libdir}/enigma2/python").c_str(), 0);
-	eLog(0, "[Enigma] Python path '%s'.", getenv("PYTHONPATH"));
+	eLog(0, "[Enigma] Python path is '%s'.", getenv("PYTHONPATH"));
 	eLog(0, "[Enigma] DVB API version %d, DVB API version minor %d.", DVB_API_VERSION, DVB_API_VERSION_MINOR);
 
 	// get enigma2 debug level settings
@@ -366,6 +366,7 @@ int main(int argc, char **argv)
 			}
 			i++;
 		}
+		eDebug("[Enigma] Found %d spinners.", i);
 		if (i)
 			my_dc->setSpinner(eRect(ePoint(100, 100), wait[0]->size()), wait, i);
 		else
@@ -376,7 +377,7 @@ int main(int argc, char **argv)
 
 	eRCInput::getInstance()->keyEvent.connect(sigc::ptr_fun(&keyEvent));
 
-	eDebug("[Enigma] Executing StartEnigma.py code.");
+	eDebug("[Enigma] Executing StartEnigma.py");
 
 	bsodCatchSignals();
 	catchTermSignal();
@@ -386,7 +387,6 @@ int main(int argc, char **argv)
 	/* start at full size */
 	eVideoWidget::setFullsize(true);
 
-	//	python.execute("mytest", "__main__");
 	python.execFile(eEnv::resolve("${libdir}/enigma2/python/StartEnigma.py").c_str());
 
 	/* restore both decoders to full size */
