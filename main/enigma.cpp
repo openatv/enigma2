@@ -205,6 +205,30 @@ static const std::string getConfigCurrentSpinner(const std::string &key)
 		return "spinner";  // if value is NOT empty, means config.skin.primary_skin exist in settings file, so return "spinner" ( /usr/share/enigma2/MYSKIN/spinner/wait1.png DOES NOT exist )
 }
 
+static const std::string getConfigValue(const std::string &key, const std::string &def)
+{
+	std::string value = defvalue;
+	std::ifstream in(eEnv::resolve("${sysconfdir}/enigma2/settings").c_str());
+	
+	if (in.good()) {
+		do {
+			std::string line;
+			std::getline(in, line);
+			size_t size = key.size();
+			if (line.compare(0, size, key)== 0) {
+				value = line.substr(size + 1);
+				break;
+			}
+		} while (in.good());
+		in.close();
+	}
+	if (value.empty()) 
+		return defvalue;
+	else
+		return value;
+}
+
+
 int exit_code;
 
 void quitMainloop(int exitCode)
@@ -331,46 +355,52 @@ int main(int argc, char **argv)
 	dsk_lcd.setRedrawTask(main);
 
 	std::string active_skin = getConfigCurrentSpinner("config.skin.primary_skin");
+	std::string spinnerPostion = getConfigValue("config.misc.spinnerPosition", "100,100");
+	int spinnerPostionX,spinnerPostionY;
+	if (sscanf(spinnerPostion.c_str(), "%d,%d", &spinnerPostionX, &spinnerPostionY) != 2)
+	{
+		spinnerPostionX = spinnerPostionY = 100;
+	}
 
 	eDebug("[Enigma] Loading spinners.");
-
 	{
-		int i = 0;
-		bool def = false;
-		std::string path = "${sysconfdir}/enigma2/spinner";
 #define MAX_SPINNER 64
+		int i = 0;
+		std::string skinpath = "${sysconfdir}/enigma2/" + active_skin;
+		std::string defpath = "${sysconfdir}/enigma2/spinner";
+		bool def = (skinpath.compare(defpath) == 0);
 		ePtr<gPixmap> wait[MAX_SPINNER];
 		while(i < MAX_SPINNER)
 		{
 			char filename[64];
 			std::string rfilename;
-			snprintf(filename, sizeof(filename), "%s/wait%d.png", path.c_str(), i + 1);
+			snprintf(filename, sizeof(filename), "%s/wait%d.png", skinpath.c_str(), i + 1);
 			rfilename = eEnv::resolve(filename);
 			loadPNG(wait[i], rfilename.c_str());
 
-			if (!wait[i])
+			if (!wait[i]) 
 			{
-				if (!i)
+				// spinner failed
+				if (i==0)
 				{
+					// retry default spinner only once
 					if (!def)
 					{
 						def = true;
-						snprintf(filename, sizeof(filename), "${datadir}/enigma2/%s", active_skin.c_str());
-						path = filename;
+						skinpath = defpath;
 						continue;
 					}
 				}
-				else
-					eDebug("[Enigma] Found %d spinners.", i);
+				// exit loop because of no more spinners
 				break;
 			}
 			i++;
 		}
 		eDebug("[Enigma] Found %d spinners.", i);
-		if (i)
-			my_dc->setSpinner(eRect(ePoint(100, 100), wait[0]->size()), wait, i);
+		if (i==0)
+			my_dc->setSpinner(eRect(spinnerPostionX, spinnerPostionY, 0, 0), wait, 1);
 		else
-			my_dc->setSpinner(eRect(100, 100, 0, 0), wait, 1);
+			my_dc->setSpinner(eRect(ePoint(spinnerPostionX, spinnerPostionY), wait[0]->size()), wait, i);
 	}
 
 	gRC::getInstance()->setSpinnerDC(my_dc);
