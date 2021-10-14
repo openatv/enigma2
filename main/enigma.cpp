@@ -205,7 +205,7 @@ static const std::string getConfigCurrentSpinner(const std::string &key)
 		return "spinner";  // if value is NOT empty, means config.skin.primary_skin exist in settings file, so return "spinner" ( /usr/share/enigma2/MYSKIN/spinner/wait1.png DOES NOT exist )
 }
 
-static const std::string getConfigValue(const std::string &key, const std::string &def)
+static const std::string getConfigValue(const std::string &key, const std::string &defvalue)
 {
 	std::string value = defvalue;
 	std::ifstream in(eEnv::resolve("${sysconfdir}/enigma2/settings").c_str());
@@ -285,7 +285,7 @@ void catchTermSignal()
 
 int main(int argc, char **argv)
 {
-	print("Enigma is starting.\n");
+	printf("Enigma is starting.\n");
 #ifdef MEMLEAK_CHECK
 	atexit(DumpUnfreed);
 #endif
