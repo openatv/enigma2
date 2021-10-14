@@ -39,6 +39,8 @@ class Input(VariableText, GUIComponent, NumericalTextInput):
 				self.textU = text.decode("UTF-8", "ignore")
 			elif isinstance(text, bytes):
 				self.textU = text.encode("UTF-8", "ignore")
+			else:
+				self.textU = text
 		else:
 			self.currPos = 0
 			self.textU = u""
