@@ -127,7 +127,7 @@ void keyEvent(const eRCKey &key)
 #include <lib/dvb/epgtransponderdatareader.h>
 
 /* Defined in eerror.cpp */
-void setDebugTime(bool enable);
+void setDebugTime(int level);
 class eMain: public eApplication, public sigc::trackable
 {
 	eInit init;
@@ -318,7 +318,7 @@ int main(int argc, char **argv)
 	if (debugLvl < 0)
 		debugLvl = 0;
 	if (getenv("ENIGMA_DEBUG_TIME"))
-		setDebugTime(atoi(getenv("ENIGMA_DEBUG_TIME")) != 0);
+		setDebugTime(atoi(getenv("ENIGMA_DEBUG_TIME")));
 
 	eLog(0, "[Enigma] Python path is '%s'.", getenv("PYTHONPATH"));
 	eLog(0, "[Enigma] DVB API version %d, DVB API version minor %d.", DVB_API_VERSION, DVB_API_VERSION_MINOR);
