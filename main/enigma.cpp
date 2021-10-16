@@ -300,7 +300,6 @@ void catchTermSignal()
 
 int main(int argc, char **argv)
 {
-	printf("Enigma is starting.\n");
 #ifdef MEMLEAK_CHECK
 	atexit(DumpUnfreed);
 #endif
