@@ -45,6 +45,9 @@ class MenuList(GUIComponent):
 		if self.instance is not None:
 			self.instance.moveSelectionTo(index)
 
+	def count(self):
+		return len(self.list)
+
 	def top(self):
 		if self.instance is not None:
 			self.instance.moveSelection(self.instance.moveTop)
