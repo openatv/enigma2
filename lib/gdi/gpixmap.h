@@ -22,20 +22,12 @@ struct gRGB
 			unsigned char a, r, g, b;
 		};
 #endif
-#if defined (__aarch64__)
-		unsigned int value;
-#else
-		unsigned long value;
-#endif
+		uint32_t value;
 	};
 	gRGB(int r, int g, int b, int a=0): b(b), g(g), r(r), a(a)
 	{
 	}
-#if defined (__aarch64__)
-	gRGB(unsigned int val): value(val)
-#else
-	gRGB(unsigned long val): value(val)
-#endif
+	gRGB(uint32_t val): value(val)
 	{
 	}
 	gRGB(const gRGB& other): value(other.value)
@@ -43,11 +35,8 @@ struct gRGB
 	}
 	gRGB(const char *colorstring)
 	{
-#if defined (__aarch64__)
-		unsigned int val = 0;
-#else
-		unsigned long val = 0;
-#endif
+		uint32_t val = 0;
+
 		if (colorstring)
 		{
 			for (int i = 0; i < 8; i++)
@@ -63,29 +52,17 @@ struct gRGB
 	{
 	}
 
-#if defined (__aarch64__)
-	unsigned int argb() const
-#else
-	unsigned long argb() const
-#endif
+	uint32_t argb() const
 	{
 		return value;
 	}
 
-#if defined (__aarch64__)
-	void set(unsigned int val)
-#else
-	void set(unsigned long val)
-#endif
+	void set(uint32_t val)
 	{
 		value = val;
 	}
 
-#if defined (__aarch64__)
-	void operator=(unsigned int val)
-#else
-	void operator=(unsigned long val)
-#endif
+	void operator=(uint32_t val)
 	{
 		value = val;
 	}
@@ -117,11 +94,7 @@ struct gRGB
 	}
 	operator const std::string () const
 	{
-#if defined (__aarch64__)
-		unsigned int val = value;
-#else
-		unsigned long val = value;
-#endif
+		uint32_t val = value;
 		std::string escapecolor = "\\c";
 		escapecolor.resize(10);
 		for (int i = 9; i >= 2; i--)
@@ -160,11 +133,8 @@ struct gPalette
 {
 	int start, colors;
 	gRGB *data;
-#if defined (__aarch64__)
-	unsigned int data_phys;
-#else
-	unsigned long data_phys;
-#endif
+	uint32_t data_phys;
+
 	gColor findColor(const gRGB rgb) const;
 	gPalette():	start(0), colors(0), data(0), data_phys(0) {}
 };
