@@ -190,19 +190,34 @@ static const std::string getConfigCurrentSpinner(const std::string &key)
 		} while (in.good());
 		in.close();
 	}
-	// if value is empty, means no config.skin.primary_skin exist in settings file, so return just default spinner ( /usr/share/enigma2/spinner )
-	if (value.empty()) 
-		return value;
-	
-	 //  if value is NOT empty, means config.skin.primary_skin exist in settings file, so return SCOPE_GUISKIN + "/spinner" ( /usr/share/enigma2/MYSKIN/spinner ) BUT check if /usr/share/enigma2/MYSKIN/spinner/wait1.png exist
+
+	// if value is not empty, means config.skin.primary_skin exist in settings file
+	if (!value.empty()) 
+	{
+
+		// check /usr/share/enigma2/MYSKIN/spinner/wait1.png
+		std::string png_location = "/usr/share/enigma2/" + value + "/wait1.png";
+		std::ifstream png(png_location.c_str());
+		if (png.good()) {
+			png.close();
+			return value; // if value is NOT empty, means config.skin.primary_skin exist in settings file, so return SCOPE_GUISKIN + "/spinner" ( /usr/share/enigma2/MYSKIN/spinner/wait1.png exist )
+		}
+
+	}
+
+	// try to find spinner in skin_default/spinner subfolder 
+	value = "skin_default/spinner";
+
+	// check /usr/share/enigma2/skin_default/spinner/wait1.png
 	std::string png_location = "/usr/share/enigma2/" + value + "/wait1.png";
 	std::ifstream png(png_location.c_str());
 	if (png.good()) {
 		png.close();
-		return value; // if value is NOT empty, means config.skin.primary_skin exist in settings file, so return SCOPE_GUISKIN + "/spinner" ( /usr/share/enigma2/MYSKIN/spinner/wait1.png exist )
+		return value; // ( /usr/share/enigma2/skin_default/spinner/wait1.png exist )
 	}
 	else
-		return "spinner";  // if value is NOT empty, means config.skin.primary_skin exist in settings file, so return "spinner" ( /usr/share/enigma2/MYSKIN/spinner/wait1.png DOES NOT exist )
+		return "spinner";  // ( /usr/share/enigma2/skin_default/spinner/wait1.png DOES NOT exist )
+
 }
 
 static const std::string getConfigValue(const std::string &key, const std::string &defvalue)
@@ -368,8 +383,8 @@ int main(int argc, char **argv)
 	{
 #define MAX_SPINNER 64
 		int i = 0;
-		std::string skinpath = "${sysconfdir}/enigma2/" + active_skin;
-		std::string defpath = "${sysconfdir}/enigma2/spinner";
+		std::string skinpath = "${datadir}/enigma2/" + active_skin;
+		std::string defpath = "${datadir}/enigma2/spinner";
 		bool def = (skinpath.compare(defpath) == 0);
 		ePtr<gPixmap> wait[MAX_SPINNER];
 		while(i < MAX_SPINNER)
