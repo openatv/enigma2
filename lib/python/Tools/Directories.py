@@ -311,9 +311,12 @@ def fileReadXML(filename, default=None, source=DEFAULT_MODULE_NAME, debug=False)
 		print("[%s] Error: Unexpected error opening/parsing file '%s'!  (%s)" % (source, filename, err))
 		print_exc()
 	if dom is None:
-		if default:
+		if default and isinstance(default, str):
 			dom = fromstring(default)
-			msg = "Default"
+			msg = "Default (XML)"
+		elif default and isinstance(default, ElementTree):
+			dom = default
+			msg = "Default (DOM)"
 		else:
 			msg = "Failed to read"
 	if debug or forceDebug:
