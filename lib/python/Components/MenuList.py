@@ -1,18 +1,16 @@
-from __future__ import absolute_import
-from __future__ import print_function
-from Components.GUIComponent import GUIComponent
+from enigma import eListbox, eListboxPythonStringContent
 
-from enigma import eListboxPythonStringContent, eListbox
+from Components.GUIComponent import GUIComponent
 
 
 class MenuList(GUIComponent):
 	def __init__(self, list, enableWrapAround=True, content=eListboxPythonStringContent):
 		GUIComponent.__init__(self)
 		self.list = list
+		self.enableWrapAround = enableWrapAround
 		self.l = content()
 		self.l.setList(self.list)
 		self.onSelectionChanged = []
-		self.enableWrapAround = enableWrapAround
 
 	def getCurrent(self):
 		return self.l.getCurrentSelection()
@@ -30,8 +28,8 @@ class MenuList(GUIComponent):
 		instance.selectionChanged.get().remove(self.selectionChanged)
 
 	def selectionChanged(self):
-		for f in self.onSelectionChanged:
-			f()
+		for module in self.onSelectionChanged:
+			module()
 
 	def getSelectionIndex(self):
 		return self.l.getCurrentSelectionIndex()
@@ -43,28 +41,34 @@ class MenuList(GUIComponent):
 		self.list = list
 		self.l.setList(self.list)
 
-	def moveToIndex(self, idx):
-		if self.instance != None:
-			self.instance.moveSelectionTo(idx)
+	def moveToIndex(self, index):
+		if self.instance is not None:
+			self.instance.moveSelectionTo(index)
+
+	def top(self):
+		if self.instance is not None:
+			self.instance.moveSelection(self.instance.moveTop)
 
 	def pageUp(self):
-		print("menulist pageUp")
-		if self.instance != None:
+		if self.instance is not None:
 			self.instance.moveSelection(self.instance.pageUp)
 
-	def pageDown(self):
-		print("menulist pageDown")
-		if self.instance != None:
-			self.instance.moveSelection(self.instance.pageDown)
-
 	def up(self):
-		if self.instance != None:
+		if self.instance is not None:
 			self.instance.moveSelection(self.instance.moveUp)
 
 	def down(self):
-		if self.instance != None:
+		if self.instance is not None:
 			self.instance.moveSelection(self.instance.moveDown)
 
+	def pageDown(self):
+		if self.instance is not None:
+			self.instance.moveSelection(self.instance.pageDown)
+
+	def bottom(self):
+		if self.instance is not None:
+			self.instance.moveSelection(self.instance.moveEnd)
+
 	def selectionEnabled(self, enabled):
-		if self.instance != None:
+		if self.instance is not None:
 			self.instance.setSelectionEnable(enabled)
