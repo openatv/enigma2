@@ -1,5 +1,6 @@
 from __future__ import division
 from copy import copy, deepcopy
+from six import PY2
 
 from enigma import BT_SCALE, RT_HALIGN_CENTER, RT_HALIGN_LEFT, RT_HALIGN_RIGHT, RT_VALIGN_BOTTOM, RT_VALIGN_CENTER, RT_VALIGN_TOP, eListboxPythonMultiContent, getPrevAsciiCode, gFont
 import six
@@ -18,6 +19,8 @@ from Screens.Screen import Screen
 from Tools.Directories import SCOPE_GUISKIN, resolveFilename
 from Tools.LoadPixmap import LoadPixmap
 from Tools.NumericalTextInput import NumericalTextInput
+
+pyunichr = unichr if PY2 else chr
 
 VKB_DONE_ICON = 0
 VKB_ENTER_ICON = 1
@@ -38,7 +41,7 @@ class VirtualKeyBoardList(MenuList):
 		MenuList.__init__(self, list, enableWrapAround, eListboxPythonMultiContent)
 		font = fonts.get("VirtualKeyBoard", ("Regular", 28, 45))
 		self.l.setFont(0, gFont(font[0], font[1]))
-		self.l.setFont(1, gFont(font[0], font[1] * 5 // 9))  # Smaller font is 56% the height of bigger font
+		self.l.setFont(1, gFont(font[0], int(font[1] * 5 // 9)))  # Smaller font is 56% the height of bigger font
 		self.l.setItemHeight(font[2])
 
 
@@ -227,9 +230,9 @@ class VirtualKeyBoard(Screen, HelpableScreen):
 			u"SAVE": "self.save()",
 			u"SHIFT": "self.shiftSelected()",
 			u"SHIFTICON": "self.shiftSelected()",
-			u"SPACE": "self['text'].char(' '.encode('UTF-8'))",
-			u"SPACEICON": "self['text'].char(' '.encode('UTF-8'))",
-			u"SPACEICONALT": "self['text'].char(' '.encode('UTF-8'))"
+			u"SPACE": "self.space()",
+			u"SPACEICON": "self.space()",
+			u"SPACEICONALT": "self.space()"
 		}
 		self.footer = [u"EXITICON", u"LEFTICON", u"RIGHTICON", SPACE, SPACE, SPACE, SPACE, SPACE, SPACE, SPACE, u"SHIFTICON", u"LOCALEICON", u"CLEARICON", u"DELETEICON"]
 		self.czech = [
@@ -508,7 +511,7 @@ class VirtualKeyBoard(Screen, HelpableScreen):
 			"last": (self.cursorLast, _("Move the text cursor to the last character")),
 			"backspace": (self.backSelected, _("Delete the character to the left of text cursor")),
 			"delete": (self.forwardSelected, _("Delete the character under the text cursor")),
-			"erase": (self.eraseAll, _("Delete the all the text")),
+			"erase": (self.eraseAll, _("Delete all the text")),
 			"toggleOverwrite": (self.keyToggleOW, _("Toggle new text inserts before or overwrites existing text")),
 			"0": (self.keyNumberGlobal, _("Number or SMS style data entry")),
 			"1": (self.keyNumberGlobal, _("Number or SMS style data entry")),
@@ -527,8 +530,8 @@ class VirtualKeyBoard(Screen, HelpableScreen):
 		self["text"] = Input(text=text, maxSize=maxSize, visible_width=visible_width, type=type, currPos=len(six.ensure_text(text, errors='ignore')) if currPos is None else currPos, allMarked=allMarked)
 		self["list"] = VirtualKeyBoardList([])
 		self["mode"] = Label(_("INS"))
-		self["locale"] = Label(_("Locale") + ": " + self.lang)
-		self["language"] = Label(_("Language") + ": " + self.lang)
+		self["locale"] = Label("%s: %s" % (_("Locale"), self.lang))
+		self["language"] = Label("%s: %s" % (_("Language"), self.lang))
 		self["key_info"] = StaticText(_("INFO"))
 		self["key_red"] = StaticText(_("Exit"))
 		self["key_green"] = StaticText(_(greenLabel))
@@ -919,7 +922,7 @@ class VirtualKeyBoard(Screen, HelpableScreen):
 			self.location = _("Various")
 			self.keyList = self.english
 		self.shiftLevel = 0
-		self["locale"].setText(_("Locale") + ": " + self.lang + "  (" + self.language + " - " + self.location + ")")
+		self["locale"].setText("%s: %s  (%s - %s)" % (_("Locale"), self.lang, self.language, self.location))
 
 	def buildVirtualKeyBoard(self):
 		self.shiftLevels = len(self.keyList)  # Check the current shift level is available / valid in this layout.
@@ -928,7 +931,7 @@ class VirtualKeyBoard(Screen, HelpableScreen):
 		self.keyboardWidth = len(self.keyList[self.shiftLevel][0])  # Determine current keymap size.
 		self.keyboardHeight = len(self.keyList[self.shiftLevel])
 		self.maxKey = self.keyboardWidth * (self.keyboardHeight - 1) + len(self.keyList[self.shiftLevel][-1]) - 1
-		# print "[VirtualKeyBoard] DEBUG: Width=%d, Height=%d, Keys=%d, maxKey=%d, shiftLevels=%d" % (self.keyboardWidth, self.keyboardHeight, self.maxKey + 1, self.maxKey, self.shiftLevels)
+		# print("[VirtualKeyBoard] DEBUG: Width=%d, Height=%d, Keys=%d, maxKey=%d, shiftLevels=%d" % (self.keyboardWidth, self.keyboardHeight, self.maxKey + 1, self.maxKey, self.shiftLevels))
 		self.index = 0
 		self.list = []
 		for keys in self.keyList[self.shiftLevel]:  # Process all the buttons in this shift level.
@@ -1014,10 +1017,11 @@ class VirtualKeyBoard(Screen, HelpableScreen):
 					res.append(MultiContentEntryPixmapAlphaTest(pos=(left, top), size=(wImage, hImage), png=image))
 					# print "[VirtualKeyBoard] DEBUG: Left=%d, Top=%d, Width=%d, Height=%d, Image Width=%d, Image Height=%d" % (left, top, w, h, wImage, hImage)
 				else:  # Display the cell text.
+					skey = key.encode("UTF-8", "ignore") if PY2 else key
 					if len(key) > 1:  # NOTE: UTF8 / Unicode glyphs only count as one character here.
-						text.append(MultiContentEntryText(pos=(xData, self.padding[1]), size=(w, h), font=1, flags=alignH | alignV, text=six.ensure_str(key), color=self.shiftColors[self.shiftLevel]))
+						text.append(MultiContentEntryText(pos=(xData, self.padding[1]), size=(w, h), font=1, flags=alignH | alignV, text=skey, color=self.shiftColors[self.shiftLevel]))
 					else:
-						text.append(MultiContentEntryText(pos=(xData, self.padding[1]), size=(w, h), font=0, flags=alignH | alignV, text=six.ensure_str(key), color=self.shiftColors[self.shiftLevel]))
+						text.append(MultiContentEntryText(pos=(xData, self.padding[1]), size=(w, h), font=0, flags=alignH | alignV, text=skey, color=self.shiftColors[self.shiftLevel]))
 			prevKey = key
 			self.index += 1
 		return res + text
@@ -1063,10 +1067,12 @@ class VirtualKeyBoard(Screen, HelpableScreen):
 
 	def processSelect(self):
 		self.smsChar = None
-		text = six.ensure_str(self.keyList[self.shiftLevel][self.selectedKey // self.keyboardWidth][self.selectedKey % self.keyboardWidth])
+		text = self.keyList[self.shiftLevel][self.selectedKey // self.keyboardWidth][self.selectedKey % self.keyboardWidth]
+		if PY2:
+			text = text.encode("UTF-8", "ignore")
 		cmd = self.cmds.get(text.upper(), None)
 		if cmd is None:
-			self['text'].char(six.ensure_str(text))
+			self["text"].char(text.encode("UTF-8", "ignore") if PY2 else text)
 		else:
 			exec(cmd)
 		if text not in (u"SHIFT", u"SHIFTICON") and self.shiftHold != -1:
@@ -1080,8 +1086,8 @@ class VirtualKeyBoard(Screen, HelpableScreen):
 
 	def localeMenu(self):
 		languages = []
-		for locale, data in six.iteritems(self.locales):
-			languages.append((data[0] + "  -  " + data[1] + "  (" + locale + ")", locale))
+		for locale, data in self.locales.items():
+			languages.append(("%s  -  %s  (%s)" % (data[0], data[1], locale), locale))
 		languages = sorted(languages)
 		index = 0
 		default = 0
@@ -1133,8 +1139,8 @@ class VirtualKeyBoard(Screen, HelpableScreen):
 		self["text"].deleteForward()
 
 	def eraseAll(self):
-		self['text'].deleteAllChars()
-		self['text'].update()
+		self["text"].deleteAllChars()
+		self["text"].update()
 
 	def cursorFirst(self):
 		self["text"].home()
@@ -1190,7 +1196,10 @@ class VirtualKeyBoard(Screen, HelpableScreen):
 
 	def keyGotAscii(self):
 		self.smsChar = None
-		if six.ensure_str(self.selectAsciiKey(str(six.unichr(getPrevAsciiCode())))):
+		ch = str(pyunichr(getPrevAsciiCode())
+		if PY2:
+			ch = ch.encode("UTF-8", "ignore")
+		if self.selectAsciiKey(ch):
 			self.processSelect()
 
 	def selectAsciiKey(self, char):
@@ -1209,3 +1218,7 @@ class VirtualKeyBoard(Screen, HelpableScreen):
 						return True
 					selkey += 1
 		return False
+	
+	def space(self):
+		self['text'].char(' '.encode('UTF-8', 'ignore') if PY2 else ' ')
+
