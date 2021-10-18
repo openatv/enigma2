@@ -35,12 +35,7 @@ class Input(VariableText, GUIComponent, NumericalTextInput):
 
 	def setText(self, text):
 		if len(text):
-			if PY2:
-				self.textU = text.decode("UTF-8", "ignore")
-			elif isinstance(text, bytes):
-				self.textU = text.encode("UTF-8", "ignore")
-			else:
-				self.textU = text
+			self.textU = text.decode("UTF-8", "ignore") if isinstance(text, bytes) else text
 		else:
 			self.currPos = 0
 			self.textU = u""
@@ -154,10 +149,8 @@ class Input(VariableText, GUIComponent, NumericalTextInput):
 		self.update()
 
 	def insertChar(self, ch, pos=False, owr=False, ins=False):
-		if PY2:
+		if isinstance(ch, bytes):
 			ch = ch.decode("UTF-8", "ignore")
-		elif isinstance(ch, bytes):
-			ch = ch.encode("UTF-8", "ignore")
 		n = len(ch)
 		if not pos:
 			pos = self.currPos
