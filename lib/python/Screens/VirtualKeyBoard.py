@@ -1196,7 +1196,7 @@ class VirtualKeyBoard(Screen, HelpableScreen):
 
 	def keyGotAscii(self):
 		self.smsChar = None
-		ch = str(pyunichr(getPrevAsciiCode())
+		ch = str(pyunichr(getPrevAsciiCode()))
 		if PY2:
 			ch = ch.encode("UTF-8", "ignore")
 		if self.selectAsciiKey(ch):
