@@ -125,7 +125,7 @@ class TimerEntry(Screen, ConfigListScreen):
 			shutdownString = _("go to deep standby")
 		else:
 			shutdownString = _("shut down")
-		self.timerentry_timertype = ConfigSelection(choices=[("nothing", _("do nothing")), ("wakeup", _("wakeup")), ("wakeuptostandby", _("wakeup to standby")), ("autostandby", _("auto standby")), ("autodeepstandby", _("auto deepstandby")), ("standby", _("go to standby")), ("deepstandby", shutdownString), ("reboot", _("reboot system")), ("restart", _("restart GUI"))], default=timertype)
+		self.timerentry_timertype = ConfigSelection(choices=[("nothing", _("do nothing")), ("wakeup", _("wakeup")), ("wakeuptostandby", _("wakeup to standby")), ("autostandby", _("auto standby")), ("autodeepstandby", _("auto deepstandby")), ("standby", _("go to standby")), ("deepstandby", shutdownString), ("reboot", _("reboot system")), ("restart", _("Restart GUI"))], default=timertype)
 		self.timerentry_afterevent = ConfigSelection(choices=[("nothing", _("do nothing")), ("wakeup", _("wakeup")), ("wakeuptostandby", _("wakeup to standby")), ("standby", _("go to standby")), ("deepstandby", shutdownString)], default=afterevent)
 		self.timerentry_type = ConfigSelection(choices=[("once", _("once")), ("repeated", _("repeated"))], default=type)
 
