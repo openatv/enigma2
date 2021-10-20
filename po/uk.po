@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-08-29 19:28+0000\n"
+"POT-Creation-Date: 2021-10-19 20:04+0000\n"
 "PO-Revision-Date: 2021-09-17 15:45+0000\n"
 "Last-Translator: kvinto <badsystem@ukr.net>\n"
 "Language-Team: Ukrainian <https://hosted.weblate.org/projects/openatv/"
@@ -2221,9 +2221,6 @@ msgstr "AAC+ мікшування"
 
 msgid "AAC transcoding"
 msgstr "AAC транскодування"
-
-msgid "AC3"
-msgstr "AC3"
 
 msgid "AC3 downmix"
 msgstr "AC3 мікшування"
@@ -4926,9 +4923,6 @@ msgstr ""
 "НЕ ВИКЛЮЧАЙТЕ ВАШ ПРИСТРІЙ ПІД ЧАС ОНОВЛЕННЯ!\n"
 "Оновити зараз?"
 
-msgid "DTS"
-msgstr "DTS"
-
 msgid "DTS HD downmix"
 msgstr "DTS HD мікшування"
 
@@ -5312,9 +5306,6 @@ msgstr "Видалити запис з списку відтворення"
 
 msgid "Delete saved playlist"
 msgstr "Видалити збережений список відтворення"
-
-msgid "Delete the all the text"
-msgstr "Видалити весь текст"
 
 msgid "Delete the character to the left of text cursor"
 msgstr "Видалити символ ліворуч від текстового курсору"
@@ -7244,6 +7235,9 @@ msgstr "Габон"
 msgid "Gaelic"
 msgstr "Гальська"
 
+msgid "Galicia (Spain)"
+msgstr ""
+
 msgid "Galician"
 msgstr "Галицька"
 
@@ -8276,9 +8270,6 @@ msgstr "Встановити пікони на"
 
 msgid "Install plugins"
 msgstr "Встановити плагіни"
-
-msgid "Install settings, skins, software..."
-msgstr "Встановити списки каналів, скіни, ПЗ..."
 
 msgid "Installation finished."
 msgstr "Встановлення завершено."
@@ -11060,9 +11051,6 @@ msgstr "Налаштування Зображення в Зображенні"
 msgid "Picture player"
 msgstr "Перегляд зображень"
 
-msgid "PicturePlayer"
-msgstr "Перегляд зображень"
-
 msgid "Pictures"
 msgstr "Кіноматографія"
 
@@ -11167,9 +11155,6 @@ msgstr "Будь ласка, виберіть CCcam-Рідер"
 
 msgid "Please choose an extension..."
 msgstr "Будь ласка, виберіть розширення..."
-
-msgid "Please choose he package..."
-msgstr "Будь ласка, виберіть пакет..."
 
 msgid "Please choose reader"
 msgstr "Будь ласка, виберіть рідер"
@@ -15667,14 +15652,6 @@ msgstr ""
 msgid "The hash of a directory can't be calculated."
 msgstr "Не можна розрахувати хеш каталогу."
 
-#, python-format
-msgid ""
-"The installation of the default settings is finished. You can now continue "
-"configuring your %s %s by pressing the OK button on the remote control."
-msgstr ""
-"Встановлення стандартних налаштувань закінчена. Ви можете продовжити "
-"налаштування Вашого %s %s, натиснувши кнопку ОК на пульті ДУ."
-
 msgid "The loopthrough setting is wrong."
 msgstr "Налаштування петлі неправильне."
 
@@ -18617,6 +18594,9 @@ msgstr "відмінити редагування фаворитів"
 msgid "about to start"
 msgstr "час до запису"
 
+msgid "ac3"
+msgstr ""
+
 msgid "activate network adapter configuration"
 msgstr "активувати налаштування мережевого адаптера"
 
@@ -18988,6 +18968,9 @@ msgstr "драма (загальна)"
 
 msgid "drivers"
 msgstr "драйвера"
+
+msgid "dts"
+msgstr ""
 
 msgid "eMMC"
 msgstr "eMMC"
@@ -19631,6 +19614,9 @@ msgstr "на Двошаровому диску використано."
 
 msgid "of a SINGLE layer medium used."
 msgstr "на Одношаровому диску використано."
+
+msgid "off"
+msgstr "вимкн"
 
 msgid "off or wpa2 on"
 msgstr "викл. чи вкл. wpa2"
@@ -20400,11 +20386,175 @@ msgstr "переключений"
 msgid "zapping"
 msgstr "переключення"
 
-msgid "Small Test"
-msgstr "Малий Тест"
+msgid "Add plugin to Extensions menu*"
+msgstr "Додати Плагін в Розширене меню*"
 
-msgid "instant record"
-msgstr "негайний запис"
+msgid "Add plugin to main menu*"
+msgstr "Додати плагін в Головне меню*"
+
+msgid "CPU priority for script execution"
+msgstr "Пріоритет СПУ для виконання скрипту"
+
+msgid "Change buttons for list navigation"
+msgstr "Зміна кнопок для навігації по списку"
+
+msgid ""
+"Default CPU priority (nice) for executed scripts. This can reduce the load "
+"so that scripts do not interfere with the rest of the system. (higher values "
+"= lower priority)"
+msgstr ""
+"Пріоритет CPU за замовчуванням (точний) для виконаних скриптів. Це може "
+"зменшити навантаження, так що скрипти не заважають решті системи. (більш "
+"високі значення = нижчий пріоритет)"
+
+msgid ""
+"Default I/O priority (ionice) for executed scripts. This can reduce the load "
+"so that scripts do not interfere with the rest of the system. (higher values "
+"= lower priority)"
+msgstr ""
+"Пріоритет I/O за умовчанням для виконаних сценаріїв. Це може зменшити "
+"навантаження, так що скрипти не заважають решті системи. (більш високі "
+"значення = нижчий пріоритет)"
+
+msgid "Default directory sorting"
+msgstr "Стандартне сортування каталогів"
+
+msgid "Default file sorting left"
+msgstr "Стандартне сортування файлів зліва"
+
+msgid "Default file sorting right"
+msgstr "Стандартне сортування файлів справа"
+
+msgid "Default folder"
+msgstr "Папки за замовчуванням"
+
+msgid ""
+"Default folder if the left or right folder isn't saved, and target folder "
+"for button 5."
+msgstr ""
+"Папки за замовчуванням, якщо ліву або праву папку не збережено, і цільову "
+"папку для кнопки 5."
+
+msgid "Default sorting method for directories on both sides."
+msgstr "Метод сортування за замовчуванням для каталогів з обох сторін."
+
+msgid "Default sorting method for files on the left side."
+msgstr "Метод сортування за замовчуванням для файлів з лівого боку."
+
+msgid "Default sorting method for files on the right side."
+msgstr "Метод сортування за замовчуванням для файлів з правого боку."
+
+msgid "Edit position is the line end"
+msgstr "Позиція курсору у кінці рядка"
+
+msgid "File Commander Settings"
+msgstr "File Commander Налаштування"
+
+msgid "File checksums to calculate for button 9"
+msgstr "Обчислення контрольної суми файлу кнопка 9"
+
+msgid "File checksums/hashes"
+msgstr "Контрольні суми файлів/хеші"
+
+msgid ""
+"Filter extension for 'My Extension' setting of 'Filter extension'. Use the "
+"extension name without a '.'."
+msgstr ""
+"Розширення фільтра для налаштування 'Моє розширення' для 'Розширення "
+"фільтра'. Використовуйте ім'я розширення без назви '.'."
+
+msgid "Filter extension, (*) appears in title"
+msgstr "Розширення фільтра, (*) відображається у заголовку"
+
+msgid "Filter visible file classes by extension."
+msgstr "Фільтрувати видимі класи файлів за розширенням."
+
+msgid "I/O priority for script execution"
+msgstr "I/O пріоритет для виконання скриптів"
+
+msgid ""
+"If editing a file, can you set the cursor start position at end or begin of "
+"the line."
+msgstr ""
+"Якщо Ви редагуєте файл, Ви можете встановити початкову позицію курсору в "
+"кінці або на початку рядка."
+
+msgid "Make File Commander accessible from the Extensions menu."
+msgstr "Зробити File Commander доступним у розширеному Меню."
+
+msgid "Make File Commander accessible from the main menu."
+msgstr "Зробити File Commander доступним у Головному меню."
+
+msgid "My extension"
+msgstr "Моє розширення"
+
+msgid "Number of lines in script messages"
+msgstr "Кількість рядків у повідомленнях скрипту"
+
+msgid "Save left folder on exit"
+msgstr "Зберегти ліву папку при виході"
+
+msgid "Save right folder on exit"
+msgstr "Зберегти праву папку при виході"
+
+msgid "Save the left folder list location on exit."
+msgstr "Зберегти розташування списку папок зліва під час виходу."
+
+msgid "Save the right folder list location on exit."
+msgstr "Зберегти розташування списку папок справа під час виходу."
+
+msgid ""
+"Set for 'stout' and 'sterr' the number of lines in script info or script "
+"error messages."
+msgstr ""
+"Встановіть для 'stout' і 'sterr' кількість рядків в інформації про скрипт "
+"або повідомлення про помилки скрипта."
+
+msgid "Show Script completed message"
+msgstr "Показати повідомлення після закінчення роботи скрипта"
+
+msgid "Show Task's completed message"
+msgstr "Показати повідомлення про завершення завдання"
+
+msgid "Show directories first"
+msgstr "Спочатку показати каталоги"
+
+msgid "Show directories on first or last in list.(must restart File Commander)"
+msgstr ""
+"Показати каталоги на першому чи останньому місці в списку.(необхідно "
+"перезапустити File Commander)"
+
+msgid ""
+"Show message if File Commander is not running and all Task's are completed."
+msgstr ""
+"Показати повідомлення, якщо File Commander не запущено, і всі завдання "
+"виконані."
+
+msgid ""
+"Show message if a background script ends successfully. Has 'stout', then "
+"this is displayed as additional info."
+msgstr ""
+"Показати повідомлення, якщо скрипт у фоні завершено успішно. Має 'stout', то "
+"це відображається як додаткова інформація."
+
+msgid "Show unknown extension as text"
+msgstr "Показати невідоме розширення як текст"
+
+msgid "Show unknown file extensions with 'Addon File-Viewer'."
+msgstr "Показувати невідомі розширення файлу за допомогою 'Addon File-Viewer'."
+
+msgid ""
+"Swap buttons right/left with channel plus/minus or the channel button "
+"changed always the side."
+msgstr ""
+"Змінити кнопки праворуч/ліворуч з каналом плюс/мінус, або завжди змінюється "
+"кнопками каналів збоку."
+
+msgid "Time between slides in image viewer slideshow."
+msgstr "Час між слайдами у слайд-шоу програмі."
+
+msgid "Time for Slideshow"
+msgstr "Час для показу слайдів"
 
 msgid "Exit the wizard"
 msgstr "Вийти з помічник"
@@ -20617,175 +20767,206 @@ msgstr ""
 "\n"
 "Будь-ласка виберіть наступну дію."
 
-msgid "Add plugin to Extensions menu*"
-msgstr "Додати Плагін в Розширене меню*"
+msgid "C"
+msgstr "C"
 
-msgid "Add plugin to main menu*"
-msgstr "Додати плагін в Головне меню*"
+msgid "D"
+msgstr "D"
 
-msgid "CPU priority for script execution"
-msgstr "Пріоритет СПУ для виконання скрипту"
+msgid "TUNER:"
+msgstr "ТЮНЕР:"
 
-msgid "Change buttons for list navigation"
-msgstr "Зміна кнопок для навігації по списку"
+msgid " HI "
+msgstr " ПРИВІТ "
 
-msgid ""
-"Default CPU priority (nice) for executed scripts. This can reduce the load "
-"so that scripts do not interfere with the rest of the system. (higher values "
-"= lower priority)"
-msgstr ""
-"Пріоритет CPU за замовчуванням (точний) для виконаних скриптів. Це може "
-"зменшити навантаження, так що скрипти не заважають решті системи. (більш "
-"високі значення = нижчий пріоритет)"
+msgid "REC "
+msgstr "REC "
 
-msgid ""
-"Default I/O priority (ionice) for executed scripts. This can reduce the load "
-"so that scripts do not interfere with the rest of the system. (higher values "
-"= lower priority)"
-msgstr ""
-"Пріоритет I/O за умовчанням для виконаних сценаріїв. Це може зменшити "
-"навантаження, так що скрипти не заважають решті системи. (більш високі "
-"значення = нижчий пріоритет)"
+msgid "0"
+msgstr "0"
 
-msgid "Default directory sorting"
-msgstr "Стандартне сортування каталогів"
+msgid "6"
+msgstr "6"
 
-msgid "Default file sorting left"
-msgstr "Стандартне сортування файлів зліва"
+msgid "7"
+msgstr "7"
 
-msgid "Default file sorting right"
-msgstr "Стандартне сортування файлів справа"
+msgid "8"
+msgstr "8"
 
-msgid "Default folder"
-msgstr "Папки за замовчуванням"
+msgid "9"
+msgstr "9"
 
-msgid ""
-"Default folder if the left or right folder isn't saved, and target folder "
-"for button 5."
-msgstr ""
-"Папки за замовчуванням, якщо ліву або праву папку не збережено, і цільову "
-"папку для кнопки 5."
+msgid "AutoMountManager"
+msgstr "Конфігурація Автомонтування"
 
-msgid "Default sorting method for directories on both sides."
-msgstr "Метод сортування за замовчуванням для каталогів з обох сторін."
+msgid "BER:"
+msgstr "BER:"
 
-msgid "Default sorting method for files on the left side."
-msgstr "Метод сортування за замовчуванням для файлів з лівого боку."
+msgid "Backup Log"
+msgstr "Лог бекапу"
 
-msgid "Default sorting method for files on the right side."
-msgstr "Метод сортування за замовчуванням для файлів з правого боку."
+msgid "Channellist menu"
+msgstr "Меню списку каналів"
 
-msgid "Edit position is the line end"
-msgstr "Позиція курсору у кінці рядка"
+msgid "Command execution..."
+msgstr "Команда виконується..."
 
-msgid "File Commander Settings"
-msgstr "File Commander Налаштування"
+msgid "Continue in background"
+msgstr "Фоновий режим"
 
-msgid "File checksums to calculate for button 9"
-msgstr "Обчислення контрольної суми файлу кнопка 9"
+msgid "DVD file browser"
+msgstr "DVD провідник файлів"
 
-msgid "File checksums/hashes"
-msgstr "Контрольні суми файлів/хеші"
+msgid "Dish"
+msgstr "Антена"
 
-msgid ""
-"Filter extension for 'My Extension' setting of 'Filter extension'. Use the "
-"extension name without a '.'."
-msgstr ""
-"Розширення фільтра для налаштування 'Моє розширення' для 'Розширення "
-"фільтра'. Використовуйте ім'я розширення без назви '.'."
+msgid "Downloadable plugins"
+msgstr "Доступні плагіни"
 
-msgid "Filter extension, (*) appears in title"
-msgstr "Розширення фільтра, (*) відображається у заголовку"
+msgid "EPG selection"
+msgstr "ЕПГ вибір"
 
-msgid "Filter visible file classes by extension."
-msgstr "Фільтрувати видимі класи файлів за розширенням."
+msgid "Event view"
+msgstr "Перегляд передачі"
 
-msgid "I/O priority for script execution"
-msgstr "I/O пріоритет для виконання скриптів"
+msgid "Event view menu"
+msgstr "Меню перегляду передачі"
 
-msgid ""
-"If editing a file, can you set the cursor start position at end or begin of "
-"the line."
-msgstr ""
-"Якщо Ви редагуєте файл, Ви можете встановити початкову позицію курсору в "
-"кінці або на початку рядка."
+msgid "Index"
+msgstr "Індекс"
 
-msgid "Make File Commander accessible from the Extensions menu."
-msgstr "Зробити File Commander доступним у розширеному Меню."
+msgid "Installing software..."
+msgstr "Встановлення пз..."
 
-msgid "Make File Commander accessible from the main menu."
-msgstr "Зробити File Commander доступним у Головному меню."
+msgid "Job overview"
+msgstr "Огляд завдань"
 
-msgid "My extension"
-msgstr "Моє розширення"
+msgid "Lock:"
+msgstr "З’єднання:"
 
-msgid "Number of lines in script messages"
-msgstr "Кількість рядків у повідомленнях скрипту"
+msgid "MORE"
+msgstr "БІЛЬШЕ"
 
-msgid "Save left folder on exit"
-msgstr "Зберегти ліву папку при виході"
+msgid "MediaPlayer"
+msgstr "Медіа Плеєр"
 
-msgid "Save right folder on exit"
-msgstr "Зберегти праву папку при виході"
+msgid "Message..."
+msgstr "Повідомлення..."
 
-msgid "Save the left folder list location on exit."
-msgstr "Зберегти розташування списку папок зліва під час виходу."
+msgid "Mute"
+msgstr "Без звуку"
 
-msgid "Save the right folder list location on exit."
-msgstr "Зберегти розташування списку папок справа під час виходу."
+msgid "NEXT"
+msgstr "НАСТУПНА"
 
-msgid ""
-"Set for 'stout' and 'sterr' the number of lines in script info or script "
-"error messages."
-msgstr ""
-"Встановіть для 'stout' і 'sterr' кількість рядків в інформації про скрипт "
-"або повідомлення про помилки скрипта."
+msgid "NOW"
+msgstr "ЗАРАЗ"
 
-msgid "Show Script completed message"
-msgstr "Показати повідомлення після закінчення роботи скрипта"
+msgid "Nameserver setup"
+msgstr "Налаштування Nameserver"
 
-msgid "Show Task's completed message"
-msgstr "Показати повідомлення про завершення завдання"
+msgid "Network Neighbourhood"
+msgstr "Мережеве оточення"
 
-msgid "Show directories first"
-msgstr "Спочатку показати каталоги"
+msgid "Network configuration..."
+msgstr "Налаштування мережі..."
 
-msgid "Show directories on first or last in list.(must restart File Commander)"
-msgstr ""
-"Показати каталоги на першому чи останньому місці в списку.(необхідно "
-"перезапустити File Commander)"
+msgid "Network test..."
+msgstr "Тест мережевого з'єднання..."
 
-msgid ""
-"Show message if File Commander is not running and all Task's are completed."
-msgstr ""
-"Показати повідомлення, якщо File Commander не запущено, і всі завдання "
-"виконані."
+msgid "PIN code needed"
+msgstr "Необхідний Пін-код"
 
-msgid ""
-"Show message if a background script ends successfully. Has 'stout', then "
-"this is displayed as additional info."
-msgstr ""
-"Показати повідомлення, якщо скрипт у фоні завершено успішно. Має 'stout', то "
-"це відображається як додаткова інформація."
+msgid "Parental control services editor"
+msgstr "Редактор каналів чорного списку"
 
-msgid "Show unknown extension as text"
-msgstr "Показати невідоме розширення як текст"
+msgid "PiP-Zap"
+msgstr "ПіП-Переключення"
 
-msgid "Show unknown file extensions with 'Addon File-Viewer'."
-msgstr "Показувати невідомі розширення файлу за допомогою 'Addon File-Viewer'."
+msgid "PiPSetup"
+msgstr "Налаштування ПІП"
 
-msgid ""
-"Swap buttons right/left with channel plus/minus or the channel button "
-"changed always the side."
-msgstr ""
-"Змінити кнопки праворуч/ліворуч з каналом плюс/мінус, або завжди змінюється "
-"кнопками каналів збоку."
+msgid "PiPZap"
+msgstr "ПіП Переключення"
 
-msgid "Time between slides in image viewer slideshow."
-msgstr "Час між слайдами у слайд-шоу програмі."
+msgid "Plugin browser"
+msgstr "Провідник плагінів"
 
-msgid "Time for Slideshow"
-msgstr "Час для показу слайдів"
+msgid "Reception settings"
+msgstr "Налаштування прийому"
+
+msgid "Release Notes"
+msgstr "Примітки до випуску"
+
+msgid "SNR:"
+msgstr "SNR:"
+
+msgid "Satfinder"
+msgstr "Пошук супутника"
+
+msgid "SecondInfoBar"
+msgstr "Друга ІнфоПанель"
+
+msgid "Select a bouquet"
+msgstr "Вибір фавориут"
+
+msgid "Select a movie"
+msgstr "Вибір фільму"
+
+msgid "Select a network adapter"
+msgstr "Вибір мережевого адаптера"
+
+msgid "Select a tuner"
+msgstr "Вибір тюнера"
+
+msgid "Serviceinfo"
+msgstr "Інформація каналу"
+
+msgid "Softwaremanager..."
+msgstr "Менеджер ПЗ..."
+
+msgid "Starting Softcam"
+msgstr "Запуск Softcam"
+
+msgid "Stopping Softcam"
+msgstr "Зупинка Softcam"
+
+msgid "Subtitle settings"
+msgstr "Налаштування субтитрів"
+
+msgid "Swap File Manager"
+msgstr "Мененджер Файла підкачки"
+
+msgid "Systeminfo"
+msgstr "Системна інформація"
+
+msgid "Timer edit"
+msgstr "Редактувати таймер"
+
+msgid "Timer editor"
+msgstr "Редактор таймеру"
+
+msgid "Translation"
+msgstr "Переклад"
+
+msgid "UnhandledKey"
+msgstr "Неопрацьований Ключ"
+
+msgid "VideoEnhancementPreview"
+msgstr "Попередній перегляд покращення відео"
+
+msgid "Vol"
+msgstr "Звук"
+
+msgid "Volume"
+msgstr "Гучність"
+
+msgid "config menu"
+msgstr "меню конфігурації"
+
+msgid "help..."
+msgstr "допомога..."
 
 msgid "Basic settings"
 msgstr "Основні параметри"
@@ -20892,17 +21073,8 @@ msgstr "Відео"
 msgid "WOL Standby"
 msgstr "WOL Режим очікування"
 
-msgid "MediaPortal"
-msgstr "Медіа-Портал"
-
-msgid ""
-"Please setup your user interface by adjusting the values till the edges of "
-"the red box are touching the edges of your TV.\n"
-"When you are ready press OK to continue."
-msgstr ""
-"Відрегулювати положення користувача інтерфейсу. Краї червоної області "
-"повинні стосуватися країв екрану телевізора.\n"
-"Якщо готові, натисніть ОК для продовження."
+msgid "  REC  "
+msgstr "  ЗАП  "
 
 msgid ""
 "'Buffer in hours' or 'number of last events'. For deleting older timeshift "
@@ -22323,6 +22495,9 @@ msgstr "Початкова швидкість перемотування наз�
 msgid "Initial scroll delay"
 msgstr "Початкова затримка прокрутки"
 
+msgid "Input scroll position"
+msgstr ""
+
 msgid "Instant recording location"
 msgstr "Розташування миттєвих записів"
 
@@ -23268,9 +23443,6 @@ msgstr "Вибір мови субтитрів 4"
 msgid "Subtitle position"
 msgstr "Положення субтитрів"
 
-msgid "Subtitle settings"
-msgstr "Налаштування субтитрів"
-
 msgid "Swap SNR in '%' with SNR in 'db'"
 msgstr "Показати в Інфобарі SNR у '%' замість SNR в 'db'"
 
@@ -23954,6 +24126,11 @@ msgstr ""
 "передачі."
 
 msgid ""
+"When the input cursor reaches this point (percentage of the width, from "
+"either side) scroll the text to the cursor."
+msgstr ""
+
+msgid ""
 "When tuned to a service the system will normally scan the transponder for "
 "any changes and save them. Only set to 'yes' if you're absolutely sure what "
 "you're doing."
@@ -24029,33 +24206,6 @@ msgstr "перемикання режиму відображення з 12 до 
 msgid "userdefined"
 msgstr "на вибір користувача"
 
-msgid "EasyMedia"
-msgstr "Easy Media"
-
-msgid "Ext. NumberZap"
-msgstr "Зовн. Номер Перключення"
-
-msgid "Timer+"
-msgstr "Таймер+"
-
-msgid "Timerlist"
-msgstr "Список таймерів"
-
-msgid "IMDB Search"
-msgstr "IMDB Пошук"
-
-msgid "Quick EPG"
-msgstr "Режим ЕПГ"
-
-msgid "C"
-msgstr "C"
-
-msgid "D"
-msgstr "D"
-
-msgid "TUNER:"
-msgstr "ТЮНЕР:"
-
 msgid "Auto Modes Selected."
 msgstr "Вибрано автоматичні Режими."
 
@@ -24100,207 +24250,6 @@ msgstr ""
 
 msgid "Video mode selection."
 msgstr "Вибір Відео режиму."
-
-msgid "0"
-msgstr "0"
-
-msgid "6"
-msgstr "6"
-
-msgid "7"
-msgstr "7"
-
-msgid "8"
-msgstr "8"
-
-msgid "9"
-msgstr "9"
-
-msgid "AutoMountManager"
-msgstr "Конфігурація Автомонтування"
-
-msgid "BER:"
-msgstr "BER:"
-
-msgid "Backup Log"
-msgstr "Лог бекапу"
-
-msgid "Channellist menu"
-msgstr "Меню списку каналів"
-
-msgid "Command execution..."
-msgstr "Команда виконується..."
-
-msgid "Continue in background"
-msgstr "Фоновий режим"
-
-msgid "DVD file browser"
-msgstr "DVD провідник файлів"
-
-msgid "Dish"
-msgstr "Антена"
-
-msgid "Downloadable plugins"
-msgstr "Доступні плагіни"
-
-msgid "EPG selection"
-msgstr "ЕПГ вибір"
-
-msgid "Event view"
-msgstr "Перегляд передачі"
-
-msgid "Event view menu"
-msgstr "Меню перегляду передачі"
-
-msgid "Index"
-msgstr "Індекс"
-
-msgid "Installing software..."
-msgstr "Встановлення пз..."
-
-msgid "Job overview"
-msgstr "Огляд завдань"
-
-msgid "Lock:"
-msgstr "З’єднання:"
-
-msgid "MORE"
-msgstr "БІЛЬШЕ"
-
-msgid "MediaPlayer"
-msgstr "Медіа Плеєр"
-
-msgid "Message..."
-msgstr "Повідомлення..."
-
-msgid "Mute"
-msgstr "Без звуку"
-
-msgid "NEXT"
-msgstr "НАСТУПНА"
-
-msgid "NOW"
-msgstr "ЗАРАЗ"
-
-msgid "Nameserver setup"
-msgstr "Налаштування Nameserver"
-
-msgid "Network Neighbourhood"
-msgstr "Мережеве оточення"
-
-msgid "Network configuration..."
-msgstr "Налаштування мережі..."
-
-msgid "Network test..."
-msgstr "Тест мережевого з'єднання..."
-
-msgid "PIN code needed"
-msgstr "Необхідний Пін-код"
-
-msgid "Parental control services editor"
-msgstr "Редактор каналів чорного списку"
-
-msgid "PiP-Zap"
-msgstr "ПіП-Переключення"
-
-msgid "PiPSetup"
-msgstr "Налаштування ПІП"
-
-msgid "PiPZap"
-msgstr "ПіП Переключення"
-
-msgid "Plugin browser"
-msgstr "Провідник плагінів"
-
-msgid "Reception settings"
-msgstr "Налаштування прийому"
-
-msgid "Release Notes"
-msgstr "Примітки до випуску"
-
-msgid "SNR:"
-msgstr "SNR:"
-
-msgid "Satfinder"
-msgstr "Пошук супутника"
-
-msgid "SecondInfoBar"
-msgstr "Друга ІнфоПанель"
-
-msgid "Select a bouquet"
-msgstr "Вибір фавориут"
-
-msgid "Select a movie"
-msgstr "Вибір фільму"
-
-msgid "Select a network adapter"
-msgstr "Вибір мережевого адаптера"
-
-msgid "Select a tuner"
-msgstr "Вибір тюнера"
-
-msgid "Serviceinfo"
-msgstr "Інформація каналу"
-
-msgid "Softwaremanager..."
-msgstr "Менеджер ПЗ..."
-
-msgid "Starting Softcam"
-msgstr "Запуск Softcam"
-
-msgid "Stopping Softcam"
-msgstr "Зупинка Softcam"
-
-msgid "Swap File Manager"
-msgstr "Мененджер Файла підкачки"
-
-msgid "Systeminfo"
-msgstr "Системна інформація"
-
-msgid "Timer edit"
-msgstr "Редактувати таймер"
-
-msgid "Timer editor"
-msgstr "Редактор таймеру"
-
-msgid "Translation"
-msgstr "Переклад"
-
-msgid "UnhandledKey"
-msgstr "Неопрацьований Ключ"
-
-msgid "VideoEnhancementPreview"
-msgstr "Попередній перегляд покращення відео"
-
-msgid "Vol"
-msgstr "Звук"
-
-msgid "Volume"
-msgstr "Гучність"
-
-msgid "config menu"
-msgstr "меню конфігурації"
-
-msgid "help..."
-msgstr "допомога..."
-
-msgid "  REC  "
-msgstr "  ЗАП  "
-
-msgid "VMC"
-msgstr "VMC"
-
-msgid "by hmmmdada"
-msgstr "автор hmmmdada"
-
-msgid "Enigmalight"
-msgstr "Енігма-light"
-
-msgid "EtPortal"
-msgstr "EtPortal"
-
-msgid "®"
-msgstr "®"
 
 msgid "Check the internet connection"
 msgstr "Перевірка інтернет-з'єднання"
@@ -24487,15 +24436,6 @@ msgstr "У Вашому %s %s немає працюючого інтернет-�
 msgid "Your %s %s is not connected to the internet"
 msgstr "Ваш %s %s не підключений до Інтернету"
 
-msgid "-"
-msgstr "-"
-
-msgid " HI "
-msgstr " ПРИВІТ "
-
-msgid "REC "
-msgstr "REC "
-
 msgid "E "
 msgstr "E "
 
@@ -24513,6 +24453,87 @@ msgstr "I"
 
 msgid "J"
 msgstr "J"
+
+msgid "EasyMedia"
+msgstr "Easy Media"
+
+msgid "Ext. NumberZap"
+msgstr "Зовн. Номер Перключення"
+
+msgid "Timer+"
+msgstr "Таймер+"
+
+msgid "Timerlist"
+msgstr "Список таймерів"
+
+msgid "MediaPortal"
+msgstr "Медіа-Портал"
+
+msgid "IMDB Search"
+msgstr "IMDB Пошук"
+
+msgid "Quick EPG"
+msgstr "Режим ЕПГ"
+
+msgid "EtPortal"
+msgstr "EtPortal"
+
+msgid "®"
+msgstr "®"
+
+msgid "Enigmalight"
+msgstr "Енігма-light"
+
+msgid "VMC"
+msgstr "VMC"
+
+msgid "by hmmmdada"
+msgstr "автор hmmmdada"
+
+msgid ""
+"Please setup your user interface by adjusting the values till the edges of "
+"the red box are touching the edges of your TV.\n"
+"When you are ready press OK to continue."
+msgstr ""
+"Відрегулювати положення користувача інтерфейсу. Краї червоної області "
+"повинні стосуватися країв екрану телевізора.\n"
+"Якщо готові, натисніть ОК для продовження."
+
+msgid "-"
+msgstr "-"
+
+msgid "Small Test"
+msgstr "Малий Тест"
+
+msgid "instant record"
+msgstr "негайний запис"
+
+#~ msgid "AC3"
+#~ msgstr "AC3"
+
+#~ msgid "DTS"
+#~ msgstr "DTS"
+
+#~ msgid "Delete the all the text"
+#~ msgstr "Видалити весь текст"
+
+#~ msgid "Install settings, skins, software..."
+#~ msgstr "Встановити списки каналів, скіни, ПЗ..."
+
+#~ msgid "PicturePlayer"
+#~ msgstr "Перегляд зображень"
+
+#~ msgid "Please choose he package..."
+#~ msgstr "Будь ласка, виберіть пакет..."
+
+#, python-format
+#~ msgid ""
+#~ "The installation of the default settings is finished. You can now "
+#~ "continue configuring your %s %s by pressing the OK button on the remote "
+#~ "control."
+#~ msgstr ""
+#~ "Встановлення стандартних налаштувань закінчена. Ви можете продовжити "
+#~ "налаштування Вашого %s %s, натиснувши кнопку ОК на пульті ДУ."
 
 #~ msgid "Add / Delete the currently highlighted locale / language"
 #~ msgstr "Додати/Видалити поточну виділену локаль/мову"
@@ -24614,9 +24635,6 @@ msgstr "J"
 
 #~ msgid "false"
 #~ msgstr "помилковий"
-
-#~ msgid "off"
-#~ msgstr "вимкн"
 
 #~ msgid "on"
 #~ msgstr "включено"

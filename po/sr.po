@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-08-29 19:28+0000\n"
+"POT-Creation-Date: 2021-10-19 20:04+0000\n"
 "PO-Revision-Date: 2021-08-19 12:59+0000\n"
 "Last-Translator: openATV <openatv@gmail.com>\n"
 "Language-Team: Serbian <https://hosted.weblate.org/projects/openatv/"
@@ -2387,9 +2387,6 @@ msgid "AAC plus downmix"
 msgstr ""
 
 msgid "AAC transcoding"
-msgstr ""
-
-msgid "AC3"
 msgstr ""
 
 msgid "AC3 downmix"
@@ -5356,9 +5353,6 @@ msgid ""
 "Update now?"
 msgstr ""
 
-msgid "DTS"
-msgstr ""
-
 msgid "DTS HD downmix"
 msgstr ""
 
@@ -5793,11 +5787,6 @@ msgstr "obriši unos plejliste"
 #, fuzzy
 msgid "Delete saved playlist"
 msgstr "obriši sačuvanu plejlistu"
-
-#
-#, fuzzy
-msgid "Delete the all the text"
-msgstr "Obriši unos"
 
 msgid "Delete the character to the left of text cursor"
 msgstr ""
@@ -7902,6 +7891,9 @@ msgstr ""
 msgid "Gaelic"
 msgstr ""
 
+msgid "Galicia (Spain)"
+msgstr ""
+
 msgid "Galician"
 msgstr ""
 
@@ -8995,9 +8987,6 @@ msgid "Install picons on"
 msgstr ""
 
 msgid "Install plugins"
-msgstr ""
-
-msgid "Install settings, skins, software..."
 msgstr ""
 
 #
@@ -12215,9 +12204,6 @@ msgstr ""
 msgid "Picture player"
 msgstr "Pregledač slika"
 
-msgid "PicturePlayer"
-msgstr ""
-
 #
 #, fuzzy
 msgid "Pictures"
@@ -12350,9 +12336,6 @@ msgstr ""
 #
 msgid "Please choose an extension..."
 msgstr "Molim odaberite proširenje..."
-
-msgid "Please choose he package..."
-msgstr ""
 
 msgid "Please choose reader"
 msgstr ""
@@ -17309,12 +17292,6 @@ msgstr ""
 msgid "The hash of a directory can't be calculated."
 msgstr ""
 
-#, python-format
-msgid ""
-"The installation of the default settings is finished. You can now continue "
-"configuring your %s %s by pressing the OK button on the remote control."
-msgstr ""
-
 msgid "The loopthrough setting is wrong."
 msgstr ""
 
@@ -20350,6 +20327,9 @@ msgstr "odustani od uređivanja favorita"
 msgid "about to start"
 msgstr "spremni za početak"
 
+msgid "ac3"
+msgstr ""
+
 #
 msgid "activate network adapter configuration"
 msgstr "Aktivirajte konfiguraciju mrežnog adaptera"
@@ -20762,6 +20742,9 @@ msgid "drama (general)"
 msgstr ""
 
 msgid "drivers"
+msgstr ""
+
+msgid "dts"
 msgstr ""
 
 msgid "eMMC"
@@ -21496,6 +21479,10 @@ msgstr "Dvoslojni medij se koristi"
 #
 msgid "of a SINGLE layer medium used."
 msgstr "Jednoslojni medij se koristi"
+
+#
+msgid "off"
+msgstr "isključi"
 
 msgid "off or wpa2 on"
 msgstr ""
@@ -22353,15 +22340,172 @@ msgstr "prebačen"
 msgid "zapping"
 msgstr "prebačen"
 
-#
-#, fuzzy
-msgid "Small Test"
-msgstr "U toku"
+msgid "Add plugin to Extensions menu*"
+msgstr ""
+
+msgid "Add plugin to main menu*"
+msgstr ""
+
+msgid "CPU priority for script execution"
+msgstr ""
+
+msgid "Change buttons for list navigation"
+msgstr ""
+
+msgid ""
+"Default CPU priority (nice) for executed scripts. This can reduce the load "
+"so that scripts do not interfere with the rest of the system. (higher values "
+"= lower priority)"
+msgstr ""
+
+msgid ""
+"Default I/O priority (ionice) for executed scripts. This can reduce the load "
+"so that scripts do not interfere with the rest of the system. (higher values "
+"= lower priority)"
+msgstr ""
 
 #
 #, fuzzy
-msgid "instant record"
-msgstr "Trenutno snimanje..."
+msgid "Default directory sorting"
+msgstr "Standardne postavke"
+
+#
+#, fuzzy
+msgid "Default file sorting left"
+msgstr "ovo snimanje"
+
+#
+#, fuzzy
+msgid "Default file sorting right"
+msgstr "ovo snimanje"
+
+#, fuzzy
+msgid "Default folder"
+msgstr "Standardno"
+
+msgid ""
+"Default folder if the left or right folder isn't saved, and target folder "
+"for button 5."
+msgstr ""
+
+msgid "Default sorting method for directories on both sides."
+msgstr ""
+
+msgid "Default sorting method for files on the left side."
+msgstr ""
+
+msgid "Default sorting method for files on the right side."
+msgstr ""
+
+#
+#, fuzzy
+msgid "Edit position is the line end"
+msgstr "Idi na poziciju"
+
+msgid "File Commander Settings"
+msgstr ""
+
+msgid "File checksums to calculate for button 9"
+msgstr ""
+
+msgid "File checksums/hashes"
+msgstr ""
+
+msgid ""
+"Filter extension for 'My Extension' setting of 'Filter extension'. Use the "
+"extension name without a '.'."
+msgstr ""
+
+msgid "Filter extension, (*) appears in title"
+msgstr ""
+
+msgid "Filter visible file classes by extension."
+msgstr ""
+
+msgid "I/O priority for script execution"
+msgstr ""
+
+msgid ""
+"If editing a file, can you set the cursor start position at end or begin of "
+"the line."
+msgstr ""
+
+msgid "Make File Commander accessible from the Extensions menu."
+msgstr ""
+
+msgid "Make File Commander accessible from the main menu."
+msgstr ""
+
+#
+#, fuzzy
+msgid "My extension"
+msgstr "Samo proširenja:"
+
+msgid "Number of lines in script messages"
+msgstr ""
+
+#
+#, fuzzy
+msgid "Save left folder on exit"
+msgstr "Sačuvajte poslednji direktorijum kod izlaska"
+
+#
+#, fuzzy
+msgid "Save right folder on exit"
+msgstr "Sačuvajte poslednji direktorijum kod izlaska"
+
+msgid "Save the left folder list location on exit."
+msgstr ""
+
+msgid "Save the right folder list location on exit."
+msgstr ""
+
+msgid ""
+"Set for 'stout' and 'sterr' the number of lines in script info or script "
+"error messages."
+msgstr ""
+
+msgid "Show Script completed message"
+msgstr ""
+
+msgid "Show Task's completed message"
+msgstr ""
+
+msgid "Show directories first"
+msgstr ""
+
+msgid "Show directories on first or last in list.(must restart File Commander)"
+msgstr ""
+
+msgid ""
+"Show message if File Commander is not running and all Task's are completed."
+msgstr ""
+
+msgid ""
+"Show message if a background script ends successfully. Has 'stout', then "
+"this is displayed as additional info."
+msgstr ""
+
+#
+#, fuzzy
+msgid "Show unknown extension as text"
+msgstr "gledaj ekstenzije..."
+
+msgid "Show unknown file extensions with 'Addon File-Viewer'."
+msgstr ""
+
+msgid ""
+"Swap buttons right/left with channel plus/minus or the channel button "
+"changed always the side."
+msgstr ""
+
+msgid "Time between slides in image viewer slideshow."
+msgstr ""
+
+#
+#, fuzzy
+msgid "Time for Slideshow"
+msgstr "Unos Tajmera"
 
 #
 msgid "Exit the wizard"
@@ -22602,172 +22746,209 @@ msgstr ""
 "\n"
 "Molim izaberite šta želite sledeće da učinite."
 
-msgid "Add plugin to Extensions menu*"
+msgid "C"
+msgstr "C"
+
+msgid "D"
+msgstr "D"
+
+msgid "TUNER:"
 msgstr ""
 
-msgid "Add plugin to main menu*"
+msgid " HI "
 msgstr ""
 
-msgid "CPU priority for script execution"
+msgid "REC "
 msgstr ""
 
-msgid "Change buttons for list navigation"
+msgid "0"
+msgstr "0"
+
+msgid "6"
+msgstr "6"
+
+msgid "7"
+msgstr "7"
+
+msgid "8"
+msgstr "8"
+
+msgid "9"
+msgstr "9"
+
+msgid "AutoMountManager"
 msgstr ""
 
-msgid ""
-"Default CPU priority (nice) for executed scripts. This can reduce the load "
-"so that scripts do not interfere with the rest of the system. (higher values "
-"= lower priority)"
+msgid "BER:"
+msgstr "BER:"
+
+msgid "Backup Log"
 msgstr ""
 
-msgid ""
-"Default I/O priority (ionice) for executed scripts. This can reduce the load "
-"so that scripts do not interfere with the rest of the system. (higher values "
-"= lower priority)"
-msgstr ""
+msgid "Channellist menu"
+msgstr "Meni liste kanala"
 
-#
-#, fuzzy
-msgid "Default directory sorting"
-msgstr "Standardne postavke"
+msgid "Command execution..."
+msgstr "Izvršenje komandi"
 
-#
-#, fuzzy
-msgid "Default file sorting left"
-msgstr "ovo snimanje"
-
-#
-#, fuzzy
-msgid "Default file sorting right"
-msgstr "ovo snimanje"
-
-#, fuzzy
-msgid "Default folder"
-msgstr "Standardno"
-
-msgid ""
-"Default folder if the left or right folder isn't saved, and target folder "
-"for button 5."
-msgstr ""
-
-msgid "Default sorting method for directories on both sides."
-msgstr ""
-
-msgid "Default sorting method for files on the left side."
-msgstr ""
-
-msgid "Default sorting method for files on the right side."
+msgid "Continue in background"
 msgstr ""
 
 #
 #, fuzzy
-msgid "Edit position is the line end"
-msgstr "Idi na poziciju"
+msgid "DVD file browser"
+msgstr "DVD pretraživač datoteka"
 
-msgid "File Commander Settings"
+msgid "Dish"
 msgstr ""
 
-msgid "File checksums to calculate for button 9"
+msgid "Downloadable plugins"
+msgstr "Dodaci koji se mogu skidati"
+
+msgid "EPG selection"
 msgstr ""
 
-msgid "File checksums/hashes"
+msgid "Event view"
 msgstr ""
 
-msgid ""
-"Filter extension for 'My Extension' setting of 'Filter extension'. Use the "
-"extension name without a '.'."
+msgid "Event view menu"
 msgstr ""
 
-msgid "Filter extension, (*) appears in title"
+msgid "Index"
+msgstr "Indeks"
+
+msgid "Installing software..."
 msgstr ""
 
-msgid "Filter visible file classes by extension."
+msgid "Job overview"
 msgstr ""
 
-msgid "I/O priority for script execution"
+msgid "Lock:"
+msgstr "Zaključaj:"
+
+msgid "MORE"
+msgstr "VIŠE"
+
+msgid "MediaPlayer"
 msgstr ""
 
-msgid ""
-"If editing a file, can you set the cursor start position at end or begin of "
-"the line."
+msgid "Message..."
+msgstr "Poruka..."
+
+msgid "Mute"
+msgstr "Isključi zvuk"
+
+msgid "NEXT"
+msgstr "SLEDEĆE"
+
+msgid "NOW"
+msgstr "SADA"
+
+msgid "Nameserver setup"
 msgstr ""
 
-msgid "Make File Commander accessible from the Extensions menu."
+msgid "Network Neighbourhood"
 msgstr ""
 
-msgid "Make File Commander accessible from the main menu."
+msgid "Network configuration..."
 msgstr ""
+
+msgid "Network test..."
+msgstr "Test mreže..."
+
+msgid "PIN code needed"
+msgstr ""
+
+msgid "Parental control services editor"
+msgstr ""
+
+msgid "PiP-Zap"
+msgstr ""
+
+msgid "PiPSetup"
+msgstr ""
+
+msgid "PiPZap"
+msgstr ""
+
+msgid "Plugin browser"
+msgstr "Pretraživač dodataka"
+
+msgid "Reception settings"
+msgstr ""
+
+msgid "Release Notes"
+msgstr ""
+
+msgid "SNR:"
+msgstr "SNR:"
 
 #
-#, fuzzy
-msgid "My extension"
-msgstr "Samo proširenja:"
+msgid "Satfinder"
+msgstr "Sat tražitelj"
 
-msgid "Number of lines in script messages"
+msgid "SecondInfoBar"
 msgstr ""
 
-#
-#, fuzzy
-msgid "Save left folder on exit"
-msgstr "Sačuvajte poslednji direktorijum kod izlaska"
-
-#
-#, fuzzy
-msgid "Save right folder on exit"
-msgstr "Sačuvajte poslednji direktorijum kod izlaska"
-
-msgid "Save the left folder list location on exit."
+msgid "Select a bouquet"
 msgstr ""
 
-msgid "Save the right folder list location on exit."
+msgid "Select a movie"
+msgstr "Odaberi film"
+
+msgid "Select a network adapter"
 msgstr ""
 
-msgid ""
-"Set for 'stout' and 'sterr' the number of lines in script info or script "
-"error messages."
+msgid "Select a tuner"
 msgstr ""
 
-msgid "Show Script completed message"
+msgid "Serviceinfo"
 msgstr ""
 
-msgid "Show Task's completed message"
+msgid "Softwaremanager..."
 msgstr ""
 
-msgid "Show directories first"
+msgid "Starting Softcam"
 msgstr ""
 
-msgid "Show directories on first or last in list.(must restart File Commander)"
+msgid "Stopping Softcam"
 msgstr ""
 
-msgid ""
-"Show message if File Commander is not running and all Task's are completed."
+msgid "Subtitle settings"
 msgstr ""
 
-msgid ""
-"Show message if a background script ends successfully. Has 'stout', then "
-"this is displayed as additional info."
+msgid "Swap File Manager"
 msgstr ""
 
-#
-#, fuzzy
-msgid "Show unknown extension as text"
-msgstr "gledaj ekstenzije..."
-
-msgid "Show unknown file extensions with 'Addon File-Viewer'."
+msgid "Systeminfo"
 msgstr ""
 
-msgid ""
-"Swap buttons right/left with channel plus/minus or the channel button "
-"changed always the side."
+msgid "Timer edit"
 msgstr ""
 
-msgid "Time between slides in image viewer slideshow."
+msgid "Timer editor"
 msgstr ""
 
-#
-#, fuzzy
-msgid "Time for Slideshow"
-msgstr "Unos Tajmera"
+msgid "Translation"
+msgstr "Prevod"
+
+msgid "UnhandledKey"
+msgstr "Neupravljan ključ"
+
+msgid "VideoEnhancementPreview"
+msgstr ""
+
+msgid "Vol"
+msgstr ""
+
+msgid "Volume"
+msgstr "Volumen"
+
+msgid "config menu"
+msgstr "konfig  meni"
+
+msgid "help..."
+msgstr "pomoć..."
 
 msgid "Basic settings"
 msgstr ""
@@ -22888,15 +23069,7 @@ msgstr ""
 msgid "WOL Standby"
 msgstr ""
 
-#
-#, fuzzy
-msgid "MediaPortal"
-msgstr "Vertikalno"
-
-msgid ""
-"Please setup your user interface by adjusting the values till the edges of "
-"the red box are touching the edges of your TV.\n"
-"When you are ready press OK to continue."
+msgid "  REC  "
 msgstr ""
 
 msgid ""
@@ -24202,6 +24375,9 @@ msgstr ""
 msgid "Initial scroll delay"
 msgstr ""
 
+msgid "Input scroll position"
+msgstr ""
+
 #
 #, fuzzy
 msgid "Instant recording location"
@@ -25165,9 +25341,6 @@ msgstr ""
 msgid "Subtitle position"
 msgstr ""
 
-msgid "Subtitle settings"
-msgstr ""
-
 msgid "Swap SNR in '%' with SNR in 'db'"
 msgstr ""
 
@@ -25756,6 +25929,11 @@ msgid ""
 msgstr ""
 
 msgid ""
+"When the input cursor reaches this point (percentage of the width, from "
+"either side) scroll the text to the cursor."
+msgstr ""
+
+msgid ""
 "When tuned to a service the system will normally scan the transponder for "
 "any changes and save them. Only set to 'yes' if you're absolutely sure what "
 "you're doing."
@@ -25827,42 +26005,6 @@ msgstr "korisnički definisano"
 
 #
 #, fuzzy
-msgid "EasyMedia"
-msgstr "Vertikalno"
-
-msgid "Ext. NumberZap"
-msgstr ""
-
-#
-#, fuzzy
-msgid "Timer+"
-msgstr "Vreme"
-
-#
-#, fuzzy
-msgid "Timerlist"
-msgstr "Uređivanje tajmera"
-
-#, fuzzy
-msgid "IMDB Search"
-msgstr "Rangiranje info"
-
-#
-#, fuzzy
-msgid "Quick EPG"
-msgstr "Brzo"
-
-msgid "C"
-msgstr "C"
-
-msgid "D"
-msgstr "D"
-
-msgid "TUNER:"
-msgstr ""
-
-#
-#, fuzzy
 msgid "Auto Modes Selected."
 msgstr "CAId nije izabran"
 
@@ -25905,212 +26047,6 @@ msgstr ""
 #
 msgid "Video mode selection."
 msgstr "Izbor video načina"
-
-msgid "0"
-msgstr "0"
-
-msgid "6"
-msgstr "6"
-
-msgid "7"
-msgstr "7"
-
-msgid "8"
-msgstr "8"
-
-msgid "9"
-msgstr "9"
-
-msgid "AutoMountManager"
-msgstr ""
-
-msgid "BER:"
-msgstr "BER:"
-
-msgid "Backup Log"
-msgstr ""
-
-msgid "Channellist menu"
-msgstr "Meni liste kanala"
-
-msgid "Command execution..."
-msgstr "Izvršenje komandi"
-
-msgid "Continue in background"
-msgstr ""
-
-#
-#, fuzzy
-msgid "DVD file browser"
-msgstr "DVD pretraživač datoteka"
-
-msgid "Dish"
-msgstr ""
-
-msgid "Downloadable plugins"
-msgstr "Dodaci koji se mogu skidati"
-
-msgid "EPG selection"
-msgstr ""
-
-msgid "Event view"
-msgstr ""
-
-msgid "Event view menu"
-msgstr ""
-
-msgid "Index"
-msgstr "Indeks"
-
-msgid "Installing software..."
-msgstr ""
-
-msgid "Job overview"
-msgstr ""
-
-msgid "Lock:"
-msgstr "Zaključaj:"
-
-msgid "MORE"
-msgstr "VIŠE"
-
-msgid "MediaPlayer"
-msgstr ""
-
-msgid "Message..."
-msgstr "Poruka..."
-
-msgid "Mute"
-msgstr "Isključi zvuk"
-
-msgid "NEXT"
-msgstr "SLEDEĆE"
-
-msgid "NOW"
-msgstr "SADA"
-
-msgid "Nameserver setup"
-msgstr ""
-
-msgid "Network Neighbourhood"
-msgstr ""
-
-msgid "Network configuration..."
-msgstr ""
-
-msgid "Network test..."
-msgstr "Test mreže..."
-
-msgid "PIN code needed"
-msgstr ""
-
-msgid "Parental control services editor"
-msgstr ""
-
-msgid "PiP-Zap"
-msgstr ""
-
-msgid "PiPSetup"
-msgstr ""
-
-msgid "PiPZap"
-msgstr ""
-
-msgid "Plugin browser"
-msgstr "Pretraživač dodataka"
-
-msgid "Reception settings"
-msgstr ""
-
-msgid "Release Notes"
-msgstr ""
-
-msgid "SNR:"
-msgstr "SNR:"
-
-#
-msgid "Satfinder"
-msgstr "Sat tražitelj"
-
-msgid "SecondInfoBar"
-msgstr ""
-
-msgid "Select a bouquet"
-msgstr ""
-
-msgid "Select a movie"
-msgstr "Odaberi film"
-
-msgid "Select a network adapter"
-msgstr ""
-
-msgid "Select a tuner"
-msgstr ""
-
-msgid "Serviceinfo"
-msgstr ""
-
-msgid "Softwaremanager..."
-msgstr ""
-
-msgid "Starting Softcam"
-msgstr ""
-
-msgid "Stopping Softcam"
-msgstr ""
-
-msgid "Swap File Manager"
-msgstr ""
-
-msgid "Systeminfo"
-msgstr ""
-
-msgid "Timer edit"
-msgstr ""
-
-msgid "Timer editor"
-msgstr ""
-
-msgid "Translation"
-msgstr "Prevod"
-
-msgid "UnhandledKey"
-msgstr "Neupravljan ključ"
-
-msgid "VideoEnhancementPreview"
-msgstr ""
-
-msgid "Vol"
-msgstr ""
-
-msgid "Volume"
-msgstr "Volumen"
-
-msgid "config menu"
-msgstr "konfig  meni"
-
-msgid "help..."
-msgstr "pomoć..."
-
-msgid "  REC  "
-msgstr ""
-
-msgid "VMC"
-msgstr ""
-
-msgid "by hmmmdada"
-msgstr ""
-
-msgid "Enigmalight"
-msgstr ""
-
-#
-#, fuzzy
-msgid "EtPortal"
-msgstr "Portugalski"
-
-msgid "®"
-msgstr ""
 
 msgid "Check the internet connection"
 msgstr ""
@@ -26282,15 +26218,6 @@ msgstr ""
 msgid "Your %s %s is not connected to the internet"
 msgstr ""
 
-msgid "-"
-msgstr ""
-
-msgid " HI "
-msgstr ""
-
-msgid "REC "
-msgstr ""
-
 #
 #, fuzzy
 msgid "E "
@@ -26310,6 +26237,79 @@ msgstr ""
 
 msgid "J"
 msgstr ""
+
+#
+#, fuzzy
+msgid "EasyMedia"
+msgstr "Vertikalno"
+
+msgid "Ext. NumberZap"
+msgstr ""
+
+#
+#, fuzzy
+msgid "Timer+"
+msgstr "Vreme"
+
+#
+#, fuzzy
+msgid "Timerlist"
+msgstr "Uređivanje tajmera"
+
+#
+#, fuzzy
+msgid "MediaPortal"
+msgstr "Vertikalno"
+
+#, fuzzy
+msgid "IMDB Search"
+msgstr "Rangiranje info"
+
+#
+#, fuzzy
+msgid "Quick EPG"
+msgstr "Brzo"
+
+#
+#, fuzzy
+msgid "EtPortal"
+msgstr "Portugalski"
+
+msgid "®"
+msgstr ""
+
+msgid "Enigmalight"
+msgstr ""
+
+msgid "VMC"
+msgstr ""
+
+msgid "by hmmmdada"
+msgstr ""
+
+msgid ""
+"Please setup your user interface by adjusting the values till the edges of "
+"the red box are touching the edges of your TV.\n"
+"When you are ready press OK to continue."
+msgstr ""
+
+msgid "-"
+msgstr ""
+
+#
+#, fuzzy
+msgid "Small Test"
+msgstr "U toku"
+
+#
+#, fuzzy
+msgid "instant record"
+msgstr "Trenutno snimanje..."
+
+#
+#, fuzzy
+#~ msgid "Delete the all the text"
+#~ msgstr "Obriši unos"
 
 #
 #~ msgid "Instant record location"
@@ -26378,10 +26378,6 @@ msgstr ""
 #
 #~ msgid "enable"
 #~ msgstr "omogući"
-
-#
-#~ msgid "off"
-#~ msgstr "isključi"
 
 #
 #~ msgid "on"

@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Apachi70 (OpenATV)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-08-29 19:28+0000\n"
+"POT-Creation-Date: 2021-10-19 20:04+0000\n"
 "PO-Revision-Date: 2021-08-20 04:04+0000\n"
 "Last-Translator: openATV <openatv@gmail.com>\n"
 "Language-Team: Turkish <https://hosted.weblate.org/projects/openatv/"
@@ -2334,9 +2334,6 @@ msgstr "AAC plus downmix"
 
 msgid "AAC transcoding"
 msgstr "AAC kodlama"
-
-msgid "AC3"
-msgstr "AC3"
 
 msgid "AC3 downmix"
 msgstr "AC3 downmix"
@@ -5260,9 +5257,6 @@ msgstr ""
 "GÜNCELLEME CİHAZINIZDA CİHAZI KAPATMAYIN!\n"
 "Şimdi güncelle?"
 
-msgid "DTS"
-msgstr "DTS"
-
 msgid "DTS HD downmix"
 msgstr "DTS HD downmix"
 
@@ -5682,11 +5676,6 @@ msgstr "Çalma listesi girişini sil"
 #
 msgid "Delete saved playlist"
 msgstr "Kayıtlı oynatma listesini sil"
-
-#
-#, fuzzy
-msgid "Delete the all the text"
-msgstr "1 öğe sil"
 
 #, fuzzy
 msgid "Delete the character to the left of text cursor"
@@ -7808,6 +7797,9 @@ msgstr "Gabon"
 msgid "Gaelic"
 msgstr ""
 
+msgid "Galicia (Spain)"
+msgstr ""
+
 msgid "Galician"
 msgstr ""
 
@@ -8910,9 +8902,6 @@ msgstr "Pikonları yükle"
 
 msgid "Install plugins"
 msgstr "Eklentileri yükle"
-
-msgid "Install settings, skins, software..."
-msgstr "Ayarları, skin, yazılım yükleyin ..."
 
 #
 msgid "Installation finished."
@@ -12022,9 +12011,6 @@ msgstr "Resim Ayarında Resim"
 msgid "Picture player"
 msgstr "Resim Oynatıcı"
 
-msgid "PicturePlayer"
-msgstr "PicturePlayer"
-
 msgid "Pictures"
 msgstr "Resimler"
 
@@ -12147,9 +12133,6 @@ msgstr "Lütfen CCcam-Okuyucu seçin"
 #
 msgid "Please choose an extension..."
 msgstr "Lütfen bir genişletme seçin..."
-
-msgid "Please choose he package..."
-msgstr "Lütfen o paketi seç ..."
 
 msgid "Please choose reader"
 msgstr "Lütfen okuyucu seçin"
@@ -17079,14 +17062,6 @@ msgstr ""
 msgid "The hash of a directory can't be calculated."
 msgstr "Bir dizinin karma değeri hesaplanamaz."
 
-#, python-format
-msgid ""
-"The installation of the default settings is finished. You can now continue "
-"configuring your %s %s by pressing the OK button on the remote control."
-msgstr ""
-"Varsayılan ayarların yüklenmesi tamamlandı. Artık uzaktan kumandanın "
-"üzerindeki OK düğmesine basarak%s%s inizi yapılamaya devam edebilirsiniz."
-
 msgid "The loopthrough setting is wrong."
 msgstr "Döngü ayarı yanlış."
 
@@ -20260,6 +20235,9 @@ msgstr "favori düzenlemeden vazgeç"
 msgid "about to start"
 msgstr "başlayacak"
 
+msgid "ac3"
+msgstr ""
+
 #
 msgid "activate network adapter configuration"
 msgstr "ağ adaptör yapılandırmasını etkinleştir"
@@ -20675,6 +20653,9 @@ msgstr "film/dram"
 
 msgid "drivers"
 msgstr "sürücüler"
+
+msgid "dts"
+msgstr ""
 
 msgid "eMMC"
 msgstr "eMMC"
@@ -21397,6 +21378,10 @@ msgstr "çift katmanlı ortam kullanıldığında."
 #
 msgid "of a SINGLE layer medium used."
 msgstr "tek katmanlı ortam kullanıldığında."
+
+#
+msgid "off"
+msgstr "kapalı"
 
 msgid "off or wpa2 on"
 msgstr "kapalı veya wpa2 açık"
@@ -22245,14 +22230,178 @@ msgstr "zapped"
 msgid "zapping"
 msgstr "zap"
 
-#
-#, fuzzy
-msgid "Small Test"
-msgstr "Küçük ilerleme"
+msgid "Add plugin to Extensions menu*"
+msgstr "Eklentiler menüsüne eklenti ekle *"
 
-#, fuzzy
-msgid "instant record"
-msgstr "Anlık kayıt"
+msgid "Add plugin to main menu*"
+msgstr "Ana menüye eklenti ekle *"
+
+msgid "CPU priority for script execution"
+msgstr "CPU komut dosyası yürütme önceliği"
+
+msgid "Change buttons for list navigation"
+msgstr "Liste gezinti için düğmeleri değiştir"
+
+msgid ""
+"Default CPU priority (nice) for executed scripts. This can reduce the load "
+"so that scripts do not interfere with the rest of the system. (higher values "
+"= lower priority)"
+msgstr ""
+"Yürütülen komut dosyaları için varsayılan CPU önceliği (hoş). Bu, yükleri "
+"azaltabilir, böylece komut dosyaları sistemin geri kalanını etkilemez. (daha "
+"yüksek değerler = düşük öncelik)"
+
+msgid ""
+"Default I/O priority (ionice) for executed scripts. This can reduce the load "
+"so that scripts do not interfere with the rest of the system. (higher values "
+"= lower priority)"
+msgstr ""
+"Yürütülen komut dosyaları için varsayılan I/O önceliği (iyon). Bu, yükleri "
+"azaltabilir, böylece komut dosyaları sistemin geri kalanını etkilemez. (daha "
+"yüksek değerler = düşük öncelik)"
+
+#
+msgid "Default directory sorting"
+msgstr "Varsayılan dizin sıralaması"
+
+msgid "Default file sorting left"
+msgstr "Varsayılan dosya sıralama solu"
+
+msgid "Default file sorting right"
+msgstr "Varsayılan dosya sıralama hakkı"
+
+msgid "Default folder"
+msgstr "Varsayılan klasör"
+
+msgid ""
+"Default folder if the left or right folder isn't saved, and target folder "
+"for button 5."
+msgstr ""
+"Sol veya sağ klasör kaydedilmemişse varsayılan klasör ve düğme 5 için hedef "
+"klasör."
+
+msgid "Default sorting method for directories on both sides."
+msgstr "Her iki taraftaki dizinler için varsayılan sıralama yöntemi."
+
+msgid "Default sorting method for files on the left side."
+msgstr "Sol taraftaki dosyalar için varsayılan sıralama yöntemi."
+
+msgid "Default sorting method for files on the right side."
+msgstr "Sağ taraftaki dosyalar için varsayılan sıralama yöntemi."
+
+#
+msgid "Edit position is the line end"
+msgstr "Konumu düzenle satırın sonudur"
+
+msgid "File Commander Settings"
+msgstr "Dosya Komutu Ayarları"
+
+msgid "File checksums to calculate for button 9"
+msgstr "Düğme 9 için hesaplanacak dosya sağlama toplamları"
+
+msgid "File checksums/hashes"
+msgstr "Dosya sağlama toplamı / sağlama"
+
+msgid ""
+"Filter extension for 'My Extension' setting of 'Filter extension'. Use the "
+"extension name without a '.'."
+msgstr ""
+"Filter Filtre uzantısı ’için My Uzantım’ ayarı için filtre uzantısı. '.' "
+"Olmadan uzantı adını kullanın '.'."
+
+msgid "Filter extension, (*) appears in title"
+msgstr "Filtre uzantısı, (*) başlığında görünüyor"
+
+msgid "Filter visible file classes by extension."
+msgstr "Görünür dosya sınıflarını uzantıya göre filtreleyin."
+
+msgid "I/O priority for script execution"
+msgstr "Komut dosyası yürütme için I/O önceliği"
+
+msgid ""
+"If editing a file, can you set the cursor start position at end or begin of "
+"the line."
+msgstr ""
+"Bir dosyayı düzenliyorsanız, imlecin başlangıç konumunu satırın sonunda veya "
+"başında ayarlayabilirsiniz."
+
+msgid "Make File Commander accessible from the Extensions menu."
+msgstr "Dosya Komutanı'nı Uzantılar menüsünden erişilebilir duruma getirin."
+
+msgid "Make File Commander accessible from the main menu."
+msgstr "Dosya Komutanı'na ana menüden erişilebilir olun."
+
+msgid "My extension"
+msgstr "Benim uzatma"
+
+msgid "Number of lines in script messages"
+msgstr "Script iletilerindeki satır sayısı"
+
+#
+msgid "Save left folder on exit"
+msgstr "Çıkışta soldaki klasörü kaydet"
+
+#
+msgid "Save right folder on exit"
+msgstr "Çıkışta sağdaki klasörü kaydet"
+
+msgid "Save the left folder list location on exit."
+msgstr "Çıkışta soldaki klasör listesi konumunu kaydedin."
+
+msgid "Save the right folder list location on exit."
+msgstr "Çıkışta doğru klasör listesi konumunu kaydedin."
+
+msgid ""
+"Set for 'stout' and 'sterr' the number of lines in script info or script "
+"error messages."
+msgstr ""
+"'Stout' ve 'sterr' için komut dosyası bilgisi veya komut dosyası hata "
+"iletilerindeki satır sayısını ayarlayın."
+
+msgid "Show Script completed message"
+msgstr "Komut Dosyası tamamlandı mesajını göster"
+
+msgid "Show Task's completed message"
+msgstr "Görev tamamlandı mesajını göster"
+
+msgid "Show directories first"
+msgstr "Önce dizinleri göster"
+
+msgid "Show directories on first or last in list.(must restart File Commander)"
+msgstr ""
+"Dizinleri listedeki ilk veya son listede göster. (Dosya Komutanını yeniden "
+"başlatmalı)"
+
+msgid ""
+"Show message if File Commander is not running and all Task's are completed."
+msgstr ""
+"Dosya Komutanı çalışmıyorsa ve tüm Görevler tamamlandıysa mesajı göster."
+
+msgid ""
+"Show message if a background script ends successfully. Has 'stout', then "
+"this is displayed as additional info."
+msgstr ""
+"Bir arka plan komut dosyası başarılı bir şekilde sona ererse mesajı göster. "
+"'Stout' var, bu ek bilgi olarak gösterilir."
+
+msgid "Show unknown extension as text"
+msgstr "Bilinmeyen uzantıları metin olarak göster"
+
+msgid "Show unknown file extensions with 'Addon File-Viewer'."
+msgstr "'Addon File-Viewer' ile bilinmeyen dosya uzantılarını göster."
+
+msgid ""
+"Swap buttons right/left with channel plus/minus or the channel button "
+"changed always the side."
+msgstr ""
+"Kanal artı / eksi ile düğmeleri sağa / sola kaydırın veya kanal düğmesi her "
+"zaman yan tarafını değiştirdi."
+
+msgid "Time between slides in image viewer slideshow."
+msgstr "Resim görüntüleyici slayt gösterisindeki slaytlar arasındaki süre."
+
+msgid "Time for Slideshow"
+msgstr "Slayt Gösterisi Zamanı"
 
 #
 msgid "Exit the wizard"
@@ -22494,178 +22643,210 @@ msgstr ""
 "\n"
 "Lütfen sonraki adımda yapmak istediğiniz işlemi seçin."
 
-msgid "Add plugin to Extensions menu*"
-msgstr "Eklentiler menüsüne eklenti ekle *"
+#, fuzzy
+msgid "C"
+msgstr "CH"
 
-msgid "Add plugin to main menu*"
-msgstr "Ana menüye eklenti ekle *"
+#, fuzzy
+msgid "D"
+msgstr "SD"
 
-msgid "CPU priority for script execution"
-msgstr "CPU komut dosyası yürütme önceliği"
-
-msgid "Change buttons for list navigation"
-msgstr "Liste gezinti için düğmeleri değiştir"
-
-msgid ""
-"Default CPU priority (nice) for executed scripts. This can reduce the load "
-"so that scripts do not interfere with the rest of the system. (higher values "
-"= lower priority)"
+msgid "TUNER:"
 msgstr ""
-"Yürütülen komut dosyaları için varsayılan CPU önceliği (hoş). Bu, yükleri "
-"azaltabilir, böylece komut dosyaları sistemin geri kalanını etkilemez. (daha "
-"yüksek değerler = düşük öncelik)"
 
-msgid ""
-"Default I/O priority (ionice) for executed scripts. This can reduce the load "
-"so that scripts do not interfere with the rest of the system. (higher values "
-"= lower priority)"
+msgid " HI "
 msgstr ""
-"Yürütülen komut dosyaları için varsayılan I/O önceliği (iyon). Bu, yükleri "
-"azaltabilir, böylece komut dosyaları sistemin geri kalanını etkilemez. (daha "
-"yüksek değerler = düşük öncelik)"
+
+msgid "REC "
+msgstr ""
+
+msgid "0"
+msgstr "0"
+
+msgid "6"
+msgstr "6"
+
+msgid "7"
+msgstr "7"
+
+msgid "8"
+msgstr "8"
+
+msgid "9"
+msgstr "9"
+
+msgid "AutoMountManager"
+msgstr "Otomatik Montaj Yöneticisi"
+
+msgid "BER:"
+msgstr "BER:"
+
+msgid "Backup Log"
+msgstr "Yedekleme Günlüğü"
+
+msgid "Channellist menu"
+msgstr "Kanal listesi menüsü"
+
+msgid "Command execution..."
+msgstr "Komut çalıştırılıyor..."
+
+msgid "Continue in background"
+msgstr "Arkaplanda devam et"
 
 #
-msgid "Default directory sorting"
-msgstr "Varsayılan dizin sıralaması"
+msgid "DVD file browser"
+msgstr "DVD Dosya gezgini"
 
-msgid "Default file sorting left"
-msgstr "Varsayılan dosya sıralama solu"
+msgid "Dish"
+msgstr "Çanak"
 
-msgid "Default file sorting right"
-msgstr "Varsayılan dosya sıralama hakkı"
+msgid "Downloadable plugins"
+msgstr "İndirilebilir eklentiler"
 
-msgid "Default folder"
-msgstr "Varsayılan klasör"
+msgid "EPG selection"
+msgstr "EPG seçimi"
 
-msgid ""
-"Default folder if the left or right folder isn't saved, and target folder "
-"for button 5."
-msgstr ""
-"Sol veya sağ klasör kaydedilmemişse varsayılan klasör ve düğme 5 için hedef "
-"klasör."
+msgid "Event view"
+msgstr "Etkinlik görünümü"
 
-msgid "Default sorting method for directories on both sides."
-msgstr "Her iki taraftaki dizinler için varsayılan sıralama yöntemi."
+msgid "Event view menu"
+msgstr "Etkinlik görünümü menüsü"
 
-msgid "Default sorting method for files on the left side."
-msgstr "Sol taraftaki dosyalar için varsayılan sıralama yöntemi."
+msgid "Index"
+msgstr "İndeks"
 
-msgid "Default sorting method for files on the right side."
-msgstr "Sağ taraftaki dosyalar için varsayılan sıralama yöntemi."
+msgid "Installing software..."
+msgstr "Yazılım kuruluyor.."
+
+msgid "Job overview"
+msgstr "İş özeti"
+
+msgid "Lock:"
+msgstr "Kilit:"
+
+msgid "MORE"
+msgstr "DAHA SONRA"
+
+msgid "MediaPlayer"
+msgstr "Medya Oynatıcı"
+
+msgid "Message..."
+msgstr "Mesaj..."
+
+msgid "Mute"
+msgstr "Ses Kapalı"
+
+msgid "NEXT"
+msgstr "SONRA"
+
+msgid "NOW"
+msgstr "ŞİMDİ"
+
+msgid "Nameserver setup"
+msgstr "İsim sunucusu kurulumu"
+
+msgid "Network Neighbourhood"
+msgstr "Ağ Komşuluğu"
+
+msgid "Network configuration..."
+msgstr "Ağ yapılandırması..."
+
+msgid "Network test..."
+msgstr "Ağ testi..."
+
+msgid "PIN code needed"
+msgstr "Şifre gerekli"
+
+msgid "Parental control services editor"
+msgstr "Ebeveyn kontrol servislerini düzenle"
+
+msgid "PiP-Zap"
+msgstr "PiP-Zap"
+
+msgid "PiPSetup"
+msgstr "PiP Kurulumu"
+
+msgid "PiPZap"
+msgstr "PiP Zap"
+
+msgid "Plugin browser"
+msgstr "Eklenti tarayıcısı"
+
+msgid "Reception settings"
+msgstr "Resepsiyon ayarları"
+
+msgid "Release Notes"
+msgstr "Sürüm Notları"
+
+msgid "SNR:"
+msgstr "SNR:"
 
 #
-msgid "Edit position is the line end"
-msgstr "Konumu düzenle satırın sonudur"
+msgid "Satfinder"
+msgstr "Uydu arayıcı"
 
-msgid "File Commander Settings"
-msgstr "Dosya Komutu Ayarları"
+msgid "SecondInfoBar"
+msgstr "İkinci Bilgi Çubuğu"
 
-msgid "File checksums to calculate for button 9"
-msgstr "Düğme 9 için hesaplanacak dosya sağlama toplamları"
+msgid "Select a bouquet"
+msgstr "Bir buket seçin"
 
-msgid "File checksums/hashes"
-msgstr "Dosya sağlama toplamı / sağlama"
+msgid "Select a movie"
+msgstr "Bir film seçin"
 
-msgid ""
-"Filter extension for 'My Extension' setting of 'Filter extension'. Use the "
-"extension name without a '.'."
-msgstr ""
-"Filter Filtre uzantısı ’için My Uzantım’ ayarı için filtre uzantısı. '.' "
-"Olmadan uzantı adını kullanın '.'."
+msgid "Select a network adapter"
+msgstr "Bir ağ bağdaştırıcısı seçin"
 
-msgid "Filter extension, (*) appears in title"
-msgstr "Filtre uzantısı, (*) başlığında görünüyor"
+msgid "Select a tuner"
+msgstr "Bir tuner seçin"
 
-msgid "Filter visible file classes by extension."
-msgstr "Görünür dosya sınıflarını uzantıya göre filtreleyin."
+msgid "Serviceinfo"
+msgstr "Kanal bilgisi"
 
-msgid "I/O priority for script execution"
-msgstr "Komut dosyası yürütme için I/O önceliği"
+msgid "Softwaremanager..."
+msgstr "Yazılım yöneticisi..."
 
-msgid ""
-"If editing a file, can you set the cursor start position at end or begin of "
-"the line."
-msgstr ""
-"Bir dosyayı düzenliyorsanız, imlecin başlangıç konumunu satırın sonunda veya "
-"başında ayarlayabilirsiniz."
+msgid "Starting Softcam"
+msgstr "Softcami Başlat"
 
-msgid "Make File Commander accessible from the Extensions menu."
-msgstr "Dosya Komutanı'nı Uzantılar menüsünden erişilebilir duruma getirin."
+msgid "Stopping Softcam"
+msgstr "Softcam'ı durdurma"
 
-msgid "Make File Commander accessible from the main menu."
-msgstr "Dosya Komutanı'na ana menüden erişilebilir olun."
+msgid "Subtitle settings"
+msgstr "Altyazı ayarları"
 
-msgid "My extension"
-msgstr "Benim uzatma"
+msgid "Swap File Manager"
+msgstr "Dosya Yöneticisi'ni Değiştir"
 
-msgid "Number of lines in script messages"
-msgstr "Script iletilerindeki satır sayısı"
+msgid "Systeminfo"
+msgstr "Sistem bilgisi"
 
-#
-msgid "Save left folder on exit"
-msgstr "Çıkışta soldaki klasörü kaydet"
+msgid "Timer edit"
+msgstr "Zamanlayıcı düzenlemesi"
 
-#
-msgid "Save right folder on exit"
-msgstr "Çıkışta sağdaki klasörü kaydet"
+msgid "Timer editor"
+msgstr "Zamanlayıcı editörü"
 
-msgid "Save the left folder list location on exit."
-msgstr "Çıkışta soldaki klasör listesi konumunu kaydedin."
+msgid "Translation"
+msgstr "Çeviri"
 
-msgid "Save the right folder list location on exit."
-msgstr "Çıkışta doğru klasör listesi konumunu kaydedin."
+msgid "UnhandledKey"
+msgstr "İşlenmemiş Key"
 
-msgid ""
-"Set for 'stout' and 'sterr' the number of lines in script info or script "
-"error messages."
-msgstr ""
-"'Stout' ve 'sterr' için komut dosyası bilgisi veya komut dosyası hata "
-"iletilerindeki satır sayısını ayarlayın."
+msgid "VideoEnhancementPreview"
+msgstr "Video Geliştirme Önizlemesi"
 
-msgid "Show Script completed message"
-msgstr "Komut Dosyası tamamlandı mesajını göster"
+msgid "Vol"
+msgstr "Ses"
 
-msgid "Show Task's completed message"
-msgstr "Görev tamamlandı mesajını göster"
+msgid "Volume"
+msgstr "Ses Düzeyi"
 
-msgid "Show directories first"
-msgstr "Önce dizinleri göster"
+msgid "config menu"
+msgstr "yapılandırma menüsü"
 
-msgid "Show directories on first or last in list.(must restart File Commander)"
-msgstr ""
-"Dizinleri listedeki ilk veya son listede göster. (Dosya Komutanını yeniden "
-"başlatmalı)"
-
-msgid ""
-"Show message if File Commander is not running and all Task's are completed."
-msgstr ""
-"Dosya Komutanı çalışmıyorsa ve tüm Görevler tamamlandıysa mesajı göster."
-
-msgid ""
-"Show message if a background script ends successfully. Has 'stout', then "
-"this is displayed as additional info."
-msgstr ""
-"Bir arka plan komut dosyası başarılı bir şekilde sona ererse mesajı göster. "
-"'Stout' var, bu ek bilgi olarak gösterilir."
-
-msgid "Show unknown extension as text"
-msgstr "Bilinmeyen uzantıları metin olarak göster"
-
-msgid "Show unknown file extensions with 'Addon File-Viewer'."
-msgstr "'Addon File-Viewer' ile bilinmeyen dosya uzantılarını göster."
-
-msgid ""
-"Swap buttons right/left with channel plus/minus or the channel button "
-"changed always the side."
-msgstr ""
-"Kanal artı / eksi ile düğmeleri sağa / sola kaydırın veya kanal düğmesi her "
-"zaman yan tarafını değiştirdi."
-
-msgid "Time between slides in image viewer slideshow."
-msgstr "Resim görüntüleyici slayt gösterisindeki slaytlar arasındaki süre."
-
-msgid "Time for Slideshow"
-msgstr "Slayt Gösterisi Zamanı"
+msgid "help..."
+msgstr "yardım..."
 
 msgid "Basic settings"
 msgstr "Temel ayarlar"
@@ -22781,18 +22962,8 @@ msgstr "Video"
 msgid "WOL Standby"
 msgstr "WOL Bekleme"
 
-#, fuzzy
-msgid "MediaPortal"
-msgstr "Medya Portalı"
-
-msgid ""
-"Please setup your user interface by adjusting the values till the edges of "
-"the red box are touching the edges of your TV.\n"
-"When you are ready press OK to continue."
+msgid "  REC  "
 msgstr ""
-"Lütfen kırmızı kutunun kenarları TV'nizin kenarlarına değene kadar değerleri "
-"ayarlayarak kullanıcı arayüzünüzü kurun.\n"
-"Hazır olduğunuzda devam etmek için Tamam'a basın."
 
 msgid ""
 "'Buffer in hours' or 'number of last events'. For deleting older timeshift "
@@ -24267,6 +24438,9 @@ msgstr "Geri sarma başlangıç hızı"
 msgid "Initial scroll delay"
 msgstr "İlk kaydırma gecikmesi"
 
+msgid "Input scroll position"
+msgstr ""
+
 msgid "Instant recording location"
 msgstr "Anlık kayıtlar konumu"
 
@@ -25241,9 +25415,6 @@ msgstr "4. Altyazı dil seçimi"
 msgid "Subtitle position"
 msgstr "Altyazı konumu"
 
-msgid "Subtitle settings"
-msgstr "Altyazı ayarları"
-
 msgid "Swap SNR in '%' with SNR in 'db'"
 msgstr "SNR db'yi, SNR '%' ile değiştir"
 
@@ -25934,6 +26105,11 @@ msgstr ""
 "duracaktır."
 
 msgid ""
+"When the input cursor reaches this point (percentage of the width, from "
+"either side) scroll the text to the cursor."
+msgstr ""
+
+msgid ""
 "When tuned to a service the system will normally scan the transponder for "
 "any changes and save them. Only set to 'yes' if you're absolutely sure what "
 "you're doing."
@@ -26008,41 +26184,6 @@ msgstr "12 ila 8 karakter gösterim moduna geçme"
 msgid "userdefined"
 msgstr "kullanıcı tanımlı"
 
-#, fuzzy
-msgid "EasyMedia"
-msgstr "Medya"
-
-#, fuzzy
-msgid "Ext. NumberZap"
-msgstr "Sayı"
-
-#, fuzzy
-msgid "Timer+"
-msgstr "Zamanlayıcı"
-
-#, fuzzy
-msgid "Timerlist"
-msgstr "Zamanlayıcı Listesi"
-
-#, fuzzy
-msgid "IMDB Search"
-msgstr "IMDB araması"
-
-#, fuzzy
-msgid "Quick EPG"
-msgstr "QuickEPG modu"
-
-#, fuzzy
-msgid "C"
-msgstr "CH"
-
-#, fuzzy
-msgid "D"
-msgstr "SD"
-
-msgid "TUNER:"
-msgstr ""
-
 #
 msgid "Auto Modes Selected."
 msgstr "Seçilen Otomatik Modlar."
@@ -26095,212 +26236,6 @@ msgstr ""
 #
 msgid "Video mode selection."
 msgstr "Görüntü kipi seçimi."
-
-msgid "0"
-msgstr "0"
-
-msgid "6"
-msgstr "6"
-
-msgid "7"
-msgstr "7"
-
-msgid "8"
-msgstr "8"
-
-msgid "9"
-msgstr "9"
-
-msgid "AutoMountManager"
-msgstr "Otomatik Montaj Yöneticisi"
-
-msgid "BER:"
-msgstr "BER:"
-
-msgid "Backup Log"
-msgstr "Yedekleme Günlüğü"
-
-msgid "Channellist menu"
-msgstr "Kanal listesi menüsü"
-
-msgid "Command execution..."
-msgstr "Komut çalıştırılıyor..."
-
-msgid "Continue in background"
-msgstr "Arkaplanda devam et"
-
-#
-msgid "DVD file browser"
-msgstr "DVD Dosya gezgini"
-
-msgid "Dish"
-msgstr "Çanak"
-
-msgid "Downloadable plugins"
-msgstr "İndirilebilir eklentiler"
-
-msgid "EPG selection"
-msgstr "EPG seçimi"
-
-msgid "Event view"
-msgstr "Etkinlik görünümü"
-
-msgid "Event view menu"
-msgstr "Etkinlik görünümü menüsü"
-
-msgid "Index"
-msgstr "İndeks"
-
-msgid "Installing software..."
-msgstr "Yazılım kuruluyor.."
-
-msgid "Job overview"
-msgstr "İş özeti"
-
-msgid "Lock:"
-msgstr "Kilit:"
-
-msgid "MORE"
-msgstr "DAHA SONRA"
-
-msgid "MediaPlayer"
-msgstr "Medya Oynatıcı"
-
-msgid "Message..."
-msgstr "Mesaj..."
-
-msgid "Mute"
-msgstr "Ses Kapalı"
-
-msgid "NEXT"
-msgstr "SONRA"
-
-msgid "NOW"
-msgstr "ŞİMDİ"
-
-msgid "Nameserver setup"
-msgstr "İsim sunucusu kurulumu"
-
-msgid "Network Neighbourhood"
-msgstr "Ağ Komşuluğu"
-
-msgid "Network configuration..."
-msgstr "Ağ yapılandırması..."
-
-msgid "Network test..."
-msgstr "Ağ testi..."
-
-msgid "PIN code needed"
-msgstr "Şifre gerekli"
-
-msgid "Parental control services editor"
-msgstr "Ebeveyn kontrol servislerini düzenle"
-
-msgid "PiP-Zap"
-msgstr "PiP-Zap"
-
-msgid "PiPSetup"
-msgstr "PiP Kurulumu"
-
-msgid "PiPZap"
-msgstr "PiP Zap"
-
-msgid "Plugin browser"
-msgstr "Eklenti tarayıcısı"
-
-msgid "Reception settings"
-msgstr "Resepsiyon ayarları"
-
-msgid "Release Notes"
-msgstr "Sürüm Notları"
-
-msgid "SNR:"
-msgstr "SNR:"
-
-#
-msgid "Satfinder"
-msgstr "Uydu arayıcı"
-
-msgid "SecondInfoBar"
-msgstr "İkinci Bilgi Çubuğu"
-
-msgid "Select a bouquet"
-msgstr "Bir buket seçin"
-
-msgid "Select a movie"
-msgstr "Bir film seçin"
-
-msgid "Select a network adapter"
-msgstr "Bir ağ bağdaştırıcısı seçin"
-
-msgid "Select a tuner"
-msgstr "Bir tuner seçin"
-
-msgid "Serviceinfo"
-msgstr "Kanal bilgisi"
-
-msgid "Softwaremanager..."
-msgstr "Yazılım yöneticisi..."
-
-msgid "Starting Softcam"
-msgstr "Softcami Başlat"
-
-msgid "Stopping Softcam"
-msgstr "Softcam'ı durdurma"
-
-msgid "Swap File Manager"
-msgstr "Dosya Yöneticisi'ni Değiştir"
-
-msgid "Systeminfo"
-msgstr "Sistem bilgisi"
-
-msgid "Timer edit"
-msgstr "Zamanlayıcı düzenlemesi"
-
-msgid "Timer editor"
-msgstr "Zamanlayıcı editörü"
-
-msgid "Translation"
-msgstr "Çeviri"
-
-msgid "UnhandledKey"
-msgstr "İşlenmemiş Key"
-
-msgid "VideoEnhancementPreview"
-msgstr "Video Geliştirme Önizlemesi"
-
-msgid "Vol"
-msgstr "Ses"
-
-msgid "Volume"
-msgstr "Ses Düzeyi"
-
-msgid "config menu"
-msgstr "yapılandırma menüsü"
-
-msgid "help..."
-msgstr "yardım..."
-
-msgid "  REC  "
-msgstr ""
-
-#, fuzzy
-msgid "VMC"
-msgstr "MAC"
-
-msgid "by hmmmdada"
-msgstr ""
-
-msgid "Enigmalight"
-msgstr ""
-
-#
-#, fuzzy
-msgid "EtPortal"
-msgstr "Portekiz"
-
-msgid "®"
-msgstr ""
 
 msgid "Check the internet connection"
 msgstr "İnternet bağlantısını kontrol et"
@@ -26498,16 +26433,6 @@ msgid "Your %s %s is not connected to the internet"
 msgstr "Internet'e bağlı %s% s değil"
 
 #, fuzzy
-msgid "-"
-msgstr "-1"
-
-msgid " HI "
-msgstr ""
-
-msgid "REC "
-msgstr ""
-
-#, fuzzy
 msgid "E "
 msgstr " "
 
@@ -26529,6 +26454,103 @@ msgstr "IP"
 
 msgid "J"
 msgstr ""
+
+#, fuzzy
+msgid "EasyMedia"
+msgstr "Medya"
+
+#, fuzzy
+msgid "Ext. NumberZap"
+msgstr "Sayı"
+
+#, fuzzy
+msgid "Timer+"
+msgstr "Zamanlayıcı"
+
+#, fuzzy
+msgid "Timerlist"
+msgstr "Zamanlayıcı Listesi"
+
+#, fuzzy
+msgid "MediaPortal"
+msgstr "Medya Portalı"
+
+#, fuzzy
+msgid "IMDB Search"
+msgstr "IMDB araması"
+
+#, fuzzy
+msgid "Quick EPG"
+msgstr "QuickEPG modu"
+
+#
+#, fuzzy
+msgid "EtPortal"
+msgstr "Portekiz"
+
+msgid "®"
+msgstr ""
+
+msgid "Enigmalight"
+msgstr ""
+
+#, fuzzy
+msgid "VMC"
+msgstr "MAC"
+
+msgid "by hmmmdada"
+msgstr ""
+
+msgid ""
+"Please setup your user interface by adjusting the values till the edges of "
+"the red box are touching the edges of your TV.\n"
+"When you are ready press OK to continue."
+msgstr ""
+"Lütfen kırmızı kutunun kenarları TV'nizin kenarlarına değene kadar değerleri "
+"ayarlayarak kullanıcı arayüzünüzü kurun.\n"
+"Hazır olduğunuzda devam etmek için Tamam'a basın."
+
+#, fuzzy
+msgid "-"
+msgstr "-1"
+
+#
+#, fuzzy
+msgid "Small Test"
+msgstr "Küçük ilerleme"
+
+#, fuzzy
+msgid "instant record"
+msgstr "Anlık kayıt"
+
+#~ msgid "AC3"
+#~ msgstr "AC3"
+
+#~ msgid "DTS"
+#~ msgstr "DTS"
+
+#
+#, fuzzy
+#~ msgid "Delete the all the text"
+#~ msgstr "1 öğe sil"
+
+#~ msgid "Install settings, skins, software..."
+#~ msgstr "Ayarları, skin, yazılım yükleyin ..."
+
+#~ msgid "PicturePlayer"
+#~ msgstr "PicturePlayer"
+
+#~ msgid "Please choose he package..."
+#~ msgstr "Lütfen o paketi seç ..."
+
+#, python-format
+#~ msgid ""
+#~ "The installation of the default settings is finished. You can now "
+#~ "continue configuring your %s %s by pressing the OK button on the remote "
+#~ "control."
+#~ msgstr ""
+#~ "Varsayılan ayarların yüklenmesi tamamlandı. Artık uzaktan kumandanın "
+#~ "üzerindeki OK düğmesine basarak%s%s inizi yapılamaya devam edebilirsiniz."
 
 #~ msgid "Autorecord location"
 #~ msgstr "Autorecord konumu"
@@ -26629,10 +26651,6 @@ msgstr ""
 
 #~ msgid "false"
 #~ msgstr "yanlış"
-
-#
-#~ msgid "off"
-#~ msgstr "kapalı"
 
 #
 #~ msgid "on"

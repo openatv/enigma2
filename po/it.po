@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Italian translation\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-08-29 19:28+0000\n"
+"POT-Creation-Date: 2021-10-19 20:04+0000\n"
 "PO-Revision-Date: 2019-09-01 14:09+0100\n"
 "Last-Translator: Massimo Bambi - Insanity\n"
 "Language-Team: Massimo Bambi <maxbambi@libero.it>\n"
@@ -2246,9 +2246,6 @@ msgstr "AAC plus downmix"
 
 msgid "AAC transcoding"
 msgstr "AAC transcoding"
-
-msgid "AC3"
-msgstr "AC3"
 
 msgid "AC3 downmix"
 msgstr "AC3 downmix"
@@ -4985,9 +4982,6 @@ msgstr ""
 "NON SPEGNERE IL TUO DISPOSITIVO DURANTE L'AGGIORNAMENTO!\n"
 "Aggiornare adesso?"
 
-msgid "DTS"
-msgstr "DTS"
-
 msgid "DTS HD downmix"
 msgstr "DTS HD downmix"
 
@@ -5387,10 +5381,6 @@ msgstr "Rimuovere voce dalla playlist"
 
 msgid "Delete saved playlist"
 msgstr "Rimuovere la playlist salvata"
-
-#, fuzzy
-msgid "Delete the all the text"
-msgstr "Cancella un elemento"
 
 #, fuzzy
 msgid "Delete the character to the left of text cursor"
@@ -7358,6 +7348,9 @@ msgstr "Gabon"
 msgid "Gaelic"
 msgstr ""
 
+msgid "Galicia (Spain)"
+msgstr ""
+
 msgid "Galician"
 msgstr ""
 
@@ -8407,9 +8400,6 @@ msgstr "Installare picons su"
 
 msgid "Install plugins"
 msgstr "Installare plugins"
-
-msgid "Install settings, skins, software..."
-msgstr "Installare settings, skin, software ..."
 
 msgid "Installation finished."
 msgstr "Installazione terminata."
@@ -11303,9 +11293,6 @@ msgstr "Impostazioni Picture in Picture"
 msgid "Picture player"
 msgstr "Picture Player"
 
-msgid "PicturePlayer"
-msgstr "PicturePlayer"
-
 msgid "Pictures"
 msgstr "Immagini"
 
@@ -11409,9 +11396,6 @@ msgstr "Scegliere CCcam-Reader"
 
 msgid "Please choose an extension..."
 msgstr "Selezionare un'estensione..."
-
-msgid "Please choose he package..."
-msgstr "Scegli i pacchetti…"
 
 msgid "Please choose reader"
 msgstr "Selezionare il reader"
@@ -16013,14 +15997,6 @@ msgstr ""
 msgid "The hash of a directory can't be calculated."
 msgstr "Il codice hash della directory non può essere calcolato."
 
-#, python-format
-msgid ""
-"The installation of the default settings is finished. You can now continue "
-"configuring your %s %s by pressing the OK button on the remote control."
-msgstr ""
-"Il ripristino delle impostazioni di base è terminato. Configura il tuo %s %s "
-"premendo il tasto OK del telecomando"
-
 msgid "The loopthrough setting is wrong."
 msgstr "Configurazione 'in cascata da' errata."
 
@@ -19017,6 +18993,9 @@ msgstr "annullare modifica preferiti"
 msgid "about to start"
 msgstr "avvio a breve"
 
+msgid "ac3"
+msgstr ""
+
 msgid "activate network adapter configuration"
 msgstr "Attivare la configurazione interfaccia di rete"
 
@@ -19396,6 +19375,9 @@ msgstr "film/dramma (generale)"
 
 msgid "drivers"
 msgstr "driver"
+
+msgid "dts"
+msgstr ""
 
 msgid "eMMC"
 msgstr "eMMC"
@@ -20048,6 +20030,9 @@ msgstr "di DVD doppio strato utilizzato."
 
 msgid "of a SINGLE layer medium used."
 msgstr "di DVD singolo strato utilizzato."
+
+msgid "off"
+msgstr "Off"
 
 msgid "off or wpa2 on"
 msgstr "disattivata o wpa2 attiva"
@@ -20823,13 +20808,175 @@ msgstr "zap eseguito"
 msgid "zapping"
 msgstr "zapping"
 
-#, fuzzy
-msgid "Small Test"
-msgstr "Piccolo avanzamento"
+msgid "Add plugin to Extensions menu*"
+msgstr "Aggiungi plugin al menu estensioni*"
 
-#, fuzzy
-msgid "instant record"
-msgstr "Registrazione istantanea"
+msgid "Add plugin to main menu*"
+msgstr "Aggiungi plugin al menu principale*"
+
+msgid "CPU priority for script execution"
+msgstr "Priorità CPU per l'esecuzione dello script"
+
+msgid "Change buttons for list navigation"
+msgstr "Cambia i tasti per la navigazione dell'elenco"
+
+msgid ""
+"Default CPU priority (nice) for executed scripts. This can reduce the load "
+"so that scripts do not interfere with the rest of the system. (higher values "
+"= lower priority)"
+msgstr ""
+"Priorità di CPU predefinita (nice) per gli script eseguiti. Questo può "
+"ridurre il carico in modo che questi script non interferiscano con il resto "
+"del sistema. (valore più alto = minore priorità)"
+
+msgid ""
+"Default I/O priority (ionice) for executed scripts. This can reduce the load "
+"so that scripts do not interfere with the rest of the system. (higher values "
+"= lower priority)"
+msgstr ""
+"Priorità di I/O predefinita (ionice) per gli script eseguiti. Questo può "
+"ridurre il carico in modo che questi script non interferiscano con il resto "
+"del sistema. (valore più alto = minore priorità)"
+
+msgid "Default directory sorting"
+msgstr "Ordinamento di directory predefinito"
+
+msgid "Default file sorting left"
+msgstr "Ordinamento file predefinito a sinistra"
+
+msgid "Default file sorting right"
+msgstr "Ordinamento file predefinito a destra"
+
+msgid "Default folder"
+msgstr "Cartella predefinita"
+
+msgid ""
+"Default folder if the left or right folder isn't saved, and target folder "
+"for button 5."
+msgstr ""
+"Cartella predefinita, se le cartelle a sinistra e a destra non sono state "
+"salvate, e cartella di destinazione per il tasto 5."
+
+msgid "Default sorting method for directories on both sides."
+msgstr "Ordinamento delle cartelle in entrambi i lati predefinito."
+
+msgid "Default sorting method for files on the left side."
+msgstr "Metodo di ordinamento predefinito per i file sul lato sinistro."
+
+msgid "Default sorting method for files on the right side."
+msgstr "Metodo di ordinamento predefinito per i file sul lato destro."
+
+msgid "Edit position is the line end"
+msgstr "La posizione di modifica è alla fine della linea"
+
+msgid "File Commander Settings"
+msgstr "Configurazioni File Commander"
+
+msgid "File checksums to calculate for button 9"
+msgstr "Checksum dei file da calcolare con il tasto 9"
+
+msgid "File checksums/hashes"
+msgstr "Calcola checksum / hash dei file"
+
+msgid ""
+"Filter extension for 'My Extension' setting of 'Filter extension'. Use the "
+"extension name without a '.'."
+msgstr ""
+"Impostazione dell'estensione personalizzata per 'Filtra tramite estensione'. "
+"Usa il nome dell'estensione senza il punto."
+
+msgid "Filter extension, (*) appears in title"
+msgstr "Estensione filtro, (*) appare nel titolo"
+
+msgid "Filter visible file classes by extension."
+msgstr "Filtra le classi di file visibili per estensione."
+
+msgid "I/O priority for script execution"
+msgstr "Priorità I/O per esecuzione degli script"
+
+msgid ""
+"If editing a file, can you set the cursor start position at end or begin of "
+"the line."
+msgstr ""
+"Durante la modifica di un file, puoi impostare la posizione iniziale del "
+"cursore all'inizio o alla fine del linea."
+
+msgid "Make File Commander accessible from the Extensions menu."
+msgstr "Rendi accessibile File Commander dal menu Estensioni."
+
+msgid "Make File Commander accessible from the main menu."
+msgstr "Rendi File Commander accessibile dal menu principale."
+
+msgid "My extension"
+msgstr "La mia estensione"
+
+msgid "Number of lines in script messages"
+msgstr "Numero di righe nei messaggi di script"
+
+msgid "Save left folder on exit"
+msgstr "In uscita, salvare la cartella sinistra"
+
+msgid "Save right folder on exit"
+msgstr "In uscita, salvare la cartella destra"
+
+msgid "Save the left folder list location on exit."
+msgstr "Salva la posizione dell'elenco delle cartelle a sinistra all'uscita."
+
+msgid "Save the right folder list location on exit."
+msgstr "Salva la posizione dell'elenco a destra in uscita."
+
+msgid ""
+"Set for 'stout' and 'sterr' the number of lines in script info or script "
+"error messages."
+msgstr ""
+"Imposta il numero di linee per 'stout' e 'sterr' nelle info o nei messaggi "
+"di errore di uno script."
+
+msgid "Show Script completed message"
+msgstr "Mostra un messaggio di completamento dello script"
+
+msgid "Show Task's completed message"
+msgstr "Mostra un messaggio di completamento dei task"
+
+msgid "Show directories first"
+msgstr "Mostra prima le cartelle"
+
+msgid "Show directories on first or last in list.(must restart File Commander)"
+msgstr ""
+"Mostra le cartella all'inizio o alla fine dell'elenco (File Commander deve "
+"essere riavviato)."
+
+msgid ""
+"Show message if File Commander is not running and all Task's are completed."
+msgstr ""
+"Mostra un messaggio se File Commander è inattivo e tutti i task sono stati "
+"completati."
+
+msgid ""
+"Show message if a background script ends successfully. Has 'stout', then "
+"this is displayed as additional info."
+msgstr ""
+"Mostra un messaggio se uno script in background è terminato correttamente. "
+"Lo 'stout' dello script viene  mostrato come info aggiuntiva."
+
+msgid "Show unknown extension as text"
+msgstr "Mostra le estensioni sconosciute come testo"
+
+msgid "Show unknown file extensions with 'Addon File-Viewer'."
+msgstr "Mostra i file con estensioni sconosciute con 'Addon File-Viewer'."
+
+msgid ""
+"Swap buttons right/left with channel plus/minus or the channel button "
+"changed always the side."
+msgstr ""
+"Scambia i tasti destra/sinistra con canale +/- o il tasto canale cambia "
+"sempre il lato."
+
+msgid "Time between slides in image viewer slideshow."
+msgstr "Tempo fra le diapositive nella visualizzazione delle immagini."
+
+msgid "Time for Slideshow"
+msgstr "Tempo per la presentazione"
 
 msgid "Exit the wizard"
 msgstr "Uscire dalla configurazione guidata"
@@ -21040,175 +21187,208 @@ msgstr ""
 "\n"
 "Selezionare un'opzione per proseguire."
 
-msgid "Add plugin to Extensions menu*"
-msgstr "Aggiungi plugin al menu estensioni*"
+#, fuzzy
+msgid "C"
+msgstr "CH"
 
-msgid "Add plugin to main menu*"
-msgstr "Aggiungi plugin al menu principale*"
+#, fuzzy
+msgid "D"
+msgstr "SD"
 
-msgid "CPU priority for script execution"
-msgstr "Priorità CPU per l'esecuzione dello script"
-
-msgid "Change buttons for list navigation"
-msgstr "Cambia i tasti per la navigazione dell'elenco"
-
-msgid ""
-"Default CPU priority (nice) for executed scripts. This can reduce the load "
-"so that scripts do not interfere with the rest of the system. (higher values "
-"= lower priority)"
+msgid "TUNER:"
 msgstr ""
-"Priorità di CPU predefinita (nice) per gli script eseguiti. Questo può "
-"ridurre il carico in modo che questi script non interferiscano con il resto "
-"del sistema. (valore più alto = minore priorità)"
 
-msgid ""
-"Default I/O priority (ionice) for executed scripts. This can reduce the load "
-"so that scripts do not interfere with the rest of the system. (higher values "
-"= lower priority)"
+msgid " HI "
 msgstr ""
-"Priorità di I/O predefinita (ionice) per gli script eseguiti. Questo può "
-"ridurre il carico in modo che questi script non interferiscano con il resto "
-"del sistema. (valore più alto = minore priorità)"
 
-msgid "Default directory sorting"
-msgstr "Ordinamento di directory predefinito"
-
-msgid "Default file sorting left"
-msgstr "Ordinamento file predefinito a sinistra"
-
-msgid "Default file sorting right"
-msgstr "Ordinamento file predefinito a destra"
-
-msgid "Default folder"
-msgstr "Cartella predefinita"
-
-msgid ""
-"Default folder if the left or right folder isn't saved, and target folder "
-"for button 5."
+msgid "REC "
 msgstr ""
-"Cartella predefinita, se le cartelle a sinistra e a destra non sono state "
-"salvate, e cartella di destinazione per il tasto 5."
 
-msgid "Default sorting method for directories on both sides."
-msgstr "Ordinamento delle cartelle in entrambi i lati predefinito."
+msgid "0"
+msgstr "0"
 
-msgid "Default sorting method for files on the left side."
-msgstr "Metodo di ordinamento predefinito per i file sul lato sinistro."
+msgid "6"
+msgstr "6"
 
-msgid "Default sorting method for files on the right side."
-msgstr "Metodo di ordinamento predefinito per i file sul lato destro."
+msgid "7"
+msgstr "7"
 
-msgid "Edit position is the line end"
-msgstr "La posizione di modifica è alla fine della linea"
+msgid "8"
+msgstr "8"
 
-msgid "File Commander Settings"
-msgstr "Configurazioni File Commander"
+msgid "9"
+msgstr "9"
 
-msgid "File checksums to calculate for button 9"
-msgstr "Checksum dei file da calcolare con il tasto 9"
+msgid "AutoMountManager"
+msgstr "AutoMountManager"
 
-msgid "File checksums/hashes"
-msgstr "Calcola checksum / hash dei file"
+msgid "BER:"
+msgstr "BER:"
 
-msgid ""
-"Filter extension for 'My Extension' setting of 'Filter extension'. Use the "
-"extension name without a '.'."
-msgstr ""
-"Impostazione dell'estensione personalizzata per 'Filtra tramite estensione'. "
-"Usa il nome dell'estensione senza il punto."
+msgid "Backup Log"
+msgstr "Log di backup"
 
-msgid "Filter extension, (*) appears in title"
-msgstr "Estensione filtro, (*) appare nel titolo"
+msgid "Channellist menu"
+msgstr "Menu Lista canali"
 
-msgid "Filter visible file classes by extension."
-msgstr "Filtra le classi di file visibili per estensione."
+msgid "Command execution..."
+msgstr "Esecuzione comando..."
 
-msgid "I/O priority for script execution"
-msgstr "Priorità I/O per esecuzione degli script"
+msgid "Continue in background"
+msgstr "Continua in background"
 
-msgid ""
-"If editing a file, can you set the cursor start position at end or begin of "
-"the line."
-msgstr ""
-"Durante la modifica di un file, puoi impostare la posizione iniziale del "
-"cursore all'inizio o alla fine del linea."
+msgid "DVD file browser"
+msgstr "File browser DVD"
 
-msgid "Make File Commander accessible from the Extensions menu."
-msgstr "Rendi accessibile File Commander dal menu Estensioni."
+msgid "Dish"
+msgstr "Parabola"
 
-msgid "Make File Commander accessible from the main menu."
-msgstr "Rendi File Commander accessibile dal menu principale."
+msgid "Downloadable plugins"
+msgstr "Plugin disponibili"
 
-msgid "My extension"
-msgstr "La mia estensione"
+msgid "EPG selection"
+msgstr "Selezione EPG"
 
-msgid "Number of lines in script messages"
-msgstr "Numero di righe nei messaggi di script"
+msgid "Event view"
+msgstr "Visualizza programmazione"
 
-msgid "Save left folder on exit"
-msgstr "In uscita, salvare la cartella sinistra"
+msgid "Event view menu"
+msgstr "Menu vista eventi"
 
-msgid "Save right folder on exit"
-msgstr "In uscita, salvare la cartella destra"
+msgid "Index"
+msgstr "Indice"
 
-msgid "Save the left folder list location on exit."
-msgstr "Salva la posizione dell'elenco delle cartelle a sinistra all'uscita."
+msgid "Installing software..."
+msgstr "Installazione del software..."
 
-msgid "Save the right folder list location on exit."
-msgstr "Salva la posizione dell'elenco a destra in uscita."
+msgid "Job overview"
+msgstr "Vista attività"
 
-msgid ""
-"Set for 'stout' and 'sterr' the number of lines in script info or script "
-"error messages."
-msgstr ""
-"Imposta il numero di linee per 'stout' e 'sterr' nelle info o nei messaggi "
-"di errore di uno script."
+msgid "Lock:"
+msgstr "Blocco:"
 
-msgid "Show Script completed message"
-msgstr "Mostra un messaggio di completamento dello script"
+msgid "MORE"
+msgstr "MOSTRA DI PIÚ"
 
-msgid "Show Task's completed message"
-msgstr "Mostra un messaggio di completamento dei task"
+msgid "MediaPlayer"
+msgstr "MediaPlayer"
 
-msgid "Show directories first"
-msgstr "Mostra prima le cartelle"
+msgid "Message..."
+msgstr "Messaggio..."
 
-msgid "Show directories on first or last in list.(must restart File Commander)"
-msgstr ""
-"Mostra le cartella all'inizio o alla fine dell'elenco (File Commander deve "
-"essere riavviato)."
+msgid "Mute"
+msgstr "Muto"
 
-msgid ""
-"Show message if File Commander is not running and all Task's are completed."
-msgstr ""
-"Mostra un messaggio se File Commander è inattivo e tutti i task sono stati "
-"completati."
+msgid "NEXT"
+msgstr "PROSSIMO"
 
-msgid ""
-"Show message if a background script ends successfully. Has 'stout', then "
-"this is displayed as additional info."
-msgstr ""
-"Mostra un messaggio se uno script in background è terminato correttamente. "
-"Lo 'stout' dello script viene  mostrato come info aggiuntiva."
+msgid "NOW"
+msgstr "ORA"
 
-msgid "Show unknown extension as text"
-msgstr "Mostra le estensioni sconosciute come testo"
+msgid "Nameserver setup"
+msgstr "Impostazioni DNS"
 
-msgid "Show unknown file extensions with 'Addon File-Viewer'."
-msgstr "Mostra i file con estensioni sconosciute con 'Addon File-Viewer'."
+msgid "Network Neighbourhood"
+msgstr "Ricercare in risorse di rete vicine"
 
-msgid ""
-"Swap buttons right/left with channel plus/minus or the channel button "
-"changed always the side."
-msgstr ""
-"Scambia i tasti destra/sinistra con canale +/- o il tasto canale cambia "
-"sempre il lato."
+msgid "Network configuration..."
+msgstr "Configurazione di rete..."
 
-msgid "Time between slides in image viewer slideshow."
-msgstr "Tempo fra le diapositive nella visualizzazione delle immagini."
+msgid "Network test..."
+msgstr "Test della rete..."
 
-msgid "Time for Slideshow"
-msgstr "Tempo per la presentazione"
+msgid "PIN code needed"
+msgstr "necessario un codice PIN"
+
+msgid "Parental control services editor"
+msgstr "Editor dei canali per il controllo genitori"
+
+msgid "PiP-Zap"
+msgstr "PiP-Zap"
+
+msgid "PiPSetup"
+msgstr "Impostazioni PIP"
+
+msgid "PiPZap"
+msgstr "PipZap"
+
+msgid "Plugin browser"
+msgstr "Navigatore plugin"
+
+msgid "Reception settings"
+msgstr "Impostazioni di ricezione"
+
+msgid "Release Notes"
+msgstr "Note di rilascio"
+
+msgid "SNR:"
+msgstr "SNR:"
+
+msgid "Satfinder"
+msgstr "SATFINDER"
+
+msgid "SecondInfoBar"
+msgstr "Seconda InfoBar"
+
+msgid "Select a bouquet"
+msgstr "Seleziona un bouquet"
+
+msgid "Select a movie"
+msgstr "Seleziona una registrazione"
+
+msgid "Select a network adapter"
+msgstr "Seleziona un adattatore di rete"
+
+msgid "Select a tuner"
+msgstr "Seleziona un tuner"
+
+msgid "Serviceinfo"
+msgstr "Info sul canale"
+
+msgid "Softwaremanager..."
+msgstr "GestioneSoftware..."
+
+msgid "Starting Softcam"
+msgstr "Avvio  Softcam"
+
+msgid "Stopping Softcam"
+msgstr "Arresto Softcam"
+
+msgid "Subtitle settings"
+msgstr "Configurazione sottotitoli"
+
+msgid "Swap File Manager"
+msgstr "Manager del file di swap"
+
+msgid "Systeminfo"
+msgstr "Info sistema"
+
+msgid "Timer edit"
+msgstr "Modifica timer"
+
+msgid "Timer editor"
+msgstr "Modifica timer"
+
+msgid "Translation"
+msgstr "Traduzione"
+
+msgid "UnhandledKey"
+msgstr "Tasto non gestito"
+
+msgid "VideoEnhancementPreview"
+msgstr "Anteprima di miglioramento Video"
+
+msgid "Vol"
+msgstr "Vol"
+
+msgid "Volume"
+msgstr "Volume"
+
+msgid "config menu"
+msgstr "menu di configurazione"
+
+msgid "help..."
+msgstr "aiuto..."
 
 msgid "Basic settings"
 msgstr "Configurazione base"
@@ -21316,18 +21496,8 @@ msgstr "Video"
 msgid "WOL Standby"
 msgstr "Standby Wake on Lan"
 
-#, fuzzy
-msgid "MediaPortal"
-msgstr "Media Portal"
-
-msgid ""
-"Please setup your user interface by adjusting the values till the edges of "
-"the red box are touching the edges of your TV.\n"
-"When you are ready press OK to continue."
+msgid "  REC  "
 msgstr ""
-"Imposta l'interfaccia utente regolando i valori finché i bordi del "
-"rettangolo rosso, coincidono con i bordi della TV.\n"
-"A termine della configurazione, premere il tasto OK per continuare."
 
 msgid ""
 "'Buffer in hours' or 'number of last events'. For deleting older timeshift "
@@ -22787,6 +22957,9 @@ msgstr "Velocità Iniziale riavvolgimento (REW)"
 msgid "Initial scroll delay"
 msgstr "Ritardo iniziale scorrimento"
 
+msgid "Input scroll position"
+msgstr ""
+
 msgid "Instant recording location"
 msgstr "Percorso registrazione istantanea"
 
@@ -23751,9 +23924,6 @@ msgstr "Lingua sottotitoli selezione 4"
 msgid "Subtitle position"
 msgstr "Posizione sottotitoli"
 
-msgid "Subtitle settings"
-msgstr "Configurazione sottotitoli"
-
 msgid "Swap SNR in '%' with SNR in 'db'"
 msgstr "Cambia SNR in '%' con SNR in 'db'"
 
@@ -24465,6 +24635,11 @@ msgstr ""
 "dalla EPG .."
 
 msgid ""
+"When the input cursor reaches this point (percentage of the width, from "
+"either side) scroll the text to the cursor."
+msgstr ""
+
+msgid ""
 "When tuned to a service the system will normally scan the transponder for "
 "any changes and save them. Only set to 'yes' if you're absolutely sure what "
 "you're doing."
@@ -24538,41 +24713,6 @@ msgstr "cambia la modalità caratteri display da 12 a 8"
 msgid "userdefined"
 msgstr "definito dall'utente"
 
-#, fuzzy
-msgid "EasyMedia"
-msgstr "Media"
-
-#, fuzzy
-msgid "Ext. NumberZap"
-msgstr "Numero"
-
-#, fuzzy
-msgid "Timer+"
-msgstr "Timer"
-
-#, fuzzy
-msgid "Timerlist"
-msgstr "Elenco timer"
-
-#, fuzzy
-msgid "IMDB Search"
-msgstr "ricerca IMDB"
-
-#, fuzzy
-msgid "Quick EPG"
-msgstr "Modalità QuickEPG"
-
-#, fuzzy
-msgid "C"
-msgstr "CH"
-
-#, fuzzy
-msgid "D"
-msgstr "SD"
-
-msgid "TUNER:"
-msgstr ""
-
 msgid "Auto Modes Selected."
 msgstr "Modalità automatiche selezionate."
 
@@ -24617,209 +24757,6 @@ msgstr ""
 
 msgid "Video mode selection."
 msgstr "Selezione modalità video."
-
-msgid "0"
-msgstr "0"
-
-msgid "6"
-msgstr "6"
-
-msgid "7"
-msgstr "7"
-
-msgid "8"
-msgstr "8"
-
-msgid "9"
-msgstr "9"
-
-msgid "AutoMountManager"
-msgstr "AutoMountManager"
-
-msgid "BER:"
-msgstr "BER:"
-
-msgid "Backup Log"
-msgstr "Log di backup"
-
-msgid "Channellist menu"
-msgstr "Menu Lista canali"
-
-msgid "Command execution..."
-msgstr "Esecuzione comando..."
-
-msgid "Continue in background"
-msgstr "Continua in background"
-
-msgid "DVD file browser"
-msgstr "File browser DVD"
-
-msgid "Dish"
-msgstr "Parabola"
-
-msgid "Downloadable plugins"
-msgstr "Plugin disponibili"
-
-msgid "EPG selection"
-msgstr "Selezione EPG"
-
-msgid "Event view"
-msgstr "Visualizza programmazione"
-
-msgid "Event view menu"
-msgstr "Menu vista eventi"
-
-msgid "Index"
-msgstr "Indice"
-
-msgid "Installing software..."
-msgstr "Installazione del software..."
-
-msgid "Job overview"
-msgstr "Vista attività"
-
-msgid "Lock:"
-msgstr "Blocco:"
-
-msgid "MORE"
-msgstr "MOSTRA DI PIÚ"
-
-msgid "MediaPlayer"
-msgstr "MediaPlayer"
-
-msgid "Message..."
-msgstr "Messaggio..."
-
-msgid "Mute"
-msgstr "Muto"
-
-msgid "NEXT"
-msgstr "PROSSIMO"
-
-msgid "NOW"
-msgstr "ORA"
-
-msgid "Nameserver setup"
-msgstr "Impostazioni DNS"
-
-msgid "Network Neighbourhood"
-msgstr "Ricercare in risorse di rete vicine"
-
-msgid "Network configuration..."
-msgstr "Configurazione di rete..."
-
-msgid "Network test..."
-msgstr "Test della rete..."
-
-msgid "PIN code needed"
-msgstr "necessario un codice PIN"
-
-msgid "Parental control services editor"
-msgstr "Editor dei canali per il controllo genitori"
-
-msgid "PiP-Zap"
-msgstr "PiP-Zap"
-
-msgid "PiPSetup"
-msgstr "Impostazioni PIP"
-
-msgid "PiPZap"
-msgstr "PipZap"
-
-msgid "Plugin browser"
-msgstr "Navigatore plugin"
-
-msgid "Reception settings"
-msgstr "Impostazioni di ricezione"
-
-msgid "Release Notes"
-msgstr "Note di rilascio"
-
-msgid "SNR:"
-msgstr "SNR:"
-
-msgid "Satfinder"
-msgstr "SATFINDER"
-
-msgid "SecondInfoBar"
-msgstr "Seconda InfoBar"
-
-msgid "Select a bouquet"
-msgstr "Seleziona un bouquet"
-
-msgid "Select a movie"
-msgstr "Seleziona una registrazione"
-
-msgid "Select a network adapter"
-msgstr "Seleziona un adattatore di rete"
-
-msgid "Select a tuner"
-msgstr "Seleziona un tuner"
-
-msgid "Serviceinfo"
-msgstr "Info sul canale"
-
-msgid "Softwaremanager..."
-msgstr "GestioneSoftware..."
-
-msgid "Starting Softcam"
-msgstr "Avvio  Softcam"
-
-msgid "Stopping Softcam"
-msgstr "Arresto Softcam"
-
-msgid "Swap File Manager"
-msgstr "Manager del file di swap"
-
-msgid "Systeminfo"
-msgstr "Info sistema"
-
-msgid "Timer edit"
-msgstr "Modifica timer"
-
-msgid "Timer editor"
-msgstr "Modifica timer"
-
-msgid "Translation"
-msgstr "Traduzione"
-
-msgid "UnhandledKey"
-msgstr "Tasto non gestito"
-
-msgid "VideoEnhancementPreview"
-msgstr "Anteprima di miglioramento Video"
-
-msgid "Vol"
-msgstr "Vol"
-
-msgid "Volume"
-msgstr "Volume"
-
-msgid "config menu"
-msgstr "menu di configurazione"
-
-msgid "help..."
-msgstr "aiuto..."
-
-msgid "  REC  "
-msgstr ""
-
-#, fuzzy
-msgid "VMC"
-msgstr "MAC"
-
-msgid "by hmmmdada"
-msgstr ""
-
-msgid "Enigmalight"
-msgstr ""
-
-#, fuzzy
-msgid "EtPortal"
-msgstr "Portogallo"
-
-msgid "®"
-msgstr ""
 
 msgid "Check the internet connection"
 msgstr "Controllo connessione Internet"
@@ -25005,15 +24942,6 @@ msgstr "Il %s %s non ha una connessione internet"
 msgid "Your %s %s is not connected to the internet"
 msgstr "Il %s %s non è connesso a Internet"
 
-msgid "-"
-msgstr ""
-
-msgid " HI "
-msgstr ""
-
-msgid "REC "
-msgstr ""
-
 #, fuzzy
 msgid "E "
 msgstr " "
@@ -25036,6 +24964,99 @@ msgstr "IP"
 
 msgid "J"
 msgstr ""
+
+#, fuzzy
+msgid "EasyMedia"
+msgstr "Media"
+
+#, fuzzy
+msgid "Ext. NumberZap"
+msgstr "Numero"
+
+#, fuzzy
+msgid "Timer+"
+msgstr "Timer"
+
+#, fuzzy
+msgid "Timerlist"
+msgstr "Elenco timer"
+
+#, fuzzy
+msgid "MediaPortal"
+msgstr "Media Portal"
+
+#, fuzzy
+msgid "IMDB Search"
+msgstr "ricerca IMDB"
+
+#, fuzzy
+msgid "Quick EPG"
+msgstr "Modalità QuickEPG"
+
+#, fuzzy
+msgid "EtPortal"
+msgstr "Portogallo"
+
+msgid "®"
+msgstr ""
+
+msgid "Enigmalight"
+msgstr ""
+
+#, fuzzy
+msgid "VMC"
+msgstr "MAC"
+
+msgid "by hmmmdada"
+msgstr ""
+
+msgid ""
+"Please setup your user interface by adjusting the values till the edges of "
+"the red box are touching the edges of your TV.\n"
+"When you are ready press OK to continue."
+msgstr ""
+"Imposta l'interfaccia utente regolando i valori finché i bordi del "
+"rettangolo rosso, coincidono con i bordi della TV.\n"
+"A termine della configurazione, premere il tasto OK per continuare."
+
+msgid "-"
+msgstr ""
+
+#, fuzzy
+msgid "Small Test"
+msgstr "Piccolo avanzamento"
+
+#, fuzzy
+msgid "instant record"
+msgstr "Registrazione istantanea"
+
+#~ msgid "AC3"
+#~ msgstr "AC3"
+
+#~ msgid "DTS"
+#~ msgstr "DTS"
+
+#, fuzzy
+#~ msgid "Delete the all the text"
+#~ msgstr "Cancella un elemento"
+
+#~ msgid "Install settings, skins, software..."
+#~ msgstr "Installare settings, skin, software ..."
+
+#~ msgid "PicturePlayer"
+#~ msgstr "PicturePlayer"
+
+#~ msgid "Please choose he package..."
+#~ msgstr "Scegli i pacchetti…"
+
+#, python-format
+#~ msgid ""
+#~ "The installation of the default settings is finished. You can now "
+#~ "continue configuring your %s %s by pressing the OK button on the remote "
+#~ "control."
+#~ msgstr ""
+#~ "Il ripristino delle impostazioni di base è terminato. Configura il tuo %s "
+#~ "%s premendo il tasto OK del telecomando"
 
 #~ msgid "Autorecord location"
 #~ msgstr "Percorso registrazioni automatiche"
@@ -25130,9 +25151,6 @@ msgstr ""
 
 #~ msgid "false"
 #~ msgstr "falso"
-
-#~ msgid "off"
-#~ msgstr "Off"
 
 #~ msgid "on"
 #~ msgstr "on"

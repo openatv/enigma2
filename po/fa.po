@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-08-29 19:28+0000\n"
+"POT-Creation-Date: 2021-10-19 20:04+0000\n"
 "PO-Revision-Date: 2021-09-15 14:20+0000\n"
 "Last-Translator: Hamed Beyrami <h.beyrami@outlook.com>\n"
 "Language-Team: Persian <https://hosted.weblate.org/projects/openatv/"
@@ -2271,9 +2271,6 @@ msgid "AAC plus downmix"
 msgstr ""
 
 msgid "AAC transcoding"
-msgstr ""
-
-msgid "AC3"
 msgstr ""
 
 msgid "AC3 downmix"
@@ -5022,9 +5019,6 @@ msgid ""
 "Update now?"
 msgstr ""
 
-msgid "DTS"
-msgstr ""
-
 msgid "DTS HD downmix"
 msgstr ""
 
@@ -5431,10 +5425,6 @@ msgstr "حذف مورد لیست پخش"
 #, fuzzy
 msgid "Delete saved playlist"
 msgstr "حذف لیست پخش ذخیره شده"
-
-#, fuzzy
-msgid "Delete the all the text"
-msgstr "حذف مورد"
 
 msgid "Delete the character to the left of text cursor"
 msgstr ""
@@ -7352,6 +7342,9 @@ msgstr ""
 msgid "Gaelic"
 msgstr ""
 
+msgid "Galicia (Spain)"
+msgstr ""
+
 msgid "Galician"
 msgstr ""
 
@@ -8379,9 +8372,6 @@ msgid "Install picons on"
 msgstr "نصب پیکون ها در"
 
 msgid "Install plugins"
-msgstr ""
-
-msgid "Install settings, skins, software..."
 msgstr ""
 
 msgid "Installation finished."
@@ -11311,9 +11301,6 @@ msgstr ""
 msgid "Picture player"
 msgstr "نمایش دهنده تصاویر"
 
-msgid "PicturePlayer"
-msgstr ""
-
 #
 #, fuzzy
 msgid "Pictures"
@@ -11428,9 +11415,6 @@ msgstr ""
 
 msgid "Please choose an extension..."
 msgstr "لطفا یک بسته انتخاب کنید"
-
-msgid "Please choose he package..."
-msgstr ""
 
 msgid "Please choose reader"
 msgstr ""
@@ -15973,12 +15957,6 @@ msgstr ""
 msgid "The hash of a directory can't be calculated."
 msgstr ""
 
-#, python-format
-msgid ""
-"The installation of the default settings is finished. You can now continue "
-"configuring your %s %s by pressing the OK button on the remote control."
-msgstr ""
-
 msgid "The loopthrough setting is wrong."
 msgstr ""
 
@@ -18768,6 +18746,9 @@ msgstr "انصراف از ویرایش مورد علاقه"
 msgid "about to start"
 msgstr "نزدیک به شروع شدن"
 
+msgid "ac3"
+msgstr ""
+
 msgid "activate network adapter configuration"
 msgstr "فعال کردن پیکربندی آداپتور شبکه"
 
@@ -19143,6 +19124,9 @@ msgid "drama (general)"
 msgstr ""
 
 msgid "drivers"
+msgstr ""
+
+msgid "dts"
 msgstr ""
 
 msgid "eMMC"
@@ -19810,6 +19794,9 @@ msgstr ""
 
 msgid "of a SINGLE layer medium used."
 msgstr ""
+
+msgid "off"
+msgstr "خاموش"
 
 msgid "off or wpa2 on"
 msgstr ""
@@ -20580,13 +20567,163 @@ msgstr "حذف شد"
 msgid "zapping"
 msgstr "حذف شد"
 
-#, fuzzy
-msgid "Small Test"
-msgstr "در حال اجرا"
+msgid "Add plugin to Extensions menu*"
+msgstr ""
+
+msgid "Add plugin to main menu*"
+msgstr ""
+
+msgid "CPU priority for script execution"
+msgstr ""
+
+msgid "Change buttons for list navigation"
+msgstr ""
+
+msgid ""
+"Default CPU priority (nice) for executed scripts. This can reduce the load "
+"so that scripts do not interfere with the rest of the system. (higher values "
+"= lower priority)"
+msgstr ""
+
+msgid ""
+"Default I/O priority (ionice) for executed scripts. This can reduce the load "
+"so that scripts do not interfere with the rest of the system. (higher values "
+"= lower priority)"
+msgstr ""
 
 #, fuzzy
-msgid "instant record"
-msgstr "در حال ضبط کردن"
+msgid "Default directory sorting"
+msgstr "تنظیمات پیش فرض"
+
+#, fuzzy
+msgid "Default file sorting left"
+msgstr "نوع ضبط"
+
+#, fuzzy
+msgid "Default file sorting right"
+msgstr "نوع ضبط"
+
+#, fuzzy
+msgid "Default folder"
+msgstr "پیش فرض"
+
+msgid ""
+"Default folder if the left or right folder isn't saved, and target folder "
+"for button 5."
+msgstr ""
+
+msgid "Default sorting method for directories on both sides."
+msgstr ""
+
+msgid "Default sorting method for files on the left side."
+msgstr ""
+
+msgid "Default sorting method for files on the right side."
+msgstr ""
+
+#, fuzzy
+msgid "Edit position is the line end"
+msgstr "مراجعه به موقعیت"
+
+msgid "File Commander Settings"
+msgstr ""
+
+msgid "File checksums to calculate for button 9"
+msgstr ""
+
+msgid "File checksums/hashes"
+msgstr ""
+
+msgid ""
+"Filter extension for 'My Extension' setting of 'Filter extension'. Use the "
+"extension name without a '.'."
+msgstr ""
+
+msgid "Filter extension, (*) appears in title"
+msgstr ""
+
+msgid "Filter visible file classes by extension."
+msgstr ""
+
+msgid "I/O priority for script execution"
+msgstr ""
+
+msgid ""
+"If editing a file, can you set the cursor start position at end or begin of "
+"the line."
+msgstr ""
+
+msgid "Make File Commander accessible from the Extensions menu."
+msgstr ""
+
+msgid "Make File Commander accessible from the main menu."
+msgstr ""
+
+#, fuzzy
+msgid "My extension"
+msgstr "فقط بسته ها"
+
+msgid "Number of lines in script messages"
+msgstr ""
+
+#, fuzzy
+msgid "Save left folder on exit"
+msgstr "ذخیره آخرین شاخه هنگام خروج"
+
+#, fuzzy
+msgid "Save right folder on exit"
+msgstr "ذخیره آخرین شاخه هنگام خروج"
+
+msgid "Save the left folder list location on exit."
+msgstr ""
+
+msgid "Save the right folder list location on exit."
+msgstr ""
+
+msgid ""
+"Set for 'stout' and 'sterr' the number of lines in script info or script "
+"error messages."
+msgstr ""
+
+msgid "Show Script completed message"
+msgstr ""
+
+msgid "Show Task's completed message"
+msgstr ""
+
+msgid "Show directories first"
+msgstr ""
+
+msgid "Show directories on first or last in list.(must restart File Commander)"
+msgstr ""
+
+msgid ""
+"Show message if File Commander is not running and all Task's are completed."
+msgstr ""
+
+msgid ""
+"Show message if a background script ends successfully. Has 'stout', then "
+"this is displayed as additional info."
+msgstr ""
+
+#, fuzzy
+msgid "Show unknown extension as text"
+msgstr "مشاهده بسته ها"
+
+msgid "Show unknown file extensions with 'Addon File-Viewer'."
+msgstr ""
+
+msgid ""
+"Swap buttons right/left with channel plus/minus or the channel button "
+"changed always the side."
+msgstr ""
+
+msgid "Time between slides in image viewer slideshow."
+msgstr ""
+
+#, fuzzy
+msgid "Time for Slideshow"
+msgstr "مورد زمان"
 
 msgid "Exit the wizard"
 msgstr "خروج از هدایتگر"
@@ -20777,163 +20914,208 @@ msgid ""
 "Please choose what you want to do next."
 msgstr ""
 
-msgid "Add plugin to Extensions menu*"
+msgid "C"
+msgstr "C"
+
+msgid "D"
+msgstr "D"
+
+msgid "TUNER:"
 msgstr ""
 
-msgid "Add plugin to main menu*"
+msgid " HI "
 msgstr ""
 
-msgid "CPU priority for script execution"
+msgid "REC "
 msgstr ""
 
-msgid "Change buttons for list navigation"
+msgid "0"
+msgstr "0"
+
+msgid "6"
+msgstr "6"
+
+msgid "7"
+msgstr "7"
+
+msgid "8"
+msgstr "8"
+
+msgid "9"
+msgstr "9"
+
+msgid "AutoMountManager"
 msgstr ""
 
-msgid ""
-"Default CPU priority (nice) for executed scripts. This can reduce the load "
-"so that scripts do not interfere with the rest of the system. (higher values "
-"= lower priority)"
+msgid "BER:"
+msgstr "مقدار خطا:"
+
+msgid "Backup Log"
 msgstr ""
 
-msgid ""
-"Default I/O priority (ionice) for executed scripts. This can reduce the load "
-"so that scripts do not interfere with the rest of the system. (higher values "
-"= lower priority)"
+msgid "Channellist menu"
+msgstr "منوی لیست کانال"
+
+msgid "Command execution..."
+msgstr "اجرای فرمان..."
+
+msgid "Continue in background"
 msgstr ""
 
+#
 #, fuzzy
-msgid "Default directory sorting"
-msgstr "تنظیمات پیش فرض"
+msgid "DVD file browser"
+msgstr "مرورگر فایل DVD"
 
-#, fuzzy
-msgid "Default file sorting left"
-msgstr "نوع ضبط"
-
-#, fuzzy
-msgid "Default file sorting right"
-msgstr "نوع ضبط"
-
-#, fuzzy
-msgid "Default folder"
-msgstr "پیش فرض"
-
-msgid ""
-"Default folder if the left or right folder isn't saved, and target folder "
-"for button 5."
+msgid "Dish"
 msgstr ""
 
-msgid "Default sorting method for directories on both sides."
+msgid "Downloadable plugins"
+msgstr "پلاگین های قابل دانلود"
+
+msgid "EPG selection"
+msgstr "EPG انتخاب"
+
+msgid "Event view"
+msgstr "مشاهده رخداد"
+
+msgid "Event view menu"
+msgstr "منوی مشاهده رخداد"
+
+msgid "Index"
+msgstr "صفحه اصلی"
+
+msgid "Installing software..."
+msgstr "در حال نصب نرم افزار..."
+
+msgid "Job overview"
 msgstr ""
 
-msgid "Default sorting method for files on the left side."
+msgid "Lock:"
+msgstr "قفل:"
+
+msgid "MORE"
+msgstr "بیشتر"
+
+msgid "MediaPlayer"
 msgstr ""
 
-msgid "Default sorting method for files on the right side."
+msgid "Message..."
+msgstr "پیام..."
+
+msgid "Mute"
+msgstr "بی صدا"
+
+msgid "NEXT"
+msgstr "بعدی"
+
+msgid "NOW"
+msgstr "اکنون"
+
+msgid "Nameserver setup"
+msgstr "Nameserver تنظیمات"
+
+msgid "Network Neighbourhood"
 msgstr ""
 
-#, fuzzy
-msgid "Edit position is the line end"
-msgstr "مراجعه به موقعیت"
+msgid "Network configuration..."
+msgstr "پیکربندی شبکه..."
 
-msgid "File Commander Settings"
+msgid "Network test..."
+msgstr "تست شبکه..."
+
+msgid "PIN code needed"
+msgstr "رمز مورد نیاز است"
+
+msgid "Parental control services editor"
+msgstr "ویرایشگر کانال های کنترل والدین"
+
+msgid "PiP-Zap"
 msgstr ""
 
-msgid "File checksums to calculate for button 9"
+msgid "PiPSetup"
 msgstr ""
 
-msgid "File checksums/hashes"
+msgid "PiPZap"
 msgstr ""
 
-msgid ""
-"Filter extension for 'My Extension' setting of 'Filter extension'. Use the "
-"extension name without a '.'."
+msgid "Plugin browser"
+msgstr "مرورگر پلاگین"
+
+msgid "Reception settings"
+msgstr "تنظیمات پذیرش"
+
+msgid "Release Notes"
 msgstr ""
 
-msgid "Filter extension, (*) appears in title"
+msgid "SNR:"
+msgstr "کیفیت سیگنال:"
+
+msgid "Satfinder"
+msgstr "ماهواره یاب"
+
+msgid "SecondInfoBar"
 msgstr ""
 
-msgid "Filter visible file classes by extension."
+msgid "Select a bouquet"
+msgstr "انتخاب لیست"
+
+msgid "Select a movie"
+msgstr "انتخاب فیلم"
+
+msgid "Select a network adapter"
+msgstr "انتخاب آداپتور شبکه"
+
+msgid "Select a tuner"
+msgstr "انتخاب تیونر"
+
+msgid "Serviceinfo"
 msgstr ""
 
-msgid "I/O priority for script execution"
+msgid "Softwaremanager..."
 msgstr ""
 
-msgid ""
-"If editing a file, can you set the cursor start position at end or begin of "
-"the line."
+msgid "Starting Softcam"
 msgstr ""
 
-msgid "Make File Commander accessible from the Extensions menu."
+msgid "Stopping Softcam"
 msgstr ""
 
-msgid "Make File Commander accessible from the main menu."
+msgid "Subtitle settings"
 msgstr ""
 
-#, fuzzy
-msgid "My extension"
-msgstr "فقط بسته ها"
-
-msgid "Number of lines in script messages"
+msgid "Swap File Manager"
 msgstr ""
 
-#, fuzzy
-msgid "Save left folder on exit"
-msgstr "ذخیره آخرین شاخه هنگام خروج"
-
-#, fuzzy
-msgid "Save right folder on exit"
-msgstr "ذخیره آخرین شاخه هنگام خروج"
-
-msgid "Save the left folder list location on exit."
+msgid "Systeminfo"
 msgstr ""
 
-msgid "Save the right folder list location on exit."
+msgid "Timer edit"
 msgstr ""
 
-msgid ""
-"Set for 'stout' and 'sterr' the number of lines in script info or script "
-"error messages."
+msgid "Timer editor"
 msgstr ""
 
-msgid "Show Script completed message"
+msgid "Translation"
+msgstr "ترجمه"
+
+msgid "UnhandledKey"
+msgstr "کلید ناامن"
+
+msgid "VideoEnhancementPreview"
 msgstr ""
 
-msgid "Show Task's completed message"
+msgid "Vol"
 msgstr ""
 
-msgid "Show directories first"
+msgid "Volume"
+msgstr "حجم صدا"
+
+msgid "config menu"
+msgstr "منوی پیکربندی"
+
+msgid "help..."
 msgstr ""
-
-msgid "Show directories on first or last in list.(must restart File Commander)"
-msgstr ""
-
-msgid ""
-"Show message if File Commander is not running and all Task's are completed."
-msgstr ""
-
-msgid ""
-"Show message if a background script ends successfully. Has 'stout', then "
-"this is displayed as additional info."
-msgstr ""
-
-#, fuzzy
-msgid "Show unknown extension as text"
-msgstr "مشاهده بسته ها"
-
-msgid "Show unknown file extensions with 'Addon File-Viewer'."
-msgstr ""
-
-msgid ""
-"Swap buttons right/left with channel plus/minus or the channel button "
-"changed always the side."
-msgstr ""
-
-msgid "Time between slides in image viewer slideshow."
-msgstr ""
-
-#, fuzzy
-msgid "Time for Slideshow"
-msgstr "مورد زمان"
 
 msgid "Basic settings"
 msgstr ""
@@ -21046,14 +21228,7 @@ msgstr ""
 msgid "WOL Standby"
 msgstr ""
 
-#, fuzzy
-msgid "MediaPortal"
-msgstr "عمودی"
-
-msgid ""
-"Please setup your user interface by adjusting the values till the edges of "
-"the red box are touching the edges of your TV.\n"
-"When you are ready press OK to continue."
+msgid "  REC  "
 msgstr ""
 
 msgid ""
@@ -22320,6 +22495,9 @@ msgstr "آماده سازی سرعت پرش به عقب"
 msgid "Initial scroll delay"
 msgstr ""
 
+msgid "Input scroll position"
+msgstr ""
+
 #, fuzzy
 msgid "Instant recording location"
 msgstr "مکان ضبط کردن فوری"
@@ -23241,9 +23419,6 @@ msgstr "انتخاب زبان زیرنویس 4"
 msgid "Subtitle position"
 msgstr "مکان زیرنویس"
 
-msgid "Subtitle settings"
-msgstr ""
-
 msgid "Swap SNR in '%' with SNR in 'db'"
 msgstr ""
 
@@ -23824,6 +23999,11 @@ msgid ""
 msgstr ""
 
 msgid ""
+"When the input cursor reaches this point (percentage of the width, from "
+"either side) scroll the text to the cursor."
+msgstr ""
+
+msgid ""
 "When tuned to a service the system will normally scan the transponder for "
 "any changes and save them. Only set to 'yes' if you're absolutely sure what "
 "you're doing."
@@ -23891,38 +24071,6 @@ msgstr ""
 msgid "userdefined"
 msgstr "تعریف شده توسط کاربر"
 
-#, fuzzy
-msgid "EasyMedia"
-msgstr "عمودی"
-
-msgid "Ext. NumberZap"
-msgstr ""
-
-#, fuzzy
-msgid "Timer+"
-msgstr "زمان"
-
-#, fuzzy
-msgid "Timerlist"
-msgstr "ویرایش زمان"
-
-#, fuzzy
-msgid "IMDB Search"
-msgstr "جستجوی شرق"
-
-#, fuzzy
-msgid "Quick EPG"
-msgstr "سریع"
-
-msgid "C"
-msgstr "C"
-
-msgid "D"
-msgstr "D"
-
-msgid "TUNER:"
-msgstr ""
-
 #
 #, fuzzy
 msgid "Auto Modes Selected."
@@ -23961,210 +24109,6 @@ msgstr ""
 
 msgid "Video mode selection."
 msgstr "انتخاب حالت تصویر"
-
-msgid "0"
-msgstr "0"
-
-msgid "6"
-msgstr "6"
-
-msgid "7"
-msgstr "7"
-
-msgid "8"
-msgstr "8"
-
-msgid "9"
-msgstr "9"
-
-msgid "AutoMountManager"
-msgstr ""
-
-msgid "BER:"
-msgstr "مقدار خطا:"
-
-msgid "Backup Log"
-msgstr ""
-
-msgid "Channellist menu"
-msgstr "منوی لیست کانال"
-
-msgid "Command execution..."
-msgstr "اجرای فرمان..."
-
-msgid "Continue in background"
-msgstr ""
-
-#
-#, fuzzy
-msgid "DVD file browser"
-msgstr "مرورگر فایل DVD"
-
-msgid "Dish"
-msgstr ""
-
-msgid "Downloadable plugins"
-msgstr "پلاگین های قابل دانلود"
-
-msgid "EPG selection"
-msgstr "EPG انتخاب"
-
-msgid "Event view"
-msgstr "مشاهده رخداد"
-
-msgid "Event view menu"
-msgstr "منوی مشاهده رخداد"
-
-msgid "Index"
-msgstr "صفحه اصلی"
-
-msgid "Installing software..."
-msgstr "در حال نصب نرم افزار..."
-
-msgid "Job overview"
-msgstr ""
-
-msgid "Lock:"
-msgstr "قفل:"
-
-msgid "MORE"
-msgstr "بیشتر"
-
-msgid "MediaPlayer"
-msgstr ""
-
-msgid "Message..."
-msgstr "پیام..."
-
-msgid "Mute"
-msgstr "بی صدا"
-
-msgid "NEXT"
-msgstr "بعدی"
-
-msgid "NOW"
-msgstr "اکنون"
-
-msgid "Nameserver setup"
-msgstr "Nameserver تنظیمات"
-
-msgid "Network Neighbourhood"
-msgstr ""
-
-msgid "Network configuration..."
-msgstr "پیکربندی شبکه..."
-
-msgid "Network test..."
-msgstr "تست شبکه..."
-
-msgid "PIN code needed"
-msgstr "رمز مورد نیاز است"
-
-msgid "Parental control services editor"
-msgstr "ویرایشگر کانال های کنترل والدین"
-
-msgid "PiP-Zap"
-msgstr ""
-
-msgid "PiPSetup"
-msgstr ""
-
-msgid "PiPZap"
-msgstr ""
-
-msgid "Plugin browser"
-msgstr "مرورگر پلاگین"
-
-msgid "Reception settings"
-msgstr "تنظیمات پذیرش"
-
-msgid "Release Notes"
-msgstr ""
-
-msgid "SNR:"
-msgstr "کیفیت سیگنال:"
-
-msgid "Satfinder"
-msgstr "ماهواره یاب"
-
-msgid "SecondInfoBar"
-msgstr ""
-
-msgid "Select a bouquet"
-msgstr "انتخاب لیست"
-
-msgid "Select a movie"
-msgstr "انتخاب فیلم"
-
-msgid "Select a network adapter"
-msgstr "انتخاب آداپتور شبکه"
-
-msgid "Select a tuner"
-msgstr "انتخاب تیونر"
-
-msgid "Serviceinfo"
-msgstr ""
-
-msgid "Softwaremanager..."
-msgstr ""
-
-msgid "Starting Softcam"
-msgstr ""
-
-msgid "Stopping Softcam"
-msgstr ""
-
-msgid "Swap File Manager"
-msgstr ""
-
-msgid "Systeminfo"
-msgstr ""
-
-msgid "Timer edit"
-msgstr ""
-
-msgid "Timer editor"
-msgstr ""
-
-msgid "Translation"
-msgstr "ترجمه"
-
-msgid "UnhandledKey"
-msgstr "کلید ناامن"
-
-msgid "VideoEnhancementPreview"
-msgstr ""
-
-msgid "Vol"
-msgstr ""
-
-msgid "Volume"
-msgstr "حجم صدا"
-
-msgid "config menu"
-msgstr "منوی پیکربندی"
-
-msgid "help..."
-msgstr ""
-
-msgid "  REC  "
-msgstr ""
-
-msgid "VMC"
-msgstr ""
-
-msgid "by hmmmdada"
-msgstr ""
-
-msgid "Enigmalight"
-msgstr ""
-
-#, fuzzy
-msgid "EtPortal"
-msgstr "پرتغالی"
-
-msgid "®"
-msgstr ""
 
 msgid "Check the internet connection"
 msgstr ""
@@ -24314,15 +24258,6 @@ msgstr ""
 msgid "Your %s %s is not connected to the internet"
 msgstr ""
 
-msgid "-"
-msgstr ""
-
-msgid " HI "
-msgstr ""
-
-msgid "REC "
-msgstr ""
-
 #, fuzzy
 msgid "E "
 msgstr "E"
@@ -24341,6 +24276,70 @@ msgstr ""
 
 msgid "J"
 msgstr ""
+
+#, fuzzy
+msgid "EasyMedia"
+msgstr "عمودی"
+
+msgid "Ext. NumberZap"
+msgstr ""
+
+#, fuzzy
+msgid "Timer+"
+msgstr "زمان"
+
+#, fuzzy
+msgid "Timerlist"
+msgstr "ویرایش زمان"
+
+#, fuzzy
+msgid "MediaPortal"
+msgstr "عمودی"
+
+#, fuzzy
+msgid "IMDB Search"
+msgstr "جستجوی شرق"
+
+#, fuzzy
+msgid "Quick EPG"
+msgstr "سریع"
+
+#, fuzzy
+msgid "EtPortal"
+msgstr "پرتغالی"
+
+msgid "®"
+msgstr ""
+
+msgid "Enigmalight"
+msgstr ""
+
+msgid "VMC"
+msgstr ""
+
+msgid "by hmmmdada"
+msgstr ""
+
+msgid ""
+"Please setup your user interface by adjusting the values till the edges of "
+"the red box are touching the edges of your TV.\n"
+"When you are ready press OK to continue."
+msgstr ""
+
+msgid "-"
+msgstr ""
+
+#, fuzzy
+msgid "Small Test"
+msgstr "در حال اجرا"
+
+#, fuzzy
+msgid "instant record"
+msgstr "در حال ضبط کردن"
+
+#, fuzzy
+#~ msgid "Delete the all the text"
+#~ msgstr "حذف مورد"
 
 #~ msgid "Instant record location"
 #~ msgstr "مکان ضبط کردن فوری"
@@ -24399,9 +24398,6 @@ msgstr ""
 
 #~ msgid "false"
 #~ msgstr "غلط"
-
-#~ msgid "off"
-#~ msgstr "خاموش"
 
 #~ msgid "on"
 #~ msgstr "روشن"

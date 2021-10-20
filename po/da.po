@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-08-29 19:28+0000\n"
+"POT-Creation-Date: 2021-10-19 20:04+0000\n"
 "PO-Revision-Date: 2020-07-14 22:31+0200\n"
 "Last-Translator: JC 2020 <dk-translation@protonmail.com>\n"
 "Language-Team: Danskholdet <dk-translation@pm.me>\n"
@@ -2200,9 +2200,6 @@ msgstr "AAC Plus downmix"
 
 msgid "AAC transcoding"
 msgstr "AAC Omkodning"
-
-msgid "AC3"
-msgstr "AC3"
 
 msgid "AC3 downmix"
 msgstr "AC3 downmix"
@@ -4929,9 +4926,6 @@ msgstr ""
 "SLUK IKKE FOR DIN ENHED UNDER OPDATERING!\n"
 "Updater nu ?"
 
-msgid "DTS"
-msgstr "DTS"
-
 msgid "DTS HD downmix"
 msgstr "DTS HD downmix"
 
@@ -5318,10 +5312,6 @@ msgstr "Slet afspilningsliste post"
 
 msgid "Delete saved playlist"
 msgstr "Slet gemt afspilningsliste"
-
-#, fuzzy
-msgid "Delete the all the text"
-msgstr "Slet hele teksten"
 
 msgid "Delete the character to the left of text cursor"
 msgstr "Slet tegnet til venstre for tekstmarkøren"
@@ -7275,6 +7265,9 @@ msgstr "Gabon"
 msgid "Gaelic"
 msgstr ""
 
+msgid "Galicia (Spain)"
+msgstr ""
+
 msgid "Galician"
 msgstr ""
 
@@ -8319,9 +8312,6 @@ msgstr "Installer pikoner på"
 
 msgid "Install plugins"
 msgstr "Installer Plugins"
-
-msgid "Install settings, skins, software..."
-msgstr "Installer opsætning, grafisk tema, software..."
 
 msgid "Installation finished."
 msgstr "Installation gennemført."
@@ -11163,9 +11153,6 @@ msgstr "Luk Billede i Billede (PiP) skærm"
 msgid "Picture player"
 msgstr "Billedfremviser"
 
-msgid "PicturePlayer"
-msgstr "Billedfremviser"
-
 msgid "Pictures"
 msgstr "Billeder"
 
@@ -11270,9 +11257,6 @@ msgstr "Vælg venligst CCcam-Læser"
 
 msgid "Please choose an extension..."
 msgstr "Vælg venligst en udvidelse..."
-
-msgid "Please choose he package..."
-msgstr "Vælg venligst en pakke..."
 
 msgid "Please choose reader"
 msgstr "Vælg venligst læser"
@@ -15843,14 +15827,6 @@ msgstr ""
 msgid "The hash of a directory can't be calculated."
 msgstr "Hash-værdien af mappen kan ikke beregnes."
 
-#, python-format
-msgid ""
-"The installation of the default settings is finished. You can now continue "
-"configuring your %s %s by pressing the OK button on the remote control."
-msgstr ""
-"Installationen af standardindstillinger gennemført. Du kan nu fortsætte med "
-"at konfigurere din %s %s ved at trykke på OK knappen på fjernbetjeningen."
-
 msgid "The loopthrough setting is wrong."
 msgstr "Loopthrough indstillingen er forkert."
 
@@ -18816,6 +18792,9 @@ msgstr "afbryd favorit-redigering"
 msgid "about to start"
 msgstr "er ved at starte"
 
+msgid "ac3"
+msgstr ""
+
 msgid "activate network adapter configuration"
 msgstr "aktiver opsætning for netværksadapter"
 
@@ -19192,6 +19171,9 @@ msgstr "Drama (Generelt"
 
 msgid "drivers"
 msgstr "Drivere"
+
+msgid "dts"
+msgstr ""
 
 msgid "eMMC"
 msgstr "eMMC"
@@ -19844,6 +19826,9 @@ msgstr "af et DOBBELT-lags media anvendt."
 
 msgid "of a SINGLE layer medium used."
 msgstr "af et ENKELT-lags media anvendt."
+
+msgid "off"
+msgstr "Slukket"
 
 msgid "off or wpa2 on"
 msgstr "slukket eller WPA2 tændt"
@@ -20623,13 +20608,173 @@ msgstr "Zappet"
 msgid "zapping"
 msgstr "Zapper"
 
-#, fuzzy
-msgid "Small Test"
-msgstr "Kort fremgang"
+msgid "Add plugin to Extensions menu*"
+msgstr "Tilføj Plugin til Udvidelsesmenuen*"
 
-#, fuzzy
-msgid "instant record"
-msgstr "Straksoptagelse"
+msgid "Add plugin to main menu*"
+msgstr "Tilføj Plugin til Hovedmenu*"
+
+msgid "CPU priority for script execution"
+msgstr "CPU prioritet for skript-eksekvering"
+
+msgid "Change buttons for list navigation"
+msgstr "Ændre knapper for listenavigering"
+
+msgid ""
+"Default CPU priority (nice) for executed scripts. This can reduce the load "
+"so that scripts do not interfere with the rest of the system. (higher values "
+"= lower priority)"
+msgstr ""
+"Standard CPU prioritet (nice) for eksekverede skripts. Dette kan reducere "
+"belastningen så skripts ikke forstyrre resten af systemet. (højre værdier = "
+"lavere prioritet)"
+
+msgid ""
+"Default I/O priority (ionice) for executed scripts. This can reduce the load "
+"so that scripts do not interfere with the rest of the system. (higher values "
+"= lower priority)"
+msgstr ""
+"Standard I/O prioritet (ionice) for eksekverede skripts. Dette kan reducere "
+"belastningen så skripts ikke forstyrre resten af systemet. (højre værdier = "
+"lavere prioritet)"
+
+msgid "Default directory sorting"
+msgstr "Standard mappesortering"
+
+msgid "Default file sorting left"
+msgstr "Standard filsortering venstre"
+
+msgid "Default file sorting right"
+msgstr "Standard filsortering højre"
+
+msgid "Default folder"
+msgstr "Standardmappe"
+
+msgid ""
+"Default folder if the left or right folder isn't saved, and target folder "
+"for button 5."
+msgstr ""
+"Standardmappe hvis den venstre elle højre mappe ikke gemmes, og målmappe for "
+"knap 5."
+
+msgid "Default sorting method for directories on both sides."
+msgstr "Standard sorteringsmåde for mapper i begge sider."
+
+msgid "Default sorting method for files on the left side."
+msgstr "Standard sorteringsmåde for mapper i venstre side."
+
+msgid "Default sorting method for files on the right side."
+msgstr "Standard sorteringsmåde for mapper i højre side."
+
+msgid "Edit position is the line end"
+msgstr "Redigeringsposition er linjeslutning"
+
+msgid "File Commander Settings"
+msgstr "File Commander indstillinger"
+
+msgid "File checksums to calculate for button 9"
+msgstr "Fil kontrolsume der beregnes med knap 9"
+
+msgid "File checksums/hashes"
+msgstr "Fil kontrolsum/hashes"
+
+msgid ""
+"Filter extension for 'My Extension' setting of 'Filter extension'. Use the "
+"extension name without a '.'."
+msgstr ""
+"Filterudvidelse for 'Min udvidelse' indstillinger af 'Filterudvidelse'. Brug "
+"filtype navn uden et '.'."
+
+msgid "Filter extension, (*) appears in title"
+msgstr "Filterudvidelse, (*) forkommer i titel"
+
+msgid "Filter visible file classes by extension."
+msgstr "Filtrer synlige filklasser efter filtype."
+
+msgid "I/O priority for script execution"
+msgstr "I/O prioritet for skript-eksekvering"
+
+msgid ""
+"If editing a file, can you set the cursor start position at end or begin of "
+"the line."
+msgstr ""
+"For redigering af en fil, kan du sætte markørens startposition i slutningen "
+"eller i begyndelsen af linjen."
+
+msgid "Make File Commander accessible from the Extensions menu."
+msgstr "Gør File Commander tilgængelig fra udvidelsesmenuen."
+
+msgid "Make File Commander accessible from the main menu."
+msgstr "Gør File Commander tilgængelig fra hovedmenuen."
+
+msgid "My extension"
+msgstr "Mine udvidelser"
+
+msgid "Number of lines in script messages"
+msgstr "Antal linjer i skript-beskeder"
+
+msgid "Save left folder on exit"
+msgstr "Gem venstre mappe ved afslut"
+
+msgid "Save right folder on exit"
+msgstr "Gem højre mappe ved afslut"
+
+msgid "Save the left folder list location on exit."
+msgstr "Gem placeringen af venstre mappeliste ved afslut."
+
+msgid "Save the right folder list location on exit."
+msgstr "Gem placeringen af højre mappeliste ved afslut."
+
+msgid ""
+"Set for 'stout' and 'sterr' the number of lines in script info or script "
+"error messages."
+msgstr ""
+"Sæt antallet af linjer i beskeder fra skript-info eller skript-fejl for "
+"'stout' og 'sterr'."
+
+msgid "Show Script completed message"
+msgstr "Vis skript udført besked"
+
+msgid "Show Task's completed message"
+msgstr "Vis besked om opgave gennemført"
+
+msgid "Show directories first"
+msgstr "Vis mapper først"
+
+msgid "Show directories on first or last in list.(must restart File Commander)"
+msgstr ""
+"Vis mapper først eller sidst i liste (kræver genstart af File Commender)"
+
+msgid ""
+"Show message if File Commander is not running and all Task's are completed."
+msgstr ""
+"Vis besked hvis File Comander ikke kører og alle opgaver er gennemført."
+
+msgid ""
+"Show message if a background script ends successfully. Has 'stout', then "
+"this is displayed as additional info."
+msgstr ""
+"Vis besked hvis et baggrundsskript afsluttes med succes. Findes 'stdout', så "
+"vises dette som yderligere info."
+
+msgid "Show unknown extension as text"
+msgstr "Vis ukendet filtyper som tekst"
+
+msgid "Show unknown file extensions with 'Addon File-Viewer'."
+msgstr "Vis ukendte filtyper med 'Tilføjelsen File-Viewer'."
+
+msgid ""
+"Swap buttons right/left with channel plus/minus or the channel button "
+"changed always the side."
+msgstr ""
+"Byt venstre/højre knapper med kanal plus/minus ellers vil kanalknapperne "
+"altid skifte side."
+
+msgid "Time between slides in image viewer slideshow."
+msgstr "Tid mellem dias i billedefremviser diasshow."
+
+msgid "Time for Slideshow"
+msgstr "Tid for diasshow"
 
 msgid "Exit the wizard"
 msgstr "Afslut assistenten"
@@ -20841,173 +20986,210 @@ msgstr ""
 "\n"
 "Vælg venligst hvad du herefter vil gøre."
 
-msgid "Add plugin to Extensions menu*"
-msgstr "Tilføj Plugin til Udvidelsesmenuen*"
+#, fuzzy
+msgid "C"
+msgstr "CH"
 
-msgid "Add plugin to main menu*"
-msgstr "Tilføj Plugin til Hovedmenu*"
+#, fuzzy
+msgid "D"
+msgstr "SD"
 
-msgid "CPU priority for script execution"
-msgstr "CPU prioritet for skript-eksekvering"
-
-msgid "Change buttons for list navigation"
-msgstr "Ændre knapper for listenavigering"
-
-msgid ""
-"Default CPU priority (nice) for executed scripts. This can reduce the load "
-"so that scripts do not interfere with the rest of the system. (higher values "
-"= lower priority)"
+msgid "TUNER:"
 msgstr ""
-"Standard CPU prioritet (nice) for eksekverede skripts. Dette kan reducere "
-"belastningen så skripts ikke forstyrre resten af systemet. (højre værdier = "
-"lavere prioritet)"
 
-msgid ""
-"Default I/O priority (ionice) for executed scripts. This can reduce the load "
-"so that scripts do not interfere with the rest of the system. (higher values "
-"= lower priority)"
+msgid " HI "
 msgstr ""
-"Standard I/O prioritet (ionice) for eksekverede skripts. Dette kan reducere "
-"belastningen så skripts ikke forstyrre resten af systemet. (højre værdier = "
-"lavere prioritet)"
 
-msgid "Default directory sorting"
-msgstr "Standard mappesortering"
-
-msgid "Default file sorting left"
-msgstr "Standard filsortering venstre"
-
-msgid "Default file sorting right"
-msgstr "Standard filsortering højre"
-
-msgid "Default folder"
-msgstr "Standardmappe"
-
-msgid ""
-"Default folder if the left or right folder isn't saved, and target folder "
-"for button 5."
+msgid "REC "
 msgstr ""
-"Standardmappe hvis den venstre elle højre mappe ikke gemmes, og målmappe for "
-"knap 5."
 
-msgid "Default sorting method for directories on both sides."
-msgstr "Standard sorteringsmåde for mapper i begge sider."
+msgid "0"
+msgstr "0"
 
-msgid "Default sorting method for files on the left side."
-msgstr "Standard sorteringsmåde for mapper i venstre side."
+msgid "6"
+msgstr "6"
 
-msgid "Default sorting method for files on the right side."
-msgstr "Standard sorteringsmåde for mapper i højre side."
+msgid "7"
+msgstr "7"
 
-msgid "Edit position is the line end"
-msgstr "Redigeringsposition er linjeslutning"
+msgid "8"
+msgstr "8"
 
-msgid "File Commander Settings"
-msgstr "File Commander indstillinger"
+msgid "9"
+msgstr "9"
 
-msgid "File checksums to calculate for button 9"
-msgstr "Fil kontrolsume der beregnes med knap 9"
+#, fuzzy
+msgid "AutoMountManager"
+msgstr "AutoMountManager"
 
-msgid "File checksums/hashes"
-msgstr "Fil kontrolsum/hashes"
+msgid "BER:"
+msgstr "BER:"
 
-msgid ""
-"Filter extension for 'My Extension' setting of 'Filter extension'. Use the "
-"extension name without a '.'."
+msgid "Backup Log"
+msgstr "Sikkerhedskopi log"
+
+msgid "Channellist menu"
+msgstr "Kanalliste menu"
+
+msgid "Command execution..."
+msgstr "Kommando udføres..."
+
+msgid "Continue in background"
+msgstr "Fortsæt i baggrunden"
+
+msgid "DVD file browser"
+msgstr "DVD filbrowser"
+
+msgid "Dish"
+msgstr "Parabol"
+
+msgid "Downloadable plugins"
+msgstr "Plugins der kan hentes"
+
+msgid "EPG selection"
+msgstr "EPG udvalg"
+
+msgid "Event view"
+msgstr "Begivenshedsvisning"
+
+msgid "Event view menu"
+msgstr "Begivenhedsvisning menu"
+
+msgid "Index"
+msgstr "Oversigt"
+
+msgid "Installing software..."
+msgstr "Installlere software..."
+
+msgid "Job overview"
+msgstr "Opgave overblik"
+
+msgid "Lock:"
+msgstr "Lås:"
+
+msgid "MORE"
+msgstr "MERE"
+
+msgid "MediaPlayer"
+msgstr "Medieafspiller"
+
+msgid "Message..."
+msgstr "Besked..."
+
+msgid "Mute"
+msgstr "Lyd slukket"
+
+msgid "NEXT"
+msgstr "NÆSTE"
+
+msgid "NOW"
+msgstr "NU"
+
+msgid "Nameserver setup"
+msgstr "Navneserver opsætning"
+
+msgid "Network Neighbourhood"
+msgstr "Netværksnabolag"
+
+msgid "Network configuration..."
+msgstr "Netværkskonfiguration..."
+
+msgid "Network test..."
+msgstr "Netværkstest..."
+
+msgid "PIN code needed"
+msgstr "PIN kode nødvendig"
+
+msgid "Parental control services editor"
+msgstr "Forældrekontrol kanalredigering"
+
+msgid "PiP-Zap"
 msgstr ""
-"Filterudvidelse for 'Min udvidelse' indstillinger af 'Filterudvidelse'. Brug "
-"filtype navn uden et '.'."
 
-msgid "Filter extension, (*) appears in title"
-msgstr "Filterudvidelse, (*) forkommer i titel"
+msgid "PiPSetup"
+msgstr "PiP opsætning"
 
-msgid "Filter visible file classes by extension."
-msgstr "Filtrer synlige filklasser efter filtype."
-
-msgid "I/O priority for script execution"
-msgstr "I/O prioritet for skript-eksekvering"
-
-msgid ""
-"If editing a file, can you set the cursor start position at end or begin of "
-"the line."
+msgid "PiPZap"
 msgstr ""
-"For redigering af en fil, kan du sætte markørens startposition i slutningen "
-"eller i begyndelsen af linjen."
 
-msgid "Make File Commander accessible from the Extensions menu."
-msgstr "Gør File Commander tilgængelig fra udvidelsesmenuen."
+msgid "Plugin browser"
+msgstr "Plugin browser"
 
-msgid "Make File Commander accessible from the main menu."
-msgstr "Gør File Commander tilgængelig fra hovedmenuen."
+msgid "Reception settings"
+msgstr "Modtagerindstillinger"
 
-msgid "My extension"
-msgstr "Mine udvidelser"
+msgid "Release Notes"
+msgstr "Frigivelsesnoter"
 
-msgid "Number of lines in script messages"
-msgstr "Antal linjer i skript-beskeder"
+msgid "SNR:"
+msgstr "SNR:"
 
-msgid "Save left folder on exit"
-msgstr "Gem venstre mappe ved afslut"
+msgid "Satfinder"
+msgstr "Sat-søger"
 
-msgid "Save right folder on exit"
-msgstr "Gem højre mappe ved afslut"
+msgid "SecondInfoBar"
+msgstr "Sekundær Infobjælke"
 
-msgid "Save the left folder list location on exit."
-msgstr "Gem placeringen af venstre mappeliste ved afslut."
+msgid "Select a bouquet"
+msgstr "Vælg en Buket"
 
-msgid "Save the right folder list location on exit."
-msgstr "Gem placeringen af højre mappeliste ved afslut."
+msgid "Select a movie"
+msgstr "Vælg en film"
 
-msgid ""
-"Set for 'stout' and 'sterr' the number of lines in script info or script "
-"error messages."
-msgstr ""
-"Sæt antallet af linjer i beskeder fra skript-info eller skript-fejl for "
-"'stout' og 'sterr'."
+msgid "Select a network adapter"
+msgstr "Vælg en netværksadapter"
 
-msgid "Show Script completed message"
-msgstr "Vis skript udført besked"
+msgid "Select a tuner"
+msgstr "Vælg en Tuner"
 
-msgid "Show Task's completed message"
-msgstr "Vis besked om opgave gennemført"
+msgid "Serviceinfo"
+msgstr "Kanalinfo"
 
-msgid "Show directories first"
-msgstr "Vis mapper først"
+msgid "Softwaremanager..."
+msgstr "Software-håndtering..."
 
-msgid "Show directories on first or last in list.(must restart File Commander)"
-msgstr ""
-"Vis mapper først eller sidst i liste (kræver genstart af File Commender)"
+msgid "Starting Softcam"
+msgstr "Starter Softcam"
 
-msgid ""
-"Show message if File Commander is not running and all Task's are completed."
-msgstr ""
-"Vis besked hvis File Comander ikke kører og alle opgaver er gennemført."
+msgid "Stopping Softcam"
+msgstr "Stopper Softcam"
 
-msgid ""
-"Show message if a background script ends successfully. Has 'stout', then "
-"this is displayed as additional info."
-msgstr ""
-"Vis besked hvis et baggrundsskript afsluttes med succes. Findes 'stdout', så "
-"vises dette som yderligere info."
+msgid "Subtitle settings"
+msgstr "Undertekst indstillinger"
 
-msgid "Show unknown extension as text"
-msgstr "Vis ukendet filtyper som tekst"
+msgid "Swap File Manager"
+msgstr "Swap-filshåndtering"
 
-msgid "Show unknown file extensions with 'Addon File-Viewer'."
-msgstr "Vis ukendte filtyper med 'Tilføjelsen File-Viewer'."
+msgid "Systeminfo"
+msgstr "Systeminfo"
 
-msgid ""
-"Swap buttons right/left with channel plus/minus or the channel button "
-"changed always the side."
-msgstr ""
-"Byt venstre/højre knapper med kanal plus/minus ellers vil kanalknapperne "
-"altid skifte side."
+msgid "Timer edit"
+msgstr "Timer redigering"
 
-msgid "Time between slides in image viewer slideshow."
-msgstr "Tid mellem dias i billedefremviser diasshow."
+msgid "Timer editor"
+msgstr "Timer redigering"
 
-msgid "Time for Slideshow"
-msgstr "Tid for diasshow"
+msgid "Translation"
+msgstr "Oversættelse"
+
+msgid "UnhandledKey"
+msgstr "Knap uden funktion"
+
+msgid "VideoEnhancementPreview"
+msgstr "VideoEnhancementForhåndsvisning"
+
+#, fuzzy
+msgid "Vol"
+msgstr "Vol"
+
+msgid "Volume"
+msgstr "Lydstyrke"
+
+msgid "config menu"
+msgstr "konfigurationsmenu"
+
+msgid "help..."
+msgstr "Hjælp..."
 
 msgid "Basic settings"
 msgstr "Grundindstilllinger"
@@ -21115,18 +21297,8 @@ msgstr "Video"
 msgid "WOL Standby"
 msgstr "WOL Standby"
 
-#, fuzzy
-msgid "MediaPortal"
-msgstr "Medieportal"
-
-msgid ""
-"Please setup your user interface by adjusting the values till the edges of "
-"the red box are touching the edges of your TV.\n"
-"When you are ready press OK to continue."
+msgid "  REC  "
 msgstr ""
-"Sæt venligst din brugergrænseflade op ved at justere værdierne til kanterne "
-"af den røde kasse rører kanterne af dit TV.\n"
-"Tryk OK for at fortsætte når du er tilfreds."
 
 msgid ""
 "'Buffer in hours' or 'number of last events'. For deleting older timeshift "
@@ -22545,6 +22717,9 @@ msgstr "Indledende tilbagespolingshastighed"
 msgid "Initial scroll delay"
 msgstr "Indlendende rulleforsinkelse"
 
+msgid "Input scroll position"
+msgstr ""
+
 msgid "Instant recording location"
 msgstr "Straksoptagelse placering"
 
@@ -23486,9 +23661,6 @@ msgstr "Undertekstsprog valg 4"
 msgid "Subtitle position"
 msgstr "Position af undertekst"
 
-msgid "Subtitle settings"
-msgstr "Undertekst indstillinger"
-
 msgid "Swap SNR in '%' with SNR in 'db'"
 msgstr "Byt SNR i '%' ud med SNR i 'dB'"
 
@@ -24182,6 +24354,11 @@ msgstr ""
 "i EGP."
 
 msgid ""
+"When the input cursor reaches this point (percentage of the width, from "
+"either side) scroll the text to the cursor."
+msgstr ""
+
+msgid ""
 "When tuned to a service the system will normally scan the transponder for "
 "any changes and save them. Only set to 'yes' if you're absolutely sure what "
 "you're doing."
@@ -24254,41 +24431,6 @@ msgstr "skift 12 til 8 tegns visningstilstand"
 msgid "userdefined"
 msgstr "brugerdefineret"
 
-#, fuzzy
-msgid "EasyMedia"
-msgstr "Medie"
-
-#, fuzzy
-msgid "Ext. NumberZap"
-msgstr "Nummer"
-
-#, fuzzy
-msgid "Timer+"
-msgstr "Timer"
-
-#, fuzzy
-msgid "Timerlist"
-msgstr "Timerliste"
-
-#, fuzzy
-msgid "IMDB Search"
-msgstr "IMDb søgning"
-
-#, fuzzy
-msgid "Quick EPG"
-msgstr "Kvik EPG tilstand"
-
-#, fuzzy
-msgid "C"
-msgstr "CH"
-
-#, fuzzy
-msgid "D"
-msgstr "SD"
-
-msgid "TUNER:"
-msgstr ""
-
 msgid "Auto Modes Selected."
 msgstr "Autotilstand valgt."
 
@@ -24334,211 +24476,6 @@ msgstr ""
 
 msgid "Video mode selection."
 msgstr "Video tilstandsvalg."
-
-msgid "0"
-msgstr "0"
-
-msgid "6"
-msgstr "6"
-
-msgid "7"
-msgstr "7"
-
-msgid "8"
-msgstr "8"
-
-msgid "9"
-msgstr "9"
-
-#, fuzzy
-msgid "AutoMountManager"
-msgstr "AutoMountManager"
-
-msgid "BER:"
-msgstr "BER:"
-
-msgid "Backup Log"
-msgstr "Sikkerhedskopi log"
-
-msgid "Channellist menu"
-msgstr "Kanalliste menu"
-
-msgid "Command execution..."
-msgstr "Kommando udføres..."
-
-msgid "Continue in background"
-msgstr "Fortsæt i baggrunden"
-
-msgid "DVD file browser"
-msgstr "DVD filbrowser"
-
-msgid "Dish"
-msgstr "Parabol"
-
-msgid "Downloadable plugins"
-msgstr "Plugins der kan hentes"
-
-msgid "EPG selection"
-msgstr "EPG udvalg"
-
-msgid "Event view"
-msgstr "Begivenshedsvisning"
-
-msgid "Event view menu"
-msgstr "Begivenhedsvisning menu"
-
-msgid "Index"
-msgstr "Oversigt"
-
-msgid "Installing software..."
-msgstr "Installlere software..."
-
-msgid "Job overview"
-msgstr "Opgave overblik"
-
-msgid "Lock:"
-msgstr "Lås:"
-
-msgid "MORE"
-msgstr "MERE"
-
-msgid "MediaPlayer"
-msgstr "Medieafspiller"
-
-msgid "Message..."
-msgstr "Besked..."
-
-msgid "Mute"
-msgstr "Lyd slukket"
-
-msgid "NEXT"
-msgstr "NÆSTE"
-
-msgid "NOW"
-msgstr "NU"
-
-msgid "Nameserver setup"
-msgstr "Navneserver opsætning"
-
-msgid "Network Neighbourhood"
-msgstr "Netværksnabolag"
-
-msgid "Network configuration..."
-msgstr "Netværkskonfiguration..."
-
-msgid "Network test..."
-msgstr "Netværkstest..."
-
-msgid "PIN code needed"
-msgstr "PIN kode nødvendig"
-
-msgid "Parental control services editor"
-msgstr "Forældrekontrol kanalredigering"
-
-msgid "PiP-Zap"
-msgstr ""
-
-msgid "PiPSetup"
-msgstr "PiP opsætning"
-
-msgid "PiPZap"
-msgstr ""
-
-msgid "Plugin browser"
-msgstr "Plugin browser"
-
-msgid "Reception settings"
-msgstr "Modtagerindstillinger"
-
-msgid "Release Notes"
-msgstr "Frigivelsesnoter"
-
-msgid "SNR:"
-msgstr "SNR:"
-
-msgid "Satfinder"
-msgstr "Sat-søger"
-
-msgid "SecondInfoBar"
-msgstr "Sekundær Infobjælke"
-
-msgid "Select a bouquet"
-msgstr "Vælg en Buket"
-
-msgid "Select a movie"
-msgstr "Vælg en film"
-
-msgid "Select a network adapter"
-msgstr "Vælg en netværksadapter"
-
-msgid "Select a tuner"
-msgstr "Vælg en Tuner"
-
-msgid "Serviceinfo"
-msgstr "Kanalinfo"
-
-msgid "Softwaremanager..."
-msgstr "Software-håndtering..."
-
-msgid "Starting Softcam"
-msgstr "Starter Softcam"
-
-msgid "Stopping Softcam"
-msgstr "Stopper Softcam"
-
-msgid "Swap File Manager"
-msgstr "Swap-filshåndtering"
-
-msgid "Systeminfo"
-msgstr "Systeminfo"
-
-msgid "Timer edit"
-msgstr "Timer redigering"
-
-msgid "Timer editor"
-msgstr "Timer redigering"
-
-msgid "Translation"
-msgstr "Oversættelse"
-
-msgid "UnhandledKey"
-msgstr "Knap uden funktion"
-
-msgid "VideoEnhancementPreview"
-msgstr "VideoEnhancementForhåndsvisning"
-
-#, fuzzy
-msgid "Vol"
-msgstr "Vol"
-
-msgid "Volume"
-msgstr "Lydstyrke"
-
-msgid "config menu"
-msgstr "konfigurationsmenu"
-
-msgid "help..."
-msgstr "Hjælp..."
-
-msgid "  REC  "
-msgstr ""
-
-#, fuzzy
-msgid "VMC"
-msgstr "MAC"
-
-msgid "by hmmmdada"
-msgstr ""
-
-msgid "Enigmalight"
-msgstr ""
-
-#, fuzzy
-msgid "EtPortal"
-msgstr "Portugal"
-
-msgid "®"
-msgstr ""
 
 msgid "Check the internet connection"
 msgstr "Kontroller Internetforbindelse"
@@ -24721,15 +24658,6 @@ msgstr "Din %s %s har ikke en Internetforbindelse"
 msgid "Your %s %s is not connected to the internet"
 msgstr "Din %s %s er ikke forbundet til Internettet"
 
-msgid "-"
-msgstr ""
-
-msgid " HI "
-msgstr ""
-
-msgid "REC "
-msgstr ""
-
 #, fuzzy
 msgid "E "
 msgstr " "
@@ -24752,6 +24680,100 @@ msgstr "IP"
 
 msgid "J"
 msgstr ""
+
+#, fuzzy
+msgid "EasyMedia"
+msgstr "Medie"
+
+#, fuzzy
+msgid "Ext. NumberZap"
+msgstr "Nummer"
+
+#, fuzzy
+msgid "Timer+"
+msgstr "Timer"
+
+#, fuzzy
+msgid "Timerlist"
+msgstr "Timerliste"
+
+#, fuzzy
+msgid "MediaPortal"
+msgstr "Medieportal"
+
+#, fuzzy
+msgid "IMDB Search"
+msgstr "IMDb søgning"
+
+#, fuzzy
+msgid "Quick EPG"
+msgstr "Kvik EPG tilstand"
+
+#, fuzzy
+msgid "EtPortal"
+msgstr "Portugal"
+
+msgid "®"
+msgstr ""
+
+msgid "Enigmalight"
+msgstr ""
+
+#, fuzzy
+msgid "VMC"
+msgstr "MAC"
+
+msgid "by hmmmdada"
+msgstr ""
+
+msgid ""
+"Please setup your user interface by adjusting the values till the edges of "
+"the red box are touching the edges of your TV.\n"
+"When you are ready press OK to continue."
+msgstr ""
+"Sæt venligst din brugergrænseflade op ved at justere værdierne til kanterne "
+"af den røde kasse rører kanterne af dit TV.\n"
+"Tryk OK for at fortsætte når du er tilfreds."
+
+msgid "-"
+msgstr ""
+
+#, fuzzy
+msgid "Small Test"
+msgstr "Kort fremgang"
+
+#, fuzzy
+msgid "instant record"
+msgstr "Straksoptagelse"
+
+#~ msgid "AC3"
+#~ msgstr "AC3"
+
+#~ msgid "DTS"
+#~ msgstr "DTS"
+
+#, fuzzy
+#~ msgid "Delete the all the text"
+#~ msgstr "Slet hele teksten"
+
+#~ msgid "Install settings, skins, software..."
+#~ msgstr "Installer opsætning, grafisk tema, software..."
+
+#~ msgid "PicturePlayer"
+#~ msgstr "Billedfremviser"
+
+#~ msgid "Please choose he package..."
+#~ msgstr "Vælg venligst en pakke..."
+
+#, python-format
+#~ msgid ""
+#~ "The installation of the default settings is finished. You can now "
+#~ "continue configuring your %s %s by pressing the OK button on the remote "
+#~ "control."
+#~ msgstr ""
+#~ "Installationen af standardindstillinger gennemført. Du kan nu fortsætte "
+#~ "med at konfigurere din %s %s ved at trykke på OK knappen på "
+#~ "fjernbetjeningen."
 
 #~ msgid "Autorecord location"
 #~ msgstr "Autooptag placering"
@@ -24846,9 +24868,6 @@ msgstr ""
 
 #~ msgid "false"
 #~ msgstr "falsk"
-
-#~ msgid "off"
-#~ msgstr "Slukket"
 
 #~ msgid "on"
 #~ msgstr "Tændt"

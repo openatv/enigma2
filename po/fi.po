@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-08-29 19:28+0000\n"
+"POT-Creation-Date: 2021-10-19 20:04+0000\n"
 "PO-Revision-Date: 2021-08-30 14:03+0000\n"
 "Last-Translator: tomppaa <tomzza89@gmail.com>\n"
 "Language-Team: Finnish <https://hosted.weblate.org/projects/openatv/"
@@ -2209,9 +2209,6 @@ msgstr "AAC muunto stereoksi"
 
 msgid "AAC transcoding"
 msgstr "AAC uudelleenpakkaus"
-
-msgid "AC3"
-msgstr "AC3"
 
 msgid "AC3 downmix"
 msgstr "AC3 muunto stereoksi"
@@ -4903,9 +4900,6 @@ msgstr ""
 "ÄLÄ KATKAISE VIRTAA LAITETTA PÄIVITTÄESSÄ!\n"
 "Päivitetäänkö nyt?"
 
-msgid "DTS"
-msgstr "DTS"
-
 msgid "DTS HD downmix"
 msgstr "DTS muunto stereoksi"
 
@@ -5289,9 +5283,6 @@ msgstr "Poista soittolistan valittu kohde"
 
 msgid "Delete saved playlist"
 msgstr "Poista tallennettu soittolista"
-
-msgid "Delete the all the text"
-msgstr "Poista koko teksti"
 
 msgid "Delete the character to the left of text cursor"
 msgstr "Poista merkki kohdistimen vasemmalta puolelta"
@@ -7222,6 +7213,9 @@ msgstr "Gabon"
 msgid "Gaelic"
 msgstr "Gaelic"
 
+msgid "Galicia (Spain)"
+msgstr ""
+
 msgid "Galician"
 msgstr "Galician"
 
@@ -8255,9 +8249,6 @@ msgstr "Asenna kanavalogot"
 
 msgid "Install plugins"
 msgstr "Asenna lisäosia"
-
-msgid "Install settings, skins, software..."
-msgstr "Asenna asetukset, teema, ohjelmisto..."
 
 msgid "Installation finished."
 msgstr "Asennus suoritettu."
@@ -11042,9 +11033,6 @@ msgstr "PiP asetukset"
 msgid "Picture player"
 msgstr "Kuvien katselu"
 
-msgid "PicturePlayer"
-msgstr "Kuvien katselu"
-
 msgid "Pictures"
 msgstr "Kuvia"
 
@@ -11149,9 +11137,6 @@ msgstr "Valitse CCcam-lukija"
 
 msgid "Please choose an extension..."
 msgstr "Valitse laajennus."
-
-msgid "Please choose he package..."
-msgstr "Valitse paketti."
 
 msgid "Please choose reader"
 msgstr "Valitse lukija"
@@ -15646,12 +15631,6 @@ msgstr ""
 msgid "The hash of a directory can't be calculated."
 msgstr "Hash kansiota ei voida laskea."
 
-#, python-format
-msgid ""
-"The installation of the default settings is finished. You can now continue "
-"configuring your %s %s by pressing the OK button on the remote control."
-msgstr "Oletusasetusten asennus on valmis. Paina OK ja jatka %s %s määritystä."
-
 msgid "The loopthrough setting is wrong."
 msgstr "Läpisyötön asetus on väärä."
 
@@ -18574,6 +18553,9 @@ msgstr "peruuta muutokset ja poistu"
 msgid "about to start"
 msgstr "alkaa juuri"
 
+msgid "ac3"
+msgstr ""
+
 msgid "activate network adapter configuration"
 msgstr "aktivoi verkkosovittimen asetukset"
 
@@ -18945,6 +18927,9 @@ msgstr "draama (yleinen)"
 
 msgid "drivers"
 msgstr "ajurit"
+
+msgid "dts"
+msgstr ""
 
 msgid "eMMC"
 msgstr "eMMC"
@@ -19588,6 +19573,9 @@ msgstr "Dl dvd levystä käytetty."
 
 msgid "of a SINGLE layer medium used."
 msgstr "dvd levystä käytetty."
+
+msgid "off"
+msgstr "pois"
 
 msgid "off or wpa2 on"
 msgstr "Pois tai WPA2 päällä"
@@ -20358,11 +20346,175 @@ msgstr "vaihdettu"
 msgid "zapping"
 msgstr "vaihtaa"
 
-msgid "Small Test"
-msgstr "Pieni Testi"
+msgid "Add plugin to Extensions menu*"
+msgstr "Lisää laajennus laajennusvalikkoon*"
 
-msgid "instant record"
-msgstr "Pikatallennus"
+msgid "Add plugin to main menu*"
+msgstr "Lisää laajennus päävalikkoon"
+
+msgid "CPU priority for script execution"
+msgstr "Prosessorin prioriteetti sciptin suorittamiselle"
+
+msgid "Change buttons for list navigation"
+msgstr "Vaihda näppäimiä listassa liikkumista varten"
+
+msgid ""
+"Default CPU priority (nice) for executed scripts. This can reduce the load "
+"so that scripts do not interfere with the rest of the system. (higher values "
+"= lower priority)"
+msgstr ""
+"Normaali suorittimen prioriteetti (mukava) suoritetuille komento sarjoille. "
+"Tämä voi vähentää kuormaa, jotta skriptit eivät vaikuta muuhun "
+"järjestelmään. (korkeammat arvot = matalampi prioriteetti)"
+
+msgid ""
+"Default I/O priority (ionice) for executed scripts. This can reduce the load "
+"so that scripts do not interfere with the rest of the system. (higher values "
+"= lower priority)"
+msgstr ""
+"Standardi I / O-prioriteetti (ionice) suoritetuille skripteille. Tämä voi "
+"vähentää kuormaa, jotta skriptit eivät vaikuta muuhun järjestelmään. "
+"(korkeammat arvot = matalampi prioriteetti)"
+
+msgid "Default directory sorting"
+msgstr "Oletus hakemisto lajittelu"
+
+msgid "Default file sorting left"
+msgstr "Oletuslajittelu vasemmalla oleville tiedostoille"
+
+msgid "Default file sorting right"
+msgstr "Oletuslajittelu oikealla oleville tiedostoille"
+
+msgid "Default folder"
+msgstr "Oletus kansio"
+
+msgid ""
+"Default folder if the left or right folder isn't saved, and target folder "
+"for button 5."
+msgstr ""
+"Määrittää oletus kansio, jos vasenta tai oikeaa kansiota ei ole tallennettu,"
+"kohteen kohdekansio näppäin 5."
+
+msgid "Default sorting method for directories on both sides."
+msgstr "Tavallinen lajittelu hakemistoille molemmin puolin."
+
+msgid "Default sorting method for files on the left side."
+msgstr "Oletuslajittelu vasemmalla oleville tiedostoille."
+
+msgid "Default sorting method for files on the right side."
+msgstr "Oikealla olevien tiedostojen oletuslajittelu."
+
+msgid "Edit position is the line end"
+msgstr "Muokkaa sijaintia on rivin loppussa"
+
+msgid "File Commander Settings"
+msgstr "File Commander Asetukset"
+
+msgid "File checksums to calculate for button 9"
+msgstr "Tiedostojen tarkistussummien laskemiseksi avaimella 9\""
+
+msgid "File checksums/hashes"
+msgstr "Tiedostojen tarkistussummat / tiiviste"
+
+msgid ""
+"Filter extension for 'My Extension' setting of 'Filter extension'. Use the "
+"extension name without a '.'."
+msgstr ""
+"Filter laajennus 'minun laajennukselleni' 'Suodattimen laajennus' asetus. "
+"Käytä laajennuksen nimeä ilman '.' a."
+
+msgid "Filter extension, (*) appears in title"
+msgstr "Suodatinlaajennus (*) näkyy otsikossa"
+
+msgid "Filter visible file classes by extension."
+msgstr "Suodata näkyvät tiedostoluokat laajennuksen mukaan."
+
+msgid "I/O priority for script execution"
+msgstr "I / O-prioriteetti scriptin suorittamiselle"
+
+msgid ""
+"If editing a file, can you set the cursor start position at end or begin of "
+"the line."
+msgstr ""
+"Jos tiedostoa muokataan, voit määrittää tässä, onko kohdistin rivin alussa "
+"vai lopussa."
+
+msgid "Make File Commander accessible from the Extensions menu."
+msgstr "Tee File Commanderiin pääsy Laajennukset valikosta."
+
+msgid "Make File Commander accessible from the main menu."
+msgstr "Tee File Commanderiin pääsy päävalikosta."
+
+msgid "My extension"
+msgstr "Laajennukset"
+
+msgid "Number of lines in script messages"
+msgstr "Rivien lukumäärä scripti viesteissä"
+
+msgid "Save left folder on exit"
+msgstr "Tallenna vasen kansio poistuttaessa"
+
+msgid "Save right folder on exit"
+msgstr "Tallenna oikea kansio poistuttaessa"
+
+msgid "Save the left folder list location on exit."
+msgstr "Tallenna vasemman kansiolista sijainti poistuttaessa."
+
+msgid "Save the right folder list location on exit."
+msgstr "Tallenna oikealla kansiolista sijainti poistuttaessa."
+
+msgid ""
+"Set for 'stout' and 'sterr' the number of lines in script info or script "
+"error messages."
+msgstr ""
+"Määritä 'stout' ja 'sterr' rivien lukumäärä komentotiedoissa tai "
+"komentosarjavirheilmoituksissa."
+
+msgid "Show Script completed message"
+msgstr "Näyttä Scipti suoritettu viesti"
+
+msgid "Show Task's completed message"
+msgstr "Näyttä tehtävä suoritettu viesti"
+
+msgid "Show directories first"
+msgstr "Näytä hakemistotiedot ensin"
+
+msgid "Show directories on first or last in list.(must restart File Commander)"
+msgstr ""
+"Näytä hakemistot ensimmäisen tai viimeisen listassa. (File Commander "
+"tarvitsee uudelleen käynnistää)"
+
+msgid ""
+"Show message if File Commander is not running and all Task's are completed."
+msgstr ""
+"Näytä viesti, jos Tiedostojen hallinta ei ole käynnissä ja kaikki tehtävät "
+"on suoritettu."
+
+msgid ""
+"Show message if a background script ends successfully. Has 'stout', then "
+"this is displayed as additional info."
+msgstr ""
+"Näytä viesti, jos tausta komento on onnistuneesti loppuun suoritettu. "
+"Sisältää 'stout', tämä näytetään lisätietona."
+
+msgid "Show unknown extension as text"
+msgstr "Näytä tuntemattomat laajennukset tekstinä"
+
+msgid "Show unknown file extensions with 'Addon File-Viewer'."
+msgstr "Näytä tuntemattomat tiedostotunnisteet Lisäosa File Viewer."
+
+msgid ""
+"Swap buttons right/left with channel plus/minus or the channel button "
+"changed always the side."
+msgstr ""
+"Vaihda oikea / vasen painike kanavalla plus / miinus, tai kanavapainike "
+"vaihtaa aina sivua."
+
+msgid "Time between slides in image viewer slideshow."
+msgstr "Diaesityksen välinen aika kuvan katselun diaesityksessä."
+
+msgid "Time for Slideshow"
+msgstr "Diaesityksen aika"
 
 msgid "Exit the wizard"
 msgstr "Poistu ohjatusta asennustoiminnosta"
@@ -20567,175 +20719,206 @@ msgstr ""
 "\n"
 "Valitse mitä haluat tehdä seuraavaksi."
 
-msgid "Add plugin to Extensions menu*"
-msgstr "Lisää laajennus laajennusvalikkoon*"
+msgid "C"
+msgstr "C"
 
-msgid "Add plugin to main menu*"
-msgstr "Lisää laajennus päävalikkoon"
+msgid "D"
+msgstr "D"
 
-msgid "CPU priority for script execution"
-msgstr "Prosessorin prioriteetti sciptin suorittamiselle"
+msgid "TUNER:"
+msgstr "VIRITIN:"
 
-msgid "Change buttons for list navigation"
-msgstr "Vaihda näppäimiä listassa liikkumista varten"
+msgid " HI "
+msgstr " HEI "
 
-msgid ""
-"Default CPU priority (nice) for executed scripts. This can reduce the load "
-"so that scripts do not interfere with the rest of the system. (higher values "
-"= lower priority)"
-msgstr ""
-"Normaali suorittimen prioriteetti (mukava) suoritetuille komento sarjoille. "
-"Tämä voi vähentää kuormaa, jotta skriptit eivät vaikuta muuhun "
-"järjestelmään. (korkeammat arvot = matalampi prioriteetti)"
+msgid "REC "
+msgstr "REC "
 
-msgid ""
-"Default I/O priority (ionice) for executed scripts. This can reduce the load "
-"so that scripts do not interfere with the rest of the system. (higher values "
-"= lower priority)"
-msgstr ""
-"Standardi I / O-prioriteetti (ionice) suoritetuille skripteille. Tämä voi "
-"vähentää kuormaa, jotta skriptit eivät vaikuta muuhun järjestelmään. "
-"(korkeammat arvot = matalampi prioriteetti)"
+msgid "0"
+msgstr "0"
 
-msgid "Default directory sorting"
-msgstr "Oletus hakemisto lajittelu"
+msgid "6"
+msgstr "6"
 
-msgid "Default file sorting left"
-msgstr "Oletuslajittelu vasemmalla oleville tiedostoille"
+msgid "7"
+msgstr "7"
 
-msgid "Default file sorting right"
-msgstr "Oletuslajittelu oikealla oleville tiedostoille"
+msgid "8"
+msgstr "8"
 
-msgid "Default folder"
-msgstr "Oletus kansio"
+msgid "9"
+msgstr "9"
 
-msgid ""
-"Default folder if the left or right folder isn't saved, and target folder "
-"for button 5."
-msgstr ""
-"Määrittää oletus kansio, jos vasenta tai oikeaa kansiota ei ole tallennettu,"
-"kohteen kohdekansio näppäin 5."
+msgid "AutoMountManager"
+msgstr "Laitehallinta"
 
-msgid "Default sorting method for directories on both sides."
-msgstr "Tavallinen lajittelu hakemistoille molemmin puolin."
+msgid "BER:"
+msgstr "BER:"
 
-msgid "Default sorting method for files on the left side."
-msgstr "Oletuslajittelu vasemmalla oleville tiedostoille."
+msgid "Backup Log"
+msgstr "Varmuuskopioloki"
 
-msgid "Default sorting method for files on the right side."
-msgstr "Oikealla olevien tiedostojen oletuslajittelu."
+msgid "Channellist menu"
+msgstr "Kanavalistan tyyppi"
 
-msgid "Edit position is the line end"
-msgstr "Muokkaa sijaintia on rivin loppussa"
+msgid "Command execution..."
+msgstr "Peruutetaanko suoritus..."
 
-msgid "File Commander Settings"
-msgstr "File Commander Asetukset"
+msgid "Continue in background"
+msgstr "Jatka taustalla"
 
-msgid "File checksums to calculate for button 9"
-msgstr "Tiedostojen tarkistussummien laskemiseksi avaimella 9\""
+msgid "DVD file browser"
+msgstr "DVD-tiedostoselain"
 
-msgid "File checksums/hashes"
-msgstr "Tiedostojen tarkistussummat / tiiviste"
+msgid "Dish"
+msgstr "Lautasantenni"
 
-msgid ""
-"Filter extension for 'My Extension' setting of 'Filter extension'. Use the "
-"extension name without a '.'."
-msgstr ""
-"Filter laajennus 'minun laajennukselleni' 'Suodattimen laajennus' asetus. "
-"Käytä laajennuksen nimeä ilman '.' a."
+msgid "Downloadable plugins"
+msgstr "Lataa lisäosia"
 
-msgid "Filter extension, (*) appears in title"
-msgstr "Suodatinlaajennus (*) näkyy otsikossa"
+msgid "EPG selection"
+msgstr "EPG:n valinta"
 
-msgid "Filter visible file classes by extension."
-msgstr "Suodata näkyvät tiedostoluokat laajennuksen mukaan."
+msgid "Event view"
+msgstr "Ohjelmanäkymä"
 
-msgid "I/O priority for script execution"
-msgstr "I / O-prioriteetti scriptin suorittamiselle"
+msgid "Event view menu"
+msgstr "Lähetyksen näyttövalikko"
 
-msgid ""
-"If editing a file, can you set the cursor start position at end or begin of "
-"the line."
-msgstr ""
-"Jos tiedostoa muokataan, voit määrittää tässä, onko kohdistin rivin alussa "
-"vai lopussa."
+msgid "Index"
+msgstr "Indeksi"
 
-msgid "Make File Commander accessible from the Extensions menu."
-msgstr "Tee File Commanderiin pääsy Laajennukset valikosta."
+msgid "Installing software..."
+msgstr "Asennetaan ohjelmisto..."
 
-msgid "Make File Commander accessible from the main menu."
-msgstr "Tee File Commanderiin pääsy päävalikosta."
+msgid "Job overview"
+msgstr "Työn yleiskatsaus"
 
-msgid "My extension"
-msgstr "Laajennukset"
+msgid "Lock:"
+msgstr "Lukittu:"
 
-msgid "Number of lines in script messages"
-msgstr "Rivien lukumäärä scripti viesteissä"
+msgid "MORE"
+msgstr "Lisää"
 
-msgid "Save left folder on exit"
-msgstr "Tallenna vasen kansio poistuttaessa"
+msgid "MediaPlayer"
+msgstr "Mediasoitin"
 
-msgid "Save right folder on exit"
-msgstr "Tallenna oikea kansio poistuttaessa"
+msgid "Message..."
+msgstr "Viesti..."
 
-msgid "Save the left folder list location on exit."
-msgstr "Tallenna vasemman kansiolista sijainti poistuttaessa."
+msgid "Mute"
+msgstr "Mykistä"
 
-msgid "Save the right folder list location on exit."
-msgstr "Tallenna oikealla kansiolista sijainti poistuttaessa."
+msgid "NEXT"
+msgstr "Seuraava"
 
-msgid ""
-"Set for 'stout' and 'sterr' the number of lines in script info or script "
-"error messages."
-msgstr ""
-"Määritä 'stout' ja 'sterr' rivien lukumäärä komentotiedoissa tai "
-"komentosarjavirheilmoituksissa."
+msgid "NOW"
+msgstr "Nyt"
 
-msgid "Show Script completed message"
-msgstr "Näyttä Scipti suoritettu viesti"
+msgid "Nameserver setup"
+msgstr "Nimipalvelimen asetukset"
 
-msgid "Show Task's completed message"
-msgstr "Näyttä tehtävä suoritettu viesti"
+msgid "Network Neighbourhood"
+msgstr "Verkkoympäristö"
 
-msgid "Show directories first"
-msgstr "Näytä hakemistotiedot ensin"
+msgid "Network configuration..."
+msgstr "Verkkoasetukset."
 
-msgid "Show directories on first or last in list.(must restart File Commander)"
-msgstr ""
-"Näytä hakemistot ensimmäisen tai viimeisen listassa. (File Commander "
-"tarvitsee uudelleen käynnistää)"
+msgid "Network test..."
+msgstr "Lähiverkon testi."
 
-msgid ""
-"Show message if File Commander is not running and all Task's are completed."
-msgstr ""
-"Näytä viesti, jos Tiedostojen hallinta ei ole käynnissä ja kaikki tehtävät "
-"on suoritettu."
+msgid "PIN code needed"
+msgstr "PIN koodi vaaditaan"
 
-msgid ""
-"Show message if a background script ends successfully. Has 'stout', then "
-"this is displayed as additional info."
-msgstr ""
-"Näytä viesti, jos tausta komento on onnistuneesti loppuun suoritettu. "
-"Sisältää 'stout', tämä näytetään lisätietona."
+msgid "Parental control services editor"
+msgstr "Näytä lapsilukolla suojatut kanavat"
 
-msgid "Show unknown extension as text"
-msgstr "Näytä tuntemattomat laajennukset tekstinä"
+msgid "PiP-Zap"
+msgstr "PiP Kanavanvaihto"
 
-msgid "Show unknown file extensions with 'Addon File-Viewer'."
-msgstr "Näytä tuntemattomat tiedostotunnisteet Lisäosa File Viewer."
+msgid "PiPSetup"
+msgstr "PiP Asetukset"
 
-msgid ""
-"Swap buttons right/left with channel plus/minus or the channel button "
-"changed always the side."
-msgstr ""
-"Vaihda oikea / vasen painike kanavalla plus / miinus, tai kanavapainike "
-"vaihtaa aina sivua."
+msgid "PiPZap"
+msgstr "PiP kanavanvaihto"
 
-msgid "Time between slides in image viewer slideshow."
-msgstr "Diaesityksen välinen aika kuvan katselun diaesityksessä."
+msgid "Plugin browser"
+msgstr "Lisäosien selaus"
 
-msgid "Time for Slideshow"
-msgstr "Diaesityksen aika"
+msgid "Reception settings"
+msgstr "Virittimen asetukset"
+
+msgid "Release Notes"
+msgstr "Julkaisutiedot"
+
+msgid "SNR:"
+msgstr "SNR:"
+
+msgid "Satfinder"
+msgstr "Satelliittietsin"
+
+msgid "SecondInfoBar"
+msgstr "2. tietopalkki"
+
+msgid "Select a bouquet"
+msgstr "Valitse suosikkilista"
+
+msgid "Select a movie"
+msgstr "Elokuvan valinta"
+
+msgid "Select a network adapter"
+msgstr "Valitse verkkoadapteri"
+
+msgid "Select a tuner"
+msgstr "Valitse viritin"
+
+msgid "Serviceinfo"
+msgstr "Palvelutiedot"
+
+msgid "Softwaremanager..."
+msgstr "Ohjelmistonhallinta."
+
+msgid "Starting Softcam"
+msgstr "Käynnistetään Softcam"
+
+msgid "Stopping Softcam"
+msgstr "Pysäytä Softcam"
+
+msgid "Subtitle settings"
+msgstr "Tekstitys asetukset"
+
+msgid "Swap File Manager"
+msgstr "Swap muistin hallinta"
+
+msgid "Systeminfo"
+msgstr "Järjestelmätiedot"
+
+msgid "Timer edit"
+msgstr "Ajastuksen muokkaus"
+
+msgid "Timer editor"
+msgstr "Ajastuksen editori"
+
+msgid "Translation"
+msgstr "Käännös tiedot"
+
+msgid "UnhandledKey"
+msgstr "Käsittelemätön avain"
+
+msgid "VideoEnhancementPreview"
+msgstr "Kuvan optimointi esikatselu"
+
+msgid "Vol"
+msgstr "Äänenvoimakkuus"
+
+msgid "Volume"
+msgstr "Äänenvoimakkuus"
+
+msgid "config menu"
+msgstr "Valikon määritys"
+
+msgid "help..."
+msgstr "Avustaja"
 
 msgid "Basic settings"
 msgstr "Perusasetusten määrittäminen"
@@ -20842,17 +21025,8 @@ msgstr "Kuva"
 msgid "WOL Standby"
 msgstr "WOL Valmiustila"
 
-msgid "MediaPortal"
-msgstr "MediaPortaali"
-
-msgid ""
-"Please setup your user interface by adjusting the values till the edges of "
-"the red box are touching the edges of your TV.\n"
-"When you are ready press OK to continue."
-msgstr ""
-"Määritä käyttöliittymä säätämällä arvoja, kunnes punaisen ruudun reunat "
-"koskettavat television reunoja.\n"
-"Kun olet valmis, jatka painamalla OK."
+msgid "  REC  "
+msgstr "  REC  "
 
 msgid ""
 "'Buffer in hours' or 'number of last events'. For deleting older timeshift "
@@ -22273,6 +22447,9 @@ msgstr "Taaksepäinkelauksen aloitusnopeus"
 msgid "Initial scroll delay"
 msgstr "Rullausviive alussa"
 
+msgid "Input scroll position"
+msgstr ""
+
 msgid "Instant recording location"
 msgstr "Pikatallennuksen hakemisto"
 
@@ -23222,9 +23399,6 @@ msgstr "Tekstityksen kielivalinta 4"
 msgid "Subtitle position"
 msgstr "Tekstityksen sijainti"
 
-msgid "Subtitle settings"
-msgstr "Tekstitys asetukset"
-
 msgid "Swap SNR in '%' with SNR in 'db'"
 msgstr "Vaihda SNR ja dB keskenään tietopalkissa"
 
@@ -23898,6 +24072,11 @@ msgstr ""
 "oleva lopetusaika."
 
 msgid ""
+"When the input cursor reaches this point (percentage of the width, from "
+"either side) scroll the text to the cursor."
+msgstr ""
+
+msgid ""
 "When tuned to a service the system will normally scan the transponder for "
 "any changes and save them. Only set to 'yes' if you're absolutely sure what "
 "you're doing."
@@ -23968,33 +24147,6 @@ msgstr "vaihtaminen 12 merkistä 8 merkkiin näyttötila"
 msgid "userdefined"
 msgstr "käyttäjän määrittelemä"
 
-msgid "EasyMedia"
-msgstr "EasyMedia"
-
-msgid "Ext. NumberZap"
-msgstr "Numero"
-
-msgid "Timer+"
-msgstr "Ajastin+"
-
-msgid "Timerlist"
-msgstr "Ajastuslista"
-
-msgid "IMDB Search"
-msgstr "IMDb Haku"
-
-msgid "Quick EPG"
-msgstr "Avaa graafinen tietopalkki EPG\""
-
-msgid "C"
-msgstr "C"
-
-msgid "D"
-msgstr "D"
-
-msgid "TUNER:"
-msgstr "VIRITIN:"
-
 msgid "Auto Modes Selected."
 msgstr "Automaatti tila valittu."
 
@@ -24039,207 +24191,6 @@ msgstr ""
 
 msgid "Video mode selection."
 msgstr "Videotilan valinta."
-
-msgid "0"
-msgstr "0"
-
-msgid "6"
-msgstr "6"
-
-msgid "7"
-msgstr "7"
-
-msgid "8"
-msgstr "8"
-
-msgid "9"
-msgstr "9"
-
-msgid "AutoMountManager"
-msgstr "Laitehallinta"
-
-msgid "BER:"
-msgstr "BER:"
-
-msgid "Backup Log"
-msgstr "Varmuuskopioloki"
-
-msgid "Channellist menu"
-msgstr "Kanavalistan tyyppi"
-
-msgid "Command execution..."
-msgstr "Peruutetaanko suoritus..."
-
-msgid "Continue in background"
-msgstr "Jatka taustalla"
-
-msgid "DVD file browser"
-msgstr "DVD-tiedostoselain"
-
-msgid "Dish"
-msgstr "Lautasantenni"
-
-msgid "Downloadable plugins"
-msgstr "Lataa lisäosia"
-
-msgid "EPG selection"
-msgstr "EPG:n valinta"
-
-msgid "Event view"
-msgstr "Ohjelmanäkymä"
-
-msgid "Event view menu"
-msgstr "Lähetyksen näyttövalikko"
-
-msgid "Index"
-msgstr "Indeksi"
-
-msgid "Installing software..."
-msgstr "Asennetaan ohjelmisto..."
-
-msgid "Job overview"
-msgstr "Työn yleiskatsaus"
-
-msgid "Lock:"
-msgstr "Lukittu:"
-
-msgid "MORE"
-msgstr "Lisää"
-
-msgid "MediaPlayer"
-msgstr "Mediasoitin"
-
-msgid "Message..."
-msgstr "Viesti..."
-
-msgid "Mute"
-msgstr "Mykistä"
-
-msgid "NEXT"
-msgstr "Seuraava"
-
-msgid "NOW"
-msgstr "Nyt"
-
-msgid "Nameserver setup"
-msgstr "Nimipalvelimen asetukset"
-
-msgid "Network Neighbourhood"
-msgstr "Verkkoympäristö"
-
-msgid "Network configuration..."
-msgstr "Verkkoasetukset."
-
-msgid "Network test..."
-msgstr "Lähiverkon testi."
-
-msgid "PIN code needed"
-msgstr "PIN koodi vaaditaan"
-
-msgid "Parental control services editor"
-msgstr "Näytä lapsilukolla suojatut kanavat"
-
-msgid "PiP-Zap"
-msgstr "PiP Kanavanvaihto"
-
-msgid "PiPSetup"
-msgstr "PiP Asetukset"
-
-msgid "PiPZap"
-msgstr "PiP kanavanvaihto"
-
-msgid "Plugin browser"
-msgstr "Lisäosien selaus"
-
-msgid "Reception settings"
-msgstr "Virittimen asetukset"
-
-msgid "Release Notes"
-msgstr "Julkaisutiedot"
-
-msgid "SNR:"
-msgstr "SNR:"
-
-msgid "Satfinder"
-msgstr "Satelliittietsin"
-
-msgid "SecondInfoBar"
-msgstr "2. tietopalkki"
-
-msgid "Select a bouquet"
-msgstr "Valitse suosikkilista"
-
-msgid "Select a movie"
-msgstr "Elokuvan valinta"
-
-msgid "Select a network adapter"
-msgstr "Valitse verkkoadapteri"
-
-msgid "Select a tuner"
-msgstr "Valitse viritin"
-
-msgid "Serviceinfo"
-msgstr "Palvelutiedot"
-
-msgid "Softwaremanager..."
-msgstr "Ohjelmistonhallinta."
-
-msgid "Starting Softcam"
-msgstr "Käynnistetään Softcam"
-
-msgid "Stopping Softcam"
-msgstr "Pysäytä Softcam"
-
-msgid "Swap File Manager"
-msgstr "Swap muistin hallinta"
-
-msgid "Systeminfo"
-msgstr "Järjestelmätiedot"
-
-msgid "Timer edit"
-msgstr "Ajastuksen muokkaus"
-
-msgid "Timer editor"
-msgstr "Ajastuksen editori"
-
-msgid "Translation"
-msgstr "Käännös tiedot"
-
-msgid "UnhandledKey"
-msgstr "Käsittelemätön avain"
-
-msgid "VideoEnhancementPreview"
-msgstr "Kuvan optimointi esikatselu"
-
-msgid "Vol"
-msgstr "Äänenvoimakkuus"
-
-msgid "Volume"
-msgstr "Äänenvoimakkuus"
-
-msgid "config menu"
-msgstr "Valikon määritys"
-
-msgid "help..."
-msgstr "Avustaja"
-
-msgid "  REC  "
-msgstr "  REC  "
-
-msgid "VMC"
-msgstr "VMC"
-
-msgid "by hmmmdada"
-msgstr "tekijä hmmmdada"
-
-msgid "Enigmalight"
-msgstr "Enigmalight"
-
-msgid "EtPortal"
-msgstr "EtPortaali"
-
-msgid "®"
-msgstr "®"
 
 msgid "Check the internet connection"
 msgstr "Tarkista Internet-yhteys"
@@ -24425,15 +24376,6 @@ msgstr "Laitteella %s %s ei ole Internet-yhteyttä"
 msgid "Your %s %s is not connected to the internet"
 msgstr "Laitetta %s %s ei ole yhdistetty Internettiin"
 
-msgid "-"
-msgstr "-"
-
-msgid " HI "
-msgstr " HEI "
-
-msgid "REC "
-msgstr "REC "
-
 msgid "E "
 msgstr "O "
 
@@ -24451,6 +24393,86 @@ msgstr "I"
 
 msgid "J"
 msgstr "J"
+
+msgid "EasyMedia"
+msgstr "EasyMedia"
+
+msgid "Ext. NumberZap"
+msgstr "Numero"
+
+msgid "Timer+"
+msgstr "Ajastin+"
+
+msgid "Timerlist"
+msgstr "Ajastuslista"
+
+msgid "MediaPortal"
+msgstr "MediaPortaali"
+
+msgid "IMDB Search"
+msgstr "IMDb Haku"
+
+msgid "Quick EPG"
+msgstr "Avaa graafinen tietopalkki EPG\""
+
+msgid "EtPortal"
+msgstr "EtPortaali"
+
+msgid "®"
+msgstr "®"
+
+msgid "Enigmalight"
+msgstr "Enigmalight"
+
+msgid "VMC"
+msgstr "VMC"
+
+msgid "by hmmmdada"
+msgstr "tekijä hmmmdada"
+
+msgid ""
+"Please setup your user interface by adjusting the values till the edges of "
+"the red box are touching the edges of your TV.\n"
+"When you are ready press OK to continue."
+msgstr ""
+"Määritä käyttöliittymä säätämällä arvoja, kunnes punaisen ruudun reunat "
+"koskettavat television reunoja.\n"
+"Kun olet valmis, jatka painamalla OK."
+
+msgid "-"
+msgstr "-"
+
+msgid "Small Test"
+msgstr "Pieni Testi"
+
+msgid "instant record"
+msgstr "Pikatallennus"
+
+#~ msgid "AC3"
+#~ msgstr "AC3"
+
+#~ msgid "DTS"
+#~ msgstr "DTS"
+
+#~ msgid "Delete the all the text"
+#~ msgstr "Poista koko teksti"
+
+#~ msgid "Install settings, skins, software..."
+#~ msgstr "Asenna asetukset, teema, ohjelmisto..."
+
+#~ msgid "PicturePlayer"
+#~ msgstr "Kuvien katselu"
+
+#~ msgid "Please choose he package..."
+#~ msgstr "Valitse paketti."
+
+#, python-format
+#~ msgid ""
+#~ "The installation of the default settings is finished. You can now "
+#~ "continue configuring your %s %s by pressing the OK button on the remote "
+#~ "control."
+#~ msgstr ""
+#~ "Oletusasetusten asennus on valmis. Paina OK ja jatka %s %s määritystä."
 
 #~ msgid "Add / Delete the currently highlighted locale / language"
 #~ msgstr "Lisää / poista nykyinen korostettu alue / kieli"
@@ -24556,9 +24578,6 @@ msgstr "J"
 
 #~ msgid "false"
 #~ msgstr "epätosi"
-
-#~ msgid "off"
-#~ msgstr "pois"
 
 #~ msgid "on"
 #~ msgstr "päällä"

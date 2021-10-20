@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openATV / enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-08-29 19:28+0000\n"
+"POT-Creation-Date: 2021-10-19 20:04+0000\n"
 "PO-Revision-Date: 2017-11-21 13:26+0200\n"
 "Last-Translator: Satelitas\n"
 "Language-Team: TEAM <EMAIL@ADDRESS>\n"
@@ -2358,9 +2358,6 @@ msgstr "AAC смесване"
 
 msgid "AAC transcoding"
 msgstr "AAC транскодиране"
-
-msgid "AC3"
-msgstr "AC3"
 
 msgid "AC3 downmix"
 msgstr "AC3 вид смесване"
@@ -5128,9 +5125,6 @@ msgstr ""
 "НЕ ИЗКЛЮЧВАЙТЕ ЗАХРАНВАНЕТО НА ВАШИЯ ПРИЕМНИК ПО ВРЕМЕ НА ОБНОВЯВАНЕ!\n"
 "Актуализиране сега?"
 
-msgid "DTS"
-msgstr "DTS"
-
 #, fuzzy
 msgid "DTS HD downmix"
 msgstr "DTS цифрово смесване"
@@ -5531,10 +5525,6 @@ msgstr "Изтриване на запис от плейлиста"
 
 msgid "Delete saved playlist"
 msgstr "Изтриване на запазен плейлист"
-
-#, fuzzy
-msgid "Delete the all the text"
-msgstr "Изтриване на запис"
 
 msgid "Delete the character to the left of text cursor"
 msgstr ""
@@ -7502,6 +7492,9 @@ msgstr ""
 msgid "Gaelic"
 msgstr ""
 
+msgid "Galicia (Spain)"
+msgstr ""
+
 msgid "Galician"
 msgstr ""
 
@@ -8563,9 +8556,6 @@ msgstr "Инсталиране на пикони на"
 
 msgid "Install plugins"
 msgstr "Инсталиране на плъгини"
-
-msgid "Install settings, skins, software..."
-msgstr "Инсталиране на настройки, скинове, софтуер ..."
 
 msgid "Installation finished."
 msgstr "Инсталацията завърши."
@@ -11505,9 +11495,6 @@ msgstr "Настройка на картина в картина"
 msgid "Picture player"
 msgstr "Picture player"
 
-msgid "PicturePlayer"
-msgstr "PicturePlayer"
-
 #, fuzzy
 msgid "Pictures"
 msgstr "PicturePlayer"
@@ -11617,9 +11604,6 @@ msgstr "Моля, изберете CCcam-Reader"
 
 msgid "Please choose an extension..."
 msgstr "Моля, изберете разширение..."
-
-msgid "Please choose he package..."
-msgstr "Моля, изберете пакета..."
 
 msgid "Please choose reader"
 msgstr "Моля, изберете reader"
@@ -16213,15 +16197,6 @@ msgstr ""
 msgid "The hash of a directory can't be calculated."
 msgstr ""
 
-#, python-format
-msgid ""
-"The installation of the default settings is finished. You can now continue "
-"configuring your %s %s by pressing the OK button on the remote control."
-msgstr ""
-"Инсталацията на настройките по подразбиране е завършена. Сега можете да "
-"продължите конфигурацията на %s %s чрез натискане на бутона OK на "
-"дистанционното."
-
 msgid "The loopthrough setting is wrong."
 msgstr "Loopthrough настройката не е наред."
 
@@ -19228,6 +19203,9 @@ msgstr "отмяна на редактиране любими"
 msgid "about to start"
 msgstr "относно за старта"
 
+msgid "ac3"
+msgstr ""
+
 msgid "activate network adapter configuration"
 msgstr "активиране на конфигурацията на мрежовия адаптер"
 
@@ -19614,6 +19592,9 @@ msgstr "филм/драма (общо)"
 
 msgid "drivers"
 msgstr "драйвери"
+
+msgid "dts"
+msgstr ""
 
 msgid "eMMC"
 msgstr "eMMC"
@@ -20288,6 +20269,9 @@ msgstr "използване на двуслоен носител."
 
 msgid "of a SINGLE layer medium used."
 msgstr "използване на еднослоен носител."
+
+msgid "off"
+msgstr "изключен"
 
 msgid "off or wpa2 on"
 msgstr "изключване или WPA2 на"
@@ -21074,13 +21058,165 @@ msgstr "превключено"
 msgid "zapping"
 msgstr "превключено на"
 
-#, fuzzy
-msgid "Small Test"
-msgstr "Малък напредък"
+msgid "Add plugin to Extensions menu*"
+msgstr ""
+
+msgid "Add plugin to main menu*"
+msgstr ""
+
+msgid "CPU priority for script execution"
+msgstr ""
+
+msgid "Change buttons for list navigation"
+msgstr ""
+
+msgid ""
+"Default CPU priority (nice) for executed scripts. This can reduce the load "
+"so that scripts do not interfere with the rest of the system. (higher values "
+"= lower priority)"
+msgstr ""
+
+msgid ""
+"Default I/O priority (ionice) for executed scripts. This can reduce the load "
+"so that scripts do not interfere with the rest of the system. (higher values "
+"= lower priority)"
+msgstr ""
 
 #, fuzzy
-msgid "instant record"
-msgstr "Незабавен запис"
+msgid "Default directory sorting"
+msgstr "Настройки по подразразбиране"
+
+#, fuzzy
+msgid "Default file sorting left"
+msgstr "Тип на запис по подразбиране"
+
+#, fuzzy
+msgid "Default file sorting right"
+msgstr "Тип на запис по подразбиране"
+
+#, fuzzy
+msgid "Default folder"
+msgstr "Изберете папки"
+
+msgid ""
+"Default folder if the left or right folder isn't saved, and target folder "
+"for button 5."
+msgstr ""
+
+msgid "Default sorting method for directories on both sides."
+msgstr ""
+
+msgid "Default sorting method for files on the left side."
+msgstr ""
+
+msgid "Default sorting method for files on the right side."
+msgstr ""
+
+#, fuzzy
+msgid "Edit position is the line end"
+msgstr "Преместен в позиция на индекс"
+
+#, fuzzy
+msgid "File Commander Settings"
+msgstr "Видео настройки"
+
+msgid "File checksums to calculate for button 9"
+msgstr ""
+
+msgid "File checksums/hashes"
+msgstr ""
+
+msgid ""
+"Filter extension for 'My Extension' setting of 'Filter extension'. Use the "
+"extension name without a '.'."
+msgstr ""
+
+msgid "Filter extension, (*) appears in title"
+msgstr ""
+
+msgid "Filter visible file classes by extension."
+msgstr ""
+
+msgid "I/O priority for script execution"
+msgstr ""
+
+msgid ""
+"If editing a file, can you set the cursor start position at end or begin of "
+"the line."
+msgstr ""
+
+msgid "Make File Commander accessible from the Extensions menu."
+msgstr ""
+
+msgid "Make File Commander accessible from the main menu."
+msgstr ""
+
+#, fuzzy
+msgid "My extension"
+msgstr "разширения"
+
+msgid "Number of lines in script messages"
+msgstr ""
+
+#, fuzzy
+msgid "Save left folder on exit"
+msgstr "запази последната директория при изход"
+
+#, fuzzy
+msgid "Save right folder on exit"
+msgstr "запази последната директория при изход"
+
+msgid "Save the left folder list location on exit."
+msgstr ""
+
+msgid "Save the right folder list location on exit."
+msgstr ""
+
+msgid ""
+"Set for 'stout' and 'sterr' the number of lines in script info or script "
+"error messages."
+msgstr ""
+
+msgid "Show Script completed message"
+msgstr ""
+
+msgid "Show Task's completed message"
+msgstr ""
+
+#, fuzzy
+msgid "Show directories first"
+msgstr "Показване на филмовя списък"
+
+msgid "Show directories on first or last in list.(must restart File Commander)"
+msgstr ""
+
+msgid ""
+"Show message if File Commander is not running and all Task's are completed."
+msgstr ""
+
+msgid ""
+"Show message if a background script ends successfully. Has 'stout', then "
+"this is displayed as additional info."
+msgstr ""
+
+#, fuzzy
+msgid "Show unknown extension as text"
+msgstr "Показване в разширителния списък ?"
+
+msgid "Show unknown file extensions with 'Addon File-Viewer'."
+msgstr ""
+
+msgid ""
+"Swap buttons right/left with channel plus/minus or the channel button "
+"changed always the side."
+msgstr ""
+
+msgid "Time between slides in image viewer slideshow."
+msgstr ""
+
+#, fuzzy
+msgid "Time for Slideshow"
+msgstr "Общ преглед на таймера"
 
 msgid "Exit the wizard"
 msgstr "Изход от помощника"
@@ -21293,165 +21429,208 @@ msgstr ""
 "\n"
 "Моля, изберете какво искате да направите след това."
 
-msgid "Add plugin to Extensions menu*"
-msgstr ""
-
-msgid "Add plugin to main menu*"
-msgstr ""
-
-msgid "CPU priority for script execution"
-msgstr ""
-
-msgid "Change buttons for list navigation"
-msgstr ""
-
-msgid ""
-"Default CPU priority (nice) for executed scripts. This can reduce the load "
-"so that scripts do not interfere with the rest of the system. (higher values "
-"= lower priority)"
-msgstr ""
-
-msgid ""
-"Default I/O priority (ionice) for executed scripts. This can reduce the load "
-"so that scripts do not interfere with the rest of the system. (higher values "
-"= lower priority)"
-msgstr ""
+#, fuzzy
+msgid "C"
+msgstr "CH"
 
 #, fuzzy
-msgid "Default directory sorting"
-msgstr "Настройки по подразразбиране"
+msgid "D"
+msgstr "SD"
 
-#, fuzzy
-msgid "Default file sorting left"
-msgstr "Тип на запис по подразбиране"
-
-#, fuzzy
-msgid "Default file sorting right"
-msgstr "Тип на запис по подразбиране"
-
-#, fuzzy
-msgid "Default folder"
-msgstr "Изберете папки"
-
-msgid ""
-"Default folder if the left or right folder isn't saved, and target folder "
-"for button 5."
+msgid "TUNER:"
 msgstr ""
 
-msgid "Default sorting method for directories on both sides."
+msgid " HI "
 msgstr ""
 
-msgid "Default sorting method for files on the left side."
+msgid "REC "
 msgstr ""
 
-msgid "Default sorting method for files on the right side."
-msgstr ""
+msgid "0"
+msgstr "0"
 
-#, fuzzy
-msgid "Edit position is the line end"
-msgstr "Преместен в позиция на индекс"
+msgid "6"
+msgstr "6"
 
-#, fuzzy
-msgid "File Commander Settings"
-msgstr "Видео настройки"
+msgid "7"
+msgstr "7"
 
-msgid "File checksums to calculate for button 9"
-msgstr ""
+msgid "8"
+msgstr "8"
 
-msgid "File checksums/hashes"
-msgstr ""
+msgid "9"
+msgstr "9"
 
-msgid ""
-"Filter extension for 'My Extension' setting of 'Filter extension'. Use the "
-"extension name without a '.'."
-msgstr ""
+msgid "AutoMountManager"
+msgstr "Мениджър за автоматично монтиране"
 
-msgid "Filter extension, (*) appears in title"
-msgstr ""
+msgid "BER:"
+msgstr "BER:"
 
-msgid "Filter visible file classes by extension."
-msgstr ""
+msgid "Backup Log"
+msgstr "Дневник архив"
 
-msgid "I/O priority for script execution"
-msgstr ""
+msgid "Channellist menu"
+msgstr "Менюто на списъка с канали"
 
-msgid ""
-"If editing a file, can you set the cursor start position at end or begin of "
-"the line."
-msgstr ""
+msgid "Command execution..."
+msgstr "Изпълнение команди..."
 
-msgid "Make File Commander accessible from the Extensions menu."
-msgstr ""
+msgid "Continue in background"
+msgstr "Продължи във фонов"
 
-msgid "Make File Commander accessible from the main menu."
-msgstr ""
+msgid "DVD file browser"
+msgstr "DVD file browser"
 
-#, fuzzy
-msgid "My extension"
-msgstr "разширения"
+msgid "Dish"
+msgstr "Чиния"
 
-msgid "Number of lines in script messages"
-msgstr ""
+msgid "Downloadable plugins"
+msgstr "Downloadable plugins"
 
-#, fuzzy
-msgid "Save left folder on exit"
-msgstr "запази последната директория при изход"
+msgid "EPG selection"
+msgstr "EPG селекция"
 
-#, fuzzy
-msgid "Save right folder on exit"
-msgstr "запази последната директория при изход"
+msgid "Event view"
+msgstr "Преглед на събитие"
 
-msgid "Save the left folder list location on exit."
-msgstr ""
+msgid "Event view menu"
+msgstr "Меню за преглед на събитие"
 
-msgid "Save the right folder list location on exit."
-msgstr ""
+msgid "Index"
+msgstr "Индекс"
 
-msgid ""
-"Set for 'stout' and 'sterr' the number of lines in script info or script "
-"error messages."
-msgstr ""
+msgid "Installing software..."
+msgstr "Инсталирането на софтуер..."
 
-msgid "Show Script completed message"
-msgstr ""
+msgid "Job overview"
+msgstr "Общ преглед на работата"
 
-msgid "Show Task's completed message"
-msgstr ""
+msgid "Lock:"
+msgstr "Заключване:"
 
-#, fuzzy
-msgid "Show directories first"
-msgstr "Показване на филмовя списък"
+msgid "MORE"
+msgstr "ОЩЕ"
 
-msgid "Show directories on first or last in list.(must restart File Commander)"
-msgstr ""
+msgid "MediaPlayer"
+msgstr "MediaPlayer"
 
-msgid ""
-"Show message if File Commander is not running and all Task's are completed."
-msgstr ""
+msgid "Message..."
+msgstr "Съобщение..."
 
-msgid ""
-"Show message if a background script ends successfully. Has 'stout', then "
-"this is displayed as additional info."
-msgstr ""
+msgid "Mute"
+msgstr "Без звук"
 
-#, fuzzy
-msgid "Show unknown extension as text"
-msgstr "Показване в разширителния списък ?"
+msgid "NEXT"
+msgstr "СЛЕДВАЩ"
 
-msgid "Show unknown file extensions with 'Addon File-Viewer'."
-msgstr ""
+msgid "NOW"
+msgstr "СЕГА"
 
-msgid ""
-"Swap buttons right/left with channel plus/minus or the channel button "
-"changed always the side."
-msgstr ""
+msgid "Nameserver setup"
+msgstr "Nameserver setup"
 
-msgid "Time between slides in image viewer slideshow."
-msgstr ""
+msgid "Network Neighbourhood"
+msgstr "Network Neighbourhood"
 
-#, fuzzy
-msgid "Time for Slideshow"
-msgstr "Общ преглед на таймера"
+msgid "Network configuration..."
+msgstr "Мрежова конфигурация ..."
+
+msgid "Network test..."
+msgstr "Тест мрежа..."
+
+msgid "PIN code needed"
+msgstr "PIN код е необходим"
+
+msgid "Parental control services editor"
+msgstr "Редактор на сервизи за родителски контрол"
+
+msgid "PiP-Zap"
+msgstr "PiP-Zap"
+
+msgid "PiPSetup"
+msgstr "PiP настройка"
+
+msgid "PiPZap"
+msgstr "PiPZap"
+
+msgid "Plugin browser"
+msgstr "Браузър за плъгини"
+
+msgid "Reception settings"
+msgstr "Настройки на рецепцията"
+
+msgid "Release Notes"
+msgstr "Бележки издание"
+
+msgid "SNR:"
+msgstr "SNR:"
+
+msgid "Satfinder"
+msgstr "Търсач на сателит"
+
+msgid "SecondInfoBar"
+msgstr "SecondInfoBar"
+
+msgid "Select a bouquet"
+msgstr "Изберете букет"
+
+msgid "Select a movie"
+msgstr "Изберете филм"
+
+msgid "Select a network adapter"
+msgstr "Изберете мрежов адаптер"
+
+msgid "Select a tuner"
+msgstr "Изберете тунер"
+
+msgid "Serviceinfo"
+msgstr "Сервизна информация"
+
+msgid "Softwaremanager..."
+msgstr "Мениджър софтуер ..."
+
+msgid "Starting Softcam"
+msgstr "Стартиране на Softcam"
+
+msgid "Stopping Softcam"
+msgstr "Спиране Softcam"
+
+msgid "Subtitle settings"
+msgstr "Настройки за субтитри"
+
+msgid "Swap File Manager"
+msgstr "Swap Файлов мениджър"
+
+msgid "Systeminfo"
+msgstr "Системна информация"
+
+msgid "Timer edit"
+msgstr "Редактиране таймер"
+
+msgid "Timer editor"
+msgstr "Таймер редактор"
+
+msgid "Translation"
+msgstr "Превод"
+
+msgid "UnhandledKey"
+msgstr "Необработен ключ"
+
+msgid "VideoEnhancementPreview"
+msgstr "Преглед видео подобрение"
+
+msgid "Vol"
+msgstr "Vol"
+
+msgid "Volume"
+msgstr "Сила на звука"
+
+msgid "config menu"
+msgstr "config menu"
+
+msgid "help..."
+msgstr "помощ..."
 
 msgid "Basic settings"
 msgstr "Основни настройки"
@@ -21563,18 +21742,8 @@ msgstr "Видео"
 msgid "WOL Standby"
 msgstr "WOL Standby"
 
-#, fuzzy
-msgid "MediaPortal"
-msgstr "Media Portal"
-
-msgid ""
-"Please setup your user interface by adjusting the values till the edges of "
-"the red box are touching the edges of your TV.\n"
-"When you are ready press OK to continue."
+msgid "  REC  "
 msgstr ""
-"Моля, регулирайте позицията на потребителския интерфейс. Ръбовете на "
-"червената зона трябва да докосват краищата на екрана на телевизора.\n"
-"Когато сте готови натиснете OK, за да продължите."
 
 msgid ""
 "'Buffer in hours' or 'number of last events'. For deleting older timeshift "
@@ -23018,6 +23187,9 @@ msgstr "Първоначално скорост назад"
 msgid "Initial scroll delay"
 msgstr "Първоначално забавяне превъртане"
 
+msgid "Input scroll position"
+msgstr ""
+
 msgid "Instant recording location"
 msgstr "Местопол. на незабавен запис"
 
@@ -23992,9 +24164,6 @@ msgstr "Избор на език за субтитри 4"
 msgid "Subtitle position"
 msgstr "Позиция на субтитрите"
 
-msgid "Subtitle settings"
-msgstr "Настройки за субтитри"
-
 msgid "Swap SNR in '%' with SNR in 'db'"
 msgstr "Разменени SNR в '%' с SNR в 'db'"
 
@@ -24689,6 +24858,11 @@ msgstr ""
 "чрез EPG."
 
 msgid ""
+"When the input cursor reaches this point (percentage of the width, from "
+"either side) scroll the text to the cursor."
+msgstr ""
+
+msgid ""
 "When tuned to a service the system will normally scan the transponder for "
 "any changes and save them. Only set to 'yes' if you're absolutely sure what "
 "you're doing."
@@ -24762,41 +24936,6 @@ msgid "userdefined"
 msgstr "дефиниран от потребителя"
 
 #, fuzzy
-msgid "EasyMedia"
-msgstr "Медиа"
-
-#, fuzzy
-msgid "Ext. NumberZap"
-msgstr "Номер"
-
-#, fuzzy
-msgid "Timer+"
-msgstr "Таймер"
-
-#, fuzzy
-msgid "Timerlist"
-msgstr "Списък с таймери"
-
-#, fuzzy
-msgid "IMDB Search"
-msgstr "IMDb Търсене"
-
-#, fuzzy
-msgid "Quick EPG"
-msgstr "Бърз EPG режим"
-
-#, fuzzy
-msgid "C"
-msgstr "CH"
-
-#, fuzzy
-msgid "D"
-msgstr "SD"
-
-msgid "TUNER:"
-msgstr ""
-
-#, fuzzy
 msgid "Auto Modes Selected."
 msgstr "не е избран CAId"
 
@@ -24839,209 +24978,6 @@ msgstr ""
 
 msgid "Video mode selection."
 msgstr "Избор на видео режим."
-
-msgid "0"
-msgstr "0"
-
-msgid "6"
-msgstr "6"
-
-msgid "7"
-msgstr "7"
-
-msgid "8"
-msgstr "8"
-
-msgid "9"
-msgstr "9"
-
-msgid "AutoMountManager"
-msgstr "Мениджър за автоматично монтиране"
-
-msgid "BER:"
-msgstr "BER:"
-
-msgid "Backup Log"
-msgstr "Дневник архив"
-
-msgid "Channellist menu"
-msgstr "Менюто на списъка с канали"
-
-msgid "Command execution..."
-msgstr "Изпълнение команди..."
-
-msgid "Continue in background"
-msgstr "Продължи във фонов"
-
-msgid "DVD file browser"
-msgstr "DVD file browser"
-
-msgid "Dish"
-msgstr "Чиния"
-
-msgid "Downloadable plugins"
-msgstr "Downloadable plugins"
-
-msgid "EPG selection"
-msgstr "EPG селекция"
-
-msgid "Event view"
-msgstr "Преглед на събитие"
-
-msgid "Event view menu"
-msgstr "Меню за преглед на събитие"
-
-msgid "Index"
-msgstr "Индекс"
-
-msgid "Installing software..."
-msgstr "Инсталирането на софтуер..."
-
-msgid "Job overview"
-msgstr "Общ преглед на работата"
-
-msgid "Lock:"
-msgstr "Заключване:"
-
-msgid "MORE"
-msgstr "ОЩЕ"
-
-msgid "MediaPlayer"
-msgstr "MediaPlayer"
-
-msgid "Message..."
-msgstr "Съобщение..."
-
-msgid "Mute"
-msgstr "Без звук"
-
-msgid "NEXT"
-msgstr "СЛЕДВАЩ"
-
-msgid "NOW"
-msgstr "СЕГА"
-
-msgid "Nameserver setup"
-msgstr "Nameserver setup"
-
-msgid "Network Neighbourhood"
-msgstr "Network Neighbourhood"
-
-msgid "Network configuration..."
-msgstr "Мрежова конфигурация ..."
-
-msgid "Network test..."
-msgstr "Тест мрежа..."
-
-msgid "PIN code needed"
-msgstr "PIN код е необходим"
-
-msgid "Parental control services editor"
-msgstr "Редактор на сервизи за родителски контрол"
-
-msgid "PiP-Zap"
-msgstr "PiP-Zap"
-
-msgid "PiPSetup"
-msgstr "PiP настройка"
-
-msgid "PiPZap"
-msgstr "PiPZap"
-
-msgid "Plugin browser"
-msgstr "Браузър за плъгини"
-
-msgid "Reception settings"
-msgstr "Настройки на рецепцията"
-
-msgid "Release Notes"
-msgstr "Бележки издание"
-
-msgid "SNR:"
-msgstr "SNR:"
-
-msgid "Satfinder"
-msgstr "Търсач на сателит"
-
-msgid "SecondInfoBar"
-msgstr "SecondInfoBar"
-
-msgid "Select a bouquet"
-msgstr "Изберете букет"
-
-msgid "Select a movie"
-msgstr "Изберете филм"
-
-msgid "Select a network adapter"
-msgstr "Изберете мрежов адаптер"
-
-msgid "Select a tuner"
-msgstr "Изберете тунер"
-
-msgid "Serviceinfo"
-msgstr "Сервизна информация"
-
-msgid "Softwaremanager..."
-msgstr "Мениджър софтуер ..."
-
-msgid "Starting Softcam"
-msgstr "Стартиране на Softcam"
-
-msgid "Stopping Softcam"
-msgstr "Спиране Softcam"
-
-msgid "Swap File Manager"
-msgstr "Swap Файлов мениджър"
-
-msgid "Systeminfo"
-msgstr "Системна информация"
-
-msgid "Timer edit"
-msgstr "Редактиране таймер"
-
-msgid "Timer editor"
-msgstr "Таймер редактор"
-
-msgid "Translation"
-msgstr "Превод"
-
-msgid "UnhandledKey"
-msgstr "Необработен ключ"
-
-msgid "VideoEnhancementPreview"
-msgstr "Преглед видео подобрение"
-
-msgid "Vol"
-msgstr "Vol"
-
-msgid "Volume"
-msgstr "Сила на звука"
-
-msgid "config menu"
-msgstr "config menu"
-
-msgid "help..."
-msgstr "помощ..."
-
-msgid "  REC  "
-msgstr ""
-
-#, fuzzy
-msgid "VMC"
-msgstr "MAC:"
-
-msgid "by hmmmdada"
-msgstr ""
-
-msgid "Enigmalight"
-msgstr ""
-
-#, fuzzy
-msgid "EtPortal"
-msgstr "Et Portal"
-
-msgid "®"
-msgstr ""
 
 msgid "Check the internet connection"
 msgstr "Проверка на интернет  връзката"
@@ -25201,15 +25137,6 @@ msgstr "Вашият %s %s не разполага с интернет връз�
 msgid "Your %s %s is not connected to the internet"
 msgstr "Вашият %s %s не е свързан към интернет"
 
-msgid "-"
-msgstr ""
-
-msgid " HI "
-msgstr ""
-
-msgid "REC "
-msgstr ""
-
 #, fuzzy
 msgid "E "
 msgstr "E"
@@ -25232,6 +25159,100 @@ msgstr "IP:"
 
 msgid "J"
 msgstr ""
+
+#, fuzzy
+msgid "EasyMedia"
+msgstr "Медиа"
+
+#, fuzzy
+msgid "Ext. NumberZap"
+msgstr "Номер"
+
+#, fuzzy
+msgid "Timer+"
+msgstr "Таймер"
+
+#, fuzzy
+msgid "Timerlist"
+msgstr "Списък с таймери"
+
+#, fuzzy
+msgid "MediaPortal"
+msgstr "Media Portal"
+
+#, fuzzy
+msgid "IMDB Search"
+msgstr "IMDb Търсене"
+
+#, fuzzy
+msgid "Quick EPG"
+msgstr "Бърз EPG режим"
+
+#, fuzzy
+msgid "EtPortal"
+msgstr "Et Portal"
+
+msgid "®"
+msgstr ""
+
+msgid "Enigmalight"
+msgstr ""
+
+#, fuzzy
+msgid "VMC"
+msgstr "MAC:"
+
+msgid "by hmmmdada"
+msgstr ""
+
+msgid ""
+"Please setup your user interface by adjusting the values till the edges of "
+"the red box are touching the edges of your TV.\n"
+"When you are ready press OK to continue."
+msgstr ""
+"Моля, регулирайте позицията на потребителския интерфейс. Ръбовете на "
+"червената зона трябва да докосват краищата на екрана на телевизора.\n"
+"Когато сте готови натиснете OK, за да продължите."
+
+msgid "-"
+msgstr ""
+
+#, fuzzy
+msgid "Small Test"
+msgstr "Малък напредък"
+
+#, fuzzy
+msgid "instant record"
+msgstr "Незабавен запис"
+
+#~ msgid "AC3"
+#~ msgstr "AC3"
+
+#~ msgid "DTS"
+#~ msgstr "DTS"
+
+#, fuzzy
+#~ msgid "Delete the all the text"
+#~ msgstr "Изтриване на запис"
+
+#~ msgid "Install settings, skins, software..."
+#~ msgstr "Инсталиране на настройки, скинове, софтуер ..."
+
+#~ msgid "PicturePlayer"
+#~ msgstr "PicturePlayer"
+
+#~ msgid "Please choose he package..."
+#~ msgstr "Моля, изберете пакета..."
+
+#, python-format
+#~ msgid ""
+#~ "The installation of the default settings is finished. You can now "
+#~ "continue configuring your %s %s by pressing the OK button on the remote "
+#~ "control."
+#~ msgstr ""
+#~ "Инсталацията на настройките по подразбиране е завършена. Сега можете да "
+#~ "продължите конфигурацията на %s %s чрез натискане на бутона OK на "
+#~ "дистанционното."
 
 #~ msgid "Autorecord location"
 #~ msgstr "Местопол. за автоматично записване"
@@ -25328,9 +25349,6 @@ msgstr ""
 
 #~ msgid "false"
 #~ msgstr "невярно"
-
-#~ msgid "off"
-#~ msgstr "изключен"
 
 #~ msgid "on"
 #~ msgstr "on"

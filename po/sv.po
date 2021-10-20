@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-08-29 19:28+0000\n"
+"POT-Creation-Date: 2021-10-19 20:04+0000\n"
 "PO-Revision-Date: 2021-08-15 18:50+0000\n"
 "Last-Translator: openATV <openatv@gmail.com>\n"
 "Language-Team: Swedish <https://hosted.weblate.org/projects/openatv/"
@@ -2401,9 +2401,6 @@ msgstr "AAC nedmixning"
 
 msgid "AAC transcoding"
 msgstr "AAC omkodning"
-
-msgid "AC3"
-msgstr "AC3"
 
 msgid "AC3 downmix"
 msgstr "AC3 nedmixning"
@@ -5348,9 +5345,6 @@ msgid ""
 "Update now?"
 msgstr ""
 
-msgid "DTS"
-msgstr "DTS"
-
 #, fuzzy
 msgid "DTS HD downmix"
 msgstr "AAC nedmixning"
@@ -5780,11 +5774,6 @@ msgstr "Ta bort post i spellista"
 #
 msgid "Delete saved playlist"
 msgstr "Ta bort sparad spellista"
-
-#
-#, fuzzy
-msgid "Delete the all the text"
-msgstr "Ta bort post"
 
 msgid "Delete the character to the left of text cursor"
 msgstr ""
@@ -7896,6 +7885,9 @@ msgstr ""
 msgid "Gaelic"
 msgstr ""
 
+msgid "Galicia (Spain)"
+msgstr ""
+
 msgid "Galician"
 msgstr ""
 
@@ -9007,9 +8999,6 @@ msgstr "Installera picons på"
 
 msgid "Install plugins"
 msgstr "Installera plugins"
-
-msgid "Install settings, skins, software..."
-msgstr ""
 
 #
 msgid "Installation finished."
@@ -12199,9 +12188,6 @@ msgstr ""
 msgid "Picture player"
 msgstr "Bildspelare"
 
-msgid "PicturePlayer"
-msgstr ""
-
 #
 #, fuzzy
 msgid "Pictures"
@@ -12330,9 +12316,6 @@ msgstr "Vänligen välj CCcam-Läsare"
 #
 msgid "Please choose an extension..."
 msgstr "Vänligen välj en utökning..."
-
-msgid "Please choose he package..."
-msgstr ""
 
 msgid "Please choose reader"
 msgstr "Vänligen välj läsare"
@@ -17274,12 +17257,6 @@ msgstr ""
 msgid "The hash of a directory can't be calculated."
 msgstr ""
 
-#, python-format
-msgid ""
-"The installation of the default settings is finished. You can now continue "
-"configuring your %s %s by pressing the OK button on the remote control."
-msgstr ""
-
 msgid "The loopthrough setting is wrong."
 msgstr ""
 
@@ -20438,6 +20415,9 @@ msgstr "avbryt editera favoriter"
 msgid "about to start"
 msgstr "håller på att starta"
 
+msgid "ac3"
+msgstr ""
+
 #
 msgid "activate network adapter configuration"
 msgstr "aktivera nätverksconfiguration"
@@ -20865,6 +20845,9 @@ msgid "drama (general)"
 msgstr "film/drama (allmänt)"
 
 msgid "drivers"
+msgstr ""
+
+msgid "dts"
 msgstr ""
 
 msgid "eMMC"
@@ -21608,6 +21591,10 @@ msgstr "av DUAL layer media använt."
 #
 msgid "of a SINGLE layer medium used."
 msgstr "av SINGLE layer media använt."
+
+#
+msgid "off"
+msgstr "av"
 
 msgid "off or wpa2 on"
 msgstr "avstängd eller wpa2 på"
@@ -22469,15 +22456,172 @@ msgstr "zappad"
 msgid "zapping"
 msgstr "zappad"
 
-#
-#, fuzzy
-msgid "Small Test"
-msgstr "I utförande"
+msgid "Add plugin to Extensions menu*"
+msgstr ""
+
+msgid "Add plugin to main menu*"
+msgstr ""
+
+msgid "CPU priority for script execution"
+msgstr ""
+
+msgid "Change buttons for list navigation"
+msgstr ""
+
+msgid ""
+"Default CPU priority (nice) for executed scripts. This can reduce the load "
+"so that scripts do not interfere with the rest of the system. (higher values "
+"= lower priority)"
+msgstr ""
+
+msgid ""
+"Default I/O priority (ionice) for executed scripts. This can reduce the load "
+"so that scripts do not interfere with the rest of the system. (higher values "
+"= lower priority)"
+msgstr ""
 
 #
 #, fuzzy
-msgid "instant record"
-msgstr "Direktinspelning"
+msgid "Default directory sorting"
+msgstr "Standardinställningar"
+
+#, fuzzy
+msgid "Default file sorting left"
+msgstr "Förvald inspelningstyp"
+
+#, fuzzy
+msgid "Default file sorting right"
+msgstr "Förvald inspelningstyp"
+
+#, fuzzy
+msgid "Default folder"
+msgstr "Välj mappar"
+
+msgid ""
+"Default folder if the left or right folder isn't saved, and target folder "
+"for button 5."
+msgstr ""
+
+msgid "Default sorting method for directories on both sides."
+msgstr ""
+
+msgid "Default sorting method for files on the left side."
+msgstr ""
+
+msgid "Default sorting method for files on the right side."
+msgstr ""
+
+#
+#, fuzzy
+msgid "Edit position is the line end"
+msgstr "Flyttad till  indexposition "
+
+#, fuzzy
+msgid "File Commander Settings"
+msgstr "Bildförbättringar"
+
+msgid "File checksums to calculate for button 9"
+msgstr ""
+
+msgid "File checksums/hashes"
+msgstr ""
+
+msgid ""
+"Filter extension for 'My Extension' setting of 'Filter extension'. Use the "
+"extension name without a '.'."
+msgstr ""
+
+msgid "Filter extension, (*) appears in title"
+msgstr ""
+
+msgid "Filter visible file classes by extension."
+msgstr ""
+
+msgid "I/O priority for script execution"
+msgstr ""
+
+msgid ""
+"If editing a file, can you set the cursor start position at end or begin of "
+"the line."
+msgstr ""
+
+msgid "Make File Commander accessible from the Extensions menu."
+msgstr ""
+
+msgid "Make File Commander accessible from the main menu."
+msgstr ""
+
+#
+#, fuzzy
+msgid "My extension"
+msgstr "Endast utökningar."
+
+msgid "Number of lines in script messages"
+msgstr ""
+
+#
+#, fuzzy
+msgid "Save left folder on exit"
+msgstr "spara sista biblioteket vid avslut"
+
+#
+#, fuzzy
+msgid "Save right folder on exit"
+msgstr "spara sista biblioteket vid avslut"
+
+msgid "Save the left folder list location on exit."
+msgstr ""
+
+msgid "Save the right folder list location on exit."
+msgstr ""
+
+msgid ""
+"Set for 'stout' and 'sterr' the number of lines in script info or script "
+"error messages."
+msgstr ""
+
+msgid "Show Script completed message"
+msgstr ""
+
+msgid "Show Task's completed message"
+msgstr ""
+
+#
+#, fuzzy
+msgid "Show directories first"
+msgstr "Visa favoritlista"
+
+msgid "Show directories on first or last in list.(must restart File Commander)"
+msgstr ""
+
+msgid ""
+"Show message if File Commander is not running and all Task's are completed."
+msgstr ""
+
+msgid ""
+"Show message if a background script ends successfully. Has 'stout', then "
+"this is displayed as additional info."
+msgstr ""
+
+#, fuzzy
+msgid "Show unknown extension as text"
+msgstr "Visa i listan för utökningar ?"
+
+msgid "Show unknown file extensions with 'Addon File-Viewer'."
+msgstr ""
+
+msgid ""
+"Swap buttons right/left with channel plus/minus or the channel button "
+"changed always the side."
+msgstr ""
+
+msgid "Time between slides in image viewer slideshow."
+msgstr ""
+
+#
+#, fuzzy
+msgid "Time for Slideshow"
+msgstr "Timeröversikt "
 
 #
 msgid "Exit the wizard"
@@ -22712,172 +22856,208 @@ msgstr ""
 "\n"
 "Vänligen välj vad du vill göra härnäst."
 
-msgid "Add plugin to Extensions menu*"
+msgid "C"
+msgstr "C"
+
+msgid "D"
+msgstr "D"
+
+msgid "TUNER:"
+msgstr "Tuner :"
+
+msgid " HI "
 msgstr ""
 
-msgid "Add plugin to main menu*"
+msgid "REC "
 msgstr ""
 
-msgid "CPU priority for script execution"
+msgid "0"
+msgstr "0"
+
+msgid "6"
+msgstr "6"
+
+msgid "7"
+msgstr "7"
+
+msgid "8"
+msgstr "8"
+
+msgid "9"
+msgstr "9"
+
+msgid "AutoMountManager"
 msgstr ""
 
-msgid "Change buttons for list navigation"
+msgid "BER:"
+msgstr "BER :"
+
+msgid "Backup Log"
 msgstr ""
 
-msgid ""
-"Default CPU priority (nice) for executed scripts. This can reduce the load "
-"so that scripts do not interfere with the rest of the system. (higher values "
-"= lower priority)"
-msgstr ""
+msgid "Channellist menu"
+msgstr "Meny för kanallista"
 
-msgid ""
-"Default I/O priority (ionice) for executed scripts. This can reduce the load "
-"so that scripts do not interfere with the rest of the system. (higher values "
-"= lower priority)"
-msgstr ""
+msgid "Command execution..."
+msgstr "Kommandoexekvering..."
 
-#
-#, fuzzy
-msgid "Default directory sorting"
-msgstr "Standardinställningar"
-
-#, fuzzy
-msgid "Default file sorting left"
-msgstr "Förvald inspelningstyp"
-
-#, fuzzy
-msgid "Default file sorting right"
-msgstr "Förvald inspelningstyp"
-
-#, fuzzy
-msgid "Default folder"
-msgstr "Välj mappar"
-
-msgid ""
-"Default folder if the left or right folder isn't saved, and target folder "
-"for button 5."
-msgstr ""
-
-msgid "Default sorting method for directories on both sides."
-msgstr ""
-
-msgid "Default sorting method for files on the left side."
-msgstr ""
-
-msgid "Default sorting method for files on the right side."
+msgid "Continue in background"
 msgstr ""
 
 #
-#, fuzzy
-msgid "Edit position is the line end"
-msgstr "Flyttad till  indexposition "
+msgid "DVD file browser"
+msgstr "DVD Filutforskare"
 
-#, fuzzy
-msgid "File Commander Settings"
-msgstr "Bildförbättringar"
-
-msgid "File checksums to calculate for button 9"
+msgid "Dish"
 msgstr ""
 
-msgid "File checksums/hashes"
+msgid "Downloadable plugins"
+msgstr "Nerladdningsbara plugins"
+
+msgid "EPG selection"
+msgstr "EPG val"
+
+msgid "Event view"
+msgstr "Programöversikt"
+
+msgid "Event view menu"
+msgstr "Meny för programöversikt"
+
+msgid "Index"
+msgstr "Index"
+
+msgid "Installing software..."
+msgstr "Installerar mjukvara..."
+
+msgid "Job overview"
+msgstr "Arbets Vy"
+
+msgid "Lock:"
+msgstr "Lås :"
+
+msgid "MORE"
+msgstr "MER"
+
+msgid "MediaPlayer"
 msgstr ""
 
-msgid ""
-"Filter extension for 'My Extension' setting of 'Filter extension'. Use the "
-"extension name without a '.'."
+msgid "Message..."
+msgstr "Meddelande..."
+
+msgid "Mute"
+msgstr "Ljud av"
+
+msgid "NEXT"
+msgstr "NÄSTA"
+
+msgid "NOW"
+msgstr "NU"
+
+msgid "Nameserver setup"
+msgstr "Namnserverinstallation"
+
+msgid "Network Neighbourhood"
 msgstr ""
 
-msgid "Filter extension, (*) appears in title"
+msgid "Network configuration..."
+msgstr "Nätverkskonfiguration..."
+
+msgid "Network test..."
+msgstr "Nätverktest..."
+
+msgid "PIN code needed"
+msgstr "PIN-kod behövs"
+
+msgid "Parental control services editor"
+msgstr "Kanaleditor för föräldrakontroll"
+
+msgid "PiP-Zap"
 msgstr ""
 
-msgid "Filter visible file classes by extension."
+msgid "PiPSetup"
 msgstr ""
 
-msgid "I/O priority for script execution"
+msgid "PiPZap"
 msgstr ""
 
-msgid ""
-"If editing a file, can you set the cursor start position at end or begin of "
-"the line."
+msgid "Plugin browser"
+msgstr "Pluginhanterare"
+
+msgid "Reception settings"
+msgstr "Inställningar för mottagning"
+
+msgid "Release Notes"
 msgstr ""
 
-msgid "Make File Commander accessible from the Extensions menu."
-msgstr ""
-
-msgid "Make File Commander accessible from the main menu."
-msgstr ""
+msgid "SNR:"
+msgstr "SNR :"
 
 #
-#, fuzzy
-msgid "My extension"
-msgstr "Endast utökningar."
+msgid "Satfinder"
+msgstr "Satfinder"
 
-msgid "Number of lines in script messages"
+msgid "SecondInfoBar"
 msgstr ""
 
-#
-#, fuzzy
-msgid "Save left folder on exit"
-msgstr "spara sista biblioteket vid avslut"
+msgid "Select a bouquet"
+msgstr "Välj en favoritlista"
 
-#
-#, fuzzy
-msgid "Save right folder on exit"
-msgstr "spara sista biblioteket vid avslut"
+msgid "Select a movie"
+msgstr "Välj en film"
 
-msgid "Save the left folder list location on exit."
+msgid "Select a network adapter"
+msgstr "Välj en nätverksadapter"
+
+msgid "Select a tuner"
+msgstr "Välj en tuner"
+
+msgid "Serviceinfo"
 msgstr ""
 
-msgid "Save the right folder list location on exit."
+msgid "Softwaremanager..."
 msgstr ""
 
-msgid ""
-"Set for 'stout' and 'sterr' the number of lines in script info or script "
-"error messages."
+msgid "Starting Softcam"
 msgstr ""
 
-msgid "Show Script completed message"
+msgid "Stopping Softcam"
 msgstr ""
 
-msgid "Show Task's completed message"
+msgid "Subtitle settings"
+msgstr "Undertext Inställningar"
+
+msgid "Swap File Manager"
 msgstr ""
 
-#
-#, fuzzy
-msgid "Show directories first"
-msgstr "Visa favoritlista"
-
-msgid "Show directories on first or last in list.(must restart File Commander)"
+msgid "Systeminfo"
 msgstr ""
 
-msgid ""
-"Show message if File Commander is not running and all Task's are completed."
+msgid "Timer edit"
+msgstr "Ändra Timer"
+
+msgid "Timer editor"
 msgstr ""
 
-msgid ""
-"Show message if a background script ends successfully. Has 'stout', then "
-"this is displayed as additional info."
+msgid "Translation"
+msgstr "Översättning"
+
+msgid "UnhandledKey"
+msgstr "Okänd knapp"
+
+msgid "VideoEnhancementPreview"
 msgstr ""
 
-#, fuzzy
-msgid "Show unknown extension as text"
-msgstr "Visa i listan för utökningar ?"
-
-msgid "Show unknown file extensions with 'Addon File-Viewer'."
+msgid "Vol"
 msgstr ""
 
-msgid ""
-"Swap buttons right/left with channel plus/minus or the channel button "
-"changed always the side."
-msgstr ""
+msgid "Volume"
+msgstr "Volym"
 
-msgid "Time between slides in image viewer slideshow."
-msgstr ""
+msgid "config menu"
+msgstr "konfigurationsmeny"
 
-#
-#, fuzzy
-msgid "Time for Slideshow"
-msgstr "Timeröversikt "
+msgid "help..."
+msgstr "hjälp..."
 
 msgid "Basic settings"
 msgstr ""
@@ -23001,15 +23181,7 @@ msgstr ""
 msgid "WOL Standby"
 msgstr ""
 
-#
-#, fuzzy
-msgid "MediaPortal"
-msgstr "Vertikal"
-
-msgid ""
-"Please setup your user interface by adjusting the values till the edges of "
-"the red box are touching the edges of your TV.\n"
-"When you are ready press OK to continue."
+msgid "  REC  "
 msgstr ""
 
 msgid ""
@@ -24389,6 +24561,9 @@ msgstr "Initial snabbspolningshastighet bakåt"
 msgid "Initial scroll delay"
 msgstr "Initial scrollfördröjning"
 
+msgid "Input scroll position"
+msgstr ""
+
 #
 msgid "Instant recording location"
 msgstr "Direktinspelningens plats"
@@ -25372,9 +25547,6 @@ msgstr "Val av undertextspråk 4"
 msgid "Subtitle position"
 msgstr "Undertext position"
 
-msgid "Subtitle settings"
-msgstr "Undertext Inställningar"
-
 msgid "Swap SNR in '%' with SNR in 'db'"
 msgstr "Byt SNR i '%' mot SNR i 'db'"
 
@@ -26021,6 +26193,11 @@ msgstr ""
 "EPG."
 
 msgid ""
+"When the input cursor reaches this point (percentage of the width, from "
+"either side) scroll the text to the cursor."
+msgstr ""
+
+msgid ""
 "When tuned to a service the system will normally scan the transponder for "
 "any changes and save them. Only set to 'yes' if you're absolutely sure what "
 "you're doing."
@@ -26093,41 +26270,6 @@ msgstr "användardefinierad"
 
 #
 #, fuzzy
-msgid "EasyMedia"
-msgstr "Vertikal"
-
-#, fuzzy
-msgid "Ext. NumberZap"
-msgstr "Nummer"
-
-#, fuzzy
-msgid "Timer+"
-msgstr "Timer"
-
-#, fuzzy
-msgid "Timerlist"
-msgstr "Timerlista"
-
-#, fuzzy
-msgid "IMDB Search"
-msgstr "IMDb Sökning"
-
-#
-#, fuzzy
-msgid "Quick EPG"
-msgstr "Snabb"
-
-msgid "C"
-msgstr "C"
-
-msgid "D"
-msgstr "D"
-
-msgid "TUNER:"
-msgstr "Tuner :"
-
-#
-#, fuzzy
 msgid "Auto Modes Selected."
 msgstr "ingen CAId vald"
 
@@ -26176,212 +26318,6 @@ msgstr ""
 #
 msgid "Video mode selection."
 msgstr "Videolägesval."
-
-msgid "0"
-msgstr "0"
-
-msgid "6"
-msgstr "6"
-
-msgid "7"
-msgstr "7"
-
-msgid "8"
-msgstr "8"
-
-msgid "9"
-msgstr "9"
-
-msgid "AutoMountManager"
-msgstr ""
-
-msgid "BER:"
-msgstr "BER :"
-
-msgid "Backup Log"
-msgstr ""
-
-msgid "Channellist menu"
-msgstr "Meny för kanallista"
-
-msgid "Command execution..."
-msgstr "Kommandoexekvering..."
-
-msgid "Continue in background"
-msgstr ""
-
-#
-msgid "DVD file browser"
-msgstr "DVD Filutforskare"
-
-msgid "Dish"
-msgstr ""
-
-msgid "Downloadable plugins"
-msgstr "Nerladdningsbara plugins"
-
-msgid "EPG selection"
-msgstr "EPG val"
-
-msgid "Event view"
-msgstr "Programöversikt"
-
-msgid "Event view menu"
-msgstr "Meny för programöversikt"
-
-msgid "Index"
-msgstr "Index"
-
-msgid "Installing software..."
-msgstr "Installerar mjukvara..."
-
-msgid "Job overview"
-msgstr "Arbets Vy"
-
-msgid "Lock:"
-msgstr "Lås :"
-
-msgid "MORE"
-msgstr "MER"
-
-msgid "MediaPlayer"
-msgstr ""
-
-msgid "Message..."
-msgstr "Meddelande..."
-
-msgid "Mute"
-msgstr "Ljud av"
-
-msgid "NEXT"
-msgstr "NÄSTA"
-
-msgid "NOW"
-msgstr "NU"
-
-msgid "Nameserver setup"
-msgstr "Namnserverinstallation"
-
-msgid "Network Neighbourhood"
-msgstr ""
-
-msgid "Network configuration..."
-msgstr "Nätverkskonfiguration..."
-
-msgid "Network test..."
-msgstr "Nätverktest..."
-
-msgid "PIN code needed"
-msgstr "PIN-kod behövs"
-
-msgid "Parental control services editor"
-msgstr "Kanaleditor för föräldrakontroll"
-
-msgid "PiP-Zap"
-msgstr ""
-
-msgid "PiPSetup"
-msgstr ""
-
-msgid "PiPZap"
-msgstr ""
-
-msgid "Plugin browser"
-msgstr "Pluginhanterare"
-
-msgid "Reception settings"
-msgstr "Inställningar för mottagning"
-
-msgid "Release Notes"
-msgstr ""
-
-msgid "SNR:"
-msgstr "SNR :"
-
-#
-msgid "Satfinder"
-msgstr "Satfinder"
-
-msgid "SecondInfoBar"
-msgstr ""
-
-msgid "Select a bouquet"
-msgstr "Välj en favoritlista"
-
-msgid "Select a movie"
-msgstr "Välj en film"
-
-msgid "Select a network adapter"
-msgstr "Välj en nätverksadapter"
-
-msgid "Select a tuner"
-msgstr "Välj en tuner"
-
-msgid "Serviceinfo"
-msgstr ""
-
-msgid "Softwaremanager..."
-msgstr ""
-
-msgid "Starting Softcam"
-msgstr ""
-
-msgid "Stopping Softcam"
-msgstr ""
-
-msgid "Swap File Manager"
-msgstr ""
-
-msgid "Systeminfo"
-msgstr ""
-
-msgid "Timer edit"
-msgstr "Ändra Timer"
-
-msgid "Timer editor"
-msgstr ""
-
-msgid "Translation"
-msgstr "Översättning"
-
-msgid "UnhandledKey"
-msgstr "Okänd knapp"
-
-msgid "VideoEnhancementPreview"
-msgstr ""
-
-msgid "Vol"
-msgstr ""
-
-msgid "Volume"
-msgstr "Volym"
-
-msgid "config menu"
-msgstr "konfigurationsmeny"
-
-msgid "help..."
-msgstr "hjälp..."
-
-msgid "  REC  "
-msgstr ""
-
-#, fuzzy
-msgid "VMC"
-msgstr "MAC:"
-
-msgid "by hmmmdada"
-msgstr ""
-
-msgid "Enigmalight"
-msgstr ""
-
-#
-#, fuzzy
-msgid "EtPortal"
-msgstr "Portugisiska"
-
-msgid "®"
-msgstr ""
 
 msgid "Check the internet connection"
 msgstr "Kontrollera internetanslutningen"
@@ -26553,15 +26489,6 @@ msgstr ""
 msgid "Your %s %s is not connected to the internet"
 msgstr ""
 
-msgid "-"
-msgstr ""
-
-msgid " HI "
-msgstr ""
-
-msgid "REC "
-msgstr ""
-
 #
 #, fuzzy
 msgid "E "
@@ -26586,6 +26513,85 @@ msgstr "IP:"
 
 msgid "J"
 msgstr ""
+
+#
+#, fuzzy
+msgid "EasyMedia"
+msgstr "Vertikal"
+
+#, fuzzy
+msgid "Ext. NumberZap"
+msgstr "Nummer"
+
+#, fuzzy
+msgid "Timer+"
+msgstr "Timer"
+
+#, fuzzy
+msgid "Timerlist"
+msgstr "Timerlista"
+
+#
+#, fuzzy
+msgid "MediaPortal"
+msgstr "Vertikal"
+
+#, fuzzy
+msgid "IMDB Search"
+msgstr "IMDb Sökning"
+
+#
+#, fuzzy
+msgid "Quick EPG"
+msgstr "Snabb"
+
+#
+#, fuzzy
+msgid "EtPortal"
+msgstr "Portugisiska"
+
+msgid "®"
+msgstr ""
+
+msgid "Enigmalight"
+msgstr ""
+
+#, fuzzy
+msgid "VMC"
+msgstr "MAC:"
+
+msgid "by hmmmdada"
+msgstr ""
+
+msgid ""
+"Please setup your user interface by adjusting the values till the edges of "
+"the red box are touching the edges of your TV.\n"
+"When you are ready press OK to continue."
+msgstr ""
+
+msgid "-"
+msgstr ""
+
+#
+#, fuzzy
+msgid "Small Test"
+msgstr "I utförande"
+
+#
+#, fuzzy
+msgid "instant record"
+msgstr "Direktinspelning"
+
+#~ msgid "AC3"
+#~ msgstr "AC3"
+
+#~ msgid "DTS"
+#~ msgstr "DTS"
+
+#
+#, fuzzy
+#~ msgid "Delete the all the text"
+#~ msgstr "Ta bort post"
 
 #
 #~ msgid "Instant record location"
@@ -26666,10 +26672,6 @@ msgstr ""
 
 #~ msgid "false"
 #~ msgstr "falskt"
-
-#
-#~ msgid "off"
-#~ msgstr "av"
 
 #
 #~ msgid "on"

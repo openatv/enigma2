@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-08-29 19:28+0000\n"
+"POT-Creation-Date: 2021-10-19 20:04+0000\n"
 "PO-Revision-Date: 2019-07-27 12:19+0700\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -2237,9 +2237,6 @@ msgstr "AAC cộng với downmix"
 
 msgid "AAC transcoding"
 msgstr "AAC Chuyển mã"
-
-msgid "AC3"
-msgstr "AC3"
 
 msgid "AC3 downmix"
 msgstr "AC3 kết hợp"
@@ -4973,9 +4970,6 @@ msgstr ""
 "KHÔNG TẮT ĐIỆN THIẾT BỊ CỦA BẠN KHI CẬP NHẬT!\n"
 "Cập nhật bây giờ?"
 
-msgid "DTS"
-msgstr "DTS"
-
 msgid "DTS HD downmix"
 msgstr "DTS HD downmix"
 
@@ -5370,10 +5364,6 @@ msgstr "Xóa mục nhập danh sách phát"
 
 msgid "Delete saved playlist"
 msgstr "Xóa danh sách phát đã lưu"
-
-#, fuzzy
-msgid "Delete the all the text"
-msgstr "Xóa 1 phần tử"
 
 #, fuzzy
 msgid "Delete the character to the left of text cursor"
@@ -7347,6 +7337,9 @@ msgstr "Gabon"
 msgid "Gaelic"
 msgstr ""
 
+msgid "Galicia (Spain)"
+msgstr ""
+
 msgid "Galician"
 msgstr ""
 
@@ -8399,9 +8392,6 @@ msgstr "Cài đặt picons trên"
 
 msgid "Install plugins"
 msgstr "Cài đặt plugin"
-
-msgid "Install settings, skins, software..."
-msgstr "Cài đặt cài đặt, giao diện, phần mềm ..."
 
 msgid "Installation finished."
 msgstr "Cài đặt xong."
@@ -11288,9 +11278,6 @@ msgstr "Hình ảnh trong Cài đặt hình ảnh"
 msgid "Picture player"
 msgstr "Máy nghe nhạc"
 
-msgid "PicturePlayer"
-msgstr "Hình ảnh người chơi"
-
 msgid "Pictures"
 msgstr "Những bức ảnh"
 
@@ -11395,9 +11382,6 @@ msgstr "Vui lòng chọn CCcam-Reader"
 
 msgid "Please choose an extension..."
 msgstr "Vui lòng chọn một phần mở rộng ..."
-
-msgid "Please choose he package..."
-msgstr "Vui lòng chọn gói ..."
 
 msgid "Please choose reader"
 msgstr "Vui lòng chọn người đọc"
@@ -15992,14 +15976,6 @@ msgstr ""
 msgid "The hash of a directory can't be calculated."
 msgstr "Băm của một thư mục không thể được tính toán."
 
-#, python-format
-msgid ""
-"The installation of the default settings is finished. You can now continue "
-"configuring your %s %s by pressing the OK button on the remote control."
-msgstr ""
-"Quá trình cài đặt mặc định đã kết thúc. Bây giờ bạn có thể tiếp tục định cấu "
-"hình % s% s của mình bằng cách nhấn nút OK trên điều khiển từ xa."
-
 msgid "The loopthrough setting is wrong."
 msgstr "Cài đặt vòng lặp là sai."
 
@@ -18980,6 +18956,9 @@ msgstr "hủy bỏ yêu thích chỉnh sửa"
 msgid "about to start"
 msgstr "về để bắt đầu"
 
+msgid "ac3"
+msgstr ""
+
 msgid "activate network adapter configuration"
 msgstr "kích hoạt cấu hình bộ điều hợp mạng"
 
@@ -19359,6 +19338,9 @@ msgstr "phim / kịch (nói chung)"
 
 msgid "drivers"
 msgstr "lái xe"
+
+msgid "dts"
+msgstr ""
 
 msgid "eMMC"
 msgstr "eMMC"
@@ -20011,6 +19993,9 @@ msgstr "của một môi trường lớp DUAL được sử dụng."
 
 msgid "of a SINGLE layer medium used."
 msgstr "của một phương tiện lớp SINGLE được sử dụng."
+
+msgid "off"
+msgstr "tắt"
 
 msgid "off or wpa2 on"
 msgstr "tắt hoặc wpa2 trên"
@@ -20781,13 +20766,175 @@ msgstr "hạ gục"
 msgid "zapping"
 msgstr "hạ gục"
 
-#, fuzzy
-msgid "Small Test"
-msgstr "Tiến triển nhỏ"
+msgid "Add plugin to Extensions menu*"
+msgstr "Thêm plugin vào menu Tiện ích mở rộng *"
 
-#, fuzzy
-msgid "instant record"
-msgstr "Ghi lại ngay lập tức"
+msgid "Add plugin to main menu*"
+msgstr "Thêm plugin vào menu chính *"
+
+msgid "CPU priority for script execution"
+msgstr "CPU ưu tiên thực thi tập lệnh"
+
+msgid "Change buttons for list navigation"
+msgstr "Thay đổi nút để điều hướng danh sách"
+
+msgid ""
+"Default CPU priority (nice) for executed scripts. This can reduce the load "
+"so that scripts do not interfere with the rest of the system. (higher values "
+"= lower priority)"
+msgstr ""
+"Ưu tiên CPU mặc định (đẹp) cho các tập lệnh được thực thi. Điều này có thể "
+"giảm tải để các tập lệnh không can thiệp vào phần còn lại của hệ thống. (giá "
+"trị cao hơn = mức độ ưu tiên thấp hơn)"
+
+msgid ""
+"Default I/O priority (ionice) for executed scripts. This can reduce the load "
+"so that scripts do not interfere with the rest of the system. (higher values "
+"= lower priority)"
+msgstr ""
+"Ưu tiên I / O mặc định (ionice) cho các tập lệnh được thực thi. Điều này có "
+"thể giảm tải để các tập lệnh không can thiệp vào phần còn lại của hệ thống. "
+"(giá trị cao hơn = mức độ ưu tiên thấp hơn)"
+
+msgid "Default directory sorting"
+msgstr "Sắp xếp thư mục mặc định"
+
+msgid "Default file sorting left"
+msgstr "Sắp xếp tập tin mặc định bên trái"
+
+msgid "Default file sorting right"
+msgstr "Sắp xếp tập tin mặc định"
+
+msgid "Default folder"
+msgstr "Thư mục mặc định"
+
+msgid ""
+"Default folder if the left or right folder isn't saved, and target folder "
+"for button 5."
+msgstr ""
+"Thư mục mặc định nếu thư mục bên trái hoặc bên phải không được lưu và thư "
+"mục đích cho nút 5."
+
+msgid "Default sorting method for directories on both sides."
+msgstr "Phương pháp sắp xếp mặc định cho các thư mục ở cả hai bên."
+
+msgid "Default sorting method for files on the left side."
+msgstr "Phương pháp sắp xếp mặc định cho các tập tin ở phía bên trái."
+
+msgid "Default sorting method for files on the right side."
+msgstr "Phương pháp sắp xếp mặc định cho các tập tin ở phía bên phải."
+
+msgid "Edit position is the line end"
+msgstr "Chỉnh sửa vị trí là cuối dòng"
+
+msgid "File Commander Settings"
+msgstr "Cài đặt chỉ huy tập tin"
+
+msgid "File checksums to calculate for button 9"
+msgstr "Tổng kiểm tra tệp để tính cho nút 9"
+
+msgid "File checksums/hashes"
+msgstr "Tổng kiểm tra / băm"
+
+msgid ""
+"Filter extension for 'My Extension' setting of 'Filter extension'. Use the "
+"extension name without a '.'."
+msgstr ""
+"Tiện ích mở rộng bộ lọc cho cài đặt 'Tiện ích mở rộng của tôi' của 'Tiện ích "
+"mở rộng bộ lọc'. Sử dụng tên mở rộng mà không có '.'."
+
+msgid "Filter extension, (*) appears in title"
+msgstr "Phần mở rộng bộ lọc, (*) xuất hiện trong tiêu đề"
+
+msgid "Filter visible file classes by extension."
+msgstr "Lọc các lớp tệp có thể nhìn thấy bằng phần mở rộng."
+
+msgid "I/O priority for script execution"
+msgstr "Ưu tiên I / O để thực thi tập lệnh"
+
+msgid ""
+"If editing a file, can you set the cursor start position at end or begin of "
+"the line."
+msgstr ""
+"Nếu chỉnh sửa tệp, bạn có thể đặt vị trí bắt đầu con trỏ ở cuối hoặc đầu "
+"dòng."
+
+msgid "Make File Commander accessible from the Extensions menu."
+msgstr "Làm cho File Commander có thể truy cập từ menu Tiện ích mở rộng."
+
+msgid "Make File Commander accessible from the main menu."
+msgstr "Làm cho File Commander có thể truy cập từ menu chính."
+
+msgid "My extension"
+msgstr "Gia hạn của tôi"
+
+msgid "Number of lines in script messages"
+msgstr "Số dòng trong thông điệp script"
+
+msgid "Save left folder on exit"
+msgstr "Lưu thư mục bên trái khi thoát"
+
+msgid "Save right folder on exit"
+msgstr "Tạo thư mục bên phải khi thoát"
+
+msgid "Save the left folder list location on exit."
+msgstr "Lưu vị trí danh sách thư mục bên trái khi thoát."
+
+msgid "Save the right folder list location on exit."
+msgstr "Lưu đúng vị trí danh sách thư mục khi thoát."
+
+msgid ""
+"Set for 'stout' and 'sterr' the number of lines in script info or script "
+"error messages."
+msgstr ""
+"Đặt cho 'stout' và 'sterr' số lượng dòng trong thông tin tập lệnh hoặc thông "
+"báo lỗi tập lệnh."
+
+msgid "Show Script completed message"
+msgstr "Hiển thị thông báo Nhiệm vụ đã hoàn thành"
+
+msgid "Show Task's completed message"
+msgstr "Hiển thị thông báo Nhiệm vụ đã hoàn thành"
+
+msgid "Show directories first"
+msgstr "Hiển thị thư mục đầu tiên"
+
+msgid "Show directories on first or last in list.(must restart File Commander)"
+msgstr ""
+"Hiển thị các thư mục trên đầu tiên hoặc cuối cùng trong danh sách. (Phải "
+"khởi động lại File Commander)"
+
+msgid ""
+"Show message if File Commander is not running and all Task's are completed."
+msgstr ""
+"Hiển thị thông báo nếu File Commander không chạy và tất cả các tác vụ đã "
+"hoàn thành."
+
+msgid ""
+"Show message if a background script ends successfully. Has 'stout', then "
+"this is displayed as additional info."
+msgstr ""
+"Hiển thị thông báo nếu một kịch bản nền kết thúc thành công. Có 'stout', sau "
+"đó điều này được hiển thị dưới dạng thông tin bổ sung."
+
+msgid "Show unknown extension as text"
+msgstr "Hiển thị lựa chọn mở rộng"
+
+msgid "Show unknown file extensions with 'Addon File-Viewer'."
+msgstr "Hiển thị phần mở rộng tệp không xác định với 'Addon File-Viewer'."
+
+msgid ""
+"Swap buttons right/left with channel plus/minus or the channel button "
+"changed always the side."
+msgstr ""
+"Các nút hoán đổi phải / trái với kênh cộng / trừ hoặc nút kênh luôn thay đổi "
+"bên cạnh."
+
+msgid "Time between slides in image viewer slideshow."
+msgstr "Thời gian giữa các slide trong trình chiếu hình ảnh xem."
+
+msgid "Time for Slideshow"
+msgstr "Thời gian bắt đầu"
 
 msgid "Exit the wizard"
 msgstr "Thoát khỏi trình hướng dẫn"
@@ -21000,175 +21147,208 @@ msgstr ""
 "\n"
 "Vui lòng chọn những gì bạn muốn làm tiếp theo."
 
-msgid "Add plugin to Extensions menu*"
-msgstr "Thêm plugin vào menu Tiện ích mở rộng *"
+#, fuzzy
+msgid "C"
+msgstr "CH"
 
-msgid "Add plugin to main menu*"
-msgstr "Thêm plugin vào menu chính *"
+#, fuzzy
+msgid "D"
+msgstr "SD"
 
-msgid "CPU priority for script execution"
-msgstr "CPU ưu tiên thực thi tập lệnh"
-
-msgid "Change buttons for list navigation"
-msgstr "Thay đổi nút để điều hướng danh sách"
-
-msgid ""
-"Default CPU priority (nice) for executed scripts. This can reduce the load "
-"so that scripts do not interfere with the rest of the system. (higher values "
-"= lower priority)"
+msgid "TUNER:"
 msgstr ""
-"Ưu tiên CPU mặc định (đẹp) cho các tập lệnh được thực thi. Điều này có thể "
-"giảm tải để các tập lệnh không can thiệp vào phần còn lại của hệ thống. (giá "
-"trị cao hơn = mức độ ưu tiên thấp hơn)"
 
-msgid ""
-"Default I/O priority (ionice) for executed scripts. This can reduce the load "
-"so that scripts do not interfere with the rest of the system. (higher values "
-"= lower priority)"
+msgid " HI "
 msgstr ""
-"Ưu tiên I / O mặc định (ionice) cho các tập lệnh được thực thi. Điều này có "
-"thể giảm tải để các tập lệnh không can thiệp vào phần còn lại của hệ thống. "
-"(giá trị cao hơn = mức độ ưu tiên thấp hơn)"
 
-msgid "Default directory sorting"
-msgstr "Sắp xếp thư mục mặc định"
-
-msgid "Default file sorting left"
-msgstr "Sắp xếp tập tin mặc định bên trái"
-
-msgid "Default file sorting right"
-msgstr "Sắp xếp tập tin mặc định"
-
-msgid "Default folder"
-msgstr "Thư mục mặc định"
-
-msgid ""
-"Default folder if the left or right folder isn't saved, and target folder "
-"for button 5."
+msgid "REC "
 msgstr ""
-"Thư mục mặc định nếu thư mục bên trái hoặc bên phải không được lưu và thư "
-"mục đích cho nút 5."
 
-msgid "Default sorting method for directories on both sides."
-msgstr "Phương pháp sắp xếp mặc định cho các thư mục ở cả hai bên."
+msgid "0"
+msgstr "0"
 
-msgid "Default sorting method for files on the left side."
-msgstr "Phương pháp sắp xếp mặc định cho các tập tin ở phía bên trái."
+msgid "6"
+msgstr "6"
 
-msgid "Default sorting method for files on the right side."
-msgstr "Phương pháp sắp xếp mặc định cho các tập tin ở phía bên phải."
+msgid "7"
+msgstr "7"
 
-msgid "Edit position is the line end"
-msgstr "Chỉnh sửa vị trí là cuối dòng"
+msgid "8"
+msgstr "8"
 
-msgid "File Commander Settings"
-msgstr "Cài đặt chỉ huy tập tin"
+msgid "9"
+msgstr "9"
 
-msgid "File checksums to calculate for button 9"
-msgstr "Tổng kiểm tra tệp để tính cho nút 9"
+msgid "AutoMountManager"
+msgstr "Trình quản lý tự động"
 
-msgid "File checksums/hashes"
-msgstr "Tổng kiểm tra / băm"
+msgid "BER:"
+msgstr "BER:"
 
-msgid ""
-"Filter extension for 'My Extension' setting of 'Filter extension'. Use the "
-"extension name without a '.'."
-msgstr ""
-"Tiện ích mở rộng bộ lọc cho cài đặt 'Tiện ích mở rộng của tôi' của 'Tiện ích "
-"mở rộng bộ lọc'. Sử dụng tên mở rộng mà không có '.'."
+msgid "Backup Log"
+msgstr "Nhật ký dự phòng"
 
-msgid "Filter extension, (*) appears in title"
-msgstr "Phần mở rộng bộ lọc, (*) xuất hiện trong tiêu đề"
+msgid "Channellist menu"
+msgstr "Danh sách lít kênh"
 
-msgid "Filter visible file classes by extension."
-msgstr "Lọc các lớp tệp có thể nhìn thấy bằng phần mở rộng."
+msgid "Command execution..."
+msgstr "Thực hiện lệnh .."
 
-msgid "I/O priority for script execution"
-msgstr "Ưu tiên I / O để thực thi tập lệnh"
+msgid "Continue in background"
+msgstr "Tiếp tục trong nền"
 
-msgid ""
-"If editing a file, can you set the cursor start position at end or begin of "
-"the line."
-msgstr ""
-"Nếu chỉnh sửa tệp, bạn có thể đặt vị trí bắt đầu con trỏ ở cuối hoặc đầu "
-"dòng."
+msgid "DVD file browser"
+msgstr "Trình duyệt tập tin DVD"
 
-msgid "Make File Commander accessible from the Extensions menu."
-msgstr "Làm cho File Commander có thể truy cập từ menu Tiện ích mở rộng."
+msgid "Dish"
+msgstr "Chảo thu"
 
-msgid "Make File Commander accessible from the main menu."
-msgstr "Làm cho File Commander có thể truy cập từ menu chính."
+msgid "Downloadable plugins"
+msgstr "Các plugin có thể tải xuống"
 
-msgid "My extension"
-msgstr "Gia hạn của tôi"
+msgid "EPG selection"
+msgstr "Lựa chọn EPG"
 
-msgid "Number of lines in script messages"
-msgstr "Số dòng trong thông điệp script"
+msgid "Event view"
+msgstr "Chế độ xem sự kiện"
 
-msgid "Save left folder on exit"
-msgstr "Lưu thư mục bên trái khi thoát"
+msgid "Event view menu"
+msgstr "Menu xem sự kiện"
 
-msgid "Save right folder on exit"
-msgstr "Tạo thư mục bên phải khi thoát"
+msgid "Index"
+msgstr "Mục lục"
 
-msgid "Save the left folder list location on exit."
-msgstr "Lưu vị trí danh sách thư mục bên trái khi thoát."
+msgid "Installing software..."
+msgstr "Cài đặt phần mềm ."
 
-msgid "Save the right folder list location on exit."
-msgstr "Lưu đúng vị trí danh sách thư mục khi thoát."
+msgid "Job overview"
+msgstr "Tổng quan về công việc"
 
-msgid ""
-"Set for 'stout' and 'sterr' the number of lines in script info or script "
-"error messages."
-msgstr ""
-"Đặt cho 'stout' và 'sterr' số lượng dòng trong thông tin tập lệnh hoặc thông "
-"báo lỗi tập lệnh."
+msgid "Lock:"
+msgstr "Khóa:"
 
-msgid "Show Script completed message"
-msgstr "Hiển thị thông báo Nhiệm vụ đã hoàn thành"
+msgid "MORE"
+msgstr "HƠN"
 
-msgid "Show Task's completed message"
-msgstr "Hiển thị thông báo Nhiệm vụ đã hoàn thành"
+msgid "MediaPlayer"
+msgstr "Phương tiện truyền thông"
 
-msgid "Show directories first"
-msgstr "Hiển thị thư mục đầu tiên"
+msgid "Message..."
+msgstr "Thông điệp..."
 
-msgid "Show directories on first or last in list.(must restart File Commander)"
-msgstr ""
-"Hiển thị các thư mục trên đầu tiên hoặc cuối cùng trong danh sách. (Phải "
-"khởi động lại File Commander)"
+msgid "Mute"
+msgstr "Tắt tiếng"
 
-msgid ""
-"Show message if File Commander is not running and all Task's are completed."
-msgstr ""
-"Hiển thị thông báo nếu File Commander không chạy và tất cả các tác vụ đã "
-"hoàn thành."
+msgid "NEXT"
+msgstr "KẾ TIẾP"
 
-msgid ""
-"Show message if a background script ends successfully. Has 'stout', then "
-"this is displayed as additional info."
-msgstr ""
-"Hiển thị thông báo nếu một kịch bản nền kết thúc thành công. Có 'stout', sau "
-"đó điều này được hiển thị dưới dạng thông tin bổ sung."
+msgid "NOW"
+msgstr "HIỆN NAY"
 
-msgid "Show unknown extension as text"
-msgstr "Hiển thị lựa chọn mở rộng"
+msgid "Nameserver setup"
+msgstr "Thiết lập máy chủ tên"
 
-msgid "Show unknown file extensions with 'Addon File-Viewer'."
-msgstr "Hiển thị phần mở rộng tệp không xác định với 'Addon File-Viewer'."
+msgid "Network Neighbourhood"
+msgstr "Mạng lưới khu phố"
 
-msgid ""
-"Swap buttons right/left with channel plus/minus or the channel button "
-"changed always the side."
-msgstr ""
-"Các nút hoán đổi phải / trái với kênh cộng / trừ hoặc nút kênh luôn thay đổi "
-"bên cạnh."
+msgid "Network configuration..."
+msgstr "Cấu hình mạng..."
 
-msgid "Time between slides in image viewer slideshow."
-msgstr "Thời gian giữa các slide trong trình chiếu hình ảnh xem."
+msgid "Network test..."
+msgstr "Kiểm tra mạng...."
 
-msgid "Time for Slideshow"
-msgstr "Thời gian bắt đầu"
+msgid "PIN code needed"
+msgstr "Mã PIN cần thiết"
+
+msgid "Parental control services editor"
+msgstr "Biên tập dịch vụ kiểm soát của phụ huynh"
+
+msgid "PiP-Zap"
+msgstr "ZAP -PiP"
+
+msgid "PiPSetup"
+msgstr "Cài đặt PiP"
+
+msgid "PiPZap"
+msgstr "PiPZap"
+
+msgid "Plugin browser"
+msgstr "Trình duyệt plugin"
+
+msgid "Reception settings"
+msgstr "Cài đặt tiếp tân"
+
+msgid "Release Notes"
+msgstr "Ghi chú phát hành"
+
+msgid "SNR:"
+msgstr "SNR:"
+
+msgid "Satfinder"
+msgstr "Vệ tinh"
+
+msgid "SecondInfoBar"
+msgstr "Thông tin thứ hai"
+
+msgid "Select a bouquet"
+msgstr "Chọn một gói kênh"
+
+msgid "Select a movie"
+msgstr "Chọn một bộ phim"
+
+msgid "Select a network adapter"
+msgstr "Chọn bộ điều hợp mạng"
+
+msgid "Select a tuner"
+msgstr "Chọn bộ chỉnh"
+
+msgid "Serviceinfo"
+msgstr "Dịch vụ thông tin"
+
+msgid "Softwaremanager..."
+msgstr "Quản lý phần mềm..."
+
+msgid "Starting Softcam"
+msgstr "Khởi động Softcam"
+
+msgid "Stopping Softcam"
+msgstr "Dừng Softcam"
+
+msgid "Subtitle settings"
+msgstr "Cài đặt phụ đề"
+
+msgid "Swap File Manager"
+msgstr "Trao đổi quản lý tập tin"
+
+msgid "Systeminfo"
+msgstr "Thông tin hệ thống"
+
+msgid "Timer edit"
+msgstr "Chỉnh sửa hẹn giờ"
+
+msgid "Timer editor"
+msgstr "Trình chỉnh sửa hẹn giờ"
+
+msgid "Translation"
+msgstr "Dịch"
+
+msgid "UnhandledKey"
+msgstr "Không khóa"
+
+msgid "VideoEnhancementPreview"
+msgstr "Đánh giá nâng cao video"
+
+msgid "Vol"
+msgstr "Âm lượng"
+
+msgid "Volume"
+msgstr "Âm lượng"
+
+msgid "config menu"
+msgstr "menu cấu hình"
+
+msgid "help..."
+msgstr "cứu giúp..."
 
 msgid "Basic settings"
 msgstr "Cài đặt cơ bản"
@@ -21276,18 +21456,8 @@ msgstr "Video"
 msgid "WOL Standby"
 msgstr "Chế độ chờ"
 
-#, fuzzy
-msgid "MediaPortal"
-msgstr "Cổng thông tin truyền thông"
-
-msgid ""
-"Please setup your user interface by adjusting the values till the edges of "
-"the red box are touching the edges of your TV.\n"
-"When you are ready press OK to continue."
+msgid "  REC  "
 msgstr ""
-"Vui lòng thiết lập giao diện người dùng của bạn bằng cách điều chỉnh các giá "
-"trị cho đến khi các cạnh của hộp màu đỏ chạm vào các cạnh của TV.\n"
-"Khi bạn đã sẵn sàng nhấn OK để tiếp tục."
 
 msgid ""
 "'Buffer in hours' or 'number of last events'. For deleting older timeshift "
@@ -22736,6 +22906,9 @@ msgstr "Tốc độ tua lại ban đầu"
 msgid "Initial scroll delay"
 msgstr "Độ trễ cuộn ban đầu"
 
+msgid "Input scroll position"
+msgstr ""
+
 msgid "Instant recording location"
 msgstr "Vị trí ghi âm tức thì"
 
@@ -23678,9 +23851,6 @@ msgstr "Lựa chọn ngôn ngữ phụ đề 4"
 msgid "Subtitle position"
 msgstr "Vị trí phụ đề"
 
-msgid "Subtitle settings"
-msgstr "Cài đặt phụ đề"
-
 msgid "Swap SNR in '%' with SNR in 'db'"
 msgstr "Hoán đổi SNR bằng '%' bằng SNR bằng 'db'"
 
@@ -24362,6 +24532,11 @@ msgstr ""
 "EPG."
 
 msgid ""
+"When the input cursor reaches this point (percentage of the width, from "
+"either side) scroll the text to the cursor."
+msgstr ""
+
+msgid ""
 "When tuned to a service the system will normally scan the transponder for "
 "any changes and save them. Only set to 'yes' if you're absolutely sure what "
 "you're doing."
@@ -24435,41 +24610,6 @@ msgstr "chuyển chế độ hiển thị 12 đến 8 ký tự"
 msgid "userdefined"
 msgstr "đã xác định người dùng"
 
-#, fuzzy
-msgid "EasyMedia"
-msgstr "Phương tiện truyền thông"
-
-#, fuzzy
-msgid "Ext. NumberZap"
-msgstr "Con số"
-
-#, fuzzy
-msgid "Timer+"
-msgstr "Hẹn giờ"
-
-#, fuzzy
-msgid "Timerlist"
-msgstr "Danh sách hẹn giờ"
-
-#, fuzzy
-msgid "IMDB Search"
-msgstr "Tìm kiếm IMDB"
-
-#, fuzzy
-msgid "Quick EPG"
-msgstr "Chế độ QuickEPG"
-
-#, fuzzy
-msgid "C"
-msgstr "CH"
-
-#, fuzzy
-msgid "D"
-msgstr "SD"
-
-msgid "TUNER:"
-msgstr ""
-
 msgid "Auto Modes Selected."
 msgstr "Chế độ tự động được chọn."
 
@@ -24514,209 +24654,6 @@ msgstr ""
 
 msgid "Video mode selection."
 msgstr "Lựa chọn chế độ video."
-
-msgid "0"
-msgstr "0"
-
-msgid "6"
-msgstr "6"
-
-msgid "7"
-msgstr "7"
-
-msgid "8"
-msgstr "8"
-
-msgid "9"
-msgstr "9"
-
-msgid "AutoMountManager"
-msgstr "Trình quản lý tự động"
-
-msgid "BER:"
-msgstr "BER:"
-
-msgid "Backup Log"
-msgstr "Nhật ký dự phòng"
-
-msgid "Channellist menu"
-msgstr "Danh sách lít kênh"
-
-msgid "Command execution..."
-msgstr "Thực hiện lệnh .."
-
-msgid "Continue in background"
-msgstr "Tiếp tục trong nền"
-
-msgid "DVD file browser"
-msgstr "Trình duyệt tập tin DVD"
-
-msgid "Dish"
-msgstr "Chảo thu"
-
-msgid "Downloadable plugins"
-msgstr "Các plugin có thể tải xuống"
-
-msgid "EPG selection"
-msgstr "Lựa chọn EPG"
-
-msgid "Event view"
-msgstr "Chế độ xem sự kiện"
-
-msgid "Event view menu"
-msgstr "Menu xem sự kiện"
-
-msgid "Index"
-msgstr "Mục lục"
-
-msgid "Installing software..."
-msgstr "Cài đặt phần mềm ."
-
-msgid "Job overview"
-msgstr "Tổng quan về công việc"
-
-msgid "Lock:"
-msgstr "Khóa:"
-
-msgid "MORE"
-msgstr "HƠN"
-
-msgid "MediaPlayer"
-msgstr "Phương tiện truyền thông"
-
-msgid "Message..."
-msgstr "Thông điệp..."
-
-msgid "Mute"
-msgstr "Tắt tiếng"
-
-msgid "NEXT"
-msgstr "KẾ TIẾP"
-
-msgid "NOW"
-msgstr "HIỆN NAY"
-
-msgid "Nameserver setup"
-msgstr "Thiết lập máy chủ tên"
-
-msgid "Network Neighbourhood"
-msgstr "Mạng lưới khu phố"
-
-msgid "Network configuration..."
-msgstr "Cấu hình mạng..."
-
-msgid "Network test..."
-msgstr "Kiểm tra mạng...."
-
-msgid "PIN code needed"
-msgstr "Mã PIN cần thiết"
-
-msgid "Parental control services editor"
-msgstr "Biên tập dịch vụ kiểm soát của phụ huynh"
-
-msgid "PiP-Zap"
-msgstr "ZAP -PiP"
-
-msgid "PiPSetup"
-msgstr "Cài đặt PiP"
-
-msgid "PiPZap"
-msgstr "PiPZap"
-
-msgid "Plugin browser"
-msgstr "Trình duyệt plugin"
-
-msgid "Reception settings"
-msgstr "Cài đặt tiếp tân"
-
-msgid "Release Notes"
-msgstr "Ghi chú phát hành"
-
-msgid "SNR:"
-msgstr "SNR:"
-
-msgid "Satfinder"
-msgstr "Vệ tinh"
-
-msgid "SecondInfoBar"
-msgstr "Thông tin thứ hai"
-
-msgid "Select a bouquet"
-msgstr "Chọn một gói kênh"
-
-msgid "Select a movie"
-msgstr "Chọn một bộ phim"
-
-msgid "Select a network adapter"
-msgstr "Chọn bộ điều hợp mạng"
-
-msgid "Select a tuner"
-msgstr "Chọn bộ chỉnh"
-
-msgid "Serviceinfo"
-msgstr "Dịch vụ thông tin"
-
-msgid "Softwaremanager..."
-msgstr "Quản lý phần mềm..."
-
-msgid "Starting Softcam"
-msgstr "Khởi động Softcam"
-
-msgid "Stopping Softcam"
-msgstr "Dừng Softcam"
-
-msgid "Swap File Manager"
-msgstr "Trao đổi quản lý tập tin"
-
-msgid "Systeminfo"
-msgstr "Thông tin hệ thống"
-
-msgid "Timer edit"
-msgstr "Chỉnh sửa hẹn giờ"
-
-msgid "Timer editor"
-msgstr "Trình chỉnh sửa hẹn giờ"
-
-msgid "Translation"
-msgstr "Dịch"
-
-msgid "UnhandledKey"
-msgstr "Không khóa"
-
-msgid "VideoEnhancementPreview"
-msgstr "Đánh giá nâng cao video"
-
-msgid "Vol"
-msgstr "Âm lượng"
-
-msgid "Volume"
-msgstr "Âm lượng"
-
-msgid "config menu"
-msgstr "menu cấu hình"
-
-msgid "help..."
-msgstr "cứu giúp..."
-
-msgid "  REC  "
-msgstr ""
-
-#, fuzzy
-msgid "VMC"
-msgstr "MAC"
-
-msgid "by hmmmdada"
-msgstr ""
-
-msgid "Enigmalight"
-msgstr ""
-
-#, fuzzy
-msgid "EtPortal"
-msgstr "Bồ Đào Nha"
-
-msgid "®"
-msgstr ""
 
 msgid "Check the internet connection"
 msgstr "Kiểm tra kết nối internet"
@@ -24910,15 +24847,6 @@ msgstr "Máy thu của bạn %s%s không có kết nối internet"
 msgid "Your %s %s is not connected to the internet"
 msgstr "Đầu thu của bạn % s% s không được kết nối với internet"
 
-msgid "-"
-msgstr ""
-
-msgid " HI "
-msgstr ""
-
-msgid "REC "
-msgstr ""
-
 #, fuzzy
 msgid "E "
 msgstr " "
@@ -24941,6 +24869,99 @@ msgstr "IP"
 
 msgid "J"
 msgstr ""
+
+#, fuzzy
+msgid "EasyMedia"
+msgstr "Phương tiện truyền thông"
+
+#, fuzzy
+msgid "Ext. NumberZap"
+msgstr "Con số"
+
+#, fuzzy
+msgid "Timer+"
+msgstr "Hẹn giờ"
+
+#, fuzzy
+msgid "Timerlist"
+msgstr "Danh sách hẹn giờ"
+
+#, fuzzy
+msgid "MediaPortal"
+msgstr "Cổng thông tin truyền thông"
+
+#, fuzzy
+msgid "IMDB Search"
+msgstr "Tìm kiếm IMDB"
+
+#, fuzzy
+msgid "Quick EPG"
+msgstr "Chế độ QuickEPG"
+
+#, fuzzy
+msgid "EtPortal"
+msgstr "Bồ Đào Nha"
+
+msgid "®"
+msgstr ""
+
+msgid "Enigmalight"
+msgstr ""
+
+#, fuzzy
+msgid "VMC"
+msgstr "MAC"
+
+msgid "by hmmmdada"
+msgstr ""
+
+msgid ""
+"Please setup your user interface by adjusting the values till the edges of "
+"the red box are touching the edges of your TV.\n"
+"When you are ready press OK to continue."
+msgstr ""
+"Vui lòng thiết lập giao diện người dùng của bạn bằng cách điều chỉnh các giá "
+"trị cho đến khi các cạnh của hộp màu đỏ chạm vào các cạnh của TV.\n"
+"Khi bạn đã sẵn sàng nhấn OK để tiếp tục."
+
+msgid "-"
+msgstr ""
+
+#, fuzzy
+msgid "Small Test"
+msgstr "Tiến triển nhỏ"
+
+#, fuzzy
+msgid "instant record"
+msgstr "Ghi lại ngay lập tức"
+
+#~ msgid "AC3"
+#~ msgstr "AC3"
+
+#~ msgid "DTS"
+#~ msgstr "DTS"
+
+#, fuzzy
+#~ msgid "Delete the all the text"
+#~ msgstr "Xóa 1 phần tử"
+
+#~ msgid "Install settings, skins, software..."
+#~ msgstr "Cài đặt cài đặt, giao diện, phần mềm ..."
+
+#~ msgid "PicturePlayer"
+#~ msgstr "Hình ảnh người chơi"
+
+#~ msgid "Please choose he package..."
+#~ msgstr "Vui lòng chọn gói ..."
+
+#, python-format
+#~ msgid ""
+#~ "The installation of the default settings is finished. You can now "
+#~ "continue configuring your %s %s by pressing the OK button on the remote "
+#~ "control."
+#~ msgstr ""
+#~ "Quá trình cài đặt mặc định đã kết thúc. Bây giờ bạn có thể tiếp tục định "
+#~ "cấu hình % s% s của mình bằng cách nhấn nút OK trên điều khiển từ xa."
 
 #~ msgid "Autorecord location"
 #~ msgstr "Vị trí Autorecord"
@@ -25034,9 +25055,6 @@ msgstr ""
 
 #~ msgid "false"
 #~ msgstr "sai"
-
-#~ msgid "off"
-#~ msgstr "tắt"
 
 #~ msgid "on"
 #~ msgstr "trên"
