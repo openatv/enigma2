@@ -342,7 +342,7 @@ class Infopanel(Screen, InfoBarPiP, ProtectedScreen):
 		self.Mlist.append(MenuEntryItem((InfoEntryComponent("SoftwareManager"), _("Software Manager"), ("software-manager"))))
 		self.Mlist.append(MenuEntryItem((InfoEntryComponent('KeymapSel'), _("Keymap Selection"), 'KeymapSel')))
 		self.Mlist.append(MenuEntryItem((InfoEntryComponent('Plugins'), _("Plugins"), 'Plugins')))
-		self.Mlist.append(MenuEntryItem((InfoEntryComponent('Infos'), _("Infos"), 'Infos')))
+		self.Mlist.append(MenuEntryItem((InfoEntryComponent('Infos'), _("Information"), 'Infos')))
 		self.onChangedEntry = []
 		if getSkinFactor() == 1:
 			self["Mlist"] = PanelList([])
@@ -369,7 +369,7 @@ class Infopanel(Screen, InfoBarPiP, ProtectedScreen):
 		item = self.getCurrentEntry()
 
 	def setWindowTitle(self):
-		self.setTitle(_("Info Panel"))
+		self.setTitle(INFO_Panel_Version)
 		self.selectionChanged()
 
 	def up(self):
@@ -419,11 +419,13 @@ class Infopanel(Screen, InfoBarPiP, ProtectedScreen):
 			self["Mlist"].l.setList(self.oldmlist)
 			menu = 0
 			self["label1"].setText(INFO_Panel_Version)
+			self.setTitle(INFO_Panel_Version)
 		elif menu == 2:
 			self["Mlist"].moveToIndex(0)
 			self["Mlist"].l.setList(self.oldmlist1)
 			menu = 1
-			self["label1"].setText(_("Infos"))
+			self["label1"].setText(_("Information"))
+			self.setTitle(_("Information"))
 		else:
 			pass
 
@@ -518,13 +520,14 @@ class Infopanel(Screen, InfoBarPiP, ProtectedScreen):
 		global menu
 		menu = 1
 		self["label1"].setText(_("Plugins"))
+		self.setTitle(_("Plugins"))
 		self.tlist = []
 		self.oldmlist = []
 		self.oldmlist = self.Mlist
-		self.tlist.append(MenuEntryItem((InfoEntryComponent('MountManager'), _("MountManager"), 'MountManager')))
-		self.tlist.append(MenuEntryItem((InfoEntryComponent('CronTimer'), _("CronManager"), 'CronTimer')))
-		self.tlist.append(MenuEntryItem((InfoEntryComponent('JobManager'), _("JobManager"), 'JobManager')))
-		self.tlist.append(MenuEntryItem((InfoEntryComponent('SwapManager'), _("SwapManager"), 'SwapManager')))
+		self.tlist.append(MenuEntryItem((InfoEntryComponent('MountManager'), _("Mount Manager"), 'MountManager')))
+		self.tlist.append(MenuEntryItem((InfoEntryComponent('CronTimer'), _("Cron Manager"), 'CronTimer')))
+		self.tlist.append(MenuEntryItem((InfoEntryComponent('JobManager'), _("Job Manager"), 'JobManager')))
+		self.tlist.append(MenuEntryItem((InfoEntryComponent('SwapManager'), _("Swap Manager"), 'SwapManager')))
 		if os.path.isfile("/usr/lib/enigma2/python/Plugins/Extensions/MultiQuickButton/plugin.py") is True:
 			self.tlist.append(MenuEntryItem((InfoEntryComponent('MultiQuickButton'), _("MultiQuickButton"), 'MultiQuickButton')))
 		self["Mlist"].moveToIndex(0)
@@ -534,7 +537,8 @@ class Infopanel(Screen, InfoBarPiP, ProtectedScreen):
 		#// Create Infos Menu
 		global menu
 		menu = 1
-		self["label1"].setText(_("Infos"))
+		self["label1"].setText(_("Information"))
+		self.setTitle(_("Information"))
 		self.tlist = []
 		self.oldmlist = []
 		self.oldmlist1 = []
@@ -545,7 +549,7 @@ class Infopanel(Screen, InfoBarPiP, ProtectedScreen):
 		self.tlist.append(MenuEntryItem((InfoEntryComponent('Kernel'), _("Kernel"), 'Kernel')))
 		self.tlist.append(MenuEntryItem((InfoEntryComponent('Mounts'), _("Mounts"), 'Mounts')))
 		self.tlist.append(MenuEntryItem((InfoEntryComponent('Network'), _("Network"), 'Network')))
-		self.tlist.append(MenuEntryItem((InfoEntryComponent('Ram'), _("Ram"), 'Ram')))
+		self.tlist.append(MenuEntryItem((InfoEntryComponent('Ram'), _("RAM"), 'Ram')))
 		self.tlist.append(MenuEntryItem((InfoEntryComponent('SystemInfo'), _("SystemInfo"), 'SystemInfo')))
 		if BoxInfo.getItem("HAVEEDIDDECODE"):
 			self.tlist.append(MenuEntryItem((InfoEntryComponent('Edid'), _("EDID decode"), 'Edid')))
@@ -558,9 +562,10 @@ class Infopanel(Screen, InfoBarPiP, ProtectedScreen):
 		global menu
 		menu = 2
 		self["label1"].setText(_("System Info"))
+		self.setTitle(_("System Info"))
 		self.tlist = []
-		self.tlist.append(MenuEntryItem((InfoEntryComponent('Cpu'), _("Cpu"), 'Cpu')))
-		self.tlist.append(MenuEntryItem((InfoEntryComponent('MemInfo'), _("MemInfo"), 'MemInfo')))
+		self.tlist.append(MenuEntryItem((InfoEntryComponent('Cpu'), _("CPU"), 'Cpu')))
+		self.tlist.append(MenuEntryItem((InfoEntryComponent('MemInfo'), _("Memory Information"), 'MemInfo')))
 		self.tlist.append(MenuEntryItem((InfoEntryComponent('Mtd'), _("Mtd"), 'Mtd')))
 		self.tlist.append(MenuEntryItem((InfoEntryComponent('Module'), _("Module"), 'Module')))
 		self.tlist.append(MenuEntryItem((InfoEntryComponent('Partitions'), _("Partitions"), 'Partitions')))
@@ -574,10 +579,11 @@ class Infopanel(Screen, InfoBarPiP, ProtectedScreen):
 		global menu
 		menu = 1
 		self["label1"].setText(_("System"))
+		self.setTitle(_("System"))
 		self.tlist = []
 		self.oldmlist = []
 		self.oldmlist = self.Mlist
-		self.tlist.append(MenuEntryItem((InfoEntryComponent('Info'), _("Info"), 'Info')))
+		self.tlist.append(MenuEntryItem((InfoEntryComponent('Info'), _("Information"), 'Info')))
 		self["Mlist"].moveToIndex(0)
 		self["Mlist"].l.setList(self.tlist)
 
@@ -586,6 +592,7 @@ class Infopanel(Screen, InfoBarPiP, ProtectedScreen):
 		global menu
 		menu = 1
 		self["label1"].setText(_("Software Manager"))
+		self.setTitle(_("Software Manager"))
 		self.tlist = []
 		self.oldmlist = []
 		self.oldmlist = self.Mlist
@@ -614,7 +621,7 @@ class KeymapSel(ConfigListScreen, Screen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
 		self.skinName = ["SetupInfo", "Setup"]
-		Screen.setTitle(self, _("Keymap Selection") + "...")
+		self.setTitle(_("Keymap Selection"))
 		self.setup_title = _("Keymap Selection") + "..."
 		self["HelpWindow"] = Pixmap()
 		self["HelpWindow"].hide()
@@ -739,6 +746,7 @@ class Info(Screen):
 		self.skin = INFO_SKIN
 
 		self["label2"] = Label("INFO")
+		self.setTitle(_("Information"))
 		self["label1"] = ScrollLabel()
 		if info == "InfoPanel":
 			self.InfoPanel()
@@ -795,7 +803,8 @@ class Info(Screen):
 
 	def InfoPanel(self):
 		try:
-			self["label2"].setText(_("INFO"))
+			self["label2"].setText(_("Information Panel"))
+			self.setTitle(_("Information Panel"))
 			info1 = self.Do_cmd("cat", "/etc/motd", None)
 			if info1.find('wElc0me') > -1:
 				info1 = info1[info1.find('wElc0me'):len(info1)] + "\n"
@@ -810,7 +819,8 @@ class Info(Screen):
 
 	def SystemInfo(self):
 		try:
-			self["label2"].setText(_("Image Info"))
+			self["label2"].setText(_("Image Information"))
+			self.setTitle(_("Image Information"))
 			info1 = self.Do_cmd("cat", "/etc/version", None)
 			info1 = self.Do_cut(info1)
 			self["label1"].setText(info1)
@@ -820,6 +830,7 @@ class Info(Screen):
 	def ImageVersion(self):
 		try:
 			self["label2"].setText(_("Image Version"))
+			self.setTitle(_("Image Version"))
 			now = datetime.datetime.now()
 			info1 = 'Date = ' + now.strftime("%d-%B-%Y") + "\n"
 			info2 = 'Time = ' + now.strftime("%H:%M:%S") + "\n"
@@ -838,6 +849,7 @@ class Info(Screen):
 	def FreeSpace(self):
 		try:
 			self["label2"].setText(_("FreeSpace"))
+			self.setTitle(_("FreeSpace"))
 			info1 = self.Do_cmd("df", None, "-h")
 			info1 = self.Do_cut(info1)
 			self["label1"].setText(info1)
@@ -847,6 +859,7 @@ class Info(Screen):
 	def Mounts(self):
 		try:
 			self["label2"].setText(_("Mounts"))
+			self.setTitle(_("Mounts"))
 			info1 = self.Do_cmd("mount", None, None)
 			info1 = self.Do_cut(info1)
 			self["label1"].setText(info1)
@@ -856,6 +869,7 @@ class Info(Screen):
 	def Network(self):
 		try:
 			self["label2"].setText(_("Network"))
+			self.setTitle(_("Network"))
 			info1 = self.Do_cmd("ifconfig", None, None) + '\n'
 			info2 = self.Do_cmd("route", None, "-n")
 			info3 = self.Do_cut(info1 + info2)
@@ -866,6 +880,7 @@ class Info(Screen):
 	def Kernel(self):
 		try:
 			self["label2"].setText(_("Kernel"))
+			self.setTitle(_("Kernel"))
 			info0 = self.Do_cmd("cat", "/proc/version", None)
 			info = info0.split('(')
 			info1 = "Name = " + info[0] + "\n"
@@ -879,7 +894,8 @@ class Info(Screen):
 
 	def Free(self):
 		try:
-			self["label2"].setText(_("Ram"))
+			self["label2"].setText(_("RAM"))
+			self.setText(_("RAM"))
 			info1 = self.Do_cmd("free", None, None)
 			info1 = self.Do_cut(info1)
 			self["label1"].setText(info1)
@@ -888,7 +904,8 @@ class Info(Screen):
 
 	def Cpu(self):
 		try:
-			self["label2"].setText(_("Cpu"))
+			self["label2"].setText(_("CPU"))
+			self.setTitle(_("CPU"))
 			info1 = self.Do_cmd("cat", "/proc/cpuinfo", None, " | sed 's/\t\t/\t/'")
 			info1 = self.Do_cut(info1)
 			self["label1"].setText(info1)
@@ -898,6 +915,7 @@ class Info(Screen):
 	def Top(self):
 		try:
 			self["label2"].setText(_("Top"))
+			self.setTitle(_("Top"))
 			info1 = self.Do_cmd("top", None, "-b -n1")
 			info1 = self.Do_cut(info1)
 			self["label1"].setText(info1)
@@ -906,7 +924,8 @@ class Info(Screen):
 
 	def MemInfo(self):
 		try:
-			self["label2"].setText(_("MemInfo"))
+			self["label2"].setText(_("Memory Information"))
+			self.setTitle(_("Memory Information"))
 			info1 = self.Do_cmd("cat", "/proc/meminfo", None)
 			info1 = self.Do_cut(info1)
 			self["label1"].setText(info1)
@@ -916,6 +935,7 @@ class Info(Screen):
 	def Module(self):
 		try:
 			self["label2"].setText(_("Module"))
+			self.setTitle(_("Module"))
 			info1 = self.Do_cmd("cat", "/proc/modules", None)
 			info1 = self.Do_cut(info1)
 			self["label1"].setText(info1)
@@ -925,6 +945,7 @@ class Info(Screen):
 	def Mtd(self):
 		try:
 			self["label2"].setText(_("Mtd"))
+			self.setTitle(_("Mtd"))
 			info1 = self.Do_cmd("cat", "/proc/mtd", None)
 			info1 = self.Do_cut(info1)
 			self["label1"].setText(info1)
@@ -934,6 +955,7 @@ class Info(Screen):
 	def Partitions(self):
 		try:
 			self["label2"].setText(_("Partitions"))
+			self.setTitle(_("Partitions"))
 			info1 = self.Do_cmd("cat", "/proc/partitions", None)
 			info1 = self.Do_cut(info1)
 			self["label1"].setText(info1)
@@ -943,6 +965,7 @@ class Info(Screen):
 	def Swap(self):
 		try:
 			self["label2"].setText(_("Swap"))
+			self.setTitle(_("Swap"))
 			info0 = self.Do_cmd("cat", "/proc/swaps", None, " | sed 's/\t/ /g; s/[ ]* / /g'")
 			info0 = info0.split("\n")
 			info1 = ""
@@ -965,6 +988,7 @@ class Info(Screen):
 	def Edid(self):
 		try:
 			self["label2"].setText(_("EDID decode"))
+			self.setTitle(_("EDID decode"))
 			info1 = self.Do_cmd("cat /proc/stb/hdmi/raw_edid | edid-decode", None, None)
 			info1 = self.Do_cut(info1)
 			self["label1"].setText(info1)
