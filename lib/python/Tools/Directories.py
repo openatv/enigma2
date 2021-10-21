@@ -8,7 +8,7 @@ from shutil import copy2
 from stat import S_IMODE
 from tempfile import mkstemp
 from traceback import print_exc
-from xml.etree.cElementTree import ParseError, fromstring, parse
+from xml.etree.cElementTree import Element, ParseError, fromstring, parse
 
 from enigma import eEnv, getDesktop, eGetEnigmaDebugLvl
 
@@ -314,7 +314,7 @@ def fileReadXML(filename, default=None, source=DEFAULT_MODULE_NAME, debug=False)
 		if default and isinstance(default, str):
 			dom = fromstring(default)
 			msg = "Default (XML)"
-		elif default and isinstance(default, ElementTree):
+		elif default and isinstance(default, Element):
 			dom = default
 			msg = "Default (DOM)"
 		else:
