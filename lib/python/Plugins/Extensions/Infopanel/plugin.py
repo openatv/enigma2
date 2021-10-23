@@ -477,7 +477,7 @@ class Infopanel(Screen, InfoBarPiP, ProtectedScreen):
 			self.session.open(CronTimers)
 		elif menu == "SoftcamSetup":
 			self.session.open(SoftcamSetup)
-		elif menu == "JobManager":
+		elif menu == "ScriptRunner":
 			self.session.open(ScriptRunner)
 		elif menu == "OScamInfo":
 			from Screens.OScamInfo import OscamInfoMenu
@@ -526,7 +526,7 @@ class Infopanel(Screen, InfoBarPiP, ProtectedScreen):
 		self.oldmlist = self.Mlist
 		self.tlist.append(MenuEntryItem((InfoEntryComponent('MountManager'), _("Mount Manager"), 'MountManager')))
 		self.tlist.append(MenuEntryItem((InfoEntryComponent('CronTimer'), _("Cron Manager"), 'CronTimer')))
-		self.tlist.append(MenuEntryItem((InfoEntryComponent('JobManager'), _("Job Manager"), 'JobManager')))
+		self.tlist.append(MenuEntryItem((InfoEntryComponent('ScriptRunner'), _("Script Manager"), 'ScriptRunner')))
 		self.tlist.append(MenuEntryItem((InfoEntryComponent('SwapManager'), _("Swap Manager"), 'SwapManager')))
 		if os.path.isfile("/usr/lib/enigma2/python/Plugins/Extensions/MultiQuickButton/plugin.py") is True:
 			self.tlist.append(MenuEntryItem((InfoEntryComponent('MultiQuickButton'), _("MultiQuickButton"), 'MultiQuickButton')))
