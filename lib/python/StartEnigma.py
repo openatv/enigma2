@@ -644,7 +644,7 @@ def dump(dir, p=""):
 #################################
 
 from sys import stdout
-from Components.config import config, ConfigYesNo, ConfigSubsection, ConfigInteger, ConfigText, ConfigOnOff
+from Components.config import config, ConfigYesNo, ConfigSubsection, ConfigInteger, ConfigText, ConfigOnOff, ConfigSelection
 
 MODULE_NAME = __name__.split(".")[-1]
 
@@ -785,7 +785,7 @@ profile("LOAD:skin")
 from skin import readSkin
 
 profile("LOAD:Tools")
-from Components.config import configfile, ConfigSelection, NoSave, ConfigSubsection
+from Components.config import configfile, NoSave, ConfigSubsection
 from Tools.Directories import InitDefaultPaths, resolveFilename, SCOPE_PLUGINS, SCOPE_GUISKIN, SCOPE_CONFIG
 import Components.RecordingConfig
 InitDefaultPaths()
