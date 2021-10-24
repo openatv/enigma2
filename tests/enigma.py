@@ -382,9 +382,6 @@ def init_all():
 	import Components.Lcd
 	Components.Lcd.InitLcd()
 
-	import Components.SetupDevices
-	Components.SetupDevices.InitSetupDevices()
-
 	import Components.RFmod
 	Components.RFmod.InitRFmod()
 

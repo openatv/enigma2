@@ -9,6 +9,7 @@ from enigma import eRCInput
 
 from keyids import KEYIDS, KEYIDNAMES
 from Components.config import ConfigSubsection, ConfigInteger, ConfigSelection, ConfigYesNo, ConfigText, ConfigSlider, config
+from Components.Console import Console
 from Components.SystemInfo import BoxInfo
 from Tools.Directories import SCOPE_KEYMAPS, SCOPE_SKINS, fileReadLine, fileWriteLine, fileReadLines, fileReadXML, resolveFilename, pathExists
 
@@ -150,6 +151,62 @@ class InputDevices:
 		if device in self.devices:
 			self.devices[device][attribute] = value
 
+
+class Keyboard:
+	def __init__(self):
+		self.keyboardMaps = []
+		for keyboardMapInfo in sorted(listdir(resolveFilename(SCOPE_KEYMAPS))):
+			if keyboardMapInfo.endswith(".info"):
+				lines = []
+				lines = fileReadLines(resolveFilename(SCOPE_KEYMAPS, keyboardMapInfo), lines, source=MODULE_NAME)
+				keyboardMapFile = None
+				keyboardMapName = None
+				for line in lines:
+					key, val = [x.strip() for x in line.split("=", 1)]
+					if key == "kmap":
+						keyboardMapFile = val
+					elif key == "name":
+						keyboardMapName = val
+				if keyboardMapFile and keyboardMapName:
+					keyboardMapPath = resolveFilename(SCOPE_KEYMAPS, keyboardMapFile)
+					if isfile(keyboardMapPath):
+						if config.crash.debugKeyboards.value:
+							print("[InputDevice] Adding keyboard keymap '%s' in '%s'." % (keyboardMapName, keyboardMapFile))
+						self.keyboardMaps.append((keyboardMapFile, keyboardMapName))
+					else:
+						print("[InputDevice] Error: Keyboard keymap file '%s' doesn't exist!" % keyboardMapPath)
+				else:
+					print("[InputDevice] Error: Invalid keyboard keymap information file '%s'!" % keyboardMapInfo)
+
+	def activateKeyboardMap(self, index):
+		try:
+			keymap = self.keyboardMaps[index]
+			print("[Keyboard] Activating keymap: '%s'." % keymap[1])
+			keymapPath = resolveFilename(SCOPE_KEYMAPS, keymap[0])
+			if pathExists(keymapPath):
+				Console().ePopen("loadkmap < %s" % keymapPath)
+		except IndexError:
+			print("[Keyboard] Error: Selected keymap does not exist!")
+
+	def getKeyboardMaplist(self):
+		return self.keyboardMaps
+
+	def getDefaultKeyboardMap(self):
+		# This is a code proposal to make the default keymap respond
+		# to the currently defined locale.  OpenATV initialises the
+		# keymap based on hardware manufacturer.  Making the
+		# selection based on language locale makes more sense.  There
+		# are other code changes coming that will allow this to happen.
+		#
+		# locale = language.getLocale()
+		# if locale.startswith("de_") and "de.kmap" in self.keyboardMaps:
+		# 	return "de.kmap"
+		from boxbranding import getMachineBrand
+		if getMachineBrand() in ("Zgemma", "Atto.TV"):
+			return "us.kmap"
+		elif getMachineBrand() == "Beyonwiz":
+			return "eng.kmap"
+		return "de.kmap"
 
 
 
@@ -373,4 +430,5 @@ class RcTypeControl():
 
 
 iRcTypeControl = RcTypeControl()
+keyboard = Keyboard()
 remoteControl = RemoteControl()
