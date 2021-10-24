@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-10-21 17:27+0000\n"
-"PO-Revision-Date: 2021-10-20 15:01+0000\n"
-"Last-Translator: pololoko111 <peciek83@gmail.com>\n"
+"PO-Revision-Date: 2021-10-24 13:39+0000\n"
+"Last-Translator: Grzegorz <grzegorz914@icloud.com>\n"
 "Language-Team: Polish <https://hosted.weblate.org/projects/openatv/"
 "enigma2-7-0-po/pl/>\n"
 "Language: pl\n"
@@ -141,7 +141,7 @@ msgid ""
 "Online update of your %s %s software."
 msgstr ""
 "\n"
-"Aktualizacja oprogramowania online dla %s %s."
+"Aktualizacja oprogramowania online %s %s."
 
 msgid ""
 "\n"
@@ -201,7 +201,7 @@ msgid ""
 "View, install and remove available or installed packages."
 msgstr ""
 "\n"
-"Zobacz,zainstaluj lub usuń dostępne lub zainstalowane pakiety."
+"Zobacz, zainstaluj lub usuń dostępne lub zainstalowane pakiety."
 
 msgid ""
 "\n"
@@ -2604,10 +2604,10 @@ msgid "Advanced Settings"
 msgstr "Zaawansowane ustawienia"
 
 msgid "Advanced options"
-msgstr "Opcje Zaawansowane"
+msgstr "Opcje zaawansowane"
 
 msgid "Advanced restore"
-msgstr "Zaawansowane Odzyskiwanie"
+msgstr "Zaawansowane przywracanie"
 
 msgid "Advanced software"
 msgstr "Zaawansowane Oprogramowanie"
@@ -3271,7 +3271,7 @@ msgid "AutoMountManager"
 msgstr "Menadżer Automatycznego Montowania"
 
 msgid "AutoUpdate"
-msgstr "AutoAktualizacja"
+msgstr "Automatyczna Aktualizacja"
 
 msgid "Automatic"
 msgstr "Automatyczny"
@@ -3462,7 +3462,7 @@ msgid "Backup Date: %s\n"
 msgstr "Data Kopii Zapasowej: %s\n"
 
 msgid "Backup Image"
-msgstr "Kopia Zapasowa Obrazu"
+msgstr "Kopia zapasowa obrazu"
 
 msgid "Backup Location"
 msgstr "Lokalizacja Kopii Zapasowej"
@@ -3471,7 +3471,7 @@ msgid "Backup Log"
 msgstr "Log kopii zapasowych"
 
 msgid "Backup Manager"
-msgstr "Zarządzanie kopiami zapasowymi"
+msgstr "Menadżer kopii zapasowych"
 
 msgid "Backup Mode"
 msgstr "Tryb tworzenia kopii zapasowej"
@@ -3483,10 +3483,10 @@ msgid "Backup Mode: USB Recovery\n"
 msgstr "Tryb tworzenia kopii zapasowych: USB Recovery\n"
 
 msgid "Backup Settings"
-msgstr "Kopia Ustawień"
+msgstr "Kopia ustawień"
 
 msgid "Backup completed."
-msgstr "Kopia zapasowa kompletna."
+msgstr "Kopia zapasowa wykonana."
 
 msgid "Backup done."
 msgstr "Kopia wykonana."
@@ -3508,11 +3508,11 @@ msgid "Backup settings"
 msgstr "Ustawienia kopii zapasowej"
 
 msgid "Backup system settings"
-msgstr "Kopia Ustawień Systemowych"
+msgstr "Wykonaj kopię ustawień systemowych"
 
 #, python-format
 msgid "Backup to destination: %s"
-msgstr "Kopia zapasowa w miejscu docelowym: %s"
+msgstr "Kopia zapasowa w : %s"
 
 msgid "Backup your current image"
 msgstr "Zachowaj Twój aktualny obraz"
@@ -3524,13 +3524,13 @@ msgstr ""
 "Zachowaj aktualny obraz na HDD lub USB. Utworzy to kopię 1:1 tego urządzenia"
 
 msgid "Backup your current settings"
-msgstr "Kopia zapasowa bieżących ustawień"
+msgstr "Wykonaj kopię zapasowa bieżących ustawień"
 
 msgid ""
 "Backup your current settings. This includes E2-setup, channels, network and "
 "all selected files"
 msgstr ""
-"Kopia zapasowa aktualnych ustawień. Obejmuje E2-ustawienia, kanały, sieć i "
+"Kopia zapasowa aktualnych ustawień. Obejmuje ustawienia E2, kanały, sieć i "
 "wszystkie zaznaczone pliki"
 
 msgid "Backup, flash and restore settings and no plugins"
@@ -3900,7 +3900,7 @@ msgid "CCcam Info Config"
 msgstr "Konfiguracja CCcam Info"
 
 msgid "CCcam Info Setup"
-msgstr "CCcam Info. Ustawienie"
+msgstr "CCcam Info Ustawienie"
 
 msgid "CCcam Provider Info"
 msgstr "CCcam Info o Nadawcy"
@@ -4229,7 +4229,7 @@ msgid "Cape Verde"
 msgstr "Zielony Przylądek"
 
 msgid "Card infos (CCcam-Reader)"
-msgstr "Info.o Kartach (CCcam-Czytnik)"
+msgstr "Informacje o Kartach (CCcam-Czytnik)"
 
 msgid "Cards:"
 msgstr "Karty:"
@@ -4771,7 +4771,7 @@ msgstr "Kliknij na pilocie przycisk,który chcesz zmienić"
 
 #, python-format
 msgid "Client Info ( Oscam-Version: %s )"
-msgstr "Client Info ( Wersja-Oscam: %s )"
+msgstr "Klient ( Wersja Oscam: %s )"
 
 msgid "ClientIP"
 msgstr "IP Klienta"
@@ -4883,7 +4883,7 @@ msgid "Complete"
 msgstr "Kompletny"
 
 msgid "Complete Backup"
-msgstr "Kopia Zapasowa Kompletna"
+msgstr "Kopia zapasowa kompletna"
 
 msgid "Complex (allows mixing audio tracks and aspects)"
 msgstr "Kompleksowe (pozwala miksować ścieżki i rodzaje audio)"
@@ -7352,8 +7352,9 @@ msgid ""
 "Enable and set the duration of the second infobar (press OK twice) that may "
 "include more information on the current service."
 msgstr ""
-"Włączyć i ustawić czas trwania drugiego paska info.(naciśnij przycisk 'OK' "
-"dwa razy),może zawierać więcej informacji na temat bieżącego kanalu."
+"Włącz i ustaw czas trwania wyświetlania drugiego paska info (naciśnij "
+"przycisk 'OK' dwa razy), może zawierać więcej informacji na temat bieżącego "
+"kanału."
 
 msgid "Enable auto cable scan"
 msgstr "Włączyć automatyczne skanowanie kablówki"
@@ -7643,7 +7644,7 @@ msgid "Epg/Guide"
 msgstr "EPG/Przewodnik"
 
 msgid "Epg/Guide long"
-msgstr "EPG/Info. (długo)"
+msgstr "EPG/Info (długo)"
 
 msgid "Epos"
 msgstr "Epopeja"
@@ -7844,7 +7845,7 @@ msgid "Event"
 msgstr "Wydarzenie"
 
 msgid "Event Info"
-msgstr "Info. wydarzenia"
+msgstr "Informacje o wydarzeniu"
 
 msgid "Event font size"
 msgstr "Rozmiar czcionki wydarzenia"
@@ -8040,7 +8041,7 @@ msgid "Extensions"
 msgstr "Rozszerzenia"
 
 msgid "Extensions management"
-msgstr "Zarządzanie rozszerzeniami"
+msgstr "Menadżer rozszerzeń"
 
 msgid "Extensions/QuickMenu"
 msgstr "Rozszerzenia/Szybkie Menu"
@@ -8134,7 +8135,7 @@ msgid "Factory reset"
 msgstr "Przywracanie Ustawień Fabrycznych"
 
 msgid "Fade the Infobar on hide"
-msgstr "Wygaszanie paska info.w skórze"
+msgstr "Wygaszanie infobara w skórze"
 
 msgid "Fahrenheit"
 msgstr "Fahrenheita"
@@ -8213,7 +8214,7 @@ msgid "Feeds status:   Unstable"
 msgstr "Status źródeł:   Niestabilne"
 
 msgid "Feeds status:   Updating"
-msgstr "Status źródeł:   Aktualizacja"
+msgstr "Status źródeł:   Aktualizowanie"
 
 msgid "Feeds status: Unexpected"
 msgstr "Status źródeł: Nieoczekiwany"
@@ -8398,17 +8399,17 @@ msgid "Flash On the Fly"
 msgstr "Wgrywanie w locie"
 
 msgid "Flash Online"
-msgstr "Wgrywanie Oprogramowania Online"
+msgstr "Wgrywanie oprogramowania online"
 
 msgid "Flash Online a new image"
-msgstr "Wgrywanie Online Nowego Oprogramowania"
+msgstr "Wgraj nowe oprogramowanie online"
 
 #, python-format
 msgid "Flash directory '%s' not allowed!"
 msgstr "Katalog '%s' nie może być użyty jako flash!"
 
 msgid "Flash on the fly your your Receiver software."
-msgstr "Wgrywanie Oprogramowania do odbiornika."
+msgstr "Wgraj oprogramowanie odbiornika w locie."
 
 msgid "Flashing"
 msgstr "Wgrywanie"
@@ -8509,10 +8510,10 @@ msgid "Free Swap:"
 msgstr "Wolna Wymiana:"
 
 msgid "Free memory"
-msgstr "Wolne miejsce"
+msgstr "Wolna pamięć"
 
 msgid "Free memory:"
-msgstr "Wolne miejsce:"
+msgstr "Wolna pamięć:"
 
 msgid "Free:"
 msgstr "Wolne:"
@@ -8596,7 +8597,7 @@ msgstr "Pełny zakres RGB"
 
 #, python-format
 msgid "Full back-up on %s"
-msgstr "Pełna Kopia Zapasowa %s"
+msgstr "Pełna kopia zapasowa na %s"
 
 msgid "Full transparency"
 msgstr "Pełna przezroczystość"
@@ -8741,13 +8742,13 @@ msgid "Get latest release image"
 msgstr "Pobierz ostatni wydany obraz"
 
 msgid "Getting Event Info failed!"
-msgstr "Pobieranie Info.o wydarzeniu nie powiodło się!"
+msgstr "Pobieranie informacji o wydarzeniu nie powiodło się!"
 
 msgid "Getting Softcam list. Please wait..."
 msgstr "Pobieranie listy Soft cam.Proszę czekać ..."
 
 msgid "Getting plugin information. Please wait..."
-msgstr "Pobieranie info. o wtyczkach.Proszę czekać..."
+msgstr "Pobieranie informacji o wtyczkach. Proszę czekać..."
 
 msgid "Ghana"
 msgstr "Ghana"
@@ -9702,7 +9703,7 @@ msgstr ""
 "%s"
 
 msgid "Image-Version"
-msgstr "Wersja-Obrazu"
+msgstr "Obraz"
 
 msgid "ImageWizard"
 msgstr "KreatorObrazu"
@@ -9832,22 +9833,22 @@ msgid "Info"
 msgstr "Info"
 
 msgid "Info (EPG)"
-msgstr "Info./EPG"
+msgstr "Informacje (EPG)"
 
 msgid "Info (EPG) Long"
-msgstr "Info./EPG (długo)"
+msgstr "Informacje (EPG długo)"
 
 msgid "Info Panel"
 msgstr "Panel"
 
 msgid "Info button (long)"
-msgstr "Przycisk Info. (długo)"
+msgstr "Przycisk Info (długo)"
 
 msgid "Info button (short)"
-msgstr "Przycisk Info. (krótko)"
+msgstr "Przycisk Info (krótko)"
 
 msgid "Info icon width"
-msgstr "Info.szerokość icon"
+msgstr "Ikona Informacji szerokość"
 
 msgid "InfoBar"
 msgstr "Pasek info"
@@ -9856,7 +9857,7 @@ msgid "InfoBar EPG Actions"
 msgstr "Akcje EPG na pasku informacyjnym"
 
 msgid "InfoBar EPG mode"
-msgstr "Pasek info. trybu EPG"
+msgstr "Infobar tryb EPG"
 
 msgid "InfoBar Event View Actions"
 msgstr "Akcje Widoku Zdarzeń Paska Informacyjnego"
@@ -9874,7 +9875,7 @@ msgid "InfoPanel Actions"
 msgstr "Akcje Panelu Informacyjnego"
 
 msgid "Infobar EPG"
-msgstr "Pasek info. EPG"
+msgstr "Infobar (EPG)"
 
 msgid "Infobar fade-out speed"
 msgstr "Pasek informacyjny-wygaszać z prędkością"
@@ -9895,7 +9896,7 @@ msgid "Information"
 msgstr "Informacje"
 
 msgid "Information Panel"
-msgstr ""
+msgstr "Panel informacyjny"
 
 msgid "Infotainment"
 msgstr "Info o programie"
@@ -9995,7 +9996,7 @@ msgid "Install lcd picons on"
 msgstr "Instaluj pikony lcd w"
 
 msgid "Install local extension"
-msgstr "Instaluj Pakiet Lokalny"
+msgstr "Zainstaluj pakiet lokalny"
 
 msgid "Install or remove finished."
 msgstr "Instalowanie lub usuwanie zakończone."
@@ -10027,7 +10028,7 @@ msgid "Installing Service"
 msgstr "Instalowanie listy"
 
 msgid "Installing Software..."
-msgstr "Instalacja Oprogramowania ..."
+msgstr "Instalowanie oprogramowania ..."
 
 msgid "Installing feeds from IPK ..."
 msgstr "Instalowanie feeds z IPK ..."
@@ -10341,7 +10342,7 @@ msgid "Keyboard setup"
 msgstr "Ustawienie klawiatury"
 
 msgid "Keymap Selection"
-msgstr "Wybór mapowania klawiszy"
+msgstr "Wybór Mapowania Klawiszy"
 
 msgid "Keymap changed, you need to restart the GUI"
 msgstr "Mapa klawiszy zmieniona,należy ponownie uruchomić GUI"
@@ -10997,13 +10998,13 @@ msgid "Maltese"
 msgstr "Maltański"
 
 msgid "Manage Locale/Language Selection settings"
-msgstr "Zarządzanie ustawieniami regionalnymi/Wyboru języka"
+msgstr "Menadżer ustawień Regionu/Języka"
 
 msgid "Manage extensions"
-msgstr "Zarządzaj Rozszerzeniami"
+msgstr "Menadżer rozszerzeń"
 
 msgid "Manage network mounts"
-msgstr "Zarządzanie systemowym montowaniem sieciowym"
+msgstr "Menadżer montowania punktów sieciowych"
 
 #, python-format
 msgid "Manage your %s %s's software"
@@ -11170,7 +11171,7 @@ msgid "Memory"
 msgstr "Pamięć"
 
 msgid "Memory Information"
-msgstr "Info. o pamięci"
+msgstr "Pamięć"
 
 msgid "Memory index"
 msgstr "Indeks pamięci"
@@ -11611,7 +11612,7 @@ msgid "MultiBootSelector Actions"
 msgstr "Akcje MultiBootSelector"
 
 msgid "MultiEPG settings"
-msgstr "Ust. MultiEPG"
+msgstr "Ust. Multi EPG"
 
 msgid "MultiQuickButton"
 msgstr "Przycisk MultiQuick"
@@ -11817,7 +11818,7 @@ msgid "Network Interface"
 msgstr "Interfejs Sieciowy"
 
 msgid "Network MAC settings"
-msgstr "Ustawienia sieciowe MAC"
+msgstr "Ustawienia adresu MAC sieci"
 
 msgid "Network Neighbourhood"
 msgstr "Otoczenie Sieciowe"
@@ -12323,7 +12324,7 @@ msgstr ""
 "Za mało wolnego miejsca na dysku!\n"
 "\n"
 "Rozmiar pliku: %sMB\n"
-"Dostępne miejsce: %sMB\n"
+"Wolne miejsce: %sMB\n"
 "Ścieżka: %s"
 
 msgid "Not mounted"
@@ -12691,7 +12692,7 @@ msgstr "Oscam Info - Menu główne"
 
 #, python-format
 msgid "Oscam Log ( Oscam-Version: %s )"
-msgstr "Oscam Log ( Wersja-Oscam: %s )"
+msgstr "Oscam Log ( Wersja Oscam: %s )"
 
 msgid "OscamInfo Mainmenu"
 msgstr "OscamInfo Menu główne"
@@ -12758,13 +12759,13 @@ msgid "Overwrite picon files during software upgrade?"
 msgstr "Nadpisać pikony podczas aktualizacji oprogramowania?"
 
 msgid "Overwrite setting files (channellist) during software upgrade?"
-msgstr "Nadpisać pliki (Lista kanałów) podczas aktualizacji oprogramowania?"
+msgstr "Nadpisać pliki (List kanałów) podczas aktualizacji oprogramowania?"
 
 msgid "Overwrite softcam files during software upgrade?"
-msgstr "Nadpisać pliki Emu/soft cam podczas aktualizacji oprogramowania?"
+msgstr "Nadpisać pliki softcam podczas aktualizacji oprogramowania?"
 
 msgid "Overwrite spinner files during software upgrade?"
-msgstr "Nadpisać spinner podczas aktualizacji oprogramowania?"
+msgstr "Nadpisać pliki spinnera podczas aktualizacji oprogramowania?"
 
 msgid "Owner:"
 msgstr "Właściciel:"
@@ -12851,7 +12852,7 @@ msgid "Packages and associated locales"
 msgstr "Pakiety i skojarzone ustawienia regionalne"
 
 msgid "Packet management"
-msgstr "Zarządzanie pakietami"
+msgstr "Menadżer pakietów"
 
 msgid "Packet manager"
 msgstr "Menadżer pakietów"
@@ -13809,7 +13810,7 @@ msgstr "Wciśnij OK, aby edytować ustawienia."
 
 #, python-format
 msgid "Press OK to get further details for %s"
-msgstr "Wciśnij 'OK', aby uzyskać więcej info. o %s"
+msgstr "Wciśnij 'OK', aby uzyskać więcej informacji o %s"
 
 #, python-format
 msgid "Press OK to install and use this language.  [%s]"
@@ -14746,7 +14747,7 @@ msgstr ""
 "jest zielony przycisk."
 
 msgid "Reset video enhancement settings to system defaults?"
-msgstr "Przywrócić poprawki obrazu do ustawień domyślnych?"
+msgstr "Przywrócić domyślne ustawienia obrazu?"
 
 msgid "Reset video enhancement settings to your last configuration?"
 msgstr "Resetować ustawienia do poprzedniej konfiguracji?"
@@ -14825,26 +14826,26 @@ msgid "Restore Plugins"
 msgstr "Przywróć Wtyczki"
 
 msgid "Restore Settings"
-msgstr "Przywrócić Ustawienia"
+msgstr "Przywróć ustawienia"
 
 msgid "Restore backups"
-msgstr "Przywrócić kopię"
+msgstr "Przywróć kopie"
 
 msgid "Restore is running..."
 msgstr "Trwa przywracanie..."
 
 msgid "Restore settings from a backup"
-msgstr "Przywrócić ustawienia z kopii zapasowej"
+msgstr "Przywróć ustawienia z kopii zapasowej"
 
 msgid "Restore system settings"
-msgstr "Przywrócić Ustawienia Systemowe"
+msgstr "Przywróć ustawienia systemowe"
 
 msgid ""
 "Restore your settings back from a backup. After restore the box will restart "
 "to activated the new settings"
 msgstr ""
-"Z powrotem przywrócić ustawienia z kopii zapasowej? Po przywróceniu "
-"odbiornik zostanie ponownie uruchomiony, aby aktywować nowe ustawienia"
+"Przywrócić ustawienia z kopii zapasowej? Po przywróceniu odbiornik zostanie "
+"ponownie uruchomiony, aby zastosować nowe ustawienia"
 
 msgid "Restoring..."
 msgstr "Przywracanie..."
@@ -15568,7 +15569,7 @@ msgid "Select Red-key action long"
 msgstr "Akcja dla przycisku (długo) 'Czerwony'"
 
 msgid "Select Software Update"
-msgstr "Wybór Aktualizacji Oprogramowania"
+msgstr "Wybierz aktualizację oprogramowania"
 
 msgid "Select Yellow Key Action"
 msgstr "Akcja dla przycisku 'Żółty'"
@@ -15934,7 +15935,7 @@ msgid "Select the type of Single Cable Reception device you are using."
 msgstr "Wybierz typ używanego urządzenia do odbioru pojedynczego kabla."
 
 msgid "Select upgrade source"
-msgstr "Wybierz źródło aktualizacji"
+msgstr "Źródło aktualizacji"
 
 msgid "Select upgrade source to edit."
 msgstr "Wybierz źródło aktualizacji do edycji."
@@ -16117,7 +16118,7 @@ msgstr "Nazwa Serwera"
 
 #, python-format
 msgid "Server Info ( Oscam-Version: %s )"
-msgstr "Server Info ( Wersja-Oscam: %s )"
+msgstr "Serwer ( Wersja Oscam: %s )"
 
 msgid "Server down"
 msgstr "Serwer nie działa"
@@ -16174,7 +16175,7 @@ msgid "Service has been added to the selected bouquet."
 msgstr "Kanał został dodany do wybranego bukietu."
 
 msgid "Service info"
-msgstr "Info. o kanale"
+msgstr "Informacje o kanale"
 
 msgid "Service info - ECM Info"
 msgstr "Informacje serwisowe - Informacje ECM"
@@ -16195,7 +16196,7 @@ msgid "Service info - tuner setting values"
 msgstr "Informacje serwisowe - wartości ustawień tunera"
 
 msgid "Service info font size"
-msgstr "Rozmiar czcionki-Info. o kanale"
+msgstr "Rozmiar czcionki Informacji o kanale"
 
 msgid ""
 "Service invalid!\n"
@@ -16252,7 +16253,7 @@ msgid "ServicePicon"
 msgstr "Picon Kanału"
 
 msgid "Serviceinfo"
-msgstr "Info.dotyczące kanału"
+msgstr "Informacje dotyczące kanału"
 
 msgid "Services"
 msgstr "Kanały"
@@ -16393,8 +16394,8 @@ msgid ""
 "Set the screen type you get on pressing 'OK' when the info bar shows to 2nd "
 "infobar Lite or event info."
 msgstr ""
-"Ustaw rodzaj wyświetlania info.po naciśnięciu 'OK', gdy pasek info. pokazuje "
-"2-gi infobar lub info.o wydarzeniu."
+"Ustaw rodzaj wyświetlanych informacji po naciśnięciu przycisku 'OK', gdy "
+"infobar pokazuje 2-gi infobar lub infoormacje o wydarzeniu."
 
 msgid ""
 "Set the scrolling speed of text on the front display, this is used by "
@@ -16424,8 +16425,8 @@ msgid ""
 "Set the time to hide the second infobar. The bar also disappears on pressing "
 "'OK'."
 msgstr ""
-"Ustaw czas,aby ukryć drugi pasek info.Pasek znika również po naciśnięciu "
-"'OK'."
+"Ustaw czas po którym zniknie drugi infobar. Pasek znika również po "
+"naciśnięciu 'OK'."
 
 msgid ""
 "Set the time to wait for execute the default action in shutdown, standby or "
@@ -16650,7 +16651,7 @@ msgid "Setup your display"
 msgstr "Ustawienia wyświetlacza"
 
 msgid "Setup your local network"
-msgstr "Ustawienia sieci lokalnej"
+msgstr "Ustawienia sieci"
 
 msgid ""
 "Setup your local network. For Wlan you need to boot with a USB-Wlan stick"
@@ -17545,7 +17546,7 @@ msgid "Sleep"
 msgstr "Uśpienie"
 
 msgid "Sleep Timer"
-msgstr "Wyłącznik czasowy"
+msgstr "Wyłącznik Czasowy"
 
 msgid "Sleep delay"
 msgstr "Opóźnienie uśpienia"
@@ -17675,28 +17676,28 @@ msgid "Software"
 msgstr "Oprogramowanie"
 
 msgid "Software Manager"
-msgstr "Menadżer Oprogramowania"
+msgstr "Menadżer oprogramowania"
 
 msgid "Software Manager Setup"
-msgstr "Menedżer Instalacji Oprogramowania"
+msgstr "Ustawienia menedżera oprogramowania"
 
 msgid "Software Panel"
-msgstr "Panel Oprogramowania"
+msgstr "Panel oprogramowania"
 
 msgid "Software Update"
-msgstr "Aktualizacja Oprogramowania"
+msgstr "Aktualizacja oprogramowania"
 
 msgid "Software management"
-msgstr "Zarządzanie Oprogramowaniem"
+msgstr "Menadżer oprogramowania"
 
 msgid "Software manager setup"
-msgstr "Menadżer oprogramowania - ustawienia"
+msgstr "Ustawienia menadżera oprogramowania"
 
 msgid "Software restore"
-msgstr "Przywracanie Oprogramowania"
+msgstr "Przywracanie oprogramowania"
 
 msgid "Software update"
-msgstr "Aktualizacja Oprogramowania"
+msgstr "Aktualizacja oprogramowania"
 
 msgid "Softwaremanager information"
 msgstr "Informacje menadżera oprogramowania"
@@ -17991,10 +17992,10 @@ msgid "Start/stop slide show"
 msgstr "Start/stop pokaz slajdów"
 
 msgid "Start/stop/select cam"
-msgstr "Start/stop/wybierz cam"
+msgstr "Uruchom/Zatrzymaj/Wybierz Cam"
 
 msgid "Start/stop/select your cam, You need to install first a softcam"
-msgstr "Start/stop/wybierz cam,musisz zainstalować najpierw softcam"
+msgstr "Uruchom/Zatrzymaj/Wybierz Cam, musisz zainstalować najpierw softcam"
 
 msgid "StartWizard"
 msgstr "Uruchom Kreatora"
@@ -18462,10 +18463,10 @@ msgid "System: "
 msgstr "System: "
 
 msgid "SystemInfo"
-msgstr "Info.o Systemie"
+msgstr "System"
 
 msgid "Systeminfo"
-msgstr "Info.o Systemie"
+msgstr "System"
 
 msgid "T2MI PID"
 msgstr "T2MI PID"
@@ -18861,7 +18862,7 @@ msgid ""
 "possibly may be necessary to change this. (e.g.: the actual wake-up time is "
 "inaccurate or to late, waiting to a network-drive, etc.)"
 msgstr ""
-"Domyślne ustawienia to 5 minut wcześniej, aby wybudzić się z głębokiego "
+"Domyślne ustawienie to 5 minut wcześniej, aby wybudzić się z głębokiego "
 "czuwania. Konieczna może być zmiana tego. (np .: rzeczywisty czas budzenia "
 "jest niedokładny lub spóźniony, oczekiwanie na dysk sieciowy itp.)"
 
@@ -18971,8 +18972,8 @@ msgid ""
 "The software management extension is not installed!\n"
 "Please install it."
 msgstr ""
-"Rozszerzenie 'Zarządzanie oprogramowaniem' nie jest zainstalowane!\n"
-"Proszę zainstalować."
+"Menadżer oprogramowania nie jest zainstalowany!\n"
+"Proszę go zainstalować."
 
 msgid ""
 "The status of the current update could not be checked because https://www."
@@ -19039,7 +19040,7 @@ msgid ""
 "The wizard found a configuration backup. Do you want to restore your old "
 "settings from %s?"
 msgstr ""
-"Kreator znalazł kopie zapasową ustawień.Czy chcesz przywrócić swoje stare "
+"Kreator znalazł kopie zapasową ustawień. Czy chcesz przywrócić swoje "
 "ustawienia z %s?"
 
 msgid "The wizard is finished now."
@@ -19874,7 +19875,7 @@ msgid "Timeshift buffer limit [in hours]"
 msgstr "Limit bufora Timeshiftu [w godz.]"
 
 msgid "Timeshift checking for free space?"
-msgstr "Timeshift sprawdzić wolne miejsce?"
+msgstr "Timeshift, sprawdzić wolne miejsce?"
 
 msgid "Timeshift checking for older files [in minutes]"
 msgstr "Timeshift sprawdzanie plików starszych [w min.]"
@@ -20010,7 +20011,7 @@ msgid "Tonga"
 msgstr "Tonga"
 
 msgid "Top"
-msgstr "Góra"
+msgstr "Procesy"
 
 msgid "Top and Bottom"
 msgstr "Góra i Dół"
@@ -20569,11 +20570,11 @@ msgstr ""
 
 msgid "Update/Backup your firmware, Backup/Restore settings"
 msgstr ""
-"Aktualizacja/Kopia zapasowa oprogramowania,tworzenie kopii zapasowych/"
-"przywracania ustawień"
+"Aktualizuj i wykonaj kopię zapasową oprogramowania, Kopia zapasowa/"
+"Przywracanie ustawień"
 
 msgid "Update/Backup/Restore your box"
-msgstr "Aktualizacja/Kopia zapasowa/Przywracanie"
+msgstr "Aktualizacja/Kopia/Przywracanie"
 
 msgid "Updatefeed not available."
 msgstr "Aktualizacje nie dostępne."
@@ -20582,7 +20583,7 @@ msgid "Updates Available:"
 msgstr "Dostępne Aktualizacje:"
 
 msgid "Updating cache"
-msgstr "Aktualizacja pamięci podręcznej"
+msgstr "Aktualizowanie pamięci podręcznej"
 
 msgid "Updating cache, please wait..."
 msgstr "Aktualizuję pamięć podręczną, proszę czekać ..."
@@ -20594,7 +20595,7 @@ msgid "Updating software catalog"
 msgstr "Aktualizowanie katalogu oprogramowania"
 
 msgid "Upgrade (Backup, Flash & Restore All)"
-msgstr "Aktualizacja (Kopia zapasowa, Flash i Przywróć wszystko)"
+msgstr "Aktualizauj (Kopia zapasowa, Flash i Przywróć wszystko)"
 
 msgid "Upgrade and reboot system"
 msgstr "Aktualizuj i ponownie uruchom system"
@@ -20613,7 +20614,7 @@ msgstr ""
 "To może zająć kilka minut"
 
 msgid "Upgrade with GUI"
-msgstr "Aktualizacja mimo GUI"
+msgstr "Aktualizacja z GUI"
 
 msgid "Upgrading"
 msgstr "Aktualizowanie"
@@ -20792,8 +20793,8 @@ msgid ""
 "Use the Softcam Panel to control your Cam. This let you start/stop/select a "
 "cam"
 msgstr ""
-"Użyj Softcam panel do sterowania camami. To pozwoli Ci na start/stop/wybór "
-"cama"
+"Użyj panelu aby ustawić Softcam. To pozwoli uruchomić, zatrzymać lub wybrać "
+"softcam"
 
 msgid ""
 "Use the UP and DOWN buttons to select your locale/language then press the OK "
@@ -21198,7 +21199,7 @@ msgid "View list of available skins"
 msgstr "Pokaż listę dostępnych skórek"
 
 msgid "View list of available software extensions"
-msgstr "Pokaż listę dostępnych rozszerzeń oprogramowania"
+msgstr "Pokaż listę dostępnych rozszerzeń"
 
 msgid "View list of available system extensions"
 msgstr "Pokaż listę dostępnych rozszerzeń systemu"
@@ -22108,7 +22109,7 @@ msgid "Yes, do another manual scan now"
 msgstr "Tak, rozpocznij kolejne ręczne skanowanie teraz"
 
 msgid "Yes, restore the settings now"
-msgstr "Tak, przywrócić ustawienia teraz"
+msgstr "Tak, przywróć ustawienia teraz"
 
 msgid "Yes, returning to movie list"
 msgstr "Tak, powrót do listy filmów"
@@ -22831,8 +22832,8 @@ msgid ""
 "are you sure you want to restore\n"
 "following backup:\n"
 msgstr ""
-"jesteś pewien,że chcesz przywrócić\n"
-"następującą kopie zapasową:\n"
+"jesteś pewien, że chcesz przywrócić\n"
+"tą kopie zapasową:\n"
 
 msgid "arts/culture (general)"
 msgstr "kultura/sztuka (ogólna)"
@@ -23324,7 +23325,7 @@ msgid "free"
 msgstr "wolne"
 
 msgid "free diskspace"
-msgstr "wolnego miejsca na dysku"
+msgstr "wolne miejsce na dysku"
 
 msgid "from"
 msgstr "z"
