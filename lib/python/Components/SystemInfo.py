@@ -216,6 +216,16 @@ BoxInfo.setItem("ModuleLayout", getModuleLayout(), immutable=True)
 
 BoxInfo.setItem("RCImage", getRCFile("png"))
 BoxInfo.setItem("RCMapping", getRCFile("xml"))
+BoxInfo.setItem("RemoteEnable", model in ("dm800", "azboxhd"))
+if model in ('maram9', 'classm', 'axodin', 'axodinc', 'starsatlx', 'genius', 'evo', 'galaxym6'):
+	repeat = 400
+elif model == 'azboxhd':
+	repeat = 150
+else:
+	repeat = 100
+BoxInfo.setItem("RemoteRepeat", repeat)
+BoxInfo.setItem("RemoteDelay", 200 if repeat == 400 else 700)
+
 SystemInfo["HasRootSubdir"] = False	# This needs to be here so it can be reset by getMultibootslots!
 SystemInfo["RecoveryMode"] = False or fileCheck("/proc/stb/fp/boot_mode")	# This needs to be here so it can be reset by getMultibootslots!
 

@@ -301,23 +301,13 @@ class InitInputDevices:
 	def setupConfigEntries(self, device):
 		setattr(config.inputDevices, device, ConfigSubsection())
 		configItem = getattr(config.inputDevices, device)
-		model = BoxInfo.getItem("model")
-		configItem.enabled = ConfigYesNo(default=(model == 'dm800' or model == 'azboxhd'))
+		configItem.enabled = ConfigYesNo(default=BoxInfo.getItem("RemoteEnable", False))
 		configItem.enabled.addNotifier(self.inputDevicesEnabledChanged)
 		configItem.name = ConfigText(default="")
 		configItem.name.addNotifier(self.inputDevicesNameChanged)
-		repeat = 100
-		if model in ('maram9', 'classm', 'axodin', 'axodinc', 'starsatlx', 'genius', 'evo', 'galaxym6'):
-			repeat = 400
-		elif model == 'azboxhd':
-			repeat = 150
-		configItem.repeat = ConfigSlider(default=repeat, increment = 10, limits=(0, 500))
+		configItem.repeat = ConfigSlider(default=BoxInfo.getItem("RemoteRepeat", 100), increment = 10, limits=(0, 500))
 		configItem.repeat.addNotifier(self.inputDevicesRepeatChanged)
-		if model in ('maram9', 'classm', 'axodin', 'axodinc', 'starsatlx', 'genius', 'evo', 'galaxym6'):
-			delay = 200
-		else:
-			delay = 700
-		configItem.delay = ConfigSlider(default=delay, increment = 100, limits=(0, 5000))
+		configItem.delay = ConfigSlider(default=BoxInfo.getItem("RemoteDelay", 700), increment = 100, limits=(0, 5000))
 		configItem.delay.addNotifier(self.inputDevicesDelayChanged)
 
 	def inputDevicesEnabledChanged(self, configElement):
