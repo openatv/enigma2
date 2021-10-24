@@ -3,7 +3,7 @@ from __future__ import absolute_import
 from Screens.Screen import Screen
 from Screens.HelpMenu import HelpableScreen
 from Screens.MessageBox import MessageBox
-from Components.InputDevice import iInputDevices, iRcTypeControl
+from Components.InputDevice import inputDevices, iRcTypeControl
 from Components.Sources.StaticText import StaticText
 from Components.Sources.List import List
 from Components.config import config, ConfigYesNo, getConfigListEntry, ConfigSelection
@@ -29,7 +29,7 @@ class InputDeviceSelection(Screen, HelpableScreen):
 		self["key_blue"] = StaticText("")
 		self["introduction"] = StaticText(self.edittext)
 
-		self.devices = [(iInputDevices.getDeviceName(x), x) for x in iInputDevices.getDeviceList()]
+		self.devices = [(inputDevices.getDeviceName(x), x) for x in inputDevices.getDeviceList()]
 		print("[InputDeviceSelection] found devices :->", len(self.devices), self.devices)
 
 		self["OkCancelActions"] = HelpableActionMap(self, "OkCancelActions",
@@ -61,7 +61,7 @@ class InputDeviceSelection(Screen, HelpableScreen):
 		divpng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_GUISKIN, "div-h.png"))
 		activepng = None
 		devicepng = None
-		enabled = iInputDevices.getDeviceAttribute(device, 'enabled')
+		enabled = inputDevices.getDeviceAttribute(device, 'enabled')
 
 		if type == 'remote':
 			if config.misc.rcused.value == 0:
@@ -95,7 +95,7 @@ class InputDeviceSelection(Screen, HelpableScreen):
 			self.list.append(self.buildInterfaceList('rctype', _('Configure remote control type'), None, False))
 
 		for x in self.devices:
-			dev_type = iInputDevices.getDeviceAttribute(x[1], 'type')
+			dev_type = inputDevices.getDeviceAttribute(x[1], 'type')
 			self.list.append(self.buildInterfaceList(x[1], _(x[0]), dev_type))
 
 		self["list"].setList(self.list)
@@ -118,7 +118,7 @@ class InputDeviceSetup(Screen, ConfigListScreen):
 	def __init__(self, session, device):
 		Screen.__init__(self, session)
 		self.inputDevice = device
-		iInputDevices.currentDevice = self.inputDevice
+		inputDevices.currentDevice = self.inputDevice
 		self.onChangedEntry = []
 		self.setTitle(_("Setup InputDevice"))
 		self.isStepSlider = None
@@ -157,7 +157,7 @@ class InputDeviceSetup(Screen, ConfigListScreen):
 		self["config"].l.setSeperation(int(listWidth * .8))
 
 	def cleanup(self):
-		iInputDevices.currentDevice = ""
+		inputDevices.currentDevice = None
 
 	def createSetup(self):
 		self.list = []
@@ -198,7 +198,7 @@ class InputDeviceSetup(Screen, ConfigListScreen):
 
 	def selectionChanged(self):
 		if self["config"].getCurrent() == self.enableEntry:
-			self["introduction"].setText(_("Current device: ") + str(iInputDevices.getDeviceAttribute(self.inputDevice, 'name')))
+			self["introduction"].setText(_("Current device: ") + str(inputDevices.getDeviceAttribute(self.inputDevice, 'name')))
 		else:
 			self["introduction"].setText(_("Current value: ") + self.getCurrentValue() + ' ' + _("ms"))
 
@@ -221,7 +221,7 @@ class InputDeviceSetup(Screen, ConfigListScreen):
 			print("not confirmed")
 			return
 		else:
-			self.nameEntry[1].setValue(iInputDevices.getDeviceAttribute(self.inputDevice, 'name'))
+			self.nameEntry[1].setValue(inputDevices.getDeviceAttribute(self.inputDevice, 'name'))
 			cmd = "config.inputDevices." + self.inputDevice + ".name.save()"
 			exec(cmd)
 			self.keySave()
