@@ -215,8 +215,6 @@ class LocaleSelection(Screen, HelpableScreen):
 				self["description"].text = _("Press OK to use this language.  [%s]") % detail
 			else:
 				self["description"].text = _("This is the currently selected language.  [%s]") % detail
-			deleteButton = _("Delete Lang")
-			installButton = _("Install Lang")
 		else:
 			detail = "%s (%s) %s" % (international.getLanguageTranslated(locale), international.getCountryTranslated(locale), locale)
 			if status == self.PACK_AVAILABLE:
@@ -225,11 +223,9 @@ class LocaleSelection(Screen, HelpableScreen):
 				self["description"].text = _("Press OK to use this locale.  [%s]") % detail
 			else:
 				self["description"].text = _("This is the currently selected locale.  [%s]") % detail
-			deleteButton = _("Delete Loc")
-			installButton = _("Install Loc")
 		if package != international.getPackage(self.currentLocale):
 			self["manageActions"].setEnabled(True)
-			self["key_yellow"].text = deleteButton if status == self.PACK_INSTALLED else installButton
+			self["key_yellow"].text = _("Delete") if status == self.PACK_INSTALLED else _("Install")
 		elif international.getPurgablePackages(self.currentLocale):
 			self["manageActions"].setEnabled(True)
 			self["key_yellow"].text = _("Purge")
