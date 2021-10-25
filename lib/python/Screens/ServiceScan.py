@@ -8,9 +8,31 @@ from Components.ServiceScan import ServiceScan as CScan
 from Components.ProgressBar import ProgressBar
 from Components.Label import Label
 from Components.ActionMap import ActionMap
-from Components.FIFOList import FIFOList
+from Components.MenuList import MenuList
 from Components.Sources.FrontendInfo import FrontendInfo
 from Components.config import config
+
+
+class FIFOList(MenuList):
+	def __init__(self, len=10):
+		self.len = len
+		self.list = []
+		MenuList.__init__(self, self.list)
+
+	def addItem(self, item):
+		self.list.append(item)
+		self.l.setList(self.list[-self.len:])
+
+	def clear(self):
+		del self.list[:]
+		self.l.setList(self.list)
+
+	def getCurrentSelection(self):
+		return self.list and self.getCurrent() or None
+
+	def listAll(self):
+		self.l.setList(self.list)
+		self.selectionEnabled(True)
 
 
 class ServiceScanSummary(Screen):
