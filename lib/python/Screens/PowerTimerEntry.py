@@ -58,7 +58,7 @@ class TimerEntry(Screen, ConfigListScreen):
 
 		self.list = []
 		ConfigListScreen.__init__(self, self.list, session=session)
-		self.setTitle(_("PowerManager entry"))
+		self.setTitle(_("PowerTimer Entry"))
 		self.createSetup("config")
 
 	def createConfig(self):
@@ -447,7 +447,7 @@ class TimerLog(Screen):
 			"red": self.deleteEntry,
 			"blue": self.clearLog
 		}, -1)
-		self.setTitle(_("PowerManager log"))
+		self.setTitle(_("PowerTimer Log"))
 
 	def deleteEntry(self):
 		cur = self["loglist"].getCurrent()
