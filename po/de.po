@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-10-21 17:27+0000\n"
-"PO-Revision-Date: 2021-10-21 17:29+0000\n"
+"PO-Revision-Date: 2021-10-26 09:42+0000\n"
 "Last-Translator: Makumbo <tokioplo@web.de>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/openatv/"
 "enigma2-7-0-po/de/>\n"
@@ -2108,7 +2108,7 @@ msgid ""
 "Extend sleep timer 30 minutes. Your %s %s\n"
 "will shut down after Recording or Powertimer event. Get in Standby now?"
 msgstr ""
-"Eine Aufnahme, Aufnahmetimer oder PowerTimer ist aktiv oder beginnt in 15 "
+"Eine Aufnahme, ein Aufnahme- oder PowerTimer ist aktiv oder beginnt in 15 "
 "Minuten.\n"
 "Der Ausschalttimer wird um 30 Minuten verlängert und schaltet Ihre %s %s\n"
 "nach dem Aufnahme- oder PowerTimer-Ereignis ab. Jetzt in den Standby gehen?"
@@ -2551,7 +2551,7 @@ msgid "Add a mark"
 msgstr "Marker hinzufügen"
 
 msgid "Add a nameserver entry"
-msgstr "Fügen Sie einen Nameserver-Eintrag hinzu"
+msgstr "Nameserver-Eintrag hinzufügen"
 
 #
 msgid "Add a new title"
@@ -2874,15 +2874,15 @@ msgid ""
 "Allows you to enable the debug log. They contain very detailed information "
 "of everything the system does."
 msgstr ""
-"Debuglog erlauben. Das Debuglog enthält detaillierte Informationen über "
-"alles was das System macht."
+"Ein aktiviertes Debuglog enthält detaillierte Informationen über alles was "
+"das System macht."
 
 msgid ""
 "Allows you to enable the twisted log. They contain very detailed information "
 "of everything the twisted does. ('/tmp/twisted.log')"
 msgstr ""
-"Twisted-Log ('/tmp/twisted.log') erlauben. Das Twisted-Log enthält "
-"detaillierte Informationen über alles was das Twisted macht."
+"Ein aktiviertes Twisted-Log ('/tmp/twisted.log') enthält detaillierte "
+"Informationen über alles was das Twisted macht."
 
 msgid "Allows you to enable/disable displaying icons on the frontpanel."
 msgstr "Anzeige von Icons auf dem Display erlauben."
@@ -4549,7 +4549,7 @@ msgid "Channel"
 msgstr "Kanal"
 
 msgid "Channel \t\t\tVolume +"
-msgstr "Kanal \t\t\tLautstärke"
+msgstr "Kanal \t\t\tLautstärke +"
 
 #
 msgid "Channel +/-"
@@ -4681,7 +4681,7 @@ msgid "Check"
 msgstr "Prüfung"
 
 msgid "Check HDD"
-msgstr "Prüfen der HDD"
+msgstr "Prüfen der Festplatte"
 
 msgid "Check every (hours)"
 msgstr "Alle x Stunden prüfen"
@@ -4876,7 +4876,7 @@ msgstr ""
 msgid "Choose the order in which items are displayed in Help windows"
 msgstr ""
 "Wählen Sie die Reihenfolge aus, in der Elemente in Hilfefenstern angezeigt "
-"werden"
+"werden."
 
 msgid "Choose time interval to which the graphics will be rounded off."
 msgstr ""
@@ -5000,7 +5000,7 @@ msgid "Clear playlist"
 msgstr "Playlist leeren"
 
 msgid "Click on your remote on the button you want to change"
-msgstr "Drücken Sie die Taste der Fernbedienung die neu belegt werden soll"
+msgstr "Drücken Sie die Taste der Fernbedienung die neu belegt werden soll."
 
 #, python-format
 msgid "Client Info ( Oscam-Version: %s )"
@@ -7890,19 +7890,19 @@ msgstr ""
 msgid ""
 "Enable this option to add action map / remote control mapping data to the "
 "debug log file."
-msgstr "Aktivieren, um Action-Map-Daten dem Debuglog hinzuzufügen."
+msgstr "Aktivieren, um dem Debuglog Action-Map-Daten hinzuzufügen."
 
 msgid "Enable this option to add keyboard keymap data to the debug log file."
-msgstr "Aktivieren, um Tastaturdaten dem Debuglog hinzuzufügen."
+msgstr "Aktivieren, um dem Debuglog Tastaturdaten hinzuzufügen."
 
 msgid "Enable this option to add remote control data to the debug log file."
-msgstr "Aktivieren, um Fernbedienungsdaten dem Debuglog hinzuzufügen."
+msgstr "Aktivieren, um dem Debuglog Fernbedienungsdaten hinzuzufügen."
 
 msgid ""
 "Enable this option to add screen names and resolution data to the debug log "
 "file."
 msgstr ""
-"Aktivieren, um Bildschirmnamen und Auflösungsdaten dem Debuglog hinzuzufügen."
+"Aktivieren, um dem Debuglog Bildschirmnamen und Auflösungsdaten hinzuzufügen."
 
 msgid "Enable this setting if your aerial system needs power"
 msgstr ""
@@ -8205,7 +8205,7 @@ msgstr ""
 
 #
 msgid "Error executing plugin"
-msgstr "Ausführen des Plugins fehlgeschlagen"
+msgstr "Ausführen des Plugins fehlgeschlagen!"
 
 #, python-format
 msgid ""
@@ -10426,7 +10426,7 @@ msgid "Info button (short)"
 msgstr "Taste INFO kurz"
 
 msgid "Info icon width"
-msgstr "Info-Icon anzeigen Breite"
+msgstr "Info-Icon Breite"
 
 #
 msgid "InfoBar"
@@ -10477,7 +10477,7 @@ msgid "Information"
 msgstr "Informationen"
 
 msgid "Information Panel"
-msgstr ""
+msgstr "Infopanel"
 
 #
 msgid "Infotainment"
@@ -11277,7 +11277,7 @@ msgid "Limit character set for recording filenames"
 msgstr "Beschränken des Zeichensatzes für Aufnahme-Dateinamen"
 
 msgid "Limit debug log size (MB)"
-msgstr "Größenbegrenzung Debuglog (MB)"
+msgstr "Größenbegrenzung in MB des Debuglogs"
 
 #
 msgid "Limit east"
@@ -15488,7 +15488,7 @@ msgid "Red button..."
 msgstr "Taste ROT..."
 
 msgid "Red colored"
-msgstr "Roter Servicename"
+msgstr "Roter Sendername"
 
 msgid "Red long"
 msgstr "Taste ROT lang"
@@ -16445,8 +16445,8 @@ msgstr "Suchlauf..."
 msgid ""
 "Scans default lamedbs sorted by satellite with a connected dish positioner"
 msgstr ""
-"DefaultServiceScanner führt eine Kanalsuche über alle Satelliten durch, wenn "
-"Sie einen Rotor an Ihre Satellitenschüssel angeschlossen haben"
+"DefaultServiceScanner führt eine Sendersuche über alle Satelliten durch, "
+"wenn Sie einen Rotor an Ihre Satellitenschüssel angeschlossen haben"
 
 msgid "Scheduled load of epg.dat"
 msgstr "Geplantes Laden der 'epg.dat'"
@@ -17707,7 +17707,9 @@ msgstr "Wählen Sie, was die Taste bewirken soll."
 
 # data/setup.xml
 msgid "Set to yes for debugging the root cause of a spinner."
-msgstr "Auf 'Ja' setzen, um die Ursache eines Spinners zu ermitteln."
+msgstr ""
+"Aktivieren, um die Ursache eines Spinners (Beschäftigungsanzeige) zu "
+"ermitteln."
 
 msgid "Set voltage and 22KHz"
 msgstr "Setze Spannung und 22kHz"
@@ -17827,8 +17829,8 @@ msgstr "Einstellungen für jeden Tuner"
 
 msgid "Setup how to control the channel changing."
 msgstr ""
-"Das Verhalten beim Umschalten, bis der nächste Sender verfügbar ist, "
-"einstellen."
+"Das Verhalten beim Umschalten einstellen, bis der nächste Sender verfügbar "
+"ist."
 
 msgid "Setup interface"
 msgstr "Netzwerkeinstellungen"
@@ -17891,7 +17893,7 @@ msgid "Setup your System"
 msgstr "Stellen Sie Ihr System ein."
 
 msgid "Setup your Tuner and search for channels"
-msgstr "Einstellungen Tuner und Kanalsuche."
+msgstr "Einstellungen Tuner und Sendersuche."
 
 msgid "Setup your Video Mode, Video Output and other Video Settings"
 msgstr "Videomodus, Videoausgang und andere Videoeinstellungen."
