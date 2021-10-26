@@ -122,6 +122,12 @@ int eDVBPMTParser::getProgramInfo(program &program)
 						video.type = videoStream::vtCAVS;
 						isvideo = 1;
 					}
+				case 0xD2: // CAVS2
+					if (!isvideo)
+					{
+						video.type = videoStream::vtAVS2;
+						isvideo = 1;
+					}
 				case 0x10: // MPEG 4 Part 2
 					if (!isvideo)
 					{
