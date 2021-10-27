@@ -20,7 +20,7 @@ from Tools.BoundFunction import boundFunction
 from boxbranding import getBrandOEM
 import time
 
-if BoxInfo.getItem("model") in ('zgemmah9combo',):
+if BoxInfo.getItem("model") in ('zgemmah9combo', 'pulse4kmini'):
 	MAX_NUM_CI = 1
 else:
 	MAX_NUM_CI = 4
