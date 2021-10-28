@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-10-21 17:27+0000\n"
+"POT-Creation-Date: 2021-10-28 19:26+0000\n"
 "PO-Revision-Date: 2021-08-15 18:50+0000\n"
 "Last-Translator: openATV <openatv@gmail.com>\n"
 "Language-Team: Thai <https://hosted.weblate.org/projects/openatv/enigma2-7-0-"
@@ -3713,6 +3713,15 @@ msgstr ""
 msgid "Boost green"
 msgstr ""
 
+msgid "Boot time"
+msgstr ""
+
+msgid "Boot time and local date/time"
+msgstr ""
+
+msgid "Boot time and local time"
+msgstr ""
+
 msgid "Boot-up action"
 msgstr ""
 
@@ -6010,6 +6019,9 @@ msgstr ""
 msgid "Debug Logs"
 msgstr ""
 
+msgid "Debug log time format *"
+msgstr ""
+
 #, fuzzy
 msgid "Decryption & Parental Control"
 msgstr "ควบคุมอายุ"
@@ -6225,16 +6237,8 @@ msgstr ""
 msgid "Delete EPG"
 msgstr "ลบ"
 
-#, fuzzy
-msgid "Delete Lang"
-msgstr "ลบไฟล์"
-
 msgid "Delete Language"
 msgstr ""
-
-#, fuzzy
-msgid "Delete Loc"
-msgstr "ลบ"
 
 msgid "Delete Plugins"
 msgstr ""
@@ -9755,14 +9759,6 @@ msgstr ""
 msgid "Install Finished."
 msgstr ""
 
-#, fuzzy
-msgid "Install Lang"
-msgstr "กำลังติดตั้ง"
-
-#, fuzzy
-msgid "Install Loc"
-msgstr "ติดตั้ง"
-
 msgid "Install Plugins"
 msgstr ""
 
@@ -10019,9 +10015,6 @@ msgid "Javanese"
 msgstr ""
 
 msgid "Jersey"
-msgstr ""
-
-msgid "Job Manager"
 msgstr ""
 
 msgid "Job View"
@@ -10590,9 +10583,15 @@ msgstr ""
 msgid "Local box"
 msgstr ""
 
+msgid "Local date/time"
+msgstr ""
+
 #, fuzzy
 msgid "Local network"
 msgstr "Local Network"
+
+msgid "Local time"
+msgstr ""
 
 #, fuzzy
 msgid "Locale"
@@ -13462,9 +13461,6 @@ msgstr ""
 msgid "Plugin Filter"
 msgstr ""
 
-msgid "Plugin browser"
-msgstr "แสดงปลั๊กอิน"
-
 msgid "Plugin details"
 msgstr ""
 
@@ -13595,13 +13591,6 @@ msgstr "กำลังไฟฟ้า (mA)"
 msgid "Power threshold. Consult your receiver's manual for more information."
 msgstr ""
 
-#, fuzzy
-msgid "PowerTimer Entry"
-msgstr "ลบ Nameserver นี้ออก"
-
-msgid "PowerTimer Log"
-msgstr ""
-
 msgid "PowerTimer"
 msgstr ""
 
@@ -13609,8 +13598,15 @@ msgid "PowerTimer DeepStandby"
 msgstr ""
 
 #, fuzzy
+msgid "PowerTimer Entry"
+msgstr "ลบ Nameserver นี้ออก"
+
+#, fuzzy
 msgid "PowerTimer List"
 msgstr "แก้ไขการตั้งเวลา"
+
+msgid "PowerTimer Log"
+msgstr ""
 
 msgid "PowerTimer Overview"
 msgstr ""
@@ -15252,6 +15248,9 @@ msgstr ""
 
 #, python-format
 msgid "Script '%s' must have read permission to be able to run it"
+msgstr ""
+
+msgid "Script Manager"
 msgstr ""
 
 msgid "ScriptRunner"
@@ -19305,6 +19304,11 @@ msgstr "ปลั๊กอินตัวนี้จะถูกติดตั
 
 msgid "This plugin will be removed."
 msgstr "ปลั๊กอินตัวนี้จะถูกลบออก"
+
+msgid ""
+"This sets the prefix for each line in the debug log. The 'Boot time' is the "
+"number of seconds since your %s %s was last booted."
+msgstr ""
 
 msgid ""
 "This setting allows the tuner configuration to be a duplication of how "
@@ -24106,6 +24110,25 @@ msgstr "เปลี่ยนช่องแล้ว"
 
 msgid "®"
 msgstr ""
+
+#, fuzzy
+#~ msgid "Delete Lang"
+#~ msgstr "ลบไฟล์"
+
+#, fuzzy
+#~ msgid "Delete Loc"
+#~ msgstr "ลบ"
+
+#, fuzzy
+#~ msgid "Install Lang"
+#~ msgstr "กำลังติดตั้ง"
+
+#, fuzzy
+#~ msgid "Install Loc"
+#~ msgstr "ติดตั้ง"
+
+#~ msgid "Plugin browser"
+#~ msgstr "แสดงปลั๊กอิน"
 
 #, fuzzy
 #~ msgid "restart GUI"

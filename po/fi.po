@@ -5,8 +5,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-10-21 17:27+0000\n"
-"PO-Revision-Date: 2021-08-30 14:03+0000\n"
+"POT-Creation-Date: 2021-10-28 19:26+0000\n"
+"PO-Revision-Date: 2021-10-28 03:03+0000\n"
 "Last-Translator: tomppaa <tomzza89@gmail.com>\n"
 "Language-Team: Finnish <https://hosted.weblate.org/projects/openatv/"
 "enigma2-7-0-po/fi/>\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.8.1-dev\n"
+"X-Generator: Weblate 4.9-dev\n"
 
 msgid ""
 "\n"
@@ -3705,6 +3705,15 @@ msgstr "Korosta sinistä"
 msgid "Boost green"
 msgstr "Korosta vihreää"
 
+msgid "Boot time"
+msgstr ""
+
+msgid "Boot time and local date/time"
+msgstr ""
+
+msgid "Boot time and local time"
+msgstr ""
+
 msgid "Boot-up action"
 msgstr "Käynnistystila"
 
@@ -6064,6 +6073,9 @@ msgstr "Poista käytöstä"
 msgid "Debug Logs"
 msgstr "Vianselvityslokit"
 
+msgid "Debug log time format *"
+msgstr ""
+
 msgid "Decryption & Parental Control"
 msgstr "Salauksen purku & Lapsilukko"
 
@@ -6288,14 +6300,8 @@ msgstr "Poistamisen vahvistuskysely"
 msgid "Delete EPG"
 msgstr "Poista ohjelmaopas"
 
-msgid "Delete Lang"
-msgstr "Poista kieli"
-
 msgid "Delete Language"
 msgstr "Poista kieli"
-
-msgid "Delete Loc"
-msgstr "Poista Kieli"
 
 msgid "Delete Plugins"
 msgstr "Poista lisäosia"
@@ -8590,7 +8596,7 @@ msgid "Gaelic"
 msgstr "Gaelic"
 
 msgid "Galicia (Spain)"
-msgstr ""
+msgstr "Galicia (Espanja)"
 
 msgid "Galician"
 msgstr "Galician"
@@ -9825,7 +9831,7 @@ msgid "Information"
 msgstr "Tietoja"
 
 msgid "Information Panel"
-msgstr ""
+msgstr "Tieto Paneeli"
 
 msgid "Infotainment"
 msgstr "Ajankohtaisviihde"
@@ -9876,7 +9882,7 @@ msgid "Input devices"
 msgstr "Syöttölaitteet"
 
 msgid "Input scroll position"
-msgstr ""
+msgstr "Syötä vierityskohta"
 
 msgid "Insert"
 msgstr "Lisää"
@@ -9896,12 +9902,6 @@ msgstr "Asennus epäonnistui!"
 
 msgid "Install Finished."
 msgstr "Asennus suoritettu."
-
-msgid "Install Lang"
-msgstr "Asenna Kieli"
-
-msgid "Install Loc"
-msgstr "Asenna Alue"
 
 msgid "Install Plugins"
 msgstr "Asenna lisäosia"
@@ -10140,9 +10140,6 @@ msgstr "Jaavan kieli"
 
 msgid "Jersey"
 msgstr "Jersey"
-
-msgid "Job Manager"
-msgstr "Työ Hallinta"
 
 msgid "Job View"
 msgstr "Työnäkymä"
@@ -10681,8 +10678,14 @@ msgstr "Lataa/Tallenna/Poista EPG"
 msgid "Local box"
 msgstr "Paikallinen laite"
 
+msgid "Local date/time"
+msgstr ""
+
 msgid "Local network"
 msgstr "Lähiverkko"
+
+msgid "Local time"
+msgstr ""
 
 msgid "Locale"
 msgstr "Kieli"
@@ -13495,9 +13498,6 @@ msgstr "Lisäosien selaus"
 msgid "Plugin Filter"
 msgstr "Lisäosin Suodatus"
 
-msgid "Plugin browser"
-msgstr "Lisäosien selaus"
-
 msgid "Plugin details"
 msgstr "Lisäosan lisätietoja"
 
@@ -13621,20 +13621,20 @@ msgstr "Tunnistusvirta mA"
 msgid "Power threshold. Consult your receiver's manual for more information."
 msgstr "Virranhallinta. Katso lisätietoja vastaanottimesi käyttöoppaasta."
 
-msgid "PowerTimer Entry"
-msgstr "Virranhallinta"
-
-msgid "PowerTimer Log"
-msgstr "PowerTimer-loki"
-
 msgid "PowerTimer"
 msgstr "Virta ajastusasetukset"
 
 msgid "PowerTimer DeepStandby"
 msgstr "Virta ajastin virransäästötila"
 
+msgid "PowerTimer Entry"
+msgstr "Virranhallinta"
+
 msgid "PowerTimer List"
 msgstr "Virta ajastukset lista"
+
+msgid "PowerTimer Log"
+msgstr "PowerTimer-loki"
 
 msgid "PowerTimer Overview"
 msgstr "Virta ajastukset Yhteenveto"
@@ -15242,6 +15242,9 @@ msgstr "Kuvankaappaus näytössä /tmp"
 #, python-format
 msgid "Script '%s' must have read permission to be able to run it"
 msgstr "Script '%s' on oltava lukuoikeus voidakseen käyttää sitä"
+
+msgid "Script Manager"
+msgstr ""
 
 msgid "ScriptRunner"
 msgstr "ScriptRunner"
@@ -18390,7 +18393,7 @@ msgstr "TEKSTI"
 #. TRANSLATORS: Add here whatever should be shown in the "translator" about screen, up to 6 lines (use \n for newline)
 msgid "TRANSLATOR_INFO"
 msgstr ""
-"Suomenkielinen käännös: 30.08.2021\n"
+"Suomenkielinen käännös: 26.10.2021\n"
 "tomppaa"
 
 msgid "TS file is too large for ISO9660 level 1!"
@@ -19476,6 +19479,11 @@ msgstr "Tämä lisäosa asennetaan."
 
 msgid "This plugin will be removed."
 msgstr "Tämä lisäosa poistetaan."
+
+msgid ""
+"This sets the prefix for each line in the debug log. The 'Boot time' is the "
+"number of seconds since your %s %s was last booted."
+msgstr ""
 
 msgid ""
 "This setting allows the tuner configuration to be a duplication of how "
@@ -21721,6 +21729,8 @@ msgid ""
 "When the input cursor reaches this point (percentage of the width, from "
 "either side) scroll the text to the cursor."
 msgstr ""
+"Kun syöttökursori saavuttaa tämän pisteen (prosenttiosuus leveydestä, "
+"jommaltakummalta puolelta), vieritä teksti kursorin kohdalle."
 
 msgid ""
 "When tuned to a service the system will normally scan the transponder for "
@@ -22599,7 +22609,7 @@ msgid "about to start"
 msgstr "alkaa juuri"
 
 msgid "ac3"
-msgstr ""
+msgstr "ac3"
 
 msgid "activate network adapter configuration"
 msgstr "aktivoi verkkosovittimen asetukset"
@@ -22980,7 +22990,7 @@ msgid "drivers"
 msgstr "ajurit"
 
 msgid "dts"
-msgstr ""
+msgstr "DTS"
 
 msgid "eMMC"
 msgstr "eMMC"
@@ -24417,6 +24427,24 @@ msgstr "vaihtaa"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Delete Lang"
+#~ msgstr "Poista kieli"
+
+#~ msgid "Delete Loc"
+#~ msgstr "Poista Kieli"
+
+#~ msgid "Install Lang"
+#~ msgstr "Asenna Kieli"
+
+#~ msgid "Install Loc"
+#~ msgstr "Asenna Alue"
+
+#~ msgid "Job Manager"
+#~ msgstr "Työ Hallinta"
+
+#~ msgid "Plugin browser"
+#~ msgstr "Lisäosien selaus"
 
 #~ msgid "Cpu"
 #~ msgstr "Prosessori"

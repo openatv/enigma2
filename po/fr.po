@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-10-21 17:27+0000\n"
+"POT-Creation-Date: 2021-10-28 19:26+0000\n"
 "PO-Revision-Date: 2021-09-13 03:32+0000\n"
 "Last-Translator: Mr.Servo <mrservo@gmx.de>\n"
 "Language-Team: French <https://hosted.weblate.org/projects/openatv/"
@@ -3731,6 +3731,15 @@ msgstr "Intensifier le bleu"
 msgid "Boost green"
 msgstr "Intensifier le vert"
 
+msgid "Boot time"
+msgstr ""
+
+msgid "Boot time and local date/time"
+msgstr ""
+
+msgid "Boot time and local time"
+msgstr ""
+
 msgid "Boot-up action"
 msgstr "Action de démarrage"
 
@@ -6191,6 +6200,9 @@ msgstr "Désactiver"
 msgid "Debug Logs"
 msgstr "Logs debug"
 
+msgid "Debug log time format *"
+msgstr ""
+
 msgid "Decryption & Parental Control"
 msgstr "Décryptage et contrôle parental"
 
@@ -6417,14 +6429,8 @@ msgstr "Confirmation de l'effacement"
 msgid "Delete EPG"
 msgstr "Supprimer l'EPG"
 
-msgid "Delete Lang"
-msgstr "Supprimer la langue"
-
 msgid "Delete Language"
 msgstr "Effacer langue"
-
-msgid "Delete Loc"
-msgstr "Supprimer Loc"
 
 msgid "Delete Plugins"
 msgstr "Effacer plugins"
@@ -10068,12 +10074,6 @@ msgstr "Échec de l'installation !"
 msgid "Install Finished."
 msgstr "Installation terminée."
 
-msgid "Install Lang"
-msgstr "Installer Lang"
-
-msgid "Install Loc"
-msgstr "Installer Loc"
-
 msgid "Install Plugins"
 msgstr "Installer plugins"
 
@@ -10319,9 +10319,6 @@ msgstr "Javanais"
 
 msgid "Jersey"
 msgstr "Jersey"
-
-msgid "Job Manager"
-msgstr "Gestionnaire de tâches"
 
 msgid "Job View"
 msgstr "Visualiser les tâches"
@@ -10864,8 +10861,14 @@ msgstr "Charger/Sauver/Supprimer"
 msgid "Local box"
 msgstr "Récepteur local"
 
+msgid "Local date/time"
+msgstr ""
+
 msgid "Local network"
 msgstr "Réseau local"
+
+msgid "Local time"
+msgstr ""
 
 msgid "Locale"
 msgstr "Locale"
@@ -13722,9 +13725,6 @@ msgstr "Navigateur d'extensions"
 msgid "Plugin Filter"
 msgstr "Filtrer les plugins"
 
-msgid "Plugin browser"
-msgstr "Navigateur d'extensions"
-
 msgid "Plugin details"
 msgstr "Détails des plugins"
 
@@ -13852,20 +13852,20 @@ msgstr ""
 "Seuil de puissance. Consulter le manuel de votre récepteur pour plus "
 "d’informations."
 
-msgid "PowerTimer Entry"
-msgstr "Entrée du gestionnaire d'alimentation"
-
-msgid "PowerTimer Log"
-msgstr "Log du gestionnaire d'alimentation"
-
 msgid "PowerTimer"
 msgstr "Programmations d'alimentation"
 
 msgid "PowerTimer DeepStandby"
 msgstr "Programmations d'alimentation de veille profonde"
 
+msgid "PowerTimer Entry"
+msgstr "Entrée du gestionnaire d'alimentation"
+
 msgid "PowerTimer List"
 msgstr "Liste des programmations d'alimentation"
+
+msgid "PowerTimer Log"
+msgstr "Log du gestionnaire d'alimentation"
 
 msgid "PowerTimer Overview"
 msgstr "Aperçu des programmations d'alimentation"
@@ -15507,6 +15507,9 @@ msgstr "Capture de l'écran LCD dans /tmp"
 msgid "Script '%s' must have read permission to be able to run it"
 msgstr ""
 "Le script '%s' doit avoir l'autorisation de lecture pour pouvoir l'exécuter"
+
+msgid "Script Manager"
+msgstr ""
 
 msgid "ScriptRunner"
 msgstr "Exécuteur de Script"
@@ -19878,6 +19881,11 @@ msgstr "Ce plugin sera installé."
 
 msgid "This plugin will be removed."
 msgstr "Ce plugin sera supprimé."
+
+msgid ""
+"This sets the prefix for each line in the debug log. The 'Boot time' is the "
+"number of seconds since your %s %s was last booted."
+msgstr ""
 
 msgid ""
 "This setting allows the tuner configuration to be a duplication of how "
@@ -24930,6 +24938,24 @@ msgstr "zapping"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Delete Lang"
+#~ msgstr "Supprimer la langue"
+
+#~ msgid "Delete Loc"
+#~ msgstr "Supprimer Loc"
+
+#~ msgid "Install Lang"
+#~ msgstr "Installer Lang"
+
+#~ msgid "Install Loc"
+#~ msgstr "Installer Loc"
+
+#~ msgid "Job Manager"
+#~ msgstr "Gestionnaire de tâches"
+
+#~ msgid "Plugin browser"
+#~ msgstr "Navigateur d'extensions"
 
 #~ msgid "Cpu"
 #~ msgstr "CPU"

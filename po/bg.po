@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openATV / enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-10-21 17:27+0000\n"
+"POT-Creation-Date: 2021-10-28 19:26+0000\n"
 "PO-Revision-Date: 2017-11-21 13:26+0200\n"
 "Last-Translator: Satelitas\n"
 "Language-Team: TEAM <EMAIL@ADDRESS>\n"
@@ -3898,6 +3898,15 @@ msgstr "Увеличи синьото"
 msgid "Boost green"
 msgstr "Увеличи зеленото"
 
+msgid "Boot time"
+msgstr ""
+
+msgid "Boot time and local date/time"
+msgstr ""
+
+msgid "Boot time and local time"
+msgstr ""
+
 msgid "Boot-up action"
 msgstr "Действие при стартиране"
 
@@ -6341,6 +6350,9 @@ msgstr "Деактивиране"
 msgid "Debug Logs"
 msgstr "Debug Logs"
 
+msgid "Debug log time format *"
+msgstr ""
+
 #, fuzzy
 msgid "Decryption & Parental Control"
 msgstr "Родителски контрол"
@@ -6562,16 +6574,8 @@ msgstr "Изтриване на потвърждението"
 msgid "Delete EPG"
 msgstr "Изтриване на EPG"
 
-#, fuzzy
-msgid "Delete Lang"
-msgstr "Изтриване на език"
-
 msgid "Delete Language"
 msgstr "Изтриване на език"
-
-#, fuzzy
-msgid "Delete Loc"
-msgstr "Изтрий"
 
 msgid "Delete Plugins"
 msgstr "Изтриване на плъгините"
@@ -10235,14 +10239,6 @@ msgstr "Инсталирането не бе успешно !!"
 msgid "Install Finished."
 msgstr "Инсталирането завършено."
 
-#, fuzzy
-msgid "Install Lang"
-msgstr "Инсталирането на"
-
-#, fuzzy
-msgid "Install Loc"
-msgstr "Инсталиране"
-
 msgid "Install Plugins"
 msgstr "Инсталиране на плъгини"
 
@@ -10495,9 +10491,6 @@ msgstr ""
 
 msgid "Jersey"
 msgstr ""
-
-msgid "Job Manager"
-msgstr "Мениджър работа"
 
 msgid "Job View"
 msgstr "Работен изглед"
@@ -11069,8 +11062,14 @@ msgstr "Зареждане/Запазване/Изтриване"
 msgid "Local box"
 msgstr "Локален приемник"
 
+msgid "Local date/time"
+msgstr ""
+
 msgid "Local network"
 msgstr "Локална мрежа"
+
+msgid "Local time"
+msgstr ""
 
 #, fuzzy
 msgid "Locale"
@@ -13984,9 +13983,6 @@ msgstr "Браузър за плъгини"
 msgid "Plugin Filter"
 msgstr "Филтър за плъгини"
 
-msgid "Plugin browser"
-msgstr "Браузър за плъгини"
-
 msgid "Plugin details"
 msgstr "Детайли на плъгините"
 
@@ -14117,20 +14113,20 @@ msgstr "Включване праг в mA"
 msgid "Power threshold. Consult your receiver's manual for more information."
 msgstr ""
 
-msgid "PowerTimer Entry"
-msgstr "PowerTimer Entry"
-
-msgid "PowerTimer Log"
-msgstr "PowerTimer Log"
-
 msgid "PowerTimer"
 msgstr "PowerTimer"
 
 msgid "PowerTimer DeepStandby"
 msgstr "PowerTimer за DeepStandby"
 
+msgid "PowerTimer Entry"
+msgstr "PowerTimer Entry"
+
 msgid "PowerTimer List"
 msgstr "PowerTimer List"
+
+msgid "PowerTimer Log"
+msgstr "PowerTimer Log"
 
 msgid "PowerTimer Overview"
 msgstr "PowerTimer Overview"
@@ -15807,6 +15803,9 @@ msgstr "Screenshot of LCD in /tmp"
 
 #, python-format
 msgid "Script '%s' must have read permission to be able to run it"
+msgstr ""
+
+msgid "Script Manager"
 msgstr ""
 
 msgid "ScriptRunner"
@@ -20115,6 +20114,11 @@ msgstr "Този плъгин ще бъде инсталиран."
 
 msgid "This plugin will be removed."
 msgstr "Този плъгин ще бъде премахнат."
+
+msgid ""
+"This sets the prefix for each line in the debug log. The 'Boot time' is the "
+"number of seconds since your %s %s was last booted."
+msgstr ""
 
 msgid ""
 "This setting allows the tuner configuration to be a duplication of how "
@@ -25194,6 +25198,28 @@ msgstr "превключено на"
 
 msgid "®"
 msgstr ""
+
+#, fuzzy
+#~ msgid "Delete Lang"
+#~ msgstr "Изтриване на език"
+
+#, fuzzy
+#~ msgid "Delete Loc"
+#~ msgstr "Изтрий"
+
+#, fuzzy
+#~ msgid "Install Lang"
+#~ msgstr "Инсталирането на"
+
+#, fuzzy
+#~ msgid "Install Loc"
+#~ msgstr "Инсталиране"
+
+#~ msgid "Job Manager"
+#~ msgstr "Мениджър работа"
+
+#~ msgid "Plugin browser"
+#~ msgstr "Браузър за плъгини"
 
 #~ msgid "Cpu"
 #~ msgstr "Процесор"

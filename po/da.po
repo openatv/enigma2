@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-10-21 17:27+0000\n"
+"POT-Creation-Date: 2021-10-28 19:26+0000\n"
 "PO-Revision-Date: 2020-07-14 22:31+0200\n"
 "Last-Translator: JC 2020 <dk-translation@protonmail.com>\n"
 "Language-Team: Danskholdet <dk-translation@pm.me>\n"
@@ -3709,6 +3709,15 @@ msgstr "Forstærk blå"
 msgid "Boost green"
 msgstr "Forstærk grøn"
 
+msgid "Boot time"
+msgstr ""
+
+msgid "Boot time and local date/time"
+msgstr ""
+
+msgid "Boot time and local time"
+msgstr ""
+
 msgid "Boot-up action"
 msgstr "Opstartshandling"
 
@@ -6109,6 +6118,9 @@ msgstr "Deaktivere"
 msgid "Debug Logs"
 msgstr "Fejlsøgning logge"
 
+msgid "Debug log time format *"
+msgstr ""
+
 msgid "Decryption & Parental Control"
 msgstr "Afkodning & Forældrekontrol"
 
@@ -6329,16 +6341,8 @@ msgstr "Bekræft sletning"
 msgid "Delete EPG"
 msgstr "Slet EPG"
 
-#, fuzzy
-msgid "Delete Lang"
-msgstr "Slet sprog"
-
 msgid "Delete Language"
 msgstr "Slet sprog"
-
-#, fuzzy
-msgid "Delete Loc"
-msgstr "Slet"
 
 msgid "Delete Plugins"
 msgstr "Slet Plugins"
@@ -9969,14 +9973,6 @@ msgstr "Installation mislykkedes !!"
 msgid "Install Finished."
 msgstr "Installation gennemført."
 
-#, fuzzy
-msgid "Install Lang"
-msgstr "Installerer"
-
-#, fuzzy
-msgid "Install Loc"
-msgstr "Installer"
-
 msgid "Install Plugins"
 msgstr "Installer Plugins"
 
@@ -10219,9 +10215,6 @@ msgstr ""
 
 msgid "Jersey"
 msgstr "Jersey"
-
-msgid "Job Manager"
-msgstr "Opgave-håndtering"
 
 msgid "Job View"
 msgstr "Opgaveoversigt"
@@ -10772,8 +10765,14 @@ msgstr "Indlæs/Gem/Slet"
 msgid "Local box"
 msgstr "Lokal boks"
 
+msgid "Local date/time"
+msgstr ""
+
 msgid "Local network"
 msgstr "Lokal netværk"
+
+msgid "Local time"
+msgstr ""
 
 msgid "Locale"
 msgstr "Landekode"
@@ -13629,9 +13628,6 @@ msgstr "Plugin-browser"
 msgid "Plugin Filter"
 msgstr "Plugin filtre"
 
-msgid "Plugin browser"
-msgstr "Plugin browser"
-
 msgid "Plugin details"
 msgstr "Plugin detaljer"
 
@@ -13757,20 +13753,20 @@ msgstr ""
 "Strømforbrug tæsrskelværdi. Se i din modtagers vejledning for mere "
 "information."
 
-msgid "PowerTimer Entry"
-msgstr "Strømhåndtering post"
-
-msgid "PowerTimer Log"
-msgstr "Strømhåndteringslog"
-
 msgid "PowerTimer"
 msgstr "StrømTimer"
 
 msgid "PowerTimer DeepStandby"
 msgstr "StrømTimer Dyb Standby"
 
+msgid "PowerTimer Entry"
+msgstr "Strømhåndtering post"
+
 msgid "PowerTimer List"
 msgstr "StrømTimer liste"
+
+msgid "PowerTimer Log"
+msgstr "Strømhåndteringslog"
 
 msgid "PowerTimer Overview"
 msgstr "StrømTimer overblik"
@@ -15390,6 +15386,9 @@ msgstr "SKærmdump af LCD i /tmp"
 #, python-format
 msgid "Script '%s' must have read permission to be able to run it"
 msgstr "Skript '%s' kræver læserettigheder for at det kan køres"
+
+msgid "Script Manager"
+msgstr ""
 
 #, fuzzy
 msgid "ScriptRunner"
@@ -19699,6 +19698,11 @@ msgstr "Dette Plugin vil blive installeret."
 
 msgid "This plugin will be removed."
 msgstr "Dette Plugin vil blive fjernet."
+
+msgid ""
+"This sets the prefix for each line in the debug log. The 'Boot time' is the "
+"number of seconds since your %s %s was last booted."
+msgstr ""
 
 msgid ""
 "This setting allows the tuner configuration to be a duplication of how "
@@ -24715,6 +24719,28 @@ msgstr "Zapper"
 
 msgid "®"
 msgstr ""
+
+#, fuzzy
+#~ msgid "Delete Lang"
+#~ msgstr "Slet sprog"
+
+#, fuzzy
+#~ msgid "Delete Loc"
+#~ msgstr "Slet"
+
+#, fuzzy
+#~ msgid "Install Lang"
+#~ msgstr "Installerer"
+
+#, fuzzy
+#~ msgid "Install Loc"
+#~ msgstr "Installer"
+
+#~ msgid "Job Manager"
+#~ msgstr "Opgave-håndtering"
+
+#~ msgid "Plugin browser"
+#~ msgstr "Plugin browser"
 
 #~ msgid "Cpu"
 #~ msgstr "CPU"

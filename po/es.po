@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-10-21 17:27+0000\n"
+"POT-Creation-Date: 2021-10-28 19:26+0000\n"
 "PO-Revision-Date: 2021-09-06 16:55+0000\n"
 "Last-Translator: Víctor Pont <victor@pont.cat>\n"
 "Language-Team: Spanish <https://hosted.weblate.org/projects/openatv/"
@@ -4122,6 +4122,15 @@ msgstr "Reforzar azul"
 msgid "Boost green"
 msgstr "Reforzar verde"
 
+msgid "Boot time"
+msgstr ""
+
+msgid "Boot time and local date/time"
+msgstr ""
+
+msgid "Boot time and local time"
+msgstr ""
+
 # boot-up action
 msgid "Boot-up action"
 msgstr "Acción de encendido"
@@ -6678,6 +6687,9 @@ msgstr "Desactivar"
 msgid "Debug Logs"
 msgstr "Historiales de depuración"
 
+msgid "Debug log time format *"
+msgstr ""
+
 #
 #, fuzzy
 msgid "Decryption & Parental Control"
@@ -6913,16 +6925,8 @@ msgstr "Confirmación de borrado"
 msgid "Delete EPG"
 msgstr "Borrar"
 
-#, fuzzy
-msgid "Delete Lang"
-msgstr "Borrar idioma"
-
 msgid "Delete Language"
 msgstr "Borrar idioma"
-
-#, fuzzy
-msgid "Delete Loc"
-msgstr "Borrar"
 
 msgid "Delete Plugins"
 msgstr "Desinstalar complementos"
@@ -10866,16 +10870,6 @@ msgstr "¡Fallo en la instalación!"
 msgid "Install Finished."
 msgstr "Instalación finalizada."
 
-#
-#, fuzzy
-msgid "Install Lang"
-msgstr "Instalando"
-
-#
-#, fuzzy
-msgid "Install Loc"
-msgstr "Instalar"
-
 msgid "Install Plugins"
 msgstr "Instalar complementos"
 
@@ -11149,9 +11143,6 @@ msgstr ""
 
 msgid "Jersey"
 msgstr ""
-
-msgid "Job Manager"
-msgstr "Administrador de tareas"
 
 #
 msgid "Job View"
@@ -11776,8 +11767,14 @@ msgstr "Cargar/Guardar"
 msgid "Local box"
 msgstr "Receptor local"
 
+msgid "Local date/time"
+msgstr ""
+
 msgid "Local network"
 msgstr "Red local"
+
+msgid "Local time"
+msgstr ""
 
 #, fuzzy
 msgid "Locale"
@@ -14980,13 +14977,6 @@ msgstr "Buscador de complementos"
 msgid "Plugin Filter"
 msgstr "Filtrar complementos"
 
-# löschen?
-# msgid "Plugin Browser"
-# msgstr "Plugin Manager"
-#
-msgid "Plugin browser"
-msgstr "Buscador de complementos"
-
 msgid "Plugin details"
 msgstr "Detalles del complemento"
 
@@ -15135,13 +15125,6 @@ msgstr "Umbral de potencia en mA"
 msgid "Power threshold. Consult your receiver's manual for more information."
 msgstr ""
 
-#
-msgid "PowerTimer Entry"
-msgstr "Añadir temporizador de alimentación"
-
-msgid "PowerTimer Log"
-msgstr "Registro de PowerManager"
-
 msgid "PowerTimer"
 msgstr "PowerTimer"
 
@@ -15149,8 +15132,15 @@ msgid "PowerTimer DeepStandby"
 msgstr "PowerTimer DeepStandby"
 
 #
+msgid "PowerTimer Entry"
+msgstr "Añadir temporizador de alimentación"
+
+#
 msgid "PowerTimer List"
 msgstr "Lista de temporizadores de alimentación"
+
+msgid "PowerTimer Log"
+msgstr "Registro de PowerManager"
 
 #
 msgid "PowerTimer Overview"
@@ -16981,6 +16971,9 @@ msgstr ""
 
 #, python-format
 msgid "Script '%s' must have read permission to be able to run it"
+msgstr ""
+
+msgid "Script Manager"
 msgstr ""
 
 msgid "ScriptRunner"
@@ -21569,6 +21562,11 @@ msgstr "Se instalará este coplemento."
 #
 msgid "This plugin will be removed."
 msgstr "Se desinstalará este complemento."
+
+msgid ""
+"This sets the prefix for each line in the debug log. The 'Boot time' is the "
+"number of seconds since your %s %s was last booted."
+msgstr ""
 
 msgid ""
 "This setting allows the tuner configuration to be a duplication of how "
@@ -27133,6 +27131,34 @@ msgstr "Zapping"
 
 msgid "®"
 msgstr ""
+
+#, fuzzy
+#~ msgid "Delete Lang"
+#~ msgstr "Borrar idioma"
+
+#, fuzzy
+#~ msgid "Delete Loc"
+#~ msgstr "Borrar"
+
+#
+#, fuzzy
+#~ msgid "Install Lang"
+#~ msgstr "Instalando"
+
+#
+#, fuzzy
+#~ msgid "Install Loc"
+#~ msgstr "Instalar"
+
+#~ msgid "Job Manager"
+#~ msgstr "Administrador de tareas"
+
+# löschen?
+# msgid "Plugin Browser"
+# msgstr "Plugin Manager"
+#
+#~ msgid "Plugin browser"
+#~ msgstr "Buscador de complementos"
 
 # InfoPanel
 #~ msgid "Cpu"

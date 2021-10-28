@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-10-21 17:27+0000\n"
+"POT-Creation-Date: 2021-10-28 19:26+0000\n"
 "PO-Revision-Date: 2021-08-15 18:50+0000\n"
 "Last-Translator: openATV <openatv@gmail.com>\n"
 "Language-Team: Icelandic <https://hosted.weblate.org/projects/openatv/"
@@ -3919,6 +3919,15 @@ msgstr ""
 msgid "Boost green"
 msgstr ""
 
+msgid "Boot time"
+msgstr ""
+
+msgid "Boot time and local date/time"
+msgstr ""
+
+msgid "Boot time and local time"
+msgstr ""
+
 msgid "Boot-up action"
 msgstr ""
 
@@ -6249,6 +6258,9 @@ msgstr ""
 msgid "Debug Logs"
 msgstr ""
 
+msgid "Debug log time format *"
+msgstr ""
+
 #
 #, fuzzy
 msgid "Decryption & Parental Control"
@@ -6480,18 +6492,8 @@ msgstr ""
 msgid "Delete EPG"
 msgstr "Eyða"
 
-#
-#, fuzzy
-msgid "Delete Lang"
-msgstr "eyða skrá"
-
 msgid "Delete Language"
 msgstr ""
-
-#
-#, fuzzy
-msgid "Delete Loc"
-msgstr "Eyða"
 
 msgid "Delete Plugins"
 msgstr ""
@@ -10242,16 +10244,6 @@ msgstr ""
 msgid "Install Finished."
 msgstr ""
 
-#
-#, fuzzy
-msgid "Install Lang"
-msgstr "Set inn"
-
-#
-#, fuzzy
-msgid "Install Loc"
-msgstr "Setja inn"
-
 msgid "Install Plugins"
 msgstr ""
 
@@ -10537,9 +10529,6 @@ msgid "Javanese"
 msgstr ""
 
 msgid "Jersey"
-msgstr ""
-
-msgid "Job Manager"
 msgstr ""
 
 #
@@ -11158,10 +11147,16 @@ msgstr ""
 msgid "Local box"
 msgstr ""
 
+msgid "Local date/time"
+msgstr ""
+
 #
 #, fuzzy
 msgid "Local network"
 msgstr "Nærnet"
+
+msgid "Local time"
+msgstr ""
 
 #
 #, fuzzy
@@ -14310,9 +14305,6 @@ msgstr ""
 msgid "Plugin Filter"
 msgstr ""
 
-msgid "Plugin browser"
-msgstr "Íforrita leit"
-
 msgid "Plugin details"
 msgstr ""
 
@@ -14459,14 +14451,6 @@ msgstr "Aflmörk í mA"
 msgid "Power threshold. Consult your receiver's manual for more information."
 msgstr ""
 
-#
-#, fuzzy
-msgid "PowerTimer Entry"
-msgstr "taka út nafnaþjón"
-
-msgid "PowerTimer Log"
-msgstr ""
-
 msgid "PowerTimer"
 msgstr ""
 
@@ -14475,8 +14459,16 @@ msgstr ""
 
 #
 #, fuzzy
+msgid "PowerTimer Entry"
+msgstr "taka út nafnaþjón"
+
+#
+#, fuzzy
 msgid "PowerTimer List"
 msgstr "Breyta Tímastillingu"
+
+msgid "PowerTimer Log"
+msgstr ""
 
 msgid "PowerTimer Overview"
 msgstr ""
@@ -16268,6 +16260,9 @@ msgstr ""
 
 #, python-format
 msgid "Script '%s' must have read permission to be able to run it"
+msgstr ""
+
+msgid "Script Manager"
 msgstr ""
 
 msgid "ScriptRunner"
@@ -20592,6 +20587,11 @@ msgstr "Þetta íforrit verður sett inn."
 
 msgid "This plugin will be removed."
 msgstr "Þetta íforrit verður tekið út."
+
+msgid ""
+"This sets the prefix for each line in the debug log. The 'Boot time' is the "
+"number of seconds since your %s %s was last booted."
+msgstr ""
 
 msgid ""
 "This setting allows the tuner configuration to be a duplication of how "
@@ -25820,6 +25820,29 @@ msgstr "stokkið"
 
 msgid "®"
 msgstr ""
+
+#
+#, fuzzy
+#~ msgid "Delete Lang"
+#~ msgstr "eyða skrá"
+
+#
+#, fuzzy
+#~ msgid "Delete Loc"
+#~ msgstr "Eyða"
+
+#
+#, fuzzy
+#~ msgid "Install Lang"
+#~ msgstr "Set inn"
+
+#
+#, fuzzy
+#~ msgid "Install Loc"
+#~ msgstr "Setja inn"
+
+#~ msgid "Plugin browser"
+#~ msgstr "Íforrita leit"
 
 #
 #, fuzzy

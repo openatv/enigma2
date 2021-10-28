@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Apachi70 (OpenATV)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-10-21 17:27+0000\n"
+"POT-Creation-Date: 2021-10-28 19:26+0000\n"
 "PO-Revision-Date: 2021-08-20 04:04+0000\n"
 "Last-Translator: openATV <openatv@gmail.com>\n"
 "Language-Team: Turkish <https://hosted.weblate.org/projects/openatv/"
@@ -3956,6 +3956,15 @@ msgstr "Maviyi artır"
 msgid "Boost green"
 msgstr "Yeşili artır"
 
+msgid "Boot time"
+msgstr ""
+
+msgid "Boot time and local date/time"
+msgstr ""
+
+msgid "Boot time and local time"
+msgstr ""
+
 msgid "Boot-up action"
 msgstr "Önyükleme eylemi"
 
@@ -6505,6 +6514,9 @@ msgstr "Devre dışı bırakmak"
 msgid "Debug Logs"
 msgstr "Hata ayıklama Günlükleri"
 
+msgid "Debug log time format *"
+msgstr ""
+
 #
 msgid "Decryption & Parental Control"
 msgstr "Şifre Çözme ve Ebeveyn Kontrolü"
@@ -6737,17 +6749,8 @@ msgstr "Silme Onayı"
 msgid "Delete EPG"
 msgstr "EPG'yi sil"
 
-#, fuzzy
-msgid "Delete Lang"
-msgstr "Dilleri Sil"
-
 msgid "Delete Language"
 msgstr "Dilleri Sil"
-
-#
-#, fuzzy
-msgid "Delete Loc"
-msgstr "Sil"
 
 msgid "Delete Plugins"
 msgstr "Eklentileri Sil"
@@ -10625,16 +10628,6 @@ msgstr "Kurulum Başarısız !!"
 msgid "Install Finished."
 msgstr "Kurulum Bitti."
 
-#
-#, fuzzy
-msgid "Install Lang"
-msgstr "Yüklüyor"
-
-#
-#, fuzzy
-msgid "Install Loc"
-msgstr "Yükle"
-
 msgid "Install Plugins"
 msgstr "Eklentileri Kur"
 
@@ -10903,9 +10896,6 @@ msgstr ""
 
 msgid "Jersey"
 msgstr "Jersey"
-
-msgid "Job Manager"
-msgstr "Görev Yöneticisi"
 
 #
 msgid "Job View"
@@ -11512,9 +11502,15 @@ msgstr "Yük / Kaydet / Sil"
 msgid "Local box"
 msgstr "Yerel kutu"
 
+msgid "Local date/time"
+msgstr ""
+
 #
 msgid "Local network"
 msgstr "Yerel Ağ"
+
+msgid "Local time"
+msgstr ""
 
 msgid "Locale"
 msgstr "Yerel"
@@ -14625,9 +14621,6 @@ msgstr "Eklentiler Listesi"
 msgid "Plugin Filter"
 msgstr "Eklenti Filtresi"
 
-msgid "Plugin browser"
-msgstr "Eklenti tarayıcısı"
-
 msgid "Plugin details"
 msgstr "Eklenti ayrıntıları"
 
@@ -14770,21 +14763,21 @@ msgstr "Güç eşiği (mA)"
 msgid "Power threshold. Consult your receiver's manual for more information."
 msgstr "Güç eşik Daha fazla bilgi için alıcınızın kullanım kılavuzuna bakın."
 
-#
-msgid "PowerTimer Entry"
-msgstr "Zamanlayıcı girişi"
-
-msgid "PowerTimer Log"
-msgstr "Zamanlayıcı günlüğü"
-
 msgid "PowerTimer"
 msgstr "PowerTimer"
 
 msgid "PowerTimer DeepStandby"
 msgstr "PowerTimer DeepStandby"
 
+#
+msgid "PowerTimer Entry"
+msgstr "Zamanlayıcı girişi"
+
 msgid "PowerTimer List"
 msgstr "Zamanlayıcı Listesini göster"
+
+msgid "PowerTimer Log"
+msgstr "Zamanlayıcı günlüğü"
 
 msgid "PowerTimer Overview"
 msgstr "Zamanlayıcı genel bakış"
@@ -16563,6 +16556,9 @@ msgid "Script '%s' must have read permission to be able to run it"
 msgstr ""
 "'%s' komut dosyasının çalıştırılabilmesi için okuma iznine sahip olması "
 "gerekir"
+
+msgid "Script Manager"
+msgstr ""
 
 msgid "ScriptRunner"
 msgstr "Komut Dosyası Çalışanı"
@@ -21082,6 +21078,11 @@ msgstr "Bu eklenti yüklenecek."
 
 msgid "This plugin will be removed."
 msgstr "Bu eklenti kaldırılacak."
+
+msgid ""
+"This sets the prefix for each line in the debug log. The 'Boot time' is the "
+"number of seconds since your %s %s was last booted."
+msgstr ""
 
 msgid ""
 "This setting allows the tuner configuration to be a duplication of how "
@@ -26491,6 +26492,31 @@ msgstr "zap"
 
 msgid "®"
 msgstr ""
+
+#, fuzzy
+#~ msgid "Delete Lang"
+#~ msgstr "Dilleri Sil"
+
+#
+#, fuzzy
+#~ msgid "Delete Loc"
+#~ msgstr "Sil"
+
+#
+#, fuzzy
+#~ msgid "Install Lang"
+#~ msgstr "Yüklüyor"
+
+#
+#, fuzzy
+#~ msgid "Install Loc"
+#~ msgstr "Yükle"
+
+#~ msgid "Job Manager"
+#~ msgstr "Görev Yöneticisi"
+
+#~ msgid "Plugin browser"
+#~ msgstr "Eklenti tarayıcısı"
 
 #~ msgid "Cpu"
 #~ msgstr "Cpu"

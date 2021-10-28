@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Italian translation\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-10-21 17:27+0000\n"
+"POT-Creation-Date: 2021-10-28 19:26+0000\n"
 "PO-Revision-Date: 2019-09-01 14:09+0100\n"
 "Last-Translator: Massimo Bambi - Insanity\n"
 "Language-Team: Massimo Bambi <maxbambi@libero.it>\n"
@@ -3770,6 +3770,15 @@ msgstr "Blu spinto"
 msgid "Boost green"
 msgstr "Verde spinto"
 
+msgid "Boot time"
+msgstr ""
+
+msgid "Boot time and local date/time"
+msgstr ""
+
+msgid "Boot time and local time"
+msgstr ""
+
 msgid "Boot-up action"
 msgstr "Azione di avvio"
 
@@ -6201,6 +6210,9 @@ msgstr "Disabilitato"
 msgid "Debug Logs"
 msgstr "Log di debug"
 
+msgid "Debug log time format *"
+msgstr ""
+
 msgid "Decryption & Parental Control"
 msgstr "Decrittazione & Protezione Minori"
 
@@ -6428,16 +6440,8 @@ msgstr "Conferma cancellazione"
 msgid "Delete EPG"
 msgstr "Cancella l'EPG"
 
-#, fuzzy
-msgid "Delete Lang"
-msgstr "Cancella lingua"
-
 msgid "Delete Language"
 msgstr "Cancella lingua"
-
-#, fuzzy
-msgid "Delete Loc"
-msgstr "Elimina"
 
 msgid "Delete Plugins"
 msgstr "Cancella plugin"
@@ -10097,14 +10101,6 @@ msgstr "Installazione fallita !!"
 msgid "Install Finished."
 msgstr "Installazione terminata."
 
-#, fuzzy
-msgid "Install Lang"
-msgstr "Installazione"
-
-#, fuzzy
-msgid "Install Loc"
-msgstr "Installare"
-
 msgid "Install Plugins"
 msgstr "Installare plugin"
 
@@ -10352,9 +10348,6 @@ msgstr ""
 
 msgid "Jersey"
 msgstr "Jersey"
-
-msgid "Job Manager"
-msgstr "Gestore attività"
 
 msgid "Job View"
 msgstr "Vista attività"
@@ -10914,8 +10907,14 @@ msgstr "Carica / Salva / Cancella"
 msgid "Local box"
 msgstr "Decoder locale"
 
+msgid "Local date/time"
+msgstr ""
+
 msgid "Local network"
 msgstr "Rete locale"
+
+msgid "Local time"
+msgstr ""
 
 msgid "Locale"
 msgstr "Lingua"
@@ -13805,9 +13804,6 @@ msgstr "Navigatore plugin"
 msgid "Plugin Filter"
 msgstr "Filtro plugin"
 
-msgid "Plugin browser"
-msgstr "Navigatore plugin"
-
 msgid "Plugin details"
 msgstr "Dettagli plugin"
 
@@ -13937,20 +13933,20 @@ msgstr ""
 "Soglia di potenza. Consultare il manuale del ricevitore per ulteriori "
 "informazioni."
 
-msgid "PowerTimer Entry"
-msgstr "Voci di PowerManager"
-
-msgid "PowerTimer Log"
-msgstr "Log di PowerManager"
-
 msgid "PowerTimer"
 msgstr "PowerTimer"
 
 msgid "PowerTimer DeepStandby"
 msgstr "Spegnimento PowerTimer"
 
+msgid "PowerTimer Entry"
+msgstr "Voci di PowerManager"
+
 msgid "PowerTimer List"
 msgstr "Lista  Powertimer"
+
+msgid "PowerTimer Log"
+msgstr "Log di PowerManager"
 
 msgid "PowerTimer Overview"
 msgstr "Riepilogo PowerTimer"
@@ -15600,6 +15596,9 @@ msgstr "Schermata di LCD in / tmp"
 #, python-format
 msgid "Script '%s' must have read permission to be able to run it"
 msgstr "Lo script '%s' deve avere permessi di lettura per poter funzionare"
+
+msgid "Script Manager"
+msgstr ""
 
 msgid "ScriptRunner"
 msgstr "ScriptRunner"
@@ -19970,6 +19969,11 @@ msgstr "Questo plugin verrà installato."
 
 msgid "This plugin will be removed."
 msgstr "Questo plugin verrà rimosso."
+
+msgid ""
+"This sets the prefix for each line in the debug log. The 'Boot time' is the "
+"number of seconds since your %s %s was last booted."
+msgstr ""
 
 msgid ""
 "This setting allows the tuner configuration to be a duplication of how "
@@ -24999,6 +25003,28 @@ msgstr "zapping"
 
 msgid "®"
 msgstr ""
+
+#, fuzzy
+#~ msgid "Delete Lang"
+#~ msgstr "Cancella lingua"
+
+#, fuzzy
+#~ msgid "Delete Loc"
+#~ msgstr "Elimina"
+
+#, fuzzy
+#~ msgid "Install Lang"
+#~ msgstr "Installazione"
+
+#, fuzzy
+#~ msgid "Install Loc"
+#~ msgstr "Installare"
+
+#~ msgid "Job Manager"
+#~ msgstr "Gestore attività"
+
+#~ msgid "Plugin browser"
+#~ msgstr "Navigatore plugin"
 
 #~ msgid "Cpu"
 #~ msgstr "CPU"

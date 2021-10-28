@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-10-21 17:27+0000\n"
+"POT-Creation-Date: 2021-10-28 19:26+0000\n"
 "PO-Revision-Date: 2021-10-11 15:55+0000\n"
 "Last-Translator: Marián Hikaník <podnety@mojepreklady.net>\n"
 "Language-Team: Slovak <https://hosted.weblate.org/projects/openatv/"
@@ -3713,6 +3713,15 @@ msgstr "Zvýrazniť modrú farbu"
 msgid "Boost green"
 msgstr "Zvýrazniť zelenú farbu"
 
+msgid "Boot time"
+msgstr ""
+
+msgid "Boot time and local date/time"
+msgstr ""
+
+msgid "Boot time and local time"
+msgstr ""
+
 msgid "Boot-up action"
 msgstr "Akcia po nabootovaní"
 
@@ -6107,6 +6116,9 @@ msgstr "Deaktivovať"
 msgid "Debug Logs"
 msgstr "Záznamy o ladení"
 
+msgid "Debug log time format *"
+msgstr ""
+
 msgid "Decryption & Parental Control"
 msgstr "Dekódovanie a rodičovská kontrola"
 
@@ -6328,13 +6340,7 @@ msgstr "Vymazať potvrdenie"
 msgid "Delete EPG"
 msgstr "Vymazať EPG"
 
-msgid "Delete Lang"
-msgstr "Vymazať jazyk"
-
 msgid "Delete Language"
-msgstr "Vymazať jazyk"
-
-msgid "Delete Loc"
 msgstr "Vymazať jazyk"
 
 msgid "Delete Plugins"
@@ -9951,12 +9957,6 @@ msgstr "Inštalácia bola neúspešná!"
 msgid "Install Finished."
 msgstr "Inštalácia bola dokončená."
 
-msgid "Install Lang"
-msgstr "Inštalovať jazyk"
-
-msgid "Install Loc"
-msgstr "Inštalovať jazyk"
-
 msgid "Install Plugins"
 msgstr "Inštalácia pluginov"
 
@@ -10194,9 +10194,6 @@ msgstr "Jávančina"
 
 msgid "Jersey"
 msgstr "Jersey"
-
-msgid "Job Manager"
-msgstr "Správca úloh"
 
 msgid "Job View"
 msgstr "Zobrazenie úlohy"
@@ -10736,8 +10733,14 @@ msgstr "Načítať/Uložiť/Vymazať"
 msgid "Local box"
 msgstr "Lokálny box"
 
+msgid "Local date/time"
+msgstr ""
+
 msgid "Local network"
 msgstr "Lokálna sieť"
+
+msgid "Local time"
+msgstr ""
 
 msgid "Locale"
 msgstr "Jazyková verzia"
@@ -13549,9 +13552,6 @@ msgstr "Prehliadač pluginov"
 msgid "Plugin Filter"
 msgstr "Filter pluginov"
 
-msgid "Plugin browser"
-msgstr "Prehliadač pluginov"
-
 msgid "Plugin details"
 msgstr "Podrobnosti o pluginoch"
 
@@ -13677,20 +13677,20 @@ msgstr "Hranica prúdu v mA"
 msgid "Power threshold. Consult your receiver's manual for more information."
 msgstr "Hranica prúdu. Ďalšie informácie získate v návode od prijímača."
 
-msgid "PowerTimer Entry"
-msgstr "Záznam správcu napájania"
-
-msgid "PowerTimer Log"
-msgstr "Súbor so záznamom správcu napájania"
-
 msgid "PowerTimer"
 msgstr "Časovač napájania"
 
 msgid "PowerTimer DeepStandby"
 msgstr "Časovač napájania - vypnutie"
 
+msgid "PowerTimer Entry"
+msgstr "Záznam správcu napájania"
+
 msgid "PowerTimer List"
 msgstr "Zoznam časov vypnutia"
+
+msgid "PowerTimer Log"
+msgstr "Súbor so záznamom správcu napájania"
 
 msgid "PowerTimer Overview"
 msgstr "Prehľad časov vypnutia"
@@ -15307,6 +15307,9 @@ msgstr "Snímka obrazovky LCD v /tmp"
 #, python-format
 msgid "Script '%s' must have read permission to be able to run it"
 msgstr "Aby ste mohli spustiť skript '%s', musí mať oprávnenie na čítanie"
+
+msgid "Script Manager"
+msgstr ""
 
 msgid "ScriptRunner"
 msgstr "Spúšťač skriptov"
@@ -19565,6 +19568,11 @@ msgstr "Tento plugin sa nainštaluje."
 
 msgid "This plugin will be removed."
 msgstr "Tento plugin sa odstráni."
+
+msgid ""
+"This sets the prefix for each line in the debug log. The 'Boot time' is the "
+"number of seconds since your %s %s was last booted."
+msgstr ""
 
 msgid ""
 "This setting allows the tuner configuration to be a duplication of how "
@@ -24525,6 +24533,24 @@ msgstr "prepínanie"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Delete Lang"
+#~ msgstr "Vymazať jazyk"
+
+#~ msgid "Delete Loc"
+#~ msgstr "Vymazať jazyk"
+
+#~ msgid "Install Lang"
+#~ msgstr "Inštalovať jazyk"
+
+#~ msgid "Install Loc"
+#~ msgstr "Inštalovať jazyk"
+
+#~ msgid "Job Manager"
+#~ msgstr "Správca úloh"
+
+#~ msgid "Plugin browser"
+#~ msgstr "Prehliadač pluginov"
 
 #~ msgid "Cpu"
 #~ msgstr "Cpu"

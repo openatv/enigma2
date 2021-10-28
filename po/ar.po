@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-10-21 17:27+0000\n"
+"POT-Creation-Date: 2021-10-28 19:26+0000\n"
 "PO-Revision-Date: 2021-08-15 18:49+0000\n"
 "Last-Translator: openATV <openatv@gmail.com>\n"
 "Language-Team: Arabic <https://hosted.weblate.org/projects/openatv/"
@@ -3857,6 +3857,15 @@ msgstr "تعزيز الأزرق"
 msgid "Boost green"
 msgstr "تعزيز الأخضر"
 
+msgid "Boot time"
+msgstr ""
+
+msgid "Boot time and local date/time"
+msgstr ""
+
+msgid "Boot time and local time"
+msgstr ""
+
 msgid "Boot-up action"
 msgstr ""
 
@@ -6225,6 +6234,9 @@ msgstr ""
 msgid "Debug Logs"
 msgstr ""
 
+msgid "Debug log time format *"
+msgstr ""
+
 #
 #, fuzzy
 msgid "Decryption & Parental Control"
@@ -6445,17 +6457,8 @@ msgstr ""
 msgid "Delete EPG"
 msgstr "أمسح"
 
-#, fuzzy
-msgid "Delete Lang"
-msgstr "حذف الملف"
-
 msgid "Delete Language"
 msgstr ""
-
-#
-#, fuzzy
-msgid "Delete Loc"
-msgstr "أمسح"
 
 msgid "Delete Plugins"
 msgstr ""
@@ -10059,15 +10062,6 @@ msgstr ""
 msgid "Install Finished."
 msgstr ""
 
-#, fuzzy
-msgid "Install Lang"
-msgstr "جارى التثبيت"
-
-#
-#, fuzzy
-msgid "Install Loc"
-msgstr "تثبيت"
-
 msgid "Install Plugins"
 msgstr ""
 
@@ -10327,9 +10321,6 @@ msgstr ""
 
 msgid "Jersey"
 msgstr "جيرسي"
-
-msgid "Job Manager"
-msgstr ""
 
 #
 msgid "Job View"
@@ -10920,8 +10911,14 @@ msgstr ""
 msgid "Local box"
 msgstr ""
 
+msgid "Local date/time"
+msgstr ""
+
 msgid "Local network"
 msgstr "شبكة إتصال محلية"
+
+msgid "Local time"
+msgstr ""
 
 #, fuzzy
 msgid "Locale"
@@ -13889,9 +13886,6 @@ msgstr "تصفح البلج إنز"
 msgid "Plugin Filter"
 msgstr ""
 
-msgid "Plugin browser"
-msgstr "تصفح البلج إنز"
-
 msgid "Plugin details"
 msgstr ""
 
@@ -14033,14 +14027,6 @@ msgstr "قياس الطاقه في الميكرو امبير"
 msgid "Power threshold. Consult your receiver's manual for more information."
 msgstr "بداية الإغلاق. راجع دليل المتلقي الخاص بك لمزيد من المعلومات."
 
-#
-#, fuzzy
-msgid "PowerTimer Entry"
-msgstr "حذف مدخلأسم الخادم"
-
-msgid "PowerTimer Log"
-msgstr ""
-
 msgid "PowerTimer"
 msgstr ""
 
@@ -14049,8 +14035,16 @@ msgstr ""
 
 #
 #, fuzzy
+msgid "PowerTimer Entry"
+msgstr "حذف مدخلأسم الخادم"
+
+#
+#, fuzzy
 msgid "PowerTimer List"
 msgstr "تحرير المؤقت"
+
+msgid "PowerTimer Log"
+msgstr ""
 
 msgid "PowerTimer Overview"
 msgstr ""
@@ -15753,6 +15747,9 @@ msgstr ""
 
 #, python-format
 msgid "Script '%s' must have read permission to be able to run it"
+msgstr ""
+
+msgid "Script Manager"
 msgstr ""
 
 msgid "ScriptRunner"
@@ -19957,6 +19954,11 @@ msgstr "سيتم تثبيت هذا البلج إنز."
 
 msgid "This plugin will be removed."
 msgstr "سيتم حذف هذا البلج إنز."
+
+msgid ""
+"This sets the prefix for each line in the debug log. The 'Boot time' is the "
+"number of seconds since your %s %s was last booted."
+msgstr ""
 
 msgid ""
 "This setting allows the tuner configuration to be a duplication of how "
@@ -24980,6 +24982,27 @@ msgstr "تم الانتقال"
 
 msgid "®"
 msgstr ""
+
+#, fuzzy
+#~ msgid "Delete Lang"
+#~ msgstr "حذف الملف"
+
+#
+#, fuzzy
+#~ msgid "Delete Loc"
+#~ msgstr "أمسح"
+
+#, fuzzy
+#~ msgid "Install Lang"
+#~ msgstr "جارى التثبيت"
+
+#
+#, fuzzy
+#~ msgid "Install Loc"
+#~ msgstr "تثبيت"
+
+#~ msgid "Plugin browser"
+#~ msgstr "تصفح البلج إنز"
 
 #, fuzzy
 #~ msgid "restart GUI"

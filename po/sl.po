@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-10-21 17:27+0000\n"
+"POT-Creation-Date: 2021-10-28 19:26+0000\n"
 "PO-Revision-Date: 2016-04-02 23:18+0200\n"
 "Last-Translator: Andy Blackburn <andyblac@icloud.com>\n"
 "Language-Team: OldSkul from www.linux-sprejemniki.info\n"
@@ -4033,6 +4033,15 @@ msgstr ""
 msgid "Boost green"
 msgstr ""
 
+msgid "Boot time"
+msgstr ""
+
+msgid "Boot time and local date/time"
+msgstr ""
+
+msgid "Boot time and local time"
+msgstr ""
+
 msgid "Boot-up action"
 msgstr ""
 
@@ -6510,6 +6519,9 @@ msgstr ""
 msgid "Debug Logs"
 msgstr "Podrobno"
 
+msgid "Debug log time format *"
+msgstr ""
+
 #
 #, fuzzy
 msgid "Decryption & Parental Control"
@@ -6744,18 +6756,8 @@ msgstr ""
 msgid "Delete EPG"
 msgstr "Izbris"
 
-#
-#, fuzzy
-msgid "Delete Lang"
-msgstr "izbris datoteke"
-
 msgid "Delete Language"
 msgstr ""
-
-#
-#, fuzzy
-msgid "Delete Loc"
-msgstr "Izbris"
 
 msgid "Delete Plugins"
 msgstr ""
@@ -10621,16 +10623,6 @@ msgstr ""
 msgid "Install Finished."
 msgstr ""
 
-#
-#, fuzzy
-msgid "Install Lang"
-msgstr "Nameščam..."
-
-#
-#, fuzzy
-msgid "Install Loc"
-msgstr "Namesti"
-
 msgid "Install Plugins"
 msgstr ""
 
@@ -10921,9 +10913,6 @@ msgid "Javanese"
 msgstr ""
 
 msgid "Jersey"
-msgstr ""
-
-msgid "Job Manager"
 msgstr ""
 
 #
@@ -11553,10 +11542,16 @@ msgstr "Izberi/Shrani"
 msgid "Local box"
 msgstr ""
 
+msgid "Local date/time"
+msgstr ""
+
 #
 #, fuzzy
 msgid "Local network"
 msgstr "Lokalno omrežje"
+
+msgid "Local time"
+msgstr ""
 
 #
 #, fuzzy
@@ -14755,9 +14750,6 @@ msgstr "Seznam vtičnikov"
 msgid "Plugin Filter"
 msgstr ""
 
-msgid "Plugin browser"
-msgstr ""
-
 msgid "Plugin details"
 msgstr ""
 
@@ -14908,14 +14900,6 @@ msgstr "Prag moči v mA"
 msgid "Power threshold. Consult your receiver's manual for more information."
 msgstr ""
 
-#
-#, fuzzy
-msgid "PowerTimer Entry"
-msgstr "odstranitev vnosa v imenskem strežniku"
-
-msgid "PowerTimer Log"
-msgstr ""
-
 msgid "PowerTimer"
 msgstr ""
 
@@ -14924,8 +14908,16 @@ msgstr ""
 
 #
 #, fuzzy
+msgid "PowerTimer Entry"
+msgstr "odstranitev vnosa v imenskem strežniku"
+
+#
+#, fuzzy
 msgid "PowerTimer List"
 msgstr "Seznam časovnikov"
+
+msgid "PowerTimer Log"
+msgstr ""
 
 #, fuzzy
 msgid "PowerTimer Overview"
@@ -16772,6 +16764,9 @@ msgstr ""
 
 #, python-format
 msgid "Script '%s' must have read permission to be able to run it"
+msgstr ""
+
+msgid "Script Manager"
 msgstr ""
 
 msgid "ScriptRunner"
@@ -21168,6 +21163,11 @@ msgstr "Ta vtičnik bo nameščen."
 #
 msgid "This plugin will be removed."
 msgstr "Ta vtičnik bo odstranjen."
+
+msgid ""
+"This sets the prefix for each line in the debug log. The 'Boot time' is the "
+"number of seconds since your %s %s was last booted."
+msgstr ""
 
 msgid ""
 "This setting allows the tuner configuration to be a duplication of how "
@@ -26465,6 +26465,26 @@ msgstr "preklopljen"
 
 msgid "®"
 msgstr ""
+
+#
+#, fuzzy
+#~ msgid "Delete Lang"
+#~ msgstr "izbris datoteke"
+
+#
+#, fuzzy
+#~ msgid "Delete Loc"
+#~ msgstr "Izbris"
+
+#
+#, fuzzy
+#~ msgid "Install Lang"
+#~ msgstr "Nameščam..."
+
+#
+#, fuzzy
+#~ msgid "Install Loc"
+#~ msgstr "Namesti"
 
 #
 #, fuzzy

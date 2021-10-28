@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-10-21 17:27+0000\n"
+"POT-Creation-Date: 2021-10-28 19:26+0000\n"
 "PO-Revision-Date: 2019-07-27 12:19+0700\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -3757,6 +3757,15 @@ msgstr "Tăng màu xanh"
 msgid "Boost green"
 msgstr "Tăng màu xanh"
 
+msgid "Boot time"
+msgstr ""
+
+msgid "Boot time and local date/time"
+msgstr ""
+
+msgid "Boot time and local time"
+msgstr ""
+
 msgid "Boot-up action"
 msgstr "Hành động khởi động"
 
@@ -6180,6 +6189,9 @@ msgstr "Vô hiệu hóa"
 msgid "Debug Logs"
 msgstr "Gỡ lỗi để tập tin"
 
+msgid "Debug log time format *"
+msgstr ""
+
 msgid "Decryption & Parental Control"
 msgstr "Giải mã & Kiểm soát của cha mẹ"
 
@@ -6402,16 +6414,8 @@ msgstr "Xóa xác nhận"
 msgid "Delete EPG"
 msgstr "Xóa EPG"
 
-#, fuzzy
-msgid "Delete Lang"
-msgstr "Xóa ngôn ngữ"
-
 msgid "Delete Language"
 msgstr "Xóa ngôn ngữ"
-
-#, fuzzy
-msgid "Delete Loc"
-msgstr "Xóa bỏ"
 
 msgid "Delete Plugins"
 msgstr "Xóa plugin"
@@ -10078,14 +10082,6 @@ msgstr "Cài đặt không thành công !!"
 msgid "Install Finished."
 msgstr "Cài đặt xong."
 
-#, fuzzy
-msgid "Install Lang"
-msgstr "Đang Cài đặt"
-
-#, fuzzy
-msgid "Install Loc"
-msgstr "Ráp vào"
-
 msgid "Install Plugins"
 msgstr "Cài đặt plugin"
 
@@ -10328,9 +10324,6 @@ msgstr ""
 
 msgid "Jersey"
 msgstr "Áo"
-
-msgid "Job Manager"
-msgstr "Quản lý công việ"
 
 msgid "Job View"
 msgstr "Chế độ công việc"
@@ -10890,8 +10883,14 @@ msgstr "Tải / lưu / xóa"
 msgid "Local box"
 msgstr "Hộp nội bộ"
 
+msgid "Local date/time"
+msgstr ""
+
 msgid "Local network"
 msgstr "Mạng nội bộ"
+
+msgid "Local time"
+msgstr ""
 
 msgid "Locale"
 msgstr "Địa phương"
@@ -13794,9 +13793,6 @@ msgstr "Trình duyệt Plugin"
 msgid "Plugin Filter"
 msgstr "Bộ lọc Plugin"
 
-msgid "Plugin browser"
-msgstr "Trình duyệt plugin"
-
 msgid "Plugin details"
 msgstr "Chi tiết về plugin"
 
@@ -13926,20 +13922,20 @@ msgstr ""
 "Ngưỡng công suất. Tham khảo hướng dẫn sử dụng của người nhận để biết thêm "
 "thông tin."
 
-msgid "PowerTimer Entry"
-msgstr "Mục nhập PowerManager"
-
-msgid "PowerTimer Log"
-msgstr "Nhật ký PowerManager"
-
 msgid "PowerTimer"
 msgstr "Thời gian quyền lực"
 
 msgid "PowerTimer DeepStandby"
 msgstr "Thời gian chờ quyền lực"
 
+msgid "PowerTimer Entry"
+msgstr "Mục nhập PowerManager"
+
 msgid "PowerTimer List"
 msgstr "Danh sách PowerTimer"
+
+msgid "PowerTimer Log"
+msgstr "Nhật ký PowerManager"
 
 msgid "PowerTimer Overview"
 msgstr "Tổng quan về PowerTimer"
@@ -15582,6 +15578,9 @@ msgstr "Ảnh chụp màn hình LCD trong / tmp"
 #, python-format
 msgid "Script '%s' must have read permission to be able to run it"
 msgstr "Tập lệnh '% s' phải có quyền đọc để có thể chạy nó"
+
+msgid "Script Manager"
+msgstr ""
 
 msgid "ScriptRunner"
 msgstr "ScriptRunner"
@@ -19893,6 +19892,11 @@ msgstr "Plugin này sẽ được cài đặt."
 
 msgid "This plugin will be removed."
 msgstr "Plugin này sẽ bị xóa."
+
+msgid ""
+"This sets the prefix for each line in the debug log. The 'Boot time' is the "
+"number of seconds since your %s %s was last booted."
+msgstr ""
 
 msgid ""
 "This setting allows the tuner configuration to be a duplication of how "
@@ -24904,6 +24908,28 @@ msgstr "hạ gục"
 
 msgid "®"
 msgstr ""
+
+#, fuzzy
+#~ msgid "Delete Lang"
+#~ msgstr "Xóa ngôn ngữ"
+
+#, fuzzy
+#~ msgid "Delete Loc"
+#~ msgstr "Xóa bỏ"
+
+#, fuzzy
+#~ msgid "Install Lang"
+#~ msgstr "Đang Cài đặt"
+
+#, fuzzy
+#~ msgid "Install Loc"
+#~ msgstr "Ráp vào"
+
+#~ msgid "Job Manager"
+#~ msgstr "Quản lý công việ"
+
+#~ msgid "Plugin browser"
+#~ msgstr "Trình duyệt plugin"
 
 #~ msgid "Cpu"
 #~ msgstr "Cpu"

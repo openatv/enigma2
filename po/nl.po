@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-10-21 17:27+0000\n"
+"POT-Creation-Date: 2021-10-28 19:26+0000\n"
 "PO-Revision-Date: 2021-08-19 12:59+0000\n"
 "Last-Translator: Walter <info@wt-electronic.nl>\n"
 "Language-Team: Dutch <https://hosted.weblate.org/projects/openatv/"
@@ -3720,6 +3720,15 @@ msgstr "Versterk blauw"
 msgid "Boost green"
 msgstr "Versterk groen"
 
+msgid "Boot time"
+msgstr ""
+
+msgid "Boot time and local date/time"
+msgstr ""
+
+msgid "Boot time and local time"
+msgstr ""
+
 msgid "Boot-up action"
 msgstr "Normaal opstarten of direct naar stand-by"
 
@@ -6239,6 +6248,9 @@ msgstr "Uitschakelen"
 msgid "Debug Logs"
 msgstr "Debug logs"
 
+msgid "Debug log time format *"
+msgstr ""
+
 msgid "Decryption & Parental Control"
 msgstr "Decryptie & kinderslot"
 
@@ -6465,16 +6477,8 @@ msgstr "Bevestig verwijderen"
 msgid "Delete EPG"
 msgstr "EPG verwijderen"
 
-#, fuzzy
-msgid "Delete Lang"
-msgstr "Verwijder taal"
-
 msgid "Delete Language"
 msgstr "Verwijder taal"
-
-#, fuzzy
-msgid "Delete Loc"
-msgstr "Verwijderen"
 
 msgid "Delete Plugins"
 msgstr "Plug-ins en applicaties verwijderen"
@@ -10137,14 +10141,6 @@ msgstr "!! Installatie mislukt !!"
 msgid "Install Finished."
 msgstr "Installatie voltooid."
 
-#, fuzzy
-msgid "Install Lang"
-msgstr "Installeert"
-
-#, fuzzy
-msgid "Install Loc"
-msgstr "Installeer"
-
 msgid "Install Plugins"
 msgstr "Installeer plug-ins"
 
@@ -10392,9 +10388,6 @@ msgstr ""
 
 msgid "Jersey"
 msgstr "Jersey"
-
-msgid "Job Manager"
-msgstr "Taak beheer"
 
 msgid "Job View"
 msgstr "Taken"
@@ -10945,8 +10938,14 @@ msgstr "Laden/opslaan/verwijderen"
 msgid "Local box"
 msgstr "Lokale box"
 
+msgid "Local date/time"
+msgstr ""
+
 msgid "Local network"
 msgstr "Lokaal netwerk"
+
+msgid "Local time"
+msgstr ""
 
 msgid "Locale"
 msgstr "Taal"
@@ -13807,9 +13806,6 @@ msgstr "Applicatie overzicht"
 msgid "Plugin Filter"
 msgstr "Plug-in filter"
 
-msgid "Plugin browser"
-msgstr "Applicatie overzicht"
-
 msgid "Plugin details"
 msgstr "Plug-in informatie"
 
@@ -13937,20 +13933,20 @@ msgstr ""
 "Maximaal voltage. Raadpleeg de handleiding van uw ontvanger voor meer "
 "details."
 
-msgid "PowerTimer Entry"
-msgstr "Powerbeheer invoer"
-
-msgid "PowerTimer Log"
-msgstr "Powerbeheer log"
-
 msgid "PowerTimer"
 msgstr "PowerTimer"
 
 msgid "PowerTimer DeepStandby"
 msgstr "PowerTimer uitschakelen"
 
+msgid "PowerTimer Entry"
+msgstr "Powerbeheer invoer"
+
 msgid "PowerTimer List"
 msgstr "PowerTimer lijst"
+
+msgid "PowerTimer Log"
+msgstr "Powerbeheer log"
 
 msgid "PowerTimer Overview"
 msgstr "PowerTimer overzicht"
@@ -15570,6 +15566,9 @@ msgstr "Screenshot van LCD in /tmp"
 #, python-format
 msgid "Script '%s' must have read permission to be able to run it"
 msgstr "Script '%s' moet lees permissies hebben om te kunnen worden uitgevoerd"
+
+msgid "Script Manager"
+msgstr ""
 
 msgid "ScriptRunner"
 msgstr "Script uitvoerder"
@@ -19930,6 +19929,11 @@ msgstr "Deze plug-in wordt geïnstalleerd."
 
 msgid "This plugin will be removed."
 msgstr "Deze plug-in wordt verwijderd."
+
+msgid ""
+"This sets the prefix for each line in the debug log. The 'Boot time' is the "
+"number of seconds since your %s %s was last booted."
+msgstr ""
 
 msgid ""
 "This setting allows the tuner configuration to be a duplication of how "
@@ -24971,6 +24975,28 @@ msgstr "zappen"
 
 msgid "®"
 msgstr ""
+
+#, fuzzy
+#~ msgid "Delete Lang"
+#~ msgstr "Verwijder taal"
+
+#, fuzzy
+#~ msgid "Delete Loc"
+#~ msgstr "Verwijderen"
+
+#, fuzzy
+#~ msgid "Install Lang"
+#~ msgstr "Installeert"
+
+#, fuzzy
+#~ msgid "Install Loc"
+#~ msgstr "Installeer"
+
+#~ msgid "Job Manager"
+#~ msgstr "Taak beheer"
+
+#~ msgid "Plugin browser"
+#~ msgstr "Applicatie overzicht"
 
 #~ msgid "Cpu"
 #~ msgstr "Cpu"

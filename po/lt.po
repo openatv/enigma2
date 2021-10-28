@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-10-21 17:27+0000\n"
+"POT-Creation-Date: 2021-10-28 19:26+0000\n"
 "PO-Revision-Date: 2021-10-25 21:08+0000\n"
 "Last-Translator: Adga56 <adga45@gmail.com>\n"
 "Language-Team: Lithuanian <https://hosted.weblate.org/projects/openatv/"
@@ -3718,6 +3718,15 @@ msgstr "Pridėti mėlynos"
 msgid "Boost green"
 msgstr "Pridėti žalios"
 
+msgid "Boot time"
+msgstr ""
+
+msgid "Boot time and local date/time"
+msgstr ""
+
+msgid "Boot time and local time"
+msgstr ""
+
 msgid "Boot-up action"
 msgstr "Veiksmas paleidžiant"
 
@@ -6120,6 +6129,9 @@ msgstr "Išjungti"
 msgid "Debug Logs"
 msgstr "Derinimo žurnalai"
 
+msgid "Debug log time format *"
+msgstr ""
+
 msgid "Decryption & Parental Control"
 msgstr "Dekodavimas ir tėvų kontrolė"
 
@@ -6339,14 +6351,8 @@ msgstr "Pašalinimo patvirtinimas"
 msgid "Delete EPG"
 msgstr "Trinti EPG"
 
-msgid "Delete Lang"
-msgstr "Trinti kalbą"
-
 msgid "Delete Language"
 msgstr "Trinti kalbą"
-
-msgid "Delete Loc"
-msgstr "Trinti Loc"
 
 msgid "Delete Plugins"
 msgstr "Ištrinti priedus"
@@ -9952,12 +9958,6 @@ msgstr "Įdiegti nepavyko !!"
 msgid "Install Finished."
 msgstr "Įdiegimas baigtas."
 
-msgid "Install Lang"
-msgstr "Diegti kalbą"
-
-msgid "Install Loc"
-msgstr "Diegti lokalę"
-
 msgid "Install Plugins"
 msgstr "Įdiegti priedus"
 
@@ -10195,9 +10195,6 @@ msgstr "Javiečių"
 
 msgid "Jersey"
 msgstr "Džersis"
-
-msgid "Job Manager"
-msgstr "Užduoties valdymas"
 
 msgid "Job View"
 msgstr "Užduoties peržiūra"
@@ -10739,8 +10736,14 @@ msgstr "Įkelti, išsaugoti ir trinti"
 msgid "Local box"
 msgstr "Vietinis imtuvas"
 
+msgid "Local date/time"
+msgstr ""
+
 msgid "Local network"
 msgstr "Vietinis tinklas"
+
+msgid "Local time"
+msgstr ""
 
 msgid "Locale"
 msgstr "Vieta"
@@ -13564,9 +13567,6 @@ msgstr "Priedų naršyklė"
 msgid "Plugin Filter"
 msgstr "Priedų filtras"
 
-msgid "Plugin browser"
-msgstr "Priedų naršyklė"
-
 msgid "Plugin details"
 msgstr "Priedo informacija"
 
@@ -13694,20 +13694,20 @@ msgstr ""
 "Galios ribos. Daugiau informacijos ieškokite savo imtuvo naudojimo "
 "instrukcijoje."
 
-msgid "PowerTimer Entry"
-msgstr "Įjungimo valdymo įrašas"
-
-msgid "PowerTimer Log"
-msgstr "Įjungimo valdymo žurnalas"
-
 msgid "PowerTimer"
 msgstr "Įjungimo laikmatis"
 
 msgid "PowerTimer DeepStandby"
 msgstr "Įjungimo laikmatis budėjimo režime"
 
+msgid "PowerTimer Entry"
+msgstr "Įjungimo valdymo įrašas"
+
 msgid "PowerTimer List"
 msgstr "Įjungimo laikmačio sąrašas"
+
+msgid "PowerTimer Log"
+msgstr "Įjungimo valdymo žurnalas"
 
 msgid "PowerTimer Overview"
 msgstr "Įjungimo laikmačio apžvalga"
@@ -15326,6 +15326,9 @@ msgstr "LCD ekrano kopija į /tmp"
 msgid "Script '%s' must have read permission to be able to run it"
 msgstr ""
 "Scenarijus '%s' turi turėti skaitymo leidimą, kad jis galėtų jį paleisti"
+
+msgid "Script Manager"
+msgstr ""
 
 msgid "ScriptRunner"
 msgstr "Scenarijų paleidėjas"
@@ -19586,6 +19589,11 @@ msgstr "Šis priedas bus įdiegtas."
 
 msgid "This plugin will be removed."
 msgstr "Šis priedas jau pašalintas."
+
+msgid ""
+"This sets the prefix for each line in the debug log. The 'Boot time' is the "
+"number of seconds since your %s %s was last booted."
+msgstr ""
 
 msgid ""
 "This setting allows the tuner configuration to be a duplication of how "
@@ -24544,6 +24552,24 @@ msgstr "perjungimas"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Delete Lang"
+#~ msgstr "Trinti kalbą"
+
+#~ msgid "Delete Loc"
+#~ msgstr "Trinti Loc"
+
+#~ msgid "Install Lang"
+#~ msgstr "Diegti kalbą"
+
+#~ msgid "Install Loc"
+#~ msgstr "Diegti lokalę"
+
+#~ msgid "Job Manager"
+#~ msgstr "Užduoties valdymas"
+
+#~ msgid "Plugin browser"
+#~ msgstr "Priedų naršyklė"
 
 #~ msgid "Cpu"
 #~ msgstr "Procesorius"

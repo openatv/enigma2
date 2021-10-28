@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-10-21 17:27+0000\n"
+"POT-Creation-Date: 2021-10-28 19:26+0000\n"
 "PO-Revision-Date: 2021-09-13 18:30+0000\n"
 "Last-Translator: Josep Belda <josepmaulet1707@gmail.com>\n"
 "Language-Team: Catalan <https://hosted.weblate.org/projects/openatv/"
@@ -3950,6 +3950,15 @@ msgstr "Boost blau"
 msgid "Boost green"
 msgstr "Boost verd"
 
+msgid "Boot time"
+msgstr ""
+
+msgid "Boot time and local date/time"
+msgstr ""
+
+msgid "Boot time and local time"
+msgstr ""
+
 msgid "Boot-up action"
 msgstr ""
 
@@ -6415,6 +6424,9 @@ msgstr ""
 msgid "Debug Logs"
 msgstr ""
 
+msgid "Debug log time format *"
+msgstr ""
+
 #
 #, fuzzy
 msgid "Decryption & Parental Control"
@@ -6650,18 +6662,8 @@ msgstr ""
 msgid "Delete EPG"
 msgstr "Esborrar"
 
-#
-#, fuzzy
-msgid "Delete Lang"
-msgstr "Ha fallat l'eliminació!"
-
 msgid "Delete Language"
 msgstr ""
-
-#
-#, fuzzy
-msgid "Delete Loc"
-msgstr "Esborrar"
 
 msgid "Delete Plugins"
 msgstr ""
@@ -10420,16 +10422,6 @@ msgstr ""
 msgid "Install Finished."
 msgstr ""
 
-#
-#, fuzzy
-msgid "Install Lang"
-msgstr "Instal·lant"
-
-#
-#, fuzzy
-msgid "Install Loc"
-msgstr "Instal·lant"
-
 msgid "Install Plugins"
 msgstr ""
 
@@ -10709,9 +10701,6 @@ msgstr ""
 
 msgid "Jersey"
 msgstr "Jersey"
-
-msgid "Job Manager"
-msgstr ""
 
 #
 msgid "Job View"
@@ -11311,8 +11300,14 @@ msgstr ""
 msgid "Local box"
 msgstr ""
 
+msgid "Local date/time"
+msgstr ""
+
 msgid "Local network"
 msgstr "Xarxa local"
+
+msgid "Local time"
+msgstr ""
 
 msgid "Locale"
 msgstr "Locale"
@@ -14418,9 +14413,6 @@ msgstr "Plugin navegador"
 msgid "Plugin Filter"
 msgstr ""
 
-msgid "Plugin browser"
-msgstr "Plugin navegador"
-
 msgid "Plugin details"
 msgstr ""
 
@@ -14570,22 +14562,22 @@ msgstr ""
 "Llindar de potència. Consulteu el manual del vostre receptor per obtenir més "
 "informació."
 
-msgid "PowerTimer Entry"
-msgstr ""
-
-msgid "PowerTimer Log"
-msgstr ""
-
 msgid "PowerTimer"
 msgstr ""
 
 msgid "PowerTimer DeepStandby"
 msgstr ""
 
+msgid "PowerTimer Entry"
+msgstr ""
+
 #
 #, fuzzy
 msgid "PowerTimer List"
 msgstr "Editar hora"
+
+msgid "PowerTimer Log"
+msgstr ""
 
 msgid "PowerTimer Overview"
 msgstr ""
@@ -16362,6 +16354,9 @@ msgstr ""
 
 #, python-format
 msgid "Script '%s' must have read permission to be able to run it"
+msgstr ""
+
+msgid "Script Manager"
 msgstr ""
 
 msgid "ScriptRunner"
@@ -20680,6 +20675,11 @@ msgstr "Aquest complement s’instal·larà."
 #
 msgid "This plugin will be removed."
 msgstr "Aquest complement es suprimirà."
+
+msgid ""
+"This sets the prefix for each line in the debug log. The 'Boot time' is the "
+"number of seconds since your %s %s was last booted."
+msgstr ""
 
 msgid ""
 "This setting allows the tuner configuration to be a duplication of how "
@@ -25927,6 +25927,29 @@ msgstr "zappejat"
 
 msgid "®"
 msgstr ""
+
+#
+#, fuzzy
+#~ msgid "Delete Lang"
+#~ msgstr "Ha fallat l'eliminació!"
+
+#
+#, fuzzy
+#~ msgid "Delete Loc"
+#~ msgstr "Esborrar"
+
+#
+#, fuzzy
+#~ msgid "Install Lang"
+#~ msgstr "Instal·lant"
+
+#
+#, fuzzy
+#~ msgid "Install Loc"
+#~ msgstr "Instal·lant"
+
+#~ msgid "Plugin browser"
+#~ msgstr "Plugin navegador"
 
 #
 #, fuzzy

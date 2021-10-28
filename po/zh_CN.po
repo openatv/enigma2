@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openATV [E2+webif_V5.3_6.0]\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-10-21 17:27+0000\n"
+"POT-Creation-Date: 2021-10-28 19:26+0000\n"
 "PO-Revision-Date: 2021-09-18 03:10+0000\n"
 "Last-Translator: zhangtianqing <zhangtianqingzh@gmail.com>\n"
 "Language-Team: Chinese (Simplified) <https://hosted.weblate.org/projects/"
@@ -3653,6 +3653,15 @@ msgstr "蓝色增强"
 msgid "Boost green"
 msgstr "绿色增强"
 
+msgid "Boot time"
+msgstr ""
+
+msgid "Boot time and local date/time"
+msgstr ""
+
+msgid "Boot time and local time"
+msgstr ""
+
 msgid "Boot-up action"
 msgstr "启动执行"
 
@@ -5930,6 +5939,9 @@ msgstr "停用"
 msgid "Debug Logs"
 msgstr "调试日志"
 
+msgid "Debug log time format *"
+msgstr ""
+
 msgid "Decryption & Parental Control"
 msgstr "解密和家长控制"
 
@@ -6139,14 +6151,8 @@ msgstr "确认删除"
 msgid "Delete EPG"
 msgstr "删除EPG"
 
-msgid "Delete Lang"
-msgstr "删除语言"
-
 msgid "Delete Language"
 msgstr "删除语言"
-
-msgid "Delete Loc"
-msgstr "删除本地设置"
 
 msgid "Delete Plugins"
 msgstr "删除插件"
@@ -9646,12 +9652,6 @@ msgstr "安装失败!!"
 msgid "Install Finished."
 msgstr "安装完成."
 
-msgid "Install Lang"
-msgstr "安装语言"
-
-msgid "Install Loc"
-msgstr "安装本地区域"
-
 msgid "Install Plugins"
 msgstr "安装插件"
 
@@ -9889,9 +9889,6 @@ msgstr "爪哇语"
 
 msgid "Jersey"
 msgstr "泽西岛"
-
-msgid "Job Manager"
-msgstr "任务管理器"
 
 msgid "Job View"
 msgstr "工作视图"
@@ -10427,8 +10424,14 @@ msgstr "加载/保存/删除"
 msgid "Local box"
 msgstr "本地盒子"
 
+msgid "Local date/time"
+msgstr ""
+
 msgid "Local network"
 msgstr "局域网"
+
+msgid "Local time"
+msgstr ""
 
 msgid "Locale"
 msgstr "本地"
@@ -13200,9 +13203,6 @@ msgstr "插件浏览器"
 msgid "Plugin Filter"
 msgstr "插件筛选"
 
-msgid "Plugin browser"
-msgstr "插件浏览器"
-
 msgid "Plugin details"
 msgstr "插件细节"
 
@@ -13326,20 +13326,20 @@ msgstr "功率阈值（mA）"
 msgid "Power threshold. Consult your receiver's manual for more information."
 msgstr "功率阈值。 有关更多信息，请查阅您的接收器手册。"
 
-msgid "PowerTimer Entry"
-msgstr "电源管理项"
-
-msgid "PowerTimer Log"
-msgstr "电源管理器日志"
-
 msgid "PowerTimer"
 msgstr "电源定时器"
 
 msgid "PowerTimer DeepStandby"
 msgstr "电源定时器深度待机"
 
+msgid "PowerTimer Entry"
+msgstr "电源管理项"
+
 msgid "PowerTimer List"
 msgstr "电源定时器列表"
+
+msgid "PowerTimer Log"
+msgstr "电源管理器日志"
 
 msgid "PowerTimer Overview"
 msgstr "电源定时器概述"
@@ -14927,6 +14927,9 @@ msgstr "LCD 截屏到 /tmp"
 #, python-format
 msgid "Script '%s' must have read permission to be able to run it"
 msgstr "脚本“%s”必须具有读取权限才能运行它"
+
+msgid "Script Manager"
+msgstr ""
 
 msgid "ScriptRunner"
 msgstr "脚本运行器"
@@ -18986,6 +18989,11 @@ msgstr "准备安装此插件."
 
 msgid "This plugin will be removed."
 msgstr "准备删除此插件."
+
+msgid ""
+"This sets the prefix for each line in the debug log. The 'Boot time' is the "
+"number of seconds since your %s %s was last booted."
+msgstr ""
 
 msgid ""
 "This setting allows the tuner configuration to be a duplication of how "
@@ -23765,6 +23773,24 @@ msgstr "切换中"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Delete Lang"
+#~ msgstr "删除语言"
+
+#~ msgid "Delete Loc"
+#~ msgstr "删除本地设置"
+
+#~ msgid "Install Lang"
+#~ msgstr "安装语言"
+
+#~ msgid "Install Loc"
+#~ msgstr "安装本地区域"
+
+#~ msgid "Job Manager"
+#~ msgstr "任务管理器"
+
+#~ msgid "Plugin browser"
+#~ msgstr "插件浏览器"
 
 #~ msgid "Cpu"
 #~ msgstr "处理器"

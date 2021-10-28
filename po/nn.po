@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-10-21 17:27+0000\n"
+"POT-Creation-Date: 2021-10-28 19:26+0000\n"
 "PO-Revision-Date: 2016-04-02 23:09+0200\n"
 "Last-Translator: Stig-O <stiose@hotmail.com>\n"
 "Language-Team: Stig-O\n"
@@ -4060,6 +4060,15 @@ msgstr "Blå farge økning"
 msgid "Boost green"
 msgstr "Grønn farge økning"
 
+msgid "Boot time"
+msgstr ""
+
+msgid "Boot time and local date/time"
+msgstr ""
+
+msgid "Boot time and local time"
+msgstr ""
+
 msgid "Boot-up action"
 msgstr ""
 
@@ -6563,6 +6572,9 @@ msgstr ""
 msgid "Debug Logs"
 msgstr "Feil logg"
 
+msgid "Debug log time format *"
+msgstr ""
+
 #
 #, fuzzy
 msgid "Decryption & Parental Control"
@@ -6794,18 +6806,8 @@ msgstr "Bekrefte sletting"
 msgid "Delete EPG"
 msgstr "Slette"
 
-#
-#, fuzzy
-msgid "Delete Lang"
-msgstr "Slett timer"
-
 msgid "Delete Language"
 msgstr ""
-
-#
-#, fuzzy
-msgid "Delete Loc"
-msgstr "Slette"
 
 msgid "Delete Plugins"
 msgstr ""
@@ -10649,16 +10651,6 @@ msgstr ""
 msgid "Install Finished."
 msgstr ""
 
-#
-#, fuzzy
-msgid "Install Lang"
-msgstr "Installerer"
-
-#
-#, fuzzy
-msgid "Install Loc"
-msgstr "Installer"
-
 msgid "Install Plugins"
 msgstr ""
 
@@ -10936,9 +10928,6 @@ msgid "Javanese"
 msgstr ""
 
 msgid "Jersey"
-msgstr ""
-
-msgid "Job Manager"
 msgstr ""
 
 #
@@ -11560,9 +11549,15 @@ msgstr "Last/Lagre"
 msgid "Local box"
 msgstr "Lokal boks"
 
+msgid "Local date/time"
+msgstr ""
+
 #
 msgid "Local network"
 msgstr "Lokalt nettverk"
+
+msgid "Local time"
+msgstr ""
 
 #, fuzzy
 msgid "Locale"
@@ -14700,9 +14695,6 @@ msgstr "Plugin Visning"
 msgid "Plugin Filter"
 msgstr ""
 
-msgid "Plugin browser"
-msgstr ""
-
 msgid "Plugin details"
 msgstr "Plugin detaljer"
 
@@ -14854,21 +14846,21 @@ msgstr "Strøm grenseverdi i mA"
 msgid "Power threshold. Consult your receiver's manual for more information."
 msgstr ""
 
-msgid "PowerTimer Entry"
-msgstr "PowerTimer oppføring"
-
-msgid "PowerTimer Log"
-msgstr "PowerTimer logg"
-
 msgid "PowerTimer"
 msgstr ""
 
 msgid "PowerTimer DeepStandby"
 msgstr ""
 
+msgid "PowerTimer Entry"
+msgstr "PowerTimer oppføring"
+
 #
 msgid "PowerTimer List"
 msgstr "StrømTimerliste"
+
+msgid "PowerTimer Log"
+msgstr "PowerTimer logg"
 
 msgid "PowerTimer Overview"
 msgstr "StrømTimer Oversikt"
@@ -16660,6 +16652,9 @@ msgstr ""
 
 #, python-format
 msgid "Script '%s' must have read permission to be able to run it"
+msgstr ""
+
+msgid "Script Manager"
 msgstr ""
 
 msgid "ScriptRunner"
@@ -21075,6 +21070,11 @@ msgstr "Denne plugin blir installert."
 #
 msgid "This plugin will be removed."
 msgstr "Denne pluginl blir fjernet."
+
+msgid ""
+"This sets the prefix for each line in the debug log. The 'Boot time' is the "
+"number of seconds since your %s %s was last booted."
+msgstr ""
 
 msgid ""
 "This setting allows the tuner configuration to be a duplication of how "
@@ -26457,6 +26457,26 @@ msgstr "zapped"
 
 msgid "®"
 msgstr ""
+
+#
+#, fuzzy
+#~ msgid "Delete Lang"
+#~ msgstr "Slett timer"
+
+#
+#, fuzzy
+#~ msgid "Delete Loc"
+#~ msgstr "Slette"
+
+#
+#, fuzzy
+#~ msgid "Install Lang"
+#~ msgstr "Installerer"
+
+#
+#, fuzzy
+#~ msgid "Install Loc"
+#~ msgstr "Installer"
 
 #
 #~ msgid "restart GUI"

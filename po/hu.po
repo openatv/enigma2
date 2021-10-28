@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: hu_po v3.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-10-21 17:27+0000\n"
+"POT-Creation-Date: 2021-10-28 19:26+0000\n"
 "PO-Revision-Date: 2020-06-04 11:20+0200\n"
 "Last-Translator: Alec <alex1vagyok@gmail.com>\n"
 "Language-Team: Alec <alex1vagyok@gmail.com>\n"
@@ -3762,6 +3762,15 @@ msgstr "Zöld gyorsítása"
 msgid "Boost green"
 msgstr "Kék gyorsítása"
 
+msgid "Boot time"
+msgstr ""
+
+msgid "Boot time and local date/time"
+msgstr ""
+
+msgid "Boot time and local time"
+msgstr ""
+
 msgid "Boot-up action"
 msgstr "Indításkori művelet"
 
@@ -6197,6 +6206,9 @@ msgstr "Hatástalanít"
 msgid "Debug Logs"
 msgstr "Hibakeresési naplók"
 
+msgid "Debug log time format *"
+msgstr ""
+
 msgid "Decryption & Parental Control"
 msgstr "Dekódolás és szülői felügyelet"
 
@@ -6422,16 +6434,8 @@ msgstr "Törlés megerősítése"
 msgid "Delete EPG"
 msgstr "EPG törlése"
 
-#, fuzzy
-msgid "Delete Lang"
-msgstr "Nyelv törlése"
-
 msgid "Delete Language"
 msgstr "Nyelv törlése"
-
-#, fuzzy
-msgid "Delete Loc"
-msgstr "Törlés"
 
 msgid "Delete Plugins"
 msgstr "Bővítmények törlése"
@@ -10091,14 +10095,6 @@ msgstr "Telepítés sikertelen !!"
 msgid "Install Finished."
 msgstr "Telepítés befejezve."
 
-#, fuzzy
-msgid "Install Lang"
-msgstr "Telepítés"
-
-#, fuzzy
-msgid "Install Loc"
-msgstr "Telepítés"
-
 msgid "Install Plugins"
 msgstr "Bővítméynek telepítése"
 
@@ -10340,9 +10336,6 @@ msgstr ""
 
 msgid "Jersey"
 msgstr "Jersey"
-
-msgid "Job Manager"
-msgstr "Folyamat kezelő"
 
 msgid "Job View"
 msgstr "Folyamat nézet"
@@ -10894,8 +10887,14 @@ msgstr "Betöltés/Mentés/Törlés"
 msgid "Local box"
 msgstr "Helyi box"
 
+msgid "Local date/time"
+msgstr ""
+
 msgid "Local network"
 msgstr "Helyi hálózat"
+
+msgid "Local time"
+msgstr ""
 
 msgid "Locale"
 msgstr "Helyi"
@@ -13781,9 +13780,6 @@ msgstr "Bővítménykezelő"
 msgid "Plugin Filter"
 msgstr "Bővítmények szűrése"
 
-msgid "Plugin browser"
-msgstr "Bővítménykezelő"
-
 msgid "Plugin details"
 msgstr "Bővítmény részletei"
 
@@ -13910,20 +13906,20 @@ msgid "Power threshold. Consult your receiver's manual for more information."
 msgstr ""
 "Energiaküszöb. További információkért olvassa el a vevőkészülék kézikönyvét."
 
-msgid "PowerTimer Entry"
-msgstr "PowerTimer bejegyzés"
-
-msgid "PowerTimer Log"
-msgstr "PowerTimer napló"
-
 msgid "PowerTimer"
 msgstr "Kikapcsolás Időzítő"
 
 msgid "PowerTimer DeepStandby"
 msgstr "Kikapcsolás Időzítő Kikapcsolás"
 
+msgid "PowerTimer Entry"
+msgstr "PowerTimer bejegyzés"
+
 msgid "PowerTimer List"
 msgstr "Kikapcsolás Időzítő Lista"
+
+msgid "PowerTimer Log"
+msgstr "PowerTimer napló"
 
 msgid "PowerTimer Overview"
 msgstr "Kikapcsolás Időzítő Áttekintés"
@@ -15553,6 +15549,9 @@ msgid "Script '%s' must have read permission to be able to run it"
 msgstr ""
 "A(z) '%s' parancsfájlnak olvasási engedéllyel kell rendelkeznie a "
 "futtatásához"
+
+msgid "Script Manager"
+msgstr ""
 
 msgid "ScriptRunner"
 msgstr "Script Runner"
@@ -19934,6 +19933,11 @@ msgstr "A bővítmény telepítve lesz."
 
 msgid "This plugin will be removed."
 msgstr "A bővítmény el lesz távolítva."
+
+msgid ""
+"This sets the prefix for each line in the debug log. The 'Boot time' is the "
+"number of seconds since your %s %s was last booted."
+msgstr ""
 
 msgid ""
 "This setting allows the tuner configuration to be a duplication of how "
@@ -24937,6 +24941,28 @@ msgstr "ugrás folyamatban"
 
 msgid "®"
 msgstr ""
+
+#, fuzzy
+#~ msgid "Delete Lang"
+#~ msgstr "Nyelv törlése"
+
+#, fuzzy
+#~ msgid "Delete Loc"
+#~ msgstr "Törlés"
+
+#, fuzzy
+#~ msgid "Install Lang"
+#~ msgstr "Telepítés"
+
+#, fuzzy
+#~ msgid "Install Loc"
+#~ msgstr "Telepítés"
+
+#~ msgid "Job Manager"
+#~ msgstr "Folyamat kezelő"
+
+#~ msgid "Plugin browser"
+#~ msgstr "Bővítménykezelő"
 
 #~ msgid "Cpu"
 #~ msgstr "Processzor"

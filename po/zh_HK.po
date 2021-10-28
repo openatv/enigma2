@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-10-21 17:27+0000\n"
+"POT-Creation-Date: 2021-10-28 19:26+0000\n"
 "PO-Revision-Date: 2021-08-15 18:50+0000\n"
 "Last-Translator: openATV <openatv@gmail.com>\n"
 "Language-Team: Chinese (Traditional, Hong Kong) <https://hosted.weblate.org/"
@@ -3848,6 +3848,15 @@ msgstr ""
 msgid "Boost green"
 msgstr "最新"
 
+msgid "Boot time"
+msgstr ""
+
+msgid "Boot time and local date/time"
+msgstr ""
+
+msgid "Boot time and local time"
+msgstr ""
+
 #, fuzzy
 msgid "Boot-up action"
 msgstr "備份位置"
@@ -6217,6 +6226,9 @@ msgstr "啟動交換檔"
 msgid "Debug Logs"
 msgstr ""
 
+msgid "Debug log time format *"
+msgstr ""
+
 #, fuzzy
 msgid "Decryption & Parental Control"
 msgstr "家長控制"
@@ -6440,16 +6452,8 @@ msgid "Delete EPG"
 msgstr "刪除"
 
 #, fuzzy
-msgid "Delete Lang"
-msgstr "語言"
-
-#, fuzzy
 msgid "Delete Language"
 msgstr "語言"
-
-#, fuzzy
-msgid "Delete Loc"
-msgstr "刪除"
 
 #, fuzzy
 msgid "Delete Plugins"
@@ -10150,14 +10154,6 @@ msgid "Install Finished."
 msgstr "安裝完成."
 
 #, fuzzy
-msgid "Install Lang"
-msgstr "正在安裝"
-
-#, fuzzy
-msgid "Install Loc"
-msgstr "安裝"
-
-#, fuzzy
 msgid "Install Plugins"
 msgstr "正在安裝"
 
@@ -10421,10 +10417,6 @@ msgstr ""
 
 msgid "Jersey"
 msgstr ""
-
-#, fuzzy
-msgid "Job Manager"
-msgstr "管理器"
 
 msgid "Job View"
 msgstr "作業視圖"
@@ -11006,7 +10998,13 @@ msgstr ""
 msgid "Local box"
 msgstr "位置框"
 
+msgid "Local date/time"
+msgstr ""
+
 msgid "Local network"
+msgstr ""
+
+msgid "Local time"
 msgstr ""
 
 #, fuzzy
@@ -14007,9 +14005,6 @@ msgstr "流覽插件"
 msgid "Plugin Filter"
 msgstr "流覽插件"
 
-msgid "Plugin browser"
-msgstr "流覽插件"
-
 #, fuzzy
 msgid "Plugin details"
 msgstr "檢視明細"
@@ -14148,14 +14143,6 @@ msgid "Power threshold. Consult your receiver's manual for more information."
 msgstr ""
 
 #, fuzzy
-msgid "PowerTimer Entry"
-msgstr "用戶管理"
-
-#, fuzzy
-msgid "PowerTimer Log"
-msgstr "軟體管理器"
-
-#, fuzzy
 msgid "PowerTimer"
 msgstr "計時器"
 
@@ -14164,8 +14151,16 @@ msgid "PowerTimer DeepStandby"
 msgstr "深度休眠"
 
 #, fuzzy
+msgid "PowerTimer Entry"
+msgstr "用戶管理"
+
+#, fuzzy
 msgid "PowerTimer List"
 msgstr "計時器編輯"
+
+#, fuzzy
+msgid "PowerTimer Log"
+msgstr "軟體管理器"
 
 #, fuzzy
 msgid "PowerTimer Overview"
@@ -15894,6 +15889,9 @@ msgstr ""
 
 #, python-format
 msgid "Script '%s' must have read permission to be able to run it"
+msgstr ""
+
+msgid "Script Manager"
 msgstr ""
 
 #, fuzzy
@@ -20192,6 +20190,11 @@ msgstr "這個插件將要被安裝."
 
 msgid "This plugin will be removed."
 msgstr "這個插件將要被移除."
+
+msgid ""
+"This sets the prefix for each line in the debug log. The 'Boot time' is the "
+"number of seconds since your %s %s was last booted."
+msgstr ""
 
 msgid ""
 "This setting allows the tuner configuration to be a duplication of how "
@@ -25160,6 +25163,29 @@ msgstr "轉自"
 
 msgid "®"
 msgstr ""
+
+#, fuzzy
+#~ msgid "Delete Lang"
+#~ msgstr "語言"
+
+#, fuzzy
+#~ msgid "Delete Loc"
+#~ msgstr "刪除"
+
+#, fuzzy
+#~ msgid "Install Lang"
+#~ msgstr "正在安裝"
+
+#, fuzzy
+#~ msgid "Install Loc"
+#~ msgstr "安裝"
+
+#, fuzzy
+#~ msgid "Job Manager"
+#~ msgstr "管理器"
+
+#~ msgid "Plugin browser"
+#~ msgstr "流覽插件"
 
 #, fuzzy
 #~ msgid "Cpu"

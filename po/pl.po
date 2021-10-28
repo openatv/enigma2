@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-10-21 17:27+0000\n"
-"PO-Revision-Date: 2021-10-26 09:42+0000\n"
+"POT-Creation-Date: 2021-10-28 19:26+0000\n"
+"PO-Revision-Date: 2021-10-28 03:03+0000\n"
 "Last-Translator: Grzegorz <grzegorz914@icloud.com>\n"
 "Language-Team: Polish <https://hosted.weblate.org/projects/openatv/"
 "enigma2-7-0-po/pl/>\n"
@@ -118,7 +118,7 @@ msgid ""
 "Flash on the fly your %s %s."
 msgstr ""
 "\n"
-"Online-/Lokalne flashowanie %s %s."
+"Zainstaluj system w locie %s %s."
 
 msgid ""
 "\n"
@@ -141,7 +141,7 @@ msgid ""
 "Online update of your %s %s software."
 msgstr ""
 "\n"
-"Aktualizacja oprogramowania online %s %s."
+"Aktualizacja systemu %s %s."
 
 msgid ""
 "\n"
@@ -171,7 +171,7 @@ msgid ""
 "Restore your %s %s with a new firmware."
 msgstr ""
 "\n"
-"Odzyskaj swój %s %s z nowym obrazem."
+"Odzyskaj swój %s %s z nowym systemem."
 
 msgid ""
 "\n"
@@ -1241,7 +1241,7 @@ msgstr "%s %s zaawansowany pilot (natywne)"
 
 #, python-format
 msgid "%s %s front panel"
-msgstr "%s %s panel przedni"
+msgstr "%s %s wyświetlacz przedni"
 
 #, python-format
 msgid "%s %s ir keyboard"
@@ -1257,7 +1257,7 @@ msgstr "%s %s pilot zdalnego sterowania (podstawowy)"
 
 #, python-format
 msgid "%s %s software because updates are available."
-msgstr "%s %s oprogramowania, ponieważ aktualizacje są dostępne."
+msgstr "%s %s systemu, ponieważ aktualizacje są dostępne."
 
 #, python-format
 msgid "%s ( %s Cards )"
@@ -1437,7 +1437,7 @@ msgid "(Show only reader:"
 msgstr "(Pokaż tylko czytnik:"
 
 msgid "(current image)"
-msgstr "(aktualny obraz)"
+msgstr "(aktualny system)"
 
 msgid "(e.g. TV wakeup, but not switched to correct input)"
 msgstr "(np. pobudka TV, ale nie została przełączona na prawidłowe wejście)"
@@ -2771,7 +2771,7 @@ msgstr ""
 
 msgid "Allows you to enable/disable displaying icons on the frontpanel."
 msgstr ""
-"Umożliwia na włączenie/wyłączenie wyświetlania ikon na panelu przednim."
+"Umożliwia na włączenie/wyłączenie wyświetlania ikon na wyświetlaczy przednim."
 
 msgid "Allows you to hide the extensions of known file types."
 msgstr "Pozwala ukryć rozszerzenia znanych typów plików."
@@ -3099,7 +3099,7 @@ msgid "Aspect"
 msgstr "Proporcje"
 
 msgid "Aspect Ratio"
-msgstr "Proporcje Obrazu"
+msgstr "Proporcje obrazu"
 
 msgid "Aspect Ratio Actions"
 msgstr "Akcje współczynnika proporcji"
@@ -3283,7 +3283,7 @@ msgid "Automatic Service Searching"
 msgstr "Automatyczne Wyszukiwanie Kanału"
 
 msgid "Automatic image backup"
-msgstr "Automatyczna kopia zapasowa obrazu"
+msgstr "Automatyczna kopia zapasowa systemu"
 
 msgid "Automatic resolution"
 msgstr "Automatyczna rozdzielczość"
@@ -3319,7 +3319,7 @@ msgid "Autostart:"
 msgstr "Automatyczny start:"
 
 msgid "Available format variables"
-msgstr "Zmienne dostępne formatu"
+msgstr "Dostępne zmienne formatu"
 
 msgid "Available locales are:"
 msgstr "Dostępne lokalizacje to:"
@@ -3462,7 +3462,7 @@ msgid "Backup Date: %s\n"
 msgstr "Data Kopii Zapasowej: %s\n"
 
 msgid "Backup Image"
-msgstr "Kopia zapasowa obrazu"
+msgstr "Kopia zapasowa systemu"
 
 msgid "Backup Location"
 msgstr "Lokalizacja Kopii Zapasowej"
@@ -3495,7 +3495,7 @@ msgid "Backup failed."
 msgstr "Tworzenie kopii nie udane."
 
 msgid "Backup is running..."
-msgstr "Tworzenie Kopii Zapasowej..."
+msgstr "Tworzenie kopii zapasowej..."
 
 msgid ""
 "Backup plugins found\n"
@@ -3515,13 +3515,14 @@ msgid "Backup to destination: %s"
 msgstr "Kopia zapasowa w : %s"
 
 msgid "Backup your current image"
-msgstr "Zachowaj Twój aktualny obraz"
+msgstr "Wykonaj kopię zapasową aktualnego systemu"
 
 msgid ""
 "Backup your current image to HDD or USB. This will make a 1:1 copy of your "
 "box"
 msgstr ""
-"Zachowaj aktualny obraz na HDD lub USB. Utworzy to kopię 1:1 tego urządzenia"
+"Zapisz aktualny system na HDD lub USB. Utworzy to kopię systemu 1:1 tego "
+"urządzenia"
 
 msgid "Backup your current settings"
 msgstr "Wykonaj kopię zapasowa bieżących ustawień"
@@ -3534,12 +3535,11 @@ msgstr ""
 "wszystkie zaznaczone pliki"
 
 msgid "Backup, flash and restore settings and no plugins"
-msgstr "Tworzenie kopii, flash i przywracanie ustawień bez wtyczek"
+msgstr "Kopia zapasowa, aktualizacja i przywrócenie ustawień bez wtyczek"
 
 msgid "Backup, flash and restore settings and selected plugins (ask user)"
 msgstr ""
-"Tworzenie kopii, flash i przywracanie ustawień oraz wybranych wtyczek "
-"(zapytaj użytkownika)"
+"Kopia zapasowa, aktualizacja, przywrócenie ustawień i wybranych wtyczek"
 
 msgid "Bahamas"
 msgstr "Bahamy"
@@ -3731,6 +3731,15 @@ msgstr "Zwiększ niebieski"
 msgid "Boost green"
 msgstr "Zwiększ zielony"
 
+msgid "Boot time"
+msgstr ""
+
+msgid "Boot time and local date/time"
+msgstr ""
+
+msgid "Boot time and local time"
+msgstr ""
+
 msgid "Boot-up action"
 msgstr "Proces rozruchu"
 
@@ -3825,7 +3834,7 @@ msgid "Burn DVD"
 msgstr "Nagraj DVD"
 
 msgid "Burn existing image to medium"
-msgstr "Nagraj istniejący obraz do średniego"
+msgstr "Wykonaj kopię zapasową system na nośniku danych"
 
 msgid "Burn to medium"
 msgstr "Nagraj do średniego"
@@ -3843,10 +3852,10 @@ msgid "Button"
 msgstr "Przycisk"
 
 msgid "Button Setup"
-msgstr "Konfiguracja przycisków"
+msgstr "Ustawienia przycisków"
 
 msgid "ButtonSetup"
-msgstr "Konfiguracja przycisków"
+msgstr "Ustawienia przycisków"
 
 msgid "By openATV Image Team"
 msgstr "Przez zespół openATV"
@@ -3897,7 +3906,7 @@ msgstr ""
 "Wtyczka ta pokazuje stan CCcama."
 
 msgid "CCcam Info Config"
-msgstr "Konfiguracja CCcam Info"
+msgstr "Ustawienia CCcam Info"
 
 msgid "CCcam Info Setup"
 msgstr "CCcam Info Ustawienie"
@@ -3934,7 +3943,7 @@ msgid "CHANGE BOUQUET"
 msgstr "ZMIEŃ BOUKIET"
 
 msgid "CI (Common Interface) Setup"
-msgstr "Konfiguracja CI (Common Interface)"
+msgstr "Ustawienia CI (Common Interface)"
 
 msgid "CI Basic settings"
 msgstr "Ustawienia podstawowe CI"
@@ -3961,7 +3970,7 @@ msgid "CIFS/Samba Setup"
 msgstr "Ustawienia CIFS/Samba"
 
 msgid "CIHelper Setup"
-msgstr "Konfiguracja CIHelper"
+msgstr "Ustawienia CI helper"
 
 msgid "CIHelper for SLOT CI0"
 msgstr "CIHelper dla SLOT CI0"
@@ -3970,7 +3979,7 @@ msgid "CIHelper for SLOT CI1"
 msgstr "CIHelper dla SLOT CI1"
 
 msgid "CIselectMainMenu"
-msgstr "WybórCI MenuGłówne"
+msgstr "Wybór CI"
 
 msgid "CPU"
 msgstr "Procesor"
@@ -4201,7 +4210,7 @@ msgid "Cannot create backup directory"
 msgstr "Nie można utworzyć katalogu kopii zapasowej"
 
 msgid "Cannot delete downloaded image"
-msgstr "Nie można usunąć pobranego obrazu"
+msgstr "Nie można usunąć pobranego systemu"
 
 msgid "Cannot delete file"
 msgstr "Nie można usunąć pliku"
@@ -4213,7 +4222,7 @@ msgid "Cannot find any signal ..., aborting !"
 msgstr "Nie mogę znaleźć żadnego sygnału ..., anulowanie !"
 
 msgid "Cannot find images - please try later"
-msgstr "Nie można znaleźć obrazów - spróbuj później"
+msgstr "Nie można znaleźć systemów - spróbuj później"
 
 msgid "Cannot move to trash can"
 msgstr "Nie można przenieść do kosza"
@@ -4404,7 +4413,7 @@ msgid "Channel selection"
 msgstr "Wybór kanału"
 
 msgid "Channel selection configuration"
-msgstr "Konfiguracja wyboru kanału"
+msgstr "Ustawienia wyboru kanału"
 
 msgid "Channel selection settings"
 msgstr "Ustawienia wyboru kanału"
@@ -4611,8 +4620,8 @@ msgid ""
 "zeros for single digit values.) The screen display will be based on your "
 "choice but can be influenced by the skin."
 msgstr ""
-"Wybierz styl formatowania wyświetlania na panelu przednim dla dat. „D” / "
-"„DD” to data, a „M” / „MM” to miesiąc cyframi. („DD” i „MM” mają zera "
+"Wybierz styl formatowania wyświetlania na wyświetlaczu przednim dla dat. "
+"„D” / „DD” to data, a „M” / „MM” to miesiąc cyframi. („DD” i „MM” mają zera "
 "wiodące dla wartości jednocyfrowych.) Obraz na ekranie będzie zależał od "
 "twojego wyboru, ale skóra może na niego wpływać."
 
@@ -4623,11 +4632,11 @@ msgid ""
 "The front panel display will be based on your choice but can be influenced "
 "any applicable skin."
 msgstr ""
-"Wybierz styl formatowania wyświetlania na panelu przednim dla czasów. „H” / "
-"„HH” to godzina dla zegara 24-godzinnego, „h” / „hh” to godzina dla zegara "
-"12-godzinnego, „mm” to minuty. („HH” i „hh” mają zera wiodące dla wartości "
-"jednocyfrowych.) Wyświetlacz na panelu przednim będzie zależał od twojego "
-"wyboru, ale może mieć wpływ na dowolną odpowiednią skórkę."
+"Wybierz styl formatowania i wyświetlania na przednim wyświetlaczu dla "
+"czasów. „H” / „HH” to godzina dla zegara 24-godzinnego, „h” / „hh” to "
+"godzina dla zegara 12-godzinnego, „mm” to minuty. („HH” i „hh” mają zera "
+"wiodące dla wartości jednocyfrowych.) Wyświetlacz na panelu przednim będzie "
+"zależał od twojego wyboru, ale może mieć wpływ na dowolną odpowiednią skórkę."
 
 msgid "Choose the location for crash and debuglogs."
 msgstr "Wybierz lokalizacje crash loga."
@@ -4739,7 +4748,7 @@ msgid "Circular right"
 msgstr "Kołowa prawa"
 
 msgid "Clean (Just flash and start clean)"
-msgstr "Wyczyść (Wystarczy flashować i rozpocząć czyszczenie)"
+msgstr "Wyczyść (aktualizuj i wyczyść)"
 
 msgid "Clean network trash cans"
 msgstr "Czyścić kosz ze śmieci"
@@ -4760,7 +4769,7 @@ msgid "Clear fixed"
 msgstr "Stałe czyszczenie"
 
 msgid "Clear log"
-msgstr "Wyczyść rejestr"
+msgstr "Wyczyść log"
 
 msgid "Clear playlist"
 msgstr "Wyczyść listę odtwarzania"
@@ -4783,7 +4792,7 @@ msgid "Clock:"
 msgstr "Zegar:"
 
 msgid "Clone TV screen to LCD"
-msgstr "Lustro TV obraz na LCD"
+msgstr "Klonuj obraz TV na LCD"
 
 msgid "Close"
 msgstr "Zamknij"
@@ -4914,8 +4923,8 @@ msgid ""
 "Configuration options for the HELP screen can be found in 'MENU > Setup > "
 "Usage & User Interface > Settings'."
 msgstr ""
-"Opcje konfiguracji ekranu POMOC można znaleźć w „MENU > Konfiguracja > "
-"Użycie i interfejs użytkownika > Ustawienia”."
+"Opcje konfiguracji ekranu POMOC można znaleźć w „MENU > Ustawienia > Użycie "
+"i interfejs użytkownika > Ustawienia”."
 
 msgid ""
 "Configure an additional delay to improve external subtitle synchronisation."
@@ -5006,7 +5015,7 @@ msgid "Configure interface"
 msgstr "Skonfiguruj interfejs"
 
 msgid "Configure nameservers"
-msgstr "Konfiguracja serwerów nazw (DNS)"
+msgstr "Ustawienia serwerów nazw (DNS)"
 
 msgid "Configure on which devices the background delete option should be used."
 msgstr "Skonfiguruj dla jakich urządzeń opcja usuwania w tle ma być użyta."
@@ -5061,18 +5070,17 @@ msgid ""
 "Configure the brightness level of the front panel display for dimmed "
 "operation."
 msgstr ""
-"Skonfiguruj poziom jasności wyświetlacza na przednim panelu w trybie "
-"przyciemnionym."
+"Skonfiguruj poziom jasności przedniego wyświetlacza w trybie przyciemnionym."
 
 msgid ""
 "Configure the brightness level of the front panel display for normal "
 "operation."
 msgstr ""
-"Skonfiguruj poziom jasności wyświetlacza panela przedniego do normalnego "
+"Skonfiguruj poziom jasności przedniego wyświetlacza dla normalnego "
 "funkcjonowania."
 
 msgid "Configure the brightness level of the front panel display for standby."
-msgstr "Skonfiguruj poziom jasności wyświetlacza panela przedniego w czuwaniu."
+msgstr "Skonfiguruj poziom jasności przedniego wyświetlacza w trybie czuwaniu."
 
 msgid ""
 "Configure the color of the external subtitles, alternative (normal in white, "
@@ -5086,7 +5094,7 @@ msgid "Configure the color of the teletext subtitles."
 msgstr "Skonfiguruj kolor napisów telegazety."
 
 msgid "Configure the contrast level of the front panel display."
-msgstr "Skonfiguruj poziom kontrastu wyświetlacza."
+msgstr "Skonfiguruj poziom kontrastu przedniego wyświetlacza."
 
 msgid ""
 "Configure the cursor behaviour in the channel selection list. When opening "
@@ -5157,7 +5165,7 @@ msgid "Configure the function of a short press on the power button."
 msgstr "Skonfiguruj zachowanie przycisku 'power' przy krótkim naciśnięciu."
 
 msgid "Configure the function of the <  > buttons."
-msgstr "Konfiguracja funkcji przycisków '<  >'."
+msgstr "Ustawienia funkcji przycisków '<  >'."
 
 msgid "Configure the gateway."
 msgstr "Skonfiguruj ustawienia 'bramy'."
@@ -5217,7 +5225,7 @@ msgid ""
 "Configure the minimum width before showing the 'i' icon, '0' is equal to not "
 "showing the icon at all."
 msgstr ""
-"Konfiguracja minimalnej szerokość przed wyświetleniem ikony \"i\", \"0\" "
+"Ustawienia minimalnej szerokość przed wyświetleniem ikony \"i\", \"0\" "
 "oznacza ze ikona nie jest widoczna."
 
 msgid "Configure the nameserver (DNS)."
@@ -5439,7 +5447,7 @@ msgid "Configure your Network"
 msgstr "Konfigurowanie sieci"
 
 msgid "Configure your internal LAN"
-msgstr "Konfiguracja wewnętrznej sieci LAN"
+msgstr "Ustawienia sieci LAN"
 
 msgid "Configure your network again"
 msgstr "Skonfiguruj sieć ponownie"
@@ -5454,7 +5462,7 @@ msgid "Configures which video output connector will be used."
 msgstr "Skonfiguruj które wyście wideo ma być użyte."
 
 msgid "Configuring"
-msgstr "Konfiguracja"
+msgstr "Konfigurowanie"
 
 msgid "Conflicting timer"
 msgstr "Konflikt timera"
@@ -5565,7 +5573,7 @@ msgstr ""
 "przyciskami."
 
 msgid "Control your Softcams"
-msgstr "Kontroluj swóje Softcamy"
+msgstr "Kontroluj softcamy"
 
 msgid "Convert ext3 filesystem to ext4"
 msgstr "Konwertuj syst. plików ext3 do ext4"
@@ -5817,7 +5825,7 @@ msgid "Current version:"
 msgstr "Aktualna wersja:"
 
 msgid "Currently installed image"
-msgstr "Obecnie zainstalowany obraz"
+msgstr "Obecnie zainstalowany system"
 
 msgid "Custom"
 msgstr "Zwykły"
@@ -6126,6 +6134,9 @@ msgstr "Dezaktywować"
 msgid "Debug Logs"
 msgstr "Logi Diagnostyczne"
 
+msgid "Debug log time format *"
+msgstr ""
+
 msgid "Decryption & Parental Control"
 msgstr "Moduł i Kontrola Rodzicielska"
 
@@ -6348,14 +6359,8 @@ msgstr "Potwierdzenie Usuwania"
 msgid "Delete EPG"
 msgstr "Usuń EPG"
 
-msgid "Delete Lang"
-msgstr "Usuń Język"
-
 msgid "Delete Language"
 msgstr "Usuń Język"
-
-msgid "Delete Loc"
-msgstr "Usuń Region"
 
 msgid "Delete Plugins"
 msgstr "Usuń Wtyczki"
@@ -6391,7 +6396,7 @@ msgid "Delete folder"
 msgstr "Usuń folder"
 
 msgid "Delete image"
-msgstr "Usuń Obraz"
+msgstr "Usuń system"
 
 msgid "Delete playlist entry"
 msgstr "Usuń pozycję z listy"
@@ -6489,7 +6494,7 @@ msgid "Device Manager"
 msgstr "Menadżer Urządzenia"
 
 msgid "Device Setup"
-msgstr "Konfiguracja urządzenia"
+msgstr "Ustawienia urządzenia"
 
 msgid "Device mounts"
 msgstr "Montowane Urządzenie"
@@ -6661,7 +6666,7 @@ msgid "Display Settings"
 msgstr "Ustawienia wyświetlania"
 
 msgid "Display Setup"
-msgstr "Konfiguracja wyświetlacza"
+msgstr "Ustawienia wyświetlacza"
 
 msgid "Display and user interface"
 msgstr "Wyświetlacz i interfejs użytkownika"
@@ -6705,7 +6710,7 @@ msgid "Do not change"
 msgstr "Nie należy zmieniać"
 
 msgid "Do not flash image"
-msgstr "Nie wgrywaj obrazu"
+msgstr "Nie instaluj systemu"
 
 msgid "Do not record"
 msgstr "Nie nagrywaj"
@@ -6848,7 +6853,7 @@ msgid ""
 "Do you want to flash image\n"
 "%s"
 msgstr ""
-"Czy chcesz flashować obraz\n"
+"Czy chcesz zainstalować system\n"
 "%s"
 
 msgid "Do you want to install a channel list?"
@@ -6986,7 +6991,7 @@ msgid "Download Plugins"
 msgstr "Pobieranie Wtyczek"
 
 msgid "Download Softcams"
-msgstr "Pobierz Softcamy"
+msgstr "Pobierz softcamy"
 
 msgid "Download and install Plugins"
 msgstr "Pobrać i zainstalować wtyczki"
@@ -7001,13 +7006,13 @@ msgid "Downloadable plugins"
 msgstr "Wtyczki do pobrania"
 
 msgid "Downloaded Images"
-msgstr "Pobrane Obrazy"
+msgstr "Pobrane systemy"
 
 msgid "Downloading"
 msgstr "Pobieranie"
 
 msgid "Downloading Image"
-msgstr "Pobieranie Obrazu"
+msgstr "Pobieranie systemu"
 
 msgid "Downloading plugin information. Please wait..."
 msgstr "Pobieranie informacji o wtyczkach. Proszę czekać..."
@@ -7120,7 +7125,7 @@ msgid "EPG Selection"
 msgstr "Wybór EPG"
 
 msgid "EPG Setup"
-msgstr "Konfiguracja EPG"
+msgstr "Ustawienia EPG"
 
 msgid "EPG button mode"
 msgstr "Akcja dla przycisku 'EPG'"
@@ -7728,7 +7733,7 @@ msgid ""
 "%s\n"
 "%s"
 msgstr ""
-"Błąd podczas pobierania obrazu\n"
+"Błąd podczas pobierania systemu\n"
 "%s\n"
 "%s"
 
@@ -7737,7 +7742,7 @@ msgid ""
 "Error during unzipping image\n"
 "%s"
 msgstr ""
-"Błąd podczas rozpakowywania obrazu\n"
+"Błąd podczas rozpakowywania systemu\n"
 "%s"
 
 msgid "Error executing plugin"
@@ -8013,7 +8018,7 @@ msgid "Extended PID info"
 msgstr "Rozszerzone info o PID"
 
 msgid "Extended Setup..."
-msgstr "Konfiguracja rozszerzona..."
+msgstr "Ustawienia rozszerzone..."
 
 msgid "Extended Shares"
 msgstr "Rozszerzone Akcje"
@@ -8031,7 +8036,7 @@ msgid "Extended settings"
 msgstr "Ustawienia rozszerzone"
 
 msgid "Extended setup..."
-msgstr "Konfiguracja rozszerzona..."
+msgstr "Ustawienia rozszerzone..."
 
 msgid "Extension Actions"
 msgstr "Działania Rozszerzające"
@@ -8389,45 +8394,45 @@ msgid "Fixed X11 font (SD)"
 msgstr "Naprawiona czcionka X11 (SD)"
 
 msgid "Flash"
-msgstr "Wgrywanie"
+msgstr "Wgraj"
 
 msgid "Flash Image"
-msgstr "Wgraj Obraz"
+msgstr "Zainstaluj system"
 
 msgid "Flash On the Fly"
-msgstr "Wgrywanie w locie"
+msgstr "Zainstaluj w locie"
 
 msgid "Flash Online"
-msgstr "Wgrywanie oprogramowania online"
+msgstr "Zainstaluj oprogramowanie"
 
 msgid "Flash Online a new image"
-msgstr "Wgraj nowe oprogramowanie online"
+msgstr "Zainstaluj nowe oprogramowanie"
 
 #, python-format
 msgid "Flash directory '%s' not allowed!"
 msgstr "Katalog '%s' nie może być użyty jako flash!"
 
 msgid "Flash on the fly your your Receiver software."
-msgstr "Wgraj oprogramowanie odbiornika w locie."
+msgstr "Zainstaluj system w locie."
 
 msgid "Flashing"
-msgstr "Wgrywanie"
+msgstr "Instalowanie"
 
 msgid "Flashing Image"
-msgstr "Wgrywanie Obrazu"
+msgstr "Instalowanie systemu"
 
 msgid "Flashing failed"
-msgstr "Wgrywanie nie powiodło się"
+msgstr "Instalowanie nie powiodło się"
 
 msgid "Flashing image successful"
-msgstr "Wgrywanie obrazu zakończono pomyślnie"
+msgstr "Instalowanie systemu zakończone pomyślnie"
 
 #, python-format
 msgid ""
 "Flashing image was not successful\n"
 "%s"
 msgstr ""
-"Wgrywanie obrazu nie powiodło się\n"
+"Instalowanie systemu nie powiodło się\n"
 "%s"
 
 msgid "Flat alphabetical"
@@ -8589,7 +8594,7 @@ msgid "Fulah"
 msgstr "Fulah"
 
 msgid "Full Image Backup "
-msgstr "Pełna kopia zapasowa obrazu "
+msgstr "Pełna kopia zapasowa systemu "
 
 msgid "Full Range RGB"
 msgstr "Pełny zakres RGB"
@@ -8605,7 +8610,7 @@ msgid "FullHD Test"
 msgstr "Test FullHD"
 
 msgid "Fullbackup Images"
-msgstr "Pełne zapasowe kopie Obrazu"
+msgstr "Pełna kopia zapasowa systemów"
 
 msgid "Fullscreen"
 msgstr "Pełny ekran"
@@ -8735,16 +8740,16 @@ msgid "Gesundheit"
 msgstr "Zdrowie"
 
 msgid "Get latest experimental image"
-msgstr "Pobierz ostatni obraz eksperymentalny"
+msgstr "Pobierz ostatni eksperymentalny system"
 
 msgid "Get latest release image"
-msgstr "Pobierz ostatni wydany obraz"
+msgstr "Pobierz ostatnio wydany system"
 
 msgid "Getting Event Info failed!"
 msgstr "Pobieranie informacji o wydarzeniu nie powiodło się!"
 
 msgid "Getting Softcam list. Please wait..."
-msgstr "Pobieranie listy Soft cam.Proszę czekać ..."
+msgstr "Pobieranie listy Softcam. Proszę czekać ..."
 
 msgid "Getting plugin information. Please wait..."
 msgstr "Pobieranie informacji o wtyczkach. Proszę czekać..."
@@ -9063,7 +9068,7 @@ msgid "Harddisk"
 msgstr "Dysk twardy"
 
 msgid "Harddisk Setup"
-msgstr "Konfiguracja HDD"
+msgstr "Ustawienia HDD"
 
 msgid "Hausa"
 msgstr "Hausa"
@@ -9332,7 +9337,7 @@ msgid "INFO button mode"
 msgstr "Akcja dla przycisku 'INFO'"
 
 msgid "INFO-Panel..."
-msgstr "Panel Informacyjny..."
+msgstr "Panel info..."
 
 msgid "INS"
 msgstr "INS"
@@ -9591,7 +9596,7 @@ msgid ""
 "If the text is too long to be displayed on the front panel, it will be "
 "repeated (number of times):"
 msgstr ""
-"Jeśli tekst jest zbyt długi, aby był wyświetlany na panelu przednim, "
+"Jeśli tekst jest zbyt długi, aby był wyświetlany na przednim wyświetlaczu, "
 "zostanie powtórzony (kilka razy):"
 
 msgid ""
@@ -9668,44 +9673,44 @@ msgid "Ignore unexpectedly wakeup and stay in standby"
 msgstr "Ignoruj nieoczekiwanie budzenie i pozostań w trybie gotowości"
 
 msgid "Image"
-msgstr "Obraz"
+msgstr "System"
 
 msgid "Image Backup"
-msgstr "Kopia Obrazu"
+msgstr "Kopia systemu"
 
 msgid "Image Information"
-msgstr "Informacje o obrazie"
+msgstr "Informacje o systemie"
 
 msgid "Image Manager"
-msgstr "Menedżer Obrazu"
+msgstr "Menedżer systemu"
 
 msgid "Image Version"
-msgstr "Obraz"
+msgstr "System"
 
 #, python-format
 msgid "Image created on: %s/%s-%s-%s-backup-%s_recovery_emmc.zip"
-msgstr "Obraz utworzony na: %s/%s-%s-%s-backup-%s_recovery_emmc.zip"
+msgstr "System utworzony na: %s/%s-%s-%s-backup-%s_recovery_emmc.zip"
 
 #, python-format
 msgid "Image created on: %s/%s-%s-%s-backup-%s_usb.zip"
-msgstr "Obraz utworzony na: %s/%s-%s-%s-backup-%s_usb.zip"
+msgstr "System utworzony na: %s/%s-%s-%s-backup-%s_usb.zip"
 
 msgid "Image creation failed - "
-msgstr "Tworzenie obrazu nie powiodło się - "
+msgstr "Tworzenie systemu nie powiodło się - "
 
 #, python-format
 msgid ""
 "Image to install is invalid\n"
 "%s"
 msgstr ""
-"Obraz do zainstalowania jest nieprawidłowy\n"
+"System do zainstalowania jest nieprawidłowy\n"
 "%s"
 
 msgid "Image-Version"
-msgstr "Obraz"
+msgstr "System"
 
 msgid "ImageWizard"
-msgstr "KreatorObrazu"
+msgstr "Kreator systemu"
 
 msgid "Immediate shutdown"
 msgstr "Natychmiastowe wyłączenie"
@@ -9838,7 +9843,7 @@ msgid "Info (EPG) Long"
 msgstr "Informacje (EPG długo)"
 
 msgid "Info Panel"
-msgstr "Panel"
+msgstr "Panel info"
 
 msgid "Info button (long)"
 msgstr "Przycisk Info (długo)"
@@ -9868,10 +9873,10 @@ msgid "InfoBar Show/Hide Actions"
 msgstr "Pasek informacyjny Pokaż/Ukryj akcje"
 
 msgid "InfoPanel"
-msgstr "Panel Informacyjny"
+msgstr "Panel info"
 
 msgid "InfoPanel Actions"
-msgstr "Akcje Panelu Informacyjnego"
+msgstr "Akcje panelu info"
 
 msgid "Infobar EPG"
 msgstr "Infobar (EPG)"
@@ -9889,13 +9894,13 @@ msgid "InfobarEPG settings"
 msgstr "Ustawienia EPG infobara"
 
 msgid "Infopanel"
-msgstr "Panel Informacyjny"
+msgstr "Panel info"
 
 msgid "Information"
 msgstr "Informacje"
 
 msgid "Information Panel"
-msgstr "Panel informacyjny"
+msgstr "Panel info"
 
 msgid "Infotainment"
 msgstr "Info o programie"
@@ -9967,23 +9972,17 @@ msgstr "Instalacja nieudana !!"
 msgid "Install Finished."
 msgstr "Instalacja zakończona."
 
-msgid "Install Lang"
-msgstr "Zainstaluj Język"
-
-msgid "Install Loc"
-msgstr "Zainstaluj Region"
-
 msgid "Install Plugins"
 msgstr "Instalowanie Wtyczek"
 
 msgid "Install Softcams"
-msgstr "Zainstaluj soft cams"
+msgstr "Zainstaluj softcamy"
 
 msgid "Install a new image with a USB stick"
 msgstr "Instaluj nowe img. z pamięci USB"
 
 msgid "Install a new image with your web browser"
-msgstr "Instaluj nowy obraz z przeglądarki www"
+msgstr "Instaluj nowy system z przeglądarki www"
 
 msgid "Install extensions"
 msgstr "Instaluj rozszerzenia"
@@ -10027,7 +10026,7 @@ msgid "Installing Service"
 msgstr "Instalowanie listy"
 
 msgid "Installing Software..."
-msgstr "Instalowanie oprogramowania ..."
+msgstr "Instalowanie systemu ..."
 
 msgid "Installing feeds from IPK ..."
 msgstr "Instalowanie feeds z IPK ..."
@@ -10042,7 +10041,7 @@ msgid "Installing plugins from feed ..."
 msgstr "Instalowanie wtyczek z feed ..."
 
 msgid "Installing software..."
-msgstr "Instalowanie oprogramowania..."
+msgstr "Instalowanie systemu..."
 
 msgid "Instant record"
 msgstr "Natychmiastowe nagranie"
@@ -10212,9 +10211,6 @@ msgstr "Jawajski"
 msgid "Jersey"
 msgstr "Jersey"
 
-msgid "Job Manager"
-msgstr "Menadżer Pracy"
-
 msgid "Job View"
 msgstr "Widok Pracy"
 
@@ -10306,7 +10302,7 @@ msgid "Kazakhstan"
 msgstr "Kazachstan"
 
 msgid "Keep service"
-msgstr "Zachowaj kanał"
+msgstr "Utrzymaj kanał"
 
 msgid "Keeps MovieList open whilst playing audio files."
 msgstr "Utrzymuje otwartą liste filmów podczas odtwarzania plików audio."
@@ -10341,7 +10337,7 @@ msgid "Keyboard setup"
 msgstr "Ustawienie klawiatury"
 
 msgid "Keymap Selection"
-msgstr "Wybór Mapowania Klawiszy"
+msgstr "Mapowanie klawiszy"
 
 msgid "Keymap changed, you need to restart the GUI"
 msgstr "Mapa klawiszy zmieniona,należy ponownie uruchomić GUI"
@@ -10443,7 +10439,7 @@ msgid "LAN long"
 msgstr "LAN (długo)"
 
 msgid "LCD Skin Setup"
-msgstr "Konfiguracja skóry LCD"
+msgstr "Ustawienia skóry LCD"
 
 msgid "LCD SkinSelector"
 msgstr "Skóra LCD"
@@ -10756,8 +10752,14 @@ msgstr "Wczytaj/Zapisz/Usuń"
 msgid "Local box"
 msgstr "Lokalny odbiornik"
 
+msgid "Local date/time"
+msgstr ""
+
 msgid "Local network"
 msgstr "Lokalna Sieć"
+
+msgid "Local time"
+msgstr ""
 
 msgid "Locale"
 msgstr "Miejscowy"
@@ -10777,7 +10779,7 @@ msgid "Locale (Descending)"
 msgstr "Ustawienia regionalne (malejąco)"
 
 msgid "Locale Selection Setup"
-msgstr "Konfiguracja ustawień regionalnych"
+msgstr "Ustawienia regionalne"
 
 msgid "Locale already selected."
 msgstr "Region już został wybrany."
@@ -11025,7 +11027,7 @@ msgid "Manual Service Searching"
 msgstr "Ręczne Wyszukiwanie Kanału"
 
 msgid "Manual configuration"
-msgstr "Konfiguracja ręczna"
+msgstr "Ustawienia ręczne"
 
 msgid "Manual scan"
 msgstr "Skanowanie ręczne"
@@ -11182,7 +11184,7 @@ msgid "Menu Actions"
 msgstr "Akcje Menu"
 
 msgid "Menu config"
-msgstr "Konfiguracja menu"
+msgstr "Ustawienia menu"
 
 msgid "Merge broadcast EPG with IceTV"
 msgstr "Scal transmisję EPG z IceTV"
@@ -11283,7 +11285,7 @@ msgid "Mode 2"
 msgstr "Tryb 2"
 
 msgid "Mode for autorestore"
-msgstr "Tryb dla autoprzywracania"
+msgstr "Tryb autoprzywracania"
 
 #, python-format
 msgid "Model:\t\t%s %s\n"
@@ -11563,7 +11565,7 @@ msgid "Movie List Actions"
 msgstr "Akcje listy filmów"
 
 msgid "Movie List Setup"
-msgstr "Konfiguracja listy filmów"
+msgstr "Ustawienia listy filmów"
 
 msgid "Movie Player Actions"
 msgstr "Akcje odtwarzacza filmów"
@@ -11602,10 +11604,10 @@ msgid "Multi EPG"
 msgstr "Multi EPG"
 
 msgid "MultiBoot Image Manager"
-msgstr "Menedżer obrazów MultiBoot"
+msgstr "Menedżer systemów MultiBoot"
 
 msgid "MultiBoot Image Selector"
-msgstr "Selektor Obrazów MultiBoot"
+msgstr "Selektor systemów MultiBoot"
 
 msgid "MultiBootSelector Actions"
 msgstr "Akcje MultiBootSelector"
@@ -11617,11 +11619,11 @@ msgid "MultiQuickButton"
 msgstr "Przycisk MultiQuick"
 
 msgid "Multiboot Image Selector"
-msgstr "Selektor obrazów Multiboot"
+msgstr "Selektor systemów Multiboot"
 
 #, python-format
 msgid "Multiboot Image created on: %s/%s-%s-%s-backup-%s_usb.zip"
-msgstr "Obraz Multiboot utworzony w: %s/%s-%s-%s-backup-%s_usb.zip"
+msgstr "System Multiboot utworzony w: %s/%s-%s-%s-backup-%s_usb.zip"
 
 msgid "Multiboot Manager"
 msgstr "Menedżer Multiboot"
@@ -11728,7 +11730,7 @@ msgid "Nameserver %d"
 msgstr "Nazwa serwera %d"
 
 msgid "Nameserver configuration"
-msgstr "Konfiguracja DNS"
+msgstr "Ustawienia DNS"
 
 msgid "Nameserver settings"
 msgstr "Ustawienie nazwy serwerów"
@@ -11832,7 +11834,7 @@ msgid "Network Services"
 msgstr "Usługi Sieciowe"
 
 msgid "Network Setup"
-msgstr "Konfiguracja sieci"
+msgstr "Ustawienia sieci"
 
 msgid "Network Speed:"
 msgstr "Szybkość Sieci:"
@@ -11844,7 +11846,7 @@ msgid "Network Wizard"
 msgstr "Kreator Sieci"
 
 msgid "Network configuration..."
-msgstr "Konfiguracja sieci..."
+msgstr "Ustawienia sieci..."
 
 msgid "Network menu"
 msgstr "Menu sieciowe"
@@ -12052,7 +12054,7 @@ msgid "No description available."
 msgstr "Brak dostępnego opisu."
 
 msgid "No details for this image file"
-msgstr "Brak opisu dla tego obrazu"
+msgstr "Brak opisu dla tego pliku graficznego"
 
 msgid "No displayable files on this medium found!"
 msgstr "Brak plików do wyświetlenia na tym nośniku!"
@@ -12087,7 +12089,7 @@ msgid "No hash calculations configured"
 msgstr "Nie skonfigurowano obliczeń skrótu"
 
 msgid "No images found"
-msgstr "Nie znaleziono obrazów"
+msgstr "Nie znaleziono systemów"
 
 msgid "No matching place names found"
 msgstr "Nie znaleziono pasujących nazw miejsc"
@@ -12214,10 +12216,10 @@ msgid "No, but restart from begin"
 msgstr "Nie, ale rozpocznij od początku"
 
 msgid "No, do not backup a image"
-msgstr "Nie, nie twórz kopii zapasowej obrazu"
+msgstr "Nie, nie twórz kopii zapasowej systemu"
 
 msgid "No, do not flash an image"
-msgstr "Nie, nie wgrywaj obrazu"
+msgstr "Nie, nie instaluj systemu"
 
 msgid "No, do nothing."
 msgstr "Nie, nie rób nic."
@@ -12339,7 +12341,7 @@ msgid "Not-Associated"
 msgstr "Nie-Związany"
 
 msgid "Note: slot list does not show current image or empty slots."
-msgstr "Uwaga: lista miejsc nie pokazuje bieżącego obrazu ani pustych miejsc."
+msgstr "Uwaga: lista slotów nie pokazuje bieżącego systemu ani pustych miejsc."
 
 msgid "Nothing"
 msgstr "Nic"
@@ -12362,7 +12364,7 @@ msgid "Now"
 msgstr "Teraz"
 
 msgid "Now building the Backup Image"
-msgstr "Teraz tworzony jest obraz zapasowy"
+msgstr "Teraz tworzony jest system zapasowy"
 
 msgid "Now save timeshift as movie and continues recording"
 msgstr "Teraz zapisz TimeShift jako film i kontynuuj nagrywanie"
@@ -12453,7 +12455,7 @@ msgid "OSD name request"
 msgstr "Żądanie nazwy OSD"
 
 msgid "OSD position setup"
-msgstr "Konfiguracja pozycji OSD"
+msgstr "Ustawienia pozycji OSD"
 
 msgid "OSD settings"
 msgstr "Ustawienia OSD"
@@ -12531,7 +12533,7 @@ msgid "One line"
 msgstr "Jedna linia"
 
 msgid "Online software update"
-msgstr "Aktualizacja oprogramowania online"
+msgstr "Aktualizacja systemu"
 
 msgid "OnlineVersionCheck"
 msgstr "Sprawdź dostępną wersję"
@@ -12684,7 +12686,7 @@ msgid "Oromo"
 msgstr "Oromo"
 
 msgid "Oscam Info - Configuration"
-msgstr "Konfiguracja Oscam Info"
+msgstr "Ustawienia Oscam Info"
 
 msgid "Oscam Info - Main Menu"
 msgstr "Oscam Info - Menu główne"
@@ -12725,46 +12727,46 @@ msgid "Overscan Test"
 msgstr "Test Overscan"
 
 msgid "Overwrite Bootlogo Files ?"
-msgstr "Nadpisać Pliki loga startowego?"
+msgstr "Nadpisać pliki loga startowego?"
 
 msgid "Overwrite Driver Files ?"
-msgstr "Nadpisać Pliki Sterownika?"
+msgstr "Nadpisać pliki sterownika?"
 
 msgid "Overwrite Emu Files ?"
-msgstr "Nadpisać Pliki Emu?"
+msgstr "Nadpisać pliki emu?"
 
 msgid "Overwrite Picon Files ?"
-msgstr "Nadpisać Pliki z Pikonami?"
+msgstr "Nadpisać pliki z pikonami?"
 
 msgid "Overwrite Setting Files ?"
-msgstr "Nadpisać Pliki Ustawień?"
+msgstr "Nadpisać pliki ustawień?"
 
 msgid "Overwrite Spinner Files ?"
-msgstr "Nadpisać Pliki Spinnera?"
+msgstr "Nadpisać pliki spinnera?"
 
 msgid "Overwrite bootlogo files during software upgrade?"
-msgstr "Nadpisać logo startowe podczas aktualizacji oprogramowania?"
+msgstr "Nadpisać logo startowe podczas aktualizacji systemu?"
 
 msgid "Overwrite configuration files during software upgrade?"
 msgstr "Nadpisać pliki konfiguracyjne podczas aktualizacji?"
 
 msgid "Overwrite configuration files?"
-msgstr "Nadpisać Pliki Konfiguracyjne?"
+msgstr "Nadpisać pliki konfiguracyjne?"
 
 msgid "Overwrite driver files during software upgrade?"
-msgstr "Nadpisać pliki sterowników podczas aktualizacji oprogramowania?"
+msgstr "Nadpisać pliki sterowników podczas aktualizacji systemu?"
 
 msgid "Overwrite picon files during software upgrade?"
-msgstr "Nadpisać pikony podczas aktualizacji oprogramowania?"
+msgstr "Nadpisać pikony podczas aktualizacji systemu?"
 
 msgid "Overwrite setting files (channellist) during software upgrade?"
-msgstr "Nadpisać pliki (List kanałów) podczas aktualizacji oprogramowania?"
+msgstr "Nadpisać pliki list kanałów podczas aktualizacji systemu?"
 
 msgid "Overwrite softcam files during software upgrade?"
-msgstr "Nadpisać pliki softcam podczas aktualizacji oprogramowania?"
+msgstr "Nadpisać pliki softcam podczas aktualizacji systemu?"
 
 msgid "Overwrite spinner files during software upgrade?"
-msgstr "Nadpisać pliki spinnera podczas aktualizacji oprogramowania?"
+msgstr "Nadpisać pliki spinnera podczas aktualizacji systemu?"
 
 msgid "Owner:"
 msgstr "Właściciel:"
@@ -13076,7 +13078,7 @@ msgid "Picture in EPG"
 msgstr "Obraz w EPG"
 
 msgid "Picture in Picture Setup"
-msgstr "Konfiguracja PiP"
+msgstr "Ustawienia PiP"
 
 msgid "Picture in graphics"
 msgstr "Obraz w grafice"
@@ -13369,7 +13371,7 @@ msgid ""
 "(In addition, if it exists, a local script will be executed as well at /"
 "media/hdd/images/config/myrestore.sh)"
 msgstr ""
-"Proszę wybrać, co robić po wgraniu obrazu:\n"
+"Co zrobić po zainstalowaniu systemu:\n"
 "(Dodatkowo, jeśli istnieje lokalny skrypt zostanie wykonany /media/hdd/"
 "images/config/myrestore.sh)"
 
@@ -13582,9 +13584,6 @@ msgstr "Przeglądarka Wtyczek"
 msgid "Plugin Filter"
 msgstr "Filtr Wtyczek"
 
-msgid "Plugin browser"
-msgstr "Przeglądarka wtyczek"
-
 msgid "Plugin details"
 msgstr "Szczegóły wtyczki"
 
@@ -13649,7 +13648,7 @@ msgid "Portuguese"
 msgstr "Portugalski"
 
 msgid "Position Setup"
-msgstr "Konfiguracja pozycji"
+msgstr "Ustawienia pozycji"
 
 msgid "Position of finished Timers in Timerlist"
 msgstr "Lista pozycji do wykonania w liście Timera"
@@ -13667,7 +13666,7 @@ msgid "Positioner (selecting satellites)"
 msgstr "Pozycjoner (wybór satelitów)"
 
 msgid "Positioner Setup"
-msgstr "Konfiguracja pozycjonera"
+msgstr "Ustawienia pozycjonera"
 
 msgid "Positioner Setup Log"
 msgstr "Log Konfiguracji pozycjonera"
@@ -13711,20 +13710,20 @@ msgid "Power threshold. Consult your receiver's manual for more information."
 msgstr ""
 "Próg mocy. Więcej informacji można znaleźć w instrukcji obsługi odbiornika."
 
-msgid "PowerTimer Entry"
-msgstr "PowerMenadżer Wpis"
-
-msgid "PowerTimer Log"
-msgstr "PowerMenadżer logi"
-
 msgid "PowerTimer"
 msgstr "Timer Zasilania"
 
 msgid "PowerTimer DeepStandby"
 msgstr "Timer zasilania Głębokie Czuwanie"
 
+msgid "PowerTimer Entry"
+msgstr "PowerMenadżer Wpis"
+
 msgid "PowerTimer List"
 msgstr "Lista Timera Zasilania"
+
+msgid "PowerTimer Log"
+msgstr "PowerMenadżer logi"
 
 msgid "PowerTimer Overview"
 msgstr "Przegląd Timera Zasilania"
@@ -14021,7 +14020,7 @@ msgid "Properties of current title"
 msgstr "Właściwości aktualnego tytułu"
 
 msgid "Protect InfoPanel"
-msgstr "Chroń InfoPanel"
+msgstr "Chroń panel info"
 
 msgid "Protect Quickmenu"
 msgstr "Chroń QuickMenu"
@@ -14301,7 +14300,7 @@ msgid "Really shutdown now?"
 msgstr "Naprawdę wyłączyć?"
 
 msgid "Really upgrade the front panel and reboot now?"
-msgstr "Naprawdę uaktualnić panel przedni i uruchomić ponownie?"
+msgstr "Naprawdę uaktualnić przedni wyświetlacz i uruchomić ponownie?"
 
 msgid "Really upgrade the frontprocessor and reboot now?"
 msgstr "Naprawdę zaktualizować front procesor i zrestartować odbiornik?"
@@ -14369,7 +14368,7 @@ msgid "Recording Actions"
 msgstr "Działania związane z nagrywaniem"
 
 msgid "Recording Setup"
-msgstr "Konfiguracja nagrywania"
+msgstr "Ustawienia nagrywania"
 
 msgid "Recording aborted"
 msgstr "Nagrywanie przerwane"
@@ -14746,7 +14745,7 @@ msgstr ""
 "jest zielony przycisk."
 
 msgid "Reset video enhancement settings to system defaults?"
-msgstr "Przywrócić ustawienia domyślne obrazu?"
+msgstr "Przywrócić ustawienia domyślne systemu?"
 
 msgid "Reset video enhancement settings to your last configuration?"
 msgstr "Przywróć ustawienia do poprzedniej konfiguracji?"
@@ -14786,10 +14785,10 @@ msgid "Restart Network Adapter"
 msgstr "Ponowne uruchomienie karty sieciowej"
 
 msgid "Restart both"
-msgstr "Zrestartuj Wszystko"
+msgstr "Zrestartuj oba"
 
 msgid "Restart cardserver"
-msgstr "Zrestartuj Cardserver"
+msgstr "Zrestartuj cardserver"
 
 msgid "Restart enigma"
 msgstr "Ponownie Uruchomić enigmę"
@@ -14807,7 +14806,7 @@ msgid "Restart network to with current setup"
 msgstr "Ponownie uruchom sieć z obecną konfiguracją"
 
 msgid "Restart softcam"
-msgstr "Zrestartuj Softcam"
+msgstr "Zrestartuj softcam"
 
 msgid "Restart test"
 msgstr "Powtórz test"
@@ -14866,10 +14865,10 @@ msgid "Resuming playback"
 msgstr "Wznawianie odtwarzania"
 
 msgid "Retrieving image list - Please wait..."
-msgstr "Pobieranie listy obrazów - Proszę czekać ..."
+msgstr "Pobieranie listy systemów, proszę czekać..."
 
 msgid "Retrieving image slots - Please wait..."
-msgstr "Pobieranie slotów obrazów - Proszę czekać ..."
+msgstr "Pobieranie slotów systemu, proszę czekać..."
 
 msgid "Return to movie list"
 msgstr "Powrót do listy filmów"
@@ -15149,13 +15148,13 @@ msgid "Satellite configuration mode"
 msgstr "Ustaw żądany tryb konfiguracji"
 
 msgid "Satellite dish setup"
-msgstr "Konfiguracja anteny satelitarnej"
+msgstr "Ustawienia anteny satelitarnej"
 
 msgid "Satellite equipment"
 msgstr "Wyposażenie sat"
 
 msgid "Satellite equipment setup"
-msgstr "Konfiguracja wyposażenia sat"
+msgstr "Ustawienia wyposażenia sat"
 
 msgid "Satellites"
 msgstr "Satelity"
@@ -15339,6 +15338,9 @@ msgstr "Zrzut ekranu z LCD w /tmp"
 #, python-format
 msgid "Script '%s' must have read permission to be able to run it"
 msgstr "Skrypt '%s' musi mieć uprawnienia do odczytu, aby móc go uruchomić"
+
+msgid "Script Manager"
+msgstr ""
 
 msgid "ScriptRunner"
 msgstr "Script Runner"
@@ -15568,7 +15570,7 @@ msgid "Select Red-key action long"
 msgstr "Akcja dla przycisku (długo) 'Czerwony'"
 
 msgid "Select Software Update"
-msgstr "Wybierz aktualizację oprogramowania"
+msgstr "Wybierz aktualizację systemu"
 
 msgid "Select Yellow Key Action"
 msgstr "Akcja dla przycisku 'Żółty'"
@@ -15802,7 +15804,7 @@ msgstr ""
 "funkcji."
 
 msgid "Select the highlighted image and reboot"
-msgstr "Wybierz podświetlony obraz i uruchom ponownie"
+msgstr "Wybierz zaznaczony system i uruchom ponownie"
 
 msgid "Select the locale from a menu"
 msgstr "Wybierz ustawienia regionalne z menu"
@@ -16400,7 +16402,7 @@ msgid ""
 "Set the scrolling speed of text on the front display, this is used by "
 "software renderer in some skins."
 msgstr ""
-"Ustaw szybkość przewijania tekstu na wyświetlaczu.Jest używany przez "
+"Ustaw szybkość przewijania tekstu na wyświetlaczu. Jest używany przez "
 "renderer oprogramowania w niektórych skórkach."
 
 msgid "Set the scrolling speed of text on the front display."
@@ -16496,28 +16498,28 @@ msgid "Setup - %s"
 msgstr "Ustawienia - %s"
 
 msgid "Setup AFP"
-msgstr "Konfiguracja AFP"
+msgstr "Ustawienia AFP"
 
 msgid "Setup Audio Sync"
-msgstr "Konfiguracja synchronizacji audio"
+msgstr "Ustawienia synchronizacji audio"
 
 msgid "Setup Audio Sync settings"
-msgstr "Konfiguracja synchronizacji dźwięku"
+msgstr "Ustawienia synchronizacji dźwięku"
 
 msgid "Setup Audiomode"
 msgstr "Ustawienia trybu dźwięku"
 
 msgid "Setup Enigma2"
-msgstr "Konfiguracja Enigmy2"
+msgstr "Ustawienia Enigmy2"
 
 msgid "Setup FTP"
-msgstr "Konfiguracja FTP"
+msgstr "Ustawienia FTP"
 
 msgid "Setup Harddisk"
-msgstr "Konfiguracja HDD"
+msgstr "Ustawienia HDD"
 
 msgid "Setup Inadyn"
-msgstr "Konfiguracja Inadyn"
+msgstr "Ustawienia Inadyn"
 
 msgid "Setup InputDevice"
 msgstr "Ustawienia urządzeń wejściowych"
@@ -16526,22 +16528,22 @@ msgid "Setup Language"
 msgstr "Wybór Języka"
 
 msgid "Setup MiniDLNA"
-msgstr "Konfiguracja MiniDLNA"
+msgstr "Ustawienia MiniDLNA"
 
 msgid "Setup Mounts"
 msgstr "Ustawienia montowania"
 
 msgid "Setup NFS"
-msgstr "Konfiguracja NFS"
+msgstr "Ustawienia NFS"
 
 msgid "Setup Network Services"
-msgstr "Konfiguracja usług sieciowych"
+msgstr "Ustawienia usług sieciowych"
 
 msgid "Setup Network Services (Samba, Ftp, NFS, ...)"
-msgstr "Konfiguracja usług sieciowych (Samba, FTP, NFS,...)"
+msgstr "Ustawienia usług sieciowych (Samba, FTP, NFS,...)"
 
 msgid "Setup OpenVPN"
-msgstr "Konfiguracja OpenVPN"
+msgstr "Ustawienia OpenVPN"
 
 msgid "Setup Plugin filter"
 msgstr "Filtr Konfiguracji Wtyczek"
@@ -16550,23 +16552,23 @@ msgid ""
 "Setup Plugin filter. Here you can select which Plugins are showed in the "
 "PluginBrowser"
 msgstr ""
-"Konfiguracja filtra Instalatora. Tutaj można wybrać, które wtyczki są "
+"Ustawienia filtra Instalatora. Tutaj można wybrać, które wtyczki są "
 "pokazywane w przeglądarce wtyczek"
 
 msgid "Setup Plugins"
-msgstr "Konfiguracja wtyczek"
+msgstr "Ustawienia wtyczek"
 
 msgid "Setup SABnzbd"
-msgstr "Konfiguracja SABnzbd"
+msgstr "Ustawienia SABnzbd"
 
 msgid "Setup SATPI"
-msgstr "Konfiguracja SATPI"
+msgstr "Ustawienia SATPI"
 
 msgid "Setup Samba"
-msgstr "Konfiguracja Samby"
+msgstr "Ustawienia Samby"
 
 msgid "Setup Telnet"
-msgstr "Konfiguracja Telnet"
+msgstr "Ustawienia Telnet"
 
 msgid "Setup Tuner"
 msgstr "Ustawienia tunera"
@@ -16587,7 +16589,7 @@ msgid "Setup how to control the channel changing."
 msgstr "Ustawienie sposobu kontrolowania zmiany kanału."
 
 msgid "Setup interface"
-msgstr "Konfiguracja interfejsu"
+msgstr "Ustawienia interfejsu"
 
 msgid "Setup menu"
 msgstr "Ustawienia menu"
@@ -16599,7 +16601,7 @@ msgid "Setup network time synchronization interval."
 msgstr "Ustawienie synchronizacji czasu z internetu."
 
 msgid "Setup network. Here you can setup DHCP, IP, DNS"
-msgstr "Konfiguracja sieci. Tutaj możesz ustawić DHCP, IP, DNS"
+msgstr "Ustawienia sieci. Tutaj możesz ustawić DHCP, IP, DNS"
 
 msgid "Setup rotor"
 msgstr "Ustawienia obrotnicy"
@@ -16608,10 +16610,10 @@ msgid "Setup the interval to check for online updates. (in hours)"
 msgstr "Ustawienie przedziału czasu aktualizacji online. (w godzinach)"
 
 msgid "Setup tuner(s)"
-msgstr "Konfiguracja tunera"
+msgstr "Ustawienia tunera(ów)"
 
 msgid "Setup uShare"
-msgstr "Konfiguracja uShare"
+msgstr "Ustawienia uShare"
 
 msgid "Setup your Audio Mode"
 msgstr "Skonfiguruj Tryb Audio"
@@ -16620,31 +16622,31 @@ msgid "Setup your Channel selection configuration"
 msgstr "Wybierz swoją konfigurację wyboru kanałów"
 
 msgid "Setup your Device mounts (USB, HDD, others...)"
-msgstr "Konfiguracja punktu montowania (USB, HDD, inne ...)"
+msgstr "Ustawienia punktu montowania (USB, HDD, inne ...)"
 
 msgid "Setup your EPG config"
 msgstr "Wybierz konfig.EPG"
 
 msgid "Setup your Harddisk"
-msgstr "Konfiguracja HDD"
+msgstr "Ustawienia HDD"
 
 msgid "Setup your LCD"
-msgstr "Konfiguracja LCD"
+msgstr "Ustawienia LCD"
 
 msgid "Setup your OSD"
-msgstr "Konfiguracja OSD"
+msgstr "Ustawienia OSD"
 
 msgid "Setup your Skin"
 msgstr "Skonfiguruj swoją skórę"
 
 msgid "Setup your System"
-msgstr "Konfiguracja systemu"
+msgstr "Ustawienia systemu"
 
 msgid "Setup your Tuner and search for channels"
-msgstr "Konfiguracja tunera i wyszukiwanie kanałów"
+msgstr "Ustawienia tunera i wyszukiwania kanałów"
 
 msgid "Setup your Video Mode, Video Output and other Video Settings"
-msgstr "Konfiguracja trybu wideo, wyjścia wideo i innych ustawień wideo"
+msgstr "Ustawienia trybu wideo, wyjścia wideo i innych ustawień"
 
 msgid "Setup your display"
 msgstr "Ustawienia wyświetlacza"
@@ -16654,7 +16656,7 @@ msgstr "Ustawienia sieci"
 
 msgid ""
 "Setup your local network. For Wlan you need to boot with a USB-Wlan stick"
-msgstr "Konfiguracja sieci lokalnej. WLAN trzeba uruchomić z USB-WLAN"
+msgstr "Ustawienia sieci lokalnej. WLAN trzeba uruchomić z USB-WLAN"
 
 msgid "Setup your mounts for network"
 msgstr "Ustaw swoje montowania dla sieci"
@@ -16667,19 +16669,19 @@ msgstr ""
 "wybrać Lan"
 
 msgid "Setup your network mounts"
-msgstr "Konfiguracja montowania sieci"
+msgstr "Ustawienia montowania sieci"
 
 msgid "Setup your positioner"
-msgstr "Konfiguracja pozycjonera"
+msgstr "Ustawienia pozycjonera"
 
 msgid "Setup your positioner for your satellite system"
-msgstr "Konfiguracja pozycjonera systemu satelitarnego"
+msgstr "Ustawienia pozycjonera sat"
 
 msgid "Setup your recording config"
-msgstr "Konfiguracja nagrywania"
+msgstr "Ustawienia nagrywania"
 
 msgid "Setup your remote buttons"
-msgstr "Konfiguracja przycisków RC"
+msgstr "Ustawienia przycisków RC"
 
 msgid "Setup your satellite equipment"
 msgstr "Ustawienia wyposażenia SAT"
@@ -17042,13 +17044,13 @@ msgid "Show default backup files"
 msgstr "Pokaż domyślne pliki kopii zapasowej"
 
 msgid "Show default on new line"
-msgstr "Pokaż domyślne w nowym wierszu"
+msgstr "Pokaż domyślne w nowej lini"
 
 msgid "Show detailed event info"
 msgstr "Pokaż szczegółowy opis wydarzenia"
 
 msgid "Show detailed event info (setup in menu)"
-msgstr "Pokaż szczegółowy opis wydarzenia (konfiguracja w menu)"
+msgstr "Pokaż szczegółowy opis wydarzenia (ustawienia w menu)"
 
 msgid "Show directories first"
 msgstr "Pokaż najpierw katalogi"
@@ -17254,7 +17256,7 @@ msgid "Show single epg for current channel"
 msgstr "Pokaż pojedyncze epg dla bieżącego kanału"
 
 msgid "Show single epg for current channel (setup in menu)"
-msgstr "Pokaż pojedyncze epg dla bieżącego kanału (konfiguracja w menu)"
+msgstr "Pokaż pojedynczy EPG dla bieżącego kanału (ustawienia w menu)"
 
 msgid "Show single service EPG"
 msgstr "Pokaż EPG dla pojedynczego kanału"
@@ -17651,25 +17653,25 @@ msgid "Softcam"
 msgstr "Softcam"
 
 msgid "Softcam Actions"
-msgstr "Akcje softcama"
+msgstr "Akcje softcam"
 
 msgid "Softcam Setup"
-msgstr "Konfiguracja SoftCam"
+msgstr "Ustawienia softcam"
 
 msgid "Softcam settings"
-msgstr "Ustawienia SoftCam"
+msgstr "Ustawienia softcam"
 
 msgid "Softcam-Panel"
-msgstr "Panel-Softcam"
+msgstr "Panel softcam"
 
 msgid "Softcam-Panel..."
-msgstr "Panel Softcam..."
+msgstr "Panel softcam..."
 
 msgid "Softcam-Setup"
-msgstr "Konfiguracja SoftCam"
+msgstr "Ustawienia softcam"
 
 msgid "SoftcamSetup"
-msgstr "Konfiguracja SoftCam"
+msgstr "Ustawienia softcam"
 
 msgid "Software"
 msgstr "Oprogramowanie"
@@ -17681,10 +17683,10 @@ msgid "Software Manager Setup"
 msgstr "Ustawienia menedżera oprogramowania"
 
 msgid "Software Panel"
-msgstr "Panel oprogramowania"
+msgstr "Menadżer oprogramowania"
 
 msgid "Software Update"
-msgstr "Aktualizacja oprogramowania"
+msgstr "Aktualizacja systemu"
 
 msgid "Software management"
 msgstr "Menadżer oprogramowania"
@@ -17693,10 +17695,10 @@ msgid "Software manager setup"
 msgstr "Ustawienia menadżera oprogramowania"
 
 msgid "Software restore"
-msgstr "Przywracanie oprogramowania"
+msgstr "Przywracanie systemu"
 
 msgid "Software update"
-msgstr "Aktualizacja oprogramowania"
+msgstr "Aktualizacja systemu"
 
 msgid "Softwaremanager information"
 msgstr "Informacje menadżera oprogramowania"
@@ -17994,13 +17996,13 @@ msgid "Start/stop/select cam"
 msgstr "Uruchom/Zatrzymaj/Wybierz Cam"
 
 msgid "Start/stop/select your cam, You need to install first a softcam"
-msgstr "Uruchom/Zatrzymaj/Wybierz Cam, musisz zainstalować najpierw softcam"
+msgstr "Uruchom/Zatrzymaj/Wybierz cam, musisz zainstalować najpierw softcam"
 
 msgid "StartWizard"
 msgstr "Uruchom Kreatora"
 
 msgid "Starting Softcam"
-msgstr "Uruchamianie Softcam"
+msgstr "Uruchamianie softcam"
 
 msgid "Starting on"
 msgstr "Rozpocząć od"
@@ -18111,7 +18113,7 @@ msgid "Stopped"
 msgstr "Zatrzymany"
 
 msgid "Stopping Softcam"
-msgstr "Zatrzymywanie Softcam"
+msgstr "Zatrzymywanie softcam"
 
 msgid "Storage devices"
 msgstr "Urządzenia pamięci masowej"
@@ -18449,7 +18451,7 @@ msgid "System Message Check"
 msgstr "Kontrola Komunikatów Systemowych"
 
 msgid "System Setup"
-msgstr "Konfiguracja systemu"
+msgstr "Ustawienia systemu"
 
 msgid "System partition free space:"
 msgstr "Wolne miejsce partycji systemowej:"
@@ -18818,7 +18820,7 @@ msgid "The aspect ratio of the recording."
 msgstr "Współczynnik proporcji ekranu dla nagrania."
 
 msgid "The authors are NOT RESPONSIBLE"
-msgstr "Autorzy NIE są ODPOWIEDZIALNI"
+msgstr "Autorzy nie ponoszą odpowiedzialności"
 
 msgid ""
 "The available disk space for timeshift is less than specified in the "
@@ -19062,7 +19064,7 @@ msgid "There are no items currently available for this screen."
 msgstr "Aktualnie niema dostępnych elementów dla tego ekranu."
 
 msgid "There are no updates available."
-msgstr "Nie są dostępne aktualizacje."
+msgstr "Brak dostępnych aktualizacji."
 
 #, python-format
 msgid ""
@@ -19175,7 +19177,7 @@ msgid "This allows you to show skin modules in downloads"
 msgstr "Pozwala to wyświetlać moduły skórki w plikach do pobrania"
 
 msgid "This allows you to show softcams modules in downloads"
-msgstr "To pozwala pokazać moduły softcams w plikach do pobrania"
+msgstr "To pozwala pokazać moduły softcam w plikach do pobrania"
 
 msgid "This allows you to show systemplugins modules in downloads"
 msgstr "To pozwala pokazać moduły wtyczek systemowych w plikach do pobrania"
@@ -19579,11 +19581,16 @@ msgid "This plugin will be removed."
 msgstr "Wtyczka będzie usunięta."
 
 msgid ""
+"This sets the prefix for each line in the debug log. The 'Boot time' is the "
+"number of seconds since your %s %s was last booted."
+msgstr ""
+
+msgid ""
 "This setting allows the tuner configuration to be a duplication of how "
 "another tuner is already configured."
 msgstr ""
-"To ustawienie pozwala, aby konfiguracja tunera była duplikatem tego, jak "
-"skonfigurowano już inny tuner."
+"To pozwala zduplikować ustawienia tunera, jeśli wcześniej skonfigurowano już "
+"inny tuner."
 
 msgid ""
 "This setting depends on your cable provider and location. If you don't know "
@@ -19925,7 +19932,7 @@ msgid "Titleset mode"
 msgstr "Tryb ustawienia tytułu"
 
 msgid "To restore the image:"
-msgstr "Aby przywrócić obraz:"
+msgstr "Aby przywrócić system:"
 
 #, python-format
 msgid ""
@@ -20121,7 +20128,7 @@ msgid ""
 "Try to prevent reboots for software errors and maintain of the availability "
 "for the receiver."
 msgstr ""
-"Staraj się unikać ponownego uruchamiania w przypadku błędów oprogramowania i "
+"Staraj się unikać ponownego uruchamiania w przypadku błędów systemu i "
 "utrzymuj dostępność odbiornika."
 
 msgid "Try to send repeated commands if not all commands are executed.\n"
@@ -20174,13 +20181,13 @@ msgid "Tuner :"
 msgstr "Tuner :"
 
 msgid "Tuner Configuration"
-msgstr "Konfiguracja tunera"
+msgstr "Ustawienia tunera"
 
 msgid "Tuner Setup"
 msgstr "Ustawienie Tunera"
 
 msgid "Tuner configuration"
-msgstr "Konfiguracja tunera"
+msgstr "Ustawienia tunera"
 
 msgid "Tuner is not supported"
 msgstr "Tuner nie obsługiwany"
@@ -20502,7 +20509,7 @@ msgid "Unused 0xb2"
 msgstr "Niewykorzystane 0xb2"
 
 msgid "Unzipping Image"
-msgstr "Rozpakowywanie Obrazu"
+msgstr "Rozpakowywanie systemu"
 
 msgid "Up"
 msgstr "w górę"
@@ -20569,17 +20576,16 @@ msgstr ""
 
 msgid "Update/Backup your firmware, Backup/Restore settings"
 msgstr ""
-"Aktualizuj i wykonaj kopię zapasową oprogramowania, Kopia zapasowa/"
-"Przywracanie ustawień"
+"Aktualizuj i wykonaj kopię zapasową systemu, Kopia/Przywracanie ustawień"
 
 msgid "Update/Backup/Restore your box"
 msgstr "Aktualizacja/Kopia/Przywracanie"
 
 msgid "Updatefeed not available."
-msgstr "Aktualizacje nie dostępne."
+msgstr "Źródło aktualizacji nie jest dostępne."
 
 msgid "Updates Available:"
-msgstr "Dostępne Aktualizacje:"
+msgstr "Dostępne aktualizacje:"
 
 msgid "Updating cache"
 msgstr "Aktualizowanie pamięci podręcznej"
@@ -20594,7 +20600,7 @@ msgid "Updating software catalog"
 msgstr "Aktualizowanie katalogu oprogramowania"
 
 msgid "Upgrade (Backup, Flash & Restore All)"
-msgstr "Aktualizauj (Kopia zapasowa, Flash i Przywróć wszystko)"
+msgstr "Aktualizuj (kopia zapasowa, aktualizacja, przywróć ustawienia)"
 
 msgid "Upgrade and reboot system"
 msgstr "Aktualizuj i ponownie uruchom system"
@@ -20650,7 +20656,7 @@ msgid "Usage & GUI"
 msgstr "Obsługa i Interfejs"
 
 msgid "Usage Setup"
-msgstr "Konfiguracja użycia"
+msgstr "Ustawienia użycia"
 
 msgid "Use"
 msgstr "Użyj"
@@ -20792,8 +20798,8 @@ msgid ""
 "Use the Softcam Panel to control your Cam. This let you start/stop/select a "
 "cam"
 msgstr ""
-"Użyj panelu aby ustawić Softcam. To pozwoli uruchomić, zatrzymać lub wybrać "
-"softcam"
+"Użyj panelu aby ustawić softcam. To pozwoli uruchomić, zatrzymać lub wybrać "
+"cam"
 
 msgid ""
 "Use the UP and DOWN buttons to select your locale/language then press the OK "
@@ -20810,19 +20816,19 @@ msgstr "Użyć alternatywnego ekranu"
 
 msgid "Use the cursor keys to select an installed image and then Erase button."
 msgstr ""
-"Użyj klawiszy kursora, aby wybrać zainstalowany obraz, a następnie przycisk "
-"Usuń."
+"Użyj klawiszy kursora, aby wybrać zainstalowany system, a następnie przycisk "
+"(Usuń)."
 
 msgid ""
 "Use the cursor keys to select an installed image and then Reboot button."
 msgstr ""
-"Użyj klawiszy kursora, aby wybrać zainstalowany obraz, a następnie przycisk "
-"Uruchom ponownie."
+"Użyj klawiszy kursora, aby wybrać zainstalowany system, a następnie przycisk "
+"(Uruchom ponownie)."
 
 msgid "Use the cursor keys to select an installed image and then Start button."
 msgstr ""
-"Użyj klawiszy kursora, aby wybrać zainstalowany obraz, a następnie przycisk "
-"Start."
+"Użyj klawiszy kursora, aby wybrać zainstalowany system, a następnie przycisk "
+"(Start)."
 
 msgid "Use the extended List"
 msgstr "Użyj rozszerzonej listy"
@@ -21046,7 +21052,7 @@ msgid "Video clipping"
 msgstr "Obcinanie wideo"
 
 msgid "Video clipping setup"
-msgstr "Konfiguracja przycinania wideo"
+msgstr "Ustawienia przycinania wideo"
 
 #, python-format
 msgid "Video content: %ix%i%s %iHz"
@@ -21911,13 +21917,13 @@ msgid "Wireless network"
 msgstr "Sieć Bezprzewodowa"
 
 msgid "Wireless network configuration..."
-msgstr "Konfiguracja sieci bezprzewodowej…"
+msgstr "Ustawienia sieci bezprzewodowej…"
 
 msgid "Wireless network connection setup"
-msgstr "Konfiguracja połączenia sieci bezprzewodowej"
+msgstr "Ustawienia połączenia sieci bezprzewodowej"
 
 msgid "Wireless network connection setup."
-msgstr "Konfiguracja połączenia sieci bezprzewodowej."
+msgstr "Ustawienia połączenia sieci bezprzewodowej."
 
 msgid "Wireless network state"
 msgstr "Status sieci bezprzewodowej"
@@ -22469,7 +22475,7 @@ msgid ""
 "Your front panel will be upgraded\n"
 "This may take a few minutes"
 msgstr ""
-"Twój panel przedni zostanie uaktualniony\n"
+"Przedni wyświetlacz zostanie uaktualniony\n"
 "To może zająć kilka minut"
 
 msgid ""
@@ -22523,7 +22529,7 @@ msgstr ""
 "Proszę wybrać co chcesz robić dalej."
 
 msgid "Your network configuration has been activated."
-msgstr "Konfiguracja sieci została aktywowana."
+msgstr "Ustawienia sieci została aktywowana."
 
 msgid "Your password must have at least 5 characters."
 msgstr "Twoje hasło musi mieć co najmniej 5 znaków."
@@ -22690,7 +22696,7 @@ msgid "[Enigma2 Settings]\n"
 msgstr "[Ustawienia Enigma2]\n"
 
 msgid "[Image Info]\n"
-msgstr "[Info o obrazie]\n"
+msgstr "[Info o systemie]\n"
 
 msgid "[TimeShift] Restarting Timeshift!"
 msgstr "[TimeShift] Restartowanie Timeshiftu!"
@@ -23267,7 +23273,7 @@ msgid "fast"
 msgstr "szybko"
 
 msgid "feed status"
-msgstr "Stan Serwera"
+msgstr "Stan serwera"
 
 msgid "file can not displayed - file not found"
 msgstr "plik nie może zostać wyświetlony - nie został znaleziony"
@@ -23518,12 +23524,10 @@ msgid "jump to chapter by number"
 msgstr "przejdź do rozdziału według numeru"
 
 msgid "jump to next page or all up (setup in menu)"
-msgstr ""
-"przejdź do następnej strony lub wszystkich w górę (konfiguracja w menu)"
+msgstr "przejdź do następnej strony lub wszystkich w górę (ustawienia w menu)"
 
 msgid "jump to previous page or all down (setup in menu)"
-msgstr ""
-"przejdź do poprzedniej strony lub wszystkich w dół (konfiguracja w menu)"
+msgstr "przejdź do poprzedniej strony lub wszystkich w dół (ustawienia w menu)"
 
 msgid "just abort, no message"
 msgstr "po prostu przerwać, nie pokazywać wiadomości"
@@ -23781,7 +23785,7 @@ msgid "on READ ONLY medium."
 msgstr "nośnik tylko do odczytu."
 
 msgid "on how to restore the image"
-msgstr "w jaki sposób przywrócić obraz"
+msgstr "w jaki sposób przywrócić system"
 
 msgid "once"
 msgstr "raz"
@@ -24180,7 +24184,7 @@ msgstr "gniazdo%s - %s "
 
 #, python-format
 msgid "slot%s - %s (current image)"
-msgstr "gniazdo%s - %s (bieżący obraz)"
+msgstr "gniazdo%s - %s (bieżący system)"
 
 #, python-format
 msgid "slot%s - %s as USB Recovery"
@@ -24202,7 +24206,7 @@ msgid "softcam"
 msgstr "softcam"
 
 msgid "softcams"
-msgstr "softcams"
+msgstr "softcamy"
 
 msgid "sorting of playlists"
 msgstr "sortowanie listy odtwarzania"
@@ -24551,6 +24555,24 @@ msgstr "przełączanie"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Delete Lang"
+#~ msgstr "Usuń Język"
+
+#~ msgid "Delete Loc"
+#~ msgstr "Usuń Region"
+
+#~ msgid "Install Lang"
+#~ msgstr "Zainstaluj Język"
+
+#~ msgid "Install Loc"
+#~ msgstr "Zainstaluj Region"
+
+#~ msgid "Job Manager"
+#~ msgstr "Menadżer Pracy"
+
+#~ msgid "Plugin browser"
+#~ msgstr "Przeglądarka wtyczek"
 
 #~ msgid "Cpu"
 #~ msgstr "Procesor"

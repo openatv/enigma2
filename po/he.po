@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-10-21 17:27+0000\n"
+"POT-Creation-Date: 2021-10-28 19:26+0000\n"
 "PO-Revision-Date: 2021-08-15 18:50+0000\n"
 "Last-Translator: openATV <openatv@gmail.com>\n"
 "Language-Team: Hebrew <https://hosted.weblate.org/projects/openatv/"
@@ -3827,6 +3827,15 @@ msgstr ""
 msgid "Boost green"
 msgstr ""
 
+msgid "Boot time"
+msgstr ""
+
+msgid "Boot time and local date/time"
+msgstr ""
+
+msgid "Boot time and local time"
+msgstr ""
+
 msgid "Boot-up action"
 msgstr ""
 
@@ -6180,6 +6189,9 @@ msgstr ""
 msgid "Debug Logs"
 msgstr ""
 
+msgid "Debug log time format *"
+msgstr ""
+
 #
 #, fuzzy
 msgid "Decryption & Parental Control"
@@ -6401,17 +6413,8 @@ msgstr ""
 msgid "Delete EPG"
 msgstr "מחק"
 
-#, fuzzy
-msgid "Delete Lang"
-msgstr "מחק קובץ"
-
 msgid "Delete Language"
 msgstr ""
-
-#
-#, fuzzy
-msgid "Delete Loc"
-msgstr "מחק"
 
 msgid "Delete Plugins"
 msgstr ""
@@ -10044,15 +10047,6 @@ msgstr ""
 msgid "Install Finished."
 msgstr ""
 
-#, fuzzy
-msgid "Install Lang"
-msgstr "מתקין"
-
-#
-#, fuzzy
-msgid "Install Loc"
-msgstr "התקן"
-
 msgid "Install Plugins"
 msgstr ""
 
@@ -10319,9 +10313,6 @@ msgid "Javanese"
 msgstr ""
 
 msgid "Jersey"
-msgstr ""
-
-msgid "Job Manager"
 msgstr ""
 
 #
@@ -10918,9 +10909,15 @@ msgstr ""
 msgid "Local box"
 msgstr ""
 
+msgid "Local date/time"
+msgstr ""
+
 #, fuzzy
 msgid "Local network"
 msgstr "רשת מקומית"
+
+msgid "Local time"
+msgstr ""
 
 #, fuzzy
 msgid "Locale"
@@ -13925,9 +13922,6 @@ msgstr ""
 msgid "Plugin Filter"
 msgstr ""
 
-msgid "Plugin browser"
-msgstr "סייר הפלאגינים"
-
 msgid "Plugin details"
 msgstr ""
 
@@ -14072,14 +14066,6 @@ msgstr ""
 msgid "Power threshold. Consult your receiver's manual for more information."
 msgstr ""
 
-#
-#, fuzzy
-msgid "PowerTimer Entry"
-msgstr "remove a nameserver entry"
-
-msgid "PowerTimer Log"
-msgstr ""
-
 msgid "PowerTimer"
 msgstr ""
 
@@ -14088,8 +14074,16 @@ msgstr ""
 
 #
 #, fuzzy
+msgid "PowerTimer Entry"
+msgstr "remove a nameserver entry"
+
+#
+#, fuzzy
 msgid "PowerTimer List"
 msgstr "עריכת טיימר"
+
+msgid "PowerTimer Log"
+msgstr ""
 
 msgid "PowerTimer Overview"
 msgstr ""
@@ -15794,6 +15788,9 @@ msgstr ""
 
 #, python-format
 msgid "Script '%s' must have read permission to be able to run it"
+msgstr ""
+
+msgid "Script Manager"
 msgstr ""
 
 msgid "ScriptRunner"
@@ -19993,6 +19990,11 @@ msgstr ".הפלאגין הזה יותקן"
 
 msgid "This plugin will be removed."
 msgstr ".הפלאגין הזה יוסר"
+
+msgid ""
+"This sets the prefix for each line in the debug log. The 'Boot time' is the "
+"number of seconds since your %s %s was last booted."
+msgstr ""
 
 msgid ""
 "This setting allows the tuner configuration to be a duplication of how "
@@ -24974,6 +24976,27 @@ msgstr "זופזפ"
 
 msgid "®"
 msgstr ""
+
+#, fuzzy
+#~ msgid "Delete Lang"
+#~ msgstr "מחק קובץ"
+
+#
+#, fuzzy
+#~ msgid "Delete Loc"
+#~ msgstr "מחק"
+
+#, fuzzy
+#~ msgid "Install Lang"
+#~ msgstr "מתקין"
+
+#
+#, fuzzy
+#~ msgid "Install Loc"
+#~ msgstr "התקן"
+
+#~ msgid "Plugin browser"
+#~ msgstr "סייר הפלאגינים"
 
 #, fuzzy
 #~ msgid "restart GUI"

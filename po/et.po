@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV-Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-10-21 17:27+0000\n"
+"POT-Creation-Date: 2021-10-28 19:26+0000\n"
 "PO-Revision-Date: 2021-08-21 11:46+0000\n"
 "Last-Translator: openATV <openatv@gmail.com>\n"
 "Language-Team: Estonian <https://hosted.weblate.org/projects/openatv/"
@@ -3742,6 +3742,15 @@ msgstr "Sinise võimendus"
 msgid "Boost green"
 msgstr "Rohelise võimendus"
 
+msgid "Boot time"
+msgstr ""
+
+msgid "Boot time and local date/time"
+msgstr ""
+
+msgid "Boot time and local time"
+msgstr ""
+
 # boot-up action
 msgid "Boot-up action"
 msgstr "Tegevus alglaadimisel"
@@ -6131,6 +6140,9 @@ msgstr "Lülita välja"
 msgid "Debug Logs"
 msgstr "Silumislogid"
 
+msgid "Debug log time format *"
+msgstr ""
+
 msgid "Decryption & Parental Control"
 msgstr "Dekrüptimine ja lapselukk"
 
@@ -6352,16 +6364,8 @@ msgstr "Kustutamise kinnitus"
 msgid "Delete EPG"
 msgstr "Kustuta EPG"
 
-#, fuzzy
-msgid "Delete Lang"
-msgstr "Kustuta keel"
-
 msgid "Delete Language"
 msgstr "Kustuta keel"
-
-#, fuzzy
-msgid "Delete Loc"
-msgstr "Kustuta"
 
 msgid "Delete Plugins"
 msgstr "Kustuta pluginaid"
@@ -10024,14 +10028,6 @@ msgstr "Paigaldamine nurjus!!"
 msgid "Install Finished."
 msgstr "Paigaldamine tehtud."
 
-#, fuzzy
-msgid "Install Lang"
-msgstr "Paigaldamine"
-
-#, fuzzy
-msgid "Install Loc"
-msgstr "Paigalda"
-
 msgid "Install Plugins"
 msgstr "Paigalda pluginaid"
 
@@ -10280,9 +10276,6 @@ msgstr ""
 
 msgid "Jersey"
 msgstr "Jersey"
-
-msgid "Job Manager"
-msgstr "Tööülesanded"
 
 msgid "Job View"
 msgstr "Töövaade"
@@ -10846,8 +10839,14 @@ msgstr "Laadi/talleta/kustuta"
 msgid "Local box"
 msgstr "Kohalik vastuvõtja"
 
+msgid "Local date/time"
+msgstr ""
+
 msgid "Local network"
 msgstr "Kohalik võrk"
+
+msgid "Local time"
+msgstr ""
 
 msgid "Locale"
 msgstr "Keel"
@@ -13798,9 +13797,6 @@ msgstr "Pluginad"
 msgid "Plugin Filter"
 msgstr "Pluginate filter"
 
-msgid "Plugin browser"
-msgstr "Pluginad"
-
 msgid "Plugin details"
 msgstr "Plugina üksikasjad"
 
@@ -13927,20 +13923,20 @@ msgstr "Tuvastusvool mA"
 msgid "Power threshold. Consult your receiver's manual for more information."
 msgstr "Võimsuselävi. Uuri lähemalt vastuvõtja käsiraamatust."
 
-msgid "PowerTimer Entry"
-msgstr "Toitetaimer"
-
-msgid "PowerTimer Log"
-msgstr "Toitetaimeri logi"
-
 msgid "PowerTimer"
 msgstr "Toitetaimer"
 
 msgid "PowerTimer DeepStandby"
 msgstr "Puhkeseisundi toitetaimer"
 
+msgid "PowerTimer Entry"
+msgstr "Toitetaimer"
+
 msgid "PowerTimer List"
 msgstr "Toitetaimerite nimekiri"
+
+msgid "PowerTimer Log"
+msgstr "Toitetaimeri logi"
 
 msgid "PowerTimer Overview"
 msgstr "Toiteaimeri ülevaade"
@@ -15610,6 +15606,9 @@ msgstr "LCD ekraanipilt /tmp kataloogi"
 #, python-format
 msgid "Script '%s' must have read permission to be able to run it"
 msgstr "Skripti '%s' käivitamiseks peavad sel olema lugemisõigused"
+
+msgid "Script Manager"
+msgstr ""
 
 msgid "ScriptRunner"
 msgstr "Skriptid"
@@ -19914,6 +19913,11 @@ msgstr "See plugin paigaldatakse."
 
 msgid "This plugin will be removed."
 msgstr "See plugin eemaldatakse."
+
+msgid ""
+"This sets the prefix for each line in the debug log. The 'Boot time' is the "
+"number of seconds since your %s %s was last booted."
+msgstr ""
 
 msgid ""
 "This setting allows the tuner configuration to be a duplication of how "
@@ -24941,6 +24945,28 @@ msgstr "Kanalivahetus"
 
 msgid "®"
 msgstr ""
+
+#, fuzzy
+#~ msgid "Delete Lang"
+#~ msgstr "Kustuta keel"
+
+#, fuzzy
+#~ msgid "Delete Loc"
+#~ msgstr "Kustuta"
+
+#, fuzzy
+#~ msgid "Install Lang"
+#~ msgstr "Paigaldamine"
+
+#, fuzzy
+#~ msgid "Install Loc"
+#~ msgstr "Paigalda"
+
+#~ msgid "Job Manager"
+#~ msgstr "Tööülesanded"
+
+#~ msgid "Plugin browser"
+#~ msgstr "Pluginad"
 
 # InfoPanel
 #~ msgid "Cpu"

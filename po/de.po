@@ -11,9 +11,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-10-21 17:27+0000\n"
-"PO-Revision-Date: 2021-10-26 09:42+0000\n"
-"Last-Translator: Makumbo <tokioplo@web.de>\n"
+"POT-Creation-Date: 2021-10-28 19:26+0000\n"
+"PO-Revision-Date: 2021-10-28 21:02+0000\n"
+"Last-Translator: jbleyel <jbleyel@gmx.net>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/openatv/"
 "enigma2-7-0-po/de/>\n"
 "Language: de\n"
@@ -3907,6 +3907,15 @@ msgstr "Blauanteil erhöhen"
 msgid "Boost green"
 msgstr "Grünanteil erhöhen"
 
+msgid "Boot time"
+msgstr "Bootzeit"
+
+msgid "Boot time and local date/time"
+msgstr "Bootzeit und lokales Datum und Uhrzeit"
+
+msgid "Boot time and local time"
+msgstr "Bootzeit und lokale Uhrzeit"
+
 # boot-up action
 msgid "Boot-up action"
 msgstr "Startmodus"
@@ -4784,7 +4793,8 @@ msgstr ""
 "Wählen Sie eine Beschriftung, damit IceTV-Dienste das Gerät zuordnen können."
 
 msgid "Choose a setting where your receiver wakes up from standby."
-msgstr "Wählen Sie die Einstellung, mit der der Receiver aus dem Standby aufwacht."
+msgstr ""
+"Wählen Sie die Einstellung, mit der der Receiver aus dem Standby aufwacht."
 
 msgid "Choose a tag for easy finding a recording."
 msgstr ""
@@ -4848,10 +4858,10 @@ msgid ""
 "The front panel display will be based on your choice but can be influenced "
 "any applicable skin."
 msgstr ""
-"Wählen Sie, ob und wie die Uhrzeit im Display angezeigt werden soll. "
-"'Keine Anzeige' zeigt sie gar nicht an, 'H'/'HH' im 24-Stunden-Format, "
-"'h'/'hh' im 12-Stunden-Format. Bei 'HH' oder 'hh' wird einstelligen Werten "
-"eine '0' vorangestellt.\n"
+"Wählen Sie, ob und wie die Uhrzeit im Display angezeigt werden soll. 'Keine "
+"Anzeige' zeigt sie gar nicht an, 'H'/'HH' im 24-Stunden-Format, 'h'/'hh' im "
+"12-Stunden-Format. Bei 'HH' oder 'hh' wird einstelligen Werten eine '0' "
+"vorangestellt.\n"
 "Nicht jeder Skin unterstützt jede Einstellung."
 
 msgid "Choose the location for crash and debuglogs."
@@ -5685,9 +5695,9 @@ msgid ""
 "is visible for real recordings only or also for streaming and pseuso "
 "recordings (e.g. EPGrefresh)."
 msgstr ""
-"Legt fest, ob das Aufnahmesymbol (auf Bildschirm und Display) nur bei "
-"echten Aufnahmen sichtbar ist oder auch bei Streaming bzw. Pseudo-Aufnahmen "
-"(z.B. EPG-Refresh)."
+"Legt fest, ob das Aufnahmesymbol (auf Bildschirm und Display) nur bei echten "
+"Aufnahmen sichtbar ist oder auch bei Streaming bzw. Pseudo-Aufnahmen (z.B. "
+"EPG-Refresh)."
 
 msgid "Configure which color format should be used on the SCART output."
 msgstr ""
@@ -6470,6 +6480,9 @@ msgstr "Deaktivieren"
 msgid "Debug Logs"
 msgstr "Debuglogs"
 
+msgid "Debug log time format *"
+msgstr "Debug log Zeitformat *"
+
 msgid "Decryption & Parental Control"
 msgstr "Entschlüsselung & Jugendschutz"
 
@@ -6702,14 +6715,8 @@ msgstr "Löschbestätigung"
 msgid "Delete EPG"
 msgstr "EPG löschen"
 
-msgid "Delete Lang"
-msgstr "Sprachen löschen"
-
 msgid "Delete Language"
 msgstr "Sprachen löschen"
-
-msgid "Delete Loc"
-msgstr "Sprache löschen"
 
 msgid "Delete Plugins"
 msgstr "Plugins löschen"
@@ -7873,8 +7880,7 @@ msgstr ""
 "zweite_box:8001'."
 
 msgid "Enable screenshot of LCD in /tmp"
-msgstr ""
-"Wenn aktiviert, wird ein Screenshot vom Display in '/tmp' gespeichert."
+msgstr "Wenn aktiviert, wird ein Screenshot vom Display in '/tmp' gespeichert."
 
 msgid "Enable teletext caching"
 msgstr "Videotext-Zwischenspeicher aktivieren"
@@ -8921,7 +8927,8 @@ msgid "Flash directory '%s' not allowed!"
 msgstr "Flash-Verzeichnis '%s' nicht erlaubt!"
 
 msgid "Flash on the fly your your Receiver software."
-msgstr "Flashen Sie Ihre Receiver-Software online oder von einer lokalen Quelle."
+msgstr ""
+"Flashen Sie Ihre Receiver-Software online oder von einer lokalen Quelle."
 
 msgid "Flashing"
 msgstr "Blinkendes Icon"
@@ -10028,8 +10035,8 @@ msgid ""
 msgstr ""
 "Bei 'Ja' kann ein Zeitfenster eingestellt werden, um ein Aufwachen aus dem "
 "Deep-Standby durch einen Timer zu erkennen. Standardeinstellung ist 'Nein' "
-"und verwendet ein spezielles Signal von Ihrem Receiver. Manche Geräte setzen aber "
-"ein falsches oder kein Signal und die Erkennung kann fehlschlagen."
+"und verwendet ein spezielles Signal von Ihrem Receiver. Manche Geräte setzen "
+"aber ein falsches oder kein Signal und die Erkennung kann fehlschlagen."
 
 msgid ""
 "If logs are using the set maximum space used the eldest will be deleted."
@@ -10557,14 +10564,6 @@ msgstr "!! Installation fehlgeschlagen !!"
 msgid "Install Finished."
 msgstr "Installation abgeschlossen."
 
-#
-msgid "Install Lang"
-msgstr "Sprache installieren"
-
-#
-msgid "Install Loc"
-msgstr "Loc installieren"
-
 msgid "Install Plugins"
 msgstr "Plugins installieren"
 
@@ -10827,9 +10826,6 @@ msgstr "Javanisch"
 
 msgid "Jersey"
 msgstr "Jersey"
-
-msgid "Job Manager"
-msgstr "Jobmanager"
 
 #
 msgid "Job View"
@@ -11420,8 +11416,14 @@ msgstr "Laden/Speichern/Löschen"
 msgid "Local box"
 msgstr "Lokale Box"
 
+msgid "Local date/time"
+msgstr "Lokales Datum und Uhrzeit"
+
 msgid "Local network"
 msgstr "Lokales Netzwerk"
+
+msgid "Local time"
+msgstr "Lokale Uhrzeit"
 
 #
 msgid "Locale"
@@ -14535,13 +14537,6 @@ msgstr "Plugin-Manager"
 msgid "Plugin Filter"
 msgstr "Plugin-Filter"
 
-# löschen?
-# msgid "Plugin Browser"
-# msgstr "Plugin Manager"
-#
-msgid "Plugin browser"
-msgstr "Plugin-Manager"
-
 msgid "Plugin details"
 msgstr "Plugin-Details"
 
@@ -14682,23 +14677,23 @@ msgid "Power threshold. Consult your receiver's manual for more information."
 msgstr ""
 "Leistungsschwelle. Weitere Informationen finden Sie im Handbuch Ihrer Box."
 
+msgid "PowerTimer"
+msgstr "PowerTimer"
+
+msgid "PowerTimer DeepStandby"
+msgstr "PowerTimer Deep-Standby"
+
 #
 msgid "PowerTimer Entry"
 msgstr "PowerTimer-Eintrag"
 
 #
-msgid "PowerTimer Log"
-msgstr "PowerTimer-Log"
-
-msgid "PowerTimer"
-msgstr "PowerTimer"
-
-msgid "PowerTimer DeepStandby"
-msgstr "PowerTimer-Deep-Standby"
-
-#
 msgid "PowerTimer List"
 msgstr "PowerTimer-Liste"
+
+#
+msgid "PowerTimer Log"
+msgstr "PowerTimer-Log"
 
 #
 msgid "PowerTimer Overview"
@@ -14971,7 +14966,7 @@ msgid ""
 "Program '%s' not installed.\n"
 "The package containing this program isn't known."
 msgstr ""
-"Programm '%s' nicht installiert. \n"
+"Programm '%s' nicht installiert! \n"
 "Das Paket, das dieses Programm enthält, ist nicht bekannt."
 
 msgid "Program long"
@@ -16475,6 +16470,9 @@ msgid "Script '%s' must have read permission to be able to run it"
 msgstr ""
 "Skript '%s' muss über Leseberechtigung verfügen, um es ausführen zu können."
 
+msgid "Script Manager"
+msgstr "Script-Verwaltung"
+
 msgid "ScriptRunner"
 msgstr "SkriptRunner"
 
@@ -16835,7 +16833,7 @@ msgstr ""
 "einzelner LNB, DiSEqC-Schalter, Rotor usw."
 
 msgid "Select how to activate the Quick EPG mode:"
-msgstr "Wählen Sie, wie der grafische Infoleisten-EPG aktiviert werden soll."
+msgstr "Wählen Sie, wie der grafische Infoleisten-EPG aufgerufen werden soll."
 
 #
 msgid "Select how your box will upgrade."
@@ -17435,7 +17433,6 @@ msgstr "Senderlogos (Picons) Seitenverhältnis"
 msgid "Service picons downsize"
 msgstr "Senderlogos (Picons) verkleinern"
 
-#, fuzzy
 msgid "Service reference"
 msgstr "Service-Referenz"
 
@@ -17464,7 +17461,7 @@ msgstr "Senderlogo (Picon)"
 
 #
 msgid "Serviceinfo"
-msgstr "Kanal-Informationen"
+msgstr "Sender-Informationen"
 
 #
 msgid "Services"
@@ -17883,7 +17880,8 @@ msgstr "Einstellen des LCDs."
 
 # Quick Menue
 msgid "Setup your OSD"
-msgstr "Stellen Sie die Bedienoberfläche/OSD auf Ihre persönlichen Bedürfnisse ein."
+msgstr ""
+"Stellen Sie die Bedienoberfläche/OSD auf Ihre persönlichen Bedürfnisse ein."
 
 msgid "Setup your Skin"
 msgstr "Skin-Einstellungen"
@@ -19471,7 +19469,7 @@ msgstr ""
 "aktuelle Sendung weiter aufnehmen"
 
 msgid "Stop timeshift while recording?"
-msgstr "Timeshift während Aufnahme beenden?"
+msgstr "Timeshift während Aufnahme beenden"
 
 msgid ""
 "Stop's timeshift being used if a recording is in progress. (advisable for "
@@ -21061,6 +21059,13 @@ msgid "This plugin will be removed."
 msgstr "Dieses Plugin wird deinstalliert."
 
 msgid ""
+"This sets the prefix for each line in the debug log. The 'Boot time' is the "
+"number of seconds since your %s %s was last booted."
+msgstr ""
+"Prefix für die Zeilen im Debug log. 'Bootzeit' sind die Sekunden seit dem %s "
+"%s gestartet wurde."
+
+msgid ""
 "This setting allows the tuner configuration to be a duplication of how "
 "another tuner is already configured."
 msgstr ""
@@ -22373,14 +22378,14 @@ msgid ""
 "Use the Left/Right buttons on your remote to move the user interface left/"
 "right"
 msgstr ""
-"Die Tasten Links/Rechts benutzen, um die Benutzeroberfläche/OSD nach links oder "
-"rechts zu verschieben."
+"Die Tasten Links/Rechts benutzen, um die Benutzeroberfläche/OSD nach links "
+"oder rechts zu verschieben."
 
 msgid ""
 "Use the Left/Right buttons on your remote to move the user interface up/down"
 msgstr ""
-"Die Tasten Links/Rechts benutzen, um die Benutzeroberfläche/OSD nach oben oder "
-"unten zu verschieben."
+"Die Tasten Links/Rechts benutzen, um die Benutzeroberfläche/OSD nach oben "
+"oder unten zu verschieben."
 
 msgid ""
 "Use the Networkwizard to configure your Network. The wizard will help you to "
@@ -22467,7 +22472,7 @@ msgstr "Zeitsprünge für schnellen Vorlauf/Rücklauf ('>>'/'<<') benutzen"
 
 # Timeshift Einstellungen
 msgid "Use timeshift seekbar while timeshifting?"
-msgstr "Timeshift-Suchleiste bei Timeshift verwenden? *"
+msgstr "Timeshift-Suchleiste bei Timeshift verwenden *"
 
 #
 msgid "Use trash can in movielist"
@@ -23915,8 +23920,8 @@ msgid ""
 "You have chosen to backup your settings. Please press OK to start the backup "
 "now."
 msgstr ""
-"Sie haben sich entschieden Ihre Einstellungen zu sichern. Drücken Sie OK, um "
-"den Vorgang zu starten."
+"Sie möchten Ihre Einstellungen sichern.\n"
+"Drücken Sie OK, um den Vorgang zu starten."
 
 msgid ""
 "You have chosen to create a new .NFI flasher bootable USB stick. This will "
@@ -23931,7 +23936,7 @@ msgid ""
 "You have chosen to restore your settings. Enigma2 will restart after "
 "restore. Please press OK to start the restore now."
 msgstr ""
-"Sie haben sich entschlossen, Ihre Einstellungen wiederherzustellen.\n"
+"Sie möchten Ihre Einstellungen wiederherstellen.\n"
 "Enigma2 wird nach der Wiederherstellung neu starten.\n"
 "Bitte drücken Sie OK, um mit der Wiederherstellung zu beginnen."
 
@@ -26509,6 +26514,30 @@ msgstr "Umschalten"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Delete Lang"
+#~ msgstr "Sprachen löschen"
+
+#~ msgid "Delete Loc"
+#~ msgstr "Sprache löschen"
+
+#
+#~ msgid "Install Lang"
+#~ msgstr "Sprache installieren"
+
+#
+#~ msgid "Install Loc"
+#~ msgstr "Loc installieren"
+
+#~ msgid "Job Manager"
+#~ msgstr "Skript-Verwaltung"
+
+# löschen?
+# msgid "Plugin Browser"
+# msgstr "Plugin Manager"
+#
+#~ msgid "Plugin browser"
+#~ msgstr "Plugin-Manager"
 
 # InfoPanel
 #~ msgid "Cpu"

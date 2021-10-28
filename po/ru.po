@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Enigma2 OpenXXX\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-10-21 17:27+0000\n"
+"POT-Creation-Date: 2021-10-28 19:26+0000\n"
 "PO-Revision-Date: 2021-10-22 20:35+0000\n"
 "Last-Translator: Artem <Localizer_in_Russian@protonmail.com>\n"
 "Language-Team: Russian <https://hosted.weblate.org/projects/openatv/"
@@ -3715,6 +3715,15 @@ msgstr "Добавить синий"
 msgid "Boost green"
 msgstr "Добавить зелёный"
 
+msgid "Boot time"
+msgstr ""
+
+msgid "Boot time and local date/time"
+msgstr ""
+
+msgid "Boot time and local time"
+msgstr ""
+
 msgid "Boot-up action"
 msgstr "Действие при старте системы"
 
@@ -6104,6 +6113,9 @@ msgstr "Отключить"
 msgid "Debug Logs"
 msgstr "Отладочные журналы"
 
+msgid "Debug log time format *"
+msgstr ""
+
 msgid "Decryption & Parental Control"
 msgstr "ЭМУ и родительский контроль"
 
@@ -6323,14 +6335,8 @@ msgstr "Подтверждение удаления"
 msgid "Delete EPG"
 msgstr "Удалить ТВ-гид"
 
-msgid "Delete Lang"
-msgstr "Удалить язык"
-
 msgid "Delete Language"
 msgstr "Удалить языковой пакет"
-
-msgid "Delete Loc"
-msgstr "Удалить Loc"
 
 msgid "Delete Plugins"
 msgstr "Удалить плагины"
@@ -9936,12 +9942,6 @@ msgstr "Установить не удалось!"
 msgid "Install Finished."
 msgstr "Установка завершена."
 
-msgid "Install Lang"
-msgstr "Установка"
-
-msgid "Install Loc"
-msgstr "Установить"
-
 msgid "Install Plugins"
 msgstr "Установка плагинов"
 
@@ -10179,9 +10179,6 @@ msgstr "Яванский"
 
 msgid "Jersey"
 msgstr "Джерси"
-
-msgid "Job Manager"
-msgstr "Диспетчер задач"
 
 msgid "Job View"
 msgstr "Просмотр задания"
@@ -10724,8 +10721,14 @@ msgstr "Загрузить/Сохранить/Удалить"
 msgid "Local box"
 msgstr "Локальный ресивер"
 
+msgid "Local date/time"
+msgstr ""
+
 msgid "Local network"
 msgstr "Локальная сеть"
+
+msgid "Local time"
+msgstr ""
 
 msgid "Locale"
 msgstr "Локаль"
@@ -13538,9 +13541,6 @@ msgstr "Браузер плагинов"
 msgid "Plugin Filter"
 msgstr "Фильтр плагинов"
 
-msgid "Plugin browser"
-msgstr "Установленные плагины"
-
 msgid "Plugin details"
 msgstr "Подробности о плагине"
 
@@ -13668,20 +13668,20 @@ msgstr ""
 "Порог мощности. Для получения дополнительной информации обратитесь к "
 "руководству по эксплуатации ресивера."
 
-msgid "PowerTimer Entry"
-msgstr "Менеджер таймеров питания"
-
-msgid "PowerTimer Log"
-msgstr "Журнал таймеров питания"
-
 msgid "PowerTimer"
 msgstr "Таймер питания"
 
 msgid "PowerTimer DeepStandby"
 msgstr "Таймер питания в \"Глубокий сон\""
 
+msgid "PowerTimer Entry"
+msgstr "Менеджер таймеров питания"
+
 msgid "PowerTimer List"
 msgstr "Список таймеров питания"
+
+msgid "PowerTimer Log"
+msgstr "Журнал таймеров питания"
 
 msgid "PowerTimer Overview"
 msgstr "Просмотр таймеров питания"
@@ -15297,6 +15297,9 @@ msgid "Script '%s' must have read permission to be able to run it"
 msgstr ""
 "Скрипт '%s' должен иметь разрешение на чтение, чтобы иметь возможность "
 "запускать его"
+
+msgid "Script Manager"
+msgstr ""
 
 msgid "ScriptRunner"
 msgstr "Выполнение скриптов"
@@ -19544,6 +19547,11 @@ msgstr "Этот плагин будет установлен."
 
 msgid "This plugin will be removed."
 msgstr "Этот плагин будет удален."
+
+msgid ""
+"This sets the prefix for each line in the debug log. The 'Boot time' is the "
+"number of seconds since your %s %s was last booted."
+msgstr ""
 
 msgid ""
 "This setting allows the tuner configuration to be a duplication of how "
@@ -24509,6 +24517,24 @@ msgstr "Переключение"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Delete Lang"
+#~ msgstr "Удалить язык"
+
+#~ msgid "Delete Loc"
+#~ msgstr "Удалить Loc"
+
+#~ msgid "Install Lang"
+#~ msgstr "Установка"
+
+#~ msgid "Install Loc"
+#~ msgstr "Установить"
+
+#~ msgid "Job Manager"
+#~ msgstr "Диспетчер задач"
+
+#~ msgid "Plugin browser"
+#~ msgstr "Установленные плагины"
 
 #~ msgid "Cpu"
 #~ msgstr "ЦП"

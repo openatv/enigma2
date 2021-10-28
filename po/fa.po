@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-10-21 17:27+0000\n"
+"POT-Creation-Date: 2021-10-28 19:26+0000\n"
 "PO-Revision-Date: 2021-09-15 14:20+0000\n"
 "Last-Translator: Hamed Beyrami <h.beyrami@outlook.com>\n"
 "Language-Team: Persian <https://hosted.weblate.org/projects/openatv/"
@@ -3805,6 +3805,15 @@ msgstr ""
 msgid "Boost green"
 msgstr ""
 
+msgid "Boot time"
+msgstr ""
+
+msgid "Boot time and local date/time"
+msgstr ""
+
+msgid "Boot time and local time"
+msgstr ""
+
 msgid "Boot-up action"
 msgstr ""
 
@@ -6116,6 +6125,9 @@ msgstr ""
 msgid "Debug Logs"
 msgstr ""
 
+msgid "Debug log time format *"
+msgstr ""
+
 #, fuzzy
 msgid "Decryption & Parental Control"
 msgstr "کنترل والدین"
@@ -6332,16 +6344,8 @@ msgstr ""
 msgid "Delete EPG"
 msgstr "حذف"
 
-#, fuzzy
-msgid "Delete Lang"
-msgstr "حذف فایل"
-
 msgid "Delete Language"
 msgstr ""
-
-#, fuzzy
-msgid "Delete Loc"
-msgstr "حذف"
 
 msgid "Delete Plugins"
 msgstr ""
@@ -9872,14 +9876,6 @@ msgstr ""
 msgid "Install Finished."
 msgstr ""
 
-#, fuzzy
-msgid "Install Lang"
-msgstr "در حال نصب"
-
-#, fuzzy
-msgid "Install Loc"
-msgstr "نصب"
-
 msgid "Install Plugins"
 msgstr ""
 
@@ -10140,9 +10136,6 @@ msgid "Javanese"
 msgstr ""
 
 msgid "Jersey"
-msgstr ""
-
-msgid "Job Manager"
 msgstr ""
 
 msgid "Job View"
@@ -10707,9 +10700,15 @@ msgstr ""
 msgid "Local box"
 msgstr ""
 
+msgid "Local date/time"
+msgstr ""
+
 #, fuzzy
 msgid "Local network"
 msgstr "شبکه محلی"
+
+msgid "Local time"
+msgstr ""
 
 #, fuzzy
 msgid "Locale"
@@ -13599,9 +13598,6 @@ msgstr ""
 msgid "Plugin Filter"
 msgstr ""
 
-msgid "Plugin browser"
-msgstr "مرورگر پلاگین"
-
 msgid "Plugin details"
 msgstr ""
 
@@ -13733,13 +13729,6 @@ msgstr "آستانه قدرت به میلی آمپر"
 msgid "Power threshold. Consult your receiver's manual for more information."
 msgstr ""
 
-#, fuzzy
-msgid "PowerTimer Entry"
-msgstr "حذف یک مورد nameserver"
-
-msgid "PowerTimer Log"
-msgstr ""
-
 msgid "PowerTimer"
 msgstr ""
 
@@ -13747,8 +13736,15 @@ msgid "PowerTimer DeepStandby"
 msgstr ""
 
 #, fuzzy
+msgid "PowerTimer Entry"
+msgstr "حذف یک مورد nameserver"
+
+#, fuzzy
 msgid "PowerTimer List"
 msgstr "ویرایش زمان"
+
+msgid "PowerTimer Log"
+msgstr ""
 
 msgid "PowerTimer Overview"
 msgstr ""
@@ -15414,6 +15410,9 @@ msgstr ""
 
 #, python-format
 msgid "Script '%s' must have read permission to be able to run it"
+msgstr ""
+
+msgid "Script Manager"
 msgstr ""
 
 msgid "ScriptRunner"
@@ -19504,6 +19503,11 @@ msgstr "این پلاگین نصب خواهد شد"
 #
 msgid "This plugin will be removed."
 msgstr "این پلاگین حذف خواهد شد"
+
+msgid ""
+"This sets the prefix for each line in the debug log. The 'Boot time' is the "
+"number of seconds since your %s %s was last booted."
+msgstr ""
 
 msgid ""
 "This setting allows the tuner configuration to be a duplication of how "
@@ -24305,6 +24309,25 @@ msgstr "حذف شد"
 
 msgid "®"
 msgstr ""
+
+#, fuzzy
+#~ msgid "Delete Lang"
+#~ msgstr "حذف فایل"
+
+#, fuzzy
+#~ msgid "Delete Loc"
+#~ msgstr "حذف"
+
+#, fuzzy
+#~ msgid "Install Lang"
+#~ msgstr "در حال نصب"
+
+#, fuzzy
+#~ msgid "Install Loc"
+#~ msgstr "نصب"
+
+#~ msgid "Plugin browser"
+#~ msgstr "مرورگر پلاگین"
 
 #, fuzzy
 #~ msgid "restart GUI"

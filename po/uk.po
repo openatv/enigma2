@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-10-21 17:27+0000\n"
+"POT-Creation-Date: 2021-10-28 19:26+0000\n"
 "PO-Revision-Date: 2021-09-17 15:45+0000\n"
 "Last-Translator: kvinto <badsystem@ukr.net>\n"
 "Language-Team: Ukrainian <https://hosted.weblate.org/projects/openatv/"
@@ -3722,6 +3722,15 @@ msgstr "Додати синій"
 msgid "Boost green"
 msgstr "Додати зелений"
 
+msgid "Boot time"
+msgstr ""
+
+msgid "Boot time and local date/time"
+msgstr ""
+
+msgid "Boot time and local time"
+msgstr ""
+
 msgid "Boot-up action"
 msgstr "Дія при старті системи"
 
@@ -6096,6 +6105,9 @@ msgstr "Зупинити"
 msgid "Debug Logs"
 msgstr "Логи налагодження"
 
+msgid "Debug log time format *"
+msgstr ""
+
 msgid "Decryption & Parental Control"
 msgstr "Декодування і Батьківський контроль"
 
@@ -6315,14 +6327,8 @@ msgstr "Підтвердження видалення"
 msgid "Delete EPG"
 msgstr "Видалити ЕПГ"
 
-msgid "Delete Lang"
-msgstr "Видалити мову"
-
 msgid "Delete Language"
 msgstr "Видалити мови"
-
-msgid "Delete Loc"
-msgstr "Видалити регіон"
 
 msgid "Delete Plugins"
 msgstr "Видалити плагіни"
@@ -9918,12 +9924,6 @@ msgstr "Встановлення невдале!!"
 msgid "Install Finished."
 msgstr "Встановлення завершено."
 
-msgid "Install Lang"
-msgstr "Встановлення мов"
-
-msgid "Install Loc"
-msgstr "Встановлення регіону"
-
 msgid "Install Plugins"
 msgstr "Встановити плагіни"
 
@@ -10161,9 +10161,6 @@ msgstr "Яванська"
 
 msgid "Jersey"
 msgstr "Джерсі"
-
-msgid "Job Manager"
-msgstr "Менеджер завдань"
 
 msgid "Job View"
 msgstr "Хід виконання"
@@ -10703,8 +10700,14 @@ msgstr "Завантажити/Зберегти/Видалити"
 msgid "Local box"
 msgstr "Локальний приймач"
 
+msgid "Local date/time"
+msgstr ""
+
 msgid "Local network"
 msgstr "Локальна мережа"
+
+msgid "Local time"
+msgstr ""
 
 msgid "Locale"
 msgstr "Регіон"
@@ -13517,9 +13520,6 @@ msgstr "Провідник плагінів"
 msgid "Plugin Filter"
 msgstr "Фільтр плагінів"
 
-msgid "Plugin browser"
-msgstr "Провідник плагінів"
-
 msgid "Plugin details"
 msgstr "Подробиці плагіна"
 
@@ -13647,20 +13647,20 @@ msgstr ""
 "Поріг потужності. Для отримання додаткової інформації зверніться до "
 "посібника користувача."
 
-msgid "PowerTimer Entry"
-msgstr "Відкрити мененджер живлення"
-
-msgid "PowerTimer Log"
-msgstr "Лог мененджера живлення"
-
 msgid "PowerTimer"
 msgstr "Таймер живлення"
 
 msgid "PowerTimer DeepStandby"
 msgstr "Таймер Живлення Глибокий режим очікування"
 
+msgid "PowerTimer Entry"
+msgstr "Відкрити мененджер живлення"
+
 msgid "PowerTimer List"
 msgstr "Список таймерів живлення"
+
+msgid "PowerTimer Log"
+msgstr "Лог мененджера живлення"
 
 msgid "PowerTimer Overview"
 msgstr "Перегляд таймерів живлення"
@@ -15272,6 +15272,9 @@ msgstr "Знімок екрана в /tmp"
 #, python-format
 msgid "Script '%s' must have read permission to be able to run it"
 msgstr "Скрипт '%s' повинен мати дозвіл на читання для його запуску"
+
+msgid "Script Manager"
+msgstr ""
 
 msgid "ScriptRunner"
 msgstr "Запуск скрипта"
@@ -19516,6 +19519,11 @@ msgstr "Цей плагін буде встановлений."
 
 msgid "This plugin will be removed."
 msgstr "Цей плагін буде видалено."
+
+msgid ""
+"This sets the prefix for each line in the debug log. The 'Boot time' is the "
+"number of seconds since your %s %s was last booted."
+msgstr ""
 
 msgid ""
 "This setting allows the tuner configuration to be a duplication of how "
@@ -24477,6 +24485,24 @@ msgstr "переключення"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Delete Lang"
+#~ msgstr "Видалити мову"
+
+#~ msgid "Delete Loc"
+#~ msgstr "Видалити регіон"
+
+#~ msgid "Install Lang"
+#~ msgstr "Встановлення мов"
+
+#~ msgid "Install Loc"
+#~ msgstr "Встановлення регіону"
+
+#~ msgid "Job Manager"
+#~ msgstr "Менеджер завдань"
+
+#~ msgid "Plugin browser"
+#~ msgstr "Провідник плагінів"
 
 #~ msgid "Cpu"
 #~ msgstr "Процесор"

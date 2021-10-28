@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-10-21 17:27+0000\n"
+"POT-Creation-Date: 2021-10-28 19:26+0000\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Jjezevec <jjezevecc@seznam.cz>\n"
 "Language-Team: \n"
@@ -3920,6 +3920,15 @@ msgstr "Posílit modrou"
 msgid "Boost green"
 msgstr "Posílit zelenou"
 
+msgid "Boot time"
+msgstr ""
+
+msgid "Boot time and local date/time"
+msgstr ""
+
+msgid "Boot time and local time"
+msgstr ""
+
 msgid "Boot-up action"
 msgstr "Co dělat po startu"
 
@@ -6331,6 +6340,9 @@ msgstr "Aktivovat"
 msgid "Debug Logs"
 msgstr "Zprávy chyb"
 
+msgid "Debug log time format *"
+msgstr ""
+
 msgid "Decryption & Parental Control"
 msgstr "Dekódování a rodičovská ochrana"
 
@@ -6552,16 +6564,8 @@ msgstr "Smazat potvrzení"
 msgid "Delete EPG"
 msgstr "Smazat"
 
-#, fuzzy
-msgid "Delete Lang"
-msgstr "Smazat jazyk"
-
 msgid "Delete Language"
 msgstr "Smazat jazyk"
-
-#, fuzzy
-msgid "Delete Loc"
-msgstr "Smazat"
 
 msgid "Delete Plugins"
 msgstr "Smaže vybrané pluginy"
@@ -10266,14 +10270,6 @@ msgstr "Stažení se nepovedlo !!"
 msgid "Install Finished."
 msgstr "Instalace dokončena."
 
-#, fuzzy
-msgid "Install Lang"
-msgstr "Instaluji"
-
-#, fuzzy
-msgid "Install Loc"
-msgstr "Instalovat"
-
 msgid "Install Plugins"
 msgstr "Instalovat pluginy"
 
@@ -10527,10 +10523,6 @@ msgstr ""
 
 msgid "Jersey"
 msgstr ""
-
-#, fuzzy
-msgid "Job Manager"
-msgstr "Job - správce úloh"
 
 msgid "Job View"
 msgstr "Přehled práce"
@@ -11107,8 +11099,14 @@ msgstr "Načíst/Uložit"
 msgid "Local box"
 msgstr "Lokální box"
 
+msgid "Local date/time"
+msgstr ""
+
 msgid "Local network"
 msgstr "Místní síť"
+
+msgid "Local time"
+msgstr ""
 
 #, fuzzy
 msgid "Locale"
@@ -14072,9 +14070,6 @@ msgstr "Prohlížeč pluginů"
 msgid "Plugin Filter"
 msgstr "Filtrování pluginů"
 
-msgid "Plugin browser"
-msgstr "Prohlížeč pluginů"
-
 msgid "Plugin details"
 msgstr "Detaily pluginu"
 
@@ -14207,20 +14202,20 @@ msgstr "Prahový proud v mA"
 msgid "Power threshold. Consult your receiver's manual for more information."
 msgstr ""
 
-msgid "PowerTimer Entry"
-msgstr "Nastavení časovače napájení"
-
-msgid "PowerTimer Log"
-msgstr "Časovač napájení - protokol"
-
 msgid "PowerTimer"
 msgstr "Časovač vypnutí"
 
 msgid "PowerTimer DeepStandby"
 msgstr "Časovač napájení (úplně vypnout)"
 
+msgid "PowerTimer Entry"
+msgstr "Nastavení časovače napájení"
+
 msgid "PowerTimer List"
 msgstr "Časovač napájení - seznam"
+
+msgid "PowerTimer Log"
+msgstr "Časovač napájení - protokol"
 
 msgid "PowerTimer Overview"
 msgstr "Časovač napájení - přehled"
@@ -15922,6 +15917,9 @@ msgstr ""
 
 #, python-format
 msgid "Script '%s' must have read permission to be able to run it"
+msgstr ""
+
+msgid "Script Manager"
 msgstr ""
 
 msgid "ScriptRunner"
@@ -20246,6 +20244,11 @@ msgstr "Plugin bude instalován."
 
 msgid "This plugin will be removed."
 msgstr "Plugin bude odstraněn."
+
+msgid ""
+"This sets the prefix for each line in the debug log. The 'Boot time' is the "
+"number of seconds since your %s %s was last booted."
+msgstr ""
 
 msgid ""
 "This setting allows the tuner configuration to be a duplication of how "
@@ -25373,6 +25376,29 @@ msgstr "Přepnutý"
 
 msgid "®"
 msgstr ""
+
+#, fuzzy
+#~ msgid "Delete Lang"
+#~ msgstr "Smazat jazyk"
+
+#, fuzzy
+#~ msgid "Delete Loc"
+#~ msgstr "Smazat"
+
+#, fuzzy
+#~ msgid "Install Lang"
+#~ msgstr "Instaluji"
+
+#, fuzzy
+#~ msgid "Install Loc"
+#~ msgstr "Instalovat"
+
+#, fuzzy
+#~ msgid "Job Manager"
+#~ msgstr "Job - správce úloh"
+
+#~ msgid "Plugin browser"
+#~ msgstr "Prohlížeč pluginů"
 
 #~ msgid "Cpu"
 #~ msgstr "CPU"

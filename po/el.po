@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Enigma2 Official Greek Translation\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-10-21 17:27+0000\n"
+"POT-Creation-Date: 2021-10-28 19:26+0000\n"
 "PO-Revision-Date: 2021-08-19 12:59+0000\n"
 "Last-Translator: MCelliotG <mcelliotg@gmail.com>\n"
 "Language-Team: Greek <https://hosted.weblate.org/projects/openatv/"
@@ -3755,6 +3755,15 @@ msgstr "Ενίσχυση του μπλε"
 msgid "Boost green"
 msgstr "Ενίσχυση του πράσινου"
 
+msgid "Boot time"
+msgstr ""
+
+msgid "Boot time and local date/time"
+msgstr ""
+
+msgid "Boot time and local time"
+msgstr ""
+
 msgid "Boot-up action"
 msgstr "Ενέργεια εκκίνησης"
 
@@ -6187,6 +6196,9 @@ msgstr "Απενεργοποίηση"
 msgid "Debug Logs"
 msgstr "Καταγραφές απόσφαλμάτωσης"
 
+msgid "Debug log time format *"
+msgstr ""
+
 msgid "Decryption & Parental Control"
 msgstr "Αποκωδικοποίηση & γονικός έλεγχος"
 
@@ -6408,16 +6420,8 @@ msgstr "Επιβεβαίωση διαγραφής"
 msgid "Delete EPG"
 msgstr "Διαγραφή EPG"
 
-#, fuzzy
-msgid "Delete Lang"
-msgstr "Διαγραφή γλωσσών"
-
 msgid "Delete Language"
 msgstr "Διαγραφή γλωσσών"
-
-#, fuzzy
-msgid "Delete Loc"
-msgstr "Διαγραφή"
 
 msgid "Delete Plugins"
 msgstr "Διαγραφή προσθέτων"
@@ -10072,14 +10076,6 @@ msgstr "Αποτυχία εγκατάστασης !!"
 msgid "Install Finished."
 msgstr "Η εγκατάσταση ολοκληρώθηκε."
 
-#, fuzzy
-msgid "Install Lang"
-msgstr "Εγκατάσταση"
-
-#, fuzzy
-msgid "Install Loc"
-msgstr "Εγκατάσταση"
-
 msgid "Install Plugins"
 msgstr "Εγκατάσταση προσθέτων"
 
@@ -10327,9 +10323,6 @@ msgstr ""
 
 msgid "Jersey"
 msgstr "Τζέρσεϊ"
-
-msgid "Job Manager"
-msgstr "Διαχείριση εργασιών"
 
 msgid "Job View"
 msgstr "Επισκόπηση εργασιών"
@@ -10884,8 +10877,14 @@ msgstr "Φόρτωση/Αποθήκευση/Διαγραφή"
 msgid "Local box"
 msgstr "Τοπικός δέκτης"
 
+msgid "Local date/time"
+msgstr ""
+
 msgid "Local network"
 msgstr "Τοπικό δίκτυο"
+
+msgid "Local time"
+msgstr ""
 
 msgid "Locale"
 msgstr "Τοπική γλώσσα"
@@ -13774,9 +13773,6 @@ msgstr "Πλοηγός προσθέτων"
 msgid "Plugin Filter"
 msgstr "Φίλτρο προσθέτων"
 
-msgid "Plugin browser"
-msgstr "Πλοηγός προσθέτων"
-
 msgid "Plugin details"
 msgstr "Πληροφορίες πρόσθετου"
 
@@ -13904,20 +13900,20 @@ msgstr ""
 "Κατώφλι ισχύος. Συμβουλευτείτε το εγχειρίδιο χρήσης του δέκτη σας για "
 "περισσότερες πληροφορίες."
 
-msgid "PowerTimer Entry"
-msgstr "Στοιχείο διαχείρισης ενέργειας"
-
-msgid "PowerTimer Log"
-msgstr "Καταγραφές διαχείρισης ενέργειας"
-
 msgid "PowerTimer"
 msgstr "Χρονοδιακόπτης ενέργειας"
 
 msgid "PowerTimer DeepStandby"
 msgstr "Βαθιά αναμονή χρονοδιακόπτη ενέργειας"
 
+msgid "PowerTimer Entry"
+msgstr "Στοιχείο διαχείρισης ενέργειας"
+
 msgid "PowerTimer List"
 msgstr "Λίστα χρονοδιακοπτών ενέργειας"
+
+msgid "PowerTimer Log"
+msgstr "Καταγραφές διαχείρισης ενέργειας"
 
 msgid "PowerTimer Overview"
 msgstr "Επισκόπηση χρονοδιακοπτών ενέργειας"
@@ -15547,6 +15543,9 @@ msgstr "Στιγμιότυπο του LCD στο /tmp"
 msgid "Script '%s' must have read permission to be able to run it"
 msgstr ""
 "Το script '%s' πρέπει να έχει δικαιώματα ανάγνωσης για να μπορεί να τρέξει"
+
+msgid "Script Manager"
+msgstr ""
 
 msgid "ScriptRunner"
 msgstr "Εκτέλεση Script"
@@ -19919,6 +19918,11 @@ msgstr "Αυτό το πρόσθετο θα εγκατασταθεί."
 
 msgid "This plugin will be removed."
 msgstr "Αυτό το πρόσθετο θα διαγραφεί."
+
+msgid ""
+"This sets the prefix for each line in the debug log. The 'Boot time' is the "
+"number of seconds since your %s %s was last booted."
+msgstr ""
 
 msgid ""
 "This setting allows the tuner configuration to be a duplication of how "
@@ -24960,6 +24964,28 @@ msgstr "ζάπινγκ"
 
 msgid "®"
 msgstr ""
+
+#, fuzzy
+#~ msgid "Delete Lang"
+#~ msgstr "Διαγραφή γλωσσών"
+
+#, fuzzy
+#~ msgid "Delete Loc"
+#~ msgstr "Διαγραφή"
+
+#, fuzzy
+#~ msgid "Install Lang"
+#~ msgstr "Εγκατάσταση"
+
+#, fuzzy
+#~ msgid "Install Loc"
+#~ msgstr "Εγκατάσταση"
+
+#~ msgid "Job Manager"
+#~ msgstr "Διαχείριση εργασιών"
+
+#~ msgid "Plugin browser"
+#~ msgstr "Πλοηγός προσθέτων"
 
 #~ msgid "Cpu"
 #~ msgstr "Επεξεργαστής"
