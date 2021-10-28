@@ -63,8 +63,9 @@ class Setup(ConfigListScreen, Screen, HelpableScreen):
 		self.pluginLanguageDomain = PluginLanguageDomain
 		if not isinstance(self.skinName, list):
 			self.skinName = [self.skinName]
-		self.skinName.append("setup_%s" % setup)
-		self.skinName.append("Setup%s" % setup)
+		if setup:
+			self.skinName.append("setup_%s" % setup)
+			self.skinName.append("Setup%s" % setup)
 		self.skinName.append("Setup")
 		self.list = []
 		ConfigListScreen.__init__(self, self.list, session=session, on_change=self.changedEntry, fullUI=True)
@@ -275,14 +276,6 @@ class SetupSummary(ScreenSummary):
 		self["value"].text = self.parent.getCurrentValue()  # DEBUG: Proposed for new summary screens.
 		self["SetupEntry"].text = self.parent.getCurrentEntry()
 		self["SetupValue"].text = self.parent.getCurrentValue()
-		# FIXME This part is a fallback for old Setup based Screens
-		if hasattr(self.parent, "getCurrentDescription") and "description" in self.parent:
-			self.parent["description"].text = self.parent.getCurrentDescription()
-		if 'footnote' in self.parent:
-			if self.parent.getCurrentEntry().endswith('*'):
-				self.parent['footnote'].text = (_("* = Restart Required"))
-			else:
-				self.parent['footnote'].text = (_(" "))
 
 
 # Read the setup XML file.
