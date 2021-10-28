@@ -141,7 +141,7 @@ export LC_CTYPE="en_US.UTF-8"
 
 # Set time format used to prefix each line in the debug logs.
 DEBUGTIME=`sed -En 's|^config\.crash\.debugTimeFormat=(.+)$|\1|p' "@sysconfdir@/enigma2/settings"`
-[ -n "${DEBUGTIME}" ] || DEBUGTIME="0"
+[ -n "${DEBUGTIME}" ] || DEBUGTIME="2"
 DEBUG_TIME="${DEBUGTIME}"
 
 if [ "$(grep config.crash.enabledebug /etc/enigma2/settings)" == "config.crash.enabledebug=true" ]; then
