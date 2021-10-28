@@ -3,7 +3,7 @@ from __future__ import division
 from __future__ import absolute_import
 from Screens.Screen import Screen
 from Screens.ServiceScan import ServiceScan
-from Components.config import config, ConfigSubsection, ConfigSelection, ConfigYesNo, ConfigInteger, getConfigListEntry, ConfigSlider, ConfigEnableDisable, integer_limits, ConfigFloat
+from Components.config import config, ConfigSubsection, ConfigSelection, ConfigYesNo, ConfigInteger, getConfigListEntry, ConfigSlider, ConfigEnableDisable, ConfigFloat
 
 from Components.ActionMap import NumberActionMap, ActionMap
 from Components.ConfigList import ConfigListScreen
@@ -605,32 +605,6 @@ class TerrestrialTransponderSearchSupport:
 			cmd += " --feid %d --5v %d" % (self.terrestrial_search_feid, self.terrestrial_search_enable_5v)
 		print("SCAN CMD : ", cmd)
 		self.terrestrial_search_container.execute(cmd)
-
-
-class ConfigFrequency(ConfigInteger):
-	def __init__(self, default, limits=integer_limits):
-		self._value = None
-		ConfigInteger.__init__(self, default, limits)
-
-	def setValue(self, value):
-		if self._value != [value]:
-			self._value = [value]
-			self.changed()
-
-	value = property(ConfigInteger.getValue, setValue)
-
-
-class ConfigChannel(ConfigInteger):
-	def __init__(self, default, limits=integer_limits):
-		self._value = None
-		ConfigInteger.__init__(self, default, limits)
-
-	def setValue(self, value):
-		if self._value != [value]:
-			self._value = [value]
-			self.changed()
-
-	value = property(ConfigInteger.getValue, setValue)
 
 
 class ScanSetup(ConfigListScreen, Screen, CableTransponderSearchSupport, TerrestrialTransponderSearchSupport):
@@ -1265,7 +1239,7 @@ class ScanSetup(ConfigListScreen, Screen, CableTransponderSearchSupport, Terrest
 
 		# terrestial
 		self.scan_ter.frequency = ConfigFloat(default=[defaultTer["frequency"] // 1000, defaultTer["frequency"] % 1000], limits=[(50, 999), (0, 999)])
-		self.scan_ter.channel = ConfigChannel(default=21, limits=(1, 99))
+		self.scan_ter.channel = ConfigInteger(default=21, limits=(1, 99))
 		self.scan_ter.inversion = ConfigSelection(default=defaultTer["inversion"], choices=[
 			(eDVBFrontendParametersTerrestrial.Inversion_Off, _("Off")),
 			(eDVBFrontendParametersTerrestrial.Inversion_On, _("On")),
