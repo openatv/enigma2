@@ -229,7 +229,7 @@ BoxInfo.setItem("RemoteDelay", 200 if repeat == 400 else 700)
 SystemInfo["HasRootSubdir"] = False	# This needs to be here so it can be reset by getMultibootslots!
 SystemInfo["RecoveryMode"] = False or fileCheck("/proc/stb/fp/boot_mode")	# This needs to be here so it can be reset by getMultibootslots!
 
-
+SystemInfo["OSDAnimation"] = True # Todo Test -> fileCheck("/proc/stb/fb/animation_mode")
 SystemInfo["NumVideoDecoders"] = getNumVideoDecoders()
 SystemInfo["PIPAvailable"] = SystemInfo["NumVideoDecoders"] > 1
 SystemInfo["CanMeasureFrontendInputPower"] = eDVBResourceManager.getInstance().canMeasureFrontendInputPower()
