@@ -424,6 +424,7 @@
 		<item level="2" text="Maximum space used (MB):" description="If logs are using the set maximum space used the eldest will be deleted.">config.crash.sizeloglimit</item>
 		<item level="2" text="Crash at skin error for debug reasons ?" description="if set to 'no', only an debug message is written to the Debug log ">config.crash.skin_error_crash</item>
 		<item level="2" text="Log python stack trace on spinner ?" description="Set to yes for debugging the root cause of a spinner.">config.crash.pystackonspinner</item>
+		<item level="2" text="Debug log time format *" description="This sets the prefix for each line in the debug log. The 'Boot time' is the number of seconds since your %s %s was last booted.">config.crash.debugTimeFormat</item>
 	</setup>
 	<setup level="1" key="Timeshift" title="Timeshift settings">
 		<item level="2" text="Timeshift location" description="Set the default location for your timeshift-files. Press 'OK' to add new locations, select left/right to select an existing location.">config.usage.timeshift_path</item>
