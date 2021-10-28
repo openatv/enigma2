@@ -805,7 +805,7 @@ class GraphMultiEPG(Screen, HelpableScreen):
 				"info": (self.infoKeyPressed, _("Show detailed event info")),
 				"red": (self.zapTo, _("Zap to selected channel")),
 				"yellow": (self.swapMode, _("Switch between normal mode and list mode")),
-				"blue": (self.enterDateTime, _("Goto specific data/time")),
+				"blue": (self.enterDateTime, _("Goto specific date/time")),
 				"menu": (self.showSetup, _("Setup menu")),
 				"nextBouquet": (self.nextBouquet, _("Show bouquet selection menu")),
 				"prevBouquet": (self.prevBouquet, _("Show bouquet selection menu")),

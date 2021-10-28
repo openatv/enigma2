@@ -1181,7 +1181,7 @@ def InitUsageConfig():
 		("2", _("Local time")),
 		("3", _("Boot time and local time")),
 		("6", _("Local date/time")),
-		("7", _("Boot time and local data/time"))
+		("7", _("Boot time and local date/time"))
 	], default="2")
 	config.crash.debugTimeFormat.save_forced = True
 
