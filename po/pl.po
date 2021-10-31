@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-10-28 19:26+0000\n"
-"PO-Revision-Date: 2021-10-28 03:03+0000\n"
+"PO-Revision-Date: 2021-10-31 11:38+0000\n"
 "Last-Translator: Grzegorz <grzegorz914@icloud.com>\n"
 "Language-Team: Polish <https://hosted.weblate.org/projects/openatv/"
 "enigma2-7-0-po/pl/>\n"
@@ -1407,8 +1407,8 @@ msgstr ""
 msgid ""
 "'Handle standby from TV' has a higher priority as 'Handle input from TV'"
 msgstr ""
-"Obsługa trybu gotowości z telewizora ma wyższy priorytet niż 'Obsługa "
-"wejścia z telewizora'"
+"Obsługa trybu czuwania z telewizora ma wyższy priorytet niż 'Obsługa wejścia "
+"z telewizora'"
 
 msgid "'weatherplugin' is not installed!"
 msgstr "'Weatherplugin' nie jest zainstalowany!"
@@ -2119,8 +2119,8 @@ msgid ""
 "A finished powertimer wants to shutdown your %s %s.\n"
 "Do that now?"
 msgstr ""
-"Wyłącznik czasowy chce wyłączyć %s %s.\n"
-"Zróbić to teraz?"
+"Timer chce wyłączyć %s %s.\n"
+"Zrobić to teraz?"
 
 #, python-format
 msgid ""
@@ -2542,7 +2542,7 @@ msgid "Additional Info"
 msgstr "Dodatkowe Informacje"
 
 msgid "Additional files/folders to backup"
-msgstr "Dodatkowe pliki/Foldery do wykonania kopii zapasowej"
+msgstr "Dodatkowe pliki, foldery kopii zapasowej"
 
 msgid ""
 "Additional motor options allow you to enter details from your motor's spec "
@@ -2771,7 +2771,7 @@ msgstr ""
 
 msgid "Allows you to enable/disable displaying icons on the frontpanel."
 msgstr ""
-"Umożliwia na włączenie/wyłączenie wyświetlania ikon na wyświetlaczy przednim."
+"Umożliwia włączenie/wyłączenie wyświetlania ikon na wyświetlaczu przednim."
 
 msgid "Allows you to hide the extensions of known file types."
 msgstr "Pozwala ukryć rozszerzenia znanych typów plików."
@@ -3220,7 +3220,7 @@ msgid "Auto"
 msgstr "Auto"
 
 msgid "Auto Deep Standby"
-msgstr "Automatyczne Głębokie Czuwanie"
+msgstr "Automatyczne głębokie czuwanie"
 
 msgid "Auto Detect"
 msgstr "Automatyczne Wykrywanie"
@@ -3235,7 +3235,7 @@ msgid "Auto Modes Selected."
 msgstr "Wybrany tryb auto."
 
 msgid "Auto Standby"
-msgstr "Automatyczne Czuwanie"
+msgstr "Automatyczne czuwanie"
 
 msgid "Auto Timer"
 msgstr "Auto Timer"
@@ -3459,13 +3459,13 @@ msgstr "Kopia zapasowa"
 
 #, python-format
 msgid "Backup Date: %s\n"
-msgstr "Data Kopii Zapasowej: %s\n"
+msgstr "Data kopii zapasowej: %s\n"
 
 msgid "Backup Image"
 msgstr "Kopia zapasowa systemu"
 
 msgid "Backup Location"
-msgstr "Lokalizacja Kopii Zapasowej"
+msgstr "Lokalizacja kopii zapasowej"
 
 msgid "Backup Log"
 msgstr "Log kopii zapasowych"
@@ -3732,13 +3732,13 @@ msgid "Boost green"
 msgstr "Zwiększ zielony"
 
 msgid "Boot time"
-msgstr ""
+msgstr "Czas uruchamiania"
 
 msgid "Boot time and local date/time"
-msgstr ""
+msgstr "Czas uruchamiania i lokalna data/czas"
 
 msgid "Boot time and local time"
-msgstr ""
+msgstr "Czas uruchamiania i lokalny czas"
 
 msgid "Boot-up action"
 msgstr "Proces rozruchu"
@@ -3790,13 +3790,13 @@ msgid "Brightness"
 msgstr "Jasność"
 
 msgid "Brightness (Dimmed)"
-msgstr "Jasność (Przyciemniona)"
+msgstr "Jasność przyciemniona"
 
 msgid "Brightness (Normal)"
-msgstr "Jasność (Tryb pracy)"
+msgstr "Jasność"
 
 msgid "Brightness (Standby)"
-msgstr "Jasność (w trybie czuwania)"
+msgstr "Jasność czuwanie"
 
 msgid "British Indian Ocean Territory"
 msgstr "Brytyjskie Terytorium Oceanu Indyjskiego"
@@ -4566,7 +4566,7 @@ msgstr ""
 "IceTV."
 
 msgid "Choose a setting where your receiver wakes up from standby."
-msgstr "Wybierz ustawienie, w którym odbiornik budzi się z trybu gotowości."
+msgstr "Wybierz ustawienie, w którym odbiornik budzi się z trybu czuwania."
 
 msgid "Choose a tag for easy finding a recording."
 msgstr "Wybierz tag ułatwiający znalezienie nagrania."
@@ -5075,9 +5075,7 @@ msgstr ""
 msgid ""
 "Configure the brightness level of the front panel display for normal "
 "operation."
-msgstr ""
-"Skonfiguruj poziom jasności przedniego wyświetlacza dla normalnego "
-"funkcjonowania."
+msgstr "Skonfiguruj poziom jasności przedniego wyświetlacza."
 
 msgid "Configure the brightness level of the front panel display for standby."
 msgstr "Skonfiguruj poziom jasności przedniego wyświetlacza w trybie czuwaniu."
@@ -5177,8 +5175,8 @@ msgid ""
 "Configure the hard disk drive to go to standby after the specified idle time "
 "when the box is in standby."
 msgstr ""
-"Konfigurowanie dysku twardego, aby przejść do trybu gotowości po określonym "
-"czasie bezczynności, gdy odbiornik jest w trybie gotowości."
+"Konfigurowanie dysku twardego, aby przejść do trybu czuwania po określonym "
+"czasie bezczynności, gdy odbiornik jest w trybie czuwania."
 
 msgid ""
 "Configure the hard disk drive to go to standby after the specified idle time."
@@ -6135,13 +6133,13 @@ msgid "Debug Logs"
 msgstr "Logi Diagnostyczne"
 
 msgid "Debug log time format *"
-msgstr ""
+msgstr "Format czasu w logu debugowania *"
 
 msgid "Decryption & Parental Control"
 msgstr "Moduł i Kontrola Rodzicielska"
 
 msgid "Deep Standby"
-msgstr "Głębokie Czuwanie"
+msgstr "Głębokie czuwanie"
 
 msgid "Deep standby"
 msgstr "Głębokie czuwanie"
@@ -6201,7 +6199,7 @@ msgid "Default file sorting right"
 msgstr "Domyślne sortowanie plików prawo"
 
 msgid "Default files/folders to backup"
-msgstr "Domyślne Pliki/Foldery do utworzenia kopii zapasowej"
+msgstr "Domyślne pliki, foldery kopii zapasowej"
 
 msgid "Default folder"
 msgstr "Domyślny folder"
@@ -6564,7 +6562,7 @@ msgstr "Przygaś ekran po"
 msgid ""
 "Dim the LCD to the level from 'Brightness (Dimmed)' after specified time."
 msgstr ""
-"Przyciemnij wyświetlacz LCD do poziomu z „Jasność (przyciemniona)” po "
+"Przyciemnij wyświetlacz LCD do poziomu z pozycji „Jasność przyciemniona” po "
 "określonym czasie."
 
 msgid "Direct playback of linked titles without menu"
@@ -8314,7 +8312,7 @@ msgid "Filename"
 msgstr "Nazwa pliku"
 
 msgid "Files/folders to exclude from backup"
-msgstr "Pliki/Foldery do wykluczenia z kopii zapasowej"
+msgstr "Pliki, foldery wykluczone z kopii zapasowej"
 
 msgid "Filesystem Check"
 msgstr "Sprawdź system plików"
@@ -8403,10 +8401,10 @@ msgid "Flash On the Fly"
 msgstr "Zainstaluj w locie"
 
 msgid "Flash Online"
-msgstr "Zainstaluj oprogramowanie"
+msgstr "Zainstaluj system"
 
 msgid "Flash Online a new image"
-msgstr "Zainstaluj nowe oprogramowanie"
+msgstr "Zainstaluj nowy system online"
 
 #, python-format
 msgid "Flash directory '%s' not allowed!"
@@ -9050,7 +9048,7 @@ msgid "Handle input from TV"
 msgstr "Obsługuj dane wejściowe z telewizora"
 
 msgid "Handle standby from TV"
-msgstr "Obsługuje komendę 'gotowości' z TV"
+msgstr "Obsługuj komendę 'czuwania' z TV"
 
 msgid "Handle wakeup from TV"
 msgstr "Obsługuje komendę 'budzenia' z TV"
@@ -9059,10 +9057,10 @@ msgid "Hard disk setup"
 msgstr "Ustawienia HDD"
 
 msgid "Hard disk standby after"
-msgstr "Tryb gotowości dysku twardego po"
+msgstr "Tryb czuwania dysku twardego po"
 
 msgid "Hard disk standby in box standby after"
-msgstr "Gotowość dysku twardego w trybie gotowości po"
+msgstr "Czuwanie dysku twardego w trybie czuwania po"
 
 msgid "Harddisk"
 msgstr "Dysk twardy"
@@ -9114,7 +9112,7 @@ msgid ""
 "backupfile by default (E2-setup, channels, network)."
 msgstr ""
 "Tutaj możesz przeglądać (ale nie modyfikować) pliki, które są domyślnie "
-"dodawane do pliku kopii zapasowej (E2-setup, kanały, sieć)."
+"dodawane do pliku kopii zapasowej (ustawienia, kanały, sieć)."
 
 msgid "Here you can select which files should be excluded from the backup."
 msgstr ""
@@ -9196,7 +9194,7 @@ msgid "History back"
 msgstr "'w Lewo/w Prawo' wstecz"
 
 msgid "History buttons mode"
-msgstr "Akcja dla przycisku 'w Lewo/w Prawo'"
+msgstr "Akcja dla przycisku 'Lewo/Prawo'"
 
 msgid "History long"
 msgstr "'w Lewo/w Prawo' długo"
@@ -9670,7 +9668,7 @@ msgid "Ignore DVB-T namespace sub network"
 msgstr "Ignoruj przestrzeń nazw podsieći DVB-T"
 
 msgid "Ignore unexpectedly wakeup and stay in standby"
-msgstr "Ignoruj nieoczekiwanie budzenie i pozostań w trybie gotowości"
+msgstr "Ignoruj nieoczekiwanie budzenie i pozostań w trybie czuwania"
 
 msgid "Image"
 msgstr "System"
@@ -9685,7 +9683,7 @@ msgid "Image Manager"
 msgstr "Menedżer systemu"
 
 msgid "Image Version"
-msgstr "System"
+msgstr "Wersja systemu"
 
 #, python-format
 msgid "Image created on: %s/%s-%s-%s-backup-%s_recovery_emmc.zip"
@@ -9707,7 +9705,7 @@ msgstr ""
 "%s"
 
 msgid "Image-Version"
-msgstr "System"
+msgstr "Wersja systemu"
 
 msgid "ImageWizard"
 msgstr "Kreator systemu"
@@ -10460,7 +10458,7 @@ msgid "LED Normal"
 msgstr "LED Normalne"
 
 msgid "LED Standby"
-msgstr "LED trybie gotowości"
+msgstr "LED trybie czuwania"
 
 msgid "LED brightness during deep standby."
 msgstr "LED jasność podczas głębokiego czuwania."
@@ -10469,7 +10467,7 @@ msgid "LED brightness during normal operations."
 msgstr "LED jasność podczas normalnych operacji."
 
 msgid "LED brightness during standby."
-msgstr "LED jasność w trybie czuwania."
+msgstr "Jasność LED w trybie czuwania."
 
 msgid "LNB"
 msgstr "LNB"
@@ -10753,13 +10751,13 @@ msgid "Local box"
 msgstr "Lokalny odbiornik"
 
 msgid "Local date/time"
-msgstr ""
+msgstr "Lokalna data/czas"
 
 msgid "Local network"
 msgstr "Lokalna Sieć"
 
 msgid "Local time"
-msgstr ""
+msgstr "Lokalny czas"
 
 msgid "Locale"
 msgstr "Miejscowy"
@@ -12128,7 +12126,7 @@ msgid "No services/providers selected"
 msgstr "Brak wybranych kanałów/dostawców"
 
 msgid "No standby"
-msgstr "Brak gotowości"
+msgstr "Brak czuwania"
 
 msgid "No suitable sat tuner found!"
 msgstr "Nie znaleziono odpowiedniego tunera satelitarnego!"
@@ -12650,10 +12648,10 @@ msgid "OpenVpn Setup"
 msgstr "OpenVPN-Ustawienie"
 
 msgid "Operating LED status in deep standby mode"
-msgstr "Status pracy diody LED w trybie głębokiego czuwania"
+msgstr "Stan diody LED w trybie głębokiego czuwania"
 
 msgid "Operating LED status in standby mode"
-msgstr "Działanie statusu diody LED w trybie gotowości"
+msgstr "Działanie statusu diody LED w trybie czuwania"
 
 msgid "Operating LED status while running"
 msgstr "Stan diody LED podczas pracy"
@@ -12668,7 +12666,7 @@ msgid "Option to disable picons on the Infobar"
 msgstr "Opcja wyłączenia pikon na pasku informacyjnym"
 
 msgid "Option to enable the Hardware Standby Timer"
-msgstr "Opcja włączania timera w trybie czuwania odbiornika"
+msgstr "Opcja włączania timera w trybie czuwania"
 
 msgid "Orbital position"
 msgstr "Pozycja orbitalna"
@@ -13020,8 +13018,8 @@ msgid ""
 "Perform a settings backup, making a backup before updating is strongly "
 "advised."
 msgstr ""
-"Wykonaj kopię zapasową ustawień, wykonywanie kopii zapasowej przed "
-"aktualizacją jest silnie zalecane."
+"Wykonaj kopię zapasową ustawień, wykonanie kopii zapasowej przed "
+"aktualizacją systemu jest zalecane."
 
 msgid "Perform an online update check in the background"
 msgstr "Wykonaj aktualizacji online w tle"
@@ -13693,7 +13691,7 @@ msgid "Power LED state during standby."
 msgstr "Stan LED od zasilania podczas czuwania."
 
 msgid "Power On Display"
-msgstr "Włączanie Wyświetlacza"
+msgstr "Włączanie wyświetlacza"
 
 msgid "Power long"
 msgstr "Przycisk zasilania (długo)"
@@ -13714,7 +13712,7 @@ msgid "PowerTimer"
 msgstr "Timer Zasilania"
 
 msgid "PowerTimer DeepStandby"
-msgstr "Timer zasilania Głębokie Czuwanie"
+msgstr "Timer głębokie czuwanie"
 
 msgid "PowerTimer Entry"
 msgstr "PowerMenadżer Wpis"
@@ -13729,7 +13727,7 @@ msgid "PowerTimer Overview"
 msgstr "Przegląd Timera Zasilania"
 
 msgid "PowerTimer Standby"
-msgstr "Timer Zasilania Czuwanie"
+msgstr "Timer czuwanie"
 
 msgid "PowerTimers"
 msgstr "Timery Zasilania"
@@ -14050,7 +14048,7 @@ msgid "Protect services"
 msgstr "Zabezpiecz Kanały"
 
 msgid "Protect standby menu"
-msgstr "Chroń Menu Gotowości"
+msgstr "Chroń menu czuwania"
 
 msgid "Protect timer menu"
 msgstr "Chroń Menu Timera"
@@ -14119,7 +14117,7 @@ msgid "Put TV in standby"
 msgstr "Przełącz TV w stan czuwania"
 
 msgid "Put your AV Receiver in standby"
-msgstr "Przełącz odbiornik AV w tryb gotowości"
+msgstr "Przełącz odbiornik AV w tryb czuwania"
 
 msgid "Python frontend for /tmp/mmi.socket"
 msgstr "Python nakładka na /tmp/mmi.socket"
@@ -14198,10 +14196,10 @@ msgid "REC Symbol"
 msgstr "Symbol REC"
 
 msgid "REC Symbol in Standby"
-msgstr "Symbol REC w trybie gotowości"
+msgstr "Symbol REC w trybie czuwania"
 
 msgid "REC Symbol in use"
-msgstr "Symbol REC w użyciu"
+msgstr "Symbol REC"
 
 msgid "RF output"
 msgstr "Wyjście RF"
@@ -14408,7 +14406,7 @@ msgid ""
 "Entering standby, after recording the box will shutdown."
 msgstr ""
 "Nagrywanie jest w toku lub rozpocznie się za kilka sekund!\n"
-"Wchodzenie w tryb gotowości, po nagraniu tuner się wyłączy."
+"Wchodzenie w tryb czuwania, po nagraniu tuner się wyłączy."
 
 msgid "Recordings"
 msgstr "Nagrywania"
@@ -14490,7 +14488,7 @@ msgid "Refresh screen"
 msgstr "Odśwież ekran"
 
 msgid "Regard deep standby as standby"
-msgstr "Traktować głęboką gotowość jako tryb gotowości"
+msgstr "Traktować głębokie czuwanie jako tryb czuwania"
 
 msgid "Region"
 msgstr "Region"
@@ -14686,10 +14684,10 @@ msgid "Repeat Display Message"
 msgstr "Powtórz wyświetlaną wiadomość"
 
 msgid "Repeat the sent standby and wakeup commands"
-msgstr "Powtórz wysłane polecenia gotowości i wznowienia"
+msgstr "Powtórz wysłane polecenia czuwania i wznowienia"
 
 msgid "Repeat the standby commands?"
-msgstr "Powtórzyć polecenia gotowości?"
+msgstr "Powtórzyć polecenia czuwania?"
 
 msgid "Repeat type"
 msgstr "Typ powtórzenia"
@@ -15067,7 +15065,7 @@ msgid "STARTUP_"
 msgstr "STARTUP_"
 
 msgid "STB Display"
-msgstr "Wyświetlacz STB"
+msgstr "Wyświetlacz przedni"
 
 msgid "Saga"
 msgstr "Saga"
@@ -15340,7 +15338,7 @@ msgid "Script '%s' must have read permission to be able to run it"
 msgstr "Skrypt '%s' musi mieć uprawnienia do odczytu, aby móc go uruchomić"
 
 msgid "Script Manager"
-msgstr ""
+msgstr "Menadżer skryptów"
 
 msgid "ScriptRunner"
 msgstr "Script Runner"
@@ -15567,7 +15565,7 @@ msgid "Select Red-key action"
 msgstr "Akcja dla przycisku 'Czerwony'"
 
 msgid "Select Red-key action long"
-msgstr "Akcja dla przycisku (długo) 'Czerwony'"
+msgstr "Akcja dla przycisku 'Czerwony' (długo)"
 
 msgid "Select Software Update"
 msgstr "Wybierz aktualizację systemu"
@@ -15576,7 +15574,7 @@ msgid "Select Yellow Key Action"
 msgstr "Akcja dla przycisku 'Żółty'"
 
 msgid "Select Yellow Key Action long"
-msgstr "Akcja dla przycisku (długo) 'Żółty'"
+msgstr "Akcja dla przycisku 'Żółty' (długo)"
 
 msgid "Select Your Skin"
 msgstr "Wybierz swoją skórę"
@@ -15616,10 +15614,10 @@ msgid "Select action for timer %s:"
 msgstr "Wybierz akcję dla Timera %s:"
 
 msgid "Select additional backup files"
-msgstr "Wybierz dodatkowe pliki kopii zapasowej"
+msgstr "Dodatkowe pliki kopii zapasowej"
 
 msgid "Select additional files to backup"
-msgstr "Wybierz dodatkowe pliki do wykonania kopii zapasowej"
+msgstr "Wybierz dodatkowe pliki kopii zapasowej"
 
 msgid "Select an image to be downloaded"
 msgstr "Wybierz img. do pobrania"
@@ -15658,7 +15656,7 @@ msgid "Select files to exclude from backup"
 msgstr "Wybierz pliki, które chcesz wykluczyć z kopii zapasowej"
 
 msgid "Select files/folders to backup"
-msgstr "Wybierz Pliki/Foldery do kopii zapasowej"
+msgstr "Wybierz pliki, foldery kopii zapasowej"
 
 msgid "Select folders"
 msgstr "Wybierz foldery"
@@ -15951,8 +15949,8 @@ msgid ""
 "Select what should be done when the %s %s was boot-up, normal playing or "
 "goto standby."
 msgstr ""
-"Wybierz,co należy zrobić,gdy %s %s uruchamia się z normalnie lub idzie do "
-"gotowości."
+"Wybierz, co należy zrobić, gdy %s %s uruchamia się z normalnie lub idzie do "
+"trybu czuwania."
 
 msgid ""
 "Select what should be done when the %s %s was shutdown incorrectly, or after "
@@ -16276,7 +16274,7 @@ msgid "Set Framerate for MiniTV"
 msgstr "Ustaw ilość klatek na sekundę dla MiniTV"
 
 msgid "Set System"
-msgstr "Ustaw. Systemu"
+msgstr "Ustaw system"
 
 msgid "Set action for 'Info' key"
 msgstr "Wybierz akcję dla klawisza 'INFO'"
@@ -16434,7 +16432,7 @@ msgid ""
 "restart messages. (e.g. used in Timer, PowerTimer, Sleeptimer, ...)"
 msgstr ""
 "Ustaw czas oczekiwania na wykonanie domyślnej akcji w komunikatach "
-"zamknięcia, gotowości lub ponownego uruchomienia. (np. używane w Timer, "
+"zamknięcia, czuwania lub ponownego uruchomienia. (np. używane w Timer, "
 "PowerTimer, Sleeptimer, ...)"
 
 msgid ""
@@ -16835,7 +16833,7 @@ msgid "Show CoolTVGuide"
 msgstr "Pokaż TV Super Przewodnik"
 
 msgid "Show Display Icons"
-msgstr "Pokaż Ikony Wyświetlacza"
+msgstr "Pokaż ikony wyświetlacza"
 
 msgid "Show E2 Log"
 msgstr "Pokaż Logi E2"
@@ -16895,7 +16893,7 @@ msgid "Show Merlin EPG Center"
 msgstr "Pokaż Centrum Merlin EPG"
 
 msgid "Show MiniTV in the Front Display"
-msgstr "Pokaż MiniTV na Przednim Wyświetlaczu"
+msgstr "Pokaż MiniTV na przednim wyświetlaczu"
 
 msgid "Show Movies"
 msgstr "Pokaż Filmy"
@@ -16919,7 +16917,7 @@ msgid "Show PIP in MiniTV"
 msgstr "Pokaż PIP w MiniTV"
 
 msgid "Show PIP in the Front Display"
-msgstr "Pokaż PIP na Przednim Wyświetlaczu"
+msgstr "Pokaż PIP na przednim wyświetlaczu"
 
 msgid "Show PVR status in MoviePlayer infobar"
 msgstr "Pokaż status PVR w pasku informacyjnym MoviePlayer"
@@ -17041,7 +17039,7 @@ msgid "Show default after description"
 msgstr "Pokaż domyślne po opisie"
 
 msgid "Show default backup files"
-msgstr "Pokaż domyślne pliki kopii zapasowej"
+msgstr "Domyślne pliki kopii zapasowej"
 
 msgid "Show default on new line"
 msgstr "Pokaż domyślne w nowej lini"
@@ -17092,7 +17090,7 @@ msgid "Show favourites list"
 msgstr "Pokaż listę ulubionych"
 
 msgid "Show files backed up by default"
-msgstr "Wyświetl domyślne pliki kopii zapasowej"
+msgstr "Pokaż domyślne pliki kopii zapasowej"
 
 msgid "Show graphical multi EPG"
 msgstr "Pokaż graficzne Multi-EPG"
@@ -17107,7 +17105,7 @@ msgid "Show image information"
 msgstr "Pokaż informacje o obrazie"
 
 msgid "Show in Standby"
-msgstr "Pokazać w stanie gotowości"
+msgstr "Pokaż w trybie czuwania"
 
 msgid "Show in extensions list ?"
 msgstr "Pokazać na liście rozszerzeń ?"
@@ -17265,7 +17263,7 @@ msgid "Show source packages"
 msgstr "Pokaż pakiety źródłowe"
 
 msgid "Show spinning logo when system is busy."
-msgstr "Pokaż spinner,gdy system jest zajęty."
+msgstr "Pokaż spinner, gdy system jest zajęty."
 
 msgid "Show status icons in movielist"
 msgstr "Pokaż ikony statusu na liście filmów"
@@ -17384,7 +17382,7 @@ msgid "Shows available softcams. Here you can download and install them"
 msgstr "Pokazuje dostępne softcamy. Tutaj możesz je pobrać i zainstalować"
 
 msgid "Shows live tv or informations on LCD."
-msgstr "Pokazuje aktualny kanał TV lub informacje na wyświetlaczu LCD."
+msgstr "Pokazuje aktualny kanał TV lub informacje na przednim wyświetlaczu."
 
 msgid "Shows the icons when new/unseen, else will not show an icon."
 msgstr "Pokazuje ikony, gdy nowe/niewidzialne, inaczej nie pokaże ikony."
@@ -17547,7 +17545,7 @@ msgid "Sleep"
 msgstr "Uśpienie"
 
 msgid "Sleep Timer"
-msgstr "Wyłącznik Czasowy"
+msgstr "Timer"
 
 msgid "Sleep delay"
 msgstr "Opóźnienie uśpienia"
@@ -17726,7 +17724,7 @@ msgid ""
 msgstr ""
 "Niektóre urządzenia telewizyjne nie mogą ustawić poprawnego wejścia, jeśli "
 "aktywny jest inny port HDMI. To ustawienie wcześniej ustawiało telewizor w "
-"tryb gotowości.\n"
+"tryb czuwania.\n"
 "(Jeśli telewizor się nie włącza, może wymagać wolniejszej przerwy w "
 "transmisji lub powtarzania poleceń budzenia)"
 
@@ -17948,7 +17946,7 @@ msgid "Standby / Restart"
 msgstr "Czuwanie / Restart"
 
 msgid "Standby / restart"
-msgstr "Czuwanie /restart"
+msgstr "Czuwanie / Restart"
 
 msgid "Standby without TV shutdown"
 msgstr "Tryb czuwania bez wyłączania TV"
@@ -18020,10 +18018,10 @@ msgid "Status of the display during operation"
 msgstr "Status wyświetlacza podczas pracy"
 
 msgid "Status of the display in deep standby"
-msgstr "Status wyświetlacza w głębokim trybie gotowości"
+msgstr "Status wyświetlacza w głębokim czuwaniu"
 
 msgid "Status of the display in standby mode"
-msgstr "Status wyświetlacza w trybie gotowości"
+msgstr "Status wyświetlacza w trybie czuwania"
 
 msgid "Status:"
 msgstr "Status:"
@@ -18448,7 +18446,7 @@ msgid "System Info"
 msgstr "Informacje o systemie"
 
 msgid "System Message Check"
-msgstr "Kontrola Komunikatów Systemowych"
+msgstr "Kontrola komunikatów systemowych"
 
 msgid "System Setup"
 msgstr "Ustawienia systemu"
@@ -18458,16 +18456,16 @@ msgstr "Wolne miejsce partycji systemowej:"
 
 #, python-format
 msgid "System temperature:\t%s"
-msgstr "Ogólna temp.odbiornika:\t%s"
+msgstr "Temperatura odbiornika:\t%s"
 
 msgid "System: "
 msgstr "System: "
 
 msgid "SystemInfo"
-msgstr "System"
+msgstr "Informacje o systemie"
 
 msgid "Systeminfo"
-msgstr "System"
+msgstr "Informacje o systemie"
 
 msgid "T2MI PID"
 msgstr "T2MI PID"
@@ -18655,7 +18653,7 @@ msgid "Testscreens"
 msgstr "Ekrany Testowe"
 
 msgid "Testscreens that are helpfull to fine-tune your display"
-msgstr "Zdjęcia testowe do dostrajania wyświetlacza"
+msgstr "Zdjęcia testowe do dostrajania obrazu"
 
 msgid "Text"
 msgstr "Tekst"
@@ -18856,7 +18854,7 @@ msgid ""
 "Please use the 'additional' and 'excluded' backup selection."
 msgstr ""
 "Domyślnie wybranej kopii zapasowej nie można zmienić.\n"
-"Proszę użyj 'dodatkowych' i 'wyłączonych' z wyboru kopii zapasowyvh."
+"Proszę użyj 'dodatkowych' i 'wyłączonych' z wyboru kopii zapasowych."
 
 msgid ""
 "The default settings are 5 minutes earlier to wakeup from deep standby. It "
@@ -18964,10 +18962,10 @@ msgstr ""
 "Nagrania, zakres czasu)."
 
 msgid "The sleep timer has been activated."
-msgstr "Wyłącznik czasowy został aktywowany."
+msgstr "Timer został aktywowany."
 
 msgid "The sleep timer has been disabled."
-msgstr "Wyłącznik czasowy został wyłączony."
+msgstr "Timer został wyłączony."
 
 msgid ""
 "The software management extension is not installed!\n"
@@ -19199,7 +19197,7 @@ msgid ""
 "seconds."
 msgstr ""
 "Jest to obejście dla niektórych urządzeń, które budzą się ponownie po "
-"przełączeniu w tryb gotowości. Polecenia wybudzenia z innych urządzeń będą "
+"przełączeniu w tryb czuwania. Polecenia wybudzenia z innych urządzeń będą "
 "ignorowane przez kilka sekund."
 
 #, python-format
@@ -19269,8 +19267,8 @@ msgstr ""
 msgid ""
 "This option allows you choose how to display the Time or nothing in Standby"
 msgstr ""
-"Ta opcja pozwala wybrać sposób wyświetlania czasu lub niczego w trybie "
-"gotowości"
+"Ta opcja pozwala wybrać sposób wyświetlania czasu lub braku wyświetlania w "
+"trybie czuwania"
 
 msgid ""
 "This option allows you choose how to display the remaining/elapsed time for "
@@ -19584,6 +19582,8 @@ msgid ""
 "This sets the prefix for each line in the debug log. The 'Boot time' is the "
 "number of seconds since your %s %s was last booted."
 msgstr ""
+"Ustawia prefiks dla każdej linii w dzienniku debugowania. Czas uruchamiania "
+"to liczba sekund od ostatniego uruchomienia %s %s."
 
 msgid ""
 "This setting allows the tuner configuration to be a duplication of how "
@@ -19733,13 +19733,13 @@ msgid "Time delay of the shutdown messages"
 msgstr "Opóźnienie czasowe komunikatów wyłączania"
 
 msgid "Time delay until standby or deep standby"
-msgstr "Opóźnienie czasowe do stanu gotowości lub głębokiego czuwania"
+msgstr "Opóźnienie czasowe do trybu czuwania lub głębokiego czuwania"
 
 msgid "Time for Slideshow"
 msgstr "Czas na pokaz slajdów"
 
 msgid "Time for next LCD scrolling"
-msgstr "Czas następnego przewijania wyświetlacza LCD"
+msgstr "Czas następnego przewijania przedniego wyświetlacza"
 
 msgid "Time history"
 msgstr "Historia czasu"
@@ -19822,10 +19822,10 @@ msgstr "Wpis Timera"
 
 #, python-format
 msgid "Timer is activated: +%d min"
-msgstr "Timer jest aktywny: +%d min"
+msgstr "Timer aktywny: +%d min"
 
 msgid "Timer is not activated"
-msgstr "Timer nie jest aktywny"
+msgstr "Timer nieaktywny"
 
 msgid "Timer log"
 msgstr "Log Timera"
@@ -20680,7 +20680,7 @@ msgid "Use HDMI-preemphasis"
 msgstr "Użyj wstępnego wyróżnienia HDMI"
 
 msgid "Use Harddisk Hardware Standby Timer"
-msgstr "Użyj twardego dysku w trybie czuwania(Timer)"
+msgstr "Użyj sprzętowego Timera czuwania dla HDD"
 
 msgid "Use Keymap"
 msgstr "Użyć mapowania klawiszy"
@@ -21467,9 +21467,9 @@ msgid ""
 "the firmware of your %s %s by providing a backup facility for your current "
 "settings and a short explanation of how to upgrade your firmware."
 msgstr ""
-"Witaj w kreatorze aktualizacji oprogramowania. kreator będzie asystował przy "
-"aktualizacji oprogramowania %s %s poprzez zapewnienie kopii zapasowej "
-"łatwości aktualizacji i krótko wyjaśni jak zaktualizować oprogramowanie."
+"Witaj w kreatorze aktualizacji systemu. kreator będzie asystował przy "
+"aktualizacji systemu %s %s poprzez zapewnienie kopii zapasowej łatwości "
+"aktualizacji i krótko wyjaśni jak zaktualizować system."
 
 msgid ""
 "Welcome.\n"
@@ -21540,8 +21540,8 @@ msgid ""
 msgstr ""
 "Jakie działania są podejmowane po ukończeniu Timera? \"Auto\" pozwala, aby "
 "tuner powrócił do stanu, w którym znajdował się podczas uruchomienia Timera. "
-"\"Nie rób nic\", \"Przejdź do trybu gotowości\" i \"Przejdź do trybu "
-"głębokiej gotowości\", wykonuje dokładnie to co jest napisane."
+"\"Nie rób nic\", \"Przejdź do trybu czuwania\" i \"Przejdź do trybu "
+"głębokiego czuwania\", wykonuje dokładnie to co jest napisane."
 
 msgid "What do you want to play?\n"
 msgstr "Co chcesz odtworzyć?\n"
@@ -21970,7 +21970,7 @@ msgstr ""
 "Dzięki tej opcji możesz wyłączyć wyświetlacz w trybie głębokiego czuwania."
 
 msgid "With this option you can switch off the display in Standby Mode."
-msgstr "Dzięki tej opcji możesz wyłączyć wyświetlacz w trybie gotowości."
+msgstr "Dzięki tej opcji możesz wyłączyć wyświetlacz w trybie czuwania."
 
 msgid "With this option you can switch the LED color or deactivate the LED."
 msgstr ""
@@ -22185,7 +22185,7 @@ msgid ""
 "from standby and immediately switch back to standby."
 msgstr ""
 "Możesz pominąć tę funkcję i wyłączyć telewizor po wybudzeniu odbiornika z "
-"trybu gotowości i natychmiastowym przełączeniu z powrotem do trybu gotowości."
+"trybu czuwania i natychmiastowym przełączeniu z powrotem do trybu czuwania."
 
 #, python-format
 msgid "You can switch with left and right this tuner types %s"
@@ -23375,7 +23375,7 @@ msgid "goto now"
 msgstr "Idź do teraz"
 
 msgid "goto standby"
-msgstr "przejść do trybu gotowości"
+msgstr "przejdź do trybu czuwania"
 
 msgid "grab this frame as bitmap"
 msgstr "zrób zrzut ekranu (.bmp)"
@@ -23584,7 +23584,7 @@ msgid "magazines/reports/documentary"
 msgstr "reportaż/dokument/magazyn"
 
 msgid "making a backup before updating"
-msgstr "tworzenia kopii zapasowej przed aktualizacją"
+msgstr "tworzenie kopii zapasowej przed aktualizacją"
 
 msgid "manage local Files"
 msgstr "zarządzaj lokalnymi plikami"
@@ -23794,7 +23794,7 @@ msgid "only HD"
 msgstr "tylko HD"
 
 msgid "only in Standby"
-msgstr "tylko w trybie gotowości"
+msgstr "tylko w tryb czuwania"
 
 msgid "openATV"
 msgstr "openATV"
