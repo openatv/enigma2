@@ -106,7 +106,7 @@ class LocaleSelection(Screen, HelpableScreen):
 			"select": (self.keySelect, _("Select the currently highlighted locale/language for the user interface")),
 			"close": (self.closeRecursive, _("Cancel any changes the active locale/language and exit all menus")),
 			"cancel": (self.keyCancel, _("Cancel any changes to the active locale/language and exit")),
-			"save": (self.keySave, _("Apply any changes to the active locale/langauge and exit"))
+			"save": (self.keySave, _("Apply any changes to the active locale/language and exit"))
 		}, prio=0, description=_("Locale/Language Selection Actions"))
 		self["manageActions"] = HelpableActionMap(self, "LocaleSelectionActions", {
 			"manage": (self.keyManage, (_("Purge all but / Add / Delete the currently highlighted locale/language"), _("Purge all but the current and permanent locales/languages.  Add the current locale/language if it is not installed.  Delete the current locale/language if it is installed.")))
