@@ -74,7 +74,7 @@
 ----------
 10 - Clone oe-alliance git
 
-    git clone git://github.com/oe-alliance/build-enviroment.git -b 4.4
+    git clone https://github.com/oe-alliance/build-enviroment.git -b 4.4
 
 ----------
 11 - Switch to folder build-enviroment
