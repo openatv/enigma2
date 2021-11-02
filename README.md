@@ -92,7 +92,7 @@
 1. Clone oe-alliance repository
 
     ```sh
-    git clone git://github.com/oe-alliance/build-enviroment.git -b 5.0
+    git clone https://github.com/oe-alliance/build-enviroment.git -b 5.0
     ```
 
 1. Switch to folder build-enviroment
