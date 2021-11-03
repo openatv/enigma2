@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-10-28 19:26+0000\n"
-"PO-Revision-Date: 2021-10-31 11:38+0000\n"
-"Last-Translator: Grzegorz <grzegorz914@icloud.com>\n"
+"PO-Revision-Date: 2021-11-03 12:35+0000\n"
+"Last-Translator: pololoko111 <peciek83@gmail.com>\n"
 "Language-Team: Polish <https://hosted.weblate.org/projects/openatv/"
 "enigma2-7-0-po/pl/>\n"
 "Language: pl\n"
@@ -2060,9 +2060,10 @@ msgid ""
 "Extend sleep timer 30 minutes. Your %s %s\n"
 "will shut down after Recording or Powertimer event. Get in Standby now?"
 msgstr ""
-"Nagrywanie, RecordTimer lub PowerTimer działa lub zaczyna się za 15 minut.\n"
+"Nagrywanie, timer nagrywania lub zasilania działa lub zaczyna się za 15 "
+"minut.\n"
 "Wydłuż czas czuwania 30 minut. Twój %s %s\n"
-"wyłączy się po zapisie lub wydarzeniu Powertimer. Przejść do trybu czuwania?"
+"wyłączy się po zakończeniu timera. Przejść do trybu czuwania?"
 
 msgid ""
 "A background update check is in progress, please wait a few minutes and try "
@@ -2096,14 +2097,14 @@ msgid ""
 "A finished powertimer wants to reboot your %s %s.\n"
 "Do that now?"
 msgstr ""
-"Wykonany PowerTimer chce ponownie uruchomić Twój %s %s.\n"
+"Wykonany timer zasilania chce ponownie uruchomić %s %s.\n"
 "Zrobić to teraz?"
 
 msgid ""
 "A finished powertimer wants to restart the user interface.\n"
 "Do that now?"
 msgstr ""
-"Gotowe PowerTimer chce ponownie uruchomić interfejs użytkownika.\n"
+"Wykonany timer zasilania chce ponownie uruchomić interfejs użytkownika.\n"
 "Zróbić to teraz?"
 
 #, python-format
@@ -2111,7 +2112,7 @@ msgid ""
 "A finished powertimer wants to set your\n"
 "%s %s to standby. Do that now?"
 msgstr ""
-"Wykonany PowerTimer chce ustawić Twój\n"
+"Wykonany timer zasilania chce ustawić\n"
 "%s %s w stan czuwania. Zrobić to teraz?"
 
 #, python-format
@@ -2119,7 +2120,7 @@ msgid ""
 "A finished powertimer wants to shutdown your %s %s.\n"
 "Do that now?"
 msgstr ""
-"Timer chce wyłączyć %s %s.\n"
+"Timer zasilania chce wyłączyć %s %s.\n"
 "Zrobić to teraz?"
 
 #, python-format
@@ -2127,7 +2128,7 @@ msgid ""
 "A finished record timer wants to set your\n"
 "%s %s to standby. Do that now?"
 msgstr ""
-"Wykonany timer nagrywania chce przełączyć Twój\n"
+"Wykonany timer nagrywania chce przełączyć\n"
 "%s %s w tryb czuwania. Zrobić to teraz?"
 
 #, python-format
@@ -2135,8 +2136,8 @@ msgid ""
 "A finished record timer wants to shut down\n"
 "your %s %s. Shutdown now?"
 msgstr ""
-"Wykonany timer nagrywania chce wyłączyć\n"
-"Twój %s %s. Wyłączyć teraz?"
+"Wykonany timer nagrywania chce wyłączyć %s %s.\n"
+"Wyłączyć teraz?"
 
 msgid ""
 "A highlight on the remote control image shows which button the help refers "
@@ -2186,7 +2187,7 @@ msgstr ""
 "sygnału."
 
 msgid "A repeating timer or just once?"
-msgstr "Powtarzanie Timera czy tylko raz?"
+msgstr "Powtarzanie timera lub tylko raz?"
 
 #, python-format
 msgid "A required tool (%s) was not found."
@@ -2209,7 +2210,7 @@ msgid ""
 "A sleep timer wants to set your\n"
 "%s %s to standby. Do that now?"
 msgstr ""
-"Timer chce przełączyć Twój\n"
+"Timer chce przełączyć\n"
 "%s %s w tryb czuwania. Zrobić to teraz?"
 
 #, python-format
@@ -2217,7 +2218,7 @@ msgid ""
 "A sleep timer wants to set your %s %s to standby.\n"
 "Do that now or set extend additional minutes?"
 msgstr ""
-"Timer chce przełączyć Twój %s %s w tryb czuwania.\n"
+"Timer chce przełączyć %s %s w tryb czuwania.\n"
 "Zobić to teraz czy ustawić dodatkowe minuty?"
 
 #, python-format
@@ -2225,16 +2226,16 @@ msgid ""
 "A sleep timer wants to shut down\n"
 "your %s %s. Shutdown now?"
 msgstr ""
-"Timer chce wyłączyć\n"
-"Twój %s %s. Wyłączyć teraz?"
+"Timer chce wyłączyć %s %s.\n"
+"Wyłączyć teraz?"
 
 #, python-format
 msgid ""
 "A sleep timer wants to shut down your %s %s.\n"
 "Do that now or set extend additional minutes?"
 msgstr ""
-"Timer chce wyłączyć Twój %s %s.\n"
-"Zobić to teraz czy ustawić dodatkowe minuty?"
+"Timer chce wyłączyć %s %s.\n"
+"Zobić to teraz czy ustawić dodatkowy czas?"
 
 msgid "A small overview of the available icon states and actions."
 msgstr "Mały przegląd dostępnych stanów ikon i ich działań."
@@ -2243,28 +2244,28 @@ msgid ""
 "A timer failed to record!\n"
 "Abort pseudo recordings (e.g. EPG refresh) and try again?\n"
 msgstr ""
-"Nagrywanie z Timera nie powiodło się!\n"
+"Nagrywanie z timera nie powiodło się!\n"
 "Przerwać pseudo nagrania (np. Odświeżyć EPG) i spróbować ponownie?\n"
 
 msgid ""
 "A timer failed to record!\n"
 "Abort streaming and try again?\n"
 msgstr ""
-"Nagrywanie z Timera nie powiodło się!\n"
+"Nagrywanie z timera nie powiodło się!\n"
 "Wyłączyć strumieniowanie i spróbować ponownie?\n"
 
 msgid ""
 "A timer failed to record!\n"
 "Disable PIP and try again?\n"
 msgstr ""
-"Nagrywanie z Timera nie powiodło się!\n"
+"Nagrywanie z timera nie powiodło się!\n"
 "Wyłączyć PiP i spróbować ponownie?\n"
 
 msgid ""
 "A timer failed to record!\n"
 "Disable TV and try again?\n"
 msgstr ""
-"Nagrywanie z Timera nie powiodło się!\n"
+"Nagrywanie z timera nie powiodło się!\n"
 "Wyłączyć odbiornik i spróbować ponownie?\n"
 
 msgid "AAC Plus downmix"
@@ -2356,10 +2357,10 @@ msgid "Action"
 msgstr "Akcja"
 
 msgid "Action on long powerbutton press"
-msgstr "Działanie po długim naciśnięciu 'Power'"
+msgstr "Akcja dla przycisku 'Power' (długo)"
 
 msgid "Action on short powerbutton press"
-msgstr "Działanie po krótkim naciśnięciu 'Power'"
+msgstr "Akcja dla przycisku 'Power'"
 
 msgid "Activate"
 msgstr "Aktywuj"
@@ -2437,22 +2438,22 @@ msgid "Add"
 msgstr "Dodaj"
 
 msgid "Add AutoTimer"
-msgstr "Dodaj AutoTimer"
+msgstr "Dodaj auto timer"
 
 msgid "Add New Quad Channel Entry"
 msgstr "Dodaj nowy wpis czterokanałowy"
 
 msgid "Add Record Timer"
-msgstr "Dodaj Timer Nagrywania"
+msgstr "Dodaj timer nagrywania"
 
 msgid "Add Timer"
-msgstr "Dodaj Timer"
+msgstr "Dodaj timer"
 
 msgid "Add Zap Timer"
-msgstr "Dodaj Zap Timer"
+msgstr "Dodaj zap timer"
 
 msgid "Add Zap+Record Timer"
-msgstr "Dodaj Timer Zap+Nagrywanie"
+msgstr "Dodaj timer zap + nagrywanie"
 
 msgid "Add a auto timer for current event"
 msgstr "Dodaj auto timer dla bieżącego wydarzenia"
@@ -2470,13 +2471,13 @@ msgid "Add a record timer"
 msgstr "Dodaj timer nagrywania"
 
 msgid "Add a record timer for current event"
-msgstr "Dodaj czas nagrywania dla bieżącego wydarzenia"
+msgstr "Dodaj timer nagrywania dla bieżącego wydarzenia"
 
 msgid "Add a zap timer for current event"
-msgstr "Dodaj przełączenie timera dla bieżącego wydarzenia"
+msgstr "Dodaj zap timer dla bieżącego wydarzenia"
 
 msgid "Add a zap timer for next event"
-msgstr "Dodaj timer przełączania dla następnego zdarzenia"
+msgstr "Dodaj zap timer dla następnego zdarzenia"
 
 msgid "Add bookmark"
 msgstr "Dodaj zakładkę"
@@ -2527,13 +2528,13 @@ msgid "Add title"
 msgstr "Dodaj tytuł"
 
 msgid "Add/Remove Timer"
-msgstr "Dodaj/Usuń Timer"
+msgstr "Dodaj/Usuń timer"
 
 msgid "Add/Remove timer for current event"
 msgstr "Dodaj/Usuń timer dla bieżącego wydarzenia"
 
 msgid "Add/remove change timer for current event"
-msgstr "Dodaj/Usuń zmianę Timera dla bieżącego wydarzenia"
+msgstr "Dodaj/Usuń/Zmień timer dla bieżącego wydarzenia"
 
 msgid "Adding schedule..."
 msgstr "Dodawanie harmonogramu..."
@@ -2542,7 +2543,7 @@ msgid "Additional Info"
 msgstr "Dodatkowe Informacje"
 
 msgid "Additional files/folders to backup"
-msgstr "Dodatkowe pliki, foldery kopii zapasowej"
+msgstr "Dodatkowe pliki kopii zapasowej"
 
 msgid ""
 "Additional motor options allow you to enter details from your motor's spec "
@@ -3238,10 +3239,10 @@ msgid "Auto Standby"
 msgstr "Automatyczne czuwanie"
 
 msgid "Auto Timer"
-msgstr "Auto Timer"
+msgstr "Auto timer"
 
 msgid "Auto Timers"
-msgstr "Auto Timery"
+msgstr "Auto timery"
 
 msgid "Auto Volume Level"
 msgstr "Automatyczne dopasowanie głośności"
@@ -3250,7 +3251,7 @@ msgid "Auto chapter split every ? minutes (0=never)"
 msgstr "Automatyczny podział rozdziałów co ? minuty (0=nigdy)"
 
 msgid "Auto flesh"
-msgstr "Automatyczny flesh"
+msgstr "Auto odświeżanie"
 
 msgid "Auto focus"
 msgstr "Automatyczny obrót"
@@ -3708,7 +3709,7 @@ msgid "Blue long"
 msgstr "Niebieski (długo)"
 
 msgid "BlueSwitch: Blue-Short/Blue-Long"
-msgstr "Niebieski przycisk: Krótko/Długo"
+msgstr "Akcja dla przycisku 'Niebieski' (krótko/długo)"
 
 msgid "Bluetooth Setup"
 msgstr "Ustawienia BT"
@@ -3726,10 +3727,10 @@ msgid "Bookmarks"
 msgstr "Zakładki"
 
 msgid "Boost blue"
-msgstr "Zwiększ niebieski"
+msgstr "Wzmocnienie niebieskiego"
 
 msgid "Boost green"
-msgstr "Zwiększ zielony"
+msgstr "Wzmocnienie zielonego"
 
 msgid "Boot time"
 msgstr "Czas uruchamiania"
@@ -3861,7 +3862,7 @@ msgid "By openATV Image Team"
 msgstr "Przez zespół openATV"
 
 msgid "Bypass HDMI EDID Check"
-msgstr "Kontrolować Bypass HDMI EDID"
+msgstr "Bypass HDMI EDID"
 
 msgid "Bytes received:"
 msgstr "Pobrano bajtów:"
@@ -4131,7 +4132,7 @@ msgstr ""
 "autorestore"
 
 msgid "Can't allocate program source (e.g. tuner)"
-msgstr "Nie można przydzielić źródła programu (np. Tunera)"
+msgstr "Nie można przydzielić źródła programu (np. tunera)"
 
 msgid ""
 "Can't going to live TV!\n"
@@ -4550,7 +4551,7 @@ msgid "Choose Bouquet"
 msgstr "Wybierz bukiet"
 
 msgid "Choose Tuner"
-msgstr "Wybierz Tuner"
+msgstr "Wybierz tuner"
 
 msgid "Choose a country scheme for decoding genre information in EPG events."
 msgstr ""
@@ -4867,7 +4868,7 @@ msgid "Command type"
 msgstr "Wpisz polecenie"
 
 msgid "Common Interface"
-msgstr "Moduł Dostępu CI"
+msgstr "Moduł dostępu CI"
 
 msgid "Common Interface Assignment"
 msgstr "Zadania Modułu CI"
@@ -5111,7 +5112,7 @@ msgid "Configure the duration in minutes for the screensaver."
 msgstr "Skonfiguruj czas trwania w minutach dla wygaszacza ekranu."
 
 msgid "Configure the duration in minutes for the sleep timer."
-msgstr "Skonfiguruj czas trwania w minutach dla wyłącznika czasowego."
+msgstr "Skonfiguruj czas trwania w minutach dla timera."
 
 msgid "Configure the end coordinate in x of the teletext display area."
 msgstr "Skonfiguruj współrzędną końcową w x obszaru wyświetlania telegazety."
@@ -5157,10 +5158,10 @@ msgid "Configure the fourth subtitle language."
 msgstr "Skonfiguruj czwarty język napisów."
 
 msgid "Configure the function of a long press on the power button."
-msgstr "Skonfiguruj zachowanie przycisku 'power' przy długim naciśnięciu."
+msgstr "Akcja dla przycisku 'Power' po długim naciśnięciu."
 
 msgid "Configure the function of a short press on the power button."
-msgstr "Skonfiguruj zachowanie przycisku 'power' przy krótkim naciśnięciu."
+msgstr "Akcja dla przycisku 'Power' po krótkim naciśnięciu."
 
 msgid "Configure the function of the <  > buttons."
 msgstr "Ustawienia funkcji przycisków '<  >'."
@@ -5426,7 +5427,7 @@ msgid ""
 "in customise screen. 'Auto' would choose based on E2's default rules, "
 "ignoring preferred tuner in customise screen."
 msgstr ""
-"Skonfiguruj który tuner preferowany będzie nagrywać,gdy więcej niż jeden "
+"Skonfiguruj który tuner preferowany będzie nagrywać, gdy więcej niż jeden "
 "tuner jest dostępny."
 
 msgid ""
@@ -5557,7 +5558,7 @@ msgid "Control LED can be turned on or off here."
 msgstr "Kontrolną diodę LED można tutaj włączyć lub wyłączyć."
 
 msgid "Control of the position how finished timer are shown in the Timer List."
-msgstr "Kontrola,jaki czas pozycji zakończenia przedstawiono w liście timera."
+msgstr "Kontrola, jaki czas pozycji zakończenia przedstawiono w liście timera."
 
 msgid "Control the Infobar fading speed"
 msgstr "Kontroluj prędkość wygaszania paska info"
@@ -5771,7 +5772,7 @@ msgid "Cron Manager"
 msgstr "Menedżer Zadań"
 
 msgid "CronTimers"
-msgstr "Harmonogramy Zadań"
+msgstr "Harmonogramy zadań"
 
 msgid "Cuba"
 msgstr "Kuba"
@@ -6154,7 +6155,7 @@ msgid "Default 'After event' *"
 msgstr "Domyślny 'Po wydarzeniu' *"
 
 msgid "Default 'Timer type' *"
-msgstr "Domyślny 'Tryb nagrywania' *"
+msgstr "Domyślny 'tryb timera' *"
 
 msgid "Default (Instant Record)"
 msgstr "Domyślne (natychmiastowy zapis)"
@@ -6199,7 +6200,7 @@ msgid "Default file sorting right"
 msgstr "Domyślne sortowanie plików prawo"
 
 msgid "Default files/folders to backup"
-msgstr "Domyślne pliki, foldery kopii zapasowej"
+msgstr "Domyślne pliki kopii zapasowej"
 
 msgid "Default folder"
 msgstr "Domyślny folder"
@@ -6546,7 +6547,7 @@ msgid ""
 "minutes.\n"
 "End Action was disabled !"
 msgstr ""
-"Różnica między początkiem i końcem Timera musi być równa lub większa niż %d "
+"Różnica między początkiem i końcem timera musi być równa lub większa niż %d "
 "minutes.\n"
 "Zatrzymanie Akcji Timera zostało wyłączone!"
 
@@ -6625,7 +6626,7 @@ msgid "Disable the HDD Process on VFD"
 msgstr "Wyłącz proces HDD na VFD"
 
 msgid "Disable timer"
-msgstr "Wyłączyć timer"
+msgstr "Wyłącz timer"
 
 msgid "Disabled"
 msgstr "Wyłączone"
@@ -6742,7 +6743,7 @@ msgid "Do you really want to delete the recording?"
 msgstr "Czy na pewno chcesz usunąć nagranie?"
 
 msgid "Do you really want to delete this timer ?"
-msgstr "Czy chcesz usunąć zaprogramowane nagranie ?"
+msgstr "Czy chcesz usunąć ten timer ?"
 
 #, python-format
 msgid "Do you really want to download the plugin \"%s\"?"
@@ -6778,7 +6779,7 @@ msgstr "Czy chcesz usunąć wtyczkę \"%s\"?"
 
 #, python-format
 msgid "Do you really want to remove the timer for %s?"
-msgstr "Czy na pewno chcesz usunąć timer %s?"
+msgstr "Czy na pewno chcesz usunąć ten timer %s?"
 
 #, python-format
 msgid "Do you really want to remove your bookmark of %s?"
@@ -7059,7 +7060,7 @@ msgid "Dutch / Flemish"
 msgstr "Holenderski / Flamandzki"
 
 msgid "Dynamic contrast"
-msgstr "Kontrast Dynamiczny"
+msgstr "Kontrast dynamiczny"
 
 msgid "Dzongkha"
 msgstr "Dzongkha"
@@ -7835,7 +7836,7 @@ msgid "Even if TV has another input active?"
 msgstr "Nawet jeśli telewizor ma inne aktywne wejście?"
 
 msgid "Even if a 'wakeup' power timer starting?"
-msgstr "Nawet jeśli zacznie działać zegar 'wybudzania'?"
+msgstr "Nawet jeśli zacznie działać timer 'wybudź'?"
 
 msgid "Even if a 'zap and record' recording timer starting?"
 msgstr "Nawet jeśli rozpocznie się nagrywanie z zap i nagrywaniem?"
@@ -8312,7 +8313,7 @@ msgid "Filename"
 msgstr "Nazwa pliku"
 
 msgid "Files/folders to exclude from backup"
-msgstr "Pliki, foldery wykluczone z kopii zapasowej"
+msgstr "Wykluczone pliki z kopii zapasowej"
 
 msgid "Filesystem Check"
 msgstr "Sprawdź system plików"
@@ -8470,7 +8471,7 @@ msgid "Force LNB Tuner Power settings."
 msgstr "Wymuś ustawienia mocy tunera LNB."
 
 msgid "Force LNB Tuner ToneBurst settings."
-msgstr "Wymuś ustawienia tunera LNB ToneBurst."
+msgstr "Wymuś ustawienia ToneBurst dla tunera LNB."
 
 msgid "Force Legacy Signal stats"
 msgstr "Wymuś statystyki starszych sygnałów"
@@ -8988,13 +8989,13 @@ msgid "HDMI CEC Setup"
 msgstr "Ustawinia HDMI CEC"
 
 msgid "HDMI Colordepth"
-msgstr "Głębia kolorów HDMI"
+msgstr "Głębia kolorów"
 
 msgid "HDMI Colorimetry"
 msgstr "Kolorymetria HDMI"
 
 msgid "HDMI Colorspace"
-msgstr "Przestrzeń kolorów HDMI"
+msgstr "Przestrzeń kolorów"
 
 msgid "HDMI HDR Type"
 msgstr "Rodzaj HDMI HDR"
@@ -9835,10 +9836,10 @@ msgid "Info"
 msgstr "Info"
 
 msgid "Info (EPG)"
-msgstr "Informacje (EPG)"
+msgstr "Info EPG"
 
 msgid "Info (EPG) Long"
-msgstr "Informacje (EPG długo)"
+msgstr "Info EPG (długo)"
 
 msgid "Info Panel"
 msgstr "Panel info"
@@ -9946,7 +9947,7 @@ msgid "Input config file name:"
 msgstr "Nazwa pliku konfiguracyjnego:"
 
 msgid "Input devices"
-msgstr "Urządzenia Wejściowe"
+msgstr "Urządzenia wejściowe"
 
 msgid "Input scroll position"
 msgstr "Wprowadzanie pozycji przewijania"
@@ -10579,7 +10580,7 @@ msgid "Lebanon"
 msgstr "Liban"
 
 msgid "Left"
-msgstr "Lewo"
+msgstr "W lewo"
 
 msgid "Left from servicename"
 msgstr "Na lewo od nazwy kanału"
@@ -10843,7 +10844,7 @@ msgid "Long << / >>"
 msgstr "Długie << / >>"
 
 msgid "Long Left/Right"
-msgstr "Długie Lewo/Prawo"
+msgstr "Lewo/Prawo (długo)"
 
 msgid "Long filenames"
 msgstr "Długie nazwy plików"
@@ -11342,7 +11343,7 @@ msgid "Morocco"
 msgstr "Maroko"
 
 msgid "Mosquito noise reduction"
-msgstr "Punktowa redukcja szumów"
+msgstr "Redukcja szumów"
 
 msgid "Motor Sport"
 msgstr "Sporty Motorowe"
@@ -12021,7 +12022,7 @@ msgid "No backup needed"
 msgstr "Kopia zapasowa nie potrzebna"
 
 msgid "No cable tuner found!"
-msgstr "Nie znaleziono kablowego tunera!"
+msgstr "Nie znaleziono tunera kablowego!"
 
 msgid "No card inserted!"
 msgstr "Nie włożono karty!"
@@ -12152,7 +12153,7 @@ msgid ""
 "The following methods of freeing a tuner were tried without success:\n"
 "\n"
 msgstr ""
-"Brak tunera do nagrania Timera!\n"
+"Brak tunera do nagrania timera!\n"
 "\n"
 "Następujące metody przywrócenia tunera zostały wypróbowane bez powodzenia:\n"
 "\n"
@@ -12566,10 +12567,10 @@ msgid "Open"
 msgstr "Otwórz"
 
 msgid "Open AutoTimer"
-msgstr "Otwórz AutoTimer"
+msgstr "Otwórz auto timer"
 
 msgid "Open AutoTimerlist"
-msgstr "Otwórz listę AutoTimera"
+msgstr "Otwórz listę auto timera"
 
 msgid "Open EPGSearch"
 msgstr "Otwórz EPGSearch"
@@ -12584,7 +12585,7 @@ msgid "Open Similar List Channel List"
 msgstr "Otwórz podobną listę Lista kanałów"
 
 msgid "Open Timerlist"
-msgstr "Otwórz Listę Timerów"
+msgstr "Otwórz listę timerów"
 
 msgid "Open bouquetlist"
 msgstr "Rozwinąć listę bukietów"
@@ -12931,7 +12932,7 @@ msgid "Parental Guidance Recommended"
 msgstr "Zaleca się poradnictwo rodzicielskie"
 
 msgid "Parental control"
-msgstr "Kontrola Rodzicielska"
+msgstr "Kontrola rodzicielska"
 
 msgid "Parental control services editor"
 msgstr "Edytor kanałów objętych kontrolę rodzicielską"
@@ -12997,10 +12998,10 @@ msgid "Percentage right"
 msgstr "Procenty po prawej"
 
 msgid "Percentage/Progress bar left"
-msgstr "Pasek procentowy/Pasek postępu w lewo"
+msgstr "Procent/Pasek postępu z prawej"
 
 msgid "Percentage/Progress bar right"
-msgstr "Pasek procentowy/Pasek postępu w prawo"
+msgstr "Procent/Pasek postępu w prawo"
 
 msgid "Perform a full image backup"
 msgstr "Wykonaj pełną kopię zapasową"
@@ -13649,7 +13650,7 @@ msgid "Position Setup"
 msgstr "Ustawienia pozycji"
 
 msgid "Position of finished Timers in Timerlist"
-msgstr "Lista pozycji do wykonania w liście Timera"
+msgstr "Lista pozycji do wykonania w liście timera"
 
 msgid "Position of recording icons"
 msgstr "Pozycja ikon nagrywania"
@@ -13679,22 +13680,22 @@ msgid "Power LED State in Deep-Standby"
 msgstr "Stan LED od zasilania podczas głębokiego czuwania"
 
 msgid "Power LED State in Standby"
-msgstr "Stan LED od zasilania podczas czuwania"
+msgstr "Stan LED zasilania podczas czuwania"
 
 msgid "Power LED can be turned on or off here."
 msgstr "Tutaj można włączyć lub wyłączyć diodę zasilania."
 
 msgid "Power LED state during deep-standby."
-msgstr "Stan LED od zasilania podczas głębokiego czuwania."
+msgstr "Stan LED zasilania podczas głębokiego czuwania."
 
 msgid "Power LED state during standby."
-msgstr "Stan LED od zasilania podczas czuwania."
+msgstr "Stan LED zasilania podczas czuwania."
 
 msgid "Power On Display"
-msgstr "Włączanie wyświetlacza"
+msgstr "Załącz wyświetlacz"
 
 msgid "Power long"
-msgstr "Przycisk zasilania (długo)"
+msgstr "Przycisk ‘Power’ (długo)"
 
 msgid "Power management. Consult your receiver's manual for more information."
 msgstr ""
@@ -13709,28 +13710,28 @@ msgstr ""
 "Próg mocy. Więcej informacji można znaleźć w instrukcji obsługi odbiornika."
 
 msgid "PowerTimer"
-msgstr "Timer Zasilania"
+msgstr "Timer zasilania"
 
 msgid "PowerTimer DeepStandby"
 msgstr "Timer głębokie czuwanie"
 
 msgid "PowerTimer Entry"
-msgstr "PowerMenadżer Wpis"
+msgstr "Wpis timera zasilania"
 
 msgid "PowerTimer List"
-msgstr "Lista Timera Zasilania"
+msgstr "Lista timerów"
 
 msgid "PowerTimer Log"
-msgstr "PowerMenadżer logi"
+msgstr "Logi timera zasilania"
 
 msgid "PowerTimer Overview"
-msgstr "Przegląd Timera Zasilania"
+msgstr "Timer zasilania"
 
 msgid "PowerTimer Standby"
-msgstr "Timer czuwanie"
+msgstr "Timer czuwania"
 
 msgid "PowerTimers"
-msgstr "Timery Zasilania"
+msgstr "Timery zasilania"
 
 msgid "Predefined"
 msgstr "Zdefiniowany"
@@ -13757,13 +13758,13 @@ msgid "Prefer subtitles stored by service"
 msgstr "Preferuj napisy zapamiętane dla kanału"
 
 msgid "Preferred tuner"
-msgstr "Tuner preferowany"
+msgstr "Preferowany tuner"
 
 msgid "Preferred tuner for recordings"
-msgstr "Tuner preferowany do nagrań"
+msgstr "Preferowany tuner nagrywania"
 
 msgid "Preferred tuners for recordings, multiple selection allowed"
-msgstr "Preferowane tunery do nagrań, można zaznaczać kilka"
+msgstr "Preferowane tunery nagrywania, można zaznaczać kilka"
 
 msgid "Preparation time for recording (seconds)"
 msgstr "Czas przygotowania do nagrania (sekundy)"
@@ -13994,16 +13995,16 @@ msgid "Progress bar right"
 msgstr "Pasek postępu z prawej"
 
 msgid "Progress bar/Percentage left"
-msgstr "Pasek postępu/Pasek procentowy w lewo"
+msgstr "Pasek postępu/Procent z lewej"
 
 msgid "Progress bar/Percentage right"
-msgstr "Pasek postępu/Pasek procentowy w prawo"
+msgstr "Pasek postępu/Procent z prawej"
 
 msgid "Progress bar/Remaining minutes left"
-msgstr "Pasek postępu/Pozostałe minuty w lewo"
+msgstr "Pasek postępu/Pozostałe minuty z lewej"
 
 msgid "Progress bar/Remaining minutes right"
-msgstr "Pasek postępu/Pozostałe minuty w prawo"
+msgstr "Pasek postępu/Pozostałe minuty z prawej"
 
 msgid "Progress info font size"
 msgstr "Rozmiar czcionki informacji o postępie"
@@ -14051,7 +14052,7 @@ msgid "Protect standby menu"
 msgstr "Chroń menu czuwania"
 
 msgid "Protect timer menu"
-msgstr "Chroń Menu Timera"
+msgstr "Chroń menu timera"
 
 msgid "Protek 4K UHD/HD61"
 msgstr "Protek 4K UHD/HD61"
@@ -14323,7 +14324,7 @@ msgid "Rec long"
 msgstr "Rec (długo)"
 
 msgid "Reception"
-msgstr "Tuner i Wyszukiwanie Kanałów"
+msgstr "Tuner i wyszukiwanie kanałów"
 
 msgid "Reception Settings"
 msgstr "Ustawienia odbioru"
@@ -14539,16 +14540,16 @@ msgid "Remaining & Elapsed"
 msgstr "Pozostały & Upływający"
 
 msgid "Remaining minutes left"
-msgstr "Pozostałe minuty w lewo"
+msgstr "Pozostałe minuty z lewej"
 
 msgid "Remaining minutes right"
-msgstr "Pozostałe minuty w prawo"
+msgstr "Pozostałe minuty z prawej"
 
 msgid "Remaining minutes/Progress bar left"
-msgstr "Pozostałe minuty/Pasek postępu w lewo"
+msgstr "Pozostałe minuty/Pasek postępu z lewej"
 
 msgid "Remaining minutes/Progress bar right"
-msgstr "Pozostałe minuty/Pasek postępu w prawo"
+msgstr "Pozostałe minuty/Pasek postępu z prawej"
 
 msgid "Remember last service in PiP"
 msgstr "Pamiętaj ostatni kanał w PiP"
@@ -14637,7 +14638,7 @@ msgstr ""
 "drzwi lub pistoletu słychać strzał )."
 
 msgid "Remove timer"
-msgstr "Usunąć timer"
+msgstr "Usuń timer"
 
 msgid "Remove title"
 msgstr "Usunąć tytuł"
@@ -14899,7 +14900,7 @@ msgid "Rewrap subtitles"
 msgstr "Ponownie zawiń napisy"
 
 msgid "Right"
-msgstr "Prawo"
+msgstr "W prawo"
 
 msgid "Right from servicename"
 msgstr "Na prawo od nazwy kanału"
@@ -15241,10 +15242,10 @@ msgid "Saving timeshift as movie now. This might take a while!"
 msgstr "Zapisywanie TimeShift jako film. To może chwilę potrwać!"
 
 msgid "Scaler sharpness"
-msgstr "Skalowania ostrości"
+msgstr "Skalowanie ostrości"
 
 msgid "Scaler vertical dejagging"
-msgstr "Skalowanie pionowe dejagging"
+msgstr "Skalowanie pionowe"
 
 msgid "Scaling mode"
 msgstr "Tryb skalowania"
@@ -15611,13 +15612,13 @@ msgstr "Wybierz akcję"
 
 #, python-format
 msgid "Select action for timer %s:"
-msgstr "Wybierz akcję dla Timera %s:"
+msgstr "Wybierz akcję dla timera %s:"
 
 msgid "Select additional backup files"
 msgstr "Dodatkowe pliki kopii zapasowej"
 
 msgid "Select additional files to backup"
-msgstr "Wybierz dodatkowe pliki kopii zapasowej"
+msgstr "Dodatkowe pliki kopii zapasowej"
 
 msgid "Select an image to be downloaded"
 msgstr "Wybierz img. do pobrania"
@@ -15650,13 +15651,13 @@ msgid "Select destination for:"
 msgstr "Wybierz miejsce docelowe na:"
 
 msgid "Select excluded backup files"
-msgstr "Wybierz wykluczone pliki kopii zapasowej"
+msgstr "Wykluczone pliki kopii zapasowej"
 
 msgid "Select files to exclude from backup"
 msgstr "Wybierz pliki, które chcesz wykluczyć z kopii zapasowej"
 
 msgid "Select files/folders to backup"
-msgstr "Wybierz pliki, foldery kopii zapasowej"
+msgstr "Wybierz pliki kopii zapasowej"
 
 msgid "Select folders"
 msgstr "Wybierz foldery"
@@ -15907,7 +15908,7 @@ msgid "Select the shifted character set for the next character only"
 msgstr "Wybierz przesunięty zestaw znaków tylko dla następnego znaku"
 
 msgid "Select the sleep timer action."
-msgstr "Wybierz działanie wyłącznika czasowego."
+msgstr "Akcja dla timera czuwania."
 
 msgid "Select the time zone within the area or region."
 msgstr "Wybierz strefę czasową w obszarze lub regionie."
@@ -15956,7 +15957,7 @@ msgid ""
 "Select what should be done when the %s %s was shutdown incorrectly, or after "
 "the Power was lost."
 msgstr ""
-"Wybierz, co należy zrobić, gdy %s %s został wyłączony nieprawidłowo ,lub po "
+"Wybierz, co należy zrobić, gdy %s %s został wyłączony nieprawidłowo, lub po "
 "odłączeniu prądu."
 
 msgid "Select what you want the Channel +/- button to activate:"
@@ -16189,7 +16190,7 @@ msgid "Service info - service & PIDs"
 msgstr "Informacje serwisowe - serwis & PIDy"
 
 msgid "Service info - tuner live values"
-msgstr "Informacje serwisowe - wartości na żywo tunera"
+msgstr "Informacje serwisowe - wartości z tunera w czasie rzeczywistym"
 
 msgid "Service info - tuner setting values"
 msgstr "Informacje serwisowe - wartości ustawień tunera"
@@ -16334,10 +16335,10 @@ msgid "Set the aspect ratio of the service picons."
 msgstr "Ustaw proporcje pikon serwisowych."
 
 msgid "Set the channel for this timer."
-msgstr "Ustaw kanał dla tego Timera."
+msgstr "Ustaw kanał dla tego timera."
 
 msgid "Set the date the timer must start."
-msgstr "Ustaw datę uruchomienia Timera."
+msgstr "Ustaw datę uruchomienia timera."
 
 msgid ""
 "Set the default location for your instant recordings. Press 'OK' to add new "
@@ -16357,7 +16358,7 @@ msgid ""
 "Set the default location for your timers. Press 'OK' to add new locations, "
 "select left/right to select an existing location."
 msgstr ""
-"Ustaw domyślną lokalizację dla swoich timerów.Naciśnij przycisk 'OK',aby "
+"Ustaw domyślną lokalizację dla swoich timerów. Naciśnij przycisk 'OK', aby "
 "dodać nowa lokalizację użyj strzałek 'lewo/prawo'."
 
 msgid ""
@@ -16412,10 +16413,10 @@ msgstr ""
 "sprawdza źródła wideo."
 
 msgid "Set the time the timer must start."
-msgstr "Ustaw czas rozpoczęcia Timera."
+msgstr "Ustaw czas rozpoczęcia timera."
 
 msgid "Set the time the timer must stop."
-msgstr "Ustaw czas zatrzymania Timera."
+msgstr "Ustaw czas zatrzymania timera."
 
 msgid "Set the time to hide the infobar."
 msgstr "Ustaw czas,po jakim ma być ukryty pasek informacyjny."
@@ -16803,7 +16804,7 @@ msgid "Show Audioselection"
 msgstr "Pokaż wybór Audio"
 
 msgid "Show AutoTimer List"
-msgstr "Pokaż listę AutoTimera"
+msgstr "Pokaż listę auto timera"
 
 msgid "Show Box Portal"
 msgstr "Pokaż Box Portal"
@@ -16950,7 +16951,7 @@ msgid "Show Time Remaining/Elapsed"
 msgstr "Pokaż czas Pozostały/Upływający"
 
 msgid "Show Timer List"
-msgstr "Pokaż Listę Timera"
+msgstr "Pokaż listę timera"
 
 msgid "Show Transponder Remaining/Elapsed as"
 msgstr "Pokaż Transponder Pozostały/Upływający jako"
@@ -17090,7 +17091,7 @@ msgid "Show favourites list"
 msgstr "Pokaż listę ulubionych"
 
 msgid "Show files backed up by default"
-msgstr "Pokaż domyślne pliki kopii zapasowej"
+msgstr "Domyślne pliki kopii zapasowej"
 
 msgid "Show graphical multi EPG"
 msgstr "Pokaż graficzne Multi-EPG"
@@ -17287,16 +17288,16 @@ msgid "Show the DreamPlex player..."
 msgstr "Pokaż odtwarzacz DreamPlex..."
 
 msgid "Show the Power Timer"
-msgstr "Pokaż Timer Wyłączania"
+msgstr "Pokaż timer zasilania"
 
 msgid "Show the Sleep Timer"
-msgstr "Pokaż Timer Uśpienia"
+msgstr "Pokaż timer czuwania"
 
 msgid "Show the information on current event."
 msgstr "Pokaż informacje o bieżącym wydarzeniu."
 
 msgid "Show the list of AutoTimers."
-msgstr "Pokaż listę AutoTimerów."
+msgstr "Pokaż listę auto timerów."
 
 msgid "Show the list of timers."
 msgstr "Pokaż listę timerów."
@@ -17545,7 +17546,7 @@ msgid "Sleep"
 msgstr "Uśpienie"
 
 msgid "Sleep Timer"
-msgstr "Timer"
+msgstr "Timer czuwania"
 
 msgid "Sleep delay"
 msgstr "Opóźnienie uśpienia"
@@ -17554,7 +17555,7 @@ msgid "Sleep long"
 msgstr "Uśpienie (długo)"
 
 msgid "SleepTimer"
-msgstr "Timer Uśpienia"
+msgstr "Timer czuwania"
 
 msgid "Slide drop"
 msgstr "Przesuwane Animacje"
@@ -17621,7 +17622,7 @@ msgid "Smartcard PIN"
 msgstr "Smartcard PIN"
 
 msgid "Smooth"
-msgstr "Płynny"
+msgstr "Płynność"
 
 msgid "Smpte 170M"
 msgstr "Smpte 170M"
@@ -17675,19 +17676,19 @@ msgid "Software"
 msgstr "Oprogramowanie"
 
 msgid "Software Manager"
-msgstr "Menadżer oprogramowania"
+msgstr "Menadżer Oprogramowania"
 
 msgid "Software Manager Setup"
 msgstr "Ustawienia menedżera oprogramowania"
 
 msgid "Software Panel"
-msgstr "Menadżer oprogramowania"
+msgstr "Menadżer Oprogramowania"
 
 msgid "Software Update"
 msgstr "Aktualizacja systemu"
 
 msgid "Software management"
-msgstr "Menadżer oprogramowania"
+msgstr "Menadżer Oprogramowania"
 
 msgid "Software manager setup"
 msgstr "Ustawienia menadżera oprogramowania"
@@ -17702,7 +17703,7 @@ msgid "Softwaremanager information"
 msgstr "Informacje menadżera oprogramowania"
 
 msgid "Softwaremanager..."
-msgstr "Menadżer oprogramowania..."
+msgstr "Menadżer Oprogramowania..."
 
 msgid "Softwareupdate"
 msgstr "Aktualizacja oprogramowania"
@@ -17991,10 +17992,10 @@ msgid "Start/stop slide show"
 msgstr "Start/stop pokaz slajdów"
 
 msgid "Start/stop/select cam"
-msgstr "Uruchom/Zatrzymaj/Wybierz Cam"
+msgstr "Uruchom/Zatrzymaj/Wybierz"
 
 msgid "Start/stop/select your cam, You need to install first a softcam"
-msgstr "Uruchom/Zatrzymaj/Wybierz cam, musisz zainstalować najpierw softcam"
+msgstr "Uruchom/Zatrzymaj/Wybierz, musisz zainstalować najpierw softcam"
 
 msgid "StartWizard"
 msgstr "Uruchom Kreatora"
@@ -18084,7 +18085,7 @@ msgid "Stop testing plane after # successful transponders"
 msgstr "Zatrzymaj testowanie poziomu po # udanych transponderach"
 
 msgid "Stop timer recording"
-msgstr "Zatrzymaj zaprogramowane nagrywanie"
+msgstr "Zatrzymaj timer nagrywania"
 
 msgid "Stop timeshift"
 msgstr "Zatrzymać timeshift"
@@ -18650,7 +18651,7 @@ msgid "Test type"
 msgstr "Typ testu"
 
 msgid "Testscreens"
-msgstr "Ekrany Testowe"
+msgstr "Ekrany testowe"
 
 msgid "Testscreens that are helpfull to fine-tune your display"
 msgstr "Zdjęcia testowe do dostrajania obrazu"
@@ -18691,7 +18692,7 @@ msgid ""
 "The AutoTimer plugin is not installed!\n"
 "Please install it."
 msgstr ""
-"Wtyczka AutoTimera nie jest zainstalowana!\n"
+"Wtyczka auto timer nie jest zainstalowana!\n"
 "Proszę ją zainstalować."
 
 msgid ""
@@ -18985,10 +18986,10 @@ msgid "The time is multiplied by the current repeat counter."
 msgstr "Czas jest mnożony przez bieżący licznik powtórzeń."
 
 msgid "The timer file (pm_timers.xml) is corrupt and could not be loaded."
-msgstr "Plik Timera (pm_timers.xml) jest uszkodzony i nie może być załadowany."
+msgstr "Plik timera (pm_timers.xml) jest uszkodzony i nie może być załadowany."
 
 msgid "The timer file (timers.xml) is corrupt and could not be loaded."
-msgstr "Plik Timera (timers.xml) jest zniszczony i nie może być załadowany."
+msgstr "Plik timera (timers.xml) jest zniszczony i nie może być załadowany."
 
 msgid ""
 "The unicable connection setting is wrong.\n"
@@ -19302,7 +19303,7 @@ msgstr ""
 "Ta opcja pozwala włączyć filtr wygładzający proces kontroli symulowania."
 
 msgid "This option allows you enable the vertical scaler dejagging."
-msgstr "Ta opcja pozwala włączyć skalowania pionowe."
+msgstr "Ta opcja pozwala włączyć skalowanie pionowe."
 
 msgid "This option allows you set the layout view (Text or Graphics)."
 msgstr "Ta opcja pozwala ustawić widok układu (tekst lub grafika)."
@@ -19782,7 +19783,7 @@ msgid "Time to execute command or script"
 msgstr "Czas do uruchomienia polecenia lub skryptu"
 
 msgid "Time window for detection of the wakeup by a timer [mins]"
-msgstr "Okno czasowe wykrywania budzenia przez minutnik [min]"
+msgstr "Okno czasowe wykrywania budzenia przez timer [min]"
 
 msgid "Time zone"
 msgstr "Strefa czasowa"
@@ -19806,19 +19807,19 @@ msgid "Timer Actions"
 msgstr "Akcje timera"
 
 msgid "Timer List"
-msgstr "Lista wpisów Timera"
+msgstr "Lista timera"
 
 msgid "Timer action"
 msgstr "Akcja timera"
 
 msgid "Timer edit"
-msgstr "Edycja Timera"
+msgstr "Edycja timera"
 
 msgid "Timer editor"
-msgstr "Edytor Timera"
+msgstr "Edytor timera"
 
 msgid "Timer entry"
-msgstr "Wpis Timera"
+msgstr "Wpis timera"
 
 #, python-format
 msgid "Timer is activated: +%d min"
@@ -19828,7 +19829,7 @@ msgid "Timer is not activated"
 msgstr "Timer nieaktywny"
 
 msgid "Timer log"
-msgstr "Log Timera"
+msgstr "Log timera"
 
 msgid ""
 "Timer overlap in pm_timers.xml detected!\n"
@@ -19845,28 +19846,28 @@ msgstr ""
 "Sprawdź to!"
 
 msgid "Timer overview"
-msgstr "Przegląd Timera"
+msgstr "Przegląd timera"
 
 msgid "Timer recording location"
-msgstr "Lokalizacja nagrań z Timera"
+msgstr "Lokalizacja nagrań z timera"
 
 msgid "Timer sanity error"
-msgstr "Błąd Timera"
+msgstr "Błąd timera"
 
 msgid "Timer selection"
-msgstr "Wybór Timera"
+msgstr "Wybór timera"
 
 msgid "Timer selection..."
 msgstr "Wybór timera..."
 
 msgid "Timer type"
-msgstr "Typ Timera"
+msgstr "Typ timera"
 
 msgid "Timer+"
 msgstr "Timer+"
 
 msgid "Timerlist"
-msgstr "Lista wpisów Timera"
+msgstr "Lista timera"
 
 msgid "Timers"
 msgstr "Timery"
@@ -20184,7 +20185,7 @@ msgid "Tuner Configuration"
 msgstr "Ustawienia tunera"
 
 msgid "Tuner Setup"
-msgstr "Ustawienie Tunera"
+msgstr "Ustawienia tunera"
 
 msgid "Tuner configuration"
 msgstr "Ustawienia tunera"
@@ -20193,7 +20194,7 @@ msgid "Tuner is not supported"
 msgstr "Tuner nie obsługiwany"
 
 msgid "Tuner live values"
-msgstr "Wartości na żywo tunera"
+msgstr "Wartości tunera w czasie rzeczywistym"
 
 msgid "Tuner setting values"
 msgstr "Wartości ustawień tunera"
@@ -20208,7 +20209,7 @@ msgid "Tuner status FAILED"
 msgstr "Status tunera NIEUDANE"
 
 msgid "Tuner status IDLE"
-msgstr "Status tunera bezczynny"
+msgstr "Status tunera BEZCZYNNY"
 
 msgid "Tuner status LOCKED"
 msgstr "Status tunera ZABLOKOWANY"
@@ -20512,10 +20513,10 @@ msgid "Unzipping Image"
 msgstr "Rozpakowywanie systemu"
 
 msgid "Up"
-msgstr "w górę"
+msgstr "W górę"
 
 msgid "Up/Down button mode"
-msgstr "Akcja dla przycisku 'w Górę/w Dół'"
+msgstr "Akcja dla przycisku 'Góra/Dół'"
 
 msgid "Up/Down buttons also for 'all up/down'?"
 msgstr "Przyciski góra/dół również dla 'wszystko w górę/w dół'?"
@@ -20680,7 +20681,7 @@ msgid "Use HDMI-preemphasis"
 msgstr "Użyj wstępnego wyróżnienia HDMI"
 
 msgid "Use Harddisk Hardware Standby Timer"
-msgstr "Użyj sprzętowego Timera czuwania dla HDD"
+msgstr "Użyj sprzętowego timera czuwania dla HDD"
 
 msgid "Use Keymap"
 msgstr "Użyć mapowania klawiszy"
@@ -21610,7 +21611,7 @@ msgid ""
 "When enabled, a recording is allowed to abort picture-in-picture mode, when "
 "there are no free tuners."
 msgstr ""
-"Po włączeniu,dozwolone jest przerwanie nagrania w trybie PiP,gdy nie ma "
+"Po włączeniu, dozwolone jest przerwanie nagrania w trybie PiP, gdy nie ma "
 "wolnych tunerów."
 
 msgid ""
@@ -22096,10 +22097,10 @@ msgid "Yes, but save timeshift as movie and stop recording"
 msgstr "Tak, zapisać TimeShift jako film i zatrzymać nagrywanie"
 
 msgid "Yes, delete from Timerlist"
-msgstr "Tak, usuń z Timerlisty"
+msgstr "Tak, usuń z listy timera"
 
 msgid "Yes, delete from Timerlist and delete recording"
-msgstr "Tak, usuń z Timerlisty i usuń nagranie"
+msgstr "Tak, usuń z listy timera i usuń nagranie"
 
 msgid "Yes, delete this movie and return to movie list"
 msgstr "Tak, usuń ten film i powróć do listy filmów"
@@ -22189,7 +22190,7 @@ msgstr ""
 
 #, python-format
 msgid "You can switch with left and right this tuner types %s"
-msgstr "Możesz przełączać się z lewej i prawej strony tego typu tunera %s"
+msgstr "Możesz użyć lewo/prawo aby zmienić typ tunera %s"
 
 #, python-format
 msgid "You can't usefully run '%s' on '%s'."
