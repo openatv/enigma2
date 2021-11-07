@@ -107,7 +107,7 @@ config.plugins.filecommander.path_left_selected = ConfigYesNo(default=True)
 config.plugins.filecommander.showTaskCompleted_message = ConfigYesNo(default=True)
 config.plugins.filecommander.showScriptCompleted_message = ConfigYesNo(default=True)
 config.plugins.filecommander.hashes = ConfigSet(list(key_actions.hashes.keys()), default=["MD5"])
-config.plugins.filecommander.bookmarks = ConfigLocations()
+config.plugins.filecommander.bookmarks = ConfigLocations(default=None)
 config.plugins.filecommander.fake_entry = NoSave(ConfigNothing())
 
 tmpLeft = '%s,%s' % (config.plugins.filecommander.sortDirs.value, config.plugins.filecommander.sortFiles_left.value)
