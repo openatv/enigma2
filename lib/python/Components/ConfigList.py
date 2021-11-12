@@ -2,7 +2,7 @@ from enigma import eListbox, eListboxPythonConfigContent, ePoint, eRCInput, eTim
 
 from skin import parameters
 from Components.ActionMap import HelpableActionMap, HelpableNumberActionMap
-from Components.config import ACTIONKEY_0, ACTIONKEY_ASCII, ACTIONKEY_BACKSPACE, ACTIONKEY_DELETE, ACTIONKEY_ERASE, ACTIONKEY_FIRST, ACTIONKEY_LAST, ACTIONKEY_LEFT, ACTIONKEY_NUMBERS, ACTIONKEY_RIGHT, ACTIONKEY_SELECT, ACTIONKEY_TIMEOUT, ACTIONKEY_TOGGLE, ConfigBoolean, ConfigElement, ConfigInteger, ConfigMacText as ConfigMACText, ConfigNumber, ConfigSelection, ConfigSequence, ConfigText, config, configfile
+from Components.config import ACTIONKEY_0, ACTIONKEY_ASCII, ACTIONKEY_BACKSPACE, ACTIONKEY_DELETE, ACTIONKEY_ERASE, ACTIONKEY_FIRST, ACTIONKEY_LAST, ACTIONKEY_LEFT, ACTIONKEY_NUMBERS, ACTIONKEY_RIGHT, ACTIONKEY_SELECT, ACTIONKEY_TIMEOUT, ACTIONKEY_TOGGLE, ConfigBoolean, ConfigElement, ConfigInteger, ConfigMACText, ConfigNumber, ConfigSelection, ConfigSequence, ConfigText, config, configfile
 from Components.GUIComponent import GUIComponent
 from Components.Pixmap import Pixmap
 from Components.Sources.Boolean import Boolean
@@ -29,10 +29,7 @@ class ConfigList(GUIComponent):
 
 	def execBegin(self):
 		rcinput = eRCInput.getInstance()
-		if not config.misc.remotecontrol_text_support.value:
-			rcinput.setKeyboardMode(rcinput.kmAscii)
-		else:
-			rcinput.setKeyboardMode(rcinput.kmNone)
+		rcinput.setKeyboardMode(rcinput.kmAscii if not config.misc.remotecontrol_text_support.value else rcinput.kmNone)
 		self.timer.callback.append(self.timeout)
 
 	def execEnd(self):
@@ -44,13 +41,15 @@ class ConfigList(GUIComponent):
 	def timeout(self):
 		self.handleKey(ACTIONKEY_TIMEOUT)
 
-	def handleKey(self, key):
+	def handleKey(self, key, callback=None):
 		selection = self.getCurrent()
 		if selection and selection[1].enabled:
-			selection[1].handleKey(key)
+			changed = selection[1].handleKey(key, callback)
 			self.invalidateCurrent()
 			if key in ACTIONKEY_NUMBERS:
 				self.timer.start(1000, 1)
+			return changed
+		return False
 
 	def toggle(self):
 		self.getCurrent()[1].toggle()
@@ -145,10 +144,15 @@ class ConfigList(GUIComponent):
 		if self.instance is not None:
 			self.instance.moveSelection(self.instance.moveEnd)
 
-	def refresh(self):  # This is taken from OpenATV but awaiting where it is used.
-		for x in self.onSelectionChanged:
-			if x.__func__.__name__ == "selectionChanged":
-				x()
+	# This method is only in OpenATV but we am not sure it is used.  The
+	# code is being commented out as a way to flush out if there is
+	# actually any other code that uses this method.  If so we expect the
+	# code to crash.  Please report any such crashes!
+	# 
+	# def refresh(self):
+	# 	for x in self.onSelectionChanged:
+	# 		if x.__func__.__name__ == "selectionChanged":
+	# 			x()
 
 
 class ConfigListScreen:
@@ -320,8 +324,7 @@ class ConfigListScreen:
 		elif isinstance(self.getCurrentItem(), ConfigText) and not isinstance(self.getCurrentItem(), (ConfigMACText, ConfigNumber)):
 			self.keyText()
 		else:
-			self["config"].handleKey(ACTIONKEY_SELECT)
-			self.entryChanged()
+			self["config"].handleKey(ACTIONKEY_SELECT, self.entryChanged)
 
 	def keyOK(self):  # This is the deprecated version of keySelect!
 		self.keySelect()
@@ -365,20 +368,16 @@ class ConfigListScreen:
 		self["config"].moveUp()
 
 	def keyFirst(self):
-		self["config"].handleKey(ACTIONKEY_FIRST)
-		self.entryChanged()
+		self["config"].handleKey(ACTIONKEY_FIRST, self.entryChanged)
 
 	def keyLeft(self):
-		self["config"].handleKey(ACTIONKEY_LEFT)
-		self.entryChanged()
+		self["config"].handleKey(ACTIONKEY_LEFT, self.entryChanged)
 
 	def keyRight(self):
-		self["config"].handleKey(ACTIONKEY_RIGHT)
-		self.entryChanged()
+		self["config"].handleKey(ACTIONKEY_RIGHT, self.entryChanged)
 
 	def keyLast(self):
-		self["config"].handleKey(ACTIONKEY_LAST)
-		self.entryChanged()
+		self["config"].handleKey(ACTIONKEY_LAST, self.entryChanged)
 
 	def keyDown(self):
 		self["config"].moveDown()
@@ -390,28 +389,22 @@ class ConfigListScreen:
 		self["config"].moveBottom()
 
 	def keyBackspace(self):
-		self["config"].handleKey(ACTIONKEY_BACKSPACE)
-		self.entryChanged()
+		self["config"].handleKey(ACTIONKEY_BACKSPACE, self.entryChanged)
 
 	def keyDelete(self):
-		self["config"].handleKey(ACTIONKEY_DELETE)
-		self.entryChanged()
+		self["config"].handleKey(ACTIONKEY_DELETE, self.entryChanged)
 
 	def keyErase(self):
-		self["config"].handleKey(ACTIONKEY_ERASE)
-		self.entryChanged()
+		self["config"].handleKey(ACTIONKEY_ERASE, self.entryChanged)
 
 	def keyToggle(self):
-		self["config"].handleKey(ACTIONKEY_TOGGLE)
-		self.entryChanged()
+		self["config"].handleKey(ACTIONKEY_TOGGLE, self.entryChanged)
 
 	def keyGotAscii(self):
-		self["config"].handleKey(ACTIONKEY_ASCII)
-		self.entryChanged()
+		self["config"].handleKey(ACTIONKEY_ASCII, self.entryChanged)
 
 	def keyNumberGlobal(self, number):
-		self["config"].handleKey(ACTIONKEY_0 + number)
-		self.entryChanged()
+		self["config"].handleKey(ACTIONKEY_0 + number, self.entryChanged)
 
 	def keySave(self):
 		if self.saveAll():
