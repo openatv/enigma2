@@ -1,5 +1,4 @@
 from __future__ import print_function
-import sys
 import os
 from time import time
 
@@ -644,7 +643,6 @@ def dump(dir, p=""):
 #################################
 
 from sys import stdout
-from Components.config import config, ConfigYesNo, ConfigSubsection, ConfigInteger, ConfigText, ConfigOnOff, ConfigSelection
 
 MODULE_NAME = __name__.split(".")[-1]
 
@@ -665,32 +663,32 @@ except ImportError:
 	def runReactor():
 		enigma.runMainloop()
 
+try:  # Configure the twisted logging
+	from twisted.python import log, util
 
-def quietEmit(self, eventDict):
-	text = log.textFromEventDict(eventDict)
-	if text is None:
-		return
-	if "/api/statusinfo" in text: # do not log OWF statusinfo
-		return
+	def quietEmit(self, eventDict):
+		text = log.textFromEventDict(eventDict)
+		if text is None:
+			return
+		if "/api/statusinfo" in text: # do not log OWF statusinfo
+			return
 
-	timeStr = self.formatTime(eventDict["time"])
-	fmtDict = {"system": eventDict["system"], "text": text.replace("\n", "\n\t")}
-	msgStr = log._safeFormat("[%(system)s] %(text)s\n", fmtDict)
-	util.untilConcludes(self.write, timeStr + " " + msgStr)
-	util.untilConcludes(self.flush)
+# log with timestamp
+#		timeStr = self.formatTime(eventDict["time"])
+#		fmtDict = {"ts": timeStr, "system": eventDict["system"], "text": text.replace("\n", "\n\t")}
+#		msgStr = log._safeFormat("%(ts)s [%(system)s] %(text)s\n", fmtDict)
 
-from twisted.python import log, util
-etl = config.content.stored_values
-if 'misc' in etl:
-	etl = etl['misc']
-	if 'enabletwistedlog' in etl:
-		etl = etl['enabletwistedlog'].lower()
-if etl == 'true':
-	log.startLogging(open('/tmp/twisted.log', 'w'))
-else:
+# log without timestamp
+		fmtDict = {"text": text.replace("\n", "\n\t")}
+		msgStr = log._safeFormat("%(text)s\n", fmtDict)
+		util.untilConcludes(self.write, msgStr)
+		util.untilConcludes(self.flush)
+
 	logger = log.FileLogObserver(stdout)
 	log.FileLogObserver.emit = quietEmit
 	log.startLoggingWithObserver(logger.emit)
+except ImportError:
+	print("[StartEnigma] Error: Twisted not available!")
 
 
 from boxbranding import getBoxType, getBrandOEM, getMachineBuild, getImageArch, getMachineBrand
@@ -702,6 +700,7 @@ if getImageArch() in ("aarch64"):
 	usb.backend.libusb1.get_backend(find_library=lambda x: "/lib64/libusb-1.0.so.0")
 
 from traceback import print_exc
+from Components.config import config, ConfigYesNo, ConfigSubsection, ConfigInteger, ConfigText, ConfigOnOff, ConfigSelection
 
 # Initialize the country, language and locale data.
 #
@@ -729,8 +728,6 @@ config.misc.language = ConfigText(default=defaultShortLanguage)
 config.misc.locale = ConfigText(default=defaultLanguage)
 # TODO
 # config.misc.locale.addNotifier(localeNotifier)
-
-config.misc.enabletwistedlog = ConfigYesNo(default=False)
 
 # These entries should be moved back to UsageConfig.py when it is safe to bring UsageConfig init to this location in StartEnigma2.py.
 #
