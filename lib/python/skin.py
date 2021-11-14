@@ -849,7 +849,7 @@ def reloadWindowStyles():
 
 def loadSingleSkinData(desktop, screenID, domSkin, pathSkin, scope=SCOPE_GUISKIN):
 	"""Loads skin data like colors, windowstyle etc."""
-	assert (domSkin.tag == "skin" or domSkin.tag == "skins"), "root element in skin must be 'skin' or 'skins'!"
+	assert domSkin.tag == "skin", "root element in skin must be 'skin'!"
 	global colors, fonts, menus, parameters, setups, switchPixmap, resolutions
 	for tag in domSkin.findall("output"):
 		scrnID = int(tag.attrib.get("id", GUI_SKIN_ID))
