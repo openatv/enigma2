@@ -1,3 +1,8 @@
+from six import PY2
+from xml.etree.cElementTree import parse
+
+from enigma import eTimer
+from skin import findSkinScreen
 from Screens.Screen import Screen
 from Screens.ParentalControlSetup import ProtectedScreen
 from Components.Sources.List import List
@@ -11,17 +16,19 @@ from Components.Label import Label
 from Tools.BoundFunction import boundFunction
 from Plugins.Plugin import PluginDescriptor
 from Tools.Directories import resolveFilename, SCOPE_SKINS, SCOPE_GUISKIN
-from enigma import eTimer
 from Components.Pixmap import Pixmap, MovingPixmap
 from Components.Button import Button
 from Tools.LoadPixmap import LoadPixmap
 import os
-import six
-from skin import findSkinScreen
 
-import xml.etree.cElementTree
 
 from Screens.Setup import Setup, getSetupTitle, getSetupTitleLevel
+
+
+# Read the menu
+file = open(resolveFilename(SCOPE_SKINS, "menu.xml"), "r")
+mdom = parse(file)
+file.close()
 
 mainmenu = _("Main menu")
 lastMenuID = None
@@ -33,12 +40,12 @@ def MenuEntryPixmap(entryID, png_cache, lastMenuID):
 		return None
 	png = png_cache.get(entryID, None)
 	if png is None:
-		pngPath = resolveFilename(SCOPE_GUISKIN, 'mainmenu/' + entryID + '.png')
-		pos = config.skin.primary_skin.value.rfind('/')
+		pngPath = resolveFilename(SCOPE_GUISKIN, "mainmenu/" + entryID + ".png")
+		pos = config.skin.primary_skin.value.rfind("/")
 		if pos > -1:
 			current_skin = config.skin.primary_skin.value[:pos + 1]
 		else:
-			current_skin = ''
+			current_skin = ""
 		if current_skin in pngPath and current_skin or not current_skin:
 			png = LoadPixmap(pngPath, cached=True)
 		if png is None:
@@ -46,22 +53,22 @@ def MenuEntryPixmap(entryID, png_cache, lastMenuID):
 				png = png_cache.get(lastMenuID, None)
 			png_cache[entryID] = png
 	if png is None:
-		png = png_cache.get('missing', None)
+		png = png_cache.get("missing", None)
 		if png is None:
-			png = LoadPixmap(resolveFilename(SCOPE_GUISKIN, 'mainmenu/missing.png'), cached=True)
-			png_cache['missing'] = png
+			png = LoadPixmap(resolveFilename(SCOPE_GUISKIN, "mainmenu/missing.png"), cached=True)
+			png_cache["missing"] = png
 	return png
 
 
 def MenuEntryName(name):
 	def splitUpperCase(name, maxlen):
-		for c in list(range(len(name), 0, -1)):
+		for c in range(len(name), 0, -1):
 			if name[c - 1].isupper() and c - 1 and c - 1 <= maxlen:
 				return name[:c - 1] + "-:-" + name[c - 1:]
 		return name
 
 	def splitLowerCase(name, maxlen):
-		for c in list(range(len(name), 0, -1)):
+		for c in range(len(name), 0, -1):
 			if name[c - 1].islower() and c - 1 and c - 1 <= maxlen:
 				return name[:c - 1] + "-:-" + name[c - 1:]
 		return name
@@ -82,7 +89,7 @@ def MenuEntryName(name):
 			tmp = splitLowerCase(name, maxlen).split("-:-", 1)
 			if len(tmp[0]) > len(namesplit[0]) or len(namesplit) < 2:
 				namesplit = tmp
-		for x in list(range(1, maxrow)):
+		for x in range(1, maxrow):
 			if len(namesplit) > x and len(namesplit) < maxrow and len(namesplit[x]) > maxlen:
 				tmp = splitName(namesplit[x], maxlen)
 				if len(tmp) == 1 or (len(tmp) == 2 and len(tmp[1]) > maxlen * (maxrow - x)):
@@ -95,31 +102,25 @@ def MenuEntryName(name):
 	return name if len(namesplit) < 2 else "\n".join(namesplit)
 
 
-# read the menu
-file = open(resolveFilename(SCOPE_SKINS, 'menu.xml'), 'r')
-mdom = xml.etree.cElementTree.parse(file)
-file.close()
-
-
 class title_History:
 	def __init__(self):
-		self.thistory = ''
+		self.thistory = ""
 
 	def reset(self):
-		self.thistory = ''
+		self.thistory = ""
 
 	def reducehistory(self):
-		history_len = len(self.thistory.split('>'))
-		if(history_len < 3):
+		history_len = len(self.thistory.split(">"))
+		if history_len < 3:
 			self.reset()
 			return
-		if(self.thistory == ''):
+		if self.thistory == "":
 			return
-		result = self.thistory.rsplit('>', 2)
-		if(result[0] == ''):
+		result = self.thistory.rsplit(">", 2)
+		if result[0] == "":
 			self.reset()
 			return
-		self.thistory = result[0] + '> '
+		self.thistory = result[0] + "> "
 
 
 t_history = title_History()
@@ -177,7 +178,7 @@ class Menu(Screen, ProtectedScreen):
 			exec("from %s import %s" % (arg[0], arg[1].split(",")[0]))
 			self.openDialog(*eval(arg[1]))
 
-	def nothing(self): #dummy
+	def nothing(self):  # dummy
 		pass
 
 	def gotoStandby(self, *res):
@@ -194,16 +195,16 @@ class Menu(Screen, ProtectedScreen):
 	def addMenu(self, destList, node):
 		requires = node.get("requires")
 		if requires:
-			if requires[0] == '!':
+			if requires[0] == "!":
 				if BoxInfo.getItem(requires[1:], False):
 					return
 			elif not BoxInfo.getItem(requires, False):
 				return
-		MenuTitle = _(six.ensure_str(node.get("text", "??")))
+
+		MenuTitle = _(node.get("text", "??").encode("UTF-8", "ignore")) if PY2 else _(node.get("text", "??"))
 		entryID = node.get("entryID", "undefined")
 		weight = node.get("weight", 50)
-		description = six.ensure_str(node.get("description", "")) or None
-		description = description and _(description)
+		description = _(node.get("description", "").encode("UTF-8", "ignore")) if PY2 else _(node.get("description", ""))
 		menupng = MenuEntryPixmap(entryID, self.png_cache, lastMenuID)
 		x = node.get("flushConfigOnClose")
 		if x:
@@ -226,29 +227,28 @@ class Menu(Screen, ProtectedScreen):
 	def addItem(self, destList, node):
 		requires = node.get("requires")
 		if requires:
-			if requires[0] == '!':
+			if requires[0] == "!":
 				if BoxInfo.getItem(requires[1:], False):
 					return
 			elif not BoxInfo.getItem(requires, False):
 				return
-		configCondition = node.get("configcondition")
-		if configCondition and not eval(configCondition + ".value"):
+		conditional = node.get("conditional")
+		if conditional and not eval(conditional):
 			return
-		item_text = six.ensure_str(node.get("text", ""))
+		item_text = node.get("text", "").encode("UTF-8", "ignore") if PY2 else node.get("text", "")
 		entryID = node.get("entryID", "undefined")
 		weight = node.get("weight", 50)
-		description = six.ensure_str(node.get("description", "")) or ''
-		description = description and _(description)
+		description = _(node.get("description", "").encode("UTF-8", "ignore")) if PY2 else _(node.get("description", ""))
 		menupng = MenuEntryPixmap(entryID, self.png_cache, lastMenuID)
 		for x in node:
-			if x.tag == 'screen':
+			if x.tag == "screen":
 				module = x.get("module")
 				screen = x.get("screen")
 
 				if screen is None:
 					screen = module
 
-				# print module, screen
+				# print(module, screen)
 				if module:
 					module = "Screens." + module
 				else:
@@ -288,10 +288,10 @@ class Menu(Screen, ProtectedScreen):
 
 				destList.append((_(item_text or "??"), boundFunction(self.runScreen, (module, screen)), entryID, weight, description, menupng))
 				return
-			elif x.tag == 'code':
+			elif x.tag == "code":
 				destList.append((_(item_text or "??"), boundFunction(self.execText, x.text), entryID, weight, description, menupng))
 				return
-			elif x.tag == 'setup':
+			elif x.tag == "setup":
 				id = x.get("id")
 				if item_text == "":
 					if getSetupTitleLevel(id) > config.usage.setup_level.index:
@@ -323,12 +323,12 @@ class Menu(Screen, ProtectedScreen):
 		for x in parent:						#walk through the actual nodelist
 			if not x.tag:
 				continue
-			if x.tag == 'item':
+			if x.tag == "item":
 				item_level = int(x.get("level", 0))
 				if item_level <= config.usage.setup_level.index:
 					self.addItem(m_list, x)
 					count += 1
-			elif x.tag == 'menu':
+			elif x.tag == "menu":
 				item_level = int(x.get("level", 0))
 				if item_level <= config.usage.setup_level.index:
 					self.addMenu(m_list, x)
@@ -342,8 +342,7 @@ class Menu(Screen, ProtectedScreen):
 				if menuupdater.updatedMenuAvailable(menuID):
 					for x in menuupdater.getUpdatedMenu(menuID):
 						if x[1] == count:
-							description = six.ensure_str(x.get("description", "")) or None
-							description = description and _(description)
+							description = _(x.get("description", "").encode("UTF-8", "ignore")) if PY2 else _(x.get("description", ""))
 							menupng = MenuEntryPixmap(menuID, self.png_cache, lastMenuID)
 							m_list.append((x[0], boundFunction(self.runScreen, (x[2], x[3] + ", ")), x[4], description, menupng))
 							count += 1
@@ -385,7 +384,7 @@ class Menu(Screen, ProtectedScreen):
 			plugin_list = []
 			id_list = []
 			for l in plugins.getPlugins([PluginDescriptor.WHERE_PLUGINMENU, PluginDescriptor.WHERE_EXTENSIONSMENU, PluginDescriptor.WHERE_EVENTINFO]):
-				l.id = (l.name.lower()).replace(' ', '_')
+				l.id = (l.name.lower()).replace(" ", "_")
 				if l.id not in id_list:
 					id_list.append(l.id)
 					plugin_list.append((l.name, boundFunction(l.__call__, session), l.id, 200))
@@ -459,10 +458,10 @@ class Menu(Screen, ProtectedScreen):
 				"blue": self.keyBlue,
 			})
 
-		a = six.ensure_str(parent.get("title", "")) or None
+		a = parent.get("title", "") or None
 		a = a and _(a)
 		if a is None:
-			a = _(six.ensure_str(parent.get("text", "")))
+			a = _(parent.get("text", ""))
 		else:
 			t_history.reset()
 		self["title"] = StaticText(a)
@@ -561,7 +560,7 @@ class Menu(Screen, ProtectedScreen):
 
 	def isProtected(self):
 		if config.ParentalControl.setuppinactive.value:
-			if config.ParentalControl.config_sections.main_menu.value and not(hasattr(self.session, 'infobar') and self.session.infobar is None):
+			if config.ParentalControl.config_sections.main_menu.value and not(hasattr(self.session, "infobar") and self.session.infobar is None):
 				return self.menuID == "mainmenu"
 			elif config.ParentalControl.config_sections.configuration.value and self.menuID == "setup":
 				return True
@@ -732,10 +731,9 @@ class Menu(Screen, ProtectedScreen):
 
 
 class AnimMain(Screen):
-
 	def __init__(self, session, tlist, menuTitle):
 		Screen.__init__(self, session)
-		self.skinName = 'Animmain'
+		self.skinName = "Animmain"
 		self.tlist = tlist
 		ipage = 1
 		list = []
@@ -743,40 +741,38 @@ class AnimMain(Screen):
 		self.pos = []
 		self.index = 0
 		title = menuTitle
-		self['title'] = Button(title)
+		self["title"] = Button(title)
 		list = []
 		tlist = []
-		self['label1'] = StaticText()
-		self['label2'] = StaticText()
-		self['label3'] = StaticText()
-		self['label4'] = StaticText()
-		self['label5'] = StaticText()
-		self['red'] = Button(_('Exit'))
-		self['green'] = Button(_('Select'))
-		self['yellow'] = Button(_('Config'))
-		self['actions'] = NumberActionMap(['OkCancelActions',
-		 'MenuActions',
-		 'DirectionActions',
-		 'NumberActions',
-		 'ColorActions'], {'ok': self.okbuttonClick,
-		 'cancel': self.closeNonRecursive,
-		 'left': self.key_left,
-		 'right': self.key_right,
-		 'up': self.key_up,
-		 'down': self.key_down,
-		 'red': self.cancel,
-		 'green': self.okbuttonClick,
-		 'yellow': self.key_menu,
-		 'menu': self.closeRecursive,
-		 '1': self.keyNumberGlobal,
-		 '2': self.keyNumberGlobal,
-		 '3': self.keyNumberGlobal,
-		 '4': self.keyNumberGlobal,
-		 '5': self.keyNumberGlobal,
-		 '6': self.keyNumberGlobal,
-		 '7': self.keyNumberGlobal,
-		 '8': self.keyNumberGlobal,
-		 '9': self.keyNumberGlobal})
+		self["label1"] = StaticText()
+		self["label2"] = StaticText()
+		self["label3"] = StaticText()
+		self["label4"] = StaticText()
+		self["label5"] = StaticText()
+		self["red"] = Button(_("Exit"))
+		self["green"] = Button(_("Select"))
+		self["yellow"] = Button(_("Config"))
+		self["actions"] = NumberActionMap(["OkCancelActions", "MenuActions", "DirectionActions", "NumberActions", "ColorActions"], {
+			"ok": self.okbuttonClick,
+			"cancel": self.closeNonRecursive,
+			"left": self.key_left,
+			"right": self.key_right,
+			"up": self.key_up,
+			"down": self.key_down,
+			"red": self.cancel,
+			"green": self.okbuttonClick,
+			"yellow": self.key_menu,
+			"menu": self.closeRecursive,
+			"1": self.keyNumberGlobal,
+			"2": self.keyNumberGlobal,
+			"3": self.keyNumberGlobal,
+			"4": self.keyNumberGlobal,
+			"5": self.keyNumberGlobal,
+			"6": self.keyNumberGlobal,
+			"7": self.keyNumberGlobal,
+			"8": self.keyNumberGlobal,
+			"9": self.keyNumberGlobal
+		})
 		nop = len(self.tlist)
 		self.nop = nop
 		nh = 1
@@ -810,25 +806,25 @@ class AnimMain(Screen):
 		if i - 3 > -1:
 			name1 = MenuEntryName(self.tlist[i - 3][0])
 		else:
-			name1 = ' '
+			name1 = " "
 		if i - 2 > -1:
 			name2 = MenuEntryName(self.tlist[i - 2][0])
 		else:
-			name2 = ' '
+			name2 = " "
 		name3 = MenuEntryName(self.tlist[i - 1][0])
 		if i < self.nop:
 			name4 = MenuEntryName(self.tlist[i][0])
 		else:
-			name4 = ' '
+			name4 = " "
 		if i + 1 < self.nop:
 			name5 = MenuEntryName(self.tlist[i + 1][0])
 		else:
-			name5 = ' '
-		self['label1'].setText(name1)
-		self['label2'].setText(name2)
-		self['label3'].setText(name3)
-		self['label4'].setText(name4)
-		self['label5'].setText(name5)
+			name5 = " "
+		self["label1"].setText(name1)
+		self["label2"].setText(name2)
+		self["label3"].setText(name3)
+		self["label4"].setText(name4)
+		self["label5"].setText(name5)
 
 	def key_left(self):
 		self.index -= 1
@@ -873,10 +869,9 @@ class AnimMain(Screen):
 
 
 class IconMain(Screen):
-
 	def __init__(self, session, tlist, menuTitle):
 		Screen.__init__(self, session)
-		self.skinName = 'Iconmain'
+		self.skinName = "Iconmain"
 		self.tlist = tlist
 		ipage = 1
 		list = []
@@ -885,58 +880,56 @@ class IconMain(Screen):
 		self.ipage = 1
 		self.index = 0
 		title = menuTitle
-		self['title'] = Button(title)
+		self["title"] = Button(title)
 		self.icons = []
 		self.indx = []
 		n1 = len(tlist)
 		self.picnum = n1
 		list = []
 		tlist = []
-		self['label1'] = StaticText()
-		self['label2'] = StaticText()
-		self['label3'] = StaticText()
-		self['label4'] = StaticText()
-		self['label5'] = StaticText()
-		self['label6'] = StaticText()
-		self['label1s'] = StaticText()
-		self['label2s'] = StaticText()
-		self['label3s'] = StaticText()
-		self['label4s'] = StaticText()
-		self['label5s'] = StaticText()
-		self['label6s'] = StaticText()
-		self['pointer'] = Pixmap()
-		self['pixmap1'] = Pixmap()
-		self['pixmap2'] = Pixmap()
-		self['pixmap3'] = Pixmap()
-		self['pixmap4'] = Pixmap()
-		self['pixmap5'] = Pixmap()
-		self['pixmap6'] = Pixmap()
-		self['red'] = Button(_('Exit'))
-		self['green'] = Button(_('Select'))
-		self['yellow'] = Button(_('Config'))
-		self['actions'] = NumberActionMap(['OkCancelActions',
-		 'MenuActions',
-		 'DirectionActions',
-		 'NumberActions',
-		 'ColorActions'], {'ok': self.okbuttonClick,
-		 'cancel': self.closeNonRecursive,
-		 'left': self.key_left,
-		 'right': self.key_right,
-		 'up': self.key_up,
-		 'down': self.key_down,
-		 'red': self.cancel,
-		 'green': self.okbuttonClick,
-		 'yellow': self.key_menu,
-		 'menu': self.closeRecursive,
-		 '1': self.keyNumberGlobal,
-		 '2': self.keyNumberGlobal,
-		 '3': self.keyNumberGlobal,
-		 '4': self.keyNumberGlobal,
-		 '5': self.keyNumberGlobal,
-		 '6': self.keyNumberGlobal,
-		 '7': self.keyNumberGlobal,
-		 '8': self.keyNumberGlobal,
-		 '9': self.keyNumberGlobal})
+		self["label1"] = StaticText()
+		self["label2"] = StaticText()
+		self["label3"] = StaticText()
+		self["label4"] = StaticText()
+		self["label5"] = StaticText()
+		self["label6"] = StaticText()
+		self["label1s"] = StaticText()
+		self["label2s"] = StaticText()
+		self["label3s"] = StaticText()
+		self["label4s"] = StaticText()
+		self["label5s"] = StaticText()
+		self["label6s"] = StaticText()
+		self["pointer"] = Pixmap()
+		self["pixmap1"] = Pixmap()
+		self["pixmap2"] = Pixmap()
+		self["pixmap3"] = Pixmap()
+		self["pixmap4"] = Pixmap()
+		self["pixmap5"] = Pixmap()
+		self["pixmap6"] = Pixmap()
+		self["red"] = Button(_("Exit"))
+		self["green"] = Button(_("Select"))
+		self["yellow"] = Button(_("Config"))
+		self["actions"] = NumberActionMap(["OkCancelActions", "MenuActions", "DirectionActions", "NumberActions", "ColorActions"], {
+			"ok": self.okbuttonClick,
+			"cancel": self.closeNonRecursive,
+			"left": self.key_left,
+			"right": self.key_right,
+			"up": self.key_up,
+			"down": self.key_down,
+			"red": self.cancel,
+			"green": self.okbuttonClick,
+			"yellow": self.key_menu,
+			"menu": self.closeRecursive,
+			"1": self.keyNumberGlobal,
+			"2": self.keyNumberGlobal,
+			"3": self.keyNumberGlobal,
+			"4": self.keyNumberGlobal,
+			"5": self.keyNumberGlobal,
+			"6": self.keyNumberGlobal,
+			"7": self.keyNumberGlobal,
+			"8": self.keyNumberGlobal,
+			"9": self.keyNumberGlobal
+		})
 		self.index = 0
 		i = 0
 		self.maxentry = 29
@@ -965,25 +958,24 @@ class IconMain(Screen):
 		elif self.ipage == 5:
 			ii = 24
 		dxml = config.skin.primary_skin.value
-		dskin = dxml.split('/')
+		dskin = dxml.split("/")
 		j = 0
 		i = ii
 		while j < 6:
 			j = j + 1
 			if i > self.picnum - 1:
-				icon = dskin[0] + '/blank.png'
-				name = ''
+				icon = dskin[0] + "/blank.png"
+				name = ""
 			else:
 				name = self.tlist[i][0]
 			name = MenuEntryName(name)
 			if j == self.index + 1:
-				self['label' + str(j)].setText(' ')
-				self['label' + str(j) + 's'].setText(name)
+				self["label" + str(j)].setText(" ")
+				self["label" + str(j) + "s"].setText(name)
 			else:
-				self['label' + str(j)].setText(name)
-				self['label' + str(j) + 's'].setText(' ')
+				self["label" + str(j)].setText(name)
+				self["label" + str(j) + "s"].setText(" ")
 			i = i + 1
-
 		j = 0
 		i = ii
 		while j < 6:
@@ -994,23 +986,22 @@ class IconMain(Screen):
 			else:
 				icon = '/usr/share/enigma2/' + dskin[0] + '/buttons/icon1.png'
 			pic = icon
-			self['pixmap' + str(j)].instance.setPixmapFromFile(pic)
+			self["pixmap" + str(j)].instance.setPixmapFromFile(pic)
 			i = i + 1
-
 		if self.picnum > 6:
 			try:
-				dpointer = '/usr/share/enigma2/' + dskin[0] + '/pointer.png'
-				self['pointer'].instance.setPixmapFromFile(dpointer)
+				dpointer = "/usr/share/enigma2/" + dskin[0] + "/pointer.png"
+				self["pointer"].instance.setPixmapFromFile(dpointer)
 			except:
-				dpointer = '/usr/share/enigma2/skin_default/pointer.png'
-				self['pointer'].instance.setPixmapFromFile(dpointer)
+				dpointer = "/usr/share/enigma2/skin_default/pointer.png"
+				self["pointer"].instance.setPixmapFromFile(dpointer)
 		else:
 			try:
-				dpointer = '/usr/share/enigma2/' + dskin[0] + '/blank.png'
-				self['pointer'].instance.setPixmapFromFile(dpointer)
+				dpointer = "/usr/share/enigma2/" + dskin[0] + "/blank.png"
+				self["pointer"].instance.setPixmapFromFile(dpointer)
 			except:
-				dpointer = '/usr/share/enigma2/skin_default/blank.png'
-				self['pointer'].instance.setPixmapFromFile(dpointer)
+				dpointer = "/usr/share/enigma2/skin_default/blank.png"
+				self["pointer"].instance.setPixmapFromFile(dpointer)
 
 	def key_left(self):
 		self.index -= 1
@@ -1111,8 +1102,7 @@ class IconMain(Screen):
 
 
 class MainMenu(Menu):
-	#add file load functions for the xml-file
-
+	# add file load functions for the xml-file
 	def __init__(self, *x):
 		self.skinName = "Menu"
 		Menu.__init__(self, *x)
