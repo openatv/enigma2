@@ -202,7 +202,7 @@ class wpaSupplicant:
 		contents += "key=" + psk + "\n"
 		print("content = \n" + contents)
 
-		fd = open(getWlConfName(iface), "w")
+		fd = open(getWlanConfigName(iface), "w")
 		fd.write(contents)
 		fd.close()
 
@@ -214,7 +214,7 @@ class wpaSupplicant:
 		wsconf["wepkeytype"] = "ASCII" # not used
 		wsconf["key"] = ""
 
-		configfile = getWlConfName(iface)
+		configfile = getWlanConfigName(iface)
 
 		try:
 			fd = open(configfile, "r")
