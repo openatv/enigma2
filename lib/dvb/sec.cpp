@@ -1113,7 +1113,7 @@ RESULT eDVBSatelliteEquipmentControl::prepare(iDVBFrontend &frontend, const eDVB
 					mrt = 3600 - mrt;
 				if (mrt % 10)
 					mrt += 10; // round a little bit
-				mrt *= 2000;  // (we assume a very slow rotor with just 0.5 degree per second here)
+				mrt *= 5000;  // (we assume a very slow rotor with just 0.2 degree per second here)
 				mrt /= 10000;
 				mrt += 3; // a little bit overhead
 				sec_sequence.push_back( eSecCommand(eSecCommand::INVALIDATE_CURRENT_ROTORPARMS) );
