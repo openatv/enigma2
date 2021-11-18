@@ -1,5 +1,6 @@
 from __future__ import print_function
 import os
+import sys
 from time import time
 
 from Tools.Profile import profile, profile_final  # This facilitates the start up progress counter.
@@ -686,7 +687,14 @@ try:  # Configure the twisted logging
 
 	logger = log.FileLogObserver(stdout)
 	log.FileLogObserver.emit = quietEmit
+	# backup stdout and stderr redirections
+	backup_stdout = sys.stdout
+	backup_stderr = sys.stderr
 	log.startLoggingWithObserver(logger.emit)
+	# restore stdout and stderr redirections because of twisted redirections
+	sys.stdout = backup_stdout
+	sys.stderr = backup_stderr
+
 except ImportError:
 	print("[StartEnigma] Error: Twisted not available!")
 
