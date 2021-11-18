@@ -2643,6 +2643,20 @@ int eDVBFrontend::tuneLoopInt()  // called by m_tuneTimer
 				++m_sec_sequence.current();
 				break;
 			}
+			case eSecCommand::IF_EXTERNAL_ROTOR_MOVING_GOTO:
+			{
+				if (m_timeoutCount)
+					--m_timeoutCount;
+				char moving_file[32];
+				sprintf(moving_file,"/tmp/rotor_moving_%d",m_slotid);
+				if (::access(moving_file, F_OK) == 0) {
+					if ( !setSecSequencePos(m_sec_sequence.current()->steps) )
+						++m_sec_sequence.current();
+				}
+				else
+					++m_sec_sequence.current();
+				break;
+			}
 			default:
 				eDebugNoSimulate("[SEC] tuner %d unhandled sec command %d", m_dvbid, m_sec_sequence.current()->cmd);
 				++m_sec_sequence.current();
