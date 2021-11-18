@@ -1,28 +1,28 @@
+from os.path import exists
 from six import PY2
 from xml.etree.cElementTree import parse
 
 from enigma import eTimer
-from skin import findSkinScreen
-from Screens.Screen import Screen
-from Screens.ParentalControlSetup import ProtectedScreen
-from Components.Sources.List import List
-from Components.ActionMap import NumberActionMap, ActionMap
-from Components.Sources.StaticText import StaticText
-from Components.config import configfile
+from skin import findSkinScreen, menus
+from Components.ActionMap import HelpableNumberActionMap, ActionMap, HelpableActionMap
+from Components.Button import Button
+from Components.config import ConfigDictionarySet, NoSave, config, configfile
+from Components.Pixmap import Pixmap
 from Components.PluginComponent import plugins
-from Components.config import config, ConfigDictionarySet, NoSave
 from Components.SystemInfo import BoxInfo
 from Components.Label import Label
-from Tools.BoundFunction import boundFunction
+from Components.Sources.List import List
+from Components.Sources.StaticText import StaticText
 from Plugins.Plugin import PluginDescriptor
-from Tools.Directories import resolveFilename, SCOPE_SKINS, SCOPE_GUISKIN
-from Components.Pixmap import Pixmap, MovingPixmap
-from Components.Button import Button
-from Tools.LoadPixmap import LoadPixmap
-import os
-
-
+from Screens.HelpMenu import HelpableScreen
+from Screens.ParentalControlSetup import ProtectedScreen
+from Screens.Screen import Screen, ScreenSummary
 from Screens.Setup import Setup, getSetupTitle, getSetupTitleLevel
+from Tools.BoundFunction import boundFunction
+from Tools.Directories import SCOPE_GUISKIN, SCOPE_SKINS, resolveFilename
+from Tools.LoadPixmap import LoadPixmap
+
+MODULE_NAME = __name__.split(".")[-1]
 
 
 # Read the menu
@@ -33,7 +33,7 @@ file.close()
 mainmenu = _("Main menu")
 lastMenuID = None
 
-nomainmenupath = False if os.path.exists(resolveFilename(SCOPE_GUISKIN, "mainmenu")) else True
+nomainmenupath = False if exists(resolveFilename(SCOPE_GUISKIN, "mainmenu")) else True
 
 def MenuEntryPixmap(entryID, png_cache, lastMenuID):
 	if nomainmenupath:
@@ -125,36 +125,232 @@ class title_History:
 
 t_history = title_History()
 
-
-class MenuUpdater:
-	def __init__(self):
-		self.updatedMenuItems = {}
-
-	def addMenuItem(self, id, pos, text, module, screen, weight, description):
-		if not self.updatedMenuAvailable(id):
-			self.updatedMenuItems[id] = []
-		self.updatedMenuItems[id].append([text, pos, module, screen, weight, description])
-
-	def delMenuItem(self, id, pos, text, module, screen, weight, description):
-		self.updatedMenuItems[id].remove([text, pos, module, screen, weight, description])
-
-	def updatedMenuAvailable(self, id):
-		return id in self.updatedMenuItems
-
-	def getUpdatedMenu(self, id):
-		return self.updatedMenuItems[id]
-
-
-menuupdater = MenuUpdater()
-
-
-class MenuSummary(Screen):
-	pass
-
-
-class Menu(Screen, ProtectedScreen):
+class Menu(Screen, HelpableScreen, ProtectedScreen):
 	ALLOW_SUSPEND = True
 	png_cache = {}
+
+	def __init__(self, session, parent):
+		Screen.__init__(self, session)
+		HelpableScreen.__init__(self)
+		ProtectedScreen.__init__(self)
+		self.parentMenu = parent
+		self.menuList = []
+		self["menu"] = List(self.menuList)
+		self["menu"].enableWrapAround = True
+		self["menu"].onSelectionChanged.append(self.selectionChanged)
+		self.showNumericHelp = False
+		self["green"] = Label()
+		self["yellow"] = Label()
+		self["blue"] = Label()
+		self.sort_mode = False
+		self.selected_entry = None
+		self.sub_menu_sort = None
+		self.createMenuList()
+		# for the skin: first try a menu_<menuID>, then Menu
+		self.skinName = []
+		if self.menuID is not None:
+			if config.usage.menutype.value == "horzanim" and findSkinScreen("Animmain"):
+				self.skinName.append("Animmain")
+			elif config.usage.menutype.value == "horzicon" and findSkinScreen("Iconmain"):
+				self.skinName.append("Iconmain")
+			else:
+				self.skinName.append("menu_" + self.menuID)
+		self.skinName.append("Menu")
+		
+		if config.usage.menu_sort_mode.value == "user":
+			
+			self["MoveActions"] = ActionMap(["WizardActions"],
+				{
+					"left": self.keyLeft,
+					"right": self.keyRight,
+					"up": self.keyUp,
+					"down": self.keyDown,
+				}, -1
+			)
+			self["EditActions"] = ActionMap(["ColorActions"],
+			{
+				"green": self.keyGreen,
+				"yellow": self.keyYellow,
+				"blue": self.keyBlue,
+			})
+		
+		
+		self["menuActions"] = HelpableNumberActionMap(self, ["OkCancelActions", "NumberActions"], {
+			"ok": (self.okbuttonClick, _("Select the current menu item")),
+			"cancel": (self.closeNonRecursive, _("Exit menu")),
+			"close": (self.closeRecursive, _("Exit all menus")),
+			"menu": (self.closeRecursive, _("Exit all menus")),
+			"1": (self.keyNumberGlobal, _("Direct menu item selection")),
+			"2": (self.keyNumberGlobal, _("Direct menu item selection")),
+			"3": (self.keyNumberGlobal, _("Direct menu item selection")),
+			"4": (self.keyNumberGlobal, _("Direct menu item selection")),
+			"5": (self.keyNumberGlobal, _("Direct menu item selection")),
+			"6": (self.keyNumberGlobal, _("Direct menu item selection")),
+			"7": (self.keyNumberGlobal, _("Direct menu item selection")),
+			"8": (self.keyNumberGlobal, _("Direct menu item selection")),
+			"9": (self.keyNumberGlobal, _("Direct menu item selection")),
+			"0": (self.keyNumberGlobal, _("Direct menu item selection"))
+
+		}, prio=0, description=_("Common Menu Actions"))
+		title = parent.get("title", "").encode("UTF-8") if PY2 else parent.get("title", "") or None
+		title = title and _(title)
+		if title is None:
+			title = _(parent.get("text", "").encode("UTF-8", "ignore")) if PY2 else _(parent.get("text", ""))
+		else:
+			t_history.reset()
+		self["title"] = StaticText(title)
+		self.setTitle(title)
+		self.menu_title = title
+		self["thistory"] = StaticText(t_history.thistory)
+		history_len = len(t_history.thistory)
+		self["title0"] = StaticText("")
+		self["title1"] = StaticText("")
+		self["title2"] = StaticText("")
+		if history_len < 13:
+			self["title0"] = StaticText(title)
+		elif history_len < 21:
+			self["title0"] = StaticText("")
+			self["title1"] = StaticText(title)
+		else:
+			self["title0"] = StaticText("")
+			self["title1"] = StaticText("")
+			self["title2"] = StaticText(title)
+		if t_history.thistory == "":
+			t_history.thistory = str(title) + " > "
+		else:
+			t_history.thistory = t_history.thistory + str(title) + " > "
+		if config.usage.menutype.value == "horzanim" and findSkinScreen("Animmain"):
+			self["label1"] = StaticText()
+			self["label2"] = StaticText()
+			self["label3"] = StaticText()
+			self["label4"] = StaticText()
+			self["label5"] = StaticText()
+			self.onShown.append(self.openTestA)
+		elif config.usage.menutype.value == "horzicon" and findSkinScreen("Iconmain"):
+			self["label1"] = StaticText()
+			self["label2"] = StaticText()
+			self["label3"] = StaticText()
+			self["label4"] = StaticText()
+			self["label5"] = StaticText()
+			self["label6"] = StaticText()
+			self["label1s"] = StaticText()
+			self["label2s"] = StaticText()
+			self["label3s"] = StaticText()
+			self["label4s"] = StaticText()
+			self["label5s"] = StaticText()
+			self["label6s"] = StaticText()
+			self["pointer"] = Pixmap()
+			self["pixmap1"] = Pixmap()
+			self["pixmap2"] = Pixmap()
+			self["pixmap3"] = Pixmap()
+			self["pixmap4"] = Pixmap()
+			self["pixmap5"] = Pixmap()
+			self["pixmap6"] = Pixmap()
+			self.onShown.append(self.openTestB)
+		self.number = 0
+		self.nextNumberTimer = eTimer()
+		self.nextNumberTimer.callback.append(self.okbuttonClick)
+		if len(self.menuList) == 1:
+			self.onExecBegin.append(self.__onExecBegin)
+		self.onLayoutFinish.append(self.layoutFinished)
+
+	def createMenuList(self, showNumericHelp=False):
+		self.menuList = []
+		self.menuID = None
+		for x in self.parentMenu:  # walk through the actual nodelist
+			if not x.tag:
+				continue
+			if x.tag == "item":
+				itemLevel = int(x.get("level", 0))
+				if itemLevel <= config.usage.setup_level.index:
+					self.addItem(self.menuList, x)
+					count += 1
+			elif x.tag == "menu":
+				itemLevel = int(x.get("level", 0))
+				if itemLevel <= config.usage.setup_level.index:
+					self.addMenu(self.menuList, x)
+					count += 1
+			elif x.tag == "id":
+				self.menuID = x.get("val")
+				count = 0
+
+			if self.menuID:
+				# menuupdater?
+				if menuUpdater.updatedMenuAvailable(self.menuID):
+					for x in menuUpdater.getUpdatedMenu(self.menuID):
+						if x[1] == count:
+							description = _(x.get("description", "").encode("UTF-8", "ignore")) if PY2 else _(x.get("description", ""))
+							menupng = MenuEntryPixmap(self.menuID, self.png_cache, lastMenuID)
+							self.menuList.append((x[0], boundFunction(self.runScreen, (x[2], x[3] + ", ")), x[4], description, menupng))
+							count += 1
+
+
+		if self.menuID:
+			# plugins
+			for l in plugins.getPluginsForMenu(self.menuID):
+				# check if a plugin overrides an existing menu
+				plugin_menuid = l[2]
+				for x in self.menuList:
+					if x[2] == plugin_menuid:
+						self.menuList.remove(x)
+						break
+				description = plugins.getDescriptionForMenuEntryID(self.menuID, plugin_menuid)
+				menupng = MenuEntryPixmap(l[2], self.png_cache, lastMenuID)
+				if len(l) > 4 and l[4]:
+					self.menuList.append((l[0], boundFunction(l[1], self.session, self.close), l[2], l[3] or 50, description, menupng))
+				else:
+					self.menuList.append((l[0], boundFunction(l[1], self.session), l[2], l[3] or 50, description, menupng))
+
+
+		if config.usage.menu_sort_mode.value == "user" and self.menuID == "mainmenu":
+			plugin_list = []
+			id_list = []
+			for l in plugins.getPlugins([PluginDescriptor.WHERE_PLUGINMENU, PluginDescriptor.WHERE_EXTENSIONSMENU, PluginDescriptor.WHERE_EVENTINFO]):
+				l.id = (l.name.lower()).replace(" ", "_")
+				if l.id not in id_list:
+					id_list.append(l.id)
+					plugin_list.append((l.name, boundFunction(l.__call__, self.session), l.id, 200))
+
+		if self.menuID is not None and config.usage.menu_sort_mode.value == "user":
+			self.sub_menu_sort = NoSave(ConfigDictionarySet())
+			self.sub_menu_sort.value = config.usage.menu_sort_weight.getConfigValue(self.menuID, "submenu") or {}
+			idx = 0
+			for x in self.menuList:
+				entry = list(self.menuList.pop(idx))
+				m_weight = self.sub_menu_sort.getConfigValue(entry[2], "sort") or entry[3]
+				entry.append(m_weight)
+				self.menuList.insert(idx, tuple(entry))
+				self.sub_menu_sort.changeConfigValue(entry[2], "sort", m_weight)
+				idx += 1
+			self.full_list = list(self.menuList)
+
+		if config.usage.menu_sort_mode.value == "a_z":
+			# Sort by Name
+			self.menuList.sort(key=self.sortByName)
+		elif config.usage.menu_sort_mode.value == "user":
+			self["blue"].setText(_("Edit mode on"))
+			self.hide_show_entries()
+		else:
+			# Sort by Weight
+			self.menuList.sort(key=lambda x: int(x[3]))
+
+		if config.usage.menu_show_numbers.value:
+			self.menuList = [(str(x[0] + 1) + " " + x[1][0], x[1][1], x[1][2]) for x in enumerate(self.menuList)]
+
+		self["menu"].setList(self.menuList)
+
+	def layoutFinished(self):
+		self.selectionChanged()
+
+	def selectionChanged(self):
+		if self.sort_mode:
+			selection = self["menu"].getCurrent()[2]
+			if self.sub_menu_sort.getConfigValue(selection, "hidden"):
+				self["yellow"].setText(_("show"))
+			else:
+				self["yellow"].setText(_("hide"))
+		else:
+			self["yellow"].setText("")
 
 	def okbuttonClick(self):
 		global lastMenuID
@@ -186,7 +382,7 @@ class Menu(Screen, ProtectedScreen):
 		self.session.open(Standby2)
 		self.close(True)
 
-	def openDialog(self, *dialog):				# in every layer needed
+	def openDialog(self, *dialog):  # in every layer needed
 		self.session.openWithCallback(self.menuClosed, *dialog)
 
 	def openSetup(self, dialog):
@@ -211,7 +407,7 @@ class Menu(Screen, ProtectedScreen):
 			a = boundFunction(self.session.openWithCallback, self.menuClosedWithConfigFlush, Menu, node)
 		else:
 			a = boundFunction(self.session.openWithCallback, self.menuClosed, Menu, node)
-		#TODO add check if !empty(node.childNodes)
+		# TODO add check if !empty(node.childNodes)
 		destList.append((MenuTitle, a, entryID, weight, description, menupng))
 
 	def menuClosedWithConfigFlush(self, *res):
@@ -306,228 +502,17 @@ class Menu(Screen, ProtectedScreen):
 	def sortByName(self, listentry):
 		return listentry[0].lower()
 
-	def __init__(self, session, parent):
-		Screen.__init__(self, session)
-
-		self.sort_mode = False
-		self.selected_entry = None
-		self.sub_menu_sort = None
-
-		self["green"] = Label()
-		self["yellow"] = Label()
-		self["blue"] = Label()
-
-		m_list = []
-
-		menuID = None
-		for x in parent:						#walk through the actual nodelist
-			if not x.tag:
-				continue
-			if x.tag == "item":
-				item_level = int(x.get("level", 0))
-				if item_level <= config.usage.setup_level.index:
-					self.addItem(m_list, x)
-					count += 1
-			elif x.tag == "menu":
-				item_level = int(x.get("level", 0))
-				if item_level <= config.usage.setup_level.index:
-					self.addMenu(m_list, x)
-					count += 1
-			elif x.tag == "id":
-				menuID = x.get("val")
-				count = 0
-
-			if menuID is not None:
-				# menuupdater?
-				if menuupdater.updatedMenuAvailable(menuID):
-					for x in menuupdater.getUpdatedMenu(menuID):
-						if x[1] == count:
-							description = _(x.get("description", "").encode("UTF-8", "ignore")) if PY2 else _(x.get("description", ""))
-							menupng = MenuEntryPixmap(menuID, self.png_cache, lastMenuID)
-							m_list.append((x[0], boundFunction(self.runScreen, (x[2], x[3] + ", ")), x[4], description, menupng))
-							count += 1
-
-		self.menuID = menuID
-		if config.ParentalControl.configured.value:
-			ProtectedScreen.__init__(self)
-
-		if menuID is not None:
-			# plugins
-			for l in plugins.getPluginsForMenu(menuID):
-				# check if a plugin overrides an existing menu
-				plugin_menuid = l[2]
-				for x in m_list:
-					if x[2] == plugin_menuid:
-						m_list.remove(x)
-						break
-				description = plugins.getDescriptionForMenuEntryID(menuID, plugin_menuid)
-				menupng = MenuEntryPixmap(l[2], self.png_cache, lastMenuID)
-				if len(l) > 4 and l[4]:
-					m_list.append((l[0], boundFunction(l[1], self.session, self.close), l[2], l[3] or 50, description, menupng))
-				else:
-					m_list.append((l[0], boundFunction(l[1], self.session), l[2], l[3] or 50, description, menupng))
-
-		# for the skin: first try a menu_<menuID>, then Menu
-		self.skinName = []
-		if menuID is not None:
-			if config.usage.menutype.value == 'horzanim' and findSkinScreen("Animmain"):
-				self.skinName.append('Animmain')
-			elif config.usage.menutype.value == 'horzicon' and findSkinScreen("Iconmain"):
-				self.skinName.append('Iconmain')
-			else:
-				self.skinName.append('menu_' + menuID)
-		self.skinName.append("Menu")
-		self.menuID = menuID
-		ProtectedScreen.__init__(self)
-
-		if config.usage.menu_sort_mode.value == "user" and menuID == "mainmenu":
-			plugin_list = []
-			id_list = []
-			for l in plugins.getPlugins([PluginDescriptor.WHERE_PLUGINMENU, PluginDescriptor.WHERE_EXTENSIONSMENU, PluginDescriptor.WHERE_EVENTINFO]):
-				l.id = (l.name.lower()).replace(" ", "_")
-				if l.id not in id_list:
-					id_list.append(l.id)
-					plugin_list.append((l.name, boundFunction(l.__call__, session), l.id, 200))
-
-		self.list = m_list
-
-		if menuID is not None and config.usage.menu_sort_mode.value == "user":
-			self.sub_menu_sort = NoSave(ConfigDictionarySet())
-			self.sub_menu_sort.value = config.usage.menu_sort_weight.getConfigValue(self.menuID, "submenu") or {}
-			idx = 0
-			for x in self.list:
-				entry = list(self.list.pop(idx))
-				m_weight = self.sub_menu_sort.getConfigValue(entry[2], "sort") or entry[3]
-				entry.append(m_weight)
-				self.list.insert(idx, tuple(entry))
-				self.sub_menu_sort.changeConfigValue(entry[2], "sort", m_weight)
-				idx += 1
-			self.full_list = list(m_list)
-
-		if config.usage.menu_sort_mode.value == "a_z":
-			# Sort by Name
-			m_list.sort(key=self.sortByName)
-		elif config.usage.menu_sort_mode.value == "user":
-			self["blue"].setText(_("Edit mode on"))
-			self.hide_show_entries()
-			m_list = self.list
-		else:
-			# Sort by Weight
-			m_list.sort(key=lambda x: int(x[3]))
-
-		if config.usage.menu_show_numbers.value:
-			m_list = [(str(x[0] + 1) + " " + x[1][0], x[1][1], x[1][2]) for x in enumerate(m_list)]
-
-		self["menu"] = List(m_list)
-		self["menu"].enableWrapAround = True
-		if config.usage.menu_sort_mode.value == "user":
-			self["menu"].onSelectionChanged.append(self.selectionChanged)
-
-		self["actions"] = NumberActionMap(["OkCancelActions", "MenuActions", "NumberActions"],
-			{
-				"ok": self.okbuttonClick,
-				"cancel": self.closeNonRecursive,
-				"menu": self.closeRecursive,
-				#"0": self.resetSortOrder,
-				"0": self.keyNumberGlobal,
-				"1": self.keyNumberGlobal,
-				"2": self.keyNumberGlobal,
-				"3": self.keyNumberGlobal,
-				"4": self.keyNumberGlobal,
-				"5": self.keyNumberGlobal,
-				"6": self.keyNumberGlobal,
-				"7": self.keyNumberGlobal,
-				"8": self.keyNumberGlobal,
-				"9": self.keyNumberGlobal
-			})
-
-		if config.usage.menu_sort_mode.value == "user":
-			self["MoveActions"] = ActionMap(["WizardActions"],
-				{
-					"left": self.keyLeft,
-					"right": self.keyRight,
-					"up": self.keyUp,
-					"down": self.keyDown,
-				}, -1
-			)
-
-			self["EditActions"] = ActionMap(["ColorActions"],
-			{
-				"green": self.keyGreen,
-				"yellow": self.keyYellow,
-				"blue": self.keyBlue,
-			})
-
-		a = parent.get("title", "") or None
-		a = a and _(a)
-		if a is None:
-			a = _(parent.get("text", ""))
-		else:
-			t_history.reset()
-		self["title"] = StaticText(a)
-		Screen.setTitle(self, a)
-		self.menu_title = a
-
-		self["thistory"] = StaticText(t_history.thistory)
-		history_len = len(t_history.thistory)
-		self["title0"] = StaticText('')
-		self["title1"] = StaticText('')
-		self["title2"] = StaticText('')
-		if history_len < 13:
-			self["title0"] = StaticText(a)
-		elif history_len < 21:
-			self["title0"] = StaticText('')
-			self["title1"] = StaticText(a)
-		else:
-			self["title0"] = StaticText('')
-			self["title1"] = StaticText('')
-			self["title2"] = StaticText(a)
-
-		if(t_history.thistory == ''):
-			t_history.thistory = str(a) + ' > '
-		else:
-			t_history.thistory = t_history.thistory + str(a) + ' > '
-
-		if config.usage.menutype.value == 'horzanim' and findSkinScreen("Animmain"):
-			self['label1'] = StaticText()
-			self['label2'] = StaticText()
-			self['label3'] = StaticText()
-			self['label4'] = StaticText()
-			self['label5'] = StaticText()
-			self.onShown.append(self.openTestA)
-		elif config.usage.menutype.value == 'horzicon' and findSkinScreen("Iconmain"):
-			self['label1'] = StaticText()
-			self['label2'] = StaticText()
-			self['label3'] = StaticText()
-			self['label4'] = StaticText()
-			self['label5'] = StaticText()
-			self['label6'] = StaticText()
-			self['label1s'] = StaticText()
-			self['label2s'] = StaticText()
-			self['label3s'] = StaticText()
-			self['label4s'] = StaticText()
-			self['label5s'] = StaticText()
-			self['label6s'] = StaticText()
-			self['pointer'] = Pixmap()
-			self['pixmap1'] = Pixmap()
-			self['pixmap2'] = Pixmap()
-			self['pixmap3'] = Pixmap()
-			self['pixmap4'] = Pixmap()
-			self['pixmap5'] = Pixmap()
-			self['pixmap6'] = Pixmap()
-			self.onShown.append(self.openTestB)
-
-		self.number = 0
-		self.nextNumberTimer = eTimer()
-		self.nextNumberTimer.callback.append(self.okbuttonClick)
-
 	def openTestA(self):
-		self.session.open(AnimMain, self.list, self.menu_title)
+		self.session.open(AnimMain, self.menuList, self.menu_title)
 		self.close()
 
 	def openTestB(self):
-		self.session.open(IconMain, self.list, self.menu_title)
+		self.session.open(IconMain, self.menuList, self.menu_title)
 		self.close()
+
+	def __onExecBegin(self):
+		self.onExecBegin.remove(self.__onExecBegin)
+		self.okbuttonClick()
 
 	def keyNumberGlobal(self, number):
 		self.number = self.number * 10 + number
@@ -538,7 +523,7 @@ class Menu(Screen, ProtectedScreen):
 			else:
 				self.nextNumberTimer.start(1500, True)
 		else:
-			self.number = 0
+			self.resetNumberKey()
 
 	def resetNumberKey(self):
 		self.nextNumberTimer.stop()
@@ -569,18 +554,22 @@ class Menu(Screen, ProtectedScreen):
 			elif config.ParentalControl.config_sections.standby_menu.value and self.menuID == "shutdown":
 				return True
 
+	def keyBlue(self):
+		if config.usage.menu_sort_mode.value == "user":
+			self.toggleSortMode()
+
 	def updateList(self):
 		self.sub_menu_sort = NoSave(ConfigDictionarySet())
 		self.sub_menu_sort.value = config.usage.menu_sort_weight.getConfigValue(self.menuID, "submenu") or None
 		idx = 0
-		for x in self.list:
-			entry = list(self.list.pop(idx))
+		for x in self.menuList:
+			entry = list(self.menuList.pop(idx))
 			m_weight = self.sub_menu_sort.getConfigValue(entry[2], "sort") or entry[3]
 			entry.append(m_weight)
-			self.list.insert(idx, tuple(entry))
+			self.menuList.insert(idx, tuple(entry))
 			self.sub_menu_sort.changeConfigValue(entry[2], "sort", m_weight)
 			if not self.sort_mode and self.sub_menu_sort.getConfigValue(entry[2], "hidden"):
-				self.list.remove(x)
+				self.menuList.remove(x)
 			idx += 1
 
 	def keyLeft(self):
@@ -608,7 +597,7 @@ class Menu(Screen, ProtectedScreen):
 			self.moveAction()
 
 	def keyOk(self):
-		if self.sort_mode and len(self.list):
+		if self.sort_mode and len(self.menuList):
 			m_entry = selection = self["menu"].getCurrent()
 			select = False
 			if self.selected_entry is None:
@@ -621,7 +610,7 @@ class Menu(Screen, ProtectedScreen):
 			else:
 				self["green"].setText(_("Move mode off"))
 			idx = 0
-			for x in self.list:
+			for x in self.menuList:
 				if m_entry[2] == x[2] and select == True:
 					self.selected_entry = m_entry[2]
 					break
@@ -633,16 +622,12 @@ class Menu(Screen, ProtectedScreen):
 			self.okbuttonClick()
 
 	def moveAction(self):
-		tmp_list = list(self.list)
+		tmp_list = list(self.menuList)
 		entry = tmp_list.pop(self.cur_idx)
 		newpos = self["menu"].getSelectedIndex()
 		tmp_list.insert(newpos, entry)
-		self.list = list(tmp_list)
-		self["menu"].updateList(self.list)
-
-	def keyBlue(self):
-		if config.usage.menu_sort_mode.value == "user":
-			self.toggleSortMode()
+		self.menuList = list(tmp_list)
+		self["menu"].updateList(self.menuList)
 
 	def keyYellow(self):
 		if self.sort_mode:
@@ -678,30 +663,30 @@ class Menu(Screen, ProtectedScreen):
 			self.sort_mode = False
 			i = 10
 			idx = 0
-			for x in self.list:
+			for x in self.menuList:
 				self.sub_menu_sort.changeConfigValue(x[2], "sort", i)
 				if len(x) >= 7:
 					entry = list(x)
 					entry[6] = i
 					entry = tuple(entry)
-					self.list.pop(idx)
-					self.list.insert(idx, entry)
+					self.menuList.pop(idx)
+					self.menuList.insert(idx, entry)
 				if self.selected_entry is not None:
 					if x[2] == self.selected_entry:
 						self.selected_entry = None
 				i += 10
 				idx += 1
-			self.full_list = list(self.list)
+			self.full_list = list(self.menuList)
 			config.usage.menu_sort_weight.changeConfigValue(self.menuID, "submenu", self.sub_menu_sort.value)
 			config.usage.menu_sort_weight.save()
 			self.hide_show_entries()
-			self["menu"].setList(self.list)
+			self["menu"].setList(self.menuList)
 		else:
 			self["green"].setText(_("Move mode on"))
 			self["blue"].setText(_("Edit mode off"))
 			self.sort_mode = True
 			self.hide_show_entries()
-			self["menu"].updateList(self.list)
+			self["menu"].updateList(self.menuList)
 			self.selectionChanged()
 
 	def hide_show_entries(self):
@@ -717,17 +702,27 @@ class Menu(Screen, ProtectedScreen):
 		if not len(m_list):
 			m_list.append(('', None, 'dummy', '10', '', None, 10))
 		m_list.sort(key=lambda listweight: int(listweight[6]))
-		self.list = list(m_list)
+		self.menuList = list(m_list)
 
-	def selectionChanged(self):
-		if self.sort_mode:
-			selection = self["menu"].getCurrent()[2]
-			if self.sub_menu_sort.getConfigValue(selection, "hidden"):
-				self["yellow"].setText(_("show"))
-			else:
-				self["yellow"].setText(_("hide"))
-		else:
-			self["yellow"].setText("")
+class MenuUpdater:
+	def __init__(self):
+		self.updatedMenuItems = {}
+
+	def addMenuItem(self, id, pos, text, module, screen, weight, description):
+		if not self.updatedMenuAvailable(id):
+			self.updatedMenuItems[id] = []
+		self.updatedMenuItems[id].append([text, pos, module, screen, weight, description])
+
+	def delMenuItem(self, id, pos, text, module, screen, weight, description):
+		self.updatedMenuItems[id].remove([text, pos, module, screen, weight, description])
+
+	def updatedMenuAvailable(self, id):
+		return id in self.updatedMenuItems
+
+	def getUpdatedMenu(self, id):
+		return self.updatedMenuItems[id]
+
+
 
 
 class AnimMain(Screen):
@@ -749,10 +744,10 @@ class AnimMain(Screen):
 		self["label3"] = StaticText()
 		self["label4"] = StaticText()
 		self["label5"] = StaticText()
-		self["red"] = Button(_("Exit"))
-		self["green"] = Button(_("Select"))
-		self["yellow"] = Button(_("Config"))
-		self["actions"] = NumberActionMap(["OkCancelActions", "MenuActions", "DirectionActions", "NumberActions", "ColorActions"], {
+		self["red"] = StaticText(_("Exit"))
+		self["green"] = StaticText(_("Select"))
+		self["yellow"] = StaticText(_("Config"))
+		self["actions"] = HelpableNumberActionMap(self, ["OkCancelActions", "MenuActions", "DirectionActions", "NumberActions", "ColorActions"], {
 			"ok": self.okbuttonClick,
 			"cancel": self.closeNonRecursive,
 			"left": self.key_left,
@@ -906,10 +901,10 @@ class IconMain(Screen):
 		self["pixmap4"] = Pixmap()
 		self["pixmap5"] = Pixmap()
 		self["pixmap6"] = Pixmap()
-		self["red"] = Button(_("Exit"))
-		self["green"] = Button(_("Select"))
-		self["yellow"] = Button(_("Config"))
-		self["actions"] = NumberActionMap(["OkCancelActions", "MenuActions", "DirectionActions", "NumberActions", "ColorActions"], {
+		self["red"] = StaticText(_("Exit"))
+		self["green"] = StaticText(_("Select"))
+		self["yellow"] = StaticText(_("Config"))
+		self["actions"] = HelpableNumberActionMap(self, ["OkCancelActions", "MenuActions", "DirectionActions", "NumberActions", "ColorActions"], {
 			"ok": self.okbuttonClick,
 			"cancel": self.closeNonRecursive,
 			"left": self.key_left,
@@ -1102,7 +1097,31 @@ class IconMain(Screen):
 
 
 class MainMenu(Menu):
-	# add file load functions for the xml-file
-	def __init__(self, *x):
-		self.skinName = "Menu"
-		Menu.__init__(self, *x)
+	def __init__(self, *args):
+		self.skinName = ["Menu"]
+		Menu.__init__(self, *args)
+
+
+class MenuSummary(ScreenSummary):
+	def __init__(self, session, parent):
+		ScreenSummary.__init__(self, session, parent=parent)
+		self["entry"] = StaticText("")
+		if self.addWatcher not in self.onShow:
+			self.onShow.append(self.addWatcher)
+		if self.removeWatcher not in self.onHide:
+			self.onHide.append(self.removeWatcher)
+
+	def addWatcher(self):
+		if self.selectionChanged not in self.parent["menu"].onSelectionChanged:
+			self.parent["menu"].onSelectionChanged.append(self.selectionChanged)
+		self.selectionChanged()
+
+	def removeWatcher(self):
+		if self.selectionChanged in self.parent["menu"].onSelectionChanged:
+			self.parent["menu"].onSelectionChanged.remove(self.selectionChanged)
+
+	def selectionChanged(self):
+		self["entry"].text = self.parent["menu"].getCurrent()[0]
+
+
+menuUpdater = MenuUpdater()
