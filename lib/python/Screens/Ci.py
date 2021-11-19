@@ -833,9 +833,9 @@ class CIHelperSetup(Screen, ConfigListScreen):
 
 	def updateList(self, ret=None):
 		self.list = []
-		self.cihelper_ci0 = NoSave(ConfigYesNo(default='True'))
+		self.cihelper_ci0 = NoSave(ConfigYesNo(default=True))
 		if fileExists('/dev/ci1'):
-			self.cihelper_ci1 = NoSave(ConfigYesNo(default='True'))
+			self.cihelper_ci1 = NoSave(ConfigYesNo(default=True))
 		else:
 			self.cihelper_ci1 = ConfigNothing()
 

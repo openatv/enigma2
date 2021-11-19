@@ -102,10 +102,10 @@ class TimerEntry(Screen, ConfigListScreen):
 		weekday_table = ("mon", "tue", "wed", "thu", "fri", "sat", "sun")
 
 		# calculate default values
-		day = []
+		days = []
 		weekday = 0
 		for x in (0, 1, 2, 3, 4, 5, 6):
-			day.append(0)
+			days.append(False)
 		if self.timer.repeated: # repeated
 			type = "repeated"
 			if self.timer.repeated == 31: # Mon-Fri
@@ -121,10 +121,10 @@ class TimerEntry(Screen, ConfigListScreen):
 # 						print "Set to weekday " + str(x)
 						weekday = x
 					if flags & 1 == 1: # set user defined flags
-						day[x] = 1
+						days[x] = True
 						count += 1
 					else:
-						day[x] = 0
+						days[x] = False
 					flags >>= 1
 				if count == 1:
 					repeated = "weekly"
@@ -132,7 +132,7 @@ class TimerEntry(Screen, ConfigListScreen):
 			type = "once"
 			repeated = None
 			weekday = int(strftime("%u", localtime(self.timer.begin))) - 1
-			day[weekday] = 1
+			days[weekday] = True
 
 		self.timerentry_justplay = ConfigSelection(choices=[
 			("zap", _("zap")), ("record", _("record")), ("zap+record", _("zap and record"))],
@@ -185,7 +185,7 @@ class TimerEntry(Screen, ConfigListScreen):
 
 		self.timerentry_day = ConfigSubList()
 		for x in (0, 1, 2, 3, 4, 5, 6):
-			self.timerentry_day.append(ConfigYesNo(default=day[x]))
+			self.timerentry_day.append(ConfigYesNo(default=days[x]))
 
 		# FIXME some service-chooser needed here
 		servicename = "N/A"
