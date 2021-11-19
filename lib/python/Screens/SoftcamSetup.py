@@ -99,7 +99,7 @@ class SoftcamSetup(Setup):
 		if "oscam" in config.misc.softcams.value.lower() and isfile('/usr/lib/enigma2/python/Screens/OScamInfo.py'):
 			from Screens.OScamInfo import OscamInfoMenu
 			self.session.open(OscamInfoMenu)
-		elif "cccam" in config.misc.softcams.lower() and isfile('/usr/lib/enigma2/python/Screens/CCcamInfo.py'):
+		elif "cccam" in config.misc.softcams.value.lower() and isfile('/usr/lib/enigma2/python/Screens/CCcamInfo.py'):
 			from Screens.CCcamInfo import CCcamInfoMain
 			self.session.open(CCcamInfoMain)
 		elif isfile(ppanelFilename) and isPluginInstalled("PPanel"):
