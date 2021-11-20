@@ -214,9 +214,7 @@ class ConfigElement(object):
 
 	value = property(getValue, setValue)
 
-	def isChanged(self):
-		# NOTE - self.saved_value should already be stringified!
-		#        self.default may be a string or None
+	def isChanged(self):  # NOTE: self.saved_value should already be stringified, self.default may be a string or None.
 		saved = self.saved_value or self.toString(self.default)
 		# print("[Config] isChanged DEBUG: Saved='%s', Default='%s', Value='%s', Changed=%s." % (saved, self.toString(self.default), self.toString(self.value), self.toString(self.value) != saved))
 		return self.toString(self.value) != saved
@@ -513,6 +511,10 @@ class ConfigBoolean(ConfigElement):
 	def toDisplayString(self, value):
 		return self.descriptions[True] if value or str(value).lower() in self.trueValues else self.descriptions[False]
 
+	def isChanged(self):
+		saved = self.saved_value in self.trueValues if self.saved_value else self.default
+		return self.value != saved
+
 
 class ConfigEnableDisable(ConfigBoolean):
 	def __init__(self, default=False, graphic=True):
@@ -534,8 +536,12 @@ class ConfigYesNo(ConfigBoolean):
 class ConfigDateTime(ConfigElement):
 	def __init__(self, default, formatstring, increment=86400):
 		ConfigElement.__init__(self)
-		if not isinstance(default, float):
-			raise TypeError("[Config] Error: 'ConfigDateTime' default must be a float!")
+		if isinstance(default, float):
+			default = default
+		elif isinstance(default, int):
+			default = float(default)
+		else:
+			raise TypeError("[Config] Error: 'ConfigDateTime' default must be a float or int!")
 		if not isinstance(formatstring, str):
 			raise TypeError("[Config] Error: 'ConfigDateTime' formatstring must be a string!")
 		if not isinstance(increment, int):
@@ -823,8 +829,8 @@ class ConfigSelection(ConfigElement):
 	def handleKey(self, key, callback=None):
 		count = len(self.choices)
 		if count > 1:
-			prev = self.value
-			index = self.choices.index(self.value)
+			prev = str(self.value)
+			index = self.choices.index(str(self.value))  # Temporary hack until keys don't have to be strings.
 			if key == ACTIONKEY_LEFT:
 				self.value = self.choices[(index + count - 1) % count]
 			elif key == ACTIONKEY_RIGHT:
@@ -833,7 +839,7 @@ class ConfigSelection(ConfigElement):
 				self.value = self.choices[0]
 			elif key == ACTIONKEY_LAST:
 				self.value = self.choices[count - 1]
-			if self.value != prev:
+			if str(self.value) != prev:
 				self.changed()
 				if callable(callback):
 					callback()
@@ -941,9 +947,10 @@ class ConfigSelectionNumber(ConfigSelection):
 
 	def handleKey(self, key, callback=None):
 		if not self.wrap:
-			if key == ACTIONKEY_RIGHT and self.choices.index(self.value) == len(self.choices) - 1:
+			value = str(self.value)
+			if key == ACTIONKEY_RIGHT and self.choices.index(value) == len(self.choices) - 1:
 				return
-			if key == ACTIONKEY_LEFT and self.choices.index(self.value) == 0:
+			if key == ACTIONKEY_LEFT and self.choices.index(value) == 0:
 				return
 		ConfigSelection.handleKey(self, key, callback)
 
