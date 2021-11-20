@@ -1,10 +1,9 @@
 # -*- coding: UTF-8 -*-
 # CCcam Info by AliAbdul
 from __future__ import print_function
-from base64 import encodestring
 from os import listdir, remove, rename, system, popen, path
 
-from enigma import eListboxPythonMultiContent, eTimer, gFont, loadPNG, RT_HALIGN_RIGHT, getDesktop
+from enigma import eListboxPythonMultiContent, gFont, loadPNG, RT_HALIGN_RIGHT
 
 from Components.ActionMap import ActionMap, NumberActionMap
 from Components.config import config, getConfigListEntry
@@ -12,7 +11,7 @@ from Components.ConfigList import ConfigListScreen
 from Components.Console import Console
 from Components.Label import Label
 from Components.MenuList import MenuList
-from Components.MultiContent import MultiContentEntryText, MultiContentEntryPixmapAlphaTest, MultiContentEntryPixmapAlphaBlend
+from Components.MultiContent import MultiContentEntryText, MultiContentEntryPixmapAlphaBlend
 from Components.ScrollLabel import ScrollLabel
 from Screens.HelpMenu import HelpableScreen
 
@@ -26,7 +25,12 @@ from six.moves.urllib.parse import urlparse, urlunparse
 from twisted.internet import reactor
 from twisted.web.client import HTTPClientFactory
 import skin
-import six
+from six import PY3
+
+if PY3:
+	from base64 import encodebytes as basen64code
+else:
+	from base64 import encodestring as basen64code
 
 #TOGGLE_SHOW = InfoBar.toggleShow
 
@@ -84,7 +88,12 @@ def getPage(url, contextFactory=None, *args, **kwargs):
 
 	if username and password:
 		url = scheme + '://' + host + ':' + str(port) + path
-		basicAuth = encodestring("%s:%s" % (username, password))
+		up = "%s:%s" % (username, password)
+		if PY3:
+			up = up.encode('utf-8')
+		basicAuth = basen64code("%s:%s" % (username, password))
+		if PY3:
+			basicAuth = basicAuth.decode()
 		authHeader = "Basic " + basicAuth.strip()
 		AuthHeaders = {"Authorization": authHeader}
 
@@ -92,7 +101,8 @@ def getPage(url, contextFactory=None, *args, **kwargs):
 			kwargs["headers"].update(AuthHeaders)
 		else:
 			kwargs["headers"] = AuthHeaders
-	url = six.ensure_binary(url)
+	if PY3:
+		url = url.encode('utf-8')
 	factory = HTTPClientFactory(url, *args, **kwargs)
 	reactor.connectTCP(host, port, factory)
 
@@ -113,7 +123,7 @@ class HelpableNumberActionMap(NumberActionMap):
 	def __init__(self, parent, context, actions, prio):
 		alist = []
 		adict = {}
-		for (action, funchelp) in six.iteritems(actions):
+		for (action, funchelp) in actions.items():
 			alist.append((action, funchelp[1]))
 			adict[action] = funchelp[0]
 		NumberActionMap.__init__(self, [context], adict, prio)
@@ -770,7 +780,8 @@ class CCcamInfoMain(Screen):
 
 	def showFreeMemory(self, result, retval, extra_args):
 		if retval == 0:
-			result = six.ensure_str(result)
+			if PY3:
+				result = result.decode("UTF-8")
 			if result.__contains__("Total:"):
 				idx = result.index("Total:")
 				result = result[idx + 6:]
