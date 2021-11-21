@@ -179,8 +179,7 @@ class Standby2(Screen):
 
 		self["actions"] = ActionMap(["StandbyActions"],
 		{
-			"power": self.Power,
-			"power_make": self.Power_make,
+			"power": self.Power_make,
 			"power_break": self.Power_break,
 			"power_long": self.Power_long,
 			"power_repeat": self.Power_repeat,
