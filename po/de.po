@@ -121,7 +121,7 @@ msgid ""
 "Manage extensions or plugins for your %s %s"
 msgstr ""
 "\n"
-"Verwalten der %s %s-Erweiterungen- und Plugins"
+"Plugins Ihrer %s %s verwalten."
 
 #, python-format
 msgid ""
@@ -2517,13 +2517,13 @@ msgid "Advanced restore"
 msgstr "Erweiterte Wiederherstellung"
 
 msgid "Advanced software"
-msgstr ""
+msgstr "Erweiterte Software"
 
 msgid "Advanced software plugin"
-msgstr ""
+msgstr "Erweitertes Softwareplugin"
 
 msgid "Advanced video enhancement setup"
-msgstr ""
+msgstr "Erweiterte Einrichtung der Bildoptimierung"
 
 msgid "Adventure"
 msgstr "Abenteuer"
@@ -3851,55 +3851,60 @@ msgstr ""
 "Mit der Taste GELB zurück zur Einführung."
 
 msgid "Can not delete timer"
-msgstr "Timer kann nicht gelöscht werden"
+msgstr "Timer kann nicht gelöscht werden!"
 
 msgid "Can not download EPG"
-msgstr "EPG kann nicht heruntergeladen werden"
+msgstr "EPG kann nicht heruntergeladen werden!"
 
 msgid "Can not download current region details"
-msgstr "Aktuelle Regionsdetails können nicht heruntergeladen werden"
+msgstr "Aktuelle Regionsdetails können nicht heruntergeladen werden!"
 
 msgid "Can not download list of regions"
-msgstr "Liste der Regionen kann nicht heruntergeladen werden"
+msgstr "Liste der Regionen kann nicht heruntergeladen werden!"
 
 msgid "Can not download timers"
-msgstr "Timer können nicht heruntergeladen werden"
+msgstr "Timer können nicht heruntergeladen werden!"
 
 msgid "Can not post PVR log information"
-msgstr "Kann keine PVR-Protokollinformationen veröffentlichen"
+msgstr "Kann keine PVR-Protokollinformationen veröffentlichen!"
 
 msgid "Can not post scan information"
-msgstr "Kann keine Scan-Informationen veröffentlichen"
+msgstr "Kann keine Scan-Informationen veröffentlichen!"
 
 msgid "Can not retrieve IceTV settings"
-msgstr "IceTV Einstellungen können nicht abgerufen werden"
+msgstr "IceTV Einstellungen können nicht abgerufen werden!"
 
 msgid "Can not retrieve channel map"
-msgstr "Senderliste kann nicht abgerufen werden"
+msgstr "Senderliste kann nicht abgerufen werden!"
 
 #, python-format
 msgid ""
 "Can not run %s: %s.\n"
 "%s may be in a plugin that is not installed."
 msgstr ""
+"%s: %s kann nicht ausgeführt werden!\n"
+"%s befindet sich möglicherweise in einem nicht installierten Plugin."
 
 msgid "Can not update timer"
-msgstr "Timer kann nicht aktualisiert werden"
+msgstr "Timer kann nicht aktualisiert werden!"
 
 msgid "Can not update timer status"
-msgstr "Timer-Status kann nicht aktualisiert werden"
+msgstr "Timer-Status kann nicht aktualisiert werden!"
 
 msgid "Can not update timers"
-msgstr "Timer können nicht aktualisiert werden"
+msgstr "Timer können nicht aktualisiert werden!"
 
 msgid "Can not upload timer"
-msgstr "Timer kann nicht hochgeladen werden"
+msgstr "Timer kann nicht hochgeladen werden!"
 
 msgid "Can only find a network drive to store the backup this means after the flash the autorestore will not work. Alternatively you can mount the network drive after the flash and perform a manufacturer reset to autorestore"
 msgstr ""
+"Es kann nur ein Netzlaufwerk gefunden werden, um die Sicherung zu speichern, "
+"was bedeutet, dass die automatische Wiederherstellung nach dem Flash nicht funktioniert!\n"
+"Alternativ können Sie das Netzlaufwerk nach dem Flashen mounten und einen Hersteller-Reset auf Autorestore durchführen."
 
 msgid "Can't allocate program source (e.g. tuner)"
-msgstr "Programmquelle (z.B. Tuner) kann nicht zugeordnet werden"
+msgstr "Programmquelle (z.B. Tuner) kann nicht zugeordnet werden!"
 
 msgid ""
 "Can't going to live TV!\n"
@@ -3925,7 +3930,9 @@ msgid "Can't read link contents: %s"
 msgstr "Linkinhalt kann nicht gelesen werden: %s"
 
 msgid "Can't unmount partiton, make sure it is not being used for swap or record/timeshift paths"
-msgstr "Kann Partition nicht aushängen. Bitte sicherstellen, dass diese nicht für Auslagerungsdatei oder Aufnahme/Timeshift-Pfade genutzt wird"
+msgstr ""
+"Partition kann nicht ausgehängt werden!\n"
+"Stellen Sie sicher, dass diese nicht für eine Auslagerungsdatei oder Aufnahme/Timeshift-Pfade verwendet wird."
 
 msgid "Canada"
 msgstr "Kanada"
@@ -3968,13 +3975,15 @@ msgid "Cannot determine"
 msgstr ""
 
 msgid "Cannot find any signal ..., aborting !"
-msgstr "Kein Signal gefunden! Abbruch..."
+msgstr "Kein Signal gefunden! Abbruch!"
 
 msgid "Cannot find images - please try later"
-msgstr "Images können nicht gefunden werden. Versuchen Sie es später noch einmal."
+msgstr ""
+"Images können nicht gefunden werden!\n"
+"Bitte versuchen Sie es später erneut."
 
 msgid "Cannot move to trash can"
-msgstr "Nicht in den Papierkorb verschiebbar"
+msgstr "Nicht in den Papierkorb verschiebbar!"
 
 msgid "Capabilities: "
 msgstr "Fähigkeiten: "
@@ -15278,7 +15287,7 @@ msgid "Show contents of zip file"
 msgstr "Zeige den Inhalt der 'zip' Datei"
 
 msgid "Show crash info on screen and write crash log for x times"
-msgstr "Wie oft soll die Absturz-Info anzeigt und das Crash-Log erstellt werden?"
+msgstr "Wie oft Absturz-Info anzeigen und Crashlog erstellen"
 
 msgid "Show crypto icons"
 msgstr "Anzeige der Verschlüsselung"
@@ -17452,13 +17461,13 @@ msgid "This option allows you to show the screen menu path history."
 msgstr "Mit dieser Option können Sie den Pfadverlauf des Bildschirmmenüs anzeigen."
 
 msgid "This option allows you to the SNR as a percentage (not all receivers support this)."
-msgstr "Einstellen, ob der Signalwert SNR in 'dB' statt '%' anzeigt werden soll (nicht alle Boxen unterstützen diese Funktion)."
+msgstr "Einstellen, ob der Signalwert SNR in 'dB' statt '%' angezeigt werden soll (nicht alle Boxen unterstützen diese Funktion)."
 
 msgid "This option allows you to use all HDMI Modes"
 msgstr "Bei 'Ja' können Sie alle HDMI-Modi verwenden."
 
 msgid "This option allows you to view the old and new settings side by side."
-msgstr "Einstellen, ob und wie das Bild mit den alten und neuen Werten nebeneinander anzeigt werden soll."
+msgstr "Einstellen, ob und wie das Bild mit den alten und neuen Werten nebeneinander angezeigt werden soll."
 
 msgid "This option configures the general audio delay for BT Speakers."
 msgstr "Diese Option konfiguriert die allgemeine Audio-Verzögerung für Ihre Bluetooth-Lautsprecher."
