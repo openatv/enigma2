@@ -17,7 +17,7 @@ from Tools.Trashcan import TrashInfo
 from Components.Pixmap import Pixmap, MultiPixmap
 from Components.Label import Label
 from Components.PluginComponent import plugins
-from Components.config import config, ConfigSubsection, ConfigText, ConfigInteger, ConfigLocations, ConfigSet, ConfigYesNo, ConfigSelection, getConfigListEntry, ConfigSelectionNumber
+from Components.config import config, ConfigSubsection, ConfigText, ConfigLocations, ConfigSet, ConfigYesNo, ConfigSelection, getConfigListEntry, ConfigSelectionNumber
 from Components.ConfigList import ConfigListScreen
 from Components.ServiceEventTracker import ServiceEventTracker, InfoBarBase
 from Components.Sources.ServiceEvent import ServiceEvent
@@ -30,6 +30,7 @@ from Screens.MessageBox import MessageBox
 from Screens.ChoiceBox import ChoiceBox
 from Screens.LocationBox import MovieLocationBox
 from Screens.HelpMenu import HelpableScreen
+from Screens.Setup import Setup
 import Screens.InfoBar
 from Tools import NumericalTextInput
 from Tools.Directories import resolveFilename, SCOPE_HDD
@@ -48,8 +49,6 @@ config.movielist.itemsperpage = ConfigSelectionNumber(default=20, stepwidth=1, m
 config.movielist.useslim = ConfigYesNo(default=False)
 config.movielist.useextlist = ConfigSelection(default='0', choices={'0': _('No'), '1': _('ServiceName'), '2': _('ServicePicon')})
 config.movielist.eventinfo_delay = ConfigSelectionNumber(50, 1000, 50, default=100)
-config.movielist.moviesort = ConfigInteger(default=MovieList.SORT_GROUPWISE)
-config.movielist.description = ConfigInteger(default=MovieList.SHOW_DESCRIPTION)
 config.movielist.last_videodir = ConfigText(default=resolveFilename(SCOPE_HDD))
 config.movielist.last_timer_videodir = ConfigText(default=resolveFilename(SCOPE_HDD))
 config.movielist.videodirs = ConfigLocations(default=[resolveFilename(SCOPE_HDD)])
@@ -78,6 +77,13 @@ l_moviesort = [
 	(str(MovieList.SORT_ALPHA_DATE_OLDEST_FIRST), _("alpha then oldest"), 'A1 A2 Z1'),
 	(str(MovieList.SORT_ALPHAREV_DATE_NEWEST_FIRST), _("alpharev then newest"), 'Z1 A2 A1')]
 
+config.movielist.moviesort = ConfigSelection(default=str(MovieList.SORT_GROUPWISE), choices=l_moviesort)
+
+l_desc = [
+	(str(MovieList.SHOW_DESCRIPTION), _("yes")),
+	(str(MovieList.HIDE_DESCRIPTION), _("no"))]
+
+config.movielist.description = ConfigSelection(default=str(MovieList.SHOW_DESCRIPTION), choices=l_desc)
 
 def defaultMoviePath():
 	result = config.usage.default_path.value
@@ -227,115 +233,23 @@ def buildMovieLocationList(bookmarks):
 			bookmarks.append((d, d))
 
 
-class MovieBrowserConfiguration(ConfigListScreen, Screen):
-	def __init__(self, session, args=0):
-		Screen.__init__(self, session)
-		self.skinName = "Setup"
-		self.setup_title = _("Movie List Setup")
-		Screen.setTitle(self, _(self.setup_title))
-		self["HelpWindow"] = Pixmap()
-		self["HelpWindow"].hide()
-		self["VKeyIcon"] = Boolean(False)
-		self['footnote'] = Label("")
-		self["description"] = Label("")
+class MovieSelectionSetup(Setup):
+	def __init__(self, session):
+		Setup.__init__(self, session, setup="MovieSelection")
+		self.setTitle(_("Movie List Setup"))
 
-		self.onChangedEntry = []
-		cfg = ConfigSubsection()
-		self.cfg = cfg
-		cfg.moviesort = ConfigSelection(default=str(config.movielist.moviesort.value), choices=l_moviesort)
-		cfg.description = ConfigYesNo(default=(config.movielist.description.value != MovieList.HIDE_DESCRIPTION))
-		configList = [getConfigListEntry(_("Use trash can in movielist"), config.usage.movielist_trashcan, _("When enabled, deleted recordings are moved to the trash can, instead of being deleted immediately.")),
-					  getConfigListEntry(_("Remove items from trash can after (days)"), config.usage.movielist_trashcan_days, _("Configure the number of days after which items are automatically removed from the trash can.")),
-					  getConfigListEntry(_("Clean network trash cans"), config.usage.movielist_trashcan_network_clean, _("When enabled, network trash cans are probed for cleaning.")),
-					  getConfigListEntry(_("Disk space to reserve for recordings (in GB)"), config.usage.movielist_trashcan_reserve, _("Configure the minimum amount of disk space to be available for recordings. When the amount of space drops below this value, deleted items will be removed from the trash can.")),
-					  getConfigListEntry(_("Background delete option"), config.misc.erase_flags, _("Configure on which devices the background delete option should be used.")),
-					  getConfigListEntry(_("Background delete speed"), config.misc.erase_speed, _("Configure the speed of the background deletion process. Lower speed will consume less hard disk drive performance.")),
-					  getConfigListEntry(_("Fontsize"), config.movielist.fontsize, _("This allows you change the font size relative to skin size, so 1 increases by 1 point size, and -1 decreases by 1 point size")),
-					  getConfigListEntry(_("Number of rows"), config.movielist.itemsperpage, _("Number of rows to display")),
-					  getConfigListEntry(_("Use extended List"), config.movielist.useextlist, _("Use the extended List")),
-					  getConfigListEntry(_("Update delay for Events in List"), config.movielist.eventinfo_delay, _("Update delay for Events in List. Scrolling in List is faster with higher delay, especially on big Lists !")),
-					  getConfigListEntry(_("Use slim screen"), config.movielist.useslim, _("Use the alternative screen")),
-					  getConfigListEntry(_("Sort"), cfg.moviesort, _("Set the default sorting method.")),
-					  getConfigListEntry(_("Show extended description"), cfg.description, _("Show or hide the extended description, (skin dependent).")),
-					  getConfigListEntry(_("Use individual settings for each directory"), config.movielist.settings_per_directory, _("When set each folder will show the previous state used, when off the default values will be shown.")),
-					  getConfigListEntry(_("Behavior when a movie reaches the end"), config.usage.on_movie_eof, _("On reaching the end of a file during playback, you can choose the box's behavior.")),
-					  getConfigListEntry(_("Stop service on return to movie list"), config.movielist.stop_service, _("Stop previous broadcasted service on return to movielist.")),
-					  getConfigListEntry(_("Show status icons in movielist"), config.usage.show_icons_in_movielist, _("Shows the watched status of the movie."))]
-		if config.usage.show_icons_in_movielist.value:
-			configList.append(getConfigListEntry(_("Show icon for new/unseen items"), config.usage.movielist_unseen, _("Shows the icons when new/unseen, else will not show an icon.")))
-		configList.append(getConfigListEntry(_("Play audio in background"), config.movielist.play_audio_internal, _("Keeps MovieList open whilst playing audio files.")))
-		configList.append(getConfigListEntry(_("Root directory"), config.movielist.root, _("Sets the root folder of movie list, to remove the '..' from benign shown in that folder.")))
-		configList.append(getConfigListEntry(_("Hide known extensions"), config.movielist.hide_extensions, _("Allows you to hide the extensions of known file types.")))
-		configList.append(getConfigListEntry(_("Show live tv when movie stopped"), config.movielist.show_live_tv_in_movielist, _("When set the PIG will return to live after a movie has stopped playing.")))
-		for btn in (('red', _('Red')), ('green', _('Green')), ('yellow', _('Yellow')), ('blue', _('Blue')), ('redlong', _('Red long')), ('greenlong', _('Green long')), ('yellowlong', _('Yellow long')), ('bluelong', _('Blue long')), ('TV', _('TV')), ('Radio', _('Radio')), ('Text', _('Text')), ('F1', _('F1')), ('F2', _('F2')), ('F3', _('F3'))):
-			configList.append(getConfigListEntry(_("Button") + " " + _(btn[1]), userDefinedButtons[btn[0]], _("Allows you to setup the button to do what you choose.")))
-		ConfigListScreen.__init__(self, configList, session=session, on_change=self.changedEntry)
-		self["config"].setList(configList)
-		if config.usage.sort_settings.value:
-			self["config"].list.sort()
-
-		self["actions"] = ActionMap(["SetupActions", 'ColorActions'],
-		{
-			"red": self.cancel,
-			"green": self.save,
-			"save": self.save,
-			"cancel": self.cancel,
-			"ok": self.save,
-			"menu": self.cancel,
-		}, -2)
-		self["key_red"] = StaticText(_("Cancel"))
-		self["key_green"] = StaticText(_("OK"))
-		if not self.selectionChanged in self["config"].onSelectionChanged:
-			self["config"].onSelectionChanged.append(self.selectionChanged)
-		self.selectionChanged()
-
-	def selectionChanged(self):
-		self["description"].setText(self["config"].getCurrent()[2])
-
-	# for summary:
-	def changedEntry(self):
-		for x in self.onChangedEntry:
-			x()
-
-	def getCurrentEntry(self):
-		return self["config"].getCurrent() and self["config"].getCurrent()[0] or ""
-
-	def getCurrentValue(self):
-		return self["config"].getCurrent() and str(self["config"].getCurrent()[1].getText()) or ""
-
-	def getCurrentDescription(self):
-		return self["config"].getCurrent() and len(self["config"].getCurrent()) > 2 and self["config"].getCurrent()[2] or ""
-
-	def createSummary(self):
-		from Screens.Setup import SetupSummary
-		return SetupSummary
-
-	def save(self):
-		self.saveAll()
-		cfg = self.cfg
-		config.movielist.moviesort.setValue(int(cfg.moviesort.value))
-		if cfg.description.value:
-			config.movielist.description.value = MovieList.SHOW_DESCRIPTION
-		else:
-			config.movielist.description.value = MovieList.HIDE_DESCRIPTION
+	def keySave(self):
 		if not config.movielist.settings_per_directory.value:
 			config.movielist.moviesort.save()
 			config.movielist.description.save()
 			config.movielist.useslim.save()
 			config.usage.on_movie_eof.save()
+
+		Setup.saveAll()
 		self.close(True)
 
-	def cancel(self):
-		if self["config"].isChanged():
-			self.session.openWithCallback(self.cancelCallback, MessageBox, _("Really close without saving settings?"))
-		else:
-			self.cancelCallback(True)
-
-	def cancelCallback(self, answer):
-		if answer:
-			for x in self["config"].list:
-				x[1].cancel()
-			self.close(False)
+	def keyCancel(self):
+		self.closeConfigList((False,))
 
 
 class MovieContextMenuSummary(Screen):
@@ -1390,10 +1304,10 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase, Pr
 		config.movielist.last_selected_tags.value = self.selected_tags
 
 	def configure(self):
-		self.session.openWithCallback(self.configureDone, MovieBrowserConfiguration)
+		self.session.openWithCallback(self.configureDone, MovieSelectionSetup)
 
 	def configureDone(self, result):
-		if result:
+		if result == True:
 			self.applyConfigSettings({
 			"moviesort": config.movielist.moviesort.value,
 				"description": config.movielist.description.value,
