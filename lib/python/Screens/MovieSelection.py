@@ -36,7 +36,9 @@ from Tools.BoundFunction import boundFunction
 from Tools.CopyFiles import copyFiles, deleteFiles, moveFiles
 from Tools.Directories import SCOPE_HDD, resolveFilename
 from Tools.NumericalTextInput import MAP_SEARCH_UPCASE, NumericalTextInput
+from Tools.TagEditor import tagEditor
 from Tools.Trashcan import TrashInfo, cleanAll, createTrashFolder, getTrashFolder
+
 
 config.movielist = ConfigSubsection()
 config.movielist.curentlyplayingservice = ConfigText()
@@ -58,7 +60,6 @@ config.movielist.stop_service = ConfigYesNo(default=True)
 
 userDefinedButtons = None
 last_selected_dest = []
-preferredTagEditor = None
 
 # this kludge is needed because ConfigSelection only takes numbers
 # and someone appears to be fascinated by 'enums'.
@@ -90,18 +91,14 @@ def defaultMoviePath():
 	return result
 
 
-def setPreferredTagEditor(te):
-	global preferredTagEditor
-	if preferredTagEditor is None:
-		preferredTagEditor = te
-		print("[MovieSelection] Preferred tag editor changed to", preferredTagEditor)
-	else:
-		print("[MovieSelection] Preferred tag editor already set to", preferredTagEditor, "ignoring", te)
+# Wrapper function for plugins
+def setPreferredTagEditor(tageditor):
+	tagEditor.setPreferredTagEditor(tageditor)
 
 
+# Wrapper function for plugins
 def getPreferredTagEditor():
-	global preferredTagEditor
-	return preferredTagEditor
+	tagEditor.getPreferredTagEditor()
 
 
 def isTrashFolder(ref):
