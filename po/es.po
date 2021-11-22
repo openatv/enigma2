@@ -2,13 +2,14 @@
 #
 # openATV <openatv@gmail.com>, 2021.
 # Víctor Pont <victor@pont.cat>, 2021.
+# Ernesto Miralles <ernesto.miralles@gmail.com>, 2021.
 msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-10-28 19:26+0000\n"
-"PO-Revision-Date: 2021-09-06 16:55+0000\n"
-"Last-Translator: Víctor Pont <victor@pont.cat>\n"
+"PO-Revision-Date: 2021-11-21 12:51+0000\n"
+"Last-Translator: Ernesto Miralles <ernesto.miralles@gmail.com>\n"
 "Language-Team: Spanish <https://hosted.weblate.org/projects/openatv/"
 "enigma2-7-0-po/es/>\n"
 "Language: es\n"
@@ -16,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.8.1-dev\n"
+"X-Generator: Weblate 4.9.1\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 
 msgid ""
@@ -126,6 +127,8 @@ msgid ""
 "\n"
 "Maintain your multiboot device."
 msgstr ""
+"\n"
+"Mantenimiento del multiarranque"
 
 #
 #, python-format
@@ -231,18 +234,21 @@ msgid ""
 "optional parameter:\n"
 "%s"
 msgstr ""
+"\n"
+"parámetro opcional:\n"
+"%s"
 
 msgid " "
 msgstr ""
 
 msgid "     no space left on back-up device"
-msgstr ""
+msgstr "     No hay espacio suficiente en el  dispositivo de copia de seguridad"
 
 msgid "     no writing permission on back-up device"
-msgstr ""
+msgstr "     sin permiso de escritura en el dispositivo de copia de seguridad"
 
 msgid "     wrong back-up destination "
-msgstr ""
+msgstr "     dispositivo de seguridad erróneo "
 
 #, fuzzy, python-format
 msgid "  (%s x %s)"
@@ -253,10 +259,10 @@ msgid "  Menu key : Select quad channel"
 msgstr "Previsualizar canal"
 
 msgid "  REC  "
-msgstr ""
+msgstr "  GRAB"
 
 msgid "  Red key : Show/Hide channel name"
-msgstr ""
+msgstr "  Tecla roja: Muestra/Esconde nombre de canal"
 
 #
 #, fuzzy, python-format
@@ -269,7 +275,7 @@ msgstr "Ocultar mensajes de error de zapeo."
 
 #, python-format
 msgid " ('%s') ends with error number [%d]."
-msgstr ""
+msgstr " (%s) fin con  número de error [%d]."
 
 #, python-format
 msgid " (Channel %s)"
@@ -307,16 +313,16 @@ msgstr "(menor que en automático)"
 
 #, python-format
 msgid " - %d elements exist! Overwrite"
-msgstr ""
+msgstr " - %d  elementos existente! Sobrescribir"
 
 msgid " - 1 element exist! Overwrite"
-msgstr ""
+msgstr " - 1 elemento existente! Sobrescribir"
 
 msgid " - file exist! Overwrite"
-msgstr ""
+msgstr " - fichero existente! Sobrescribir"
 
 msgid " - folder exist! Overwrite"
-msgstr ""
+msgstr " - Carpeta existente! Sobrescribir"
 
 #
 #, fuzzy
@@ -329,7 +335,7 @@ msgid " <empty>"
 msgstr "Vacío"
 
 msgid " HI "
-msgstr ""
+msgstr " - ALT "
 
 msgid " and"
 msgstr " y"
@@ -344,13 +350,13 @@ msgstr "¿Quieres instalar una lista de canales?"
 
 #, python-format
 msgid " bootmode = %s"
-msgstr ""
+msgstr " - modo de arranque = %s"
 
 msgid " of "
-msgstr ""
+msgstr " de "
 
 msgid " or save additional the picture to a file"
-msgstr ""
+msgstr " o grabar foto adicional a un fichero"
 
 #
 #, fuzzy
@@ -358,7 +364,7 @@ msgid " updated"
 msgstr "Actualizar"
 
 msgid "!! Bootloader Upgrade !!"
-msgstr ""
+msgstr "!! Cargador de Arranque Actualizado!!"
 
 msgid "%-H:%M"
 msgstr "%-H:%M"
@@ -9526,10 +9532,10 @@ msgid "Genre"
 msgstr "Género"
 
 msgid "Geolocation does not contain time zone information."
-msgstr ""
+msgstr "Geolocalización no contiene información de la zona horaria"
 
 msgid "Geolocation has been used to set the time zone."
-msgstr ""
+msgstr "Geolocalización ha sido usada para fijar la zona horaria."
 
 msgid "Geolocation is not available."
 msgstr ""
@@ -14872,6 +14878,9 @@ msgid ""
 "\n"
 "Press YELLOW to set the time zone via geolocation."
 msgstr ""
+"Por favor marque su opción horaria.\n"
+"\n"
+"Pulse Amarillo para fijar zona horaria por geolocalización."
 
 #
 msgid ""
@@ -17526,9 +17535,8 @@ msgstr ""
 msgid "Select the sleep timer action."
 msgstr "Seleccione la acción del temporizador de apagado automático."
 
-#, fuzzy
 msgid "Select the time zone within the area or region."
-msgstr "Configura el tiempo antes de ocultar la barra de información."
+msgstr "Configura la zona horaria sin área o región."
 
 #
 #, fuzzy
@@ -17640,9 +17648,8 @@ msgid ""
 msgstr ""
 
 # Zeitenstellung
-#, fuzzy
 msgid "Select your time zone area or region."
-msgstr "Configura tu zona horaria"
+msgstr "Configura tu zona horaria o  región."
 
 msgid "Select, toggle, process or edit the current entry"
 msgstr ""
