@@ -339,6 +339,30 @@ class AutoScartControl:
 				self.scartDialog.switchToTV()
 
 
+class PowerLost(Screen):
+	def __init__(self, session):
+		Screen.__init__(self, session)
+		self.showMessageBox()
+
+	def showMessageBox(self):
+		from Screens.MessageBox import MessageBox
+		if config.usage.boot_action.value == 'normal':
+			message = _("Your %s %s was not shutdown properly.\n\n"
+					"Do you want to put it in %s?") % (getMachineBrand(), getMachineName(), config.usage.shutdownNOK_action.value)
+			self.session.openWithCallback(self.MsgBoxClosed, MessageBox, message, MessageBox.TYPE_YESNO, timeout=int(config.usage.shutdown_msgbox_timeout.value), default=True)
+		else:
+			self.MsgBoxClosed(True)
+
+	def MsgBoxClosed(self, ret):
+		if ret:
+			if config.usage.shutdownNOK_action.value == 'deepstandby' and not config.usage.shutdownOK.value:
+				self.session.open(Screens.Standby.TryQuitMainloop, 1)
+			elif not Screens.Standby.inStandby:
+				self.session.open(Screens.Standby.Standby)
+
+		self.close()
+
+
 def autorestoreLoop():
 	# Check if auto restore settings fails, just start the wizard (avoid a endless loop)
 	count = 0
@@ -443,8 +467,7 @@ def runScreenTest():
 	print("bootup action=%s" % config.usage.boot_action.value)
 	if not config.usage.shutdownOK.value and not config.usage.shutdownNOK_action.value == 'normal' or not config.usage.boot_action.value == 'normal':
 		print("last shutdown = %s" % config.usage.shutdownOK.value)
-		import Screens.PowerLost
-		Screens.PowerLost.PowerLost(session)
+		PowerLost.PowerLost(session)
 
 	if not RestoreSettings:
 		config.usage.shutdownOK.setValue(False)
@@ -699,7 +722,7 @@ except ImportError:
 	print("[StartEnigma] Error: Twisted not available!")
 
 
-from boxbranding import getBoxType, getBrandOEM, getMachineBuild, getImageArch, getMachineBrand
+from boxbranding import getBoxType, getBrandOEM, getMachineBuild, getImageArch, getMachineBrand, getMachineName
 boxtype = getBoxType()
 
 if getImageArch() in ("aarch64"):
