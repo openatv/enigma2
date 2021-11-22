@@ -615,5 +615,14 @@
 		<item level="0" text="F3" description="Allows you to assign the selected function to the this button.">config.movielist.btn_F3</item>
 	</setup>
 
+	<setup key="OscamInfo" title="Oscam Info - Configuration">
+		<item level="0" text="Read Userdata from oscam.conf" description="Read Userdata from oscam.conf">config.oscaminfo.userdatafromconf</item>
+		<item level="0" text="Username (httpuser)" description="Username (httpuser)" conditional="not config.oscaminfo.userdatafromconf.value">config.oscaminfo.username</item>
+		<item level="0" text="Password (httpwd)" description="Password (httpuser)" conditional="not config.oscaminfo.userdatafromconf.value">config.oscaminfo.password</item>
+		<item level="0" text="IP address" description="IP address" conditional="not config.oscaminfo.userdatafromconf.value">config.oscaminfo.ip</item>
+		<item level="0" text="Port" description="Port" conditional="not config.oscaminfo.userdatafromconf.value">config.oscaminfo.port</item>
+		<item level="0" text="Automatically update Client/Server View?" description="Automatically update Client/Server View?">config.oscaminfo.autoupdate</item>
+		<item level="0" text="Update interval (in seconds)" description="Update interval (in seconds)" conditional="config.oscaminfo.autoupdate.value">config.oscaminfo.intervall</item>
+	</setup>
 
 </setupxml>
