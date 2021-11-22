@@ -17,7 +17,6 @@ from Components.Pixmap import MultiPixmap, Pixmap
 from Components.Label import Label
 from Components.PluginComponent import plugins
 from Components.config import ConfigLocations, ConfigSelection, ConfigSelectionNumber, ConfigSet, ConfigSubsection, ConfigText, ConfigYesNo, config, getConfigListEntry
-from Components.ConfigList import ConfigListScreen
 from Components.ServiceEventTracker import InfoBarBase, ServiceEventTracker
 from Components.UsageConfig import preferredTimerPath
 from Components.Sources.Boolean import Boolean
@@ -29,6 +28,7 @@ from Screens.ChoiceBox import ChoiceBox
 from Screens.LocationBox import MovieLocationBox
 from Screens.HelpMenu import HelpableScreen
 from Screens.Setup import Setup
+from Screens.VirtualKeyBoard import VirtualKeyBoard
 import Screens.InfoBar
 from Screens.ParentalControlSetup import ProtectedScreen
 from Screens.Screen import Screen
@@ -227,120 +227,6 @@ def buildMovieLocationList(bookmarks):
 			bookmarks.append((d, d))
 
 
-class MovieSelectionSetup(Setup):
-	def __init__(self, session):
-		Setup.__init__(self, session, setup="MovieSelection")
-		self.setTitle(_("Movie List Setup"))
-
-	def keySave(self):
-		if not config.movielist.settings_per_directory.value:
-			config.movielist.moviesort.save()
-			config.movielist.description.save()
-			config.movielist.useslim.save()
-			config.usage.on_movie_eof.save()
-
-		Setup.saveAll()
-		self.close(True)
-
-	def keyCancel(self):
-		self.closeConfigList((False,))
-
-
-class MovieContextMenuSummary(Screen):
-	def __init__(self, session, parent):
-		Screen.__init__(self, session, parent=parent)
-		self["selected"] = StaticText("")
-		self.onShow.append(self.__onShow)
-		self.onHide.append(self.__onHide)
-
-	def __onShow(self):
-		self.parent["config"].onSelectionChanged.append(self.selectionChanged)
-		self.selectionChanged()
-
-	def __onHide(self):
-		self.parent["config"].onSelectionChanged.remove(self.selectionChanged)
-
-	def selectionChanged(self):
-		item = self.parent["config"].getCurrent()
-		self["selected"].text = item[0]
-
-
-
-
-class MovieContextMenu(Screen, ProtectedScreen):
-	# Contract: On OK returns a callable object (e.g. delete)
-	def __init__(self, session, csel, service):
-		self.csel = csel
-		Screen.__init__(self, session)
-		ProtectedScreen.__init__(self)
-		self.skinName = "Setup"
-		self.setTitle(_("Movie List Setup"))
-		self["HelpWindow"] = Pixmap()
-		self["HelpWindow"].hide()
-		self["VKeyIcon"] = Boolean(False)
-		self['footnote'] = Label("")
-		self['description'] = Label("")
-		self["status"] = StaticText()
-
-
-		self["actions"] = ActionMap(["OkCancelActions", "ColorActions", "NumberActions", "MenuActions"],
-			{
-				"red": self.cancelClick,
-				"green": self.okbuttonClick,
-				"ok": self.okbuttonClick,
-				"cancel": self.cancelClick
-			})
-
-		self["key_red"] = StaticText(_("Cancel"))
-		self["key_green"] = StaticText(_("OK"))
-		menu = [(_("Settings") + "...", csel.configure),
-				(_("Device mounts") + "...", csel.showDeviceMounts),
-				(_("Network mounts") + "...", csel.showNetworkMounts),
-				(_("Create directory"), csel.do_createdir),
-				(_("Sort by") + "...", csel.selectSortby)]
-		if csel.exist_bookmark():
-			menu.append((_("Remove bookmark"), csel.do_addbookmark))
-		else:
-			menu.append((_("Add bookmark"), csel.do_addbookmark))
-		if service:
-			if service.flags & eServiceReference.mustDescent:
-				if isTrashFolder(service):
-					menu.append((_("Permanently remove all deleted items"), csel.purgeAll))
-				else:
-					menu.append((_("Delete"), csel.do_delete))
-					menu.append((_("Move"), csel.do_move))
-					menu.append((_("Copy"), csel.do_copy))
-					menu.append((_("Rename"), csel.do_rename))
-			else:
-				menu.append((_("Delete"), csel.do_delete))
-				menu.append((_("Move"), csel.do_move))
-				menu.append((_("Copy"), csel.do_copy))
-				menu.append((_("Reset playback position"), csel.do_reset))
-				menu.append((_("Rename"), csel.do_rename))
-				menu.append((_("Start offline decode"), csel.do_decode))
-				# Plugins expect a valid selection, so only include them if we selected a non-dir
-				menu.extend([(p.description, boundFunction(p, session, service)) for p in plugins.getPlugins(PluginDescriptor.WHERE_MOVIELIST)])
-
-		self["config"] = MenuList(menu)
-
-	def isProtected(self):
-		return self.csel.protectContextMenu and config.ParentalControl.setuppinactive.value and config.ParentalControl.config_sections.context_menus.value
-
-	def pinEntered(self, answer):
-		if answer:
-			self.csel.protectContextMenu = False
-		ProtectedScreen.pinEntered(self, answer)
-
-	def createSummary(self):
-		return MovieContextMenuSummary
-
-	def okbuttonClick(self):
-		self.close(self["config"].getCurrent()[1])
-
-	def cancelClick(self):
-		self.close(None)
-
-
 class SelectionEventInfo:
 	def __init__(self):
 		self["Service"] = ServiceEvent()
@@ -356,44 +242,6 @@ class SelectionEventInfo:
 	def updateEventInfo(self):
 		serviceref = self.getCurrent()
 		self["Service"].newService(serviceref)
-
-
-class MovieSelectionSummary(Screen):
-	# Kludgy component to display current selection on LCD. Should use
-	# parent.Service as source for everything, but that seems to have a
-	# performance impact as the MovieSelection goes through hoops to prevent
-	# this when the info is not selected
-	def __init__(self, session, parent):
-		Screen.__init__(self, session, parent=parent)
-		self["name"] = StaticText("")
-		self.onShow.append(self.__onShow)
-		self.onHide.append(self.__onHide)
-
-	def __onShow(self):
-		self.parent.list.connectSelChanged(self.selectionChanged)
-		self.selectionChanged()
-
-	def __onHide(self):
-		self.parent.list.disconnectSelChanged(self.selectionChanged)
-
-	def selectionChanged(self):
-		item = self.parent.getCurrentSelection()
-		if item and item[0]:
-			data = item[3]
-			if (data is not None) and (data != -1):
-				name = data.txt
-			elif not item[1]:
-				# special case, one up
-				name = ".."
-			else:
-				name = item[1].getName(item[0])
-			if item[0].flags & eServiceReference.mustDescent:
-				if len(name) > 12:
-					name = split(normpath(name))[1]
-				name = "> %s" % name
-			self["name"].text = name
-		else:
-			self["name"].text = ""
 
 
 class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase, ProtectedScreen):
@@ -1561,7 +1409,6 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase, Pr
 		return True
 
 	def do_createdir(self):
-		from Screens.VirtualKeyBoard import VirtualKeyBoard
 		self.session.openWithCallback(self.createDirCallback, VirtualKeyBoard,
 			title=_("Please enter name of the new directory"),
 			text="")
@@ -1609,7 +1456,6 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase, Pr
 			if full_name == name:  # split extensions for files without metafile
 				name, self.extension = splitext(name)
 
-		from Screens.VirtualKeyBoard import VirtualKeyBoard
 		self.session.openWithCallback(self.renameCallback, VirtualKeyBoard,
 			title=_("Rename"),
 			text=name)
@@ -1619,9 +1465,10 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase, Pr
 		item = self.getCurrentSelection()
 		info = item[1]
 		serviceref = ServiceReference(None, reftype=eServiceReference.idDVB, path=item[0].getPath())
-		name = info.getName(item[0]) + ' - decoded'
+		name = "%s - decoded" % info.getName(item[0])
 		description = info.getInfoString(item[0], iServiceInformation.sDescription)
-		recording = RecordTimerEntry(serviceref, int(time()), int(time()) + 3600, name, description, 0, dirname=preferredTimerPath())
+		begin = int(time())
+		recording = RecordTimerEntry(serviceref, begin, begin + 3600, name, description, 0, dirname=preferredTimerPath())
 		recording.dontSave = True
 		recording.autoincrease = True
 		recording.setAutoincreaseEnd()
@@ -1908,10 +1755,10 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase, Pr
 					# Files were moved to .Trash, ok.
 					from Screens.InfoBarGenerics import delResumePoint
 					delResumePoint(current)
-					self.showActionFeedback(_("Deleted") + " " + name)
+					self.showActionFeedback("%s %s" % (_("Deleted"), name))
 					return
 				else:
-					msg = _("Cannot move to trash can") + "\n"
+					msg = "%s\n" % _("Cannot move to trash can")
 					are_you_sure = _("Do you really want to delete %s ?") % name
 			else:
 				if ".Trash" in cur_path:
@@ -2084,6 +1931,150 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase, Pr
 						continue
 					else:
 						items.append(item)
+
+
+class MovieSelectionSummary(Screen):
+	# Kludgy component to display current selection on LCD. Should use
+	# parent.Service as source for everything, but that seems to have a
+	# performance impact as the MovieSelection goes through hoops to prevent
+	# this when the info is not selected
+	def __init__(self, session, parent):
+		Screen.__init__(self, session, parent=parent)
+		self["name"] = StaticText("")
+		self.onShow.append(self.__onShow)
+		self.onHide.append(self.__onHide)
+
+	def __onShow(self):
+		self.parent.list.connectSelChanged(self.selectionChanged)
+		self.selectionChanged()
+
+	def __onHide(self):
+		self.parent.list.disconnectSelChanged(self.selectionChanged)
+
+	def selectionChanged(self):
+		item = self.parent.getCurrentSelection()
+		if item and item[0]:
+			data = item[3]
+			if (data is not None) and (data != -1):
+				name = data.txt
+			elif not item[1]:
+				# special case, one up
+				name = ".."
+			else:
+				name = item[1].getName(item[0])
+			if item[0].flags & eServiceReference.mustDescent:
+				if len(name) > 12:
+					name = split(normpath(name))[1]
+				name = "> %s" % name
+			self["name"].text = name
+		else:
+			self["name"].text = ""
+
+
+class MovieContextMenu(Screen, ProtectedScreen):
+	# Contract: On OK returns a callable object (e.g. delete)
+	def __init__(self, session, csel, service):
+		self.csel = csel
+		Screen.__init__(self, session)
+		ProtectedScreen.__init__(self)
+		self.skinName = "Setup"
+		self.setTitle(_("Movie List Setup"))
+		self["HelpWindow"] = Pixmap()
+		self["HelpWindow"].hide()
+		self["VKeyIcon"] = Boolean(False)
+		self['footnote'] = Label("")
+		self['description'] = Label("")
+		self["status"] = StaticText()
+
+
+		self["actions"] = ActionMap(["OkCancelActions", "ColorActions", "NumberActions", "MenuActions"],
+			{
+				"red": self.cancelClick,
+				"green": self.okbuttonClick,
+				"ok": self.okbuttonClick,
+				"cancel": self.cancelClick
+			})
+
+		self["key_red"] = StaticText(_("Cancel"))
+		self["key_green"] = StaticText(_("OK"))
+		menu = [(_("Settings") + "...", csel.configure),
+				(_("Device mounts") + "...", csel.showDeviceMounts),
+				(_("Network mounts") + "...", csel.showNetworkMounts),
+				(_("Create directory"), csel.do_createdir),
+				(_("Sort by") + "...", csel.selectSortby)]
+		if csel.exist_bookmark():
+			menu.append((_("Remove bookmark"), csel.do_addbookmark))
+		else:
+			menu.append((_("Add bookmark"), csel.do_addbookmark))
+		if service:
+			if service.flags & eServiceReference.mustDescent:
+				if isTrashFolder(service):
+					menu.append((_("Permanently remove all deleted items"), csel.purgeAll))
+				else:
+					menu.append((_("Delete"), csel.do_delete))
+					menu.append((_("Move"), csel.do_move))
+					menu.append((_("Copy"), csel.do_copy))
+					menu.append((_("Rename"), csel.do_rename))
+			else:
+				menu.append((_("Delete"), csel.do_delete))
+				menu.append((_("Move"), csel.do_move))
+				menu.append((_("Copy"), csel.do_copy))
+				menu.append((_("Reset playback position"), csel.do_reset))
+				menu.append((_("Rename"), csel.do_rename))
+				menu.append((_("Start offline decode"), csel.do_decode))
+				# Plugins expect a valid selection, so only include them if we selected a non-dir
+				menu.extend([(p.description, boundFunction(p, session, service)) for p in plugins.getPlugins(PluginDescriptor.WHERE_MOVIELIST)])
+
+		self["config"] = MenuList(menu)
+
+	def isProtected(self):
+		return self.csel.protectContextMenu and config.ParentalControl.setuppinactive.value and config.ParentalControl.config_sections.context_menus.value
+
+	def pinEntered(self, answer):
+		if answer:
+			self.csel.protectContextMenu = False
+		ProtectedScreen.pinEntered(self, answer)
+
+	def createSummary(self):
+		return MovieContextMenuSummary
+
+	def okbuttonClick(self):
+		self.close(self["config"].getCurrent()[1])
+
+	def cancelClick(self):
+		self.close(None)
+
+
+class MovieContextMenuSummary(Screen):
+	def __init__(self, session, parent):
+		Screen.__init__(self, session, parent=parent)
+		self["selected"] = StaticText("")
+		self.onShow.append(self.__onShow)
+		self.onHide.append(self.__onHide)
+
+	def __onShow(self):
+		self.parent["config"].onSelectionChanged.append(self.selectionChanged)
+		self.selectionChanged()
+
+	def __onHide(self):
+		self.parent["config"].onSelectionChanged.remove(self.selectionChanged)
+
+	def selectionChanged(self):
+		item = self.parent["config"].getCurrent()
+		self["selected"].text = item[0]
+
+
+class MovieSelectionSetup(Setup):
+	def __init__(self, session):
+		Setup.__init__(self, session, setup="MovieSelection")
+		self.setTitle(_("Movie List Setup"))
+
+	def keySave(self):
+		self.saveAll()
+		self.close(True)
+
+	def closeConfigList(self, closeParameters=()):
+		Setup.closeConfigList(self, (False,))
 
 
 playlist = []
