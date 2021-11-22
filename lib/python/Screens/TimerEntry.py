@@ -19,7 +19,6 @@ from Components.Pixmap import Pixmap
 from Components.SystemInfo import BoxInfo
 from Components.UsageConfig import defaultMoviePath
 from Components.Sources.Boolean import Boolean
-from Screens.MovieSelection import getPreferredTagEditor
 from Screens.LocationBox import MovieLocationBox
 from Screens.ChoiceBox import ChoiceBox
 from Screens.MessageBox import MessageBox
@@ -28,6 +27,14 @@ from Screens.Setup import SetupSummary
 from RecordTimer import AFTEREVENT
 from os import statvfs
 import six
+
+try: # FIXME circular import
+	from Screens.MovieSelection import getPreferredTagEditor
+except:
+	import traceback
+	traceback.print_exc()
+	def getPreferredTagEditor():
+		return None
 
 
 class TimerEntry(Screen, ConfigListScreen):
