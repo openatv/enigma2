@@ -175,7 +175,7 @@ class Menu(Screen, HelpableScreen, ProtectedScreen):
 			})
 		
 		
-		self["menuActions"] = HelpableNumberActionMap(self, ["OkCancelActions", "NumberActions"], {
+		self["menuActions"] = HelpableNumberActionMap(self, ["OkCancelActions", "NumberActions", "MenuActions"], {
 			"ok": (self.okbuttonClick, _("Select the current menu item")),
 			"cancel": (self.closeNonRecursive, _("Exit menu")),
 			"close": (self.closeRecursive, _("Exit all menus")),
