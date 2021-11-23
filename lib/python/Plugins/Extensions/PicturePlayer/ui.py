@@ -1,10 +1,5 @@
 from __future__ import print_function
-from boxbranding import getMachineBrand
-
 from enigma import ePicLoad, eTimer, getDesktop, gMainDC, eSize
-
-from Screens.Screen import Screen
-from Tools.Directories import resolveFilename, pathExists, SCOPE_MEDIA, SCOPE_GUISKIN
 
 from Components.Pixmap import Pixmap, MovingPixmap
 from Components.ActionMap import ActionMap
@@ -12,8 +7,10 @@ from Components.Sources.StaticText import StaticText
 from Components.FileList import FileList
 from Components.AVSwitch import AVSwitch
 from Components.Sources.List import List
-from Components.ConfigList import ConfigListScreen
-from Components.config import config, ConfigSubsection, ConfigInteger, ConfigSelection, ConfigText, ConfigYesNo, getConfigListEntry
+from Components.config import config, ConfigSubsection, ConfigInteger, ConfigSelection, ConfigText, ConfigYesNo
+from Screens.Screen import Screen
+from Screens.Setup import Setup
+from Tools.Directories import resolveFilename, pathExists, SCOPE_MEDIA, SCOPE_GUISKIN
 import skin
 
 
@@ -146,69 +143,10 @@ class picshow(Screen):
 
 #------------------------------------------------------------------------------------------
 
-
-class Pic_Setup(Screen, ConfigListScreen):
-
+class Pic_Setup(Setup):
 	def __init__(self, session):
-		Screen.__init__(self, session)
-		# for the skin: first try MediaPlayerSettings, then Setup, this allows individual skinning
-		self.skinName = ["PicturePlayerSetup", "Setup"]
-		self.setTitle(_("Settings"))
-		self.onChangedEntry = []
-		ConfigListScreen.__init__(self, [], session=session, on_change=self.changedEntry)
-		self["actions"] = ActionMap(["SetupActions", "MenuActions"],
-			{
-				"cancel": self.keyCancel,
-				"save": self.keySave,
-				"ok": self.keySave,
-				"menu": self.closeRecursive,
-			}, -2)
-		self["key_red"] = StaticText(_("Cancel"))
-		self["key_green"] = StaticText(_("OK"))
-		self["HelpWindow"] = Pixmap()
-		self["HelpWindow"].hide()
-		self["footnote"] = StaticText("")
-		self["description"] = StaticText("")
-		self.createSetup()
-
-	def createSetup(self):
-		setup_list = [
-			getConfigListEntry(_("Slide show interval (sec.)"), config.pic.slidetime),
-			getConfigListEntry(_("Scaling mode"), config.pic.resize),
-			getConfigListEntry(_("Cache thumbnails"), config.pic.cache),
-			getConfigListEntry(_("Show info line"), config.pic.infoline),
-			getConfigListEntry(_("Frame size in full view"), config.pic.framesize),
-			getConfigListEntry(_("Slide picture in loop"), config.pic.loop),
-			getConfigListEntry(_("Background color"), config.pic.bgcolor),
-			getConfigListEntry(_("Text color"), config.pic.textcolor),
-			getConfigListEntry(_("Fulview resulution"), config.usage.pic_resolution),
-		]
-		self["config"].list = setup_list
-		self["config"].l.setList(setup_list)
-
-	def keyLeft(self):
-		ConfigListScreen.keyLeft(self)
-
-	def keyRight(self):
-		ConfigListScreen.keyRight(self)
-
-	def keyCancel(self):
-		self.close()
-
-	# for summary:
-	def changedEntry(self):
-		for x in self.onChangedEntry:
-			x()
-
-	def getCurrentEntry(self):
-		return self["config"].getCurrent()[0]
-
-	def getCurrentValue(self):
-		return str(self["config"].getCurrent()[1].getText())
-
-	def createSummary(self):
-		from Screens.Setup import SetupSummary
-		return SetupSummary
+		Setup.__init__(self, session, setup="PicturePlayer", plugin="Extensions/PicturePlayer")
+		self.setTitle(_("Edit settings"))
 
 #---------------------------------------------------------------------------
 
