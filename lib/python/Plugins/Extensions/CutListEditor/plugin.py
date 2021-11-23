@@ -14,6 +14,7 @@ from Screens.HelpMenu import HelpableScreen
 from Screens.InfoBarGenerics import InfoBarSeek, InfoBarCueSheetSupport
 from Screens.MessageBox import MessageBox
 from Screens.Screen import Screen
+from Screens.FixedMenu import FixedMenu
 
 from enigma import getDesktop, iPlayableService
 
@@ -47,22 +48,6 @@ def CutListEntry(where, what):
 		type = "LAST"
 		type_col = 0x000000
 	return ((where, what), "%dh:%02dm:%02ds:%03d" % (h, m, s, ms), type, type_col)
-
-class FixedMenu(Screen):
-	def okbuttonClick(self):
-		selection = self["menu"].getCurrent()
-		if selection and len(selection) > 1:
-			selection[1]()
-
-	def __init__(self, session, title, list):
-		Screen.__init__(self, session)
-		self["menu"] = List(list)
-		self["actions"] = ActionMap(["OkCancelActions"],
-			{
-				"ok": self.okbuttonClick,
-				"cancel": self.close
-			})
-		self["title"] = StaticText(title)
 
 
 class CutListContextMenu(FixedMenu):
