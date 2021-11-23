@@ -1,0 +1,10 @@
+<setupxml>
+	<setup key="MediaPlayer" title="Edit settings">
+		<item level="0" text="repeat playlist" description="repeat playlist">config.mediaplayer.repeat</item>
+		<item level="0" text="save playlist on exit" description="save playlist on exit">config.mediaplayer.saveDirOnExit</item>
+		<item level="0" text="start directory" description="start directory" conditional="not config.mediaplayer.saveDirOnExit.value">config.mediaplayer.defaultDir</item>
+		<item level="0" text="sorting of playlists" description="sorting of playlists">config.mediaplayer.sortPlaylists</item>
+		<item level="0" text="Always hide infobar" description="Always hide infobar">config.mediaplayer.alwaysHideInfoBar</item>
+		<item level="0" text="show mediaplayer on mainmenu" description="show mediaplayer on mainmenu">config.mediaplayer.onMainMenu</item>
+	</setup>
+</setupxml>

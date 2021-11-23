@@ -25,11 +25,10 @@ from Components.ServicePosition import ServicePositionGauge
 from Components.ServiceEventTracker import ServiceEventTracker, InfoBarBase
 from Components.Playlist import PlaylistIOInternal, PlaylistIOM3U, PlaylistIOPLS
 from Components.AVSwitch import AVSwitch
-from Components.Harddisk import harddiskmanager
 from Components.config import config
 from Tools.Directories import fileExists, resolveFilename, SCOPE_CONFIG, SCOPE_PLAYLIST, SCOPE_GUISKIN
 from Tools.BoundFunction import boundFunction
-from .settings import MediaPlayerSettings, Load_defaults
+from .settings import MediaPlayerSetup, Load_defaults
 
 
 class MyPlayList(PlayList):
@@ -686,7 +685,7 @@ class MediaPlayer(Screen, InfoBarBase, InfoBarScreenSaver, InfoBarSeek, InfoBarA
 		elif choice[1] == "deletefile":
 			self.deleteFile()
 		elif choice[1] == "settings":
-			self.session.openWithCallback(self.applySettings, MediaPlayerSettings, self)
+			self.session.openWithCallback(self.applySettings, MediaPlayerSetup, self)
 		elif choice[1] == "audiocd":
 			self.playAudioCD()
 

@@ -576,4 +576,53 @@
 		<item level="0" text="Show in extensions list ?" description="This option lets you show the option in the extension screen">config.osd.show3dextensions</item>
 	</setup>
 
+	<setup key="MovieSelection" title="Movie List Setup">
+		<item level="0" text="Use trash can in movielist" description="When enabled, deleted recordings are moved to the trash can, instead of being deleted immediately.">config.usage.movielist_trashcan</item>
+		<item level="0" text="Remove items from trash can after (days)" description="Configure the number of days after which items are automatically removed from the trash can.">config.usage.movielist_trashcan_days</item>
+		<item level="0" text="Clean network trash cans" description="When enabled, network trash cans are probed for cleaning.">config.usage.movielist_trashcan_network_clean</item>
+		<item level="0" text="Disk space to reserve for recordings (in GB)" description="Configure the minimum amount of disk space to be available for recordings. When the amount of space drops below this value, deleted items will be removed from the trash can.">config.usage.movielist_trashcan_reserve</item>
+		<item level="0" text="Background delete option" description="Configure on which devices the background delete option should be used.">config.misc.erase_flags</item>
+		<item level="0" text="Background delete speed" description="Configure the speed of the background deletion process. Lower speed will consume less hard disk drive performance.">config.misc.erase_speed</item>
+		<item level="0" text="Font size" description="This allows you change the font size relative to skin size, so 1 increases by 1 point size, and -1 decreases by 1 point size">config.movielist.fontsize</item>
+		<item level="0" text="Number of rows" description="Number of rows to display">config.movielist.itemsperpage</item>
+		<item level="0" text="Use slim screen" description="Use the alternative screen">config.movielist.useslim</item>
+		<item level="0" text="Use extended List" description="Use the extended List">config.movielist.useextlist</item>
+		<item level="0" text="Update delay for Events in List" description="Update delay for Events in List. Scrolling in List is faster with higher delay, especially on big Lists !">config.movielist.eventinfo_delay</item>
+		<item level="0" text="Sort" description="Set the default sorting method.">config.movielist.moviesort</item>
+		<item level="0" text="Show extended description" description="Show or hide the extended description, (skin dependent).">config.movielist.description</item>
+		<item level="0" text="Use individual settings for each directory" description="When set each folder will show the previous state used, when off the default values will be shown.">config.movielist.settings_per_directory</item>
+		<item level="0" text="Behavior when a movie reaches the end" description="On reaching the end of a file during playback, you can choose the box's behavior.">config.usage.on_movie_eof</item>
+		<item level="0" text="Stop service on return to movie list" description="Stop previous broadcasted service on return to movie list.">config.movielist.stop_service</item>
+		<item level="0" text="Show status icons in movie list" description="Shows the watched status of the movie.">config.usage.show_icons_in_movielist</item>
+		<item level="0" text="Show icon for new/unseen items" description="Shows the icons when new/unseen, else will not show an icon." conditional="config.usage.show_icons_in_movielist.value">config.usage.movielist_unseen</item>
+		<item level="0" text="Play audio in background" description="Keeps MovieList open whilst playing audio files.">config.movielist.play_audio_internal</item>
+		<item level="0" text="Root directory" description="Sets the root folder of movie list, to remove the '..' from benign shown in that folder.">config.movielist.root</item>
+		<item level="0" text="Hide known extensions" description="Allows you to hide the extensions of known file types.">config.movielist.hide_extensions</item>
+		<item level="0" text="Show live tv when movie stopped" description="When set the PIG will return to live after a movie has stopped playing.">config.movielist.show_live_tv_in_movielist</item>
+		<item level="0" text="Red button" description="Allows you to assign the selected function to the this button.">config.movielist.btn_red</item>
+		<item level="0" text="Green button" description="Allows you to assign the selected function to the this button.">config.movielist.btn_green</item>
+		<item level="0" text="Yellow button" description="Allows you to assign the selected function to the this button.">config.movielist.btn_yellow</item>
+		<item level="0" text="Blue button" description="Allows you to assign the selected function to the this button.">config.movielist.btn_blue</item>
+		<item level="0" text="Red long" description="Allows you to assign the selected function to the this button.">config.movielist.btn_redlong</item>
+		<item level="0" text="Green long" description="Allows you to assign the selected function to the this button.">config.movielist.btn_greenlong</item>
+		<item level="0" text="Yellow long" description="Allows you to assign the selected function to the this button.">config.movielist.btn_yellowlong</item>
+		<item level="0" text="Blue long" description="Allows you to assign the selected function to the this button.">config.movielist.btn_bluelong</item>
+		<item level="0" text="Radio" description="Allows you to assign the selected function to the this button.">config.movielist.btn_radio</item>
+		<item level="0" text="TV" description="Allows you to assign the selected function to the this button.">config.movielist.btn_tv</item>
+		<item level="0" text="TEXT" description="Allows you to assign the selected function to the this button.">config.movielist.btn_text</item>
+		<item level="0" text="F1" description="Allows you to assign the selected function to the this button.">config.movielist.btn_F1</item>
+		<item level="0" text="F2" description="Allows you to assign the selected function to the this button.">config.movielist.btn_F2</item>
+		<item level="0" text="F3" description="Allows you to assign the selected function to the this button.">config.movielist.btn_F3</item>
+	</setup>
+
+	<setup key="OscamInfo" title="Oscam Info - Configuration">
+		<item level="0" text="Read Userdata from oscam.conf" description="Read Userdata from oscam.conf">config.oscaminfo.userdatafromconf</item>
+		<item level="0" text="Username (httpuser)" description="Username (httpuser)" conditional="not config.oscaminfo.userdatafromconf.value">config.oscaminfo.username</item>
+		<item level="0" text="Password (httpwd)" description="Password (httpuser)" conditional="not config.oscaminfo.userdatafromconf.value">config.oscaminfo.password</item>
+		<item level="0" text="IP address" description="IP address" conditional="not config.oscaminfo.userdatafromconf.value">config.oscaminfo.ip</item>
+		<item level="0" text="Port" description="Port" conditional="not config.oscaminfo.userdatafromconf.value">config.oscaminfo.port</item>
+		<item level="0" text="Automatically update Client/Server View?" description="Automatically update Client/Server View?">config.oscaminfo.autoupdate</item>
+		<item level="0" text="Update interval (in seconds)" description="Update interval (in seconds)" conditional="config.oscaminfo.autoupdate.value">config.oscaminfo.intervall</item>
+	</setup>
+
 </setupxml>

@@ -1,19 +1,23 @@
 from __future__ import print_function
 from Plugins.Plugin import PluginDescriptor
 
-from Screens.Screen import Screen
-from Screens.MessageBox import MessageBox
-from Components.ServicePosition import ServicePositionGauge
-from Components.ActionMap import HelpableActionMap
-from Components.ServiceEventTracker import ServiceEventTracker, InfoBarBase
-from Components.VideoWindow import VideoWindow
-from Components.Label import Label
 from Components.config import config, ConfigSubsection, ConfigYesNo
-from Screens.InfoBarGenerics import InfoBarSeek, InfoBarCueSheetSupport
-from enigma import getDesktop, iPlayableService
-from Screens.FixedMenu import FixedMenu
-from Screens.HelpMenu import HelpableScreen
+from Components.ActionMap import ActionMap, HelpableActionMap
+from Components.Label import Label
+from Components.ServicePosition import ServicePositionGauge
+from Components.ServiceEventTracker import ServiceEventTracker, InfoBarBase
 from Components.Sources.List import List
+from Components.Sources.StaticText import StaticText
+from Components.VideoWindow import VideoWindow
+
+from Screens.HelpMenu import HelpableScreen
+from Screens.InfoBarGenerics import InfoBarSeek, InfoBarCueSheetSupport
+from Screens.MessageBox import MessageBox
+from Screens.Screen import Screen
+from Screens.FixedMenu import FixedMenu
+
+from enigma import getDesktop, iPlayableService
+
 try:
 	from Plugins.Extensions.MovieCut.plugin import main as MovieCut
 except:
