@@ -512,7 +512,7 @@ class ConfigBoolean(ConfigElement):
 		return self.descriptions[True] if value or str(value).lower() in self.trueValues else self.descriptions[False]
 
 	def isChanged(self):
-		saved = self.saved_value in self.trueValues if self.saved_value else self.default
+		saved = self.saved_value.lower() in self.trueValues if self.saved_value else self.default
 		return self.value != saved
 
 
