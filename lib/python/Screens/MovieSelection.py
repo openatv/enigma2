@@ -64,24 +64,24 @@ last_selected_dest = []
 # this kludge is needed because ConfigSelection only takes numbers
 # and someone appears to be fascinated by 'enums'.
 l_moviesort = [
-	(str(MovieList.SORT_GROUPWISE), _("default"), '02/01 & A-Z'),
-	(str(MovieList.SORT_RECORDED), _("by date"), '03/02/01'),
-	(str(MovieList.SORT_ALPHANUMERIC), _("alphabetic"), 'A-Z'),
-	(str(MovieList.SORT_ALPHANUMERIC_FLAT), _("flat alphabetic"), 'A-Z Flat'),
-	(str(MovieList.SHUFFLE), _("shuffle"), '?'),
-	(str(MovieList.SORT_RECORDED_REVERSE), _("reverse by date"), '01/02/03'),
-	(str(MovieList.SORT_ALPHANUMERIC_REVERSE), _("alphabetic reverse"), 'Z-A'),
-	(str(MovieList.SORT_ALPHANUMERIC_FLAT_REVERSE), _("flat alphabetic reverse"), 'Z-A Flat'),
-	(str(MovieList.SORT_ALPHA_DATE_OLDEST_FIRST), _("alpha then oldest"), 'A1 A2 Z1'),
-	(str(MovieList.SORT_ALPHAREV_DATE_NEWEST_FIRST), _("alpharev then newest"), 'Z1 A2 A1')]
+	(MovieList.SORT_GROUPWISE, _("default"), '02/01 & A-Z'),
+	(MovieList.SORT_RECORDED, _("by date"), '03/02/01'),
+	(MovieList.SORT_ALPHANUMERIC, _("alphabetic"), 'A-Z'),
+	(MovieList.SORT_ALPHANUMERIC_FLAT, _("flat alphabetic"), 'A-Z Flat'),
+	(MovieList.SHUFFLE, _("shuffle"), '?'),
+	(MovieList.SORT_RECORDED_REVERSE, _("reverse by date"), '01/02/03'),
+	(MovieList.SORT_ALPHANUMERIC_REVERSE, _("alphabetic reverse"), 'Z-A'),
+	(MovieList.SORT_ALPHANUMERIC_FLAT_REVERSE, _("flat alphabetic reverse"), 'Z-A Flat'),
+	(MovieList.SORT_ALPHA_DATE_OLDEST_FIRST, _("alpha then oldest"), 'A1 A2 Z1'),
+	(MovieList.SORT_ALPHAREV_DATE_NEWEST_FIRST, _("alpharev then newest"), 'Z1 A2 A1')]
 
-config.movielist.moviesort = ConfigSelection(default=str(MovieList.SORT_GROUPWISE), choices=l_moviesort)
+config.movielist.moviesort = ConfigSelection(default=MovieList.SORT_GROUPWISE, choices=l_moviesort)
 
 l_desc = [
-	(str(MovieList.SHOW_DESCRIPTION), _("yes")),
-	(str(MovieList.HIDE_DESCRIPTION), _("no"))]
+	(MovieList.SHOW_DESCRIPTION, _("yes")),
+	(MovieList.HIDE_DESCRIPTION, _("no"))]
 
-config.movielist.description = ConfigSelection(default=str(MovieList.SHOW_DESCRIPTION), choices=l_desc)
+config.movielist.description = ConfigSelection(default=MovieList.SHOW_DESCRIPTION, choices=l_desc)
 
 def defaultMoviePath():
 	result = config.usage.default_path.value
