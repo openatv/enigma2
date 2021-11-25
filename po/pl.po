@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-10-28 19:26+0000\n"
-"PO-Revision-Date: 2021-11-21 12:51+0000\n"
+"PO-Revision-Date: 2021-11-25 17:52+0000\n"
 "Last-Translator: Grzegorz <grzegorz914@icloud.com>\n"
 "Language-Team: Polish <https://hosted.weblate.org/projects/openatv/"
 "enigma2-7-0-po/pl/>\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
 "|| n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 4.9.1\n"
+"X-Generator: Weblate 4.10-dev\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 
 msgid ""
@@ -3269,7 +3269,7 @@ msgid "Auto(not available)"
 msgstr "Opcja Auto (nie dostępna)"
 
 msgid "AutoMountManager"
-msgstr "Menadżer Automatycznego Montowania"
+msgstr "Menadżer auto montowania"
 
 msgid "AutoUpdate"
 msgstr "Automatyczna Aktualizacja"
@@ -5948,7 +5948,7 @@ msgid "DVD Burn"
 msgstr "Nagrywanie DVD"
 
 msgid "DVD File Browser"
-msgstr "Przeglądarka Plików DVD"
+msgstr "Przeglądarka plików DVD"
 
 msgid "DVD Menu"
 msgstr "Menu DVD"
@@ -6475,7 +6475,7 @@ msgid "Details for plugin: "
 msgstr "Szczegóły dotyczące wtyczki: "
 
 msgid "Detected Devices:"
-msgstr "Wykryte Urządzenia:"
+msgstr "Wykryte urządzenia:"
 
 msgid "Detected HDD:"
 msgstr "Wykryte HDD:"
@@ -6490,7 +6490,7 @@ msgid "Device Information"
 msgstr "Informacje o Urządzeniu"
 
 msgid "Device Manager"
-msgstr "Menadżer Urządzenia"
+msgstr "Menadżer urządzeń"
 
 msgid "Device Setup"
 msgstr "Ustawienia LAN/WLAN"
@@ -11366,7 +11366,7 @@ msgstr ""
 "Montowanie '%s' nie ma wystarczającej ilości wolnego miejsca do nagrywania."
 
 msgid "Mount Manager"
-msgstr "Menadżer Montowania"
+msgstr "Menadżer montowania"
 
 msgid "Mount Setup"
 msgstr "Ustawienia montowania"
@@ -11381,7 +11381,7 @@ msgid "Mounts"
 msgstr "Podmontowane"
 
 msgid "Mounts Devices"
-msgstr "Montowania Urządzeń"
+msgstr "Montowanie urządzeń"
 
 msgid "Mounts Setup"
 msgstr "Ustawienia montowania"
@@ -11804,10 +11804,10 @@ msgid "Network"
 msgstr "Sieć"
 
 msgid "Network Adapter Selection"
-msgstr "Wybór Karty Sieciowej"
+msgstr "Wybór karty sieciowej"
 
 msgid "Network Browser"
-msgstr "Przeglądarka Sieci"
+msgstr "Przeglądarka sieci"
 
 msgid "Network ID"
 msgstr "ID sieci"
@@ -11816,7 +11816,7 @@ msgid "Network Information"
 msgstr "Informacje o sieci"
 
 msgid "Network Interface"
-msgstr "Interfejs Sieciowy"
+msgstr "Interfejs sieci"
 
 msgid "Network MAC settings"
 msgstr "Ustawienia adresu MAC"
@@ -11831,7 +11831,7 @@ msgid "Network Servers:"
 msgstr "Serwery sieciowe:"
 
 msgid "Network Services"
-msgstr "Usługi Sieciowe"
+msgstr "Usługi sieciowe"
 
 msgid "Network Setup"
 msgstr "Ustawienia sieci"
@@ -11843,7 +11843,7 @@ msgid "Network Test"
 msgstr "Test Sieci"
 
 msgid "Network Wizard"
-msgstr "Kreator Sieci"
+msgstr "Kreator sieci"
 
 msgid "Network configuration..."
 msgstr "Ustawienia sieci..."
@@ -11879,7 +11879,7 @@ msgid "Network:"
 msgstr "Sieć:"
 
 msgid "NetworkWizard"
-msgstr "Kreator Sieci"
+msgstr "Kreator sieci"
 
 msgid "Neue Medien"
 msgstr "Nowe media"
@@ -13579,10 +13579,10 @@ msgid "Please wait...almost ready! "
 msgstr "Proszę czekać...prawie gotowe! "
 
 msgid "Plugin Browser"
-msgstr "Przeglądarka Wtyczek"
+msgstr "Przeglądarka wtyczek"
 
 msgid "Plugin Filter"
-msgstr "Filtr Wtyczek"
+msgstr "Filtr wtyczek"
 
 msgid "Plugin details"
 msgstr "Szczegóły wtyczki"
@@ -15139,7 +15139,7 @@ msgid "Sat"
 msgstr "Sob"
 
 msgid "Sat Finder"
-msgstr "Miernik Sygnału"
+msgstr "Miernik sygnału"
 
 msgid "Satellite"
 msgstr "Satelita"
@@ -15680,7 +15680,8 @@ msgid "Select how your box will upgrade."
 msgstr "Wybór trybu aktualizacji."
 
 msgid "Select if timeshift must continue when set to record."
-msgstr "Wybierz, czy timeshift ma kontynuować gdy jest ustawiony na nagrywanie."
+msgstr ""
+"Wybierz, czy timeshift ma kontynuować gdy jest ustawiony na nagrywanie."
 
 msgid "Select if you want the Subservice mode to be activated."
 msgstr "Wybierz, czy tryb Subserwisów ma być aktywowany."
@@ -16544,7 +16545,7 @@ msgid "Setup OpenVPN"
 msgstr "Ustawienia OpenVPN"
 
 msgid "Setup Plugin filter"
-msgstr "Filtr Konfiguracji Wtyczek"
+msgstr "Filtr konfiguracji wtyczek"
 
 msgid ""
 "Setup Plugin filter. Here you can select which Plugins are showed in the "
@@ -16663,8 +16664,7 @@ msgid ""
 "Setup your network interface. If no Wlan stick is used, you only can select "
 "Lan"
 msgstr ""
-"Skonfiguruj interfejs sieciowy.Jeżeli nie stosujesz WLANu,tylko Ty możesz "
-"wybrać Lan"
+"Skonfiguruj interfejs sieci. Jeżeli nie masz WLAN, możesz wybrać tylko LAN"
 
 msgid "Setup your network mounts"
 msgstr "Ustawienia montowania sieci"
@@ -17997,7 +17997,7 @@ msgid "Start/stop/select your cam, You need to install first a softcam"
 msgstr "Uruchom/Zatrzymaj/Wybierz, musisz zainstalować najpierw softcam"
 
 msgid "StartWizard"
-msgstr "Uruchom Kreatora"
+msgstr "Uruchom kreatora"
 
 msgid "Starting Softcam"
 msgstr "Uruchamianie softcam"
@@ -19032,7 +19032,7 @@ msgstr ""
 msgid ""
 "The wizard can backup your current settings. Do you want to do a backup now?"
 msgstr ""
-"Kreator może wykonać kopię zapasową bieżących ustawień.Czy chcesz zrobić "
+"Kreator może wykonać kopię zapasową bieżących ustawień. Czy chcesz zrobić "
 "kopię zapasową teraz?"
 
 #, python-format
@@ -21144,7 +21144,7 @@ msgid "VideoFinetune"
 msgstr "Dostrajanie wideo"
 
 msgid "VideoWizard"
-msgstr "Kreator Wideo"
+msgstr "Kreator wideo"
 
 msgid "Videoclip"
 msgstr "Wideo"
