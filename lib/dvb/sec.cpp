@@ -1101,7 +1101,7 @@ RESULT eDVBSatelliteEquipmentControl::prepare(iDVBFrontend &frontend, const eDVB
 					sec_sequence.push_back( eSecCommand(eSecCommand::SLEEP, m_params[DELAY_AFTER_VOLTAGE_CHANGE_BEFORE_MOTOR_CMD]) );  // wait 150msec after voltage change
 			}
 
-			if (useExternalRotorCmd) {
+			if (useExternalRotorCmd && !sat.no_rotor_command_on_tune && !simulate) {
 				move_external_rotor(slot_id_to_fe_id(slot_id), sat.orbital_position, sw_param.m_rotorPosNum);
 				sec_fe->setData(eDVBFrontend::NEW_ROTOR_POS, sat.orbital_position);
 				int mrt;
