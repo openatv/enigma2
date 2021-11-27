@@ -138,7 +138,7 @@ def load_cache(cache_file):
 	return cache_data
 
 
-def Check_Softcam():
+def Check_Softcam_Emu():
 	found = False
 	if fileExists("/etc/enigma2/noemu"):
 		found = False
@@ -490,7 +490,7 @@ class SoftwareManagerSetup(Screen, ConfigListScreen):
 		self.list.append(self.overwriteConfigfilesEntry)
 		self.list.append(self.overwriteSettingsfilesEntry)
 		self.list.append(self.overwriteDriversfilesEntry)
-		if Check_Softcam():
+		if Check_Softcam_Emu():
 			self.list.append(self.overwriteEmusfilesEntry)
 		self.list.append(self.overwritePiconsfilesEntry)
 		self.list.append(self.overwriteBootlogofilesEntry)

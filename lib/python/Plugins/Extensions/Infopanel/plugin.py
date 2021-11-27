@@ -44,21 +44,6 @@ inINFOPanel = None
 config.plugins.infopanel_redpanel = ConfigSubsection()
 
 
-def Check_Softcam():
-	found = False
-	if fileExists("/etc/enigma2/noemu"):
-		found = False
-	else:
-		for cam in os.listdir("/etc/init.d"):
-			if cam.startswith('softcam.') and not cam.endswith('None'):
-				found = True
-				break
-			elif cam.startswith('cardserver.') and not cam.endswith('None'):
-				found = True
-				break
-	return found
-
-
 def Check_SysSoftcam():
 	syscam = "none"
 	if os.path.isfile('/etc/init.d/softcam'):
@@ -76,7 +61,7 @@ def Check_SysSoftcam():
 	return syscam
 
 
-if Check_Softcam():
+if BoxInfo.getItem("SoftCam"):
 	redSelection = [('0', _("Default (Instant Record)")), ('1', _("Infopanel")), ('2', _("Timer List")), ('3', _("Show Movies")), ('4', _("SoftcamSetup"))]
 else:
 	redSelection = [('0', _("Default (Instant Record)")), ('1', _("Infopanel")), ('2', _("Timer List")), ('3', _("Show Movies"))]
@@ -125,10 +110,8 @@ from Plugins.Extensions.Infopanel.SoftwarePanel import SoftwarePanel
 from Plugins.SystemPlugins.SoftwareManager.BackupRestore import BackupScreen, RestoreScreen, BackupSelection, getBackupPath, getBackupFilename
 from Plugins.SystemPlugins.SoftwareManager.BackupRestore import InitConfig as BackupRestore_InitConfig
 
-BoxInfo.setItem("SoftCam", Check_Softcam())
-
 # Hide Softcam-Panel Setup when no softcams installed
-if not Check_Softcam() and config.plugins.showinfopanelextensions.value:
+if not BoxInfo.getItem("SoftCam") and config.plugins.showinfopanelextensions.value:
 	config.plugins.showinfopanelextensions.value = False
 	config.plugins.showinfopanelextensions.save()
 	config.plugins.infopanel_redpanel.save()
@@ -332,7 +315,7 @@ class Infopanel(Screen, InfoBarPiP, ProtectedScreen):
 		self["summary_description"] = StaticText("")
 
 		self.Mlist = []
-		if Check_Softcam():
+		if BoxInfo.getItem("SoftCam"):
 			self.Mlist.append(MenuEntryItem((InfoEntryComponent('SoftcamSetup'), _("Softcam-Setup"), 'SoftcamSetup')))
 		if Check_SysSoftcam() == "oscam":
 			self.Mlist.append(MenuEntryItem((InfoEntryComponent('OScamInfo'), _("OScamInfo"), 'OScamInfo')))

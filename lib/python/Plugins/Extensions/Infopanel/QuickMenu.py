@@ -93,21 +93,6 @@ else:
 	SATFINDER = False
 
 
-def Check_Softcam():
-	found = False
-	if fileExists("/etc/enigma2/noemu"):
-		found = False
-	else:
-		for cam in os.listdir("/etc/init.d"):
-			if cam.startswith('softcam.') and not cam.endswith('None'):
-				found = True
-				break
-			elif cam.startswith('cardserver.') and not cam.endswith('None'):
-				found = True
-				break
-	return found
-
-
 def isFileSystemSupported(filesystem):
 	try:
 		for fs in open('/proc/filesystems', 'r'):
@@ -246,7 +231,7 @@ class QuickMenu(Screen, ProtectedScreen):
 		self.list = []
 		self.oldlist = []
 		self.list.append(QuickMenuEntryComponent("Software Manager", _("Update/Backup/Restore your box"), _("Update/Backup your firmware, Backup/Restore settings")))
-		if Check_Softcam():
+		if BoxInfo.getItem("SoftCam"):
 			self.list.append(QuickMenuEntryComponent("Softcam", _("Start/stop/select cam"), _("Start/stop/select your cam, You need to install first a softcam")))
 		self.list.append(QuickMenuEntryComponent("System", _("System Setup"), _("Setup your System")))
 		self.list.append(QuickMenuEntryComponent("Mounts", _("Mount Setup"), _("Setup your mounts for network")))
@@ -313,7 +298,7 @@ class QuickMenu(Screen, ProtectedScreen):
 ######## Softcam Menu ##############################
 	def Qsoftcam(self):
 		self.sublist = []
-		if Check_Softcam(): # show only when there is a softcam installed
+		if BoxInfo.getItem("SoftCam"): # show only when there is a softcam installed
 			self.sublist.append(QuickSubMenuEntryComponent("Softcam Setup", _("Control your Softcams"), _("Use the Softcam Panel to control your Cam. This let you start/stop/select a cam")))
 		self.sublist.append(QuickSubMenuEntryComponent("Download Softcams", _("Download and install cam"), _("Shows available softcams. Here you can download and install them")))
 		self["sublist"].l.setList(self.sublist)

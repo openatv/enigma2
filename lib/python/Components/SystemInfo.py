@@ -208,6 +208,21 @@ def getModuleLayout():
 					return detail.split("\t")[0]
 	return None
 
+
+def Check_Softcam():
+	found = False
+	if fileExists("/etc/enigma2/noemu"):
+		found = False
+	else:
+		for cam in listdir("/etc/init.d"):
+			if cam.startswith('softcam.') and not cam.endswith('None'):
+				found = True
+				break
+			elif cam.startswith('cardserver.') and not cam.endswith('None'):
+				found = True
+				break
+	return found
+
 model = BoxInfo.getItem("model")
 
 BoxInfo.setItem("DebugLevel", eGetEnigmaDebugLvl())
@@ -318,3 +333,4 @@ SystemInfo["HasSDswap"] = getMachineBuild() in ("h9", "i55plus") and pathExists(
 SystemInfo["HasFullHDSkinSupport"] = model not in ("et4000", "et5000", "sh1", "hd500c", "hd1100", "xp1000", "lc")
 SystemInfo["CanProc"] = SystemInfo["HasMMC"] and getBrandOEM() != "vuplus"
 SystemInfo["canRecovery"] = getMachineBuild() in ("hd51", "vs1500", "h7", "8100s") and ("disk.img", "mmcblk0p1") or getMachineBuild() in ("xc7439", "osmio4k", "osmio4kplus", "osmini4k") and ("emmc.img", "mmcblk1p1") or getMachineBuild() in ("gbmv200", "cc1", "sf8008", "sf8008m", "sf8008opt", "ustym4kpro", "beyonwizv2", "viper4k") and ("usb_update.bin", "none")
+SystemInfo["SoftCam"] = Check_Softcam()
