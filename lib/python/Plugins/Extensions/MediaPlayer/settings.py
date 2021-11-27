@@ -80,6 +80,11 @@ class MediaPlayerSetup(Setup):
 			return
 		Setup.keySelect(self)
 
+	def keySave(self):
+		if config.mediaplayer.defaultDir.value == "None":
+			config.mediaplayer.defaultDir.value = ""
+		Setup.keySave(self)
+
 	def DirectoryBrowserClosed(self, path):
 		print("PathBrowserClosed:" + str(path))
 		if path:

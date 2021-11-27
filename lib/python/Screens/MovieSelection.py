@@ -28,6 +28,7 @@ from Screens.ChoiceBox import ChoiceBox
 from Screens.LocationBox import MovieLocationBox
 from Screens.HelpMenu import HelpableScreen
 from Screens.Setup import Setup
+from Screens.TagEditor import TagEditor
 from Screens.VirtualKeyBoard import VirtualKeyBoard
 import Screens.InfoBar
 from Screens.ParentalControlSetup import ProtectedScreen
@@ -36,7 +37,6 @@ from Tools.BoundFunction import boundFunction
 from Tools.CopyFiles import copyFiles, deleteFiles, moveFiles
 from Tools.Directories import SCOPE_HDD, resolveFilename
 from Tools.NumericalTextInput import MAP_SEARCH_UPCASE, NumericalTextInput
-from Tools.TagEditor import tagEditor
 from Tools.Trashcan import TrashInfo, cleanAll, createTrashFolder, getTrashFolder
 
 
@@ -64,24 +64,24 @@ last_selected_dest = []
 # this kludge is needed because ConfigSelection only takes numbers
 # and someone appears to be fascinated by 'enums'.
 l_moviesort = [
-	(str(MovieList.SORT_GROUPWISE), _("default"), '02/01 & A-Z'),
-	(str(MovieList.SORT_RECORDED), _("by date"), '03/02/01'),
-	(str(MovieList.SORT_ALPHANUMERIC), _("alphabetic"), 'A-Z'),
-	(str(MovieList.SORT_ALPHANUMERIC_FLAT), _("flat alphabetic"), 'A-Z Flat'),
-	(str(MovieList.SHUFFLE), _("shuffle"), '?'),
-	(str(MovieList.SORT_RECORDED_REVERSE), _("reverse by date"), '01/02/03'),
-	(str(MovieList.SORT_ALPHANUMERIC_REVERSE), _("alphabetic reverse"), 'Z-A'),
-	(str(MovieList.SORT_ALPHANUMERIC_FLAT_REVERSE), _("flat alphabetic reverse"), 'Z-A Flat'),
-	(str(MovieList.SORT_ALPHA_DATE_OLDEST_FIRST), _("alpha then oldest"), 'A1 A2 Z1'),
-	(str(MovieList.SORT_ALPHAREV_DATE_NEWEST_FIRST), _("alpharev then newest"), 'Z1 A2 A1')]
+	(MovieList.SORT_GROUPWISE, _("default"), '02/01 & A-Z'),
+	(MovieList.SORT_RECORDED, _("by date"), '03/02/01'),
+	(MovieList.SORT_ALPHANUMERIC, _("alphabetic"), 'A-Z'),
+	(MovieList.SORT_ALPHANUMERIC_FLAT, _("flat alphabetic"), 'A-Z Flat'),
+	(MovieList.SHUFFLE, _("shuffle"), '?'),
+	(MovieList.SORT_RECORDED_REVERSE, _("reverse by date"), '01/02/03'),
+	(MovieList.SORT_ALPHANUMERIC_REVERSE, _("alphabetic reverse"), 'Z-A'),
+	(MovieList.SORT_ALPHANUMERIC_FLAT_REVERSE, _("flat alphabetic reverse"), 'Z-A Flat'),
+	(MovieList.SORT_ALPHA_DATE_OLDEST_FIRST, _("alpha then oldest"), 'A1 A2 Z1'),
+	(MovieList.SORT_ALPHAREV_DATE_NEWEST_FIRST, _("alpharev then newest"), 'Z1 A2 A1')]
 
-config.movielist.moviesort = ConfigSelection(default=str(MovieList.SORT_GROUPWISE), choices=l_moviesort)
+config.movielist.moviesort = ConfigSelection(default=MovieList.SORT_GROUPWISE, choices=l_moviesort)
 
 l_desc = [
-	(str(MovieList.SHOW_DESCRIPTION), _("yes")),
-	(str(MovieList.HIDE_DESCRIPTION), _("no"))]
+	(MovieList.SHOW_DESCRIPTION, _("yes")),
+	(MovieList.HIDE_DESCRIPTION, _("no"))]
 
-config.movielist.description = ConfigSelection(default=str(MovieList.SHOW_DESCRIPTION), choices=l_desc)
+config.movielist.description = ConfigSelection(default=MovieList.SHOW_DESCRIPTION, choices=l_desc)
 
 def defaultMoviePath():
 	result = config.usage.default_path.value
@@ -91,14 +91,14 @@ def defaultMoviePath():
 	return result
 
 
-# Wrapper function for plugins
+# Wrapper function for old plugins
 def setPreferredTagEditor(tageditor):
-	tagEditor.setPreferredTagEditor(tageditor)
+	return
 
 
-# Wrapper function for plugins
+# Wrapper function for old plugins
 def getPreferredTagEditor():
-	tagEditor.getPreferredTagEditor()
+	return None
 
 
 def isTrashFolder(ref):
@@ -1438,6 +1438,15 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase, Pr
 			mbox = self.session.open(MessageBox, msg, type=MessageBox.TYPE_ERROR, timeout=5)
 			mbox.setTitle(self.getTitle())
 
+	def do_tageditor(self):
+		item = self.getCurrentSelection()
+		if not isFolder(item):
+			self.session.openWithCallback(self.tageditorCallback, TagEditor, service=item[0])
+
+	def tageditorCallback(self, tags):
+		return
+
+
 	def do_rename(self):
 		item = self.getCurrentSelection()
 		if not canMove(item):
@@ -2022,6 +2031,8 @@ class MovieContextMenu(Screen, ProtectedScreen):
 				menu.append((_("Reset playback position"), csel.do_reset))
 				menu.append((_("Rename"), csel.do_rename))
 				menu.append((_("Start offline decode"), csel.do_decode))
+				if isfile("%s.meta" % service.getPath().rstrip("/")):
+					menu.append((_("Edit Tags"), csel.do_tageditor))
 				# Plugins expect a valid selection, so only include them if we selected a non-dir
 				menu.extend([(p.description, boundFunction(p, session, service)) for p in plugins.getPlugins(PluginDescriptor.WHERE_MOVIELIST)])
 

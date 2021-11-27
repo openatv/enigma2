@@ -14,6 +14,9 @@
 		<item level="0" text="Time zone area" description="Select your time zone area or region.">config.timezone.area</item>
 		<item level="0" text="Time zone" description="Select the time zone within the area or region.">config.timezone.val</item>
 	</setup>
+	<setup key="InputDeviceSetup" title="InputDevice Setup">
+		<!-- this is just a placeholder -->
+	</setup>
 	<setup key="audio_setup" title="Audio settings">
 		<!-- this is just a placeholder, the Videomode plugin implements this submenu -->
 	</setup>
@@ -240,8 +243,8 @@
 		<item level="0" text="Margin before recording (minutes)" description="When nonzero, a recording will start earlier than the starting time indicated by the EPG.">config.recording.margin_before</item>
 		<item level="0" text="Margin after recording (minutes)" description="When nonzero, a recording will stop later than the ending time indicated by the EPG.">config.recording.margin_after</item>
 		<item level="2" text="Show message when recording starts" description="When enabled, a popup message will be shown when a recording starts.">config.usage.show_message_when_recording_starts</item>
-		<item level="2" text="Show movie lengths in movielist" description="When enabled, the length of each recording will be shown in the movielist (this might cause some additional loading time).">config.usage.load_length_of_movies_in_moviellist</item>
-		<item level="2" text="Show status icons in movielist" description="Configure the type of status indication icons shown in the movielist.">config.usage.show_icons_in_movielist</item>
+		<item level="2" text="Show movie lengths in movie list" description="When enabled, the length of each recording will be shown in the movie list (this might cause some additional loading time).">config.usage.load_length_of_movies_in_moviellist</item>
+		<item level="2" text="Show status icons in movie list" description="Configure the type of status indication icons shown in the movie list.">config.usage.show_icons_in_movielist</item>
 		<item level="2" text="Allow quit movieplayer with exit" description="When enabled, it is possible to leave the movieplayer with exit.">config.usage.leave_movieplayer_onExit</item>
 		<item level="2" text="Behavior when a movie is started" description="Configure the behavior when movie playback is started.">config.usage.on_movie_start</item>
 		<item level="2" text="Behavior when a movie is stopped" description="Configure the behavior when movie playback is manually stopped.">config.usage.on_movie_stop</item>
@@ -267,7 +270,7 @@
 		<item level="2" text="Limit character set for recording filenames" description="Limit the characters that can be used in recording filenames to (7 bit) ascii. This ensures compatibility with operating systems or file systems with limited character sets.">config.recording.ascii_filenames</item>
 		<item level="2" text="Composition of the recording filenames" description="Configure how recording filenames are constructed. Standard: Date Time - Channel - Title Very very short: Title Very short: Title - Date Time Short with time: Date Time - Title Short: Date - Title Long: Date Time - Channel - Title - Info">config.recording.filename_composition</item>
 		<item level="2" text="Remove completed timers after (days)" description="Configure the number of days old timers are kept before they are automatically removed from the timer list.">config.recording.keep_timers</item>
-		<item level="1" text="Use trash can in movielist" description="When enabled, deleted recordings are moved to the trash can, instead of being deleted immediately.">config.usage.movielist_trashcan</item>
+		<item level="1" text="Use trash can in movie list" description="When enabled, deleted recordings are moved to the trash can, instead of being deleted immediately.">config.usage.movielist_trashcan</item>
 		<item level="1" text="Remove items from trash can after (days)" description="Configure the number of days after which items are automatically removed from the trash can.">config.usage.movielist_trashcan_days</item>
 		<item level="1" text="Clean network trash cans" description="When enabled, network trash cans are probed for cleaning.">config.usage.movielist_trashcan_network_clean</item>
 		<item level="1" text="Disk space to reserve for recordings (in GB)" description="Configure the minimum amount of disk space to be available for recordings. When the amount of space drops below this value, deleted items will be removed from the trash can.">config.usage.movielist_trashcan_reserve</item>
@@ -577,7 +580,7 @@
 	</setup>
 
 	<setup key="MovieSelection" title="Movie List Setup">
-		<item level="0" text="Use trash can in movielist" description="When enabled, deleted recordings are moved to the trash can, instead of being deleted immediately.">config.usage.movielist_trashcan</item>
+		<item level="0" text="Use trash can in movie list" description="When enabled, deleted recordings are moved to the trash can, instead of being deleted immediately.">config.usage.movielist_trashcan</item>
 		<item level="0" text="Remove items from trash can after (days)" description="Configure the number of days after which items are automatically removed from the trash can.">config.usage.movielist_trashcan_days</item>
 		<item level="0" text="Clean network trash cans" description="When enabled, network trash cans are probed for cleaning.">config.usage.movielist_trashcan_network_clean</item>
 		<item level="0" text="Disk space to reserve for recordings (in GB)" description="Configure the minimum amount of disk space to be available for recordings. When the amount of space drops below this value, deleted items will be removed from the trash can.">config.usage.movielist_trashcan_reserve</item>

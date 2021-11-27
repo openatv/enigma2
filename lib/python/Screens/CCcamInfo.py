@@ -27,10 +27,7 @@ from twisted.web.client import HTTPClientFactory
 import skin
 from six import PY3
 
-if PY3:
-	from base64 import encodebytes as basen64code
-else:
-	from base64 import encodestring as basen64code
+from base64 import b64encode
 
 #TOGGLE_SHOW = InfoBar.toggleShow
 
@@ -89,14 +86,10 @@ def getPage(url, contextFactory=None, *args, **kwargs):
 	if username and password:
 		url = scheme + '://' + host + ':' + str(port) + path
 		up = "%s:%s" % (username, password)
-		if PY3:
-			up = up.encode('utf-8')
-		basicAuth = basen64code("%s:%s" % (username, password))
+		basicAuth = b64encode(up.encode('utf-8'))
 		if PY3:
 			basicAuth = basicAuth.decode()
-		authHeader = "Basic " + basicAuth.strip()
-		AuthHeaders = {"Authorization": authHeader}
-
+		AuthHeaders = {"Authorization": "Basic %s" % basicAuth}
 		if "headers" in kwargs:
 			kwargs["headers"].update(AuthHeaders)
 		else:

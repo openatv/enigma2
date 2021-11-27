@@ -5,6 +5,25 @@
 #include <lib/dvb/idvb.h>
 #include <lib/dvb/tstools.h>
 
+class iDVBMetaFile
+{
+public:
+	enum
+	{
+		idServiceRef  	= 0,
+		idName 			= 1,
+		idDescription 	= 2,
+		idCreated 		= 3,
+		idTags 			= 4,
+		idLength 		= 5,
+		idFileSize 		= 6,
+		idServiceData	= 7,
+		idPacketSize 	= 8,
+		idScrambled 	= 9,
+	};
+};
+SWIG_ALLOW_OUTPUT_SIMPLE(iDVBMetaFile);
+
 class eDVBMetaParser
 {
 public:

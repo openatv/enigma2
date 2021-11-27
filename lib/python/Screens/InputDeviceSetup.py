@@ -1,17 +1,18 @@
 from __future__ import print_function
 from __future__ import absolute_import
-from Screens.Screen import Screen
-from Screens.HelpMenu import HelpableScreen
-from Screens.MessageBox import MessageBox
-from Components.InputDevice import inputDevices, iRcTypeControl
-from Components.Sources.StaticText import StaticText
-from Components.Sources.List import List
+from Components.ActionMap import ActionMap, HelpableActionMap
 from Components.config import config, ConfigYesNo, getConfigListEntry, ConfigSelection
 from Components.ConfigList import ConfigListScreen
-from Components.ActionMap import ActionMap, HelpableActionMap
+from Components.InputDevice import inputDevices, iRcTypeControl
+from Components.Pixmap import Pixmap
+from Components.Sources.List import List
+from Components.Sources.StaticText import StaticText
+from Screens.HelpMenu import HelpableScreen
+from Screens.MessageBox import MessageBox
+from Screens.Screen import Screen
+from Screens.Setup import Setup
 from Tools.Directories import resolveFilename, SCOPE_GUISKIN
 from Tools.LoadPixmap import LoadPixmap
-from Components.Pixmap import Pixmap
 from boxbranding import getBoxType, getMachineBrand, getMachineName, getBrandOEM
 
 
@@ -114,7 +115,55 @@ class InputDeviceSelection(Screen, HelpableScreen):
 		self.updateList()
 
 
-class InputDeviceSetup(Screen, ConfigListScreen):
+class InputDeviceSetup(Setup):
+	def __init__(self, session, device):
+		self.device = device
+		inputDevices.currentDevice = self.device
+		configItem = getattr(config.inputDevices, device)
+		self.enableEntry = getConfigListEntry(self.formatItemText(_("Change repeat and delay settings?")), configItem.enabled, self.formatItemDescription(configItem.enabled, _("Select 'Yes' to enable editing of this device's settings. Selecting 'No' resets the devices settings to their default values.")))
+		self.nameEntry = getConfigListEntry(self.formatItemText(_("Devicename:")), configItem.name, self.formatItemDescription(configItem.name, _("Enter a new name for this device.")))
+		self.delayEntry = getConfigListEntry(self.formatItemText(_("Delay before key repeat starts:")), configItem.delay, self.formatItemDescription(configItem.delay, _("Select the time delay before the button starts repeating.")))
+		self.repeatEntry = getConfigListEntry(self.formatItemText(_("Interval between keys when repeating:")), configItem.repeat, self.formatItemDescription(configItem.repeat, _("Select the time delay between each repeat of the button.")))
+		Setup.__init__(self, session, "InputDeviceSetup")
+		self.setTitle(_("Setup InputDevice"))
+#		self.skinName.insert(0, "InputDeviceDriverSetup")
+		self.onClose.append(self.cleanup)
+
+		# for generating strings into .po only
+		devicenames = [_("%s %s front panel") % (getMachineBrand(), getMachineName()), _("%s %s front panel") % (getMachineBrand(), getMachineName()), _("%s %s remote control (native)") % (getMachineBrand(), getMachineName()), _("%s %s advanced remote control (native)") % (getMachineBrand(), getMachineName()), _("%s %s ir keyboard") % (getMachineBrand(), getMachineName()), _("%s %s ir mouse") % (getMachineBrand(), getMachineName())]
+
+	def cleanup(self):
+		inputDevices.currentDevice = None
+
+	def createSetup(self):
+		settingsList = []
+		if self.enableEntry and isinstance(self.enableEntry[1], ConfigYesNo):
+			settingsList.append(self.enableEntry)
+			if self.enableEntry[1].value is True:
+				settingsList.append(self.nameEntry)
+				settingsList.append(self.delayEntry)
+				settingsList.append(self.repeatEntry)
+			else:
+				self.nameEntry[1].setValue(self.nameEntry[1].default)
+				self.delayEntry[1].setValue(self.delayEntry[1].default)
+				self.repeatEntry[1].setValue(self.repeatEntry[1].default)
+		self["config"].list = settingsList
+
+	def keySave(self):
+		self.session.openWithCallback(self.keySaveConfirm, MessageBox, _("Use these input device settings?"), MessageBox.TYPE_YESNO, timeout=20, default=True)
+
+	def keySaveConfirm(self, confirmed):
+		if confirmed:
+			configItem = getattr(config.inputDevices, self.device)
+			configItem.save()
+			print("[InputDeviceSetup] Changes made for '%s' (%s) saved." % (self.device, self.nameEntry[1].value))
+			return Setup.keySave(self)
+		else:
+			print("[InputDeviceSetup] Changes made for '%s' (%s) were not confirmed." % (self.device, self.nameEntry[1].value))
+
+
+# just as copy until the testing of the new InputDeviceSetup is finished
+class _InputDeviceSetup(Screen, ConfigListScreen):
 	def __init__(self, session, device):
 		Screen.__init__(self, session)
 		self.inputDevice = device
