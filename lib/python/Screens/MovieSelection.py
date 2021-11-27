@@ -28,6 +28,7 @@ from Screens.ChoiceBox import ChoiceBox
 from Screens.LocationBox import MovieLocationBox
 from Screens.HelpMenu import HelpableScreen
 from Screens.Setup import Setup
+from Screens.TagEditor import TagEditor
 from Screens.VirtualKeyBoard import VirtualKeyBoard
 import Screens.InfoBar
 from Screens.ParentalControlSetup import ProtectedScreen
@@ -36,7 +37,6 @@ from Tools.BoundFunction import boundFunction
 from Tools.CopyFiles import copyFiles, deleteFiles, moveFiles
 from Tools.Directories import SCOPE_HDD, resolveFilename
 from Tools.NumericalTextInput import MAP_SEARCH_UPCASE, NumericalTextInput
-from Tools.TagEditor import tagEditor
 from Tools.Trashcan import TrashInfo, cleanAll, createTrashFolder, getTrashFolder
 
 
@@ -91,14 +91,14 @@ def defaultMoviePath():
 	return result
 
 
-# Wrapper function for plugins
+# Wrapper function for old plugins
 def setPreferredTagEditor(tageditor):
-	tagEditor.setPreferredTagEditor(tageditor)
+	return
 
 
-# Wrapper function for plugins
+# Wrapper function for old plugins
 def getPreferredTagEditor():
-	tagEditor.getPreferredTagEditor()
+	return None
 
 
 def isTrashFolder(ref):
@@ -1438,6 +1438,15 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase, Pr
 			mbox = self.session.open(MessageBox, msg, type=MessageBox.TYPE_ERROR, timeout=5)
 			mbox.setTitle(self.getTitle())
 
+	def do_tageditor(self):
+		item = self.getCurrentSelection()
+		if not isFolder(item):
+			self.session.openWithCallback(self.tageditorCallback, TagEditor, service=item[0])
+
+	def tageditorCallback(self, tags):
+		return
+
+
 	def do_rename(self):
 		item = self.getCurrentSelection()
 		if not canMove(item):
@@ -2022,6 +2031,8 @@ class MovieContextMenu(Screen, ProtectedScreen):
 				menu.append((_("Reset playback position"), csel.do_reset))
 				menu.append((_("Rename"), csel.do_rename))
 				menu.append((_("Start offline decode"), csel.do_decode))
+				if isfile("%s.meta" % service.getPath().rstrip("/")):
+					menu.append((_("Edit Tags"), csel.do_tageditor))
 				# Plugins expect a valid selection, so only include them if we selected a non-dir
 				menu.extend([(p.description, boundFunction(p, session, service)) for p in plugins.getPlugins(PluginDescriptor.WHERE_MOVIELIST)])
 

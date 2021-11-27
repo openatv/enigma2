@@ -25,7 +25,7 @@ from Screens.MessageBox import MessageBox
 from Screens.VirtualKeyBoard import VirtualKeyBoard
 from Screens.Setup import SetupSummary
 from RecordTimer import AFTEREVENT
-from Tools.TagEditor import tagEditor
+from Screens.TagEditor import TagEditor
 from os import statvfs
 import six
 
@@ -288,8 +288,7 @@ class TimerEntry(Screen, ConfigListScreen):
 
 		self.tagsSet = getConfigListEntry(_("Tags"), self.timerentry_tagsset, _("Choose a tag for easy finding a recording."))
 		if self.timerentry_justplay.value != "zap":
-			if tagEditor.getPreferredTagEditor():
-				self.list.append(self.tagsSet)
+			self.list.append(self.tagsSet)
 			self.list.append(getConfigListEntry(_("After Recording"), self.timerentry_afterevent, _("What action is required on completion of the timer? 'Auto' lets the box return to the state it had when the timer started. 'Do nothing', 'Go to standby' and 'Go to deep standby' do exactly that.")))
 			self.list.append(getConfigListEntry(_("Recording type"), self.timerentry_recordingtype, _("Descramble & record ECM' gives the option to descramble afterwards if descrambling on recording failed. 'Don't descramble, record ECM' save a scramble recording that can be descrambled on playback. 'Normal' means descramble the recording and don't record ECM.")))
 
@@ -406,11 +405,11 @@ class TimerEntry(Screen, ConfigListScreen):
 				self.timerentry_dirname.value,
 				minFree=100 # We require at least 100MB free space
 			)
-		elif tagEditor.getPreferredTagEditor() and cur == self.tagsSet:
+		elif cur == self.tagsSet:
 			self.session.openWithCallback(
 				self.tagEditFinished,
-				tagEditor.getPreferredTagEditor(),
-				self.timerentry_tags
+				TagEditor,
+				tags=self.timerentry_tags
 			)
 		else:
 			self.keyGo()
