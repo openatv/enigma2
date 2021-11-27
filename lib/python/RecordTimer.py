@@ -143,6 +143,13 @@ def getBqRootStr(ref):
 # please do not translate log messages
 
 
+def createRecordTimerEntry(timer):
+	return RecordTimerEntry(timer.service_ref, timer.begin, timer.end, timer.name, timer.description,
+		timer.eit, timer.disabled, timer.justplay, timer.afterEvent, dirname=timer.dirname,
+		tags=timer.tags, descramble=timer.descramble, record_ecm=timer.record_ecm, always_zap=timer.always_zap,
+		rename_repeat=timer.rename_repeat)
+
+
 class RecordTimerEntry(timer.TimerEntry, object):
 	def __init__(self, serviceref, begin, end, name, description, eit, disabled=False, justplay=TIMERTYPE.JUSTPLAY, afterEvent=AFTEREVENT.DEFAULT, checkOldTimers=False, dirname=None, tags=None, descramble='notset', record_ecm='notset', rename_repeat=True, isAutoTimer=False, ice_timer_id=None, always_zap=TIMERTYPE.ALWAYS_ZAP, MountPath=None):
 		timer.TimerEntry.__init__(self, int(begin), int(end))
