@@ -408,7 +408,7 @@ class choicesList():
 
 	def index(self, value):
 		try:
-			return list(map(str, self.__list__())).index(str(value)) if PY2 else self.__list__().index(value)
+			return list(map(str, self.__list__())).index(str(value))
 		except (ValueError, IndexError):  # Occurs, for example, when default is not in list.
 			return 0  # DEBUG: Is it appropriate to return the first item if the index is invalid?
 
@@ -513,6 +513,7 @@ class ConfigBoolean(ConfigElement):
 
 	def isChanged(self):
 		saved = self.saved_value.lower() in self.trueValues if self.saved_value else self.default
+		# print("[Config] isChanged DEBUG Boolean: Saved='%s', Default='%s', Value='%s', Changed=%s." % (saved, self.default, self.value, self.value != saved))
 		return self.value != saved
 
 
