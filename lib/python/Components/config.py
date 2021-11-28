@@ -207,10 +207,13 @@ class ConfigElement(object):
 		return self._value
 
 	def setValue(self, value):  # You need to override this to do input validation.
-		# prev = self._value
+		if hasattr(self, "_value"):
+			prev = self._value
+		else:
+			prev = None
 		self._value = value
-		# if self._value != prev:
-		# 	self.changed()
+		if self._value != prev:
+		 	self.changed()
 
 	value = property(getValue, setValue)
 
@@ -1771,7 +1774,10 @@ class ConfigText(ConfigElement, NumericalTextInput):
 			return self.text
 
 	def setValue(self, value):
-		# prev = self.text
+		if hasattr(self, "text"):
+			prev = self.text
+		else:
+			prev = None
 		if PY2 or isinstance(value, bytes): # DEBUG: If bytes on PY3 we can print this and then convert.
 			try:
 				self.text = value.decode("UTF-8", errors="strict")
@@ -1780,8 +1786,8 @@ class ConfigText(ConfigElement, NumericalTextInput):
 				self.text = value.decode("UTF-8", errors="ignore")
 		else:
 			self.text = value
-		# if self.text != prev:
-		# 	self.changed()
+		if self.text != prev:
+		 	self.changed()
 
 	value = property(getValue, setValue)
 	_value = property(getValue, setValue)
@@ -1922,10 +1928,13 @@ class ConfigNumber(ConfigText):
 			return int(self.text)
 
 	def setValue(self, value):
-		# prev = self.text
+		if hasattr(self, "text"):
+			prev = self.text
+		else:
+			prev = None
 		self.text = str(value)
-		# if self.text != prev:
-		# 	self.changed()
+		if self.text != prev:
+		 	self.changed()
 
 	value = property(getValue, setValue)
 	_value = property(getValue, setValue)
