@@ -6,9 +6,10 @@ class TemplatedMultiContent(StringList):
 
 	def __init__(self, args):
 		StringList.__init__(self, args)
-		from enigma import BT_SCALE, RT_HALIGN_CENTER, RT_HALIGN_LEFT, RT_HALIGN_RIGHT, RT_VALIGN_BOTTOM, RT_VALIGN_CENTER, RT_VALIGN_TOP, RT_WRAP, eListboxPythonMultiContent, gFont
-		from skin import parseFont
+		from enigma import BT_KEEP_ASPECT_RATIO, BT_SCALE, RT_HALIGN_CENTER, RT_HALIGN_LEFT, RT_HALIGN_RIGHT, RT_VALIGN_BOTTOM, RT_VALIGN_CENTER, RT_VALIGN_TOP, RT_WRAP, eListboxPythonMultiContent, gFont
+		from skin import parseFont, getSkinFactor
 		from Components.MultiContent import MultiContentEntryPixmap, MultiContentEntryPixmapAlphaBlend, MultiContentEntryPixmapAlphaTest, MultiContentEntryProgress, MultiContentEntryProgressPixmap, MultiContentEntryText, MultiContentTemplateColor
+		f = getSkinFactor()
 		loc = locals()
 		del loc["self"]  # Cleanup locals a bit.
 		del loc["args"]
@@ -31,7 +32,18 @@ class TemplatedMultiContent(StringList):
 		if what[0] == self.CHANGED_SPECIFIC and what[1] == "style":  # If only template changed, don't reload list.
 			pass
 		elif self.source:
-			self.content.setList(self.source.list)
+			try:
+				tmp = []
+				src = self.source.list
+				for x in range(len(src)):
+					if not isinstance(src[x], tuple) and not isinstance(src[x], list):
+						tmp.append((src[x],))
+					else:
+						tmp.append(src[x])
+			except Exception as error:
+					print("[TemplatedMultiContent] - %s" % error)
+					tmp = self.source.list
+			self.content.setList(tmp)
 		self.setTemplate()
 		self.downstream_elements.changed(what)
 
@@ -53,7 +65,7 @@ class TemplatedMultiContent(StringList):
 				if len(templates[style]) > 3:
 					scrollbarMode = templates[style][3]
 			self.content.setTemplate(template)
-			self.content.setItemHeight(itemheight)
+			self.content.setItemHeight(int(itemheight))
 			self.selectionEnabled = selectionEnabled
 			self.scrollbarMode = scrollbarMode
 			self.active_style = style
