@@ -207,10 +207,10 @@ class ConfigElement(object):
 		return self._value
 
 	def setValue(self, value):  # You need to override this to do input validation.
-		prev = self._value
+		# prev = self._value
 		self._value = value
-		if self._value != prev:
-			self.changed()
+		# if self._value != prev:
+		# 	self.changed()
 
 	value = property(getValue, setValue)
 
@@ -511,7 +511,7 @@ class ConfigBoolean(ConfigElement):
 	def toDisplayString(self, value):
 		return self.descriptions[True] if value or str(value).lower() in self.trueValues else self.descriptions[False]
 
-	def isChanged(self):  # This is required because old settings files have various text representations for True and False.  All changes settings will be corrected.
+	def isChanged(self):
 		saved = self.saved_value.lower() in self.trueValues if self.saved_value else self.default
 		# print("[Config] isChanged DEBUG Boolean: Saved='%s', Default='%s', Value='%s', Changed=%s." % (saved, self.default, self.value, self.value != saved))
 		return self.value != saved
@@ -623,12 +623,10 @@ class ConfigDictionarySet(ConfigElement):
 
 	def setValue(self, value):
 		if isinstance(value, dict):
-			prev = self.dirs
 			self.dirs = value
-			if self.dirs != prev:
-				self.changed()
-				if callable(self.callback):
-					self.callback()
+			self.changed()
+			if callable(self.callback):
+				self.callback()
 
 	value = property(getValue, setValue)
 
@@ -1773,7 +1771,7 @@ class ConfigText(ConfigElement, NumericalTextInput):
 			return self.text
 
 	def setValue(self, value):
-		prev = self.text
+		# prev = self.text
 		if PY2 or isinstance(value, bytes): # DEBUG: If bytes on PY3 we can print this and then convert.
 			try:
 				self.text = value.decode("UTF-8", errors="strict")
@@ -1782,8 +1780,8 @@ class ConfigText(ConfigElement, NumericalTextInput):
 				self.text = value.decode("UTF-8", errors="ignore")
 		else:
 			self.text = value
-		if self.text != prev:
-			self.changed()
+		# if self.text != prev:
+		# 	self.changed()
 
 	value = property(getValue, setValue)
 	_value = property(getValue, setValue)
@@ -1924,10 +1922,10 @@ class ConfigNumber(ConfigText):
 			return int(self.text)
 
 	def setValue(self, value):
-		prev = self.text
+		# prev = self.text
 		self.text = str(value)
-		if self.text != prev:
-			self.changed()
+		# if self.text != prev:
+		# 	self.changed()
 
 	value = property(getValue, setValue)
 	_value = property(getValue, setValue)
