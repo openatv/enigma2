@@ -1326,7 +1326,10 @@ class ConfigInteger(ConfigSequence):
 		return self._value[0]
 
 	def setValue(self, value):
-		prev = [value]
+		if hasattr(self, "_value"):
+			prev = self._value
+		else:
+			prev = None
 		self._value = [value]
 		if self._value != prev:
 			self.changed()
