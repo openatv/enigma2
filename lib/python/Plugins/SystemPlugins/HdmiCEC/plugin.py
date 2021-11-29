@@ -81,9 +81,9 @@ class HdmiCECSetupScreen(Screen, ConfigListScreen):
 				self.list.append(getConfigListEntry(tab + _("Even if TV has another input active?"), config.hdmicec.tv_standby_notinputactive, _('You can skip this function and turn off the TV when you wake the receiver from standby and immediately switch back to standby.'), ))
 			self.list.append(getConfigListEntry(_("Wakeup TV from standby"), config.hdmicec.control_tv_wakeup, _('helptext'), 'refreshlist'))
 			if config.hdmicec.advanced_settings.value and config.hdmicec.control_tv_wakeup.value:
-				self.list.append(getConfigListEntry(tab + _("Even if a 'zap' recording timer starting?"), config.hdmicec.tv_wakeup_zaptimer, _('helptext'), ))
-				self.list.append(getConfigListEntry(tab + _("Even if a 'zap and record' recording timer starting?"), config.hdmicec.tv_wakeup_zapandrecordtimer, _('helptext'), ))
-				self.list.append(getConfigListEntry(tab + _("Even if a 'wakeup' power timer starting?"), config.hdmicec.tv_wakeup_wakeuppowertimer, _('helptext'), ))
+				self.list.append(getConfigListEntry(tab + _("Even if a 'Zap' recording timer starting?"), config.hdmicec.tv_wakeup_zaptimer, _('helptext'), ))
+				self.list.append(getConfigListEntry(tab + _("Even if a 'Zap and Record' recording timer starting?"), config.hdmicec.tv_wakeup_zapandrecordtimer, _('helptext'), ))
+				self.list.append(getConfigListEntry(tab + _("Even if a 'Wakeup' power timer starting?"), config.hdmicec.tv_wakeup_wakeuppowertimer, _('helptext'), ))
 			self.list.append(getConfigListEntry(_("Switch TV to correct input"), config.hdmicec.report_active_source, _('helptext'), 'refreshlist'))
 			if config.hdmicec.advanced_settings.value and config.hdmicec.report_active_source.value:
 				self.list.append(getConfigListEntry(tab + _("Switch off the TV to correct input"), config.hdmicec.workaround_activesource, _("Some TV devices can't swich to correct input if a another hdmi port active. This setting set the TV to standby before.\n(If the TV does not turn back on, may require a slower transmission interval or the repetition of wake-up commands.)"),))
