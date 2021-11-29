@@ -207,13 +207,10 @@ class ConfigElement(object):
 		return self._value
 
 	def setValue(self, value):  # You need to override this to do input validation.
-		if hasattr(self, "_value"):
-			prev = self._value
-		else:
-			prev = None
+		prev = self._value if hasattr(self, "_value") else None
 		self._value = value
 		if self._value != prev:
-		 	self.changed()
+			self.changed()
 
 	value = property(getValue, setValue)
 
@@ -514,7 +511,7 @@ class ConfigBoolean(ConfigElement):
 	def toDisplayString(self, value):
 		return self.descriptions[True] if value or str(value).lower() in self.trueValues else self.descriptions[False]
 
-	def isChanged(self):
+	def isChanged(self):  # This is required because old settings files have various text representations for True and False.  All changes settings will be corrected.
 		saved = self.saved_value.lower() in self.trueValues if self.saved_value else self.default
 		# print("[Config] isChanged DEBUG Boolean: Saved='%s', Default='%s', Value='%s', Changed=%s." % (saved, self.default, self.value, self.value != saved))
 		return self.value != saved
@@ -626,10 +623,12 @@ class ConfigDictionarySet(ConfigElement):
 
 	def setValue(self, value):
 		if isinstance(value, dict):
+			prev = self.dirs
 			self.dirs = value
-			self.changed()
-			if callable(self.callback):
-				self.callback()
+			if self.dirs != prev:
+				self.changed()
+				if callable(self.callback):
+					self.callback()
 
 	value = property(getValue, setValue)
 
@@ -1326,10 +1325,7 @@ class ConfigInteger(ConfigSequence):
 		return self._value[0]
 
 	def setValue(self, value):
-		if hasattr(self, "_value"):
-			prev = self._value
-		else:
-			prev = None
+		prev = self._value if hasattr(self, "_value") else None
 		self._value = [value]
 		if self._value != prev:
 			self.changed()
@@ -1777,10 +1773,7 @@ class ConfigText(ConfigElement, NumericalTextInput):
 			return self.text
 
 	def setValue(self, value):
-		if hasattr(self, "text"):
-			prev = self.text
-		else:
-			prev = None
+		prev = self.text if hasattr(self, "text") else None
 		if PY2 or isinstance(value, bytes): # DEBUG: If bytes on PY3 we can print this and then convert.
 			try:
 				self.text = value.decode("UTF-8", errors="strict")
@@ -1790,7 +1783,7 @@ class ConfigText(ConfigElement, NumericalTextInput):
 		else:
 			self.text = value
 		if self.text != prev:
-		 	self.changed()
+			self.changed()
 
 	value = property(getValue, setValue)
 	_value = property(getValue, setValue)
@@ -1931,13 +1924,10 @@ class ConfigNumber(ConfigText):
 			return int(self.text)
 
 	def setValue(self, value):
-		if hasattr(self, "text"):
-			prev = self.text
-		else:
-			prev = None
+		prev = self.text if hasattr(self, "text") else None
 		self.text = str(value)
 		if self.text != prev:
-		 	self.changed()
+			self.changed()
 
 	value = property(getValue, setValue)
 	_value = property(getValue, setValue)
