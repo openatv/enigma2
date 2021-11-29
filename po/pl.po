@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-10-28 19:26+0000\n"
-"PO-Revision-Date: 2021-11-25 17:52+0000\n"
+"PO-Revision-Date: 2021-11-29 07:52+0000\n"
 "Last-Translator: Grzegorz <grzegorz914@icloud.com>\n"
 "Language-Team: Polish <https://hosted.weblate.org/projects/openatv/"
 "enigma2-7-0-po/pl/>\n"
@@ -2311,7 +2311,7 @@ msgid "ATSC provider"
 msgstr "ATSC dostawca"
 
 msgid "AV Setup"
-msgstr "Ustawienia AV"
+msgstr "Audio/Wideo"
 
 #, python-format
 msgid "AV aspect is %s."
@@ -2793,8 +2793,8 @@ msgstr ""
 
 msgid "Allows you to show/hide Log Manager in extensions (blue button)."
 msgstr ""
-"Umożliwia pokazanie/ukrycie Menedżera crash logów w rozszerzeniach "
-"(niebieski przycisk)."
+"Umożliwia pokazanie/ukrycie menadżera crash logów w rozszerzeniach ("
+"niebieski przycisk)."
 
 msgid "Allows you to show/hide OScam in extensions (blue button)."
 msgstr ""
@@ -3158,10 +3158,10 @@ msgstr "PID dźwięku"
 
 #, python-format
 msgid "Audio PID%s, codec & lang"
-msgstr "Audio PID%s, Kodek & język"
+msgstr "Audio PID%s, kodek, język"
 
 msgid "Audio PID, codec & lang"
-msgstr "Audio PID, kodek & język"
+msgstr "Audio PID, kodek, język"
 
 msgid "Audio Selection"
 msgstr "Wybór dźwięku"
@@ -3281,7 +3281,7 @@ msgid "Automatic Scan"
 msgstr "Skanowanie automatyczne"
 
 msgid "Automatic Service Searching"
-msgstr "Automatyczne Wyszukiwanie Kanału"
+msgstr "Automatyczne wyszukiwanie kanałów"
 
 msgid "Automatic image backup"
 msgstr "Automatyczna kopia zapasowa systemu"
@@ -3810,7 +3810,7 @@ msgid "Buffering %d%%"
 msgstr "Buforowanie %d%%"
 
 msgid "Buffers:"
-msgstr "Bufory:"
+msgstr "Pamięć buforów:"
 
 #, python-format
 msgid "Build: %s"
@@ -4012,7 +4012,7 @@ msgid "Cache thumbnails"
 msgstr "Przechowuj miniatury"
 
 msgid "Cached:"
-msgstr "W Pamięci Podręcznej:"
+msgstr "Pamięć podręczna:"
 
 msgid "Calculate"
 msgstr "Obliczanie"
@@ -5086,8 +5086,8 @@ msgid ""
 "italic in yellow, bold in cyan, underscore in green), white or yellow."
 msgstr ""
 "Skonfiguruj kolor napisów zewnętrznych,alternatywne(normalnie w kolorze "
-"białym,kursywa w żółtym,pogrubienie w błękicie,podkreślenia w kolorze "
-"zielonym),białe lub żółte."
+"białym, kursywa w żółtym,pogrubienie w błękicie, podkreślenia w kolorze "
+"zielonym), białe lub żółte."
 
 msgid "Configure the color of the teletext subtitles."
 msgstr "Skonfiguruj kolor napisów telegazety."
@@ -5769,7 +5769,7 @@ msgid "Croatian"
 msgstr "Chorwacki"
 
 msgid "Cron Manager"
-msgstr "Menedżer Zadań"
+msgstr "Menadżer zadań"
 
 msgid "CronTimers"
 msgstr "Harmonogramy zadań"
@@ -6475,19 +6475,19 @@ msgid "Details for plugin: "
 msgstr "Szczegóły dotyczące wtyczki: "
 
 msgid "Detected Devices:"
-msgstr "Wykryte urządzenia:"
+msgstr "Urządzenia:"
 
 msgid "Detected HDD:"
-msgstr "Wykryte HDD:"
+msgstr "Dyski twarde:"
 
 msgid "Detected NIMs:"
-msgstr "Wykryte Głowice:"
+msgstr "Głowice:"
 
 msgid "Detektiv"
 msgstr "Detektyw"
 
 msgid "Device Information"
-msgstr "Informacje o Urządzeniu"
+msgstr "Informacje o urządzeniu"
 
 msgid "Device Manager"
 msgstr "Menadżer urządzeń"
@@ -6987,7 +6987,7 @@ msgid "Download .NFI-files for USB-flasher"
 msgstr "Pobierz .NFI-pliki dla USB-flasera"
 
 msgid "Download Plugins"
-msgstr "Pobieranie Wtyczek"
+msgstr "Pobieranie wtyczek"
 
 msgid "Download Softcams"
 msgstr "Pobierz softcamy"
@@ -8014,22 +8014,22 @@ msgid "Extended GUI"
 msgstr "Rozszerzone GUI"
 
 msgid "Extended Networksetup Plugin..."
-msgstr "Wtyczka Rozszerzonej Konfiguracji Sieci..."
+msgstr "Wtyczka rozszerzonej konfiguracji sieci..."
 
 msgid "Extended PID info"
-msgstr "Rozszerzone info o PID"
+msgstr "Szczegóły PID"
 
 msgid "Extended Setup..."
 msgstr "Ustawienia rozszerzone..."
 
 msgid "Extended Shares"
-msgstr "Rozszerzone Akcje"
+msgstr "Rozszerzone udostępnienia"
 
 msgid "Extended Software"
-msgstr "Rozszerzone Oprogramowanie"
+msgstr "Rozszerzone oprogramowanie"
 
 msgid "Extended Software Plugin"
-msgstr "Rozszerzone Wtyczki"
+msgstr "Rozszerzone wtyczki oprogramowania"
 
 msgid "Extended network setup plugin..."
 msgstr "Wtyczka do zaawansowanych ustawień sieci..."
@@ -8510,10 +8510,10 @@ msgid "Frauen"
 msgstr "Kobiety"
 
 msgid "Free Memory:"
-msgstr "Wolna Pamięć:"
+msgstr "Wolna pamięć:"
 
 msgid "Free Swap:"
-msgstr "Wolna Wymiana:"
+msgstr "Wolna pamięć pliku wymiany:"
 
 msgid "Free memory"
 msgstr "Wolna pamięć"
@@ -8522,10 +8522,10 @@ msgid "Free memory:"
 msgstr "Wolna pamięć:"
 
 msgid "Free:"
-msgstr "Wolne:"
+msgstr "Wolna:"
 
 msgid "Free: "
-msgstr "Wolne: "
+msgstr "Wolna: "
 
 msgid "FreeSpace"
 msgstr "Wolne Miejsce"
@@ -8552,7 +8552,7 @@ msgid "Frequency & Polarization"
 msgstr "Częstotliwość & Polaryzacja"
 
 msgid "Frequency Norm:"
-msgstr "Norma Częstotliwości:"
+msgstr "Zakres:"
 
 msgid "Frequency bands"
 msgstr "Pasma częstotliwości"
@@ -9195,19 +9195,19 @@ msgid "History"
 msgstr "Historia"
 
 msgid "History back"
-msgstr "'w Lewo/w Prawo' wstecz"
+msgstr "Historia (wstecz)"
 
 msgid "History buttons mode"
-msgstr "Akcja dla przycisku 'Lewo/Prawo'"
+msgstr "Tryb dla przycisków historii"
 
 msgid "History long"
-msgstr "'w Lewo/w Prawo' długo"
+msgstr "Historia (długo)"
 
 msgid "History next"
-msgstr "'w Lewo/w Prawo' dalej"
+msgstr "Historia (dalej)"
 
 msgid "History zap..."
-msgstr "Historia Przełączania..."
+msgstr "Historia przełączania…"
 
 msgid "Hobbys"
 msgstr "Hobby"
@@ -9684,7 +9684,7 @@ msgid "Image Information"
 msgstr "Informacje o systemie"
 
 msgid "Image Manager"
-msgstr "Menedżer systemu"
+msgstr "Menadżer systemu"
 
 msgid "Image Version"
 msgstr "Wersja systemu"
@@ -10661,7 +10661,7 @@ msgid "Lingala"
 msgstr "Lingala"
 
 msgid "Link Quality:"
-msgstr "Jakość Sygnału:"
+msgstr "Jakość sygnału:"
 
 msgid "Link quality:"
 msgstr "Jakość sygnału:"
@@ -10814,7 +10814,7 @@ msgid "Log"
 msgstr "Log"
 
 msgid "Log Manager"
-msgstr "Menedżer logowania"
+msgstr "Menadżer logowania"
 
 msgid "Log python stack trace on spinner ?"
 msgstr "Loguj ślad stosu Pythona na pokrętle?"
@@ -11026,7 +11026,7 @@ msgid "Manual Scan"
 msgstr "Skanowanie ręczne"
 
 msgid "Manual Service Searching"
-msgstr "Ręczne Wyszukiwanie Kanału"
+msgstr "Ręczne wyszukiwanie kanałów"
 
 msgid "Manual configuration"
 msgstr "Ustawienia ręczne"
@@ -11381,7 +11381,7 @@ msgid "Mount: "
 msgstr "Mount: "
 
 msgid "Mounts"
-msgstr "Podmontowane"
+msgstr "Montowanie"
 
 msgid "Mounts Devices"
 msgstr "Montowanie urządzeń"
@@ -11606,7 +11606,7 @@ msgid "Multi EPG"
 msgstr "Multi EPG"
 
 msgid "MultiBoot Image Manager"
-msgstr "Menedżer systemów MultiBoot"
+msgstr "Menadżer systemów"
 
 msgid "MultiBoot Image Selector"
 msgstr "Selektor systemów MultiBoot"
@@ -11628,7 +11628,7 @@ msgid "Multiboot Image created on: %s/%s-%s-%s-backup-%s_usb.zip"
 msgstr "System Multiboot utworzony w: %s/%s-%s-%s-backup-%s_usb.zip"
 
 msgid "Multiboot Manager"
-msgstr "Menedżer Multiboot"
+msgstr "Menadżer Multiboot"
 
 msgid "Multimedia"
 msgstr "Multimedia"
@@ -11742,7 +11742,7 @@ msgid "Nameserver setup"
 msgstr "Ustawienie nazwy serwera (DNS)"
 
 msgid "Namespace & Orbital pos."
-msgstr "Przestrzeń nazw & Poz. Orbit."
+msgstr "Przestrzeń nazw, poz. orbit."
 
 msgid "Namibia"
 msgstr "Namibia"
@@ -11798,10 +11798,10 @@ msgid "Netherlands"
 msgstr "Holandia"
 
 msgid "Netmask"
-msgstr "Maska Sieci"
+msgstr "Maska"
 
 msgid "Netmask:"
-msgstr "Maska Sieci:"
+msgstr "Maska:"
 
 msgid "Network"
 msgstr "Sieć"
@@ -12035,7 +12035,7 @@ msgid "No channel"
 msgstr "Brak kanału"
 
 msgid "No clients streaming"
-msgstr "Brak przesyłania strumieniowego klientów"
+msgstr "Brak podłączonych klientów"
 
 msgid "No connection"
 msgstr "Brak połączenia"
@@ -13594,7 +13594,7 @@ msgid "Plugin manager activity information"
 msgstr "Informacje o działaniu menadżera wtyczek"
 
 msgid "Plugin manager help"
-msgstr "Menedżer wtyczek - pomoc"
+msgstr "Pomoc menadżera wtyczek"
 
 msgid "Pluginbrowser Settings"
 msgstr "Ustawienia przeglądarki wtyczek"
@@ -13720,16 +13720,16 @@ msgid "PowerTimer DeepStandby"
 msgstr "Timer głębokie czuwanie"
 
 msgid "PowerTimer Entry"
-msgstr "Wpis timera zasilania"
+msgstr "Wpis timerów zasilania"
 
 msgid "PowerTimer List"
 msgstr "Lista timerów"
 
 msgid "PowerTimer Log"
-msgstr "Logi timera zasilania"
+msgstr "Logi timerów zasilania"
 
 msgid "PowerTimer Overview"
-msgstr "Timer zasilania"
+msgstr "Timery zasilania"
 
 msgid "PowerTimer Standby"
 msgstr "Timer czuwania"
@@ -13978,16 +13978,16 @@ msgid "Programmlisten History"
 msgstr "Historia kanałów"
 
 msgid "Programmlisten Restore"
-msgstr "Programmlisten Przywróć"
+msgstr "Przywróć listy kanałów"
 
 msgid "Programmlisten from DXAndy"
-msgstr "Programmlisten z DXAndy"
+msgstr "Listy kanałów od DXAndy"
 
 msgid "Programmlisten-Updater V"
-msgstr "Aktualizacja listy kanałów V"
+msgstr "Aktualizacja list kanałów"
 
 msgid "Programmlisten-Updater from DXAndy"
-msgstr "Programmlisten-Updater z DXAndy"
+msgstr "Aktualizacja list kanałów od DXAndy"
 
 msgid "Progress"
 msgstr "Pasek postępu"
@@ -14189,7 +14189,7 @@ msgid "Quiz"
 msgstr "Quiz"
 
 msgid "RAM"
-msgstr "Pamięć Ram"
+msgstr "RAM"
 
 msgid "REC"
 msgstr "REC"
@@ -14585,7 +14585,7 @@ msgid "Remove Confirmation"
 msgstr "Usunąć Potwierdzenie"
 
 msgid "Remove Plugins"
-msgstr "Usuwanie Wtyczek"
+msgstr "Usuwanie wtyczek"
 
 msgid "Remove Quad Channel Entry"
 msgstr "Usunąć wpis kanału Quad"
@@ -15364,7 +15364,7 @@ msgid "Search IMDb for information about current event."
 msgstr "Szukaj w IMDb informacji na temat bieżącego wydarzenia."
 
 msgid "Search Sats"
-msgstr "Szukaj Satelit"
+msgstr "Miernik poziomu sygnału sat"
 
 msgid "Search Sats, check signal and lock"
 msgstr "Szukaj Sat.sprawdź sygnał i blokady"
@@ -16142,7 +16142,7 @@ msgid "Service & PIDs"
 msgstr "Usługa & PIDy"
 
 msgid "Service ID"
-msgstr "ID Usługi"
+msgstr "ID nadawcy"
 
 msgid "Service Name"
 msgstr "Nazwa Kanału"
@@ -16187,7 +16187,7 @@ msgid "Service info - service & Basic PID Info"
 msgstr "Informacje serwisowe - serwis & Podstawowe info o PID"
 
 msgid "Service info - service & Extended PID Info"
-msgstr "Informacje serwisowe - serwis & Rozszerzone info o PID"
+msgstr "Informacje serwisowe - serwis, szczeguły PID"
 
 msgid "Service info - service & PIDs"
 msgstr "Informacje serwisowe - serwis & PIDy"
@@ -16576,7 +16576,7 @@ msgid "Setup Tuner"
 msgstr "Ustawienia tunera"
 
 msgid "Setup Video/Audio"
-msgstr "Ustawienia AV"
+msgstr "Ustawienia dźwięku i obrazu"
 
 msgid "Setup Videomode"
 msgstr "Ustawienia trybu wideo"
@@ -16606,13 +16606,13 @@ msgid "Setup network. Here you can setup DHCP, IP, DNS"
 msgstr "Ustawienia sieci. Tutaj możesz ustawić DHCP, IP, DNS"
 
 msgid "Setup rotor"
-msgstr "Ustawienia obrotnicy"
+msgstr "Ustawienia pozycjonera"
 
 msgid "Setup the interval to check for online updates. (in hours)"
 msgstr "Ustawienie przedziału czasu aktualizacji online. (w godzinach)"
 
 msgid "Setup tuner(s)"
-msgstr "Ustawienia tunera(ów)"
+msgstr "Ustawienia tunera(ów) sat"
 
 msgid "Setup uShare"
 msgstr "Ustawienia uShare"
@@ -16676,7 +16676,7 @@ msgid "Setup your positioner"
 msgstr "Ustawienia pozycjonera"
 
 msgid "Setup your positioner for your satellite system"
-msgstr "Ustawienia pozycjonera sat"
+msgstr "Ustawienia pozycjonera"
 
 msgid "Setup your recording config"
 msgstr "Ustawienia nagrywania"
@@ -17278,7 +17278,7 @@ msgid "Show subservice selection"
 msgstr "Pokaż wybór podsieci"
 
 msgid "Show subtitle quick menu"
-msgstr "Menu Podręczne Napisów"
+msgstr "Menu podręczne napisów"
 
 msgid "Show subtitle selection"
 msgstr "Pokaż wybór napisów"
@@ -17681,7 +17681,7 @@ msgid "Software Manager"
 msgstr "Menadżer oprogramowania"
 
 msgid "Software Manager Setup"
-msgstr "Ustawienia menedżera oprogramowania"
+msgstr "Ustawienia menadżera oprogramowania"
 
 msgid "Software Panel"
 msgstr "Menadżer oprogramowania"
@@ -18188,7 +18188,7 @@ msgid "Subtitle Actions"
 msgstr "Akcje napisów"
 
 msgid "Subtitle Quickmenu"
-msgstr "Menu Podręczne Napisów"
+msgstr "Menu podręczne napisów"
 
 msgid "Subtitle alignment"
 msgstr "Wyrównanie napisów"
@@ -18272,7 +18272,7 @@ msgid "Swap"
 msgstr "Zamień"
 
 msgid "Swap File Manager"
-msgstr "Zamień Menedżera plików"
+msgstr "Menadżer pliku wymiany"
 
 msgid "Swap File not found. You have to create the file before to activate."
 msgstr ""
@@ -19849,7 +19849,7 @@ msgstr ""
 "Sprawdź to!"
 
 msgid "Timer overview"
-msgstr "Przegląd timera"
+msgstr "Przegląd timerów"
 
 msgid "Timer recording location"
 msgstr "Lokalizacja nagrań z timera"
@@ -20030,17 +20030,17 @@ msgid "Total"
 msgstr "Całkowity"
 
 msgid "Total Memory:"
-msgstr "Ogólna Pamięć:"
+msgstr "Całkowita pamięć:"
 
 msgid "Total Swap:"
-msgstr "Ogólna Wymiana:"
+msgstr "Całkowita pamięć pliku wymiany:"
 
 msgid "Total cards:"
 msgstr "Razem kart:"
 
 #, python-format
 msgid "Total clients streaming: %d ( %s )"
-msgstr "Łącznie strumieniuje klientów: %d ( %s )"
+msgstr "Łącznie klientów: %d ( %s )"
 
 msgid "Total handled client ecm's"
 msgstr "Razem obsługiwanych klientów ecm's"
@@ -20049,7 +20049,7 @@ msgid "Total handled client emm's"
 msgstr "Razem obsługiwanych klientów emm's"
 
 msgid "Total:"
-msgstr "Ogólnie:"
+msgstr "Całkowita:"
 
 msgid "Track"
 msgstr "Ścieżka"
@@ -20185,13 +20185,13 @@ msgid "Tuner :"
 msgstr "Tuner :"
 
 msgid "Tuner Configuration"
-msgstr "Ustawienia tunera"
+msgstr "Konfiguracja tunera"
 
 msgid "Tuner Setup"
-msgstr "Ustawienia tunera"
+msgstr "Tuner"
 
 msgid "Tuner configuration"
-msgstr "Ustawienia tunera"
+msgstr "Konfiguracja tunera"
 
 msgid "Tuner is not supported"
 msgstr "Tuner nie obsługiwany"
@@ -20396,7 +20396,7 @@ msgid "UnhandledKey"
 msgstr "Klawisz nieobsługiwany"
 
 msgid "Unhide parental control services"
-msgstr "Odkryj usługi kontroli rodzicielskiej"
+msgstr "Pokaż usługi kontroli rodzicielskiej"
 
 msgid "Unicable "
 msgstr "Unicable "
@@ -20732,7 +20732,7 @@ msgid "Use circular LNB"
 msgstr "Użyj kołowego LNB"
 
 msgid "Use extended List"
-msgstr "Użyć rozszerzonej listy"
+msgstr "Użyj rozszerzonej listy"
 
 msgid "Use fastscan channel names"
 msgstr "Użyć szybkiego skanowania nazw kanałów"
@@ -21153,7 +21153,7 @@ msgid "Videoclip"
 msgstr "Wideo"
 
 msgid "Videocodec, size & format"
-msgstr "Wideokodek, rozmiar & format"
+msgstr "Kodek wideo, rozmiar, format"
 
 msgid "Videosetup"
 msgstr "Ustawienia wideo"
@@ -21342,7 +21342,7 @@ msgid "Waiting"
 msgstr "Czekaj"
 
 msgid "Waiting for mount"
-msgstr "Czekaj na podmontowanie"
+msgstr "Czekaj na zakończenie montowania"
 
 msgid "Waiting for partition"
 msgstr "Czekaj na utworzenie partycji"
@@ -21777,11 +21777,11 @@ msgid "When enabled, the VCR scart option will be shown on the main menu"
 msgstr "Po włączeniu opcji VCR SCART będzie widoczne w menu głównym"
 
 msgid ""
-"When enabled, the length of each recording will be shown in the movielist "
+"When enabled, the length of each recording will be shown in the movie list "
 "(this might cause some additional loading time)."
 msgstr ""
-"Gdy jest włączone, długość każdego nagrania pojawi się w liście filmów (może "
-"to powodować dodatkowy czas ładowania)."
+"Gdy jest włączone, długość nagrania będzie widoczna na liście filmów (może "
+"to nieznacznie wydłużyć czas ładowania)."
 
 msgid ""
 "When enabled, the receiver will automatically use the audio track which you "
@@ -23734,7 +23734,7 @@ msgid "no or unknown card inserted"
 msgstr "brak lub nieaktywna karta"
 
 msgid "no resource manager"
-msgstr "brak menedżera zasobów"
+msgstr "brak menadżera zasobów"
 
 msgid "no storage devices found"
 msgstr "nie znaleziono urządzenia magazynującego"
@@ -24561,6 +24561,13 @@ msgstr "przełączanie"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid ""
+#~ "When enabled, the length of each recording will be shown in the movielist "
+#~ "(this might cause some additional loading time)."
+#~ msgstr ""
+#~ "Gdy jest włączone, długość każdego nagrania pojawi się w liście filmów "
+#~ "(może to powodować dodatkowy czas ładowania)."
 
 #~ msgid "Delete Lang"
 #~ msgstr "Usuń Język"
