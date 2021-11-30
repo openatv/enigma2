@@ -100,8 +100,11 @@ int ePixmap::event(int event, void *data, void *data2)
 				flags = gPainter::BT_ALPHATEST;
 			else if (m_alphatest == 2)
 				flags = gPainter::BT_ALPHABLEND;
-			if (m_scale)
+			if (m_scale) {
 				flags |= gPainter::BT_SCALE;
+				if (m_scale & gPainter::BT_KEEP_ASPECT_RATIO)
+					flags |= gPainter::BT_KEEP_ASPECT_RATIO;
+			}
 			painter.blit(m_pixmap, eRect(ePoint(0, 0), s), eRect(), flags);
 		}
 
