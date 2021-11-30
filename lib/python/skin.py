@@ -191,7 +191,7 @@ def loadSkin(filename, scope=SCOPE_SKINS, desktop=getDesktop(GUI_SKIN_ID), scree
 		reloadWindowStyles()  # Reload the window style to ensure all skin changes are taken into account.
 		print("[Skin] Loading skin file '%s' complete." % filename)
 		if runCallbacks:
-			for method in self.callbacks:
+			for method in callbacks:
 				if method:
 					method()
 		return True
@@ -222,12 +222,14 @@ def reloadSkins():
 
 
 def addCallback(callback):
+	global callbacks
 	if callback not in callbacks:
 		callbacks.append(callback)
 
 
 def removeCallback(callback):
-	if callback in self.callbacks:
+	global callbacks
+	if callback in callbacks:
 		callbacks.remove(callback)
 
 
