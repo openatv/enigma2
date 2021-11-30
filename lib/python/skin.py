@@ -4,7 +4,7 @@ from os import listdir, unlink
 from six import PY2
 from xml.etree.cElementTree import Element, ElementTree, fromstring
 
-from enigma import addFont, eLabel, ePixmap, ePoint, eRect, eSize, eWindow, eWindowStyleManager, eWindowStyleSkinned, getDesktop, gFont, getFontFaces, gMainDC, gRGB, BT_ALPHATEST, BT_ALPHABLEND
+from enigma import BT_ALPHABLEND, BT_ALPHATEST, BT_HALIGN_CENTER, BT_HALIGN_LEFT, BT_HALIGN_RIGHT, BT_KEEP_ASPECT_RATIO, BT_SCALE, BT_VALIGN_BOTTOM, BT_VALIGN_CENTER, BT_VALIGN_TOP, addFont, eLabel, ePixmap, ePoint, eRect, eSize, eWindow, eWindowStyleManager, eWindowStyleSkinned, getDesktop, gFont, getFontFaces, gMainDC, gRGB
 
 from Components.config import ConfigSubsection, ConfigText, config
 from Components.RcModel import rc_model
@@ -714,6 +714,55 @@ class AttributeParser:
 	def scale(self, value):
 		value = 1 if value.lower() in ("1", "enabled", "on", "scale", "true", "yes") else 0
 		self.guiObject.setScale(value)
+
+	def scaleFlags(self, value):
+		base = BT_SCALE | BT_KEEP_ASPECT_RATIO
+		try:
+			self.guiObject.setPixmapScaleFlags({
+				"none": 0,
+				"scale": BT_SCALE,
+				"scaleKeepAspect": base,
+				"scaleLeftTop": base | BT_HALIGN_LEFT | BT_VALIGN_TOP,
+				"scaleLeftCenter": base | BT_HALIGN_LEFT | BT_VALIGN_CENTER,
+				"scaleLeftCentre": base | BT_HALIGN_LEFT | BT_VALIGN_CENTER,
+				"scaleLeftMiddle": base | BT_HALIGN_LEFT | BT_VALIGN_CENTER,
+				"scaleLeftBotton": base | BT_HALIGN_LEFT | BT_VALIGN_BOTTOM,
+				"scaleCenterTop": base | BT_HALIGN_CENTER | BT_VALIGN_TOP,
+				"scaleCentreTop": base | BT_HALIGN_CENTER | BT_VALIGN_TOP,
+				"scaleMiddleTop": base | BT_HALIGN_CENTER | BT_VALIGN_TOP,
+				"scaleCenter": base | BT_HALIGN_CENTER | BT_VALIGN_CENTER,
+				"scaleCentre": base | BT_HALIGN_CENTER | BT_VALIGN_CENTER,
+				"scaleMiddle": base | BT_HALIGN_CENTER | BT_VALIGN_CENTER,
+				"scaleCenterBotton": base | BT_HALIGN_CENTER | BT_VALIGN_BOTTOM,
+				"scaleCentreBottom": base | BT_HALIGN_CENTER | BT_VALIGN_BOTTOM,
+				"scaleMiddleBotton": base | BT_HALIGN_CENTER | BT_VALIGN_BOTTOM,
+				"scaleRightTop": base | BT_HALIGN_RIGHT | BT_VALIGN_TOP,
+				"scaleRightCenter": base | BT_HALIGN_RIGHT | BT_VALIGN_CENTER,
+				"scaleRightCentre": base | BT_HALIGN_RIGHT | BT_VALIGN_CENTER,
+				"scaleRightMiddle": base | BT_HALIGN_RIGHT | BT_VALIGN_CENTER,
+				"scaleRightBottom": base | BT_HALIGN_RIGHT | BT_VALIGN_BOTTOM,
+				"moveLeftTop": BT_HALIGN_LEFT | BT_VALIGN_TOP,
+				"moveLeftCenter": BT_HALIGN_LEFT | BT_VALIGN_CENTER,
+				"moveLeftCentre": BT_HALIGN_LEFT | BT_VALIGN_CENTER,
+				"moveLeftMiddle": BT_HALIGN_LEFT | BT_VALIGN_CENTER,
+				"moveLeftBotton": BT_HALIGN_LEFT | BT_VALIGN_BOTTOM,
+				"moveCenterTop": BT_HALIGN_CENTER | BT_VALIGN_TOP,
+				"moveCentreTop": BT_HALIGN_CENTER | BT_VALIGN_TOP,
+				"moveMiddleTop": BT_HALIGN_CENTER | BT_VALIGN_TOP,
+				"moveCenter": BT_HALIGN_CENTER | BT_VALIGN_CENTER,
+				"moveCentre": BT_HALIGN_CENTER | BT_VALIGN_CENTER,
+				"moveMiddle": BT_HALIGN_CENTER | BT_VALIGN_CENTER,
+				"moveCenterBotton": BT_HALIGN_CENTER | BT_VALIGN_BOTTOM,
+				"moveCentreBottom": BT_HALIGN_CENTER | BT_VALIGN_BOTTOM,
+				"moveMiddleBotton": BT_HALIGN_CENTER | BT_VALIGN_BOTTOM,
+				"moveRightTop": BT_HALIGN_RIGHT | BT_VALIGN_TOP,
+				"moveRightCenter": BT_HALIGN_RIGHT | BT_VALIGN_CENTER,
+				"moveRightCentre": BT_HALIGN_RIGHT | BT_VALIGN_CENTER,
+				"moveRightMiddle": BT_HALIGN_RIGHT | BT_VALIGN_CENTER,
+				"moveRightBottom": BT_HALIGN_RIGHT | BT_VALIGN_BOTTOM
+			}[value])
+		except KeyError:
+			raise AttribValueError("'none', 'scale', 'scaleKeepAspect', 'scaleLeftTop', 'scaleLeftCenter', 'scaleLeftBotton', 'scaleCenterTop', 'scaleCenter', 'scaleCenterBotton', 'scaleRightTop', 'scaleRightCenter', 'scaleRightBottom', 'moveLeftTop', 'moveLeftCenter', 'moveLeftBotton', 'moveCenterTop', 'moveCenter', 'moveCenterBotton', 'moveRightTop', 'moveRightCenter', 'moveRightBottom' ('Center'/'Centre'/'Middle' are equivalent)")
 
 	def scrollbarBackgroundPixmap(self, value):
 		self.guiObject.setScrollbarBackgroundPicture(loadPixmap(value, self.desktop))
