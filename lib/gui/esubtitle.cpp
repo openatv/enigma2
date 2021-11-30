@@ -521,4 +521,3 @@ void eSubtitleWidget::removeHearingImpaired(std::string& str)
 	while (str[str.length() - 1] == '\n')
 		str.erase(str.length() - 1, 1);
 }
-

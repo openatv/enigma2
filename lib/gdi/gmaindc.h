@@ -23,11 +23,11 @@ public:
 
 SWIG_TEMPLATE_TYPEDEF(ePtr<gMainDC>, gMainDC);
 SWIG_EXTEND(ePtr<gMainDC>,
-       static ePtr<gMainDC> getInstance()
-       {
-               extern ePtr<gMainDC> NewgMainDCPtr(void);
-               return NewgMainDCPtr();
-       }
+	static ePtr<gMainDC> getInstance()
+	{
+		extern ePtr<gMainDC> NewgMainDCPtr(void);
+		return NewgMainDCPtr();
+	}
 );
 
 #endif

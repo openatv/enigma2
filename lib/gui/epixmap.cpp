@@ -133,7 +133,7 @@ int ePixmap::event(int event, void *data, void *data2)
 		return 0;
 	case evtChangedSize:
 		checkSize();
-			/* fall trough. */
+		[[fallthrough]];
 	default:
 		return eWidget::event(event, data, data2);
 	}
