@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: hu_po v3.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-10-28 19:26+0000\n"
+"POT-Creation-Date: 2021-11-29 21:27+0000\n"
 "PO-Revision-Date: 2020-06-04 11:20+0200\n"
 "Last-Translator: Alec <alex1vagyok@gmail.com>\n"
 "Language-Team: Alec <alex1vagyok@gmail.com>\n"
@@ -1148,9 +1148,6 @@ msgstr "%d-%b"
 msgid "%d-%b-%Y"
 msgstr "%d-%b-%Y"
 
-msgid "%d-%m"
-msgstr "%d-%m"
-
 #, fuzzy
 msgid "%d. %B %Y"
 msgstr "%Y. %B %d."
@@ -1422,6 +1419,10 @@ msgid ""
 msgstr ""
 "A 'Készenlét fogadása a TV-től' nagyobb prioritást élvez mint a 'Kezelje a "
 "bemenetet a TV-ből'"
+
+msgid ""
+"'Handle standby from TV' has a higher priority than 'Handle input from TV'."
+msgstr ""
 
 msgid "'weatherplugin' is not installed!"
 msgstr "'weatherplugin' nincs telepítve!"
@@ -2109,6 +2110,9 @@ msgstr ""
 msgid "A crashlog was %s created in '%s'"
 msgstr "Összeomlási napló %s létrehozva a '%s'"
 
+msgid "A file from media is in use!"
+msgstr ""
+
 #, python-format
 msgid ""
 "A finished powertimer wants to reboot your %s %s.\n"
@@ -2389,6 +2393,11 @@ msgstr "Aktiválja a MAC-cím beállításokat"
 msgid "Activate Picture in Picture"
 msgstr "Kép-a-Képben bekapcsolása"
 
+msgid ""
+"Activate a way to send individual or specific internal HDMI-CEC commands "
+"from the command line."
+msgstr ""
+
 #, python-format
 msgid ""
 "Activate an way to send individual or specific internal HDMI-CEC commands "
@@ -2479,6 +2488,9 @@ msgstr "Jelző hozzáadása"
 msgid "Add a nameserver entry"
 msgstr "Névszerver hozzáadása"
 
+msgid "Add a new tag"
+msgstr ""
+
 msgid "Add a new title"
 msgstr "Új cím hozzáadása"
 
@@ -2508,6 +2520,9 @@ msgstr "Fájl hozzáadása a lejátszási listához"
 
 msgid "Add files to playlist"
 msgstr "Fájlok hozzáadása a lejátszási listához"
+
+msgid "Add new tag"
+msgstr ""
 
 msgid "Add plugin to Extensions menu*"
 msgstr "Bővítmény hozzáadása a Bővítmények menühöz*"
@@ -2547,9 +2562,6 @@ msgstr "Időzítő Hozzáadása/Eltávolítása"
 
 msgid "Add/Remove timer for current event"
 msgstr "Időzítő Hozzáadása/Eltávolítása a jelenlegi eseménynél"
-
-msgid "Add/remove change timer for current event"
-msgstr "Hozzáadás/eltávolítás változtatása a jelenlegi eseménynél"
 
 msgid "Adding schedule..."
 msgstr "Felvétel ütemezése..."
@@ -2765,6 +2777,9 @@ msgstr "Engedélyezi, hogy a %s %s rendszeresen olvassa az EPG adatokat."
 msgid "Allows the %s %s to store the EPG data regularly."
 msgstr "Engedélyezi a(z) %s %s számára az EPG adatok rendszeres tárolását."
 
+msgid "Allows the TV remote to be used to control the receiver."
+msgstr ""
+
 msgid ""
 "Allows you to adjust the amount of time the resolution information display "
 "on screen."
@@ -2772,19 +2787,15 @@ msgstr ""
 "Engedélyezi a felbontási információk megjelenítésének időtartamát a "
 "képernyőn."
 
+msgid "Allows you to assign the selected function to the this button."
+msgstr ""
+
 msgid ""
 "Allows you to enable the debug log. They contain very detailed information "
 "of everything the system does."
 msgstr ""
 "Engedélyezheti a hibakeresési naplót. A naplók nagyon részletes információt "
 "tartalmaznak a rendszer mindennemű működéséről."
-
-msgid ""
-"Allows you to enable the twisted log. They contain very detailed information "
-"of everything the twisted does. ('/tmp/twisted.log')"
-msgstr ""
-"Engedélyezi a twisted naplót. Nagyon részletes információkat tartalmaznak "
-"mindenről. ('/tmp/twisted.log')"
 
 msgid "Allows you to enable/disable displaying icons on the frontpanel."
 msgstr "Engedélyezi/Tiltja az ikonok megjelenítését az előlapon."
@@ -2798,9 +2809,6 @@ msgid ""
 msgstr ""
 "Beállíthatja a Hibakeresési napló maximális méretét (MB). Amikor az aktuális "
 "napló elérte ezt a méretet, akkor a rendszer létrehoz egy új napló fájlt."
-
-msgid "Allows you to setup the button to do what you choose."
-msgstr "Engedélyezi a gombok funkcióinak megváltoztatását."
 
 msgid "Allows you to show/hide CCcam in extensions (blue button)."
 msgstr ""
@@ -2888,6 +2896,13 @@ msgid "American Sports"
 msgstr "Amerikai Sport"
 
 msgid "Amharic"
+msgstr ""
+
+msgid ""
+"An attempt is made to capture the current TV status. If this is not possible "
+"due to incorrect or missing status messages it may cause the receiver to "
+"respond unexpectedly. On the other hand, tries to respond better to "
+"different operating conditions."
 msgstr ""
 
 msgid ""
@@ -3322,6 +3337,11 @@ msgstr "Automatikus keresése a csatornáknak"
 
 msgid "Automatic setting backup"
 msgstr "Automatikus beállítás mentés"
+
+msgid ""
+"Automatically put the TV in standby whenever the receiver goes into standby "
+"or deep standby."
+msgstr ""
 
 msgid "Automatically start timeshift after"
 msgstr "Timeshift automatikus indítása ennyi idő múlva"
@@ -3881,9 +3901,6 @@ msgstr "Busz: "
 msgid "Business & Finance"
 msgstr "Üzlet és Pénzügy"
 
-msgid "Button"
-msgstr "Gomb"
-
 msgid "Button Setup"
 msgstr "Távirányító gomb beállítása"
 
@@ -4192,6 +4209,9 @@ msgstr "Szövegmódosítás visszavonása és kilépés"
 #, fuzzy
 msgid "Cancel any changed settings and exit all menus"
 msgstr "Kijelölés visszavonása"
+
+msgid "Cancel any changed tags and exit"
+msgstr ""
 
 #, fuzzy
 msgid "Cancel any changes the active locale/language and exit all menus"
@@ -4905,6 +4925,9 @@ msgstr "CI hozzárendelés"
 msgid "Common Interface assignment"
 msgstr "CI hozzárendelés"
 
+msgid "Common Menu Actions"
+msgstr ""
+
 #, fuzzy
 msgid "Common Setup Actions"
 msgstr "Indításkori művelet"
@@ -4914,9 +4937,6 @@ msgstr "Kommunikáció"
 
 msgid "Comoros"
 msgstr "Comore-szigetek"
-
-msgid "Compensate for overscan"
-msgstr "Kompenzálja az overscan-t"
 
 msgid "Complete"
 msgstr "Kész"
@@ -5916,9 +5936,6 @@ msgstr "Vágás"
 msgid "Cutlist Editor"
 msgstr "Vágószerkesztő"
 
-msgid "Cutlist editor"
-msgstr "Vágószerkesztő"
-
 msgid "Cutlist editor..."
 msgstr "Vágószerkesztő..."
 
@@ -6391,6 +6408,11 @@ msgstr "Késleltetés ismétlések előtt:"
 msgid "Delay before sequence repeat"
 msgstr "Késleltetés a szekvencia ismétlése előtt"
 
+msgid ""
+"Delay between CEC commands when sending a series of commands. Some devices "
+"require this delay for correct functioning, usually between 50-150ms."
+msgstr ""
+
 msgid "Delay between diseqc commands"
 msgstr "A diseqc parancsok közötti késleltetés"
 
@@ -6439,6 +6461,9 @@ msgstr "Nyelv törlése"
 
 msgid "Delete Plugins"
 msgstr "Bővítmények törlése"
+
+msgid "Delete all tags"
+msgstr ""
 
 msgid "Delete all the text"
 msgstr ""
@@ -6495,8 +6520,14 @@ msgstr "Törölje az aktuális Timeshift puffert, és indítsa újra a Timeshift
 msgid "Delete the selected files or directories"
 msgstr "A kijelölt fájlok vagy könyvtárak törlése"
 
+msgid "Delete this tag"
+msgstr ""
+
 msgid "Delete timer"
 msgstr "Időzítő törlése"
+
+msgid "Delete unused tags"
+msgstr ""
 
 msgid "Deleted"
 msgstr "Törölve"
@@ -6645,6 +6676,9 @@ msgstr ""
 "Az LCD-t a megadott idő után a 'Fényerő (tompítva)' szintre kell "
 "visszaállítani."
 
+msgid "Direct menu item selection"
+msgstr ""
+
 msgid "Direct playback of linked titles without menu"
 msgstr "Linkelt tételek menü nélküli közvetlen lejátszása"
 
@@ -6768,6 +6802,9 @@ msgstr ""
 msgid "Display the base locales or all locales for a language."
 msgstr ""
 
+msgid "Display the tags context menu"
+msgstr ""
+
 msgid "Display the virtual keyboard for data entry"
 msgstr ""
 
@@ -6816,6 +6853,17 @@ msgstr "Biztos benne, hogy törölni szeretné ezt:  %s?"
 
 msgid "Do you really want to delete ?"
 msgstr "Biztos benne, hogy törölni szeretne?"
+
+#, python-format
+msgid ""
+"Do you really want to delete all '%s' tags?\n"
+"(NOTE: 'Cancel' cannot undo this!)"
+msgstr ""
+
+msgid ""
+"Do you really want to delete all tags?\n"
+"(Note that 'Cancel' will not undo this!)"
+msgstr ""
 
 msgid "Do you really want to delete the recording?"
 msgstr "Biztos benne, hogy törölni szeretné a felvételt?"
@@ -7282,6 +7330,9 @@ msgstr "Szerkesztés"
 msgid "Edit Quad Channel Entry"
 msgstr "Quad csatorna elem szerkesztése"
 
+msgid "Edit Tags"
+msgstr ""
+
 msgid "Edit Title"
 msgstr "Cím szerkesztése"
 
@@ -7499,6 +7550,9 @@ msgstr "Engedélyezi az intro-t a képernyőn"
 msgid "Enable multiple bouquets"
 msgstr "Többszörös csatornacsomagok engedélyezése"
 
+msgid "Enable or disable using HDMI-CEC."
+msgstr ""
+
 msgid "Enable panic button"
 msgstr "Pánik gomb engedélyezve"
 
@@ -7524,6 +7578,9 @@ msgstr "Teletext gyorsítótárazása"
 
 msgid "Enable terrestrial LCN:"
 msgstr "A földi LCN engedélyezése:"
+
+msgid "Enable the advanced HDMI-CEC setting options."
+msgstr ""
 
 msgid "Enable the current value of the slider at end of the slider bar."
 msgstr "Engedélyezze a csúszka aktuális értékét a csúszka végén."
@@ -7554,9 +7611,6 @@ msgid ""
 msgstr ""
 "Engedélyezze az összes igaz/hamis, igen/nem, be- és kikapcsolási és enged/"
 "tilt beállítások grafikus kapcsolóként való megjelenítését."
-
-msgid "Enable twisted log *"
-msgstr "Twisted napló engedélyezése *"
 
 msgid "Enable unlinked bouquets"
 msgstr "Leválasztott csatornacsomagok engedélyezése"
@@ -7648,6 +7702,9 @@ msgstr "Enter"
 
 msgid "Enter PIN"
 msgstr "Adja meg a PIN kódot"
+
+msgid "Enter a new name for this device."
+msgstr ""
 
 msgid "Enter if you are in the east or west hemisphere."
 msgstr "Adja meg, ha a keleti vagy a nyugati féltekén helyezkedik el."
@@ -8019,6 +8076,9 @@ msgstr "Kilépés a MAC-cím konfigurációból"
 msgid "Exit Quad Channel Selection"
 msgstr "Kilépés a Quad Kép-a-Képben választásból"
 
+msgid "Exit all menus"
+msgstr ""
+
 msgid "Exit editor"
 msgstr "Kilépés a szerkesztőből"
 
@@ -8033,6 +8093,9 @@ msgstr "Kilépés a médialejátszóból?"
 
 msgid "Exit mediaplayer"
 msgstr "Kilépés a mediaplayerből"
+
+msgid "Exit menu"
+msgstr ""
 
 msgid "Exit movie list"
 msgstr "Kilépés a Felvételek listájából"
@@ -8537,9 +8600,6 @@ msgstr "Betűméret"
 msgid "Font:"
 msgstr "Betű:"
 
-msgid "Fontsize"
-msgstr "Betűméret"
-
 msgid "Food/Wine"
 msgstr "Élelmiszer/Bor"
 
@@ -8694,6 +8754,9 @@ msgstr "Teljes mentés az %s -on"
 msgid "Full transparency"
 msgstr "Teljesen áttetsző"
 
+msgid "Full view resolution"
+msgstr "Teljes képernyő felbontás"
+
 msgid "FullHD Test"
 msgstr "FullHD teszt"
 
@@ -8702,9 +8765,6 @@ msgstr "Fullbackup lemezképek"
 
 msgid "Fullscreen"
 msgstr "Teljes képernyős"
-
-msgid "Full view resolution"
-msgstr "Teljes képernyő felbontás"
 
 msgid "Fußball"
 msgstr "Labdarugás"
@@ -8867,26 +8927,8 @@ msgstr "Az első filmre vagy utolsó elemre ugrás"
 msgid "Go to first movie or top of list"
 msgstr "Az első filmre vagy első elemre ugrás"
 
-msgid "Go to first service"
-msgstr "Ugrás az első csatornára"
-
-msgid "Go to last service"
-msgstr "Ugrás az utolsó csatornára"
-
-msgid "Go to next event"
-msgstr "Ugrás a következő eseményre"
-
-msgid "Go to next page of service"
-msgstr "Ugrás a következő csatornalapra"
-
 msgid "Go to parent directory"
 msgstr "Ugrás a szülőkönyvtárra"
-
-msgid "Go to previous event"
-msgstr "Ugrás az előző eseményre"
-
-msgid "Go to previous page of service"
-msgstr "Ugrás az előző csatornalapra"
 
 msgid "Go to start of file"
 msgstr "Ugrás a fájl elejére"
@@ -8930,14 +8972,8 @@ msgstr "Következő csatornacsomagra"
 msgid "Goto next channel"
 msgstr "Kövvetkező csatornára"
 
-msgid "Goto next day of events"
-msgstr "Következő nap eseményeihez"
-
 msgid "Goto next event"
 msgstr "Következő eseményre"
-
-msgid "Goto next page of events"
-msgstr "Ugrás a következő eseménylapra"
 
 msgid "Goto position"
 msgstr "Pozícióra ugrás"
@@ -8948,14 +8984,8 @@ msgstr "Előző csatornacsomagra"
 msgid "Goto previous channel"
 msgstr "Előző csatornára"
 
-msgid "Goto previous day of events"
-msgstr "Ugrás a előző eseménylapra"
-
 msgid "Goto previous event"
 msgstr "Előző eseményre"
-
-msgid "Goto previous page of events"
-msgstr "Ugrás az előző eseménylapra"
 
 msgid "Goto specific date/time"
 msgstr "Konkrét adathoz/időhöz"
@@ -9096,6 +9126,12 @@ msgstr "HDMI HDR típus"
 
 msgid "HDMI Recording"
 msgstr "HDMI felvétel"
+
+msgid "HDMI-CEC Setup"
+msgstr ""
+
+msgid "HDMI-CEC Setup Actions"
+msgstr ""
 
 #, fuzzy
 msgid "HDMI-IN Actions"
@@ -9565,6 +9601,11 @@ msgid "If enabled, AIT data is included in recordings."
 msgstr "Ha engedélyezve van, a felvételek tartalmazzák az AIT adatot."
 
 msgid ""
+"If enabled, a log will be kept of CEC protocol traffic. The log files are "
+"located with the other log files but named 'Enigma2-hdmicec-[date].log'."
+msgstr ""
+
+msgid ""
 "If enabled, using a time window to detect a wakeup from deep standby by a "
 "timer. Default setting ist disabled and used a special signal from the "
 "receiver. But some devices set a wrong or none signal and the wakeup "
@@ -9586,6 +9627,11 @@ msgid "If muted, hide mute icon or mute information after few seconds."
 msgstr ""
 "Ha némítva van, akkor rejtse el a némító ikont vagy az információkat néhány "
 "másodperc múlva."
+
+msgid ""
+"If set to 'Yes' the same commands will be sent to the TV for deep standby "
+"events as are sent during regular standby events."
+msgstr ""
 
 msgid ""
 "If set to 'no', can you save older events even after zapping or interruption "
@@ -9699,6 +9745,12 @@ msgstr ""
 "Ha a 'kikapcsolás kikerülése' engedélyezve van, akkor az vár a rendszeridő "
 "szinkronizálásáig. A követelményektől függően az eszköz ébresztése maximum 2 "
 "perc után folytatódik."
+
+msgid ""
+"If the deep standby workaround is enabled wait until the system time is "
+"synchronized. Depending on the requirement the device wake up will "
+"continuing after a maximum of 2 minutes."
+msgstr ""
 
 msgid ""
 "If the free space is less than setting value, then an attempt is made to "
@@ -10077,6 +10129,9 @@ msgid "Input devices"
 msgstr "Beviteli eszközök"
 
 msgid "Input scroll position"
+msgstr ""
+
+msgid "InputDevice Setup"
 msgstr ""
 
 msgid "Insert"
@@ -10822,9 +10877,6 @@ msgstr ""
 msgid "List available networks"
 msgstr "Elérhető hálózatok listázása"
 
-msgid "List mode"
-msgstr "Listázás módja"
-
 msgid "List of Storage Devices"
 msgstr "Tárolóeszközök listája"
 
@@ -10880,6 +10932,9 @@ msgstr "EPG betöltése"
 
 msgid "Load playlist"
 msgstr "Lejátszási lista betöltése"
+
+msgid "Load tags from the timer and recordings"
+msgstr ""
 
 msgid "Load unlinked userbouquets"
 msgstr "Leválasztott felhasználói csatornacsomagok betöltése"
@@ -12425,9 +12480,6 @@ msgstr "A(z) %s kivonathoz tartozó hash programok nem érhetők el"
 msgid "Norfolk Island"
 msgstr "Norfolk-szigetek"
 
-msgid "Normal mode"
-msgstr "Hagyományos mód"
-
 msgid "North"
 msgstr "Észak"
 
@@ -12630,9 +12682,6 @@ msgstr "OSD beállítás"
 
 msgid "OSD name request"
 msgstr "OSD név kérés"
-
-msgid "OSD position setup"
-msgstr "OSD pozíció beállítás"
 
 msgid "OSD settings"
 msgstr "OSD beállítások"
@@ -13148,6 +13197,9 @@ msgstr "Passthrough"
 msgid "Password"
 msgstr "Jelszó"
 
+msgid "Password (httpuser)"
+msgstr ""
+
 msgid "Password (httpwd)"
 msgstr "Jelszó (httpwd)"
 
@@ -13259,9 +13311,6 @@ msgid "Picon"
 msgstr "Picon"
 
 msgid "Picon and Service Name"
-msgstr "Pikon és csatornanév"
-
-msgid "Picon and service name"
 msgstr "Pikon és csatornanév"
 
 msgid "Picon width"
@@ -13450,6 +13499,9 @@ msgstr "Adja meg az új könyvtár nevét"
 
 msgid "Please enter the new file name"
 msgstr "Adja meg az új fájlnevet"
+
+msgid "Please enter the new tag:"
+msgstr ""
 
 msgid "Please enter the old PIN code"
 msgstr "Régi PIN kód"
@@ -14087,9 +14139,6 @@ msgstr "Előnézet"
 
 msgid "Preview menu"
 msgstr "Előnézeti menü"
-
-msgid "Preview selected channel"
-msgstr "Kijelőlt csatorna előnézete"
 
 msgid "Previous"
 msgstr "Előző"
@@ -14878,6 +14927,9 @@ msgstr "Fájl/könyvtár átnevezése"
 msgid "Rename name and description for new events"
 msgstr "Új események nevének és leírásának szerkesztése"
 
+msgid "Rename this tag"
+msgstr ""
+
 msgid "Rename to:"
 msgstr "Átnevezés erre:"
 
@@ -14916,6 +14968,12 @@ msgstr ""
 "A párbeszédeknél hangszórónként lecseréli a \"-\" jelet színes szövegre "
 "(mint a hallássérült teletext-szöveg esetén)"
 
+#, python-format
+msgid ""
+"Replace all '%s' tags with:\n"
+"(NOTE: 'Cancel' cannot undo this!)"
+msgstr ""
+
 msgid "Reportage"
 msgstr "Riport"
 
@@ -14936,6 +14994,9 @@ msgstr "Jövőbeni használatra fenntartva"
 
 msgid "Reset"
 msgstr "Visszaállítás"
+
+msgid "Reset HDMI-CEC settings to default"
+msgstr ""
 
 msgid "Reset and renumerate title names"
 msgstr "A tételek újraszámozása"
@@ -15406,6 +15467,9 @@ msgstr "EPG adat mentése"
 msgid "Save all changed settings and exit"
 msgstr "Szöveg mentése / szöveg beírása és kilépés"
 
+msgid "Save all changed tags and exit"
+msgstr ""
+
 msgid "Save and record"
 msgstr "Mentés és felvétel"
 
@@ -15691,6 +15755,11 @@ msgstr ""
 "Válassza az 'A' vagy 'B' opciót, ha a aerial rendszer ezt megköveteli, "
 "egyébként válassza a 'nincs' lehetőséget. Ha nem biztos benne, válassza a "
 "'nincs' lehetőséget."
+
+msgid ""
+"Select 'Yes' to enable editing of this device's settings. Selecting 'No' "
+"resets the devices settings to their default values."
+msgstr ""
 
 msgid ""
 "Select 'band' if using a 'universal' LNB, otherwise consult your LNB spec "
@@ -16015,6 +16084,9 @@ msgid "Select the character or action under the keyboard cursor"
 msgstr ""
 "A karakter vagy művelet kijelölése a virtuális billentyűzet kurzora alatt"
 
+msgid "Select the current menu item"
+msgstr ""
+
 msgid "Select the currently highlighted locale/language for the user interface"
 msgstr ""
 
@@ -16149,6 +16221,12 @@ msgstr ""
 
 msgid "Select the sleep timer action."
 msgstr "Válassza ki az Elalvás időzítésének műveletét."
+
+msgid "Select the time delay before the button starts repeating."
+msgstr ""
+
+msgid "Select the time delay between each repeat of the button."
+msgstr ""
 
 msgid "Select the time zone within the area or region."
 msgstr "Válassza ki az időzónát a területen vagy a régióban."
@@ -16546,6 +16624,9 @@ msgstr "Művelet beállítása ' Info ' kulcshoz"
 msgid "Set archive mode (644)"
 msgstr "Archív mód beállítása (644)"
 
+msgid "Set current CEC address as fixed address"
+msgstr ""
+
 msgid "Set default"
 msgstr "Alapértelmezett"
 
@@ -16707,24 +16788,6 @@ msgstr ""
 msgid ""
 "Set the type of the progress indication in the channel selection screen."
 msgstr "Állítsa be a folyamatjelző típusát a csatornaválasztó képernyőn."
-
-msgid "Set time window to 1 hour"
-msgstr "Időablak beállítása 1 órára"
-
-msgid "Set time window to 2 hours"
-msgstr "Időablak beállítása 2 órára"
-
-msgid "Set time window to 3 hours"
-msgstr "Időablak beállítása 3 órára"
-
-msgid "Set time window to 4 hours"
-msgstr "Időablak beállítása 4 órára"
-
-msgid "Set time window to 5 hours"
-msgstr "Időablak beállítása 5 órára"
-
-msgid "Set time window to 6 hours"
-msgstr "Az időablak beállítása 6 órára"
 
 msgid "Set to the desired primetime (hour)."
 msgstr "Adja meg, hogy a fő műsoridő melyik órában kezdődjön."
@@ -17270,9 +17333,6 @@ msgstr "A rádió csatorna hangolása esetén a háttér megjelenítése."
 
 msgid "Show bouquet on launch"
 msgstr "Csatornacsomag választása induláskor"
-
-msgid "Show bouquet selection menu"
-msgstr "Csatornacsomag választó menü megjelenítése"
 
 msgid "Show channel number in infobar"
 msgstr "Információs sávon mutatja a csatorna számát"
@@ -18020,6 +18080,13 @@ msgid "Somalia"
 msgstr "Szomália"
 
 msgid ""
+"Some TV devices can't swich to correct input if a another HDMI port active. "
+"This setting sets the TV to standby before the switch. (If the TV does not "
+"turn back on it may require a slower transmission interval or the repetition "
+"of wake-up commands.)"
+msgstr ""
+
+msgid ""
 "Some TV devices can't swich to correct input if a another hdmi port active. "
 "This setting set the TV to standby before.\n"
 "(If the TV does not turn back on, may require a slower transmission interval "
@@ -18368,10 +18435,8 @@ msgstr "Bejegyzés leállítása"
 msgid "Stop playing this movie?"
 msgstr "Megállítsam ezt a lejátszást?"
 
-msgid "Stop previous broadcasted service on return to movielist."
+msgid "Stop previous broadcasted service on return to movie list."
 msgstr ""
-"Állítsa le a az előzőleg sugárzott csatorna műsorát mikor a Felvétel "
-"listájához visszatér."
 
 msgid "Stop recording"
 msgstr "Felvétel leállítása"
@@ -18664,9 +18729,6 @@ msgstr "Váltás a Hang és a Feliratozás megjelenítése között"
 msgid "Switch between filelist/playlist"
 msgstr "Fájllista és lejátszási lista közötti váltás"
 
-msgid "Switch between normal mode and list mode"
-msgstr "Hagyományos / listanézet váltás"
-
 msgid "Switch config"
 msgstr "Kapcsoló beállítása"
 
@@ -18846,6 +18908,12 @@ msgstr "Felirat hosszan"
 
 msgid "Table of content for collection"
 msgstr "Gyűjtemény tartalmának táblázata"
+
+msgid "Tag Editor"
+msgstr ""
+
+msgid "Tag Editor Actions"
+msgstr ""
 
 msgid "Tagalog"
 msgstr ""
@@ -19183,6 +19251,9 @@ msgid ""
 msgstr ""
 "A Timeshift pufferidő meghaladja a beállított határértéket.\n"
 "Mit akar csinálni ?"
+
+msgid "The command to wake from standby will be sent multiple times."
+msgstr ""
 
 msgid "The current update may be unstable"
 msgstr "Az aktuális frissítés instabil lehet"
@@ -19533,6 +19604,12 @@ msgstr ""
 #, python-format
 msgid "This field allows you to search an additional symbol rate up to %s."
 msgstr "Ebben a mezőben további szimbólumsebességben kereshet %s-ig."
+
+msgid ""
+"This is a workaround for some devices that wakeup again after switching to "
+"standby. The wake up command's from other devices will be ignored for few "
+"seconds."
+msgstr ""
 
 msgid ""
 "This is a workaround for some devices there wakeup again after switching in "
@@ -20355,6 +20432,9 @@ msgstr ""
 msgid "Toggle new text inserts before or overwrites existing text"
 msgstr "Váltás az új szöveg beszúrásra a meglévő szöveg felülírása elött"
 
+msgid "Toggle selection of the current tag"
+msgstr ""
+
 #, fuzzy
 msgid "Toggle service name display"
 msgstr "Csatorna nevek elrendezése"
@@ -20502,6 +20582,11 @@ msgid "Try to send repeated commands if not all commands are executed.\n"
 msgstr ""
 "Próbáljon meg ismételt parancsokat küldeni, ha nem minden parancs van "
 "végrehajtva.\n"
+
+msgid ""
+"Try to send repeated commands if not all commands are executed. (e.g. TV "
+"wakeup, but not switched to correct input.)"
+msgstr ""
 
 msgid "Try to slow down the send interval if not all commands are executed."
 msgstr ""
@@ -21099,6 +21184,9 @@ msgstr ""
 msgid "Use circular LNB"
 msgstr "Körpoláros fej használata"
 
+msgid "Use defaults"
+msgstr ""
+
 msgid "Use extended List"
 msgstr "Használjon kiterjesztett listát"
 
@@ -21292,6 +21380,9 @@ msgstr "Felhasználónév (httpuser)"
 
 msgid "Username:"
 msgstr "Felhasználói név:"
+
+msgid "Using automatic address"
+msgstr ""
 
 msgid "Using fixed address"
 msgstr "Fix cím használatával"
@@ -21630,6 +21721,9 @@ msgstr "Virtuális Billentyűzet szöveg:"
 msgid "Virtual keyboard"
 msgstr "Virtuális Billentyűzet"
 
+msgid "Visual impaired commentary"
+msgstr ""
+
 msgid "Vol"
 msgstr "Hang"
 
@@ -21650,6 +21744,11 @@ msgstr "Hangerő konfiguráció"
 
 msgid "Volume down"
 msgstr "Hangerő le"
+
+msgid ""
+"Volume keys on the receiver remote will control the TV volume. If this "
+"feature is not supported the volume keys have no function!"
+msgstr ""
 
 msgid "Volume up"
 msgstr "Hangerő fel"
@@ -21832,22 +21931,6 @@ msgstr ""
 "'Vágás vége' opciót. Ennyi az egész."
 
 msgid ""
-"Welcome to the cutlist editor.\n"
-"\n"
-"Seek to the start of the stuff you want to cut away. Press OK, select 'start "
-"cut'.\n"
-"\n"
-"Then seek to the end, press OK, select 'end cut'. That's it."
-msgstr ""
-"Üdvözlöm a Vágólista szerkesztőben.\n"
-"\n"
-"Keresse meg a kivágandó rész elejét majd nyomja meg az OK gombot és válassza "
-"ki a 'Vágás eleje' opciót.\n"
-"\n"
-"Majd menjen a kivágandó rész végére, nyomja meg az OK gombot és válassza a "
-"'Vágás vége' opciót. Ennyi az egész."
-
-msgid ""
 "Welcome to the image upgrade wizard. The wizard will assist you in upgrading "
 "the firmware of your %s %s by providing a backup facility for your current "
 "settings and a short explanation of how to upgrade your firmware."
@@ -21952,6 +22035,22 @@ msgid ""
 "When enabled the online checker will also check for experimental versions"
 msgstr ""
 "Engedélyezés esetén az online ellenőrzés ellenőrzi a kísérleti verziókat is"
+
+msgid "When enabled the receiver will automatically be switched off."
+msgstr ""
+
+msgid "When enabled the receiver will automatically be switched on."
+msgstr ""
+
+msgid ""
+"When enabled the receiver will automatically return to standby when the TV "
+"is turned off."
+msgstr ""
+
+msgid ""
+"When enabled the receiver will automatically wake from standby when the TV "
+"is turned on."
+msgstr ""
 
 msgid ""
 "When enabled, AIT data will be included in http streams. This allows a "
@@ -22199,6 +22298,11 @@ msgstr ""
 "befejezési időnek jelez ki."
 
 msgid ""
+"When receiver wakes from standby it will command the TV to switch to the "
+"HDMI input to which the receiver is connected."
+msgstr ""
+
+msgid ""
 "When set each folder will show the previous state used, when off the default "
 "values will be shown."
 msgstr ""
@@ -22222,6 +22326,11 @@ msgstr "Egy 4:3-as kép méretarányú tartalom nagyítva vagy széthúzva legye
 msgid ""
 "When the input cursor reaches this point (percentage of the width, from "
 "either side) scroll the text to the cursor."
+msgstr ""
+
+msgid ""
+"When the receiver wakes from standby or deep standby it will send a command "
+"to the TV to bring it out of standby."
 msgstr ""
 
 msgid ""
@@ -23003,16 +23112,6 @@ msgstr "Ugrás a csatornára (beállítás a menüben)"
 
 msgid "Zap to channel and close (setup in menu)"
 msgstr "Ugrás a csatornára és bezárás (beállítás a menüben)"
-
-msgid "Zap to selected channel"
-msgstr "Ugrás a kijelölt csatornára"
-
-msgid ""
-"Zap to selected channel, or show detailed event info (depends on "
-"configuration)"
-msgstr ""
-"Ugrás a kijelölt csatornára, vagy részletes műsorinformáció megjelenítése "
-"(konfiguráció-függő)"
 
 msgid "Zap up"
 msgstr "Ugrás felfelé"
@@ -24406,9 +24505,6 @@ msgstr ""
 "de nem lehet új csatornákat keresni\n"
 "vagy konfigurálja a tuner beállításait"
 
-msgid "save last directory on exit"
-msgstr "az utolsó mappa mentése kilépéskor"
-
 msgid "save playlist on exit"
 msgstr "lejátszási lista mentése kilépéskor"
 
@@ -24944,6 +25040,140 @@ msgstr "ugrás folyamatban"
 
 msgid "®"
 msgstr ""
+
+#~ msgid "%d-%m"
+#~ msgstr "%d-%m"
+
+#~ msgid "Add/remove change timer for current event"
+#~ msgstr "Hozzáadás/eltávolítás változtatása a jelenlegi eseménynél"
+
+#~ msgid ""
+#~ "Allows you to enable the twisted log. They contain very detailed "
+#~ "information of everything the twisted does. ('/tmp/twisted.log')"
+#~ msgstr ""
+#~ "Engedélyezi a twisted naplót. Nagyon részletes információkat tartalmaznak "
+#~ "mindenről. ('/tmp/twisted.log')"
+
+#~ msgid "Allows you to setup the button to do what you choose."
+#~ msgstr "Engedélyezi a gombok funkcióinak megváltoztatását."
+
+#~ msgid "Button"
+#~ msgstr "Gomb"
+
+#~ msgid "Compensate for overscan"
+#~ msgstr "Kompenzálja az overscan-t"
+
+#~ msgid "Cutlist editor"
+#~ msgstr "Vágószerkesztő"
+
+#~ msgid "Enable twisted log *"
+#~ msgstr "Twisted napló engedélyezése *"
+
+#~ msgid "Fontsize"
+#~ msgstr "Betűméret"
+
+#~ msgid "Go to first service"
+#~ msgstr "Ugrás az első csatornára"
+
+#~ msgid "Go to last service"
+#~ msgstr "Ugrás az utolsó csatornára"
+
+#~ msgid "Go to next event"
+#~ msgstr "Ugrás a következő eseményre"
+
+#~ msgid "Go to next page of service"
+#~ msgstr "Ugrás a következő csatornalapra"
+
+#~ msgid "Go to previous event"
+#~ msgstr "Ugrás az előző eseményre"
+
+#~ msgid "Go to previous page of service"
+#~ msgstr "Ugrás az előző csatornalapra"
+
+#~ msgid "Goto next day of events"
+#~ msgstr "Következő nap eseményeihez"
+
+#~ msgid "Goto next page of events"
+#~ msgstr "Ugrás a következő eseménylapra"
+
+#~ msgid "Goto previous day of events"
+#~ msgstr "Ugrás a előző eseménylapra"
+
+#~ msgid "Goto previous page of events"
+#~ msgstr "Ugrás az előző eseménylapra"
+
+#~ msgid "List mode"
+#~ msgstr "Listázás módja"
+
+#~ msgid "Normal mode"
+#~ msgstr "Hagyományos mód"
+
+#~ msgid "OSD position setup"
+#~ msgstr "OSD pozíció beállítás"
+
+#~ msgid "Picon and service name"
+#~ msgstr "Pikon és csatornanév"
+
+#~ msgid "Preview selected channel"
+#~ msgstr "Kijelőlt csatorna előnézete"
+
+#~ msgid "Set time window to 1 hour"
+#~ msgstr "Időablak beállítása 1 órára"
+
+#~ msgid "Set time window to 2 hours"
+#~ msgstr "Időablak beállítása 2 órára"
+
+#~ msgid "Set time window to 3 hours"
+#~ msgstr "Időablak beállítása 3 órára"
+
+#~ msgid "Set time window to 4 hours"
+#~ msgstr "Időablak beállítása 4 órára"
+
+#~ msgid "Set time window to 5 hours"
+#~ msgstr "Időablak beállítása 5 órára"
+
+#~ msgid "Set time window to 6 hours"
+#~ msgstr "Az időablak beállítása 6 órára"
+
+#~ msgid "Show bouquet selection menu"
+#~ msgstr "Csatornacsomag választó menü megjelenítése"
+
+#~ msgid "Stop previous broadcasted service on return to movielist."
+#~ msgstr ""
+#~ "Állítsa le a az előzőleg sugárzott csatorna műsorát mikor a Felvétel "
+#~ "listájához visszatér."
+
+#~ msgid "Switch between normal mode and list mode"
+#~ msgstr "Hagyományos / listanézet váltás"
+
+#~ msgid ""
+#~ "Welcome to the cutlist editor.\n"
+#~ "\n"
+#~ "Seek to the start of the stuff you want to cut away. Press OK, select "
+#~ "'start cut'.\n"
+#~ "\n"
+#~ "Then seek to the end, press OK, select 'end cut'. That's it."
+#~ msgstr ""
+#~ "Üdvözlöm a Vágólista szerkesztőben.\n"
+#~ "\n"
+#~ "Keresse meg a kivágandó rész elejét majd nyomja meg az OK gombot és "
+#~ "válassza ki a 'Vágás eleje' opciót.\n"
+#~ "\n"
+#~ "Majd menjen a kivágandó rész végére, nyomja meg az OK gombot és válassza "
+#~ "a 'Vágás vége' opciót. Ennyi az egész."
+
+#~ msgid "Zap to selected channel"
+#~ msgstr "Ugrás a kijelölt csatornára"
+
+#~ msgid ""
+#~ "Zap to selected channel, or show detailed event info (depends on "
+#~ "configuration)"
+#~ msgstr ""
+#~ "Ugrás a kijelölt csatornára, vagy részletes műsorinformáció megjelenítése "
+#~ "(konfiguráció-függő)"
+
+#~ msgid "save last directory on exit"
+#~ msgstr "az utolsó mappa mentése kilépéskor"
 
 #~ msgid ""
 #~ "When enabled, the length of each recording will be shown in the movielist "

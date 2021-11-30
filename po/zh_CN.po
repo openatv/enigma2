@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openATV [E2+webif_V5.3_6.0]\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-10-28 19:26+0000\n"
+"POT-Creation-Date: 2021-11-29 21:27+0000\n"
 "PO-Revision-Date: 2021-11-02 11:36+0000\n"
 "Last-Translator: lexlong2007 <lexlong2007@163.com>\n"
 "Language-Team: Chinese (Simplified) <https://hosted.weblate.org/projects/"
@@ -1112,9 +1112,6 @@ msgstr "%d-%b"
 msgid "%d-%b-%Y"
 msgstr "%d-%b-%Y"
 
-msgid "%d-%m"
-msgstr "%d-%m"
-
 msgid "%d. %B %Y"
 msgstr "%d. %B %Y"
 
@@ -1380,6 +1377,10 @@ msgstr ""
 msgid ""
 "'Handle standby from TV' has a higher priority as 'Handle input from TV'"
 msgstr "“处理来自电视的待机”比“处理来自电视的输入”具有更高的优先级"
+
+msgid ""
+"'Handle standby from TV' has a higher priority than 'Handle input from TV'."
+msgstr ""
 
 msgid "'weatherplugin' is not installed!"
 msgstr "'天气插件' 未安装！"
@@ -2058,6 +2059,9 @@ msgstr ""
 msgid "A crashlog was %s created in '%s'"
 msgstr "崩溃日志%s已在%s中创建"
 
+msgid "A file from media is in use!"
+msgstr ""
+
 #, python-format
 msgid ""
 "A finished powertimer wants to reboot your %s %s.\n"
@@ -2333,6 +2337,11 @@ msgstr "激活MAC 地址配置"
 msgid "Activate Picture in Picture"
 msgstr "激活画中画"
 
+msgid ""
+"Activate a way to send individual or specific internal HDMI-CEC commands "
+"from the command line."
+msgstr ""
+
 #, python-format
 msgid ""
 "Activate an way to send individual or specific internal HDMI-CEC commands "
@@ -2418,6 +2427,9 @@ msgstr "添加一个标记"
 msgid "Add a nameserver entry"
 msgstr "添加DNS 服务器条目"
 
+msgid "Add a new tag"
+msgstr ""
+
 msgid "Add a new title"
 msgstr "添加一个新标题"
 
@@ -2447,6 +2459,9 @@ msgstr "将文件添加到播放列表"
 
 msgid "Add files to playlist"
 msgstr "添加多个文件到播放列表"
+
+msgid "Add new tag"
+msgstr ""
 
 msgid "Add plugin to Extensions menu*"
 msgstr "将插件添加到扩展菜单*"
@@ -2486,9 +2501,6 @@ msgstr "添加/删除 定时器"
 
 msgid "Add/Remove timer for current event"
 msgstr "添加/删除 当前事件定时器"
-
-msgid "Add/remove change timer for current event"
-msgstr "添加/删除 修改当前事件定时器"
 
 msgid "Adding schedule..."
 msgstr "添加任务..."
@@ -2697,22 +2709,21 @@ msgstr "允许 %s %s 定期读取存储EPG数据."
 msgid "Allows the %s %s to store the EPG data regularly."
 msgstr "允许 %s %s 定期存储EPG数据."
 
+msgid "Allows the TV remote to be used to control the receiver."
+msgstr ""
+
 msgid ""
 "Allows you to adjust the amount of time the resolution information display "
 "on screen."
 msgstr "允许您调整分辨率信息在屏幕上显示的时间。"
 
+msgid "Allows you to assign the selected function to the this button."
+msgstr ""
+
 msgid ""
 "Allows you to enable the debug log. They contain very detailed information "
 "of everything the system does."
 msgstr "允许您可以启用调试日志.它们包含一切系统执行的非常详细的信息."
-
-msgid ""
-"Allows you to enable the twisted log. They contain very detailed information "
-"of everything the twisted does. ('/tmp/twisted.log')"
-msgstr ""
-"允许您可以启用调试日志.它们包含一切系统执行的非常详细的信息.('/tmp/twisted."
-"log')"
 
 msgid "Allows you to enable/disable displaying icons on the frontpanel."
 msgstr "允许您启用/禁用前面板上的图标显示."
@@ -2724,9 +2735,6 @@ msgid ""
 "Allows you to set the maximum size of the Debug log size (MB). When that "
 "size is reached, a new file will be created."
 msgstr "允许你设置调试日志的最大(MB).当达到这个大小,一个新的文件将被创建."
-
-msgid "Allows you to setup the button to do what you choose."
-msgstr "允许您设置按钮来完成您的选择."
 
 msgid "Allows you to show/hide CCcam in extensions (blue button)."
 msgstr "允许您在附件列表显示/隐藏CCcam（蓝色按键）."
@@ -2808,6 +2816,13 @@ msgstr "美国体育"
 
 msgid "Amharic"
 msgstr "阿姆哈拉语"
+
+msgid ""
+"An attempt is made to capture the current TV status. If this is not possible "
+"due to incorrect or missing status messages it may cause the receiver to "
+"respond unexpectedly. On the other hand, tries to respond better to "
+"different operating conditions."
+msgstr ""
 
 msgid ""
 "An attempt is made to capture the current TV status. If this is not possible "
@@ -3231,6 +3246,11 @@ msgstr "频道自动扫描"
 
 msgid "Automatic setting backup"
 msgstr "自动备份设置"
+
+msgid ""
+"Automatically put the TV in standby whenever the receiver goes into standby "
+"or deep standby."
+msgstr ""
 
 msgid "Automatically start timeshift after"
 msgstr "自动开始时移后"
@@ -3771,9 +3791,6 @@ msgstr "总线: "
 msgid "Business & Finance"
 msgstr "商业与金融"
 
-msgid "Button"
-msgstr "按钮"
-
 msgid "Button Setup"
 msgstr "按键设置"
 
@@ -4088,6 +4105,9 @@ msgstr "取消所有更改并退出"
 
 msgid "Cancel any changed settings and exit all menus"
 msgstr "取消全部更改并退出全部菜单"
+
+msgid "Cancel any changed tags and exit"
+msgstr ""
 
 msgid "Cancel any changes the active locale/language and exit all menus"
 msgstr "取消对区域和语言的全部更改并退出所有菜单"
@@ -4754,6 +4774,9 @@ msgstr "指定 CI 模块"
 msgid "Common Interface assignment"
 msgstr "指定 CI 模块"
 
+msgid "Common Menu Actions"
+msgstr ""
+
 msgid "Common Setup Actions"
 msgstr "常见设置操作"
 
@@ -4762,9 +4785,6 @@ msgstr "通信"
 
 msgid "Comoros"
 msgstr "科摩罗"
-
-msgid "Compensate for overscan"
-msgstr "过扫描补偿"
 
 msgid "Complete"
 msgstr "完成"
@@ -5660,9 +5680,6 @@ msgstr "剪切"
 msgid "Cutlist Editor"
 msgstr "Cutlist编辑器"
 
-msgid "Cutlist editor"
-msgstr "Cutlist编辑器"
-
 msgid "Cutlist editor..."
 msgstr "Cutlist编辑器..."
 
@@ -6111,6 +6128,11 @@ msgstr "键重复前的延迟:"
 msgid "Delay before sequence repeat"
 msgstr "序列命令重复前的延迟"
 
+msgid ""
+"Delay between CEC commands when sending a series of commands. Some devices "
+"require this delay for correct functioning, usually between 50-150ms."
+msgstr ""
+
 msgid "Delay between diseqc commands"
 msgstr "DiSEqC指令之间的延迟"
 
@@ -6157,6 +6179,9 @@ msgstr "删除语言"
 
 msgid "Delete Plugins"
 msgstr "删除插件"
+
+msgid "Delete all tags"
+msgstr ""
 
 msgid "Delete all the text"
 msgstr "删除所有文本"
@@ -6209,8 +6234,14 @@ msgstr "删除当前的时移缓冲区并重新开始时移"
 msgid "Delete the selected files or directories"
 msgstr "删除选定的文件或目录"
 
+msgid "Delete this tag"
+msgstr ""
+
 msgid "Delete timer"
 msgstr "删除定时器"
+
+msgid "Delete unused tags"
+msgstr ""
 
 msgid "Deleted"
 msgstr "已删除"
@@ -6354,6 +6385,9 @@ msgid ""
 "Dim the LCD to the level from 'Brightness (Dimmed)' after specified time."
 msgstr "指定时间后，将 LCD 调暗至“亮度（变暗）”级别。"
 
+msgid "Direct menu item selection"
+msgstr ""
+
 msgid "Direct playback of linked titles without menu"
 msgstr "直接播放链接标题无需菜单操作"
 
@@ -6476,6 +6510,9 @@ msgstr "在信息栏显示 EIT 当前/下一个 事件数据."
 msgid "Display the base locales or all locales for a language."
 msgstr "显示语言的基础本地或所有本地。"
 
+msgid "Display the tags context menu"
+msgstr ""
+
 msgid "Display the virtual keyboard for data entry"
 msgstr "使用虚拟键盘用于数据输入"
 
@@ -6524,6 +6561,17 @@ msgstr "你确定要删除 %s ?"
 
 msgid "Do you really want to delete ?"
 msgstr "你确定要删除吗?"
+
+#, python-format
+msgid ""
+"Do you really want to delete all '%s' tags?\n"
+"(NOTE: 'Cancel' cannot undo this!)"
+msgstr ""
+
+msgid ""
+"Do you really want to delete all tags?\n"
+"(Note that 'Cancel' will not undo this!)"
+msgstr ""
 
 msgid "Do you really want to delete the recording?"
 msgstr "你确定要删除这个录制?"
@@ -6978,6 +7026,9 @@ msgstr "编辑"
 msgid "Edit Quad Channel Entry"
 msgstr "编辑四宫格频道"
 
+msgid "Edit Tags"
+msgstr ""
+
 msgid "Edit Title"
 msgstr "编辑标题"
 
@@ -7188,6 +7239,9 @@ msgstr "启用简介界面"
 msgid "Enable multiple bouquets"
 msgstr "启用多自定义组"
 
+msgid "Enable or disable using HDMI-CEC."
+msgstr ""
+
 msgid "Enable panic button"
 msgstr "启用紧急按钮"
 
@@ -7212,6 +7266,9 @@ msgstr "启用图文电视缓存"
 
 msgid "Enable terrestrial LCN:"
 msgstr "启用地面波 LCN:"
+
+msgid "Enable the advanced HDMI-CEC setting options."
+msgstr ""
 
 msgid "Enable the current value of the slider at end of the slider bar."
 msgstr "在滑块条的末尾显示当前值。"
@@ -7239,9 +7296,6 @@ msgid ""
 "Enable to display all true/false, yes/no, on/off and enable/disable set up "
 "options as a graphical switch."
 msgstr "启用以把所有真/假、是/否、开/关和启用/禁用的选项使用图形开关。"
-
-msgid "Enable twisted log *"
-msgstr "启用twisted调试日志"
 
 msgid "Enable unlinked bouquets"
 msgstr "启用未链接的自定义组"
@@ -7330,6 +7384,9 @@ msgstr "进入"
 
 msgid "Enter PIN"
 msgstr "输入 PIN"
+
+msgid "Enter a new name for this device."
+msgstr ""
 
 msgid "Enter if you are in the east or west hemisphere."
 msgstr "如果您在东半球或西半球，请输入。"
@@ -7691,6 +7748,9 @@ msgstr "退出MAC地址配置"
 msgid "Exit Quad Channel Selection"
 msgstr "退出四宫格频道选择"
 
+msgid "Exit all menus"
+msgstr ""
+
 msgid "Exit editor"
 msgstr "退出编辑器"
 
@@ -7705,6 +7765,9 @@ msgstr "退出媒体播放器?"
 
 msgid "Exit mediaplayer"
 msgstr "退出媒体播放器"
+
+msgid "Exit menu"
+msgstr ""
 
 msgid "Exit movie list"
 msgstr "退出电影列表"
@@ -8196,9 +8259,6 @@ msgstr "字体大小"
 msgid "Font:"
 msgstr "字体:"
 
-msgid "Fontsize"
-msgstr "字体大小"
-
 msgid "Food/Wine"
 msgstr "食物/酒"
 
@@ -8349,6 +8409,9 @@ msgstr "完整备份到 %s"
 msgid "Full transparency"
 msgstr "完全透明"
 
+msgid "Full view resolution"
+msgstr "全视图分辨率"
+
 msgid "FullHD Test"
 msgstr "FullHD测试"
 
@@ -8357,9 +8420,6 @@ msgstr "完整备份固件"
 
 msgid "Fullscreen"
 msgstr "全屏显示"
-
-msgid "Full view resolution"
-msgstr "全视图分辨率"
 
 msgid "Fußball"
 msgstr "足球"
@@ -8518,26 +8578,8 @@ msgstr "转到第一部电影或最后一个项目"
 msgid "Go to first movie or top of list"
 msgstr "转到第一部电影或列表顶部"
 
-msgid "Go to first service"
-msgstr "转到第一个频道"
-
-msgid "Go to last service"
-msgstr "转到最后一个频道"
-
-msgid "Go to next event"
-msgstr "转到下一个事件"
-
-msgid "Go to next page of service"
-msgstr "转到下一页的频道"
-
 msgid "Go to parent directory"
 msgstr "跳转到上级目录"
-
-msgid "Go to previous event"
-msgstr "转到以前的频道"
-
-msgid "Go to previous page of service"
-msgstr "转到上一页的频道"
 
 msgid "Go to start of file"
 msgstr "转到文件开头"
@@ -8581,14 +8623,8 @@ msgstr "转到下个频道组"
 msgid "Goto next channel"
 msgstr "转到下个频道"
 
-msgid "Goto next day of events"
-msgstr "转到第二天的事件"
-
 msgid "Goto next event"
 msgstr "转到下一个事件"
-
-msgid "Goto next page of events"
-msgstr "转到第二页的事件"
 
 msgid "Goto position"
 msgstr "转到位置"
@@ -8599,14 +8635,8 @@ msgstr "转到上个频道组"
 msgid "Goto previous channel"
 msgstr "转到上一个频道"
 
-msgid "Goto previous day of events"
-msgstr "转到上一天的事件"
-
 msgid "Goto previous event"
 msgstr "转到上一个事件"
-
-msgid "Goto previous page of events"
-msgstr "转到上一页的事件"
 
 msgid "Goto specific date/time"
 msgstr "转到特定的日期/时间"
@@ -8746,6 +8776,12 @@ msgstr "HDMI HDR 类型"
 
 msgid "HDMI Recording"
 msgstr "HDMI 录像中"
+
+msgid "HDMI-CEC Setup"
+msgstr ""
+
+msgid "HDMI-CEC Setup Actions"
+msgstr ""
 
 msgid "HDMI-IN Actions"
 msgstr "HDMI-IN 操作"
@@ -9191,6 +9227,11 @@ msgid "If enabled, AIT data is included in recordings."
 msgstr "如果启用，AIT数据将包含在录像中."
 
 msgid ""
+"If enabled, a log will be kept of CEC protocol traffic. The log files are "
+"located with the other log files but named 'Enigma2-hdmicec-[date].log'."
+msgstr ""
+
+msgid ""
 "If enabled, using a time window to detect a wakeup from deep standby by a "
 "timer. Default setting ist disabled and used a special signal from the "
 "receiver. But some devices set a wrong or none signal and the wakeup "
@@ -9205,6 +9246,11 @@ msgstr "如果日志文件设置了最大空间，旧有的将会删除."
 
 msgid "If muted, hide mute icon or mute information after few seconds."
 msgstr "如果静音，几秒钟后将隐藏静音图标或静音信息。"
+
+msgid ""
+"If set to 'Yes' the same commands will be sent to the TV for deep standby "
+"events as are sent during regular standby events."
+msgstr ""
 
 msgid ""
 "If set to 'no', can you save older events even after zapping or interruption "
@@ -9288,6 +9334,12 @@ msgid ""
 msgstr ""
 "如果启用了“深度待机解决方法”，它会等待系统时间同步。 根据要求，设备将在最多 "
 "2 分钟后继续唤醒。"
+
+msgid ""
+"If the deep standby workaround is enabled wait until the system time is "
+"synchronized. Depending on the requirement the device wake up will "
+"continuing after a maximum of 2 minutes."
+msgstr ""
 
 msgid ""
 "If the free space is less than setting value, then an attempt is made to "
@@ -9635,6 +9687,9 @@ msgid "Input devices"
 msgstr "输入设备"
 
 msgid "Input scroll position"
+msgstr ""
+
+msgid "InputDevice Setup"
 msgstr ""
 
 msgid "Insert"
@@ -10363,9 +10418,6 @@ msgstr "列出导航操作"
 msgid "List available networks"
 msgstr "可用网络列表"
 
-msgid "List mode"
-msgstr "列表模式"
-
 msgid "List of Storage Devices"
 msgstr "存储设备列表"
 
@@ -10418,6 +10470,9 @@ msgstr "加载EPG"
 
 msgid "Load playlist"
 msgstr "载入播放列表"
+
+msgid "Load tags from the timer and recordings"
+msgstr ""
 
 msgid "Load unlinked userbouquets"
 msgstr "载入未链接的用户自定义频道组"
@@ -11911,9 +11966,6 @@ msgstr "没有找到哈希值为%s的应用"
 msgid "Norfolk Island"
 msgstr "诺福克岛"
 
-msgid "Normal mode"
-msgstr "正常模式"
-
 msgid "North"
 msgstr "北"
 
@@ -12106,9 +12158,6 @@ msgstr "OSD 设置"
 
 msgid "OSD name request"
 msgstr "OSD 名称请求"
-
-msgid "OSD position setup"
-msgstr "OSD 位置设置"
 
 msgid "OSD settings"
 msgstr "OSD选项"
@@ -12600,6 +12649,9 @@ msgstr "直通"
 msgid "Password"
 msgstr "密码"
 
+msgid "Password (httpuser)"
+msgstr ""
+
 msgid "Password (httpwd)"
 msgstr "密码 (httpwd)"
 
@@ -12708,9 +12760,6 @@ msgid "Picon"
 msgstr "台标"
 
 msgid "Picon and Service Name"
-msgstr "台标和频道名"
-
-msgid "Picon and service name"
 msgstr "台标和频道名"
 
 msgid "Picon width"
@@ -12894,6 +12943,9 @@ msgstr "请输入新的目录名称"
 
 msgid "Please enter the new file name"
 msgstr "请输入新文件名"
+
+msgid "Please enter the new tag:"
+msgstr ""
 
 msgid "Please enter the old PIN code"
 msgstr "请输入原来的 PIN 码"
@@ -13498,9 +13550,6 @@ msgstr "预览"
 
 msgid "Preview menu"
 msgstr "预览菜单"
-
-msgid "Preview selected channel"
-msgstr "预览所选频道"
 
 msgid "Previous"
 msgstr "前一个"
@@ -14278,6 +14327,9 @@ msgstr "重命名文件/目录"
 msgid "Rename name and description for new events"
 msgstr "重命名新事件的名称和描述"
 
+msgid "Rename this tag"
+msgstr ""
+
 msgid "Rename to:"
 msgstr "重命名为:"
 
@@ -14314,6 +14366,12 @@ msgid ""
 "subtitles for the hearing impaired)"
 msgstr "对话中每个说话者使用彩色文本替换对话中的`-`（如听力障碍者的图文字幕）"
 
+#, python-format
+msgid ""
+"Replace all '%s' tags with:\n"
+"(NOTE: 'Cancel' cannot undo this!)"
+msgstr ""
+
 msgid "Reportage"
 msgstr "报告"
 
@@ -14334,6 +14392,9 @@ msgstr "保留以备将来使用"
 
 msgid "Reset"
 msgstr "复位"
+
+msgid "Reset HDMI-CEC settings to default"
+msgstr ""
 
 msgid "Reset and renumerate title names"
 msgstr "重置并重设标题名称"
@@ -14791,6 +14852,9 @@ msgstr "保存EPG数据"
 msgid "Save all changed settings and exit"
 msgstr "保存所有更改的设置并退出"
 
+msgid "Save all changed tags and exit"
+msgstr ""
+
 msgid "Save and record"
 msgstr "保存并录像"
 
@@ -15062,6 +15126,11 @@ msgid ""
 msgstr ""
 "如果您的天线系统需要，请选择“A”或“B”，否则选择“无”。 如果您不确定，请选"
 "择“无”。"
+
+msgid ""
+"Select 'Yes' to enable editing of this device's settings. Selecting 'No' "
+"resets the devices settings to their default values."
+msgstr ""
 
 msgid ""
 "Select 'band' if using a 'universal' LNB, otherwise consult your LNB spec "
@@ -15358,6 +15427,9 @@ msgstr ""
 msgid "Select the character or action under the keyboard cursor"
 msgstr "选择键盘光标下的字符或动作"
 
+msgid "Select the current menu item"
+msgstr ""
+
 msgid "Select the currently highlighted locale/language for the user interface"
 msgstr "选择当前高亮的本地/语言"
 
@@ -15467,6 +15539,12 @@ msgstr "仅为下一个字符切换字符集"
 
 msgid "Select the sleep timer action."
 msgstr "选择睡眠定时器操作."
+
+msgid "Select the time delay before the button starts repeating."
+msgstr ""
+
+msgid "Select the time delay between each repeat of the button."
+msgstr ""
 
 msgid "Select the time zone within the area or region."
 msgstr "选择区域或区域内的时区。"
@@ -15832,6 +15910,9 @@ msgstr "设置“INFO”键的操作"
 msgid "Set archive mode (644)"
 msgstr "设置存档模式 (644)"
 
+msgid "Set current CEC address as fixed address"
+msgstr ""
+
 msgid "Set default"
 msgstr "设置默认"
 
@@ -15967,24 +16048,6 @@ msgstr ""
 msgid ""
 "Set the type of the progress indication in the channel selection screen."
 msgstr "在频道选择界面中设置进度条的类型."
-
-msgid "Set time window to 1 hour"
-msgstr "设置时间窗1小时"
-
-msgid "Set time window to 2 hours"
-msgstr "设置时间窗2小时"
-
-msgid "Set time window to 3 hours"
-msgstr "设置时间窗3小时"
-
-msgid "Set time window to 4 hours"
-msgstr "设置时间窗4小时"
-
-msgid "Set time window to 5 hours"
-msgstr "设置时间窗5小时"
-
-msgid "Set time window to 6 hours"
-msgstr "设置时间窗6小时"
 
 msgid "Set to the desired primetime (hour)."
 msgstr "设置为所需的黄金时间（小时）."
@@ -16507,9 +16570,6 @@ msgstr "调到广播频道时显示背景."
 
 msgid "Show bouquet on launch"
 msgstr "启动时显示频道组"
-
-msgid "Show bouquet selection menu"
-msgstr "显示自定义组选择菜单"
 
 msgid "Show channel number in infobar"
 msgstr "在信息栏上显示频道编号"
@@ -17215,6 +17275,13 @@ msgid "Somalia"
 msgstr "索马里"
 
 msgid ""
+"Some TV devices can't swich to correct input if a another HDMI port active. "
+"This setting sets the TV to standby before the switch. (If the TV does not "
+"turn back on it may require a slower transmission interval or the repetition "
+"of wake-up commands.)"
+msgstr ""
+
+msgid ""
 "Some TV devices can't swich to correct input if a another hdmi port active. "
 "This setting set the TV to standby before.\n"
 "(If the TV does not turn back on, may require a slower transmission interval "
@@ -17549,8 +17616,8 @@ msgstr "停止项"
 msgid "Stop playing this movie?"
 msgstr "停止播放该影片？"
 
-msgid "Stop previous broadcasted service on return to movielist."
-msgstr "返回电影列表时停止之前的广播服务。"
+msgid "Stop previous broadcasted service on return to movie list."
+msgstr ""
 
 msgid "Stop recording"
 msgstr "停止录像"
@@ -17829,9 +17896,6 @@ msgstr "在音频 - 字幕页之间切换"
 msgid "Switch between filelist/playlist"
 msgstr "文件列表/播放列表之间切换"
 
-msgid "Switch between normal mode and list mode"
-msgstr "正常模式和列表模式之间切换"
-
 msgid "Switch config"
 msgstr "切换设置"
 
@@ -17998,6 +18062,12 @@ msgstr "图文字幕页 & 语言"
 
 msgid "Table of content for collection"
 msgstr "收集的内容表"
+
+msgid "Tag Editor"
+msgstr ""
+
+msgid "Tag Editor Actions"
+msgstr ""
 
 msgid "Tagalog"
 msgstr "他加禄语"
@@ -18325,6 +18395,9 @@ msgstr ""
 "时移缓冲时间超过了设置里的限制规定.\n"
 "接下来您想怎么办？"
 
+msgid "The command to wake from standby will be sent multiple times."
+msgstr ""
+
 msgid "The current update may be unstable"
 msgstr "当前更新可能不稳定"
 
@@ -18645,6 +18718,12 @@ msgstr "此配置选项允许你在下载中显示网页链接模块"
 #, python-format
 msgid "This field allows you to search an additional symbol rate up to %s."
 msgstr "此字段允许您搜索高达 %s 的附加符号率。"
+
+msgid ""
+"This is a workaround for some devices that wakeup again after switching to "
+"standby. The wake up command's from other devices will be ignored for few "
+"seconds."
+msgstr ""
 
 msgid ""
 "This is a workaround for some devices there wakeup again after switching in "
@@ -19394,6 +19473,9 @@ msgstr "调出信息栏显示"
 msgid "Toggle new text inserts before or overwrites existing text"
 msgstr "在现有文本之前插入或覆盖现有文本"
 
+msgid "Toggle selection of the current tag"
+msgstr ""
+
 msgid "Toggle service name display"
 msgstr "频道名称显示"
 
@@ -19531,6 +19613,11 @@ msgstr "尽量避免因软件错误而重新启动并保持接收器的可用性
 
 msgid "Try to send repeated commands if not all commands are executed.\n"
 msgstr "如果没有执行所有命令，请尝试发送重复的命令.\n"
+
+msgid ""
+"Try to send repeated commands if not all commands are executed. (e.g. TV "
+"wakeup, but not switched to correct input.)"
+msgstr ""
 
 msgid "Try to slow down the send interval if not all commands are executed."
 msgstr "如果没有执行所有命令，请尝试减慢发送间隔。"
@@ -20106,6 +20193,9 @@ msgstr ""
 msgid "Use circular LNB"
 msgstr "使用圆极化高频头"
 
+msgid "Use defaults"
+msgstr ""
+
 msgid "Use extended List"
 msgstr "使用附件列表"
 
@@ -20278,6 +20368,9 @@ msgstr "用户名（HTTP用户）"
 
 msgid "Username:"
 msgstr "用户名:"
+
+msgid "Using automatic address"
+msgstr ""
 
 msgid "Using fixed address"
 msgstr "使用固定地址"
@@ -20605,6 +20698,9 @@ msgstr "虚拟键盘文本:"
 msgid "Virtual keyboard"
 msgstr "虚拟键盘"
 
+msgid "Visual impaired commentary"
+msgstr ""
+
 msgid "Vol"
 msgstr "电压"
 
@@ -20625,6 +20721,11 @@ msgstr "音量配置"
 
 msgid "Volume down"
 msgstr "音量减小"
+
+msgid ""
+"Volume keys on the receiver remote will control the TV volume. If this "
+"feature is not supported the volume keys have no function!"
+msgstr ""
 
 msgid "Volume up"
 msgstr "音量增大"
@@ -20800,20 +20901,6 @@ msgstr ""
 "然后找到结束部分，按 OK 键，就这样完成."
 
 msgid ""
-"Welcome to the cutlist editor.\n"
-"\n"
-"Seek to the start of the stuff you want to cut away. Press OK, select 'start "
-"cut'.\n"
-"\n"
-"Then seek to the end, press OK, select 'end cut'. That's it."
-msgstr ""
-"欢迎使用cutlist编辑器.\n"
-"\n"
-"找到要剪掉的开始部分.按 OK 键，选择“开始”\n"
-"\n"
-"然后找到结束部分，按 OK 键，就这样完成."
-
-msgid ""
 "Welcome to the image upgrade wizard. The wizard will assist you in upgrading "
 "the firmware of your %s %s by providing a backup facility for your current "
 "settings and a short explanation of how to upgrade your firmware."
@@ -20913,6 +21000,22 @@ msgstr "启用时，可以通过 EXIT 键关闭画中画."
 msgid ""
 "When enabled the online checker will also check for experimental versions"
 msgstr "启用时，在线检查程序还将检查体验版本"
+
+msgid "When enabled the receiver will automatically be switched off."
+msgstr ""
+
+msgid "When enabled the receiver will automatically be switched on."
+msgstr ""
+
+msgid ""
+"When enabled the receiver will automatically return to standby when the TV "
+"is turned off."
+msgstr ""
+
+msgid ""
+"When enabled the receiver will automatically wake from standby when the TV "
+"is turned on."
+msgstr ""
 
 msgid ""
 "When enabled, AIT data will be included in http streams. This allows a "
@@ -21109,6 +21212,11 @@ msgid ""
 msgstr "非零时，录像将晚于EPG指示的结束时间停止."
 
 msgid ""
+"When receiver wakes from standby it will command the TV to switch to the "
+"HDMI input to which the receiver is connected."
+msgstr ""
+
+msgid ""
 "When set each folder will show the previous state used, when off the default "
 "values will be shown."
 msgstr "当设置时每个文件夹时将显示之前使用的状态，当关闭时将显示默认值."
@@ -21129,6 +21237,11 @@ msgstr "当内容的宽高比为4:3时，选择是否缩放/拉伸图片."
 msgid ""
 "When the input cursor reaches this point (percentage of the width, from "
 "either side) scroll the text to the cursor."
+msgstr ""
+
+msgid ""
+"When the receiver wakes from standby or deep standby it will send a command "
+"to the TV to bring it out of standby."
 msgstr ""
 
 msgid ""
@@ -21856,14 +21969,6 @@ msgstr "切换频道(设置菜单)"
 
 msgid "Zap to channel and close (setup in menu)"
 msgstr "切换频道并关闭(设置菜单)"
-
-msgid "Zap to selected channel"
-msgstr "切换到选择的频道"
-
-msgid ""
-"Zap to selected channel, or show detailed event info (depends on "
-"configuration)"
-msgstr "切换到选择的频道，或者显示详细事件信息（取决于配置）"
 
 msgid "Zap up"
 msgstr "向上切换"
@@ -23243,9 +23348,6 @@ msgstr ""
 "但绝不可能搜到新的节目频道\n"
 "也不可以配置调谐器设置"
 
-msgid "save last directory on exit"
-msgstr "退出时保存最后目录"
-
 msgid "save playlist on exit"
 msgstr "退出时保存播放列表"
 
@@ -23777,6 +23879,134 @@ msgstr "切换中"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "%d-%m"
+#~ msgstr "%d-%m"
+
+#~ msgid "Add/remove change timer for current event"
+#~ msgstr "添加/删除 修改当前事件定时器"
+
+#~ msgid ""
+#~ "Allows you to enable the twisted log. They contain very detailed "
+#~ "information of everything the twisted does. ('/tmp/twisted.log')"
+#~ msgstr ""
+#~ "允许您可以启用调试日志.它们包含一切系统执行的非常详细的信息.('/tmp/"
+#~ "twisted.log')"
+
+#~ msgid "Allows you to setup the button to do what you choose."
+#~ msgstr "允许您设置按钮来完成您的选择."
+
+#~ msgid "Button"
+#~ msgstr "按钮"
+
+#~ msgid "Compensate for overscan"
+#~ msgstr "过扫描补偿"
+
+#~ msgid "Cutlist editor"
+#~ msgstr "Cutlist编辑器"
+
+#~ msgid "Enable twisted log *"
+#~ msgstr "启用twisted调试日志"
+
+#~ msgid "Fontsize"
+#~ msgstr "字体大小"
+
+#~ msgid "Go to first service"
+#~ msgstr "转到第一个频道"
+
+#~ msgid "Go to last service"
+#~ msgstr "转到最后一个频道"
+
+#~ msgid "Go to next event"
+#~ msgstr "转到下一个事件"
+
+#~ msgid "Go to next page of service"
+#~ msgstr "转到下一页的频道"
+
+#~ msgid "Go to previous event"
+#~ msgstr "转到以前的频道"
+
+#~ msgid "Go to previous page of service"
+#~ msgstr "转到上一页的频道"
+
+#~ msgid "Goto next day of events"
+#~ msgstr "转到第二天的事件"
+
+#~ msgid "Goto next page of events"
+#~ msgstr "转到第二页的事件"
+
+#~ msgid "Goto previous day of events"
+#~ msgstr "转到上一天的事件"
+
+#~ msgid "Goto previous page of events"
+#~ msgstr "转到上一页的事件"
+
+#~ msgid "List mode"
+#~ msgstr "列表模式"
+
+#~ msgid "Normal mode"
+#~ msgstr "正常模式"
+
+#~ msgid "OSD position setup"
+#~ msgstr "OSD 位置设置"
+
+#~ msgid "Picon and service name"
+#~ msgstr "台标和频道名"
+
+#~ msgid "Preview selected channel"
+#~ msgstr "预览所选频道"
+
+#~ msgid "Set time window to 1 hour"
+#~ msgstr "设置时间窗1小时"
+
+#~ msgid "Set time window to 2 hours"
+#~ msgstr "设置时间窗2小时"
+
+#~ msgid "Set time window to 3 hours"
+#~ msgstr "设置时间窗3小时"
+
+#~ msgid "Set time window to 4 hours"
+#~ msgstr "设置时间窗4小时"
+
+#~ msgid "Set time window to 5 hours"
+#~ msgstr "设置时间窗5小时"
+
+#~ msgid "Set time window to 6 hours"
+#~ msgstr "设置时间窗6小时"
+
+#~ msgid "Show bouquet selection menu"
+#~ msgstr "显示自定义组选择菜单"
+
+#~ msgid "Stop previous broadcasted service on return to movielist."
+#~ msgstr "返回电影列表时停止之前的广播服务。"
+
+#~ msgid "Switch between normal mode and list mode"
+#~ msgstr "正常模式和列表模式之间切换"
+
+#~ msgid ""
+#~ "Welcome to the cutlist editor.\n"
+#~ "\n"
+#~ "Seek to the start of the stuff you want to cut away. Press OK, select "
+#~ "'start cut'.\n"
+#~ "\n"
+#~ "Then seek to the end, press OK, select 'end cut'. That's it."
+#~ msgstr ""
+#~ "欢迎使用cutlist编辑器.\n"
+#~ "\n"
+#~ "找到要剪掉的开始部分.按 OK 键，选择“开始”\n"
+#~ "\n"
+#~ "然后找到结束部分，按 OK 键，就这样完成."
+
+#~ msgid "Zap to selected channel"
+#~ msgstr "切换到选择的频道"
+
+#~ msgid ""
+#~ "Zap to selected channel, or show detailed event info (depends on "
+#~ "configuration)"
+#~ msgstr "切换到选择的频道，或者显示详细事件信息（取决于配置）"
+
+#~ msgid "save last directory on exit"
+#~ msgstr "退出时保存最后目录"
 
 #~ msgid ""
 #~ "When enabled, the length of each recording will be shown in the movielist "

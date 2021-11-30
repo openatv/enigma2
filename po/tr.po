@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Apachi70 (OpenATV)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-10-28 19:26+0000\n"
+"POT-Creation-Date: 2021-11-29 21:27+0000\n"
 "PO-Revision-Date: 2021-11-14 06:52+0000\n"
 "Last-Translator: Oğuz Ersen <oguzersen@protonmail.com>\n"
 "Language-Team: Turkish <https://hosted.weblate.org/projects/openatv/"
@@ -1172,9 +1172,6 @@ msgstr "%d-%b"
 msgid "%d-%b-%Y"
 msgstr "%d-%b-%Y"
 
-msgid "%d-%m"
-msgstr "%d-%m"
-
 #, fuzzy
 msgid "%d. %B %Y"
 msgstr "%d %B %Y"
@@ -1461,6 +1458,10 @@ msgid ""
 msgstr ""
 "'TV’den bekleme işlemini gerçekleştir', 'TV’den girişi ele al' seçeneğine "
 "göre daha yüksek önceliğe sahiptir"
+
+msgid ""
+"'Handle standby from TV' has a higher priority than 'Handle input from TV'."
+msgstr ""
 
 #
 msgid "'weatherplugin' is not installed!"
@@ -2202,6 +2203,9 @@ msgstr ""
 msgid "A crashlog was %s created in '%s'"
 msgstr "Bir crashlog içinde %s oluşturuldu '%s'"
 
+msgid "A file from media is in use!"
+msgstr ""
+
 #
 #, python-format
 msgid ""
@@ -2505,6 +2509,11 @@ msgstr "MAC adresi yapılandırmasını etkinleştir"
 msgid "Activate Picture in Picture"
 msgstr "Resim içinde resim (PIP) etkinleştir"
 
+msgid ""
+"Activate a way to send individual or specific internal HDMI-CEC commands "
+"from the command line."
+msgstr ""
+
 #, python-format
 msgid ""
 "Activate an way to send individual or specific internal HDMI-CEC commands "
@@ -2598,6 +2607,9 @@ msgstr "İşaret ekle"
 msgid "Add a nameserver entry"
 msgstr "Ad sunucu ekle"
 
+msgid "Add a new tag"
+msgstr ""
+
 #
 msgid "Add a new title"
 msgstr "Yeni başlık ekle"
@@ -2632,6 +2644,9 @@ msgstr "Dosyayı oynatma listesine ekle"
 #
 msgid "Add files to playlist"
 msgstr "Dosyaları oynatma listesine ekle"
+
+msgid "Add new tag"
+msgstr ""
 
 msgid "Add plugin to Extensions menu*"
 msgstr "Eklentiler menüsüne eklenti ekle *"
@@ -2677,9 +2692,6 @@ msgstr "Zamanlayıcı Ekle / Kaldır"
 
 msgid "Add/Remove timer for current event"
 msgstr "Geçerli etkinliğe zamanlama ekle/kaldır"
-
-msgid "Add/remove change timer for current event"
-msgstr "Mevcut etkinlik için değişiklik zamanlayıcısı ekle / kaldır"
 
 msgid "Adding schedule..."
 msgstr "Zamanlama ekleniyor..."
@@ -2909,11 +2921,17 @@ msgstr "%s %s düzenli olarak saklanan EPG bilgisini okusun."
 msgid "Allows the %s %s to store the EPG data regularly."
 msgstr "%s %s EPG bilgisini düzenli olarak saklasın."
 
+msgid "Allows the TV remote to be used to control the receiver."
+msgstr ""
+
 msgid ""
 "Allows you to adjust the amount of time the resolution information display "
 "on screen."
 msgstr ""
 "Çözünürlük bilgisinin ekranda görünme süresini ayarlamanıza olanak sağlar."
+
+msgid "Allows you to assign the selected function to the this button."
+msgstr ""
 
 msgid ""
 "Allows you to enable the debug log. They contain very detailed information "
@@ -2921,13 +2939,6 @@ msgid ""
 msgstr ""
 "Hata ayıklama günlüğünü etkinleştirmenizi sağlar. Sistemin yaptığı her şeyin "
 "çok ayrıntılı bilgilerini içerir."
-
-msgid ""
-"Allows you to enable the twisted log. They contain very detailed information "
-"of everything the twisted does. ('/tmp/twisted.log')"
-msgstr ""
-"Bükülmüş işlem kaydını etkinleştirmenizi sağlar. Bükümün yaptığı her şey "
-"hakkında çok ayrıntılı bilgiler içerir. ( '/tmp/twisted.log')"
 
 msgid "Allows you to enable/disable displaying icons on the frontpanel."
 msgstr ""
@@ -2943,9 +2954,6 @@ msgid ""
 msgstr ""
 "Hata ayıklama günlüğü boyutunun (MB) maksimum boyutunu ayarlamanıza izin "
 "verir. Bu boyuta ulaşıldığında yeni bir dosya oluşturulacak."
-
-msgid "Allows you to setup the button to do what you choose."
-msgstr "Tuşun seçtiğiniz eyleme ayarlanması."
 
 msgid "Allows you to show/hide CCcam in extensions (blue button)."
 msgstr ""
@@ -3038,6 +3046,13 @@ msgid "American Sports"
 msgstr "Amerikan Samoası"
 
 msgid "Amharic"
+msgstr ""
+
+msgid ""
+"An attempt is made to capture the current TV status. If this is not possible "
+"due to incorrect or missing status messages it may cause the receiver to "
+"respond unexpectedly. On the other hand, tries to respond better to "
+"different operating conditions."
 msgstr ""
 
 msgid ""
@@ -3498,6 +3513,11 @@ msgstr "Kanallar için otomatik arama"
 
 msgid "Automatic setting backup"
 msgstr "Otomatik ayar yedekleme"
+
+msgid ""
+"Automatically put the TV in standby whenever the receiver goes into standby "
+"or deep standby."
+msgstr ""
 
 msgid "Automatically start timeshift after"
 msgstr "Zaman kaydırmayı sonra otomatik başlat"
@@ -4083,9 +4103,6 @@ msgstr "Yol: "
 msgid "Business & Finance"
 msgstr ""
 
-msgid "Button"
-msgstr "Tuş"
-
 msgid "Button Setup"
 msgstr "Tuş Kurulumu"
 
@@ -4407,6 +4424,9 @@ msgstr "Metin değişikliklerini iptal et ve çık"
 #, fuzzy
 msgid "Cancel any changed settings and exit all menus"
 msgstr "Kanal Seçimi"
+
+msgid "Cancel any changed tags and exit"
+msgstr ""
 
 #
 #, fuzzy
@@ -5164,6 +5184,9 @@ msgstr "Ortak Arayüz Ataması"
 msgid "Common Interface assignment"
 msgstr "Ortak Arayüz ataması"
 
+msgid "Common Menu Actions"
+msgstr ""
+
 #, fuzzy
 msgid "Common Setup Actions"
 msgstr "Önyükleme eylemi"
@@ -5174,10 +5197,6 @@ msgstr "İletişim"
 
 msgid "Comoros"
 msgstr "Komorlar"
-
-#
-msgid "Compensate for overscan"
-msgstr "Overscan için telafi"
 
 #
 msgid "Complete"
@@ -6213,9 +6232,6 @@ msgstr "Kes"
 msgid "Cutlist Editor"
 msgstr "Liste düzenleyiciyi kes"
 
-msgid "Cutlist editor"
-msgstr "Cutlist editörü"
-
 msgid "Cutlist editor..."
 msgstr "Film düzenleyici..."
 
@@ -6711,6 +6727,11 @@ msgstr "Tuş tekrar öncesi gecikme süresi:"
 msgid "Delay before sequence repeat"
 msgstr "Dizi tekrarından önce gecikme"
 
+msgid ""
+"Delay between CEC commands when sending a series of commands. Some devices "
+"require this delay for correct functioning, usually between 50-150ms."
+msgstr ""
+
 msgid "Delay between diseqc commands"
 msgstr "Diseqc komutları arasındaki gecikme"
 
@@ -6760,6 +6781,9 @@ msgstr "Dilleri Sil"
 
 msgid "Delete Plugins"
 msgstr "Eklentileri Sil"
+
+msgid "Delete all tags"
+msgstr ""
 
 msgid "Delete all the text"
 msgstr ""
@@ -6822,8 +6846,14 @@ msgstr ""
 msgid "Delete the selected files or directories"
 msgstr "Seçilen dosyaları veya dizinleri silin"
 
+msgid "Delete this tag"
+msgstr ""
+
 msgid "Delete timer"
 msgstr "Zamanlayıcı sil"
+
+msgid "Delete unused tags"
+msgstr ""
 
 msgid "Deleted"
 msgstr "Silindi"
@@ -6986,6 +7016,9 @@ msgid ""
 msgstr ""
 "LCD'yi belirtilen süreden sonra 'Parlaklıktan (Dimmed)' seviyesine indirin."
 
+msgid "Direct menu item selection"
+msgstr ""
+
 #
 msgid "Direct playback of linked titles without menu"
 msgstr "Menü olmadan bağlantılı başlıkların doğrudan oynatılması"
@@ -7125,6 +7158,9 @@ msgstr "Bilgi çubuğunda EIT şimdiki/sonraki olay bilgisi görüntüle."
 msgid "Display the base locales or all locales for a language."
 msgstr ""
 
+msgid "Display the tags context menu"
+msgstr ""
+
 msgid "Display the virtual keyboard for data entry"
 msgstr ""
 
@@ -7177,6 +7213,17 @@ msgstr "%s 'i silmek istediğinizden emin misiniz?"
 
 msgid "Do you really want to delete ?"
 msgstr "Silmek istiyor musunuz?"
+
+#, python-format
+msgid ""
+"Do you really want to delete all '%s' tags?\n"
+"(NOTE: 'Cancel' cannot undo this!)"
+msgstr ""
+
+msgid ""
+"Do you really want to delete all tags?\n"
+"(Note that 'Cancel' will not undo this!)"
+msgstr ""
 
 msgid "Do you really want to delete the recording?"
 msgstr "Kayıtları gerçekten silmek istiyor musunuz?"
@@ -7677,6 +7724,9 @@ msgstr "Düzenle"
 msgid "Edit Quad Channel Entry"
 msgstr "Dört Kanal Girişini Düzenle"
 
+msgid "Edit Tags"
+msgstr ""
+
 msgid "Edit Title"
 msgstr "Başlığı Düzenle"
 
@@ -7914,6 +7964,9 @@ msgstr "Giriş ekranını etkinleştir"
 msgid "Enable multiple bouquets"
 msgstr "Çoklu buket kullanımını etkinleştir"
 
+msgid "Enable or disable using HDMI-CEC."
+msgstr ""
+
 msgid "Enable panic button"
 msgstr "Panik tuşunu etkinleştir"
 
@@ -7939,6 +7992,9 @@ msgstr "Teletext önbelleğini etkinleştir"
 
 msgid "Enable terrestrial LCN:"
 msgstr "Karasal LCN'yi etkinleştir:"
+
+msgid "Enable the advanced HDMI-CEC setting options."
+msgstr ""
 
 msgid "Enable the current value of the slider at end of the slider bar."
 msgstr ""
@@ -7970,9 +8026,6 @@ msgstr ""
 "Tüm doğru / yanlış, evet / hayır, açık / kapalı durumlarını göstermeyi "
 "etkinleştir ve ayar seçeneklerini grafiksel anahtar olarak etkinleştir / "
 "devre dışı bırak."
-
-msgid "Enable twisted log *"
-msgstr "Bükülmüş günlüğü etkinleştir *"
 
 msgid "Enable unlinked bouquets"
 msgstr "Bağlanmamış buketleri etkinleştir"
@@ -8070,6 +8123,9 @@ msgstr "Girmek"
 
 msgid "Enter PIN"
 msgstr "PIN kodunu girin"
+
+msgid "Enter a new name for this device."
+msgstr ""
 
 msgid "Enter if you are in the east or west hemisphere."
 msgstr "Doğu ya da batı yarım küredeyseniz girin."
@@ -8462,6 +8518,9 @@ msgstr "MAC adres yapılandırmasından çık"
 msgid "Exit Quad Channel Selection"
 msgstr "Quad Kanal Seçiminden Çık"
 
+msgid "Exit all menus"
+msgstr ""
+
 #
 msgid "Exit editor"
 msgstr "Editörden çık"
@@ -8479,6 +8538,9 @@ msgstr "Ortam oynatıcıdan çıkılsın mı?"
 #
 msgid "Exit mediaplayer"
 msgstr "Ortam oynatıcıdan çık"
+
+msgid "Exit menu"
+msgstr ""
 
 #
 msgid "Exit movie list"
@@ -9024,9 +9086,6 @@ msgstr "Yazı tipi boyutu"
 msgid "Font:"
 msgstr "Yazı tipi:"
 
-msgid "Fontsize"
-msgstr "Yazı tipi boyutu"
-
 msgid "Food/Wine"
 msgstr ""
 
@@ -9199,6 +9258,9 @@ msgstr "Üzerinde tam yedekleme %s"
 msgid "Full transparency"
 msgstr "Tam şeffaflık"
 
+msgid "Full view resolution"
+msgstr "Tam görünüm çözünürlüğü"
+
 msgid "FullHD Test"
 msgstr "FullHD testi"
 
@@ -9207,9 +9269,6 @@ msgstr "Image´leri yedekleme"
 
 msgid "Fullscreen"
 msgstr "Tam Ekran"
-
-msgid "Full view resolution"
-msgstr "Tam görünüm çözünürlüğü"
 
 msgid "Fußball"
 msgstr ""
@@ -9385,27 +9444,9 @@ msgstr "İlk filme veya son öğeye git"
 msgid "Go to first movie or top of list"
 msgstr "İlk filme veya liste başına git"
 
-msgid "Go to first service"
-msgstr "İlk kanala git"
-
-msgid "Go to last service"
-msgstr "Son kanala git"
-
-msgid "Go to next event"
-msgstr "Sonraki olaya git"
-
-msgid "Go to next page of service"
-msgstr "Bir sonraki servis sayfasına git"
-
 #
 msgid "Go to parent directory"
 msgstr "Üst dizine git"
-
-msgid "Go to previous event"
-msgstr "Bir önceki etkinliğe git"
-
-msgid "Go to previous page of service"
-msgstr "Önceki hizmet sayfasına git"
 
 msgid "Go to start of file"
 msgstr "Dosyanın başına git"
@@ -9451,14 +9492,8 @@ msgstr "Sonraki bukete git"
 msgid "Goto next channel"
 msgstr "Sonraki kanala git"
 
-msgid "Goto next day of events"
-msgstr "Etkinliklerin ertesi günü"
-
 msgid "Goto next event"
 msgstr "Sonraki etkinliğe git"
-
-msgid "Goto next page of events"
-msgstr "Sonraki olay sayfasına git"
 
 #
 msgid "Goto position"
@@ -9470,14 +9505,8 @@ msgstr "Önceki bukete git"
 msgid "Goto previous channel"
 msgstr "Önceki kanala git"
 
-msgid "Goto previous day of events"
-msgstr "Olayların önceki gününe git"
-
 msgid "Goto previous event"
 msgstr "Önceki etkinliğe git"
-
-msgid "Goto previous page of events"
-msgstr "Önceki olay sayfasına git"
 
 msgid "Goto specific date/time"
 msgstr "Belirli bir tarih/zamana git"
@@ -9623,6 +9652,12 @@ msgstr "Hdmi HDR türü"
 #
 msgid "HDMI Recording"
 msgstr "HDMI Kaydı"
+
+msgid "HDMI-CEC Setup"
+msgstr ""
+
+msgid "HDMI-CEC Setup Actions"
+msgstr ""
 
 #, fuzzy
 msgid "HDMI-IN Actions"
@@ -10116,6 +10151,11 @@ msgid "If enabled, AIT data is included in recordings."
 msgstr "Etkinse, AIT verileri kayıtlara dahil edilir."
 
 msgid ""
+"If enabled, a log will be kept of CEC protocol traffic. The log files are "
+"located with the other log files but named 'Enigma2-hdmicec-[date].log'."
+msgstr ""
+
+msgid ""
 "If enabled, using a time window to detect a wakeup from deep standby by a "
 "timer. Default setting ist disabled and used a special signal from the "
 "receiver. But some devices set a wrong or none signal and the wakeup "
@@ -10135,6 +10175,11 @@ msgid "If muted, hide mute icon or mute information after few seconds."
 msgstr ""
 "Ses kapalıysa, birkaç saniye sonra sessiz simgesini gizleyin veya bilgileri "
 "kapatın."
+
+msgid ""
+"If set to 'Yes' the same commands will be sent to the TV for deep standby "
+"events as are sent during regular standby events."
+msgstr ""
 
 msgid ""
 "If set to 'no', can you save older events even after zapping or interruption "
@@ -10231,6 +10276,12 @@ msgstr ""
 "'Derin bekleme geçici çözümü' etkinse, sistem saati eşitlenene kadar bekler. "
 "Gereksinime bağlı olarak, uyandırma aygıtları en fazla 2 dakika sonra devam "
 "eder."
+
+msgid ""
+"If the deep standby workaround is enabled wait until the system time is "
+"synchronized. Depending on the requirement the device wake up will "
+"continuing after a maximum of 2 minutes."
+msgstr ""
 
 msgid ""
 "If the free space is less than setting value, then an attempt is made to "
@@ -10614,6 +10665,9 @@ msgid "Input devices"
 msgstr "Giriş aygıtları"
 
 msgid "Input scroll position"
+msgstr ""
+
+msgid "InputDevice Setup"
 msgstr ""
 
 msgid "Insert"
@@ -11434,9 +11488,6 @@ msgstr ""
 msgid "List available networks"
 msgstr "Kullanılabilir ağ listesi"
 
-msgid "List mode"
-msgstr "Liste modu"
-
 #
 msgid "List of Storage Devices"
 msgstr "Depolama Aygıtlarının Listesi"
@@ -11501,6 +11552,9 @@ msgstr "EPG yükle"
 #
 msgid "Load playlist"
 msgstr "Oynatma listesi yükle"
+
+msgid "Load tags from the timer and recordings"
+msgstr ""
 
 msgid "Load unlinked userbouquets"
 msgstr "Bağlanmamış kullanıcı kitaplarını yükle"
@@ -13201,9 +13255,6 @@ msgstr "%s hash için karma programların hiçbiri kullanılamıyor"
 msgid "Norfolk Island"
 msgstr "Norfolk Adası"
 
-msgid "Normal mode"
-msgstr "Normal mod"
-
 #
 msgid "North"
 msgstr "Kuzey"
@@ -13419,10 +13470,6 @@ msgstr "OSD Kurulumu"
 
 msgid "OSD name request"
 msgstr "OSD ad isteği"
-
-#
-msgid "OSD position setup"
-msgstr "OSD pozisyon ayarı"
 
 msgid "OSD settings"
 msgstr "OSD ayarları"
@@ -13952,6 +13999,9 @@ msgstr "Geçiş"
 msgid "Password"
 msgstr "Parola"
 
+msgid "Password (httpuser)"
+msgstr ""
+
 msgid "Password (httpwd)"
 msgstr "Parola (httpwd)"
 
@@ -14068,9 +14118,6 @@ msgstr "Simge"
 
 msgid "Picon and Service Name"
 msgstr "Simge ve kanal ismi"
-
-msgid "Picon and service name"
-msgstr "Picon ve servis adı"
 
 msgid "Picon width"
 msgstr "Picon genişliği"
@@ -14289,6 +14336,9 @@ msgstr "Lütfen yeni dizin adını girin"
 #
 msgid "Please enter the new file name"
 msgstr "Lütfen yeni dosya adını girin"
+
+msgid "Please enter the new tag:"
+msgstr ""
 
 msgid "Please enter the old PIN code"
 msgstr "Lütfen eski PINi girin"
@@ -14963,9 +15013,6 @@ msgstr "Önizleme"
 #
 msgid "Preview menu"
 msgstr "Önizleme menüsü"
-
-msgid "Preview selected channel"
-msgstr "Seçili kanalı önizle"
 
 msgid "Previous"
 msgstr "Önceki"
@@ -15826,6 +15873,9 @@ msgstr "Dosyayı / dizini yeniden adlandır"
 msgid "Rename name and description for new events"
 msgstr "Yeni etkinlikler için adı ve açıklamayı yeniden adlandırın"
 
+msgid "Rename this tag"
+msgstr ""
+
 msgid "Rename to:"
 msgstr "Adı bununla değiştir:"
 
@@ -15870,6 +15920,12 @@ msgstr ""
 "Hoparlör başına renkli metin içeren diyaloglarda (- işitme engelliler için "
 "teletekst altyazıları gibi)"
 
+#, python-format
+msgid ""
+"Replace all '%s' tags with:\n"
+"(NOTE: 'Cancel' cannot undo this!)"
+msgstr ""
+
 #, fuzzy
 msgid "Reportage"
 msgstr "Yüzde"
@@ -15892,6 +15948,9 @@ msgstr ""
 #
 msgid "Reset"
 msgstr "Sıfırla"
+
+msgid "Reset HDMI-CEC settings to default"
+msgstr ""
 
 #
 msgid "Reset and renumerate title names"
@@ -16407,6 +16466,9 @@ msgstr "EPG verisini kaydet"
 msgid "Save all changed settings and exit"
 msgstr "Metni kaydet / Gir ve çık"
 
+msgid "Save all changed tags and exit"
+msgstr ""
+
 msgid "Save and record"
 msgstr "Sakla ve kaydet"
 
@@ -16711,6 +16773,11 @@ msgid ""
 msgstr ""
 "Anten sisteminiz bunu gerektiriyorsa 'A' veya 'B' seçeneğini seçin, aksi "
 "halde 'none' seçeneğini seçin. Emin değilseniz 'none' seçeneğini seçin."
+
+msgid ""
+"Select 'Yes' to enable editing of this device's settings. Selecting 'No' "
+"resets the devices settings to their default values."
+msgstr ""
 
 msgid ""
 "Select 'band' if using a 'universal' LNB, otherwise consult your LNB spec "
@@ -17041,6 +17108,9 @@ msgstr ""
 msgid "Select the character or action under the keyboard cursor"
 msgstr "Sanal klavye imlecinin altındaki karakteri veya eylemi seçin"
 
+msgid "Select the current menu item"
+msgstr ""
+
 msgid "Select the currently highlighted locale/language for the user interface"
 msgstr ""
 
@@ -17167,6 +17237,12 @@ msgstr ""
 
 msgid "Select the sleep timer action."
 msgstr "Uyku zamanlayıcısı işlemini seçin."
+
+msgid "Select the time delay before the button starts repeating."
+msgstr ""
+
+msgid "Select the time delay between each repeat of the button."
+msgstr ""
 
 #, fuzzy
 msgid "Select the time zone within the area or region."
@@ -17579,6 +17655,9 @@ msgstr "'Bilgi' tuşu için eylemi ayarla"
 msgid "Set archive mode (644)"
 msgstr "Arşiv modunu ayarla (644)"
 
+msgid "Set current CEC address as fixed address"
+msgstr ""
+
 msgid "Set default"
 msgstr "Varsayılana ayarla"
 
@@ -17737,24 +17816,6 @@ msgstr ""
 msgid ""
 "Set the type of the progress indication in the channel selection screen."
 msgstr "Kanal seçim ekranındaki ilerleme işaretinin tipini belirleyin."
-
-msgid "Set time window to 1 hour"
-msgstr "Zaman penceresini 1 saate ayarla"
-
-msgid "Set time window to 2 hours"
-msgstr "Zaman penceresini 2 saate ayarla"
-
-msgid "Set time window to 3 hours"
-msgstr "Zaman penceresini 3 saate ayarla"
-
-msgid "Set time window to 4 hours"
-msgstr "Zaman penceresini 4 saate ayarla"
-
-msgid "Set time window to 5 hours"
-msgstr "Zaman penceresini 5 saate ayarla"
-
-msgid "Set time window to 6 hours"
-msgstr "Zaman penceresini 6 saate ayarla"
 
 msgid "Set to the desired primetime (hour)."
 msgstr "İstenilen seçkin zamanı ayarla (saat)."
@@ -18312,9 +18373,6 @@ msgstr "Bir radyo kanalı çalarken arkaplanı göster."
 
 msgid "Show bouquet on launch"
 msgstr "Başlangıçta buket göster"
-
-msgid "Show bouquet selection menu"
-msgstr "Buket seçim menüsünü göster"
 
 msgid "Show channel number in infobar"
 msgstr "Bilgi çubuğunda kanal numaralarını göster"
@@ -19104,6 +19162,13 @@ msgid "Somalia"
 msgstr "Somali"
 
 msgid ""
+"Some TV devices can't swich to correct input if a another HDMI port active. "
+"This setting sets the TV to standby before the switch. (If the TV does not "
+"turn back on it may require a slower transmission interval or the repetition "
+"of wake-up commands.)"
+msgstr ""
+
+msgid ""
 "Some TV devices can't swich to correct input if a another hdmi port active. "
 "This setting set the TV to standby before.\n"
 "(If the TV does not turn back on, may require a slower transmission interval "
@@ -19479,8 +19544,8 @@ msgstr "Girişi durdur"
 msgid "Stop playing this movie?"
 msgstr "Film durdurulsun mu?"
 
-msgid "Stop previous broadcasted service on return to movielist."
-msgstr "Movielist'e geri döndüğünde yayınlanmış hizmeti durdurun."
+msgid "Stop previous broadcasted service on return to movie list."
+msgstr ""
 
 msgid "Stop recording"
 msgstr "Kayıdı durdur"
@@ -19791,9 +19856,6 @@ msgstr "Ses, Altyazı sayfası arasında geçiş yap"
 msgid "Switch between filelist/playlist"
 msgstr "Dosya/play listelerine git"
 
-msgid "Switch between normal mode and list mode"
-msgstr "Normal mod ve liste modu arasında geçiş yapın"
-
 msgid "Switch config"
 msgstr "Yapılandırma değiştir"
 
@@ -19975,6 +20037,12 @@ msgstr "Altyazı uzun"
 
 msgid "Table of content for collection"
 msgstr "Koleksiyon için içerik tablosu"
+
+msgid "Tag Editor"
+msgstr ""
+
+msgid "Tag Editor Actions"
+msgstr ""
 
 msgid "Tagalog"
 msgstr ""
@@ -20321,6 +20389,9 @@ msgid ""
 msgstr ""
 "Zaman kayması için tampon süresi, ayarlarda belirtilen sınırı aşıyor.\n"
 "Ne yapmak istiyorsun ?"
+
+msgid "The command to wake from standby will be sent multiple times."
+msgstr ""
 
 msgid "The current update may be unstable"
 msgstr "Şimdiki güncelleme kararsız olabilir"
@@ -20683,6 +20754,12 @@ msgstr "Bu, weblinks modüllerini indirmelerde göstermenizi sağlar"
 #, python-format
 msgid "This field allows you to search an additional symbol rate up to %s."
 msgstr "Bu alan %s değerine kadar ek bir sembol oranı aramanıza izin verir."
+
+msgid ""
+"This is a workaround for some devices that wakeup again after switching to "
+"standby. The wake up command's from other devices will be ignored for few "
+"seconds."
+msgstr ""
 
 msgid ""
 "This is a workaround for some devices there wakeup again after switching in "
@@ -21532,6 +21609,9 @@ msgstr ""
 msgid "Toggle new text inserts before or overwrites existing text"
 msgstr "Yeni metnin eklerini değiştir veya varolan metnin üzerine yaz"
 
+msgid "Toggle selection of the current tag"
+msgstr ""
+
 #, fuzzy
 msgid "Toggle service name display"
 msgstr "Servis adlarının hizalanması"
@@ -21688,6 +21768,11 @@ msgstr ""
 msgid "Try to send repeated commands if not all commands are executed.\n"
 msgstr ""
 "Tüm komutlar yerine getirilmezse tekrarlanan komutları göndermeyi deneyin.\n"
+
+msgid ""
+"Try to send repeated commands if not all commands are executed. (e.g. TV "
+"wakeup, but not switched to correct input.)"
+msgstr ""
 
 msgid "Try to slow down the send interval if not all commands are executed."
 msgstr ""
@@ -22339,6 +22424,9 @@ msgstr ""
 msgid "Use circular LNB"
 msgstr "Dairesel LNB kullan"
 
+msgid "Use defaults"
+msgstr ""
+
 msgid "Use extended List"
 msgstr "Genişletilmiş Listeyi kullan"
 
@@ -22542,6 +22630,9 @@ msgstr "Kullanıcı Adı (httpuser)"
 
 msgid "Username:"
 msgstr "Kullanıcı Adı:"
+
+msgid "Using automatic address"
+msgstr ""
 
 msgid "Using fixed address"
 msgstr "Sabit adres kullanılıyor"
@@ -22915,6 +23006,9 @@ msgstr "Sanal Klavye Metni:"
 msgid "Virtual keyboard"
 msgstr "Sanal klavye"
 
+msgid "Visual impaired commentary"
+msgstr ""
+
 msgid "Vol"
 msgstr "Ses"
 
@@ -22936,6 +23030,11 @@ msgstr "Ses Yapılandırması"
 
 msgid "Volume down"
 msgstr "Ses azalt"
+
+msgid ""
+"Volume keys on the receiver remote will control the TV volume. If this "
+"feature is not supported the volume keys have no function!"
+msgstr ""
 
 msgid "Volume up"
 msgstr "Ses yükselt"
@@ -23135,23 +23234,6 @@ msgstr ""
 
 #
 msgid ""
-"Welcome to the cutlist editor.\n"
-"\n"
-"Seek to the start of the stuff you want to cut away. Press OK, select 'start "
-"cut'.\n"
-"\n"
-"Then seek to the end, press OK, select 'end cut'. That's it."
-msgstr ""
-"Kesim listesi düzenleyicisine hoşgeldiniz.\n"
-"\n"
-"Kesmek istediğiniz bölümün başına konumlanın. OK tuşuna basın ve 'buradan "
-"kes' deyin.\n"
-"\n"
-"Sonrasında kesmek istediğiniz bölümün sonuna konumlanın. Tekrar OK tuşuna "
-"basın ve 'kesimi burada bitir' deyin."
-
-#
-msgid ""
 "Welcome to the image upgrade wizard. The wizard will assist you in upgrading "
 "the firmware of your %s %s by providing a backup facility for your current "
 "settings and a short explanation of how to upgrade your firmware."
@@ -23268,6 +23350,22 @@ msgstr "Etkin olduğunda RiR çıkış düğmesi ile kapatılabilir."
 msgid ""
 "When enabled the online checker will also check for experimental versions"
 msgstr "Etkinleşince deneme sürümleri de çevrimiçi aranır"
+
+msgid "When enabled the receiver will automatically be switched off."
+msgstr ""
+
+msgid "When enabled the receiver will automatically be switched on."
+msgstr ""
+
+msgid ""
+"When enabled the receiver will automatically return to standby when the TV "
+"is turned off."
+msgstr ""
+
+msgid ""
+"When enabled the receiver will automatically wake from standby when the TV "
+"is turned on."
+msgstr ""
 
 msgid ""
 "When enabled, AIT data will be included in http streams. This allows a "
@@ -23517,6 +23615,11 @@ msgstr ""
 "duracaktır."
 
 msgid ""
+"When receiver wakes from standby it will command the TV to switch to the "
+"HDMI input to which the receiver is connected."
+msgstr ""
+
+msgid ""
 "When set each folder will show the previous state used, when off the default "
 "values will be shown."
 msgstr ""
@@ -23541,6 +23644,11 @@ msgstr ""
 msgid ""
 "When the input cursor reaches this point (percentage of the width, from "
 "either side) scroll the text to the cursor."
+msgstr ""
+
+msgid ""
+"When the receiver wakes from standby or deep standby it will send a command "
+"to the TV to bring it out of standby."
 msgstr ""
 
 msgid ""
@@ -24351,16 +24459,6 @@ msgstr "Kanala zap (menüde ayar)"
 
 msgid "Zap to channel and close (setup in menu)"
 msgstr "Zapla ve kapat (menüde ayar)"
-
-msgid "Zap to selected channel"
-msgstr "Seçilen kanala git"
-
-msgid ""
-"Zap to selected channel, or show detailed event info (depends on "
-"configuration)"
-msgstr ""
-"Seçilen kanala git veya ayrıntılı olay bilgisini göster (yapılandırmaya göre "
-"değişir)"
 
 msgid "Zap up"
 msgstr "Zap yukarı"
@@ -25912,10 +26010,6 @@ msgstr ""
 "veya tuner ayarlarını yapılandırmak için"
 
 #
-msgid "save last directory on exit"
-msgstr "çıkarken, son klasörü kaydet"
-
-#
 msgid "save playlist on exit"
 msgstr "çıkarken, oynatma listesini kaydet"
 
@@ -26501,6 +26595,142 @@ msgstr "zap"
 
 msgid "®"
 msgstr ""
+
+#~ msgid "%d-%m"
+#~ msgstr "%d-%m"
+
+#~ msgid "Add/remove change timer for current event"
+#~ msgstr "Mevcut etkinlik için değişiklik zamanlayıcısı ekle / kaldır"
+
+#~ msgid ""
+#~ "Allows you to enable the twisted log. They contain very detailed "
+#~ "information of everything the twisted does. ('/tmp/twisted.log')"
+#~ msgstr ""
+#~ "Bükülmüş işlem kaydını etkinleştirmenizi sağlar. Bükümün yaptığı her şey "
+#~ "hakkında çok ayrıntılı bilgiler içerir. ( '/tmp/twisted.log')"
+
+#~ msgid "Allows you to setup the button to do what you choose."
+#~ msgstr "Tuşun seçtiğiniz eyleme ayarlanması."
+
+#~ msgid "Button"
+#~ msgstr "Tuş"
+
+#
+#~ msgid "Compensate for overscan"
+#~ msgstr "Overscan için telafi"
+
+#~ msgid "Cutlist editor"
+#~ msgstr "Cutlist editörü"
+
+#~ msgid "Enable twisted log *"
+#~ msgstr "Bükülmüş günlüğü etkinleştir *"
+
+#~ msgid "Fontsize"
+#~ msgstr "Yazı tipi boyutu"
+
+#~ msgid "Go to first service"
+#~ msgstr "İlk kanala git"
+
+#~ msgid "Go to last service"
+#~ msgstr "Son kanala git"
+
+#~ msgid "Go to next event"
+#~ msgstr "Sonraki olaya git"
+
+#~ msgid "Go to next page of service"
+#~ msgstr "Bir sonraki servis sayfasına git"
+
+#~ msgid "Go to previous event"
+#~ msgstr "Bir önceki etkinliğe git"
+
+#~ msgid "Go to previous page of service"
+#~ msgstr "Önceki hizmet sayfasına git"
+
+#~ msgid "Goto next day of events"
+#~ msgstr "Etkinliklerin ertesi günü"
+
+#~ msgid "Goto next page of events"
+#~ msgstr "Sonraki olay sayfasına git"
+
+#~ msgid "Goto previous day of events"
+#~ msgstr "Olayların önceki gününe git"
+
+#~ msgid "Goto previous page of events"
+#~ msgstr "Önceki olay sayfasına git"
+
+#~ msgid "List mode"
+#~ msgstr "Liste modu"
+
+#~ msgid "Normal mode"
+#~ msgstr "Normal mod"
+
+#
+#~ msgid "OSD position setup"
+#~ msgstr "OSD pozisyon ayarı"
+
+#~ msgid "Picon and service name"
+#~ msgstr "Picon ve servis adı"
+
+#~ msgid "Preview selected channel"
+#~ msgstr "Seçili kanalı önizle"
+
+#~ msgid "Set time window to 1 hour"
+#~ msgstr "Zaman penceresini 1 saate ayarla"
+
+#~ msgid "Set time window to 2 hours"
+#~ msgstr "Zaman penceresini 2 saate ayarla"
+
+#~ msgid "Set time window to 3 hours"
+#~ msgstr "Zaman penceresini 3 saate ayarla"
+
+#~ msgid "Set time window to 4 hours"
+#~ msgstr "Zaman penceresini 4 saate ayarla"
+
+#~ msgid "Set time window to 5 hours"
+#~ msgstr "Zaman penceresini 5 saate ayarla"
+
+#~ msgid "Set time window to 6 hours"
+#~ msgstr "Zaman penceresini 6 saate ayarla"
+
+#~ msgid "Show bouquet selection menu"
+#~ msgstr "Buket seçim menüsünü göster"
+
+#~ msgid "Stop previous broadcasted service on return to movielist."
+#~ msgstr "Movielist'e geri döndüğünde yayınlanmış hizmeti durdurun."
+
+#~ msgid "Switch between normal mode and list mode"
+#~ msgstr "Normal mod ve liste modu arasında geçiş yapın"
+
+#
+#~ msgid ""
+#~ "Welcome to the cutlist editor.\n"
+#~ "\n"
+#~ "Seek to the start of the stuff you want to cut away. Press OK, select "
+#~ "'start cut'.\n"
+#~ "\n"
+#~ "Then seek to the end, press OK, select 'end cut'. That's it."
+#~ msgstr ""
+#~ "Kesim listesi düzenleyicisine hoşgeldiniz.\n"
+#~ "\n"
+#~ "Kesmek istediğiniz bölümün başına konumlanın. OK tuşuna basın ve 'buradan "
+#~ "kes' deyin.\n"
+#~ "\n"
+#~ "Sonrasında kesmek istediğiniz bölümün sonuna konumlanın. Tekrar OK tuşuna "
+#~ "basın ve 'kesimi burada bitir' deyin."
+
+#~ msgid "Zap to selected channel"
+#~ msgstr "Seçilen kanala git"
+
+#~ msgid ""
+#~ "Zap to selected channel, or show detailed event info (depends on "
+#~ "configuration)"
+#~ msgstr ""
+#~ "Seçilen kanala git veya ayrıntılı olay bilgisini göster (yapılandırmaya "
+#~ "göre değişir)"
+
+#
+#~ msgid "save last directory on exit"
+#~ msgstr "çıkarken, son klasörü kaydet"
 
 #~ msgid ""
 #~ "When enabled, the length of each recording will be shown in the movielist "

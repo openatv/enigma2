@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-10-28 19:26+0000\n"
+"POT-Creation-Date: 2021-11-29 21:27+0000\n"
 "PO-Revision-Date: 2016-04-02 23:09+0200\n"
 "Last-Translator: Stig-O <stiose@hotmail.com>\n"
 "Language-Team: Stig-O\n"
@@ -1243,9 +1243,6 @@ msgstr ""
 msgid "%d-%b-%Y"
 msgstr ""
 
-msgid "%d-%m"
-msgstr ""
-
 #
 #, fuzzy
 msgid "%d. %B %Y"
@@ -1526,6 +1523,10 @@ msgstr ""
 
 msgid ""
 "'Handle standby from TV' has a higher priority as 'Handle input from TV'"
+msgstr ""
+
+msgid ""
+"'Handle standby from TV' has a higher priority than 'Handle input from TV'."
 msgstr ""
 
 #
@@ -2292,6 +2293,9 @@ msgstr ""
 msgid "A crashlog was %s created in '%s'"
 msgstr ""
 
+msgid "A file from media is in use!"
+msgstr ""
+
 #
 #, python-format
 msgid ""
@@ -2599,6 +2603,11 @@ msgstr "Aktiver MAC-adresse konfigurasjon"
 msgid "Activate Picture in Picture"
 msgstr "Aktiver Bilde i Bilde"
 
+msgid ""
+"Activate a way to send individual or specific internal HDMI-CEC commands "
+"from the command line."
+msgstr ""
+
 #, python-format
 msgid ""
 "Activate an way to send individual or specific internal HDMI-CEC commands "
@@ -2693,6 +2702,9 @@ msgstr "Legge til markør"
 msgid "Add a nameserver entry"
 msgstr "Legg til navneserver oppføring"
 
+msgid "Add a new tag"
+msgstr ""
+
 #
 msgid "Add a new title"
 msgstr "Legg til en ny tittel"
@@ -2728,6 +2740,9 @@ msgstr "Legg til fil i spilliste"
 #
 msgid "Add files to playlist"
 msgstr "Legg til filer i spilliste"
+
+msgid "Add new tag"
+msgstr ""
 
 msgid "Add plugin to Extensions menu*"
 msgstr ""
@@ -2775,9 +2790,6 @@ msgstr "Fjern timer"
 
 msgid "Add/Remove timer for current event"
 msgstr "Legg til/fjern timer for aktuelle program"
-
-msgid "Add/remove change timer for current event"
-msgstr ""
 
 msgid "Adding schedule..."
 msgstr "Legg til planlagt oppgave..."
@@ -3005,6 +3017,9 @@ msgstr "Tillater %s %s å lese de lagrede EPG-dataene regelmessig."
 msgid "Allows the %s %s to store the EPG data regularly."
 msgstr "Tillater %s %s å lagre EPG-dataene regelmessig."
 
+msgid "Allows the TV remote to be used to control the receiver."
+msgstr ""
+
 msgid ""
 "Allows you to adjust the amount of time the resolution information display "
 "on screen."
@@ -3012,18 +3027,13 @@ msgstr ""
 "Tillater deg å justere hvor lenge informasjonen om skjermoppløsning vises på "
 "skjermen."
 
+msgid "Allows you to assign the selected function to the this button."
+msgstr ""
+
 msgid ""
 "Allows you to enable the debug log. They contain very detailed information "
 "of everything the system does."
 msgstr ""
-
-#, fuzzy
-msgid ""
-"Allows you to enable the twisted log. They contain very detailed information "
-"of everything the twisted does. ('/tmp/twisted.log')"
-msgstr ""
-"Tillater deg å aktivere debug loggen. De inneholder svært detaljerte "
-"opplysninger om alt systemet gjør."
 
 msgid "Allows you to enable/disable displaying icons on the frontpanel."
 msgstr ""
@@ -3035,9 +3045,6 @@ msgid ""
 "Allows you to set the maximum size of the Debug log size (MB). When that "
 "size is reached, a new file will be created."
 msgstr ""
-
-msgid "Allows you to setup the button to do what you choose."
-msgstr "Tillater deg å konfigurere knappene til å gjøre hva du velger."
 
 msgid "Allows you to show/hide CCcam in extensions (blue button)."
 msgstr ""
@@ -3125,6 +3132,13 @@ msgid "American Sports"
 msgstr "martial sport"
 
 msgid "Amharic"
+msgstr ""
+
+msgid ""
+"An attempt is made to capture the current TV status. If this is not possible "
+"due to incorrect or missing status messages it may cause the receiver to "
+"respond unexpectedly. On the other hand, tries to respond better to "
+"different operating conditions."
 msgstr ""
 
 msgid ""
@@ -3597,6 +3611,11 @@ msgid "Automatic scan for services"
 msgstr ""
 
 msgid "Automatic setting backup"
+msgstr ""
+
+msgid ""
+"Automatically put the TV in standby whenever the receiver goes into standby "
+"or deep standby."
 msgstr ""
 
 msgid "Automatically start timeshift after"
@@ -4185,9 +4204,6 @@ msgstr "Bus: "
 msgid "Business & Finance"
 msgstr ""
 
-msgid "Button"
-msgstr "Knapp"
-
 msgid "Button Setup"
 msgstr ""
 
@@ -4502,6 +4518,9 @@ msgstr "Kanalvalg"
 #, fuzzy
 msgid "Cancel any changed settings and exit all menus"
 msgstr "Kanalvalg"
+
+msgid "Cancel any changed tags and exit"
+msgstr ""
 
 #
 #, fuzzy
@@ -5252,6 +5271,9 @@ msgstr "Common Interface oppdrag"
 msgid "Common Interface assignment"
 msgstr "Common Interface oppdrag"
 
+msgid "Common Menu Actions"
+msgstr ""
+
 #
 #, fuzzy
 msgid "Common Setup Actions"
@@ -5263,11 +5285,6 @@ msgstr "Kommunikasjon"
 
 msgid "Comoros"
 msgstr ""
-
-#
-#, fuzzy
-msgid "Compensate for overscan"
-msgstr "Slett før søking"
 
 #
 msgid "Complete"
@@ -6263,9 +6280,6 @@ msgstr "Klipp ut"
 msgid "Cutlist Editor"
 msgstr "Klippliste editor"
 
-msgid "Cutlist editor"
-msgstr "Klippliste editor"
-
 #
 msgid "Cutlist editor..."
 msgstr "Klippliste editor..."
@@ -6759,6 +6773,11 @@ msgstr "Forsinkelse før taste repitering starter:"
 msgid "Delay before sequence repeat"
 msgstr ""
 
+msgid ""
+"Delay between CEC commands when sending a series of commands. Some devices "
+"require this delay for correct functioning, usually between 50-150ms."
+msgstr ""
+
 msgid "Delay between diseqc commands"
 msgstr ""
 
@@ -6810,6 +6829,9 @@ msgid "Delete Language"
 msgstr ""
 
 msgid "Delete Plugins"
+msgstr ""
+
+msgid "Delete all tags"
 msgstr ""
 
 msgid "Delete all the text"
@@ -6874,9 +6896,15 @@ msgstr ""
 msgid "Delete the selected files or directories"
 msgstr ""
 
+msgid "Delete this tag"
+msgstr ""
+
 #
 msgid "Delete timer"
 msgstr "Slett timer"
+
+msgid "Delete unused tags"
+msgstr ""
 
 msgid "Deleted"
 msgstr "Slettet"
@@ -7040,6 +7068,9 @@ msgid ""
 "Dim the LCD to the level from 'Brightness (Dimmed)' after specified time."
 msgstr ""
 
+msgid "Direct menu item selection"
+msgstr ""
+
 #
 msgid "Direct playback of linked titles without menu"
 msgstr "Direkte avspilling av tilknyttede titler utenom meny"
@@ -7179,6 +7210,9 @@ msgstr "Vis EIT nå/neste programdata i infolinjen."
 msgid "Display the base locales or all locales for a language."
 msgstr ""
 
+msgid "Display the tags context menu"
+msgstr ""
+
 msgid "Display the virtual keyboard for data entry"
 msgstr ""
 
@@ -7233,6 +7267,17 @@ msgstr "Vil du virkelig slette %s"
 
 msgid "Do you really want to delete ?"
 msgstr "Vil du virkelig slette?"
+
+#, python-format
+msgid ""
+"Do you really want to delete all '%s' tags?\n"
+"(NOTE: 'Cancel' cannot undo this!)"
+msgstr ""
+
+msgid ""
+"Do you really want to delete all tags?\n"
+"(Note that 'Cancel' will not undo this!)"
+msgstr ""
 
 msgid "Do you really want to delete the recording?"
 msgstr ""
@@ -7726,6 +7771,9 @@ msgstr "Endre"
 msgid "Edit Quad Channel Entry"
 msgstr ""
 
+msgid "Edit Tags"
+msgstr ""
+
 msgid "Edit Title"
 msgstr ""
 
@@ -7944,6 +7992,9 @@ msgstr ""
 msgid "Enable cut file support for non *.ts files. (e.g. mp4)"
 msgstr ""
 
+msgid "Enable debug log"
+msgstr ""
+
 msgid "Enable debug log *"
 msgstr ""
 
@@ -7967,6 +8018,9 @@ msgstr ""
 msgid "Enable multiple bouquets"
 msgstr "Aktiver flere favorittlister"
 
+msgid "Enable or disable using HDMI-CEC."
+msgstr ""
+
 msgid "Enable panic button"
 msgstr "Aktivere panikk knapp"
 
@@ -7988,6 +8042,9 @@ msgid "Enable teletext caching"
 msgstr "Aktivere teletext caching"
 
 msgid "Enable terrestrial LCN:"
+msgstr ""
+
+msgid "Enable the advanced HDMI-CEC setting options."
 msgstr ""
 
 msgid "Enable the current value of the slider at end of the slider bar."
@@ -8016,10 +8073,6 @@ msgid ""
 "Enable to display all true/false, yes/no, on/off and enable/disable set up "
 "options as a graphical switch."
 msgstr ""
-
-#, fuzzy
-msgid "Enable twisted log *"
-msgstr "Aktivere debug logg"
 
 msgid "Enable unlinked bouquets"
 msgstr ""
@@ -8114,6 +8167,9 @@ msgid "Enter"
 msgstr "senter"
 
 msgid "Enter PIN"
+msgstr ""
+
+msgid "Enter a new name for this device."
 msgstr ""
 
 msgid "Enter if you are in the east or west hemisphere."
@@ -8479,6 +8535,9 @@ msgstr "Avslutt MAC-adresse konfigurasjon"
 msgid "Exit Quad Channel Selection"
 msgstr "Kanalvalg"
 
+msgid "Exit all menus"
+msgstr ""
+
 #
 msgid "Exit editor"
 msgstr "Avslutt editor"
@@ -8496,6 +8555,9 @@ msgstr "Avslutt mediaspiller?"
 #
 msgid "Exit mediaplayer"
 msgstr "Avslutt mediaspiller"
+
+msgid "Exit menu"
+msgstr ""
 
 #
 msgid "Exit movie list"
@@ -9052,9 +9114,6 @@ msgstr "Skriftstørrelse"
 msgid "Font:"
 msgstr "Skriftstørrelse"
 
-msgid "Fontsize"
-msgstr "Skriftstørrelse"
-
 msgid "Food/Wine"
 msgstr ""
 
@@ -9233,6 +9292,9 @@ msgstr ""
 msgid "Full transparency"
 msgstr "Full gjennomsiktighet"
 
+msgid "Full view resolution"
+msgstr ""
+
 msgid "FullHD Test"
 msgstr ""
 
@@ -9241,9 +9303,6 @@ msgid "Fullbackup Images"
 msgstr "Flashing"
 
 msgid "Fullscreen"
-msgstr ""
-
-msgid "Full view resolution"
 msgstr ""
 
 msgid "Fußball"
@@ -9422,28 +9481,10 @@ msgstr "Gå til første film eller siste element"
 msgid "Go to first movie or top of list"
 msgstr "Gå til første film eller toppen av listen"
 
-msgid "Go to first service"
-msgstr ""
-
-msgid "Go to last service"
-msgstr ""
-
-msgid "Go to next event"
-msgstr ""
-
-msgid "Go to next page of service"
-msgstr ""
-
 #
 #, fuzzy
 msgid "Go to parent directory"
 msgstr "Overordnet katalog"
-
-msgid "Go to previous event"
-msgstr ""
-
-msgid "Go to previous page of service"
-msgstr ""
 
 #
 #, fuzzy
@@ -9492,14 +9533,8 @@ msgstr "Gå til neste favorittliste"
 msgid "Goto next channel"
 msgstr "Gå til neste kanal"
 
-msgid "Goto next day of events"
-msgstr ""
-
 msgid "Goto next event"
 msgstr "Gå til neste program"
-
-msgid "Goto next page of events"
-msgstr ""
 
 #
 msgid "Goto position"
@@ -9511,14 +9546,8 @@ msgstr "Gå til forrige favorittliste"
 msgid "Goto previous channel"
 msgstr "Gå til forrige kanal"
 
-msgid "Goto previous day of events"
-msgstr ""
-
 msgid "Goto previous event"
 msgstr "Gå til forrige program"
-
-msgid "Goto previous page of events"
-msgstr ""
 
 msgid "Goto specific date/time"
 msgstr "Gå til bestemt data/tid"
@@ -9668,6 +9697,12 @@ msgstr ""
 #, fuzzy
 msgid "HDMI Recording"
 msgstr "Spiller inn"
+
+msgid "HDMI-CEC Setup"
+msgstr ""
+
+msgid "HDMI-CEC Setup Actions"
+msgstr ""
 
 #, fuzzy
 msgid "HDMI-IN Actions"
@@ -10164,6 +10199,11 @@ msgid "If enabled, AIT data is included in recordings."
 msgstr ""
 
 msgid ""
+"If enabled, a log will be kept of CEC protocol traffic. The log files are "
+"located with the other log files but named 'Enigma2-hdmicec-[date].log'."
+msgstr ""
+
+msgid ""
 "If enabled, using a time window to detect a wakeup from deep standby by a "
 "timer. Default setting ist disabled and used a special signal from the "
 "receiver. But some devices set a wrong or none signal and the wakeup "
@@ -10175,6 +10215,11 @@ msgid ""
 msgstr ""
 
 msgid "If muted, hide mute icon or mute information after few seconds."
+msgstr ""
+
+msgid ""
+"If set to 'Yes' the same commands will be sent to the TV for deep standby "
+"events as are sent during regular standby events."
 msgstr ""
 
 msgid ""
@@ -10256,6 +10301,12 @@ msgstr "Hvis satt til 'ja' vil infolinjen vises når et nytt program starter."
 msgid ""
 "If the 'deep standby workaround' is enabled, it waits until the system time "
 "is synchronized. Depending on the requirement, the devices wake up will "
+"continuing after a maximum of 2 minutes."
+msgstr ""
+
+msgid ""
+"If the deep standby workaround is enabled wait until the system time is "
+"synchronized. Depending on the requirement the device wake up will "
 "continuing after a maximum of 2 minutes."
 msgstr ""
 
@@ -10627,6 +10678,9 @@ msgid "Input devices"
 msgstr "Inndata enheter"
 
 msgid "Input scroll position"
+msgstr ""
+
+msgid "InputDevice Setup"
 msgstr ""
 
 msgid "Insert"
@@ -11467,9 +11521,6 @@ msgstr ""
 msgid "List available networks"
 msgstr "Vis tilgjengelige nettverk"
 
-msgid "List mode"
-msgstr ""
-
 #
 #, fuzzy
 msgid "List of Storage Devices"
@@ -11538,6 +11589,9 @@ msgstr "Last EPG"
 #
 msgid "Load playlist"
 msgstr "Hent spilliste"
+
+msgid "Load tags from the timer and recordings"
+msgstr ""
 
 msgid "Load unlinked userbouquets"
 msgstr ""
@@ -13256,9 +13310,6 @@ msgstr ""
 msgid "Norfolk Island"
 msgstr ""
 
-msgid "Normal mode"
-msgstr ""
-
 #
 msgid "North"
 msgstr "Nord"
@@ -13475,10 +13526,6 @@ msgstr "OSD 3D Oppsett"
 
 msgid "OSD name request"
 msgstr "OSD navne forespørsel"
-
-#, fuzzy
-msgid "OSD position setup"
-msgstr "Posisjons oppsett"
 
 msgid "OSD settings"
 msgstr "OSD oppsett"
@@ -14021,6 +14068,9 @@ msgstr ""
 msgid "Password"
 msgstr "Passord"
 
+msgid "Password (httpuser)"
+msgstr ""
+
 msgid "Password (httpwd)"
 msgstr "Passord (httpwd)"
 
@@ -14143,9 +14193,6 @@ msgstr "Picon"
 
 msgid "Picon and Service Name"
 msgstr "Picons og Kanal Navn"
-
-msgid "Picon and service name"
-msgstr ""
 
 msgid "Picon width"
 msgstr "Picon bredde"
@@ -14374,6 +14421,9 @@ msgstr "Vennligst sett navn på den nye katalogen"
 #, fuzzy
 msgid "Please enter the new file name"
 msgstr "Vennligst skriv et nytt filnavn"
+
+msgid "Please enter the new tag:"
+msgstr ""
 
 msgid "Please enter the old PIN code"
 msgstr "Vennligst tast inn gammel PIN kode"
@@ -15036,9 +15086,6 @@ msgstr "Forhåndsvisning"
 #
 msgid "Preview menu"
 msgstr "Forhåndsvis meny"
-
-msgid "Preview selected channel"
-msgstr ""
 
 msgid "Previous"
 msgstr ""
@@ -15909,6 +15956,9 @@ msgstr "Lag katalog"
 msgid "Rename name and description for new events"
 msgstr ""
 
+msgid "Rename this tag"
+msgstr ""
+
 msgid "Rename to:"
 msgstr "Endre navn til:"
 
@@ -15951,6 +16001,12 @@ msgid ""
 "subtitles for the hearing impaired)"
 msgstr ""
 
+#, python-format
+msgid ""
+"Replace all '%s' tags with:\n"
+"(NOTE: 'Cancel' cannot undo this!)"
+msgstr ""
+
 #, fuzzy
 msgid "Reportage"
 msgstr "Prosent"
@@ -15974,6 +16030,9 @@ msgstr ""
 #
 msgid "Reset"
 msgstr "Tilbakestill"
+
+msgid "Reset HDMI-CEC settings to default"
+msgstr ""
 
 #
 msgid "Reset and renumerate title names"
@@ -16498,6 +16557,9 @@ msgstr ""
 msgid "Save all changed settings and exit"
 msgstr "lagre siste katalog ved avslutt"
 
+msgid "Save all changed tags and exit"
+msgstr ""
+
 msgid "Save and record"
 msgstr "Lagre og spille inn"
 
@@ -16803,6 +16865,11 @@ msgid ""
 msgstr ""
 
 msgid ""
+"Select 'Yes' to enable editing of this device's settings. Selecting 'No' "
+"resets the devices settings to their default values."
+msgstr ""
+
+msgid ""
 "Select 'band' if using a 'universal' LNB, otherwise consult your LNB spec "
 "sheet."
 msgstr ""
@@ -17100,6 +17167,9 @@ msgstr ""
 msgid "Select the character or action under the keyboard cursor"
 msgstr ""
 
+msgid "Select the current menu item"
+msgstr ""
+
 msgid "Select the currently highlighted locale/language for the user interface"
 msgstr ""
 
@@ -17194,6 +17264,12 @@ msgid "Select the shifted character set for the next character only"
 msgstr ""
 
 msgid "Select the sleep timer action."
+msgstr ""
+
+msgid "Select the time delay before the button starts repeating."
+msgstr ""
+
+msgid "Select the time delay between each repeat of the button."
 msgstr ""
 
 #, fuzzy
@@ -17596,6 +17672,9 @@ msgstr "Velg handling for timer %s:"
 msgid "Set archive mode (644)"
 msgstr ""
 
+msgid "Set current CEC address as fixed address"
+msgstr ""
+
 msgid "Set default"
 msgstr ""
 
@@ -17738,24 +17817,6 @@ msgstr ""
 msgid ""
 "Set the type of the progress indication in the channel selection screen."
 msgstr "Angi typen for fremdriftsindikatoren i kanalvalg-skjermen."
-
-msgid "Set time window to 1 hour"
-msgstr ""
-
-msgid "Set time window to 2 hours"
-msgstr ""
-
-msgid "Set time window to 3 hours"
-msgstr ""
-
-msgid "Set time window to 4 hours"
-msgstr ""
-
-msgid "Set time window to 5 hours"
-msgstr ""
-
-msgid "Set time window to 6 hours"
-msgstr ""
 
 msgid "Set to the desired primetime (hour)."
 msgstr "Angir ønsket primetime (time)."
@@ -18315,9 +18376,6 @@ msgstr "Vis bakgrunnen når innstilt til en radiokanal."
 
 msgid "Show bouquet on launch"
 msgstr "Vis favorittliste ved oppstart"
-
-msgid "Show bouquet selection menu"
-msgstr ""
 
 #
 msgid "Show channel number in infobar"
@@ -19137,6 +19195,13 @@ msgid "Somalia"
 msgstr ""
 
 msgid ""
+"Some TV devices can't swich to correct input if a another HDMI port active. "
+"This setting sets the TV to standby before the switch. (If the TV does not "
+"turn back on it may require a slower transmission interval or the repetition "
+"of wake-up commands.)"
+msgstr ""
+
+msgid ""
 "Some TV devices can't swich to correct input if a another hdmi port active. "
 "This setting set the TV to standby before.\n"
 "(If the TV does not turn back on, may require a slower transmission interval "
@@ -19510,7 +19575,7 @@ msgstr "Stopp oppføring"
 msgid "Stop playing this movie?"
 msgstr "Stoppe avspilling av denne filmen?"
 
-msgid "Stop previous broadcasted service on return to movielist."
+msgid "Stop previous broadcasted service on return to movie list."
 msgstr ""
 
 msgid "Stop recording"
@@ -19822,9 +19887,6 @@ msgstr ""
 msgid "Switch between filelist/playlist"
 msgstr "Bytt mellom fileliste/spilleliste"
 
-msgid "Switch between normal mode and list mode"
-msgstr ""
-
 msgid "Switch config"
 msgstr "Bytt konfig"
 
@@ -20014,6 +20076,12 @@ msgid "TXT Subtitles page & lang"
 msgstr "Undertekst justering"
 
 msgid "Table of content for collection"
+msgstr ""
+
+msgid "Tag Editor"
+msgstr ""
+
+msgid "Tag Editor Actions"
 msgstr ""
 
 msgid "Tagalog"
@@ -20346,6 +20414,9 @@ msgid ""
 "What do you want to do ?"
 msgstr ""
 
+msgid "The command to wake from standby will be sent multiple times."
+msgstr ""
+
 msgid "The current update may be unstable"
 msgstr "Den aktuelle oppdateringen kan være ustabil"
 
@@ -20670,6 +20741,12 @@ msgstr ""
 
 #, python-format
 msgid "This field allows you to search an additional symbol rate up to %s."
+msgstr ""
+
+msgid ""
+"This is a workaround for some devices that wakeup again after switching to "
+"standby. The wake up command's from other devices will be ignored for few "
+"seconds."
 msgstr ""
 
 msgid ""
@@ -21519,6 +21596,9 @@ msgstr ""
 msgid "Toggle new text inserts before or overwrites existing text"
 msgstr ""
 
+msgid "Toggle selection of the current tag"
+msgstr ""
+
 #, fuzzy
 msgid "Toggle service name display"
 msgstr "Rett fra kanalnavn"
@@ -21673,6 +21753,11 @@ msgid ""
 msgstr ""
 
 msgid "Try to send repeated commands if not all commands are executed.\n"
+msgstr ""
+
+msgid ""
+"Try to send repeated commands if not all commands are executed. (e.g. TV "
+"wakeup, but not switched to correct input.)"
 msgstr ""
 
 msgid "Try to slow down the send interval if not all commands are executed."
@@ -22318,6 +22403,9 @@ msgstr ""
 msgid "Use circular LNB"
 msgstr ""
 
+msgid "Use defaults"
+msgstr ""
+
 msgid "Use extended List"
 msgstr ""
 
@@ -22505,6 +22593,9 @@ msgstr "Brukernavn (httpuser)"
 
 msgid "Username:"
 msgstr "Brukernavn:"
+
+msgid "Using automatic address"
+msgstr ""
 
 msgid "Using fixed address"
 msgstr "Bruker fast adresse"
@@ -22893,6 +22984,9 @@ msgstr ""
 msgid "Virtual keyboard"
 msgstr ""
 
+msgid "Visual impaired commentary"
+msgstr ""
+
 msgid "Vol"
 msgstr ""
 
@@ -22913,6 +23007,11 @@ msgid "Volume Config"
 msgstr ""
 
 msgid "Volume down"
+msgstr ""
+
+msgid ""
+"Volume keys on the receiver remote will control the TV volume. If this "
+"feature is not supported the volume keys have no function!"
 msgstr ""
 
 msgid "Volume up"
@@ -23101,21 +23200,6 @@ msgid ""
 "Then seek to the end, press OK, select 'end cut'. That's it."
 msgstr ""
 
-msgid ""
-"Welcome to the cutlist editor.\n"
-"\n"
-"Seek to the start of the stuff you want to cut away. Press OK, select 'start "
-"cut'.\n"
-"\n"
-"Then seek to the end, press OK, select 'end cut'. That's it."
-msgstr ""
-"Velkommen til KlippListe Editor.\n"
-"\n"
-"Gå til starten av det du vil klippe vekk, trykk OK, velg 'start klipp her'.\n"
-"\n"
-"Så går du til slutten av det du vil klippe vekk, trykk OK, velg 'avslutt "
-"klipp her'. Det er alt!"
-
 #
 msgid ""
 "Welcome to the image upgrade wizard. The wizard will assist you in upgrading "
@@ -23229,6 +23313,22 @@ msgid ""
 "When enabled the online checker will also check for experimental versions"
 msgstr ""
 "Når funksjonen er aktivert vil også sjekke for eksperimentelle versjoner"
+
+msgid "When enabled the receiver will automatically be switched off."
+msgstr ""
+
+msgid "When enabled the receiver will automatically be switched on."
+msgstr ""
+
+msgid ""
+"When enabled the receiver will automatically return to standby when the TV "
+"is turned off."
+msgstr ""
+
+msgid ""
+"When enabled the receiver will automatically wake from standby when the TV "
+"is turned on."
+msgstr ""
 
 msgid ""
 "When enabled, AIT data will be included in http streams. This allows a "
@@ -23463,6 +23563,11 @@ msgstr ""
 "Når nonzero, vil et opptak stoppe senere enn sluttidspunktet angitt av EPG."
 
 msgid ""
+"When receiver wakes from standby it will command the TV to switch to the "
+"HDMI input to which the receiver is connected."
+msgstr ""
+
+msgid ""
 "When set each folder will show the previous state used, when off the default "
 "values will be shown."
 msgstr ""
@@ -23490,6 +23595,11 @@ msgstr ""
 msgid ""
 "When the input cursor reaches this point (percentage of the width, from "
 "either side) scroll the text to the cursor."
+msgstr ""
+
+msgid ""
+"When the receiver wakes from standby or deep standby it will send a command "
+"to the TV to bring it out of standby."
 msgstr ""
 
 msgid ""
@@ -24262,14 +24372,6 @@ msgstr "Zap til kanal (oppsett i menyen)"
 
 msgid "Zap to channel and close (setup in menu)"
 msgstr "Zap til kanal og lukk (oppsett i menyen)"
-
-msgid "Zap to selected channel"
-msgstr ""
-
-msgid ""
-"Zap to selected channel, or show detailed event info (depends on "
-"configuration)"
-msgstr ""
 
 msgid "Zap up"
 msgstr ""
@@ -25849,10 +25951,6 @@ msgid ""
 msgstr ""
 
 #
-msgid "save last directory on exit"
-msgstr "lagre siste katalog ved avslutt"
-
-#
 msgid "save playlist on exit"
 msgstr "lagre spilleliste ved avslutt"
 
@@ -26457,6 +26555,59 @@ msgstr "zapped"
 
 msgid "®"
 msgstr ""
+
+#, fuzzy
+#~ msgid ""
+#~ "Allows you to enable the twisted log. They contain very detailed "
+#~ "information of everything the twisted does. ('/tmp/twisted.log')"
+#~ msgstr ""
+#~ "Tillater deg å aktivere debug loggen. De inneholder svært detaljerte "
+#~ "opplysninger om alt systemet gjør."
+
+#~ msgid "Allows you to setup the button to do what you choose."
+#~ msgstr "Tillater deg å konfigurere knappene til å gjøre hva du velger."
+
+#~ msgid "Button"
+#~ msgstr "Knapp"
+
+#
+#, fuzzy
+#~ msgid "Compensate for overscan"
+#~ msgstr "Slett før søking"
+
+#~ msgid "Cutlist editor"
+#~ msgstr "Klippliste editor"
+
+#, fuzzy
+#~ msgid "Enable twisted log *"
+#~ msgstr "Aktivere debug logg"
+
+#~ msgid "Fontsize"
+#~ msgstr "Skriftstørrelse"
+
+#, fuzzy
+#~ msgid "OSD position setup"
+#~ msgstr "Posisjons oppsett"
+
+#~ msgid ""
+#~ "Welcome to the cutlist editor.\n"
+#~ "\n"
+#~ "Seek to the start of the stuff you want to cut away. Press OK, select "
+#~ "'start cut'.\n"
+#~ "\n"
+#~ "Then seek to the end, press OK, select 'end cut'. That's it."
+#~ msgstr ""
+#~ "Velkommen til KlippListe Editor.\n"
+#~ "\n"
+#~ "Gå til starten av det du vil klippe vekk, trykk OK, velg 'start klipp "
+#~ "her'.\n"
+#~ "\n"
+#~ "Så går du til slutten av det du vil klippe vekk, trykk OK, velg 'avslutt "
+#~ "klipp her'. Det er alt!"
+
+#
+#~ msgid "save last directory on exit"
+#~ msgstr "lagre siste katalog ved avslutt"
 
 #
 #, fuzzy

@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-10-28 19:26+0000\n"
+"POT-Creation-Date: 2021-11-29 21:27+0000\n"
 "PO-Revision-Date: 2021-09-13 03:32+0000\n"
 "Last-Translator: Mr.Servo <mrservo@gmx.de>\n"
 "Language-Team: French <https://hosted.weblate.org/projects/openatv/"
@@ -1121,9 +1121,6 @@ msgstr "%d-%b"
 msgid "%d-%b-%Y"
 msgstr "%d-%b-%Y"
 
-msgid "%d-%m"
-msgstr "%d-%m"
-
 msgid "%d. %B %Y"
 msgstr "%d. %B %Y"
 
@@ -1392,6 +1389,10 @@ msgid ""
 msgstr ""
 "'Gérer la veille du téléviseur' a une priorité plus élevée que 'Gérer "
 "l'entrée du téléviseur'"
+
+msgid ""
+"'Handle standby from TV' has a higher priority than 'Handle input from TV'."
+msgstr ""
 
 msgid "'weatherplugin' is not installed!"
 msgstr "'weatherplugin' n'est pas installé !"
@@ -2077,6 +2078,9 @@ msgstr ""
 msgid "A crashlog was %s created in '%s'"
 msgstr "Un crashlog a été %s créé dans '%s'"
 
+msgid "A file from media is in use!"
+msgstr ""
+
 #, python-format
 msgid ""
 "A finished powertimer wants to reboot your %s %s.\n"
@@ -2362,6 +2366,11 @@ msgstr "Activer la configuration de l'adresse MAC"
 msgid "Activate Picture in Picture"
 msgstr "Activer l'incrustation d'image"
 
+msgid ""
+"Activate a way to send individual or specific internal HDMI-CEC commands "
+"from the command line."
+msgstr ""
+
 #, python-format
 msgid ""
 "Activate an way to send individual or specific internal HDMI-CEC commands "
@@ -2454,6 +2463,9 @@ msgstr "Ajouter un marqueur"
 msgid "Add a nameserver entry"
 msgstr "Ajouter un serveur de nom"
 
+msgid "Add a new tag"
+msgstr ""
+
 msgid "Add a new title"
 msgstr "Ajouter un nouveau titre"
 
@@ -2483,6 +2495,9 @@ msgstr "Ajouter le fichier à la liste de lecture"
 
 msgid "Add files to playlist"
 msgstr "Ajouter les fichiers à la liste de lecture"
+
+msgid "Add new tag"
+msgstr ""
 
 msgid "Add plugin to Extensions menu*"
 msgstr "Ajouter un plugin au menu Extensions*"
@@ -2521,9 +2536,6 @@ msgid "Add/Remove Timer"
 msgstr "Ajouter / Supprimer un Timer"
 
 msgid "Add/Remove timer for current event"
-msgstr "Ajouter/Supprimer la programmation pour l'évènement en cours"
-
-msgid "Add/remove change timer for current event"
 msgstr "Ajouter/Supprimer la programmation pour l'évènement en cours"
 
 msgid "Adding schedule..."
@@ -2742,11 +2754,17 @@ msgstr ""
 msgid "Allows the %s %s to store the EPG data regularly."
 msgstr "Permet au %s %s de stocker les données EPG régulièrement."
 
+msgid "Allows the TV remote to be used to control the receiver."
+msgstr ""
+
 msgid ""
 "Allows you to adjust the amount of time the resolution information display "
 "on screen."
 msgstr ""
 "Vous permet d'ajuster la durée d'affichage de la résolution sur l'écran."
+
+msgid "Allows you to assign the selected function to the this button."
+msgstr ""
 
 msgid ""
 "Allows you to enable the debug log. They contain very detailed information "
@@ -2754,13 +2772,6 @@ msgid ""
 msgstr ""
 "Permet d'activer le log de débogage. Il contient des informations très "
 "détaillées sur tout ce que le système fait."
-
-msgid ""
-"Allows you to enable the twisted log. They contain very detailed information "
-"of everything the twisted does. ('/tmp/twisted.log')"
-msgstr ""
-"Permet d'activer le journal torsadé. Ils contiennent des informations très "
-"détaillées sur tout ce que fait le twisted. ('/tmp/twisted.log')"
 
 msgid "Allows you to enable/disable displaying icons on the frontpanel."
 msgstr "Permet d'activer/désactiver l'affichage des icônes sur la face avant."
@@ -2774,10 +2785,6 @@ msgid ""
 msgstr ""
 "Permet de définir la taille maximale du log de débogage (Mo). Quand cette "
 "taille est atteinte, un nouveau fichier est créé."
-
-msgid "Allows you to setup the button to do what you choose."
-msgstr ""
-"Vous permet de configurer l'action que vous avez choisie pour un bouton."
 
 msgid "Allows you to show/hide CCcam in extensions (blue button)."
 msgstr "Permet d'afficher/masquer CCcam dans les extensions (bouton bleu)."
@@ -2864,6 +2871,13 @@ msgstr "Sports américains"
 
 msgid "Amharic"
 msgstr "Amharic"
+
+msgid ""
+"An attempt is made to capture the current TV status. If this is not possible "
+"due to incorrect or missing status messages it may cause the receiver to "
+"respond unexpectedly. On the other hand, tries to respond better to "
+"different operating conditions."
+msgstr ""
 
 msgid ""
 "An attempt is made to capture the current TV status. If this is not possible "
@@ -3297,6 +3311,11 @@ msgstr "Scan automatique des services"
 
 msgid "Automatic setting backup"
 msgstr "Sauvegarde automatique des paramètres"
+
+msgid ""
+"Automatically put the TV in standby whenever the receiver goes into standby "
+"or deep standby."
+msgstr ""
 
 msgid "Automatically start timeshift after"
 msgstr "Démarrer automatiquement la PauseDirect après"
@@ -3848,9 +3867,6 @@ msgstr "Bus : "
 msgid "Business & Finance"
 msgstr "Affaires et finances"
 
-msgid "Button"
-msgstr "Touche"
-
 msgid "Button Setup"
 msgstr "Paramètres des touches"
 
@@ -4175,6 +4191,9 @@ msgstr "Annuler les paramètres modifiés et quitter"
 
 msgid "Cancel any changed settings and exit all menus"
 msgstr "Annuler les paramètres modifiés et quitter tous les menus"
+
+msgid "Cancel any changed tags and exit"
+msgstr ""
 
 msgid "Cancel any changes the active locale/language and exit all menus"
 msgstr ""
@@ -4892,6 +4911,9 @@ msgstr "Affectation Interface Commune"
 msgid "Common Interface assignment"
 msgstr "Assignation Interface Commune"
 
+msgid "Common Menu Actions"
+msgstr ""
+
 msgid "Common Setup Actions"
 msgstr "Actions de configuration communes"
 
@@ -4900,9 +4922,6 @@ msgstr "Communication"
 
 msgid "Comoros"
 msgstr "Comores"
-
-msgid "Compensate for overscan"
-msgstr "Compenser l'overscan"
 
 msgid "Complete"
 msgstr "Terminé"
@@ -5920,9 +5939,6 @@ msgstr "Couper"
 msgid "Cutlist Editor"
 msgstr "Éditeur de montage vidéo"
 
-msgid "Cutlist editor"
-msgstr "Editeur de montage"
-
 msgid "Cutlist editor..."
 msgstr "Éditeur monter/couper..."
 
@@ -6387,6 +6403,11 @@ msgstr "Délai avant que la répétition de la touche démarre :"
 msgid "Delay before sequence repeat"
 msgstr "Délai entre la répétition d'une séquence"
 
+msgid ""
+"Delay between CEC commands when sending a series of commands. Some devices "
+"require this delay for correct functioning, usually between 50-150ms."
+msgstr ""
+
 msgid "Delay between diseqc commands"
 msgstr "Délai entre les commandes diseqc"
 
@@ -6434,6 +6455,9 @@ msgstr "Effacer langue"
 
 msgid "Delete Plugins"
 msgstr "Effacer plugins"
+
+msgid "Delete all tags"
+msgstr ""
 
 msgid "Delete all the text"
 msgstr "Supprimer tout le texte"
@@ -6488,8 +6512,14 @@ msgstr "Effacer le buffer de PauseDirect actuel et redémarrer le PauseDirect"
 msgid "Delete the selected files or directories"
 msgstr "Supprimer les fichiers ou répertoires sélectionnés"
 
+msgid "Delete this tag"
+msgstr ""
+
 msgid "Delete timer"
 msgstr "Supprimer la programmation"
+
+msgid "Delete unused tags"
+msgstr ""
 
 msgid "Deleted"
 msgstr "Supprimé"
@@ -6639,6 +6669,9 @@ msgstr ""
 "Réduit l'écran LCD au niveau de \"Luminosité (atténuée)\" après un temps "
 "spécifié."
 
+msgid "Direct menu item selection"
+msgstr ""
+
 msgid "Direct playback of linked titles without menu"
 msgstr "Lecture directe des titres liés sans menu"
 
@@ -6763,6 +6796,9 @@ msgstr ""
 "Affiche les paramètres régionaux de base ou tous les paramètres régionaux "
 "d'une langue."
 
+msgid "Display the tags context menu"
+msgstr ""
+
 msgid "Display the virtual keyboard for data entry"
 msgstr "Afficher le clavier virtuel pour la saisie de données"
 
@@ -6811,6 +6847,17 @@ msgstr "Voulez-vous vraiment supprimer %s ?"
 
 msgid "Do you really want to delete ?"
 msgstr "Voulez-vous vraiment effacer ?"
+
+#, python-format
+msgid ""
+"Do you really want to delete all '%s' tags?\n"
+"(NOTE: 'Cancel' cannot undo this!)"
+msgstr ""
+
+msgid ""
+"Do you really want to delete all tags?\n"
+"(Note that 'Cancel' will not undo this!)"
+msgstr ""
 
 msgid "Do you really want to delete the recording?"
 msgstr "Voulez-vous vraiment effacer l'enregistrement ?"
@@ -7273,6 +7320,9 @@ msgstr "Éditer"
 msgid "Edit Quad Channel Entry"
 msgstr "Modifier l'entrée du canal quadruple"
 
+msgid "Edit Tags"
+msgstr ""
+
 msgid "Edit Title"
 msgstr "Editer titre"
 
@@ -7492,6 +7542,9 @@ msgstr "Activer l'écran d'accueil"
 msgid "Enable multiple bouquets"
 msgstr "Activer bouquets multiples"
 
+msgid "Enable or disable using HDMI-CEC."
+msgstr ""
+
 msgid "Enable panic button"
 msgstr "Activer le bouton de panique"
 
@@ -7518,6 +7571,9 @@ msgstr "Activer la mise en cache du télétexte"
 
 msgid "Enable terrestrial LCN:"
 msgstr "Activer le LCN terrestre :"
+
+msgid "Enable the advanced HDMI-CEC setting options."
+msgstr ""
 
 msgid "Enable the current value of the slider at end of the slider bar."
 msgstr "Activez la valeur actuelle du curseur à la fin de la barre de curseur."
@@ -7555,9 +7611,6 @@ msgid ""
 msgstr ""
 "Activer pour afficher toutes les options de configuration vrai/faux, oui/"
 "non, marche/arrêt et activer/désactiver en tant que commutateur graphique."
-
-msgid "Enable twisted log *"
-msgstr "Activer le journal torsadé *"
 
 msgid "Enable unlinked bouquets"
 msgstr "Activer les bouquets non liés"
@@ -7647,6 +7700,9 @@ msgstr "Entrer"
 
 msgid "Enter PIN"
 msgstr "Saisir le code PIN"
+
+msgid "Enter a new name for this device."
+msgstr ""
 
 msgid "Enter if you are in the east or west hemisphere."
 msgstr "Saisissez si vous êtes dans l’hémisphère est ou ouest."
@@ -8030,6 +8086,9 @@ msgstr "Quitter la configuration de l'adresse MAC"
 msgid "Exit Quad Channel Selection"
 msgstr "Quitter la sélection de quatre canaux"
 
+msgid "Exit all menus"
+msgstr ""
+
 msgid "Exit editor"
 msgstr "Quitter éditeur"
 
@@ -8044,6 +8103,9 @@ msgstr "Quitter le lecteur multimédia ?"
 
 msgid "Exit mediaplayer"
 msgstr "Quitter le lecteur de média"
+
+msgid "Exit menu"
+msgstr ""
 
 msgid "Exit movie list"
 msgstr "Quitter liste des films"
@@ -8542,9 +8604,6 @@ msgstr "Taille de la police"
 msgid "Font:"
 msgstr "La police :"
 
-msgid "Fontsize"
-msgstr "Taille de la police"
-
 msgid "Food/Wine"
 msgstr "Alimentation/Vin"
 
@@ -8695,6 +8754,9 @@ msgstr "Backup complet sur %s"
 msgid "Full transparency"
 msgstr "Transparence complète"
 
+msgid "Full view resolution"
+msgstr "Résolution plein écran"
+
 msgid "FullHD Test"
 msgstr "Test FullHD"
 
@@ -8703,9 +8765,6 @@ msgstr "Images de sauvegarde complète"
 
 msgid "Fullscreen"
 msgstr "Plein écran"
-
-msgid "Full view resolution"
-msgstr "Résolution plein écran"
 
 msgid "Fußball"
 msgstr "Football"
@@ -8866,26 +8925,8 @@ msgstr "Aller au premier film ou au dernier élément"
 msgid "Go to first movie or top of list"
 msgstr "Aller au premier film ou en haut de liste"
 
-msgid "Go to first service"
-msgstr "Aller au premier service"
-
-msgid "Go to last service"
-msgstr "Aller au dernier service"
-
-msgid "Go to next event"
-msgstr "Aller à l'évènement suivant"
-
-msgid "Go to next page of service"
-msgstr "Aller à la page suivante des services"
-
 msgid "Go to parent directory"
 msgstr "Aller au répertoire parent"
-
-msgid "Go to previous event"
-msgstr "Aller à l'évènement précédent"
-
-msgid "Go to previous page of service"
-msgstr "Aller à la page précédente des services"
 
 msgid "Go to start of file"
 msgstr "Aller au début du fichier"
@@ -8929,14 +8970,8 @@ msgstr "Aller au bouquet suivant"
 msgid "Goto next channel"
 msgstr "Aller à la chaîne suivante"
 
-msgid "Goto next day of events"
-msgstr "Aller au jour suivant des évènements"
-
 msgid "Goto next event"
 msgstr "Aller à l'évènement suivant"
-
-msgid "Goto next page of events"
-msgstr "Aller à la page suivante des évènements"
 
 msgid "Goto position"
 msgstr "Aller à la position"
@@ -8947,14 +8982,8 @@ msgstr "Aller au bouquet précédent"
 msgid "Goto previous channel"
 msgstr "Aller à la chaîne précédente"
 
-msgid "Goto previous day of events"
-msgstr "Aller au jour précédent des évènements"
-
 msgid "Goto previous event"
 msgstr "Aller à l'évènement précédent"
-
-msgid "Goto previous page of events"
-msgstr "Aller à la page précédente des évènements"
 
 msgid "Goto specific date/time"
 msgstr "Aller à une date/heure précise"
@@ -9094,6 +9123,12 @@ msgstr "Type HDMI HDR"
 
 msgid "HDMI Recording"
 msgstr "Enregistrement HDMI"
+
+msgid "HDMI-CEC Setup"
+msgstr ""
+
+msgid "HDMI-CEC Setup Actions"
+msgstr ""
 
 msgid "HDMI-IN Actions"
 msgstr "HDMI-IN Actions"
@@ -9560,6 +9595,11 @@ msgid "If enabled, AIT data is included in recordings."
 msgstr "Si activé, les données AIT seront incluses dans les enregistrements."
 
 msgid ""
+"If enabled, a log will be kept of CEC protocol traffic. The log files are "
+"located with the other log files but named 'Enigma2-hdmicec-[date].log'."
+msgstr ""
+
+msgid ""
 "If enabled, using a time window to detect a wakeup from deep standby by a "
 "timer. Default setting ist disabled and used a special signal from the "
 "receiver. But some devices set a wrong or none signal and the wakeup "
@@ -9579,6 +9619,11 @@ msgid "If muted, hide mute icon or mute information after few seconds."
 msgstr ""
 "En cas de mise en sourdine, l'icône de mise en sourdine ou les informations "
 "relatives à la mise en sourdine sont masquées après quelques secondes."
+
+msgid ""
+"If set to 'Yes' the same commands will be sent to the TV for deep standby "
+"events as are sent during regular standby events."
+msgstr ""
 
 msgid ""
 "If set to 'no', can you save older events even after zapping or interruption "
@@ -9685,6 +9730,12 @@ msgstr ""
 "Si la solution de contournement de la mise en veille profonde est activée, "
 "elle attend que l'heure du système soit synchronisée. Selon les besoins, le "
 "réveil des appareils se poursuivra après un maximum de 2 minutes."
+
+msgid ""
+"If the deep standby workaround is enabled wait until the system time is "
+"synchronized. Depending on the requirement the device wake up will "
+"continuing after a maximum of 2 minutes."
+msgstr ""
 
 msgid ""
 "If the free space is less than setting value, then an attempt is made to "
@@ -10056,6 +10107,9 @@ msgid "Input devices"
 msgstr "Périphériques d'entrée"
 
 msgid "Input scroll position"
+msgstr ""
+
+msgid "InputDevice Setup"
 msgstr ""
 
 msgid "Insert"
@@ -10798,9 +10852,6 @@ msgstr "Actions de navigation de liste"
 msgid "List available networks"
 msgstr "Liste des réseaux disponibles"
 
-msgid "List mode"
-msgstr "Mode liste"
-
 msgid "List of Storage Devices"
 msgstr "Liste des périphériques de stockage"
 
@@ -10854,6 +10905,9 @@ msgstr "Charger l'EPG"
 
 msgid "Load playlist"
 msgstr "Charger liste lecture"
+
+msgid "Load tags from the timer and recordings"
+msgstr ""
 
 msgid "Load unlinked userbouquets"
 msgstr "Charger les bouquets non liés"
@@ -12373,9 +12427,6 @@ msgstr "Aucun des programmes de hachage pour les hachages %s n'est disponible"
 msgid "Norfolk Island"
 msgstr "Iles Norfolk"
 
-msgid "Normal mode"
-msgstr "Mode normal"
-
 msgid "North"
 msgstr "Nord"
 
@@ -12577,9 +12628,6 @@ msgstr "Configuration OSD"
 
 msgid "OSD name request"
 msgstr "Demande de nom de l'OSD"
-
-msgid "OSD position setup"
-msgstr "Configuration position OSD"
 
 msgid "OSD settings"
 msgstr "Paramètres OSD"
@@ -13090,6 +13138,9 @@ msgstr "Traverser"
 msgid "Password"
 msgstr "Mot de passe"
 
+msgid "Password (httpuser)"
+msgstr ""
+
 msgid "Password (httpwd)"
 msgstr "Mot de passe (httppwd)"
 
@@ -13201,9 +13252,6 @@ msgid "Picon"
 msgstr "Picon"
 
 msgid "Picon and Service Name"
-msgstr "Picon et nom de service"
-
-msgid "Picon and service name"
 msgstr "Picon et nom de service"
 
 msgid "Picon width"
@@ -13391,6 +13439,9 @@ msgstr "Entrez le nouveau nom du répertoire"
 
 msgid "Please enter the new file name"
 msgstr "Entrez le nouveau nom de fichier"
+
+msgid "Please enter the new tag:"
+msgstr ""
 
 msgid "Please enter the old PIN code"
 msgstr "Veuillez saisir l'ancien code PIN"
@@ -14030,9 +14081,6 @@ msgstr "Aperçu"
 
 msgid "Preview menu"
 msgstr "Menu aperçu"
-
-msgid "Preview selected channel"
-msgstr "Aperçu de la chaîne sélectionnée"
 
 msgid "Previous"
 msgstr "Précédent"
@@ -14830,6 +14878,9 @@ msgstr "Renommer un fichier/répertoire"
 msgid "Rename name and description for new events"
 msgstr "Renommer le nom et la description pour les nouveaux événements"
 
+msgid "Rename this tag"
+msgstr ""
+
 msgid "Rename to:"
 msgstr "Renommer en :"
 
@@ -14870,6 +14921,12 @@ msgstr ""
 "Remplacer `- ` dans les dialogues par un texte coloré en fonction de "
 "l’intervenant (comme les sous-titres télétexte pour les malentendants)"
 
+#, python-format
+msgid ""
+"Replace all '%s' tags with:\n"
+"(NOTE: 'Cancel' cannot undo this!)"
+msgstr ""
+
 msgid "Reportage"
 msgstr "Reportage"
 
@@ -14890,6 +14947,9 @@ msgstr "Réservé pour une utilisation future"
 
 msgid "Reset"
 msgstr "Réinitialiser"
+
+msgid "Reset HDMI-CEC settings to default"
+msgstr ""
 
 msgid "Reset and renumerate title names"
 msgstr "Réinitialiser et renuméroter les titres"
@@ -15360,6 +15420,9 @@ msgstr "Sauver les données EPG"
 msgid "Save all changed settings and exit"
 msgstr "Enregistrer tous les paramètres modifiés et quitter"
 
+msgid "Save all changed tags and exit"
+msgstr ""
+
 msgid "Save and record"
 msgstr "Sauvegarder et enregistrer"
 
@@ -15642,6 +15705,11 @@ msgid ""
 msgstr ""
 "Sélectionnez ‘A’ ou ‘B’ si votre système aérien nécessite cela, sinon "
 "laissez sur ‘aucun’. Si vous n’êtes pas certain sélectionnez ‘aucun’."
+
+msgid ""
+"Select 'Yes' to enable editing of this device's settings. Selecting 'No' "
+"resets the devices settings to their default values."
+msgstr ""
 
 msgid ""
 "Select 'band' if using a 'universal' LNB, otherwise consult your LNB spec "
@@ -15962,6 +16030,9 @@ msgstr ""
 msgid "Select the character or action under the keyboard cursor"
 msgstr "Sélectionnez le caractère ou l'action sous le curseur du clavier"
 
+msgid "Select the current menu item"
+msgstr ""
+
 msgid "Select the currently highlighted locale/language for the user interface"
 msgstr ""
 "Sélectionnez les locales/la langue actuellement mis en surbrillance pour "
@@ -16096,6 +16167,12 @@ msgstr "Sélectionnez le caractère décalé uniquement pour le suivant"
 
 msgid "Select the sleep timer action."
 msgstr "Définir l'action de la mise en veille."
+
+msgid "Select the time delay before the button starts repeating."
+msgstr ""
+
+msgid "Select the time delay between each repeat of the button."
+msgstr ""
 
 msgid "Select the time zone within the area or region."
 msgstr "Sélectionnez le fuseau horaire dans la zone ou la région."
@@ -16475,6 +16552,9 @@ msgstr "Définir l’action pour la touche 'Info'"
 msgid "Set archive mode (644)"
 msgstr "Définir le mode d'archivage (644)"
 
+msgid "Set current CEC address as fixed address"
+msgstr ""
+
 msgid "Set default"
 msgstr "Définir par défaut"
 
@@ -16639,24 +16719,6 @@ msgstr ""
 "Défini le type et la localisation de l'indicateur de progression des "
 "événements dans la sélection des chaînes. Soit barre graphe, soit en "
 "pourcentage à gauche ou à droite du nom du service."
-
-msgid "Set time window to 1 hour"
-msgstr "Réglez la fenêtre de temps à 1 heure"
-
-msgid "Set time window to 2 hours"
-msgstr "Réglez la fenêtre de temps à 2 heures"
-
-msgid "Set time window to 3 hours"
-msgstr "Réglez la fenêtre de temps à 3 heures"
-
-msgid "Set time window to 4 hours"
-msgstr "Réglez la fenêtre de temps à 4 heures"
-
-msgid "Set time window to 5 hours"
-msgstr "Réglez la fenêtre de temps à 5 heures"
-
-msgid "Set time window to 6 hours"
-msgstr "Réglez la fenêtre de temps à 6 heures"
 
 msgid "Set to the desired primetime (hour)."
 msgstr "Définir le temps du primetime (heure)."
@@ -17200,9 +17262,6 @@ msgstr "Afficher l'écran de fond lorsqu'on écoute une radio."
 
 msgid "Show bouquet on launch"
 msgstr "Afficher les bouquets au lancement"
-
-msgid "Show bouquet selection menu"
-msgstr "Afficher le menu sélection de bouquet"
 
 msgid "Show channel number in infobar"
 msgstr "Afficher numéro des chaînes dans infobarre"
@@ -17945,6 +18004,13 @@ msgid "Somalia"
 msgstr "Somalie"
 
 msgid ""
+"Some TV devices can't swich to correct input if a another HDMI port active. "
+"This setting sets the TV to standby before the switch. (If the TV does not "
+"turn back on it may require a slower transmission interval or the repetition "
+"of wake-up commands.)"
+msgstr ""
+
+msgid ""
 "Some TV devices can't swich to correct input if a another hdmi port active. "
 "This setting set the TV to standby before.\n"
 "(If the TV does not turn back on, may require a slower transmission interval "
@@ -18286,9 +18352,8 @@ msgstr "Arrêter entrée"
 msgid "Stop playing this movie?"
 msgstr "Arrêter de jouer ce film ?"
 
-msgid "Stop previous broadcasted service on return to movielist."
+msgid "Stop previous broadcasted service on return to movie list."
 msgstr ""
-"Arrêter le service précédent en revenant de la liste de lecture des films."
 
 msgid "Stop recording"
 msgstr "Arrêter l'enregistrement"
@@ -18579,9 +18644,6 @@ msgstr "Basculer entre choix audio ou sélection des sous-titres"
 msgid "Switch between filelist/playlist"
 msgstr "Permuter entre la liste des fichiers/liste de lecture"
 
-msgid "Switch between normal mode and list mode"
-msgstr "Basculer entre le mode normal et le mode liste"
-
 # TODO
 msgid "Switch config"
 msgstr "Permuter configuration"
@@ -18752,6 +18814,12 @@ msgstr "Sous-titres TXT - lang"
 
 msgid "Table of content for collection"
 msgstr "Table des matières pour la collection"
+
+msgid "Tag Editor"
+msgstr ""
+
+msgid "Tag Editor Actions"
+msgstr ""
 
 msgid "Tagalog"
 msgstr "Tagalog"
@@ -19085,6 +19153,9 @@ msgstr ""
 "La durée du tampon pour le PauseDirect dépasse la limite spécifiée dans les "
 "paramètres.\n"
 "Que voulez-vous faire ?"
+
+msgid "The command to wake from standby will be sent multiple times."
+msgstr ""
 
 msgid "The current update may be unstable"
 msgstr "Cette mise à jour pourrait être instable"
@@ -19453,6 +19524,12 @@ msgstr ""
 #, python-format
 msgid "This field allows you to search an additional symbol rate up to %s."
 msgstr "Ce champ vous permet de chercher un taux de symbole additionnel de %s."
+
+msgid ""
+"This is a workaround for some devices that wakeup again after switching to "
+"standby. The wake up command's from other devices will be ignored for few "
+"seconds."
+msgstr ""
 
 msgid ""
 "This is a workaround for some devices there wakeup again after switching in "
@@ -20316,6 +20393,9 @@ msgid "Toggle new text inserts before or overwrites existing text"
 msgstr ""
 "Bascule les nouvelles insertions de texte avant ou écrase le texte existant"
 
+msgid "Toggle selection of the current tag"
+msgstr ""
+
 msgid "Toggle service name display"
 msgstr "Basculer l'affichage du nom du service"
 
@@ -20464,6 +20544,11 @@ msgid "Try to send repeated commands if not all commands are executed.\n"
 msgstr ""
 "Essayez d'envoyer des commandes répétées si toutes les commandes ne sont pas "
 "exécutées.\n"
+
+msgid ""
+"Try to send repeated commands if not all commands are executed. (e.g. TV "
+"wakeup, but not switched to correct input.)"
+msgstr ""
 
 msgid "Try to slow down the send interval if not all commands are executed."
 msgstr ""
@@ -21061,6 +21146,9 @@ msgstr ""
 msgid "Use circular LNB"
 msgstr "Utiliser un LNB circulaire"
 
+msgid "Use defaults"
+msgstr ""
+
 msgid "Use extended List"
 msgstr "Utiliser la liste étendue"
 
@@ -21260,6 +21348,9 @@ msgstr "Nom d'utilisateur (httpuser)"
 
 msgid "Username:"
 msgstr "Nom d'utilisateur :"
+
+msgid "Using automatic address"
+msgstr ""
 
 msgid "Using fixed address"
 msgstr "Utilisation d'adresse fixe"
@@ -21590,6 +21681,9 @@ msgstr "Texte du clavier virtuel :"
 msgid "Virtual keyboard"
 msgstr "Clavier virtuel"
 
+msgid "Visual impaired commentary"
+msgstr ""
+
 msgid "Vol"
 msgstr "Vol"
 
@@ -21610,6 +21704,11 @@ msgstr "Configuration du volume"
 
 msgid "Volume down"
 msgstr "Volume bas"
+
+msgid ""
+"Volume keys on the receiver remote will control the TV volume. If this "
+"feature is not supported the volume keys have no function!"
+msgstr ""
 
 msgid "Volume up"
 msgstr "Volume haut"
@@ -21790,22 +21889,6 @@ msgstr ""
 "fait."
 
 msgid ""
-"Welcome to the cutlist editor.\n"
-"\n"
-"Seek to the start of the stuff you want to cut away. Press OK, select 'start "
-"cut'.\n"
-"\n"
-"Then seek to the end, press OK, select 'end cut'. That's it."
-msgstr ""
-"Bienvenue dans l'éditeur de montage.\n"
-"\n"
-"Recherchez le départ de la partie que vous voulez couper. Appuyez sur OK, "
-"sélectionnez 'départ de coupe'.\n"
-"\n"
-"Puis recherchez la fin, appuyez sur OK, sélectionnez 'fin de coupe'. C'est "
-"fait."
-
-msgid ""
 "Welcome to the image upgrade wizard. The wizard will assist you in upgrading "
 "the firmware of your %s %s by providing a backup facility for your current "
 "settings and a short explanation of how to upgrade your firmware."
@@ -21915,6 +21998,22 @@ msgid ""
 msgstr ""
 "Lorsqu'activé, la vérification en ligne vérifiera également les versions "
 "expérimentales"
+
+msgid "When enabled the receiver will automatically be switched off."
+msgstr ""
+
+msgid "When enabled the receiver will automatically be switched on."
+msgstr ""
+
+msgid ""
+"When enabled the receiver will automatically return to standby when the TV "
+"is turned off."
+msgstr ""
+
+msgid ""
+"When enabled the receiver will automatically wake from standby when the TV "
+"is turned on."
+msgstr ""
 
 msgid ""
 "When enabled, AIT data will be included in http streams. This allows a "
@@ -22188,6 +22287,11 @@ msgstr ""
 "l'heure de fin indiquée par l'EPG."
 
 msgid ""
+"When receiver wakes from standby it will command the TV to switch to the "
+"HDMI input to which the receiver is connected."
+msgstr ""
+
+msgid ""
 "When set each folder will show the previous state used, when off the default "
 "values will be shown."
 msgstr ""
@@ -22216,6 +22320,11 @@ msgstr ""
 msgid ""
 "When the input cursor reaches this point (percentage of the width, from "
 "either side) scroll the text to the cursor."
+msgstr ""
+
+msgid ""
+"When the receiver wakes from standby or deep standby it will send a command "
+"to the TV to bring it out of standby."
 msgstr ""
 
 msgid ""
@@ -23002,16 +23111,6 @@ msgstr "Zapper vers la chaîne (config dans le menu)"
 
 msgid "Zap to channel and close (setup in menu)"
 msgstr "Zapper vers une chaîne et fermer (config dans le menu)"
-
-msgid "Zap to selected channel"
-msgstr "Zapper sur la chaîne sélectionnée"
-
-msgid ""
-"Zap to selected channel, or show detailed event info (depends on "
-"configuration)"
-msgstr ""
-"Zapper sur la chaîne sélectionnée, ou afficher l'information d'événement "
-"détaillée (selon la configuration)"
 
 msgid "Zap up"
 msgstr "Zap haut"
@@ -24402,9 +24501,6 @@ msgstr ""
 "mais il n'est pas possible de rechercher de nouvelles chaînes\n"
 "ou de configurer les paramètres du tuner"
 
-msgid "save last directory on exit"
-msgstr "sauver dernier répertoire en sortant"
-
 msgid "save playlist on exit"
 msgstr "sauver liste lecture en sortant"
 
@@ -24941,6 +25037,140 @@ msgstr "zapping"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "%d-%m"
+#~ msgstr "%d-%m"
+
+#~ msgid "Add/remove change timer for current event"
+#~ msgstr "Ajouter/Supprimer la programmation pour l'évènement en cours"
+
+#~ msgid ""
+#~ "Allows you to enable the twisted log. They contain very detailed "
+#~ "information of everything the twisted does. ('/tmp/twisted.log')"
+#~ msgstr ""
+#~ "Permet d'activer le journal torsadé. Ils contiennent des informations "
+#~ "très détaillées sur tout ce que fait le twisted. ('/tmp/twisted.log')"
+
+#~ msgid "Allows you to setup the button to do what you choose."
+#~ msgstr ""
+#~ "Vous permet de configurer l'action que vous avez choisie pour un bouton."
+
+#~ msgid "Button"
+#~ msgstr "Touche"
+
+#~ msgid "Compensate for overscan"
+#~ msgstr "Compenser l'overscan"
+
+#~ msgid "Cutlist editor"
+#~ msgstr "Editeur de montage"
+
+#~ msgid "Enable twisted log *"
+#~ msgstr "Activer le journal torsadé *"
+
+#~ msgid "Fontsize"
+#~ msgstr "Taille de la police"
+
+#~ msgid "Go to first service"
+#~ msgstr "Aller au premier service"
+
+#~ msgid "Go to last service"
+#~ msgstr "Aller au dernier service"
+
+#~ msgid "Go to next event"
+#~ msgstr "Aller à l'évènement suivant"
+
+#~ msgid "Go to next page of service"
+#~ msgstr "Aller à la page suivante des services"
+
+#~ msgid "Go to previous event"
+#~ msgstr "Aller à l'évènement précédent"
+
+#~ msgid "Go to previous page of service"
+#~ msgstr "Aller à la page précédente des services"
+
+#~ msgid "Goto next day of events"
+#~ msgstr "Aller au jour suivant des évènements"
+
+#~ msgid "Goto next page of events"
+#~ msgstr "Aller à la page suivante des évènements"
+
+#~ msgid "Goto previous day of events"
+#~ msgstr "Aller au jour précédent des évènements"
+
+#~ msgid "Goto previous page of events"
+#~ msgstr "Aller à la page précédente des évènements"
+
+#~ msgid "List mode"
+#~ msgstr "Mode liste"
+
+#~ msgid "Normal mode"
+#~ msgstr "Mode normal"
+
+#~ msgid "OSD position setup"
+#~ msgstr "Configuration position OSD"
+
+#~ msgid "Picon and service name"
+#~ msgstr "Picon et nom de service"
+
+#~ msgid "Preview selected channel"
+#~ msgstr "Aperçu de la chaîne sélectionnée"
+
+#~ msgid "Set time window to 1 hour"
+#~ msgstr "Réglez la fenêtre de temps à 1 heure"
+
+#~ msgid "Set time window to 2 hours"
+#~ msgstr "Réglez la fenêtre de temps à 2 heures"
+
+#~ msgid "Set time window to 3 hours"
+#~ msgstr "Réglez la fenêtre de temps à 3 heures"
+
+#~ msgid "Set time window to 4 hours"
+#~ msgstr "Réglez la fenêtre de temps à 4 heures"
+
+#~ msgid "Set time window to 5 hours"
+#~ msgstr "Réglez la fenêtre de temps à 5 heures"
+
+#~ msgid "Set time window to 6 hours"
+#~ msgstr "Réglez la fenêtre de temps à 6 heures"
+
+#~ msgid "Show bouquet selection menu"
+#~ msgstr "Afficher le menu sélection de bouquet"
+
+#~ msgid "Stop previous broadcasted service on return to movielist."
+#~ msgstr ""
+#~ "Arrêter le service précédent en revenant de la liste de lecture des films."
+
+#~ msgid "Switch between normal mode and list mode"
+#~ msgstr "Basculer entre le mode normal et le mode liste"
+
+#~ msgid ""
+#~ "Welcome to the cutlist editor.\n"
+#~ "\n"
+#~ "Seek to the start of the stuff you want to cut away. Press OK, select "
+#~ "'start cut'.\n"
+#~ "\n"
+#~ "Then seek to the end, press OK, select 'end cut'. That's it."
+#~ msgstr ""
+#~ "Bienvenue dans l'éditeur de montage.\n"
+#~ "\n"
+#~ "Recherchez le départ de la partie que vous voulez couper. Appuyez sur OK, "
+#~ "sélectionnez 'départ de coupe'.\n"
+#~ "\n"
+#~ "Puis recherchez la fin, appuyez sur OK, sélectionnez 'fin de coupe'. "
+#~ "C'est fait."
+
+#~ msgid "Zap to selected channel"
+#~ msgstr "Zapper sur la chaîne sélectionnée"
+
+#~ msgid ""
+#~ "Zap to selected channel, or show detailed event info (depends on "
+#~ "configuration)"
+#~ msgstr ""
+#~ "Zapper sur la chaîne sélectionnée, ou afficher l'information d'événement "
+#~ "détaillée (selon la configuration)"
+
+#~ msgid "save last directory on exit"
+#~ msgstr "sauver dernier répertoire en sortant"
 
 #~ msgid ""
 #~ "When enabled, the length of each recording will be shown in the movielist "

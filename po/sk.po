@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-10-28 19:26+0000\n"
+"POT-Creation-Date: 2021-11-29 21:27+0000\n"
 "PO-Revision-Date: 2021-10-11 15:55+0000\n"
 "Last-Translator: Marián Hikaník <podnety@mojepreklady.net>\n"
 "Language-Team: Slovak <https://hosted.weblate.org/projects/openatv/"
@@ -1129,9 +1129,6 @@ msgstr "%d-%b"
 msgid "%d-%b-%Y"
 msgstr "%d-%b-%Y"
 
-msgid "%d-%m"
-msgstr "%d-%m"
-
 msgid "%d. %B %Y"
 msgstr "%d. %B %Y"
 
@@ -1402,6 +1399,10 @@ msgid ""
 msgstr ""
 "'Preberať pohotovostný režim z TV' má vyššiu prioritu ako 'Preberať vstup z "
 "TV'"
+
+msgid ""
+"'Handle standby from TV' has a higher priority than 'Handle input from TV'."
+msgstr ""
 
 msgid "'weatherplugin' is not installed!"
 msgstr "'weatherplugin' nie je nainštalovaný!"
@@ -2085,6 +2086,9 @@ msgstr ""
 msgid "A crashlog was %s created in '%s'"
 msgstr "Záznam o zlyhaní bol %s vytvorený v '%s'"
 
+msgid "A file from media is in use!"
+msgstr ""
+
 #, python-format
 msgid ""
 "A finished powertimer wants to reboot your %s %s.\n"
@@ -2362,6 +2366,11 @@ msgstr "Aktivovať konfiguráciu adresy MAC"
 msgid "Activate Picture in Picture"
 msgstr "Aktivovať obraz v obraze"
 
+msgid ""
+"Activate a way to send individual or specific internal HDMI-CEC commands "
+"from the command line."
+msgstr ""
+
 #, python-format
 msgid ""
 "Activate an way to send individual or specific internal HDMI-CEC commands "
@@ -2452,6 +2461,9 @@ msgstr "Pridať značku"
 msgid "Add a nameserver entry"
 msgstr "Pridať DNS"
 
+msgid "Add a new tag"
+msgstr ""
+
 msgid "Add a new title"
 msgstr "Pridať nový titul"
 
@@ -2481,6 +2493,9 @@ msgstr "Pridať súbor do playlistu"
 
 msgid "Add files to playlist"
 msgstr "Pridať súbory do playlistu"
+
+msgid "Add new tag"
+msgstr ""
 
 msgid "Add plugin to Extensions menu*"
 msgstr "Pridať plugin do menu Rozšírenia*"
@@ -2520,9 +2535,6 @@ msgstr "Pridať/odstrániť časovač"
 
 msgid "Add/Remove timer for current event"
 msgstr "Pridať/odstrániť časovač pre aktuálnu udalosť"
-
-msgid "Add/remove change timer for current event"
-msgstr "Pridať/odstrániť zmenu časovača pre aktuálnu udalosť"
 
 msgid "Adding schedule..."
 msgstr "Pridáva sa plán..."
@@ -2736,10 +2748,16 @@ msgstr "Umožňuje prijímaču %s %s pravidelne čítať uložené dáta EPG."
 msgid "Allows the %s %s to store the EPG data regularly."
 msgstr "Umožňuje prijímaču %s %s pravidelne ukladať dáta EPG."
 
+msgid "Allows the TV remote to be used to control the receiver."
+msgstr ""
+
 msgid ""
 "Allows you to adjust the amount of time the resolution information display "
 "on screen."
 msgstr "Umožňuje upraviť čas zobrazenia rozlíšenia na obrazovke."
+
+msgid "Allows you to assign the selected function to the this button."
+msgstr ""
 
 msgid ""
 "Allows you to enable the debug log. They contain very detailed information "
@@ -2747,13 +2765,6 @@ msgid ""
 msgstr ""
 "Umožňuje povoliť správu z ladenia. Ta obsahuje podrobné informácie o "
 "všetkých udalostiach v systéme."
-
-msgid ""
-"Allows you to enable the twisted log. They contain very detailed information "
-"of everything the twisted does. ('/tmp/twisted.log')"
-msgstr ""
-"Umožňuje povoliť podrobnejší záznam typu twisted. Ten obsahuje veľmi "
-"podrobné informácie o všetkých udalostiach typu twisted. ('/tmp/twisted.log')"
 
 msgid "Allows you to enable/disable displaying icons on the frontpanel."
 msgstr "Umožňuje povoliť/zakázať zobrazovanie ikon na prednom paneli."
@@ -2767,9 +2778,6 @@ msgid ""
 msgstr ""
 "Umožňuje nastaviť maximálnu veľkosť správy o ladení (MB). Keď je dosiahnutá, "
 "vytvorí sa nový súbor."
-
-msgid "Allows you to setup the button to do what you choose."
-msgstr "Umožňuje nastaviť tlačidlo na akciu, ktorú si vyberiete."
 
 msgid "Allows you to show/hide CCcam in extensions (blue button)."
 msgstr "Umožňuje zobraziť/skryť CCcam v rozšíreniach (modré tlačidlo)."
@@ -2854,6 +2862,13 @@ msgstr "Americké športy"
 
 msgid "Amharic"
 msgstr "Amharský"
+
+msgid ""
+"An attempt is made to capture the current TV status. If this is not possible "
+"due to incorrect or missing status messages it may cause the receiver to "
+"respond unexpectedly. On the other hand, tries to respond better to "
+"different operating conditions."
+msgstr ""
 
 msgid ""
 "An attempt is made to capture the current TV status. If this is not possible "
@@ -3281,6 +3296,11 @@ msgstr "Automatické vyhľadávanie staníc"
 
 msgid "Automatic setting backup"
 msgstr "Automatická záloha nastavenia"
+
+msgid ""
+"Automatically put the TV in standby whenever the receiver goes into standby "
+"or deep standby."
+msgstr ""
 
 msgid "Automatically start timeshift after"
 msgstr "Automatický štart timeshift po"
@@ -3830,9 +3850,6 @@ msgstr "Zbernica: "
 msgid "Business & Finance"
 msgstr "Biznis a financie"
 
-msgid "Button"
-msgstr "Tlačidlo"
-
 msgid "Button Setup"
 msgstr "Nastavenie tlačidiel"
 
@@ -4155,6 +4172,9 @@ msgstr "Zrušiť akékoľvek zmeny nastavení a ukončiť"
 
 msgid "Cancel any changed settings and exit all menus"
 msgstr "Zrušiť akékoľvek zmeny nastavení a zatvoriť menu"
+
+msgid "Cancel any changed tags and exit"
+msgstr ""
 
 msgid "Cancel any changes the active locale/language and exit all menus"
 msgstr "Zrušiť akékoľvek zmeny nastavení jazyka a zatvoriť všetky menu"
@@ -4852,6 +4872,9 @@ msgstr "Priradenie Common Interface"
 msgid "Common Interface assignment"
 msgstr "Priradenie Common Interface"
 
+msgid "Common Menu Actions"
+msgstr ""
+
 msgid "Common Setup Actions"
 msgstr "Bežné nastavenia"
 
@@ -4860,9 +4883,6 @@ msgstr "Komunikácia"
 
 msgid "Comoros"
 msgstr "Komory"
-
-msgid "Compensate for overscan"
-msgstr "Kompenzácia pre overscan"
 
 msgid "Complete"
 msgstr "Komplet"
@@ -5836,9 +5856,6 @@ msgstr "Strih"
 msgid "Cutlist Editor"
 msgstr "Editor strihov"
 
-msgid "Cutlist editor"
-msgstr "Editor strihov"
-
 msgid "Cutlist editor..."
 msgstr "Editor strihov..."
 
@@ -6298,6 +6315,11 @@ msgstr "Oneskorenie pred spusteniami opakovania kľúča:"
 msgid "Delay before sequence repeat"
 msgstr "Oneskorenie po opakovaní sekvencie"
 
+msgid ""
+"Delay between CEC commands when sending a series of commands. Some devices "
+"require this delay for correct functioning, usually between 50-150ms."
+msgstr ""
+
 msgid "Delay between diseqc commands"
 msgstr "Oneskorenie medzi príkazmi DiSEq C"
 
@@ -6345,6 +6367,9 @@ msgstr "Vymazať jazyk"
 
 msgid "Delete Plugins"
 msgstr "Vymazať pluginy"
+
+msgid "Delete all tags"
+msgstr ""
 
 msgid "Delete all the text"
 msgstr "Zmazať všetok text"
@@ -6397,8 +6422,14 @@ msgstr "Vymazať aktuálnu vyrov. pamäť pre timeshift a reštartovať ho"
 msgid "Delete the selected files or directories"
 msgstr "Vymazať vybrané súbory alebo priečinky"
 
+msgid "Delete this tag"
+msgstr ""
+
 msgid "Delete timer"
 msgstr "Vymazať časovač"
+
+msgid "Delete unused tags"
+msgstr ""
 
 msgid "Deleted"
 msgstr "Vymazané"
@@ -6545,6 +6576,9 @@ msgid ""
 "Dim the LCD to the level from 'Brightness (Dimmed)' after specified time."
 msgstr "Po určenom čase stlmiť LCD na úroveň uvedenú v sekcii 'Jas (stlmené)'."
 
+msgid "Direct menu item selection"
+msgstr ""
+
 msgid "Direct playback of linked titles without menu"
 msgstr "Priame prehrávanie prepojených titulov bez menu"
 
@@ -6667,6 +6701,9 @@ msgstr "Zobraziť EIT o aktuálnej/nasledujúcej udalosti v informačnom paneli.
 msgid "Display the base locales or all locales for a language."
 msgstr "Zobraziť základné národné alebo všetky miestne nastavenia pre jazyk."
 
+msgid "Display the tags context menu"
+msgstr ""
+
 msgid "Display the virtual keyboard for data entry"
 msgstr "Zobraziť virtuálnu klávesnicu na zadávanie údajov"
 
@@ -6715,6 +6752,17 @@ msgstr "Naozaj chcete vymazať %s?"
 
 msgid "Do you really want to delete ?"
 msgstr "Naozaj chcete vymazať?"
+
+#, python-format
+msgid ""
+"Do you really want to delete all '%s' tags?\n"
+"(NOTE: 'Cancel' cannot undo this!)"
+msgstr ""
+
+msgid ""
+"Do you really want to delete all tags?\n"
+"(Note that 'Cancel' will not undo this!)"
+msgstr ""
 
 msgid "Do you really want to delete the recording?"
 msgstr "Naozaj chcete vymazať nahrávku?"
@@ -7181,6 +7229,9 @@ msgstr "Upraviť"
 msgid "Edit Quad Channel Entry"
 msgstr "Upraviť záznam pre Quad-kanál"
 
+msgid "Edit Tags"
+msgstr ""
+
 msgid "Edit Title"
 msgstr "Upraviť názov"
 
@@ -7396,6 +7447,9 @@ msgstr "Zapnúť úvodnú obrazovku"
 msgid "Enable multiple bouquets"
 msgstr "Zapnúť viacnásobné prehľady"
 
+msgid "Enable or disable using HDMI-CEC."
+msgstr ""
+
 msgid "Enable panic button"
 msgstr "Povoliť tlačidlo Panika"
 
@@ -7422,6 +7476,9 @@ msgstr "Povoliť ukladanie teletextu do vyrov. pamäte"
 
 msgid "Enable terrestrial LCN:"
 msgstr "Povoliť terestriálne LCN:"
+
+msgid "Enable the advanced HDMI-CEC setting options."
+msgstr ""
 
 msgid "Enable the current value of the slider at end of the slider bar."
 msgstr "Zapnúť aktuálnu hodnotu posuvníka na konci panela s posuvníkom."
@@ -7459,9 +7516,6 @@ msgid ""
 msgstr ""
 "Zapnúť pre zobrazenie všetkých volieb a nastavení typu pravda/nepravda, áno/"
 "nie, zap./vyp. a zapnúť/vypnúť vo forme grafického prepínača."
-
-msgid "Enable twisted log *"
-msgstr "Zapnúť záznam typu twisted *"
 
 msgid "Enable unlinked bouquets"
 msgstr "Povoliť prehľady bez prepojenia"
@@ -7551,6 +7605,9 @@ msgstr "Zadať"
 
 msgid "Enter PIN"
 msgstr "Zadať PIN"
+
+msgid "Enter a new name for this device."
+msgstr ""
 
 msgid "Enter if you are in the east or west hemisphere."
 msgstr "Zadajte, či ste na východnej alebo západnej pologuli."
@@ -7927,6 +7984,9 @@ msgstr "Ukončiť konfiguráciu MAC-adresy"
 msgid "Exit Quad Channel Selection"
 msgstr "Ukončiť výber Quad-kanála"
 
+msgid "Exit all menus"
+msgstr ""
+
 msgid "Exit editor"
 msgstr "Ukončiť editor"
 
@@ -7941,6 +8001,9 @@ msgstr "Ukončiť prehrávač médií?"
 
 msgid "Exit mediaplayer"
 msgstr "Ukončiť prehrávač médií"
+
+msgid "Exit menu"
+msgstr ""
 
 msgid "Exit movie list"
 msgstr "Zavrieť zoznam filmov"
@@ -8436,9 +8499,6 @@ msgstr "Veľkosť písma"
 msgid "Font:"
 msgstr "Písmo:"
 
-msgid "Fontsize"
-msgstr "Písmo"
-
 msgid "Food/Wine"
 msgstr "Jedlo/víno"
 
@@ -8589,6 +8649,9 @@ msgstr "Kompletná záloha na %s"
 msgid "Full transparency"
 msgstr "Priehľadné"
 
+msgid "Full view resolution"
+msgstr "Rozlíšenie úplného zobrazenia"
+
 msgid "FullHD Test"
 msgstr "FullHD Test"
 
@@ -8597,9 +8660,6 @@ msgstr "Image s úplnou zálohou"
 
 msgid "Fullscreen"
 msgstr "Na celú obrazovku"
-
-msgid "Full view resolution"
-msgstr "Rozlíšenie úplného zobrazenia"
 
 msgid "Fußball"
 msgstr "Futbal"
@@ -8758,26 +8818,8 @@ msgstr "Na prvý film alebo poslednú položku"
 msgid "Go to first movie or top of list"
 msgstr "Na prvý film alebo začiatok zoznamu"
 
-msgid "Go to first service"
-msgstr "Prejsť na prvú stanicu"
-
-msgid "Go to last service"
-msgstr "Prejsť na poslednú stanicu"
-
-msgid "Go to next event"
-msgstr "Prejsť na ďalšiu udalosť"
-
-msgid "Go to next page of service"
-msgstr "Prejsť na ďalšiu stránku stanice"
-
 msgid "Go to parent directory"
 msgstr "Prejsť do rodičovského priečinka"
-
-msgid "Go to previous event"
-msgstr "Prejsť na predošlú udalosť"
-
-msgid "Go to previous page of service"
-msgstr "Prejsť na predošlú stránku stanice"
 
 msgid "Go to start of file"
 msgstr "Prejsť na začiatok súboru"
@@ -8821,14 +8863,8 @@ msgstr "Prejsť na ďalší prehľad"
 msgid "Goto next channel"
 msgstr "Prejsť na ďalší kanál"
 
-msgid "Goto next day of events"
-msgstr "Prejsť na ďalší deň udalostí"
-
 msgid "Goto next event"
 msgstr "Prejsť na ďalšiu udalosť"
-
-msgid "Goto next page of events"
-msgstr "Prejsť na ďalšiu stránku udalostí"
 
 msgid "Goto position"
 msgstr "Prejsť na pozíciu"
@@ -8839,14 +8875,8 @@ msgstr "Prejsť na predchádzajúci prehľad"
 msgid "Goto previous channel"
 msgstr "Prejsť na predchádzajúci kanál"
 
-msgid "Goto previous day of events"
-msgstr "Prejsť na predchádzajúci deň udalostí"
-
 msgid "Goto previous event"
 msgstr "Prejsť na predchádzajúcu udalosť"
-
-msgid "Goto previous page of events"
-msgstr "Prejsť na predošlú stránku udalostí"
 
 msgid "Goto specific date/time"
 msgstr "Prejsť na zadaný dátum/čas"
@@ -8986,6 +9016,12 @@ msgstr "Typ HDMI HDR"
 
 msgid "HDMI Recording"
 msgstr "Nahrávanie HDMI"
+
+msgid "HDMI-CEC Setup"
+msgstr ""
+
+msgid "HDMI-CEC Setup Actions"
+msgstr ""
 
 msgid "HDMI-IN Actions"
 msgstr "Akcie vstupu HDMI"
@@ -9449,6 +9485,11 @@ msgid "If enabled, AIT data is included in recordings."
 msgstr "Ak je povolené, zahrnú sa údaje AIT do nahrávok."
 
 msgid ""
+"If enabled, a log will be kept of CEC protocol traffic. The log files are "
+"located with the other log files but named 'Enigma2-hdmicec-[date].log'."
+msgstr ""
+
+msgid ""
 "If enabled, using a time window to detect a wakeup from deep standby by a "
 "timer. Default setting ist disabled and used a special signal from the "
 "receiver. But some devices set a wrong or none signal and the wakeup "
@@ -9469,6 +9510,11 @@ msgid "If muted, hide mute icon or mute information after few seconds."
 msgstr ""
 "Pri stíšení sa ikona stíšenia alebo informácia po niekoľkých sekundách "
 "skryje."
+
+msgid ""
+"If set to 'Yes' the same commands will be sent to the TV for deep standby "
+"events as are sent during regular standby events."
+msgstr ""
 
 msgid ""
 "If set to 'no', can you save older events even after zapping or interruption "
@@ -9571,6 +9617,12 @@ msgstr ""
 "Ak je zapnutá voľba 'dočasné riešenie na prebudenie z vypnutia', čaká sa na "
 "synchronizovanie systémového času. V závislosti do požiadavky bude "
 "zobúdzanie zariadení pokračovať max. po 2 minútach."
+
+msgid ""
+"If the deep standby workaround is enabled wait until the system time is "
+"synchronized. Depending on the requirement the device wake up will "
+"continuing after a maximum of 2 minutes."
+msgstr ""
 
 msgid ""
 "If the free space is less than setting value, then an attempt is made to "
@@ -9939,6 +9991,9 @@ msgid "Input devices"
 msgstr "Vstupné zariadenia"
 
 msgid "Input scroll position"
+msgstr ""
+
+msgid "InputDevice Setup"
 msgstr ""
 
 msgid "Insert"
@@ -10669,9 +10724,6 @@ msgstr "Zoznam akcií pre navigovanie"
 msgid "List available networks"
 msgstr "Zoznam dostupných sietí"
 
-msgid "List mode"
-msgstr "Režim zoznamu"
-
 msgid "List of Storage Devices"
 msgstr "Zoznam úložných zariadení"
 
@@ -10726,6 +10778,9 @@ msgstr "Načítať EPG"
 
 msgid "Load playlist"
 msgstr "Načítať playlist"
+
+msgid "Load tags from the timer and recordings"
+msgstr ""
 
 msgid "Load unlinked userbouquets"
 msgstr "Načítať neprepojené používateľské prehľady"
@@ -12237,9 +12292,6 @@ msgstr "Nie je dostupný žiadny hash. program pre hash %s"
 msgid "Norfolk Island"
 msgstr "Norfolk"
 
-msgid "Normal mode"
-msgstr "Normálny režim"
-
 msgid "North"
 msgstr "Sever"
 
@@ -12435,9 +12487,6 @@ msgstr "Nastavenie OSD"
 
 msgid "OSD name request"
 msgstr "Žiadosť OSD názvu"
-
-msgid "OSD position setup"
-msgstr "Nastavenie pozície OSD"
 
 msgid "OSD settings"
 msgstr "Nastavenia OSD"
@@ -12935,6 +12984,9 @@ msgstr "Prechod (passthrough)"
 msgid "Password"
 msgstr "Heslo"
 
+msgid "Password (httpuser)"
+msgstr ""
+
 msgid "Password (httpwd)"
 msgstr "Heslo (httpwd)"
 
@@ -13045,9 +13097,6 @@ msgid "Picon"
 msgstr "Prog. ikony"
 
 msgid "Picon and Service Name"
-msgstr "Prog. ikona a názov stanice"
-
-msgid "Picon and service name"
 msgstr "Prog. ikona a názov stanice"
 
 msgid "Picon width"
@@ -13233,6 +13282,9 @@ msgstr "Prosím zadajte nový názov priečinka"
 
 msgid "Please enter the new file name"
 msgstr "Prosím zadajte nový názov súboru"
+
+msgid "Please enter the new tag:"
+msgstr ""
 
 msgid "Please enter the old PIN code"
 msgstr "Prosím zadajte pôvodný PIN kód"
@@ -13853,9 +13905,6 @@ msgstr "Náhľad"
 
 msgid "Preview menu"
 msgstr "Menu pre náhľad"
-
-msgid "Preview selected channel"
-msgstr "Náhľad vybraného kanála"
 
 msgid "Previous"
 msgstr "Predchádzajúce"
@@ -14641,6 +14690,9 @@ msgstr "Premenovať súbor/priečinok"
 msgid "Rename name and description for new events"
 msgstr "Premenovať názov a popis pre nové udalosti"
 
+msgid "Rename this tag"
+msgstr ""
+
 msgid "Rename to:"
 msgstr "Premenovať na:"
 
@@ -14679,6 +14731,12 @@ msgstr ""
 "Nahradiť znak `- ` v dialógoch farebným textom pre jednotlivý reproduktor "
 "(ako teletextové titulky pre nepočujúcich)"
 
+#, python-format
+msgid ""
+"Replace all '%s' tags with:\n"
+"(NOTE: 'Cancel' cannot undo this!)"
+msgstr ""
+
 msgid "Reportage"
 msgstr "Reportáž"
 
@@ -14699,6 +14757,9 @@ msgstr "Rezervované na budúce použitie"
 
 msgid "Reset"
 msgstr "Reset"
+
+msgid "Reset HDMI-CEC settings to default"
+msgstr ""
 
 msgid "Reset and renumerate title names"
 msgstr "Reset a prečíslovať názvy titulov"
@@ -15163,6 +15224,9 @@ msgstr "Uložiť dáta EPG"
 msgid "Save all changed settings and exit"
 msgstr "Uložiť všetky zmenené nastavenia a ukončiť"
 
+msgid "Save all changed tags and exit"
+msgstr ""
+
 msgid "Save and record"
 msgstr "Uložiť a nahrať"
 
@@ -15442,6 +15506,11 @@ msgid ""
 msgstr ""
 "Ak to vyžaduje anténny systéme, vyberte možnosť 'A' alebo 'B'. Inak vyberte "
 "možnosť 'žiadne'. Ak si nie ste istí, vyberte možnosť 'žiadne'."
+
+msgid ""
+"Select 'Yes' to enable editing of this device's settings. Selecting 'No' "
+"resets the devices settings to their default values."
+msgstr ""
 
 msgid ""
 "Select 'band' if using a 'universal' LNB, otherwise consult your LNB spec "
@@ -15761,6 +15830,9 @@ msgstr ""
 msgid "Select the character or action under the keyboard cursor"
 msgstr "Vybrať znak alebo akciu pod kurzorom klávesnice"
 
+msgid "Select the current menu item"
+msgstr ""
+
 msgid "Select the currently highlighted locale/language for the user interface"
 msgstr ""
 "Vybrať aktuálne zvýraznené miestne nastavenie alebo jazyk pre používateľské "
@@ -15884,6 +15956,12 @@ msgstr "Vybrať súpravu veľkých písmen len pre ďalšie písmeno"
 
 msgid "Select the sleep timer action."
 msgstr "Vyberte akciu pre časovač uspania."
+
+msgid "Select the time delay before the button starts repeating."
+msgstr ""
+
+msgid "Select the time delay between each repeat of the button."
+msgstr ""
 
 msgid "Select the time zone within the area or region."
 msgstr "Nastaviť časovú zónu v rámci oblasti alebo regiónu."
@@ -16259,6 +16337,9 @@ msgstr "Nastavte akciu pre tlačidlo 'Info'"
 msgid "Set archive mode (644)"
 msgstr "Nastaviť archívny režim (644)"
 
+msgid "Set current CEC address as fixed address"
+msgstr ""
+
 msgid "Set default"
 msgstr "Nastaviť predvolené"
 
@@ -16416,24 +16497,6 @@ msgstr ""
 msgid ""
 "Set the type of the progress indication in the channel selection screen."
 msgstr "Nastavte typ indikátora priebehu na obrazovke pre výber kanála."
-
-msgid "Set time window to 1 hour"
-msgstr "Nastaviť časové okno na 1 hodinu"
-
-msgid "Set time window to 2 hours"
-msgstr "Nastaviť časové okno na 2 hodiny"
-
-msgid "Set time window to 3 hours"
-msgstr "Nastaviť časové okno na 3 hodiny"
-
-msgid "Set time window to 4 hours"
-msgstr "Nastaviť časové okno na 4 hodiny"
-
-msgid "Set time window to 5 hours"
-msgstr "Nastaviť časové okno na 5 hodín"
-
-msgid "Set time window to 6 hours"
-msgstr "Nastaviť časové okno na 6 hodín"
 
 msgid "Set to the desired primetime (hour)."
 msgstr "Nastavte požadovaný hlavný čas (hod)."
@@ -16973,9 +17036,6 @@ msgstr "Zobraziť pozadie pri rádiovom kanáli."
 
 msgid "Show bouquet on launch"
 msgstr "Zobraziť prehľad po spustení"
-
-msgid "Show bouquet selection menu"
-msgstr "Zobraziť menu pre výber prehľadu"
 
 msgid "Show channel number in infobar"
 msgstr "Zobraziť číslo kanála v Info-paneli"
@@ -17699,6 +17759,13 @@ msgid "Somalia"
 msgstr "Somálsko"
 
 msgid ""
+"Some TV devices can't swich to correct input if a another HDMI port active. "
+"This setting sets the TV to standby before the switch. (If the TV does not "
+"turn back on it may require a slower transmission interval or the repetition "
+"of wake-up commands.)"
+msgstr ""
+
+msgid ""
 "Some TV devices can't swich to correct input if a another hdmi port active. "
 "This setting set the TV to standby before.\n"
 "(If the TV does not turn back on, may require a slower transmission interval "
@@ -18042,9 +18109,8 @@ msgstr "Zastaviť záznam"
 msgid "Stop playing this movie?"
 msgstr "Zastaviť prehrávanie tohto filmu?"
 
-msgid "Stop previous broadcasted service on return to movielist."
+msgid "Stop previous broadcasted service on return to movie list."
 msgstr ""
-"Zastaviť predchádzajúce vysielanie stanice po návrate do zoznamu filmov."
 
 msgid "Stop recording"
 msgstr "Zastaviť nahrávanie"
@@ -18331,9 +18397,6 @@ msgstr "Prepnúť medzi stránkou pre zvuk, titulky"
 msgid "Switch between filelist/playlist"
 msgstr "Prepnúť medzi zoznamom súborov/playlistom"
 
-msgid "Switch between normal mode and list mode"
-msgstr "Prepnúť medzi normálnym režimom a zoznamom"
-
 msgid "Switch config"
 msgstr "Konfigurácia prepínania"
 
@@ -18503,6 +18566,12 @@ msgstr "Stránka TXT titulkov & jazyk"
 
 msgid "Table of content for collection"
 msgstr "Obsah zbierky"
+
+msgid "Tag Editor"
+msgstr ""
+
+msgid "Tag Editor Actions"
+msgstr ""
 
 msgid "Tagalog"
 msgstr "Tagalčina (Tagalog)"
@@ -18834,6 +18903,9 @@ msgid ""
 msgstr ""
 "Čas vyrov. pamäte pre timeshift prekračuje limit zadaný v nastaveniach.\n"
 "Čo chcete urobiť?"
+
+msgid "The command to wake from standby will be sent multiple times."
+msgstr ""
 
 msgid "The current update may be unstable"
 msgstr "Aktuálna aktualizácia môže byť nestabilná"
@@ -19172,6 +19244,12 @@ msgstr "Umožňuje zobrazovať moduly s webovými odkazmi v stiahnutých súboro
 #, python-format
 msgid "This field allows you to search an additional symbol rate up to %s."
 msgstr "Toto pole umožňuje prehľadávať prídavnú symb. rýchlosť až do %s."
+
+msgid ""
+"This is a workaround for some devices that wakeup again after switching to "
+"standby. The wake up command's from other devices will be ignored for few "
+"seconds."
+msgstr ""
 
 msgid ""
 "This is a workaround for some devices there wakeup again after switching in "
@@ -19983,6 +20061,9 @@ msgid "Toggle new text inserts before or overwrites existing text"
 msgstr ""
 "Prepnúť vkladanie nového textu dopredu alebo prepisovanie existujúceho textu"
 
+msgid "Toggle selection of the current tag"
+msgstr ""
+
 msgid "Toggle service name display"
 msgstr "Prepnúť zobrazenie názvu stanice/služby"
 
@@ -20128,6 +20209,11 @@ msgid "Try to send repeated commands if not all commands are executed.\n"
 msgstr ""
 "Pokúsiť sa o odoslanie opakovaných príkazov, ak nebudú vyvolané všetky "
 "príkazy.\n"
+
+msgid ""
+"Try to send repeated commands if not all commands are executed. (e.g. TV "
+"wakeup, but not switched to correct input.)"
+msgstr ""
 
 msgid "Try to slow down the send interval if not all commands are executed."
 msgstr ""
@@ -20714,6 +20800,9 @@ msgstr ""
 msgid "Use circular LNB"
 msgstr "Použiť LNB pre kruhovú polarizáciu (circular LNB)"
 
+msgid "Use defaults"
+msgstr ""
+
 msgid "Use extended List"
 msgstr "Použiť rozšírený zoznam filmov"
 
@@ -20912,6 +21001,9 @@ msgstr "Meno používateľa (httpuser)"
 
 msgid "Username:"
 msgstr "Meno používateľa:"
+
+msgid "Using automatic address"
+msgstr ""
 
 msgid "Using fixed address"
 msgstr "Používaná pevná adresa"
@@ -21241,6 +21333,9 @@ msgstr "Text virtuálnej klávesnice:"
 msgid "Virtual keyboard"
 msgstr "Virtuálna klávesnica"
 
+msgid "Visual impaired commentary"
+msgstr ""
+
 msgid "Vol"
 msgstr "Hlas"
 
@@ -21261,6 +21356,11 @@ msgstr "Nastavenie hlasitosti"
 
 msgid "Volume down"
 msgstr "Hlasitosť nadol"
+
+msgid ""
+"Volume keys on the receiver remote will control the TV volume. If this "
+"feature is not supported the volume keys have no function!"
+msgstr ""
 
 msgid "Volume up"
 msgstr "Hlasitosť nahor"
@@ -21441,21 +21541,6 @@ msgstr ""
 "Potom vyhľadajte koniec, stlačte OK, vyberte voľbu 'koniec strihu'. A hotovo."
 
 msgid ""
-"Welcome to the cutlist editor.\n"
-"\n"
-"Seek to the start of the stuff you want to cut away. Press OK, select 'start "
-"cut'.\n"
-"\n"
-"Then seek to the end, press OK, select 'end cut'. That's it."
-msgstr ""
-"Vitajte v editore strihov.\n"
-"\n"
-"Nájdite začiatok toho, čo chcete vystrihnúť. Stlačte OK, vyberte voľbu "
-"'začiatok strihu'.\n"
-"\n"
-"Potom nájdite koniec, stlačte OK, vyberte voľbu 'koniec strihu'. A hotovo."
-
-msgid ""
 "Welcome to the image upgrade wizard. The wizard will assist you in upgrading "
 "the firmware of your %s %s by providing a backup facility for your current "
 "settings and a short explanation of how to upgrade your firmware."
@@ -21561,6 +21646,22 @@ msgid ""
 msgstr ""
 "Ak je povolené, on-line kontrola bude kontrolovať aj dostupnosť "
 "experimentálnych verzií"
+
+msgid "When enabled the receiver will automatically be switched off."
+msgstr ""
+
+msgid "When enabled the receiver will automatically be switched on."
+msgstr ""
+
+msgid ""
+"When enabled the receiver will automatically return to standby when the TV "
+"is turned off."
+msgstr ""
+
+msgid ""
+"When enabled the receiver will automatically wake from standby when the TV "
+"is turned on."
+msgstr ""
 
 msgid ""
 "When enabled, AIT data will be included in http streams. This allows a "
@@ -21812,6 +21913,11 @@ msgstr ""
 "EPG."
 
 msgid ""
+"When receiver wakes from standby it will command the TV to switch to the "
+"HDMI input to which the receiver is connected."
+msgstr ""
+
+msgid ""
 "When set each folder will show the previous state used, when off the default "
 "values will be shown."
 msgstr ""
@@ -21839,6 +21945,11 @@ msgstr ""
 msgid ""
 "When the input cursor reaches this point (percentage of the width, from "
 "either side) scroll the text to the cursor."
+msgstr ""
+
+msgid ""
+"When the receiver wakes from standby or deep standby it will send a command "
+"to the TV to bring it out of standby."
 msgstr ""
 
 msgid ""
@@ -22606,16 +22717,6 @@ msgstr "Prepnúť na kanál (nastavenie v menu)"
 
 msgid "Zap to channel and close (setup in menu)"
 msgstr "Prepnúť na kanál a zatvoriť (nastavenie v menu)"
-
-msgid "Zap to selected channel"
-msgstr "Prepnúť na vybraný kanál"
-
-msgid ""
-"Zap to selected channel, or show detailed event info (depends on "
-"configuration)"
-msgstr ""
-"Prepnúť na vybraný kanál alebo zobraziť detailné informácie o udalosti (v "
-"závislosti na nastavení)"
 
 msgid "Zap up"
 msgstr "Prepnúť nahor"
@@ -23998,9 +24099,6 @@ msgstr ""
 "ale nie je možné vyhľadávať nové TV kanály\n"
 "alebo konfigurovať nastavenia tunera"
 
-msgid "save last directory on exit"
-msgstr "pri ukončení uložiť posledný priečinok"
-
 msgid "save playlist on exit"
 msgstr "pri ukončení uložiť zoznam nahrávok"
 
@@ -24536,6 +24634,139 @@ msgstr "prepínanie"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "%d-%m"
+#~ msgstr "%d-%m"
+
+#~ msgid "Add/remove change timer for current event"
+#~ msgstr "Pridať/odstrániť zmenu časovača pre aktuálnu udalosť"
+
+#~ msgid ""
+#~ "Allows you to enable the twisted log. They contain very detailed "
+#~ "information of everything the twisted does. ('/tmp/twisted.log')"
+#~ msgstr ""
+#~ "Umožňuje povoliť podrobnejší záznam typu twisted. Ten obsahuje veľmi "
+#~ "podrobné informácie o všetkých udalostiach typu twisted. ('/tmp/twisted."
+#~ "log')"
+
+#~ msgid "Allows you to setup the button to do what you choose."
+#~ msgstr "Umožňuje nastaviť tlačidlo na akciu, ktorú si vyberiete."
+
+#~ msgid "Button"
+#~ msgstr "Tlačidlo"
+
+#~ msgid "Compensate for overscan"
+#~ msgstr "Kompenzácia pre overscan"
+
+#~ msgid "Cutlist editor"
+#~ msgstr "Editor strihov"
+
+#~ msgid "Enable twisted log *"
+#~ msgstr "Zapnúť záznam typu twisted *"
+
+#~ msgid "Fontsize"
+#~ msgstr "Písmo"
+
+#~ msgid "Go to first service"
+#~ msgstr "Prejsť na prvú stanicu"
+
+#~ msgid "Go to last service"
+#~ msgstr "Prejsť na poslednú stanicu"
+
+#~ msgid "Go to next event"
+#~ msgstr "Prejsť na ďalšiu udalosť"
+
+#~ msgid "Go to next page of service"
+#~ msgstr "Prejsť na ďalšiu stránku stanice"
+
+#~ msgid "Go to previous event"
+#~ msgstr "Prejsť na predošlú udalosť"
+
+#~ msgid "Go to previous page of service"
+#~ msgstr "Prejsť na predošlú stránku stanice"
+
+#~ msgid "Goto next day of events"
+#~ msgstr "Prejsť na ďalší deň udalostí"
+
+#~ msgid "Goto next page of events"
+#~ msgstr "Prejsť na ďalšiu stránku udalostí"
+
+#~ msgid "Goto previous day of events"
+#~ msgstr "Prejsť na predchádzajúci deň udalostí"
+
+#~ msgid "Goto previous page of events"
+#~ msgstr "Prejsť na predošlú stránku udalostí"
+
+#~ msgid "List mode"
+#~ msgstr "Režim zoznamu"
+
+#~ msgid "Normal mode"
+#~ msgstr "Normálny režim"
+
+#~ msgid "OSD position setup"
+#~ msgstr "Nastavenie pozície OSD"
+
+#~ msgid "Picon and service name"
+#~ msgstr "Prog. ikona a názov stanice"
+
+#~ msgid "Preview selected channel"
+#~ msgstr "Náhľad vybraného kanála"
+
+#~ msgid "Set time window to 1 hour"
+#~ msgstr "Nastaviť časové okno na 1 hodinu"
+
+#~ msgid "Set time window to 2 hours"
+#~ msgstr "Nastaviť časové okno na 2 hodiny"
+
+#~ msgid "Set time window to 3 hours"
+#~ msgstr "Nastaviť časové okno na 3 hodiny"
+
+#~ msgid "Set time window to 4 hours"
+#~ msgstr "Nastaviť časové okno na 4 hodiny"
+
+#~ msgid "Set time window to 5 hours"
+#~ msgstr "Nastaviť časové okno na 5 hodín"
+
+#~ msgid "Set time window to 6 hours"
+#~ msgstr "Nastaviť časové okno na 6 hodín"
+
+#~ msgid "Show bouquet selection menu"
+#~ msgstr "Zobraziť menu pre výber prehľadu"
+
+#~ msgid "Stop previous broadcasted service on return to movielist."
+#~ msgstr ""
+#~ "Zastaviť predchádzajúce vysielanie stanice po návrate do zoznamu filmov."
+
+#~ msgid "Switch between normal mode and list mode"
+#~ msgstr "Prepnúť medzi normálnym režimom a zoznamom"
+
+#~ msgid ""
+#~ "Welcome to the cutlist editor.\n"
+#~ "\n"
+#~ "Seek to the start of the stuff you want to cut away. Press OK, select "
+#~ "'start cut'.\n"
+#~ "\n"
+#~ "Then seek to the end, press OK, select 'end cut'. That's it."
+#~ msgstr ""
+#~ "Vitajte v editore strihov.\n"
+#~ "\n"
+#~ "Nájdite začiatok toho, čo chcete vystrihnúť. Stlačte OK, vyberte voľbu "
+#~ "'začiatok strihu'.\n"
+#~ "\n"
+#~ "Potom nájdite koniec, stlačte OK, vyberte voľbu 'koniec strihu'. A hotovo."
+
+#~ msgid "Zap to selected channel"
+#~ msgstr "Prepnúť na vybraný kanál"
+
+#~ msgid ""
+#~ "Zap to selected channel, or show detailed event info (depends on "
+#~ "configuration)"
+#~ msgstr ""
+#~ "Prepnúť na vybraný kanál alebo zobraziť detailné informácie o udalosti (v "
+#~ "závislosti na nastavení)"
+
+#~ msgid "save last directory on exit"
+#~ msgstr "pri ukončení uložiť posledný priečinok"
 
 #~ msgid ""
 #~ "When enabled, the length of each recording will be shown in the movielist "
