@@ -24,6 +24,7 @@ class eHttpsStream: public iTsSource, public sigc::trackable, public eThread
 	size_t partialPktSz;
 	char* tmpBuf;
 	size_t tmpBufSize;
+	int startDelay;
 
 	int openUrl(const std::string &url, std::string &newurl);
 	void thread();

@@ -1025,7 +1025,6 @@ static void nsvg__addShape(NSVGparser* p)
 	else
 		p->shapesTail->next = shape;
 	p->shapesTail = shape;
-
 }
 
 static void nsvg__addPath(NSVGparser* p, char closed)
