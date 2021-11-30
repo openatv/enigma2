@@ -15,6 +15,7 @@ public:
 	void setPixmapFromFile(const char *filename);
 	void setAlphatest(int alphatest); /* 1 for alphatest, 2 for alphablend */
 	void setScale(int scale);
+	void setPixmapScaleFlags(int flags);
 	void setBorderWidth(int pixel);
 	void setBorderColor(const gRGB &color);
 protected:

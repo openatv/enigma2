@@ -4,7 +4,7 @@
 #include <lib/gui/ewidgetdesktop.h>
 
 ePixmap::ePixmap(eWidget *parent)
-        :eWidget(parent), m_alphatest(false), m_scale(false), m_have_border_color(false), m_border_width(0)
+        :eWidget(parent), m_alphatest(0), m_scale(0), m_have_border_color(false), m_border_width(0)
 {
 }
 
@@ -16,9 +16,21 @@ void ePixmap::setAlphatest(int alphatest)
 
 void ePixmap::setScale(int scale)
 {
+	// support old python code beacause the old code will only support BT_SCALE
+	scale = (scale) ? gPainter::BT_SCALE : 0;
+
 	if (m_scale != scale)
 	{
 		m_scale = scale;
+		invalidate();
+	}
+}
+
+void ePixmap::setPixmapScaleFlags(int flags)
+{
+	if (m_scale != flags)
+	{
+		m_scale = flags;
 		invalidate();
 	}
 }
@@ -94,17 +106,12 @@ int ePixmap::event(int event, void *data, void *data2)
 		if (m_pixmap)
 		{
 			int flags = 0;
-			if (m_alphatest == 0)
-				flags = 0;
-			else if (m_alphatest == 1)
+			if (m_alphatest == 1)
 				flags = gPainter::BT_ALPHATEST;
 			else if (m_alphatest == 2)
 				flags = gPainter::BT_ALPHABLEND;
-			if (m_scale) {
-				flags |= gPainter::BT_SCALE;
-				if (m_scale & gPainter::BT_KEEP_ASPECT_RATIO)
-					flags |= gPainter::BT_KEEP_ASPECT_RATIO;
-			}
+
+			flags |= m_scale;
 			painter.blit(m_pixmap, eRect(ePoint(0, 0), s), eRect(), flags);
 		}
 
