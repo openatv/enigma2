@@ -1,6 +1,6 @@
 from os.path import isdir, isfile
 
-from enigma import eServiceCenter, eServiceReference, iServiceInformation  # , iDVBMetaFile
+from enigma import eServiceCenter, eServiceReference, iDVBMetaFile, iServiceInformation
 
 from Components.ActionMap import HelpableActionMap
 from Components.config import config
@@ -309,7 +309,7 @@ class TagEditor(Screen, HelpableScreen, TagManager):
 		filename = "%s.meta" % filename if filename.endswith(".ts") else "%s.ts.meta" % filename
 		if isfile(filename):
 			lines = fileReadLines(filename, source=MODULE_NAME)
-			idTags = 4 # iDVBMetaFile.idTags
+			idTags = iDVBMetaFile.idTags
 			if len(lines) > idTags:
 				tagList = " ".join(tags)
 				if tagList != lines[idTags]:
