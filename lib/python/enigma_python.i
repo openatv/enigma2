@@ -266,6 +266,7 @@ typedef long time_t;
 %include <lib/python/pythonconfig.h>
 %include <lib/gdi/picload.h>
 %include <lib/dvb/streamserver.h>
+%include <lib/dvb/metaparser.h>
 /**************  eptr  **************/
 
 /**************  signals  **************/
