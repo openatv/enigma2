@@ -458,7 +458,7 @@ void setListBoxScrollbarStyle(int,int);
 %{
 void setListBoxScrollbarStyle(int width, int offset)
 {
-	eListBox::setScrollbarStyle(width, offset);
+	eListbox::setScrollbarStyle(width, offset);
 }
 %}
 
