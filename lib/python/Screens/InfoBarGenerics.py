@@ -227,7 +227,7 @@ def getActiveSubservicesForCurrentChannel(current_service):
 				if title and "Sendepause" not in title:
 					starttime = datetime.datetime.fromtimestamp(event[0]).strftime('%H:%M')
 					endtime = datetime.datetime.fromtimestamp(event[0] + event[1]).strftime('%H:%M')
-					servicename = eServiceReference(subservice).getServiceName()
+					servicename = ServiceReference(subservice).getServiceName()
 					schedule = str(starttime) + "-" + str(endtime)
 					activeSubservices.append((servicename + " " + schedule + " " + title, subservice))
 		return activeSubservices
