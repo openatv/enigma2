@@ -43,7 +43,7 @@ class HDMICECSetup(Setup):
 
 	def setDefaults(self):
 		for item in config.hdmicec.dict():
-			if item == "enabled":
+			if item in ("enabled", "advanced_settings"):
 				continue
 			configItem = getattr(config.hdmicec, item)
 			configItem.value = configItem.default
