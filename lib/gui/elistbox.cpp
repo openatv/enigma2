@@ -15,8 +15,10 @@ eListbox::eListbox(eWidget *parent) :
 	m_top(0), m_selected(0), m_itemheight(25),
 	m_items_per_page(0), m_selection_enabled(1), m_scrollbar(nullptr), m_native_keys_bound(false)
 {
-	m_scrollbar_width = eListbox::getScrollbarStyleWith();
-	m_scrollbar_offset = eListbox::getScrollbarStyleOffset();
+	// FIXME !!!
+	//m_scrollbar_width = eListbox::getScrollbarStyleWith();
+	//m_scrollbar_offset = eListbox::getScrollbarStyleOffset();
+
 	memset(static_cast<void*>(&m_style), 0, sizeof(m_style));
 	m_style.m_text_offset = ePoint(1,1);
 //	setContent(new eListboxStringContent());
