@@ -168,6 +168,13 @@ public:
 
 	int getScrollbarWidth() { return m_scrollbar_width; }
 
+	static void setScrollbarStyle(int width = -1, int offset = -1) { 
+			if (width != -1)
+				Defaultwidth = width; 
+			if (offset != -1)
+				Defaultoffset = offset; 
+		}
+
 #ifndef SWIG
 	struct eListboxStyle *getLocalStyle(void);
 
@@ -182,13 +189,6 @@ public:
 
 	int getEntryTop();
 	void invalidate(const gRegion &region = gRegion::invalidRegion());
-
-	static void setScrollbarStyle(int width = -1, int offset = -1) { 
-			if (width != -1)
-				Defaultwidth = width; 
-			if (offset != -1)
-				Defaultoffset = offset; 
-		}
 
 protected:
 	int event(int event, void *data=0, void *data2=0);
