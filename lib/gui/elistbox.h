@@ -182,16 +182,31 @@ public:
 
 	int getEntryTop();
 	void invalidate(const gRegion &region = gRegion::invalidRegion());
+
+	static void setScrollbarStyle(int width = -1, int offset = -1) { 
+			if (width != -1)
+				Defaultwidth = width; 
+			if (offset != -1)
+				Defaultoffset = offset; 
+		}
+
 protected:
 	int event(int event, void *data=0, void *data2=0);
 	void recalcSize();
 
 private:
+	static int getDefaultwidth() { return Defaultwidth; }
+	static int getDefaultoffset() { return Defaultoffset; }
+
+	static int Defaultwidth;
+	static int Defaultoffset;
+
 	int m_scrollbar_mode, m_prev_scrollbar_page;
 	bool m_content_changed;
 	bool m_enabled_wrap_around;
 
 	int m_scrollbar_width;
+	int m_scrollbar_offset;
 	int m_top, m_selected;
 	int m_itemheight;
 	int m_items_per_page;

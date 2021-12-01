@@ -6,12 +6,17 @@
 #include "vuplus_gles.h"
 #endif
 
+int eListbox::Defaultwidth = 10;
+int eListbox::Defaultoffset = 5;
+
 eListbox::eListbox(eWidget *parent) :
 	eWidget(parent), m_scrollbar_mode(showNever), m_prev_scrollbar_page(-1),
 	m_content_changed(false), m_enabled_wrap_around(false), m_scrollbar_width(10),
 	m_top(0), m_selected(0), m_itemheight(25),
 	m_items_per_page(0), m_selection_enabled(1), m_scrollbar(nullptr), m_native_keys_bound(false)
 {
+	m_scrollbar_width = eListbox::getScrollbarStyleWith();
+	m_scrollbar_offset = eListbox::getScrollbarStyleOffset();
 	memset(static_cast<void*>(&m_style), 0, sizeof(m_style));
 	m_style.m_text_offset = ePoint(1,1);
 //	setContent(new eListboxStringContent());
@@ -318,7 +323,7 @@ void eListbox::updateScrollBar()
 		m_content_changed = false;
 		if (m_scrollbar_mode == showLeft)
 		{
-			m_content->setSize(eSize(width-m_scrollbar_width-5, m_itemheight));
+			m_content->setSize(eSize(width-m_scrollbar_width-m_scrollbar_offset, m_itemheight));
 			m_scrollbar->move(ePoint(0, 0));
 			m_scrollbar->resize(eSize(m_scrollbar_width, height));
 			if (entries > m_items_per_page)
@@ -334,7 +339,7 @@ void eListbox::updateScrollBar()
 		{
 			m_scrollbar->move(ePoint(width-m_scrollbar_width, 0));
 			m_scrollbar->resize(eSize(m_scrollbar_width, height));
-			m_content->setSize(eSize(width-m_scrollbar_width-5, m_itemheight));
+			m_content->setSize(eSize(width-m_scrollbar_width-m_scrollbar_offset, m_itemheight));
 			m_scrollbar->show();
 		}
 		else
@@ -394,7 +399,7 @@ int eListbox::event(int event, void *data, void *data2)
 		int xoffset = 0;
 		if (m_scrollbar && m_scrollbar_mode == showLeft)
 		{
-			xoffset = m_scrollbar->size().width() + 5;
+			xoffset = m_scrollbar->size().width() + m_scrollbar_offset;
 		}
 
 		for (int y = 0, i = 0; i <= m_items_per_page; y += m_itemheight, ++i)
@@ -428,11 +433,11 @@ int eListbox::event(int event, void *data, void *data2)
 				style->setStyle(painter, eWindowStyle::styleListboxNormal);
 				if (m_scrollbar->isVisible())
 				{
-					painter.clip(eRect(m_scrollbar->position() + ePoint(m_scrollbar->size().width(), 0), eSize(5,m_scrollbar->size().height())));
+					painter.clip(eRect(m_scrollbar->position() + ePoint(m_scrollbar->size().width(), 0), eSize(m_scrollbar_offset,m_scrollbar->size().height())));
 				}
 				else
 				{
-					painter.clip(eRect(m_scrollbar->position(), eSize(m_scrollbar->size().width() + 5, m_scrollbar->size().height())));
+					painter.clip(eRect(m_scrollbar->position(), eSize(m_scrollbar->size().width() + m_scrollbar_offset, m_scrollbar->size().height())));
 				}
 				painter.clear();
 				painter.clippop();
@@ -443,7 +448,7 @@ int eListbox::event(int event, void *data, void *data2)
 			if (m_scrollbar && m_scrollbar->isVisible())
 			{
 				style->setStyle(painter, eWindowStyle::styleListboxNormal);
-				painter.clip(eRect(m_scrollbar->position() - ePoint(5,0), eSize(5,m_scrollbar->size().height())));
+				painter.clip(eRect(m_scrollbar->position() - ePoint(m_scrollbar_offset,0), eSize(m_scrollbar_offset,m_scrollbar->size().height())));
 				painter.clear();
 				painter.clippop();
 			}
