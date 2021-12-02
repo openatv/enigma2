@@ -7,7 +7,7 @@ from time import localtime, strftime, struct_time
 from enigma import getPrevAsciiCode
 
 from Components.SystemInfo import BoxInfo
-from Tools.Directories import SCOPE_CONFIG, fileExists, resolveFilename
+from Tools.Directories import SCOPE_CONFIG, fileAccess, fileExists, resolveFilename
 from Tools.LoadPixmap import LoadPixmap
 from Tools.NumericalTextInput import NumericalTextInput
 from Components.Harddisk import harddiskmanager  # This import is order critical!
@@ -683,6 +683,7 @@ class ConfigLocations(ConfigElement):
 
 	def load(self):
 		ConfigElement.load(self)
+		self.loadValue = list(set(self.loadValue)) # remove duplicates
 		self.locations = [[x, None, False] for x in self.loadValue]
 		self.refreshMountPoints()
 		for location in self.locations:
@@ -737,11 +738,14 @@ class ConfigLocations(ConfigElement):
 
 	def setValue(self, value):
 		prev = self.locations
-		locations = [x[0] for x in self.locations]
-		for location in value:
-			if location in locations:
-				continue
-			self.locations.append([location, self.getMountPoint(location), fileExists(location)])
+		newvalues = list(set(value))
+		self.locations = []
+		for location in prev:
+			if location[0] in newvalues:
+				self.locations.append(location)
+				newvalues.remove(location[0])
+		for location in newvalues:
+			self.locations.append([location, self.getMountPoint(location), fileAccess(location)])
 		if self.locations != prev:
 			self.locations.sort(key=lambda x: x[0])
 			self.changed()
