@@ -6,10 +6,11 @@ from Components.ActionMap import ActionMap
 from Components.config import config
 from Components.AVSwitch import AVSwitch
 from Components.Console import Console
+from Components.Sources.StreamService import StreamServiceList
 from Components.SystemInfo import BoxInfo
 from Components.Harddisk import harddiskmanager
 from GlobalActions import globalActionMap
-from enigma import eDVBVolumecontrol, eTimer, eDVBLocalTimeHandler, eServiceReference
+from enigma import eDVBVolumecontrol, eTimer, eDVBLocalTimeHandler, eServiceReference, eStreamServer
 from boxbranding import getMachineBrand, getMachineName, getBrandOEM, getMachineBuild
 from Tools.Directories import mediaFilesInUse
 import Tools.Notifications
@@ -373,10 +374,10 @@ class TryQuitMainloop(MessageBox):
 			reason = _("Recording(s) are in progress or coming up in few seconds!") + '\n'
 			default_yes = False
 			timeout = 30
-#		elif eStreamServer.getInstance().getConnectedClients() or StreamServiceList:
-#			reasons = _("Client is streaming from this box!")
-#			default_yes = False
-#			timeout = 30
+		elif eStreamServer.getInstance().getConnectedClients() or StreamServiceList:
+			reason = _("Client is streaming from this box!")
+			default_yes = False
+			timeout = 30
 		elif mediaFilesInUse(session) and retvalue in (QUIT_SHUTDOWN, QUIT_REBOOT, QUIT_UPGRADE_FP, QUIT_UPGRADE_PROGRAM, QUIT_UPGRADE_FRONTPANEL):
 			reason = _("A file from media is in use!")
 			default_yes = False
