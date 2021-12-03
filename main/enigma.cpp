@@ -53,6 +53,11 @@ static eWidgetDesktop *wdsk, *lcddsk;
 
 static int prev_ascii_code;
 
+void setPrevAsciiCode(int code)
+{
+	prev_ascii_code = code;
+}
+
 int getPrevAsciiCode()
 {
 	int ret = prev_ascii_code;
