@@ -6,8 +6,8 @@ class TemplatedMultiContent(StringList):
 
 	def __init__(self, args):
 		StringList.__init__(self, args)
-		from enigma import BT_KEEP_ASPECT_RATIO, BT_SCALE, RT_HALIGN_CENTER, RT_HALIGN_LEFT, RT_HALIGN_RIGHT, RT_VALIGN_BOTTOM, RT_VALIGN_CENTER, RT_VALIGN_TOP, RT_WRAP, eListboxPythonMultiContent, gFont
-		from skin import parseFont, getSkinFactor
+		from enigma import BT_HALIGN_CENTER, BT_HALIGN_LEFT, BT_HALIGN_RIGHT, BT_KEEP_ASPECT_RATIO, BT_SCALE, BT_VALIGN_BOTTOM, BT_VALIGN_CENTER, BT_VALIGN_TOP, RT_HALIGN_CENTER, RT_HALIGN_LEFT, RT_HALIGN_RIGHT, RT_VALIGN_BOTTOM, RT_VALIGN_CENTER, RT_VALIGN_TOP, RT_WRAP, eListboxPythonMultiContent, gFont
+		from skin import getSkinFactor, parseFont
 		from Components.MultiContent import MultiContentEntryPixmap, MultiContentEntryPixmapAlphaBlend, MultiContentEntryPixmapAlphaTest, MultiContentEntryProgress, MultiContentEntryProgressPixmap, MultiContentEntryText, MultiContentTemplateColor
 		f = getSkinFactor()
 		loc = locals()
@@ -36,12 +36,12 @@ class TemplatedMultiContent(StringList):
 				tmp = []
 				src = self.source.list
 				for x in range(len(src)):
-					if not isinstance(src[x], tuple) and not isinstance(src[x], list):
+					if not isinstance(src[x], (list, tuple)):
 						tmp.append((src[x],))
 					else:
 						tmp.append(src[x])
 			except Exception as error:
-					print("[TemplatedMultiContent] - %s" % error)
+					print("[TemplatedMultiContent] Error: %s." % error)
 					tmp = self.source.list
 			self.content.setList(tmp)
 		self.setTemplate()
