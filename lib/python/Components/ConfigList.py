@@ -217,15 +217,14 @@ class ConfigListScreen:
 			"toggleOverwrite": (self.keyToggle, _("Toggle new text inserts before or overwrites existing text")),
 		}, prio=1, description=_("Common Setup Actions"))
 		self["editConfigActions"].setEnabled(False if fullUI else True)
-		self["eraseConfigActions"] = HelpableNumberActionMap(self, ["TextEditActions"], {
-			"erase": (self.keyErase, _("Delete all the text"))
-		}, prio=1, description=_("Common Setup Actions"))
-		self["eraseConfigActions"].setEnabled(False if fullUI else True)
 		self["virtualKeyBoardActions"] = HelpableActionMap(self, "VirtualKeyboardActions", {
 			"showVirtualKeyboard": (self.keyText, _("Display the virtual keyboard for data entry"))
 		}, prio=1, description=_("Common Setup Actions"))
 		self["virtualKeyBoardActions"].setEnabled(False)
-		# REGRESSION PATCH: Legacy actions for older plugins (next 4 lines):
+		# Temporary support for legacy code and plugins that hasn't yet been updated (next 4 lines).
+		# All code should be updated to allow a better UI experience for users.  This patch code
+		# forces course control over the edit buttons instead of individual button control that is
+		# now available.
 		self["config_actions"] = DummyActions()
 		self["config_actions"].setEnabled = self.dummyConfigActions
 		self["VirtualKB"] = DummyActions()
@@ -270,11 +269,9 @@ class ConfigListScreen:
 			if isinstance(currConfig[1], (ConfigInteger, ConfigSequence, ConfigText)):
 				self["charConfigActions"].setEnabled(True)
 				self["editConfigActions"].setEnabled(True)
-				self["eraseConfigActions"].setEnabled(True)
 			else:
 				self["charConfigActions"].setEnabled(False)
 				self["editConfigActions"].setEnabled(False)
-				self["eraseConfigActions"].setEnabled(False)
 			if isinstance(currConfig[1], ConfigSelection):
 				self["menuConfigActions"].setEnabled(True)
 				self["key_menu"].setText(_("MENU"))
@@ -290,7 +287,6 @@ class ConfigListScreen:
 				self.showVirtualKeyBoard(False)
 			if isinstance(currConfig[1], ConfigMACText):
 				self["editConfigActions"].setEnabled(False)
-				self["eraseConfigActions"].setEnabled(True)
 				self.showVirtualKeyBoard(False)
 			if isinstance(currConfig[1], ConfigNumber):
 				self.showVirtualKeyBoard(False)
@@ -455,19 +451,18 @@ class ConfigListScreen:
 	def run(self):  # Allow ConfigList based screens to be processed from the Wizard.
 		self.keySave()
 
-	def dummyConfigActions(self, value):
+	def dummyConfigActions(self, value):  # Temporary support for legacy code and plugins that hasn't yet been updated.
 		self["configActions"].setEnabled(value)
 		self["navigationActions"].setEnabled(value)
 		self["menuConfigActions"].setEnabled(value)
 		self["charConfigActions"].setEnabled(value)
 		self["editConfigActions"].setEnabled(value)
-		self["eraseConfigActions"].setEnabled(value)
 
-	def dummyVKBActions(self, value):
+	def dummyVKBActions(self, value):  # Temporary support for legacy code and plugins that hasn't yet been updated.
 		self["virtualKeyBoardActions"].setEnabled(value)
 
 
-class DummyActions:
+class DummyActions:  # Temporary support for legacy code and plugins that hasn't yet been updated.
 	def setEnabled(self, enabled):
 		pass
 
