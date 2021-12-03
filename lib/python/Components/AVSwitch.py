@@ -1319,6 +1319,11 @@ class VideomodeHotplug:
 				return
 			mode = modelist[0][0]
 			rate = modelist[0][1]
+			# FIXME The rate needs to be a single value
+			if isinstance(rate, list):
+				print("[AVSwitch] ERROR rate is a list and needs to be a single value")
+				rate = rate[0]
+
 			print("[AVSwitch] setting %s/%s/%s" % (port, mode, rate))
 			iAVSwitch.setMode(port, mode, rate)
 

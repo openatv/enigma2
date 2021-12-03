@@ -96,10 +96,14 @@ class VideoSetup(Screen, ConfigListScreen):
 		self["config"].onSelectionChanged.append(self.selectionChanged)
 
 	def startHotplug(self):
-		self.hw.on_hotplug.append(self.createSetup)
+		self.hw.on_hotplug.append(self._createSetup)
 
 	def stopHotplug(self):
-		self.hw.on_hotplug.remove(self.createSetup)
+		self.hw.on_hotplug.remove(self._createSetup)
+
+	# FIXME
+	def _createSetup(self, what):
+		self.createSetup()
 
 	def createSetup(self):
 		level = config.usage.setup_level.index
@@ -482,10 +486,15 @@ class AudioSetup(Screen, ConfigListScreen):
 		self["config"].onSelectionChanged.append(self.selectionChanged)
 
 	def startHotplug(self):
-		self.hw.on_hotplug.append(self.createSetup)
+		self.hw.on_hotplug.append(self._createSetup)
 
 	def stopHotplug(self):
-		self.hw.on_hotplug.remove(self.createSetup)
+		self.hw.on_hotplug.remove(self._createSetup)
+
+	# FIXME
+	def _createSetup(self, what):
+		self.createSetup()
+
 
 	def createSetup(self):
 		level = config.usage.setup_level.index
