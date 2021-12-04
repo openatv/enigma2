@@ -711,4 +711,9 @@
 		</if>
 	</setup>
 
+	<setup level="1" key="TunerSettings" title="Tuner settings">
+		<item level="1" text="Force LNB Power" description="Force LNB Tuner Power settings." requires="ForceLNBPowerChanged">config.tunermisc.forceLnbPower</item>
+		<item level="1" text="Force ToneBurst" description="Force LNB Tuner ToneBurst settings." requires="ForceToneBurstChanged">config.tunermisc.forceToneBurst</item>
+	</setup>
+
 </setupxml>
