@@ -1,11 +1,10 @@
 from __future__ import print_function, division
 
-from enigma import eListboxPythonMultiContent, gFont, eEnv, getDesktop, pNavigation
+from enigma import eListboxPythonMultiContent, gFont, eEnv, pNavigation
 from boxbranding import getMachineBrand, getMachineName, getBrandOEM
 from Components.ActionMap import ActionMap
 from Components.Label import Label
 from Components.Sources.StaticText import StaticText
-from Components.Pixmap import Pixmap
 from Components.MenuList import MenuList
 from Components.MultiContent import MultiContentEntryText, MultiContentEntryPixmapAlphaBlend
 from Components.Network import iNetwork
@@ -18,15 +17,13 @@ from Screens.ParentalControlSetup import ProtectedScreen
 from Screens.NetworkSetup import *
 from Screens.About import About
 from Screens.PluginBrowser import PluginDownloadBrowser, PluginFilter, PluginBrowser
-from Screens.LocaleSelection import LocaleSelection
 from Screens.Satconfig import NimSelection
 from Screens.ScanSetup import ScanSimple, ScanSetup
-from Screens.Setup import Setup, getSetupTitle
+from Screens.Setup import Setup
 from Screens.HarddiskSetup import HarddiskSelection, HarddiskFsckSelection, HarddiskConvertExt4Selection
 from Screens.SkinSelector import LcdSkinSelector, SkinSelector
-from Screens.VideoMode import VideoSetup, AudioSetup
+from Screens.VideoMode import VideoSetup
 
-from Plugins.Plugin import PluginDescriptor
 from Plugins.SystemPlugins.NetworkWizard.NetworkWizard import NetworkWizard
 from Plugins.Extensions.Infopanel.RestartNetwork import RestartNetwork
 from Plugins.Extensions.Infopanel.MountManager import HddMount
@@ -37,10 +34,9 @@ from Plugins.SystemPlugins.SoftwareManager.ImageBackup import ImageBackup
 from Plugins.SystemPlugins.SoftwareManager.plugin import SoftwareManagerSetup, Load_defaults
 from Plugins.SystemPlugins.SoftwareManager.BackupRestore import BackupScreen, RestoreScreen, BackupSelection, getBackupPath, getOldBackupPath, getBackupFilename
 
-from Tools.Directories import fileExists
 from Tools.LoadPixmap import LoadPixmap
 
-from os import path, listdir
+from os import path
 from time import sleep
 from re import search
 from skin import getSkinFactor
@@ -487,7 +483,7 @@ class QuickMenu(Screen, ProtectedScreen):
 		elif item[0] == _("Video Settings"):
 			self.session.open(VideoSetup)
 		elif item[0] == _("Audio Settings"):
-			self.session.open(AudioSetup)
+			self.openSetup("AudioSettings")
 		elif item[0] == _("Auto Language"):
 			self.openSetup("autolanguagesetup")
 		elif item[0] == _("Audio Sync"):

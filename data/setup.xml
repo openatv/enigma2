@@ -17,6 +17,28 @@
 	<setup key="InputDeviceSetup" title="InputDevice Setup">
 		<!-- this is just a placeholder -->
 	</setup>
+	<setup level="1" key="AudioSettings" title="Audio settings">
+		<item level="1" text="PCM Multichannel" description="Choose whether multi channel sound tracks should be output as PCM." requires="CanPcmMultichannel">config.av.pcm_multichannel</item>
+		<item level="1" text="AC3 downmix" description="Choose whether AC3 sound tracks should be downmixed to stereo." requires="CanDownmixAC3">config.av.downmix_ac3</item>
+		<item level="1" text="AC3 plus transcoding" description="Choose whether AC3 Plus sound tracks should be transcoded to AC3." requires="CanAC3plusTranscode">config.av.transcodeac3plus</item>
+		<item level="1" text="DTS downmix" description="Choose whether DTS channel sound tracks should be downmixed to stereo." requires="CanDownmixDTS">config.av.downmix_dts</item>
+		<item level="1" text="DTS/DTS-HD HR/DTS-HD MA/DTS:X" description="Choose whether DTS channel sound tracks should be downmixed or transcoded." requires="CanDTSHD">config.av.dtshd</item>
+		<item level="1" text="WMA Pro" description="Choose whether WMA Pro channel sound tracks should be downmixed or transcoded." requires="CanWMAPRO">config.av.wmapro</item>
+		<item level="1" text="AAC downmix" description="Choose whether multi channel sound tracks should be downmixed to stereo." requires="CanDownmixAAC">config.av.downmix_aac</item>
+		<item level="1" text="AAC plus downmix" description="Configure whether multi channel sound tracks should be downmixed to stereo." requires="CanDownmixAACPlus">config.av.downmix_aacplus</item>
+		<item level="1" text="AAC transcoding" description="Choose whether AAC sound tracks should be transcoded." requires="CanAACTranscode">config.av.transcodeaac</item>
+		<item level="1" text="Audio Source" description="Choose whether multi channel sound tracks should be convert to PCM or SPDIF." requires="Canaudiosource">config.av.audio_source</item>
+		<item level="1" text="General AC3 delay" description="This option configures the general audio delay of Dolby Digital sound tracks.">config.av.generalAC3delay</item>
+		<item level="1" text="General PCM delay" description="This option configures the general audio delay of stereo sound tracks.">config.av.generalPCMdelay</item>
+		<item level="1" text="3D Surround" description="This option allows you to enable 3D Surround Sound." requires="Can3DSurround">config.av.surround_3d</item>
+		<item level="1" text="3D Surround Speaker Position" description="This option allows you to change the virtuell loadspeaker position." requires="Can3DSpeaker" conditional="config.av.surround_3d.value != 'none'">config.av.surround_3d_speaker</item>
+		<item level="1" text="Audio Auto Volume Level" description="This option configures you can set Auto Volume Level." requires="CanAutoVolume">config.av.autovolume</item>
+		<item level="1" text="Audio volume step size" description="Configure the general audio volume step size (limit 1-10).">config.av.volume_stepsize</item>
+		<item level="1" text="Audio volume step size fast mode" description="Configure the fast mode audio volume step size (limit 1-10). Activated when volume key permanent press or press fast in a row.">config.av.volume_stepsize_fastmode</item>
+		<item level="1" text="Hide mute notification" description="If muted, hide mute icon or mute information after few seconds.">config.av.volume_hide_mute</item>
+		<item level="1" text="Enable BT Audio" description="This Option allows you to switch Audio to BT Speakers." requires="CanBTAudio">config.av.btaudio</item>
+		<item level="1" text="General BT Audio delay" description="This option configures the general audio delay for BT Speakers." requires="CanBTAudioDelay">config.av.btaudiodelay</item>
+	</setup>
 	<setup key="audio_setup" title="Audio settings">
 		<!-- this is just a placeholder, the Videomode plugin implements this submenu -->
 	</setup>
