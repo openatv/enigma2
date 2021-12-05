@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-11-29 21:27+0000\n"
-"PO-Revision-Date: 2021-11-29 07:52+0000\n"
+"PO-Revision-Date: 2021-12-05 13:23+0000\n"
 "Last-Translator: Grzegorz <grzegorz914@icloud.com>\n"
 "Language-Team: Polish <https://hosted.weblate.org/projects/openatv/"
 "enigma2-7-0-po/pl/>\n"
@@ -1409,7 +1409,7 @@ msgstr ""
 
 msgid ""
 "'Handle standby from TV' has a higher priority than 'Handle input from TV'."
-msgstr ""
+msgstr "Komenda czuwania z TV ma wyższy priorytet niż komenda wejścia."
 
 msgid "'weatherplugin' is not installed!"
 msgstr "'Weatherplugin' nie jest zainstalowany!"
@@ -2094,7 +2094,7 @@ msgid "A crashlog was %s created in '%s'"
 msgstr "Plik crashlog został utworzony %s w '%s'"
 
 msgid "A file from media is in use!"
-msgstr ""
+msgstr "Plik z nośnika jest w użyciu!"
 
 #, python-format
 msgid ""
@@ -2381,7 +2381,7 @@ msgstr "Aktywuj PiP"
 msgid ""
 "Activate a way to send individual or specific internal HDMI-CEC commands "
 "from the command line."
-msgstr ""
+msgstr "Aktywuj możliwość wysyłania indywidualnych komend z lini poleceń."
 
 #, python-format
 msgid ""
@@ -2474,7 +2474,7 @@ msgid "Add a nameserver entry"
 msgstr "Dodaj wpis nazwy kanału"
 
 msgid "Add a new tag"
-msgstr ""
+msgstr "Dodaj nowy znacznik"
 
 msgid "Add a new title"
 msgstr "Dodaj nowy tytuł"
@@ -2507,7 +2507,7 @@ msgid "Add files to playlist"
 msgstr "Dodaj pliki do listy odtwarzania"
 
 msgid "Add new tag"
-msgstr ""
+msgstr "Dodaj nowy znacznik"
 
 msgid "Add plugin to Extensions menu*"
 msgstr "Dodaj wtyczkę do menu Rozszerzenia*"
@@ -2762,7 +2762,7 @@ msgid "Allows the %s %s to store the EPG data regularly."
 msgstr "Umożliwia %s %s na regularne przechowywanie danych EPG .."
 
 msgid "Allows the TV remote to be used to control the receiver."
-msgstr ""
+msgstr "Zezwól na kontrolę za pomocą pilota od TV."
 
 msgid ""
 "Allows you to adjust the amount of time the resolution information display "
@@ -2772,7 +2772,7 @@ msgstr ""
 "rozdzielczość."
 
 msgid "Allows you to assign the selected function to the this button."
-msgstr ""
+msgstr "Zezwól na przypisanie wybranej funkcji do tego przycisku."
 
 msgid ""
 "Allows you to enable the debug log. They contain very detailed information "
@@ -2821,7 +2821,7 @@ msgid "Alphanumeric"
 msgstr "Alfanumeryczny"
 
 msgid "Also on standby"
-msgstr "Również w trybie standby"
+msgstr "Również w trybie czuwania"
 
 msgid "Alternative"
 msgstr "Alternatywne"
@@ -2888,6 +2888,10 @@ msgid ""
 "respond unexpectedly. On the other hand, tries to respond better to "
 "different operating conditions."
 msgstr ""
+"Podjęto próbę przechwytywania aktualnego stanu TV. Jeśli nie jest to możliwe "
+"z powodu nieprawidłowych lub brakujących komunikatów o stanie, może "
+"spowodować nieoczekiwane działanie odbiornika. Z drugiej strony stara się "
+"lepiej reagować na różne warunki pracy."
 
 msgid ""
 "An attempt is made to capture the current TV status. If this is not possible "
@@ -3230,7 +3234,7 @@ msgid "Author: "
 msgstr "Autor: "
 
 msgid "Authoring mode"
-msgstr "Tryb Autorski"
+msgstr "Tryb autorski"
 
 msgid "Auto"
 msgstr "Auto"
@@ -3320,6 +3324,8 @@ msgid ""
 "Automatically put the TV in standby whenever the receiver goes into standby "
 "or deep standby."
 msgstr ""
+"Automatycznie wyłącz TV jeśli urządzenie przechodzi w tryb czuwania lub "
+"głębokiego czuwania."
 
 msgid "Automatically start timeshift after"
 msgstr "Automatycznie uruchom timeshift po"
@@ -3793,7 +3799,7 @@ msgid "Bouvet Island"
 msgstr "Wyspa Bouveta"
 
 msgid "Box or driver is not support Quad PiP."
-msgstr "Twój odbiornik lub sterownik nie obsługuje Quad PiP."
+msgstr "Ten odbiornik lub sterownik nie obsługuje Quad PiP."
 
 msgid "Boxen"
 msgstr "Boks"
@@ -3876,10 +3882,10 @@ msgid "ButtonSetup"
 msgstr "Ustawienia przycisków"
 
 msgid "By openATV Image Team"
-msgstr "Przez zespół openATV"
+msgstr "Zespół openATV"
 
 msgid "Bypass HDMI EDID Check"
-msgstr "Bypass HDMI EDID"
+msgstr "Pomiń HDMI EDID"
 
 msgid "Bytes received:"
 msgstr "Pobrano bajtów:"
@@ -3970,7 +3976,7 @@ msgid "CI Legacy"
 msgstr "Legacy CI"
 
 msgid "CI Operation Mode"
-msgstr "Tryb działania"
+msgstr "Tryb działania CI"
 
 msgid "CI Plus 1.2"
 msgstr "CI Plus 1.2"
@@ -4193,7 +4199,7 @@ msgid "Cancel any changed settings and exit all menus"
 msgstr "Anuluj wszystkie zmienione ustawienia i zamknij wszystkie menu"
 
 msgid "Cancel any changed tags and exit"
-msgstr ""
+msgstr "Anuluj wszystkie zmiany znaczników i wyjdź"
 
 msgid "Cancel any changes the active locale/language and exit all menus"
 msgstr ""
@@ -4306,7 +4312,7 @@ msgid "Chamorro"
 msgstr "Chamorro"
 
 msgid "Change Boxmode to control Hardware Chip Modes*"
-msgstr "Zmień Boxmode, aby kontrolować sprzętowe tryby układów*"
+msgstr "Zmień tryb odbiornika, aby kontrolować sprzętowe tryby*"
 
 msgid "Change Language"
 msgstr "Zmień Język"
@@ -4897,7 +4903,7 @@ msgid "Common Interface assignment"
 msgstr "Przypisanie CI"
 
 msgid "Common Menu Actions"
-msgstr ""
+msgstr "Menu akcji"
 
 msgid "Common Setup Actions"
 msgstr "Typowe Czynności Konfiguracyjne"
@@ -5495,8 +5501,8 @@ msgid ""
 "the IceTV Smart Recording service. Your IceTV guide will now download in the "
 "background."
 msgstr ""
-"Gratulacje, pomyślnie skonfigurowałeś swój %s %s do użytku z usługą IceTV "
-"Smart Recording. Twój przewodnik IceTV zostanie teraz pobrany w tle."
+"Gratulacje, pomyślnie skonfigurowałeś %s %s do użytku z usługą IceTV Smart "
+"Recording. Ten przewodnik IceTV zostanie teraz pobrany w tle."
 
 msgid "Connect"
 msgstr "Połącz"
@@ -5523,7 +5529,7 @@ msgid "Console"
 msgstr "Konsola"
 
 msgid "Constellation & FFT mode"
-msgstr "Tryb konstelacji & FFT"
+msgstr "Tryb konstelacji i FFT"
 
 msgid "Consult your SCR device spec sheet for this information."
 msgstr ""
@@ -5826,7 +5832,7 @@ msgstr "Bieżąca lokalizacja"
 
 #, python-format
 msgid "Current mode: %s \n"
-msgstr "Bieżący Tryb: %s \n"
+msgstr "Bieżący tryb: %s \n"
 
 msgid "Current settings:"
 msgstr "Aktualne ustawienia:"
@@ -6145,7 +6151,7 @@ msgid "Dayname Year/MM/DD"
 msgstr "Format: Rok/MM/DD"
 
 msgid "Deactivate"
-msgstr "Dezaktywować"
+msgstr "Dezaktywuj"
 
 msgid "Debug Logs"
 msgstr "Logi Diagnostyczne"
@@ -6202,7 +6208,7 @@ msgstr ""
 "wartości = niższy priorytet)"
 
 msgid "Default Modes Selected."
-msgstr "Wybrane Tryby Domyślne."
+msgstr "Wybrane tryby domyślne."
 
 msgid "Default Services Scanner"
 msgstr "Domyślna Wyszukiwarka Kanałów"
@@ -6335,6 +6341,9 @@ msgid ""
 "Delay between CEC commands when sending a series of commands. Some devices "
 "require this delay for correct functioning, usually between 50-150ms."
 msgstr ""
+"Opóźnienie między poleceniami CEC podczas wysyłania serii poleceń. Niektóre "
+"urządzenia wymagają tego opóźnienia do prawidłowego funkcjonowania, zwykle "
+"między 50-150ms."
 
 msgid "Delay between diseqc commands"
 msgstr "Opóźnienie między poleceniami DiSEqC"
@@ -6387,7 +6396,7 @@ msgid "Delete Plugins"
 msgstr "Usuń Wtyczki"
 
 msgid "Delete all tags"
-msgstr ""
+msgstr "Usuń wszystkie znaczniki"
 
 msgid "Delete all the text"
 msgstr "Usuń cały tekst"
@@ -6441,13 +6450,13 @@ msgid "Delete the selected files or directories"
 msgstr "Usuń wybrane pliki lub katalogi"
 
 msgid "Delete this tag"
-msgstr ""
+msgstr "Usuń ten znacznik"
 
 msgid "Delete timer"
 msgstr "Usuń timer"
 
 msgid "Delete unused tags"
-msgstr ""
+msgstr "Usuń nie używane znaczniki"
 
 msgid "Deleted"
 msgstr "Usunięto"
@@ -6598,7 +6607,7 @@ msgstr ""
 "określonym czasie."
 
 msgid "Direct menu item selection"
-msgstr ""
+msgstr "Bezpośrednie menu wyboru elementy"
 
 msgid "Direct playback of linked titles without menu"
 msgstr "Bezpośrednie odtwarzanie tytułów powiązanych bez menu"
@@ -6725,7 +6734,7 @@ msgstr ""
 "regionalne dla języka."
 
 msgid "Display the tags context menu"
-msgstr ""
+msgstr "Wyświetl menu podręczne znaczników"
 
 msgid "Display the virtual keyboard for data entry"
 msgstr "Wyświetlanie wirtualnej klawiatury do wprowadzania danych"
@@ -6781,11 +6790,15 @@ msgid ""
 "Do you really want to delete all '%s' tags?\n"
 "(NOTE: 'Cancel' cannot undo this!)"
 msgstr ""
+"Naprawdę chcesz usunąć wszystkie '%s' znaczniki?\n"
+"(UWAGA: 'Anuluj' nie może tego cofnąć!)"
 
 msgid ""
 "Do you really want to delete all tags?\n"
 "(Note that 'Cancel' will not undo this!)"
 msgstr ""
+"Naprawdę chcesz usunąć wszystkie znaczniki?\n"
+"(UWAGA: 'Anuluj' nie może tego cofnąć!)"
 
 msgid "Do you really want to delete the recording?"
 msgstr "Czy na pewno chcesz usunąć nagranie?"
@@ -6858,7 +6871,7 @@ msgid ""
 "After pressing OK, please wait!"
 msgstr ""
 "Chcesz teraz utworzyć kopię zapasową?\n"
-"Po naciśnięciu 'OK',proszę czekać!"
+"Po naciśnięciu 'OK', proszę czekać!"
 
 msgid "Do you want to burn this collection to DVD medium?"
 msgstr "Nagrać kolekcję na nośniku DVD?"
@@ -6924,11 +6937,11 @@ msgstr "Czy chcesz usunąć wszystkie regiony/języki poza %s?"
 
 #, python-format
 msgid "Do you want to reboot your %s %s"
-msgstr "Chcesz uruchomić ponownie Twój %s %s"
+msgstr "Chcesz uruchomić ponownie %s %s"
 
 #, python-format
 msgid "Do you want to reboot your %s %s?"
-msgstr "Chcesz uruchomić ponownie Twój %s %s?"
+msgstr "Chcesz uruchomić ponownie %s %s?"
 
 msgid "Do you want to reboot your receiver?"
 msgstr "Chcesz ponownie uruchomić odbiornik?"
@@ -7090,7 +7103,7 @@ msgid "Drogen"
 msgstr "Narkotyki"
 
 msgid "Dual Mode"
-msgstr "Podwójny Tryb"
+msgstr "Tryb podwójny"
 
 msgid ""
 "During this time, the transmitter and the recording destination are checked. "
@@ -7249,7 +7262,7 @@ msgid "Edit Quad Channel Entry"
 msgstr "Edycja nowego wpisu Kanału Quad"
 
 msgid "Edit Tags"
-msgstr ""
+msgstr "Edytuj znaczniki"
 
 msgid "Edit Title"
 msgstr "Edycja Tytułu"
@@ -7267,7 +7280,7 @@ msgid "Edit mode off"
 msgstr "Wyłącz tryb edycji"
 
 msgid "Edit mode on"
-msgstr "Włącz tryb edycji"
+msgstr "Załącz tryb edycji"
 
 msgid "Edit new entry"
 msgstr "Edycja nowego wpisu"
@@ -7384,7 +7397,7 @@ msgid "Enable Quad PIP"
 msgstr "Włącz Quad PIP"
 
 msgid "Enable Swap at startup"
-msgstr "Włączyć Swap/Wymianę przy starcie"
+msgstr "Uruchom plik wymiany przy starcie"
 
 msgid ""
 "Enable Up / Down buttons for the 'all up / down' function? (at the "
@@ -7463,10 +7476,10 @@ msgid "Enable intro screen"
 msgstr "Włącz ekran intro"
 
 msgid "Enable multiple bouquets"
-msgstr "Włącz tryb wielu bukietów"
+msgstr "Załącz tryb wielu bukietów"
 
 msgid "Enable or disable using HDMI-CEC."
-msgstr ""
+msgstr "Załącz lub wyłącz obsługę HDMI-CEC."
 
 msgid "Enable panic button"
 msgstr "Aktywuj przycisk alarmowy"
@@ -7495,7 +7508,7 @@ msgid "Enable terrestrial LCN:"
 msgstr "Włącz naziemną LCN:"
 
 msgid "Enable the advanced HDMI-CEC setting options."
-msgstr ""
+msgstr "Załącz zaawansowane opcje HDMI-CEC."
 
 msgid "Enable the current value of the slider at end of the slider bar."
 msgstr "Włącz bieżącą wartość suwaka na końcu paska suwaka."
@@ -7525,7 +7538,7 @@ msgstr ""
 "dziennika debugowania."
 
 msgid "Enable this setting if your aerial system needs power"
-msgstr "Włącz to ustawienie, jeśli Twój system antenowy wymaga zasilania"
+msgstr "Włącz to ustawienie, jeśli system antenowy wymaga zasilania"
 
 msgid ""
 "Enable to display all true/false, yes/no, on/off and enable/disable set up "
@@ -7624,7 +7637,7 @@ msgid "Enter PIN"
 msgstr "Wpisz PIN"
 
 msgid "Enter a new name for this device."
-msgstr ""
+msgstr "Wprowadź nową nazwę urządzenia."
 
 msgid "Enter if you are in the east or west hemisphere."
 msgstr "Wpisz, jeśli jesteś na wschodniej lub zachodniej półkuli."
@@ -7887,19 +7900,19 @@ msgid "EtPortal"
 msgstr "Et Portal"
 
 msgid "Ethernet network interface"
-msgstr "Interfejs sieci Ethernet"
+msgstr "Interfejs sieci przewodowej"
 
 msgid "Ethiopia"
 msgstr "Etiopia"
 
 msgid "Even if TV has another input active?"
-msgstr "Nawet jeśli telewizor ma inne aktywne wejście?"
+msgstr "Nawet jeśli TV/AV ma inne aktywne wejście?"
 
 msgid "Even if a 'Wakeup' power timer starting?"
-msgstr "Nawet jeśli zacznie działać timer 'wybudź'?"
+msgstr "Nawet jeśli zacznie działać timer 'wybudzania'?"
 
 msgid "Even if a 'Zap and Record' recording timer starting?"
-msgstr "Nawet jeśli rozpocznie się nagrywanie z zap i nagrywaniem?"
+msgstr "Nawet jeśli rozpocznie się nagrywanie?"
 
 msgid "Even if a 'Zap' recording timer starting?"
 msgstr "Nawet jeśli zaczyna się odliczanie czasu nagrywania?"
@@ -8004,7 +8017,7 @@ msgid "Exit Quad Channel Selection"
 msgstr "Wyjście z Wyboru Kanałów Quad"
 
 msgid "Exit all menus"
-msgstr ""
+msgstr "Wyjdź z wszystkich menu"
 
 msgid "Exit editor"
 msgstr "Wyjdź z edytora"
@@ -8022,7 +8035,7 @@ msgid "Exit mediaplayer"
 msgstr "Wyjdź z odtwarzacza multimedialnego"
 
 msgid "Exit menu"
-msgstr ""
+msgstr "Wyjdź z menu"
 
 msgid "Exit movie list"
 msgstr "Wyjdź z listy filmów"
@@ -8034,7 +8047,7 @@ msgid "Exit nameserver configuration"
 msgstr "Wyjście z konfiguracji nazwy serwera"
 
 msgid "Exit network interface list"
-msgstr "Wyjście z listy interfejsu sieciowego"
+msgstr "Opuść listę interfejsu sieciowego"
 
 msgid "Exit network wizard"
 msgstr "Wyjście z konfiguracji sieci"
@@ -8052,7 +8065,7 @@ msgid "Expand"
 msgstr "Pokaż"
 
 msgid "Experimental mode"
-msgstr "Tryb Eksperymentalny"
+msgstr "Tryb eksperymentalny"
 
 msgid "Experimental: strict limitation to preferred tuners for recordings"
 msgstr ""
@@ -8062,7 +8075,7 @@ msgid "Expert"
 msgstr "Ekspert"
 
 msgid "Expert mode"
-msgstr "Tryb Ekspert"
+msgstr "Tryb ekspert"
 
 msgid "Ext. NumberZap"
 msgstr "Wew. NumberZap"
@@ -8555,7 +8568,7 @@ msgid "Format your Harddisk"
 msgstr "Formatowanie twardego dysku"
 
 msgid "Forward volume keys"
-msgstr "Przesuwanie przycisku głośności"
+msgstr "Kontroluj głośność TV/AV"
 
 msgid "Frame rate"
 msgstr "Częstotliwość odświeżania"
@@ -9019,7 +9032,7 @@ msgid "HDMI CEC"
 msgstr "HDMI CEC"
 
 msgid "HDMI CEC Setup"
-msgstr "Ustawinia HDMI CEC"
+msgstr "HDMI CEC"
 
 msgid "HDMI Colordepth"
 msgstr "Głębia kolorów"
@@ -9037,10 +9050,10 @@ msgid "HDMI Recording"
 msgstr "Nagranie HDMI"
 
 msgid "HDMI-CEC Setup"
-msgstr ""
+msgstr "HDMI-CEC"
 
 msgid "HDMI-CEC Setup Actions"
-msgstr ""
+msgstr "Ustawienia akcji HDMI-CEC"
 
 msgid "HDMI-IN Actions"
 msgstr "Działania HDMI-IN"
@@ -9085,7 +9098,7 @@ msgid "Handle Python crashes"
 msgstr "Awaria obsługi Pythona"
 
 msgid "Handle input from TV"
-msgstr "Obsługuj dane wejściowe z telewizora"
+msgstr "Obsługuj dane przychodzące z TV"
 
 msgid "Handle standby from TV"
 msgstr "Obsługuj komendę 'czuwania' z TV"
@@ -9429,7 +9442,7 @@ msgid "IceTV enabled"
 msgstr "IceTV aktiviert"
 
 msgid "IceTV setup wizard"
-msgstr "Kreator konfiguracji IceTV"
+msgstr "Kreator IceTV"
 
 msgid "IceTV update completed OK"
 msgstr "Aktualizacja IceTV zakończona OK"
@@ -9503,6 +9516,9 @@ msgid ""
 "If enabled, a log will be kept of CEC protocol traffic. The log files are "
 "located with the other log files but named 'Enigma2-hdmicec-[date].log'."
 msgstr ""
+"Jeśli jest włączony, dziennik z protokołu CEC będzie przechowywany. Pliki "
+"dziennika znajdują się z innymi plikami dziennika, ale o nazwie "
+"Enigma2-hdmicec-[data].log ."
 
 msgid ""
 "If enabled, using a time window to detect a wakeup from deep standby by a "
@@ -9531,6 +9547,8 @@ msgid ""
 "If set to 'Yes' the same commands will be sent to the TV for deep standby "
 "events as are sent during regular standby events."
 msgstr ""
+"Jeśli \"Tak\", ta sama komenda zostanie wysłana do TV dla głębokiego "
+"czuwania jaka jest wysyłana dla normalnego czuwania."
 
 msgid ""
 "If set to 'no', can you save older events even after zapping or interruption "
@@ -9638,6 +9656,9 @@ msgid ""
 "synchronized. Depending on the requirement the device wake up will "
 "continuing after a maximum of 2 minutes."
 msgstr ""
+"Jeśli włączono obejście głębokiego czuwania, oczekuj do czasu aż system "
+"zostanie zsynchronizowany. W zależności od wymogu budzenie urządzenia będzie "
+"kontynuowane po maksymalnie 2 minutach."
 
 msgid ""
 "If the free space is less than setting value, then an attempt is made to "
@@ -9701,8 +9722,8 @@ msgid ""
 "step.\n"
 "If you are happy with the result, press OK."
 msgstr ""
-"Jeśli Twój TV posiada poprawę jasności i kontrastu, wyłącz to. Jeśli masz "
-"opcje ustawioną na \"Dynamiczne\", zmień ją na Standardową. Dostosuj poziom "
+"Jeśli TV posiada poprawę jasności i kontrastu, wyłącz to. Jeśli masz opcje "
+"ustawioną na \"Dynamiczne\", zmień ją na Standardową. Dostosuj poziom "
 "podświetlania do własnej wartości .Zmniejsz kontrast w TV do najniższej "
 "wartości.\n"
 "Następnie zmniejsz poziom jasności, ale upewnij się że dwa najniższe "
@@ -9715,16 +9736,16 @@ msgid "Igbo"
 msgstr "Igbo"
 
 msgid "Ignore DVB-C namespace sub network"
-msgstr "Ignoruj przestrzeń nazw podsieći DVB-C"
+msgstr "Ignoruj przestrzeń nazw podsieci DVB-C"
 
 msgid "Ignore DVB-S namespace sub network"
-msgstr "Ignoruj przestrzeń nazw podsieći DVB-S"
+msgstr "Ignoruj przestrzeń nazw podsieci DVB-S"
 
 msgid "Ignore DVB-T namespace sub network"
-msgstr "Ignoruj przestrzeń nazw podsieći DVB-T"
+msgstr "Ignoruj przestrzeń nazw podsieci DVB-T"
 
 msgid "Ignore unexpectedly wakeup and stay in standby"
-msgstr "Ignoruj nieoczekiwanie budzenie i pozostań w trybie czuwania"
+msgstr "Ignoruj nieoczekiwane budzenie i pozostań w trybie czuwania"
 
 msgid "Image"
 msgstr "System"
@@ -9733,7 +9754,7 @@ msgid "Image Backup"
 msgstr "Kopia systemu"
 
 msgid "Image Information"
-msgstr "Informacje o systemie"
+msgstr "Info o urządzeniu"
 
 msgid "Image Manager"
 msgstr "Menadżer systemu"
@@ -9996,7 +10017,7 @@ msgid "Input Stream ID"
 msgstr "ID Strumienia Wejściowego"
 
 msgid "Input channel name."
-msgstr "Nazwa kanału."
+msgstr "Nazwa kanału wejściowego."
 
 msgid "Input config file name:"
 msgstr "Nazwa pliku konfiguracyjnego:"
@@ -10008,7 +10029,7 @@ msgid "Input scroll position"
 msgstr "Wprowadzanie pozycji przewijania"
 
 msgid "InputDevice Setup"
-msgstr ""
+msgstr "Ustawienia urządzeń wejściowych"
 
 msgid "Insert"
 msgstr "Wstawić"
@@ -10517,7 +10538,7 @@ msgid "LED Normal"
 msgstr "LED Normalne"
 
 msgid "LED Standby"
-msgstr "LED trybie czuwania"
+msgstr "LED tryb czuwania"
 
 msgid "LED brightness during deep standby."
 msgstr "LED jasność podczas głębokiego czuwania."
@@ -10798,7 +10819,7 @@ msgid "Load playlist"
 msgstr "Załaduj listę odtwarzania"
 
 msgid "Load tags from the timer and recordings"
-msgstr ""
+msgstr "Ładuj znaczniki z timera i nagrań"
 
 msgid "Load unlinked userbouquets"
 msgstr "Załaduj niepołączone bukiety użytkownika"
@@ -10936,7 +10957,7 @@ msgid "Lower limit in kilobits per seconds [kbit/s]"
 msgstr "Dolna granica kilobitów na sek. [kbit/s]"
 
 msgid "Lowest Mode"
-msgstr "Najniższy Tryb"
+msgstr "Najniższy tryb"
 
 msgid "Lowest Video output mode"
 msgstr "Tryb najniższego wyjścia wideo"
@@ -11931,7 +11952,7 @@ msgid "Network test: "
 msgstr "Test sieci: "
 
 msgid "Network wizard"
-msgstr "Kreator konfiguracji sieci"
+msgstr "Kreator sieci"
 
 msgid "Network:"
 msgstr "Sieć:"
@@ -12267,7 +12288,7 @@ msgid ""
 "your local network interface."
 msgstr ""
 "Nie znaleziono działającego interfejsu sieci bezprzewodowej.\n"
-" Sprawdź czy podłączyłeś kompatybilne urządzenie WLAN lub czy włączyłeś Twój "
+" Sprawdź czy podłączyłeś kompatybilne urządzenie WLAN lub czy włączyłeś "
 "lokalny interfejs sieciowy."
 
 msgid "No, but restart from begin"
@@ -12702,7 +12723,7 @@ msgid "OpenVpn Setup"
 msgstr "OpenVPN-Ustawienie"
 
 msgid "Operating LED status in deep standby mode"
-msgstr "Stan diody LED w trybie głębokiego czuwania"
+msgstr "LED tryb głębokiego czuwania"
 
 msgid "Operating LED status in standby mode"
 msgstr "Działanie statusu diody LED w trybie czuwania"
@@ -13009,7 +13030,7 @@ msgid "Password"
 msgstr "Hasło"
 
 msgid "Password (httpuser)"
-msgstr ""
+msgstr "Hasło"
 
 msgid "Password (httpwd)"
 msgstr "Hasło (httpwd)"
@@ -13121,7 +13142,7 @@ msgid "Picon"
 msgstr "Pikony"
 
 msgid "Picon and Service Name"
-msgstr "Pikony i Nazwa Kanału"
+msgstr "Pikony i nazwa kanału"
 
 msgid "Picon width"
 msgstr "Szerokość Pikon"
@@ -13308,7 +13329,7 @@ msgid "Please enter the new file name"
 msgstr "Wprowadź nową nazwę pliku"
 
 msgid "Please enter the new tag:"
-msgstr ""
+msgstr "Wprowadź nowy znacznik:"
 
 msgid "Please enter the old PIN code"
 msgstr "Proszę wpisać stary kod PIN"
@@ -13334,7 +13355,7 @@ msgid ""
 msgstr "Brak dostępu do uprzednio wybranych plików. Użyto katalogu domyślnego."
 
 msgid "Please open Picture in Picture first"
-msgstr "Proszę najpierw otworzyć tryb Picture in Picture"
+msgstr "Proszę najpierw otworzyć tryb PiP"
 
 msgid "Please press OK to continue."
 msgstr "Naciśnij 'OK' aby kontynuować."
@@ -13594,7 +13615,7 @@ msgid "Please wait while the list downloads..."
 msgstr "Poczekaj, aż lista się pobierze ..."
 
 msgid "Please wait while we check your installed plugins..."
-msgstr "Proszę czekać,podczas gdy my sprawdzimy zainstalowane wtyczki."
+msgstr "Proszę czekać, sprawdzamy zainstalowane wtyczki…"
 
 msgid "Please wait while we configure your network..."
 msgstr "Czekaj, trwa konfuguracja sieci..."
@@ -13609,13 +13630,13 @@ msgid "Please wait while your network is restarting..."
 msgstr "Czekaj, sieć jest restartowana..."
 
 msgid "Please wait while your skin setting is restoring..."
-msgstr "Proszę czekać, podczas przywracania ustawień skórki..."
+msgstr "Proszę czekać, przywracanie ustawień skórki..."
 
 msgid "Please wait whilst feeds state is checked."
-msgstr "Proszę czekać, podczas gdy 'feeds' jest sprawdzany."
+msgstr "Proszę czekać, 'feeds' jest sprawdzany."
 
 msgid "Please wait, Loading image."
-msgstr "Proszę czekać, ładowanie image."
+msgstr "Proszę czekać, ładowanie systemu."
 
 #, python-format
 msgid "Please wait, restarting %s."
@@ -14171,7 +14192,7 @@ msgid "Put TV in standby"
 msgstr "Przełącz TV w stan czuwania"
 
 msgid "Put your AV Receiver in standby"
-msgstr "Przełącz odbiornik AV w tryb czuwania"
+msgstr "Przełącz AV w tryb czuwania"
 
 msgid "Python frontend for /tmp/mmi.socket"
 msgstr "Python nakładka na /tmp/mmi.socket"
@@ -14336,7 +14357,7 @@ msgid "Really exit the subservices quickzap?"
 msgstr "Naprawdę wyjść z szybkiego zapisu kanałów?"
 
 msgid "Really reboot into Recovery Mode?"
-msgstr "Naprawdę uruchomić ponownie w Trybie Odzyskiwania?"
+msgstr "Naprawdę uruchomić ponownie w trybie odzyskiwania?"
 
 msgid "Really reboot now?"
 msgstr "Naprawdę uruchomić ponownie?"
@@ -14484,7 +14505,7 @@ msgid "Records"
 msgstr "Dokumentacja"
 
 msgid "Recovery Mode"
-msgstr "Tryb Odzyskiwania"
+msgstr "Tryb odzyskiwania"
 
 msgid "Red"
 msgstr "Czerwony"
@@ -14522,8 +14543,8 @@ msgid ""
 "Please wait until your %s %s reboots\n"
 "This may take a few minutes"
 msgstr ""
-"Reflash w toku\n"
-"Poczekaj, aż Twój %s %s uruchomi się ponownie\n"
+"Ponowne wgrywanie w toku\n"
+"Poczekaj aż %s %s uruchomi się ponownie\n"
 "To może zająć kilka minut"
 
 msgid "Refresh every (in hours)"
@@ -14542,7 +14563,7 @@ msgid "Refresh screen"
 msgstr "Odśwież ekran"
 
 msgid "Regard deep standby as standby"
-msgstr "Traktować głębokie czuwanie jako tryb czuwania"
+msgstr "Głębokie czuwanie jak tryb czuwania"
 
 msgid "Region"
 msgstr "Region"
@@ -14722,7 +14743,7 @@ msgid "Rename name and description for new events"
 msgstr "Zmień nazwę i opis nowych zdarzeń"
 
 msgid "Rename this tag"
-msgstr ""
+msgstr "Zmień nazwę tego znacznika"
 
 msgid "Rename to:"
 msgstr "Zmień nazwę na:"
@@ -14767,6 +14788,8 @@ msgid ""
 "Replace all '%s' tags with:\n"
 "(NOTE: 'Cancel' cannot undo this!)"
 msgstr ""
+"Zamienić wszystkie '%s' znaczniki z:\n"
+"(UWAGA: 'Anuluj' nie może tego cofnąć!)"
 
 msgid "Reportage"
 msgstr "Reportaż"
@@ -14790,7 +14813,7 @@ msgid "Reset"
 msgstr "Resetuj"
 
 msgid "Reset HDMI-CEC settings to default"
-msgstr ""
+msgstr "Przywróć ustawienia domyślne HDMI-CEC"
 
 msgid "Reset and renumerate title names"
 msgstr "Resetuj i zmień numerację nazwy tytułów"
@@ -14870,13 +14893,13 @@ msgid "Restart network to with current setup"
 msgstr "Uruchom ponownie sieć z obecną konfiguracją"
 
 msgid "Restart softcam"
-msgstr "Uruchom ponownie softcam"
+msgstr "Uruchom ponownie"
 
 msgid "Restart test"
 msgstr "Uruchom ponownie test"
 
 msgid "Restart your network connection and interfaces.\n"
-msgstr "Uruchom ponownie połączenie sieciowe i interfejsy.\n"
+msgstr "Uruchom ponownie połączenie z siecią i interfejsy.\n"
 
 msgid "Restore"
 msgstr "Przywróć"
@@ -14932,7 +14955,7 @@ msgid "Retrieving image list - Please wait..."
 msgstr "Pobieranie listy systemów, proszę czekać..."
 
 msgid "Retrieving image slots - Please wait..."
-msgstr "Pobieranie slotów systemu, proszę czekać..."
+msgstr "Pobieranie wersji systemu, proszę czekać..."
 
 msgid "Return to movie list"
 msgstr "Powrót do listy filmów"
@@ -15044,7 +15067,7 @@ msgid "Running"
 msgstr "Uruchomiony"
 
 msgid "Running Myrestore script, Please wait ..."
-msgstr "Twój skrypt przywracania jest wykonywany, Proszę czekać..."
+msgstr "Skrypt przywracania jest wykonywany, Proszę czekać..."
 
 msgid "Russian"
 msgstr "Rosyjski"
@@ -15257,7 +15280,7 @@ msgid "Save all changed settings and exit"
 msgstr "Zapisz wszystkie zmienione ustawienia i wyjdź"
 
 msgid "Save all changed tags and exit"
-msgstr ""
+msgstr "Zapisz wszystkie zmiany znaczników i wyjdź"
 
 msgid "Save and record"
 msgstr "Zapisz i nagraj"
@@ -15536,13 +15559,15 @@ msgid ""
 "Select 'A' or 'B' if your aerial system requires this, otherwise select "
 "'none'. If you are unsure select 'none'."
 msgstr ""
-"Wybierz \"A\" lub \"B\", jeśli wymaga tego Twój system antenowy, w "
-"przeciwnym razie wybierz \"brak\". Jeśli nie masz pewności, wybierz \"brak\"."
+"Wybierz \"A\" lub \"B\", jeśli wymaga tego system antenowy, w przeciwnym "
+"razie wybierz \"brak\". Jeśli nie masz pewności, wybierz \"brak\"."
 
 msgid ""
 "Select 'Yes' to enable editing of this device's settings. Selecting 'No' "
 "resets the devices settings to their default values."
 msgstr ""
+"Wybierz \"Tak\", aby włączyć edycję ustawień urządzenia. Wybierz \"Nie\" aby "
+"przywrócić domyślne ustawienia urządzenia."
 
 msgid ""
 "Select 'band' if using a 'universal' LNB, otherwise consult your LNB spec "
@@ -15617,8 +15642,8 @@ msgid ""
 "Select Fast DiSEqC if your aerial system supports this. If you are unsure "
 "select 'no'."
 msgstr ""
-"Wybierz Fast DiSEqC, jeśli twój system antenowy to obsługuje. Jeśli nie "
-"jesteś pewien, wybierz „nie”."
+"Wybierz Fast DiSEqC, jeśli system antenowy to obsługuje. Jeśli nie jesteś "
+"pewien, wybierz „nie”."
 
 msgid "Select HDD"
 msgstr "Wybierz HDD"
@@ -15746,7 +15771,7 @@ msgstr ""
 "pojedynczy LNB, przełącznik DiSEqC, pozycjoner itp."
 
 msgid "Select how to activate the Quick EPG mode:"
-msgstr "Wybierz sposób,aby włączyć tryb szybkiego EPG:"
+msgstr "Wybierz sposób, aby włączyć tryb szybkiego EPG:"
 
 msgid "Select how your box will upgrade."
 msgstr "Wybór trybu aktualizacji."
@@ -15756,7 +15781,7 @@ msgstr ""
 "Wybierz, czy timeshift ma kontynuować gdy jest ustawiony na nagrywanie."
 
 msgid "Select if you want the Subservice mode to be activated."
-msgstr "Wybierz, czy tryb Subserwisów ma być aktywowany."
+msgstr "Wybierz, czy tryb subserwisów ma być aktywowany."
 
 msgid "Select input device"
 msgstr "Wybierz urządzenie wejściowe"
@@ -15861,7 +15886,7 @@ msgid "Select the character or action under the keyboard cursor"
 msgstr "Wybierz znak lub akcję pod kursorem klawiatury"
 
 msgid "Select the current menu item"
-msgstr ""
+msgstr "Zaznacz aktualny element menu"
 
 msgid "Select the currently highlighted locale/language for the user interface"
 msgstr "Wybierz aktualny region/język dla interfejsu"
@@ -15986,10 +16011,10 @@ msgid "Select the sleep timer action."
 msgstr "Akcja dla timera czuwania."
 
 msgid "Select the time delay before the button starts repeating."
-msgstr ""
+msgstr "Wybierz opóźnienie zanim przycisk rozpocznie powtarzanie."
 
 msgid "Select the time delay between each repeat of the button."
-msgstr ""
+msgstr "Wybierz opóźnienie pomiędzy każdym powtórzeniem przycisku."
 
 msgid "Select the time zone within the area or region."
 msgstr "Wybierz strefę czasową w obszarze lub regionie."
@@ -16009,8 +16034,8 @@ msgid ""
 "Select the type of LNB/device being used (normally 'Universal'). If your LNB "
 "type is not available select 'user defined'."
 msgstr ""
-"Wybierz typ używanego LNB / urządzenia (zwykle „Uniwersalny”). Jeśli twój "
-"typ LNB nie jest dostępny, wybierz „zdefiniowane przez użytkownika”."
+"Wybierz typ używanego LNB / urządzenia (zwykle „Uniwersalny”). Jeśli typ LNB "
+"nie jest dostępny, wybierz „zdefiniowane przez użytkownika”."
 
 msgid "Select the type of Single Cable Reception device you are using."
 msgstr "Wybierz typ używanego urządzenia do odbioru pojedynczego kabla."
@@ -16223,13 +16248,13 @@ msgid "Service ID"
 msgstr "ID nadawcy"
 
 msgid "Service Name"
-msgstr "Nazwa Kanału"
+msgstr "Nazwa kanału"
 
 msgid "Service Number and Service Name"
-msgstr "Numer kanału i Nazwa Kanału"
+msgstr "Numer i nazwa kanału"
 
 msgid "Service Number, Picon and Service Name"
-msgstr "Numer kanału, Pikona i Nazwa Kanału"
+msgstr "Pikona, numer i nazwa kanału"
 
 msgid "Service Selection Actions"
 msgstr "Akcje wyboru usługi"
@@ -16312,7 +16337,7 @@ msgid "Service picons downsize"
 msgstr "Zmniejszanie pikonów"
 
 msgid "Service reference"
-msgstr "Referencje Kanału"
+msgstr "Referencje"
 
 msgid "Service scan"
 msgstr "Skanowanie kanałów"
@@ -16365,7 +16390,7 @@ msgid "Set archive mode (644)"
 msgstr "Ustaw trybu archiwum (644)"
 
 msgid "Set current CEC address as fixed address"
-msgstr ""
+msgstr "Ustaw aktualny adres CEC jako stały"
 
 msgid "Set default"
 msgstr "Standardowe"
@@ -16403,10 +16428,10 @@ msgid ""
 "aerial system has been configured correctly sequence repeats will not be "
 "necessary. If yours does, recheck you have command order set correctly."
 msgstr ""
-"Ustaw sekwencję powtarza się, jeśli twój system antenowy tego wymaga. "
-"Zwykle, jeśli system antenowy został poprawnie skonfigurowany, powtarzanie "
-"sekwencji nie będzie konieczne. Jeśli tak, sprawdź ponownie, czy kolejność "
-"poleceń jest ustawiona poprawnie."
+"Ustaw sekwencję powtarza się, jeśli system antenowy tego wymaga. Zwykle, "
+"jeśli system antenowy został poprawnie skonfigurowany, powtarzanie sekwencji "
+"nie będzie konieczne. Jeśli tak, sprawdź ponownie, czy kolejność poleceń "
+"jest ustawiona poprawnie."
 
 msgid "Set startup service"
 msgstr "Ustaw kanał startowy"
@@ -16681,7 +16706,7 @@ msgid "Setup uShare"
 msgstr "Ustawienia uShare"
 
 msgid "Setup your Audio Mode"
-msgstr "Skonfiguruj Tryb Audio"
+msgstr "Skonfiguruj tryb audio"
 
 msgid "Setup your Channel selection configuration"
 msgstr "Wybierz swoją konfigurację wyboru kanałów"
@@ -16730,7 +16755,8 @@ msgid ""
 "Setup your network interface. If no Wlan stick is used, you only can select "
 "Lan"
 msgstr ""
-"Skonfiguruj interfejs sieci. Jeżeli nie masz WLAN, możesz wybrać tylko LAN"
+"Skonfiguruj interfejs sieci. Jeżeli nie masz karty WLAN, możesz wybrać tylko "
+"LAN"
 
 msgid "Setup your network mounts"
 msgstr "Ustawienia montowania sieci"
@@ -17050,7 +17076,7 @@ msgid "Show as Picture and save as file ('%s')"
 msgstr "Pokaż jako obraz i zapisz jako plik ('%s')"
 
 msgid "Show background in Radio Mode"
-msgstr "Pokaż tapetę w Trybie Radio"
+msgstr "Pokaż tapetę w trybie radio"
 
 msgid "Show background when tuned to a radio channel."
 msgstr "Pokaż tapetę dla kanału radiowego."
@@ -17646,7 +17672,7 @@ msgstr "Gniazdo %d"
 
 #, python-format
 msgid "Slot %s: %s - Mode %d%s"
-msgstr "Gniazdo %s: %s - Tryb %d%s"
+msgstr "Gniazdo %s: %s - tryb %d%s"
 
 #, python-format
 msgid "Slot %s: %s%s"
@@ -17785,6 +17811,10 @@ msgid ""
 "turn back on it may require a slower transmission interval or the repetition "
 "of wake-up commands.)"
 msgstr ""
+"Niektóre urządzenia TV nie mogą zostać przełączone na poprawne wejście jeśli "
+"jest aktywne inne wejście HDMI. To ustawienie ustawia TV do czuwania przed "
+"przełączeniem. (Jeśli telewizor nie włącza się, może wymagać wolniejszego "
+"przedziału transmisji lub powtórzenia poleceń budzenia.)"
 
 msgid ""
 "Some TV devices can't swich to correct input if a another hdmi port active. "
@@ -18130,7 +18160,7 @@ msgid "Stop playing this movie?"
 msgstr "Zatrzymać odtwarzanie tego filmu?"
 
 msgid "Stop previous broadcasted service on return to movie list."
-msgstr ""
+msgstr "Zatrzymaj poprzednio nadawany serwis przy powrocie do listy filmów."
 
 msgid "Stop recording"
 msgstr "Zatrzymać nagrywanie"
@@ -18346,7 +18376,7 @@ msgstr ""
 "Nie znaleziono pliku wymiany.Musisz wcześniej utworzyć plik do aktywacji."
 
 msgid "Swap Manager"
-msgstr "Swap Manager"
+msgstr "Menadżer pliku wymiany"
 
 msgid "Swap PIP"
 msgstr "Zamień PIP"
@@ -18355,13 +18385,13 @@ msgid "Swap PiP and main picture"
 msgstr "Zmień PiP i główny obraz"
 
 msgid "Swap Place:"
-msgstr "Miejsce Swap:"
+msgstr "Miejsce pliku wymiany:"
 
 msgid "Swap SNR in '%' with SNR in 'db'"
 msgstr "Zmień SNR z '%' na 'db'"
 
 msgid "Swap Size:"
-msgstr "Rozmiar Swap:"
+msgstr "Rozmiar pliku wymiany:"
 
 msgid ""
 "Swap buttons right/left with channel plus/minus or the channel button "
@@ -18466,7 +18496,7 @@ msgid "Switch to previous sub service"
 msgstr "Przełącz na poprzedni podserwis"
 
 msgid "Switch to radio mode"
-msgstr "Przełącz na tryb Radia"
+msgstr "Przełącz w tryb radio"
 
 msgid "Switchable tuner types:"
 msgstr "Wymienne typy tunerów:"
@@ -18511,7 +18541,7 @@ msgid "System & Modulation"
 msgstr "System & Modulacja"
 
 msgid "System Info"
-msgstr "Informacje o systemie"
+msgstr "Info o urządzeniu"
 
 msgid "System Message Check"
 msgstr "Kontrola komunikatów systemowych"
@@ -18530,10 +18560,10 @@ msgid "System: "
 msgstr "System: "
 
 msgid "SystemInfo"
-msgstr "Informacje o systemie"
+msgstr "Info o urządzeniu"
 
 msgid "Systeminfo"
-msgstr "Informacje o systemie"
+msgstr "Info o urządzeniu"
 
 msgid "T2MI PID"
 msgstr "T2MI PID"
@@ -18585,10 +18615,10 @@ msgid "Table of content for collection"
 msgstr "Spis treści dla kolekcji"
 
 msgid "Tag Editor"
-msgstr ""
+msgstr "Edytor znaczników"
 
 msgid "Tag Editor Actions"
-msgstr ""
+msgstr "Akcje edytora znacznika"
 
 msgid "Tagalog"
 msgstr "Tagalog"
@@ -18752,8 +18782,8 @@ msgid ""
 "Thank you for using the wizard. Your %s %s is now ready to use.\n"
 "Please press OK to start using your %s %s."
 msgstr ""
-"Dziękuje za skorzystanie z kreatora.Twój %s %s jest już gotowy do użycia.\n"
-"Proszę nacisnąć przycisk 'OK',aby rozpocząć korzystanie z %s %s."
+"Dziękuję za skorzystanie z kreatora. %s %s jest już gotowy do użycia.\n"
+"Proszę naciśnij przycisk 'OK',aby rozpocząć korzystanie z %s %s."
 
 msgid "The %s %s reads the stored EPG data every (hours)."
 msgstr "%s %s odczytuje zapisane dane EPG co (godz.)."
@@ -18921,7 +18951,7 @@ msgstr ""
 "Co chcesz robić?"
 
 msgid "The command to wake from standby will be sent multiple times."
-msgstr ""
+msgstr "Komenda wybudzania z trybu czuwania będzie wysyłana wielokrotnie."
 
 msgid "The current update may be unstable"
 msgstr "Bieżąca aktualizacja może być niestabilna"
@@ -19273,6 +19303,9 @@ msgid ""
 "standby. The wake up command's from other devices will be ignored for few "
 "seconds."
 msgstr ""
+"Jest to obejście dla niektórych urządzeń, które budzą się ponownie po "
+"przełączeniu w tryb gotowości. Komenda budzenia z innych urządzeń zostanie "
+"zignorowana przez kilka sekund."
 
 msgid ""
 "This is a workaround for some devices there wakeup again after switching in "
@@ -19810,13 +19843,13 @@ msgid "Time between slides in image viewer slideshow."
 msgstr "Czas między slajdami w pokazie slajdów przeglądarki zdjęć."
 
 msgid "Time delay for the repeated transmission"
-msgstr "Opóźnienie czasowe dla powtórnej transmisji"
+msgstr "Opóźnienie powtórnej transmisji"
 
 msgid "Time delay of the shutdown messages"
-msgstr "Opóźnienie czasowe komunikatów wyłączania"
+msgstr "Opóźnienie komunikatów wyłączania"
 
 msgid "Time delay until standby or deep standby"
-msgstr "Opóźnienie czasowe do trybu czuwania lub głębokiego czuwania"
+msgstr "Opóźnienie trybu czuwania lub głębokiego czuwania"
 
 msgid "Time for Slideshow"
 msgstr "Czas na pokaz slajdów"
@@ -20076,7 +20109,7 @@ msgid "Toggle new text inserts before or overwrites existing text"
 msgstr "Przełącz nowe wstawianie tekstu przed lub zastępuje istniejący tekst"
 
 msgid "Toggle selection of the current tag"
-msgstr ""
+msgstr "Przełącz wybór aktualnego znacznika"
 
 msgid "Toggle service name display"
 msgstr "Przełączanie wyświetlania nazwy usługi"
@@ -20226,6 +20259,8 @@ msgid ""
 "Try to send repeated commands if not all commands are executed. (e.g. TV "
 "wakeup, but not switched to correct input.)"
 msgstr ""
+"Spróbuj wysłać powtarzane polecenia, jeśli nie wszystkie polecenia są "
+"wykonywane. (np. budzenie TV, ale nie przełączono na poprawne wejście.)"
 
 msgid "Try to slow down the send interval if not all commands are executed."
 msgstr ""
@@ -20663,7 +20698,7 @@ msgid ""
 "Your Bootloader is now up-to-date!"
 msgstr ""
 "Aktualizacja powiodła się!\n"
-"Twój Bootloader jest teraz aktualny!"
+"Bootloader jest teraz aktualny!"
 
 msgid "Update/Backup your firmware, Backup/Restore settings"
 msgstr ""
@@ -20706,7 +20741,7 @@ msgid ""
 "This may take a few minutes"
 msgstr ""
 "Aktualizacja w toku\n"
-"Poczekaj, aż Twój %s %s uruchomi się ponownie\n"
+"Poczekaj, aż %s %s uruchomi się ponownie\n"
 "To może zająć kilka minut"
 
 msgid "Upgrade with GUI"
@@ -20774,7 +20809,7 @@ msgid "Use Harddisk Hardware Standby Timer"
 msgstr "Użyj sprzętowego timera czuwania dla HDD"
 
 msgid "Use Keymap"
-msgstr "Użyć mapowania klawiszy"
+msgstr "Mapowanie klawiszy"
 
 msgid "Use MHW EPG information when it is available."
 msgstr "Użyć informacji EPG MHW gdy dostępne."
@@ -20789,7 +20824,7 @@ msgid "Use OpenTV EPG information when it is available."
 msgstr "Użyj informacji OpenTV EPG, jeśli są one dostępne."
 
 msgid "Use TV remote control"
-msgstr "Użyć pilota zdalnego sterowania TV"
+msgstr "Zezwól na kontrolę pilotem od TV"
 
 msgid "Use USALS for this sat"
 msgstr "Użyć USALS dla tej satelity"
@@ -20819,7 +20854,7 @@ msgid "Use circular LNB"
 msgstr "Użyj kołowego LNB"
 
 msgid "Use defaults"
-msgstr ""
+msgstr "Ust. domyślne"
 
 msgid "Use extended List"
 msgstr "Użyj rozszerzonej listy"
@@ -20867,7 +20902,7 @@ msgid ""
 "Use the Left/Right buttons on your remote to adjust the size of the user "
 "interface. Left button decreases the size, Right increases the size."
 msgstr ""
-"Użyć przycisków LEWO/PRAWO na pilocie, aby dostosować rozmiar interfejsu "
+"Użyj przycisków LEWO/PRAWO na pilocie, aby dostosować rozmiar interfejsu "
 "użytkownika. Lewy przycisk zmniejsza rozmiar, prawy zwiększa rozmiar."
 
 msgid ""
@@ -20878,14 +20913,14 @@ msgstr "Użyj klawiszy w lewo/prawo,aby przesunąć pozycję menu OSD w lewo/pra
 msgid ""
 "Use the Left/Right buttons on your remote to move the user interface up/down"
 msgstr ""
-"Użyć przycisków LEWO/PRAWO na pilocie, aby przejść do interfejsu użytkownika "
+"Użyj przycisków LEWO/PRAWO na pilocie, aby przejść do interfejsu użytkownika "
 "w górę/dół"
 
 msgid ""
 "Use the Networkwizard to configure your Network. The wizard will help you to "
 "setup your network"
 msgstr ""
-"Użyj kreatora sieci, aby skonfigurować swoją sieć. Kreator pomoże Ci w jej "
+"Użyj kreatora sieci, aby skonfigurować swoją sieć. Kreator pomoże ci w jej "
 "konfiguracji"
 
 msgid ""
@@ -20928,7 +20963,7 @@ msgid "Use the extended List"
 msgstr "Użyj rozszerzonej listy"
 
 msgid "Use the network wizard to configure selected network adapter"
-msgstr "Użyć kreatora sieci do konfiguracji wybranego adaptera"
+msgstr "Użyj kreatora sieci do skonfigurowania wybranego interfejsu"
 
 msgid "Use the network wizard to configure your Network\n"
 msgstr "Użyj kreatora sieci aby skonfigurować swoją sieć\n"
@@ -21014,7 +21049,7 @@ msgid "Username:"
 msgstr "Nazwa użytkownika:"
 
 msgid "Using automatic address"
-msgstr ""
+msgstr "Używaj automatycznego adresu"
 
 msgid "Using fixed address"
 msgstr "Użyj stały adres"
@@ -21347,7 +21382,7 @@ msgid "Virtual keyboard"
 msgstr "Wirtualna klawiatura"
 
 msgid "Visual impaired commentary"
-msgstr ""
+msgstr "Komentarz dla osób z upośledzeniem wizualnym"
 
 msgid "Vol"
 msgstr "Głośność"
@@ -21374,6 +21409,8 @@ msgid ""
 "Volume keys on the receiver remote will control the TV volume. If this "
 "feature is not supported the volume keys have no function!"
 msgstr ""
+"Klawisze głośności na pilocie odbiornika będą kontrolować głośność "
+"telewizora. Jeśli ta funkcja jest obsługiwana!"
 
 msgid "Volume up"
 msgstr "Głośniej"
@@ -21427,17 +21464,17 @@ msgid "Wait for timesync at startup"
 msgstr "Poczekaj na synchronizację czasu podczas uruchamiania"
 
 msgid "Wait please while creating swapfile..."
-msgstr "Proszę czekać podczas tworzenia pliku wymiany..."
+msgstr "Proszę czekać, tworzenie pliku wymiany..."
 
 msgid "Wait please while scanning for devices..."
-msgstr "Proszę czekać podczas skanowania w poszukiwaniu urządzeń..."
+msgstr "Proszę czekać, skanowanie w poszukiwaniu urządzeń..."
 
 #, python-format
 msgid "Wait please while scanning your %s %s devices..."
-msgstr "Proszę czekać, podczas skanowania %s %s w poszukiwaniu urządzeń..."
+msgstr "Proszę czekać, skanowanie %s %s w poszukiwaniu urządzeń..."
 
 msgid "Wait please while scanning..."
-msgstr "Proszę czekać podczas skanowania..."
+msgstr "Proszę czekać, skanowanie..."
 
 msgid "Waiting"
 msgstr "Czekaj"
@@ -21464,7 +21501,7 @@ msgid "Wakeup time before a timer begins [mins]"
 msgstr "Czas wybudzenia przed rozpoczęciem timera [min]"
 
 msgid "Wakeup your AV Receiver from standby"
-msgstr "Wybudzaj Twój odbiornik AV z trybu czuwania"
+msgstr "Wybudzaj AV ze stanu czuwania"
 
 msgid "Wallis and Futuna"
 msgstr "Wallis i Futuna"
@@ -21572,8 +21609,8 @@ msgid ""
 msgstr ""
 "Witaj. \n"
 "\n"
-"Jeśli chcesz połączyć Twój %s %s z Internetem, ten kreator przeprowadzi Cię "
-"przez uproszczoną konfigurację %s %s. \n"
+"Jeśli chcesz połączyć %s %s z Internetem, ten kreator przeprowadzi Cię przez "
+"uproszczoną konfigurację %s %s. \n"
 "\n"
 "Naciśnij OK aby rozpocząć konfigurację sieci"
 
@@ -21662,20 +21699,24 @@ msgstr ""
 "eksperymentalne"
 
 msgid "When enabled the receiver will automatically be switched off."
-msgstr ""
+msgstr "Jeśli załączone, urządzenie będzie automatycznie wyłączane."
 
 msgid "When enabled the receiver will automatically be switched on."
-msgstr ""
+msgstr "Jeśli załączone, urządzenie będzie automatycznie włączane."
 
 msgid ""
 "When enabled the receiver will automatically return to standby when the TV "
 "is turned off."
 msgstr ""
+"Jeśli załączone, urządzenie automatycznie powróci do trybu czuwania jeśli TV "
+"jest wyłączony."
 
 msgid ""
 "When enabled the receiver will automatically wake from standby when the TV "
 "is turned on."
 msgstr ""
+"Jeśli załączone, urządzenie będzie automatycznie wybudzanie jeśli TV jest "
+"załączony."
 
 msgid ""
 "When enabled, AIT data will be included in http streams. This allows a "
@@ -21940,6 +21981,8 @@ msgid ""
 "When receiver wakes from standby it will command the TV to switch to the "
 "HDMI input to which the receiver is connected."
 msgstr ""
+"Jeśli urządzenie zostanie uruchomione z trybu czuwania TV zostanie "
+"przełączony na odpowiednie wejście."
 
 msgid ""
 "When set each folder will show the previous state used, when off the default "
@@ -21974,6 +22017,8 @@ msgid ""
 "When the receiver wakes from standby or deep standby it will send a command "
 "to the TV to bring it out of standby."
 msgstr ""
+"Jeśli urządzenie zostanie uruchomione z trybu czuwania lub głębokiego "
+"czuwania, zostanie wysłana komenda wybudzenia TV ."
 
 msgid ""
 "When tuned to a service the system will normally scan the transponder for "
@@ -22420,26 +22465,26 @@ msgstr ""
 "Timeshift się zatrzyma."
 
 msgid "Your %s %s does not have an internet connection"
-msgstr "Twój %s %s nie ma połączenia z Internetem"
+msgstr "%s %s nie ma połączenia z internetem"
 
 #, python-format
 msgid "Your %s %s does not support PiP HD"
-msgstr "Twój %s %s nie obsługuje PiP HD"
+msgstr "%s %s nie obsługuje PiP HD"
 
 #, python-format
 msgid "Your %s %s goes to WOL"
-msgstr "Twój %s %s przechodzi do WOL"
+msgstr "%s %s przechodzi do WOL"
 
 msgid "Your %s %s is not connected to the internet"
-msgstr "Twój %s %s nie jest podłączony do Internetu"
+msgstr "%s %s nie jest podłączony do internetu"
 
 #, python-format
 msgid ""
 "Your %s %s is not connected to the internet, please check your network "
 "settings and try again."
 msgstr ""
-"Twój %s %s nie jest połączony z Internetem, sprawdź ustawienia sieciowe i "
-"spróbuj ponownie."
+"%s %s nie jest połączony z internetem, sprawdź ustawienia sieciowe i spróbuj "
+"ponownie."
 
 #, python-format
 msgid ""
@@ -22448,9 +22493,9 @@ msgid ""
 "Your internet connection is working now.\n"
 "\n"
 msgstr ""
-"Twój %s %s jest teraz gotowy do użycia.\n"
+"%s %s jest gotowy do użycia.\n"
 "\n"
-"Twoje połączenie internetowe teraz działa.\n"
+"Połączenie internetowe teraz działa.\n"
 "\n"
 
 msgid ""
@@ -22460,15 +22505,15 @@ msgid ""
 "\n"
 "Please press OK to continue."
 msgstr ""
-"Twój %s %s jest już gotowy do użycia.\n"
+"%s %s jest już gotowy do użycia.\n"
 "\n"
-"Twoje połączenie internetowe działa.\n"
+"Połączenie internetowe działa.\n"
 "\n"
 "Proszę nacisnąć 'OK', aby kontynuować."
 
 #, python-format
 msgid "Your %s %s is rebooting"
-msgstr "Twój %s %s jest uruchamiany ponownie"
+msgstr "%s %s jest uruchamiany ponownie"
 
 #, python-format
 msgid "Your %s %s is rebooting into Recovery Mode"
@@ -22476,26 +22521,26 @@ msgstr "Twój %s %s jest uruchamiany ponownie w trybie odzyskiwania"
 
 #, python-format
 msgid "Your %s %s is shutting down"
-msgstr "Twój %s %s jest wyłączany"
+msgstr "%s %s jest wyłączany"
 
 msgid "Your %s %s is shutting down. Please wait..."
-msgstr "Twój %s %s jest wyłączany. Proszę czekać..."
+msgstr "%s %s jest wyłączany. Proszę czekać..."
 
 #, python-format
 msgid ""
 "Your %s %s isn't connected to the internet properly. Please check it and try "
 "again."
 msgstr ""
-"Twój %s %s nie jest podłączony do Internetu prawidłowo.Proszę to sprawdzić i "
-"spróbować ponownie."
+"%s %s nie jest podłączony do internetu.Proszę to sprawdzić i spróbować "
+"ponownie."
 
 #, python-format
 msgid ""
 "Your %s %s might be unusable now. Please consult the manual for further "
 "assistance before rebooting your %s %s."
 msgstr ""
-"Twój %s %s może być teraz bezużyteczny.Proszę zapoznać się z instrukcją "
-"pomocy przed ponownym uruchomieniem %s %s."
+"%s %s może być teraz bezużyteczny. Proszę zapoznać się z instrukcją pomocy "
+"przed ponownym uruchomieniem %s %s."
 
 #, python-format
 msgid ""
@@ -22503,25 +22548,25 @@ msgid ""
 "\n"
 "Do you want to put it in %s?"
 msgstr ""
-"Twój %s %s nie jest prawidłowo zamknięty.\n"
+"%s %s nie jest prawidłowo zamknięty.\n"
 "\n"
 "Czy chcesz umieścić go w %s ?"
 
 #, python-format
 msgid "Your %s %s will Reboot..."
-msgstr "Twój %s %s jest uruchamiany ponownie..."
+msgstr "%s %s jest uruchamiany ponownie..."
 
 #, python-format
 msgid "Your %s %s will Restart..."
-msgstr "Twój %s %s uruchomi się ponownie..."
+msgstr "%s %s uruchomi się ponownie..."
 
 #, python-format
 msgid ""
 "Your %s %s will be restarted after the installation of service\n"
 "Ready to install %s ?"
 msgstr ""
-"Twój %s %s zostanie uruchomiony ponownie po zainstalowaniu serwisu\n"
-"Gotowy do zainstalowania %s ?"
+"%s %s zostanie uruchomiony ponownie po zainstalowaniu serwisu\n"
+"Jesteś gotowy do zainstalowania %s ?"
 
 #, python-format
 msgid ""
@@ -22529,7 +22574,7 @@ msgid ""
 "\n"
 "Do you want to install now ?"
 msgstr ""
-"Twój %s %s zostanie ponownie uruchomiony po instalacji lisy kanałów.\n"
+"%s %s zostanie ponownie uruchomiony po instalacji lisy kanałów.\n"
 "\n"
 "Czy chcesz zainstalować listę teraz?"
 
@@ -22538,25 +22583,26 @@ msgid ""
 "Your %s %s will be restarted after the removal of service\n"
 "Do you want to remove now ?"
 msgstr ""
-"Twój %s %s zostanie uruchomiony ponownie po usunięciu listy kanałów\n"
-"Czy chcesz usunąć listę teraz ?"
+"%s %s zostanie uruchomiony ponownie po usunięciu listy kanałów\n"
+"Czy chcesz usunąć listę teraz?"
 
 msgid "Your Hardware can detect ci mode self or work only in legacy mode."
 msgstr ""
-"Twój sprzęt może sam wykryć tryb ci lub pracować tylko w trybie legacy."
+"Odbiornik może sam wykryć tryb CI lub pracować tylko w trybie "
+"kompatybilności."
 
 #, python-format
 msgid ""
 "Your Receiver has a Software problem detected. Since the last reboot it has "
 "occurred %d times.\n"
 msgstr ""
-"Twój odbiornik wykrył problem z oprogramowaniem. Od ostatniego ponownego "
+"Odbiornik wykrył problem z oprogramowaniem. Od ostatniego ponownego "
 "uruchomienia wystąpił %d razy.\n"
 
 msgid "Your STB will restart after pressing OK on your remote control."
 msgstr ""
-"Twój odbiornik uruchomi się ponownie po naciśnięciu przycisku 'OK' na "
-"pilocie zdalnego sterowania."
+"Odbiornik uruchomi się ponownie po naciśnięciu przycisku 'OK' na pilocie "
+"zdalnego sterowania."
 
 msgid ""
 "Your backup succeeded. We will now continue to explain the further upgrade "
@@ -22576,14 +22622,14 @@ msgid ""
 "Your config file is not well-formed:\n"
 "%s"
 msgstr ""
-"Twój plik konfiguracyjny nie jest dobrze ukształtowany:\n"
+"Plik konfiguracyjny nie jest poprawnie sformatowany:\n"
 "%s"
 
 msgid "Your current collection will get lost!"
 msgstr "Twoja obecna kolekcja została utracona!"
 
 msgid "Your email address is used to login to IceTV services."
-msgstr "Twój adres e-mail służy do logowania się do usług IceTV."
+msgstr "Adres e-mail służy do logowania się do usług IceTV."
 
 msgid "Your existing IceTV password."
 msgstr "Twoje istniejące hasło IceTV."
@@ -22599,7 +22645,7 @@ msgid ""
 "Your frontprocessor firmware must be upgraded.\n"
 "Press OK to start upgrade."
 msgstr ""
-"Twój Frontprocessor musi zostać zaktualizowany.\n"
+"Frontprocesor musi zostać zaktualizowany.\n"
 "Naciśnij 'OK' aby rozpocząć aktualizację."
 
 #, python-format
@@ -22655,14 +22701,14 @@ msgid ""
 "Your receiver can use SCPC optimized search range. Consult your receiver's "
 "manual for more information."
 msgstr ""
-"Twój odbiornik może używać zoptymalizowanego zakresu wyszukiwania SCPC. "
-"Więcej informacji na ten temat można znaleźć w instrukcji obsługi odbiornika."
+"Odbiornik może używać zoptymalizowanego zakresu wyszukiwania SCPC. Więcej "
+"informacji na ten temat można znaleźć w instrukcji obsługi odbiornika."
 
 msgid ""
 "Your receiver can use tone amplitude. Consult your receiver's manual for "
 "more information."
 msgstr ""
-"Twój odbiornik może wykorzystywać amplitudę tonu. Aby uzyskać więcej "
+"Odbiornik może wykorzystywać amplitudę tonową. Aby uzyskać więcej "
 "informacji, zapoznaj się z instrukcją obsługi odbiornika."
 
 msgid ""
@@ -23272,7 +23318,7 @@ msgid "enable favourite edit"
 msgstr "włącz edycję ulubionych"
 
 msgid "enable move mode"
-msgstr "Włącz tryb przenoszenia kanałów"
+msgstr "Załącz tryb przenoszenia kanałów"
 
 msgid "enabled"
 msgstr "włączony"
@@ -23949,7 +23995,7 @@ msgid "please press OK when ready"
 msgstr "proszę nacisnąć przycisk 'OK', gdy jesteś gotowy"
 
 msgid "please wait, loading picture..."
-msgstr "proszę czekać, trwa ładowanie zdjęcia ..."
+msgstr "proszę czekać, trwa ładowanie zdjęcia..."
 
 msgid "please wait..."
 msgstr "proszę czekać..."
@@ -24642,7 +24688,7 @@ msgid ""
 "your %s %s might be unusable now. Please consult the manual for further "
 "assistance before rebooting your %s %s."
 msgstr ""
-"twój %s %s może być teraz bezużyteczny. Przed ponownym uruchomieniem %s %s, "
+"%s %s może być teraz bezużyteczny. Przed ponownym uruchomieniem %s %s, "
 "należy zapoznać się z instrukcją w celu uzyskania pomocy."
 
 msgid "zap"
