@@ -144,7 +144,7 @@ DEBUGTIME=`sed -En 's|^config\.crash\.debugTimeFormat=(.+)$|\1|p' "@sysconfdir@/
 [ -n "${DEBUGTIME}" ] || DEBUGTIME="2"
 DEBUG_TIME="${DEBUGTIME}"
 
-if [ "$(grep config.crash.enabledebug /etc/enigma2/settings)" == "config.crash.enabledebug=true" ]; then
+if [ "$(grep -i config.crash.enabledebug=true /etc/enigma2/settings)" != "" ]; then
 	DEBUG_LVL='4'
 	RANDOMIZE1970=''
 	time=`date +%Y` ;
