@@ -1456,7 +1456,10 @@ class ConfigSet(ConfigElement):
 	def load(self):
 		ConfigElement.load(self)
 		if not isinstance(self.value, list):
-			self.value = list(self.value)
+			if self.value is None:
+				self.value = []
+			else:
+				self.value = list(self.value)
 		self.value.sort()
 
 	def handleKey(self, key, callback=None):
