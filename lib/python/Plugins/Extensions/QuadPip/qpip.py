@@ -949,7 +949,8 @@ class QuadPipScreen(Screen, FocusShowHide, HelpableScreen):
 			#print "===================================================================="
 
 			qPipInstance = self.session.instantiateDialog(QuadPiP, decoderIdx, pos)
-			qPipInstance.setAnimationMode(0)
+			if BoxInfo.getItem("OSDAnimation"):
+				qPipInstance.setAnimationMode(0)
 			qPipInstance.show()
 
 			isPlayAudio = False
