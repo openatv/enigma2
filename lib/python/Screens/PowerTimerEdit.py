@@ -28,7 +28,7 @@ class PowerTimerEditList(Screen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
 		self.skinName = "TimerEditList"
-		Screen.setTitle(self, _("PowerTimer List"))
+		Screen.setTitle(self, _("PowerTimer list"))
 
 		self.onChangedEntry = []
 		list = []
