@@ -305,7 +305,7 @@ class TimerEditList(Screen):
 			self.session.openWithCallback(self.finishedEdit, TimerEntry, cur)
 
 	def cleanupQuestion(self):
-		self.session.openWithCallback(self.cleanupTimer, MessageBox, _("Really delete done timers?"))
+		self.session.openWithCallback(self.cleanupTimer, MessageBox, _("Really delete completed timers?"))
 
 	def cleanupTimer(self, delete):
 		if delete:
