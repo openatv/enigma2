@@ -7,7 +7,7 @@ from time import localtime, strftime, struct_time
 from enigma import getPrevAsciiCode
 
 from Components.SystemInfo import BoxInfo
-from Tools.Directories import SCOPE_CONFIG, fileAccess, fileExists, resolveFilename
+from Tools.Directories import SCOPE_CONFIG, fileAccess, resolveFilename
 from Tools.LoadPixmap import LoadPixmap
 from Tools.NumericalTextInput import NumericalTextInput
 from Components.Harddisk import harddiskmanager  # This import is order critical!
@@ -683,11 +683,11 @@ class ConfigLocations(ConfigElement):
 
 	def load(self):
 		ConfigElement.load(self)
-		self.loadValue = list(set(self.loadValue)) # remove duplicates
+		self.loadValue = list(set(self.loadValue))  # Remove any duplicated entries.
 		self.locations = [[x, None, False] for x in self.loadValue]
 		self.refreshMountPoints()
 		for location in self.locations:
-			if fileExists(location[0]):
+			if fileAccess(location[0]):
 				location[1] = self.getMountPoint(location[0])
 				location[2] = True
 
@@ -737,17 +737,17 @@ class ConfigLocations(ConfigElement):
 		return [x[0] for x in self.locations if x[2]]
 
 	def setValue(self, value):
-		prev = self.locations
-		newvalues = list(set(value))
-		self.locations = []
-		for location in prev:
-			if location[0] in newvalues:
-				self.locations.append(location)
-				newvalues.remove(location[0])
-		for location in newvalues:
-			self.locations.append([location, self.getMountPoint(location), fileAccess(location)])
-		if self.locations != prev:
-			self.locations.sort(key=lambda x: x[0])
+		value = list(set(value))  # Remove any duplicated entries.
+		newLocations = []
+		for location in self.locations:
+			if location[0] in value:
+				newLocations.append(location)
+				value.remove(location[0])
+		for location in value:
+			newLocations.append([location, self.getMountPoint(location), fileAccess(location)])
+		newLocations.sort(key=lambda x: x[0])
+		if newLocations != self.locations:
+			self.locations = newLocations
 			self.changed()
 
 	value = property(getValue, setValue)
@@ -785,7 +785,7 @@ class ConfigLocations(ConfigElement):
 		for location in self.locations:
 			if location[1] == mountPoint:
 				location[2] = True
-			elif location[1] is None and fileExists(location[0]):
+			elif location[1] is None and fileAccess(location[0]):
 				location[1] = self.getMountPoint(location[0])
 				location[2] = True
 
@@ -1456,10 +1456,7 @@ class ConfigSet(ConfigElement):
 	def load(self):
 		ConfigElement.load(self)
 		if not isinstance(self.value, list):
-			if self.value is None:
-				self.value = []
-			else:
-				self.value = list(self.value)
+			self.value = [] if self.value is None else list(self.value)
 		self.value.sort()
 
 	def handleKey(self, key, callback=None):
