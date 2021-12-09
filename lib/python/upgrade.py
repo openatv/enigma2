@@ -29,7 +29,7 @@ def opkgAddDestination(mountpoint):
 	global opkgDestinations
 	if mountpoint not in opkgDestinations:
 		opkgDestinations.append(mountpoint)
-		print("[Ipkg] Added to OPKG destinations:", mountpoint)
+		print("[OPKG] Added to OPKG destinations:", mountpoint)
 
 
 mounts = os.listdir('/media')

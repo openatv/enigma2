@@ -4,7 +4,7 @@ from Components.ConfigList import ConfigListScreen
 from Components.Sources.StaticText import StaticText
 from Components.config import config, ConfigSubsection, ConfigBoolean, getConfigListEntry, ConfigSelection, ConfigYesNo, ConfigIP
 from Components.Network import iNetwork
-from Components.Ipkg import IpkgComponent
+from Components.Opkg import OpkgComponent
 from enigma import eDVBDB
 
 config.misc.installwizard = ConfigSubsection()
@@ -103,14 +103,14 @@ class InstallWizard(Screen, ConfigListScreen):
 	def run(self):
 		#if self.index == self.STATE_UPDATE:
 		#	if config.misc.installwizard.hasnetwork.value:
-		#		self.session.open(InstallWizardIpkgUpdater, self.index, _('Please wait (updating packages)'), IpkgComponent.CMD_UPDATE)
+		#		self.session.open(InstallWizardIpkgUpdater, self.index, _('Please wait (updating packages)'), OpkgComponent.CMD_UPDATE)
 		if self.index == self.STATE_CHOISE_CHANNELLIST and self.enabled.value and self.channellist_type.value == "default":
 			config.misc.installwizard.channellistdownloaded.value = True
 			os.system("tar -xzf /etc/defaultsat.tar.gz -C /etc/enigma2")
 			eDVBDB.getInstance().reloadServicelist()
 			eDVBDB.getInstance().reloadBouquets()
 # 		elif self.index == self.STATE_CHOISE_SOFTCAM and self.enabled.value:
-# 			self.session.open(InstallWizardIpkgUpdater, self.index, _('Please wait (downloading softcam)'), IpkgComponent.CMD_INSTALL, {'package': 'enigma2-plugin-softcams-' + self.softcam_type.value})
+# 			self.session.open(InstallWizardIpkgUpdater, self.index, _('Please wait (downloading softcam)'), OpkgComponent.CMD_INSTALL, {'package': 'enigma2-plugin-softcams-' + self.softcam_type.value})
 		return
 
 
@@ -124,21 +124,21 @@ class InstallWizardIpkgUpdater(Screen):
 		self.index = index
 		self.state = 0
 
-		self.ipkg = IpkgComponent()
-		self.ipkg.addCallback(self.ipkgCallback)
+		self.opkg = OpkgComponent()
+		self.opkg.addCallback(self.opkgCallback)
 
 		if self.index == InstallWizard.STATE_CHOISE_CHANNELLIST:
-			self.ipkg.startCmd(cmd, {'package': 'enigma2-plugin-settings-*'})
+			self.opkg.startCmd(cmd, {'package': 'enigma2-plugin-settings-*'})
 		else:
-			self.ipkg.startCmd(cmd, pkg)
+			self.opkg.startCmd(cmd, pkg)
 
-	def ipkgCallback(self, event, param):
-		if event == IpkgComponent.EVENT_DONE:
+	def opkgCallback(self, event, param):
+		if event == OpkgComponent.EVENT_DONE:
 			if self.index == InstallWizard.STATE_UPDATE:
 				config.misc.installwizard.ipkgloaded.value = True
 			elif self.index == InstallWizard.STATE_CHOISE_CHANNELLIST:
 				if self.state == 0:
-					self.ipkg.startCmd(IpkgComponent.CMD_INSTALL, self.pkg)
+					self.opkg.startCmd(OpkgComponent.CMD_INSTALL, self.pkg)
 					self.state = 1
 					return
 				else:

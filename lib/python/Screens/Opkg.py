@@ -1,6 +1,6 @@
 from __future__ import print_function
 from Components.ActionMap import ActionMap
-from Components.Ipkg import IpkgComponent
+from Components.Opkg import OpkgComponent
 from Components.Label import Label
 from Components.Slider import Slider
 from Screens.Screen import Screen
@@ -8,7 +8,7 @@ from Screens.MessageBox import MessageBox
 from enigma import eTimer
 
 
-class Ipkg(Screen):
+class Opkg(Screen):
 	def __init__(self, session, cmdList=None):
 		if not cmdList:
 			cmdList = []
@@ -37,8 +37,8 @@ class Ipkg(Screen):
 		self.activityTimer.callback.append(self.doActivityTimer)
 		#self.activityTimer.start(100, False)
 
-		self.ipkg = IpkgComponent()
-		self.ipkg.addCallback(self.ipkgCallback)
+		self.opkg = OpkgComponent()
+		self.opkg.addCallback(self.opkgCallback)
 
 		self.runningCmd = None
 		self.runNextCmd()
@@ -65,11 +65,11 @@ class Ipkg(Screen):
 		else:
 			cmd = self.cmdList[self.runningCmd]
 			self.slider.setValue(self.runningCmd)
-			self.ipkg.startCmd(cmd[0], args=cmd[1])
+			self.opkg.startCmd(cmd[0], args=cmd[1])
 			self.startActivityTimer()
 
 	def doActivityTimer(self):
-		if not self.ipkg.isRunning():
+		if not self.opkg.isRunning():
 			self.stopActivityTimer()
 		else:
 			self.activity += 1
@@ -83,10 +83,10 @@ class Ipkg(Screen):
 	def stopActivityTimer(self):
 		self.activityTimer.stop()
 
-	def ipkgCallback(self, event, param):
-		if event == IpkgComponent.EVENT_DOWNLOAD:
+	def opkgCallback(self, event, param):
+		if event == OpkgComponent.EVENT_DOWNLOAD:
 			self.status.setText(_("Downloading"))
-		elif event == IpkgComponent.EVENT_UPGRADE:
+		elif event == OpkgComponent.EVENT_UPGRADE:
 			if param in self.sliderPackages:
 				self.slider.setValue(self.sliderPackages[param])
 			self.package.setText(param)
@@ -94,26 +94,26 @@ class Ipkg(Screen):
 			if not param in self.processed_packages:
 				self.processed_packages.append(param)
 				self.packages += 1
-		elif event == IpkgComponent.EVENT_INSTALL:
+		elif event == OpkgComponent.EVENT_INSTALL:
 			self.package.setText(param)
 			self.status.setText(_("Installing"))
 			if not param in self.processed_packages:
 				self.processed_packages.append(param)
 				self.packages += 1
-		elif event == IpkgComponent.EVENT_REMOVE:
+		elif event == OpkgComponent.EVENT_REMOVE:
 			self.package.setText(param)
 			self.status.setText(_("Removing"))
 			if not param in self.processed_packages:
 				self.processed_packages.append(param)
 				self.packages += 1
-		elif event == IpkgComponent.EVENT_CONFIGURING:
+		elif event == OpkgComponent.EVENT_CONFIGURING:
 			self.package.setText(param)
 			self.status.setText(_("Configuring"))
-		elif event == IpkgComponent.EVENT_ERROR:
+		elif event == OpkgComponent.EVENT_ERROR:
 			self.error += 1
-		elif event == IpkgComponent.EVENT_DONE:
+		elif event == OpkgComponent.EVENT_DONE:
 			self.runNextCmd()
-		elif event == IpkgComponent.EVENT_MODIFIED:
+		elif event == OpkgComponent.EVENT_MODIFIED:
 			self.session.openWithCallback(
 				self.modificationCallback,
 				MessageBox,
@@ -121,8 +121,8 @@ class Ipkg(Screen):
 			)
 
 	def modificationCallback(self, res):
-		self.ipkg.write(res and "N" or "Y")
+		self.opkg.write(res and "N" or "Y")
 
 	def exit(self):
-		if not self.ipkg.isRunning():
+		if not self.opkg.isRunning():
 			self.close()

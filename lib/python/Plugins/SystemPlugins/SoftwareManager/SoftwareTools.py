@@ -4,7 +4,7 @@ from Components.Console import Console
 from Components.PackageInfo import PackageInfoHandler
 from Components.International import international
 from Components.Sources.List import List
-from Components.Ipkg import IpkgComponent
+from Components.Opkg import OpkgComponent
 from Components.Network import iNetwork
 from Tools.Directories import resolveFilename, SCOPE_METADIR
 from Tools.HardwareInfo import HardwareInfo
@@ -38,8 +38,8 @@ class SoftwareTools(PackageInfoHandler):
 		self.UpdateConsole = Console()
 		self.cmdList = []
 		self.unwanted_extensions = ('-dbg', '-dev', '-doc', '-staticdev', '-src')
-		self.ipkg = IpkgComponent()
-		self.ipkg.addCallback(self.ipkgCallback)
+		self.opkg = OpkgComponent()
+		self.opkg.addCallback(self.opkgCallback)
 
 	def statusCallback(self, status, progress):
 		pass
@@ -64,11 +64,11 @@ class SoftwareTools(PackageInfoHandler):
 					self.lastDownloadDate = time()
 					if self.list_updating is False and callback is None:
 						self.list_updating = True
-						self.ipkg.startCmd(IpkgComponent.CMD_UPDATE)
+						self.opkg.startCmd(OpkgComponent.CMD_UPDATE)
 					elif self.list_updating is False and callback is not None:
 						self.list_updating = True
 						self.NotifierCallback = callback
-						self.ipkg.startCmd(IpkgComponent.CMD_UPDATE)
+						self.opkg.startCmd(OpkgComponent.CMD_UPDATE)
 					elif self.list_updating is True and callback is not None:
 						self.NotifierCallback = callback
 				else:
@@ -82,17 +82,17 @@ class SoftwareTools(PackageInfoHandler):
 				self.lastDownloadDate = time()
 				if self.list_updating is False and callback is None:
 					self.list_updating = True
-					self.ipkg.startCmd(IpkgComponent.CMD_UPDATE)
+					self.opkg.startCmd(OpkgComponent.CMD_UPDATE)
 				elif self.list_updating is False and callback is not None:
 					self.list_updating = True
 					self.NotifierCallback = callback
-					self.ipkg.startCmd(IpkgComponent.CMD_UPDATE)
+					self.opkg.startCmd(OpkgComponent.CMD_UPDATE)
 				elif self.list_updating is True and callback is not None:
 					self.NotifierCallback = callback
 			else:
 				if self.list_updating and callback is not None:
 						self.NotifierCallback = callback
-						self.startIpkgListAvailable()
+						self.startOpkgListAvailable()
 				else:
 					self.list_updating = False
 					if callback is not None:
@@ -100,26 +100,26 @@ class SoftwareTools(PackageInfoHandler):
 					elif self.NotifierCallback is not None:
 						self.NotifierCallback(False)
 
-	def ipkgCallback(self, event, param):
-		if event == IpkgComponent.EVENT_ERROR:
+	def opkgCallback(self, event, param):
+		if event == OpkgComponent.EVENT_ERROR:
 			self.list_updating = False
 			if self.NotifierCallback is not None:
 				self.NotifierCallback(False)
-		elif event == IpkgComponent.EVENT_DONE:
+		elif event == OpkgComponent.EVENT_DONE:
 			if self.list_updating:
-				self.startIpkgListAvailable()
+				self.startOpkgListAvailable()
 		pass
 
-	def startIpkgListAvailable(self, callback=None):
+	def startOpkgListAvailable(self, callback=None):
 		if callback is not None:
 			self.list_updating = True
 		if self.list_updating:
 			if not self.UpdateConsole:
 				self.UpdateConsole = Console()
-			cmd = self.ipkg.ipkg + " list"
-			self.UpdateConsole.ePopen(cmd, self.IpkgListAvailableCB, callback)
+			cmd = self.opkg.opkg + " list"
+			self.UpdateConsole.ePopen(cmd, self.OpkgListAvailableCB, callback)
 
-	def IpkgListAvailableCB(self, result, retval, extra_args=None):
+	def OpkgListAvailableCB(self, result, retval, extra_args=None):
 		(callback) = extra_args or None
 		if result:
 			result = six.ensure_str(result)
@@ -153,7 +153,7 @@ class SoftwareTools(PackageInfoHandler):
 			if self.NetworkConnectionAvailable:
 				if not self.UpdateConsole:
 					self.UpdateConsole = Console()
-				cmd = self.ipkg.ipkg + " install enigma2-meta enigma2-plugins-meta enigma2-skins-meta"
+				cmd = self.opkg.opkg + " install enigma2-meta enigma2-plugins-meta enigma2-skins-meta"
 				self.UpdateConsole.ePopen(cmd, self.InstallMetaPackageCB, callback)
 			else:
 				self.InstallMetaPackageCB(True)
@@ -164,7 +164,7 @@ class SoftwareTools(PackageInfoHandler):
 			result = six.ensure_str(result)
 			self.fillPackagesIndexList()
 			if callback is None:
-				self.startIpkgListInstalled()
+				self.startOpkgListInstalled()
 			else:
 				if self.UpdateConsole:
 					if len(self.UpdateConsole.appContainers) == 0:
@@ -176,16 +176,16 @@ class SoftwareTools(PackageInfoHandler):
 					if callback is not None:
 						callback(False)
 
-	def startIpkgListInstalled(self, callback=None):
+	def startOpkgListInstalled(self, callback=None):
 		if callback is not None:
 			self.list_updating = True
 		if self.list_updating:
 			if not self.UpdateConsole:
 				self.UpdateConsole = Console()
-			cmd = self.ipkg.ipkg + " list_installed"
-			self.UpdateConsole.ePopen(cmd, self.IpkgListInstalledCB, callback)
+			cmd = self.opkg.opkg + " list_installed"
+			self.UpdateConsole.ePopen(cmd, self.OpkgListInstalledCB, callback)
 
-	def IpkgListInstalledCB(self, result, retval, extra_args=None):
+	def OpkgListInstalledCB(self, result, retval, extra_args=None):
 		(callback) = extra_args or None
 		if result:
 			result = six.ensure_str(result)
@@ -241,13 +241,13 @@ class SoftwareTools(PackageInfoHandler):
 					self.NotifierCallback(True)
 					self.NotifierCallback = None
 
-	def startIpkgUpdate(self, callback=None):
+	def startOpkgUpdate(self, callback=None):
 		if not self.Console:
 			self.Console = Console()
-		cmd = self.ipkg.ipkg + " update"
-		self.Console.ePopen(cmd, self.IpkgUpdateCB, callback)
+		cmd = self.opkg.opkg + " update"
+		self.Console.ePopen(cmd, self.OpkgUpdateCB, callback)
 
-	def IpkgUpdateCB(self, result, retval, extra_args=None):
+	def OpkgUpdateCB(self, result, retval, extra_args=None):
 		(callback) = extra_args or None
 		if result:
 			if self.Console:
@@ -260,7 +260,7 @@ class SoftwareTools(PackageInfoHandler):
 		self.list_updating = False
 		if self.NotifierCallback is not None:
 			self.NotifierCallback = None
-		self.ipkg.stop()
+		self.opkg.stop()
 		if self.Console is not None:
 			if len(self.Console.appContainers):
 				for name in list(self.Console.appContainers.keys()):

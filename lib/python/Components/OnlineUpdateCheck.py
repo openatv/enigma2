@@ -6,7 +6,7 @@ from boxbranding import getImageVersion
 from enigma import eTimer
 
 import Components.Task
-from Components.Ipkg import IpkgComponent
+from Components.Opkg import OpkgComponent
 from Components.config import config
 
 
@@ -20,8 +20,8 @@ class OnlineUpdateCheckPoller:
 	def __init__(self):
 		# Init Timer
 		self.timer = eTimer()
-		self.ipkg = IpkgComponent()
-		self.ipkg.addCallback(self.ipkgCallback)
+		self.opkg = OpkgComponent()
+		self.opkg.addCallback(self.opkgCallback)
 
 	def start(self):
 		if self.onlineupdate_check not in self.timer.callback:
@@ -51,15 +51,15 @@ class OnlineUpdateCheckPoller:
 
 	def JobStart(self):
 		self.updating = True
-		self.ipkg.startCmd(IpkgComponent.CMD_UPDATE)
+		self.opkg.startCmd(OpkgComponent.CMD_UPDATE)
 
-	def ipkgCallback(self, event, param):
-		if event == IpkgComponent.EVENT_DONE:
+	def opkgCallback(self, event, param):
+		if event == OpkgComponent.EVENT_DONE:
 			if self.updating:
 				self.updating = False
-				self.ipkg.startCmd(IpkgComponent.CMD_UPGRADE_LIST)
-			elif self.ipkg.currentCommand == IpkgComponent.CMD_UPGRADE_LIST:
-				self.total_packages = len(self.ipkg.getFetchedList())
+				self.opkg.startCmd(OpkgComponent.CMD_UPGRADE_LIST)
+			elif self.opkg.currentCommand == OpkgComponent.CMD_UPGRADE_LIST:
+				self.total_packages = len(self.opkg.getFetchedList())
 				print('[OnlineVersionCheck] %s Updates available' % self.total_packages)
 				if self.total_packages:
 					from six.moves.urllib.request import urlopen

@@ -1,17 +1,10 @@
 from __future__ import print_function
-#from Components.ActionMap import ActionMap, NumberActionMap
-#from Components.Input import Input
-#from Components.Ipkg import IpkgComponent
-#from Components.Label import Label
-#from Components.MenuList import MenuList
-#from Components.Slider import Slider
 from Components.NimManager import nimmanager
 from Plugins.Plugin import PluginDescriptor
 from Screens.ScanSetup import ScanSetup
 from Screens.ServiceScan import ServiceScan
 from Screens.MessageBox import MessageBox
 from Tools.Directories import resolveFilename, SCOPE_CONFIG, copyfile
-#from Screens.Screen import Screen
 from os import unlink
 from enigma import eTimer, eDVBDB
 

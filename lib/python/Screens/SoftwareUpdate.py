@@ -15,7 +15,7 @@ from Components.ActionMap import ActionMap
 from Components.Button import Button
 from Components.config import config
 from Components.Console import Console
-from Components.Ipkg import IpkgComponent
+from Components.Opkg import OpkgComponent
 from Components.Pixmap import Pixmap
 from Components.Label import Label
 from Components.ScrollLabel import ScrollLabel
@@ -224,8 +224,8 @@ class UpdatePlugin(Screen):
 		self.activityTimer = eTimer()
 		self.activityTimer.callback.append(self.doActivityTimer)
 
-		self.ipkg = IpkgComponent()
-		self.ipkg.addCallback(self.ipkgCallback)
+		self.opkg = OpkgComponent()
+		self.opkg.addCallback(self.opkgCallback)
 
 		self.updating = False
 
@@ -237,7 +237,7 @@ class UpdatePlugin(Screen):
 
 		self.updating = True
 		self.activityTimer.start(100, False)
-		self.ipkg.startCmd(IpkgComponent.CMD_UPDATE)
+		self.opkg.startCmd(OpkgComponent.CMD_UPDATE)
 
 	def doActivityTimer(self):
 		self.activity += 1
@@ -248,10 +248,10 @@ class UpdatePlugin(Screen):
 	def showUpdateCompletedMessage(self):
 		self.setEndMessage(ngettext("Update completed, %d package was installed.", "Update completed, %d packages were installed.", self.packages) % self.packages)
 
-	def ipkgCallback(self, event, param):
-		if event == IpkgComponent.EVENT_DOWNLOAD:
+	def opkgCallback(self, event, param):
+		if event == OpkgComponent.EVENT_DOWNLOAD:
 			self.status.setText(_("Downloading"))
-		elif event == IpkgComponent.EVENT_UPGRADE:
+		elif event == OpkgComponent.EVENT_UPGRADE:
 			if param in self.sliderPackages:
 				self.slider.setValue(self.sliderPackages[param])
 			self.package.setText(param)
@@ -259,38 +259,38 @@ class UpdatePlugin(Screen):
 			if not param in self.processed_packages:
 				self.processed_packages.append(param)
 				self.packages += 1
-		elif event == IpkgComponent.EVENT_INSTALL:
+		elif event == OpkgComponent.EVENT_INSTALL:
 			self.package.setText(param)
 			self.status.setText(_("Installing"))
 			if not param in self.processed_packages:
 				self.processed_packages.append(param)
 				self.packages += 1
-		elif event == IpkgComponent.EVENT_REMOVE:
+		elif event == OpkgComponent.EVENT_REMOVE:
 			self.package.setText(param)
 			self.status.setText(_("Removing"))
 			if not param in self.processed_packages:
 				self.processed_packages.append(param)
 				self.packages += 1
-		elif event == IpkgComponent.EVENT_CONFIGURING:
+		elif event == OpkgComponent.EVENT_CONFIGURING:
 			self.package.setText(param)
 			self.status.setText(_("Configuring"))
 
-		elif event == IpkgComponent.EVENT_MODIFIED:
+		elif event == OpkgComponent.EVENT_MODIFIED:
 			if config.plugins.softwaremanager.overwriteConfigFiles.value in ("N", "Y"):
-				self.ipkg.write(True and config.plugins.softwaremanager.overwriteConfigFiles.value)
+				self.opkg.write(True and config.plugins.softwaremanager.overwriteConfigFiles.value)
 			else:
 				self.session.openWithCallback(
 					self.modificationCallback,
 					MessageBox,
 					_("A configuration file (%s) has been modified since it was installed.\nDo you want to keep your modifications?") % param
 				)
-		elif event == IpkgComponent.EVENT_ERROR:
+		elif event == OpkgComponent.EVENT_ERROR:
 			self.error += 1
-		elif event == IpkgComponent.EVENT_DONE:
+		elif event == OpkgComponent.EVENT_DONE:
 			if self.updating:
 				self.updating = False
-				self.ipkg.startCmd(IpkgComponent.CMD_UPGRADE_LIST)
-			elif self.ipkg.currentCommand == IpkgComponent.CMD_UPGRADE_LIST:
+				self.opkg.startCmd(OpkgComponent.CMD_UPGRADE_LIST)
+			elif self.opkg.currentCommand == OpkgComponent.CMD_UPGRADE_LIST:
 				from six.moves.urllib.request import urlopen
 				import socket
 				currentTimeoutDefault = socket.getdefaulttimeout()
@@ -302,14 +302,14 @@ class UpdatePlugin(Screen):
 				socket.setdefaulttimeout(currentTimeoutDefault)
 				self.total_packages = None
 				if config.softwareupdate.updateisunstable.value == '1' and config.softwareupdate.updatebeta.value:
-					self.total_packages = len(self.ipkg.getFetchedList())
+					self.total_packages = len(self.opkg.getFetchedList())
 					message = _("The current update may be unstable") + "\n" + _("Are you sure you want to update your %s %s ?") % (getMachineBrand(), getMachineName()) + "\n(" + (ngettext("%s updated package available", "%s updated packages available", self.total_packages) % self.total_packages) + ")"
 				elif config.softwareupdate.updateisunstable.value == '0':
-					self.total_packages = len(self.ipkg.getFetchedList())
+					self.total_packages = len(self.opkg.getFetchedList())
 					message = _("Do you want to update your %s %s ?") % (getMachineBrand(), getMachineName()) + "\n(" + (ngettext("%s updated package available", "%s updated packages available", self.total_packages) % self.total_packages) + ")"
 				if self.total_packages:
 					global ocram
-					for package_tmp in self.ipkg.getFetchedList():
+					for package_tmp in self.opkg.getFetchedList():
 						if package_tmp[0].startswith('enigma2-plugin-picons-tv-ocram'):
 							ocram = ocram + '[ocram-picons] ' + package_tmp[0].split('enigma2-plugin-picons-tv-ocram.')[1] + 'updated ' + package_tmp[2] + '\n'
 						elif package_tmp[0].startswith('enigma2-plugin-settings-ocram'):
@@ -334,11 +334,11 @@ class UpdatePlugin(Screen):
 					self.setEndMessage(_("Could not find installed channel list."))
 				elif self.channellist_only == 2:
 					self.slider.setValue(2)
-					self.ipkg.startCmd(IpkgComponent.CMD_REMOVE, {'package': self.channellist_name})
+					self.opkg.startCmd(OpkgComponent.CMD_REMOVE, {'package': self.channellist_name})
 					self.channellist_only += 1
 				elif self.channellist_only == 3:
 					self.slider.setValue(3)
-					self.ipkg.startCmd(IpkgComponent.CMD_INSTALL, {'package': self.channellist_name})
+					self.opkg.startCmd(OpkgComponent.CMD_INSTALL, {'package': self.channellist_name})
 					self.channellist_only += 1
 				elif self.channellist_only == 4:
 					self.showUpdateCompletedMessage()
@@ -355,7 +355,7 @@ class UpdatePlugin(Screen):
 				if self.updating:
 					error = _("Update failed. Your %s %s does not have a working internet connection.") % (getMachineBrand(), getMachineName())
 				self.status.setText(_("Error") + " - " + error)
-		elif event == IpkgComponent.EVENT_LISTITEM:
+		elif event == OpkgComponent.EVENT_LISTITEM:
 			if 'enigma2-plugin-settings-' in param[0] and self.channellist_only > 0:
 				self.channellist_name = param[0]
 				self.channellist_only = 2
@@ -398,7 +398,7 @@ class UpdatePlugin(Screen):
 		elif answer[1] == "channels":
 			self.channellist_only = 1
 			self.slider.setValue(1)
-			self.ipkg.startCmd(IpkgComponent.CMD_LIST, args={'installed_only': True})
+			self.opkg.startCmd(OpkgComponent.CMD_LIST, args={'installed_only': True})
 		elif answer[1] == "cold":
 			if (config.softwareupdate.autosettingsbackup.value and config.backupmanager.backuplocation.value) or (config.softwareupdate.autoimagebackup.value and config.imagemanager.backuplocation.value):
 				self.doAutoBackup()
@@ -407,7 +407,7 @@ class UpdatePlugin(Screen):
 				self.close()
 
 	def modificationCallback(self, res):
-		self.ipkg.write(res and "N" or "Y")
+		self.opkg.write(res and "N" or "Y")
 
 	def doSettingsBackup(self):
 		backup = None
@@ -454,7 +454,7 @@ class UpdatePlugin(Screen):
 			self.session.openWithCallback(self.doAutoBackup, JobView, job, cancelable=False, backgroundable=False, afterEventChangeable=False, afterEvent="close")
 
 	def exit(self):
-		if not self.ipkg.isRunning():
+		if not self.opkg.isRunning():
 			if self.packages != 0 and self.error == 0 and self.channellist_only == 0:
 				self.session.openWithCallback(self.exitAnswer, MessageBox, _("Upgrade finished.") + " " + _("Do you want to reboot your %s %s") % (getMachineBrand(), getMachineName()))
 			else:

@@ -2,7 +2,7 @@ from __future__ import absolute_import
 import xml.sax
 from Tools.Directories import crawlDirectory, resolveFilename, SCOPE_CONFIG, SCOPE_SKINS, copyfile, copytree
 from Components.NimManager import nimmanager
-from Components.Ipkg import IpkgComponent
+from Components.Opkg import OpkgComponent
 from Components.config import config, configfile
 from boxbranding import getBoxType
 from enigma import eConsoleAppContainer, eDVBDB
@@ -373,14 +373,14 @@ class PackageInfoHandler:
 			os.system("opkg install " + directory + name)
 			self.installNext()
 		else:
-			self.ipkg = IpkgComponent()
-			self.ipkg.addCallback(self.ipkgCallback)
-			self.ipkg.startCmd(IpkgComponent.CMD_INSTALL, {'package': directory + name})
+			self.opkg = OpkgComponent()
+			self.opkg.addCallback(self.opkgCallback)
+			self.opkg.startCmd(OpkgComponent.CMD_INSTALL, {'package': directory + name})
 
-	def ipkgCallback(self, event, param):
-		if event == IpkgComponent.EVENT_DONE:
+	def opkgCallback(self, event, param):
+		if event == OpkgComponent.EVENT_DONE:
 			self.installNext()
-		elif event == IpkgComponent.EVENT_ERROR:
+		elif event == OpkgComponent.EVENT_ERROR:
 			self.installNext()
 
 	def installSkin(self, directory, name):

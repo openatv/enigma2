@@ -2,8 +2,8 @@ from __future__ import print_function
 from Screens.Screen import Screen
 from enigma import quitMainloop
 from Screens.MessageBox import MessageBox
-from Screens.Ipkg import Ipkg
-from Components.Ipkg import IpkgComponent
+from Screens.Opkg import Opkg
+from Components.Opkg import OpkgComponent
 
 #
 # for common install invoke with
@@ -25,15 +25,15 @@ class InstallSomething():
 		self.cmdList = []
 		for item in url_to_download:
 			print("----INSTALL SOMETHING---item ", item)
-			self.cmdList.append((IpkgComponent.CMD_INSTALL, {"package": item}))
+			self.cmdList.append((OpkgComponent.CMD_INSTALL, {"package": item}))
 
 # plain install, just finish and exit
 	def __install__(self):
-		self.session.open(Ipkg, cmdList=self.cmdList)
+		self.session.open(Opkg, cmdList=self.cmdList)
 
 # install with restart
 	def __installRST__(self):
-		self.session.openWithCallback(self.__restartMessage__, Ipkg, cmdList=self.cmdList)
+		self.session.openWithCallback(self.__restartMessage__, Opkg, cmdList=self.cmdList)
 
 	def __restartMessage__(self):
 		self.session.openWithCallback(self.__restartGUI__, MessageBox, _("Restart Enigma2 to apply the changes?"), MessageBox.TYPE_YESNO, default=True)

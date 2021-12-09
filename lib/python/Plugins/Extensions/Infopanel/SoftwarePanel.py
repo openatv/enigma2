@@ -7,7 +7,7 @@ from Components.Label import Label
 from Components.Pixmap import Pixmap
 from Components.Sources.List import List
 from Components.Sources.StaticText import StaticText
-from Components.Ipkg import IpkgComponent
+from Components.Opkg import OpkgComponent
 from Components.MultiContent import MultiContentEntryText, MultiContentEntryPixmapAlphaBlend
 from Tools.LoadPixmap import LoadPixmap
 from enigma import ePixmap
@@ -72,8 +72,8 @@ class SoftwarePanel(Screen):
 		self['key_green_pic'].hide()
 		self.update = False
 		self.packages = 0
-		self.ipkg = IpkgComponent()
-		self.ipkg.addCallback(self.ipkgCallback)
+		self.opkg = OpkgComponent()
+		self.opkg.addCallback(self.opkgCallback)
 		self["actions"] = ActionMap(["OkCancelActions", "DirectionActions", "ColorActions", "SetupActions"],
 		{
 			"cancel": self.Exit,
@@ -84,7 +84,7 @@ class SoftwarePanel(Screen):
 		self.onLayoutFinish.append(self.layoutFinished)
 
 	def Exit(self):
-		self.ipkg.stop()
+		self.opkg.stop()
 		self.close()
 
 	def Green(self):
@@ -184,15 +184,15 @@ class SoftwarePanel(Screen):
 
 	def rebuildList(self):
 		self.setStatus('update')
-		self.ipkg.startCmd(IpkgComponent.CMD_UPDATE)
+		self.opkg.startCmd(OpkgComponent.CMD_UPDATE)
 
-	def ipkgCallback(self, event, param):
-		if event == IpkgComponent.EVENT_ERROR:
+	def opkgCallback(self, event, param):
+		if event == OpkgComponent.EVENT_ERROR:
 			self.setStatus('error')
-		elif event == IpkgComponent.EVENT_DONE:
+		elif event == OpkgComponent.EVENT_DONE:
 			if self.update == False:
 				self.update = True
-				self.ipkg.startCmd(IpkgComponent.CMD_UPGRADE_LIST)
+				self.opkg.startCmd(OpkgComponent.CMD_UPGRADE_LIST)
 			else:
 				self.buildPacketList()
 		pass
@@ -222,8 +222,8 @@ class SoftwarePanel(Screen):
 
 	def buildPacketList(self):
 		self.list = []
-		fetchedList = self.ipkg.getFetchedList()
-		excludeList = self.ipkg.getExcludeList()
+		fetchedList = self.opkg.getFetchedList()
+		excludeList = self.opkg.getExcludeList()
 
 		if len(fetchedList) > 0:
 			for x in fetchedList:

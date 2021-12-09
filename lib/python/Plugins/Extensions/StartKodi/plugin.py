@@ -10,8 +10,6 @@ from Components.Label import Label
 from Plugins.Plugin import PluginDescriptor
 from Screens.MessageBox import MessageBox
 import os
-#from Components.Ipkg import IpkgComponent
-#from Screens.Ipkg import Ipkg
 from enigma import quitMainloop
 from .installsomething import InstallSomething
 
