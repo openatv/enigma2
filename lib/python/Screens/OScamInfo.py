@@ -108,7 +108,7 @@ class OscamInfo:
 		ipconfigured = ipcompiled
 		user = pwd = None
 
-		ret = _("oscam webif disabled")
+		ret = _("OScam webif disabled")
 
 		if webif and port is not None:
 		# oscam reports it got webif support and webif is running (Port != 0)
