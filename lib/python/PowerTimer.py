@@ -98,8 +98,6 @@ class TIMERTYPE:
 	REBOOT = 7
 	RESTART = 8
 
-# please do not translate log messages
-
 
 class PowerTimerEntry(timer.TimerEntry, object):
 	def __init__(self, begin, end, disabled=False, afterEvent=AFTEREVENT.NONE, timerType=TIMERTYPE.WAKEUP, checkOldTimers=False, autosleepdelay=60):
@@ -123,17 +121,17 @@ class PowerTimerEntry(timer.TimerEntry, object):
 		self.timerType = timerType
 		self.afterEvent = afterEvent
 		self.autoincrease = False
-		self.autoincreasetime = 3600 * 24 # 1 day
-		self.autosleepinstandbyonly = 'no'
+		self.autoincreasetime = 3600 * 24  # 1 day.
+		self.autosleepinstandbyonly = "no"
 		self.autosleepdelay = autosleepdelay
-		self.autosleeprepeat = 'once'
-		self.autosleepwindow = 'no'
+		self.autosleeprepeat = "once"
+		self.autosleepwindow = "no"
 		self.autosleepbegin = self.begin
 		self.autosleepend = self.end
 
-		self.nettraffic = 'no'
+		self.nettraffic = "no"
 		self.trafficlimit = 100
-		self.netip = 'no'
+		self.netip = "no"
 		self.ipadress = "0.0.0.0"
 
 		self.log_entries = []
@@ -648,7 +646,6 @@ class PowerTimerEntry(timer.TimerEntry, object):
 			new_end = int(time()) + self.autoincreasetime
 		else:
 			new_end = entry.begin - 30
-
 		dummyentry = PowerTimerEntry(self.begin, new_end, disabled=True, afterEvent=self.afterEvent, timerType=self.timerType)
 		dummyentry.disabled = self.disabled
 		timersanitycheck = TimerSanityCheck(NavigationInstance.instance.PowerManager.timer_list, dummyentry)
@@ -865,39 +862,6 @@ class PowerTimer(timer.Timer):
 		self.timersFilename = resolveFilename(SCOPE_CONFIG, "pm_timers.xml")
 		self.loadTimers()
 
-	def doActivate(self, w):
-		# when activating a timer which has already passed,
-		# simply abort the timer. don't run trough all the stages.
-		if w.shouldSkip():
-			w.state = PowerTimerEntry.StateEnded
-		else:
-			# when active returns true, this means "accepted".
-			# otherwise, the current state is kept.
-			# the timer entry itself will fix up the delay then.
-			if w.activate():
-				w.state += 1
-
-		try:
-			self.timer_list.remove(w)
-		except:
-			print('[PowerManager]: Remove list failed')
-
-		# did this timer reached the last state?
-		if w.state < PowerTimerEntry.StateEnded:
-			# no, sort it into active list
-			insort(self.timer_list, w)
-		else:
-			# yes. Process repeated, and re-add.
-			if w.repeated:
-				w.processRepeated()
-				w.state = PowerTimerEntry.StateWaiting
-				self.addTimerEntry(w)
-			else:
-				# Remove old timers as set in config
-				self.cleanupDaily(config.recording.keep_timers.value)
-				insort(self.processed_timers, w)
-		self.stateChanged(w)
-
 	def loadTimers(self):
 		timersDom = fileReadXML(self.timersFilename, source=MODULE_NAME)
 		if timersDom is None:
@@ -1001,7 +965,6 @@ class PowerTimer(timer.Timer):
 			"reboot": TIMERTYPE.REBOOT,
 			"restart": TIMERTYPE.RESTART
 		}.get(timerDom.get("timertype", "wakeup"), "wakeup")
-		# FIXME WHY NOT str()
 		repeated = six.ensure_str(timerDom.get("repeated"))
 		autosleepbegin = int(timerDom.get("autosleepbegin") or begin)
 		autosleepend = int(timerDom.get("autosleepend") or end)
@@ -1025,6 +988,35 @@ class PowerTimer(timer.Timer):
 			entry.log_entries.append((int(log.get("time")), int(log.get("code")), msg))
 
 		return entry
+
+	def doActivate(self, w):
+		# When activating a timer which has already passed, simply
+		# abort the timer.  Don't run trough all the stages.
+		if w.shouldSkip():
+			w.state = PowerTimerEntry.StateEnded
+		else:
+			# When active returns true, this means "accepted".
+			# Otherwise, the current state is kept.
+			# The timer entry itself will fix up the delay.
+			if w.activate():
+				w.state += 1
+		try:
+			self.timer_list.remove(w)
+		except Exception:
+			print("[PowerTimer] Remove list failed!")
+		if w.state < PowerTimerEntry.StateEnded:  # Did this timer reached the last state?
+			insort(self.timer_list, w)  # No, sort it into active list.
+		else:  # Yes, process repeated, and re-add.
+			if w.repeated:
+				w.processRepeated()
+				w.state = PowerTimerEntry.StateWaiting
+				self.addTimerEntry(w)
+			else:
+				# Remove old timers as set in config.
+				self.cleanupDaily(config.recording.keep_timers.value)  # DEBUG: This method does not appear to be defined!!!
+				insort(self.processed_timers, w)
+		self.stateChanged(w)
+
 
 	def isAutoDeepstandbyEnabled(self):
 		ret = True
@@ -1066,7 +1058,7 @@ class PowerTimer(timer.Timer):
 				if next_act + 3 < now:
 					continue
 				if getNextStbPowerOn and debug:
-					print("[powertimer] next stb power up", strftime("%a, %Y/%m/%d %H:%M", localtime(next_act)))
+					print("[Powertimer] next stb power up", strftime("%a, %Y/%m/%d %H:%M", localtime(next_act)))
 				next_timertype = next_afterevent = None
 				if nextPTlist[0][0] == -1:
 					if abs(next_act - timer.begin) <= 30:
@@ -1150,42 +1142,40 @@ class PowerTimer(timer.Timer):
 
 	def record(self, entry, ignoreTSC=False, dosave=True):		#wird von loadTimer mit dosave=False aufgerufen
 		entry.timeChanged()
-		print("[PowerTimer]", str(entry))
+		print("[PowerTimer] Entry '%s'." % str(entry))
 		entry.Timer = self
 		self.addTimerEntry(entry)
 		if dosave:
-			self.saveTimer()
+			self.saveTimers()
 		return None
 
 	def removeEntry(self, entry):
-		print("[PowerTimer] Remove", str(entry))
-
-		# avoid re-enqueuing
-		entry.repeated = False
-
-		# abort timer.
-		# this sets the end time to current time, so timer will be stopped.
+		print("[PowerTimer] Remove entry '%s'." % str(entry))
+		entry.repeated = False  # Avoid re-enqueuing.
 		entry.autoincrease = False
-		entry.abort()
-
+		entry.abort()  # Abort timer.  This sets the end time to current time, so timer will be stopped.
 		if entry.state != entry.StateEnded:
 			self.timeChanged(entry)
-
-# 		print "state: ", entry.state
-# 		print "in processed: ", entry in self.processed_timers
-# 		print "in running: ", entry in self.timer_list
-		# disable timer first
-		if entry.state != 3:
+		# print("[PowerTimer] State: %s." % entry.state)
+		# print("[PowerTimer] In processed: %s." % entry in self.processed_timers)
+		# print("[PowerTimer] In running: %s." % entry in self.timer_list)
+		if entry.state != 3:  # Disable timer first.
 			entry.disable()
-		# autoincrease instanttimer if possible
-		if not entry.dontSave:
-			for x in self.timer_list:
-				if x.setAutoincreaseEnd():
-					self.timeChanged(x)
-		# now the timer should be in the processed_timers list. remove it from there.
-		if entry in self.processed_timers:
+		if not entry.dontSave:  # Auto increase instant timer if possible.
+			for timer in self.timer_list:
+				if timer.setAutoincreaseEnd():
+					self.timeChanged(timer)
+		if entry in self.processed_timers:  # Now the timer should be in the processed_timers list, remove it from there.
 			self.processed_timers.remove(entry)
-		self.saveTimer()
+		self.saveTimers()
 
 	def shutdown(self):
-		self.saveTimer()
+		self.saveTimers()
+
+	def cleanup(self):
+		timer.Timer.cleanup(self)
+		self.saveTimers()
+
+	def cleanupDaily(self, days):
+		timer.Timer.cleanupDaily(self, days)
+		self.saveTimers()
