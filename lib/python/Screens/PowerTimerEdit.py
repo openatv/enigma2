@@ -221,7 +221,7 @@ class PowerTimerEditList(Screen):
 	def showLog(self):
 		cur = self["timerlist"].getCurrent()
 		if cur:
-			self.session.openWithCallback(self.finishedEdit, TimerLog, cur)
+			self.session.openWithCallback(self.finishedEdit, PowerTimerLog, cur)
 
 	def openEdit(self):
 		cur = self["timerlist"].getCurrent()
@@ -328,3 +328,10 @@ class PowerTimerEditListSummary(Screen):
 		self["time"].text = time
 		self["duration"].text = duration
 		self["state"].text = state
+
+
+class PowerTimerLog(TimerLog):
+	def __init__(self, session, timer):
+		TimerLog.__init__(session, timer)
+		self.skinName = "TimerLog"
+		self.setTitle(_("PowerTimer Log"))
