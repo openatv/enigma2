@@ -1,23 +1,26 @@
 from __future__ import division
 from __future__ import print_function
-import os
-from boxbranding import getMachineBrand, getMachineName
-import xml.etree.cElementTree
-from datetime import datetime
-from time import ctime, time, strftime, localtime, mktime
 from bisect import insort
+from boxbranding import getMachineBrand, getMachineName
+from datetime import datetime
+from os import fsync, remove, rename, system
+from os.path import exists
+from time import ctime, time, strftime, localtime, mktime
 
 from enigma import eActionMap, quitMainloop
 
+import NavigationInstance
+import six
+import timer
 from Components.config import config
 from Components.TimerSanityCheck import TimerSanityCheck
 from Screens.MessageBox import MessageBox
 import Screens.Standby
-from Tools import Directories, Notifications
+from Tools.Directories import SCOPE_CONFIG, fileExists, fileReadXML, resolveFilename
+from Tools.Notifications import AddNotification, AddNotificationWithCallback
 from Tools.XMLTools import stringToXML
-import timer
-import NavigationInstance
-import six
+
+MODULE_NAME = __name__.split(".")[-1]
 
 #global variables begin
 DSsave = False
@@ -56,20 +59,18 @@ debug = False
 
 def resetTimerWakeup():
 	global wasTimerWakeup
-	if os.path.exists("/tmp/was_powertimer_wakeup"):
-		os.remove("/tmp/was_powertimer_wakeup")
+	if exists("/tmp/was_powertimer_wakeup"):
+		remove("/tmp/was_powertimer_wakeup")
 		if debug:
 			print("[POWERTIMER] reset wakeup state")
 	wasTimerWakeup = False
 
-# parses an event, and gives out a (begin, end, name, duration, eit)-tuple.
-# begin and end will be corrected
-
-
-def parseEvent(ev):
-	begin = ev.getBeginTime()
-	end = begin + ev.getDuration()
-	return begin, end
+# Parses an event, and gives out a (begin, end)-tuple.
+#
+def parseEvent(event):
+	begin = event.getBeginTime()
+	end = begin + event.getDuration()
+	return (begin, end)
 
 
 class AFTEREVENT:
@@ -186,7 +187,7 @@ class PowerTimerEntry(timer.TimerEntry, object):
 		isRecTimerWakeup = breakPT = shiftPT = False
 		now = time()
 		next_state = self.state + 1
-		self.log(5, "activating state %d" % next_state)
+		self.log(5, "Activating state %d." % next_state)
 		if next_state == self.StatePrepared and (self.timerType == TIMERTYPE.AUTOSTANDBY or self.timerType == TIMERTYPE.AUTODEEPSTANDBY):
 			eActionMap.getInstance().bindAction('', -0x7FFFFFFF, self.keyPressed)
 			if self.autosleepwindow == 'yes':
@@ -230,11 +231,11 @@ class PowerTimerEntry(timer.TimerEntry, object):
 				isRecTimerWakeup = NavigationInstance.instance.RecordTimer.isRecTimerWakeup()
 			if isRecTimerWakeup:
 				wasTimerWakeup = True
-			elif os.path.exists("/tmp/was_powertimer_wakeup") and not wasTimerWakeup:
+			elif exists("/tmp/was_powertimer_wakeup") and not wasTimerWakeup:
 				wasTimerWakeup = int(open("/tmp/was_powertimer_wakeup", "r").read()) and True or False
 
 		if next_state == self.StatePrepared:
-			self.log(6, "prepare ok, waiting for begin: %s" % ctime(self.begin))
+			self.log(6, "Prepare ok, waiting for begin: %s" % ctime(self.begin))
 			self.backoff = 0
 			return True
 
@@ -278,7 +279,7 @@ class PowerTimerEntry(timer.TimerEntry, object):
 					if InfoBar and InfoBar.instance:
 						InfoBar.instance.openInfoBarMessageWithCallback(callback, message, messageboxtyp, timeout, default)
 					else:
-						Notifications.AddNotificationWithCallback(callback, MessageBox, message, messageboxtyp, timeout=timeout, default=default)
+						AddNotificationWithCallback(callback, MessageBox, message, messageboxtyp, timeout=timeout, default=default)
 				return True
 
 			elif self.timerType == TIMERTYPE.AUTOSTANDBY:
@@ -296,7 +297,7 @@ class PowerTimerEntry(timer.TimerEntry, object):
 					if InfoBar and InfoBar.instance:
 						InfoBar.instance.openInfoBarMessageWithCallback(callback, message, messageboxtyp, timeout, default)
 					else:
-						Notifications.AddNotificationWithCallback(callback, MessageBox, message, messageboxtyp, timeout=timeout, default=default)
+						AddNotificationWithCallback(callback, MessageBox, message, messageboxtyp, timeout=timeout, default=default)
 					if self.autosleeprepeat == "once":
 						eActionMap.getInstance().unbindAction('', self.keyPressed)
 						return True
@@ -334,7 +335,7 @@ class PowerTimerEntry(timer.TimerEntry, object):
 						if InfoBar and InfoBar.instance:
 							InfoBar.instance.openInfoBarMessageWithCallback(callback, message, messageboxtyp, timeout, default)
 						else:
-							Notifications.AddNotificationWithCallback(callback, MessageBox, message, messageboxtyp, timeout=timeout, default=default)
+							AddNotificationWithCallback(callback, MessageBox, message, messageboxtyp, timeout=timeout, default=default)
 						if self.autosleeprepeat == "once":
 							eActionMap.getInstance().unbindAction('', self.keyPressed)
 							return True
@@ -408,7 +409,7 @@ class PowerTimerEntry(timer.TimerEntry, object):
 						if InfoBar and InfoBar.instance:
 							InfoBar.instance.openInfoBarMessageWithCallback(callback, message, messageboxtyp, timeout, default)
 						else:
-							Notifications.AddNotificationWithCallback(callback, MessageBox, message, messageboxtyp, timeout=timeout, default=default)
+							AddNotificationWithCallback(callback, MessageBox, message, messageboxtyp, timeout=timeout, default=default)
 				RSsave = False
 				return True
 
@@ -480,7 +481,7 @@ class PowerTimerEntry(timer.TimerEntry, object):
 						if InfoBar and InfoBar.instance:
 							InfoBar.instance.openInfoBarMessageWithCallback(callback, message, messageboxtyp, timeout, default)
 						else:
-							Notifications.AddNotificationWithCallback(callback, MessageBox, message, messageboxtyp, timeout=timeout, default=default)
+							AddNotificationWithCallback(callback, MessageBox, message, messageboxtyp, timeout=timeout, default=default)
 				RBsave = False
 				return True
 
@@ -552,7 +553,7 @@ class PowerTimerEntry(timer.TimerEntry, object):
 						if InfoBar and InfoBar.instance:
 							InfoBar.instance.openInfoBarMessageWithCallback(callback, message, messageboxtyp, timeout, default)
 						else:
-							Notifications.AddNotificationWithCallback(callback, MessageBox, message, messageboxtyp, timeout=timeout, default=default)
+							AddNotificationWithCallback(callback, MessageBox, message, messageboxtyp, timeout=timeout, default=default)
 				DSsave = False
 				return True
 
@@ -571,7 +572,7 @@ class PowerTimerEntry(timer.TimerEntry, object):
 					if InfoBar and InfoBar.instance:
 						InfoBar.instance.openInfoBarMessageWithCallback(callback, message, messageboxtyp, timeout, default)
 					else:
-						Notifications.AddNotificationWithCallback(callback, MessageBox, message, messageboxtyp, timeout=timeout, default=default)
+						AddNotificationWithCallback(callback, MessageBox, message, messageboxtyp, timeout=timeout, default=default)
 			elif self.afterEvent == AFTEREVENT.DEEPSTANDBY:
 				if debug:
 					print("self.afterEvent == AFTEREVENT.DEEPSTANDBY:")
@@ -634,7 +635,7 @@ class PowerTimerEntry(timer.TimerEntry, object):
 						if InfoBar and InfoBar.instance:
 							InfoBar.instance.openInfoBarMessageWithCallback(callback, message, messageboxtyp, timeout, default)
 						else:
-							Notifications.AddNotificationWithCallback(callback, MessageBox, message, messageboxtyp, timeout=timeout, default=default)
+							AddNotificationWithCallback(callback, MessageBox, message, messageboxtyp, timeout=timeout, default=default)
 				aeDSsave = False
 			NavigationInstance.instance.PowerTimer.saveTimer()
 			resetTimerWakeup()
@@ -669,7 +670,7 @@ class PowerTimerEntry(timer.TimerEntry, object):
 			if InfoBar and InfoBar.instance:
 				InfoBar.instance.openInfoBarSession(session, option)
 			else:
-				Notifications.AddNotification(session)
+				AddNotification(session)
 
 	def sendTryQuitMainloopNotification(self, answer):
 		self.messageBoxAnswerPending = False
@@ -679,7 +680,7 @@ class PowerTimerEntry(timer.TimerEntry, object):
 			if InfoBar and InfoBar.instance:
 				InfoBar.instance.openInfoBarSession(session, option)
 			else:
-				Notifications.AddNotification(session, option)
+				AddNotification(session, option)
 
 	def sendTryToRebootNotification(self, answer):
 		if answer:
@@ -688,7 +689,7 @@ class PowerTimerEntry(timer.TimerEntry, object):
 			if InfoBar and InfoBar.instance:
 				InfoBar.instance.openInfoBarSession(session, option)
 			else:
-				Notifications.AddNotification(session, option)
+				AddNotification(session, option)
 
 	def sendTryToRestartNotification(self, answer):
 		if answer:
@@ -697,7 +698,7 @@ class PowerTimerEntry(timer.TimerEntry, object):
 			if InfoBar and InfoBar.instance:
 				InfoBar.instance.openInfoBarSession(session, option)
 			else:
-				Notifications.AddNotification(session, option)
+				AddNotification(session, option)
 
 	def keyPressed(self, key, tag):
 		if self.getAutoSleepWindow():
@@ -816,7 +817,7 @@ class PowerTimerEntry(timer.TimerEntry, object):
 		if self.netip == 'yes':
 			try:
 				for ip in self.ipadress.split(','):
-					if not os.system("ping -q -w1 -c1 " + ip):
+					if not system("ping -q -w1 -c1 " + ip):
 						ret = True
 						break
 			except:
@@ -828,7 +829,7 @@ class PowerTimerEntry(timer.TimerEntry, object):
 		newbytes = 0
 		if self.nettraffic == 'yes':
 			try:
-				if os.path.exists('/proc/net/dev'):
+				if exists('/proc/net/dev'):
 					f = open('/proc/net/dev', 'r')
 					temp = f.readlines()
 					f.close()
@@ -858,77 +859,11 @@ class PowerTimerEntry(timer.TimerEntry, object):
 		return False
 
 
-def createTimer(xml):
-	timertype = str(xml.get("timertype") or "wakeup")
-	timertype = {
-		"nothing": TIMERTYPE.NONE,
-		"wakeup": TIMERTYPE.WAKEUP,
-		"wakeuptostandby": TIMERTYPE.WAKEUPTOSTANDBY,
-		"autostandby": TIMERTYPE.AUTOSTANDBY,
-		"autodeepstandby": TIMERTYPE.AUTODEEPSTANDBY,
-		"standby": TIMERTYPE.STANDBY,
-		"deepstandby": TIMERTYPE.DEEPSTANDBY,
-		"reboot": TIMERTYPE.REBOOT,
-		"restart": TIMERTYPE.RESTART
-		}[timertype]
-	begin = int(xml.get("begin"))
-	end = int(xml.get("end"))
-	# FIXME WHY NOT str()
-	repeated = six.ensure_str(xml.get("repeated"))
-	disabled = int(xml.get("disabled") or "0")
-	afterevent = str(xml.get("afterevent") or "nothing")
-	afterevent = {
-		"nothing": AFTEREVENT.NONE,
-		"wakeup": AFTEREVENT.WAKEUP,
-		"wakeuptostandby": AFTEREVENT.WAKEUPTOSTANDBY,
-		"standby": AFTEREVENT.STANDBY,
-		"deepstandby": AFTEREVENT.DEEPSTANDBY
-		}[afterevent]
-	autosleepinstandbyonly = str(xml.get("autosleepinstandbyonly") or "no")
-	autosleepdelay = str(xml.get("autosleepdelay") or "0")
-	autosleeprepeat = str(xml.get("autosleeprepeat") or "once")
-	autosleepwindow = str(xml.get("autosleepwindow") or "no")
-	autosleepbegin = int(xml.get("autosleepbegin") or begin)
-	autosleepend = int(xml.get("autosleepend") or end)
-
-	nettraffic = str(xml.get("nettraffic") or "no")
-	trafficlimit = int(xml.get("trafficlimit") or 100)
-	netip = str(xml.get("netip") or "no")
-	ipadress = str(xml.get("ipadress") or "0.0.0.0")
-
-	entry = PowerTimerEntry(begin, end, disabled, afterevent, timertype)
-	entry.repeated = int(repeated)
-	entry.autosleepinstandbyonly = autosleepinstandbyonly
-	entry.autosleepdelay = int(autosleepdelay)
-	entry.autosleeprepeat = autosleeprepeat
-	entry.autosleepwindow = autosleepwindow
-	entry.autosleepbegin = autosleepbegin
-	entry.autosleepend = autosleepend
-
-	entry.nettraffic = nettraffic
-	entry.trafficlimit = trafficlimit
-	entry.netip = netip
-	entry.ipadress = ipadress
-
-	for l in xml.findall("log"):
-		ltime = int(l.get("time"))
-		code = int(l.get("code"))
-		msg = six.ensure_str(l.text).strip()
-		entry.log_entries.append((ltime, code, msg))
-
-	return entry
-
-
 class PowerTimer(timer.Timer):
 	def __init__(self):
 		timer.Timer.__init__(self)
-
-		self.Filename = Directories.resolveFilename(Directories.SCOPE_CONFIG, "pm_timers.xml")
-
-		try:
-			self.loadTimer()
-		except IOError:
-			print("unable to load timers from file!")
+		self.timersFilename = resolveFilename(SCOPE_CONFIG, "pm_timers.xml")
+		self.loadTimers()
 
 	def doActivate(self, w):
 		# when activating a timer which has already passed,
@@ -963,51 +898,37 @@ class PowerTimer(timer.Timer):
 				insort(self.processed_timers, w)
 		self.stateChanged(w)
 
-	def loadTimer(self):
-		# TODO: PATH!
-		if not Directories.fileExists(self.Filename):
-			return
-		try:
-			file = open(self.Filename, 'r')
-			doc = xml.etree.cElementTree.parse(file)
-			file.close()
-		except SyntaxError:
-			from Tools.Notifications import AddPopup
-			from Screens.MessageBox import MessageBox
-
+	def loadTimers(self):
+		timersDom = fileReadXML(self.timersFilename, source=MODULE_NAME)
+		if timersDom is None:
 			AddPopup(_("The timer file (pm_timers.xml) is corrupt and could not be loaded."), type=MessageBox.TYPE_ERROR, timeout=0, id="TimerLoadFailed")
-
-			print("pm_timers.xml failed to load!")
+			print("[PowerTimer] Error: Loading 'pm_timers.xml' failed!")
 			try:
-				import os
-				os.rename(self.Filename, self.Filename + "_old")
-			except (IOError, OSError):
-				print("renaming broken timer failed")
+				rename(self.timersFilename, "%s_old" % self.timersFilename)
+			except (IOError, OSError) as err:
+				print("[PowerTimer] Error %d: Renaming broken timer file failed!  (%s)" % (err.errno, err.strerror))
 			return
-		except IOError:
-			print("pm_timers.xml not found!")
-			return
-
-		root = doc.getroot()
-
 		# put out a message when at least one timer overlaps
 		checkit = True
-		for timer in root.findall("timer"):
-			newTimer = createTimer(timer)
+		for timer in timersDom.findall("timer"):
+			newTimer = self.createTimer(timer)
 			if (self.record(newTimer, True, dosave=False) is not None) and (checkit == True):
 				from Tools.Notifications import AddPopup
 				from Screens.MessageBox import MessageBox
 				AddPopup(_("Timer overlap in pm_timers.xml detected!\nPlease recheck it!"), type=MessageBox.TYPE_ERROR, timeout=0, id="TimerLoadFailed")
 				checkit = False # at moment it is enough when the message is displayed one time
 
-	def saveTimer(self):
+	def loadTimer(self):
+		return self.loadTimers()
+
+	def saveTimers(self):
 		savedays = 3600 * 24 * 7	#logs older 7 Days will not saved
-		list = ['<?xml version="1.0" ?>\n', '<timers>\n']
+		timerList = ["<?xml version=\"1.0\" ?>", "<timers>"]
 		for timer in self.timer_list + self.processed_timers:
 			if timer.dontSave:
 				continue
-			list.append('<timer')
-			list.append(' timertype="' + str(stringToXML({
+			timerEntry = []
+			timerEntry.append("timertype=\"%s\"" % stringToXML({
 				TIMERTYPE.NONE: "nothing",
 				TIMERTYPE.WAKEUP: "wakeup",
 				TIMERTYPE.WAKEUPTOSTANDBY: "wakeuptostandby",
@@ -1017,53 +938,93 @@ class PowerTimer(timer.Timer):
 				TIMERTYPE.DEEPSTANDBY: "deepstandby",
 				TIMERTYPE.REBOOT: "reboot",
 				TIMERTYPE.RESTART: "restart"
-				}[timer.timerType])) + '"')
-			list.append(' begin="' + str(int(timer.begin)) + '"')
-			list.append(' end="' + str(int(timer.end)) + '"')
-			list.append(' repeated="' + str(int(timer.repeated)) + '"')
-			list.append(' afterevent="' + str(stringToXML({
+			}[timer.timerType]))
+			timerEntry.append("begin=\"%d\"" % timer.begin)
+			timerEntry.append("end=\"%d\"" % timer.end)
+			timerEntry.append("repeated=\"%d\"" % timer.repeated)
+			timerEntry.append("afterevent=\"%s\"" % stringToXML({
 				AFTEREVENT.NONE: "nothing",
 				AFTEREVENT.WAKEUP: "wakeup",
 				AFTEREVENT.WAKEUPTOSTANDBY: "wakeuptostandby",
 				AFTEREVENT.STANDBY: "standby",
 				AFTEREVENT.DEEPSTANDBY: "deepstandby"
-				}[timer.afterEvent])) + '"')
-			list.append(' disabled="' + str(int(timer.disabled)) + '"')
-			list.append(' autosleepinstandbyonly="' + str(timer.autosleepinstandbyonly) + '"')
-			list.append(' autosleepdelay="' + str(timer.autosleepdelay) + '"')
-			list.append(' autosleeprepeat="' + str(timer.autosleeprepeat) + '"')
-			list.append(' autosleepwindow="' + str(timer.autosleepwindow) + '"')
-			list.append(' autosleepbegin="' + str(int(timer.autosleepbegin)) + '"')
-			list.append(' autosleepend="' + str(int(timer.autosleepend)) + '"')
+				}[timer.afterEvent]))
+			timerEntry.append("disabled=\"%d\"" % timer.disabled)
+			timerEntry.append("autosleepinstandbyonly=\"%s\"" % timer.autosleepinstandbyonly)
+			timerEntry.append("autosleepdelay=\"%s\"" % timer.autosleepdelay)
+			timerEntry.append("autosleeprepeat=\"%s\"" % timer.autosleeprepeat)
+			timerEntry.append("autosleepwindow=\"%s\"" % timer.autosleepwindow)
+			timerEntry.append("autosleepbegin=\"%d\"" % int(timer.autosleepbegin))
+			timerEntry.append("autosleepend=\"%d\"" % int(timer.autosleepend))
+			timerEntry.append("nettraffic=\"%s\"" % timer.nettraffic)
+			timerEntry.append("trafficlimit=\"%s\"" % timer.trafficlimit)
+			timerEntry.append("netip=\"%s\"" % timer.netip)
+			timerEntry.append("ipadress=\"%s\"" % timer.ipadress)
+			timerList.append("\t<timer %s>" % " ".join(timerEntry))
 
-			list.append(' nettraffic="' + str(timer.nettraffic) + '"')
-			list.append(' trafficlimit="' + str(int(timer.trafficlimit)) + '"')
-			list.append(' netip="' + str(timer.netip) + '"')
-			list.append(' ipadress="' + str(timer.ipadress) + '"')
+			for logTime, logCode, logMsg in timer.log_entries:
+				if logTime > time() - savedays:
+					timerList.append("\t\t<log code=\"%d\" time=\"%d\">%s</log>" % (logCode, logTime, stringToXML(logMsg)))
 
-			list.append('>\n')
-
-			for ltime, code, msg in timer.log_entries:
-				if ltime > time() - savedays:
-					list.append('<log')
-					list.append(' code="' + str(code) + '"')
-					list.append(' time="' + str(ltime) + '"')
-					list.append('>')
-					list.append(str(stringToXML(msg)))
-					list.append('</log>\n')
-
-			list.append('</timer>\n')
-
-		list.append('</timers>\n')
-
-		file = open(self.Filename + ".writing", "w")
-		for x in list:
-			file.write(x)
+			timerList.append("\t</timer>")
+		timerList.append("</timers>\n")
+		# Should this code also use a writeLock as for the regular timers?
+		file = open("%s.writing" % self.timersFilename, "w")
+		file.write("\n".join(timerList))
 		file.flush()
-
-		os.fsync(file.fileno())
+		fsync(file.fileno())
 		file.close()
-		os.rename(self.Filename + ".writing", self.Filename)
+		rename("%s.writing" % self.timersFilename, self.timersFilename)
+
+	def saveTimer(self):
+		return self.saveTimers()
+
+	def createTimer(self, timerDom):
+		begin = int(timerDom.get("begin"))
+		end = int(timerDom.get("end"))
+		disabled = int(timerDom.get("disabled") or "0")
+		afterevent = {
+			"nothing": AFTEREVENT.NONE,
+			"wakeup": AFTEREVENT.WAKEUP,
+			"wakeuptostandby": AFTEREVENT.WAKEUPTOSTANDBY,
+			"standby": AFTEREVENT.STANDBY,
+			"deepstandby": AFTEREVENT.DEEPSTANDBY
+		}.get(timerDom.get("afterevent", "nothing"), "nothing")
+		timertype = {
+			"nothing": TIMERTYPE.NONE,
+			"wakeup": TIMERTYPE.WAKEUP,
+			"wakeuptostandby": TIMERTYPE.WAKEUPTOSTANDBY,
+			"autostandby": TIMERTYPE.AUTOSTANDBY,
+			"autodeepstandby": TIMERTYPE.AUTODEEPSTANDBY,
+			"standby": TIMERTYPE.STANDBY,
+			"deepstandby": TIMERTYPE.DEEPSTANDBY,
+			"reboot": TIMERTYPE.REBOOT,
+			"restart": TIMERTYPE.RESTART
+		}.get(timerDom.get("timertype", "wakeup"), "wakeup")
+		# FIXME WHY NOT str()
+		repeated = six.ensure_str(timerDom.get("repeated"))
+		autosleepbegin = int(timerDom.get("autosleepbegin") or begin)
+		autosleepend = int(timerDom.get("autosleepend") or end)
+
+		entry = PowerTimerEntry(begin, end, disabled, afterevent, timertype)
+		entry.repeated = int(repeated)
+		entry.autosleepinstandbyonly = timerDom.get("autosleepinstandbyonly", "no")
+		entry.autosleepdelay = int(timerDom.get("autosleepdelay", "0"))
+		entry.autosleeprepeat = timerDom.get("autosleepdelay", "once")
+		entry.autosleepwindow = timerDom.get("autosleepwindow", "no")
+		entry.autosleepbegin = autosleepbegin
+		entry.autosleepend = autosleepend
+
+		entry.nettraffic = timerDom.get("nettraffic", "no")
+		entry.trafficlimit = int(timerDom.get("trafficlimit", "100"))
+		entry.netip = timerDom.get("netip", "no")
+		entry.ipadress = timerDom.get("ipadress", "0.0.0.0")
+
+		for log in timerDom.findall("log"):
+			msg = six.ensure_str(log.text).strip()
+			entry.log_entries.append((int(log.get("time")), int(log.get("code")), msg))
+
+		return entry
 
 	def isAutoDeepstandbyEnabled(self):
 		ret = True
