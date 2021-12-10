@@ -22,13 +22,13 @@ def InitRecordingConfig():
 	config.recording.always_ecm = ConfigYesNo(default=False)
 	config.recording.never_decrypt = ConfigYesNo(default=False)
 	config.recording.offline_decode_delay = ConfigInteger(default=1000, limits=(1, 10000))
-	config.recording.ecm_data = ConfigSelection(choices=[("normal", _("normal")), ("descrambled+ecm", _("descramble and record ecm")), ("scrambled+ecm", _("don't descramble, record ecm"))], default="normal")
-	config.recording.default_timertype = ConfigSelection(choices=[("zap", _("zap")), ("record", _("record")), ("zap+record", _("zap and record"))], default="record")
+	config.recording.ecm_data = ConfigSelection(choices=[("normal", _("Normal")), ("descrambled+ecm", _("Descramble and record ecm")), ("scrambled+ecm", _("Don't descramble, record ecm"))], default="normal")
+	config.recording.default_timertype = ConfigSelection(choices=[("zap", _("Zap")), ("record", _("Record")), ("zap+record", _("Zap and record"))], default="record")
 	if BoxInfo.getItem("DeepstandbySupport"):
-		shutdownString = _("go to deep standby")
+		shutdownString = _("Go to deep standby")
 	else:
-		shutdownString = _("shut down")
-	config.recording.default_afterevent = ConfigSelection(choices=[("0", _("do nothing")), ("1", _("go to standby")), ("2", shutdownString), ("3", _("auto"))], default="3")
+		shutdownString = _("Shut down")
+	config.recording.default_afterevent = ConfigSelection(choices=[("0", _("Do nothing")), ("1", _("Go to standby")), ("2", shutdownString), ("3", _("auto"))], default="3")
 	config.recording.include_ait = ConfigYesNo(default=False)
 	config.recording.show_rec_symbol_for_rec_types = ConfigSelection(choices=[("any", _("any recordings")), ("real", _("real recordings")), ("real_streaming", _("real recordings or streaming")), ("real_pseudo", _("real or pseudo recordings"))], default="real_streaming")
 	config.recording.warn_box_restart_rec_types = ConfigSelection(choices=[("any", _("any recordings")), ("real", _("real recordings")), ("real_streaming", _("real recordings or streaming")), ("real_pseudo", _("real or pseudo recordings"))], default="real_streaming")

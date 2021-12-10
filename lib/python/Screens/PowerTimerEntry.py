@@ -122,11 +122,11 @@ class TimerEntry(Screen, ConfigListScreen):
 			days[weekday] = True
 
 		if BoxInfo.getItem("DeepstandbySupport"):
-			shutdownString = _("go to deep standby")
+			shutdownString = _("Go to deep standby")
 		else:
-			shutdownString = _("shut down")
-		self.timerentry_timertype = ConfigSelection(choices=[("nothing", _("do nothing")), ("wakeup", _("wakeup")), ("wakeuptostandby", _("wakeup to standby")), ("autostandby", _("auto standby")), ("autodeepstandby", _("auto deepstandby")), ("standby", _("go to standby")), ("deepstandby", shutdownString), ("reboot", _("reboot system")), ("restart", _("Restart GUI"))], default=timertype)
-		self.timerentry_afterevent = ConfigSelection(choices=[("nothing", _("do nothing")), ("wakeup", _("wakeup")), ("wakeuptostandby", _("wakeup to standby")), ("standby", _("go to standby")), ("deepstandby", shutdownString)], default=afterevent)
+			shutdownString = _("Shut down")
+		self.timerentry_timertype = ConfigSelection(choices=[("nothing", _("Do nothing")), ("wakeup", _("wakeup")), ("wakeuptostandby", _("wakeup to standby")), ("autostandby", _("auto standby")), ("autodeepstandby", _("auto deepstandby")), ("standby", _("Go to standby")), ("deepstandby", shutdownString), ("reboot", _("reboot system")), ("restart", _("Restart GUI"))], default=timertype)
+		self.timerentry_afterevent = ConfigSelection(choices=[("nothing", _("Do nothing")), ("wakeup", _("wakeup")), ("wakeuptostandby", _("wakeup to standby")), ("standby", _("Go to standby")), ("deepstandby", shutdownString)], default=afterevent)
 		self.timerentry_type = ConfigSelection(choices=[("once", _("once")), ("repeated", _("repeated"))], default=type)
 
 		self.timerentry_repeated = ConfigSelection(default=repeated, choices=[("daily", _("daily")), ("weekly", _("weekly")), ("weekdays", _("Mon-Fri")), ("user", _("user defined"))])

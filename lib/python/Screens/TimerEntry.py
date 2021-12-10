@@ -1,15 +1,16 @@
 # -*- coding: utf-8 -*-
 from __future__ import absolute_import
-from time import localtime, mktime, time, strftime
 from datetime import datetime
+from os import statvfs
+from time import localtime, mktime, time, strftime
 
 from enigma import eEPGCache
 
 from Screens.Screen import Screen
 import Screens.ChannelSelection
 from ServiceReference import ServiceReference
-from Components.config import config, ConfigSelection, ConfigText, ConfigSubList, ConfigDateTime, ConfigClock, ConfigYesNo, getConfigListEntry
 from Components.ActionMap import NumberActionMap, ActionMap
+from Components.config import config, ConfigSelection, ConfigText, ConfigSubList, ConfigDateTime, ConfigClock, ConfigYesNo, getConfigListEntry
 from Components.ConfigList import ConfigListScreen
 from Components.MenuList import MenuList
 from Components.Button import Button
@@ -19,14 +20,13 @@ from Components.Pixmap import Pixmap
 from Components.SystemInfo import BoxInfo
 from Components.UsageConfig import defaultMoviePath
 from Components.Sources.Boolean import Boolean
-from Screens.LocationBox import MovieLocationBox
 from Screens.ChoiceBox import ChoiceBox
+from Screens.LocationBox import MovieLocationBox
 from Screens.MessageBox import MessageBox
 from Screens.VirtualKeyBoard import VirtualKeyBoard
 from Screens.Setup import SetupSummary
 from RecordTimer import AFTEREVENT
 from Screens.TagEditor import TagEditor
-from os import statvfs
 import six
 
 
@@ -134,17 +134,23 @@ class TimerEntry(Screen, ConfigListScreen):
 			weekday = int(strftime("%u", localtime(self.timer.begin))) - 1
 			days[weekday] = True
 
-		self.timerentry_justplay = ConfigSelection(choices=[
-			("zap", _("zap")), ("record", _("record")), ("zap+record", _("zap and record"))],
-			default={0: "record", 1: "zap", 2: "zap+record"}[justplay + 2 * always_zap])
+		self.timerentry_justplay = ConfigSelection(default={
+			0: "record",
+			1: "zap",
+			2: "zap+record"
+		}[justplay + 2 * always_zap], choices=[
+			("zap", _("Zap")),
+			("record", _("Record")),
+			("zap+record", _("Zap and record"))
+		])
 		self.timertyp = self.timerentry_justplay.value
 
 		if BoxInfo.getItem("DeepstandbySupport"):
-			shutdownString = _("go to deep standby")
+			shutdownString = _("Go to deep standby")
 		else:
-			shutdownString = _("shut down")
-		self.timerentry_afterevent = ConfigSelection(choices=[("nothing", _("do nothing")), ("standby", _("go to standby")), ("deepstandby", shutdownString), ("auto", _("auto"))], default=afterevent)
-		self.timerentry_recordingtype = ConfigSelection(choices=[("normal", _("normal")), ("descrambled+ecm", _("descramble and record ecm")), ("scrambled+ecm", _("don't descramble, record ecm"))], default=recordingtype)
+			shutdownString = _("Shut down")
+		self.timerentry_afterevent = ConfigSelection(choices=[("nothing", _("Do nothing")), ("standby", _("Go to standby")), ("deepstandby", shutdownString), ("auto", _("auto"))], default=afterevent)
+		self.timerentry_recordingtype = ConfigSelection(choices=[("normal", _("normal")), ("descrambled+ecm", _("Descramble and record ecm")), ("scrambled+ecm", _("Don't descramble, record ecm"))], default=recordingtype)
 		self.timerentry_type = ConfigSelection(choices=[("once", _("once")), ("repeated", _("repeated"))], default=type)
 		# FIME Do we need these 2 lines?
 		if six.PY3:
