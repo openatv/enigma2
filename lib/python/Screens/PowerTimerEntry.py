@@ -385,6 +385,8 @@ class TimerEntry(Screen, ConfigListScreen):
 		self.saveTimer()
 		self.close((True, self.timer))
 
+# The following four functions check for the item to be changed existing
+# as for auto[deep]standby timers it doesn't, so we'll crash otherwise.
 	def incrementStart(self):
 		self.timerentry_starttime.increment()
 		self["config"].invalidate(self.entryStartTime)
@@ -414,85 +416,3 @@ class TimerEntry(Screen, ConfigListScreen):
 
 	def keyCancel(self):
 		self.close((False,))
-
-
-class TimerLog(Screen):
-	def __init__(self, session, timer):
-		Screen.__init__(self, session)
-		self.skinName = "TimerLog"
-		self.timer = timer
-		self.log_entries = self.timer.log_entries[:]
-
-		self.fillLogList()
-
-		self["loglist"] = MenuList(self.list)
-		self["logentry"] = Label()
-		self["summary_description"] = StaticText("")
-
-		self["key_red"] = Button(_("Delete entry"))
-		self["key_green"] = Button()
-		self["key_yellow"] = Button("")
-		self["key_blue"] = Button(_("Clear log"))
-
-		self.onShown.append(self.updateText)
-
-		self["actions"] = NumberActionMap(["OkCancelActions", "DirectionActions", "ColorActions"],
-		{
-			"ok": self.keyClose,
-			"cancel": self.keyClose,
-			"up": self.up,
-			"down": self.down,
-			"left": self.left,
-			"right": self.right,
-			"red": self.deleteEntry,
-			"blue": self.clearLog
-		}, -1)
-		self.setTitle(_("PowerTimer Log"))
-
-	def deleteEntry(self):
-		cur = self["loglist"].getCurrent()
-		if cur is None:
-			return
-		self.log_entries.remove(cur[1])
-		self.fillLogList()
-		self["loglist"].l.setList(self.list)
-		self.updateText()
-
-	def fillLogList(self):
-		self.list = [(str(strftime(_("%Y-%m-%d %H-%M"), localtime(x[0])) + " - " + x[2]), x) for x in self.log_entries]
-
-	def clearLog(self):
-		self.log_entries = []
-		self.fillLogList()
-		self["loglist"].l.setList(self.list)
-		self.updateText()
-
-	def keyClose(self):
-		if self.timer.log_entries != self.log_entries:
-			self.timer.log_entries = self.log_entries
-			self.close((True, self.timer))
-		else:
-			self.close((False,))
-
-	def up(self):
-		self["loglist"].instance.moveSelection(self["loglist"].instance.moveUp)
-		self.updateText()
-
-	def down(self):
-		self["loglist"].instance.moveSelection(self["loglist"].instance.moveDown)
-		self.updateText()
-
-	def left(self):
-		self["loglist"].instance.moveSelection(self["loglist"].instance.pageUp)
-		self.updateText()
-
-	def right(self):
-		self["loglist"].instance.moveSelection(self["loglist"].instance.pageDown)
-		self.updateText()
-
-	def updateText(self):
-		if self.list:
-			self["logentry"].setText(str(self["loglist"].getCurrent()[1][2]))
-			self["summary_description"].setText(str(self["loglist"].getCurrent()[1][2]))
-		else:
-			self["logentry"].setText("")

@@ -1,21 +1,21 @@
-from __future__ import print_function
-from Components.ActionMap import ActionMap
-from Components.Button import Button
-from Components.Label import Label
-from Components.config import config
-from Components.PowerTimerList import PowerTimerList, gettimerType, getafterEvent
-from Components.Sources.StaticText import StaticText
-from Components.Sources.ServiceEvent import ServiceEvent
-from PowerTimer import PowerTimerEntry, AFTEREVENT
-from Screens.Screen import Screen
-from Screens.ChoiceBox import ChoiceBox
-from Screens.MessageBox import MessageBox
-from Screens.PowerTimerEntry import TimerEntry, TimerLog
-from Tools.BoundFunction import boundFunction
-from Tools.FuzzyDate import FuzzyTime
 from functools import cmp_to_key
 from time import time
 from timer import TimerEntry as RealTimerEntry
+from PowerTimer import PowerTimerEntry, AFTEREVENT
+from Components.ActionMap import ActionMap
+from Components.Button import Button
+from Components.config import config
+from Components.Label import Label
+from Components.PowerTimerList import PowerTimerList, gettimerType, getafterEvent
+from Components.Sources.StaticText import StaticText
+from Components.Sources.ServiceEvent import ServiceEvent
+from Screens.ChoiceBox import ChoiceBox
+from Screens.MessageBox import MessageBox
+from Screens.PowerTimerEntry import TimerEntry
+from Screens.Screen import Screen
+from Screens.TimerEntry import TimerLog
+from Tools.BoundFunction import boundFunction
+from Tools.FuzzyDate import FuzzyTime
 
 
 class PowerTimerEditList(Screen):
@@ -88,7 +88,7 @@ class PowerTimerEditList(Screen):
 		if cur:
 			t = cur
 			if t.disabled:
-				print("try to ENABLE timer")
+				print("[PowerTimerEdit] try to enable timer")
 				t.enable()
 			else:
 				if t.isRunning():
@@ -136,7 +136,7 @@ class PowerTimerEditList(Screen):
 				self.key_yellow_choice = self.ENABLE
 			elif cur.isRunning() and not cur.repeated and (self.key_yellow_choice != self.EMPTY):
 				self.removeAction("yellow")
-				self["key_yellow"].setText(" ")
+				self["key_yellow"].setText("")
 				self.key_yellow_choice = self.EMPTY
 			elif ((not cur.isRunning()) or cur.repeated) and (not cur.disabled) and (self.key_yellow_choice != self.DISABLE):
 				self["actions"].actions.update({"yellow": self.toggleDisabledState})
@@ -145,11 +145,11 @@ class PowerTimerEditList(Screen):
 		else:
 			if self.key_red_choice != self.EMPTY:
 				self.removeAction("red")
-				self["key_red"].setText(" ")
+				self["key_red"].setText("")
 				self.key_red_choice = self.EMPTY
 			if self.key_yellow_choice != self.EMPTY:
 				self.removeAction("yellow")
-				self["key_yellow"].setText(" ")
+				self["key_yellow"].setText("")
 				self.key_yellow_choice = self.EMPTY
 
 		showCleanup = True
@@ -165,7 +165,7 @@ class PowerTimerEditList(Screen):
 			self.key_blue_choice = self.CLEANUP
 		elif (not showCleanup) and (self.key_blue_choice != self.EMPTY):
 			self.removeAction("blue")
-			self["key_blue"].setText(" ")
+			self["key_blue"].setText("")
 			self.key_blue_choice = self.EMPTY
 		if len(self.list) == 0:
 			return
@@ -281,7 +281,7 @@ class PowerTimerEditList(Screen):
 			self.fillTimerList()
 			self.updateState()
 		else:
-			print("PowerTimeredit aborted")
+			print("[PowerTimerEdit] PowerTimerEdit aborted")
 
 	def finishedAdd(self, answer):
 		if answer[0]:
@@ -290,7 +290,7 @@ class PowerTimerEditList(Screen):
 			self.fillTimerList()
 			self.updateState()
 		else:
-			print("Timeredit aborted")
+			print("[PowerTimerEdit] TimerEdit aborted")
 
 	def finishSanityCorrection(self, answer):
 		self.finishedAdd(answer)
