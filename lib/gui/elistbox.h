@@ -165,14 +165,20 @@ public:
 	void setSliderBorderWidth(int size);
 	void setSliderForegroundColor(gRGB &col);
 
-	int getScrollbarWidth() { return m_scrollbar_width; }
-
 	static void setScrollbarStyle(int width = -1, int offset = -1) { 
 			if (width != -1)
 				Defaultwidth = width; 
 			if (offset != -1)
 				Defaultoffset = offset; 
 		}
+
+	bool getWrapAround() { return m_enabled_wrap_around; }
+	int getScrollbarWidth() { return m_scrollbar_width; }
+	int getItemHeight() { return m_itemheight; }
+	bool getSelectionEnable() {return m_selection_enabled; }
+	gFont getFont() {return m_style.m_font; }
+	gFont getSecondFont() {return m_style.m_secondfont; }
+
 
 #ifndef SWIG
 	struct eListboxStyle *getLocalStyle(void);
