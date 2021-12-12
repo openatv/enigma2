@@ -176,8 +176,8 @@ public:
 	int getScrollbarWidth() { return m_scrollbar_width; }
 	int getItemHeight() { return m_itemheight; }
 	bool getSelectionEnable() {return m_selection_enabled; }
-	gFont getFont() {return m_style.m_font; }
-	gFont getSecondFont() {return m_style.m_secondfont; }
+	gFont* getFont() {return m_style.m_font; }
+	gFont* getSecondFont() {return m_style.m_secondfont; }
 
 
 #ifndef SWIG
