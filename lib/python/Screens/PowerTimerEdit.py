@@ -332,6 +332,6 @@ class PowerTimerEditListSummary(Screen):
 
 class PowerTimerLog(TimerLog):
 	def __init__(self, session, timer):
-		TimerLog.__init__(session, timer)
+		TimerLog.__init__(self, session, timer)
 		self.skinName = "TimerLog"
 		self.setTitle(_("PowerTimer Log"))
