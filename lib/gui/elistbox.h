@@ -151,7 +151,6 @@ public:
 
 	void setSliderPicture(ePtr<gPixmap> &pm);
 	void setScrollbarBackgroundPicture(ePtr<gPixmap> &pm);
-	void setScrollbarSliderPicture(ePtr<gPixmap> &pm);
 	void setScrollbarSliderBorderWidth(int size);
 	void setScrollbarWidth(int size);
 
@@ -218,7 +217,6 @@ private:
 	eSlider *m_scrollbar;
 	eListboxStyle m_style;
 	ePtr<gPixmap> m_scrollbarpixmap, m_scrollbarbackgroundpixmap;
-	ePtr<gPixmap> m_scrollbarsliderpixmap;
 #ifdef USE_LIBVUGLES2
 	long m_dir;
 #endif

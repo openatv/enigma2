@@ -712,12 +712,6 @@ void eListbox::setScrollbarBackgroundPicture(ePtr<gPixmap> &pm)
 	if (m_scrollbar && m_scrollbarbackgroundpixmap) m_scrollbar->setBackgroundPixmap(pm);
 }
 
-void eListbox::setScrollbarSliderPicture(ePtr<gPixmap> &pm)
-{
-	m_scrollbarsliderpixmap = pm;
-	if (m_scrollbar && m_scrollbarsliderpixmap) m_scrollbar->setBackgroundPixmap(pm);
-}
-
 void eListbox::invalidate(const gRegion &region)
 {
 	gRegion tmp(region);
