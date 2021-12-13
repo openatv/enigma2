@@ -63,8 +63,8 @@ class MessageBox(Screen, HelpableScreen):
 		self["InfoPixmap"].hide()
 		self["ErrorPixmap"] = Pixmap()
 		self["ErrorPixmap"].hide()
-		self["icon"] = MultiPixmap()
-		self["icon"].hide()
+#		self["icon"] = MultiPixmap()
+#		self["icon"].hide()
 		self.picon = picon
 		if picon:
 			# These five lines can go with new skins that only use self["icon"]...
@@ -74,7 +74,7 @@ class MessageBox(Screen, HelpableScreen):
 				self["InfoPixmap"].show()
 			elif self.type == self.TYPE_ERROR:
 				self["ErrorPixmap"].show()
-			self["icon"].show()
+#			self["icon"].show()
 		self.skinName = ["MessageBox"]
 		if simple:
 			self.skinName = ["MessageBoxSimple"]
@@ -118,7 +118,7 @@ class MessageBox(Screen, HelpableScreen):
 			self.onLayoutFinish.append(self.layoutFinished)
 
 	def layoutFinished(self):
-		self["icon"].setPixmapNum(self.type)
+#		self["icon"].setPixmapNum(self.type)
 		prefix = self.TYPE_PREFIX.get(self.type, _("Unknown"))
 		if self.baseTitle is None:
 			title = self.getTitle()
