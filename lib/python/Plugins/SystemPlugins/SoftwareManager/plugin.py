@@ -1608,7 +1608,6 @@ class UpdatePlugin(Screen):
 		currentTimeoutDefault = socket.getdefaulttimeout()
 		socket.setdefaulttimeout(3)
 		message = ""
-		picon = None
 		default = True
 		doUpdate = True
 		# TODO: Use Twisted's URL fetcher, urlopen is evil. And it can
@@ -1620,16 +1619,13 @@ class UpdatePlugin(Screen):
 			tmpStatus = six.ensure_str(tmpStatus)
 			if (os.path.exists("/etc/.beta") and 'rot.png' in tmpStatus) or 'gelb.png' in tmpStatus:
 				message = _("Caution update not yet tested !!") + "\n" + _("Update at your own risk") + "\n\n" + _("For more information see https://www.opena.tv") + "\n\n"# + _("Last Status Date") + ": "  + statusDate + "\n\n"
-				picon = MessageBox.TYPE_ERROR
 				default = False
 			elif 'rot.png' in tmpStatus:
 				message = _("Update is reported as faulty !!") + "\n" + _("Aborting updateprogress") + "\n\n" + _("For more information see https://www.opena.tv")# + "\n\n" + _("Last Status Date") + ": " + statusDate
-				picon = MessageBox.TYPE_ERROR
 				default = False
 				doUpdate = False
 		except:
 			message = _("The status of the current update could not be checked because https://www.opena.tv could not be reached for some reason") + "\n"
-			picon = MessageBox.TYPE_ERROR
 			default = False
 		socket.setdefaulttimeout(currentTimeoutDefault)
 
@@ -1639,10 +1635,10 @@ class UpdatePlugin(Screen):
 			if doUpdate:
 				# Ask for Update,
 				message += _("Do you want to update your box?") + "\n" + _("After pressing OK, please wait!")
-				self.session.openWithCallback(self.runUpgrade, MessageBox, message, default=default, picon=picon)
+				self.session.openWithCallback(self.runUpgrade, MessageBox, message, default=default)
 			else:
 				# Don't Update RED LIGHT !!
-				self.session.open(MessageBox, message, picon, timeout=20)
+				self.session.open(MessageBox, message, MessageBox.TYPE_ERROR, timeout=20)
 				self.runUpgrade(False)
 
 	def runUpgrade(self, result):
