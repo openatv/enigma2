@@ -28,7 +28,7 @@ from Tools.ServiceReference import service_types_tv_ref, service_types_radio_ref
 from Tools.Directories import fileExists, getRecordingFilename, resolveFilename, SCOPE_CONFIG
 from Tools.ASCIItranslit import legacyEncode
 from Tools import Trashcan
-from Tools.Notifications import AddNotification, AddNotificationWithCallback, AddPopup
+from Tools import Notifications
 from Tools.XMLTools import stringToXML
 
 # For descriptions etc we have:
@@ -489,7 +489,7 @@ class RecordTimerEntry(timer.TimerEntry, object):
 				if InfoBar and InfoBar.instance:
 					InfoBar.instance.openInfoBarMessage(message, messageboxtyp, timeout)
 				else:
-					AddPopup(message, messageboxtyp, timeout=timeout, id=id)
+					Notifications.AddPopup(message, messageboxtyp, timeout=timeout, id=id)
 				self.failed = True
 				self.next_activation = time()
 				self.lastend = self.end
@@ -525,7 +525,7 @@ class RecordTimerEntry(timer.TimerEntry, object):
 					if InfoBar and InfoBar.instance:
 						InfoBar.instance.openInfoBarMessage(message, messageboxtyp, timeout)
 					else:
-						AddNotification(MessageBox, message, messageboxtyp, timeout=timeout)
+						Notifications.AddNotification(MessageBox, message, messageboxtyp, timeout=timeout)
 				# create file to "reserve" the filename
 				# because another recording at the same time on another service can try to record the same event
 				# i.e. cable / sat.. then the second recording needs an own extension... when we create the file
@@ -569,7 +569,7 @@ class RecordTimerEntry(timer.TimerEntry, object):
 						if InfoBar and InfoBar.instance:
 							InfoBar.instance.openInfoBarMessageWithCallback(callback, message, messageboxtyp, timeout, default)
 						else:
-							AddNotificationWithCallback(callback, MessageBox, message, messageboxtyp, timeout=timeout, default=default)
+							Notifications.AddNotificationWithCallback(callback, MessageBox, message, messageboxtyp, timeout=timeout, default=default)
 					elif config.recording.ask_to_abort_pip.value in ("abort_no_msg", "abort_msg"):
 						self.log(8, "disable PIP without asking")
 						self.setRecordingPreferredTuner()
@@ -594,7 +594,7 @@ class RecordTimerEntry(timer.TimerEntry, object):
 						if InfoBar and InfoBar.instance:
 							InfoBar.instance.openInfoBarMessageWithCallback(callback, message, messageboxtyp, timeout, default)
 						else:
-							AddNotificationWithCallback(callback, MessageBox, message, messageboxtyp, timeout=timeout, default=default)
+							Notifications.AddNotificationWithCallback(callback, MessageBox, message, messageboxtyp, timeout=timeout, default=default)
 					elif config.recording.ask_to_abort_pseudo_rec.value in ("abort_no_msg", "abort_msg"):
 						self.log(8, "abort pseudo recordings without asking")
 						self.setRecordingPreferredTuner()
@@ -619,7 +619,7 @@ class RecordTimerEntry(timer.TimerEntry, object):
 						if InfoBar and InfoBar.instance:
 							InfoBar.instance.openInfoBarMessageWithCallback(callback, message, messageboxtyp, timeout, default)
 						else:
-							AddNotificationWithCallback(callback, MessageBox, message, messageboxtyp, timeout=timeout, default=default)
+							Notifications.AddNotificationWithCallback(callback, MessageBox, message, messageboxtyp, timeout=timeout, default=default)
 					elif config.recording.ask_to_abort_streaming.value in ("abort_no_msg", "abort_msg"):
 						self.log(8, "abort streaming without asking")
 						self.setRecordingPreferredTuner()
@@ -648,7 +648,7 @@ class RecordTimerEntry(timer.TimerEntry, object):
 						if InfoBar and InfoBar.instance:
 							InfoBar.instance.openInfoBarMessageWithCallback(callback, message, messageboxtyp, timeout, default)
 						else:
-							AddNotificationWithCallback(callback, MessageBox, message, messageboxtyp, timeout=timeout, default=default)
+							Notifications.AddNotificationWithCallback(callback, MessageBox, message, messageboxtyp, timeout=timeout, default=default)
 					else: # zap without asking
 						self.log(9, "Zap without asking")
 						self.setRecordingPreferredTuner()
@@ -672,7 +672,7 @@ class RecordTimerEntry(timer.TimerEntry, object):
 				if InfoBar and InfoBar.instance:
 					InfoBar.instance.openInfoBarMessage(message, messageboxtyp, timeout)
 				else:
-					AddNotification(MessageBox, message, messageboxtyp, timeout=timeout)
+					Notifications.AddNotification(MessageBox, message, messageboxtyp, timeout=timeout)
 
 			return False
 
@@ -804,7 +804,7 @@ class RecordTimerEntry(timer.TimerEntry, object):
 					if InfoBar and InfoBar.instance:
 						InfoBar.instance.openInfoBarMessageWithCallback(callback, message, messageboxtyp, timeout, default)
 					else:
-						AddNotificationWithCallback(callback, MessageBox, message, messageboxtyp, timeout=timeout, default=default)
+						Notifications.AddNotificationWithCallback(callback, MessageBox, message, messageboxtyp, timeout=timeout, default=default)
 				elif not box_instandby:
 					self.sendStandbyNotification(True)
 
@@ -831,7 +831,7 @@ class RecordTimerEntry(timer.TimerEntry, object):
 						if InfoBar and InfoBar.instance:
 							InfoBar.instance.openInfoBarMessageWithCallback(callback, message, messageboxtyp, timeout, default)
 						else:
-							AddNotificationWithCallback(callback, MessageBox, message, messageboxtyp, timeout=timeout, default=default)
+							Notifications.AddNotificationWithCallback(callback, MessageBox, message, messageboxtyp, timeout=timeout, default=default)
 					else:
 						print("[RecordTimer] quitMainloop #1")
 						quitMainloop(1)
@@ -891,7 +891,7 @@ class RecordTimerEntry(timer.TimerEntry, object):
 			if InfoBar and InfoBar.instance:
 				InfoBar.instance.openInfoBarSession(session, option)
 			else:
-				AddNotification(session)
+				Notifications.AddNotification(session)
 
 	def sendTryQuitMainloopNotification(self, answer):
 		if answer:
@@ -900,7 +900,7 @@ class RecordTimerEntry(timer.TimerEntry, object):
 			if InfoBar and InfoBar.instance:
 				InfoBar.instance.openInfoBarSession(session, option)
 			else:
-				AddNotification(session, option)
+				Notifications.AddNotification(session, option)
 
 	def getNextActivation(self, getNextStbPowerOn=False):
 		self.isStillRecording = False
@@ -1121,7 +1121,7 @@ class RecordTimerEntry(timer.TimerEntry, object):
 			# show notification. the 'id' will make sure that it will be
 			# displayed only once, even if more timers are failing at the
 			# same time. (which is very likely in case of disk fullness)
-			AddPopup(text=_("Write error while recording. %s") % (_("An unknown error occurred!"), _("Disk was not found!"), _("Disk is not writable!"), _("Disk full?"))[err], type=MessageBox.TYPE_ERROR, timeout=0, id="DiskFullMessage")
+			Notifications.AddPopup(text=_("Write error while recording. %s") % (_("An unknown error occurred!"), _("Disk was not found!"), _("Disk is not writable!"), _("Disk full?"))[err], type=MessageBox.TYPE_ERROR, timeout=0, id="DiskFullMessage")
 			# ok, the recording has been stopped. we need to properly note
 			# that in our state, with also keeping the possibility to re-try.
 			# TODO: this has to be done.
@@ -1132,7 +1132,7 @@ class RecordTimerEntry(timer.TimerEntry, object):
 				text = "\n".join((text, _("Please note that the previously selected media could not be accessed and therefore the default directory is being used instead.")))
 				notify = True
 			if notify:
-				AddPopup(text=text, type=MessageBox.TYPE_INFO, timeout=3)
+				Notifications.AddPopup(text=text, type=MessageBox.TYPE_INFO, timeout=3)
 		elif event == iRecordableService.evRecordAborted:
 			NavigationInstance.instance.RecordTimer.removeEntry(self)
 		elif event == iRecordableService.evGstRecordEnded:
@@ -1305,7 +1305,7 @@ class RecordTimer(timer.Timer):
 			from Tools.Notifications import AddPopup
 			from Screens.MessageBox import MessageBox
 
-			AddPopup(_("The timer file (timers.xml) is corrupt and could not be loaded."), type=MessageBox.TYPE_ERROR, timeout=0, id="TimerLoadFailed")
+			Notifications.AddPopup(_("The timer file (timers.xml) is corrupt and could not be loaded."), type=MessageBox.TYPE_ERROR, timeout=0, id="TimerLoadFailed")
 
 			print("timers.xml failed to load!")
 			try:
@@ -1326,7 +1326,7 @@ class RecordTimer(timer.Timer):
 			if (self.record(newTimer, True, dosave=False) is not None) and (checkit == True):
 				from Tools.Notifications import AddPopup
 				from Screens.MessageBox import MessageBox
-				AddPopup(_("Timer overlap in timers.xml detected!\nPlease recheck it!"), type=MessageBox.TYPE_ERROR, timeout=0, id="TimerLoadFailed")
+				Notifications.AddPopup(_("Timer overlap in timers.xml detected!\nPlease recheck it!"), type=MessageBox.TYPE_ERROR, timeout=0, id="TimerLoadFailed")
 				checkit = False # at the moment it is enough when the message is displayed once
 
 	def saveTimer(self):

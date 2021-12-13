@@ -8,7 +8,6 @@ from Tools.BoundFunction import boundFunction
 from ServiceReference import ServiceReference
 import Tools.Notifications
 from Tools.Directories import resolveFilename, SCOPE_CONFIG
-from Tools.Notifications import AddPopup
 from enigma import eTimer, eServiceCenter, iServiceInformation, eServiceReference, eDVBDB
 import time
 
@@ -186,7 +185,7 @@ class ParentalControl:
 				if self.session:
 					self.session.open(MessageBox, messageText, MessageBox.TYPE_INFO, timeout=3)
 				else:
-					AddPopup(messageText, MessageBox.TYPE_ERROR, timeout=3)
+					Tools.Notifications.AddPopup(messageText, MessageBox.TYPE_ERROR, timeout=3)
 
 	def saveListToFile(self, sWhichList, vList):
 		#Replaces saveWhiteList and saveBlackList:

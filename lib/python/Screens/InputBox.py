@@ -7,7 +7,7 @@ from Components.Label import Label
 from Components.Input import Input
 from Components.config import config
 from Tools.BoundFunction import boundFunction
-from Tools.Notifications import AddPopup
+from Tools import Notifications
 from time import time
 
 
@@ -112,7 +112,7 @@ class PinInput(InputBox):
 				remainingSeconds = int(remaining % 60)
 				messageText = _("You have to wait %s!") % (str(remainingMinutes) + " " + _("minutes") + ", " + str(remainingSeconds) + " " + _("seconds"))
 				if service and simple:
-					AddPopup(messageText, type=MessageBox.TYPE_ERROR, timeout=3)
+					Notifications.AddPopup(messageText, type=MessageBox.TYPE_ERROR, timeout=3)
 					self.closePinCancel()
 				else:
 					self.onFirstExecBegin.append(boundFunction(self.session.openWithCallback, self.closePinCancel, MessageBox, messageText, MessageBox.TYPE_ERROR, timeout=3))

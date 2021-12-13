@@ -17,7 +17,7 @@ from Components.TimerSanityCheck import TimerSanityCheck
 from Screens.MessageBox import MessageBox
 import Screens.Standby
 from Tools.Directories import SCOPE_CONFIG, fileExists, fileReadXML, resolveFilename
-from Tools.Notifications import AddNotification, AddNotificationWithCallback, AddPopup
+from Tools import Notifications
 from Tools.XMLTools import stringToXML
 
 MODULE_NAME = __name__.split(".")[-1]
@@ -110,7 +110,7 @@ class PowerTimer(Timer):
 		if timersDom is None:
 			if not exists(self.timersFilename):
 				return
-			AddPopup(_("The timer file (pm_timers.xml) is corrupt and could not be loaded."), type=MessageBox.TYPE_ERROR, timeout=0, id="TimerLoadFailed")
+			Notifications.AddPopup(_("The timer file (pm_timers.xml) is corrupt and could not be loaded."), type=MessageBox.TYPE_ERROR, timeout=0, id="TimerLoadFailed")
 			print("[PowerTimer] Error: Loading 'pm_timers.xml' failed!")
 			try:
 				rename(self.timersFilename, "%s_old" % self.timersFilename)
@@ -122,7 +122,7 @@ class PowerTimer(Timer):
 		for timer in timersDom.findall("timer"):
 			newTimer = self.createTimer(timer)
 			if (self.record(newTimer, True, dosave=False) is not None) and (check == True):
-				AddPopup(_("Timer overlap in pm_timers.xml detected!\nPlease recheck it!"), type=MessageBox.TYPE_ERROR, timeout=0, id="TimerLoadFailed")
+				Notifications.AddPopup(_("Timer overlap in pm_timers.xml detected!\nPlease recheck it!"), type=MessageBox.TYPE_ERROR, timeout=0, id="TimerLoadFailed")
 				check = False # at moment it is enough when the message is displayed one time
 
 	def loadTimer(self):
@@ -602,7 +602,7 @@ class PowerTimerEntry(TimerEntry, object):
 					if InfoBar and InfoBar.instance:
 						InfoBar.instance.openInfoBarMessageWithCallback(callback, message, messageboxtyp, timeout, default)
 					else:
-						AddNotificationWithCallback(callback, MessageBox, message, messageboxtyp, timeout=timeout, default=default)
+						Notifications.AddNotificationWithCallback(callback, MessageBox, message, messageboxtyp, timeout=timeout, default=default)
 				return True
 
 			elif self.timerType == TIMERTYPE.AUTOSTANDBY:
@@ -620,7 +620,7 @@ class PowerTimerEntry(TimerEntry, object):
 					if InfoBar and InfoBar.instance:
 						InfoBar.instance.openInfoBarMessageWithCallback(callback, message, messageboxtyp, timeout, default)
 					else:
-						AddNotificationWithCallback(callback, MessageBox, message, messageboxtyp, timeout=timeout, default=default)
+						Notifications.AddNotificationWithCallback(callback, MessageBox, message, messageboxtyp, timeout=timeout, default=default)
 					if self.autosleeprepeat == "once":
 						eActionMap.getInstance().unbindAction('', self.keyPressed)
 						return True
@@ -658,7 +658,7 @@ class PowerTimerEntry(TimerEntry, object):
 						if InfoBar and InfoBar.instance:
 							InfoBar.instance.openInfoBarMessageWithCallback(callback, message, messageboxtyp, timeout, default)
 						else:
-							AddNotificationWithCallback(callback, MessageBox, message, messageboxtyp, timeout=timeout, default=default)
+							Notifications.AddNotificationWithCallback(callback, MessageBox, message, messageboxtyp, timeout=timeout, default=default)
 						if self.autosleeprepeat == "once":
 							eActionMap.getInstance().unbindAction('', self.keyPressed)
 							return True
@@ -732,7 +732,7 @@ class PowerTimerEntry(TimerEntry, object):
 						if InfoBar and InfoBar.instance:
 							InfoBar.instance.openInfoBarMessageWithCallback(callback, message, messageboxtyp, timeout, default)
 						else:
-							AddNotificationWithCallback(callback, MessageBox, message, messageboxtyp, timeout=timeout, default=default)
+							Notifications.AddNotificationWithCallback(callback, MessageBox, message, messageboxtyp, timeout=timeout, default=default)
 				RSsave = False
 				return True
 
@@ -804,7 +804,7 @@ class PowerTimerEntry(TimerEntry, object):
 						if InfoBar and InfoBar.instance:
 							InfoBar.instance.openInfoBarMessageWithCallback(callback, message, messageboxtyp, timeout, default)
 						else:
-							AddNotificationWithCallback(callback, MessageBox, message, messageboxtyp, timeout=timeout, default=default)
+							Notifications.AddNotificationWithCallback(callback, MessageBox, message, messageboxtyp, timeout=timeout, default=default)
 				RBsave = False
 				return True
 
@@ -876,7 +876,7 @@ class PowerTimerEntry(TimerEntry, object):
 						if InfoBar and InfoBar.instance:
 							InfoBar.instance.openInfoBarMessageWithCallback(callback, message, messageboxtyp, timeout, default)
 						else:
-							AddNotificationWithCallback(callback, MessageBox, message, messageboxtyp, timeout=timeout, default=default)
+							Notifications.AddNotificationWithCallback(callback, MessageBox, message, messageboxtyp, timeout=timeout, default=default)
 				DSsave = False
 				return True
 
@@ -895,7 +895,7 @@ class PowerTimerEntry(TimerEntry, object):
 					if InfoBar and InfoBar.instance:
 						InfoBar.instance.openInfoBarMessageWithCallback(callback, message, messageboxtyp, timeout, default)
 					else:
-						AddNotificationWithCallback(callback, MessageBox, message, messageboxtyp, timeout=timeout, default=default)
+						Notifications.AddNotificationWithCallback(callback, MessageBox, message, messageboxtyp, timeout=timeout, default=default)
 			elif self.afterEvent == AFTEREVENT.DEEPSTANDBY:
 				if debug:
 					print("self.afterEvent == AFTEREVENT.DEEPSTANDBY:")
@@ -958,7 +958,7 @@ class PowerTimerEntry(TimerEntry, object):
 						if InfoBar and InfoBar.instance:
 							InfoBar.instance.openInfoBarMessageWithCallback(callback, message, messageboxtyp, timeout, default)
 						else:
-							AddNotificationWithCallback(callback, MessageBox, message, messageboxtyp, timeout=timeout, default=default)
+							Notifications.AddNotificationWithCallback(callback, MessageBox, message, messageboxtyp, timeout=timeout, default=default)
 				aeDSsave = False
 			NavigationInstance.instance.PowerTimer.saveTimer()
 			resetTimerWakeup()
@@ -992,7 +992,7 @@ class PowerTimerEntry(TimerEntry, object):
 			if InfoBar and InfoBar.instance:
 				InfoBar.instance.openInfoBarSession(session, option)
 			else:
-				AddNotification(session)
+				Notifications.AddNotification(session)
 
 	def sendTryQuitMainloopNotification(self, answer):
 		self.messageBoxAnswerPending = False
@@ -1002,7 +1002,7 @@ class PowerTimerEntry(TimerEntry, object):
 			if InfoBar and InfoBar.instance:
 				InfoBar.instance.openInfoBarSession(session, option)
 			else:
-				AddNotification(session, option)
+				Notifications.AddNotification(session, option)
 
 	def sendTryToRebootNotification(self, answer):
 		if answer:
@@ -1011,7 +1011,7 @@ class PowerTimerEntry(TimerEntry, object):
 			if InfoBar and InfoBar.instance:
 				InfoBar.instance.openInfoBarSession(session, option)
 			else:
-				AddNotification(session, option)
+				Notifications.AddNotification(session, option)
 
 	def sendTryToRestartNotification(self, answer):
 		if answer:
@@ -1020,7 +1020,7 @@ class PowerTimerEntry(TimerEntry, object):
 			if InfoBar and InfoBar.instance:
 				InfoBar.instance.openInfoBarSession(session, option)
 			else:
-				AddNotification(session, option)
+				Notifications.AddNotification(session, option)
 
 	def keyPressed(self, key, tag):
 		if self.getAutoSleepWindow():
