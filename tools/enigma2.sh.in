@@ -29,7 +29,7 @@ if [ ! -d /etc/enigma2 ] ; then
 fi
 
 # workaround for corrupt ssl files
-if [ ! "$(grep config.misc.firstrun /etc/enigma2/settings)" == "config.misc.firstrun=false" ]; then
+if [ "$(grep -i config.misc.firstrun=true /etc/enigma2/settings)" != "" ]; then
 	rm -rf /etc/enigma2/cert.pem &
 	rm -rf /etc/enigma2/key.pem &
 fi
