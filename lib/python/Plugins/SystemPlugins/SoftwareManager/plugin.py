@@ -1634,8 +1634,7 @@ class UpdatePlugin(Screen):
 		socket.setdefaulttimeout(currentTimeoutDefault)
 
 		if default:
-		        # We'll ask later
-		        self.runUpgrade(True)
+			self.runUpgrade(True)  # We'll ask later
 		else:
 			if doUpdate:
 				# Ask for Update,
