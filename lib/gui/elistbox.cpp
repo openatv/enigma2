@@ -670,6 +670,11 @@ void eListbox::setScrollbarWidth(int size)
 	m_scrollbar_width = size;
 }
 
+void eListbox::setScrollbarOffset(int size)
+{
+	m_scrollbar_offset = size;
+}
+
 void eListbox::setBackgroundPicture(ePtr<gPixmap> &pm)
 {
 	m_style.m_background = pm;
