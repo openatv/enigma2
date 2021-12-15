@@ -12,8 +12,8 @@ msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-11-29 21:27+0000\n"
-"PO-Revision-Date: 2021-12-01 21:55+0000\n"
-"Last-Translator: Makumbo <tokioplo@web.de>\n"
+"PO-Revision-Date: 2021-12-13 20:09+0000\n"
+"Last-Translator: jbleyel <jbleyel@gmx.net>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/openatv/"
 "enigma2-7-0-po/de/>\n"
 "Language: de\n"
@@ -1424,6 +1424,8 @@ msgstr ""
 msgid ""
 "'Handle standby from TV' has a higher priority than 'Handle input from TV'."
 msgstr ""
+"'TV-Standby verwalten' besitzt eine höhere Priorität als 'TV-Eingänge "
+"verwalten'."
 
 msgid "'weatherplugin' is not installed!"
 msgstr "'weatherplugin' ist nicht installiert!"
@@ -2142,7 +2144,7 @@ msgid "A crashlog was %s created in '%s'"
 msgstr "Ein Crashlog wurde %s in '%s' erstellt"
 
 msgid "A file from media is in use!"
-msgstr ""
+msgstr "Eine Mediendatei ist in Benutzung!"
 
 # /usr/lib/enigma2/python/PowerTimer.py
 #, python-format
@@ -2466,6 +2468,8 @@ msgid ""
 "Activate a way to send individual or specific internal HDMI-CEC commands "
 "from the command line."
 msgstr ""
+"Aktivieren Sie die Möglichkeit, individuelle oder festgelegte interne HDMI-"
+"CEC-Befehle von der Befehlszeile zu senden."
 
 #, python-format
 msgid ""
@@ -2563,7 +2567,7 @@ msgid "Add a nameserver entry"
 msgstr "Nameserver-Eintrag hinzufügen"
 
 msgid "Add a new tag"
-msgstr ""
+msgstr "Neuen Tag hinzufügen"
 
 #
 msgid "Add a new title"
@@ -2600,7 +2604,7 @@ msgid "Add files to playlist"
 msgstr "Zur Playlist hinzufügen"
 
 msgid "Add new tag"
-msgstr ""
+msgstr "Neuen Tag hinzufügen"
 
 msgid "Add plugin to Extensions menu*"
 msgstr "Plugin zum Erweiterungsmenü hinzufügen *"
@@ -3003,6 +3007,10 @@ msgid ""
 "respond unexpectedly. On the other hand, tries to respond better to "
 "different operating conditions."
 msgstr ""
+"Es wird versucht den aktuellen TV-Betriebszustand zu erfassen. Ist dies "
+"aufgrund falscher oder fehlender Statusmeldungen nicht möglich, kann Ihr "
+"Receiver unerwartet reagieren. Andererseits wird versucht auf verschiedene "
+"Betriebszustände besser zu reagieren."
 
 msgid ""
 "An attempt is made to capture the current TV status. If this is not possible "
@@ -3011,7 +3019,7 @@ msgid ""
 "On the other hand, tries to respond better to different operating conditions."
 msgstr ""
 "Es wird versucht den aktuellen TV-Betriebszustand zu erfassen. Ist dies "
-"aufgrund falscher oder fehlender Statusmeldungen nicht möglich, kann Ihre "
+"aufgrund falscher oder fehlender Statusmeldungen nicht möglich, kann Ihr "
 "Receiver unerwartet reagieren.\n"
 "Andererseits wird versucht auf verschiedene Betriebszustände besser zu "
 "reagieren."
@@ -4388,7 +4396,7 @@ msgid "Cancel any changed settings and exit all menus"
 msgstr "Änderungen verwerfen und alle Menüs verlassen"
 
 msgid "Cancel any changed tags and exit"
-msgstr ""
+msgstr "Alle Änderungen verwerfen und beenden"
 
 #
 msgid "Cancel any changes the active locale/language and exit all menus"
@@ -5140,7 +5148,7 @@ msgid "Common Interface assignment"
 msgstr "Common-Interface-Zuordnung"
 
 msgid "Common Menu Actions"
-msgstr ""
+msgstr "Allgemeine Menüaktionen"
 
 # boot-up action
 msgid "Common Setup Actions"
@@ -6499,7 +6507,7 @@ msgid "Debug Logs"
 msgstr "Debuglogs"
 
 msgid "Debug log time format *"
-msgstr "Debug log Zeitformat *"
+msgstr "Debug Log Zeitformat *"
 
 msgid "Decryption & Parental Control"
 msgstr "Entschlüsselung & Jugendschutz"
@@ -6689,6 +6697,9 @@ msgid ""
 "Delay between CEC commands when sending a series of commands. Some devices "
 "require this delay for correct functioning, usually between 50-150ms."
 msgstr ""
+"Verzögerung zwischen CEC-Befehlen, wenn mehrere Befehle hintereinander "
+"gesendet werden. Einige Geräte benötigen diese Verzögerung für eine korrekte "
+"Funktion, normalerweise zwischen 50-150ms."
 
 msgid "Delay between diseqc commands"
 msgstr "Pause zwischen DiSEqC-Befehle"
@@ -6745,7 +6756,7 @@ msgid "Delete Plugins"
 msgstr "Plugins löschen"
 
 msgid "Delete all tags"
-msgstr ""
+msgstr "Alle Tags löschen"
 
 msgid "Delete all the text"
 msgstr "Den gesamten Text löschen"
@@ -6806,14 +6817,14 @@ msgid "Delete the selected files or directories"
 msgstr "Ausgewählte Dateien oder Verzeichnisse löschen"
 
 msgid "Delete this tag"
-msgstr ""
+msgstr "Diesen Tag löschen"
 
 # GraphMultiEpg.py
 msgid "Delete timer"
 msgstr "Timer löschen"
 
 msgid "Delete unused tags"
-msgstr ""
+msgstr "Nicht verwendete Tags löschen"
 
 msgid "Deleted"
 msgstr "Gelöscht"
@@ -6972,7 +6983,7 @@ msgstr ""
 "'Helligkeit (gedimmt)' heruntergeregelt."
 
 msgid "Direct menu item selection"
-msgstr ""
+msgstr "Direkte Menüpunktauswahl"
 
 #
 msgid "Direct playback of linked titles without menu"
@@ -7115,7 +7126,7 @@ msgid "Display the base locales or all locales for a language."
 msgstr "Anzeige der Sprachregion oder aller lokalen Sprachen für eine Sprache."
 
 msgid "Display the tags context menu"
-msgstr ""
+msgstr "Tag-Kontextmenü anzeigen"
 
 msgid "Display the virtual keyboard for data entry"
 msgstr "Anzeige der virtuellen Tastatur für die Dateneingabe"
@@ -7174,11 +7185,15 @@ msgid ""
 "Do you really want to delete all '%s' tags?\n"
 "(NOTE: 'Cancel' cannot undo this!)"
 msgstr ""
+"Möchten Sie wirklich alle '%s' Tags löschen?\n"
+"(HINWEIS: 'Abbrechen' kann dies nicht rückgängig machen!)"
 
 msgid ""
 "Do you really want to delete all tags?\n"
 "(Note that 'Cancel' will not undo this!)"
 msgstr ""
+"Möchten Sie wirklich alle Tags löschen?\n"
+"(HINWEIS: 'Abbrechen' kann dies nicht rückgängig machen!)"
 
 msgid "Do you really want to delete the recording?"
 msgstr "Möchten Sie die Aufnahme wirklich löschen?"
@@ -7676,10 +7691,10 @@ msgid "Edit"
 msgstr "Bearbeiten"
 
 msgid "Edit Quad Channel Entry"
-msgstr "Bearbeite Sendergruppe"
+msgstr "Quad Sendereintrag bearbeiten"
 
 msgid "Edit Tags"
-msgstr ""
+msgstr "Tags bearbeiten"
 
 #
 msgid "Edit Title"
@@ -7693,7 +7708,7 @@ msgid "Edit current line"
 msgstr "Aktuelle Zeile bearbeiten"
 
 msgid "Edit line "
-msgstr "Bearbeite Zeile "
+msgstr "Zeile bearbeiten "
 
 msgid "Edit mode off"
 msgstr "Edit-Modus aus"
@@ -7916,13 +7931,13 @@ msgid "Enable multiple bouquets"
 msgstr "Mehrere Favoritenlisten erlauben"
 
 msgid "Enable or disable using HDMI-CEC."
-msgstr ""
+msgstr "Verwendung von HDMI-CEC ein-/ausschalten."
 
 msgid "Enable panic button"
 msgstr "Taste PANIK aktivieren"
 
 msgid "Enable preview"
-msgstr "Aktiviere Vorschau"
+msgstr "Vorschau aktivieren"
 
 msgid ""
 "Enable remote enigma2 receiver to be tried to tune into services that cannot "
@@ -7946,7 +7961,7 @@ msgid "Enable terrestrial LCN:"
 msgstr "Terrestrisches LCN aktivieren:"
 
 msgid "Enable the advanced HDMI-CEC setting options."
-msgstr ""
+msgstr "Erweiterte HDMI-CEC-Einstellungsoptionen aktivieren."
 
 msgid "Enable the current value of the slider at end of the slider bar."
 msgstr ""
@@ -8079,7 +8094,7 @@ msgid "Enter PIN"
 msgstr "PIN eingeben"
 
 msgid "Enter a new name for this device."
-msgstr ""
+msgstr "Geben Sie einen neuen Namen für dieses Gerät ein."
 
 msgid "Enter if you are in the east or west hemisphere."
 msgstr ""
@@ -8887,7 +8902,7 @@ msgid "Filesystem Check"
 msgstr "Dateisystemüberprüfung"
 
 msgid "Filesystem check your Harddisk"
-msgstr "Dateisystem der Festplatte prüfen"
+msgstr "Dateisystem der Festplatte überprüfen"
 
 #
 msgid ""
@@ -9078,7 +9093,7 @@ msgid "Format your Harddisk"
 msgstr "Formatieren der Festplatte"
 
 msgid "Forward volume keys"
-msgstr "Weiterleiten der Volume-Tasten"
+msgstr "Weiterleiten der Lautstärketasten"
 
 msgid "Frame rate"
 msgstr "Bildwiederholrate"
@@ -9584,10 +9599,10 @@ msgid "HDMI Recording"
 msgstr "HDMI-Aufnahme"
 
 msgid "HDMI-CEC Setup"
-msgstr ""
+msgstr "HDMI-CEC Einstellungen"
 
 msgid "HDMI-CEC Setup Actions"
-msgstr ""
+msgstr "HDMI-CEC-Aktionen"
 
 msgid "HDMI-IN Actions"
 msgstr "HDMI-IN-Aktionen"
@@ -10070,6 +10085,9 @@ msgid ""
 "If enabled, a log will be kept of CEC protocol traffic. The log files are "
 "located with the other log files but named 'Enigma2-hdmicec-[date].log'."
 msgstr ""
+"Bei 'Ja' wird ein Log des CEC-Protokolls erstellt. Die Logdateien befinden "
+"sich zusammen mit den anderen Logs, haben jedoch den Namen "
+"'Enigma2-hdmicec-[date].log'"
 
 msgid ""
 "If enabled, using a time window to detect a wakeup from deep standby by a "
@@ -10097,6 +10115,8 @@ msgid ""
 "If set to 'Yes' the same commands will be sent to the TV for deep standby "
 "events as are sent during regular standby events."
 msgstr ""
+"Bei 'Ja' werden bei Deep-Standby-Ereignissen dieselben Befehle an das "
+"Fernsehgerät gesendet wie bei normalen Standby-Ereignissen."
 
 msgid ""
 "If set to 'no', can you save older events even after zapping or interruption "
@@ -10197,7 +10217,7 @@ msgid ""
 "continuing after a maximum of 2 minutes."
 msgstr ""
 "Wenn der 'Deep-Standby-Workaround' aktiviert ist wird gewartet, bis die "
-"Systemzeit synchronisiert wurde. Je nach Erfordernis wird das aufwecken der "
+"Systemzeit synchronisiert wurde. Je nach Erfordernis wird das Aufwecken der "
 "Geräte in maximal 2 Minuten fortgesetzt."
 
 msgid ""
@@ -10205,6 +10225,9 @@ msgid ""
 "synchronized. Depending on the requirement the device wake up will "
 "continuing after a maximum of 2 minutes."
 msgstr ""
+"Wenn der Deep-Standby-Workaround aktiviert ist wird gewartet, bis die "
+"Systemzeit synchronisiert wurde. Je nach Erfordernis wird das Aufwecken der "
+"Geräte in maximal 2 Minuten fortgesetzt."
 
 msgid ""
 "If the free space is less than setting value, then an attempt is made to "
@@ -10600,7 +10623,7 @@ msgid "Input scroll position"
 msgstr "Scrollposition eingeben"
 
 msgid "InputDevice Setup"
-msgstr ""
+msgstr "Eingabegeräte Einstellungen"
 
 msgid "Insert"
 msgstr "Einfügen"
@@ -11462,11 +11485,11 @@ msgid "Load playlist"
 msgstr "Playlist laden"
 
 msgid "Load tags from the timer and recordings"
-msgstr ""
+msgstr "Tags von Timern und Aufnahmen laden"
 
 # Customize neu 5.1
 msgid "Load unlinked userbouquets"
-msgstr "Lade nicht eingebundene Bouquets"
+msgstr "Nicht eingebundene Bouquets laden"
 
 msgid "Load/Save/Delete"
 msgstr "Laden/Speichern/Löschen"
@@ -13896,7 +13919,7 @@ msgid "Password"
 msgstr "Passwort"
 
 msgid "Password (httpuser)"
-msgstr ""
+msgstr "Passwort (httpuser)"
 
 msgid "Password (httpwd)"
 msgstr "Passwort (httpwd)"
@@ -14234,7 +14257,7 @@ msgid "Please enter the new file name"
 msgstr "Bitte den neuen Dateinamen eingeben"
 
 msgid "Please enter the new tag:"
-msgstr ""
+msgstr "Bitte den neuen Tag eingeben:"
 
 msgid "Please enter the old PIN code"
 msgstr "Bitte alten PIN-Code eingeben"
@@ -15341,7 +15364,7 @@ msgstr "Reality"
 
 #, fuzzy
 msgid "Really WOL now?"
-msgstr "Wirklich WOL jetzt?"
+msgstr "WOL wirklich aktivieren?"
 
 #
 msgid "Really close without saving settings?"
@@ -15783,7 +15806,7 @@ msgid "Rename name and description for new events"
 msgstr "Ändere für neue Aufnahmen den Namen und die Beschreibung"
 
 msgid "Rename this tag"
-msgstr ""
+msgstr "Tag umbenennen"
 
 msgid "Rename to:"
 msgstr "Umbenennen zu:"
@@ -15837,6 +15860,8 @@ msgid ""
 "Replace all '%s' tags with:\n"
 "(NOTE: 'Cancel' cannot undo this!)"
 msgstr ""
+"Ersetzt alle '%s' Tags mit:\n"
+"(HINWEIS: 'Abbrechen' kann dies nicht rückgängig machen!)"
 
 #
 msgid "Reportage"
@@ -15863,7 +15888,7 @@ msgid "Reset"
 msgstr "Zurücksetzen"
 
 msgid "Reset HDMI-CEC settings to default"
-msgstr ""
+msgstr "HDMI-CEC-Einstellungen zurücksetzen"
 
 #
 msgid "Reset and renumerate title names"
@@ -16376,7 +16401,7 @@ msgid "Save all changed settings and exit"
 msgstr "Text speichern und beenden"
 
 msgid "Save all changed tags and exit"
-msgstr ""
+msgstr "Alle geänderten Tags speichern und beenden"
 
 msgid "Save and record"
 msgstr "Speichern und aufnehmen"
@@ -16439,7 +16464,7 @@ msgstr "Vertikale Kantenglättung"
 
 # 5.1 /Plugins\Extensions\PicturePlayer
 msgid "Scaling mode"
-msgstr "Skalierungs-Modus"
+msgstr "Skalierungsmodus"
 
 #
 msgid "Scan"
@@ -16538,7 +16563,7 @@ msgstr ""
 "Skript '%s' muss über Leseberechtigung verfügen, um es ausführen zu können."
 
 msgid "Script Manager"
-msgstr "Script-Verwaltung"
+msgstr "Skript-Verwaltung"
 
 msgid "ScriptRunner"
 msgstr "SkriptRunner"
@@ -16690,6 +16715,9 @@ msgid ""
 "Select 'Yes' to enable editing of this device's settings. Selecting 'No' "
 "resets the devices settings to their default values."
 msgstr ""
+"Wählen Sie 'Ja', um die Einstellungen dieses Gerätes bearbeiten zu können "
+"oder 'Nein', um die Geräteeinstellungen auf ihre Standardwerte "
+"zurückzusetzen."
 
 msgid ""
 "Select 'band' if using a 'universal' LNB, otherwise consult your LNB spec "
@@ -17030,7 +17058,7 @@ msgid "Select the character or action under the keyboard cursor"
 msgstr "Wählen Sie das Zeichen oder die Aktion beim Cursor der Tastatur aus"
 
 msgid "Select the current menu item"
-msgstr ""
+msgstr "Wählen Sie den aktuellen Menüpunkt aus"
 
 msgid "Select the currently highlighted locale/language for the user interface"
 msgstr ""
@@ -17578,7 +17606,7 @@ msgid "Set archive mode (644)"
 msgstr "Archivmodus einstellen (644)"
 
 msgid "Set current CEC address as fixed address"
-msgstr ""
+msgstr "Aktuelle CEC-Adresse als feste Adresse einstellen"
 
 msgid "Set default"
 msgstr "Standard"
@@ -17943,7 +17971,7 @@ msgid "Setup your Harddisk"
 msgstr "Konfiguration der Festplatte"
 
 msgid "Setup your LCD"
-msgstr "Einstellen des LCDs."
+msgstr "Einstellen des Displays."
 
 # Quick Menue
 msgid "Setup your OSD"
@@ -19122,6 +19150,11 @@ msgid ""
 "turn back on it may require a slower transmission interval or the repetition "
 "of wake-up commands.)"
 msgstr ""
+"Einige TV-Geräte wechseln nicht den Eingang wenn ein anderer HDMI-Port aktiv "
+"ist. Diese Einstellung schaltet den TV zuvor in den Standby.\n"
+"(Wenn sich der TV nicht wieder einschaltet, ist möglicherweise ein "
+"langsameres Sendeintervall oder die Wiederholung von Aufwachbefehlen "
+"erforderlich.)"
 
 msgid ""
 "Some TV devices can't swich to correct input if a another hdmi port active. "
@@ -19133,7 +19166,7 @@ msgstr ""
 "ist. Diese Einstellung schaltet den TV zuvor in den Standby.\n"
 "(Wenn sich der TV nicht wieder einschaltet, ist möglicherweise ein "
 "langsameres Sendeintervall oder die Wiederholung von Aufwachbefehlen "
-"erforderlich)."
+"erforderlich.)"
 
 #
 msgid "Some plugins are not available:\n"
@@ -19993,10 +20026,10 @@ msgid "Table of content for collection"
 msgstr "Inhalt der Zusammenstellung"
 
 msgid "Tag Editor"
-msgstr ""
+msgstr "Tag Editor"
 
 msgid "Tag Editor Actions"
-msgstr ""
+msgstr "Tag Editor Aktionen"
 
 msgid "Tagalog"
 msgstr "Tagalog"
@@ -20733,6 +20766,9 @@ msgid ""
 "standby. The wake up command's from other devices will be ignored for few "
 "seconds."
 msgstr ""
+"Dies ist ein Workaround für einige Geräte die nach dem Umschalten in den "
+"Standby wieder geweckt werden. Damit wird das Aufwecken durch andere Geräte "
+"für einige Sekunden ignoriert."
 
 msgid ""
 "This is a workaround for some devices there wakeup again after switching in "
@@ -21145,7 +21181,7 @@ msgid ""
 "This sets the prefix for each line in the debug log. The 'Boot time' is the "
 "number of seconds since your %s %s was last booted."
 msgstr ""
-"Prefix für die Zeilen im Debug log. 'Bootzeit' sind die Sekunden seit dem %s "
+"Prefix für die Zeilen im Debug Log. 'Bootzeit' sind die Sekunden seit dem %s "
 "%s gestartet wurde."
 
 msgid ""
@@ -21602,7 +21638,7 @@ msgid "Toggle new text inserts before or overwrites existing text"
 msgstr "Zwischen Einfüge- und Überschreibungsmodus umschalten"
 
 msgid "Toggle selection of the current tag"
-msgstr ""
+msgstr "Aktuelle Tagauswahl umschalten"
 
 msgid "Toggle service name display"
 msgstr "Anzeige des Sendernamens ein- und ausschalten"
@@ -21764,6 +21800,9 @@ msgid ""
 "Try to send repeated commands if not all commands are executed. (e.g. TV "
 "wakeup, but not switched to correct input.)"
 msgstr ""
+"Versuchen Sie wiederholte Befehle zu senden, wenn nicht alle Befehle "
+"ausgeführt werden (z.B. TV aufwecken, aber es wird nicht auf den korrekten "
+"Eingang geschaltet)."
 
 msgid "Try to slow down the send interval if not all commands are executed."
 msgstr ""
@@ -22413,7 +22452,7 @@ msgid "Use circular LNB"
 msgstr "Circularen LNB verwenden"
 
 msgid "Use defaults"
-msgstr ""
+msgstr "Standard verwenden"
 
 msgid "Use extended List"
 msgstr "Erweiterte Liste verwenden"
@@ -22630,7 +22669,7 @@ msgid "Username:"
 msgstr "Benutzername:"
 
 msgid "Using automatic address"
-msgstr ""
+msgstr "Automatische Adresse verwenden"
 
 msgid "Using fixed address"
 msgstr "Feste Adresse verwenden"
@@ -22998,7 +23037,7 @@ msgid "Virtual keyboard"
 msgstr "Virtuelle Tastatur"
 
 msgid "Visual impaired commentary"
-msgstr ""
+msgstr "Kommentare für Sehbehinderte"
 
 msgid "Vol"
 msgstr "Lautstärke"
@@ -24134,7 +24173,7 @@ msgid ""
 "instructions from the website, your new firmware will ask you to restore "
 "your settings."
 msgstr ""
-"Sie müssen einen PC mit Ihrer %s %s verbunden haben!\n"
+"Sie müssen einen PC mit Ihrer %s %s verbinden!\n"
 "Für weiterführende Informationen besuchen Sie bitte die Website 'https://www."
 "opena.tv'.\n"
 "Ihre %s %s wird nun ausgeschaltet.\n"
