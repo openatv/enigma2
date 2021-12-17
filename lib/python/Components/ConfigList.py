@@ -184,11 +184,10 @@ class ConfigListScreen:
 			"top": (self.keyTop, _("Move to first line / screen")),
 			"pageUp": (self.keyPageUp, _("Move up a screen")),
 			"up": (self.keyUp, _("Move up a line")),
+			"first": (self.keyFirst, _("Jump to first item in list or the start of text")),
 			"left": (self.keyLeft, _("Select the previous item in list or move cursor left")),
 			"right": (self.keyRight, _("Select the next item in list or move cursor right")),
-			# ATV
-			#"first": (self.keyFirst, _("Jump to first item in list or the start of text")),
-			#"last": (self.keyLast, _("Jump to last item in list or the end of text")),
+			"last": (self.keyLast, _("Jump to last item in list or the end of text")),
 			"down": (self.keyDown, _("Move down a line")),
 			"pageDown": (self.keyPageDown, _("Move down a screen")),
 			"bottom": (self.keyBottom, _("Move to last line / screen"))
@@ -212,9 +211,6 @@ class ConfigListScreen:
 		}, prio=1, description=_("Common Setup Actions"))
 		self["charConfigActions"].setEnabled(False if fullUI else True)
 		self["editConfigActions"] = HelpableNumberActionMap(self, ["TextEditActions"], {
-			# ATV
-			"first": (self.keyFirst, _("Jump to first item in list or the start of text")),
-			"last": (self.keyLast, _("Jump to last item in list or the end of text")),
 			"backspace": (self.keyBackspace, _("Delete character to left of cursor or select AM times")),
 			"delete": (self.keyDelete, _("Delete character under cursor or select PM times")),
 			"erase": (self.keyErase, _("Delete all the text")),
