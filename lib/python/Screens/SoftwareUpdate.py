@@ -324,7 +324,7 @@ class UpdatePlugin(Screen):
 							choices.append((_("Perform a full image backup"), "imagebackup"))
 					choices.append((_("Update channel list only"), "channels"))
 					choices.append((_("Cancel"), ""))
-					upgrademessage = self.session.openWithCallback(self.startActualUpgrade, ChoiceBox, title=message, list=choices, skin_name="SoftwareUpdateChoices", var=self.trafficLight)
+					upgrademessage = self.session.openWithCallback(self.startActualUpgrade, SoftwareUpdateChoices, title=message, list=choices, var=self.trafficLight)
 					upgrademessage.setTitle(_('Software update'))
 				else:
 					upgrademessage = self.session.openWithCallback(self.close, MessageBox, _("Nothing to upgrade"), type=MessageBox.TYPE_INFO, timeout=10, close_on_any_key=True)
@@ -387,7 +387,7 @@ class UpdatePlugin(Screen):
 				choices.append((_("Perform a full image backup"), "imagebackup"))
 			choices.append((_("Update channel list only"), "channels"))
 			choices.append((_("Cancel"), ""))
-			upgrademessage = self.session.openWithCallback(self.startActualUpgrade, ChoiceBox, title=message, list=choices, skin_name="SoftwareUpdateChoices", var=self.trafficLight)
+			upgrademessage = self.session.openWithCallback(self.startActualUpgrade, SoftwareUpdateChoices, title=message, list=choices, var=self.trafficLight)
 			upgrademessage.setTitle(_('Software update'))
 		elif answer[1] == "changes":
 			self.session.openWithCallback(self.startActualUpgrade, SoftwareUpdateChanges)
@@ -467,3 +467,35 @@ class UpdatePlugin(Screen):
 		if result is not None and result:
 			self.session.open(TryQuitMainloop, retvalue=2)
 		self.close()
+
+
+class SoftwareUpdateChoices(ChoiceBox):
+	def __init__(self, session, title="", list=None, var=""):
+		ChoiceBox.__init__(self, session=session, title=title, list=list, skin_name="SoftwareUpdateChoices")
+		self.var = var
+		self['feedStatusMSG'] = Label()
+		self['tl_off'] = Pixmap()
+		self['tl_red'] = Pixmap()
+		self['tl_yellow'] = Pixmap()
+		self['tl_green'] = Pixmap()
+		self.onShown.append(self.onshow)
+
+	def onshow(self):
+		from Components.OnlineUpdateCheck import feedsstatuscheck
+		if self.var in feedsstatuscheck.feed_status_msgs:
+			status_text = feedsstatuscheck.feed_status_msgs[self.var]
+		else:
+			status_text = _('Feeds status: Unexpected')
+		self['feedStatusMSG'].setText(status_text)
+		self['tl_off'].hide()
+		self['tl_red'].hide()
+		self['tl_yellow'].hide()
+		self['tl_green'].hide()
+		if self.var == 'unstable':
+			self['tl_red'].show()
+		elif self.var == 'updating':
+			self['tl_yellow'].show()
+		elif self.var == 'stable':
+			self['tl_green'].show()
+		else:
+			self['tl_off'].show()
