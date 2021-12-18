@@ -136,7 +136,7 @@ class TagEditor(Screen, HelpableScreen, TagManager):
 			"red": (self.keyCancel, _("Cancel any changed tags and exit")),
 			"green": (self.keySave, _("Save all changed tags and exit")),
 			"yellow": (self.addNewTag, _("Add a new tag")),
-			"blue": (self.loadFromDisk, _("Load tags from the timer and recordings")),
+			"blue": (self.loadFromData, _("Load tags from the timer and recordings")),
 			"menu": (self.showMenu, _("Display the tags context menu"))
 		}, prio=0, description=_("Tag Editor Actions"))
 		self["key_red"] = StaticText(_("Cancel"))
@@ -175,7 +175,7 @@ class TagEditor(Screen, HelpableScreen, TagManager):
 	def toggleSelection(self):
 		self["taglist"].toggleSelection()
 
-	def loadFromDisk(self):
+	def loadFromData(self):
 		tags = self.tags[:]
 		self.foreachTimerTags(lambda t, tg: self.buildTags(tags, tg))
 		self.foreachMovieTags(lambda r, tg: self.buildTags(tags, tg))
