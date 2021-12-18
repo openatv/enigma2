@@ -862,7 +862,7 @@ class ChannelSelectionEPG(InfoBarButtonSetup):
 		self.ChoiceBoxDialog['actions'].execBegin()
 		self.ChoiceBoxDialog.show()
 
-	def closeChoiceBoxDialog(self):
+	def closeChoiceBoxDialog(self, choice=None):
 		self['dialogactions'].execEnd()
 		if self.ChoiceBoxDialog:
 			self.ChoiceBoxDialog['actions'].execEnd()
@@ -907,16 +907,16 @@ class ChannelSelectionEPG(InfoBarButtonSetup):
 			return
 		for timer in self.session.nav.RecordTimer.timer_list:
 			if timer.eit == eventid and ':'.join(timer.service_ref.ref.toString().split(':')[:11]) == refstr:
+				rt_func = lambda ret: self.removeTimer(timer)
 				if not next:
-					cb_func = lambda ret: self.removeTimer(timer)
-					menu = [(_("Yes"), 'CALLFUNC', cb_func), (_("No"), 'CALLFUNC', self.closeChoiceBoxDialog)]
-					self.ChoiceBoxDialog = self.session.instantiateDialog(MessageBox, text=_('Do you really want to remove the timer for %s?') % eventname, list=menu)
+					menu = [(_("Delete timer"), 'CALLFUNC', rt_func), (_("No"), 'CALLFUNC', self.closeChoiceBoxDialog)]
+					title = _("Do you really want to remove the timer for %s?") % eventname
 				else:
-					cb_func1 = lambda ret: self.removeTimer(timer)
 					cb_func2 = lambda ret: self.editTimer(timer)
-					menu = [(_("Delete timer"), 'CALLFUNC', self.RemoveTimerDialogCB, cb_func1), (_("Edit timer"), 'CALLFUNC', self.RemoveTimerDialogCB, cb_func2)]
-					self.ChoiceBoxDialog = self.session.instantiateDialog(ChoiceBox, title=_("Select action for timer %s:") % eventname, list=menu, keys=['red', 'green'], skin_name="RecordTimerQuestion")
-					self.setChoiceBoxDialogPosition()
+					menu = [(_("Delete timer"), 'CALLFUNC', self.RemoveTimerDialogCB, rt_func), (_("Edit timer"), 'CALLFUNC', self.RemoveTimerDialogCB, cb_func2)]
+					title =_("Select action for timer %s:") % eventname
+				self.ChoiceBoxDialog = self.session.instantiateDialog(ChoiceBox, title=title, list=menu, keys=['red', 'green'], skin_name="RecordTimerQuestion")
+				self.setChoiceBoxDialogPosition()
 				self.showChoiceBoxDialog()
 				break
 		else:
