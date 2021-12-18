@@ -5472,7 +5472,7 @@ class InfoBarHandleBsod:
 				txt += _("Should the crash counter be reset to prevent a restart?")
 				self.lastestBsodWarning = True
 			try:
-				self.session.openWithCallback(self.infoBsodCallback, MessageBox, txt, type=MessageBox.TYPE_ERROR, default=False, close_on_any_key=not self.lastestBsodWarning, showYESNO=self.lastestBsodWarning)
+				self.session.openWithCallback(self.infoBsodCallback, MessageBox, txt, type=MessageBox.TYPE_YESNO if self.lastestBsodWarning else MessageBox.TYPE_ERROR, default=False, close_on_any_key=not self.lastestBsodWarning, typeIcon=MessageBox.TYPE_ERROR)
 				self.infoBsodIsShown = True
 			except Exception as e:
 				#print "[InfoBarHandleBsod] Exception:", e
