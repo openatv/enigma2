@@ -187,13 +187,14 @@ class TagEditor(Screen, HelpableScreen, TagManager):
 			if tag not in tagList:
 				tagList.append(tag)
 	def showMenu(self):
-		menu = [
-			(_("Add new tag"), self.addNewTag),
-			(_("Rename this tag"), self.renameOldTag),
-			(_("Delete this tag"), self.removeTag),
-			(_("Delete unused tags"), self.removeUnusedTags),
-			(_("Delete all tags"), self.removeAllTags),
-		]
+		menu = [(_("Add new tag"), self.addNewTag)]
+		if self["taglist"].count():
+			menu.extend([
+				(_("Rename this tag"), self.renameOldTag),
+				(_("Delete this tag"), self.removeTag),
+				(_("Delete unused tags"), self.removeUnusedTags)
+			])
+		menu.append((_("Delete all tags"), self.removeAllTags))
 		self.session.openWithCallback(self.menuCallback, ChoiceBox, title="", list=menu)
 
 	def menuCallback(self, choice):
