@@ -54,7 +54,7 @@ class MessageBox(Screen, HelpableScreen):
 				# "downRepeated": (self.down, _("Move down a line repeatedly")),
 				# "leftRepeated": (self.left, _("Move up a page repeatedly")),
 				# "rightRepeated": (self.right, _("Move down a page repeatedly"))
-			}, prio=-1, description=_("MessageBox Functions"))
+			}, prio=-1, description=_("Message Box Actions"))
 		self.msgBoxID = msgBoxID
 		# These six lines can go with new skins that only use self["icon"]...
 		self["QuestionPixmap"] = Pixmap()
