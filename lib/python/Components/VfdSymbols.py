@@ -153,7 +153,7 @@ class SymbolsCheckPoller:
 					else:
 						open("/proc/stb/fp/ledpowercolor", "w").write(config.usage.lcd_ledpowercolor.value)
 					self.led = "0"
-			elif self.led == "1":
+			else:
 				if Screens.Standby.inStandby:
 					open("/proc/stb/fp/ledpowercolor", "w").write(config.usage.lcd_ledstandbycolor.value)
 				else:
