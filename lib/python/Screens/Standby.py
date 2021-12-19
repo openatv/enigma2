@@ -458,6 +458,9 @@ class TryQuitMainloop(MessageBox):
 		global inTryQuitMainloop
 		inTryQuitMainloop = False
 
+	def createSummary(self):  # Suppress the normal MessageBox ScreenSummary screen.
+ 		return None
+
 class DualMode(Screen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
