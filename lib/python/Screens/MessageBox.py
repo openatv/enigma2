@@ -4,8 +4,9 @@ from Components.ActionMap import HelpableActionMap
 from Components.Label import Label
 from Components.MenuList import MenuList
 from Components.Pixmap import MultiPixmap, Pixmap
+from Components.Sources.StaticText import StaticText
 from Screens.HelpMenu import HelpableScreen
-from Screens.Screen import Screen
+from Screens.Screen import Screen, ScreenSummary
 
 
 class MessageBox(Screen, HelpableScreen):
@@ -56,10 +57,9 @@ class MessageBox(Screen, HelpableScreen):
 		if enableInput:
 			if self.list:
 				self["actions"] = HelpableActionMap(self, ["MsgBoxActions", "NavigationActions"], {
-					"cancel": (self.cancel, _("Select No / False")),
-					"ok": (self.ok, _("Return the currently selected response")),
-					"selectOK": (self.selectOK, _("Select Yes / True")),
-					"ok": (self.ok, _("Return the current selection response")),
+					"cancel": (self.cancel, _("Select the No / False response")),
+					"select": (self.select, _("Return the current selection response")),
+					"selectOk": (self.selectOk, _("Select the Yes / True response")),
 					"top": (self.top, _("Move to first line")),
 					"pageUp": (self.pageUp, _("Move up a page")),
 					"up": (self.up, _("Move up a line")),
@@ -74,7 +74,7 @@ class MessageBox(Screen, HelpableScreen):
 			else:
 				self["actions"] = HelpableActionMap(self, ["OkCancelActions"], {
 					"cancel": (self.cancel, _("Close the window")),
-					"ok": (self.ok, _("Close the window"))
+					"ok": (self.select, _("Close the window"))
 				}, prio=0, description=_("Message Box Actions"))
 		self.msgBoxID = msgBoxID
 		if picon is not None:  # Process legacy picon argument.
@@ -159,7 +159,7 @@ class MessageBox(Screen, HelpableScreen):
 			if self.timeoutDefault is not None:
 				self.close(self.timeoutDefault)
 			else:
-				self.ok()
+				self.select()
 
 	def stopTimer(self, reason):
 		print("[MessageBox] %s" % reason)
@@ -171,13 +171,13 @@ class MessageBox(Screen, HelpableScreen):
 	def cancel(self):
 		self.close(False)
 
-	def ok(self):
+	def select(self):
 		if self.list:
 			self.close(self["list"].getCurrent()[1])
 		else:
 			self.close(True)
 
-	def selectOK(self):
+	def selectOk(self):
 		self.close(True)
 
 	def top(self):
@@ -198,12 +198,38 @@ class MessageBox(Screen, HelpableScreen):
 	def bottom(self):
 		self.move(self["list"].instance.moveEnd)
 
-	def move(self, direction):
+	def move(self, step):
+		self["list"].instance.moveSelection(step)
 		if self.timeout > 0:
 			self.stopTimer("Timeout stopped by user input!")
 		if self.closeOnAnyKey:
 			self.close(True)
-		self["list"].instance.moveSelection(direction)
 
-	def autoResize(self): # Legacy autoResize, this needs to be done in skin
+	def autoResize(self):  # Dummy method place holder for some legacy skins.
 		pass
+
+	def createSummary(self):
+		return MessageBoxSummary
+
+
+class MessageBoxSummary(ScreenSummary):
+	def __init__(self, session, parent):
+		ScreenSummary.__init__(self, session, parent=parent)
+		self["text"] = StaticText(parent.text)
+		self["option"] = StaticText("")
+		if self.addWatcher not in self.onShow:
+			self.onShow.append(self.addWatcher)
+		if self.removeWatcher not in self.onHide:
+			self.onHide.append(self.removeWatcher)
+
+	def addWatcher(self):
+		if self.selectionChanged not in self.parent["list"].onSelectionChanged:
+			self.parent["list"].onSelectionChanged.append(self.selectionChanged)
+		self.selectionChanged()
+
+	def removeWatcher(self):
+		if self.selectionChanged in self.parent["list"].onSelectionChanged:
+			self.parent["list"].onSelectionChanged.remove(self.selectionChanged)
+
+	def selectionChanged(self):
+		self["option"].setText(self.parent["list"].getCurrent()[0])
