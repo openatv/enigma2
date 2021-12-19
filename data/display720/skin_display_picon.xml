@@ -417,16 +417,14 @@
 		<panel name="SummaryClockPanel" />
 	</screen>
 	
-	<screen name="MessageBox_summary" position="0,0" size="720,576"> 
-		<widget source="parent.Text" render="Label" position="10,20" size="670,376" font="FdLcD;70" halign="center" valign="center" foregroundColor="#e5b243" />
-		<widget source="parent.selectedChoice" render="Label" position="22,390" size="670,63" foregroundColor="#02c6ff" font="FdLcDLight;60" halign="center" valign="center" />
+	<screen name="MessageBoxSummary" position="0,0" size="720,576"> 
+		<widget source="text" render="Label" position="10,20" size="670,376" font="FdLcD;70" halign="center" valign="center" foregroundColor="#e5b243" />
+		<widget source="option" render="Label" position="22,390" size="670,63" foregroundColor="#02c6ff" font="FdLcDLight;60" halign="center" valign="center" />
 		<panel name="SummaryClockPanel" />
 	</screen>
 	
-	<screen name="MessageBoxSimple_summary" position="0,0" size="720,576"> 
-		<widget source="parent.Text" render="Label" position="10,20" size="670,376" font="FdLcD;70" halign="center" valign="center" foregroundColor="#e5b243" />
-		<widget source="parent.selectedChoice" render="Label" position="22,390" size="670,63" foregroundColor="#02c6ff" font="FdLcDLight;60" halign="center" valign="center" />
-		<panel name="SummaryClockPanel" />
+	<screen name="MessageBoxSimpleSummary" position="0,0" size="720,576"> 
+		<panel name="MessageBoxSummary" />
 	</screen>
 	
 <!-- console -->

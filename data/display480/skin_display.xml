@@ -302,12 +302,12 @@
 	</screen>
 
 <!-- messagebox-->
-	<screen name="MessageBox_summary" position="0,0" size="480,320">
-		<widget source="parent.Text" render="Label" position="0,20" size="480,180" font="FdLcD;40" halign="center" valign="center" />
-		<widget source="parent.selectedChoice" render="Label" position="0,220" size="400,70" font="FdLcD;40" halign="center" valign="center" noWrap="1" />
+	<screen name="MessageBoxSummary" position="0,0" size="480,320">
+		<widget source="text" render="Label" position="0,20" size="480,180" font="FdLcD;40" halign="center" valign="center" />
+		<widget source="option" render="Label" position="0,220" size="400,70" font="FdLcD;40" halign="center" valign="center" noWrap="1" />
 	</screen>
-	<screen name="MessageBoxSimple_summary" position="0,0" size="480,320">
-		<panel name="MessageBox_summary" />
+	<screen name="MessageBoxSimpleSummary" position="0,0" size="480,320">
+		<panel name="MessageBoxSummary" />
 	</screen>
 
 <!-- standby -->
