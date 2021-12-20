@@ -47,6 +47,8 @@ class MessageBox(Screen, HelpableScreen):
 			else:
 				print("[MessageBox] Error: The context of the default (%s) can't be determined!" % default)
 		else:
+			self["list"] = MenuList([])
+			self["list"].hide()
 			self.list = None
 		self.timeout = timeout
 		if close_on_any_key == True:  # Process legacy close_on_any_key argument.
