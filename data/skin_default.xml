@@ -127,7 +127,7 @@
 	<screen name="MessageBoxTemplate">
 		<widget name="text" position="65,8" size="520,0" font="Regular;22" />
 		<widget name="icon" pixmaps="icons/input_question.png,icons/input_info.png,icons/input_warning.png,icons/input_error.png,icons/input_message.png" position="5,5" size="53,53" alphatest="blend" conditional="icon" scale="1" transparent="1" />
-		<widget name="list" position="100,100" size="480,375" />
+		<widget name="list" position="100,100" size="480,375" conditional="list" />
 		<applet type="onLayoutFinish">
 # this should be factored out into some helper code, but currently demonstrates applets.
 from __future__ import division
