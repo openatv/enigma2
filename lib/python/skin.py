@@ -437,7 +437,7 @@ def loadPixmap(path, desktop):
 	option = path.find("#")
 	if option != -1:
 		path = path[:option]
-	if rc_model.rcIsDefault() is False and basename(path) in ("rc.png", "rc0.png", "rc1.png", "rc2.png", "oldrc.png"):
+	if basename(path) in ("rc.png", "rc0.png", "rc1.png", "rc2.png", "oldrc.png") and rc_model.rcIsDefault() is False:
 		path = rc_model.getRcImg()
 	pixmap = LoadPixmap(path, desktop)
 	if pixmap is None:
