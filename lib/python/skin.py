@@ -726,16 +726,16 @@ class AttributeParser:
 				"scaleLeftCenter": base | BT_HALIGN_LEFT | BT_VALIGN_CENTER,
 				"scaleLeftCentre": base | BT_HALIGN_LEFT | BT_VALIGN_CENTER,
 				"scaleLeftMiddle": base | BT_HALIGN_LEFT | BT_VALIGN_CENTER,
-				"scaleLeftBotton": base | BT_HALIGN_LEFT | BT_VALIGN_BOTTOM,
+				"scaleLeftBottom": base | BT_HALIGN_LEFT | BT_VALIGN_BOTTOM,
 				"scaleCenterTop": base | BT_HALIGN_CENTER | BT_VALIGN_TOP,
 				"scaleCentreTop": base | BT_HALIGN_CENTER | BT_VALIGN_TOP,
 				"scaleMiddleTop": base | BT_HALIGN_CENTER | BT_VALIGN_TOP,
 				"scaleCenter": base | BT_HALIGN_CENTER | BT_VALIGN_CENTER,
 				"scaleCentre": base | BT_HALIGN_CENTER | BT_VALIGN_CENTER,
 				"scaleMiddle": base | BT_HALIGN_CENTER | BT_VALIGN_CENTER,
-				"scaleCenterBotton": base | BT_HALIGN_CENTER | BT_VALIGN_BOTTOM,
+				"scaleCenterBottom": base | BT_HALIGN_CENTER | BT_VALIGN_BOTTOM,
 				"scaleCentreBottom": base | BT_HALIGN_CENTER | BT_VALIGN_BOTTOM,
-				"scaleMiddleBotton": base | BT_HALIGN_CENTER | BT_VALIGN_BOTTOM,
+				"scaleMiddleBottom": base | BT_HALIGN_CENTER | BT_VALIGN_BOTTOM,
 				"scaleRightTop": base | BT_HALIGN_RIGHT | BT_VALIGN_TOP,
 				"scaleRightCenter": base | BT_HALIGN_RIGHT | BT_VALIGN_CENTER,
 				"scaleRightCentre": base | BT_HALIGN_RIGHT | BT_VALIGN_CENTER,
@@ -745,16 +745,16 @@ class AttributeParser:
 				"moveLeftCenter": BT_HALIGN_LEFT | BT_VALIGN_CENTER,
 				"moveLeftCentre": BT_HALIGN_LEFT | BT_VALIGN_CENTER,
 				"moveLeftMiddle": BT_HALIGN_LEFT | BT_VALIGN_CENTER,
-				"moveLeftBotton": BT_HALIGN_LEFT | BT_VALIGN_BOTTOM,
+				"moveLeftBottom": BT_HALIGN_LEFT | BT_VALIGN_BOTTOM,
 				"moveCenterTop": BT_HALIGN_CENTER | BT_VALIGN_TOP,
 				"moveCentreTop": BT_HALIGN_CENTER | BT_VALIGN_TOP,
 				"moveMiddleTop": BT_HALIGN_CENTER | BT_VALIGN_TOP,
 				"moveCenter": BT_HALIGN_CENTER | BT_VALIGN_CENTER,
 				"moveCentre": BT_HALIGN_CENTER | BT_VALIGN_CENTER,
 				"moveMiddle": BT_HALIGN_CENTER | BT_VALIGN_CENTER,
-				"moveCenterBotton": BT_HALIGN_CENTER | BT_VALIGN_BOTTOM,
+				"moveCenterBottom": BT_HALIGN_CENTER | BT_VALIGN_BOTTOM,
 				"moveCentreBottom": BT_HALIGN_CENTER | BT_VALIGN_BOTTOM,
-				"moveMiddleBotton": BT_HALIGN_CENTER | BT_VALIGN_BOTTOM,
+				"moveMiddleBottom": BT_HALIGN_CENTER | BT_VALIGN_BOTTOM,
 				"moveRightTop": BT_HALIGN_RIGHT | BT_VALIGN_TOP,
 				"moveRightCenter": BT_HALIGN_RIGHT | BT_VALIGN_CENTER,
 				"moveRightCentre": BT_HALIGN_RIGHT | BT_VALIGN_CENTER,
@@ -762,7 +762,7 @@ class AttributeParser:
 				"moveRightBottom": BT_HALIGN_RIGHT | BT_VALIGN_BOTTOM
 			}[value])
 		except KeyError:
-			raise AttribValueError("'none', 'scale', 'scaleKeepAspect', 'scaleLeftTop', 'scaleLeftCenter', 'scaleLeftBotton', 'scaleCenterTop', 'scaleCenter', 'scaleCenterBotton', 'scaleRightTop', 'scaleRightCenter', 'scaleRightBottom', 'moveLeftTop', 'moveLeftCenter', 'moveLeftBotton', 'moveCenterTop', 'moveCenter', 'moveCenterBotton', 'moveRightTop', 'moveRightCenter', 'moveRightBottom' ('Center'/'Centre'/'Middle' are equivalent)")
+			raise AttribValueError("'none', 'scale', 'scaleKeepAspect', 'scaleLeftTop', 'scaleLeftCenter', 'scaleLeftBottom', 'scaleCenterTop', 'scaleCenter', 'scaleCenterBottom', 'scaleRightTop', 'scaleRightCenter', 'scaleRightBottom', 'moveLeftTop', 'moveLeftCenter', 'moveLeftBottom', 'moveCenterTop', 'moveCenter', 'moveCenterBottom', 'moveRightTop', 'moveRightCenter', 'moveRightBottom' ('Center'/'Centre'/'Middle' are equivalent)")
 
 	def scrollbarBackgroundPixmap(self, value):
 		self.guiObject.setScrollbarBackgroundPicture(loadPixmap(value, self.desktop))
