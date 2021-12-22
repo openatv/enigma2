@@ -1399,6 +1399,12 @@ def readSkin(screen, skin, names, desktop):
 			objecttypes = w.attrib.get("objectTypes", "").split(",")
 			if len(objecttypes) > 1 and (objecttypes[0] not in screen.keys() or not [i for i in objecttypes[1:] if i == screen[objecttypes[0]].__class__.__name__]):
 				continue
+			includes = w.attrib.get("includes")
+			if includes and not [i for i in includes.split(",") if i in screen.keys()]:
+				continue
+			excludes = w.attrib.get("excludes")
+			if excludes and [i for i in excludes.split(",") if i in screen.keys()]:
+				continue
 			p = processors.get(w.tag, processNone)
 			try:
 				p(w, context)
