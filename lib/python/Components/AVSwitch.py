@@ -1,6 +1,6 @@
 from __future__ import print_function
 from __future__ import absolute_import
-from Components.config import config, ConfigSlider, ConfigSelection, ConfigSubDict, ConfigYesNo, ConfigEnableDisable, ConfigSubsection, ConfigBoolean, ConfigSelectionNumber, ConfigNothing, NoSave
+from Components.config import config, ConfigSlider, ConfigSelection, ConfigSubDict, ConfigYesNo, ConfigEnableDisable, ConfigOnOff, ConfigSubsection, ConfigBoolean, ConfigSelectionNumber, ConfigNothing, NoSave
 from Components.About import about
 from Tools.CList import CList
 from Tools.HardwareInfo import HardwareInfo
@@ -1243,10 +1243,9 @@ def InitAVSwitch():
 	if can_btaudio:
 		def setBTAudio(configElement):
 			f = open("/proc/stb/audio/btaudio", "w")
-			f.write(configElement.value)
+			f.write("on" if configElement.value else "off")
 			f.close()
-		choice_list = [("off", _("Off")), ("on", _("On"))]
-		config.av.btaudio = ConfigSelection(choices=choice_list, default="off")
+		config.av.btaudio = ConfigOnOff(default=False)
 		config.av.btaudio.addNotifier(setBTAudio)
 	else:
 		config.av.btaudio = ConfigNothing()

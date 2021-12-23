@@ -184,8 +184,7 @@ class AudioSelection(Screen, ConfigListScreen):
 				conflist.append(getConfigListEntry(_("WMA Pro downmix"), self.settings.wmapro, None))
 
 			if BoxInfo.getItem("CanBTAudio"):
-				choice_list = [("off", _("Off")), ("on", _("On"))]
-				self.settings.btaudio = ConfigSelection(choices=choice_list, default=config.av.btaudio.value)
+				self.settings.btaudio = ConfigOnOff(default=config.av.btaudio.value)
 				self.settings.btaudio.addNotifier(self.changeBTAudio, initial_call=False)
 				conflist.append(getConfigListEntry(_("Enable BT Audio"), self.settings.btaudio, None))
 
