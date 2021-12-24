@@ -61,8 +61,8 @@ jobs:
           echo "installing libdvbsi++"
           pushd .
           cd /tmp
-          git clone --depth 1 git://git.opendreambox.org/git/obi/libdvbsi++.git
-          cd libdvbsi++
+          git clone --depth 1 https://github.com/oe-alliance/libdvbsi.git
+          cd libdvbsi
           autoreconf -i
           ./configure
           make
