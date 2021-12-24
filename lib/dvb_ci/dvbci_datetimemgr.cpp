@@ -26,7 +26,6 @@ int eDVBCIDateTimeSession::receivedAPDU(const unsigned char *tag,const void *dat
 			m_interval = (data && len) ? ((unsigned char *)data)[0] : 0;
 			state=stateSendDateTime;
 			return 1;
-			break;
 		default:
 			eDebug("[CI DT] unknown APDU tag 9F 84 %02x", tag[2]);
 			break;
