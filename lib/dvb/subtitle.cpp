@@ -254,7 +254,6 @@ int eDVBSubtitleParser::subtitle_process_pixel_data(subtitle_region *region, sub
 	default:
 		return -1;
 	}
-	return 0;
 }
 
 int eDVBSubtitleParser::subtitle_process_segment(uint8_t *segment)
