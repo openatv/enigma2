@@ -177,7 +177,7 @@ class ConfigElement(object):
 	def getText(self):
 		return self.value
 
-	def getMulti(self):  # You need to override this to do appropriate value conversion to a display renderer.
+	def getMulti(self, selected):  # You need to override this to do appropriate value conversion to a display renderer.
 		return ("text", self.value)
 
 	def fromString(self, value):  # You need to override to return the value as the correct type.  This is correct if value is a string.
