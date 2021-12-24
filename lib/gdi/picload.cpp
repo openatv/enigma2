@@ -1434,10 +1434,8 @@ RESULT ePicLoad::setPara(PyObject *val)
 		bool useCache		= PyInt_AsLong(PySequence_Fast_GET_ITEM(fast, 4));
 		int resizeType	        = PyInt_AsLong(PySequence_Fast_GET_ITEM(fast, 5));
 		const char *bg_str	= PyString_AsString(PySequence_Fast_GET_ITEM(fast, 6));
-
 		return setPara(width, height, aspectRatio, as, useCache, resizeType, bg_str);
 	}
-	return 1;
 }
 
 RESULT ePicLoad::setPara(int width, int height, double aspectRatio, int as, bool useCache, int resizeType, const char *bg_str)
