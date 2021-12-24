@@ -629,5 +629,4 @@ ssize_t eHttpsStream::SSL_readLine(SSL *ssl, char** buffer, size_t* bufsize)
 		}
 		if ((*buffer)[i] != '\r') i++;
 	}
-	return -1;
 }
