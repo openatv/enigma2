@@ -178,7 +178,7 @@ std::string eTPM::challenge(std::string rnd)
 		if (!send_cmd(TPMD_CMD_COMPUTE_SIGNATURE, rnd.c_str(), 8))
 			return "";
 
-		unsigned int tag;
+		unsigned int tag = 0;
 		size_t len;
 		unsigned char *val = (unsigned char*)recv_cmd(&tag, &len);
 
