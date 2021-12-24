@@ -48,7 +48,9 @@ class MoviePlayer(Movie_Audio_Player):
 		self.close()
 
 	def leavePlayerConfirmed(self, answer):
-		pass
+		"""
+		overwrite InfoBar method.
+		"""
 
 	def doEofInternal(self, playing):
 		if not self.execing:
@@ -62,7 +64,7 @@ class MoviePlayer(Movie_Audio_Player):
 		self.close()
 
 	def movieSelected(self, service):
-		self.leavePlayer(self.de_instance)
+		self.leavePlayer()
 
 	def __onClose(self):
 		if not(self.WithoutStopClose):
