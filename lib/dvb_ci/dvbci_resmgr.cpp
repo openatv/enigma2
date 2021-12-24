@@ -22,7 +22,6 @@ int eDVBCIResourceManagerSession::receivedAPDU(const unsigned char *tag,const vo
 			eDebug("[CI RM] cam profile inquiry");
 			state=stateProfileEnquiry;
 			return 1;
-			break;
 		case 0x11: // Tprofile
 			eDebugNoNewLineStart("[CI RM] can do: ");
 			if (!len)
