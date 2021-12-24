@@ -702,20 +702,20 @@ class CCcamInfoMain(Screen):
 							caid = list[3].replace(" ", "")
 							system = list[4].replace(" ", "")
 
-							string = list[6]
-							while string.startswith(" "):
-								string = string[1:]
+							tempstr = list[6]
+							while tempstr.startswith(" "):
+								tempstr = tempstr[1:]
 
-							while string.endswith(" "):
-								string = string[:-1]
+							while tempstr.endswith(" "):
+								tempstr = tempstr[:-1]
 
-							idx = " ".index()
-							uphops = string[:idx]
-							string = string[idx + 1:]
+							idx = tempstr.index(" ")
+							uphops = tempstr[:idx]
+							tempstr = tempstr[idx + 1:]
 
-							while string.startswith(" "):
-								string = string[1:]
-							maxdown = string
+							while tempstr.startswith(" "):
+								tempstr = tempstr[1:]
+							maxdown = tempstr
 
 							if len(caid) == 3:
 								caid = "0" + caid
@@ -912,15 +912,15 @@ class CCcamShareViewMenu(Screen, HelpableScreen):
 
 								caidprovider = self.formatCaidProvider(caid, provider)
 
-								string = list[6]
-								while string.startswith(" "):
-									string = string[1:]
+								tempstr = list[6]
+								while tempstr.startswith(" "):
+									tempstr = tempstr[1:]
 
-								while string.endswith(" "):
-									string = string[:-1]
+								while tempstr.endswith(" "):
+									tempstr = tempstr[:-1]
 
-								idx = " ".index()
-								maxdown = string[idx + 1:]
+								idx = tempstr.index(" ")
+								maxdown = tempstr[idx + 1:]
 
 								while maxdown.startswith(" "):
 									maxdown = maxdown[1:]
@@ -1456,20 +1456,20 @@ class CCcamInfoShareInfo(Screen):
 							caid = list[3].replace(" ", "")
 							system = list[4].replace(" ", "")
 
-							string = list[6]
-							while string.startswith(" "):
-								string = string[1:]
+							tempstr = list[6]
+							while tempstr.startswith(" "):
+								tempstr = tempstr[1:]
 
-							while string.endswith(" "):
-								string = string[:-1]
+							while tempstr.endswith(" "):
+								tempstr = tempstr[:-1]
 
-							idx = " ".index()
-							uphops = string[:idx]
-							string = string[idx + 1:]
+							idx = tempstr.index(" ")
+							uphops = tempstr[:idx]
+							tempstr = tempstr[idx + 1:]
 
-							while string.startswith(" "):
-								string = string[1:]
-							maxdown = string
+							while tempstr.startswith(" "):
+								tempstr = tempstr[1:]
+							maxdown = tempstr
 
 							if len(caid) == 3:
 								caid = "0" + caid
