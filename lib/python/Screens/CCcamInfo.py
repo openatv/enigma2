@@ -162,11 +162,11 @@ def translateBlock(block):
 
 
 def getConfigValue(l):
-	list = l.split(":")
+	lst = l.split(":")
 	ret = ""
 
-	if len(list) > 1:
-		ret = (list[1]).replace("\n", "").replace("\r", "")
+	if len(lst) > 1:
+		ret = (lst[1]).replace("\n", "").replace("\r", "")
 		if ret.__contains__("#"):
 			idx = ret.index("#")
 			ret = ret[:idx]
@@ -185,7 +185,7 @@ def notBlackListed(entry):
 		f = open(config.cccaminfo.blacklist.value, "r")
 		content = f.read().split("\n")
 		f.close()
-	except:
+	except (IOError, OSError):
 		content = []
 	ret = True
 	for x in content:
@@ -232,7 +232,7 @@ def getConfigNameAndContent(fileName):
 		f = open(fileName, "r")
 		content = f.read()
 		f.close()
-	except:
+	except (IOError, OSError):
 		content = ""
 
 	if content.startswith("#CONFIGFILE NAME="):
@@ -342,7 +342,7 @@ def CCcamConfigListEntry(file):
 		f = open(CFG, "r")
 		org = f.read()
 		f.close()
-	except:
+	except (IOError, OSError):
 		org = ""
 
 	(name, content) = getConfigNameAndContent(file)
@@ -462,7 +462,7 @@ class CCcamInfoMain(Screen):
 					password = getConfigValue(l)
 
 			f.close()
-		except:
+		except (IOError, OSError):
 			pass
 
 		if (username is not None) and (password is not None) and (username != "") and (password != ""):
@@ -583,7 +583,7 @@ class CCcamInfoMain(Screen):
 			f = open(file, "r")
 			content = f.read()
 			f.close()
-		except:
+		except (IOError, OSError):
 			content = _("Could not open the file %s!") % file
 
 		self.showInfo(translateBlock(content), " ")
@@ -1307,7 +1307,7 @@ class CCcamInfoRemoteBoxMenu(Screen):
 			f = open(config.cccaminfo.profiles.value, "r")
 			content = f.read()
 			f.close()
-		except:
+		except (IOError, OSError):
 			content = ""
 		profiles = content.split("\n")
 		for profile in profiles:
@@ -1331,7 +1331,7 @@ class CCcamInfoRemoteBoxMenu(Screen):
 			f = open(config.cccaminfo.profiles.value, "w")
 			f.write(content)
 			f.close()
-		except:
+		except (IOError, OSError):
 			pass
 
 	def exit(self):
@@ -1575,7 +1575,7 @@ class CCcamInfoConfigSwitcher(Screen):
 
 		try:
 			files = listdir(CFG_path)
-		except:
+		except (IOError, OSError):
 			files = []
 
 		for file in files:
@@ -1626,7 +1626,7 @@ class CCcamInfoConfigSwitcher(Screen):
 				f = open(self.fileToRename, "r")
 				content = f.read()
 				f.close()
-			except:
+			except (IOError, OSError):
 				content = None
 
 			if content is not None:
@@ -1643,7 +1643,7 @@ class CCcamInfoConfigSwitcher(Screen):
 					f.close()
 					self.session.open(MessageBox, _("Renamed %s!") % self.fileToRename, MessageBox.TYPE_INFO)
 					self.showConfigs()
-				except:
+				except (IOError, OSError):
 					self.session.open(MessageBox, _("Rename failed!"), MessageBox.TYPE_ERROR)
 			else:
 				self.session.open(MessageBox, _("Rename failed!"), MessageBox.TYPE_ERROR)
@@ -1655,7 +1655,7 @@ class CCcamInfoConfigSwitcher(Screen):
 				f = open(fileName[0], "r")
 				content = f.read()
 				f.close()
-			except:
+			except (IOError, OSError):
 				content = _("Could not open the file %s!") % fileName[0]
 			self.session.open(CCcamInfoInfoScreen, content, _("CCcam Config Switcher"))
 
@@ -1689,7 +1689,7 @@ class CCcamInfoMenuConfig(Screen):
 			content = f.read()
 			f.close()
 			self.blacklisted = content.split("\n")
-		except:
+		except (IOError, OSError):
 			self.blacklisted = []
 
 	def changeState(self):
@@ -1727,7 +1727,7 @@ class CCcamInfoMenuConfig(Screen):
 			f.write(content)
 			f.close()
 			self.session.open(MessageBox, _("Configfile %s saved.") % config.cccaminfo.blacklist.value, MessageBox.TYPE_INFO)
-		except:
+		except (IOError, OSError):
 			self.session.open(MessageBox, _("Could not save configfile %s!") % config.cccaminfo.blacklist.value, MessageBox.TYPE_ERROR)
 
 	def location(self):
