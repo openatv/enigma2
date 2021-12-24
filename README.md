@@ -4,6 +4,14 @@
 
 [![Build status](https://travis-ci.org/openatv/enigma2.svg?branch=7.0)](https://travis-ci.org/openatv/enigma2) [![enigma2 build](https://github.com/openatv/enigma2/actions/workflows/enigma2.yml/badge.svg)](https://github.com/openatv/enigma2/actions/workflows/enigma2.yml)
 
+## SonarCloud status
+[![Vulnerabilities](https://sonarcloud.io/api/project_badges/measure?project=openatv_enigma2&metric=vulnerabilities)](https://sonarcloud.io/summary/new_code?id=openatv_enigma2)
+[![Security Rating](https://sonarcloud.io/api/project_badges/measure?project=openatv_enigma2&metric=security_rating)](https://sonarcloud.io/summary/new_code?id=openatv_enigma2)
+[![Bugs](https://sonarcloud.io/api/project_badges/measure?project=openatv_enigma2&metric=bugs)](https://sonarcloud.io/summary/new_code?id=openatv_enigma2)
+[![Reliability Rating](https://sonarcloud.io/api/project_badges/measure?project=openatv_enigma2&metric=reliability_rating)](https://sonarcloud.io/summary/new_code?id=openatv_enigma2)
+[![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=openatv_enigma2&metric=sqale_rating)](https://sonarcloud.io/summary/new_code?id=openatv_enigma2)
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=openatv_enigma2&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=openatv_enigma2)
+
 ## Translation status
 
 [![Translation status](https://hosted.weblate.org/widgets/openatv/-/enigma2-7-0-po/open-graph.png)](https://hosted.weblate.org/engage/openatv/)
