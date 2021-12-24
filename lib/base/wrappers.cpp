@@ -125,7 +125,6 @@ ssize_t readLine(int fd, char** buffer, size_t* bufsize)
 		}
 		if ((*buffer)[i] != '\r') i++;
 	}
-	return -1;
 }
 
 int Connect(const char *hostname, int port, int timeoutsec)
