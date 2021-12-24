@@ -90,10 +90,8 @@ class picshow(Screen):
 		self["key_yellow"].setText(_("Exif"))
 
 	def showThumb(self):
-		if not self.filelist.canDescent():
-			if self.filelist.getCurrentDirectory() and self.filelist.getFilename():
-				if self.picload.getThumbnail(self.filelist.getCurrentDirectory() + self.filelist.getFilename()) == 1:
-					self.ThumbTimer.start(500, True)
+		if not self.filelist.canDescent() and self.filelist.getCurrentDirectory() and self.filelist.getFilename() and self.picload.getThumbnail(self.filelist.getCurrentDirectory() + self.filelist.getFilename()) == 1:
+			self.ThumbTimer.start(500, True)
 
 	def selectionChanged(self):
 		if not self.filelist.canDescent():
@@ -178,15 +176,15 @@ class Pic_Exif(Screen):
 		self["key_red"] = StaticText(_("Close"))
 
 		exifdesc = [_("filename") + ':', "EXIF-Version:", "Make:", "Camera:", "Date/Time:", "Width / Height:", "Flash used:", "Orientation:", "User Comments:", "Metering Mode:", "Exposure Program:", "Light Source:", "CompressedBitsPerPixel:", "ISO Speed Rating:", "X-Resolution:", "Y-Resolution:", "Resolution Unit:", "Brightness:", "Exposure Time:", "Exposure Bias:", "Distance:", "CCD-Width:", "ApertureFNumber:"]
-		list = []
+		elist = []
 
-		for x in list(range(len(exiflist))):
+		for x in range(len(exiflist)):
 			if x > 0:
-				list.append((exifdesc[x], exiflist[x]))
+				elist.append((exifdesc[x], exiflist[x]))
 			else:
 				name = exiflist[x].split('/')[-1]
-				list.append((exifdesc[x], name))
-		self["menu"] = List(list)
+				elist.append((exifdesc[x], name))
+		self["menu"] = List(elist)
 		self.onLayoutFinish.append(self.layoutFinished)
 
 	def layoutFinished(self):
