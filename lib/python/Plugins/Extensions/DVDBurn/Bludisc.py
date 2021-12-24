@@ -97,7 +97,7 @@ class BludiscStream(object):
 		self.__parent = parent
 		self.__PID = PID
 		self.__streamtype = 0x00
-		self.__framerate = None
+		# self.__framerate = None
 		self.__audiorate = 0
 		self.__audiopresentation = 0
 		self.languageCode = "und"
@@ -143,7 +143,7 @@ class BludiscStream(object):
 	pid = property(getPIDBytes)
 
 	def getFormatByte(self):
-		val = 0
+		# val = 0
 		if self.isVideo:
 			yres = self.__parent.resolution[1]
 			videoformat = 0
@@ -215,9 +215,8 @@ class RemuxTask(Task):
 	def getPIDs(self):
 		dvbpids = [self.title.VideoPID]
 		for audiotrack in self.title.properties.audiotracks:
-			if audiotrack.active.getValue():
-				if audiotrack.format.value == "AC3": #! only consider ac3 streams at the moment
-					dvbpids.append(int(audiotrack.pid.getValue()))
+			if audiotrack.active.getValue() and audiotrack.format.value == "AC3": #! only consider ac3 streams at the moment
+				dvbpids.append(int(audiotrack.pid.getValue()))
 		sourcepids = "--source-pids=" + ",".join(["0x%04x" % pid for pid in dvbpids])
 		self.bdmvpids = [0x1011] + list(range(0x1100, 0x1107))[:len(dvbpids) - 1]
 		resultpids = "--result-pids=" + ",".join(["0x%04x" % pid for pid in self.bdmvpids])
@@ -426,10 +425,10 @@ class CreateMobjTask(Task):
 		mob += OBJECTS
 
 		f = open(self.job.workspace + "BDMV/MovieObject.bdmv", 'w')
-		f.write(buffer(mob))
+		f.write(memoryview(mob))
 		f.close()
 		f = open(self.job.workspace + "BDMV/BACKUP/MovieObject.bdmv", 'w')
-		f.write(buffer(mob))
+		f.write(memoryview(mob))
 		f.close()
 
 
@@ -662,7 +661,7 @@ class CreateClpiTask(Task):
 		SequenceInfo += struct.pack('B', num_stc_sequences)
 		SequenceInfo += '\x00'				# offset_stc_id
 		num_of_playitems = 1
-		for pi in list(range(num_of_playitems)):
+		for _ in range(num_of_playitems):
 			STCEntry = bytearray()
 			STCEntry += '\x10\x01'			# pcr_pid #!
 			STCEntry += '\x00\x00\x00\x00'		# spn_stc_start
@@ -677,7 +676,7 @@ class CreateClpiTask(Task):
 		ProgramInfo = bytearray(4)			# len 4 bytes
 		ProgramInfo += '\x00'				# reserved align
 		ProgramInfo += struct.pack('B', num_program_sequences)
-		for psi in list(range(num_program_sequences)):
+		for _ in range(num_program_sequences):
 			ProgramEntry = bytearray()
 			ProgramEntry += '\x00\x00\x00\x00'	# spn_program_sequence_start
 			ProgramEntry += '\x01\x00'		# program_map_pid
@@ -695,7 +694,7 @@ class CreateClpiTask(Task):
 				elif stream.isAudio:
 					StreamCodingInfo += stream.formatByte	# audio_presentation_type & samplerate
 					StreamCodingInfo += stream.languageCode	# audio language code
-				for i in list(range(12)):
+				for _ in range(12):
 					StreamCodingInfo += '\x30'	# 12 byte padding with ascii char '0'
 				StreamCodingInfo += zeros[0:4]		# 4 byte reserved
 				StreamEntry += StreamCodingInfo
@@ -793,10 +792,10 @@ class CreateClpiTask(Task):
 		clpibuffer += zeros[0:4]
 
 		f = open(self.job.workspace + "BDMV/CLIPINF/%05d.clpi" % self.clip_num, 'w')
-		f.write(buffer(clpibuffer))
+		f.write(memoryview(clpibuffer))
 		f.close()
 		f = open(self.job.workspace + "BDMV/BACKUP/CLIPINF/%05d.clpi" % self.clip_num, 'w')
-		f.write(buffer(clpibuffer))
+		f.write(memoryview(clpibuffer))
 		f.close()
 
 
