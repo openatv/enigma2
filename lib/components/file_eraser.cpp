@@ -102,7 +102,7 @@ void eBackgroundFileEraser::gotMessage(const Message &msg )
 			{
 				if (st.st_size > erase_speed)
 				{
-					int fd = ::open(c_filename, O_WRONLY|O_SYNC);
+					int fd = ::open(c_filename, O_WRONLY|O_SYNC); //NOSONAR
 					if (fd == -1)
 					{
 						eDebug("[eBackgroundFileEraser] Cannot open %s for writing: %m", c_filename);
