@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-11-29 21:27+0000\n"
-"PO-Revision-Date: 2021-08-19 12:59+0000\n"
+"PO-Revision-Date: 2021-12-24 16:12+0100\n"
 "Last-Translator: Walter <info@wt-electronic.nl>\n"
 "Language-Team: Dutch <https://hosted.weblate.org/projects/openatv/"
 "enigma2-7-0-po/nl/>\n"
@@ -13,7 +13,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.8-dev\n"
+"X-Generator: Poedit 3.0\n"
 "X-Poedit-Basepath: .\n"
 "X-Poedit-SearchPath-0: ..\n"
 
@@ -243,7 +243,7 @@ msgid "  Menu key : Select quad channel"
 msgstr "  Menu knop : Selecteer Quad zender"
 
 msgid "  REC  "
-msgstr ""
+msgstr "REC"
 
 msgid "  Red key : Show/Hide channel name"
 msgstr "  Rode kop : Toon/verberg zender naam"
@@ -312,7 +312,7 @@ msgid " <empty>"
 msgstr " <leeg>"
 
 msgid " HI "
-msgstr ""
+msgstr "HI"
 
 msgid " and"
 msgstr " en"
@@ -1051,8 +1051,8 @@ msgstr[1] "%d zenders gevonden"
 #, python-format
 msgid "%d day"
 msgid_plural "%d days"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d dag"
+msgstr[1] "%d dagen"
 
 #, python-format
 msgid "%d hour"
@@ -1279,7 +1279,7 @@ msgstr "%s GHz"
 
 #, python-format
 msgid "%s KSymb/s"
-msgstr ""
+msgstr "%s KSymb/s"
 
 #, python-format
 msgid "%s MHz"
@@ -1322,7 +1322,7 @@ msgstr "%s%d min"
 
 #, python-format
 msgid "%s%s(Default: %s)"
-msgstr ""
+msgstr "%s%s(Default: %s)"
 
 #, python-format
 msgid "%s/%s: %s"
@@ -1390,7 +1390,7 @@ msgstr ""
 
 msgid ""
 "'Handle standby from TV' has a higher priority than 'Handle input from TV'."
-msgstr ""
+msgstr "Geef 'Standby van de TV' een hogere prioriteit dan 'input van de TV'."
 
 msgid "'weatherplugin' is not installed!"
 msgstr "de 'Weer plug-in' is niet geïnstalleerd!"
@@ -1452,7 +1452,7 @@ msgid ", "
 msgstr " "
 
 msgid "-"
-msgstr ""
+msgstr "-"
 
 msgid "-24"
 msgstr "-24"
@@ -2077,7 +2077,7 @@ msgid "A crashlog was %s created in '%s'"
 msgstr "Een crashlog is %s gemaakt in '%s'"
 
 msgid "A file from media is in use!"
-msgstr ""
+msgstr "Een mediabestand is in gebruik!"
 
 #, python-format
 msgid ""
@@ -2132,6 +2132,10 @@ msgid ""
 "highlight will be shown. Text below the list lists the active buttons and "
 "whether the function requires a long press or SHIFT of the button(s)."
 msgstr ""
+"Door een arcering op de afstandsbediening wordt aangegeven over welke knop "
+"de help tekst gaat. Bij een uitleg over meerdere knoppen, zie je meerdere "
+"arceringen. In de tekst onder de knoppen wordt uitgelegd of de knop "
+"bijvoorbeeld lang ingedrukt moet worden of bediend via de SHIFT knop."
 
 #, python-format
 msgid ""
@@ -2282,7 +2286,7 @@ msgid "AFP Setup"
 msgstr "AFP instellen"
 
 msgid "ASS file"
-msgstr ""
+msgstr "ASS bestand"
 
 msgid "ATSC"
 msgstr "ATSC"
@@ -2304,7 +2308,7 @@ msgid "Abenteuer"
 msgstr "Avontuur"
 
 msgid "Abkhazian"
-msgstr ""
+msgstr "Abchazisch"
 
 msgid "Abort"
 msgstr "Afbreken"
@@ -2358,6 +2362,8 @@ msgid ""
 "Activate a way to send individual or specific internal HDMI-CEC commands "
 "from the command line."
 msgstr ""
+"Activeer een manier om individuele of specifieke interne HDMI-CEC commando's "
+"via de command-line te sturen."
 
 #, python-format
 msgid ""
@@ -2450,7 +2456,7 @@ msgid "Add a nameserver entry"
 msgstr "Naamserver (DNS) toevoegen"
 
 msgid "Add a new tag"
-msgstr ""
+msgstr "Een nieuwe tag toevoegen"
 
 msgid "Add a new title"
 msgstr "Voeg een nieuwe titel toe"
@@ -2483,7 +2489,7 @@ msgid "Add files to playlist"
 msgstr "Bestanden toevoegen aan de afspeellijst"
 
 msgid "Add new tag"
-msgstr ""
+msgstr "Nieuwe tag toevoegen"
 
 msgid "Add plugin to Extensions menu*"
 msgstr "Plug-in toevoegen aan extensies menu*"
@@ -2614,13 +2620,13 @@ msgid "Adventure"
 msgstr "Avontuur"
 
 msgid "Afar"
-msgstr ""
+msgstr "Afar"
 
 msgid "Afghanistan"
 msgstr "Afghanistan"
 
 msgid "Afrikaans"
-msgstr ""
+msgstr "Afrikaans"
 
 msgid "After PowerLost"
 msgstr "Na stroomuitval"
@@ -2638,7 +2644,7 @@ msgid "Agenten"
 msgstr "Agenten"
 
 msgid "Akan"
-msgstr ""
+msgstr "Akan"
 
 msgid "Aland Islands"
 msgstr "Alandseilanden"
@@ -2743,6 +2749,7 @@ msgstr "Laat de %s %s de EPG data regelmatig opslaan."
 
 msgid "Allows the TV remote to be used to control the receiver."
 msgstr ""
+"Gebruik de afstandsbediening van de TV voor de het bedienen van de ontvanger."
 
 msgid ""
 "Allows you to adjust the amount of time the resolution information display "
@@ -2752,7 +2759,7 @@ msgstr ""
 "wordt."
 
 msgid "Allows you to assign the selected function to this button."
-msgstr ""
+msgstr "Wijs de gekozen functie toe aan deze knop."
 
 msgid ""
 "Allows you to enable the debug log. They contain very detailed information "
@@ -2794,7 +2801,7 @@ msgid "Alpha"
 msgstr "Letter"
 
 msgid "Alphabetical under headings"
-msgstr ""
+msgstr "Alfabetisch gesorteerd in rubrieken "
 
 msgid "Alphanumeric"
 msgstr "Alfanumeriek"
@@ -2859,7 +2866,7 @@ msgid "American Sports"
 msgstr "American Sports"
 
 msgid "Amharic"
-msgstr ""
+msgstr "Amhaars"
 
 msgid ""
 "An attempt is made to capture the current TV status. If this is not possible "
@@ -2867,6 +2874,10 @@ msgid ""
 "respond unexpectedly. On the other hand, tries to respond better to "
 "different operating conditions."
 msgstr ""
+"Er is een poging gedaan om de TV-status te lezen. Wanneer dit niet mogelijk "
+"is door ontbrekende of niet correcte status meldingen zou de ontvanger "
+"onverwacht kunnen reageren. Aan de andere kant, zou deze beter kunnen "
+"reageren of diverse situaties."
 
 msgid ""
 "An attempt is made to capture the current TV status. If this is not possible "
@@ -2910,7 +2921,7 @@ msgid "Animation Speed"
 msgstr "Animatie snelheid"
 
 msgid "Animation speed of help indicators"
-msgstr ""
+msgstr "Animatiesnelheid van help pictogrammen"
 
 msgid "Animations"
 msgstr "Animaties"
@@ -2928,16 +2939,16 @@ msgid "Any activity"
 msgstr "Elke activiteit"
 
 msgid "Apply any changes to the active locale/language and exit"
-msgstr ""
+msgstr "Bewaar wijzigingen aan de ingestelde Taal en Exit "
 
 msgid "Apply the currently highlighted locale/language and exit"
-msgstr ""
+msgstr "Gebruik de geselecteerde Taal en Exit "
 
 msgid "Arabic"
 msgstr "Arabisch"
 
 msgid "Aragonese"
-msgstr ""
+msgstr "Aragonees"
 
 msgid "Architektur"
 msgstr "Architectuur"
@@ -3112,7 +3123,7 @@ msgid "Aspect ratio"
 msgstr "Beeldverhouding"
 
 msgid "Assamese"
-msgstr ""
+msgstr "Assamees"
 
 msgid "Assigned CAIds:"
 msgstr "Toegewezen CAIds:"
@@ -3156,10 +3167,10 @@ msgstr "Geluids PID"
 
 #, python-format
 msgid "Audio PID%s, codec & lang"
-msgstr ""
+msgstr "Audio PID%s, codec & taal"
 
 msgid "Audio PID, codec & lang"
-msgstr ""
+msgstr "Audio PID, codec & taal"
 
 msgid "Audio Selection"
 msgstr "Geluids selectie"
@@ -3332,10 +3343,10 @@ msgid "Available shares:"
 msgstr "Beschikbare shares:"
 
 msgid "Avaric"
-msgstr ""
+msgstr "Avaars"
 
 msgid "Avestan"
-msgstr ""
+msgstr "Avestaans"
 
 msgid ""
 "Avoid getting stuck (at the expense of some stuttering) when the jump time "
@@ -3348,7 +3359,7 @@ msgid "Axas E4HD Ultra"
 msgstr "Axas E4HD Ultra"
 
 msgid "Aymara"
-msgstr ""
+msgstr "Aymara"
 
 msgid "Azerbaijan"
 msgstr "Azerbeidzjan"
@@ -3544,8 +3555,7 @@ msgstr "Back-up, Flash en herstel de instellingen zonder plug-ins"
 
 msgid "Backup, flash and restore settings and selected plugins (ask user)"
 msgstr ""
-"Back-up, Flash en herstel de instellingen en geselecteerde plug-ins (vraag "
-"gebruiker)"
+"Back-up, Flash en herstel de instellingen inclusief geselecteerde plug-ins"
 
 msgid "Bahamas"
 msgstr "Bahama’s"
@@ -3586,10 +3596,10 @@ msgid "Baseball"
 msgstr "Baseball"
 
 msgid "Bashkir"
-msgstr ""
+msgstr "Bashkir"
 
 msgid "Basic PID info"
-msgstr ""
+msgstr "PID info"
 
 msgid "Basic settings"
 msgstr "Basis instellingen"
@@ -3638,7 +3648,7 @@ msgid "Belize"
 msgstr "Belize"
 
 msgid "Bengali"
-msgstr ""
+msgstr "Bengaals"
 
 msgid "Benin"
 msgstr "Benin"
@@ -3678,7 +3688,7 @@ msgid "Biography"
 msgstr "Biografie"
 
 msgid "Bislama"
-msgstr ""
+msgstr "Bislama"
 
 msgid "Bitrate"
 msgstr "Bitrate"
@@ -3723,13 +3733,13 @@ msgid "Bluetooth Setup"
 msgstr "Bluetooth instellingen"
 
 msgid "Bolivia"
-msgstr ""
+msgstr "Bolivia"
 
 msgid "Bollywood"
 msgstr "Bollywood"
 
 msgid "Bonaire"
-msgstr ""
+msgstr "Bonaire"
 
 msgid "Bookmarks"
 msgstr "Bookmarks"
@@ -3741,13 +3751,13 @@ msgid "Boost green"
 msgstr "Versterk groen"
 
 msgid "Boot time"
-msgstr ""
+msgstr "Opstart snelheid"
 
 msgid "Boot time and local date/time"
-msgstr ""
+msgstr "Opstart snelheid en lokale datum/tijd"
 
 msgid "Boot time and local time"
-msgstr ""
+msgstr "Opstart snelheid en lokale tijd"
 
 msgid "Boot-up action"
 msgstr "Normaal opstarten of direct naar stand-by"
@@ -3794,7 +3804,7 @@ msgid "Brazil"
 msgstr "Brazilië"
 
 msgid "Breton"
-msgstr ""
+msgstr "Bretons"
 
 msgid "Brightness"
 msgstr "Helderheid"
@@ -3835,7 +3845,7 @@ msgid "Burkina Faso"
 msgstr "Burkina Faso"
 
 msgid "Burmese"
-msgstr ""
+msgstr "Burmees"
 
 msgid "Burn Bludisc"
 msgstr "Brand Bludisc"
@@ -4186,7 +4196,7 @@ msgid "Cancel any changed settings and exit all menus"
 msgstr "Annuleer de image selectie en exit alle menu's"
 
 msgid "Cancel any changed tags and exit"
-msgstr ""
+msgstr "Bewaar geen gewijzigde tags en Exit"
 
 #, fuzzy
 msgid "Cancel any changes the active locale/language and exit all menus"
@@ -4277,7 +4287,7 @@ msgid "Casting"
 msgstr "Casting"
 
 msgid "Catalan / Valencian"
-msgstr ""
+msgstr "Catalaans / Valenciaans"
 
 msgid "Caution update not yet tested !!"
 msgstr "!! Let op de update is nog niet getest !!"
@@ -4292,13 +4302,13 @@ msgid "Central African Republic"
 msgstr "Centraal-Afrikaanse Republiek"
 
 msgid "Central Khmer"
-msgstr ""
+msgstr "Centraal Khmer"
 
 msgid "Chad"
 msgstr "Tsjaad"
 
 msgid "Chamorro"
-msgstr ""
+msgstr "Chamorro"
 
 msgid "Change Boxmode to control Hardware Chip Modes*"
 msgstr "Wijzig boxmodus om hardware chip modi te beheren*"
@@ -4526,7 +4536,7 @@ msgstr ""
 "DiSEqC poort %s voor %s"
 
 msgid "Chichewa / Chewa / Nyanja"
-msgstr ""
+msgstr "Chichewa / Chewa / Nyanja"
 
 msgid "Children"
 msgstr "Kinderen"
@@ -4672,7 +4682,7 @@ msgstr ""
 "de bestandsnamen van verschillende ontvangers."
 
 msgid "Choose the order in which items are displayed in Help windows"
-msgstr ""
+msgstr "Kies de volgorde van onderwerpen in diverse Help vensters "
 
 msgid "Choose time interval to which the graphics will be rounded off."
 msgstr "Kies de tijdsinterval waarop de grafische indeling wordt afgerond."
@@ -4742,10 +4752,10 @@ msgid "Chronik"
 msgstr "Kroniek"
 
 msgid "Church Slavic"
-msgstr ""
+msgstr "Kerkslavisch"
 
 msgid "Chuvash"
-msgstr ""
+msgstr "Tsjoevasjisch"
 
 msgid "Circular LNB"
 msgstr "Circulaire LNB"
@@ -4819,13 +4829,13 @@ msgid "Close title selection"
 msgstr "Sluit titelselectie"
 
 msgid "Cloudflare"
-msgstr ""
+msgstr "Cloudflare"
 
 msgid "Cocos (Keeling) Islands"
 msgstr "Kokos Eilanden"
 
 msgid "Code R. LP-HP & Guard Int."
-msgstr ""
+msgstr "Code R. LP-HP & Guard Int."
 
 msgid "Code rate HP"
 msgstr "Code rate HP"
@@ -4885,7 +4895,7 @@ msgid "Common Interface assignment"
 msgstr "Common interface taken"
 
 msgid "Common Menu Actions"
-msgstr ""
+msgstr "Meest gebruikte Menu keuzes"
 
 #, fuzzy
 msgid "Common Setup Actions"
@@ -5699,6 +5709,8 @@ msgid ""
 "Control the animation speed of the button indicators in the Help screen. "
 "'Disabled' turns off animation so that indicators jump between buttons."
 msgstr ""
+"Stel de animatiesnelheid in van de knop pictogrammen in het Help scherm. "
+"'Uitgeschakeld' voorkomt een animatie. "
 
 msgid "Control your Softcams"
 msgstr "Softcams beheren"
@@ -5770,7 +5782,7 @@ msgid "Cornish"
 msgstr "Deens"
 
 msgid "Corsican"
-msgstr ""
+msgstr "Corsicaans"
 
 msgid "Costa Rica"
 msgstr "Costa Rica"
@@ -6266,7 +6278,7 @@ msgid "Debug Logs"
 msgstr "Debug logs"
 
 msgid "Debug log time format *"
-msgstr ""
+msgstr "Debug log tijd format *"
 
 msgid "Decryption & Parental Control"
 msgstr "Decryptie & kinderslot"
@@ -6364,7 +6376,7 @@ msgstr "Standaard sorteringsmethode voor bestanden aan de rechter kant."
 
 #, python-format
 msgid "Default: '%s'."
-msgstr ""
+msgstr "Default: '%s'."
 
 msgid "Defaults"
 msgstr "Standaard waardes"
@@ -6506,10 +6518,10 @@ msgid "Delete Plugins"
 msgstr "Plug-ins en applicaties verwijderen"
 
 msgid "Delete all tags"
-msgstr ""
+msgstr "Verwijder alle tags"
 
 msgid "Delete all the text"
-msgstr ""
+msgstr "Verwijder alle tekst"
 
 msgid "Delete and uninstall Plugins. This will remove the Plugin from your box"
 msgstr ""
@@ -6562,13 +6574,13 @@ msgid "Delete the selected files or directories"
 msgstr "Verwijder de geselecteerde bestanden of mappen"
 
 msgid "Delete this tag"
-msgstr ""
+msgstr "Verwijder deze tag"
 
 msgid "Delete timer"
 msgstr "Verwijder timer"
 
 msgid "Delete unused tags"
-msgstr ""
+msgstr "Verwijder ongebruikte tags"
 
 msgid "Deleted"
 msgstr "Verwijderd"
@@ -6734,19 +6746,19 @@ msgstr "Map %s bestaat niet."
 
 #, python-format
 msgid "Directory '%s' can't be linked to recordings!"
-msgstr ""
+msgstr "Map '%s' kan niet voor opnames gebruikt worden!"
 
 #, python-format
 msgid "Directory '%s' does not exist!"
-msgstr ""
+msgstr "Map '%s' bestaat niet!"
 
 #, python-format
 msgid "Directory '%s' not writable!"
-msgstr ""
+msgstr "Map '%s' niet beschrijfbaar!"
 
 #, python-format
 msgid "Directory '%s' not writeable!"
-msgstr ""
+msgstr "Map '%s' niet beschrijfbaar!"
 
 msgid "Directory browser"
 msgstr "Bestandsverkenner"
@@ -6830,10 +6842,10 @@ msgid "Display message before playing next movie"
 msgstr "Een bericht weergeven voordat de volgende film start"
 
 msgid "Display oscam information."
-msgstr ""
+msgstr "Toon Oscam informatie"
 
 msgid "Display selection list as a selection menu"
-msgstr ""
+msgstr "Wijzig de selectielijst in een selectiemenu"
 
 msgid "Display settings"
 msgstr "Scherm instellingen"
@@ -6842,16 +6854,16 @@ msgid "Display the EIT now/next eventdata in infobar."
 msgstr "Toon EIT nu/straks programmagegevens in de informatiebalk."
 
 msgid "Display the base locales or all locales for a language."
-msgstr ""
+msgstr "Toon de basis 'locales' of alle 'locales' voor een taal"
 
 msgid "Display the tags context menu"
-msgstr ""
+msgstr "Toon het contextmenu voor de tags"
 
 msgid "Display the virtual keyboard for data entry"
-msgstr ""
+msgstr "Toon het virtuele toetsenbord"
 
 msgid "Divehi / Dhivehi / Maldivian"
-msgstr ""
+msgstr "Divehi / Dhivehi / Maldivisch"
 
 msgid "Djibouti"
 msgstr "Djibouti"
@@ -6901,11 +6913,15 @@ msgid ""
 "Do you really want to delete all '%s' tags?\n"
 "(NOTE: 'Cancel' cannot undo this!)"
 msgstr ""
+"Wilt u echt alle '%s' tags verwijderen?\n"
+"(Let op: 'Annuleren' kan dit niet ongedaan maken!)"
 
 msgid ""
 "Do you really want to delete all tags?\n"
 "(Note that 'Cancel' will not undo this!)"
 msgstr ""
+"Wilt u echt alle tags verwijderen?\n"
+"(Let op: 'Annuleren' kan dit niet ongedaan maken!)"
 
 msgid "Do you really want to delete the recording?"
 msgstr "Wilt u deze opname echt verwijderen?"
@@ -7040,7 +7056,7 @@ msgstr "Wilt u deze collectie te produceren?"
 
 #, python-format
 msgid "Do you want to purge all locales/languages except %s?"
-msgstr ""
+msgstr "Wilt u alle talen verwijderen behalve %s?"
 
 #, python-format
 msgid "Do you want to reboot your %s %s"
@@ -7107,7 +7123,7 @@ msgid "Don't ask again!"
 msgstr "Niet meer vragen!"
 
 msgid "Don't restart"
-msgstr ""
+msgstr "Niet herstarten"
 
 msgid "Don't save"
 msgstr "Niet opslaan"
@@ -7226,13 +7242,13 @@ msgid "Dutch"
 msgstr "Nederlands"
 
 msgid "Dutch / Flemish"
-msgstr ""
+msgstr "Nederlands / Vlaams"
 
 msgid "Dynamic contrast"
 msgstr "Dynamisch contrast"
 
 msgid "Dzongkha"
-msgstr ""
+msgstr "Dzongkha"
 
 msgid "E"
 msgstr "O"
@@ -7373,7 +7389,7 @@ msgid "Edit Quad Channel Entry"
 msgstr "Wijzig Quad zender"
 
 msgid "Edit Tags"
-msgstr ""
+msgstr "Tags wijzigen"
 
 msgid "Edit Title"
 msgstr "Wijzig titel"
@@ -7450,7 +7466,7 @@ msgid "Email"
 msgstr "Email"
 
 msgid "Embedded"
-msgstr ""
+msgstr "Insluiten"
 
 msgid "Empty slot"
 msgstr "Leeg slot"
@@ -7590,7 +7606,7 @@ msgid "Enable multiple bouquets"
 msgstr "Meerdere favorietenlijsten toestaan"
 
 msgid "Enable or disable using HDMI-CEC."
-msgstr ""
+msgstr "Activeer of Deactiveer HDMI-CEC."
 
 msgid "Enable panic button"
 msgstr "Paniek-knop gebruiken"
@@ -7619,7 +7635,7 @@ msgid "Enable terrestrial LCN:"
 msgstr "Activeer dvb-t LCN:"
 
 msgid "Enable the advanced HDMI-CEC setting options."
-msgstr ""
+msgstr "Activeer de geavanceerde instellingen voor HDMI-CEC"
 
 msgid "Enable the current value of the slider at end of the slider bar."
 msgstr ""
@@ -7630,17 +7646,25 @@ msgid ""
 "Enable this option to add action map / remote control mapping data to the "
 "debug log file."
 msgstr ""
+"Activeer deze optie om gebruik van de afstandsbediening mee te nemen in het "
+"debug log bestand."
 
 msgid "Enable this option to add keyboard keymap data to the debug log file."
 msgstr ""
+"Activeer deze optie om gebruik van het toetsenbord mee te nemen in het debug "
+"log bestand."
 
 msgid "Enable this option to add remote control data to the debug log file."
 msgstr ""
+"Activeer deze optie om gegevens van de afstandsbediening mee te nemen in het "
+"debug log bestand."
 
 msgid ""
 "Enable this option to add screen names and resolution data to the debug log "
 "file."
 msgstr ""
+"Activeer deze optie om schermnamen en resolutiegegevens mee te nemen in het "
+"debug log bestand."
 
 msgid "Enable this setting if your aerial system needs power"
 msgstr ""
@@ -7703,10 +7727,10 @@ msgid "English"
 msgstr "Engels"
 
 msgid "English name (Ascending)"
-msgstr ""
+msgstr "Engelse omschrijving (Oplopend)"
 
 msgid "English name (Descending)"
-msgstr ""
+msgstr "Engelse omschrijving (Aflopend)"
 
 msgid "Enhanced Movie Center"
 msgstr "Enhanced Movie Center"
@@ -7731,13 +7755,13 @@ msgstr ""
 
 #, python-format
 msgid "Enigma2 debug level:\t%d"
-msgstr ""
+msgstr "Enigma2 debug level:\t%d"
 
 msgid "Enigma2 skin selector"
 msgstr "Enigma2 skinkeuze"
 
 msgid "Enigmalight"
-msgstr ""
+msgstr "Enigmalight"
 
 msgid "Enter"
 msgstr "Enter"
@@ -7746,7 +7770,7 @@ msgid "Enter PIN"
 msgstr "Voer pincode in"
 
 msgid "Enter a new name for this device."
-msgstr ""
+msgstr "Geef een naam op voor dit apparaat"
 
 msgid "Enter if you are in the east or west hemisphere."
 msgstr "Geef aan of u op het westelijke of het oostelijke halfrond bent."
@@ -7995,7 +8019,7 @@ msgid "Esoterik"
 msgstr "Esoterie"
 
 msgid "Esperanto"
-msgstr ""
+msgstr "Esperanto"
 
 msgid "Essen"
 msgstr "Eten"
@@ -8086,7 +8110,7 @@ msgid "Everywhere"
 msgstr "Overal"
 
 msgid "Ewe"
-msgstr ""
+msgstr "Ewe"
 
 msgid "Exceeds Bludisc medium!"
 msgstr "Overschrijdt Bludisk medium!"
@@ -8128,7 +8152,7 @@ msgid "Exit Quad Channel Selection"
 msgstr "Verlaat Quad zender selectie"
 
 msgid "Exit all menus"
-msgstr ""
+msgstr "Exit uit alle menu's"
 
 msgid "Exit editor"
 msgstr "Editor afsluiten"
@@ -8146,7 +8170,7 @@ msgid "Exit mediaplayer"
 msgstr "Mediaspeler afsluiten"
 
 msgid "Exit menu"
-msgstr ""
+msgstr "Exit menu"
 
 msgid "Exit movie list"
 msgstr "Opnamelijst afsluiten"
@@ -8607,7 +8631,7 @@ msgstr "Flash een image online of lokaal"
 
 #, python-format
 msgid "Flash directory '%s' not allowed!"
-msgstr ""
+msgstr "Flash van map '%s' is niet toegestaan!"
 
 msgid "Flash on the fly your your Receiver software."
 msgstr "Flash een image online of via usb naar uw ontvanger."
@@ -8637,7 +8661,7 @@ msgid "Flat alphabetical"
 msgstr "plat alfabetisch"
 
 msgid "Flat by key group on remote"
-msgstr ""
+msgstr "Een groep knoppen op de afstandsbediening"
 
 #, fuzzy
 msgid "Flat by position on remote"
@@ -8791,7 +8815,7 @@ msgid "Frontprocessor version: %s"
 msgstr "Frontprocessor versie: %s"
 
 msgid "Fulah"
-msgstr ""
+msgstr "Fula"
 
 msgid "Full Image Backup "
 msgstr "Volledige image back-up "
@@ -8863,13 +8887,13 @@ msgid "Gabon"
 msgstr "Gabon"
 
 msgid "Gaelic"
-msgstr ""
+msgstr "Gaelisch"
 
 msgid "Galicia (Spain)"
-msgstr ""
+msgstr "Galicië (Spanje)"
 
 msgid "Galician"
-msgstr ""
+msgstr "Galicisch"
 
 msgid "Gambia"
 msgstr "Gambia"
@@ -8912,13 +8936,13 @@ msgid "Genre"
 msgstr "Genre"
 
 msgid "Geolocation does not contain time zone information."
-msgstr ""
+msgstr "Deze Geolocatie bevat geen informatie over de tijdzone."
 
 msgid "Geolocation has been used to set the time zone."
-msgstr ""
+msgstr "Deze Geolocatie is gebruikt voor het instellen van de tijdzone."
 
 msgid "Geolocation is not available."
-msgstr ""
+msgstr "Deze Geolocatie is niet beschikbaar."
 
 msgid "Georgia"
 msgstr "Georgië"
@@ -8994,7 +9018,7 @@ msgid "Golf"
 msgstr "Golf"
 
 msgid "Google DNS"
-msgstr ""
+msgstr "Google DNS"
 
 msgid "Goto"
 msgstr "Ga naar"
@@ -9096,7 +9120,7 @@ msgid "Guam"
 msgstr "Guam"
 
 msgid "Guarani"
-msgstr ""
+msgstr "Guarani"
 
 msgid "Guard interval"
 msgstr "Bewakingsinterval"
@@ -9114,7 +9138,7 @@ msgid "Guinea-Bissau"
 msgstr "Guinee-Bissau"
 
 msgid "Gujarati"
-msgstr ""
+msgstr "Gujarati"
 
 msgid "Guyana"
 msgstr "Guyana"
@@ -9152,7 +9176,7 @@ msgid "HD2400"
 msgstr "HD2400"
 
 msgid "HD60/Multibox/Multiboxse"
-msgstr ""
+msgstr "HD60/Multibox/Multiboxse"
 
 msgid "HDMI"
 msgstr "HDMI"
@@ -9179,10 +9203,10 @@ msgid "HDMI Recording"
 msgstr "HDMI Opname"
 
 msgid "HDMI-CEC Setup"
-msgstr ""
+msgstr "HDMI-CEC Setup"
 
 msgid "HDMI-CEC Setup Actions"
-msgstr ""
+msgstr "HDMI-CEC Setup instellingen"
 
 #, fuzzy
 msgid "HDMI-IN Actions"
@@ -9201,7 +9225,7 @@ msgid "HELP"
 msgstr "HELP"
 
 msgid "HELP provides brief information for buttons in your current context."
-msgstr ""
+msgstr "Via de HELP knop kunt u informatie opvragen. "
 
 msgid "HH:mm"
 msgstr "HH:mm"
@@ -9219,7 +9243,7 @@ msgid "Haiti"
 msgstr "Haïti"
 
 msgid "Haitian / Haitian Creole"
-msgstr ""
+msgstr "Haïtiaans / Haïtiaans Creools"
 
 msgid "Handball"
 msgstr "Handbal"
@@ -9252,7 +9276,7 @@ msgid "Harddisk Setup"
 msgstr "Harde schijf instellen"
 
 msgid "Hausa"
-msgstr ""
+msgstr "Hausa"
 
 msgid "Heard Island and McDonald Islands"
 msgstr "Heard- en MacDonald Eilanden"
@@ -9320,7 +9344,7 @@ msgstr ""
 "worden toegevoegd."
 
 msgid "Herero"
-msgstr ""
+msgstr "Herero"
 
 msgid "Hidden / Blank"
 msgstr "Verborgen/blanco"
@@ -9363,10 +9387,10 @@ msgid "High bitrate support"
 msgstr "Hoge bitrate ondersteuning"
 
 msgid "Hindi"
-msgstr ""
+msgstr "Hindi"
 
 msgid "Hiri Motu"
-msgstr ""
+msgstr "Hiri Motu"
 
 msgid "Hispasat 30.0w"
 msgstr "Hispasat 30.0w"
@@ -9405,7 +9429,7 @@ msgid "Hold till locked"
 msgstr "Stilstaand beeld totdat de zender gelocked is"
 
 msgid "Holy See (Vatican City State)"
-msgstr ""
+msgstr "Vaticaanstad"
 
 msgid "Home"
 msgstr "Thuis"
@@ -9615,7 +9639,7 @@ msgid "Idle Time: "
 msgstr "Inactieve tijd: "
 
 msgid "Ido"
-msgstr ""
+msgstr "Ido"
 
 msgid "If 'never', will force restart despite that after 100 crashes."
 msgstr ""
@@ -9629,6 +9653,8 @@ msgid ""
 "If an action is user-configurable, its help entry will be flagged with a "
 "'(C)' suffix."
 msgstr ""
+"Wanneer een actie instelbaar is, wordt de bijbehorende help functie "
+"gemarkeerd met een '(C)'"
 
 msgid ""
 "If editing a file, can you set the cursor start position at end or begin of "
@@ -9654,6 +9680,9 @@ msgid ""
 "If enabled, a log will be kept of CEC protocol traffic. The log files are "
 "located with the other log files but named 'Enigma2-hdmicec-[date].log'."
 msgstr ""
+"Wanneer ingeschakeld, wordt er een log-bestand bijgehouden van CEC-verkeer. "
+"Deze wordt samen met de andere log-bestanden opgeslagen en zijn herkenbaar "
+"door de naam 'Enigma2-hdmicec-[datum].log'."
 
 msgid ""
 "If enabled, using a time window to detect a wakeup from deep standby by a "
@@ -9680,6 +9709,8 @@ msgid ""
 "If set to 'Yes' the same commands will be sent to the TV for deep standby "
 "events as are sent during regular standby events."
 msgstr ""
+"Wanneer u kiest voor 'Ja' worden dezelfde commando's naar de TV gestuurd "
+"voor deep standby als voor de normale standby functies."
 
 msgid ""
 "If set to 'no', can you save older events even after zapping or interruption "
@@ -9799,6 +9830,9 @@ msgid ""
 "synchronized. Depending on the requirement the device wake up will "
 "continuing after a maximum of 2 minutes."
 msgstr ""
+"Wanneer de deep standby workaround is geactiveerd, a.u.b. wachten tot de "
+"systeemtijd is gesynchroniseerd. Afhankelijk van het gebruik zal de "
+"ontvanger binnen maximaal 2 minuten opstarten."
 
 msgid ""
 "If the free space is less than setting value, then an attempt is made to "
@@ -9876,7 +9910,7 @@ msgstr ""
 "Indien het resultaat nu goed is, drukt u op OK."
 
 msgid "Igbo"
-msgstr ""
+msgstr "Igbo"
 
 msgid "Ignore DVB-C namespace sub network"
 msgstr "Negeer DVB-C subnetwerk"
@@ -9934,7 +9968,7 @@ msgid "Immediate shutdown"
 msgstr "Onmiddellijk uitschakelen"
 
 msgid "Immediately restart selected devices."
-msgstr ""
+msgstr "Nu de geselecteerde apparaten herstarten."
 
 msgid ""
 "In addition to the check at an event start, a repetitive check can be used, "
@@ -10025,7 +10059,7 @@ msgid "Include remote control data"
 msgstr "Configureer type afstandsbediening"
 
 msgid "Include screen load data"
-msgstr ""
+msgstr "Inclusief scherm laadgegevens"
 
 msgid "Incorrect type service for PiP!"
 msgstr "Onjuist zendertype voor PiP!"
@@ -10086,14 +10120,14 @@ msgid "InfoBar EPG mode"
 msgstr "QuickEPG"
 
 msgid "InfoBar Event View Actions"
-msgstr ""
+msgstr "InfoBar Acties"
 
 #, fuzzy
 msgid "InfoBar RDS Actions"
 msgstr "Informatie"
 
 msgid "InfoBar Show/Hide Actions"
-msgstr ""
+msgstr "InfoBar Acties weergeven/verbergen"
 
 msgid "InfoPanel"
 msgstr "Info paneel"
@@ -10124,7 +10158,7 @@ msgid "Information"
 msgstr "Informatie"
 
 msgid "Information Panel"
-msgstr ""
+msgstr "Informatiescherm"
 
 msgid "Infotainment"
 msgstr "Infotainment"
@@ -10377,7 +10411,7 @@ msgid "Ireland"
 msgstr "Ierland"
 
 msgid "Irish"
-msgstr ""
+msgstr "Iers"
 
 msgid "Is not necessary in most cases."
 msgstr "Is niet noodzakelijk in de meeste gevallen."
@@ -10442,7 +10476,7 @@ msgid "Japanese"
 msgstr "Japan"
 
 msgid "Javanese"
-msgstr ""
+msgstr "Javanees"
 
 msgid "Jersey"
 msgstr "Jersey"
@@ -10632,7 +10666,7 @@ msgid "Korea, Republic of"
 msgstr "Zuid Korea"
 
 msgid "Korean"
-msgstr ""
+msgstr "Koreaans"
 
 msgid "Kraftsport"
 msgstr "Krachtsport"
