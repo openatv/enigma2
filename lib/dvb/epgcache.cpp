@@ -2413,18 +2413,13 @@ const char* eEPGCache::casetypestr(int value)
 	{
 		case CASE_CHECK:
 			return "case sensitive";
-			break;
 		case NO_CASE_CHECK:
 			return "case insensitive";
-			break;
 		case REGEX_CHECK:
 			return "regex";
-			break;
 		default:
 			return "unknown";
-			break;
 	}
-	return "unknown";
 }
 
 
