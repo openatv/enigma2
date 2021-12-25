@@ -3508,6 +3508,7 @@ RESULT eDVBFrontend::setVoltage(int voltage)
 			break;
 		case voltage13_5:
 			increased = true;
+			[[fallthrough]];
 		case voltage13:
 			vlt = SEC_VOLTAGE_13;
 			if(m_type == feTerrestrial)
@@ -3519,6 +3520,7 @@ RESULT eDVBFrontend::setVoltage(int voltage)
 			break;
 		case voltage18_5:
 			increased = true;
+			[[fallthrough]];
 		case voltage18:
 			vlt = SEC_VOLTAGE_18;
 			break;
