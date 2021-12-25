@@ -1806,7 +1806,7 @@ void eEPGChannelData::readMHWData2(const uint8_t *data)
 
 									int chid = it->second.channel_id - 1;
 									time_t ndate, edate;
-									struct tm *next_date;
+									struct tm next_date;
 									u_char mhw2_mjd_hi = data[pos+10];
 									u_char mhw2_mjd_lo = data[pos+11];
 									u_char mhw2_hours = data[pos+12];
@@ -1815,13 +1815,13 @@ void eEPGChannelData::readMHWData2(const uint8_t *data)
 									edate = MjdToEpochTime(itTitle->second.mhw2_mjd)
 									+ (((itTitle->second.mhw2_hours&0xf0)>>4)*10+(itTitle->second.mhw2_hours&0x0f)) * 3600 
 									+ (((itTitle->second.mhw2_minutes&0xf0)>>4)*10+(itTitle->second.mhw2_minutes&0x0f)) * 60;
-									next_date = localtime(&ndate);
-										if (ndate > edate)
-										{
+									localtime_r(&ndate, &next_date);
+									if (ndate > edate)
+									{
 										char nd[200];
-													sprintf (nd," %s %s%02d %02d:%02d",m_channels[chid].name,days[next_date->tm_wday],next_date->tm_mday,next_date->tm_hour, next_date->tm_min);
+										sprintf (nd," %s %s%02d %02d:%02d",m_channels[chid].name,days[next_date.tm_wday],next_date.tm_mday,next_date.tm_hour, next_date.tm_min);
 										the_text2.append(nd);
-										}
+									}
 								}
 								pos += 19;
 							}
@@ -2208,16 +2208,16 @@ void eEPGChannelData::readMHWData2_old(const uint8_t *data)
 								char const *const days[] = {"D", "L", "M", "M", "J", "V", "S", "D"};
 
 								time_t ndate, edate;
-								struct tm *next_date;
-											ndate = replay_time[n];
+								struct tm next_date;
+								ndate = replay_time[n];
 								edate = MjdToEpochTime(itTitle->second.mhw2_mjd) 
 									+ (((itTitle->second.mhw2_hours&0xf0)>>4)*10+(itTitle->second.mhw2_hours&0x0f)) * 3600 
 									+ (((itTitle->second.mhw2_minutes&0xf0)>>4)*10+(itTitle->second.mhw2_minutes&0x0f)) * 60;
-								next_date = localtime(&ndate);
+								localtime_r(&ndate, &next_date);
 								if (ndate > edate)
 								{
 									char nd[200];
-									sprintf (nd," %s %s%02d %02d:%02d",m_channels[replay_chid[n]].name,days[next_date->tm_wday],next_date->tm_mday,next_date->tm_hour, next_date->tm_min);
+									sprintf (nd," %s %s%02d %02d:%02d",m_channels[replay_chid[n]].name,days[next_date.tm_wday],next_date.tm_mday,next_date.tm_hour, next_date.tm_min);
 									the_text2.append(nd);
 								}
 								n++;
