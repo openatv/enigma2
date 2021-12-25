@@ -744,15 +744,14 @@ void eRTSPStreamClient::eventUpdate(int event)
 std::string eRTSPStreamClient::get_current_timestamp()
 {
 	time_t date;
-	struct tm *t;
+	tm t;
 	char buffer[40];
 
 	time(&date);
-	t = gmtime(&date);
-	if (!t)
+	if(!gmtime_r(&date,&t))
 		return "Sat, Jan 1 00:00:20 2000 GMT";
 
-	strftime(buffer, sizeof(buffer), "%a, %b %d %H:%M:%S %Y GMT", t);
+	strftime(buffer, sizeof(buffer), "%a, %b %d %H:%M:%S %Y GMT", &t);
 
 	return std::string(buffer);
 }

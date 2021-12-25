@@ -1887,19 +1887,20 @@ skip_entry:
 
 static void fill_eit_start(eit_event_struct *evt, time_t t)
 {
-    tm *time = gmtime(&t);
+	tm time;
+	gmtime_r( &t, &time );
 
     int l = 0;
-    int month = time->tm_mon + 1;
+    int month = time.tm_mon + 1;
     if (month == 1 || month == 2)
         l = 1;
-    int mjd = 14956 + time->tm_mday + (int)((time->tm_year - l) * 365.25) + (int)((month + 1 + l*12) * 30.6001);
+    int mjd = 14956 + time.tm_mday + (int)((time.tm_year - l) * 365.25) + (int)((month + 1 + l*12) * 30.6001);
     evt->start_time_1 = mjd >> 8;
     evt->start_time_2 = mjd & 0xFF;
 
-    evt->start_time_3 = toBCD(time->tm_hour);
-    evt->start_time_4 = toBCD(time->tm_min);
-    evt->start_time_5 = toBCD(time->tm_sec);
+    evt->start_time_3 = toBCD(time.tm_hour);
+    evt->start_time_4 = toBCD(time.tm_min);
+    evt->start_time_5 = toBCD(time.tm_sec);
 
 }
 
@@ -3343,12 +3344,13 @@ void eEPGCache::crossepgImportEPGv21(std::string dbroot)
 			data_eit_event->event_id_hi = title.event_id >> 8;
 			data_eit_event->event_id_lo = title.event_id & 0xff;
 
-			tm *time = gmtime(&title.start_time);
+			tm time;
+			gmtime_r(&title.start_time,&time);
 			data_eit_event->start_time_1 = title.mjd >> 8;
 			data_eit_event->start_time_2 = title.mjd & 0xFF;
-			data_eit_event->start_time_3 = toBCD(time->tm_hour);
-			data_eit_event->start_time_4 = toBCD(time->tm_min);
-			data_eit_event->start_time_5 = toBCD(time->tm_sec);
+			data_eit_event->start_time_3 = toBCD(time.tm_hour);
+			data_eit_event->start_time_4 = toBCD(time.tm_min);
+			data_eit_event->start_time_5 = toBCD(time.tm_sec);
 
 			data_eit_event->duration_1 = toBCD(title.length / 3600);
 			data_eit_event->duration_2 = toBCD((title.length % 3600) / 60);
