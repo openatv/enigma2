@@ -38,15 +38,15 @@ int eDVBCIDateTimeSession::doAction()
 {
 	switch (state)
 	{
-	case stateStarted:
-		return 0;
-	case stateSendDateTime:
-		sendDateTime();
-		return 0;
-	case stateFinal:
-		eDebug("[CI DT] stateFinal und action! kann doch garnicht sein ;)");
-	default:
-		return 0;
+		case stateSendDateTime:
+			sendDateTime();
+			return 0;
+		case stateFinal:
+			eDebug("[CI DT] stateFinal und action! kann doch garnicht sein ;)");
+			[[fallthrough]];
+		case stateStarted:
+		default:
+			return 0;
 	}
 }
 
