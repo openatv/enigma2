@@ -507,22 +507,23 @@ void eDVBScan::PMTready(int err)
 								isvideo = 1;
 								break;
 							case REGISTRATION_DESCRIPTOR: /* some services don't have a separate AC3 descriptor */
-							{
-								RegistrationDescriptor *d = (RegistrationDescriptor*)(*desc);
-								switch (d->getFormatIdentifier())
 								{
-								case 0x44545331 ... 0x44545333: // DTS1/DTS2/DTS3
-								case 0x41432d33: // == 'AC-3'
-								case 0x42535344: // == 'BSSD' (LPCM)
-									isaudio = 1;
-									break;
-								case 0x56432d31: // == 'VC-1'
-									isvideo = 1;
-									break;
-								default:
-									break;
+									RegistrationDescriptor *d = (RegistrationDescriptor*)(*desc);
+									switch (d->getFormatIdentifier())
+									{
+									case 0x44545331 ... 0x44545333: // DTS1/DTS2/DTS3
+									case 0x41432d33: // == 'AC-3'
+									case 0x42535344: // == 'BSSD' (LPCM)
+										isaudio = 1;
+										break;
+									case 0x56432d31: // == 'VC-1'
+										isvideo = 1;
+										break;
+									default:
+										break;
+									}
 								}
-							}
+								[[fallthrough]];
 							default:
 								break;
 							}
@@ -530,6 +531,7 @@ void eDVBScan::PMTready(int err)
 						if (tag == CA_DESCRIPTOR)
 							is_scrambled = 1;
 					}
+					[[fallthrough]];
 				default:
 					break;
 				}
@@ -1157,17 +1159,18 @@ void eDVBScan::channelDone()
 				case iDVBFrontend::feTerrestrial:
 				case iDVBFrontend::feCable:
 				case iDVBFrontend::feATSC:
-				{
-					ePtr<iDVBFrontend> fe;
-					if (!m_channel->getFrontend(fe))
 					{
-						int frequency = fe->readFrontendData(iFrontendInformation_ENUMS::frequency);
-//						eDebug("[eDVBScan] add tuner data for tsid %04x, onid %04x, ns %08x",
-//							m_chid_current.transport_stream_id.get(), m_chid_current.original_network_id.get(),
-//							m_chid_current.dvbnamespace.get());
-						m_tuner_data.insert(std::pair<eDVBChannelID, int>(m_chid_current, frequency));
+						ePtr<iDVBFrontend> fe;
+						if (!m_channel->getFrontend(fe))
+						{
+							int frequency = fe->readFrontendData(iFrontendInformation_ENUMS::frequency);
+	//						eDebug("[eDVBScan] add tuner data for tsid %04x, onid %04x, ns %08x",
+	//							m_chid_current.transport_stream_id.get(), m_chid_current.original_network_id.get(),
+	//							m_chid_current.dvbnamespace.get());
+							m_tuner_data.insert(std::pair<eDVBChannelID, int>(m_chid_current, frequency));
+						}
 					}
-				}
+					[[fallthrough]];
 				default:
 					break;
 			}
