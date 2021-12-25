@@ -82,7 +82,7 @@ typedef FastScanServiceList::const_iterator FastScanServiceListConstIterator;
 class FastScanServicesSection : public LongCrcSection
 {
 protected:
-	unsigned versionNumber : 5;
+	//unsigned versionNumber : 5;
 	FastScanServiceList services;
 
 public:
@@ -135,7 +135,7 @@ typedef FastScanTransportStreamList::const_iterator FastScanTransportStreamListC
 class FastScanNetworkSection : public LongCrcSection, public NetworkNameDescriptor
 {
 protected:
-	unsigned versionNumber : 5;
+	//unsigned versionNumber : 5;
 	FastScanTransportStreamList transportStreams;
 
 public:
