@@ -1185,11 +1185,11 @@ void eEPGChannelData::log_add (const char *message, ...)
 	va_list args;
 	char msg[16*1024];
 	time_t now_time;
-	struct tm *loctime;
+	struct tm loctime;
 
 	now_time = time (NULL);
-	loctime = localtime (&now_time);
-	strftime (msg, 255, "%d/%m/%Y %H:%M:%S ", loctime);
+	localtime_r(&now_time, &loctime);
+	strftime (msg, 255, "%d/%m/%Y %H:%M:%S ", &loctime);
 	 
 	if (log_file != NULL) fwrite (msg, strlen (msg), 1, log_file);
 
@@ -1269,10 +1269,10 @@ void eEPGChannelData::readMHWData(const uint8_t *data)
 
 		char dated[22];
 		time_t now_time;
-		struct tm *loctime;
+		struct tm loctime;
 		now_time = time (NULL);
-		loctime = localtime (&now_time);
-		strftime (dated, 21, "%d/%m/%Y %H:%M:%S", loctime);
+		localtime_r(&now_time, &loctime);
+		strftime (dated, 21, "%d/%m/%Y %H:%M:%S", &loctime);
 		if (f)
 		{
 			fprintf(f,"#########################################\n");
@@ -1493,10 +1493,10 @@ void eEPGChannelData::readMHWData2(const uint8_t *data)
 
 		char dated[22];
 		time_t now_time;
-		struct tm *loctime;
+		struct tm loctime;
 		now_time = time (NULL);
-		loctime = localtime (&now_time);
-		strftime (dated, 21, "%d/%m/%Y %H:%M:%S", loctime);
+		localtime_r(&now_time, &loctime);
+		strftime (dated, 21, "%d/%m/%Y %H:%M:%S", &loctime);
 		if (f)
 		{
 			fprintf(f,"#########################################\n");
@@ -1919,10 +1919,10 @@ void eEPGChannelData::readMHWData2_old(const uint8_t *data)
 
 		char dated[22];
 		time_t now_time;
-		struct tm *loctime;
+		struct tm loctime;
 		now_time = time (NULL);
-		loctime = localtime (&now_time);
-		strftime (dated, 21, "%d/%m/%Y %H:%M:%S", loctime);
+		localtime_r(&now_time, &loctime);
+		strftime (dated, 21, "%d/%m/%Y %H:%M:%S", &loctime);
 		if (f)
 		{
 			fprintf(f,"#########################################\n");
