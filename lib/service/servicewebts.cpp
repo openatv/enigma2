@@ -238,7 +238,8 @@ int eServiceWebTS::openHttpConnection(std::string url)
 		host = host.substr(0, dp);
 	}
 
-	struct hostent* h = gethostbyname(host.c_str());
+	// FIXME use getaddrinfo
+	struct hostent* h = gethostbyname(host.c_str()); // NOSONAR
 	if (h == NULL || h->h_addr_list == NULL)
 		return -1;
 	int fd = socket(PF_INET, SOCK_STREAM, 0);
