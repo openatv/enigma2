@@ -374,18 +374,18 @@ int eRTSPStreamClient::satip2enigma(std::string satipstr)
 	if (!u.Query("msys").empty())
 	{
 		new_sys = 0;
-		const char *s = u.Query("msys").c_str();
+		std::string s = std::string(u.Query("msys"));
 		for (int i = 0; fe_delsys[i]; i++)
-			if (!strncasecmp(s, fe_delsys[i], strlen(fe_delsys[i])))
+			if (!strncasecmp(s.c_str(), fe_delsys[i], strlen(fe_delsys[i])))
 				new_sys = i;
 	}
 
 	if (!u.Query("pol").empty())
 	{
 		new_pol = -1;
-		const char *s = u.Query("pol").c_str();
+		std::string s = std::string(u.Query("pol"));
 		for (int i = 0; fe_pol[i]; i++)
-			if (!strncasecmp(s, fe_pol[i], strlen(fe_pol[i])))
+			if (!strncasecmp(s.c_str(), fe_pol[i], strlen(fe_pol[i])))
 				new_pol = i;
 	}
 
