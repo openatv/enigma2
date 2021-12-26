@@ -21,29 +21,6 @@ from Screens.Screen import Screen
 from Screens.TimerEntry import TimerEntry
 from Tools.BoundFunction import boundFunction
 
-class EventViewContextMenu(Screen, HelpableScreen):
-	def __init__(self, session, menu):
-		Screen.__init__(self, session)
-		HelpableScreen.__init__(self)
-		self.setTitle(_("Event View Context Menu"))
-		self["actions"] = HelpableActionMap(self, ["OkCancelActions"], {
-			"ok": (self.okbuttonClick, _("Run the selected menu option")),
-			"cancel": (self.cancelClick, _("Close the context menu"))
-		}, prio=0, description=_("OkCancel Actions"))
-		try:
-			if config.skin.primary_skin.value.startswith("MetrixHD/"):
-				for count, entry in enumerate(menu):
-					menu[count] = ("        %s" % entry[0], entry[1])
-		except Exception:
-			pass
-		self["menu"] = MenuList(menu)
-
-	def okbuttonClick(self):
-		self["menu"].getCurrent() and self["menu"].getCurrent()[1]()
-
-	def cancelClick(self):
-		self.close(False)
-
 
 class EventViewBase:
 	ADD_TIMER = 1
@@ -317,7 +294,12 @@ class EventViewBase:
 				if "servicelist" not in p.__call__.__code__.co_varnames:
 					menu.append((p.name, boundFunction(self.runPlugin, p)))
 			if menu:
-				self.session.open(EventViewContextMenu, menu)
+				def boxAction(choice):
+					if choice:
+						choice[1]()
+
+				text = "%s: %s" % (_("Select action"), self.event.getEventName())
+				self.session.openWithCallback(boxAction, ChoiceBox, title=text, list=menu, windowTitle=_("Event View Context Menu"), skin_name="EventViewContextMenuChoiceBox")
 
 	def runPlugin(self, plugin):
 		plugin(session=self.session, service=self.currentService, event=self.event, eventName=self.event.getEventName())
