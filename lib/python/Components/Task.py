@@ -17,7 +17,7 @@ class Job(object):
 		self.current_task = 0
 		self.callback = None
 		self.name = name
-		self.finished = False
+		self.finished = False  #NOSONAR
 		self.end = 100
 		self.__progress = 0
 		self.weightScale = 1
