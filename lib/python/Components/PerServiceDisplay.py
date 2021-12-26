@@ -22,7 +22,7 @@ class PerServiceBase(object):
 
 	def __init__(self, navcore, eventmap, with_event=False):
 		self.navcore = navcore
-		self.eventmap = eventmap
+		self.eventmap = eventmap  #NOSONAR
 		self.poll_timer = eTimer()
 		self.with_event = with_event
 
