@@ -239,7 +239,7 @@ class Input(VariableText, GUIComponent, NumericalTextInput):
 		self.innerRight()
 		self.update()
 
-	def number(self, number):
+	def number(self, number):  #NOSONAR
 		if self.type == self.TEXT:
 			owr = self.lastKey == number
 			newChar = self.getKey(number)
