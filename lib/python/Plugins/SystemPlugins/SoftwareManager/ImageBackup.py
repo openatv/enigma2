@@ -54,7 +54,7 @@ class ImageBackup(Screen):
 
 	def __init__(self, session, *args):
 		Screen.__init__(self, session)
-		self.title = _("Image Backup")
+		self.setTitle(_("Image Backup"))
 		self["key_red"] = StaticText(_("Cancel"))
 		self["description"] = StaticText(_("Use the cursor keys to select an installed image and then Start button."))
 		self["options"] = StaticText(_(" "))
