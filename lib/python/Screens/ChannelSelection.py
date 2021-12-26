@@ -909,11 +909,11 @@ class ChannelSelectionEPG(InfoBarButtonSetup):
 			if timer.eit == eventid and ':'.join(timer.service_ref.ref.toString().split(':')[:11]) == refstr:
 				rt_func = lambda ret: self.removeTimer(timer)
 				if not next:
-					menu = [(_("Delete timer"), 'CALLFUNC', rt_func), (_("No"), 'CALLFUNC', self.closeChoiceBoxDialog)]
+					menu = [(_("Delete Timer"), 'CALLFUNC', rt_func), (_("No"), 'CALLFUNC', self.closeChoiceBoxDialog)]
 					title = _("Do you really want to remove the timer for %s?") % eventname
 				else:
 					cb_func2 = lambda ret: self.editTimer(timer)
-					menu = [(_("Delete timer"), 'CALLFUNC', self.RemoveTimerDialogCB, rt_func), (_("Edit timer"), 'CALLFUNC', self.RemoveTimerDialogCB, cb_func2)]
+					menu = [(_("Delete Timer"), 'CALLFUNC', self.RemoveTimerDialogCB, rt_func), (_("Edit Timer"), 'CALLFUNC', self.RemoveTimerDialogCB, cb_func2)]
 					title =_("Select action for timer %s:") % eventname
 				self.ChoiceBoxDialog = self.session.instantiateDialog(ChoiceBox, title=title, list=menu, keys=['red', 'green'], skin_name="RecordTimerQuestion")
 				self.setChoiceBoxDialogPosition()

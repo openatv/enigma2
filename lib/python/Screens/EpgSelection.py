@@ -1559,12 +1559,12 @@ class EPGSelection(Screen, HelpableScreen):
 			if timer.isRunning():
 				cb_func1 = lambda ret: self.removeTimer(timer)
 				cb_func2 = lambda ret: self.editTimer(timer)
-				menu = [(_("Delete timer"), 'CALLFUNC', self.RemoveChoiceBoxCB, cb_func1), (_("Edit timer"), 'CALLFUNC', self.RemoveChoiceBoxCB, cb_func2)]
+				menu = [(_("Delete Timer"), 'CALLFUNC', self.RemoveChoiceBoxCB, cb_func1), (_("Edit Timer"), 'CALLFUNC', self.RemoveChoiceBoxCB, cb_func2)]
 			else:
 				cb_func1 = lambda ret: self.removeTimer(timer)
 				cb_func2 = lambda ret: self.editTimer(timer)
 				cb_func3 = lambda ret: self.disableTimer(timer)
-				menu = [(_("Delete timer"), 'CALLFUNC', self.RemoveChoiceBoxCB, cb_func1), (_("Edit timer"), 'CALLFUNC', self.RemoveChoiceBoxCB, cb_func2), (_("Disable timer"), 'CALLFUNC', self.RemoveChoiceBoxCB, cb_func3)]
+				menu = [(_("Delete Timer"), 'CALLFUNC', self.RemoveChoiceBoxCB, cb_func1), (_("Edit Timer"), 'CALLFUNC', self.RemoveChoiceBoxCB, cb_func2), (_("Disable timer"), 'CALLFUNC', self.RemoveChoiceBoxCB, cb_func3)]
 			title = _("Select action for timer %s:") % event.getEventName()
 		else:
 			if not manual:
@@ -1693,7 +1693,7 @@ class EPGSelection(Screen, HelpableScreen):
 							simulTimerList = self.session.nav.RecordTimer.record(entry)
 					if simulTimerList is not None:
 						self.session.openWithCallback(self.finishSanityCorrection, TimerSanityConflict, simulTimerList)
-			self.setTimerButtonText(_("Change timer"))
+			self.setTimerButtonText(_("Change Timer"))
 			self.key_green_choice = self.REMOVE_TIMER
 		else:
 			self.setTimerButtonText(_("Add Timer"))
@@ -1856,7 +1856,7 @@ class EPGSelection(Screen, HelpableScreen):
 					isRecordEvent = True
 
 		if isRecordEvent and self.key_green_choice != self.REMOVE_TIMER:
-			self.setTimerButtonText(_("Change timer"))
+			self.setTimerButtonText(_("Change Timer"))
 			self.key_green_choice = self.REMOVE_TIMER
 		elif not isRecordEvent and self.key_green_choice != self.ADD_TIMER:
 			self.setTimerButtonText(_("Add Timer"))

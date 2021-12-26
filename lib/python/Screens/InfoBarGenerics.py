@@ -579,7 +579,7 @@ class SecondInfoBar(Screen):
 			if name is not None:
 				self["channel"].setText(name)
 			else:
-				self["channel"].setText(_("unknown service"))
+				self["channel"].setText(_("Unknown Service"))
 
 	def sort_func(self, x, y):
 		if x[1] < y[1]:

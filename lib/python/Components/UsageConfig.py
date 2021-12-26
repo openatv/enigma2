@@ -151,7 +151,7 @@ def InitUsageConfig():
 		])
 	config.usage.servicelist_eventprogress_view_mode.addNotifier(refreshServiceList)
 	################
-	config.usage.servicelist_infokey = ConfigSelection(default="event", choices=[("epg", _("Single EPG")), ("event", _("Eventview"))])
+	config.usage.servicelist_infokey = ConfigSelection(default="event", choices=[("epg", _("Single EPG")), ("event", _("Event View"))])
 
 	config.usage.service_icon_enable = ConfigYesNo(default=False)
 	config.usage.service_icon_enable.addNotifier(refreshServiceList)
