@@ -28,7 +28,7 @@ class Input(VariableText, GUIComponent, NumericalTextInput):
 		self.setText(text)
 
 	def __len__(self):
-		return len(self.text)
+		return len(self.text)  #NOSONAR
 
 	def getText(self):
 		return self.textU.encode("UTF-8", "ignore") if PY2 else self.textU
