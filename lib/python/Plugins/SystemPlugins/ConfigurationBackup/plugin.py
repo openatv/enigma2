@@ -107,14 +107,14 @@ class BackupSetup(Screen):
 		print("Creating BackupSetup")
 		self.list = []
 		self["config"] = ConfigList(self.list)
-		self.backup = ConfigSubsection()
-		self.backup.type = ConfigSelection(choices=[("settings", _("enigma2 and network")), ("var", _("/var directory")), ("skin", _("/usr/share/enigma2 directory"))], default="settings")
-		self.backup.location = ConfigSelection(choices=[("mtd", _("Backup")), ("hdd", _("Harddisk")), ("usb", _("USB Stick")), ("cf", _("CF Drive"))])
-		self.list.append(getConfigListEntry(_("Backup Mode"), self.backup.type))
-		self.list.append(getConfigListEntry(_("Backup Location"), self.backup.location))
+		self.backupconfig = ConfigSubsection()
+		self.backupconfig.type = ConfigSelection(choices=[("settings", _("enigma2 and network")), ("var", _("/var directory")), ("skin", _("/usr/share/enigma2 directory"))], default="settings")
+		self.backupconfig.location = ConfigSelection(choices=[("mtd", _("Backup")), ("hdd", _("Harddisk")), ("usb", _("USB Stick")), ("cf", _("CF Drive"))])
+		self.list.append(getConfigListEntry(_("Backup Mode"), self.backupconfig.type))
+		self.list.append(getConfigListEntry(_("Backup Location"), self.backupconfig.location))
 
 	def createBackupfolders(self):
-		self.path = BackupPath[self.backup.location.value]
+		self.path = BackupPath[self.backupconfig.location.value]
 		print("Creating Backup Folder if not already there...")
 		if (exists(self.path) == False):
 			makedirs(self.path)
@@ -125,22 +125,22 @@ class BackupSetup(Screen):
 
 	def Restore(self):
 		print("this will start the restore now!")
-		self.session.open(RestoreMenu, self.backup)
+		self.session.open(RestoreMenu, self.backupconfig)
 
 	def runBackup(self, result):
 		if result:
-			if ismount(MountPoints[self.backup.location.value]):
+			if ismount(MountPoints[self.backupconfig.location.value]):
 				self.createBackupfolders()
 				d = localtime()
 				dt = date(d.tm_year, d.tm_mon, d.tm_mday)
-				self.path = BackupPath[self.backup.location.value]
-				if self.backup.type.value == "settings":
+				self.path = BackupPath[self.backupconfig.location.value]
+				if self.backupconfig.type.value == "settings":
 					print("Backup Mode: Settings")
 					self.session.open(Console, title="Backup running", cmdlist=["tar -czvf " + self.path + "/" + str(dt) + "_settings_backup.tar.gz /etc/enigma2/ /etc/network/interfaces /etc/wpa_supplicant.conf"])
-				elif self.backup.type.value == "var":
+				elif self.backupconfig.type.value == "var":
 					print("Backup Mode: var")
 					self.session.open(Console, title="Backup running", cmdlist=["tar -czvf " + self.path + "/" + str(dt) + "_var_backup.tar.gz /var/"])
-				elif self.backup.type.value == "skin":
+				elif self.backupconfig.type.value == "skin":
 					print("Backup Mode: skin")
 					self.session.open(Console, title="Backup running", cmdlist=["tar -czvf " + self.path + "/" + str(dt) + "_skin_backup.tar.gz /usr/share/enigma2/"])
 			else:
@@ -191,7 +191,7 @@ class RestoreMenu(Screen):
 
 	def fill_list(self):
 		self.flist = []
-		self.path = BackupPath[self.backup.location.value]
+		self.path = BackupPath[self.backupconfig.location.value]
 		if (exists(self.path) == False):
 			makedirs(self.path)
 		for file in listdir(self.path):
