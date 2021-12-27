@@ -273,7 +273,6 @@ int eEncoder::allocateEncoder(const std::string &serviceref, int &buffersize,
 				close(encoder[encoder_index].encoder_fd);
 				encoder[encoder_index].encoder_fd = -1;
 				return(-1);
-				break;
 			}
 		}
 	}
