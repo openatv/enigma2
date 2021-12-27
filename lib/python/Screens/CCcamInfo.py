@@ -906,25 +906,30 @@ class CCcamShareViewMenu(Screen, HelpableScreen):
 					if len(list) > 7:
 						hostname = list[1].replace(" ", "")
 						if hostname != "":
-							if self.uphop == -1:
+
+							updown = list[6]
+							while updown.startswith(" "):
+								updown = updown[1:]
+
+							while updown.endswith(" "):
+								updown = updown[:-1]
+
+							idx = updown.index(" ")
+
+							maxdown = updown[idx + 1:]
+
+							while maxdown.startswith(" "):
+								maxdown = maxdown[1:]
+								down = maxdown
+
+							ulevel = str(self.uphop) if self.uphop != -1 else _("All")
+							up = updown[:idx] if self.uphop != -1 else self.uphop
+
+							if int(up) == self.uphop:
 								caid = list[3].replace(" ", "")
 								provider = list[5].replace(" ", "")
 
 								caidprovider = self.formatCaidProvider(caid, provider)
-
-								tempstr = list[6]
-								while tempstr.startswith(" "):
-									tempstr = tempstr[1:]
-
-								while tempstr.endswith(" "):
-									tempstr = tempstr[:-1]
-
-								idx = tempstr.index(" ")
-								maxdown = tempstr[idx + 1:]
-
-								while maxdown.startswith(" "):
-									maxdown = maxdown[1:]
-									down = maxdown
 
 								if caidprovider not in providerList:
 									providerList.append(caidprovider)
@@ -970,81 +975,6 @@ class CCcamShareViewMenu(Screen, HelpableScreen):
 
 								totalcards += 1
 
-								ulevel = _("All")
-
-							else:
-								updown = list[6]
-								while updown.startswith(" "):
-									updown = updown[1:]
-
-								while updown.endswith(" "):
-									updown = updown[:-1]
-
-								idx = updown.index(" ")
-								up = updown[:idx]
-
-								maxdown = updown[idx + 1:]
-
-								while maxdown.startswith(" "):
-									maxdown = maxdown[1:]
-									down = maxdown
-
-								ulevel = str(self.uphop)
-
-								if int(up) == self.uphop:
-									caid = list[3].replace(" ", "")
-									provider = list[5].replace(" ", "")
-									caidprovider = self.formatCaidProvider(caid, provider)
-									if caidprovider not in providerList:
-										providerList.append(caidprovider)
-										count = 1
-										countList.append(count)
-										numberofcards = count
-										providername = self.providers.get(caidprovider, 'Multiple Providers given')
-										#if providername == 'Multiple Providers given':
-										#	print caidprovider
-
-										numberofreshare = 0
-										if int(down) > 0:
-											resharecards += 1
-											numberofreshare = 1
-										reshareList.append(numberofreshare)
-
-										shareList.append(CCcamShareViewListEntry(caidprovider, providername, str(numberofcards), str(numberofreshare)))
-										self.list.append([caidprovider, providername, numberofcards, numberofreshare])
-
-										totalproviders += 1
-									elif caidprovider in providerList:
-										i = providerList.index(caidprovider)
-										count = countList[i]
-										count += 1
-										countList[i] = count
-										numberofcards = count
-
-										if int(down) > 0:
-											reshare = reshareList[i]
-											reshare += 1
-											#if caidprovider == "05021700":
-											#	print "re: %d" %(reshare)
-											reshareList[i] = reshare
-											numberofreshare = 0
-											numberofreshare = reshare
-											resharecards += 1
-										elif int(down) == 0:
-											numberofreshare = reshareList[i]
-
-										providername = self.providers.get(caidprovider, 'Multiple Providers given')
-										shareList[i] = CCcamShareViewListEntry(caidprovider, providername, str(numberofcards), str(numberofreshare))
-
-									self.hostList.append(hostname)
-									self.caidList.append(caidprovider)
-									totalcards += 1
-									#maxdown = list[6]
-									#while maxdown.startswith(" "):
-										#maxdown = maxdown[1:]
-										#down = maxdown
-									#if int(down)>0:
-										#resharecards +=1
 
 		self.instance.setTitle("%s (%s %d) %s %s" % (_("Share View"), _("Total cards:"), totalcards, _("Hops:"), ulevel))
 		self["title"].setText("%s (%s %d) %s %s" % (_("Share View"), _("Total cards:"), totalcards, _("Hops:"), ulevel))
