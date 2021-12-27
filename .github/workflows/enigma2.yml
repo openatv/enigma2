@@ -12,7 +12,8 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        gcc: [8, 9, 10, 11]
+        gcc: [11]
+        python: [3.9, 3.10]
     steps:
       - name: Install prerequisites
         run: |
@@ -24,7 +25,7 @@ jobs:
           sudo apt-get install build-essential
           sudo apt-get install automake
           sudo apt-get install libtool
-          sudo apt-get install python3.9-dev
+          sudo apt-get install python${{ matrix.python }}-dev
           sudo apt-get install zlib1g-dev
           sudo apt-get install gettext
           sudo apt-get install swig
@@ -43,7 +44,7 @@ jobs:
           ref: '7.0'
       - uses: actions/setup-python@v2
         with:
-          python-version: '3.9'
+          python-version: '${{ matrix.python }}'
 
       - name: Build enigma2 dependencies, gcc-${{ matrix.gcc }}
         env:
