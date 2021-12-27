@@ -78,8 +78,8 @@ l_moviesort = [
 config.movielist.moviesort = ConfigSelection(default=MovieList.SORT_GROUPWISE, choices=l_moviesort)
 
 l_desc = [
-	(MovieList.SHOW_DESCRIPTION, _("yes")),
-	(MovieList.HIDE_DESCRIPTION, _("no"))]
+	(MovieList.SHOW_DESCRIPTION, _("Yes")),
+	(MovieList.HIDE_DESCRIPTION, _("No"))]
 
 config.movielist.description = ConfigSelection(default=MovieList.SHOW_DESCRIPTION, choices=l_desc)
 

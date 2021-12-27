@@ -140,7 +140,7 @@ class TimerEntry(Screen, ConfigListScreen):
 		self.timerentry_date = ConfigDateTime(default=self.timer.begin, formatstring=config.usage.date.full.value, increment=86400)
 		self.timerentry_starttime = ConfigClock(default=self.timer.begin)
 		self.timerentry_endtime = ConfigClock(default=self.timer.end)
-		self.timerentry_showendtime = ConfigSelection(default=(((self.timer.end - self.timer.begin) / 60) > 4), choices=[(True, _("yes")), (False, _("no"))])
+		self.timerentry_showendtime = ConfigSelection(default=(((self.timer.end - self.timer.begin) / 60) > 4), choices=[(True, _("Yes")), (False, _("No"))])
 
 		self.timerentry_repeatedbegindate = ConfigDateTime(default=self.timer.repeatedbegindate, formatstring=config.usage.date.full.value, increment=86400)
 
@@ -150,7 +150,7 @@ class TimerEntry(Screen, ConfigListScreen):
 		for x in (0, 1, 2, 3, 4, 5, 6):
 			self.timerentry_day.append(ConfigYesNo(default=days[x]))
 
-		self.timerrntry_showExtended = ConfigSelection(default=(self.timer.nettraffic == "yes" or self.timer.netip == "yes"), choices=[(True, _("yes")), (False, _("no"))])
+		self.timerrntry_showExtended = ConfigSelection(default=(self.timer.nettraffic == "yes" or self.timer.netip == "yes"), choices=[(True, _("Yes")), (False, _("No"))])
 		self.timerrntry_nettraffic = ConfigSelection(choices=[("yes", _("Yes")), ("no", _("No"))], default=self.timer.nettraffic)
 		self.timerrntry_trafficlimit = ConfigSelection(choices=traffic_table, default=self.timer.trafficlimit)
 		self.timerrntry_netip = ConfigSelection(choices=[("yes", _("Yes")), ("no", _("No"))], default=self.timer.netip)
