@@ -93,7 +93,7 @@ static void logOutput(const char *data, unsigned int len)
 		if (remaining > len)
 			remaining = len;
 
-		memcpy(ringbuffer + ringbuffer_head, data, remaining);
+		memcpy(ringbuffer + ringbuffer_head, data, remaining); //NOSONAR
 		len -= remaining;
 		data += remaining;
 		ringbuffer_head += remaining;
