@@ -44,7 +44,7 @@ int eDVBCIApplicationManagerSession::receivedAPDU(const unsigned char *tag,const
 			char str[dl + 1];
 			memcpy(str, ((char*)data) + 6, dl);
 			if (dl > 0)
-				str[dl] = '\0';
+				str[dl] = '\0'; //NOSONAR
 			for (int i = 0; i < dl; ++i)
 				eDebugNoNewLine("%c", ((unsigned char*)data)[i+6]);
 
