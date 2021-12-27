@@ -1073,14 +1073,19 @@ int eDVBCIInterfaces::setInputSource(int tuner_no, const std::string &source)
 		{
 			eDebug("[CI] eDVBCIInterfaces setInputSource for input %s failed!", srcCI);
 			free(srcCI);
+			srcCI = NULL;
 		}
 		else if (CFile::write(buf, source.c_str()) == -1)
 		{
 			eDebug("[CI] eDVBCIInterfaces setInputSource for input %s failed!", source.c_str());
+			if (srcCI)
+				free(srcCI);
 			return 0;
 		}
 
 		eDebug("[CI] eDVBCIInterfaces setInputSource(%d, %s)", tuner_no, source.c_str());
+		if (srcCI)
+			free(srcCI);
 	}
 	return 0;
 }
