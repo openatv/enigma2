@@ -603,7 +603,7 @@ def InitLcd():
 					open(BoxInfo.getItem("VFD_scroll_delay"), "w").write(str(el.value))
 			config.usage.vfd_scroll_delay = ConfigSlider(default=150, increment=10, limits=(0, 500))
 			config.usage.vfd_scroll_delay.addNotifier(scroll_delay, immediate_feedback=False)
-			config.lcd.hdd = ConfigSelection([("0", _("No")), ("1", _("Yes"))], "1")
+			config.lcd.hdd = ConfigYesNo(default=True)
 		else:
 			config.lcd.hdd = ConfigNothing()
 			config.usage.vfd_scroll_delay = ConfigNothing()

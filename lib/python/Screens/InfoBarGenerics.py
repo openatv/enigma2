@@ -2574,12 +2574,12 @@ class InfoBarSeek:
 				
 			BoxInfo.setItem("SeekStatePlay", True)
 			if exists("/proc/stb/lcd/symbol_hdd"):
-				if config.lcd.hdd.value == "1":
+				if config.lcd.hdd.value:
 					file = open("/proc/stb/lcd/symbol_hdd", "w")
 					file.write('%d' % int(hdd))
 					file.close()
 			if exists("/proc/stb/lcd/symbol_hddprogress"):
-				if config.lcd.hdd.value == "1":
+				if config.lcd.hdd.value:
 					file = open("/proc/stb/lcd/symbol_hddprogress", "w")
 					file.write('%d' % int(self.activity))
 					file.close()
@@ -2591,12 +2591,12 @@ class InfoBarSeek:
 
 		BoxInfo.setItem("SeekStatePlay", True)
 		if exists("/proc/stb/lcd/symbol_hdd"):
-			if config.lcd.hdd.value == "1":
+			if config.lcd.hdd.value:
 				file = open("/proc/stb/lcd/symbol_hdd", "w")
 				file.write('%d' % int(hdd))
 				file.close()
 		if exists("/proc/stb/lcd/symbol_hddprogress"):
-			if config.lcd.hdd.value == "1":
+			if config.lcd.hdd.value:
 				file = open("/proc/stb/lcd/symbol_hddprogress", "w")
 				file.write('%d' % int(self.activity))
 				file.close()
