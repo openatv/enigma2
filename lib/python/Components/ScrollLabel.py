@@ -43,8 +43,6 @@ class ScrollLabel(GUIComponent):
 				elif "scrollbarMode" in attrib:
 					self.scrollbarmode = value
 					self.skinAttributes.remove((attrib, value))
-				elif "borderColor" in attrib or "borderWidth" in attrib:
-					scrollbar_attribs.append((attrib, value))
 				elif "transparent" in attrib or "backgroundColor" in attrib:
 					widget_attribs.append((attrib, value))
 				elif "scrollbarWidth" in attrib:
