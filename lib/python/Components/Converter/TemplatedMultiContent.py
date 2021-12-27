@@ -15,10 +15,10 @@ class TemplatedMultiContent(StringList):
 		del loc["args"]
 		self.active_style = None
 		self.template = eval(args, {}, loc)
-		assert "fonts" in self.template
-		assert "itemHeight" in self.template
-		assert "template" in self.template or "templates" in self.template
-		assert "template" in self.template or "default" in self.template["templates"]  # We need to have a default template.
+		assert "fonts" in self.template, "templates must include a 'fonts' entry"
+		assert "itemHeight" in self.template, "templates must include an 'itemHeight' entry"
+		assert "template" in self.template or "templates" in self.template, "templates must include a 'template' or 'templates' entry"
+		assert "template" in self.template or "default" in self.template["templates"], "templates must include a 'default' template"  # We need to have a default template.
 		if "template" not in self.template:  # Default template can be ["template"] or ["templates"]["default"].
 			self.template["template"] = self.template["templates"]["default"][1]
 			self.template["itemHeight"] = self.template["template"][0]
