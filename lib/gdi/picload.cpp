@@ -316,6 +316,7 @@ static unsigned char *bmp_load(const char *file,  int *x, int *y)
 			break;
 		}
 		default:
+			delete [] pic_buffer;
 			close(fd);
 			return NULL;
 	}
