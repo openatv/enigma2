@@ -1846,10 +1846,15 @@ int eDVBCISlot::setSource(const std::string &source)
 	else if(CFile::write(buf, source.c_str()) == -1)
 	{
 		eDebug("[CI] Slot: %d setSource: %s failed!", getSlotID(), source.c_str());
+		if (srcCI)
+			free(srcCI);
 		return 0;
 	}
 
 	eDebug("[CI] Slot: %d setSource: %s", getSlotID(), source.c_str());
+	if (srcCI)
+		free(srcCI);
+
 	return 0;
 }
 
