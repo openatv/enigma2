@@ -142,8 +142,10 @@ class Setup(ConfigListScreen, Screen, HelpableScreen):
 		else:
 			itemText = _(element.get("text", "??").encode("UTF-8", errors="ignore")) if PY2 else _(element.get("text", "??"))
 			itemDescription = _(element.get("description", " ").encode("UTF-8", errors="ignore")) if PY2 else _(element.get("description", " "))
-		item = eval(element.text or "")
-		if item != "" and not isinstance(item, ConfigNothing):
+		item = eval(element.text or "") if element.text else ""
+		if item == "":
+			self.list.append((self.formatItemText(itemText),))  # Add the comment line to the config list.
+		elif not isinstance(item, ConfigNothing):
 			self.list.append((self.formatItemText(itemText), item, self.formatItemDescription(item, itemDescription)))  # Add the item to the config list.
 		if item is config.usage.setupShowDefault:
 			self.showDefaultChanged = True
