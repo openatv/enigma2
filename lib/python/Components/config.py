@@ -67,9 +67,8 @@ def getKeyNumber(key):
 
 
 def getConfigListEntry(*args):
-	if len(args) < 2:
-		# raise SyntaxError("[Config] Error: 'getConfigListEntry' needs a minimum of two arguments (description, configElement)!")
-		print("[Config] Error: 'getConfigListEntry' needs a minimum of two arguments (description, configElement)!")
+	if len(args) < 1:  # A single argument creates a comment line in the ConfigList.  This item can't be selected!
+		print("[Config] Error: 'getConfigListEntry' needs at least one argument (description)!")
 	return args
 
 
@@ -463,11 +462,14 @@ class descriptionsList(choicesList):
 class ConfigBoolean(ConfigElement):
 	def __init__(self, default=False, descriptions=None, graphic=True):
 		ConfigElement.__init__(self)
-		if descriptions is None:
-			descriptions = {False: _("False"), True: _("True")}
 		if not isinstance(default, bool):
 			# raise TypeError("[Config] Error: 'ConfigBoolean' default must be a Boolean!")
 			print("[Config] Error: 'ConfigBoolean' default must be a Boolean!  (%s)" % default)
+		if descriptions is None:
+			descriptions = {
+				False: _("False"),
+				True: _("True")
+			}
 		if not isinstance(descriptions, dict):
 			raise TypeError("[Config] Error: 'ConfigBoolean' descriptions must be a dictionary!")
 		if not isinstance(graphic, bool):
