@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-11-29 21:27+0000\n"
+"POT-Creation-Date: 2021-12-26 20:08+0000\n"
 "PO-Revision-Date: 2016-04-02 23:17+0200\n"
 "Last-Translator: Andy Blackburn <andyblac@icloud.com>\n"
 "Language-Team: Ivo / enigma2 (c) <ivog@apolllo.lv>\n"
@@ -43,11 +43,6 @@ msgstr ""
 msgid ""
 "\n"
 " Kodi not present. Proceed with install?"
-msgstr ""
-
-msgid ""
-"\n"
-"* Logs location: logs settings, Filename: Enigma2-hdmicec-[date].log"
 msgstr ""
 
 msgid ""
@@ -745,9 +740,6 @@ msgid "%Y-%b-%d"
 msgstr ""
 
 msgid "%Y-%m-%d"
-msgstr ""
-
-msgid "%Y-%m-%d %H-%M"
 msgstr ""
 
 msgid "%Y/%-m/%-d"
@@ -1474,10 +1466,6 @@ msgid ""
 msgstr ""
 
 msgid ""
-"'Handle standby from TV' has a higher priority as 'Handle input from TV'"
-msgstr ""
-
-msgid ""
 "'Handle standby from TV' has a higher priority than 'Handle input from TV'."
 msgstr ""
 
@@ -1515,9 +1503,6 @@ msgstr ""
 #, fuzzy
 msgid "(current image)"
 msgstr "Pašreizējie iestatījumi:"
-
-msgid "(e.g. TV wakeup, but not switched to correct input)"
-msgstr ""
 
 #
 msgid "(empty)"
@@ -1756,32 +1741,11 @@ msgid "16:9"
 msgstr "16:9"
 
 #
-msgid "16:9 Letterbox"
-msgstr "16:9 Letterbox"
-
-#
 msgid "16:9 Always"
 msgstr "16:9 vienmēr"
 
 #
-#, fuzzy
-msgid "16_10_letterbox"
-msgstr "16:10 Letterbox"
-
-msgid "16_10_panscan"
-msgstr ""
-
-msgid "16_9"
-msgstr ""
-
-#
-#, fuzzy
-msgid "16_9_always"
-msgstr "16:9 vienmēr"
-
-#
-#, fuzzy
-msgid "16_9_letterbox"
+msgid "16:9 Letterbox"
 msgstr "16:9 Letterbox"
 
 #
@@ -2032,16 +1996,6 @@ msgstr "4:3 PanScan"
 
 msgid "4X"
 msgstr ""
-
-#
-#, fuzzy
-msgid "4_3_letterbox"
-msgstr "4:3 Letterbox"
-
-#
-#, fuzzy
-msgid "4_3_panscan"
-msgstr "Pan&Scan"
 
 msgid "4s"
 msgstr ""
@@ -2486,11 +2440,6 @@ msgstr "Par"
 msgid "About..."
 msgstr "Par..."
 
-#
-#, fuzzy
-msgid "Accept the current selection"
-msgstr "Aktivizēt pašreizējo konfigurāciju"
-
 msgid "Accessed:"
 msgstr "Piekļuve:"
 
@@ -2529,13 +2478,6 @@ msgid ""
 "from the command line."
 msgstr ""
 
-#, python-format
-msgid ""
-"Activate an way to send individual or specific internal HDMI-CEC commands "
-"from the command line. Type on command line 'echo help > %s' and then read "
-"the file '%s' for a short help."
-msgstr ""
-
 #
 #, fuzzy
 msgid "Activate current configuration"
@@ -2564,16 +2506,6 @@ msgid "Activate timeshift End"
 msgstr ""
 
 msgid "Activate timeshift end and pause"
-msgstr ""
-
-msgid ""
-"Activation takes place immediately. If it does feature not work, then try "
-"again with a slower send interval."
-msgstr ""
-
-msgid ""
-"Activation takes place immediately. If this feature is not supported, the "
-"volume keys has no function!"
 msgstr ""
 
 msgid "Active"
@@ -2614,9 +2546,6 @@ msgstr "Pievienot taimeri"
 msgid "Add Zap+Record Timer"
 msgstr "Pievienot taimeri"
 
-msgid "Add an AutoTimer for the current event"
-msgstr ""
-
 #
 msgid "Add a mark"
 msgstr "Pievienot iezīmi"
@@ -2641,6 +2570,9 @@ msgstr "Pievienot taimeri"
 msgid "Add a record timer for current event"
 msgstr ""
 
+msgid "Add a timer for the current event"
+msgstr ""
+
 msgid "Add a zap timer for current event"
 msgstr ""
 
@@ -2648,6 +2580,9 @@ msgstr ""
 #, fuzzy
 msgid "Add a zap timer for next event"
 msgstr "pārvietot lejup uz nākamo ierakstu"
+
+msgid "Add an AutoTimer for the current event"
+msgstr ""
 
 #
 #, fuzzy
@@ -3047,9 +2982,6 @@ msgid ""
 "receiver. Default: off."
 msgstr ""
 
-msgid "Always select OK"
-msgstr ""
-
 msgid "Always show bouquets"
 msgstr ""
 
@@ -3073,13 +3005,6 @@ msgid ""
 "due to incorrect or missing status messages it may cause the receiver to "
 "respond unexpectedly. On the other hand, tries to respond better to "
 "different operating conditions."
-msgstr ""
-
-msgid ""
-"An attempt is made to capture the current TV status. If this is not possible "
-"due to incorrect or missing status messages, it may cause the receiver to "
-"respond unexpectedly.\n"
-"On the other hand, tries to respond better to different operating conditions."
 msgstr ""
 
 #
@@ -4486,11 +4411,6 @@ msgstr "Kanālu izvēle"
 msgid "Cancel the image selection and exit all menus"
 msgstr "Kanālu izvēle"
 
-#
-#, fuzzy
-msgid "Cancel the selection"
-msgstr "Kanālu izvēle"
-
 msgid "Cancelled upon user request"
 msgstr ""
 
@@ -4592,6 +4512,11 @@ msgstr "Valoda"
 msgid "Change PIN"
 msgstr ""
 
+#
+#, fuzzy
+msgid "Change Timer"
+msgstr "Mainīt PIN"
+
 msgid "Change Volume offset"
 msgstr ""
 
@@ -4632,11 +4557,6 @@ msgstr "Mainīt PIN"
 #
 msgid "Change step size"
 msgstr ""
-
-#
-#, fuzzy
-msgid "Change Timer"
-msgstr "Mainīt PIN"
 
 #
 #, fuzzy
@@ -4895,9 +4815,6 @@ msgstr ""
 msgid "Choose a label that will identify this device within IceTV services."
 msgstr ""
 
-msgid "Choose a setting where your receiver wakes up from standby."
-msgstr ""
-
 msgid "Choose a tag for easy finding a recording."
 msgstr ""
 
@@ -5085,6 +5002,9 @@ msgstr ""
 msgid "Client Info ( Oscam-Version: %s )"
 msgstr ""
 
+msgid "Client is streaming from this box!"
+msgstr ""
+
 msgid "ClientIP"
 msgstr ""
 
@@ -5108,12 +5028,30 @@ msgstr "Aizvērt"
 msgid "Close PiP on exit"
 msgstr "saglabāt repertuāru, izejot"
 
+msgid "Close bouquet list"
+msgstr ""
+
 #
 #, fuzzy
 msgid "Close bouquet list."
 msgstr "beigt buķešu rediģēšanu"
 
 msgid "Close dialog"
+msgstr ""
+
+msgid "Close pop up menu"
+msgstr ""
+
+msgid "Close screen"
+msgstr ""
+
+msgid "Close the context menu"
+msgstr ""
+
+msgid "Close the current screen"
+msgstr ""
+
+msgid "Close the window"
 msgstr ""
 
 #
@@ -6160,6 +6098,9 @@ msgstr "Griešanas redaktors..."
 msgid "Cutlist editor..."
 msgstr "Griešanas redaktors..."
 
+msgid "Cycle PIP(zap)"
+msgstr ""
+
 msgid "Cycling"
 msgstr ""
 
@@ -6581,6 +6522,10 @@ msgid "Defaults"
 msgstr ""
 
 msgid ""
+"Define additional delay in milliseconds before start of http(s) streams."
+msgstr ""
+
+msgid ""
 "Defines how fast the time jumps are repeated. Values lower than 500ms may be "
 "problematic with NAS."
 msgstr ""
@@ -6707,6 +6652,11 @@ msgstr ""
 msgid "Delete Plugins"
 msgstr ""
 
+#
+#, fuzzy
+msgid "Delete Timer"
+msgstr "dzēst datni"
+
 msgid "Delete all tags"
 msgstr ""
 
@@ -6778,11 +6728,6 @@ msgstr ""
 msgid "Delete this tag"
 msgstr ""
 
-#
-#, fuzzy
-msgid "Delete Timer"
-msgstr "dzēst datni"
-
 msgid "Delete unused tags"
 msgstr ""
 
@@ -6823,6 +6768,9 @@ msgid ""
 "descrambling on recording failed. 'Don't descramble, record ECM' save a "
 "scramble recording that can be descrambled on playback. 'Normal' means "
 "descramble the recording and don't record ECM."
+msgstr ""
+
+msgid "Descramble and record ecm"
 msgstr ""
 
 msgid "Descramble http streams"
@@ -7121,6 +7069,10 @@ msgid "Do not record"
 msgstr "ierakstīt"
 
 #
+msgid "Do nothing"
+msgstr "nedarīt neko"
+
+#
 msgid ""
 "Do you really want to check the filesystem?\n"
 "This could take a long time!"
@@ -7366,6 +7318,9 @@ msgstr ""
 msgid "Don't ask again!"
 msgstr ""
 
+msgid "Don't descramble, record ecm"
+msgstr ""
+
 msgid "Don't restart"
 msgstr ""
 
@@ -7551,7 +7506,25 @@ msgstr ""
 msgid "EPG"
 msgstr ""
 
+msgid "EPG Actions"
+msgstr ""
+
+msgid "EPG Bouquet Actions"
+msgstr ""
+
 msgid "EPG Cache Check"
+msgstr ""
+
+msgid "EPG Channel/Service Selection"
+msgstr ""
+
+msgid "EPG Display Actions"
+msgstr ""
+
+msgid "EPG Navigation Actions"
+msgstr ""
+
+msgid "EPG Other Actions"
 msgstr ""
 
 msgid "EPG Search"
@@ -7639,6 +7612,11 @@ msgstr ""
 msgid "Edit Tags"
 msgstr ""
 
+#
+#, fuzzy
+msgid "Edit Timer"
+msgstr "Rediģēt nosaukumu"
+
 msgid "Edit Title"
 msgstr ""
 
@@ -7689,11 +7667,6 @@ msgstr "Rediģēt %s %s domēna vārdu servera konfigurāciju.\n"
 #, fuzzy, python-format
 msgid "Edit the network configuration of your %s %s.\n"
 msgstr "Rediģēt %s %s tīkla konfigurāciju.\n"
-
-#
-#, fuzzy
-msgid "Edit Timer"
-msgstr "Rediģēt nosaukumu"
 
 #
 msgid "Edit title"
@@ -8053,6 +8026,9 @@ msgstr "Atvērt galveno izvēlni..."
 msgid "Enter multi-file selection mode"
 msgstr "Subtitru izvēle"
 
+msgid "Enter number to jump to channel"
+msgstr ""
+
 msgid "Enter persistent PIN code"
 msgstr ""
 
@@ -8300,6 +8276,15 @@ msgstr ""
 msgid "Event Info"
 msgstr ""
 
+msgid "Event View"
+msgstr ""
+
+msgid "Event View Actions"
+msgstr ""
+
+msgid "Event View Context Menu"
+msgstr ""
+
 msgid "Event font size"
 msgstr ""
 
@@ -8309,13 +8294,10 @@ msgstr ""
 msgid "Event view menu"
 msgstr ""
 
+msgid "EventViewEPG Actions"
+msgstr ""
+
 msgid "Eventname only"
-msgstr ""
-
-msgid "Event View"
-msgstr ""
-
-msgid "Event View Context Menu"
 msgstr ""
 
 msgid "Eventview:"
@@ -8861,6 +8843,9 @@ msgstr "Atcelt"
 msgid "Find out more at %s"
 msgstr ""
 
+msgid "Find similar events in the EPG"
+msgstr ""
+
 #
 #, fuzzy
 msgid "Fine movement"
@@ -9329,6 +9314,10 @@ msgid "Go to bookmarked folder"
 msgstr ""
 
 #
+msgid "Go to deep standby"
+msgstr "iet uz dziļo gaidstāvi"
+
+#
 #, fuzzy
 msgid "Go to end of file"
 msgstr "pārlēkt uz saraksta beigām"
@@ -9343,6 +9332,10 @@ msgstr ""
 #, fuzzy
 msgid "Go to parent directory"
 msgstr "Vecākdirektorija"
+
+#
+msgid "Go to standby"
+msgstr "iet uz gaidstāvi"
 
 #
 # ???
@@ -9529,12 +9522,6 @@ msgid "HD60/Multibox/Multiboxse"
 msgstr ""
 
 msgid "HDMI"
-msgstr ""
-
-msgid "HDMI CEC"
-msgstr ""
-
-msgid "HDMI CEC Setup"
 msgstr ""
 
 msgid "HDMI Colordepth"
@@ -9868,6 +9855,9 @@ msgstr ""
 msgid "How many minutes do you want to record?"
 msgstr "Cik minūšu vēlaties ierakstīt?"
 
+msgid "Http(s) stream start delay"
+msgstr ""
+
 #
 msgid "Hue"
 msgstr ""
@@ -9898,13 +9888,13 @@ msgstr "Meklēt austrumos"
 msgid "IMDB search"
 msgstr ""
 
-msgid "IMDb search for current event"
-msgstr ""
-
 msgid "IMDb Details"
 msgstr ""
 
 msgid "IMDb Search"
+msgstr ""
+
+msgid "IMDb search for current event"
 msgstr ""
 
 msgid "INFO"
@@ -10136,12 +10126,6 @@ msgstr ""
 msgid ""
 "If set to 'yes; the infobar will remain shown permanently in 'paused' state "
 "(no timeout)."
-msgstr ""
-
-msgid ""
-"If the 'deep standby workaround' is enabled, it waits until the system time "
-"is synchronized. Depending on the requirement, the devices wake up will "
-"continuing after a maximum of 2 minutes."
 msgstr ""
 
 msgid ""
@@ -10773,9 +10757,6 @@ msgstr ""
 msgid "Irish"
 msgstr ""
 
-msgid "Is not necessary in most cases."
-msgstr ""
-
 msgid "Is this setting ok?"
 msgstr ""
 
@@ -10881,7 +10862,13 @@ msgstr ""
 msgid "Jump to next marked position"
 msgstr ""
 
+msgid "Jump to next page or all up (setup in menu)"
+msgstr ""
+
 msgid "Jump to previous marked position"
+msgstr ""
+
+msgid "Jump to previous page or all down (setup in menu)"
 msgstr ""
 
 msgid "Jump to prime time"
@@ -11430,11 +11417,6 @@ msgstr ""
 msgid "Load"
 msgstr "Ielādēt"
 
-#
-#, fuzzy
-msgid "Load Default Settings"
-msgstr "Rediģēt iestatījumus"
-
 msgid "Load EPG"
 msgstr ""
 
@@ -11968,10 +11950,10 @@ msgstr ""
 msgid "Message"
 msgstr ""
 
-msgid "Message..."
+msgid "Message Box Actions"
 msgstr ""
 
-msgid "Message Box Actions"
+msgid "Message..."
 msgstr ""
 
 msgid "Metadata changed:"
@@ -12299,10 +12281,16 @@ msgstr ""
 msgid "Move the text cursor to the last character"
 msgstr ""
 
+msgid "Move to first line"
+msgstr ""
+
 msgid "Move to first line / screen"
 msgstr ""
 
 msgid "Move to home of list"
+msgstr ""
+
+msgid "Move to last line"
 msgstr ""
 
 msgid "Move to last line / screen"
@@ -12378,6 +12366,9 @@ msgstr "Griezt uz austrumiem"
 #, fuzzy
 msgid "Movie"
 msgstr "Dzēšana"
+
+msgid "Movie Event View Actions"
+msgstr ""
 
 msgid "Movie List"
 msgstr ""
@@ -13183,6 +13174,9 @@ msgstr ""
 msgid "Norfolk Island"
 msgstr ""
 
+msgid "Normal"
+msgstr ""
+
 #
 msgid "North"
 msgstr "Ziemeļi"
@@ -13405,6 +13399,9 @@ msgstr ""
 msgid "OScam Info"
 msgstr ""
 
+msgid "OScam webif disabled"
+msgstr ""
+
 msgid "OScamInfo"
 msgstr ""
 
@@ -13425,6 +13422,9 @@ msgid "Ojibwa"
 msgstr ""
 
 msgid "Ok"
+msgstr ""
+
+msgid "OkCancel Actions"
 msgstr ""
 
 msgid ""
@@ -13542,6 +13542,9 @@ msgstr "Rediģēt taimeri"
 msgid "Open bouquetlist"
 msgstr "beigt buķešu rediģēšanu"
 
+msgid "Open context menu"
+msgstr ""
+
 msgid "Open favourites list"
 msgstr ""
 
@@ -13573,6 +13576,12 @@ msgid "Open the Plugin Browser"
 msgstr ""
 
 msgid "Open the movie list"
+msgstr ""
+
+msgid "Open the multi service EPG view"
+msgstr ""
+
+msgid "Open the single service EPG view"
 msgstr ""
 
 msgid "Open with File Commander"
@@ -13827,6 +13836,9 @@ msgid "Page down"
 msgstr ""
 
 msgid "Page down list"
+msgstr ""
+
+msgid "Page left"
 msgstr ""
 
 msgid "Page right"
@@ -14776,11 +14788,6 @@ msgstr ""
 msgid "PowerTimer Entry"
 msgstr "dzēst vārdu servera ierakstu"
 
-#
-#, fuzzy
-msgid "PowerTimer list"
-msgstr "Rediģēt taimeri"
-
 msgid "PowerTimer Log"
 msgstr ""
 
@@ -14789,6 +14796,11 @@ msgstr ""
 
 msgid "PowerTimer Standby"
 msgstr ""
+
+#
+#, fuzzy
+msgid "PowerTimer list"
+msgstr "Rediģēt taimeri"
 
 msgid "PowerTimers"
 msgstr ""
@@ -15456,6 +15468,9 @@ msgstr "Ierakstīt"
 msgid "Record - same as record button"
 msgstr ""
 
+msgid "Record Actions"
+msgstr ""
+
 #
 #, fuzzy
 msgid "Record next"
@@ -16081,6 +16096,9 @@ msgstr "Iegūst spraudņa informāciju. Lūdzu gaidiet..."
 msgid "Retrieving image slots - Please wait..."
 msgstr "Iegūst spraudņa informāciju. Lūdzu gaidiet..."
 
+msgid "Return the current selection response"
+msgstr ""
+
 #
 msgid "Return to movie list"
 msgstr "Atgriezties uz filmu sarakstu"
@@ -16195,6 +16213,9 @@ msgid "Run script with optional parameter"
 msgstr ""
 
 msgid "Run script with optional parameter in background"
+msgstr ""
+
+msgid "Run the selected menu option"
 msgstr ""
 
 msgid "Rundi"
@@ -17025,6 +17046,9 @@ msgstr ""
 msgid "Select target folder"
 msgstr "Izvēlēties mērķa mapi"
 
+msgid "Select the No / False response"
+msgstr ""
+
 msgid "Select the Swap File Size:"
 msgstr ""
 
@@ -17060,6 +17084,9 @@ msgstr ""
 msgid ""
 "Select the User Band frequency to be assigned to this tuner. This is the "
 "frequency the SCR switch uses to pass the requested transponder to the tuner."
+msgstr ""
+
+msgid "Select the Yes / True response"
 msgstr ""
 
 msgid "Select the character or action under the keyboard cursor"
@@ -18473,6 +18500,12 @@ msgstr ""
 msgid "Show network mounts ..."
 msgstr ""
 
+msgid "Show next event"
+msgstr ""
+
+msgid "Show next page"
+msgstr ""
+
 msgid "Show next picture"
 msgstr ""
 
@@ -18498,6 +18531,12 @@ msgstr "Rādīt pozicioniera kustību"
 #, fuzzy
 msgid "Show preview of current mode (*)."
 msgstr "Aktīvā nosaukuma parametri"
+
+msgid "Show previous event"
+msgstr ""
+
+msgid "Show previous page"
+msgstr ""
 
 #
 #, fuzzy
@@ -18556,7 +18595,7 @@ msgstr "rādīt izslēgšanas izvēlni"
 msgid "Show single EPG for current channel"
 msgstr ""
 
-msgid "Show single epg for current channel (setup in menu)"
+msgid "Show single EPG for current channel (setup in menu)"
 msgstr ""
 
 msgid "Show single service EPG"
@@ -18721,6 +18760,10 @@ msgstr ""
 #, fuzzy
 msgid "Shuffle playlist"
 msgstr "jaukts repertuārs"
+
+#
+msgid "Shut down"
+msgstr ""
 
 #
 msgid "Shutdown"
@@ -19097,13 +19140,6 @@ msgid ""
 "This setting sets the TV to standby before the switch. (If the TV does not "
 "turn back on it may require a slower transmission interval or the repetition "
 "of wake-up commands.)"
-msgstr ""
-
-msgid ""
-"Some TV devices can't swich to correct input if a another hdmi port active. "
-"This setting set the TV to standby before.\n"
-"(If the TV does not turn back on, may require a slower transmission interval "
-"or the repetition of wake-up commands.)"
 msgstr ""
 
 #
@@ -20629,12 +20665,6 @@ msgid ""
 "seconds."
 msgstr ""
 
-msgid ""
-"This is a workaround for some devices there wakeup again after switching in "
-"standby. The wak up command's from other devices will ignored for few "
-"seconds."
-msgstr ""
-
 #, python-format
 msgid "This is the currently selected language.  [%s]"
 msgstr ""
@@ -21557,15 +21587,9 @@ msgid ""
 "for the receiver."
 msgstr ""
 
-msgid "Try to send repeated commands if not all commands are executed.\n"
-msgstr ""
-
 msgid ""
 "Try to send repeated commands if not all commands are executed. (e.g. TV "
 "wakeup, but not switched to correct input.)"
-msgstr ""
-
-msgid "Try to slow down the send interval if not all commands are executed."
 msgstr ""
 
 #
@@ -21915,6 +21939,10 @@ msgid ""
 "Unknown Error creating Skin.\n"
 "Please check after reboot MyMetrixLite-Plugin and apply your settings."
 msgstr ""
+
+#
+msgid "Unknown Service"
+msgstr "nezināms kanāls"
 
 #
 #, fuzzy
@@ -23453,6 +23481,9 @@ msgstr ""
 msgid "Without popup"
 msgstr ""
 
+msgid "Wizard Actions"
+msgstr ""
+
 msgid "Wolof"
 msgstr ""
 
@@ -24012,6 +24043,11 @@ msgid "Zap + Exit"
 msgstr ""
 
 #
+#, fuzzy
+msgid "Zap and record"
+msgstr "ierakstīt"
+
+#
 msgid "Zap back to previously tuned service?"
 msgstr ""
 
@@ -24540,9 +24576,6 @@ msgstr "dzēst griešanu"
 msgid "deleted"
 msgstr "Dzēst"
 
-msgid "Descramble and record ecm"
-msgstr ""
-
 msgid "detective/thriller"
 msgstr ""
 
@@ -24564,10 +24597,6 @@ msgstr ""
 msgid "display"
 msgstr ""
 
-#
-msgid "Do nothing"
-msgstr "nedarīt neko"
-
 msgid "documentary"
 msgstr ""
 
@@ -24575,9 +24604,6 @@ msgid "documentary (general)"
 msgstr ""
 
 msgid "dolby"
-msgstr ""
-
-msgid "Don't descramble, record ecm"
 msgstr ""
 
 #
@@ -24673,9 +24699,6 @@ msgid "end zapping"
 msgstr ""
 
 msgid "enigma2 and network"
-msgstr ""
-
-msgid "Enter number to jump to channel"
 msgstr ""
 
 msgid "entertainment (10-16 year old)"
@@ -24853,14 +24876,6 @@ msgstr ""
 msgid "get the cards' server"
 msgstr ""
 
-#
-msgid "Go to deep standby"
-msgstr "iet uz dziļo gaidstāvi"
-
-#
-msgid "Go to standby"
-msgstr "iet uz gaidstāvi"
-
 msgid "goto current channel and now"
 msgstr ""
 
@@ -24930,9 +24945,6 @@ msgid "height"
 msgstr ""
 
 msgid "help..."
-msgstr ""
-
-msgid "helptext"
 msgstr ""
 
 msgid "hh:mm"
@@ -25038,12 +25050,6 @@ msgid "jump forward to the next title"
 msgstr "pārlēkt uz nākamo nosaukumu"
 
 msgid "jump to chapter by number"
-msgstr ""
-
-msgid "jump to next page or all up (setup in menu)"
-msgstr ""
-
-msgid "jump to previous page or all down (setup in menu)"
 msgstr ""
 
 msgid "just abort, no message"
@@ -25292,7 +25298,7 @@ msgstr ""
 msgid "none"
 msgstr "nē"
 
-msgid "Normal"
+msgid "normal"
 msgstr ""
 
 #
@@ -25376,13 +25382,7 @@ msgstr ""
 msgid "original language"
 msgstr ""
 
-msgid "OScam webif disabled"
-msgstr ""
-
 msgid "packages selected."
-msgstr ""
-
-msgid "Page left"
 msgstr ""
 
 #
@@ -25470,10 +25470,6 @@ msgstr ""
 
 msgid "reboot system"
 msgstr ""
-
-#
-msgid "record"
-msgstr "ierakstīt"
 
 #, python-format
 msgid "record time changed, start prepare is now: %s"
@@ -25762,10 +25758,6 @@ msgid "shuffle"
 msgstr ""
 
 #
-msgid "Shut down"
-msgstr ""
-
-#
 msgid "simple"
 msgstr "vienkāršs"
 
@@ -25996,10 +25988,6 @@ msgstr ""
 msgid "unknown error"
 msgstr "nezināms kanāls"
 
-#
-msgid "Unknown Service"
-msgstr "nezināms kanāls"
-
 msgid "unpack Rar Files"
 msgstr ""
 
@@ -26191,15 +26179,6 @@ msgid ""
 msgstr ""
 
 #
-msgid "zap"
-msgstr "pārslēgt"
-
-#
-#, fuzzy
-msgid "Zap and record"
-msgstr "ierakstīt"
-
-#
 msgid "zapped"
 msgstr "pārslēgts"
 
@@ -26210,6 +26189,54 @@ msgstr "pārslēgts"
 
 msgid "®"
 msgstr ""
+
+#
+#, fuzzy
+#~ msgid "16_10_letterbox"
+#~ msgstr "16:10 Letterbox"
+
+#
+#, fuzzy
+#~ msgid "16_9_always"
+#~ msgstr "16:9 vienmēr"
+
+#
+#, fuzzy
+#~ msgid "16_9_letterbox"
+#~ msgstr "16:9 Letterbox"
+
+#
+#, fuzzy
+#~ msgid "4_3_letterbox"
+#~ msgstr "4:3 Letterbox"
+
+#
+#, fuzzy
+#~ msgid "4_3_panscan"
+#~ msgstr "Pan&Scan"
+
+#
+#, fuzzy
+#~ msgid "Accept the current selection"
+#~ msgstr "Aktivizēt pašreizējo konfigurāciju"
+
+#
+#, fuzzy
+#~ msgid "Cancel the selection"
+#~ msgstr "Kanālu izvēle"
+
+#
+#, fuzzy
+#~ msgid "Load Default Settings"
+#~ msgstr "Rediģēt iestatījumus"
+
+#
+#~ msgid "record"
+#~ msgstr "ierakstīt"
+
+#
+#~ msgid "zap"
+#~ msgstr "pārslēgt"
 
 #~ msgid "Add/remove change timer for current event"
 #~ msgstr "Pievienot/Dzēst mainīt taimeri pašreizējam notikumam"

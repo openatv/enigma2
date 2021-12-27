@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-12-20 21:36+0000\n"
+"POT-Creation-Date: 2021-12-26 20:08+0000\n"
 "PO-Revision-Date: 2021-12-24 16:53+0000\n"
 "Last-Translator: kvinto <badsystem@ukr.net>\n"
 "Language-Team: Ukrainian <https://hosted.weblate.org/projects/openatv/"
@@ -60,14 +60,6 @@ msgid ""
 msgstr ""
 "\n"
 " Kodi немає. Продовжити інсталяцію?"
-
-msgid ""
-"\n"
-"* Logs location: logs settings, Filename: Enigma2-hdmicec-[date].log"
-msgstr ""
-"\n"
-"* Розташування логів: налаштування логів, ім'я файлу: Enigma2-hdmicec-"
-"[date] .log"
 
 msgid ""
 "\n"
@@ -723,9 +715,6 @@ msgstr "%Y-%b-%d"
 
 msgid "%Y-%m-%d"
 msgstr "%Y-%m-%d"
-
-msgid "%Y-%m-%d %H-%M"
-msgstr "%Y-%m-%d %H-%M"
 
 msgid "%Y/%-m/%-d"
 msgstr "%Y/%-m/%-d"
@@ -1399,12 +1388,6 @@ msgstr ""
 "по цій умові і видалятимуться старі файли таймшифта."
 
 msgid ""
-"'Handle standby from TV' has a higher priority as 'Handle input from TV'"
-msgstr ""
-"'Команда на режим очікування від ТВ' має більш високий пріоритет, ніж "
-"'Команда від входу з ТВ'"
-
-msgid ""
 "'Handle standby from TV' has a higher priority than 'Handle input from TV'."
 msgstr ""
 "'Обробка режиму очікування з телевізора' має вищий пріоритет, ніж 'Обробка "
@@ -1438,10 +1421,6 @@ msgstr "(Показати тільки рідер:"
 
 msgid "(current image)"
 msgstr "(поточний імідж)"
-
-msgid "(e.g. TV wakeup, but not switched to correct input)"
-msgstr ""
-"(наприклад, телевізор включився, але не переключився на правильний вхід)"
 
 msgid "(empty)"
 msgstr "(відсутній)"
@@ -1655,26 +1634,11 @@ msgstr "16:10 Панорама"
 msgid "16:9"
 msgstr "16:9"
 
-msgid "16:9 Letterbox"
-msgstr "16:9 Поштова скринька"
-
 msgid "16:9 Always"
 msgstr "16:9 завжди"
 
-msgid "16_10_letterbox"
-msgstr "16_10_поштова скринька"
-
-msgid "16_10_panscan"
-msgstr "16_10_панорама"
-
-msgid "16_9"
-msgstr "16_9"
-
-msgid "16_9_always"
-msgstr "16_9 завжди"
-
-msgid "16_9_letterbox"
-msgstr "16_9_поштова скринька"
+msgid "16:9 Letterbox"
+msgstr "16:9 Поштова скринька"
 
 msgid "18 V"
 msgstr "18 В"
@@ -1906,12 +1870,6 @@ msgstr "4:3 Панорама"
 
 msgid "4X"
 msgstr "4X"
-
-msgid "4_3_letterbox"
-msgstr "4_3 поштова скринька"
-
-msgid "4_3_panscan"
-msgstr "4_3 панорама"
 
 msgid "4s"
 msgstr "4с"
@@ -2346,9 +2304,6 @@ msgstr "Про приймач"
 msgid "About..."
 msgstr "Інформація приймача..."
 
-msgid "Accept the current selection"
-msgstr "Зберегти поточну конфігурацію"
-
 msgid "Accessed:"
 msgstr "Доступ:"
 
@@ -2383,16 +2338,6 @@ msgstr ""
 "Активуйте спосіб надсилання окремих, або конкретних внутрішніх команд HDMI-"
 "CEC з командного рядка."
 
-#, python-format
-msgid ""
-"Activate an way to send individual or specific internal HDMI-CEC commands "
-"from the command line. Type on command line 'echo help > %s' and then read "
-"the file '%s' for a short help."
-msgstr ""
-"Активація способу надсилання окремих, або конкретних внутрішніх команд HDMI-"
-"CEC з командного рядка. Введіть у командному рядку 'echo help > %s', а потім "
-"прочитайте файл '%s' для отримання короткої довідки."
-
 msgid "Activate current configuration"
 msgstr "Активувати поточну конфігурацію"
 
@@ -2419,20 +2364,6 @@ msgstr "Вказати закінчення таймшифта"
 
 msgid "Activate timeshift end and pause"
 msgstr "Вказати закінчення таймшифта і паузу"
-
-msgid ""
-"Activation takes place immediately. If it does feature not work, then try "
-"again with a slower send interval."
-msgstr ""
-"Функція включається зразу. Якщо не працює, спробуйте знову, використовуючи "
-"повільніший інтервал відправлення команд."
-
-msgid ""
-"Activation takes place immediately. If this feature is not supported, the "
-"volume keys has no function!"
-msgstr ""
-"Функція включається зразу. Якщо ця функція не підтримується то кнопки "
-"гучності не мають функцій!"
 
 msgid "Active"
 msgstr "Активний"
@@ -2464,9 +2395,6 @@ msgstr "Додати Таймер Переключення"
 msgid "Add Zap+Record Timer"
 msgstr "Додати Таймер Переключення+Запис"
 
-msgid "Add an AutoTimer for the current event"
-msgstr "Додати авто таймер для поточного події"
-
 msgid "Add a mark"
 msgstr "Додати маркер"
 
@@ -2485,11 +2413,17 @@ msgstr "Додати таймер запису"
 msgid "Add a record timer for current event"
 msgstr "Додати таймер запису для поточного події"
 
+msgid "Add a timer for the current event"
+msgstr ""
+
 msgid "Add a zap timer for current event"
 msgstr "Додати таймер перемикання для даної передачі"
 
 msgid "Add a zap timer for next event"
 msgstr "Додати таймер перемикання для наступної передачі"
+
+msgid "Add an AutoTimer for the current event"
+msgstr "Додати авто таймер для поточного події"
 
 msgid "Add bookmark"
 msgstr "Додати закладку"
@@ -2859,9 +2793,6 @@ msgstr ""
 "дозволить розкодовувати записи (називається декодуванням в автономному "
 "режимі). Стандартно: вимкнено."
 
-msgid "Always select OK"
-msgstr "Завжди виберати OK"
-
 msgid "Always show bouquets"
 msgstr "Завжди показувати фаворити"
 
@@ -2890,17 +2821,6 @@ msgstr ""
 "через неправильні, або відсутні повідомлення про статус, це може призвести "
 "до неочікуваної відповіді приймача. З іншого боку, намагається краще "
 "реагувати на різні умови експлуатації."
-
-msgid ""
-"An attempt is made to capture the current TV status. If this is not possible "
-"due to incorrect or missing status messages, it may cause the receiver to "
-"respond unexpectedly.\n"
-"On the other hand, tries to respond better to different operating conditions."
-msgstr ""
-"Зроблено спробу встановити поточний статус телевізора. Якщо це неможливо "
-"через неправильні, або відсутні повідомлення про стан, це може призвести до "
-"несподіваного реагування приймача.\n"
-"З іншого боку, є можливість краще реагувати на різні умови роботи."
 
 msgid "An empty filename is illegal."
 msgstr "Пусте ім'я файлу є недопустимим."
@@ -4220,9 +4140,6 @@ msgstr "Скасувати вибір іміджу і вийти"
 msgid "Cancel the image selection and exit all menus"
 msgstr "Скасувати вибір іміджу та вийдіть із усіх меню"
 
-msgid "Cancel the selection"
-msgstr "Скасувати вибір"
-
 msgid "Cancelled upon user request"
 msgstr "Скасовано за запитом користувача"
 
@@ -4313,6 +4230,9 @@ msgstr "Змінити Мову"
 msgid "Change PIN"
 msgstr "Змінити ПІН"
 
+msgid "Change Timer"
+msgstr "Змінити таймер"
+
 msgid "Change Volume offset"
 msgstr "Зміна кроку гучності"
 
@@ -4345,9 +4265,6 @@ msgstr "Змінити скін"
 
 msgid "Change step size"
 msgstr "Змінити розмір кроку"
-
-msgid "Change Timer"
-msgstr "Змінити таймер"
 
 msgid "Change to bouquet"
 msgstr "Змінити фаворитний список"
@@ -4580,9 +4497,6 @@ msgid "Choose a label that will identify this device within IceTV services."
 msgstr ""
 "Виберіть емблему, яка буде ідентифікувати цей пристрій у послугах IceTV."
 
-msgid "Choose a setting where your receiver wakes up from standby."
-msgstr "Виберіть параметр, у якому приймач включиться в режимі очікування."
-
 msgid "Choose a tag for easy finding a recording."
 msgstr "Виберіть тег, щоб полегшити пошук записів."
 
@@ -4792,6 +4706,9 @@ msgstr "Натисніть на пульті ту кнопку, дію якої 
 msgid "Client Info ( Oscam-Version: %s )"
 msgstr "Інформація Client(Оскам-Версія: %s)"
 
+msgid "Client is streaming from this box!"
+msgstr ""
+
 msgid "ClientIP"
 msgstr "АПКлієнт"
 
@@ -4810,11 +4727,26 @@ msgstr "Закрити"
 msgid "Close PiP on exit"
 msgstr "Закрити ПІП на виході"
 
+msgid "Close bouquet list"
+msgstr ""
+
 msgid "Close bouquet list."
 msgstr "Закрити список фаворитів."
 
 msgid "Close dialog"
 msgstr "Закрити діалог"
+
+msgid "Close pop up menu"
+msgstr ""
+
+msgid "Close screen"
+msgstr ""
+
+msgid "Close the context menu"
+msgstr ""
+
+msgid "Close the current screen"
+msgstr ""
 
 msgid "Close the window"
 msgstr "Закрити це вікно"
@@ -5864,6 +5796,9 @@ msgstr "Відео Редактор"
 msgid "Cutlist editor..."
 msgstr "Відео-редактор..."
 
+msgid "Cycle PIP(zap)"
+msgstr ""
+
 msgid "Cycling"
 msgstr "Велоспорт"
 
@@ -6379,6 +6314,9 @@ msgstr "Видалити мови"
 msgid "Delete Plugins"
 msgstr "Видалити плагіни"
 
+msgid "Delete Timer"
+msgstr "Видалити таймер"
+
 msgid "Delete all tags"
 msgstr "Видалити всі теги"
 
@@ -6436,9 +6374,6 @@ msgstr "Видалити вибрані файли, або каталоги"
 msgid "Delete this tag"
 msgstr "Видалити даний тег"
 
-msgid "Delete Timer"
-msgstr "Видалити таймер"
-
 msgid "Delete unused tags"
 msgstr "Видалити невикористані теги"
 
@@ -6481,6 +6416,9 @@ msgstr ""
 "відтворенні, коли при записі не вдається розкодувати. 'Не розкодовувати і "
 "записати ECM' зберігає закодовані записи, які можуть бути розкодовані під "
 "час відтворення. 'Звичайний' розкодовані записи без запису ECM."
+
+msgid "Descramble and record ecm"
+msgstr "розкодувати і записати ecm"
 
 msgid "Descramble http streams"
 msgstr "Розкодувати http потік"
@@ -6741,6 +6679,9 @@ msgstr "Не прошивати приймач"
 msgid "Do not record"
 msgstr "Не записувати"
 
+msgid "Do nothing"
+msgstr "нічого не робити"
+
 msgid ""
 "Do you really want to check the filesystem?\n"
 "This could take a long time!"
@@ -6981,6 +6922,9 @@ msgstr "Не потрібно додавати цей запис"
 msgid "Don't ask again!"
 msgstr "Не потрібно запитувати знову!"
 
+msgid "Don't descramble, record ecm"
+msgstr "не розкодовувати, запис ecm"
+
 msgid "Don't restart"
 msgstr "Не перезавантажуйте"
 
@@ -7153,8 +7097,26 @@ msgstr "ВидалитиCD довге натискання"
 msgid "EPG"
 msgstr "ЕПГ"
 
+msgid "EPG Actions"
+msgstr ""
+
+msgid "EPG Bouquet Actions"
+msgstr ""
+
 msgid "EPG Cache Check"
 msgstr "Перевірити кеш ЕПГ"
+
+msgid "EPG Channel/Service Selection"
+msgstr ""
+
+msgid "EPG Display Actions"
+msgstr ""
+
+msgid "EPG Navigation Actions"
+msgstr ""
+
+msgid "EPG Other Actions"
+msgstr ""
 
 msgid "EPG Search"
 msgstr "Пошук ЕПГ"
@@ -7242,6 +7204,9 @@ msgstr "Редагування Чотири-екранного Вікна"
 msgid "Edit Tags"
 msgstr "Редактувати теги"
 
+msgid "Edit Timer"
+msgstr "Редагувати таймер"
+
 msgid "Edit Title"
 msgstr "Редагувати назву"
 
@@ -7276,9 +7241,6 @@ msgstr "Редагувати конфігурацію DNS Вашого %s %s.\n"
 #, python-format
 msgid "Edit the network configuration of your %s %s.\n"
 msgstr "Редагувати конфігурацію мережі Вашого %s %s.\n"
-
-msgid "Edit Timer"
-msgstr "Редагувати таймер"
 
 msgid "Edit title"
 msgstr "Змінити назву"
@@ -7629,6 +7591,9 @@ msgstr "Вхід у Головне Меню..."
 msgid "Enter multi-file selection mode"
 msgstr "Вхід у режим вибору декількох файлів"
 
+msgid "Enter number to jump to channel"
+msgstr "введіть номер, щоб перейти на канал."
+
 msgid "Enter persistent PIN code"
 msgstr "Введіть надійний пін-код"
 
@@ -7898,6 +7863,15 @@ msgstr "Передача"
 msgid "Event Info"
 msgstr "Інформація про передачу"
 
+msgid "Event View"
+msgstr "Перегляд завдань"
+
+msgid "Event View Actions"
+msgstr ""
+
+msgid "Event View Context Menu"
+msgstr "Меню перегляду опису передачі"
+
 msgid "Event font size"
 msgstr "Розмір шрифту передачі"
 
@@ -7907,14 +7881,11 @@ msgstr "Перегляд передачі"
 msgid "Event view menu"
 msgstr "Меню перегляду передачі"
 
+msgid "EventViewEPG Actions"
+msgstr ""
+
 msgid "Eventname only"
 msgstr "Тільки назва передачі"
-
-msgid "Event View"
-msgstr "Перегляд завдань"
-
-msgid "Event View Context Menu"
-msgstr "Меню перегляду опису передачі"
 
 msgid "Eventview:"
 msgstr "Перегляд передачі:"
@@ -8410,6 +8381,9 @@ msgstr "Фінанси"
 msgid "Find out more at %s"
 msgstr "Дізнайтеся більше на %s"
 
+msgid "Find similar events in the EPG"
+msgstr ""
+
 msgid "Fine movement"
 msgstr "Точне переміщення"
 
@@ -8813,6 +8787,9 @@ msgstr "Перейти вниз списку"
 msgid "Go to bookmarked folder"
 msgstr "Перейти до папки закладок"
 
+msgid "Go to deep standby"
+msgstr "вимкнути приймач"
+
 msgid "Go to end of file"
 msgstr "Перейти у кінець файла"
 
@@ -8824,6 +8801,9 @@ msgstr "Перейти до першого фільму або на почато
 
 msgid "Go to parent directory"
 msgstr "Перейти до кореневого каталогу"
+
+msgid "Go to standby"
+msgstr "перейти в режим очікування"
 
 msgid "Go to start of file"
 msgstr "Перейти на початок файла"
@@ -8999,12 +8979,6 @@ msgstr "HD60/Multibox/Multiboxse"
 
 msgid "HDMI"
 msgstr "HDMI"
-
-msgid "HDMI CEC"
-msgstr "HDMI CEC"
-
-msgid "HDMI CEC Setup"
-msgstr "Налаштування HDMI CEC"
 
 msgid "HDMI Colordepth"
 msgstr "Глибина кольору HDMI"
@@ -9320,6 +9294,9 @@ msgstr "Години Хвилини Секунди"
 msgid "How many minutes do you want to record?"
 msgstr "Скільки хвилин ви хочете записати?"
 
+msgid "Http(s) stream start delay"
+msgstr ""
+
 msgid "Hue"
 msgstr "Відтінок"
 
@@ -9344,14 +9321,14 @@ msgstr "IMDB Пошук"
 msgid "IMDB search"
 msgstr "IMDB пошук"
 
-msgid "IMDb search for current event"
-msgstr "Пошук інформації IMDb про поточну подію"
-
 msgid "IMDb Details"
 msgstr "IMDb подробиці"
 
 msgid "IMDb Search"
 msgstr "IMDb пошук"
+
+msgid "IMDb search for current event"
+msgstr "Пошук інформації IMDb про поточну подію"
 
 msgid "INFO"
 msgstr "ІНФО"
@@ -9610,15 +9587,6 @@ msgid ""
 msgstr ""
 "Якщо вибрано 'так', інформаційна панель в режимі 'пауза' буде показана "
 "постійно (немає тайм-ауту)."
-
-msgid ""
-"If the 'deep standby workaround' is enabled, it waits until the system time "
-"is synchronized. Depending on the requirement, the devices wake up will "
-"continuing after a maximum of 2 minutes."
-msgstr ""
-"Якщо вибрано функцію 'глибокий режим очікування', вона чекає, доки не "
-"відбудеться синхронізація системного часу. Залежно від потреби, пробудження "
-"пристроїв триватиме максимум 2 хвилини."
 
 msgid ""
 "If the deep standby workaround is enabled wait until the system time is "
@@ -10195,9 +10163,6 @@ msgstr "Ірландія"
 msgid "Irish"
 msgstr "Ірландська"
 
-msgid "Is not necessary in most cases."
-msgstr "У більшості випадків це не є необхідним."
-
 msgid "Is this setting ok?"
 msgstr "Чи це налаштування є нормальним?"
 
@@ -10295,8 +10260,14 @@ msgstr "Перейти до останнього елемента списку, 
 msgid "Jump to next marked position"
 msgstr "Перейти до наступної мітки"
 
+msgid "Jump to next page or all up (setup in menu)"
+msgstr ""
+
 msgid "Jump to previous marked position"
 msgstr "Перейти до попередньої мітки"
+
+msgid "Jump to previous page or all down (setup in menu)"
+msgstr ""
 
 msgid "Jump to prime time"
 msgstr "Перейти до прайм-тайм"
@@ -10773,9 +10744,6 @@ msgstr "Телевізійні передачі в прямому ефірі"
 msgid "Load"
 msgstr "Завантажити"
 
-msgid "Load Default Settings"
-msgstr "Завантажити Стандартні налаштування"
-
 msgid "Load EPG"
 msgstr "Завантаження ЕПГ"
 
@@ -11240,11 +11208,11 @@ msgstr "Мерлін-Центр ЕПГ"
 msgid "Message"
 msgstr "Повідомлення"
 
-msgid "Message..."
-msgstr "Повідомлення..."
-
 msgid "Message Box Actions"
 msgstr "Функції Повідомлень"
+
+msgid "Message..."
+msgstr "Повідомлення..."
 
 msgid "Metadata changed:"
 msgstr "Змінено метадані:"
@@ -11604,6 +11572,9 @@ msgstr "Переміщення"
 
 msgid "Movie"
 msgstr "Запис"
+
+msgid "Movie Event View Actions"
+msgstr ""
 
 msgid "Movie List"
 msgstr "Список записів"
@@ -12301,6 +12272,9 @@ msgstr "Жодна з хеш-програм для хешей %s недосту�
 msgid "Norfolk Island"
 msgstr "Острів Норфолк"
 
+msgid "Normal"
+msgstr "нормальний"
+
 msgid "North"
 msgstr "Північ"
 
@@ -12505,6 +12479,9 @@ msgstr "OSD налаштування"
 msgid "OScam Info"
 msgstr "Oscam Інфо"
 
+msgid "OScam webif disabled"
+msgstr "oscam webif відключено"
+
 msgid "OScamInfo"
 msgstr "Oscam-Інфо"
 
@@ -12525,6 +12502,9 @@ msgstr "Ojibwa"
 
 msgid "Ok"
 msgstr "Ок"
+
+msgid "OkCancel Actions"
+msgstr ""
 
 msgid ""
 "Older files in the timeshift directory are removed on every event change."
@@ -12627,6 +12607,9 @@ msgstr "Відкрити список таймерів"
 msgid "Open bouquetlist"
 msgstr "Відкрити фаворитний список"
 
+msgid "Open context menu"
+msgstr ""
+
 msgid "Open favourites list"
 msgstr "Відкрити список фаворитів"
 
@@ -12659,6 +12642,12 @@ msgstr "Відкрити Провідник додатків"
 
 msgid "Open the movie list"
 msgstr "Відкрити список фільмів"
+
+msgid "Open the multi service EPG view"
+msgstr ""
+
+msgid "Open the single service EPG view"
+msgstr ""
 
 msgid "Open with File Commander"
 msgstr "Відкрити за допомогою File Commander"
@@ -12899,6 +12888,9 @@ msgstr "Сторінка вниз"
 
 msgid "Page down list"
 msgstr "Сторінка вниз списку"
+
+msgid "Page left"
+msgstr "сторінка вліво"
 
 msgid "Page right"
 msgstr "Сторінка вправо"
@@ -13753,9 +13745,6 @@ msgstr "Таймер Живлення Глибокий режим очікува
 msgid "PowerTimer Entry"
 msgstr "Відкрити мененджер живлення"
 
-msgid "PowerTimer list"
-msgstr "Список таймерів живлення"
-
 msgid "PowerTimer Log"
 msgstr "Лог мененджера живлення"
 
@@ -13764,6 +13753,9 @@ msgstr "Перегляд таймерів живлення"
 
 msgid "PowerTimer Standby"
 msgstr "Таймер Живлення Режим очікування"
+
+msgid "PowerTimer list"
+msgstr "Список таймерів живлення"
 
 msgid "PowerTimers"
 msgstr "Таймери Живлення"
@@ -14372,6 +14364,9 @@ msgstr "Запис"
 msgid "Record - same as record button"
 msgstr "Запис - так само, як кнопка запису"
 
+msgid "Record Actions"
+msgstr ""
+
 msgid "Record next"
 msgstr "Записати наступне"
 
@@ -14912,6 +14907,9 @@ msgstr "Отримання списку іміджів. Прохання зач�
 msgid "Retrieving image slots - Please wait..."
 msgstr "Отримання списку слотів. Прохання зачекати..."
 
+msgid "Return the current selection response"
+msgstr ""
+
 msgid "Return to movie list"
 msgstr "Повернутись до списку фільмів"
 
@@ -15014,6 +15012,9 @@ msgstr "Запустити скрипт із додатковим парамет
 
 msgid "Run script with optional parameter in background"
 msgstr "Запустити скрипт із додатковим параметром у фоні"
+
+msgid "Run the selected menu option"
+msgstr ""
 
 msgid "Rundi"
 msgstr "Раунди"
@@ -15774,6 +15775,9 @@ msgstr "Виберіть метод сортування:"
 msgid "Select target folder"
 msgstr "Виберіть папку призначення"
 
+msgid "Select the No / False response"
+msgstr ""
+
 msgid "Select the Swap File Size:"
 msgstr "Виберіть розмір файлу підкачки:"
 
@@ -15828,6 +15832,9 @@ msgstr ""
 "Виберіть частоту Користувацької Смуги, яку буде призначено цьому тюнеру. Це "
 "частота, яку перемикач SCR використовує для передачі вибраного транспондера "
 "в тюнер."
+
+msgid "Select the Yes / True response"
+msgstr ""
 
 msgid "Select the character or action under the keyboard cursor"
 msgstr "Виберіть символ, або дію під курсором клавіатури"
@@ -17216,6 +17223,12 @@ msgstr "Показати мульти телегід"
 msgid "Show network mounts ..."
 msgstr "Показати мережеві підключення..."
 
+msgid "Show next event"
+msgstr ""
+
+msgid "Show next page"
+msgstr ""
+
 msgid "Show next picture"
 msgstr "Показати наступне зображення"
 
@@ -17236,6 +17249,12 @@ msgstr "Показувати рух позиціонера"
 
 msgid "Show preview of current mode (*)."
 msgstr "Показати попередній перегляд поточного режиму (*)."
+
+msgid "Show previous event"
+msgstr ""
+
+msgid "Show previous page"
+msgstr ""
 
 msgid "Show previous picture"
 msgstr "Показати попереднє зображення"
@@ -17286,8 +17305,8 @@ msgstr "Показати меню вимкнення"
 msgid "Show single EPG for current channel"
 msgstr "Показати одиночний телегід для поточного каналу"
 
-msgid "Show single epg for current channel (setup in menu)"
-msgstr "Показати одиночний телегід для поточного каналу (налаштування в меню)"
+msgid "Show single EPG for current channel (setup in menu)"
+msgstr ""
 
 msgid "Show single service EPG"
 msgstr "Показати одиночний телегід каналу"
@@ -17428,6 +17447,9 @@ msgstr "Показується статус переглянутого запи�
 
 msgid "Shuffle playlist"
 msgstr "Перемішати список відтворення"
+
+msgid "Shut down"
+msgstr "вимкнути"
 
 msgid "Shutdown"
 msgstr "Вимкнути"
@@ -17754,17 +17776,6 @@ msgid ""
 "turn back on it may require a slower transmission interval or the repetition "
 "of wake-up commands.)"
 msgstr ""
-
-msgid ""
-"Some TV devices can't swich to correct input if a another hdmi port active. "
-"This setting set the TV to standby before.\n"
-"(If the TV does not turn back on, may require a slower transmission interval "
-"or the repetition of wake-up commands.)"
-msgstr ""
-"Деякі ТВ не можуть перемикатися на правильний вхід, якщо інший активний. Це "
-"налаштування переведе телевізор спочатку в режим очікування.\n"
-"(якщо ТВ не ввімкнеться можна попробувати сповільнити інтервал передачі або "
-"повторення команд пробудження.)"
 
 msgid "Some plugins are not available:\n"
 msgstr "Деякі додатки не доступні:\n"
@@ -19242,15 +19253,6 @@ msgid ""
 "seconds."
 msgstr ""
 
-msgid ""
-"This is a workaround for some devices there wakeup again after switching in "
-"standby. The wak up command's from other devices will ignored for few "
-"seconds."
-msgstr ""
-"Це обхідний шлях для деяких пристроїв, які знову вмикаються після переходу в "
-"режим очікування. Команди включення з інших пристроїв будуть ігноруватися "
-"протягом декількох секунд."
-
 #, python-format
 msgid "This is the currently selected language.  [%s]"
 msgstr "Це вибрана мова.  [%s]"
@@ -20199,19 +20201,10 @@ msgstr ""
 "Спробуйте запобігти перезавантаження при програмних помилках та збереження "
 "доступності до приймача."
 
-msgid "Try to send repeated commands if not all commands are executed.\n"
-msgstr ""
-"Спробуйте надсилати повторні команди, якщо не всі команди виконуються.\n"
-
 msgid ""
 "Try to send repeated commands if not all commands are executed. (e.g. TV "
 "wakeup, but not switched to correct input.)"
 msgstr ""
-
-msgid "Try to slow down the send interval if not all commands are executed."
-msgstr ""
-"Спробуйте сповільнити інтервал відправлення команд, якщо не всі команди "
-"виконані."
 
 msgid "Trying to download a new packetlist. Please wait..."
 msgstr "Спроба завантажити новий список пакетів. Зачекайте..."
@@ -20513,6 +20506,9 @@ msgstr ""
 "Невідома помилка створення скіну.\n"
 "Будь ласка, перевірте після перезавантаження MyMetrixLite-Plugin і "
 "застосуйте Ваші налаштування."
+
+msgid "Unknown Service"
+msgstr "невідомий канал"
 
 msgid "Unknown error code"
 msgstr "невідомий код помилки"
@@ -22075,6 +22071,9 @@ msgstr ""
 msgid "Without popup"
 msgstr "Без спливаючих вікон"
 
+msgid "Wizard Actions"
+msgstr ""
+
 msgid "Wolof"
 msgstr "Wolof"
 
@@ -22673,6 +22672,9 @@ msgstr "Переключити"
 msgid "Zap + Exit"
 msgstr "Переключити + Вихід"
 
+msgid "Zap and record"
+msgstr "переключити і записати"
+
 msgid "Zap back to previously tuned service?"
 msgstr "Переключити на попередній канал?"
 
@@ -23146,9 +23148,6 @@ msgstr "видалити відмічене"
 msgid "deleted"
 msgstr "видалено"
 
-msgid "Descramble and record ecm"
-msgstr "розкодувати і записати ecm"
-
 msgid "detective/thriller"
 msgstr "детектив/трілер"
 
@@ -23167,9 +23166,6 @@ msgstr "обговорення/інтерв'ю/дебати"
 msgid "display"
 msgstr "дисплей"
 
-msgid "Do nothing"
-msgstr "нічого не робити"
-
 msgid "documentary"
 msgstr "документальний"
 
@@ -23178,9 +23174,6 @@ msgstr "документальний (загальна)"
 
 msgid "dolby"
 msgstr "dolby"
-
-msgid "Don't descramble, record ecm"
-msgstr "не розкодовувати, запис ecm"
 
 msgid "done!"
 msgstr "виконано!"
@@ -23263,9 +23256,6 @@ msgstr "кінець переключення"
 
 msgid "enigma2 and network"
 msgstr "enigma2 і мережа"
-
-msgid "Enter number to jump to channel"
-msgstr "введіть номер, щоб перейти на канал."
 
 msgid "entertainment (10-16 year old)"
 msgstr "розваги (10-16 років)"
@@ -23429,12 +23419,6 @@ msgstr "садівництво"
 msgid "get the cards' server"
 msgstr "отримати картки сервера"
 
-msgid "Go to deep standby"
-msgstr "вимкнути приймач"
-
-msgid "Go to standby"
-msgstr "перейти в режим очікування"
-
 msgid "goto current channel and now"
 msgstr "перейти до поточного каналу зараз"
 
@@ -23501,9 +23485,6 @@ msgstr "висота"
 
 msgid "help..."
 msgstr "допомога..."
-
-msgid "helptext"
-msgstr "текст допомоги"
 
 msgid "hh:mm"
 msgstr "гг:хх"
@@ -23598,12 +23579,6 @@ msgstr "перейти до наступного епізоду"
 
 msgid "jump to chapter by number"
 msgstr "перейти до розділу по номеру"
-
-msgid "jump to next page or all up (setup in menu)"
-msgstr "перейти на наступну сторінку, або все вгору (налаштування в меню)"
-
-msgid "jump to previous page or all down (setup in menu)"
-msgstr "перейти на попередню сторінку, або всі вниз (налаштування в меню)"
 
 msgid "just abort, no message"
 msgstr "просто перервати, без повідомлення"
@@ -23812,8 +23787,8 @@ msgstr "пристрої не знайдені"
 msgid "none"
 msgstr "жодного"
 
-msgid "Normal"
-msgstr "нормальний"
+msgid "normal"
+msgstr ""
 
 msgid "not"
 msgstr "не"
@@ -23881,14 +23856,8 @@ msgstr "оригінал"
 msgid "original language"
 msgstr "мова оригіналу"
 
-msgid "OScam webif disabled"
-msgstr "oscam webif відключено"
-
 msgid "packages selected."
 msgstr "виділені пакети."
-
-msgid "Page left"
-msgstr "сторінка вліво"
 
 msgid "pass"
 msgstr "пароль"
@@ -23970,9 +23939,6 @@ msgstr "реальні записи, або потокове мовлення"
 
 msgid "reboot system"
 msgstr "перезавантажити систему"
-
-msgid "record"
-msgstr "запис"
 
 #, python-format
 msgid "record time changed, start prepare is now: %s"
@@ -24226,9 +24192,6 @@ msgstr "шоу/ігрове шоу (загальна)"
 msgid "shuffle"
 msgstr "перемішати"
 
-msgid "Shut down"
-msgstr "вимкнути"
-
 msgid "simple"
 msgstr "простий"
 
@@ -24433,9 +24396,6 @@ msgstr "невідомий"
 msgid "unknown error"
 msgstr "невідома помилка"
 
-msgid "Unknown Service"
-msgstr "невідомий канал"
-
 msgid "unpack Rar Files"
 msgstr "розпакувати Rar файли"
 
@@ -24613,12 +24573,6 @@ msgstr ""
 "ваш %s %s може стати непридатним тепер. Прочитайте керівництво по "
 "використанню перш ніж перезавантажити Ваш %s %s."
 
-msgid "zap"
-msgstr "переключити"
-
-msgid "Zap and record"
-msgstr "переключити і записати"
-
 msgid "zapped"
 msgstr "переключений"
 
@@ -24627,6 +24581,165 @@ msgstr "переключення"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid ""
+#~ "\n"
+#~ "* Logs location: logs settings, Filename: Enigma2-hdmicec-[date].log"
+#~ msgstr ""
+#~ "\n"
+#~ "* Розташування логів: налаштування логів, ім'я файлу: Enigma2-hdmicec-"
+#~ "[date] .log"
+
+#~ msgid "%Y-%m-%d %H-%M"
+#~ msgstr "%Y-%m-%d %H-%M"
+
+#~ msgid ""
+#~ "'Handle standby from TV' has a higher priority as 'Handle input from TV'"
+#~ msgstr ""
+#~ "'Команда на режим очікування від ТВ' має більш високий пріоритет, ніж "
+#~ "'Команда від входу з ТВ'"
+
+#~ msgid "(e.g. TV wakeup, but not switched to correct input)"
+#~ msgstr ""
+#~ "(наприклад, телевізор включився, але не переключився на правильний вхід)"
+
+#~ msgid "16_10_letterbox"
+#~ msgstr "16_10_поштова скринька"
+
+#~ msgid "16_10_panscan"
+#~ msgstr "16_10_панорама"
+
+#~ msgid "16_9"
+#~ msgstr "16_9"
+
+#~ msgid "16_9_always"
+#~ msgstr "16_9 завжди"
+
+#~ msgid "16_9_letterbox"
+#~ msgstr "16_9_поштова скринька"
+
+#~ msgid "4_3_letterbox"
+#~ msgstr "4_3 поштова скринька"
+
+#~ msgid "4_3_panscan"
+#~ msgstr "4_3 панорама"
+
+#~ msgid "Accept the current selection"
+#~ msgstr "Зберегти поточну конфігурацію"
+
+#, python-format
+#~ msgid ""
+#~ "Activate an way to send individual or specific internal HDMI-CEC commands "
+#~ "from the command line. Type on command line 'echo help > %s' and then "
+#~ "read the file '%s' for a short help."
+#~ msgstr ""
+#~ "Активація способу надсилання окремих, або конкретних внутрішніх команд "
+#~ "HDMI-CEC з командного рядка. Введіть у командному рядку 'echo help > %s', "
+#~ "а потім прочитайте файл '%s' для отримання короткої довідки."
+
+#~ msgid ""
+#~ "Activation takes place immediately. If it does feature not work, then try "
+#~ "again with a slower send interval."
+#~ msgstr ""
+#~ "Функція включається зразу. Якщо не працює, спробуйте знову, "
+#~ "використовуючи повільніший інтервал відправлення команд."
+
+#~ msgid ""
+#~ "Activation takes place immediately. If this feature is not supported, the "
+#~ "volume keys has no function!"
+#~ msgstr ""
+#~ "Функція включається зразу. Якщо ця функція не підтримується то кнопки "
+#~ "гучності не мають функцій!"
+
+#~ msgid "Always select OK"
+#~ msgstr "Завжди виберати OK"
+
+#~ msgid ""
+#~ "An attempt is made to capture the current TV status. If this is not "
+#~ "possible due to incorrect or missing status messages, it may cause the "
+#~ "receiver to respond unexpectedly.\n"
+#~ "On the other hand, tries to respond better to different operating "
+#~ "conditions."
+#~ msgstr ""
+#~ "Зроблено спробу встановити поточний статус телевізора. Якщо це неможливо "
+#~ "через неправильні, або відсутні повідомлення про стан, це може призвести "
+#~ "до несподіваного реагування приймача.\n"
+#~ "З іншого боку, є можливість краще реагувати на різні умови роботи."
+
+#~ msgid "Cancel the selection"
+#~ msgstr "Скасувати вибір"
+
+#~ msgid "Choose a setting where your receiver wakes up from standby."
+#~ msgstr "Виберіть параметр, у якому приймач включиться в режимі очікування."
+
+#~ msgid "HDMI CEC"
+#~ msgstr "HDMI CEC"
+
+#~ msgid "HDMI CEC Setup"
+#~ msgstr "Налаштування HDMI CEC"
+
+#~ msgid ""
+#~ "If the 'deep standby workaround' is enabled, it waits until the system "
+#~ "time is synchronized. Depending on the requirement, the devices wake up "
+#~ "will continuing after a maximum of 2 minutes."
+#~ msgstr ""
+#~ "Якщо вибрано функцію 'глибокий режим очікування', вона чекає, доки не "
+#~ "відбудеться синхронізація системного часу. Залежно від потреби, "
+#~ "пробудження пристроїв триватиме максимум 2 хвилини."
+
+#~ msgid "Is not necessary in most cases."
+#~ msgstr "У більшості випадків це не є необхідним."
+
+#~ msgid "Load Default Settings"
+#~ msgstr "Завантажити Стандартні налаштування"
+
+#~ msgid "Show single epg for current channel (setup in menu)"
+#~ msgstr ""
+#~ "Показати одиночний телегід для поточного каналу (налаштування в меню)"
+
+#~ msgid ""
+#~ "Some TV devices can't swich to correct input if a another hdmi port "
+#~ "active. This setting set the TV to standby before.\n"
+#~ "(If the TV does not turn back on, may require a slower transmission "
+#~ "interval or the repetition of wake-up commands.)"
+#~ msgstr ""
+#~ "Деякі ТВ не можуть перемикатися на правильний вхід, якщо інший активний. "
+#~ "Це налаштування переведе телевізор спочатку в режим очікування.\n"
+#~ "(якщо ТВ не ввімкнеться можна попробувати сповільнити інтервал передачі "
+#~ "або повторення команд пробудження.)"
+
+#~ msgid ""
+#~ "This is a workaround for some devices there wakeup again after switching "
+#~ "in standby. The wak up command's from other devices will ignored for few "
+#~ "seconds."
+#~ msgstr ""
+#~ "Це обхідний шлях для деяких пристроїв, які знову вмикаються після "
+#~ "переходу в режим очікування. Команди включення з інших пристроїв будуть "
+#~ "ігноруватися протягом декількох секунд."
+
+#~ msgid "Try to send repeated commands if not all commands are executed.\n"
+#~ msgstr ""
+#~ "Спробуйте надсилати повторні команди, якщо не всі команди виконуються.\n"
+
+#~ msgid "Try to slow down the send interval if not all commands are executed."
+#~ msgstr ""
+#~ "Спробуйте сповільнити інтервал відправлення команд, якщо не всі команди "
+#~ "виконані."
+
+#~ msgid "helptext"
+#~ msgstr "текст допомоги"
+
+#~ msgid "jump to next page or all up (setup in menu)"
+#~ msgstr "перейти на наступну сторінку, або все вгору (налаштування в меню)"
+
+#~ msgid "jump to previous page or all down (setup in menu)"
+#~ msgstr "перейти на попередню сторінку, або всі вниз (налаштування в меню)"
+
+#~ msgid "record"
+#~ msgstr "запис"
+
+#~ msgid "zap"
+#~ msgstr "переключити"
 
 #~ msgid "%d-%m"
 #~ msgstr "%d-%m"

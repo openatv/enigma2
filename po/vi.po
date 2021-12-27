@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-11-29 21:27+0000\n"
+"POT-Creation-Date: 2021-12-26 20:08+0000\n"
 "PO-Revision-Date: 2019-07-27 12:19+0700\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -55,11 +55,6 @@ msgid ""
 msgstr ""
 "\n"
 "Kodi không có mặt. Tiến hành cài đặt?"
-
-msgid ""
-"\n"
-"* Logs location: logs settings, Filename: Enigma2-hdmicec-[date].log"
-msgstr ""
 
 msgid ""
 "\n"
@@ -733,9 +728,6 @@ msgstr "%Y-%b-%d"
 msgid "%Y-%m-%d"
 msgstr "%Y-%m-%d"
 
-msgid "%Y-%m-%d %H-%M"
-msgstr "%Y-%m-%d %H-%M"
-
 msgid "%Y/%-m/%-d"
 msgstr "%Y/%-m/%-d"
 
@@ -1405,11 +1397,6 @@ msgstr ""
 "timeshift cũ hơn, điều kiện xảy ra đầu tiên được ưu tiên."
 
 msgid ""
-"'Handle standby from TV' has a higher priority as 'Handle input from TV'"
-msgstr ""
-"'Xử lý chế độ chờ từ TV' có mức độ ưu tiên cao hơn là 'Xử lý đầu vào từ TV'"
-
-msgid ""
 "'Handle standby from TV' has a higher priority than 'Handle input from TV'."
 msgstr ""
 
@@ -1443,9 +1430,6 @@ msgstr "(Chỉ hiển thị người đọc:"
 #, fuzzy
 msgid "(current image)"
 msgstr "Thời điểm hiện tại"
-
-msgid "(e.g. TV wakeup, but not switched to correct input)"
-msgstr "(ví dụ: đánh thức TV, nhưng không được chuyển sang đầu vào chính xác)"
 
 msgid "(empty)"
 msgstr "(trống)"
@@ -1664,26 +1648,11 @@ msgstr "16:10 Pan Quét"
 msgid "16:9"
 msgstr "16:9"
 
-msgid "16:9 Letterbox"
-msgstr "Hộp thư 16: 9"
-
 msgid "16:9 Always"
 msgstr "16: 9 luôn"
 
-msgid "16_10_letterbox"
-msgstr "16 10 hộp thư"
-
-msgid "16_10_panscan"
-msgstr "16_10_quét chảo"
-
-msgid "16_9"
-msgstr "16_9"
-
-msgid "16_9_always"
-msgstr "16_9_thường"
-
-msgid "16_9_letterbox"
-msgstr "16 9 hộp thư"
+msgid "16:9 Letterbox"
+msgstr "Hộp thư 16: 9"
 
 msgid "18 V"
 msgstr "18 V"
@@ -1921,12 +1890,6 @@ msgstr "Quét 4: 3 Pan"
 
 msgid "4X"
 msgstr "4X"
-
-msgid "4_3_letterbox"
-msgstr "4 3 hộp thư"
-
-msgid "4_3_panscan"
-msgstr "4_3_quét chảo"
 
 msgid "4s"
 msgstr "4s"
@@ -2361,10 +2324,6 @@ msgstr "Thông tin phần mền"
 msgid "About..."
 msgstr "Thông tin phần mền..."
 
-#, fuzzy
-msgid "Accept the current selection"
-msgstr "Kích hoạt cấu hình hiện tại"
-
 msgid "Accessed:"
 msgstr "Truy cập:"
 
@@ -2398,13 +2357,6 @@ msgid ""
 "from the command line."
 msgstr ""
 
-#, python-format
-msgid ""
-"Activate an way to send individual or specific internal HDMI-CEC commands "
-"from the command line. Type on command line 'echo help > %s' and then read "
-"the file '%s' for a short help."
-msgstr ""
-
 msgid "Activate current configuration"
 msgstr "Kích hoạt cấu hình hiện tại"
 
@@ -2431,20 +2383,6 @@ msgstr "Kích hoạt kết thúc timeshift"
 
 msgid "Activate timeshift end and pause"
 msgstr "Kích hoạt kết thúc timeshift và tạm dừng"
-
-msgid ""
-"Activation takes place immediately. If it does feature not work, then try "
-"again with a slower send interval."
-msgstr ""
-"Kích hoạt diễn ra ngay lập tức. Nếu tính năng này không hoạt động, thì hãy "
-"thử lại với khoảng thời gian gửi chậm hơn."
-
-msgid ""
-"Activation takes place immediately. If this feature is not supported, the "
-"volume keys has no function!"
-msgstr ""
-"Kích hoạt diễn ra ngay lập tức. Nếu tính năng này không được hỗ trợ, các "
-"phím âm lượng không có chức năng!"
 
 msgid "Active"
 msgstr "Hoạt động"
@@ -2476,9 +2414,6 @@ msgstr "Thêm bộ đếm thời gian"
 msgid "Add Zap+Record Timer"
 msgstr "Thêm bộ đếm thời gian"
 
-msgid "Add an AutoTimer for the current event"
-msgstr "Thêm bộ hẹn giờ tự động cho sự kiện hiện tại"
-
 msgid "Add a mark"
 msgstr "Thêm một dấu"
 
@@ -2497,11 +2432,17 @@ msgstr "Thêm bộ đếm thời gian"
 msgid "Add a record timer for current event"
 msgstr "Thêm một bộ đếm thời gian cho sự kiện hiện tại"
 
+msgid "Add a timer for the current event"
+msgstr ""
+
 msgid "Add a zap timer for current event"
 msgstr "Thêm / xóa bộ đếm thời gian thay đổi cho sự kiện hiện tại"
 
 msgid "Add a zap timer for next event"
 msgstr "Thêm / xóa bộ đếm thời gian thay đổi cho sự kiện hiện tại"
+
+msgid "Add an AutoTimer for the current event"
+msgstr "Thêm bộ hẹn giờ tự động cho sự kiện hiện tại"
 
 msgid "Add bookmark"
 msgstr "Thêm dấu trang"
@@ -2876,10 +2817,6 @@ msgstr ""
 "(đôi khi được gọi là giải mã ngoại tuyến), nếu được người nhận của bạn hỗ "
 "trợ. Mặc định: tắt."
 
-#, fuzzy
-msgid "Always select OK"
-msgstr "Luôn luôn hỏi"
-
 msgid "Always show bouquets"
 msgstr "Luôn luôn hiển thị gói kênh"
 
@@ -2906,17 +2843,6 @@ msgid ""
 "respond unexpectedly. On the other hand, tries to respond better to "
 "different operating conditions."
 msgstr ""
-
-msgid ""
-"An attempt is made to capture the current TV status. If this is not possible "
-"due to incorrect or missing status messages, it may cause the receiver to "
-"respond unexpectedly.\n"
-"On the other hand, tries to respond better to different operating conditions."
-msgstr ""
-"Một nỗ lực được thực hiện để ghi lại trạng thái TV hiện tại. Nếu điều này là "
-"không thể do thông báo trạng thái không chính xác hoặc bị thiếu, nó có thể "
-"khiến người nhận phản hồi bất ngờ.\n"
-"Mặt khác, cố gắng đáp ứng tốt hơn với các điều kiện hoạt động khác nhau."
 
 msgid "An empty filename is illegal."
 msgstr "Một tên tệp trống là bất hợp pháp."
@@ -4242,10 +4168,6 @@ msgstr "Chọn kênh"
 msgid "Cancel the image selection and exit all menus"
 msgstr "Chọn kênh"
 
-#, fuzzy
-msgid "Cancel the selection"
-msgstr "Chọn kênh"
-
 msgid "Cancelled upon user request"
 msgstr "Hủy theo yêu cầu của người dùng"
 
@@ -4339,6 +4261,9 @@ msgstr "Ngôn ngữ"
 msgid "Change PIN"
 msgstr "Thay đổi pin"
 
+msgid "Change Timer"
+msgstr "Thay đổi bộ đếm thời gian"
+
 msgid "Change Volume offset"
 msgstr "Thay đổi âm lượng bù"
 
@@ -4371,9 +4296,6 @@ msgstr "Thay đổi vẻ bề ngoài"
 
 msgid "Change step size"
 msgstr "Thay đổi kích thước bước"
-
-msgid "Change Timer"
-msgstr "Thay đổi bộ đếm thời gian"
 
 msgid "Change to bouquet"
 msgstr "Đổi thành gói kênh"
@@ -4612,9 +4534,6 @@ msgstr ""
 msgid "Choose a label that will identify this device within IceTV services."
 msgstr ""
 
-msgid "Choose a setting where your receiver wakes up from standby."
-msgstr "Chọn một cài đặt nơi người nhận của bạn thức dậy từ chế độ chờ."
-
 msgid "Choose a tag for easy finding a recording."
 msgstr "Chọn một thẻ để dễ dàng tìm thấy một bản ghi âm."
 
@@ -4826,6 +4745,9 @@ msgstr "Bấm vào điều khiển từ xa của bạn vào nút bạn muốn th
 msgid "Client Info ( Oscam-Version: %s )"
 msgstr "Thông tin khách hàng (Phiên bản Oscar:% s)"
 
+msgid "Client is streaming from this box!"
+msgstr ""
+
 msgid "ClientIP"
 msgstr "ClientIP"
 
@@ -4844,11 +4766,29 @@ msgstr "Đóng"
 msgid "Close PiP on exit"
 msgstr "Đóng PiP khi thoát"
 
+msgid "Close bouquet list"
+msgstr ""
+
 msgid "Close bouquet list."
 msgstr "Đóng danh sách gói kênh."
 
 msgid "Close dialog"
 msgstr "Đóng hộp thoại"
+
+msgid "Close pop up menu"
+msgstr ""
+
+msgid "Close screen"
+msgstr ""
+
+msgid "Close the context menu"
+msgstr ""
+
+msgid "Close the current screen"
+msgstr ""
+
+msgid "Close the window"
+msgstr ""
 
 msgid "Close title selection"
 msgstr "Đóng lựa chọn tiêu đề"
@@ -5920,6 +5860,9 @@ msgstr "Biên tập danh sách cắt"
 msgid "Cutlist editor..."
 msgstr "Biên tập viên danh sách ..."
 
+msgid "Cycle PIP(zap)"
+msgstr ""
+
 msgid "Cycling"
 msgstr ""
 
@@ -6311,6 +6254,10 @@ msgid "Defaults"
 msgstr "Mặc định"
 
 msgid ""
+"Define additional delay in milliseconds before start of http(s) streams."
+msgstr ""
+
+msgid ""
 "Defines how fast the time jumps are repeated. Values lower than 500ms may be "
 "problematic with NAS."
 msgstr ""
@@ -6442,6 +6389,9 @@ msgstr "Xóa ngôn ngữ"
 msgid "Delete Plugins"
 msgstr "Xóa plugin"
 
+msgid "Delete Timer"
+msgstr "Xóa bộ đếm thời gian"
+
 msgid "Delete all tags"
 msgstr ""
 
@@ -6501,9 +6451,6 @@ msgstr "Xóa các tập tin hoặc thư mục đã chọn"
 msgid "Delete this tag"
 msgstr ""
 
-msgid "Delete Timer"
-msgstr "Xóa bộ đếm thời gian"
-
 msgid "Delete unused tags"
 msgstr ""
 
@@ -6547,6 +6494,9 @@ msgstr ""
 "mã khi ghi không thành công. 'Không được giải mã, ghi ECM' lưu bản ghi xáo "
 "trộn có thể được giải mã khi phát lại. 'Bình thường' có nghĩa là giải mã bản "
 "ghi và không ghi ECM."
+
+msgid "Descramble and record ecm"
+msgstr "giải mã và ghi lại ecm"
 
 msgid "Descramble http streams"
 msgstr "Luồng http của Descramble"
@@ -6812,6 +6762,9 @@ msgstr "Không flash hình ảnh"
 msgid "Do not record"
 msgstr "Không ghi lại"
 
+msgid "Do nothing"
+msgstr "không làm gì cả"
+
 msgid ""
 "Do you really want to check the filesystem?\n"
 "This could take a long time!"
@@ -7054,6 +7007,9 @@ msgstr "Đừng thêm bản ghi này"
 msgid "Don't ask again!"
 msgstr "Đừng hỏi lại!"
 
+msgid "Don't descramble, record ecm"
+msgstr "không giải mã, ghi lại ecm"
+
 msgid "Don't restart"
 msgstr ""
 
@@ -7230,8 +7186,26 @@ msgstr "ĐỐI TƯỢNG dài"
 msgid "EPG"
 msgstr "EPG"
 
+msgid "EPG Actions"
+msgstr ""
+
+msgid "EPG Bouquet Actions"
+msgstr ""
+
 msgid "EPG Cache Check"
 msgstr "Kiểm tra bộ nhớ cache EPG"
+
+msgid "EPG Channel/Service Selection"
+msgstr ""
+
+msgid "EPG Display Actions"
+msgstr ""
+
+msgid "EPG Navigation Actions"
+msgstr ""
+
+msgid "EPG Other Actions"
+msgstr ""
 
 msgid "EPG Search"
 msgstr "Tìm kiếm EPG"
@@ -7321,6 +7295,9 @@ msgstr "Chỉnh sửa mục nhập kênh Quad"
 msgid "Edit Tags"
 msgstr ""
 
+msgid "Edit Timer"
+msgstr "Chỉnh sửa bộ đếm thời gian"
+
 msgid "Edit Title"
 msgstr "Chỉnh sửa tiêu đề"
 
@@ -7359,9 +7336,6 @@ msgid "Edit the network configuration of your %s %s.\n"
 msgstr ""
 "Chỉnh sửa cấu hình mạng của máy thu của bạn\n"
 "%s %s.\n"
-
-msgid "Edit Timer"
-msgstr "Chỉnh sửa bộ đếm thời gian"
 
 msgid "Edit title"
 msgstr "Chỉnh sửa tiêu đề"
@@ -7711,6 +7685,9 @@ msgstr "Vào menu chính ..."
 msgid "Enter multi-file selection mode"
 msgstr "Vào chế độ chọn nhiều tập tin"
 
+msgid "Enter number to jump to channel"
+msgstr "nhập số để nhảy đến kênh."
+
 msgid "Enter persistent PIN code"
 msgstr "Nhập mã PIN liên tục"
 
@@ -7989,6 +7966,15 @@ msgstr "Sự kiện"
 msgid "Event Info"
 msgstr "Thông tin sự kiện"
 
+msgid "Event View"
+msgstr "Sự kiện"
+
+msgid "Event View Actions"
+msgstr ""
+
+msgid "Event View Context Menu"
+msgstr "Menu sự kiện"
+
 msgid "Event font size"
 msgstr "Cỡ chữ sự kiện"
 
@@ -7998,14 +7984,11 @@ msgstr "Chế độ xem sự kiện"
 msgid "Event view menu"
 msgstr "Menu xem sự kiện"
 
+msgid "EventViewEPG Actions"
+msgstr ""
+
 msgid "Eventname only"
 msgstr "Chỉ tên sự kiện"
-
-msgid "Event View"
-msgstr "Sự kiện"
-
-msgid "Event View Context Menu"
-msgstr "Menu sự kiện"
 
 msgid "Eventview:"
 msgstr "Sự kiện:"
@@ -8501,6 +8484,9 @@ msgstr "Pháp"
 msgid "Find out more at %s"
 msgstr ""
 
+msgid "Find similar events in the EPG"
+msgstr ""
+
 msgid "Fine movement"
 msgstr "Phong trào tốt"
 
@@ -8921,6 +8907,9 @@ msgstr "Đi xuống danh sách"
 msgid "Go to bookmarked folder"
 msgstr "Chuyển đến thư mục được đánh dấu"
 
+msgid "Go to deep standby"
+msgstr "đi đến chế độ chờ sâu"
+
 msgid "Go to end of file"
 msgstr "Đi đến cuối tập tin"
 
@@ -8932,6 +8921,9 @@ msgstr "Chuyển đến bộ phim đầu tiên hoặc đầu danh sách"
 
 msgid "Go to parent directory"
 msgstr "Chuyển đến thư mục cha mẹ"
+
+msgid "Go to standby"
+msgstr "đi đến chế độ chờ"
 
 msgid "Go to start of file"
 msgstr "Bắt đầu tập tin"
@@ -9108,12 +9100,6 @@ msgstr ""
 
 msgid "HDMI"
 msgstr "HDMI"
-
-msgid "HDMI CEC"
-msgstr "HDMI CEC"
-
-msgid "HDMI CEC Setup"
-msgstr "Thiết lập HDMI CEC"
 
 msgid "HDMI Colordepth"
 msgstr "Cổng thông tin HDMI"
@@ -9437,6 +9423,9 @@ msgstr "Giờ phút giây"
 msgid "How many minutes do you want to record?"
 msgstr "Bạn muốn ghi lại bao nhiêu phút?"
 
+msgid "Http(s) stream start delay"
+msgstr ""
+
 msgid "Hue"
 msgstr "Màu sắc"
 
@@ -9463,14 +9452,14 @@ msgstr "Tìm kiếm IMDB"
 msgid "IMDB search"
 msgstr "Tìm kiếm IMDB"
 
-msgid "IMDb search for current event"
-msgstr "Tìm kiếm IMDB cho sự kiện hiện tại"
-
 msgid "IMDb Details"
 msgstr "Chi tiết IMDb"
 
 msgid "IMDb Search"
 msgstr "Tìm kiếm IMDb"
+
+msgid "IMDb search for current event"
+msgstr "Tìm kiếm IMDB cho sự kiện hiện tại"
 
 msgid "INFO"
 msgstr "THÔNG TIN"
@@ -9731,16 +9720,6 @@ msgid ""
 msgstr ""
 "Nếu được đặt thành 'có; infobar sẽ vẫn hiển thị vĩnh viễn ở trạng thái 'tạm "
 "dừng' (không có thời gian chờ)."
-
-#, fuzzy
-msgid ""
-"If the 'deep standby workaround' is enabled, it waits until the system time "
-"is synchronized. Depending on the requirement, the devices wake up will "
-"continuing after a maximum of 2 minutes."
-msgstr ""
-"Nếu 'giải pháp chờ chế độ sâu' được bật, nó sẽ đợi cho đến khi thời gian hệ "
-"thống được đồng bộ hóa. Tùy thuộc vào yêu cầu, các thiết bị thức dậy sẽ tiếp "
-"tục sau tối đa 2 phút."
 
 msgid ""
 "If the deep standby workaround is enabled wait until the system time is "
@@ -10321,9 +10300,6 @@ msgstr "Ai-len"
 msgid "Irish"
 msgstr ""
 
-msgid "Is not necessary in most cases."
-msgstr "Không cần thiết trong hầu hết các trường hợp."
-
 msgid "Is this setting ok?"
 msgstr "Cài đặt này có ổn không?"
 
@@ -10422,8 +10398,14 @@ msgstr ""
 msgid "Jump to next marked position"
 msgstr "Chuyển đến vị trí được đánh dấu tiếp theo"
 
+msgid "Jump to next page or all up (setup in menu)"
+msgstr ""
+
 msgid "Jump to previous marked position"
 msgstr "Chuyển đến vị trí được đánh dấu trước đó"
+
+msgid "Jump to previous page or all down (setup in menu)"
+msgstr ""
 
 msgid "Jump to prime time"
 msgstr "Chuyển đến thời gian chính"
@@ -10920,9 +10902,6 @@ msgstr "Thao tác nhanh"
 msgid "Load"
 msgstr "Tải"
 
-msgid "Load Default Settings"
-msgstr "Tải Thiết lập mặc định"
-
 msgid "Load EPG"
 msgstr "Tải EPG"
 
@@ -11409,12 +11388,12 @@ msgstr "Trung tâm EPG Merlin"
 msgid "Message"
 msgstr "Thông điệp"
 
-msgid "Message..."
-msgstr "Thông điệp..."
-
 #, fuzzy
 msgid "Message Box Actions"
 msgstr "Chức năng KeyBoard ảo"
+
+msgid "Message..."
+msgstr "Thông điệp..."
 
 msgid "Metadata changed:"
 msgstr "Siêu dữ liệu đã thay đổi:"
@@ -11720,11 +11699,17 @@ msgstr "Di chuyển con trỏ bộ đệm văn bản đến ký tự đầu tiê
 msgid "Move the text cursor to the last character"
 msgstr "Di chuyển con trỏ bộ đệm văn bản đến ký tự cuối cùng"
 
+msgid "Move to first line"
+msgstr ""
+
 msgid "Move to first line / screen"
 msgstr ""
 
 msgid "Move to home of list"
 msgstr "Chuyển đến nhà của danh sách"
+
+msgid "Move to last line"
+msgstr ""
 
 msgid "Move to last line / screen"
 msgstr ""
@@ -11783,6 +11768,9 @@ msgstr "Cách cử động"
 
 msgid "Movie"
 msgstr "Bộ phim"
+
+msgid "Movie Event View Actions"
+msgstr ""
 
 msgid "Movie List"
 msgstr "Danh sách phim"
@@ -12504,6 +12492,9 @@ msgstr "Không có chương trình băm nào cho băm %s có sẵn"
 msgid "Norfolk Island"
 msgstr "Đảo Norfolk"
 
+msgid "Normal"
+msgstr "bình thường"
+
 msgid "North"
 msgstr "Bắc"
 
@@ -12713,6 +12704,9 @@ msgstr "Cài đặt OSD"
 msgid "OScam Info"
 msgstr "Thông tin OScam"
 
+msgid "OScam webif disabled"
+msgstr "oscam webif bị vô hiệu hóa"
+
 msgid "OScamInfo"
 msgstr "Thông tin OScam"
 
@@ -12733,6 +12727,9 @@ msgstr ""
 
 msgid "Ok"
 msgstr "Đồng ý"
+
+msgid "OkCancel Actions"
+msgstr ""
 
 msgid ""
 "Older files in the timeshift directory are removed on every event change."
@@ -12842,6 +12839,9 @@ msgstr "Mở danh sách hẹn giờ ..."
 msgid "Open bouquetlist"
 msgstr "Mở danh sách gói kênh ..."
 
+msgid "Open context menu"
+msgstr ""
+
 msgid "Open favourites list"
 msgstr "Mở danh sách yêu thích"
 
@@ -12874,6 +12874,12 @@ msgstr "Mở Trình duyệt Plugin"
 
 msgid "Open the movie list"
 msgstr "Mở danh sách phim"
+
+msgid "Open the multi service EPG view"
+msgstr ""
+
+msgid "Open the single service EPG view"
+msgstr ""
 
 msgid "Open with File Commander"
 msgstr "Mở bằng File Commander"
@@ -13118,6 +13124,9 @@ msgstr "Trang dưới"
 
 msgid "Page down list"
 msgstr "Trang xuống danh sách"
+
+msgid "Page left"
+msgstr "trang còn lại"
 
 msgid "Page right"
 msgstr "Trang bên phải"
@@ -13986,9 +13995,6 @@ msgstr "Thời gian chờ quyền lực"
 msgid "PowerTimer Entry"
 msgstr "Mục nhập PowerManager"
 
-msgid "PowerTimer list"
-msgstr "Danh sách PowerTimer"
-
 msgid "PowerTimer Log"
 msgstr "Nhật ký PowerManager"
 
@@ -13997,6 +14003,9 @@ msgstr "Tổng quan về PowerTimer"
 
 msgid "PowerTimer Standby"
 msgstr "Chế độ chờ PowerTimer"
+
+msgid "PowerTimer list"
+msgstr "Danh sách PowerTimer"
 
 msgid "PowerTimers"
 msgstr "Bộ đếm thời gian"
@@ -14614,6 +14623,9 @@ msgstr "Ghi lại"
 msgid "Record - same as record button"
 msgstr "Ghi - giống như nút ghi"
 
+msgid "Record Actions"
+msgstr ""
+
 msgid "Record next"
 msgstr "Ghi lại tiếp theo"
 
@@ -15166,6 +15178,9 @@ msgstr "Lấy danh sách hình ảnh - Vui lòng đợi ..."
 msgid "Retrieving image slots - Please wait..."
 msgstr "Lấy các khe hình ảnh - Vui lòng đợi .."
 
+msgid "Return the current selection response"
+msgstr ""
+
 msgid "Return to movie list"
 msgstr "Quay trở lại danh sách phim"
 
@@ -15271,6 +15286,9 @@ msgstr "Chạy script với tham số tùy chọn"
 
 msgid "Run script with optional parameter in background"
 msgstr "Chạy script với tham số tùy chọn trong nền"
+
+msgid "Run the selected menu option"
+msgstr ""
 
 #, fuzzy
 msgid "Rundi"
@@ -16039,6 +16057,9 @@ msgstr "Chọn phương pháp sắp xếp:"
 msgid "Select target folder"
 msgstr "Chọn thư mục đích"
 
+msgid "Select the No / False response"
+msgstr ""
+
 msgid "Select the Swap File Size:"
 msgstr "Chọn Kích thước tệp hoán đổi:"
 
@@ -16091,6 +16112,9 @@ msgid ""
 msgstr ""
 "Chọn tần số  người dùng sẽ được chỉ định cho bộ chỉnh này. Đây là tần số mà "
 "công tắc SCR sử dụng để truyền bộ phát đáp được yêu cầu đến bộ chỉnh tần số."
+
+msgid "Select the Yes / True response"
+msgstr ""
 
 #, fuzzy
 msgid "Select the character or action under the keyboard cursor"
@@ -17509,6 +17533,12 @@ msgstr "Hiển thị EPG đa kênh"
 msgid "Show network mounts ..."
 msgstr "Hiển thị gắn kết mạng ..."
 
+msgid "Show next event"
+msgstr ""
+
+msgid "Show next page"
+msgstr ""
+
 msgid "Show next picture"
 msgstr "Hiển thị hình ảnh tiếp theo"
 
@@ -17529,6 +17559,12 @@ msgstr "Hiển thị chuyển động định vị"
 
 msgid "Show preview of current mode (*)."
 msgstr "Hiển thị xem trước của chế độ hiện tại (*)."
+
+msgid "Show previous event"
+msgstr ""
+
+msgid "Show previous page"
+msgstr ""
 
 msgid "Show previous picture"
 msgstr "Hiển thị hình ảnh trước đó"
@@ -17579,8 +17615,8 @@ msgstr "Hiển thị menu tắt"
 msgid "Show single EPG for current channel"
 msgstr "Hiển thị epg duy nhất cho kênh hiện tại"
 
-msgid "Show single epg for current channel (setup in menu)"
-msgstr "Hiển thị epg duy nhất cho kênh hiện tại (thiết lập trong menu)"
+msgid "Show single EPG for current channel (setup in menu)"
+msgstr ""
 
 msgid "Show single service EPG"
 msgstr "Hiển thị EPG dịch vụ duy nhất"
@@ -17733,6 +17769,9 @@ msgstr "Hiển thị trạng thái đã xem của bộ phim."
 
 msgid "Shuffle playlist"
 msgstr "Danh sách phát ngẫu nhiên"
+
+msgid "Shut down"
+msgstr "tắt"
 
 msgid "Shutdown"
 msgstr "Tắt"
@@ -18060,17 +18099,6 @@ msgid ""
 "turn back on it may require a slower transmission interval or the repetition "
 "of wake-up commands.)"
 msgstr ""
-
-msgid ""
-"Some TV devices can't swich to correct input if a another hdmi port active. "
-"This setting set the TV to standby before.\n"
-"(If the TV does not turn back on, may require a slower transmission interval "
-"or the repetition of wake-up commands.)"
-msgstr ""
-"Một số thiết bị TV không thể chỉnh sửa đầu vào nếu một cổng hdmi khác hoạt "
-"động. Cài đặt này đặt TV ở chế độ chờ trước.\n"
-"(Nếu TV không bật lại, có thể yêu cầu khoảng thời gian truyền chậm hơn hoặc "
-"lặp lại các lệnh đánh thức.)"
 
 msgid "Some plugins are not available:\n"
 msgstr "Một số plugin không có sẵn:\n"
@@ -19573,14 +19601,6 @@ msgid ""
 "seconds."
 msgstr ""
 
-msgid ""
-"This is a workaround for some devices there wakeup again after switching in "
-"standby. The wak up command's from other devices will ignored for few "
-"seconds."
-msgstr ""
-"Đây là một cách giải quyết cho một số thiết bị thức dậy sau khi chuyển sang "
-"chế độ chờ. Lệnh wak up từ các thiết bị khác sẽ bị bỏ qua trong vài giây."
-
 #, python-format
 msgid "This is the currently selected language.  [%s]"
 msgstr ""
@@ -20541,20 +20561,10 @@ msgstr ""
 "Cố gắng ngăn chặn khởi động lại cho lỗi phần mềm và duy trì tính khả dụng "
 "cho người nhận."
 
-msgid "Try to send repeated commands if not all commands are executed.\n"
-msgstr ""
-"Cố gắng gửi các lệnh lặp đi lặp lại nếu không phải tất cả các lệnh được thực "
-"thi.\n"
-
 msgid ""
 "Try to send repeated commands if not all commands are executed. (e.g. TV "
 "wakeup, but not switched to correct input.)"
 msgstr ""
-
-msgid "Try to slow down the send interval if not all commands are executed."
-msgstr ""
-"Cố gắng làm chậm khoảng thời gian gửi nếu không phải tất cả các lệnh đều "
-"được thực thi."
 
 msgid "Trying to download a new packetlist. Please wait..."
 msgstr "Đang cố gắng tải xuống một danh sách gói mới. Xin vui lòng chờ ..."
@@ -20865,6 +20875,9 @@ msgstr ""
 "Lỗi không xác định khi tạo Skin.\n"
 "Vui lòng kiểm tra sau khi khởi động lại MyMetrixLite-Plugin và áp dụng cài "
 "đặt của bạn."
+
+msgid "Unknown Service"
+msgstr "dịch vụ chưa biết"
 
 #, fuzzy
 msgid "Unknown error code"
@@ -22432,6 +22445,9 @@ msgstr ""
 msgid "Without popup"
 msgstr "Không có cửa sổ bật lên"
 
+msgid "Wizard Actions"
+msgstr ""
+
 msgid "Wolof"
 msgstr ""
 
@@ -23032,6 +23048,9 @@ msgstr "Zap"
 msgid "Zap + Exit"
 msgstr "Zap + Thoát"
 
+msgid "Zap and record"
+msgstr "zap và ghi lại"
+
 msgid "Zap back to previously tuned service?"
 msgstr "Quay trở lại dịch vụ điều chỉnh trước đây?"
 
@@ -23517,9 +23536,6 @@ msgstr "xóa cắt"
 msgid "deleted"
 msgstr "xóa bỏ"
 
-msgid "Descramble and record ecm"
-msgstr "giải mã và ghi lại ecm"
-
 msgid "detective/thriller"
 msgstr "thám tử / phim kinh dị"
 
@@ -23538,9 +23554,6 @@ msgstr "thảo luận / phỏng vấn / tranh luận"
 msgid "display"
 msgstr "trưng bày"
 
-msgid "Do nothing"
-msgstr "không làm gì cả"
-
 msgid "documentary"
 msgstr "phim tài liệu"
 
@@ -23550,9 +23563,6 @@ msgstr "phim tài liệu"
 
 msgid "dolby"
 msgstr "dolby"
-
-msgid "Don't descramble, record ecm"
-msgstr "không giải mã, ghi lại ecm"
 
 msgid "done!"
 msgstr "làm xong!"
@@ -23637,9 +23647,6 @@ msgstr "kết thúc hạ gục"
 
 msgid "enigma2 and network"
 msgstr "enigma2 và mạng"
-
-msgid "Enter number to jump to channel"
-msgstr "nhập số để nhảy đến kênh."
 
 msgid "entertainment (10-16 year old)"
 msgstr "giải trí (10-16 tuổi)"
@@ -23804,12 +23811,6 @@ msgstr "làm vườn"
 msgid "get the cards' server"
 msgstr "lấy máy chủ của thẻ"
 
-msgid "Go to deep standby"
-msgstr "đi đến chế độ chờ sâu"
-
-msgid "Go to standby"
-msgstr "đi đến chế độ chờ"
-
 msgid "goto current channel and now"
 msgstr "đến kênh hiện tại và bây giờ"
 
@@ -23876,9 +23877,6 @@ msgstr "chiều cao"
 
 msgid "help..."
 msgstr "cứu giúp..."
-
-msgid "helptext"
-msgstr "trợ giúp"
 
 msgid "hh:mm"
 msgstr "hh:mm"
@@ -23976,12 +23974,6 @@ msgstr "nhảy tới tiêu đề tiếp theo"
 
 msgid "jump to chapter by number"
 msgstr "nhảy đến chương theo số"
-
-msgid "jump to next page or all up (setup in menu)"
-msgstr "nhảy sang trang tiếp theo hoặc tất cả lên (thiết lập trong menu)"
-
-msgid "jump to previous page or all down (setup in menu)"
-msgstr "nhảy đến trang trước hoặc tất cả xuống (thiết lập trong menu)"
 
 msgid "just abort, no message"
 msgstr "chỉ cần hủy bỏ, không có tin nhắn"
@@ -24195,8 +24187,8 @@ msgstr "không tìm thấy thiết bị lưu trữ"
 msgid "none"
 msgstr "không"
 
-msgid "Normal"
-msgstr "bình thường"
+msgid "normal"
+msgstr ""
 
 msgid "not"
 msgstr "không có gì"
@@ -24264,14 +24256,8 @@ msgstr "nguyên"
 msgid "original language"
 msgstr "ngôn ngữ gốc"
 
-msgid "OScam webif disabled"
-msgstr "oscam webif bị vô hiệu hóa"
-
 msgid "packages selected."
 msgstr "các gói được chọn."
-
-msgid "Page left"
-msgstr "trang còn lại"
 
 msgid "pass"
 msgstr "vượt qua"
@@ -24354,9 +24340,6 @@ msgstr "ghi âm thực hoặc phát trực tuyến"
 
 msgid "reboot system"
 msgstr "hệ thống khởi động lại"
-
-msgid "record"
-msgstr "ghi lại"
 
 #, python-format
 msgid "record time changed, start prepare is now: %s"
@@ -24610,9 +24593,6 @@ msgstr "chương trình / trò chơi (nói chung)"
 msgid "shuffle"
 msgstr "xáo trộn"
 
-msgid "Shut down"
-msgstr "tắt"
-
 msgid "simple"
 msgstr "đơn giản"
 
@@ -24820,9 +24800,6 @@ msgstr "không xác định"
 msgid "unknown error"
 msgstr "lỗi không rõ"
 
-msgid "Unknown Service"
-msgstr "dịch vụ chưa biết"
-
 msgid "unpack Rar Files"
 msgstr "giải nén tập tin Rar"
 
@@ -24997,12 +24974,6 @@ msgstr ""
 "bây giờ % s% s của bạn có thể không sử dụng được. Vui lòng tham khảo hướng "
 "dẫn để được hỗ trợ thêm trước khi khởi động lại% s% s của bạn."
 
-msgid "zap"
-msgstr "cú đánh"
-
-msgid "Zap and record"
-msgstr "zap và ghi lại"
-
 msgid "zapped"
 msgstr "hạ gục"
 
@@ -25011,6 +24982,151 @@ msgstr "hạ gục"
 
 msgid "®"
 msgstr ""
+
+#~ msgid "%Y-%m-%d %H-%M"
+#~ msgstr "%Y-%m-%d %H-%M"
+
+#~ msgid ""
+#~ "'Handle standby from TV' has a higher priority as 'Handle input from TV'"
+#~ msgstr ""
+#~ "'Xử lý chế độ chờ từ TV' có mức độ ưu tiên cao hơn là 'Xử lý đầu vào từ "
+#~ "TV'"
+
+#~ msgid "(e.g. TV wakeup, but not switched to correct input)"
+#~ msgstr ""
+#~ "(ví dụ: đánh thức TV, nhưng không được chuyển sang đầu vào chính xác)"
+
+#~ msgid "16_10_letterbox"
+#~ msgstr "16 10 hộp thư"
+
+#~ msgid "16_10_panscan"
+#~ msgstr "16_10_quét chảo"
+
+#~ msgid "16_9"
+#~ msgstr "16_9"
+
+#~ msgid "16_9_always"
+#~ msgstr "16_9_thường"
+
+#~ msgid "16_9_letterbox"
+#~ msgstr "16 9 hộp thư"
+
+#~ msgid "4_3_letterbox"
+#~ msgstr "4 3 hộp thư"
+
+#~ msgid "4_3_panscan"
+#~ msgstr "4_3_quét chảo"
+
+#, fuzzy
+#~ msgid "Accept the current selection"
+#~ msgstr "Kích hoạt cấu hình hiện tại"
+
+#~ msgid ""
+#~ "Activation takes place immediately. If it does feature not work, then try "
+#~ "again with a slower send interval."
+#~ msgstr ""
+#~ "Kích hoạt diễn ra ngay lập tức. Nếu tính năng này không hoạt động, thì "
+#~ "hãy thử lại với khoảng thời gian gửi chậm hơn."
+
+#~ msgid ""
+#~ "Activation takes place immediately. If this feature is not supported, the "
+#~ "volume keys has no function!"
+#~ msgstr ""
+#~ "Kích hoạt diễn ra ngay lập tức. Nếu tính năng này không được hỗ trợ, các "
+#~ "phím âm lượng không có chức năng!"
+
+#, fuzzy
+#~ msgid "Always select OK"
+#~ msgstr "Luôn luôn hỏi"
+
+#~ msgid ""
+#~ "An attempt is made to capture the current TV status. If this is not "
+#~ "possible due to incorrect or missing status messages, it may cause the "
+#~ "receiver to respond unexpectedly.\n"
+#~ "On the other hand, tries to respond better to different operating "
+#~ "conditions."
+#~ msgstr ""
+#~ "Một nỗ lực được thực hiện để ghi lại trạng thái TV hiện tại. Nếu điều này "
+#~ "là không thể do thông báo trạng thái không chính xác hoặc bị thiếu, nó có "
+#~ "thể khiến người nhận phản hồi bất ngờ.\n"
+#~ "Mặt khác, cố gắng đáp ứng tốt hơn với các điều kiện hoạt động khác nhau."
+
+#, fuzzy
+#~ msgid "Cancel the selection"
+#~ msgstr "Chọn kênh"
+
+#~ msgid "Choose a setting where your receiver wakes up from standby."
+#~ msgstr "Chọn một cài đặt nơi người nhận của bạn thức dậy từ chế độ chờ."
+
+#~ msgid "HDMI CEC"
+#~ msgstr "HDMI CEC"
+
+#~ msgid "HDMI CEC Setup"
+#~ msgstr "Thiết lập HDMI CEC"
+
+#, fuzzy
+#~ msgid ""
+#~ "If the 'deep standby workaround' is enabled, it waits until the system "
+#~ "time is synchronized. Depending on the requirement, the devices wake up "
+#~ "will continuing after a maximum of 2 minutes."
+#~ msgstr ""
+#~ "Nếu 'giải pháp chờ chế độ sâu' được bật, nó sẽ đợi cho đến khi thời gian "
+#~ "hệ thống được đồng bộ hóa. Tùy thuộc vào yêu cầu, các thiết bị thức dậy "
+#~ "sẽ tiếp tục sau tối đa 2 phút."
+
+#~ msgid "Is not necessary in most cases."
+#~ msgstr "Không cần thiết trong hầu hết các trường hợp."
+
+#~ msgid "Load Default Settings"
+#~ msgstr "Tải Thiết lập mặc định"
+
+#~ msgid "Show single epg for current channel (setup in menu)"
+#~ msgstr "Hiển thị epg duy nhất cho kênh hiện tại (thiết lập trong menu)"
+
+#~ msgid ""
+#~ "Some TV devices can't swich to correct input if a another hdmi port "
+#~ "active. This setting set the TV to standby before.\n"
+#~ "(If the TV does not turn back on, may require a slower transmission "
+#~ "interval or the repetition of wake-up commands.)"
+#~ msgstr ""
+#~ "Một số thiết bị TV không thể chỉnh sửa đầu vào nếu một cổng hdmi khác "
+#~ "hoạt động. Cài đặt này đặt TV ở chế độ chờ trước.\n"
+#~ "(Nếu TV không bật lại, có thể yêu cầu khoảng thời gian truyền chậm hơn "
+#~ "hoặc lặp lại các lệnh đánh thức.)"
+
+#~ msgid ""
+#~ "This is a workaround for some devices there wakeup again after switching "
+#~ "in standby. The wak up command's from other devices will ignored for few "
+#~ "seconds."
+#~ msgstr ""
+#~ "Đây là một cách giải quyết cho một số thiết bị thức dậy sau khi chuyển "
+#~ "sang chế độ chờ. Lệnh wak up từ các thiết bị khác sẽ bị bỏ qua trong vài "
+#~ "giây."
+
+#~ msgid "Try to send repeated commands if not all commands are executed.\n"
+#~ msgstr ""
+#~ "Cố gắng gửi các lệnh lặp đi lặp lại nếu không phải tất cả các lệnh được "
+#~ "thực thi.\n"
+
+#~ msgid "Try to slow down the send interval if not all commands are executed."
+#~ msgstr ""
+#~ "Cố gắng làm chậm khoảng thời gian gửi nếu không phải tất cả các lệnh đều "
+#~ "được thực thi."
+
+#~ msgid "helptext"
+#~ msgstr "trợ giúp"
+
+#~ msgid "jump to next page or all up (setup in menu)"
+#~ msgstr "nhảy sang trang tiếp theo hoặc tất cả lên (thiết lập trong menu)"
+
+#~ msgid "jump to previous page or all down (setup in menu)"
+#~ msgstr "nhảy đến trang trước hoặc tất cả xuống (thiết lập trong menu)"
+
+#~ msgid "record"
+#~ msgstr "ghi lại"
+
+#~ msgid "zap"
+#~ msgstr "cú đánh"
 
 #~ msgid "%d-%m"
 #~ msgstr "%d-%m"

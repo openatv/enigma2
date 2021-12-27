@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-11-29 21:27+0000\n"
+"POT-Creation-Date: 2021-12-26 20:08+0000\n"
 "PO-Revision-Date: 2021-12-19 14:52+0000\n"
 "Last-Translator: Adga56 <adga45@gmail.com>\n"
 "Language-Team: Lithuanian <https://hosted.weblate.org/projects/openatv/"
@@ -60,13 +60,6 @@ msgid ""
 msgstr ""
 "\n"
 " Kodi nėra. Tęsti įdiegimą?"
-
-msgid ""
-"\n"
-"* Logs location: logs settings, Filename: Enigma2-hdmicec-[date].log"
-msgstr ""
-"\n"
-"* Žurnalai: žurnalo nustatymai, failo vardas: Enigma2-hdmicec-[data].log"
 
 msgid ""
 "\n"
@@ -722,9 +715,6 @@ msgstr "%Y-%b-%d"
 
 msgid "%Y-%m-%d"
 msgstr "%Y-%m-%d"
-
-msgid "%Y-%m-%d %H-%M"
-msgstr "%Y.%m.%d %H:%M"
 
 msgid "%Y/%-m/%-d"
 msgstr "%Y/%-m/%-d"
@@ -1401,12 +1391,6 @@ msgstr ""
 "pirmenybę."
 
 msgid ""
-"'Handle standby from TV' has a higher priority as 'Handle input from TV'"
-msgstr ""
-"\"Rankinis budėjimo režimas iš televizoriaus\" turi aukštesnį prioritetą, "
-"kaip \"TV valdymas\""
-
-msgid ""
 "'Handle standby from TV' has a higher priority than 'Handle input from TV'."
 msgstr ""
 "'Rankenėlės budėjimo režimas iš televizoriaus' turi didesnį prioritetą nei "
@@ -1440,9 +1424,6 @@ msgstr "(rodyti tik skaitytoją:"
 
 msgid "(current image)"
 msgstr "(dabartinis atvaizdas)"
-
-msgid "(e.g. TV wakeup, but not switched to correct input)"
-msgstr "(pvz., TV budina, bet nepersijungia į teisingą įvestį)"
 
 msgid "(empty)"
 msgstr "(tuščia)"
@@ -1656,26 +1637,11 @@ msgstr "16:10 nukerpant šonus"
 msgid "16:9"
 msgstr "16:9"
 
-msgid "16:9 Letterbox"
-msgstr "16:10 įterpiant juodas juostas"
-
 msgid "16:9 Always"
 msgstr "16:9 visada"
 
-msgid "16_10_letterbox"
-msgstr "16_10 įterpiant juodas juostas"
-
-msgid "16_10_panscan"
-msgstr "16_10_nukerpant šonus"
-
-msgid "16_9"
-msgstr "16_9"
-
-msgid "16_9_always"
-msgstr "16_9 visada"
-
-msgid "16_9_letterbox"
-msgstr "16_9 įterpiant juodas juostas"
+msgid "16:9 Letterbox"
+msgstr "16:10 įterpiant juodas juostas"
 
 msgid "18 V"
 msgstr "18 V"
@@ -1907,12 +1873,6 @@ msgstr "4:3 nukerpant šonus"
 
 msgid "4X"
 msgstr "4X"
-
-msgid "4_3_letterbox"
-msgstr "4_3_įterpiant juodas juostas viršuje ir apačioje"
-
-msgid "4_3_panscan"
-msgstr "4_3_nukerpant šonus"
 
 msgid "4s"
 msgstr "4 sek."
@@ -2345,9 +2305,6 @@ msgstr "Apie"
 msgid "About..."
 msgstr "Apie..."
 
-msgid "Accept the current selection"
-msgstr "Patvirtinkite dabartinį pasirinkimą"
-
 msgid "Accessed:"
 msgstr "Prieinama:"
 
@@ -2383,16 +2340,6 @@ msgstr ""
 "CEC komandas iš komandinės eilutės. Įveskite komandinę eilutę 'echo help > "
 "%s' ir tada trumpai perskaitykite failą '%s'."
 
-#, python-format
-msgid ""
-"Activate an way to send individual or specific internal HDMI-CEC commands "
-"from the command line. Type on command line 'echo help > %s' and then read "
-"the file '%s' for a short help."
-msgstr ""
-"Suaktyvinkite būdą, kaip siųsti individualias arba specifines vidines HDMI-"
-"CEC komandas iš komandinės eilutės. Įveskite komandinę eilutę 'echo help > "
-"%s' ir tada trumpai perskaitykite failą '%s'."
-
 msgid "Activate current configuration"
 msgstr "Aktyvuokite šią konfigūraciją"
 
@@ -2419,20 +2366,6 @@ msgstr "Aktyvuoti laiko poslinkio pabaigą"
 
 msgid "Activate timeshift end and pause"
 msgstr "Įjungti laiko poslinkio pabaigą ir pristabdyti"
-
-msgid ""
-"Activation takes place immediately. If it does feature not work, then try "
-"again with a slower send interval."
-msgstr ""
-"Aktyvinimas vyksta iš karto. Jei funkcija neveikia, bandykite dar kartą "
-"naudodami lėtesnį siuntimo intervalą."
-
-msgid ""
-"Activation takes place immediately. If this feature is not supported, the "
-"volume keys has no function!"
-msgstr ""
-"Aktyvinimas vyksta iš karto. Jei ši funkcija nepalaikoma, garsumo klavišai "
-"neveikia!"
 
 msgid "Active"
 msgstr "Aktyvus"
@@ -2464,9 +2397,6 @@ msgstr "Pridėti jungimo laikmatį"
 msgid "Add Zap+Record Timer"
 msgstr "Pridėti jungimo ir įrašymo laikmatį"
 
-msgid "Add an AutoTimer for the current event"
-msgstr "Pridėti auto laikmatį šiam įvykiui"
-
 msgid "Add a mark"
 msgstr "Pridėti žymą"
 
@@ -2485,11 +2415,17 @@ msgstr "Pridėti įrašymo laikmatį"
 msgid "Add a record timer for current event"
 msgstr "Pridėti įrašymo laikmatį šiam įvykiui"
 
+msgid "Add a timer for the current event"
+msgstr ""
+
 msgid "Add a zap timer for current event"
 msgstr "Pridėti perjungimo laikmatį šiam įvykiui"
 
 msgid "Add a zap timer for next event"
 msgstr "Pridėti perjungimo laikmatį sekančiam įvykiui"
+
+msgid "Add an AutoTimer for the current event"
+msgstr "Pridėti auto laikmatį šiam įvykiui"
 
 msgid "Add bookmark"
 msgstr "Pridėti žymę"
@@ -2856,9 +2792,6 @@ msgstr ""
 "kartais vadinama iškodavimu atsijungus), jei tą palaiko jūsų imtuvas. "
 "Numatytasis: 'Ne'."
 
-msgid "Always select OK"
-msgstr "Visada pasirinkite OK"
-
 msgid "Always show bouquets"
 msgstr "Visada rodyti paketus"
 
@@ -2882,16 +2815,6 @@ msgid ""
 "due to incorrect or missing status messages it may cause the receiver to "
 "respond unexpectedly. On the other hand, tries to respond better to "
 "different operating conditions."
-msgstr ""
-"Bandoma užfiksuoti dabartinę TV būseną. Jei tai neįmanoma dėl neteisingo "
-"arba trūkstamų būsenos pranešimų, imtuvas gali netikėtai atsakyti.\n"
-"Kita vertus, bando geriau reaguoti į skirtingas eksploatavimo sąlygas."
-
-msgid ""
-"An attempt is made to capture the current TV status. If this is not possible "
-"due to incorrect or missing status messages, it may cause the receiver to "
-"respond unexpectedly.\n"
-"On the other hand, tries to respond better to different operating conditions."
 msgstr ""
 "Bandoma užfiksuoti dabartinę TV būseną. Jei tai neįmanoma dėl neteisingo "
 "arba trūkstamų būsenos pranešimų, imtuvas gali netikėtai atsakyti.\n"
@@ -4214,9 +4137,6 @@ msgstr "Atšaukti atvaizdo pasirinkimą ir užverti"
 msgid "Cancel the image selection and exit all menus"
 msgstr "Atšaukti atvaizdo pasirinkimą ir užverti visus meniu"
 
-msgid "Cancel the selection"
-msgstr "Atšaukti pasirinkimą"
-
 msgid "Cancelled upon user request"
 msgstr "Atšauktas vartotojo"
 
@@ -4308,6 +4228,9 @@ msgstr "Pakeisti kalbą"
 msgid "Change PIN"
 msgstr "Keisti PIN kodą"
 
+msgid "Change Timer"
+msgstr "Keisti laikmatį"
+
 msgid "Change Volume offset"
 msgstr "Keisti garsumą"
 
@@ -4340,9 +4263,6 @@ msgstr "Pakeisti temą"
 
 msgid "Change step size"
 msgstr "Keisti žingsnio dydį"
-
-msgid "Change Timer"
-msgstr "Keisti laikmatį"
 
 msgid "Change to bouquet"
 msgstr "Keisti į paketą"
@@ -4576,9 +4496,6 @@ msgstr ""
 msgid "Choose a label that will identify this device within IceTV services."
 msgstr "Pasirinkite etiketę, kuri atpažins šį įrenginį IceTV paslaugose."
 
-msgid "Choose a setting where your receiver wakes up from standby."
-msgstr "Pasirinkite parametrą, kuriame jūsų imtuvas atsibunda budėjimo režimu."
-
 msgid "Choose a tag for easy finding a recording."
 msgstr "Pasirinkite žymeklį, kad būtų lengviau rasti įrašą."
 
@@ -4794,6 +4711,9 @@ msgstr "Spauskite nuotolinio valdymo pulto mygtuką, kurį norite pakeisti"
 msgid "Client Info ( Oscam-Version: %s )"
 msgstr "Kliento Info (Oscam versija: %s)"
 
+msgid "Client is streaming from this box!"
+msgstr ""
+
 msgid "ClientIP"
 msgstr "Kliento IP"
 
@@ -4812,11 +4732,29 @@ msgstr "Užverti"
 msgid "Close PiP on exit"
 msgstr "Išeinant užverti PiP"
 
+msgid "Close bouquet list"
+msgstr ""
+
 msgid "Close bouquet list."
 msgstr "Užverti paketų sąrašą."
 
 msgid "Close dialog"
 msgstr "Baigti dialogą"
+
+msgid "Close pop up menu"
+msgstr ""
+
+msgid "Close screen"
+msgstr ""
+
+msgid "Close the context menu"
+msgstr ""
+
+msgid "Close the current screen"
+msgstr ""
+
+msgid "Close the window"
+msgstr ""
 
 msgid "Close title selection"
 msgstr "Užverti pavadinimo pasirinkimą"
@@ -5882,6 +5820,9 @@ msgstr "Iškirpimo redaktorius"
 msgid "Cutlist editor..."
 msgstr "Iškirpimo redaktorius..."
 
+msgid "Cycle PIP(zap)"
+msgstr ""
+
 msgid "Cycling"
 msgstr "Dviračių sportas"
 
@@ -6261,6 +6202,10 @@ msgid "Defaults"
 msgstr "Numatytieji"
 
 msgid ""
+"Define additional delay in milliseconds before start of http(s) streams."
+msgstr ""
+
+msgid ""
 "Defines how fast the time jumps are repeated. Values lower than 500ms may be "
 "problematic with NAS."
 msgstr ""
@@ -6391,6 +6336,9 @@ msgstr "Trinti kalbą"
 msgid "Delete Plugins"
 msgstr "Ištrinti priedus"
 
+msgid "Delete Timer"
+msgstr "Trinti laikmatį"
+
 msgid "Delete all tags"
 msgstr "Šalinti visas žymes"
 
@@ -6449,9 +6397,6 @@ msgstr "Ištrinkite pasirinktus failus ar katalogus"
 msgid "Delete this tag"
 msgstr "Šalinti šią žymę"
 
-msgid "Delete Timer"
-msgstr "Trinti laikmatį"
-
 msgid "Delete unused tags"
 msgstr "Šalinti nenaudojamas žymes"
 
@@ -6493,6 +6438,9 @@ msgstr ""
 "'Iškoduoti ir įrašyti ECM' leidžia iškoduoti vėliau, jeigu įrašant iškoduoti "
 "nepavyksta. 'Neiškoduoti, įrašyti ECM' išsaugo užkoduotą įrašą, kuris gali "
 "būti iškoduotas atkūrimo metu. 'Normalus' iškoduoja įrašą ir neįrašo ECM."
+
+msgid "Descramble and record ecm"
+msgstr "Dekoduoti ir įrašyti ECM"
 
 msgid "Descramble http streams"
 msgstr "Iškoduoti http srautus"
@@ -6751,6 +6699,9 @@ msgstr "Atvaizdo neįdiegti"
 msgid "Do not record"
 msgstr "Neįrašinėti"
 
+msgid "Do nothing"
+msgstr "Nieko nedaryti"
+
 msgid ""
 "Do you really want to check the filesystem?\n"
 "This could take a long time!"
@@ -6990,6 +6941,9 @@ msgstr "Negalima pridėti šio įrašo"
 msgid "Don't ask again!"
 msgstr "Daugiau neklausti!"
 
+msgid "Don't descramble, record ecm"
+msgstr "Nereikia dekoduoti, įrašyti ecm"
+
 msgid "Don't restart"
 msgstr "Nepaleisti iš naujo"
 
@@ -7163,8 +7117,26 @@ msgstr "IŠSTUMTI CD ilgai spausti"
 msgid "EPG"
 msgstr "Elektroninis programų vadovas"
 
+msgid "EPG Actions"
+msgstr ""
+
+msgid "EPG Bouquet Actions"
+msgstr ""
+
 msgid "EPG Cache Check"
 msgstr "EPG talpyklos tikrinimas"
+
+msgid "EPG Channel/Service Selection"
+msgstr ""
+
+msgid "EPG Display Actions"
+msgstr ""
+
+msgid "EPG Navigation Actions"
+msgstr ""
+
+msgid "EPG Other Actions"
+msgstr ""
 
 msgid "EPG Search"
 msgstr "EPG paieška"
@@ -7252,6 +7224,9 @@ msgstr "Redaguoti Quad kanalo įrašą"
 msgid "Edit Tags"
 msgstr "Redaguoti žymes"
 
+msgid "Edit Timer"
+msgstr "Redaguoti laikmatį"
+
 msgid "Edit Title"
 msgstr "Redaguoti pavadinimą"
 
@@ -7286,9 +7261,6 @@ msgstr "Redaguoti %s %s DNS serverių konfigūraciją.\n"
 #, python-format
 msgid "Edit the network configuration of your %s %s.\n"
 msgstr "Redaguoti %s %s tinklo konfigūraciją.\n"
-
-msgid "Edit Timer"
-msgstr "Redaguoti laikmatį"
 
 msgid "Edit title"
 msgstr "Redaguoti"
@@ -7641,6 +7613,9 @@ msgstr "Į pagrindinį meniu..."
 msgid "Enter multi-file selection mode"
 msgstr "Įeikite į kelių failų pasirinkimo režimą"
 
+msgid "Enter number to jump to channel"
+msgstr "įrašykite skaičių, kad įjungti kanalą."
+
 msgid "Enter persistent PIN code"
 msgstr "Įrašykite pastovų PIN kodą"
 
@@ -7911,6 +7886,15 @@ msgstr "Įvykis"
 msgid "Event Info"
 msgstr "Įvykio informacija"
 
+msgid "Event View"
+msgstr "Įvykių peržiūra"
+
+msgid "Event View Actions"
+msgstr ""
+
+msgid "Event View Context Menu"
+msgstr "Įvykių peržiūros meniu"
+
 msgid "Event font size"
 msgstr "Įvykio šrifto dydis"
 
@@ -7920,14 +7904,11 @@ msgstr "Įvykių peržiūra"
 msgid "Event view menu"
 msgstr "Įvykių peržiūros meniu"
 
+msgid "EventViewEPG Actions"
+msgstr ""
+
 msgid "Eventname only"
 msgstr "Tik įvykio pavadinimas"
-
-msgid "Event View"
-msgstr "Įvykių peržiūra"
-
-msgid "Event View Context Menu"
-msgstr "Įvykių peržiūros meniu"
 
 msgid "Eventview:"
 msgstr "Įvykio peržiūra:"
@@ -8424,6 +8405,9 @@ msgstr "Finansai"
 msgid "Find out more at %s"
 msgstr "Sužinokite daugiau %s"
 
+msgid "Find similar events in the EPG"
+msgstr ""
+
 msgid "Fine movement"
 msgstr "Tikslus sukimas"
 
@@ -8827,6 +8811,9 @@ msgstr "Sąrašu žemyn"
 msgid "Go to bookmarked folder"
 msgstr "Eiti į aplanką su žymėmis"
 
+msgid "Go to deep standby"
+msgstr "Eiti į visišką išjungimą"
+
 msgid "Go to end of file"
 msgstr "Eikite į failo pabaigą"
 
@@ -8838,6 +8825,9 @@ msgstr "Į pirmą filmą, arba į sąrašo pradžią"
 
 msgid "Go to parent directory"
 msgstr "Eikite į pagrindinį katalogą"
+
+msgid "Go to standby"
+msgstr "Į budėjimo režimą"
 
 msgid "Go to start of file"
 msgstr "Eikite į failo pradžią"
@@ -9013,12 +9003,6 @@ msgstr "HD60/Multibox/Multiboxse"
 
 msgid "HDMI"
 msgstr "HDMI"
-
-msgid "HDMI CEC"
-msgstr "HDMI CEC"
-
-msgid "HDMI CEC Setup"
-msgstr "HDMI CEC nustatymas"
 
 msgid "HDMI Colordepth"
 msgstr "HDMI spalvų gylis"
@@ -9332,6 +9316,9 @@ msgstr "Val min sek"
 msgid "How many minutes do you want to record?"
 msgstr "Kiek minučių norite įrašinėti?"
 
+msgid "Http(s) stream start delay"
+msgstr ""
+
 msgid "Hue"
 msgstr "Atspalvis"
 
@@ -9356,14 +9343,14 @@ msgstr "IMDB paieška"
 msgid "IMDB search"
 msgstr "IMDB paieška"
 
-msgid "IMDb search for current event"
-msgstr "Ieškoti šio įvykio IMDB"
-
 msgid "IMDb Details"
 msgstr "IMDb detaliau"
 
 msgid "IMDb Search"
 msgstr "IMDb paieška"
+
+msgid "IMDb search for current event"
+msgstr "Ieškoti šio įvykio IMDB"
 
 msgid "INFO"
 msgstr "Informacija"
@@ -9628,15 +9615,6 @@ msgid ""
 msgstr ""
 "Jeigu nustatyta 'taip; info juosta bus rodoma visą laiką \"pauzės\" būsenoje "
 "(be pertraukos)."
-
-msgid ""
-"If the 'deep standby workaround' is enabled, it waits until the system time "
-"is synchronized. Depending on the requirement, the devices wake up will "
-"continuing after a maximum of 2 minutes."
-msgstr ""
-"Jei įjungtas \"gilus laukimo režimas\", jis laukia, kol bus sinchronizuotas "
-"sistemos laikas. Priklausomai nuo reikalavimo, prietaisai pabunda ne ilgiau "
-"kaip po 2 minučių."
 
 msgid ""
 "If the deep standby workaround is enabled wait until the system time is "
@@ -10216,9 +10194,6 @@ msgstr "Airija"
 msgid "Irish"
 msgstr "Airių"
 
-msgid "Is not necessary in most cases."
-msgstr "Daugeliu atvejų tai nebūtina."
-
 msgid "Is this setting ok?"
 msgstr "Ar šis nustatymas geras?"
 
@@ -10316,8 +10291,14 @@ msgstr "Peršokti į paskutinį sąrašo elementą arba teksto pabaigą"
 msgid "Jump to next marked position"
 msgstr "Peršokti į sekančią pažymėtą poziciją"
 
+msgid "Jump to next page or all up (setup in menu)"
+msgstr ""
+
 msgid "Jump to previous marked position"
 msgstr "Peršokti į ankstesnę pažymėtą poziciją"
+
+msgid "Jump to previous page or all down (setup in menu)"
+msgstr ""
 
 msgid "Jump to prime time"
 msgstr "Peršokti į žiūrimiausią laiką"
@@ -10796,9 +10777,6 @@ msgstr "Tiesioginės TV veiksmai"
 msgid "Load"
 msgstr "Įkėlimas"
 
-msgid "Load Default Settings"
-msgstr "Įkelkite numatytuosius nustatymus"
-
 msgid "Load EPG"
 msgstr "Įkelti EPG"
 
@@ -11263,11 +11241,11 @@ msgstr "Merlin EPG centras"
 msgid "Message"
 msgstr "Pranešimas"
 
-msgid "Message..."
-msgstr "Pranešimas..."
-
 msgid "Message Box Actions"
 msgstr "MessageBox funkcijos"
+
+msgid "Message..."
+msgstr "Pranešimas..."
 
 msgid "Metadata changed:"
 msgstr "Pakeisti meta duomenys:"
@@ -11558,11 +11536,17 @@ msgstr "Perkelkite teksto žymeklį į pirmąjį ženklą"
 msgid "Move the text cursor to the last character"
 msgstr "Perkelkite teksto žymeklį į paskutinį simbolį"
 
+msgid "Move to first line"
+msgstr ""
+
 msgid "Move to first line / screen"
 msgstr "Pereiti į pirmąją eilutę / ekraną"
 
 msgid "Move to home of list"
 msgstr "Perkelti į titulinį sąrašą"
+
+msgid "Move to last line"
+msgstr ""
 
 msgid "Move to last line / screen"
 msgstr "Pereiti į paskutinę eilutę / ekraną"
@@ -11621,6 +11605,9 @@ msgstr "Judėjimas"
 
 msgid "Movie"
 msgstr "Kino filmas"
+
+msgid "Movie Event View Actions"
+msgstr ""
 
 msgid "Movie List"
 msgstr "Kino filmų sąrašas"
@@ -12318,6 +12305,9 @@ msgstr "Nėra nė vienos iš maišytos %s raiškos programų"
 msgid "Norfolk Island"
 msgstr "Norfolko sala"
 
+msgid "Normal"
+msgstr "Normalus"
+
 msgid "North"
 msgstr "Šiaurė"
 
@@ -12520,6 +12510,9 @@ msgstr "OSD nustatymai"
 msgid "OScam Info"
 msgstr "OScam informacija"
 
+msgid "OScam webif disabled"
+msgstr "OScam webif išjungtas"
+
 msgid "OScamInfo"
 msgstr "OScam Informacija"
 
@@ -12540,6 +12533,9 @@ msgstr "Ojibwa"
 
 msgid "Ok"
 msgstr "OK"
+
+msgid "OkCancel Actions"
+msgstr ""
 
 msgid ""
 "Older files in the timeshift directory are removed on every event change."
@@ -12645,6 +12641,9 @@ msgstr "Atverti laikmačių sąrašą"
 msgid "Open bouquetlist"
 msgstr "Atverti paketų sąrašą"
 
+msgid "Open context menu"
+msgstr ""
+
 msgid "Open favourites list"
 msgstr "Atverti mėgstamiausių sąrašą"
 
@@ -12677,6 +12676,12 @@ msgstr "Atverti priedų tvarkyklę"
 
 msgid "Open the movie list"
 msgstr "Atverti filmų sąrašą"
+
+msgid "Open the multi service EPG view"
+msgstr ""
+
+msgid "Open the single service EPG view"
+msgstr ""
 
 msgid "Open with File Commander"
 msgstr "Atverti su Failų valdytoju"
@@ -12917,6 +12922,9 @@ msgstr "Puslapis žemyn"
 
 msgid "Page down list"
 msgstr "Puslapio žemyn sąrašas"
+
+msgid "Page left"
+msgstr "puslapis kairėje"
 
 msgid "Page right"
 msgstr "Puslapis dešinėje"
@@ -13781,9 +13789,6 @@ msgstr "Įjungimo laikmatis budėjimo režime"
 msgid "PowerTimer Entry"
 msgstr "Maitinimo laikmačio įvedimas"
 
-msgid "PowerTimer list"
-msgstr "Įjungimo laikmačio sąrašas"
-
 msgid "PowerTimer Log"
 msgstr "Maitinimo laikmačio žurnalas"
 
@@ -13792,6 +13797,9 @@ msgstr "Įjungimo laikmačio apžvalga"
 
 msgid "PowerTimer Standby"
 msgstr "Įjungimo laikmatis. Budėjimo režimas"
+
+msgid "PowerTimer list"
+msgstr "Įjungimo laikmačio sąrašas"
 
 msgid "PowerTimers"
 msgstr "Įjungimo laikmačiai"
@@ -14403,6 +14411,9 @@ msgstr "Įrašas"
 msgid "Record - same as record button"
 msgstr "Įrašas - tas pats kaip įrašymo mygtukas"
 
+msgid "Record Actions"
+msgstr ""
+
 msgid "Record next"
 msgstr "Įrašyti sekantį"
 
@@ -14945,6 +14956,9 @@ msgstr "Gaunamas atvaizdų sąrašas - prašome laukti..."
 msgid "Retrieving image slots - Please wait..."
 msgstr "Gaunami atvaizdo siužetai - prašome laukti..."
 
+msgid "Return the current selection response"
+msgstr ""
+
 msgid "Return to movie list"
 msgstr "Grįžti į filmų sąrašą"
 
@@ -15047,6 +15061,9 @@ msgstr "Paleiskite scenarijų su pasirinktiniu parametru"
 
 msgid "Run script with optional parameter in background"
 msgstr "Paleiskite scenarijų su pasirinktu parametru fone"
+
+msgid "Run the selected menu option"
+msgstr ""
 
 msgid "Rundi"
 msgstr "Rundi"
@@ -15814,6 +15831,9 @@ msgstr "Pasirinkite rūšiavimo būdą:"
 msgid "Select target folder"
 msgstr "Pasirinkite paskirties katalogą"
 
+msgid "Select the No / False response"
+msgstr ""
+
 msgid "Select the Swap File Size:"
 msgstr "Pasirinkite mainų failo dydį:"
 
@@ -15866,6 +15886,9 @@ msgid ""
 msgstr ""
 "Pasirinkite naudotojo juostos dažnį, kuris bus priskirtas šiam imtuvui. Tai "
 "dažnis, kurį SCR jungiklis naudoja norimam atsakikliui perduoti į imtuvą."
+
+msgid "Select the Yes / True response"
+msgstr ""
 
 msgid "Select the character or action under the keyboard cursor"
 msgstr "Pasirinkite simbolį arba veiksmą po klaviatūros žymekliu"
@@ -17266,6 +17289,12 @@ msgstr "Rodyti daugiakanalį EPG"
 msgid "Show network mounts ..."
 msgstr "Rodyti tinklo pajungimus ..."
 
+msgid "Show next event"
+msgstr ""
+
+msgid "Show next page"
+msgstr ""
+
 msgid "Show next picture"
 msgstr "Rodyti kitą nuotrauką"
 
@@ -17286,6 +17315,12 @@ msgstr "Rodyti pozicionieriaus judėjimą"
 
 msgid "Show preview of current mode (*)."
 msgstr "Rodyti peržiūrą dabartiniam režimui (*)."
+
+msgid "Show previous event"
+msgstr ""
+
+msgid "Show previous page"
+msgstr ""
 
 msgid "Show previous picture"
 msgstr "Rodyti ankstesnę nuotrauką"
@@ -17336,8 +17371,8 @@ msgstr "Rodyti išjungimo meniu"
 msgid "Show single EPG for current channel"
 msgstr "Rodyti atskirą EPG šiam kanalui"
 
-msgid "Show single epg for current channel (setup in menu)"
-msgstr "Rodyti vienintelį epg dabartiniam kanalui (nustatymas meniu)"
+msgid "Show single EPG for current channel (setup in menu)"
+msgstr ""
 
 msgid "Show single service EPG"
 msgstr "Rodyti vieno kanalo EPG"
@@ -17476,6 +17511,9 @@ msgstr "Rodo, kad filmas jau žiūrėtas."
 
 msgid "Shuffle playlist"
 msgstr "Sumaišyti grojaraštį"
+
+msgid "Shut down"
+msgstr "Išjungti"
 
 msgid "Shutdown"
 msgstr "Išjungti"
@@ -17805,17 +17843,6 @@ msgstr ""
 "prievadas. Šis parametras nustato televizoriaus budėjimo režimą prieš "
 "jungiklį. (Jei televizorius neįjungia, gali prireikti lėtesnio perdavimo "
 "intervalo arba pažadinimo komandų pasikartojimo.)"
-
-msgid ""
-"Some TV devices can't swich to correct input if a another hdmi port active. "
-"This setting set the TV to standby before.\n"
-"(If the TV does not turn back on, may require a slower transmission interval "
-"or the repetition of wake-up commands.)"
-msgstr ""
-"Kai kurie TV įrenginiai negali koreguoti įvesties, jei kita HDMI jungtis yra "
-"aktyvi. Šis nustatymas iš anksto nustato televizoriaus budėjimo režimą.\n"
-"(Jei televizorius neatsijungs, gali prireikti lėtesnio perdavimo intervalo "
-"arba pakartotinio budėjimo komandos.)"
 
 msgid "Some plugins are not available:\n"
 msgstr "Kai kurių priedų nėra:\n"
@@ -19308,15 +19335,6 @@ msgstr ""
 "sprendimas. Pažadinimo komandos iš kitų įrenginių bus nepaisoma kelias "
 "sekundes."
 
-msgid ""
-"This is a workaround for some devices there wakeup again after switching in "
-"standby. The wak up command's from other devices will ignored for few "
-"seconds."
-msgstr ""
-"Tai yra kai kurių įrenginių problema, kurie po persijungimo į budėjimo "
-"režimą pabunda. Kitų įrenginių pabudimo komandos bus ignoruojamos kelias "
-"sekundes."
-
 #, python-format
 msgid "This is the currently selected language.  [%s]"
 msgstr "Tai šiuo metu pasirinkta kalba.  [%s]"
@@ -20268,19 +20286,12 @@ msgstr ""
 "Stenkitės, kad nebūtų programinės įrangos klaidų perjungiant ir išlaikyti "
 "imtuvo prieinamumą."
 
-msgid "Try to send repeated commands if not all commands are executed.\n"
-msgstr ""
-"Bandoma siųsti pakartotines komandas, jei ne visos komandos vykdomos.\n"
-
 msgid ""
 "Try to send repeated commands if not all commands are executed. (e.g. TV "
 "wakeup, but not switched to correct input.)"
 msgstr ""
 "Pabandykite siųsti pasikartojančias komandas, jei vykdomos ne visos "
 "komandos. (pvz., TV pažadinimas, bet neperjungiamas į teisingą įvestį.)"
-
-msgid "Try to slow down the send interval if not all commands are executed."
-msgstr "Bandoma sulėtinti siuntimo intervalą, jei ne visos komandos vykdomos."
 
 msgid "Trying to download a new packetlist. Please wait..."
 msgstr "Bandoma parsisiųsti naują paketo sąrašą. Palaukite..."
@@ -20583,6 +20594,9 @@ msgstr ""
 "Kuriant temą, įvyko klaida.\n"
 "Paleidę sistemą iš naujo, tikrinkite MyMetrixLite priedą ir patvirtinkite "
 "savo nustatymus."
+
+msgid "Unknown Service"
+msgstr "nežinomas kanalas"
 
 msgid "Unknown error code"
 msgstr "Nežinomas klaidos kodas"
@@ -22148,6 +22162,9 @@ msgstr ""
 msgid "Without popup"
 msgstr "Be Iššokančio teksto"
 
+msgid "Wizard Actions"
+msgstr ""
+
 msgid "Wolof"
 msgstr "Volofų"
 
@@ -22750,6 +22767,9 @@ msgstr "Jungti"
 msgid "Zap + Exit"
 msgstr "Įjungti + uždaryti"
 
+msgid "Zap and record"
+msgstr "Įjungti ir įrašyti"
+
 msgid "Zap back to previously tuned service?"
 msgstr "Jungti į anksčiau nustatytą kanalą?"
 
@@ -23222,9 +23242,6 @@ msgstr "ištrinti iškirptą"
 msgid "deleted"
 msgstr "ištrinta"
 
-msgid "Descramble and record ecm"
-msgstr "Dekoduoti ir įrašyti ECM"
-
 msgid "detective/thriller"
 msgstr "detektyvas/trileris"
 
@@ -23243,9 +23260,6 @@ msgstr "diskusijos/interviu/debatai"
 msgid "display"
 msgstr "parodoma"
 
-msgid "Do nothing"
-msgstr "Nieko nedaryti"
-
 msgid "documentary"
 msgstr "dokumentinis"
 
@@ -23254,9 +23268,6 @@ msgstr "dokumentika (bendrai)"
 
 msgid "dolby"
 msgstr "dolby"
-
-msgid "Don't descramble, record ecm"
-msgstr "Nereikia dekoduoti, įrašyti ecm"
 
 msgid "done!"
 msgstr "baigta!"
@@ -23339,9 +23350,6 @@ msgstr "jungimo pabaiga"
 
 msgid "enigma2 and network"
 msgstr "enigma2 ir tinklas"
-
-msgid "Enter number to jump to channel"
-msgstr "įrašykite skaičių, kad įjungti kanalą."
 
 msgid "entertainment (10-16 year old)"
 msgstr "pramogos (10-16 metų amžiaus)"
@@ -23505,12 +23513,6 @@ msgstr "sodininkystė"
 msgid "get the cards' server"
 msgstr "prijungti kortelių serverį"
 
-msgid "Go to deep standby"
-msgstr "Eiti į visišką išjungimą"
-
-msgid "Go to standby"
-msgstr "Į budėjimo režimą"
-
 msgid "goto current channel and now"
 msgstr "eiti į dabartinį kanalą ir dabar"
 
@@ -23577,9 +23579,6 @@ msgstr "aukštis"
 
 msgid "help..."
 msgstr "pagalba..."
-
-msgid "helptext"
-msgstr "pagalbos tekstas"
 
 msgid "hh:mm"
 msgstr "hh:mm"
@@ -23673,12 +23672,6 @@ msgstr "šuolis priekin į kitą pavadinimą"
 
 msgid "jump to chapter by number"
 msgstr "peršokti į skyrių pagal numerį"
-
-msgid "jump to next page or all up (setup in menu)"
-msgstr "pereiti į kitą puslapį arba visi iki (sąranka meniu)"
-
-msgid "jump to previous page or all down (setup in menu)"
-msgstr "pereiti į ankstesnį puslapį arba visus žemyn (nustatymas meniu)"
 
 msgid "just abort, no message"
 msgstr "nutraukti, be pranešimo"
@@ -23887,8 +23880,8 @@ msgstr "laikmenos įrenginių nerasta"
 msgid "none"
 msgstr "nėra"
 
-msgid "Normal"
-msgstr "Normalus"
+msgid "normal"
+msgstr ""
 
 msgid "not"
 msgstr "ne"
@@ -23956,14 +23949,8 @@ msgstr "originali"
 msgid "original language"
 msgstr "originalo kalba"
 
-msgid "OScam webif disabled"
-msgstr "OScam webif išjungtas"
-
 msgid "packages selected."
 msgstr "pasirinkti paketai."
-
-msgid "Page left"
-msgstr "puslapis kairėje"
 
 msgid "pass"
 msgstr "perduoti"
@@ -24045,9 +24032,6 @@ msgstr "realūs įrašai arba transliacijos"
 
 msgid "reboot system"
 msgstr "perkraukite sistemą"
-
-msgid "record"
-msgstr "įrašyti"
 
 #, python-format
 msgid "record time changed, start prepare is now: %s"
@@ -24301,9 +24285,6 @@ msgstr "šou, žaidimų šou (bendrai)"
 msgid "shuffle"
 msgstr "sumaišyti"
 
-msgid "Shut down"
-msgstr "Išjungti"
-
 msgid "simple"
 msgstr "paprastas"
 
@@ -24509,9 +24490,6 @@ msgstr "nežinoma"
 msgid "unknown error"
 msgstr "nežinoma klaida"
 
-msgid "Unknown Service"
-msgstr "nežinomas kanalas"
-
 msgid "unpack Rar Files"
 msgstr "išpakuokite Rar failus"
 
@@ -24688,12 +24666,6 @@ msgstr ""
 "jūsų %s %s galėjo tapti netinkamu naudoti. Vadovaukitės vartotojo vadovu, "
 "prieš paleisdami %s %s iš naujo."
 
-msgid "zap"
-msgstr "jungti"
-
-msgid "Zap and record"
-msgstr "Įjungti ir įrašyti"
-
 msgid "zapped"
 msgstr "įjungta"
 
@@ -24702,6 +24674,162 @@ msgstr "perjungimas"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid ""
+#~ "\n"
+#~ "* Logs location: logs settings, Filename: Enigma2-hdmicec-[date].log"
+#~ msgstr ""
+#~ "\n"
+#~ "* Žurnalai: žurnalo nustatymai, failo vardas: Enigma2-hdmicec-[data].log"
+
+#~ msgid "%Y-%m-%d %H-%M"
+#~ msgstr "%Y.%m.%d %H:%M"
+
+#~ msgid ""
+#~ "'Handle standby from TV' has a higher priority as 'Handle input from TV'"
+#~ msgstr ""
+#~ "\"Rankinis budėjimo režimas iš televizoriaus\" turi aukštesnį prioritetą, "
+#~ "kaip \"TV valdymas\""
+
+#~ msgid "(e.g. TV wakeup, but not switched to correct input)"
+#~ msgstr "(pvz., TV budina, bet nepersijungia į teisingą įvestį)"
+
+#~ msgid "16_10_letterbox"
+#~ msgstr "16_10 įterpiant juodas juostas"
+
+#~ msgid "16_10_panscan"
+#~ msgstr "16_10_nukerpant šonus"
+
+#~ msgid "16_9"
+#~ msgstr "16_9"
+
+#~ msgid "16_9_always"
+#~ msgstr "16_9 visada"
+
+#~ msgid "16_9_letterbox"
+#~ msgstr "16_9 įterpiant juodas juostas"
+
+#~ msgid "4_3_letterbox"
+#~ msgstr "4_3_įterpiant juodas juostas viršuje ir apačioje"
+
+#~ msgid "4_3_panscan"
+#~ msgstr "4_3_nukerpant šonus"
+
+#~ msgid "Accept the current selection"
+#~ msgstr "Patvirtinkite dabartinį pasirinkimą"
+
+#, python-format
+#~ msgid ""
+#~ "Activate an way to send individual or specific internal HDMI-CEC commands "
+#~ "from the command line. Type on command line 'echo help > %s' and then "
+#~ "read the file '%s' for a short help."
+#~ msgstr ""
+#~ "Suaktyvinkite būdą, kaip siųsti individualias arba specifines vidines "
+#~ "HDMI-CEC komandas iš komandinės eilutės. Įveskite komandinę eilutę 'echo "
+#~ "help > %s' ir tada trumpai perskaitykite failą '%s'."
+
+#~ msgid ""
+#~ "Activation takes place immediately. If it does feature not work, then try "
+#~ "again with a slower send interval."
+#~ msgstr ""
+#~ "Aktyvinimas vyksta iš karto. Jei funkcija neveikia, bandykite dar kartą "
+#~ "naudodami lėtesnį siuntimo intervalą."
+
+#~ msgid ""
+#~ "Activation takes place immediately. If this feature is not supported, the "
+#~ "volume keys has no function!"
+#~ msgstr ""
+#~ "Aktyvinimas vyksta iš karto. Jei ši funkcija nepalaikoma, garsumo "
+#~ "klavišai neveikia!"
+
+#~ msgid "Always select OK"
+#~ msgstr "Visada pasirinkite OK"
+
+#~ msgid ""
+#~ "An attempt is made to capture the current TV status. If this is not "
+#~ "possible due to incorrect or missing status messages, it may cause the "
+#~ "receiver to respond unexpectedly.\n"
+#~ "On the other hand, tries to respond better to different operating "
+#~ "conditions."
+#~ msgstr ""
+#~ "Bandoma užfiksuoti dabartinę TV būseną. Jei tai neįmanoma dėl neteisingo "
+#~ "arba trūkstamų būsenos pranešimų, imtuvas gali netikėtai atsakyti.\n"
+#~ "Kita vertus, bando geriau reaguoti į skirtingas eksploatavimo sąlygas."
+
+#~ msgid "Cancel the selection"
+#~ msgstr "Atšaukti pasirinkimą"
+
+#~ msgid "Choose a setting where your receiver wakes up from standby."
+#~ msgstr ""
+#~ "Pasirinkite parametrą, kuriame jūsų imtuvas atsibunda budėjimo režimu."
+
+#~ msgid "HDMI CEC"
+#~ msgstr "HDMI CEC"
+
+#~ msgid "HDMI CEC Setup"
+#~ msgstr "HDMI CEC nustatymas"
+
+#~ msgid ""
+#~ "If the 'deep standby workaround' is enabled, it waits until the system "
+#~ "time is synchronized. Depending on the requirement, the devices wake up "
+#~ "will continuing after a maximum of 2 minutes."
+#~ msgstr ""
+#~ "Jei įjungtas \"gilus laukimo režimas\", jis laukia, kol bus "
+#~ "sinchronizuotas sistemos laikas. Priklausomai nuo reikalavimo, prietaisai "
+#~ "pabunda ne ilgiau kaip po 2 minučių."
+
+#~ msgid "Is not necessary in most cases."
+#~ msgstr "Daugeliu atvejų tai nebūtina."
+
+#~ msgid "Load Default Settings"
+#~ msgstr "Įkelkite numatytuosius nustatymus"
+
+#~ msgid "Show single epg for current channel (setup in menu)"
+#~ msgstr "Rodyti vienintelį epg dabartiniam kanalui (nustatymas meniu)"
+
+#~ msgid ""
+#~ "Some TV devices can't swich to correct input if a another hdmi port "
+#~ "active. This setting set the TV to standby before.\n"
+#~ "(If the TV does not turn back on, may require a slower transmission "
+#~ "interval or the repetition of wake-up commands.)"
+#~ msgstr ""
+#~ "Kai kurie TV įrenginiai negali koreguoti įvesties, jei kita HDMI jungtis "
+#~ "yra aktyvi. Šis nustatymas iš anksto nustato televizoriaus budėjimo "
+#~ "režimą.\n"
+#~ "(Jei televizorius neatsijungs, gali prireikti lėtesnio perdavimo "
+#~ "intervalo arba pakartotinio budėjimo komandos.)"
+
+#~ msgid ""
+#~ "This is a workaround for some devices there wakeup again after switching "
+#~ "in standby. The wak up command's from other devices will ignored for few "
+#~ "seconds."
+#~ msgstr ""
+#~ "Tai yra kai kurių įrenginių problema, kurie po persijungimo į budėjimo "
+#~ "režimą pabunda. Kitų įrenginių pabudimo komandos bus ignoruojamos kelias "
+#~ "sekundes."
+
+#~ msgid "Try to send repeated commands if not all commands are executed.\n"
+#~ msgstr ""
+#~ "Bandoma siųsti pakartotines komandas, jei ne visos komandos vykdomos.\n"
+
+#~ msgid "Try to slow down the send interval if not all commands are executed."
+#~ msgstr ""
+#~ "Bandoma sulėtinti siuntimo intervalą, jei ne visos komandos vykdomos."
+
+#~ msgid "helptext"
+#~ msgstr "pagalbos tekstas"
+
+#~ msgid "jump to next page or all up (setup in menu)"
+#~ msgstr "pereiti į kitą puslapį arba visi iki (sąranka meniu)"
+
+#~ msgid "jump to previous page or all down (setup in menu)"
+#~ msgstr "pereiti į ankstesnį puslapį arba visus žemyn (nustatymas meniu)"
+
+#~ msgid "record"
+#~ msgstr "įrašyti"
+
+#~ msgid "zap"
+#~ msgstr "jungti"
 
 #~ msgid "%d-%m"
 #~ msgstr "%m.%d"

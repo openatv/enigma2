@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-11-29 21:27+0000\n"
+"POT-Creation-Date: 2021-12-26 20:08+0000\n"
 "PO-Revision-Date: 2021-08-15 18:50+0000\n"
 "Last-Translator: openATV <openatv@gmail.com>\n"
 "Language-Team: Swedish <https://hosted.weblate.org/projects/openatv/"
@@ -44,11 +44,6 @@ msgstr ""
 msgid ""
 "\n"
 " Kodi not present. Proceed with install?"
-msgstr ""
-
-msgid ""
-"\n"
-"* Logs location: logs settings, Filename: Enigma2-hdmicec-[date].log"
 msgstr ""
 
 msgid ""
@@ -759,9 +754,6 @@ msgid "%Y-%b-%d"
 msgstr ""
 
 msgid "%Y-%m-%d"
-msgstr ""
-
-msgid "%Y-%m-%d %H-%M"
 msgstr ""
 
 msgid "%Y/%-m/%-d"
@@ -1499,10 +1491,6 @@ msgid ""
 msgstr ""
 
 msgid ""
-"'Handle standby from TV' has a higher priority as 'Handle input from TV'"
-msgstr ""
-
-msgid ""
 "'Handle standby from TV' has a higher priority than 'Handle input from TV'."
 msgstr ""
 
@@ -1541,9 +1529,6 @@ msgstr "(Visa endast läsare:"
 #, fuzzy
 msgid "(current image)"
 msgstr "Aktuell tid"
-
-msgid "(e.g. TV wakeup, but not switched to correct input)"
-msgstr ""
 
 #
 msgid "(empty)"
@@ -1781,30 +1766,11 @@ msgstr "16:10 PanScan"
 msgid "16:9"
 msgstr "16:9"
 
-msgid "16:9 Letterbox"
-msgstr "16:9 Letterbox"
-
 #
 msgid "16:9 Always"
 msgstr "16:9 alltid"
 
-#, fuzzy
-msgid "16_10_letterbox"
-msgstr "16:10 Letterbox"
-
-msgid "16_10_panscan"
-msgstr ""
-
-msgid "16_9"
-msgstr ""
-
-#
-#, fuzzy
-msgid "16_9_always"
-msgstr "16:9 alltid"
-
-#, fuzzy
-msgid "16_9_letterbox"
+msgid "16:9 Letterbox"
 msgstr "16:9 Letterbox"
 
 #
@@ -2062,16 +2028,6 @@ msgstr "4:3 PanScan"
 
 msgid "4X"
 msgstr "4X"
-
-#
-#, fuzzy
-msgid "4_3_letterbox"
-msgstr "4:3 Letterbox"
-
-#
-#, fuzzy
-msgid "4_3_panscan"
-msgstr "Pan&scan"
 
 msgid "4s"
 msgstr ""
@@ -2534,11 +2490,6 @@ msgstr "Om..."
 
 #
 #, fuzzy
-msgid "Accept the current selection"
-msgstr "Aktivera nuvarande konfiguration"
-
-#
-#, fuzzy
 msgid "Accessed:"
 msgstr "Accesspunkt:"
 
@@ -2576,13 +2527,6 @@ msgid ""
 "from the command line."
 msgstr ""
 
-#, python-format
-msgid ""
-"Activate an way to send individual or specific internal HDMI-CEC commands "
-"from the command line. Type on command line 'echo help > %s' and then read "
-"the file '%s' for a short help."
-msgstr ""
-
 #
 msgid "Activate current configuration"
 msgstr "Aktivera nuvarande konfiguration"
@@ -2611,16 +2555,6 @@ msgstr "Aktivera timeshiftslut"
 
 msgid "Activate timeshift end and pause"
 msgstr "Aktivera timeshiftslut och pausa"
-
-msgid ""
-"Activation takes place immediately. If it does feature not work, then try "
-"again with a slower send interval."
-msgstr ""
-
-msgid ""
-"Activation takes place immediately. If this feature is not supported, the "
-"volume keys has no function!"
-msgstr ""
 
 #
 msgid "Active"
@@ -2658,9 +2592,6 @@ msgstr "Lägg till Timer"
 msgid "Add Zap+Record Timer"
 msgstr "Lägg till en inspelningstimer."
 
-msgid "Add an AutoTimer for the current event"
-msgstr "Lägg till en AutoTimer för pågående händelse"
-
 #
 msgid "Add a mark"
 msgstr "Lägg till markör"
@@ -2682,11 +2613,17 @@ msgstr "Lägg till en inspelningstimer."
 msgid "Add a record timer for current event"
 msgstr "Lägg till en inspelningstimer för pågående händelse."
 
+msgid "Add a timer for the current event"
+msgstr ""
+
 msgid "Add a zap timer for current event"
 msgstr "Lägg till en zaptimer för pågående händelse"
 
 msgid "Add a zap timer for next event"
 msgstr "Lägg till en zaptimer för nästa händelse"
+
+msgid "Add an AutoTimer for the current event"
+msgstr "Lägg till en AutoTimer för pågående händelse"
 
 #
 msgid "Add bookmark"
@@ -3080,10 +3017,6 @@ msgid ""
 "receiver. Default: off."
 msgstr ""
 
-#, fuzzy
-msgid "Always select OK"
-msgstr "Fråga alltid"
-
 msgid "Always show bouquets"
 msgstr "Visa Alltid Kanallistor"
 
@@ -3108,13 +3041,6 @@ msgid ""
 "due to incorrect or missing status messages it may cause the receiver to "
 "respond unexpectedly. On the other hand, tries to respond better to "
 "different operating conditions."
-msgstr ""
-
-msgid ""
-"An attempt is made to capture the current TV status. If this is not possible "
-"due to incorrect or missing status messages, it may cause the receiver to "
-"respond unexpectedly.\n"
-"On the other hand, tries to respond better to different operating conditions."
 msgstr ""
 
 #
@@ -4522,11 +4448,6 @@ msgstr "Kanalval"
 msgid "Cancel the image selection and exit all menus"
 msgstr "Kanalval"
 
-#
-#, fuzzy
-msgid "Cancel the selection"
-msgstr "Kanalval"
-
 msgid "Cancelled upon user request"
 msgstr ""
 
@@ -4626,6 +4547,10 @@ msgstr "Språk"
 msgid "Change PIN"
 msgstr ""
 
+#
+msgid "Change Timer"
+msgstr "Ändra timer"
+
 msgid "Change Volume offset"
 msgstr ""
 
@@ -4662,10 +4587,6 @@ msgstr "Ändra timer"
 #
 msgid "Change step size"
 msgstr "Ändra stegstorlek"
-
-#
-msgid "Change Timer"
-msgstr "Ändra timer"
 
 #
 msgid "Change to bouquet"
@@ -4927,9 +4848,6 @@ msgstr ""
 msgid "Choose a label that will identify this device within IceTV services."
 msgstr ""
 
-msgid "Choose a setting where your receiver wakes up from standby."
-msgstr ""
-
 msgid "Choose a tag for easy finding a recording."
 msgstr "Välj en tagg för att lättare hitta en inspelning."
 
@@ -5123,6 +5041,9 @@ msgstr "Tryck på den knapp på din fjärrkontroll som du vill ändra"
 msgid "Client Info ( Oscam-Version: %s )"
 msgstr ""
 
+msgid "Client is streaming from this box!"
+msgstr ""
+
 #, fuzzy
 msgid "ClientIP"
 msgstr "Klienter"
@@ -5146,11 +5067,29 @@ msgstr "Stäng"
 msgid "Close PiP on exit"
 msgstr "Stäng BiB vid avslut"
 
+msgid "Close bouquet list"
+msgstr ""
+
 msgid "Close bouquet list."
 msgstr "Stäng kanallista"
 
 msgid "Close dialog"
 msgstr "Stäng dialog"
+
+msgid "Close pop up menu"
+msgstr ""
+
+msgid "Close screen"
+msgstr ""
+
+msgid "Close the context menu"
+msgstr ""
+
+msgid "Close the current screen"
+msgstr ""
+
+msgid "Close the window"
+msgstr ""
 
 #
 msgid "Close title selection"
@@ -6260,6 +6199,9 @@ msgstr "Klipplisteditor"
 msgid "Cutlist editor..."
 msgstr "Klipplisteditor..."
 
+msgid "Cycle PIP(zap)"
+msgstr ""
+
 msgid "Cycling"
 msgstr ""
 
@@ -6675,6 +6617,10 @@ msgid "Defaults"
 msgstr "Standard"
 
 msgid ""
+"Define additional delay in milliseconds before start of http(s) streams."
+msgstr ""
+
+msgid ""
 "Defines how fast the time jumps are repeated. Values lower than 500ms may be "
 "problematic with NAS."
 msgstr ""
@@ -6800,6 +6746,10 @@ msgstr ""
 msgid "Delete Plugins"
 msgstr ""
 
+#
+msgid "Delete Timer"
+msgstr "Radera timer"
+
 msgid "Delete all tags"
 msgstr ""
 
@@ -6868,10 +6818,6 @@ msgstr ""
 msgid "Delete this tag"
 msgstr ""
 
-#
-msgid "Delete Timer"
-msgstr "Radera timer"
-
 msgid "Delete unused tags"
 msgstr ""
 
@@ -6916,6 +6862,9 @@ msgstr ""
 "under inspelning misslyckades.'Avkoda inte, spela in ECM' sparar en kodad "
 "inspelning som kan avkodas vid uppspelning. 'Normal' betyder att "
 "inspelningen avkodas och spelar inte in ECM."
+
+msgid "Descramble and record ecm"
+msgstr "avkoda och spela in ecm"
 
 msgid "Descramble http streams"
 msgstr "Avkoda http strömning "
@@ -7210,6 +7159,10 @@ msgid "Do not record"
 msgstr "spela inte in"
 
 #
+msgid "Do nothing"
+msgstr "gör inget"
+
+#
 msgid ""
 "Do you really want to check the filesystem?\n"
 "This could take a long time!"
@@ -7465,6 +7418,9 @@ msgstr ""
 msgid "Don't ask again!"
 msgstr "Spara Inte"
 
+msgid "Don't descramble, record ecm"
+msgstr "avkoda inte, spela in ecm"
+
 msgid "Don't restart"
 msgstr ""
 
@@ -7655,8 +7611,26 @@ msgstr ""
 msgid "EPG"
 msgstr "EPG"
 
+msgid "EPG Actions"
+msgstr ""
+
+msgid "EPG Bouquet Actions"
+msgstr ""
+
 msgid "EPG Cache Check"
 msgstr "EPG Cachekontroll"
+
+msgid "EPG Channel/Service Selection"
+msgstr ""
+
+msgid "EPG Display Actions"
+msgstr ""
+
+msgid "EPG Navigation Actions"
+msgstr ""
+
+msgid "EPG Other Actions"
+msgstr ""
 
 msgid "EPG Search"
 msgstr "EPG Sökning"
@@ -7746,6 +7720,10 @@ msgstr "Ändra ny post"
 msgid "Edit Tags"
 msgstr ""
 
+#
+msgid "Edit Timer"
+msgstr "Ändra timer"
+
 msgid "Edit Title"
 msgstr ""
 
@@ -7794,10 +7772,6 @@ msgstr "Ändra Namnserver konfiguration för din %s %s.\n"
 #, fuzzy, python-format
 msgid "Edit the network configuration of your %s %s.\n"
 msgstr "Ändra nätverks konfiguration för din %s %s.\n"
-
-#
-msgid "Edit Timer"
-msgstr "Ändra timer"
 
 #
 msgid "Edit title"
@@ -8166,6 +8140,9 @@ msgstr "Gå till huvudmeny..."
 msgid "Enter multi-file selection mode"
 msgstr "Stäng titelval"
 
+msgid "Enter number to jump to channel"
+msgstr "mata in kanalnummer."
+
 msgid "Enter persistent PIN code"
 msgstr "Ange beständig PIN-kod"
 
@@ -8422,6 +8399,15 @@ msgstr "Händelse Info"
 msgid "Event Info"
 msgstr "Händelse Info"
 
+msgid "Event View"
+msgstr ""
+
+msgid "Event View Actions"
+msgstr ""
+
+msgid "Event View Context Menu"
+msgstr ""
+
 msgid "Event font size"
 msgstr "Fontstorlek för evenemang"
 
@@ -8431,13 +8417,10 @@ msgstr "Programöversikt"
 msgid "Event view menu"
 msgstr "Meny för programöversikt"
 
+msgid "EventViewEPG Actions"
+msgstr ""
+
 msgid "Eventname only"
-msgstr ""
-
-msgid "Event View"
-msgstr ""
-
-msgid "Event View Context Menu"
 msgstr ""
 
 #, fuzzy
@@ -8980,6 +8963,9 @@ msgstr "romantik"
 msgid "Find out more at %s"
 msgstr ""
 
+msgid "Find similar events in the EPG"
+msgstr ""
+
 #
 msgid "Fine movement"
 msgstr "Finjustering"
@@ -9443,6 +9429,10 @@ msgid "Go to bookmarked folder"
 msgstr ""
 
 #
+msgid "Go to deep standby"
+msgstr "stäng av mottagaren"
+
+#
 #, fuzzy
 msgid "Go to end of file"
 msgstr "Hoppa till slutet av listan"
@@ -9457,6 +9447,10 @@ msgstr "Gå till första filmen eller längst upp i listan"
 #, fuzzy
 msgid "Go to parent directory"
 msgstr "Moderkatalog"
+
+#
+msgid "Go to standby"
+msgstr "inta viloläge"
 
 #
 #, fuzzy
@@ -9646,12 +9640,6 @@ msgstr ""
 
 msgid "HDMI"
 msgstr "HDMI"
-
-msgid "HDMI CEC"
-msgstr "HDMI CEC"
-
-msgid "HDMI CEC Setup"
-msgstr "HDMI CEC Inställning"
 
 msgid "HDMI Colordepth"
 msgstr "HDMI Färgdjup"
@@ -9987,6 +9975,9 @@ msgstr "Tim Min Sek"
 msgid "How many minutes do you want to record?"
 msgstr "Hur många minuter vill du spela in?"
 
+msgid "Http(s) stream start delay"
+msgstr ""
+
 #
 msgid "Hue"
 msgstr "Färgton"
@@ -10019,14 +10010,14 @@ msgstr "IMDb Sökning"
 msgid "IMDB search"
 msgstr "IMDb Sökning"
 
-msgid "IMDb search for current event"
-msgstr "IMDb sökning för aktuell händelse"
-
 msgid "IMDb Details"
 msgstr ""
 
 msgid "IMDb Search"
 msgstr "IMDb Sökning"
+
+msgid "IMDb search for current event"
+msgstr "IMDb sökning för aktuell händelse"
 
 msgid "INFO"
 msgstr ""
@@ -10270,12 +10261,6 @@ msgid ""
 "(no timeout)."
 msgstr ""
 "Om 'Ja' är valt  så visas  Informationsfältet när en ny händelse startar."
-
-msgid ""
-"If the 'deep standby workaround' is enabled, it waits until the system time "
-"is synchronized. Depending on the requirement, the devices wake up will "
-"continuing after a maximum of 2 minutes."
-msgstr ""
 
 msgid ""
 "If the deep standby workaround is enabled wait until the system time is "
@@ -10895,9 +10880,6 @@ msgstr ""
 msgid "Irish"
 msgstr ""
 
-msgid "Is not necessary in most cases."
-msgstr ""
-
 msgid "Is this setting ok?"
 msgstr "Är denna inställning OK?"
 
@@ -11003,8 +10985,14 @@ msgstr ""
 msgid "Jump to next marked position"
 msgstr "Gå till nästa markerade position"
 
+msgid "Jump to next page or all up (setup in menu)"
+msgstr ""
+
 msgid "Jump to previous marked position"
 msgstr "Gå till föregående markerade position"
+
+msgid "Jump to previous page or all down (setup in menu)"
+msgstr ""
 
 msgid "Jump to prime time"
 msgstr "Hoppa till prime time"
@@ -11557,11 +11545,6 @@ msgstr ""
 msgid "Load"
 msgstr "Ladda"
 
-#
-#, fuzzy
-msgid "Load Default Settings"
-msgstr "Standardinställningar"
-
 msgid "Load EPG"
 msgstr "Ladda EPG"
 
@@ -12094,11 +12077,11 @@ msgstr ""
 msgid "Message"
 msgstr "Meddelande"
 
-msgid "Message..."
-msgstr "Meddelande..."
-
 msgid "Message Box Actions"
 msgstr ""
+
+msgid "Message..."
+msgstr "Meddelande..."
 
 msgid "Metadata changed:"
 msgstr ""
@@ -12421,11 +12404,17 @@ msgstr ""
 msgid "Move the text cursor to the last character"
 msgstr ""
 
+msgid "Move to first line"
+msgstr ""
+
 msgid "Move to first line / screen"
 msgstr ""
 
 msgid "Move to home of list"
 msgstr "Flytta till början av listan"
+
+msgid "Move to last line"
+msgstr ""
 
 msgid "Move to last line / screen"
 msgstr ""
@@ -12493,6 +12482,9 @@ msgstr "Rörelse"
 #, fuzzy
 msgid "Movie"
 msgstr "Förflyttar"
+
+msgid "Movie Event View Actions"
+msgstr ""
 
 msgid "Movie List"
 msgstr "Filmlista"
@@ -13310,6 +13302,9 @@ msgstr ""
 msgid "Norfolk Island"
 msgstr ""
 
+msgid "Normal"
+msgstr "normal"
+
 #
 msgid "North"
 msgstr "Nord"
@@ -13533,6 +13528,9 @@ msgstr "OSD inställning"
 msgid "OScam Info"
 msgstr "OScam Info"
 
+msgid "OScam webif disabled"
+msgstr ""
+
 #, fuzzy
 msgid "OScamInfo"
 msgstr "OScam Info"
@@ -13554,6 +13552,9 @@ msgid "Ojibwa"
 msgstr ""
 
 msgid "Ok"
+msgstr ""
+
+msgid "OkCancel Actions"
 msgstr ""
 
 msgid ""
@@ -13670,6 +13671,9 @@ msgstr "Timerlista"
 msgid "Open bouquetlist"
 msgstr "avsluta favoritlists editor"
 
+msgid "Open context menu"
+msgstr ""
+
 #
 msgid "Open favourites list"
 msgstr "Öppna favoriter"
@@ -13703,6 +13707,12 @@ msgstr ""
 
 msgid "Open the movie list"
 msgstr "Öppna filmlistan"
+
+msgid "Open the multi service EPG view"
+msgstr ""
+
+msgid "Open the single service EPG view"
+msgstr ""
 
 msgid "Open with File Commander"
 msgstr ""
@@ -13966,6 +13976,9 @@ msgstr "Flytta ner en sida"
 #, fuzzy
 msgid "Page down list"
 msgstr "Flytta ner en sida"
+
+msgid "Page left"
+msgstr "till vänster"
 
 msgid "Page right"
 msgstr "Till höger"
@@ -14919,10 +14932,6 @@ msgstr ""
 msgid "PowerTimer Entry"
 msgstr "StrömtimerHanterare"
 
-#
-msgid "PowerTimer list"
-msgstr "Strömtimerlista"
-
 msgid "PowerTimer Log"
 msgstr "StrömtimerHanterare logg"
 
@@ -14931,6 +14940,10 @@ msgstr "Översikt Strömtimer"
 
 msgid "PowerTimer Standby"
 msgstr ""
+
+#
+msgid "PowerTimer list"
+msgstr "Strömtimerlista"
 
 msgid "PowerTimers"
 msgstr "Strömtimers"
@@ -15610,6 +15623,9 @@ msgstr "Spela in"
 msgid "Record - same as record button"
 msgstr ""
 
+msgid "Record Actions"
+msgstr ""
+
 #
 msgid "Record next"
 msgstr "Spela in nästa"
@@ -16232,6 +16248,9 @@ msgstr "Hämtar plugin information. Var vänlig vänta..."
 msgid "Retrieving image slots - Please wait..."
 msgstr "Söker efter tillgängliga uppdateringar. Vänligen vänta..."
 
+msgid "Return the current selection response"
+msgstr ""
+
 #
 msgid "Return to movie list"
 msgstr "Återvänd till filmlista"
@@ -16347,6 +16366,9 @@ msgid "Run script with optional parameter"
 msgstr ""
 
 msgid "Run script with optional parameter in background"
+msgstr ""
+
+msgid "Run the selected menu option"
 msgstr ""
 
 msgid "Rundi"
@@ -17164,6 +17186,9 @@ msgstr "Välj sorteringsmetod :"
 msgid "Select target folder"
 msgstr "Välj målkatalog"
 
+msgid "Select the No / False response"
+msgstr ""
+
 msgid "Select the Swap File Size:"
 msgstr ""
 
@@ -17199,6 +17224,9 @@ msgstr ""
 msgid ""
 "Select the User Band frequency to be assigned to this tuner. This is the "
 "frequency the SCR switch uses to pass the requested transponder to the tuner."
+msgstr ""
+
+msgid "Select the Yes / True response"
 msgstr ""
 
 msgid "Select the character or action under the keyboard cursor"
@@ -18630,6 +18658,12 @@ msgstr "Visa multikanal EPG"
 msgid "Show network mounts ..."
 msgstr "Visa nätverksmonteringar..."
 
+msgid "Show next event"
+msgstr ""
+
+msgid "Show next page"
+msgstr ""
+
 msgid "Show next picture"
 msgstr ""
 
@@ -18657,6 +18691,12 @@ msgstr "Visa ikon vid positionsrörelse"
 #, fuzzy
 msgid "Show preview of current mode (*)."
 msgstr "Egenskaper för vald titel"
+
+msgid "Show previous event"
+msgstr ""
+
+msgid "Show previous page"
+msgstr ""
 
 #, fuzzy
 msgid "Show previous picture"
@@ -18711,9 +18751,8 @@ msgstr "Visa menyn för avstängning"
 msgid "Show single EPG for current channel"
 msgstr "Visa singel epg för aktuell kanal"
 
-#, fuzzy
-msgid "Show single epg for current channel (setup in menu)"
-msgstr "Visa singel epg för aktuell kanal"
+msgid "Show single EPG for current channel (setup in menu)"
+msgstr ""
 
 msgid "Show single service EPG"
 msgstr "Visa singel kanal EPG"
@@ -18874,6 +18913,10 @@ msgstr "Visar statusen på filmen (tittat på)."
 #
 msgid "Shuffle playlist"
 msgstr "Blanda spellista"
+
+#
+msgid "Shut down"
+msgstr "stäng av"
 
 #
 msgid "Shutdown"
@@ -19252,13 +19295,6 @@ msgid ""
 "This setting sets the TV to standby before the switch. (If the TV does not "
 "turn back on it may require a slower transmission interval or the repetition "
 "of wake-up commands.)"
-msgstr ""
-
-msgid ""
-"Some TV devices can't swich to correct input if a another hdmi port active. "
-"This setting set the TV to standby before.\n"
-"(If the TV does not turn back on, may require a slower transmission interval "
-"or the repetition of wake-up commands.)"
 msgstr ""
 
 #
@@ -20810,12 +20846,6 @@ msgid ""
 "seconds."
 msgstr ""
 
-msgid ""
-"This is a workaround for some devices there wakeup again after switching in "
-"standby. The wak up command's from other devices will ignored for few "
-"seconds."
-msgstr ""
-
 #, python-format
 msgid "This is the currently selected language.  [%s]"
 msgstr ""
@@ -21833,15 +21863,9 @@ msgid ""
 "for the receiver."
 msgstr ""
 
-msgid "Try to send repeated commands if not all commands are executed.\n"
-msgstr ""
-
 msgid ""
 "Try to send repeated commands if not all commands are executed. (e.g. TV "
 "wakeup, but not switched to correct input.)"
-msgstr ""
-
-msgid "Try to slow down the send interval if not all commands are executed."
 msgstr ""
 
 #
@@ -22184,6 +22208,10 @@ msgid ""
 "Unknown Error creating Skin.\n"
 "Please check after reboot MyMetrixLite-Plugin and apply your settings."
 msgstr ""
+
+#
+msgid "Unknown Service"
+msgstr "okänd kanal"
 
 #
 #, fuzzy
@@ -23810,6 +23838,9 @@ msgstr ""
 msgid "Without popup"
 msgstr "Utan popup"
 
+msgid "Wizard Actions"
+msgstr ""
+
 msgid "Wolof"
 msgstr ""
 
@@ -24417,6 +24448,9 @@ msgstr "Zapp"
 msgid "Zap + Exit"
 msgstr "Zap + Avsluta"
 
+msgid "Zap and record"
+msgstr "zappa och spela in"
+
 msgid "Zap back to previously tuned service?"
 msgstr "Zappa tillbaka till föregående kanal?"
 
@@ -24963,9 +24997,6 @@ msgstr "ta bort klipp"
 msgid "deleted"
 msgstr "ta bort"
 
-msgid "Descramble and record ecm"
-msgstr "avkoda och spela in ecm"
-
 msgid "detective/thriller"
 msgstr "detektiv / thriller"
 
@@ -24987,10 +25018,6 @@ msgstr "diskussion / intervju / debatt"
 msgid "display"
 msgstr ""
 
-#
-msgid "Do nothing"
-msgstr "gör inget"
-
 msgid "documentary"
 msgstr "dockumentär"
 
@@ -25000,9 +25027,6 @@ msgstr "documentär"
 
 msgid "dolby"
 msgstr ""
-
-msgid "Don't descramble, record ecm"
-msgstr "avkoda inte, spela in ecm"
 
 #
 msgid "done!"
@@ -25099,9 +25123,6 @@ msgstr ""
 
 msgid "enigma2 and network"
 msgstr ""
-
-msgid "Enter number to jump to channel"
-msgstr "mata in kanalnummer."
 
 msgid "entertainment (10-16 year old)"
 msgstr "underhållning (10-16 år)"
@@ -25284,14 +25305,6 @@ msgstr "trädgård"
 msgid "get the cards' server"
 msgstr "erhåll kortets server"
 
-#
-msgid "Go to deep standby"
-msgstr "stäng av mottagaren"
-
-#
-msgid "Go to standby"
-msgstr "inta viloläge"
-
 #, fuzzy
 msgid "goto current channel and now"
 msgstr "Gå till nästa kanal"
@@ -25362,11 +25375,6 @@ msgstr "höjd"
 
 msgid "help..."
 msgstr "hjälp..."
-
-#
-#, fuzzy
-msgid "helptext"
-msgstr "Texttv"
 
 msgid "hh:mm"
 msgstr ""
@@ -25473,14 +25481,6 @@ msgstr "hoppa framåt till nästa titel"
 
 msgid "jump to chapter by number"
 msgstr "hoppa till kapitel med nummer"
-
-#, fuzzy
-msgid "jump to next page or all up (setup in menu)"
-msgstr "Gå till kanal (ange i menyn)"
-
-#, fuzzy
-msgid "jump to previous page or all down (setup in menu)"
-msgstr "Gå till kanal (ange i menyn)"
 
 msgid "just abort, no message"
 msgstr ""
@@ -25726,8 +25726,8 @@ msgstr "inga lagringsenheter hittades"
 msgid "none"
 msgstr "ingen"
 
-msgid "Normal"
-msgstr "normal"
+msgid "normal"
+msgstr ""
 
 #
 #, fuzzy
@@ -25809,14 +25809,8 @@ msgstr "original"
 msgid "original language"
 msgstr "originalspråk"
 
-msgid "OScam webif disabled"
-msgstr ""
-
 msgid "packages selected."
 msgstr "valda paket."
-
-msgid "Page left"
-msgstr "till vänster"
 
 #
 #
@@ -25905,10 +25899,6 @@ msgstr ""
 
 msgid "reboot system"
 msgstr "starta om systemet"
-
-#
-msgid "record"
-msgstr "spela in"
 
 #, python-format
 msgid "record time changed, start prepare is now: %s"
@@ -26194,10 +26184,6 @@ msgid "shuffle"
 msgstr "blanda"
 
 #
-msgid "Shut down"
-msgstr "stäng av"
-
-#
 msgid "simple"
 msgstr "enkelt"
 
@@ -26431,10 +26417,6 @@ msgstr "okänd"
 msgid "unknown error"
 msgstr "okänt fel"
 
-#
-msgid "Unknown Service"
-msgstr "okänd kanal"
-
 msgid "unpack Rar Files"
 msgstr ""
 
@@ -26628,13 +26610,6 @@ msgid ""
 msgstr ""
 
 #
-msgid "zap"
-msgstr "zapp"
-
-msgid "Zap and record"
-msgstr "zappa och spela in"
-
-#
 msgid "zapped"
 msgstr "zappad"
 
@@ -26645,6 +26620,79 @@ msgstr "zappad"
 
 msgid "®"
 msgstr ""
+
+#, fuzzy
+#~ msgid "16_10_letterbox"
+#~ msgstr "16:10 Letterbox"
+
+#
+#, fuzzy
+#~ msgid "16_9_always"
+#~ msgstr "16:9 alltid"
+
+#, fuzzy
+#~ msgid "16_9_letterbox"
+#~ msgstr "16:9 Letterbox"
+
+#
+#, fuzzy
+#~ msgid "4_3_letterbox"
+#~ msgstr "4:3 Letterbox"
+
+#
+#, fuzzy
+#~ msgid "4_3_panscan"
+#~ msgstr "Pan&scan"
+
+#
+#, fuzzy
+#~ msgid "Accept the current selection"
+#~ msgstr "Aktivera nuvarande konfiguration"
+
+#, fuzzy
+#~ msgid "Always select OK"
+#~ msgstr "Fråga alltid"
+
+#
+#, fuzzy
+#~ msgid "Cancel the selection"
+#~ msgstr "Kanalval"
+
+#~ msgid "HDMI CEC"
+#~ msgstr "HDMI CEC"
+
+#~ msgid "HDMI CEC Setup"
+#~ msgstr "HDMI CEC Inställning"
+
+#
+#, fuzzy
+#~ msgid "Load Default Settings"
+#~ msgstr "Standardinställningar"
+
+#, fuzzy
+#~ msgid "Show single epg for current channel (setup in menu)"
+#~ msgstr "Visa singel epg för aktuell kanal"
+
+#
+#, fuzzy
+#~ msgid "helptext"
+#~ msgstr "Texttv"
+
+#, fuzzy
+#~ msgid "jump to next page or all up (setup in menu)"
+#~ msgstr "Gå till kanal (ange i menyn)"
+
+#, fuzzy
+#~ msgid "jump to previous page or all down (setup in menu)"
+#~ msgstr "Gå till kanal (ange i menyn)"
+
+#
+#~ msgid "record"
+#~ msgstr "spela in"
+
+#
+#~ msgid "zap"
+#~ msgstr "zapp"
 
 #~ msgid "%d-%m"
 #~ msgstr "%d-%m"

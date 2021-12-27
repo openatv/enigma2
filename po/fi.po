@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-11-29 21:27+0000\n"
+"POT-Creation-Date: 2021-12-26 20:08+0000\n"
 "PO-Revision-Date: 2021-12-09 17:59+0000\n"
 "Last-Translator: tomppaa <tomzza89@gmail.com>\n"
 "Language-Team: Finnish <https://hosted.weblate.org/projects/openatv/"
@@ -55,14 +55,6 @@ msgid ""
 msgstr ""
 "\n"
 "Kodi ei ole paikalla. Jatketaanko asennusta?"
-
-msgid ""
-"\n"
-"* Logs location: logs settings, Filename: Enigma2-hdmicec-[date].log"
-msgstr ""
-"\n"
-"* Lokien tallennuspaikka: Lokiasetukset, tiedoston nimi: 'Enigma2-hdmicec-"
-"[päivämäärä].log'"
 
 msgid ""
 "\n"
@@ -718,9 +710,6 @@ msgstr "%Y-%b-%d"
 
 msgid "%Y-%m-%d"
 msgstr "%Y-%m-%d"
-
-msgid "%Y-%m-%d %H-%M"
-msgstr "%Y-%m-%d %H-%M"
 
 msgid "%Y/%-m/%-d"
 msgstr "%Y/%-m/%-d"
@@ -1384,12 +1373,6 @@ msgstr ""
 "vanhemmat aikasiirtotiedostot."
 
 msgid ""
-"'Handle standby from TV' has a higher priority as 'Handle input from TV'"
-msgstr ""
-"'Tottele sammutuskäskyä TV:ltä' korkeampi prioriteetti kuin 'Tottele "
-"käynnistyskäskyä TV:ltä'"
-
-msgid ""
 "'Handle standby from TV' has a higher priority than 'Handle input from TV'."
 msgstr ""
 "'Tottele sammutuskäskyä TV:ltä' korkeampi prioriteetti kuin 'Tottele tulo "
@@ -1423,9 +1406,6 @@ msgstr "(Näytä vain lukija:"
 
 msgid "(current image)"
 msgstr "(nykyinen image)"
-
-msgid "(e.g. TV wakeup, but not switched to correct input)"
-msgstr "esimerkiksi herätä tv, mutta älä vaihda oikeaa sisään tuloa"
 
 msgid "(empty)"
 msgstr "(tyhjä)"
@@ -1639,25 +1619,10 @@ msgstr "16:10 PanScan"
 msgid "16:9"
 msgstr "16:9"
 
-msgid "16:9 Letterbox"
-msgstr "16:9 Letterbox"
-
 msgid "16:9 Always"
 msgstr "16:9 pakotettu"
 
-msgid "16_10_letterbox"
-msgstr "16:10 Letterbox"
-
-msgid "16_10_panscan"
-msgstr "16:10 Pan&Scan"
-
-msgid "16_9"
-msgstr "16:9"
-
-msgid "16_9_always"
-msgstr "16:9 aina"
-
-msgid "16_9_letterbox"
+msgid "16:9 Letterbox"
 msgstr "16:9 Letterbox"
 
 msgid "18 V"
@@ -1890,12 +1855,6 @@ msgstr "4:3 Pan&Scan"
 
 msgid "4X"
 msgstr "4X"
-
-msgid "4_3_letterbox"
-msgstr "4:3 Letterbox"
-
-msgid "4_3_panscan"
-msgstr "4:3 Pan&Scan"
 
 msgid "4s"
 msgstr "4s"
@@ -2333,9 +2292,6 @@ msgstr "Tietoja"
 msgid "About..."
 msgstr "Tietoja..."
 
-msgid "Accept the current selection"
-msgstr "Aktivoi nykyiset asetukset"
-
 msgid "Accessed:"
 msgstr "Tukiasema:"
 
@@ -2370,16 +2326,6 @@ msgstr ""
 "Aktivoi tapa lähettää yksittäisiä tai tiettyjä sisäisiä HDMI-CEC-komentoja "
 "komentoriviltä."
 
-#, python-format
-msgid ""
-"Activate an way to send individual or specific internal HDMI-CEC commands "
-"from the command line. Type on command line 'echo help > %s' and then read "
-"the file '%s' for a short help."
-msgstr ""
-"Aktivoi tapa lähettää yksittäisiä tai tiettyjä sisäisiä HDMI-CEC-komentoja "
-"komentoriviltä. Kirjoita komento: 'echo help > %s' and then read the file "
-"'%s' for a short help."
-
 msgid "Activate current configuration"
 msgstr "Aktivoi nykyiset asetukset"
 
@@ -2406,20 +2352,6 @@ msgstr "Aloita ajansiirto"
 
 msgid "Activate timeshift end and pause"
 msgstr "Aktivoi ajansiirron loppu ja tauko"
-
-msgid ""
-"Activation takes place immediately. If it does feature not work, then try "
-"again with a slower send interval."
-msgstr ""
-"Aktivointi tapahtuu välittömästi. Jos ominaisuus ei toimi, yritä uudelleen "
-"hitaammin lähetysvälillä."
-
-msgid ""
-"Activation takes place immediately. If this feature is not supported, the "
-"volume keys has no function!"
-msgstr ""
-"Aktivointi tapahtuu välittömästi. Jos tätä ominaisuutta ei tueta, "
-"äänenvoimakkuus näppäimillä ei ole toimintoa!"
 
 msgid "Active"
 msgstr "Aktiivinen"
@@ -2451,9 +2383,6 @@ msgstr "Lisää kanavanvaihto ajastus"
 msgid "Add Zap+Record Timer"
 msgstr "Lisää 'vaihda ja tallenna' ajastin"
 
-msgid "Add an AutoTimer for the current event"
-msgstr "Lisää automaattiajastus tähän ohjelmaan"
-
 msgid "Add a mark"
 msgstr "Lisää merkki"
 
@@ -2472,11 +2401,17 @@ msgstr "Lisää ajastus"
 msgid "Add a record timer for current event"
 msgstr "Lisää tallennusajastus tähän ohjelmaan"
 
+msgid "Add a timer for the current event"
+msgstr ""
+
 msgid "Add a zap timer for current event"
 msgstr "Lisää kanavanvaihtoajastus tähän ohjelmaan"
 
 msgid "Add a zap timer for next event"
 msgstr "Lisää kanavanvaihtoajastus seuraavaan ohjelmaan"
+
+msgid "Add an AutoTimer for the current event"
+msgstr "Lisää automaattiajastus tähän ohjelmaan"
 
 msgid "Add bookmark"
 msgstr "Lisää kirjanmerkki"
@@ -2841,9 +2776,6 @@ msgstr ""
 "muodossa ja puretaan jälkikäteen, (Tallennuksen Offline purkaminen), jos "
 "vastaanottimesi tukee sitä. Oletus: Ei."
 
-msgid "Always select OK"
-msgstr "Kysy aina"
-
 msgid "Always show bouquets"
 msgstr "Näytä suosikkilistat aina"
 
@@ -2872,17 +2804,6 @@ msgstr ""
 "virheellisten tai puuttuvien tilaviestien vuoksi, vastaanotin voi vastata "
 "odottamattomasti. Toisaalta yritetään reagoida paremmin erilaisiin "
 "käyttöolosuhteisiin."
-
-msgid ""
-"An attempt is made to capture the current TV status. If this is not possible "
-"due to incorrect or missing status messages, it may cause the receiver to "
-"respond unexpectedly.\n"
-"On the other hand, tries to respond better to different operating conditions."
-msgstr ""
-"Television nykyinen tila yritetään kaapata. Jos tämä ei ole mahdollista "
-"virheellisten tai puuttuvien tilaviestien takia, se voi aiheuttaa "
-"vastaanottimen odottamattoman vastauksen.\n"
-"Toisaalta yrittää vastata paremmin erilaisiin käyttöolosuhteisiin."
 
 msgid "An empty filename is illegal."
 msgstr "Tyhjä nimi ei ole sallittu."
@@ -4202,9 +4123,6 @@ msgstr "Peruuta image valinta ja poistu"
 msgid "Cancel the image selection and exit all menus"
 msgstr "Peruuta image valinta ja poistu kaikista valikoista"
 
-msgid "Cancel the selection"
-msgstr "Peruuta valinta"
-
 msgid "Cancelled upon user request"
 msgstr "Käyttäjä peruutti tehtävän"
 
@@ -4295,6 +4213,9 @@ msgstr "Kielivalinta"
 msgid "Change PIN"
 msgstr "Muuta PIN koodi"
 
+msgid "Change Timer"
+msgstr "Muuta ajastusta"
+
 msgid "Change Volume offset"
 msgstr "Äänenvoimakkuuden säätö"
 
@@ -4327,9 +4248,6 @@ msgstr "Vaihda teema"
 
 msgid "Change step size"
 msgstr "Muuta askelkokoa"
-
-msgid "Change Timer"
-msgstr "Muuta ajastusta"
 
 msgid "Change to bouquet"
 msgstr "Vaihda suosikkilistalle"
@@ -4561,9 +4479,6 @@ msgstr "Valitse maa asetus ohjelmaoppaan arvostelutietojen purkuun."
 msgid "Choose a label that will identify this device within IceTV services."
 msgstr "Valitse etiketti, joka tunnistaa tämän laitteen IceTV palveluista."
 
-msgid "Choose a setting where your receiver wakes up from standby."
-msgstr "Valitse asetus, missä vastaanotin herää valmiustilasta."
-
 msgid "Choose a tag for easy finding a recording."
 msgstr "Valitse avainsana tallenteiden helppoa löytämistä varten."
 
@@ -4757,6 +4672,9 @@ msgstr "Määrittää näppäimelle haluamasi toiminnon"
 msgid "Client Info ( Oscam-Version: %s )"
 msgstr "Asiakas tiedot ( Oscam-Version: %s )"
 
+msgid "Client is streaming from this box!"
+msgstr ""
+
 msgid "ClientIP"
 msgstr "Asikas IP"
 
@@ -4775,11 +4693,29 @@ msgstr "Sulje"
 msgid "Close PiP on exit"
 msgstr "Sulje PiP exit näppäimellä"
 
+msgid "Close bouquet list"
+msgstr ""
+
 msgid "Close bouquet list."
 msgstr "Sulje suosikkilista."
 
 msgid "Close dialog"
 msgstr "Sulje valinta"
+
+msgid "Close pop up menu"
+msgstr ""
+
+msgid "Close screen"
+msgstr ""
+
+msgid "Close the context menu"
+msgstr ""
+
+msgid "Close the current screen"
+msgstr ""
+
+msgid "Close the window"
+msgstr ""
 
 msgid "Close title selection"
 msgstr "Sulje otsikon valinta"
@@ -5826,6 +5762,9 @@ msgstr "Leikkauskohtien editori"
 msgid "Cutlist editor..."
 msgstr "Määritä leikkauskohdat"
 
+msgid "Cycle PIP(zap)"
+msgstr ""
+
 msgid "Cycling"
 msgstr "Pyöräily"
 
@@ -6205,6 +6144,10 @@ msgid "Defaults"
 msgstr "Oletusarvot"
 
 msgid ""
+"Define additional delay in milliseconds before start of http(s) streams."
+msgstr ""
+
+msgid ""
 "Defines how fast the time jumps are repeated. Values lower than 500ms may be "
 "problematic with NAS."
 msgstr ""
@@ -6341,6 +6284,9 @@ msgstr "Poista kieli"
 msgid "Delete Plugins"
 msgstr "Poista lisäosia"
 
+msgid "Delete Timer"
+msgstr "Poista ajastus"
+
 msgid "Delete all tags"
 msgstr "Poista kaikki tunnisteet"
 
@@ -6398,9 +6344,6 @@ msgstr "Poista valitut tiedostot tai hakemistot"
 msgid "Delete this tag"
 msgstr "Poista tämä tunniste"
 
-msgid "Delete Timer"
-msgstr "Poista ajastus"
-
 msgid "Delete unused tags"
 msgstr "Poista käyttämättömät tunnisteet"
 
@@ -6442,6 +6385,9 @@ msgstr ""
 "Pura ja tallenna ECM' purkamisen myöhemmin jos se epäonnistui "
 "tallennusvaiheessa. 'Älä pura, tallenna ECM' salattuna, tallenteen voi "
 "purkaa toiston aikana. 'Normaali' purkaa eikä tallenna ECM:ää."
+
+msgid "Descramble and record ecm"
+msgstr "Pura ja tallenna ECM"
 
 msgid "Descramble http streams"
 msgstr "Pura http striimit"
@@ -6702,6 +6648,9 @@ msgstr "Älä päivitä ohjelmistoa"
 msgid "Do not record"
 msgstr "Älä tallenna"
 
+msgid "Do nothing"
+msgstr "Älä tee mitään"
+
 msgid ""
 "Do you really want to check the filesystem?\n"
 "This could take a long time!"
@@ -6943,6 +6892,9 @@ msgstr "Älä lisää tätä tallennusta"
 msgid "Don't ask again!"
 msgstr "Älä kysy uudelleen!"
 
+msgid "Don't descramble, record ecm"
+msgstr "Älä pura, tallenna ECM"
+
 msgid "Don't restart"
 msgstr "Älä käynnistä uudelleen"
 
@@ -7115,8 +7067,26 @@ msgstr "Poista cd pitkä"
 msgid "EPG"
 msgstr "Ohjelmaopas"
 
+msgid "EPG Actions"
+msgstr ""
+
+msgid "EPG Bouquet Actions"
+msgstr ""
+
 msgid "EPG Cache Check"
 msgstr "Ohjelmaoppaan välimuistin tarkistus"
+
+msgid "EPG Channel/Service Selection"
+msgstr ""
+
+msgid "EPG Display Actions"
+msgstr ""
+
+msgid "EPG Navigation Actions"
+msgstr ""
+
+msgid "EPG Other Actions"
+msgstr ""
 
 msgid "EPG Search"
 msgstr "Ohjelmaopashaku"
@@ -7204,6 +7174,9 @@ msgstr "Muokkaa 4 kanava paikkaa"
 msgid "Edit Tags"
 msgstr "Muokkaa tunnisteita"
 
+msgid "Edit Timer"
+msgstr "Muokkaa ajastusta"
+
 msgid "Edit Title"
 msgstr "Muokkaa otsikkoa"
 
@@ -7238,9 +7211,6 @@ msgstr "Muokkaan %s %s:n nimipalvelimen asetuksia.\n"
 #, python-format
 msgid "Edit the network configuration of your %s %s.\n"
 msgstr "Muokkaa %s %s:n lähiverkon asetuksia.\n"
-
-msgid "Edit Timer"
-msgstr "Muokkaa ajastusta"
 
 msgid "Edit title"
 msgstr "Editoi"
@@ -7591,6 +7561,9 @@ msgstr "Avaa päävalikko"
 msgid "Enter multi-file selection mode"
 msgstr "Aktivoi useita valinta tiloja"
 
+msgid "Enter number to jump to channel"
+msgstr "syötä numero hypätäksesi kanavalle."
+
 msgid "Enter persistent PIN code"
 msgstr "Syötä katselun PIN koodi"
 
@@ -7860,6 +7833,15 @@ msgstr "Lähetystiedot"
 msgid "Event Info"
 msgstr "Ohjelmatiedot"
 
+msgid "Event View"
+msgstr "Lähetystiedot"
+
+msgid "Event View Actions"
+msgstr ""
+
+msgid "Event View Context Menu"
+msgstr "Lähetystiedot valikko"
+
 msgid "Event font size"
 msgstr "Ohjelmatiedon tekstikoko"
 
@@ -7869,14 +7851,11 @@ msgstr "Ohjelmanäkymä"
 msgid "Event view menu"
 msgstr "Lähetyksen näyttövalikko"
 
+msgid "EventViewEPG Actions"
+msgstr ""
+
 msgid "Eventname only"
 msgstr "Ohjelma nimi ainoastaan"
-
-msgid "Event View"
-msgstr "Lähetystiedot"
-
-msgid "Event View Context Menu"
-msgstr "Lähetystiedot valikko"
 
 msgid "Eventview:"
 msgstr "Lähetystiedot:"
@@ -8374,6 +8353,9 @@ msgstr "Rahoitus"
 msgid "Find out more at %s"
 msgstr "Lisätietoja %s"
 
+msgid "Find similar events in the EPG"
+msgstr ""
+
 msgid "Fine movement"
 msgstr "Moottorin hienosäätö"
 
@@ -8777,6 +8759,9 @@ msgstr "Mene luettelossa alaspäin"
 msgid "Go to bookmarked folder"
 msgstr "Siirry kirjanmerkki kansioon"
 
+msgid "Go to deep standby"
+msgstr "siirry virransäästötilaan"
+
 msgid "Go to end of file"
 msgstr "Siirry tiedoston loppuun"
 
@@ -8788,6 +8773,9 @@ msgstr "Mene ensimmäiseen tallenteeseen tai luettelon alkuun"
 
 msgid "Go to parent directory"
 msgstr "Siirry vanhempien hakemistoon"
+
+msgid "Go to standby"
+msgstr "siirry valmiustilaan"
 
 msgid "Go to start of file"
 msgstr "Siirry tiedoston alkuun"
@@ -8964,12 +8952,6 @@ msgstr "HD60/Multibox/Multiboxse"
 
 msgid "HDMI"
 msgstr "HDMI"
-
-msgid "HDMI CEC"
-msgstr "HDMI CEC"
-
-msgid "HDMI CEC Setup"
-msgstr "HDMI CEC Asetukset"
 
 msgid "HDMI Colordepth"
 msgstr "HDMI Värisyvyys"
@@ -9282,6 +9264,9 @@ msgstr "Tunnit Minuutit Sekunnit"
 msgid "How many minutes do you want to record?"
 msgstr "Kuinka monta minuuttia haluat tallentaa?"
 
+msgid "Http(s) stream start delay"
+msgstr ""
+
 msgid "Hue"
 msgstr "Sävy"
 
@@ -9306,14 +9291,14 @@ msgstr "IMDb Haku"
 msgid "IMDB search"
 msgstr "IMDb haku"
 
-msgid "IMDb search for current event"
-msgstr "Nykyisen ohjelman IMDb haku"
-
 msgid "IMDb Details"
 msgstr "IMDb Lisätiedot"
 
 msgid "IMDb Search"
 msgstr "IMDb Haku"
+
+msgid "IMDb search for current event"
+msgstr "Nykyisen ohjelman IMDb haku"
 
 msgid "INFO"
 msgstr "TIEDOT"
@@ -9575,15 +9560,6 @@ msgid ""
 msgstr ""
 "'Kyllä' valinnalla tietopalkki näytetään, pysyvästi keskeytetyssä tilassa "
 "(ei aikakatkaisua)."
-
-msgid ""
-"If the 'deep standby workaround' is enabled, it waits until the system time "
-"is synchronized. Depending on the requirement, the devices wake up will "
-"continuing after a maximum of 2 minutes."
-msgstr ""
-"Jos virransäästötilaa kiertotapa on käytössä , järjestelmä odottaa, kunnes "
-"järjestelmän aika on synkronoitu. Vaatimuksista riippuen laitteiden "
-"herätystä jatketaan korkeintaan 2 minuutissa."
 
 msgid ""
 "If the deep standby workaround is enabled wait until the system time is "
@@ -10164,9 +10140,6 @@ msgstr "Irlanti"
 msgid "Irish"
 msgstr "Irlantilainen"
 
-msgid "Is not necessary in most cases."
-msgstr "Ei ole tarpeen useimmissa tapauksissa."
-
 msgid "Is this setting ok?"
 msgstr "Käytä näitä asetuksia?"
 
@@ -10264,8 +10237,14 @@ msgstr "Siirtyminen luettelon viimeiseen kohtaan tai tekstin loppuun"
 msgid "Jump to next marked position"
 msgstr "Hyppää seuraavaan merkittyyn kohtaan"
 
+msgid "Jump to next page or all up (setup in menu)"
+msgstr ""
+
 msgid "Jump to previous marked position"
 msgstr "Hyppää edelliseen merkittyyn kohtaan"
+
+msgid "Jump to previous page or all down (setup in menu)"
+msgstr ""
 
 msgid "Jump to prime time"
 msgstr "Hyppää parhaaseen katseluaikaan"
@@ -10741,9 +10720,6 @@ msgstr "Suorat TV toiminnot"
 msgid "Load"
 msgstr "Lataa"
 
-msgid "Load Default Settings"
-msgstr "Lataa oletus asetukset"
-
 msgid "Load EPG"
 msgstr "Lataa ohjelmaopas"
 
@@ -11208,11 +11184,11 @@ msgstr "Merlin EPG Keskus"
 msgid "Message"
 msgstr "Viesti"
 
-msgid "Message..."
-msgstr "Viesti..."
-
 msgid "Message Box Actions"
 msgstr "MessageBox toiminnot"
+
+msgid "Message..."
+msgstr "Viesti..."
 
 msgid "Metadata changed:"
 msgstr "Metatiedot muutettu:"
@@ -11503,11 +11479,17 @@ msgstr "Siirrä teksti kenttä ensimmäiseen merkkiin"
 msgid "Move the text cursor to the last character"
 msgstr "Siirrä teksti kenttä viimeiseen merkkiin"
 
+msgid "Move to first line"
+msgstr ""
+
 msgid "Move to first line / screen"
 msgstr "Siirry ensimmäiselle riville / näytölle"
 
 msgid "Move to home of list"
 msgstr "Siirry luettelon alkuun"
+
+msgid "Move to last line"
+msgstr ""
 
 msgid "Move to last line / screen"
 msgstr "Siirry viimeiselle riville/näytölle"
@@ -11566,6 +11548,9 @@ msgstr "Liikutus"
 
 msgid "Movie"
 msgstr "Elokuva"
+
+msgid "Movie Event View Actions"
+msgstr ""
 
 msgid "Movie List"
 msgstr "Tallennuslista"
@@ -12268,6 +12253,9 @@ msgstr "Yhtään hash ohjelmaa %s ei ole käytettävissä"
 msgid "Norfolk Island"
 msgstr "Norfolkinsaari"
 
+msgid "Normal"
+msgstr "normaali"
+
 msgid "North"
 msgstr "Pohjoista leveyttä"
 
@@ -12470,6 +12458,9 @@ msgstr "Kuvaruudun asetukset"
 msgid "OScam Info"
 msgstr "OScam tiedot"
 
+msgid "OScam webif disabled"
+msgstr "Oscam netti käyttöliittymä poistettu käytöstä"
+
 msgid "OScamInfo"
 msgstr "OScam tiedot"
 
@@ -12490,6 +12481,9 @@ msgstr "Ojibwa"
 
 msgid "Ok"
 msgstr "OK"
+
+msgid "OkCancel Actions"
+msgstr ""
 
 msgid ""
 "Older files in the timeshift directory are removed on every event change."
@@ -12593,6 +12587,9 @@ msgstr "Näytä Ajastuslista"
 msgid "Open bouquetlist"
 msgstr "Näytä Suosikkilista"
 
+msgid "Open context menu"
+msgstr ""
+
 msgid "Open favourites list"
 msgstr "Näytä Suosikkilista"
 
@@ -12625,6 +12622,12 @@ msgstr "Avaa lisäosien selaus"
 
 msgid "Open the movie list"
 msgstr "Avaa tallenneluettelo"
+
+msgid "Open the multi service EPG view"
+msgstr ""
+
+msgid "Open the single service EPG view"
+msgstr ""
 
 msgid "Open with File Commander"
 msgstr "Avaa File Commanderissa"
@@ -12865,6 +12868,9 @@ msgstr "Sivu alas"
 
 msgid "Page down list"
 msgstr "Sivu alas lista"
+
+msgid "Page left"
+msgstr "sivu vasemmalle"
 
 msgid "Page right"
 msgstr "Sivu oikealle"
@@ -13711,9 +13717,6 @@ msgstr "Virta ajastin virransäästötila"
 msgid "PowerTimer Entry"
 msgstr "Virranhallinta"
 
-msgid "PowerTimer list"
-msgstr "Virta ajastukset lista"
-
 msgid "PowerTimer Log"
 msgstr "PowerTimer-loki"
 
@@ -13722,6 +13725,9 @@ msgstr "Virta ajastukset Yhteenveto"
 
 msgid "PowerTimer Standby"
 msgstr "Virta ajastukset Valmistila"
+
+msgid "PowerTimer list"
+msgstr "Virta ajastukset lista"
 
 msgid "PowerTimers"
 msgstr "Virta ajastukset"
@@ -14329,6 +14335,9 @@ msgstr "Tallentaa"
 msgid "Record - same as record button"
 msgstr "Tallenna - sama kuin tallennus-näppäin"
 
+msgid "Record Actions"
+msgstr ""
+
 msgid "Record next"
 msgstr "Tallenna seuraava"
 
@@ -14868,6 +14877,9 @@ msgstr "Haetaan ohjelmisto listaa - odota hetki..."
 msgid "Retrieving image slots - Please wait..."
 msgstr "Haetaan image paikkoja - Odota hetki.."
 
+msgid "Return the current selection response"
+msgstr ""
+
 msgid "Return to movie list"
 msgstr "Palaa tallenneluetteloon"
 
@@ -14970,6 +14982,9 @@ msgstr "Suorita scripti valinnaisella parametrilla"
 
 msgid "Run script with optional parameter in background"
 msgstr "Suorita scripti valinnaisella parametrilla taustalla"
+
+msgid "Run the selected menu option"
+msgstr ""
 
 msgid "Rundi"
 msgstr "Burundi"
@@ -15731,6 +15746,9 @@ msgstr "Valitse lajittelutapa:"
 msgid "Select target folder"
 msgstr "Valitse kohdehakemisto"
 
+msgid "Select the No / False response"
+msgstr ""
+
 msgid "Select the Swap File Size:"
 msgstr "Valitse swap tiedoston koko:"
 
@@ -15785,6 +15803,9 @@ msgstr ""
 "Valitse tähän virittimeen asetettu käyttäjän taajuusalueen taajuus. Tämä "
 "toimii taajuutena, jota SCR-kytkin tai SCR LNB käyttää siirtääkseen valitun "
 "transponderin virittimelle."
+
+msgid "Select the Yes / True response"
+msgstr ""
 
 msgid "Select the character or action under the keyboard cursor"
 msgstr "Valitse kursorin alla oleva merkki tai toiminta"
@@ -17186,6 +17207,12 @@ msgstr "Näytä monikanava-EPG"
 msgid "Show network mounts ..."
 msgstr "Näytä verkkoliitokset"
 
+msgid "Show next event"
+msgstr ""
+
+msgid "Show next page"
+msgstr ""
+
 msgid "Show next picture"
 msgstr "Näytä seuraava kanava"
 
@@ -17206,6 +17233,12 @@ msgstr "Näytä kuvake kääntömoottorin liikkuessa"
 
 msgid "Show preview of current mode (*)."
 msgstr "Näytä nykyisen tilan esikatselu (*)."
+
+msgid "Show previous event"
+msgstr ""
+
+msgid "Show previous page"
+msgstr ""
 
 msgid "Show previous picture"
 msgstr "Vaihda edelliselle kanavalle"
@@ -17256,8 +17289,8 @@ msgstr "Näytä sammutusvalikko"
 msgid "Show single EPG for current channel"
 msgstr "Näytä nykyisen kanavan ohjelmatiedot"
 
-msgid "Show single epg for current channel (setup in menu)"
-msgstr "Näytä nykyisen kanavan ohjelmatiedot (asetukset valikossa)"
+msgid "Show single EPG for current channel (setup in menu)"
+msgstr ""
 
 msgid "Show single service EPG"
 msgstr "Näytä yhden kanavan EPG"
@@ -17396,6 +17429,9 @@ msgstr "Näyttää kanavien katselu-statistiikkaa."
 
 msgid "Shuffle playlist"
 msgstr "Arvo soittolista"
+
+msgid "Shut down"
+msgstr "sammuta"
 
 msgid "Shutdown"
 msgstr "Sammuta"
@@ -17725,17 +17761,6 @@ msgstr ""
 "Jotkin TV:eet eivät voi vaihtaa oikeaan sisääntuloon, jos toinen HDMI portti "
 "on aktiivinen. Tämä asetus asettaa television valmiustilaan ennen vaihtoa. "
 "(Jos televisio ei kytkeydy takaisin päälle, se voi vaatia hitaampaa "
-"lähetysväliä tai herätyskomentojen toistamista.)"
-
-msgid ""
-"Some TV devices can't swich to correct input if a another hdmi port active. "
-"This setting set the TV to standby before.\n"
-"(If the TV does not turn back on, may require a slower transmission interval "
-"or the repetition of wake-up commands.)"
-msgstr ""
-"Jotkut Telvisiot eivät voi vaihtaa oikeaan tuloon, jos toinen hdmi portti on "
-"aktiivinen. Tämä asetus asettaa television valmiustilaan aikaisemmin.\n"
-"(Jos televisio ei käynnisty uudelleen, se saattaa vaatia hitaampaa "
 "lähetysväliä tai herätyskomentojen toistamista.)"
 
 msgid "Some plugins are not available:\n"
@@ -19213,15 +19238,6 @@ msgstr ""
 "valmiustilaan siirtymisen jälkeen. Muiden laitteiden herätyskomennot "
 "ohitetaan muutaman sekunnin ajan."
 
-msgid ""
-"This is a workaround for some devices there wakeup again after switching in "
-"standby. The wak up command's from other devices will ignored for few "
-"seconds."
-msgstr ""
-"Tämä on kiertotapa joillekin laitteille, jotka heräävät uudelleen "
-"valmiustilaan siirtymisen jälkeen. Muiden laitteiden herätyskomennot "
-"ohitetaan muutaman sekunnin ajan."
-
 #, python-format
 msgid "This is the currently selected language.  [%s]"
 msgstr "Tämä on nykyinen valittu kieli. [%s]"
@@ -20156,19 +20172,12 @@ msgstr ""
 "Ohjelmistovirheen sattuessa, yritetään estää vastaanottinta uudelleen "
 "käynnistymästä."
 
-msgid "Try to send repeated commands if not all commands are executed.\n"
-msgstr ""
-"Yritä lähettää toistuvia komentoja, jos kaikkia komentoja ei suoriteta.\n"
-
 msgid ""
 "Try to send repeated commands if not all commands are executed. (e.g. TV "
 "wakeup, but not switched to correct input.)"
 msgstr ""
 "Yritä lähettää toistuvia komentoja, jos kaikkia komentoja ei suoriteta. "
 "(esim. TV herää, mutta ei kytkeydy oikeaan tuloon.)"
-
-msgid "Try to slow down the send interval if not all commands are executed."
-msgstr "Yritä hidastaa lähetysväliä, jos kaikkia komentoja ei suoritettu."
 
 msgid "Trying to download a new packetlist. Please wait..."
 msgstr "Ladataan uusinta IPKG-ohjelmapakettiluetteloa. Odota..."
@@ -20475,6 +20484,9 @@ msgstr ""
 "Tuntematon virhe teema luodessa\n"
 "Tarkista uudelleen käynnistyksen jälkeen asetukset MyMetrixLite lisäosan ja "
 "ota käyttöön."
+
+msgid "Unknown Service"
+msgstr "tuntematon kanava"
 
 msgid "Unknown error code"
 msgstr "Tuntematon virhekoodi"
@@ -22023,6 +22035,9 @@ msgstr ""
 msgid "Without popup"
 msgstr "Kyllä, älä näytä viestiä"
 
+msgid "Wizard Actions"
+msgstr ""
+
 msgid "Wolof"
 msgstr "Wolof"
 
@@ -22623,6 +22638,9 @@ msgstr "Kanavanvaihto"
 msgid "Zap + Exit"
 msgstr "Kanavanvaihto ja sulje"
 
+msgid "Zap and record"
+msgstr "vaihda kanavaa ja tallenna"
+
 msgid "Zap back to previously tuned service?"
 msgstr "Palataanko aikaisemmalle kanavalle?"
 
@@ -23101,9 +23119,6 @@ msgstr "Poista leikkausmääritys"
 msgid "deleted"
 msgstr "poistettu"
 
-msgid "Descramble and record ecm"
-msgstr "Pura ja tallenna ECM"
-
 msgid "detective/thriller"
 msgstr "etsivä/trilleri"
 
@@ -23122,9 +23137,6 @@ msgstr "keskustelu/haastattelu/väittely"
 msgid "display"
 msgstr "näyttö"
 
-msgid "Do nothing"
-msgstr "Älä tee mitään"
-
 msgid "documentary"
 msgstr "dokumentti"
 
@@ -23133,9 +23145,6 @@ msgstr "dokumentti (yleiset)"
 
 msgid "dolby"
 msgstr "dolby"
-
-msgid "Don't descramble, record ecm"
-msgstr "Älä pura, tallenna ECM"
 
 msgid "done!"
 msgstr "valmis!"
@@ -23218,9 +23227,6 @@ msgstr "lopeta vaihto"
 
 msgid "enigma2 and network"
 msgstr "enigma2 ja verkko"
-
-msgid "Enter number to jump to channel"
-msgstr "syötä numero hypätäksesi kanavalle."
 
 msgid "entertainment (10-16 year old)"
 msgstr "viihde (10-16 vuotiaat)"
@@ -23384,12 +23390,6 @@ msgstr "puutarhanhoito"
 msgid "get the cards' server"
 msgstr "hae korttipalvelin"
 
-msgid "Go to deep standby"
-msgstr "siirry virransäästötilaan"
-
-msgid "Go to standby"
-msgstr "siirry valmiustilaan"
-
 msgid "goto current channel and now"
 msgstr "Siirry nykyiselle kanavalle"
 
@@ -23456,9 +23456,6 @@ msgstr "korkeus"
 
 msgid "help..."
 msgstr "Avustaja"
-
-msgid "helptext"
-msgstr "apuateksti"
 
 msgid "hh:mm"
 msgstr "hh:mm"
@@ -23551,12 +23548,6 @@ msgstr "hyppää eteenpäin seuraavaan kappaleeseen"
 
 msgid "jump to chapter by number"
 msgstr "Hyppää luku numeron mukaan"
-
-msgid "jump to next page or all up (setup in menu)"
-msgstr "Siirry seuraavalle sivulle tai kaikki päälle (asetus valikossa)"
-
-msgid "jump to previous page or all down (setup in menu)"
-msgstr "Siirry edelliselle sivulle tai kaikki alas (asetus valikossa)"
 
 msgid "just abort, no message"
 msgstr "keskeytä, älä näytä viestiä"
@@ -23765,8 +23756,8 @@ msgstr "tallennuslaitteita ei löytynyt"
 msgid "none"
 msgstr "ei mitään"
 
-msgid "Normal"
-msgstr "normaali"
+msgid "normal"
+msgstr ""
 
 msgid "not"
 msgstr "ei"
@@ -23834,14 +23825,8 @@ msgstr "alkuperäinen"
 msgid "original language"
 msgstr "alkuperäinen kieli"
 
-msgid "OScam webif disabled"
-msgstr "Oscam netti käyttöliittymä poistettu käytöstä"
-
 msgid "packages selected."
 msgstr "pakettia valittu."
-
-msgid "Page left"
-msgstr "sivu vasemmalle"
 
 msgid "pass"
 msgstr "hyväksytty"
@@ -23923,9 +23908,6 @@ msgstr "todellinen tallennukset tai suoratoisto"
 
 msgid "reboot system"
 msgstr "käynnistä uudelleen"
-
-msgid "record"
-msgstr "tallennus"
 
 #, python-format
 msgid "record time changed, start prepare is now: %s"
@@ -24179,9 +24161,6 @@ msgstr "show/visailu (yleinen)"
 msgid "shuffle"
 msgstr "satunnaisjärjestys"
 
-msgid "Shut down"
-msgstr "sammuta"
-
 msgid "simple"
 msgstr "suppea"
 
@@ -24387,9 +24366,6 @@ msgstr "tuntematon"
 msgid "unknown error"
 msgstr "tuntematon virhe"
 
-msgid "Unknown Service"
-msgstr "tuntematon kanava"
-
 msgid "unpack Rar Files"
 msgstr "pura Rar Tiedostot"
 
@@ -24567,12 +24543,6 @@ msgstr ""
 "%s %s saattaa olla nyt epäkunnossa. Lue käsikirjasta lisäohjeita ennen kuin "
 "uudelleen käynnistät %s %s:n."
 
-msgid "zap"
-msgstr "kanavanvaihto"
-
-msgid "Zap and record"
-msgstr "vaihda kanavaa ja tallenna"
-
 msgid "zapped"
 msgstr "vaihdettu"
 
@@ -24581,6 +24551,161 @@ msgstr "vaihtaa"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid ""
+#~ "\n"
+#~ "* Logs location: logs settings, Filename: Enigma2-hdmicec-[date].log"
+#~ msgstr ""
+#~ "\n"
+#~ "* Lokien tallennuspaikka: Lokiasetukset, tiedoston nimi: 'Enigma2-hdmicec-"
+#~ "[päivämäärä].log'"
+
+#~ msgid "%Y-%m-%d %H-%M"
+#~ msgstr "%Y-%m-%d %H-%M"
+
+#~ msgid ""
+#~ "'Handle standby from TV' has a higher priority as 'Handle input from TV'"
+#~ msgstr ""
+#~ "'Tottele sammutuskäskyä TV:ltä' korkeampi prioriteetti kuin 'Tottele "
+#~ "käynnistyskäskyä TV:ltä'"
+
+#~ msgid "(e.g. TV wakeup, but not switched to correct input)"
+#~ msgstr "esimerkiksi herätä tv, mutta älä vaihda oikeaa sisään tuloa"
+
+#~ msgid "16_10_letterbox"
+#~ msgstr "16:10 Letterbox"
+
+#~ msgid "16_10_panscan"
+#~ msgstr "16:10 Pan&Scan"
+
+#~ msgid "16_9"
+#~ msgstr "16:9"
+
+#~ msgid "16_9_always"
+#~ msgstr "16:9 aina"
+
+#~ msgid "16_9_letterbox"
+#~ msgstr "16:9 Letterbox"
+
+#~ msgid "4_3_letterbox"
+#~ msgstr "4:3 Letterbox"
+
+#~ msgid "4_3_panscan"
+#~ msgstr "4:3 Pan&Scan"
+
+#~ msgid "Accept the current selection"
+#~ msgstr "Aktivoi nykyiset asetukset"
+
+#, python-format
+#~ msgid ""
+#~ "Activate an way to send individual or specific internal HDMI-CEC commands "
+#~ "from the command line. Type on command line 'echo help > %s' and then "
+#~ "read the file '%s' for a short help."
+#~ msgstr ""
+#~ "Aktivoi tapa lähettää yksittäisiä tai tiettyjä sisäisiä HDMI-CEC-"
+#~ "komentoja komentoriviltä. Kirjoita komento: 'echo help > %s' and then "
+#~ "read the file '%s' for a short help."
+
+#~ msgid ""
+#~ "Activation takes place immediately. If it does feature not work, then try "
+#~ "again with a slower send interval."
+#~ msgstr ""
+#~ "Aktivointi tapahtuu välittömästi. Jos ominaisuus ei toimi, yritä "
+#~ "uudelleen hitaammin lähetysvälillä."
+
+#~ msgid ""
+#~ "Activation takes place immediately. If this feature is not supported, the "
+#~ "volume keys has no function!"
+#~ msgstr ""
+#~ "Aktivointi tapahtuu välittömästi. Jos tätä ominaisuutta ei tueta, "
+#~ "äänenvoimakkuus näppäimillä ei ole toimintoa!"
+
+#~ msgid "Always select OK"
+#~ msgstr "Kysy aina"
+
+#~ msgid ""
+#~ "An attempt is made to capture the current TV status. If this is not "
+#~ "possible due to incorrect or missing status messages, it may cause the "
+#~ "receiver to respond unexpectedly.\n"
+#~ "On the other hand, tries to respond better to different operating "
+#~ "conditions."
+#~ msgstr ""
+#~ "Television nykyinen tila yritetään kaapata. Jos tämä ei ole mahdollista "
+#~ "virheellisten tai puuttuvien tilaviestien takia, se voi aiheuttaa "
+#~ "vastaanottimen odottamattoman vastauksen.\n"
+#~ "Toisaalta yrittää vastata paremmin erilaisiin käyttöolosuhteisiin."
+
+#~ msgid "Cancel the selection"
+#~ msgstr "Peruuta valinta"
+
+#~ msgid "Choose a setting where your receiver wakes up from standby."
+#~ msgstr "Valitse asetus, missä vastaanotin herää valmiustilasta."
+
+#~ msgid "HDMI CEC"
+#~ msgstr "HDMI CEC"
+
+#~ msgid "HDMI CEC Setup"
+#~ msgstr "HDMI CEC Asetukset"
+
+#~ msgid ""
+#~ "If the 'deep standby workaround' is enabled, it waits until the system "
+#~ "time is synchronized. Depending on the requirement, the devices wake up "
+#~ "will continuing after a maximum of 2 minutes."
+#~ msgstr ""
+#~ "Jos virransäästötilaa kiertotapa on käytössä , järjestelmä odottaa, "
+#~ "kunnes järjestelmän aika on synkronoitu. Vaatimuksista riippuen "
+#~ "laitteiden herätystä jatketaan korkeintaan 2 minuutissa."
+
+#~ msgid "Is not necessary in most cases."
+#~ msgstr "Ei ole tarpeen useimmissa tapauksissa."
+
+#~ msgid "Load Default Settings"
+#~ msgstr "Lataa oletus asetukset"
+
+#~ msgid "Show single epg for current channel (setup in menu)"
+#~ msgstr "Näytä nykyisen kanavan ohjelmatiedot (asetukset valikossa)"
+
+#~ msgid ""
+#~ "Some TV devices can't swich to correct input if a another hdmi port "
+#~ "active. This setting set the TV to standby before.\n"
+#~ "(If the TV does not turn back on, may require a slower transmission "
+#~ "interval or the repetition of wake-up commands.)"
+#~ msgstr ""
+#~ "Jotkut Telvisiot eivät voi vaihtaa oikeaan tuloon, jos toinen hdmi portti "
+#~ "on aktiivinen. Tämä asetus asettaa television valmiustilaan aikaisemmin.\n"
+#~ "(Jos televisio ei käynnisty uudelleen, se saattaa vaatia hitaampaa "
+#~ "lähetysväliä tai herätyskomentojen toistamista.)"
+
+#~ msgid ""
+#~ "This is a workaround for some devices there wakeup again after switching "
+#~ "in standby. The wak up command's from other devices will ignored for few "
+#~ "seconds."
+#~ msgstr ""
+#~ "Tämä on kiertotapa joillekin laitteille, jotka heräävät uudelleen "
+#~ "valmiustilaan siirtymisen jälkeen. Muiden laitteiden herätyskomennot "
+#~ "ohitetaan muutaman sekunnin ajan."
+
+#~ msgid "Try to send repeated commands if not all commands are executed.\n"
+#~ msgstr ""
+#~ "Yritä lähettää toistuvia komentoja, jos kaikkia komentoja ei suoriteta.\n"
+
+#~ msgid "Try to slow down the send interval if not all commands are executed."
+#~ msgstr "Yritä hidastaa lähetysväliä, jos kaikkia komentoja ei suoritettu."
+
+#~ msgid "helptext"
+#~ msgstr "apuateksti"
+
+#~ msgid "jump to next page or all up (setup in menu)"
+#~ msgstr "Siirry seuraavalle sivulle tai kaikki päälle (asetus valikossa)"
+
+#~ msgid "jump to previous page or all down (setup in menu)"
+#~ msgstr "Siirry edelliselle sivulle tai kaikki alas (asetus valikossa)"
+
+#~ msgid "record"
+#~ msgstr "tallennus"
+
+#~ msgid "zap"
+#~ msgstr "kanavanvaihto"
 
 #~ msgid "%d-%m"
 #~ msgstr "%d-%m"

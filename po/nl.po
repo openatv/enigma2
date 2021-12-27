@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-12-20 21:36+0000\n"
+"POT-Creation-Date: 2021-12-26 20:08+0000\n"
 "PO-Revision-Date: 2021-12-26 13:13+0100\n"
 "Last-Translator: Walter <info@wt-electronic.nl>\n"
 "Language-Team: Dutch <https://hosted.weblate.org/projects/openatv/"
@@ -2376,9 +2376,6 @@ msgstr "Zap timer toevoegen"
 msgid "Add Zap+Record Timer"
 msgstr "Zap+Opname timer toevoegen"
 
-msgid "Add an AutoTimer for the current event"
-msgstr "AutoTimer toevoegen voor huidig programma"
-
 msgid "Add a mark"
 msgstr "Plaats een markering"
 
@@ -2397,11 +2394,17 @@ msgstr "Opname Timer toevoegen"
 msgid "Add a record timer for current event"
 msgstr "Opname Timer toevoegen voor huidig programma"
 
+msgid "Add a timer for the current event"
+msgstr ""
+
 msgid "Add a zap timer for current event"
 msgstr "Zaptimer toevoegen voor huidig programma"
 
 msgid "Add a zap timer for next event"
 msgstr "Zaptimer toevoegen voor het volgende programma"
+
+msgid "Add an AutoTimer for the current event"
+msgstr "AutoTimer toevoegen voor huidig programma"
 
 msgid "Add bookmark"
 msgstr "Bookmark toevoegen"
@@ -4216,6 +4219,9 @@ msgstr "Wijzig de Taal"
 msgid "Change PIN"
 msgstr "Wijzig pincode"
 
+msgid "Change Timer"
+msgstr "Wijzig timer"
+
 msgid "Change Volume offset"
 msgstr "Compenseer volume"
 
@@ -4248,9 +4254,6 @@ msgstr "Wijzig skin"
 
 msgid "Change step size"
 msgstr "Wijzig stapgrootte"
-
-msgid "Change Timer"
-msgstr "Wijzig timer"
 
 msgid "Change to bouquet"
 msgstr "Ga naar favorietenlijst"
@@ -4713,11 +4716,26 @@ msgstr "Sluiten"
 msgid "Close PiP on exit"
 msgstr "Sluit PiP met de EXIT-knop"
 
+msgid "Close bouquet list"
+msgstr ""
+
 msgid "Close bouquet list."
 msgstr "Sluit favorietenlijst."
 
 msgid "Close dialog"
 msgstr "Sluit dialoog"
+
+msgid "Close pop up menu"
+msgstr ""
+
+msgid "Close screen"
+msgstr ""
+
+msgid "Close the context menu"
+msgstr ""
+
+msgid "Close the current screen"
+msgstr ""
 
 msgid "Close the window"
 msgstr "Sluit het venster"
@@ -6272,7 +6290,6 @@ msgstr "Default: '%s'."
 msgid "Defaults"
 msgstr "Standaard waardes"
 
-#| msgid "Delay in milliseconds before start of scrolling text on display."
 msgid ""
 "Define additional delay in milliseconds before start of http(s) streams."
 msgstr ""
@@ -6418,6 +6435,9 @@ msgstr "Verwijder taal"
 msgid "Delete Plugins"
 msgstr "Plug-ins en applicaties verwijderen"
 
+msgid "Delete Timer"
+msgstr "Verwijder timer"
+
 msgid "Delete all tags"
 msgstr "Verwijder alle tags"
 
@@ -6477,9 +6497,6 @@ msgstr "Verwijder de geselecteerde bestanden of mappen"
 
 msgid "Delete this tag"
 msgstr "Verwijder deze tag"
-
-msgid "Delete Timer"
-msgstr "Verwijder timer"
 
 msgid "Delete unused tags"
 msgstr "Verwijder ongebruikte tags"
@@ -7206,8 +7223,26 @@ msgstr "EJECTCD lang"
 msgid "EPG"
 msgstr "EPG"
 
+msgid "EPG Actions"
+msgstr ""
+
+msgid "EPG Bouquet Actions"
+msgstr ""
+
 msgid "EPG Cache Check"
 msgstr "EPG cache controle"
+
+msgid "EPG Channel/Service Selection"
+msgstr ""
+
+msgid "EPG Display Actions"
+msgstr ""
+
+msgid "EPG Navigation Actions"
+msgstr ""
+
+msgid "EPG Other Actions"
+msgstr ""
 
 msgid "EPG Search"
 msgstr "EPG Search"
@@ -7295,6 +7330,9 @@ msgstr "Wijzig Quad zender"
 msgid "Edit Tags"
 msgstr "Tags wijzigen"
 
+msgid "Edit Timer"
+msgstr "Wijzig timer"
+
 msgid "Edit Title"
 msgstr "Wijzig titel"
 
@@ -7329,9 +7367,6 @@ msgstr "Pas de naamserver-configuratie (DNS) van uw %s %s aan.\n"
 #, python-format
 msgid "Edit the network configuration of your %s %s.\n"
 msgstr "Bewerk de netwerkinstellingen van uw %s %s.\n"
-
-msgid "Edit Timer"
-msgstr "Wijzig timer"
 
 msgid "Edit title"
 msgstr "Wijzig titel"
@@ -7687,6 +7722,9 @@ msgstr "Ga naar hoofdmenu..."
 msgid "Enter multi-file selection mode"
 msgstr "Open multi-bestand selecteer modus"
 
+msgid "Enter number to jump to channel"
+msgstr "Geef zendernummer in om naar dat zender te springen."
+
 msgid "Enter persistent PIN code"
 msgstr "Voer definitieve pincode in"
 
@@ -7959,6 +7997,15 @@ msgstr "Programma"
 msgid "Event Info"
 msgstr "Programma info"
 
+msgid "Event View"
+msgstr "Programma overzicht"
+
+msgid "Event View Actions"
+msgstr ""
+
+msgid "Event View Context Menu"
+msgstr "Programma overzicht menu"
+
 msgid "Event font size"
 msgstr "Programma omschrijving lettergrootte"
 
@@ -7968,14 +8015,11 @@ msgstr "Programma overzicht"
 msgid "Event view menu"
 msgstr "Programma overzicht menu"
 
+msgid "EventViewEPG Actions"
+msgstr ""
+
 msgid "Eventname only"
 msgstr "Enkel programma naam"
-
-msgid "Event View"
-msgstr "Programma overzicht"
-
-msgid "Event View Context Menu"
-msgstr "Programma overzicht menu"
 
 msgid "Eventview:"
 msgstr "Programma overzicht:"
@@ -8473,6 +8517,9 @@ msgstr "Financiën"
 #, python-format
 msgid "Find out more at %s"
 msgstr "Lees meer op %s"
+
+msgid "Find similar events in the EPG"
+msgstr ""
 
 msgid "Fine movement"
 msgstr "Fijn bewegen"
@@ -9413,14 +9460,14 @@ msgstr "IMDB zoeken"
 msgid "IMDB search"
 msgstr "IMDb informatie"
 
-msgid "IMDb search for current event"
-msgstr "IMDb raadplegen voor huidig programma"
-
 msgid "IMDb Details"
 msgstr "IMDb details"
 
 msgid "IMDb Search"
 msgstr "IMDb informatie"
+
+msgid "IMDb search for current event"
+msgstr "IMDb raadplegen voor huidig programma"
 
 msgid "INFO"
 msgstr "INFO"
@@ -10377,8 +10424,14 @@ msgstr "Spring naar het laatste item in de lijst of het eind van de tekst"
 msgid "Jump to next marked position"
 msgstr "Spring naar de volgende markering"
 
+msgid "Jump to next page or all up (setup in menu)"
+msgstr ""
+
 msgid "Jump to previous marked position"
 msgstr "Spring naar de vorige markering"
+
+msgid "Jump to previous page or all down (setup in menu)"
+msgstr ""
 
 msgid "Jump to prime time"
 msgstr "Spring naar prime time"
@@ -11685,6 +11738,9 @@ msgstr "Draaien"
 msgid "Movie"
 msgstr "Film"
 
+msgid "Movie Event View Actions"
+msgstr ""
+
 msgid "Movie List"
 msgstr "Opnamelijst"
 
@@ -12613,6 +12669,9 @@ msgstr "Ojibwe"
 msgid "Ok"
 msgstr "Ok"
 
+msgid "OkCancel Actions"
+msgstr ""
+
 msgid ""
 "Older files in the timeshift directory are removed on every event change."
 msgstr ""
@@ -12715,6 +12774,9 @@ msgstr "Open Timerlijst"
 msgid "Open bouquetlist"
 msgstr "Open favorietenlijst"
 
+msgid "Open context menu"
+msgstr ""
+
 msgid "Open favourites list"
 msgstr "Open de favorietenlijst"
 
@@ -12747,6 +12809,12 @@ msgstr "Open het Applicatie overzicht"
 
 msgid "Open the movie list"
 msgstr "Open de opnamelijst"
+
+msgid "Open the multi service EPG view"
+msgstr ""
+
+msgid "Open the single service EPG view"
+msgstr ""
 
 msgid "Open with File Commander"
 msgstr "Open met File Commander"
@@ -12988,6 +13056,9 @@ msgstr "Pagina naar beneden"
 
 msgid "Page down list"
 msgstr "Pagina lijst omlaag"
+
+msgid "Page left"
+msgstr "Pagina links"
 
 msgid "Page right"
 msgstr "Pagina naar rechts"
@@ -14473,6 +14544,9 @@ msgstr "Opname"
 msgid "Record - same as record button"
 msgstr "Record - hetzelfde als de record-knop"
 
+msgid "Record Actions"
+msgstr ""
+
 msgid "Record next"
 msgstr "Neem volgende op"
 
@@ -15117,6 +15191,9 @@ msgstr "Script uitvoeren met aanvullende parameter"
 
 msgid "Run script with optional parameter in background"
 msgstr "Script uitvoeren met aanvullende parameter in de achtergrond"
+
+msgid "Run the selected menu option"
+msgstr ""
 
 msgid "Rundi"
 msgstr "Rundi"
@@ -15889,7 +15966,6 @@ msgstr "Selecteer sorteermethode:"
 msgid "Select target folder"
 msgstr "Selecteer doelmap"
 
-#| msgid "Select the locale from a menu"
 msgid "Select the No / False response"
 msgstr "Selecteer het onjuiste antwoord"
 
@@ -17372,6 +17448,12 @@ msgstr "Toon de multi-zender EPG"
 msgid "Show network mounts ..."
 msgstr "Toon netwerkmounts ..."
 
+msgid "Show next event"
+msgstr ""
+
+msgid "Show next page"
+msgstr ""
+
 msgid "Show next picture"
 msgstr "Toon volgende afbeelding"
 
@@ -17392,6 +17474,12 @@ msgstr "Rotorbewegingen zichtbaar maken"
 
 msgid "Show preview of current mode (*)."
 msgstr "Toon voorbeeld van huidige modus (*)."
+
+msgid "Show previous event"
+msgstr ""
+
+msgid "Show previous page"
+msgstr ""
 
 msgid "Show previous picture"
 msgstr "Toon vorige afbeelding"
@@ -17443,8 +17531,8 @@ msgstr "Afsluitmenu weergeven"
 msgid "Show single EPG for current channel"
 msgstr "Toon single EPG van de huidige zender"
 
-msgid "Show single epg for current channel (setup in menu)"
-msgstr "Toon single EPG voor huidige zender (instellingen in menu)"
+msgid "Show single EPG for current channel (setup in menu)"
+msgstr ""
 
 msgid "Show single service EPG"
 msgstr "Toon de EPG van een enkel zender"
@@ -20683,6 +20771,9 @@ msgstr ""
 "Controleer a.u.b. de instellingen na een herstart van de MyMetrixLite Plug-"
 "in, en bevestig deze via de groene knop."
 
+msgid "Unknown Service"
+msgstr "onbekende zender"
+
 msgid "Unknown error code"
 msgstr "Onbekende foutcode"
 
@@ -22300,6 +22391,9 @@ msgstr ""
 msgid "Without popup"
 msgstr "Zonder popup"
 
+msgid "Wizard Actions"
+msgstr ""
+
 msgid "Wolof"
 msgstr "Wolof"
 
@@ -23488,9 +23582,6 @@ msgstr "stop zappen"
 msgid "enigma2 and network"
 msgstr "enigma2 en netwerk"
 
-msgid "Enter number to jump to channel"
-msgstr "Geef zendernummer in om naar dat zender te springen."
-
 msgid "entertainment (10-16 year old)"
 msgstr "amusement (10-16 jaar)"
 
@@ -23814,12 +23905,6 @@ msgstr "vooruit naar volgende titel"
 msgid "jump to chapter by number"
 msgstr "Spring via nummer naar hoofdstuk"
 
-msgid "jump to next page or all up (setup in menu)"
-msgstr "spring naar volgende pagina of helemaal naar boven (instellen in menu)"
-
-msgid "jump to previous page or all down (setup in menu)"
-msgstr "spring naar vorige pagina of helemaal naar beneden (instellen in menu)"
-
 msgid "just abort, no message"
 msgstr "Alleen afbreken, geen bericht"
 
@@ -24098,9 +24183,6 @@ msgstr "orginele taal"
 
 msgid "packages selected."
 msgstr "Pakketten geselecteerd."
-
-msgid "Page left"
-msgstr "Pagina links"
 
 msgid "pass"
 msgstr "Voortgang"
@@ -24642,9 +24724,6 @@ msgstr "onbekend"
 msgid "unknown error"
 msgstr "onbekende fout"
 
-msgid "Unknown Service"
-msgstr "onbekende zender"
-
 msgid "unpack Rar Files"
 msgstr "Uitpakken rar bestanden"
 
@@ -24831,6 +24910,17 @@ msgstr "zappen"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Show single epg for current channel (setup in menu)"
+#~ msgstr "Toon single EPG voor huidige zender (instellingen in menu)"
+
+#~ msgid "jump to next page or all up (setup in menu)"
+#~ msgstr ""
+#~ "spring naar volgende pagina of helemaal naar boven (instellen in menu)"
+
+#~ msgid "jump to previous page or all down (setup in menu)"
+#~ msgstr ""
+#~ "spring naar vorige pagina of helemaal naar beneden (instellen in menu)"
 
 #~ msgid ""
 #~ "\n"

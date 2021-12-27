@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-11-29 21:27+0000\n"
+"POT-Creation-Date: 2021-12-26 20:08+0000\n"
 "PO-Revision-Date: 2021-08-15 18:50+0000\n"
 "Last-Translator: openATV <openatv@gmail.com>\n"
 "Language-Team: Thai <https://hosted.weblate.org/projects/openatv/enigma2-7-0-"
@@ -45,11 +45,6 @@ msgstr ""
 msgid ""
 "\n"
 " Kodi not present. Proceed with install?"
-msgstr ""
-
-msgid ""
-"\n"
-"* Logs location: logs settings, Filename: Enigma2-hdmicec-[date].log"
 msgstr ""
 
 msgid ""
@@ -705,9 +700,6 @@ msgid "%Y-%b-%d"
 msgstr ""
 
 msgid "%Y-%m-%d"
-msgstr ""
-
-msgid "%Y-%m-%d %H-%M"
 msgstr ""
 
 msgid "%Y/%-m/%-d"
@@ -1388,10 +1380,6 @@ msgid ""
 msgstr ""
 
 msgid ""
-"'Handle standby from TV' has a higher priority as 'Handle input from TV'"
-msgstr ""
-
-msgid ""
 "'Handle standby from TV' has a higher priority than 'Handle input from TV'."
 msgstr ""
 
@@ -1427,9 +1415,6 @@ msgstr ""
 #, fuzzy
 msgid "(current image)"
 msgstr "ค่าปัจจุบัน:"
-
-msgid "(e.g. TV wakeup, but not switched to correct input)"
-msgstr ""
 
 msgid "(empty)"
 msgstr "(ว่าง)"
@@ -1648,28 +1633,10 @@ msgstr "16:10 PanScan"
 msgid "16:9"
 msgstr "16:9"
 
-msgid "16:9 Letterbox"
-msgstr "16:9 Letterbox"
-
 msgid "16:9 Always"
 msgstr "16:9 ตลอดเวลา"
 
-#, fuzzy
-msgid "16_10_letterbox"
-msgstr "16:10 Letterbox"
-
-msgid "16_10_panscan"
-msgstr ""
-
-msgid "16_9"
-msgstr ""
-
-#, fuzzy
-msgid "16_9_always"
-msgstr "16:9 ตลอดเวลา"
-
-#, fuzzy
-msgid "16_9_letterbox"
+msgid "16:9 Letterbox"
 msgstr "16:9 Letterbox"
 
 msgid "18 V"
@@ -1909,14 +1876,6 @@ msgstr "4:3 PanScan"
 
 msgid "4X"
 msgstr ""
-
-#, fuzzy
-msgid "4_3_letterbox"
-msgstr "4:3 Letterbox"
-
-#, fuzzy
-msgid "4_3_panscan"
-msgstr "Pan&Scan"
 
 msgid "4s"
 msgstr ""
@@ -2326,10 +2285,6 @@ msgid "About..."
 msgstr "เกี่ยวกับ..."
 
 #, fuzzy
-msgid "Accept the current selection"
-msgstr "สั่งใช้งานการตั้งค่าปัจจุบัน"
-
-#, fuzzy
 msgid "Accessed:"
 msgstr "Accesspoint:"
 
@@ -2364,13 +2319,6 @@ msgid ""
 "from the command line."
 msgstr ""
 
-#, python-format
-msgid ""
-"Activate an way to send individual or specific internal HDMI-CEC commands "
-"from the command line. Type on command line 'echo help > %s' and then read "
-"the file '%s' for a short help."
-msgstr ""
-
 #, fuzzy
 msgid "Activate current configuration"
 msgstr "สั่งใช้งานการตั้งค่าปัจจุบัน"
@@ -2397,16 +2345,6 @@ msgid "Activate timeshift End"
 msgstr ""
 
 msgid "Activate timeshift end and pause"
-msgstr ""
-
-msgid ""
-"Activation takes place immediately. If it does feature not work, then try "
-"again with a slower send interval."
-msgstr ""
-
-msgid ""
-"Activation takes place immediately. If this feature is not supported, the "
-"volume keys has no function!"
 msgstr ""
 
 msgid "Active"
@@ -2442,9 +2380,6 @@ msgstr "เพิ่มลงตารางเวลา"
 msgid "Add Zap+Record Timer"
 msgstr "เพิ่มลงตารางเวลา"
 
-msgid "Add an AutoTimer for the current event"
-msgstr ""
-
 msgid "Add a mark"
 msgstr "เพิ่มจุด"
 
@@ -2465,12 +2400,18 @@ msgstr "เพิ่มลงตารางเวลา"
 msgid "Add a record timer for current event"
 msgstr ""
 
+msgid "Add a timer for the current event"
+msgstr ""
+
 msgid "Add a zap timer for current event"
 msgstr ""
 
 #, fuzzy
 msgid "Add a zap timer for next event"
 msgstr "ย้ายลงไป"
+
+msgid "Add an AutoTimer for the current event"
+msgstr ""
 
 #, fuzzy
 msgid "Add bookmark"
@@ -2839,9 +2780,6 @@ msgid ""
 "receiver. Default: off."
 msgstr ""
 
-msgid "Always select OK"
-msgstr ""
-
 msgid "Always show bouquets"
 msgstr ""
 
@@ -2865,13 +2803,6 @@ msgid ""
 "due to incorrect or missing status messages it may cause the receiver to "
 "respond unexpectedly. On the other hand, tries to respond better to "
 "different operating conditions."
-msgstr ""
-
-msgid ""
-"An attempt is made to capture the current TV status. If this is not possible "
-"due to incorrect or missing status messages, it may cause the receiver to "
-"respond unexpectedly.\n"
-"On the other hand, tries to respond better to different operating conditions."
 msgstr ""
 
 msgid "An empty filename is illegal."
@@ -4186,10 +4117,6 @@ msgstr "เลือกช่องรายการ"
 msgid "Cancel the image selection and exit all menus"
 msgstr "เลือกช่องรายการ"
 
-#, fuzzy
-msgid "Cancel the selection"
-msgstr "เลือกช่องรายการ"
-
 msgid "Cancelled upon user request"
 msgstr ""
 
@@ -4285,6 +4212,10 @@ msgstr "ภาษา"
 msgid "Change PIN"
 msgstr ""
 
+#, fuzzy
+msgid "Change Timer"
+msgstr "เปลี่ยน Step"
+
 msgid "Change Volume offset"
 msgstr ""
 
@@ -4318,10 +4249,6 @@ msgid "Change skin"
 msgstr "เปลี่ยน Step"
 
 msgid "Change step size"
-msgstr "เปลี่ยน Step"
-
-#, fuzzy
-msgid "Change Timer"
 msgstr "เปลี่ยน Step"
 
 #, fuzzy
@@ -4562,9 +4489,6 @@ msgstr ""
 msgid "Choose a label that will identify this device within IceTV services."
 msgstr ""
 
-msgid "Choose a setting where your receiver wakes up from standby."
-msgstr ""
-
 msgid "Choose a tag for easy finding a recording."
 msgstr ""
 
@@ -4743,6 +4667,9 @@ msgstr ""
 msgid "Client Info ( Oscam-Version: %s )"
 msgstr ""
 
+msgid "Client is streaming from this box!"
+msgstr ""
+
 msgid "ClientIP"
 msgstr ""
 
@@ -4763,11 +4690,29 @@ msgstr "ปิด"
 msgid "Close PiP on exit"
 msgstr "บันทึกสารบัญเมื่อออก"
 
+msgid "Close bouquet list"
+msgstr ""
+
 #, fuzzy
 msgid "Close bouquet list."
 msgstr "จบการแก้ไขกลุ่มรายการ"
 
 msgid "Close dialog"
+msgstr ""
+
+msgid "Close pop up menu"
+msgstr ""
+
+msgid "Close screen"
+msgstr ""
+
+msgid "Close the context menu"
+msgstr ""
+
+msgid "Close the current screen"
+msgstr ""
+
+msgid "Close the window"
 msgstr ""
 
 msgid "Close title selection"
@@ -5754,6 +5699,9 @@ msgstr "ตัดต่อรายการ..."
 msgid "Cutlist editor..."
 msgstr "ตัดต่อรายการ..."
 
+msgid "Cycle PIP(zap)"
+msgstr ""
+
 msgid "Cycling"
 msgstr ""
 
@@ -6145,6 +6093,10 @@ msgid "Defaults"
 msgstr ""
 
 msgid ""
+"Define additional delay in milliseconds before start of http(s) streams."
+msgstr ""
+
+msgid ""
 "Defines how fast the time jumps are repeated. Values lower than 500ms may be "
 "problematic with NAS."
 msgstr ""
@@ -6266,6 +6218,10 @@ msgstr ""
 msgid "Delete Plugins"
 msgstr ""
 
+#, fuzzy
+msgid "Delete Timer"
+msgstr "ลบไฟล์"
+
 msgid "Delete all tags"
 msgstr ""
 
@@ -6329,10 +6285,6 @@ msgstr ""
 msgid "Delete this tag"
 msgstr ""
 
-#, fuzzy
-msgid "Delete Timer"
-msgstr "ลบไฟล์"
-
 msgid "Delete unused tags"
 msgstr ""
 
@@ -6371,6 +6323,9 @@ msgid ""
 "descrambling on recording failed. 'Don't descramble, record ECM' save a "
 "scramble recording that can be descrambled on playback. 'Normal' means "
 "descramble the recording and don't record ECM."
+msgstr ""
+
+msgid "Descramble and record ecm"
 msgstr ""
 
 msgid "Descramble http streams"
@@ -6639,6 +6594,9 @@ msgstr ""
 msgid "Do not record"
 msgstr "บันทึก"
 
+msgid "Do nothing"
+msgstr "ไม่ต้องทำอะไร"
+
 msgid ""
 "Do you really want to check the filesystem?\n"
 "This could take a long time!"
@@ -6859,6 +6817,9 @@ msgstr ""
 msgid "Don't ask again!"
 msgstr ""
 
+msgid "Don't descramble, record ecm"
+msgstr ""
+
 msgid "Don't restart"
 msgstr ""
 
@@ -7030,7 +6991,25 @@ msgstr ""
 msgid "EPG"
 msgstr ""
 
+msgid "EPG Actions"
+msgstr ""
+
+msgid "EPG Bouquet Actions"
+msgstr ""
+
 msgid "EPG Cache Check"
+msgstr ""
+
+msgid "EPG Channel/Service Selection"
+msgstr ""
+
+msgid "EPG Display Actions"
+msgstr ""
+
+msgid "EPG Navigation Actions"
+msgstr ""
+
+msgid "EPG Other Actions"
 msgstr ""
 
 msgid "EPG Search"
@@ -7113,6 +7092,10 @@ msgstr ""
 msgid "Edit Tags"
 msgstr ""
 
+#, fuzzy
+msgid "Edit Timer"
+msgstr "แก้ไขชื่อเรื่อง"
+
 msgid "Edit Title"
 msgstr ""
 
@@ -7152,10 +7135,6 @@ msgstr "แก้ไขการตั้งค่า Nameserver บนเคร
 #, fuzzy, python-format
 msgid "Edit the network configuration of your %s %s.\n"
 msgstr "แก้ไขการตั้งค่าเครือข่ายเครื่อดรีมบอกซ์ของท่าน\n"
-
-#, fuzzy
-msgid "Edit Timer"
-msgstr "แก้ไขชื่อเรื่อง"
 
 msgid "Edit title"
 msgstr "แก้ไขชื่อเรื่อง"
@@ -7490,6 +7469,9 @@ msgstr "เข้าสู่เมนูหลัก..."
 msgid "Enter multi-file selection mode"
 msgstr "ปิดหน้าเลือกชื่อเรื่อง"
 
+msgid "Enter number to jump to channel"
+msgstr ""
+
 msgid "Enter persistent PIN code"
 msgstr ""
 
@@ -7727,6 +7709,15 @@ msgstr ""
 msgid "Event Info"
 msgstr ""
 
+msgid "Event View"
+msgstr ""
+
+msgid "Event View Actions"
+msgstr ""
+
+msgid "Event View Context Menu"
+msgstr ""
+
 msgid "Event font size"
 msgstr ""
 
@@ -7736,13 +7727,10 @@ msgstr ""
 msgid "Event view menu"
 msgstr ""
 
+msgid "EventViewEPG Actions"
+msgstr ""
+
 msgid "Eventname only"
-msgstr ""
-
-msgid "Event View"
-msgstr ""
-
-msgid "Event View Context Menu"
 msgstr ""
 
 msgid "Eventview:"
@@ -8244,6 +8232,9 @@ msgstr "ยกเลิก"
 msgid "Find out more at %s"
 msgstr ""
 
+msgid "Find similar events in the EPG"
+msgstr ""
+
 #, fuzzy
 msgid "Fine movement"
 msgstr "แสดงตำแหน่งตัวขับจาน"
@@ -8665,6 +8656,9 @@ msgstr ""
 msgid "Go to bookmarked folder"
 msgstr ""
 
+msgid "Go to deep standby"
+msgstr "เข้าสู่โหมด Deep standby"
+
 #, fuzzy
 msgid "Go to end of file"
 msgstr "ไปส่วนรายการสุดท้าย"
@@ -8678,6 +8672,9 @@ msgstr ""
 #, fuzzy
 msgid "Go to parent directory"
 msgstr "โฟล์เดอร์ก่อนหน้า"
+
+msgid "Go to standby"
+msgstr "เข้าสู้โหมด Standby"
 
 #, fuzzy
 msgid "Go to start of file"
@@ -8855,12 +8852,6 @@ msgid "HD60/Multibox/Multiboxse"
 msgstr ""
 
 msgid "HDMI"
-msgstr ""
-
-msgid "HDMI CEC"
-msgstr ""
-
-msgid "HDMI CEC Setup"
 msgstr ""
 
 msgid "HDMI Colordepth"
@@ -9179,6 +9170,9 @@ msgstr ""
 msgid "How many minutes do you want to record?"
 msgstr "บันทึกรายต่อไปอีกกี่นาที?"
 
+msgid "Http(s) stream start delay"
+msgstr ""
+
 msgid "Hue"
 msgstr "Hue"
 
@@ -9205,13 +9199,13 @@ msgstr "ค้นหาทางทิศตะวันออก"
 msgid "IMDB search"
 msgstr ""
 
-msgid "IMDb search for current event"
-msgstr ""
-
 msgid "IMDb Details"
 msgstr ""
 
 msgid "IMDb Search"
+msgstr ""
+
+msgid "IMDb search for current event"
 msgstr ""
 
 msgid "INFO"
@@ -9433,12 +9427,6 @@ msgstr ""
 msgid ""
 "If set to 'yes; the infobar will remain shown permanently in 'paused' state "
 "(no timeout)."
-msgstr ""
-
-msgid ""
-"If the 'deep standby workaround' is enabled, it waits until the system time "
-"is synchronized. Depending on the requirement, the devices wake up will "
-"continuing after a maximum of 2 minutes."
 msgstr ""
 
 msgid ""
@@ -10013,9 +10001,6 @@ msgstr ""
 msgid "Irish"
 msgstr ""
 
-msgid "Is not necessary in most cases."
-msgstr ""
-
 msgid "Is this setting ok?"
 msgstr ""
 
@@ -10116,7 +10101,13 @@ msgstr ""
 msgid "Jump to next marked position"
 msgstr ""
 
+msgid "Jump to next page or all up (setup in menu)"
+msgstr ""
+
 msgid "Jump to previous marked position"
+msgstr ""
+
+msgid "Jump to previous page or all down (setup in menu)"
 msgstr ""
 
 msgid "Jump to prime time"
@@ -10619,10 +10610,6 @@ msgstr ""
 msgid "Load"
 msgstr "โหลด"
 
-#, fuzzy
-msgid "Load Default Settings"
-msgstr "ตั้งค่าเริ่มต้น"
-
 msgid "Load EPG"
 msgstr ""
 
@@ -11113,11 +11100,11 @@ msgstr ""
 msgid "Message"
 msgstr "ข้อความ"
 
-msgid "Message..."
-msgstr "ข้อความ..."
-
 msgid "Message Box Actions"
 msgstr ""
+
+msgid "Message..."
+msgstr "ข้อความ..."
 
 msgid "Metadata changed:"
 msgstr ""
@@ -11416,10 +11403,16 @@ msgstr ""
 msgid "Move the text cursor to the last character"
 msgstr ""
 
+msgid "Move to first line"
+msgstr ""
+
 msgid "Move to first line / screen"
 msgstr ""
 
 msgid "Move to home of list"
+msgstr ""
+
+msgid "Move to last line"
 msgstr ""
 
 msgid "Move to last line / screen"
@@ -11484,6 +11477,9 @@ msgstr "เคลื่อนไปทางทิศตะวันออก"
 #, fuzzy
 msgid "Movie"
 msgstr "กำลังลบออก"
+
+msgid "Movie Event View Actions"
+msgstr ""
 
 msgid "Movie List"
 msgstr ""
@@ -12203,6 +12199,9 @@ msgstr ""
 msgid "Norfolk Island"
 msgstr ""
 
+msgid "Normal"
+msgstr ""
+
 msgid "North"
 msgstr "เหนือ"
 
@@ -12405,6 +12404,9 @@ msgstr ""
 msgid "OScam Info"
 msgstr ""
 
+msgid "OScam webif disabled"
+msgstr ""
+
 #, fuzzy
 msgid "OScamInfo"
 msgstr "ข้อมูล"
@@ -12425,6 +12427,9 @@ msgid "Ojibwa"
 msgstr ""
 
 msgid "Ok"
+msgstr ""
+
+msgid "OkCancel Actions"
 msgstr ""
 
 msgid ""
@@ -12532,6 +12537,9 @@ msgstr "แก้ไขการตั้งเวลา"
 msgid "Open bouquetlist"
 msgstr "จบการแก้ไขกลุ่มรายการ"
 
+msgid "Open context menu"
+msgstr ""
+
 msgid "Open favourites list"
 msgstr ""
 
@@ -12563,6 +12571,12 @@ msgid "Open the Plugin Browser"
 msgstr ""
 
 msgid "Open the movie list"
+msgstr ""
+
+msgid "Open the multi service EPG view"
+msgstr ""
+
+msgid "Open the single service EPG view"
 msgstr ""
 
 msgid "Open with File Commander"
@@ -12807,6 +12821,9 @@ msgid "Page down"
 msgstr ""
 
 msgid "Page down list"
+msgstr ""
+
+msgid "Page left"
 msgstr ""
 
 msgid "Page right"
@@ -13656,10 +13673,6 @@ msgstr ""
 msgid "PowerTimer Entry"
 msgstr "ลบ Nameserver นี้ออก"
 
-#, fuzzy
-msgid "PowerTimer list"
-msgstr "แก้ไขการตั้งเวลา"
-
 msgid "PowerTimer Log"
 msgstr ""
 
@@ -13668,6 +13681,10 @@ msgstr ""
 
 msgid "PowerTimer Standby"
 msgstr ""
+
+#, fuzzy
+msgid "PowerTimer list"
+msgstr "แก้ไขการตั้งเวลา"
 
 msgid "PowerTimers"
 msgstr ""
@@ -14281,6 +14298,9 @@ msgstr "บันทึก"
 msgid "Record - same as record button"
 msgstr ""
 
+msgid "Record Actions"
+msgstr ""
+
 #, fuzzy
 msgid "Record next"
 msgstr "บันทึก"
@@ -14836,6 +14856,9 @@ msgstr "กำลังโหลดข้อมูล Plugin กรุณาร�
 msgid "Retrieving image slots - Please wait..."
 msgstr "กำลังโหลดข้อมูล Plugin กรุณารอสักครู่..."
 
+msgid "Return the current selection response"
+msgstr ""
+
 msgid "Return to movie list"
 msgstr "กลับไปยังสารบัญภาพยนต์"
 
@@ -14941,6 +14964,9 @@ msgid "Run script with optional parameter"
 msgstr ""
 
 msgid "Run script with optional parameter in background"
+msgstr ""
+
+msgid "Run the selected menu option"
 msgstr ""
 
 msgid "Rundi"
@@ -15704,6 +15730,9 @@ msgstr ""
 msgid "Select target folder"
 msgstr "เลือกโฟล์เดอร์ปลายทาง"
 
+msgid "Select the No / False response"
+msgstr ""
+
 msgid "Select the Swap File Size:"
 msgstr ""
 
@@ -15739,6 +15768,9 @@ msgstr ""
 msgid ""
 "Select the User Band frequency to be assigned to this tuner. This is the "
 "frequency the SCR switch uses to pass the requested transponder to the tuner."
+msgstr ""
+
+msgid "Select the Yes / True response"
 msgstr ""
 
 msgid "Select the character or action under the keyboard cursor"
@@ -17075,6 +17107,12 @@ msgstr ""
 msgid "Show network mounts ..."
 msgstr ""
 
+msgid "Show next event"
+msgstr ""
+
+msgid "Show next page"
+msgstr ""
+
 msgid "Show next picture"
 msgstr ""
 
@@ -17097,6 +17135,12 @@ msgstr "แสดงตำแหน่งตัวขับจาน"
 #, fuzzy
 msgid "Show preview of current mode (*)."
 msgstr "รายละเอียดเรื่องนี้"
+
+msgid "Show previous event"
+msgstr ""
+
+msgid "Show previous page"
+msgstr ""
 
 #, fuzzy
 msgid "Show previous picture"
@@ -17150,7 +17194,7 @@ msgstr "แสดงเมนูปิดเครื่อง"
 msgid "Show single EPG for current channel"
 msgstr ""
 
-msgid "Show single epg for current channel (setup in menu)"
+msgid "Show single EPG for current channel (setup in menu)"
 msgstr ""
 
 msgid "Show single service EPG"
@@ -17301,6 +17345,9 @@ msgstr ""
 #, fuzzy
 msgid "Shuffle playlist"
 msgstr "สลับรายการในสารบัญ"
+
+msgid "Shut down"
+msgstr ""
 
 msgid "Shutdown"
 msgstr ""
@@ -17644,13 +17691,6 @@ msgid ""
 "This setting sets the TV to standby before the switch. (If the TV does not "
 "turn back on it may require a slower transmission interval or the repetition "
 "of wake-up commands.)"
-msgstr ""
-
-msgid ""
-"Some TV devices can't swich to correct input if a another hdmi port active. "
-"This setting set the TV to standby before.\n"
-"(If the TV does not turn back on, may require a slower transmission interval "
-"or the repetition of wake-up commands.)"
 msgstr ""
 
 msgid "Some plugins are not available:\n"
@@ -19065,12 +19105,6 @@ msgid ""
 "seconds."
 msgstr ""
 
-msgid ""
-"This is a workaround for some devices there wakeup again after switching in "
-"standby. The wak up command's from other devices will ignored for few "
-"seconds."
-msgstr ""
-
 #, python-format
 msgid "This is the currently selected language.  [%s]"
 msgstr ""
@@ -19936,15 +19970,9 @@ msgid ""
 "for the receiver."
 msgstr ""
 
-msgid "Try to send repeated commands if not all commands are executed.\n"
-msgstr ""
-
 msgid ""
 "Try to send repeated commands if not all commands are executed. (e.g. TV "
 "wakeup, but not switched to correct input.)"
-msgstr ""
-
-msgid "Try to slow down the send interval if not all commands are executed."
 msgstr ""
 
 msgid "Trying to download a new packetlist. Please wait..."
@@ -20254,6 +20282,9 @@ msgid ""
 "Unknown Error creating Skin.\n"
 "Please check after reboot MyMetrixLite-Plugin and apply your settings."
 msgstr ""
+
+msgid "Unknown Service"
+msgstr "ไม่ทราบชนิดบริการ"
 
 #, fuzzy
 msgid "Unknown error code"
@@ -21705,6 +21736,9 @@ msgstr ""
 msgid "Without popup"
 msgstr ""
 
+msgid "Wizard Actions"
+msgstr ""
+
 msgid "Wolof"
 msgstr ""
 
@@ -22236,6 +22270,10 @@ msgstr ""
 msgid "Zap + Exit"
 msgstr ""
 
+#, fuzzy
+msgid "Zap and record"
+msgstr "บันทึก"
+
 msgid "Zap back to previously tuned service?"
 msgstr ""
 
@@ -22713,9 +22751,6 @@ msgstr "ลบส่วนตัดต่อ"
 msgid "deleted"
 msgstr "ลบ"
 
-msgid "Descramble and record ecm"
-msgstr ""
-
 msgid "detective/thriller"
 msgstr ""
 
@@ -22734,9 +22769,6 @@ msgstr ""
 msgid "display"
 msgstr ""
 
-msgid "Do nothing"
-msgstr "ไม่ต้องทำอะไร"
-
 msgid "documentary"
 msgstr ""
 
@@ -22744,9 +22776,6 @@ msgid "documentary (general)"
 msgstr ""
 
 msgid "dolby"
-msgstr ""
-
-msgid "Don't descramble, record ecm"
 msgstr ""
 
 msgid "done!"
@@ -22830,9 +22859,6 @@ msgid "end zapping"
 msgstr ""
 
 msgid "enigma2 and network"
-msgstr ""
-
-msgid "Enter number to jump to channel"
 msgstr ""
 
 msgid "entertainment (10-16 year old)"
@@ -22999,12 +23025,6 @@ msgstr ""
 msgid "get the cards' server"
 msgstr ""
 
-msgid "Go to deep standby"
-msgstr "เข้าสู่โหมด Deep standby"
-
-msgid "Go to standby"
-msgstr "เข้าสู้โหมด Standby"
-
 msgid "goto current channel and now"
 msgstr ""
 
@@ -23071,9 +23091,6 @@ msgstr ""
 
 msgid "help..."
 msgstr "ช่วยเหลือ..."
-
-msgid "helptext"
-msgstr ""
 
 msgid "hh:mm"
 msgstr ""
@@ -23168,12 +23185,6 @@ msgid "jump forward to the next title"
 msgstr "ข้ามไปยังเรื่องต่อไป"
 
 msgid "jump to chapter by number"
-msgstr ""
-
-msgid "jump to next page or all up (setup in menu)"
-msgstr ""
-
-msgid "jump to previous page or all down (setup in menu)"
 msgstr ""
 
 msgid "just abort, no message"
@@ -23392,7 +23403,7 @@ msgstr ""
 msgid "none"
 msgstr "ไม่มี"
 
-msgid "Normal"
+msgid "normal"
 msgstr ""
 
 #, fuzzy
@@ -23464,13 +23475,7 @@ msgstr ""
 msgid "original language"
 msgstr ""
 
-msgid "OScam webif disabled"
-msgstr ""
-
 msgid "packages selected."
-msgstr ""
-
-msgid "Page left"
 msgstr ""
 
 msgid "pass"
@@ -23554,9 +23559,6 @@ msgstr ""
 
 msgid "reboot system"
 msgstr ""
-
-msgid "record"
-msgstr "บันทึก"
 
 #, python-format
 msgid "record time changed, start prepare is now: %s"
@@ -23811,9 +23813,6 @@ msgstr ""
 msgid "shuffle"
 msgstr ""
 
-msgid "Shut down"
-msgstr ""
-
 msgid "simple"
 msgstr "แบบง่าย"
 
@@ -24021,9 +24020,6 @@ msgstr "ไม่มีข้อมูล"
 msgid "unknown error"
 msgstr "ไม่ทราบชนิดบริการ"
 
-msgid "Unknown Service"
-msgstr "ไม่ทราบชนิดบริการ"
-
 msgid "unpack Rar Files"
 msgstr ""
 
@@ -24198,13 +24194,6 @@ msgid ""
 "assistance before rebooting your %s %s."
 msgstr ""
 
-msgid "zap"
-msgstr "เปลี่ยนช่อง"
-
-#, fuzzy
-msgid "Zap and record"
-msgstr "บันทึก"
-
 msgid "zapped"
 msgstr "เปลี่ยนช่องแล้ว"
 
@@ -24214,6 +24203,44 @@ msgstr "เปลี่ยนช่องแล้ว"
 
 msgid "®"
 msgstr ""
+
+#, fuzzy
+#~ msgid "16_10_letterbox"
+#~ msgstr "16:10 Letterbox"
+
+#, fuzzy
+#~ msgid "16_9_always"
+#~ msgstr "16:9 ตลอดเวลา"
+
+#, fuzzy
+#~ msgid "16_9_letterbox"
+#~ msgstr "16:9 Letterbox"
+
+#, fuzzy
+#~ msgid "4_3_letterbox"
+#~ msgstr "4:3 Letterbox"
+
+#, fuzzy
+#~ msgid "4_3_panscan"
+#~ msgstr "Pan&Scan"
+
+#, fuzzy
+#~ msgid "Accept the current selection"
+#~ msgstr "สั่งใช้งานการตั้งค่าปัจจุบัน"
+
+#, fuzzy
+#~ msgid "Cancel the selection"
+#~ msgstr "เลือกช่องรายการ"
+
+#, fuzzy
+#~ msgid "Load Default Settings"
+#~ msgstr "ตั้งค่าเริ่มต้น"
+
+#~ msgid "record"
+#~ msgstr "บันทึก"
+
+#~ msgid "zap"
+#~ msgstr "เปลี่ยนช่อง"
 
 #, fuzzy
 #~ msgid "Compensate for overscan"

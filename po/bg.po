@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openATV / enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-11-29 21:27+0000\n"
+"POT-Creation-Date: 2021-12-26 20:08+0000\n"
 "PO-Revision-Date: 2017-11-21 13:26+0200\n"
 "Last-Translator: Satelitas\n"
 "Language-Team: TEAM <EMAIL@ADDRESS>\n"
@@ -44,11 +44,6 @@ msgstr "Искате ли да рестартирате сега?"
 msgid ""
 "\n"
 " Kodi not present. Proceed with install?"
-msgstr ""
-
-msgid ""
-"\n"
-"* Logs location: logs settings, Filename: Enigma2-hdmicec-[date].log"
 msgstr ""
 
 msgid ""
@@ -761,10 +756,6 @@ msgid "%Y-%b-%d"
 msgstr "%Y-%m-%d"
 
 msgid "%Y-%m-%d"
-msgstr "%Y-%m-%d"
-
-#, fuzzy
-msgid "%Y-%m-%d %H-%M"
 msgstr "%Y-%m-%d"
 
 msgid "%Y/%-m/%-d"
@@ -1504,10 +1495,6 @@ msgstr ""
 "приоритет."
 
 msgid ""
-"'Handle standby from TV' has a higher priority as 'Handle input from TV'"
-msgstr ""
-
-msgid ""
 "'Handle standby from TV' has a higher priority than 'Handle input from TV'."
 msgstr ""
 
@@ -1543,9 +1530,6 @@ msgstr "(Покажи само райдер:"
 #, fuzzy
 msgid "(current image)"
 msgstr "Текущо време"
-
-msgid "(e.g. TV wakeup, but not switched to correct input)"
-msgstr ""
 
 msgid "(empty)"
 msgstr "(Празен)"
@@ -1762,26 +1746,11 @@ msgstr "16:10 PanScan"
 msgid "16:9"
 msgstr "16:9"
 
-msgid "16:9 Letterbox"
-msgstr "16:9 Letterbox"
-
 msgid "16:9 Always"
 msgstr "16:9 винаги"
 
-msgid "16_10_letterbox"
-msgstr "16_10_letterbox"
-
-msgid "16_10_panscan"
-msgstr "16_10_panscan"
-
-msgid "16_9"
-msgstr "16_9"
-
-msgid "16_9_always"
-msgstr "16_9_винаги"
-
-msgid "16_9_letterbox"
-msgstr "16_9_letterbox"
+msgid "16:9 Letterbox"
+msgstr "16:9 Letterbox"
 
 msgid "18 V"
 msgstr "18 V"
@@ -2033,12 +2002,6 @@ msgstr "4:3 PanScan"
 
 msgid "4X"
 msgstr "4X"
-
-msgid "4_3_letterbox"
-msgstr "4_3_letterbox"
-
-msgid "4_3_panscan"
-msgstr "4_3_panscan"
 
 msgid "4s"
 msgstr "4сек"
@@ -2483,10 +2446,6 @@ msgid "About..."
 msgstr "Относно..."
 
 #, fuzzy
-msgid "Accept the current selection"
-msgstr "Активиране на текущата конфигурация"
-
-#, fuzzy
 msgid "Accessed:"
 msgstr "Точка за достъп:"
 
@@ -2520,13 +2479,6 @@ msgid ""
 "from the command line."
 msgstr ""
 
-#, python-format
-msgid ""
-"Activate an way to send individual or specific internal HDMI-CEC commands "
-"from the command line. Type on command line 'echo help > %s' and then read "
-"the file '%s' for a short help."
-msgstr ""
-
 msgid "Activate current configuration"
 msgstr "Активиране на текущата конфигурация"
 
@@ -2553,16 +2505,6 @@ msgstr "Активиране на TimeShift End"
 
 msgid "Activate timeshift end and pause"
 msgstr "Активиране на TimeShift End и пауза"
-
-msgid ""
-"Activation takes place immediately. If it does feature not work, then try "
-"again with a slower send interval."
-msgstr ""
-
-msgid ""
-"Activation takes place immediately. If this feature is not supported, the "
-"volume keys has no function!"
-msgstr ""
 
 msgid "Active"
 msgstr "Активен"
@@ -2597,9 +2539,6 @@ msgstr "Добави таймер"
 msgid "Add Zap+Record Timer"
 msgstr "Добави записващ таймер"
 
-msgid "Add an AutoTimer for the current event"
-msgstr "Добави AutoTimer за текущото събитие"
-
 msgid "Add a mark"
 msgstr "Добави отметка"
 
@@ -2618,11 +2557,17 @@ msgstr "Добави записващ таймер"
 msgid "Add a record timer for current event"
 msgstr "Добави записващ таймер за текущото събитие"
 
+msgid "Add a timer for the current event"
+msgstr ""
+
 msgid "Add a zap timer for current event"
 msgstr "Добави zap таймер за текущото събитие"
 
 msgid "Add a zap timer for next event"
 msgstr "Добави zap таймер за следващо събитие"
+
+msgid "Add an AutoTimer for the current event"
+msgstr "Добави AutoTimer за текущото събитие"
 
 msgid "Add bookmark"
 msgstr "Добави отметка"
@@ -2990,10 +2935,6 @@ msgid ""
 "receiver. Default: off."
 msgstr ""
 
-#, fuzzy
-msgid "Always select OK"
-msgstr "Винаги питай"
-
 msgid "Always show bouquets"
 msgstr "Винаги показване на букетите"
 
@@ -3018,13 +2959,6 @@ msgid ""
 "due to incorrect or missing status messages it may cause the receiver to "
 "respond unexpectedly. On the other hand, tries to respond better to "
 "different operating conditions."
-msgstr ""
-
-msgid ""
-"An attempt is made to capture the current TV status. If this is not possible "
-"due to incorrect or missing status messages, it may cause the receiver to "
-"respond unexpectedly.\n"
-"On the other hand, tries to respond better to different operating conditions."
 msgstr ""
 
 msgid "An empty filename is illegal."
@@ -4379,10 +4313,6 @@ msgstr "Избор на канал"
 msgid "Cancel the image selection and exit all menus"
 msgstr "Избор на канал"
 
-#, fuzzy
-msgid "Cancel the selection"
-msgstr "Избор на канал"
-
 msgid "Cancelled upon user request"
 msgstr ""
 
@@ -4477,6 +4407,9 @@ msgstr "Език"
 msgid "Change PIN"
 msgstr "Промени PIN"
 
+msgid "Change Timer"
+msgstr "Промени таймера"
+
 msgid "Change Volume offset"
 msgstr "Промени офсетовия звук"
 
@@ -4510,9 +4443,6 @@ msgstr "Промени таймера"
 
 msgid "Change step size"
 msgstr "Промени размера на стъпката"
-
-msgid "Change Timer"
-msgstr "Промени таймера"
 
 msgid "Change to bouquet"
 msgstr "Промени до букет"
@@ -4758,9 +4688,6 @@ msgstr ""
 msgid "Choose a label that will identify this device within IceTV services."
 msgstr ""
 
-msgid "Choose a setting where your receiver wakes up from standby."
-msgstr ""
-
 msgid "Choose a tag for easy finding a recording."
 msgstr "Избиране на маркер за по-лесно намиране на запис."
 
@@ -4954,6 +4881,9 @@ msgstr "Кликнете върху бутона на дистанционнот
 msgid "Client Info ( Oscam-Version: %s )"
 msgstr ""
 
+msgid "Client is streaming from this box!"
+msgstr ""
+
 msgid "ClientIP"
 msgstr "ClientIP"
 
@@ -4973,11 +4903,29 @@ msgstr "Затвори"
 msgid "Close PiP on exit"
 msgstr "Затвори PiP при изход"
 
+msgid "Close bouquet list"
+msgstr ""
+
 msgid "Close bouquet list."
 msgstr "Затвори букетния списък."
 
 msgid "Close dialog"
 msgstr "Затвори диалога"
+
+msgid "Close pop up menu"
+msgstr ""
+
+msgid "Close screen"
+msgstr ""
+
+msgid "Close the context menu"
+msgstr ""
+
+msgid "Close the current screen"
+msgstr ""
+
+msgid "Close the window"
+msgstr ""
 
 msgid "Close title selection"
 msgstr "Затвори избора на име"
@@ -6080,6 +6028,9 @@ msgstr "Cutlist Еditor"
 msgid "Cutlist editor..."
 msgstr "Cutlist editor..."
 
+msgid "Cycle PIP(zap)"
+msgstr ""
+
 msgid "Cycling"
 msgstr ""
 
@@ -6469,6 +6420,10 @@ msgid "Defaults"
 msgstr "По подразбиране"
 
 msgid ""
+"Define additional delay in milliseconds before start of http(s) streams."
+msgstr ""
+
+msgid ""
 "Defines how fast the time jumps are repeated. Values lower than 500ms may be "
 "problematic with NAS."
 msgstr ""
@@ -6599,6 +6554,9 @@ msgstr "Изтриване на език"
 msgid "Delete Plugins"
 msgstr "Изтриване на плъгините"
 
+msgid "Delete Timer"
+msgstr "Изтриване на таймера"
+
 msgid "Delete all tags"
 msgstr ""
 
@@ -6662,9 +6620,6 @@ msgstr "Изберете действието на таймера за сън."
 msgid "Delete this tag"
 msgstr ""
 
-msgid "Delete Timer"
-msgstr "Изтриване на таймера"
-
 msgid "Delete unused tags"
 msgstr ""
 
@@ -6708,6 +6663,9 @@ msgstr ""
 "запазва записа компресиран, който може да бъде декодиран при "
 "възпроизвеждане. \"Нормално\" означава декодиране на записа и не записване "
 "на ECM."
+
+msgid "Descramble and record ecm"
+msgstr "декодиране и запис ЕСМ"
 
 msgid "Descramble http streams"
 msgstr "Декодиране HTTP потоци"
@@ -6976,6 +6934,9 @@ msgstr "Да не флашва имиджа"
 msgid "Do not record"
 msgstr "Не записвай"
 
+msgid "Do nothing"
+msgstr "не прави нищо"
+
 msgid ""
 "Do you really want to check the filesystem?\n"
 "This could take a long time!"
@@ -7211,6 +7172,9 @@ msgstr "Не добавяйте този запис"
 msgid "Don't ask again!"
 msgstr "Не питайте отново!"
 
+msgid "Don't descramble, record ecm"
+msgstr "не дешифриране, запис ЕСМ"
+
 msgid "Don't restart"
 msgstr ""
 
@@ -7390,8 +7354,26 @@ msgstr "SAT long"
 msgid "EPG"
 msgstr "EPG"
 
+msgid "EPG Actions"
+msgstr ""
+
+msgid "EPG Bouquet Actions"
+msgstr ""
+
 msgid "EPG Cache Check"
 msgstr "EPG Кеш проверка"
+
+msgid "EPG Channel/Service Selection"
+msgstr ""
+
+msgid "EPG Display Actions"
+msgstr ""
+
+msgid "EPG Navigation Actions"
+msgstr ""
+
+msgid "EPG Other Actions"
+msgstr ""
 
 msgid "EPG Search"
 msgstr "EPG Търсене"
@@ -7474,6 +7456,9 @@ msgstr "Редактиране на нов запис"
 msgid "Edit Tags"
 msgstr ""
 
+msgid "Edit Timer"
+msgstr "Редактиране на таймера"
+
 msgid "Edit Title"
 msgstr "Редактиране на заглавие"
 
@@ -7511,9 +7496,6 @@ msgstr "Редактиране на конфигурацията на Nameserver
 #, python-format
 msgid "Edit the network configuration of your %s %s.\n"
 msgstr "Редактиране на мрежовата конфигурация на вашия %s %s.\n"
-
-msgid "Edit Timer"
-msgstr "Редактиране на таймера"
 
 msgid "Edit title"
 msgstr "Редактиране на заглавие"
@@ -7860,6 +7842,9 @@ msgstr "Влизане в основното меню ..."
 msgid "Enter multi-file selection mode"
 msgstr "Предпочитани тунери, разрешена е множествена селекция"
 
+msgid "Enter number to jump to channel"
+msgstr "въведете номер, за да преминете към канал."
+
 msgid "Enter persistent PIN code"
 msgstr "Въведете устойчив ПИН-код"
 
@@ -8123,6 +8108,15 @@ msgstr "Преглед на събитието"
 msgid "Event Info"
 msgstr "Инфо на събитие"
 
+msgid "Event View"
+msgstr "Преглед на събитието"
+
+msgid "Event View Actions"
+msgstr ""
+
+msgid "Event View Context Menu"
+msgstr "Меню за преглед на събитие"
+
 msgid "Event font size"
 msgstr "Размер на шрифта за събитието"
 
@@ -8132,14 +8126,11 @@ msgstr "Преглед на събитие"
 msgid "Event view menu"
 msgstr "Меню за преглед на събитие"
 
+msgid "EventViewEPG Actions"
+msgstr ""
+
 msgid "Eventname only"
 msgstr "Само име на събитието"
-
-msgid "Event View"
-msgstr "Преглед на събитието"
-
-msgid "Event View Context Menu"
-msgstr "Меню за преглед на събитие"
 
 #, fuzzy
 msgid "Eventview:"
@@ -8644,6 +8635,9 @@ msgstr "романтика"
 msgid "Find out more at %s"
 msgstr ""
 
+msgid "Find similar events in the EPG"
+msgstr ""
+
 msgid "Fine movement"
 msgstr "Фино движение"
 
@@ -9075,6 +9069,9 @@ msgstr "Отиди надолу в списъка"
 msgid "Go to bookmarked folder"
 msgstr ""
 
+msgid "Go to deep standby"
+msgstr "отиди на deep standby"
+
 #, fuzzy
 msgid "Go to end of file"
 msgstr "Скок до края на списъка"
@@ -9088,6 +9085,9 @@ msgstr "Отиди на първия филм или в горната част 
 #, fuzzy
 msgid "Go to parent directory"
 msgstr "Родителска директория"
+
+msgid "Go to standby"
+msgstr "отиди на standby"
 
 #, fuzzy
 msgid "Go to start of file"
@@ -9271,12 +9271,6 @@ msgstr ""
 
 msgid "HDMI"
 msgstr "HDMI"
-
-msgid "HDMI CEC"
-msgstr "HDMI CEC"
-
-msgid "HDMI CEC Setup"
-msgstr "HDMI CEC настройка"
 
 #, fuzzy
 msgid "HDMI Colordepth"
@@ -9611,6 +9605,9 @@ msgstr "Часове мин/сек"
 msgid "How many minutes do you want to record?"
 msgstr "Колко минути искате да запишете?"
 
+msgid "Http(s) stream start delay"
+msgstr ""
+
 msgid "Hue"
 msgstr "Оттенък"
 
@@ -9638,14 +9635,14 @@ msgstr "IMDb Търсене"
 msgid "IMDB search"
 msgstr "IMDb Търсене"
 
-msgid "IMDb search for current event"
-msgstr "IMDB търсене за текущото събитие"
-
 msgid "IMDb Details"
 msgstr "IMDb Детайли"
 
 msgid "IMDb Search"
 msgstr "IMDb Търсене"
+
+msgid "IMDb search for current event"
+msgstr "IMDB търсене за текущото събитие"
 
 msgid "INFO"
 msgstr ""
@@ -9894,12 +9891,6 @@ msgid ""
 msgstr ""
 "Ако е зададено 'да'; инфобарът остава показван постоянно в 'пауза' (без "
 "прекъсване)."
-
-msgid ""
-"If the 'deep standby workaround' is enabled, it waits until the system time "
-"is synchronized. Depending on the requirement, the devices wake up will "
-"continuing after a maximum of 2 minutes."
-msgstr ""
 
 msgid ""
 "If the deep standby workaround is enabled wait until the system time is "
@@ -10483,9 +10474,6 @@ msgstr ""
 msgid "Irish"
 msgstr ""
 
-msgid "Is not necessary in most cases."
-msgstr ""
-
 msgid "Is this setting ok?"
 msgstr "Дали тази настройка е ОК?"
 
@@ -10585,8 +10573,14 @@ msgstr ""
 msgid "Jump to next marked position"
 msgstr "Скок до следващата маркирана позиция"
 
+msgid "Jump to next page or all up (setup in menu)"
+msgstr ""
+
 msgid "Jump to previous marked position"
 msgstr "Скок до предишната маркирана позиция"
+
+msgid "Jump to previous page or all down (setup in menu)"
+msgstr ""
 
 msgid "Jump to prime time"
 msgstr "Скок до най-гледаното време"
@@ -11094,10 +11088,6 @@ msgstr "Бързи действия"
 msgid "Load"
 msgstr "Зареждане"
 
-#, fuzzy
-msgid "Load Default Settings"
-msgstr "Настройки по подразразбиране"
-
 msgid "Load EPG"
 msgstr "Зареждане на EPG"
 
@@ -11590,12 +11580,12 @@ msgstr "Merlin EPG Център"
 msgid "Message"
 msgstr "Съобщение"
 
-msgid "Message..."
-msgstr "Съобщение..."
-
 #, fuzzy
 msgid "Message Box Actions"
 msgstr "Виртуална клавиатура"
+
+msgid "Message..."
+msgstr "Съобщение..."
 
 msgid "Metadata changed:"
 msgstr ""
@@ -11893,11 +11883,17 @@ msgstr ""
 msgid "Move the text cursor to the last character"
 msgstr ""
 
+msgid "Move to first line"
+msgstr ""
+
 msgid "Move to first line / screen"
 msgstr ""
 
 msgid "Move to home of list"
 msgstr "Премести към домашния списък"
+
+msgid "Move to last line"
+msgstr ""
 
 msgid "Move to last line / screen"
 msgstr ""
@@ -11958,6 +11954,9 @@ msgstr "Движение"
 #, fuzzy
 msgid "Movie"
 msgstr "Преместване"
+
+msgid "Movie Event View Actions"
+msgstr ""
 
 msgid "Movie List"
 msgstr "Списък с филмите"
@@ -12690,6 +12689,9 @@ msgstr ""
 msgid "Norfolk Island"
 msgstr ""
 
+msgid "Normal"
+msgstr "нормална"
+
 msgid "North"
 msgstr "Север"
 
@@ -12899,6 +12901,9 @@ msgstr "OSD настройки"
 msgid "OScam Info"
 msgstr "OScam инфо"
 
+msgid "OScam webif disabled"
+msgstr ""
+
 msgid "OScamInfo"
 msgstr "Oscam инфо"
 
@@ -12920,6 +12925,9 @@ msgstr ""
 
 msgid "Ok"
 msgstr "Ok"
+
+msgid "OkCancel Actions"
+msgstr ""
 
 msgid ""
 "Older files in the timeshift directory are removed on every event change."
@@ -13031,6 +13039,9 @@ msgstr "Отваряне на Timerlist..."
 msgid "Open bouquetlist"
 msgstr "Отваряне на списъка с букети ..."
 
+msgid "Open context menu"
+msgstr ""
+
 msgid "Open favourites list"
 msgstr "Отваряне на списъка с любими"
 
@@ -13063,6 +13074,12 @@ msgstr "Отваряне на Plugin Browser"
 
 msgid "Open the movie list"
 msgstr "Отваряне на филмовия списък"
+
+msgid "Open the multi service EPG view"
+msgstr ""
+
+msgid "Open the single service EPG view"
+msgstr ""
 
 msgid "Open with File Commander"
 msgstr ""
@@ -13320,6 +13337,9 @@ msgstr "Страница надолу"
 #, fuzzy
 msgid "Page down list"
 msgstr "Страница надолу"
+
+msgid "Page left"
+msgstr "страница наляво"
 
 msgid "Page right"
 msgstr "Страница надясно"
@@ -14173,9 +14193,6 @@ msgstr "PowerTimer за DeepStandby"
 msgid "PowerTimer Entry"
 msgstr "PowerTimer Entry"
 
-msgid "PowerTimer list"
-msgstr "PowerTimer list"
-
 msgid "PowerTimer Log"
 msgstr "PowerTimer Log"
 
@@ -14184,6 +14201,9 @@ msgstr "PowerTimer Overview"
 
 msgid "PowerTimer Standby"
 msgstr "PowerTimer за Standby"
+
+msgid "PowerTimer list"
+msgstr "PowerTimer list"
 
 msgid "PowerTimers"
 msgstr "PowerTimers"
@@ -14813,6 +14833,9 @@ msgstr "Запис"
 msgid "Record - same as record button"
 msgstr "Запис - същото като бутона за запис"
 
+msgid "Record Actions"
+msgstr ""
+
 msgid "Record next"
 msgstr "Запиши следващия"
 
@@ -15379,6 +15402,9 @@ msgstr "Получаване на Softcam списъка. Моля изчака�
 msgid "Retrieving image slots - Please wait..."
 msgstr "Получаване на Softcam списъка. Моля изчакай..."
 
+msgid "Return the current selection response"
+msgstr ""
+
 msgid "Return to movie list"
 msgstr "Назад към списъка с филми"
 
@@ -15488,6 +15514,9 @@ msgid "Run script with optional parameter"
 msgstr ""
 
 msgid "Run script with optional parameter in background"
+msgstr ""
+
+msgid "Run the selected menu option"
 msgstr ""
 
 msgid "Rundi"
@@ -16247,6 +16276,9 @@ msgstr "Изберете метод на сортиране:"
 msgid "Select target folder"
 msgstr "Изберете целевата папка"
 
+msgid "Select the No / False response"
+msgstr ""
+
 msgid "Select the Swap File Size:"
 msgstr "Изберете размера на Swap File:"
 
@@ -16282,6 +16314,9 @@ msgstr ""
 msgid ""
 "Select the User Band frequency to be assigned to this tuner. This is the "
 "frequency the SCR switch uses to pass the requested transponder to the tuner."
+msgstr ""
+
+msgid "Select the Yes / True response"
 msgstr ""
 
 msgid "Select the character or action under the keyboard cursor"
@@ -17685,6 +17720,12 @@ msgstr "Показване на многоканален EPG"
 msgid "Show network mounts ..."
 msgstr "Показване на монтираните мрежи ..."
 
+msgid "Show next event"
+msgstr ""
+
+msgid "Show next page"
+msgstr ""
+
 msgid "Show next picture"
 msgstr ""
 
@@ -17706,6 +17747,12 @@ msgstr "Показване на движение позиционер"
 
 msgid "Show preview of current mode (*)."
 msgstr "Показване на предварителен изглед на текущия режим (*)."
+
+msgid "Show previous event"
+msgstr ""
+
+msgid "Show previous page"
+msgstr ""
 
 #, fuzzy
 msgid "Show previous picture"
@@ -17758,9 +17805,8 @@ msgstr "Показване на менюто за изключване"
 msgid "Show single EPG for current channel"
 msgstr "Показване на единичен EPG за текущия канал"
 
-#, fuzzy
-msgid "Show single epg for current channel (setup in menu)"
-msgstr "Показване на единичен EPG за текущия канал"
+msgid "Show single EPG for current channel (setup in menu)"
+msgstr ""
 
 msgid "Show single service EPG"
 msgstr "Показване на EPG за единичен сервиз"
@@ -17918,6 +17964,9 @@ msgstr "Показва наблюдаваното състояние на фил
 
 msgid "Shuffle playlist"
 msgstr "Разбъркване на плейлиста"
+
+msgid "Shut down"
+msgstr "изключи"
 
 msgid "Shutdown"
 msgstr "Изключи"
@@ -18257,13 +18306,6 @@ msgid ""
 "This setting sets the TV to standby before the switch. (If the TV does not "
 "turn back on it may require a slower transmission interval or the repetition "
 "of wake-up commands.)"
-msgstr ""
-
-msgid ""
-"Some TV devices can't swich to correct input if a another hdmi port active. "
-"This setting set the TV to standby before.\n"
-"(If the TV does not turn back on, may require a slower transmission interval "
-"or the repetition of wake-up commands.)"
 msgstr ""
 
 msgid "Some plugins are not available:\n"
@@ -19775,12 +19817,6 @@ msgid ""
 "seconds."
 msgstr ""
 
-msgid ""
-"This is a workaround for some devices there wakeup again after switching in "
-"standby. The wak up command's from other devices will ignored for few "
-"seconds."
-msgstr ""
-
 #, python-format
 msgid "This is the currently selected language.  [%s]"
 msgstr ""
@@ -20755,15 +20791,9 @@ msgid ""
 "for the receiver."
 msgstr ""
 
-msgid "Try to send repeated commands if not all commands are executed.\n"
-msgstr ""
-
 msgid ""
 "Try to send repeated commands if not all commands are executed. (e.g. TV "
 "wakeup, but not switched to correct input.)"
-msgstr ""
-
-msgid "Try to slow down the send interval if not all commands are executed."
 msgstr ""
 
 msgid "Trying to download a new packetlist. Please wait..."
@@ -21074,6 +21104,9 @@ msgstr ""
 "Неизвестна грешка при създаване на кожа.\n"
 "Моля, проверете след рестартиране на MyMetrixLite-Plugin и приложете "
 "настройките си."
+
+msgid "Unknown Service"
+msgstr "неизвестен сервиз"
 
 #, fuzzy
 msgid "Unknown error code"
@@ -22666,6 +22699,9 @@ msgstr ""
 msgid "Without popup"
 msgstr "Без изскачащ"
 
+msgid "Wizard Actions"
+msgstr ""
+
 msgid "Wolof"
 msgstr ""
 
@@ -23267,6 +23303,9 @@ msgstr "Превключване"
 msgid "Zap + Exit"
 msgstr "Превключване + Изход"
 
+msgid "Zap and record"
+msgstr "превключване или запис"
+
 msgid "Zap back to previously tuned service?"
 msgstr "Превключване обратно към предишния настроен сервиз?"
 
@@ -23764,9 +23803,6 @@ msgstr "изтриване на изрязаното"
 msgid "deleted"
 msgstr "изтрий"
 
-msgid "Descramble and record ecm"
-msgstr "декодиране и запис ЕСМ"
-
 msgid "detective/thriller"
 msgstr "детективски/трилър"
 
@@ -23785,9 +23821,6 @@ msgstr "дискусия/интервю/дебат"
 msgid "display"
 msgstr "показване"
 
-msgid "Do nothing"
-msgstr "не прави нищо"
-
 msgid "documentary"
 msgstr "документален"
 
@@ -23797,9 +23830,6 @@ msgstr "документален"
 
 msgid "dolby"
 msgstr ""
-
-msgid "Don't descramble, record ecm"
-msgstr "не дешифриране, запис ЕСМ"
 
 msgid "done!"
 msgstr "извършен!"
@@ -23884,9 +23914,6 @@ msgstr "край на zapping"
 
 msgid "enigma2 and network"
 msgstr "enigma2 и мрежата"
-
-msgid "Enter number to jump to channel"
-msgstr "въведете номер, за да преминете към канал."
 
 msgid "entertainment (10-16 year old)"
 msgstr "забавления (10-16 годишна възраст)"
@@ -24057,12 +24084,6 @@ msgstr "градинарство"
 msgid "get the cards' server"
 msgstr "получете сървъра на картите"
 
-msgid "Go to deep standby"
-msgstr "отиди на deep standby"
-
-msgid "Go to standby"
-msgstr "отиди на standby"
-
 #, fuzzy
 msgid "goto current channel and now"
 msgstr "Отиди на следващия канал"
@@ -24134,10 +24155,6 @@ msgstr "височина"
 
 msgid "help..."
 msgstr "помощ..."
-
-#, fuzzy
-msgid "helptext"
-msgstr "Телетекст"
 
 msgid "hh:mm"
 msgstr ""
@@ -24233,14 +24250,6 @@ msgstr "скок напред до следващото заглавие"
 
 msgid "jump to chapter by number"
 msgstr "скок на глава по номер"
-
-#, fuzzy
-msgid "jump to next page or all up (setup in menu)"
-msgstr "Превключване на канал (настройка в менюто)"
-
-#, fuzzy
-msgid "jump to previous page or all down (setup in menu)"
-msgstr "Отиди на следващата страница на сервиза"
 
 msgid "just abort, no message"
 msgstr "просто отмени, без съобщение"
@@ -24459,8 +24468,8 @@ msgstr "не са намерени устройства за съхранени�
 msgid "none"
 msgstr "нито един"
 
-msgid "Normal"
-msgstr "нормална"
+msgid "normal"
+msgstr ""
 
 #, fuzzy
 msgid "not"
@@ -24532,14 +24541,8 @@ msgstr "оригинал"
 msgid "original language"
 msgstr "оригинален език"
 
-msgid "OScam webif disabled"
-msgstr ""
-
 msgid "packages selected."
 msgstr "избрани пакети."
-
-msgid "Page left"
-msgstr "страница наляво"
 
 msgid "pass"
 msgstr "pass"
@@ -24625,9 +24628,6 @@ msgstr "реални записи или стрийминг"
 
 msgid "reboot system"
 msgstr "рестартиране система"
-
-msgid "record"
-msgstr "запис"
 
 #, python-format
 msgid "record time changed, start prepare is now: %s"
@@ -24883,9 +24883,6 @@ msgstr "шоу/шоу игра (общо)"
 msgid "shuffle"
 msgstr "разбъркване"
 
-msgid "Shut down"
-msgstr "изключи"
-
 msgid "simple"
 msgstr "опростен"
 
@@ -25096,9 +25093,6 @@ msgstr "неизвестен"
 msgid "unknown error"
 msgstr "неизвестна грешка"
 
-msgid "Unknown Service"
-msgstr "неизвестен сервиз"
-
 msgid "unpack Rar Files"
 msgstr ""
 
@@ -25282,12 +25276,6 @@ msgstr ""
 "вашият %s %s може да бъде неизползваем сега. Моля, консултирайте се с "
 "ръководството за допълнителна помощ преди рестартиране на вашият %s %s."
 
-msgid "zap"
-msgstr "превключване"
-
-msgid "Zap and record"
-msgstr "превключване или запис"
-
 msgid "zapped"
 msgstr "превключено"
 
@@ -25296,6 +25284,75 @@ msgstr "превключено на"
 
 msgid "®"
 msgstr ""
+
+#, fuzzy
+#~ msgid "%Y-%m-%d %H-%M"
+#~ msgstr "%Y-%m-%d"
+
+#~ msgid "16_10_letterbox"
+#~ msgstr "16_10_letterbox"
+
+#~ msgid "16_10_panscan"
+#~ msgstr "16_10_panscan"
+
+#~ msgid "16_9"
+#~ msgstr "16_9"
+
+#~ msgid "16_9_always"
+#~ msgstr "16_9_винаги"
+
+#~ msgid "16_9_letterbox"
+#~ msgstr "16_9_letterbox"
+
+#~ msgid "4_3_letterbox"
+#~ msgstr "4_3_letterbox"
+
+#~ msgid "4_3_panscan"
+#~ msgstr "4_3_panscan"
+
+#, fuzzy
+#~ msgid "Accept the current selection"
+#~ msgstr "Активиране на текущата конфигурация"
+
+#, fuzzy
+#~ msgid "Always select OK"
+#~ msgstr "Винаги питай"
+
+#, fuzzy
+#~ msgid "Cancel the selection"
+#~ msgstr "Избор на канал"
+
+#~ msgid "HDMI CEC"
+#~ msgstr "HDMI CEC"
+
+#~ msgid "HDMI CEC Setup"
+#~ msgstr "HDMI CEC настройка"
+
+#, fuzzy
+#~ msgid "Load Default Settings"
+#~ msgstr "Настройки по подразразбиране"
+
+#, fuzzy
+#~ msgid "Show single epg for current channel (setup in menu)"
+#~ msgstr "Показване на единичен EPG за текущия канал"
+
+#, fuzzy
+#~ msgid "helptext"
+#~ msgstr "Телетекст"
+
+#, fuzzy
+#~ msgid "jump to next page or all up (setup in menu)"
+#~ msgstr "Превключване на канал (настройка в менюто)"
+
+#, fuzzy
+#~ msgid "jump to previous page or all down (setup in menu)"
+#~ msgstr "Отиди на следващата страница на сервиза"
+
+#~ msgid "record"
+#~ msgstr "запис"
+
+#~ msgid "zap"
+#~ msgstr "превключване"
 
 #~ msgid "%d-%m"
 #~ msgstr "%d-%m"
