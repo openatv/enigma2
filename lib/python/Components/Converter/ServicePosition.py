@@ -106,7 +106,7 @@ class ServicePosition(Poll, Converter):
 		seek = self.getSeek()
 		if seek is None:
 			return ""
-		if self.type == self.TYPE_SUMMARY or self.type == self.TYPE_SUMMARY:
+		if self.type == self.TYPE_SUMMARY:
 			s = self.position / 90000
 			e = (self.length / 90000) - s
 			return "%02d:%02d +%2dm" % (s / 60, s % 60, e / 60)
