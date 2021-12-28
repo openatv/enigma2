@@ -545,7 +545,7 @@ class AttributeParser:
 		except KeyError:
 			raise AttribValueError("'on', 'off' or 'blend'")
 
-	def alphatest(self, value):  # This legacy definition uses an inconsistent name, use 'alphaTest' instead! #NOSONAR
+	def alphatest(self, value):  # This legacy definition uses an inconsistent name, use 'alphaTest' instead!
 		self.alphaTest(value)
 		raise AttribDeprecatedError("alphaTest")
 
@@ -595,7 +595,7 @@ class AttributeParser:
 	def colPosition(self, value):
 		pass
 
-	def colposition(self, value):  #NOSONAR
+	def colposition(self, value):
 		raise AttribDeprecatedError("colPosition")
 
 	def conditional(self, value):
@@ -604,12 +604,15 @@ class AttributeParser:
 	def divideChar(self, value):
 		pass
 
-	def dividechar(self, value):  #NOSONAR
+	def dividechar(self, value):
 		raise AttribDeprecatedError("divideChar")
 
 	def enableWrapAround(self, value):
 		value = value.lower() in ("1", "enabled", "enablewraparound", "on", "true", "yes")
 		self.guiObject.setWrapAround(value)
+
+	def excludes(self, value):
+		pass
 
 	def flags(self, value):
 		if value in variables:
@@ -642,7 +645,7 @@ class AttributeParser:
 	def foregroundNotCrypted(self, value):
 		self.guiObject.setForegroundColor(parseColor(value))
 
-	def halign(self, value):  # This legacy definition uses an inconsistent name, use 'horizontalAlignment' instead!  #NOSONAR
+	def halign(self, value):  # This legacy definition uses an inconsistent name, use 'horizontalAlignment' instead!
 		self.horizontalAlignment(value)
 		raise AttribDeprecatedError("horizontalAlignment")
 
@@ -657,6 +660,9 @@ class AttributeParser:
 			}[value])
 		except KeyError:
 			raise AttribValueError("'left', 'center'/'centre', 'right' or 'block'")
+
+	def includes(self, value):
+		pass
 
 	def itemHeight(self, value):
 		# print("[Skin] DEBUG: Scale itemHeight %d -> %d." % (int(value), self.applyVerticalScale(value)))
@@ -688,7 +694,7 @@ class AttributeParser:
 	def overScan(self, value):
 		self.guiObject.setOverscan(value)
 
-	def OverScan(self, value):  # This legacy definition uses an inconsistent name, use 'overScan' instead!  #NOSONAR
+	def OverScan(self, value):  # This legacy definition uses an inconsistent name, use 'overScan' instead!
 		self.overScan(value)
 		raise AttribDeprecatedError("overScan")
 
@@ -771,7 +777,7 @@ class AttributeParser:
 		self.scrollbarBackgroundPixmap(value)
 		raise AttribDeprecatedError("scrollbarBackgroundPixmap")
 
-	def scrollbarbackgroundPixmap(self, value):  # This legacy definition uses an inconsistent name, use'scrollbarBackgroundPixmap' instead!  #NOSONAR
+	def scrollbarbackgroundPixmap(self, value):  # This legacy definition uses an inconsistent name, use'scrollbarBackgroundPixmap' instead!
 		self.scrollbarBackgroundPixmap(value)
 		raise AttribDeprecatedError("scrollbarBackgroundPixmap")
 
@@ -810,7 +816,7 @@ class AttributeParser:
 	def secondFont(self, value):
 		self.guiObject.setSecondFont(parseFont(value, self.scaleTuple))
 
-	def secondfont(self, value):  # This legacy definition uses an inconsistent name, use 'secondFont' instead!  #NOSONAR
+	def secondfont(self, value):  # This legacy definition uses an inconsistent name, use 'secondFont' instead!
 		self.secondFont(value)
 		raise AttribDeprecatedError("secondFont")
 
