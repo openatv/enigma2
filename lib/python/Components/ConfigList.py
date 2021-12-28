@@ -77,8 +77,8 @@ class ConfigList(GUIComponent):
 	GUI_WIDGET = eListbox
 
 	def isChanged(self):
-		for x in self.list:
-			if x[1].isChanged():
+		for item in self.list:
+			if len(item) > 1 and item[1].isChanged():
 				return True
 		return False
 
@@ -415,10 +415,11 @@ class ConfigListScreen:
 
 	def saveAll(self):
 		restart = False
-		for x in self["config"].list:
-			if x[0].endswith("*") and x[1].isChanged():
-				restart = True
-			x[1].save()
+		for item in self["config"].list:
+			if len(item) > 1:
+				if item[0].endswith("*") and item[1].isChanged():
+					restart = True
+				item[1].save()
 		configfile.save()
 		return restart
 
@@ -438,8 +439,9 @@ class ConfigListScreen:
 	def cancelConfirm(self, result):
 		if not result:
 			return
-		for x in self["config"].list:
-			x[1].cancel()
+		for item in self["config"].list:
+			if len(item) > 1:
+				item[1].cancel()
 		if not hasattr(self, "closeParameters"):
 			self.closeParameters = ()
 		self.close(*self.closeParameters)
