@@ -35,8 +35,8 @@ def getKeyBindingKeys(filterFunction=lambda key: True):
 
 def removeKeyBinding(keyId, context, mapto, wild=True):
 	if wild and mapto == "*":
-		for context, mapto in keyBindings.keys():
-			if context == context:
+		for ctx, mapto in keyBindings.keys():
+			if ctx == context:
 				removeKeyBinding(keyId, context, mapto, False)
 		return
 	contextAction = (context, mapto)
@@ -288,8 +288,10 @@ class HelpableActionMap(ActionMap):
 				if not isinstance(response, (list, tuple)):
 					response = (response, None)
 				if queryKeyBinding(context, action):
-					if not exists((action, response[1])):
-						actionList.append((action, response[1]))
+					# Remove duplicates disabled maybe no longer needed
+					# if not exists((action, response[1])):
+					# 	actionList.append((action, response[1]))
+					actionList.append((action, response[1]))
 				actionDict[action] = response[0]
 			parent.helpList.append((self, context, actionList))
 		ActionMap.__init__(self, contexts, actionDict, prio)
