@@ -149,6 +149,10 @@ def getButtonSetupKeys():
 		(_("VOD long"), "vod_long", ""),
 		(_("Keyboard"), "keyboard", ""),
 		(_("Keyboard long"), "keyboard_long", ""),
+		(_("Kodi"), "kodi", ""),
+		(_("Kodi long"), "kodi_long", ""),
+		(_("YouTube"), "youtube", ""),
+		(_("YouTube long"), "youtube_long", ""),
 		(_("ZOOM"), "zoom", ""),
 		(_("ZOOM long"), "zoom_long", "")]
 
