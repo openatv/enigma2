@@ -2078,7 +2078,7 @@ def InitNimManager(nimmgr, update_slots=None):
 		name = nimmgr.nim_slots[slot_id].description
 		if path.exists("/proc/stb/frontend/%d/use_scpc_optimized_search_range" % fe_id):
 			f = open("/proc/stb/frontend/%d/use_scpc_optimized_search_range" % fe_id, "w")
-			f.write(configElement.value)
+			f.write("1" if configElement.value else "0")
 			f.close()
 
 	def toneAmplitudeChanged(configElement):
@@ -2115,7 +2115,7 @@ def InitNimManager(nimmgr, update_slots=None):
 			nim.toneAmplitude.fe_id = x - empty_slots
 			nim.toneAmplitude.slot_id = x
 			nim.toneAmplitude.addNotifier(toneAmplitudeChanged)
-			nim.scpcSearchRange = ConfigSelection([("0", _("No")), ("1", _("Yes"))], "0")
+			nim.scpcSearchRange = ConfigYesNo(False)
 			nim.scpcSearchRange.fe_id = x - empty_slots
 			nim.scpcSearchRange.slot_id = x
 			nim.scpcSearchRange.addNotifier(scpcSearchRangeChanged)
