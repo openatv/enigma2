@@ -1,4 +1,3 @@
-from __future__ import absolute_import
 from Components.Renderer.Renderer import Renderer
 from enigma import eDVBCI_UI, eDVBCIInterfaces, eLabel, iPlayableService
 from Components.VariableText import VariableText

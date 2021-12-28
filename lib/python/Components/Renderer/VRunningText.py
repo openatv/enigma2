@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 #
 # Running Text Renderer for Enigma2 (RunningText.py)
 # Coded by vlamo (c) 2010
@@ -7,10 +6,8 @@
 # Support: http://dream.altmaster.net/
 #
 
-from __future__ import absolute_import
 from Components.Renderer.Renderer import Renderer
-
-from enigma import eCanvas, eRect, gRGB, eLabel, eTimer, fontRenderClass, ePoint, eSize, gFont
+from enigma import eCanvas, eRect, gRGB, eLabel, eTimer, ePoint, eSize, gFont
 from enigma import RT_WRAP, RT_HALIGN_LEFT, RT_HALIGN_CENTER, RT_HALIGN_RIGHT, RT_HALIGN_BLOCK, RT_VALIGN_TOP, RT_VALIGN_CENTER, RT_VALIGN_BOTTOM
 from skin import parseColor, parseFont
 

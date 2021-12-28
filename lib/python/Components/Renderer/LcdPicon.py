@@ -1,5 +1,3 @@
-from __future__ import print_function
-from __future__ import absolute_import
 import os
 import re
 import unicodedata
@@ -36,11 +34,11 @@ def onMountpointAdded(mountpoint):
 		if os.path.isdir(path) and path not in searchPaths:
 			for fn in os.listdir(path):
 				if fn.endswith('.png'):
-					print("[LcdPicon] adding path:", path)
+					print("[LcdPicon] adding path: %s" % path)
 					searchPaths.append(path)
 					break
 	except Exception as ex:
-		print("[LcdPicon] Failed to investigate %s:" % mountpoint, ex)
+		print("[LcdPicon] Failed to investigate %s:%s" % (mountpoint, str(ex)))
 
 
 def onMountpointRemoved(mountpoint):
@@ -51,7 +49,7 @@ def onMountpointRemoved(mountpoint):
 		path = os.path.join(mountpoint, 'picon') + '/'
 	try:
 		searchPaths.remove(path)
-		print("[LcdPicon] removed path:", path)
+		print("[LcdPicon] removed path: %s" % path)
 	except:
 		pass
 

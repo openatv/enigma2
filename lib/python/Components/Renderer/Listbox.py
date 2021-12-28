@@ -1,4 +1,3 @@
-from __future__ import absolute_import
 from Components.Renderer.Renderer import Renderer
 from enigma import eListbox
 
@@ -84,9 +83,10 @@ class Listbox(Renderer):
 		self.__scrollbarMode = mode
 		if self.instance is not None:
 			self.instance.setScrollbarMode(int(
-				{"showOnDemand": 0,
-				  "showAlways": 1,
-				  "showNever": 2,
+				{
+					"showOnDemand": 0,
+					"showAlways": 1,
+					"showNever": 2,
 				}[mode]))
 
 	scrollbarMode = property(lambda self: self.__scrollbarMode, setScrollbarMode)

@@ -1,8 +1,7 @@
-from __future__ import absolute_import
 from Components.Renderer.Renderer import Renderer
 from enigma import ePixmap
-from Tools.Directories import fileExists, SCOPE_GUISKIN, resolveFilename
-import os
+from Tools.Directories import SCOPE_GUISKIN, resolveFilename
+from os.path import exists
 
 
 class AudioIcon(Renderer):
@@ -56,10 +55,10 @@ class AudioIcon(Renderer):
 	def findAudioIcon(self, audioName):
 		if self.path.startswith("/"):
 			pngname = self.path + audioName + ".png"
-			if os.path.exists(pngname):
+			if exists(pngname):
 				return pngname
 		for path in self.searchPaths:
 			pngname = path + self.path + audioName + ".png"
-			if os.path.exists(pngname):
+			if exists(pngname):
 				return pngname
 		return ""

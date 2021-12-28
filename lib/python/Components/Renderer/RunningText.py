@@ -1,4 +1,3 @@
-from __future__ import absolute_import
 ################################################################################
 #    RunningText.py - Running Text Renderer for Enigma2
 #    Version: 1.5 (04.04.2012 23:40)
@@ -240,8 +239,8 @@ class RunningText(Renderer):
 		self.scroll_label.setText(self.txtext)
 
 		if self.txtext == "" or \
-		   self.type == NONE or \
-		   self.scroll_label is None:
+			self.type == NONE or \
+			self.scroll_label is None:
 			return False
 
 		if self.direction in (LEFT, RIGHT) or not (self.txtflags & RT_WRAP):

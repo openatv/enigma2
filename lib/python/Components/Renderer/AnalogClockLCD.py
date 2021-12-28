@@ -1,4 +1,3 @@
-from __future__ import absolute_import
 # original code is from openmips gb Team: [OMaClockLcd] Renderer #
 # Thx to arn354 #
 
@@ -83,7 +82,7 @@ class AnalogClockLCD(Renderer):
 		deltay = abs((y1 - y0))
 		error = (-deltax / 2)
 		y = int(y0)
-		for x in list(range(int(x0), (int(x1) + 1))):
+		for x in range(int(x0), (int(x1) + 1)):
 			if steep:
 				self.instance.fillRect(eRect(y, x, self.linewidth, self.linewidth), self.fColor)
 			else:
