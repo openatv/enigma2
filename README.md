@@ -39,6 +39,10 @@
 * [MetrixHD](https://github.com/openatv/MetrixHD/tree/dev "openATV Skin") - Default openATV skin
 * ...
 
+# DOXYGEN Documentation
+
+* [openATV enigma2](http://doxy.mynonpublic.com/ "openATV enigma2") -  openATV core
+
 # Build instructions
 
 1. Install required packages
