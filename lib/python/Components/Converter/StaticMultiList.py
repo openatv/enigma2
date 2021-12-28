@@ -23,5 +23,5 @@ class StaticMultiList(StringList):
 		if self.source:
 			self.content.setList(self.source.list)
 
-		print("downstream_elements:", self.downstream_elements)
+		print("[StaticMultiList] downstream_elements:", self.downstream_elements)
 		self.downstream_elements.changed(what)

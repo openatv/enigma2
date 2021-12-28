@@ -27,7 +27,7 @@ class RdsInfo(Converter):
 			elif self.type == self.RTP_TEXT_CHANGED:
 				text = decoder.getText(iRdsDecoder.RtpText)
 			else:
-				print("unknown RdsInfo Converter type", self.type)
+				print("[RdsInfo] unknown RdsInfo Converter type", self.type)
 		return text
 
 	text = property(getText)

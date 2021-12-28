@@ -1,4 +1,3 @@
-from __future__ import absolute_import
 from Components.Converter.Converter import Converter
 from time import time as getTime, localtime, strftime
 from Components.Converter.Poll import Poll

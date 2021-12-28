@@ -1,4 +1,3 @@
-from __future__ import absolute_import
 #
 #  Coded by Vali, updated by Mirakels for openpli
 #

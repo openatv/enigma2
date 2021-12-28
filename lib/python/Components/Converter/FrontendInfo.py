@@ -1,7 +1,7 @@
-from Components.Converter.Converter import Converter
-from Components.Element import cached
 from Components.config import config
+from Components.Element import cached
 from Components.NimManager import nimmanager
+from Components.Converter.Converter import Converter
 
 
 class FrontendInfo(Converter):

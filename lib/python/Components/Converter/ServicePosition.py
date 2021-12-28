@@ -1,4 +1,3 @@
-from __future__ import absolute_import, division
 from Components.Converter.Converter import Converter
 from Components.Sources.Clock import Clock
 from time import time as getTime, localtime, strftime

@@ -1,4 +1,3 @@
-from __future__ import absolute_import
 # shamelessly copied from pliExpertInfo (Vali, Mirakels, Littlesat)
 
 from os import path

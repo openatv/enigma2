@@ -1,4 +1,3 @@
-from __future__ import absolute_import
 # original code is from openmips gb Team: [OMaclock] Converter #
 # Thx to arn354 #
 

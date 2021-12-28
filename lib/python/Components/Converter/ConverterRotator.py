@@ -1,4 +1,3 @@
-from __future__ import absolute_import
 #
 # ConverterRotator Converter for Enigma2 (ConverterRotator.py)
 # Coded by vlamo (c) 2012
