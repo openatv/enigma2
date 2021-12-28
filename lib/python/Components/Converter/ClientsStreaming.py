@@ -120,7 +120,6 @@ class ClientsStreaming(Converter, Poll):
 		else:
 			return "(unknown)"
 
-		return ""
 
 	text = property(getText)
 
