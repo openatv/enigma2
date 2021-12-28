@@ -1740,7 +1740,6 @@ int eServiceMP3::getInfo(int w)
 		guint64 v = -1;
 		g_signal_emit_by_name(dvb_videosink, "get-video-codec", &v);
 		return (int) v;
-		break;
 	}
 	case sSID: return m_ref.getData(1);
 	default:
@@ -2914,11 +2913,7 @@ audiotype_t eServiceMP3::gstCheckAudioPad(GstStructure* structure)
 			case 1:
 				{
 					gst_structure_get_int (structure, "layer", &layer);
-					if ( layer == 3 )
-						return atMP3;
-					else
-						return atMPEG;
-					break;
+					return ( layer == 3 ) ? atMP3 : atMPEG;
 				}
 			case 2:
 				return atAAC;
