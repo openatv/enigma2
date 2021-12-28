@@ -1,5 +1,3 @@
-from __future__ import print_function
-from __future__ import absolute_import
 from Components.Sources.Source import Source
 
 
@@ -14,9 +12,9 @@ class Config(Source):
 	config = property(getConfig)
 
 	def getHTML(self, id):
-		print("getHTML", self, id)
+		print("[Config] getHTML %s %s", (str(self), str(id)))
 		return self.__config.getHTML(id)
 
 	def handleCommand(self, cmd):
-		print("ASSIGN:", cmd)
+		print("[Config] ASSIGN: %s", str(cmd))
 		self.__config.unsafeAssign(cmd)

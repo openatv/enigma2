@@ -1,4 +1,3 @@
-from __future__ import print_function
 from Components.Sources.Source import Source
 from Components.Element import cached
 from Components.SystemInfo import BoxInfo
@@ -24,20 +23,20 @@ class StreamService(Source):
 	service = property(getService)
 
 	def handleCommand(self, cmd):
-		print("[StreamService] handle command", cmd)
+		print("[StreamService] handle command %s" % str(cmd))
 		self.ref = eServiceReference(cmd)
 
 	def recordEvent(self, service, event):
 		if service is self.__service:
 			return
-		print("[StreamService] RECORD event for us:", service)
+		print("[StreamService] RECORD event for us: %s" % str(service))
 		self.changed((self.CHANGED_ALL, ))
 
 	def execBegin(self):
 		if self.ref is None:
 			print("[StreamService] has no service ref set")
 			return
-		print("[StreamService] execBegin", self.ref.toString())
+		print("[StreamService] execBegin %s" % self.ref.toString())
 		if BoxInfo.getItem("CanNotDoSimultaneousTranscodeAndPIP"):
 			from Screens.InfoBar import InfoBar
 			if InfoBar.instance and hasattr(InfoBar.instance.session, 'pipshown') and InfoBar.instance.session.pipshown:
@@ -55,7 +54,7 @@ class StreamService(Source):
 			self.__service.start()
 
 	def execEnd(self):
-		print("[StreamService] execEnd", self.ref.toString())
+		print("[StreamService] execEnd %s" % self.ref.toString())
 		self.navcore.record_event.remove(self.recordEvent)
 		if self.__service is not None:
 			if self.__service.__deref__() in StreamServiceList:

@@ -1,4 +1,3 @@
-from __future__ import absolute_import
 from Components.PerServiceDisplay import PerServiceBase
 from Components.Element import cached
 from enigma import iPlayableService, iServiceInformation, eServiceReference, eEPGCache
@@ -49,10 +48,9 @@ class pServiceEvent(object):
 			element6 = sTagLocation
 			self.m_ExtendedDescriptionNow += "\n\n" + element6
 
-
 	def getEventName(self):
 		return self.m_EventNameNow if self.now_or_next == self.NOW else self.m_EventNameNext
-	
+
 	def getShortDescription(self):
 		return self.m_ShortDescriptionNow if self.now_or_next == self.NOW else self.m_ShortDescriptionNext
 

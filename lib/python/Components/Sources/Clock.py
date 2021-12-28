@@ -1,4 +1,3 @@
-from __future__ import absolute_import
 from Components.Element import cached
 from enigma import eTimer
 from time import time as getTime

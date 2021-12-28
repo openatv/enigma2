@@ -1,4 +1,3 @@
-from __future__ import absolute_import
 from Components.PerServiceDisplay import PerServiceBase
 from enigma import iPlayableService
 from Components.Sources.Source import Source
