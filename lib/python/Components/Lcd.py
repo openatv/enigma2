@@ -192,7 +192,7 @@ class LCD:
 		if exists("/proc/stb/lcd/show_symbols"):
 			print("[Lcd] setLCDMode='%s'." % value)
 			fileWriteLine("/proc/stb/lcd/show_symbols", value)
-		if config.lcd.mode.value == "0":
+		if value == "0":
 			BoxInfo.setItem("SeekStatePlay", False)
 			BoxInfo.setItem("StatePlayPause", False)
 			if exists("/proc/stb/lcd/symbol_hdd"):
@@ -365,18 +365,6 @@ def InitLcd():
 
 		def setLCDflipped(configElement):
 			ilcd.setFlipped(configElement.value)
-
-		def setLCDmode(configElement):
-			ilcd.setMode(configElement.value)
-
-		def setLCDpower(configElement):
-			ilcd.setPower(configElement.value)
-
-		def setfblcddisplay(configElement):
-			ilcd.setfblcddisplay(configElement.value)
-
-		def setLCDshowoutputresolution(configElement):
-			ilcd.setShowoutputresolution(configElement.value)
 
 		def setLCDminitvmode(configElement):
 			ilcd.setLCDMiniTVMode(configElement.value)
@@ -648,34 +636,34 @@ def InitLcd():
 		else:
 			config.usage.vfd_final_scroll_delay = ConfigNothing()
 		if exists("/proc/stb/lcd/show_symbols"):
-			config.lcd.mode = ConfigSelection(choices=[
-				("0", _("No")),
-				("1", _("Yes"))
-			], default="1")
+			def setLCDmode(configElement):
+				ilcd.setMode("1" if configElement.value else "0")
+
+			config.lcd.mode = ConfigYesNo(default=True)
 			config.lcd.mode.addNotifier(setLCDmode)
 		else:
 			config.lcd.mode = ConfigNothing()
 		if exists("/proc/stb/power/vfd") or exists("/proc/stb/lcd/vfd"):
-			config.lcd.power = ConfigSelection(choices=[
-				("0", _("No")),
-				("1", _("Yes"))
-			], default="1")
+			def setLCDpower(configElement):
+				ilcd.setPower("1" if configElement.value else "0")
+
+			config.lcd.power = ConfigYesNo(default=True)
 			config.lcd.power.addNotifier(setLCDpower)
 		else:
 			config.lcd.power = ConfigNothing()
 		if exists("/proc/stb/fb/sd_detach"):
-			config.lcd.fblcddisplay = ConfigSelection(choices=[
-				("1", _("No")),
-				("0", _("Yes"))
-			], default="1")
+			def setfblcddisplay(configElement):
+				ilcd.setfblcddisplay("1" if configElement.value else "0")
+
+			config.lcd.fblcddisplay = ConfigYesNo(default=True)
 			config.lcd.fblcddisplay.addNotifier(setfblcddisplay)
 		else:
 			config.lcd.fblcddisplay = ConfigNothing()
 		if exists("/proc/stb/lcd/show_outputresolution"):
-			config.lcd.showoutputresolution = ConfigSelection(choices=[
-				("0", _("No")),
-				("1", _("Yes"))
-			], default="1")
+			def setLCDshowoutputresolution(configElement):
+				ilcd.setShowoutputresolution("1" if configElement.value else "0")
+
+			config.lcd.showoutputresolution = ConfigYesNo(default=True)
 			config.lcd.showoutputresolution.addNotifier(setLCDshowoutputresolution)
 		else:
 			config.lcd.showoutputresolution = ConfigNothing()
