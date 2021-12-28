@@ -55,7 +55,9 @@ class VServiceInfo(Converter):
 		if not info:
 			return ""
 
-			text = property(getText)
+	# FIXME What's this ? 
+
+	text = property(getText)
 
 	@cached
 	def getValue(self):
@@ -63,6 +65,8 @@ class VServiceInfo(Converter):
 		info = service and service.info()
 		if not info:
 			return -1
+
+	# FIXME What's this ? 
 
 	value = property(getValue)
 
