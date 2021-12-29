@@ -37,6 +37,16 @@ except:
 
 mepg_config_initialized = False
 
+epgTypes = {
+	"single" : EPG_TYPE_SINGLE,
+	"infobar" : EPG_TYPE_INFOBAR,
+	"enhanced" : EPG_TYPE_ENHANCED,
+	"graph" : EPG_TYPE_GRAPH,
+	"infobargraph" : EPG_TYPE_INFOBARGRAPH,
+	"multi" : EPG_TYPE_MULTI,
+	"vertical" : EPG_TYPE_VERTICAL,
+	"similar" : EPG_TYPE_SIMILAR
+}
 
 class EPGSelection(Screen, HelpableScreen):
 	EMPTY = 0
@@ -51,29 +61,13 @@ class EPGSelection(Screen, HelpableScreen):
 		self.zapFunc = zapFunc
 		self.serviceChangeCB = serviceChangeCB
 		self.bouquets = bouquets
-		graphic = False
-		if EPGtype == "single":
-			self.type = EPG_TYPE_SINGLE
-		elif EPGtype == "infobar":
-			self.type = EPG_TYPE_INFOBAR
-		elif EPGtype == "enhanced":
-			self.type = EPG_TYPE_ENHANCED
-		elif EPGtype == "graph":
-			self.type = EPG_TYPE_GRAPH
-			if config.epgselection.graph_type_mode.value == "graphics":
-				graphic = True
-		elif EPGtype == "infobargraph":
-			self.type = EPG_TYPE_INFOBARGRAPH
-			if config.epgselection.infobar_type_mode.value == "graphics":
-				graphic = True
-		elif EPGtype == "multi":
-			self.type = EPG_TYPE_MULTI
-		elif EPGtype == "vertical":
-			self.type = EPG_TYPE_VERTICAL
-		elif EPGtype is None and eventid == None and isinstance(service, eServiceReference):
+
+		graphic = (config.epgselection.infobar_type_mode.value == "graphics" and "graph" in EPGtype)
+		if EPGtype is None and eventid == None and isinstance(service, eServiceReference):
 			self.type = EPG_TYPE_SINGLE
 		else:
-			self.type = EPG_TYPE_SIMILAR
+			self.type = epgTypes.get(EPGtype, "similar")
+
 		if not self.type == EPG_TYPE_SINGLE:
 			self.StartBouquet = StartBouquet
 			self.StartRef = StartRef
