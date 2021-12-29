@@ -40,10 +40,10 @@ class MessageBox(Screen, HelpableScreen):
 		if type == self.TYPE_YESNO:
 			self.list = [(_("Yes"), True), (_("No"), False)] if list is None else list
 			self["list"] = MenuList(self.list)
-			if isinstance(default, int):
-				self["list"].moveToIndex(default)
-			elif default in (True, False):
-				self["list"].moveToIndex(0 if default else 1)
+			if isinstance(default, bool):
+				self.startIndex = 0 if default else 1
+			elif isinstance(default, int):
+				self.startIndex = default
 			else:
 				print("[MessageBox] Error: The context of the default (%s) can't be determined!" % default)
 		else:
@@ -128,6 +128,7 @@ class MessageBox(Screen, HelpableScreen):
 	def layoutFinished(self):
 		if self.list:
 			self["list"].instance.allowNativeKeys(False)  # Override listbox navigation.
+			self["list"].moveToIndex(self.startIndex)
 		if self.typeIcon:
 			self["icon"].setPixmapNum(self.typeIcon - 1)
 		prefix = self.TYPE_PREFIX.get(self.type, _("Unknown"))
