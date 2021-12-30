@@ -61,8 +61,9 @@ class EPGSelection(Screen, HelpableScreen):
 		self.zapFunc = zapFunc
 		self.serviceChangeCB = serviceChangeCB
 		self.bouquets = bouquets
+		graphic = ((config.epgselection.infobar_type_mode.value == "graphics" and "infobargraph" == EPGtype) \
+			or ( config.config.epgselection.graph_type_mode.value == "graphics" and "graph" == EPGtype))
 
-		graphic = (config.epgselection.infobar_type_mode.value == "graphics" and "graph" in EPGtype)
 		if EPGtype is None and eventid == None and isinstance(service, eServiceReference):
 			self.type = EPG_TYPE_SINGLE
 		else:
