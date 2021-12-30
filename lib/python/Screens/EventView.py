@@ -25,6 +25,7 @@ from Tools.BoundFunction import boundFunction
 class EventViewBase:
 	ADD_TIMER = 0
 	REMOVE_TIMER = 1
+	NO_ACTION = 2
 
 	def __init__(self, event, serviceRef, callback=None, similarEPGCB=None):
 		self.event = event
@@ -279,7 +280,7 @@ class EventViewSimple(Screen, HelpableScreen, EventViewBase):
 		EventViewBase.__init__(self, event, serviceRef, callback=callback, similarEPGCB=similarEPGCB)
 		self.setTitle(_("Event View"))
 		self.skinName = [skin, "EventView"]
-		self.keyGreenAction = self.ADD_TIMER
+		self.keyGreenAction = self.NO_ACTION
 
 
 class EventViewEPGSelect(Screen, HelpableScreen, EventViewBase):
