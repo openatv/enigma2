@@ -696,6 +696,7 @@ static void svg_load(Cfilepara* filepara, bool forceRGB = false)
 		unsigned char *pic_buffer2 = (unsigned char*)malloc(w*h*3); // 24bit RGB
 		if (pic_buffer2 == nullptr)
 		{
+			free(pic_buffer);
 			return;
 		}
 		for (int i=0; i<w*h; i++)
