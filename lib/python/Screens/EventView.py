@@ -145,7 +145,8 @@ class EventViewBase:
 		self["duration"].setText(_("%d min") % (event.getDuration() / 60))
 		if self.similarBroadcastTimer:
 			self.similarBroadcastTimer.start(400, True)
-		self.setTimerState()
+		if self.keyGreenAction != self.NO_ACTION:
+			self.setTimerState()
 
 	def editTimer(self, timer):
 		self.session.open(TimerEntry, timer)
