@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-12-26 20:08+0000\n"
-"PO-Revision-Date: 2021-12-29 13:08+0100\n"
+"PO-Revision-Date: 2021-12-30 17:06+0100\n"
 "Last-Translator: Snoete <snoete@hotmail.com>\n"
 "Language-Team: Dutch <https://hosted.weblate.org/projects/openatv/"
 "enigma2-7-0-po/nl/>\n"
@@ -4567,16 +4567,17 @@ msgid ""
 "Choose the location where the EPG data will be stored when the %s %s is shut "
 "down. The location must be available at boot time."
 msgstr ""
-"Selecteer de locatie waar uw %s %s de EPG-data moet opslaan als die wordt "
-"uitgeschakeld. De locatie moet tijdens het booten beschikbaar zijn."
+"Selecteer de locatie waar de EPG-data moet worden opgeslagen\n"
+"wanneer uw %s %s wordt uitgeschakeld.\n"
+"Deze locatie moet tijdens het booten beschikbaar zijn."
 
 msgid ""
 "Choose the name of the file that holds the EPG data when the %s %s is shut "
 "down. This can be handy to differentiate between several boxes."
 msgstr ""
-"Kies de naam van het bestand waarin uw %s %s de EPG-data moet opslaan als "
-"die wordt uitgeschakeld. Het kan handig zijn om onderscheid te maken tussen "
-"de bestandsnamen van verschillende ontvangers."
+"Kies de naam van het bestand waarin de EPG-data moet worden opgeslagen "
+"wanneer uw %s %s wordt uitgeschakeld. Het kan handig zijn om onderscheid te "
+"maken tussen de bestandsnamen van verschillende ontvangers."
 
 msgid "Choose the order in which items are displayed in Help windows"
 msgstr "Kies de volgorde van onderwerpen in diverse Help vensters "
@@ -7231,7 +7232,6 @@ msgstr "EPG"
 msgid "EPG Actions"
 msgstr "EPG acties"
 
-#| msgid "Bouquet List"
 msgid "EPG Bouquet Actions"
 msgstr "EPG Bouquet Acties"
 
@@ -9020,10 +9020,10 @@ msgid "Graphical EPG"
 msgstr "Grafische EPG"
 
 msgid "Graphical InfobarEPG settings"
-msgstr "Grafische Informatiebalk-EPG"
+msgstr "QuickEPG"
 
 msgid "GraphicalEPG settings"
-msgstr "Grafische EPG "
+msgstr "Grafische-EPG "
 
 msgid "Graphics"
 msgstr "Grafisch"
@@ -11798,7 +11798,7 @@ msgid "Mtd"
 msgstr "Mtd"
 
 msgid "Multi EPG"
-msgstr "Multi-EPG"
+msgstr "Multi EPG"
 
 msgid "MultiBoot Image Manager"
 msgstr "MultiBoot image manager"
@@ -12387,7 +12387,7 @@ msgid ""
 "Please verify that you have attached a network cable and your network is "
 "configured correctly."
 msgstr ""
-"Geen werkende locale netwerkadapter gevonden.\n"
+"Geen werkende lokale netwerkadapter gevonden.\n"
 "Controleer of er een netwerkkabel is aangesloten en of uw netwerk correct is "
 "geconfigureerd."
 
@@ -12654,7 +12654,7 @@ msgid "OSD name request"
 msgstr "OSD naam aanvragen"
 
 msgid "OSD settings"
-msgstr "OSD"
+msgstr "OSD (On-screen display)"
 
 msgid "OScam Info"
 msgstr "OScam Info"
@@ -13744,7 +13744,7 @@ msgid "Please wait"
 msgstr "Even geduld"
 
 msgid "Please wait for activation of your network configuration..."
-msgstr "Even geduld terwijl we uw netwerk activeren..."
+msgstr "Even geduld uw netwerkconfiguratie wordt nu geactiveerd..."
 
 msgid "Please wait while gathering data..."
 msgstr "Een ogenblik geduld, informatie wordt verzameld..."
@@ -14010,7 +14010,9 @@ msgid "Press MENU on your remote control for additional options."
 msgstr "Druk MENU op uw afstandsbediening voor meer opties."
 
 msgid "Press MENU to install additional language(s)."
-msgstr "Druk MENU om additionele talen te installeren."
+msgstr ""
+"Druk MENU om een nieuwe taal\n"
+"toe te voegen."
 
 msgid "Press OK on your remote control to continue."
 msgstr "Druk OK op uw afstandsbediening om verder te gaan."
@@ -17223,7 +17225,7 @@ msgid "Show Script completed message"
 msgstr "Toon Script voltooid bericht"
 
 msgid "Show Single EPG"
-msgstr "Toon single EPG"
+msgstr "Toon de Single-EPG"
 
 msgid "Show Task's completed message"
 msgstr "Toon Taak voltooid bericht"
@@ -17244,7 +17246,7 @@ msgid "Show VCR scart on main menu"
 msgstr "Toon VCR scart in het hoofdmenu"
 
 msgid "Show Vertical EPG"
-msgstr "Toon verticale EPG"
+msgstr "Toon Verticale-EPG"
 
 msgid "Show WLAN status"
 msgstr "WLAN-status weergeven"
@@ -17759,7 +17761,7 @@ msgid "Single"
 msgstr "Enkel"
 
 msgid "Single EPG"
-msgstr "Zender EPG"
+msgstr "Single-EPG"
 
 msgid "Single satellite"
 msgstr "Eén satelliet"
@@ -19511,7 +19513,7 @@ msgstr ""
 
 #, python-format
 msgid "This is the currently selected language.  [%s]"
-msgstr "Dit is de nu geselecteerde taal.  [%s]"
+msgstr "Deze taal is op dit moment geïnstalleerd:  [%s]"
 
 #, python-format
 msgid "This is the currently selected locale.  [%s]"
@@ -21398,7 +21400,7 @@ msgid "Vertical"
 msgstr "Verticaal"
 
 msgid "Vertical EPG"
-msgstr "Verticale EPG"
+msgstr "Verticale-EPG"
 
 msgid "Vertical alignement for the event-progress."
 msgstr "Verticaal uitlijnen van de programma voortgang."
@@ -21410,7 +21412,7 @@ msgid "Vertical turning speed"
 msgstr "Verticale draaisnelheid"
 
 msgid "VerticalEPG settings"
-msgstr "Verticale EPG "
+msgstr "Verticale-EPG "
 
 msgid "Very fast"
 msgstr "Zeer snel"
