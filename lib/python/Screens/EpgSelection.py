@@ -67,7 +67,7 @@ class EPGSelection(Screen, HelpableScreen):
 		if EPGtype is None and eventid == None and isinstance(service, eServiceReference):
 			self.type = EPG_TYPE_SINGLE
 		else:
-			self.type = epgTypes.get(EPGtype, "similar")
+			self.type = epgTypes.get(EPGtype, EPG_TYPE_SIMILAR)
 
 		if not self.type == EPG_TYPE_SINGLE:
 			self.StartBouquet = StartBouquet
