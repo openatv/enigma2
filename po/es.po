@@ -3,13 +3,15 @@
 # openATV <openatv@gmail.com>, 2021.
 # Víctor Pont <victor@pont.cat>, 2021.
 # Ernesto Miralles <ernesto.miralles@gmail.com>, 2021.
+# Jose <azagramac@gmail.com>, 2021.
+# Jaime Flores Gil <jaime.flores.gil@gmail.com>, 2021.
 msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-12-26 20:08+0000\n"
-"PO-Revision-Date: 2021-11-21 12:51+0000\n"
-"Last-Translator: Ernesto Miralles <ernesto.miralles@gmail.com>\n"
+"PO-Revision-Date: 2021-12-30 16:18+0000\n"
+"Last-Translator: Jaime Flores Gil <jaime.flores.gil@gmail.com>\n"
 "Language-Team: Spanish <https://hosted.weblate.org/projects/openatv/"
 "enigma2-7-0-po/es/>\n"
 "Language: es\n"
@@ -17,7 +19,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.9.1\n"
+"X-Generator: Weblate 4.10.1\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 
 msgid ""
@@ -44,21 +46,22 @@ msgid ""
 msgstr ""
 "\n"
 "  ATENCIÓN: \n"
-"  ¡No hay espacio suficienta para instalar Kodi!"
+"  ¡No hay espacio suficiente para instalar Kodi!"
 
 #
-#, fuzzy
 msgid ""
 "\n"
 " Do you want to switch Enigma2 with Android...?"
-msgstr "¿Quieres reiniciar ahora?"
+msgstr ""
+"\n"
+" ¿Quieres cambiar Enigma2 con Android...?"
 
 msgid ""
 "\n"
 " Kodi not present. Proceed with install?"
 msgstr ""
 "\n"
-" Kodi no está presente. ¿Proceder a la instalación?"
+" Kodi no está instalado. ¿Proceder a la instalación?"
 
 msgid ""
 "\n"
@@ -230,8 +233,9 @@ msgstr ""
 "parámetro opcional:\n"
 "%s"
 
+#, fuzzy
 msgid " "
-msgstr ""
+msgstr " "
 
 msgid "     no space left on back-up device"
 msgstr ""
@@ -243,13 +247,13 @@ msgstr "     sin permiso de escritura en el dispositivo de copia de seguridad"
 msgid "     wrong back-up destination "
 msgstr "     dispositivo de seguridad erróneo "
 
-#, fuzzy, python-format
+#, python-format
 msgid "  (%s x %s)"
-msgstr "%s (%s)\n"
+msgstr "  (%s x %s)\n"
 
 #, fuzzy
 msgid "  Menu key : Select quad channel"
-msgstr "Previsualizar canal"
+msgstr "  Previsualizar canal"
 
 msgid "  REC  "
 msgstr "  GRAB"
@@ -258,17 +262,17 @@ msgid "  Red key : Show/Hide channel name"
 msgstr "  Tecla roja: Muestra/Esconde nombre de canal"
 
 #
-#, fuzzy, python-format
+#, python-format
 msgid " ('%s') ends successfully."
-msgstr "Eliminado correctamente."
+msgstr " ('%s') terminado con éxito."
 
-#, fuzzy, python-format
+#, python-format
 msgid " ('%s') ends with error messages."
-msgstr "Ocultar mensajes de error de zapeo."
+msgstr " ('%s') Ocultar mensajes de error."
 
 #, python-format
 msgid " ('%s') ends with error number [%d]."
-msgstr " (%s) fin con  número de error [%d]."
+msgstr " (%s) fin con número de error [%d]."
 
 #, python-format
 msgid " (Channel %s)"
@@ -288,21 +292,20 @@ msgid " (TV)"
 msgstr " (TV)"
 
 #
-#, fuzzy
 msgid " (current channel)"
-msgstr "Ir al siguiente canal"
+msgstr " Ir al siguiente canal"
 
 msgid " (disabled)"
-msgstr "(deshabilitado)"
+msgstr " (deshabilitado)"
 
 msgid " (higher than any auto)"
-msgstr "(mayor que en automático)"
+msgstr " (mayor que en automático)"
 
 msgid " (higher than rotor any auto)"
-msgstr "(mayor que el rotor en automático)"
+msgstr " (mayor que el rotor en automático)"
 
 msgid " (lower than any auto)"
-msgstr "(menor que en automático)"
+msgstr " (menor que en automático)"
 
 #, python-format
 msgid " - %d elements exist! Overwrite"
@@ -318,14 +321,12 @@ msgid " - folder exist! Overwrite"
 msgstr " - Carpeta existente! Sobrescribir"
 
 #
-#, fuzzy
 msgid " <No Channel>"
-msgstr "Canal"
+msgstr " <Sin Canal>"
 
 #
-#, fuzzy
 msgid " <empty>"
-msgstr "Vacío"
+msgstr " Vacío"
 
 msgid " HI "
 msgstr " - ALT "
@@ -334,12 +335,13 @@ msgid " and"
 msgstr " y"
 
 # Erstassi
-#, fuzzy
 msgid ""
 " available !!\n"
 "\n"
 "Do you want to install the new settingslist?"
-msgstr "¿Quieres instalar una lista de canales?"
+msgstr ""
+" disponible !!\n"
+"¿Quieres instalar una nueva lista de canales?"
 
 #, python-format
 msgid " bootmode = %s"
@@ -352,9 +354,8 @@ msgid " or save additional the picture to a file"
 msgstr " o grabar foto adicional a un fichero"
 
 #
-#, fuzzy
 msgid " updated"
-msgstr "Actualizar"
+msgstr " actualizado"
 
 msgid "!! Bootloader Upgrade !!"
 msgstr "!! Cargador de Arranque Actualizado!!"
@@ -362,117 +363,133 @@ msgstr "!! Cargador de Arranque Actualizado!!"
 msgid "%-H:%M"
 msgstr "%-H:%M"
 
-#, fuzzy
 msgid "%-H:%M:%S"
-msgstr "%-H:%M"
+msgstr "%-H:%M:%S"
 
 msgid "%-I:%M"
-msgstr ""
+msgstr "%-I:%M"
 
 msgid "%-I:%M%P"
-msgstr ""
+msgstr "%-I:%M%P"
 
 msgid "%-I:%M%^p"
-msgstr ""
+msgstr "%-I:%M%^p"
 
 msgid "%-I:%M:%S"
-msgstr ""
+msgstr "%-I:%M:%S"
 
 msgid "%-I:%M:%S%P"
-msgstr ""
+msgstr "%-I:%M:%S%P"
 
 msgid "%-I:%M:%S%^p"
-msgstr ""
+msgstr "%-I:%M:%S%^p"
 
 #. TRANSLATORS: full date representation daynum monthname year in strftime() format! See 'man strftime'
 #, fuzzy
 msgid "%-d %B %Y"
-msgstr "%d %B %Y"
+msgstr "%-d %B %Y"
 
 #. TRANSLATORS: small date representation daynum short monthname in strftime() format! See 'man strftime'
 #. TRANSLATORS: compact date representation (for VFD) daynum short monthname in strftime() format! See 'man strftime'
 msgid "%-d %b"
-msgstr ""
+msgstr "%-d %b"
 
 #. TRANSLATORS: long date representation daynum short monthname year in strftime() format! See 'man strftime'
 msgid "%-d %b %Y"
-msgstr ""
+msgstr "%-d %b %Y"
 
 msgid "%-d+%b_"
-msgstr ""
+msgstr "%-d+%b_"
 
 msgid "%-d-%B-%Y"
-msgstr ""
+msgstr "%-d-%B-%Y"
 
 msgid "%-d-%b"
-msgstr ""
+msgstr "%-d-%b"
 
+#, fuzzy
 msgid "%-d-%b-%Y"
-msgstr ""
+msgstr "%-d-%b-%Y"
 
 #, fuzzy
 msgid "%-d. %B %Y"
-msgstr "%d %B %Y"
+msgstr "%-d. %B %Y"
 
+#, fuzzy
 msgid "%-d. %b"
-msgstr ""
+msgstr "%-d. %b"
 
 #, fuzzy
 msgid "%-d. %b %Y"
-msgstr "%d %B %Y"
+msgstr "%-d. %b %Y"
 
+#, fuzzy
 msgid "%-d.%-m"
-msgstr ""
+msgstr "%-d.%-m"
 
+#, fuzzy
 msgid "%-d.%-m.%Y"
-msgstr ""
+msgstr "%-d.%-m.%Y"
 
 #, fuzzy
 msgid "%-d.%m"
-msgstr "%d.%m.   "
+msgstr "%-d.%m"
 
 #, fuzzy
 msgid "%-d.%m.%Y"
-msgstr "%d.%m.   "
+msgstr "%-d.%m.%Y"
 
+#, fuzzy
 msgid "%-d/%-m"
-msgstr ""
+msgstr "%-d/%-m"
 
+#, fuzzy
 msgid "%-d/%-m "
-msgstr ""
+msgstr "%-d/%-m "
 
+#, fuzzy
 msgid "%-d/%-m/%Y"
-msgstr ""
+msgstr "%-d/%-m/%Y"
 
+#, fuzzy
 msgid "%-d/%m"
-msgstr ""
+msgstr "%-d/%m"
 
+#, fuzzy
 msgid "%-d/%m "
-msgstr ""
+msgstr "%-d/%m "
 
+#, fuzzy
 msgid "%-d/%m/%Y"
-msgstr ""
+msgstr "%-d/%m/%Y"
 
+#, fuzzy
 msgid "%-d=%b_"
-msgstr ""
+msgstr "%-d=%b_"
 
+#, fuzzy
 msgid "%-m/%-d"
-msgstr ""
+msgstr "%-m/%-d"
 
+#, fuzzy
 msgid "%-m/%-d "
-msgstr ""
+msgstr "%-m/%-d "
 
+#, fuzzy
 msgid "%-m/%-d/%Y"
-msgstr ""
+msgstr "%-m/%-d/%Y"
 
+#, fuzzy
 msgid "%-m/%d"
-msgstr ""
+msgstr "%-m/%d"
 
+#, fuzzy
 msgid "%-m/%d "
-msgstr ""
+msgstr "%-m/%d "
 
+#, fuzzy
 msgid "%-m/%d/%Y"
-msgstr ""
+msgstr "%-m/%d/%Y"
 
 #, python-format
 msgid "%.0f GB"
@@ -484,11 +501,11 @@ msgstr "%.0f MB"
 
 #, fuzzy, python-format
 msgid "%.2f GB"
-msgstr "%.0f GB"
+msgstr "%.2f GB"
 
-#, python-format
+#, fuzzy, python-format
 msgid "%.3f MHz"
-msgstr ""
+msgstr "%.3f MHz"
 
 #, python-format
 msgid "%02d.%02d."
@@ -500,153 +517,161 @@ msgstr "%02d/%02d/%d"
 
 #, fuzzy, python-format
 msgid "%02d:%02d"
-msgstr "%2d:%02d"
+msgstr "%02d:%02d"
 
 #, fuzzy, python-format
 msgid "%02d:%02d - %02d:%02d"
-msgstr "%02d/%02d, %02d:%02d"
+msgstr "%02d:%02d - %02d:%02d"
 
 #, fuzzy, python-format
 msgid "%03d MB"
-msgstr "%d MB"
+msgstr "%03d MB"
 
-#, python-format
+#, fuzzy, python-format
 msgid "%2.1f sec"
-msgstr ""
+msgstr "%2.1f sec"
 
 #
 #, fuzzy
 msgid "%A"
-msgstr "A"
+msgstr "%A"
 
 #. TRANSLATORS: short date representation dayname daynum short monthname in strftime() format! See 'man strftime'
 #, fuzzy
 msgid "%A %-d %B"
-msgstr "%A %d %B"
+msgstr "%A %-d %B"
 
 #, fuzzy
 msgid "%A %-d %B %Y"
-msgstr "%A %e %B %Y"
+msgstr "%A %-d %B %Y"
 
 #, fuzzy
 msgid "%A %-d-%B"
-msgstr "%A %d %B"
+msgstr "%A %-d-%B"
 
 #, fuzzy
 msgid "%A %-d-%B-%Y"
-msgstr "%A %d %B"
+msgstr "%A %-d-%B-%Y"
 
 #, fuzzy
 msgid "%A %-d. %B"
-msgstr "%A %d %B"
+msgstr "%A %-d. %B"
 
 #, fuzzy
 msgid "%A %-d. %B %Y"
-msgstr "%A %e %B %Y"
+msgstr "%A %-d. %B %Y"
 
 #, fuzzy
 msgid "%A %-d.%-m"
-msgstr "%A %d %B"
+msgstr "%A %-d.%-m"
 
 #, fuzzy
 msgid "%A %-d.%-m.%Y"
-msgstr "%A %d %B"
+msgstr "%A %-d.%-m.%Y"
 
 #, fuzzy
 msgid "%A %-d.%m"
-msgstr "%A %d %B"
+msgstr "%A %-d.%m"
 
 #, fuzzy
 msgid "%A %-d.%m.%Y"
-msgstr "%A %e %B %Y"
+msgstr "%A %-d.%m.%Y"
 
 #, fuzzy
 msgid "%A %-d/%-m"
-msgstr "%A %d %B"
+msgstr "%A %-d/%-m"
 
+#, fuzzy
 msgid "%A %-d/%-m/%Y"
-msgstr ""
+msgstr "%A %-d/%-m/%Y"
 
 #, fuzzy
 msgid "%A %-d/%m"
-msgstr "%A %d %B"
+msgstr "%A %-d/%m"
 
 #, fuzzy
 msgid "%A %-d/%m/%Y"
-msgstr "%A %e %B %Y"
+msgstr "%A %-d/%m/%Y"
 
+#, fuzzy
 msgid "%A %-m/%-d"
-msgstr ""
+msgstr "%A %-m/%-d"
 
+#, fuzzy
 msgid "%A %-m/%-d/%Y"
-msgstr ""
+msgstr "%A %-m/%-d/%Y"
 
+#, fuzzy
 msgid "%A %-m/%d"
-msgstr ""
+msgstr "%A %-m/%d"
 
 #, fuzzy
 msgid "%A %-m/%d/%Y"
-msgstr "%A %e %B %Y"
+msgstr "%A %-m/%d/%Y"
 
 #, fuzzy
 msgid "%A %B %-d"
-msgstr "%d %B %Y"
+msgstr "%A %B %-d"
 
 #, fuzzy
 msgid "%A %B %-d %Y"
-msgstr "%A %e %B %Y"
+msgstr "%A %B %-d %Y"
 
 #, fuzzy
 msgid "%A %B %d"
-msgstr "%d %B %Y"
+msgstr "%A %B %d"
 
 #, fuzzy
 msgid "%A %B %d %Y"
-msgstr "%A %e %B %Y"
+msgstr "%A %B %d %Y"
 
 #, fuzzy
 msgid "%A %B-%-d"
-msgstr "%A %e %B %Y"
+msgstr "%A %B-%-d"
 
 #, fuzzy
 msgid "%A %B-%-d-%Y"
-msgstr "%A %e %B %Y"
+msgstr "%A %B-%-d-%Y"
 
 #, fuzzy
 msgid "%A %B-%d"
-msgstr "%A %e %B %Y"
+msgstr "%A %B-%d"
 
 #, fuzzy
 msgid "%A %B-%d-%Y"
-msgstr "%A %e %B %Y"
+msgstr "%A %B-%d-%Y"
 
 #, fuzzy
 msgid "%A %Y %B %-d"
-msgstr "%A %e %B %Y"
+msgstr "%A %Y %B %-d"
 
 #, fuzzy
 msgid "%A %Y %B %d"
-msgstr "%A %e %B %Y"
+msgstr "%A %Y %B %d"
 
 #, fuzzy
 msgid "%A %Y-%B-%-d"
-msgstr "%Y-%m-%d"
+msgstr "%A %Y-%B-%-d"
 
 #, fuzzy
 msgid "%A %Y-%B-%d"
-msgstr "%Y-%m-%d"
+msgstr "%A %Y-%B-%d"
 
+#, fuzzy
 msgid "%A %Y/%-m/%-d"
-msgstr ""
+msgstr "%A %Y/%-m/%-d"
 
+#, fuzzy
 msgid "%A %Y/%-m/%d"
-msgstr ""
+msgstr "%A %Y/%-m/%d"
 
+#, fuzzy
 msgid "%A %Y/%m/%-d"
-msgstr ""
+msgstr "%A %Y/%m/%-d"
 
+#, fuzzy
 msgid "%A %Y/%m/%d"
-msgstr ""
+msgstr "%A %Y/%m/%d"
 
 msgid "%A %d %B"
 msgstr "%A %d %B"
@@ -703,8 +728,9 @@ msgstr "%A %d %B"
 msgid "%A %d/%m/%Y"
 msgstr "%A %e %B %Y"
 
+#, fuzzy
 msgid "%A %m/%-d"
-msgstr ""
+msgstr "%A %m/%-d"
 
 #, fuzzy
 msgid "%A %m/%-d/%Y"
@@ -726,8 +752,9 @@ msgstr "%d %B %Y"
 msgid "%B %d %Y"
 msgstr "%A %d %B"
 
+#, fuzzy
 msgid "%B-%-d-%Y"
-msgstr ""
+msgstr "%B-%-d-%Y"
 
 #, fuzzy
 msgid "%B-%d-%Y"
@@ -3507,9 +3534,8 @@ msgstr "Idioma automático"
 msgid "Auto Language Selection"
 msgstr "Selección automática de idioma"
 
-#, fuzzy
 msgid "Auto Modes Selected."
-msgstr " paquetes seleccionados."
+msgstr "Paquetes seleccionados."
 
 msgid "Auto Standby"
 msgstr "Modo de espera automático"
@@ -12101,9 +12127,8 @@ msgid "Maltese"
 msgstr ""
 
 #
-#, fuzzy
 msgid "Manage Locale/Language Selection settings"
-msgstr "Ajustes de lista de canales"
+msgstr "Ajustes de idiomas"
 
 #
 msgid "Manage extensions"
@@ -12868,9 +12893,8 @@ msgstr "Silenciar"
 msgid "My Extension"
 msgstr "Extensiones"
 
-#, fuzzy
 msgid "My extension"
-msgstr " extensiones."
+msgstr "Mis extensiones."
 
 msgid "Myanmar"
 msgstr ""
@@ -23305,7 +23329,7 @@ msgid "Very slow"
 msgstr "Zócalo de sintonizador"
 
 msgid "Very very short filenames - Warning"
-msgstr "Nombres de archivo muy muy cortos - Advertencia"
+msgstr "Nombres de archivo muy cortos - Advertencia"
 
 msgid "ViX EPG"
 msgstr "ViX EPG"

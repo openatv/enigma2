@@ -3,13 +3,14 @@
 # This file is distributed under the same license as the PACKAGE package.
 # openATV <openatv@gmail.com>, 2021.
 # Bujar Tafili <bujartafili@yahoo.com>, 2021.
+# BliNeR-KeY <blinerg@gmail.com>, 2021.
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-12-26 20:08+0000\n"
-"PO-Revision-Date: 2021-10-16 07:51+0000\n"
-"Last-Translator: Bujar Tafili <bujartafili@yahoo.com>\n"
+"PO-Revision-Date: 2021-12-28 18:02+0000\n"
+"Last-Translator: BliNeR-KeY <blinerg@gmail.com>\n"
 "Language-Team: Albanian <https://hosted.weblate.org/projects/openatv/"
 "enigma2-7-0-po/sq/>\n"
 "Language: sq\n"
@@ -17,7 +18,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.9-dev\n"
+"X-Generator: Weblate 4.10.1\n"
 
 msgid ""
 "\n"
@@ -26,7 +27,7 @@ msgid ""
 msgstr ""
 "\n"
 "\n"
-"[Buqetat e përdoruesit (TV)]\n"
+"[Përdoruesi - buqeta (TV)]\n"
 
 msgid ""
 "\n"
@@ -41,36 +42,36 @@ msgid ""
 "  There is not enough space to install Kodi!"
 msgstr ""
 "\n"
-"  KUJDES: \n"
-"  S'ka hapësirë të mjaftueshme për të to instaluar Kodi-n!"
+"  PARALAJMËRIM:\n"
+"  Nuk ka hapësirë të mjaftueshme për të instaluar Kodi!"
 
 msgid ""
 "\n"
 " Do you want to switch Enigma2 with Android...?"
 msgstr ""
 "\n"
-" Dëshironi të ndërroni Enigma2 me Android...?"
+" Dëshiron të ndërrosh Enigma2 me Android...?"
 
 msgid ""
 "\n"
 " Kodi not present. Proceed with install?"
 msgstr ""
 "\n"
-" Kodi s'është i pranishëm. Të vijojmë me instalimin?"
+" Kodi nuk është i pranishëm. Vazhdoni me instalimin?"
 
 msgid ""
 "\n"
 "<This tuner is configured automatically>"
 msgstr ""
 "\n"
-"<Ky sintonizues është konfiguruar automatikisht>"
+"<Ky sintonizues konfigurohet automatikisht>"
 
 msgid ""
 "\n"
 "Advanced options and settings."
 msgstr ""
 "\n"
-"Opsione dhe konfigurime të përparuara."
+"Opsionet dhe cilësimet e avancuara."
 
 msgid ""
 "\n"
@@ -85,7 +86,7 @@ msgid ""
 "Backup your %s %s settings."
 msgstr ""
 "\n"
-"Ruajeni konfigurimin tuaj %s %s."
+"Bëni kopje rezervë të cilësimeve tuaja %s %s."
 
 #, python-format
 msgid ""
@@ -93,14 +94,14 @@ msgid ""
 "Backup your running %s %s image to HDD or USB."
 msgstr ""
 "\n"
-"Ruajeni imazhin tuaj të tanishëm %s %s në HDD ose USB."
+"Rezervoni imazhin tuaj të ekzekutuar %s %s në HDD ose USB."
 
 msgid ""
 "\n"
 "Edit the upgrade source address."
 msgstr ""
 "\n"
-"Redaktoni adresën e burimit të përditësimit."
+"Ndryshoni adresën e burimit të përmirësimit."
 
 #, python-format
 msgid ""
@@ -217,7 +218,6 @@ msgstr ""
 "parametër me zgjedhje:\n"
 "%s"
 
-#, fuzzy
 msgid " "
 msgstr " "
 
@@ -238,7 +238,7 @@ msgid "  Menu key : Select quad channel"
 msgstr "  Butoni i Menysë: Përzgjidhni kanalin e katërfishtë"
 
 msgid "  REC  "
-msgstr ""
+msgstr "  REC "
 
 msgid "  Red key : Show/Hide channel name"
 msgstr "  Butoni i kuq : Shfaqni/Fshihni emrin e kanalit"
@@ -307,7 +307,7 @@ msgid " <empty>"
 msgstr " <e zbrazët>"
 
 msgid " HI "
-msgstr ""
+msgstr " PËRSHËNDETJE "
 
 msgid " and"
 msgstr " dhe"
@@ -694,182 +694,182 @@ msgid "%Y %B %d"
 msgstr "%Y %B %d"
 
 msgid "%Y %b %-d"
-msgstr ""
+msgstr "%Y %b %-d"
 
 msgid "%Y %b %d"
-msgstr ""
+msgstr "%Y %b %d"
 
 msgid "%Y-%B-%-d"
-msgstr ""
+msgstr "%Y-%B-%-d"
 
 msgid "%Y-%B-%d"
-msgstr ""
+msgstr "%Y-%B-%d"
 
 msgid "%Y-%b-%-d"
-msgstr ""
+msgstr "%Y-%b-%-d"
 
 msgid "%Y-%b-%d"
-msgstr ""
+msgstr "%Y-%b-%d"
 
 msgid "%Y-%m-%d"
-msgstr ""
+msgstr "%Y-%m-%d"
 
 msgid "%Y/%-m/%-d"
-msgstr ""
+msgstr "%Y/%-m/%-d"
 
 msgid "%Y/%-m/%d"
-msgstr ""
+msgstr "%Y/%-m/%d"
 
 msgid "%Y/%m/%-d"
-msgstr ""
+msgstr "%Y/%m/%-d"
 
 msgid "%Y/%m/%d"
-msgstr ""
+msgstr "%Y/%m/%d"
 
 msgid "%a"
-msgstr ""
+msgstr "%a"
 
 #. TRANSLATORS: small date representation short dayname daynum in strftime() format! See 'man strftime'
 msgid "%a %-d"
-msgstr ""
+msgstr "%a %-d"
 
 #. TRANSLATORS: long date representation short dayname daynum monthname year in strftime() format! See 'man strftime'
 msgid "%a %-d %B %Y"
-msgstr ""
+msgstr "%a %-d %B %Y"
 
 #. TRANSLATORS: short date representation short dayname daynum short monthname in strftime() format! See 'man strftime'
 msgid "%a %-d %b"
-msgstr ""
+msgstr "%a %-d %b"
 
 #. TRANSLATORS: long date representation short dayname daynum short monthname year in strftime() format! See 'man strftime'
 msgid "%a %-d %b %Y"
-msgstr ""
+msgstr "%a %-d %b %Y"
 
 msgid "%a %-d+%b_"
-msgstr ""
+msgstr "%a %-d+%b_"
 
 msgid "%a %-d-%B-%Y"
-msgstr ""
+msgstr "%a %-d-%B-%Y"
 
 msgid "%a %-d-%b"
-msgstr ""
+msgstr "%a %-d %b"
 
 msgid "%a %-d-%b-%Y"
-msgstr ""
+msgstr "%a %-d-%b-%Y"
 
 msgid "%a %-d. %B %Y"
-msgstr ""
+msgstr "%a %-d. %B %Y"
 
 msgid "%a %-d. %b"
-msgstr ""
+msgstr "%a %-d. %b"
 
 msgid "%a %-d. %b %Y"
-msgstr ""
+msgstr "%a %-d. %b %Y"
 
 msgid "%a %-d.%-m"
-msgstr ""
+msgstr "%a %-d.%-m"
 
 msgid "%a %-d.%-m.%Y"
-msgstr ""
+msgstr "%a %-d.%-m.%Y"
 
 msgid "%a %-d.%m"
-msgstr ""
+msgstr "%a %-d.%m"
 
 msgid "%a %-d.%m.%Y"
-msgstr ""
+msgstr "%a %-d.%m.%Y"
 
 msgid "%a %-d/%-m"
-msgstr ""
+msgstr "%a %-d/%-m"
 
 msgid "%a %-d/%-m/%Y"
-msgstr ""
+msgstr "%a %-d/%-m/%Y"
 
 msgid "%a %-d/%m"
-msgstr ""
+msgstr "%a %-d/%m"
 
 msgid "%a %-d/%m/%Y"
-msgstr ""
+msgstr "%a %-d/%m/%Y"
 
 msgid "%a %-m/%-d"
-msgstr ""
+msgstr "%a %-m/%-d"
 
 msgid "%a %-m/%-d/%Y"
-msgstr ""
+msgstr "%a %-m/%-d/%Y"
 
 msgid "%a %-m/%d"
-msgstr ""
+msgstr "%a %-m/%d"
 
 msgid "%a %-m/%d/%Y"
-msgstr ""
+msgstr "%a %-m/%d/%Y"
 
 msgid "%a %B %-d %Y"
-msgstr ""
+msgstr "%a %B %-d %Y"
 
 msgid "%a %B %d %Y"
-msgstr ""
+msgstr "%a %B %d %Y"
 
 msgid "%a %B-%-d-%Y"
-msgstr ""
+msgstr "%a %B-%-d-%Y"
 
 msgid "%a %B-%d-%Y"
-msgstr ""
+msgstr "%a %B-%d-%Y"
 
 msgid "%a %Y %B %-d"
-msgstr ""
+msgstr "%a %Y %B %-d"
 
 msgid "%a %Y %B %d"
-msgstr ""
+msgstr "%a %Y %B %d"
 
 msgid "%a %Y %b %-d"
-msgstr ""
+msgstr "%a %Y %b %-d"
 
 msgid "%a %Y %b %d"
-msgstr ""
+msgstr "%a %Y %b %d"
 
 msgid "%a %Y-%B-%-d"
-msgstr ""
+msgstr "%a %Y-%B-%-d"
 
 msgid "%a %Y-%B-%d"
-msgstr ""
+msgstr "%a %Y-%B-%d"
 
 msgid "%a %Y-%b-%-d"
-msgstr ""
+msgstr "%a %Y-%b-%-d"
 
 msgid "%a %Y-%b-%d"
-msgstr ""
+msgstr "%a %Y-%b-%d"
 
 msgid "%a %Y/%-m/%-d"
-msgstr ""
+msgstr "%a %Y/%-m/%-d"
 
 msgid "%a %Y/%-m/%d"
-msgstr ""
+msgstr "%a %Y/%-m/%d"
 
 msgid "%a %Y/%m/%-d"
-msgstr ""
+msgstr "%a %Y/%m/%-d"
 
 msgid "%a %Y/%m/%d"
-msgstr ""
+msgstr "%a %Y/%m/%d"
 
 msgid "%a %b %-d"
-msgstr ""
+msgstr "%a %b %-d"
 
 msgid "%a %b %-d %Y"
-msgstr ""
+msgstr "%a %b %-d %Y"
 
 msgid "%a %b %d"
-msgstr ""
+msgstr "%a %b %d"
 
 msgid "%a %b %d %Y"
-msgstr ""
+msgstr "%a %b %d %Y"
 
 msgid "%a %b-%-d"
-msgstr ""
+msgstr "%a %b-%-d"
 
 msgid "%a %b-%-d-%Y"
-msgstr ""
+msgstr "%a %b-%-d-%Y"
 
 msgid "%a %b-%d"
-msgstr ""
+msgstr "%a %b-%d"
 
 msgid "%a %b-%d-%Y"
 msgstr ""
@@ -956,7 +956,7 @@ msgid "%b %d %Y"
 msgstr ""
 
 msgid "%b+%-d "
-msgstr ""
+msgstr "%b+%-d "
 
 msgid "%b+%d "
 msgstr ""
@@ -983,7 +983,7 @@ msgstr ""
 msgid "%d"
 msgid_plural "%d"
 msgstr[0] "%d"
-msgstr[1] ""
+msgstr[1] "%d"
 
 msgid "%d %B %Y"
 msgstr ""
@@ -1159,7 +1159,7 @@ msgid "%d=%b_"
 msgstr ""
 
 msgid "%e/%m, %-H:%M"
-msgstr ""
+msgstr "%e/%m, %-H:%M"
 
 msgid "%m/%-d"
 msgstr ""
@@ -1188,6 +1188,8 @@ msgid ""
 "%s\n"
 "(%s, %d MB free)"
 msgstr ""
+"%s\n"
+"(%s, %d MB falas)"
 
 #, python-format
 msgid ""
@@ -1367,6 +1369,9 @@ msgid ""
 "'Buffer in hours' or 'number of last events'. For deleting older timeshift "
 "files, the condition which occurred first has priority."
 msgstr ""
+"\"Bufer në orë\" ose \"numri i ngjarjeve të fundit\". Për fshirjen e "
+"skedarëve më të vjetër të zhvendosjes së kohës, gjendja që ndodhi e para ka "
+"përparësi."
 
 msgid ""
 "'Handle standby from TV' has a higher priority than 'Handle input from TV'."
@@ -1424,7 +1429,7 @@ msgstr ""
 
 msgctxt "Text list separator"
 msgid ", "
-msgstr ""
+msgstr ", "
 
 msgid "-"
 msgstr ""
@@ -1565,6 +1570,8 @@ msgid ""
 "12, show latin-1 characters except for greek and cyrillic, switch to 8 if "
 "needed."
 msgstr ""
+"12, tregoni karaktere latine-1, përveç greqishtes dhe cirilikës, kaloni në 8 "
+"nëse është e nevojshme."
 
 msgid "128"
 msgstr ""
@@ -1750,13 +1757,13 @@ msgid "2x"
 msgstr ""
 
 msgid "2x, 4x"
-msgstr ""
+msgstr "2x, 4x"
 
 msgid "2x, 4x, 6x"
-msgstr ""
+msgstr "2x, 4x, 6x"
 
 msgid "2x, 4x, 6x, 8x"
-msgstr ""
+msgstr "2x, 4x, 6x, 8x"
 
 msgid "3"
 msgstr ""
@@ -1995,11 +2002,17 @@ msgid ""
 "Extend sleep timer 30 minutes. Your %s %s\n"
 "will shut down after Recording or Powertimer event. Get in Standby now?"
 msgstr ""
+"Një Regjistrim, RecordTimer ose PowerTimer është duke u zhvilluar ose fillon "
+"për 15 minuta.\n"
+"Zgjate kohën e gjumit për 30 minuta. %s tuaj %s\n"
+"do të mbyllet pas regjistrimit ose ngjarjes Powertimer. Hyr në Standby tani?"
 
 msgid ""
 "A background update check is in progress, please wait a few minutes and try "
 "again."
 msgstr ""
+"Një kontroll i azhornuar i sfondit është në proces, ju lutem prisni disa "
+"minuta dhe provoni përsëri."
 
 #, python-format
 msgid ""
@@ -2061,6 +2074,10 @@ msgid ""
 "highlight will be shown. Text below the list lists the active buttons and "
 "whether the function requires a long press or SHIFT of the button(s)."
 msgstr ""
+"Një pikë kulmore në figurën e telekomandës tregon se cilit buton i referohet "
+"ndihma. Nëse më shumë se një buton kryen funksionin e treguar, do të shfaqen "
+"më shumë se një pikë kryesore. Teksti poshtë listës liston butonat aktiv dhe "
+"nëse funksioni kërkon një shtypje të gjatë ose SHIFT të butonit(s)."
 
 #, python-format
 msgid ""
@@ -2439,6 +2456,10 @@ msgid ""
 "OK to close the video fine-tuning, or use the number keys to select other "
 "test screens."
 msgstr ""
+"Rregulloni cilësimet e ngjyrave në mënyrë që të gjitha nuancat e ngjyrave të "
+"dallohen, por të shfaqen sa më të ngopura. Nëse jeni të kënaqur me "
+"rezultatin, shtypni OK për të mbyllur rregullimin e saktë të videos ose "
+"përdorni tastet numerike për të zgjedhur ekranet e tjera të testimit."
 
 msgid "Adjust the horizontal position of the letters used for teletext."
 msgstr ""
@@ -2450,7 +2471,7 @@ msgid "Adult"
 msgstr ""
 
 msgid "Adult Audience, Strong Violence 15+"
-msgstr ""
+msgstr "Audienca e të rriturve, dhunë e fortë 15+"
 
 msgid "Advanced"
 msgstr ""
@@ -2498,7 +2519,7 @@ msgid "After event"
 msgstr ""
 
 msgid "After pressing OK, please wait!"
-msgstr ""
+msgstr "Pasi të shtypni OK, ju lutemi prisni!"
 
 msgid "Agenten"
 msgstr ""
@@ -2628,6 +2649,8 @@ msgid ""
 "Allows you to set the maximum size of the Debug log size (MB). When that "
 "size is reached, a new file will be created."
 msgstr ""
+"Ju lejon të vendosni madhësinë maksimale të madhësisë së log debug (MB). Kur "
+"të arrihet kjo madhësi, do të krijohet një file i ri."
 
 msgid "Allows you to show/hide CCcam in extensions (blue button)."
 msgstr ""
@@ -2686,6 +2709,10 @@ msgid ""
 "afterwards (sometimes called offline decoding), if supported by your "
 "receiver. Default: off."
 msgstr ""
+"Përfshini gjithmonë mesazhet ECM në regjistrime. Kjo anashkalon cilësimet "
+"individuale të kohëmatësit globalisht. Ai lejon që regjistrimet të "
+"deshifrohen gjithmonë më pas (nganjëherë quhet deshifrim offline), nëse "
+"mbështetet nga marrësi juaj. Parazgjedhja: joaktive."
 
 msgid "Always show bouquets"
 msgstr ""
@@ -2711,6 +2738,10 @@ msgid ""
 "respond unexpectedly. On the other hand, tries to respond better to "
 "different operating conditions."
 msgstr ""
+"Një përpjekje është bërë për të kapur statusin aktual të TV. Nëse kjo nuk "
+"është e mundur për shkak të mesazheve status të pasaktë ose të humbur kjo "
+"mund të shkaktojë që marrësi të përgjigjet në mënyrë të papritur. Nga ana "
+"tjetër, përpiqet t'u përgjigjet më mirë kushteve të ndryshme të funksionimit."
 
 msgid "An empty filename is illegal."
 msgstr ""
@@ -2965,10 +2996,10 @@ msgstr ""
 
 #, python-format
 msgid "Audio PID%s, codec & lang"
-msgstr ""
+msgstr "Audio PID%s, kodek dhe gjuha"
 
 msgid "Audio PID, codec & lang"
-msgstr ""
+msgstr "PID audio, kodek dhe gjuhe"
 
 msgid "Audio Selection"
 msgstr ""
@@ -3222,16 +3253,16 @@ msgid "Back USB 3.0"
 msgstr ""
 
 msgid "Back, inner USB"
-msgstr ""
+msgstr "Mbrapa, USB e brendshme"
 
 msgid "Back, lower USB"
-msgstr ""
+msgstr "Mbrapa, USB më poshtë"
 
 msgid "Back, outer USB"
-msgstr ""
+msgstr "Mbrapa, USB e jashtme"
 
 msgid "Back, upper USB"
-msgstr ""
+msgstr "Mbrapa, USB e sipërme"
 
 #, python-format
 msgid "Back-up Tool for a %s\n"
@@ -3338,12 +3369,16 @@ msgid ""
 "Backup your current settings. This includes E2-setup, channels, network and "
 "all selected files"
 msgstr ""
+"Bëni kopje rezervë të cilësimeve tuaja aktuale. Kjo përfshin konfigurimin "
+"E2, kanalet, rrjetin dhe të gjithë skedarët e zgjedhur"
 
 msgid "Backup, flash and restore settings and no plugins"
-msgstr ""
+msgstr "Backup, flash dhe rivendos rregullimet dhe pa plugins"
 
 msgid "Backup, flash and restore settings and selected plugins (ask user)"
 msgstr ""
+"Backup, flash dhe rivendos rregullimet dhe plugin e zgjedhur (pyet "
+"përdoruesin)"
 
 msgid "Bahamas"
 msgstr ""
@@ -3376,6 +3411,8 @@ msgid ""
 "Base transparency for teletext, more options available within teletext "
 "screen."
 msgstr ""
+"Transparencë bazë për teletekst, më shumë opsione në dispozicion brenda "
+"ekranit të teletekstit."
 
 msgid "Baseball"
 msgstr ""
@@ -3849,6 +3886,23 @@ msgid ""
 "Screens change with left/right buttons or use red, green, blue to toggle.\n"
 "Yellow for returning back to this intro"
 msgstr ""
+"Mund të përdoret për të testuar pikselët e defektit në ekranin e televizorit."
+"\n"
+"\n"
+"Ekranet e disponueshme të testimit të ngjyrave:\n"
+"\n"
+"e kuqe\n"
+"jeshile\n"
+"blu\n"
+"të bardhë\n"
+"e zezë\n"
+"cian\n"
+"magenta\n"
+"e verdhe\n"
+"\n"
+"Ekranet ndryshojnë me butonat majtas/djathtas ose përdorin të kuqe, jeshile, "
+"blu për të ndryshuar.\n"
+"E verdha për t'u kthyer në këtë hyrje"
 
 msgid "Can not delete timer"
 msgstr ""
@@ -3925,6 +3979,8 @@ msgid ""
 "Can't unmount partiton, make sure it is not being used for swap or record/"
 "timeshift paths"
 msgstr ""
+"Ndarja nuk mund të çmontohet, sigurohuni që të mos përdoret për shtigje "
+"shkëmbimi ose regjistrimi/ndërrimi në kohë"
 
 msgid "Canada"
 msgstr ""
@@ -3981,7 +4037,7 @@ msgid "Cannot determine"
 msgstr ""
 
 msgid "Cannot find any signal ..., aborting !"
-msgstr ""
+msgstr "Nuk mund të gjej asnjë sinjal ..., aborti!"
 
 msgid "Cannot find images - please try later"
 msgstr ""
@@ -4322,6 +4378,8 @@ msgstr ""
 
 msgid "Choose between Daily, Weekly, Weekdays or user defined."
 msgstr ""
+"Zgjidhni midis Ditës, Javore, Ditëve të Javës ose të përcaktuar nga "
+"përdoruesi."
 
 msgid "Choose dvb wait delay for ci response."
 msgstr ""
@@ -4349,6 +4407,11 @@ msgid ""
 "single digit values.) The screen display will be based on your choice but "
 "can be influenced by the skin."
 msgstr ""
+"Zgjidhni stilin e formatimit të ekranit për herë. 'H' / 'HH' është ora për "
+"një orë 24 orëshe, 'h' / 'hh' është ora për një orë 12 orëshe, 'mm' është "
+"minuta dhe 'ss' janë sekondat. ('HH' dhe 'hh' kanë zerat kryesore për vlerat "
+"njëshifrore.) Shfaqja e ekranit do të bazohet në zgjedhjen tuaj, por mund të "
+"ndikohet nga lëkura."
 
 msgid ""
 "Choose the front panel display formatting style for dates. 'D' / 'DD' is the "
@@ -4364,6 +4427,11 @@ msgid ""
 "The front panel display will be based on your choice but can be influenced "
 "any applicable skin."
 msgstr ""
+"Zgjidhni stilin e formatimit të ekranit të panelit të përparmë për herë. 'H' "
+"/ 'HH' është ora për një orë 24 orëshe, 'h' / 'hh' është ora për një orë 12 "
+"orëshe, 'mm' janë minutat. ('HH' dhe 'hh' kanë zerat kryesore për vlerat "
+"njëshifrore.) Ekrani i panelit të përparmë do të bazohet në zgjedhjen tuaj, "
+"por mund të ndikohet në çdo lëkurë të aplikueshme."
 
 msgid "Choose the location for crash and debuglogs."
 msgstr ""
@@ -4476,205 +4544,216 @@ msgid "Clear before scan"
 msgstr ""
 
 msgid "Clear fixed"
-msgstr ""
+msgstr "Rregullim i qartë"
 
 msgid "Clear log"
-msgstr ""
+msgstr "Pastro log"
 
 msgid "Clear playlist"
-msgstr ""
+msgstr "Pastro listën e luajtjes"
 
 msgid "Click on your remote on the button you want to change"
-msgstr ""
+msgstr "Kliko në telekomandë në butonin që dëshiron të ndryshosh"
 
 #, python-format
 msgid "Client Info ( Oscam-Version: %s )"
-msgstr ""
+msgstr "Informacioni i klientit (Versioni Oscam: %s)"
 
 msgid "Client is streaming from this box!"
-msgstr ""
+msgstr "Klienti po transmeton nga kjo kuti!"
 
 msgid "ClientIP"
-msgstr ""
+msgstr "KlientIP"
 
 msgid "Clients"
-msgstr ""
+msgstr "Klientët"
 
 msgid "Clock:"
-msgstr ""
+msgstr "Ora:"
 
 msgid "Clone TV screen to LCD"
-msgstr ""
+msgstr "Klononi ekranin e televizorit në LCD"
 
 msgid "Close"
-msgstr ""
+msgstr "Mbylle"
 
 msgid "Close PiP on exit"
-msgstr ""
+msgstr "Mbyllni PiP në dalje"
 
 msgid "Close bouquet list"
-msgstr ""
+msgstr "Mbyll listën e buqetave"
 
 msgid "Close bouquet list."
-msgstr ""
+msgstr "Mbyll listën e buqetave."
 
 msgid "Close dialog"
-msgstr ""
+msgstr "Mbyll dialogun"
 
 msgid "Close pop up menu"
-msgstr ""
+msgstr "Mbyll menunë pop-up"
 
 msgid "Close screen"
-msgstr ""
+msgstr "Mbyll ekranin"
 
 msgid "Close the context menu"
-msgstr ""
+msgstr "Mbyllni menunë e kontekstit"
 
 msgid "Close the current screen"
-msgstr ""
+msgstr "Mbyllni ekranin aktual"
 
 msgid "Close the window"
-msgstr ""
+msgstr "Mbyllni dritaren"
 
 msgid "Close title selection"
-msgstr ""
+msgstr "Mbyll përzgjedhjen e titullit"
 
 msgid "Cloudflare"
-msgstr ""
+msgstr "Cloudflare"
 
 msgid "Cocos (Keeling) Islands"
-msgstr ""
+msgstr "Ishujt Kokos (Keeling)"
 
 msgid "Code R. LP-HP & Guard Int."
-msgstr ""
+msgstr "Kodi R. LP-HP & Roje Int."
 
 msgid "Code rate HP"
-msgstr ""
+msgstr "Norma e kodit HP"
 
 msgid "Code rate LP"
-msgstr ""
+msgstr "Norma e kodit LP"
 
 msgid "Collapse"
-msgstr ""
+msgstr "Kolapsi"
 
 msgid "Collection name"
-msgstr ""
+msgstr "Emri i koleksionit"
 
 msgid "Collection settings"
-msgstr ""
+msgstr "Cilësimet e koleksionit"
 
 msgid "Colombia"
-msgstr ""
+msgstr "Kolumbia"
 
 msgid "Color"
-msgstr ""
+msgstr "Ngjyra"
 
 msgid "Color format"
-msgstr ""
+msgstr "Formati i ngjyrave"
 
 msgid "Color space"
-msgstr ""
+msgstr "Hapësira e ngjyrave"
 
 msgid "Combo"
-msgstr ""
+msgstr "Combo"
 
 msgid "Comedy"
-msgstr ""
+msgstr "Komedi"
 
 msgid "Comic"
-msgstr ""
+msgstr "Komike"
 
 msgid "Command To Run"
-msgstr ""
+msgstr "Komanda për të ekzekutuar"
 
 msgid "Command execution..."
-msgstr ""
+msgstr "Ekzekutimi i komandës..."
 
 msgid "Command order"
-msgstr ""
+msgstr "Urdhëri i komandës"
 
 msgid "Command type"
-msgstr ""
+msgstr "Lloji i komandës"
 
 msgid "Common Interface"
-msgstr ""
+msgstr "Ndërfaqe e zakonshme"
 
 msgid "Common Interface Assignment"
-msgstr ""
+msgstr "Caktim i Përbashkët i Ndërfaqes"
 
 msgid "Common Interface assignment"
-msgstr ""
+msgstr "Caktim i Përbashkët i Ndërfaqes"
 
 msgid "Common Menu Actions"
-msgstr ""
+msgstr "Veprime të zakonshme menuje"
 
 msgid "Common Setup Actions"
-msgstr ""
+msgstr "Veprimet e zakonshme të konfigurimit"
 
 msgid "Communication"
-msgstr ""
+msgstr "Komunikimi"
 
 msgid "Comoros"
-msgstr ""
+msgstr "Komoret"
 
 msgid "Complete"
-msgstr ""
+msgstr "Kompletuar"
 
 msgid "Complete Backup"
-msgstr ""
+msgstr "Rezervimi i plotë"
 
 msgid "Complex (allows mixing audio tracks and aspects)"
-msgstr ""
+msgstr "Kompleks (lejon përzierjen e pjesëve audio dhe aspekteve)"
 
 msgid "Composition of the recording filenames"
-msgstr ""
+msgstr "Përbërja e emrave të skedarëve të regjistrimit"
 
 msgid "Computer"
-msgstr ""
+msgstr "Kompjuter"
 
 msgid "Config"
-msgstr ""
+msgstr "Konfigurimi"
 
 msgid "Config file name (ok to change):"
-msgstr ""
+msgstr "Emri i skedarit të konfigurimit (në rregull për të ndryshuar):"
 
 #, python-format
 msgid "Configfile %s saved."
-msgstr ""
+msgstr "Konfiguro %s të ruajtur."
 
 msgctxt "Abbreviation of 'Configurable'"
 msgid "Configurable"
-msgstr ""
+msgstr "I konfigurueshëm"
 
 msgid "Configuration mode"
-msgstr ""
+msgstr "Mënyra e konfigurimit"
 
 msgid ""
 "Configuration options for the HELP screen can be found in 'MENU > Setup > "
 "Usage & User Interface > Settings'."
 msgstr ""
+"Opsionet e konfigurimit për ekranin HELP mund të gjenden te 'MENU > "
+"Konfigurimi > Përdorimi dhe Ndërfaqja e përdoruesit > Cilësimet'."
 
 msgid ""
 "Configure an additional delay to improve external subtitle synchronisation."
 msgstr ""
+"Konfiguro një vonesë shtesë për të përmirësuar sinkronizimin e jashtëm të "
+"titrave."
 
 msgid "Configure an additional delay to improve subtitle synchronisation."
-msgstr ""
+msgstr "Konfiguro një vonesë shtesë për të përmirësuar sinkronizimin e titrave."
 
 msgid ""
 "Configure default setting for new timers. Need a restart after changing."
 msgstr ""
+"Konfiguro cilësimin e paracaktuar për kohëmatësit e rinj. Duhet një rinisje "
+"pas ndryshimit."
 
 msgid ""
 "Configure for how many minutes finished events should remain visible in the "
 "EPG. Useful when you need information about an event which has just "
 "finished, or has been delayed."
 msgstr ""
+"Konfiguro për sa minuta ngjarjet e përfunduara duhet të mbeten të dukshme në "
+"EPG. E dobishme kur keni nevojë për informacion në lidhje me një ngjarje që "
+"sapo ka përfunduar ose është vonuar."
 
 msgid ""
 "Configure for which types of recordings a warning about active recordings is "
 "shown when attempting to restart the box or the GUI."
 msgstr ""
+"Konfiguro se për cilat lloje regjistrimesh shfaqet një paralajmërim për "
+"regjistrimet aktive kur përpiqesh të rifillosh kutinë ose GUI-në."
 
 msgid ""
 "Configure how recording filenames are constructed. Standard: Date Time - "
@@ -4682,188 +4761,232 @@ msgid ""
 "with time: Date Time - Title Short: Date - Title Long: Date Time - Channel - "
 "Title - Info"
 msgstr ""
+"Konfiguro se si ndërtohen emrat e skedarëve të regjistrimit. Standard: Data "
+"Ora - Kanali - Titulli Shumë shumë i shkurtër: Titulli Shumë i shkurtër: "
+"Titulli - Data Koha Shkurt me orën: Data Koha - Titulli i shkurtër: Data - "
+"Titulli i gjatë: Data Koha - Kanali - Titulli - Informacion"
 
 msgid ""
 "Configure if and how crypto icons will be shown in the channel selection "
 "list."
 msgstr ""
+"Konfiguro nëse dhe si do të shfaqen ikonat e kriptove në listën e "
+"përzgjedhjes së kanaleve."
 
 msgid ""
 "Configure if and how long the latest service in the PiP will be remembered."
 msgstr ""
+"Konfiguro nëse dhe për sa kohë do të mbahet mend shërbimi më i fundit në PiP."
 
 msgid "Configure if and how service type icons will be shown."
-msgstr ""
+msgstr "Konfiguro nëse dhe si do të shfaqen ikonat e llojit të shërbimit."
 
 msgid ""
 "Configure if and how the record indicator will be shown in the channel "
 "selection list."
 msgstr ""
+"Konfiguro nëse dhe si do të shfaqet treguesi i regjistrimit në listën e "
+"përzgjedhjes së kanaleve."
 
 msgid ""
 "Configure if and how wide the service name column will be shown in the "
 "channel selection list."
 msgstr ""
+"Konfiguro nëse dhe sa gjerë do të shfaqet kolona e emrit të shërbimit në "
+"listën e përzgjedhjes së kanaleve."
 
 msgid "Configure if epg.dat should be saved at all."
-msgstr ""
+msgstr "Konfiguro nëse epg.dat duhet të ruhet fare."
 
 msgid "Configure if service picons will be shown in quickzap."
-msgstr ""
+msgstr "Konfiguro nëse pikonat e shërbimit do të shfaqen në Quickzap."
 
 msgid "Configure if service picons will be shown in the servicelist."
-msgstr ""
+msgstr "Konfiguro nëse pikonat e shërbimit do të shfaqen në listën e shërbimit."
 
 msgid ""
 "Configure if the subtitle should switch between normal, italic, bold and "
 "bolditalic"
 msgstr ""
+"Konfiguro nëse titrat duhet të kalojnë midis normales, italic, bold dhe "
+"bolditalic"
 
 msgid "Configure interface"
-msgstr ""
+msgstr "Konfiguro ndërfaqen"
 
 msgid "Configure nameservers"
-msgstr ""
+msgstr "Konfiguro serverat e emrave"
 
 msgid "Configure on which devices the background delete option should be used."
 msgstr ""
+"Konfiguro se në cilat pajisje duhet të përdoret opsioni i fshirjes së "
+"sfondit."
 
 msgid "Configure remote control type"
-msgstr ""
+msgstr "Konfiguro llojin e telekomandës"
 
 msgid "Configure the DiSEqC mode for this LNB."
-msgstr ""
+msgstr "Konfiguro modalitetin DiSEqC për këtë LNB."
 
 msgid "Configure the IP address."
-msgstr ""
+msgstr "Konfiguro adresën IP."
 
 msgid "Configure the alignment of events."
-msgstr ""
+msgstr "Konfiguro shtrirjen e ngjarjeve."
 
 msgid "Configure the alignment of service names."
-msgstr ""
+msgstr "Konfiguro shtrirjen e emrave të shërbimeve."
 
 msgid "Configure the amount of time that will be presented."
-msgstr ""
+msgstr "Konfiguro sasinë e kohës që do të paraqitet."
 
 msgid "Configure the aspect ratio of the screen."
-msgstr ""
+msgstr "Konfiguro raportin e pamjes së ekranit."
 
 msgid ""
 "Configure the behavior of the 'pause' key when movie playback is already "
 "paused."
 msgstr ""
+"Konfiguro sjelljen e tastit 'pauzë' kur riprodhimi i filmit është tashmë në "
+"pauzë."
 
 msgid "Configure the behavior when movie playback is manually stopped."
-msgstr ""
+msgstr "Konfiguro sjelljen kur riprodhimi i filmit ndalet manualisht."
 
 msgid "Configure the behavior when movie playback is started."
-msgstr ""
+msgstr "Konfiguro sjelljen kur fillon riprodhimi i filmit."
 
 msgid ""
 "Configure the behavior when reaching the end of a movie, during movie "
 "playback."
 msgstr ""
+"Konfiguro sjelljen kur arrin në fund të një filmi, gjatë luajtjes së filmave."
 
 msgid ""
 "Configure the border width of the subtitles. The dark border makes the "
 "subtitles easier to read on a light background."
 msgstr ""
+"Konfiguro gjerësinë e kufirit të titrave. Kufiri i errët i bën titrat më të "
+"lehtë për t'u lexuar në një sfond të lehtë."
 
 msgid ""
 "Configure the brightness level of the front panel display for dimmed "
 "operation."
 msgstr ""
+"Konfiguro nivelin e ndriçimit të ekranit të panelit të përparmë për "
+"funksionimin e zbehtë."
 
 msgid ""
 "Configure the brightness level of the front panel display for normal "
 "operation."
 msgstr ""
+"Konfiguro nivelin e ndriçimit të ekranit të panelit të përparmë për "
+"funksionimin normal."
 
 msgid "Configure the brightness level of the front panel display for standby."
 msgstr ""
+"Konfiguro nivelin e ndriçimit të ekranit të panelit të përparmë për "
+"gatishmëri."
 
 msgid ""
 "Configure the color of the external subtitles, alternative (normal in white, "
 "italic in yellow, bold in cyan, underscore in green), white or yellow."
 msgstr ""
+"Konfiguro ngjyrën e titrave të jashtëm, alternativë (normale në të bardhë, "
+"italike në të verdhë, të theksuara në cian, nënvizim në jeshile), të bardhë "
+"ose të verdhë."
 
 msgid "Configure the color of the teletext subtitles."
-msgstr ""
+msgstr "Konfiguro ngjyrën e titrave të teleteksit."
 
 msgid "Configure the contrast level of the front panel display."
-msgstr ""
+msgstr "Konfiguro nivelin e kontrastit të ekranit të panelit të përparmë."
 
 msgid ""
 "Configure the cursor behaviour in the channel selection list. When opening "
 "the channel selection list you can remain on the current service or already "
 "select up/down and you are able to revert the B+/B- buttons."
 msgstr ""
+"Konfiguro sjelljen e kursorit në listën e përzgjedhjes së kanalit. Kur hapni "
+"listën e përzgjedhjes së kanaleve, mund të qëndroni në shërbimin aktual ose "
+"të zgjidhni tashmë lart/poshtë dhe mund të riktheni butonat B+/B-."
 
 msgid "Configure the display resolution and the font used for teletext."
-msgstr ""
+msgstr "Konfiguro rezolucionin e ekranit dhe fontin e përdorur për teletekstin."
 
 msgid "Configure the duration in minutes for the screensaver."
-msgstr ""
+msgstr "Konfiguro kohëzgjatjen në minuta për mbrojtësin e ekranit."
 
 msgid "Configure the duration in minutes for the sleep timer."
-msgstr ""
+msgstr "Konfiguro kohëzgjatjen në minuta për kohëmatësin e gjumit."
 
 msgid "Configure the end coordinate in x of the teletext display area."
 msgstr ""
+"Konfiguro koordinatën e fundit në x të zonës së shfaqjes së teletekstit."
 
 msgid "Configure the end coordinate in y of the teletext display area."
-msgstr ""
+msgstr "Konfiguro koordinatat fund në y të zonës së shfaqjes së teletekstit."
 
 msgid ""
 "Configure the fast mode audio volume step size (limit 1-10). Activated when "
 "volume key permanent press or press fast in a row."
 msgstr ""
+"Konfiguro madhësinë e hapit të volumit të audios në modalitet të shpejtë ("
+"kufiri 1-10). Aktivizohet kur tasti i volumit shtypet ose shtypet me "
+"shpejtësi me radhë."
 
 msgid "Configure the first audio language (highest priority)."
-msgstr ""
+msgstr "Konfiguro gjuhën e parë audio (përparësia më e lartë)."
 
 msgid "Configure the first subtitle language (highest priority)."
-msgstr ""
+msgstr "Konfiguro gjuhën e parë audio (përparësia më e lartë)."
 
 msgid "Configure the font size of the subtitles."
-msgstr ""
+msgstr "Konfiguro madhësinë e shkronjave të titrave."
 
 msgid ""
 "Configure the font size relative to default size, so 1 increases by 1 point "
 "size, and -1 decreases by 1 point size."
 msgstr ""
+"Konfiguro madhësinë e shkronjave në lidhje me madhësinë e paracaktuar, "
+"kështu që 1 rritet me 1 pikë dhe -1 zvogëlohet me 1 pikë."
 
 msgid ""
 "Configure the font size relative to skin size, so 1 increases by 1 point "
 "size, and -1 decreases by 1 point size."
 msgstr ""
+"Konfiguro madhësinë e gërmave në krahasim me madhësinë e lëkurës, kështu që "
+"1 rritet me 1 pikë madhësi, dhe -1 zvogëlohet me 1 pikë madhësi."
 
 msgid "Configure the fourth audio language."
-msgstr ""
+msgstr "Konfiguro gjuhën e katërt audio."
 
 msgid "Configure the fourth subtitle language."
-msgstr ""
+msgstr "Konfiguro gjuhën e katërt të titrave."
 
 msgid "Configure the function of a long press on the power button."
-msgstr ""
+msgstr "Konfiguro funksionin e një shtypjeje të gjatë në butonin e energjisë."
 
 msgid "Configure the function of a short press on the power button."
-msgstr ""
+msgstr "Konfiguro funksionin e një shtypjeje të shkurtër në butonin e fuqisë."
 
 msgid "Configure the function of the <  > buttons."
-msgstr ""
+msgstr "Konfiguro funksionin e butonave < >."
 
 msgid "Configure the gateway."
-msgstr ""
+msgstr "Konfiguro portën."
 
 msgid "Configure the general audio volume step size (limit 1-10)."
 msgstr ""
+"Konfiguro madhësinë e hapit të vëllimit të përgjithshëm të audios (kufiri "
+"1-10)."
 
 msgid ""
 "Configure the hard disk drive to go to standby after the specified idle time "
 "when the box is in standby."
 msgstr ""
+"Konfiguroni hard diskun që të shkojë në gatishmëri pas kohës së caktuar të "
+"boshllëkut kur kutia është në gatishmëri."
 
 msgid ""
 "Configure the hard disk drive to go to standby after the specified idle time."
@@ -23117,7 +23240,7 @@ msgid "zapping"
 msgstr ""
 
 msgid "®"
-msgstr ""
+msgstr "®"
 
 #~ msgid ""
 #~ "\n"
