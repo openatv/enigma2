@@ -279,6 +279,7 @@ class EventViewSimple(Screen, HelpableScreen, EventViewBase):
 		EventViewBase.__init__(self, event, serviceRef, callback=callback, similarEPGCB=similarEPGCB)
 		self.setTitle(_("Event View"))
 		self.skinName = [skin, "EventView"]
+		self.keyGreenAction = self.ADD_TIMER
 
 
 class EventViewEPGSelect(Screen, HelpableScreen, EventViewBase):
