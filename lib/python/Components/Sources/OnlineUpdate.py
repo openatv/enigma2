@@ -1,16 +1,15 @@
-from __future__ import absolute_import
-from Components.Sources.Source import Source
+from enigma import eTimer
 from Components.Element import cached
 from Components.OnlineUpdateCheck import versioncheck
-from enigma import eTimer
+from Components.Sources.Source import Source
 
 
 class OnlineUpdateStableCheck(Source):
 	def __init__(self):
 		Source.__init__(self)
-		self.check_timer = eTimer()
-		self.check_timer.callback.append(self.poll)
-		self.check_timer.start(60000)
+		self.checkTimer = eTimer()
+		self.checkTimer.callback.append(self.poll)
+		self.checkTimer.start(60000)
 
 	@cached
 	def getBoolean(self):
@@ -23,22 +22,22 @@ class OnlineUpdateStableCheck(Source):
 
 	def doSuspend(self, suspended):
 		if suspended:
-			self.check_timer.stop()
+			self.checkTimer.stop()
 		else:
-			self.check_timer.start(3600000)
+			self.checkTimer.start(3600000)
 			self.poll()
 
 	def destroy(self):
-		self.check_timer.callback.remove(self.poll)
+		self.checkTimer.callback.remove(self.poll)
 		Source.destroy(self)
 
 
 class OnlineUpdateUnstableCheck(Source):
 	def __init__(self):
 		Source.__init__(self)
-		self.check_timer = eTimer()
-		self.check_timer.callback.append(self.poll)
-		self.check_timer.start(60000)
+		self.checkTimer = eTimer()
+		self.checkTimer.callback.append(self.poll)
+		self.checkTimer.start(60000)
 
 	@cached
 	def getBoolean(self):
@@ -51,11 +50,11 @@ class OnlineUpdateUnstableCheck(Source):
 
 	def doSuspend(self, suspended):
 		if suspended:
-			self.check_timer.stop()
+			self.checkTimer.stop()
 		else:
-			self.check_timer.start(3600000)
+			self.checkTimer.start(3600000)
 			self.poll()
 
 	def destroy(self):
-		self.check_timer.callback.remove(self.poll)
+		self.checkTimer.callback.remove(self.poll)
 		Source.destroy(self)

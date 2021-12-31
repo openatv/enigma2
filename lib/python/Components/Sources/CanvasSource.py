@@ -11,10 +11,10 @@ class CanvasSource(Source):
 		self.sequence += 1
 		self._drawlist = (self.sequence, [])
 
-	def get_drawlist(self):
+	def get_drawlist(self):  # TODO: getDrawList
 		return self._drawlist
 
-	drawlist = property(get_drawlist)
+	drawlist = property(get_drawlist)  # TODO: drawList
 
 	def fill(self, x, y, width, height, color):
 		self.drawlist[1].append((1, x, y, width, height, color))

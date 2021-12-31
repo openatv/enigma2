@@ -1,6 +1,6 @@
-from Components.Sources.Source import Source
-from Components.NimManager import nimmanager
 from enigma import eDVBResourceManager
+from Components.NimManager import nimmanager
+from Components.Sources.Source import Source
 
 
 class TunerInfo(Source):
@@ -10,11 +10,11 @@ class TunerInfo(Source):
 	def __init__(self):
 		Source.__init__(self)
 		self.tuner_use_mask = 0
-		res_mgr = eDVBResourceManager.getInstance()
-		if res_mgr:
-			res_mgr.frontendUseMaskChanged.get().append(self.tunerUseMaskChanged)
+		resourceManager = eDVBResourceManager.getInstance()
+		if resourceManager:
+			resourceManager.frontendUseMaskChanged.get().append(self.tunerUseMaskChanged)
 		else:
-			print("[TunerInfo] no res_mgr!!")
+			print("[TunerInfo] No resource manager!")
 
 	def tunerUseMaskChanged(self, mask):
 		self.tuner_use_mask = mask
@@ -27,9 +27,9 @@ class TunerInfo(Source):
 		return len(nimmanager.nim_slots)
 
 	def destroy(self):
-		res_mgr = eDVBResourceManager.getInstance()
-		if res_mgr:
-			res_mgr.frontendUseMaskChanged.get().remove(self.tunerUseMaskChanged)
+		resourceManager = eDVBResourceManager.getInstance()
+		if resourceManager:
+			resourceManager.frontendUseMaskChanged.get().remove(self.tunerUseMaskChanged)
 		else:
-			print("[TunerInfo] no res_mgr!!")
+			print("[TunerInfo] No resource manager!")
 		Source.destroy(self)
