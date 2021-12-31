@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: Enigma2 OpenXXX\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-12-26 20:08+0000\n"
-"PO-Revision-Date: 2021-12-03 16:50+0000\n"
+"PO-Revision-Date: 2021-12-31 07:11+0000\n"
 "Last-Translator: igorrrrr <igorzhugan66@gmail.com>\n"
 "Language-Team: Russian <https://hosted.weblate.org/projects/openatv/"
 "enigma2-7-0-po/ru/>\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 4.10-dev\n"
+"X-Generator: Weblate 4.10.1\n"
 "X-Poedit-SourceCharset: iso-8859-5\n"
 
 msgid ""
@@ -2409,7 +2409,7 @@ msgid "Add a record timer for current event"
 msgstr "Добавить таймер записи для данной передачи"
 
 msgid "Add a timer for the current event"
-msgstr ""
+msgstr "Добавить таймер для текущего события"
 
 msgid "Add a zap timer for current event"
 msgstr "Добавить таймер переключения для данной передачи"
@@ -4702,7 +4702,7 @@ msgid "Client Info ( Oscam-Version: %s )"
 msgstr "Клиент ( Версия Oscam : %s )"
 
 msgid "Client is streaming from this box!"
-msgstr ""
+msgstr "Клиент ведет потоковую передачу из этого ресивера!"
 
 msgid "ClientIP"
 msgstr "IP клиента"
@@ -4723,7 +4723,7 @@ msgid "Close PiP on exit"
 msgstr "Выход по кнопке 'EXIT' в PiP-окне"
 
 msgid "Close bouquet list"
-msgstr ""
+msgstr "Закрыть список букетов"
 
 msgid "Close bouquet list."
 msgstr "Закрыть список фаворитов."
@@ -4732,19 +4732,19 @@ msgid "Close dialog"
 msgstr "Закрыть окно"
 
 msgid "Close pop up menu"
-msgstr ""
+msgstr "Закрыть всплывающее меню"
 
 msgid "Close screen"
-msgstr ""
+msgstr "Закрыть экран"
 
 msgid "Close the context menu"
-msgstr ""
+msgstr "Закройте контекстное меню"
 
 msgid "Close the current screen"
-msgstr ""
+msgstr "Закройте текущий экран"
 
 msgid "Close the window"
-msgstr ""
+msgstr "Закрыть окно"
 
 msgid "Close title selection"
 msgstr "Закрыть выбор названия"
@@ -5801,7 +5801,7 @@ msgid "Cutlist editor..."
 msgstr "Видео редактор..."
 
 msgid "Cycle PIP(zap)"
-msgstr ""
+msgstr "Цикл PIP (zap)"
 
 msgid "Cycling"
 msgstr "Велоспорт"
@@ -6184,6 +6184,8 @@ msgstr "Сброс"
 msgid ""
 "Define additional delay in milliseconds before start of http(s) streams."
 msgstr ""
+"Определите дополнительную задержку в миллисекундах перед запуском потоков "
+"http (s)."
 
 msgid ""
 "Defines how fast the time jumps are repeated. Values lower than 500ms may be "
@@ -7100,25 +7102,25 @@ msgid "EPG"
 msgstr "ТВ-гид"
 
 msgid "EPG Actions"
-msgstr ""
+msgstr "Действия EPG"
 
 msgid "EPG Bouquet Actions"
-msgstr ""
+msgstr "Действия с букетами EPG"
 
 msgid "EPG Cache Check"
 msgstr "Проверить кэш ТВ-гида"
 
 msgid "EPG Channel/Service Selection"
-msgstr ""
+msgstr "EPG канала / Выбор канала"
 
 msgid "EPG Display Actions"
-msgstr ""
+msgstr "Действия отображения EPG"
 
 msgid "EPG Navigation Actions"
-msgstr ""
+msgstr "Действия навигации по EPG"
 
 msgid "EPG Other Actions"
-msgstr ""
+msgstr "Другие действия EPG"
 
 msgid "EPG Search"
 msgstr "Поиск по ТВ-гиду"
@@ -7594,7 +7596,7 @@ msgid "Enter multi-file selection mode"
 msgstr "Вход в режим выбора нескольких файлов"
 
 msgid "Enter number to jump to channel"
-msgstr "введите номер для перехода к каналу."
+msgstr "Введите номер для перехода к каналу"
 
 msgid "Enter persistent PIN code"
 msgstr "Сменить PIN-код"
@@ -7873,7 +7875,7 @@ msgid "Event View"
 msgstr "Просмотр событий"
 
 msgid "Event View Actions"
-msgstr ""
+msgstr "Действия при просмотре событий"
 
 msgid "Event View Context Menu"
 msgstr "Меню просмотра описания передачи"
@@ -7888,7 +7890,7 @@ msgid "Event view menu"
 msgstr "Меню просмотра описания передачи"
 
 msgid "EventViewEPG Actions"
-msgstr ""
+msgstr "Действия EPG с просмотром событий"
 
 msgid "Eventname only"
 msgstr "Только название передачи"
@@ -8388,7 +8390,7 @@ msgid "Find out more at %s"
 msgstr "Узнайте больше на сайте %s"
 
 msgid "Find similar events in the EPG"
-msgstr ""
+msgstr "Найти похожие события в EPG"
 
 msgid "Fine movement"
 msgstr "Тонкое перемещение"
@@ -9305,7 +9307,7 @@ msgid "How many minutes do you want to record?"
 msgstr "Сколько минут вы хотите записать?"
 
 msgid "Http(s) stream start delay"
-msgstr ""
+msgstr "Задержка начала потока http (с)"
 
 msgid "Hue"
 msgstr "Оттенки"
@@ -10274,13 +10276,13 @@ msgid "Jump to next marked position"
 msgstr "Перейти к следующей метке"
 
 msgid "Jump to next page or all up (setup in menu)"
-msgstr ""
+msgstr "Перейти на следующую страницу или все вверх (настройка в меню)"
 
 msgid "Jump to previous marked position"
 msgstr "Перейти к предыдущей метке"
 
 msgid "Jump to previous page or all down (setup in menu)"
-msgstr ""
+msgstr "Перейти на предыдущую страницу или полностью вниз (настройка в меню)"
 
 msgid "Jump to prime time"
 msgstr "Перейти к прайм-тайм"
@@ -11520,7 +11522,7 @@ msgid "Move the text cursor to the last character"
 msgstr "Переместите текстовый курсор к последнему символу"
 
 msgid "Move to first line"
-msgstr ""
+msgstr "Перейти к первой строке"
 
 msgid "Move to first line / screen"
 msgstr "Переход к первой строке/экрану"
@@ -11529,7 +11531,7 @@ msgid "Move to home of list"
 msgstr "Переместиться на домашнюю страницу"
 
 msgid "Move to last line"
-msgstr ""
+msgstr "Перейти к последней строке"
 
 msgid "Move to last line / screen"
 msgstr "Переход к последней строке/экрану"
@@ -11590,7 +11592,7 @@ msgid "Movie"
 msgstr "Перемещаем"
 
 msgid "Movie Event View Actions"
-msgstr ""
+msgstr "Действия при просмотре событий фильма"
 
 msgid "Movie List"
 msgstr "Список записей"
@@ -12518,7 +12520,7 @@ msgid "Ok"
 msgstr "ОК"
 
 msgid "OkCancel Actions"
-msgstr ""
+msgstr "ОК отменить действия"
 
 msgid ""
 "Older files in the timeshift directory are removed on every event change."
@@ -12625,7 +12627,7 @@ msgid "Open bouquetlist"
 msgstr "Открыть список фаворитов"
 
 msgid "Open context menu"
-msgstr ""
+msgstr "Открыть контекстное меню"
 
 msgid "Open favourites list"
 msgstr "Открыть список фаворитов"
@@ -12661,10 +12663,10 @@ msgid "Open the movie list"
 msgstr "Открыть список фильмов"
 
 msgid "Open the multi service EPG view"
-msgstr ""
+msgstr "Открыть мультисервисный просмотр EPG"
 
 msgid "Open the single service EPG view"
-msgstr ""
+msgstr "Открыть просмотр EPG для одного канала"
 
 msgid "Open with File Commander"
 msgstr "Открыть с помощью File Commander"
@@ -14383,7 +14385,7 @@ msgid "Record - same as record button"
 msgstr "Запись - так же, как кнопка \"Запись\""
 
 msgid "Record Actions"
-msgstr ""
+msgstr "Запись действий"
 
 msgid "Record next"
 msgstr "Записать следующее"
@@ -14928,7 +14930,7 @@ msgid "Retrieving image slots - Please wait..."
 msgstr "Идёт распаковка имиджей, пожалуйста подождите..."
 
 msgid "Return the current selection response"
-msgstr ""
+msgstr "Вернуть текущий ответ выбора"
 
 msgid "Return to movie list"
 msgstr "Вернуться к списку фильмов"
@@ -15034,7 +15036,7 @@ msgid "Run script with optional parameter in background"
 msgstr "Запуск скрипта с необязательным параметром в фоновом режиме"
 
 msgid "Run the selected menu option"
-msgstr ""
+msgstr "Запустить выбранный пункт меню"
 
 msgid "Rundi"
 msgstr "Рунди"
@@ -15802,7 +15804,7 @@ msgid "Select target folder"
 msgstr "Выбрать папку назначения"
 
 msgid "Select the No / False response"
-msgstr ""
+msgstr "Выберите Нет / Ложный ответ"
 
 msgid "Select the Swap File Size:"
 msgstr "Выбор размера для файла подкачки"
@@ -15860,7 +15862,7 @@ msgstr ""
 "запрошенного транспондера на тюнер."
 
 msgid "Select the Yes / True response"
-msgstr ""
+msgstr "Выберите Да / Верный ответ"
 
 msgid "Select the character or action under the keyboard cursor"
 msgstr "Выберите символ или действие под курсором клавиатуры"
@@ -17256,10 +17258,10 @@ msgid "Show network mounts ..."
 msgstr "Показать точки монтирования сети..."
 
 msgid "Show next event"
-msgstr ""
+msgstr "Показать следующее событие"
 
 msgid "Show next page"
-msgstr ""
+msgstr "Показать следующую страницу"
 
 msgid "Show next picture"
 msgstr "Показать следующее изображение"
@@ -17283,10 +17285,10 @@ msgid "Show preview of current mode (*)."
 msgstr "Показать предварительный просмотр текущего режима (*)."
 
 msgid "Show previous event"
-msgstr ""
+msgstr "Показать предыдущее мероприятие"
 
 msgid "Show previous page"
-msgstr ""
+msgstr "Показать предыдущую страницу"
 
 msgid "Show previous picture"
 msgstr "Показать предыдущее изображение"
@@ -17338,7 +17340,7 @@ msgid "Show single EPG for current channel"
 msgstr "Показать одиночный ТВ-гид для текущего канала"
 
 msgid "Show single EPG for current channel (setup in menu)"
-msgstr ""
+msgstr "Показать отдельный EPG для текущего канала (настройка в меню)"
 
 msgid "Show single service EPG"
 msgstr "Показать одиночный ТВ-гид канала"
@@ -18572,7 +18574,7 @@ msgstr "ТЕКСТ"
 
 #. TRANSLATORS: Add here whatever should be shown in the "translator" about screen, up to 6 lines (use \n for newline)
 msgid "TRANSLATOR_INFO"
-msgstr "Коррекция перевода Monja 02.12.2021"
+msgstr "Коррекция перевода Monja 30.12.2021"
 
 msgid "TS file is too large for ISO9660 level 1!"
 msgstr "TS файл слишком большой для ISO9660 уровень 1!"
@@ -22132,7 +22134,7 @@ msgid "Without popup"
 msgstr "Без всплывающего сообщения"
 
 msgid "Wizard Actions"
-msgstr ""
+msgstr "Действия мастера"
 
 msgid "Wolof"
 msgstr "Волоф"
@@ -23844,7 +23846,7 @@ msgid "none"
 msgstr "Нет"
 
 msgid "normal"
-msgstr ""
+msgstr "нормальный"
 
 msgid "not"
 msgstr "нет"
