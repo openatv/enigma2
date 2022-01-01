@@ -4,6 +4,8 @@
 
 [![Build status](https://travis-ci.org/openatv/enigma2.svg?branch=7.0)](https://travis-ci.org/openatv/enigma2) [![enigma2 build](https://github.com/openatv/enigma2/actions/workflows/enigma2.yml/badge.svg)](https://github.com/openatv/enigma2/actions/workflows/enigma2.yml)
 
+[Active Build Status](http://images.mynonpublic.com/openatv/build_status_mipsel_6.html "Active Build Status") - shows which box is currently being built 
+
 ## SonarCloud status
 [![Vulnerabilities](https://sonarcloud.io/api/project_badges/measure?project=openatv_enigma2&metric=vulnerabilities)](https://sonarcloud.io/summary/new_code?id=openatv_enigma2)
 [![Security Rating](https://sonarcloud.io/api/project_badges/measure?project=openatv_enigma2&metric=security_rating)](https://sonarcloud.io/summary/new_code?id=openatv_enigma2)
@@ -39,7 +41,7 @@
 * [MetrixHD](https://github.com/openatv/MetrixHD/tree/dev "openATV Skin") - Default openATV skin
 * ...
 
-# DOXYGEN Documentation
+## DOXYGEN Documentation
 
 * [openATV enigma2](http://doxy.mynonpublic.com/ "openATV enigma2") -  openATV core
 
