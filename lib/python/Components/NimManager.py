@@ -1336,6 +1336,28 @@ class NimManager:
 				list.append(x.slot)
 		return list
 
+	def getEnabledNimListOfType(self, type, exception=-1):
+		def enabled(n):
+			if n.slot != exception:
+				if type.startswith("DVB-S"):
+					nim = config.Nims[n.slot].dvbs
+				elif type.startswith("DVB-C"):
+					nim = config.Nims[n.slot].dvbc
+				elif type.startswith("DVB-T"):
+					nim = config.Nims[n.slot].dvbt
+				elif type.startswith("ATSC"):
+					nim = config.Nims[n.slot].atsc
+				else:
+					return False
+				if n.canBeCompatible(type) and nim and hasattr(nim, 'configMode') and nim.configMode.value != "nothing":
+					if type.startswith("DVB-S") and nim.configMode.value in ("loopthrough", "satposdepends"):
+						root_id = nimmanager.sec.getRoot(n.slot_id, int(nim.connectedTo.value))
+						if n.type == nimmanager.nim_slots[root_id].type:  # Check if connected from a DVB-S to DVB-S2 Nim or vice versa.
+							return False
+					return True
+			return False
+		return [x.slot for x in self.nim_slots if x.slot != exception and enabled(x)]
+
 	def __init__(self):
 		sec = secClass.getInstance()
 		global maxFixedLnbPositions
