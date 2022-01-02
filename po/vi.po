@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-12-26 20:08+0000\n"
+"POT-Creation-Date: 2022-01-02 10:50+0000\n"
 "PO-Revision-Date: 2019-07-27 12:19+0700\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -4168,6 +4168,12 @@ msgstr "Chọn kênh"
 msgid "Cancel the image selection and exit all menus"
 msgstr "Chọn kênh"
 
+msgid "Cancel the software update"
+msgstr ""
+
+msgid "Cancel the update"
+msgstr ""
+
 msgid "Cancelled upon user request"
 msgstr "Hủy theo yêu cầu của người dùng"
 
@@ -4775,13 +4781,7 @@ msgstr "Đóng danh sách gói kênh."
 msgid "Close dialog"
 msgstr "Đóng hộp thoại"
 
-msgid "Close pop up menu"
-msgstr ""
-
 msgid "Close screen"
-msgstr ""
-
-msgid "Close the context menu"
 msgstr ""
 
 msgid "Close the current screen"
@@ -5541,6 +5541,9 @@ msgstr "Tiếp tục phát lại"
 
 msgid "Continue playing"
 msgstr "Tiếp tục chơi"
+
+msgid "Continue with the on-line update"
+msgstr ""
 
 msgid "Continues"
 msgstr "Tiếp tục"
@@ -7068,6 +7071,9 @@ msgstr "Tải xuống và cài đặt Plugin"
 msgid "Download and install cam"
 msgstr "Tải xuống và cài đặt cam"
 
+msgid "Download error"
+msgstr ""
+
 msgid "Download plugins"
 msgstr "Tải xuống plugin"
 
@@ -7082,6 +7088,9 @@ msgstr "Đang tải xuống"
 
 msgid "Downloading Image"
 msgstr "Đang tải hình ảnh"
+
+msgid "Downloading latest update list.  Please wait..."
+msgstr ""
 
 msgid "Downloading plugin information. Please wait..."
 msgstr "Tải về thông tin plugin. Xin vui lòng chờ ..."
@@ -8332,6 +8341,15 @@ msgstr "Yêu thích dài"
 
 msgid "Favourites"
 msgstr "Yêu thích"
+
+msgid "Feed disabled!"
+msgstr ""
+
+msgid "Feed stable."
+msgstr ""
+
+msgid "Feed unstable!"
+msgstr ""
 
 msgid "Feeds status:   Stable"
 msgstr "Trạng thái nguồn cấp dữ liệu:  Ổn định"
@@ -10523,11 +10541,17 @@ msgstr ""
 msgid "Kneipensport"
 msgstr ""
 
+msgid "Kodi"
+msgstr ""
+
 msgid "Kodi MediaCenter"
 msgstr "Trung tâm truyền thông Kodi"
 
 msgid "Kodi installed:"
 msgstr "Kodi đã cài đặt:"
+
+msgid "Kodi long"
+msgstr ""
 
 msgid "Kodi media player"
 msgstr "Máy nghe nhạc Kodi"
@@ -12728,9 +12752,6 @@ msgstr ""
 msgid "Ok"
 msgstr "Đồng ý"
 
-msgid "OkCancel Actions"
-msgstr ""
-
 msgid ""
 "Older files in the timeshift directory are removed on every event change."
 msgstr ""
@@ -13293,6 +13314,9 @@ msgid ""
 msgstr ""
 "Thực hiện sao lưu cài đặt, thực hiện sao lưu trước khi cập nhật được khuyến "
 "khích."
+
+msgid "Perform an on-line flash instead"
+msgstr ""
 
 msgid "Perform an online update check in the background"
 msgstr "Thực hiện kiểm tra cập nhật trực tuyến trong nền"
@@ -14192,6 +14216,9 @@ msgstr "Sự ưu tiên"
 
 msgid "Probable causes could be"
 msgstr "Nguyên nhân có thể là"
+
+msgid "Proceed with the update"
+msgstr ""
 
 msgid "Process"
 msgstr "Quá trình"
@@ -15286,9 +15313,6 @@ msgstr "Chạy script với tham số tùy chọn"
 
 msgid "Run script with optional parameter in background"
 msgstr "Chạy script với tham số tùy chọn trong nền"
-
-msgid "Run the selected menu option"
-msgstr ""
 
 #, fuzzy
 msgid "Rundi"
@@ -18062,6 +18086,9 @@ msgstr "Bảng phần mềm"
 msgid "Software Update"
 msgstr "Cập nhật phần mềm"
 
+msgid "Software Update Actions"
+msgstr ""
+
 msgid "Software management"
 msgstr "Quản lý phần mềm"
 
@@ -18401,6 +18428,9 @@ msgstr "Trạng thái hiển thị ở chế độ chờ sâu"
 
 msgid "Status of the display in standby mode"
 msgstr "Trạng thái hiển thị ở chế độ chờ"
+
+msgid "Status unavailable!"
+msgstr ""
 
 msgid "Status:"
 msgstr "Bắt đầu:"
@@ -19464,23 +19494,9 @@ msgstr "Không có cập nhật có sẵn."
 
 #, python-format
 msgid ""
-"There are to many update packages !!\n"
-"\n"
-"There is a risk that your %s %s will not\n"
-"boot after online-update, or will show disfunction in running Image.\n"
-"\n"
-"You need to flash new !!\n"
-"\n"
-"Do you want to flash-online ?"
+"There is a risk that your %s %s will not boot or may malfunction after such "
+"a large on-line update."
 msgstr ""
-"Có nhiều gói cập nhật !!\n"
-"\n"
-"Có một rủi ro là % s% s của bạn sẽ không\n"
-"khởi động sau khi cập nhật trực tuyến hoặc sẽ hiển thị lỗi khi chạy Image.\n"
-"\n"
-"Bạn cần flash mới !!\n"
-"\n"
-"Bạn có muốn flash-online?"
 
 msgid "There is no signal to lock on !"
 msgstr "Không có tín hiệu để khóa!"
@@ -19499,6 +19515,9 @@ msgstr "Có lỗi khi tải xuống updatelist. Vui lòng thử lại."
 #, fuzzy
 msgid "There was an error downloading the region list"
 msgstr "Có lỗi khi tải xuống updatelist. Vui lòng thử lại."
+
+msgid "There was an error downloading the update list.  Please try again."
+msgstr ""
 
 msgid "There was an error downloading the updatelist. Please try again."
 msgstr "Có lỗi khi tải xuống updatelist. Vui lòng thử lại."
@@ -21832,6 +21851,10 @@ msgstr "Cảnh báo"
 msgid "Warning"
 msgstr "Cảnh báo"
 
+#, python-format
+msgid "Warning: There are %d update packages!"
+msgstr ""
+
 msgid ""
 "Warning: This is the last crash before an automatic restart is performed.\n"
 msgstr ""
@@ -21997,6 +22020,9 @@ msgstr "Bạn muốn chơi gì\n"
 
 msgid "What do you want to scan?"
 msgstr "Bạn muốn loại dịch vụ quét nào?"
+
+msgid "What would you like to do?"
+msgstr ""
 
 msgid ""
 "When enabled enigma2 will load unlinked userbouquets. This means that "
@@ -22445,9 +22471,6 @@ msgstr ""
 msgid "Without popup"
 msgstr "Không có cửa sổ bật lên"
 
-msgid "Wizard Actions"
-msgstr ""
-
 msgid "Wolof"
 msgstr ""
 
@@ -22759,6 +22782,15 @@ msgstr "Bạn dường như đang ở trong timeshift, Bạn có muốn rời kh
 msgid ""
 "You seem to be in timeshift, the service will briefly stop as timeshift "
 "stops."
+msgstr ""
+
+msgid "You should flash a new image!"
+msgstr ""
+
+msgid "YouTube"
+msgstr ""
+
+msgid "YouTube long"
 msgstr ""
 
 msgid "Your %s %s does not have an internet connection"
@@ -23730,9 +23762,6 @@ msgstr "thời trang"
 msgid "fast"
 msgstr "nhanh"
 
-msgid "feed status"
-msgstr "tình trạng"
-
 msgid "file can not displayed - file not found"
 msgstr "tập tin không thể hiển thị - không tìm thấy tập tin"
 
@@ -24156,9 +24185,6 @@ msgstr "trang tiếp theo của sự kiện"
 
 msgid "next higher Resolution"
 msgstr "nghị quyết cao hơn tiếp theo"
-
-msgid "no"
-msgstr "không"
 
 msgid "no CAId selected"
 msgstr "không chọn CAId"
@@ -24960,9 +24986,6 @@ msgstr "đang làm việc"
 msgid "yellow"
 msgstr "màu vàng"
 
-msgid "yes"
-msgstr "có"
-
 msgid "yes (keep feeds)"
 msgstr "có (giữ thức ăn)"
 
@@ -24982,6 +25005,36 @@ msgstr "hạ gục"
 
 msgid "®"
 msgstr ""
+
+#, python-format
+#~ msgid ""
+#~ "There are to many update packages !!\n"
+#~ "\n"
+#~ "There is a risk that your %s %s will not\n"
+#~ "boot after online-update, or will show disfunction in running Image.\n"
+#~ "\n"
+#~ "You need to flash new !!\n"
+#~ "\n"
+#~ "Do you want to flash-online ?"
+#~ msgstr ""
+#~ "Có nhiều gói cập nhật !!\n"
+#~ "\n"
+#~ "Có một rủi ro là % s% s của bạn sẽ không\n"
+#~ "khởi động sau khi cập nhật trực tuyến hoặc sẽ hiển thị lỗi khi chạy "
+#~ "Image.\n"
+#~ "\n"
+#~ "Bạn cần flash mới !!\n"
+#~ "\n"
+#~ "Bạn có muốn flash-online?"
+
+#~ msgid "feed status"
+#~ msgstr "tình trạng"
+
+#~ msgid "no"
+#~ msgstr "không"
+
+#~ msgid "yes"
+#~ msgstr "có"
 
 #~ msgid "%Y-%m-%d %H-%M"
 #~ msgstr "%Y-%m-%d %H-%M"

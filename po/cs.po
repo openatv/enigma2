@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-12-26 20:08+0000\n"
+"POT-Creation-Date: 2022-01-02 10:50+0000\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Jjezevec <jjezevecc@seznam.cz>\n"
 "Language-Team: \n"
@@ -4336,6 +4336,12 @@ msgstr "Výběr kanálú"
 msgid "Cancel the image selection and exit all menus"
 msgstr "Výběr kanálú"
 
+msgid "Cancel the software update"
+msgstr ""
+
+msgid "Cancel the update"
+msgstr ""
+
 msgid "Cancelled upon user request"
 msgstr ""
 
@@ -4936,13 +4942,7 @@ msgstr "Zavřít přehled."
 msgid "Close dialog"
 msgstr "Zavřít dialog"
 
-msgid "Close pop up menu"
-msgstr ""
-
 msgid "Close screen"
-msgstr ""
-
-msgid "Close the context menu"
 msgstr ""
 
 msgid "Close the current screen"
@@ -5679,6 +5679,9 @@ msgstr "Pokračovat v přehrávání"
 
 msgid "Continue playing"
 msgstr "Pokračovat v přehrávání"
+
+msgid "Continue with the on-line update"
+msgstr ""
 
 msgid "Continues"
 msgstr "Pokračovat"
@@ -7233,6 +7236,9 @@ msgstr "Stáhnout a instalovat pluginy"
 msgid "Download and install cam"
 msgstr "Stáhnout a instalovat CAMy"
 
+msgid "Download error"
+msgstr ""
+
 msgid "Download plugins"
 msgstr "Stáhnout pluginy"
 
@@ -7249,6 +7255,9 @@ msgstr "Stahuji"
 #, fuzzy
 msgid "Downloading Image"
 msgstr "Stahuji"
+
+msgid "Downloading latest update list.  Please wait..."
+msgstr ""
 
 msgid "Downloading plugin information. Please wait..."
 msgstr "Stahuji informace o pluginech. Prosím, čekejte..."
@@ -8501,6 +8510,15 @@ msgstr "Oblíbené - dlouhý stisk"
 
 msgid "Favourites"
 msgstr "Oblíbené"
+
+msgid "Feed disabled!"
+msgstr ""
+
+msgid "Feed stable."
+msgstr ""
+
+msgid "Feed unstable!"
+msgstr ""
 
 #, fuzzy
 msgid "Feeds status:   Stable"
@@ -10726,6 +10744,9 @@ msgstr "Klasický"
 msgid "Kneipensport"
 msgstr ""
 
+msgid "Kodi"
+msgstr ""
+
 #, fuzzy
 msgid "Kodi MediaCenter"
 msgstr "Mediální přehrávač"
@@ -10733,6 +10754,9 @@ msgstr "Mediální přehrávač"
 #, fuzzy
 msgid "Kodi installed:"
 msgstr "Již instalováno"
+
+msgid "Kodi long"
+msgstr ""
 
 #, fuzzy
 msgid "Kodi media player"
@@ -12996,9 +13020,6 @@ msgstr ""
 msgid "Ok"
 msgstr "Ok"
 
-msgid "OkCancel Actions"
-msgstr ""
-
 msgid ""
 "Older files in the timeshift directory are removed on every event change."
 msgstr ""
@@ -13594,6 +13615,9 @@ msgid ""
 "Perform a settings backup, making a backup before updating is strongly "
 "advised."
 msgstr "Je výrazně doporučeno provést zálohu nastavení před aktualizací."
+
+msgid "Perform an on-line flash instead"
+msgstr ""
 
 msgid "Perform an online update check in the background"
 msgstr "Provést on-line kontrolu aktualizací na pozadí"
@@ -14484,6 +14508,9 @@ msgstr "Priorita"
 
 msgid "Probable causes could be"
 msgstr "Pravděpodobný problém je"
+
+msgid "Proceed with the update"
+msgstr ""
 
 msgid "Process"
 msgstr "Provést"
@@ -15618,9 +15645,6 @@ msgid "Run script with optional parameter"
 msgstr ""
 
 msgid "Run script with optional parameter in background"
-msgstr ""
-
-msgid "Run the selected menu option"
 msgstr ""
 
 msgid "Rundi"
@@ -18380,6 +18404,9 @@ msgstr "Panel aktualizací"
 msgid "Software Update"
 msgstr "Aktualizace software"
 
+msgid "Software Update Actions"
+msgstr ""
+
 msgid "Software management"
 msgstr "Správa software"
 
@@ -18732,6 +18759,9 @@ msgid "Status of the display in deep standby"
 msgstr ""
 
 msgid "Status of the display in standby mode"
+msgstr ""
+
+msgid "Status unavailable!"
 msgstr ""
 
 msgid "Status:"
@@ -19806,29 +19836,11 @@ msgstr ""
 msgid "There are no updates available."
 msgstr "Nejsou žádné dostupné aktualizace."
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
-"There are to many update packages !!\n"
-"\n"
-"There is a risk that your %s %s will not\n"
-"boot after online-update, or will show disfunction in running Image.\n"
-"\n"
-"You need to flash new !!\n"
-"\n"
-"Do you want to flash-online ?"
+"There is a risk that your %s %s will not boot or may malfunction after such "
+"a large on-line update."
 msgstr ""
-"Image vašeho přijímače je zastaralá!\n"
-"\n"
-"Po tak dlouhé době je tu velké riziko že přijímač %s %s nebude schopen "
-"nabootovat.\n"
-"Případně se projeví jiný problém s online aktualizací.\n"
-"\n"
-"Použitím nové Image by se zvýšila stabilita.\n"
-"\n"
-"Online aktualizaci provádíte na vlastní nebezpečí !!\n"
-"\n"
-"\n"
-"Opravdu chcete provést aktualizaci?"
 
 msgid "There is no signal to lock on !"
 msgstr "Není signál pro uzamčení!"
@@ -19848,6 +19860,9 @@ msgstr "Chyba při stahování seznamu balíčků. Prosím, zkuste to znovu."
 #, fuzzy
 msgid "There was an error downloading the region list"
 msgstr "Chyba při stahování seznamu balíčků. Prosím, zkuste to znovu."
+
+msgid "There was an error downloading the update list.  Please try again."
+msgstr ""
 
 #, fuzzy
 msgid "There was an error downloading the updatelist. Please try again."
@@ -22226,6 +22241,10 @@ msgstr "zahradnictví"
 msgid "Warning"
 msgstr "zahradnictví"
 
+#, python-format
+msgid "Warning: There are %d update packages!"
+msgstr ""
+
 msgid ""
 "Warning: This is the last crash before an automatic restart is performed.\n"
 msgstr ""
@@ -22390,6 +22409,9 @@ msgstr "Co chcete prohledat?"
 
 msgid "What do you want to scan?"
 msgstr "Co chcete prohledat?"
+
+msgid "What would you like to do?"
+msgstr ""
 
 msgid ""
 "When enabled enigma2 will load unlinked userbouquets. This means that "
@@ -22837,9 +22859,6 @@ msgstr ""
 msgid "Without popup"
 msgstr "Bez dialogu"
 
-msgid "Wizard Actions"
-msgstr ""
-
 msgid "Wolof"
 msgstr ""
 
@@ -23157,6 +23176,15 @@ msgstr "Zdá se, že je to timeshift. Chcete ho ukončit ?"
 msgid ""
 "You seem to be in timeshift, the service will briefly stop as timeshift "
 "stops."
+msgstr ""
+
+msgid "You should flash a new image!"
+msgstr ""
+
+msgid "YouTube"
+msgstr ""
+
+msgid "YouTube long"
 msgstr ""
 
 #, fuzzy
@@ -24149,9 +24177,6 @@ msgstr "móda"
 msgid "fast"
 msgstr "Rychle"
 
-msgid "feed status"
-msgstr "Dostupnost aktualizací"
-
 #, fuzzy
 msgid "file can not displayed - file not found"
 msgstr "Soubor oscam.conf nenalezen"
@@ -24591,9 +24616,6 @@ msgstr "Na další kanál"
 #, fuzzy
 msgid "next higher Resolution"
 msgstr "Rozlišení"
-
-msgid "no"
-msgstr "Ne"
 
 msgid "no CAId selected"
 msgstr "Žádný CAId není vybrán"
@@ -25429,9 +25451,6 @@ msgstr "Pracuji"
 msgid "yellow"
 msgstr "Žluté"
 
-msgid "yes"
-msgstr "Ano"
-
 msgid "yes (keep feeds)"
 msgstr "Ano (uchovat zdroje)"
 
@@ -25452,6 +25471,39 @@ msgstr "Přepnutý"
 
 msgid "®"
 msgstr ""
+
+#, fuzzy, python-format
+#~ msgid ""
+#~ "There are to many update packages !!\n"
+#~ "\n"
+#~ "There is a risk that your %s %s will not\n"
+#~ "boot after online-update, or will show disfunction in running Image.\n"
+#~ "\n"
+#~ "You need to flash new !!\n"
+#~ "\n"
+#~ "Do you want to flash-online ?"
+#~ msgstr ""
+#~ "Image vašeho přijímače je zastaralá!\n"
+#~ "\n"
+#~ "Po tak dlouhé době je tu velké riziko že přijímač %s %s nebude schopen "
+#~ "nabootovat.\n"
+#~ "Případně se projeví jiný problém s online aktualizací.\n"
+#~ "\n"
+#~ "Použitím nové Image by se zvýšila stabilita.\n"
+#~ "\n"
+#~ "Online aktualizaci provádíte na vlastní nebezpečí !!\n"
+#~ "\n"
+#~ "\n"
+#~ "Opravdu chcete provést aktualizaci?"
+
+#~ msgid "feed status"
+#~ msgstr "Dostupnost aktualizací"
+
+#~ msgid "no"
+#~ msgstr "Ne"
+
+#~ msgid "yes"
+#~ msgstr "Ano"
 
 #, fuzzy
 #~ msgid "16_10_letterbox"

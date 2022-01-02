@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Italian translation\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-12-26 20:08+0000\n"
+"POT-Creation-Date: 2022-01-02 10:50+0000\n"
 "PO-Revision-Date: 2019-09-01 14:09+0100\n"
 "Last-Translator: Massimo Bambi - Insanity\n"
 "Language-Team: Massimo Bambi <maxbambi@libero.it>\n"
@@ -4178,6 +4178,12 @@ msgstr "Lista canali"
 msgid "Cancel the image selection and exit all menus"
 msgstr "Lista canali"
 
+msgid "Cancel the software update"
+msgstr ""
+
+msgid "Cancel the update"
+msgstr ""
+
 msgid "Cancelled upon user request"
 msgstr "Annullato dopo la richiesta all'utente"
 
@@ -4781,13 +4787,7 @@ msgstr "Chiudere elenco bouquet."
 msgid "Close dialog"
 msgstr "Chiudi finestra"
 
-msgid "Close pop up menu"
-msgstr ""
-
 msgid "Close screen"
-msgstr ""
-
-msgid "Close the context menu"
 msgstr ""
 
 msgid "Close the current screen"
@@ -5561,6 +5561,9 @@ msgstr "Continuare la riproduzione"
 
 msgid "Continue playing"
 msgstr "Continuare la riproduzione"
+
+msgid "Continue with the on-line update"
+msgstr ""
 
 msgid "Continues"
 msgstr "Continua..."
@@ -7088,6 +7091,9 @@ msgstr "Scarica ed installa i plugin"
 msgid "Download and install cam"
 msgstr "Scarica ed installa la cam"
 
+msgid "Download error"
+msgstr ""
+
 msgid "Download plugins"
 msgstr "Scarica plugin"
 
@@ -7102,6 +7108,9 @@ msgstr "Download in corso..."
 
 msgid "Downloading Image"
 msgstr "Download dell'immagine"
+
+msgid "Downloading latest update list.  Please wait..."
+msgstr ""
 
 msgid "Downloading plugin information. Please wait..."
 msgstr "Ricerca informazioni sul plugin in corso. Attendere..."
@@ -8352,6 +8361,15 @@ msgstr "Preferiti lungo"
 
 msgid "Favourites"
 msgstr "Preferiti"
+
+msgid "Feed disabled!"
+msgstr ""
+
+msgid "Feed stable."
+msgstr ""
+
+msgid "Feed unstable!"
+msgstr ""
 
 msgid "Feeds status:   Stable"
 msgstr "Stato Feeds:   STABILE"
@@ -10547,11 +10565,17 @@ msgstr ""
 msgid "Kneipensport"
 msgstr ""
 
+msgid "Kodi"
+msgstr ""
+
 msgid "Kodi MediaCenter"
 msgstr "Media Center Kodi"
 
 msgid "Kodi installed:"
 msgstr "Kodi installato:"
+
+msgid "Kodi long"
+msgstr ""
 
 msgid "Kodi media player"
 msgstr "Kodi media player"
@@ -12751,9 +12775,6 @@ msgstr ""
 msgid "Ok"
 msgstr "Ok"
 
-msgid "OkCancel Actions"
-msgstr ""
-
 msgid ""
 "Older files in the timeshift directory are removed on every event change."
 msgstr ""
@@ -13319,6 +13340,9 @@ msgid ""
 msgstr ""
 "È fortemente consigliato eseguire un backup delle configurazioni prima di "
 "aggiornare."
+
+msgid "Perform an on-line flash instead"
+msgstr ""
 
 msgid "Perform an online update check in the background"
 msgstr "Eseguire un controllo aggiornamenti online in background"
@@ -14204,6 +14228,9 @@ msgstr "Priorità"
 
 msgid "Probable causes could be"
 msgstr "Le probabili cause potrebbero essere..."
+
+msgid "Proceed with the update"
+msgstr ""
 
 msgid "Process"
 msgstr "Processo"
@@ -15301,9 +15328,6 @@ msgstr "Esegui script con parametri opzionali"
 
 msgid "Run script with optional parameter in background"
 msgstr "Esegui script con parametri opzionali in background"
-
-msgid "Run the selected menu option"
-msgstr ""
 
 #, fuzzy
 msgid "Rundi"
@@ -18105,6 +18129,9 @@ msgstr "Pannello del software"
 msgid "Software Update"
 msgstr "Aggiornamento Software"
 
+msgid "Software Update Actions"
+msgstr ""
+
 msgid "Software management"
 msgstr "Gestione software"
 
@@ -18443,6 +18470,9 @@ msgstr "Stato del display in 'spegnimento'"
 
 msgid "Status of the display in standby mode"
 msgstr "Stato del display in 'standby'"
+
+msgid "Status unavailable!"
+msgstr ""
 
 msgid "Status:"
 msgstr "Stato:"
@@ -19511,23 +19541,9 @@ msgstr "Nessun aggiornamento disponibile."
 
 #, python-format
 msgid ""
-"There are to many update packages !!\n"
-"\n"
-"There is a risk that your %s %s will not\n"
-"boot after online-update, or will show disfunction in running Image.\n"
-"\n"
-"You need to flash new !!\n"
-"\n"
-"Do you want to flash-online ?"
+"There is a risk that your %s %s will not boot or may malfunction after such "
+"a large on-line update."
 msgstr ""
-"Disponibili molti aggiornamenti !! \n"
-"\n"
-"ATTENZIONE! Il tuo %s %s potrebbe\n"
-"non avviarsi correttamente o manifestare problemi dopo l’aggiornamento.\n"
-"\n"
-"In tal caso, sarà necessario rifare l'installazione del firmware da zero!\n"
-"\n"
-"Vuoi proseguire con il flash online? "
 
 msgid "There is no signal to lock on !"
 msgstr "Non vi è alcun segnale da agganciare!"
@@ -19546,6 +19562,9 @@ msgstr "Errore durante il download degli aggiornamenti. Riprova nuovamente."
 #, fuzzy
 msgid "There was an error downloading the region list"
 msgstr "Errore durante il download degli aggiornamenti. Riprova nuovamente."
+
+msgid "There was an error downloading the update list.  Please try again."
+msgstr ""
 
 msgid "There was an error downloading the updatelist. Please try again."
 msgstr "Errore durante il download degli aggiornamenti. Riprova nuovamente."
@@ -21902,6 +21921,10 @@ msgstr "Attenzione"
 msgid "Warning"
 msgstr "Attenzione"
 
+#, python-format
+msgid "Warning: There are %d update packages!"
+msgstr ""
+
 msgid ""
 "Warning: This is the last crash before an automatic restart is performed.\n"
 msgstr ""
@@ -22068,6 +22091,9 @@ msgstr "Cosa vuoi riprodurre?\n"
 
 msgid "What do you want to scan?"
 msgstr "Cosa desideri cercare?"
+
+msgid "What would you like to do?"
+msgstr ""
 
 msgid ""
 "When enabled enigma2 will load unlinked userbouquets. This means that "
@@ -22530,9 +22556,6 @@ msgstr ""
 msgid "Without popup"
 msgstr "Senza popup"
 
-msgid "Wizard Actions"
-msgstr ""
-
 msgid "Wolof"
 msgstr ""
 
@@ -22846,6 +22869,15 @@ msgstr "Il timeshift sembra essere attivo: interromperlo?"
 msgid ""
 "You seem to be in timeshift, the service will briefly stop as timeshift "
 "stops."
+msgstr ""
+
+msgid "You should flash a new image!"
+msgstr ""
+
+msgid "YouTube"
+msgstr ""
+
+msgid "YouTube long"
 msgstr ""
 
 msgid "Your %s %s does not have an internet connection"
@@ -23818,9 +23850,6 @@ msgstr "moda"
 msgid "fast"
 msgstr "veloce"
 
-msgid "feed status"
-msgstr "stato feed"
-
 msgid "file can not displayed - file not found"
 msgstr "Il file non può essere mostrato - file non trovato"
 
@@ -24243,9 +24272,6 @@ msgstr "vai alla prossima pagina degli eventi"
 
 msgid "next higher Resolution"
 msgstr "successiva risoluzione più alta"
-
-msgid "no"
-msgstr "No"
 
 msgid "no CAId selected"
 msgstr "nessun CAId selezionato!"
@@ -25052,9 +25078,6 @@ msgstr "attivo"
 msgid "yellow"
 msgstr "giallo"
 
-msgid "yes"
-msgstr "sì"
-
 msgid "yes (keep feeds)"
 msgstr "sì (mantenere feed)"
 
@@ -25074,6 +25097,36 @@ msgstr "zapping"
 
 msgid "®"
 msgstr ""
+
+#, python-format
+#~ msgid ""
+#~ "There are to many update packages !!\n"
+#~ "\n"
+#~ "There is a risk that your %s %s will not\n"
+#~ "boot after online-update, or will show disfunction in running Image.\n"
+#~ "\n"
+#~ "You need to flash new !!\n"
+#~ "\n"
+#~ "Do you want to flash-online ?"
+#~ msgstr ""
+#~ "Disponibili molti aggiornamenti !! \n"
+#~ "\n"
+#~ "ATTENZIONE! Il tuo %s %s potrebbe\n"
+#~ "non avviarsi correttamente o manifestare problemi dopo l’aggiornamento.\n"
+#~ "\n"
+#~ "In tal caso, sarà necessario rifare l'installazione del firmware da "
+#~ "zero!\n"
+#~ "\n"
+#~ "Vuoi proseguire con il flash online? "
+
+#~ msgid "feed status"
+#~ msgstr "stato feed"
+
+#~ msgid "no"
+#~ msgstr "No"
+
+#~ msgid "yes"
+#~ msgstr "sì"
 
 #~ msgid "%Y-%m-%d %H-%M"
 #~ msgstr "%Y-%m-%d %H-%M"

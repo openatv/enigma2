@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV-Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-12-26 20:08+0000\n"
+"POT-Creation-Date: 2022-01-02 10:50+0000\n"
 "PO-Revision-Date: 2021-08-21 11:46+0000\n"
 "Last-Translator: openATV <openatv@gmail.com>\n"
 "Language-Team: Estonian <https://hosted.weblate.org/projects/openatv/"
@@ -4159,6 +4159,12 @@ msgstr "Kanalivalik"
 msgid "Cancel the image selection and exit all menus"
 msgstr "Kanalivalik"
 
+msgid "Cancel the software update"
+msgstr ""
+
+msgid "Cancel the update"
+msgstr ""
+
 msgid "Cancelled upon user request"
 msgstr "Tühistatud kasutaja nõudmisel"
 
@@ -4750,13 +4756,7 @@ msgstr "Sulge lemmiknimekirjad."
 msgid "Close dialog"
 msgstr "Sulge aken"
 
-msgid "Close pop up menu"
-msgstr ""
-
 msgid "Close screen"
-msgstr ""
-
-msgid "Close the context menu"
 msgstr ""
 
 msgid "Close the current screen"
@@ -5491,6 +5491,9 @@ msgstr "Jätka taasesitust"
 
 msgid "Continue playing"
 msgstr "Jätka taasesitust"
+
+msgid "Continue with the on-line update"
+msgstr ""
 
 msgid "Continues"
 msgstr "Jätkub"
@@ -7026,6 +7029,9 @@ msgstr "Tõmba ja paigalda pluginaid"
 msgid "Download and install cam"
 msgstr "Laadi alla ja paigalda EMU"
 
+msgid "Download error"
+msgstr ""
+
 msgid "Download plugins"
 msgstr "Paigalda pluginaid"
 
@@ -7042,6 +7048,9 @@ msgstr "Allalaadimisel"
 
 msgid "Downloading Image"
 msgstr "Püsivara allalaadimine"
+
+msgid "Downloading latest update list.  Please wait..."
+msgstr ""
 
 msgid "Downloading plugin information. Please wait..."
 msgstr "Andmete laadimine. Oota veidi."
@@ -8301,6 +8310,15 @@ msgstr "Favorites - pikk"
 
 msgid "Favourites"
 msgstr "Lemmikud"
+
+msgid "Feed disabled!"
+msgstr ""
+
+msgid "Feed stable."
+msgstr ""
+
+msgid "Feed unstable!"
+msgstr ""
 
 msgid "Feeds status:   Stable"
 msgstr "Hoidlate olek:   Stabiilne"
@@ -10482,11 +10500,17 @@ msgstr ""
 msgid "Kneipensport"
 msgstr ""
 
+msgid "Kodi"
+msgstr ""
+
 msgid "Kodi MediaCenter"
 msgstr "Kodi meediakeskus"
 
 msgid "Kodi installed:"
 msgstr "Kodi paigaldatud:"
+
+msgid "Kodi long"
+msgstr ""
 
 msgid "Kodi media player"
 msgstr "Kodi meediamängija"
@@ -12724,9 +12748,6 @@ msgstr ""
 msgid "Ok"
 msgstr "Ok"
 
-msgid "OkCancel Actions"
-msgstr ""
-
 msgid ""
 "Older files in the timeshift directory are removed on every event change."
 msgstr ""
@@ -13306,6 +13327,9 @@ msgid ""
 "Perform a settings backup, making a backup before updating is strongly "
 "advised."
 msgstr "Loo seadistustest varukoopia. Enne uuendamist on see väga soovitatav."
+
+msgid "Perform an on-line flash instead"
+msgstr ""
 
 msgid "Perform an online update check in the background"
 msgstr "Otsi taustal uuendusi"
@@ -14204,6 +14228,9 @@ msgstr "Prioriteet"
 
 msgid "Probable causes could be"
 msgstr "Tõenäoliselt on põhjuseks"
+
+msgid "Proceed with the update"
+msgstr ""
 
 msgid "Process"
 msgstr "Toiming"
@@ -15313,9 +15340,6 @@ msgstr "Käivita skript valikulise parameetriga"
 
 msgid "Run script with optional parameter in background"
 msgstr "Käivita taustal valikulise parameetriga skript"
-
-msgid "Run the selected menu option"
-msgstr ""
 
 #, fuzzy
 msgid "Rundi"
@@ -18095,6 +18119,9 @@ msgstr "Tarkvara paneel"
 msgid "Software Update"
 msgstr "Tarkvara uuendamine"
 
+msgid "Software Update Actions"
+msgstr ""
+
 msgid "Software management"
 msgstr "Tarkvara haldamine"
 
@@ -18438,6 +18465,9 @@ msgid "Status of the display in deep standby"
 msgstr ""
 
 msgid "Status of the display in standby mode"
+msgstr ""
+
+msgid "Status unavailable!"
 msgstr ""
 
 msgid "Status:"
@@ -19508,28 +19538,11 @@ msgstr ""
 msgid "There are no updates available."
 msgstr "Uuendusi ei ole saadaval."
 
-# SoftwarePanel.py
 #, python-format
 msgid ""
-"There are to many update packages !!\n"
-"\n"
-"There is a risk that your %s %s will not\n"
-"boot after online-update, or will show disfunction in running Image.\n"
-"\n"
-"You need to flash new !!\n"
-"\n"
-"Do you want to flash-online ?"
+"There is a risk that your %s %s will not boot or may malfunction after such "
+"a large on-line update."
 msgstr ""
-"Liiga palju uuendatavaid pakette!\n"
-"\n"
-"On suur oht, et %s %s pärast tarkvarauuendust enam ei käivitu\n"
-"või tema töös esineb tõrkeid.\n"
-"\n"
-"Püsivara tuleb uuesti paigaldada!\n"
-"\n"
-"Kas paigaldada uus püsivara?\n"
-"\n"
-"Kas paigaldada püsivara veebist?"
 
 msgid "There is no signal to lock on !"
 msgstr "Lukustamiseks puudub signaal!"
@@ -19550,6 +19563,9 @@ msgstr "Tarkvaraloendi hankimisel tekkis viga. Proovi uuesti."
 #, fuzzy
 msgid "There was an error downloading the region list"
 msgstr "Tarkvaraloendi hankimisel tekkis viga. Proovi uuesti."
+
+msgid "There was an error downloading the update list.  Please try again."
+msgstr ""
 
 # SoftwareManager
 msgid "There was an error downloading the updatelist. Please try again."
@@ -21880,6 +21896,10 @@ msgstr "Hoiatus"
 msgid "Warning"
 msgstr "Hoiatus"
 
+#, python-format
+msgid "Warning: There are %d update packages!"
+msgstr ""
+
 msgid ""
 "Warning: This is the last crash before an automatic restart is performed.\n"
 msgstr "Hoiatus: See on viimane krahh enne automaatset taaskäivitust.\n"
@@ -22043,6 +22063,9 @@ msgstr "Mida soovid esitada?\n"
 
 msgid "What do you want to scan?"
 msgstr "Mida soovid otsida?"
+
+msgid "What would you like to do?"
+msgstr ""
 
 # Customize neu 5.1
 msgid ""
@@ -22467,9 +22490,6 @@ msgstr ""
 msgid "Without popup"
 msgstr "Hüpikaknata"
 
-msgid "Wizard Actions"
-msgstr ""
-
 msgid "Wolof"
 msgstr ""
 
@@ -22780,6 +22800,15 @@ msgstr "Ajanihe on kasutusel. Kas see tuleks peatada?"
 msgid ""
 "You seem to be in timeshift, the service will briefly stop as timeshift "
 "stops."
+msgstr ""
+
+msgid "You should flash a new image!"
+msgstr ""
+
+msgid "YouTube"
+msgstr ""
+
+msgid "YouTube long"
 msgstr ""
 
 msgid "Your %s %s does not have an internet connection"
@@ -23760,10 +23789,6 @@ msgstr "mood"
 msgid "fast"
 msgstr "Kiire"
 
-# SoftwareManager
-msgid "feed status"
-msgstr "Hoidla olek"
-
 msgid "file can not displayed - file not found"
 msgstr "faili ei saa kuvada -  faili ei leitud"
 
@@ -24194,9 +24219,6 @@ msgstr "Järgmine lehekülg"
 
 msgid "next higher Resolution"
 msgstr "kõrguselt järgmine lahutus"
-
-msgid "no"
-msgstr "Ei"
 
 msgid "no CAId selected"
 msgstr "CAId valimata"
@@ -25004,9 +25026,6 @@ msgstr "töös"
 msgid "yellow"
 msgstr "Kollane"
 
-msgid "yes"
-msgstr "Jah"
-
 msgid "yes (keep feeds)"
 msgstr "Jah (säilita fiidid)"
 
@@ -25027,6 +25046,39 @@ msgstr "Kanalivahetus"
 
 msgid "®"
 msgstr ""
+
+# SoftwarePanel.py
+#, python-format
+#~ msgid ""
+#~ "There are to many update packages !!\n"
+#~ "\n"
+#~ "There is a risk that your %s %s will not\n"
+#~ "boot after online-update, or will show disfunction in running Image.\n"
+#~ "\n"
+#~ "You need to flash new !!\n"
+#~ "\n"
+#~ "Do you want to flash-online ?"
+#~ msgstr ""
+#~ "Liiga palju uuendatavaid pakette!\n"
+#~ "\n"
+#~ "On suur oht, et %s %s pärast tarkvarauuendust enam ei käivitu\n"
+#~ "või tema töös esineb tõrkeid.\n"
+#~ "\n"
+#~ "Püsivara tuleb uuesti paigaldada!\n"
+#~ "\n"
+#~ "Kas paigaldada uus püsivara?\n"
+#~ "\n"
+#~ "Kas paigaldada püsivara veebist?"
+
+# SoftwareManager
+#~ msgid "feed status"
+#~ msgstr "Hoidla olek"
+
+#~ msgid "no"
+#~ msgstr "Ei"
+
+#~ msgid "yes"
+#~ msgstr "Jah"
 
 #~ msgid ""
 #~ "\n"

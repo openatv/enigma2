@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-12-26 20:08+0000\n"
+"POT-Creation-Date: 2022-01-02 10:50+0000\n"
 "PO-Revision-Date: 2021-12-09 17:59+0000\n"
 "Last-Translator: tomppaa <tomzza89@gmail.com>\n"
 "Language-Team: Finnish <https://hosted.weblate.org/projects/openatv/"
@@ -4123,6 +4123,12 @@ msgstr "Peruuta image valinta ja poistu"
 msgid "Cancel the image selection and exit all menus"
 msgstr "Peruuta image valinta ja poistu kaikista valikoista"
 
+msgid "Cancel the software update"
+msgstr ""
+
+msgid "Cancel the update"
+msgstr ""
+
 msgid "Cancelled upon user request"
 msgstr "Käyttäjä peruutti tehtävän"
 
@@ -4702,13 +4708,7 @@ msgstr "Sulje suosikkilista."
 msgid "Close dialog"
 msgstr "Sulje valinta"
 
-msgid "Close pop up menu"
-msgstr ""
-
 msgid "Close screen"
-msgstr ""
-
-msgid "Close the context menu"
 msgstr ""
 
 msgid "Close the current screen"
@@ -5449,6 +5449,9 @@ msgstr "Jatka toistoa"
 
 msgid "Continue playing"
 msgstr "Jatka toistoa"
+
+msgid "Continue with the on-line update"
+msgstr ""
 
 msgid "Continues"
 msgstr "Jatkuva"
@@ -6954,6 +6957,9 @@ msgstr "Lataa ja asenna lisäosia"
 msgid "Download and install cam"
 msgstr "Lataa ja asenna softcameja"
 
+msgid "Download error"
+msgstr ""
+
 msgid "Download plugins"
 msgstr "Lataa lisäosia"
 
@@ -6968,6 +6974,9 @@ msgstr "Ladataan"
 
 msgid "Downloading Image"
 msgstr "Ladatut Imaget"
+
+msgid "Downloading latest update list.  Please wait..."
+msgstr ""
 
 msgid "Downloading plugin information. Please wait..."
 msgstr "Ladataan listaa lisäosista. Odota..."
@@ -8203,6 +8212,15 @@ msgstr "Suosikit pitkä"
 
 msgid "Favourites"
 msgstr "Suosikit"
+
+msgid "Feed disabled!"
+msgstr ""
+
+msgid "Feed stable."
+msgstr ""
+
+msgid "Feed unstable!"
+msgstr ""
 
 msgid "Feeds status:   Stable"
 msgstr "Syötteiden tila:   Vakaa"
@@ -10356,11 +10374,17 @@ msgstr "Klassikko"
 msgid "Kneipensport"
 msgstr "Pubiurheilu"
 
+msgid "Kodi"
+msgstr ""
+
 msgid "Kodi MediaCenter"
 msgstr "Kodi Mediakeskus"
 
 msgid "Kodi installed:"
 msgstr "Kodi asennettu:"
+
+msgid "Kodi long"
+msgstr ""
 
 msgid "Kodi media player"
 msgstr "Kodi media soitin"
@@ -12482,9 +12506,6 @@ msgstr "Ojibwa"
 msgid "Ok"
 msgstr "OK"
 
-msgid "OkCancel Actions"
-msgstr ""
-
 msgid ""
 "Older files in the timeshift directory are removed on every event change."
 msgstr ""
@@ -13033,6 +13054,9 @@ msgid ""
 msgstr ""
 "Suorita asetusten varmuuskopiointi, varmuuskopion tekeminen ennen päivitystä "
 "on erittäin suositeltavaa."
+
+msgid "Perform an on-line flash instead"
+msgstr ""
 
 msgid "Perform an online update check in the background"
 msgstr "Suorita ohjelmapäivityksien haku taustalla"
@@ -13913,6 +13937,9 @@ msgstr "Prioriteetti"
 
 msgid "Probable causes could be"
 msgstr "Todennäköiset syyt voivat olla"
+
+msgid "Proceed with the update"
+msgstr ""
 
 msgid "Process"
 msgstr "Suorita"
@@ -14982,9 +15009,6 @@ msgstr "Suorita scripti valinnaisella parametrilla"
 
 msgid "Run script with optional parameter in background"
 msgstr "Suorita scripti valinnaisella parametrilla taustalla"
-
-msgid "Run the selected menu option"
-msgstr ""
 
 msgid "Rundi"
 msgstr "Burundi"
@@ -17722,6 +17746,9 @@ msgstr "Ohjelmisto päivitykset"
 msgid "Software Update"
 msgstr "Ohjelmistopäivitykset"
 
+msgid "Software Update Actions"
+msgstr ""
+
 msgid "Software management"
 msgstr "Ohjelmiston hallinta"
 
@@ -18055,6 +18082,9 @@ msgstr "Näytön tila virransäästötila"
 
 msgid "Status of the display in standby mode"
 msgstr "Näytön tila valmiustila"
+
+msgid "Status unavailable!"
+msgstr ""
 
 msgid "Status:"
 msgstr "Tila:"
@@ -19104,25 +19134,9 @@ msgstr "Päivityksiä ei ole saatavilla."
 
 #, python-format
 msgid ""
-"There are to many update packages !!\n"
-"\n"
-"There is a risk that your %s %s will not\n"
-"boot after online-update, or will show disfunction in running Image.\n"
-"\n"
-"You need to flash new !!\n"
-"\n"
-"Do you want to flash-online ?"
+"There is a risk that your %s %s will not boot or may malfunction after such "
+"a large on-line update."
 msgstr ""
-"Ohjelmistosi on vanhentunut!\n"
-"\n"
-"Tällaisen pitkän ajan kuluttua on olemassa vaara, että %s %s ei käynnisty\n"
-"internet päivityksen jälkeen tai näyttää toimintahäiriöitä käynnissä "
-"ollessaan.\n"
-"Jos näin käy palauta tehdasasetukset tai päivitä usb muistitikulta puhdas "
-"asennus.\n"
-"Uusi päivitys lisää vastaanottimesi vakautta\n"
-"\n"
-"Haluatko päivittää nyt?"
 
 msgid "There is no signal to lock on !"
 msgstr "Ei signaalia johon voisi lukittua!"
@@ -19139,6 +19153,9 @@ msgstr "Uusimpien alue tietojen lataamisessa tapahtui virhe"
 
 msgid "There was an error downloading the region list"
 msgstr "Aluelistan lataamisessa tapahtui virhe"
+
+msgid "There was an error downloading the update list.  Please try again."
+msgstr ""
 
 msgid "There was an error downloading the updatelist. Please try again."
 msgstr "Päivitysluettelon lataamisessa tapahtui virhe. Yritä uudelleen."
@@ -21423,6 +21440,10 @@ msgstr "Sota"
 msgid "Warning"
 msgstr "Varoitus"
 
+#, python-format
+msgid "Warning: There are %d update packages!"
+msgstr ""
+
 msgid ""
 "Warning: This is the last crash before an automatic restart is performed.\n"
 msgstr ""
@@ -21582,6 +21603,9 @@ msgstr "Mitä haluat pelata?\n"
 
 msgid "What do you want to scan?"
 msgstr "Mitä haluat skannata?"
+
+msgid "What would you like to do?"
+msgstr ""
 
 msgid ""
 "When enabled enigma2 will load unlinked userbouquets. This means that "
@@ -22035,9 +22059,6 @@ msgstr ""
 msgid "Without popup"
 msgstr "Kyllä, älä näytä viestiä"
 
-msgid "Wizard Actions"
-msgstr ""
-
 msgid "Wolof"
 msgstr "Wolof"
 
@@ -22352,6 +22373,15 @@ msgid ""
 msgstr ""
 "Sinulla on ajansiirto päällä. Kanavan katselu pysähtyy hetkeksi ajansiirron "
 "pysähtyessä."
+
+msgid "You should flash a new image!"
+msgstr ""
+
+msgid "YouTube"
+msgstr ""
+
+msgid "YouTube long"
+msgstr ""
 
 msgid "Your %s %s does not have an internet connection"
 msgstr "Laitteella %s %s ei ole Internet-yhteyttä"
@@ -23309,9 +23339,6 @@ msgstr "muoti"
 msgid "fast"
 msgstr "nopea"
 
-msgid "feed status"
-msgstr "syötteet"
-
 msgid "file can not displayed - file not found"
 msgstr "tiedostoa ei voida näyttää - tiedostoa ei löydy"
 
@@ -23725,9 +23752,6 @@ msgstr "Seuraava kanava sivu"
 
 msgid "next higher Resolution"
 msgstr "seuraava suurempi Resolution"
-
-msgid "no"
-msgstr "ei"
 
 msgid "no CAId selected"
 msgstr "ei CAId valittu"
@@ -24529,9 +24553,6 @@ msgstr "työskentelee"
 msgid "yellow"
 msgstr "keltainen"
 
-msgid "yes"
-msgstr "kyllä"
-
 msgid "yes (keep feeds)"
 msgstr "kyllä (pidä syötteet)"
 
@@ -24551,6 +24572,38 @@ msgstr "vaihtaa"
 
 msgid "®"
 msgstr "®"
+
+#, python-format
+#~ msgid ""
+#~ "There are to many update packages !!\n"
+#~ "\n"
+#~ "There is a risk that your %s %s will not\n"
+#~ "boot after online-update, or will show disfunction in running Image.\n"
+#~ "\n"
+#~ "You need to flash new !!\n"
+#~ "\n"
+#~ "Do you want to flash-online ?"
+#~ msgstr ""
+#~ "Ohjelmistosi on vanhentunut!\n"
+#~ "\n"
+#~ "Tällaisen pitkän ajan kuluttua on olemassa vaara, että %s %s ei "
+#~ "käynnisty\n"
+#~ "internet päivityksen jälkeen tai näyttää toimintahäiriöitä käynnissä "
+#~ "ollessaan.\n"
+#~ "Jos näin käy palauta tehdasasetukset tai päivitä usb muistitikulta puhdas "
+#~ "asennus.\n"
+#~ "Uusi päivitys lisää vastaanottimesi vakautta\n"
+#~ "\n"
+#~ "Haluatko päivittää nyt?"
+
+#~ msgid "feed status"
+#~ msgstr "syötteet"
+
+#~ msgid "no"
+#~ msgstr "ei"
+
+#~ msgid "yes"
+#~ msgstr "kyllä"
 
 #~ msgid ""
 #~ "\n"

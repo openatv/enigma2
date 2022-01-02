@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: hu_po v3.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-12-26 20:08+0000\n"
+"POT-Creation-Date: 2022-01-02 10:50+0000\n"
 "PO-Revision-Date: 2021-12-27 15:52+0000\n"
 "Last-Translator: f3rr31 <5920873@disroot.org>\n"
 "Language-Team: Hungarian <https://hosted.weblate.org/projects/openatv/"
@@ -4166,6 +4166,12 @@ msgstr "Kijelölés visszavonása"
 msgid "Cancel the image selection and exit all menus"
 msgstr "Kijelölés visszavonása"
 
+msgid "Cancel the software update"
+msgstr ""
+
+msgid "Cancel the update"
+msgstr ""
+
 msgid "Cancelled upon user request"
 msgstr "Felhasználói kérésre megszakítva"
 
@@ -4779,13 +4785,7 @@ msgstr "Csatornacsomag lista bezárása."
 msgid "Close dialog"
 msgstr "Párbeszédpanel bezárása"
 
-msgid "Close pop up menu"
-msgstr ""
-
 msgid "Close screen"
-msgstr ""
-
-msgid "Close the context menu"
 msgstr ""
 
 msgid "Close the current screen"
@@ -5561,6 +5561,9 @@ msgstr "Lejátszás folytatása"
 
 msgid "Continue playing"
 msgstr "Lejátszás folytatása"
+
+msgid "Continue with the on-line update"
+msgstr ""
 
 msgid "Continues"
 msgstr "Folytatás"
@@ -7080,6 +7083,9 @@ msgstr "Letölti és telepíti a bővítményeket"
 msgid "Download and install cam"
 msgstr "Cam letöltés és telepítés"
 
+msgid "Download error"
+msgstr ""
+
 msgid "Download plugins"
 msgstr "Bővítmények letöltése"
 
@@ -7094,6 +7100,9 @@ msgstr "Letöltés"
 
 msgid "Downloading Image"
 msgstr "Kép letöltése"
+
+msgid "Downloading latest update list.  Please wait..."
+msgstr ""
 
 msgid "Downloading plugin information. Please wait..."
 msgstr "Bővítmények betöltése folyamatban. Kérem, várjon..."
@@ -8335,6 +8344,15 @@ msgstr "Kedvencek hosszan"
 
 msgid "Favourites"
 msgstr "Kedvencek"
+
+msgid "Feed disabled!"
+msgstr ""
+
+msgid "Feed stable."
+msgstr ""
+
+msgid "Feed unstable!"
+msgstr ""
 
 msgid "Feeds status:   Stable"
 msgstr "Folyamat státusza:   Stabil"
@@ -10531,11 +10549,17 @@ msgstr "Klasszikus"
 msgid "Kneipensport"
 msgstr "Sport"
 
+msgid "Kodi"
+msgstr ""
+
 msgid "Kodi MediaCenter"
 msgstr "Kodi MediaCenter"
 
 msgid "Kodi installed:"
 msgstr "Kodi telepítve:"
+
+msgid "Kodi long"
+msgstr ""
 
 msgid "Kodi media player"
 msgstr "Kodi médialejátszó"
@@ -12703,9 +12727,6 @@ msgstr ""
 msgid "Ok"
 msgstr "OK"
 
-msgid "OkCancel Actions"
-msgstr ""
-
 msgid ""
 "Older files in the timeshift directory are removed on every event change."
 msgstr ""
@@ -13274,6 +13295,9 @@ msgid ""
 msgstr ""
 "Végezze el a beállítások mentését, és a frissítés előtt készítsen biztonsági "
 "mentést."
+
+msgid "Perform an on-line flash instead"
+msgstr ""
 
 msgid "Perform an online update check in the background"
 msgstr "Online frissítés ellenőrzése a háttérben"
@@ -14180,6 +14204,9 @@ msgstr "Prioritás"
 
 msgid "Probable causes could be"
 msgstr "Lehetséges okok lehetnek"
+
+msgid "Proceed with the update"
+msgstr ""
 
 msgid "Process"
 msgstr "Futtatás"
@@ -15255,9 +15282,6 @@ msgstr "Parancsfájl futtatása választható paraméterrel"
 
 msgid "Run script with optional parameter in background"
 msgstr "Parancsfájl futtatása választható paraméterrel a háttérben"
-
-msgid "Run the selected menu option"
-msgstr ""
 
 #, fuzzy
 msgid "Rundi"
@@ -18085,6 +18109,9 @@ msgstr "Szoftver Panel"
 msgid "Software Update"
 msgstr "Szoftverfrissítés"
 
+msgid "Software Update Actions"
+msgstr ""
+
 msgid "Software management"
 msgstr "Szoftverkezelés"
 
@@ -18423,6 +18450,9 @@ msgstr "A kijelző állapota kikapcsolt állapotban"
 
 msgid "Status of the display in standby mode"
 msgstr "A kijelző állapota készenléti üzemmódban"
+
+msgid "Status unavailable!"
+msgstr ""
 
 msgid "Status:"
 msgstr "Állapot:"
@@ -19495,24 +19525,9 @@ msgstr "Nincs elérhető frissítés."
 
 #, python-format
 msgid ""
-"There are to many update packages !!\n"
-"\n"
-"There is a risk that your %s %s will not\n"
-"boot after online-update, or will show disfunction in running Image.\n"
-"\n"
-"You need to flash new !!\n"
-"\n"
-"Do you want to flash-online ?"
+"There is a risk that your %s %s will not boot or may malfunction after such "
+"a large on-line update."
 msgstr ""
-"Sok frissítési csomag létezik !!\n"
-"\n"
-"Fennáll annak a veszélye, hogy a(z) %s %s nem fog\n"
-"újra indulni az online frissítés után, vagy meghibásodást fog mutatni az "
-"Lemezkép futtatásakor.\n"
-"\n"
-"Újra kell Flashelni !!\n"
-"\n"
-"Flashelni szeretne Online?"
 
 msgid "There is no signal to lock on !"
 msgstr "Nincs jel!"
@@ -19529,6 +19544,9 @@ msgstr "Hiba történt az aktuális régió részleteinek letöltésekor"
 
 msgid "There was an error downloading the region list"
 msgstr "Hiba történt a régiólista letöltésekor"
+
+msgid "There was an error downloading the update list.  Please try again."
+msgstr ""
 
 msgid "There was an error downloading the updatelist. Please try again."
 msgstr "Hiba történt a frissítési lista letöltése közben. Kérlek próbáld újra."
@@ -21862,6 +21880,10 @@ msgstr "Háború"
 msgid "Warning"
 msgstr "Figyelmeztetés"
 
+#, python-format
+msgid "Warning: There are %d update packages!"
+msgstr ""
+
 msgid ""
 "Warning: This is the last crash before an automatic restart is performed.\n"
 msgstr ""
@@ -22024,6 +22046,9 @@ msgstr "Mit akarsz játszani?\n"
 
 msgid "What do you want to scan?"
 msgstr "Mit szeretne beolvasni?"
+
+msgid "What would you like to do?"
+msgstr ""
 
 msgid ""
 "When enabled enigma2 will load unlinked userbouquets. This means that "
@@ -22472,9 +22497,6 @@ msgstr ""
 msgid "Without popup"
 msgstr "Figyelmeztetés nélkül"
 
-msgid "Wizard Actions"
-msgstr ""
-
 msgid "Wolof"
 msgstr ""
 
@@ -22794,6 +22816,15 @@ msgstr "Ki szeretne lépni a Timeshift módból?"
 msgid ""
 "You seem to be in timeshift, the service will briefly stop as timeshift "
 "stops."
+msgstr ""
+
+msgid "You should flash a new image!"
+msgstr ""
+
+msgid "YouTube"
+msgstr ""
+
+msgid "YouTube long"
 msgstr ""
 
 msgid "Your %s %s does not have an internet connection"
@@ -23763,9 +23794,6 @@ msgstr "divat"
 msgid "fast"
 msgstr "gyors"
 
-msgid "feed status"
-msgstr "folyamat állapota"
-
 msgid "file can not displayed - file not found"
 msgstr "fájl nem megjeleníthető - fájl nem található"
 
@@ -24182,9 +24210,6 @@ msgstr "következő csatornaoldal"
 
 msgid "next higher Resolution"
 msgstr "következő magasabb felbontás"
-
-msgid "no"
-msgstr "nem"
 
 msgid "no CAId selected"
 msgstr "nincs kijelölt CAId"
@@ -24985,9 +25010,6 @@ msgstr "működőképes"
 msgid "yellow"
 msgstr "sárga"
 
-msgid "yes"
-msgstr "igen"
-
 msgid "yes (keep feeds)"
 msgstr "igen (állapotok megtartása)"
 
@@ -25007,6 +25029,36 @@ msgstr "ugrás folyamatban"
 
 msgid "®"
 msgstr ""
+
+#, python-format
+#~ msgid ""
+#~ "There are to many update packages !!\n"
+#~ "\n"
+#~ "There is a risk that your %s %s will not\n"
+#~ "boot after online-update, or will show disfunction in running Image.\n"
+#~ "\n"
+#~ "You need to flash new !!\n"
+#~ "\n"
+#~ "Do you want to flash-online ?"
+#~ msgstr ""
+#~ "Sok frissítési csomag létezik !!\n"
+#~ "\n"
+#~ "Fennáll annak a veszélye, hogy a(z) %s %s nem fog\n"
+#~ "újra indulni az online frissítés után, vagy meghibásodást fog mutatni az "
+#~ "Lemezkép futtatásakor.\n"
+#~ "\n"
+#~ "Újra kell Flashelni !!\n"
+#~ "\n"
+#~ "Flashelni szeretne Online?"
+
+#~ msgid "feed status"
+#~ msgstr "folyamat állapota"
+
+#~ msgid "no"
+#~ msgstr "nem"
+
+#~ msgid "yes"
+#~ msgstr "igen"
 
 #~ msgid ""
 #~ "\n"

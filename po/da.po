@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-12-26 20:08+0000\n"
+"POT-Creation-Date: 2022-01-02 10:50+0000\n"
 "PO-Revision-Date: 2021-11-04 23:53+0000\n"
 "Last-Translator: T. Rylle <dk-translation@pm.me>\n"
 "Language-Team: Danish <https://hosted.weblate.org/projects/openatv/"
@@ -4117,6 +4117,12 @@ msgstr "Afbryd Image valg og afslut"
 msgid "Cancel the image selection and exit all menus"
 msgstr "Afbryd Image valg og afslut alle menuer"
 
+msgid "Cancel the software update"
+msgstr ""
+
+msgid "Cancel the update"
+msgstr ""
+
 msgid "Cancelled upon user request"
 msgstr "Afbrudt efter brugerønske"
 
@@ -4708,13 +4714,7 @@ msgstr "Luk buketliste."
 msgid "Close dialog"
 msgstr "Lukker vindue"
 
-msgid "Close pop up menu"
-msgstr ""
-
 msgid "Close screen"
-msgstr ""
-
-msgid "Close the context menu"
 msgstr ""
 
 msgid "Close the current screen"
@@ -5465,6 +5465,9 @@ msgstr "Fortsæt afspilning"
 
 msgid "Continue playing"
 msgstr "Fortsæt afspilning"
+
+msgid "Continue with the on-line update"
+msgstr ""
 
 msgid "Continues"
 msgstr "Fortsætter"
@@ -6955,6 +6958,9 @@ msgstr "Download og installer Plugins"
 msgid "Download and install cam"
 msgstr "Download og installer CAM"
 
+msgid "Download error"
+msgstr ""
+
 msgid "Download plugins"
 msgstr "Download Plugins"
 
@@ -6969,6 +6975,9 @@ msgstr "Downloader"
 
 msgid "Downloading Image"
 msgstr "Downloader Image"
+
+msgid "Downloading latest update list.  Please wait..."
+msgstr ""
 
 msgid "Downloading plugin information. Please wait..."
 msgstr "Downloader Plugin informationer. Vent venligst..."
@@ -8206,6 +8215,15 @@ msgstr "Favoritter lang"
 
 msgid "Favourites"
 msgstr "Favoritter"
+
+msgid "Feed disabled!"
+msgstr ""
+
+msgid "Feed stable."
+msgstr ""
+
+msgid "Feed unstable!"
+msgstr ""
 
 msgid "Feeds status:   Stable"
 msgstr "Feed status:   Stabil"
@@ -10366,11 +10384,17 @@ msgstr ""
 msgid "Kneipensport"
 msgstr ""
 
+msgid "Kodi"
+msgstr ""
+
 msgid "Kodi MediaCenter"
 msgstr "Kodi MedieCenter"
 
 msgid "Kodi installed:"
 msgstr "Kodi installeret:"
+
+msgid "Kodi long"
+msgstr ""
 
 msgid "Kodi media player"
 msgstr "Kodi medieafspiller"
@@ -12541,9 +12565,6 @@ msgstr ""
 msgid "Ok"
 msgstr "Ok"
 
-msgid "OkCancel Actions"
-msgstr ""
-
 msgid ""
 "Older files in the timeshift directory are removed on every event change."
 msgstr ""
@@ -13107,6 +13128,9 @@ msgid ""
 msgstr ""
 "Udfør sikkerhedskopi af indstillinger, oprettelse af en sikkerhedskopi inden "
 "opdatering anbefales stærkt."
+
+msgid "Perform an on-line flash instead"
+msgstr ""
 
 msgid "Perform an online update check in the background"
 msgstr "Udfør en online opdateringskontrol i baggrunden."
@@ -13995,6 +14019,9 @@ msgstr "Prioritet"
 
 msgid "Probable causes could be"
 msgstr "Sandsynlig årsag kan være"
+
+msgid "Proceed with the update"
+msgstr ""
 
 msgid "Process"
 msgstr "Bearbejdning"
@@ -15070,9 +15097,6 @@ msgstr "Kør skript med valgfri parameter"
 
 msgid "Run script with optional parameter in background"
 msgstr "Kør skript med valgfri parameter i baggrunden"
-
-msgid "Run the selected menu option"
-msgstr ""
 
 #, fuzzy
 msgid "Rundi"
@@ -17839,6 +17863,9 @@ msgstr "Software Panel"
 msgid "Software Update"
 msgstr "Software-opdatering"
 
+msgid "Software Update Actions"
+msgstr ""
+
 msgid "Software management"
 msgstr "Softwarehåndtering"
 
@@ -18174,6 +18201,9 @@ msgstr "Status af display i Dyb Standby"
 
 msgid "Status of the display in standby mode"
 msgstr "Status af display i Standby-tilstand"
+
+msgid "Status unavailable!"
+msgstr ""
 
 msgid "Status:"
 msgstr "Status:"
@@ -19235,23 +19265,9 @@ msgstr "Ingen tilgængelige opdateringer."
 
 #, python-format
 msgid ""
-"There are to many update packages !!\n"
-"\n"
-"There is a risk that your %s %s will not\n"
-"boot after online-update, or will show disfunction in running Image.\n"
-"\n"
-"You need to flash new !!\n"
-"\n"
-"Do you want to flash-online ?"
+"There is a risk that your %s %s will not boot or may malfunction after such "
+"a large on-line update."
 msgstr ""
-"Der er for mange opdateringspakker !!\n"
-"\n"
-"Der er risiko for at din %s %s ikke vil starte op\n"
-"efter en online opdatering, eller vil give fejl i kørende Image.\n"
-"\n"
-"Du bliver nødt til at ny-flashe !!\n"
-"\n"
-"Vil du online-flashe ?"
 
 msgid "There is no signal to lock on !"
 msgstr "Der er intet signal at låse til!"
@@ -19268,6 +19284,9 @@ msgstr "Der opstod en fejl ved download aktuelle regiondetaljer"
 
 msgid "There was an error downloading the region list"
 msgstr "Der opstod en fejl ved download af regionslisten"
+
+msgid "There was an error downloading the update list.  Please try again."
+msgstr ""
 
 msgid "There was an error downloading the updatelist. Please try again."
 msgstr ""
@@ -21593,6 +21612,10 @@ msgstr "Krig"
 msgid "Warning"
 msgstr "Advarsel"
 
+#, python-format
+msgid "Warning: There are %d update packages!"
+msgstr ""
+
 msgid ""
 "Warning: This is the last crash before an automatic restart is performed.\n"
 msgstr ""
@@ -21753,6 +21776,9 @@ msgstr "Hvad ønsker du at afspille?\n"
 
 msgid "What do you want to scan?"
 msgstr "Hvad vil du søge efter ?"
+
+msgid "What would you like to do?"
+msgstr ""
 
 msgid ""
 "When enabled enigma2 will load unlinked userbouquets. This means that "
@@ -22217,9 +22243,6 @@ msgstr ""
 msgid "Without popup"
 msgstr "Uden Pop-op"
 
-msgid "Wizard Actions"
-msgstr ""
-
 msgid "Wolof"
 msgstr ""
 
@@ -22535,6 +22558,15 @@ msgid ""
 msgstr ""
 "Du ser ud til at være i Timeshift, kanalen stopper kort når Timeshift "
 "stopper."
+
+msgid "You should flash a new image!"
+msgstr ""
+
+msgid "YouTube"
+msgstr ""
+
+msgid "YouTube long"
+msgstr ""
 
 msgid "Your %s %s does not have an internet connection"
 msgstr "Din %s %s har ikke en Internetforbindelse"
@@ -23491,9 +23523,6 @@ msgstr "Mode"
 msgid "fast"
 msgstr "Hurtig"
 
-msgid "feed status"
-msgstr "Feed status"
-
 msgid "file can not displayed - file not found"
 msgstr "Fil kan ikke vises - fil ikke fundet"
 
@@ -23915,9 +23944,6 @@ msgstr "næste kanalside"
 
 msgid "next higher Resolution"
 msgstr "næste højere opløsning"
-
-msgid "no"
-msgstr "Nej"
 
 msgid "no CAId selected"
 msgstr "Ingen CAId valgt"
@@ -24727,9 +24753,6 @@ msgstr "fungerer"
 msgid "yellow"
 msgstr "Gul"
 
-msgid "yes"
-msgstr "Ja"
-
 msgid "yes (keep feeds)"
 msgstr "ja (behold feeds)"
 
@@ -24749,6 +24772,35 @@ msgstr "Zapper"
 
 msgid "®"
 msgstr "®"
+
+#, python-format
+#~ msgid ""
+#~ "There are to many update packages !!\n"
+#~ "\n"
+#~ "There is a risk that your %s %s will not\n"
+#~ "boot after online-update, or will show disfunction in running Image.\n"
+#~ "\n"
+#~ "You need to flash new !!\n"
+#~ "\n"
+#~ "Do you want to flash-online ?"
+#~ msgstr ""
+#~ "Der er for mange opdateringspakker !!\n"
+#~ "\n"
+#~ "Der er risiko for at din %s %s ikke vil starte op\n"
+#~ "efter en online opdatering, eller vil give fejl i kørende Image.\n"
+#~ "\n"
+#~ "Du bliver nødt til at ny-flashe !!\n"
+#~ "\n"
+#~ "Vil du online-flashe ?"
+
+#~ msgid "feed status"
+#~ msgstr "Feed status"
+
+#~ msgid "no"
+#~ msgstr "Nej"
+
+#~ msgid "yes"
+#~ msgstr "Ja"
 
 #~ msgid ""
 #~ "\n"

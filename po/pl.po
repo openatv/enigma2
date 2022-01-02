@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-12-26 20:08+0000\n"
+"POT-Creation-Date: 2022-01-02 10:50+0000\n"
 "PO-Revision-Date: 2022-01-02 07:52+0000\n"
 "Last-Translator: Grzegorz <grzegorz914@icloud.com>\n"
 "Language-Team: Polish <https://hosted.weblate.org/projects/openatv/"
@@ -4148,6 +4148,12 @@ msgstr "Anuluj wybór obrazu i wyjdź"
 msgid "Cancel the image selection and exit all menus"
 msgstr "Anuluj wybór obrazu i zamknij wszystkie menu"
 
+msgid "Cancel the software update"
+msgstr ""
+
+msgid "Cancel the update"
+msgstr ""
+
 msgid "Cancelled upon user request"
 msgstr "Anulowane na żądanie użytkownika"
 
@@ -4754,14 +4760,8 @@ msgstr "Zamknij listę bukietów."
 msgid "Close dialog"
 msgstr "Zamknij okno dialogowe"
 
-msgid "Close pop up menu"
-msgstr "Zamknij menu wyskakujące"
-
 msgid "Close screen"
 msgstr "Zamknij ekran"
-
-msgid "Close the context menu"
-msgstr "Zamknij menu podręczne"
 
 msgid "Close the current screen"
 msgstr "Zamknij aktualny ekran"
@@ -5506,6 +5506,9 @@ msgstr "Kontynuuj odtwarzanie"
 
 msgid "Continue playing"
 msgstr "Kontynuuj odtwarzanie"
+
+msgid "Continue with the on-line update"
+msgstr ""
 
 msgid "Continues"
 msgstr "Kontynuować"
@@ -7011,6 +7014,9 @@ msgstr "Pobierz i zainstaluj wtyczki"
 msgid "Download and install cam"
 msgstr "Pobierz i zainstaluj softcam"
 
+msgid "Download error"
+msgstr ""
+
 msgid "Download plugins"
 msgstr "Wtyczki do pobrania"
 
@@ -7025,6 +7031,9 @@ msgstr "Pobieranie"
 
 msgid "Downloading Image"
 msgstr "Pobieranie systemu"
+
+msgid "Downloading latest update list.  Please wait..."
+msgstr ""
 
 msgid "Downloading plugin information. Please wait..."
 msgstr "Pobieranie informacji o wtyczkach. Proszę czekać..."
@@ -8267,6 +8276,15 @@ msgstr "Ulubione (długo)"
 
 msgid "Favourites"
 msgstr "Ulubione"
+
+msgid "Feed disabled!"
+msgstr ""
+
+msgid "Feed stable."
+msgstr ""
+
+msgid "Feed unstable!"
+msgstr ""
 
 msgid "Feeds status:   Stable"
 msgstr "Status źródeł:   Stabilne"
@@ -10420,11 +10438,17 @@ msgstr "Klasyczny"
 msgid "Kneipensport"
 msgstr "Sporty barowe"
 
+msgid "Kodi"
+msgstr ""
+
 msgid "Kodi MediaCenter"
 msgstr "Kodi"
 
 msgid "Kodi installed:"
 msgstr "Zainstalowany Kodi:"
+
+msgid "Kodi long"
+msgstr ""
 
 msgid "Kodi media player"
 msgstr "Odtwarzacz multimedialny Kodi"
@@ -12548,9 +12572,6 @@ msgstr "Ojibwa"
 msgid "Ok"
 msgstr "Ok"
 
-msgid "OkCancel Actions"
-msgstr "Akcje zatwierdzania, kasowania"
-
 msgid ""
 "Older files in the timeshift directory are removed on every event change."
 msgstr ""
@@ -13104,6 +13125,9 @@ msgid ""
 msgstr ""
 "Wykonaj kopię zapasową ustawień, wykonanie kopii zapasowej przed "
 "aktualizacją systemu jest zalecane."
+
+msgid "Perform an on-line flash instead"
+msgstr ""
 
 msgid "Perform an online update check in the background"
 msgstr "Wykonaj aktualizacji online w tle"
@@ -13997,6 +14021,9 @@ msgstr "Priorytet konwertera"
 
 msgid "Probable causes could be"
 msgstr "Prawdopodobne przyczyny mogą być"
+
+msgid "Proceed with the update"
+msgstr ""
 
 msgid "Process"
 msgstr "Proces"
@@ -15071,9 +15098,6 @@ msgstr "Uruchom skrypt z opcjonalnym parametrem"
 
 msgid "Run script with optional parameter in background"
 msgstr "Uruchom skrypt z opcjonalnym parametrem w tle"
-
-msgid "Run the selected menu option"
-msgstr "Uruchom wybraną opcje menu"
 
 msgid "Rundi"
 msgstr "Rundi"
@@ -17811,6 +17835,9 @@ msgstr "Menadżer oprogramowania"
 msgid "Software Update"
 msgstr "Aktualizacja oprogramowania"
 
+msgid "Software Update Actions"
+msgstr ""
+
 msgid "Software management"
 msgstr "Menadżer oprogramowania"
 
@@ -18146,6 +18173,9 @@ msgstr "Status wyświetlacza w głębokim czuwaniu"
 
 msgid "Status of the display in standby mode"
 msgstr "Status wyświetlacza w trybie czuwania"
+
+msgid "Status unavailable!"
+msgstr ""
 
 msgid "Status:"
 msgstr "Status:"
@@ -19197,23 +19227,9 @@ msgstr "Żadne aktualizacje nie są dostępne."
 
 #, python-format
 msgid ""
-"There are to many update packages !!\n"
-"\n"
-"There is a risk that your %s %s will not\n"
-"boot after online-update, or will show disfunction in running Image.\n"
-"\n"
-"You need to flash new !!\n"
-"\n"
-"Do you want to flash-online ?"
+"There is a risk that your %s %s will not boot or may malfunction after such "
+"a large on-line update."
 msgstr ""
-"Istnieje zbyt wiele pakietów aktualizacyjnych!!!\n"
-"\n"
-"Istnieje ryzyko,że w %s %s nie będzie\n"
-"rozruchu po aktualizacji online,lub pokaże dysfunkcje w img.\n"
-"\n"
-"Należy ponownie wgrać obraz!!\n"
-"\n"
-"Chcesz wgrać teraz online?"
 
 msgid "There is no signal to lock on !"
 msgstr "Nie ma sygnału, na którym można zablokować !"
@@ -19230,6 +19246,9 @@ msgstr "Podczas pobierania szczegółowych informacji o regionie wystąpił bł�
 
 msgid "There was an error downloading the region list"
 msgstr "Podczas pobierania listy regionów wystąpił błąd"
+
+msgid "There was an error downloading the update list.  Please try again."
+msgstr ""
 
 msgid "There was an error downloading the updatelist. Please try again."
 msgstr ""
@@ -21522,6 +21541,10 @@ msgstr "Wojna"
 msgid "Warning"
 msgstr "Ostrzeżenie"
 
+#, python-format
+msgid "Warning: There are %d update packages!"
+msgstr ""
+
 msgid ""
 "Warning: This is the last crash before an automatic restart is performed.\n"
 msgstr ""
@@ -21683,6 +21706,9 @@ msgstr "Co chcesz odtworzyć?\n"
 
 msgid "What do you want to scan?"
 msgstr "Co chcesz skanować?"
+
+msgid "What would you like to do?"
+msgstr ""
 
 msgid ""
 "When enabled enigma2 will load unlinked userbouquets. This means that "
@@ -22155,9 +22181,6 @@ msgstr ""
 msgid "Without popup"
 msgstr "Bez okienka"
 
-msgid "Wizard Actions"
-msgstr "Akcje kreatora"
-
 msgid "Wolof"
 msgstr "Wolof"
 
@@ -22473,6 +22496,15 @@ msgid ""
 msgstr ""
 "Wydaje się, że jesteś w Timeshift, usługa zostanie krótko zatrzymana jak "
 "Timeshift się zatrzyma."
+
+msgid "You should flash a new image!"
+msgstr ""
+
+msgid "YouTube"
+msgstr ""
+
+msgid "YouTube long"
+msgstr ""
 
 msgid "Your %s %s does not have an internet connection"
 msgstr "%s %s nie ma połączenia z internetem"
@@ -23426,9 +23458,6 @@ msgstr "moda"
 msgid "fast"
 msgstr "szybko"
 
-msgid "feed status"
-msgstr "Stan serwera"
-
 msgid "file can not displayed - file not found"
 msgstr "plik nie może zostać wyświetlony - nie został znaleziony"
 
@@ -23844,9 +23873,6 @@ msgstr "następna strona z kanałami"
 
 msgid "next higher Resolution"
 msgstr "następna wyższa rozdzielczość"
-
-msgid "no"
-msgstr "nie"
 
 msgid "no CAId selected"
 msgstr "nie wybrano kaida"
@@ -24648,9 +24674,6 @@ msgstr "pracuje"
 msgid "yellow"
 msgstr "żółty"
 
-msgid "yes"
-msgstr "tak"
-
 msgid "yes (keep feeds)"
 msgstr "tak (zachować kanały)"
 
@@ -24670,6 +24693,50 @@ msgstr "przełączanie"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Close pop up menu"
+#~ msgstr "Zamknij menu wyskakujące"
+
+#~ msgid "Close the context menu"
+#~ msgstr "Zamknij menu podręczne"
+
+#~ msgid "OkCancel Actions"
+#~ msgstr "Akcje zatwierdzania, kasowania"
+
+#~ msgid "Run the selected menu option"
+#~ msgstr "Uruchom wybraną opcje menu"
+
+#, python-format
+#~ msgid ""
+#~ "There are to many update packages !!\n"
+#~ "\n"
+#~ "There is a risk that your %s %s will not\n"
+#~ "boot after online-update, or will show disfunction in running Image.\n"
+#~ "\n"
+#~ "You need to flash new !!\n"
+#~ "\n"
+#~ "Do you want to flash-online ?"
+#~ msgstr ""
+#~ "Istnieje zbyt wiele pakietów aktualizacyjnych!!!\n"
+#~ "\n"
+#~ "Istnieje ryzyko,że w %s %s nie będzie\n"
+#~ "rozruchu po aktualizacji online,lub pokaże dysfunkcje w img.\n"
+#~ "\n"
+#~ "Należy ponownie wgrać obraz!!\n"
+#~ "\n"
+#~ "Chcesz wgrać teraz online?"
+
+#~ msgid "Wizard Actions"
+#~ msgstr "Akcje kreatora"
+
+#~ msgid "feed status"
+#~ msgstr "Stan serwera"
+
+#~ msgid "no"
+#~ msgstr "nie"
+
+#~ msgid "yes"
+#~ msgstr "tak"
 
 #~ msgid ""
 #~ "\n"

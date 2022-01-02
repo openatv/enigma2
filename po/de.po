@@ -1,6 +1,6 @@
 # German translations for Enigma2.
 #
-# jbleyel <jbleyel@gmx.net>, 2021.
+# jbleyel <jbleyel@gmx.net>, 2021, 2022.
 # hd75hd <hd75hd.hd75hd@gmail.com>, 2021.
 # openATV <openatv@gmail.com>, 2021.
 # Holger <mrservo@gmx.de>, 2021.
@@ -11,9 +11,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-12-26 20:08+0000\n"
-"PO-Revision-Date: 2021-12-28 13:53+0000\n"
-"Last-Translator: VfBFan <drop0815@posteo.de>\n"
+"POT-Creation-Date: 2022-01-02 10:50+0000\n"
+"PO-Revision-Date: 2022-01-02 11:29+0000\n"
+"Last-Translator: jbleyel <jbleyel@gmx.net>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/openatv/"
 "enigma2-7-0-po/de/>\n"
 "Language: de\n"
@@ -4345,6 +4345,12 @@ msgstr "Imageauswahl abbrechen und verlassen"
 msgid "Cancel the image selection and exit all menus"
 msgstr "Imageauswahl abbrechen und alle Menüs verlassen"
 
+msgid "Cancel the software update"
+msgstr "Softwareupdate abbrechen"
+
+msgid "Cancel the update"
+msgstr "Update abbrechen"
+
 msgid "Cancelled upon user request"
 msgstr "Aufgabe durch den Benutzer abgebrochen"
 
@@ -4988,14 +4994,8 @@ msgstr "Schließe Favoritenliste."
 msgid "Close dialog"
 msgstr "Dialog schließen"
 
-msgid "Close pop up menu"
-msgstr "PopUp Menü schließen"
-
 msgid "Close screen"
 msgstr "Screen schließen"
-
-msgid "Close the context menu"
-msgstr "Kontextmenü schließen"
 
 msgid "Close the current screen"
 msgstr "Aktuellen Screen schließen"
@@ -5822,6 +5822,9 @@ msgstr "Abspielen fortsetzen"
 msgid "Continue playing"
 msgstr "Weiter abspielen"
 
+msgid "Continue with the on-line update"
+msgstr "Weiter mit On-Line Update"
+
 msgid "Continues"
 msgstr "Endlos"
 
@@ -6189,11 +6192,9 @@ msgstr "DHCP-Router"
 msgid "DLNA support"
 msgstr "DLNA"
 
-#, fuzzy
 msgid "DMM advanced"
 msgstr "DMM advanced"
 
-#, fuzzy
 msgid "DMM normal"
 msgstr "DMM normal"
 
@@ -6551,7 +6552,7 @@ msgstr "Standards"
 
 msgid ""
 "Define additional delay in milliseconds before start of http(s) streams."
-msgstr ""
+msgstr "Verzögerung in Millisekunden vor dem Start von http(s)-Streams."
 
 msgid ""
 "Defines how fast the time jumps are repeated. Values lower than 500ms may be "
@@ -7429,6 +7430,9 @@ msgstr "Plugins herunterladen und installieren"
 msgid "Download and install cam"
 msgstr "Softcams herunterladen und installieren"
 
+msgid "Download error"
+msgstr "Download Fehler"
+
 msgid "Download plugins"
 msgstr "Plugins herunterladen"
 
@@ -7445,6 +7449,9 @@ msgstr "Herunterladen"
 
 msgid "Downloading Image"
 msgstr "Lade Image herunter"
+
+msgid "Downloading latest update list.  Please wait..."
+msgstr "Herunterladen der Updates. Bitte warten..."
 
 #
 msgid "Downloading plugin information. Please wait..."
@@ -8767,6 +8774,15 @@ msgstr "Favoriten lang"
 msgid "Favourites"
 msgstr "Favoriten"
 
+msgid "Feed disabled!"
+msgstr "Feed deaktiviert!"
+
+msgid "Feed stable."
+msgstr "Feed Stabil."
+
+msgid "Feed unstable!"
+msgstr "Feed Instabil!"
+
 msgid "Feeds status:   Stable"
 msgstr "Feed-Status: Stabil"
 
@@ -9888,7 +9904,7 @@ msgid "How many minutes do you want to record?"
 msgstr "Wie viele Minuten möchten Sie aufnehmen?"
 
 msgid "Http(s) stream start delay"
-msgstr ""
+msgstr "Http(s) Stream Startverzögerung"
 
 #
 msgid "Hue"
@@ -10070,8 +10086,8 @@ msgid ""
 "located with the other log files but named 'Enigma2-hdmicec-[date].log'."
 msgstr ""
 "Bei 'Ja' wird ein Log des CEC-Protokolls erstellt. Die Logdateien befinden "
-"sich zusammen mit den anderen Logs, haben jedoch den Namen "
-"'Enigma2-hdmicec-[date].log'."
+"sich zusammen mit den anderen Logs, haben jedoch den Namen 'Enigma2-hdmicec-"
+"[date].log'."
 
 msgid ""
 "If enabled, using a time window to detect a wakeup from deep standby by a "
@@ -10922,7 +10938,7 @@ msgid "Jump to next marked position"
 msgstr "Springe zur nächsten Markerposition"
 
 msgid "Jump to next page or all up (setup in menu)"
-msgstr ""
+msgstr "Zur nächsten Seite oder ganz nach oben springen (Einstellung im Menü)"
 
 #
 msgid "Jump to previous marked position"
@@ -10930,6 +10946,7 @@ msgstr "Springe zur vorherigen Markerposition"
 
 msgid "Jump to previous page or all down (setup in menu)"
 msgstr ""
+"Zur vorherigen Seite oder ganz nach unten springen (Einstellung im Menü)"
 
 msgid "Jump to prime time"
 msgstr "Springe zur Primetime"
@@ -11054,11 +11071,17 @@ msgstr "Klassiker"
 msgid "Kneipensport"
 msgstr "Kneipensport"
 
+msgid "Kodi"
+msgstr "Kodi"
+
 msgid "Kodi MediaCenter"
 msgstr "Kodi-Mediacenter"
 
 msgid "Kodi installed:"
 msgstr "Kodi installiert:"
+
+msgid "Kodi long"
+msgstr "Kodi Lang"
 
 msgid "Kodi media player"
 msgstr "Kodi-Mediaplayer"
@@ -12290,7 +12313,7 @@ msgid "Move the text cursor to the last character"
 msgstr "Bewegen Sie den Text-Cursor im Textfeld zum Ende"
 
 msgid "Move to first line"
-msgstr ""
+msgstr "Zur ersten Zeile wechseln"
 
 msgid "Move to first line / screen"
 msgstr "Zur ersten Zeile / Bildschirm wechseln"
@@ -12299,7 +12322,7 @@ msgid "Move to home of list"
 msgstr "Springe zum Anfang der Liste"
 
 msgid "Move to last line"
-msgstr ""
+msgstr "Zur letzten Zeile wechseln"
 
 msgid "Move to last line / screen"
 msgstr "Zur letzten Zeile / Bildschirm wechseln"
@@ -12366,7 +12389,7 @@ msgid "Movie"
 msgstr "Filme"
 
 msgid "Movie Event View Actions"
-msgstr ""
+msgstr "Filmereignis Ansicht Aktionen"
 
 msgid "Movie List"
 msgstr "Filmauswahl"
@@ -13403,9 +13426,6 @@ msgstr "Ojibwa"
 msgid "Ok"
 msgstr "OK"
 
-msgid "OkCancel Actions"
-msgstr "OK/Cancel Aktionen"
-
 msgid ""
 "Older files in the timeshift directory are removed on every event change."
 msgstr ""
@@ -13560,10 +13580,10 @@ msgid "Open the movie list"
 msgstr "Filmauswahl öffnen"
 
 msgid "Open the multi service EPG view"
-msgstr ""
+msgstr "Öffnen der Multi-EPG-Ansicht"
 
 msgid "Open the single service EPG view"
-msgstr ""
+msgstr "Öffnen Sie die Ereignis-EPG Ansicht"
 
 msgid "Open with File Commander"
 msgstr "Mit File Commander öffnen"
@@ -13997,6 +14017,9 @@ msgid ""
 msgstr ""
 "Führen Sie eine Sicherung der Einstellungen durch! Es wird dringend \n"
 "empfohlen, vor der Aktualisierung eine Sicherungskopie zu erstellen."
+
+msgid "Perform an on-line flash instead"
+msgstr "Führen Sie stattdessen einen Online-Flash durch"
 
 msgid "Perform an online update check in the background"
 msgstr "Eine Prüfung auf Onlineaktualisierung im Hintergrund durchführen."
@@ -15000,6 +15023,9 @@ msgstr "Priorität"
 msgid "Probable causes could be"
 msgstr "Mögliche Ursachen könnten sein"
 
+msgid "Proceed with the update"
+msgstr "Fortfahren mit der Aktualisierung"
+
 #
 msgid "Process"
 msgstr "Aktivitätsanzeige"
@@ -15452,7 +15478,7 @@ msgid "Record - same as record button"
 msgstr "Aufnahme - wie Aufnahmetaste"
 
 msgid "Record Actions"
-msgstr ""
+msgstr "Record Aktionen"
 
 msgid "Record next"
 msgstr "Nächste Sendung aufnehmen"
@@ -16174,9 +16200,6 @@ msgstr "Skript mit einem optionalen Parameter ausführen"
 
 msgid "Run script with optional parameter in background"
 msgstr "Skript mit einem optionalen Parameter im Hintergrund ausführen"
-
-msgid "Run the selected menu option"
-msgstr ""
 
 msgid "Rundi"
 msgstr "Rundi"
@@ -18587,10 +18610,10 @@ msgid "Show network mounts ..."
 msgstr "Netzwerklaufwerke anzeigen..."
 
 msgid "Show next event"
-msgstr ""
+msgstr "Nächstes Ereignis anzeigen"
 
 msgid "Show next page"
-msgstr ""
+msgstr "Nächste Seite anzeigen"
 
 msgid "Show next picture"
 msgstr "Nächstes Bild anzeigen"
@@ -18616,10 +18639,10 @@ msgid "Show preview of current mode (*)."
 msgstr "Vorschau des aktuellen Modus anzeigen (*)."
 
 msgid "Show previous event"
-msgstr ""
+msgstr "Vorheriges Ereignis anzeigen"
 
 msgid "Show previous page"
-msgstr ""
+msgstr "Vorherige Seite anzeigen"
 
 msgid "Show previous picture"
 msgstr "Vorheriges Bild anzeigen"
@@ -19147,6 +19170,9 @@ msgstr "Softwarepanel"
 msgid "Software Update"
 msgstr "Software aktualisieren"
 
+msgid "Software Update Actions"
+msgstr "Software-Update Aktionen"
+
 #
 msgid "Software management"
 msgstr "Softwareverwaltung"
@@ -19510,6 +19536,9 @@ msgstr "Status des Displays im Deep-Standby"
 
 msgid "Status of the display in standby mode"
 msgstr "Status des Displays im Standby"
+
+msgid "Status unavailable!"
+msgstr "Status nicht verfügbar!"
 
 msgid "Status:"
 msgstr "Status:"
@@ -20651,26 +20680,13 @@ msgstr "Für diesen Bildschirm sind derzeit keine Elemente verfügbar."
 msgid "There are no updates available."
 msgstr "Es sind keine Updates verfügbar."
 
-# SoftwarePanel.py
 #, python-format
 msgid ""
-"There are to many update packages !!\n"
-"\n"
-"There is a risk that your %s %s will not\n"
-"boot after online-update, or will show disfunction in running Image.\n"
-"\n"
-"You need to flash new !!\n"
-"\n"
-"Do you want to flash-online ?"
+"There is a risk that your %s %s will not boot or may malfunction after such "
+"a large on-line update."
 msgstr ""
-"!! Es gibt zu viele Updatepakete !!\n"
-"\n"
-"Es besteht die Gefahr, dass Ihre %s %s nach dem Onlineupdate nicht mehr "
-"startet, oder das Image nicht richtig funktioniert.\n"
-"\n"
-"Sie sollten das Image neu flashen!\n"
-"\n"
-"Möchten Sie jetzt online flashen?"
+"Es besteht die Gefahr, dass Ihre %s %s nach einer so umfangreichen Online-"
+"Aktualisierung nicht mehr startet oder nicht mehr funktioniert."
 
 msgid "There is no signal to lock on !"
 msgstr "Es gibt kein Signal zum Einrasten!"
@@ -20689,6 +20705,11 @@ msgstr ""
 
 msgid "There was an error downloading the region list"
 msgstr "Beim Herunterladen der Regionsliste ist ein Fehler aufgetreten!"
+
+msgid "There was an error downloading the update list.  Please try again."
+msgstr ""
+"Beim Herunterladen der Softwareliste ist ein Fehler aufgetreten. Bitte "
+"versuchen Sie es erneut."
 
 # SoftwareManager
 msgid "There was an error downloading the updatelist. Please try again."
@@ -23189,6 +23210,10 @@ msgstr "Krieg"
 msgid "Warning"
 msgstr "Warnung"
 
+#, python-format
+msgid "Warning: There are %d update packages!"
+msgstr "Warnung! Es gibt %d Update-Pakete!"
+
 msgid ""
 "Warning: This is the last crash before an automatic restart is performed.\n"
 msgstr ""
@@ -23369,6 +23394,9 @@ msgstr "Was möchten Sie wiedergeben?\n"
 #
 msgid "What do you want to scan?"
 msgstr "Was möchten Sie scannen?"
+
+msgid "What would you like to do?"
+msgstr "Was möchten Sie tun?"
 
 # Customize neu 5.1
 msgid ""
@@ -23846,9 +23874,6 @@ msgstr ""
 msgid "Without popup"
 msgstr "Ohne Meldung"
 
-msgid "Wizard Actions"
-msgstr "Wizard Aktionen"
-
 msgid "Wolof"
 msgstr "Wolof"
 
@@ -24202,6 +24227,15 @@ msgid ""
 msgstr ""
 "Sie scheinen sich im Timeshift-Modus zu befinden. Der Dienst wird kurz "
 "unterbrochen, wenn der Timeshift-Modus endet."
+
+msgid "You should flash a new image!"
+msgstr "Sie sollten ein neues Image flashen!"
+
+msgid "YouTube"
+msgstr "YouTube"
+
+msgid "YouTube long"
+msgstr "YouTube lang"
 
 msgid "Your %s %s does not have an internet connection"
 msgstr "Ihre %s %s hat keine Internetverbindung!"
@@ -25246,10 +25280,6 @@ msgstr "Mode"
 msgid "fast"
 msgstr "Schnell"
 
-# SoftwareManager
-msgid "feed status"
-msgstr "Feed-Status"
-
 msgid "file can not displayed - file not found"
 msgstr "Datei kann nicht angezeigt werden! Datei nicht gefunden!"
 
@@ -25706,10 +25736,6 @@ msgstr "Nächste Kanalseite"
 
 msgid "next higher Resolution"
 msgstr "nächsthöhere Auflösung"
-
-#
-msgid "no"
-msgstr "Nein"
 
 #
 msgid "no CAId selected"
@@ -26602,10 +26628,6 @@ msgid "yellow"
 msgstr "Gelb"
 
 #
-msgid "yes"
-msgstr "Ja"
-
-#
 msgid "yes (keep feeds)"
 msgstr "Ja (Feeds beibehalten)"
 
@@ -26627,6 +26649,51 @@ msgstr "Umschalten"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Close pop up menu"
+#~ msgstr "PopUp Menü schließen"
+
+#~ msgid "Close the context menu"
+#~ msgstr "Kontextmenü schließen"
+
+#~ msgid "OkCancel Actions"
+#~ msgstr "OK/Cancel Aktionen"
+
+# SoftwarePanel.py
+#, python-format
+#~ msgid ""
+#~ "There are to many update packages !!\n"
+#~ "\n"
+#~ "There is a risk that your %s %s will not\n"
+#~ "boot after online-update, or will show disfunction in running Image.\n"
+#~ "\n"
+#~ "You need to flash new !!\n"
+#~ "\n"
+#~ "Do you want to flash-online ?"
+#~ msgstr ""
+#~ "!! Es gibt zu viele Updatepakete !!\n"
+#~ "\n"
+#~ "Es besteht die Gefahr, dass Ihre %s %s nach dem Onlineupdate nicht mehr "
+#~ "startet, oder das Image nicht richtig funktioniert.\n"
+#~ "\n"
+#~ "Sie sollten das Image neu flashen!\n"
+#~ "\n"
+#~ "Möchten Sie jetzt online flashen?"
+
+#~ msgid "Wizard Actions"
+#~ msgstr "Wizard Aktionen"
+
+# SoftwareManager
+#~ msgid "feed status"
+#~ msgstr "Feed-Status"
+
+#
+#~ msgid "no"
+#~ msgstr "Nein"
+
+#
+#~ msgid "yes"
+#~ msgstr "Ja"
 
 #~ msgid "Show single epg for current channel (setup in menu)"
 #~ msgstr "Einzel-EPG für den aktuellen Sender anzeigen (Einstellung im Menü)."

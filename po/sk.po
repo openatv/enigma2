@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-12-26 20:08+0000\n"
+"POT-Creation-Date: 2022-01-02 10:50+0000\n"
 "PO-Revision-Date: 2021-12-04 23:22+0000\n"
 "Last-Translator: Marián Hikaník <podnety@mojepreklady.net>\n"
 "Language-Team: Slovak <https://hosted.weblate.org/projects/openatv/"
@@ -4130,6 +4130,12 @@ msgstr "Zrušiť výber image a ukončiť"
 msgid "Cancel the image selection and exit all menus"
 msgstr "Zrušiť výber image a ukončiť všetky menu"
 
+msgid "Cancel the software update"
+msgstr ""
+
+msgid "Cancel the update"
+msgstr ""
+
 msgid "Cancelled upon user request"
 msgstr "Zrušené na základe požiadavky používateľa"
 
@@ -4732,13 +4738,7 @@ msgstr "Zatvoriť zoznam prehľadov."
 msgid "Close dialog"
 msgstr "Zatvoriť dialóg"
 
-msgid "Close pop up menu"
-msgstr ""
-
 msgid "Close screen"
-msgstr ""
-
-msgid "Close the context menu"
 msgstr ""
 
 msgid "Close the current screen"
@@ -5492,6 +5492,9 @@ msgstr "Pokračovať v prehrávaní"
 
 msgid "Continue playing"
 msgstr "Pokračovať v prehrávaní"
+
+msgid "Continue with the on-line update"
+msgstr ""
 
 msgid "Continues"
 msgstr "Pokračuje"
@@ -6995,6 +6998,9 @@ msgstr "Stiahnutie a nainštalovanie pluginov"
 msgid "Download and install cam"
 msgstr "Stiahnutie a inštalácia CAM"
 
+msgid "Download error"
+msgstr ""
+
 msgid "Download plugins"
 msgstr "Stiahnuť pluginy"
 
@@ -7009,6 +7015,9 @@ msgstr "Sťahovanie"
 
 msgid "Downloading Image"
 msgstr "Prebieha sťahovanie image"
+
+msgid "Downloading latest update list.  Please wait..."
+msgstr ""
 
 msgid "Downloading plugin information. Please wait..."
 msgstr "Sťahovanie informácie o pluginoch. Čakajte..."
@@ -8248,6 +8257,15 @@ msgstr "Obľúbené - dlho"
 
 msgid "Favourites"
 msgstr "Obľúbené"
+
+msgid "Feed disabled!"
+msgstr ""
+
+msgid "Feed stable."
+msgstr ""
+
+msgid "Feed unstable!"
+msgstr ""
 
 msgid "Feeds status:   Stable"
 msgstr "Stav feedov: stabilné"
@@ -10406,11 +10424,17 @@ msgstr "Klasici"
 msgid "Kneipensport"
 msgstr "Krčmové hry"
 
+msgid "Kodi"
+msgstr ""
+
 msgid "Kodi MediaCenter"
 msgstr "Kodi MediaCenter"
 
 msgid "Kodi installed:"
 msgstr "Nainštalované Kodi:"
+
+msgid "Kodi long"
+msgstr ""
 
 msgid "Kodi media player"
 msgstr "Prehrávač médií Kodi"
@@ -12528,9 +12552,6 @@ msgstr "Odžibwa"
 msgid "Ok"
 msgstr "Ok"
 
-msgid "OkCancel Actions"
-msgstr ""
-
 msgid ""
 "Older files in the timeshift directory are removed on every event change."
 msgstr ""
@@ -13081,6 +13102,9 @@ msgid ""
 msgstr ""
 "Vytvoriť zálohu nastavení. Vytvorenie zálohy sa dôrazne odporúča pred "
 "aktualizáciou."
+
+msgid "Perform an on-line flash instead"
+msgstr ""
 
 msgid "Perform an online update check in the background"
 msgstr "Vykonávať online-kontrolu aktualizácií na pozadí"
@@ -13966,6 +13990,9 @@ msgstr "Priorita"
 
 msgid "Probable causes could be"
 msgstr "Možné príčiny"
+
+msgid "Proceed with the update"
+msgstr ""
 
 msgid "Process"
 msgstr "Proces"
@@ -15041,9 +15068,6 @@ msgstr "Spustiť skript s doplnkovým parametrom"
 
 msgid "Run script with optional parameter in background"
 msgstr "Spustiť skript s doplnkovým parametrom na pozadí"
-
-msgid "Run the selected menu option"
-msgstr ""
 
 msgid "Rundi"
 msgstr "Rundi"
@@ -17791,6 +17815,9 @@ msgstr "Panel pre softvér"
 msgid "Software Update"
 msgstr "Aktualizácia softvéru"
 
+msgid "Software Update Actions"
+msgstr ""
+
 msgid "Software management"
 msgstr "Správa softvéru"
 
@@ -18127,6 +18154,9 @@ msgstr "Stav displeja počas vypnutia"
 
 msgid "Status of the display in standby mode"
 msgstr "Stav displeja v pohotovostnom režime"
+
+msgid "Status unavailable!"
+msgstr ""
 
 msgid "Status:"
 msgstr "Stav:"
@@ -19180,23 +19210,9 @@ msgstr "Nie sú dostupné žiadne aktualizácie."
 
 #, python-format
 msgid ""
-"There are to many update packages !!\n"
-"\n"
-"There is a risk that your %s %s will not\n"
-"boot after online-update, or will show disfunction in running Image.\n"
-"\n"
-"You need to flash new !!\n"
-"\n"
-"Do you want to flash-online ?"
+"There is a risk that your %s %s will not boot or may malfunction after such "
+"a large on-line update."
 msgstr ""
-"Je dostupná aktualizácia pre príliš veľký počet balíčkov!\n"
-"\n"
-"Je tu riziko, že %s %s nemusí po\n"
-"online-aktualizácii nabootovať, alebo sa objaví chyba vo fungovaní image.\n"
-"\n"
-"Mali by ste vykonať radšej nové flashovanie!\n"
-"\n"
-"Chcete vykonať online-flashovanie?"
 
 msgid "There is no signal to lock on !"
 msgstr "Nie je signál pre uzamknutie!"
@@ -19213,6 +19229,9 @@ msgstr "Došlo k chybe pri sťahovaní detailov pre aktuálny región"
 
 msgid "There was an error downloading the region list"
 msgstr "Došlo k chybe pri sťahovaní zoznamu regiónov"
+
+msgid "There was an error downloading the update list.  Please try again."
+msgstr ""
 
 msgid "There was an error downloading the updatelist. Please try again."
 msgstr ""
@@ -21517,6 +21536,10 @@ msgstr "Vojna"
 msgid "Warning"
 msgstr "Výstraha"
 
+#, python-format
+msgid "Warning: There are %d update packages!"
+msgstr ""
+
 msgid ""
 "Warning: This is the last crash before an automatic restart is performed.\n"
 msgstr ""
@@ -21677,6 +21700,9 @@ msgstr "Čo chcete prehrať?\n"
 
 msgid "What do you want to scan?"
 msgstr "Čo chcete vyhľadať?"
+
+msgid "What would you like to do?"
+msgstr ""
 
 msgid ""
 "When enabled enigma2 will load unlinked userbouquets. This means that "
@@ -22140,9 +22166,6 @@ msgstr ""
 msgid "Without popup"
 msgstr "Bez vyskakovacieho okna"
 
-msgid "Wizard Actions"
-msgstr ""
-
 msgid "Wolof"
 msgstr "Wolof"
 
@@ -22458,6 +22481,15 @@ msgid ""
 msgstr ""
 "Zdá sa, že je zapnutý timeshift, stanica sa zastaví krátko po zastavení "
 "timeshiftu."
+
+msgid "You should flash a new image!"
+msgstr ""
+
+msgid "YouTube"
+msgstr ""
+
+msgid "YouTube long"
+msgstr ""
 
 msgid "Your %s %s does not have an internet connection"
 msgstr "%s %s nie je pripojený na internet"
@@ -23411,9 +23443,6 @@ msgstr "móda"
 msgid "fast"
 msgstr "rýchlo"
 
-msgid "feed status"
-msgstr "stav feedu"
-
 msgid "file can not displayed - file not found"
 msgstr "súbor nemožno zobraziť, súbor sa nenašiel"
 
@@ -23829,9 +23858,6 @@ msgstr "ďalšia stránka pre kanál"
 
 msgid "next higher Resolution"
 msgstr "najbližšie vyššie rozlíšenie"
-
-msgid "no"
-msgstr "nie"
 
 msgid "no CAId selected"
 msgstr "nie je zvolený CAId"
@@ -24631,9 +24657,6 @@ msgstr "pracuje"
 msgid "yellow"
 msgstr "žlté"
 
-msgid "yes"
-msgstr "áno"
-
 msgid "yes (keep feeds)"
 msgstr "áno (zachovať feedy)"
 
@@ -24653,6 +24676,36 @@ msgstr "prepínanie"
 
 msgid "®"
 msgstr "®"
+
+#, python-format
+#~ msgid ""
+#~ "There are to many update packages !!\n"
+#~ "\n"
+#~ "There is a risk that your %s %s will not\n"
+#~ "boot after online-update, or will show disfunction in running Image.\n"
+#~ "\n"
+#~ "You need to flash new !!\n"
+#~ "\n"
+#~ "Do you want to flash-online ?"
+#~ msgstr ""
+#~ "Je dostupná aktualizácia pre príliš veľký počet balíčkov!\n"
+#~ "\n"
+#~ "Je tu riziko, že %s %s nemusí po\n"
+#~ "online-aktualizácii nabootovať, alebo sa objaví chyba vo fungovaní "
+#~ "image.\n"
+#~ "\n"
+#~ "Mali by ste vykonať radšej nové flashovanie!\n"
+#~ "\n"
+#~ "Chcete vykonať online-flashovanie?"
+
+#~ msgid "feed status"
+#~ msgstr "stav feedu"
+
+#~ msgid "no"
+#~ msgstr "nie"
+
+#~ msgid "yes"
+#~ msgstr "áno"
 
 #~ msgid ""
 #~ "\n"

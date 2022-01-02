@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-12-26 20:08+0000\n"
+"POT-Creation-Date: 2022-01-02 10:50+0000\n"
 "PO-Revision-Date: 2021-12-19 14:52+0000\n"
 "Last-Translator: Adga56 <adga45@gmail.com>\n"
 "Language-Team: Lithuanian <https://hosted.weblate.org/projects/openatv/"
@@ -4137,6 +4137,12 @@ msgstr "Atšaukti atvaizdo pasirinkimą ir užverti"
 msgid "Cancel the image selection and exit all menus"
 msgstr "Atšaukti atvaizdo pasirinkimą ir užverti visus meniu"
 
+msgid "Cancel the software update"
+msgstr ""
+
+msgid "Cancel the update"
+msgstr ""
+
 msgid "Cancelled upon user request"
 msgstr "Atšauktas vartotojo"
 
@@ -4741,13 +4747,7 @@ msgstr "Užverti paketų sąrašą."
 msgid "Close dialog"
 msgstr "Baigti dialogą"
 
-msgid "Close pop up menu"
-msgstr ""
-
 msgid "Close screen"
-msgstr ""
-
-msgid "Close the context menu"
 msgstr ""
 
 msgid "Close the current screen"
@@ -5508,6 +5508,9 @@ msgstr "Tęsti atkūrimą"
 
 msgid "Continue playing"
 msgstr "Tęsti žiūrėjimą"
+
+msgid "Continue with the on-line update"
+msgstr ""
 
 msgid "Continues"
 msgstr "Toliau"
@@ -7004,6 +7007,9 @@ msgstr "Parsisiųsti ir įdiegti priedus"
 msgid "Download and install cam"
 msgstr "Parsisiųsti ir įdiegti emuliatorius"
 
+msgid "Download error"
+msgstr ""
+
 msgid "Download plugins"
 msgstr "Parsisiųsti priedus"
 
@@ -7018,6 +7024,9 @@ msgstr "Parsisiunčiama"
 
 msgid "Downloading Image"
 msgstr "Parsiunčiamas atvaizdas"
+
+msgid "Downloading latest update list.  Please wait..."
+msgstr ""
 
 msgid "Downloading plugin information. Please wait..."
 msgstr "Palaukite, parsiunčiama informacija apie priedus..."
@@ -8256,6 +8265,15 @@ msgstr "Mėgstamiausi (ilgai spausti)"
 
 msgid "Favourites"
 msgstr "Mėgstamiausi"
+
+msgid "Feed disabled!"
+msgstr ""
+
+msgid "Feed stable."
+msgstr ""
+
+msgid "Feed unstable!"
+msgstr ""
 
 msgid "Feeds status:   Stable"
 msgstr "Šaltinių stovis:  stabilus"
@@ -10410,11 +10428,17 @@ msgstr "Klasika"
 msgid "Kneipensport"
 msgstr "Barų sportas"
 
+msgid "Kodi"
+msgstr ""
+
 msgid "Kodi MediaCenter"
 msgstr "Kodi medija centras"
 
 msgid "Kodi installed:"
 msgstr "Kodi įdiegta:"
+
+msgid "Kodi long"
+msgstr ""
 
 msgid "Kodi media player"
 msgstr "Kodi medijos grotuvas"
@@ -12534,9 +12558,6 @@ msgstr "Ojibwa"
 msgid "Ok"
 msgstr "OK"
 
-msgid "OkCancel Actions"
-msgstr ""
-
 msgid ""
 "Older files in the timeshift directory are removed on every event change."
 msgstr ""
@@ -13087,6 +13108,9 @@ msgid ""
 msgstr ""
 "Daryti nustatymų atsarginę kopiją - atsarginis kopijavimas prieš "
 "atnaujinimus primygtinai rekomenduojamas."
+
+msgid "Perform an on-line flash instead"
+msgstr ""
 
 msgid "Perform an online update check in the background"
 msgstr "Atlikti internetinio atnaujinimo patikrinimą fone"
@@ -13986,6 +14010,9 @@ msgstr "Pirmenybė"
 
 msgid "Probable causes could be"
 msgstr "Tikėtinos priežastys gali būti"
+
+msgid "Proceed with the update"
+msgstr ""
 
 msgid "Process"
 msgstr "Apdorojama"
@@ -15061,9 +15088,6 @@ msgstr "Paleiskite scenarijų su pasirinktiniu parametru"
 
 msgid "Run script with optional parameter in background"
 msgstr "Paleiskite scenarijų su pasirinktu parametru fone"
-
-msgid "Run the selected menu option"
-msgstr ""
 
 msgid "Rundi"
 msgstr "Rundi"
@@ -17803,6 +17827,9 @@ msgstr "Programinės įrangos skydelis"
 msgid "Software Update"
 msgstr "Programinės įrangos atnaujinimas"
 
+msgid "Software Update Actions"
+msgstr ""
+
 msgid "Software management"
 msgstr "Programinės įrangos valdymas"
 
@@ -18139,6 +18166,9 @@ msgstr "Ekrano būsena gilaus budėjimo režime"
 
 msgid "Status of the display in standby mode"
 msgstr "Ekrano būsena laukimo režime"
+
+msgid "Status unavailable!"
+msgstr ""
 
 msgid "Status:"
 msgstr "Būsena:"
@@ -19188,23 +19218,9 @@ msgstr "Galimų atnaujinimų nėra."
 
 #, python-format
 msgid ""
-"There are to many update packages !!\n"
-"\n"
-"There is a risk that your %s %s will not\n"
-"boot after online-update, or will show disfunction in running Image.\n"
-"\n"
-"You need to flash new !!\n"
-"\n"
-"Do you want to flash-online ?"
+"There is a risk that your %s %s will not boot or may malfunction after such "
+"a large on-line update."
 msgstr ""
-"Yra daug atnaujinamų paketų!\n"
-"\n"
-"Yra rizika, kad jūsų %s %s nepasileis po atnaujinimo internetu, arba parodys "
-"sutrikimus veikiančio atvaizdo.\n"
-"\n"
-"Jums reikia įdiegti iš naujo!\n"
-"\n"
-"Ar norite įdiegti internetu?"
 
 msgid "There is no signal to lock on !"
 msgstr "Nėra signalo fiksavimui !"
@@ -19221,6 +19237,9 @@ msgstr "Atsisiunčiant dabartinę regiono informaciją įvyko klaida"
 
 msgid "There was an error downloading the region list"
 msgstr "Atsisiunčiant regionų sąrašą įvyko klaida"
+
+msgid "There was an error downloading the update list.  Please try again."
+msgstr ""
 
 msgid "There was an error downloading the updatelist. Please try again."
 msgstr ""
@@ -21545,6 +21564,10 @@ msgstr "Karas"
 msgid "Warning"
 msgstr "Įspėjimas"
 
+#, python-format
+msgid "Warning: There are %d update packages!"
+msgstr ""
+
 msgid ""
 "Warning: This is the last crash before an automatic restart is performed.\n"
 msgstr ""
@@ -21705,6 +21728,9 @@ msgstr "Ką norite atkurti?\n"
 
 msgid "What do you want to scan?"
 msgstr "Ko Jūs norite ieškoti?"
+
+msgid "What would you like to do?"
+msgstr ""
 
 msgid ""
 "When enabled enigma2 will load unlinked userbouquets. This means that "
@@ -22162,9 +22188,6 @@ msgstr ""
 msgid "Without popup"
 msgstr "Be Iššokančio teksto"
 
-msgid "Wizard Actions"
-msgstr ""
-
 msgid "Wolof"
 msgstr "Volofų"
 
@@ -22480,6 +22503,15 @@ msgid ""
 msgstr ""
 "Jums, atrodo, kad kanalas bus trumpai sustabdytas, laiko poslinkio "
 "nustatytais sustojimais."
+
+msgid "You should flash a new image!"
+msgstr ""
+
+msgid "YouTube"
+msgstr ""
+
+msgid "YouTube long"
+msgstr ""
 
 msgid "Your %s %s does not have an internet connection"
 msgstr "Jūsų %s %s neturi interneto ryšio"
@@ -23432,9 +23464,6 @@ msgstr "stilius"
 msgid "fast"
 msgstr "greitas"
 
-msgid "feed status"
-msgstr "šaltinių stovis"
-
 msgid "file can not displayed - file not found"
 msgstr "failas nerodomas - failas nerastas"
 
@@ -23849,9 +23878,6 @@ msgstr "kito kanalo puslapis"
 
 msgid "next higher Resolution"
 msgstr "kita didesnė rezoliucija"
-
-msgid "no"
-msgstr "ne"
 
 msgid "no CAId selected"
 msgstr "joks CAId neišsirinktas"
@@ -24652,9 +24678,6 @@ msgstr "veikiantis"
 msgid "yellow"
 msgstr "geltonas"
 
-msgid "yes"
-msgstr "taip"
-
 msgid "yes (keep feeds)"
 msgstr "taip (išsaugoti šaltinius)"
 
@@ -24674,6 +24697,35 @@ msgstr "perjungimas"
 
 msgid "®"
 msgstr "®"
+
+#, python-format
+#~ msgid ""
+#~ "There are to many update packages !!\n"
+#~ "\n"
+#~ "There is a risk that your %s %s will not\n"
+#~ "boot after online-update, or will show disfunction in running Image.\n"
+#~ "\n"
+#~ "You need to flash new !!\n"
+#~ "\n"
+#~ "Do you want to flash-online ?"
+#~ msgstr ""
+#~ "Yra daug atnaujinamų paketų!\n"
+#~ "\n"
+#~ "Yra rizika, kad jūsų %s %s nepasileis po atnaujinimo internetu, arba "
+#~ "parodys sutrikimus veikiančio atvaizdo.\n"
+#~ "\n"
+#~ "Jums reikia įdiegti iš naujo!\n"
+#~ "\n"
+#~ "Ar norite įdiegti internetu?"
+
+#~ msgid "feed status"
+#~ msgstr "šaltinių stovis"
+
+#~ msgid "no"
+#~ msgstr "ne"
+
+#~ msgid "yes"
+#~ msgstr "taip"
 
 #~ msgid ""
 #~ "\n"

@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openATV [E2+webif_V5.3_6.0]\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-12-26 20:08+0000\n"
+"POT-Creation-Date: 2022-01-02 10:50+0000\n"
 "PO-Revision-Date: 2021-11-02 11:36+0000\n"
 "Last-Translator: lexlong2007 <lexlong2007@163.com>\n"
 "Language-Team: Chinese (Simplified) <https://hosted.weblate.org/projects/"
@@ -4064,6 +4064,12 @@ msgstr "取消固件选择并退出"
 msgid "Cancel the image selection and exit all menus"
 msgstr "取消镜像选择并退出所有菜单"
 
+msgid "Cancel the software update"
+msgstr ""
+
+msgid "Cancel the update"
+msgstr ""
+
 msgid "Cancelled upon user request"
 msgstr "应用户要求取消"
 
@@ -4636,13 +4642,7 @@ msgstr "关闭自定义列表."
 msgid "Close dialog"
 msgstr "关闭对话框"
 
-msgid "Close pop up menu"
-msgstr ""
-
 msgid "Close screen"
-msgstr ""
-
-msgid "Close the context menu"
 msgstr ""
 
 msgid "Close the current screen"
@@ -5319,6 +5319,9 @@ msgstr "继续回放"
 
 msgid "Continue playing"
 msgstr "继续播放"
+
+msgid "Continue with the on-line update"
+msgstr ""
 
 msgid "Continues"
 msgstr "继续"
@@ -6791,6 +6794,9 @@ msgstr "下载并安装插件"
 msgid "Download and install cam"
 msgstr "下载并安装CAM"
 
+msgid "Download error"
+msgstr ""
+
 msgid "Download plugins"
 msgstr "下载插件"
 
@@ -6805,6 +6811,9 @@ msgstr "下载中"
 
 msgid "Downloading Image"
 msgstr "正在下载固件"
+
+msgid "Downloading latest update list.  Please wait..."
+msgstr ""
 
 msgid "Downloading plugin information. Please wait..."
 msgstr "正在下载插件信息.请稍候..."
@@ -8008,6 +8017,15 @@ msgstr "Favorites键 长按"
 
 msgid "Favourites"
 msgstr "收藏夹"
+
+msgid "Feed disabled!"
+msgstr ""
+
+msgid "Feed stable."
+msgstr ""
+
+msgid "Feed unstable!"
+msgstr ""
 
 msgid "Feeds status:   Stable"
 msgstr "Feed 状态:稳定版"
@@ -10091,11 +10109,17 @@ msgstr "经典"
 msgid "Kneipensport"
 msgstr "酒吧活动"
 
+msgid "Kodi"
+msgstr ""
+
 msgid "Kodi MediaCenter"
 msgstr "Kodi 媒体中心"
 
 msgid "Kodi installed:"
 msgstr "Kodi 已安装:"
+
+msgid "Kodi long"
+msgstr ""
 
 msgid "Kodi media player"
 msgstr "Kodi 多媒体播放器"
@@ -12188,9 +12212,6 @@ msgstr "奥吉布瓦"
 msgid "Ok"
 msgstr "确定"
 
-msgid "OkCancel Actions"
-msgstr ""
-
 msgid ""
 "Older files in the timeshift directory are removed on every event change."
 msgstr "每次事件更改时，时移目录中较旧的文件将被删除."
@@ -12733,6 +12754,9 @@ msgid ""
 "Perform a settings backup, making a backup before updating is strongly "
 "advised."
 msgstr "强烈建议更新前执行设置备份."
+
+msgid "Perform an on-line flash instead"
+msgstr ""
 
 msgid "Perform an online update check in the background"
 msgstr "在后台执行在线升级检查"
@@ -13600,6 +13624,9 @@ msgstr "优先级"
 
 msgid "Probable causes could be"
 msgstr "可能的原因是"
+
+msgid "Proceed with the update"
+msgstr ""
 
 msgid "Process"
 msgstr "处理"
@@ -14659,9 +14686,6 @@ msgstr "使用可选参数运行脚本"
 
 msgid "Run script with optional parameter in background"
 msgstr "在后台运行带有可选参数的脚本"
-
-msgid "Run the selected menu option"
-msgstr ""
 
 msgid "Rundi"
 msgstr "卢旺达-隆迪语"
@@ -17291,6 +17315,9 @@ msgstr "软件面板"
 msgid "Software Update"
 msgstr "软件升级"
 
+msgid "Software Update Actions"
+msgstr ""
+
 msgid "Software management"
 msgstr "软件管理"
 
@@ -17616,6 +17643,9 @@ msgstr "深度待机中的LED状态"
 
 msgid "Status of the display in standby mode"
 msgstr "待机模式下的LED状态"
+
+msgid "Status unavailable!"
+msgstr ""
 
 msgid "Status:"
 msgstr "状态:"
@@ -18639,23 +18669,9 @@ msgstr "当前无可用更新."
 
 #, python-format
 msgid ""
-"There are to many update packages !!\n"
-"\n"
-"There is a risk that your %s %s will not\n"
-"boot after online-update, or will show disfunction in running Image.\n"
-"\n"
-"You need to flash new !!\n"
-"\n"
-"Do you want to flash-online ?"
+"There is a risk that your %s %s will not boot or may malfunction after such "
+"a large on-line update."
 msgstr ""
-"有很多更新程序包!!\n"
-"\n"
-"你的 %s %s 将面临在线更新后无法启动的风险\n"
-"或启动后功能出错\n"
-"\n"
-"这样的话你需要重新刷机!\n"
-"\n"
-"你还想在线升级吗？"
 
 msgid "There is no signal to lock on !"
 msgstr "信号没有锁定！"
@@ -18672,6 +18688,9 @@ msgstr "下载当前区域详细信息时出错"
 
 msgid "There was an error downloading the region list"
 msgstr "下载区域列表时出错"
+
+msgid "There was an error downloading the update list.  Please try again."
+msgstr ""
 
 msgid "There was an error downloading the updatelist. Please try again."
 msgstr "下载软件包列表出错，请重试."
@@ -20856,6 +20875,10 @@ msgstr "战争"
 msgid "Warning"
 msgstr "警告"
 
+#, python-format
+msgid "Warning: There are %d update packages!"
+msgstr ""
+
 msgid ""
 "Warning: This is the last crash before an automatic restart is performed.\n"
 msgstr "警告：这是执行自动重启之前的最后一次崩溃。\n"
@@ -21009,6 +21032,9 @@ msgstr "您想对此做什么操作?\n"
 
 msgid "What do you want to scan?"
 msgstr "是否开始扫描？"
+
+msgid "What would you like to do?"
+msgstr ""
 
 msgid ""
 "When enabled enigma2 will load unlinked userbouquets. This means that "
@@ -21388,9 +21414,6 @@ msgstr "使用此设置，您可能可以提高信号质量或消除较长 HDMI 
 msgid "Without popup"
 msgstr "不弹出"
 
-msgid "Wizard Actions"
-msgstr ""
-
 msgid "Wolof"
 msgstr "沃洛夫"
 
@@ -21691,6 +21714,15 @@ msgid ""
 "You seem to be in timeshift, the service will briefly stop as timeshift "
 "stops."
 msgstr "您似乎处于时移中，服务将随着时移停止而短暂停止。"
+
+msgid "You should flash a new image!"
+msgstr ""
+
+msgid "YouTube"
+msgstr ""
+
+msgid "YouTube long"
+msgstr ""
 
 msgid "Your %s %s does not have an internet connection"
 msgstr "您的 %s %s 没有互联网连接"
@@ -22627,9 +22659,6 @@ msgstr "时尚"
 msgid "fast"
 msgstr "快速"
 
-msgid "feed status"
-msgstr "Feed 状态"
-
 msgid "file can not displayed - file not found"
 msgstr "文件不能显示- 文件未找到"
 
@@ -23043,9 +23072,6 @@ msgstr "下一个频道页面"
 
 msgid "next higher Resolution"
 msgstr "下一个更高的分辨率"
-
-msgid "no"
-msgstr "否"
 
 msgid "no CAId selected"
 msgstr "未选择 CAID"
@@ -23841,9 +23867,6 @@ msgstr "工作中"
 msgid "yellow"
 msgstr "黄"
 
-msgid "yes"
-msgstr "是"
-
 msgid "yes (keep feeds)"
 msgstr "是(保留Feed)"
 
@@ -23863,6 +23886,35 @@ msgstr "切换中"
 
 msgid "®"
 msgstr "®"
+
+#, python-format
+#~ msgid ""
+#~ "There are to many update packages !!\n"
+#~ "\n"
+#~ "There is a risk that your %s %s will not\n"
+#~ "boot after online-update, or will show disfunction in running Image.\n"
+#~ "\n"
+#~ "You need to flash new !!\n"
+#~ "\n"
+#~ "Do you want to flash-online ?"
+#~ msgstr ""
+#~ "有很多更新程序包!!\n"
+#~ "\n"
+#~ "你的 %s %s 将面临在线更新后无法启动的风险\n"
+#~ "或启动后功能出错\n"
+#~ "\n"
+#~ "这样的话你需要重新刷机!\n"
+#~ "\n"
+#~ "你还想在线升级吗？"
+
+#~ msgid "feed status"
+#~ msgstr "Feed 状态"
+
+#~ msgid "no"
+#~ msgstr "否"
+
+#~ msgid "yes"
+#~ msgstr "是"
 
 #~ msgid ""
 #~ "\n"

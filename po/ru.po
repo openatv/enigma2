@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Enigma2 OpenXXX\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-12-26 20:08+0000\n"
+"POT-Creation-Date: 2022-01-02 10:50+0000\n"
 "PO-Revision-Date: 2021-12-31 07:11+0000\n"
 "Last-Translator: igorrrrr <igorzhugan66@gmail.com>\n"
 "Language-Team: Russian <https://hosted.weblate.org/projects/openatv/"
@@ -4131,6 +4131,12 @@ msgstr "Отмена выбора имиджа и выход"
 msgid "Cancel the image selection and exit all menus"
 msgstr "Отмена выбора имиджа и выход из всех меню"
 
+msgid "Cancel the software update"
+msgstr ""
+
+msgid "Cancel the update"
+msgstr ""
+
 msgid "Cancelled upon user request"
 msgstr "Отменено по запросу пользователя"
 
@@ -4731,14 +4737,8 @@ msgstr "Закрыть список фаворитов."
 msgid "Close dialog"
 msgstr "Закрыть окно"
 
-msgid "Close pop up menu"
-msgstr "Закрыть всплывающее меню"
-
 msgid "Close screen"
 msgstr "Закрыть экран"
-
-msgid "Close the context menu"
-msgstr "Закройте контекстное меню"
 
 msgid "Close the current screen"
 msgstr "Закройте текущий экран"
@@ -5489,6 +5489,9 @@ msgstr "Продолжить воспроизведение"
 
 msgid "Continue playing"
 msgstr "Продолжить воспроизведение"
+
+msgid "Continue with the on-line update"
+msgstr ""
 
 msgid "Continues"
 msgstr "Продолжение"
@@ -6988,6 +6991,9 @@ msgstr "Загрузить и установить плагины"
 msgid "Download and install cam"
 msgstr "Загрузить и установить эмуляторы"
 
+msgid "Download error"
+msgstr ""
+
 msgid "Download plugins"
 msgstr "Установка плагинов"
 
@@ -7002,6 +7008,9 @@ msgstr "Загрузка"
 
 msgid "Downloading Image"
 msgstr "Загрузка имиджа"
+
+msgid "Downloading latest update list.  Please wait..."
+msgstr ""
 
 msgid "Downloading plugin information. Please wait..."
 msgstr "Загрузка информации о плагинах. Ждите..."
@@ -8240,6 +8249,15 @@ msgstr "Избранное, долгая"
 
 msgid "Favourites"
 msgstr "Фавориты"
+
+msgid "Feed disabled!"
+msgstr ""
+
+msgid "Feed stable."
+msgstr ""
+
+msgid "Feed unstable!"
+msgstr ""
 
 msgid "Feeds status:   Stable"
 msgstr "Статус фида:  Стабильно"
@@ -10396,11 +10414,17 @@ msgstr "Классический"
 msgid "Kneipensport"
 msgstr "Спорт в пабе"
 
+msgid "Kodi"
+msgstr ""
+
 msgid "Kodi MediaCenter"
 msgstr "Медиа-центр Kodi"
 
 msgid "Kodi installed:"
 msgstr "Kodi установлено:"
+
+msgid "Kodi long"
+msgstr ""
 
 msgid "Kodi media player"
 msgstr "Kodi медиаплеер"
@@ -12519,9 +12543,6 @@ msgstr "Оджибва"
 msgid "Ok"
 msgstr "ОК"
 
-msgid "OkCancel Actions"
-msgstr "ОК отменить действия"
-
 msgid ""
 "Older files in the timeshift directory are removed on every event change."
 msgstr ""
@@ -13072,6 +13093,9 @@ msgid ""
 msgstr ""
 "Сохранить настроки, перед обновлением строго рекомендуется выполнить "
 "копирование."
+
+msgid "Perform an on-line flash instead"
+msgstr ""
 
 msgid "Perform an online update check in the background"
 msgstr "Выполнить проверку онлайн-обновлений в фоновом режиме"
@@ -13960,6 +13984,9 @@ msgstr "Очерёдность"
 
 msgid "Probable causes could be"
 msgstr "Вероятными причинами могут быть"
+
+msgid "Proceed with the update"
+msgstr ""
 
 msgid "Process"
 msgstr "Процесс"
@@ -15034,9 +15061,6 @@ msgstr "Запуск скрипта с необязательным параме
 
 msgid "Run script with optional parameter in background"
 msgstr "Запуск скрипта с необязательным параметром в фоновом режиме"
-
-msgid "Run the selected menu option"
-msgstr "Запустить выбранный пункт меню"
 
 msgid "Rundi"
 msgstr "Рунди"
@@ -17774,6 +17798,9 @@ msgstr "Панель ПО"
 msgid "Software Update"
 msgstr "Обновление ПО"
 
+msgid "Software Update Actions"
+msgstr ""
+
 msgid "Software management"
 msgstr "Управление ПО"
 
@@ -18110,6 +18137,9 @@ msgstr "Состояние дисплея в режиме глубокого о�
 
 msgid "Status of the display in standby mode"
 msgstr "Состояние дисплея в режиме ожидания"
+
+msgid "Status unavailable!"
+msgstr ""
 
 msgid "Status:"
 msgstr "Статус"
@@ -19160,23 +19190,9 @@ msgstr "Нет доступных обновлений."
 
 #, python-format
 msgid ""
-"There are to many update packages !!\n"
-"\n"
-"There is a risk that your %s %s will not\n"
-"boot after online-update, or will show disfunction in running Image.\n"
-"\n"
-"You need to flash new !!\n"
-"\n"
-"Do you want to flash-online ?"
+"There is a risk that your %s %s will not boot or may malfunction after such "
+"a large on-line update."
 msgstr ""
-"Слишком много пакетов обновляется!\n"
-"\n"
-"Существует риск, что ваш %s %s после обновления\n"
-"не будет загружаться, или получите неработоспособный имидж\n"
-"\n"
-"Необходимо прошивать ресивер заново!\n"
-"\n"
-"Хотите выполнить онлайн-прошивку?"
 
 msgid "There is no signal to lock on !"
 msgstr "Нет сигнала по этому захвату!"
@@ -19193,6 +19209,9 @@ msgstr "Произошла ошибка при загрузке сведений
 
 msgid "There was an error downloading the region list"
 msgstr "При загрузке списка регионов произошла ошибка"
+
+msgid "There was an error downloading the update list.  Please try again."
+msgstr ""
 
 msgid "There was an error downloading the updatelist. Please try again."
 msgstr ""
@@ -21501,6 +21520,10 @@ msgstr "Война"
 msgid "Warning"
 msgstr "Предупреждение"
 
+#, python-format
+msgid "Warning: There are %d update packages!"
+msgstr ""
+
 msgid ""
 "Warning: This is the last crash before an automatic restart is performed.\n"
 msgstr ""
@@ -21662,6 +21685,9 @@ msgstr "Что вы хотите сканировать?\n"
 
 msgid "What do you want to scan?"
 msgstr "Что вы хотите сканировать?"
+
+msgid "What would you like to do?"
+msgstr ""
 
 msgid ""
 "When enabled enigma2 will load unlinked userbouquets. This means that "
@@ -22133,9 +22159,6 @@ msgstr ""
 msgid "Without popup"
 msgstr "Без всплывающего сообщения"
 
-msgid "Wizard Actions"
-msgstr "Действия мастера"
-
 msgid "Wolof"
 msgstr "Волоф"
 
@@ -22448,6 +22471,15 @@ msgid ""
 msgstr ""
 "Похоже, что вы находитесь в режиме временного сдвига, канал ненадолго "
 "остановится, когда временное смещение остановится."
+
+msgid "You should flash a new image!"
+msgstr ""
+
+msgid "YouTube"
+msgstr ""
+
+msgid "YouTube long"
+msgstr ""
 
 msgid "Your %s %s does not have an internet connection"
 msgstr "В вашем %s %s нет работающего Интернет-соединения"
@@ -23398,9 +23430,6 @@ msgstr "Мода"
 msgid "fast"
 msgstr "Быстро"
 
-msgid "feed status"
-msgstr "Статус фида"
-
 msgid "file can not displayed - file not found"
 msgstr "файл не показан - файл не найден"
 
@@ -23814,9 +23843,6 @@ msgstr "следующая страница канала"
 
 msgid "next higher Resolution"
 msgstr "более высокое разрешение"
-
-msgid "no"
-msgstr "Нет"
 
 msgid "no CAId selected"
 msgstr "Не выбран CAID"
@@ -24618,9 +24644,6 @@ msgstr "Проверяем"
 msgid "yellow"
 msgstr "Жёлтый"
 
-msgid "yes"
-msgstr "Да"
-
 msgid "yes (keep feeds)"
 msgstr "Да (Оставить фиды)"
 
@@ -24640,6 +24663,50 @@ msgstr "Переключение"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Close pop up menu"
+#~ msgstr "Закрыть всплывающее меню"
+
+#~ msgid "Close the context menu"
+#~ msgstr "Закройте контекстное меню"
+
+#~ msgid "OkCancel Actions"
+#~ msgstr "ОК отменить действия"
+
+#~ msgid "Run the selected menu option"
+#~ msgstr "Запустить выбранный пункт меню"
+
+#, python-format
+#~ msgid ""
+#~ "There are to many update packages !!\n"
+#~ "\n"
+#~ "There is a risk that your %s %s will not\n"
+#~ "boot after online-update, or will show disfunction in running Image.\n"
+#~ "\n"
+#~ "You need to flash new !!\n"
+#~ "\n"
+#~ "Do you want to flash-online ?"
+#~ msgstr ""
+#~ "Слишком много пакетов обновляется!\n"
+#~ "\n"
+#~ "Существует риск, что ваш %s %s после обновления\n"
+#~ "не будет загружаться, или получите неработоспособный имидж\n"
+#~ "\n"
+#~ "Необходимо прошивать ресивер заново!\n"
+#~ "\n"
+#~ "Хотите выполнить онлайн-прошивку?"
+
+#~ msgid "Wizard Actions"
+#~ msgstr "Действия мастера"
+
+#~ msgid "feed status"
+#~ msgstr "Статус фида"
+
+#~ msgid "no"
+#~ msgstr "Нет"
+
+#~ msgid "yes"
+#~ msgstr "Да"
 
 #~ msgid ""
 #~ "\n"

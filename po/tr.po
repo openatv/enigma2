@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Apachi70 (OpenATV)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-12-26 20:08+0000\n"
+"POT-Creation-Date: 2022-01-02 10:50+0000\n"
 "PO-Revision-Date: 2021-11-14 06:52+0000\n"
 "Last-Translator: Oğuz Ersen <oguzersen@protonmail.com>\n"
 "Language-Team: Turkish <https://hosted.weblate.org/projects/openatv/"
@@ -4379,6 +4379,12 @@ msgstr "Kanal Seçimi"
 msgid "Cancel the image selection and exit all menus"
 msgstr "Kanal Seçimi"
 
+msgid "Cancel the software update"
+msgstr ""
+
+msgid "Cancel the update"
+msgstr ""
+
 msgid "Cancelled upon user request"
 msgstr "Kullanıcı isteği üzerine iptal edildi"
 
@@ -5018,13 +5024,7 @@ msgstr "Buket listesini kapat."
 msgid "Close dialog"
 msgstr "Diyalogu kapa"
 
-msgid "Close pop up menu"
-msgstr ""
-
 msgid "Close screen"
-msgstr ""
-
-msgid "Close the context menu"
 msgstr ""
 
 msgid "Close the current screen"
@@ -5825,6 +5825,9 @@ msgstr "Playback a devam et"
 #
 msgid "Continue playing"
 msgstr "Oynatmaya devam et"
+
+msgid "Continue with the on-line update"
+msgstr ""
 
 msgid "Continues"
 msgstr "Devam eder"
@@ -7455,6 +7458,9 @@ msgstr "Eklentileri indirip yükleyin"
 msgid "Download and install cam"
 msgstr "Camı indirip yükleyin"
 
+msgid "Download error"
+msgstr ""
+
 msgid "Download plugins"
 msgstr "Eklenti indir"
 
@@ -7472,6 +7478,9 @@ msgstr "İndiriliyor"
 #
 msgid "Downloading Image"
 msgstr "Image İndirilmesi"
+
+msgid "Downloading latest update list.  Please wait..."
+msgstr ""
 
 #
 msgid "Downloading plugin information. Please wait..."
@@ -8800,6 +8809,15 @@ msgstr "Sık Kullanılanlar"
 #
 msgid "Favourites"
 msgstr "Favoriler"
+
+msgid "Feed disabled!"
+msgstr ""
+
+msgid "Feed stable."
+msgstr ""
+
+msgid "Feed unstable!"
+msgstr ""
 
 msgid "Feeds status:   Stable"
 msgstr "Feed'ler durumu: Kararlı"
@@ -11103,12 +11121,18 @@ msgstr ""
 msgid "Kneipensport"
 msgstr ""
 
+msgid "Kodi"
+msgstr ""
+
 msgid "Kodi MediaCenter"
 msgstr "Kodi MediaCenter"
 
 #
 msgid "Kodi installed:"
 msgstr "Kodi yüklü:"
+
+msgid "Kodi long"
+msgstr ""
 
 #
 msgid "Kodi media player"
@@ -13486,9 +13510,6 @@ msgstr ""
 msgid "Ok"
 msgstr "Tamam"
 
-msgid "OkCancel Actions"
-msgstr ""
-
 msgid ""
 "Older files in the timeshift directory are removed on every event change."
 msgstr ""
@@ -14074,6 +14095,9 @@ msgid ""
 "Perform a settings backup, making a backup before updating is strongly "
 "advised."
 msgstr "Güncellemeden önce yedek almak kuvvetle öneriliyorsa, ayar yedeği al."
+
+msgid "Perform an on-line flash instead"
+msgstr ""
 
 msgid "Perform an online update check in the background"
 msgstr "Arkaplanda çevrimiçi güncelleme kontrolu yap"
@@ -15052,6 +15076,9 @@ msgstr "Öncelik"
 
 msgid "Probable causes could be"
 msgstr "Muhtemel sebepler olabilir"
+
+msgid "Proceed with the update"
+msgstr ""
 
 #
 msgid "Process"
@@ -16230,9 +16257,6 @@ msgstr "İsteğe bağlı parametreli betiği çalıştır"
 
 msgid "Run script with optional parameter in background"
 msgstr "Komut dosyasını arka planda isteğe bağlı parametre ile çalıştır"
-
-msgid "Run the selected menu option"
-msgstr ""
 
 #, fuzzy
 msgid "Rundi"
@@ -19160,6 +19184,9 @@ msgstr "Yazılım Paneli"
 msgid "Software Update"
 msgstr "Yazılım Güncellemesi"
 
+msgid "Software Update Actions"
+msgstr ""
+
 #
 msgid "Software management"
 msgstr "Yazılım yönetimi"
@@ -19518,6 +19545,9 @@ msgstr "Ekranın derin bekleme modunda durumu"
 
 msgid "Status of the display in standby mode"
 msgstr "Bekleme modunda ekranın durumu"
+
+msgid "Status unavailable!"
+msgstr ""
 
 msgid "Status:"
 msgstr "Durum:"
@@ -20647,24 +20677,9 @@ msgstr "Kullanılabilir güncelleme yok."
 
 #, python-format
 msgid ""
-"There are to many update packages !!\n"
-"\n"
-"There is a risk that your %s %s will not\n"
-"boot after online-update, or will show disfunction in running Image.\n"
-"\n"
-"You need to flash new !!\n"
-"\n"
-"Do you want to flash-online ?"
+"There is a risk that your %s %s will not boot or may malfunction after such "
+"a large on-line update."
 msgstr ""
-"Birçok güncelleme paketine var!\n"
-"\n"
-"%s%s 'inizin olmayacağı yönünde bir risk var\n"
-"çevrimiçi güncellemeden sonra önyükleme veya görüntüyü çalıştırmadaki "
-"disfonksiyonu gösterecektir.\n"
-"\n"
-"Yeni flaş gerekiyor!\n"
-"\n"
-"İnternetten flash yapmak ister misin?"
 
 msgid "There is no signal to lock on !"
 msgstr "Kilitlenecek hiç sinyal yok !"
@@ -20684,6 +20699,9 @@ msgstr "Updatelist indirirken bir hata oluştu. Lütfen tekrar deneyin."
 #, fuzzy
 msgid "There was an error downloading the region list"
 msgstr "Updatelist indirirken bir hata oluştu. Lütfen tekrar deneyin."
+
+msgid "There was an error downloading the update list.  Please try again."
+msgstr ""
 
 msgid "There was an error downloading the updatelist. Please try again."
 msgstr "Updatelist indirirken bir hata oluştu. Lütfen tekrar deneyin."
@@ -23156,6 +23174,10 @@ msgstr "Uyarı"
 msgid "Warning"
 msgstr "Uyarı"
 
+#, python-format
+msgid "Warning: There are %d update packages!"
+msgstr ""
+
 msgid ""
 "Warning: This is the last crash before an automatic restart is performed.\n"
 msgstr ""
@@ -23340,6 +23362,9 @@ msgstr "Ne oynamak istersin?\n"
 #
 msgid "What do you want to scan?"
 msgstr "Ne taramak istiyorsunuz?"
+
+msgid "What would you like to do?"
+msgstr ""
 
 msgid ""
 "When enabled enigma2 will load unlinked userbouquets. This means that "
@@ -23794,9 +23819,6 @@ msgstr ""
 msgid "Without popup"
 msgstr "Popup olmadan"
 
-msgid "Wizard Actions"
-msgstr ""
-
 msgid "Wolof"
 msgstr ""
 
@@ -24135,6 +24157,15 @@ msgstr ""
 msgid ""
 "You seem to be in timeshift, the service will briefly stop as timeshift "
 "stops."
+msgstr ""
+
+msgid "You should flash a new image!"
+msgstr ""
+
+msgid "YouTube"
+msgstr ""
+
+msgid "YouTube long"
 msgstr ""
 
 msgid "Your %s %s does not have an internet connection"
@@ -25176,9 +25207,6 @@ msgstr "moda"
 msgid "fast"
 msgstr "hızlı"
 
-msgid "feed status"
-msgstr "besleme durumu"
-
 msgid "file can not displayed - file not found"
 msgstr "dosya görüntülenemiyor - dosya bulunamadı"
 
@@ -25643,10 +25671,6 @@ msgstr "sonraki kanal sayfası"
 #
 msgid "next higher Resolution"
 msgstr "sonraki yüksek Çözünürlük"
-
-#
-msgid "no"
-msgstr "hayır"
 
 #
 msgid "no CAId selected"
@@ -26530,10 +26554,6 @@ msgid "yellow"
 msgstr "sarı"
 
 #
-msgid "yes"
-msgstr "evet"
-
-#
 msgid "yes (keep feeds)"
 msgstr "evet (beslemeleri tut)"
 
@@ -26555,6 +26575,38 @@ msgstr "zap"
 
 msgid "®"
 msgstr ""
+
+#, python-format
+#~ msgid ""
+#~ "There are to many update packages !!\n"
+#~ "\n"
+#~ "There is a risk that your %s %s will not\n"
+#~ "boot after online-update, or will show disfunction in running Image.\n"
+#~ "\n"
+#~ "You need to flash new !!\n"
+#~ "\n"
+#~ "Do you want to flash-online ?"
+#~ msgstr ""
+#~ "Birçok güncelleme paketine var!\n"
+#~ "\n"
+#~ "%s%s 'inizin olmayacağı yönünde bir risk var\n"
+#~ "çevrimiçi güncellemeden sonra önyükleme veya görüntüyü çalıştırmadaki "
+#~ "disfonksiyonu gösterecektir.\n"
+#~ "\n"
+#~ "Yeni flaş gerekiyor!\n"
+#~ "\n"
+#~ "İnternetten flash yapmak ister misin?"
+
+#~ msgid "feed status"
+#~ msgstr "besleme durumu"
+
+#
+#~ msgid "no"
+#~ msgstr "hayır"
+
+#
+#~ msgid "yes"
+#~ msgstr "evet"
 
 #~ msgid ""
 #~ "\n"
