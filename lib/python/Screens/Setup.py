@@ -1,5 +1,5 @@
 from gettext import dgettext
-from os.path import getmtime, join as pathjoin
+from os.path import getmtime, isfile, join as pathjoin
 from six import PY2
 from xml.etree.cElementTree import ParseError, fromstring, parse
 
@@ -22,6 +22,8 @@ setupModTimes = {}
 
 
 class Setup(ConfigListScreen, Screen, HelpableScreen):
+	# ALLOW_SUSPEND = True  # Enable to allow users to go to Standby from Setup based screens.
+
 	skin = """
 	<screen name="Setup" position="center,center" size="980,570" resolution="1280,720">
 		<widget name="config" position="10,10" size="e-20,350" enableWrapAround="1" font="Regular;25" itemHeight="35" scrollbarMode="showOnDemand" />
@@ -76,13 +78,17 @@ class Setup(ConfigListScreen, Screen, HelpableScreen):
 		defaultSetupImage = setups.get("default", "")
 		setupImage = setups.get(setup, defaultSetupImage)
 		if setupImage:
-			print("[Setup] %s image '%s'." % ("Default" if setupImage is defaultSetupImage else "Setup", setupImage))
+			type = "Default" if setupImage is defaultSetupImage else "Setup"
 			setupImage = resolveFilename(SCOPE_GUISKIN, setupImage)
-			self.setupImage = LoadPixmap(setupImage)
-			if self.setupImage:
-				self["setupimage"] = Pixmap()
+			print("[Setup] %s image '%s'." % (type, setupImage))
+			if isfile(setupImage):
+				self.setupImage = LoadPixmap(setupImage)
+				if self.setupImage:
+					self["setupimage"] = Pixmap()
+				else:
+					print("[Setup] Error: Unable to load image '%s'!" % setupImage)
 			else:
-				print("[Setup] Error: Unable to load image '%s'!" % setupImage)
+				print("[Setup] Error: Setup image '%s' is not a file!" % setupImage)
 		else:
 			self.setupImage = None
 		self["config"].onSelectionChanged.append(self.selectionChanged)
