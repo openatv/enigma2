@@ -73,7 +73,7 @@ class SoftwarePanel(Screen, HelpableScreen):
 		self["feedstatusRED"] = Label("<  %s" % _("Feed disabled!"))
 		self["feedstatusYELLOW"] = Label("<  %s" % _("Feed unstable!"))
 		self["feedstatusGREEN"] = Label("<  %s" % _("Feed stable."))
-		self["packagetext"] = Label(_("Updates Available:"))
+		self["packagetext"] = Label(_("Updates available:"))
 		self["packagenr"] = Label("?")
 		cancelMsg = _("Cancel the software update")
 		updateMsg = _("Proceed with the update")

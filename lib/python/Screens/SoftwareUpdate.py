@@ -1,9 +1,8 @@
 from json import load
-from os.path import exists
 try:
-	from urllib.request import URLError, urlopen
+	from urllib.request import urlopen
 except ImportError:
-	from urllib2 import URLError, urlopen
+	from urllib2 import urlopen
 
 from enigma import eTimer
 
@@ -17,7 +16,7 @@ from Components.Sources.List import List
 from Components.Sources.StaticText import StaticText
 from Screens.HelpMenu import HelpableScreen
 from Screens.MessageBox import MessageBox
-from Screens.Screen import Screen
+from Screens.Screen import Screen, ScreenSummary
 from Tools.Directories import SCOPE_GUISKIN, resolveFilename
 from Tools.LoadPixmap import LoadPixmap
 
@@ -71,6 +70,7 @@ class SoftwareUpdate(Screen, HelpableScreen):
 		Screen.__init__(self, session)
 		HelpableScreen.__init__(self)
 		Screen.setTitle(self, _("Software Update"))
+		self.onCheckTrafficLight = []
 		self.updateList = []
 		self["list"] = List(self.updateList, enableWrapAround=True)
 		self["key_red"] = StaticText(_("Cancel"))
@@ -84,14 +84,14 @@ class SoftwareUpdate(Screen, HelpableScreen):
 		self["traffic_green"].hide()
 		self["feedstatus_off"] = Label(_("Status unavailable!"))
 		self["feedstatus_off"].hide()
-		self["feedstatus_red"] = Label("<  %s" % _("Feed disabled!"))
+		self["feedstatus_red"] = Label("< %s" % _("Feed disabled!"))
 		self["feedstatus_red"].hide()
-		self["feedstatus_yellow"] = Label("<  %s" % _("Feed unstable!"))
+		self["feedstatus_yellow"] = Label("< %s" % _("Feed unstable!"))
 		self["feedstatus_yellow"].hide()
-		self["feedstatus_green"] = Label("<  %s" % _("Feed stable."))
+		self["feedstatus_green"] = Label("< %s" % _("Feed stable."))
 		self["feedstatus_green"].hide()
 		self["feedmessage"] = Label()
-		self["package_text"] = Label(_("Updates Available:"))
+		self["package_text"] = Label(_("Updates available:"))
 		self["package_count"] = Label("?")
 		self["activity"] = Slider(0, 100)
 		cancelMsg = _("Cancel the software update")
@@ -225,15 +225,11 @@ class SoftwareUpdate(Screen, HelpableScreen):
 				self.feedState = self.FEED_STABLE
 			if message:
 				self["feedmessage"].setText(_(message))
-		except URLError as err:
-			if hasattr(err, "reason"):
-				print("[SoftwarePanel] Error %d: Unable to get server status!  (%s!)" % (err.reason[0], err.reason[1]))
-			if hasattr(err, "code"):
-				print("[SoftwarePanel] Error %d: Unable to get server status!" % err.code)
-			self["feedstatus_off"].show()
 		except Exception as err:
-			print("[SoftwarePanel] Error: Unable to get server status!  (%s)" % str(err))
+			print("[SoftwareUpdate] Error: Unable to get server status!  (%s)" % str(err))
 			self["feedstatus_off"].show()
+		for method in self.onCheckTrafficLight:
+			method()
 
 	def rebuildList(self):
 		self.setStatus("update")
@@ -296,6 +292,8 @@ class SoftwareUpdate(Screen, HelpableScreen):
 		else:
 			self["key_green"].setText(_("Update"))
 			self["updateActions"].setEnabled(True)
+		for method in self.onCheckTrafficLight:
+			method()
 		self.activity = -1
 
 	def buildEntryComponent(self, name, version, description, state):
@@ -310,3 +308,36 @@ class SoftwareUpdate(Screen, HelpableScreen):
 		statusPng = LoadPixmap(cached=True, path=imagePath)
 		divPng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_GUISKIN, "div-h.png"))
 		return (name, version, description, state, statusPng, divPng)
+
+	def createSummary(self):
+		return SoftwareUpdateSummary
+
+
+class SoftwareUpdateSummary(ScreenSummary):
+	def __init__(self, session, parent):
+		ScreenSummary.__init__(self, session, parent=parent)
+		self["entry"] = StaticText("")  # Use the same widget as the Setup Summary screen so the screens can be shared.
+		self["value"] = StaticText("")  # Use the same widget as the Setup Summary screen so the screens can be shared.
+		self.statusText = [
+			parent["feedstatus_off"].getText(),
+			parent["feedstatus_red"].getText(),
+			parent["feedstatus_yellow"].getText(),
+			parent["feedstatus_green"].getText()
+		]
+		if self.addWatcher not in self.onShow:
+			self.onShow.append(self.addWatcher)
+		if self.removeWatcher not in self.onHide:
+			self.onHide.append(self.removeWatcher)
+
+	def addWatcher(self):
+		if self.feedStatusChanged not in self.parent.onCheckTrafficLight:
+			self.parent.onCheckTrafficLight.append(self.feedStatusChanged)
+		self.feedStatusChanged()
+
+	def removeWatcher(self):
+		if self.feedStatusChanged in self.parent.onCheckTrafficLight:
+			self.parent.onCheckTrafficLight.remove(self.feedStatusChanged)
+
+	def feedStatusChanged(self):
+		self["entry"].setText(self.statusText[self.parent.feedState])
+		self["value"].setText("%s %s" % (self.parent["package_text"].getText(), self.parent["package_count"].getText()))
