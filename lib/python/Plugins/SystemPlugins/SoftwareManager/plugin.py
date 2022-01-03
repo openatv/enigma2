@@ -25,7 +25,7 @@ from Components.Console import Console
 from Components.MultiContent import MultiContentEntryText, MultiContentEntryPixmapAlphaTest
 from Components.SelectionList import SelectionList
 from Components.PluginComponent import plugins
-from Plugins.Extensions.Infopanel.SoftwarePanel import SoftwarePanel
+from Screens.SoftwareUpdate import SoftwareUpdate
 from Components.PackageInfo import PackageInfoHandler
 from Components.International import international
 from Components.AVSwitch import AVSwitch
@@ -330,7 +330,7 @@ class UpdatePluginMenu(Screen):
 			currentEntry = current[0]
 			if self.menu == 0:
 				if (currentEntry == "software-update"):
-					self.session.open(SoftwarePanel, self.skin_path)
+					self.session.open(SoftwareUpdate, self.skin_path)
 				elif (currentEntry == "software-restore"):
 					self.session.open(ImageWizard)
 				elif (currentEntry == "install-extensions"):

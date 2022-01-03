@@ -28,7 +28,7 @@ from Plugins.SystemPlugins.NetworkWizard.NetworkWizard import NetworkWizard
 from Plugins.Extensions.Infopanel.RestartNetwork import RestartNetwork
 from Plugins.Extensions.Infopanel.MountManager import HddMount
 from Plugins.Extensions.Infopanel.SoftcamPanel import *
-from Plugins.Extensions.Infopanel.SoftwarePanel import SoftwarePanel
+from Screens.SoftwareUpdate import SoftwareUpdate
 from Plugins.SystemPlugins.SoftwareManager.Flash_online import FlashOnline
 from Plugins.SystemPlugins.SoftwareManager.ImageBackup import ImageBackup
 from Plugins.SystemPlugins.SoftwareManager.plugin import SoftwareManagerSetup, Load_defaults
@@ -503,7 +503,7 @@ class QuickMenu(Screen, ProtectedScreen):
 			self.SatfinderMain()
 ######## Select Software Manager Menu ##############################
 		elif item[0] == _("Software Update"):
-			self.session.open(SoftwarePanel)
+			self.session.open(SoftwareUpdate)
 		elif item[0] == _("Flash Online"):
 			self.session.open(FlashOnline)
 		elif item[0] == _("Complete Backup"):

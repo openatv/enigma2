@@ -106,7 +106,7 @@ from Plugins.Extensions.Infopanel.ScriptRunner import *
 from Plugins.Extensions.Infopanel.MountManager import *
 from Plugins.Extensions.Infopanel.SoftcamPanel import *
 from Plugins.Extensions.Infopanel.SwapManager import Swap, SwapAutostart
-from Plugins.Extensions.Infopanel.SoftwarePanel import SoftwarePanel
+from Screens.SoftwareUpdate import SoftwareUpdate
 from Plugins.SystemPlugins.SoftwareManager.BackupRestore import BackupScreen, RestoreScreen, BackupSelection, getBackupPath, getBackupFilename
 from Plugins.SystemPlugins.SoftwareManager.BackupRestore import InitConfig as BackupRestore_InitConfig
 
@@ -468,7 +468,7 @@ class Infopanel(Screen, InfoBarPiP, ProtectedScreen):
 		elif menu == "software-manager":
 			self.Software_Manager()
 		elif menu == "software-update":
-			self.session.open(SoftwarePanel)
+			self.session.open(SoftwareUpdate)
 		elif menu == "backup-settings":
 			self.session.openWithCallback(self.backupDone, BackupScreen, runBackup=True)
 		elif menu == "restore-settings":
