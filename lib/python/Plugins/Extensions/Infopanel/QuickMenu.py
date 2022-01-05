@@ -1,6 +1,6 @@
 from __future__ import print_function, division
 
-from enigma import eListboxPythonMultiContent, gFont, eEnv, pNavigation
+from enigma import eListboxPythonMultiContent, gFont, eEnv, pNavigation, BT_SCALE
 from boxbranding import getMachineBrand, getMachineName, getBrandOEM
 from Components.ActionMap import ActionMap
 from Components.Label import Label
