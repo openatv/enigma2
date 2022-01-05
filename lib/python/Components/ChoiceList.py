@@ -16,11 +16,11 @@ def ChoiceEntryComponent(key=None, text=None):
 	res = [text]
 	if text[0] == "--":
 		x, y, w, h = parameters.get("ChoicelistDash", (0, 2, 800, 25))
-		res.append((eListboxPythonMultiContent.TYPE_TEXT, x, y, w, h, 0, RT_HALIGN_LEFT, "-" * 200))
+		res.append((eListboxPythonMultiContent.TYPE_TEXT, int(x), int(y), int(w), int(h), 0, RT_HALIGN_LEFT, "-" * 200))
 	else:
 		if key:
 			x, y, w, h = parameters.get("ChoicelistName", (45, 2, 800, 25))
-			res.append((eListboxPythonMultiContent.TYPE_TEXT, x, y, w, h, 0, RT_HALIGN_LEFT, text[0]))
+			res.append((eListboxPythonMultiContent.TYPE_TEXT, int(x), int(y), int(w), int(h), 0, RT_HALIGN_LEFT, text[0]))
 			if key == "dummy":
 				png = None
 			elif key == "expandable":
@@ -39,10 +39,10 @@ def ChoiceEntryComponent(key=None, text=None):
 					h = 100
 					if key == "verticalline":
 						y = 0
-				res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, x, y, w, h, png))
+				res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, int(x), int(y), int(w), int(h), png))
 		else:
 			x, y, w, h = parameters.get("ChoicelistName", (5, 2, 800, 25))
-			res.append((eListboxPythonMultiContent.TYPE_TEXT, x, y, w, h, 0, RT_HALIGN_LEFT, text[0]))
+			res.append((eListboxPythonMultiContent.TYPE_TEXT, int(x), int(y), int(w), int(h), 0, RT_HALIGN_LEFT, text[0]))
 	return res
 
 

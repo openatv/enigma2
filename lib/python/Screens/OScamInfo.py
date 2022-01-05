@@ -525,9 +525,9 @@ class OscamInfoMenu(Screen):
 					png = LoadPixmap(png)
 				if png is not None:
 					x, y, w, h = skin.parameters.get("ChoicelistDash", (0, 2 * sf, 800 * sf, 2 * sf))
-					res.append((eListboxPythonMultiContent.TYPE_PIXMAP, x, y, w, h, png))
+					res.append((eListboxPythonMultiContent.TYPE_PIXMAP, int(x), int(y), int(w), int(h), png))
 					x, y, w, h = skin.parameters.get("ChoicelistName", (45 * sf, 2 * sf, 800 * sf, 25 * sf))
-					res.append((eListboxPythonMultiContent.TYPE_TEXT, x, y, w, h, 0, RT_HALIGN_LEFT, t[2:]))
+					res.append((eListboxPythonMultiContent.TYPE_TEXT, int(x), int(y), int(w), int(h), 0, RT_HALIGN_LEFT, t[2:]))
 					png2 = resolveFilename(SCOPE_GUISKIN, "buttons/key_" + keys[k] + ".png")
 					if fileExists(png2):
 						png2 = LoadPixmap(png2)
@@ -536,13 +536,13 @@ class OscamInfoMenu(Screen):
 						res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHATEST, x, y, w, h, png2))
 			else:
 				x, y, w, h = skin.parameters.get("ChoicelistName", (45 * sf, 2 * sf, 800 * sf, 25 * sf))
-				res.append((eListboxPythonMultiContent.TYPE_TEXT, x, y, w, h, 0, RT_HALIGN_LEFT, t))
+				res.append((eListboxPythonMultiContent.TYPE_TEXT, int(x), int(y), int(w), int(h), 0, RT_HALIGN_LEFT, t))
 				png2 = resolveFilename(SCOPE_GUISKIN, "buttons/key_" + keys[k] + ".png")
 				if fileExists(png2):
 					png2 = LoadPixmap(png2)
 				if png2 is not None:
 					x, y, w, h = skin.parameters.get("ChoicelistIcon", (5 * sf, 0, 35 * sf, 25 * sf))
-					res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHATEST, x, y, w, h, png2))
+					res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHATEST, int(x), int(y), int(w), int(h), png2))
 			menuentries.append(res)
 			if k < len(keys) - 1:
 				k += 1
@@ -580,8 +580,8 @@ class oscECMInfo(Screen, OscamInfo):
 	def buildListEntry(self, listentry):
 		return [
 			"",
-			(eListboxPythonMultiContent.TYPE_TEXT, 10 * sf, 2 * sf, 300 * sf, 30 * sf, 0, RT_HALIGN_LEFT, listentry[0]),
-			(eListboxPythonMultiContent.TYPE_TEXT, 280 * sf, 2 * sf, 320 * sf, 30 * sf, 0, RT_HALIGN_LEFT, listentry[1])
+			(eListboxPythonMultiContent.TYPE_TEXT, int(10 * sf), int(2 * sf), int(300 * sf), int(30 * sf), 0, RT_HALIGN_LEFT, listentry[0]),
+			(eListboxPythonMultiContent.TYPE_TEXT, int(280 * sf), int(2 * sf), int(320 * sf), int(30 * sf), 0, RT_HALIGN_LEFT, listentry[1])
 			]
 
 	def showData(self):
@@ -754,23 +754,23 @@ class oscInfo(Screen, OscamInfo):
 		else:
 			colour = "0xffffff"
 		for i in listentry[:-1]:
-			xsize = self.fieldsize[x]
-			xpos = self.startPos[x]
-			res.append((eListboxPythonMultiContent.TYPE_TEXT, xpos, ypos * sf, xsize, self.itemheight * sf, useFont, RT_HALIGN_LEFT, i, int(colour, 16)))
+			xsize = int(self.fieldsize[x])
+			xpos = int(self.startPos[x])
+			res.append((eListboxPythonMultiContent.TYPE_TEXT, xpos, int(ypos * sf), xsize, int(self.itemheight * sf), useFont, RT_HALIGN_LEFT, i, int(colour, 16)))
 			x += 1
 		if heading:
 			png = resolveFilename(SCOPE_GUISKIN, "div-h.png")
 			if fileExists(png):
 				png = LoadPixmap(png)
 			if png is not None:
-				res.append((eListboxPythonMultiContent.TYPE_PIXMAP, 0, (self.itemheight - 2) * sf, self.sizeLH, 2 * sf, png))
+				res.append((eListboxPythonMultiContent.TYPE_PIXMAP, 0, int((self.itemheight - 2) * sf), self.sizeLH, int(2 * sf), png))
 		return res
 
 	def buildLogListEntry(self, listentry):
 		res = [""]
 		for i in listentry:
 			if i.strip() != "" or i is not None:
-				res.append((eListboxPythonMultiContent.TYPE_TEXT, 5 * sf, 0, self.sizeLH, self.itemheight * sf, 2, RT_HALIGN_LEFT, i))
+				res.append((eListboxPythonMultiContent.TYPE_TEXT, int(5 * sf), 0, self.sizeLH, int(self.itemheight * sf), 2, RT_HALIGN_LEFT, i))
 		return res
 
 	def showData(self):

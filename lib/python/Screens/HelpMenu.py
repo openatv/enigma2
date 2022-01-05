@@ -255,12 +255,12 @@ class HelpMenuListOld(GUIComponent):
 					x, y, w, h = parameters.get("HelpMenuListExtHlp0", (0, 0, 600, 26))
 					x1, y1, w1, h1 = parameters.get("HelpMenuListExtHlp1", (0, 28, 600, 20))
 					entry.extend((
-						(eListboxPythonMultiContent.TYPE_TEXT, x, y, w, h, 0, 0, help[0]),
-						(eListboxPythonMultiContent.TYPE_TEXT, x1, y1, w1, h1, 1, 0, help[1])
+						(eListboxPythonMultiContent.TYPE_TEXT, int(x), int(y), int(w), int(h), 0, 0, help[0]),
+						(eListboxPythonMultiContent.TYPE_TEXT, int(x1), int(y1), int(w1), int(h1), 1, 0, help[1])
 					))
 				else:
 					x, y, w, h = parameters.get("HelpMenuListHlp", (0, 0, 600, 28))
-					entry.append((eListboxPythonMultiContent.TYPE_TEXT, x, y, w, h, 0, 0, help))
+					entry.append((eListboxPythonMultiContent.TYPE_TEXT, int(x), int(y), int(w), int(h), 0, 0, help))
 
 				l.append(entry)
 

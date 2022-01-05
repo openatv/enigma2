@@ -54,9 +54,9 @@ def ServiceInfoListEntry(a, b="", valueType=TYPE_TEXT, param=4):
 	xb, yb, wb, hb = skin.parameters.get("ServiceInfoRight", (300, 0, 600, 25))
 	return [
 		#PyObject *type, *px, *py, *pwidth, *pheight, *pfnt, *pstring, *pflags;
-		(eListboxPythonMultiContent.TYPE_TEXT, x, y, w, h, 0, RT_HALIGN_LEFT, ""),
-		(eListboxPythonMultiContent.TYPE_TEXT, xa, ya, wa, ha, 0, RT_HALIGN_LEFT, a),
-		(eListboxPythonMultiContent.TYPE_TEXT, xb, yb, wb, hb, 0, RT_HALIGN_LEFT, b)
+		(eListboxPythonMultiContent.TYPE_TEXT, int(x), int(y), int(w), int(h), 0, RT_HALIGN_LEFT, ""),
+		(eListboxPythonMultiContent.TYPE_TEXT, int(xa), int(ya), int(wa), int(ha), 0, RT_HALIGN_LEFT, a),
+		(eListboxPythonMultiContent.TYPE_TEXT, int(xb), int(yb), int(wb), int(hb), 0, RT_HALIGN_LEFT, b)
 	]
 
 
