@@ -43,7 +43,7 @@ EXTENSIONS = {
 def FileEntryComponent(name, absolute=None, isDir=False):
 	res = [(absolute, isDir)]
 	x, y, w, h = parameters.get("FileListName", (35, 1, 470, 20))
-	res.append((eListboxPythonMultiContent.TYPE_TEXT, int(x), int(y), int(w), int(h), 0, RT_HALIGN_LEFT, name))
+	res.append((eListboxPythonMultiContent.TYPE_TEXT, x, y, w, h, 0, RT_HALIGN_LEFT, name))
 	if isDir:
 		png = LoadPixmap(cached=True, path=resolveFilename(SCOPE_GUISKIN, "extensions/directory.png"))
 	else:
@@ -55,7 +55,7 @@ def FileEntryComponent(name, absolute=None, isDir=False):
 			png = None
 	if png is not None:
 		x, y, w, h = parameters.get("FileListIcon", (10, 2, 20, 20))
-		res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, int(x), int(y), int(w), int(h), png))
+		res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, x, y, w, h, png))
 
 	return res
 
@@ -279,7 +279,7 @@ class FileList(MenuList):
 def MultiFileSelectEntryComponent(name, absolute=None, isDir=False, selected=False):
 	res = [(absolute, isDir, selected, name)]
 	x, y, w, h = parameters.get("FileListMultiName", (55, 0, 470, 25))
-	res.append((eListboxPythonMultiContent.TYPE_TEXT, int(x), int(y), int(w), int(h), 0, RT_HALIGN_LEFT, name))
+	res.append((eListboxPythonMultiContent.TYPE_TEXT, x, y, w, h, 0, RT_HALIGN_LEFT, name))
 	if isDir:
 		png = LoadPixmap(cached=True, path=resolveFilename(SCOPE_GUISKIN, "extensions/directory.png"))
 	else:
@@ -291,14 +291,14 @@ def MultiFileSelectEntryComponent(name, absolute=None, isDir=False, selected=Fal
 			png = None
 	if png is not None:
 		x, y, w, h = parameters.get("FileListMultiIcon", (30, 2, 20, 20))
-		res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, int(x), int(y), int(w), int(h), png))
+		res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, x, y, w, h, png))
 	if not name.startswith('<'):
 		if selected:
 			icon = LoadPixmap(cached=True, path=resolveFilename(SCOPE_GUISKIN, "icons/lock_on.png"))
 		else:
 			icon = LoadPixmap(cached=True, path=resolveFilename(SCOPE_GUISKIN, "icons/lock_off.png"))
 		x, y, w, h = parameters.get("FileListMultiLock", (2, 0, 25, 25))
-		res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, int(x), int(y), int(w), int(h), icon))
+		res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, x, y, w, h, icon))
 	return res
 
 

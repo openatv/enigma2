@@ -41,11 +41,11 @@ class PlayList(MenuList):
 		if text == "":
 			text = path.split(serviceref.getPath().split('/')[-1])[1]
 		x, y, w, h = skin.parameters.get("PlayListName", (25, 1, 470, 22))
-		res.append((eListboxPythonMultiContent.TYPE_TEXT, int(x), int(y), int(w), int(h), 0, RT_VALIGN_CENTER, text))
+		res.append((eListboxPythonMultiContent.TYPE_TEXT, x, y, w, h, 0, RT_VALIGN_CENTER, text))
 		try:
 			png = self.icons[state]
 			x, y, w, h = skin.parameters.get("PlayListIcon", (5, 3, 16, 16))
-			res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHATEST, int(x), int(y), int(w), int(h), png))
+			res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHATEST, x, y, w, h, png))
 		except:
 				pass
 		return res
