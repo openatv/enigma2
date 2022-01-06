@@ -47,6 +47,9 @@ def InitUsageConfig():
 	config.misc.useNTPminutes = ConfigSelection(default="30", choices=[("30", "30" + " " + _("minutes")), ("60", _("Hour")), ("1440", _("Once per day"))])
 	config.misc.remotecontrol_text_support = ConfigYesNo(default=True)
 
+	config.misc.extraopkgpackages = ConfigYesNo(default=False)
+	config.misc.opkgcleanmode = ConfigYesNo(default=False)
+
 	config.workaround = ConfigSubsection()
 	config.workaround.blueswitch = ConfigSelection(default="0", choices=[("0", _("QuickMenu/Extensions")), ("1", _("Extensions/QuickMenu"))])
 	config.workaround.deeprecord = ConfigYesNo(default=False)

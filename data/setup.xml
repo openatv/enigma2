@@ -652,6 +652,8 @@
 	</setup>
 
 	<setup key="PluginFilter" title="Plugin Filter">
+		<item level="0" text="Show development packages in opkg" description="When enabled, you will see dev, staticdev, dbg, doc, src and po packages in opkg list.">config.misc.extraopkgpackages</item>
+		<item level="0" text="OPKG clean mode" description="When enabled, before opkg update there will be opkg clean to make sure nothing ruine the update but only enable this when you can not update online.">config.misc.opkgcleanmode</item>
 		<item level="0" text="drivers" description="This allows you to show drivers modules in downloads">config.pluginfilter.drivers</item>
 		<item level="0" text="extensions" description="This allows you to show extensions modules in downloads">config.pluginfilter.extensions</item>
 		<item level="0" text="languages" description="This allows you to show languages in downloads">config.pluginfilter.po</item>
