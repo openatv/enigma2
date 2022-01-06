@@ -328,8 +328,17 @@ static unsigned char *bmp_load(const char *file,  int *x, int *y)
 
 }
 
-//---------------------------------------------------------------------
-
+/**
+ * @brief Load a png
+ *
+ * If you make change to png_load, check the functionality with PngSuite  
+ * http://www.schaik.com/pngsuite/  
+ * These are test images in all standard PNG.
+ *
+ * @param filepara
+ * @param background
+ * @return void
+ */
 static void png_load(Cfilepara* filepara, unsigned int background)
 {
 	png_uint_32 width, height;
