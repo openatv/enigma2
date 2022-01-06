@@ -1451,7 +1451,7 @@ class EPGList(GUIComponent):
 		else:
 			t = time()
 			epg_time = t - config.epg.histminutes.value * 60
-		test = ['RIBDT', (service.ref.toString(), 0, epg_time, -1)]
+		test = ['RIBDT', (service.ref.toString(), 0, int(epg_time), -1)]
 		self.list = self.queryEPG(test)
 		self.l.setList(self.list)
 		if t != epg_time:
@@ -1466,7 +1466,7 @@ class EPGList(GUIComponent):
 		self.selectionChanged()
 
 	def fillMultiEPG(self, services, stime=None):
-		test = [(service.ref.toString(), 0, stime) for service in services]
+		test = [(service.ref.toString(), 0, int(stime)) for service in services]
 		test.insert(0, 'X0RIBDTCn')
 		self.list = self.queryEPG(test)
 		self.l.setList(self.list)
