@@ -857,7 +857,7 @@ class EPGList(GUIComponent):
 					(eListboxPythonMultiContent.TYPE_TEXT, r5.x, r5.y, r5.w, r5.h, 1, RT_HALIGN_RIGHT | RT_VALIGN_CENTER, _("%d min") % (duration / 60))
 				))
 			else:
-				percent = (nowTime - beginTime) * 100 / duration
+				percent = int((nowTime - beginTime) * 100 / duration)
 				prefix = "+"
 				remaining = ((beginTime + duration) - int(time())) / 60
 				if remaining <= 0:

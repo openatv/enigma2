@@ -1063,6 +1063,7 @@ void eListboxPythonMultiContent::paint(gPainter &painter, eWindowStyle &style, c
 
 					int width = PyFloat_Check(pwidth) ? (int)PyFloat_AsDouble(pwidth) : PyInt_AsLong(pwidth); 
 					int height = PyFloat_Check(pheight) ? (int)PyFloat_AsDouble(pheight) : PyInt_AsLong(pheight); 
+					int filled = PyFloat_Check(pfilled_perc) ? (int)PyFloat_AsDouble(pfilled_perc) : PyInt_AsLong(pfilled_perc); 
 
 				#else
 
@@ -1070,10 +1071,10 @@ void eListboxPythonMultiContent::paint(gPainter &painter, eWindowStyle &style, c
 					int y = PyInt_AsLong(py) + offset.y();
 					int width = PyInt_AsLong(pwidth);
 					int height = PyInt_AsLong(pheight);
+					int filled = PyInt_AsLong(pfilled_perc);
 
 				#endif
 
-				int filled = PyInt_AsLong(pfilled_perc);
 
 				if ((filled < 0) && data) /* if the string is in a negative number, it refers to the 'data' list. */
 					filled = PyInt_AsLong(PyTuple_GetItem(data, -filled));
