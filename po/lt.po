@@ -1,14 +1,14 @@
 # Copyright (C) 2005 THE tuxbox-enigma'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the tuxbox-enigma package.
 # Automatically generated, 2005.
-# Adga56 <adga45@gmail.com>, 2021.
+# Adga56 <adga45@gmail.com>, 2021, 2022.
 # Gediminas Murauskas <muziejusinfo@gmail.com>, 2021.
 msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-01-02 10:50+0000\n"
-"PO-Revision-Date: 2021-12-19 14:52+0000\n"
+"PO-Revision-Date: 2022-01-04 22:55+0000\n"
 "Last-Translator: Adga56 <adga45@gmail.com>\n"
 "Language-Team: Lithuanian <https://hosted.weblate.org/projects/openatv/"
 "enigma2-7-0-po/lt/>\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n % 10 == 1 && (n % 100 < 11 || n % 100 > "
 "19)) ? 0 : ((n % 10 >= 2 && n % 10 <= 9 && (n % 100 < 11 || n % 100 > 19)) ? "
 "1 : 2);\n"
-"X-Generator: Weblate 4.10\n"
+"X-Generator: Weblate 4.10.1\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 
 msgid ""
@@ -1638,7 +1638,7 @@ msgid "16:9"
 msgstr "16:9"
 
 msgid "16:9 Always"
-msgstr "16:9 visada"
+msgstr "Visada 16:9"
 
 msgid "16:9 Letterbox"
 msgstr "16:10 įterpiant juodas juostas"
@@ -2416,7 +2416,7 @@ msgid "Add a record timer for current event"
 msgstr "Pridėti įrašymo laikmatį šiam įvykiui"
 
 msgid "Add a timer for the current event"
-msgstr ""
+msgstr "Įtraukti dabartinio įvykio laikmatį"
 
 msgid "Add a zap timer for current event"
 msgstr "Pridėti perjungimo laikmatį šiam įvykiui"
@@ -2425,7 +2425,7 @@ msgid "Add a zap timer for next event"
 msgstr "Pridėti perjungimo laikmatį sekančiam įvykiui"
 
 msgid "Add an AutoTimer for the current event"
-msgstr "Pridėti auto laikmatį šiam įvykiui"
+msgstr "Pridėkite dabartinio įvykio automatinį laikmatį"
 
 msgid "Add bookmark"
 msgstr "Pridėti žymę"
@@ -2482,7 +2482,7 @@ msgid "Add/Remove Timer"
 msgstr "Pridėti/pašalinti laikmatį"
 
 msgid "Add/Remove a timer for the current event"
-msgstr "Pridėti/pašalinti šio įvykio laikmatį"
+msgstr "Įtraukti / pašalinti dabartinio įvykio laikmatį"
 
 msgid "Adding schedule..."
 msgstr "Pridedamas tvarkaraštis..."
@@ -2706,7 +2706,7 @@ msgid ""
 msgstr "Leidžia koreguoti ekrano raiškos informacijos rodymo laiką."
 
 msgid "Allows you to assign the selected function to this button."
-msgstr "Šiam mygtukui galite priskirti pasirinktą funkciją."
+msgstr "Leidžia šiam mygtukui priskirti pasirinktą funkciją."
 
 msgid ""
 "Allows you to enable the debug log. They contain very detailed information "
@@ -4138,10 +4138,10 @@ msgid "Cancel the image selection and exit all menus"
 msgstr "Atšaukti atvaizdo pasirinkimą ir užverti visus meniu"
 
 msgid "Cancel the software update"
-msgstr ""
+msgstr "Atšaukti programinės įrangos naujinimą"
 
 msgid "Cancel the update"
-msgstr ""
+msgstr "Atšaukti naujinimą"
 
 msgid "Cancelled upon user request"
 msgstr "Atšauktas vartotojo"
@@ -4718,7 +4718,7 @@ msgid "Client Info ( Oscam-Version: %s )"
 msgstr "Kliento Info (Oscam versija: %s)"
 
 msgid "Client is streaming from this box!"
-msgstr ""
+msgstr "Klientas transliuoja iš šio imtuvo!"
 
 msgid "ClientIP"
 msgstr "Kliento IP"
@@ -4739,7 +4739,7 @@ msgid "Close PiP on exit"
 msgstr "Išeinant užverti PiP"
 
 msgid "Close bouquet list"
-msgstr ""
+msgstr "Uždaryti paketų sąrašą"
 
 msgid "Close bouquet list."
 msgstr "Užverti paketų sąrašą."
@@ -4748,13 +4748,13 @@ msgid "Close dialog"
 msgstr "Baigti dialogą"
 
 msgid "Close screen"
-msgstr ""
+msgstr "Uždaryti ekraną"
 
 msgid "Close the current screen"
-msgstr ""
+msgstr "Uždaryti dabartinį ekraną"
 
 msgid "Close the window"
-msgstr ""
+msgstr "Uždaryti langą"
 
 msgid "Close title selection"
 msgstr "Užverti pavadinimo pasirinkimą"
@@ -5510,7 +5510,7 @@ msgid "Continue playing"
 msgstr "Tęsti žiūrėjimą"
 
 msgid "Continue with the on-line update"
-msgstr ""
+msgstr "Tęsti internetinį naujinimą"
 
 msgid "Continues"
 msgstr "Toliau"
@@ -5824,7 +5824,7 @@ msgid "Cutlist editor..."
 msgstr "Iškirpimo redaktorius..."
 
 msgid "Cycle PIP(zap)"
-msgstr ""
+msgstr "Ciklo PIP(zap)"
 
 msgid "Cycling"
 msgstr "Dviračių sportas"
@@ -6207,6 +6207,7 @@ msgstr "Numatytieji"
 msgid ""
 "Define additional delay in milliseconds before start of http(s) streams."
 msgstr ""
+"Nustatykite papildomą milisekundžių delsą prieš pradedant http (-us) srautus."
 
 msgid ""
 "Defines how fast the time jumps are repeated. Values lower than 500ms may be "
@@ -6340,7 +6341,7 @@ msgid "Delete Plugins"
 msgstr "Ištrinti priedus"
 
 msgid "Delete Timer"
-msgstr "Trinti laikmatį"
+msgstr "Šalinti laikmatį"
 
 msgid "Delete all tags"
 msgstr "Šalinti visas žymes"
@@ -7008,7 +7009,7 @@ msgid "Download and install cam"
 msgstr "Parsisiųsti ir įdiegti emuliatorius"
 
 msgid "Download error"
-msgstr ""
+msgstr "Atsisiuntimo klaida"
 
 msgid "Download plugins"
 msgstr "Parsisiųsti priedus"
@@ -7026,7 +7027,7 @@ msgid "Downloading Image"
 msgstr "Parsiunčiamas atvaizdas"
 
 msgid "Downloading latest update list.  Please wait..."
-msgstr ""
+msgstr "Atsisiunčiamas naujausias naujinimų sąrašas.  Palaukite..."
 
 msgid "Downloading plugin information. Please wait..."
 msgstr "Palaukite, parsiunčiama informacija apie priedus..."
@@ -7127,25 +7128,25 @@ msgid "EPG"
 msgstr "Elektroninis programų vadovas"
 
 msgid "EPG Actions"
-msgstr ""
+msgstr "EPG veiksmai"
 
 msgid "EPG Bouquet Actions"
-msgstr ""
+msgstr "EPG paketo veiksmai"
 
 msgid "EPG Cache Check"
 msgstr "EPG talpyklos tikrinimas"
 
 msgid "EPG Channel/Service Selection"
-msgstr ""
+msgstr "EPG kanalo / paslaugos pasirinkimas"
 
 msgid "EPG Display Actions"
-msgstr ""
+msgstr "EPG rodymo veiksmai"
 
 msgid "EPG Navigation Actions"
-msgstr ""
+msgstr "EPG naršymo veiksmai"
 
 msgid "EPG Other Actions"
-msgstr ""
+msgstr "EPG kiti veiksmai"
 
 msgid "EPG Search"
 msgstr "EPG paieška"
@@ -7896,13 +7897,13 @@ msgid "Event Info"
 msgstr "Įvykio informacija"
 
 msgid "Event View"
-msgstr "Įvykių peržiūra"
+msgstr "Įvykio rodinys"
 
 msgid "Event View Actions"
-msgstr ""
+msgstr "Įvykio rodinio veiksmai"
 
 msgid "Event View Context Menu"
-msgstr "Įvykių peržiūros meniu"
+msgstr "Įvykio rodinio kontekstinis meniu"
 
 msgid "Event font size"
 msgstr "Įvykio šrifto dydis"
@@ -7914,7 +7915,7 @@ msgid "Event view menu"
 msgstr "Įvykių peržiūros meniu"
 
 msgid "EventViewEPG Actions"
-msgstr ""
+msgstr "EventViewEPG veiksmai"
 
 msgid "Eventname only"
 msgstr "Tik įvykio pavadinimas"
@@ -8267,13 +8268,13 @@ msgid "Favourites"
 msgstr "Mėgstamiausi"
 
 msgid "Feed disabled!"
-msgstr ""
+msgstr "Šaltinis išjungtas!"
 
 msgid "Feed stable."
-msgstr ""
+msgstr "Šaltinis stabilus."
 
 msgid "Feed unstable!"
-msgstr ""
+msgstr "Šaltinis nestabilus!"
 
 msgid "Feeds status:   Stable"
 msgstr "Šaltinių stovis:  stabilus"
@@ -8424,7 +8425,7 @@ msgid "Find out more at %s"
 msgstr "Sužinokite daugiau %s"
 
 msgid "Find similar events in the EPG"
-msgstr ""
+msgstr "Rasti panašius įvykius EPG"
 
 msgid "Fine movement"
 msgstr "Tikslus sukimas"
@@ -9335,7 +9336,7 @@ msgid "How many minutes do you want to record?"
 msgstr "Kiek minučių norite įrašinėti?"
 
 msgid "Http(s) stream start delay"
-msgstr ""
+msgstr "Http(-ų) srauto pradžios delsa"
 
 msgid "Hue"
 msgstr "Atspalvis"
@@ -9368,7 +9369,7 @@ msgid "IMDb Search"
 msgstr "IMDb paieška"
 
 msgid "IMDb search for current event"
-msgstr "Ieškoti šio įvykio IMDB"
+msgstr "Ieškoti šio įvykio IMDb"
 
 msgid "INFO"
 msgstr "Informacija"
@@ -10310,13 +10311,13 @@ msgid "Jump to next marked position"
 msgstr "Peršokti į sekančią pažymėtą poziciją"
 
 msgid "Jump to next page or all up (setup in menu)"
-msgstr ""
+msgstr "Pereiti į kitą puslapį arba viską aukštyn (sąranka meniu)"
 
 msgid "Jump to previous marked position"
 msgstr "Peršokti į ankstesnę pažymėtą poziciją"
 
 msgid "Jump to previous page or all down (setup in menu)"
-msgstr ""
+msgstr "Pereiti į ankstesnį puslapį arba visus žemyn (sąranka meniu)"
 
 msgid "Jump to prime time"
 msgstr "Peršokti į žiūrimiausią laiką"
@@ -10429,7 +10430,7 @@ msgid "Kneipensport"
 msgstr "Barų sportas"
 
 msgid "Kodi"
-msgstr ""
+msgstr "Kodi"
 
 msgid "Kodi MediaCenter"
 msgstr "Kodi medija centras"
@@ -10438,7 +10439,7 @@ msgid "Kodi installed:"
 msgstr "Kodi įdiegta:"
 
 msgid "Kodi long"
-msgstr ""
+msgstr "Kodi ilgas spaudimas"
 
 msgid "Kodi media player"
 msgstr "Kodi medijos grotuvas"
@@ -11266,7 +11267,7 @@ msgid "Message"
 msgstr "Pranešimas"
 
 msgid "Message Box Actions"
-msgstr "MessageBox funkcijos"
+msgstr "Pranešimų lauko veiksmai"
 
 msgid "Message..."
 msgstr "Pranešimas..."
@@ -11561,7 +11562,7 @@ msgid "Move the text cursor to the last character"
 msgstr "Perkelkite teksto žymeklį į paskutinį simbolį"
 
 msgid "Move to first line"
-msgstr ""
+msgstr "Pereiti į pirmąją eilutę"
 
 msgid "Move to first line / screen"
 msgstr "Pereiti į pirmąją eilutę / ekraną"
@@ -11570,7 +11571,7 @@ msgid "Move to home of list"
 msgstr "Perkelti į titulinį sąrašą"
 
 msgid "Move to last line"
-msgstr ""
+msgstr "Pereiti į paskutinę eilutę"
 
 msgid "Move to last line / screen"
 msgstr "Pereiti į paskutinę eilutę / ekraną"
@@ -11631,7 +11632,7 @@ msgid "Movie"
 msgstr "Kino filmas"
 
 msgid "Movie Event View Actions"
-msgstr ""
+msgstr "Filmo įvykio rodinio veiksmai"
 
 msgid "Movie List"
 msgstr "Kino filmų sąrašas"
@@ -12663,7 +12664,7 @@ msgid "Open bouquetlist"
 msgstr "Atverti paketų sąrašą"
 
 msgid "Open context menu"
-msgstr ""
+msgstr "Atidaryti kontekstinį meniu"
 
 msgid "Open favourites list"
 msgstr "Atverti mėgstamiausių sąrašą"
@@ -12699,10 +12700,10 @@ msgid "Open the movie list"
 msgstr "Atverti filmų sąrašą"
 
 msgid "Open the multi service EPG view"
-msgstr ""
+msgstr "Atidaryti kelių kanalų EPG rodinį"
 
 msgid "Open the single service EPG view"
-msgstr ""
+msgstr "Atidaryti vienos kanalo EPG rodinį"
 
 msgid "Open with File Commander"
 msgstr "Atverti su Failų valdytoju"
@@ -12945,7 +12946,7 @@ msgid "Page down list"
 msgstr "Puslapio žemyn sąrašas"
 
 msgid "Page left"
-msgstr "puslapis kairėje"
+msgstr "Puslapis kairėje"
 
 msgid "Page right"
 msgstr "Puslapis dešinėje"
@@ -13110,7 +13111,7 @@ msgstr ""
 "atnaujinimus primygtinai rekomenduojamas."
 
 msgid "Perform an on-line flash instead"
-msgstr ""
+msgstr "Vietoj to atlikite internetinį įdiegimą"
 
 msgid "Perform an online update check in the background"
 msgstr "Atlikti internetinio atnaujinimo patikrinimą fone"
@@ -14012,7 +14013,7 @@ msgid "Probable causes could be"
 msgstr "Tikėtinos priežastys gali būti"
 
 msgid "Proceed with the update"
-msgstr ""
+msgstr "Tęskite naujinimą"
 
 msgid "Process"
 msgstr "Apdorojama"
@@ -14439,7 +14440,7 @@ msgid "Record - same as record button"
 msgstr "Įrašas - tas pats kaip įrašymo mygtukas"
 
 msgid "Record Actions"
-msgstr ""
+msgstr "Įrašyti veiksmus"
 
 msgid "Record next"
 msgstr "Įrašyti sekantį"
@@ -14984,7 +14985,7 @@ msgid "Retrieving image slots - Please wait..."
 msgstr "Gaunami atvaizdo siužetai - prašome laukti..."
 
 msgid "Return the current selection response"
-msgstr ""
+msgstr "Grąžinti dabartinį pasirinkimo atsakymą"
 
 msgid "Return to movie list"
 msgstr "Grįžti į filmų sąrašą"
@@ -15856,7 +15857,7 @@ msgid "Select target folder"
 msgstr "Pasirinkite paskirties katalogą"
 
 msgid "Select the No / False response"
-msgstr ""
+msgstr "Pasirinkite atsakymą Nr. / Klaidingas"
 
 msgid "Select the Swap File Size:"
 msgstr "Pasirinkite mainų failo dydį:"
@@ -15912,7 +15913,7 @@ msgstr ""
 "dažnis, kurį SCR jungiklis naudoja norimam atsakikliui perduoti į imtuvą."
 
 msgid "Select the Yes / True response"
-msgstr ""
+msgstr "Pasirinkite taip / Teisingą atsakymą"
 
 msgid "Select the character or action under the keyboard cursor"
 msgstr "Pasirinkite simbolį arba veiksmą po klaviatūros žymekliu"
@@ -17314,10 +17315,10 @@ msgid "Show network mounts ..."
 msgstr "Rodyti tinklo pajungimus ..."
 
 msgid "Show next event"
-msgstr ""
+msgstr "Rodyti kitą įvykį"
 
 msgid "Show next page"
-msgstr ""
+msgstr "Rodyti kitą puslapį"
 
 msgid "Show next picture"
 msgstr "Rodyti kitą nuotrauką"
@@ -17341,10 +17342,10 @@ msgid "Show preview of current mode (*)."
 msgstr "Rodyti peržiūrą dabartiniam režimui (*)."
 
 msgid "Show previous event"
-msgstr ""
+msgstr "Rodyti ankstesnį įvykį"
 
 msgid "Show previous page"
-msgstr ""
+msgstr "Rodyti ankstesnį puslapį"
 
 msgid "Show previous picture"
 msgstr "Rodyti ankstesnę nuotrauką"
@@ -17393,10 +17394,10 @@ msgid "Show shutdown menu"
 msgstr "Rodyti išjungimo meniu"
 
 msgid "Show single EPG for current channel"
-msgstr "Rodyti atskirą EPG šiam kanalui"
+msgstr "Rodyti vieną dabartinio kanalo EPG"
 
 msgid "Show single EPG for current channel (setup in menu)"
-msgstr ""
+msgstr "Rodyti vieną dabartinio kanalo EPG (sąranka meniu)"
 
 msgid "Show single service EPG"
 msgstr "Rodyti vieno kanalo EPG"
@@ -17828,7 +17829,7 @@ msgid "Software Update"
 msgstr "Programinės įrangos atnaujinimas"
 
 msgid "Software Update Actions"
-msgstr ""
+msgstr "Programinės įrangos naujinimo veiksmai"
 
 msgid "Software management"
 msgstr "Programinės įrangos valdymas"
@@ -18168,7 +18169,7 @@ msgid "Status of the display in standby mode"
 msgstr "Ekrano būsena laukimo režime"
 
 msgid "Status unavailable!"
-msgstr ""
+msgstr "Būsena nepasiekiama!"
 
 msgid "Status:"
 msgstr "Būsena:"
@@ -18634,7 +18635,7 @@ msgstr "TEKSTAS"
 
 #. TRANSLATORS: Add here whatever should be shown in the "translator" about screen, up to 6 lines (use \n for newline)
 msgid "TRANSLATOR_INFO"
-msgstr "2021-12-18 adga45@gmail.com"
+msgstr "2022-01-03 adga45@gmail.com"
 
 msgid "TS file is too large for ISO9660 level 1!"
 msgstr "TS failas yra per didelis ISO9660 lygmeniui 1!"
@@ -19221,6 +19222,8 @@ msgid ""
 "There is a risk that your %s %s will not boot or may malfunction after such "
 "a large on-line update."
 msgstr ""
+"Yra rizika, kad jūsų %s %s nebus paleistas arba gali sugesti po tokio "
+"didelio internetinio atnaujinimo."
 
 msgid "There is no signal to lock on !"
 msgstr "Nėra signalo fiksavimui !"
@@ -19239,7 +19242,7 @@ msgid "There was an error downloading the region list"
 msgstr "Atsisiunčiant regionų sąrašą įvyko klaida"
 
 msgid "There was an error downloading the update list.  Please try again."
-msgstr ""
+msgstr "Atsisiunčiant naujinimų sąrašą įvyko klaida.  Bandykite dar kartą."
 
 msgid "There was an error downloading the updatelist. Please try again."
 msgstr ""
@@ -20141,7 +20144,7 @@ msgid "Toggle PIPzap"
 msgstr "Perjungti PiP jungimą"
 
 msgid "Toggle Picture in Graphics"
-msgstr "Perjungti paveikslėlį į grafiką"
+msgstr "Paveikslėlio perjungimas grafikoje"
 
 msgid "Toggle Pillarbox <> Pan&Scan"
 msgstr "Perjungti talpinimą su juostomis <> talpinimu, nukerpant šonus"
@@ -20153,7 +20156,7 @@ msgid "Toggle aspect ratio..."
 msgstr "Perjungti kraštinių santykį..."
 
 msgid "Toggle between bouquet/EPG lists"
-msgstr "Perjungti tarp paketo/epg sąrašo"
+msgstr "Perjungti paketo / EPG sąrašus"
 
 msgid "Toggle display of the InfoBar"
 msgstr "Perjungti informacinės juostos rodymą"
@@ -20615,7 +20618,7 @@ msgstr ""
 "savo nustatymus."
 
 msgid "Unknown Service"
-msgstr "nežinomas kanalas"
+msgstr "Nežinomas kanalas"
 
 msgid "Unknown error code"
 msgstr "Nežinomas klaidos kodas"
@@ -21566,7 +21569,7 @@ msgstr "Įspėjimas"
 
 #, python-format
 msgid "Warning: There are %d update packages!"
-msgstr ""
+msgstr "Įspėjimas: yra %d atnaujinimo paketų!"
 
 msgid ""
 "Warning: This is the last crash before an automatic restart is performed.\n"
@@ -21730,7 +21733,7 @@ msgid "What do you want to scan?"
 msgstr "Ko Jūs norite ieškoti?"
 
 msgid "What would you like to do?"
-msgstr ""
+msgstr "Ką norėtumėte daryti?"
 
 msgid ""
 "When enabled enigma2 will load unlinked userbouquets. This means that "
@@ -22505,13 +22508,13 @@ msgstr ""
 "nustatytais sustojimais."
 
 msgid "You should flash a new image!"
-msgstr ""
+msgstr "Turėtumėte įdiegti naują vaizdą!"
 
 msgid "YouTube"
-msgstr ""
+msgstr "YouTube"
 
 msgid "YouTube long"
-msgstr ""
+msgstr "YouTube ilgai spausti"
 
 msgid "Your %s %s does not have an internet connection"
 msgstr "Jūsų %s %s neturi interneto ryšio"
@@ -23907,7 +23910,7 @@ msgid "none"
 msgstr "nėra"
 
 msgid "normal"
-msgstr ""
+msgstr "normalus"
 
 msgid "not"
 msgstr "ne"
