@@ -1603,7 +1603,7 @@ class ScanSetup(ConfigListScreen, Screen, CableTransponderSearchSupport, Terrest
 		elif nim.isCompatible("DVB-T"):
 			if self.scan_typeterrestrial.value == "single_transponder":
 				if self.scan_input_as.value == "channel":
-					frequency = channel2frequency(self.scan_ter.channel.value, self.ter_tnumber)
+					frequency = int(channel2frequency(self.scan_ter.channel.value, self.ter_tnumber))
 				else:
 					frequency = self.scan_ter.frequency.floatint * 1000
 				self.addTerTransponder(tlist,

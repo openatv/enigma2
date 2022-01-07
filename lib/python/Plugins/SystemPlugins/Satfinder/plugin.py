@@ -282,9 +282,9 @@ class Satfinder(ScanSetup, ServiceScan):
 	def retuneTerr(self):
 		if self.initcomplete:
 			if self.scan_input_as.value == "channel":
-				frequency = channel2frequency(self.scan_ter.channel.value, self.ter_tnumber)
+				frequency = int(channel2frequency(self.scan_ter.channel.value, self.ter_tnumber))
 			else:
-				frequency = int(self.scan_ter.frequency.floatint * 1000)
+				frequency = self.scan_ter.frequency.floatint * 1000
 			if self.scan_typeterrestrial.value == "single_transponder":
 				transponder = [
 					2, #TERRESTRIAL
