@@ -830,7 +830,7 @@ RESULT eServiceDVD::getSubtitleList(std::vector<struct SubtitleTrack> &subtitlel
 		track.pid = spu_id + 1;
 		track.page_number = 5;
 		track.magazine_number = 0;
-		if (spu_lang == 0xFFFF) {
+		if (spu_lang != 0xFFFF) {
 			track.language_code = spu_string;
 		}
 		subtitlelist.push_back(track);
