@@ -1669,6 +1669,25 @@ def InitUsageConfig():
 	config.pluginbrowser.po = ConfigYesNo(default=False)
 	config.pluginbrowser.src = ConfigYesNo(default=False)
 
+	def setForceLNBPowerChanged(configElement):
+		f = open("/proc/stb/frontend/fbc/force_lnbon", "w")
+		f.write("on" if configElement.value else "off")
+		f.close()
+
+	def setForceToneBurstChanged(configElement):
+		f = open("/proc/stb/frontend/fbc/force_toneburst", "w")
+		f.write("enable" if configElement.value else "disable")
+		f.close()
+
+	config.tunermisc = ConfigSubsection()
+	if BoxInfo.getItem("ForceLNBPowerChanged"):
+		config.tunermisc.forceLnbPower = ConfigYesNo(default=False)
+		config.tunermisc.forceLnbPower.addNotifier(setForceLNBPowerChanged)
+
+	if BoxInfo.getItem("ForceToneBurstChanged"):
+		config.tunermisc.forceToneBurst = ConfigYesNo(default=False)
+		config.tunermisc.forceToneBurst.addNotifier(setForceToneBurstChanged)
+
 
 def calcFrontendPriorityIntval(config_priority, config_priority_multiselect, config_priority_strictly):
 	elem = config_priority.value

@@ -28,34 +28,6 @@ import six
 from Tools.BugHunting import printCallSequence
 
 
-def setForceLNBPowerChanged(configElement):
-	f = open("/proc/stb/frontend/fbc/force_lnbon", "w")
-	if configElement.value:
-		f.write("on")
-	else:
-		f.write("off")
-	f.close()
-
-
-def setForceToneBurstChanged(configElement):
-	f = open("/proc/stb/frontend/fbc/force_toneburst", "w")
-	if configElement.value:
-		f.write("enable")
-	else:
-		f.write("disable")
-	f.close()
-
-
-config.tunermisc = ConfigSubsection()
-if BoxInfo.getItem("ForceLNBPowerChanged"):
-	config.tunermisc.forceLnbPower = ConfigYesNo(default=False)
-	config.tunermisc.forceLnbPower.addNotifier(setForceLNBPowerChanged)
-
-if BoxInfo.getItem("ForceToneBurstChanged"):
-	config.tunermisc.forceToneBurst = ConfigYesNo(default=False)
-	config.tunermisc.forceToneBurst.addNotifier(setForceToneBurstChanged)
-
-
 class ServiceStopScreen:
 	def __init__(self):
 		try:
