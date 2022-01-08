@@ -242,7 +242,7 @@ def getButtonSetupFunctions():
 	if BoxInfo.getItem("canMultiBoot"):
 		ButtonSetupFunctions.append((_("Multiboot Image Selector"), "Module/Screens.MultiBootSelector/MultiBootSelector", "InfoBar"))
 	ButtonSetupFunctions.append((_("Hotkey Setup"), "Module/Screens.ButtonSetup/ButtonSetup", "Setup"))
-	ButtonSetupFunctions.append((_("Software update"), "Module/Plugins.SystemPlugins.SoftwareManager.plugin/UpdatePlugin", "Setup"))
+	ButtonSetupFunctions.append((_("Software Update"), "Module/Screens.SoftwareUpdate/SoftwareUpdate", "Setup"))
 	if getHaveCI() == 'True':
 		ButtonSetupFunctions.append((_("CI (Common Interface) Setup"), "Module/Screens.Ci/CiSelection", "Setup"))
 	ButtonSetupFunctions.append((_("Videosetup"), "Module/Screens.VideoMode/VideoSetup", "Setup"))

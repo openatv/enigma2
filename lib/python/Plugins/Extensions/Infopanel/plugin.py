@@ -321,7 +321,6 @@ class Infopanel(Screen, InfoBarPiP, ProtectedScreen):
 			self.Mlist.append(MenuEntryItem((InfoEntryComponent('OScamInfo'), _("OScamInfo"), 'OScamInfo')))
 		if Check_SysSoftcam() == "ncam":
 			self.Mlist.append(MenuEntryItem((InfoEntryComponent('OScamInfo'), _("NcamInfo"), 'OScamInfo')))
-		#self.Mlist.append(MenuEntryItem((InfoEntryComponent ("SoftwareManager" ), _("Software update"), ("software-update"))))
 		self.Mlist.append(MenuEntryItem((InfoEntryComponent("SoftwareManager"), _("Software Manager"), ("software-manager"))))
 		self.Mlist.append(MenuEntryItem((InfoEntryComponent('KeymapSel'), _("Keymap Selection"), 'KeymapSel')))
 		self.Mlist.append(MenuEntryItem((InfoEntryComponent('Plugins'), _("Plugins"), 'Plugins')))
@@ -579,7 +578,7 @@ class Infopanel(Screen, InfoBarPiP, ProtectedScreen):
 		self.tlist = []
 		self.oldmlist = []
 		self.oldmlist = self.Mlist
-		self.tlist.append(MenuEntryItem((InfoEntryComponent("SoftwareManager"), _("Software update"), ("software-update"))))
+		self.tlist.append(MenuEntryItem((InfoEntryComponent("SoftwareManager"), _("Software Update"), ("software-update"))))
 		self.tlist.append(MenuEntryItem((InfoEntryComponent("BackupSettings"), _("Backup Settings"), ("backup-settings"))))
 		self.tlist.append(MenuEntryItem((InfoEntryComponent("RestoreSettings"), _("Restore Settings"), ("restore-settings"))))
 		self.tlist.append(MenuEntryItem((InfoEntryComponent("BackupFiles"), _("Show default backup files"), ("backup-files"))))
