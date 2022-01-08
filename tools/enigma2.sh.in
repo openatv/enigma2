@@ -161,6 +161,11 @@ else
 	LD_PRELOAD=$LIBS ENIGMA_DEBUG_LVL=$DEBUG_LVL ENIGMA_DEBUG_TIME="${DEBUG_TIME}" @bindir@/enigma2
 fi
 
+function check_busybox_update {
+	[[ -e /etc/enigma2/.busybox_update_required ]] && rm /etc/enigma2/.busybox_update_required
+	opkg install busybox --force-reinstall
+} 
+
 # enigma2 exit codes:
 #
 # 1 - halt
@@ -186,10 +191,12 @@ fi
 
 case $ret in
 	1)
+		check_busybox_update
 		touch /etc/enigma2/.deep
 		/sbin/halt
 		;;
 	2)
+		check_busybox_update
 		if [ -f /proc/stb/fp/force_restart ]; then
 			echo 1 > /proc/stb/fp/force_restart
 		fi
@@ -201,6 +208,7 @@ case $ret in
 		rm -f /tmp/.listen.camd.socket.ignore
 		;;
 	4)
+		check_busybox_update
 		/sbin/rmmod lcd
 		/usr/sbin/fpupgrade --upgrade 2>&1 | tee /home/root/fpupgrade.log
 		sleep 1;
@@ -221,9 +229,6 @@ case $ret in
 		fi
 		[[ -e /etc/enigma2/.deep ]] && rm /etc/enigma2/.deep
 		/sbin/reboot
-		;;
-	42)
-		python @libdir@/enigma2/python/upgrade.pyo
 		;;
 	43)
 		init 1
