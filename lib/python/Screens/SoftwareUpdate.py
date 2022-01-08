@@ -20,7 +20,6 @@ from Screens.Screen import Screen, ScreenSummary
 from Tools.Directories import SCOPE_GUISKIN, resolveFilename
 from Tools.LoadPixmap import LoadPixmap
 
-UPDATE_LIMIT = 200
 
 
 class SoftwareUpdate(Screen, HelpableScreen):
@@ -147,12 +146,13 @@ class SoftwareUpdate(Screen, HelpableScreen):
 		self.close()
 
 	def keyUpdate(self):
-		if self.packageCount <= UPDATE_LIMIT:
+		updateLimit = BoxInfo.get("UpdateLimit", 200)
+		if self.packageCount <= updateLimit:
 			from Plugins.SystemPlugins.SoftwareManager.plugin import UpdatePlugin  # This must be here to ensure the plugin is initialized.
 			self.session.open(UpdatePlugin)
 			self.close()
 		else:
-			print("[SoftwarePanel] Warning: There are more packages than the %d maximum recommended for an update!" % UPDATE_LIMIT)
+			print("[SoftwarePanel] Warning: There are more packages than the %d maximum recommended for an update!" % updateLimit)
 			message = [
 				_("Warning: There are %d update packages!") % self.packageCount,
 				_("There is a risk that your %s %s will not boot or may malfunction after such a large on-line update.") % (BoxInfo.getItem("displaybrand"), BoxInfo.getItem("displaymodel")),
