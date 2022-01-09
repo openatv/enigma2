@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-01-02 10:50+0000\n"
-"PO-Revision-Date: 2022-01-06 22:05+0000\n"
+"PO-Revision-Date: 2022-01-08 19:52+0000\n"
 "Last-Translator: Grzegorz <grzegorz914@icloud.com>\n"
 "Language-Team: Polish <https://hosted.weblate.org/projects/openatv/"
 "enigma2-7-0-po/pl/>\n"
@@ -4671,7 +4671,7 @@ msgid "Choose which tuner to configure."
 msgstr "Wybierz tuner do konfiguracji."
 
 msgid "Chose between record and ZAP."
-msgstr "Wybierz pomiędzy nagrywaniem a ZAP."
+msgstr "Wybierz pomiędzy nagrywaniem a przełączeniem."
 
 msgid "Christmas Island"
 msgstr "Wyspa Bożego Narodzenia"
@@ -5909,7 +5909,7 @@ msgid "DVB-T2"
 msgstr "DVB-T2"
 
 msgid "DVD Burn"
-msgstr "Nagrywanie DVD"
+msgstr "Nagraj DVD"
 
 msgid "DVD File Browser"
 msgstr "Przeglądarka plików DVD"
@@ -9519,8 +9519,8 @@ msgid ""
 "located with the other log files but named 'Enigma2-hdmicec-[date].log'."
 msgstr ""
 "Jeśli jest załączony, dziennik z protokołu CEC będzie przechowywany. Pliki "
-"dziennika znajdują się z innymi plikami dziennika, ale o nazwie "
-"Enigma2-hdmicec-[data].log ."
+"dziennika znajdują się z innymi plikami dziennika, ale o nazwie Enigma2-"
+"hdmicec-[data].log ."
 
 msgid ""
 "If enabled, using a time window to detect a wakeup from deep standby by a "
@@ -11982,8 +11982,8 @@ msgid ""
 msgstr ""
 "Nigdy nie odszyfrowuj zawartości podczas nagrywania. Zastępuje to globalnie "
 "indywidualne ustawienia timera. Jeśli opcja ta jest załączona, nagrania są "
-"przechowywane w postaci zaszyfrowanej i muszą być później odszyfrowane ("
-"czasami nazywane dekodowaniem offline). Domyślnie: wyłączone."
+"przechowywane w postaci zaszyfrowanej i muszą być później odszyfrowane "
+"(czasami nazywane dekodowaniem offline). Domyślnie: wyłączone."
 
 msgid "Never decrypt while recording"
 msgstr "Nigdy nie deszyfruj podczas nagrywania"
@@ -14442,7 +14442,7 @@ msgid "Reception settings"
 msgstr "Ustawienia odbioru"
 
 msgid "Record"
-msgstr "Nagrywanie"
+msgstr "Nagranie"
 
 msgid "Record - same as record button"
 msgstr "Nagraj - taki sam jak przycisk nagrywania"
@@ -14491,7 +14491,7 @@ msgid "Recording in progress"
 msgstr "Nagrywanie w toku"
 
 msgid "Recording running"
-msgstr "Trwa nagrywanie"
+msgstr "Nagrywanie w toku"
 
 msgid "Recording settings"
 msgstr "Ustawienia nagrywania"
@@ -14500,7 +14500,7 @@ msgid "Recording started"
 msgstr "Nagrywanie rozpoczęte"
 
 msgid "Recording stopped"
-msgstr "Nagrywanie zostało zatrzymane"
+msgstr "Nagrywanie zatrzymane"
 
 msgid "Recording tuning failed"
 msgstr "Strojenie nagrywania nie powiodło się"
@@ -14522,7 +14522,7 @@ msgid "Recordings"
 msgstr "Nagrywania"
 
 msgid "Recordings & Timeshift"
-msgstr "Nagrywanie"
+msgstr "Nagrywanie i timeshift"
 
 msgid "Recordings abort PIP"
 msgstr "Przerwać PiP podczas nagrywania"
@@ -16755,7 +16755,7 @@ msgid "Setup your Channel selection configuration"
 msgstr "Wybierz swoją konfigurację wyboru kanałów"
 
 msgid "Setup your Device mounts (USB, HDD, others...)"
-msgstr "Ustawienia punktu montowania (USB, HDD, inne ...)"
+msgstr "Ustawienia montowania (USB, HDD, inne ...)"
 
 msgid "Setup your EPG config"
 msgstr "Wybierz konfig.EPG"
@@ -16792,7 +16792,7 @@ msgid ""
 msgstr "Ustawienia sieci lokalnej. WLAN trzeba uruchomić z USB-WLAN"
 
 msgid "Setup your mounts for network"
-msgstr "Ustaw punkty montowania w sieci"
+msgstr "Ustawienia montowania w sieci"
 
 msgid ""
 "Setup your network interface. If no Wlan stick is used, you only can select "
@@ -16802,7 +16802,7 @@ msgstr ""
 "LAN"
 
 msgid "Setup your network mounts"
-msgstr "Ustaw punkty montowania w sieci"
+msgstr "Ustawienia montowania w sieci"
 
 msgid "Setup your positioner"
 msgstr "Ustawienia pozycjonera"
@@ -18215,13 +18215,13 @@ msgid "Stop previous broadcasted service on return to movie list."
 msgstr "Zatrzymaj poprzednio nadawany kanał powrocając do listy filmów."
 
 msgid "Stop recording"
-msgstr "Zatrzymać nagrywanie"
+msgstr "Zatrzymaj nagrywanie"
 
 msgid "Stop recording and delete"
-msgstr "Zatrzymać nagrywanie i usunąć"
+msgstr "Zatrzymaj nagrywanie i usuń"
 
 msgid "Stop recording now"
-msgstr "Zatrzymać nagrywanie teraz"
+msgstr "Zatrzymaj nagrywanie teraz"
 
 msgid "Stop service on return to movie list"
 msgstr "Zatrzymaj kanał i powróć do listy filmów"
@@ -20519,7 +20519,8 @@ msgid "Unattended upgrade without GUI"
 msgstr "Aktualizacja bez nadzoru poza GUI"
 
 msgid "Unattended upgrade without GUI and reboot system"
-msgstr "Nienadzorowane aktualizacji bez ponownego uruchamiania systemu GUI"
+msgstr ""
+"Nienadzorowana aktualizacja bez ponownego uruchamiania systemu i interfejsu"
 
 msgid "Undefined"
 msgstr "Nieokreślony"
@@ -21917,7 +21918,8 @@ msgstr ""
 "kanału w pierwszym bukiecie i usunie historię przełączania."
 
 msgid "When enabled, reformat subtitles to match the width of the screen."
-msgstr "Po załączeniu sformatuj napisy w celu dopasowania do szerokości ekranu."
+msgstr ""
+"Po załączeniu sformatuj napisy w celu dopasowania do szerokości ekranu."
 
 msgid "When enabled, show channel numbers in the channel selection screen."
 msgstr "Gdy załączone, wyświetla numery w liście wyboru kanałów."
@@ -24385,7 +24387,7 @@ msgid "start directory"
 msgstr "katalog początkowy"
 
 msgid "start recording"
-msgstr "rozpocząć nagrywanie"
+msgstr "rozpocznij nagrywanie"
 
 msgid "stepsize"
 msgstr "rozmiar kroku"
@@ -24394,7 +24396,7 @@ msgid "stereo"
 msgstr "stereo"
 
 msgid "stop recording"
-msgstr "zatrzymać nagrywanie"
+msgstr "zatrzymaj nagrywanie"
 
 msgid "stop using as startup service"
 msgstr "przestań używać jako kanału startowego"
@@ -24692,6 +24694,9 @@ msgstr "przełączanie"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Updates Available:"
+#~ msgstr "Dostępne aktualizacje:"
 
 #~ msgid "Close pop up menu"
 #~ msgstr "Zamknij menu wyskakujące"
