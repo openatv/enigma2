@@ -55,11 +55,11 @@ class Volume_adjust(Screen):
 		self.filename = "/etc/volume.xml"
 		global offset
 		offset = 0
-		self["key_red"] = StaticText(_("delete"))
-		self["key_green"] = StaticText(_("add Service"))
-		self["key_yellow"] = StaticText(_("change"))
-		self["key_blue"] = StaticText(_("add Current"))
-		self["press_menu"] = StaticText(_("press the menu button to set a general AC3/Dolby offset"))
+		self["key_red"] = StaticText(_("Delete"))
+		self["key_green"] = StaticText(_("Add Service"))
+		self["key_yellow"] = StaticText(_("Change"))
+		self["key_blue"] = StaticText(_("Add Current"))
+		self["press_menu"] = StaticText(_("Press the menu button to set a general AC3/Dolby offset."))
 		self["ServiceList.desc"] = Label(_("Channel \t\t\tVolume +"))
 
 		self["actions"] = ActionMap(["ColorActions", "OkCancelActions", "MenuActions"],
@@ -258,7 +258,7 @@ class Change_volume(ConfigListScreen, Screen):
 	def __init__(self, session, name, vol):
 		self.skin = Change_volume.skin
 		Screen.__init__(self, session)
-		self.offset = ConfigNumber(default="0")
+		self.offset = ConfigNumber(default=0)
 		global offset
 		self.offset.setValue(str(offset))
 		self.Clist = []
@@ -394,7 +394,7 @@ class Volume_Config(ConfigListScreen, Screen):
 		self["key_red"] = StaticText(_("Cancel"))
 		self["key_green"] = StaticText(_("Save"))
 		self["key_yellow"] = StaticText(_("+/-"))
-		self["infotext"] = StaticText(_("this offset will only be used if the channel has not its own volume offset"))
+		self["infotext"] = StaticText(_("This offset will only be used if the channel has not its own volume offset."))
 		self["actions"] = ActionMap(["ColorActions", "SetupActions"],
 		{
 			"ok": self.ok,
@@ -578,4 +578,4 @@ def menu(menuid, **kwargs):
 
 def Plugins(**kwargs):
 	return [PluginDescriptor(where=PluginDescriptor.WHERE_SESSIONSTART, fnc=sessionstart),
-			PluginDescriptor(name="Volume Adjust", description=_("select channels to add a offset to the Volume"), where=PluginDescriptor.WHERE_MENU, fnc=menu)]
+			PluginDescriptor(name="Volume Adjust", description=_("Select channels to add an offset to the volume."), where=PluginDescriptor.WHERE_MENU, fnc=menu)]
