@@ -329,7 +329,7 @@ class QuickMenu(Screen, ProtectedScreen):
 		model = BoxInfo.getItem("model")
 		self.sublist = []
 		self.sublist.append(QuickSubMenuEntryComponent("Software Update", _("Online software update"), _("Check/Install online updates (you must have a working internet connection)")))
-		if not model.startswith('az') and not model in ('dm500hd', 'dm500hdv2', 'dm520', 'dm800', 'dm800se', 'dm800sev2', 'dm820', 'dm7020hd', 'dm7020hdv2', 'dm7080', 'dm8000') and not getBrandOEM().startswith('cube') and not getBrandOEM().startswith('wetek') and not model.startswith('alien'):
+		if not model.startswith('az') and not getBrandOEM().startswith('cube') and not getBrandOEM().startswith('wetek') and not model.startswith('alien'):
 			self.sublist.append(QuickSubMenuEntryComponent("Flash Online", _("Flash Online a new image"), _("Flash on the fly your your Receiver software.")))
 		if not model.startswith('az') and not getBrandOEM().startswith('cube') and not getBrandOEM().startswith('wetek') and not model.startswith('alien'):
 			self.sublist.append(QuickSubMenuEntryComponent("Complete Backup", _("Backup your current image"), _("Backup your current image to HDD or USB. This will make a 1:1 copy of your box")))
