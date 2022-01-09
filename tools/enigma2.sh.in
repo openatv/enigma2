@@ -161,11 +161,6 @@ else
 	LD_PRELOAD=$LIBS ENIGMA_DEBUG_LVL=$DEBUG_LVL ENIGMA_DEBUG_TIME="${DEBUG_TIME}" @bindir@/enigma2
 fi
 
-function check_busybox_update {
-	[[ -e /etc/enigma2/.busybox_update_required ]] && rm /etc/enigma2/.busybox_update_required
-	opkg install busybox --force-reinstall
-} 
-
 # enigma2 exit codes:
 #
 # 1 - halt
@@ -175,6 +170,11 @@ function check_busybox_update {
 # >128 signal
 
 ret=$?
+
+function check_busybox_update {
+	[[ -e /etc/enigma2/.busybox_update_required ]] && rm /etc/enigma2/.busybox_update_required
+	opkg install busybox --force-reinstall
+} 
 
 if [ "$ret" -ne "1" ]; then
 	if [ -e /proc/stb/info/boxtype ]; then
