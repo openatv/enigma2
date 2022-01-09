@@ -482,6 +482,12 @@ const char *getEnigmaVersionString()
 	return enigma2_date;
 }
 
+const char *getE2Rev()
+{
+	return E2REV;
+}
+
+
 const char *getGStreamerVersionString()
 {
 	return gst_version_string();
