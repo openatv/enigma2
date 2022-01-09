@@ -172,8 +172,10 @@ fi
 ret=$?
 
 function check_busybox_update {
-	[[ -e /etc/enigma2/.busybox_update_required ]] && rm /etc/enigma2/.busybox_update_required
-	opkg install busybox --force-reinstall
+	if [ -e /etc/enigma2/.busybox_update_required ]; then
+		rm /etc/enigma2/.busybox_update_required
+		opkg install busybox --force-reinstall
+	fi
 } 
 
 if [ "$ret" -ne "1" ]; then
