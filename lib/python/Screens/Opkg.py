@@ -90,7 +90,7 @@ class Opkg(Screen):
 			if param in self.sliderPackages:
 				self.slider.setValue(self.sliderPackages[param])
 			self.package.setText(param)
-			self.status.setText(_("Upgrading"))
+			self.status.setText(_("Updating"))
 			if not param in self.processed_packages:
 				self.processed_packages.append(param)
 				self.packages += 1
@@ -117,7 +117,7 @@ class Opkg(Screen):
 			self.session.openWithCallback(
 				self.modificationCallback,
 				MessageBox,
-				_("A configuration file (%s) was modified since Installation.\nDo you want to keep your version?") % param
+				_("Configuration file '%s' has been modified since it was installed, would you like to keep the modified version?") % param
 			)
 
 	def modificationCallback(self, res):

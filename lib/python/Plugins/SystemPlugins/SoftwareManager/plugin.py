@@ -1669,7 +1669,7 @@ class UpdatePlugin(Screen):
 			if param in self.sliderPackages:
 				self.slider.setValue(self.sliderPackages[param])
 			self.package.setText(param)
-			self.status.setText(_("Upgrading") + ": %s/%s" % (self.packages, self.total_packages))
+			self.status.setText(_("Updating") + ": %s/%s" % (self.packages, self.total_packages))
 			if not param in self.processed_packages:
 				self.processed_packages.append(param)
 				self.packages += 1
@@ -1696,7 +1696,7 @@ class UpdatePlugin(Screen):
 				self.session.openWithCallback(
 					self.modificationCallback,
 					MessageBox,
-					_("A configuration file (%s) was modified since Installation.\nDo you want to keep your version?") % (param)
+					_("Configuration file '%s' has been modified since it was installed, would you like to keep the modified version?") % (param)
 				)
 		elif event == OpkgComponent.EVENT_ERROR:
 			self.error += 1
