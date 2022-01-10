@@ -146,7 +146,7 @@ class SoftwareUpdate(Screen, HelpableScreen):
 		self.close()
 
 	def keyUpdate(self):
-		updateLimit = BoxInfo.get("UpdateLimit", 200)
+		updateLimit = BoxInfo.getItem("UpdateLimit", 200)
 		if self.packageCount <= updateLimit:
 			from Plugins.SystemPlugins.SoftwareManager.plugin import UpdatePlugin  # This must be here to ensure the plugin is initialized.
 			self.session.open(UpdatePlugin)
