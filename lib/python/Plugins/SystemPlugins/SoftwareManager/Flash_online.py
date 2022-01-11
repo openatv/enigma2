@@ -524,7 +524,9 @@ class FlashImage(Screen):
 			else:
 				self.MTDKERNEL = getMachineMtdKernel()
 				self.MTDROOTFS = getMachineMtdRoot()
-			if self.MTDKERNEL == self.MTDROOTFS:	# receiver with kernel and rootfs on one partition
+			if getMachineBuild() in ("dm820", "dm7080"): # temp solution ofgwrite autodetection not ready
+				CMD = "/usr/bin/ofgwrite -rmmcblk0p1 '%s'" % imagefiles
+			elif self.MTDKERNEL == self.MTDROOTFS:	# receiver with kernel and rootfs on one partition
 				CMD = "/usr/bin/ofgwrite -r '%s'" % imagefiles
 			else:
 				CMD = "/usr/bin/ofgwrite -r -k '%s'" % imagefiles	#normal non multiboot receiver
