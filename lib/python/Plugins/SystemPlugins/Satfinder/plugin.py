@@ -282,7 +282,12 @@ class Satfinder(ScanSetup, ServiceScan):
 	def retuneTerr(self):
 		if self.initcomplete:
 			if self.scan_input_as.value == "channel":
-				frequency = int(channel2frequency(self.scan_ter.channel.value, self.ter_tnumber))
+				frequency = channel2frequency(self.scan_ter.channel.value, self.ter_tnumber)
+				if frequency:
+					frequency = int(frequency)
+				else:  # FIXME channel2frequency return None because of channel not found
+					print("[Satfinder] retuneTerr DVB-T channel '%s' out of scope" % str(self.scan_ter.channel.value))
+					return
 			else:
 				frequency = self.scan_ter.frequency.floatint * 1000
 			if self.scan_typeterrestrial.value == "single_transponder":
