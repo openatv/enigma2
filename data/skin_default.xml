@@ -1507,10 +1507,6 @@ self.autoResize()
 		<ePixmap pixmap="skin_default/div-h.png" position="0,340" zPosition="1" size="560,2"/>
 		<widget source="introduction" render="Label" position="10,350" size="540,50" zPosition="10" font="Regular;21" halign="center" valign="center" foregroundColor="secondFG" backgroundColor="#25062748" transparent="1"/>
 	</screen>
-	<screen name="InstallWizardIpkgUpdater" position="center,center" size="600,60" title=" ">
-		<widget source="statusbar" render="Label" position="10,5" zPosition="10" size="e-10,30" halign="center" valign="center" font="Regular;22" transparent="1" />
-		<eLabel backgroundColor="darkgrey" position="0,430" size="560,2" zPosition="1"/>
-	</screen>
 	<screen name="NetworkMountsMenu" position="center,center" size="560,460">
 		<panel name="BasicTemplate" />
 		<panel name="Red2Panel" />
