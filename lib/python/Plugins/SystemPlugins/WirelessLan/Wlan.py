@@ -441,7 +441,7 @@ class Status:
 		if ssid != None and ssid != "off":
 			scanresults = list(Cell.all(iface))
 			aps = {}
-			if scanresults is not None:
+			if scanresults:
 				for i in range(len(scanresults)):
 					bssid = scanresults[i].ssid
 					aps[bssid] = {
