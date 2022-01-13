@@ -437,6 +437,8 @@ class TryQuitMainloop(MessageBox):
 				setLCDModeMinitTV("0")
 			if getBoxType() == "vusolo4k":  #workaround for white display flash
 				open("/proc/stb/fp/oled_brightness", "w").write("0")
+			if getBoxType() == "pulse4k":
+				open("/proc/stb/lcd/oled_brightness", "w").write("0")
 			quitMainloop(self.retval)
 		else:
 			MessageBox.close(self, True)
