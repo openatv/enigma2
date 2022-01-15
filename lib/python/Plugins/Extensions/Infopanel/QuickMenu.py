@@ -24,7 +24,6 @@ from Screens.HarddiskSetup import HarddiskSelection, HarddiskFsckSelection, Hard
 from Screens.SkinSelector import LcdSkinSelector, SkinSelector
 from Screens.VideoMode import VideoSetup
 
-from Plugins.SystemPlugins.NetworkWizard.NetworkWizard import NetworkWizard
 from Plugins.Extensions.Infopanel.RestartNetwork import RestartNetwork
 from Plugins.Extensions.Infopanel.MountManager import HddMount
 from Plugins.Extensions.Infopanel.SoftcamPanel import *
@@ -35,6 +34,7 @@ from Plugins.SystemPlugins.SoftwareManager.plugin import SoftwareManagerSetup, L
 from Plugins.SystemPlugins.SoftwareManager.BackupRestore import BackupScreen, RestoreScreen, BackupSelection, getBackupPath, getOldBackupPath, getBackupFilename
 
 from Tools.LoadPixmap import LoadPixmap
+from Tools.Directories import isPluginInstalled
 
 from os import path
 from time import sleep
@@ -43,7 +43,7 @@ from skin import getSkinFactor
 
 import NavigationInstance
 
-if path.exists("/usr/lib/enigma2/python/Plugins/SystemPlugins/NetworkBrowser"):
+if isPluginInstalled("NetworkBrowser"):
 	from Plugins.SystemPlugins.NetworkBrowser.MountManager import AutoMountManager
 	from Plugins.SystemPlugins.NetworkBrowser.NetworkBrowser import NetworkBrowser
 	plugin_path_networkbrowser = eEnv.resolve("${libdir}/enigma2/python/Plugins/SystemPlugins/NetworkBrowser")
@@ -51,38 +51,38 @@ if path.exists("/usr/lib/enigma2/python/Plugins/SystemPlugins/NetworkBrowser"):
 else:
 	NETWORKBROWSER = False
 
-if path.exists("/usr/lib/enigma2/python/Plugins/Extensions/AudioSync"):
+if isPluginInstalled("AudioSync"):
 	from Plugins.Extensions.AudioSync.AC3setup import AC3LipSyncSetup
 	plugin_path_audiosync = eEnv.resolve("${libdir}/enigma2/python/Plugins/Extensions/AudioSync")
 	AUDIOSYNC = True
 else:
 	AUDIOSYNC = False
 
-if path.exists("/usr/lib/enigma2/python/Plugins/SystemPlugins/VideoEnhancement/plugin.py"):
+if isPluginInstalled("VideoEnhancement"):
 	from Plugins.SystemPlugins.VideoEnhancement.plugin import VideoEnhancementSetup
 	VIDEOENH = True
 else:
 	VIDEOENH = False
 
-if path.exists("/usr/lib/enigma2/python/Plugins/Extensions/dFlash"):
+if isPluginInstalled("dFlash"):
 	from Plugins.Extensions.dFlash.plugin import dFlash
 	DFLASH = True
 else:
 	DFLASH = False
 
-if path.exists("/usr/lib/enigma2/python/Plugins/Extensions/dBackup"):
+if isPluginInstalled("dBackup"):
 	from Plugins.Extensions.dBackup.plugin import dBackup
 	DBACKUP = True
 else:
 	DBACKUP = False
 
-if path.exists("/usr/lib/enigma2/python/Plugins/SystemPlugins/PositionerSetup/plugin.py"):
+if isPluginInstalled("PositionerSetup"):
 	from Plugins.SystemPlugins.PositionerSetup.plugin import PositionerSetup, RotorNimSelection
 	POSSETUP = True
 else:
 	POSSETUP = False
 
-if path.exists("/usr/lib/enigma2/python/Plugins/SystemPlugins/Satfinder/plugin.py"):
+if isPluginInstalled("Satfinder"):
 	from Plugins.SystemPlugins.Satfinder.plugin import Satfinder
 	SATFINDER = True
 else:
@@ -257,7 +257,8 @@ class QuickMenu(Screen, ProtectedScreen):
 ######## Network Menu ##############################
 	def Qnetwork(self):
 		self.sublist = []
-		self.sublist.append(QuickSubMenuEntryComponent("Network Wizard", _("Configure your Network"), _("Use the Networkwizard to configure your Network. The wizard will help you to setup your network")))
+		if isPluginInstalled("NetworkWizard"):
+			self.sublist.append(QuickSubMenuEntryComponent("Network Wizard", _("Configure your Network"), _("Use the Networkwizard to configure your Network. The wizard will help you to setup your network")))
 		if len(self.adapters) > 1: # show only adapter selection if more as 1 adapter is installed
 			self.sublist.append(QuickSubMenuEntryComponent("Network Adapter Selection", _("Select Lan/Wlan"), _("Setup your network interface. If no Wlan stick is used, you only can select Lan")))
 		if not self.activeInterface == None: # show only if there is already a adapter up
@@ -416,6 +417,7 @@ class QuickMenu(Screen, ProtectedScreen):
 
 ######## Select Network Menu ##############################
 		if item[0] == _("Network Wizard"):
+			from Plugins.SystemPlugins.NetworkWizard.NetworkWizard import NetworkWizard
 			self.session.open(NetworkWizard)
 		elif item[0] == _("Network Adapter Selection"):
 			self.session.open(NetworkAdapterSelection)
