@@ -26,7 +26,6 @@ from Screens.SkinSelector import LcdSkinSelector, SkinSelector
 from Screens.VideoMode import VideoSetup, AudioSetup
 
 from Plugins.Plugin import PluginDescriptor
-from Plugins.SystemPlugins.NetworkWizard.NetworkWizard import NetworkWizard
 from Plugins.Extensions.Infopanel.RestartNetwork import RestartNetwork
 from Plugins.Extensions.Infopanel.MountManager import HddMount
 from Plugins.Extensions.Infopanel.SoftcamPanel import *
@@ -433,7 +432,11 @@ class QuickMenu(Screen, ProtectedScreen):
 
 ######## Select Network Menu ##############################
 		if item[0] == _("Network Wizard"):
-			self.session.open(NetworkWizard)
+			try:
+				from Plugins.SystemPlugins.NetworkWizard.NetworkWizard import NetworkWizard
+				self.session.open(NetworkWizard)
+			except:
+				self.session.open(MessageBox, _("Sorry NetworkWizard is not installed!"), MessageBox.TYPE_INFO, timeout=10)
 		elif item[0] == _("Network Adapter Selection"):
 			self.session.open(NetworkAdapterSelection)
 		elif item[0] == _("Network Interface"):
