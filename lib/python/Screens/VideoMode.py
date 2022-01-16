@@ -13,6 +13,7 @@ from Components.Sources.StaticText import StaticText
 from Components.Pixmap import Pixmap
 from Components.Sources.Boolean import Boolean
 from Components.ServiceEventTracker import ServiceEventTracker
+from Tools.Directories import isPluginInstalled
 from Tools.HardwareInfo import HardwareInfo
 from Components.AVSwitch import iAVSwitch
 
@@ -228,7 +229,7 @@ class VideoSetup(Screen, ConfigListScreen):
 				if BoxInfo.getItem("ScartSwitch"):
 					self.list.append(getConfigListEntry(_("Auto scart switching"), config.av.vcrswitch, _("When enabled, your receiver will detect activity on the VCR SCART input.")))
 
-		if not isinstance(config.av.scaler_sharpness, ConfigNothing) and not path.exists("/usr/lib/enigma2/python/Plugins/SystemPlugins/VideoEnhancement/plugin.py"):
+		if not isinstance(config.av.scaler_sharpness, ConfigNothing) and not isPluginInstalled("VideoEnhancement"):
 			self.list.append(getConfigListEntry(_("Scaler sharpness"), config.av.scaler_sharpness, _("This option configures the picture sharpness.")))
 
 		if BoxInfo.getItem("havecolorspace"):

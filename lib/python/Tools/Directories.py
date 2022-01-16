@@ -664,7 +664,7 @@ def mediaFilesInUse(session):
 
 def isPluginInstalled(pluginName, pluginFile="plugin", pluginType=None):
 	for type in [x for x in listdir(scopePlugins) if x != "__pychache__" and isdir(pathjoin(scopePlugins, x))]:
-		for extension in ["", "o", "c"]:
+		for extension in ["", "c"]:
 			if isfile(pathjoin(scopePlugins, type, pluginName, "%s.py%s" % (pluginFile, extension))):
 				if pluginType and type != pluginType:
 					continue

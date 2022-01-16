@@ -510,7 +510,7 @@ class Infopanel(Screen, InfoBarPiP, ProtectedScreen):
 		self.tlist.append(MenuEntryItem((InfoEntryComponent('CronTimer'), _("Cron Manager"), 'CronTimer')))
 		self.tlist.append(MenuEntryItem((InfoEntryComponent('ScriptRunner'), _("Script Manager"), 'ScriptRunner')))
 		self.tlist.append(MenuEntryItem((InfoEntryComponent('SwapManager'), _("Swap Manager"), 'SwapManager')))
-		if os.path.isfile("/usr/lib/enigma2/python/Plugins/Extensions/MultiQuickButton/plugin.py") is True:
+		if isPluginInstalled("MultiQuickButton"):
 			self.tlist.append(MenuEntryItem((InfoEntryComponent('MultiQuickButton'), _("MultiQuickButton"), 'MultiQuickButton')))
 		self["Mlist"].moveToIndex(0)
 		self["Mlist"].l.setList(self.tlist)

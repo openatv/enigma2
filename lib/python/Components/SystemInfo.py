@@ -7,7 +7,7 @@ from subprocess import PIPE, Popen
 from boxbranding import getBrandOEM, getDisplayType, getHaveAVJACK, getHaveDVI, getHaveHDMI, getHaveRCA, getHaveSCART, getHaveSCARTYUV, getHaveYUV, getMachineBuild, getMachineMtdRoot
 from enigma import Misc_Options, eDVBCIInterfaces, eDVBResourceManager, eGetEnigmaDebugLvl
 
-from Tools.Directories import SCOPE_LIBDIR, SCOPE_SKINS, fileCheck, fileReadLine, fileReadLines, resolveFilename, fileExists, fileHas, fileReadLine, pathExists
+from Tools.Directories import SCOPE_LIBDIR, SCOPE_SKINS, isPluginInstalled, fileCheck, fileReadLine, fileReadLines, resolveFilename, fileExists, fileHas, fileReadLine, pathExists
 
 MODULE_NAME = __name__.split(".")[-1]
 
@@ -276,13 +276,13 @@ SystemInfo["Power4x7Suspend"] = fileExists("/proc/stb/fp/power4x7suspend")
 SystemInfo["LEDButtons"] = model == "vuultimo"
 SystemInfo["WakeOnLAN"] = fileCheck("/proc/stb/power/wol") or fileCheck("/proc/stb/fp/wol")
 SystemInfo["HDMICEC"] = fileExists("/dev/hdmi_cec") or fileExists("/dev/misc/hdmi_cec0")
-SystemInfo["SABSetup"] = fileExists("/usr/lib/enigma2/python/Plugins/SystemPlugins/SABnzbd/plugin.py")
+SystemInfo["SABSetup"] = isPluginInstalled("SABnzbd")
 SystemInfo["SeekStatePlay"] = False
 SystemInfo["StatePlayPause"] = False
 SystemInfo["StandbyState"] = False
 SystemInfo["GraphicLCD"] = model in ("vuultimo", "xpeedlx3", "et10000", "mutant2400", "quadbox2400", "sezammarvel", "atemionemesis", "mbultra", "beyonwizt4", "osmio4kplus")
-SystemInfo["Blindscan"] = fileExists("/usr/lib/enigma2/python/Plugins/SystemPlugins/Blindscan/plugin.py")
-SystemInfo["Satfinder"] = fileExists("/usr/lib/enigma2/python/Plugins/SystemPlugins/Satfinder/plugin.py")
+SystemInfo["Blindscan"] = isPluginInstalled("Blindscan")
+SystemInfo["Satfinder"] = isPluginInstalled("Satfinder")
 SystemInfo["HasExternalPIP"] = getMachineBuild() not in ("et9x00", "et6x00", "et5x00") and fileCheck("/proc/stb/vmpeg/1/external")
 SystemInfo["hasPIPVisibleProc"] = fileCheck("/proc/stb/vmpeg/1/visible")
 SystemInfo["VideoDestinationConfigurable"] = fileExists("/proc/stb/vmpeg/0/dst_left")

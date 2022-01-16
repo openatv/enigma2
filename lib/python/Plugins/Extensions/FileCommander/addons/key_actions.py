@@ -677,7 +677,7 @@ class key_actions(stat_info):
 					self.SOURCELIST.getCurrentDirectory(),
 					filename
 				)
-		elif filetype in (".sh", ".py", ".pyo"):
+		elif filetype in (".sh", ".py", ".pyc"):
 			self.run_script(self.SOURCELIST, self.TARGETLIST)
 		elif filetype == ".mvi":
 			self.file_name = longname
