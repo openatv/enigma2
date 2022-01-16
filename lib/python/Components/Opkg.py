@@ -1,307 +1,262 @@
-from __future__ import print_function
-import os
-from enigma import eConsoleAppContainer
-from Components.Harddisk import harddiskmanager
-from Components.config import config, ConfigSubsection, ConfigYesNo
-from Tools.Directories import resolveFilename, SCOPE_LIBDIR
-from shutil import rmtree
-from boxbranding import getImageDistro, getImageVersion
+from os import listdir
+from os.path import exists, join as pathjoin, normpath
 from six import PY3
 
-opkgDestinations = []
-opkgStatusPath = ''
+from enigma import eConsoleAppContainer
 
-def Load_defaults():
-	config.plugins.softwaremanager = ConfigSubsection()
-	config.plugins.softwaremanager.overwriteSettingsFiles = ConfigYesNo(default=False)
-	config.plugins.softwaremanager.overwriteDriversFiles = ConfigYesNo(default=True)
-	config.plugins.softwaremanager.overwriteEmusFiles = ConfigYesNo(default=True)
-	config.plugins.softwaremanager.overwritePiconsFiles = ConfigYesNo(default=True)
-	config.plugins.softwaremanager.overwriteBootlogoFiles = ConfigYesNo(default=True)
-	config.plugins.softwaremanager.overwriteSpinnerFiles = ConfigYesNo(default=True)
+from Components.config import ConfigSubsection, ConfigYesNo, config
+from Components.Harddisk import harddiskmanager
+from Components.SystemInfo import BoxInfo
+from Tools.Directories import SCOPE_LIBDIR, fileReadLines, fileWriteLine, resolveFilename
+
+MODULE_NAME = __name__.split(".")[-1]
+
+opkgDestinations = []
+opkgStatusPath = ""
 
 
 def opkgExtraDestinations():
-	global opkgDestinations
-	return ''.join([" --add-dest %s:%s" % (i, i) for i in opkgDestinations])
+	return " ".join(["--add-dest %s:%s" % (x, x) for x in opkgDestinations])
 
 
 def opkgAddDestination(mountpoint):
 	global opkgDestinations
 	if mountpoint not in opkgDestinations:
 		opkgDestinations.append(mountpoint)
-		print("[Opkg] Added to OPKG destinations:", mountpoint)
+		print("[Opkg] Added to OPKG destinations: '%s'." % mountpoint)
 
 
 def onPartitionChange(why, part):
 	global opkgDestinations
 	global opkgStatusPath
-	mountpoint = os.path.normpath(part.mountpoint)
-	if mountpoint and not mountpoint.startswith('/media/net'):
-		if why == 'add':
-			if opkgStatusPath == '':
-				# recent opkg versions
-				opkgStatusPath = 'var/lib/opkg/status'
-				if not os.path.exists(os.path.join('/', opkgStatusPath)):
-					# older opkg versions
-					opkgStatusPath = resolveFilename(SCOPE_LIBDIR, 'opkg/status')
-			if os.path.exists(os.path.join(mountpoint, opkgStatusPath)):
+	mountpoint = normpath(part.mountpoint)
+	if mountpoint and mountpoint != "/":
+		if why == "add":
+			if opkgStatusPath == "":
+				opkgStatusPath = "var/lib/opkg/status"  # Recent opkg versions.
+				if not exists(pathjoin("/", opkgStatusPath)):
+					opkgStatusPath = resolveFilename(SCOPE_LIBDIR, "opkg/status")  # Older opkg versions.
+			if exists(pathjoin(mountpoint, opkgStatusPath)):
 				opkgAddDestination(mountpoint)
-		elif why == 'remove':
-			try:
+		elif why == "remove":
+			if mountpoint in opkgDestinations:
 				opkgDestinations.remove(mountpoint)
-				print("[Opkg] Removed from OPKG destinations:%s" % mountpoint)
-			except:
-				pass
-
-
-def enumFeeds():
-	for fn in os.listdir('/etc/opkg'):
-		if fn.endswith('-feed.conf'):
-			file = open(os.path.join('/etc/opkg', fn))
-			feedfile = file.readlines()
-			file.close()
-			try:
-				for feed in feedfile:
-					yield feed.split()[1]
-			except IndexError:
-				pass
-			except IOError:
-				pass
-
-
-def enumPlugins(filter_start=''):
-	list_dir = listsDirPath()
-	for feed in enumFeeds():
-		package = None
-		try:
-			for line in open(os.path.join(list_dir, feed), 'r'):
-				if line.startswith('Package:'):
-					package = line.split(":", 1)[1].strip()
-					version = ''
-					description = ''
-					if package.startswith(filter_start) and not package.endswith('-dev') and not package.endswith('-staticdev') and not package.endswith('-dbg') and not package.endswith('-doc') and not package.endswith('-src') and not package.endswith('--pycache--'):
-						continue
-					package = None
-				if package is None:
-					continue
-				if line.startswith('Version:'):
-					version = line.split(":", 1)[1].strip()
-				elif line.startswith('Description:'):
-					description = line.split(":", 1)[1].strip()
-				elif description and line.startswith(' '):
-					description += line[:-1]
-				elif len(line) <= 1:
-					d = description.split(' ', 3)
-					if len(d) > 3:
-						# Get rid of annoying "version" and package repeating strings
-						if d[1] == 'version':
-							description = d[3]
-						if description.startswith('gitAUTOINC'):
-							description = description.split(' ', 1)[1]
-					yield package, version, description.strip()
-					package = None
-		except IOError:
-			pass
+				print("[Opkg] Removed from OPKG destinations: '%s'." % mountpoint)
 
 
 def listsDirPath():
-	try:
-		for line in open('/etc/opkg/opkg.conf', "r"):
-			if line.startswith('option'):
-				line = line.split(' ', 2)
-				if len(line) > 2 and line[1] == ('lists_dir'):
-					return line[2].strip()
-			elif line.startswith('lists_dir'):
-				return line.replace('\n', '').split(' ')[2]
-	except Exception as ex:
-		print("[Opkg]", ex)
-	return '/var/lib/opkg/lists'
+	for line in fileReadLines("/etc/opkg/opkg.conf", default=[], source=MODULE_NAME):
+		if line.startswith("option"):
+			line = line.strip().split()
+			if len(line) == 3 and line[1] == "lists_dir":
+				return line[2]
+	return "/var/lib/opkg/lists"
 
 
-if __name__ == '__main__':
-	for p in enumPlugins('enigma'):
-		print(p)
+def enumFeeds():
+	for file in listdir("/etc/opkg"):
+		if file.endswith("-feed.conf"):
+			for line in fileReadLines(pathjoin("/etc/opkg", file), default=[], source=MODULE_NAME):
+				line = line.strip().split()
+				if len(line) >= 2:
+					yield line[1]
+
+
+def enumPlugins(filterStart=""):
+	listsDir = listsDirPath()
+	for feed in enumFeeds():
+		package = None
+		for line in fileReadLines(pathjoin(listsDir, feed), default=[], source=MODULE_NAME):
+			if line.startswith("Package: "):
+				package = line.split(":", 1)[1].strip()
+				version = ""
+				description = ""
+				if config.misc.extraopkgpackages.value:
+					if package.startswith(filterStart) and not package.endswith("--pycache--"):
+						continue
+				else:
+					if package.startswith(filterStart) and not (package.endswith("-dbg") or package.endswith("-dev") or package.endswith("-doc") or package.endswith("-meta") or package.endswith("-po") or package.endswith("-src") or package.endswith("-staticdev") or package.endswith("--pycache--")):
+						continue
+				package = None
+			if package is None:
+				continue
+			if line.startswith("Version: "):
+				version = line.split(":", 1)[1].strip()
+			elif line.startswith("Description: "):
+				description = line.split(":", 1)[1].strip()
+			elif description and line.startswith(" "):
+				description = "%s%s" % (description, line)
+			elif len(line) <= 1:
+				yield package, version, description
+				package = None
+
+
+if __name__ == "__main__":
+	for plugin in enumPlugins("enigma"):
+		print(plugin)
 
 harddiskmanager.on_partition_list_change.append(onPartitionChange)
 for part in harddiskmanager.getMountedPartitions():
-	onPartitionChange('add', part)
+	onPartitionChange("add", part)
 
 
 class OpkgComponent:
-	EVENT_INSTALL = 0
-	EVENT_DOWNLOAD = 1
-	EVENT_INFLATING = 2
-	EVENT_CONFIGURING = 3
-	EVENT_REMOVE = 4
-	EVENT_UPGRADE = 5
-	EVENT_LISTITEM = 9
-	EVENT_DONE = 10
-	EVENT_ERROR = 11
-	EVENT_MODIFIED = 12
-
 	CMD_INSTALL = 0
 	CMD_LIST = 1
 	CMD_REMOVE = 2
 	CMD_UPDATE = 3
 	CMD_UPGRADE = 4
 	CMD_UPGRADE_LIST = 5
+	CMD_LIST_INSTALLED = 6
 
-	def __init__(self, opkg='opkg'):
+	EVENT_INSTALL = 0
+	EVENT_DOWNLOAD = 1
+	EVENT_INFLATING = 2
+	EVENT_CONFIGURING = 3
+	EVENT_REMOVE = 4
+	EVENT_UPVERSION = 5
+	EVENT_UPGRADE = 6
+	EVENT_UPDATED = 7
+	EVENT_DESELECTED = 8
+	EVENT_LISTITEM = 9
+	EVENT_DONE = 10
+	EVENT_ERROR = 11
+	EVENT_MODIFIED = 12
+
+	def __init__(self, opkg="/usr/bin/opkg"):
 		self.opkg = opkg
 		self.cmd = eConsoleAppContainer()
-		self.cache = None
 		self.callbackList = []
 		self.fetchedList = []
 		self.excludeList = []
-		self.setCurrentCommand()
-
-	def setCurrentCommand(self, command=None):
-		self.currentCommand = command
-
-	def runCmdEx(self, cmd):
-		self.runCmd("%s %s" % (opkgExtraDestinations(), cmd))
-
-	def runCmd(self, cmd):
-		print("[Opkg] executing", self.opkg, cmd)
-		self.cmd.appClosed.append(self.cmdFinished)
-		self.cmd.dataAvail.append(self.cmdData)
-		if self.cmd.execute("%s %s" % (self.opkg, cmd)):
-			self.cmdFinished(-1)
+		self.currentCommand = None
 
 	def startCmd(self, cmd, args=None):
+		self.currentCommand = cmd
 		if cmd == self.CMD_UPDATE:
-			if getImageVersion() == '4.0':
-				if os.path.exists('/var/lib/opkg/lists'):
-					rmtree('/var/lib/opkg/lists')
-			else:
-				for fn in os.listdir('/var/lib/opkg'):
-					if fn.startswith(getImageDistro()):
-						os.remove('/var/lib/opkg/' + fn)
-			self.runCmdEx("update")
+			if config.misc.opkgcleanmode.value:
+				self.runCmdEx(["clean"])
+			self.runCmdEx(["update"])
 		elif cmd == self.CMD_UPGRADE:
-			append = ""
-			if args["test_only"]:
-				append = " -test"
-			if len(self.excludeList) > 0:
-				for x in self.excludeList:
-					print("[Opkg] exclude Package (hold): '%s'" % x[0])
-					os.system("opkg flag hold " + x[0])
-			self.runCmdEx("upgrade" + append)
+			if self.excludeList:
+				self.runCmdEx(["flag", "hold"] + self.excludeList)
+			command = ["upgrade"]
+			if args["testMode"]:
+				command.insert(0, "--noaction")
+			self.runCmdEx(command)
 		elif cmd == self.CMD_LIST:
 			self.fetchedList = []
 			self.excludeList = []
-			if args['installed_only']:
-				self.runCmdEx("list_installed")
-			else:
-				self.runCmd("list")
+			self.runCmdEx(["list"])
 		elif cmd == self.CMD_INSTALL:
-			self.runCmd("--force-overwrite install %s" % args['package'])
+			self.runCmd(["--force-overwrite", "install"] + args["package"].split())
 		elif cmd == self.CMD_REMOVE:
-			self.runCmd("remove %s" % args['package'])
+			self.runCmd(["remove"] + args["package"].split())
 		elif cmd == self.CMD_UPGRADE_LIST:
 			self.fetchedList = []
 			self.excludeList = []
-			self.runCmd("list-upgradable")
-		self.setCurrentCommand(cmd)
+			self.runCmdEx(["list-upgradable"])
+		elif cmd == self.CMD_LIST_INSTALLED:
+			self.fetchedList = []
+			self.excludeList = []
+			self.runCmdEx(["list-installed"])
 
-	def cmdFinished(self, retval):
-		self.callCallbacks(self.EVENT_DONE)
-		self.cmd.appClosed.remove(self.cmdFinished)
-		self.cmd.dataAvail.remove(self.cmdData)
-		if len(self.excludeList) > 0:
-			for x in self.excludeList:
-				print("[Opkg] restore Package flag (unhold): '%s'" % x[0])
-				os.system("opkg flag ok " + x[0])
+	def runCmdEx(self, args):
+		extra = []
+		for destination in opkgDestinations:
+			extra.append("--add-dest")
+			extra.append("%s:%s" % (destination, destination))
+		self.runCmd(extra + args)
+
+	def runCmd(self, args):
+		print("[Opkg] Executing '%s' with '%s'." % (self.opkg, " ".join(args)))
+		self.cache = ""
+		self.cachePtr = -1
+		self.cmd.dataAvail.append(self.cmdData)
+		self.cmd.appClosed.append(self.cmdFinished)
+		# self.cmd.setBufferSize(50)
+		args.insert(0, self.opkg)
+		if self.cmd.execute(self.opkg, *args):
+			self.cmdFinished(-1)
 
 	def cmdData(self, data):
 		if PY3:
 			data = data.decode()
-		# print("[Opkg] data:", data)
-		if self.cache is None:
-			self.cache = data
-		else:
-			self.cache += data
+		self.cache = "%s%s" % (self.cache, data)
+		while True:
+			linePtr = self.cache.find("\n", self.cachePtr + 1)
+			if linePtr == -1:
+				break
+			self.parseLine(self.cache[self.cachePtr + 1:linePtr])
+			self.cachePtr = linePtr
 
-		if '\n' in data:
-			splitcache = self.cache.split('\n')
-			if self.cache[-1] == '\n':
-				iteration = splitcache
-				self.cache = None
-			else:
-				iteration = splitcache[:-1]
-				self.cache = splitcache[-1]
-			for mydata in iteration:
-				if mydata != '':
-					self.parseLine(mydata)
-
-	def parseLine(self, data):
-		if self.currentCommand in (self.CMD_LIST, self.CMD_UPGRADE_LIST):
-			item = data.split(' - ', 2)
-			try:
-				# workaround when user use update with own button config
-				if config.plugins.softwaremanager.overwriteSettingsFiles.value:
-					pass
-			except:
-				Load_defaults()
-			if item[0].find('-settings-') > -1 and not config.plugins.softwaremanager.overwriteSettingsFiles.value:
-				self.excludeList.append(item)
+	def parseLine(self, line):
+		# print("[Opkg] DEBUG: Line='%s'." % line)
+		# if self.currentCommand in (self.CMD_LIST, self.CMD_UPGRADE_LIST):
+		if self.currentCommand == self.CMD_UPGRADE_LIST:
+			data = line.split(" - ")
+			if self.checkExclusion(data):
 				return
-			elif item[0].find('kernel-module-') > -1 and not config.plugins.softwaremanager.overwriteDriversFiles.value:
-				self.excludeList.append(item)
-				return
-			elif item[0].find('-softcams-') > -1 and not config.plugins.softwaremanager.overwriteEmusFiles.value:
-				self.excludeList.append(item)
-				return
-			elif item[0].find('-picons-') > -1 and not config.plugins.softwaremanager.overwritePiconsFiles.value:
-				self.excludeList.append(item)
-				return
-			elif item[0].find('-bootlogo') > -1 and not config.plugins.softwaremanager.overwriteBootlogoFiles.value:
-				self.excludeList.append(item)
-				return
-			elif item[0].find('openatv-spinner') > -1 and not config.plugins.softwaremanager.overwriteSpinnerFiles.value:
-				self.excludeList.append(item)
-				return
-			else:
-				self.fetchedList.append(item)
-				self.callCallbacks(self.EVENT_LISTITEM, item)
-				return
-
+			if not line.startswith("Not selecting "):
+				self.fetchedList.append(data)
+				self.callCallbacks(self.EVENT_LISTITEM, data)
+			return
 		try:
-			if data.startswith('Downloading'):
-				self.callCallbacks(self.EVENT_DOWNLOAD, data.split(' ', 5)[1].strip())
-			elif data.startswith('Upgrading'):
-				self.callCallbacks(self.EVENT_UPGRADE, data.split(' ', 2)[1])
-			elif data.startswith('Installing'):
-				self.callCallbacks(self.EVENT_INSTALL, data.split(' ', 2)[1])
-			elif data.startswith('Removing'):
-				self.callCallbacks(self.EVENT_REMOVE, data.split(' ', 3)[2])
-			elif data.startswith('Configuring'):
-				self.callCallbacks(self.EVENT_CONFIGURING, data.split(' ', 2)[1])
-			elif data.startswith('An error occurred'):
+			argv = line.split()
+			argc = len(argv)
+			if line.startswith("Not selecting "):
+				self.callCallbacks(self.EVENT_DESELECTED, argv[2])
+			elif line.startswith("Downloading "):
+				self.callCallbacks(self.EVENT_DOWNLOAD, argv[1])
+			elif line.startswith("Updated source "):
+				self.callCallbacks(self.EVENT_UPDATED, argv[2])
+			elif line.startswith("Upgrading ") and argc == 8:
+				self.callCallbacks(self.EVENT_UPVERSION, argv[1])
+			elif line.startswith("Upgrading ") and argc == 5:
+				self.callCallbacks(self.EVENT_UPGRADE, argv[1])
+			elif line.startswith("Installing "):
+				self.callCallbacks(self.EVENT_INSTALL, argv[1])
+			elif line.startswith("Removing "):
+				self.callCallbacks(self.EVENT_REMOVE, argv[1])
+			elif line.startswith("Configuring "):
+				self.callCallbacks(self.EVENT_CONFIGURING, argv[1])
+			elif line.startswith("An error occurred"):
 				self.callCallbacks(self.EVENT_ERROR, None)
-			elif data.startswith('Failed to download'):
+			elif line.startswith("Failed to download"):
 				self.callCallbacks(self.EVENT_ERROR, None)
-			elif data.startswith('opkg_download: ERROR:'):
+			elif line.startswith("opkg_download: ERROR:"):
 				self.callCallbacks(self.EVENT_ERROR, None)
-			elif data.find('Configuration file \'') >= 0:
+			elif line.find("Configuration file '") >= 0:
 				# Note: the config file update question doesn't end with a newline, so
 				# if we get multiple config file update questions, the next ones
-				# don't necessarily start at the beginning of a line
-				self.callCallbacks(self.EVENT_MODIFIED, data.split(' \'', 3)[1][:-1])
-		except Exception as ex:
-			print("[Opkg] Failed to parse: '%s'" % data)
-			print("[Opkg]", ex)
+				# don't necessarily start at the beginning of a line.
+				self.callCallbacks(self.EVENT_MODIFIED, line.split(" '", 3)[1][:-1])
+		except IndexError as err:
+			print("[Opkg] Error: Failed to parse line '%s'!  (%s)" % (line, str(err)))
 
-	def callCallbacks(self, event, param=None):
+	def cmdFinished(self, retVal):
+		self.cmd.dataAvail.remove(self.cmdData)
+		self.cmd.appClosed.remove(self.cmdFinished)
+		print("[Opkg] Opkg command '%s' output:\n%s" % (self.getCommandText(self.currentCommand), self.cache))
+		self.callCallbacks(self.EVENT_DONE if retVal == 0 else self.EVENT_ERROR)
+		if self.excludeList:
+			self.runCmdEx(["flag", "ok"] + self.excludeList)
+
+	def callCallbacks(self, event, parameter=None):
 		for callback in self.callbackList:
-			callback(event, param)
+			callback(event, parameter)
 
 	def addCallback(self, callback):
-		self.callbackList.append(callback)
+		if callback not in self.callbackList:
+			self.callbackList.append(callback)
+		else:
+			print("[Opkg] Error: Callback '%s' already exists!" % str(callback))
 
 	def removeCallback(self, callback):
-		self.callbackList.remove(callback)
+		if callback in self.callbackList:
+			self.callbackList.remove(callback)
+		else:
+			print("[Opkg] Error: Callback '%s' does not exist!" % str(callback))
 
 	def getFetchedList(self):
 		return self.fetchedList
@@ -317,6 +272,63 @@ class OpkgComponent:
 
 	def write(self, what):
 		if what:
-			# We except unterminated commands
-			what += "\n"
+			if not what.endswith("\n"):  # We except unterminated commands.
+				what = "%s\n" % what
 			self.cmd.write(what, len(what))
+
+	def getCommandText(self, command):
+		return {
+			0: "Install",
+			1: "List",
+			2: "Remove",
+			3: "Update",
+			4: "Upgrade",
+			5: "Upgrade List",
+			6: "List Installed"
+		}.get(command, "None")
+
+	def getEventText(self, event):
+		return {
+			0: "Install",
+			1: "Download",
+			2: "Inflating",
+			3: "Configuring",
+			4: "Remove",
+			5: "Upgrade Version",
+			6: "Upgrade",
+			7: "Updated",
+			8: "Not Selected",
+			9: "List Item",
+			10: "Done",
+			11: "Error",
+			12: "Modified"
+		}.get(event, "None")
+
+	def checkExclusion(self, item):
+		if not hasattr(config.plugins, "softwaremanager"):
+			config.plugins.softwaremanager = ConfigSubsection()
+		if not hasattr(config.plugins.softwaremanager, "overwriteSettingsFiles"):
+			config.plugins.softwaremanager.overwriteSettingsFiles = ConfigYesNo(default=False)
+			config.plugins.softwaremanager.overwriteDriversFiles = ConfigYesNo(default=True)
+			config.plugins.softwaremanager.overwriteEmusFiles = ConfigYesNo(default=True)
+			config.plugins.softwaremanager.overwritePiconsFiles = ConfigYesNo(default=True)
+			config.plugins.softwaremanager.overwriteBootlogoFiles = ConfigYesNo(default=True)
+			config.plugins.softwaremanager.overwriteSpinnerFiles = ConfigYesNo(default=True)
+		if item[0].find("busybox") > -1:
+			self.excludeList.append(item)
+			fileWriteLine("/etc/enigma2/.busybox_update_required", "BusyBox needs to be updated!\n", source=MODULE_NAME)
+		elif item[0].find("-settings-") > -1 and not config.plugins.softwaremanager.overwriteSettingsFiles.value:
+			self.excludeList.append(item)
+		elif item[0].find("kernel-module-") > -1 and not config.plugins.softwaremanager.overwriteDriversFiles.value:
+			self.excludeList.append(item)
+		elif item[0].find("-softcams-") > -1 and not config.plugins.softwaremanager.overwriteEmusFiles.value:
+			self.excludeList.append(item)
+		elif item[0].find("-picons-") > -1 and not config.plugins.softwaremanager.overwritePiconsFiles.value:
+			self.excludeList.append(item)
+		elif item[0].find("-bootlogo") > -1 and not config.plugins.softwaremanager.overwriteBootlogoFiles.value:
+			self.excludeList.append(item)
+		elif item[0].find("%s-spinner" % BoxInfo.getItem("distro")) > -1 and not config.plugins.softwaremanager.overwriteSpinnerFiles.value:
+			self.excludeList.append(item)
+		else:
+			return False
+		return True
