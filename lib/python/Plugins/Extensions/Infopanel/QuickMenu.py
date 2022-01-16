@@ -466,7 +466,7 @@ class QuickMenu(Screen, ProtectedScreen):
 		elif item[0] == _("Channel selection"):
 			self.openSetup("channelselection")
 		elif item[0] == _("Recording settings"):
-			self.openSetup("recording")
+			self.openSetup("Recording")
 		elif item[0] == _("EPG settings"):
 			self.openSetup("epgsettings")
 ######## Select Mounts Menu ##############################
