@@ -742,6 +742,7 @@ config.misc.locale = ConfigText(default=defaultLanguage)
 config.crash = ConfigSubsection()
 config.crash.debugActionMaps = ConfigYesNo(default=False)
 config.crash.debugKeyboards = ConfigYesNo(default=False)
+config.crash.debugOpkg = ConfigYesNo(default=False)
 config.crash.debugRemoteControls = ConfigYesNo(default=False)
 config.crash.debugScreens = ConfigYesNo(default=False)
 
