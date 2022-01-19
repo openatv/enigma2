@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-01-02 10:50+0000\n"
+"POT-Creation-Date: 2022-01-19 18:21+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -986,6 +986,14 @@ msgstr[0] ""
 msgstr[1] ""
 
 #, python-format
+msgid "%d feed catalog package was updated."
+msgstr ""
+
+#, python-format
+msgid "%d feed catalog packages were updated."
+msgstr ""
+
+#, python-format
 msgid "%d hour"
 msgid_plural "%d hours"
 msgstr[0] ""
@@ -1011,6 +1019,70 @@ msgstr ""
 
 #, python-format
 msgid "%d ms"
+msgstr ""
+
+#, python-format
+msgid "%d package upgraded."
+msgstr ""
+
+#, python-format
+msgid "%d package was configured."
+msgstr ""
+
+#, python-format
+msgid "%d package was deselected."
+msgstr ""
+
+#, python-format
+msgid "%d package was downloaded."
+msgstr ""
+
+#, python-format
+msgid "%d package was identified for upgrade."
+msgstr ""
+
+#, python-format
+msgid "%d package was installed."
+msgstr ""
+
+#, python-format
+msgid "%d package was removed."
+msgstr ""
+
+#, python-format
+msgid "%d package was upgraded."
+msgstr ""
+
+#, python-format
+msgid "%d packages upgraded."
+msgstr ""
+
+#, python-format
+msgid "%d packages were configured."
+msgstr ""
+
+#, python-format
+msgid "%d packages were deselected."
+msgstr ""
+
+#, python-format
+msgid "%d packages were downloaded."
+msgstr ""
+
+#, python-format
+msgid "%d packages were identified for upgrade."
+msgstr ""
+
+#, python-format
+msgid "%d packages were installed."
+msgstr ""
+
+#, python-format
+msgid "%d packages were removed."
+msgstr ""
+
+#, python-format
+msgid "%d packages were upgraded."
 msgstr ""
 
 #, python-format
@@ -1235,12 +1307,6 @@ msgstr ""
 #, python-format
 msgid "%s successfully extracted."
 msgstr ""
-
-#, python-format
-msgid "%s updated package available"
-msgid_plural "%s updated packages available"
-msgstr[0] ""
-msgstr[1] ""
 
 #, python-format
 msgid "%s%d min"
@@ -1934,18 +2000,6 @@ msgid "A background update check is in progress, please wait a few minutes and t
 msgstr ""
 
 #, python-format
-msgid ""
-"A configuration file (%s) has been modified since it was installed.\n"
-"Do you want to keep your modifications?"
-msgstr ""
-
-#, python-format
-msgid ""
-"Configuration file '%s' has been modified since it was installed, "
-"would you like to keep the modified version?"
-msgstr ""
-
-#, python-format
 msgid "A crashlog was %s created in '%s'"
 msgstr ""
 
@@ -2221,10 +2275,16 @@ msgstr ""
 msgid "Add AutoTimer"
 msgstr ""
 
+msgid "Add Current"
+msgstr ""
+
 msgid "Add New Quad Channel Entry"
 msgstr ""
 
 msgid "Add Record Timer"
+msgstr ""
+
+msgid "Add Service"
 msgstr ""
 
 msgid "Add Timer"
@@ -2759,10 +2819,6 @@ msgstr ""
 msgid "Are you sure you want to send this log:\n"
 msgstr ""
 
-#, python-format
-msgid "Are you sure you want to update your %s %s ?"
-msgstr ""
-
 msgid "Argentina"
 msgstr ""
 
@@ -3168,9 +3224,6 @@ msgid "Backup Location"
 msgstr ""
 
 msgid "Backup Log"
-msgstr ""
-
-msgid "Backup Manager"
 msgstr ""
 
 msgid "Backup Mode"
@@ -3810,6 +3863,9 @@ msgstr ""
 msgid "Cancel"
 msgstr ""
 
+msgid "Cancel / Close the software update screen"
+msgstr ""
+
 msgid "Cancel any changed settings and exit"
 msgstr ""
 
@@ -3841,9 +3897,6 @@ msgid "Cancel the image selection and exit"
 msgstr ""
 
 msgid "Cancel the image selection and exit all menus"
-msgstr ""
-
-msgid "Cancel the software update"
 msgstr ""
 
 msgid "Cancel the update"
@@ -3928,6 +3981,9 @@ msgid "Chad"
 msgstr ""
 
 msgid "Chamorro"
+msgstr ""
+
+msgid "Change"
 msgstr ""
 
 msgid "Change Boxmode to control Hardware Chip Modes*"
@@ -4132,9 +4188,6 @@ msgid "Checking Logs..."
 msgstr ""
 
 msgid "Checking filesystem..."
-msgstr ""
-
-msgid "Checking for Updates..."
 msgstr ""
 
 msgid "Checking the internet connection"
@@ -4492,6 +4545,10 @@ msgstr ""
 
 msgctxt "Abbreviation of 'Configurable'"
 msgid "Configurable"
+msgstr ""
+
+#, python-format
+msgid "Configuration file '%s' has been modified since it was installed, would you like to keep the modified version?"
 msgstr ""
 
 msgid "Configuration mode"
@@ -5039,9 +5096,6 @@ msgstr ""
 msgid "Could not connect to server"
 msgstr ""
 
-msgid "Could not find installed channel list."
-msgstr ""
-
 msgid "Could not find suitable media - Please remove some downloaded images or insert a media (e.g. USB stick) with sufficient free space and try again!"
 msgstr ""
 
@@ -5197,6 +5251,9 @@ msgid "Current transponder"
 msgstr ""
 
 msgid "Current value: "
+msgstr ""
+
+msgid "Current version unknown"
 msgstr ""
 
 msgid "Current version:"
@@ -5818,6 +5875,10 @@ msgstr ""
 msgid "Deselect"
 msgstr ""
 
+#, python-format
+msgid "Deselected packages usually occur because those packaged are incompatible with existing packages.  While this is mostly harmless it is possible that your %s %s may experience issues."
+msgstr ""
+
 msgid "Details for plugin: "
 msgstr ""
 
@@ -6214,10 +6275,6 @@ msgid "Do you want to purge all locales/languages except %s?"
 msgstr ""
 
 #, python-format
-msgid "Do you want to reboot your %s %s"
-msgstr ""
-
-#, python-format
 msgid "Do you want to reboot your %s %s?"
 msgstr ""
 
@@ -6239,10 +6296,6 @@ msgstr ""
 msgid ""
 "Do you want to send all selected files:\n"
 "(choose 'No' to only send the currently selected file.)"
-msgstr ""
-
-#, python-format
-msgid "Do you want to update your %s %s ?"
 msgstr ""
 
 msgid "Do you want to update your box?"
@@ -6780,6 +6833,9 @@ msgstr ""
 msgid "Enable this option to add keyboard keymap data to the debug log file."
 msgstr ""
 
+msgid "Enable this option to add opkg output data to the debug log file."
+msgstr ""
+
 msgid "Enable this option to add remote control data to the debug log file."
 msgstr ""
 
@@ -6990,9 +7046,6 @@ msgstr ""
 msgid ""
 "Error creating directory %s:\n"
 "%s"
-msgstr ""
-
-msgid "Error downloading change log."
 msgstr ""
 
 #, python-format
@@ -7469,18 +7522,6 @@ msgid "Feed stable."
 msgstr ""
 
 msgid "Feed unstable!"
-msgstr ""
-
-msgid "Feeds status:   Stable"
-msgstr ""
-
-msgid "Feeds status:   Unstable"
-msgstr ""
-
-msgid "Feeds status:   Updating"
-msgstr ""
-
-msgid "Feeds status: Unexpected"
 msgstr ""
 
 msgid "Fetch EPG and update timers now"
@@ -8770,9 +8811,6 @@ msgstr ""
 msgid "Image Information"
 msgstr ""
 
-msgid "Image Manager"
-msgstr ""
-
 msgid "Image Version"
 msgstr ""
 
@@ -8862,6 +8900,9 @@ msgid "Include action map data"
 msgstr ""
 
 msgid "Include keyboard data"
+msgstr ""
+
+msgid "Include opkg output data"
 msgstr ""
 
 msgid "Include remote control data"
@@ -9070,6 +9111,9 @@ msgid "Install picons on"
 msgstr ""
 
 msgid "Install plugins"
+msgstr ""
+
+msgid "Install/Remove plugin"
 msgstr ""
 
 msgid "Installation finished."
@@ -10471,6 +10515,9 @@ msgstr ""
 msgid "Move down a page"
 msgstr ""
 
+msgid "Move down a page / screen"
+msgstr ""
+
 msgid "Move down a screen"
 msgstr ""
 
@@ -10559,6 +10606,12 @@ msgid "Move up a line"
 msgstr ""
 
 msgid "Move up a page"
+msgstr ""
+
+msgid "Move up a page / screen"
+msgstr ""
+
+msgid "Move up a page /screen"
 msgstr ""
 
 msgid "Move up a screen"
@@ -11062,9 +11115,6 @@ msgstr ""
 msgid "No clients streaming"
 msgstr ""
 
-msgid "No connection"
-msgstr ""
-
 msgid ""
 "No data on transponder!\n"
 "(Timeout reading PAT)"
@@ -11181,7 +11231,10 @@ msgstr ""
 msgid "No update required!"
 msgstr ""
 
-msgid "No updates available. Please try again later."
+msgid "No updates available."
+msgstr ""
+
+msgid "No updates were available.  Please try again later."
 msgstr ""
 
 msgid "No valid region details were found"
@@ -11416,6 +11469,9 @@ msgstr ""
 msgid "ONID"
 msgstr ""
 
+msgid "OPKG clean mode"
+msgstr ""
+
 msgid "OSD"
 msgstr ""
 
@@ -11504,9 +11560,6 @@ msgid "One line"
 msgstr ""
 
 msgid "Online software update"
-msgstr ""
-
-msgid "OnlineVersionCheck"
 msgstr ""
 
 msgid "Only extensions."
@@ -11817,9 +11870,6 @@ msgstr ""
 msgid "Packaged locales only"
 msgstr ""
 
-msgid "Packages"
-msgstr ""
-
 msgid "Packages and associated locales"
 msgstr ""
 
@@ -11981,19 +12031,10 @@ msgstr ""
 msgid "Percentage/Progress bar right"
 msgstr ""
 
-msgid "Perform a full image backup"
-msgstr ""
-
 msgid "Perform a image backup before updating."
 msgstr ""
 
 msgid "Perform a setting backup before updating."
-msgstr ""
-
-msgid "Perform a settings backup,"
-msgstr ""
-
-msgid "Perform a settings backup, making a backup before updating is strongly advised."
 msgstr ""
 
 msgid "Perform an on-line flash instead"
@@ -12694,6 +12735,9 @@ msgstr ""
 msgid "Press OK to activate the settings."
 msgstr ""
 
+msgid "Press OK to continue."
+msgstr ""
+
 msgid "Press OK to edit the settings."
 msgstr ""
 
@@ -12745,6 +12789,9 @@ msgstr ""
 
 #, python-format
 msgid "Press OK to use this locale.  [%s]"
+msgstr ""
+
+msgid "Press the menu button to set a general AC3/Dolby offset."
 msgstr ""
 
 msgid "Press this button to emulate a long press on a button pressed afterwards (this also overrides any other actions assigned to emulation button)."
@@ -12920,6 +12967,9 @@ msgid "Protect plugin browser"
 msgstr ""
 
 msgid "Protect services"
+msgstr ""
+
+msgid "Protect software update screen"
 msgstr ""
 
 msgid "Protect standby menu"
@@ -13336,6 +13386,9 @@ msgid ""
 "This may take a few minutes"
 msgstr ""
 
+msgid "Refresh"
+msgstr ""
+
 msgid "Refresh every (in hours)"
 msgstr ""
 
@@ -13349,6 +13402,9 @@ msgid "Refresh rate selection."
 msgstr ""
 
 msgid "Refresh screen"
+msgstr ""
+
+msgid "Refresh the update-able package list"
 msgstr ""
 
 msgid "Regard deep standby as standby"
@@ -13439,6 +13495,12 @@ msgstr ""
 msgid "Remove Confirmation"
 msgstr ""
 
+msgid "Remove Failed !!"
+msgstr ""
+
+msgid "Remove Finished."
+msgstr ""
+
 msgid "Remove Plugins"
 msgstr ""
 
@@ -13470,9 +13532,6 @@ msgid "Remove current folder from bookmarks"
 msgstr ""
 
 msgid "Remove currently selected title"
-msgstr ""
-
-msgid "Remove Finished."
 msgstr ""
 
 msgid "Remove hide VBI line for this service"
@@ -14439,6 +14498,9 @@ msgid "Select channel audio"
 msgstr ""
 
 msgid "Select channel to record from"
+msgstr ""
+
+msgid "Select channels to add an offset to the volume."
 msgstr ""
 
 msgid "Select copy destination for:"
@@ -15618,6 +15680,9 @@ msgstr ""
 msgid "Show detailed event info (setup in menu)"
 msgstr ""
 
+msgid "Show development packages in opkg"
+msgstr ""
+
 msgid "Show directories first"
 msgstr ""
 
@@ -16240,9 +16305,6 @@ msgstr ""
 msgid "Software Manager Setup"
 msgstr ""
 
-msgid "Software Panel"
-msgstr ""
-
 msgid "Software Update"
 msgstr ""
 
@@ -16258,7 +16320,9 @@ msgstr ""
 msgid "Software restore"
 msgstr ""
 
-msgid "Software update"
+msgid ""
+"Software update starting, please wait.\n"
+"\n"
 msgstr ""
 
 msgid "Softwaremanager information"
@@ -16304,9 +16368,6 @@ msgid "Sorry feeds are down for maintenance"
 msgstr ""
 
 msgid "Sorry feeds are down for maintenance, please try again later."
-msgstr ""
-
-msgid "Sorry feeds are down for maintenance, please try again later. If this issue persists please check www.opena.tv"
 msgstr ""
 
 msgid "Sorry no backups found!"
@@ -16622,6 +16683,9 @@ msgid "Stop testing plane after # failed transponders"
 msgstr ""
 
 msgid "Stop testing plane after # successful transponders"
+msgstr ""
+
+msgid "Stop the update, if running, then exit"
 msgstr ""
 
 msgid "Stop timer recording"
@@ -17332,9 +17396,6 @@ msgstr ""
 msgid "The command to wake from standby will be sent multiple times."
 msgstr ""
 
-msgid "The current update may be unstable"
-msgstr ""
-
 msgid ""
 "The default backup selection cannot be changed.\n"
 "Please use the 'additional' and 'excluded' backup selection."
@@ -17599,6 +17660,9 @@ msgid "This is the order in which DiSEqC commands are sent to the aerial system.
 msgstr ""
 
 msgid "This line is not editable!"
+msgstr ""
+
+msgid "This offset will only be used if the channel has not its own volume offset."
 msgstr ""
 
 msgid "This option allows to reduce the block-noise in the picture. Obviously this is at the cost of the picture's sharpness."
@@ -18698,14 +18762,8 @@ msgstr ""
 msgid "Update at your own risk"
 msgstr ""
 
-msgid "Update channel list only"
+msgid "Update completed."
 msgstr ""
-
-#, python-format
-msgid "Update completed, %d package was installed."
-msgid_plural "Update completed, %d packages were installed."
-msgstr[0] ""
-msgstr[1] ""
 
 msgid "Update delay for Events in List"
 msgstr ""
@@ -18714,10 +18772,6 @@ msgid "Update delay for Events in List. Scrolling in List is faster with higher 
 msgstr ""
 
 msgid "Update failed!"
-msgstr ""
-
-#, python-format
-msgid "Update failed. Your %s %s does not have a working internet connection."
 msgstr ""
 
 msgid "Update finished!"
@@ -18740,10 +18794,19 @@ msgstr ""
 msgid "Update/Backup/Restore your box"
 msgstr ""
 
+msgid "Updated"
+msgstr ""
+
+msgid "Updated version unknown"
+msgstr ""
+
 msgid "Updatefeed not available."
 msgstr ""
 
 msgid "Updates available:"
+msgstr ""
+
+msgid "Updating"
 msgstr ""
 
 msgid "Updating cache"
@@ -18761,9 +18824,6 @@ msgstr ""
 msgid "Upgrade (Backup, Flash & Restore All)"
 msgstr ""
 
-msgid "Upgrade and reboot system"
-msgstr ""
-
 msgid "Upgrade finished."
 msgstr ""
 
@@ -18777,7 +18837,7 @@ msgstr ""
 msgid "Upgrade with GUI"
 msgstr ""
 
-msgid "Updating"
+msgid "Upgrading"
 msgstr ""
 
 msgid "Uphops +"
@@ -19335,9 +19395,6 @@ msgstr ""
 msgid "View teletext..."
 msgstr ""
 
-msgid "View the changes"
-msgstr ""
-
 msgid "View video CD..."
 msgstr ""
 
@@ -19674,6 +19731,9 @@ msgstr ""
 msgid "When enabled, authentication is required to watch http streams."
 msgstr ""
 
+msgid "When enabled, before opkg update there will be opkg clean to make sure nothing ruine the update but only enable this when you can not update online."
+msgstr ""
+
 msgid "When enabled, channel numbering will start at '1' for each bouquet."
 msgstr ""
 
@@ -19756,6 +19816,9 @@ msgid "When enabled, timeshift starts automatically in background after specifie
 msgstr ""
 
 msgid "When enabled, use DHCP for the IP configuration."
+msgstr ""
+
+msgid "When enabled, you will see dev, staticdev, dbg, doc, src and po packages in opkg list."
 msgstr ""
 
 msgid "When enabled, your receiver will detect activity on the VCR SCART input."
@@ -20213,10 +20276,6 @@ msgid "Your %s %s isn't connected to the internet properly. Please check it and 
 msgstr ""
 
 #, python-format
-msgid "Your %s %s might be unusable now. Please consult the manual for further assistance before rebooting your %s %s."
-msgstr ""
-
-#, python-format
 msgid ""
 "Your %s %s was not shutdown properly.\n"
 "\n"
@@ -20328,6 +20387,10 @@ msgid "Your receiver can use SCPC optimized search range. Consult your receiver'
 msgstr ""
 
 msgid "Your receiver can use tone amplitude. Consult your receiver's manual for more information."
+msgstr ""
+
+#, python-format
+msgid "Your receiver might be unusable now.  Please consult the manual for further assistance before rebooting your %s %s."
 msgstr ""
 
 msgid ""
@@ -20515,12 +20578,6 @@ msgid "activatePiP"
 msgstr ""
 
 msgid "active"
-msgstr ""
-
-msgid "Add Current"
-msgstr ""
-
-msgid "Add Service"
 msgstr ""
 
 msgid "add alternatives"
@@ -20725,9 +20782,6 @@ msgid "centered"
 msgstr ""
 
 msgid "centered, wrapped"
-msgstr ""
-
-msgid "Change"
 msgstr ""
 
 msgid "change Volume down"
@@ -21249,9 +21303,6 @@ msgstr ""
 msgid "invalid type"
 msgstr ""
 
-msgid "is strongly advised."
-msgstr ""
-
 msgid "jazz"
 msgstr ""
 
@@ -21316,9 +21367,6 @@ msgid "m2k"
 msgstr ""
 
 msgid "magazines/reports/documentary"
-msgstr ""
-
-msgid "making a backup before updating"
 msgstr ""
 
 msgid "manage local Files"
@@ -21585,9 +21633,6 @@ msgstr ""
 msgid "pre-school children's program"
 msgstr ""
 
-msgid "Press the menu button to set a general AC3/Dolby offset."
-msgstr ""
-
 msgid "previous channel page"
 msgstr ""
 
@@ -21768,9 +21813,6 @@ msgid "select"
 msgstr ""
 
 msgid "select CAId's"
-msgstr ""
-
-msgid "Select channels to add an offset to the volume."
 msgstr ""
 
 msgid "select menu entry"
@@ -22012,9 +22054,6 @@ msgid "tennis/squash"
 msgstr ""
 
 msgid "this bouquet is protected by a parental control pin"
-msgstr ""
-
-msgid "This offset will only be used if the channel has not its own volume offset."
 msgstr ""
 
 msgid "this recording"
