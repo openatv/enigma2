@@ -10,7 +10,7 @@ class EnigmaLog:
 	def write(self, data):
 		if sys.version_info[0] >= 3:
 			if isinstance(data, bytes):
-				data = data.encode(encoding="UTF-8", errors="ignore")
+				data = data.decode(encoding="UTF-8", errors="ignore")
 		else:
 			if isinstance(data, unicode):
 				data = data.encode(encoding="UTF-8", errors="ignore")
