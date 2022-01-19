@@ -83,7 +83,7 @@ def InitSkins():
 		unlink('/etc/.restore_skins')
 		import glob
 		lastpath = ''
-		for skin in sorted(glob.glob('/usr/lib/enigma2/python/Plugins/Extensions/*/ActivateSkinSettings.py')):
+		for skin in sorted(glob.glob('/usr/lib/enigma2/python/Plugins/Extensions/*/ActivateSkinSettings.py*')):
 			try:
 				print('[RESTORE_SKIN] restore skin from "%s" ...' % skin)
 				skinpath, ext = splitext(skin)
