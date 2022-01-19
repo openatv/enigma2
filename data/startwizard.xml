@@ -21,6 +21,7 @@ self.selectKey("OK")
 self.clearSelectedKeys()
 self.selectKey("UP")
 self.selectKey("DOWN")
+self["key_yellow"].text = ""
 			</code>
 		</step>
 
@@ -73,6 +74,10 @@ self.clearSelectedKeys()
 self.selectKey("LEFT")
 self.selectKey("RIGHT")
 self.selectKey("YELLOW")
+self["key_yellow"].text = _("Use Geolocation")
+			</code>
+			<code pos="after">
+self["key_yellow"].text = ""
 			</code>
 		</step>
 

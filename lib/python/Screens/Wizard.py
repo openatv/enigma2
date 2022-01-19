@@ -244,6 +244,7 @@ class Wizard(Screen):
 		}, -2)
 
 		self["VirtualKB"].setEnabled(False)
+		self["key_yellow"] = StaticText()
 
 	def red(self):
 		# print("[Wizard] In red.")
