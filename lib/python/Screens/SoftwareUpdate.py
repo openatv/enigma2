@@ -507,15 +507,15 @@ class RunSoftwareUpdate(Screen, HelpableScreen):
 			else:
 				if self.errorCount == 0:
 					self["update"].appendText("\n%s\n\n" % _("Update completed."))
-					self["update"].appendText("%s\n" % ngettext(_("%d package was identified for upgrade."), _("%d packages were identified for upgrade."), self.packageTotal) % self.packageTotal)
-					self["update"].appendText("%s\n" % ngettext(_("%d package was downloaded."), _("%d packages were downloaded."), self.downloadCount) % self.downloadCount)
-					self["update"].appendText("%s\n" % ngettext(_("%d feed catalog package was updated."), _("%d feed catalog packages were updated."), self.updateCount) % self.updateCount)
-					self["update"].appendText("%s\n" % ngettext(_("%d package was installed."), _("%d packages were installed."), self.installCount) % self.installCount)
-					self["update"].appendText("%s\n" % ngettext(_("%d package was removed."), _("%d packages were removed."), self.removeCount) % self.removeCount)
-					self["update"].appendText("%s\n" % ngettext(_("%d package was upgraded."), _("%d packages were upgraded."), self.upgradeCount) % self.upgradeCount)
-					self["update"].appendText("%s\n" % ngettext(_("%d package was configured."), _("%d packages were configured."), self.configureCount) % self.configureCount)
+					self["update"].appendText("%s\n" % ngettext("%d package was identified for upgrade.", "%d packages were identified for upgrade.", self.packageTotal) % self.packageTotal)
+					self["update"].appendText("%s\n" % ngettext("%d package was downloaded.", "%d packages were downloaded.", self.downloadCount) % self.downloadCount)
+					self["update"].appendText("%s\n" % ngettext("%d feed catalog package was updated.", "%d feed catalog packages were updated.", self.updateCount) % self.updateCount)
+					self["update"].appendText("%s\n" % ngettext("%d package was installed.", "%d packages were installed.", self.installCount) % self.installCount)
+					self["update"].appendText("%s\n" % ngettext("%d package was removed.", "%d packages were removed.", self.removeCount) % self.removeCount)
+					self["update"].appendText("%s\n" % ngettext("%d package was upgraded.", "%d packages were upgraded.", self.upgradeCount) % self.upgradeCount)
+					self["update"].appendText("%s\n" % ngettext("%d package was configured.", "%d packages were configured.", self.configureCount) % self.configureCount)
 					if self.deselectCount:
-						self["update"].appendText("%s\n" % ngettext(_("%d package was deselected."), _("%d packages were deselected."), self.deselectCount) % self.deselectCount)
+						self["update"].appendText("%s\n" % ngettext("%d package was deselected.", "%d packages were deselected.", self.deselectCount) % self.deselectCount)
 						self["update"].appendText("\n%s\n" % _("Deselected packages usually occur because those packaged are incompatible with existing packages.  While this is mostly harmless it is possible that your %s %s may experience issues.") % (displayBrand, displayModel))
 				else:
 					error = _("Your receiver might be unusable now.  Please consult the manual for further assistance before rebooting your %s %s.") % (displayBrand, displayModel)
@@ -596,7 +596,7 @@ class RunSoftwareUpdateSummary(ScreenSummary):
 			self.parent.onTimerTick.remove(self.update)
 
 	def update(self):
-		self["entry"].setText(ngettext(_("%d package upgraded."), _("%d packages upgraded."), self.parent.upgradeCount) % self.parent.upgradeCount)
+		self["entry"].setText(ngettext("%d package upgraded.", "%d packages upgraded.", self.parent.upgradeCount) % self.parent.upgradeCount)
 		if self.parent.activity < 0:
 			self["value"].setText(_("Press OK to continue."))
 			self["activity"].hide()
