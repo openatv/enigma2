@@ -159,7 +159,7 @@ class Console(Screen):
 					script = ''
 					for cmd in cmdlist[0].split():
 						if '.' in cmd:
-							if cmd[-3:] in ('.py', '.sh'):
+							if cmd[-3:] in ('.py', '.sh') or cmd[-4:] == '.pcy':
 								script = cmd
 							break
 					if script and path.isfile(script):
