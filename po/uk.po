@@ -1,7 +1,7 @@
 # Ukrainian translations for Enigma2.
 #
 # openATV <openatv@gmail.com>, 2021.
-# kvinto <badsystem@ukr.net>, 2021.
+# kvinto <badsystem@ukr.net>, 2021, 2022.
 # igorrrrr <igorzhugan66@gmail.com>, 2021.
 # Tymofii Lytvynenko <till.svit@gmail.com>, 2021.
 msgid ""
@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-01-02 10:50+0000\n"
-"PO-Revision-Date: 2021-12-30 16:18+0000\n"
+"PO-Revision-Date: 2022-01-19 06:53+0000\n"
 "Last-Translator: kvinto <badsystem@ukr.net>\n"
 "Language-Team: Ukrainian <https://hosted.weblate.org/projects/openatv/"
 "enigma2-7-0-po/uk/>\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 4.10.1\n"
+"X-Generator: Weblate 4.11-dev\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 
 msgid ""
@@ -2044,8 +2044,8 @@ msgid ""
 "Configuration file '%s' has been modified since it was installed, would you "
 "like to keep the modified version?"
 msgstr ""
-"Файл конфігурації (%s) був змінений під час інсталяції.\n"
-"Бажаєте зберегти вашу версію?"
+"Файл конфігурації '%s' був змінений під час інсталяції. Бажаєте зберегти "
+"дану версію?"
 
 #, python-format
 msgid "A crashlog was %s created in '%s'"
@@ -4141,10 +4141,10 @@ msgid "Cancel the image selection and exit all menus"
 msgstr "Скасувати вибір іміджу та вийдіть із усіх меню"
 
 msgid "Cancel the software update"
-msgstr ""
+msgstr "Скасувати оновлення програмного забезпечення"
 
 msgid "Cancel the update"
-msgstr ""
+msgstr "Скасувати оновлення"
 
 msgid "Cancelled upon user request"
 msgstr "Скасовано за запитом користувача"
@@ -5487,7 +5487,7 @@ msgid "Continue playing"
 msgstr "Продовжити перегляд"
 
 msgid "Continue with the on-line update"
-msgstr ""
+msgstr "Продовжити оновлення в режимі онлайн"
 
 msgid "Continues"
 msgstr "Продовження"
@@ -5800,7 +5800,7 @@ msgid "Cutlist editor..."
 msgstr "Відео-редактор..."
 
 msgid "Cycle PIP(zap)"
-msgstr ""
+msgstr "Цикл PIP(перекл)"
 
 msgid "Cycling"
 msgstr "Велоспорт"
@@ -6988,7 +6988,7 @@ msgid "Download and install cam"
 msgstr "Завантажити і встановити емулятори"
 
 msgid "Download error"
-msgstr ""
+msgstr "Помилка завантаження"
 
 msgid "Download plugins"
 msgstr "Завантажити плагіни"
@@ -7006,7 +7006,7 @@ msgid "Downloading Image"
 msgstr "Завантаження Іміджа"
 
 msgid "Downloading latest update list.  Please wait..."
-msgstr ""
+msgstr "Завантаження списку останніх оновлень.  Будь ласка, зачекайте..."
 
 msgid "Downloading plugin information. Please wait..."
 msgstr "Завантаження інформації про додатки. Зачекайте..."
@@ -7107,7 +7107,7 @@ msgid "EPG"
 msgstr "ЕПГ"
 
 msgid "EPG Actions"
-msgstr ""
+msgstr "Дія ЕПГ"
 
 msgid "EPG Bouquet Actions"
 msgstr ""
@@ -7601,7 +7601,7 @@ msgid "Enter multi-file selection mode"
 msgstr "Вхід у режим вибору декількох файлів"
 
 msgid "Enter number to jump to channel"
-msgstr "введіть номер, щоб перейти на канал."
+msgstr "Введіть номер, щоб перейти на канал"
 
 msgid "Enter persistent PIN code"
 msgstr "Введіть надійний пін-код"
@@ -7876,7 +7876,7 @@ msgid "Event View"
 msgstr "Перегляд завдань"
 
 msgid "Event View Actions"
-msgstr ""
+msgstr "Дії перегляду передач"
 
 msgid "Event View Context Menu"
 msgstr "Меню перегляду опису передачі"
@@ -7891,7 +7891,7 @@ msgid "Event view menu"
 msgstr "Меню перегляду передачі"
 
 msgid "EventViewEPG Actions"
-msgstr ""
+msgstr "Дії ЕПГ при перегляді передач"
 
 msgid "Eventname only"
 msgstr "Тільки назва передачі"
@@ -8243,13 +8243,13 @@ msgid "Favourites"
 msgstr "Фаворити"
 
 msgid "Feed disabled!"
-msgstr ""
+msgstr "Фід неактивний!"
 
 msgid "Feed stable."
-msgstr ""
+msgstr "Фід стабільний."
 
 msgid "Feed unstable!"
-msgstr ""
+msgstr "Фід нестабільний!"
 
 msgid "Feeds status:   Stable"
 msgstr "Статус фіду:   Стабільний"
@@ -8400,7 +8400,7 @@ msgid "Find out more at %s"
 msgstr "Дізнайтеся більше на %s"
 
 msgid "Find similar events in the EPG"
-msgstr ""
+msgstr "Знайти схожі передачі в ЕПГ"
 
 msgid "Fine movement"
 msgstr "Точне переміщення"
@@ -9313,7 +9313,7 @@ msgid "How many minutes do you want to record?"
 msgstr "Скільки хвилин ви хочете записати?"
 
 msgid "Http(s) stream start delay"
-msgstr ""
+msgstr "Затримка початку Http потоку"
 
 msgid "Hue"
 msgstr "Відтінок"
@@ -10279,13 +10279,13 @@ msgid "Jump to next marked position"
 msgstr "Перейти до наступної мітки"
 
 msgid "Jump to next page or all up (setup in menu)"
-msgstr ""
+msgstr "Перейти до наступної сторінки, або прейти вгору (налаштування в меню)"
 
 msgid "Jump to previous marked position"
 msgstr "Перейти до попередньої мітки"
 
 msgid "Jump to previous page or all down (setup in menu)"
-msgstr ""
+msgstr "Перейти на попередню сторінку, або перейти вниз (налаштування в меню)"
 
 msgid "Jump to prime time"
 msgstr "Перейти до прайм-тайм"
@@ -10398,7 +10398,7 @@ msgid "Kneipensport"
 msgstr "Барні види спорту"
 
 msgid "Kodi"
-msgstr ""
+msgstr "Kodi"
 
 msgid "Kodi MediaCenter"
 msgstr "Kodi Медіа центр"
@@ -10407,7 +10407,7 @@ msgid "Kodi installed:"
 msgstr "Kodi встановлено в:"
 
 msgid "Kodi long"
-msgstr ""
+msgstr "Kodi довго"
 
 msgid "Kodi media player"
 msgstr "Медіа Програвач Kodi"
@@ -11598,7 +11598,7 @@ msgid "Movie"
 msgstr "Запис"
 
 msgid "Movie Event View Actions"
-msgstr ""
+msgstr "Дії при перегляді подій фільму"
 
 msgid "Movie List"
 msgstr "Список записів"
@@ -12629,7 +12629,7 @@ msgid "Open bouquetlist"
 msgstr "Відкрити фаворитний список"
 
 msgid "Open context menu"
-msgstr ""
+msgstr "Відкрити контекстне меню"
 
 msgid "Open favourites list"
 msgstr "Відкрити список фаворитів"
@@ -12665,7 +12665,7 @@ msgid "Open the movie list"
 msgstr "Відкрити список фільмів"
 
 msgid "Open the multi service EPG view"
-msgstr ""
+msgstr "Відкрити багатоканальний перегляд ЕПГ"
 
 msgid "Open the single service EPG view"
 msgstr ""
@@ -14392,7 +14392,7 @@ msgid "Record - same as record button"
 msgstr "Запис - так само, як кнопка запису"
 
 msgid "Record Actions"
-msgstr ""
+msgstr "Запис дій"
 
 msgid "Record next"
 msgstr "Записати наступне"
@@ -14666,7 +14666,7 @@ msgstr "Видалити поточну папку з закладок"
 msgid "Remove currently selected title"
 msgstr "Видалити вибрану назву"
 
-msgid "Remove finished."
+msgid "Remove Finished."
 msgstr "Видалення завершено."
 
 msgid "Remove hide VBI line for this service"
@@ -14790,7 +14790,7 @@ msgid "Reset"
 msgstr "Скидання"
 
 msgid "Reset HDMI-CEC settings to default"
-msgstr ""
+msgstr "Повернути початкові налаштування HDMI-CEC"
 
 msgid "Reset and renumerate title names"
 msgstr "Скинути і перенумерувати назви заголовків"
@@ -15258,7 +15258,7 @@ msgid "Save all changed settings and exit"
 msgstr "Зберегти усі змінені налаштування та вийти"
 
 msgid "Save all changed tags and exit"
-msgstr ""
+msgstr "Зберегти усі змінені теги та вийти"
 
 msgid "Save and record"
 msgstr "Зберегти і записати"
@@ -15864,7 +15864,7 @@ msgid "Select the character or action under the keyboard cursor"
 msgstr "Виберіть символ, або дію під курсором клавіатури"
 
 msgid "Select the current menu item"
-msgstr ""
+msgstr "Вибрати поточний пункт меню"
 
 msgid "Select the currently highlighted locale/language for the user interface"
 msgstr "Виберіть підсвічуваний регіон/мову для інтерфейсу користувача"
@@ -16367,7 +16367,7 @@ msgid "Set archive mode (644)"
 msgstr "Встановити атрибут архіву (644)"
 
 msgid "Set current CEC address as fixed address"
-msgstr ""
+msgstr "Встановити поточну адресу CEC, як фіксовану адресу"
 
 msgid "Set default"
 msgstr "Встановити за замовчуванням"
@@ -17248,10 +17248,10 @@ msgid "Show network mounts ..."
 msgstr "Показати мережеві підключення..."
 
 msgid "Show next event"
-msgstr ""
+msgstr "Показати наступну передачу"
 
 msgid "Show next page"
-msgstr ""
+msgstr "Показати наступну сторінку"
 
 msgid "Show next picture"
 msgstr "Показати наступне зображення"
@@ -17275,10 +17275,10 @@ msgid "Show preview of current mode (*)."
 msgstr "Показати попередній перегляд поточного режиму (*)."
 
 msgid "Show previous event"
-msgstr ""
+msgstr "Показати попередню передачу"
 
 msgid "Show previous page"
-msgstr ""
+msgstr "Показати попередню сторінку"
 
 msgid "Show previous picture"
 msgstr "Показати попереднє зображення"
@@ -17765,7 +17765,7 @@ msgid "Software Update"
 msgstr "Оновлення ПЗ"
 
 msgid "Software Update Actions"
-msgstr ""
+msgstr "Дії при обновленні ПЗ"
 
 msgid "Software management"
 msgstr "Управління ПЗ"
@@ -17803,6 +17803,10 @@ msgid ""
 "turn back on it may require a slower transmission interval or the repetition "
 "of wake-up commands.)"
 msgstr ""
+"Деякі телевізійні пристрої не можуть переключитися на правильний вхід, якщо "
+"активний інший вхід HDMI. Цей параметр переводить телевізор у режим "
+"очікування перед перемиканням. (Якщо телевізор не вмикається, може "
+"знадобитися більший інтервал передачі, або повторення команд пробудження.)"
 
 msgid "Some plugins are not available:\n"
 msgstr "Деякі додатки не доступні:\n"
@@ -18099,7 +18103,7 @@ msgid "Status of the display in standby mode"
 msgstr "Стан дисплея в режимі очікування"
 
 msgid "Status unavailable!"
-msgstr ""
+msgstr "Статус недоступний!"
 
 msgid "Status:"
 msgstr "Статус:"
@@ -18565,7 +18569,7 @@ msgstr "TEXT"
 #. TRANSLATORS: Add here whatever should be shown in the "translator" about screen, up to 6 lines (use \n for newline)
 msgid "TRANSLATOR_INFO"
 msgstr ""
-"Переклад:  kvinto - 17.09.2021\n"
+"Переклад:  kvinto - 18.01.2022\n"
 "Сторінка:    https://gisclub.tv\n"
 "                  kvinto@rambler.ru"
 
@@ -18597,7 +18601,7 @@ msgid "Table of content for collection"
 msgstr "Таблиця вмісту колекції"
 
 msgid "Tag Editor"
-msgstr ""
+msgstr "Редактор Тегів"
 
 msgid "Tag Editor Actions"
 msgstr ""
@@ -23931,7 +23935,7 @@ msgid "pre-school children's program"
 msgstr "дитяча програма дошкільного віку"
 
 msgid "Press the menu button to set a general AC3/Dolby offset."
-msgstr "натисніть кнопку меню, щоб встановити загальний зсув AC3/Dolby"
+msgstr "Натисніть кнопку меню, щоб встановити загальний зсув AC3/Dolby."
 
 msgid "previous channel page"
 msgstr "попередня сторінка каналів"
@@ -24120,7 +24124,7 @@ msgid "select CAId's"
 msgstr "вибрати CAId'и"
 
 msgid "Select channels to add an offset to the volume."
-msgstr "виберіть канали, для яких можна додати зміщення звуку"
+msgstr "Виберіть канали, для яких можна додати зміщення звуку."
 
 msgid "select menu entry"
 msgstr "виберіть пункт меню"
@@ -24366,7 +24370,8 @@ msgstr "цей фаворит захищений батьківським кон
 msgid ""
 "This offset will only be used if the channel has not its own volume offset."
 msgstr ""
-"цей зсув буде використовуватися, якщо канал не має свого власного зсуву звуку"
+"Цей зсув буде використовуватися, якщо канал не має свого власного зсуву "
+"звуку."
 
 msgid "this recording"
 msgstr "цей запис"

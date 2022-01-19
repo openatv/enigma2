@@ -2142,7 +2142,7 @@ class PacketManager(Screen, NumericalTextInput):
 			self.session.openWithCallback(self.runRemoveFinished, Opkg, cmdList=self.cmdList)
 
 	def runRemoveFinished(self):
-		self.session.openWithCallback(self.RemoveReboot, MessageBox, _("Remove finished.") + " " + _("Do you want to reboot your receiver?"), MessageBox.TYPE_YESNO)
+		self.session.openWithCallback(self.RemoveReboot, MessageBox, _("Remove Finished.") + " " + _("Do you want to reboot your receiver?"), MessageBox.TYPE_YESNO)
 
 	def RemoveReboot(self, result):
 		if result is None:
