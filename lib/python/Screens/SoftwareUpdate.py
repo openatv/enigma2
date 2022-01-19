@@ -420,10 +420,10 @@ class RunSoftwareUpdate(Screen, HelpableScreen):
 			"top": (self.top, _("Move to first line / screen")),
 			"pageUp": (self.pageUp, _("Move up a page / screen")),
 			"up": (self.pageUp, _("Move up a page / screen")),
-			# "first": (self.top, _("Move to first line")),
+			# "first": (self.top, _("Move to first line / screen")),
 			"left": (self.pageUp, _("Move up a page / screen")),
 			"right": (self.pageDown, _("Move down a page / screen")),
-			# "last": (self.bottom, _("Move to last line")),
+			# "last": (self.bottom, _("Move to last line / screen")),
 			"down": (self.pageDown, _("Move down a page / screen")),
 			"pageDown": (self.pageDown, _("Move down a page / screen")),
 			"bottom": (self.bottom, _("Move to last line / screen"))

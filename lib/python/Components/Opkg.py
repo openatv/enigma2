@@ -108,6 +108,12 @@ class OpkgComponent:
 	CMD_UPGRADE = 4
 	CMD_UPGRADE_LIST = 5
 	CMD_LIST_INSTALLED = 6
+	# NOTE: The following commands are internal use only and should NOT be used by external modules!
+	CMD_CLEAN = 100
+	CMD_CLEAN_UPDATE = 101
+	CMD_SET_FLAG = 102
+	CMD_UPGRADE_EXCLUDE = 103
+	CMD_RESET_FLAG = 104
 
 	EVENT_INSTALL = 0
 	EVENT_DOWNLOAD = 1
@@ -124,59 +130,88 @@ class OpkgComponent:
 	EVENT_MODIFIED = 12
 
 	def __init__(self, opkg="/usr/bin/opkg"):
+		if not hasattr(config.plugins, "softwaremanager"):
+			config.plugins.softwaremanager = ConfigSubsection()
+		if not hasattr(config.plugins.softwaremanager, "overwriteSettingsFiles"):
+			config.plugins.softwaremanager.overwriteSettingsFiles = ConfigYesNo(default=False)
+			config.plugins.softwaremanager.overwriteDriversFiles = ConfigYesNo(default=True)
+			config.plugins.softwaremanager.overwriteEmusFiles = ConfigYesNo(default=True)
+			config.plugins.softwaremanager.overwritePiconsFiles = ConfigYesNo(default=True)
+			config.plugins.softwaremanager.overwriteBootlogoFiles = ConfigYesNo(default=True)
+			config.plugins.softwaremanager.overwriteSpinnerFiles = ConfigYesNo(default=True)
 		self.opkg = opkg
 		self.cmd = eConsoleAppContainer()
 		self.callbackList = []
 		self.fetchedList = []
 		self.excludeList = []
 		self.currentCommand = None
+		self.nextCommand = None
 
 	def startCmd(self, cmd, args=None):
-		self.currentCommand = cmd
-		if cmd == self.CMD_UPDATE:
-			if config.misc.opkgcleanmode.value:
-				self.runCmdEx(["clean"])
-			self.runCmdEx(["update"])
-		elif cmd == self.CMD_UPGRADE:
-			if self.excludeList:
-				self.runCmdEx(["flag", "hold"] + self.excludeList)
-			command = ["upgrade"]
-			if args["testMode"]:
-				command.insert(0, "--noaction")
-			self.runCmdEx(command)
-		elif cmd == self.CMD_LIST:
-			self.fetchedList = []
-			self.excludeList = []
-			self.runCmdEx(["list"])
-		elif cmd == self.CMD_INSTALL:
-			self.runCmd(["--force-overwrite", "install"] + args["package"].split())
-		elif cmd == self.CMD_REMOVE:
-			self.runCmd(["remove"] + args["package"].split())
-		elif cmd == self.CMD_UPGRADE_LIST:
-			self.fetchedList = []
-			self.excludeList = []
-			self.runCmdEx(["list-upgradable"])
-		elif cmd == self.CMD_LIST_INSTALLED:
-			self.fetchedList = []
-			self.excludeList = []
-			self.runCmdEx(["list-installed"])
-
-	def runCmdEx(self, args):
 		extra = []
 		for destination in opkgDestinations:
 			extra.append("--add-dest")
 			extra.append("%s:%s" % (destination, destination))
-		self.runCmd(extra + args)
-
-	def runCmd(self, args):
-		print("[Opkg] Executing '%s' with '%s'." % (self.opkg, " ".join(args)))
+		if cmd == self.CMD_UPDATE and config.misc.opkgcleanmode.value:
+			cmd = self.CMD_CLEAN
+		elif cmd == self.CMD_UPGRADE and self.excludeList:
+			cmd = self.CMD_SET_FLAG
+		self.currentCommand = cmd
+		if cmd == self.CMD_CLEAN:
+			argv = ["clean"]
+			self.nextCommand = (self.CMD_CLEAN_UPDATE, args)
+		elif cmd in (self.CMD_UPDATE, self.CMD_CLEAN_UPDATE):
+			argv = extra + ["update"]
+		elif cmd == self.CMD_UPGRADE:
+			command = extra + ["upgrade"]
+			if args["testMode"]:
+				command.insert(0, "--noaction")
+			argv = command
+		elif cmd == self.CMD_SET_FLAG:
+			argv = ["flag", "hold"] + [x[0] for x in self.excludeList]
+			self.nextCommand = (self.CMD_UPGRADE_EXCLUDE, args)
+		elif cmd == self.CMD_UPGRADE_EXCLUDE:
+			command = extra + ["upgrade"]
+			if args["testMode"]:
+				command.insert(0, "--noaction")
+			argv = command
+			self.nextCommand = (self.CMD_RESET_FLAG, args)
+		elif cmd == self.CMD_RESET_FLAG:
+			packages = [x[0] for x in self.excludeList]
+			argv = ["flag", "ok"] + packages
+			deferred = []
+			for package in packages:
+				if package.startswith("busybox"):
+					deferred.append(package)
+			if deferred:
+				deferred = [self.opkg, "install", "--force-reinstall"] + deferred
+				fileWriteLine("/etc/enigma2/.busybox_update_required", " ".join(deferred), source=MODULE_NAME)
+		elif cmd == self.CMD_LIST:
+			self.fetchedList = []
+			self.excludeList = []
+			packages = args["package"].split() if args and "package" in args else []
+			argv = extra + ["list"] + packages
+		elif cmd == self.CMD_INSTALL:
+			argv = ["--force-overwrite", "install"] + args["package"].split()
+		elif cmd == self.CMD_REMOVE:
+			argv = ["remove"] + args["package"].split()
+		elif cmd == self.CMD_UPGRADE_LIST:
+			self.fetchedList = []
+			self.excludeList = []
+			argv = extra + ["list-upgradable"]
+		elif cmd == self.CMD_LIST_INSTALLED:
+			self.fetchedList = []
+			self.excludeList = []
+			packages = args["package"].split() if args and "package" in args else []
+			argv = extra + ["list-installed"] + packages
+		print("[Opkg] Executing '%s' with '%s'." % (self.opkg, " ".join(argv)))
 		self.cache = ""
 		self.cachePtr = -1
 		self.cmd.dataAvail.append(self.cmdData)
 		self.cmd.appClosed.append(self.cmdFinished)
 		# self.cmd.setBufferSize(50)
-		args.insert(0, self.opkg)
-		if self.cmd.execute(self.opkg, *args):
+		argv.insert(0, self.opkg)
+		if self.cmd.execute(self.opkg, *argv):
 			self.cmdFinished(-1)
 
 	def cmdData(self, data):
@@ -192,14 +227,17 @@ class OpkgComponent:
 
 	def parseLine(self, line):
 		# print("[Opkg] DEBUG: Line='%s'." % line)
-		# if self.currentCommand in (self.CMD_LIST, self.CMD_UPGRADE_LIST):
-		if self.currentCommand == self.CMD_UPGRADE_LIST:
-			data = line.split(" - ")
-			if self.checkExclusion(data):
-				return
+		if not line or line.startswith(" "):  # Skip empty or continuation lines.
+			return
+		if self.currentCommand in (self.CMD_LIST, self.CMD_LIST_INSTALLED, self.CMD_UPGRADE_LIST):
+			argv = line.split(" - ", 2)
+			argc = len(argv)
 			if not line.startswith("Not selecting "):
-				self.fetchedList.append(data)
-				self.callCallbacks(self.EVENT_LISTITEM, data)
+				if self.currentCommand == self.CMD_UPGRADE_LIST and self.isExcluded(argv[0]):
+					self.excludeList.append(argv)
+				else:
+					self.fetchedList.append(argv)
+					self.callCallbacks(self.EVENT_LISTITEM, argv)
 			return
 		try:
 			argv = line.split()
@@ -234,13 +272,36 @@ class OpkgComponent:
 		except IndexError as err:
 			print("[Opkg] Error: Failed to parse line '%s'!  (%s)" % (line, str(err)))
 
+	def isExcluded(self, item):
+		if item.find("busybox") > -1:
+			exclude = True
+		elif item.find("-settings-") > -1 and not config.plugins.softwaremanager.overwriteSettingsFiles.value:
+			exclude = True
+		elif item.find("kernel-module-") > -1 and not config.plugins.softwaremanager.overwriteDriversFiles.value:
+			exclude = True
+		elif item.find("-softcams-") > -1 and not config.plugins.softwaremanager.overwriteEmusFiles.value:
+			exclude = True
+		elif item.find("-picons-") > -1 and not config.plugins.softwaremanager.overwritePiconsFiles.value:
+			exclude = True
+		elif item.find("-bootlogo") > -1 and not config.plugins.softwaremanager.overwriteBootlogoFiles.value:
+			exclude = True
+		elif item.find("%s-spinner" % BoxInfo.getItem("distro")) > -1 and not config.plugins.softwaremanager.overwriteSpinnerFiles.value:
+			exclude = True
+		else:
+			exclude = False
+		return exclude
+
 	def cmdFinished(self, retVal):
 		self.cmd.dataAvail.remove(self.cmdData)
 		self.cmd.appClosed.remove(self.cmdFinished)
-		print("[Opkg] Opkg command '%s' output:\n%s" % (self.getCommandText(self.currentCommand), self.cache))
-		self.callCallbacks(self.EVENT_DONE if retVal == 0 else self.EVENT_ERROR)
-		if self.excludeList:
-			self.runCmdEx(["flag", "ok"] + self.excludeList)
+		if config.crash.debugOpkg.value:
+			print("[Opkg] Opkg command '%s' output:\n%s" % (self.getCommandText(self.currentCommand), self.cache))
+		if self.nextCommand:
+			cmd, args = self.nextCommand
+			self.nextCommand = None
+			self.startCmd(cmd, args)
+		else:
+			self.callCallbacks(self.EVENT_DONE if retVal == 0 else self.EVENT_ERROR)
 
 	def callCallbacks(self, event, parameter=None):
 		for callback in self.callbackList:
@@ -284,7 +345,12 @@ class OpkgComponent:
 			3: "Update",
 			4: "Upgrade",
 			5: "Upgrade List",
-			6: "List Installed"
+			6: "List Installed",
+			100: "Clean",
+			101: "Update",
+			102: "Set Flag",
+			103: "Upgrade",
+			104: "Reset Flag"
 		}.get(command, "None")
 
 	def getEventText(self, event):
@@ -303,32 +369,3 @@ class OpkgComponent:
 			11: "Error",
 			12: "Modified"
 		}.get(event, "None")
-
-	def checkExclusion(self, item):
-		if not hasattr(config.plugins, "softwaremanager"):
-			config.plugins.softwaremanager = ConfigSubsection()
-		if not hasattr(config.plugins.softwaremanager, "overwriteSettingsFiles"):
-			config.plugins.softwaremanager.overwriteSettingsFiles = ConfigYesNo(default=False)
-			config.plugins.softwaremanager.overwriteDriversFiles = ConfigYesNo(default=True)
-			config.plugins.softwaremanager.overwriteEmusFiles = ConfigYesNo(default=True)
-			config.plugins.softwaremanager.overwritePiconsFiles = ConfigYesNo(default=True)
-			config.plugins.softwaremanager.overwriteBootlogoFiles = ConfigYesNo(default=True)
-			config.plugins.softwaremanager.overwriteSpinnerFiles = ConfigYesNo(default=True)
-		if item[0].find("busybox") > -1:
-			self.excludeList.append(item)
-			fileWriteLine("/etc/enigma2/.busybox_update_required", "BusyBox needs to be updated!\n", source=MODULE_NAME)
-		elif item[0].find("-settings-") > -1 and not config.plugins.softwaremanager.overwriteSettingsFiles.value:
-			self.excludeList.append(item)
-		elif item[0].find("kernel-module-") > -1 and not config.plugins.softwaremanager.overwriteDriversFiles.value:
-			self.excludeList.append(item)
-		elif item[0].find("-softcams-") > -1 and not config.plugins.softwaremanager.overwriteEmusFiles.value:
-			self.excludeList.append(item)
-		elif item[0].find("-picons-") > -1 and not config.plugins.softwaremanager.overwritePiconsFiles.value:
-			self.excludeList.append(item)
-		elif item[0].find("-bootlogo") > -1 and not config.plugins.softwaremanager.overwriteBootlogoFiles.value:
-			self.excludeList.append(item)
-		elif item[0].find("%s-spinner" % BoxInfo.getItem("distro")) > -1 and not config.plugins.softwaremanager.overwriteSpinnerFiles.value:
-			self.excludeList.append(item)
-		else:
-			return False
-		return True
