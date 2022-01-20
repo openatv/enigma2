@@ -6,7 +6,7 @@ from enigma import eConsoleAppContainer, eDVBDB
 from Components.ActionMap import ActionMap, NumberActionMap
 from Components.config import config, ConfigSubsection, ConfigYesNo, ConfigText
 from Components.Harddisk import harddiskmanager
-from Components.Opkg import opkgAddDestination, opkgExtraDestinations
+from Components.Opkg import opkgAddDestination, opkgExtraDestinations, opkgDestinations
 from Components.Label import Label
 from Components.Language import language
 from Components.PluginComponent import plugins
@@ -429,14 +429,9 @@ class PluginDownloadBrowser(Screen):
 			"ok": self.go,
 			"back": self.requestClose,
 		})
-		if os.path.isfile('/usr/bin/opkg'):
-			self.opkg = '/usr/bin/opkg'
-			self.opkg_install = self.opkg + ' install --force-overwrite'
-			self.opkg_remove = self.opkg + ' remove --autoremove --force-depends'
-		else:
-			self.opkg = 'ipkg'
-			self.opkg_install = 'ipkg install --force-overwrite -force-defaults'
-			self.opkg_remove = self.opkg + ' remove'
+		self.opkg = '/usr/bin/opkg'
+		self.opkg_install = self.opkg + ' install --force-overwrite'
+		self.opkg_remove = self.opkg + ' remove --autoremove --force-depends'
 
 	def createSummary(self):
 		return PluginBrowserSummary
@@ -618,11 +613,19 @@ class PluginDownloadBrowser(Screen):
 		elif self.type == self.REMOVE:
 			self.setTitle(_("Remove plugins"))
 
+	def startOpkg(self, command):
+		extra = []
+		for destination in opkgDestinations:
+			extra.append("--add-dest")
+			extra.append("%s:%s" % (destination, destination))
+		argv = extra + [command]
+		self.container.execute(self.opkg, *argv)
+
 	def startOpkgListInstalled(self, pkgname=PLUGIN_PREFIX + '*'):
-		self.container.execute(self.opkg + opkgExtraDestinations() + " list_installed")
+		self.startOpkg("list-installed")
 
 	def startOpkgListAvailable(self):
-		self.container.execute(self.opkg + opkgExtraDestinations() + " list")
+		self.startOpkg("list")
 
 	def startRun(self):
 		listsize = self["list"].instance.size()
@@ -631,7 +634,7 @@ class PluginDownloadBrowser(Screen):
 		self.listHeight = listsize.height()
 		if self.type == self.DOWNLOAD:
 			self.type = self.UPDATE
-			self.container.execute(self.opkg + " update")
+			self.startOpkg("update")
 		elif self.type == self.REMOVE:
 			self.run = 1
 			self.startOpkgListInstalled()
