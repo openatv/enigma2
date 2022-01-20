@@ -4,7 +4,7 @@ from os import listdir, unlink
 from six import PY2
 from xml.etree.cElementTree import Element, ElementTree, fromstring
 
-from enigma import BT_ALPHABLEND, BT_ALPHATEST, BT_HALIGN_CENTER, BT_HALIGN_LEFT, BT_HALIGN_RIGHT, BT_KEEP_ASPECT_RATIO, BT_SCALE, BT_VALIGN_BOTTOM, BT_VALIGN_CENTER, BT_VALIGN_TOP, addFont, eLabel, ePixmap, ePoint, eRect, eSize, eWindow, eWindowStyleManager, eWindowStyleSkinned, getDesktop, gFont, getFontFaces, gMainDC, gRGB
+from enigma import BT_ALPHABLEND, BT_ALPHATEST, BT_HALIGN_CENTER, BT_HALIGN_LEFT, BT_HALIGN_RIGHT, BT_KEEP_ASPECT_RATIO, BT_SCALE, BT_VALIGN_BOTTOM, BT_VALIGN_CENTER, BT_VALIGN_TOP, addFont, eLabel, ePixmap, ePoint, eRect, eSize, eWindow, eWindowStyleManager, eWindowStyleSkinned, getDesktop, gFont, getFontFaces, gMainDC, gRGB, setListBoxScrollbarStyle
 
 from Components.config import ConfigSubsection, ConfigText, config
 from Components.RcModel import rc_model
@@ -70,7 +70,7 @@ runCallbacks = False
 # with a higher priority.
 #
 # GUI skins are saved in the settings file as the path relative to
-# SCOPE_GUISKIN.  The full path is NOT saved.  E.g. "MySkin/skin.xml"
+# SCOPE_SKINS.  The full path is NOT saved.  E.g. "MySkin/skin.xml"
 #
 # Display skins are saved in the settings file as the path relative to
 # SCOPE_LCDSKIN.  The full path is NOT saved.
@@ -259,6 +259,10 @@ def getParentSize(object, desktop):
 		elif desktop:
 			return desktop.size()  # Widget has no parent, use desktop size instead for relative coordinates.
 	return eSize()
+
+
+def parseBoolean(attribute, value):
+	return value.lower() in ("1", attribute, "enabled", "on", "true", "yes")
 
 
 def parseColor(value):
@@ -609,8 +613,7 @@ class AttributeParser:
 		raise AttribDeprecatedError("divideChar")
 
 	def enableWrapAround(self, value):
-		value = value.lower() in ("1", "enabled", "enablewraparound", "on", "true", "yes")
-		self.guiObject.setWrapAround(value)
+		self.guiObject.setWrapAround(parseBoolean("enablewraparound", value))
 
 	def excludes(self, value):
 		pass
@@ -662,7 +665,7 @@ class AttributeParser:
 		except KeyError:
 			raise AttribValueError("'left', 'center'/'centre', 'right' or 'block'")
 
-	def includes(self, value):
+	def includes(self, value):  # Same as conditional.  Created to partner new "excludes" attribute.
 		pass
 
 	def itemHeight(self, value):
@@ -673,8 +676,7 @@ class AttributeParser:
 		self.horizontalAlignment(value)
 
 	def noWrap(self, value):
-		value = 1 if value.lower() in ("1", "enabled", "nowrap", "on", "true", "yes") else 0
-		self.guiObject.setNoWrap(value)
+		self.guiObject.setNoWrap(1 if parseBoolean("nowrap", value) else 0)
 
 	def objectTypes(self, value):
 		pass
@@ -692,12 +694,12 @@ class AttributeParser:
 		except KeyError:
 			raise AttribValueError("'orVertical', 'orTopToBottom', 'orBottomToTop', 'orHorizontal', 'orLeftToRight' or 'orRightToLeft'")
 
-	def overScan(self, value):
-		self.guiObject.setOverscan(value)
-
 	def OverScan(self, value):  # This legacy definition uses an inconsistent name, use 'overScan' instead!
 		self.overScan(value)
 		raise AttribDeprecatedError("overScan")
+
+	def overScan(self, value):
+		self.guiObject.setOverscan(value)
 
 	def pixmap(self, value):
 		self.guiObject.setPixmap(loadPixmap(value, self.desktop))
@@ -719,8 +721,7 @@ class AttributeParser:
 		self.horizontalAlignment(value)
 
 	def scale(self, value):
-		value = 1 if value.lower() in ("1", "enabled", "on", "scale", "true", "yes") else 0
-		self.guiObject.setScale(value)
+		self.guiObject.setScale(1 if parseBoolean("scale", value) else 0)
 
 	def scaleFlags(self, value):
 		base = BT_SCALE | BT_KEEP_ASPECT_RATIO
@@ -832,8 +833,7 @@ class AttributeParser:
 		self.guiObject.setPointer(1, ptr, pos)
 
 	def selection(self, value):
-		value = 1 if value.lower() in ("1", "enabled", "on", "selection", "true", "yes") else 0
-		self.guiObject.setSelectionEnable(value)
+		self.guiObject.setSelectionEnable(1 if parseBoolean("selection", value) else 0)
 
 	def selectionDisabled(self, value):  # This legacy definition is a redundant option and is uncharacteristic, use 'selection="0"' etc instead!
 		self.guiObject.setSelectionEnable(0)
@@ -872,8 +872,7 @@ class AttributeParser:
 		self.guiObject.setTitle(_(value))
 
 	def transparent(self, value):
-		value = 1 if value.lower() in ("1", "enabled", "on", "transparent", "true", "yes") else 0
-		self.guiObject.setTransparent(value)
+		self.guiObject.setTransparent(1 if parseBoolean("transparent", value) else 0)
 
 	def valign(self, value):  # This legacy definition uses an inconsistent name, use 'verticalAlignment' instead!
 		self.verticalAlignment(value)
@@ -1006,7 +1005,7 @@ def loadSingleSkinData(desktop, screenID, domSkin, pathSkin, scope=SCOPE_GUISKIN
 				setups[key] = image
 				# print("[Skin] DEBUG: Setup key='%s', image='%s'." % (key, image))
 			else:
-				raise SkinError("Tag setup needs key and image, got key='%s' and image='%s'" % (key, image))
+				raise SkinError("Tag 'setup' needs key and image, got key='%s' and image='%s'" % (key, image))
 	for tag in domSkin.findall("constant-widgets"):
 		for constant_widget in tag.findall("constant-widget"):
 			name = constant_widget.attrib.get("name")
@@ -1073,6 +1072,10 @@ def loadSingleSkinData(desktop, screenID, domSkin, pathSkin, scope=SCOPE_GUISKIN
 			except Exception:
 				raise SkinError("Unknown color type '%s'" % colorType)
 			# print("[Skin] DEBUG: WindowStyle color type, color -" % (colorType, str(color)))
+		for scrollbar in tag.findall("scrollbar"):
+			offset = int(scrollbar.attrib.get("scrollbarOffset", 5))
+			width = int(scrollbar.attrib.get("scrollbarWidth", 20))
+			setListBoxScrollbarStyle(width, offset)
 		x = eWindowStyleManager.getInstance()
 		x.setStyle(scrnID, style)
 	for tag in domSkin.findall("margin"):
