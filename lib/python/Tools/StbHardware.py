@@ -9,6 +9,48 @@ MODULE_NAME = __name__.split(".")[-1]
 wasTimerWakeup = None
 
 
+def getBoxProcType():
+	return fileReadLine("/proc/stb/info/type", "unknown", source=MODULE_NAME).strip().lower()
+
+
+def getBoxProc():
+	if isfile("/proc/stb/info/hwmodel"):
+		procmodel = fileReadLine("/proc/stb/info/hwmodel", "unknown", source=MODULE_NAME)
+	elif isfile("/proc/stb/info/azmodel"):
+		procmodel = fileReadLine("/proc/stb/info/model", "unknown", source=MODULE_NAME)
+	elif isfile("/proc/stb/info/gbmodel"):
+		procmodel = fileReadLine("/proc/stb/info/gbmodel", "unknown", source=MODULE_NAME)
+	elif isfile("/proc/stb/info/vumodel") and not isfile("/proc/stb/info/boxtype"):
+		procmodel = fileReadLine("/proc/stb/info/vumodel", "unknown", source=MODULE_NAME)
+	elif isfile("/proc/stb/info/boxtype") and not isfile("/proc/stb/info/vumodel"):
+		procmodel = fileReadLine("/proc/stb/info/boxtype", "unknown", source=MODULE_NAME)
+	elif isfile("/proc/boxtype"):
+		procmodel = fileReadLine("/proc/boxtype", "unknown", source=MODULE_NAME)
+	elif isfile("/proc/device-tree/model"):
+		procmodel = fileReadLine("/proc/device-tree/model", "unknown", source=MODULE_NAME).strip()[0:12]
+	elif isfile("/sys/firmware/devicetree/base/model"):
+		procmodel = fileReadLine("/sys/firmware/devicetree/base/model", "unknown", source=MODULE_NAME)
+	else:
+		procmodel = fileReadLine("/proc/stb/info/model", "unknown", source=MODULE_NAME)
+	return procmodel.strip().lower()
+
+
+def getHWSerial():
+	if isfile("/proc/stb/info/sn"):
+		hwserial = fileReadLine("/proc/stb/info/sn", "unknown", source=MODULE_NAME)
+	elif isfile("/proc/stb/info/serial"):
+		hwserial = fileReadLine("/proc/stb/info/serial", "unknown", source=MODULE_NAME)
+	elif isfile("/proc/stb/info/serial_number"):
+		hwserial = fileReadLine("/proc/stb/info/serial_number", "unknown", source=MODULE_NAME)
+	else:
+		hwserial = fileReadLine("/sys/class/dmi/id/product_serial", "unknown", source=MODULE_NAME)
+	return hwserial.strip()
+
+
+def getBoxRCType():
+	return fileReadLine("/proc/stb/ir/rc/type", "unknown", source=MODULE_NAME).strip()
+
+
 def getFPVersion():
 	version = None
 	try:
