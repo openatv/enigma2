@@ -5,7 +5,7 @@ from boxbranding import getBoxType, getBrandOEM, getMachineBrand
 from time import localtime, mktime
 from datetime import datetime
 import xml.etree.cElementTree
-from os import path
+from os import path, access, F_OK
 import six
 
 from enigma import eDVBSatelliteEquipmentControl as secClass, \
@@ -804,18 +804,17 @@ class NIM(object):
 
 	slot_input_name = property(getSlotInputName)
 
-	def getSlotName(self):
+	def getSlotName(self, slot=None):
 		# get a friendly description for a slot name.
 		# we name them "Tuner A/B/C/...", because that's what's usually written on the back
 		# of the device.
 		# for DM7080HD "Tuner A1/A2/B/C/..."
-		descr = _("Tuner ")
-		return descr + self.getSlotInputName()
+		return "%s%s" % (_("Tuner "), self.getSlotID(slot) if slot else self.getSlotInputName())
 
 	slot_name = property(getSlotName)
 
-	def getSlotID(self):
-		return chr(ord('A') + self.slot)
+	def getSlotID(self, slot=None):
+		return chr(ord("A") + (slot if slot is not None else self.slot))
 
 	def getI2C(self):
 		return self.i2c
@@ -860,7 +859,7 @@ class NIM(object):
 		return multistream
 
 	def isFBCTuner(self):
-		return (self.frontend_id is not None) and os.access("/proc/stb/frontend/%d/fbc_id" % self.frontend_id, os.F_OK)
+		return (self.frontend_id is not None) and access("/proc/stb/frontend/%d/fbc_id" % self.frontend_id, F_OK)
 
 	def isFBCRoot(self):
 		return self.isFBCTuner() and (self.slot % 8 < (self.getType() == "DVB-C" and 1 or 2))
@@ -898,6 +897,9 @@ class NIM(object):
 
 	friendly_type = property(getFriendlyType)
 
+	def getFullDescription(self):
+		return self.empty and _("(empty)") or "%s (%s)" % (self.description, self.isSupported() and self.friendly_type or _("not supported"))
+
 	def getFriendlyFullDescription(self):
 		nim_text = self.slot_name + ": "
 
@@ -912,7 +914,17 @@ class NIM(object):
 				nim_text += self.description + " (" + self.friendly_type + ")"
 		return nim_text
 
+	def getFriendlyFullDescriptionCompressed(self):
+		if self.isFBCTuner():
+			return "%s-%s: %s" % (self.getSlotName(), self.getSlotID(self.slot + 7), self.getFullDescription())
+		# Compress by combining dual tuners by checking if the next tuner has a rf switch.
+		elif self.frontend_id is not None and self.number_of_slots > self.frontend_id + 1 and access("/proc/stb/frontend/%d/rf_switch" % (self.frontend_id + 1), F_OK):
+			return "%s-%s: %s" % (self.slot_name, self.getSlotID(self.slot + 1), self.getFullDescription())
+		return self.getFriendlyFullDescription()
+
+
 	friendly_full_description = property(getFriendlyFullDescription)
+	friendly_full_description_compressed = property(getFriendlyFullDescriptionCompressed)
 	config_mode_dvbs = property(lambda self: config.Nims[self.slot].dvbs.configMode.value)
 	config_mode_dvbt = property(lambda self: config.Nims[self.slot].dvbt.configMode.value)
 	config_mode_dvbc = property(lambda self: config.Nims[self.slot].dvbc.configMode.value)
@@ -1373,6 +1385,9 @@ class NimManager:
 		for slot in self.nim_slots:
 			result.append(slot.friendly_full_description)
 		return result
+
+	def nimListCompressed(self):
+		return [slot.friendly_full_description_compressed for slot in self.nim_slots if not (slot.isNotFirstFBCTuner() or slot.internally_connectable is not None)]
 
 	def getSlotCount(self):
 		return len(self.nim_slots)
