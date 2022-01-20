@@ -135,7 +135,7 @@ class SoftwareUpdate(Screen, HelpableScreen, ProtectedScreen):
 			"cancel": (self.keyCancel, cancelMsg),
 			"red": (self.keyCancel, cancelMsg),
 			"top": (self.top, _("Move to first line / screen")),
-			"pageUp": (self.pageUp, _("Move up a page /screen")),
+			"pageUp": (self.pageUp, _("Move up a page / screen")),
 			"up": (self.up, _("Move up a line")),
 			# "first": (self.top, _("Move to first line / screen")),
 			"left": (self.pageUp, _("Move up a page / screen")),
