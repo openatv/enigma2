@@ -619,6 +619,7 @@ class PluginDownloadBrowser(Screen):
 			extra.append("--add-dest")
 			extra.append("%s:%s" % (destination, destination))
 		argv = extra + [command]
+		argv.insert(0, self.opkg)
 		self.container.execute(self.opkg, *argv)
 
 	def startOpkgListInstalled(self, pkgname=PLUGIN_PREFIX + '*'):
