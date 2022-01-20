@@ -269,7 +269,7 @@ class ImageBackup(Screen):
 					ff.close()
 					cmd1 = "%s -r %s -o %s/root.ubi %s" % (self.MKFS_UBI, self.backuproot, self.WORKDIR, self.MKUBIFS_ARGS)
 					cmd2 = "%s -o %s/root.ubifs %s %s/ubinize.cfg" % (self.UBINIZE, self.WORKDIR, self.UBINIZE_ARGS, self.WORKDIR)
-					cmd3 = "mv %s/root.ubifs %s/root.%s" % (self.WORKDIR, self.WORKDIR, self.ROOTFSTYPE)
+					cmd3 = None
 				else:
 					if self.RECOVERY:
 						cmd1 = None
@@ -353,7 +353,7 @@ class ImageBackup(Screen):
 					cmdlist.append("umount %s/userdata" % (self.WORKDIR))
 
 				cmdlist.append('echo "' + _("Create:") + " kerneldump" + '"')
-				if SystemInfo["canMultiBoot"] or self.MTDKERNEL.startswith('mmcblk0'):
+				if SystemInfo["canMultiBoot"] or self.MTDKERNEL.startswith('mmcblk0') or self.MACHINEBUILD in ("h8", "hzero"):
 					cmdlist.append("dd if=/dev/%s of=%s/%s" % (self.MTDKERNEL, self.WORKDIR, self.KERNELBIN))
 				else:
 					cmdlist.append("nanddump -a -f %s/vmlinux.gz /dev/%s" % (self.WORKDIR, self.MTDKERNEL))
@@ -501,8 +501,8 @@ class ImageBackup(Screen):
 				if self.ROOTFSBIN == "rootfs.tar.bz2":
 					os.system('mv %s/rootfs.tar.bz2 %s/rootfs.tar.bz2' % (self.WORKDIR, self.MAINDEST))
 				else:
-					os.system('mv %s/root.%s %s/%s' % (self.WORKDIR, self.ROOTFSTYPE, self.MAINDEST, self.ROOTFSBIN))
-				if SystemInfo["canMultiBoot"] or self.MTDKERNEL.startswith('mmcblk0'):
+					os.system('mv %s/root.ubifs %s/%s' % (self.WORKDIR, self.MAINDEST, self.ROOTFSBIN))
+				if SystemInfo["canMultiBoot"] or self.MTDKERNEL.startswith('mmcblk0') or self.MACHINEBUILD in ("h8", "hzero"):
 					os.system('mv %s/%s %s/%s' % (self.WORKDIR, self.KERNELBIN, self.MAINDEST, self.KERNELBIN))
 				else:
 					os.system('mv %s/vmlinux.gz %s/%s' % (self.WORKDIR, self.MAINDEST, self.KERNELBIN))
