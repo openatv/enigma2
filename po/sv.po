@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-01-02 10:50+0000\n"
+"POT-Creation-Date: 2022-01-19 18:56+0000\n"
 "PO-Revision-Date: 2021-08-15 18:50+0000\n"
 "Last-Translator: openATV <openatv@gmail.com>\n"
 "Language-Team: Swedish <https://hosted.weblate.org/projects/openatv/"
@@ -1156,6 +1156,12 @@ msgstr[0] ""
 msgstr[1] ""
 
 #, python-format
+msgid "%d feed catalog package was updated."
+msgid_plural "%d feed catalog packages were updated."
+msgstr[0] ""
+msgstr[1] ""
+
+#, python-format
 msgid "%d hour"
 msgid_plural "%d hours"
 msgstr[0] "%d timme"
@@ -1182,6 +1188,54 @@ msgstr "%d minuter"
 #, fuzzy, python-format
 msgid "%d ms"
 msgstr "%d min"
+
+#, python-format
+msgid "%d package upgraded."
+msgid_plural "%d packages upgraded."
+msgstr[0] ""
+msgstr[1] ""
+
+#, python-format
+msgid "%d package was configured."
+msgid_plural "%d packages were configured."
+msgstr[0] ""
+msgstr[1] ""
+
+#, python-format
+msgid "%d package was deselected."
+msgid_plural "%d packages were deselected."
+msgstr[0] ""
+msgstr[1] ""
+
+#, python-format
+msgid "%d package was downloaded."
+msgid_plural "%d packages were downloaded."
+msgstr[0] ""
+msgstr[1] ""
+
+#, python-format
+msgid "%d package was identified for upgrade."
+msgid_plural "%d packages were identified for upgrade."
+msgstr[0] ""
+msgstr[1] ""
+
+#, python-format
+msgid "%d package was installed."
+msgid_plural "%d packages were installed."
+msgstr[0] ""
+msgstr[1] ""
+
+#, python-format
+msgid "%d package was removed."
+msgid_plural "%d packages were removed."
+msgstr[0] ""
+msgstr[1] ""
+
+#, python-format
+msgid "%d package was upgraded."
+msgid_plural "%d packages were upgraded."
+msgstr[0] ""
+msgstr[1] ""
 
 #, python-format
 msgid "%d pixel wide"
@@ -1418,12 +1472,6 @@ msgstr "Mottagare ej tillgänglig."
 #, python-format
 msgid "%s successfully extracted."
 msgstr ""
-
-#, python-format
-msgid "%s updated package available"
-msgid_plural "%s updated packages available"
-msgstr[0] "%s uppdatering tillgänglig."
-msgstr[1] "%s uppdateringar tillgängliga."
 
 #, python-format
 msgid "%s%d min"
@@ -2199,23 +2247,6 @@ msgstr ""
 "En uppdatering pågår i bakgrunden, vänta några minuter och försök igen."
 
 #, python-format
-msgid ""
-"A configuration file (%s) has been modified since it was installed.\n"
-"Do you want to keep your modifications?"
-msgstr ""
-"En konfigurationsfil (%s) har ändrats sedan installationen.\n"
-"Vill du behålla din ändring?"
-
-#
-#, python-format
-msgid ""
-"Configuration file '%s' has been modified since it was installed, would you "
-"like to keep the modified version?"
-msgstr ""
-"En konfigurationsfil (%s) har ändrats sedan installationen.\n"
-"Vill du behålla din version?"
-
-#, python-format
 msgid "A crashlog was %s created in '%s'"
 msgstr ""
 
@@ -2574,12 +2605,18 @@ msgstr "Lägg till"
 msgid "Add AutoTimer"
 msgstr "Lägg till AutoTimer"
 
+msgid "Add Current"
+msgstr ""
+
 msgid "Add New Quad Channel Entry"
 msgstr ""
 
 #, fuzzy
 msgid "Add Record Timer"
 msgstr "Lägg till en inspelningstimer."
+
+msgid "Add Service"
+msgstr ""
 
 msgid "Add Timer"
 msgstr "Lägg till Timer"
@@ -3224,10 +3261,6 @@ msgstr "Är du säker på att du vill spara EPG Cachen till:\n"
 msgid "Are you sure you want to send this log:\n"
 msgstr "Är du säker på att du vill skicka den här loggen:\n"
 
-#, python-format
-msgid "Are you sure you want to update your %s %s ?"
-msgstr "Är du säker på att du vill uppdatera din %s %s?"
-
 msgid "Argentina"
 msgstr ""
 
@@ -3693,9 +3726,6 @@ msgstr ""
 
 msgid "Backup Log"
 msgstr ""
-
-msgid "Backup Manager"
-msgstr "Backup Manager"
 
 msgid "Backup Mode"
 msgstr ""
@@ -4401,6 +4431,9 @@ msgstr ""
 msgid "Cancel"
 msgstr "Avbryt"
 
+msgid "Cancel / Close the software update screen"
+msgstr ""
+
 #
 #, fuzzy
 msgid "Cancel any changed settings and exit"
@@ -4447,9 +4480,6 @@ msgstr "Kanalval"
 #, fuzzy
 msgid "Cancel the image selection and exit all menus"
 msgstr "Kanalval"
-
-msgid "Cancel the software update"
-msgstr ""
 
 msgid "Cancel the update"
 msgstr ""
@@ -4540,6 +4570,9 @@ msgid "Chad"
 msgstr ""
 
 msgid "Chamorro"
+msgstr ""
+
+msgid "Change"
 msgstr ""
 
 msgid "Change Boxmode to control Hardware Chip Modes*"
@@ -4782,9 +4815,6 @@ msgstr "Kontrollerar loggar..."
 #
 msgid "Checking filesystem..."
 msgstr "Kontrollerar filsystem..."
-
-msgid "Checking for Updates..."
-msgstr "Söker efter Uppdateringar..."
 
 msgid "Checking the internet connection"
 msgstr "Kontrollerar Internetanslutningen"
@@ -5226,6 +5256,15 @@ msgstr "Konfigfil %s sparad"
 msgctxt "Abbreviation of 'Configurable'"
 msgid "Configurable"
 msgstr "Konfigurering"
+
+#
+#, python-format
+msgid ""
+"Configuration file '%s' has been modified since it was installed, would you "
+"like to keep the modified version?"
+msgstr ""
+"En konfigurationsfil (%s) har ändrats sedan installationen.\n"
+"Vill du behålla din version?"
 
 msgid "Configuration mode"
 msgstr "Konfigurationsläge"
@@ -5975,9 +6014,6 @@ msgstr "Kunde inte ansluta till %s %s .NFI image feed server:"
 msgid "Could not connect to server"
 msgstr "Kunde inte ansluta till %s %s .NFI image feed server:"
 
-msgid "Could not find installed channel list."
-msgstr "Det gick inte att hitta den installerade kanallistan."
-
 msgid ""
 "Could not find suitable media - Please remove some downloaded images or "
 "insert a media (e.g. USB stick) with sufficient free space and try again!"
@@ -6157,6 +6193,9 @@ msgstr "Nuvarande transponder"
 #
 msgid "Current value: "
 msgstr "Nuvarande värde : "
+
+msgid "Current version unknown"
+msgstr ""
 
 #
 msgid "Current version:"
@@ -6883,6 +6922,13 @@ msgstr "Beskrivning"
 msgid "Deselect"
 msgstr "Avmarkera"
 
+#, python-format
+msgid ""
+"Deselected packages usually occur because those packaged are incompatible "
+"with existing packages.  While this is mostly harmless it is possible that "
+"your %s %s may experience issues."
+msgstr ""
+
 msgid "Details for plugin: "
 msgstr "Detaljer för plugin : "
 
@@ -7348,10 +7394,6 @@ msgid "Do you want to purge all locales/languages except %s?"
 msgstr ""
 
 #, python-format
-msgid "Do you want to reboot your %s %s"
-msgstr "Vill du starta om din %s %s?"
-
-#, python-format
 msgid "Do you want to reboot your %s %s?"
 msgstr ""
 
@@ -7379,11 +7421,6 @@ msgid ""
 msgstr ""
 "Vill du skicka alla valda filer:\n"
 "(välj 'Nej' för att endast skicka den senast valda filen.)"
-
-#
-#, python-format
-msgid "Do you want to update your %s %s ?"
-msgstr "Vill du uppdatera din  %s %s?"
 
 msgid "Do you want to update your box?"
 msgstr ""
@@ -8019,6 +8056,9 @@ msgstr ""
 msgid "Enable this option to add keyboard keymap data to the debug log file."
 msgstr ""
 
+msgid "Enable this option to add opkg output data to the debug log file."
+msgstr ""
+
 msgid "Enable this option to add remote control data to the debug log file."
 msgstr ""
 
@@ -8277,9 +8317,6 @@ msgid ""
 "Error creating directory %s:\n"
 "%s"
 msgstr "Skapande av katalogen %s misslyckades."
-
-msgid "Error downloading change log."
-msgstr "Fel vid nedladnning av ändringslogg."
 
 #, fuzzy, python-format
 msgid ""
@@ -8825,18 +8862,6 @@ msgid "Feed stable."
 msgstr ""
 
 msgid "Feed unstable!"
-msgstr ""
-
-msgid "Feeds status:   Stable"
-msgstr ""
-
-msgid "Feeds status:   Unstable"
-msgstr ""
-
-msgid "Feeds status:   Updating"
-msgstr ""
-
-msgid "Feeds status: Unexpected"
 msgstr ""
 
 msgid "Fetch EPG and update timers now"
@@ -10371,9 +10396,6 @@ msgstr "Flytta upp en sida"
 msgid "Image Information"
 msgstr "Image Information"
 
-msgid "Image Manager"
-msgstr "Image Hanterare"
-
 msgid "Image Version"
 msgstr ""
 
@@ -10477,6 +10499,9 @@ msgstr "Inkludera AIT i http strömning"
 #, fuzzy
 msgid "Include keyboard data"
 msgstr "Tangentbordskonfiguration"
+
+msgid "Include opkg output data"
+msgstr ""
 
 #, fuzzy
 msgid "Include remote control data"
@@ -10722,6 +10747,9 @@ msgstr "Installera picons på"
 
 msgid "Install plugins"
 msgstr "Installera plugins"
+
+msgid "Install/Remove plugin"
+msgstr ""
 
 #
 msgid "Installation finished."
@@ -12338,6 +12366,9 @@ msgstr "Flytta ner en sida"
 msgid "Move down a page"
 msgstr "Flytta ner en sida"
 
+msgid "Move down a page / screen"
+msgstr ""
+
 msgid "Move down a screen"
 msgstr ""
 
@@ -12449,6 +12480,9 @@ msgstr "Flytta upp en sida"
 
 msgid "Move up a page"
 msgstr "Flytta upp en sida"
+
+msgid "Move up a page / screen"
+msgstr ""
 
 msgid "Move up a screen"
 msgstr ""
@@ -13068,9 +13102,6 @@ msgstr "Kanal"
 msgid "No clients streaming"
 msgstr ""
 
-msgid "No connection"
-msgstr ""
-
 #
 msgid ""
 "No data on transponder!\n"
@@ -13230,8 +13261,11 @@ msgstr ""
 msgid "No update required!"
 msgstr ""
 
-msgid "No updates available. Please try again later."
-msgstr "Inga uppdateringar tillgängliga. Försök igen senare."
+msgid "No updates available."
+msgstr ""
+
+msgid "No updates were available.  Please try again later."
+msgstr ""
 
 msgid "No valid region details were found"
 msgstr ""
@@ -13527,6 +13561,9 @@ msgstr "OK, guida mig genom uppgraderingen"
 msgid "ONID"
 msgstr "ONID"
 
+msgid "OPKG clean mode"
+msgstr ""
+
 msgid "OSD"
 msgstr "OSD"
 
@@ -13627,9 +13664,6 @@ msgstr "En linje"
 
 msgid "Online software update"
 msgstr ""
-
-msgid "OnlineVersionCheck"
-msgstr "OnlineVersionCheck"
 
 #
 msgid "Only extensions."
@@ -13977,9 +14011,6 @@ msgstr "Söker efter uppdateringar"
 msgid "Packaged locales only"
 msgstr ""
 
-msgid "Packages"
-msgstr "Paket"
-
 msgid "Packages and associated locales"
 msgstr ""
 
@@ -14167,24 +14198,11 @@ msgstr "Förloppsindikator vänster"
 msgid "Percentage/Progress bar right"
 msgstr "Förloppsindikator höger"
 
-msgid "Perform a full image backup"
-msgstr "Gör en full Image backup"
-
 msgid "Perform a image backup before updating."
 msgstr ""
 
 msgid "Perform a setting backup before updating."
 msgstr ""
-
-msgid "Perform a settings backup,"
-msgstr "Utför en backup av inställningar"
-
-msgid ""
-"Perform a settings backup, making a backup before updating is strongly "
-"advised."
-msgstr ""
-"Utför en backup av inställningar, det rekommenderas starkt att göra en "
-"backup innan uppdatering."
 
 msgid "Perform an on-line flash instead"
 msgstr ""
@@ -15053,6 +15071,9 @@ msgstr "Tryck OK för aktivera valt utseende.('skin')"
 msgid "Press OK to activate the settings."
 msgstr "Tryck OK för aktivera inställningarna."
 
+msgid "Press OK to continue."
+msgstr ""
+
 #
 msgid "Press OK to edit the settings."
 msgstr "Tryck OK för att ändra inställningar."
@@ -15116,6 +15137,9 @@ msgstr ""
 
 #, python-format
 msgid "Press OK to use this locale.  [%s]"
+msgstr ""
+
+msgid "Press the menu button to set a general AC3/Dolby offset."
 msgstr ""
 
 msgid ""
@@ -15316,6 +15340,9 @@ msgstr "Skydda pluginhanterare"
 #
 msgid "Protect services"
 msgstr "Skydda kanaler"
+
+msgid "Protect software update screen"
+msgstr ""
 
 msgid "Protect standby menu"
 msgstr "Skydda vilolägesmeny"
@@ -15804,6 +15831,9 @@ msgstr ""
 "Var vänlig vänta till din %s %s startar om\n"
 "Detta kan ta några minuter"
 
+msgid "Refresh"
+msgstr ""
+
 msgid "Refresh every (in hours)"
 msgstr "Uppdatera varje (i timmar)"
 
@@ -15822,6 +15852,9 @@ msgstr "Val av uppdateringsfrekvens."
 #, fuzzy
 msgid "Refresh screen"
 msgstr "Uppdateringsfrekvens"
+
+msgid "Refresh the update-able package list"
+msgstr ""
 
 msgid "Regard deep standby as standby"
 msgstr "Stäng av anses vara samma som viloläge"
@@ -15923,6 +15956,13 @@ msgstr "Ta bort"
 msgid "Remove Confirmation"
 msgstr "Konfirmera Borttagning"
 
+msgid "Remove Failed !!"
+msgstr ""
+
+#
+msgid "Remove Finished."
+msgstr "Ta bort färdiga."
+
 msgid "Remove Plugins"
 msgstr ""
 
@@ -15965,10 +16005,6 @@ msgstr ""
 #
 msgid "Remove currently selected title"
 msgstr "Ta bort vald titel"
-
-#
-msgid "Remove Finished."
-msgstr "Ta bort färdiga."
 
 msgid "Remove hide VBI line for this service"
 msgstr ""
@@ -17113,6 +17149,9 @@ msgstr "Välj kanal att spela in från"
 #
 msgid "Select channel to record from"
 msgstr "Välj kanal att spela in från"
+
+msgid "Select channels to add an offset to the volume."
+msgstr ""
 
 msgid "Select copy destination for:"
 msgstr "Välj destination för kopia :"
@@ -18531,6 +18570,9 @@ msgstr "Visa detaljerad programinfo"
 msgid "Show detailed event info (setup in menu)"
 msgstr "Visa detaljerad programinfo "
 
+msgid "Show development packages in opkg"
+msgstr ""
+
 #
 #, fuzzy
 msgid "Show directories first"
@@ -19275,9 +19317,6 @@ msgstr ""
 msgid "Software Manager Setup"
 msgstr ""
 
-msgid "Software Panel"
-msgstr ""
-
 msgid "Software Update"
 msgstr "Mjukvaruuppdatering"
 
@@ -19295,9 +19334,10 @@ msgstr "Mjukvaruhanterare installation"
 msgid "Software restore"
 msgstr "Mjukvaruåterskapa"
 
-#
-msgid "Software update"
-msgstr "Uppdatering av mjukvara"
+msgid ""
+"Software update starting, please wait.\n"
+"\n"
+msgstr ""
 
 msgid "Softwaremanager information"
 msgstr "Information om mjukvaruhanterare"
@@ -19350,12 +19390,6 @@ msgstr "Tyvärr, feeds är nere för underhåll"
 
 msgid "Sorry feeds are down for maintenance, please try again later."
 msgstr "Tyvärr, feeds är nere för underåll, v.v. försök igen senare."
-
-#, fuzzy
-msgid ""
-"Sorry feeds are down for maintenance, please try again later. If this issue "
-"persists please check www.opena.tv"
-msgstr "Tyvärr, feeds är nere för underhåll, v.v. försök igen senare."
 
 msgid "Sorry no backups found!"
 msgstr ""
@@ -19727,6 +19761,9 @@ msgstr "Stoppa test efter # misslyckade transponders"
 #
 msgid "Stop testing plane after # successful transponders"
 msgstr "Stoppa test efter # lyckade transponders"
+
+msgid "Stop the update, if running, then exit"
+msgstr ""
 
 msgid "Stop timer recording"
 msgstr "Stoppa timerinspelning"
@@ -20540,9 +20577,6 @@ msgstr ""
 msgid "The command to wake from standby will be sent multiple times."
 msgstr ""
 
-msgid "The current update may be unstable"
-msgstr "Aktuell uppdatering är ännu ej sluttestad"
-
 msgid ""
 "The default backup selection cannot be changed.\n"
 "Please use the 'additional' and 'excluded' backup selection."
@@ -20891,6 +20925,10 @@ msgstr ""
 #, fuzzy
 msgid "This line is not editable!"
 msgstr "Det här pluginet är inte installerat."
+
+msgid ""
+"This offset will only be used if the channel has not its own volume offset."
+msgstr ""
 
 msgid ""
 "This option allows to reduce the block-noise in the picture. Obviously this "
@@ -22335,14 +22373,8 @@ msgstr ""
 msgid "Update at your own risk"
 msgstr ""
 
-msgid "Update channel list only"
-msgstr "Uppdatera endast kanallistan"
-
-#, python-format
-msgid "Update completed, %d package was installed."
-msgid_plural "Update completed, %d packages were installed."
-msgstr[0] "Uppdatering klar, %d packet installerat."
-msgstr[1] "Uppdatering klar, %d packet installerade."
+msgid "Update completed."
+msgstr ""
 
 msgid "Update delay for Events in List"
 msgstr ""
@@ -22356,13 +22388,6 @@ msgstr ""
 #, fuzzy
 msgid "Update failed!"
 msgstr "Skrivning misslyckades!"
-
-#
-#, python-format
-msgid "Update failed. Your %s %s does not have a working internet connection."
-msgstr ""
-"Uppdateringen misslyckades. Din %s %s har ingen fungerande "
-"internetuppkoppling."
 
 #
 #, fuzzy
@@ -22386,12 +22411,22 @@ msgstr ""
 msgid "Update/Backup/Restore your box"
 msgstr ""
 
+msgid "Updated"
+msgstr ""
+
+msgid "Updated version unknown"
+msgstr ""
+
 #
 msgid "Updatefeed not available."
 msgstr "Uppdateringsfeed ej tillgänglig."
 
 msgid "Updates available:"
 msgstr ""
+
+#
+msgid "Updating"
+msgstr "Uppgradering"
 
 #, fuzzy
 msgid "Updating cache"
@@ -22411,9 +22446,6 @@ msgstr "Uppdaterar mjukvarukatalogen"
 msgid "Upgrade (Backup, Flash & Restore All)"
 msgstr ""
 
-msgid "Upgrade and reboot system"
-msgstr "Uppgradera och starta om systemet"
-
 #
 msgid "Upgrade finished."
 msgstr "Uppgradering färdig."
@@ -22431,9 +22463,8 @@ msgstr ""
 msgid "Upgrade with GUI"
 msgstr ""
 
-#
-msgid "Updating"
-msgstr "Uppgradering"
+msgid "Upgrading"
+msgstr ""
 
 msgid "Uphops +"
 msgstr ""
@@ -23097,9 +23128,6 @@ msgstr "Visa Foton..."
 msgid "View teletext..."
 msgstr "Visa text-tv..."
 
-msgid "View the changes"
-msgstr "Visa ändringarna"
-
 #
 msgid "View video CD..."
 msgstr "Visa Video CD..."
@@ -23544,6 +23572,11 @@ msgid "When enabled, authentication is required to watch http streams."
 msgstr ""
 "Vid aktiverad kommer autentisering krävas för att titta på http strömmar."
 
+msgid ""
+"When enabled, before opkg update there will be opkg clean to make sure "
+"nothing ruine the update but only enable this when you can not update online."
+msgstr ""
+
 msgid "When enabled, channel numbering will start at '1' for each bouquet."
 msgstr ""
 "Vid aktiverad kommer kanalnumreringen starta på '1' för varje favoritlista."
@@ -23686,6 +23719,11 @@ msgstr ""
 
 msgid "When enabled, use DHCP for the IP configuration."
 msgstr "Vid aktiverad används DHCP för IP konfiguration."
+
+msgid ""
+"When enabled, you will see dev, staticdev, dbg, doc, src and po packages in "
+"opkg list."
+msgstr ""
 
 msgid ""
 "When enabled, your receiver will detect activity on the VCR SCART input."
@@ -24284,14 +24322,6 @@ msgid ""
 "again."
 msgstr ""
 
-#, fuzzy, python-format
-msgid ""
-"Your %s %s might be unusable now. Please consult the manual for further "
-"assistance before rebooting your %s %s."
-msgstr ""
-"Din %s %s kan vara obrukbar nu. Vänligen konsultera manualen för ytterligare "
-"assistans innan du startar om din %s %s."
-
 #, python-format
 msgid ""
 "Your %s %s was not shutdown properly.\n"
@@ -24439,6 +24469,12 @@ msgstr ""
 msgid ""
 "Your receiver can use tone amplitude. Consult your receiver's manual for "
 "more information."
+msgstr ""
+
+#, python-format
+msgid ""
+"Your receiver might be unusable now.  Please consult the manual for further "
+"assistance before rebooting your %s %s."
 msgstr ""
 
 #
@@ -24665,12 +24701,6 @@ msgstr "Aktivera BiB"
 #, fuzzy
 msgid "active"
 msgstr "Aktiv"
-
-msgid "Add Current"
-msgstr ""
-
-msgid "Add Service"
-msgstr ""
 
 #
 msgid "add alternatives"
@@ -24903,9 +24933,6 @@ msgstr "centrerad"
 
 msgid "centered, wrapped"
 msgstr "centrerad, radbrytning"
-
-msgid "Change"
-msgstr ""
 
 msgid "change Volume down"
 msgstr ""
@@ -25502,9 +25529,6 @@ msgstr ""
 msgid "invalid type"
 msgstr "ogiltig typ"
 
-msgid "is strongly advised."
-msgstr "rekommenderas starkt"
-
 msgid "jazz"
 msgstr "jazz"
 
@@ -25578,9 +25602,6 @@ msgstr ""
 
 msgid "magazines/reports/documentary"
 msgstr "tidningar / rapporter / dokumentär"
-
-msgid "making a backup before updating"
-msgstr "utför en backup före uppdatering"
 
 msgid "manage local Files"
 msgstr ""
@@ -25895,9 +25916,6 @@ msgstr "populärkultur / traditionell konst"
 msgid "pre-school children's program"
 msgstr "barnprogram förskola"
 
-msgid "Press the menu button to set a general AC3/Dolby offset."
-msgstr ""
-
 #, fuzzy
 msgid "previous channel page"
 msgstr "Gå till färegående kanal"
@@ -26109,9 +26127,6 @@ msgstr "välj"
 #
 msgid "select CAId's"
 msgstr "välj CAIds"
-
-msgid "Select channels to add an offset to the volume."
-msgstr ""
 
 #
 msgid "select menu entry"
@@ -26385,10 +26400,6 @@ msgstr "tennis / squash"
 msgid "this bouquet is protected by a parental control pin"
 msgstr "denna favoritlista är skyddad av föräldraskyddskod"
 
-msgid ""
-"This offset will only be used if the channel has not its own volume offset."
-msgstr ""
-
 #
 msgid "this recording"
 msgstr "denna inspelning"
@@ -26649,6 +26660,120 @@ msgstr "zappad"
 
 msgid "®"
 msgstr ""
+
+#, python-format
+#~ msgid "%s updated package available"
+#~ msgid_plural "%s updated packages available"
+#~ msgstr[0] "%s uppdatering tillgänglig."
+#~ msgstr[1] "%s uppdateringar tillgängliga."
+
+#, python-format
+#~ msgid ""
+#~ "A configuration file (%s) has been modified since it was installed.\n"
+#~ "Do you want to keep your modifications?"
+#~ msgstr ""
+#~ "En konfigurationsfil (%s) har ändrats sedan installationen.\n"
+#~ "Vill du behålla din ändring?"
+
+#, python-format
+#~ msgid "Are you sure you want to update your %s %s ?"
+#~ msgstr "Är du säker på att du vill uppdatera din %s %s?"
+
+#~ msgid "Backup Manager"
+#~ msgstr "Backup Manager"
+
+#~ msgid "Checking for Updates..."
+#~ msgstr "Söker efter Uppdateringar..."
+
+#~ msgid "Could not find installed channel list."
+#~ msgstr "Det gick inte att hitta den installerade kanallistan."
+
+#, python-format
+#~ msgid "Do you want to reboot your %s %s"
+#~ msgstr "Vill du starta om din %s %s?"
+
+#
+#, python-format
+#~ msgid "Do you want to update your %s %s ?"
+#~ msgstr "Vill du uppdatera din  %s %s?"
+
+#~ msgid "Error downloading change log."
+#~ msgstr "Fel vid nedladnning av ändringslogg."
+
+#~ msgid "Image Manager"
+#~ msgstr "Image Hanterare"
+
+#~ msgid "No updates available. Please try again later."
+#~ msgstr "Inga uppdateringar tillgängliga. Försök igen senare."
+
+#~ msgid "OnlineVersionCheck"
+#~ msgstr "OnlineVersionCheck"
+
+#~ msgid "Packages"
+#~ msgstr "Paket"
+
+#~ msgid "Perform a full image backup"
+#~ msgstr "Gör en full Image backup"
+
+#~ msgid "Perform a settings backup,"
+#~ msgstr "Utför en backup av inställningar"
+
+#~ msgid ""
+#~ "Perform a settings backup, making a backup before updating is strongly "
+#~ "advised."
+#~ msgstr ""
+#~ "Utför en backup av inställningar, det rekommenderas starkt att göra en "
+#~ "backup innan uppdatering."
+
+#
+#~ msgid "Software update"
+#~ msgstr "Uppdatering av mjukvara"
+
+#, fuzzy
+#~ msgid ""
+#~ "Sorry feeds are down for maintenance, please try again later. If this "
+#~ "issue persists please check www.opena.tv"
+#~ msgstr "Tyvärr, feeds är nere för underhåll, v.v. försök igen senare."
+
+#~ msgid "The current update may be unstable"
+#~ msgstr "Aktuell uppdatering är ännu ej sluttestad"
+
+#~ msgid "Update channel list only"
+#~ msgstr "Uppdatera endast kanallistan"
+
+#, python-format
+#~ msgid "Update completed, %d package was installed."
+#~ msgid_plural "Update completed, %d packages were installed."
+#~ msgstr[0] "Uppdatering klar, %d packet installerat."
+#~ msgstr[1] "Uppdatering klar, %d packet installerade."
+
+#
+#, python-format
+#~ msgid ""
+#~ "Update failed. Your %s %s does not have a working internet connection."
+#~ msgstr ""
+#~ "Uppdateringen misslyckades. Din %s %s har ingen fungerande "
+#~ "internetuppkoppling."
+
+#~ msgid "Upgrade and reboot system"
+#~ msgstr "Uppgradera och starta om systemet"
+
+#~ msgid "View the changes"
+#~ msgstr "Visa ändringarna"
+
+#, fuzzy, python-format
+#~ msgid ""
+#~ "Your %s %s might be unusable now. Please consult the manual for further "
+#~ "assistance before rebooting your %s %s."
+#~ msgstr ""
+#~ "Din %s %s kan vara obrukbar nu. Vänligen konsultera manualen för "
+#~ "ytterligare assistans innan du startar om din %s %s."
+
+#~ msgid "is strongly advised."
+#~ msgstr "rekommenderas starkt"
+
+#~ msgid "making a backup before updating"
+#~ msgstr "utför en backup före uppdatering"
 
 #
 #~ msgid "no"

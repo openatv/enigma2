@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV-Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-01-02 10:50+0000\n"
+"POT-Creation-Date: 2022-01-19 18:56+0000\n"
 "PO-Revision-Date: 2021-08-21 11:46+0000\n"
 "Last-Translator: openATV <openatv@gmail.com>\n"
 "Language-Team: Estonian <https://hosted.weblate.org/projects/openatv/"
@@ -1049,6 +1049,12 @@ msgstr[0] "%d päev"
 msgstr[1] "%d päeva"
 
 #, python-format
+msgid "%d feed catalog package was updated."
+msgid_plural "%d feed catalog packages were updated."
+msgstr[0] ""
+msgstr[1] ""
+
+#, python-format
 msgid "%d hour"
 msgid_plural "%d hours"
 msgstr[0] "%d tund"
@@ -1075,6 +1081,54 @@ msgstr "%d minutit"
 #, python-format
 msgid "%d ms"
 msgstr "%d ms"
+
+#, python-format
+msgid "%d package upgraded."
+msgid_plural "%d packages upgraded."
+msgstr[0] ""
+msgstr[1] ""
+
+#, python-format
+msgid "%d package was configured."
+msgid_plural "%d packages were configured."
+msgstr[0] ""
+msgstr[1] ""
+
+#, python-format
+msgid "%d package was deselected."
+msgid_plural "%d packages were deselected."
+msgstr[0] ""
+msgstr[1] ""
+
+#, python-format
+msgid "%d package was downloaded."
+msgid_plural "%d packages were downloaded."
+msgstr[0] ""
+msgstr[1] ""
+
+#, python-format
+msgid "%d package was identified for upgrade."
+msgid_plural "%d packages were identified for upgrade."
+msgstr[0] ""
+msgstr[1] ""
+
+#, python-format
+msgid "%d package was installed."
+msgid_plural "%d packages were installed."
+msgstr[0] ""
+msgstr[1] ""
+
+#, python-format
+msgid "%d package was removed."
+msgid_plural "%d packages were removed."
+msgstr[0] ""
+msgstr[1] ""
+
+#, python-format
+msgid "%d package was upgraded."
+msgid_plural "%d packages were upgraded."
+msgstr[0] ""
+msgstr[1] ""
 
 #, python-format
 msgid "%d pixel wide"
@@ -1303,12 +1357,6 @@ msgstr "%s pole saadaval."
 #, python-format
 msgid "%s successfully extracted."
 msgstr "%s pakiti lahti."
-
-#, python-format
-msgid "%s updated package available"
-msgid_plural "%s updated packages available"
-msgstr[0] "%s uuendatud pakett saadaval"
-msgstr[1] "%s uuendatud paketti saadaval"
 
 #, python-format
 msgid "%s%d min"
@@ -2035,22 +2083,6 @@ msgid ""
 msgstr "Taustal toimub uuenduste otsing. Oota paar minutit ja proovi uuesti."
 
 #, python-format
-msgid ""
-"A configuration file (%s) has been modified since it was installed.\n"
-"Do you want to keep your modifications?"
-msgstr ""
-"Seadistusfaili (%s) on pärast algpaigaldust muudetud.\n"
-"Kas säilitada need muudatused?"
-
-#, python-format
-msgid ""
-"Configuration file '%s' has been modified since it was installed, would you "
-"like to keep the modified version?"
-msgstr ""
-"Seadistusfaili (%s) on pärast algpaigaldust muudetud.\n"
-"Kas säilitada need muudatused?"
-
-#, python-format
 msgid "A crashlog was %s created in '%s'"
 msgstr "Krahhilogi %s loodi '%s'"
 
@@ -2378,11 +2410,18 @@ msgstr "Lisa"
 msgid "Add AutoTimer"
 msgstr "Lisa autotaimer"
 
+msgid "Add Current"
+msgstr "Lisa aktiivne"
+
 msgid "Add New Quad Channel Entry"
 msgstr "Lisa uus Quad PiP kanal"
 
 msgid "Add Record Timer"
 msgstr "Lisa salvestustaimer"
+
+#
+msgid "Add Service"
+msgstr "Lisa kanal"
 
 msgid "Add Timer"
 msgstr "Lisa taimer"
@@ -2992,10 +3031,6 @@ msgstr "Kas talletada EPG andmed asukohta:\n"
 msgid "Are you sure you want to send this log:\n"
 msgstr "Kas saata logi:\n"
 
-#, python-format
-msgid "Are you sure you want to update your %s %s ?"
-msgstr "Kas uuendada %s %s tarkvara?"
-
 msgid "Argentina"
 msgstr "Argentiina"
 
@@ -3422,9 +3457,6 @@ msgstr "Varukoopia asukoht"
 
 msgid "Backup Log"
 msgstr "Varundamise logi"
-
-msgid "Backup Manager"
-msgstr "Varukoopia haldur"
 
 msgid "Backup Mode"
 msgstr "Varundamine"
@@ -4119,6 +4151,9 @@ msgstr "Kanada"
 msgid "Cancel"
 msgstr "Tühista"
 
+msgid "Cancel / Close the software update screen"
+msgstr ""
+
 #, fuzzy
 msgid "Cancel any changed settings and exit"
 msgstr "Tühista kõik teksti muudatused ja välju"
@@ -4158,9 +4193,6 @@ msgstr "Kanalivalik"
 #, fuzzy
 msgid "Cancel the image selection and exit all menus"
 msgstr "Kanalivalik"
-
-msgid "Cancel the software update"
-msgstr ""
 
 msgid "Cancel the update"
 msgstr ""
@@ -4247,6 +4279,9 @@ msgstr "Tšaad"
 
 msgid "Chamorro"
 msgstr ""
+
+msgid "Change"
+msgstr "Muuda"
 
 msgid "Change Boxmode to control Hardware Chip Modes*"
 msgstr ""
@@ -4459,9 +4494,6 @@ msgstr "Logide uurimine."
 
 msgid "Checking filesystem..."
 msgstr "Failisüsteemi kontroll."
-
-msgid "Checking for Updates..."
-msgstr "Uuenduste otsimine."
 
 msgid "Checking the internet connection"
 msgstr "Internetiühenduse kontroll"
@@ -4881,6 +4913,14 @@ msgstr "Seadistusfail %s talletati."
 msgctxt "Abbreviation of 'Configurable'"
 msgid "Configurable"
 msgstr "Seadistamine"
+
+#, python-format
+msgid ""
+"Configuration file '%s' has been modified since it was installed, would you "
+"like to keep the modified version?"
+msgstr ""
+"Seadistusfaili (%s) on pärast algpaigaldust muudetud.\n"
+"Kas säilitada need muudatused?"
 
 msgid "Configuration mode"
 msgstr "Häälestamine"
@@ -5606,9 +5646,6 @@ msgstr "Ei saa ühendust %s %s .NFI püsivara serveriga:"
 msgid "Could not connect to server"
 msgstr "Ühenduse loomine serveriga nurjus"
 
-msgid "Could not find installed channel list."
-msgstr "Paigaldatud kanalinimekirja ei leitud."
-
 msgid ""
 "Could not find suitable media - Please remove some downloaded images or "
 "insert a media (e.g. USB stick) with sufficient free space and try again!"
@@ -5774,6 +5811,9 @@ msgstr "Aktiivne transponder"
 
 msgid "Current value: "
 msgstr "Praegune väärtus: "
+
+msgid "Current version unknown"
+msgstr ""
 
 msgid "Current version:"
 msgstr "Praegune versioon:"
@@ -6465,6 +6505,13 @@ msgstr "Sisututvustus"
 msgid "Deselect"
 msgstr "Tühista valik"
 
+#, python-format
+msgid ""
+"Deselected packages usually occur because those packaged are incompatible "
+"with existing packages.  While this is mostly harmless it is possible that "
+"your %s %s may experience issues."
+msgstr ""
+
 msgid "Details for plugin: "
 msgstr "Plugina üksikasjad: "
 
@@ -6897,10 +6944,6 @@ msgstr "Kas kirjutada see kogumik?"
 msgid "Do you want to purge all locales/languages except %s?"
 msgstr ""
 
-#, python-format
-msgid "Do you want to reboot your %s %s"
-msgstr "Kas taaskäivitada %s %s"
-
 #
 #, python-format
 msgid "Do you want to reboot your %s %s?"
@@ -6928,10 +6971,6 @@ msgid ""
 msgstr ""
 "Kas saata kõik valitud failid:\n"
 "(vali 'Ei', kui saadad ainult hetkel valitud faili.)"
-
-#, python-format
-msgid "Do you want to update your %s %s ?"
-msgstr "Kas uuendada %s %s?"
 
 msgid "Do you want to update your box?"
 msgstr "Kas uuendada vastuvõtja tarkvara?"
@@ -7531,6 +7570,9 @@ msgstr ""
 msgid "Enable this option to add keyboard keymap data to the debug log file."
 msgstr ""
 
+msgid "Enable this option to add opkg output data to the debug log file."
+msgstr ""
+
 msgid "Enable this option to add remote control data to the debug log file."
 msgstr ""
 
@@ -7804,9 +7846,6 @@ msgid ""
 msgstr ""
 "Viga kataloogi %s loomisel:\n"
 "%s"
-
-msgid "Error downloading change log."
-msgstr "Viga muudatuslogi hankimisel."
 
 #, python-format
 msgid ""
@@ -8319,18 +8358,6 @@ msgstr ""
 
 msgid "Feed unstable!"
 msgstr ""
-
-msgid "Feeds status:   Stable"
-msgstr "Hoidlate olek:   Stabiilne"
-
-msgid "Feeds status:   Unstable"
-msgstr "Hoidlate olek:   Ebastabiilne"
-
-msgid "Feeds status:   Updating"
-msgstr "Hoidlate olek:   Värskendamisel"
-
-msgid "Feeds status: Unexpected"
-msgstr "Hoidlate olek: Ootamatu"
 
 msgid "Fetch EPG and update timers now"
 msgstr ""
@@ -9788,9 +9815,6 @@ msgstr "Täielik püsivaratõmmis"
 msgid "Image Information"
 msgstr "Püsivara info"
 
-msgid "Image Manager"
-msgstr "Püsivara haldur"
-
 msgid "Image Version"
 msgstr "Püsivara versioon"
 
@@ -9904,6 +9928,9 @@ msgstr "AIT kaasatud http voogudesse"
 #, fuzzy
 msgid "Include keyboard data"
 msgstr "Klaviatuuri andmesisestus"
+
+msgid "Include opkg output data"
+msgstr ""
 
 #, fuzzy
 msgid "Include remote control data"
@@ -10120,6 +10147,9 @@ msgstr "Paigalda pikonid asukohta"
 
 msgid "Install plugins"
 msgstr "Paigalda pluginaid"
+
+msgid "Install/Remove plugin"
+msgstr ""
 
 msgid "Installation finished."
 msgstr "Paigaldamine lõppenud."
@@ -11618,6 +11648,9 @@ msgstr "Liigu lehe lõppu"
 msgid "Move down a page"
 msgstr "Liigu lehe lõppu"
 
+msgid "Move down a page / screen"
+msgstr ""
+
 msgid "Move down a screen"
 msgstr ""
 
@@ -11725,6 +11758,9 @@ msgstr "Liigu lehe algusesse"
 
 msgid "Move up a page"
 msgstr "Liigu lehe algusesse"
+
+msgid "Move up a page / screen"
+msgstr ""
 
 msgid "Move up a screen"
 msgstr ""
@@ -12288,9 +12324,6 @@ msgstr "Kanal puudub"
 msgid "No clients streaming"
 msgstr "IPTV kliente ei ole"
 
-msgid "No connection"
-msgstr "Ühendus puudub"
-
 msgid ""
 "No data on transponder!\n"
 "(Timeout reading PAT)"
@@ -12429,8 +12462,11 @@ msgstr ""
 msgid "No update required!"
 msgstr "Uuendamine ei ole vajalik!"
 
-msgid "No updates available. Please try again later."
-msgstr "Uuendusi ei ole. Proovi hiljem uuesti."
+msgid "No updates available."
+msgstr ""
+
+msgid "No updates were available.  Please try again later."
+msgstr ""
 
 msgid "No valid region details were found"
 msgstr ""
@@ -12699,6 +12735,9 @@ msgstr "Jah, õpeta uuendamisel"
 msgid "ONID"
 msgstr "ONID"
 
+msgid "OPKG clean mode"
+msgstr ""
+
 msgid "OSD"
 msgstr "Ekraanigraafika"
 
@@ -12794,9 +12833,6 @@ msgstr "Üks rida"
 #
 msgid "Online software update"
 msgstr "Vastuvõtja internetiuuendused"
-
-msgid "OnlineVersionCheck"
-msgstr "Uuenduste kontroll"
 
 msgid "Only extensions."
 msgstr "Ainult laiendused."
@@ -13142,9 +13178,6 @@ msgstr "Tarkvaraloendi uuendamine"
 msgid "Packaged locales only"
 msgstr "Halda kohalikke faile"
 
-msgid "Packages"
-msgstr "paketti"
-
 msgid "Packages and associated locales"
 msgstr ""
 
@@ -13311,22 +13344,11 @@ msgstr "Edenemisriba vasakul"
 msgid "Percentage/Progress bar right"
 msgstr "Edenemisriba paremal"
 
-msgid "Perform a full image backup"
-msgstr "Loo täielik püsivaratõmmis"
-
 msgid "Perform a image backup before updating."
 msgstr "Loo enne uuendamist püsivaratõmmis."
 
 msgid "Perform a setting backup before updating."
 msgstr "Loo enne uuendamist seadistustest varukoopia."
-
-msgid "Perform a settings backup,"
-msgstr "Loo seadistustest varukoopia,"
-
-msgid ""
-"Perform a settings backup, making a backup before updating is strongly "
-"advised."
-msgstr "Loo seadistustest varukoopia. Enne uuendamist on see väga soovitatav."
 
 msgid "Perform an on-line flash instead"
 msgstr ""
@@ -14111,6 +14133,9 @@ msgstr "Uue kujunduse jõustamiseks vajuta OK."
 msgid "Press OK to activate the settings."
 msgstr "Seadistuste jõustamiseks vajuta OK."
 
+msgid "Press OK to continue."
+msgstr ""
+
 msgid "Press OK to edit the settings."
 msgstr "Seadistuste muutmiseks vajuta OK."
 
@@ -14166,6 +14191,9 @@ msgstr ""
 #, python-format
 msgid "Press OK to use this locale.  [%s]"
 msgstr ""
+
+msgid "Press the menu button to set a general AC3/Dolby offset."
+msgstr "AC3/Dolby üldise helitaseme määramiseks vajuta 'MENU'"
 
 msgid ""
 "Press this button to emulate a long press on a button pressed afterwards "
@@ -14365,6 +14393,9 @@ msgstr "Lukusta pluginate menüü"
 
 msgid "Protect services"
 msgstr "Lukusta kanalid"
+
+msgid "Protect software update screen"
+msgstr ""
 
 msgid "Protect standby menu"
 msgstr "Lukusta seiskamismenüü"
@@ -14810,6 +14841,9 @@ msgstr ""
 "Oota %s %s taaskäivitumist\n"
 "Selleks võib kuluda mõni minut"
 
+msgid "Refresh"
+msgstr ""
+
 msgid "Refresh every (in hours)"
 msgstr "Värskenda iga (tund)"
 
@@ -14824,6 +14858,9 @@ msgstr "Värskendussageduse valik."
 
 msgid "Refresh screen"
 msgstr "Värskenda vaadet"
+
+msgid "Refresh the update-able package list"
+msgstr ""
 
 msgid "Regard deep standby as standby"
 msgstr "Käsitle puhkeseisundit ooteseisundina"
@@ -14924,6 +14961,12 @@ msgstr "Eemalda"
 msgid "Remove Confirmation"
 msgstr "Eemaldamise kinnitamine"
 
+msgid "Remove Failed !!"
+msgstr ""
+
+msgid "Remove Finished."
+msgstr "Eemaldatud."
+
 #
 msgid "Remove Plugins"
 msgstr "Eemalda pluginaid"
@@ -14957,9 +15000,6 @@ msgstr "Eemalda praegune kataloog järjehoidjatest"
 
 msgid "Remove currently selected title"
 msgstr "Eemalda valitud nimetus"
-
-msgid "Remove Finished."
-msgstr "Eemaldatud."
 
 msgid "Remove hide VBI line for this service"
 msgstr "Lõpeta punktiirjoone peitmine sellel kanalil"
@@ -16030,6 +16070,9 @@ msgstr "Vali kanali heliriba"
 
 msgid "Select channel to record from"
 msgstr "Vali kanal, millelt salvestada"
+
+msgid "Select channels to add an offset to the volume."
+msgstr "Määra kanalid, millele määrata helitugevuse tase"
 
 msgid "Select copy destination for:"
 msgstr "Vali kopeerimise asukoht:"
@@ -17452,6 +17495,9 @@ msgstr "Kuva põhjalik saatetutvustus"
 msgid "Show detailed event info (setup in menu)"
 msgstr "Kuva põhjalik saatetutvustus (sea menüüs)"
 
+msgid "Show development packages in opkg"
+msgstr ""
+
 msgid "Show directories first"
 msgstr "Kuva esmalt kataloogid"
 
@@ -18113,9 +18159,6 @@ msgstr "Tarkvara paneel"
 msgid "Software Manager Setup"
 msgstr "Tarkvarahalduri seaded"
 
-msgid "Software Panel"
-msgstr "Tarkvara paneel"
-
 msgid "Software Update"
 msgstr "Tarkvara uuendamine"
 
@@ -18131,8 +18174,10 @@ msgstr "Tarkvarahalduri seaded"
 msgid "Software restore"
 msgstr "Püsivara taastamise abiline"
 
-msgid "Software update"
-msgstr "Tarkvara uuendamine"
+msgid ""
+"Software update starting, please wait.\n"
+"\n"
+msgstr ""
 
 msgid "Softwaremanager information"
 msgstr "Tarkvarahalduri info"
@@ -18185,13 +18230,6 @@ msgstr "Käivad hoidlate hooldustööd"
 
 msgid "Sorry feeds are down for maintenance, please try again later."
 msgstr "Toimuvad serverite hooldetööd. Proovi hiljem uuesti."
-
-msgid ""
-"Sorry feeds are down for maintenance, please try again later. If this issue "
-"persists please check www.opena.tv"
-msgstr ""
-"Toimuvad hoidlate hooldetööd. Proovi hiljem uuesti. Kui probleem on kestev, "
-"vaata lehele www.opena.tv"
 
 #
 msgid "Sorry no backups found!"
@@ -18530,6 +18568,9 @@ msgstr "Peata testimine pärast # ebaõnnestunud transponderit"
 
 msgid "Stop testing plane after # successful transponders"
 msgstr "Peata testimine pärast # leitud transponderit"
+
+msgid "Stop the update, if running, then exit"
+msgstr ""
 
 msgid "Stop timer recording"
 msgstr "Peata taimeriga salvestamine"
@@ -19326,9 +19367,6 @@ msgstr ""
 msgid "The command to wake from standby will be sent multiple times."
 msgstr ""
 
-msgid "The current update may be unstable"
-msgstr "See uuendus ei pruugi olla stabiilne"
-
 msgid ""
 "The default backup selection cannot be changed.\n"
 "Please use the 'additional' and 'excluded' backup selection."
@@ -19682,6 +19720,10 @@ msgstr ""
 
 msgid "This line is not editable!"
 msgstr "Seda rida ei saa muuta!"
+
+msgid ""
+"This offset will only be used if the channel has not its own volume offset."
+msgstr "seda taset kasutatakse ainult kanalitel, millel puudub oma helitase"
 
 msgid ""
 "This option allows to reduce the block-noise in the picture. Obviously this "
@@ -21020,14 +21062,8 @@ msgstr "Uuenda vahemälu"
 msgid "Update at your own risk"
 msgstr "Uuenda omal vastutusel"
 
-msgid "Update channel list only"
-msgstr "Uuenda ainult kanalinimekirja"
-
-#, python-format
-msgid "Update completed, %d package was installed."
-msgid_plural "Update completed, %d packages were installed."
-msgstr[0] "Uuendamine tehtud, paigaldati %d pakett."
-msgstr[1] "Uuendamine tehtud, paigaldati %d paketti."
+msgid "Update completed."
+msgstr ""
 
 msgid "Update delay for Events in List"
 msgstr "Saadete uuendamise viiteaeg kanalinimekirjas"
@@ -21041,10 +21077,6 @@ msgstr ""
 
 msgid "Update failed!"
 msgstr "Uuendamine nurjus!"
-
-#, python-format
-msgid "Update failed. Your %s %s does not have a working internet connection."
-msgstr "Uuendamine nurjus. %s %s ei oma internetiühendust."
 
 msgid "Update finished!"
 msgstr "Uuendamine tehtud!"
@@ -21068,12 +21100,21 @@ msgstr "Uuenda ja varunda süsteem, varunda ja taasta seadistused"
 msgid "Update/Backup/Restore your box"
 msgstr "Uuenda, varunda ja taasta tarkvara"
 
+msgid "Updated"
+msgstr ""
+
+msgid "Updated version unknown"
+msgstr ""
+
 msgid "Updatefeed not available."
 msgstr "Uuenduslink pole saadaval."
 
 #
 msgid "Updates available:"
 msgstr "Uuendusi leitud:"
+
+msgid "Updating"
+msgstr "Uuendamine"
 
 #, fuzzy
 msgid "Updating cache"
@@ -21090,9 +21131,6 @@ msgstr "Tarkvarakataloogi uuendamine"
 
 msgid "Upgrade (Backup, Flash & Restore All)"
 msgstr "Uuenda (varunda, paigalda püsivara ja taasta kõik)"
-
-msgid "Upgrade and reboot system"
-msgstr "Uuenda ja taaskäivita süsteem"
 
 msgid "Upgrade finished."
 msgstr "Uuendamine tehtud."
@@ -21111,8 +21149,8 @@ msgstr ""
 msgid "Upgrade with GUI"
 msgstr "Uuendamine kasutajaliidese abil"
 
-msgid "Updating"
-msgstr "Uuendamine"
+msgid "Upgrading"
+msgstr ""
 
 msgid "Uphops +"
 msgstr "Uphops +"
@@ -21734,9 +21772,6 @@ msgstr "Vaata pilte"
 msgid "View teletext..."
 msgstr "Kuva teletekst"
 
-msgid "View the changes"
-msgstr "Vaata muutusi"
-
 msgid "View video CD..."
 msgstr "Video CD vaatamine"
 
@@ -22187,6 +22222,11 @@ msgstr ""
 msgid "When enabled, authentication is required to watch http streams."
 msgstr "Kui lubatud, on http voogude vaatamiseks vajalik autentimine."
 
+msgid ""
+"When enabled, before opkg update there will be opkg clean to make sure "
+"nothing ruine the update but only enable this when you can not update online."
+msgstr ""
+
 msgid "When enabled, channel numbering will start at '1' for each bouquet."
 msgstr ""
 "Kui lubatud, algavad kanali numbrid igas lemmiknimekirjas numbriga '1'."
@@ -22317,6 +22357,11 @@ msgstr "Kui lubatud, algab ajanihe taustal automaatselt pärast määratud aega.
 
 msgid "When enabled, use DHCP for the IP configuration."
 msgstr "Kui lubatud, määratakse IP aadress DHCP abil."
+
+msgid ""
+"When enabled, you will see dev, staticdev, dbg, doc, src and po packages in "
+"opkg list."
+msgstr ""
 
 msgid ""
 "When enabled, your receiver will detect activity on the VCR SCART input."
@@ -22881,14 +22926,6 @@ msgid ""
 msgstr ""
 "%s %s ei ole ühendatud internetti. Kontrolli võrgu seadeid ja ürita uuesti."
 
-#, python-format
-msgid ""
-"Your %s %s might be unusable now. Please consult the manual for further "
-"assistance before rebooting your %s %s."
-msgstr ""
-"%s %s võib olla nüüd kasutuskõlbmatu. Uuri juhendit täiendava abi leidmiseks "
-"enne %s %s taaskäivitamist."
-
 # PowerLost
 #, python-format
 msgid ""
@@ -23054,6 +23091,12 @@ msgid ""
 msgstr ""
 "See vastuvõtja oskab kasutada 22KHz-helitugevust. Enamat infot otsi "
 "vastuvõtja käsiraamatust."
+
+#, python-format
+msgid ""
+"Your receiver might be unusable now.  Please consult the manual for further "
+"assistance before rebooting your %s %s."
+msgstr ""
 
 msgid ""
 "Your wireless LAN internet connection could not be started!\n"
@@ -23255,13 +23298,6 @@ msgstr "PiP käivitamine"
 #, fuzzy
 msgid "active"
 msgstr "Väljas"
-
-msgid "Add Current"
-msgstr "Lisa aktiivne"
-
-#
-msgid "Add Service"
-msgstr "Lisa kanal"
 
 msgid "add alternatives"
 msgstr "Lisa asenduskanaleid"
@@ -23476,9 +23512,6 @@ msgstr "Keskel"
 
 msgid "centered, wrapped"
 msgstr "Keskel, reamurdmisega"
-
-msgid "Change"
-msgstr "Muuda"
 
 msgid "change Volume down"
 msgstr "Heli vaiksemaks"
@@ -24019,9 +24052,6 @@ msgstr "sisene läbiviik kuni"
 msgid "invalid type"
 msgstr "kehtetu tüüp"
 
-msgid "is strongly advised."
-msgstr "on väga soovitatav."
-
 msgid "jazz"
 msgstr "džäss"
 
@@ -24091,9 +24121,6 @@ msgstr "M2k"
 
 msgid "magazines/reports/documentary"
 msgstr "magasinid/reportaažid/dokumentaal"
-
-msgid "making a backup before updating"
-msgstr "varundamine enne uuendamist"
 
 msgid "manage local Files"
 msgstr "Halda kohalikke faile"
@@ -24364,9 +24391,6 @@ msgstr "popkultuur/pärimuskunst"
 msgid "pre-school children's program"
 msgstr "koolieelikute saade"
 
-msgid "Press the menu button to set a general AC3/Dolby offset."
-msgstr "AC3/Dolby üldise helitaseme määramiseks vajuta 'MENU'"
-
 msgid "previous channel page"
 msgstr "Eelmine lehekülg"
 
@@ -24558,9 +24582,6 @@ msgstr "Vali"
 
 msgid "select CAId's"
 msgstr "Vali CAIDid"
-
-msgid "Select channels to add an offset to the volume."
-msgstr "Määra kanalid, millele määrata helitugevuse tase"
 
 msgid "select menu entry"
 msgstr "Vali menüüpunkt"
@@ -24807,10 +24828,6 @@ msgstr "tennis/squash"
 msgid "this bouquet is protected by a parental control pin"
 msgstr "see lemmiknimekiri on kaitstud lapselukuga"
 
-msgid ""
-"This offset will only be used if the channel has not its own volume offset."
-msgstr "seda taset kasutatakse ainult kanalitel, millel puudub oma helitase"
-
 msgid "this recording"
 msgstr "see salvestus"
 
@@ -25046,6 +25063,133 @@ msgstr "Kanalivahetus"
 
 msgid "®"
 msgstr ""
+
+#, python-format
+#~ msgid "%s updated package available"
+#~ msgid_plural "%s updated packages available"
+#~ msgstr[0] "%s uuendatud pakett saadaval"
+#~ msgstr[1] "%s uuendatud paketti saadaval"
+
+#, python-format
+#~ msgid ""
+#~ "A configuration file (%s) has been modified since it was installed.\n"
+#~ "Do you want to keep your modifications?"
+#~ msgstr ""
+#~ "Seadistusfaili (%s) on pärast algpaigaldust muudetud.\n"
+#~ "Kas säilitada need muudatused?"
+
+#, python-format
+#~ msgid "Are you sure you want to update your %s %s ?"
+#~ msgstr "Kas uuendada %s %s tarkvara?"
+
+#~ msgid "Backup Manager"
+#~ msgstr "Varukoopia haldur"
+
+#~ msgid "Checking for Updates..."
+#~ msgstr "Uuenduste otsimine."
+
+#~ msgid "Could not find installed channel list."
+#~ msgstr "Paigaldatud kanalinimekirja ei leitud."
+
+#, python-format
+#~ msgid "Do you want to reboot your %s %s"
+#~ msgstr "Kas taaskäivitada %s %s"
+
+#, python-format
+#~ msgid "Do you want to update your %s %s ?"
+#~ msgstr "Kas uuendada %s %s?"
+
+#~ msgid "Error downloading change log."
+#~ msgstr "Viga muudatuslogi hankimisel."
+
+#~ msgid "Feeds status:   Stable"
+#~ msgstr "Hoidlate olek:   Stabiilne"
+
+#~ msgid "Feeds status:   Unstable"
+#~ msgstr "Hoidlate olek:   Ebastabiilne"
+
+#~ msgid "Feeds status:   Updating"
+#~ msgstr "Hoidlate olek:   Värskendamisel"
+
+#~ msgid "Feeds status: Unexpected"
+#~ msgstr "Hoidlate olek: Ootamatu"
+
+#~ msgid "Image Manager"
+#~ msgstr "Püsivara haldur"
+
+#~ msgid "No connection"
+#~ msgstr "Ühendus puudub"
+
+#~ msgid "No updates available. Please try again later."
+#~ msgstr "Uuendusi ei ole. Proovi hiljem uuesti."
+
+#~ msgid "OnlineVersionCheck"
+#~ msgstr "Uuenduste kontroll"
+
+#~ msgid "Packages"
+#~ msgstr "paketti"
+
+#~ msgid "Perform a full image backup"
+#~ msgstr "Loo täielik püsivaratõmmis"
+
+#~ msgid "Perform a settings backup,"
+#~ msgstr "Loo seadistustest varukoopia,"
+
+#~ msgid ""
+#~ "Perform a settings backup, making a backup before updating is strongly "
+#~ "advised."
+#~ msgstr ""
+#~ "Loo seadistustest varukoopia. Enne uuendamist on see väga soovitatav."
+
+#~ msgid "Software Panel"
+#~ msgstr "Tarkvara paneel"
+
+#~ msgid "Software update"
+#~ msgstr "Tarkvara uuendamine"
+
+#~ msgid ""
+#~ "Sorry feeds are down for maintenance, please try again later. If this "
+#~ "issue persists please check www.opena.tv"
+#~ msgstr ""
+#~ "Toimuvad hoidlate hooldetööd. Proovi hiljem uuesti. Kui probleem on "
+#~ "kestev, vaata lehele www.opena.tv"
+
+#~ msgid "The current update may be unstable"
+#~ msgstr "See uuendus ei pruugi olla stabiilne"
+
+#~ msgid "Update channel list only"
+#~ msgstr "Uuenda ainult kanalinimekirja"
+
+#, python-format
+#~ msgid "Update completed, %d package was installed."
+#~ msgid_plural "Update completed, %d packages were installed."
+#~ msgstr[0] "Uuendamine tehtud, paigaldati %d pakett."
+#~ msgstr[1] "Uuendamine tehtud, paigaldati %d paketti."
+
+#, python-format
+#~ msgid ""
+#~ "Update failed. Your %s %s does not have a working internet connection."
+#~ msgstr "Uuendamine nurjus. %s %s ei oma internetiühendust."
+
+#~ msgid "Upgrade and reboot system"
+#~ msgstr "Uuenda ja taaskäivita süsteem"
+
+#~ msgid "View the changes"
+#~ msgstr "Vaata muutusi"
+
+#, python-format
+#~ msgid ""
+#~ "Your %s %s might be unusable now. Please consult the manual for further "
+#~ "assistance before rebooting your %s %s."
+#~ msgstr ""
+#~ "%s %s võib olla nüüd kasutuskõlbmatu. Uuri juhendit täiendava abi "
+#~ "leidmiseks enne %s %s taaskäivitamist."
+
+#~ msgid "is strongly advised."
+#~ msgstr "on väga soovitatav."
+
+#~ msgid "making a backup before updating"
+#~ msgstr "varundamine enne uuendamist"
 
 # SoftwarePanel.py
 #, python-format

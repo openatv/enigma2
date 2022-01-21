@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Apachi70 (OpenATV)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-01-02 10:50+0000\n"
+"POT-Creation-Date: 2022-01-19 18:56+0000\n"
 "PO-Revision-Date: 2021-11-14 06:52+0000\n"
 "Last-Translator: Oğuz Ersen <oguzersen@protonmail.com>\n"
 "Language-Team: Turkish <https://hosted.weblate.org/projects/openatv/"
@@ -1098,6 +1098,11 @@ msgid_plural "%d days"
 msgstr[0] "%d gün"
 
 #, python-format
+msgid "%d feed catalog package was updated."
+msgid_plural "%d feed catalog packages were updated."
+msgstr[0] ""
+
+#, python-format
 msgid "%d hour"
 msgid_plural "%d hours"
 msgstr[0] "%d saat"
@@ -1124,6 +1129,46 @@ msgstr "%d dakika"
 #, python-format
 msgid "%d ms"
 msgstr "%d ms"
+
+#, python-format
+msgid "%d package upgraded."
+msgid_plural "%d packages upgraded."
+msgstr[0] ""
+
+#, python-format
+msgid "%d package was configured."
+msgid_plural "%d packages were configured."
+msgstr[0] ""
+
+#, python-format
+msgid "%d package was deselected."
+msgid_plural "%d packages were deselected."
+msgstr[0] ""
+
+#, python-format
+msgid "%d package was downloaded."
+msgid_plural "%d packages were downloaded."
+msgstr[0] ""
+
+#, python-format
+msgid "%d package was identified for upgrade."
+msgid_plural "%d packages were identified for upgrade."
+msgstr[0] ""
+
+#, python-format
+msgid "%d package was installed."
+msgid_plural "%d packages were installed."
+msgstr[0] ""
+
+#, python-format
+msgid "%d package was removed."
+msgid_plural "%d packages were removed."
+msgstr[0] ""
+
+#, python-format
+msgid "%d package was upgraded."
+msgid_plural "%d packages were upgraded."
+msgstr[0] ""
 
 #, python-format
 msgid "%d pixel wide"
@@ -1369,11 +1414,6 @@ msgstr "%s müsait değil."
 #, python-format
 msgid "%s successfully extracted."
 msgstr "%s başarıyla çıkarıldı."
-
-#, python-format
-msgid "%s updated package available"
-msgid_plural "%s updated packages available"
-msgstr[0] "%s güncel paket var"
 
 #
 #, python-format
@@ -2138,23 +2178,6 @@ msgstr ""
 "Arkaplan güncelleme kontrolu sürüyor, birkaç dakika sonra tekrar deneyin."
 
 #, python-format
-msgid ""
-"A configuration file (%s) has been modified since it was installed.\n"
-"Do you want to keep your modifications?"
-msgstr ""
-"Bir yapılandırma dosyası (%s) değiştirildi.\n"
-"Değişikliklerinizi saklamak istiyor musunuz?"
-
-#
-#, python-format
-msgid ""
-"Configuration file '%s' has been modified since it was installed, would you "
-"like to keep the modified version?"
-msgstr ""
-"Kurulumdan sonra (%s) yapılandırma dosyası değiştirilmiş.\n"
-"Kendi sürümünüzü saklamak istiyor musunuz?"
-
-#, python-format
 msgid "A crashlog was %s created in '%s'"
 msgstr "Bir crashlog içinde %s oluşturuldu '%s'"
 
@@ -2510,11 +2533,17 @@ msgstr "Ekle"
 msgid "Add AutoTimer"
 msgstr "Oto-zamanlayıcı ekle"
 
+msgid "Add Current"
+msgstr "geçerli ekle"
+
 msgid "Add New Quad Channel Entry"
 msgstr "Yeni Quad Kanal Girişi Ekleme"
 
 msgid "Add Record Timer"
 msgstr "Kayıt Zamanlayıcı Ekle"
+
+msgid "Add Service"
+msgstr "servis ekle"
 
 msgid "Add Timer"
 msgstr "Zamanlayıcı ekle"
@@ -3163,10 +3192,6 @@ msgstr "EPG önbelleğini buraya saklamak istediğinizden emin misiniz:\n"
 msgid "Are you sure you want to send this log:\n"
 msgstr "Are you sure you want to send this log:\n"
 
-#, python-format
-msgid "Are you sure you want to update your %s %s ?"
-msgstr "%s %s güncellemek istediğinizden emin misiniz?"
-
 msgid "Argentina"
 msgstr "Arjantin"
 
@@ -3615,9 +3640,6 @@ msgstr "Yedekleme Konumu"
 
 msgid "Backup Log"
 msgstr "Yedekleme Günlüğü"
-
-msgid "Backup Manager"
-msgstr "Yedekleme Yöneticisi"
 
 msgid "Backup Mode"
 msgstr "Yedekleme Kipi"
@@ -4333,6 +4355,9 @@ msgstr "Kanada"
 msgid "Cancel"
 msgstr "İptal"
 
+msgid "Cancel / Close the software update screen"
+msgstr ""
+
 #, fuzzy
 msgid "Cancel any changed settings and exit"
 msgstr "Metin değişikliklerini iptal et ve çık"
@@ -4378,9 +4403,6 @@ msgstr "Kanal Seçimi"
 #, fuzzy
 msgid "Cancel the image selection and exit all menus"
 msgstr "Kanal Seçimi"
-
-msgid "Cancel the software update"
-msgstr ""
 
 msgid "Cancel the update"
 msgstr ""
@@ -4471,6 +4493,9 @@ msgstr "Çad"
 
 msgid "Chamorro"
 msgstr ""
+
+msgid "Change"
+msgstr "değiştir"
 
 msgid "Change Boxmode to control Hardware Chip Modes*"
 msgstr "Donanım Chip Modlarını kontrol etmek için Boxmode'u değiştirin *"
@@ -4703,9 +4728,6 @@ msgstr "Günlükler kontrol ediliyor..."
 #
 msgid "Checking filesystem..."
 msgstr "Dosya sistemi kontrol ediliyor..."
-
-msgid "Checking for Updates..."
-msgstr "Güncellemeler kontrol ediliyor..."
 
 msgid "Checking the internet connection"
 msgstr "İnternet bağlantısı kontrol ediliyor"
@@ -5164,6 +5186,15 @@ msgstr "Kurulum dosyası %s saklandı."
 msgctxt "Abbreviation of 'Configurable'"
 msgid "Configurable"
 msgstr "Yapılandırılıyor"
+
+#
+#, python-format
+msgid ""
+"Configuration file '%s' has been modified since it was installed, would you "
+"like to keep the modified version?"
+msgstr ""
+"Kurulumdan sonra (%s) yapılandırma dosyası değiştirilmiş.\n"
+"Kendi sürümünüzü saklamak istiyor musunuz?"
 
 msgid "Configuration mode"
 msgstr "Yapılandırma modu"
@@ -5946,9 +5977,6 @@ msgstr "%s %s .NFI besleme sunucusuna bağlanamıyor:"
 msgid "Could not connect to server"
 msgstr "Sunucuya bağlanılamadı"
 
-msgid "Could not find installed channel list."
-msgstr "Kurulmuş kanal listesi bulunamadı."
-
 msgid ""
 "Could not find suitable media - Please remove some downloaded images or "
 "insert a media (e.g. USB stick) with sufficient free space and try again!"
@@ -6125,6 +6153,9 @@ msgstr "Geçerli transponder"
 #
 msgid "Current value: "
 msgstr "Geçerli değer: "
+
+msgid "Current version unknown"
+msgstr ""
 
 #
 msgid "Current version:"
@@ -6855,6 +6886,13 @@ msgstr "Açıklama"
 msgid "Deselect"
 msgstr "Seçimi kaldır"
 
+#, python-format
+msgid ""
+"Deselected packages usually occur because those packaged are incompatible "
+"with existing packages.  While this is mostly harmless it is possible that "
+"your %s %s may experience issues."
+msgstr ""
+
 msgid "Details for plugin: "
 msgstr "Eklenti için detaylar: "
 
@@ -7318,11 +7356,6 @@ msgstr "Bu koleksiyonu oluşturmak istiyor musunuz?"
 msgid "Do you want to purge all locales/languages except %s?"
 msgstr ""
 
-#
-#, python-format
-msgid "Do you want to reboot your %s %s"
-msgstr "%s %s tekrar başlatmak istiyor musunuz"
-
 #, python-format
 msgid "Do you want to reboot your %s %s?"
 msgstr "%s %s alıcınızı yeniden başlatmak istiyor musunuz?"
@@ -7351,11 +7384,6 @@ msgid ""
 msgstr ""
 "Seçilmiş dosyaların tümünü göndermek istiyor musunuz:\n"
 "(Sadece geçerli dosyayı göndermek için 'Hayır' seçin .)"
-
-#
-#, python-format
-msgid "Do you want to update your %s %s ?"
-msgstr "%s %s güncellemek istiyor musunuz?"
 
 msgid "Do you want to update your box?"
 msgstr "Alıcıyı güncellemek istiyor musunuz?"
@@ -7982,6 +8010,9 @@ msgstr ""
 msgid "Enable this option to add keyboard keymap data to the debug log file."
 msgstr ""
 
+msgid "Enable this option to add opkg output data to the debug log file."
+msgstr ""
+
 msgid "Enable this option to add remote control data to the debug log file."
 msgstr ""
 
@@ -8269,9 +8300,6 @@ msgid ""
 msgstr ""
 "%s dizini oluşturulurken hata oluştu:\n"
 "%s"
-
-msgid "Error downloading change log."
-msgstr "Değişiklik günlüğünü indirme hatası."
 
 #, python-format
 msgid ""
@@ -8818,18 +8846,6 @@ msgstr ""
 
 msgid "Feed unstable!"
 msgstr ""
-
-msgid "Feeds status:   Stable"
-msgstr "Feed'ler durumu: Kararlı"
-
-msgid "Feeds status:   Unstable"
-msgstr "Feed'ler durumu: Kararsız"
-
-msgid "Feeds status:   Updating"
-msgstr "Feed'ler durumu: Güncelleniyor"
-
-msgid "Feeds status: Unexpected"
-msgstr "Yayın durumu: Beklenmeyen"
 
 msgid "Fetch EPG and update timers now"
 msgstr ""
@@ -10372,9 +10388,6 @@ msgstr "Image yedekleme"
 msgid "Image Information"
 msgstr "İmaj Bilgisi"
 
-msgid "Image Manager"
-msgstr "İmage Yöneticisi"
-
 msgid "Image Version"
 msgstr "Image sürümü"
 
@@ -10489,6 +10502,9 @@ msgstr "AIT http akımına dahil edilsin"
 #, fuzzy
 msgid "Include keyboard data"
 msgstr "Klavye veri girişi"
+
+msgid "Include opkg output data"
+msgstr ""
 
 #, fuzzy
 msgid "Include remote control data"
@@ -10719,6 +10735,9 @@ msgstr "Pikonları yükle"
 
 msgid "Install plugins"
 msgstr "Eklentileri yükle"
+
+msgid "Install/Remove plugin"
+msgstr ""
 
 #
 msgid "Installation finished."
@@ -12298,6 +12317,9 @@ msgstr "Bir sayfa aşağı taşı"
 msgid "Move down a page"
 msgstr "Bir sayfa aşağı taşı"
 
+msgid "Move down a page / screen"
+msgstr ""
+
 msgid "Move down a screen"
 msgstr ""
 
@@ -12410,6 +12432,9 @@ msgstr "Bir sayfa yukarı taşı"
 
 msgid "Move up a page"
 msgstr "Bir sayfa yukarı taşı"
+
+msgid "Move up a page / screen"
+msgstr ""
 
 msgid "Move up a screen"
 msgstr ""
@@ -13008,9 +13033,6 @@ msgstr "Kanal yok"
 msgid "No clients streaming"
 msgstr "İstemci akışı yok"
 
-msgid "No connection"
-msgstr "Bağlantı yok"
-
 #
 msgid ""
 "No data on transponder!\n"
@@ -13169,8 +13191,11 @@ msgstr ""
 msgid "No update required!"
 msgstr "Güncelleme gerekmez!"
 
-msgid "No updates available. Please try again later."
-msgstr "Güncelleme yok. Sonra tekrar deneyin."
+msgid "No updates available."
+msgstr ""
+
+msgid "No updates were available.  Please try again later."
+msgstr ""
 
 msgid "No valid region details were found"
 msgstr ""
@@ -13461,6 +13486,9 @@ msgstr "Tamam, güncelleme işleminde bana rehberlik yap"
 msgid "ONID"
 msgstr "ONID"
 
+msgid "OPKG clean mode"
+msgstr ""
+
 msgid "OSD"
 msgstr "OSD"
 
@@ -13559,9 +13587,6 @@ msgstr "Tek satır"
 
 msgid "Online software update"
 msgstr "Çevrimiçi yazılım güncelleme"
-
-msgid "OnlineVersionCheck"
-msgstr "ÇevrimiçiSürümKontrolü"
 
 #
 msgid "Only extensions."
@@ -13900,9 +13925,6 @@ msgstr "Paket listesi güncellemesi"
 msgid "Packaged locales only"
 msgstr "yerel Dosyaları yönet"
 
-msgid "Packages"
-msgstr "Paketler"
-
 msgid "Packages and associated locales"
 msgstr ""
 
@@ -14079,22 +14101,11 @@ msgstr "İlerleme çubuğu solda"
 msgid "Percentage/Progress bar right"
 msgstr "İlerleme çubuğu sağda"
 
-msgid "Perform a full image backup"
-msgstr "Tam imaj yedekle"
-
 msgid "Perform a image backup before updating."
 msgstr "Güncellemeden önce bir görüntü yedekleme yapın."
 
 msgid "Perform a setting backup before updating."
 msgstr "Güncellemeden önce bir ayar yedekleme yapın."
-
-msgid "Perform a settings backup,"
-msgstr "Ayar yedeği al,"
-
-msgid ""
-"Perform a settings backup, making a backup before updating is strongly "
-"advised."
-msgstr "Güncellemeden önce yedek almak kuvvetle öneriliyorsa, ayar yedeği al."
 
 msgid "Perform an on-line flash instead"
 msgstr ""
@@ -14951,6 +14962,9 @@ msgstr "Görsel arayüzü etkinleştirmek için OK tuşuna  basın."
 msgid "Press OK to activate the settings."
 msgstr "Ayarları onaylamak için OK tuşuna basın."
 
+msgid "Press OK to continue."
+msgstr ""
+
 #
 msgid "Press OK to edit the settings."
 msgstr "Ayarları düzenlemek için OK tuşuna basın."
@@ -15011,6 +15025,9 @@ msgstr ""
 #, python-format
 msgid "Press OK to use this locale.  [%s]"
 msgstr ""
+
+msgid "Press the menu button to set a general AC3/Dolby offset."
+msgstr "genel bir AC3 / Dolby ofseti ayarlamak için menü düğmesine basın"
 
 msgid ""
 "Press this button to emulate a long press on a button pressed afterwards "
@@ -15216,6 +15233,9 @@ msgstr "Eklenti tarayıcı koruması"
 #
 msgid "Protect services"
 msgstr "Hizmetleri koru"
+
+msgid "Protect software update screen"
+msgstr ""
 
 msgid "Protect standby menu"
 msgstr "Bekleme menüsü koruması"
@@ -15686,6 +15706,9 @@ msgstr ""
 "Lütfen %s %s yeniden başlayana kadar bekleyin\n"
 "Bu birkaç dakika sürebilir"
 
+msgid "Refresh"
+msgstr ""
+
 msgid "Refresh every (in hours)"
 msgstr "Her (saat) yenile"
 
@@ -15702,6 +15725,9 @@ msgstr "Yenileme hızı seçimi."
 
 msgid "Refresh screen"
 msgstr "Ekranı yenile"
+
+msgid "Refresh the update-able package list"
+msgstr ""
 
 msgid "Regard deep standby as standby"
 msgstr "Derin uykuyu, bekleme olarak kabul et"
@@ -15803,6 +15829,13 @@ msgstr "Kaldır"
 msgid "Remove Confirmation"
 msgstr "Silme Onayı"
 
+msgid "Remove Failed !!"
+msgstr ""
+
+#
+msgid "Remove Finished."
+msgstr "Kaldırma işlemi bitti."
+
 msgid "Remove Plugins"
 msgstr "Eklentileri Kaldır"
 
@@ -15841,10 +15874,6 @@ msgstr "Geçerli klasörü yer işaretlerinden kaldır"
 #
 msgid "Remove currently selected title"
 msgstr "Seçilen geçerli başlığı kaldır"
-
-#
-msgid "Remove Finished."
-msgstr "Kaldırma işlemi bitti."
 
 msgid "Remove hide VBI line for this service"
 msgstr "Bu hizmet için VBI hattını gizle"
@@ -16985,6 +17014,9 @@ msgstr "Kanal sesini seçin"
 #
 msgid "Select channel to record from"
 msgstr "Kaydın yapılacağı kanalı seçin"
+
+msgid "Select channels to add an offset to the volume."
+msgstr "sesi bir ofset eklemek için kanalları seçin"
 
 msgid "Select copy destination for:"
 msgstr "Kopya için hedef seçin:"
@@ -18474,6 +18506,9 @@ msgstr "Detaylı etkinlik bilgisi göster"
 msgid "Show detailed event info (setup in menu)"
 msgstr "Ayrıntılı etkinlik bilgilerini göster (menüde ayarlar)"
 
+msgid "Show development packages in opkg"
+msgstr ""
+
 msgid "Show directories first"
 msgstr "Önce dizinleri göster"
 
@@ -19178,9 +19213,6 @@ msgstr "Yazılım Yöneticisi"
 msgid "Software Manager Setup"
 msgstr "Yazılım Yöneticisi Kurulumu"
 
-msgid "Software Panel"
-msgstr "Yazılım Paneli"
-
 msgid "Software Update"
 msgstr "Yazılım Güncellemesi"
 
@@ -19198,9 +19230,10 @@ msgstr "Yazılım yöneticisi kurulumu"
 msgid "Software restore"
 msgstr "Yazılım geri yükleme"
 
-#
-msgid "Software update"
-msgstr "Yazılım güncelleme"
+msgid ""
+"Software update starting, please wait.\n"
+"\n"
+msgstr ""
 
 msgid "Softwaremanager information"
 msgstr "Yazılım yöneticisi bilgisi"
@@ -19255,13 +19288,6 @@ msgstr "Üzgünüz beslemeler bakım için kapalı"
 msgid "Sorry feeds are down for maintenance, please try again later."
 msgstr ""
 "Maalesef beslemeler bakım nedeniyle kapalı, lütfen daha sonra tekrar deneyin."
-
-msgid ""
-"Sorry feeds are down for maintenance, please try again later. If this issue "
-"persists please check www.opena.tv"
-msgstr ""
-"Maalesef beslemeler bakım nedeniyle kapalı, lütfen daha sonra tekrar "
-"deneyin. Bu sorun devam ederse, lütfen www.opena.tv adresini kontrol edin"
 
 msgid "Sorry no backups found!"
 msgstr "Ne yazık ki yedekleme bulunamadı!"
@@ -19622,6 +19648,9 @@ msgstr "Hatalı transponder sayısına ulaşıldığında bitir"
 #
 msgid "Stop testing plane after # successful transponders"
 msgstr "Başarılı transponder sayısına ulaşıldığında bitir"
+
+msgid "Stop the update, if running, then exit"
+msgstr ""
 
 msgid "Stop timer recording"
 msgstr "Kaydı durdur"
@@ -20445,9 +20474,6 @@ msgstr ""
 msgid "The command to wake from standby will be sent multiple times."
 msgstr ""
 
-msgid "The current update may be unstable"
-msgstr "Şimdiki güncelleme kararsız olabilir"
-
 msgid ""
 "The default backup selection cannot be changed.\n"
 "Please use the 'additional' and 'excluded' backup selection."
@@ -20821,6 +20847,10 @@ msgstr ""
 #
 msgid "This line is not editable!"
 msgstr "Bu satır düzenlenebilir değil!"
+
+msgid ""
+"This offset will only be used if the channel has not its own volume offset."
+msgstr "bu ofset sadece kanal kendi ses ofsetine sahip değilse kullanılır"
 
 msgid ""
 "This option allows to reduce the block-noise in the picture. Obviously this "
@@ -22244,13 +22274,8 @@ msgstr "Önbelleği güncelle"
 msgid "Update at your own risk"
 msgstr "Kendi riskinizde güncelleme yapın"
 
-msgid "Update channel list only"
-msgstr "Yalnızca kanal listesini güncelle"
-
-#, python-format
-msgid "Update completed, %d package was installed."
-msgid_plural "Update completed, %d packages were installed."
-msgstr[0] "Güncelleme bitti, %d paket yüklendi."
+msgid "Update completed."
+msgstr ""
 
 msgid "Update delay for Events in List"
 msgstr "Listedeki Etkinlikler için gecikmeyi güncelle"
@@ -22265,13 +22290,6 @@ msgstr ""
 #
 msgid "Update failed!"
 msgstr "Güncelleme başarısız oldu!"
-
-#
-#, python-format
-msgid "Update failed. Your %s %s does not have a working internet connection."
-msgstr ""
-"Güncelleme başarısız oldu. %s %s cihazınızın çalışan bir internet bağlantısı "
-"yok."
 
 #
 msgid "Update finished!"
@@ -22297,11 +22315,21 @@ msgstr ""
 msgid "Update/Backup/Restore your box"
 msgstr "Kutunuzu Güncelle / Yedekle / Geri Yükle"
 
+msgid "Updated"
+msgstr ""
+
+msgid "Updated version unknown"
+msgstr ""
+
 msgid "Updatefeed not available."
 msgstr "Güncelleme beslemesi yok."
 
 msgid "Updates available:"
 msgstr "Güncellemeler Mevcut:"
+
+#
+msgid "Updating"
+msgstr "Yükseltiliyor"
 
 msgid "Updating cache"
 msgstr "Önbellek güncelleniyor"
@@ -22318,9 +22346,6 @@ msgstr "Yazılım kataloğu güncelleniyor"
 
 msgid "Upgrade (Backup, Flash & Restore All)"
 msgstr "Yükseltme (Yedekleme, Flash ve Tümünü Geri Yükle)"
-
-msgid "Upgrade and reboot system"
-msgstr "Yükselt ve sistemi yeniden başlat"
 
 #
 msgid "Upgrade finished."
@@ -22339,9 +22364,8 @@ msgstr ""
 msgid "Upgrade with GUI"
 msgstr "Grafiksel arayüz ile yükseltme"
 
-#
-msgid "Updating"
-msgstr "Yükseltiliyor"
+msgid "Upgrading"
+msgstr ""
 
 msgid "Uphops +"
 msgstr "Uphops +"
@@ -23007,9 +23031,6 @@ msgstr "Fotoğraf izle..."
 msgid "View teletext..."
 msgstr "Teletext izle..."
 
-msgid "View the changes"
-msgstr "Değişiklikleri gör"
-
 #
 msgid "View video CD..."
 msgstr "VCD izle..."
@@ -23486,6 +23507,11 @@ msgstr ""
 "Etkinleştirildiğinde, http akışlarını izlemek için kimlik doğrulaması "
 "gereklidir."
 
+msgid ""
+"When enabled, before opkg update there will be opkg clean to make sure "
+"nothing ruine the update but only enable this when you can not update online."
+msgstr ""
+
 msgid "When enabled, channel numbering will start at '1' for each bouquet."
 msgstr ""
 "Etkinleştirildiğinde, her buket için kanal numaralandırma '1' de "
@@ -23628,6 +23654,11 @@ msgstr ""
 
 msgid "When enabled, use DHCP for the IP configuration."
 msgstr "Etkinleştirilince, İP yapılandırması için DHCP kullanılır."
+
+msgid ""
+"When enabled, you will see dev, staticdev, dbg, doc, src and po packages in "
+"opkg list."
+msgstr ""
 
 msgid ""
 "When enabled, your receiver will detect activity on the VCR SCART input."
@@ -24243,14 +24274,6 @@ msgstr ""
 
 #, python-format
 msgid ""
-"Your %s %s might be unusable now. Please consult the manual for further "
-"assistance before rebooting your %s %s."
-msgstr ""
-"%s %s nız kullanım dışı olabilir. %s %s nizi tekrar başlatmadan önce yardım "
-"için el kitabına bakın."
-
-#, python-format
-msgid ""
 "Your %s %s was not shutdown properly.\n"
 "\n"
 "Do you want to put it in %s?"
@@ -24419,6 +24442,12 @@ msgid ""
 msgstr ""
 "Alıcınız ton genliğini kullanabilir. Daha fazla bilgi için alıcınızın "
 "kullanım kılavuzuna bakın."
+
+#, python-format
+msgid ""
+"Your receiver might be unusable now.  Please consult the manual for further "
+"assistance before rebooting your %s %s."
+msgstr ""
 
 #
 msgid ""
@@ -24634,12 +24663,6 @@ msgstr "pip'yi etkinleştir"
 #, fuzzy
 msgid "active"
 msgstr "Etkisiz"
-
-msgid "Add Current"
-msgstr "geçerli ekle"
-
-msgid "Add Service"
-msgstr "servis ekle"
 
 #
 msgid "add alternatives"
@@ -24866,9 +24889,6 @@ msgstr "merkezli"
 
 msgid "centered, wrapped"
 msgstr "merkezli, sarılmış"
-
-msgid "Change"
-msgstr "değiştir"
 
 msgid "change Volume down"
 msgstr "sesi kısmak"
@@ -25450,9 +25470,6 @@ msgstr "dahili olarak ilmek"
 msgid "invalid type"
 msgstr "geçersiz tip"
 
-msgid "is strongly advised."
-msgstr "kuvvetle önerilir."
-
 msgid "jazz"
 msgstr "jazz"
 
@@ -25526,9 +25543,6 @@ msgstr "m2k"
 
 msgid "magazines/reports/documentary"
 msgstr "dergi/rapor/belgesel"
-
-msgid "making a backup before updating"
-msgstr "güncellemeden önce yedek almak"
 
 msgid "manage local Files"
 msgstr "yerel Dosyaları yönet"
@@ -25834,9 +25848,6 @@ msgstr "popüler kültür/geleneksel sanatlar"
 msgid "pre-school children's program"
 msgstr "okulöncesi çocuk programı"
 
-msgid "Press the menu button to set a general AC3/Dolby offset."
-msgstr "genel bir AC3 / Dolby ofseti ayarlamak için menü düğmesine basın"
-
 msgid "previous channel page"
 msgstr "önceki kanal sayfası"
 
@@ -26049,9 +26060,6 @@ msgstr "seç"
 #
 msgid "select CAId's"
 msgstr "cAId’leri seçin"
-
-msgid "Select channels to add an offset to the volume."
-msgstr "sesi bir ofset eklemek için kanalları seçin"
 
 #
 msgid "select menu entry"
@@ -26317,10 +26325,6 @@ msgstr "tenis/squash"
 msgid "this bouquet is protected by a parental control pin"
 msgstr "bu buket bir ebeveyn kontrol pimi tarafından korunmaktadır"
 
-msgid ""
-"This offset will only be used if the channel has not its own volume offset."
-msgstr "bu ofset sadece kanal kendi ses ofsetine sahip değilse kullanılır"
-
 #
 msgid "this recording"
 msgstr "bu kaydın"
@@ -26575,6 +26579,137 @@ msgstr "zap"
 
 msgid "®"
 msgstr ""
+
+#, python-format
+#~ msgid "%s updated package available"
+#~ msgid_plural "%s updated packages available"
+#~ msgstr[0] "%s güncel paket var"
+
+#, python-format
+#~ msgid ""
+#~ "A configuration file (%s) has been modified since it was installed.\n"
+#~ "Do you want to keep your modifications?"
+#~ msgstr ""
+#~ "Bir yapılandırma dosyası (%s) değiştirildi.\n"
+#~ "Değişikliklerinizi saklamak istiyor musunuz?"
+
+#, python-format
+#~ msgid "Are you sure you want to update your %s %s ?"
+#~ msgstr "%s %s güncellemek istediğinizden emin misiniz?"
+
+#~ msgid "Backup Manager"
+#~ msgstr "Yedekleme Yöneticisi"
+
+#~ msgid "Checking for Updates..."
+#~ msgstr "Güncellemeler kontrol ediliyor..."
+
+#~ msgid "Could not find installed channel list."
+#~ msgstr "Kurulmuş kanal listesi bulunamadı."
+
+#
+#, python-format
+#~ msgid "Do you want to reboot your %s %s"
+#~ msgstr "%s %s tekrar başlatmak istiyor musunuz"
+
+#
+#, python-format
+#~ msgid "Do you want to update your %s %s ?"
+#~ msgstr "%s %s güncellemek istiyor musunuz?"
+
+#~ msgid "Error downloading change log."
+#~ msgstr "Değişiklik günlüğünü indirme hatası."
+
+#~ msgid "Feeds status:   Stable"
+#~ msgstr "Feed'ler durumu: Kararlı"
+
+#~ msgid "Feeds status:   Unstable"
+#~ msgstr "Feed'ler durumu: Kararsız"
+
+#~ msgid "Feeds status:   Updating"
+#~ msgstr "Feed'ler durumu: Güncelleniyor"
+
+#~ msgid "Feeds status: Unexpected"
+#~ msgstr "Yayın durumu: Beklenmeyen"
+
+#~ msgid "Image Manager"
+#~ msgstr "İmage Yöneticisi"
+
+#~ msgid "No connection"
+#~ msgstr "Bağlantı yok"
+
+#~ msgid "No updates available. Please try again later."
+#~ msgstr "Güncelleme yok. Sonra tekrar deneyin."
+
+#~ msgid "OnlineVersionCheck"
+#~ msgstr "ÇevrimiçiSürümKontrolü"
+
+#~ msgid "Packages"
+#~ msgstr "Paketler"
+
+#~ msgid "Perform a full image backup"
+#~ msgstr "Tam imaj yedekle"
+
+#~ msgid "Perform a settings backup,"
+#~ msgstr "Ayar yedeği al,"
+
+#~ msgid ""
+#~ "Perform a settings backup, making a backup before updating is strongly "
+#~ "advised."
+#~ msgstr ""
+#~ "Güncellemeden önce yedek almak kuvvetle öneriliyorsa, ayar yedeği al."
+
+#~ msgid "Software Panel"
+#~ msgstr "Yazılım Paneli"
+
+#
+#~ msgid "Software update"
+#~ msgstr "Yazılım güncelleme"
+
+#~ msgid ""
+#~ "Sorry feeds are down for maintenance, please try again later. If this "
+#~ "issue persists please check www.opena.tv"
+#~ msgstr ""
+#~ "Maalesef beslemeler bakım nedeniyle kapalı, lütfen daha sonra tekrar "
+#~ "deneyin. Bu sorun devam ederse, lütfen www.opena.tv adresini kontrol edin"
+
+#~ msgid "The current update may be unstable"
+#~ msgstr "Şimdiki güncelleme kararsız olabilir"
+
+#~ msgid "Update channel list only"
+#~ msgstr "Yalnızca kanal listesini güncelle"
+
+#, python-format
+#~ msgid "Update completed, %d package was installed."
+#~ msgid_plural "Update completed, %d packages were installed."
+#~ msgstr[0] "Güncelleme bitti, %d paket yüklendi."
+
+#
+#, python-format
+#~ msgid ""
+#~ "Update failed. Your %s %s does not have a working internet connection."
+#~ msgstr ""
+#~ "Güncelleme başarısız oldu. %s %s cihazınızın çalışan bir internet "
+#~ "bağlantısı yok."
+
+#~ msgid "Upgrade and reboot system"
+#~ msgstr "Yükselt ve sistemi yeniden başlat"
+
+#~ msgid "View the changes"
+#~ msgstr "Değişiklikleri gör"
+
+#, python-format
+#~ msgid ""
+#~ "Your %s %s might be unusable now. Please consult the manual for further "
+#~ "assistance before rebooting your %s %s."
+#~ msgstr ""
+#~ "%s %s nız kullanım dışı olabilir. %s %s nizi tekrar başlatmadan önce "
+#~ "yardım için el kitabına bakın."
+
+#~ msgid "is strongly advised."
+#~ msgstr "kuvvetle önerilir."
+
+#~ msgid "making a backup before updating"
+#~ msgstr "güncellemeden önce yedek almak"
 
 #, python-format
 #~ msgid ""

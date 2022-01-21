@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-01-02 10:50+0000\n"
+"POT-Creation-Date: 2022-01-19 18:56+0000\n"
 "PO-Revision-Date: 2021-08-19 12:59+0000\n"
 "Last-Translator: openATV <openatv@gmail.com>\n"
 "Language-Team: Serbian <https://hosted.weblate.org/projects/openatv/"
@@ -1128,6 +1128,13 @@ msgstr[1] ""
 msgstr[2] ""
 
 #, python-format
+msgid "%d feed catalog package was updated."
+msgid_plural "%d feed catalog packages were updated."
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+
+#, python-format
 msgid "%d hour"
 msgid_plural "%d hours"
 msgstr[0] ""
@@ -1158,6 +1165,62 @@ msgstr ""
 #, fuzzy, python-format
 msgid "%d ms"
 msgstr "%d min"
+
+#, python-format
+msgid "%d package upgraded."
+msgid_plural "%d packages upgraded."
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+
+#, python-format
+msgid "%d package was configured."
+msgid_plural "%d packages were configured."
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+
+#, python-format
+msgid "%d package was deselected."
+msgid_plural "%d packages were deselected."
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+
+#, python-format
+msgid "%d package was downloaded."
+msgid_plural "%d packages were downloaded."
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+
+#, python-format
+msgid "%d package was identified for upgrade."
+msgid_plural "%d packages were identified for upgrade."
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+
+#, python-format
+msgid "%d package was installed."
+msgid_plural "%d packages were installed."
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+
+#, python-format
+msgid "%d package was removed."
+msgid_plural "%d packages were removed."
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+
+#, python-format
+msgid "%d package was upgraded."
+msgid_plural "%d packages were upgraded."
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
 
 #, python-format
 msgid "%d pixel wide"
@@ -1410,13 +1473,6 @@ msgstr "Fid ažuriranja nije dostupan."
 #, python-format
 msgid "%s successfully extracted."
 msgstr ""
-
-#, python-format
-msgid "%s updated package available"
-msgid_plural "%s updated packages available"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
 
 #
 #, fuzzy, python-format
@@ -2189,21 +2245,6 @@ msgid ""
 msgstr ""
 
 #, python-format
-msgid ""
-"A configuration file (%s) has been modified since it was installed.\n"
-"Do you want to keep your modifications?"
-msgstr ""
-
-#
-#, python-format
-msgid ""
-"Configuration file '%s' has been modified since it was installed, would you "
-"like to keep the modified version?"
-msgstr ""
-"Konfiguracioni fajl (%s) je promenjen posle instalacije.\n"
-"Želite li zadržati vašu verziju?"
-
-#, python-format
 msgid "A crashlog was %s created in '%s'"
 msgstr ""
 
@@ -2559,6 +2600,9 @@ msgstr "Dodaj"
 msgid "Add AutoTimer"
 msgstr ""
 
+msgid "Add Current"
+msgstr ""
+
 msgid "Add New Quad Channel Entry"
 msgstr ""
 
@@ -2566,6 +2610,9 @@ msgstr ""
 #, fuzzy
 msgid "Add Record Timer"
 msgstr "Dodaj Tajmer"
+
+msgid "Add Service"
+msgstr ""
 
 msgid "Add Timer"
 msgstr ""
@@ -3218,11 +3265,6 @@ msgstr ""
 msgid "Are you sure you want to send this log:\n"
 msgstr ""
 
-#
-#, fuzzy, python-format
-msgid "Are you sure you want to update your %s %s ?"
-msgstr "Da li ste sigurni da želite izaći iz ovog čarobnjaka?"
-
 msgid "Argentina"
 msgstr ""
 
@@ -3698,9 +3740,6 @@ msgid "Backup Location"
 msgstr ""
 
 msgid "Backup Log"
-msgstr ""
-
-msgid "Backup Manager"
 msgstr ""
 
 msgid "Backup Mode"
@@ -4411,6 +4450,9 @@ msgstr ""
 msgid "Cancel"
 msgstr "Odustani"
 
+msgid "Cancel / Close the software update screen"
+msgstr ""
+
 #
 #, fuzzy
 msgid "Cancel any changed settings and exit"
@@ -4457,9 +4499,6 @@ msgstr "Izbor kanala"
 #, fuzzy
 msgid "Cancel the image selection and exit all menus"
 msgstr "Izbor kanala"
-
-msgid "Cancel the software update"
-msgstr ""
 
 msgid "Cancel the update"
 msgstr ""
@@ -4552,6 +4591,9 @@ msgid "Chad"
 msgstr ""
 
 msgid "Chamorro"
+msgstr ""
+
+msgid "Change"
 msgstr ""
 
 msgid "Change Boxmode to control Hardware Chip Modes*"
@@ -4800,9 +4842,6 @@ msgstr ""
 #, fuzzy
 msgid "Checking filesystem..."
 msgstr "Kontrola sistema datoteka"
-
-msgid "Checking for Updates..."
-msgstr ""
 
 msgid "Checking the internet connection"
 msgstr ""
@@ -5236,6 +5275,15 @@ msgstr ""
 msgctxt "Abbreviation of 'Configurable'"
 msgid "Configurable"
 msgstr "Konfigurišem"
+
+#
+#, python-format
+msgid ""
+"Configuration file '%s' has been modified since it was installed, would you "
+"like to keep the modified version?"
+msgstr ""
+"Konfiguracioni fajl (%s) je promenjen posle instalacije.\n"
+"Želite li zadržati vašu verziju?"
 
 msgid "Configuration mode"
 msgstr ""
@@ -5918,9 +5966,6 @@ msgstr "Ne može se povezati na drimbox.NFI Imidž Feed Server"
 msgid "Could not connect to server"
 msgstr "Ne može se povezati na drimbox.NFI Imidž Feed Server"
 
-msgid "Could not find installed channel list."
-msgstr ""
-
 msgid ""
 "Could not find suitable media - Please remove some downloaded images or "
 "insert a media (e.g. USB stick) with sufficient free space and try again!"
@@ -6102,6 +6147,9 @@ msgstr "Trenutni transponder"
 #
 msgid "Current value: "
 msgstr "Trenutna vrednost:"
+
+msgid "Current version unknown"
+msgstr ""
 
 #
 msgid "Current version:"
@@ -6841,6 +6889,13 @@ msgstr "Opis"
 msgid "Deselect"
 msgstr "Deselektuj"
 
+#, python-format
+msgid ""
+"Deselected packages usually occur because those packaged are incompatible "
+"with existing packages.  While this is mostly harmless it is possible that "
+"your %s %s may experience issues."
+msgstr ""
+
 msgid "Details for plugin: "
 msgstr "Detalji dodatka:"
 
@@ -7297,11 +7352,6 @@ msgstr ""
 msgid "Do you want to purge all locales/languages except %s?"
 msgstr ""
 
-#
-#, fuzzy, python-format
-msgid "Do you want to reboot your %s %s"
-msgstr "Želite li vratiti vaše postavke iz sigurnosne kopije?"
-
 #, python-format
 msgid "Do you want to reboot your %s %s?"
 msgstr ""
@@ -7328,11 +7378,6 @@ msgid ""
 "Do you want to send all selected files:\n"
 "(choose 'No' to only send the currently selected file.)"
 msgstr ""
-
-#
-#, fuzzy, python-format
-msgid "Do you want to update your %s %s ?"
-msgstr "Želite li vratiti vaše postavke iz sigurnosne kopije?"
 
 msgid "Do you want to update your box?"
 msgstr ""
@@ -7956,6 +8001,9 @@ msgstr ""
 msgid "Enable this option to add keyboard keymap data to the debug log file."
 msgstr ""
 
+msgid "Enable this option to add opkg output data to the debug log file."
+msgstr ""
+
 msgid "Enable this option to add remote control data to the debug log file."
 msgstr ""
 
@@ -8212,9 +8260,6 @@ msgid ""
 "Error creating directory %s:\n"
 "%s"
 msgstr "Pravljenje direktorijuma %s nije uspelo"
-
-msgid "Error downloading change log."
-msgstr ""
 
 #, python-format
 msgid ""
@@ -8760,18 +8805,6 @@ msgid "Feed stable."
 msgstr ""
 
 msgid "Feed unstable!"
-msgstr ""
-
-msgid "Feeds status:   Stable"
-msgstr ""
-
-msgid "Feeds status:   Unstable"
-msgstr ""
-
-msgid "Feeds status:   Updating"
-msgstr ""
-
-msgid "Feeds status: Unexpected"
 msgstr ""
 
 msgid "Fetch EPG and update timers now"
@@ -10285,9 +10318,6 @@ msgstr ""
 msgid "Image Information"
 msgstr ""
 
-msgid "Image Manager"
-msgstr ""
-
 msgid "Image Version"
 msgstr ""
 
@@ -10393,6 +10423,9 @@ msgstr ""
 #, fuzzy
 msgid "Include keyboard data"
 msgstr "Mapa tastature"
+
+msgid "Include opkg output data"
+msgstr ""
 
 #
 #, fuzzy
@@ -10634,6 +10667,9 @@ msgid "Install picons on"
 msgstr ""
 
 msgid "Install plugins"
+msgstr ""
+
+msgid "Install/Remove plugin"
 msgstr ""
 
 #
@@ -12272,6 +12308,9 @@ msgstr "Pokreći na zapad"
 msgid "Move down a page"
 msgstr ""
 
+msgid "Move down a page / screen"
+msgstr ""
+
 msgid "Move down a screen"
 msgstr ""
 
@@ -12385,6 +12424,9 @@ msgid "Move up a line"
 msgstr "Pokreći na istok"
 
 msgid "Move up a page"
+msgstr ""
+
+msgid "Move up a page / screen"
 msgstr ""
 
 msgid "Move up a screen"
@@ -13012,9 +13054,6 @@ msgstr "Kanal"
 msgid "No clients streaming"
 msgstr ""
 
-msgid "No connection"
-msgstr ""
-
 #
 msgid ""
 "No data on transponder!\n"
@@ -13176,7 +13215,10 @@ msgstr ""
 msgid "No update required!"
 msgstr ""
 
-msgid "No updates available. Please try again later."
+msgid "No updates available."
+msgstr ""
+
+msgid "No updates were available.  Please try again later."
 msgstr ""
 
 msgid "No valid region details were found"
@@ -13468,6 +13510,9 @@ msgstr "OK, vodi me kroz postupak nadogradnje"
 msgid "ONID"
 msgstr "ONID"
 
+msgid "OPKG clean mode"
+msgstr ""
+
 msgid "OSD"
 msgstr ""
 
@@ -13567,9 +13612,6 @@ msgid "One line"
 msgstr ""
 
 msgid "Online software update"
-msgstr ""
-
-msgid "OnlineVersionCheck"
 msgstr ""
 
 #
@@ -13911,9 +13953,6 @@ msgstr "Nadogradnja liste paketa"
 msgid "Packaged locales only"
 msgstr ""
 
-msgid "Packages"
-msgstr ""
-
 msgid "Packages and associated locales"
 msgstr ""
 
@@ -14103,21 +14142,10 @@ msgstr ""
 msgid "Percentage/Progress bar right"
 msgstr "Kružna desna"
 
-msgid "Perform a full image backup"
-msgstr ""
-
 msgid "Perform a image backup before updating."
 msgstr ""
 
 msgid "Perform a setting backup before updating."
-msgstr ""
-
-msgid "Perform a settings backup,"
-msgstr ""
-
-msgid ""
-"Perform a settings backup, making a backup before updating is strongly "
-"advised."
 msgstr ""
 
 msgid "Perform an on-line flash instead"
@@ -14994,6 +15022,9 @@ msgstr "Pritisnite OK za aktiviranje izabrane maske."
 msgid "Press OK to activate the settings."
 msgstr "Pritisnite OK za aktiviranje postavki."
 
+msgid "Press OK to continue."
+msgstr ""
+
 #
 msgid "Press OK to edit the settings."
 msgstr "Pritisnite OK da uredite postavke."
@@ -15055,6 +15086,9 @@ msgstr ""
 
 #, python-format
 msgid "Press OK to use this locale.  [%s]"
+msgstr ""
+
+msgid "Press the menu button to set a general AC3/Dolby offset."
 msgstr ""
 
 msgid ""
@@ -15251,6 +15285,9 @@ msgstr ""
 #
 msgid "Protect services"
 msgstr "Zaštiti kanale"
+
+msgid "Protect software update screen"
+msgstr ""
 
 msgid "Protect standby menu"
 msgstr ""
@@ -15735,6 +15772,9 @@ msgid ""
 "This may take a few minutes"
 msgstr ""
 
+msgid "Refresh"
+msgstr ""
+
 msgid "Refresh every (in hours)"
 msgstr ""
 
@@ -15754,6 +15794,9 @@ msgstr "Izbor vremena osvežavanja"
 #, fuzzy
 msgid "Refresh screen"
 msgstr "Izbor vremena osvežavanja"
+
+msgid "Refresh the update-able package list"
+msgstr ""
 
 msgid "Regard deep standby as standby"
 msgstr ""
@@ -15851,6 +15894,13 @@ msgstr "Ukloniti"
 msgid "Remove Confirmation"
 msgstr "Konfiguracija tjunera"
 
+msgid "Remove Failed !!"
+msgstr ""
+
+#
+msgid "Remove Finished."
+msgstr "Uklanjanje završeno."
+
 msgid "Remove Plugins"
 msgstr ""
 
@@ -15895,10 +15945,6 @@ msgstr ""
 #
 msgid "Remove currently selected title"
 msgstr "Ukloni trenutno odabrani titl"
-
-#
-msgid "Remove Finished."
-msgstr "Uklanjanje završeno."
 
 msgid "Remove hide VBI line for this service"
 msgstr ""
@@ -17061,6 +17107,9 @@ msgstr "Odaberite kanal za snimanje od"
 #
 msgid "Select channel to record from"
 msgstr "Odaberite kanal za snimanje od"
+
+msgid "Select channels to add an offset to the volume."
+msgstr ""
 
 msgid "Select copy destination for:"
 msgstr ""
@@ -18466,6 +18515,9 @@ msgstr ""
 msgid "Show detailed event info (setup in menu)"
 msgstr ""
 
+msgid "Show development packages in opkg"
+msgstr ""
+
 msgid "Show directories first"
 msgstr ""
 
@@ -19221,9 +19273,6 @@ msgstr ""
 msgid "Software Manager Setup"
 msgstr ""
 
-msgid "Software Panel"
-msgstr ""
-
 msgid "Software Update"
 msgstr ""
 
@@ -19241,9 +19290,10 @@ msgstr "Podešavanje upravljača softvera"
 msgid "Software restore"
 msgstr "Vraćanje softvera"
 
-#
-msgid "Software update"
-msgstr "Nadogradnja softvera"
+msgid ""
+"Software update starting, please wait.\n"
+"\n"
+msgstr ""
 
 msgid "Softwaremanager information"
 msgstr "Informacije upravljača softvera"
@@ -19295,11 +19345,6 @@ msgid "Sorry feeds are down for maintenance"
 msgstr ""
 
 msgid "Sorry feeds are down for maintenance, please try again later."
-msgstr ""
-
-msgid ""
-"Sorry feeds are down for maintenance, please try again later. If this issue "
-"persists please check www.opena.tv"
 msgstr ""
 
 msgid "Sorry no backups found!"
@@ -19667,6 +19712,9 @@ msgstr "Zaustavite testiranje matrice posle # neuspešnih transpondera"
 #
 msgid "Stop testing plane after # successful transponders"
 msgstr "Zaustavite testiranje matrice posle#uspelih transpondera"
+
+msgid "Stop the update, if running, then exit"
+msgstr ""
 
 #
 #, fuzzy
@@ -20472,9 +20520,6 @@ msgstr ""
 msgid "The command to wake from standby will be sent multiple times."
 msgstr ""
 
-msgid "The current update may be unstable"
-msgstr ""
-
 msgid ""
 "The default backup selection cannot be changed.\n"
 "Please use the 'additional' and 'excluded' backup selection."
@@ -20824,6 +20869,10 @@ msgstr ""
 #, fuzzy
 msgid "This line is not editable!"
 msgstr "Ovaj dodatak nije instaliran."
+
+msgid ""
+"This offset will only be used if the channel has not its own volume offset."
+msgstr ""
 
 msgid ""
 "This option allows to reduce the block-noise in the picture. Obviously this "
@@ -22189,15 +22238,8 @@ msgstr ""
 msgid "Update at your own risk"
 msgstr ""
 
-msgid "Update channel list only"
+msgid "Update completed."
 msgstr ""
-
-#, python-format
-msgid "Update completed, %d package was installed."
-msgid_plural "Update completed, %d packages were installed."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
 
 msgid "Update delay for Events in List"
 msgstr ""
@@ -22211,15 +22253,6 @@ msgstr ""
 #, fuzzy
 msgid "Update failed!"
 msgstr "Upisivanje nije uspelo!"
-
-#
-#, fuzzy, python-format
-msgid "Update failed. Your %s %s does not have a working internet connection."
-msgstr ""
-"Vaš drimboks je sada spreman za upotrebu.\n"
-"\n"
-"Vaša internet veza sada radi.\n"
-"\n"
 
 #
 #, fuzzy
@@ -22243,12 +22276,22 @@ msgstr ""
 msgid "Update/Backup/Restore your box"
 msgstr ""
 
+msgid "Updated"
+msgstr ""
+
+msgid "Updated version unknown"
+msgstr ""
+
 #
 msgid "Updatefeed not available."
 msgstr "Fid ažuriranja nije dostupan."
 
 msgid "Updates available:"
 msgstr ""
+
+#
+msgid "Updating"
+msgstr "Nadograđujem"
 
 #
 #, fuzzy
@@ -22268,9 +22311,6 @@ msgstr "Ažuriranje kataloga softvera"
 msgid "Upgrade (Backup, Flash & Restore All)"
 msgstr ""
 
-msgid "Upgrade and reboot system"
-msgstr ""
-
 #
 msgid "Upgrade finished."
 msgstr "Nadogradnja završena."
@@ -22285,9 +22325,8 @@ msgstr ""
 msgid "Upgrade with GUI"
 msgstr ""
 
-#
-msgid "Updating"
-msgstr "Nadograđujem"
+msgid "Upgrading"
+msgstr ""
 
 msgid "Uphops +"
 msgstr ""
@@ -22942,9 +22981,6 @@ msgstr "Vidi fotografije..."
 msgid "View teletext..."
 msgstr "Pregled teleteksta..."
 
-msgid "View the changes"
-msgstr ""
-
 #
 #, fuzzy
 msgid "View video CD..."
@@ -23382,6 +23418,11 @@ msgstr ""
 msgid "When enabled, authentication is required to watch http streams."
 msgstr ""
 
+msgid ""
+"When enabled, before opkg update there will be opkg clean to make sure "
+"nothing ruine the update but only enable this when you can not update online."
+msgstr ""
+
 msgid "When enabled, channel numbering will start at '1' for each bouquet."
 msgstr ""
 
@@ -23493,6 +23534,11 @@ msgid ""
 msgstr ""
 
 msgid "When enabled, use DHCP for the IP configuration."
+msgstr ""
+
+msgid ""
+"When enabled, you will see dev, staticdev, dbg, doc, src and po packages in "
+"opkg list."
 msgstr ""
 
 msgid ""
@@ -24064,12 +24110,6 @@ msgstr ""
 
 #, python-format
 msgid ""
-"Your %s %s might be unusable now. Please consult the manual for further "
-"assistance before rebooting your %s %s."
-msgstr ""
-
-#, python-format
-msgid ""
 "Your %s %s was not shutdown properly.\n"
 "\n"
 "Do you want to put it in %s?"
@@ -24204,6 +24244,12 @@ msgstr ""
 msgid ""
 "Your receiver can use tone amplitude. Consult your receiver's manual for "
 "more information."
+msgstr ""
+
+#, python-format
+msgid ""
+"Your receiver might be unusable now.  Please consult the manual for further "
+"assistance before rebooting your %s %s."
 msgstr ""
 
 #
@@ -24417,12 +24463,6 @@ msgid "activatePiP"
 msgstr ""
 
 msgid "active"
-msgstr ""
-
-msgid "Add Current"
-msgstr ""
-
-msgid "Add Service"
 msgstr ""
 
 #
@@ -24651,9 +24691,6 @@ msgid "centered"
 msgstr ""
 
 msgid "centered, wrapped"
-msgstr ""
-
-msgid "Change"
 msgstr ""
 
 msgid "change Volume down"
@@ -25235,9 +25272,6 @@ msgstr ""
 msgid "invalid type"
 msgstr ""
 
-msgid "is strongly advised."
-msgstr ""
-
 msgid "jazz"
 msgstr ""
 
@@ -25310,9 +25344,6 @@ msgid "m2k"
 msgstr ""
 
 msgid "magazines/reports/documentary"
-msgstr ""
-
-msgid "making a backup before updating"
 msgstr ""
 
 msgid "manage local Files"
@@ -25629,9 +25660,6 @@ msgstr ""
 msgid "pre-school children's program"
 msgstr ""
 
-msgid "Press the menu button to set a general AC3/Dolby offset."
-msgstr ""
-
 msgid "previous channel page"
 msgstr ""
 
@@ -25842,9 +25870,6 @@ msgstr "Izaberite"
 #
 msgid "select CAId's"
 msgstr "Izaberite CAId-e"
-
-msgid "Select channels to add an offset to the volume."
-msgstr ""
 
 #
 msgid "select menu entry"
@@ -26116,10 +26141,6 @@ msgstr ""
 msgid "this bouquet is protected by a parental control pin"
 msgstr ""
 
-msgid ""
-"This offset will only be used if the channel has not its own volume offset."
-msgstr ""
-
 #
 msgid "this recording"
 msgstr "ovo snimanje"
@@ -26379,6 +26400,35 @@ msgstr "prebačen"
 
 msgid "®"
 msgstr ""
+
+#
+#, fuzzy, python-format
+#~ msgid "Are you sure you want to update your %s %s ?"
+#~ msgstr "Da li ste sigurni da želite izaći iz ovog čarobnjaka?"
+
+#
+#, fuzzy, python-format
+#~ msgid "Do you want to reboot your %s %s"
+#~ msgstr "Želite li vratiti vaše postavke iz sigurnosne kopije?"
+
+#
+#, fuzzy, python-format
+#~ msgid "Do you want to update your %s %s ?"
+#~ msgstr "Želite li vratiti vaše postavke iz sigurnosne kopije?"
+
+#
+#~ msgid "Software update"
+#~ msgstr "Nadogradnja softvera"
+
+#
+#, fuzzy, python-format
+#~ msgid ""
+#~ "Update failed. Your %s %s does not have a working internet connection."
+#~ msgstr ""
+#~ "Vaš drimboks je sada spreman za upotrebu.\n"
+#~ "\n"
+#~ "Vaša internet veza sada radi.\n"
+#~ "\n"
 
 #
 #~ msgid "no"

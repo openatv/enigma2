@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Italian translation\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-01-02 10:50+0000\n"
+"POT-Creation-Date: 2022-01-19 18:56+0000\n"
 "PO-Revision-Date: 2019-09-01 14:09+0100\n"
 "Last-Translator: Massimo Bambi - Insanity\n"
 "Language-Team: Massimo Bambi <maxbambi@libero.it>\n"
@@ -1071,6 +1071,12 @@ msgstr[0] ""
 msgstr[1] ""
 
 #, python-format
+msgid "%d feed catalog package was updated."
+msgid_plural "%d feed catalog packages were updated."
+msgstr[0] ""
+msgstr[1] ""
+
+#, python-format
 msgid "%d hour"
 msgid_plural "%d hours"
 msgstr[0] "%d ora"
@@ -1097,6 +1103,54 @@ msgstr "%d minuti"
 #, python-format
 msgid "%d ms"
 msgstr "%d ms"
+
+#, python-format
+msgid "%d package upgraded."
+msgid_plural "%d packages upgraded."
+msgstr[0] ""
+msgstr[1] ""
+
+#, python-format
+msgid "%d package was configured."
+msgid_plural "%d packages were configured."
+msgstr[0] ""
+msgstr[1] ""
+
+#, python-format
+msgid "%d package was deselected."
+msgid_plural "%d packages were deselected."
+msgstr[0] ""
+msgstr[1] ""
+
+#, python-format
+msgid "%d package was downloaded."
+msgid_plural "%d packages were downloaded."
+msgstr[0] ""
+msgstr[1] ""
+
+#, python-format
+msgid "%d package was identified for upgrade."
+msgid_plural "%d packages were identified for upgrade."
+msgstr[0] ""
+msgstr[1] ""
+
+#, python-format
+msgid "%d package was installed."
+msgid_plural "%d packages were installed."
+msgstr[0] ""
+msgstr[1] ""
+
+#, python-format
+msgid "%d package was removed."
+msgid_plural "%d packages were removed."
+msgstr[0] ""
+msgstr[1] ""
+
+#, python-format
+msgid "%d package was upgraded."
+msgid_plural "%d packages were upgraded."
+msgstr[0] ""
+msgstr[1] ""
 
 #, python-format
 msgid "%d pixel wide"
@@ -1328,12 +1382,6 @@ msgstr "%s non disponibile."
 #, python-format
 msgid "%s successfully extracted."
 msgstr "%s estratto con successo."
-
-#, python-format
-msgid "%s updated package available"
-msgid_plural "%s updated packages available"
-msgstr[0] "%s aggiornamento disponibile"
-msgstr[1] "%s aggiornamenti disponibili"
 
 #, python-format
 msgid "%s%d min"
@@ -2061,22 +2109,6 @@ msgstr ""
 "Un aggiornamento in background è in corso, attendi qualche minuto e riprova."
 
 #, python-format
-msgid ""
-"A configuration file (%s) has been modified since it was installed.\n"
-"Do you want to keep your modifications?"
-msgstr ""
-"Un file di configurazione originale (%s) è stato modificato:\n"
-"Mantenere le proprie modifiche?"
-
-#, python-format
-msgid ""
-"Configuration file '%s' has been modified since it was installed, would you "
-"like to keep the modified version?"
-msgstr ""
-"Un file di configurazione (%s) è stato modificato.\n"
-"Mantenere la propria versione?"
-
-#, python-format
 msgid "A crashlog was %s created in '%s'"
 msgstr "Un log del crash %s è stato creato in '%s'"
 
@@ -2409,11 +2441,17 @@ msgstr "Aggiungi"
 msgid "Add AutoTimer"
 msgstr "Aggiungi Auto Timer"
 
+msgid "Add Current"
+msgstr "aggiungi attuale"
+
 msgid "Add New Quad Channel Entry"
 msgstr "Aggiungi una nuova voce di un canale quad"
 
 msgid "Add Record Timer"
 msgstr "Aggiungi timer di registrazione"
+
+msgid "Add Service"
+msgstr "aggiungi servizio"
 
 msgid "Add Timer"
 msgstr "Aggiungi Timer"
@@ -3025,10 +3063,6 @@ msgstr "Sei sicuro di voler salvare la cache EPG in:\n"
 msgid "Are you sure you want to send this log:\n"
 msgstr "Sei sicuro di voler inviare questo log:\n"
 
-#, python-format
-msgid "Are you sure you want to update your %s %s ?"
-msgstr "Sei sicuro di voler aggiornare il tuo %s %s ?"
-
 msgid "Argentina"
 msgstr "Argentina"
 
@@ -3450,9 +3484,6 @@ msgstr "Percorso Backup"
 
 msgid "Backup Log"
 msgstr "Log di backup"
-
-msgid "Backup Manager"
-msgstr "Gestione Backup"
 
 msgid "Backup Mode"
 msgstr "Modalità Backup"
@@ -4138,6 +4169,9 @@ msgstr "Canada"
 msgid "Cancel"
 msgstr "Annulla"
 
+msgid "Cancel / Close the software update screen"
+msgstr ""
+
 #, fuzzy
 msgid "Cancel any changed settings and exit"
 msgstr "Annulla ogni cambiamento del testo ed esci"
@@ -4177,9 +4211,6 @@ msgstr "Lista canali"
 #, fuzzy
 msgid "Cancel the image selection and exit all menus"
 msgstr "Lista canali"
-
-msgid "Cancel the software update"
-msgstr ""
 
 msgid "Cancel the update"
 msgstr ""
@@ -4266,6 +4297,9 @@ msgstr "Ciad"
 
 msgid "Chamorro"
 msgstr ""
+
+msgid "Change"
+msgstr "cambia"
 
 msgid "Change Boxmode to control Hardware Chip Modes*"
 msgstr "Cambia Boxmode (Hardware Chip Modes)*"
@@ -4478,9 +4512,6 @@ msgstr "Controllo logs..."
 
 msgid "Checking filesystem..."
 msgstr "Verifica filesystem in corso..."
-
-msgid "Checking for Updates..."
-msgstr "Controllo aggiornamenti..."
 
 msgid "Checking the internet connection"
 msgstr "Verificare la connessione internet"
@@ -4910,6 +4941,14 @@ msgstr "Configurazione %s salvata."
 msgctxt "Abbreviation of 'Configurable'"
 msgid "Configurable"
 msgstr "Configurazione in corso..."
+
+#, python-format
+msgid ""
+"Configuration file '%s' has been modified since it was installed, would you "
+"like to keep the modified version?"
+msgstr ""
+"Un file di configurazione (%s) è stato modificato.\n"
+"Mantenere la propria versione?"
 
 msgid "Configuration mode"
 msgstr "Modalità di configurazione"
@@ -5678,9 +5717,6 @@ msgstr "Impossibile collegarsi al server Immagini %s %s:"
 msgid "Could not connect to server"
 msgstr "Impossibile connettersi al server"
 
-msgid "Could not find installed channel list."
-msgstr "Impossibile trovare l'elenco dei canali installati."
-
 msgid ""
 "Could not find suitable media - Please remove some downloaded images or "
 "insert a media (e.g. USB stick) with sufficient free space and try again!"
@@ -5846,6 +5882,9 @@ msgstr "Transponder attuale"
 
 msgid "Current value: "
 msgstr "Valore attuale: "
+
+msgid "Current version unknown"
+msgstr ""
 
 msgid "Current version:"
 msgstr "Versione attuale:"
@@ -6539,6 +6578,13 @@ msgstr "Descrizione"
 msgid "Deselect"
 msgstr "Deseleziona"
 
+#, python-format
+msgid ""
+"Deselected packages usually occur because those packaged are incompatible "
+"with existing packages.  While this is mostly harmless it is possible that "
+"your %s %s may experience issues."
+msgstr ""
+
 msgid "Details for plugin: "
 msgstr "Dettagli per il plugin: "
 
@@ -6963,10 +7009,6 @@ msgid "Do you want to purge all locales/languages except %s?"
 msgstr ""
 
 #, python-format
-msgid "Do you want to reboot your %s %s"
-msgstr "Si desidera riavviare il %s %s"
-
-#, python-format
 msgid "Do you want to reboot your %s %s?"
 msgstr "Riavviare il %s %s adesso?"
 
@@ -6991,10 +7033,6 @@ msgid ""
 msgstr ""
 "Si desidera inviare i files selezionati:\n"
 "(scegliere 'No' per inviare solo il file selezionato.)"
-
-#, python-format
-msgid "Do you want to update your %s %s ?"
-msgstr "Si desidera aggiornare il %s %s ?"
 
 msgid "Do you want to update your box?"
 msgstr "Si desidera aggiornare il decoder? "
@@ -7586,6 +7624,9 @@ msgstr ""
 msgid "Enable this option to add keyboard keymap data to the debug log file."
 msgstr ""
 
+msgid "Enable this option to add opkg output data to the debug log file."
+msgstr ""
+
 msgid "Enable this option to add remote control data to the debug log file."
 msgstr ""
 
@@ -7864,9 +7905,6 @@ msgid ""
 msgstr ""
 "Errore durante la creazione della directory %s:\n"
 "%s"
-
-msgid "Error downloading change log."
-msgstr "Errore durante il download del changelog."
 
 #, python-format
 msgid ""
@@ -8370,18 +8408,6 @@ msgstr ""
 
 msgid "Feed unstable!"
 msgstr ""
-
-msgid "Feeds status:   Stable"
-msgstr "Stato Feeds:   STABILE"
-
-msgid "Feeds status:   Unstable"
-msgstr "Stato Feeds:   INSTABILE"
-
-msgid "Feeds status:   Updating"
-msgstr "Stato Feeds:   AGGIORNATO"
-
-msgid "Feeds status: Unexpected"
-msgstr "Stato Feeds: INATTESO"
 
 msgid "Fetch EPG and update timers now"
 msgstr ""
@@ -9860,9 +9886,6 @@ msgstr "Backup immagine"
 msgid "Image Information"
 msgstr "Info dell'immagine"
 
-msgid "Image Manager"
-msgstr "Gestione dell'immagine"
-
 msgid "Image Version"
 msgstr "Versione dell'immagine"
 
@@ -9975,6 +9998,9 @@ msgstr "Includi AIT nei flussi http"
 #, fuzzy
 msgid "Include keyboard data"
 msgstr "Tastiera (inserimento dati)"
+
+msgid "Include opkg output data"
+msgstr ""
 
 #, fuzzy
 msgid "Include remote control data"
@@ -10188,6 +10214,9 @@ msgstr "Installare picons su"
 
 msgid "Install plugins"
 msgstr "Installare plugins"
+
+msgid "Install/Remove plugin"
+msgstr ""
 
 msgid "Installation finished."
 msgstr "Installazione terminata."
@@ -11662,6 +11691,9 @@ msgstr "Sposta verso il basso della pagina"
 msgid "Move down a page"
 msgstr "Sposta verso il basso della pagina"
 
+msgid "Move down a page / screen"
+msgstr ""
+
 msgid "Move down a screen"
 msgstr ""
 
@@ -11769,6 +11801,9 @@ msgstr "Spostare su la pagina"
 
 msgid "Move up a page"
 msgstr "Spostare su la pagina"
+
+msgid "Move up a page / screen"
+msgstr ""
 
 msgid "Move up a screen"
 msgstr ""
@@ -12317,9 +12352,6 @@ msgstr "Nessun canale"
 msgid "No clients streaming"
 msgstr "Nessun client in streaming"
 
-msgid "No connection"
-msgstr "Connessione assente"
-
 msgid ""
 "No data on transponder!\n"
 "(Timeout reading PAT)"
@@ -12457,8 +12489,11 @@ msgstr ""
 msgid "No update required!"
 msgstr "Nessun aggiornamento richiesto!"
 
-msgid "No updates available. Please try again later."
-msgstr "Nessun aggiornamento disponibile. Riprova più tardi."
+msgid "No updates available."
+msgstr ""
+
+msgid "No updates were available.  Please try again later."
+msgstr ""
 
 msgid "No valid region details were found"
 msgstr ""
@@ -12727,6 +12762,9 @@ msgstr "OK, guidami attraverso il processo di aggiornamento"
 msgid "ONID"
 msgstr "ONID"
 
+msgid "OPKG clean mode"
+msgstr ""
+
 msgid "OSD"
 msgstr "OSD"
 
@@ -12822,9 +12860,6 @@ msgstr "Una riga"
 
 msgid "Online software update"
 msgstr "Aggiornamento software online"
-
-msgid "OnlineVersionCheck"
-msgstr "ControlloVersioneOnline"
 
 msgid "Only extensions."
 msgstr "Solo estensioni."
@@ -13154,9 +13189,6 @@ msgstr "Aggiornamento elenco pacchetti"
 msgid "Packaged locales only"
 msgstr "gestire i file locali"
 
-msgid "Packages"
-msgstr "Pacchetti"
-
 msgid "Packages and associated locales"
 msgstr ""
 
@@ -13322,24 +13354,11 @@ msgstr "Barra avanzamento a sinistra"
 msgid "Percentage/Progress bar right"
 msgstr "Barra avanzamento a destra"
 
-msgid "Perform a full image backup"
-msgstr "Eseguire un backup completo dell'immagine"
-
 msgid "Perform a image backup before updating."
 msgstr "Eseguire un backup immagine prima di aggiornare."
 
 msgid "Perform a setting backup before updating."
 msgstr "Eseguire backup impostazioni prima di aggiornare."
-
-msgid "Perform a settings backup,"
-msgstr "Esegui un backup delle impostazioni,"
-
-msgid ""
-"Perform a settings backup, making a backup before updating is strongly "
-"advised."
-msgstr ""
-"È fortemente consigliato eseguire un backup delle configurazioni prima di "
-"aggiornare."
 
 msgid "Perform an on-line flash instead"
 msgstr ""
@@ -14115,6 +14134,9 @@ msgstr "OK -> attivare la skin selezionata."
 msgid "Press OK to activate the settings."
 msgstr "OK -> attivare configurazione."
 
+msgid "Press OK to continue."
+msgstr ""
+
 msgid "Press OK to edit the settings."
 msgstr "OK -> modificare la configurazione."
 
@@ -14167,6 +14189,9 @@ msgstr ""
 #, python-format
 msgid "Press OK to use this locale.  [%s]"
 msgstr ""
+
+msgid "Press the menu button to set a general AC3/Dolby offset."
+msgstr "MENU -> per normalizzare AC3/Dolby"
 
 msgid ""
 "Press this button to emulate a long press on a button pressed afterwards "
@@ -14366,6 +14391,9 @@ msgstr "Proteggere l'elenco plugin"
 
 msgid "Protect services"
 msgstr "Proteggere canali"
+
+msgid "Protect software update screen"
+msgstr ""
 
 msgid "Protect standby menu"
 msgstr "Proteggere il menu di standby"
@@ -14804,6 +14832,9 @@ msgstr ""
 "Attendere il riavvio del %s %s\n"
 "Ci vorranno pochi minuti..."
 
+msgid "Refresh"
+msgstr ""
+
 msgid "Refresh every (in hours)"
 msgstr "Aggiorna ogni (in ore)"
 
@@ -14818,6 +14849,9 @@ msgstr "Selezione frequenza di aggiornamento."
 
 msgid "Refresh screen"
 msgstr "Aggiorna lo schermo"
+
+msgid "Refresh the update-able package list"
+msgstr ""
 
 msgid "Regard deep standby as standby"
 msgstr "Considera spegnimento come standby"
@@ -14916,6 +14950,12 @@ msgstr "Rimuovere"
 msgid "Remove Confirmation"
 msgstr "Conferma elimina"
 
+msgid "Remove Failed !!"
+msgstr ""
+
+msgid "Remove Finished."
+msgstr "Rimozione terminata."
+
 msgid "Remove Plugins"
 msgstr "Rimuovi plugin"
 
@@ -14948,9 +14988,6 @@ msgstr "Rimuovi la cartella corrente dai preferiti"
 
 msgid "Remove currently selected title"
 msgstr "Rimuovere il titolo selezionato"
-
-msgid "Remove Finished."
-msgstr "Rimozione terminata."
 
 msgid "Remove hide VBI line for this service"
 msgstr "Rendi visibile la linea VBI per questo canale"
@@ -16010,6 +16047,9 @@ msgstr "Seleziona canale audio"
 
 msgid "Select channel to record from"
 msgstr "Seleziona il canale di registrazione"
+
+msgid "Select channels to add an offset to the volume."
+msgstr "scegliere i canali per i quali si desidera normalizzare l’audio"
 
 msgid "Select copy destination for:"
 msgstr "Seleziona destinazione di copia per:"
@@ -17466,6 +17506,9 @@ msgstr "Mostra informazioni dettagliate evento"
 msgid "Show detailed event info (setup in menu)"
 msgstr "Mostra le informazioni dettagliate del programma (setup nel menu)"
 
+msgid "Show development packages in opkg"
+msgstr ""
+
 msgid "Show directories first"
 msgstr "Mostra prima le cartelle"
 
@@ -18123,9 +18166,6 @@ msgstr "Gestione software"
 msgid "Software Manager Setup"
 msgstr "Impostazioni software manager"
 
-msgid "Software Panel"
-msgstr "Pannello del software"
-
 msgid "Software Update"
 msgstr "Aggiornamento Software"
 
@@ -18141,8 +18181,10 @@ msgstr "Impostazioni software manager"
 msgid "Software restore"
 msgstr "Ripristino software"
 
-msgid "Software update"
-msgstr "Aggiornamento software"
+msgid ""
+"Software update starting, please wait.\n"
+"\n"
+msgstr ""
 
 msgid "Softwaremanager information"
 msgstr "Informazioni su gestione software"
@@ -18194,13 +18236,6 @@ msgstr "Spiacente, i feed sono giù per manutenzione"
 
 msgid "Sorry feeds are down for maintenance, please try again later."
 msgstr "Spiacente, i feed sono giù per manutenzione, riprova più tardi."
-
-msgid ""
-"Sorry feeds are down for maintenance, please try again later. If this issue "
-"persists please check www.opena.tv"
-msgstr ""
-"Spiacente, i feed sono giù per manutenzione, riprovare più tardi. Se questo "
-"problema persiste, controlla www.opena.tv"
 
 msgid "Sorry no backups found!"
 msgstr "Spiacente, nessun Backup trovato!"
@@ -18533,6 +18568,9 @@ msgstr "Arrestare il test dopo # transponder falliti"
 
 msgid "Stop testing plane after # successful transponders"
 msgstr "Arrestare il test dopo # transponder controllati correttamente"
+
+msgid "Stop the update, if running, then exit"
+msgstr ""
 
 msgid "Stop timer recording"
 msgstr "Arrestare la registrazione con timer"
@@ -19318,9 +19356,6 @@ msgstr ""
 msgid "The command to wake from standby will be sent multiple times."
 msgstr ""
 
-msgid "The current update may be unstable"
-msgstr "L’aggiornamento potrebbe essere instabile"
-
 msgid ""
 "The default backup selection cannot be changed.\n"
 "Please use the 'additional' and 'excluded' backup selection."
@@ -19687,6 +19722,12 @@ msgstr ""
 
 msgid "This line is not editable!"
 msgstr "Questa linea non è modificabile!"
+
+msgid ""
+"This offset will only be used if the channel has not its own volume offset."
+msgstr ""
+"questo offset verrà utilizzato solo se il canale non ha un proprio offset di "
+"volume"
 
 msgid ""
 "This option allows to reduce the block-noise in the picture. Obviously this "
@@ -21056,14 +21097,8 @@ msgstr "Aggiorna cache"
 msgid "Update at your own risk"
 msgstr "Aggiorna a tuo rischio"
 
-msgid "Update channel list only"
-msgstr "Aggiornamento solo lista canali"
-
-#, python-format
-msgid "Update completed, %d package was installed."
-msgid_plural "Update completed, %d packages were installed."
-msgstr[0] "Aggiornamento completato, il pacchetto %d è stato installato ."
-msgstr[1] "Aggiornamento completato, i pacchetti %d sono stati installati."
+msgid "Update completed."
+msgstr ""
 
 msgid "Update delay for Events in List"
 msgstr "Intervallo di aggiornamento per i programmi in elenco"
@@ -21077,11 +21112,6 @@ msgstr ""
 
 msgid "Update failed!"
 msgstr "Aggiornamento fallito!"
-
-#, python-format
-msgid "Update failed. Your %s %s does not have a working internet connection."
-msgstr ""
-"Aggiornamento fallito. Il tuo %s %s non ha una connessione internet attiva."
 
 msgid "Update finished!"
 msgstr "Aggiornamento finito!"
@@ -21105,11 +21135,20 @@ msgstr "Aggiorna o Crea/Ripristina backup del firmware o delle configurazioni"
 msgid "Update/Backup/Restore your box"
 msgstr "Aggiornamento / Backup / Ripristino"
 
+msgid "Updated"
+msgstr ""
+
+msgid "Updated version unknown"
+msgstr ""
+
 msgid "Updatefeed not available."
 msgstr "Feed aggiornamenti non disponibile."
 
 msgid "Updates available:"
 msgstr "Aggiornamenti disponibili:"
+
+msgid "Updating"
+msgstr "Aggiornamento in corso"
 
 msgid "Updating cache"
 msgstr "Aggiornamento cache"
@@ -21125,9 +21164,6 @@ msgstr "Aggiornamento catalogo software in corso"
 
 msgid "Upgrade (Backup, Flash & Restore All)"
 msgstr "Aggiorna (Backup, flash e ripristina tutto)"
-
-msgid "Upgrade and reboot system"
-msgstr "Aggiorna e riavvia il sistema"
 
 msgid "Upgrade finished."
 msgstr "Aggiornamento terminato!"
@@ -21145,8 +21181,8 @@ msgstr ""
 msgid "Upgrade with GUI"
 msgstr "Aggiorna con la GUI"
 
-msgid "Updating"
-msgstr "Aggiornamento in corso"
+msgid "Upgrading"
+msgstr ""
 
 msgid "Uphops +"
 msgstr "Uphops +"
@@ -21763,9 +21799,6 @@ msgstr "Visualizzare foto..."
 msgid "View teletext..."
 msgstr "Guarda il televideo"
 
-msgid "View the changes"
-msgstr "Visualizza modifiche"
-
 msgid "View video CD..."
 msgstr "Riprodurre CD video..."
 
@@ -22217,6 +22250,11 @@ msgstr ""
 "Se abilitata, è richiesta l'autenticazione per guardare i canali in stream "
 "http."
 
+msgid ""
+"When enabled, before opkg update there will be opkg clean to make sure "
+"nothing ruine the update but only enable this when you can not update online."
+msgstr ""
+
 msgid "When enabled, channel numbering will start at '1' for each bouquet."
 msgstr "Se abilitata, la numerazione dei canali inizia da 1 per ogni bouquet."
 
@@ -22368,6 +22406,11 @@ msgstr ""
 
 msgid "When enabled, use DHCP for the IP configuration."
 msgstr "Se abilitata, utilizza DHCP per la configurazione IP."
+
+msgid ""
+"When enabled, you will see dev, staticdev, dbg, doc, src and po packages in "
+"opkg list."
+msgstr ""
 
 msgid ""
 "When enabled, your receiver will detect activity on the VCR SCART input."
@@ -22954,14 +22997,6 @@ msgstr ""
 
 #, python-format
 msgid ""
-"Your %s %s might be unusable now. Please consult the manual for further "
-"assistance before rebooting your %s %s."
-msgstr ""
-"Il %s %s potrebbe risultare ora inutilizzabile. Consultare il manuale per "
-"ulteriori informazioni prima di riavviare il %s %s."
-
-#, python-format
-msgid ""
 "Your %s %s was not shutdown properly.\n"
 "\n"
 "Do you want to put it in %s?"
@@ -23125,6 +23160,12 @@ msgid ""
 msgstr ""
 "Il tuo decoder può utilizzare l'amplificazione del segnale. Consulta il tuo "
 "manuale del decoder per maggiori informazioni."
+
+#, python-format
+msgid ""
+"Your receiver might be unusable now.  Please consult the manual for further "
+"assistance before rebooting your %s %s."
+msgstr ""
 
 msgid ""
 "Your wireless LAN internet connection could not be started!\n"
@@ -23326,12 +23367,6 @@ msgstr "attivare PiP"
 #, fuzzy
 msgid "active"
 msgstr "Inattivo"
-
-msgid "Add Current"
-msgstr "aggiungi attuale"
-
-msgid "Add Service"
-msgstr "aggiungi servizio"
 
 msgid "add alternatives"
 msgstr "aggiungere alternative"
@@ -23539,9 +23574,6 @@ msgstr "centrato"
 
 msgid "centered, wrapped"
 msgstr "centrato, avvolto"
-
-msgid "Change"
-msgstr "cambia"
 
 msgid "change Volume down"
 msgstr "cambia Volume giù"
@@ -24076,9 +24108,6 @@ msgstr "collegato internamente con"
 msgid "invalid type"
 msgstr "carattere non valido"
 
-msgid "is strongly advised."
-msgstr "è fortemente consigliato."
-
 msgid "jazz"
 msgstr "jazz"
 
@@ -24145,9 +24174,6 @@ msgstr "m2k"
 
 msgid "magazines/reports/documentary"
 msgstr "riviste / reports / documentari"
-
-msgid "making a backup before updating"
-msgstr "fare un backup prima di aggiornare"
 
 msgid "manage local Files"
 msgstr "gestire i file locali"
@@ -24417,9 +24443,6 @@ msgstr "cultura popolare / arti tradizionali"
 msgid "pre-school children's program"
 msgstr "Bambini in età prescolare"
 
-msgid "Press the menu button to set a general AC3/Dolby offset."
-msgstr "MENU -> per normalizzare AC3/Dolby"
-
 msgid "previous channel page"
 msgstr "pagina canale precedente"
 
@@ -24607,9 +24630,6 @@ msgstr "Selezionare"
 
 msgid "select CAId's"
 msgstr "selezionare CAId's"
-
-msgid "Select channels to add an offset to the volume."
-msgstr "scegliere i canali per i quali si desidera normalizzare l’audio"
 
 msgid "select menu entry"
 msgstr "selezionare voce menu"
@@ -24855,12 +24875,6 @@ msgstr "tennis/squash"
 msgid "this bouquet is protected by a parental control pin"
 msgstr "questo bouquet è protetto dal controllo genitori"
 
-msgid ""
-"This offset will only be used if the channel has not its own volume offset."
-msgstr ""
-"questo offset verrà utilizzato solo se il canale non ha un proprio offset di "
-"volume"
-
 msgid "this recording"
 msgstr "questa registrazione"
 
@@ -25097,6 +25111,136 @@ msgstr "zapping"
 
 msgid "®"
 msgstr ""
+
+#, python-format
+#~ msgid "%s updated package available"
+#~ msgid_plural "%s updated packages available"
+#~ msgstr[0] "%s aggiornamento disponibile"
+#~ msgstr[1] "%s aggiornamenti disponibili"
+
+#, python-format
+#~ msgid ""
+#~ "A configuration file (%s) has been modified since it was installed.\n"
+#~ "Do you want to keep your modifications?"
+#~ msgstr ""
+#~ "Un file di configurazione originale (%s) è stato modificato:\n"
+#~ "Mantenere le proprie modifiche?"
+
+#, python-format
+#~ msgid "Are you sure you want to update your %s %s ?"
+#~ msgstr "Sei sicuro di voler aggiornare il tuo %s %s ?"
+
+#~ msgid "Backup Manager"
+#~ msgstr "Gestione Backup"
+
+#~ msgid "Checking for Updates..."
+#~ msgstr "Controllo aggiornamenti..."
+
+#~ msgid "Could not find installed channel list."
+#~ msgstr "Impossibile trovare l'elenco dei canali installati."
+
+#, python-format
+#~ msgid "Do you want to reboot your %s %s"
+#~ msgstr "Si desidera riavviare il %s %s"
+
+#, python-format
+#~ msgid "Do you want to update your %s %s ?"
+#~ msgstr "Si desidera aggiornare il %s %s ?"
+
+#~ msgid "Error downloading change log."
+#~ msgstr "Errore durante il download del changelog."
+
+#~ msgid "Feeds status:   Stable"
+#~ msgstr "Stato Feeds:   STABILE"
+
+#~ msgid "Feeds status:   Unstable"
+#~ msgstr "Stato Feeds:   INSTABILE"
+
+#~ msgid "Feeds status:   Updating"
+#~ msgstr "Stato Feeds:   AGGIORNATO"
+
+#~ msgid "Feeds status: Unexpected"
+#~ msgstr "Stato Feeds: INATTESO"
+
+#~ msgid "Image Manager"
+#~ msgstr "Gestione dell'immagine"
+
+#~ msgid "No connection"
+#~ msgstr "Connessione assente"
+
+#~ msgid "No updates available. Please try again later."
+#~ msgstr "Nessun aggiornamento disponibile. Riprova più tardi."
+
+#~ msgid "OnlineVersionCheck"
+#~ msgstr "ControlloVersioneOnline"
+
+#~ msgid "Packages"
+#~ msgstr "Pacchetti"
+
+#~ msgid "Perform a full image backup"
+#~ msgstr "Eseguire un backup completo dell'immagine"
+
+#~ msgid "Perform a settings backup,"
+#~ msgstr "Esegui un backup delle impostazioni,"
+
+#~ msgid ""
+#~ "Perform a settings backup, making a backup before updating is strongly "
+#~ "advised."
+#~ msgstr ""
+#~ "È fortemente consigliato eseguire un backup delle configurazioni prima di "
+#~ "aggiornare."
+
+#~ msgid "Software Panel"
+#~ msgstr "Pannello del software"
+
+#~ msgid "Software update"
+#~ msgstr "Aggiornamento software"
+
+#~ msgid ""
+#~ "Sorry feeds are down for maintenance, please try again later. If this "
+#~ "issue persists please check www.opena.tv"
+#~ msgstr ""
+#~ "Spiacente, i feed sono giù per manutenzione, riprovare più tardi. Se "
+#~ "questo problema persiste, controlla www.opena.tv"
+
+#~ msgid "The current update may be unstable"
+#~ msgstr "L’aggiornamento potrebbe essere instabile"
+
+#~ msgid "Update channel list only"
+#~ msgstr "Aggiornamento solo lista canali"
+
+#, python-format
+#~ msgid "Update completed, %d package was installed."
+#~ msgid_plural "Update completed, %d packages were installed."
+#~ msgstr[0] "Aggiornamento completato, il pacchetto %d è stato installato ."
+#~ msgstr[1] "Aggiornamento completato, i pacchetti %d sono stati installati."
+
+#, python-format
+#~ msgid ""
+#~ "Update failed. Your %s %s does not have a working internet connection."
+#~ msgstr ""
+#~ "Aggiornamento fallito. Il tuo %s %s non ha una connessione internet "
+#~ "attiva."
+
+#~ msgid "Upgrade and reboot system"
+#~ msgstr "Aggiorna e riavvia il sistema"
+
+#~ msgid "View the changes"
+#~ msgstr "Visualizza modifiche"
+
+#, python-format
+#~ msgid ""
+#~ "Your %s %s might be unusable now. Please consult the manual for further "
+#~ "assistance before rebooting your %s %s."
+#~ msgstr ""
+#~ "Il %s %s potrebbe risultare ora inutilizzabile. Consultare il manuale per "
+#~ "ulteriori informazioni prima di riavviare il %s %s."
+
+#~ msgid "is strongly advised."
+#~ msgstr "è fortemente consigliato."
+
+#~ msgid "making a backup before updating"
+#~ msgstr "fare un backup prima di aggiornare"
 
 #, python-format
 #~ msgid ""

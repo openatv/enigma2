@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: hu_po v3.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-01-02 10:50+0000\n"
+"POT-Creation-Date: 2022-01-19 18:56+0000\n"
 "PO-Revision-Date: 2021-12-27 15:52+0000\n"
 "Last-Translator: f3rr31 <5920873@disroot.org>\n"
 "Language-Team: Hungarian <https://hosted.weblate.org/projects/openatv/"
@@ -1075,6 +1075,12 @@ msgstr[0] ""
 msgstr[1] ""
 
 #, python-format
+msgid "%d feed catalog package was updated."
+msgid_plural "%d feed catalog packages were updated."
+msgstr[0] ""
+msgstr[1] ""
+
+#, python-format
 msgid "%d hour"
 msgid_plural "%d hours"
 msgstr[0] "%d óra"
@@ -1101,6 +1107,54 @@ msgstr "%d perc"
 #, python-format
 msgid "%d ms"
 msgstr "%d ms"
+
+#, python-format
+msgid "%d package upgraded."
+msgid_plural "%d packages upgraded."
+msgstr[0] ""
+msgstr[1] ""
+
+#, python-format
+msgid "%d package was configured."
+msgid_plural "%d packages were configured."
+msgstr[0] ""
+msgstr[1] ""
+
+#, python-format
+msgid "%d package was deselected."
+msgid_plural "%d packages were deselected."
+msgstr[0] ""
+msgstr[1] ""
+
+#, python-format
+msgid "%d package was downloaded."
+msgid_plural "%d packages were downloaded."
+msgstr[0] ""
+msgstr[1] ""
+
+#, python-format
+msgid "%d package was identified for upgrade."
+msgid_plural "%d packages were identified for upgrade."
+msgstr[0] ""
+msgstr[1] ""
+
+#, python-format
+msgid "%d package was installed."
+msgid_plural "%d packages were installed."
+msgstr[0] ""
+msgstr[1] ""
+
+#, python-format
+msgid "%d package was removed."
+msgid_plural "%d packages were removed."
+msgstr[0] ""
+msgstr[1] ""
+
+#, python-format
+msgid "%d package was upgraded."
+msgid_plural "%d packages were upgraded."
+msgstr[0] ""
+msgstr[1] ""
 
 #, python-format
 msgid "%d pixel wide"
@@ -1332,12 +1386,6 @@ msgstr "%s nem elérhető."
 #, python-format
 msgid "%s successfully extracted."
 msgstr "%s sikeresen kicsomagolva."
-
-#, python-format
-msgid "%s updated package available"
-msgid_plural "%s updated packages available"
-msgstr[0] "%s frissítés elérhető"
-msgstr[1] "%s frissítések elérhetők"
 
 #, python-format
 msgid "%s%d min"
@@ -2053,22 +2101,6 @@ msgstr ""
 "és próbálkozzon újra."
 
 #, python-format
-msgid ""
-"A configuration file (%s) has been modified since it was installed.\n"
-"Do you want to keep your modifications?"
-msgstr ""
-"A telepítés óta a (%s) konfigurációs fájl módosítva lett.\n"
-"Meg akarja tartani az Ön verzióját?"
-
-#, python-format
-msgid ""
-"Configuration file '%s' has been modified since it was installed, would you "
-"like to keep the modified version?"
-msgstr ""
-"A telepítés óta a (%s) konfigurációs fájl módosítva lett.\n"
-"Meg akarja tartani az Ön verzióját?"
-
-#, python-format
 msgid "A crashlog was %s created in '%s'"
 msgstr "Összeomlási napló %s létrehozva a '%s'"
 
@@ -2399,11 +2431,17 @@ msgstr "Hozzáadás"
 msgid "Add AutoTimer"
 msgstr "AutoTimer hozzáadása"
 
+msgid "Add Current"
+msgstr "aktuális hozzáadása"
+
 msgid "Add New Quad Channel Entry"
 msgstr "Új négy csatornás bejegyzés hozzáadása"
 
 msgid "Add Record Timer"
 msgstr "Felvétel időzítő hozzáadása"
+
+msgid "Add Service"
+msgstr "csatorna hozzáadása"
 
 msgid "Add Timer"
 msgstr "Időzítés"
@@ -3017,10 +3055,6 @@ msgstr "Biztosan menteni szeretné az EPG gyorsítórbat:\n"
 msgid "Are you sure you want to send this log:\n"
 msgstr "Biztos benne, hogy elküldi ezt a naplót:\n"
 
-#, python-format
-msgid "Are you sure you want to update your %s %s ?"
-msgstr "Biztos benne, hogy frissíteni szeretné %s %s ?"
-
 msgid "Argentina"
 msgstr "Argentína"
 
@@ -3437,9 +3471,6 @@ msgstr "Mentés helye"
 
 msgid "Backup Log"
 msgstr "Mentési napló"
-
-msgid "Backup Manager"
-msgstr "Mentéskezelő"
 
 msgid "Backup Mode"
 msgstr "Mentési mód"
@@ -4126,6 +4157,9 @@ msgstr "Kanada"
 msgid "Cancel"
 msgstr "Mégse"
 
+msgid "Cancel / Close the software update screen"
+msgstr ""
+
 #, fuzzy
 msgid "Cancel any changed settings and exit"
 msgstr "Szövegmódosítás visszavonása és kilépés"
@@ -4165,9 +4199,6 @@ msgstr "Kijelölés visszavonása"
 #, fuzzy
 msgid "Cancel the image selection and exit all menus"
 msgstr "Kijelölés visszavonása"
-
-msgid "Cancel the software update"
-msgstr ""
 
 msgid "Cancel the update"
 msgstr ""
@@ -4253,6 +4284,9 @@ msgstr "Csád"
 
 msgid "Chamorro"
 msgstr ""
+
+msgid "Change"
+msgstr "módosít"
 
 msgid "Change Boxmode to control Hardware Chip Modes*"
 msgstr "A Boxmode megváltoztatása a Hardware Chip Modes vezérléséhez *"
@@ -4465,9 +4499,6 @@ msgstr "Naplók ellenőrzése ..."
 
 msgid "Checking filesystem..."
 msgstr "Fájlrendszer ellenőrzése..."
-
-msgid "Checking for Updates..."
-msgstr "Frissítések keresése..."
 
 msgid "Checking the internet connection"
 msgstr "Internetkapcsolat ellenőrzése"
@@ -4905,6 +4936,14 @@ msgstr "%s konfigurációs fájl mentve."
 msgctxt "Abbreviation of 'Configurable'"
 msgid "Configurable"
 msgstr "Konfigurálás"
+
+#, python-format
+msgid ""
+"Configuration file '%s' has been modified since it was installed, would you "
+"like to keep the modified version?"
+msgstr ""
+"A telepítés óta a (%s) konfigurációs fájl módosítva lett.\n"
+"Meg akarja tartani az Ön verzióját?"
 
 msgid "Configuration mode"
 msgstr "Konfigurációs mód"
@@ -5677,9 +5716,6 @@ msgstr "Nem lehet csatlakozni a(z) %s %s .NFI Image feed szerverhez:"
 msgid "Could not connect to server"
 msgstr "Nem lehet kapcsolódni a kiszolgálóhoz"
 
-msgid "Could not find installed channel list."
-msgstr "Nem található telepített csatornalista."
-
 msgid ""
 "Could not find suitable media - Please remove some downloaded images or "
 "insert a media (e.g. USB stick) with sufficient free space and try again!"
@@ -5843,6 +5879,9 @@ msgstr "Aktuális transzponder"
 
 msgid "Current value: "
 msgstr "Aktuális érték: "
+
+msgid "Current version unknown"
+msgstr ""
 
 msgid "Current version:"
 msgstr "Aktuális verzió:"
@@ -6531,6 +6570,13 @@ msgstr "Leírás"
 msgid "Deselect"
 msgstr "Kijelölés törlése"
 
+#, python-format
+msgid ""
+"Deselected packages usually occur because those packaged are incompatible "
+"with existing packages.  While this is mostly harmless it is possible that "
+"your %s %s may experience issues."
+msgstr ""
+
 msgid "Details for plugin: "
 msgstr "Bővítmény részletei: "
 
@@ -6955,10 +7001,6 @@ msgid "Do you want to purge all locales/languages except %s?"
 msgstr ""
 
 #, python-format
-msgid "Do you want to reboot your %s %s"
-msgstr "Szeretné újraindítani a(z) %s %s"
-
-#, python-format
 msgid "Do you want to reboot your %s %s?"
 msgstr "Szeretné újraindítani a(z) %s %s készüléket?"
 
@@ -6983,10 +7025,6 @@ msgid ""
 msgstr ""
 "Szeretné elküldeni az összes kiválasztott fájlt:\n"
 "(válassza a 'Nem' lehetőséget csak a kiválasztott fájl elküldéséhez.)"
-
-#, python-format
-msgid "Do you want to update your %s %s ?"
-msgstr "Biztos benne, hogy frissíteni szeretné %s %s ?"
 
 msgid "Do you want to update your box?"
 msgstr "Szeretné frissíteni a készülék szoftverét?"
@@ -7574,6 +7612,9 @@ msgstr ""
 msgid "Enable this option to add keyboard keymap data to the debug log file."
 msgstr ""
 
+msgid "Enable this option to add opkg output data to the debug log file."
+msgstr ""
+
 msgid "Enable this option to add remote control data to the debug log file."
 msgstr ""
 
@@ -7846,9 +7887,6 @@ msgid ""
 msgstr ""
 "Hiba a(z) %s könyvtár létrehozásakor:\n"
 "%s"
-
-msgid "Error downloading change log."
-msgstr "Hiba a változásnapló letöltése közben."
 
 #, python-format
 msgid ""
@@ -8353,18 +8391,6 @@ msgstr ""
 
 msgid "Feed unstable!"
 msgstr ""
-
-msgid "Feeds status:   Stable"
-msgstr "Folyamat státusza:   Stabil"
-
-msgid "Feeds status:   Unstable"
-msgstr "Folyamat státusza:   Instabil"
-
-msgid "Feeds status:   Updating"
-msgstr "Folyamat státusza:   Frissítés alatt"
-
-msgid "Feeds status: Unexpected"
-msgstr "Feeds állapota: Váratlan"
 
 msgid "Fetch EPG and update timers now"
 msgstr "EPG lekérése és időzítők frissítése"
@@ -9847,9 +9873,6 @@ msgstr "Lemezkép Mentés"
 msgid "Image Information"
 msgstr "Lemezkép Információ"
 
-msgid "Image Manager"
-msgstr "Lemezkép kezelő"
-
 msgid "Image Version"
 msgstr "Lemezkép verziója"
 
@@ -9969,6 +9992,9 @@ msgstr "Legyen AIT a HTTP jelfolyamba"
 #, fuzzy
 msgid "Include keyboard data"
 msgstr "Billentyűzet adatbevitele"
+
+msgid "Include opkg output data"
+msgstr ""
 
 #, fuzzy
 msgid "Include remote control data"
@@ -10181,6 +10207,9 @@ msgstr "Pikonok telepítése ide"
 
 msgid "Install plugins"
 msgstr "Bővítmények telepítése"
+
+msgid "Install/Remove plugin"
+msgstr ""
 
 msgid "Installation finished."
 msgstr "Telepítés kész."
@@ -11630,6 +11659,9 @@ msgstr "Lépjen le egy sorral"
 msgid "Move down a page"
 msgstr "Ugrás a következő lapra"
 
+msgid "Move down a page / screen"
+msgstr ""
+
 msgid "Move down a screen"
 msgstr ""
 
@@ -11736,6 +11768,9 @@ msgstr "Feljebb lép egy sorral"
 
 msgid "Move up a page"
 msgstr "Ugrás a előző lapra"
+
+msgid "Move up a page / screen"
+msgstr ""
 
 msgid "Move up a screen"
 msgstr ""
@@ -12271,9 +12306,6 @@ msgstr "Nincs csatorna"
 msgid "No clients streaming"
 msgstr "Nincsenek streamelő kliensek"
 
-msgid "No connection"
-msgstr "Nincs kapcsolat"
-
 msgid ""
 "No data on transponder!\n"
 "(Timeout reading PAT)"
@@ -12408,8 +12440,11 @@ msgstr ""
 msgid "No update required!"
 msgstr "Nincs elérhető frissítés!"
 
-msgid "No updates available. Please try again later."
-msgstr "Nincs elérhető frissítés. Kérem, próbálja meg később."
+msgid "No updates available."
+msgstr ""
+
+msgid "No updates were available.  Please try again later."
+msgstr ""
 
 msgid "No valid region details were found"
 msgstr "Nem található érvényes régiórészlet"
@@ -12679,6 +12714,9 @@ msgstr "OK, vezessen végig a frissítési folyamaton"
 msgid "ONID"
 msgstr "ONID"
 
+msgid "OPKG clean mode"
+msgstr ""
+
 msgid "OSD"
 msgstr "OSD"
 
@@ -12775,9 +12813,6 @@ msgstr "Egy sor"
 
 msgid "Online software update"
 msgstr "Online szoftverfrissítés"
-
-msgid "OnlineVersionCheck"
-msgstr "Online Verzió Ellenőrzés"
 
 msgid "Only extensions."
 msgstr "Csak bővítmények."
@@ -13113,9 +13148,6 @@ msgstr "Csomaglista frissítés"
 msgid "Packaged locales only"
 msgstr "helyi fájlok kezelése"
 
-msgid "Packages"
-msgstr "Csomagok"
-
 msgid "Packages and associated locales"
 msgstr ""
 
@@ -13277,24 +13309,11 @@ msgstr "Százalék/Végrehajtási sáv balra"
 msgid "Percentage/Progress bar right"
 msgstr "Százalék/folyamatjelző sáv jobbra"
 
-msgid "Perform a full image backup"
-msgstr "Végezze el a teljes lemezkép biztonsági mentését"
-
 msgid "Perform a image backup before updating."
 msgstr "Végezze el a lemezkép biztonsági mentését a frissítés előtt."
 
 msgid "Perform a setting backup before updating."
 msgstr "Végezze el a beállítások mentését a frissítés előtt."
-
-msgid "Perform a settings backup,"
-msgstr "Végezze el a beállítások mentését,"
-
-msgid ""
-"Perform a settings backup, making a backup before updating is strongly "
-"advised."
-msgstr ""
-"Végezze el a beállítások mentését, és a frissítés előtt készítsen biztonsági "
-"mentést."
 
 msgid "Perform an on-line flash instead"
 msgstr ""
@@ -14088,6 +14107,9 @@ msgstr "Nyomja le az OK gombot az új kinézet (Skin) aktiválásához."
 msgid "Press OK to activate the settings."
 msgstr "Az OK gombbal aktiválhatja a beállításokat."
 
+msgid "Press OK to continue."
+msgstr ""
+
 msgid "Press OK to edit the settings."
 msgstr "Az OK gombbal módosíthatja a beállításokat."
 
@@ -14142,6 +14164,10 @@ msgstr ""
 #, python-format
 msgid "Press OK to use this locale.  [%s]"
 msgstr ""
+
+msgid "Press the menu button to set a general AC3/Dolby offset."
+msgstr ""
+"nyomja meg a menü gombokat, hogy beállítsa az általános AC3/Dolby eltolásokat"
 
 msgid ""
 "Press this button to emulate a long press on a button pressed afterwards "
@@ -14336,6 +14362,9 @@ msgstr "Bővítménykezelő védelme"
 
 msgid "Protect services"
 msgstr "Csatornák védelme"
+
+msgid "Protect software update screen"
+msgstr ""
 
 msgid "Protect standby menu"
 msgstr "Készenléti menü védelme"
@@ -14770,6 +14799,9 @@ msgstr ""
 "Várjon, amíg a(z) %s %s készülék újraindul\n"
 "Ez néhány percet vesz igénybe"
 
+msgid "Refresh"
+msgstr ""
+
 msgid "Refresh every (in hours)"
 msgstr "Ennyi óránként frissít mindent"
 
@@ -14784,6 +14816,9 @@ msgstr "Frissítés kiválasztása."
 
 msgid "Refresh screen"
 msgstr "Képernyő frissítése"
+
+msgid "Refresh the update-able package list"
+msgstr ""
 
 msgid "Regard deep standby as standby"
 msgstr "A kikapcsolás legyen az alapértelmezett készenlét"
@@ -14877,6 +14912,12 @@ msgstr "Eltávolítás"
 msgid "Remove Confirmation"
 msgstr "Törlés megerősítése"
 
+msgid "Remove Failed !!"
+msgstr ""
+
+msgid "Remove Finished."
+msgstr "Az eltávolítás befejeződött."
+
 msgid "Remove Plugins"
 msgstr "Bővítmények törlése"
 
@@ -14909,9 +14950,6 @@ msgstr "Aktuális mappa eltávolítása könyvjelzőkből"
 
 msgid "Remove currently selected title"
 msgstr "Kijelölt címek eltávolítása"
-
-msgid "Remove Finished."
-msgstr "Az eltávolítás befejeződött."
 
 msgid "Remove hide VBI line for this service"
 msgstr "A kép tetején lévő villogó csík eltakarása ezen csatornánál"
@@ -15973,6 +16011,9 @@ msgstr "Válassza ki a csatorna hangját"
 
 msgid "Select channel to record from"
 msgstr "Csatorna kiválasztása melyről fel szeretne venni"
+
+msgid "Select channels to add an offset to the volume."
+msgstr "válassza ki a csatornákat, hogy hozzáadjon egy eltolást a hangerőhöz"
 
 msgid "Select copy destination for:"
 msgstr "Másolási cél kiválasztása ehhez:"
@@ -17440,6 +17481,9 @@ msgstr "Részletes esemény információ"
 msgid "Show detailed event info (setup in menu)"
 msgstr "Részletes esemény információk megjelenítése (beállítás a menüben)"
 
+msgid "Show development packages in opkg"
+msgstr ""
+
 msgid "Show directories first"
 msgstr "Először a könyvtárak megjelenítése"
 
@@ -18103,9 +18147,6 @@ msgstr "Szoftver karbantartó"
 msgid "Software Manager Setup"
 msgstr "Szoftver karbantartó beállításai"
 
-msgid "Software Panel"
-msgstr "Szoftver Panel"
-
 msgid "Software Update"
 msgstr "Szoftverfrissítés"
 
@@ -18121,8 +18162,10 @@ msgstr "Szoftver karbantartó Beállításai"
 msgid "Software restore"
 msgstr "Szoftver visszaállítás"
 
-msgid "Software update"
-msgstr "Szoftverfrissítés"
+msgid ""
+"Software update starting, please wait.\n"
+"\n"
+msgstr ""
 
 msgid "Softwaremanager information"
 msgstr "Szoftver kezelő információ"
@@ -18176,14 +18219,6 @@ msgid "Sorry feeds are down for maintenance, please try again later."
 msgstr ""
 "Sajnos a szolgáltatás le van állítva a karbantartás miatt. Kérem, próbálja "
 "meg később."
-
-msgid ""
-"Sorry feeds are down for maintenance, please try again later. If this issue "
-"persists please check www.opena.tv"
-msgstr ""
-"Sajnos a szolgáltatás le van állítva a karbantartás miatt. Kérem, próbálja "
-"meg később.. Ha a hiba továbbra is fennáll, ellenőrizze a www.openata.tv "
-"weboldalt"
 
 msgid "Sorry no backups found!"
 msgstr "Sajnáljuk, mentések nem találhatók!"
@@ -18513,6 +18548,9 @@ msgstr "Próbálkozások befejezése ennyi sikertelen transzponder után"
 
 msgid "Stop testing plane after # successful transponders"
 msgstr "Próbálkozások befejezése ennyi sikeres transzponder után"
+
+msgid "Stop the update, if running, then exit"
+msgstr ""
 
 msgid "Stop timer recording"
 msgstr "Az időzített felvétel megállítása"
@@ -19310,9 +19348,6 @@ msgstr ""
 msgid "The command to wake from standby will be sent multiple times."
 msgstr ""
 
-msgid "The current update may be unstable"
-msgstr "Az aktuális frissítés instabil lehet"
-
 msgid ""
 "The default backup selection cannot be changed.\n"
 "Please use the 'additional' and 'excluded' backup selection."
@@ -19673,6 +19708,10 @@ msgstr ""
 
 msgid "This line is not editable!"
 msgstr "Ez a sor nem szerkeszthető!"
+
+msgid ""
+"This offset will only be used if the channel has not its own volume offset."
+msgstr "saját Hangerő eltolást tud használni az alábbi beállításokkal"
 
 msgid ""
 "This option allows to reduce the block-noise in the picture. Obviously this "
@@ -21014,14 +21053,8 @@ msgstr "Cache frissítése"
 msgid "Update at your own risk"
 msgstr "Mindenki a saját felelősségére frissítse"
 
-msgid "Update channel list only"
-msgstr "Csak a csatornalista frissítése"
-
-#, python-format
-msgid "Update completed, %d package was installed."
-msgid_plural "Update completed, %d packages were installed."
-msgstr[0] "A frissítés elkészült, %d csomag került telepítésre."
-msgstr[1] "A frissítés elkészült, %d csomag lett feltelepítve."
+msgid "Update completed."
+msgstr ""
 
 msgid "Update delay for Events in List"
 msgstr "Frissítési késleltetés az Események listában"
@@ -21035,12 +21068,6 @@ msgstr ""
 
 msgid "Update failed!"
 msgstr "A frissítés sikertelen!"
-
-#, python-format
-msgid "Update failed. Your %s %s does not have a working internet connection."
-msgstr ""
-"A frissítés nem sikerült. A(z) %s %s készüléknek nincs egy működőképes "
-"kapcsolata az internettel."
 
 msgid "Update finished!"
 msgstr "Frissítés befejezve!"
@@ -21064,11 +21091,20 @@ msgstr "Frissítés/Firmware mentés, Mentés/Visszaállítás beállítások"
 msgid "Update/Backup/Restore your box"
 msgstr "Frissítés/Mentés/Visszaállítás"
 
+msgid "Updated"
+msgstr ""
+
+msgid "Updated version unknown"
+msgstr ""
+
 msgid "Updatefeed not available."
 msgstr "Frissítő szerver nem elérhető."
 
 msgid "Updates available:"
 msgstr "Elérhető frissítések:"
+
+msgid "Updating"
+msgstr "Frissítés"
 
 msgid "Updating cache"
 msgstr "Gyorsítótár frissítése"
@@ -21084,9 +21120,6 @@ msgstr "Szoftver katalógus frissítése"
 
 msgid "Upgrade (Backup, Flash & Restore All)"
 msgstr "Frissítés (Biztonsági mentés, Flash és az összes visszaállítása)"
-
-msgid "Upgrade and reboot system"
-msgstr "Frissítés, majd újraindítás"
 
 msgid "Upgrade finished."
 msgstr "Frissítés befejezve."
@@ -21104,8 +21137,8 @@ msgstr ""
 msgid "Upgrade with GUI"
 msgstr "Frissítés kinézet frissítéssel együtt (GUI-val)"
 
-msgid "Updating"
-msgstr "Frissítés"
+msgid "Upgrading"
+msgstr ""
 
 msgid "Uphops +"
 msgstr "Uphops +"
@@ -21723,9 +21756,6 @@ msgstr "Képnézés..."
 msgid "View teletext..."
 msgstr "Teletext megtekintése..."
 
-msgid "View the changes"
-msgstr "A változtatások megtekintése"
-
 msgid "View video CD..."
 msgstr "Videó-CD nézés..."
 
@@ -22170,6 +22200,11 @@ msgstr ""
 "Ha engedélyezi, HTTP streamek (adatfolyamok) megtekintéséhez azonosításra "
 "lesz szükség."
 
+msgid ""
+"When enabled, before opkg update there will be opkg clean to make sure "
+"nothing ruine the update but only enable this when you can not update online."
+msgstr ""
+
 msgid "When enabled, channel numbering will start at '1' for each bouquet."
 msgstr ""
 "Ha engedélyezi, akkor minden egyes csatornacsomagban a csatornák számozása 1-"
@@ -22312,6 +22347,11 @@ msgstr "A megadott idő után a Timeshift induljon el automatikusan a háttérbe
 
 msgid "When enabled, use DHCP for the IP configuration."
 msgstr "Ha engedélyezi, a DHCP lesz használatban az az IP beállításánál."
+
+msgid ""
+"When enabled, you will see dev, staticdev, dbg, doc, src and po packages in "
+"opkg list."
+msgstr ""
 
 msgid ""
 "When enabled, your receiver will detect activity on the VCR SCART input."
@@ -22899,15 +22939,6 @@ msgstr ""
 
 #, python-format
 msgid ""
-"Your %s %s might be unusable now. Please consult the manual for further "
-"assistance before rebooting your %s %s."
-msgstr ""
-"A(z) %s %s készülék most lehet, hogy használhatatlanná vált. Kérem, vegye "
-"fel a kapcsolatot a szervízzel, vagy szakemberrel a(z) %s %s újraindítása "
-"előtt."
-
-#, python-format
-msgid ""
 "Your %s %s was not shutdown properly.\n"
 "\n"
 "Do you want to put it in %s?"
@@ -23078,6 +23109,12 @@ msgid ""
 msgstr ""
 "A vevőegység képes használni a hang amplitúdóját. További információt a vevő "
 "kézikönyvében talál."
+
+#, python-format
+msgid ""
+"Your receiver might be unusable now.  Please consult the manual for further "
+"assistance before rebooting your %s %s."
+msgstr ""
 
 msgid ""
 "Your wireless LAN internet connection could not be started!\n"
@@ -23278,12 +23315,6 @@ msgstr "Kép-a-Képben bekapcsolása"
 #, fuzzy
 msgid "active"
 msgstr "Nem aktív"
-
-msgid "Add Current"
-msgstr "aktuális hozzáadása"
-
-msgid "Add Service"
-msgstr "csatorna hozzáadása"
 
 msgid "add alternatives"
 msgstr "alternatívák hozzáadása"
@@ -23490,9 +23521,6 @@ msgstr "középre"
 
 msgid "centered, wrapped"
 msgstr "középen sortöréssel"
-
-msgid "Change"
-msgstr "módosít"
 
 msgid "change Volume down"
 msgstr "hangerő le"
@@ -24018,9 +24046,6 @@ msgstr "belső átfűzés ide"
 msgid "invalid type"
 msgstr "helytelen típus"
 
-msgid "is strongly advised."
-msgstr "erősen ajánlott."
-
 msgid "jazz"
 msgstr "jazz"
 
@@ -24087,9 +24112,6 @@ msgstr "m2K"
 
 msgid "magazines/reports/documentary"
 msgstr "magazin/riport/dokumentum"
-
-msgid "making a backup before updating"
-msgstr "biztonsági mentés készítése a frissítés előtt"
 
 msgid "manage local Files"
 msgstr "helyi fájlok kezelése"
@@ -24355,10 +24377,6 @@ msgstr "néprajz"
 msgid "pre-school children's program"
 msgstr "óvodásoknak"
 
-msgid "Press the menu button to set a general AC3/Dolby offset."
-msgstr ""
-"nyomja meg a menü gombokat, hogy beállítsa az általános AC3/Dolby eltolásokat"
-
 msgid "previous channel page"
 msgstr "előző csatornaoldal"
 
@@ -24544,9 +24562,6 @@ msgstr "válasszon"
 
 msgid "select CAId's"
 msgstr "a CAId-k kijelölése"
-
-msgid "Select channels to add an offset to the volume."
-msgstr "válassza ki a csatornákat, hogy hozzáadjon egy eltolást a hangerőhöz"
 
 msgid "select menu entry"
 msgstr "válasszon menütételt"
@@ -24790,10 +24805,6 @@ msgstr "tenisz/fallabda"
 msgid "this bouquet is protected by a parental control pin"
 msgstr "ez a csatornacsomag gyermekzár PIN-kóddal védett"
 
-msgid ""
-"This offset will only be used if the channel has not its own volume offset."
-msgstr "saját Hangerő eltolást tud használni az alábbi beállításokkal"
-
 msgid "this recording"
 msgstr "ez a felvétel"
 
@@ -25029,6 +25040,138 @@ msgstr "ugrás folyamatban"
 
 msgid "®"
 msgstr ""
+
+#, python-format
+#~ msgid "%s updated package available"
+#~ msgid_plural "%s updated packages available"
+#~ msgstr[0] "%s frissítés elérhető"
+#~ msgstr[1] "%s frissítések elérhetők"
+
+#, python-format
+#~ msgid ""
+#~ "A configuration file (%s) has been modified since it was installed.\n"
+#~ "Do you want to keep your modifications?"
+#~ msgstr ""
+#~ "A telepítés óta a (%s) konfigurációs fájl módosítva lett.\n"
+#~ "Meg akarja tartani az Ön verzióját?"
+
+#, python-format
+#~ msgid "Are you sure you want to update your %s %s ?"
+#~ msgstr "Biztos benne, hogy frissíteni szeretné %s %s ?"
+
+#~ msgid "Backup Manager"
+#~ msgstr "Mentéskezelő"
+
+#~ msgid "Checking for Updates..."
+#~ msgstr "Frissítések keresése..."
+
+#~ msgid "Could not find installed channel list."
+#~ msgstr "Nem található telepített csatornalista."
+
+#, python-format
+#~ msgid "Do you want to reboot your %s %s"
+#~ msgstr "Szeretné újraindítani a(z) %s %s"
+
+#, python-format
+#~ msgid "Do you want to update your %s %s ?"
+#~ msgstr "Biztos benne, hogy frissíteni szeretné %s %s ?"
+
+#~ msgid "Error downloading change log."
+#~ msgstr "Hiba a változásnapló letöltése közben."
+
+#~ msgid "Feeds status:   Stable"
+#~ msgstr "Folyamat státusza:   Stabil"
+
+#~ msgid "Feeds status:   Unstable"
+#~ msgstr "Folyamat státusza:   Instabil"
+
+#~ msgid "Feeds status:   Updating"
+#~ msgstr "Folyamat státusza:   Frissítés alatt"
+
+#~ msgid "Feeds status: Unexpected"
+#~ msgstr "Feeds állapota: Váratlan"
+
+#~ msgid "Image Manager"
+#~ msgstr "Lemezkép kezelő"
+
+#~ msgid "No connection"
+#~ msgstr "Nincs kapcsolat"
+
+#~ msgid "No updates available. Please try again later."
+#~ msgstr "Nincs elérhető frissítés. Kérem, próbálja meg később."
+
+#~ msgid "OnlineVersionCheck"
+#~ msgstr "Online Verzió Ellenőrzés"
+
+#~ msgid "Packages"
+#~ msgstr "Csomagok"
+
+#~ msgid "Perform a full image backup"
+#~ msgstr "Végezze el a teljes lemezkép biztonsági mentését"
+
+#~ msgid "Perform a settings backup,"
+#~ msgstr "Végezze el a beállítások mentését,"
+
+#~ msgid ""
+#~ "Perform a settings backup, making a backup before updating is strongly "
+#~ "advised."
+#~ msgstr ""
+#~ "Végezze el a beállítások mentését, és a frissítés előtt készítsen "
+#~ "biztonsági mentést."
+
+#~ msgid "Software Panel"
+#~ msgstr "Szoftver Panel"
+
+#~ msgid "Software update"
+#~ msgstr "Szoftverfrissítés"
+
+#~ msgid ""
+#~ "Sorry feeds are down for maintenance, please try again later. If this "
+#~ "issue persists please check www.opena.tv"
+#~ msgstr ""
+#~ "Sajnos a szolgáltatás le van állítva a karbantartás miatt. Kérem, "
+#~ "próbálja meg később.. Ha a hiba továbbra is fennáll, ellenőrizze a www."
+#~ "openata.tv weboldalt"
+
+#~ msgid "The current update may be unstable"
+#~ msgstr "Az aktuális frissítés instabil lehet"
+
+#~ msgid "Update channel list only"
+#~ msgstr "Csak a csatornalista frissítése"
+
+#, python-format
+#~ msgid "Update completed, %d package was installed."
+#~ msgid_plural "Update completed, %d packages were installed."
+#~ msgstr[0] "A frissítés elkészült, %d csomag került telepítésre."
+#~ msgstr[1] "A frissítés elkészült, %d csomag lett feltelepítve."
+
+#, python-format
+#~ msgid ""
+#~ "Update failed. Your %s %s does not have a working internet connection."
+#~ msgstr ""
+#~ "A frissítés nem sikerült. A(z) %s %s készüléknek nincs egy működőképes "
+#~ "kapcsolata az internettel."
+
+#~ msgid "Upgrade and reboot system"
+#~ msgstr "Frissítés, majd újraindítás"
+
+#~ msgid "View the changes"
+#~ msgstr "A változtatások megtekintése"
+
+#, python-format
+#~ msgid ""
+#~ "Your %s %s might be unusable now. Please consult the manual for further "
+#~ "assistance before rebooting your %s %s."
+#~ msgstr ""
+#~ "A(z) %s %s készülék most lehet, hogy használhatatlanná vált. Kérem, vegye "
+#~ "fel a kapcsolatot a szervízzel, vagy szakemberrel a(z) %s %s újraindítása "
+#~ "előtt."
+
+#~ msgid "is strongly advised."
+#~ msgstr "erősen ajánlott."
+
+#~ msgid "making a backup before updating"
+#~ msgstr "biztonsági mentés készítése a frissítés előtt"
 
 #, python-format
 #~ msgid ""

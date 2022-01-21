@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openATV / enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-01-02 10:50+0000\n"
+"POT-Creation-Date: 2022-01-19 18:56+0000\n"
 "PO-Revision-Date: 2017-11-21 13:26+0200\n"
 "Last-Translator: Satelitas\n"
 "Language-Team: TEAM <EMAIL@ADDRESS>\n"
@@ -1160,6 +1160,12 @@ msgstr[0] ""
 msgstr[1] ""
 
 #, python-format
+msgid "%d feed catalog package was updated."
+msgid_plural "%d feed catalog packages were updated."
+msgstr[0] ""
+msgstr[1] ""
+
+#, python-format
 msgid "%d hour"
 msgid_plural "%d hours"
 msgstr[0] "%d час"
@@ -1186,6 +1192,54 @@ msgstr "%d минути"
 #, fuzzy, python-format
 msgid "%d ms"
 msgstr "%d мин"
+
+#, python-format
+msgid "%d package upgraded."
+msgid_plural "%d packages upgraded."
+msgstr[0] ""
+msgstr[1] ""
+
+#, python-format
+msgid "%d package was configured."
+msgid_plural "%d packages were configured."
+msgstr[0] ""
+msgstr[1] ""
+
+#, python-format
+msgid "%d package was deselected."
+msgid_plural "%d packages were deselected."
+msgstr[0] ""
+msgstr[1] ""
+
+#, python-format
+msgid "%d package was downloaded."
+msgid_plural "%d packages were downloaded."
+msgstr[0] ""
+msgstr[1] ""
+
+#, python-format
+msgid "%d package was identified for upgrade."
+msgid_plural "%d packages were identified for upgrade."
+msgstr[0] ""
+msgstr[1] ""
+
+#, python-format
+msgid "%d package was installed."
+msgid_plural "%d packages were installed."
+msgstr[0] ""
+msgstr[1] ""
+
+#, python-format
+msgid "%d package was removed."
+msgid_plural "%d packages were removed."
+msgstr[0] ""
+msgstr[1] ""
+
+#, python-format
+msgid "%d package was upgraded."
+msgid_plural "%d packages were upgraded."
+msgstr[0] ""
+msgstr[1] ""
 
 #, python-format
 msgid "%d pixel wide"
@@ -1419,12 +1473,6 @@ msgstr "Тунера не е на разположение."
 #, python-format
 msgid "%s successfully extracted."
 msgstr ""
-
-#, python-format
-msgid "%s updated package available"
-msgid_plural "%s updated packages available"
-msgstr[0] "%s наличен актуализиран пакет"
-msgstr[1] "%s налични актуализирани пакети"
 
 #, python-format
 msgid "%s%d min"
@@ -2171,22 +2219,6 @@ msgstr ""
 "опитайте отново."
 
 #, python-format
-msgid ""
-"A configuration file (%s) has been modified since it was installed.\n"
-"Do you want to keep your modifications?"
-msgstr ""
-"Конфигурационният файл (%s) се променя по време на процеса на инсталиране.\n"
-"Искате ли да запазите промените?"
-
-#, python-format
-msgid ""
-"Configuration file '%s' has been modified since it was installed, would you "
-"like to keep the modified version?"
-msgstr ""
-"Конфигурационният файл (%s) се променя по време на процеса на инсталиране.\n"
-"Искате ли да запазите промените?"
-
-#, python-format
 msgid "A crashlog was %s created in '%s'"
 msgstr ""
 
@@ -2521,12 +2553,18 @@ msgstr "Добави"
 msgid "Add AutoTimer"
 msgstr "Добави AutoTimer"
 
+msgid "Add Current"
+msgstr "добави текущ"
+
 msgid "Add New Quad Channel Entry"
 msgstr ""
 
 #, fuzzy
 msgid "Add Record Timer"
 msgstr "Добави записващ таймер"
+
+msgid "Add Service"
+msgstr "добави сервиз"
 
 msgid "Add Timer"
 msgstr "Добави таймер"
@@ -3138,10 +3176,6 @@ msgstr "Сигурен ли си че искаш да запазиш EPG кеш�
 msgid "Are you sure you want to send this log:\n"
 msgstr "Сигурен ли си че искаш да изпратиш този дневник:\n"
 
-#, python-format
-msgid "Are you sure you want to update your %s %s ?"
-msgstr "Сигурен ли си че искаш да актуализираш своя %s %s ?"
-
 msgid "Argentina"
 msgstr ""
 
@@ -3576,9 +3610,6 @@ msgstr "Местоположение архив"
 
 msgid "Backup Log"
 msgstr "Дневник архив"
-
-msgid "Backup Manager"
-msgstr "Мениджър архивиране"
 
 msgid "Backup Mode"
 msgstr "Архивиращ режим"
@@ -4273,6 +4304,9 @@ msgstr ""
 msgid "Cancel"
 msgstr "Отказ"
 
+msgid "Cancel / Close the software update screen"
+msgstr ""
+
 #, fuzzy
 msgid "Cancel any changed settings and exit"
 msgstr "Избор на канал"
@@ -4312,9 +4346,6 @@ msgstr "Избор на канал"
 #, fuzzy
 msgid "Cancel the image selection and exit all menus"
 msgstr "Избор на канал"
-
-msgid "Cancel the software update"
-msgstr ""
 
 msgid "Cancel the update"
 msgstr ""
@@ -4402,6 +4433,9 @@ msgstr ""
 
 msgid "Chamorro"
 msgstr ""
+
+msgid "Change"
+msgstr "промени"
 
 msgid "Change Boxmode to control Hardware Chip Modes*"
 msgstr "Промени Boxmode за управление на режимите на хардуерния чип *"
@@ -4622,9 +4656,6 @@ msgstr "Проверка на дневниците..."
 
 msgid "Checking filesystem..."
 msgstr "Проверка на файлова система..."
-
-msgid "Checking for Updates..."
-msgstr "Проверка за актуализациите..."
 
 msgid "Checking the internet connection"
 msgstr "Проверка на интернет връзката"
@@ -5043,6 +5074,14 @@ msgstr "Конфигурационния файл %s запазен."
 msgctxt "Abbreviation of 'Configurable'"
 msgid "Configurable"
 msgstr "Конфигуриране"
+
+#, python-format
+msgid ""
+"Configuration file '%s' has been modified since it was installed, would you "
+"like to keep the modified version?"
+msgstr ""
+"Конфигурационният файл (%s) се променя по време на процеса на инсталиране.\n"
+"Искате ли да запазите промените?"
 
 msgid "Configuration mode"
 msgstr "Режим на конфигурация"
@@ -5824,9 +5863,6 @@ msgstr "Не можах да се свържа с %s %s .NFI имидж сърв
 msgid "Could not connect to server"
 msgstr "Не можах да се свържа с %s %s .NFI имидж сървър за съхранение:"
 
-msgid "Could not find installed channel list."
-msgstr "Не можах да намеря инсталирания списък с канали."
-
 msgid ""
 "Could not find suitable media - Please remove some downloaded images or "
 "insert a media (e.g. USB stick) with sufficient free space and try again!"
@@ -5994,6 +6030,9 @@ msgstr "Текущ транспондер"
 
 msgid "Current value: "
 msgstr "Текуща стойност: "
+
+msgid "Current version unknown"
+msgstr ""
 
 msgid "Current version:"
 msgstr "Текуща версия:"
@@ -6683,6 +6722,13 @@ msgstr "Описание"
 msgid "Deselect"
 msgstr "Отмяна на избор"
 
+#, python-format
+msgid ""
+"Deselected packages usually occur because those packaged are incompatible "
+"with existing packages.  While this is mostly harmless it is possible that "
+"your %s %s may experience issues."
+msgstr ""
+
 msgid "Details for plugin: "
 msgstr "Детайли за плъгин: "
 
@@ -7109,10 +7155,6 @@ msgid "Do you want to purge all locales/languages except %s?"
 msgstr ""
 
 #, python-format
-msgid "Do you want to reboot your %s %s"
-msgstr "Искате ли да рестартирате вашия %s %s"
-
-#, python-format
 msgid "Do you want to reboot your %s %s?"
 msgstr "Искате ли да рестартирате вашия %s %s?"
 
@@ -7137,10 +7179,6 @@ msgid ""
 msgstr ""
 "Искате ли да изпратите всички избрани файлове:\n"
 "(Изберете \"Не\", за да изпратите само избрания понастоящем файл.)"
-
-#, python-format
-msgid "Do you want to update your %s %s ?"
-msgstr "Искате ли да актуализирате вашия %s %s ?"
 
 msgid "Do you want to update your box?"
 msgstr "Искате ли да актуализирате вашия приемник?"
@@ -7733,6 +7771,9 @@ msgstr ""
 msgid "Enable this option to add keyboard keymap data to the debug log file."
 msgstr ""
 
+msgid "Enable this option to add opkg output data to the debug log file."
+msgstr ""
+
 msgid "Enable this option to add remote control data to the debug log file."
 msgstr ""
 
@@ -7989,9 +8030,6 @@ msgid ""
 "Error creating directory %s:\n"
 "%s"
 msgstr "Създаване на директория %s не успя."
-
-msgid "Error downloading change log."
-msgstr "Грешка при изтеглянето на промянени дневник."
 
 #, fuzzy, python-format
 msgid ""
@@ -8499,19 +8537,6 @@ msgstr ""
 
 msgid "Feed unstable!"
 msgstr ""
-
-msgid "Feeds status:   Stable"
-msgstr "Състоянието на емисията:   Стабилно"
-
-msgid "Feeds status:   Unstable"
-msgstr "Състоянието на емисията:   Нестабилно"
-
-msgid "Feeds status:   Updating"
-msgstr "Състоянието на емисията:   Обновяващо"
-
-#, fuzzy
-msgid "Feeds status: Unexpected"
-msgstr "Състоянието на емисията:   Нестабилно"
 
 msgid "Fetch EPG and update timers now"
 msgstr ""
@@ -10004,9 +10029,6 @@ msgstr "Архивиране на имидж"
 msgid "Image Information"
 msgstr "Информация за имидж"
 
-msgid "Image Manager"
-msgstr "Мениджър за имидж"
-
 msgid "Image Version"
 msgstr "Версия имидж"
 
@@ -10116,6 +10138,9 @@ msgstr "Включване на AIT в HTTP потоци"
 #, fuzzy
 msgid "Include keyboard data"
 msgstr "Настройка на клавиатурата"
+
+msgid "Include opkg output data"
+msgstr ""
 
 #, fuzzy
 msgid "Include remote control data"
@@ -10334,6 +10359,9 @@ msgstr "Инсталиране на пикони на"
 
 msgid "Install plugins"
 msgstr "Инсталиране на плъгини"
+
+msgid "Install/Remove plugin"
+msgstr ""
 
 msgid "Installation finished."
 msgstr "Инсталацията завърши."
@@ -11826,6 +11854,9 @@ msgstr "Премести надолу в страницата"
 msgid "Move down a page"
 msgstr "Премести надолу в страницата"
 
+msgid "Move down a page / screen"
+msgstr ""
+
 msgid "Move down a screen"
 msgstr ""
 
@@ -11928,6 +11959,9 @@ msgstr "Премести нагоре в страницата"
 
 msgid "Move up a page"
 msgstr "Премести нагоре в страницата"
+
+msgid "Move up a page / screen"
+msgstr ""
 
 msgid "Move up a screen"
 msgstr ""
@@ -12486,9 +12520,6 @@ msgstr "няма списък с канали"
 msgid "No clients streaming"
 msgstr "Общо клиенти стрийминг: "
 
-msgid "No connection"
-msgstr "Няма връзка"
-
 msgid ""
 "No data on transponder!\n"
 "(Timeout reading PAT)"
@@ -12627,8 +12658,11 @@ msgstr ""
 msgid "No update required!"
 msgstr "Не се изисква актуализация!"
 
-msgid "No updates available. Please try again later."
-msgstr "Няма налични актуализации. Моля, опитайте отново по-късно."
+msgid "No updates available."
+msgstr ""
+
+msgid "No updates were available.  Please try again later."
+msgstr ""
 
 msgid "No valid region details were found"
 msgstr ""
@@ -12901,6 +12935,9 @@ msgstr "ОК, да ме води процес на надстройване"
 msgid "ONID"
 msgstr "ONID"
 
+msgid "OPKG clean mode"
+msgstr ""
+
 msgid "OSD"
 msgstr "OSD"
 
@@ -12999,9 +13036,6 @@ msgstr "Една линия"
 
 msgid "Online software update"
 msgstr "Онлайн актуализация на софтуера"
-
-msgid "OnlineVersionCheck"
-msgstr "Онлайн проверка на версията"
 
 msgid "Only extensions."
 msgstr "Само разширения."
@@ -13340,9 +13374,6 @@ msgstr "Актуализиране на списък с пакети"
 msgid "Packaged locales only"
 msgstr "Списък с пакетите"
 
-msgid "Packages"
-msgstr "Пакети"
-
 msgid "Packages and associated locales"
 msgstr ""
 
@@ -13513,24 +13544,11 @@ msgstr "Прогрес бар в ляво"
 msgid "Percentage/Progress bar right"
 msgstr "Прогрес бар в дясно"
 
-msgid "Perform a full image backup"
-msgstr "Направете пълно архививиране имидж"
-
 msgid "Perform a image backup before updating."
 msgstr "Направете архививиране на имидж, преди да актуализирате."
 
 msgid "Perform a setting backup before updating."
 msgstr "Направете архививиране на настройките, преди да актуализирате."
-
-msgid "Perform a settings backup,"
-msgstr "Направете архививиране на настройките,"
-
-msgid ""
-"Perform a settings backup, making a backup before updating is strongly "
-"advised."
-msgstr ""
-"Направете архивиране на настройките, правенето на резервно копие преди "
-"актуализиране е препоръчително."
 
 msgid "Perform an on-line flash instead"
 msgstr ""
@@ -14305,6 +14323,9 @@ msgstr "Натиснете OK, за да активирате избраната
 msgid "Press OK to activate the settings."
 msgstr "Натиснете ОК, за да активирате настройките."
 
+msgid "Press OK to continue."
+msgstr ""
+
 msgid "Press OK to edit the settings."
 msgstr "Натиснете ОК, за да редактирате настройките."
 
@@ -14358,6 +14379,9 @@ msgstr ""
 #, python-format
 msgid "Press OK to use this locale.  [%s]"
 msgstr ""
+
+msgid "Press the menu button to set a general AC3/Dolby offset."
+msgstr "натиснете меню бутона, за да се определи общия AC3/Dolby offset"
 
 msgid ""
 "Press this button to emulate a long press on a button pressed afterwards "
@@ -14555,6 +14579,9 @@ msgstr "Защита на плъгин браузъра"
 
 msgid "Protect services"
 msgstr "Защита на сервизите"
+
+msgid "Protect software update screen"
+msgstr ""
 
 msgid "Protect standby menu"
 msgstr "Защита на standby менюто"
@@ -15003,6 +15030,9 @@ msgstr ""
 "Моля, изчакайте докато вашият %s %s рестартира\n"
 "Това може да отнеме няколко минути"
 
+msgid "Refresh"
+msgstr ""
+
 msgid "Refresh every (in hours)"
 msgstr "Обновяване на всеки (в часове)"
 
@@ -15018,6 +15048,9 @@ msgstr "Избор на скорост на обновяване."
 #, fuzzy
 msgid "Refresh screen"
 msgstr "Скорост на обновяване"
+
+msgid "Refresh the update-able package list"
+msgstr ""
 
 msgid "Regard deep standby as standby"
 msgstr "Вземи deep standby като standby"
@@ -15115,6 +15148,12 @@ msgstr "Премахване"
 msgid "Remove Confirmation"
 msgstr "Премахване на потвърждението"
 
+msgid "Remove Failed !!"
+msgstr ""
+
+msgid "Remove Finished."
+msgstr "Премахване на завършените."
+
 msgid "Remove Plugins"
 msgstr "Премахване на плъгини"
 
@@ -15150,9 +15189,6 @@ msgstr ""
 
 msgid "Remove currently selected title"
 msgstr "Премахване на текущото избрано заглавие"
-
-msgid "Remove Finished."
-msgstr "Премахване на завършените."
 
 msgid "Remove hide VBI line for this service"
 msgstr ""
@@ -16212,6 +16248,9 @@ msgstr "Изберете канал, от който да записвате"
 
 msgid "Select channel to record from"
 msgstr "Изберете канал, от който да записвате"
+
+msgid "Select channels to add an offset to the volume."
+msgstr "изберете канала, за да добавите компенсация на силата на звука"
 
 msgid "Select copy destination for:"
 msgstr "Изберете цел на копирането за:"
@@ -17609,6 +17648,9 @@ msgstr "Показване на подробна информация за съ�
 msgid "Show detailed event info (setup in menu)"
 msgstr "Показване на подробна информация за събитието"
 
+msgid "Show development packages in opkg"
+msgstr ""
+
 #, fuzzy
 msgid "Show directories first"
 msgstr "Показване на филмовя списък"
@@ -18289,9 +18331,6 @@ msgstr "Мениджър софтуер"
 msgid "Software Manager Setup"
 msgstr "Настройка на софтуерния мениджър"
 
-msgid "Software Panel"
-msgstr "Панел за софтуер"
-
 msgid "Software Update"
 msgstr "Актуализация на софтуера"
 
@@ -18307,8 +18346,10 @@ msgstr "Настройка на софтуерния мениджър"
 msgid "Software restore"
 msgstr "Възстановяване на софтуера"
 
-msgid "Software update"
-msgstr "Актуализация на софтуера"
+msgid ""
+"Software update starting, please wait.\n"
+"\n"
+msgstr ""
 
 msgid "Softwaremanager information"
 msgstr "Информация за софтуерния мениджър"
@@ -18360,13 +18401,6 @@ msgstr "Съжаляваме, че емисиите са намалени за �
 msgid "Sorry feeds are down for maintenance, please try again later."
 msgstr ""
 "Съжаляваме, че емисиите са за поддръжка, моля, опитайте отново по-късно."
-
-msgid ""
-"Sorry feeds are down for maintenance, please try again later. If this issue "
-"persists please check www.opena.tv"
-msgstr ""
-"Съжаляваме, че емисиите са за поддръжка, моля, опитайте отново по-късно. Ако "
-"този проблем продължава, моля, проверете www.opena.tv"
 
 msgid "Sorry no backups found!"
 msgstr "За съжаление не са намерени резервни копия!"
@@ -18707,6 +18741,9 @@ msgstr "Стоп на тестване на нивото след # провал
 
 msgid "Stop testing plane after # successful transponders"
 msgstr "Стоп на тестване на нивото след # успешни транспондери"
+
+msgid "Stop the update, if running, then exit"
+msgstr ""
 
 msgid "Stop timer recording"
 msgstr "Стоп на запис с таймер"
@@ -19497,9 +19534,6 @@ msgstr ""
 msgid "The command to wake from standby will be sent multiple times."
 msgstr ""
 
-msgid "The current update may be unstable"
-msgstr "Текущата актуализация може да е нестабилна"
-
 msgid ""
 "The default backup selection cannot be changed.\n"
 "Please use the 'additional' and 'excluded' backup selection."
@@ -19853,6 +19887,11 @@ msgstr ""
 #, fuzzy
 msgid "This line is not editable!"
 msgstr "Този плъгин не е инсталиран."
+
+msgid ""
+"This offset will only be used if the channel has not its own volume offset."
+msgstr ""
+"този offset се използва ако каналът не разполага със собствен обем offset"
 
 msgid ""
 "This option allows to reduce the block-noise in the picture. Obviously this "
@@ -21217,14 +21256,8 @@ msgstr "Актуализация кеш"
 msgid "Update at your own risk"
 msgstr "Актуализиране на свой собствен риск"
 
-msgid "Update channel list only"
-msgstr "Актуализация само на списъка с канали"
-
-#, python-format
-msgid "Update completed, %d package was installed."
-msgid_plural "Update completed, %d packages were installed."
-msgstr[0] "Актуализацията завърши, %d пакет е инсталиран."
-msgstr[1] "Актуализацията завърши, %d пакети са инсталирани."
+msgid "Update completed."
+msgstr ""
 
 msgid "Update delay for Events in List"
 msgstr "Забавяне на актуализацията за събития в списъка"
@@ -21238,11 +21271,6 @@ msgstr ""
 
 msgid "Update failed!"
 msgstr "Актуализацията не бе успешна!"
-
-#, python-format
-msgid "Update failed. Your %s %s does not have a working internet connection."
-msgstr ""
-"Актуализацията се провали. Вашият %s %s не разполага с интернет връзка."
 
 msgid "Update finished!"
 msgstr "Актуализацията завърши!"
@@ -21267,11 +21295,20 @@ msgstr ""
 msgid "Update/Backup/Restore your box"
 msgstr "Актуализиране/архивиране/възстановяване"
 
+msgid "Updated"
+msgstr ""
+
+msgid "Updated version unknown"
+msgstr ""
+
 msgid "Updatefeed not available."
 msgstr "Актуализиращ поток не е на разположение."
 
 msgid "Updates available:"
 msgstr "Налични актуализации:"
+
+msgid "Updating"
+msgstr "Надграждам"
 
 #, fuzzy
 msgid "Updating cache"
@@ -21290,9 +21327,6 @@ msgstr "Актуализиране на каталога на софтуера"
 msgid "Upgrade (Backup, Flash & Restore All)"
 msgstr ""
 
-msgid "Upgrade and reboot system"
-msgstr "Надстройване и рестартиране на системата"
-
 msgid "Upgrade finished."
 msgstr "Надстройването завърши."
 
@@ -21309,8 +21343,8 @@ msgstr ""
 msgid "Upgrade with GUI"
 msgstr "Надстройване с графичния интерфейс"
 
-msgid "Updating"
-msgstr "Надграждам"
+msgid "Upgrading"
+msgstr ""
 
 msgid "Uphops +"
 msgstr "Uphops +"
@@ -21938,9 +21972,6 @@ msgstr "Преглед на снимки..."
 msgid "View teletext..."
 msgstr "Преглед на телетекст..."
 
-msgid "View the changes"
-msgstr "Прегледайте промените"
-
 msgid "View video CD..."
 msgstr "Преглед на видео CD..."
 
@@ -22392,6 +22423,11 @@ msgid "When enabled, authentication is required to watch http streams."
 msgstr ""
 "Когато е разрешено, е необходимо удостоверяване за гледане на http потоци."
 
+msgid ""
+"When enabled, before opkg update there will be opkg clean to make sure "
+"nothing ruine the update but only enable this when you can not update online."
+msgstr ""
+
 msgid "When enabled, channel numbering will start at '1' for each bouquet."
 msgstr ""
 "Когато е разрешено, номерирането на каналите ще започне от '1' за всеки "
@@ -22542,6 +22578,11 @@ msgstr ""
 
 msgid "When enabled, use DHCP for the IP configuration."
 msgstr "Когато е разрешено, използвате DHCP за конфигуриране на IP."
+
+msgid ""
+"When enabled, you will see dev, staticdev, dbg, doc, src and po packages in "
+"opkg list."
+msgstr ""
 
 msgid ""
 "When enabled, your receiver will detect activity on the VCR SCART input."
@@ -23123,14 +23164,6 @@ msgstr ""
 
 #, python-format
 msgid ""
-"Your %s %s might be unusable now. Please consult the manual for further "
-"assistance before rebooting your %s %s."
-msgstr ""
-"Вашият %s %s може да бъде неизползваем сега. Моля, консултирайте се с "
-"ръководството за по-нататъшна помощ преди рестартиране на вашият %s %s."
-
-#, python-format
-msgid ""
 "Your %s %s was not shutdown properly.\n"
 "\n"
 "Do you want to put it in %s?"
@@ -23288,6 +23321,12 @@ msgstr ""
 msgid ""
 "Your receiver can use tone amplitude. Consult your receiver's manual for "
 "more information."
+msgstr ""
+
+#, python-format
+msgid ""
+"Your receiver might be unusable now.  Please consult the manual for further "
+"assistance before rebooting your %s %s."
 msgstr ""
 
 msgid ""
@@ -23499,12 +23538,6 @@ msgstr "активиране на PiP"
 msgid "active"
 msgstr "Неактивен"
 
-msgid "Add Current"
-msgstr "добави текущ"
-
-msgid "Add Service"
-msgstr "добави сервиз"
-
 msgid "add alternatives"
 msgstr "добави алтернативи"
 
@@ -23715,9 +23748,6 @@ msgstr "центрирано"
 
 msgid "centered, wrapped"
 msgstr "центрирано, увито"
-
-msgid "Change"
-msgstr "промени"
 
 msgid "change Volume down"
 msgstr "промени звука надолу"
@@ -24265,9 +24295,6 @@ msgstr "вътрешен loopthrough към"
 msgid "invalid type"
 msgstr "невалиден тип"
 
-msgid "is strongly advised."
-msgstr "силно се препоръчва."
-
 msgid "jazz"
 msgstr "джаз"
 
@@ -24334,9 +24361,6 @@ msgstr "m2k"
 
 msgid "magazines/reports/documentary"
 msgstr "списания/доклади/документални"
-
-msgid "making a backup before updating"
-msgstr "направи архив преди актуализиране"
 
 msgid "manage local Files"
 msgstr ""
@@ -24616,9 +24640,6 @@ msgstr "популярна култура/традиционни изкуств�
 msgid "pre-school children's program"
 msgstr "предучилищна детска програма"
 
-msgid "Press the menu button to set a general AC3/Dolby offset."
-msgstr "натиснете меню бутона, за да се определи общия AC3/Dolby offset"
-
 #, fuzzy
 msgid "previous channel page"
 msgstr "Отиди на предишния канал"
@@ -24808,9 +24829,6 @@ msgstr "изберете"
 
 msgid "select CAId's"
 msgstr "изберете CAId's"
-
-msgid "Select channels to add an offset to the volume."
-msgstr "изберете канала, за да добавите компенсация на силата на звука"
 
 msgid "select menu entry"
 msgstr "изберете запис в менюто"
@@ -25059,11 +25077,6 @@ msgstr "тенис/скуош"
 msgid "this bouquet is protected by a parental control pin"
 msgstr "този букет е защитен с ПИН за родителски контрол"
 
-msgid ""
-"This offset will only be used if the channel has not its own volume offset."
-msgstr ""
-"този offset се използва ако каналът не разполага със собствен обем offset"
-
 msgid "this recording"
 msgstr "този запис"
 
@@ -25307,6 +25320,137 @@ msgstr "превключено на"
 
 msgid "®"
 msgstr ""
+
+#, python-format
+#~ msgid "%s updated package available"
+#~ msgid_plural "%s updated packages available"
+#~ msgstr[0] "%s наличен актуализиран пакет"
+#~ msgstr[1] "%s налични актуализирани пакети"
+
+#, python-format
+#~ msgid ""
+#~ "A configuration file (%s) has been modified since it was installed.\n"
+#~ "Do you want to keep your modifications?"
+#~ msgstr ""
+#~ "Конфигурационният файл (%s) се променя по време на процеса на "
+#~ "инсталиране.\n"
+#~ "Искате ли да запазите промените?"
+
+#, python-format
+#~ msgid "Are you sure you want to update your %s %s ?"
+#~ msgstr "Сигурен ли си че искаш да актуализираш своя %s %s ?"
+
+#~ msgid "Backup Manager"
+#~ msgstr "Мениджър архивиране"
+
+#~ msgid "Checking for Updates..."
+#~ msgstr "Проверка за актуализациите..."
+
+#~ msgid "Could not find installed channel list."
+#~ msgstr "Не можах да намеря инсталирания списък с канали."
+
+#, python-format
+#~ msgid "Do you want to reboot your %s %s"
+#~ msgstr "Искате ли да рестартирате вашия %s %s"
+
+#, python-format
+#~ msgid "Do you want to update your %s %s ?"
+#~ msgstr "Искате ли да актуализирате вашия %s %s ?"
+
+#~ msgid "Error downloading change log."
+#~ msgstr "Грешка при изтеглянето на промянени дневник."
+
+#~ msgid "Feeds status:   Stable"
+#~ msgstr "Състоянието на емисията:   Стабилно"
+
+#~ msgid "Feeds status:   Unstable"
+#~ msgstr "Състоянието на емисията:   Нестабилно"
+
+#~ msgid "Feeds status:   Updating"
+#~ msgstr "Състоянието на емисията:   Обновяващо"
+
+#, fuzzy
+#~ msgid "Feeds status: Unexpected"
+#~ msgstr "Състоянието на емисията:   Нестабилно"
+
+#~ msgid "Image Manager"
+#~ msgstr "Мениджър за имидж"
+
+#~ msgid "No connection"
+#~ msgstr "Няма връзка"
+
+#~ msgid "No updates available. Please try again later."
+#~ msgstr "Няма налични актуализации. Моля, опитайте отново по-късно."
+
+#~ msgid "OnlineVersionCheck"
+#~ msgstr "Онлайн проверка на версията"
+
+#~ msgid "Packages"
+#~ msgstr "Пакети"
+
+#~ msgid "Perform a full image backup"
+#~ msgstr "Направете пълно архививиране имидж"
+
+#~ msgid "Perform a settings backup,"
+#~ msgstr "Направете архививиране на настройките,"
+
+#~ msgid ""
+#~ "Perform a settings backup, making a backup before updating is strongly "
+#~ "advised."
+#~ msgstr ""
+#~ "Направете архивиране на настройките, правенето на резервно копие преди "
+#~ "актуализиране е препоръчително."
+
+#~ msgid "Software Panel"
+#~ msgstr "Панел за софтуер"
+
+#~ msgid "Software update"
+#~ msgstr "Актуализация на софтуера"
+
+#~ msgid ""
+#~ "Sorry feeds are down for maintenance, please try again later. If this "
+#~ "issue persists please check www.opena.tv"
+#~ msgstr ""
+#~ "Съжаляваме, че емисиите са за поддръжка, моля, опитайте отново по-късно. "
+#~ "Ако този проблем продължава, моля, проверете www.opena.tv"
+
+#~ msgid "The current update may be unstable"
+#~ msgstr "Текущата актуализация може да е нестабилна"
+
+#~ msgid "Update channel list only"
+#~ msgstr "Актуализация само на списъка с канали"
+
+#, python-format
+#~ msgid "Update completed, %d package was installed."
+#~ msgid_plural "Update completed, %d packages were installed."
+#~ msgstr[0] "Актуализацията завърши, %d пакет е инсталиран."
+#~ msgstr[1] "Актуализацията завърши, %d пакети са инсталирани."
+
+#, python-format
+#~ msgid ""
+#~ "Update failed. Your %s %s does not have a working internet connection."
+#~ msgstr ""
+#~ "Актуализацията се провали. Вашият %s %s не разполага с интернет връзка."
+
+#~ msgid "Upgrade and reboot system"
+#~ msgstr "Надстройване и рестартиране на системата"
+
+#~ msgid "View the changes"
+#~ msgstr "Прегледайте промените"
+
+#, python-format
+#~ msgid ""
+#~ "Your %s %s might be unusable now. Please consult the manual for further "
+#~ "assistance before rebooting your %s %s."
+#~ msgstr ""
+#~ "Вашият %s %s може да бъде неизползваем сега. Моля, консултирайте се с "
+#~ "ръководството за по-нататъшна помощ преди рестартиране на вашият %s %s."
+
+#~ msgid "is strongly advised."
+#~ msgstr "силно се препоръчва."
+
+#~ msgid "making a backup before updating"
+#~ msgstr "направи архив преди актуализиране"
 
 #, python-format
 #~ msgid ""

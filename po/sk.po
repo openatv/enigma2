@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-01-02 10:50+0000\n"
+"POT-Creation-Date: 2022-01-19 18:56+0000\n"
 "PO-Revision-Date: 2021-12-04 23:22+0000\n"
 "Last-Translator: Marián Hikaník <podnety@mojepreklady.net>\n"
 "Language-Team: Slovak <https://hosted.weblate.org/projects/openatv/"
@@ -1048,6 +1048,13 @@ msgstr[1] "%d dni"
 msgstr[2] "%d dní"
 
 #, python-format
+msgid "%d feed catalog package was updated."
+msgid_plural "%d feed catalog packages were updated."
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+
+#, python-format
 msgid "%d hour"
 msgid_plural "%d hours"
 msgstr[0] "%d hodina"
@@ -1076,6 +1083,62 @@ msgstr "%d minút"
 #, python-format
 msgid "%d ms"
 msgstr "%d ms"
+
+#, python-format
+msgid "%d package upgraded."
+msgid_plural "%d packages upgraded."
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+
+#, python-format
+msgid "%d package was configured."
+msgid_plural "%d packages were configured."
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+
+#, python-format
+msgid "%d package was deselected."
+msgid_plural "%d packages were deselected."
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+
+#, python-format
+msgid "%d package was downloaded."
+msgid_plural "%d packages were downloaded."
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+
+#, python-format
+msgid "%d package was identified for upgrade."
+msgid_plural "%d packages were identified for upgrade."
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+
+#, python-format
+msgid "%d package was installed."
+msgid_plural "%d packages were installed."
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+
+#, python-format
+msgid "%d package was removed."
+msgid_plural "%d packages were removed."
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+
+#, python-format
+msgid "%d package was upgraded."
+msgid_plural "%d packages were upgraded."
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
 
 #, python-format
 msgid "%d pixel wide"
@@ -1307,13 +1370,6 @@ msgstr "%s nie je dostupné."
 #, python-format
 msgid "%s successfully extracted."
 msgstr "%s úspešne extrahované."
-
-#, python-format
-msgid "%s updated package available"
-msgid_plural "%s updated packages available"
-msgstr[0] "je dostupný aktualizovaný balík %s"
-msgstr[1] "sú dostupné aktualizované balíky %s"
-msgstr[2] "sú dostupné aktualizované balíky %s"
 
 #, python-format
 msgid "%s%d min"
@@ -2028,22 +2084,6 @@ msgstr ""
 "to skúste znova."
 
 #, python-format
-msgid ""
-"A configuration file (%s) has been modified since it was installed.\n"
-"Do you want to keep your modifications?"
-msgstr ""
-"Konfiguračný súbor (%s) bol od inštalácie zmenený.\n"
-"Chcete zachovať vaše zmeny?"
-
-#, python-format
-msgid ""
-"Configuration file '%s' has been modified since it was installed, would you "
-"like to keep the modified version?"
-msgstr ""
-"Konfiguračný súbor (%s) bol od inštalácie zmenený.\n"
-"Chcete zachovať svoju verziu?"
-
-#, python-format
 msgid "A crashlog was %s created in '%s'"
 msgstr "Záznam o zlyhaní bol %s vytvorený v '%s'"
 
@@ -2373,11 +2413,17 @@ msgstr "Pridať"
 msgid "Add AutoTimer"
 msgstr "Pridať autom. časovač"
 
+msgid "Add Current"
+msgstr "pridať Aktuálne"
+
 msgid "Add New Quad Channel Entry"
 msgstr "Pridať nový záznam pre kanál Quad"
 
 msgid "Add Record Timer"
 msgstr "Pridať časovač nahrávania"
+
+msgid "Add Service"
+msgstr "pridať stanicu"
 
 msgid "Add Timer"
 msgstr "Pridať časovač"
@@ -2983,10 +3029,6 @@ msgstr "Naozaj chcete uložiť EPG cache do:\n"
 msgid "Are you sure you want to send this log:\n"
 msgstr "Naozaj chcete odoslať túto správu:\n"
 
-#, python-format
-msgid "Are you sure you want to update your %s %s ?"
-msgstr "Naozaj chcete aktualizovať %s %s?"
-
 msgid "Argentina"
 msgstr "Argentína"
 
@@ -3401,9 +3443,6 @@ msgstr "Umiestnenie zálohy"
 
 msgid "Backup Log"
 msgstr "Záznam k zálohe"
-
-msgid "Backup Manager"
-msgstr "Správca záloh"
 
 msgid "Backup Mode"
 msgstr "Režim zálohy"
@@ -4097,6 +4136,9 @@ msgstr "Kanada"
 msgid "Cancel"
 msgstr "Zrušiť"
 
+msgid "Cancel / Close the software update screen"
+msgstr ""
+
 msgid "Cancel any changed settings and exit"
 msgstr "Zrušiť akékoľvek zmeny nastavení a ukončiť"
 
@@ -4129,9 +4171,6 @@ msgstr "Zrušiť výber image a ukončiť"
 
 msgid "Cancel the image selection and exit all menus"
 msgstr "Zrušiť výber image a ukončiť všetky menu"
-
-msgid "Cancel the software update"
-msgstr ""
 
 msgid "Cancel the update"
 msgstr ""
@@ -4216,6 +4255,9 @@ msgstr "Čad"
 
 msgid "Chamorro"
 msgstr "Čamorčina (Chamorro)"
+
+msgid "Change"
+msgstr "zmeniť"
 
 msgid "Change Boxmode to control Hardware Chip Modes*"
 msgstr "Zmeniť režim prijímača pre kontrolu HW režimov čipu*"
@@ -4425,9 +4467,6 @@ msgstr "Overovanie záznamov..."
 
 msgid "Checking filesystem..."
 msgstr "Overovanie súborového systému..."
-
-msgid "Checking for Updates..."
-msgstr "Overovanie aktualizácií..."
 
 msgid "Checking the internet connection"
 msgstr "Overovanie pripojenia na internet"
@@ -4857,6 +4896,14 @@ msgstr "Konfiguračný súbor %s uložený."
 msgctxt "Abbreviation of 'Configurable'"
 msgid "Configurable"
 msgstr "Konfigurovateľné"
+
+#, python-format
+msgid ""
+"Configuration file '%s' has been modified since it was installed, would you "
+"like to keep the modified version?"
+msgstr ""
+"Konfiguračný súbor (%s) bol od inštalácie zmenený.\n"
+"Chcete zachovať svoju verziu?"
 
 msgid "Configuration mode"
 msgstr "Konfiguračný režim"
@@ -5605,9 +5652,6 @@ msgstr "Nemožno sa pripojiť na %s %s. Feed na serveri pre image NFI:"
 msgid "Could not connect to server"
 msgstr "Nemožno sa pripojiť na server"
 
-msgid "Could not find installed channel list."
-msgstr "Nemožno nájsť nainštalovaný zoznam kanálov."
-
 msgid ""
 "Could not find suitable media - Please remove some downloaded images or "
 "insert a media (e.g. USB stick) with sufficient free space and try again!"
@@ -5769,6 +5813,9 @@ msgstr "Aktuálny transpondér"
 
 msgid "Current value: "
 msgstr "Aktuálna hodnota: "
+
+msgid "Current version unknown"
+msgstr ""
 
 msgid "Current version:"
 msgstr "Aktuálna verzia:"
@@ -6442,6 +6489,13 @@ msgstr "Popis"
 msgid "Deselect"
 msgstr "Zrušiť výber"
 
+#, python-format
+msgid ""
+"Deselected packages usually occur because those packaged are incompatible "
+"with existing packages.  While this is mostly harmless it is possible that "
+"your %s %s may experience issues."
+msgstr ""
+
 msgid "Details for plugin: "
 msgstr "Podrobnosti o plugine: "
 
@@ -6867,10 +6921,6 @@ msgid "Do you want to purge all locales/languages except %s?"
 msgstr "Chcete vyčistiť všetky lokalizácie/jazyky okrem %s?"
 
 #, python-format
-msgid "Do you want to reboot your %s %s"
-msgstr "Chcete reštartovať %s %s"
-
-#, python-format
 msgid "Do you want to reboot your %s %s?"
 msgstr "Chcete %s %s reštartovať?"
 
@@ -6895,10 +6945,6 @@ msgid ""
 msgstr ""
 "Chcete poslať všetky vybrané súbory:\n"
 "(zvoľte 'Nie' odoslať iba aktuálne vybrané súbory.)"
-
-#, python-format
-msgid "Do you want to update your %s %s ?"
-msgstr "Chcete aktualizovať Váš %s %s?"
 
 msgid "Do you want to update your box?"
 msgstr "Chcete aktualizovať Váš box?"
@@ -7488,6 +7534,9 @@ msgstr ""
 "Povoľte túto možnosť, ak chcete do súboru denníka ladenia pridať údaje mapy "
 "klávesnice."
 
+msgid "Enable this option to add opkg output data to the debug log file."
+msgstr ""
+
 msgid "Enable this option to add remote control data to the debug log file."
 msgstr ""
 "Povolením tejto možnosti pridáte údaje diaľkového ovládania do súboru "
@@ -7759,9 +7808,6 @@ msgid ""
 msgstr ""
 "Chyba pri vytváraní priečinka %s:\n"
 "%s"
-
-msgid "Error downloading change log."
-msgstr "Chyba pri sťahovaní záznamu zmien."
 
 #, python-format
 msgid ""
@@ -8266,18 +8312,6 @@ msgstr ""
 
 msgid "Feed unstable!"
 msgstr ""
-
-msgid "Feeds status:   Stable"
-msgstr "Stav feedov: stabilné"
-
-msgid "Feeds status:   Unstable"
-msgstr "Stav feedov: nestabilné"
-
-msgid "Feeds status:   Updating"
-msgstr "Stav feedov: aktualizované"
-
-msgid "Feeds status: Unexpected"
-msgstr "Stav feedov: neočakávané"
 
 msgid "Fetch EPG and update timers now"
 msgstr "Prevziať EPG a aktualizovať časovače teraz"
@@ -9736,9 +9770,6 @@ msgstr "Záloha image"
 msgid "Image Information"
 msgstr "Info o image"
 
-msgid "Image Manager"
-msgstr "Správca image"
-
 msgid "Image Version"
 msgstr "Verzia image"
 
@@ -9855,6 +9886,9 @@ msgstr "Zahrnúť údaje z mapy akcií"
 
 msgid "Include keyboard data"
 msgstr "Zahrnúť údaje z klávesnice"
+
+msgid "Include opkg output data"
+msgstr ""
 
 msgid "Include remote control data"
 msgstr "Zahrnúť údaje zo vzdialenej kontroly"
@@ -10063,6 +10097,9 @@ msgstr "Inštalovať prog. ikony do"
 
 msgid "Install plugins"
 msgstr "Inštalácia pluginov"
+
+msgid "Install/Remove plugin"
+msgstr ""
 
 msgid "Installation finished."
 msgstr "Inštalácia dokončená."
@@ -11475,6 +11512,9 @@ msgstr "Posun línie nadol"
 msgid "Move down a page"
 msgstr "Pohyb stránky nadol"
 
+msgid "Move down a page / screen"
+msgstr ""
+
 msgid "Move down a screen"
 msgstr "Pohyb obrazovky nadol"
 
@@ -11574,6 +11614,9 @@ msgstr "Posun línie hore"
 
 msgid "Move up a page"
 msgstr "Pohyb stránky nahor"
+
+msgid "Move up a page / screen"
+msgstr ""
 
 msgid "Move up a screen"
 msgstr "Pohyb obrazovky nahor"
@@ -12103,9 +12146,6 @@ msgstr "Žiadny kanál"
 msgid "No clients streaming"
 msgstr "Žiadni streamujúci klienti"
 
-msgid "No connection"
-msgstr "Bez pripojenia"
-
 msgid ""
 "No data on transponder!\n"
 "(Timeout reading PAT)"
@@ -12240,8 +12280,11 @@ msgstr ""
 msgid "No update required!"
 msgstr "Nevyžaduje sa žiadna aktualizácia!"
 
-msgid "No updates available. Please try again later."
-msgstr "Žiadne aktualizácie nie sú dostupné. Skúste to neskôr."
+msgid "No updates available."
+msgstr ""
+
+msgid "No updates were available.  Please try again later."
+msgstr ""
 
 msgid "No valid region details were found"
 msgstr "Nenašli sa žiadne platné podrobnosti o regióne"
@@ -12504,6 +12547,9 @@ msgstr "OK, preveď ma procesom aktualizácie"
 msgid "ONID"
 msgstr "ONID"
 
+msgid "OPKG clean mode"
+msgstr ""
+
 msgid "OSD"
 msgstr "OSD"
 
@@ -12598,9 +12644,6 @@ msgstr "Jeden riadok"
 
 msgid "Online software update"
 msgstr "Online aktualizácia softvéru"
-
-msgid "OnlineVersionCheck"
-msgstr "Online hľadanie"
 
 msgid "Only extensions."
 msgstr "Len rozšírenia."
@@ -12920,9 +12963,6 @@ msgstr "Aktualizácia zoznamu balíčkov"
 msgid "Packaged locales only"
 msgstr "Len zabalené jazykové balíčky"
 
-msgid "Packages"
-msgstr "Balíčky"
-
 msgid "Packages and associated locales"
 msgstr "Balíky a súvisiace miestne nastavenia"
 
@@ -13084,24 +13124,11 @@ msgstr "Percentá/ukazovateľ priebehu vľavo"
 msgid "Percentage/Progress bar right"
 msgstr "Percentá/ukazovateľ priebehu vpravo"
 
-msgid "Perform a full image backup"
-msgstr "Vytvoriť úplnú zálohu image"
-
 msgid "Perform a image backup before updating."
 msgstr "Vytvori zálohu image pred aktualizovaním."
 
 msgid "Perform a setting backup before updating."
 msgstr "Vytvoriť zálohu settingu pred aktualizovaním."
-
-msgid "Perform a settings backup,"
-msgstr "Vykonať zálohu nastavení."
-
-msgid ""
-"Perform a settings backup, making a backup before updating is strongly "
-"advised."
-msgstr ""
-"Vytvoriť zálohu nastavení. Vytvorenie zálohy sa dôrazne odporúča pred "
-"aktualizáciou."
 
 msgid "Perform an on-line flash instead"
 msgstr ""
@@ -13877,6 +13904,9 @@ msgstr "Stlačením OK aktivujete vybraný vzhľad."
 msgid "Press OK to activate the settings."
 msgstr "Stlačením OK aktivujete nastavenia."
 
+msgid "Press OK to continue."
+msgstr ""
+
 msgid "Press OK to edit the settings."
 msgstr "Stlačte OK pre zmenu nastavení."
 
@@ -13930,6 +13960,9 @@ msgstr "Stlačte OK pre použitie tohto jazyka:  [%s]"
 #, python-format
 msgid "Press OK to use this locale.  [%s]"
 msgstr "Stlačte OK pre použitie tejto lokalizácie:  [%s]"
+
+msgid "Press the menu button to set a general AC3/Dolby offset."
+msgstr "stlačte tlačidlo MENU pre nastavenie AC3/Dolby offset"
 
 msgid ""
 "Press this button to emulate a long press on a button pressed afterwards "
@@ -14123,6 +14156,9 @@ msgstr "Chrániť prehliadač pluginov"
 
 msgid "Protect services"
 msgstr "Chrániť stanice"
+
+msgid "Protect software update screen"
+msgstr ""
 
 msgid "Protect standby menu"
 msgstr "Chrániť menu pohot. režimu"
@@ -14553,6 +14589,9 @@ msgstr ""
 "Prosím počkajte, kým sa %s %s nereštartuje.\n"
 "To môže trvať niekoľko minút"
 
+msgid "Refresh"
+msgstr ""
+
 msgid "Refresh every (in hours)"
 msgstr "Obnovenie vždy po (v hodinách)"
 
@@ -14567,6 +14606,9 @@ msgstr "Voľba obnovovacej frekvencie."
 
 msgid "Refresh screen"
 msgstr "Obnoviť obrazovku"
+
+msgid "Refresh the update-able package list"
+msgstr ""
 
 msgid "Regard deep standby as standby"
 msgstr "Považovať vypnutie za pohotovostný režim"
@@ -14660,6 +14702,12 @@ msgstr "Odstrániť"
 msgid "Remove Confirmation"
 msgstr "Odstrániť potvrdenie"
 
+msgid "Remove Failed !!"
+msgstr ""
+
+msgid "Remove Finished."
+msgstr "Odstránenie dokončené."
+
 msgid "Remove Plugins"
 msgstr "Odstrániť pluginy"
 
@@ -14692,9 +14740,6 @@ msgstr "Odstrániť aktuálny priečinok zo záložiek"
 
 msgid "Remove currently selected title"
 msgstr "Odstrániť aktuálne zvolený titul"
-
-msgid "Remove Finished."
-msgstr "Odstránenie dokončené."
 
 msgid "Remove hide VBI line for this service"
 msgstr "Odstrániť/skryť riadok VBI pre túto stanicu"
@@ -15746,6 +15791,9 @@ msgstr "Vyberte zvuk kanála"
 
 msgid "Select channel to record from"
 msgstr "Vyberte kanál na nahrávanie"
+
+msgid "Select channels to add an offset to the volume."
+msgstr "vyberte kanály, ktorým chcete pridať posun hlasitosti"
 
 msgid "Select copy destination for:"
 msgstr "Vyberte cieľ. umiestnenie kópie pre:"
@@ -17164,6 +17212,9 @@ msgstr "Zobraziť detailné informácie o udalostiach"
 msgid "Show detailed event info (setup in menu)"
 msgstr "Zobraziť detailné informácie o udalosti (nastavenie v menu)"
 
+msgid "Show development packages in opkg"
+msgstr ""
+
 msgid "Show directories first"
 msgstr "Zobraziť najskôr priečinky"
 
@@ -17809,9 +17860,6 @@ msgstr "Správca softvéru"
 msgid "Software Manager Setup"
 msgstr "Inštalácia správcu softvéru"
 
-msgid "Software Panel"
-msgstr "Panel pre softvér"
-
 msgid "Software Update"
 msgstr "Aktualizácia softvéru"
 
@@ -17827,8 +17875,10 @@ msgstr "Inštalácia správcu softvéru"
 msgid "Software restore"
 msgstr "Obnoviť softvér"
 
-msgid "Software update"
-msgstr "Aktualizovať softvér"
+msgid ""
+"Software update starting, please wait.\n"
+"\n"
+msgstr ""
 
 msgid "Softwaremanager information"
 msgstr "Informácia správcu softvéru"
@@ -17884,13 +17934,6 @@ msgid "Sorry feeds are down for maintenance, please try again later."
 msgstr ""
 "Prepáčte, zdroje softvéru nie sú k dispozícii z dôvodu údržby. Skúste to "
 "prosím neskôr."
-
-msgid ""
-"Sorry feeds are down for maintenance, please try again later. If this issue "
-"persists please check www.opena.tv"
-msgstr ""
-"Prepáčte, zdroje nie sú teraz dostupné, prebieha údržba. Skúste to prosím "
-"neskôr. Ak chyba pretrváva, navštívte stránku www.opena.tv"
 
 msgid "Sorry no backups found!"
 msgstr "Prepáčte, nenašli sa žiadne zálohy!"
@@ -18219,6 +18262,9 @@ msgstr "Zastaviť testovanie po # zlyhaných transpondéroch"
 
 msgid "Stop testing plane after # successful transponders"
 msgstr "Zastaviť testovanie po # úspešných transpondéroch"
+
+msgid "Stop the update, if running, then exit"
+msgstr ""
 
 msgid "Stop timer recording"
 msgstr "Zastaviť nahrávanie s časovačom"
@@ -18994,9 +19040,6 @@ msgstr ""
 msgid "The command to wake from standby will be sent multiple times."
 msgstr "Príkaz na prebudenie z pohotovostného režimu sa odošle viackrát."
 
-msgid "The current update may be unstable"
-msgstr "Aktuálna aktualizácia môže byť nestabilná"
-
 msgid ""
 "The default backup selection cannot be changed.\n"
 "Please use the 'additional' and 'excluded' backup selection."
@@ -19349,6 +19392,11 @@ msgstr ""
 
 msgid "This line is not editable!"
 msgstr "Tento riadok nemožno upravovať!"
+
+msgid ""
+"This offset will only be used if the channel has not its own volume offset."
+msgstr ""
+"tento posun sa používa iba vtedy, keď kanál nemá vlastný posun hlasitosti"
 
 msgid ""
 "This option allows to reduce the block-noise in the picture. Obviously this "
@@ -20671,15 +20719,8 @@ msgstr "Aktualizovať vyrovnávaciu pamäť"
 msgid "Update at your own risk"
 msgstr "Aktualizácia na vlastné nebezpečenstvo"
 
-msgid "Update channel list only"
-msgstr "Aktualizovať len zoznam kanálov"
-
-#, python-format
-msgid "Update completed, %d package was installed."
-msgid_plural "Update completed, %d packages were installed."
-msgstr[0] "Aktualizácia dokončená. %d balíček bol nainštalovaný."
-msgstr[1] "Aktualizácia dokončená. počet nainštalovaných balíčkov: %d."
-msgstr[2] "Aktualizácia dokončená, počet nainštalovaných balíčkov: %d."
+msgid "Update completed."
+msgstr ""
 
 msgid "Update delay for Events in List"
 msgstr "Aktualizácia oneskorenia pre udalosti v zozname"
@@ -20693,11 +20734,6 @@ msgstr ""
 
 msgid "Update failed!"
 msgstr "Aktualizácia neúspešná!"
-
-#, python-format
-msgid "Update failed. Your %s %s does not have a working internet connection."
-msgstr ""
-"Aktualizácia bola neúspešná. %s %s nemá funkčné pripojenie na internet."
 
 msgid "Update finished!"
 msgstr "Aktualizácia dokončená!"
@@ -20721,11 +20757,20 @@ msgstr "Aktualizácia/záloha firmware, zálohovanie/obnovenie nastavení"
 msgid "Update/Backup/Restore your box"
 msgstr "Aktualizácia/Záloha/Obnova prijímača"
 
+msgid "Updated"
+msgstr ""
+
+msgid "Updated version unknown"
+msgstr ""
+
 msgid "Updatefeed not available."
 msgstr "Feed pre aktualizácie nie je dostupný."
 
 msgid "Updates available:"
 msgstr "Dostupné aktualizácie:"
+
+msgid "Updating"
+msgstr "Upgrade"
 
 msgid "Updating cache"
 msgstr "Aktualizácia vyrov. pamäti"
@@ -20741,9 +20786,6 @@ msgstr "Aktualizácia katalógu softvéru"
 
 msgid "Upgrade (Backup, Flash & Restore All)"
 msgstr "Upgrade (záloha, flash a obnoviť všetky)"
-
-msgid "Upgrade and reboot system"
-msgstr "Upgrade a reštart systému"
 
 msgid "Upgrade finished."
 msgstr "Upgrade bol dokončený."
@@ -20761,8 +20803,8 @@ msgstr ""
 msgid "Upgrade with GUI"
 msgstr "Upgrade s GUI"
 
-msgid "Updating"
-msgstr "Upgrade"
+msgid "Upgrading"
+msgstr ""
 
 msgid "Uphops +"
 msgstr "Uphops +"
@@ -21377,9 +21419,6 @@ msgstr "Zobraziť fotografie..."
 msgid "View teletext..."
 msgstr "Zobraziť teletext..."
 
-msgid "View the changes"
-msgstr "Zobraziť zmeny"
-
 msgid "View video CD..."
 msgstr "Zobraziť video CD..."
 
@@ -21829,6 +21868,11 @@ msgstr ""
 msgid "When enabled, authentication is required to watch http streams."
 msgstr "Ak je povolené, vyžaduje sa prihlásenie pre sledovanie http streamov."
 
+msgid ""
+"When enabled, before opkg update there will be opkg clean to make sure "
+"nothing ruine the update but only enable this when you can not update online."
+msgstr ""
+
 msgid "When enabled, channel numbering will start at '1' for each bouquet."
 msgstr ""
 "Ak je povolené, bude číslovanie kanálov začínať pre každý prehľad od čísla "
@@ -21975,6 +22019,11 @@ msgstr ""
 
 msgid "When enabled, use DHCP for the IP configuration."
 msgstr "Pri povolení použije sa DHCP na konfigurovanie IP."
+
+msgid ""
+"When enabled, you will see dev, staticdev, dbg, doc, src and po packages in "
+"opkg list."
+msgstr ""
 
 msgid ""
 "When enabled, your receiver will detect activity on the VCR SCART input."
@@ -22563,14 +22612,6 @@ msgstr ""
 
 #, python-format
 msgid ""
-"Your %s %s might be unusable now. Please consult the manual for further "
-"assistance before rebooting your %s %s."
-msgstr ""
-"%s %s môže byť práve teraz nepoužiteľný. Pred reštartovaním %s %s si "
-"prečítajte návod, prosím."
-
-#, python-format
-msgid ""
 "Your %s %s was not shutdown properly.\n"
 "\n"
 "Do you want to put it in %s?"
@@ -22737,6 +22778,12 @@ msgid ""
 msgstr ""
 "Váš prijímač používa tónové zosilňovanie (tone amplitude). Viac informácií "
 "získate v návode od prijímača."
+
+#, python-format
+msgid ""
+"Your receiver might be unusable now.  Please consult the manual for further "
+"assistance before rebooting your %s %s."
+msgstr ""
 
 msgid ""
 "Your wireless LAN internet connection could not be started!\n"
@@ -22928,12 +22975,6 @@ msgstr "aktivovaťPiP"
 
 msgid "active"
 msgstr "aktívne"
-
-msgid "Add Current"
-msgstr "pridať Aktuálne"
-
-msgid "Add Service"
-msgstr "pridať stanicu"
 
 msgid "add alternatives"
 msgstr "pridať alternatívy"
@@ -23140,9 +23181,6 @@ msgstr "na stred"
 
 msgid "centered, wrapped"
 msgstr "na stred, zalomené"
-
-msgid "Change"
-msgstr "zmeniť"
 
 msgid "change Volume down"
 msgstr "zmena poklesu hlasitosti"
@@ -23667,9 +23705,6 @@ msgstr "interná slučka na"
 msgid "invalid type"
 msgstr "neplatný typ"
 
-msgid "is strongly advised."
-msgstr "sa dôrazne odporúča."
-
 msgid "jazz"
 msgstr "jazz"
 
@@ -23735,9 +23770,6 @@ msgstr "m2k"
 
 msgid "magazines/reports/documentary"
 msgstr "magazíny/reportáže/dokumentárne"
-
-msgid "making a backup before updating"
-msgstr "vytvorenie zálohy pred aktualizovaním"
 
 msgid "manage local Files"
 msgstr "spravovať lokálne súbory"
@@ -24003,9 +24035,6 @@ msgstr "ľudová kultúra/tradičné umenie"
 msgid "pre-school children's program"
 msgstr "program pre deti v predškolskom veku"
 
-msgid "Press the menu button to set a general AC3/Dolby offset."
-msgstr "stlačte tlačidlo MENU pre nastavenie AC3/Dolby offset"
-
 msgid "previous channel page"
 msgstr "predchádzajúca stránka kanála"
 
@@ -24191,9 +24220,6 @@ msgstr "vybrať"
 
 msgid "select CAId's"
 msgstr "vyberte CAIdy"
-
-msgid "Select channels to add an offset to the volume."
-msgstr "vyberte kanály, ktorým chcete pridať posun hlasitosti"
 
 msgid "select menu entry"
 msgstr "vyberte položku menu"
@@ -24436,11 +24462,6 @@ msgstr "tenis/squash"
 msgid "this bouquet is protected by a parental control pin"
 msgstr "tento prehľad je chránený kódom PIN pre rodičovský zámok"
 
-msgid ""
-"This offset will only be used if the channel has not its own volume offset."
-msgstr ""
-"tento posun sa používa iba vtedy, keď kanál nemá vlastný posun hlasitosti"
-
 msgid "this recording"
 msgstr "táto nahrávka"
 
@@ -24676,6 +24697,137 @@ msgstr "prepínanie"
 
 msgid "®"
 msgstr "®"
+
+#, python-format
+#~ msgid "%s updated package available"
+#~ msgid_plural "%s updated packages available"
+#~ msgstr[0] "je dostupný aktualizovaný balík %s"
+#~ msgstr[1] "sú dostupné aktualizované balíky %s"
+#~ msgstr[2] "sú dostupné aktualizované balíky %s"
+
+#, python-format
+#~ msgid ""
+#~ "A configuration file (%s) has been modified since it was installed.\n"
+#~ "Do you want to keep your modifications?"
+#~ msgstr ""
+#~ "Konfiguračný súbor (%s) bol od inštalácie zmenený.\n"
+#~ "Chcete zachovať vaše zmeny?"
+
+#, python-format
+#~ msgid "Are you sure you want to update your %s %s ?"
+#~ msgstr "Naozaj chcete aktualizovať %s %s?"
+
+#~ msgid "Backup Manager"
+#~ msgstr "Správca záloh"
+
+#~ msgid "Checking for Updates..."
+#~ msgstr "Overovanie aktualizácií..."
+
+#~ msgid "Could not find installed channel list."
+#~ msgstr "Nemožno nájsť nainštalovaný zoznam kanálov."
+
+#, python-format
+#~ msgid "Do you want to reboot your %s %s"
+#~ msgstr "Chcete reštartovať %s %s"
+
+#, python-format
+#~ msgid "Do you want to update your %s %s ?"
+#~ msgstr "Chcete aktualizovať Váš %s %s?"
+
+#~ msgid "Error downloading change log."
+#~ msgstr "Chyba pri sťahovaní záznamu zmien."
+
+#~ msgid "Feeds status:   Stable"
+#~ msgstr "Stav feedov: stabilné"
+
+#~ msgid "Feeds status:   Unstable"
+#~ msgstr "Stav feedov: nestabilné"
+
+#~ msgid "Feeds status:   Updating"
+#~ msgstr "Stav feedov: aktualizované"
+
+#~ msgid "Feeds status: Unexpected"
+#~ msgstr "Stav feedov: neočakávané"
+
+#~ msgid "Image Manager"
+#~ msgstr "Správca image"
+
+#~ msgid "No connection"
+#~ msgstr "Bez pripojenia"
+
+#~ msgid "No updates available. Please try again later."
+#~ msgstr "Žiadne aktualizácie nie sú dostupné. Skúste to neskôr."
+
+#~ msgid "OnlineVersionCheck"
+#~ msgstr "Online hľadanie"
+
+#~ msgid "Packages"
+#~ msgstr "Balíčky"
+
+#~ msgid "Perform a full image backup"
+#~ msgstr "Vytvoriť úplnú zálohu image"
+
+#~ msgid "Perform a settings backup,"
+#~ msgstr "Vykonať zálohu nastavení."
+
+#~ msgid ""
+#~ "Perform a settings backup, making a backup before updating is strongly "
+#~ "advised."
+#~ msgstr ""
+#~ "Vytvoriť zálohu nastavení. Vytvorenie zálohy sa dôrazne odporúča pred "
+#~ "aktualizáciou."
+
+#~ msgid "Software Panel"
+#~ msgstr "Panel pre softvér"
+
+#~ msgid "Software update"
+#~ msgstr "Aktualizovať softvér"
+
+#~ msgid ""
+#~ "Sorry feeds are down for maintenance, please try again later. If this "
+#~ "issue persists please check www.opena.tv"
+#~ msgstr ""
+#~ "Prepáčte, zdroje nie sú teraz dostupné, prebieha údržba. Skúste to prosím "
+#~ "neskôr. Ak chyba pretrváva, navštívte stránku www.opena.tv"
+
+#~ msgid "The current update may be unstable"
+#~ msgstr "Aktuálna aktualizácia môže byť nestabilná"
+
+#~ msgid "Update channel list only"
+#~ msgstr "Aktualizovať len zoznam kanálov"
+
+#, python-format
+#~ msgid "Update completed, %d package was installed."
+#~ msgid_plural "Update completed, %d packages were installed."
+#~ msgstr[0] "Aktualizácia dokončená. %d balíček bol nainštalovaný."
+#~ msgstr[1] "Aktualizácia dokončená. počet nainštalovaných balíčkov: %d."
+#~ msgstr[2] "Aktualizácia dokončená, počet nainštalovaných balíčkov: %d."
+
+#, python-format
+#~ msgid ""
+#~ "Update failed. Your %s %s does not have a working internet connection."
+#~ msgstr ""
+#~ "Aktualizácia bola neúspešná. %s %s nemá funkčné pripojenie na internet."
+
+#~ msgid "Upgrade and reboot system"
+#~ msgstr "Upgrade a reštart systému"
+
+#~ msgid "View the changes"
+#~ msgstr "Zobraziť zmeny"
+
+#, python-format
+#~ msgid ""
+#~ "Your %s %s might be unusable now. Please consult the manual for further "
+#~ "assistance before rebooting your %s %s."
+#~ msgstr ""
+#~ "%s %s môže byť práve teraz nepoužiteľný. Pred reštartovaním %s %s si "
+#~ "prečítajte návod, prosím."
+
+#~ msgid "is strongly advised."
+#~ msgstr "sa dôrazne odporúča."
+
+#~ msgid "making a backup before updating"
+#~ msgstr "vytvorenie zálohy pred aktualizovaním"
 
 #, python-format
 #~ msgid ""

@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openATV [E2+webif_V5.3_6.0]\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-01-02 10:50+0000\n"
+"POT-Creation-Date: 2022-01-19 18:56+0000\n"
 "PO-Revision-Date: 2021-11-02 11:36+0000\n"
 "Last-Translator: lexlong2007 <lexlong2007@163.com>\n"
 "Language-Team: Chinese (Simplified) <https://hosted.weblate.org/projects/"
@@ -1042,6 +1042,11 @@ msgid_plural "%d days"
 msgstr[0] "%d 天"
 
 #, python-format
+msgid "%d feed catalog package was updated."
+msgid_plural "%d feed catalog packages were updated."
+msgstr[0] ""
+
+#, python-format
 msgid "%d hour"
 msgid_plural "%d hours"
 msgstr[0] "%d 小时"
@@ -1066,6 +1071,46 @@ msgstr "%d 分钟"
 #, python-format
 msgid "%d ms"
 msgstr "%d 毫秒"
+
+#, python-format
+msgid "%d package upgraded."
+msgid_plural "%d packages upgraded."
+msgstr[0] ""
+
+#, python-format
+msgid "%d package was configured."
+msgid_plural "%d packages were configured."
+msgstr[0] ""
+
+#, python-format
+msgid "%d package was deselected."
+msgid_plural "%d packages were deselected."
+msgstr[0] ""
+
+#, python-format
+msgid "%d package was downloaded."
+msgid_plural "%d packages were downloaded."
+msgstr[0] ""
+
+#, python-format
+msgid "%d package was identified for upgrade."
+msgid_plural "%d packages were identified for upgrade."
+msgstr[0] ""
+
+#, python-format
+msgid "%d package was installed."
+msgid_plural "%d packages were installed."
+msgstr[0] ""
+
+#, python-format
+msgid "%d package was removed."
+msgid_plural "%d packages were removed."
+msgstr[0] ""
+
+#, python-format
+msgid "%d package was upgraded."
+msgid_plural "%d packages were upgraded."
+msgstr[0] ""
 
 #, python-format
 msgid "%d pixel wide"
@@ -1291,11 +1336,6 @@ msgstr "%s 不可用."
 #, python-format
 msgid "%s successfully extracted."
 msgstr "%s 成功提取。"
-
-#, python-format
-msgid "%s updated package available"
-msgid_plural "%s updated packages available"
-msgstr[0] "%s 有可用软件更新包"
 
 #, python-format
 msgid "%s%d min"
@@ -2002,22 +2042,6 @@ msgid ""
 msgstr "后台更新检查中，请等几分钟后再试."
 
 #, python-format
-msgid ""
-"A configuration file (%s) has been modified since it was installed.\n"
-"Do you want to keep your modifications?"
-msgstr ""
-"配置文件(%s)自包安装后已修改. \n"
-"你想保留你的修改吗？"
-
-#, python-format
-msgid ""
-"Configuration file '%s' has been modified since it was installed, would you "
-"like to keep the modified version?"
-msgstr ""
-"配置文件(%s)在安装后已被修改.\n"
-"是否要保持您现在的版本？"
-
-#, python-format
 msgid "A crashlog was %s created in '%s'"
 msgstr "崩溃日志%s已在%s中创建"
 
@@ -2343,11 +2367,17 @@ msgstr "添加"
 msgid "Add AutoTimer"
 msgstr "添加自动定时器"
 
+msgid "Add Current"
+msgstr "添加当前"
+
 msgid "Add New Quad Channel Entry"
 msgstr "添加一个新四宫格频道"
 
 msgid "Add Record Timer"
 msgstr "添加一个录像定时器"
+
+msgid "Add Service"
+msgstr "添加频道"
 
 msgid "Add Timer"
 msgstr "添加定时器"
@@ -2936,10 +2966,6 @@ msgstr "确定要保存EPG缓存到:\n"
 msgid "Are you sure you want to send this log:\n"
 msgstr "确定要发送这篇日志吗:\n"
 
-#, python-format
-msgid "Are you sure you want to update your %s %s ?"
-msgstr "确定要升级您的 %s %s ?"
-
 msgid "Argentina"
 msgstr "阿根廷"
 
@@ -3350,9 +3376,6 @@ msgstr "备份位置"
 
 msgid "Backup Log"
 msgstr "备份日志"
-
-msgid "Backup Manager"
-msgstr "备份管理"
 
 msgid "Backup Mode"
 msgstr "备份模式"
@@ -4031,6 +4054,9 @@ msgstr "加拿大"
 msgid "Cancel"
 msgstr "取消"
 
+msgid "Cancel / Close the software update screen"
+msgstr ""
+
 msgid "Cancel any changed settings and exit"
 msgstr "取消所有更改并退出"
 
@@ -4063,9 +4089,6 @@ msgstr "取消固件选择并退出"
 
 msgid "Cancel the image selection and exit all menus"
 msgstr "取消镜像选择并退出所有菜单"
-
-msgid "Cancel the software update"
-msgstr ""
 
 msgid "Cancel the update"
 msgstr ""
@@ -4150,6 +4173,9 @@ msgstr "乍得"
 
 msgid "Chamorro"
 msgstr "查莫洛人"
+
+msgid "Change"
+msgstr "更改"
 
 msgid "Change Boxmode to control Hardware Chip Modes*"
 msgstr "修改Boxmode 以控制硬件HDR和PIP"
@@ -4357,9 +4383,6 @@ msgstr "正在检查日志..."
 
 msgid "Checking filesystem..."
 msgstr "正在检查文件系统..."
-
-msgid "Checking for Updates..."
-msgstr "正在检查更新..."
 
 msgid "Checking the internet connection"
 msgstr "正在检查互联网连接"
@@ -4760,6 +4783,14 @@ msgstr "配置文件 %s 已保存."
 msgctxt "Abbreviation of 'Configurable'"
 msgid "Configurable"
 msgstr "可配置"
+
+#, python-format
+msgid ""
+"Configuration file '%s' has been modified since it was installed, would you "
+"like to keep the modified version?"
+msgstr ""
+"配置文件(%s)在安装后已被修改.\n"
+"是否要保持您现在的版本？"
 
 msgid "Configuration mode"
 msgstr "配置模式"
@@ -5432,9 +5463,6 @@ msgstr "无法连接到%s %s. NFI固件订阅服务器:"
 msgid "Could not connect to server"
 msgstr "无法连接到服务器"
 
-msgid "Could not find installed channel list."
-msgstr "无法找到安装的频道列表."
-
 msgid ""
 "Could not find suitable media - Please remove some downloaded images or "
 "insert a media (e.g. USB stick) with sufficient free space and try again!"
@@ -5595,6 +5623,9 @@ msgstr "当前转发器"
 
 msgid "Current value: "
 msgstr "当前值:"
+
+msgid "Current version unknown"
+msgstr ""
 
 msgid "Current version:"
 msgstr "当前版本:"
@@ -6252,6 +6283,13 @@ msgstr "详情描述"
 msgid "Deselect"
 msgstr "取消选择"
 
+#, python-format
+msgid ""
+"Deselected packages usually occur because those packaged are incompatible "
+"with existing packages.  While this is mostly harmless it is possible that "
+"your %s %s may experience issues."
+msgstr ""
+
 msgid "Details for plugin: "
 msgstr "插件详细信息:"
 
@@ -6671,10 +6709,6 @@ msgid "Do you want to purge all locales/languages except %s?"
 msgstr "是否要清除除 %s 之外的所有区域/语言设置?"
 
 #, python-format
-msgid "Do you want to reboot your %s %s"
-msgstr "是否要重启%s %s"
-
-#, python-format
 msgid "Do you want to reboot your %s %s?"
 msgstr "是否要重启%s %s？"
 
@@ -6699,10 +6733,6 @@ msgid ""
 msgstr ""
 "是否发送所有选定的文件:\n"
 "（选择“否”只发送当前选定的文件）"
-
-#, python-format
-msgid "Do you want to update your %s %s ?"
-msgstr "是否升级 %s %s ？"
 
 msgid "Do you want to update your box?"
 msgstr "是否升级您的机顶盒？"
@@ -7270,6 +7300,9 @@ msgstr "启用此选项可将动作映射/遥控器映射数据添加到调试�
 msgid "Enable this option to add keyboard keymap data to the debug log file."
 msgstr "启用此选项可将键盘映射数据添加到调试日志文件。"
 
+msgid "Enable this option to add opkg output data to the debug log file."
+msgstr ""
+
 msgid "Enable this option to add remote control data to the debug log file."
 msgstr "启用此选项可将遥控器数据添加到调试日志文件中。"
 
@@ -7523,9 +7556,6 @@ msgid ""
 msgstr ""
 "创建目录%s 失败.\n"
 "%s"
-
-msgid "Error downloading change log."
-msgstr "下载修改日志时出错."
 
 #, python-format
 msgid ""
@@ -8026,18 +8056,6 @@ msgstr ""
 
 msgid "Feed unstable!"
 msgstr ""
-
-msgid "Feeds status:   Stable"
-msgstr "Feed 状态:稳定版"
-
-msgid "Feeds status:   Unstable"
-msgstr "Feed 状态:不稳定"
-
-msgid "Feeds status:   Updating"
-msgstr "Feed 状态:正在更新"
-
-msgid "Feeds status: Unexpected"
-msgstr "数据源状态:不稳定"
 
 msgid "Fetch EPG and update timers now"
 msgstr "立即获取 EPG 并更新定时器"
@@ -9428,9 +9446,6 @@ msgstr "固件备份"
 msgid "Image Information"
 msgstr "固件详细信息"
 
-msgid "Image Manager"
-msgstr "固件管理器"
-
 msgid "Image Version"
 msgstr "固件版本"
 
@@ -9540,6 +9555,9 @@ msgstr "包含动作映射信息"
 
 msgid "Include keyboard data"
 msgstr "包含键盘操作信息"
+
+msgid "Include opkg output data"
+msgstr ""
 
 msgid "Include remote control data"
 msgstr "包含遥控器操作信息"
@@ -9748,6 +9766,9 @@ msgstr "安装台标到"
 
 msgid "Install plugins"
 msgstr "安装插件"
+
+msgid "Install/Remove plugin"
+msgstr ""
 
 msgid "Installation finished."
 msgstr "安装结束."
@@ -11156,6 +11177,9 @@ msgstr "下移一行"
 msgid "Move down a page"
 msgstr "向下移动一页"
 
+msgid "Move down a page / screen"
+msgstr ""
+
 msgid "Move down a screen"
 msgstr "下移一页"
 
@@ -11252,6 +11276,9 @@ msgstr "向上移动一行"
 
 msgid "Move up a page"
 msgstr "向上移动一页"
+
+msgid "Move up a page / screen"
+msgstr ""
 
 msgid "Move up a screen"
 msgstr "向上移动一页"
@@ -11774,9 +11801,6 @@ msgstr "没有频道"
 msgid "No clients streaming"
 msgstr "没有串流在使用"
 
-msgid "No connection"
-msgstr "没有连接"
-
 msgid ""
 "No data on transponder!\n"
 "(Timeout reading PAT)"
@@ -11906,8 +11930,11 @@ msgstr ""
 msgid "No update required!"
 msgstr "无需更新！"
 
-msgid "No updates available. Please try again later."
-msgstr "没有可用更新.请稍后再试."
+msgid "No updates available."
+msgstr ""
+
+msgid "No updates were available.  Please try again later."
+msgstr ""
 
 msgid "No valid region details were found"
 msgstr "未找到有效的区域详细信息"
@@ -12164,6 +12191,9 @@ msgstr "确定，引导我完成升级过程"
 msgid "ONID"
 msgstr "ONID"
 
+msgid "OPKG clean mode"
+msgstr ""
+
 msgid "OSD"
 msgstr "OSD"
 
@@ -12256,9 +12286,6 @@ msgstr "单行"
 
 msgid "Online software update"
 msgstr "在线软件更新"
-
-msgid "OnlineVersionCheck"
-msgstr "在线版本检查"
 
 msgid "Only extensions."
 msgstr "仅附件."
@@ -12574,9 +12601,6 @@ msgstr "更新软件包列表"
 msgid "Packaged locales only"
 msgstr "仅限打包的本地包"
 
-msgid "Packages"
-msgstr "软件包"
-
 msgid "Packages and associated locales"
 msgstr "包和相关的本地"
 
@@ -12738,22 +12762,11 @@ msgstr "左侧百分比/进度条"
 msgid "Percentage/Progress bar right"
 msgstr "百分比/进度条右侧"
 
-msgid "Perform a full image backup"
-msgstr "执行完整固件备份"
-
 msgid "Perform a image backup before updating."
 msgstr "升级前执行固件备份."
 
 msgid "Perform a setting backup before updating."
 msgstr "升级前执行设置备份."
-
-msgid "Perform a settings backup,"
-msgstr "对设置进行备份，"
-
-msgid ""
-"Perform a settings backup, making a backup before updating is strongly "
-"advised."
-msgstr "强烈建议更新前执行设置备份."
 
 msgid "Perform an on-line flash instead"
 msgstr ""
@@ -13516,6 +13529,9 @@ msgstr "按 OK 键来激活选择的皮肤."
 msgid "Press OK to activate the settings."
 msgstr "按 OK 键来激活设置."
 
+msgid "Press OK to continue."
+msgstr ""
+
 msgid "Press OK to edit the settings."
 msgstr "按OK键编辑设置."
 
@@ -13568,6 +13584,9 @@ msgstr "按 OK 使用此语言。 [%s]"
 #, python-format
 msgid "Press OK to use this locale.  [%s]"
 msgstr "按 OK 使用此本地设置。 [%s]"
+
+msgid "Press the menu button to set a general AC3/Dolby offset."
+msgstr "按MENU按钮设置常规AC3 /杜比 偏移"
 
 msgid ""
 "Press this button to emulate a long press on a button pressed afterwards "
@@ -13756,6 +13775,9 @@ msgstr "保护插件浏览器"
 
 msgid "Protect services"
 msgstr "保护频道"
+
+msgid "Protect software update screen"
+msgstr ""
 
 msgid "Protect standby menu"
 msgstr "保护待机菜单"
@@ -14182,6 +14204,9 @@ msgstr ""
 "请等待直到你的 %s %s 重新启动\n"
 "这可能需要几分钟"
 
+msgid "Refresh"
+msgstr ""
+
 msgid "Refresh every (in hours)"
 msgstr "刷新每（小时）"
 
@@ -14196,6 +14221,9 @@ msgstr "刷新率选择。"
 
 msgid "Refresh screen"
 msgstr "刷新界面"
+
+msgid "Refresh the update-able package list"
+msgstr ""
 
 msgid "Regard deep standby as standby"
 msgstr "把深度待机当作待机"
@@ -14287,6 +14315,12 @@ msgstr "移除"
 msgid "Remove Confirmation"
 msgstr "删除确认"
 
+msgid "Remove Failed !!"
+msgstr ""
+
+msgid "Remove Finished."
+msgstr "删除完成."
+
 msgid "Remove Plugins"
 msgstr "删除插件"
 
@@ -14319,9 +14353,6 @@ msgstr "从书签中删除当前文件夹"
 
 msgid "Remove currently selected title"
 msgstr "删除当前选择的标题"
-
-msgid "Remove Finished."
-msgstr "删除完成."
 
 msgid "Remove hide VBI line for this service"
 msgstr "删除此服务的隐藏 VBI 行"
@@ -15338,6 +15369,9 @@ msgstr "选择频道音频"
 
 msgid "Select channel to record from"
 msgstr "选择频道来录制，从"
+
+msgid "Select channels to add an offset to the volume."
+msgstr "选择频道来添加音量偏移"
 
 msgid "Select copy destination for:"
 msgstr "选择复制目标为:"
@@ -16680,6 +16714,9 @@ msgstr "显示详细的事件信息"
 msgid "Show detailed event info (setup in menu)"
 msgstr "显示详细的事件信息（在菜单中设置）"
 
+msgid "Show development packages in opkg"
+msgstr ""
+
 msgid "Show directories first"
 msgstr "首先显示目录"
 
@@ -17309,9 +17346,6 @@ msgstr "软件管理器"
 msgid "Software Manager Setup"
 msgstr "软件管理器设置"
 
-msgid "Software Panel"
-msgstr "软件面板"
-
 msgid "Software Update"
 msgstr "软件升级"
 
@@ -17327,8 +17361,10 @@ msgstr "软件管理器设置"
 msgid "Software restore"
 msgstr "软件恢复"
 
-msgid "Software update"
-msgstr "软件更新"
+msgid ""
+"Software update starting, please wait.\n"
+"\n"
+msgstr ""
 
 msgid "Softwaremanager information"
 msgstr "软件管理器信息"
@@ -17378,11 +17414,6 @@ msgstr "抱歉，Feed 正在维护"
 
 msgid "Sorry feeds are down for maintenance, please try again later."
 msgstr "对不起订阅需要进行维护,请稍后再试."
-
-msgid ""
-"Sorry feeds are down for maintenance, please try again later. If this issue "
-"persists please check www.opena.tv"
-msgstr "对不起Feed要进行维护,请稍后再试.如果此问题仍然存在,请检查www.opena.tv"
 
 msgid "Sorry no backups found!"
 msgstr "抱歉，没有找到备份！"
@@ -17706,6 +17737,9 @@ msgstr "#个转发器调谐失败后将停止测试"
 
 msgid "Stop testing plane after # successful transponders"
 msgstr "# 个转发器调谐成功后将停止测试"
+
+msgid "Stop the update, if running, then exit"
+msgstr ""
 
 msgid "Stop timer recording"
 msgstr "停止定时录像"
@@ -18465,9 +18499,6 @@ msgstr ""
 msgid "The command to wake from standby will be sent multiple times."
 msgstr ""
 
-msgid "The current update may be unstable"
-msgstr "当前更新可能不稳定"
-
 msgid ""
 "The default backup selection cannot be changed.\n"
 "Please use the 'additional' and 'excluded' backup selection."
@@ -18799,6 +18830,10 @@ msgstr ""
 
 msgid "This line is not editable!"
 msgstr "此行不可编辑！"
+
+msgid ""
+"This offset will only be used if the channel has not its own volume offset."
+msgstr "这个偏移量只用在当该声道没有本身的音量偏移时"
 
 msgid ""
 "This option allows to reduce the block-noise in the picture. Obviously this "
@@ -20047,13 +20082,8 @@ msgstr "更新缓存"
 msgid "Update at your own risk"
 msgstr "更新自行承担风险"
 
-msgid "Update channel list only"
-msgstr "仅更新频道列表"
-
-#, python-format
-msgid "Update completed, %d package was installed."
-msgid_plural "Update completed, %d packages were installed."
-msgstr[0] "更新完成后，%d个包已更新."
+msgid "Update completed."
+msgstr ""
 
 msgid "Update delay for Events in List"
 msgstr "因列表中的事件更新延迟"
@@ -20065,10 +20095,6 @@ msgstr "列表中事件的更新延迟. 在列表中滚动更快，延迟更高�
 
 msgid "Update failed!"
 msgstr "更新失败！"
-
-#, python-format
-msgid "Update failed. Your %s %s does not have a working internet connection."
-msgstr "更新失败.你的%s %s没有连接到互联网."
 
 msgid "Update finished!"
 msgstr "升级完成!"
@@ -20092,11 +20118,20 @@ msgstr "更新/备份固件，备份/恢复选项"
 msgid "Update/Backup/Restore your box"
 msgstr "升级/备份/恢复机顶盒"
 
+msgid "Updated"
+msgstr ""
+
+msgid "Updated version unknown"
+msgstr ""
+
 msgid "Updatefeed not available."
 msgstr "没有可供更新的订阅源."
 
 msgid "Updates available:"
 msgstr "可用更新:"
+
+msgid "Updating"
+msgstr "正在升级"
 
 msgid "Updating cache"
 msgstr "正在更新缓存"
@@ -20112,9 +20147,6 @@ msgstr "更新软件目录"
 
 msgid "Upgrade (Backup, Flash & Restore All)"
 msgstr "升级（备份、烧录和全部恢复）"
-
-msgid "Upgrade and reboot system"
-msgstr "升级并重启系统"
 
 msgid "Upgrade finished."
 msgstr "升级完成."
@@ -20132,8 +20164,8 @@ msgstr ""
 msgid "Upgrade with GUI"
 msgstr "通过GUI升级"
 
-msgid "Updating"
-msgstr "正在升级"
+msgid "Upgrading"
+msgstr ""
 
 msgid "Uphops +"
 msgstr "Uphops +"
@@ -20719,9 +20751,6 @@ msgstr "查看照片..."
 msgid "View teletext..."
 msgstr "查看图文电视..."
 
-msgid "View the changes"
-msgstr "查看更改"
-
 msgid "View video CD..."
 msgstr "观看 视频 CD..."
 
@@ -21135,6 +21164,11 @@ msgstr ""
 msgid "When enabled, authentication is required to watch http streams."
 msgstr "启用时，需要进行身份验证才能观看http流."
 
+msgid ""
+"When enabled, before opkg update there will be opkg clean to make sure "
+"nothing ruine the update but only enable this when you can not update online."
+msgstr ""
+
 msgid "When enabled, channel numbering will start at '1' for each bouquet."
 msgstr "启用时，每个频道组的频道编号将从 1 开始."
 
@@ -21248,6 +21282,11 @@ msgstr "启用时，时移将会在指定时间后自动在后台启动."
 
 msgid "When enabled, use DHCP for the IP configuration."
 msgstr "启用时，使用 DHCP 配置 IP."
+
+msgid ""
+"When enabled, you will see dev, staticdev, dbg, doc, src and po packages in "
+"opkg list."
+msgstr ""
 
 msgid ""
 "When enabled, your receiver will detect activity on the VCR SCART input."
@@ -21792,13 +21831,6 @@ msgstr "您的%s %s 没有正确连接到互联网.请检查后再试一次."
 
 #, python-format
 msgid ""
-"Your %s %s might be unusable now. Please consult the manual for further "
-"assistance before rebooting your %s %s."
-msgstr ""
-"您的%s %s 现在可能无法使用.在重启 %s %s 之前请查阅手册以获得进一步帮助."
-
-#, python-format
-msgid ""
 "Your %s %s was not shutdown properly.\n"
 "\n"
 "Do you want to put it in %s?"
@@ -21953,6 +21985,12 @@ msgid ""
 "Your receiver can use tone amplitude. Consult your receiver's manual for "
 "more information."
 msgstr "您的接收器可以使用tone振幅。 有关更多信息，请查阅您的接收器手册。"
+
+#, python-format
+msgid ""
+"Your receiver might be unusable now.  Please consult the manual for further "
+"assistance before rebooting your %s %s."
+msgstr ""
 
 msgid ""
 "Your wireless LAN internet connection could not be started!\n"
@@ -22144,12 +22182,6 @@ msgstr "激活画中画"
 
 msgid "active"
 msgstr "激活"
-
-msgid "Add Current"
-msgstr "添加当前"
-
-msgid "Add Service"
-msgstr "添加频道"
 
 msgid "add alternatives"
 msgstr "添加备选"
@@ -22356,9 +22388,6 @@ msgstr "居中"
 
 msgid "centered, wrapped"
 msgstr "中心，卷起"
-
-msgid "Change"
-msgstr "更改"
 
 msgid "change Volume down"
 msgstr "音量减小"
@@ -22881,9 +22910,6 @@ msgstr "内循环到"
 msgid "invalid type"
 msgstr "无效类型"
 
-msgid "is strongly advised."
-msgstr "强烈建议."
-
 msgid "jazz"
 msgstr "爵士乐"
 
@@ -22949,9 +22975,6 @@ msgstr "m2k"
 
 msgid "magazines/reports/documentary"
 msgstr "杂志/报告/纪录片"
-
-msgid "making a backup before updating"
-msgstr "更新前创建备份"
 
 msgid "manage local Files"
 msgstr "管理本地文件"
@@ -23217,9 +23240,6 @@ msgstr "大众文化/传统艺术"
 msgid "pre-school children's program"
 msgstr "学龄前儿童节目"
 
-msgid "Press the menu button to set a general AC3/Dolby offset."
-msgstr "按MENU按钮设置常规AC3 /杜比 偏移"
-
 msgid "previous channel page"
 msgstr "上一个频道页面"
 
@@ -23405,9 +23425,6 @@ msgstr "选择"
 
 msgid "select CAId's"
 msgstr "选择 CAId's"
-
-msgid "Select channels to add an offset to the volume."
-msgstr "选择频道来添加音量偏移"
 
 msgid "select menu entry"
 msgstr "选择菜单条目"
@@ -23650,10 +23667,6 @@ msgstr "网球/壁球"
 msgid "this bouquet is protected by a parental control pin"
 msgstr "此频道组受家长控制 PIN 保护"
 
-msgid ""
-"This offset will only be used if the channel has not its own volume offset."
-msgstr "这个偏移量只用在当该声道没有本身的音量偏移时"
-
 msgid "this recording"
 msgstr "这段录像"
 
@@ -23886,6 +23899,128 @@ msgstr "切换中"
 
 msgid "®"
 msgstr "®"
+
+#, python-format
+#~ msgid "%s updated package available"
+#~ msgid_plural "%s updated packages available"
+#~ msgstr[0] "%s 有可用软件更新包"
+
+#, python-format
+#~ msgid ""
+#~ "A configuration file (%s) has been modified since it was installed.\n"
+#~ "Do you want to keep your modifications?"
+#~ msgstr ""
+#~ "配置文件(%s)自包安装后已修改. \n"
+#~ "你想保留你的修改吗？"
+
+#, python-format
+#~ msgid "Are you sure you want to update your %s %s ?"
+#~ msgstr "确定要升级您的 %s %s ?"
+
+#~ msgid "Backup Manager"
+#~ msgstr "备份管理"
+
+#~ msgid "Checking for Updates..."
+#~ msgstr "正在检查更新..."
+
+#~ msgid "Could not find installed channel list."
+#~ msgstr "无法找到安装的频道列表."
+
+#, python-format
+#~ msgid "Do you want to reboot your %s %s"
+#~ msgstr "是否要重启%s %s"
+
+#, python-format
+#~ msgid "Do you want to update your %s %s ?"
+#~ msgstr "是否升级 %s %s ？"
+
+#~ msgid "Error downloading change log."
+#~ msgstr "下载修改日志时出错."
+
+#~ msgid "Feeds status:   Stable"
+#~ msgstr "Feed 状态:稳定版"
+
+#~ msgid "Feeds status:   Unstable"
+#~ msgstr "Feed 状态:不稳定"
+
+#~ msgid "Feeds status:   Updating"
+#~ msgstr "Feed 状态:正在更新"
+
+#~ msgid "Feeds status: Unexpected"
+#~ msgstr "数据源状态:不稳定"
+
+#~ msgid "Image Manager"
+#~ msgstr "固件管理器"
+
+#~ msgid "No connection"
+#~ msgstr "没有连接"
+
+#~ msgid "No updates available. Please try again later."
+#~ msgstr "没有可用更新.请稍后再试."
+
+#~ msgid "OnlineVersionCheck"
+#~ msgstr "在线版本检查"
+
+#~ msgid "Packages"
+#~ msgstr "软件包"
+
+#~ msgid "Perform a full image backup"
+#~ msgstr "执行完整固件备份"
+
+#~ msgid "Perform a settings backup,"
+#~ msgstr "对设置进行备份，"
+
+#~ msgid ""
+#~ "Perform a settings backup, making a backup before updating is strongly "
+#~ "advised."
+#~ msgstr "强烈建议更新前执行设置备份."
+
+#~ msgid "Software Panel"
+#~ msgstr "软件面板"
+
+#~ msgid "Software update"
+#~ msgstr "软件更新"
+
+#~ msgid ""
+#~ "Sorry feeds are down for maintenance, please try again later. If this "
+#~ "issue persists please check www.opena.tv"
+#~ msgstr ""
+#~ "对不起Feed要进行维护,请稍后再试.如果此问题仍然存在,请检查www.opena.tv"
+
+#~ msgid "The current update may be unstable"
+#~ msgstr "当前更新可能不稳定"
+
+#~ msgid "Update channel list only"
+#~ msgstr "仅更新频道列表"
+
+#, python-format
+#~ msgid "Update completed, %d package was installed."
+#~ msgid_plural "Update completed, %d packages were installed."
+#~ msgstr[0] "更新完成后，%d个包已更新."
+
+#, python-format
+#~ msgid ""
+#~ "Update failed. Your %s %s does not have a working internet connection."
+#~ msgstr "更新失败.你的%s %s没有连接到互联网."
+
+#~ msgid "Upgrade and reboot system"
+#~ msgstr "升级并重启系统"
+
+#~ msgid "View the changes"
+#~ msgstr "查看更改"
+
+#, python-format
+#~ msgid ""
+#~ "Your %s %s might be unusable now. Please consult the manual for further "
+#~ "assistance before rebooting your %s %s."
+#~ msgstr ""
+#~ "您的%s %s 现在可能无法使用.在重启 %s %s 之前请查阅手册以获得进一步帮助."
+
+#~ msgid "is strongly advised."
+#~ msgstr "强烈建议."
+
+#~ msgid "making a backup before updating"
+#~ msgstr "更新前创建备份"
 
 #, python-format
 #~ msgid ""

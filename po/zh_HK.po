@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-01-02 10:50+0000\n"
+"POT-Creation-Date: 2022-01-19 18:56+0000\n"
 "PO-Revision-Date: 2021-08-15 18:50+0000\n"
 "Last-Translator: openATV <openatv@gmail.com>\n"
 "Language-Team: Chinese (Traditional, Hong Kong) <https://hosted.weblate.org/"
@@ -1064,6 +1064,11 @@ msgstr[0] ""
 msgstr[1] ""
 
 #, python-format
+msgid "%d feed catalog package was updated."
+msgid_plural "%d feed catalog packages were updated."
+msgstr[0] ""
+
+#, python-format
 msgid "%d hour"
 msgid_plural "%d hours"
 msgstr[0] "%d jam"
@@ -1089,6 +1094,46 @@ msgstr ""
 #, fuzzy, python-format
 msgid "%d ms"
 msgstr "%d 分鐘"
+
+#, python-format
+msgid "%d package upgraded."
+msgid_plural "%d packages upgraded."
+msgstr[0] ""
+
+#, python-format
+msgid "%d package was configured."
+msgid_plural "%d packages were configured."
+msgstr[0] ""
+
+#, python-format
+msgid "%d package was deselected."
+msgid_plural "%d packages were deselected."
+msgstr[0] ""
+
+#, python-format
+msgid "%d package was downloaded."
+msgid_plural "%d packages were downloaded."
+msgstr[0] ""
+
+#, python-format
+msgid "%d package was identified for upgrade."
+msgid_plural "%d packages were identified for upgrade."
+msgstr[0] ""
+
+#, python-format
+msgid "%d package was installed."
+msgid_plural "%d packages were installed."
+msgstr[0] ""
+
+#, python-format
+msgid "%d package was removed."
+msgid_plural "%d packages were removed."
+msgstr[0] ""
+
+#, python-format
+msgid "%d package was upgraded."
+msgid_plural "%d packages were upgraded."
+msgstr[0] ""
 
 #, python-format
 msgid "%d pixel wide"
@@ -1316,11 +1361,6 @@ msgstr "不使用"
 #, python-format
 msgid "%s successfully extracted."
 msgstr ""
-
-#, python-format
-msgid "%s updated package available"
-msgid_plural "%s updated packages available"
-msgstr[0] "%s pembaruan paket tersedia"
 
 #, python-format
 msgid "%s%d min"
@@ -2075,20 +2115,6 @@ msgid ""
 msgstr ""
 
 #, python-format
-msgid ""
-"A configuration file (%s) has been modified since it was installed.\n"
-"Do you want to keep your modifications?"
-msgstr ""
-
-#, python-format
-msgid ""
-"Configuration file '%s' has been modified since it was installed, would you "
-"like to keep the modified version?"
-msgstr ""
-"配置檔(%s)在安裝後被修改了.\n"
-"是否想要保留您的版本？"
-
-#, python-format
 msgid "A crashlog was %s created in '%s'"
 msgstr ""
 
@@ -2433,12 +2459,19 @@ msgstr "添加"
 msgid "Add AutoTimer"
 msgstr "添加新的自動計時器"
 
+#, fuzzy
+msgid "Add Current"
+msgstr "當前"
+
 msgid "Add New Quad Channel Entry"
 msgstr ""
 
 #, fuzzy
 msgid "Add Record Timer"
 msgstr "添加新的自動計時器"
+
+msgid "Add Service"
+msgstr "添加頻道"
 
 #, fuzzy
 msgid "Add Timer"
@@ -3066,10 +3099,6 @@ msgstr ""
 msgid "Are you sure you want to send this log:\n"
 msgstr "確定要退出此嚮導?"
 
-#, fuzzy, python-format
-msgid "Are you sure you want to update your %s %s ?"
-msgstr "您確定要復位嗎?"
-
 #, fuzzy
 msgid "Argentina"
 msgstr "注意!"
@@ -3525,10 +3554,6 @@ msgstr "備份位置"
 #, fuzzy
 msgid "Backup Log"
 msgstr "備份模式"
-
-#, fuzzy
-msgid "Backup Manager"
-msgstr "軟體管理器"
 
 msgid "Backup Mode"
 msgstr "備份模式"
@@ -4236,6 +4261,9 @@ msgstr "加拿大"
 msgid "Cancel"
 msgstr "取消"
 
+msgid "Cancel / Close the software update screen"
+msgstr ""
+
 #, fuzzy
 msgid "Cancel any changed settings and exit"
 msgstr "頻道選擇"
@@ -4275,9 +4303,6 @@ msgstr "頻道選擇"
 #, fuzzy
 msgid "Cancel the image selection and exit all menus"
 msgstr "頻道選擇"
-
-msgid "Cancel the software update"
-msgstr ""
 
 msgid "Cancel the update"
 msgstr ""
@@ -4372,6 +4397,10 @@ msgstr ""
 
 msgid "Chamorro"
 msgstr ""
+
+#, fuzzy
+msgid "Change"
+msgstr "改變"
 
 msgid "Change Boxmode to control Hardware Chip Modes*"
 msgstr ""
@@ -4611,10 +4640,6 @@ msgstr "檢視檔系統..."
 
 msgid "Checking filesystem..."
 msgstr ""
-
-#, fuzzy
-msgid "Checking for Updates..."
-msgstr "錄製位置..."
 
 msgid "Checking the internet connection"
 msgstr ""
@@ -5018,6 +5043,14 @@ msgstr ""
 msgctxt "Abbreviation of 'Configurable'"
 msgid "Configurable"
 msgstr "配置"
+
+#, python-format
+msgid ""
+"Configuration file '%s' has been modified since it was installed, would you "
+"like to keep the modified version?"
+msgstr ""
+"配置檔(%s)在安裝後被修改了.\n"
+"是否想要保留您的版本？"
 
 msgid "Configuration mode"
 msgstr ""
@@ -5683,9 +5716,6 @@ msgstr "不能連接到Dreambox .NFI檔從伺服器:"
 msgid "Could not connect to server"
 msgstr "不能連接到Dreambox .NFI檔從伺服器:"
 
-msgid "Could not find installed channel list."
-msgstr ""
-
 msgid ""
 "Could not find suitable media - Please remove some downloaded images or "
 "insert a media (e.g. USB stick) with sufficient free space and try again!"
@@ -5861,6 +5891,9 @@ msgstr ""
 
 msgid "Current value: "
 msgstr "當前值: "
+
+msgid "Current version unknown"
+msgstr ""
 
 msgid "Current version:"
 msgstr "當前版本:"
@@ -6555,6 +6588,13 @@ msgstr "描述"
 msgid "Deselect"
 msgstr "取消"
 
+#, python-format
+msgid ""
+"Deselected packages usually occur because those packaged are incompatible "
+"with existing packages.  While this is mostly harmless it is possible that "
+"your %s %s may experience issues."
+msgstr ""
+
 msgid "Details for plugin: "
 msgstr ""
 
@@ -6993,10 +7033,6 @@ msgid "Do you want to purge all locales/languages except %s?"
 msgstr ""
 
 #, fuzzy, python-format
-msgid "Do you want to reboot your %s %s"
-msgstr " 是否重啟您的Dreambox?"
-
-#, fuzzy, python-format
 msgid "Do you want to reboot your %s %s?"
 msgstr " 是否重啟您的Dreambox?"
 
@@ -7020,10 +7056,6 @@ msgid ""
 "Do you want to send all selected files:\n"
 "(choose 'No' to only send the currently selected file.)"
 msgstr ""
-
-#, fuzzy, python-format
-msgid "Do you want to update your %s %s ?"
-msgstr " 是否升級您的Dreambox?"
 
 #, fuzzy
 msgid "Do you want to update your box?"
@@ -7626,6 +7658,9 @@ msgstr ""
 msgid "Enable this option to add keyboard keymap data to the debug log file."
 msgstr ""
 
+msgid "Enable this option to add opkg output data to the debug log file."
+msgstr ""
+
 msgid "Enable this option to add remote control data to the debug log file."
 msgstr ""
 
@@ -7875,9 +7910,6 @@ msgid ""
 "Error creating directory %s:\n"
 "%s"
 msgstr "創建目錄%s 失敗."
-
-msgid "Error downloading change log."
-msgstr ""
 
 #, python-format
 msgid ""
@@ -8402,19 +8434,6 @@ msgstr ""
 
 msgid "Feed unstable!"
 msgstr ""
-
-msgid "Feeds status:   Stable"
-msgstr ""
-
-msgid "Feeds status:   Unstable"
-msgstr ""
-
-msgid "Feeds status:   Updating"
-msgstr ""
-
-#, fuzzy
-msgid "Feeds status: Unexpected"
-msgstr "狀態: 連接"
 
 msgid "Fetch EPG and update timers now"
 msgstr ""
@@ -9902,10 +9921,6 @@ msgid "Image Information"
 msgstr "資訊"
 
 #, fuzzy
-msgid "Image Manager"
-msgstr "文件管理器"
-
-#, fuzzy
 msgid "Image Version"
 msgstr "新版本:"
 
@@ -10014,6 +10029,9 @@ msgstr ""
 #, fuzzy
 msgid "Include keyboard data"
 msgstr "鍵盤佈局"
+
+msgid "Include opkg output data"
+msgstr ""
 
 #, fuzzy
 msgid "Include remote control data"
@@ -10249,6 +10267,9 @@ msgstr ""
 #, fuzzy
 msgid "Install plugins"
 msgstr "正在安裝"
+
+msgid "Install/Remove plugin"
+msgstr ""
 
 msgid "Installation finished."
 msgstr "安裝完成."
@@ -11784,6 +11805,9 @@ msgstr "向下移動到最後項目"
 msgid "Move down a page"
 msgstr "向下移動到最後項目"
 
+msgid "Move down a page / screen"
+msgstr ""
+
 msgid "Move down a screen"
 msgstr ""
 
@@ -11894,6 +11918,9 @@ msgid "Move up a line"
 msgstr "電影列表"
 
 msgid "Move up a page"
+msgstr ""
+
+msgid "Move up a page / screen"
 msgstr ""
 
 msgid "Move up a screen"
@@ -12478,10 +12505,6 @@ msgstr "改變"
 msgid "No clients streaming"
 msgstr ""
 
-#, fuzzy
-msgid "No connection"
-msgstr "未連接"
-
 msgid ""
 "No data on transponder!\n"
 "(Timeout reading PAT)"
@@ -12615,7 +12638,10 @@ msgstr ""
 msgid "No update required!"
 msgstr ""
 
-msgid "No updates available. Please try again later."
+msgid "No updates available."
+msgstr ""
+
+msgid "No updates were available.  Please try again later."
 msgstr ""
 
 msgid "No valid region details were found"
@@ -12891,6 +12917,9 @@ msgstr "OK, 引導我的升級過程"
 msgid "ONID"
 msgstr ""
 
+msgid "OPKG clean mode"
+msgstr ""
+
 msgid "OSD"
 msgstr "OSD"
 
@@ -12991,9 +13020,6 @@ msgstr ""
 #, fuzzy
 msgid "Online software update"
 msgstr "軟體升級"
-
-msgid "OnlineVersionCheck"
-msgstr ""
 
 msgid "Only extensions."
 msgstr "僅增加部分."
@@ -13343,10 +13369,6 @@ msgstr "升級軟體列表"
 msgid "Packaged locales only"
 msgstr "升級軟體列表"
 
-#, fuzzy
-msgid "Packages"
-msgstr "軟體管理器"
-
 msgid "Packages and associated locales"
 msgstr ""
 
@@ -13523,21 +13545,10 @@ msgstr ""
 msgid "Percentage/Progress bar right"
 msgstr ""
 
-msgid "Perform a full image backup"
-msgstr ""
-
 msgid "Perform a image backup before updating."
 msgstr ""
 
 msgid "Perform a setting backup before updating."
-msgstr ""
-
-msgid "Perform a settings backup,"
-msgstr ""
-
-msgid ""
-"Perform a settings backup, making a backup before updating is strongly "
-"advised."
 msgstr ""
 
 msgid "Perform an on-line flash instead"
@@ -14339,6 +14350,9 @@ msgstr "按OK啟動所選皮膚."
 msgid "Press OK to activate the settings."
 msgstr "按OK鍵啟動設定."
 
+msgid "Press OK to continue."
+msgstr ""
+
 msgid "Press OK to edit the settings."
 msgstr "按OK鍵修改設定"
 
@@ -14394,6 +14408,9 @@ msgstr ""
 
 #, python-format
 msgid "Press OK to use this locale.  [%s]"
+msgstr ""
+
+msgid "Press the menu button to set a general AC3/Dolby offset."
 msgstr ""
 
 msgid ""
@@ -14595,6 +14612,9 @@ msgstr "流覽插件"
 
 msgid "Protect services"
 msgstr "保護服務"
+
+msgid "Protect software update screen"
+msgstr ""
 
 #, fuzzy
 msgid "Protect standby menu"
@@ -15063,6 +15083,9 @@ msgid ""
 "This may take a few minutes"
 msgstr ""
 
+msgid "Refresh"
+msgstr ""
+
 msgid "Refresh every (in hours)"
 msgstr ""
 
@@ -15079,6 +15102,9 @@ msgstr "選擇刷新率."
 #, fuzzy
 msgid "Refresh screen"
 msgstr "刷新頻率"
+
+msgid "Refresh the update-able package list"
+msgstr ""
 
 msgid "Regard deep standby as standby"
 msgstr ""
@@ -15181,6 +15207,12 @@ msgstr "移除"
 msgid "Remove Confirmation"
 msgstr "Gemini 配置"
 
+msgid "Remove Failed !!"
+msgstr ""
+
+msgid "Remove Finished."
+msgstr "移除結束."
+
 msgid "Remove Plugins"
 msgstr "移除插件"
 
@@ -15217,9 +15249,6 @@ msgstr ""
 
 msgid "Remove currently selected title"
 msgstr "移除當前選擇的標題"
-
-msgid "Remove Finished."
-msgstr "移除結束."
 
 msgid "Remove hide VBI line for this service"
 msgstr ""
@@ -16314,6 +16343,9 @@ msgstr "選擇要錄製的頻道"
 
 msgid "Select channel to record from"
 msgstr "選擇要記錄的頻道"
+
+msgid "Select channels to add an offset to the volume."
+msgstr ""
 
 msgid "Select copy destination for:"
 msgstr ""
@@ -17744,6 +17776,9 @@ msgstr ""
 msgid "Show detailed event info (setup in menu)"
 msgstr ""
 
+msgid "Show development packages in opkg"
+msgstr ""
+
 #, fuzzy
 msgid "Show directories first"
 msgstr "顯示剩餘時間"
@@ -18463,10 +18498,6 @@ msgid "Software Manager Setup"
 msgstr "軟體管理"
 
 #, fuzzy
-msgid "Software Panel"
-msgstr "軟體管理"
-
-#, fuzzy
 msgid "Software Update"
 msgstr "軟體升級"
 
@@ -18482,8 +18513,10 @@ msgstr ""
 msgid "Software restore"
 msgstr "軟體還原"
 
-msgid "Software update"
-msgstr "軟體升級"
+msgid ""
+"Software update starting, please wait.\n"
+"\n"
+msgstr ""
 
 msgid "Softwaremanager information"
 msgstr ""
@@ -18534,11 +18567,6 @@ msgid "Sorry feeds are down for maintenance"
 msgstr ""
 
 msgid "Sorry feeds are down for maintenance, please try again later."
-msgstr ""
-
-msgid ""
-"Sorry feeds are down for maintenance, please try again later. If this issue "
-"persists please check www.opena.tv"
 msgstr ""
 
 msgid "Sorry no backups found!"
@@ -18893,6 +18921,9 @@ msgstr "Stop testing plane after # failed transponders"
 
 msgid "Stop testing plane after # successful transponders"
 msgstr "Stop testing plane after # successful transponders"
+
+msgid "Stop the update, if running, then exit"
+msgstr ""
 
 #, fuzzy
 msgid "Stop timer recording"
@@ -19708,10 +19739,6 @@ msgstr ""
 msgid "The command to wake from standby will be sent multiple times."
 msgstr ""
 
-#, fuzzy
-msgid "The current update may be unstable"
-msgstr "這裏沒有可用更新."
-
 msgid ""
 "The default backup selection cannot be changed.\n"
 "Please use the 'additional' and 'excluded' backup selection."
@@ -20030,6 +20057,10 @@ msgstr ""
 #, fuzzy
 msgid "This line is not editable!"
 msgstr "這個插件未安裝."
+
+msgid ""
+"This offset will only be used if the channel has not its own volume offset."
+msgstr ""
 
 msgid ""
 "This option allows to reduce the block-noise in the picture. Obviously this "
@@ -21309,13 +21340,8 @@ msgstr "更新"
 msgid "Update at your own risk"
 msgstr "更新所有帳戶"
 
-msgid "Update channel list only"
+msgid "Update completed."
 msgstr ""
-
-#, python-format
-msgid "Update completed, %d package was installed."
-msgid_plural "Update completed, %d packages were installed."
-msgstr[0] "Update completed, %d package was installed."
 
 msgid "Update delay for Events in List"
 msgstr ""
@@ -21328,10 +21354,6 @@ msgstr ""
 #, fuzzy
 msgid "Update failed!"
 msgstr "寫入失敗！"
-
-#, python-format
-msgid "Update failed. Your %s %s does not have a working internet connection."
-msgstr ""
 
 #, fuzzy
 msgid "Update finished!"
@@ -21358,12 +21380,21 @@ msgstr ""
 msgid "Update/Backup/Restore your box"
 msgstr ""
 
+msgid "Updated"
+msgstr ""
+
+msgid "Updated version unknown"
+msgstr ""
+
 msgid "Updatefeed not available."
 msgstr ""
 
 #, fuzzy
 msgid "Updates available:"
 msgstr "可用更新. "
+
+msgid "Updating"
+msgstr "升級"
 
 #, fuzzy
 msgid "Updating cache"
@@ -21383,9 +21414,6 @@ msgstr "更新軟體目錄"
 msgid "Upgrade (Backup, Flash & Restore All)"
 msgstr ""
 
-msgid "Upgrade and reboot system"
-msgstr ""
-
 msgid "Upgrade finished."
 msgstr "升級完成."
 
@@ -21400,8 +21428,8 @@ msgstr ""
 msgid "Upgrade with GUI"
 msgstr "升級完成."
 
-msgid "Updating"
-msgstr "升級"
+msgid "Upgrading"
+msgstr ""
 
 msgid "Uphops +"
 msgstr ""
@@ -22030,10 +22058,6 @@ msgstr ""
 msgid "View teletext..."
 msgstr "檢視電傳視訊..."
 
-#, fuzzy
-msgid "View the changes"
-msgstr "改變"
-
 msgid "View video CD..."
 msgstr ""
 
@@ -22452,6 +22476,11 @@ msgstr ""
 msgid "When enabled, authentication is required to watch http streams."
 msgstr ""
 
+msgid ""
+"When enabled, before opkg update there will be opkg clean to make sure "
+"nothing ruine the update but only enable this when you can not update online."
+msgstr ""
+
 msgid "When enabled, channel numbering will start at '1' for each bouquet."
 msgstr ""
 
@@ -22563,6 +22592,11 @@ msgid ""
 msgstr ""
 
 msgid "When enabled, use DHCP for the IP configuration."
+msgstr ""
+
+msgid ""
+"When enabled, you will see dev, staticdev, dbg, doc, src and po packages in "
+"opkg list."
 msgstr ""
 
 msgid ""
@@ -23102,12 +23136,6 @@ msgid ""
 "again."
 msgstr "您的Dreambox沒有正確連接到互聯網. 請檢視設定然後再試一次."
 
-#, fuzzy, python-format
-msgid ""
-"Your %s %s might be unusable now. Please consult the manual for further "
-"assistance before rebooting your %s %s."
-msgstr "您的Dreambox現在可能無法使用.請參考手冊以獲得進一步的幫助."
-
 #, python-format
 msgid ""
 "Your %s %s was not shutdown properly.\n"
@@ -23237,6 +23265,12 @@ msgstr ""
 msgid ""
 "Your receiver can use tone amplitude. Consult your receiver's manual for "
 "more information."
+msgstr ""
+
+#, python-format
+msgid ""
+"Your receiver might be unusable now.  Please consult the manual for further "
+"assistance before rebooting your %s %s."
 msgstr ""
 
 msgid ""
@@ -23440,13 +23474,6 @@ msgstr "啟動交換檔"
 #, fuzzy
 msgid "active"
 msgstr "啟動"
-
-#, fuzzy
-msgid "Add Current"
-msgstr "當前"
-
-msgid "Add Service"
-msgstr "添加頻道"
 
 msgid "add alternatives"
 msgstr "增加項目"
@@ -23663,10 +23690,6 @@ msgstr "最近精選"
 #, fuzzy
 msgid "centered, wrapped"
 msgstr "輸入位元率"
-
-#, fuzzy
-msgid "Change"
-msgstr "改變"
 
 msgid "change Volume down"
 msgstr ""
@@ -24216,9 +24239,6 @@ msgstr "聯繫"
 msgid "invalid type"
 msgstr ""
 
-msgid "is strongly advised."
-msgstr ""
-
 msgid "jazz"
 msgstr ""
 
@@ -24286,9 +24306,6 @@ msgid "m2k"
 msgstr ""
 
 msgid "magazines/reports/documentary"
-msgstr ""
-
-msgid "making a backup before updating"
 msgstr ""
 
 msgid "manage local Files"
@@ -24578,9 +24595,6 @@ msgstr ""
 msgid "pre-school children's program"
 msgstr ""
 
-msgid "Press the menu button to set a general AC3/Dolby offset."
-msgstr ""
-
 #, fuzzy
 msgid "previous channel page"
 msgstr "上一個頻道"
@@ -24778,9 +24792,6 @@ msgstr "選擇"
 
 msgid "select CAId's"
 msgstr "選擇 CAId's"
-
-msgid "Select channels to add an offset to the volume."
-msgstr ""
 
 msgid "select menu entry"
 msgstr "選擇功能表專案"
@@ -25037,10 +25048,6 @@ msgstr ""
 msgid "this bouquet is protected by a parental control pin"
 msgstr "此頻道受家長控制."
 
-msgid ""
-"This offset will only be used if the channel has not its own volume offset."
-msgstr ""
-
 msgid "this recording"
 msgstr "這個錄影"
 
@@ -25285,6 +25292,73 @@ msgstr "轉自"
 
 msgid "®"
 msgstr ""
+
+#, python-format
+#~ msgid "%s updated package available"
+#~ msgid_plural "%s updated packages available"
+#~ msgstr[0] "%s pembaruan paket tersedia"
+
+#, fuzzy, python-format
+#~ msgid "Are you sure you want to update your %s %s ?"
+#~ msgstr "您確定要復位嗎?"
+
+#, fuzzy
+#~ msgid "Backup Manager"
+#~ msgstr "軟體管理器"
+
+#, fuzzy
+#~ msgid "Checking for Updates..."
+#~ msgstr "錄製位置..."
+
+#, fuzzy, python-format
+#~ msgid "Do you want to reboot your %s %s"
+#~ msgstr " 是否重啟您的Dreambox?"
+
+#, fuzzy, python-format
+#~ msgid "Do you want to update your %s %s ?"
+#~ msgstr " 是否升級您的Dreambox?"
+
+#, fuzzy
+#~ msgid "Feeds status: Unexpected"
+#~ msgstr "狀態: 連接"
+
+#, fuzzy
+#~ msgid "Image Manager"
+#~ msgstr "文件管理器"
+
+#, fuzzy
+#~ msgid "No connection"
+#~ msgstr "未連接"
+
+#, fuzzy
+#~ msgid "Packages"
+#~ msgstr "軟體管理器"
+
+#, fuzzy
+#~ msgid "Software Panel"
+#~ msgstr "軟體管理"
+
+#~ msgid "Software update"
+#~ msgstr "軟體升級"
+
+#, fuzzy
+#~ msgid "The current update may be unstable"
+#~ msgstr "這裏沒有可用更新."
+
+#, python-format
+#~ msgid "Update completed, %d package was installed."
+#~ msgid_plural "Update completed, %d packages were installed."
+#~ msgstr[0] "Update completed, %d package was installed."
+
+#, fuzzy
+#~ msgid "View the changes"
+#~ msgstr "改變"
+
+#, fuzzy, python-format
+#~ msgid ""
+#~ "Your %s %s might be unusable now. Please consult the manual for further "
+#~ "assistance before rebooting your %s %s."
+#~ msgstr "您的Dreambox現在可能無法使用.請參考手冊以獲得進一步的幫助."
 
 #, fuzzy
 #~ msgid "feed status"

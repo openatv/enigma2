@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-01-02 10:50+0000\n"
+"POT-Creation-Date: 2022-01-19 18:56+0000\n"
 "PO-Revision-Date: 2019-07-27 12:19+0700\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -1071,6 +1071,11 @@ msgid_plural "%d days"
 msgstr[0] ""
 
 #, python-format
+msgid "%d feed catalog package was updated."
+msgid_plural "%d feed catalog packages were updated."
+msgstr[0] ""
+
+#, python-format
 msgid "%d hour"
 msgid_plural "%d hours"
 msgstr[0] "%d giờ"
@@ -1095,6 +1100,46 @@ msgstr "%d phút"
 #, python-format
 msgid "%d ms"
 msgstr "%d ms"
+
+#, python-format
+msgid "%d package upgraded."
+msgid_plural "%d packages upgraded."
+msgstr[0] ""
+
+#, python-format
+msgid "%d package was configured."
+msgid_plural "%d packages were configured."
+msgstr[0] ""
+
+#, python-format
+msgid "%d package was deselected."
+msgid_plural "%d packages were deselected."
+msgstr[0] ""
+
+#, python-format
+msgid "%d package was downloaded."
+msgid_plural "%d packages were downloaded."
+msgstr[0] ""
+
+#, python-format
+msgid "%d package was identified for upgrade."
+msgid_plural "%d packages were identified for upgrade."
+msgstr[0] ""
+
+#, python-format
+msgid "%d package was installed."
+msgid_plural "%d packages were installed."
+msgstr[0] ""
+
+#, python-format
+msgid "%d package was removed."
+msgid_plural "%d packages were removed."
+msgstr[0] ""
+
+#, python-format
+msgid "%d package was upgraded."
+msgid_plural "%d packages were upgraded."
+msgstr[0] ""
 
 #, python-format
 msgid "%d pixel wide"
@@ -1323,11 +1368,6 @@ msgstr "%s không có sẵn."
 #, python-format
 msgid "%s successfully extracted."
 msgstr "%s được trích xuất thành công."
-
-#, python-format
-msgid "%s updated package available"
-msgid_plural "%s updated packages available"
-msgstr[0] "%s gói cập nhật có sẵn"
 
 #, python-format
 msgid "%s%d min"
@@ -2054,22 +2094,6 @@ msgstr ""
 "lại."
 
 #, python-format
-msgid ""
-"A configuration file (%s) has been modified since it was installed.\n"
-"Do you want to keep your modifications?"
-msgstr ""
-"Một tệp cấu hình (%s) đã được sửa đổi kể từ khi được cài đặt.\n"
-"Bạn có muốn giữ sửa đổi của bạn?"
-
-#, python-format
-msgid ""
-"Configuration file '%s' has been modified since it was installed, would you "
-"like to keep the modified version?"
-msgstr ""
-"Một tệp cấu hình (%s) đã được sửa đổi kể từ khi cài đặt.\n"
-"Bạn có muốn giữ phiên bản của bạn?"
-
-#, python-format
 msgid "A crashlog was %s created in '%s'"
 msgstr "Một crashlog được %s tạo ra trong '%s'"
 
@@ -2399,11 +2423,17 @@ msgstr "Thêm vào"
 msgid "Add AutoTimer"
 msgstr "Thêm vThêm tự động trả lờiào"
 
+msgid "Add Current"
+msgstr "thêm hiện tại"
+
 msgid "Add New Quad Channel Entry"
 msgstr "Thêm mục nhập kênh Quad mới"
 
 msgid "Add Record Timer"
 msgstr "Thêm bộ đếm thời gian"
+
+msgid "Add Service"
+msgstr "thêm dịch vụ"
 
 msgid "Add Timer"
 msgstr "Thêm thời gian"
@@ -3013,10 +3043,6 @@ msgstr "Bạn có chắc chắn muốn lưu Bộ nhớ cache EPG vào:\n"
 msgid "Are you sure you want to send this log:\n"
 msgstr "Bạn có chắc chắn muốn gửi nhật ký này:\n"
 
-#, python-format
-msgid "Are you sure you want to update your %s %s ?"
-msgstr "Bạn có chắc chắn muốn cập nhật %s%s của mình không?"
-
 msgid "Argentina"
 msgstr "Argentina"
 
@@ -3438,9 +3464,6 @@ msgstr "Chọn vị trí dự phòng"
 
 msgid "Backup Log"
 msgstr "Nhật ký dự phòng"
-
-msgid "Backup Manager"
-msgstr "Quản lý gói"
 
 msgid "Backup Mode"
 msgstr "Chế độ sao lưu"
@@ -4128,6 +4151,9 @@ msgstr "Canada"
 msgid "Cancel"
 msgstr "Hủy bỏ"
 
+msgid "Cancel / Close the software update screen"
+msgstr ""
+
 #, fuzzy
 msgid "Cancel any changed settings and exit"
 msgstr "Hủy bỏ mọi thay đổi văn bản và thoát"
@@ -4167,9 +4193,6 @@ msgstr "Chọn kênh"
 #, fuzzy
 msgid "Cancel the image selection and exit all menus"
 msgstr "Chọn kênh"
-
-msgid "Cancel the software update"
-msgstr ""
 
 msgid "Cancel the update"
 msgstr ""
@@ -4256,6 +4279,9 @@ msgstr "Chad"
 
 msgid "Chamorro"
 msgstr ""
+
+msgid "Change"
+msgstr "thay đổi"
 
 msgid "Change Boxmode to control Hardware Chip Modes*"
 msgstr "Thay đổi Boxmode để kiểm soát Chế độ Chip Phần cứng *"
@@ -4468,9 +4494,6 @@ msgstr "Kiểm tra nhật ký ..."
 
 msgid "Checking filesystem..."
 msgstr "Kiểm tra hệ thống tập tin ..."
-
-msgid "Checking for Updates..."
-msgstr "Đang kiểm tra cập nhật ..."
 
 msgid "Checking the internet connection"
 msgstr "Kiểm tra kết nối internet"
@@ -4904,6 +4927,14 @@ msgstr "Cấu hình%s được lưu."
 msgctxt "Abbreviation of 'Configurable'"
 msgid "Configurable"
 msgstr "Cấu hình"
+
+#, python-format
+msgid ""
+"Configuration file '%s' has been modified since it was installed, would you "
+"like to keep the modified version?"
+msgstr ""
+"Một tệp cấu hình (%s) đã được sửa đổi kể từ khi cài đặt.\n"
+"Bạn có muốn giữ phiên bản của bạn?"
 
 msgid "Configuration mode"
 msgstr "Chế độ cấu hình"
@@ -5658,9 +5689,6 @@ msgstr "Không thể kết nối với máy chủ nguồn cấp hình ảnh%s%s 
 msgid "Could not connect to server"
 msgstr "Không thể kết nối đến máy chủ"
 
-msgid "Could not find installed channel list."
-msgstr "Không thể tìm thấy danh sách kênh được cài đặt."
-
 msgid ""
 "Could not find suitable media - Please remove some downloaded images or "
 "insert a media (e.g. USB stick) with sufficient free space and try again!"
@@ -5826,6 +5854,9 @@ msgstr "Transponder hiện tại"
 
 msgid "Current value: "
 msgstr "Giá trị hiện tại: "
+
+msgid "Current version unknown"
+msgstr ""
 
 msgid "Current version:"
 msgstr "Phiên bản hiện tại:"
@@ -6513,6 +6544,13 @@ msgstr "Sự miêu tả"
 msgid "Deselect"
 msgstr "Bỏ chọn"
 
+#, python-format
+msgid ""
+"Deselected packages usually occur because those packaged are incompatible "
+"with existing packages.  While this is mostly harmless it is possible that "
+"your %s %s may experience issues."
+msgstr ""
+
 msgid "Details for plugin: "
 msgstr "Chi tiết cho plugin: "
 
@@ -6945,10 +6983,6 @@ msgid "Do you want to purge all locales/languages except %s?"
 msgstr ""
 
 #, python-format
-msgid "Do you want to reboot your %s %s"
-msgstr "Bạn có muốn khởi động lại%s%s"
-
-#, python-format
 msgid "Do you want to reboot your %s %s?"
 msgstr "Bạn có muốn khởi động lại đầu thu % s% s của mình không?"
 
@@ -6973,10 +7007,6 @@ msgid ""
 msgstr ""
 "Bạn có muốn gửi tất cả các tệp đã chọn:\n"
 "(chọn 'Không' để chỉ gửi tệp hiện được chọn.)"
-
-#, python-format
-msgid "Do you want to update your %s %s ?"
-msgstr "Bạn có muốn cập nhật% s% s của mình không?"
 
 msgid "Do you want to update your box?"
 msgstr "Bạn có muốn cập nhật đầu thu của bạn?"
@@ -7571,6 +7601,9 @@ msgstr ""
 msgid "Enable this option to add keyboard keymap data to the debug log file."
 msgstr ""
 
+msgid "Enable this option to add opkg output data to the debug log file."
+msgstr ""
+
 msgid "Enable this option to add remote control data to the debug log file."
 msgstr ""
 
@@ -7844,9 +7877,6 @@ msgid ""
 msgstr ""
 "Lỗi tạo thư mục%s:\n"
 "%s"
-
-msgid "Error downloading change log."
-msgstr "Lỗi tải xuống nhật ký thay đổi."
 
 #, python-format
 msgid ""
@@ -8350,18 +8380,6 @@ msgstr ""
 
 msgid "Feed unstable!"
 msgstr ""
-
-msgid "Feeds status:   Stable"
-msgstr "Trạng thái nguồn cấp dữ liệu:  Ổn định"
-
-msgid "Feeds status:   Unstable"
-msgstr "Trạng thái nguồn cấp dữ liệu:  Không ổn định"
-
-msgid "Feeds status:   Updating"
-msgstr "Trạng thái nguồn cấp dữ liệu: Đang cập nhật"
-
-msgid "Feeds status: Unexpected"
-msgstr "Trạng thái nguồn cấp dữ liệu: Thật bất ngờ"
 
 msgid "Fetch EPG and update timers now"
 msgstr ""
@@ -9841,9 +9859,6 @@ msgstr "Sao lưu hình ảnh"
 msgid "Image Information"
 msgstr "Thông tin hình ảnh"
 
-msgid "Image Manager"
-msgstr "Quản lý hình ảnh"
-
 msgid "Image Version"
 msgstr "Phiên bản hình ảnh"
 
@@ -9956,6 +9971,9 @@ msgstr "Bao gồm AIT trong các luồng http"
 #, fuzzy
 msgid "Include keyboard data"
 msgstr "Nhập dữ liệu bàn phím"
+
+msgid "Include opkg output data"
+msgstr ""
 
 #, fuzzy
 msgid "Include remote control data"
@@ -10169,6 +10187,9 @@ msgstr "Cài đặt picons trên"
 
 msgid "Install plugins"
 msgstr "Cài đặt plugin"
+
+msgid "Install/Remove plugin"
+msgstr ""
 
 msgid "Installation finished."
 msgstr "Cài đặt xong."
@@ -11637,6 +11658,9 @@ msgstr "Di chuyển xuống một trang"
 msgid "Move down a page"
 msgstr "Di chuyển xuống một trang"
 
+msgid "Move down a page / screen"
+msgstr ""
+
 msgid "Move down a screen"
 msgstr ""
 
@@ -11744,6 +11768,9 @@ msgstr "Chuyển lên một trang"
 
 msgid "Move up a page"
 msgstr "Chuyển lên một trang"
+
+msgid "Move up a page / screen"
+msgstr ""
 
 msgid "Move up a screen"
 msgstr ""
@@ -12292,9 +12319,6 @@ msgstr "Không có kênh"
 msgid "No clients streaming"
 msgstr "Không có khách hàng phát trực tuyến"
 
-msgid "No connection"
-msgstr "Không có kết nối"
-
 msgid ""
 "No data on transponder!\n"
 "(Timeout reading PAT)"
@@ -12433,8 +12457,11 @@ msgstr ""
 msgid "No update required!"
 msgstr "Không cần cập nhật!"
 
-msgid "No updates available. Please try again later."
-msgstr "Không có bảng cập nhật có sẵn. Vui lòng thử lại sau."
+msgid "No updates available."
+msgstr ""
+
+msgid "No updates were available.  Please try again later."
+msgstr ""
 
 msgid "No valid region details were found"
 msgstr ""
@@ -12704,6 +12731,9 @@ msgstr "OK, hướng dẫn tôi qua quá trình nâng cấp"
 msgid "ONID"
 msgstr "ONID"
 
+msgid "OPKG clean mode"
+msgstr ""
+
 msgid "OSD"
 msgstr "OSD"
 
@@ -12797,9 +12827,6 @@ msgstr "Một dòng"
 
 msgid "Online software update"
 msgstr "Cập nhật trực tuyến phần mềm nhận của bạn"
-
-msgid "OnlineVersionCheck"
-msgstr "Kiểm tra phiên bản trực tuyến"
 
 msgid "Only extensions."
 msgstr "Chỉ phần mở rộng."
@@ -13128,9 +13155,6 @@ msgstr "Cập nhật danh sách gói"
 msgid "Packaged locales only"
 msgstr "quản lý tập tin cục bộ"
 
-msgid "Packages"
-msgstr "Gói"
-
 msgid "Packages and associated locales"
 msgstr ""
 
@@ -13296,24 +13320,11 @@ msgstr "Thanh tiến trình còn lại"
 msgid "Percentage/Progress bar right"
 msgstr "Thanh tiến độ ngay"
 
-msgid "Perform a full image backup"
-msgstr "Thực hiện sao lưu ảnh đầy đủ"
-
 msgid "Perform a image backup before updating."
 msgstr "Thực hiện sao lưu ảnh trước khi cập nhật."
 
 msgid "Perform a setting backup before updating."
 msgstr "Thực hiện sao lưu cài đặt trước khi cập nhật."
-
-msgid "Perform a settings backup,"
-msgstr "Thực hiện sao lưu cài đặt,"
-
-msgid ""
-"Perform a settings backup, making a backup before updating is strongly "
-"advised."
-msgstr ""
-"Thực hiện sao lưu cài đặt, thực hiện sao lưu trước khi cập nhật được khuyến "
-"khích."
 
 msgid "Perform an on-line flash instead"
 msgstr ""
@@ -14104,6 +14115,9 @@ msgstr "Nhấn OK để kích hoạt giao diện đã chọn."
 msgid "Press OK to activate the settings."
 msgstr "Nhấn OK để kích hoạt cài đặt."
 
+msgid "Press OK to continue."
+msgstr ""
+
 msgid "Press OK to edit the settings."
 msgstr "Nhấn OK để chỉnh sửa cài đặt."
 
@@ -14156,6 +14170,9 @@ msgstr ""
 #, python-format
 msgid "Press OK to use this locale.  [%s]"
 msgstr ""
+
+msgid "Press the menu button to set a general AC3/Dolby offset."
+msgstr "nhấn nút menu để đặt bù AC3 / Dolby chung"
 
 msgid ""
 "Press this button to emulate a long press on a button pressed afterwards "
@@ -14354,6 +14371,9 @@ msgstr "Bảo vệ trình duyệt plugin"
 
 msgid "Protect services"
 msgstr "Bảo vệ dịch vụ"
+
+msgid "Protect software update screen"
+msgstr ""
 
 msgid "Protect standby menu"
 msgstr "Bảo vệ menu chờ"
@@ -14793,6 +14813,9 @@ msgstr ""
 "Vui lòng đợi cho đến khi% s% s của bạn khởi động lại\n"
 "Có thể sẽ mất vài phút"
 
+msgid "Refresh"
+msgstr ""
+
 msgid "Refresh every (in hours)"
 msgstr "Làm mới mỗi (tính theo giờ)"
 
@@ -14807,6 +14830,9 @@ msgstr "Làm mới lựa chọn tỷ lệ."
 
 msgid "Refresh screen"
 msgstr "Làm mới màn hình"
+
+msgid "Refresh the update-able package list"
+msgstr ""
 
 msgid "Regard deep standby as standby"
 msgstr "Coi chế độ chờ sâu như chế độ chờ"
@@ -14905,6 +14931,12 @@ msgstr "Tẩy"
 msgid "Remove Confirmation"
 msgstr "Xóa xác nhận"
 
+msgid "Remove Failed !!"
+msgstr ""
+
+msgid "Remove Finished."
+msgstr "Bỏ xong."
+
 msgid "Remove Plugins"
 msgstr "Xóa plugin"
 
@@ -14937,9 +14969,6 @@ msgstr "Xóa thư mục hiện tại khỏi bookmark"
 
 msgid "Remove currently selected title"
 msgstr "Xóa tiêu đề hiện được chọn"
-
-msgid "Remove Finished."
-msgstr "Bỏ xong."
 
 msgid "Remove hide VBI line for this service"
 msgstr "Xóa dòng VBI ẩn cho dịch vụ này"
@@ -15991,6 +16020,9 @@ msgstr "Chọn kênh audio"
 
 msgid "Select channel to record from"
 msgstr "Chọn kênh để ghi từ"
+
+msgid "Select channels to add an offset to the volume."
+msgstr "chọn kênh để thêm phần bù vào Âm lượng"
 
 msgid "Select copy destination for:"
 msgstr "Chọn đích sao chép cho:"
@@ -17423,6 +17455,9 @@ msgstr "Hiển thị thông tin chi tiết sự kiện"
 msgid "Show detailed event info (setup in menu)"
 msgstr "Hiển thị thông tin sự kiện chi tiết (thiết lập trong menu)"
 
+msgid "Show development packages in opkg"
+msgstr ""
+
 msgid "Show directories first"
 msgstr "Hiển thị thư mục đầu tiên"
 
@@ -18080,9 +18115,6 @@ msgstr "Quản trị viên phần mềm"
 msgid "Software Manager Setup"
 msgstr "Cài đặt trình quản lý phần mềm"
 
-msgid "Software Panel"
-msgstr "Bảng phần mềm"
-
 msgid "Software Update"
 msgstr "Cập nhật phần mềm"
 
@@ -18098,8 +18130,10 @@ msgstr "Thiết lập trình quản lý phần mềm"
 msgid "Software restore"
 msgstr "Khôi phục phần mềm"
 
-msgid "Software update"
-msgstr "Cập nhật phần mềm"
+msgid ""
+"Software update starting, please wait.\n"
+"\n"
+msgstr ""
 
 msgid "Softwaremanager information"
 msgstr "Thông tin về phần mềm"
@@ -18151,13 +18185,6 @@ msgstr "Xin lỗi, nguồn cấp dữ liệu bị ngừng bảo trì"
 
 msgid "Sorry feeds are down for maintenance, please try again later."
 msgstr "Xin lỗi, nguồn cấp dữ liệu bị ngừng bảo trì, vui lòng thử lại sau."
-
-msgid ""
-"Sorry feeds are down for maintenance, please try again later. If this issue "
-"persists please check www.opena.tv"
-msgstr ""
-"Xin lỗi, nguồn cấp dữ liệu bị ngừng bảo trì, vui lòng thử lại sau. Nếu vấn "
-"đề này vẫn còn, vui lòng kiểm tra www.opena.tv"
 
 msgid "Sorry no backups found!"
 msgstr "Xin lỗi không tìm thấy bản sao lưu!"
@@ -18491,6 +18518,9 @@ msgstr "Dừng máy bay thử nghiệm sau khi # bộ tiếp sóng không thành
 
 msgid "Stop testing plane after # successful transponders"
 msgstr "Dừng máy bay thử nghiệm sau khi # bộ tiếp sóng thành công"
+
+msgid "Stop the update, if running, then exit"
+msgstr ""
 
 msgid "Stop timer recording"
 msgstr "Dừng ghi âm hẹn giờ"
@@ -19275,9 +19305,6 @@ msgstr ""
 msgid "The command to wake from standby will be sent multiple times."
 msgstr ""
 
-msgid "The current update may be unstable"
-msgstr "Bản cập nhật hiện tại có thể không ổn định"
-
 msgid ""
 "The default backup selection cannot be changed.\n"
 "Please use the 'additional' and 'excluded' backup selection."
@@ -19639,6 +19666,11 @@ msgstr ""
 
 msgid "This line is not editable!"
 msgstr "Dòng này không thể chỉnh sửa!"
+
+msgid ""
+"This offset will only be used if the channel has not its own volume offset."
+msgstr ""
+"phần bù này sẽ chỉ được sử dụng nếu kênh không có phần bù âm lượng riêng"
 
 msgid ""
 "This option allows to reduce the block-noise in the picture. Obviously this "
@@ -20988,13 +21020,8 @@ msgstr "Cập nhật bộ đệm"
 msgid "Update at your own risk"
 msgstr "Cập nhật rủi ro của riêng bạn"
 
-msgid "Update channel list only"
-msgstr "Chỉ cập nhật danh sách kênh"
-
-#, python-format
-msgid "Update completed, %d package was installed."
-msgid_plural "Update completed, %d packages were installed."
-msgstr[0] "Cập nhật hoàn tất, gói%d đã được cài đặt."
+msgid "Update completed."
+msgstr ""
 
 msgid "Update delay for Events in List"
 msgstr "Cập nhật độ trễ cho các sự kiện trong danh sách"
@@ -21008,10 +21035,6 @@ msgstr ""
 
 msgid "Update failed!"
 msgstr "Cập nhật thất bại!"
-
-#, python-format
-msgid "Update failed. Your %s %s does not have a working internet connection."
-msgstr "Cập nhật thất bại. % s% s của bạn không có kết nối internet hoạt động."
 
 msgid "Update finished!"
 msgstr "Cập nhật xong!"
@@ -21035,11 +21058,20 @@ msgstr "Cập nhật / Sao lưu chương trình cơ sở, cài đặt Sao lưu /
 msgid "Update/Backup/Restore your box"
 msgstr "Cập nhật / Sao lưu / Khôi phục hộp của bạn"
 
+msgid "Updated"
+msgstr ""
+
+msgid "Updated version unknown"
+msgstr ""
+
 msgid "Updatefeed not available."
 msgstr "Cập nhật nguồn cấp dữ liệu không có sẵn."
 
 msgid "Updates available:"
 msgstr "Cập nhật có sẵn:"
+
+msgid "Updating"
+msgstr "Nâng cấp"
 
 msgid "Updating cache"
 msgstr "Cập nhật bộ đệm"
@@ -21055,9 +21087,6 @@ msgstr "Cập nhật danh mục phần mềm"
 
 msgid "Upgrade (Backup, Flash & Restore All)"
 msgstr "Nâng cấp (Sao lưu, Flash & Khôi phục tất cả)"
-
-msgid "Upgrade and reboot system"
-msgstr "Nâng cấp và khởi động lại hệ thống"
 
 msgid "Upgrade finished."
 msgstr "Nâng cấp xong."
@@ -21075,8 +21104,8 @@ msgstr ""
 msgid "Upgrade with GUI"
 msgstr "Nâng cấp với GUI"
 
-msgid "Updating"
-msgstr "Nâng cấp"
+msgid "Upgrading"
+msgstr ""
 
 msgid "Uphops +"
 msgstr "Uphop +"
@@ -21693,9 +21722,6 @@ msgstr "Xem ảnh..."
 msgid "View teletext..."
 msgstr "Xem teletext ..."
 
-msgid "View the changes"
-msgstr "Xem các thay đổi"
-
 msgid "View video CD..."
 msgstr "Xem CD video ..."
 
@@ -22146,6 +22172,11 @@ msgstr ""
 msgid "When enabled, authentication is required to watch http streams."
 msgstr "Khi được bật, cần xác thực để xem luồng http."
 
+msgid ""
+"When enabled, before opkg update there will be opkg clean to make sure "
+"nothing ruine the update but only enable this when you can not update online."
+msgstr ""
+
 msgid "When enabled, channel numbering will start at '1' for each bouquet."
 msgstr "Khi được bật, đánh số kênh sẽ bắt đầu ở '1' cho mỗi bó hoa."
 
@@ -22283,6 +22314,11 @@ msgstr ""
 
 msgid "When enabled, use DHCP for the IP configuration."
 msgstr "Khi được bật, sử dụng DHCP cho cấu hình IP."
+
+msgid ""
+"When enabled, you will see dev, staticdev, dbg, doc, src and po packages in "
+"opkg list."
+msgstr ""
 
 msgid ""
 "When enabled, your receiver will detect activity on the VCR SCART input."
@@ -22864,14 +22900,6 @@ msgstr ""
 
 #, python-format
 msgid ""
-"Your %s %s might be unusable now. Please consult the manual for further "
-"assistance before rebooting your %s %s."
-msgstr ""
-"Bây giờ % s% s của bạn có thể không sử dụng được. Vui lòng tham khảo hướng "
-"dẫn để được hỗ trợ thêm trước khi khởi động lại % s% s của bạn."
-
-#, python-format
-msgid ""
 "Your %s %s was not shutdown properly.\n"
 "\n"
 "Do you want to put it in %s?"
@@ -23035,6 +23063,12 @@ msgid ""
 msgstr ""
 "Máy thu của bạn có thể sử dụng biên độ âm. Tham khảo hướng dẫn sử dụng của "
 "người nhận để biết thêm thông tin."
+
+#, python-format
+msgid ""
+"Your receiver might be unusable now.  Please consult the manual for further "
+"assistance before rebooting your %s %s."
+msgstr ""
 
 msgid ""
 "Your wireless LAN internet connection could not be started!\n"
@@ -23238,12 +23272,6 @@ msgstr "kích hoạtPiP"
 #, fuzzy
 msgid "active"
 msgstr "Không hoạt động"
-
-msgid "Add Current"
-msgstr "thêm hiện tại"
-
-msgid "Add Service"
-msgstr "thêm dịch vụ"
 
 msgid "add alternatives"
 msgstr "thêm lựa chọn thay thế"
@@ -23451,9 +23479,6 @@ msgstr "trung tâm"
 
 msgid "centered, wrapped"
 msgstr "trung tâm, bao bọc"
-
-msgid "Change"
-msgstr "thay đổi"
 
 msgid "change Volume down"
 msgstr "thay đổi Giảm âm lượng"
@@ -23989,9 +24014,6 @@ msgstr "vòng lặp nội bộ để"
 msgid "invalid type"
 msgstr "loại không hợp lệ"
 
-msgid "is strongly advised."
-msgstr "được khuyến khích mạnh mẽ."
-
 msgid "jazz"
 msgstr "nhạc jazz"
 
@@ -24058,9 +24080,6 @@ msgstr "m2k"
 
 msgid "magazines/reports/documentary"
 msgstr "tạp chí / báo cáo / phim tài liệu"
-
-msgid "making a backup before updating"
-msgstr "tạo bản sao lưu trước khi cập nhật"
 
 msgid "manage local Files"
 msgstr "quản lý tập tin cục bộ"
@@ -24330,9 +24349,6 @@ msgstr "văn hóa đại chúng / nghệ thuật truyền thống"
 msgid "pre-school children's program"
 msgstr "chương trình trẻ em"
 
-msgid "Press the menu button to set a general AC3/Dolby offset."
-msgstr "nhấn nút menu để đặt bù AC3 / Dolby chung"
-
 msgid "previous channel page"
 msgstr "trang kênh trước"
 
@@ -24519,9 +24535,6 @@ msgstr "lựa chọn"
 
 msgid "select CAId's"
 msgstr "chọn CAId"
-
-msgid "Select channels to add an offset to the volume."
-msgstr "chọn kênh để thêm phần bù vào Âm lượng"
 
 msgid "select menu entry"
 msgstr "chọn mục nhập"
@@ -24767,11 +24780,6 @@ msgstr "quần vợt / bóng quần"
 msgid "this bouquet is protected by a parental control pin"
 msgstr "gói kênh này được bảo vệ bởi một chốt kiểm soát của cha mẹ"
 
-msgid ""
-"This offset will only be used if the channel has not its own volume offset."
-msgstr ""
-"phần bù này sẽ chỉ được sử dụng nếu kênh không có phần bù âm lượng riêng"
-
 msgid "this recording"
 msgstr "bản ghi âm này"
 
@@ -25005,6 +25013,133 @@ msgstr "hạ gục"
 
 msgid "®"
 msgstr ""
+
+#, python-format
+#~ msgid "%s updated package available"
+#~ msgid_plural "%s updated packages available"
+#~ msgstr[0] "%s gói cập nhật có sẵn"
+
+#, python-format
+#~ msgid ""
+#~ "A configuration file (%s) has been modified since it was installed.\n"
+#~ "Do you want to keep your modifications?"
+#~ msgstr ""
+#~ "Một tệp cấu hình (%s) đã được sửa đổi kể từ khi được cài đặt.\n"
+#~ "Bạn có muốn giữ sửa đổi của bạn?"
+
+#, python-format
+#~ msgid "Are you sure you want to update your %s %s ?"
+#~ msgstr "Bạn có chắc chắn muốn cập nhật %s%s của mình không?"
+
+#~ msgid "Backup Manager"
+#~ msgstr "Quản lý gói"
+
+#~ msgid "Checking for Updates..."
+#~ msgstr "Đang kiểm tra cập nhật ..."
+
+#~ msgid "Could not find installed channel list."
+#~ msgstr "Không thể tìm thấy danh sách kênh được cài đặt."
+
+#, python-format
+#~ msgid "Do you want to reboot your %s %s"
+#~ msgstr "Bạn có muốn khởi động lại%s%s"
+
+#, python-format
+#~ msgid "Do you want to update your %s %s ?"
+#~ msgstr "Bạn có muốn cập nhật% s% s của mình không?"
+
+#~ msgid "Error downloading change log."
+#~ msgstr "Lỗi tải xuống nhật ký thay đổi."
+
+#~ msgid "Feeds status:   Stable"
+#~ msgstr "Trạng thái nguồn cấp dữ liệu:  Ổn định"
+
+#~ msgid "Feeds status:   Unstable"
+#~ msgstr "Trạng thái nguồn cấp dữ liệu:  Không ổn định"
+
+#~ msgid "Feeds status:   Updating"
+#~ msgstr "Trạng thái nguồn cấp dữ liệu: Đang cập nhật"
+
+#~ msgid "Feeds status: Unexpected"
+#~ msgstr "Trạng thái nguồn cấp dữ liệu: Thật bất ngờ"
+
+#~ msgid "Image Manager"
+#~ msgstr "Quản lý hình ảnh"
+
+#~ msgid "No connection"
+#~ msgstr "Không có kết nối"
+
+#~ msgid "No updates available. Please try again later."
+#~ msgstr "Không có bảng cập nhật có sẵn. Vui lòng thử lại sau."
+
+#~ msgid "OnlineVersionCheck"
+#~ msgstr "Kiểm tra phiên bản trực tuyến"
+
+#~ msgid "Packages"
+#~ msgstr "Gói"
+
+#~ msgid "Perform a full image backup"
+#~ msgstr "Thực hiện sao lưu ảnh đầy đủ"
+
+#~ msgid "Perform a settings backup,"
+#~ msgstr "Thực hiện sao lưu cài đặt,"
+
+#~ msgid ""
+#~ "Perform a settings backup, making a backup before updating is strongly "
+#~ "advised."
+#~ msgstr ""
+#~ "Thực hiện sao lưu cài đặt, thực hiện sao lưu trước khi cập nhật được "
+#~ "khuyến khích."
+
+#~ msgid "Software Panel"
+#~ msgstr "Bảng phần mềm"
+
+#~ msgid "Software update"
+#~ msgstr "Cập nhật phần mềm"
+
+#~ msgid ""
+#~ "Sorry feeds are down for maintenance, please try again later. If this "
+#~ "issue persists please check www.opena.tv"
+#~ msgstr ""
+#~ "Xin lỗi, nguồn cấp dữ liệu bị ngừng bảo trì, vui lòng thử lại sau. Nếu "
+#~ "vấn đề này vẫn còn, vui lòng kiểm tra www.opena.tv"
+
+#~ msgid "The current update may be unstable"
+#~ msgstr "Bản cập nhật hiện tại có thể không ổn định"
+
+#~ msgid "Update channel list only"
+#~ msgstr "Chỉ cập nhật danh sách kênh"
+
+#, python-format
+#~ msgid "Update completed, %d package was installed."
+#~ msgid_plural "Update completed, %d packages were installed."
+#~ msgstr[0] "Cập nhật hoàn tất, gói%d đã được cài đặt."
+
+#, python-format
+#~ msgid ""
+#~ "Update failed. Your %s %s does not have a working internet connection."
+#~ msgstr ""
+#~ "Cập nhật thất bại. % s% s của bạn không có kết nối internet hoạt động."
+
+#~ msgid "Upgrade and reboot system"
+#~ msgstr "Nâng cấp và khởi động lại hệ thống"
+
+#~ msgid "View the changes"
+#~ msgstr "Xem các thay đổi"
+
+#, python-format
+#~ msgid ""
+#~ "Your %s %s might be unusable now. Please consult the manual for further "
+#~ "assistance before rebooting your %s %s."
+#~ msgstr ""
+#~ "Bây giờ % s% s của bạn có thể không sử dụng được. Vui lòng tham khảo "
+#~ "hướng dẫn để được hỗ trợ thêm trước khi khởi động lại % s% s của bạn."
+
+#~ msgid "is strongly advised."
+#~ msgstr "được khuyến khích mạnh mẽ."
+
+#~ msgid "making a backup before updating"
+#~ msgstr "tạo bản sao lưu trước khi cập nhật"
 
 #, python-format
 #~ msgid ""

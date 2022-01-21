@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-01-02 10:50+0000\n"
+"POT-Creation-Date: 2022-01-19 18:56+0000\n"
 "PO-Revision-Date: 2022-01-19 06:53+0000\n"
 "Last-Translator: kvinto <badsystem@ukr.net>\n"
 "Language-Team: Ukrainian <https://hosted.weblate.org/projects/openatv/"
@@ -1053,6 +1053,13 @@ msgstr[1] "%d днів"
 msgstr[2] "%d дня"
 
 #, python-format
+msgid "%d feed catalog package was updated."
+msgid_plural "%d feed catalog packages were updated."
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+
+#, python-format
 msgid "%d hour"
 msgid_plural "%d hours"
 msgstr[0] "%d година"
@@ -1081,6 +1088,62 @@ msgstr "%d хвилин"
 #, python-format
 msgid "%d ms"
 msgstr "%d мс"
+
+#, python-format
+msgid "%d package upgraded."
+msgid_plural "%d packages upgraded."
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+
+#, python-format
+msgid "%d package was configured."
+msgid_plural "%d packages were configured."
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+
+#, python-format
+msgid "%d package was deselected."
+msgid_plural "%d packages were deselected."
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+
+#, python-format
+msgid "%d package was downloaded."
+msgid_plural "%d packages were downloaded."
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+
+#, python-format
+msgid "%d package was identified for upgrade."
+msgid_plural "%d packages were identified for upgrade."
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+
+#, python-format
+msgid "%d package was installed."
+msgid_plural "%d packages were installed."
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+
+#, python-format
+msgid "%d package was removed."
+msgid_plural "%d packages were removed."
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+
+#, python-format
+msgid "%d package was upgraded."
+msgid_plural "%d packages were upgraded."
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
 
 #, python-format
 msgid "%d pixel wide"
@@ -1312,13 +1375,6 @@ msgstr "%s недоступний."
 #, python-format
 msgid "%s successfully extracted."
 msgstr "%s успішно розархівовано."
-
-#, python-format
-msgid "%s updated package available"
-msgid_plural "%s updated packages available"
-msgstr[0] "%s оновлення пакету доступно"
-msgstr[1] "%s оновлення пакетів доступно"
-msgstr[2] "%s оновлень пакетів доступно"
 
 #, python-format
 msgid "%s%d min"
@@ -2032,22 +2088,6 @@ msgstr ""
 "і повторіть спробу."
 
 #, python-format
-msgid ""
-"A configuration file (%s) has been modified since it was installed.\n"
-"Do you want to keep your modifications?"
-msgstr ""
-"Файл конфігурації (%s) був змінений після його встановлення.\n"
-"Бажаєте зберегти вашу версію?"
-
-#, python-format
-msgid ""
-"Configuration file '%s' has been modified since it was installed, would you "
-"like to keep the modified version?"
-msgstr ""
-"Файл конфігурації '%s' був змінений під час інсталяції. Бажаєте зберегти "
-"дану версію?"
-
-#, python-format
 msgid "A crashlog was %s created in '%s'"
 msgstr "Журнал аварійного завершення роботи %s створено в '%s'"
 
@@ -2380,11 +2420,17 @@ msgstr "Додати"
 msgid "Add AutoTimer"
 msgstr "Додати АвтоТаймер"
 
+msgid "Add Current"
+msgstr "додати поточний"
+
 msgid "Add New Quad Channel Entry"
 msgstr "Додати новий чотирьохканальний вхід"
 
 msgid "Add Record Timer"
 msgstr "Додати Таймер Запису"
+
+msgid "Add Service"
+msgstr "додати канал"
 
 msgid "Add Timer"
 msgstr "Додати Таймер"
@@ -2994,10 +3040,6 @@ msgstr "Ви дійсно бажаєте зберегти Кеш ЕПГ до:\n"
 msgid "Are you sure you want to send this log:\n"
 msgstr "Ви дійсно бажаєте надіслати цей лог:\n"
 
-#, python-format
-msgid "Are you sure you want to update your %s %s ?"
-msgstr "Ви впевнені, що хочете оновити %s %s ?"
-
 msgid "Argentina"
 msgstr "Аргентина"
 
@@ -3412,9 +3454,6 @@ msgstr "Місце збереження"
 
 msgid "Backup Log"
 msgstr "Лог бекапу"
-
-msgid "Backup Manager"
-msgstr "Мененджер Резервних копій"
 
 msgid "Backup Mode"
 msgstr "Режим збереження"
@@ -4107,6 +4146,9 @@ msgstr "Канада"
 msgid "Cancel"
 msgstr "Скасувати"
 
+msgid "Cancel / Close the software update screen"
+msgstr ""
+
 msgid "Cancel any changed settings and exit"
 msgstr "Скасувати будь-які зміни налаштувань та вийти"
 
@@ -4139,9 +4181,6 @@ msgstr "Скасувати вибір іміджу і вийти"
 
 msgid "Cancel the image selection and exit all menus"
 msgstr "Скасувати вибір іміджу та вийдіть із усіх меню"
-
-msgid "Cancel the software update"
-msgstr "Скасувати оновлення програмного забезпечення"
 
 msgid "Cancel the update"
 msgstr "Скасувати оновлення"
@@ -4226,6 +4265,9 @@ msgstr "Чад"
 
 msgid "Chamorro"
 msgstr "Чаморро"
+
+msgid "Change"
+msgstr "змінити"
 
 msgid "Change Boxmode to control Hardware Chip Modes*"
 msgstr "Зміна режиму приймача для управління апаратними засобами*"
@@ -4433,9 +4475,6 @@ msgstr "Перевірка Логів ..."
 
 msgid "Checking filesystem..."
 msgstr "Перевірка файлової системи..."
-
-msgid "Checking for Updates..."
-msgstr "Перевірка наявності оновлень..."
 
 msgid "Checking the internet connection"
 msgstr "Перевірка інтернет-з'єднання"
@@ -4860,6 +4899,14 @@ msgstr "Конфігураційний файл %s збережено."
 msgctxt "Abbreviation of 'Configurable'"
 msgid "Configurable"
 msgstr "Налаштовується"
+
+#, python-format
+msgid ""
+"Configuration file '%s' has been modified since it was installed, would you "
+"like to keep the modified version?"
+msgstr ""
+"Файл конфігурації '%s' був змінений під час інсталяції. Бажаєте зберегти "
+"дану версію?"
 
 msgid "Configuration mode"
 msgstr "Режим конфігурації"
@@ -5598,9 +5645,6 @@ msgstr "Не вдалося підключитися до %s %s .NFI серве�
 msgid "Could not connect to server"
 msgstr "Не вдалося підключитися до сервера"
 
-msgid "Could not find installed channel list."
-msgstr "Не вдалося знайти встановлений список каналів."
-
 msgid ""
 "Could not find suitable media - Please remove some downloaded images or "
 "insert a media (e.g. USB stick) with sufficient free space and try again!"
@@ -5762,6 +5806,9 @@ msgstr "Поточний транспондер"
 
 msgid "Current value: "
 msgstr "Поточне значення: "
+
+msgid "Current version unknown"
+msgstr ""
 
 msgid "Current version:"
 msgstr "Поточна версія:"
@@ -6435,6 +6482,13 @@ msgstr "Опис"
 msgid "Deselect"
 msgstr "Зняти виділення"
 
+#, python-format
+msgid ""
+"Deselected packages usually occur because those packaged are incompatible "
+"with existing packages.  While this is mostly harmless it is possible that "
+"your %s %s may experience issues."
+msgstr ""
+
 msgid "Details for plugin: "
 msgstr "Деталі про плагін: "
 
@@ -6862,10 +6916,6 @@ msgid "Do you want to purge all locales/languages except %s?"
 msgstr "Ви хочете очистити всі регіони/мови, крім %s?"
 
 #, python-format
-msgid "Do you want to reboot your %s %s"
-msgstr "Ви хочете перезавантажити свій %s %s"
-
-#, python-format
 msgid "Do you want to reboot your %s %s?"
 msgstr "Ви хочете перезавантажити Ваш %s %s?"
 
@@ -6890,10 +6940,6 @@ msgid ""
 msgstr ""
 "Хочете відправити всі вибрані файли:\n"
 "(виберіть 'Ні', щоб відправити тільки вибраний файл.)"
-
-#, python-format
-msgid "Do you want to update your %s %s ?"
-msgstr "Ви хочете оновити Ваш %s %s ?"
 
 msgid "Do you want to update your box?"
 msgstr "Ви хочете оновити свій приймач?"
@@ -7110,7 +7156,7 @@ msgid "EPG Actions"
 msgstr "Дія ЕПГ"
 
 msgid "EPG Bouquet Actions"
-msgstr ""
+msgstr "Дія ЕПГ з фаворитами"
 
 msgid "EPG Cache Check"
 msgstr "Перевірити кеш ЕПГ"
@@ -7119,13 +7165,13 @@ msgid "EPG Channel/Service Selection"
 msgstr "Вибір каналу/послуг EPG"
 
 msgid "EPG Display Actions"
-msgstr ""
+msgstr "Дії відображення ЕПГ"
 
 msgid "EPG Navigation Actions"
-msgstr ""
+msgstr "Дії навігації по ЕПГ"
 
 msgid "EPG Other Actions"
-msgstr ""
+msgstr "Інші дії ЕПГ"
 
 msgid "EPG Search"
 msgstr "Пошук ЕПГ"
@@ -7474,6 +7520,9 @@ msgstr ""
 "Увімкніть цю опцію, щоб додати дані розкладки клавіатури до файлу журналу "
 "налагодження."
 
+msgid "Enable this option to add opkg output data to the debug log file."
+msgstr ""
+
 msgid "Enable this option to add remote control data to the debug log file."
 msgstr ""
 "Увімкніть цю опцію, щоб додати дані дистанційного керування до файлу журналу "
@@ -7745,9 +7794,6 @@ msgid ""
 msgstr ""
 "Помилка створення каталогу %s:\n"
 "%s"
-
-msgid "Error downloading change log."
-msgstr "Помилка завантаження журналу змін."
 
 #, python-format
 msgid ""
@@ -8251,18 +8297,6 @@ msgstr "Фід стабільний."
 msgid "Feed unstable!"
 msgstr "Фід нестабільний!"
 
-msgid "Feeds status:   Stable"
-msgstr "Статус фіду:   Стабільний"
-
-msgid "Feeds status:   Unstable"
-msgstr "Статус фіду:   Нестабільний"
-
-msgid "Feeds status:   Updating"
-msgstr "Статус фіду:   Оновлення"
-
-msgid "Feeds status: Unexpected"
-msgstr "Статус фіду: Незаданий"
-
 msgid "Fetch EPG and update timers now"
 msgstr "Отримайте EPG та оновіть таймери зараз"
 
@@ -8704,7 +8738,7 @@ msgid "Gaelic"
 msgstr "Гальська"
 
 msgid "Galicia (Spain)"
-msgstr ""
+msgstr "Галіція (Іспанія)"
 
 msgid "Galician"
 msgstr "Галицька"
@@ -9711,9 +9745,6 @@ msgstr "Бекап Іміджу"
 msgid "Image Information"
 msgstr "Інформація про імідж"
 
-msgid "Image Manager"
-msgstr "Мененджер Іміджа"
-
 msgid "Image Version"
 msgstr "Версія Іміджа"
 
@@ -9828,6 +9859,9 @@ msgstr "Включити дані карти дій"
 
 msgid "Include keyboard data"
 msgstr "Введення даних з клавіатури"
+
+msgid "Include opkg output data"
+msgstr ""
 
 msgid "Include remote control data"
 msgstr "Введення даних з пульта керування"
@@ -10036,6 +10070,9 @@ msgstr "Встановити пікони на"
 
 msgid "Install plugins"
 msgstr "Встановити плагіни"
+
+msgid "Install/Remove plugin"
+msgstr ""
 
 msgid "Installation finished."
 msgstr "Встановлення завершено."
@@ -11448,6 +11485,9 @@ msgstr "Перемістити на позицію вниз"
 msgid "Move down a page"
 msgstr "Переміститися на сторінку вниз"
 
+msgid "Move down a page / screen"
+msgstr ""
+
 msgid "Move down a screen"
 msgstr "Переміщення вниз по вікну"
 
@@ -11547,6 +11587,9 @@ msgstr "Перемістити на позицію вгору"
 
 msgid "Move up a page"
 msgstr "Переміститися на сторінку вгору"
+
+msgid "Move up a page / screen"
+msgstr ""
 
 msgid "Move up a screen"
 msgstr "Переміститися на екран вгору"
@@ -12075,9 +12118,6 @@ msgstr "Канали відсутні"
 msgid "No clients streaming"
 msgstr "Відсутні потокові клієнти"
 
-msgid "No connection"
-msgstr "З'єднання відсутнє"
-
 msgid ""
 "No data on transponder!\n"
 "(Timeout reading PAT)"
@@ -12213,8 +12253,11 @@ msgstr ""
 msgid "No update required!"
 msgstr "Немає необхідного оновлення!"
 
-msgid "No updates available. Please try again later."
-msgstr "Немає доступних оновлень. Будь-ласка спробуйте пізніше."
+msgid "No updates available."
+msgstr ""
+
+msgid "No updates were available.  Please try again later."
+msgstr ""
 
 msgid "No valid region details were found"
 msgstr "Не знайдено достовірних даних для регіону"
@@ -12479,6 +12522,9 @@ msgstr "OK, допомогти мені в процесі оновлення"
 msgid "ONID"
 msgstr "ONID"
 
+msgid "OPKG clean mode"
+msgstr ""
+
 msgid "OSD"
 msgstr "OSD"
 
@@ -12573,9 +12619,6 @@ msgstr "Одна лінія"
 msgid "Online software update"
 msgstr "Онлайн оновлення програмного забезпечення"
 
-msgid "OnlineVersionCheck"
-msgstr "Онлайн перевірка версії"
-
 msgid "Only extensions."
 msgstr "Тільки розширення."
 
@@ -12668,7 +12711,7 @@ msgid "Open the multi service EPG view"
 msgstr "Відкрити багатоканальний перегляд ЕПГ"
 
 msgid "Open the single service EPG view"
-msgstr ""
+msgstr "Відкрити перегляд одиничного ЕПГ"
 
 msgid "Open with File Commander"
 msgstr "Відкрити за допомогою File Commander"
@@ -12892,9 +12935,6 @@ msgstr "Оновлення списку пакетів"
 msgid "Packaged locales only"
 msgstr "Тільки запаковані регіони"
 
-msgid "Packages"
-msgstr "Пакети"
-
 msgid "Packages and associated locales"
 msgstr "Пакети та пов’язані локалі"
 
@@ -13056,27 +13096,14 @@ msgstr "Відсоток/Смугжка поступу зліва"
 msgid "Percentage/Progress bar right"
 msgstr "Відсоток/Смугжка поступу справа"
 
-msgid "Perform a full image backup"
-msgstr "Виконайте повне резервне копіювання іміджу"
-
 msgid "Perform a image backup before updating."
 msgstr "Перед оновленням виконайте резервне копіювання іміджа."
 
 msgid "Perform a setting backup before updating."
 msgstr "Перед оновленням виконайте резервне копіювання налаштувань."
 
-msgid "Perform a settings backup,"
-msgstr "Створити резервну копію налаштувань,"
-
-msgid ""
-"Perform a settings backup, making a backup before updating is strongly "
-"advised."
-msgstr ""
-"Створити резервну копію налаштувань, створення резервної копії перед "
-"оновленням настійно рекомендується."
-
 msgid "Perform an on-line flash instead"
-msgstr ""
+msgstr "Замість цього виконайте онлайн-прошивку"
 
 msgid "Perform an online update check in the background"
 msgstr "Виконати онлайн-перевірку оновлення у фоновому режимі"
@@ -13853,6 +13880,9 @@ msgstr "Натисніть ОК для активації вибраного с�
 msgid "Press OK to activate the settings."
 msgstr "Натисніть ОК для активації налаштувань."
 
+msgid "Press OK to continue."
+msgstr ""
+
 msgid "Press OK to edit the settings."
 msgstr "Натисніть ОК для редагування налаштувань."
 
@@ -13906,6 +13936,9 @@ msgstr "Натисніть OK, щоб використовувати цю мов
 #, python-format
 msgid "Press OK to use this locale.  [%s]"
 msgstr "Натисніть OK, щоб використовувати цей регіон.  [%s]"
+
+msgid "Press the menu button to set a general AC3/Dolby offset."
+msgstr "Натисніть кнопку меню, щоб встановити загальний зсув AC3/Dolby."
 
 msgid ""
 "Press this button to emulate a long press on a button pressed afterwards "
@@ -13967,7 +14000,7 @@ msgid "Probable causes could be"
 msgstr "Можливі причини можуть бути"
 
 msgid "Proceed with the update"
-msgstr ""
+msgstr "Продовжувати оновлення"
 
 msgid "Process"
 msgstr "Процес"
@@ -14097,6 +14130,9 @@ msgstr "Захистити провідник плагінів"
 
 msgid "Protect services"
 msgstr "Захист каналів"
+
+msgid "Protect software update screen"
+msgstr ""
 
 msgid "Protect standby menu"
 msgstr "Захистити меню вимкнення"
@@ -14526,6 +14562,9 @@ msgstr ""
 "Будь ласка, зачекайте, поки Ваш %s %s перезавантажується\n"
 "Це може зайняти кілька хвилин"
 
+msgid "Refresh"
+msgstr ""
+
 msgid "Refresh every (in hours)"
 msgstr "Інтервал оновлення (в годинах)"
 
@@ -14540,6 +14579,9 @@ msgstr "Вибір частоти оновлення."
 
 msgid "Refresh screen"
 msgstr "Оновити екран"
+
+msgid "Refresh the update-able package list"
+msgstr ""
 
 msgid "Regard deep standby as standby"
 msgstr "Вважати вимкнення як режим очікування"
@@ -14633,6 +14675,12 @@ msgstr "Видалити"
 msgid "Remove Confirmation"
 msgstr "Підтвердіть видалення"
 
+msgid "Remove Failed !!"
+msgstr ""
+
+msgid "Remove Finished."
+msgstr "Видалення завершено."
+
 msgid "Remove Plugins"
 msgstr "Видалити Плагіни"
 
@@ -14665,9 +14713,6 @@ msgstr "Видалити поточну папку з закладок"
 
 msgid "Remove currently selected title"
 msgstr "Видалити вибрану назву"
-
-msgid "Remove Finished."
-msgstr "Видалення завершено."
 
 msgid "Remove hide VBI line for this service"
 msgstr "Видалити приховану лінію VBI для цього каналу"
@@ -14767,6 +14812,8 @@ msgid ""
 "Replace all '%s' tags with:\n"
 "(NOTE: 'Cancel' cannot undo this!)"
 msgstr ""
+"Замініть усі теги '%s' на:\n"
+"(ПРИМІТКА: 'Скасувати' не може це відмінити!)"
 
 msgid "Reportage"
 msgstr "Репортаж"
@@ -14935,7 +14982,7 @@ msgid "Retrieving image slots - Please wait..."
 msgstr "Отримання списку слотів. Прохання зачекати..."
 
 msgid "Return the current selection response"
-msgstr ""
+msgstr "Повернути поточну відповідь вибору"
 
 msgid "Return to movie list"
 msgstr "Повернутись до списку фільмів"
@@ -15542,6 +15589,8 @@ msgid ""
 "Select 'Yes' to enable editing of this device's settings. Selecting 'No' "
 "resets the devices settings to their default values."
 msgstr ""
+"Виберіть 'Так', щоб увімкнути редагування налаштувань цього пристрою. Вибір "
+"'Ні' скидає налаштування пристроїв до значень за замовчуванням."
 
 msgid ""
 "Select 'band' if using a 'universal' LNB, otherwise consult your LNB spec "
@@ -15708,6 +15757,9 @@ msgstr "Вибір аудіо каналу"
 msgid "Select channel to record from"
 msgstr "Вибір каналу для запису з"
 
+msgid "Select channels to add an offset to the volume."
+msgstr "Виберіть канали, для яких можна додати зміщення звуку."
+
 msgid "Select copy destination for:"
 msgstr "Виберіть місце для копіювання:"
 
@@ -15800,7 +15852,7 @@ msgid "Select target folder"
 msgstr "Виберіть папку призначення"
 
 msgid "Select the No / False response"
-msgstr ""
+msgstr "Виберіть відповідь Ні/Хибна"
 
 msgid "Select the Swap File Size:"
 msgstr "Виберіть розмір файлу підкачки:"
@@ -15858,7 +15910,7 @@ msgstr ""
 "в тюнер."
 
 msgid "Select the Yes / True response"
-msgstr ""
+msgstr "Виберіть відповідь Так/Правда"
 
 msgid "Select the character or action under the keyboard cursor"
 msgstr "Виберіть символ, або дію під курсором клавіатури"
@@ -15989,10 +16041,10 @@ msgid "Select the sleep timer action."
 msgstr "Виберіть дію таймер сну."
 
 msgid "Select the time delay before the button starts repeating."
-msgstr ""
+msgstr "Виберіть час затримки перед тим, як дії кнопки почнуть повторюватися."
 
 msgid "Select the time delay between each repeat of the button."
-msgstr ""
+msgstr "Виберіть час затримки між кожним повтором натисканням кнопки."
 
 msgid "Select the time zone within the area or region."
 msgstr "Виберіть Ваш часовий пояс у межах області чи регіону."
@@ -17113,6 +17165,9 @@ msgstr "Показати докладну інформацію події"
 msgid "Show detailed event info (setup in menu)"
 msgstr "Показати докладну інформацію події (налаштування в меню)"
 
+msgid "Show development packages in opkg"
+msgstr ""
+
 msgid "Show directories first"
 msgstr "Спочатку показати каталоги"
 
@@ -17330,7 +17385,7 @@ msgid "Show single EPG for current channel"
 msgstr "Показати одиночний телегід для поточного каналу"
 
 msgid "Show single EPG for current channel (setup in menu)"
-msgstr ""
+msgstr "Показати одиничний ЕПГ для поточного каналу (налаштування в меню)"
 
 msgid "Show single service EPG"
 msgstr "Показати одиночний телегід каналу"
@@ -17758,9 +17813,6 @@ msgstr "Менеджер ПЗ"
 msgid "Software Manager Setup"
 msgstr "Налаштування Менеджера ПЗ"
 
-msgid "Software Panel"
-msgstr "Панель ПЗ"
-
 msgid "Software Update"
 msgstr "Оновлення ПЗ"
 
@@ -17776,8 +17828,10 @@ msgstr "Налаштування мененджера ПЗ"
 msgid "Software restore"
 msgstr "Відновлення ПЗ"
 
-msgid "Software update"
-msgstr "Оновлення ПЗ"
+msgid ""
+"Software update starting, please wait.\n"
+"\n"
+msgstr ""
 
 msgid "Softwaremanager information"
 msgstr "Інформація менеджера ПЗ"
@@ -17832,13 +17886,6 @@ msgstr "На жаль фіди на технічному обслуговува�
 msgid "Sorry feeds are down for maintenance, please try again later."
 msgstr ""
 "На жаль фіди на технічному обслуговувані, будь ласка, спробуйте пізніше."
-
-msgid ""
-"Sorry feeds are down for maintenance, please try again later. If this issue "
-"persists please check www.opena.tv"
-msgstr ""
-"На жаль фіди на технічному обслуговуванні. Якщо ця проблема не усунута, будь "
-"ласка, перевірте www.opena.tv"
 
 msgid "Sorry no backups found!"
 msgstr "Вибачте, але резервних копій не знайдено!"
@@ -18143,6 +18190,7 @@ msgstr "Зупинити відтворення цього фільму?"
 
 msgid "Stop previous broadcasted service on return to movie list."
 msgstr ""
+"Зупиніть попередню трансляцію каналу після повернення до списку фільмів."
 
 msgid "Stop recording"
 msgstr "Зупинити запис"
@@ -18164,6 +18212,9 @@ msgstr "Зупинити тестування після # несправних 
 
 msgid "Stop testing plane after # successful transponders"
 msgstr "Зупинити тестування після # справних транспондерів"
+
+msgid "Stop the update, if running, then exit"
+msgstr ""
 
 msgid "Stop timer recording"
 msgstr "Зупинити запис таймера"
@@ -18569,7 +18620,7 @@ msgstr "TEXT"
 #. TRANSLATORS: Add here whatever should be shown in the "translator" about screen, up to 6 lines (use \n for newline)
 msgid "TRANSLATOR_INFO"
 msgstr ""
-"Переклад:  kvinto - 18.01.2022\n"
+"Переклад:  kvinto - 19.01.2022\n"
 "Сторінка:    https://gisclub.tv\n"
 "                  kvinto@rambler.ru"
 
@@ -18604,7 +18655,7 @@ msgid "Tag Editor"
 msgstr "Редактор Тегів"
 
 msgid "Tag Editor Actions"
-msgstr ""
+msgstr "Дії Редактора Тегів"
 
 msgid "Tagalog"
 msgstr "Тагальська"
@@ -18937,10 +18988,7 @@ msgstr ""
 "Що ви хочете зробити?"
 
 msgid "The command to wake from standby will be sent multiple times."
-msgstr ""
-
-msgid "The current update may be unstable"
-msgstr "Поточне оновлення може бути нестійким"
+msgstr "Команда пробудження з режиму очікування буде надіслано кілька разів."
 
 msgid ""
 "The default backup selection cannot be changed.\n"
@@ -19155,6 +19203,8 @@ msgid ""
 "There is a risk that your %s %s will not boot or may malfunction after such "
 "a large on-line update."
 msgstr ""
+"Існує ризик, що Ваш %s %s не завантажиться, або може вийти з ладу після "
+"такого великого онлайн-оновлення."
 
 msgid "There is no signal to lock on !"
 msgstr "Немає сигналу для захоплення!"
@@ -19174,6 +19224,8 @@ msgstr "Під час завантаження списку регіонів с�
 
 msgid "There was an error downloading the update list.  Please try again."
 msgstr ""
+"Під час завантаження списку оновлень сталася помилка. Будь ласка, спробуйте "
+"ще раз."
 
 msgid "There was an error downloading the updatelist. Please try again."
 msgstr ""
@@ -19275,6 +19327,9 @@ msgid ""
 "standby. The wake up command's from other devices will be ignored for few "
 "seconds."
 msgstr ""
+"Це обхідний шлях для деяких пристроїв, які знову прокидаються після переходу "
+"в режим очікування. Команда пробудження з інших пристроїв буде ігнорована "
+"протягом кількох секунд."
 
 #, python-format
 msgid "This is the currently selected language.  [%s]"
@@ -19295,6 +19350,12 @@ msgstr ""
 
 msgid "This line is not editable!"
 msgstr "Цей рядок не можна редагувати!"
+
+msgid ""
+"This offset will only be used if the channel has not its own volume offset."
+msgstr ""
+"Цей зсув буде використовуватися, якщо канал не має свого власного зсуву "
+"звуку."
 
 msgid ""
 "This option allows to reduce the block-noise in the picture. Obviously this "
@@ -19672,6 +19733,9 @@ msgid ""
 "This sets the prefix for each line in the debug log. The 'Boot time' is the "
 "number of seconds since your %s %s was last booted."
 msgstr ""
+"Це встановлює префікс для кожного рядка в журналі налагодження. 'Час "
+"завантаження' — це кількість секунд, що пройшли з моменту останнього "
+"завантаження %s %s."
 
 msgid ""
 "This setting allows the tuner configuration to be a duplication of how "
@@ -20082,7 +20146,7 @@ msgstr ""
 "Перемикання до нових текстових вставок, або перезаписати існуючий текст"
 
 msgid "Toggle selection of the current tag"
-msgstr ""
+msgstr "Переключити вибір поточного тегу"
 
 msgid "Toggle service name display"
 msgstr "Увімкнути відображення назви каналу"
@@ -20228,6 +20292,8 @@ msgid ""
 "Try to send repeated commands if not all commands are executed. (e.g. TV "
 "wakeup, but not switched to correct input.)"
 msgstr ""
+"Спробуйте надіслати повторювані команди, якщо не всі команди виконуються. "
+"(наприклад, пробудження телевізора, але не перемикання на правильний вхід.)"
 
 msgid "Trying to download a new packetlist. Please wait..."
 msgstr "Спроба завантажити новий список пакетів. Зачекайте..."
@@ -20620,15 +20686,8 @@ msgstr "Оновлення кешу"
 msgid "Update at your own risk"
 msgstr "Оновлення на свій страх і ризик"
 
-msgid "Update channel list only"
-msgstr "Оновлення тільки списку каналів"
-
-#, python-format
-msgid "Update completed, %d package was installed."
-msgid_plural "Update completed, %d packages were installed."
-msgstr[0] "Оновлення завершено, встановлено %d пакет."
-msgstr[1] "Оновлення завершено, встановлено %d пакети."
-msgstr[2] "Оновлення завершено, встановлено %d пакетів."
+msgid "Update completed."
+msgstr ""
 
 msgid "Update delay for Events in List"
 msgstr "Оновлення затримки для подій в списку"
@@ -20642,10 +20701,6 @@ msgstr ""
 
 msgid "Update failed!"
 msgstr "Помилка оновлення!"
-
-#, python-format
-msgid "Update failed. Your %s %s does not have a working internet connection."
-msgstr "Оновлення неможливе. Ваш %s %s немає підключення до Інтернету."
 
 msgid "Update finished!"
 msgstr "Оновлення завершено!"
@@ -20670,11 +20725,20 @@ msgstr ""
 msgid "Update/Backup/Restore your box"
 msgstr "Оновлення/Копіювання/Відновлення приймача"
 
+msgid "Updated"
+msgstr ""
+
+msgid "Updated version unknown"
+msgstr ""
+
 msgid "Updatefeed not available."
 msgstr "Канал Оновленя не доступний."
 
 msgid "Updates available:"
 msgstr "Доступні оновлення:"
+
+msgid "Updating"
+msgstr "Оновлення"
 
 msgid "Updating cache"
 msgstr "Оновлення кешу"
@@ -20690,9 +20754,6 @@ msgstr "Каталог оновлення ПЗ"
 
 msgid "Upgrade (Backup, Flash & Restore All)"
 msgstr "Оновити (Резервна копія, Прошивка і повне відновлення)"
-
-msgid "Upgrade and reboot system"
-msgstr "Оновлення і перезавантаження системи"
 
 msgid "Upgrade finished."
 msgstr "Оновлення завершено."
@@ -20710,8 +20771,8 @@ msgstr ""
 msgid "Upgrade with GUI"
 msgstr "Показати оновлення"
 
-msgid "Updating"
-msgstr "Оновлення"
+msgid "Upgrading"
+msgstr ""
 
 msgid "Uphops +"
 msgstr "Uphops +"
@@ -20817,7 +20878,7 @@ msgid "Use circular LNB"
 msgstr "Використовувати круговий LNB"
 
 msgid "Use defaults"
-msgstr ""
+msgstr "Використовуйте параметри за замовчуванням"
 
 msgid "Use extended List"
 msgstr "Використовувати розширений список"
@@ -21014,7 +21075,7 @@ msgid "Username:"
 msgstr "Ім'я користувача:"
 
 msgid "Using automatic address"
-msgstr ""
+msgstr "Використання автоматичної адреси"
 
 msgid "Using fixed address"
 msgstr "Використання фіксованї адреси"
@@ -21320,9 +21381,6 @@ msgstr "Перегляд фото..."
 
 msgid "View teletext..."
 msgstr "Перегляд телетексту..."
-
-msgid "View the changes"
-msgstr "Перегляд змін"
 
 msgid "View video CD..."
 msgstr "Перегляд відео СД..."
@@ -21762,6 +21820,11 @@ msgstr ""
 msgid "When enabled, authentication is required to watch http streams."
 msgstr "Якщо включено, потрібна авторизація для перегляду http потоків."
 
+msgid ""
+"When enabled, before opkg update there will be opkg clean to make sure "
+"nothing ruine the update but only enable this when you can not update online."
+msgstr ""
+
 msgid "When enabled, channel numbering will start at '1' for each bouquet."
 msgstr ""
 "Якщо включено, нумерація каналів в кожному фаворитному списку буде "
@@ -21914,6 +21977,11 @@ msgstr ""
 
 msgid "When enabled, use DHCP for the IP configuration."
 msgstr "Якщо увімкнено, використовуйте DHCP для конфігурації АП."
+
+msgid ""
+"When enabled, you will see dev, staticdev, dbg, doc, src and po packages in "
+"opkg list."
+msgstr ""
 
 msgid ""
 "When enabled, your receiver will detect activity on the VCR SCART input."
@@ -22493,14 +22561,6 @@ msgstr ""
 
 #, python-format
 msgid ""
-"Your %s %s might be unusable now. Please consult the manual for further "
-"assistance before rebooting your %s %s."
-msgstr ""
-"Ваш %s %s може стати непридатним. Будь-ласка, почитайте керівництво по "
-"використанню перш ніж перезавантажити Ваш %s %s."
-
-#, python-format
-msgid ""
 "Your %s %s was not shutdown properly.\n"
 "\n"
 "Do you want to put it in %s?"
@@ -22666,6 +22726,12 @@ msgid ""
 msgstr ""
 "Ваш приймач може використовувати тоновий сигнал. Для отримання додаткової "
 "інформації зверніться до посібника користувача."
+
+#, python-format
+msgid ""
+"Your receiver might be unusable now.  Please consult the manual for further "
+"assistance before rebooting your %s %s."
+msgstr ""
 
 msgid ""
 "Your wireless LAN internet connection could not be started!\n"
@@ -22859,12 +22925,6 @@ msgstr "активувати ПІП"
 
 msgid "active"
 msgstr "активний"
-
-msgid "Add Current"
-msgstr "додати поточний"
-
-msgid "Add Service"
-msgstr "додати канал"
 
 msgid "add alternatives"
 msgstr "додати вибране"
@@ -23071,9 +23131,6 @@ msgstr "по центру"
 
 msgid "centered, wrapped"
 msgstr "по центру, прихований"
-
-msgid "Change"
-msgstr "змінити"
 
 msgid "change Volume down"
 msgstr "зменшити рівень звуку"
@@ -23598,9 +23655,6 @@ msgstr "внутрішня петля до"
 msgid "invalid type"
 msgstr "невірний тип"
 
-msgid "is strongly advised."
-msgstr "настійно рекомендується."
-
 msgid "jazz"
 msgstr "джаз"
 
@@ -23666,9 +23720,6 @@ msgstr "m2k"
 
 msgid "magazines/reports/documentary"
 msgstr "журнали/репортажі/документальні фільми"
-
-msgid "making a backup before updating"
-msgstr "зробити резервну копію перед оновленням"
 
 msgid "manage local Files"
 msgstr "керувати локальними файлами"
@@ -23934,9 +23985,6 @@ msgstr "популярна культура/традиційні мистецт�
 msgid "pre-school children's program"
 msgstr "дитяча програма дошкільного віку"
 
-msgid "Press the menu button to set a general AC3/Dolby offset."
-msgstr "Натисніть кнопку меню, щоб встановити загальний зсув AC3/Dolby."
-
 msgid "previous channel page"
 msgstr "попередня сторінка каналів"
 
@@ -24122,9 +24170,6 @@ msgstr "вибрати"
 
 msgid "select CAId's"
 msgstr "вибрати CAId'и"
-
-msgid "Select channels to add an offset to the volume."
-msgstr "Виберіть канали, для яких можна додати зміщення звуку."
 
 msgid "select menu entry"
 msgstr "виберіть пункт меню"
@@ -24367,12 +24412,6 @@ msgstr "теніс/сквош"
 msgid "this bouquet is protected by a parental control pin"
 msgstr "цей фаворит захищений батьківським контролем"
 
-msgid ""
-"This offset will only be used if the channel has not its own volume offset."
-msgstr ""
-"Цей зсув буде використовуватися, якщо канал не має свого власного зсуву "
-"звуку."
-
 msgid "this recording"
 msgstr "цей запис"
 
@@ -24609,6 +24648,142 @@ msgstr "переключення"
 
 msgid "®"
 msgstr "®"
+
+#, python-format
+#~ msgid "%s updated package available"
+#~ msgid_plural "%s updated packages available"
+#~ msgstr[0] "%s оновлення пакету доступно"
+#~ msgstr[1] "%s оновлення пакетів доступно"
+#~ msgstr[2] "%s оновлень пакетів доступно"
+
+#, python-format
+#~ msgid ""
+#~ "A configuration file (%s) has been modified since it was installed.\n"
+#~ "Do you want to keep your modifications?"
+#~ msgstr ""
+#~ "Файл конфігурації (%s) був змінений після його встановлення.\n"
+#~ "Бажаєте зберегти вашу версію?"
+
+#, python-format
+#~ msgid "Are you sure you want to update your %s %s ?"
+#~ msgstr "Ви впевнені, що хочете оновити %s %s ?"
+
+#~ msgid "Backup Manager"
+#~ msgstr "Мененджер Резервних копій"
+
+#~ msgid "Cancel the software update"
+#~ msgstr "Скасувати оновлення програмного забезпечення"
+
+#~ msgid "Checking for Updates..."
+#~ msgstr "Перевірка наявності оновлень..."
+
+#~ msgid "Could not find installed channel list."
+#~ msgstr "Не вдалося знайти встановлений список каналів."
+
+#, python-format
+#~ msgid "Do you want to reboot your %s %s"
+#~ msgstr "Ви хочете перезавантажити свій %s %s"
+
+#, python-format
+#~ msgid "Do you want to update your %s %s ?"
+#~ msgstr "Ви хочете оновити Ваш %s %s ?"
+
+#~ msgid "Error downloading change log."
+#~ msgstr "Помилка завантаження журналу змін."
+
+#~ msgid "Feeds status:   Stable"
+#~ msgstr "Статус фіду:   Стабільний"
+
+#~ msgid "Feeds status:   Unstable"
+#~ msgstr "Статус фіду:   Нестабільний"
+
+#~ msgid "Feeds status:   Updating"
+#~ msgstr "Статус фіду:   Оновлення"
+
+#~ msgid "Feeds status: Unexpected"
+#~ msgstr "Статус фіду: Незаданий"
+
+#~ msgid "Image Manager"
+#~ msgstr "Мененджер Іміджа"
+
+#~ msgid "No connection"
+#~ msgstr "З'єднання відсутнє"
+
+#~ msgid "No updates available. Please try again later."
+#~ msgstr "Немає доступних оновлень. Будь-ласка спробуйте пізніше."
+
+#~ msgid "OnlineVersionCheck"
+#~ msgstr "Онлайн перевірка версії"
+
+#~ msgid "Packages"
+#~ msgstr "Пакети"
+
+#~ msgid "Perform a full image backup"
+#~ msgstr "Виконайте повне резервне копіювання іміджу"
+
+#~ msgid "Perform a settings backup,"
+#~ msgstr "Створити резервну копію налаштувань,"
+
+#~ msgid ""
+#~ "Perform a settings backup, making a backup before updating is strongly "
+#~ "advised."
+#~ msgstr ""
+#~ "Створити резервну копію налаштувань, створення резервної копії перед "
+#~ "оновленням настійно рекомендується."
+
+#~ msgid "Software Panel"
+#~ msgstr "Панель ПЗ"
+
+#~ msgid "Software update"
+#~ msgstr "Оновлення ПЗ"
+
+#~ msgid ""
+#~ "Sorry feeds are down for maintenance, please try again later. If this "
+#~ "issue persists please check www.opena.tv"
+#~ msgstr ""
+#~ "На жаль фіди на технічному обслуговуванні. Якщо ця проблема не усунута, "
+#~ "будь ласка, перевірте www.opena.tv"
+
+#~ msgid "The current update may be unstable"
+#~ msgstr "Поточне оновлення може бути нестійким"
+
+#~ msgid "Update channel list only"
+#~ msgstr "Оновлення тільки списку каналів"
+
+#, python-format
+#~ msgid "Update completed, %d package was installed."
+#~ msgid_plural "Update completed, %d packages were installed."
+#~ msgstr[0] "Оновлення завершено, встановлено %d пакет."
+#~ msgstr[1] "Оновлення завершено, встановлено %d пакети."
+#~ msgstr[2] "Оновлення завершено, встановлено %d пакетів."
+
+#, python-format
+#~ msgid ""
+#~ "Update failed. Your %s %s does not have a working internet connection."
+#~ msgstr "Оновлення неможливе. Ваш %s %s немає підключення до Інтернету."
+
+#~ msgid "Upgrade and reboot system"
+#~ msgstr "Оновлення і перезавантаження системи"
+
+#~ msgid "View the changes"
+#~ msgstr "Перегляд змін"
+
+#, python-format
+#~ msgid ""
+#~ "Your %s %s might be unusable now. Please consult the manual for further "
+#~ "assistance before rebooting your %s %s."
+#~ msgstr ""
+#~ "Ваш %s %s може стати непридатним. Будь-ласка, почитайте керівництво по "
+#~ "використанню перш ніж перезавантажити Ваш %s %s."
+
+#~ msgid "is strongly advised."
+#~ msgstr "настійно рекомендується."
+
+#~ msgid "making a backup before updating"
+#~ msgstr "зробити резервну копію перед оновленням"
+
+#~ msgid "Remove finished."
+#~ msgstr "Видалення завершено."
 
 #~ msgid "Close pop up menu"
 #~ msgstr "Закрити вспливаюче меню"
