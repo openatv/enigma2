@@ -5,7 +5,7 @@ from six import PY3
 from enigma import eConsoleAppContainer
 
 from Components.config import ConfigSubsection, ConfigYesNo, config
-from Components.Harddisk import harddiskmanager
+#from Components.Harddisk import harddiskmanager
 from Components.SystemInfo import BoxInfo
 from Tools.Directories import SCOPE_LIBDIR, fileReadLines, fileWriteLine, resolveFilename
 
@@ -95,9 +95,9 @@ if __name__ == "__main__":
 	for plugin in enumPlugins("enigma"):
 		print(plugin)
 
-harddiskmanager.on_partition_list_change.append(onPartitionChange)
-for part in harddiskmanager.getMountedPartitions():
-	onPartitionChange("add", part)
+#harddiskmanager.on_partition_list_change.append(onPartitionChange)
+#for part in harddiskmanager.getMountedPartitions():
+#	onPartitionChange("add", part)
 
 
 class OpkgComponent:
