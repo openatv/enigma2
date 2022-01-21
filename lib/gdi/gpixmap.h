@@ -41,9 +41,17 @@ struct gRGB
 		{
 			for (int i = 0; i < 8; i++)
 			{
-				if (i) val <<= 4;
-				if (!colorstring[i]) break;
-				val |= (colorstring[i]) & 0x0f;
+				char c = colorstring[i];
+				if (!c) break;
+				val <<= 4;
+				if (c >= '0' && c <= '9')
+					val |= c - '0';
+				else if(c >= 'a' && c <= 'f')
+					val |= c - 'a' + 10;
+				else if(c >= 'A' && c <= 'F')
+					val |= c - 'A' + 10;
+				else if(c >= ':' && c <= '?') // Backwards compatibility for old style color strings
+					val |= c & 0x0f;
 			}
 		}
 		value = val;
@@ -99,7 +107,9 @@ struct gRGB
 		escapecolor.resize(10);
 		for (int i = 9; i >= 2; i--)
 		{
-			escapecolor[i] = 0x40 | (val & 0xf);
+			int hexbits = val & 0xf;
+			escapecolor[i] = hexbits < 10	? '0' + hexbits
+							: 'a' - 10 + hexbits;
 			val >>= 4;
 		}
 		return escapecolor;
