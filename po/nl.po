@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-01-02 10:50+0000\n"
-"PO-Revision-Date: 2022-01-04 11:48+0100\n"
+"POT-Creation-Date: 2022-01-19 18:56+0000\n"
+"PO-Revision-Date: 2022-01-21 20:01+0100\n"
 "Last-Translator: Snoete <snoete@hotmail.com>\n"
 "Language-Team: Dutch <https://hosted.weblate.org/projects/openatv/"
 "enigma2-7-0-po/nl/>\n"
@@ -1047,6 +1047,12 @@ msgstr[0] "%d dag"
 msgstr[1] "%d dagen"
 
 #, python-format
+msgid "%d feed catalog package was updated."
+msgid_plural "%d feed catalog packages were updated."
+msgstr[0] "%d feed cataloguspakket is bijgewerkt."
+msgstr[1] "%d feed catalogus pakketten zijn bijgewerkt."
+
+#, python-format
 msgid "%d hour"
 msgid_plural "%d hours"
 msgstr[0] "%d uur"
@@ -1073,6 +1079,56 @@ msgstr "%d minuten"
 #, python-format
 msgid "%d ms"
 msgstr "%d ms"
+
+#, python-format
+msgid "%d package upgraded."
+msgid_plural "%d packages upgraded."
+msgstr[0] "%d pakket is bijgewerkt."
+msgstr[1] "%d pakketten zijn bijgewerkt."
+
+#, python-format
+msgid "%d package was configured."
+msgid_plural "%d packages were configured."
+msgstr[0] "%d pakket is geconfigureerd."
+msgstr[1] "%d pakketten zijn geconfigureerd."
+
+#, python-format
+#| msgid "packages selected."
+msgid "%d package was deselected."
+msgid_plural "%d packages were deselected."
+msgstr[0] "%d pakket is gedeselecteerd."
+msgstr[1] "%d pakketten zijn gedeselecteerd."
+
+#, python-format
+msgid "%d package was downloaded."
+msgid_plural "%d packages were downloaded."
+msgstr[0] "%d pakket is gedownload."
+msgstr[1] "%d pakketten zijn gedownload."
+
+#, python-format
+msgid "%d package was identified for upgrade."
+msgid_plural "%d packages were identified for upgrade."
+msgstr[0] "%d pakket is geselecteerd voor een upgrade."
+msgstr[1] "%d pakketten zijn geselecteerd voor een upgrade."
+
+#, python-format
+msgid "%d package was installed."
+msgid_plural "%d packages were installed."
+msgstr[0] " %d pakket is geïnstalleerd."
+msgstr[1] "%d pakketten zijn geïnstalleerd."
+
+#, python-format
+#| msgid "packages selected."
+msgid "%d package was removed."
+msgid_plural "%d packages were removed."
+msgstr[0] "%d pakket is verwijderd."
+msgstr[1] "%d pakketten zijn verwijderd."
+
+#, python-format
+msgid "%d package was upgraded."
+msgid_plural "%d packages were upgraded."
+msgstr[0] "%d pakket is bijgewerkt."
+msgstr[1] "%d pakketten zijn bijgewerkt."
 
 #, python-format
 msgid "%d pixel wide"
@@ -1301,12 +1357,6 @@ msgstr "%s niet beschikbaar."
 #, python-format
 msgid "%s successfully extracted."
 msgstr "%s succesvol uitgepakt."
-
-#, python-format
-msgid "%s updated package available"
-msgid_plural "%s updated packages available"
-msgstr[0] "%s nieuw pakket beschikbaar"
-msgstr[1] "%s nieuwe pakketten beschikbaar"
 
 #, python-format
 msgid "%s%d min"
@@ -2017,22 +2067,6 @@ msgstr ""
 "probeer het opnieuw."
 
 #, python-format
-msgid ""
-"A configuration file (%s) has been modified since it was installed.\n"
-"Do you want to keep your modifications?"
-msgstr ""
-"Een configuratiebestand (%s) is sinds de installatie gewijzigd.\n"
-"Wilt u uw aanpassingen behouden?"
-
-#, python-format
-msgid ""
-"Configuration file '%s' has been modified since it was installed, would you "
-"like to keep the modified version?"
-msgstr ""
-"Een configuratiebestand (%s) is sinds de installatie gewijzigd.\n"
-"Wilt u uw versie behouden?"
-
-#, python-format
 msgid "A crashlog was %s created in '%s'"
 msgstr "Een crashlog is %s gemaakt in '%s'"
 
@@ -2364,11 +2398,17 @@ msgstr "Toevoegen"
 msgid "Add AutoTimer"
 msgstr "AutoTimer toevoegen"
 
+msgid "Add Current"
+msgstr "Huidige toevoegen"
+
 msgid "Add New Quad Channel Entry"
 msgstr "Nieuwe Quad zender toevoegen"
 
 msgid "Add Record Timer"
 msgstr "Opname Timer toevoegen"
+
+msgid "Add Service"
+msgstr "Zender toevoegen"
 
 msgid "Add Timer"
 msgstr "Timer toevoegen"
@@ -2984,10 +3024,6 @@ msgstr "Weet u zeker dat u de EPG Cache wilt opslaan in:\n"
 msgid "Are you sure you want to send this log:\n"
 msgstr "Weet u zeker dat u dit log wilt versturen:\n"
 
-#, python-format
-msgid "Are you sure you want to update your %s %s ?"
-msgstr "Weet u zeker dat u uw %s %s wilt updaten?"
-
 msgid "Argentina"
 msgstr "Argentinië"
 
@@ -3402,9 +3438,6 @@ msgstr "Back-up locatie"
 
 msgid "Backup Log"
 msgstr "Back-up log"
-
-msgid "Backup Manager"
-msgstr "Back-up beheer"
 
 msgid "Backup Mode"
 msgstr "Back-up modus"
@@ -4099,6 +4132,9 @@ msgstr "Canada"
 msgid "Cancel"
 msgstr "Annuleren"
 
+msgid "Cancel / Close the software update screen"
+msgstr "De software-update annuleren"
+
 msgid "Cancel any changed settings and exit"
 msgstr "Annuleer alle gewijzigde instellingen en Exit."
 
@@ -4131,9 +4167,6 @@ msgstr "Annuleer de image selectie en exit"
 
 msgid "Cancel the image selection and exit all menus"
 msgstr "Annuleer de image selectie en exit alle menu's"
-
-msgid "Cancel the software update"
-msgstr "De software-update annuleren"
 
 msgid "Cancel the update"
 msgstr "De update annuleren"
@@ -4218,6 +4251,9 @@ msgstr "Tsjaad"
 
 msgid "Chamorro"
 msgstr "Chamorro"
+
+msgid "Change"
+msgstr "Wijzig"
 
 msgid "Change Boxmode to control Hardware Chip Modes*"
 msgstr "Wijzig boxmodus om hardware chip modi te beheren*"
@@ -4427,9 +4463,6 @@ msgstr "Controleer logs..."
 
 msgid "Checking filesystem..."
 msgstr "Controleer bestandssysteem..."
-
-msgid "Checking for Updates..."
-msgstr "Controleert op updates..."
 
 msgid "Checking the internet connection"
 msgstr "Controleert uw internetverbinding"
@@ -4853,6 +4886,14 @@ msgstr "Configuratiebestand %s opgeslagen."
 msgctxt "Abbreviation of 'Configurable'"
 msgid "Configurable"
 msgstr "Configureerbaar "
+
+#, python-format
+msgid ""
+"Configuration file '%s' has been modified since it was installed, would you "
+"like to keep the modified version?"
+msgstr ""
+"Een configuratiebestand '%s' is sinds de installatie gewijzigd, wilt u uw "
+"gewijzigde versie behouden?"
 
 msgid "Configuration mode"
 msgstr "Configuratie modus"
@@ -5717,9 +5758,6 @@ msgstr "Kon geen verbinding maken met de %s %s.NFI feed Server:"
 msgid "Could not connect to server"
 msgstr "Kan geen verbinding met de server maken"
 
-msgid "Could not find installed channel list."
-msgstr "Kon geen geïnstalleerde zenderlijst vinden."
-
 msgid ""
 "Could not find suitable media - Please remove some downloaded images or "
 "insert a media (e.g. USB stick) with sufficient free space and try again!"
@@ -5881,6 +5919,9 @@ msgstr "Huidige transponder"
 
 msgid "Current value: "
 msgstr "Huidige waarde: "
+
+msgid "Current version unknown"
+msgstr "Huidige versie onbekend"
 
 msgid "Current version:"
 msgstr "Huidige versie:"
@@ -6565,6 +6606,16 @@ msgstr "Beschrijving"
 msgid "Deselect"
 msgstr "Deselecteer"
 
+#, python-format
+msgid ""
+"Deselected packages usually occur because those packaged are incompatible "
+"with existing packages.  While this is mostly harmless it is possible that "
+"your %s %s may experience issues."
+msgstr ""
+"Gedeselecteerde pakketten komen voor doordat die niet compatibel zijn met al "
+"geïnstalleerde pakketten. Hoewel dit normaal gesproken geen kwaad kan, is "
+"het mogelijk dat uw %s %s daarna problemen ondervindt."
+
 msgid "Details for plugin: "
 msgstr "Plug-in informatie: "
 
@@ -6991,10 +7042,6 @@ msgid "Do you want to purge all locales/languages except %s?"
 msgstr "Wilt u alle talen verwijderen behalve %s?"
 
 #, python-format
-msgid "Do you want to reboot your %s %s"
-msgstr "Wilt u uw %s %s opnieuw opstarten?"
-
-#, python-format
 msgid "Do you want to reboot your %s %s?"
 msgstr "Wilt u uw %s %s opnieuw opstarten?"
 
@@ -7019,10 +7066,6 @@ msgid ""
 msgstr ""
 "Wilt u alle geselecteerde bestanden versturen:\n"
 "(kies 'Nee' om alleen het nu geselecteerde bestand te versturen.)"
-
-#, python-format
-msgid "Do you want to update your %s %s ?"
-msgstr "Wilt u uw %s %s updaten?"
 
 msgid "Do you want to update your box?"
 msgstr "Wilt u uw box updaten?"
@@ -7608,6 +7651,10 @@ msgstr ""
 "Activeer deze optie om gebruik van het toetsenbord mee te nemen in het debug "
 "log bestand."
 
+msgid "Enable this option to add opkg output data to the debug log file."
+msgstr ""
+"Activeer deze optie om OPKG gegevens toe te voegen aan het debug log bestand."
+
 msgid "Enable this option to add remote control data to the debug log file."
 msgstr ""
 "Activeer deze optie om gegevens van de afstandsbediening mee te nemen in het "
@@ -7884,9 +7931,6 @@ msgid ""
 msgstr ""
 "Fout bij creëren van map %s:\n"
 "%s"
-
-msgid "Error downloading change log."
-msgstr "Fout bij het downloaden van de change log."
 
 #, python-format
 msgid ""
@@ -8391,18 +8435,6 @@ msgstr "De Feed is stabiel."
 
 msgid "Feed unstable!"
 msgstr "De Feed is niet stabiel!"
-
-msgid "Feeds status:   Stable"
-msgstr "Feed status:   Stabiel"
-
-msgid "Feeds status:   Unstable"
-msgstr "Feed status:   Onstabiel"
-
-msgid "Feeds status:   Updating"
-msgstr "Feed status:   Updaten"
-
-msgid "Feeds status: Unexpected"
-msgstr "Feeds status: Onverwacht"
 
 msgid "Fetch EPG and update timers now"
 msgstr "Download de EPG en actualiseer de timers"
@@ -9874,9 +9906,6 @@ msgstr "Image back-up"
 msgid "Image Information"
 msgstr "Image informatie"
 
-msgid "Image Manager"
-msgstr "Image beheer"
-
 msgid "Image Version"
 msgstr "Image versie"
 
@@ -9992,6 +10021,10 @@ msgstr "Inclusief action map data"
 
 msgid "Include keyboard data"
 msgstr "Inclusief toetsenbord data"
+
+#| msgid "Include action map data"
+msgid "Include opkg output data"
+msgstr "Inclusief OPKG Output gegevens "
 
 msgid "Include remote control data"
 msgstr "Inclusief afstandsbediening data"
@@ -10200,6 +10233,9 @@ msgstr "Installeer picons op"
 
 msgid "Install plugins"
 msgstr "Installeer plug-ins"
+
+msgid "Install/Remove plugin"
+msgstr "Installeer/Verwijder plug-in"
 
 msgid "Installation finished."
 msgstr "Installatie mislukt."
@@ -11621,6 +11657,9 @@ msgstr "Een regel naar beneden"
 msgid "Move down a page"
 msgstr "Ga een pagina naar beneden"
 
+msgid "Move down a page / screen"
+msgstr "Een scherm naar beneden"
+
 msgid "Move down a screen"
 msgstr "Een scherm naar beneden"
 
@@ -11720,6 +11759,9 @@ msgstr "Een regel omhoog"
 
 msgid "Move up a page"
 msgstr "Ga een pagina omhoog"
+
+msgid "Move up a page / screen"
+msgstr "Een scherm naar boven"
 
 msgid "Move up a screen"
 msgstr "Een scherm naar boven"
@@ -12248,9 +12290,6 @@ msgstr "Geen Zender"
 msgid "No clients streaming"
 msgstr "Geen gebruikers streamen"
 
-msgid "No connection"
-msgstr "Geen verbinding"
-
 msgid ""
 "No data on transponder!\n"
 "(Timeout reading PAT)"
@@ -12387,8 +12426,11 @@ msgstr ""
 msgid "No update required!"
 msgstr "Geen update vereist!"
 
-msgid "No updates available. Please try again later."
-msgstr "Geen update beschikbaar. Probeer het later nogmaals."
+msgid "No updates available."
+msgstr "Geen updates beschikbaar."
+
+msgid "No updates were available.  Please try again later."
+msgstr "Geen updates beschikbaar. Probeer het later nog een keer."
 
 msgid "No valid region details were found"
 msgstr "Geen geldige regio informatie gevonden"
@@ -12653,6 +12695,10 @@ msgstr "OK, mij tijdens de software update begeleiden"
 msgid "ONID"
 msgstr "ONID"
 
+#| msgid "OK button mode"
+msgid "OPKG clean mode"
+msgstr "OPKG Clean modus"
+
 msgid "OSD"
 msgstr "OSD"
 
@@ -12747,9 +12793,6 @@ msgstr "Eén regel"
 
 msgid "Online software update"
 msgstr "OpenATV via het internet updaten"
-
-msgid "OnlineVersionCheck"
-msgstr "Controle op update"
 
 msgid "Only extensions."
 msgstr "Alleen applicaties"
@@ -13068,9 +13111,6 @@ msgstr "Pakketlijst vernieuwen"
 msgid "Packaged locales only"
 msgstr "Alleen beschikbare talen"
 
-msgid "Packages"
-msgstr "Pakketten"
-
 msgid "Packages and associated locales"
 msgstr "Packages en bijbehorende locales"
 
@@ -13232,24 +13272,11 @@ msgstr "Percentage/Voortgangsbalk links"
 msgid "Percentage/Progress bar right"
 msgstr "Percentage/Voortgangsbalk rechts"
 
-msgid "Perform a full image backup"
-msgstr "Maak een volledige image back-up"
-
 msgid "Perform a image backup before updating."
 msgstr "Maak een image back-up voor dat u gaat updaten."
 
 msgid "Perform a setting backup before updating."
 msgstr "Maak een back-up van de instellingen voordat u gaat updaten."
-
-msgid "Perform a settings backup,"
-msgstr "Maak een back-up van de instellingen,"
-
-msgid ""
-"Perform a settings backup, making a backup before updating is strongly "
-"advised."
-msgstr ""
-"Maak een back-up van de instellingen, dit wordt sterk aangeraden alvorens te "
-"updaten."
 
 msgid "Perform an on-line flash instead"
 msgstr "In plaats daarvan een online flash uitvoeren"
@@ -14041,6 +14068,9 @@ msgstr "Druk op OK om de geselecteerde skin te activeren."
 msgid "Press OK to activate the settings."
 msgstr "Druk op OK om op te slaan."
 
+msgid "Press OK to continue."
+msgstr "Druk op OK om door te gaan."
+
 msgid "Press OK to edit the settings."
 msgstr "Druk op OK om te wijzigen."
 
@@ -14093,6 +14123,11 @@ msgstr "Druk op OK om deze taal te gebruiken.  [%s]"
 #, python-format
 msgid "Press OK to use this locale.  [%s]"
 msgstr "Druk op OK om deze locale te gebruiken.  [%s]"
+
+msgid "Press the menu button to set a general AC3/Dolby offset."
+msgstr ""
+"Druk op de MENU-knop voor het instellen van een algemene AC3/Dolby "
+"compensatie"
 
 msgid ""
 "Press this button to emulate a long press on a button pressed afterwards "
@@ -14286,6 +14321,10 @@ msgstr "Beveilig Applicatie overzicht"
 
 msgid "Protect services"
 msgstr "Beveilig zenders"
+
+#| msgid "Online software update"
+msgid "Protect software update screen"
+msgstr "Protect software update scherm"
 
 msgid "Protect standby menu"
 msgstr "Beveilig stand-by menu"
@@ -14714,6 +14753,9 @@ msgstr ""
 "Wacht tot uw %s %s weer is opgestart.\n"
 "Dit kan een paar minuten duren."
 
+msgid "Refresh"
+msgstr "Overzicht verversen"
+
 msgid "Refresh every (in hours)"
 msgstr "Actualiseer elke X uur"
 
@@ -14728,6 +14770,9 @@ msgstr "Vernieuwingsfrequentie (Hz)."
 
 msgid "Refresh screen"
 msgstr "Actualiseren scherm"
+
+msgid "Refresh the update-able package list"
+msgstr "Ververs de lijst met beschikbare updates"
 
 msgid "Regard deep standby as standby"
 msgstr "Beschouw uitschakelen als normale stand-by"
@@ -14821,6 +14866,12 @@ msgstr "Verwijderen"
 msgid "Remove Confirmation"
 msgstr "Verwijderen bevestiging"
 
+msgid "Remove Failed !!"
+msgstr "Verwijderen mislukt!!"
+
+msgid "Remove Finished."
+msgstr "Verwijderen voltooid."
+
 msgid "Remove Plugins"
 msgstr "Plug-ins verwijderen"
 
@@ -14853,9 +14904,6 @@ msgstr "Verwijder huidige map van bookmarks"
 
 msgid "Remove currently selected title"
 msgstr "De momenteel geselecteerde titel verwijderen"
-
-msgid "Remove Finished."
-msgstr "Verwijderen voltooid."
 
 msgid "Remove hide VBI line for this service"
 msgstr "Verwijder verberg VBI regel voor deze zender"
@@ -15903,6 +15951,9 @@ msgstr "Selecteer audio kanaal"
 
 msgid "Select channel to record from"
 msgstr "Selecteer de juiste zender om van op te nemen"
+
+msgid "Select channels to add an offset to the volume."
+msgstr "Selecteer zenders om een Volume compensatie toe te voegen"
 
 msgid "Select copy destination for:"
 msgstr "Selecteer kopieerbestemming voor:"
@@ -17349,6 +17400,10 @@ msgstr "Gedetailleerde EPG info weergeven"
 msgid "Show detailed event info (setup in menu)"
 msgstr "Toon gedetailleerde programma info"
 
+#| msgid "Show source packages"
+msgid "Show development packages in opkg"
+msgstr "Toon development pakketten in OPKG"
+
 msgid "Show directories first"
 msgstr "Toon eerst mappen"
 
@@ -17997,9 +18052,6 @@ msgstr "Software beheer"
 msgid "Software Manager Setup"
 msgstr "Online update instellingen"
 
-msgid "Software Panel"
-msgstr "Software paneel"
-
 msgid "Software Update"
 msgstr "Software update"
 
@@ -18015,8 +18067,13 @@ msgstr "Online update instellingen"
 msgid "Software restore"
 msgstr "Software herstellen"
 
-msgid "Software update"
-msgstr "Software update"
+#| msgid "After pressing OK, please wait!"
+msgid ""
+"Software update starting, please wait.\n"
+"\n"
+msgstr ""
+"De software update begint, een moment geduld.\n"
+"\n"
 
 msgid "Softwaremanager information"
 msgstr "Softwarebeheer informatie"
@@ -18072,13 +18129,6 @@ msgstr "Excuses: vanwege onderhoud zijn de feeds niet actief."
 msgid "Sorry feeds are down for maintenance, please try again later."
 msgstr ""
 "De feeds zijn niet actief vanwege onderhoud. Probeer het later opnieuw."
-
-msgid ""
-"Sorry feeds are down for maintenance, please try again later. If this issue "
-"persists please check www.opena.tv"
-msgstr ""
-"Sorry feeds zijn niet bereikbaar door onderhoud, probeer later opnieuw. Als "
-"dit probleem zich blijft voordoen, Controleer www.opena.tv"
 
 msgid "Sorry no backups found!"
 msgstr "Sorry geen back-up gevonden!"
@@ -18402,6 +18452,9 @@ msgstr "Stop testen na # falende transponders"
 
 msgid "Stop testing plane after # successful transponders"
 msgstr "Stop testen na # succesvolle transponders"
+
+msgid "Stop the update, if running, then exit"
+msgstr "Stop een lopende update en Exit"
 
 msgid "Stop timer recording"
 msgstr "Stop timeropname"
@@ -19178,9 +19231,6 @@ msgid "The command to wake from standby will be sent multiple times."
 msgstr ""
 "Het commando voor opstarten uit standby zal meerdere keren verstuurd worden."
 
-msgid "The current update may be unstable"
-msgstr "De huidige update kan onstabiel zijn"
-
 msgid ""
 "The default backup selection cannot be changed.\n"
 "Please use the 'additional' and 'excluded' backup selection."
@@ -19546,6 +19596,12 @@ msgstr ""
 
 msgid "This line is not editable!"
 msgstr "Regel kan niet worden gewijzigd!"
+
+msgid ""
+"This offset will only be used if the channel has not its own volume offset."
+msgstr ""
+"deze compensatie zal alleen worden gebruikt als de zender geen eigen volume "
+"compensatie heeft"
 
 msgid ""
 "This option allows to reduce the block-noise in the picture. Obviously this "
@@ -20921,14 +20977,8 @@ msgstr "Update cache"
 msgid "Update at your own risk"
 msgstr "Update op uw eigen risico"
 
-msgid "Update channel list only"
-msgstr "Alleen de zenderlijst updaten"
-
-#, python-format
-msgid "Update completed, %d package was installed."
-msgid_plural "Update completed, %d packages were installed."
-msgstr[0] "De update is gereed, %d pakket geinstalleerd."
-msgstr[1] "De update is gereed, %d pakketten geinstalleerd."
+msgid "Update completed."
+msgstr "De Update is gereed"
 
 msgid "Update delay for Events in List"
 msgstr "Update vertraging voor programma's in lijst"
@@ -20942,10 +20992,6 @@ msgstr ""
 
 msgid "Update failed!"
 msgstr "Update mislukt!"
-
-#, python-format
-msgid "Update failed. Your %s %s does not have a working internet connection."
-msgstr "Update is mislukt. Uw %s %s heeft geen werkende internet verbinding."
 
 msgid "Update finished!"
 msgstr "Update voltooid!"
@@ -20969,11 +21015,20 @@ msgstr "Update/back-up uw firmware, back-up/herstel instellingen."
 msgid "Update/Backup/Restore your box"
 msgstr "Update/back-up/herstel uw ontvanger"
 
+msgid "Updated"
+msgstr "Bijgewerkt"
+
+msgid "Updated version unknown"
+msgstr "De bijgewerkte versie is onbekend"
+
 msgid "Updatefeed not available."
 msgstr "Updatefeed niet beschikbaar."
 
 msgid "Updates available:"
 msgstr "Updates beschikbaar:"
+
+msgid "Updating"
+msgstr "Bezig met update"
 
 msgid "Updating cache"
 msgstr "Bijwerken cache, even geduld ..."
@@ -20989,9 +21044,6 @@ msgstr "Software catalogus wordt geupdate"
 
 msgid "Upgrade (Backup, Flash & Restore All)"
 msgstr "Upgrade (Back-up, Flash & Herstel alles)"
-
-msgid "Upgrade and reboot system"
-msgstr "Update en herstart system"
 
 msgid "Upgrade finished."
 msgstr "Update voltooid."
@@ -21009,8 +21061,8 @@ msgstr ""
 msgid "Upgrade with GUI"
 msgstr "Update met GUI"
 
-msgid "Updating"
-msgstr "Bezig met update"
+msgid "Upgrading"
+msgstr "Bijwerken"
 
 msgid "Uphops +"
 msgstr "Uphops +"
@@ -21629,9 +21681,6 @@ msgstr "Bekijk foto's..."
 msgid "View teletext..."
 msgstr "Teletekst weergeven..."
 
-msgid "View the changes"
-msgstr "Bekijk de veranderingen"
-
 msgid "View video CD..."
 msgstr "Bekijk Video CD..."
 
@@ -22086,6 +22135,14 @@ msgstr ""
 "Bij 'Ja', moet een wachtwoord worden opgegeven om http-streams te kunnen "
 "zien."
 
+msgid ""
+"When enabled, before opkg update there will be opkg clean to make sure "
+"nothing ruine the update but only enable this when you can not update online."
+msgstr ""
+"Indien ingeschakeld, zal er voor een \"OPKG Update\" een \"OPKG Clean\" "
+"worden uitgevoerd om ervoor te zorgen dat dat de  update goed verloopt. "
+"Schakel dit alleen in wanneer u niet online kunt updaten."
+
 msgid "When enabled, channel numbering will start at '1' for each bouquet."
 msgstr ""
 "Indien geactiveerd, dan zullen de zendernummers van iedere favorietenlijst "
@@ -22247,6 +22304,13 @@ msgstr ""
 
 msgid "When enabled, use DHCP for the IP configuration."
 msgstr "Indien geactiveerd, gebruik dan DHCP om uw IP adres te bepalen."
+
+msgid ""
+"When enabled, you will see dev, staticdev, dbg, doc, src and po packages in "
+"opkg list."
+msgstr ""
+"Wanneer ingeschakeld, dan ziet u dev, staticdev, dbg, doc, src en po "
+"pakketten in de OPKG lijst."
 
 msgid ""
 "When enabled, your receiver will detect activity on the VCR SCART input."
@@ -22855,14 +22919,6 @@ msgstr ""
 
 #, python-format
 msgid ""
-"Your %s %s might be unusable now. Please consult the manual for further "
-"assistance before rebooting your %s %s."
-msgstr ""
-"Uw %s %s kan nu onbruikbaar zijn geworden. Raadpleeg de handleiding voordat "
-"u uw %s %s herstart."
-
-#, python-format
-msgid ""
 "Your %s %s was not shutdown properly.\n"
 "\n"
 "Do you want to put it in %s?"
@@ -23028,6 +23084,14 @@ msgid ""
 msgstr ""
 "Uw ontvanger kan tone amplitude benutten. Kijk in de handleiding van uw "
 "ontvanger voor meer informatie."
+
+#, python-format
+msgid ""
+"Your receiver might be unusable now.  Please consult the manual for further "
+"assistance before rebooting your %s %s."
+msgstr ""
+"Uw ontvanger kan nu onbruikbaar zijn geworden. Raadpleeg de handleiding "
+"voordat u uw %s %s herstart."
 
 msgid ""
 "Your wireless LAN internet connection could not be started!\n"
@@ -23219,12 +23283,6 @@ msgstr "activeer PiP"
 
 msgid "active"
 msgstr "actief"
-
-msgid "Add Current"
-msgstr "Huidige toevoegen"
-
-msgid "Add Service"
-msgstr "Zender toevoegen"
 
 msgid "add alternatives"
 msgstr "Alternatieven toevoegen"
@@ -23431,9 +23489,6 @@ msgstr "Gecentreerd"
 
 msgid "centered, wrapped"
 msgstr "Gecentreerd, gedraaid"
-
-msgid "Change"
-msgstr "Wijzig"
 
 msgid "change Volume down"
 msgstr "wijzig Volume omlaag"
@@ -23958,9 +24013,6 @@ msgstr "intern doorgelust naar"
 msgid "invalid type"
 msgstr "ongeldig type"
 
-msgid "is strongly advised."
-msgstr "Wordt sterk aangeraden."
-
 msgid "jazz"
 msgstr "jazz"
 
@@ -24026,9 +24078,6 @@ msgstr "m2k"
 
 msgid "magazines/reports/documentary"
 msgstr "tijdschriften/reportages/documentaire"
-
-msgid "making a backup before updating"
-msgstr "Maakt een back-up voordat u gaat updaten"
 
 msgid "manage local Files"
 msgstr "Beheer lokale bestanden"
@@ -24294,11 +24343,6 @@ msgstr "populaire cultuur/traditionele kunst"
 msgid "pre-school children's program"
 msgstr "peuterprogrammas"
 
-msgid "Press the menu button to set a general AC3/Dolby offset."
-msgstr ""
-"Druk op de MENU-knop voor het instellen van een algemene AC3/Dolby "
-"compensatie"
-
 msgid "previous channel page"
 msgstr "Vorige zender pagina"
 
@@ -24483,9 +24527,6 @@ msgstr "selecteer"
 
 msgid "select CAId's"
 msgstr "Selecteer CAId's"
-
-msgid "Select channels to add an offset to the volume."
-msgstr "Selecteer zenders om een Volume compensatie toe te voegen"
 
 msgid "select menu entry"
 msgstr "selecteer menu item"
@@ -24729,12 +24770,6 @@ msgid "this bouquet is protected by a parental control pin"
 msgstr ""
 "deze favorietenlijst is beschermd met een pincode t.b.v. het kinderslot."
 
-msgid ""
-"This offset will only be used if the channel has not its own volume offset."
-msgstr ""
-"deze compensatie zal alleen worden gebruikt als de zender geen eigen volume "
-"compensatie heeft"
-
 msgid "this recording"
 msgstr "Deze opname"
 
@@ -24972,6 +25007,118 @@ msgstr "zappen"
 
 msgid "®"
 msgstr "®"
+
+#, python-format
+#~ msgid "%s updated package available"
+#~ msgid_plural "%s updated packages available"
+#~ msgstr[0] "%s nieuw pakket beschikbaar"
+#~ msgstr[1] "%s nieuwe pakketten beschikbaar"
+
+#, python-format
+#~ msgid ""
+#~ "A configuration file (%s) has been modified since it was installed.\n"
+#~ "Do you want to keep your modifications?"
+#~ msgstr ""
+#~ "Een configuratiebestand (%s) is sinds de installatie gewijzigd.\n"
+#~ "Wilt u uw aanpassingen behouden?"
+
+#, python-format
+#~ msgid "Are you sure you want to update your %s %s ?"
+#~ msgstr "Weet u zeker dat u uw %s %s wilt updaten?"
+
+#~ msgid "Backup Manager"
+#~ msgstr "Back-up beheer"
+
+#~ msgid "Checking for Updates..."
+#~ msgstr "Controleert op updates..."
+
+#~ msgid "Could not find installed channel list."
+#~ msgstr "Kon geen geïnstalleerde zenderlijst vinden."
+
+#, python-format
+#~ msgid "Do you want to reboot your %s %s"
+#~ msgstr "Wilt u uw %s %s opnieuw opstarten?"
+
+#, python-format
+#~ msgid "Do you want to update your %s %s ?"
+#~ msgstr "Wilt u uw %s %s updaten?"
+
+#~ msgid "Error downloading change log."
+#~ msgstr "Fout bij het downloaden van de change log."
+
+#~ msgid "Feeds status:   Stable"
+#~ msgstr "Feed status:   Stabiel"
+
+#~ msgid "Feeds status:   Unstable"
+#~ msgstr "Feed status:   Onstabiel"
+
+#~ msgid "Feeds status:   Updating"
+#~ msgstr "Feed status:   Updaten"
+
+#~ msgid "Feeds status: Unexpected"
+#~ msgstr "Feeds status: Onverwacht"
+
+#~ msgid "Image Manager"
+#~ msgstr "Image beheer"
+
+#~ msgid "No connection"
+#~ msgstr "Geen verbinding"
+
+#~ msgid "OnlineVersionCheck"
+#~ msgstr "Controle op update"
+
+#~ msgid "Packages"
+#~ msgstr "Pakketten"
+
+#~ msgid "Perform a full image backup"
+#~ msgstr "Maak een volledige image back-up"
+
+#~ msgid "Perform a settings backup,"
+#~ msgstr "Maak een back-up van de instellingen,"
+
+#~ msgid ""
+#~ "Perform a settings backup, making a backup before updating is strongly "
+#~ "advised."
+#~ msgstr ""
+#~ "Maak een back-up van de instellingen, dit wordt sterk aangeraden alvorens "
+#~ "te updaten."
+
+#~ msgid "Software Panel"
+#~ msgstr "Software paneel"
+
+#~ msgid "Software update"
+#~ msgstr "Software update"
+
+#~ msgid ""
+#~ "Sorry feeds are down for maintenance, please try again later. If this "
+#~ "issue persists please check www.opena.tv"
+#~ msgstr ""
+#~ "Sorry feeds zijn niet bereikbaar door onderhoud, probeer later opnieuw. "
+#~ "Als dit probleem zich blijft voordoen, Controleer www.opena.tv"
+
+#~ msgid "The current update may be unstable"
+#~ msgstr "De huidige update kan onstabiel zijn"
+
+#~ msgid "Update channel list only"
+#~ msgstr "Alleen de zenderlijst updaten"
+
+#, python-format
+#~ msgid ""
+#~ "Update failed. Your %s %s does not have a working internet connection."
+#~ msgstr ""
+#~ "Update is mislukt. Uw %s %s heeft geen werkende internet verbinding."
+
+#~ msgid "Upgrade and reboot system"
+#~ msgstr "Update en herstart system"
+
+#~ msgid "View the changes"
+#~ msgstr "Bekijk de veranderingen"
+
+#~ msgid "is strongly advised."
+#~ msgstr "Wordt sterk aangeraden."
+
+#~ msgid "making a backup before updating"
+#~ msgstr "Maakt een back-up voordat u gaat updaten"
 
 #~ msgid "Close pop up menu"
 #~ msgstr "Pop-up menu sluiten"
