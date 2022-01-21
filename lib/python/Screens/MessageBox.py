@@ -17,12 +17,12 @@ class MessageBox(Screen, HelpableScreen):
 		<widget name="list" position="10,75" size="500,140" conditional="list" enableWrapAround="1" font="Regular;25" itemHeight="35" scrollbarMode="showOnDemand" transparent="1" />
 	</screen>"""
 
-	TYPE_YESNO = 0
-	TYPE_INFO = 1
-	TYPE_WARNING = 2
-	TYPE_ERROR = 3
-	TYPE_MESSAGE = 4
-	TYPE_NOICON = -1
+	TYPE_NOICON = 0
+	TYPE_YESNO = 1
+	TYPE_INFO = 2
+	TYPE_WARNING = 3
+	TYPE_ERROR = 4
+	TYPE_MESSAGE = 5
 	TYPE_PREFIX = {
 		TYPE_YESNO: _("Question"),
 		TYPE_INFO: _("Information"),
@@ -85,7 +85,7 @@ class MessageBox(Screen, HelpableScreen):
 			typeIcon = type
 		self.typeIcon = typeIcon
 		self.picon = (typeIcon != self.TYPE_NOICON)  # Legacy picon argument to support old skins.
-		if typeIcon != self.TYPE_NOICON:
+		if typeIcon:
 			self["icon"] = MultiPixmap()
 			# These lines can go with new skins that only use self["icon"]...
 			self["QuestionPixmap"] = Pixmap()
@@ -129,8 +129,8 @@ class MessageBox(Screen, HelpableScreen):
 		if self.list:
 			self["list"].instance.allowNativeKeys(False)  # Override listbox navigation.
 			self["list"].moveToIndex(self.startIndex)
-		if self.typeIcon != self.TYPE_NOICON:
-			self["icon"].setPixmapNum(self.typeIcon)
+		if self.typeIcon:
+			self["icon"].setPixmapNum(self.typeIcon - 1)
 		prefix = self.TYPE_PREFIX.get(self.type, _("Unknown"))
 		if self.baseTitle is None:
 			title = self.getTitle()
