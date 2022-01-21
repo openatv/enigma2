@@ -34,6 +34,18 @@
 		undesirable side effects.
 	-->
 
+	<map context="CancelSaveActions">
+		<key id="KEY_RED" mapto="cancel" flags="m" />
+		<key id="KEY_GREEN" mapto="save" flags="m" />
+		<key id="KEY_EXIT" mapto="cancel" flags="b" />
+		<key id="KEY_EXIT" mapto="close" flags="l" />
+		<!-- Keyboard specific buttons -->
+		<key id="KEY_F5" mapto="cancel" flags="m" />
+		<key id="KEY_F6" mapto="save" flags="m" />
+		<key id="KEY_ESC" mapto="cancel" flags="b" />
+		<key id="KEY_ESC" mapto="close" flags="l" />
+	</map>
+
 	<map context="ColorActions">
 		<key id="KEY_RED" mapto="red" flags="b" />
 		<key id="KEY_RED" mapto="redlong" flags="l" />
