@@ -5,30 +5,32 @@ from __future__ import print_function
 # FIXED SERVICELIST GREENSCREEN BY SCOPE34 (AN)
 # ADD AC3 SUPPORT BY BLACK_64
 
-from Screens.Screen import Screen
-from Screens.ChannelSelection import *
-from Components.ActionMap import HelpableActionMap, ActionMap, NumberActionMap
-from Components.Sources.List import List
-from Components.Sources.StaticText import StaticText
-from Components.config import ConfigInteger, ConfigNothing, getConfigListEntry, ConfigNumber, ConfigYesNo
+from six import ensure_str
+from enigma import iServiceInformation, eServiceReference, iPlayableService, eDVBVolumecontrol
+
+from Components.ActionMap import ActionMap
+from Components.config import config, ConfigInteger, ConfigNothing, getConfigListEntry, ConfigNumber, ConfigYesNo, ConfigSubsection
 from Components.ConfigList import ConfigList, ConfigListScreen
 from Components.Label import Label
-from Components.SelectionList import SelectionList
-from Components.MenuList import MenuList
-from ServiceReference import ServiceReference
+from Components.ServiceEventTracker import ServiceEventTracker
+from Components.Sources.StaticText import StaticText
 from Plugins.Plugin import PluginDescriptor
-from xml.etree.cElementTree import parse as ci_parse
-from Tools.XMLTools import elementsWithTag, mergeText, stringToXML
-from enigma import *
-from os import system, path as os_path
-from Components.ServiceEventTracker import ServiceEventTracker, InfoBarBase
-import six
+from Screens.ChannelSelection import ChannelSelectionBase, OFF
+from Screens.Screen import Screen
+from ServiceReference import ServiceReference
+from Tools.Directories import fileReadXML
+
 global ListChange
+global offset
+
 ListChange = None
+offset = 0
+
 config.Volume = ConfigSubsection()
 config.Volume.Enabled = ConfigYesNo(default=False)
 config.Volume.AC3_vol = ConfigInteger(default=10, limits=(0, 99))
 
+MODULE_NAME = "Volume_adjust"
 
 class Volume_adjust(Screen):
 	skin = """
@@ -49,12 +51,12 @@ class Volume_adjust(Screen):
 		</screen>"""
 
 	def __init__(self, session):
+		global offset
+		offset = 0
 		self.skin = Volume_adjust.skin
 		Screen.__init__(self, session)
 		# Path of the config file
 		self.filename = "/etc/volume.xml"
-		global offset
-		offset = 0
 		self["key_red"] = StaticText(_("Delete"))
 		self["key_green"] = StaticText(_("Add Service"))
 		self["key_yellow"] = StaticText(_("Change"))
@@ -114,8 +116,8 @@ class Volume_adjust(Screen):
 	def okPressed(self):
 		# change the volume offset
 		if len(self.servicelist):
-			cur = self["ServiceList"].getCurrentIndex()
 			global offset
+			cur = self["ServiceList"].getCurrentIndex()
 			offset = int(self.read_volume[cur])
 			tmp = self.servicelist[cur]
 			service_name = tmp[0][0:-3].strip()
@@ -155,7 +157,6 @@ class Volume_adjust(Screen):
 
 	def VolumeChanged(self, *args):
 		# change volume offset after new entry
-		global offset
 		t = len(self.servicelist)
 		tmp = self.servicelist[t - 1]
 		tmp0 = tmp[0][0:-3].strip()
@@ -166,7 +167,6 @@ class Volume_adjust(Screen):
 
 	def Change_vol_now(self, *args):
 		# change volume offset after selection in list
-		global offset
 		t = self["ServiceList"].getCurrentIndex()
 		tmp = self.servicelist[t]
 		tmp0 = tmp[0][0:-3].strip()
@@ -220,21 +220,21 @@ class Volume_adjust(Screen):
 
 	def loadXML(self):
 		print("[Volume Adjust] load xml...")
-		if not os_path.exists(self.filename):
-			return
+
 		self.read_services = []
 		self.read_volume = []
-		try:
-			tree = ci_parse(self.filename).getroot()
-			for channels in tree.findall("channels"):
-				for service in channels.findall("service"):
-					read_service_name = six.ensure_str(service.get("name"))
-					read_service_ref = six.ensure_str(service.get("ref"))
-					read_service_volume = six.ensure_str(service.get("volume"))
-					self.read_services.append(read_service_ref)
-					self.read_volume.append(read_service_volume)
-		except:
-			print("[Volume Adjust] error parsing xml...")
+
+		timersDom = fileReadXML(self.filename, source=MODULE_NAME)
+		if timersDom is None:
+			return
+
+		for channels in timersDom.findall("channels"):
+			for service in channels.findall("service"):
+				read_service_name = ensure_str(service.get("name"))
+				read_service_ref = ensure_str(service.get("ref"))
+				read_service_volume = ensure_str(service.get("volume"))
+				self.read_services.append(read_service_ref)
+				self.read_volume.append(read_service_volume)
 
 		for item in self.read_services:
 			if len(item):
@@ -259,7 +259,6 @@ class Change_volume(ConfigListScreen, Screen):
 		self.skin = Change_volume.skin
 		Screen.__init__(self, session)
 		self.offset = ConfigNumber(default=0)
-		global offset
 		self.offset.setValue(str(offset))
 		self.Clist = []
 		self.Clist.append(getConfigListEntry(_(name), self.offset))
@@ -450,21 +449,22 @@ class Volume:
 	def loadXML(self):
 		# load the list
 		print("[Volume Adjust] load xml...")
-		if not os_path.exists(self.filen):
-			return
+
 		self.read_services = []
 		self.read_volume = []
-		try:
-			tree = ci_parse(self.filen).getroot()
-			for channels in tree.findall("channels"):
-				for service in channels.findall("service"):
-					read_service_name = six.ensure_str(service.get("name"))
-					read_service_ref = six.ensure_str(service.get("ref"))
-					read_service_volume = six.ensure_str(service.get("volume"))
-					self.read_services.append(read_service_ref)
-					self.read_volume.append(read_service_volume)
-		except:
-			print("[Volume Adjust] error parsing xml...")
+
+		timersDom = fileReadXML(self.filen, source=MODULE_NAME)
+		if timersDom is None:
+			return
+
+		for channels in timersDom.findall("channels"):
+			for service in channels.findall("service"):
+				read_service_name = ensure_str(service.get("name"))
+				read_service_ref = ensure_str(service.get("ref"))
+				read_service_volume = ensure_str(service.get("volume"))
+				self.read_services.append(read_service_ref)
+				self.read_volume.append(read_service_volume)
+
 		for i in self.read_services:
 			print(i)
 
