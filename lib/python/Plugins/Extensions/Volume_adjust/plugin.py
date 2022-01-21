@@ -7,21 +7,18 @@ from __future__ import print_function
 
 from Screens.Screen import Screen
 from Screens.ChannelSelection import *
-from Components.ActionMap import HelpableActionMap, ActionMap, NumberActionMap
+from Components.ActionMap import ActionMap
 from Components.Sources.List import List
 from Components.Sources.StaticText import StaticText
 from Components.config import ConfigInteger, ConfigNothing, getConfigListEntry, ConfigNumber, ConfigYesNo
 from Components.ConfigList import ConfigList, ConfigListScreen
 from Components.Label import Label
-from Components.SelectionList import SelectionList
-from Components.MenuList import MenuList
 from ServiceReference import ServiceReference
 from Plugins.Plugin import PluginDescriptor
 from xml.etree.cElementTree import parse as ci_parse
-from Tools.XMLTools import elementsWithTag, mergeText, stringToXML
 from enigma import *
 from os import system, path as os_path
-from Components.ServiceEventTracker import ServiceEventTracker, InfoBarBase
+from Components.ServiceEventTracker import ServiceEventTracker
 import six
 global ListChange
 ListChange = None
