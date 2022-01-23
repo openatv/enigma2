@@ -561,7 +561,7 @@ class RunSoftwareUpdate(Screen, HelpableScreen):
 		try:
 			if config.skin.primary_skin.value == "MetrixHD/skin.MySkin.xml":
 				if not exists("/usr/share/enigma2/MetrixHD/skin.MySkin.xml"):
-					from Plugins.Extensions.SystemPlugins.SoftwareManager.BackupRestore import RestoreMyMetrixHD
+					from Plugins.SystemPlugins.SoftwareManager.BackupRestore import RestoreMyMetrixHD
 					self.session.openWithCallback(self.restoreMetrixHDCallback, RestoreMyMetrixHD)
 					return
 				elif config.plugins.MyMetrixLiteOther.EHDenabled.value != '0':
