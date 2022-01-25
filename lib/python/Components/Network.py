@@ -1,11 +1,13 @@
-from __future__ import print_function
-from __future__ import absolute_import
-import re
+from re import compile
 import os
+from struct import pack
+from socket import inet_ntoa, gethostbyname, gethostname
+import threading
+from time import sleep
 import netifaces as ni
-from socket import *
 from Components.config import config
 from Components.Console import Console
+from Components.Harddisk import harddiskmanager
 from Components.PluginComponent import plugins
 from Plugins.Plugin import PluginDescriptor
 from boxbranding import getBoxType
@@ -92,8 +94,8 @@ class Network:
 	def routeFinished(self, result, retval, extra_args):
 		(iface, data, callback) = extra_args
 		ipRegexp = '[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}'
-		ipPattern = re.compile(ipRegexp)
-		ipLinePattern = re.compile(ipRegexp)
+		ipPattern = compile(ipRegexp)
+		ipLinePattern = compile(ipRegexp)
 
 		for line in result.splitlines():
 			print(line[0:7])
@@ -233,8 +235,8 @@ class Network:
 
 	def loadNameserverConfig(self):
 		ipRegexp = "[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}"
-		nameserverPattern = re.compile("nameserver +" + ipRegexp)
-		ipPattern = re.compile(ipRegexp)
+		nameserverPattern = compile("nameserver +" + ipRegexp)
+		ipPattern = compile(ipRegexp)
 
 		resolv = []
 		try:
@@ -631,7 +633,7 @@ class Network:
 			return True
 
 		# r871x_usb_drv on kernel 2.6.12 is not identifiable over /sys/class/net/'ifacename'/wireless so look also inside /proc/net/wireless
-		device = re.compile('[a-z]{2,}[0-9]*:')
+		device = compile('[a-z]{2,}[0-9]*:')
 		ifnames = []
 		fp = open('/proc/net/wireless', 'r')
 		for line in fp:
@@ -696,9 +698,6 @@ class Network:
 		return 'wext'
 
 	def calc_netmask(self, nmask):
-		from struct import pack
-		from socket import inet_ntoa
-
 		mask = 1 << 31
 		xnet = (1 << 32) - 1
 		cidr_range = range(0, 32)
@@ -722,10 +721,10 @@ class Network:
 			return
 		action = event['ACTION']
 		if action == "add":
-			print("[Network] Add new interface:", interface)
+			print("[Network] Add new interface: %s" % interface)
 			self.getAddrInet(interface, None)
 		elif action == "remove":
-			print("[Network] Removed interface:", interface)
+			print("[Network] Removed interface:%" % interface)
 			try:
 				del self.ifaces[interface]
 			except KeyError:
@@ -736,7 +735,7 @@ class Network:
 		nameservers = self.getAdapterAttribute(iface, "dns-nameservers")
 		if nameservers:
 			ipRegexp = '[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}'
-			ipPattern = re.compile(ipRegexp)
+			ipPattern = compile(ipRegexp)
 			for x in nameservers.split()[1:]:
 				ip = self.regExpMatch(ipPattern, x)
 				if ip:
@@ -749,5 +748,43 @@ class Network:
 iNetwork = Network()
 
 
+class NetworkCheck:
+	def __init__(self):
+		self.Check = None
+		self.Timer = None
+
+	def startCheckNetwork(self):
+		while self.Retry > 0:
+			try:
+				if gethostbyname(gethostname()) != "127.0.0.1":
+					print("[NetworkCheck] CheckNetwork - Done")
+					harddiskmanager.enumerateNetworkMounts(refresh=True)
+					break
+				sleep(0.5)
+				print("[NetworkCheck] CheckNetwork - Retry: %d" % self.Retry)
+				self.Retry = self.Retry - 1
+				if self.stop_threads:
+					return
+			except Exception as e:
+				print("[NetworkCheck] CheckNetwork - Error: %s" % str(e))
+				break
+
+	def stopCheckNetwork(self):
+		print("[NetworkCheck] stopCheckNetwork")
+		pass
+
+	def Start(self):
+		self.Retry = 5
+		self.stop_threads = False
+		self.Check = threading.Thread(target=self.startCheckNetwork)
+		self.Timer = threading.Timer(5, self.stopCheckNetwork)
+		self.Timer.start()
+		self.Check.start()
+		self.stop_threads = True
+		self.Check.join()
+		self.Timer.cancel()
+
+
 def InitNetwork():
-	pass
+	NC = NetworkCheck()
+	NC.Start()
