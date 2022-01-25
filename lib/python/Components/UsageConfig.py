@@ -1076,6 +1076,18 @@ def InitUsageConfig():
 	config.misc.epgcachepath.addNotifier(EpgCacheChanged, immediate_feedback=False)
 	config.misc.epgcachefilename.addNotifier(EpgCacheChanged, immediate_feedback=False)
 
+	def partitionListChanged(action, device):
+		hddchoises = [('/etc/enigma2/', _('Internal Flash'))]
+		for p in harddiskmanager.getMountedPartitions():
+			if os.path.exists(p.mountpoint):
+				d = os.path.normpath(p.mountpoint)
+				if p.mountpoint != '/':
+					hddchoises.append((p.mountpoint, d))
+		config.misc.epgcachepath.setChoices(hddchoises)
+
+	harddiskmanager.on_partition_list_change.append(partitionListChanged)
+
+
 	config.misc.epgratingcountry = ConfigSelection(default="", choices=[("", _("Auto Detect")), ("ETSI", _("Generic")), ("AUS", _("Australia"))])
 	config.misc.epggenrecountry = ConfigSelection(default="", choices=[("", _("Auto Detect")), ("ETSI", _("Generic")), ("AUS", _("Australia"))])
 
