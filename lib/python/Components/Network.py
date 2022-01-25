@@ -1,8 +1,11 @@
 import re
 import os
+import threading
+from time import sleep
 import netifaces as ni
 from socket import *
 from Components.Console import Console
+from Components.Harddisk import harddiskmanager
 from Components.PluginComponent import plugins
 from Plugins.Plugin import PluginDescriptor
 from boxbranding import getBoxType
@@ -728,6 +731,43 @@ class Network:
 
 iNetwork = Network()
 
+class NetworkCheck:
+	def __init__(self):
+		self.Check = None
+		self.Timer = None
+
+	def startCheckNetwork(self):
+		while self.Retry > 0:
+			try:
+				if socket.gethostbyname(socket.gethostname()) != "127.0.0.1":
+					print("[NetworkCheck] CheckNetwork - Done")
+					harddiskmanager.enumerateNetworkMounts(refresh=True)
+					break
+				sleep(0.5)
+				print("[NetworkCheck] CheckNetwork - Retry: %d" % self.Retry)
+				self.Retry = self.Retry - 1
+				if self.stop_threads:
+					return
+			except Exception as e:
+				print("[NetworkCheck] CheckNetwork - Error: %s" % str(e))
+				break
+
+	def stopCheckNetwork(self):
+		print("[NetworkCheck] stopCheckNetwork")
+		pass
+
+	def Start(self):
+		self.Retry = 5
+		self.stop_threads = False
+		self.Check = threading.Thread(target=self.startCheckNetwork)
+		self.Timer = threading.Timer(5, self.stopCheckNetwork)
+		self.Timer.start()
+		self.Check.start()
+		self.stop_threads = True
+		self.Check.join()
+		self.Timer.cancel()
+
 
 def InitNetwork():
-	pass
+	NC = NetworkCheck()
+	NC.Start()

@@ -1025,6 +1025,17 @@ def InitUsageConfig():
 	config.misc.epgcachefilename = ConfigText(default='epg', fixed_size=False)
 	config.misc.epgcache_filename = ConfigText(default=(config.misc.epgcachepath.value + config.misc.epgcachefilename.value.replace('.dat', '') + '.dat'))
 
+	def partitionListChanged(action, device):
+		hddchoises = [('/etc/enigma2/', _('Internal Flash'))]
+		for p in harddiskmanager.getMountedPartitions():
+			if os.path.exists(p.mountpoint):
+				d = os.path.normpath(p.mountpoint)
+				if p.mountpoint != '/':
+					hddchoises.append((p.mountpoint, d))
+		config.misc.epgcachepath.setChoices(hddchoises)
+
+	harddiskmanager.on_partition_list_change.append(partitionListChanged)
+
 	def EpgCacheChanged(configElement):
 		config.misc.epgcache_filename.setValue(os.path.join(config.misc.epgcachepath.value, config.misc.epgcachefilename.value.replace('.dat', '') + '.dat'))
 		config.misc.epgcache_filename.save()
