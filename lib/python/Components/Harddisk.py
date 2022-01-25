@@ -875,23 +875,32 @@ class HarddiskManager:
 					self.addHotplugPartition(part)
 				self.devices_scanned_on_init.append((blockdev, removable, is_cdrom, medium_found))
 
-	def enumerateNetworkMounts(self):
+	def enumerateNetworkMounts(self, refresh=False):
 		print("[Harddisk] enumerating network mounts...")
 		netmount = (os.path.exists('/media/net') and os.listdir('/media/net')) or ""
 		if len(netmount) > 0:
 			for fil in netmount:
 				if os.path.ismount('/media/net/' + fil):
 					print("[Harddisk] new Network Mount", fil, '->', os.path.join('/media/net/', fil))
-					self.partitions.append(Partition(mountpoint=os.path.join('/media/net/', fil + '/'), description=fil))
+					if refresh:
+						self.addMountedPartition(device=os.path.join('/media/net/', fil + '/'), desc=fil)
+					else:
+						self.partitions.append(Partition(mountpoint=os.path.join('/media/net/', fil + '/'), description=fil))
 		autofsmount = (os.path.exists('/media/autofs') and os.listdir('/media/autofs')) or ""
 		if len(autofsmount) > 0:
 			for fil in autofsmount:
 				if os.path.ismount('/media/autofs/' + fil) or os.path.exists('/media/autofs/' + fil):
 					print("[Harddisk] new Network Mount", fil, '->', os.path.join('/media/autofs/', fil))
-					self.partitions.append(Partition(mountpoint=os.path.join('/media/autofs/', fil + '/'), description=fil))
+					if refresh:
+						self.addMountedPartition(device=os.path.join('/media/autofs/', fil + '/'), desc=fil)
+					else:
+						self.partitions.append(Partition(mountpoint=os.path.join('/media/autofs/', fil + '/'), description=fil))
 		if os.path.ismount('/media/hdd') and '/media/hdd/' not in [p.mountpoint for p in self.partitions]:
 			print("[Harddisk] new Network Mount being used as HDD replacement -> /media/hdd/")
-			self.partitions.append(Partition(mountpoint='/media/hdd/', description='/media/hdd'))
+			if refresh:
+				self.addMountedPartition(device='/media/hdd/', desc='/media/hdd/')
+			else:
+				self.partitions.append(Partition(mountpoint='/media/hdd/', description='/media/hdd'))
 
 	def getAutofsMountpoint(self, device):
 		r = self.getMountpoint(device)
@@ -1037,7 +1046,9 @@ class HarddiskManager:
 			if x.mountpoint == device:
 				#already_mounted
 				return
-		self.partitions.append(Partition(mountpoint=device, description=desc))
+		newpartion = Partition(mountpoint=device, description=desc)
+		self.partitions.append(newpartion)
+		self.on_partition_list_change("add", newpartion)
 
 	def removeMountedPartition(self, mountpoint):
 		for x in self.partitions[:]:
