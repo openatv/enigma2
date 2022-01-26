@@ -1348,7 +1348,7 @@ class ConfigPIN(ConfigInteger):
 	def __init__(self, default, pinLength=4, censor=u"\u2022"):
 		if not isinstance(default, int):
 			raise TypeError("[Config] Error: 'ConfigPIN' default must be an integer!")
-		if censor != "" and (isinstance(censor, str) and len(censor) != 1) and (isinstance(censor, unicode) and len(censor) != 1):
+		if censor != "" and (isinstance(censor, str) and len(censor) != 1): # and (isinstance(censor, unicode) and len(censor) != 1):
 			raise ValueError("[Config] Error: Censor must be a single char (or \"\")!")
 		censor = censor.encode("UTF-8", errors="ignore") if PY2 else censor
 		ConfigInteger.__init__(self, default=default, limits=(0, (10 ** pinLength) - 1), censor=censor)
