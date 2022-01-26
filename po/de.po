@@ -12,8 +12,8 @@ msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-01-19 18:56+0000\n"
-"PO-Revision-Date: 2022-01-21 09:49+0000\n"
-"Last-Translator: Makumbo <tokioplo@web.de>\n"
+"PO-Revision-Date: 2022-01-24 17:49+0000\n"
+"Last-Translator: VfBFan <drop0815@posteo.de>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/openatv/"
 "enigma2-7-0-po/de/>\n"
 "Language: de\n"
@@ -1072,8 +1072,8 @@ msgstr[1] "%d Tage"
 #, python-format
 msgid "%d feed catalog package was updated."
 msgid_plural "%d feed catalog packages were updated."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d feed Paket aktualisiert."
+msgstr[1] "%d feed Pakete aktualisiert."
 
 #, python-format
 msgid "%d hour"
@@ -1108,50 +1108,50 @@ msgstr "%d ms"
 #, python-format
 msgid "%d package upgraded."
 msgid_plural "%d packages upgraded."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d Paket aktualisiert."
+msgstr[1] "%d Pakete aktualisiert."
 
 #, python-format
 msgid "%d package was configured."
 msgid_plural "%d packages were configured."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d Paket konfiguriert."
+msgstr[1] "%d Pakete konfiguriert."
 
 #, python-format
 msgid "%d package was deselected."
 msgid_plural "%d packages were deselected."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d Paket abgewählt."
+msgstr[1] "%d Pakete abgewählt."
 
 #, python-format
 msgid "%d package was downloaded."
 msgid_plural "%d packages were downloaded."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d Paket heruntergeladen."
+msgstr[1] "%d Pakete heruntergeladen."
 
 #, python-format
 msgid "%d package was identified for upgrade."
 msgid_plural "%d packages were identified for upgrade."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d Paket zum Aktualisieren."
+msgstr[1] "%d Pakete zum Aktualisieren."
 
 #, python-format
 msgid "%d package was installed."
 msgid_plural "%d packages were installed."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d Paket installiert."
+msgstr[1] "%d Pakete installiert."
 
 #, python-format
 msgid "%d package was removed."
 msgid_plural "%d packages were removed."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d Paket entfernt."
+msgstr[1] "%d Pakete entfernt."
 
 #, python-format
 msgid "%d package was upgraded."
 msgid_plural "%d packages were upgraded."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d Paket aktualisiert."
+msgstr[1] "%d Pakete aktualisiert."
 
 #, python-format
 msgid "%d pixel wide"
@@ -4337,7 +4337,7 @@ msgid "Cancel"
 msgstr "Abbrechen"
 
 msgid "Cancel / Close the software update screen"
-msgstr ""
+msgstr "Abbruch / Update beenden"
 
 #
 msgid "Cancel any changed settings and exit"
@@ -6152,10 +6152,10 @@ msgid "Current value: "
 msgstr "Aktueller Wert: "
 
 msgid "Current version unknown"
-msgstr ""
+msgstr "Aktuelle Version unbekannt"
 
 msgid "Current version:"
-msgstr "Derzeitige Version:"
+msgstr "Aktuelle Version:"
 
 msgid "Currently installed image"
 msgstr "Aktuell installiertes Image"
@@ -6866,6 +6866,9 @@ msgid ""
 "with existing packages.  While this is mostly harmless it is possible that "
 "your %s %s may experience issues."
 msgstr ""
+"Die Abwahl von Paketen erfolgt in der Regel, weil die Pakete mit bestehenden "
+"Paketen nicht kompatibel sind.  Dies ist meist harmlos aber es kann sein, "
+"dass Ihre %s %s Probleme bekommt."
 
 msgid "Details for plugin: "
 msgstr "Plugin-Details: "
@@ -7990,6 +7993,8 @@ msgstr "Aktivieren, um dem Debuglog Tastaturdaten hinzuzufügen."
 
 msgid "Enable this option to add opkg output data to the debug log file."
 msgstr ""
+"Aktivieren Sie diese Option, um opkg-Ausgabedaten in die Debug-Log "
+"aufzunehmen."
 
 msgid "Enable this option to add remote control data to the debug log file."
 msgstr "Aktivieren, um dem Debuglog Fernbedienungsdaten hinzuzufügen."
@@ -10470,7 +10475,7 @@ msgid "Include keyboard data"
 msgstr "Inklusive Tastaturdaten"
 
 msgid "Include opkg output data"
-msgstr ""
+msgstr "Opkg-Ausgabe einschließen"
 
 msgid "Include remote control data"
 msgstr "Inklusive Fernbedienungsdaten"
@@ -10701,7 +10706,7 @@ msgid "Install plugins"
 msgstr "Plugins installieren"
 
 msgid "Install/Remove plugin"
-msgstr ""
+msgstr "Plugin installieren/entfernen"
 
 #
 msgid "Installation finished."
@@ -12250,7 +12255,7 @@ msgid "Move down a page"
 msgstr "Seitenweise nach unten blättern"
 
 msgid "Move down a page / screen"
-msgstr ""
+msgstr "Eine Seite/Bildschirm nach unten"
 
 msgid "Move down a screen"
 msgstr "Einen Bildschirm nach unten gehen"
@@ -12367,7 +12372,7 @@ msgid "Move up a page"
 msgstr "Seitenweise nach oben blättern"
 
 msgid "Move up a page / screen"
-msgstr ""
+msgstr "Eine Seite/Bildschirm nach oben"
 
 msgid "Move up a screen"
 msgstr "Bildschirm nach oben gehen"
@@ -13055,7 +13060,6 @@ msgstr ""
 "Es ist kein Satelliten-, terrestrischer oder Kabel-Tuner konfiguriert!\n"
 "Bitte überprüfen Sie Ihre Tuner-Einstellungen."
 
-#, fuzzy
 msgid "No service"
 msgstr "Kein Dienst"
 
@@ -13118,10 +13122,10 @@ msgid "No update required!"
 msgstr "Kein Update erforderlich!"
 
 msgid "No updates available."
-msgstr ""
+msgstr "Keine Updates vorhanden."
 
 msgid "No updates were available.  Please try again later."
-msgstr ""
+msgstr "Keine Updates vorhanden!  Bitte versuchen Sie es später erneut."
 
 msgid "No valid region details were found"
 msgstr "Es wurden keine gültigen Regionsangaben gefunden"
@@ -13408,7 +13412,7 @@ msgid "ONID"
 msgstr "ONID"
 
 msgid "OPKG clean mode"
-msgstr ""
+msgstr "OPKG-Clean-Modus"
 
 msgid "OSD"
 msgstr "OSD"
@@ -14906,7 +14910,7 @@ msgid "Press OK to activate the settings."
 msgstr "Drücken Sie OK zum Aktivieren der Einstellungen."
 
 msgid "Press OK to continue."
-msgstr ""
+msgstr "Drücken Sie OK, um fortzufahren."
 
 #
 msgid "Press OK to edit the settings."
@@ -15076,7 +15080,7 @@ msgstr ""
 "Das Paket, das dieses Programm enthält, ist nicht bekannt, so dass es nicht "
 "deinstalliert werden kann."
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Program '%s' needs to be installed to run the '%s' action.\n"
 "Uninstall the '%s' package to uninstall the program?"
@@ -15184,7 +15188,7 @@ msgid "Protect services"
 msgstr "Programme vor unbefugtem Zugriff schützen"
 
 msgid "Protect software update screen"
-msgstr ""
+msgstr "Bildschirm zur Softwareaktualisierung schützen"
 
 msgid "Protect standby menu"
 msgstr "Ausschaltmenü schützen"
@@ -15649,7 +15653,7 @@ msgstr ""
 "Dies kann ein paar Minuten dauern."
 
 msgid "Refresh"
-msgstr ""
+msgstr "Aktualisieren"
 
 msgid "Refresh every (in hours)"
 msgstr "Aktualisierungsintervall (in Stunden)"
@@ -15669,7 +15673,7 @@ msgid "Refresh screen"
 msgstr "Anzeige aktualisieren"
 
 msgid "Refresh the update-able package list"
-msgstr ""
+msgstr "Liste der neuen Pakete aktualisieren"
 
 msgid "Regard deep standby as standby"
 msgstr "Deep-Standby wie Standby behandeln"
@@ -15770,7 +15774,7 @@ msgid "Remove Confirmation"
 msgstr "Löschen bestätigen"
 
 msgid "Remove Failed !!"
-msgstr ""
+msgstr "Entfernen fehlgeschlagen!"
 
 #
 msgid "Remove Finished."
@@ -15783,7 +15787,6 @@ msgstr "Plugins entfernen"
 msgid "Remove Quad Channel Entry"
 msgstr "Entferne Sendergruppe"
 
-#, fuzzy
 msgid "Remove Service"
 msgstr "Dienst entfernen"
 
@@ -15849,7 +15852,6 @@ msgstr "Titel entfernen"
 msgid "Removing"
 msgstr "Entfernen"
 
-#, fuzzy
 msgid "Removing Service"
 msgstr "Dienst wird entfernt"
 
@@ -17596,7 +17598,6 @@ msgstr ""
 "Kanal ist ungültig!\n"
 "(Zeitüberschreitung beim Lesen der PMT)"
 
-#, fuzzy
 msgid "Service name"
 msgstr "Sendername"
 
@@ -17643,7 +17644,6 @@ msgstr ""
 msgid "Service width"
 msgstr "Sendernamen Breite"
 
-#, fuzzy
 msgid "ServiceName"
 msgstr "Sendername"
 
@@ -18503,7 +18503,7 @@ msgid "Show detailed event info (setup in menu)"
 msgstr "Detaillierte Sendungsinformationen anzeigen (Einstellung im Menü)"
 
 msgid "Show development packages in opkg"
-msgstr ""
+msgstr "Entwicklungspakete in opkg anzeigen"
 
 msgid "Show directories first"
 msgstr "Verzeichnisse zuerst anzeigen"
@@ -18952,7 +18952,7 @@ msgid "Simple zoom"
 msgstr "Einfacher Zoom"
 
 msgid "SimpleUmount"
-msgstr "Einfaches Entfernen"
+msgstr ""
 
 msgid "Simplified Chinese"
 msgstr "Vereinfachtes Chinesisch"
@@ -19227,6 +19227,8 @@ msgid ""
 "Software update starting, please wait.\n"
 "\n"
 msgstr ""
+"Starte Software Update. Bitte warten...\n"
+"\n"
 
 msgid "Softwaremanager information"
 msgstr "Softwareverwaltungs-Information"
@@ -19642,7 +19644,7 @@ msgid "Stop testing plane after # successful transponders"
 msgstr "Stoppe Test nach # erfolgreichen Transpondern"
 
 msgid "Stop the update, if running, then exit"
-msgstr ""
+msgstr "Update anhalten (falls es läuft), dann beenden"
 
 msgid "Stop timer recording"
 msgstr "Timeraufnahme beenden"
@@ -22310,7 +22312,7 @@ msgid "Update at your own risk"
 msgstr "Update auf eigene Gefahr!"
 
 msgid "Update completed."
-msgstr ""
+msgstr "Update abgeschlossen."
 
 msgid "Update delay for Events in List"
 msgstr "Aktualisierungsverzögerung für Ereignisse in der Liste"
@@ -22348,10 +22350,10 @@ msgid "Update/Backup/Restore your box"
 msgstr "Update/Sicherung/Wiederherstellung"
 
 msgid "Updated"
-msgstr ""
+msgstr "Aktualisiert"
 
 msgid "Updated version unknown"
-msgstr ""
+msgstr "Aktualisierte Version unbekannt"
 
 #
 msgid "Updatefeed not available."
@@ -22400,7 +22402,7 @@ msgid "Upgrade with GUI"
 msgstr "Aktualisierung mit Benutzeroberfläche"
 
 msgid "Upgrading"
-msgstr ""
+msgstr "Aktualisiere"
 
 msgid "Uphops +"
 msgstr "Uphops +"
@@ -23562,6 +23564,9 @@ msgid ""
 "When enabled, before opkg update there will be opkg clean to make sure "
 "nothing ruine the update but only enable this when you can not update online."
 msgstr ""
+"Wenn diese Option aktiviert ist, wird vor der Aktualisierung eine "
+"Bereinigung durchgeführt, um sicherzustellen, dass nichts die Aktualisierung "
+"ruiniert. Bitte nur aktivieren, wenn es Probleme beim Online-Update gibt."
 
 msgid "When enabled, channel numbering will start at '1' for each bouquet."
 msgstr "Bei 'Ja' fangen die Sendernummern in jeder Favoritenliste mit '1' an."
@@ -23714,6 +23719,8 @@ msgid ""
 "When enabled, you will see dev, staticdev, dbg, doc, src and po packages in "
 "opkg list."
 msgstr ""
+"Wenn diese Option aktiviert ist, werden die dev, staticdev, dbg, doc, src "
+"und po Pakete in der Liste angezeigt."
 
 msgid ""
 "When enabled, your receiver will detect activity on the VCR SCART input."
@@ -24532,6 +24539,9 @@ msgid ""
 "Your receiver might be unusable now.  Please consult the manual for further "
 "assistance before rebooting your %s %s."
 msgstr ""
+"Ihr Receiver könnte jetzt unbenutzbar sein!\n"
+"Schauen Sie bitte erst in das Handbuch Ihres Receivers bevor Sie Ihre %s %s "
+"neu starten."
 
 msgid ""
 "Your wireless LAN internet connection could not be started!\n"

@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: Enigma2 OpenXXX\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-01-19 18:56+0000\n"
-"PO-Revision-Date: 2022-01-14 22:36+0000\n"
+"PO-Revision-Date: 2022-01-25 14:01+0000\n"
 "Last-Translator: igorrrrr <igorzhugan66@gmail.com>\n"
 "Language-Team: Russian <https://hosted.weblate.org/projects/openatv/"
 "enigma2-7-0-po/ru/>\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 4.10.1\n"
+"X-Generator: Weblate 4.11-dev\n"
 "X-Poedit-SourceCharset: iso-8859-5\n"
 
 msgid ""
@@ -1052,9 +1052,9 @@ msgstr[2] "%d дней"
 #, python-format
 msgid "%d feed catalog package was updated."
 msgid_plural "%d feed catalog packages were updated."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Пакет каталога каналов %d обновлен."
+msgstr[1] "Обновлено %d пакетов каталога каналов."
+msgstr[2] "Обновлено %d пакетов каталога каналов."
 
 #, python-format
 msgid "%d hour"
@@ -1089,58 +1089,58 @@ msgstr "%d мс"
 #, python-format
 msgid "%d package upgraded."
 msgid_plural "%d packages upgraded."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "%d Пакет обновлён."
+msgstr[1] "Обновлено %d пакетов."
+msgstr[2] "Обновлено %d пакетов."
 
 #, python-format
 msgid "%d package was configured."
 msgid_plural "%d packages were configured."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "%d пакет настроен."
+msgstr[1] "%d пакетов настроено."
+msgstr[2] "%d пакетов настроено."
 
 #, python-format
 msgid "%d package was deselected."
 msgid_plural "%d packages were deselected."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "%d пакет был отменен."
+msgstr[1] "%d пакетов были отменены."
+msgstr[2] "%d пакетов были отменены."
 
 #, python-format
 msgid "%d package was downloaded."
 msgid_plural "%d packages were downloaded."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "%d пакет загружен."
+msgstr[1] "Загружено %d пакетов."
+msgstr[2] "Загружено %d пакетов."
 
 #, python-format
 msgid "%d package was identified for upgrade."
 msgid_plural "%d packages were identified for upgrade."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "%d пакет идентифицирован для обновления."
+msgstr[1] "%d пакетов идентифицировано для обновления."
+msgstr[2] "%d пакетов идентифицировано для обновления."
 
 #, python-format
 msgid "%d package was installed."
 msgid_plural "%d packages were installed."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Установлен %d пакет."
+msgstr[1] "Установлено %d пакетов."
+msgstr[2] "Установлено %d пакетов."
 
 #, python-format
 msgid "%d package was removed."
 msgid_plural "%d packages were removed."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "%d пакет удален."
+msgstr[1] "Удалено %d пакетов."
+msgstr[2] "Удалено %d пакетов."
 
 #, python-format
 msgid "%d package was upgraded."
 msgid_plural "%d packages were upgraded."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "%d пакет обновлён."
+msgstr[1] "%d пакетов обновлено."
+msgstr[2] "%d пакетов обновлено."
 
 #, python-format
 msgid "%d pixel wide"
@@ -4138,7 +4138,7 @@ msgid "Cancel"
 msgstr "Отмена"
 
 msgid "Cancel / Close the software update screen"
-msgstr ""
+msgstr "Отменить/закрыть экран обновления ПО"
 
 msgid "Cancel any changed settings and exit"
 msgstr "Отменить все измененные настройки и выйти"
@@ -5812,7 +5812,7 @@ msgid "Current value: "
 msgstr "Текущее значение "
 
 msgid "Current version unknown"
-msgstr ""
+msgstr "Текущая версия неизвестна"
 
 msgid "Current version:"
 msgstr "Текущая версия"
@@ -6494,6 +6494,9 @@ msgid ""
 "with existing packages.  While this is mostly harmless it is possible that "
 "your %s %s may experience issues."
 msgstr ""
+"Невыбранные пакеты обычно возникают из-за того, что эти пакеты несовместимы "
+"с существующими пакетами. Хотя это в основном безвредно, возможно, что у "
+"Вашего %s %s могут возникнуть проблемы."
 
 msgid "Details for plugin: "
 msgstr "Подробнее о плагине "
@@ -7526,6 +7529,8 @@ msgstr ""
 
 msgid "Enable this option to add opkg output data to the debug log file."
 msgstr ""
+"Включите этот параметр, чтобы добавить выходные данные opkg в файл журнала "
+"отладки."
 
 msgid "Enable this option to add remote control data to the debug log file."
 msgstr ""
@@ -9876,7 +9881,7 @@ msgid "Include keyboard data"
 msgstr "Настройки клавиатуры"
 
 msgid "Include opkg output data"
-msgstr ""
+msgstr "Включить выходные данные opkg"
 
 msgid "Include remote control data"
 msgstr "Укажите тип пульта управления"
@@ -10087,7 +10092,7 @@ msgid "Install plugins"
 msgstr "Установка плагинов"
 
 msgid "Install/Remove plugin"
-msgstr ""
+msgstr "Установить/удалить плагин"
 
 msgid "Installation finished."
 msgstr "Установка завершена."
@@ -11504,7 +11509,7 @@ msgid "Move down a page"
 msgstr "Переместиться на страницу вниз"
 
 msgid "Move down a page / screen"
-msgstr ""
+msgstr "Перейти вниз на страницу/экран"
 
 msgid "Move down a screen"
 msgstr "Перемещение вниз по экрану"
@@ -11607,7 +11612,7 @@ msgid "Move up a page"
 msgstr "Переместиться на страницу вверх"
 
 msgid "Move up a page / screen"
-msgstr ""
+msgstr "Перейти вверх на страницу/экран"
 
 msgid "Move up a screen"
 msgstr "Перемещение вверх по экрану"
@@ -12269,10 +12274,10 @@ msgid "No update required!"
 msgstr "Обновлений не требуется!"
 
 msgid "No updates available."
-msgstr ""
+msgstr "Нет доступных обновлений."
 
 msgid "No updates were available.  Please try again later."
-msgstr ""
+msgstr "Обновлений не было. Пожалуйста, повторите попытку позже."
 
 msgid "No valid region details were found"
 msgstr "Не найдено действительной информации о регионе"
@@ -12539,7 +12544,7 @@ msgid "ONID"
 msgstr "ONID"
 
 msgid "OPKG clean mode"
-msgstr ""
+msgstr "Очистной режим OPKG"
 
 msgid "OSD"
 msgstr "OSD"
@@ -13899,7 +13904,7 @@ msgid "Press OK to activate the settings."
 msgstr "Нажмите OK, для активации установок."
 
 msgid "Press OK to continue."
-msgstr ""
+msgstr "Нажмите OK, чтобы продолжить."
 
 msgid "Press OK to edit the settings."
 msgstr "Нажмите OK, чтобы изменить настройки."
@@ -14151,7 +14156,7 @@ msgid "Protect services"
 msgstr "Пароль для каналов"
 
 msgid "Protect software update screen"
-msgstr ""
+msgstr "Защитить экран обновления ПО"
 
 msgid "Protect standby menu"
 msgstr "Пароль для режима ожидания"
@@ -14583,7 +14588,7 @@ msgstr ""
 "Это может занять несколько минут"
 
 msgid "Refresh"
-msgstr ""
+msgstr "Обновить"
 
 msgid "Refresh every (in hours)"
 msgstr "Интервал обновления (Час)"
@@ -14601,7 +14606,7 @@ msgid "Refresh screen"
 msgstr "Обновить экран"
 
 msgid "Refresh the update-able package list"
-msgstr ""
+msgstr "Обновить список обновляемых пакетов"
 
 msgid "Regard deep standby as standby"
 msgstr "Считать выключение как режим ожидания"
@@ -14696,7 +14701,7 @@ msgid "Remove Confirmation"
 msgstr "Удаление с подтверждением"
 
 msgid "Remove Failed !!"
-msgstr ""
+msgstr "Удалить не удалось !!"
 
 msgid "Remove Finished."
 msgstr "Удаление завершено."
@@ -17197,7 +17202,7 @@ msgid "Show detailed event info (setup in menu)"
 msgstr "Показывать подробную информацию о событии (настраивается в меню)"
 
 msgid "Show development packages in opkg"
-msgstr ""
+msgstr "Показать пакеты разработки в opkg"
 
 msgid "Show directories first"
 msgstr "Показать каталоги"
@@ -17862,6 +17867,8 @@ msgid ""
 "Software update starting, please wait.\n"
 "\n"
 msgstr ""
+"Начинается обновление ПО, пожалуйста, подождите.\n"
+"\n"
 
 msgid "Softwaremanager information"
 msgstr "Информация менеджера ПО"
@@ -18245,7 +18252,7 @@ msgid "Stop testing plane after # successful transponders"
 msgstr "Остановить тестирование после # исправных транспондеров"
 
 msgid "Stop the update, if running, then exit"
-msgstr ""
+msgstr "Остановить обновление, если запущено, то выйти"
 
 msgid "Stop timer recording"
 msgstr "Остановить запись таймера"
@@ -18650,7 +18657,7 @@ msgstr "ТЕКСТ"
 
 #. TRANSLATORS: Add here whatever should be shown in the "translator" about screen, up to 6 lines (use \n for newline)
 msgid "TRANSLATOR_INFO"
-msgstr "Коррекция перевода Monja 14.01.2022"
+msgstr "Коррекция перевода Monja 23.01.2022"
 
 msgid "TS file is too large for ISO9660 level 1!"
 msgstr "TS файл слишком большой для ISO9660 уровень 1!"
@@ -20712,7 +20719,7 @@ msgid "Update at your own risk"
 msgstr "Обновляйте на свой страх и риск"
 
 msgid "Update completed."
-msgstr ""
+msgstr "Обновление завершено."
 
 msgid "Update delay for Events in List"
 msgstr "Задержка обновления событий в списке"
@@ -20749,10 +20756,10 @@ msgid "Update/Backup/Restore your box"
 msgstr "Обновление/сохранение/восстановление"
 
 msgid "Updated"
-msgstr ""
+msgstr "Обновлено"
 
 msgid "Updated version unknown"
-msgstr ""
+msgstr "Обновлённая версия неизвестна"
 
 msgid "Updatefeed not available."
 msgstr "Фид обновлений не доступен."
@@ -20796,7 +20803,7 @@ msgid "Upgrade with GUI"
 msgstr "Показать ход обновления"
 
 msgid "Upgrading"
-msgstr ""
+msgstr "Обновление"
 
 msgid "Uphops +"
 msgstr "Uphops +"
@@ -21860,6 +21867,9 @@ msgid ""
 "When enabled, before opkg update there will be opkg clean to make sure "
 "nothing ruine the update but only enable this when you can not update online."
 msgstr ""
+"Если этот параметр включён, перед обновлением opkg он будет очищен, чтобы "
+"ничего не испортило обновление, но включайте его только тогда, когда Вы не "
+"можете выполнить обновление онлайн."
 
 msgid "When enabled, channel numbering will start at '1' for each bouquet."
 msgstr ""
@@ -22018,6 +22028,8 @@ msgid ""
 "When enabled, you will see dev, staticdev, dbg, doc, src and po packages in "
 "opkg list."
 msgstr ""
+"Если этот параметр включён, Вы увидите пакеты dev, staticdev, dbg, doc, src "
+"и po в списке opkg."
 
 msgid ""
 "When enabled, your receiver will detect activity on the VCR SCART input."
@@ -22775,6 +22787,8 @@ msgid ""
 "Your receiver might be unusable now.  Please consult the manual for further "
 "assistance before rebooting your %s %s."
 msgstr ""
+"Возможно, сейчас Ваш ресивер непригоден для использования. Перед "
+"перезагрузкой %s %s обратитесь к руководству за дополнительной помощью."
 
 msgid ""
 "Your wireless LAN internet connection could not be started!\n"
