@@ -2,8 +2,7 @@ from re import compile
 import os
 from struct import pack
 from socket import inet_ntoa, gethostbyname, gethostname
-import threading
-from time import sleep
+from enigma import eTimer
 import netifaces as ni
 from Components.config import config
 from Components.Console import Console
@@ -750,41 +749,28 @@ iNetwork = Network()
 
 class NetworkCheck:
 	def __init__(self):
-		self.Check = None
-		self.Timer = None
+		self.Timer = eTimer()
+		self.Timer.callback.append(self.startCheckNetwork)
 
 	def startCheckNetwork(self):
-		while self.Retry > 0:
+		self.Timer.stop()
+		if self.Retry > 0:
 			try:
 				if gethostbyname(gethostname()) != "127.0.0.1":
 					print("[NetworkCheck] CheckNetwork - Done")
 					harddiskmanager.enumerateNetworkMounts(refresh=True)
-					break
-				sleep(0.5)
-				print("[NetworkCheck] CheckNetwork - Retry: %d" % self.Retry)
-				self.Retry = self.Retry - 1
-				if self.stop_threads:
 					return
+				self.Retry = self.Retry - 1
+				self.Timer.start(1000, True)
 			except Exception as e:
 				print("[NetworkCheck] CheckNetwork - Error: %s" % str(e))
-				break
-
-	def stopCheckNetwork(self):
-		print("[NetworkCheck] stopCheckNetwork")
-		pass
 
 	def Start(self):
-		self.Retry = 5
-		self.stop_threads = False
-		self.Check = threading.Thread(target=self.startCheckNetwork)
-		self.Timer = threading.Timer(5, self.stopCheckNetwork)
-		self.Timer.start()
-		self.Check.start()
-		self.stop_threads = True
-		self.Check.join()
-		self.Timer.cancel()
+		self.Retry = 10
+		self.Timer.start(1000, True)
 
 
 def InitNetwork():
-	NC = NetworkCheck()
-	NC.Start()
+	global networkCheck
+	networkCheck = NetworkCheck()
+	networkCheck.Start()
