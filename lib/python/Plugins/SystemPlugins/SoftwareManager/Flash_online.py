@@ -109,10 +109,10 @@ class FlashOnline(Screen):
 					getImages(media, [os.path.join(media, x) for x in os.listdir(media) if os.path.splitext(x)[1] == ".zip" and box in x])
 					for folder in ["images", "downloaded_images", "imagebackups"]:
 						if folder in os.listdir(media):
-							media = os.path.join(media, folder)
-							if os.path.isdir(media) and not os.path.islink(media) and not os.path.ismount(media):
-								getImages(media, [os.path.join(media, x) for x in os.listdir(media) if os.path.splitext(x)[1] == ".zip" and box in x])
-								for dir in [dir for dir in [os.path.join(media, dir) for dir in os.listdir(media)] if os.path.isdir(dir) and os.path.splitext(dir)[1] == ".unzipped"]:
+							subfolder = os.path.join(media, folder)
+							if os.path.isdir(subfolder) and not os.path.islink(subfolder) and not os.path.ismount(subfolder):
+								getImages(subfolder, [os.path.join(subfolder, x) for x in os.listdir(subfolder) if os.path.splitext(x)[1] == ".zip" and box in x])
+								for dir in [dir for dir in [os.path.join(subfolder, dir) for dir in os.listdir(subfolder)] if os.path.isdir(dir) and os.path.splitext(dir)[1] == ".unzipped"]:
 									shutil.rmtree(dir)
 
 		_list = []
