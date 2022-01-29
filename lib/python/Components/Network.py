@@ -1,5 +1,6 @@
+from os import listdir, system as os_system
+from os.path import basename, realpath, exists as path_exists, isdir
 from re import compile
-import os
 from struct import pack
 from socket import inet_ntoa, gethostbyname, gethostname
 from enigma import eTimer
@@ -10,7 +11,7 @@ from Components.Harddisk import harddiskmanager
 from Components.PluginComponent import plugins
 from Plugins.Plugin import PluginDescriptor
 from boxbranding import getBoxType
-import six
+from six import PY3
 
 DEFAULT_MODULE_NAME = __name__.split(".")[-1]
 
@@ -125,16 +126,16 @@ class Network:
 			if ifacename in self.onlyWoWifaces:
 				WoW = self.onlyWoWifaces[ifacename]
 			if WoW == False and iface['up'] == True:
-				fp.write("auto " + ifacename + "\n")
+				fp.write("auto %s\n" % ifacename)
 				self.configuredInterfaces.append(ifacename)
 				self.onlyWoWifaces[ifacename] = False
 			elif WoW == True:
 				self.onlyWoWifaces[ifacename] = True
-				fp.write("#only WakeOnWiFi " + ifacename + "\n")
+				fp.write("#only WakeOnWiFi %s\n" % ifacename)
 			if iface['dhcp']:
-				fp.write("iface " + ifacename + " inet dhcp\n")
+				fp.write("iface %s inet dhcp\n" % ifacename)
 			if not iface['dhcp']:
-				fp.write("iface " + ifacename + " inet static\n")
+				fp.write("iface %s inet static\n" % ifacename)
 				fp.write("  hostname $(hostname)\n")
 				if 'ip' in iface:
 # 					print tuple(iface['ip'])
@@ -258,7 +259,7 @@ class Network:
 #		print "nameservers:", self.nameservers
 
 	def getInstalledAdapters(self):
-		return [x for x in os.listdir('/sys/class/net') if not self.isBlacklisted(x)]
+		return [x for x in listdir('/sys/class/net') if not self.isBlacklisted(x)]
 
 	def getConfiguredAdapters(self):
 		return self.configuredNetworkAdapters
@@ -297,7 +298,7 @@ class Network:
 
 		moduledir = self.getWlanModuleDir(iface)
 		if moduledir:
-			name = os.path.basename(os.path.realpath(moduledir))
+			name = basename(realpath(moduledir))
 			if name in ('ath_pci', 'ath5k', 'ar6k_wlan'):
 				name = 'Atheros'
 			elif name in ('rt73', 'rt73usb', 'rt3070sta'):
@@ -366,7 +367,7 @@ class Network:
 		self.commands.append("/etc/init.d/avahi-daemon stop")
 		for iface in list(self.ifaces.keys()):
 			if iface != 'eth0' or not self.onRemoteRootFS():
-				self.commands.append("ip addr flush dev " + iface + " scope global")
+				self.commands.append("ip addr flush dev %s scope global" % iface)
 		self.commands.append("/etc/init.d/networking stop")
 		self.commands.append("killall -9 udhcpc")
 		self.commands.append("rm /var/run/udhcpc*")
@@ -446,8 +447,8 @@ class Network:
 		self.commands.append("/etc/init.d/avahi-daemon stop")
 		for iface in list(self.ifaces.keys()):
 			if iface != 'eth0' or not self.onRemoteRootFS():
-				self.commands.append("ifdown " + iface)
-				self.commands.append("ip addr flush dev " + iface + " scope global")
+				self.commands.append("ifdown %s" % iface)
+				self.commands.append("ip addr flush dev %s scope global" % iface)
 		self.commands.append("/etc/init.d/networking stop")
 		self.commands.append("killall -9 udhcpc")
 		self.commands.append("rm /var/run/udhcpc*")
@@ -464,13 +465,14 @@ class Network:
 				pass
 
 	def getLinkState(self, iface, callback):
-		cmd = self.ethtool_bin + " " + iface
+		cmd = "%s %s" % (self.ethtool_bin, iface)
 		self.LinkConsole = Console()
 		self.LinkConsole.ePopen(cmd, self.getLinkStateFinished, callback)
 
 	def getLinkStateFinished(self, result, retval, extra_args):
 		(callback) = extra_args
-		result = six.ensure_str(result)
+		if PY3 and isinstance(result, bytes):
+			result = result.decode()
 
 		if self.LinkConsole is not None:
 			if len(self.LinkConsole.appContainers) == 0:
@@ -520,8 +522,8 @@ class Network:
 		if self.getAdapterAttribute(iface, 'up') is True:
 			return True
 		else:
-			ret = os.system("ifconfig " + iface + " up")
-			os.system("ifconfig " + iface + " down")
+			ret = os_system("ifconfig %s up" % iface)
+			os_system("ifconfig %s down" % iface)
 			if ret == 0:
 				return True
 			else:
@@ -553,11 +555,11 @@ class Network:
 		commands = []
 
 		def buildCommands(iface):
-			commands.append("ifdown " + iface)
-			commands.append("ip addr flush dev " + iface + " scope global")
+			commands.append("ifdown %s" % iface)
+			commands.append("ip addr flush dev %s scope global" % iface)
 			#wpa_supplicant sometimes doesn't quit properly on SIGTERM
-			if os.path.exists('/var/run/wpa_supplicant/' + iface):
-				commands.append("wpa_cli -i" + iface + " terminate")
+			if path_exists('/var/run/wpa_supplicant/%s' % iface):
+				commands.append("wpa_cli -i%s terminate" % iface)
 
 		if not self.deactivateInterfaceConsole:
 			self.deactivateInterfaceConsole = Console()
@@ -578,9 +580,9 @@ class Network:
 		(ifaces, callback) = extra_args
 
 		def checkCommandResult(iface):
-			if self.deactivateInterfaceConsole and "ifdown " + iface in self.deactivateInterfaceConsole.appResults:
-				result = str(self.deactivateInterfaceConsole.appResults.get("ifdown " + iface)).strip("\n")
-				if result == "ifdown: interface " + iface + " not configured":
+			if self.deactivateInterfaceConsole and "ifdown %s" % iface in self.deactivateInterfaceConsole.appResults:
+				result = str(self.deactivateInterfaceConsole.appResults.get("ifdown %s" % iface)).strip("\n")
+				if result == "ifdown: interface %s not configured" % iface:
 					return False
 				else:
 					return True
@@ -588,10 +590,10 @@ class Network:
 		if isinstance(ifaces, (list, tuple)):
 			for iface in ifaces:
 				if checkCommandResult(iface) is False:
-					Console().ePopen(("ifconfig " + iface + " down"))
+					Console().ePopen(("ifconfig %s down" % iface))
 		else:
 			if checkCommandResult(ifaces) is False:
-				Console().ePopen(("ifconfig " + ifaces + " down"))
+				Console().ePopen(("ifconfig %s down" % ifaces))
 
 		if self.deactivateInterfaceConsole:
 			if len(self.deactivateInterfaceConsole.appContainers) == 0:
@@ -608,7 +610,7 @@ class Network:
 			return
 		if not self.activateInterfaceConsole:
 			self.activateInterfaceConsole = Console()
-		commands = ["ifup " + iface]
+		commands = ["ifup %s" % iface]
 		self.activateInterfaceConsole.eBatch(commands, self.activateInterfaceFinished, callback, debug=True)
 
 	def activateInterfaceFinished(self, extra_args):
@@ -622,13 +624,13 @@ class Network:
 						pass
 
 	def sysfsPath(self, iface):
-		return '/sys/class/net/' + iface
+		return '/sys/class/net/%s' % iface
 
 	def isWirelessInterface(self, iface):
 		if iface in self.wlan_interfaces:
 			return True
 
-		if os.path.isdir(self.sysfsPath(iface) + '/wireless'):
+		if isdir("%s/wireless" % self.sysfsPath(iface)):
 			return True
 
 		# r871x_usb_drv on kernel 2.6.12 is not identifiable over /sys/class/net/'ifacename'/wireless so look also inside /proc/net/wireless
@@ -647,29 +649,29 @@ class Network:
 		return False
 
 	def canWakeOnWiFi(self, iface):
-		if self.sysfsPath(iface) == "/sys/class/net/wlan3" and os.path.exists("/tmp/bcm/%s" % iface):
+		if self.sysfsPath(iface) == "/sys/class/net/wlan3" and path_exists("/tmp/bcm/%s" % iface):
 			return True
 
 	def getWlanModuleDir(self, iface=None):
-		if self.sysfsPath(iface) == "/sys/class/net/wlan3" and os.path.exists("/tmp/bcm/%s" % iface):
-			devicedir = self.sysfsPath("sys0") + '/device'
+		if self.sysfsPath(iface) == "/sys/class/net/wlan3" and path_exists("/tmp/bcm/%s" % iface):
+			devicedir = "%s/device" % self.sysfsPath("sys0")
 		else:
-			devicedir = self.sysfsPath(iface) + '/device'
-		moduledir = devicedir + '/driver/module'
-		if os.path.isdir(moduledir):
+			devicedir = "%s/device" % self.sysfsPath(iface)
+		moduledir = "%s/driver/module" % devicedir
+		if isdir(moduledir):
 			return moduledir
 
 		# identification is not possible over default moduledir
 		try:
-			for x in os.listdir(devicedir):
+			for x in listdir(devicedir):
 				# rt3070 on kernel 2.6.18 registers wireless devices as usb_device (e.g. 1-1.3:1.0) and identification is only possible over /sys/class/net/'ifacename'/device/1-xxx
 				if x.startswith("1-"):
-					moduledir = devicedir + '/' + x + '/driver/module'
-					if os.path.isdir(moduledir):
+					moduledir = "%s/%s/driver/module" % (devicedir, x)
+					if isdir(moduledir):
 						return moduledir
 			# rt73, zd1211b, r871x_usb_drv on kernel 2.6.12 can be identified over /sys/class/net/'ifacename'/device/driver, so look also here
-			moduledir = devicedir + '/driver'
-			if os.path.isdir(moduledir):
+			moduledir = "%s/driver" % devicedir
+			if isdir(moduledir):
 				return moduledir
 		except:
 			pass
@@ -679,13 +681,13 @@ class Network:
 		if not self.isWirelessInterface(iface):
 			return None
 
-		devicedir = self.sysfsPath(iface) + '/device'
-		if os.path.isdir(devicedir + '/ieee80211'):
+		devicedir = "%s/device" % self.sysfsPath(iface)
+		if isdir("%s/ieee80211" % devicedir):
 			return 'nl80211'
 
 		moduledir = self.getWlanModuleDir(iface)
 		if moduledir:
-			module = os.path.basename(os.path.realpath(moduledir))
+			module = basename(realpath(moduledir))
 			if module in ('brcm-systemport',):
 				return 'brcm-wl'
 			if module in ('ath_pci', 'ath5k'):
@@ -723,7 +725,7 @@ class Network:
 			print("[Network] Add new interface: %s" % interface)
 			self.getAddrInet(interface, None)
 		elif action == "remove":
-			print("[Network] Removed interface:%" % interface)
+			print("[Network] Removed interface: %s" % interface)
 			try:
 				del self.ifaces[interface]
 			except KeyError:
