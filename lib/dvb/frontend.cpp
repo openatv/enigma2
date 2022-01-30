@@ -4132,6 +4132,9 @@ std::string eDVBFrontend::getCapabilities(fe_delivery_system_t delsys)
 {
 	std::stringstream ss;
 
+	ss << "DVB API version: " << m_dvbversion / 256 << "." << m_dvbversion % 256 << std::endl;
+	ss << "Capabilities:" << std::endl;
+
 	if (m_fe_info[delsys].caps == FE_IS_STUPID)			ss << "stupid FE" << std::endl;
 	if (m_fe_info[delsys].caps &  FE_CAN_INVERSION_AUTO)		ss << "auto inversion" << std::endl;
 	if (m_fe_info[delsys].caps &  FE_CAN_FEC_1_2)			ss << "FEC 1/2" << std::endl;
@@ -4166,6 +4169,36 @@ std::string eDVBFrontend::getCapabilities(fe_delivery_system_t delsys)
 	if (m_fe_info[delsys].caps &  FE_NEEDS_BENDING)			ss << "FE_NEEDS_BENDING" << std::endl;
 	if (m_fe_info[delsys].caps &  FE_CAN_RECOVER)			ss << "FE_CAN_RECOVER" << std::endl;
 	if (m_fe_info[delsys].caps &  FE_CAN_MUTE_TS)			ss << "FE_CAN_MUTE_TS" << std::endl;
+
+	ss << "Delivery System:";
+
+	switch (delsys)
+	{
+	case SYS_ATSC:		ss << " ATSC"; break;
+	case SYS_ATSCMH:	ss << " ATSCMH"; break;
+	case SYS_CMMB:		ss << " CMBB"; break;
+	case SYS_DAB:		ss << " DAB"; break;
+	case SYS_DSS:		ss << " DSS"; break;
+	case SYS_DVBC_ANNEX_B:	ss << " DVBC_ANNEX_B"; break;
+	case SYS_DVBH:		ss << " DVBH"; break;
+	case SYS_DVBS:		ss << " DVBS"; break;
+	case SYS_DVBS2:		ss << " DVBS2"; break;
+	case SYS_DVBT:		ss << " DVBT"; break;
+	case SYS_ISDBC:		ss << " ISDBC"; break;
+	case SYS_ISDBS:		ss << " ISDBS"; break;
+	case SYS_ISDBT:		ss << " ISDBT"; break;
+	case SYS_UNDEFINED:	ss << " UNDEFINED"; break;
+	case SYS_DVBC_ANNEX_A:	ss << " DVBC_ANNEX_A"; break;
+#if DVB_API_VERSION > 5
+	case SYS_DVBC_ANNEX_C:	ss << " DVBC_ANNEX_C"; break;
+	case SYS_TURBO:		ss << " TURBO"; break;
+	case SYS_DTMB:		ss << " DTMB"; break;
+#else
+	case SYS_DMBTH:		ss << " DMBTH"; break;
+#endif
+	case SYS_DVBT2:		ss << " DVBT2"; break;
+	}
+	ss << std::endl;
 
 	return ss.str();
 }
