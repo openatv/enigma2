@@ -974,7 +974,14 @@ class NimSelection(Screen):
 		nim = self["nimlist"].getCurrent()
 		nim = nim and nim[3]
 		if config.usage.setup_level.index >= 2 and nim is not None:
-			text = _("Capabilities: ") + "\n" + ",".join(eDVBResourceManager.getInstance().getFrontendCapabilities(nim.slot).splitlines())
+			output = []
+			for value in eDVBResourceManager.getInstance().getFrontendCapabilities(nim.slot).splitlines():
+				kv = value.split(":")
+				if len(kv) == 2:
+					val = kv[1]
+					val = val[:-1] if val[-1] == "," else val
+					output.append("%s: %s" % (_(kv[0]), val))
+			text = "\n\n".join(output)
 			self.session.open(MessageBox, text, MessageBox.TYPE_INFO, simple=True)
 
 	def okbuttonClick(self):

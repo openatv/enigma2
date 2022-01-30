@@ -898,33 +898,13 @@ bool eDVBResourceManager::frontendIsMultistream(int index)
 
 std::string eDVBResourceManager::getFrontendCapabilities(int index)
 {
-	fe_delivery_system_t delsys;
 	for (eSmartPtrList<eDVBRegisteredFrontend>::iterator i(m_frontend.begin()); i != m_frontend.end(); ++i)
 	{
 		if (i->m_frontend->getSlotID() == index)
 		{
-			switch (i->m_frontend->getCurrentType())
-			{
-				case iDVBFrontend::feSatellite:
-					delsys = SYS_DVBS;
-					break;
-				case iDVBFrontend::feCable:
-#if defined SYS_DVBC_ANNEX_A
-					delsys = SYS_DVBC_ANNEX_A;
-#else
-					delsys = SYS_DVBC_ANNEX_AC;
-#endif
-					break;
-				case iDVBFrontend::feTerrestrial:
-					delsys = SYS_DVBT;
-					break;
-				default:
-					return i->m_frontend->getCapabilities();
-			}
-			return i->m_frontend->getCapabilities(delsys);
+			return i->m_frontend->getCapabilities();
 		}
 	}
-	return "";
 }
 
 void eDVBResourceManager::setFrontendType(int index, const char *type, bool append)
