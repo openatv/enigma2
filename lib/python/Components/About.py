@@ -4,6 +4,7 @@ from fcntl import ioctl
 from glob import glob
 from os import popen, stat
 from os.path import isfile
+from re import search
 from socket import AF_INET, SOCK_DGRAM, inet_ntoa, socket
 from struct import pack, unpack
 from subprocess import PIPE, Popen
@@ -333,28 +334,36 @@ def getFlashType():
 
 
 def getDriverInstalledDate():
+
+	def formatDate(value):
+		match = search('[0-9]{8}', value)
+		if match:
+			value = match[0]
+			return "%s-%s-%s" % (value[:4], value[4:6], value[6:8])
+		else:
+			return value
+
 	filenames = glob("/var/lib/opkg/info/*dvb-modules*.control")
 	if filenames:
 		lines = fileReadLines(filenames[0], source=MODULE_NAME)
 		if lines:
 			for line in lines:
 				if line[0:8] == "Version:":
-					driver = line.split("-")[1]
-					return "%s-%s-%s" % (driver[:4], driver[4:6], driver[6:])
+					return formatDate(line)
 	filenames = glob("/var/lib/opkg/info/*dvb-proxy*.control")
 	if filenames:
 		lines = fileReadLines(filenames[0], source=MODULE_NAME)
 		if lines:
 			for line in lines:
 				if line[0:8] == "Version:":
-					return line.split("-")[1]
+					return formatDate(line)
 	filenames = glob("/var/lib/opkg/info/*platform-util*.control")
 	if filenames:
 		lines = fileReadLines(filenames[0], source=MODULE_NAME)
 		if lines:
 			for line in lines:
 				if line[0:8] == "Version:":
-					return line.split("-")[1]
+					return formatDate(line)
 	return _("Unknown")
 
 
@@ -381,7 +390,8 @@ def GetIPsFromNetworkInterfaces():
 			break
 	ifaces = []
 	for index in range(0, outbytes, structSize):
-		ifaceName = str(names[index:index + 16]).split("\0", 1)[0]
+		ifaceName = names.tobytes()[index:index + 16].decode().split("\0", 1)[0] # PY3
+		# ifaceName = str(names.tolist[index:index + 16]).split("\0", 1)[0] # PY2
 		if ifaceName != "lo":
 			ifaces.append((ifaceName, inet_ntoa(names[index + 20:index + 24])))
 	return ifaces
