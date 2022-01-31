@@ -5,7 +5,7 @@ import six
 
 
 class ConsoleItem:
-	def __init__(self, containers, cmd, callback, extraArgs):
+	def __init__(self, containers, cmd, callback, extraArgs, binary=False):
 		self.containers = containers
 		if isinstance(cmd, str):  # Until .execute supports a better api.
 			cmd = [cmd]
@@ -17,6 +17,7 @@ class ConsoleItem:
 		self.extraArgs = extraArgs
 		self.container = eConsoleAppContainer()
 		self.containers[name] = self
+		self.binary = binary
 		# If the caller isn't interested in our results, we don't need to store the output either.
 		if callback is not None:
 			self.appResults = []
@@ -47,21 +48,27 @@ class ConsoleItem:
 		callback = self.callback
 		if callback is not None:
 			data = b"".join(self.appResults)
+			data = data if self.binary else data.decode()
 			callback(data, retVal, self.extraArgs)
 
 
 class Console(object):
-	def __init__(self):
+	"""
+		Console by default will work with strings on callback.
+		If binary data required class shoud be initialized with Console(binary=True)
+	"""
+	def __init__(self, binary=False):
 		# Still called appContainers because Network.py, SoftwareTools.py
 		# and WirelessLan/Wlan.py accesses it to know if there's still
 		# stuff running.
 		self.appContainers = {}
 		self.appResults = {} # FIXME : Do ee need this
+		self.binary = binary
 
 	def ePopen(self, cmd, callback=None, extra_args=None):
 		if not extra_args:
 			extra_args = []
-		return ConsoleItem(self.appContainers, cmd, callback, extra_args)
+		return ConsoleItem(self.appContainers, cmd, callback, extra_args, self.binary)
 
 	def eBatch(self, cmds, callback, extra_args=None, debug=False):
 		if not extra_args:
