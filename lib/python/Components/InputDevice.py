@@ -315,7 +315,7 @@ class RemoteControl:
 		return None
 
 	def readRemoteControlType(self):
-		return fileReadLine("/proc/stb/ir/rc/type", "-1", source=MODULE_NAME)
+		return fileReadLine("/proc/stb/ir/rc/type", "0", source=MODULE_NAME)
 
 	def writeRemoteControlType(self, rcType):
 		if rcType > 0:
