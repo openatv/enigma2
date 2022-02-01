@@ -48,6 +48,8 @@
 		<menu weight="0" level="0" text="Video" entryID="video_menu">
 			<id val="video_menu" />
 			<item weight="0" level="0" text="Basic settings" entryID="video_setup"><screen module="VideoMode" screen="VideoSetup" /></item>
+			<item weight="50" level="1" text="OSD Position" entryID="osdsetup" requires="CanChangeOsdPosition"><screen module="UserInterfacePositioner" screen="UserInterfacePositioner2"/></item>
+			<item weight="60" level="2" text="OSD 3D Setup" entryID="setup_osd3d" requires="CanChange3DOsd"><setup id="osd3d"/></item>
 		</menu>
 
 		<!-- Menu / Settings / Audio Menu -->
@@ -86,7 +88,6 @@
 			<!-- Menu / Settings / System / Extended System / OSD settings -->
 			<menu weight="40" level="1" text="Extended GUI" entryID="osd_setup">
 				<id val="osd_menu" />
-				<item weight="10" level="1" text="OSD Position" entryID="osdsetup" requires="CanChangeOsdPosition"><screen module="UserInterfacePositioner" screen="UserInterfacePositioner2"/></item>
 				<item weight="20" level="1" text="Input devices" entryID="input_device_setup"><screen module="InputDeviceSetup" screen="InputDeviceSelection" /></item>
 				<item weight="30" level="1" text="Remote Control Code" entryID="remotecode" requires="RemoteCode">
 					<code>
@@ -95,7 +96,6 @@ self.session.open(RemoteControlCode)
 </code>
 				</item>
 				<item weight="40" level="1" text="Keyboard" entryID="keyboard"><setup id="keyboard" /></item>
-				<item weight="50" level="2" text="OSD 3D Setup" entryID="setup_osd3d" requires="CanChange3DOsd"><setup id="osd3d"/></item>
 			</menu>
 			<item weight="70" level="0" text="Language" entryID="locale_setup"><screen module="LocaleSelection" /></item>
 		</menu>

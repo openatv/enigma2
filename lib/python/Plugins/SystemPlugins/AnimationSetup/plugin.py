@@ -264,10 +264,10 @@ def animationSetupMain(session, **kwargs):
 
 
 def startAnimationSetup(menuid):
-	if menuid != "osd_menu":
+	if menuid != "video_menu":
 		return []
 
-	return [(_("Animations"), animationSetupMain, "animation_setup", 3)]
+	return [(_("Animations"), animationSetupMain, "animation_setup", 30)]
 
 
 def sessionAnimationSetup(session, reason, **kwargs):
