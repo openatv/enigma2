@@ -1,8 +1,9 @@
-from __future__ import print_function
-from __future__ import absolute_import
-import locale
-import os
-import skin
+from locale import nl_langinfo, AM_STR, PM_STR
+from glob import glob
+from os.path import exists, isfile, join as pathjoin, normpath
+from os import mkdir, remove, system as os_system
+from skin import parameters
+from sys import maxsize
 from time import time
 from enigma import eDVBDB, eEPGCache, setTunerTypePriorityOrder, setPreferredTuner, setSpinnerOnOff, setEnableTtCachingOnOff, eEnv, Misc_Options, eBackgroundFileEraser, eServiceEvent, eDVBFrontend, RT_HALIGN_LEFT, RT_HALIGN_RIGHT, RT_HALIGN_CENTER, RT_VALIGN_CENTER, RT_WRAP
 
@@ -17,20 +18,17 @@ from Components.SystemInfo import BoxInfo
 from Tools.HardwareInfo import HardwareInfo
 from boxbranding import getDisplayType
 from keyids import KEYIDS
-from sys import maxsize
-import glob
-import os
 
 
 def InitUsageConfig():
-	AvailRemotes = glob.glob('/usr/share/enigma2/rc_models/*')
+	AvailRemotes = glob('/usr/share/enigma2/rc_models/*')
 	RemoteChoices = []
 	DefaultRemote = rc_model.getRcFolder(GetDefault=True)
 
 	remoteSelectable = False
 	if AvailRemotes is not None:
 		for remote in AvailRemotes:
-			if os.path.isfile(remote + '/rc.png') and os.path.isfile(remote + '/rcpositions.xml') and os.path.isfile(remote + '/remote.html'):
+			if isfile(remote + '/rc.png') and isfile(remote + '/rcpositions.xml') and isfile(remote + '/remote.html'):
 				pass
 			else:
 				AvailRemotes.remove(remote)
@@ -292,15 +290,15 @@ def InitUsageConfig():
 	config.usage.pip_last_service_timeout = ConfigSelection(default="-1", choices=choicelist)
 
 	defaultValue = resolveFilename(SCOPE_HDD)
-	if not os.path.exists(defaultValue):
+	if not exists(defaultValue):
 		try:
-			os.mkdir(defaultValue, 0o755)
+			mkdir(defaultValue, 0o755)
 		except (IOError, OSError) as err:
 			pass
 	config.usage.default_path = ConfigSelection(default=defaultValue, choices=[(defaultValue, defaultValue)])
 	config.usage.default_path.load()
 	if config.usage.default_path.saved_value:
-		savedValue = os.path.join(config.usage.default_path.saved_value, "")
+		savedValue = pathjoin(config.usage.default_path.saved_value, "")
 		if savedValue and savedValue != defaultValue:
 			config.usage.default_path.setChoices([(defaultValue, defaultValue), (savedValue, savedValue)], default=defaultValue)
 			config.usage.default_path.value = savedValue
@@ -310,7 +308,7 @@ def InitUsageConfig():
 	config.usage.timer_path = ConfigSelection(default="<default>", choices=choiceList)
 	config.usage.timer_path.load()
 	if config.usage.timer_path.saved_value:
-		savedValue = config.usage.timer_path.saved_value if config.usage.timer_path.saved_value.startswith("<") else os.path.join(config.usage.timer_path.saved_value, "")
+		savedValue = config.usage.timer_path.saved_value if config.usage.timer_path.saved_value.startswith("<") else pathjoin(config.usage.timer_path.saved_value, "")
 		if savedValue and savedValue not in choiceList:
 			config.usage.timer_path.setChoices(choiceList + [(savedValue, savedValue)], default="<default>")
 			config.usage.timer_path.value = savedValue
@@ -319,22 +317,22 @@ def InitUsageConfig():
 	config.usage.instantrec_path = ConfigSelection(default="<default>", choices=choiceList)
 	config.usage.instantrec_path.load()
 	if config.usage.instantrec_path.saved_value:
-		savedValue = config.usage.instantrec_path.saved_value if config.usage.instantrec_path.saved_value.startswith("<") else os.path.join(config.usage.instantrec_path.saved_value, "")
+		savedValue = config.usage.instantrec_path.saved_value if config.usage.instantrec_path.saved_value.startswith("<") else pathjoin(config.usage.instantrec_path.saved_value, "")
 		if savedValue and savedValue not in choiceList:
 			config.usage.instantrec_path.setChoices(choiceList + [(savedValue, savedValue)], default="<default>")
 			config.usage.instantrec_path.value = savedValue
 	config.usage.instantrec_path.save()
 
 	defaultValue = resolveFilename(SCOPE_TIMESHIFT)
-	if not os.path.exists(defaultValue):
+	if not exists(defaultValue):
 		try:
-			os.mkdir(defaultValue, 0o755)
+			mkdir(defaultValue, 0o755)
 		except (IOError, OSError) as err:
 			pass
 	config.usage.timeshift_path = ConfigSelection(default=defaultValue, choices=[(defaultValue, defaultValue)])
 	config.usage.timeshift_path.load()
 	if config.usage.timeshift_path.saved_value:
-		savedValue = os.path.join(config.usage.timeshift_path.saved_value, "")
+		savedValue = pathjoin(config.usage.timeshift_path.saved_value, "")
 		if savedValue and savedValue != defaultValue:
 			config.usage.timeshift_path.setChoices([(defaultValue, defaultValue), (savedValue, savedValue)], default=defaultValue)
 			config.usage.timeshift_path.value = savedValue
@@ -784,7 +782,7 @@ def InitUsageConfig():
 	config.usage.date.dayfull.addNotifier(setDateStyles)
 
 	# TRANSLATORS: full time representation hour:minute:seconds
-	if locale.nl_langinfo(locale.AM_STR) and locale.nl_langinfo(locale.PM_STR):
+	if nl_langinfo(AM_STR) and nl_langinfo(PM_STR):
 		config.usage.time.long = ConfigSelection(default=_("%T"), choices=[
 			(_("%T"), _("HH:mm:ss")),
 			(_("%-H:%M:%S"), _("H:mm:ss")),
@@ -831,7 +829,7 @@ def InitUsageConfig():
 	config.usage.time.long.addNotifier(setTimeStyles)
 
 	try:
-		dateEnabled, timeEnabled = skin.parameters.get("AllowUserDatesAndTimes", (0, 0))
+		dateEnabled, timeEnabled = parameters.get("AllowUserDatesAndTimes", (0, 0))
 	except Exception as error:
 		print("[UsageConfig] Error loading 'AllowUserDatesAndTimes' skin parameter! (%s)" % error)
 		dateEnabled, timeEnabled = (0, 0)
@@ -925,7 +923,7 @@ def InitUsageConfig():
 	config.usage.date.display.addNotifier(setDateDisplayStyles)
 
 	# TRANSLATORS: short time representation hour:minute (Same as "Default")
-	if locale.nl_langinfo(locale.AM_STR) and locale.nl_langinfo(locale.PM_STR):
+	if nl_langinfo(AM_STR) and nl_langinfo(PM_STR):
 		config.usage.time.display = ConfigSelection(default=_("%R"), choices=[
 			("", _("Hidden / Blank")),
 			(_("%R"), _("HH:mm")),
@@ -954,7 +952,7 @@ def InitUsageConfig():
 	config.usage.time.display.addNotifier(setTimeDisplayStyles)
 
 	try:
-		dateDisplayEnabled, timeDisplayEnabled = skin.parameters.get("AllowUserDatesAndTimesDisplay", (0, 0))
+		dateDisplayEnabled, timeDisplayEnabled = parameters.get("AllowUserDatesAndTimesDisplay", (0, 0))
 	except Exception as error:
 		print("[UsageConfig] Error loading 'AllowUserDatesAndTimesDisplay' display skin parameter! (%s)" % error)
 		dateDisplayEnabled, timeDisplayEnabled = (0, 0)
@@ -1056,8 +1054,8 @@ def InitUsageConfig():
 
 	hddchoises = [('/etc/enigma2/', _('Internal Flash'))]
 	for p in harddiskmanager.getMountedPartitions():
-		if os.path.exists(p.mountpoint):
-			d = os.path.normpath(p.mountpoint)
+		if exists(p.mountpoint):
+			d = normpath(p.mountpoint)
 			if p.mountpoint != '/':
 				hddchoises.append((p.mountpoint, d))
 	config.misc.epgcachepath = ConfigSelection(default='/etc/enigma2/', choices=hddchoises)
@@ -1065,22 +1063,22 @@ def InitUsageConfig():
 	config.misc.epgcache_filename = ConfigText(default=(config.misc.epgcachepath.value + config.misc.epgcachefilename.value.replace('.dat', '') + '.dat'))
 
 	def EpgCacheChanged(configElement):
-		config.misc.epgcache_filename.setValue(os.path.join(config.misc.epgcachepath.value, config.misc.epgcachefilename.value.replace('.dat', '') + '.dat'))
+		config.misc.epgcache_filename.setValue(pathjoin(config.misc.epgcachepath.value, config.misc.epgcachefilename.value.replace('.dat', '') + '.dat'))
 		config.misc.epgcache_filename.save()
 		eEPGCache.getInstance().setCacheFile(config.misc.epgcache_filename.value)
 		epgcache = eEPGCache.getInstance()
 		epgcache.save()
 		if not config.misc.epgcache_filename.value.startswith("/etc/enigma2/"):
-			if os.path.exists('/etc/enigma2/' + config.misc.epgcachefilename.value.replace('.dat', '') + '.dat'):
-				os.remove('/etc/enigma2/' + config.misc.epgcachefilename.value.replace('.dat', '') + '.dat')
+			if exists('/etc/enigma2/' + config.misc.epgcachefilename.value.replace('.dat', '') + '.dat'):
+				remove('/etc/enigma2/' + config.misc.epgcachefilename.value.replace('.dat', '') + '.dat')
 	config.misc.epgcachepath.addNotifier(EpgCacheChanged, immediate_feedback=False)
 	config.misc.epgcachefilename.addNotifier(EpgCacheChanged, immediate_feedback=False)
 
 	def partitionListChanged(action, device):
 		hddchoises = [('/etc/enigma2/', _('Internal Flash'))]
 		for p in harddiskmanager.getMountedPartitions():
-			if os.path.exists(p.mountpoint):
-				d = os.path.normpath(p.mountpoint)
+			if exists(p.mountpoint):
+				d = normpath(p.mountpoint)
 				if p.mountpoint != '/':
 					hddchoises.append((p.mountpoint, d))
 		config.misc.epgcachepath.setChoices(hddchoises)
@@ -1103,7 +1101,24 @@ def InitUsageConfig():
 			Misc_Options.getInstance().set_12V_output(configElement.value == "on" and 1 or 0)
 		config.usage.output_12V.addNotifier(set12VOutput, immediate_feedback=False)
 
-	config.usage.keymap = ConfigText(default=eEnv.resolve("${datadir}/enigma2/keymap.xml"))
+	KM = {
+		"xml": _("Default  (keymap.xml)"),
+		"usr": _("User  (keymap.usr)"),
+		"ntr": _("Neutrino  (keymap.ntr)"),
+		"u80": _("UP80  (keymap.u80)")
+	}
+
+	keymapdefault = eEnv.resolve("${datadir}/enigma2/keymap.xml")
+	keymapchoices = []
+	for kmap in KM.keys():
+		kmfile = eEnv.resolve("${datadir}/enigma2/keymap.%s" % kmap)
+		if isfile(kmfile):
+			keymapchoices.append((kmfile, KM.get(kmap)))
+
+	if not isfile(keymapdefault): # BIG PROBLEM
+		keymapchoices.append((keymapdefault, KM.get('xml')))
+
+	config.usage.keymap = ConfigSelection(default=keymapdefault, choices=keymapchoices)
 	config.usage.keytrans = ConfigText(default=eEnv.resolve("${datadir}/enigma2/keytranslation.xml"))
 	config.usage.keymap_usermod = ConfigText(default=eEnv.resolve("${datadir}/enigma2/keymap_usermod.xml"))
 
@@ -1209,20 +1224,20 @@ def InitUsageConfig():
 
 	debugpath = [('/home/root/logs/', '/home/root/')]
 	for p in harddiskmanager.getMountedPartitions():
-		if os.path.exists(p.mountpoint):
-			d = os.path.normpath(p.mountpoint)
+		if exists(p.mountpoint):
+			d = normpath(p.mountpoint)
 			if p.mountpoint != '/':
 				debugpath.append((p.mountpoint + 'logs/', d))
 	config.crash.debug_path = ConfigSelection(default="/home/root/logs/", choices=debugpath)
-	if not os.path.exists("/home"):
-		os.mkdir("/home", 0o755)
-	if not os.path.exists("/home/root"):
-		os.mkdir("/home/root", 0o755)
+	if not exists("/home"):
+		mkdir("/home", 0o755)
+	if not exists("/home/root"):
+		mkdir("/home/root", 0o755)
 
 	def updatedebug_path(configElement):
-		if not os.path.exists(config.crash.debug_path.value):
+		if not exists(config.crash.debug_path.value):
 			try:
-				os.mkdir(config.crash.debug_path.value, 0o755)
+				mkdir(config.crash.debug_path.value, 0o755)
 			except:
 				print("Failed to create log path: %s" % config.crash.debug_path.value)
 	config.crash.debug_path.addNotifier(updatedebug_path, immediate_feedback=False)
@@ -1238,8 +1253,8 @@ def InitUsageConfig():
 	def updateStackTracePrinter(configElement):
 		from Components.StackTrace import StackTracePrinter
 		if configElement.value:
-			if (os.path.isfile("/tmp/doPythonStackTrace")):
-				os.remove("/tmp/doPythonStackTrace")
+			if (isfile("/tmp/doPythonStackTrace")):
+				remove("/tmp/doPythonStackTrace")
 			from threading import current_thread
 			StackTracePrinter.getInstance().activate(current_thread().ident)
 		else:
@@ -1835,7 +1850,7 @@ def patchTuxtxtConfFile(dummyConfigElement):
 		#if keyword is not found in file, append keyword and value
 		command += " ; if ! grep -q '%s' %s ; then echo '%s %d' >> %s ; fi" % (f[0], TUXTXT_CFG_FILE, f[0], f[1], TUXTXT_CFG_FILE)
 	try:
-		os.system(command)
+		os_system(command)
 	except:
 		print("Error: failed to patch %s!" % TUXTXT_CFG_FILE)
 	print("[tuxtxt] patched tuxtxt2.conf")
