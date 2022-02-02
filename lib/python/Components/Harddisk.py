@@ -208,10 +208,10 @@ class Harddisk:
 			if dev:
 				stat = os.statvfs(dev)
 				cap = int(stat.f_blocks * stat.f_bsize)
-				return cap / 1000 / 1000
+				return cap // 1000 // 1000
 			else:
 				return cap
-		return cap / 1000 * 512 / 1000
+		return cap // 1000 * 512 // 1000
 
 	def capacity(self):
 		cap = self.diskSize()
@@ -219,7 +219,7 @@ class Harddisk:
 			return ""
 		if cap < 1000:
 			return _("%03d MB") % cap
-		return _("%d.%03d GB") % (cap / 1000, cap % 1000)
+		return _("%d.%03d GB") % (cap // 1000, cap % 1000)
 
 	def model(self):
 		try:
