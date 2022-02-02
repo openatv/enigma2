@@ -341,6 +341,9 @@
 	<setup key="keyboard" title="Keyboard setup">
 		<item level="0" text="Keyboard map">config.keyboard.keymap</item>
 	</setup>
+	<setup key="keymap" title="Keymap Selection">
+		<item level="0" text="Use Keymap *">config.usage.keymap</item>
+	</setup>
 	<setup key="display" title="Display settings" requires="FrontpanelDisplay">
 		<item level="0" requires="FBLCDDisplay" text="Clone TV screen to LCD" description="Shows live tv or informations on LCD.">config.lcd.fblcddisplay</item>
 		<item level="0" text="Brightness (Normal)" description="Configure the brightness level of the front panel display for normal operation.">config.lcd.bright</item>

@@ -117,19 +117,19 @@ if not BoxInfo.getItem("SoftCam") and config.plugins.showinfopanelextensions.val
 	config.plugins.infopanel_redpanel.save()
 
 # Hide Keymap selection when no other keymaps installed.
-if config.usage.keymap.value != eEnv.resolve("${datadir}/enigma2/keymap.xml"):
-	if not os.path.isfile(eEnv.resolve("${datadir}/enigma2/keymap.usr")) and config.usage.keymap.value == eEnv.resolve("${datadir}/enigma2/keymap.usr"):
-		setDefaultKeymap()
-	if not os.path.isfile(eEnv.resolve("${datadir}/enigma2/keymap.ntr")) and config.usage.keymap.value == eEnv.resolve("${datadir}/enigma2/keymap.ntr"):
-		setDefaultKeymap()
-	if not os.path.isfile(eEnv.resolve("${datadir}/enigma2/keymap.u80")) and config.usage.keymap.value == eEnv.resolve("${datadir}/enigma2/keymap.u80"):
-		setDefaultKeymap()
+#if config.usage.keymap.value != eEnv.resolve("${datadir}/enigma2/keymap.xml"):
+#	if not os.path.isfile(eEnv.resolve("${datadir}/enigma2/keymap.usr")) and config.usage.keymap.value == eEnv.resolve("${datadir}/enigma2/keymap.usr"):
+#		setDefaultKeymap()
+#	if not os.path.isfile(eEnv.resolve("${datadir}/enigma2/keymap.ntr")) and config.usage.keymap.value == eEnv.resolve("${datadir}/enigma2/keymap.ntr"):
+#		setDefaultKeymap()
+#	if not os.path.isfile(eEnv.resolve("${datadir}/enigma2/keymap.u80")) and config.usage.keymap.value == eEnv.resolve("${datadir}/enigma2/keymap.u80"):
+#		setDefaultKeymap()
 
 
-def setDefaultKeymap():
-	print("[Info-Panel] Set Keymap to Default")
-	config.usage.keymap.value = eEnv.resolve("${datadir}/enigma2/keymap.xml")
-	config.save()
+#def setDefaultKeymap():
+#	print("[Info-Panel] Set Keymap to Default")
+#	config.usage.keymap.value = eEnv.resolve("${datadir}/enigma2/keymap.xml")
+#	config.save()
 
 # edit bb , touch commands.getouput with this def #
 
@@ -322,7 +322,7 @@ class Infopanel(Screen, InfoBarPiP, ProtectedScreen):
 		if Check_SysSoftcam() == "ncam":
 			self.Mlist.append(MenuEntryItem((InfoEntryComponent('OScamInfo'), _("NcamInfo"), 'OScamInfo')))
 		self.Mlist.append(MenuEntryItem((InfoEntryComponent("SoftwareManager"), _("Software Manager"), ("software-manager"))))
-		self.Mlist.append(MenuEntryItem((InfoEntryComponent('KeymapSel'), _("Keymap Selection"), 'KeymapSel')))
+		#self.Mlist.append(MenuEntryItem((InfoEntryComponent('KeymapSel'), _("Keymap Selection"), 'KeymapSel')))
 		self.Mlist.append(MenuEntryItem((InfoEntryComponent('Plugins'), _("Plugins"), 'Plugins')))
 		self.Mlist.append(MenuEntryItem((InfoEntryComponent('Infos'), _("Information"), 'Infos')))
 		self.onChangedEntry = []
@@ -490,8 +490,8 @@ class Infopanel(Screen, InfoBarPiP, ProtectedScreen):
 			self.session.open(HddMount)
 		elif menu == "SwapManager":
 			self.session.open(Swap)
-		elif menu == "KeymapSel":
-			self.session.open(KeymapSel)
+		#elif menu == "KeymapSel":
+		#	self.session.open(KeymapSel)
 		elif menu == "Edid":
 			self.session.open(Info, "Edid")
 		else:
@@ -654,7 +654,7 @@ class KeymapSel(ConfigListScreen, Screen):
 	def createSetup(self):
 		self.editListEntry = None
 		self.list = []
-		self.list.append(getConfigListEntry(_("Use Keymap"), self.keyshow))
+		self.list.append(getConfigListEntry(_("Use Keymap *"), self.keyshow))
 
 		self["config"].list = self.list
 		self["config"].setList(self.list)
