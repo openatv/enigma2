@@ -40,11 +40,12 @@ msgstr ""
 " AVVISO: \n"
 " Non c'è spazio sufficiente per installare Kodi!"
 
-#, fuzzy
 msgid ""
 "\n"
 " Do you want to switch Enigma2 with Android...?"
-msgstr "Si desidera riavviare ora?"
+msgstr ""
+"\n"
+" Si desidera riavviare Enigma2 con Android...?"
 
 msgid ""
 "\n"
@@ -224,15 +225,15 @@ msgstr "     permesso di scrittura assente sul dispositivo di back-up"
 msgid "     wrong back-up destination "
 msgstr "     destinazione di backup non corretta"
 
-#, fuzzy, python-format
+#, python-format
 msgid "  (%s x %s)"
-msgstr "%s (%s)"
+msgstr "  (%s x %s)"
 
 msgid "  Menu key : Select quad channel"
 msgstr "  Tasto MENU: seleziona quad channel"
 
 msgid "  REC  "
-msgstr ""
+msgstr "  REC "
 
 msgid "  Red key : Show/Hide channel name"
 msgstr "  Tasto rosso: Mostra/nascondi il nome del canale"
@@ -385,25 +386,23 @@ msgid "%-d. %B %Y"
 msgstr "%-d %B %Y"
 
 msgid "%-d. %b"
-msgstr ""
+msgstr "%-d. %b"
 
 #, fuzzy
 msgid "%-d. %b %Y"
 msgstr "%-d %b %Y"
 
 msgid "%-d.%-m"
-msgstr ""
+msgstr "%-d.%-m"
 
 msgid "%-d.%-m.%Y"
-msgstr ""
+msgstr "%-d.%-m.%Y"
 
-#, fuzzy
 msgid "%-d.%m"
-msgstr "%d.%m.   "
+msgstr "%-d.%m"
 
-#, fuzzy
 msgid "%-d.%m.%Y"
-msgstr "%d.%m.   "
+msgstr "%-d.%m.%Y"
 
 msgid "%-d/%-m"
 msgstr "%-d/%-m"
@@ -458,7 +457,7 @@ msgstr "%.2f GB"
 
 #, python-format
 msgid "%.3f MHz"
-msgstr ""
+msgstr "%.3f MHz"
 
 #, python-format
 msgid "%02d.%02d."
@@ -1067,14 +1066,14 @@ msgstr[1] "%d canali trovati"
 #, python-format
 msgid "%d day"
 msgid_plural "%d days"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d giorno"
+msgstr[1] "%d giorni"
 
 #, python-format
 msgid "%d feed catalog package was updated."
 msgid_plural "%d feed catalog packages were updated."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Sono stati aggiornati %d cataloghi pacchetti."
+msgstr[1] "È stato aggiornato %d catalogo pacchetti."
 
 #, python-format
 msgid "%d hour"
@@ -1107,56 +1106,56 @@ msgstr "%d ms"
 #, python-format
 msgid "%d package upgraded."
 msgid_plural "%d packages upgraded."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d pacchetto aggiornato."
+msgstr[1] "%d pacchetti aggiornati."
 
 #, python-format
 msgid "%d package was configured."
 msgid_plural "%d packages were configured."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "È stato configurato %d pacchetto."
+msgstr[1] "Sono stati configurati %d pacchetti."
 
 #, python-format
 msgid "%d package was deselected."
 msgid_plural "%d packages were deselected."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "È stato deselezionato %d pacchetto."
+msgstr[1] "Sono stati deselezionati %d pacchetti."
 
 #, python-format
 msgid "%d package was downloaded."
 msgid_plural "%d packages were downloaded."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "È stato scaricato %d pacchetto."
+msgstr[1] "Sono stati scaricati %d pacchetti."
 
 #, python-format
 msgid "%d package was identified for upgrade."
 msgid_plural "%d packages were identified for upgrade."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "È stato identificato %d pacchetto da aggiornare."
+msgstr[1] "Sono stati identificati %d pacchetti da aggiornare."
 
 #, python-format
 msgid "%d package was installed."
 msgid_plural "%d packages were installed."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "È stato installato %d pacchetto."
+msgstr[1] "Sono stati configurati %d pacchetti."
 
 #, python-format
 msgid "%d package was removed."
 msgid_plural "%d packages were removed."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "È stato rimosso %d pacchetto."
+msgstr[1] "Sono stati rimossi %d pacchetti."
 
 #, python-format
 msgid "%d package was upgraded."
 msgid_plural "%d packages were upgraded."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "È stato aggiornato %d pacchetto."
+msgstr[1] "Sono stati aggiornati %d pacchetti."
 
 #, python-format
 msgid "%d pixel wide"
 msgid_plural "%d pixels wide"
 msgstr[0] "%d pixel larghezza"
-msgstr[1] "%d pixel larghezza"
+msgstr[1] "larghezza %d pixel"
 
 #, python-format
 msgid "%d sec"
@@ -1201,21 +1200,18 @@ msgstr ""
 msgid "%d. %b %Y"
 msgstr "%d %b %Y"
 
-#, fuzzy
 msgid "%d.%-m"
-msgstr "%d.%m.   "
+msgstr "%d.%-m"
 
-#, fuzzy
 msgid "%d.%-m.%Y"
-msgstr "%d.%B %Y"
+msgstr "%d.%-m.%Y"
 
 #, python-format
 msgid "%d.%03d GB"
 msgstr "%d.%03d GB"
 
-#, fuzzy
 msgid "%d.%m"
-msgstr "%d.%m.   "
+msgstr "%d.%m"
 
 #, fuzzy
 msgid "%d.%m.%Y"
@@ -1281,6 +1277,9 @@ msgid ""
 "Press ok for multiboot selection\n"
 "Press exit to close"
 msgstr ""
+"%s\n"
+"Premere ok per la selezione multiboot\n"
+"Premere exit per chiudere"
 
 #, fuzzy, python-format
 msgid "%s  (%s)"
@@ -1348,15 +1347,15 @@ msgstr "%s - errori di estrazione."
 
 #, python-format
 msgid "%s GHz"
-msgstr ""
+msgstr "%s GHz"
 
 #, python-format
 msgid "%s KSymb/s"
-msgstr ""
+msgstr "%s KSymb/s"
 
-#, fuzzy, python-format
+#, python-format
 msgid "%s MHz"
-msgstr "   (%s MHz)"
+msgstr "(%s MHz)"
 
 #, python-format
 msgid "%s Setup"
@@ -2113,7 +2112,7 @@ msgid "A crashlog was %s created in '%s'"
 msgstr "Un log del crash %s è stato creato in '%s'"
 
 msgid "A file from media is in use!"
-msgstr ""
+msgstr "Ci sono file aperti nel dispsitivo!"
 
 #, python-format
 msgid ""
@@ -2311,9 +2310,8 @@ msgstr "Compensazione AC3/Dolby"
 msgid "AC3plus transcoding"
 msgstr "transcodifica AC3plus"
 
-#, fuzzy
 msgid "AFL"
-msgstr "AFP"
+msgstr "AFL"
 
 msgid "AFP"
 msgstr "AFP"
@@ -2859,7 +2857,7 @@ msgid ""
 "receiver. Default: off."
 msgstr ""
 "Includi sempre gli ECM nelle registrazioni. Questo sovrascrive le "
-"impostazioni individuali dei timer. Se  questo viene supportato dal tuo "
+"impostazioni individuali dei timer. Se questo viene supportato dal tuo "
 "ricevitore, permette registrazioni decriptate successivamente (offline "
 "decoding). Valore predefinito: OFF."
 
@@ -3205,7 +3203,7 @@ msgid "Audio volume step size"
 msgstr "Dimensione passo volume audio"
 
 msgid "Audio volume step size fast mode"
-msgstr "Dimensione passo  del volume  rapido"
+msgstr "Dimensione passo del volume rapido"
 
 msgid "Australia"
 msgstr "Australia"
@@ -3443,7 +3441,7 @@ msgstr "Back-up Tool per %s\n"
 
 #, python-format
 msgid "Back-up Tool for an %s\n"
-msgstr "Back-up Tool per  %s\n"
+msgstr "Back-up Tool per %s\n"
 
 msgid "Back/Recall"
 msgstr "Indietro/Richiama"
@@ -3488,12 +3486,11 @@ msgstr "Log di backup"
 msgid "Backup Mode"
 msgstr "Modalità Backup"
 
-#, fuzzy
 msgid "Backup Mode: Flash Online\n"
-msgstr "FLASH online"
+msgstr "Modalità Backup: FLASH online\n"
 
 msgid "Backup Mode: USB Recovery\n"
-msgstr ""
+msgstr "Modalità Backup: Recupero USB\n"
 
 msgid "Backup Settings"
 msgstr "Backup configurazioni"
@@ -3505,7 +3502,7 @@ msgid "Backup done."
 msgstr "Backup eseguito."
 
 msgid "Backup failed."
-msgstr "Backup fallito !"
+msgstr "Backup fallito."
 
 msgid "Backup is running..."
 msgstr "Backup in corso..."
@@ -5118,7 +5115,7 @@ msgid ""
 "Configure the brightness level of the front panel display for normal "
 "operation."
 msgstr ""
-"Configurare livello di luminosità del display  frontale per il normale "
+"Configurare livello di luminosità del display frontale per il normale "
 "funzionamento."
 
 msgid "Configure the brightness level of the front panel display for standby."
@@ -6894,7 +6891,7 @@ msgstr ""
 "ATTENZIONE: Tutti i dati nel disco andranno perduti!"
 
 msgid "Do you really want to move to trashcan ?"
-msgstr "Si desidera  spostare nel cestino?"
+msgstr "Si desidera spostare nel cestino?"
 
 #, python-format
 msgid "Do you really want to permamently remove '%s' from trash can ?"
@@ -8685,7 +8682,7 @@ msgid "Format your Harddisk"
 msgstr "Formatta il tuo Hard Disk"
 
 msgid "Forward volume keys"
-msgstr "Tasto abbassamento  volume"
+msgstr "Tasto abbassamento volume"
 
 msgid "Frame rate"
 msgstr "Frequenza"
@@ -9504,13 +9501,6 @@ msgstr "Priorità I/O per esecuzione degli script"
 
 msgid "I55SE/H7/H9/H9SE/H9COMBO/H9COMBOSE/H10/H11 new Model"
 msgstr ""
-
-#, fuzzy
-msgid "IMDB Search"
-msgstr "ricerca IMDB"
-
-msgid "IMDB search"
-msgstr "ricerca IMDB"
 
 msgid "IMDb Details"
 msgstr "Dettagli IMDb"
@@ -10716,7 +10706,7 @@ msgid "LNB"
 msgstr "LNB"
 
 msgid "LNB/Switch Bootup time [ms]"
-msgstr "Tempo di avvio LNB/Switch  [ms]"
+msgstr "Tempo di avvio LNB/Switch [ms]"
 
 msgid "LOF"
 msgstr "LOF"
@@ -17070,10 +17060,10 @@ msgid "Setup your EPG config"
 msgstr "Imposta la tua configurazione EPG"
 
 msgid "Setup your Harddisk"
-msgstr "Impostazioni  Hard Disk"
+msgstr "Impostazioni Hard Disk"
 
 msgid "Setup your LCD"
-msgstr "Impostazioni  LCD"
+msgstr "Impostazioni LCD"
 
 msgid "Setup your OSD"
 msgstr "Configura la tua interfaccia grafica"
@@ -17626,7 +17616,7 @@ msgid ""
 "this is displayed as additional info."
 msgstr ""
 "Mostra un messaggio se uno script in background è terminato correttamente. "
-"Lo 'stout' dello script viene  mostrato come info aggiuntiva."
+"Lo 'stout' dello script viene mostrato come info aggiuntiva."
 
 msgid "Show message when recording starts"
 msgstr "Mostra notifica su avvio registrazione"
@@ -17854,7 +17844,7 @@ msgid "Show/Hide focus bar"
 msgstr "Mostra/nascondi la barra di selezione"
 
 msgid "Shows Plugins Browser. Here you can setup installed Plugin"
-msgstr "Mostra navigatore Plugin.  Qui puoi impostare i tuoi Plugin"
+msgstr "Mostra navigatore Plugin. Qui puoi impostare i tuoi Plugin"
 
 msgid "Shows available plugins. Here you can download and install them"
 msgstr "Mostra i plugin disponibili. Qui è possibile scaricarli e installarli"
@@ -18464,7 +18454,7 @@ msgid "Start test"
 msgstr "Avviare il test"
 
 msgid "Start time"
-msgstr "Orario di  avvio"
+msgstr "Orario di avvio"
 
 msgid "Start timeshift"
 msgstr "Avviare timeshift"
@@ -18482,7 +18472,7 @@ msgid "StartWizard"
 msgstr "StartWizard"
 
 msgid "Starting Softcam"
-msgstr "Avvio  Softcam"
+msgstr "Avvio Softcam"
 
 msgid "Starting on"
 msgstr "Avviare il"
@@ -19997,7 +19987,7 @@ msgstr "Questa opzione consente di usare tutte le modalità HDMI"
 
 msgid "This option allows you to view the old and new settings side by side."
 msgstr ""
-"Questa opzione consente di visualizzare le configurazioni vecchie e nuove  "
+"Questa opzione consente di visualizzare le configurazioni vecchie e nuove "
 "affiancate."
 
 msgid "This option configures the general audio delay for BT Speakers."
@@ -21108,7 +21098,7 @@ msgid ""
 "delay, especially on big Lists !"
 msgstr ""
 "Intervallo di agg. per i canali in elenco. Lo scorrimento in elenco è più "
-"rapido con un ritardo  maggiore, specialmente su elenchi di grandi dimensioni"
+"rapido con un ritardo maggiore, specialmente su elenchi di grandi dimensioni"
 
 msgid "Update failed!"
 msgstr "Aggiornamento fallito!"
@@ -21242,8 +21232,8 @@ msgstr "Usa HDMI-preemphasis"
 msgid "Use Harddisk Hardware Standby Timer"
 msgstr "Usa Harddisk hardware come standby timer"
 
-msgid "Use Keymap"
-msgstr "Usa keymap"
+msgid "Use Keymap *"
+msgstr "Usa keymap *"
 
 msgid "Use MHW EPG information when it is available."
 msgstr "Usa le info MHW EPG quando disponibili."
@@ -22898,7 +22888,7 @@ msgid ""
 "your settings."
 msgstr ""
 "Hai bisogno di un PC connesso con il tuo %s %s. Se ti servono ulteriori "
-"istruzioni,  visita il sito web https://www.opena.tv.\n"
+"istruzioni, visita il sito web https://www.opena.tv.\n"
 "Il tuo %s %s a breve sarà arrestato. Dopo che avrai seguito le istruzioni di "
 "aggiornamento presenti sul sito, il nuovo firmware ti chiederà di "
 "ripristinare le tue impostazioni."
@@ -23145,7 +23135,7 @@ msgid "Your network configuration has been activated."
 msgstr "Configurazione di rete attivata correttamente."
 
 msgid "Your password must have at least 5 characters."
-msgstr ""
+msgstr "La password deve essere di almeno 5 caratteri."
 
 msgid ""
 "Your receiver can use SCPC optimized search range. Consult your receiver's "
@@ -23266,9 +23256,8 @@ msgstr "Zgemma H.S/H.2S/H.2H/H5/H7"
 msgid "Zgemma H.S/H.2S/H.2H/H5/H7 old Model"
 msgstr "Zgemma H.S/H.2S/H.2H/H5/H7"
 
-#, fuzzy
 msgid "Zgemma H8/H0/H9/I55Plus old Model"
-msgstr "Zgemma H9/I55Plus"
+msgstr "Zgemma H8/H0/H9/I55Plus"
 
 msgid "Zgemma Star S/2S/H1/H2"
 msgstr "Zgemma Star S/2S/H1/H2"
@@ -23732,9 +23721,9 @@ msgstr ""
 msgid "eMMC"
 msgstr "eMMC"
 
-#, fuzzy, python-format
+#, python-format
 msgid "eMMC slot %s"
-msgstr "Slot CI: "
+msgstr "eMMC slot %s"
 
 msgid "eSATA"
 msgstr "eSATA"
@@ -24100,7 +24089,7 @@ msgstr "flash interna:  %s %s "
 
 #, python-format
 msgid "internal flash: %s %s as USB Recovery"
-msgstr "flash interna:  %s %s come ripristino USB"
+msgstr "flash interna: %s %s come ripristino USB"
 
 msgid "internally loopthrough to"
 msgstr "collegato internamente con"
@@ -24327,7 +24316,7 @@ msgid "none"
 msgstr "nessuno"
 
 msgid "normal"
-msgstr ""
+msgstr "normale"
 
 msgid "not"
 msgstr "non"
@@ -25110,7 +25099,17 @@ msgid "zapping"
 msgstr "zapping"
 
 msgid "®"
-msgstr ""
+msgstr "®"
+
+#~ msgid "Capabilities: "
+#~ msgstr "Capacità: "
+
+#, fuzzy
+#~ msgid "IMDB Search"
+#~ msgstr "ricerca IMDB"
+
+#~ msgid "IMDB search"
+#~ msgstr "ricerca IMDB"
 
 #, python-format
 #~ msgid "%s updated package available"

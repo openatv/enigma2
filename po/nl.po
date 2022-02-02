@@ -1093,7 +1093,6 @@ msgstr[0] "%d pakket is geconfigureerd."
 msgstr[1] "%d pakketten zijn geconfigureerd."
 
 #, python-format
-#| msgid "packages selected."
 msgid "%d package was deselected."
 msgid_plural "%d packages were deselected."
 msgstr[0] "%d pakket is gedeselecteerd."
@@ -1118,7 +1117,6 @@ msgstr[0] " %d pakket is geïnstalleerd."
 msgstr[1] "%d pakketten zijn geïnstalleerd."
 
 #, python-format
-#| msgid "packages selected."
 msgid "%d package was removed."
 msgid_plural "%d packages were removed."
 msgstr[0] "%d pakket is verwijderd."
@@ -9510,12 +9508,6 @@ msgstr "I/O-prioriteit voor scriptuitvoering"
 msgid "I55SE/H7/H9/H9SE/H9COMBO/H9COMBOSE/H10/H11 new Model"
 msgstr "I55SE/H7/H9/H9SE/H9COMBO/H9COMBOSE/H10/H11 nieuw Model"
 
-msgid "IMDB Search"
-msgstr "IMDB zoeken"
-
-msgid "IMDB search"
-msgstr "IMDb informatie"
-
 msgid "IMDb Details"
 msgstr "IMDb details"
 
@@ -10022,7 +10014,6 @@ msgstr "Inclusief action map data"
 msgid "Include keyboard data"
 msgstr "Inclusief toetsenbord data"
 
-#| msgid "Include action map data"
 msgid "Include opkg output data"
 msgstr "Inclusief OPKG Output gegevens "
 
@@ -12695,7 +12686,6 @@ msgstr "OK, mij tijdens de software update begeleiden"
 msgid "ONID"
 msgstr "ONID"
 
-#| msgid "OK button mode"
 msgid "OPKG clean mode"
 msgstr "OPKG Clean modus"
 
@@ -14322,7 +14312,6 @@ msgstr "Beveilig Applicatie overzicht"
 msgid "Protect services"
 msgstr "Beveilig zenders"
 
-#| msgid "Online software update"
 msgid "Protect software update screen"
 msgstr "Protect software update scherm"
 
@@ -17400,7 +17389,6 @@ msgstr "Gedetailleerde EPG info weergeven"
 msgid "Show detailed event info (setup in menu)"
 msgstr "Toon gedetailleerde programma info"
 
-#| msgid "Show source packages"
 msgid "Show development packages in opkg"
 msgstr "Toon development pakketten in OPKG"
 
@@ -18067,7 +18055,6 @@ msgstr "Online update instellingen"
 msgid "Software restore"
 msgstr "Software herstellen"
 
-#| msgid "After pressing OK, please wait!"
 msgid ""
 "Software update starting, please wait.\n"
 "\n"
@@ -21126,8 +21113,8 @@ msgstr "Gebruik HDMI-pre-emphasis"
 msgid "Use Harddisk Hardware Standby Timer"
 msgstr "Gebruik harde schijf hardware stand-by timer"
 
-msgid "Use Keymap"
-msgstr "Gebruik keymap"
+msgid "Use Keymap *"
+msgstr "Gebruik keymap *"
 
 msgid "Use MHW EPG information when it is available."
 msgstr ""
@@ -25007,6 +24994,12 @@ msgstr "zappen"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "IMDB Search"
+#~ msgstr "IMDB zoeken"
+
+#~ msgid "IMDB search"
+#~ msgstr "IMDb informatie"
 
 #, python-format
 #~ msgid "%s updated package available"
