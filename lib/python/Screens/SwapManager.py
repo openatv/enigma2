@@ -21,13 +21,12 @@ config.plugins.infopanel.swapautostart = ConfigYesNo(default=False)
 startswap = None
 
 
-def SwapAutostart(reason, session=None, **kwargs):
+def SwapAutostart():
 	global startswap
-	if reason == 0:
-		if config.plugins.infopanel.swapautostart.value:
-			print("[SwapManager] autostart")
-			startswap = StartSwap()
-			startswap.start()
+	if config.plugins.infopanel.swapautostart.value:
+		print("[SwapManager] autostart")
+		startswap = StartSwap()
+		startswap.start()
 
 
 class StartSwap:
@@ -35,7 +34,7 @@ class StartSwap:
 		self.Console = Console()
 
 	def start(self):
-	 	self.Console.ePopen("sfdisk -l /dev/sd? 2>/dev/null | grep swap", self.startSwap2)
+		self.Console.ePopen("sfdisk -l /dev/sd? 2>/dev/null | grep swap", self.startSwap2)
 
 	def startSwap2(self, result=None, retval=None, extra_args=None):
 		if result != None:
@@ -46,7 +45,7 @@ class StartSwap:
 				if line.find('sd') != -1:
 					parts = line.strip().split()
 					swap_place = parts[0]
-					open('/etc/fstab.tmp', 'w').writelines([l for l in file('/etc/fstab').readlines() if swap_place not in l])
+					open('/etc/fstab.tmp', 'w').writelines([l for l in open('/etc/fstab').readlines() if swap_place not in l])
 					rename('/etc/fstab.tmp', '/etc/fstab')
 					print("[SwapManager] Found a swap partition:", swap_place)
 		else:
@@ -95,7 +94,7 @@ class Swap(Screen):
 
 	def __init__(self, session):
 		Screen.__init__(self, session)
-		Screen.setTitle(self, _("Swap Manager"))
+		self.setTitle(_("Swap Manager"))
 		self['lab1'] = Label()
 		self['autostart_on'] = Pixmap()
 		self['autostart_off'] = Pixmap()
@@ -115,7 +114,13 @@ class Swap(Screen):
 		self.swap_place = ''
 		self.new_place = ''
 		self.creatingswap = False
-		self['actions'] = ActionMap(['WizardActions', 'ColorActions', "MenuActions"], {'back': self.close, 'red': self.actDeact, 'green': self.createDel, 'yellow': self.autoSsWap, "menu": self.close})
+		self['actions'] = ActionMap(['WizardActions', 'ColorActions', "MenuActions"], {
+			'back': self.close,
+			'red': self.actDeact,
+			'green': self.createDel,
+			'yellow': self.autoSsWap,
+			"menu": self.close
+		})
 		self.activityTimer = eTimer()
 		self.activityTimer.timeout.get().append(self.getSwapDevice)
 		self.updateSwap()
@@ -209,9 +214,9 @@ class Swap(Screen):
 
 		if self.swapsize > 0:
 			if self.swapsize >= 1024:
-				self.swapsize = int(self.swapsize) / 1024
+				self.swapsize = int(self.swapsize) // 1024
 				if self.swapsize >= 1024:
-					self.swapsize = int(self.swapsize) / 1024
+					self.swapsize = int(self.swapsize) // 1024
 				self.swapsize = str(self.swapsize) + ' ' + 'MB'
 			else:
 				self.swapsize = str(self.swapsize) + ' ' + 'KB'

@@ -383,6 +383,9 @@ def runScreenTest():
 
 	CiHandler.setSession(session)
 
+	from Screens.SwapManager import SwapAutostart
+	SwapAutostart()
+
 	profile("InitWizards")
 	screensToRun = []
 	RestoreSettings = None

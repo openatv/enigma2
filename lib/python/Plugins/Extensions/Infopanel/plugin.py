@@ -105,7 +105,7 @@ from Screens.CronTimer import *
 from Plugins.Extensions.Infopanel.ScriptRunner import *
 from Plugins.Extensions.Infopanel.MountManager import *
 from Plugins.Extensions.Infopanel.SoftcamPanel import *
-from Plugins.Extensions.Infopanel.SwapManager import Swap, SwapAutostart
+#from Plugins.Extensions.Infopanel.SwapManager import Swap, SwapAutostart
 from Screens.SoftwareUpdate import SoftwareUpdate
 from Plugins.SystemPlugins.SoftwareManager.BackupRestore import BackupScreen, RestoreScreen, BackupSelection, getBackupPath, getBackupFilename
 from Plugins.SystemPlugins.SoftwareManager.BackupRestore import InitConfig as BackupRestore_InitConfig
@@ -204,7 +204,7 @@ def Plugins(**kwargs):
 	#// show Infopanel in Main Menu
 	PluginDescriptor(name=_("Info Panel"), description="Info panel GUI 27/12/2013", where=PluginDescriptor.WHERE_MENU, fnc=Apanel),
 	#// SwapAutostart
-	PluginDescriptor(where=[PluginDescriptor.WHERE_SESSIONSTART, PluginDescriptor.WHERE_AUTOSTART], fnc=SwapAutostart),
+	#PluginDescriptor(where=[PluginDescriptor.WHERE_SESSIONSTART, PluginDescriptor.WHERE_AUTOSTART], fnc=SwapAutostart),
 	#// show Infopanel in EXTENSIONS Menu
 	PluginDescriptor(name=_("Info Panel"), description="Info panel GUI 27/12/2013", where=PluginDescriptor.WHERE_EXTENSIONSMENU, fnc=main)]
 
@@ -488,8 +488,8 @@ class Infopanel(Screen, InfoBarPiP, ProtectedScreen):
 			self.session.open(MultiQuickButton)
 		elif menu == "MountManager":
 			self.session.open(HddMount)
-		elif menu == "SwapManager":
-			self.session.open(Swap)
+		#elif menu == "SwapManager":
+		#	self.session.open(Swap)
 		#elif menu == "KeymapSel":
 		#	self.session.open(KeymapSel)
 		elif menu == "Edid":
@@ -509,7 +509,7 @@ class Infopanel(Screen, InfoBarPiP, ProtectedScreen):
 		self.tlist.append(MenuEntryItem((InfoEntryComponent('MountManager'), _("Mount Manager"), 'MountManager')))
 		self.tlist.append(MenuEntryItem((InfoEntryComponent('CronTimer'), _("Cron Manager"), 'CronTimer')))
 		self.tlist.append(MenuEntryItem((InfoEntryComponent('ScriptRunner'), _("Script Manager"), 'ScriptRunner')))
-		self.tlist.append(MenuEntryItem((InfoEntryComponent('SwapManager'), _("Swap Manager"), 'SwapManager')))
+		#self.tlist.append(MenuEntryItem((InfoEntryComponent('SwapManager'), _("Swap Manager"), 'SwapManager')))
 		if isPluginInstalled("MultiQuickButton"):
 			self.tlist.append(MenuEntryItem((InfoEntryComponent('MultiQuickButton'), _("MultiQuickButton"), 'MultiQuickButton')))
 		self["Mlist"].moveToIndex(0)
