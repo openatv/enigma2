@@ -209,12 +209,12 @@ def getCPUInfoString():
 			temperature = fileReadLine("/proc/stb/fp/temp_sensor_avs", source=MODULE_NAME)
 		elif isfile("/proc/stb/power/avs"):
 			temperature = fileReadLine("/proc/stb/power/avs", source=MODULE_NAME)
-		elif isfile("/proc/stb/fp/temp_sensor"):
-			temperature = fileReadLine("/proc/stb/fp/temp_sensor", source=MODULE_NAME)
-		elif isfile("/proc/stb/sensors/temp0/value"):
-			temperature = fileReadLine("/proc/stb/sensors/temp0/value", source=MODULE_NAME)
-		elif isfile("/proc/stb/sensors/temp/value"):
-			temperature = fileReadLine("/proc/stb/sensors/temp/value", source=MODULE_NAME)
+#		elif isfile("/proc/stb/fp/temp_sensor"):
+#			temperature = fileReadLine("/proc/stb/fp/temp_sensor", source=MODULE_NAME)
+#		elif isfile("/proc/stb/sensors/temp0/value"):
+#			temperature = fileReadLine("/proc/stb/sensors/temp0/value", source=MODULE_NAME)
+#		elif isfile("/proc/stb/sensors/temp/value"):
+#			temperature = fileReadLine("/proc/stb/sensors/temp/value", source=MODULE_NAME)
 		elif isfile("/sys/devices/virtual/thermal/thermal_zone0/temp"):
 			temperature = fileReadLine("/sys/devices/virtual/thermal/thermal_zone0/temp", source=MODULE_NAME)
 			if temperature:
@@ -233,8 +233,24 @@ def getCPUInfoString():
 			degree = u"\u00B0"
 			if not isinstance(degree, str):
 				degree = degree.encode("UTF-8", errors="ignore")
-			return "%s %s MHz (%s) %s%sC" % (processor, cpuSpeed, ngettext("%d core", "%d cores", cpuCount) % cpuCount, temperature, degree)
-		return "%s %s MHz (%s)" % (processor, cpuSpeed, ngettext("%d core", "%d cores", cpuCount) % cpuCount)
+
+			return (processor, "%s MHz" % cpuSpeed, ngettext("%d core", "%d cores", cpuCount) % cpuCount, "%s%sC" % (temperature, degree))
+			#return ("%s %s MHz (%s) %s%sC") % (processor, cpuSpeed, ngettext("%d core", "%d cores", cpuCount) % cpuCount, temperature, degree)
+		return (processor, "%s MHz" % cpuSpeed, ngettext("%d core", "%d cores", cpuCount) % cpuCount, "")
+		#return ("%s %s MHz (%s)") % (processor, cpuSpeed, ngettext("%d core", "%d cores", cpuCount) % cpuCount)
+
+
+def getSystemTemperature():
+	temperature = ""
+	if isfile("/proc/stb/sensors/temp0/value"):
+		temperature = fileReadLine("/proc/stb/sensors/temp0/value", source=MODULE_NAME)
+	elif isfile("/proc/stb/sensors/temp/value"):
+		temperature = fileReadLine("/proc/stb/sensors/temp/value", source=MODULE_NAME)
+	elif isfile("/proc/stb/fp/temp_sensor"):
+		temperature = fileReadLine("/proc/stb/fp/temp_sensor", source=MODULE_NAME)
+	if temperature:
+		return "%s%sC" % (temperature, u"\u00B0")
+	return temperature
 
 
 def getChipSetString():
@@ -335,11 +351,10 @@ def getFlashType():
 
 def getDriverInstalledDate():
 
-	def formatDate(value):
+	def extractDate(value):
 		match = search('[0-9]{8}', value)
 		if match:
-			value = match[0]
-			return "%s-%s-%s" % (value[:4], value[4:6], value[6:8])
+			return match[0]
 		else:
 			return value
 
@@ -349,21 +364,21 @@ def getDriverInstalledDate():
 		if lines:
 			for line in lines:
 				if line[0:8] == "Version:":
-					return formatDate(line)
+					return extractDate(line)
 	filenames = glob("/var/lib/opkg/info/*dvb-proxy*.control")
 	if filenames:
 		lines = fileReadLines(filenames[0], source=MODULE_NAME)
 		if lines:
 			for line in lines:
 				if line[0:8] == "Version:":
-					return formatDate(line)
+					return extractDate(line)
 	filenames = glob("/var/lib/opkg/info/*platform-util*.control")
 	if filenames:
 		lines = fileReadLines(filenames[0], source=MODULE_NAME)
 		if lines:
 			for line in lines:
 				if line[0:8] == "Version:":
-					return formatDate(line)
+					return extractDate(line)
 	return _("Unknown")
 
 
