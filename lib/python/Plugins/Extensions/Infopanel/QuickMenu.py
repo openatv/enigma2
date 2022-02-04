@@ -21,11 +21,11 @@ from Screens.Satconfig import NimSelection
 from Screens.ScanSetup import ScanSimple, ScanSetup
 from Screens.Setup import Setup
 from Screens.HarddiskSetup import HarddiskSelection, HarddiskFsckSelection, HarddiskConvertExt4Selection
+from Screens.MountManager import HddMount
 from Screens.SkinSelector import LcdSkinSelector, SkinSelector
 from Screens.VideoMode import VideoSetup
 
 from Screens.RestartNetwork import RestartNetwork
-from Plugins.Extensions.Infopanel.MountManager import HddMount
 from Screens.ShowSoftcamPackages import ShowSoftcamPackages
 from Screens.SoftwareUpdate import SoftwareUpdate
 from Plugins.SystemPlugins.SoftwareManager.Flash_online import FlashOnline
