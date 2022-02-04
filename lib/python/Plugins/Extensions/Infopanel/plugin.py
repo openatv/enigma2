@@ -91,9 +91,9 @@ if BoxInfo.getItem("model") == "dm800":
 else:
 	config.plugins.infopanel_yellowkey.list = ConfigSelection(default='0', choices=choicelist)
 	config.plugins.infopanel_yellowkey.listLong = ConfigSelection(default='0', choices=choicelist)
-config.plugins.showinfopanelextensions = ConfigYesNo(default=False)
-config.plugins.infopanel_frozencheck = ConfigSubsection()
-config.plugins.infopanel_frozencheck.list = ConfigSelection([('0', _("Off")), ('1', _("1 min.")), ('5', _("5 min.")), ('10', _("10 min.")), ('15', _("15 min.")), ('30', _("30 min."))])
+#config.plugins.showinfopanelextensions = ConfigYesNo(default=False)
+#config.plugins.infopanel_frozencheck = ConfigSubsection()
+#config.plugins.infopanel_frozencheck.list = ConfigSelection([('0', _("Off")), ('1', _("1 min.")), ('5', _("5 min.")), ('10', _("10 min.")), ('15', _("15 min.")), ('30', _("30 min."))])
 
 if isPluginInstalled("MultiQuickButton"):
 	try:
@@ -111,10 +111,10 @@ from Plugins.SystemPlugins.SoftwareManager.BackupRestore import BackupScreen, Re
 from Plugins.SystemPlugins.SoftwareManager.BackupRestore import InitConfig as BackupRestore_InitConfig
 
 # Hide Softcam-Panel Setup when no softcams installed
-if not BoxInfo.getItem("SoftCam") and config.plugins.showinfopanelextensions.value:
-	config.plugins.showinfopanelextensions.value = False
-	config.plugins.showinfopanelextensions.save()
-	config.plugins.infopanel_redpanel.save()
+#if not BoxInfo.getItem("SoftCam") and config.plugins.showinfopanelextensions.value:
+#	config.plugins.showinfopanelextensions.value = False
+#	config.plugins.showinfopanelextensions.save()
+#	config.plugins.infopanel_redpanel.save()
 
 # Hide Keymap selection when no other keymaps installed.
 #if config.usage.keymap.value != eEnv.resolve("${datadir}/enigma2/keymap.xml"):
