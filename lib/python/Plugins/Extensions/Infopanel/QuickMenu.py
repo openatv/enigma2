@@ -24,7 +24,7 @@ from Screens.HarddiskSetup import HarddiskSelection, HarddiskFsckSelection, Hard
 from Screens.SkinSelector import LcdSkinSelector, SkinSelector
 from Screens.VideoMode import VideoSetup
 
-from Plugins.Extensions.Infopanel.RestartNetwork import RestartNetwork
+from Screens.RestartNetwork import RestartNetwork
 from Plugins.Extensions.Infopanel.MountManager import HddMount
 from Screens.ShowSoftcamPackages import ShowSoftcamPackages
 from Screens.SoftwareUpdate import SoftwareUpdate

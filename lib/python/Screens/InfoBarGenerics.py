@@ -3406,7 +3406,7 @@ class InfoBarExtensions:
 
 	def openRestartNetwork(self):
 		try:
-			from Plugins.Extensions.Infopanel.RestartNetwork import RestartNetwork
+			from Screens.RestartNetwork import RestartNetwork
 			self.session.open(RestartNetwork)
 		except:
 			print('[INFOBARGENERICS] failed to restart network')
