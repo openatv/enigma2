@@ -188,7 +188,8 @@ self.session.openWithCallback(msgClosed, EpgDeleteMsg)
 				<item weight="5" level="0" text="Initialization" entryID="harddisk_init"><screen module="HarddiskSetup" screen="HarddiskSelection"/></item>
 				<item weight="10" level="0" text="Filesystem Check" entryID="harddisk_check"><screen module="HarddiskSetup" screen="HarddiskFsckSelection"/></item>
 				<item weight="15" level="0" text="Convert ext3 filesystem to ext4" entryID="harddisk_convert" requires="ext4"><screen module="HarddiskSetup" screen="HarddiskConvertExt4Selection"/></item>
-				<item weight="20" level="2" text="Swap Manager" entryID="swap_manager"><screen module="SwapManager" screen="Swap"/></item>
+				<item weight="20" level="0" text="Mount Manager" entryID="mount_manager"><screen module="MountManager" screen="HddMount"/></item>
+				<item weight="30" level="2" text="Swap Manager" entryID="swap_manager"><screen module="SwapManager" screen="Swap"/></item>
 			</menu>
 
 			<!-- Menu / Settings / System / Network -->

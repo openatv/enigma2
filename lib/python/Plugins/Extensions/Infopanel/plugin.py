@@ -103,7 +103,7 @@ if isPluginInstalled("MultiQuickButton"):
 
 from Screens.CronTimer import *
 #from Plugins.Extensions.Infopanel.ScriptRunner import *
-from Plugins.Extensions.Infopanel.MountManager import *
+#from Plugins.Extensions.Infopanel.MountManager import *
 #from Plugins.Extensions.Infopanel.SoftcamPanel import *
 #from Plugins.Extensions.Infopanel.SwapManager import Swap, SwapAutostart
 from Screens.SoftwareUpdate import SoftwareUpdate
@@ -323,7 +323,7 @@ class Infopanel(Screen, InfoBarPiP, ProtectedScreen):
 			self.Mlist.append(MenuEntryItem((InfoEntryComponent('OScamInfo'), _("NcamInfo"), 'OScamInfo')))
 		self.Mlist.append(MenuEntryItem((InfoEntryComponent("SoftwareManager"), _("Software Manager"), ("software-manager"))))
 		#self.Mlist.append(MenuEntryItem((InfoEntryComponent('KeymapSel'), _("Keymap Selection"), 'KeymapSel')))
-		self.Mlist.append(MenuEntryItem((InfoEntryComponent('Plugins'), _("Plugins"), 'Plugins')))
+		#self.Mlist.append(MenuEntryItem((InfoEntryComponent('Plugins'), _("Plugins"), 'Plugins')))
 		self.Mlist.append(MenuEntryItem((InfoEntryComponent('Infos'), _("Information"), 'Infos')))
 		self.onChangedEntry = []
 		if getSkinFactor() == 1:
@@ -486,8 +486,8 @@ class Infopanel(Screen, InfoBarPiP, ProtectedScreen):
 			self.session.open(BackupSelection, title=_("Files/folders to exclude from backup"), configBackupDirs=config.plugins.configurationbackup.backupdirs_exclude, readOnly=False)
 		elif menu == "MultiQuickButton":
 			self.session.open(MultiQuickButton)
-		elif menu == "MountManager":
-			self.session.open(HddMount)
+		#elif menu == "MountManager":
+		#	self.session.open(HddMount)
 		#elif menu == "SwapManager":
 		#	self.session.open(Swap)
 		#elif menu == "KeymapSel":
