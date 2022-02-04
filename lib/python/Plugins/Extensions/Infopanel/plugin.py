@@ -102,7 +102,7 @@ if isPluginInstalled("MultiQuickButton"):
 		pass
 
 from Screens.CronTimer import *
-from Plugins.Extensions.Infopanel.ScriptRunner import *
+#from Plugins.Extensions.Infopanel.ScriptRunner import *
 from Plugins.Extensions.Infopanel.MountManager import *
 from Plugins.Extensions.Infopanel.SoftcamPanel import *
 #from Plugins.Extensions.Infopanel.SwapManager import Swap, SwapAutostart
@@ -459,8 +459,8 @@ class Infopanel(Screen, InfoBarPiP, ProtectedScreen):
 			self.session.open(CronTimers)
 		elif menu == "SoftcamSetup":
 			self.session.open(SoftcamSetup)
-		elif menu == "ScriptRunner":
-			self.session.open(ScriptRunner)
+		#elif menu == "ScriptRunner":
+		#	self.session.open(ScriptRunner)
 		elif menu == "OScamInfo":
 			from Screens.OScamInfo import OscamInfoMenu
 			self.session.open(OscamInfoMenu)
@@ -508,7 +508,7 @@ class Infopanel(Screen, InfoBarPiP, ProtectedScreen):
 		self.oldmlist = self.Mlist
 		self.tlist.append(MenuEntryItem((InfoEntryComponent('MountManager'), _("Mount Manager"), 'MountManager')))
 		self.tlist.append(MenuEntryItem((InfoEntryComponent('CronTimer'), _("Cron Manager"), 'CronTimer')))
-		self.tlist.append(MenuEntryItem((InfoEntryComponent('ScriptRunner'), _("Script Manager"), 'ScriptRunner')))
+		#self.tlist.append(MenuEntryItem((InfoEntryComponent('ScriptRunner'), _("Script Manager"), 'ScriptRunner')))
 		#self.tlist.append(MenuEntryItem((InfoEntryComponent('SwapManager'), _("Swap Manager"), 'SwapManager')))
 		if isPluginInstalled("MultiQuickButton"):
 			self.tlist.append(MenuEntryItem((InfoEntryComponent('MultiQuickButton'), _("MultiQuickButton"), 'MultiQuickButton')))

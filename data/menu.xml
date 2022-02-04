@@ -209,6 +209,7 @@ self.session.openWithCallback(msgClosed, EpgDeleteMsg)
 				<item weight="60" level="2" text="AFP Setup" entryID="netafp_setup"><screen module="NetworkSetup" screen="NetworkAfp"/></item>
 			</menu>
 			<item weight="55" level="0" text="HDMI-CEC Setup" entryID="hdmicec" requires="HDMICEC"><screen module="HDMICEC" screen="HDMICECSetup"/></item>
+			<item weight="56" level="1" entryID="script_manager" text="Script Manager"><screen module="ScriptRunner" screen="ScriptRunner"/></item>
 			<item weight="60" level="0" text="Time" entryID="time_setup"><screen module="Time" screen="Time" /></item>
 			<item weight="70" level="0" entryID="logs_setup"><setup id="logs" /></item>
 			<item weight="80" level="1" entryID="rfmod_setup" requires="RfModulator"><setup id="RFmod"/></item>

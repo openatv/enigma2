@@ -287,8 +287,7 @@ def getButtonSetupFunctions():
 		for x in [x for x in os.listdir("/usr/script") if x.endswith(".sh")]:
 			x = x[:-3]
 			ButtonSetupFunctions.append((_("Shellscript") + " " + x, "Shellscript/" + x, "Shellscripts"))
-	if isPluginInstalled("Infopanel", "ScriptRunner"):
-		ButtonSetupFunctions.append((_("ScriptRunner"), "ScriptRunner/", "Plugins"))
+	ButtonSetupFunctions.append((_("ScriptRunner"), "Module/Screens.ScriptRunner", "ScriptRunner"))
 	if isPluginInstalled("Infopanel", "QuickMenu"):
 		ButtonSetupFunctions.append((_("QuickMenu"), "QuickMenu/", "Plugins"))
 	if isPluginInstalled("Kodi"):
@@ -674,9 +673,8 @@ class InfoBarButtonSetup():
 				except Exception as e:
 					print('[EMCPlayer] showMovies exception:\n' + str(e))
 			elif selected[0] == "ScriptRunner":
-				if isPluginInstalled("Infopanel", "ScriptRunner"):
-					from Plugins.Extensions.Infopanel.ScriptRunner import ScriptRunner
-					self.session.open(ScriptRunner)
+				from Screens.ScriptRunner import ScriptRunner
+				self.session.open(ScriptRunner)
 			elif selected[0] == "QuickMenu":
 				if isPluginInstalled("Infopanel", "QuickMenu"):
 					from Plugins.Extensions.Infopanel.QuickMenu import QuickMenu
