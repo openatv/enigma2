@@ -297,6 +297,8 @@ class QuickMenu(Screen, ProtectedScreen):
 		self.sublist = []
 		if BoxInfo.getItem("SoftCam"): # show only when there is a softcam installed
 			self.sublist.append(QuickSubMenuEntryComponent("Softcam Setup", _("Control your Softcams"), _("Use the Softcam Panel to control your Cam. This let you start/stop/select a cam")))
+			if BoxInfo.getItem("ShowOscamInfo"): # show only when oscam or ncam is active
+				self.sublist.append(QuickSubMenuEntryComponent("OScamInfo", _("Show OScam Info"), _("Show the OScamInfo Screen")))
 		self.sublist.append(QuickSubMenuEntryComponent("Download Softcams", _("Download and install cam"), _("Shows available softcams. Here you can download and install them")))
 		self["sublist"].l.setList(self.sublist)
 

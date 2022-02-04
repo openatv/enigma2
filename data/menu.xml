@@ -167,6 +167,7 @@ self.session.openWithCallback(msgClosed, EpgDeleteMsg)
 		<menu weight="30" level="1" text="Decryption &amp; Parental Control" entryID="cam_setup">
 			<id val="cam" />
 			<item weight="50" level="0" text="Softcam Setup" entryID="softcam_setup" requires="HAVEINITCAM"><screen module="SoftcamSetup" screen="SoftcamSetup"/></item>
+			<item weight="60" level="0" text="OScamInfo" entryID="softcam_setup" requires="ShowOscamInfo"><screen module="OScamInfo" screen="OscamInfoMenu"/></item>
 			<item weight="80" level="1" text="CI Basic settings" entryID="ci_setup" requires="CommonInterface"><screen module="Ci" screen="CISetup" /></item>
 			<item weight="90" level="1" text="CIHelper Setup" entryID="ci_setup" requires="CIHelper"><screen module="Ci" screen="CIHelper" /></item>
 			<item weight="100" level="1" text="Common Interface" entryID="ci_setup" requires="CommonInterface"><screen module="Ci" screen="CiSelection" /></item>

@@ -1,6 +1,6 @@
 from hashlib import md5
-from os import R_OK, access, listdir, walk
-from os.path import exists as fileAccess, isdir, isfile, join as pathjoin
+from os import R_OK, access, listdir, walk, readlink
+from os.path import exists as fileAccess, isdir, isfile, join as pathjoin, islink
 from re import findall
 from subprocess import PIPE, Popen
 
@@ -223,6 +223,24 @@ def Check_Softcam():
 				break
 	return found
 
+
+def Check_SysSoftcam():
+	syscam = ""
+	if isfile('/etc/init.d/softcam'):
+		if (islink('/etc/init.d/softcam') and not readlink('/etc/init.d/softcam').lower().endswith('none')):
+			try:
+				syscam = readlink('/etc/init.d/softcam').rsplit('.', 1)[1]
+				if syscam.lower().startswith('oscam'):
+					syscam = "oscam"
+				if syscam.lower().startswith('ncam'):
+					syscam = "ncam"
+				if syscam.lower().startswith('cccam'):
+					syscam = "cccam"
+			except:
+				pass
+	return syscam
+
+
 model = BoxInfo.getItem("model")
 socfamily = BoxInfo.getItem("socfamily")
 architecture = BoxInfo.getItem("architecture")
@@ -338,6 +356,7 @@ SystemInfo["HasFullHDSkinSupport"] = model not in ("et4000", "et5000", "sh1", "h
 SystemInfo["CanProc"] = SystemInfo["HasMMC"] and getBrandOEM() != "vuplus"
 SystemInfo["canRecovery"] = getMachineBuild() in ("hd51", "vs1500", "h7", "8100s") and ("disk.img", "mmcblk0p1") or getMachineBuild() in ("xc7439", "osmio4k", "osmio4kplus", "osmini4k") and ("emmc.img", "mmcblk1p1") or getMachineBuild() in ("gbmv200", "cc1", "sf8008", "sf8008m", "sf8008opt", "sx988", "ustym4kpro", "ustym4kottpremium", "beyonwizv2", "viper4k") and ("usb_update.bin", "none")
 SystemInfo["SoftCam"] = Check_Softcam()
+SystemInfo["ShowOscamInfo"] = Check_SysSoftcam() in ("oscam", "ncam")
 SystemInfo["SmallFlash"] = BoxInfo.getItem("smallflash")
 SystemInfo["MiddleFlash"] = BoxInfo.getItem("middleflash") and not BoxInfo.getItem("smallflash")
 SystemInfo["HiSilicon"] = socfamily.startswith("hisi") or fileAccess("/proc/hisi") or fileAccess("/usr/bin/hihalt") or fileAccess("/usr/lib/hisilicon")
