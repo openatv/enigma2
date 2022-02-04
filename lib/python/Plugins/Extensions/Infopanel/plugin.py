@@ -104,7 +104,7 @@ if isPluginInstalled("MultiQuickButton"):
 from Screens.CronTimer import *
 #from Plugins.Extensions.Infopanel.ScriptRunner import *
 from Plugins.Extensions.Infopanel.MountManager import *
-from Plugins.Extensions.Infopanel.SoftcamPanel import *
+#from Plugins.Extensions.Infopanel.SoftcamPanel import *
 #from Plugins.Extensions.Infopanel.SwapManager import Swap, SwapAutostart
 from Screens.SoftwareUpdate import SoftwareUpdate
 from Plugins.SystemPlugins.SoftwareManager.BackupRestore import BackupScreen, RestoreScreen, BackupSelection, getBackupPath, getBackupFilename

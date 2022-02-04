@@ -3401,8 +3401,8 @@ class InfoBarExtensions:
 		self.session.open(Setup, "osd3d")
 
 	def openSoftcamPanel(self):
-		from Plugins.Extensions.Infopanel.SoftcamPanel import SoftcamPanel
-		self.session.open(SoftcamPanel)
+		from Screens.ShowSoftcamPackages import ShowSoftcamPackages
+		self.session.open(ShowSoftcamPackages)
 
 	def openRestartNetwork(self):
 		try:
@@ -3851,8 +3851,8 @@ class InfoBarINFOpanel:
 
 	def StartsoftcamPanel(self):
 		try:
-			from Plugins.Extensions.Infopanel.SoftcamPanel import SoftcamPanel
-			self.session.open(SoftcamPanel)
+			from Screens.ShowSoftcamPackages import ShowSoftcamPackages
+			self.session.open(ShowSoftcamPackages)
 		except:
 			pass
 
