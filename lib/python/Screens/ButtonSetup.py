@@ -287,7 +287,7 @@ def getButtonSetupFunctions():
 		for x in [x for x in os.listdir("/usr/script") if x.endswith(".sh")]:
 			x = x[:-3]
 			ButtonSetupFunctions.append((_("Shellscript") + " " + x, "Shellscript/" + x, "Shellscripts"))
-	ButtonSetupFunctions.append((_("ScriptRunner"), "Module/Screens.ScriptRunner", "ScriptRunner"))
+	ButtonSetupFunctions.append((_("ScriptRunner"), "Module/Screens.ScriptRunner/ScriptRunner", "ScriptRunner"))
 	if isPluginInstalled("Infopanel", "QuickMenu"):
 		ButtonSetupFunctions.append((_("QuickMenu"), "QuickMenu/", "Plugins"))
 	if isPluginInstalled("Kodi"):
