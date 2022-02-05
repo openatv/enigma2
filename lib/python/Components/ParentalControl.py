@@ -39,7 +39,7 @@ def InitParentalControl():
 	config.ParentalControl.config_sections.standby_menu = ConfigYesNo(default=False)
 	config.ParentalControl.config_sections.movie_list = ConfigYesNo(default=False)
 	config.ParentalControl.config_sections.context_menus = ConfigYesNo(default=False)
-	config.ParentalControl.config_sections.infopanel = ConfigYesNo(default=False)
+	#config.ParentalControl.config_sections.infopanel = ConfigYesNo(default=False)
 	config.ParentalControl.config_sections.quickmenu = ConfigYesNo(default=False)
 	config.ParentalControl.config_sections.software_update = ConfigYesNo(default=False)
 

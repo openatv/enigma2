@@ -1828,7 +1828,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase, Pr
 		self.session.open(NetworkMountsMenu)
 
 	def showDeviceMounts(self):
-		from Plugins.Extensions.Infopanel.MountManager import HddMount
+		from Screens.MountManager import HddMount
 		self.session.open(HddMount)
 
 	def showActionFeedback(self, text):

@@ -188,7 +188,7 @@ class ConfigPORT(ConfigSequence):
 
 
 def main(session, **kwargs):
-		session.open(Infopanel)
+	session.open(Infopanel)
 
 
 def Apanel(menuid, **kwargs):
@@ -199,14 +199,13 @@ def Apanel(menuid, **kwargs):
 
 
 def Plugins(**kwargs):
-	return [
-
+	return []
 	#// show Infopanel in Main Menu
-	PluginDescriptor(name=_("Info Panel"), description="Info panel GUI 27/12/2013", where=PluginDescriptor.WHERE_MENU, fnc=Apanel),
+	#PluginDescriptor(name=_("Info Panel"), description="Info panel GUI 27/12/2013", where=PluginDescriptor.WHERE_MENU, fnc=Apanel),
 	#// SwapAutostart
 	#PluginDescriptor(where=[PluginDescriptor.WHERE_SESSIONSTART, PluginDescriptor.WHERE_AUTOSTART], fnc=SwapAutostart),
 	#// show Infopanel in EXTENSIONS Menu
-	PluginDescriptor(name=_("Info Panel"), description="Info panel GUI 27/12/2013", where=PluginDescriptor.WHERE_EXTENSIONSMENU, fnc=main)]
+	#PluginDescriptor(name=_("Info Panel"), description="Info panel GUI 27/12/2013", where=PluginDescriptor.WHERE_EXTENSIONSMENU, fnc=main)
 
 
 #############------- SKINS --------############################
@@ -335,7 +334,7 @@ class Infopanel(Screen, InfoBarPiP, ProtectedScreen):
 		self["Mlist"].onSelectionChanged.append(self.selectionChanged)
 
 	def isProtected(self):
-		return config.ParentalControl.setuppinactive.value and not config.ParentalControl.config_sections.main_menu.value and config.ParentalControl.config_sections.infopanel.value
+		return config.ParentalControl.setuppinactive.value and not config.ParentalControl.config_sections.main_menu.value# and config.ParentalControl.config_sections.infopanel.value
 
 	def createSummary(self):
 		pass
