@@ -1064,7 +1064,7 @@ class ReceiverInformation(InformationBase):
 		#	tuner, type = [x.strip() for x in nims[count].split(":", 1)]
 		#	info.append(formatLine("P1", tuner, type))
 		info.append("")
-		info.append(formatLine("H", _("Storage information")))
+		info.append(formatLine("H", _("Drives information")))
 		stat = statvfs("/")
 		diskSize = stat.f_blocks * stat.f_frsize
 		info.append(formatLine("P1", _("Internal flash"), "%s  (%s)" % (scaleNumber(diskSize), scaleNumber(diskSize, "Iec"))))
@@ -1185,11 +1185,11 @@ class ReceiverInformation(InformationBase):
 		return revision
 
 
-class StorageInformation(InformationBase):
+class DrivesInformation(InformationBase):
 	def __init__(self, session):
 		InformationBase.__init__(self, session)
-		self.setTitle(_("Storage Information"))
-		self.skinName.insert(0, "StorageInformation")
+		self.setTitle(_("Drives Information"))
+		self.skinName.insert(0, "DrivesInformation")
 		self["information"].setText(_("Retrieving network server information, please wait..."))
 		self.mountInfo = []
 
@@ -1225,7 +1225,7 @@ class StorageInformation(InformationBase):
 
 	def displayInformation(self):
 		info = []
-		info.append(formatLine("H", _("Detected storage devices")))
+		info.append(formatLine("H", _("Detected drives")))
 		partitions = sorted(harddiskmanager.getMountedPartitions(), key=lambda x: x.device or "")
 		for partition in partitions:
 			if partition.mountpoint == "/":
