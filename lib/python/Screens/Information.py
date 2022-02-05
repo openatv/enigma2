@@ -343,7 +343,7 @@ class CommitLogInformation(InformationBase):
 		self.projects = [
 			("openATV Enigma2", "https://api.github.com/repos/openatv/enigma2/commits%s" % branch),
 			("oe-alliance-plugins", "https://api.github.com/repos/oe-alliance/oe-alliance-plugins/commits"),
-			("enigma2-plugins", "https://api.github.com/repos/oe-alliance/oe-alliance-plugins/commits")
+			("enigma2-plugins", "https://api.github.com/repos/oe-alliance/enigma2-plugins/commits")
 		]
 		self.project = 0
 		self.cachedProjects = {}
@@ -1531,7 +1531,7 @@ class SystemInformationLogs(SystemInformation):
 			for filename in reversed(filenames):
 				self.commands.append((_("Crash log '%s' (%d/%d)") % (basename(filename), logfileCounter, totalNumberOfLogfiles), "/bin/cat %s" % filename, filename))
 				logfileCounter += 1
-		filenames = [x for x in sorted(glob("/home/root/logs/enigma2_debug*.log"), key=lambda x: isfile(x) and getmtime(x))]
+		filenames = [x for x in sorted(glob("/home/root/logs/Enigma2-debug*.log"), key=lambda x: isfile(x) and getmtime(x))]
 		if filenames:
 			totalNumberOfLogfiles = len(filenames)
 			logfileCounter = 1
