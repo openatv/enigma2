@@ -287,7 +287,7 @@ def getButtonSetupFunctions():
 		for x in [x for x in os.listdir("/usr/script") if x.endswith(".sh")]:
 			x = x[:-3]
 			ButtonSetupFunctions.append((_("Shellscript") + " " + x, "Shellscript/" + x, "Shellscripts"))
-	ButtonSetupFunctions.append((_("ScriptRunner"), "Module/Screens.ScriptRunner/ScriptRunner", "ScriptRunner"))
+	ButtonSetupFunctions.append((_("ScriptRunner"), "Module/Screens.ScriptRunner/ScriptRunner", "Plugins"))
 	if isPluginInstalled("Infopanel", "QuickMenu"):
 		ButtonSetupFunctions.append((_("QuickMenu"), "QuickMenu/", "Plugins"))
 	if isPluginInstalled("Kodi"):
@@ -630,10 +630,11 @@ class InfoBarButtonSetup():
 					return 0
 			elif selected[0] == "Module":
 				try:
-					exec("from %s import %s" % (selected[1], selected[2]))
-					exec("self.session.open(%s)" % ",".join(selected[2:]))
+					exec("from %s import %s;self.session.open(%s)" % (selected[1], selected[2], ",".join(selected[2:])))
 				except:
 					print("[ButtonSetup] error during executing module %s, screen %s" % (selected[1], selected[2]))
+					import traceback
+					traceback.print_exc()
 			elif selected[0] == "Setup":
 				from Screens.Setup import Setup
 				exec("self.session.open(Setup, \"%s\")" % selected[1])
