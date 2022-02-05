@@ -41,7 +41,7 @@ import time
 import datetime
 inINFOPanel = None
 
-config.plugins.infopanel_redpanel = ConfigSubsection()
+#config.plugins.infopanel_redpanel = ConfigSubsection()
 
 
 def Check_SysSoftcam():
@@ -61,27 +61,27 @@ def Check_SysSoftcam():
 	return syscam
 
 
-if BoxInfo.getItem("SoftCam"):
-	redSelection = [('0', _("Default (Instant Record)")), ('1', _("Infopanel")), ('2', _("Timer List")), ('3', _("Show Movies")), ('4', _("SoftcamSetup"))]
-else:
-	redSelection = [('0', _("Default (Instant Record)")), ('1', _("Infopanel")), ('2', _("Timer List")), ('3', _("Show Movies"))]
+#if BoxInfo.getItem("SoftCam"):
+#	redSelection = [('0', _("Default (Instant Record)")), ('1', _("Infopanel")), ('2', _("Timer List")), ('3', _("Show Movies")), ('4', _("SoftcamSetup"))]
+#else:
+#	redSelection = [('0', _("Default (Instant Record)")), ('1', _("Infopanel")), ('2', _("Timer List")), ('3', _("Show Movies"))]
 
 
-def timerEvent():
-	pluginlist = plugins.getPlugins(PluginDescriptor.WHERE_PLUGINMENU)
-	for p in pluginlist:
-		redSelection.append((p.name, _(p.name)))
-	if BoxInfo.getItem("model") == "dm800":
-		config.plugins.infopanel_redpanel.selection = ConfigSelection(redSelection, default='0')
-		config.plugins.infopanel_redpanel.selectionLong = ConfigSelection(redSelection, default='1')
-	else:
-		config.plugins.infopanel_redpanel.selection = ConfigSelection(redSelection, default='1')
-		config.plugins.infopanel_redpanel.selectionLong = ConfigSelection(redSelection, default='2')
+#def timerEvent():
+#	pluginlist = plugins.getPlugins(PluginDescriptor.WHERE_PLUGINMENU)
+#	for p in pluginlist:
+#		redSelection.append((p.name, _(p.name)))
+#	if BoxInfo.getItem("model") == "dm800":
+#		config.plugins.infopanel_redpanel.selection = ConfigSelection(redSelection, default='0')
+#		config.plugins.infopanel_redpanel.selectionLong = ConfigSelection(redSelection, default='1')
+#	else:
+#		config.plugins.infopanel_redpanel.selection = ConfigSelection(redSelection, default='1')
+#		config.plugins.infopanel_redpanel.selectionLong = ConfigSelection(redSelection, default='2')
 
 
-timer = eTimer()
-timer.timeout.get().append(timerEvent)
-timer.startLongTimer(1)
+#timer = eTimer()
+#timer.timeout.get().append(timerEvent)
+#timer.startLongTimer(1)
 
 #choicelist = [('0', _("Audio Selection")), ('1', _("Default (Timeshift)")), ('2', _("Toggle Pillarbox <> Pan&Scan")), ('3', _("Teletext"))]
 #config.plugins.infopanel_yellowkey = ConfigSubsection()

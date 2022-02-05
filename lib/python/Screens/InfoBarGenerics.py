@@ -3763,6 +3763,7 @@ class InfoBarPiP:
 			self.showPiP()
 
 
+# FIXME this class can be removed because of no longer used
 class InfoBarINFOpanel:
 	"""INFO-Panel - handles the infoPanel action"""
 
