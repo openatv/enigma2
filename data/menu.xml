@@ -21,12 +21,13 @@
 	<!-- Menu / Information -->
 	<menu weight="5" level="0" text="Information" entryID="info_screen">
 		<id val="information" />
-		<item weight="5" level="0" text="About" entryID="about_screen"><screen module="About" screen="About"/></item>
-		<item weight="7" level="0" text="Devices" entryID="device_screen"><screen module="About" screen="Devices"/></item>
-		<item weight="10" level="0" text="Memory" entryID="device_screen"><screen module="About" screen="SystemMemoryInfo"/></item>
-		<item weight="15" level="0" text="Network" entryID="device_screen"><screen module="About" screen="SystemNetworkInfo"/></item>
-		<item weight="20" level="1" text="Service" entryID="service_info_screen"><screen module="ServiceInfo" screen="ServiceInfo"/></item>
-		<item weight="25" level="2" text="Streaming clients info" entryID="streaming_clients_info_screen"><screen module="StreamingClientsInfo"/></item>
+		<item entryID="about_screen" level="0" text="About" weight="10"><screen module="Information" screen="ImageInformation" /></item>
+		<item entryID="reciver_info_screen" level="0" text="Receiver" weight="15"><screen module="Information" screen="ReceiverInformation" /></item>
+		<item entryID="network_info_screen" level="0" text="Network" weight="40"><screen module="Information" screen="NetworkInformation" /></item>
+		<item entryID="storage_info_screen" level="0" text="Storage" weight="50"><screen module="Information" screen="StorageInformation" /></item>
+		<item entryID="memory_info_screen" level="0" text="Memory" weight="60"><screen module="Information" screen="MemoryInformation" /></item>
+		<item entryID="service_info_screen" level="1" text="Service" weight="70"><screen module="ServiceInfo" screen="ServiceInfo" /></item>
+		<item entryID="streaming_clients_info_screen" level="2" text="Streaming Clients info" weight="70"><screen module="StreamingClientsInfo" /></item>
 	</menu>
 
 	<!-- Menu / Timer -->
