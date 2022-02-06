@@ -3240,15 +3240,13 @@ class InfoBarExtensions:
 
 	def quickmenuStart(self):
 		try:
-			if not self.session.pipshown:
-				from Plugins.Extensions.Infopanel.QuickMenu import QuickMenu
-				self.session.open(QuickMenu)
-			else:
+			if self.session.pipshown:
 				self.showExtensionSelection()
+				return
 		except:
 			print("[INFOBARGENERICS] QuickMenu: error pipshow, starting Quick Menu")
-			from Plugins.Extensions.Infopanel.QuickMenu import QuickMenu
-			self.session.open(QuickMenu)
+		from Screens.QuickMenu import QuickMenu
+		self.session.open(QuickMenu)
 
 	def SelectopenEventView(self):
 		try:
@@ -3879,15 +3877,13 @@ class InfoBarQuickMenu:
 
 	def quickmenuStart(self):
 		try:
-			if not self.session.pipshown:
-				from Plugins.Extensions.Infopanel.QuickMenu import QuickMenu
-				self.session.open(QuickMenu)
-			else:
+			if self.session.pipshown:
 				self.showExtensionSelection()
+				return
 		except:
 			print("[INFOBARGENERICS] QuickMenu: error pipshow, starting Quick Menu")
-			from Plugins.Extensions.Infopanel.QuickMenu import QuickMenu
-			self.session.open(QuickMenu)
+		from Screens.QuickMenu import QuickMenu
+		self.session.open(QuickMenu)
 
 
 class InfoBarInstantRecord:

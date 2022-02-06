@@ -12,7 +12,7 @@ from Components.NimManager import nimmanager
 from Components.SystemInfo import BoxInfo
 
 from Screens.Screen import Screen
-from Screens.SoftcamSetup import *
+from Screens.SoftcamSetup import SoftcamSetup
 from Screens.ParentalControlSetup import ProtectedScreen
 from Screens.NetworkSetup import *
 from Screens.About import About

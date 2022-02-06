@@ -677,9 +677,8 @@ class InfoBarButtonSetup():
 				from Screens.ScriptRunner import ScriptRunner
 				self.session.open(ScriptRunner)
 			elif selected[0] == "QuickMenu":
-				if isPluginInstalled("Infopanel", "QuickMenu"):
-					from Plugins.Extensions.Infopanel.QuickMenu import QuickMenu
-					self.session.open(QuickMenu)
+				from Screens.QuickMenu import QuickMenu
+				self.session.open(QuickMenu)
 			elif selected[0] == "Kodi":
 				if isPluginInstalled("Kodi"):
 					from Plugins.Extensions.Kodi.plugin import KodiMainScreen
