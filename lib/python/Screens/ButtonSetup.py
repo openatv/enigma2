@@ -288,8 +288,7 @@ def getButtonSetupFunctions():
 			x = x[:-3]
 			ButtonSetupFunctions.append((_("Shellscript") + " " + x, "Shellscript/" + x, "Shellscripts"))
 	ButtonSetupFunctions.append((_("ScriptRunner"), "Module/Screens.ScriptRunner/ScriptRunner", "Plugins"))
-	if isPluginInstalled("Infopanel", "QuickMenu"):
-		ButtonSetupFunctions.append((_("QuickMenu"), "QuickMenu/", "Plugins"))
+	ButtonSetupFunctions.append((_("QuickMenu"), "Module/Screens.QuickMenu/QuickMenu", "Plugins"))
 	if isPluginInstalled("Kodi"):
 		ButtonSetupFunctions.append((_("Kodi MediaCenter"), "Kodi/", "Plugins"))
 	if isPluginInstalled("BluetoothSetup"):
