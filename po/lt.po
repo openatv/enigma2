@@ -1055,9 +1055,9 @@ msgstr[2] "%d dienų"
 #, python-format
 msgid "%d feed catalog package was updated."
 msgid_plural "%d feed catalog packages were updated."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "%d informacijos santraukos katalogo paketas buvo atnaujintas."
+msgstr[1] "%d informacijos santraukos katalogo paketai buvo atnaujinti."
+msgstr[2] "%d informacijos santraukos katalogo paketų buvo atnaujinta."
 
 #, python-format
 msgid "%d hour"
@@ -1092,58 +1092,58 @@ msgstr "%d msek."
 #, python-format
 msgid "%d package upgraded."
 msgid_plural "%d packages upgraded."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "%d paketas atnaujintas."
+msgstr[1] "%d paketai atnaujinti."
+msgstr[2] "%d paketų atnaujinta."
 
 #, python-format
 msgid "%d package was configured."
 msgid_plural "%d packages were configured."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "%d paketas sukonfigūruotas."
+msgstr[1] "%d paketai sukonfigūruoti."
+msgstr[2] "%d paketų sukonfigūruota."
 
 #, python-format
 msgid "%d package was deselected."
 msgid_plural "%d packages were deselected."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "%d paketo pasirinkimas buvo panaikintas."
+msgstr[1] "%d paketų pasirinkimas buvo panaikintas."
+msgstr[2] "%d paketų pasirinkimas buvo panaikintas."
 
 #, python-format
 msgid "%d package was downloaded."
 msgid_plural "%d packages were downloaded."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "%d paketas buvo atsisiųstas."
+msgstr[1] "%d paketai buvo atsisiųsti."
+msgstr[2] "%d paketų buvo atsisiųsta."
 
 #, python-format
 msgid "%d package was identified for upgrade."
 msgid_plural "%d packages were identified for upgrade."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "%d paketas buvo nustatytas atnaujinti."
+msgstr[1] "%d paketai buvo nustatyti atnaujinti."
+msgstr[2] "%d paketų buvo nustatyti atnaujinti."
 
 #, python-format
 msgid "%d package was installed."
 msgid_plural "%d packages were installed."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Atnaujinta, įdiegtas %d paketas."
+msgstr[1] "Atnaujinimas baigtas, buvo įdiegti %d paketai."
+msgstr[2] "Atnaujinimas baigtas, buvo įdiegta %d paketų."
 
 #, python-format
 msgid "%d package was removed."
 msgid_plural "%d packages were removed."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "%d paketas buvo pašalintas."
+msgstr[1] "%d paketai buvo pašalinti."
+msgstr[2] "%d paketų buvo pašalinta."
 
 #, python-format
 msgid "%d package was upgraded."
 msgid_plural "%d packages were upgraded."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "%d paketas buvo atnaujintas."
+msgstr[1] "%d paketai buvo atnaujinti."
+msgstr[2] "%d paketų buvo atnaujinta."
 
 #, python-format
 msgid "%d pixel wide"
@@ -2423,7 +2423,7 @@ msgid "Add AutoTimer"
 msgstr "Pridėti auto laikmatį"
 
 msgid "Add Current"
-msgstr "įtraukti šį"
+msgstr "Įtraukti dabartinį"
 
 msgid "Add New Quad Channel Entry"
 msgstr "Pridėti naują Quad kanalo įrašą"
@@ -2432,7 +2432,7 @@ msgid "Add Record Timer"
 msgstr "Pridėti įrašymo laikmatį"
 
 msgid "Add Service"
-msgstr "pridėti kanalą"
+msgstr "Pridėti paslaugą"
 
 msgid "Add Timer"
 msgstr "Pridėti laikmatį"
@@ -4143,7 +4143,7 @@ msgid "Cancel"
 msgstr "Atšaukti"
 
 msgid "Cancel / Close the software update screen"
-msgstr ""
+msgstr "Atšaukti / uždaryti programinės įrangos naujinimo ekraną"
 
 msgid "Cancel any changed settings and exit"
 msgstr "Atšaukti visus pakeistus parametrus ir išeiti"
@@ -4207,7 +4207,7 @@ msgid "Cannot move to trash can"
 msgstr "Perkelti į šiukšlinę negalima"
 
 msgid "Capabilities"
-msgstr "Galimybės: "
+msgstr "Įgaliojimai"
 
 msgid "Capacity: "
 msgstr "Talpa: "
@@ -4264,7 +4264,7 @@ msgid "Chamorro"
 msgstr "Chamorro"
 
 msgid "Change"
-msgstr "keisti"
+msgstr "Keisti"
 
 msgid "Change Boxmode to control Hardware Chip Modes*"
 msgstr ""
@@ -4909,9 +4909,7 @@ msgstr "Konfigūruojama"
 msgid ""
 "Configuration file '%s' has been modified since it was installed, would you "
 "like to keep the modified version?"
-msgstr ""
-"Konfigūracijos failas (%s) įdiegimo metu buvo pakeistas.\n"
-"Ar norite išsaugoti savą (senąją) versiją?"
+msgstr "Konfigūracijos failas \"%s\" buvo modifikuotas nuo jo įdiegimo, ar norite išsaugoti modifikuotą versiją?"
 
 msgid "Configuration mode"
 msgstr "Konfigūracijos režimas"
@@ -5832,7 +5830,7 @@ msgid "Current value: "
 msgstr "Dabartinė reikšmė: "
 
 msgid "Current version unknown"
-msgstr ""
+msgstr "Dabartinė versija nežinoma"
 
 msgid "Current version:"
 msgstr "Dabartinė versija:"
@@ -6510,7 +6508,7 @@ msgid ""
 "Deselected packages usually occur because those packaged are incompatible "
 "with existing packages.  While this is mostly harmless it is possible that "
 "your %s %s may experience issues."
-msgstr ""
+msgstr "Panaikintos pakuotės paprastai atsiranda dėl to, kad supakuotos yra nesuderinamos su esamomis pakuotėmis.  Nors tai dažniausiai nekenksminga, gali būti, kad jūsų %s %s gali susidurti su problemomis."
 
 msgid "Details for plugin: "
 msgstr "Išsamiau apie priedą: "
@@ -7544,7 +7542,7 @@ msgstr ""
 "klaviatūros klavišų plano duomenis."
 
 msgid "Enable this option to add opkg output data to the debug log file."
-msgstr ""
+msgstr "Įgalinti šią parinktį įtraukti opkg išvesties duomenis į derinimo žurnalo failą."
 
 msgid "Enable this option to add remote control data to the debug log file."
 msgstr ""
@@ -9887,7 +9885,7 @@ msgid "Include keyboard data"
 msgstr "Įtraukti klaviatūros duomenis"
 
 msgid "Include opkg output data"
-msgstr ""
+msgstr "Įtraukti opkg išvesties duomenis"
 
 msgid "Include remote control data"
 msgstr "Įtraukti nuotolinio valdymo duomenis"
@@ -10098,7 +10096,7 @@ msgid "Install plugins"
 msgstr "Įdiegti priedus"
 
 msgid "Install/Remove plugin"
-msgstr ""
+msgstr "Įdiegti/pašalinti priedą"
 
 msgid "Installation finished."
 msgstr "Įdiegimas baigtas."
@@ -11514,7 +11512,7 @@ msgid "Move down a page"
 msgstr "Perkelti žemyn puslapį"
 
 msgid "Move down a page / screen"
-msgstr ""
+msgstr "Perkelti žemyn puslapį / ekraną"
 
 msgid "Move down a screen"
 msgstr "Pereiti vienu ekranu žemyn"
@@ -11617,7 +11615,7 @@ msgid "Move up a page"
 msgstr "Perkelti aukštyn puslapį"
 
 msgid "Move up a page / screen"
-msgstr ""
+msgstr "Perkelti puslapį / ekraną"
 
 msgid "Move up a screen"
 msgstr "Pereiti vienu ekranu aukštyn"
@@ -12282,10 +12280,10 @@ msgid "No update required!"
 msgstr "Atnaujinimas nebūtinas!"
 
 msgid "No updates available."
-msgstr ""
+msgstr "Atnaujinimų nėra"
 
 msgid "No updates were available.  Please try again later."
-msgstr ""
+msgstr "Atnaujinimų nėra.  Bandykite patikrinti vėliau."
 
 msgid "No valid region details were found"
 msgstr "Nerasta tinkamos informacijos apie regioną"
@@ -12549,7 +12547,7 @@ msgid "ONID"
 msgstr "ONID"
 
 msgid "OPKG clean mode"
-msgstr ""
+msgstr "OPKG valymo režimas"
 
 msgid "OSD"
 msgstr "OSD"
@@ -12686,7 +12684,7 @@ msgid "Open EPGSearch"
 msgstr "Atverti EPG paiešką"
 
 msgid "Open IMDb"
-msgstr "Atverti IMDB"
+msgstr "Atverti IMDb"
 
 msgid "Open MediaPortal"
 msgstr "Atverti medijos portalą"
@@ -13921,7 +13919,7 @@ msgid "Press OK to activate the settings."
 msgstr "Nustatymams aktyvuoti, spauskite 'OK'."
 
 msgid "Press OK to continue."
-msgstr ""
+msgstr "Spauskite OK, kad tęsti."
 
 msgid "Press OK to edit the settings."
 msgstr "Paspauskite OK ir redaguokite nustatymus."
@@ -13979,7 +13977,7 @@ msgid "Press OK to use this locale.  [%s]"
 msgstr "Paspauskite OK, kad naudotumėte šią lokalę.  [%s]"
 
 msgid "Press the menu button to set a general AC3/Dolby offset."
-msgstr "kad nustatyti bendrą visiems AC3/Dolby kompensaciją, paspauskite menu"
+msgstr "Paspauskite meniu mygtuką, kad nustatytumėte bendrą AC3/Dolby poslinkio galimybę."
 
 msgid ""
 "Press this button to emulate a long press on a button pressed afterwards "
@@ -14172,7 +14170,7 @@ msgid "Protect services"
 msgstr "Apsaugoti kanalus"
 
 msgid "Protect software update screen"
-msgstr ""
+msgstr "Apsaugoti programinės įrangos naujinimo ekraną"
 
 msgid "Protect standby menu"
 msgstr "Apsaugoti išjungimo meniu"
@@ -14603,7 +14601,7 @@ msgstr ""
 "Tai gali užtrukti kelias minutes"
 
 msgid "Refresh"
-msgstr ""
+msgstr "Atnaujinti"
 
 msgid "Refresh every (in hours)"
 msgstr "Atnaujinama kas (valandomis)"
@@ -14621,7 +14619,7 @@ msgid "Refresh screen"
 msgstr "Atnaujinti vaizdą ekrane"
 
 msgid "Refresh the update-able package list"
-msgstr ""
+msgstr "Atnaujinti naujinimo paketų sąrašą"
 
 msgid "Regard deep standby as standby"
 msgstr "Gilų budėjimą laikyti kaip įprastinį"
@@ -14716,7 +14714,7 @@ msgid "Remove Confirmation"
 msgstr "Pašalinimo patvirtinimas"
 
 msgid "Remove Failed !!"
-msgstr ""
+msgstr "Pašalinti nepavyko !!"
 
 msgid "Remove Finished."
 msgstr "Pašalinimas baigtas."
@@ -15806,7 +15804,7 @@ msgid "Select channel to record from"
 msgstr "Išsirinkite kanalą įrašymui"
 
 msgid "Select channels to add an offset to the volume."
-msgstr "pasirinkite kanalus garsumo kompensacijai"
+msgstr "Pasirinkite kanalus garsumo kompensacijai"
 
 msgid "Select copy destination for:"
 msgstr "Pasirinkite kopijos vietą:"
@@ -17225,7 +17223,7 @@ msgid "Show detailed event info (setup in menu)"
 msgstr "Rodyti išsamią informaciją apie įvykį (nustatymas meniu)"
 
 msgid "Show development packages in opkg"
-msgstr ""
+msgstr "Rodyti kūrimo paketus opkg"
 
 msgid "Show directories first"
 msgstr "Pirmiausia parodyti katalogus"
@@ -17885,7 +17883,7 @@ msgstr "Programinės įrangos atkūrimas"
 msgid ""
 "Software update starting, please wait.\n"
 "\n"
-msgstr ""
+msgstr "Programinės įrangos atnaujinimas prasideda, palaukite.\n\n"
 
 msgid "Softwaremanager information"
 msgstr "Programinės įrangos informacija"
@@ -18269,7 +18267,7 @@ msgid "Stop testing plane after # successful transponders"
 msgstr "Stabdyti testą po # teisingų transponderių"
 
 msgid "Stop the update, if running, then exit"
-msgstr ""
+msgstr "Sustabdykite naujinimą, jei naudojate, tada išeikite"
 
 msgid "Stop timer recording"
 msgstr "Stabdyti įrašymą pagal laikmatį"
@@ -18675,7 +18673,7 @@ msgstr "TEKSTAS"
 
 #. TRANSLATORS: Add here whatever should be shown in the "translator" about screen, up to 6 lines (use \n for newline)
 msgid "TRANSLATOR_INFO"
-msgstr "2022-01-09 adga45@gmail.com"
+msgstr "2022-02-04 adga45@gmail.com"
 
 msgid "TS file is too large for ISO9660 level 1!"
 msgstr "TS failas yra per didelis ISO9660 lygmeniui 1!"
@@ -19416,9 +19414,7 @@ msgstr "Ši eilutė yra neredaguojama!"
 
 msgid ""
 "This offset will only be used if the channel has not its own volume offset."
-msgstr ""
-"ši kompensacija bus naudojama tik tada, jei kanalas neturi savos "
-"kompensacijos"
+msgstr "Ši kompensacija bus naudojama tik tuo atveju, jei kanalas neturi savo tūrio kompensavimo."
 
 msgid ""
 "This option allows to reduce the block-noise in the picture. Obviously this "
@@ -20750,7 +20746,7 @@ msgid "Update at your own risk"
 msgstr "Atnaujinti savo pačių rizika"
 
 msgid "Update completed."
-msgstr ""
+msgstr "Naujinimas baigtas."
 
 msgid "Update delay for Events in List"
 msgstr "Atnaujinti atidėti įvykiai sąraše"
@@ -20790,10 +20786,10 @@ msgid "Update/Backup/Restore your box"
 msgstr "Atnaujinti imtuvą/sukurti/atkurti atsarginę kopiją"
 
 msgid "Updated"
-msgstr ""
+msgstr "Atnaujinta"
 
 msgid "Updated version unknown"
-msgstr ""
+msgstr "Atnaujinta versija nežinoma"
 
 msgid "Updatefeed not available."
 msgstr "Atnaujinimo šaltinis nepasiekiamas."
@@ -21898,7 +21894,7 @@ msgstr ""
 msgid ""
 "When enabled, before opkg update there will be opkg clean to make sure "
 "nothing ruine the update but only enable this when you can not update online."
-msgstr ""
+msgstr "Kai įjungta, prieš opkg atnaujinimą bus opkg švarus, kad įsitikintumėte, jog niekas nesugadina naujinimo, bet tik įjunkite tai, kai negalite atnaujinti internete."
 
 msgid "When enabled, channel numbering will start at '1' for each bouquet."
 msgstr ""
@@ -22047,7 +22043,7 @@ msgstr "Kai čia įjungta, IP adresą priskirs tinklo DHCP serveris."
 msgid ""
 "When enabled, you will see dev, staticdev, dbg, doc, src and po packages in "
 "opkg list."
-msgstr ""
+msgstr "Kai įjungtas, pamatysite dev, staticdev, dbg, doc, src ir po paketus opkg sąraše."
 
 msgid ""
 "When enabled, your receiver will detect activity on the VCR SCART input."
@@ -22802,7 +22798,7 @@ msgstr ""
 msgid ""
 "Your receiver might be unusable now.  Please consult the manual for further "
 "assistance before rebooting your %s %s."
-msgstr ""
+msgstr "Jūsų imtuvas gali būti nenaudojamas dabar.  Prieš perkraudami %s %s, pasikonsultuokite su vadovu dėl tolesnės pagalbos."
 
 msgid ""
 "Your wireless LAN internet connection could not be started!\n"
