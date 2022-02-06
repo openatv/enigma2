@@ -1374,7 +1374,7 @@ class SystemInformation(InformationBase):
 		if answer:
 			filenames = [x for x in sorted(glob("/mnt/hdd/*.log"), key=lambda x: isfile(x) and getmtime(x))]
 			filenames += [x for x in sorted(glob("/home/root/logs/enigma2_crash*.log"), key=lambda x: isfile(x) and getmtime(x))]
-			filenames += [x for x in sorted(glob("/home/root/logs/enigma2_debug*.log"), key=lambda x: isfile(x) and getmtime(x))]
+			filenames += [x for x in sorted(glob("/home/root/logs/Enigma2-debug*.log"), key=lambda x: isfile(x) and getmtime(x))]
 			log = []
 			type = MessageBox.TYPE_INFO
 			close = True
