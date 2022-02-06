@@ -1,94 +1,60 @@
-from __future__ import print_function, division
 
-from enigma import eListboxPythonMultiContent, gFont, eEnv, pNavigation, BT_SCALE
+
+from re import search
+from os.path import exists, realpath, isdir
+from skin import getSkinFactor
+from time import sleep
+
 from boxbranding import getMachineBrand, getMachineName, getBrandOEM
+from enigma import eListboxPythonMultiContent, gFont, eEnv, pNavigation, BT_SCALE
+
 from Components.ActionMap import ActionMap
 from Components.Label import Label
-from Components.Sources.StaticText import StaticText
 from Components.MenuList import MenuList
 from Components.MultiContent import MultiContentEntryText, MultiContentEntryPixmapAlphaBlend
 from Components.Network import iNetwork
 from Components.NimManager import nimmanager
+from Components.Sources.StaticText import StaticText
 from Components.SystemInfo import BoxInfo
 
-from Screens.Screen import Screen
-from Screens.SoftcamSetup import SoftcamSetup
-from Screens.ParentalControlSetup import ProtectedScreen
-from Screens.NetworkSetup import *
-from Screens.About import About
-from Screens.PluginBrowser import PluginDownloadBrowser, PluginFilter, PluginBrowser
-from Screens.Satconfig import NimSelection
-from Screens.ScanSetup import ScanSimple, ScanSetup
-from Screens.Setup import Setup
+import NavigationInstance
+
+from Plugins.SystemPlugins.SoftwareManager.BackupRestore import BackupScreen, RestoreScreen, BackupSelection, getBackupPath, getOldBackupPath, getBackupFilename
+from Plugins.SystemPlugins.SoftwareManager.plugin import SoftwareManagerSetup, Load_defaults
+
 from Screens.HarddiskSetup import HarddiskSelection, HarddiskFsckSelection, HarddiskConvertExt4Selection
 from Screens.MountManager import HddMount
-from Screens.SkinSelector import LcdSkinSelector, SkinSelector
-from Screens.VideoMode import VideoSetup
+from Screens.NetworkSetup import *
 from Screens.OScamInfo import OscamInfoMenu
-
+from Screens.ParentalControlSetup import ProtectedScreen
+from Screens.PluginBrowser import PluginDownloadBrowser, PluginFilter, PluginBrowser
 from Screens.RestartNetwork import RestartNetwork
+from Screens.Satconfig import NimSelection
+from Screens.ScanSetup import ScanSimple, ScanSetup
+from Screens.Screen import Screen
 from Screens.ShowSoftcamPackages import ShowSoftcamPackages
-from Screens.SoftwareUpdate import SoftwareUpdate
-from Plugins.SystemPlugins.SoftwareManager.Flash_online import FlashOnline
-from Plugins.SystemPlugins.SoftwareManager.ImageBackup import ImageBackup
-from Plugins.SystemPlugins.SoftwareManager.plugin import SoftwareManagerSetup, Load_defaults
-from Plugins.SystemPlugins.SoftwareManager.BackupRestore import BackupScreen, RestoreScreen, BackupSelection, getBackupPath, getOldBackupPath, getBackupFilename
+from Screens.Setup import Setup
+from Screens.SkinSelector import LcdSkinSelector, SkinSelector
+from Screens.SoftcamSetup import SoftcamSetup
+from Screens.VideoMode import VideoSetup
 
 from Tools.LoadPixmap import LoadPixmap
 from Tools.Directories import isPluginInstalled
 
-from os import path
-from time import sleep
-from re import search
-from skin import getSkinFactor
 
-import NavigationInstance
+NETWORKBROWSER = isPluginInstalled("NetworkBrowser")
 
-if isPluginInstalled("NetworkBrowser"):
-	from Plugins.SystemPlugins.NetworkBrowser.MountManager import AutoMountManager
-	from Plugins.SystemPlugins.NetworkBrowser.NetworkBrowser import NetworkBrowser
-	plugin_path_networkbrowser = eEnv.resolve("${libdir}/enigma2/python/Plugins/SystemPlugins/NetworkBrowser")
-	NETWORKBROWSER = True
-else:
-	NETWORKBROWSER = False
+AUDIOSYNC = isPluginInstalled("AudioSync")
 
-if isPluginInstalled("AudioSync"):
-	from Plugins.Extensions.AudioSync.AC3setup import AC3LipSyncSetup
-	plugin_path_audiosync = eEnv.resolve("${libdir}/enigma2/python/Plugins/Extensions/AudioSync")
-	AUDIOSYNC = True
-else:
-	AUDIOSYNC = False
+VIDEOENH = isPluginInstalled("VideoEnhancement") and exists("/proc/stb/vmpeg/0/pep_apply")
 
-if isPluginInstalled("VideoEnhancement"):
-	from Plugins.SystemPlugins.VideoEnhancement.plugin import VideoEnhancementSetup
-	VIDEOENH = True
-else:
-	VIDEOENH = False
+DFLASH = isPluginInstalled("dFlash")
 
-if isPluginInstalled("dFlash"):
-	from Plugins.Extensions.dFlash.plugin import dFlash
-	DFLASH = True
-else:
-	DFLASH = False
+DBACKUP = isPluginInstalled("dBackup")
 
-if isPluginInstalled("dBackup"):
-	from Plugins.Extensions.dBackup.plugin import dBackup
-	DBACKUP = True
-else:
-	DBACKUP = False
+POSSETUP = isPluginInstalled("PositionerSetup")
 
-if isPluginInstalled("PositionerSetup"):
-	from Plugins.SystemPlugins.PositionerSetup.plugin import PositionerSetup, RotorNimSelection
-	POSSETUP = True
-else:
-	POSSETUP = False
-
-if isPluginInstalled("Satfinder"):
-	from Plugins.SystemPlugins.Satfinder.plugin import Satfinder
-	SATFINDER = True
-else:
-	SATFINDER = False
-
+SATFINDER = isPluginInstalled("Satfinder")
 
 def isFileSystemSupported(filesystem):
 	try:
@@ -97,7 +63,7 @@ def isFileSystemSupported(filesystem):
 				return True
 		return False
 	except Exception as ex:
-		print("[Harddisk] Failed to read /proc/filesystems:", ex)
+		print("[Harddisk] Failed to read /proc/filesystems: %s" % str(ex))
 
 
 class QuickMenu(Screen, ProtectedScreen):
@@ -142,10 +108,9 @@ class QuickMenu(Screen, ProtectedScreen):
 		self["list"].onSelectionChanged.append(self.selectionChanged)
 		self["sublist"].onSelectionChanged.append(self.selectionSubChanged)
 
-		self["actions"] = ActionMap(["SetupActions", "WizardActions", "MenuActions", "MoviePlayerActions"],
+		self["NavigationActions"] = ActionMap(["OkCancelActions", "NavigationActions"],
 		{
 			"ok": self.ok,
-			"back": self.keyred,
 			"cancel": self.keyred,
 			"left": self.goLeft,
 			"right": self.goRight,
@@ -217,7 +182,8 @@ class QuickMenu(Screen, ProtectedScreen):
 		self.close()
 
 	def keygreen(self):
-		self.session.open(About)
+		from Screens.Information import ImageInformation
+		self.session.open(ImageInformation)
 
 	def keyyellow(self):
 		self.session.open(QuickMenuDevices)
@@ -287,7 +253,7 @@ class QuickMenu(Screen, ProtectedScreen):
 ######## Mount Settings Menu ##############################
 	def Qmount(self):
 		self.sublist = []
-		if NETWORKBROWSER == True:
+		if NETWORKBROWSER:
 			self.sublist.append(QuickSubMenuEntryComponent("Mount Manager", _("Manage network mounts"), _("Setup your network mounts")))
 			self.sublist.append(QuickSubMenuEntryComponent("Network Browser", _("Search for network shares"), _("Search for network shares")))
 		self.sublist.append(QuickSubMenuEntryComponent("Device Manager", _("Mounts Devices"), _("Setup your Device mounts (USB, HDD, others...)")))
@@ -308,10 +274,10 @@ class QuickMenu(Screen, ProtectedScreen):
 		self.sublist = []
 		self.sublist.append(QuickSubMenuEntryComponent("Video Settings", _("Setup Videomode"), _("Setup your Video Mode, Video Output and other Video Settings")))
 		self.sublist.append(QuickSubMenuEntryComponent("Audio Settings", _("Setup Audiomode"), _("Setup your Audio Mode")))
-		if AUDIOSYNC == True:
+		if AUDIOSYNC:
 			self.sublist.append(QuickSubMenuEntryComponent("Audio Sync", _("Setup Audio Sync"), _("Setup Audio Sync settings")))
 		self.sublist.append(QuickSubMenuEntryComponent("Auto Language", _("Auto Language Selection"), _("Select your Language for Audio/Subtitles")))
-		if os_path.exists("/proc/stb/vmpeg/0/pep_apply") and VIDEOENH == True:
+		if VIDEOENH:
 			self.sublist.append(QuickSubMenuEntryComponent("VideoEnhancement", _("VideoEnhancement Setup"), _("VideoEnhancement Setup")))
 
 		self["sublist"].l.setList(self.sublist)
@@ -320,11 +286,11 @@ class QuickMenu(Screen, ProtectedScreen):
 	def Qtuner(self):
 		self.sublist = []
 		self.sublist.append(QuickSubMenuEntryComponent("Tuner Configuration", _("Setup tuner(s)"), _("Setup each tuner for your satellite system")))
-		if POSSETUP == True:
+		if POSSETUP:
 			self.sublist.append(QuickSubMenuEntryComponent("Positioner Setup", _("Setup rotor"), _("Setup your positioner for your satellite system")))
 		self.sublist.append(QuickSubMenuEntryComponent("Automatic Scan", _("Automatic Service Searching"), _("Automatic scan for services")))
 		self.sublist.append(QuickSubMenuEntryComponent("Manual Scan", _("Manual Service Searching"), _("Manual scan for services")))
-		if SATFINDER == True:
+		if SATFINDER:
 			self.sublist.append(QuickSubMenuEntryComponent("Sat Finder", _("Search Sats"), _("Search Sats, check signal and lock")))
 		self["sublist"].l.setList(self.sublist)
 
@@ -474,8 +440,12 @@ class QuickMenu(Screen, ProtectedScreen):
 			self.openSetup("epgsettings")
 ######## Select Mounts Menu ##############################
 		elif item[0] == _("Mount Manager"):
+			from Plugins.SystemPlugins.NetworkBrowser.MountManager import AutoMountManager
+			plugin_path_networkbrowser = eEnv.resolve("${libdir}/enigma2/python/Plugins/SystemPlugins/NetworkBrowser")
 			self.session.open(AutoMountManager, None, plugin_path_networkbrowser)
 		elif item[0] == _("Network Browser"):
+			from Plugins.SystemPlugins.NetworkBrowser.NetworkBrowser import NetworkBrowser
+			plugin_path_networkbrowser = eEnv.resolve("${libdir}/enigma2/python/Plugins/SystemPlugins/NetworkBrowser")
 			self.session.open(NetworkBrowser, None, plugin_path_networkbrowser)
 		elif item[0] == _("Device Manager"):
 			self.session.open(HddMount)
@@ -494,8 +464,11 @@ class QuickMenu(Screen, ProtectedScreen):
 		elif item[0] == _("Auto Language"):
 			self.openSetup("autolanguagesetup")
 		elif item[0] == _("Audio Sync"):
+			from Plugins.Extensions.AudioSync.AC3setup import AC3LipSyncSetup
+			plugin_path_audiosync = eEnv.resolve("${libdir}/enigma2/python/Plugins/Extensions/AudioSync")
 			self.session.open(AC3LipSyncSetup, plugin_path_audiosync)
 		elif item[0] == _("VideoEnhancement"):
+			from Plugins.SystemPlugins.VideoEnhancement.plugin import VideoEnhancementSetup
 			self.session.open(VideoEnhancementSetup)
 ######## Select TUNER Setup Menu ##############################
 		elif item[0] == _("Tuner Configuration"):
@@ -510,25 +483,22 @@ class QuickMenu(Screen, ProtectedScreen):
 			self.SatfinderMain()
 ######## Select Software Manager Menu ##############################
 		elif item[0] == _("Software Update"):
+			from Screens.SoftwareUpdate import SoftwareUpdate
 			self.session.open(SoftwareUpdate)
 		elif item[0] == _("Flash Online"):
+			from Plugins.SystemPlugins.SoftwareManager.Flash_online import FlashOnline
 			self.session.open(FlashOnline)
 		elif item[0] == _("Complete Backup"):
-			if DFLASH == True:
-				self.session.open(dFlash)
-			elif DBACKUP == True:
-				self.session.open(dBackup)
-			else:
-				self.session.open(ImageBackup)
+			self.CompleteBackup()
 		elif item[0] == _("Backup Settings"):
 			self.session.openWithCallback(self.backupDone, BackupScreen, runBackup=True)
 		elif item[0] == _("Restore Settings"):
 			self.backuppath = getBackupPath()
-			if not path.isdir(self.backuppath):
+			if not isdir(self.backuppath):
 				self.backuppath = getOldBackupPath()
 			self.backupfile = getBackupFilename()
 			self.fullbackupfilename = self.backuppath + "/" + self.backupfile
-			if os_path.exists(self.fullbackupfilename):
+			if exists(self.fullbackupfilename):
 				self.session.openWithCallback(self.startRestore, MessageBox, _("Are you sure you want to restore your %s %s backup?\nSTB will restart after the restore") % (getMachineBrand(), getMachineName()), default=False)
 			else:
 				self.session.open(MessageBox, _("Sorry no backups found!"), MessageBox.TYPE_INFO, timeout=10)
@@ -604,8 +574,10 @@ class QuickMenu(Screen, ProtectedScreen):
 					if len(configured_rotor_sats) != 0:
 						usableNims.append(x)
 				if len(usableNims) == 1:
+					from Plugins.SystemPlugins.PositionerSetup.plugin import PositionerSetup
 					self.session.open(PositionerSetup, usableNims[0])
 				elif len(usableNims) > 1:
+					from Plugins.SystemPlugins.PositionerSetup.plugin import RotorNimSelection
 					self.session.open(RotorNimSelection)
 				else:
 					self.session.open(MessageBox, _("No tuner is configured for use with a diseqc positioner!"), MessageBox.TYPE_ERROR)
@@ -614,6 +586,7 @@ class QuickMenu(Screen, ProtectedScreen):
 		if len(NavigationInstance.instance.getRecordings(False, pNavigation.isAnyRecording)) > 0:
 			self.session.open(MessageBox, _("A recording is currently running. Please stop the recording before trying to start the satfinder."), MessageBox.TYPE_ERROR)
 		else:
+			from Plugins.SystemPlugins.Satfinder.plugin import Satfinder
 			self.session.open(Satfinder)
 
 ######## SOFTWARE MANAGER TOOLS #######################
@@ -627,6 +600,18 @@ class QuickMenu(Screen, ProtectedScreen):
 		if (ret == True):
 			self.exe = True
 			self.session.open(RestoreScreen, runRestore=True)
+
+	def CompleteBackup(self):
+		if DFLASH:
+			from Plugins.Extensions.dFlash.plugin import dFlash
+			self.session.open(dFlash)
+		elif DBACKUP:
+			from Plugins.Extensions.dBackup.plugin import dBackup
+			self.session.open(dBackup)
+		else:
+			from Plugins.SystemPlugins.SoftwareManager.ImageBackup import ImageBackup
+			self.session.open(ImageBackup)
+
 
 
 ######## Create MENULIST format #######################
@@ -665,13 +650,8 @@ class QuickMenuList(MenuList):
 		self.l.setItemHeight(int(50 * sf))
 
 
-class QuickMenuSubList(MenuList):
-	def __init__(self, sublist, enableWrapAround=True):
-		MenuList.__init__(self, sublist, enableWrapAround, eListboxPythonMultiContent)
-		sf = getSkinFactor()
-		self.l.setFont(0, gFont("Regular", int(20 * sf)))
-		self.l.setFont(1, gFont("Regular", int(16 * sf)))
-		self.l.setItemHeight(int(50 * sf))
+class QuickMenuSubList(QuickMenuList):
+	pass
 
 
 class QuickMenuDevices(Screen):
@@ -738,7 +718,7 @@ class QuickMenuDevices(Screen):
 
 	def buildMy_rec(self, device):
 		device2 = device[:-1]	#strip device number
-		devicetype = path.realpath('/sys/block/' + device2 + '/device')
+		devicetype = realpath('/sys/block/' + device2 + '/device')
 		d2 = device
 		name = 'USB: '
 		mypixmap = '/usr/share/enigma2/icons/dev_usbstick.png'
