@@ -328,6 +328,9 @@ class CommitLogInformation(InformationBase):
 		self.baseTitle = _("Commit Information")
 		self.setTitle(self.baseTitle)
 		self.skinName.insert(0, "CommitLogInformation")
+		self["systemMenuActions"] = HelpableActionMap(self, ["MenuActions"], {
+			"menu": (self.selectCommit, _("Show selection for commit logs")),
+		}, prio=0, description=_("Commit Information Actions"))
 		self["commitActions"] = HelpableActionMap(self, ["DirectionActions"], {
 			"moveUp": (self.previousCommit, _("Display previous commit log")),
 			"moveDown": (self.nextCommit, _("Display next commit log")),
@@ -348,6 +351,17 @@ class CommitLogInformation(InformationBase):
 		self.project = 0
 		self.cachedProjects = {}
 		self.log = _("Retrieving %s commit log, please wait...") % self.projects[self.project][0]
+		self["description"].setText(_("Press <> or menu to select the different commit logs"))
+
+	def selectCommit(self):
+		choices = [(cmd[0], str(idx)) for idx, cmd in enumerate(self.projects)]
+		self.session.openWithCallback(self.selectCommitCallBack, ChoiceBox, title=_("Select commit log"), list=choices)
+
+	def selectCommitCallBack(self, selected):
+		if selected:
+			self.project = int(selected[1]) % len(self.projects)
+			self.log = _("Retrieving %s commit log, please wait...") % self.projects[self.project][0]
+			self.informationTimer.start(25)
 
 	def previousCommit(self):
 		self.project = self.project == 0 and len(self.projects) - 1 or self.project - 1
@@ -1308,6 +1322,7 @@ class SystemInformation(InformationBase):
 		self.numberOfCommands = 0
 		self.commandIndex = 0
 		self.commandData = ""
+		self.shortTitle = False
 		self.container = eConsoleAppContainer()
 		self.container.dataAvail.append(self.dataAvail)
 		self.container.appClosed.append(self.appClosed)
@@ -1418,7 +1433,10 @@ class SystemInformation(InformationBase):
 			self.displayBuildInformation()
 			return
 		self.log = _("Retrieving system information, please wait...")
-		self.setTitle("%s - %s" % (self.baseTitle, self.commands[self.commandIndex][0]))
+		if self.shortTitle:
+			self.setTitle(self.commands[self.commandIndex][0])
+		else:
+			self.setTitle("%s - %s" % (self.baseTitle, self.commands[self.commandIndex][0]))
 		args = command.split()  # For safety don't use a shell command line!
 		if args[0] == "/bin/cat" and "|" not in command:
 			try:
@@ -1499,6 +1517,7 @@ class SystemInformation(InformationBase):
 class SystemInformationLogs(SystemInformation):
 	def __init__(self, session):
 		SystemInformation.__init__(self, session)
+		self.shortTitle = True
 
 	def fetchInformation(self):
 		self.informationTimer.stop()
