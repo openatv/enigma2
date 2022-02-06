@@ -1,3 +1,3 @@
 installdir = $(datadir)/icons
 
-install_PYTHON = *.png
+dist_install_DATA = *.png
