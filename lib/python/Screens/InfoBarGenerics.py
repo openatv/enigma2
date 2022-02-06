@@ -1855,18 +1855,16 @@ class InfoBarEPG:
 		self.eventView = None
 		self.isInfo = None
 		self.epglist = []
-		self.defaultEPGType = self.getDefaultEPGtype()
 		self.defaultGuideType = self.getDefaultGuidetype()
 		self.__event_tracker = ServiceEventTracker(screen=self, eventmap={
 				iPlayableService.evUpdatedEventInfo: self.__evEventInfoChanged,
 			})
 
 		self["EPGActions"] = HelpableActionMap(self, "InfobarEPGActions",{
-			"RedPressed": (self.RedPressed, _("Show epg")),
 			"IPressed": (self.IPressed, _("show program information...")),
 			"InfoPressed": (self.InfoPressed, _("show program information...")),
 			"showEventInfoPlugin": (self.showEventInfoPlugins, _("List EPG functions...")),
-			"EPGPressed": (self.showDefaultEPG, _("show EPG...")),
+			"EPGPressed": (self.EPGPressed, _("show EPG...")),
 			"showEventGuidePlugin": (self.showEventGuidePlugins, _("List EPG functions...")),
 			"showInfobarOrEpgWhenInfobarAlreadyVisible": self.showEventInfoWhenNotVisible,
 		}, prio=0, description=_("InfoBar EPG Actions"))
@@ -1882,34 +1880,15 @@ class InfoBarEPG:
 			pluginlist.append((_("Show EPG for current channel..."), self.openSingleServiceEPG))
 		return pluginlist
 
-	def getDefaultEPGtype(self):
-		pluginlist = self.getEPGPluginList()
-		config.usage.defaultEPGType = ConfigSelection(default="None", choices=pluginlist)
-		for plugin in pluginlist:
-			if plugin[0] == config.usage.defaultEPGType.value:
-				return plugin[1]
-		return None
-
 	def showEventInfoPlugins(self):
 		if isMoviePlayerInfoBar(self):
 			self.openEventView()
 		else:
 			pluginlist = self.getEPGPluginList()
 			if pluginlist:
-#				pluginlist.append((_("Select default EPG type..."), self.SelectDefaultInfoPlugin))
 				self.session.openWithCallback(self.EventInfoPluginChosen, ChoiceBox, title=_("Please choose an extension..."), list=pluginlist, skin_name="EPGExtensionsList")
 			else:
 				self.openSingleServiceEPG()
-
-	def SelectDefaultInfoPlugin(self):
-		self.session.openWithCallback(self.DefaultInfoPluginChosen, ChoiceBox, title=_("Please select a default EPG type..."), list=self.getEPGPluginList(), skin_name="EPGExtensionsList")
-
-	def DefaultInfoPluginChosen(self, answer):
-		if answer is not None:
-			self.defaultEPGType = answer[1]
-			config.usage.defaultEPGType.value = answer[0]
-			config.usage.defaultEPGType.save()
-			configfile.save()
 
 	def getDefaultGuidetype(self):
 		pluginlist = self.getEPGPluginList()
@@ -1950,19 +1929,12 @@ class InfoBarEPG:
 		if answer is not None:
 			answer[1]()
 
-	def RedPressed(self):
-		if isStandardInfoBar(self) or isMoviePlayerInfoBar(self):
-			if config.usage.defaultEPGType.value != _("Graphical EPG") and config.usage.defaultEPGType.value != _("None"):
-				self.openGraphEPG()
-			else:
-				self.openSingleServiceEPG()
-
 	def InfoPressed(self):
 		if isStandardInfoBar(self) or isMoviePlayerInfoBar(self):
 			if config.plisettings.PLIINFO_mode.value == "eventview":
 				self.openEventView()
 			elif config.plisettings.PLIINFO_mode.value == "epgpress":
-				self.showDefaultEPG()
+				self.EPGPressed()
 			elif config.plisettings.PLIINFO_mode.value == "single":
 				self.openSingleServiceEPG()
 			elif config.plisettings.PLIINFO_mode.value == "coolinfoguide" and COOLTVGUIDE:
@@ -1974,7 +1946,7 @@ class InfoBarEPG:
 					self.showCoolTVGuide()
 			else:
 				if config.plisettings.PLIINFO_mode.value != "infobar":
-					self.showDefaultEPG()
+					self.EPGPressed()
 
 	def IPressed(self):
 		if isStandardInfoBar(self) or isMoviePlayerInfoBar(self):
@@ -2230,12 +2202,6 @@ class InfoBarEPG:
 			self.getNowNext()
 			if self.eventView and self.epglist:
 				self.eventView.setEvent(self.epglist[0])
-
-	def showDefaultEPG(self):
-		if self.defaultEPGType is not None:
-			self.defaultEPGType()
-			return
-		self.EPGPressed()
 
 	def openEventView(self, simple=False):
 		if self.servicelist is None:
