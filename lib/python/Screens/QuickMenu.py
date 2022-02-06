@@ -629,9 +629,9 @@ class QuickMenu(Screen, ProtectedScreen):
 ######## Create MENULIST format #######################
 def QuickMenuEntryComponent(name, description, long_description=None, width=540):
 	pngname = name.replace(" ", "_")
-	png = LoadPixmap("/usr/lib/enigma2/python/Plugins/Extensions/Infopanel/icons/" + pngname + ".png")
+	png = LoadPixmap("/usr/share/enigma2/icons/" + pngname + ".png")
 	if png is None:
-		png = LoadPixmap("/usr/lib/enigma2/python/Plugins/Extensions/Infopanel/icons/default.png")
+		png = LoadPixmap("/usr/share/enigma2/icons/default.png")
 
 	sf = getSkinFactor()
 	return [
@@ -738,13 +738,13 @@ class QuickMenuDevices(Screen):
 		devicetype = path.realpath('/sys/block/' + device2 + '/device')
 		d2 = device
 		name = 'USB: '
-		mypixmap = '/usr/lib/enigma2/python/Plugins/Extensions/Infopanel/icons/dev_usbstick.png'
+		mypixmap = '/usr/share/enigma2/icons/dev_usbstick.png'
 		model = open('/sys/block/' + device2 + '/device/model').read()
 		model = str(model).replace('\n', '')
 		des = ''
 		if devicetype.find('/devices/pci') != -1:
 			name = _("HARD DISK: ")
-			mypixmap = '/usr/lib/enigma2/python/Plugins/Extensions/Infopanel/icons/dev_hdd.png'
+			mypixmap = '/usr/share/enigma2/icons/dev_hdd.png'
 		name = name + model
 
 		from Components.Console import Console

@@ -862,6 +862,7 @@ AX_SWIG_PYTHON_OPT="$AX_SWIG_PYTHON_OPT -DSWIG_PYTHON_LEGACY_BOOL"
 AC_CONFIG_FILES([
 Makefile
 data/Makefile
+data/icons/Makefile
 data/fonts/Makefile
 data/keymaps/Makefile
 data/7segment/Makefile
@@ -922,7 +923,6 @@ lib/python/Plugins/Extensions/TuxboxPlugins/Makefile
 lib/python/Plugins/Extensions/TuxboxPlugins/meta/Makefile
 lib/python/Plugins/Extensions/Infopanel/Makefile
 lib/python/Plugins/Extensions/Infopanel/meta/Makefile
-lib/python/Plugins/Extensions/Infopanel/icons/Makefile
 lib/python/Plugins/Extensions/Volume_adjust/Makefile
 lib/python/Plugins/Extensions/StartKodi/Makefile
 lib/python/Plugins/Extensions/QuadPip/Makefile

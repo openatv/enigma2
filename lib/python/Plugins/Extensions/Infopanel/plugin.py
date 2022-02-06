@@ -261,11 +261,11 @@ from Screens.InfoBarGenerics import InfoBarPiP
 def InfoEntryComponent(file):
 	png = LoadPixmap(cached=True, path=resolveFilename(SCOPE_GUISKIN, "icons/" + file + ".png"))
 	if png == None:
-		png = LoadPixmap("/usr/lib/enigma2/python/Plugins/Extensions/Infopanel/icons/" + file + ".png")
+		png = LoadPixmap("/usr/share/enigma2/icons/" + file + ".png")
 		if png == None:
 			png = LoadPixmap(cached=True, path=resolveFilename(SCOPE_GUISKIN, "icons/default.png"))
 			if png == None:
-				png = LoadPixmap("/usr/lib/enigma2/python/Plugins/Extensions/Infopanel/icons/default.png")
+				png = LoadPixmap("/usr/share/enigma2/icons/default.png")
 	res = (png)
 	return res
 

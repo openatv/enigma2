@@ -1,5 +1,5 @@
 installdir = $(pkglibdir)/python/Plugins/Extensions/Infopanel
 
-SUBDIRS = icons meta
+SUBDIRS = meta
 
 install_PYTHON = *.py
