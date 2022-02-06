@@ -24,6 +24,7 @@ from Screens.HarddiskSetup import HarddiskSelection, HarddiskFsckSelection, Hard
 from Screens.MountManager import HddMount
 from Screens.SkinSelector import LcdSkinSelector, SkinSelector
 from Screens.VideoMode import VideoSetup
+from Screens.OScamInfo import OscamInfoMenu
 
 from Screens.RestartNetwork import RestartNetwork
 from Screens.ShowSoftcamPackages import ShowSoftcamPackages
@@ -481,6 +482,8 @@ class QuickMenu(Screen, ProtectedScreen):
 ######## Select Softcam Menu ##############################
 		elif item[0] == _("Softcam Setup"):
 			self.session.open(SoftcamSetup)
+		elif item[0] == _("OScamInfo"):
+			self.session.open(OscamInfoMenu)
 		elif item[0] == _("Download Softcams"):
 			self.session.open(ShowSoftcamPackages)
 ######## Select AV Setup Menu ##############################
