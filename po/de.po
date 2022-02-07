@@ -1,7 +1,7 @@
 # German translations for Enigma2.
 #
 # jbleyel <jbleyel@gmx.net>, 2021, 2022.
-# hd75hd <hd75hd.hd75hd@gmail.com>, 2021.
+# hd75hd <hd75hd.hd75hd@gmail.com>, 2021, 2022.
 # openATV <openatv@gmail.com>, 2021.
 # Holger <mrservo@gmx.de>, 2021.
 # Makumbo <tokioplo@web.de>, 2021, 2022.
@@ -12,8 +12,8 @@ msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-02-06 16:49+0000\n"
-"PO-Revision-Date: 2022-01-24 17:49+0000\n"
-"Last-Translator: VfBFan <drop0815@posteo.de>\n"
+"PO-Revision-Date: 2022-02-07 11:36+0000\n"
+"Last-Translator: hd75hd <hd75hd.hd75hd@gmail.com>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/de/>\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
@@ -1061,8 +1061,8 @@ msgstr[1] "%d Sender gefunden."
 #, python-format
 msgid "%d core"
 msgid_plural "%d cores"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d Kern"
+msgstr[1] "%d Kerne"
 
 #, python-format
 msgid "%d day"
@@ -1347,11 +1347,11 @@ msgstr "%s GHz"
 
 #, python-format
 msgid "%s Information"
-msgstr ""
+msgstr "%s Informationen"
 
 #, python-format
 msgid "%s Information Actions"
-msgstr ""
+msgstr "%s Informationen Aktionen"
 
 #, python-format
 msgid "%s KSymb/s"
@@ -1371,7 +1371,7 @@ msgstr "%s zusätzliche Bildschirme"
 
 #, python-format
 msgid "%s information"
-msgstr ""
+msgstr "%s Informationen"
 
 #. TRANSLATORS: The satellite with name '%s' is no longer used after a configuration change. The user is asked whether or not the satellite should be deleted.
 #, python-format
@@ -1707,7 +1707,7 @@ msgid "16:9 Letterbox"
 msgstr "16:9 Letterbox"
 
 msgid "16K"
-msgstr ""
+msgstr "16K"
 
 #
 msgid "18 V"
@@ -1943,7 +1943,7 @@ msgid "4:3 PanScan"
 msgstr "4:3 Pan & Scan"
 
 msgid "4K"
-msgstr ""
+msgstr "4K"
 
 msgid "4X"
 msgstr "4x"
@@ -2049,7 +2049,7 @@ msgid "8 hours"
 msgstr "8 Stunden"
 
 msgid "8K"
-msgstr ""
+msgstr "8K"
 
 msgid "8bit"
 msgstr "8 Bit"
@@ -2344,10 +2344,10 @@ msgid "AFP Setup"
 msgstr "AFP-Dateiserver"
 
 msgid "ARM"
-msgstr ""
+msgstr "ARM"
 
 msgid "ARM64"
-msgstr ""
+msgstr "ARM64"
 
 msgid "ASS file"
 msgstr "ASS-Datei"
@@ -2400,11 +2400,11 @@ msgid "Access point"
 msgstr ""
 
 msgid "Access to geolocation information requires an internet connection."
-msgstr ""
+msgstr "Die Standortbestimmung benötigt eine Internet Verbindung."
 
 #, python-format
 msgid "Access to the %s commit logs requires an internet connection."
-msgstr ""
+msgstr "Der Zugriff auf das %s Commit Log benötigt eine Internet Verbindung."
 
 msgid "Accessed:"
 msgstr "Zugegriffen:"
@@ -2900,7 +2900,7 @@ msgid "Amlogic"
 msgstr ""
 
 msgid "Amlogic remote"
-msgstr ""
+msgstr "Amlogic Fernbedienung"
 
 msgid "An attempt is made to capture the current TV status. If this is not possible due to incorrect or missing status messages it may cause the receiver to respond unexpectedly. On the other hand, tries to respond better to different operating conditions."
 msgstr "Es wird versucht den aktuellen TV-Betriebszustand zu erfassen. Ist dies aufgrund falscher oder fehlender Statusmeldungen nicht möglich, kann Ihr Receiver unerwartet reagieren. Andererseits wird versucht auf verschiedene Betriebszustände besser zu reagieren."
@@ -3722,7 +3722,7 @@ msgid "Bislama"
 msgstr "Bislama"
 
 msgid "Bit rate"
-msgstr ""
+msgstr "Bitrate"
 
 msgid "Bitrate"
 msgstr "Bitrate"
@@ -3791,7 +3791,7 @@ msgid "Boot ID"
 msgstr ""
 
 msgid "Boot information"
-msgstr ""
+msgstr "Boot Informationen"
 
 msgid "Boot time"
 msgstr "Bootzeit"
@@ -3875,22 +3875,22 @@ msgid "Buffering %d%%"
 msgstr "Pufferung %d%%"
 
 msgid "Buffers"
-msgstr ""
+msgstr "Puffer"
 
 msgid "Build Brand"
 msgstr ""
 
 msgid "Build Information"
-msgstr ""
+msgstr "Build Informationen"
 
 msgid "Build Model"
 msgstr ""
 
 msgid "Build information"
-msgstr ""
+msgstr "Build Informationen"
 
 msgid "Build information for"
-msgstr ""
+msgstr "Build Informationen für"
 
 #, python-format
 msgid "Build: %s"
@@ -3945,10 +3945,10 @@ msgid "Bypass HDMI EDID Check"
 msgstr "HDMI-EDID-Prüfung überspringen"
 
 msgid "Bytes received"
-msgstr ""
+msgstr "Bytes empfangen"
 
 msgid "Bytes sent"
-msgstr ""
+msgstr "Bytes gesendet"
 
 msgid "C"
 msgstr "C"
@@ -4069,19 +4069,19 @@ msgid "CPU"
 msgstr "Prozessor"
 
 msgid "CPU architecture"
-msgstr ""
+msgstr "CPU-Architektur"
 
 msgid "CPU brand"
-msgstr ""
+msgstr "CPU-Marke"
 
 msgid "CPU priority for script execution"
 msgstr "CPU-Priorität für die Skriptausführung"
 
 msgid "CPU speed/cores"
-msgstr ""
+msgstr "CPU-Geschwindigkeit/Kerne"
 
 msgid "CPU temperature"
-msgstr ""
+msgstr "CPU-Temperatur"
 
 #, python-format
 msgid "CPU: %s"
@@ -4106,7 +4106,7 @@ msgid "Cache thumbnails"
 msgstr "Vorschaubilder zwischenspeichern"
 
 msgid "Cached"
-msgstr ""
+msgstr "Zwischengespeichert"
 
 msgid "Calculate"
 msgstr "Berechnen"
@@ -4330,7 +4330,7 @@ msgid "Cannot move to trash can"
 msgstr "Nicht in den Papierkorb verschiebbar!"
 
 msgid "Capacity"
-msgstr ""
+msgstr "Kapazität"
 
 #
 msgid "Capacity: "
@@ -4800,7 +4800,7 @@ msgid "Circular right"
 msgstr "Rechtszirkular"
 
 msgid "City"
-msgstr ""
+msgstr "Stadt"
 
 msgid "Clean (Just flash and start clean)"
 msgstr "Sauber (Flashen und nichts wiederherstellen)"
@@ -4832,7 +4832,7 @@ msgid "Clear playlist"
 msgstr "Playlist leeren"
 
 msgid "Clear the virtual memory caches"
-msgstr ""
+msgstr "Löschen des virtuellen Speichercaches"
 
 msgid "Click on your remote on the button you want to change"
 msgstr "Drücken Sie die Taste der Fernbedienung die neu belegt werden soll."
@@ -4880,10 +4880,10 @@ msgid "Close the current screen"
 msgstr "Aktuellen Screen schließen"
 
 msgid "Close the screen"
-msgstr ""
+msgstr "Screen schließen"
 
 msgid "Close the screen and exit all menus"
-msgstr ""
+msgstr "Bildschirm Schließen und alle Menüs verlassen"
 
 msgid "Close the window"
 msgstr "Window schließen"
@@ -4935,7 +4935,7 @@ msgid "Combo"
 msgstr "Combo"
 
 msgid "Combo Tuner"
-msgstr ""
+msgstr "Combo-Tuner"
 
 msgid "Comedy"
 msgstr "Comedy"
@@ -4957,13 +4957,13 @@ msgid "Command type"
 msgstr "Befehlsart"
 
 msgid "Commit Information"
-msgstr ""
+msgstr "Commit-Informationen"
 
 msgid "Commit Information Actions"
-msgstr ""
+msgstr "Commit-Informationsaktionen"
 
 msgid "Commit Logs"
-msgstr ""
+msgstr "Commit-Protokolle"
 
 msgid "Common Information Actions"
 msgstr ""
@@ -4994,7 +4994,7 @@ msgid "Comoros"
 msgstr "Komoren"
 
 msgid "Compiled by"
-msgstr ""
+msgstr "Kompiliert von"
 
 #
 msgid "Complete"
@@ -5167,7 +5167,7 @@ msgid "Configure the contrast level of the front panel display."
 msgstr "Die Kontraststufe des Displays einstellen."
 
 msgid "Configure the current keymap file."
-msgstr ""
+msgstr "Konfigurieren Sie die aktuelle Keymap-Datei."
 
 # 5.1 Version
 msgid "Configure the cursor behaviour in the channel selection list. When opening the channel selection list you can remain on the current service or already select up/down and you are able to revert the B+/B- buttons."
@@ -5475,7 +5475,7 @@ msgid "Connected: "
 msgstr "Verbunden: "
 
 msgid "Connection information"
-msgstr ""
+msgstr "Verbindungsinformationen"
 
 msgid "Console"
 msgstr "Konsole"
@@ -5507,7 +5507,7 @@ msgid "Context long"
 msgstr "Kontext lang"
 
 msgid "Continent"
-msgstr ""
+msgstr "Kontinent"
 
 msgid "Continue"
 msgstr "Weiter"
@@ -5678,7 +5678,7 @@ msgstr "Auch bei Skin-Fehlern abstürzen?"
 
 #, python-format
 msgid "Crash log '%s' (%d/%d)"
-msgstr ""
+msgstr "Absturzprotokoll '%s' (%d/%d)"
 
 #
 msgid "Create"
@@ -5767,7 +5767,7 @@ msgid "Curacao"
 msgstr "Curacao"
 
 msgid "Currency"
-msgstr ""
+msgstr "Währung"
 
 msgid "Current Affairs"
 msgstr "Aktuelles"
@@ -5782,7 +5782,7 @@ msgid "Current Status:"
 msgstr "Status:"
 
 msgid "Current crash log"
-msgstr ""
+msgstr "Aktuelles Absturzprotokoll"
 
 msgid "Current device: "
 msgstr "Aktuelles Gerät: "
@@ -6145,7 +6145,7 @@ msgstr "Debuglogs"
 
 #, python-format
 msgid "Debug log '%s' (%d/%d)"
-msgstr ""
+msgstr "Debug-Protokoll '%s' (%d/%d)"
 
 msgid "Debug log time format *"
 msgstr "Debug Log Zeitformat *"
@@ -6236,7 +6236,7 @@ msgid "Define additional delay in milliseconds before start of http(s) streams."
 msgstr "Verzögerung in Millisekunden vor dem Start von http(s)-Streams."
 
 msgid "Defined / Active"
-msgstr ""
+msgstr "Definiert / Aktiv"
 
 msgid "Defines how fast the time jumps are repeated. Values lower than 500ms may be problematic with NAS."
 msgstr "Legt fest, in wie schneller Folge Zeitsprünge erfolgen. Werte unter 500ms können mit NAS problematisch sein."
@@ -6353,10 +6353,10 @@ msgid "Delete Timer"
 msgstr "Timer löschen"
 
 msgid "Delete all log files"
-msgstr ""
+msgstr "Alle Logs löschen"
 
 msgid "Delete all logfiles"
-msgstr ""
+msgstr "Alle Logfiles löschen"
 
 msgid "Delete all tags"
 msgstr "Alle Tags löschen"
@@ -6398,7 +6398,7 @@ msgid "Delete image"
 msgstr "Image löschen"
 
 msgid "Delete logfile"
-msgstr ""
+msgstr "Logfile löschen"
 
 #
 msgid "Delete playlist entry"
@@ -6420,7 +6420,7 @@ msgid "Delete the current timeshift buffer and restart timeshift"
 msgstr "Den aktuellen Timeshift-Puffer löschen und Timeshift neu starten"
 
 msgid "Delete the currently displayed log file"
-msgstr ""
+msgstr "Die aktuell angezeigte Protokolldatei löschen"
 
 msgid "Delete the selected files or directories"
 msgstr "Ausgewählte Dateien oder Verzeichnisse löschen"
@@ -6486,10 +6486,10 @@ msgid "Details for plugin: "
 msgstr "Plugin-Details: "
 
 msgid "Detected drives"
-msgstr ""
+msgstr "Erkannte Laufwerke"
 
 msgid "Detected network servers"
-msgstr ""
+msgstr "Erkannte Netzwerkserver"
 
 msgid "Detektiv"
 msgstr "Detektiv"
@@ -6502,7 +6502,7 @@ msgid "Device Setup"
 msgstr "Netzwerkadapter-Einstellungen"
 
 msgid "Device id"
-msgstr ""
+msgstr "Geräte-ID"
 
 # MovieSelection.py
 msgid "Device mounts"
@@ -6657,7 +6657,7 @@ msgid "Disabled PIP.\n"
 msgstr "Bild im Bild wurde deaktiviert.\n"
 
 msgid "Disabled or WPA/WPA2"
-msgstr ""
+msgstr "Deaktiviert oder WPA/WPA2"
 
 #
 msgid "Dish"
@@ -6707,19 +6707,19 @@ msgid "Display message before playing next movie"
 msgstr "Info anzeigen, bevor der nächste Film abgespielt wird"
 
 msgid "Display next commit log"
-msgstr ""
+msgstr "Nächstes Commit-Protokoll anzeigen"
 
 msgid "Display next system information screen"
-msgstr ""
+msgstr "Nächsten Systeminformationsbildschirm anzeigen"
 
 msgid "Display oscam information."
 msgstr "Oscam-Informationen anzeigen."
 
 msgid "Display previous commit log"
-msgstr ""
+msgstr "Vorheriges Commit-Protokoll anzeigen"
 
 msgid "Display previous system information screen"
-msgstr ""
+msgstr "Vorherigen Systeminformationsbildschirm anzeigen"
 
 msgid "Display selection list as a selection menu"
 msgstr "Auswahlliste als Auswahlmenü anzeigen"
@@ -6742,34 +6742,34 @@ msgid "Display the virtual keyboard for data entry"
 msgstr "Anzeige der virtuellen Tastatur für die Dateneingabe"
 
 msgid "Display type"
-msgstr ""
+msgstr "Display Typ"
 
 msgid "Distribution"
-msgstr ""
+msgstr "Distribution"
 
 msgid "Distribution architecture"
-msgstr ""
+msgstr "Distributionsarchitektur"
 
 msgid "Distribution build"
-msgstr ""
+msgstr "Distributions-Build"
 
 msgid "Distribution build date"
-msgstr ""
+msgstr "Distributions-Build Datum"
 
 msgid "Distribution file system"
-msgstr ""
+msgstr "Distributionsdateisystem"
 
 msgid "Distribution folder"
-msgstr ""
+msgstr "Distributionsordner"
 
 msgid "Distribution language"
-msgstr ""
+msgstr "Distributionssprache"
 
 msgid "Distribution revision"
-msgstr ""
+msgstr "Distributions Revision"
 
 msgid "Distribution version"
-msgstr ""
+msgstr "Distributions Version"
 
 msgid "Divehi / Dhivehi / Maldivian"
 msgstr "Divehi / Dhivehi / Maledivisch"
@@ -6926,7 +6926,7 @@ msgid "Do you want to continue?"
 msgstr "Möchten Sie fortfahren?"
 
 msgid "Do you want to delete all log files?"
-msgstr ""
+msgstr "Möchten Sie alle Protokolldateien löschen?"
 
 # python\Screens\LanguageSelection.py
 msgid ""
@@ -6949,7 +6949,7 @@ msgid "Do you want to delete the old settings in /etc/enigma2 first?"
 msgstr "Möchten Sie zuerst die alten Einstellungen in '/etc/enigma2' löschen?"
 
 msgid "Do you want to delete this log file?"
-msgstr ""
+msgstr "Möchten Sie diese Protokolldatei löschen?"
 
 #
 msgid "Do you want to do a service scan?"
@@ -7157,10 +7157,10 @@ msgid "Dreambox format data DVD (won't work in other DVD players)"
 msgstr "Daten-DVD im Dreambox-Format (funktioniert nicht in anderen DVD-Playern)"
 
 msgid "Driver and kernel information"
-msgstr ""
+msgstr "Treiber- und Kernel-Informationen"
 
 msgid "Drivers version"
-msgstr ""
+msgstr "Treiberversion"
 
 #, python-format
 msgid "Drivers:\t%s"
@@ -7173,7 +7173,7 @@ msgid "Drives Information"
 msgstr "Laufwerks-Informationen"
 
 msgid "Drives information"
-msgstr ""
+msgstr "Laufwerksinformationen"
 
 msgid "Drogen"
 msgstr "Drogen"
@@ -7680,7 +7680,7 @@ msgid "Enhanced Movie Center"
 msgstr "Enhanced Movie Center"
 
 msgid "Enigma2 (re)starts"
-msgstr ""
+msgstr "Enigma2 Neustarts"
 
 #
 msgid ""
@@ -7699,19 +7699,19 @@ msgstr ""
 "© 2006 - Stephan Reichholf"
 
 msgid "Enigma2 debug level"
-msgstr ""
+msgstr "Enigma2-Debug-Level"
 
 msgid "Enigma2 information"
-msgstr ""
+msgstr "Enigma2 Informationen"
 
 msgid "Enigma2 revision"
-msgstr ""
+msgstr "Enigma2 Revision"
 
 msgid "Enigma2 skin selector"
 msgstr "Enigma2-Skinauswahl"
 
 msgid "Enigma2 version"
-msgstr ""
+msgstr "Enigma2 Version"
 
 msgid "Enigmalight"
 msgstr "Enigmalight"
@@ -7743,7 +7743,7 @@ msgid "Enter number to jump to channel"
 msgstr "Nummer, um zum Kanal zu wechseln"
 
 msgid "Enter number to select screen"
-msgstr ""
+msgstr "Nummer zur Auswahl des Bildschirms eingeben"
 
 msgid "Enter persistent PIN code"
 msgstr "PIN eingeben"
@@ -7815,15 +7815,15 @@ msgstr "Fehler"
 
 #, python-format
 msgid "Error %d: Log file '%s' wasn't deleted!  (%s)"
-msgstr ""
+msgstr "Fehler %d: Protokolldatei '%s' wurde'nicht gelöscht!  (%s)"
 
 #, python-format
 msgid "Error %d: The logfile '%s' could not be opened.  (%s)"
-msgstr ""
+msgstr "Fehler %d: Die Logdatei '%s' konnte nicht geöffnet werden. (%s)"
 
 #, python-format
 msgid "Error '%s' encountered retrieving the %s commit logs!"
-msgstr ""
+msgstr "Fehler '%s' beim Abrufen der %s Commit-Protokolle!"
 
 msgid "Error Download Setting"
 msgstr "Fehler beim Download!"
@@ -7957,7 +7957,7 @@ msgstr ""
 "Bitte versuchen Sie es später erneut."
 
 msgid "Error: Checksum is invalid!"
-msgstr ""
+msgstr "Fehler: Prüfsumme ist ungültig!"
 
 msgid "Error: Unable to process the command!  Please try again later."
 msgstr ""
@@ -8301,7 +8301,7 @@ msgid "FEC"
 msgstr "FEC"
 
 msgid "FFmpeg version"
-msgstr ""
+msgstr "FFmpeg-Version"
 
 msgid "FHD"
 msgstr ""
@@ -8416,7 +8416,7 @@ msgid "Favourites"
 msgstr "Favoriten"
 
 msgid "Feed URL"
-msgstr ""
+msgstr "Feed-URL"
 
 msgid "Feed disabled!"
 msgstr "Feed deaktiviert!"
@@ -8634,7 +8634,7 @@ msgid "Flash on the fly your your Receiver software."
 msgstr "Flashen Sie Ihre Receiver-Software online oder von einer lokalen Quelle."
 
 msgid "Flash type"
-msgstr ""
+msgstr "Flash-Typ"
 
 msgid "Flashing"
 msgstr "Blinkendes Icon"
@@ -8734,10 +8734,10 @@ msgid "Frauen"
 msgstr "Frauen"
 
 msgid "Free"
-msgstr ""
+msgstr "Frei"
 
 msgid "Free flash"
-msgstr ""
+msgstr "Freier Flash"
 
 msgid "Free memory"
 msgstr "Freier Speicher"
@@ -8746,7 +8746,7 @@ msgid "Free memory:"
 msgstr "Freier Speicher:\t"
 
 msgid "Free swap"
-msgstr ""
+msgstr "Freier Swap"
 
 msgid "Free:"
 msgstr "Frei:\t"
@@ -8808,7 +8808,7 @@ msgid "From :"
 msgstr "Von:"
 
 msgid "Front"
-msgstr ""
+msgstr "Vorderseite"
 
 msgid "Front USB"
 msgstr "Vorderseite USB"
@@ -8817,7 +8817,7 @@ msgid "Front USB 3.0"
 msgstr "Vorderseite USB 3.0"
 
 msgid "Front processor version"
-msgstr ""
+msgstr "Frontprozessor-Version"
 
 msgid "Fulah"
 msgstr "Fula"
@@ -8863,13 +8863,13 @@ msgid "GB"
 msgstr "GB"
 
 msgid "GCC version"
-msgstr ""
+msgstr "GCC-Version"
 
 msgid "GIGABLUE Black"
 msgstr "GIGABLUE Black"
 
 msgid "GStreamer version"
-msgstr ""
+msgstr "GStreamer-Version"
 
 #
 msgid ""
@@ -8952,10 +8952,10 @@ msgid "Genre"
 msgstr "Genre"
 
 msgid "Geolocation"
-msgstr ""
+msgstr "Geolokalisierung"
 
 msgid "Geolocation Information"
-msgstr ""
+msgstr "Standort-Informationen"
 
 msgid "Geolocation does not contain time zone information."
 msgstr "Die Standortbestimmung enthält keine Zeitzoneninformationen."
@@ -8964,7 +8964,7 @@ msgid "Geolocation has been used to set the time zone."
 msgstr "Die Zeitzone wurde anhand der Standortbestimmung festgelegt."
 
 msgid "Geolocation information cannot be retrieved, please try again later."
-msgstr ""
+msgstr "Standortinformationen können nicht abgerufen werden, bitte versuchen Sie es später erneut."
 
 msgid "Geolocation is not available."
 msgstr "Die Standortbestimmung ist nicht verfügbar."
@@ -9013,11 +9013,12 @@ msgstr "Ghana"
 msgid "Gibraltar"
 msgstr "Gibraltar"
 
+#, fuzzy
 msgid "Given device id"
-msgstr ""
+msgstr "Angegebene Geräte-ID"
 
 msgid "Glibc version"
-msgstr ""
+msgstr "Glibc-Version"
 
 msgid "Go down the list"
 msgstr "In der Liste runter gehen"
@@ -9245,7 +9246,7 @@ msgid "HDMI-CEC Setup Actions"
 msgstr "HDMI-CEC-Aktionen"
 
 msgid "HDMI-CEC address"
-msgstr ""
+msgstr "HDMI-CEC Adresse"
 
 msgid "HDMI-IN Actions"
 msgstr "HDMI-IN-Aktionen"
@@ -9318,13 +9319,13 @@ msgid "Harddisk Setup"
 msgstr "Konfiguration der Festplatte"
 
 msgid "Hardware information"
-msgstr ""
+msgstr "Hardware-Informationen"
 
 msgid "Hardware serial"
-msgstr ""
+msgstr "Hardware-Seriennummer"
 
 msgid "Hardware type"
-msgstr ""
+msgstr "Hardware-Typ"
 
 msgid "Hausa"
 msgstr "Hausa"
@@ -9381,10 +9382,10 @@ msgid "HiSilicon"
 msgstr ""
 
 msgid "HiSilicon specific information"
-msgstr ""
+msgstr "HiSilicon-spezifische Informationen"
 
 msgid "HiSilicon specific information not found."
-msgstr ""
+msgstr "HiSilicon-spezifische Informationen nicht gefunden."
 
 msgid "Hidden / Blank"
 msgstr "Keine Anzeige"
@@ -9566,7 +9567,7 @@ msgid "Hungary"
 msgstr "Ungarn"
 
 msgid "Hybrid Tuner"
-msgstr ""
+msgstr "Hybrid-Tuner"
 
 msgid "I"
 msgstr "I"
@@ -9986,10 +9987,10 @@ msgid "Info button (short)"
 msgstr "Taste INFO kurz"
 
 msgid "Info file checksum"
-msgstr ""
+msgstr "Infodatei-Prüfsumme"
 
 msgid "Info file override"
-msgstr ""
+msgstr "Infodatei überschreiben"
 
 msgid "Info icon width"
 msgstr "Info-Icon Breite"
@@ -10206,7 +10207,7 @@ msgstr "Schnittstelle"
 
 #, python-format
 msgid "Interface '%s'"
-msgstr ""
+msgstr "Schnittstelle '%s'"
 
 #
 msgid "Interface: "
@@ -10478,10 +10479,10 @@ msgid "Kenya"
 msgstr "Kenia"
 
 msgid "Kernel file"
-msgstr ""
+msgstr "Kernel-Datei"
 
 msgid "Kernel version"
-msgstr ""
+msgstr "Kernel-Version"
 
 #, python-format
 msgid "Kernel: %s"
@@ -10646,7 +10647,7 @@ msgid "LED brightness during standby."
 msgstr "LED-Helligkeit im Standby."
 
 msgid "LIRC remote"
-msgstr ""
+msgstr "LIRC Fernbedienung"
 
 #
 msgid "LNB"
@@ -10713,14 +10714,14 @@ msgid "Last config"
 msgstr "Letzte Konfiguration"
 
 msgid "Last flash"
-msgstr ""
+msgstr "Letzter Flash"
 
 #
 msgid "Last speed"
 msgstr "Letzte Geschwindigkeit"
 
 msgid "Last update"
-msgstr ""
+msgstr "Letztes Update"
 
 #, python-format
 msgid "Last update:\t%s"
@@ -10850,7 +10851,7 @@ msgid "Lingala"
 msgstr "Lingala"
 
 msgid "Link detected"
-msgstr ""
+msgstr "Link erkannt"
 
 #
 msgid "Link quality:"
@@ -10950,7 +10951,7 @@ msgid "Load/Save/Delete"
 msgstr "Laden/Speichern/Löschen"
 
 msgid "Loading information, please wait..."
-msgstr ""
+msgstr "Informationen werden geladen, bitte warten..."
 
 msgid "Local box"
 msgstr "Lokaler Receiver"
@@ -10959,7 +10960,7 @@ msgid "Local date/time"
 msgstr "Lokales Datum und Uhrzeit"
 
 msgid "Local information"
-msgstr ""
+msgstr "Lokale Informationen"
 
 msgid "Local network"
 msgstr "Lokales Netzwerk"
@@ -11014,7 +11015,7 @@ msgid "Location"
 msgstr "Zielverzeichnis"
 
 msgid "Location information"
-msgstr ""
+msgstr "Standortinformationen"
 
 msgid "Location list"
 msgstr "Standortliste"
@@ -11031,7 +11032,7 @@ msgstr "Logverwaltung"
 
 #, python-format
 msgid "Log file '%s' deleted."
-msgstr ""
+msgstr "Protokolldatei '%s' gelöscht."
 
 # data/setup.xml
 msgid "Log python stack trace on spinner ?"
@@ -11046,7 +11047,7 @@ msgstr "Logverwaltung"
 
 #, python-format
 msgid "Logfile '%s' (%d/%d)"
-msgstr ""
+msgstr "Protokolldatei '%s' (%d/%d)"
 
 msgid "Login"
 msgstr "Anmelden"
@@ -11058,7 +11059,7 @@ msgid "Login to IceTV server"
 msgstr "Anmelden beim IceTV-Server"
 
 msgid "Logs"
-msgstr ""
+msgstr "Protokolle"
 
 msgid "Logs location"
 msgstr "Speicherort für Logs"
@@ -11415,7 +11416,7 @@ msgid "Media scanner"
 msgstr "Mediascanner"
 
 msgid "Media service"
-msgstr ""
+msgstr "Medienservice"
 
 #
 msgid "MediaPlayer"
@@ -11451,7 +11452,7 @@ msgid "Memory Information"
 msgstr "Speicher-Informationen"
 
 msgid "Memory Information Actions"
-msgstr ""
+msgstr "Speicherinformationen Aktionen"
 
 msgid "Memory index"
 msgstr "Index speichern"
@@ -11557,7 +11558,7 @@ msgid "Missing "
 msgstr "Fehlend "
 
 msgid "Mobile connection"
-msgstr ""
+msgstr "Mobile Verbindung"
 
 #
 msgid "Mode"
@@ -12157,7 +12158,7 @@ msgid "Network Information"
 msgstr "Netzwerk-Informationen"
 
 msgid "Network Information Actions"
-msgstr ""
+msgstr "Netzwerkinformationen Aktionen"
 
 #
 msgid "Network Interface"
@@ -12191,13 +12192,13 @@ msgid "Network Wizard"
 msgstr "Netzwerkassistent"
 
 msgid "Network address"
-msgstr ""
+msgstr "Netzwerkadresse"
 
 msgid "Network configuration..."
 msgstr "Netzwerkkonfiguration..."
 
 msgid "Network information"
-msgstr ""
+msgstr "Netzwerk-Informationen"
 
 msgid "Network menu"
 msgstr "Netzwerkeinstellungen"
@@ -12452,7 +12453,7 @@ msgid "No free tuner!"
 msgstr "Kein freier Tuner!"
 
 msgid "No hard disks detected."
-msgstr ""
+msgstr "Keine Festplatten gefunden."
 
 msgid "No hash calculations configured"
 msgstr "Keine Hash-Berechnungen konfiguriert"
@@ -12468,7 +12469,7 @@ msgid "No network connection available."
 msgstr "Keine Netzwerkverbindung verfügbar."
 
 msgid "No network servers detected."
-msgstr ""
+msgstr "Keine Netzwerkserver gefunden."
 
 #
 msgid "No networks found"
@@ -12701,7 +12702,7 @@ msgid "Not associated"
 msgstr "Nicht verknüpft"
 
 msgid "Not currently mounted."
-msgstr ""
+msgstr "Derzeit nicht gemountet."
 
 #, python-format
 msgid "Not enough disk space. Please free up some disk space and try again. (%d MB required, %d MB available)"
@@ -12795,7 +12796,7 @@ msgid "ODIN_M7"
 msgstr "ODIN_M7"
 
 msgid "OEM Model"
-msgstr ""
+msgstr "OEM-Modell"
 
 #
 msgid "OK"
@@ -12858,7 +12859,7 @@ msgid "OScamInfo"
 msgstr "OSCam-Info"
 
 msgid "OTT Model"
-msgstr ""
+msgstr "OTT-Modell"
 
 #
 msgid "OVR"
@@ -13034,7 +13035,7 @@ msgid "OpenDNS Home"
 msgstr "OpenDNS-Startseite"
 
 msgid "OpenSSL version"
-msgstr ""
+msgstr "OpenSSL-Version"
 
 msgid "OpenVPN"
 msgstr "OpenVPN"
@@ -13247,7 +13248,7 @@ msgid "PVR long"
 msgstr "PVR/Video lang"
 
 msgid "Package information currently not available!"
-msgstr ""
+msgstr "Paketinformationen derzeit nicht verfügbar!"
 
 msgid "Package list"
 msgstr "Paketliste"
@@ -13663,7 +13664,7 @@ msgid "Please do not change any values unless you know what you are doing!"
 msgstr "Bitte ändern Sie keine Werte, falls Sie nicht wissen, was Sie tun!"
 
 msgid "Please don't panic if you see values that look suspicious."
-msgstr ""
+msgstr "Keine Panik, wenn Sie Werte sehen, die verdächtig aussehen."
 
 #
 msgid "Please enter a name for the new bouquet"
@@ -14266,10 +14267,10 @@ msgid "Press '0' to toggle PiP mode"
 msgstr "Drücken Sie die Taste '0', um den Bild im Bild Modus zu wechseln"
 
 msgid "Press <> or menu to select the different commit logs"
-msgstr ""
+msgstr "Drücken Sie <> oder Menü, um die verschiedenen Commit-Protokolle auszuwählen"
 
 msgid "Press <> or menu to select the different info screens"
-msgstr ""
+msgstr "Drücken Sie <> oder Menü, um die verschiedenen Infobildschirme auszuwählen"
 
 msgid "Press EXIT to return to the help screen."
 msgstr "Drücken Sie EXIT, um zum Hilfebildschirm zurückzukehren."
@@ -14373,7 +14374,7 @@ msgid "Pressing the panic button will zap you to this channelnumber in your firs
 msgstr "Die Sendernummer (in Ihrer ersten Favoritenliste) einstellen, zu der beim Drücken der Taste umgeschaltet wird, die als PANIK Taste definiert ist."
 
 msgid "Prev Image"
-msgstr ""
+msgstr "Vorheriges Bild"
 
 msgid "Prev quad PiP channel"
 msgstr "Auf die vorherige Sendergruppe schalten"
@@ -14435,7 +14436,7 @@ msgid "Process"
 msgstr "Aktivitätsanzeige"
 
 msgid "Processor information"
-msgstr ""
+msgstr "Prozessorinformationen"
 
 msgid "Profile"
 msgstr "Profil"
@@ -14600,13 +14601,13 @@ msgid "Providers: "
 msgstr "Anbieter: "
 
 msgid "Proxy detected"
-msgstr ""
+msgstr "Proxy erkannt"
 
 msgid "Psychologie"
 msgstr "Psychologie"
 
 msgid "Public IP"
-msgstr ""
+msgstr "Öffentliche IP"
 
 msgid "Puerto Rico"
 msgstr "Puerto Rico"
@@ -14640,7 +14641,7 @@ msgid "Python frontend for /tmp/mmi.socket"
 msgstr "Python-Frontend für '/tmp/mmi.socket'"
 
 msgid "Python version"
-msgstr ""
+msgstr "Python-Version"
 
 msgid "Qatar"
 msgstr "Katar"
@@ -14705,10 +14706,10 @@ msgid "Quiz"
 msgstr "Quiz"
 
 msgid "RAM (Details)"
-msgstr ""
+msgstr "Arbeitsspeicher (Einzelheiten)"
 
 msgid "RAM (Summary)"
-msgstr ""
+msgstr "Arbeitsspeicher (Zusammenfassung)"
 
 msgid "RC custom code"
 msgstr ""
@@ -14717,19 +14718,19 @@ msgid "RC default name"
 msgstr ""
 
 msgid "RC default type"
-msgstr ""
+msgstr "RC-Standardtyp"
 
 msgid "RC detected type"
-msgstr ""
+msgstr "Erkannter RC-Typ"
 
 msgid "RC identification"
-msgstr ""
+msgstr "RC-Identifikation"
 
 msgid "RC selected name"
-msgstr ""
+msgstr "RC ausgewählter Name"
 
 msgid "RC selected type"
-msgstr ""
+msgstr "RC ausgewählter Typ"
 
 msgid "REC"
 msgstr "REC"
@@ -14864,7 +14865,7 @@ msgid "Really upgrade your %s %s and reboot now?"
 msgstr "Möchten Sie wirklich Ihre %s %s aktualisieren und jetzt neu starten?"
 
 msgid "Rear"
-msgstr ""
+msgstr "Rückseite"
 
 #
 msgid "Reboot"
@@ -14889,13 +14890,13 @@ msgid "Receiver Image Actions"
 msgstr ""
 
 msgid "Receiver Information"
-msgstr ""
+msgstr "Receiver Informationen"
 
 msgid "Receiver Information Actions"
-msgstr ""
+msgstr "Receiver Informationsaktionen"
 
 msgid "Receiver name"
-msgstr ""
+msgstr "Receivername"
 
 msgid "Reception"
 msgstr "Empfang"
@@ -15078,7 +15079,7 @@ msgid "Refresh screen"
 msgstr "Anzeige aktualisieren"
 
 msgid "Refresh the screen"
-msgstr ""
+msgstr "Aktualisieren des Bildschirms"
 
 msgid "Refresh the update-able package list"
 msgstr "Liste der neuen Pakete aktualisieren"
@@ -15158,7 +15159,7 @@ msgid "Remember service PIN"
 msgstr "Service-PIN merken"
 
 msgid "Remote Control"
-msgstr ""
+msgstr "Fernbedienung"
 
 msgid "Remote Control Code"
 msgstr "Fernbedienungscode"
@@ -15167,7 +15168,7 @@ msgid "Remote box"
 msgstr "Remote-Receiver"
 
 msgid "Remote control information"
-msgstr ""
+msgstr "Informationen zur Fernbedienung"
 
 msgid "Remote control type"
 msgstr "Fernbedienungstyp"
@@ -15509,7 +15510,7 @@ msgstr "Setze Wiedergabe fort"
 
 #, python-format
 msgid "Retrieving %s commit log, please wait..."
-msgstr ""
+msgstr "%s Commit-Protokoll abrufen, bitte warten..."
 
 msgid "Retrieving image list - Please wait..."
 msgstr "Image-Liste abrufen. Bitte warten..."
@@ -15518,10 +15519,10 @@ msgid "Retrieving image slots - Please wait..."
 msgstr "Image-Slots abrufen. Bitte warten..."
 
 msgid "Retrieving network server information, please wait..."
-msgstr ""
+msgstr "Netzwerkserverinformationen werden abgerufen, bitte warten..."
 
 msgid "Retrieving system information, please wait..."
-msgstr ""
+msgstr "Systeminformationen werden abgerufen, bitte warten..."
 
 msgid "Return the current selection response"
 msgstr ""
@@ -16304,7 +16305,7 @@ msgid "Select channels to add an offset to the volume."
 msgstr "Kanäle auswählen, um einen Lautstärke-Offset hinzuzufügen."
 
 msgid "Select commit log"
-msgstr ""
+msgstr "Commit-Protokoll auswählen"
 
 msgid "Select copy destination for:"
 msgstr "Kopierziel auswählen:"
@@ -16351,7 +16352,7 @@ msgid "Select if you want the Subservice mode to be activated."
 msgstr "Wählen Sie, ob Unterkanäle aktiviert werden sollen."
 
 msgid "Select information screen"
-msgstr ""
+msgstr "Informationsbildschirm auswählen"
 
 msgid "Select input device"
 msgstr "Eingabegerät auswählen"
@@ -16596,7 +16597,7 @@ msgid "Select/Zap to selected service"
 msgstr "Zum ausgewählten Sender umschalten"
 
 msgid "Selected Image"
-msgstr ""
+msgstr "Ausgewähltes Image"
 
 #, python-format
 msgid ""
@@ -17438,7 +17439,7 @@ msgid "Show Multi EPG"
 msgstr "Multi-EPG anzeigen"
 
 msgid "Show OScam Info"
-msgstr ""
+msgstr "OScam-Info anzeigen"
 
 msgid "Show OScam in extensions ?"
 msgstr "OSCam in Erweiterungen anzeigen?"
@@ -17623,7 +17624,7 @@ msgid "Show files backed up by default"
 msgstr "Zeigt Dateien, die grundsätzlich gesichert werden"
 
 msgid "Show geolocation information"
-msgstr ""
+msgstr "Standortinformationen anzeigen"
 
 msgid "Show graphical multi EPG"
 msgstr "Grafischen Multi-EPG anzeigen"
@@ -17677,7 +17678,7 @@ msgid "Show job tasks in extensions"
 msgstr "Jobaufgaben in Erweiterungen anzeigen"
 
 msgid "Show latest commit log information"
-msgstr ""
+msgstr "Neueste Commit-Log-Informationen anzeigen"
 
 msgid "Show live tv when movie stopped"
 msgstr "Live-TV nach Filmende anzeigen"
@@ -17686,7 +17687,7 @@ msgid "Show log"
 msgstr "Log anzeigen"
 
 msgid "Show logs"
-msgstr ""
+msgstr "Protokolle anzeigen"
 
 msgid "Show marked events"
 msgstr "Markierte Sendungen anzeigen"
@@ -17789,10 +17790,10 @@ msgid "Show screensaver"
 msgstr "Bildschirmschoner anzeigen"
 
 msgid "Show selection for commit logs"
-msgstr ""
+msgstr "Auswahl für Commit-Protokolle anzeigen"
 
 msgid "Show selection for system information screen"
-msgstr ""
+msgstr "Auswahl für den Systeminformationsbildschirm anzeigen"
 
 msgid "Show service list"
 msgstr "Senderliste anzeigen"
@@ -17850,7 +17851,7 @@ msgid "Show subtitle selection"
 msgstr "Untertitelmenü"
 
 msgid "Show system information"
-msgstr ""
+msgstr "Systeminformationen anzeigen"
 
 msgid "Show task list"
 msgstr "Aufgabenliste anzeigen"
@@ -17858,8 +17859,9 @@ msgstr "Aufgabenliste anzeigen"
 msgid "Show the DreamPlex player..."
 msgstr "DreamPlex-Player anzeigen..."
 
+#, fuzzy
 msgid "Show the OScamInfo Screen"
-msgstr ""
+msgstr "Anzeigen des OScamInfo-Bildschirms"
 
 #
 msgid "Show the Power Timer"
@@ -17911,7 +17913,7 @@ msgid "Show time remaining/elapsed"
 msgstr "Verbleibende/verstrichene Zeit als"
 
 msgid "Show translation information"
-msgstr ""
+msgstr "Übersetzungsinformationen anzeigen"
 
 msgid "Show translation packages"
 msgstr "Sprachpakete anzeigen"
@@ -18011,7 +18013,7 @@ msgid "Signal quality"
 msgstr "Signalqualität"
 
 msgid "Signal strength"
-msgstr ""
+msgstr "Signalstärke"
 
 msgid "Signal strength:"
 msgstr "Signalstärke:"
@@ -18066,7 +18068,7 @@ msgid "Single EPG"
 msgstr "Einzel-EPG"
 
 msgid "Single Tuner"
-msgstr ""
+msgstr "Einzelner Tuner"
 
 #
 msgid "Single satellite"
@@ -18105,7 +18107,7 @@ msgid "Skin"
 msgstr "Skin"
 
 msgid "Skin & Resolution"
-msgstr ""
+msgstr "Skin & Auflösung"
 
 #
 msgid "Skin Selector"
@@ -18168,7 +18170,7 @@ msgid "SleepTimer"
 msgstr "Ausschalttimer"
 
 msgid "Sleeping"
-msgstr ""
+msgstr "Schlafend"
 
 msgid "Slide drop"
 msgstr "Von oben gleitend"
@@ -18307,7 +18309,7 @@ msgid "Software Update Actions"
 msgstr "Software-Update Aktionen"
 
 msgid "Software information"
-msgstr ""
+msgstr "Software-Informationen"
 
 #
 msgid "Software management"
@@ -18528,7 +18530,7 @@ msgid "Special Features"
 msgstr "Spezielle Einstellungen"
 
 msgid "Speed"
-msgstr ""
+msgstr "Geschwindigkeit"
 
 msgid "Spiele"
 msgstr "Spiele"
@@ -18786,7 +18788,7 @@ msgstr "Streaming"
 msgid "Streaming Clients info"
 msgstr ""
 
-msgid "Streaming clients info"
+msgid "Streaming Clients"
 msgstr "Stream-Clients"
 
 msgid "Streaming recording ended"
@@ -19113,10 +19115,10 @@ msgid "System Info"
 msgstr "System-Info"
 
 msgid "System Information"
-msgstr ""
+msgstr "Systeminformationen"
 
 msgid "System Information Actions"
-msgstr ""
+msgstr "Systeminformationen Aktionen"
 
 msgid "System Message Check"
 msgstr "Überprüfung der Systemnachrichten"
@@ -19129,7 +19131,7 @@ msgid "System partition free space:"
 msgstr "Freier Platz auf der System-Partition:"
 
 msgid "System temperature"
-msgstr ""
+msgstr "Systemtemperatur"
 
 msgid "System: "
 msgstr "System: "
@@ -19383,15 +19385,15 @@ msgstr "Ihre %s %s speichert die EPG-Daten nach der eingestellten Zeit automatis
 
 #, python-format
 msgid "The %s commit log contains no information."
-msgstr ""
+msgstr "Das %s Commit-Protokoll enthält keine Informationen."
 
 #, python-format
 msgid "The %s commit logs can't be retrieved, please try again later."
-msgstr ""
+msgstr "Die %s Commit-Protokolle können nicht abgerufen werden, bitte versuchen Sie es später erneut."
 
 #, python-format
 msgid "The '%s' log file contains no information."
-msgstr ""
+msgstr "Die '%s' Protokolldatei enthält keine Informationen."
 
 msgid ""
 "The AutoTimer plugin is not installed!\n"
@@ -19564,7 +19566,7 @@ msgid "The default settings are wakeup time - 5 minutes and timer begin time + 5
 msgstr "Die Standardeinstellungen sind Aufwachzeit -5 Minuten und Timerbeginn +5 Minuten. Diese Einstellung verändert das Zeitfenster vor der Aufwachzeit. So kann das Aufwachen durch einen Timer auch bei sehr früh startenden Receivern erkannt werden."
 
 msgid "The detailed information is intended for developers only."
-msgstr ""
+msgstr "Die detaillierten Informationen sind nur für Entwickler bestimmt."
 
 #
 #, python-format
@@ -20466,7 +20468,7 @@ msgid "Timeshift-save action on zap"
 msgstr "Timeshift speichern beim Umschalten"
 
 msgid "Timezone"
-msgstr ""
+msgstr "Zeitzone"
 
 msgid "Timor-Leste / East Timor"
 msgstr "Timor-Leste / Osttimor"
@@ -20586,7 +20588,7 @@ msgid "Total clients streaming: %d ( %s )"
 msgstr "Anzahl der Streaming-Clients: %d (%s)"
 
 msgid "Total flash"
-msgstr ""
+msgstr "Gesamter Flash"
 
 msgid "Total handled client ecm's"
 msgstr "Insgesamt abgefertigte Client-ECMs"
@@ -20595,7 +20597,7 @@ msgid "Total handled client emm's"
 msgstr "Insgesamt abgefertigte Client-EMMs"
 
 msgid "Total memory"
-msgstr ""
+msgstr "Gesamtspeicher"
 
 msgid "Total swap"
 msgstr ""
@@ -20631,7 +20633,7 @@ msgid "Translation Information"
 msgstr "Übersetzungs-Informationen"
 
 msgid "Translation information"
-msgstr ""
+msgstr "Übersetzungsinformationen"
 
 #
 msgid "Transmission mode"
@@ -20855,7 +20857,7 @@ msgid "Twi"
 msgstr "Twi"
 
 msgid "Twin Tuner"
-msgstr ""
+msgstr "Twin-Tuner"
 
 #
 msgid "Two"
@@ -21445,10 +21447,10 @@ msgid "Use workaround for wakeup from deep-standby?"
 msgstr "Workaround für das Aufwachen aus dem Deep-Standby"
 
 msgid "Used"
-msgstr ""
+msgstr "Benutzt"
 
 msgid "Used flash"
-msgstr ""
+msgstr "Benutzter Flash"
 
 #
 msgid "Used service scan type"
@@ -21897,7 +21899,7 @@ msgid "W"
 msgstr "W"
 
 msgid "WAN connection information"
-msgstr ""
+msgstr "WAN-Verbindungsinformationen"
 
 msgid "WARNING!"
 msgstr "WARNUNG!"
@@ -22002,7 +22004,7 @@ msgid "Warning"
 msgstr "Warnung"
 
 msgid "Warning: Overrides are currently active!"
-msgstr ""
+msgstr "Warnung: Überschreibungen sind derzeit aktiv!"
 
 #, python-format
 msgid "Warning: There are %d update packages!"

@@ -12,7 +12,7 @@ class StreamingClientsInfo(Screen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
 		self.timer = eTimer()
-		self.setTitle(_("Streaming clients info"))
+		self.setTitle(_("Streaming Clients"))
 
 		self["ScrollLabel"] = ScrollLabel()
 		self["ScrollLabel2"] = ScrollLabel()
