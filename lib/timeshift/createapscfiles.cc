@@ -48,12 +48,12 @@ char* makefilename(const char* dir, const char* base, const char* ext, const cha
 	}
 	if (base)
 		strcpy(buf+len1, base);
-		if (ext && len2>=len3 && !strcmp(base+len2-len3,ext))
-			len2 -= len3;
-		if (ext)
-			strcpy(buf+len1+len2, ext);
-		if (post)
-			strcpy(buf+len1+len2+len3, post);
+	if (ext && len2>=len3 && !strcmp(base+len2-len3,ext))
+		len2 -= len3;
+	if (ext)
+		strcpy(buf+len1+len2, ext);
+	if (post)
+		strcpy(buf+len1+len2+len3, post);
 	return buf;
 }
 
