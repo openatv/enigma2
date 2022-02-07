@@ -905,6 +905,7 @@ std::string eDVBResourceManager::getFrontendCapabilities(int index)
 			return i->m_frontend->getCapabilities();
 		}
 	}
+	return "";
 }
 
 void eDVBResourceManager::setFrontendType(int index, const char *type, bool append)
