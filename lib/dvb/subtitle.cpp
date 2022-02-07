@@ -753,11 +753,11 @@ int eDVBSubtitleParser::subtitle_process_segment(uint8_t *segment)
 		break;
 	}
 	case 0x80: // end of display set segment
-		{
-			subtitle_redraw_all();
-			m_seen_eod = true;
-		}
+	{
+		subtitle_redraw_all();
+		m_seen_eod = true;
 		break;
+	}
 	case 0xFF: // stuffing
 		break;
 	default:
