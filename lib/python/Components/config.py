@@ -411,6 +411,15 @@ class choicesList():
 		except (ValueError, IndexError):  # Occurs, for example, when default is not in list.
 			return 0  # DEBUG: Is it appropriate to return the first item if the index is invalid?
 
+	# only used in nimmanager.py / connectedToChanged
+	def updateItemDescription(self, index, descr):
+		if self.type == choicesList.TYPE_LIST:
+			orig = self.choices[index]
+			if isinstance(orig, tuple):
+				self.choices[index] = (orig[0], descr)
+		else:
+			key = list(self.choices.keys())[index]
+			self.choices[key] = descr
 
 class descriptionsList(choicesList):
 	def __getitem__(self, index):
