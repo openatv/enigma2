@@ -19,6 +19,7 @@ class ClientsStreaming(Converter, Poll):
 	INFO_RESOLVE = 8
 	INFO_RESOLVE_SHORT = 9
 	EXTRA_INFO = 10
+	DATA = 11
 
 	def __init__(self, type):
 		Converter.__init__(self, type)
@@ -47,6 +48,8 @@ class ClientsStreaming(Converter, Poll):
 			self.type = self.INFO_RESOLVE_SHORT
 		elif type == "EXTRA_INFO":
 			self.type = self.EXTRA_INFO
+		elif type == "DATA":
+			self.type = self.DATA
 		else:
 			self.type = self.UNKNOWN
 
@@ -117,6 +120,8 @@ class ClientsStreaming(Converter, Poll):
 			return '\n'.join(' '.join(elems) for elems in clients)
 		elif self.type == self.INFO or self.type == self.INFO_RESOLVE or self.type == self.INFO_RESOLVE_SHORT:
 			return info
+		elif self.type == self.DATA:
+			return clients
 		else:
 			return "(unknown)"
 

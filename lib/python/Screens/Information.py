@@ -14,7 +14,7 @@ try:
 except ImportError:
 	from urllib.request import urlopen
 
-from enigma import eConsoleAppContainer, eDVBResourceManager, eGetEnigmaDebugLvl, eTimer, getDesktop, getE2Rev
+from enigma import eConsoleAppContainer, eDVBResourceManager, eGetEnigmaDebugLvl, eStreamServer, eTimer, getDesktop, getE2Rev
 
 from boxbranding import getMachineBuild, getDriverDate
 
@@ -23,6 +23,7 @@ from Components.About import about
 from Components.ActionMap import HelpableActionMap, HelpableNumberActionMap
 from Components.config import config
 from Components.Console import Console
+from Components.Converter.ClientsStreaming import ClientsStreaming
 from Components.Harddisk import Harddisk, harddiskmanager
 from Components.InputDevice import REMOTE_DISPLAY_NAME, REMOTE_NAME, REMOTE_RCTYPE, remoteControl
 from Components.Label import Label
@@ -1585,6 +1586,65 @@ class TranslationInformation(InformationBase):
 				translate.append("")
 			info.append(formatLine("P1", translate[0], translate[1]))
 		self["information"].setText("\n".join(info))
+
+	def getSummaryInformation(self):
+		return "Translation Information"
+
+
+class StreamingInformation(InformationBase):
+	def __init__(self, session):
+		InformationBase.__init__(self, session)
+		self.setTitle(_("Streaming Clients"))
+		self.skinName.insert(0, "StreamingInformation")
+		self.refreshTimer = eTimer()
+		self["key_green"].text = ""
+		self["key_blue"] = StaticText()
+		self["streamActions"] = HelpableActionMap(self, ["ColorActions"], {
+			"blue": (self.stopStreams, _("Stop Streams"))
+		}, prio=0, description=_("Streaming Information Actions"))
+
+	def stop(self):
+		if self.displayInformation in self.refreshTimer.callback:
+			self.refreshTimer.callback.remove(self.displayInformation)
+		self.refreshTimer.stop()
+
+	def displayInformation(self):
+		if self.displayInformation not in self.refreshTimer.callback:
+			self.refreshTimer.callback.append(self.displayInformation)
+			self.refreshTimer.startLongTimer(0)
+		info = []
+		info.append(formatLine("H", _("Active Streaming Clients")))
+		info.append("")
+		clients = ClientsStreaming("DATA").getText()
+		if clients:
+			pos = 0
+			for client in clients:
+				pos = pos + 1
+				info.append(formatLine("P1", "%s - %d" % (_("Client"), pos)))
+				info.append(formatLine("P2", _("ServiceName"), client[1]))
+				info.append(formatLine("P2", _("IP"), client[0]))
+				info.append(formatLine("P2", _("Transcoding"), client[2]))
+				info.append("")
+		else:
+			info.append(formatLine("P1", _("No clients streaming")))
+		self["information"].setText("\n".join(info))
+		self["key_blue"].setText(_("Stop Streams") if clients else "")
+		self.refreshTimer.startLongTimer(5)
+
+	def keyCancel(self):
+		self.stop()
+		InformationBase.keyCancel(self)
+
+	def closeRecursive(self):
+		self.stop()
+		InformationBase.closeRecursive(self)
+
+	def stopStreams(self):
+		streamServer = eStreamServer.getInstance()
+		if not streamServer:
+			return
+		for x in streamServer.getConnectedClients():
+			streamServer.stopStream()
 
 	def getSummaryInformation(self):
 		return "Translation Information"
