@@ -216,7 +216,7 @@ class PowerTimer(Timer):
 		entry.repeated = int(repeated)
 		entry.autosleepinstandbyonly = timerDom.get("autosleepinstandbyonly", "no")
 		entry.autosleepdelay = int(timerDom.get("autosleepdelay", "0"))
-		entry.autosleeprepeat = timerDom.get("autosleepdelay", "once")
+		entry.autosleeprepeat = timerDom.get("autosleeprepeat", "once")
 		entry.autosleepwindow = timerDom.get("autosleepwindow", "no")
 		entry.autosleepbegin = autosleepbegin
 		entry.autosleepend = autosleepend
