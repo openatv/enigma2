@@ -191,7 +191,7 @@ class CableTransponderSearchSupport:
 	def tryGetRawFrontend(self, feid, delsys=None):
 		res_mgr = eDVBResourceManager.getInstance()
 		if res_mgr:
-			raw_channel = res_mgr.allocateRawChannel(self.feid)
+			raw_channel = res_mgr.allocateRawChannel(feid)
 			if raw_channel:
 				frontend = raw_channel.getFrontend()
 				if frontend:
