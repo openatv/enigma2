@@ -1,11 +1,11 @@
 from datetime import datetime
-from genericpath import exists
 from glob import glob
 from json import loads
 from os import listdir, remove, statvfs
 from os.path import basename, getmtime, isdir, isfile, join as pathjoin
 import re
 from select import select
+from six import PY2
 from ssl import _create_unverified_context  # For python 2.7.11 we need to bypass the certificate check
 from subprocess import PIPE, Popen
 from time import localtime, strftime, strptime
@@ -72,7 +72,7 @@ def scaleNumber(number, style="Si", suffix="B"):  # This temporary code is borro
 	result = float(number) / (10 ** (scale * 3)) if style == "Si" else float(number) / (1024 ** scale)
 	if negative:
 		result = -result
-	print("[Information] DEBUG: Number=%d, Digits=%d, Scale=%d, Factor=%d, Result=%f." % (number, digits, scale, 10 ** (scale * 3), result))
+	# print("[Information] DEBUG: Number=%d, Digits=%d, Scale=%d, Factor=%d, Result=%f." % (number, digits, scale, 10 ** (scale * 3), result))
 	return "%.3f %s%s%s" % (result, units[scale], ("i" if style == "Iec" and scale else ""), suffix)
 
 
@@ -179,7 +179,6 @@ class InformationBase(Screen, HelpableScreen):
 		else:
 			print("[Information] Warning: %d colors are defined in the skin when %d were expected!" % (len(colors), len(INFO_COLORS)))
 		self["information"].setText(_("Loading information, please wait..."))
-
 		self.onInformationUpdated = [self.displayInformation]
 		self.onLayoutFinish.append(self.displayInformation)
 		self.console = Console()
@@ -394,7 +393,7 @@ class CommitLogInformation(InformationBase):
 				log.append("%s  %s" % (date, creator))
 				log.append(title)
 			if log:
-				log = "\n".join(log)
+				log = "\n".join(log).encode("UTF-8", "ignore") if PY2 else "\n".join(log)
 				self.cachedProjects[name] = log
 			else:
 				log = _("The %s commit log contains no information.") % name
@@ -426,6 +425,70 @@ class CommitLogInformation(InformationBase):
 			self["information"].setText(self.log)
 		else:
 			self["information"].setText(_("The %s commit log contains no information.") % name)
+
+
+class GeolocationInformation(InformationBase):
+	def __init__(self, session):
+		InformationBase.__init__(self, session)
+		self.setTitle(_("Geolocation Information"))
+		self.skinName.insert(0, "GeolocationInformation")
+
+	def displayInformation(self):
+		info = []
+		geolocationData = geolocation.getGeolocationData(fields="continent,country,regionName,city,lat,lon,timezone,currency,isp,org,mobile,proxy,query", useCache=False)
+		if geolocationData.get("status", None) == "success":
+			info.append(formatLine("H", _("Location information")))
+			continent = geolocationData.get("continent", None)
+			if continent:
+				info.append(formatLine("P1", _("Continent"), continent))
+			country = geolocationData.get("country", None)
+			if country:
+				info.append(formatLine("P1", _("Country"), country))
+			state = geolocationData.get("regionName", None)
+			if state:
+				# TRANSLATORS: "State" is Location Info
+				info.append(formatLine("P1", _("State"), state))
+			city = geolocationData.get("city", None)
+			if city:
+				info.append(formatLine("P1", _("City"), city))
+			latitude = geolocationData.get("lat", None)
+			if latitude:
+				info.append(formatLine("P1", _("Latitude"), latitude))
+			longitude = geolocationData.get("lon", None)
+			if longitude:
+				info.append(formatLine("P1", _("Longitude"), longitude))
+			info.append("")
+			info.append(formatLine("H", _("Local information")))
+			timezone = geolocationData.get("timezone", None)
+			if timezone:
+				info.append(formatLine("P1", _("Timezone"), timezone))
+			currency = geolocationData.get("currency", None)
+			if currency:
+				info.append(formatLine("P1", _("Currency"), currency))
+			info.append("")
+			info.append(formatLine("H", _("Connection information")))
+			isp = geolocationData.get("isp", None)
+			if isp:
+				ispOrg = geolocationData.get("org", None)
+				if ispOrg:
+					info.append(formatLine("P1", _("ISP"), "%s  (%s)" % (isp, ispOrg)))
+				else:
+					info.append(formatLine("P1", _("ISP"), isp))
+			mobile = geolocationData.get("mobile", None)
+			info.append(formatLine("P1", _("Mobile connection"), (_("Yes") if mobile else _("No"))))
+			proxy = geolocationData.get("proxy", False)
+			info.append(formatLine("P1", _("Proxy detected"), (_("Yes") if proxy else _("No"))))
+			publicIp = geolocationData.get("query", None)
+			if publicIp:
+				info.append(formatLine("P1", _("Public IP"), publicIp))
+		else:
+			info.append(_("Geolocation information cannot be retrieved, please try again later."))
+			info.append("")
+			info.append(_("Access to geolocation information requires an internet connection."))
+		self["information"].setText("\n".join(info).encode("UTF-8", "ignore") if PY2 else "\n".join(info))
+
+	def getSummaryInformation(self):
+		return "Geolocation Information"
 
 
 class ImageInformation(InformationBase):
@@ -553,73 +616,10 @@ class ImageInformation(InformationBase):
 			info.append(formatLine("P1", _("MKUBIFS"), BoxInfo.getItem("mkubifs")))
 		if BoxInfo.getItem("ubinize"):
 			info.append(formatLine("P1", _("UBINIZE"), BoxInfo.getItem("ubinize")))
-		self["information"].setText("\n".join(info))
+		self["information"].setText("\n".join(info).encode("UTF-8", "ignore") if PY2 else "\n".join(info))
 
 	def getSummaryInformation(self):
 		return "%s Information" % self.displayDistro
-
-
-class GeolocationInformation(InformationBase):
-	def __init__(self, session):
-		InformationBase.__init__(self, session)
-		self.setTitle(_("Geolocation Information"))
-		self.skinName.insert(0, "GeolocationInformation")
-
-	def displayInformation(self):
-		info = []
-		geolocationData = geolocation.getGeolocationData(fields="continent,country,regionName,city,lat,lon,timezone,currency,isp,org,mobile,proxy,query", useCache=False)
-		if geolocationData.get("status", None) == "success":
-			info.append(formatLine("H", _("Location information")))
-			continent = geolocationData.get("continent", None)
-			if continent:
-				info.append(formatLine("P1", _("Continent"), continent))
-			country = geolocationData.get("country", None)
-			if country:
-				info.append(formatLine("P1", _("Country"), country))
-			state = geolocationData.get("regionName", None)
-			if state:
-				info.append(formatLine("P1", _("State"), state))
-			city = geolocationData.get("city", None)
-			if city:
-				info.append(formatLine("P1", _("City"), city))
-			latitude = geolocationData.get("lat", None)
-			if latitude:
-				info.append(formatLine("P1", _("Latitude"), latitude))
-			longitude = geolocationData.get("lon", None)
-			if longitude:
-				info.append(formatLine("P1", _("Longitude"), longitude))
-			info.append("")
-			info.append(formatLine("H", _("Local information")))
-			timezone = geolocationData.get("timezone", None)
-			if timezone:
-				info.append(formatLine("P1", _("Timezone"), timezone))
-			currency = geolocationData.get("currency", None)
-			if currency:
-				info.append(formatLine("P1", _("Currency"), currency))
-			info.append("")
-			info.append(formatLine("H", _("Connection information")))
-			isp = geolocationData.get("isp", None)
-			if isp:
-				ispOrg = geolocationData.get("org", None)
-				if ispOrg:
-					info.append(formatLine("P1", _("ISP"), "%s  (%s)" % (isp, ispOrg)))
-				else:
-					info.append(formatLine("P1", _("ISP"), isp))
-			mobile = geolocationData.get("mobile", None)
-			info.append(formatLine("P1", _("Mobile connection"), (_("Yes") if mobile else _("No"))))
-			proxy = geolocationData.get("proxy", False)
-			info.append(formatLine("P1", _("Proxy detected"), (_("Yes") if proxy else _("No"))))
-			publicIp = geolocationData.get("query", None)
-			if publicIp:
-				info.append(formatLine("P1", _("Public IP"), publicIp))
-		else:
-			info.append(_("Geolocation information cannot be retrieved, please try again later."))
-			info.append("")
-			info.append(_("Access to geolocation information requires an internet connection."))
-		self["information"].setText("\n".join(info))
-
-	def getSummaryInformation(self):
-		return "Geolocation Information"
 
 
 class MemoryInformation(InformationBase):
@@ -667,7 +667,7 @@ class MemoryInformation(InformationBase):
 		info.append("")
 		info.append(formatLine("P1", _("The detailed information is intended for developers only.")))
 		info.append(formatLine("P1", _("Please don't panic if you see values that look suspicious.")))
-		self["information"].setText("\n".join(info))
+		self["information"].setText("\n".join(info).encode("UTF-8", "ignore") if PY2 else "\n".join(info))
 
 	def clearMemoryInformation(self):
 		eConsoleAppContainer().execute(*["/bin/sync", "/bin/sync"])
@@ -960,7 +960,7 @@ class NetworkInformation(InformationBase):
 				info.append(formatLine("P1", _("Bytes received"), self.interfaceData[interface]["rxBytes"]))
 				info.append(formatLine("P1", _("Bytes sent"), self.interfaceData[interface]["txBytes"]))
 		info += self.geolocationData
-		self["information"].setText("\n".join(info))
+		self["information"].setText("\n".join(info).encode("UTF-8", "ignore") if PY2 else "\n".join(info))
 
 
 class ReceiverInformation(InformationBase):
