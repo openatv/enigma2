@@ -821,7 +821,8 @@ class PositionerSetup(Screen):
 			if self.lock_count < self.LOCK_LIMIT:
 				break
 		else:
-			msg = _("Cannot determine") + " " + toGeoposEx(dir) + " " + _("limit ..., aborting !")
+			# TRANSLATORS: "Cannot determine (east/west) limit ..., aborting !"
+			msg = _("Cannot determine %s limit ..., aborting !") % toGeoposEx(dir)
 			self.printMsg(msg)
 			self.statusMsg("")
 			self.session.open(MessageBox, msg, MessageBox.TYPE_ERROR, timeout=5)
@@ -848,7 +849,7 @@ class PositionerSetup(Screen):
 			if self.lock_count < self.LOCK_LIMIT:
 				break
 		else:
-			msg = _("Cannot determine") + " " + toGeoposEx(dir) + " " + _("limit ..., aborting !")
+			msg = _("Cannot determine %s limit ..., aborting !") % toGeoposEx(dir)
 			self.printMsg(msg)
 			self.statusMsg("")
 			self.session.open(MessageBox, msg, MessageBox.TYPE_ERROR, timeout=5)
@@ -922,7 +923,7 @@ class PositionerSetup(Screen):
 				break
 			nsteps += 1
 		else:
-			msg = _("Cannot determine") + " " + toGeoposEx(dir) + " " + _("limit ..., aborting !")
+			msg = _("Cannot determine %s limit ..., aborting !") % toGeoposEx(dir)
 			self.printMsg(msg)
 			self.statusMsg("")
 			self.session.open(MessageBox, msg, MessageBox.TYPE_ERROR, timeout=5)
@@ -949,7 +950,7 @@ class PositionerSetup(Screen):
 				break
 			nsteps += 1
 		else:
-			msg = _("Cannot determine") + " " + toGeoposEx(dir) + " " + _("limit ..., aborting !")
+			msg = _("Cannot determine %s limit ..., aborting !") % toGeoposEx(dir)
 			self.printMsg(msg)
 			self.statusMsg("")
 			self.session.open(MessageBox, msg, MessageBox.TYPE_ERROR, timeout=5)
