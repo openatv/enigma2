@@ -11,9 +11,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-02-06 16:49+0000\n"
-"PO-Revision-Date: 2022-02-07 11:36+0000\n"
-"Last-Translator: hd75hd <hd75hd.hd75hd@gmail.com>\n"
+"POT-Creation-Date: 2022-02-07 20:18+0000\n"
+"PO-Revision-Date: 2022-02-08 18:35+0000\n"
+"Last-Translator: jbleyel <jbleyel@gmx.net>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/de/>\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
@@ -2400,11 +2400,11 @@ msgid "Access point"
 msgstr ""
 
 msgid "Access to geolocation information requires an internet connection."
-msgstr "Die Standortbestimmung benötigt eine Internet Verbindung."
+msgstr "Die Standortbestimmung benötigt eine Internetverbindung."
 
 #, python-format
 msgid "Access to the %s commit logs requires an internet connection."
-msgstr "Der Zugriff auf das %s Commit Log benötigt eine Internet Verbindung."
+msgstr "Der Zugriff auf das %s Commit Log benötigt eine Internetverbindung."
 
 msgid "Accessed:"
 msgstr "Zugegriffen:"
@@ -2469,6 +2469,9 @@ msgstr "Timeshift beenden und Pause"
 
 msgid "Active"
 msgstr "Aktiv"
+
+msgid "Active Streaming Clients"
+msgstr "Aktive Streaming-Clients"
 
 msgid "Active clients"
 msgstr "Aktive Clients"
@@ -2897,7 +2900,7 @@ msgid "Amharic"
 msgstr "Amharisch"
 
 msgid "Amlogic"
-msgstr ""
+msgstr "Amlogic"
 
 msgid "Amlogic remote"
 msgstr "Amlogic Fernbedienung"
@@ -2907,7 +2910,7 @@ msgstr "Es wird versucht den aktuellen TV-Betriebszustand zu erfassen. Ist dies 
 
 #
 msgid "An empty filename is illegal."
-msgstr "Leere Dateinamen sind unzulässig."
+msgstr "Leere Dateinamen sind unzulässig!"
 
 msgid "An error occurred while downloading the packetlist. Please try again."
 msgstr ""
@@ -2917,6 +2920,8 @@ msgstr ""
 #, python-format
 msgid "An error occurred, error code %d, please try again later."
 msgstr ""
+"Ein Fehler mit Fehlercode %d ist aufgetreten!\n"
+"Bitte versuchen Sie es erneut."
 
 msgid "An unknown error occurred!"
 msgstr "Ein unbekannter Fehler ist aufgetreten!"
@@ -3298,7 +3303,7 @@ msgid "Auto focus commencing ..."
 msgstr "Autofokus startet..."
 
 msgid "Auto install log"
-msgstr ""
+msgstr "Autoinstall Log"
 
 msgid "Auto language selection"
 msgstr "Automatische Sprachauswahl"
@@ -3788,7 +3793,7 @@ msgid "Boost green"
 msgstr "Grünanteil erhöhen"
 
 msgid "Boot ID"
-msgstr ""
+msgstr "Boot ID"
 
 msgid "Boot information"
 msgstr "Boot Informationen"
@@ -3862,10 +3867,10 @@ msgid "British Indian Ocean Territory"
 msgstr "Britisches Territorium im Indischen Ozean"
 
 msgid "Broadcast"
-msgstr ""
+msgstr "Broadcast"
 
 msgid "Broadcom"
-msgstr ""
+msgstr "Broadcom"
 
 msgid "Brunei Darussalam"
 msgstr "Brunei Darussalam"
@@ -4837,6 +4842,9 @@ msgstr "Löschen des virtuellen Speichercaches"
 msgid "Click on your remote on the button you want to change"
 msgstr "Drücken Sie die Taste der Fernbedienung die neu belegt werden soll."
 
+msgid "Client"
+msgstr "Client"
+
 #, python-format
 msgid "Client Info ( Oscam-Version: %s )"
 msgstr "Client-Info (OSCam-Version: %s)"
@@ -4883,10 +4891,10 @@ msgid "Close the screen"
 msgstr "Screen schließen"
 
 msgid "Close the screen and exit all menus"
-msgstr "Bildschirm Schließen und alle Menüs verlassen"
+msgstr "Screen schließen und alle Menüs verlassen"
 
 msgid "Close the window"
-msgstr "Window schließen"
+msgstr "Fenster schließen"
 
 #
 msgid "Close title selection"
@@ -4966,7 +4974,7 @@ msgid "Commit Logs"
 msgstr "Commit-Protokolle"
 
 msgid "Common Information Actions"
-msgstr ""
+msgstr "Allgemeine Informationsaktionen"
 
 #
 msgid "Common Interface"
@@ -7182,7 +7190,7 @@ msgid "Dual Mode"
 msgstr "Dual-Modus"
 
 msgid "Duplex"
-msgstr ""
+msgstr "Duplex"
 
 msgid "During this time, the transmitter and the recording destination are checked. If the recording destination (eg NAS) does not ready in time for recording, this time can be increased."
 msgstr "In dieser Zeit wird der Sender und das Aufnahmeziel überprüft. Ist das Aufnahmeziel (z.B. NAS) nicht rechtzeitig zur Aufnahme bereit, kann diese Zeit vergrößert werden."
@@ -7819,7 +7827,7 @@ msgstr "Fehler %d: Protokolldatei '%s' wurde'nicht gelöscht!  (%s)"
 
 #, python-format
 msgid "Error %d: The logfile '%s' could not be opened.  (%s)"
-msgstr "Fehler %d: Die Logdatei '%s' konnte nicht geöffnet werden. (%s)"
+msgstr "Fehler %d: Die Logdatei '%s' konnte nicht geöffnet werden! (%s)"
 
 #, python-format
 msgid "Error '%s' encountered retrieving the %s commit logs!"
@@ -8304,7 +8312,7 @@ msgid "FFmpeg version"
 msgstr "FFmpeg-Version"
 
 msgid "FHD"
-msgstr ""
+msgstr "FHD"
 
 msgid "FIFO"
 msgstr "FIFO"
@@ -8316,7 +8324,7 @@ msgid "FP Upgrade"
 msgstr "Frontprozessor-Update"
 
 msgid "FPU"
-msgstr ""
+msgstr "FPU"
 
 msgid "FSBL Update Check"
 msgstr "FSBL-Update-Prüfung"
@@ -8419,13 +8427,13 @@ msgid "Feed URL"
 msgstr "Feed-URL"
 
 msgid "Feed disabled!"
-msgstr "Feed deaktiviert!"
+msgstr "Feed deaktiviert"
 
 msgid "Feed stable."
-msgstr "Feed stabil."
+msgstr "Feed stabil"
 
 msgid "Feed unstable!"
-msgstr "Feed instabil!"
+msgstr "Feed unstabil"
 
 msgid "Fetch EPG and update timers now"
 msgstr "EPG abrufen und Timer aktualisieren"
@@ -8952,7 +8960,7 @@ msgid "Genre"
 msgstr "Genre"
 
 msgid "Geolocation"
-msgstr "Geolokalisierung"
+msgstr "Standortbestimmung"
 
 msgid "Geolocation Information"
 msgstr "Standort-Informationen"
@@ -8964,7 +8972,7 @@ msgid "Geolocation has been used to set the time zone."
 msgstr "Die Zeitzone wurde anhand der Standortbestimmung festgelegt."
 
 msgid "Geolocation information cannot be retrieved, please try again later."
-msgstr "Standortinformationen können nicht abgerufen werden, bitte versuchen Sie es später erneut."
+msgstr "Standortinformationen können nicht abgerufen werden! Bitte versuchen Sie es später erneut."
 
 msgid "Geolocation is not available."
 msgstr "Die Standortbestimmung ist nicht verfügbar."
@@ -9013,7 +9021,6 @@ msgstr "Ghana"
 msgid "Gibraltar"
 msgstr "Gibraltar"
 
-#, fuzzy
 msgid "Given device id"
 msgstr "Angegebene Geräte-ID"
 
@@ -9204,7 +9211,7 @@ msgid "HARD DISK: "
 msgstr "FESTPLATTE: "
 
 msgid "HD"
-msgstr ""
+msgstr "HD"
 
 msgid "HD list"
 msgstr "HD-Liste"
@@ -9379,7 +9386,7 @@ msgid "Herero"
 msgstr "Herero"
 
 msgid "HiSilicon"
-msgstr ""
+msgstr "HiSilicon"
 
 msgid "HiSilicon specific information"
 msgstr "HiSilicon-spezifische Informationen"
@@ -9521,7 +9528,7 @@ msgid "Horse Racing"
 msgstr "Pferderennen"
 
 msgid "Hostname"
-msgstr ""
+msgstr "Hostname"
 
 msgid "Hostname: "
 msgstr "Hostname: "
@@ -9851,7 +9858,7 @@ msgid ""
 "Image to install is invalid\n"
 "%s"
 msgstr ""
-"Image zum Installieren ist fehlerhaft\n"
+"Image zum Installieren ist fehlerhaft!\n"
 "%s"
 
 #
@@ -11538,7 +11545,7 @@ msgid "Minutes:"
 msgstr "Minuten:"
 
 msgid "Mipsel"
-msgstr ""
+msgstr "Mipsel"
 
 msgid "Miscellaneous"
 msgstr "Sonstiges"
@@ -11586,7 +11593,7 @@ msgid "Mode for autorestore"
 msgstr "Modus für automatische Wiederherstellung"
 
 msgid "Model"
-msgstr ""
+msgstr "Modell"
 
 #
 msgid "Model: "
@@ -12310,7 +12317,7 @@ msgid "Next"
 msgstr "Nächstes"
 
 msgid "Next Image"
-msgstr ""
+msgstr "Nächstes Image"
 
 #
 msgid "Next bouquet"
@@ -12648,7 +12655,7 @@ msgid "Normal"
 msgstr "Normal"
 
 msgid "Normal - Standard image"
-msgstr ""
+msgstr "Normal - Standard-Image"
 
 #
 msgid "North"
@@ -13368,7 +13375,7 @@ msgid "Parodie"
 msgstr "Parodie"
 
 msgid "Partition"
-msgstr ""
+msgstr "Partition"
 
 # InfoPanel
 msgid "Partitions"
@@ -13534,7 +13541,7 @@ msgid "Pixels\n"
 msgstr "Pixel\n"
 
 msgid "Platform"
-msgstr ""
+msgstr "Plattform"
 
 msgid "Play"
 msgstr "Abspielen"
@@ -14267,10 +14274,10 @@ msgid "Press '0' to toggle PiP mode"
 msgstr "Drücken Sie die Taste '0', um den Bild im Bild Modus zu wechseln"
 
 msgid "Press <> or menu to select the different commit logs"
-msgstr "Drücken Sie <> oder Menü, um die verschiedenen Commit-Protokolle auszuwählen"
+msgstr "Drücken Sie <> oder MENU, um die verschiedenen Commit-Protokolle auszuwählen"
 
 msgid "Press <> or menu to select the different info screens"
-msgstr "Drücken Sie <> oder Menü, um die verschiedenen Infobildschirme auszuwählen"
+msgstr "Drücken Sie <> oder MENU, um die verschiedenen Infobildschirme auszuwählen"
 
 msgid "Press EXIT to return to the help screen."
 msgstr "Drücken Sie EXIT, um zum Hilfebildschirm zurückzukehren."
@@ -14715,7 +14722,7 @@ msgid "RC custom code"
 msgstr ""
 
 msgid "RC default name"
-msgstr ""
+msgstr "RC-Standardname"
 
 msgid "RC default type"
 msgstr "RC-Standardtyp"
@@ -14884,10 +14891,10 @@ msgid "Rec long"
 msgstr "Aufnahme lang"
 
 msgid "Receiver"
-msgstr ""
+msgstr "Receiver"
 
 msgid "Receiver Image Actions"
-msgstr ""
+msgstr "Receiver Imageaktionen"
 
 msgid "Receiver Information"
 msgstr "Receiver-Informationen"
@@ -15599,7 +15606,7 @@ msgid "Root directory"
 msgstr "Root-Verzeichnis"
 
 msgid "Root file"
-msgstr ""
+msgstr "Root-Datei"
 
 #
 msgid "Rotor turning speed"
@@ -15730,7 +15737,7 @@ msgid "SSA file"
 msgstr "SSA-Datei"
 
 msgid "SSID"
-msgstr ""
+msgstr "SSID"
 
 #
 msgid "SSID:"
@@ -16403,7 +16410,7 @@ msgid "Select target folder"
 msgstr "Wählen Sie das Zielverzeichnis"
 
 msgid "Select the No / False response"
-msgstr ""
+msgstr "Wähle Nein / Negative Antwort"
 
 #
 msgid "Select the Swap File Size:"
@@ -16428,7 +16435,7 @@ msgid "Select the User Band frequency to be assigned to this tuner. This is the 
 msgstr "Wählen Sie die User-Band-Frequenz aus, die diesem Tuner zugewiesen werden soll. Mit dieser Frequenz leitet der Unicable-Switch den angeforderten Transponder an den Tuner weiter."
 
 msgid "Select the Yes / True response"
-msgstr ""
+msgstr "Wähle Ja / Positive Antwort"
 
 #
 msgid "Select the character or action under the keyboard cursor"
@@ -17729,7 +17736,7 @@ msgid "Show next event"
 msgstr "Nächstes Ereignis anzeigen"
 
 msgid "Show next image"
-msgstr ""
+msgstr "Nächstes Bild anzeigen"
 
 msgid "Show next page"
 msgstr "Nächste Seite anzeigen"
@@ -17760,7 +17767,7 @@ msgid "Show previous event"
 msgstr "Vorheriges Ereignis anzeigen"
 
 msgid "Show previous image"
-msgstr ""
+msgstr "Vorheriges Bild anzeigen"
 
 msgid "Show previous page"
 msgstr "Vorherige Seite anzeigen"
@@ -18008,7 +18015,6 @@ msgstr ""
 msgid "Signal Finder"
 msgstr "Signal-Finder"
 
-#, fuzzy
 msgid "Signal quality"
 msgstr "Signalqualität"
 
@@ -18048,7 +18054,7 @@ msgid "Simple zoom"
 msgstr "Einfacher Zoom"
 
 msgid "SimpleUmount"
-msgstr ""
+msgstr "SimpleUmount"
 
 msgid "Simplified Chinese"
 msgstr "Vereinfachtes Chinesisch"
@@ -18414,7 +18420,7 @@ msgid "Sorry, no details available!"
 msgstr "Keine Details verfügbar!"
 
 msgid "Sorry, no physical devices that supports SWAP attached. Can't create Swapfile on network or fat32 filesystems"
-msgstr "Leider sind keine physischen Geräte angeschlossen, die SWAP unterstützen. Eine Auslagerungsdatei kann nicht auf Netzwerk- oder Fat32-Dateisystemen erstellt werden!"
+msgstr "Leider sind keine physischen Geräte angeschlossen, die Swap unterstützen. Eine Auslagerungsdatei kann nicht auf Netzwerk- oder Fat32-Dateisystemen erstellt werden!"
 
 msgid "Sorry, there was a problem:"
 msgstr "Achtung, es gibt ein Problem:"
@@ -18647,7 +18653,7 @@ msgid "Starts in a few seconds"
 msgstr "Startet in wenigen Sekunden"
 
 msgid "State"
-msgstr ""
+msgstr "Staat"
 
 msgid "Static IP or Custom"
 msgstr "Statische IP oder Benutzerdefiniert"
@@ -18785,11 +18791,11 @@ msgstr "Stream-TV"
 msgid "Streaming"
 msgstr "Streaming"
 
-msgid "Streaming Clients info"
-msgstr ""
-
 msgid "Streaming Clients"
 msgstr "Stream-Clients"
+
+msgid "Streaming Information Actions"
+msgstr "Streaminginformationsactionen"
 
 msgid "Streaming recording ended"
 msgstr "Streaming-Aufnahme beendet"
@@ -18955,7 +18961,7 @@ msgid "Swap Size:"
 msgstr "Swap-Größe:"
 
 msgid "Swap buttons right/left with channel plus/minus or the channel button changed always the side."
-msgstr "Tauschen Sie die Tasten Rechts/Links mit denTasten P+/CH+ und P-/CH-, oder dieTasten P+/CH+ und P-/CH- wechseln immer die Seite."
+msgstr "Tauschen Sie die Tasten Rechts/Links mit den Tasten P+/CH+ und P-/CH- oder die Tasten P+/CH+ und P-/CH- wechseln immer die Seite."
 
 #
 #, fuzzy
@@ -19140,7 +19146,7 @@ msgid "Systeminfo"
 msgstr "System-Info"
 
 msgid "Systems"
-msgstr ""
+msgstr "Systeme"
 
 msgid "T2MI PID"
 msgstr "T2MI-PID"
@@ -19385,11 +19391,11 @@ msgstr "Ihre %s %s speichert die EPG-Daten nach der eingestellten Zeit automatis
 
 #, python-format
 msgid "The %s commit log contains no information."
-msgstr "Das %s Commit-Protokoll enthält keine Informationen."
+msgstr "Das %s Commit-Protokoll enthält keine Informationen!"
 
 #, python-format
 msgid "The %s commit logs can't be retrieved, please try again later."
-msgstr "Die %s Commit-Protokolle können nicht abgerufen werden, bitte versuchen Sie es später erneut."
+msgstr "Die %s Commit-Protokolle können nicht abgerufen werden! Bitte versuchen Sie es später erneut."
 
 #, python-format
 msgid "The '%s' log file contains no information."
@@ -20619,7 +20625,7 @@ msgid "Transcode"
 msgstr "Transkodiert"
 
 msgid "Transcoding"
-msgstr ""
+msgstr "Transkodierung"
 
 msgid "Transcoding: "
 msgstr "Transkodierung: "
@@ -20922,7 +20928,7 @@ msgid "USB switch ERROR! - root files not transferred to USB"
 msgstr "Fehler beim Wechseln auf USB! Root-Dateien wurden nicht auf USB übertragen."
 
 msgid "UUID"
-msgstr ""
+msgstr "UUID"
 
 msgid "Uganda"
 msgstr "Uganda"
@@ -21555,7 +21561,7 @@ msgid "VU+"
 msgstr "Vu+"
 
 msgid "Valid"
-msgstr ""
+msgstr "Gültig"
 
 msgid "Vanuatu"
 msgstr "Vanuatu"
@@ -24269,7 +24275,7 @@ msgid "none"
 msgstr "Keine"
 
 msgid "normal"
-msgstr ""
+msgstr "Normal"
 
 msgid "not"
 msgstr "nicht"
@@ -24880,7 +24886,7 @@ msgstr "Diese Aufnahme"
 
 #
 msgid "this service is protected by a parental control pin"
-msgstr "Dieser Kanal ist durch einen Jugendschutz-PIN-Code geschützt."
+msgstr "Dieser Kanal ist durch einen Jugendschutz-PIN-Code geschützt!"
 
 msgid "to dir"
 msgstr "Zielordner"
