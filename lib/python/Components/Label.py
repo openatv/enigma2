@@ -40,8 +40,8 @@ class LabelConditional(Label, ConditionalWidget):
 
 class BlinkingLabel(Label, BlinkingWidget):
 	def __init__(self, text=""):
-		Label.__init__(text=text)
-		BlinkingWidget.__init__()
+		Label.__init__(self, text=text)
+		BlinkingWidget.__init__(self)
 
 
 class BlinkingLabelConditional(BlinkingWidgetConditional, LabelConditional):
