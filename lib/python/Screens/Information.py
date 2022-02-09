@@ -91,8 +91,10 @@ def getBoxProcTypeName():
 	return "%s - %s" % (proctype, BoxProcTypes.get(proctype, _("Unknown")))
 
 def convertDate(StringDate):
-	## StringDate must be a string "YYYY-MM-DD" or "YYYYMMDD"
+	## StringDate must be a string "YYYY-MM-DD" or "YYYYMMDD" / or integer YYYYMMDD
 	try:
+		if type(StringDate) == int:
+			StringDate = str(StringDate)
 		if len(StringDate) == 8:
 			year = StringDate[0:4]
 			month = StringDate[4:6]
