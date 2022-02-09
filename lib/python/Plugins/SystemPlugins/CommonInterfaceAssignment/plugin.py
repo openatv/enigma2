@@ -117,7 +117,7 @@ class CIconfigMenu(Screen):
 
 	def __init__(self, session, ci_slot="9"):
 		Screen.__init__(self, session)
-		self.setTitle(_("CIselectMainMenu"))
+		self.setTitle(_("CIconfigMenu"))
 		self.ci_slot = ci_slot
 		self.filename = eEnv.resolve("${sysconfdir}/enigma2/ci") + str(self.ci_slot) + ".xml"
 
