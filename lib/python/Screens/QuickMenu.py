@@ -645,7 +645,7 @@ class QuickMenuList(MenuList):
 	def __init__(self, list, enableWrapAround=True):
 		MenuList.__init__(self, list, enableWrapAround, eListboxPythonMultiContent)
 		sf = getSkinFactor()
-		self.l.setFont(0, gFont("Regular", int(20 * sf)))
+		self.l.setFont(0, gFont("Regular", int(19 * sf)))
 		self.l.setFont(1, gFont("Regular", int(16 * sf)))
 		self.l.setItemHeight(int(50 * sf))
 
