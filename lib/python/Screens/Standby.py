@@ -419,12 +419,11 @@ class TryQuitMainloop(MessageBox):
 				if not recordings: # no more recordings exist
 					rec_time = self.session.nav.RecordTimer.getNextRecordingTime()
 					if rec_time > 0 and (rec_time - time()) < 360:
-						self.initTimeout(360) # wait for next starting timer
-						self.startTimer()
+						self.timer.start(360) # wait for next starting timer
 					else:
 						self.close(True) # immediate shutdown
 			elif event == iRecordableService.evStart:
-				self.stopTimer()
+				self.stopTimer("getRecordEvent")
 
 	def close(self, value):
 		global quitMainloopCode
