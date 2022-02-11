@@ -1763,7 +1763,9 @@ class ConfigText(ConfigElement, NumericalTextInput):
 			self.help_window.hide()
 
 	def onSelect(self, session):
-		self.allmarked = (self.value != "" and "\n" not in self.value) # FIXME multiline text looks odd if all chars marked
+		self.allmarked = (self.value != "")
+		if self.value and isinstance(self.value, str): # FIXME multiline text looks odd if all chars marked
+			self.allmarked = ("\n" not in self.value)
 		if session is not None:
 			from Screens.NumericalTextInputHelpDialog import NumericalTextInputHelpDialog
 			self.help_window = session.instantiateDialog(NumericalTextInputHelpDialog, self)
