@@ -1138,16 +1138,6 @@ def InitUsageConfig():
 	config.network.Inadyn_autostart = ConfigYesNo(default=False)
 	config.network.uShare_autostart = ConfigYesNo(default=False)
 
-	config.softwareupdate = ConfigSubsection()
-	config.softwareupdate.autosettingsbackup = ConfigYesNo(default=False)
-	config.softwareupdate.autoimagebackup = ConfigYesNo(default=False)
-	config.softwareupdate.check = ConfigYesNo(default=False)
-	config.softwareupdate.checktimer = ConfigSelectionNumber(min=1, max=48, stepwidth=1, default=6, wraparound=True)
-	config.softwareupdate.updatelastcheck = ConfigInteger(default=0)
-	config.softwareupdate.updatefound = NoSave(ConfigBoolean(default=False))
-	config.softwareupdate.updatebeta = ConfigYesNo(default=False)
-	config.softwareupdate.updateisunstable = ConfigInteger(default=0)
-
 	config.timeshift = ConfigSubsection()
 	choicelist = [("0", _("Disabled"))]
 	for i in (2, 3, 4, 5, 10, 20, 30):
