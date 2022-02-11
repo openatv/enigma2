@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-02-07 20:18+0000\n"
+"POT-Creation-Date: 2022-02-11 14:04+0000\n"
 "PO-Revision-Date: 2021-12-30 16:18+0000\n"
 "Last-Translator: Jaime Flores Gil <jaime.flores.gil@gmail.com>\n"
 "Language-Team: Spanish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/es/>\n"
@@ -1200,11 +1200,6 @@ msgid "%d Min"
 msgid_plural "%d Mins"
 msgstr[0] "%d min"
 msgstr[1] "%d min"
-
-#
-#, python-format
-msgid "%d Mins"
-msgstr "%d min"
 
 #. TRANSLATORS: Intermediate scanning result, '%d' channel(s) have been found so far
 #, python-format
@@ -3016,9 +3011,6 @@ msgstr "Igualar el idioma de subtítulos al de audio"
 msgid "Allow subtitles for hearing impaired"
 msgstr "Permitir subtítulos para sordos"
 
-msgid "Allow unstable (untested) updates"
-msgstr "Permitir actualizaciones inestables (no han sido probadas)"
-
 #, fuzzy
 msgid "Allow unsupported modes"
 msgstr "No compatible"
@@ -3576,9 +3568,6 @@ msgstr "Búsqueda automática"
 msgid "Automatic Service Searching"
 msgstr "Búsqueda de canales"
 
-msgid "Automatic image backup"
-msgstr "Copia automática de imagen"
-
 msgid "Automatic resolution"
 msgstr "Resolución automática"
 
@@ -3590,9 +3579,6 @@ msgstr "Búsqueda automática"
 
 msgid "Automatic scan for services"
 msgstr "Búsqueda automática de canales"
-
-msgid "Automatic setting backup"
-msgstr "Copia de seguridad automática de la configuración"
 
 msgid "Automatically put the TV in standby whenever the receiver goes into standby or deep standby."
 msgstr ""
@@ -3635,9 +3621,6 @@ msgstr ""
 
 msgid "Avoid getting stuck (at the expense of some stuttering) when the jump time is smaller than the time between I-frames."
 msgstr "Evita que se bloquee cuando el salto de tiempo es inferior al tiempo entre fotogramas."
-
-msgid "Axas E4HD Ultra"
-msgstr ""
 
 msgid "Aymara"
 msgstr ""
@@ -3741,9 +3724,6 @@ msgstr "Volver/Recuperar"
 #
 msgid "Background"
 msgstr "Fondo"
-
-msgid "Background check"
-msgstr "Comprobación en segundo plano"
 
 msgid "Background color"
 msgstr "Color de fondo"
@@ -3956,9 +3936,6 @@ msgid "Bermuda"
 msgstr ""
 
 msgid "Berufe"
-msgstr ""
-
-msgid "Beyonwiz U4"
 msgstr ""
 
 msgid "Beziehung"
@@ -4584,8 +4561,10 @@ msgstr "No se puede borrar el archivo"
 msgid "Cannot delete file"
 msgstr "No se puede borrar el archivo"
 
-msgid "Cannot determine"
-msgstr "No se puede determinar"
+#. TRANSLATORS: "Cannot determine (east/west) limit ..., aborting !"
+#, python-format
+msgid "Cannot determine %s limit ..., aborting !"
+msgstr ""
 
 msgid "Cannot find any signal ..., aborting !"
 msgstr "No se puede encontrar ninguna señal..., ¡abortando!"
@@ -4874,9 +4853,6 @@ msgstr "Comprobar"
 
 msgid "Check HDD"
 msgstr "Comprobar HDD"
-
-msgid "Check every (hours)"
-msgstr "Comprobar cada (horas)"
 
 msgid "Check power and input state from TV"
 msgstr ""
@@ -6094,9 +6070,6 @@ msgstr "Estado actual:"
 
 msgid "Current crash log"
 msgstr ""
-
-msgid "Current device: "
-msgstr "Dispositivo actual: "
 
 #, fuzzy
 msgid "Current installed"
@@ -7579,9 +7552,6 @@ msgstr "E"
 msgid "E "
 msgstr "E"
 
-msgid "E3HD/XPEEDLX/GI"
-msgstr ""
-
 #, fuzzy
 msgid "ECM Info"
 msgstr "No hay información ECM"
@@ -8676,10 +8646,6 @@ msgstr "F1"
 msgid "F1 long"
 msgstr "F2 largo"
 
-#, fuzzy
-msgid "F1/F3/F4/F4-TURBO/TRIPLEX"
-msgstr "F1/F3/TRIPLEX"
-
 msgid "F2"
 msgstr "F2"
 
@@ -9303,9 +9269,6 @@ msgstr "GB"
 msgid "GCC version"
 msgstr ""
 
-msgid "GIGABLUE Black"
-msgstr ""
-
 msgid "GStreamer version"
 msgstr ""
 
@@ -9666,20 +9629,6 @@ msgstr ""
 
 msgid "HD list"
 msgstr "Lista HD"
-
-#, fuzzy
-msgid "HD11/HD51/HD1100/HD1200/HD1265/HD1500/HD500C/HD530C/VS1000/VS1500"
-msgstr "HD1100/HD1200/HD1265/HD500C/et7x00/et8500"
-
-#, fuzzy
-msgid "HD11/HD51/HD1100/HD1200/HD1265/HD1500/HD500C/HD530C/et7x00/et8500/VS1000/VS1500"
-msgstr "HD1100/HD1200/HD1265/HD500C/et7x00/et8500"
-
-msgid "HD2400"
-msgstr "HD2400"
-
-msgid "HD60/Multibox/Multiboxse"
-msgstr ""
 
 msgid "HDMI"
 msgstr "HDMI"
@@ -11726,9 +11675,6 @@ msgstr "MB"
 msgid "MENU"
 msgstr ""
 
-msgid "MIRACLEBOX_TWINPLUS"
-msgstr ""
-
 msgid "MKUBIFS"
 msgstr ""
 
@@ -11891,9 +11837,6 @@ msgstr ""
 
 msgid "Maori"
 msgstr ""
-
-msgid "MaraM9"
-msgstr "MaraM9"
 
 #, fuzzy
 msgid "Marathi"
@@ -13421,15 +13364,6 @@ msgstr "Número de filas a mostrar"
 msgid "Number or SMS style data entry"
 msgstr ""
 
-msgid "OCTAGON SF5008"
-msgstr ""
-
-msgid "OCTAGON_SF4008"
-msgstr ""
-
-msgid "ODIN_M7"
-msgstr ""
-
 msgid "OEM Model"
 msgstr ""
 
@@ -14105,17 +14039,8 @@ msgstr "Barra izquierda de progreso"
 msgid "Percentage/Progress bar right"
 msgstr "Barra derecha de progreso"
 
-msgid "Perform a image backup before updating."
-msgstr "Realizar una copia de la imagen antes de actualizar."
-
-msgid "Perform a setting backup before updating."
-msgstr "Realizar una copia de la imagen después de actualizar."
-
 msgid "Perform an on-line flash instead"
 msgstr ""
-
-msgid "Perform an online update check in the background"
-msgstr "Realizar una comprobación en línea de actualización en segundo plano."
 
 msgid "Permanently delete all recordings in the trash can?"
 msgstr "¿Borrar permanentemente todas las grabaciones de la papelera?"
@@ -15250,9 +15175,6 @@ msgstr "Proteger menú de apagado"
 
 msgid "Protect timer menu"
 msgstr "Proteger menú de temporizadores"
-
-msgid "Protek 4K UHD/HD61"
-msgstr ""
 
 msgid "Protocol"
 msgstr "Protocolo"
@@ -17918,9 +17840,6 @@ msgstr "Configurar red. Aquí puedes configurar DHCP, IP, DNS"
 msgid "Setup rotor"
 msgstr "Configurar motor"
 
-msgid "Setup the interval to check for online updates. (in hours)"
-msgstr "Configurar el intervalo de comprobación de actualizaciones en línea (en horas)"
-
 msgid "Setup tuner(s)"
 msgstr "Configurar sintonizador(es)"
 
@@ -19167,9 +19086,6 @@ msgstr "Información del administrador de software"
 msgid "Softwaremanager..."
 msgstr "Administrador de complementos"
 
-msgid "Softwareupdate"
-msgstr "Actualización de complementos"
-
 msgid "Solomon Islands"
 msgstr ""
 
@@ -19488,6 +19404,7 @@ msgstr "Empezando desde"
 msgid "Starts in a few seconds"
 msgstr "Iniciar descodificación offline"
 
+#. TRANSLATORS: "State" is Location Info
 msgid "State"
 msgstr ""
 
@@ -22488,9 +22405,6 @@ msgstr "OK largo"
 msgid "VPN"
 msgstr "OpenVPN"
 
-msgid "VU+"
-msgstr "VU+"
-
 msgid "Valid"
 msgstr ""
 
@@ -22902,12 +22816,6 @@ msgstr "WPA2"
 msgid "WSS on 4:3"
 msgstr "WSS en 4:3"
 
-msgid "WWIO 4K"
-msgstr ""
-
-msgid "WWIO_BRE2ZE_TC"
-msgstr ""
-
 msgid "Waffen"
 msgstr ""
 
@@ -23150,9 +23058,6 @@ msgstr "Cuando está activado, Enigma2 cargará los grupos de usuario de canales
 # /data/setup.xml
 msgid "When enabled the PiP can be closed by the exit button."
 msgstr "Cuando está activado, PiP puede cerrarse con la tecla EXIT."
-
-msgid "When enabled the online checker will also check for experimental versions"
-msgstr "Cuando está activado, el verificador en línea comprobará también las versiones experimentales"
 
 msgid "When enabled the receiver will automatically be switched off."
 msgstr ""
@@ -23476,12 +23381,6 @@ msgstr "Www largo"
 
 msgid "XBox 360 support"
 msgstr "Soporte XBox 360"
-
-msgid "XP1000"
-msgstr "XP1000"
-
-msgid "XP3000"
-msgstr "XP3000"
 
 msgid "XPicon, ZZZPicon"
 msgstr ""
@@ -24075,19 +23974,7 @@ msgstr "Grabar próximo"
 msgid "Zeichentrick"
 msgstr ""
 
-msgid "Zgemma H.S/H.2S/H.2H/H5/H7"
-msgstr ""
-
 msgid "Zgemma H.S/H.2S/H.2H/H5/H7 old Model"
-msgstr ""
-
-msgid "Zgemma H8/H0/H9/I55Plus old Model"
-msgstr ""
-
-msgid "Zgemma Star S/2S/H1/H2"
-msgstr ""
-
-msgid "Zgemma i55"
 msgstr ""
 
 msgid "Zhuang / Chuang"
@@ -24699,26 +24586,6 @@ msgstr "Error iniciando la exploración"
 msgid "error while scanning"
 msgstr "Error durante la exploración"
 
-msgid "et4000"
-msgstr "et4000"
-
-msgid "et5000/6000"
-msgstr "et5000/6000"
-
-#, fuzzy
-msgid "et8000/et10000/et13000"
-msgstr "et8000/et10000"
-
-#, fuzzy
-msgid "et8000/et10000/et13000/SF5008"
-msgstr "et8000/et10000"
-
-msgid "et9000/et9100"
-msgstr "et9000/et9100"
-
-msgid "et9200/9500/6500"
-msgstr "et9200/9500/6500"
-
 msgid "execute cuts (requires MovieCut plugin)"
 msgstr "Ejecutar cortes (requiere MovieCut plugin)"
 
@@ -25068,9 +24935,6 @@ msgstr "Ocio aficiones (general)"
 msgid "length"
 msgstr "Longitud"
 
-msgid "limit ..., aborting !"
-msgstr "límite..., ¡abortando!"
-
 msgid "literature"
 msgstr "literatura"
 
@@ -25175,9 +25039,6 @@ msgstr "Película / drama (general)"
 
 msgid "movie/drama (general)"
 msgstr "Película / drama (general)"
-
-msgid "ms"
-msgstr "ms"
 
 #
 #, fuzzy
@@ -26165,6 +26026,103 @@ msgstr "Zapping"
 
 msgid "®"
 msgstr ""
+
+#
+#, python-format
+#~ msgid "%d Mins"
+#~ msgstr "%d min"
+
+#~ msgid "Allow unstable (untested) updates"
+#~ msgstr "Permitir actualizaciones inestables (no han sido probadas)"
+
+#~ msgid "Automatic image backup"
+#~ msgstr "Copia automática de imagen"
+
+#~ msgid "Automatic setting backup"
+#~ msgstr "Copia de seguridad automática de la configuración"
+
+#~ msgid "Background check"
+#~ msgstr "Comprobación en segundo plano"
+
+#~ msgid "Cannot determine"
+#~ msgstr "No se puede determinar"
+
+#~ msgid "Check every (hours)"
+#~ msgstr "Comprobar cada (horas)"
+
+#~ msgid "Current device: "
+#~ msgstr "Dispositivo actual: "
+
+#, fuzzy
+#~ msgid "F1/F3/F4/F4-TURBO/TRIPLEX"
+#~ msgstr "F1/F3/TRIPLEX"
+
+#, fuzzy
+#~ msgid "HD11/HD51/HD1100/HD1200/HD1265/HD1500/HD500C/HD530C/VS1000/VS1500"
+#~ msgstr "HD1100/HD1200/HD1265/HD500C/et7x00/et8500"
+
+#, fuzzy
+#~ msgid "HD11/HD51/HD1100/HD1200/HD1265/HD1500/HD500C/HD530C/et7x00/et8500/VS1000/VS1500"
+#~ msgstr "HD1100/HD1200/HD1265/HD500C/et7x00/et8500"
+
+#~ msgid "HD2400"
+#~ msgstr "HD2400"
+
+#~ msgid "MaraM9"
+#~ msgstr "MaraM9"
+
+#~ msgid "Perform a image backup before updating."
+#~ msgstr "Realizar una copia de la imagen antes de actualizar."
+
+#~ msgid "Perform a setting backup before updating."
+#~ msgstr "Realizar una copia de la imagen después de actualizar."
+
+#~ msgid "Perform an online update check in the background"
+#~ msgstr "Realizar una comprobación en línea de actualización en segundo plano."
+
+#~ msgid "Setup the interval to check for online updates. (in hours)"
+#~ msgstr "Configurar el intervalo de comprobación de actualizaciones en línea (en horas)"
+
+#~ msgid "Softwareupdate"
+#~ msgstr "Actualización de complementos"
+
+#~ msgid "VU+"
+#~ msgstr "VU+"
+
+#~ msgid "When enabled the online checker will also check for experimental versions"
+#~ msgstr "Cuando está activado, el verificador en línea comprobará también las versiones experimentales"
+
+#~ msgid "XP1000"
+#~ msgstr "XP1000"
+
+#~ msgid "XP3000"
+#~ msgstr "XP3000"
+
+#~ msgid "et4000"
+#~ msgstr "et4000"
+
+#~ msgid "et5000/6000"
+#~ msgstr "et5000/6000"
+
+#, fuzzy
+#~ msgid "et8000/et10000/et13000"
+#~ msgstr "et8000/et10000"
+
+#, fuzzy
+#~ msgid "et8000/et10000/et13000/SF5008"
+#~ msgstr "et8000/et10000"
+
+#~ msgid "et9000/et9100"
+#~ msgstr "et9000/et9100"
+
+#~ msgid "et9200/9500/6500"
+#~ msgstr "et9200/9500/6500"
+
+#~ msgid "limit ..., aborting !"
+#~ msgstr "límite..., ¡abortando!"
+
+#~ msgid "ms"
+#~ msgstr "ms"
 
 #, python-format
 #~ msgid "  (%s x %s)"

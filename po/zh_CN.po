@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openATV [E2+webif_V5.3_6.0]\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-02-07 20:18+0000\n"
+"POT-Creation-Date: 2022-02-11 14:04+0000\n"
 "PO-Revision-Date: 2021-11-02 11:36+0000\n"
 "Last-Translator: lexlong2007 <lexlong2007@163.com>\n"
 "Language-Team: Chinese (Simplified) <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/zh_Hans/>\n"
@@ -1020,10 +1020,6 @@ msgstr "%d MB"
 msgid "%d Min"
 msgid_plural "%d Mins"
 msgstr[0] "%d 分钟"
-
-#, python-format
-msgid "%d Mins"
-msgstr "%d 分钟"
 
 #. TRANSLATORS: Intermediate scanning result, '%d' channel(s) have been found so far
 #, python-format
@@ -2641,9 +2637,6 @@ msgstr "允许字幕语言和音频语言相同"
 msgid "Allow subtitles for hearing impaired"
 msgstr "允许音视频不同步的字幕"
 
-msgid "Allow unstable (untested) updates"
-msgstr "允许不稳定版更新"
-
 msgid "Allow unsupported modes"
 msgstr "全支持模式"
 
@@ -3144,9 +3137,6 @@ msgstr "自动扫描"
 msgid "Automatic Service Searching"
 msgstr "自动搜索频道"
 
-msgid "Automatic image backup"
-msgstr "自动备份固件"
-
 msgid "Automatic resolution"
 msgstr "自动分辨率"
 
@@ -3158,9 +3148,6 @@ msgstr "自动扫描"
 
 msgid "Automatic scan for services"
 msgstr "频道自动扫描"
-
-msgid "Automatic setting backup"
-msgstr "自动备份设置"
 
 msgid "Automatically put the TV in standby whenever the receiver goes into standby or deep standby."
 msgstr ""
@@ -3200,9 +3187,6 @@ msgstr "阿维斯坦"
 
 msgid "Avoid getting stuck (at the expense of some stuttering) when the jump time is smaller than the time between I-frames."
 msgstr "当跳转时间点介于 I帧之间时, 避免卡顿."
-
-msgid "Axas E4HD Ultra"
-msgstr "Axas E4HD Ultra"
 
 msgid "Aymara"
 msgstr "艾马拉"
@@ -3296,9 +3280,6 @@ msgstr "返回/唤回"
 
 msgid "Background"
 msgstr "后台"
-
-msgid "Background check"
-msgstr "后台检查"
 
 msgid "Background color"
 msgstr "背景颜色"
@@ -3488,9 +3469,6 @@ msgstr "百慕大"
 
 msgid "Berufe"
 msgstr "贝鲁夫"
-
-msgid "Beyonwiz U4"
-msgstr "Beyonwiz U4"
 
 msgid "Beziehung"
 msgstr "贝济洪"
@@ -4080,8 +4058,10 @@ msgstr "无法删除下载的图像"
 msgid "Cannot delete file"
 msgstr "无法删除文件"
 
-msgid "Cannot determine"
-msgstr "无法确定"
+#. TRANSLATORS: "Cannot determine (east/west) limit ..., aborting !"
+#, python-format
+msgid "Cannot determine %s limit ..., aborting !"
+msgstr ""
 
 msgid "Cannot find any signal ..., aborting !"
 msgstr "无法找到任何信号...，正在终止！"
@@ -4333,9 +4313,6 @@ msgstr "检查"
 
 msgid "Check HDD"
 msgstr "检查硬盘"
-
-msgid "Check every (hours)"
-msgstr "检查每（小时）"
 
 msgid "Check power and input state from TV"
 msgstr "请检查电视电源和输入"
@@ -5444,9 +5421,6 @@ msgstr "目前状态:"
 
 msgid "Current crash log"
 msgstr ""
-
-msgid "Current device: "
-msgstr "当前设备: "
 
 msgid "Current installed"
 msgstr "当前已安装"
@@ -6772,9 +6746,6 @@ msgstr "E"
 msgid "E "
 msgstr "E "
 
-msgid "E3HD/XPEEDLX/GI"
-msgstr "E3HD/XPEEDLX/GI"
-
 msgid "ECM Info"
 msgstr "ECM 信息"
 
@@ -7772,9 +7743,6 @@ msgstr "F1"
 msgid "F1 long"
 msgstr "F1 长按"
 
-msgid "F1/F3/F4/F4-TURBO/TRIPLEX"
-msgstr "F1/F3/F4/F4-TURBO/TRIPLEX"
-
 msgid "F2"
 msgstr "F2"
 
@@ -8321,9 +8289,6 @@ msgstr "GB"
 msgid "GCC version"
 msgstr ""
 
-msgid "GIGABLUE Black"
-msgstr "GIGABLUE 黑色"
-
 msgid "GStreamer version"
 msgstr ""
 
@@ -8650,18 +8615,6 @@ msgstr ""
 
 msgid "HD list"
 msgstr "HD 列表"
-
-msgid "HD11/HD51/HD1100/HD1200/HD1265/HD1500/HD500C/HD530C/VS1000/VS1500"
-msgstr "HD11/HD51/HD1100/HD1200/HD1265/HD1500/HD500C/HD530C/VS1000/VS1500"
-
-msgid "HD11/HD51/HD1100/HD1200/HD1265/HD1500/HD500C/HD530C/et7x00/et8500/VS1000/VS1500"
-msgstr "HD11/HD51/HD1100/HD1200/HD1265/HD1500/HD500C/HD530C/et7x00/et8500/VS1000/VS1500"
-
-msgid "HD2400"
-msgstr "HD2400"
-
-msgid "HD60/Multibox/Multiboxse"
-msgstr "HD60/Multibox/Multiboxse"
 
 msgid "HDMI"
 msgstr "HDMI"
@@ -10473,9 +10426,6 @@ msgstr "MB"
 msgid "MENU"
 msgstr "菜单"
 
-msgid "MIRACLEBOX_TWINPLUS"
-msgstr "MIRACLEBOX_TWINPLUS"
-
 msgid "MKUBIFS"
 msgstr ""
 
@@ -10620,9 +10570,6 @@ msgstr "马恩岛"
 
 msgid "Maori"
 msgstr "毛利人"
-
-msgid "MaraM9"
-msgstr "MaraM9"
 
 msgid "Marathi"
 msgstr "马拉地语"
@@ -11943,15 +11890,6 @@ msgstr "要显示的行数"
 msgid "Number or SMS style data entry"
 msgstr "数字或短信样式数据输入"
 
-msgid "OCTAGON SF5008"
-msgstr "OCTAGON SF5008"
-
-msgid "OCTAGON_SF4008"
-msgstr "OCTAGON_SF4008"
-
-msgid "ODIN_M7"
-msgstr "ODIN_M7"
-
 msgid "OEM Model"
 msgstr ""
 
@@ -12546,17 +12484,8 @@ msgstr "左侧百分比/进度条"
 msgid "Percentage/Progress bar right"
 msgstr "百分比/进度条右侧"
 
-msgid "Perform a image backup before updating."
-msgstr "升级前执行固件备份."
-
-msgid "Perform a setting backup before updating."
-msgstr "升级前执行设置备份."
-
 msgid "Perform an on-line flash instead"
 msgstr ""
-
-msgid "Perform an online update check in the background"
-msgstr "在后台执行在线升级检查"
 
 msgid "Permanently delete all recordings in the trash can?"
 msgstr "永久删除所有垃圾桶中的录像吗？"
@@ -13562,9 +13491,6 @@ msgstr "保护待机菜单"
 
 msgid "Protect timer menu"
 msgstr "保护定时器菜单"
-
-msgid "Protek 4K UHD/HD61"
-msgstr "Protek 4K UHD/HD61"
 
 msgid "Protocol"
 msgstr "协议"
@@ -15921,9 +15847,6 @@ msgstr "设置网络.在这里你可以设置 DHCP、 IP、 DNS"
 msgid "Setup rotor"
 msgstr "设置电动极轴"
 
-msgid "Setup the interval to check for online updates. (in hours)"
-msgstr "设置要检查在线更新的间隔.（以小时为单位）"
-
 msgid "Setup tuner(s)"
 msgstr "设置调谐器（S）"
 
@@ -17032,9 +16955,6 @@ msgstr "软件管理器信息"
 msgid "Softwaremanager..."
 msgstr "软件管理器..."
 
-msgid "Softwareupdate"
-msgstr "软件更新"
-
 msgid "Solomon Islands"
 msgstr "所罗门群岛"
 
@@ -17316,6 +17236,7 @@ msgstr "开始于"
 msgid "Starts in a few seconds"
 msgstr "几秒钟后开始"
 
+#. TRANSLATORS: "State" is Location Info
 msgid "State"
 msgstr ""
 
@@ -19988,9 +19909,6 @@ msgstr "VOD键 长按"
 msgid "VPN"
 msgstr "VPN"
 
-msgid "VU+"
-msgstr "VU+"
-
 msgid "Valid"
 msgstr ""
 
@@ -20329,12 +20247,6 @@ msgstr "WPA2"
 msgid "WSS on 4:3"
 msgstr "4:3宽高比时显示宽屏幕信号"
 
-msgid "WWIO 4K"
-msgstr "WWIO 4K"
-
-msgid "WWIO_BRE2ZE_TC"
-msgstr "WWIO_BRE2ZE_TC"
-
 msgid "Waffen"
 msgstr "武器"
 
@@ -20547,9 +20459,6 @@ msgstr "启用时，Enigma2将加载未链接的用户频道组. 这意味着用
 
 msgid "When enabled the PiP can be closed by the exit button."
 msgstr "启用时，可以通过 EXIT 键关闭画中画."
-
-msgid "When enabled the online checker will also check for experimental versions"
-msgstr "启用时，在线检查程序还将检查体验版本"
 
 msgid "When enabled the receiver will automatically be switched off."
 msgstr ""
@@ -20856,12 +20765,6 @@ msgstr "Www 长按"
 
 msgid "XBox 360 support"
 msgstr "Xbox 360支持"
-
-msgid "XP1000"
-msgstr "XP1000"
-
-msgid "XP3000"
-msgstr "XP3000"
 
 msgid "XPicon, ZZZPicon"
 msgstr "XPicon, ZZZPicon"
@@ -21410,20 +21313,8 @@ msgstr "换台+录制下一个"
 msgid "Zeichentrick"
 msgstr "动画片"
 
-msgid "Zgemma H.S/H.2S/H.2H/H5/H7"
-msgstr "Zgemma H.S/H.2S/H.2H/H5/H7"
-
 msgid "Zgemma H.S/H.2S/H.2H/H5/H7 old Model"
 msgstr "Zgemma H.S/H.2S/H.2H/H5/H7 旧型号"
-
-msgid "Zgemma H8/H0/H9/I55Plus old Model"
-msgstr "Zgemma H8/H0/H9/I55Plus 旧型号"
-
-msgid "Zgemma Star S/2S/H1/H2"
-msgstr "Zgemma Star S/2S/H1/H2"
-
-msgid "Zgemma i55"
-msgstr "Zgemma i55"
 
 msgid "Zhuang / Chuang"
 msgstr "中国壮族语"
@@ -21954,24 +21845,6 @@ msgstr "开始扫描时出错"
 msgid "error while scanning"
 msgstr "扫描时出错"
 
-msgid "et4000"
-msgstr "et4000"
-
-msgid "et5000/6000"
-msgstr "et5000/6000"
-
-msgid "et8000/et10000/et13000"
-msgstr "et8000/et10000/et13000"
-
-msgid "et8000/et10000/et13000/SF5008"
-msgstr "et8000/et10000/et13000/SF5008"
-
-msgid "et9000/et9100"
-msgstr "et9000/et9100"
-
-msgid "et9200/9500/6500"
-msgstr "et9200/9500/6500"
-
 msgid "execute cuts (requires MovieCut plugin)"
 msgstr "执行最终剪辑（需要MovieCut插件）"
 
@@ -22275,9 +22148,6 @@ msgstr "业余爱好（常规）"
 msgid "length"
 msgstr "长度"
 
-msgid "limit ..., aborting !"
-msgstr "限制......，中止 ！"
-
 msgid "literature"
 msgstr "文学"
 
@@ -22364,9 +22234,6 @@ msgstr "电影 (一般)"
 
 msgid "movie/drama (general)"
 msgstr "电影/戏剧 （一般）"
-
-msgid "ms"
-msgstr "毫秒"
 
 msgid "multi"
 msgstr "多"
@@ -23214,6 +23081,145 @@ msgstr "切换中"
 
 msgid "®"
 msgstr "®"
+
+#, python-format
+#~ msgid "%d Mins"
+#~ msgstr "%d 分钟"
+
+#~ msgid "Allow unstable (untested) updates"
+#~ msgstr "允许不稳定版更新"
+
+#~ msgid "Automatic image backup"
+#~ msgstr "自动备份固件"
+
+#~ msgid "Automatic setting backup"
+#~ msgstr "自动备份设置"
+
+#~ msgid "Axas E4HD Ultra"
+#~ msgstr "Axas E4HD Ultra"
+
+#~ msgid "Background check"
+#~ msgstr "后台检查"
+
+#~ msgid "Beyonwiz U4"
+#~ msgstr "Beyonwiz U4"
+
+#~ msgid "Cannot determine"
+#~ msgstr "无法确定"
+
+#~ msgid "Check every (hours)"
+#~ msgstr "检查每（小时）"
+
+#~ msgid "Current device: "
+#~ msgstr "当前设备: "
+
+#~ msgid "E3HD/XPEEDLX/GI"
+#~ msgstr "E3HD/XPEEDLX/GI"
+
+#~ msgid "F1/F3/F4/F4-TURBO/TRIPLEX"
+#~ msgstr "F1/F3/F4/F4-TURBO/TRIPLEX"
+
+#~ msgid "GIGABLUE Black"
+#~ msgstr "GIGABLUE 黑色"
+
+#~ msgid "HD11/HD51/HD1100/HD1200/HD1265/HD1500/HD500C/HD530C/VS1000/VS1500"
+#~ msgstr "HD11/HD51/HD1100/HD1200/HD1265/HD1500/HD500C/HD530C/VS1000/VS1500"
+
+#~ msgid "HD11/HD51/HD1100/HD1200/HD1265/HD1500/HD500C/HD530C/et7x00/et8500/VS1000/VS1500"
+#~ msgstr "HD11/HD51/HD1100/HD1200/HD1265/HD1500/HD500C/HD530C/et7x00/et8500/VS1000/VS1500"
+
+#~ msgid "HD2400"
+#~ msgstr "HD2400"
+
+#~ msgid "HD60/Multibox/Multiboxse"
+#~ msgstr "HD60/Multibox/Multiboxse"
+
+#~ msgid "MIRACLEBOX_TWINPLUS"
+#~ msgstr "MIRACLEBOX_TWINPLUS"
+
+#~ msgid "MaraM9"
+#~ msgstr "MaraM9"
+
+#~ msgid "OCTAGON SF5008"
+#~ msgstr "OCTAGON SF5008"
+
+#~ msgid "OCTAGON_SF4008"
+#~ msgstr "OCTAGON_SF4008"
+
+#~ msgid "ODIN_M7"
+#~ msgstr "ODIN_M7"
+
+#~ msgid "Perform a image backup before updating."
+#~ msgstr "升级前执行固件备份."
+
+#~ msgid "Perform a setting backup before updating."
+#~ msgstr "升级前执行设置备份."
+
+#~ msgid "Perform an online update check in the background"
+#~ msgstr "在后台执行在线升级检查"
+
+#~ msgid "Protek 4K UHD/HD61"
+#~ msgstr "Protek 4K UHD/HD61"
+
+#~ msgid "Setup the interval to check for online updates. (in hours)"
+#~ msgstr "设置要检查在线更新的间隔.（以小时为单位）"
+
+#~ msgid "Softwareupdate"
+#~ msgstr "软件更新"
+
+#~ msgid "VU+"
+#~ msgstr "VU+"
+
+#~ msgid "WWIO 4K"
+#~ msgstr "WWIO 4K"
+
+#~ msgid "WWIO_BRE2ZE_TC"
+#~ msgstr "WWIO_BRE2ZE_TC"
+
+#~ msgid "When enabled the online checker will also check for experimental versions"
+#~ msgstr "启用时，在线检查程序还将检查体验版本"
+
+#~ msgid "XP1000"
+#~ msgstr "XP1000"
+
+#~ msgid "XP3000"
+#~ msgstr "XP3000"
+
+#~ msgid "Zgemma H.S/H.2S/H.2H/H5/H7"
+#~ msgstr "Zgemma H.S/H.2S/H.2H/H5/H7"
+
+#~ msgid "Zgemma H8/H0/H9/I55Plus old Model"
+#~ msgstr "Zgemma H8/H0/H9/I55Plus 旧型号"
+
+#~ msgid "Zgemma Star S/2S/H1/H2"
+#~ msgstr "Zgemma Star S/2S/H1/H2"
+
+#~ msgid "Zgemma i55"
+#~ msgstr "Zgemma i55"
+
+#~ msgid "et4000"
+#~ msgstr "et4000"
+
+#~ msgid "et5000/6000"
+#~ msgstr "et5000/6000"
+
+#~ msgid "et8000/et10000/et13000"
+#~ msgstr "et8000/et10000/et13000"
+
+#~ msgid "et8000/et10000/et13000/SF5008"
+#~ msgstr "et8000/et10000/et13000/SF5008"
+
+#~ msgid "et9000/et9100"
+#~ msgstr "et9000/et9100"
+
+#~ msgid "et9200/9500/6500"
+#~ msgstr "et9200/9500/6500"
+
+#~ msgid "limit ..., aborting !"
+#~ msgstr "限制......，中止 ！"
+
+#~ msgid "ms"
+#~ msgstr "毫秒"
 
 #, python-format
 #~ msgid "  (%s x %s)"

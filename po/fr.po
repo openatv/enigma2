@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-02-07 20:18+0000\n"
+"POT-Creation-Date: 2022-02-11 14:04+0000\n"
 "PO-Revision-Date: 2022-01-08 19:52+0000\n"
 "Last-Translator: Mr.Servo <mrservo@gmx.de>\n"
 "Language-Team: French <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/fr/>\n"
@@ -1021,10 +1021,6 @@ msgid "%d Min"
 msgid_plural "%d Mins"
 msgstr[0] "%d Min"
 msgstr[1] "%d Mins"
-
-#, python-format
-msgid "%d Mins"
-msgstr "%d Mins"
 
 #. TRANSLATORS: Intermediate scanning result, '%d' channel(s) have been found so far
 #, python-format
@@ -2659,9 +2655,6 @@ msgstr "Autoriser les sous-titres identiques à la sélection audio"
 msgid "Allow subtitles for hearing impaired"
 msgstr "Autoriser les sous-titres pour malentendants"
 
-msgid "Allow unstable (untested) updates"
-msgstr "Permet les mises-à-jour instables (non testées)"
-
 msgid "Allow unsupported modes"
 msgstr "Autoriser les modes non supportés"
 
@@ -3162,9 +3155,6 @@ msgstr "Recherche automatique"
 msgid "Automatic Service Searching"
 msgstr "Recherche automatique de service"
 
-msgid "Automatic image backup"
-msgstr "Sauvegarde automatique de l'image"
-
 msgid "Automatic resolution"
 msgstr "Résolution automatique"
 
@@ -3176,9 +3166,6 @@ msgstr "Recherche automatique"
 
 msgid "Automatic scan for services"
 msgstr "Scan automatique des services"
-
-msgid "Automatic setting backup"
-msgstr "Sauvegarde automatique des paramètres"
 
 msgid "Automatically put the TV in standby whenever the receiver goes into standby or deep standby."
 msgstr "Mettre automatiquement le téléviseur en veille lorsque le récepteur passe en veille ou en veille profonde."
@@ -3218,9 +3205,6 @@ msgstr "Avestan"
 
 msgid "Avoid getting stuck (at the expense of some stuttering) when the jump time is smaller than the time between I-frames."
 msgstr "Éviter de se retrouver bloqué (au détriment de quelques bégaiements) lorsque le temps de saut est plus petit que le temps entre les trames-I."
-
-msgid "Axas E4HD Ultra"
-msgstr "Axas E4HD Ultra"
 
 msgid "Aymara"
 msgstr "Aymara"
@@ -3314,9 +3298,6 @@ msgstr "Retour/Rappel"
 
 msgid "Background"
 msgstr "Arrière-plan"
-
-msgid "Background check"
-msgstr "Vérification en tâche de fond"
 
 msgid "Background color"
 msgstr "Couleur de fond"
@@ -3506,9 +3487,6 @@ msgstr "Bermude"
 
 msgid "Berufe"
 msgstr "Travaux"
-
-msgid "Beyonwiz U4"
-msgstr "Beyonwiz U4"
 
 msgid "Beziehung"
 msgstr "Relation amoureuse"
@@ -4098,8 +4076,10 @@ msgstr "Impossible de supprimer l'image téléchargée"
 msgid "Cannot delete file"
 msgstr "Impossible d'effacer le fichier"
 
-msgid "Cannot determine"
-msgstr "Impossible à déterminer"
+#. TRANSLATORS: "Cannot determine (east/west) limit ..., aborting !"
+#, python-format
+msgid "Cannot determine %s limit ..., aborting !"
+msgstr ""
 
 msgid "Cannot find any signal ..., aborting !"
 msgstr "Impossible de trouver un signal ..., abandon !"
@@ -4353,9 +4333,6 @@ msgstr "Vérification"
 
 msgid "Check HDD"
 msgstr "Vérification du disque dur"
-
-msgid "Check every (hours)"
-msgstr "Vérifier chaque (heures)"
 
 msgid "Check power and input state from TV"
 msgstr "Vérifiez l'alimentation et l'état d'entrée du téléviseur"
@@ -5465,9 +5442,6 @@ msgstr "Statut courant :"
 
 msgid "Current crash log"
 msgstr ""
-
-msgid "Current device: "
-msgstr "Périphérique actuel : "
 
 msgid "Current installed"
 msgstr "Actuellement installé"
@@ -6800,9 +6774,6 @@ msgstr "E"
 msgid "E "
 msgstr "E "
 
-msgid "E3HD/XPEEDLX/GI"
-msgstr "E3HD/XPEEDLX/GI"
-
 msgid "ECM Info"
 msgstr "ECM Info"
 
@@ -7804,9 +7775,6 @@ msgstr "F1"
 msgid "F1 long"
 msgstr "F1 longue"
 
-msgid "F1/F3/F4/F4-TURBO/TRIPLEX"
-msgstr "F1/F3/F4/F4-TURBO/TRIPLEX"
-
 msgid "F2"
 msgstr "F2"
 
@@ -8353,9 +8321,6 @@ msgstr "GB"
 msgid "GCC version"
 msgstr ""
 
-msgid "GIGABLUE Black"
-msgstr "GIGABLUE Black"
-
 msgid "GStreamer version"
 msgstr ""
 
@@ -8683,18 +8648,6 @@ msgstr ""
 
 msgid "HD list"
 msgstr "Liste HD"
-
-msgid "HD11/HD51/HD1100/HD1200/HD1265/HD1500/HD500C/HD530C/VS1000/VS1500"
-msgstr "HD11/HD51/HD1100/HD1200/HD1265/HD1500/HD500C/HD530C/VS1000/VS1500"
-
-msgid "HD11/HD51/HD1100/HD1200/HD1265/HD1500/HD500C/HD530C/et7x00/et8500/VS1000/VS1500"
-msgstr "HD11/HD51/HD1100/HD1200/HD1265/HD1500/HD500C/HD530C/et7x00/et8500/VS1000/VS1500"
-
-msgid "HD2400"
-msgstr "HD2400"
-
-msgid "HD60/Multibox/Multiboxse"
-msgstr "HD60/Multibox/Multiboxse"
 
 msgid "HDMI"
 msgstr "HDMI"
@@ -10507,9 +10460,6 @@ msgstr "Mo"
 msgid "MENU"
 msgstr "MENU"
 
-msgid "MIRACLEBOX_TWINPLUS"
-msgstr "MIRACLEBOX_TWINPLUS"
-
 msgid "MKUBIFS"
 msgstr ""
 
@@ -10654,9 +10604,6 @@ msgstr "Manx"
 
 msgid "Maori"
 msgstr "Maori"
-
-msgid "MaraM9"
-msgstr "MaraM9"
 
 msgid "Marathi"
 msgstr "Marathi"
@@ -11980,15 +11927,6 @@ msgstr "Nombre de lignes à afficher"
 msgid "Number or SMS style data entry"
 msgstr "Saisie de données de type numéro ou SMS"
 
-msgid "OCTAGON SF5008"
-msgstr "OCTAGON SF5008"
-
-msgid "OCTAGON_SF4008"
-msgstr "OCTAGON_SF4008"
-
-msgid "ODIN_M7"
-msgstr "ODIN_M7"
-
 msgid "OEM Model"
 msgstr ""
 
@@ -12588,17 +12526,8 @@ msgstr "Pourcentage/Barre de progression à gauche"
 msgid "Percentage/Progress bar right"
 msgstr "Barre de pourcentage/progression à droite"
 
-msgid "Perform a image backup before updating."
-msgstr "Effectue une sauvegarde de l'image avant de mettre à jour."
-
-msgid "Perform a setting backup before updating."
-msgstr "Effectue une sauvegarde de l'image avant de mettre à jour."
-
 msgid "Perform an on-line flash instead"
 msgstr "Effectuez un flash en ligne à la place"
-
-msgid "Perform an online update check in the background"
-msgstr "Effectuer une vérification de mise à jour en ligne en tâche de fond"
 
 msgid "Permanently delete all recordings in the trash can?"
 msgstr "Supprimer définitivement tous les enregistrements dans la poubelle ?"
@@ -13605,9 +13534,6 @@ msgstr "Protéger le menu de veille"
 
 msgid "Protect timer menu"
 msgstr "Protéger le menu des programmations/timers"
-
-msgid "Protek 4K UHD/HD61"
-msgstr "Protek 4K UHD/HD61"
 
 msgid "Protocol"
 msgstr "Protocole"
@@ -15975,9 +15901,6 @@ msgstr "Configurer le réseau. Ici vous pouvez configurer DHCP, IP, DNS"
 msgid "Setup rotor"
 msgstr "Configurer le rotor"
 
-msgid "Setup the interval to check for online updates. (in hours)"
-msgstr "Défini l'interval pour vérifier la présence de mise à jour en ligne (en heures)"
-
 msgid "Setup tuner(s)"
 msgstr "Configurer le(s) tuner(s)"
 
@@ -17093,9 +17016,6 @@ msgstr "Informations gestionnaire logiciel"
 msgid "Softwaremanager..."
 msgstr "Gestionnaire logiciel..."
 
-msgid "Softwareupdate"
-msgstr "Mise à jour logiciel"
-
 msgid "Solomon Islands"
 msgstr "Îles Salomon"
 
@@ -17377,6 +17297,7 @@ msgstr "Démarre sur"
 msgid "Starts in a few seconds"
 msgstr "Démarre en quelques secondes"
 
+#. TRANSLATORS: "State" is Location Info
 msgid "State"
 msgstr ""
 
@@ -20074,9 +19995,6 @@ msgstr "VOD longue"
 msgid "VPN"
 msgstr "VPN"
 
-msgid "VU+"
-msgstr "Vu+"
-
 msgid "Valid"
 msgstr ""
 
@@ -20415,12 +20333,6 @@ msgstr "WPA2"
 msgid "WSS on 4:3"
 msgstr "WSS sur 4:3"
 
-msgid "WWIO 4K"
-msgstr "WWIO 4K"
-
-msgid "WWIO_BRE2ZE_TC"
-msgstr "WWIO_BRE2ZE_TC"
-
 msgid "Waffen"
 msgstr "Armes"
 
@@ -20633,9 +20545,6 @@ msgstr "Lorsqu'activé, enigma2 chargera les bouquets non liés. Cela signifie q
 
 msgid "When enabled the PiP can be closed by the exit button."
 msgstr "Lorsqu'activé, l'image dans l'image PiP sera fermé avec le bouton exit."
-
-msgid "When enabled the online checker will also check for experimental versions"
-msgstr "Lorsqu'activé, la vérification en ligne vérifiera également les versions expérimentales"
 
 msgid "When enabled the receiver will automatically be switched off."
 msgstr "Lorsqu'il est activé, le récepteur s'éteint automatiquement."
@@ -20942,12 +20851,6 @@ msgstr "Www longue"
 
 msgid "XBox 360 support"
 msgstr "Support XBox 360"
-
-msgid "XP1000"
-msgstr "XP1000"
-
-msgid "XP3000"
-msgstr "XP3000"
 
 msgid "XPicon, ZZZPicon"
 msgstr "XPicon, ZZZPicon"
@@ -21500,20 +21403,8 @@ msgstr "Zap+Enregistrer suivant"
 msgid "Zeichentrick"
 msgstr "Animation"
 
-msgid "Zgemma H.S/H.2S/H.2H/H5/H7"
-msgstr "Zgemma H.S/H.2S/H.2H/H5/H7"
-
 msgid "Zgemma H.S/H.2S/H.2H/H5/H7 old Model"
 msgstr "Zgemma H.S/H.2S/H.2H/H5/H7 ancien modèle"
-
-msgid "Zgemma H8/H0/H9/I55Plus old Model"
-msgstr "Zgemma H8/H0/H9/I55Plus ancien modèle"
-
-msgid "Zgemma Star S/2S/H1/H2"
-msgstr "Zgemma Star S/2S/H1/H2"
-
-msgid "Zgemma i55"
-msgstr "Zgemma i55"
 
 msgid "Zhuang / Chuang"
 msgstr "Zhuang / Chuang"
@@ -22046,24 +21937,6 @@ msgstr "erreur au démarrage de la recherche"
 msgid "error while scanning"
 msgstr "erreur pendant la recherche"
 
-msgid "et4000"
-msgstr "et4000"
-
-msgid "et5000/6000"
-msgstr "et5000/6000"
-
-msgid "et8000/et10000/et13000"
-msgstr "et8000/et10000/et13000"
-
-msgid "et8000/et10000/et13000/SF5008"
-msgstr "et8000/et10000/et13000/SF5008"
-
-msgid "et9000/et9100"
-msgstr "et9000/et9100"
-
-msgid "et9200/9500/6500"
-msgstr "et9200/9500/6500"
-
 msgid "execute cuts (requires MovieCut plugin)"
 msgstr "exécuter les coupures (nécessite le plugin MovieCut)"
 
@@ -22367,9 +22240,6 @@ msgstr "Passe-temps, loisirs (général)"
 msgid "length"
 msgstr "Longueur"
 
-msgid "limit ..., aborting !"
-msgstr "limite ..., avorter !"
-
 msgid "literature"
 msgstr "Littérature"
 
@@ -22456,9 +22326,6 @@ msgstr "film (général)"
 
 msgid "movie/drama (general)"
 msgstr "Film/Théâtre (général)"
-
-msgid "ms"
-msgstr "ms"
 
 msgid "multi"
 msgstr "multi"
@@ -23307,6 +23174,145 @@ msgstr "zapping"
 
 msgid "®"
 msgstr "®"
+
+#, python-format
+#~ msgid "%d Mins"
+#~ msgstr "%d Mins"
+
+#~ msgid "Allow unstable (untested) updates"
+#~ msgstr "Permet les mises-à-jour instables (non testées)"
+
+#~ msgid "Automatic image backup"
+#~ msgstr "Sauvegarde automatique de l'image"
+
+#~ msgid "Automatic setting backup"
+#~ msgstr "Sauvegarde automatique des paramètres"
+
+#~ msgid "Axas E4HD Ultra"
+#~ msgstr "Axas E4HD Ultra"
+
+#~ msgid "Background check"
+#~ msgstr "Vérification en tâche de fond"
+
+#~ msgid "Beyonwiz U4"
+#~ msgstr "Beyonwiz U4"
+
+#~ msgid "Cannot determine"
+#~ msgstr "Impossible à déterminer"
+
+#~ msgid "Check every (hours)"
+#~ msgstr "Vérifier chaque (heures)"
+
+#~ msgid "Current device: "
+#~ msgstr "Périphérique actuel : "
+
+#~ msgid "E3HD/XPEEDLX/GI"
+#~ msgstr "E3HD/XPEEDLX/GI"
+
+#~ msgid "F1/F3/F4/F4-TURBO/TRIPLEX"
+#~ msgstr "F1/F3/F4/F4-TURBO/TRIPLEX"
+
+#~ msgid "GIGABLUE Black"
+#~ msgstr "GIGABLUE Black"
+
+#~ msgid "HD11/HD51/HD1100/HD1200/HD1265/HD1500/HD500C/HD530C/VS1000/VS1500"
+#~ msgstr "HD11/HD51/HD1100/HD1200/HD1265/HD1500/HD500C/HD530C/VS1000/VS1500"
+
+#~ msgid "HD11/HD51/HD1100/HD1200/HD1265/HD1500/HD500C/HD530C/et7x00/et8500/VS1000/VS1500"
+#~ msgstr "HD11/HD51/HD1100/HD1200/HD1265/HD1500/HD500C/HD530C/et7x00/et8500/VS1000/VS1500"
+
+#~ msgid "HD2400"
+#~ msgstr "HD2400"
+
+#~ msgid "HD60/Multibox/Multiboxse"
+#~ msgstr "HD60/Multibox/Multiboxse"
+
+#~ msgid "MIRACLEBOX_TWINPLUS"
+#~ msgstr "MIRACLEBOX_TWINPLUS"
+
+#~ msgid "MaraM9"
+#~ msgstr "MaraM9"
+
+#~ msgid "OCTAGON SF5008"
+#~ msgstr "OCTAGON SF5008"
+
+#~ msgid "OCTAGON_SF4008"
+#~ msgstr "OCTAGON_SF4008"
+
+#~ msgid "ODIN_M7"
+#~ msgstr "ODIN_M7"
+
+#~ msgid "Perform a image backup before updating."
+#~ msgstr "Effectue une sauvegarde de l'image avant de mettre à jour."
+
+#~ msgid "Perform a setting backup before updating."
+#~ msgstr "Effectue une sauvegarde de l'image avant de mettre à jour."
+
+#~ msgid "Perform an online update check in the background"
+#~ msgstr "Effectuer une vérification de mise à jour en ligne en tâche de fond"
+
+#~ msgid "Protek 4K UHD/HD61"
+#~ msgstr "Protek 4K UHD/HD61"
+
+#~ msgid "Setup the interval to check for online updates. (in hours)"
+#~ msgstr "Défini l'interval pour vérifier la présence de mise à jour en ligne (en heures)"
+
+#~ msgid "Softwareupdate"
+#~ msgstr "Mise à jour logiciel"
+
+#~ msgid "VU+"
+#~ msgstr "Vu+"
+
+#~ msgid "WWIO 4K"
+#~ msgstr "WWIO 4K"
+
+#~ msgid "WWIO_BRE2ZE_TC"
+#~ msgstr "WWIO_BRE2ZE_TC"
+
+#~ msgid "When enabled the online checker will also check for experimental versions"
+#~ msgstr "Lorsqu'activé, la vérification en ligne vérifiera également les versions expérimentales"
+
+#~ msgid "XP1000"
+#~ msgstr "XP1000"
+
+#~ msgid "XP3000"
+#~ msgstr "XP3000"
+
+#~ msgid "Zgemma H.S/H.2S/H.2H/H5/H7"
+#~ msgstr "Zgemma H.S/H.2S/H.2H/H5/H7"
+
+#~ msgid "Zgemma H8/H0/H9/I55Plus old Model"
+#~ msgstr "Zgemma H8/H0/H9/I55Plus ancien modèle"
+
+#~ msgid "Zgemma Star S/2S/H1/H2"
+#~ msgstr "Zgemma Star S/2S/H1/H2"
+
+#~ msgid "Zgemma i55"
+#~ msgstr "Zgemma i55"
+
+#~ msgid "et4000"
+#~ msgstr "et4000"
+
+#~ msgid "et5000/6000"
+#~ msgstr "et5000/6000"
+
+#~ msgid "et8000/et10000/et13000"
+#~ msgstr "et8000/et10000/et13000"
+
+#~ msgid "et8000/et10000/et13000/SF5008"
+#~ msgstr "et8000/et10000/et13000/SF5008"
+
+#~ msgid "et9000/et9100"
+#~ msgstr "et9000/et9100"
+
+#~ msgid "et9200/9500/6500"
+#~ msgstr "et9200/9500/6500"
+
+#~ msgid "limit ..., aborting !"
+#~ msgstr "limite ..., avorter !"
+
+#~ msgid "ms"
+#~ msgstr "ms"
 
 #, python-format
 #~ msgid "  (%s x %s)"

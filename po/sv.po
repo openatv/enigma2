@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-02-07 20:18+0000\n"
+"POT-Creation-Date: 2022-02-11 14:04+0000\n"
 "PO-Revision-Date: 2021-08-15 18:50+0000\n"
 "Last-Translator: openATV <openatv@gmail.com>\n"
 "Language-Team: Swedish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/sv/>\n"
@@ -1131,10 +1131,6 @@ msgid "%d Min"
 msgid_plural "%d Mins"
 msgstr[0] "%d Min"
 msgstr[1] "%d Mins"
-
-#, python-format
-msgid "%d Mins"
-msgstr ""
 
 #
 #. TRANSLATORS: Intermediate scanning result, '%d' channel(s) have been found so far
@@ -2923,9 +2919,6 @@ msgstr "Tillåt att undertextspråk är detsamma som ljudspråk"
 msgid "Allow subtitles for hearing impaired"
 msgstr "Tillåt undertexter för hörselnedsatta"
 
-msgid "Allow unstable (untested) updates"
-msgstr ""
-
 #, fuzzy
 msgid "Allow unsupported modes"
 msgstr "stöds ej"
@@ -3486,9 +3479,6 @@ msgstr "Automatisk Sökning"
 msgid "Automatic Service Searching"
 msgstr "Kanalsökningar"
 
-msgid "Automatic image backup"
-msgstr "Automatisk Image backup"
-
 msgid "Automatic resolution"
 msgstr "Automatisk upplösning"
 
@@ -3499,9 +3489,6 @@ msgid "Automatic scan"
 msgstr "Automatisk sökning"
 
 msgid "Automatic scan for services"
-msgstr ""
-
-msgid "Automatic setting backup"
 msgstr ""
 
 msgid "Automatically put the TV in standby whenever the receiver goes into standby or deep standby."
@@ -3545,9 +3532,6 @@ msgid "Avestan"
 msgstr ""
 
 msgid "Avoid getting stuck (at the expense of some stuttering) when the jump time is smaller than the time between I-frames."
-msgstr ""
-
-msgid "Axas E4HD Ultra"
 msgstr ""
 
 msgid "Aymara"
@@ -3649,9 +3633,6 @@ msgstr "Tillbaka/Ångra"
 #
 msgid "Background"
 msgstr "Bakgrund"
-
-msgid "Background check"
-msgstr "Bakgrundsuppdatering"
 
 #
 msgid "Background color"
@@ -3860,9 +3841,6 @@ msgid "Bermuda"
 msgstr ""
 
 msgid "Berufe"
-msgstr ""
-
-msgid "Beyonwiz U4"
 msgstr ""
 
 msgid "Beziehung"
@@ -4483,8 +4461,10 @@ msgstr "Filen kan inte tas bort"
 msgid "Cannot delete file"
 msgstr "Filen kan inte tas bort"
 
-msgid "Cannot determine"
-msgstr "Kan inte avgöra"
+#. TRANSLATORS: "Cannot determine (east/west) limit ..., aborting !"
+#, python-format
+msgid "Cannot determine %s limit ..., aborting !"
+msgstr ""
 
 msgid "Cannot find any signal ..., aborting !"
 msgstr "Hittar ingen signal ..., avbryter !"
@@ -4772,9 +4752,6 @@ msgstr "Kontrollera"
 
 msgid "Check HDD"
 msgstr ""
-
-msgid "Check every (hours)"
-msgstr "Kontrollera varje (timmar)"
 
 msgid "Check power and input state from TV"
 msgstr ""
@@ -5994,9 +5971,6 @@ msgstr "Aktuell Status:"
 
 msgid "Current crash log"
 msgstr ""
-
-msgid "Current device: "
-msgstr "Nuvarande enhet: "
 
 #, fuzzy
 msgid "Current installed"
@@ -7475,9 +7449,6 @@ msgstr "E"
 msgid "E "
 msgstr "Ö"
 
-msgid "E3HD/XPEEDLX/GI"
-msgstr ""
-
 #, fuzzy
 msgid "ECM Info"
 msgstr "CCcam ECM Info"
@@ -8555,9 +8526,6 @@ msgstr ""
 msgid "F1 long"
 msgstr "F2 lång"
 
-msgid "F1/F3/F4/F4-TURBO/TRIPLEX"
-msgstr ""
-
 msgid "F2"
 msgstr "F2"
 
@@ -9169,9 +9137,6 @@ msgstr "GB"
 msgid "GCC version"
 msgstr ""
 
-msgid "GIGABLUE Black"
-msgstr ""
-
 msgid "GStreamer version"
 msgstr ""
 
@@ -9535,18 +9500,6 @@ msgstr ""
 
 msgid "HD list"
 msgstr "HD lista"
-
-msgid "HD11/HD51/HD1100/HD1200/HD1265/HD1500/HD500C/HD530C/VS1000/VS1500"
-msgstr ""
-
-msgid "HD11/HD51/HD1100/HD1200/HD1265/HD1500/HD500C/HD530C/et7x00/et8500/VS1000/VS1500"
-msgstr ""
-
-msgid "HD2400"
-msgstr ""
-
-msgid "HD60/Multibox/Multiboxse"
-msgstr ""
 
 msgid "HDMI"
 msgstr "HDMI"
@@ -11582,9 +11535,6 @@ msgstr "MB"
 msgid "MENU"
 msgstr ""
 
-msgid "MIRACLEBOX_TWINPLUS"
-msgstr ""
-
 msgid "MKUBIFS"
 msgstr ""
 
@@ -11743,9 +11693,6 @@ msgid "Manx"
 msgstr ""
 
 msgid "Maori"
-msgstr ""
-
-msgid "MaraM9"
 msgstr ""
 
 msgid "Marathi"
@@ -13281,15 +13228,6 @@ msgstr "Antal rader att visa"
 msgid "Number or SMS style data entry"
 msgstr ""
 
-msgid "OCTAGON SF5008"
-msgstr ""
-
-msgid "OCTAGON_SF4008"
-msgstr ""
-
-msgid "ODIN_M7"
-msgstr ""
-
 msgid "OEM Model"
 msgstr ""
 
@@ -13952,17 +13890,8 @@ msgstr "Förloppsindikator vänster"
 msgid "Percentage/Progress bar right"
 msgstr "Förloppsindikator höger"
 
-msgid "Perform a image backup before updating."
-msgstr ""
-
-msgid "Perform a setting backup before updating."
-msgstr ""
-
 msgid "Perform an on-line flash instead"
 msgstr ""
-
-msgid "Perform an online update check in the background"
-msgstr "Gör en uppdateringkontroll online i bakgrunden."
 
 msgid "Permanently delete all recordings in the trash can?"
 msgstr "Är du säker på att du vill radera inspelningarna i papperskorgen permanent?"
@@ -15094,9 +15023,6 @@ msgstr "Skydda vilolägesmeny"
 
 msgid "Protect timer menu"
 msgstr "Skydda timermeny"
-
-msgid "Protek 4K UHD/HD61"
-msgstr ""
 
 msgid "Protocol"
 msgstr "Protokoll"
@@ -17746,9 +17672,6 @@ msgstr ""
 msgid "Setup rotor"
 msgstr ""
 
-msgid "Setup the interval to check for online updates. (in hours)"
-msgstr ""
-
 msgid "Setup tuner(s)"
 msgstr ""
 
@@ -19002,9 +18925,6 @@ msgstr "Information om mjukvaruhanterare"
 msgid "Softwaremanager..."
 msgstr ""
 
-msgid "Softwareupdate"
-msgstr ""
-
 msgid "Solomon Islands"
 msgstr ""
 
@@ -19322,6 +19242,7 @@ msgstr "Startar på"
 msgid "Starts in a few seconds"
 msgstr "Starta avkodning offline"
 
+#. TRANSLATORS: "State" is Location Info
 msgid "State"
 msgstr ""
 
@@ -22270,9 +22191,6 @@ msgstr "F2 lång"
 msgid "VPN"
 msgstr ""
 
-msgid "VU+"
-msgstr "VU+"
-
 msgid "Valid"
 msgstr ""
 
@@ -22668,12 +22586,6 @@ msgstr "WPA2"
 msgid "WSS on 4:3"
 msgstr "WSS på 4:3"
 
-msgid "WWIO 4K"
-msgstr ""
-
-msgid "WWIO_BRE2ZE_TC"
-msgstr ""
-
 msgid "Waffen"
 msgstr ""
 
@@ -22902,9 +22814,6 @@ msgstr ""
 
 msgid "When enabled the PiP can be closed by the exit button."
 msgstr ""
-
-msgid "When enabled the online checker will also check for experimental versions"
-msgstr "Om aktiverat, så söker online checker också efter försöksversioner"
 
 msgid "When enabled the receiver will automatically be switched off."
 msgstr ""
@@ -23226,12 +23135,6 @@ msgstr ""
 
 msgid "XBox 360 support"
 msgstr "XBox 360 stöd"
-
-msgid "XP1000"
-msgstr "XP1000"
-
-msgid "XP3000"
-msgstr ""
 
 msgid "XPicon, ZZZPicon"
 msgstr ""
@@ -23806,19 +23709,7 @@ msgstr "Spela in nästa"
 msgid "Zeichentrick"
 msgstr ""
 
-msgid "Zgemma H.S/H.2S/H.2H/H5/H7"
-msgstr ""
-
 msgid "Zgemma H.S/H.2S/H.2H/H5/H7 old Model"
-msgstr ""
-
-msgid "Zgemma H8/H0/H9/I55Plus old Model"
-msgstr ""
-
-msgid "Zgemma Star S/2S/H1/H2"
-msgstr ""
-
-msgid "Zgemma i55"
 msgstr ""
 
 msgid "Zhuang / Chuang"
@@ -24434,26 +24325,6 @@ msgstr "fel vid start av skanning"
 msgid "error while scanning"
 msgstr "Fel vid skanning"
 
-msgid "et4000"
-msgstr "et4000"
-
-msgid "et5000/6000"
-msgstr "et5000/6000"
-
-#, fuzzy
-msgid "et8000/et10000/et13000"
-msgstr "et8000/et10000"
-
-#, fuzzy
-msgid "et8000/et10000/et13000/SF5008"
-msgstr "et8000/et10000"
-
-msgid "et9000/et9100"
-msgstr ""
-
-msgid "et9200/9500/6500"
-msgstr ""
-
 msgid "execute cuts (requires MovieCut plugin)"
 msgstr ""
 
@@ -24794,9 +24665,6 @@ msgstr "fritidsintressen (allmänt)"
 msgid "length"
 msgstr "längd"
 
-msgid "limit ..., aborting !"
-msgstr "gräns...., avbryter!"
-
 msgid "literature"
 msgstr "litteratur"
 
@@ -24902,9 +24770,6 @@ msgstr "film/drama (allmänt)"
 
 msgid "movie/drama (general)"
 msgstr "film / drama (allmänt)"
-
-msgid "ms"
-msgstr "ms"
 
 #
 msgid "multi"
@@ -25871,6 +25736,53 @@ msgstr "zappad"
 
 msgid "®"
 msgstr ""
+
+#~ msgid "Automatic image backup"
+#~ msgstr "Automatisk Image backup"
+
+#~ msgid "Background check"
+#~ msgstr "Bakgrundsuppdatering"
+
+#~ msgid "Cannot determine"
+#~ msgstr "Kan inte avgöra"
+
+#~ msgid "Check every (hours)"
+#~ msgstr "Kontrollera varje (timmar)"
+
+#~ msgid "Current device: "
+#~ msgstr "Nuvarande enhet: "
+
+#~ msgid "Perform an online update check in the background"
+#~ msgstr "Gör en uppdateringkontroll online i bakgrunden."
+
+#~ msgid "VU+"
+#~ msgstr "VU+"
+
+#~ msgid "When enabled the online checker will also check for experimental versions"
+#~ msgstr "Om aktiverat, så söker online checker också efter försöksversioner"
+
+#~ msgid "XP1000"
+#~ msgstr "XP1000"
+
+#~ msgid "et4000"
+#~ msgstr "et4000"
+
+#~ msgid "et5000/6000"
+#~ msgstr "et5000/6000"
+
+#, fuzzy
+#~ msgid "et8000/et10000/et13000"
+#~ msgstr "et8000/et10000"
+
+#, fuzzy
+#~ msgid "et8000/et10000/et13000/SF5008"
+#~ msgstr "et8000/et10000"
+
+#~ msgid "limit ..., aborting !"
+#~ msgstr "gräns...., avbryter!"
+
+#~ msgid "ms"
+#~ msgstr "ms"
 
 #, fuzzy, python-format
 #~ msgid "  (%s x %s)"

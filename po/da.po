@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-02-07 20:18+0000\n"
+"POT-Creation-Date: 2022-02-11 14:04+0000\n"
 "PO-Revision-Date: 2021-11-04 23:53+0000\n"
 "Last-Translator: T. Rylle <dk-translation@pm.me>\n"
 "Language-Team: Danish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/da/>\n"
@@ -1019,10 +1019,6 @@ msgid "%d Min"
 msgid_plural "%d Mins"
 msgstr[0] "%d Min"
 msgstr[1] "%d Min."
-
-#, python-format
-msgid "%d Mins"
-msgstr "%d Min."
 
 #. TRANSLATORS: Intermediate scanning result, '%d' channel(s) have been found so far
 #, python-format
@@ -2658,9 +2654,6 @@ msgstr "Tillad at undertekstsprog er identisk med lydsprog"
 msgid "Allow subtitles for hearing impaired"
 msgstr "Tillad undertekster for hørehæmmede"
 
-msgid "Allow unstable (untested) updates"
-msgstr "Tillad ustabile (utestede) opdateringer"
-
 msgid "Allow unsupported modes"
 msgstr "Tillad ikke-understøttet tilstande"
 
@@ -3163,9 +3156,6 @@ msgstr "Automatisk søgning"
 msgid "Automatic Service Searching"
 msgstr "Automatisk kanalsøgning"
 
-msgid "Automatic image backup"
-msgstr "Automatisk Image sikkerhedskopiering"
-
 msgid "Automatic resolution"
 msgstr "Automatisk opløsning"
 
@@ -3177,9 +3167,6 @@ msgstr "Automatisk Søgning"
 
 msgid "Automatic scan for services"
 msgstr "Automatisk søgning efter kanaler"
-
-msgid "Automatic setting backup"
-msgstr "Sikkerhedskopier automatisk indstillinger"
 
 msgid "Automatically put the TV in standby whenever the receiver goes into standby or deep standby."
 msgstr ""
@@ -3219,9 +3206,6 @@ msgstr ""
 
 msgid "Avoid getting stuck (at the expense of some stuttering) when the jump time is smaller than the time between I-frames."
 msgstr "Undgå at sidde fast (på bekostning af noget flimmer) når hoptiden er mindre end tiden mellem I-rammer."
-
-msgid "Axas E4HD Ultra"
-msgstr "Axas E4HD Ultra"
 
 msgid "Aymara"
 msgstr ""
@@ -3315,9 +3299,6 @@ msgstr ""
 
 msgid "Background"
 msgstr "Baggrund"
-
-msgid "Background check"
-msgstr "Kontroller i baggrund"
 
 msgid "Background color"
 msgstr "Baggrundsfarve"
@@ -3509,9 +3490,6 @@ msgstr "Bermuda"
 
 msgid "Berufe"
 msgstr ""
-
-msgid "Beyonwiz U4"
-msgstr "Beyonwiz U4"
 
 msgid "Beziehung"
 msgstr ""
@@ -4105,8 +4083,10 @@ msgstr "Kan ikke slette downloaded Image"
 msgid "Cannot delete file"
 msgstr "Kan ikke slette fil"
 
-msgid "Cannot determine"
-msgstr "Kan ikke fastsætte"
+#. TRANSLATORS: "Cannot determine (east/west) limit ..., aborting !"
+#, python-format
+msgid "Cannot determine %s limit ..., aborting !"
+msgstr ""
 
 msgid "Cannot find any signal ..., aborting !"
 msgstr "Kan ikke finde noget signal ..., afbryder !"
@@ -4359,9 +4339,6 @@ msgstr "Kontroller"
 
 msgid "Check HDD"
 msgstr "Kontroller harddisk"
-
-msgid "Check every (hours)"
-msgstr "Kontroller hver (pr. time)"
 
 msgid "Check power and input state from TV"
 msgstr "Kontroller strøm og inddata tilstand fra TV"
@@ -5472,9 +5449,6 @@ msgstr "Aktuel status:"
 
 msgid "Current crash log"
 msgstr ""
-
-msgid "Current device: "
-msgstr "Nuværende enhed: "
 
 msgid "Current installed"
 msgstr "Aktuel installleret"
@@ -6801,9 +6775,6 @@ msgstr "Ø"
 msgid "E "
 msgstr "E "
 
-msgid "E3HD/XPEEDLX/GI"
-msgstr "E3HD/XPEEDLX/GI"
-
 msgid "ECM Info"
 msgstr "ECM Info"
 
@@ -7804,9 +7775,6 @@ msgstr "F1"
 msgid "F1 long"
 msgstr "F2 lang"
 
-msgid "F1/F3/F4/F4-TURBO/TRIPLEX"
-msgstr "F1/F3/F4/F4-TURBO/TRIPLEX"
-
 msgid "F2"
 msgstr "F2"
 
@@ -8359,9 +8327,6 @@ msgstr "GB"
 msgid "GCC version"
 msgstr ""
 
-msgid "GIGABLUE Black"
-msgstr "GIGABLUE Black"
-
 msgid "GStreamer version"
 msgstr ""
 
@@ -8688,18 +8653,6 @@ msgstr ""
 
 msgid "HD list"
 msgstr "HD liste"
-
-msgid "HD11/HD51/HD1100/HD1200/HD1265/HD1500/HD500C/HD530C/VS1000/VS1500"
-msgstr "HD11/HD51/HD1100/HD1200/HD1265/HD1500/HD500C/HD530C/VS1000/VS1500"
-
-msgid "HD11/HD51/HD1100/HD1200/HD1265/HD1500/HD500C/HD530C/et7x00/et8500/VS1000/VS1500"
-msgstr "HD11/HD51/HD1100/HD1200/HD1265/HD1500/HD500C/HD530C/et7x00/et8500/VS1000/VS1500"
-
-msgid "HD2400"
-msgstr "HD2400"
-
-msgid "HD60/Multibox/Multiboxse"
-msgstr "HD60/Multibox/Multiboxse"
 
 msgid "HDMI"
 msgstr "HDMI"
@@ -10543,9 +10496,6 @@ msgstr "MB"
 msgid "MENU"
 msgstr "MENU"
 
-msgid "MIRACLEBOX_TWINPLUS"
-msgstr "MIRACLEBOX_TWINPLUS"
-
 msgid "MKUBIFS"
 msgstr ""
 
@@ -10697,9 +10647,6 @@ msgstr ""
 
 msgid "Maori"
 msgstr ""
-
-msgid "MaraM9"
-msgstr "MaraM9"
 
 #, fuzzy
 msgid "Marathi"
@@ -12054,15 +12001,6 @@ msgstr "Antal rækker der skal vises."
 msgid "Number or SMS style data entry"
 msgstr "Nummer eller SMS stil data post"
 
-msgid "OCTAGON SF5008"
-msgstr "OCTAGON SF5008"
-
-msgid "OCTAGON_SF4008"
-msgstr "OCTAGON_SF4008"
-
-msgid "ODIN_M7"
-msgstr "ODIN_M7"
-
 msgid "OEM Model"
 msgstr ""
 
@@ -12671,17 +12609,8 @@ msgstr "Procent/Fremgangsbjælke venstre"
 msgid "Percentage/Progress bar right"
 msgstr "Procent/Fremgangsbjælke højre"
 
-msgid "Perform a image backup before updating."
-msgstr "Udfør en Image sikkerhedskopi før opdatering."
-
-msgid "Perform a setting backup before updating."
-msgstr "Udfør en indstillingssikkerhedskopi for opdatering."
-
 msgid "Perform an on-line flash instead"
 msgstr ""
-
-msgid "Perform an online update check in the background"
-msgstr "Udfør en online opdateringskontrol i baggrunden."
 
 msgid "Permanently delete all recordings in the trash can?"
 msgstr "Slet alle optagelser i papirkurven permanent ?"
@@ -13693,9 +13622,6 @@ msgstr "Beskyt Standby menu"
 
 msgid "Protect timer menu"
 msgstr "Beskyt Timermenu"
-
-msgid "Protek 4K UHD/HD61"
-msgstr "Beskyt 4K UHD/HD61"
 
 msgid "Protocol"
 msgstr "Protokol"
@@ -16091,9 +16017,6 @@ msgstr "Sæt netværk op. Her kan du sætte DHCP, IP, DNS op"
 msgid "Setup rotor"
 msgstr "Sæt motor op"
 
-msgid "Setup the interval to check for online updates. (in hours)"
-msgstr "Indstil intervallet for kontrol af online opdateringer (i timer)"
-
 msgid "Setup tuner(s)"
 msgstr "Sæt Tuner(e) op"
 
@@ -17221,9 +17144,6 @@ msgstr "Softwarehåndtering information"
 msgid "Softwaremanager..."
 msgstr "Software-håndtering..."
 
-msgid "Softwareupdate"
-msgstr "Software-opdatering"
-
 msgid "Solomon Islands"
 msgstr "Salomonøerne"
 
@@ -17511,6 +17431,7 @@ msgstr "Starter den"
 msgid "Starts in a few seconds"
 msgstr "Starter om nogle få sekunder"
 
+#. TRANSLATORS: "State" is Location Info
 msgid "State"
 msgstr ""
 
@@ -20211,9 +20132,6 @@ msgstr "VOD lang"
 msgid "VPN"
 msgstr "VPN"
 
-msgid "VU+"
-msgstr "VU+"
-
 msgid "Valid"
 msgstr ""
 
@@ -20555,12 +20473,6 @@ msgstr "WPA2"
 msgid "WSS on 4:3"
 msgstr "WSS på 4:3"
 
-msgid "WWIO 4K"
-msgstr "WWIO 4K"
-
-msgid "WWIO_BRE2ZE_TC"
-msgstr "WWIO_BRE2ZE_TC"
-
 msgid "Waffen"
 msgstr "Våben"
 
@@ -20774,9 +20686,6 @@ msgstr "Når dette aktiveres, vil Enigma2 hente ulænkede brugerbuketter. Dette 
 
 msgid "When enabled the PiP can be closed by the exit button."
 msgstr "Når dette aktiveres kan PiP lukkes med EXIT knappen."
-
-msgid "When enabled the online checker will also check for experimental versions"
-msgstr "Når dette aktiveres vil online kontrollen også kontrollere for eksperimentale versioner"
 
 msgid "When enabled the receiver will automatically be switched off."
 msgstr ""
@@ -21083,12 +20992,6 @@ msgstr "WWW lang"
 
 msgid "XBox 360 support"
 msgstr "XBox 360 understøttelse"
-
-msgid "XP1000"
-msgstr "XP1000"
-
-msgid "XP3000"
-msgstr "XP3000"
 
 msgid "XPicon, ZZZPicon"
 msgstr "XPikon, zzzPikon"
@@ -21638,21 +21541,8 @@ msgstr "Zap+Optag næste"
 msgid "Zeichentrick"
 msgstr ""
 
-msgid "Zgemma H.S/H.2S/H.2H/H5/H7"
-msgstr "Zgemma H.S/H.2S/H.2H/H5/H7"
-
 msgid "Zgemma H.S/H.2S/H.2H/H5/H7 old Model"
 msgstr "Zgemma H.S/H.2S/H.2H/H5/H7 gammel model"
-
-#, fuzzy
-msgid "Zgemma H8/H0/H9/I55Plus old Model"
-msgstr "Zgemma H9/I55Plus gammel model"
-
-msgid "Zgemma Star S/2S/H1/H2"
-msgstr "Zgemma Star S/2S/H1/H2"
-
-msgid "Zgemma i55"
-msgstr "Zgemma i55"
 
 msgid "Zhuang / Chuang"
 msgstr ""
@@ -22186,24 +22076,6 @@ msgstr "fejl ved start af søgning"
 msgid "error while scanning"
 msgstr "fejl ved søgning"
 
-msgid "et4000"
-msgstr "et4000"
-
-msgid "et5000/6000"
-msgstr "et5000/6000"
-
-msgid "et8000/et10000/et13000"
-msgstr "et8000/et10000/et13000"
-
-msgid "et8000/et10000/et13000/SF5008"
-msgstr "et8000/et10000/et13000/SF5008"
-
-msgid "et9000/et9100"
-msgstr "et9000/et9100"
-
-msgid "et9200/9500/6500"
-msgstr "et9200/9500/6500"
-
 msgid "execute cuts (requires MovieCut plugin)"
 msgstr "Udfør klip (kræver MovieCut Plugin)"
 
@@ -22513,9 +22385,6 @@ msgstr "Fritidsaktiviteter (Generelt)"
 msgid "length"
 msgstr "længde"
 
-msgid "limit ..., aborting !"
-msgstr "grænse..., afbryder !"
-
 msgid "literature"
 msgstr "litteratur"
 
@@ -22602,9 +22471,6 @@ msgstr "Film (Generelt)"
 
 msgid "movie/drama (general)"
 msgstr "Film/Drama (Generelt)"
-
-msgid "ms"
-msgstr "ms"
 
 msgid "multi"
 msgstr "Multi"
@@ -23464,6 +23330,146 @@ msgstr "Zapper"
 
 msgid "®"
 msgstr "®"
+
+#, python-format
+#~ msgid "%d Mins"
+#~ msgstr "%d Min."
+
+#~ msgid "Allow unstable (untested) updates"
+#~ msgstr "Tillad ustabile (utestede) opdateringer"
+
+#~ msgid "Automatic image backup"
+#~ msgstr "Automatisk Image sikkerhedskopiering"
+
+#~ msgid "Automatic setting backup"
+#~ msgstr "Sikkerhedskopier automatisk indstillinger"
+
+#~ msgid "Axas E4HD Ultra"
+#~ msgstr "Axas E4HD Ultra"
+
+#~ msgid "Background check"
+#~ msgstr "Kontroller i baggrund"
+
+#~ msgid "Beyonwiz U4"
+#~ msgstr "Beyonwiz U4"
+
+#~ msgid "Cannot determine"
+#~ msgstr "Kan ikke fastsætte"
+
+#~ msgid "Check every (hours)"
+#~ msgstr "Kontroller hver (pr. time)"
+
+#~ msgid "Current device: "
+#~ msgstr "Nuværende enhed: "
+
+#~ msgid "E3HD/XPEEDLX/GI"
+#~ msgstr "E3HD/XPEEDLX/GI"
+
+#~ msgid "F1/F3/F4/F4-TURBO/TRIPLEX"
+#~ msgstr "F1/F3/F4/F4-TURBO/TRIPLEX"
+
+#~ msgid "GIGABLUE Black"
+#~ msgstr "GIGABLUE Black"
+
+#~ msgid "HD11/HD51/HD1100/HD1200/HD1265/HD1500/HD500C/HD530C/VS1000/VS1500"
+#~ msgstr "HD11/HD51/HD1100/HD1200/HD1265/HD1500/HD500C/HD530C/VS1000/VS1500"
+
+#~ msgid "HD11/HD51/HD1100/HD1200/HD1265/HD1500/HD500C/HD530C/et7x00/et8500/VS1000/VS1500"
+#~ msgstr "HD11/HD51/HD1100/HD1200/HD1265/HD1500/HD500C/HD530C/et7x00/et8500/VS1000/VS1500"
+
+#~ msgid "HD2400"
+#~ msgstr "HD2400"
+
+#~ msgid "HD60/Multibox/Multiboxse"
+#~ msgstr "HD60/Multibox/Multiboxse"
+
+#~ msgid "MIRACLEBOX_TWINPLUS"
+#~ msgstr "MIRACLEBOX_TWINPLUS"
+
+#~ msgid "MaraM9"
+#~ msgstr "MaraM9"
+
+#~ msgid "OCTAGON SF5008"
+#~ msgstr "OCTAGON SF5008"
+
+#~ msgid "OCTAGON_SF4008"
+#~ msgstr "OCTAGON_SF4008"
+
+#~ msgid "ODIN_M7"
+#~ msgstr "ODIN_M7"
+
+#~ msgid "Perform a image backup before updating."
+#~ msgstr "Udfør en Image sikkerhedskopi før opdatering."
+
+#~ msgid "Perform a setting backup before updating."
+#~ msgstr "Udfør en indstillingssikkerhedskopi for opdatering."
+
+#~ msgid "Perform an online update check in the background"
+#~ msgstr "Udfør en online opdateringskontrol i baggrunden."
+
+#~ msgid "Protek 4K UHD/HD61"
+#~ msgstr "Beskyt 4K UHD/HD61"
+
+#~ msgid "Setup the interval to check for online updates. (in hours)"
+#~ msgstr "Indstil intervallet for kontrol af online opdateringer (i timer)"
+
+#~ msgid "Softwareupdate"
+#~ msgstr "Software-opdatering"
+
+#~ msgid "VU+"
+#~ msgstr "VU+"
+
+#~ msgid "WWIO 4K"
+#~ msgstr "WWIO 4K"
+
+#~ msgid "WWIO_BRE2ZE_TC"
+#~ msgstr "WWIO_BRE2ZE_TC"
+
+#~ msgid "When enabled the online checker will also check for experimental versions"
+#~ msgstr "Når dette aktiveres vil online kontrollen også kontrollere for eksperimentale versioner"
+
+#~ msgid "XP1000"
+#~ msgstr "XP1000"
+
+#~ msgid "XP3000"
+#~ msgstr "XP3000"
+
+#~ msgid "Zgemma H.S/H.2S/H.2H/H5/H7"
+#~ msgstr "Zgemma H.S/H.2S/H.2H/H5/H7"
+
+#, fuzzy
+#~ msgid "Zgemma H8/H0/H9/I55Plus old Model"
+#~ msgstr "Zgemma H9/I55Plus gammel model"
+
+#~ msgid "Zgemma Star S/2S/H1/H2"
+#~ msgstr "Zgemma Star S/2S/H1/H2"
+
+#~ msgid "Zgemma i55"
+#~ msgstr "Zgemma i55"
+
+#~ msgid "et4000"
+#~ msgstr "et4000"
+
+#~ msgid "et5000/6000"
+#~ msgstr "et5000/6000"
+
+#~ msgid "et8000/et10000/et13000"
+#~ msgstr "et8000/et10000/et13000"
+
+#~ msgid "et8000/et10000/et13000/SF5008"
+#~ msgstr "et8000/et10000/et13000/SF5008"
+
+#~ msgid "et9000/et9100"
+#~ msgstr "et9000/et9100"
+
+#~ msgid "et9200/9500/6500"
+#~ msgstr "et9200/9500/6500"
+
+#~ msgid "limit ..., aborting !"
+#~ msgstr "grænse..., afbryder !"
+
+#~ msgid "ms"
+#~ msgstr "ms"
 
 #, python-format
 #~ msgid "  (%s x %s)"

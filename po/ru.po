@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Enigma2 OpenXXX\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-02-07 20:18+0000\n"
+"POT-Creation-Date: 2022-02-11 14:04+0000\n"
 "PO-Revision-Date: 2022-02-08 16:26+0000\n"
 "Last-Translator: igorrrrr <igorzhugan66@gmail.com>\n"
 "Language-Team: Russian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/ru/>\n"
@@ -1023,10 +1023,6 @@ msgid_plural "%d Mins"
 msgstr[0] "%d минута"
 msgstr[1] "%d минуты"
 msgstr[2] "%d минут"
-
-#, python-format
-msgid "%d Mins"
-msgstr "%d минут"
 
 #. TRANSLATORS: Intermediate scanning result, '%d' channel(s) have been found so far
 #, python-format
@@ -2678,9 +2674,6 @@ msgstr "Показать субтитры при совпадении с язы�
 msgid "Allow subtitles for hearing impaired"
 msgstr "Субтитры для людей с ослабленным слухом"
 
-msgid "Allow unstable (untested) updates"
-msgstr "Разрешить нестабильные (непроверенные) обновления"
-
 msgid "Allow unsupported modes"
 msgstr "Разрешить неподдерживаемые режимы"
 
@@ -3181,9 +3174,6 @@ msgstr "Автоматический поиск"
 msgid "Automatic Service Searching"
 msgstr "Автоматический поиск каналов"
 
-msgid "Automatic image backup"
-msgstr "Автоматическое копирование имиджа"
-
 msgid "Automatic resolution"
 msgstr "Авторазрешение экрана"
 
@@ -3195,9 +3185,6 @@ msgstr "Автопоиск"
 
 msgid "Automatic scan for services"
 msgstr "Автопоиск каналов"
-
-msgid "Automatic setting backup"
-msgstr "Автоматическое сохранение настроек"
 
 msgid "Automatically put the TV in standby whenever the receiver goes into standby or deep standby."
 msgstr "Автоматически переводите телевизор в режим ожидания, когда ресивер переходит в режим ожидания или глубокий режим ожидания."
@@ -3237,9 +3224,6 @@ msgstr "Авестийский"
 
 msgid "Avoid getting stuck (at the expense of some stuttering) when the jump time is smaller than the time between I-frames."
 msgstr "Позволяет избежать торможения кадра (за счёт некоторого застывания), когда время перехода короче времени между I-фреймами."
-
-msgid "Axas E4HD Ultra"
-msgstr "Axas E4HD-Ultra"
 
 msgid "Aymara"
 msgstr "Аймара"
@@ -3333,9 +3317,6 @@ msgstr "Назад/Вернуться"
 
 msgid "Background"
 msgstr "Фон"
-
-msgid "Background check"
-msgstr "Проверка в фоновом режиме"
 
 msgid "Background color"
 msgstr "Цвет фона"
@@ -3525,9 +3506,6 @@ msgstr "Бермудские острова"
 
 msgid "Berufe"
 msgstr "Беруфе"
-
-msgid "Beyonwiz U4"
-msgstr "Beyonwiz-U4"
 
 msgid "Beziehung"
 msgstr "Безиехунг"
@@ -4117,8 +4095,10 @@ msgstr "Не удается удалить загруженный имидж"
 msgid "Cannot delete file"
 msgstr "Не удаётся удалить файл"
 
-msgid "Cannot determine"
-msgstr "Невозможно определить"
+#. TRANSLATORS: "Cannot determine (east/west) limit ..., aborting !"
+#, python-format
+msgid "Cannot determine %s limit ..., aborting !"
+msgstr ""
 
 msgid "Cannot find any signal ..., aborting !"
 msgstr "Сигнал не найден, прерываем!"
@@ -4370,9 +4350,6 @@ msgstr "Проверка"
 
 msgid "Check HDD"
 msgstr "Проверить HDD"
-
-msgid "Check every (hours)"
-msgstr "Проверить каждые (Часов)"
 
 msgid "Check power and input state from TV"
 msgstr "Проверьте питание и состояние входа с телевизора"
@@ -5479,9 +5456,6 @@ msgstr "Текущий статус"
 
 msgid "Current crash log"
 msgstr "Текущий журнал сбоев"
-
-msgid "Current device: "
-msgstr "Текущее устройство "
 
 msgid "Current installed"
 msgstr "В настоящее время установлены"
@@ -6813,9 +6787,6 @@ msgstr "В"
 msgid "E "
 msgstr "E "
 
-msgid "E3HD/XPEEDLX/GI"
-msgstr "E3HD/XPEEDLX/GI"
-
 msgid "ECM Info"
 msgstr "ECM инфо"
 
@@ -7813,9 +7784,6 @@ msgstr "F1"
 msgid "F1 long"
 msgstr "F1, долгая"
 
-msgid "F1/F3/F4/F4-TURBO/TRIPLEX"
-msgstr "F1/F3/F4/F4-TURBO/TRIPLEX"
-
 msgid "F2"
 msgstr "F2"
 
@@ -8362,9 +8330,6 @@ msgstr "Гб"
 msgid "GCC version"
 msgstr "Версия GCC"
 
-msgid "GIGABLUE Black"
-msgstr "GIGABLUE Черный"
-
 msgid "GStreamer version"
 msgstr "Версия GStreamer"
 
@@ -8691,18 +8656,6 @@ msgstr "HD"
 
 msgid "HD list"
 msgstr "Список HD"
-
-msgid "HD11/HD51/HD1100/HD1200/HD1265/HD1500/HD500C/HD530C/VS1000/VS1500"
-msgstr "HD11/HD51/HD1100/HD1200/HD1265/HD1500/HD500C/HD530C/VS1000/VS1500"
-
-msgid "HD11/HD51/HD1100/HD1200/HD1265/HD1500/HD500C/HD530C/et7x00/et8500/VS1000/VS1500"
-msgstr "HD11/HD51/HD1100/HD1200/HD1265/HD1500/HD500C/HD530C/et7x00/et8500/VS1000/VS1500"
-
-msgid "HD2400"
-msgstr "HD2400"
-
-msgid "HD60/Multibox/Multiboxse"
-msgstr "HD60/ Multibox/ Multiboxse"
 
 msgid "HDMI"
 msgstr "HDMI"
@@ -10516,9 +10469,6 @@ msgstr "Мб"
 msgid "MENU"
 msgstr "МЕНЮ"
 
-msgid "MIRACLEBOX_TWINPLUS"
-msgstr "MIRACLEBOX_TWINPLUS"
-
 msgid "MKUBIFS"
 msgstr "MKUBIFS"
 
@@ -10663,9 +10613,6 @@ msgstr "Манкс"
 
 msgid "Maori"
 msgstr "Маори"
-
-msgid "MaraM9"
-msgstr "MaraM9"
 
 msgid "Marathi"
 msgstr "Маратхи"
@@ -11986,15 +11933,6 @@ msgstr "Количество строк для отображения"
 msgid "Number or SMS style data entry"
 msgstr "Ввод данных в стиле номера или SMS"
 
-msgid "OCTAGON SF5008"
-msgstr "OCTAGON_SFXXX8"
-
-msgid "OCTAGON_SF4008"
-msgstr "OCTAGON_SF4008"
-
-msgid "ODIN_M7"
-msgstr "ODIN_M7"
-
 msgid "OEM Model"
 msgstr "OEM-модель"
 
@@ -12589,17 +12527,8 @@ msgstr "Прогресс-бар слева"
 msgid "Percentage/Progress bar right"
 msgstr "Прогресс-бар справа"
 
-msgid "Perform a image backup before updating."
-msgstr "Перед обновлением выполните резервное копирование имиджа."
-
-msgid "Perform a setting backup before updating."
-msgstr "Перед обновлением выполните резервное копирование настроек."
-
 msgid "Perform an on-line flash instead"
 msgstr "Вместо этого выполните онлайн-прошивку"
-
-msgid "Perform an online update check in the background"
-msgstr "Выполнить проверку онлайн-обновлений в фоновом режиме"
 
 msgid "Permanently delete all recordings in the trash can?"
 msgstr "Окончательное удаление всех записей в корзине?"
@@ -13605,9 +13534,6 @@ msgstr "Пароль для режима ожидания"
 
 msgid "Protect timer menu"
 msgstr "Защитить меню таймера"
-
-msgid "Protek 4K UHD/HD61"
-msgstr "Protek 4K UHD/HD61"
 
 msgid "Protocol"
 msgstr "Протокол"
@@ -15970,9 +15896,6 @@ msgstr "Настройки сети. Здесь можете настроить 
 msgid "Setup rotor"
 msgstr "Настройки мотоподвеса"
 
-msgid "Setup the interval to check for online updates. (in hours)"
-msgstr "Настройка интервала времени проверки онлайн-обновлений (В часах)"
-
 msgid "Setup tuner(s)"
 msgstr "Настройки тюнеров"
 
@@ -17083,9 +17006,6 @@ msgstr "Информация менеджера ПО"
 msgid "Softwaremanager..."
 msgstr "Управление ПО..."
 
-msgid "Softwareupdate"
-msgstr "Обновление ПО"
-
 msgid "Solomon Islands"
 msgstr "Соломоновы острова"
 
@@ -17367,6 +17287,7 @@ msgstr "Начиная с"
 msgid "Starts in a few seconds"
 msgstr "Запускается через несколько секунд"
 
+#. TRANSLATORS: "State" is Location Info
 msgid "State"
 msgstr "Состояние"
 
@@ -20039,9 +19960,6 @@ msgstr "VOD длинный"
 msgid "VPN"
 msgstr "VPN"
 
-msgid "VU+"
-msgstr "VU+"
-
 msgid "Valid"
 msgstr "Действительный"
 
@@ -20380,12 +20298,6 @@ msgstr "WPA2"
 msgid "WSS on 4:3"
 msgstr "WSS при 4:3"
 
-msgid "WWIO 4K"
-msgstr "WWIO 4K"
-
-msgid "WWIO_BRE2ZE_TC"
-msgstr "WWIO_BRE2ZE_TC"
-
 msgid "Waffen"
 msgstr "Ваффен"
 
@@ -20598,9 +20510,6 @@ msgstr "Если включено, то будут загружаться нев
 
 msgid "When enabled the PiP can be closed by the exit button."
 msgstr "Если эта функция включена, PiP можно закрыть с помощью кнопки EXIT."
-
-msgid "When enabled the online checker will also check for experimental versions"
-msgstr "Если включено, онлайн-проверка также будет включать в себя и экспериментальные версии"
 
 msgid "When enabled the receiver will automatically be switched off."
 msgstr "При включении ресивер автоматически выключится."
@@ -20907,12 +20816,6 @@ msgstr "WWW, долгая"
 
 msgid "XBox 360 support"
 msgstr "Поддержка XBox360"
-
-msgid "XP1000"
-msgstr "XP1000"
-
-msgid "XP3000"
-msgstr "XP3000"
 
 msgid "XPicon, ZZZPicon"
 msgstr "XPicon, ZZZPicon"
@@ -21461,20 +21364,8 @@ msgstr "Zap + запись далее"
 msgid "Zeichentrick"
 msgstr "Мультик"
 
-msgid "Zgemma H.S/H.2S/H.2H/H5/H7"
-msgstr "Zgemma H.S/H.2S/H.2H/H5/H7"
-
 msgid "Zgemma H.S/H.2S/H.2H/H5/H7 old Model"
 msgstr "Zgemma H.S/H.2S/H.2H/H5/H7старая модель"
-
-msgid "Zgemma H8/H0/H9/I55Plus old Model"
-msgstr "Zgemma H8/H0/H9/I55Plus старая модель"
-
-msgid "Zgemma Star S/2S/H1/H2"
-msgstr "Zgemma Star S/2S/H1/H2"
-
-msgid "Zgemma i55"
-msgstr "Zgemma i55"
 
 msgid "Zhuang / Chuang"
 msgstr "Чжуан / Чуан"
@@ -22005,24 +21896,6 @@ msgstr "Ошибка запуска поиска"
 msgid "error while scanning"
 msgstr "Ошибка поиска"
 
-msgid "et4000"
-msgstr "et4000"
-
-msgid "et5000/6000"
-msgstr "et5000/6000"
-
-msgid "et8000/et10000/et13000"
-msgstr "et8000/et10000/et13000"
-
-msgid "et8000/et10000/et13000/SF5008"
-msgstr "et8000 /et10000 /et13000 /SF5008"
-
-msgid "et9000/et9100"
-msgstr "et9000/et9100"
-
-msgid "et9200/9500/6500"
-msgstr "et9200/9500/6500"
-
 msgid "execute cuts (requires MovieCut plugin)"
 msgstr "Выполнить сокращение (MovieCut)"
 
@@ -22326,9 +22199,6 @@ msgstr "Развлечения (Хобби)"
 msgid "length"
 msgstr "Длина"
 
-msgid "limit ..., aborting !"
-msgstr "Ограничение, прервано!"
-
 msgid "literature"
 msgstr "Литература"
 
@@ -22415,9 +22285,6 @@ msgstr "кино (общее)"
 
 msgid "movie/drama (general)"
 msgstr "Кино/Драма (Общие)"
-
-msgid "ms"
-msgstr "мс"
 
 msgid "multi"
 msgstr "мульти"
@@ -23267,6 +23134,145 @@ msgstr "Переключение"
 
 msgid "®"
 msgstr "®"
+
+#, python-format
+#~ msgid "%d Mins"
+#~ msgstr "%d минут"
+
+#~ msgid "Allow unstable (untested) updates"
+#~ msgstr "Разрешить нестабильные (непроверенные) обновления"
+
+#~ msgid "Automatic image backup"
+#~ msgstr "Автоматическое копирование имиджа"
+
+#~ msgid "Automatic setting backup"
+#~ msgstr "Автоматическое сохранение настроек"
+
+#~ msgid "Axas E4HD Ultra"
+#~ msgstr "Axas E4HD-Ultra"
+
+#~ msgid "Background check"
+#~ msgstr "Проверка в фоновом режиме"
+
+#~ msgid "Beyonwiz U4"
+#~ msgstr "Beyonwiz-U4"
+
+#~ msgid "Cannot determine"
+#~ msgstr "Невозможно определить"
+
+#~ msgid "Check every (hours)"
+#~ msgstr "Проверить каждые (Часов)"
+
+#~ msgid "Current device: "
+#~ msgstr "Текущее устройство "
+
+#~ msgid "E3HD/XPEEDLX/GI"
+#~ msgstr "E3HD/XPEEDLX/GI"
+
+#~ msgid "F1/F3/F4/F4-TURBO/TRIPLEX"
+#~ msgstr "F1/F3/F4/F4-TURBO/TRIPLEX"
+
+#~ msgid "GIGABLUE Black"
+#~ msgstr "GIGABLUE Черный"
+
+#~ msgid "HD11/HD51/HD1100/HD1200/HD1265/HD1500/HD500C/HD530C/VS1000/VS1500"
+#~ msgstr "HD11/HD51/HD1100/HD1200/HD1265/HD1500/HD500C/HD530C/VS1000/VS1500"
+
+#~ msgid "HD11/HD51/HD1100/HD1200/HD1265/HD1500/HD500C/HD530C/et7x00/et8500/VS1000/VS1500"
+#~ msgstr "HD11/HD51/HD1100/HD1200/HD1265/HD1500/HD500C/HD530C/et7x00/et8500/VS1000/VS1500"
+
+#~ msgid "HD2400"
+#~ msgstr "HD2400"
+
+#~ msgid "HD60/Multibox/Multiboxse"
+#~ msgstr "HD60/ Multibox/ Multiboxse"
+
+#~ msgid "MIRACLEBOX_TWINPLUS"
+#~ msgstr "MIRACLEBOX_TWINPLUS"
+
+#~ msgid "MaraM9"
+#~ msgstr "MaraM9"
+
+#~ msgid "OCTAGON SF5008"
+#~ msgstr "OCTAGON_SFXXX8"
+
+#~ msgid "OCTAGON_SF4008"
+#~ msgstr "OCTAGON_SF4008"
+
+#~ msgid "ODIN_M7"
+#~ msgstr "ODIN_M7"
+
+#~ msgid "Perform a image backup before updating."
+#~ msgstr "Перед обновлением выполните резервное копирование имиджа."
+
+#~ msgid "Perform a setting backup before updating."
+#~ msgstr "Перед обновлением выполните резервное копирование настроек."
+
+#~ msgid "Perform an online update check in the background"
+#~ msgstr "Выполнить проверку онлайн-обновлений в фоновом режиме"
+
+#~ msgid "Protek 4K UHD/HD61"
+#~ msgstr "Protek 4K UHD/HD61"
+
+#~ msgid "Setup the interval to check for online updates. (in hours)"
+#~ msgstr "Настройка интервала времени проверки онлайн-обновлений (В часах)"
+
+#~ msgid "Softwareupdate"
+#~ msgstr "Обновление ПО"
+
+#~ msgid "VU+"
+#~ msgstr "VU+"
+
+#~ msgid "WWIO 4K"
+#~ msgstr "WWIO 4K"
+
+#~ msgid "WWIO_BRE2ZE_TC"
+#~ msgstr "WWIO_BRE2ZE_TC"
+
+#~ msgid "When enabled the online checker will also check for experimental versions"
+#~ msgstr "Если включено, онлайн-проверка также будет включать в себя и экспериментальные версии"
+
+#~ msgid "XP1000"
+#~ msgstr "XP1000"
+
+#~ msgid "XP3000"
+#~ msgstr "XP3000"
+
+#~ msgid "Zgemma H.S/H.2S/H.2H/H5/H7"
+#~ msgstr "Zgemma H.S/H.2S/H.2H/H5/H7"
+
+#~ msgid "Zgemma H8/H0/H9/I55Plus old Model"
+#~ msgstr "Zgemma H8/H0/H9/I55Plus старая модель"
+
+#~ msgid "Zgemma Star S/2S/H1/H2"
+#~ msgstr "Zgemma Star S/2S/H1/H2"
+
+#~ msgid "Zgemma i55"
+#~ msgstr "Zgemma i55"
+
+#~ msgid "et4000"
+#~ msgstr "et4000"
+
+#~ msgid "et5000/6000"
+#~ msgstr "et5000/6000"
+
+#~ msgid "et8000/et10000/et13000"
+#~ msgstr "et8000/et10000/et13000"
+
+#~ msgid "et8000/et10000/et13000/SF5008"
+#~ msgstr "et8000 /et10000 /et13000 /SF5008"
+
+#~ msgid "et9000/et9100"
+#~ msgstr "et9000/et9100"
+
+#~ msgid "et9200/9500/6500"
+#~ msgstr "et9200/9500/6500"
+
+#~ msgid "limit ..., aborting !"
+#~ msgstr "Ограничение, прервано!"
+
+#~ msgid "ms"
+#~ msgstr "мс"
 
 #, python-format
 #~ msgid "  (%s x %s)"

@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV-Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-02-07 20:18+0000\n"
+"POT-Creation-Date: 2022-02-11 14:04+0000\n"
 "PO-Revision-Date: 2021-08-21 11:46+0000\n"
 "Last-Translator: openATV <openatv@gmail.com>\n"
 "Language-Team: Estonian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/et/>\n"
@@ -1025,10 +1025,6 @@ msgid "%d Min"
 msgid_plural "%d Mins"
 msgstr[0] "%d min"
 msgstr[1] "%d min"
-
-#, python-format
-msgid "%d Mins"
-msgstr "%d min"
 
 #. TRANSLATORS: Intermediate scanning result, '%d' channel(s) have been found so far
 #, python-format
@@ -2693,9 +2689,6 @@ msgstr "Subtiitrite keel vastab heli keelevalikule"
 msgid "Allow subtitles for hearing impaired"
 msgstr "Luba vaegkuuljate subtiitrid"
 
-msgid "Allow unstable (untested) updates"
-msgstr "Testimata uuendused lubatud"
-
 msgid "Allow unsupported modes"
 msgstr "Luba toetuseta režiimid"
 
@@ -3210,9 +3203,6 @@ msgstr "Automaatotsing"
 msgid "Automatic Service Searching"
 msgstr "Automaatne kanaliotsing"
 
-msgid "Automatic image backup"
-msgstr "Püsivaratõmmise automaatne loomine"
-
 msgid "Automatic resolution"
 msgstr "Automaatne lahutus"
 
@@ -3224,9 +3214,6 @@ msgstr "Automaatotsing"
 
 msgid "Automatic scan for services"
 msgstr "Kanalite automaatotsing"
-
-msgid "Automatic setting backup"
-msgstr "Automaatne seadistuste varundamine"
 
 msgid "Automatically put the TV in standby whenever the receiver goes into standby or deep standby."
 msgstr ""
@@ -3266,9 +3253,6 @@ msgstr ""
 
 msgid "Avoid getting stuck (at the expense of some stuttering) when the jump time is smaller than the time between I-frames."
 msgstr "Väldi hangumist (mõningase hakkimise arvelt), kui ajahüpe on väiksem ajast I-frame'de vahel."
-
-msgid "Axas E4HD Ultra"
-msgstr "Axas E4HD Ultra"
 
 msgid "Aymara"
 msgstr ""
@@ -3363,9 +3347,6 @@ msgstr "Back/Recall"
 
 msgid "Background"
 msgstr "Taust"
-
-msgid "Background check"
-msgstr "Otsing taustal"
 
 # 5.1 /Plugins\Extensions\PicturePlayer
 msgid "Background color"
@@ -3561,9 +3542,6 @@ msgstr "Bermuda"
 
 msgid "Berufe"
 msgstr ""
-
-msgid "Beyonwiz U4"
-msgstr "Beyonwiz U4"
 
 msgid "Beziehung"
 msgstr ""
@@ -4160,8 +4138,10 @@ msgstr "Allalaetud püsivara ei saa kustutada"
 msgid "Cannot delete file"
 msgstr "Faili ei saa kustutada"
 
-msgid "Cannot determine"
-msgstr "Ei saa määrata"
+#. TRANSLATORS: "Cannot determine (east/west) limit ..., aborting !"
+#, python-format
+msgid "Cannot determine %s limit ..., aborting !"
+msgstr ""
 
 msgid "Cannot find any signal ..., aborting !"
 msgstr "Mingit signaali ei leita, katkestame!"
@@ -4420,9 +4400,6 @@ msgstr "Kontroll"
 
 msgid "Check HDD"
 msgstr "Kontrolli kõvaketast"
-
-msgid "Check every (hours)"
-msgstr "Kontroll iga (tund)"
 
 msgid "Check power and input state from TV"
 msgstr "Kontrolli teleri toidet ja sisendit"
@@ -5560,9 +5537,6 @@ msgstr "Praegune olek:"
 
 msgid "Current crash log"
 msgstr ""
-
-msgid "Current device: "
-msgstr "Praegune seade: "
 
 msgid "Current installed"
 msgstr "Hetkel paigaldatud"
@@ -6935,9 +6909,6 @@ msgstr "E"
 msgid "E "
 msgstr " "
 
-msgid "E3HD/XPEEDLX/GI"
-msgstr "E3HD/XPEEDLX/GI"
-
 #, fuzzy
 msgid "ECM Info"
 msgstr "ECM info puudub"
@@ -7970,9 +7941,6 @@ msgstr "F1"
 msgid "F1 long"
 msgstr "F1 - pikk"
 
-msgid "F1/F3/F4/F4-TURBO/TRIPLEX"
-msgstr "F1/F3/F4/F4-TURBO/TRIPLEX"
-
 msgid "F2"
 msgstr "F2"
 
@@ -8541,9 +8509,6 @@ msgstr "GB"
 msgid "GCC version"
 msgstr ""
 
-msgid "GIGABLUE Black"
-msgstr "GIGABLUE Black"
-
 msgid "GStreamer version"
 msgstr ""
 
@@ -8878,18 +8843,6 @@ msgstr ""
 
 msgid "HD list"
 msgstr "HD kanalid"
-
-msgid "HD11/HD51/HD1100/HD1200/HD1265/HD1500/HD500C/HD530C/VS1000/VS1500"
-msgstr "HD11/HD51/HD1100/HD1200/HD1265/HD1500/HD500C/HD530C/VS1000/VS1500"
-
-msgid "HD11/HD51/HD1100/HD1200/HD1265/HD1500/HD500C/HD530C/et7x00/et8500/VS1000/VS1500"
-msgstr "HD11/HD51/HD1100/HD1200/HD1265/HD1500/HD500C/HD530C/et7x00/et8500/VS1000/VS1500"
-
-msgid "HD2400"
-msgstr "HD2400"
-
-msgid "HD60/Multibox/Multiboxse"
-msgstr ""
 
 msgid "HDMI"
 msgstr "HDMI"
@@ -10779,9 +10732,6 @@ msgstr "MB"
 msgid "MENU"
 msgstr ""
 
-msgid "MIRACLEBOX_TWINPLUS"
-msgstr "MIRACLEBOX_TWINPLUS"
-
 msgid "MKUBIFS"
 msgstr ""
 
@@ -10936,9 +10886,6 @@ msgstr ""
 
 msgid "Maori"
 msgstr ""
-
-msgid "MaraM9"
-msgstr "MaraM9"
 
 #, fuzzy
 msgid "Marathi"
@@ -12352,15 +12299,6 @@ msgstr "Kuvatavate ridade arv"
 msgid "Number or SMS style data entry"
 msgstr "Number või SMS stiilis andmesisestus"
 
-msgid "OCTAGON SF5008"
-msgstr "OCTAGON SF5008"
-
-msgid "OCTAGON_SF4008"
-msgstr "OCTAGON_SF4008"
-
-msgid "ODIN_M7"
-msgstr "ODIN_M7"
-
 msgid "OEM Model"
 msgstr ""
 
@@ -12992,17 +12930,8 @@ msgstr "Edenemisriba vasakul"
 msgid "Percentage/Progress bar right"
 msgstr "Edenemisriba paremal"
 
-msgid "Perform a image backup before updating."
-msgstr "Loo enne uuendamist püsivaratõmmis."
-
-msgid "Perform a setting backup before updating."
-msgstr "Loo enne uuendamist seadistustest varukoopia."
-
 msgid "Perform an on-line flash instead"
 msgstr ""
-
-msgid "Perform an online update check in the background"
-msgstr "Otsi taustal uuendusi"
 
 msgid "Permanently delete all recordings in the trash can?"
 msgstr "Kas kustutada lõplikult kõik failid prügikastist?"
@@ -14038,10 +13967,6 @@ msgstr "Lukusta seiskamismenüü"
 
 msgid "Protect timer menu"
 msgstr "Lukusta taimeri menüü"
-
-#, fuzzy
-msgid "Protek 4K UHD/HD61"
-msgstr "Protek 4K UHD"
 
 msgid "Protocol"
 msgstr "Protokoll"
@@ -16492,9 +16417,6 @@ msgstr "Seadista võrk. Siin saab seadistada DHCP, IP, DNS"
 msgid "Setup rotor"
 msgstr "Seadista ajam"
 
-msgid "Setup the interval to check for online updates. (in hours)"
-msgstr "Määra ajavahemik uuenduste otsimiseks (tundides)."
-
 msgid "Setup tuner(s)"
 msgstr "Seadista tuuner(id)"
 
@@ -17653,9 +17575,6 @@ msgstr "Tarkvarahalduri info"
 msgid "Softwaremanager..."
 msgstr "Tarkvarahaldur"
 
-msgid "Softwareupdate"
-msgstr "Tarkvarauuendus"
-
 msgid "Solomon Islands"
 msgstr "Saalomoni saared"
 
@@ -17953,6 +17872,7 @@ msgstr "Alates"
 msgid "Starts in a few seconds"
 msgstr "Käivita võrguta dekodeerimine"
 
+#. TRANSLATORS: "State" is Location Info
 msgid "State"
 msgstr ""
 
@@ -20733,9 +20653,6 @@ msgstr "VOD - pikk"
 msgid "VPN"
 msgstr "VPN"
 
-msgid "VU+"
-msgstr "VU+"
-
 msgid "Valid"
 msgstr ""
 
@@ -21094,12 +21011,6 @@ msgstr "WPA2"
 msgid "WSS on 4:3"
 msgstr "WSS  4:3"
 
-msgid "WWIO 4K"
-msgstr "WWIO 4K"
-
-msgid "WWIO_BRE2ZE_TC"
-msgstr "WWIO_BRE2ZE_TC"
-
 msgid "Waffen"
 msgstr ""
 
@@ -21326,9 +21237,6 @@ msgstr "Kui lubatud, laadib enigma2 ka sidumata lemmiknimekirjad. See tähendab,
 # /data/setup.xml
 msgid "When enabled the PiP can be closed by the exit button."
 msgstr "Kui lubatud, saab PiP sulgeda EXIT nupuga."
-
-msgid "When enabled the online checker will also check for experimental versions"
-msgstr "Kui lubatud, otsitakse ka eksperimentaalseid uuendusi"
 
 msgid "When enabled the receiver will automatically be switched off."
 msgstr ""
@@ -21643,12 +21551,6 @@ msgstr "Www - pikk"
 
 msgid "XBox 360 support"
 msgstr "XBox 360 tugi"
-
-msgid "XP1000"
-msgstr "XP1000"
-
-msgid "XP3000"
-msgstr "XP3000"
 
 msgid "XPicon, ZZZPicon"
 msgstr ""
@@ -22209,22 +22111,9 @@ msgstr "Kanalivahetus ja salvestus 'järgmine'"
 msgid "Zeichentrick"
 msgstr ""
 
-msgid "Zgemma H.S/H.2S/H.2H/H5/H7"
-msgstr "Zgemma H.S/H.2S/H.2H/H5/H7"
-
 #, fuzzy
 msgid "Zgemma H.S/H.2S/H.2H/H5/H7 old Model"
 msgstr "Zgemma H.S/H.2S/H.2H/H5/H7"
-
-#, fuzzy
-msgid "Zgemma H8/H0/H9/I55Plus old Model"
-msgstr "Zgemma H9/I55Plus"
-
-msgid "Zgemma Star S/2S/H1/H2"
-msgstr "Zgemma Star S/2S/H1/H2"
-
-msgid "Zgemma i55"
-msgstr "Zgemma i55"
 
 msgid "Zhuang / Chuang"
 msgstr ""
@@ -22775,24 +22664,6 @@ msgstr "viga otsingu alustamisel"
 msgid "error while scanning"
 msgstr "viga otsingu teostamisel"
 
-msgid "et4000"
-msgstr "et4000"
-
-msgid "et5000/6000"
-msgstr "et5000/6000"
-
-msgid "et8000/et10000/et13000"
-msgstr "et8000/et10000/et13000"
-
-msgid "et8000/et10000/et13000/SF5008"
-msgstr "et8000/et10000/et13000/SF5008"
-
-msgid "et9000/et9100"
-msgstr "et9000/et9100"
-
-msgid "et9200/9500/6500"
-msgstr "et9200/9500/6500"
-
 msgid "execute cuts (requires MovieCut plugin)"
 msgstr "Teosta lõikamine (vajalik MovieCut plugin)"
 
@@ -23109,9 +22980,6 @@ msgstr "vaba aja harrastused"
 msgid "length"
 msgstr "Pikkus"
 
-msgid "limit ..., aborting !"
-msgstr "piir ..., katkestame!"
-
 msgid "literature"
 msgstr "kirjandus"
 
@@ -23200,9 +23068,6 @@ msgstr "film/draama"
 
 msgid "movie/drama (general)"
 msgstr "film/draama"
-
-msgid "ms"
-msgstr "ms"
 
 msgid "multi"
 msgstr "multi"
@@ -24066,6 +23931,144 @@ msgstr "Kanalivahetus"
 
 msgid "®"
 msgstr ""
+
+#, python-format
+#~ msgid "%d Mins"
+#~ msgstr "%d min"
+
+#~ msgid "Allow unstable (untested) updates"
+#~ msgstr "Testimata uuendused lubatud"
+
+#~ msgid "Automatic image backup"
+#~ msgstr "Püsivaratõmmise automaatne loomine"
+
+#~ msgid "Automatic setting backup"
+#~ msgstr "Automaatne seadistuste varundamine"
+
+#~ msgid "Axas E4HD Ultra"
+#~ msgstr "Axas E4HD Ultra"
+
+#~ msgid "Background check"
+#~ msgstr "Otsing taustal"
+
+#~ msgid "Beyonwiz U4"
+#~ msgstr "Beyonwiz U4"
+
+#~ msgid "Cannot determine"
+#~ msgstr "Ei saa määrata"
+
+#~ msgid "Check every (hours)"
+#~ msgstr "Kontroll iga (tund)"
+
+#~ msgid "Current device: "
+#~ msgstr "Praegune seade: "
+
+#~ msgid "E3HD/XPEEDLX/GI"
+#~ msgstr "E3HD/XPEEDLX/GI"
+
+#~ msgid "F1/F3/F4/F4-TURBO/TRIPLEX"
+#~ msgstr "F1/F3/F4/F4-TURBO/TRIPLEX"
+
+#~ msgid "GIGABLUE Black"
+#~ msgstr "GIGABLUE Black"
+
+#~ msgid "HD11/HD51/HD1100/HD1200/HD1265/HD1500/HD500C/HD530C/VS1000/VS1500"
+#~ msgstr "HD11/HD51/HD1100/HD1200/HD1265/HD1500/HD500C/HD530C/VS1000/VS1500"
+
+#~ msgid "HD11/HD51/HD1100/HD1200/HD1265/HD1500/HD500C/HD530C/et7x00/et8500/VS1000/VS1500"
+#~ msgstr "HD11/HD51/HD1100/HD1200/HD1265/HD1500/HD500C/HD530C/et7x00/et8500/VS1000/VS1500"
+
+#~ msgid "HD2400"
+#~ msgstr "HD2400"
+
+#~ msgid "MIRACLEBOX_TWINPLUS"
+#~ msgstr "MIRACLEBOX_TWINPLUS"
+
+#~ msgid "MaraM9"
+#~ msgstr "MaraM9"
+
+#~ msgid "OCTAGON SF5008"
+#~ msgstr "OCTAGON SF5008"
+
+#~ msgid "OCTAGON_SF4008"
+#~ msgstr "OCTAGON_SF4008"
+
+#~ msgid "ODIN_M7"
+#~ msgstr "ODIN_M7"
+
+#~ msgid "Perform a image backup before updating."
+#~ msgstr "Loo enne uuendamist püsivaratõmmis."
+
+#~ msgid "Perform a setting backup before updating."
+#~ msgstr "Loo enne uuendamist seadistustest varukoopia."
+
+#~ msgid "Perform an online update check in the background"
+#~ msgstr "Otsi taustal uuendusi"
+
+#, fuzzy
+#~ msgid "Protek 4K UHD/HD61"
+#~ msgstr "Protek 4K UHD"
+
+#~ msgid "Setup the interval to check for online updates. (in hours)"
+#~ msgstr "Määra ajavahemik uuenduste otsimiseks (tundides)."
+
+#~ msgid "Softwareupdate"
+#~ msgstr "Tarkvarauuendus"
+
+#~ msgid "VU+"
+#~ msgstr "VU+"
+
+#~ msgid "WWIO 4K"
+#~ msgstr "WWIO 4K"
+
+#~ msgid "WWIO_BRE2ZE_TC"
+#~ msgstr "WWIO_BRE2ZE_TC"
+
+#~ msgid "When enabled the online checker will also check for experimental versions"
+#~ msgstr "Kui lubatud, otsitakse ka eksperimentaalseid uuendusi"
+
+#~ msgid "XP1000"
+#~ msgstr "XP1000"
+
+#~ msgid "XP3000"
+#~ msgstr "XP3000"
+
+#~ msgid "Zgemma H.S/H.2S/H.2H/H5/H7"
+#~ msgstr "Zgemma H.S/H.2S/H.2H/H5/H7"
+
+#, fuzzy
+#~ msgid "Zgemma H8/H0/H9/I55Plus old Model"
+#~ msgstr "Zgemma H9/I55Plus"
+
+#~ msgid "Zgemma Star S/2S/H1/H2"
+#~ msgstr "Zgemma Star S/2S/H1/H2"
+
+#~ msgid "Zgemma i55"
+#~ msgstr "Zgemma i55"
+
+#~ msgid "et4000"
+#~ msgstr "et4000"
+
+#~ msgid "et5000/6000"
+#~ msgstr "et5000/6000"
+
+#~ msgid "et8000/et10000/et13000"
+#~ msgstr "et8000/et10000/et13000"
+
+#~ msgid "et8000/et10000/et13000/SF5008"
+#~ msgstr "et8000/et10000/et13000/SF5008"
+
+#~ msgid "et9000/et9100"
+#~ msgstr "et9000/et9100"
+
+#~ msgid "et9200/9500/6500"
+#~ msgstr "et9200/9500/6500"
+
+#~ msgid "limit ..., aborting !"
+#~ msgstr "piir ..., katkestame!"
+
+#~ msgid "ms"
+#~ msgstr "ms"
 
 #, fuzzy, python-format
 #~ msgid "  (%s x %s)"

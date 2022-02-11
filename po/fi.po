@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-02-07 20:18+0000\n"
+"POT-Creation-Date: 2022-02-11 14:04+0000\n"
 "PO-Revision-Date: 2022-01-26 11:38+0000\n"
 "Last-Translator: tomppaa <tomzza89@gmail.com>\n"
 "Language-Team: Finnish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/fi/>\n"
@@ -1020,10 +1020,6 @@ msgid "%d Min"
 msgid_plural "%d Mins"
 msgstr[0] "%d minuutti"
 msgstr[1] "%d minuuttia"
-
-#, python-format
-msgid "%d Mins"
-msgstr "%d minuuttia"
 
 #. TRANSLATORS: Intermediate scanning result, '%d' channel(s) have been found so far
 #, python-format
@@ -2668,9 +2664,6 @@ msgstr "Salli tekstityskielen vastata äänivalintaa"
 msgid "Allow subtitles for hearing impaired"
 msgstr "Salli kuulovammaisten tekstitys"
 
-msgid "Allow unstable (untested) updates"
-msgstr "Salli epävakaat (testaamattomat) päivitykset"
-
 msgid "Allow unsupported modes"
 msgstr "Salli ei tuetut tilat"
 
@@ -3171,9 +3164,6 @@ msgstr "Automaattihaku"
 msgid "Automatic Service Searching"
 msgstr "Automaattinen kanavahaku"
 
-msgid "Automatic image backup"
-msgstr "Automaattinen imagen varmuuskopiointi"
-
 msgid "Automatic resolution"
 msgstr "Automaattinen resoluutio"
 
@@ -3185,9 +3175,6 @@ msgstr "Automaattihaku"
 
 msgid "Automatic scan for services"
 msgstr "Automaattinen kanavahaku"
-
-msgid "Automatic setting backup"
-msgstr "Asetusten automaattinen varmuuskopiointi"
 
 msgid "Automatically put the TV in standby whenever the receiver goes into standby or deep standby."
 msgstr "Laittaa television automaattisesti valmiustilaan, kun vastaanotin siirtyy valmiustilaan tai virransäästötilaan."
@@ -3227,9 +3214,6 @@ msgstr "Avestan"
 
 msgid "Avoid getting stuck (at the expense of some stuttering) when the jump time is smaller than the time between I-frames."
 msgstr "Jos valitset Kyllä, se estää jumittumisen kelaamisen aikana, jos hyppyetäisyys on pienempi kuin yksi kuva (nykiminen on väistämätöntä)."
-
-msgid "Axas E4HD Ultra"
-msgstr "Axas E4HD Ultra"
 
 msgid "Aymara"
 msgstr "Aymara"
@@ -3323,9 +3307,6 @@ msgstr "Peruuta/Uudelleen"
 
 msgid "Background"
 msgstr "Tausta"
-
-msgid "Background check"
-msgstr "Tarkistus taustalla"
 
 msgid "Background color"
 msgstr "Taustan väri"
@@ -3515,9 +3496,6 @@ msgstr "Bermuda"
 
 msgid "Berufe"
 msgstr "Berufe"
-
-msgid "Beyonwiz U4"
-msgstr "Beyonwiz U4"
 
 msgid "Beziehung"
 msgstr "Beziehung"
@@ -4108,8 +4086,10 @@ msgstr "Ladattua imagea ei voi poistaa"
 msgid "Cannot delete file"
 msgstr "Tiedostoa ei voi poistaa"
 
-msgid "Cannot determine"
-msgstr "Ei voida määrittää"
+#. TRANSLATORS: "Cannot determine (east/west) limit ..., aborting !"
+#, python-format
+msgid "Cannot determine %s limit ..., aborting !"
+msgstr ""
 
 msgid "Cannot find any signal ..., aborting !"
 msgstr "Signaalia ei löydy... keskeytetään!"
@@ -4361,9 +4341,6 @@ msgstr "Tarkista"
 
 msgid "Check HDD"
 msgstr "Tarkista Kiintolevy"
-
-msgid "Check every (hours)"
-msgstr "Tarkistustiheys (tuntia)"
 
 msgid "Check power and input state from TV"
 msgstr "Tarkista virta ja tulo tila tv:eltä"
@@ -5470,9 +5447,6 @@ msgstr "Nykyinen tila:"
 
 msgid "Current crash log"
 msgstr ""
-
-msgid "Current device: "
-msgstr "Käytettävä laite: "
 
 msgid "Current installed"
 msgstr "Asennettu ohjelmisto"
@@ -6807,9 +6781,6 @@ msgstr "O"
 msgid "E "
 msgstr "O "
 
-msgid "E3HD/XPEEDLX/GI"
-msgstr "E3HD/XPEEDLX/GI"
-
 msgid "ECM Info"
 msgstr "ECM tiedot"
 
@@ -7806,9 +7777,6 @@ msgstr "Punainen"
 msgid "F1 long"
 msgstr "F1 pitkä"
 
-msgid "F1/F3/F4/F4-TURBO/TRIPLEX"
-msgstr "F1/F3/F4/F4-TURBO/TRIPLEX"
-
 msgid "F2"
 msgstr "F2"
 
@@ -8355,9 +8323,6 @@ msgstr "GB"
 msgid "GCC version"
 msgstr ""
 
-msgid "GIGABLUE Black"
-msgstr "GIGABLUE"
-
 msgid "GStreamer version"
 msgstr ""
 
@@ -8684,18 +8649,6 @@ msgstr ""
 
 msgid "HD list"
 msgstr "HD lista"
-
-msgid "HD11/HD51/HD1100/HD1200/HD1265/HD1500/HD500C/HD530C/VS1000/VS1500"
-msgstr "HD11/HD51/HD1100/HD1200/HD1265/HD1500/HD500C/HD530C/VS1000/VS1500"
-
-msgid "HD11/HD51/HD1100/HD1200/HD1265/HD1500/HD500C/HD530C/et7x00/et8500/VS1000/VS1500"
-msgstr "HD11/HD51/HD1100/HD1200/HD1265/HD1500/HD500C/HD530C/et7x00/et8500/VS1000/VS1500"
-
-msgid "HD2400"
-msgstr "HD2400"
-
-msgid "HD60/Multibox/Multiboxse"
-msgstr "HD60/Multibox/Multiboxse"
 
 msgid "HDMI"
 msgstr "HDMI"
@@ -10513,9 +10466,6 @@ msgstr "MB"
 msgid "MENU"
 msgstr "VALIKKO"
 
-msgid "MIRACLEBOX_TWINPLUS"
-msgstr "MIRACLEBOX_TWINPLUS"
-
 msgid "MKUBIFS"
 msgstr ""
 
@@ -10660,9 +10610,6 @@ msgstr "Manx"
 
 msgid "Maori"
 msgstr "Maori"
-
-msgid "MaraM9"
-msgstr "MaraM9"
 
 msgid "Marathi"
 msgstr "MaraM9Marathi"
@@ -11994,15 +11941,6 @@ msgstr "Rivimäärä"
 msgid "Number or SMS style data entry"
 msgstr "Numerot tai tekstiviestien syöttötapa"
 
-msgid "OCTAGON SF5008"
-msgstr "OCTAGON SF5008"
-
-msgid "OCTAGON_SF4008"
-msgstr "OCTAGON SF4008"
-
-msgid "ODIN_M7"
-msgstr "ODIN M7"
-
 msgid "OEM Model"
 msgstr ""
 
@@ -12599,17 +12537,8 @@ msgstr "Etenemispalkki vasemmalla"
 msgid "Percentage/Progress bar right"
 msgstr "Etenemispalkki oikealla"
 
-msgid "Perform a image backup before updating."
-msgstr "Suorita imagen varmuuskopiointi ennen päivitystä."
-
-msgid "Perform a setting backup before updating."
-msgstr "Suorita asetuksien varmuuskopiointi ennen päivitystä."
-
 msgid "Perform an on-line flash instead"
 msgstr "Suorita sen sijaan internet päivitys"
-
-msgid "Perform an online update check in the background"
-msgstr "Suorita ohjelmapäivityksien haku taustalla"
 
 msgid "Permanently delete all recordings in the trash can?"
 msgstr "Poista kaikki roskakorin tallenteet pysyvästi?"
@@ -13617,9 +13546,6 @@ msgstr "Suojaa sammutusvalikko"
 
 msgid "Protect timer menu"
 msgstr "Suojaa ajastusvalikko"
-
-msgid "Protek 4K UHD/HD61"
-msgstr "Protek 4K UHD/HD61"
 
 msgid "Protocol"
 msgstr "Protokolla"
@@ -15992,9 +15918,6 @@ msgstr "Määrittä verkko. Täällä voit asettaa DHCP, IP, DNS"
 msgid "Setup rotor"
 msgstr "Määritä kääntömoottorin asetukset"
 
-msgid "Setup the interval to check for online updates. (in hours)"
-msgstr "Tarkista internet päivitykset X tunnin välein."
-
 msgid "Setup tuner(s)"
 msgstr "Määritä viritin asetukset"
 
@@ -17103,9 +17026,6 @@ msgstr "Ohjelmiston hallinnan tiedot"
 msgid "Softwaremanager..."
 msgstr "Ohjelmistonhallinta."
 
-msgid "Softwareupdate"
-msgstr "Ohjelmistopäivitys"
-
 msgid "Solomon Islands"
 msgstr "Solomon Islands"
 
@@ -17387,6 +17307,7 @@ msgstr "Alkaen"
 msgid "Starts in a few seconds"
 msgstr "Alkaa 5 sekunnissa"
 
+#. TRANSLATORS: "State" is Location Info
 msgid "State"
 msgstr ""
 
@@ -20066,9 +19987,6 @@ msgstr "VOD pitkä"
 msgid "VPN"
 msgstr "VPN"
 
-msgid "VU+"
-msgstr "VU+"
-
 msgid "Valid"
 msgstr ""
 
@@ -20407,12 +20325,6 @@ msgstr "WPA2"
 msgid "WSS on 4:3"
 msgstr "WSS-kuvasuhdesignaali"
 
-msgid "WWIO 4K"
-msgstr "WWIO 4K"
-
-msgid "WWIO_BRE2ZE_TC"
-msgstr "WWIO_BRE2ZE_TC"
-
 msgid "Waffen"
 msgstr "Waffen"
 
@@ -20627,9 +20539,6 @@ msgstr "Kun päällä, Enigma2 näyttää piilotetut suosikkilistat. Suosikkilis
 
 msgid "When enabled the PiP can be closed by the exit button."
 msgstr "Kun päällä, PiP-kuvan voi sulkea exit-näppäimellä."
-
-msgid "When enabled the online checker will also check for experimental versions"
-msgstr "Kun päällä, päivitys etsii myös testikäytössä olevia versioita"
 
 msgid "When enabled the receiver will automatically be switched off."
 msgstr "Kun tämä on käytössä, vastaanotin kytkeytyy automaattisesti pois päältä."
@@ -20936,12 +20845,6 @@ msgstr "Www pitkä"
 
 msgid "XBox 360 support"
 msgstr "XBox 360 -tuki"
-
-msgid "XP1000"
-msgstr "XP1000"
-
-msgid "XP3000"
-msgstr "XP3000"
 
 msgid "XPicon, ZZZPicon"
 msgstr "XPicon, ZZZPicon"
@@ -21496,20 +21399,8 @@ msgstr "Vaihda kanavaa ja tallenna"
 msgid "Zeichentrick"
 msgstr "Animaatio"
 
-msgid "Zgemma H.S/H.2S/H.2H/H5/H7"
-msgstr "Zgemma H.S/H.2S/H.2H/H5/H7"
-
 msgid "Zgemma H.S/H.2S/H.2H/H5/H7 old Model"
 msgstr "Zgemma H.S/H.2S/H.2H/H5/H7 vanha malli"
-
-msgid "Zgemma H8/H0/H9/I55Plus old Model"
-msgstr "Zgemma H8/H0/H9/I55Plus vanha malli"
-
-msgid "Zgemma Star S/2S/H1/H2"
-msgstr "Zgemma Star S/2S/H1/H2"
-
-msgid "Zgemma i55"
-msgstr "Zgemma i55"
 
 msgid "Zhuang / Chuang"
 msgstr "Zhuang / Chuang"
@@ -22040,24 +21931,6 @@ msgstr "virhe käynnistettäessä skannausta"
 msgid "error while scanning"
 msgstr "virhe skannauksen aikana"
 
-msgid "et4000"
-msgstr "et4000"
-
-msgid "et5000/6000"
-msgstr "et5000/6000"
-
-msgid "et8000/et10000/et13000"
-msgstr "et8000/et10000/et13000"
-
-msgid "et8000/et10000/et13000/SF5008"
-msgstr "et8000/et10000/et13000/SF5008"
-
-msgid "et9000/et9100"
-msgstr "et9000/et9100"
-
-msgid "et9200/9500/6500"
-msgstr "et9200/9500/6500"
-
 msgid "execute cuts (requires MovieCut plugin)"
 msgstr "Suorittaa leikkauksia (tarvitsee MovieCut lisäosan)"
 
@@ -22361,9 +22234,6 @@ msgstr "vapaa-ajan harrastukset (yleinen)"
 msgid "length"
 msgstr "pituus"
 
-msgid "limit ..., aborting !"
-msgstr "raja ..., keskeytetään !"
-
 msgid "literature"
 msgstr "kirjallisuus"
 
@@ -22450,9 +22320,6 @@ msgstr "elokuva (yleinen)"
 
 msgid "movie/drama (general)"
 msgstr "elokuva/draama (yleinen)"
-
-msgid "ms"
-msgstr "ms"
 
 msgid "multi"
 msgstr "moni"
@@ -23301,6 +23168,145 @@ msgstr "vaihtaa"
 
 msgid "®"
 msgstr "®"
+
+#, python-format
+#~ msgid "%d Mins"
+#~ msgstr "%d minuuttia"
+
+#~ msgid "Allow unstable (untested) updates"
+#~ msgstr "Salli epävakaat (testaamattomat) päivitykset"
+
+#~ msgid "Automatic image backup"
+#~ msgstr "Automaattinen imagen varmuuskopiointi"
+
+#~ msgid "Automatic setting backup"
+#~ msgstr "Asetusten automaattinen varmuuskopiointi"
+
+#~ msgid "Axas E4HD Ultra"
+#~ msgstr "Axas E4HD Ultra"
+
+#~ msgid "Background check"
+#~ msgstr "Tarkistus taustalla"
+
+#~ msgid "Beyonwiz U4"
+#~ msgstr "Beyonwiz U4"
+
+#~ msgid "Cannot determine"
+#~ msgstr "Ei voida määrittää"
+
+#~ msgid "Check every (hours)"
+#~ msgstr "Tarkistustiheys (tuntia)"
+
+#~ msgid "Current device: "
+#~ msgstr "Käytettävä laite: "
+
+#~ msgid "E3HD/XPEEDLX/GI"
+#~ msgstr "E3HD/XPEEDLX/GI"
+
+#~ msgid "F1/F3/F4/F4-TURBO/TRIPLEX"
+#~ msgstr "F1/F3/F4/F4-TURBO/TRIPLEX"
+
+#~ msgid "GIGABLUE Black"
+#~ msgstr "GIGABLUE"
+
+#~ msgid "HD11/HD51/HD1100/HD1200/HD1265/HD1500/HD500C/HD530C/VS1000/VS1500"
+#~ msgstr "HD11/HD51/HD1100/HD1200/HD1265/HD1500/HD500C/HD530C/VS1000/VS1500"
+
+#~ msgid "HD11/HD51/HD1100/HD1200/HD1265/HD1500/HD500C/HD530C/et7x00/et8500/VS1000/VS1500"
+#~ msgstr "HD11/HD51/HD1100/HD1200/HD1265/HD1500/HD500C/HD530C/et7x00/et8500/VS1000/VS1500"
+
+#~ msgid "HD2400"
+#~ msgstr "HD2400"
+
+#~ msgid "HD60/Multibox/Multiboxse"
+#~ msgstr "HD60/Multibox/Multiboxse"
+
+#~ msgid "MIRACLEBOX_TWINPLUS"
+#~ msgstr "MIRACLEBOX_TWINPLUS"
+
+#~ msgid "MaraM9"
+#~ msgstr "MaraM9"
+
+#~ msgid "OCTAGON SF5008"
+#~ msgstr "OCTAGON SF5008"
+
+#~ msgid "OCTAGON_SF4008"
+#~ msgstr "OCTAGON SF4008"
+
+#~ msgid "ODIN_M7"
+#~ msgstr "ODIN M7"
+
+#~ msgid "Perform a image backup before updating."
+#~ msgstr "Suorita imagen varmuuskopiointi ennen päivitystä."
+
+#~ msgid "Perform a setting backup before updating."
+#~ msgstr "Suorita asetuksien varmuuskopiointi ennen päivitystä."
+
+#~ msgid "Perform an online update check in the background"
+#~ msgstr "Suorita ohjelmapäivityksien haku taustalla"
+
+#~ msgid "Protek 4K UHD/HD61"
+#~ msgstr "Protek 4K UHD/HD61"
+
+#~ msgid "Setup the interval to check for online updates. (in hours)"
+#~ msgstr "Tarkista internet päivitykset X tunnin välein."
+
+#~ msgid "Softwareupdate"
+#~ msgstr "Ohjelmistopäivitys"
+
+#~ msgid "VU+"
+#~ msgstr "VU+"
+
+#~ msgid "WWIO 4K"
+#~ msgstr "WWIO 4K"
+
+#~ msgid "WWIO_BRE2ZE_TC"
+#~ msgstr "WWIO_BRE2ZE_TC"
+
+#~ msgid "When enabled the online checker will also check for experimental versions"
+#~ msgstr "Kun päällä, päivitys etsii myös testikäytössä olevia versioita"
+
+#~ msgid "XP1000"
+#~ msgstr "XP1000"
+
+#~ msgid "XP3000"
+#~ msgstr "XP3000"
+
+#~ msgid "Zgemma H.S/H.2S/H.2H/H5/H7"
+#~ msgstr "Zgemma H.S/H.2S/H.2H/H5/H7"
+
+#~ msgid "Zgemma H8/H0/H9/I55Plus old Model"
+#~ msgstr "Zgemma H8/H0/H9/I55Plus vanha malli"
+
+#~ msgid "Zgemma Star S/2S/H1/H2"
+#~ msgstr "Zgemma Star S/2S/H1/H2"
+
+#~ msgid "Zgemma i55"
+#~ msgstr "Zgemma i55"
+
+#~ msgid "et4000"
+#~ msgstr "et4000"
+
+#~ msgid "et5000/6000"
+#~ msgstr "et5000/6000"
+
+#~ msgid "et8000/et10000/et13000"
+#~ msgstr "et8000/et10000/et13000"
+
+#~ msgid "et8000/et10000/et13000/SF5008"
+#~ msgstr "et8000/et10000/et13000/SF5008"
+
+#~ msgid "et9000/et9100"
+#~ msgstr "et9000/et9100"
+
+#~ msgid "et9200/9500/6500"
+#~ msgstr "et9200/9500/6500"
+
+#~ msgid "limit ..., aborting !"
+#~ msgstr "raja ..., keskeytetään !"
+
+#~ msgid "ms"
+#~ msgstr "ms"
 
 #, python-format
 #~ msgid "  (%s x %s)"

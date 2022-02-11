@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-02-07 20:18+0000\n"
-"PO-Revision-Date: 2022-02-05 00:08+0000\n"
+"POT-Creation-Date: 2022-02-11 14:04+0000\n"
+"PO-Revision-Date: 2022-02-10 18:41+0000\n"
 "Last-Translator: kvinto <badsystem@ukr.net>\n"
 "Language-Team: Ukrainian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/uk/>\n"
 "Language: uk\n"
@@ -1027,10 +1027,6 @@ msgstr[0] "%d хвилина"
 msgstr[1] "%d хвилини"
 msgstr[2] "%d хвилин"
 
-#, python-format
-msgid "%d Mins"
-msgstr "%d Хв"
-
 #. TRANSLATORS: Intermediate scanning result, '%d' channel(s) have been found so far
 #, python-format
 msgid "%d channel found"
@@ -1042,9 +1038,9 @@ msgstr[2] "%d каналів знайдено"
 #, python-format
 msgid "%d core"
 msgid_plural "%d cores"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "%d ядро"
+msgstr[1] "%d ядра"
+msgstr[2] "%d ядер"
 
 #, python-format
 msgid "%d day"
@@ -1142,9 +1138,9 @@ msgstr[2] "%d пакетів видалено."
 #, python-format
 msgid "%d package was upgraded."
 msgid_plural "%d packages were upgraded."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "%d пакет оновлено."
+msgstr[1] "%d пакети оновлено."
+msgstr[2] "%d пакетів оновлено."
 
 #, python-format
 msgid "%d pixel wide"
@@ -1338,7 +1334,7 @@ msgstr "%s ГГц"
 
 #, python-format
 msgid "%s Information"
-msgstr ""
+msgstr "%s Інформація"
 
 #, python-format
 msgid "%s Information Actions"
@@ -1362,7 +1358,7 @@ msgstr "%s додатки до скіну"
 
 #, python-format
 msgid "%s information"
-msgstr ""
+msgstr "%s інформація"
 
 #. TRANSLATORS: The satellite with name '%s' is no longer used after a configuration change. The user is asked whether or not the satellite should be deleted.
 #, python-format
@@ -1682,7 +1678,7 @@ msgid "16:9 Letterbox"
 msgstr "16:9 Поштова скринька"
 
 msgid "16K"
-msgstr ""
+msgstr "16K"
 
 msgid "18 V"
 msgstr "18 В"
@@ -1910,7 +1906,7 @@ msgid "4:3 PanScan"
 msgstr "4:3 Панорама"
 
 msgid "4K"
-msgstr ""
+msgstr "4К"
 
 msgid "4X"
 msgstr "4X"
@@ -2012,7 +2008,7 @@ msgid "8 hours"
 msgstr "8 годин"
 
 msgid "8K"
-msgstr ""
+msgstr "8К"
 
 msgid "8bit"
 msgstr "8біт"
@@ -2266,10 +2262,10 @@ msgid "AFP Setup"
 msgstr "Налаштування AFP"
 
 msgid "ARM"
-msgstr ""
+msgstr "ARM"
 
 msgid "ARM64"
-msgstr ""
+msgstr "ARM64"
 
 msgid "ASS file"
 msgstr "ASS файл"
@@ -2315,10 +2311,10 @@ msgid "About..."
 msgstr "Інформація приймача..."
 
 msgid "Access point"
-msgstr ""
+msgstr "Точка доступу"
 
 msgid "Access to geolocation information requires an internet connection."
-msgstr ""
+msgstr "Для доступу до геолокаційної інформації потрібне підключення до Інтернету."
 
 #, python-format
 msgid "Access to the %s commit logs requires an internet connection."
@@ -2385,7 +2381,7 @@ msgid "Active"
 msgstr "Активний"
 
 msgid "Active Streaming Clients"
-msgstr ""
+msgstr "Активні потокові клієнти"
 
 msgid "Active clients"
 msgstr "Активні Клієнти"
@@ -2681,9 +2677,6 @@ msgstr "Показувати субтитри при збігу з мовою а
 msgid "Allow subtitles for hearing impaired"
 msgstr "Дозволити субтитри для слабо чуючих"
 
-msgid "Allow unstable (untested) updates"
-msgstr "Дозволити нестабільні (неперевірені) оновлення"
-
 msgid "Allow unsupported modes"
 msgstr "Дозволити режими, що не підтримуються"
 
@@ -2787,10 +2780,10 @@ msgid "Amharic"
 msgstr "Амхарська"
 
 msgid "Amlogic"
-msgstr ""
+msgstr "Amlogic"
 
 msgid "Amlogic remote"
-msgstr ""
+msgstr "Пульт Amlogic"
 
 msgid "An attempt is made to capture the current TV status. If this is not possible due to incorrect or missing status messages it may cause the receiver to respond unexpectedly. On the other hand, tries to respond better to different operating conditions."
 msgstr "Зроблено спробу зафіксувати поточний статус телевізора. Якщо це неможливо через неправильні, або відсутні повідомлення про статус, це може призвести до неочікуваної відповіді приймача. З іншого боку, намагається краще реагувати на різні умови експлуатації."
@@ -3158,7 +3151,7 @@ msgid "Auto focus commencing ..."
 msgstr "Застосувати автофокус..."
 
 msgid "Auto install log"
-msgstr ""
+msgstr "Журнал автоматичного встановлення"
 
 msgid "Auto language selection"
 msgstr "Автовибір мови"
@@ -3184,9 +3177,6 @@ msgstr "Автоматичний пошук"
 msgid "Automatic Service Searching"
 msgstr "Автоматичний пошук каналів"
 
-msgid "Automatic image backup"
-msgstr "Автоматичне резервне копіювання іміджу"
-
 msgid "Automatic resolution"
 msgstr "Автороздільність екрану"
 
@@ -3198,9 +3188,6 @@ msgstr "Автоматичний пошук"
 
 msgid "Automatic scan for services"
 msgstr "Автосканування каналів"
-
-msgid "Automatic setting backup"
-msgstr "Автоматичне резервне копіювання налаштувань"
 
 msgid "Automatically put the TV in standby whenever the receiver goes into standby or deep standby."
 msgstr "Автоматично переводьте телевізор у режим очікування, коли приймач переходить у режим очікування, або глибокого очікування."
@@ -3240,9 +3227,6 @@ msgstr "Авесті́йська"
 
 msgid "Avoid getting stuck (at the expense of some stuttering) when the jump time is smaller than the time between I-frames."
 msgstr "Дозволяє уникнути гальмування кадру (за рахунок деякого застигання), коли час переходу коротше часу між I-фреймами."
-
-msgid "Axas E4HD Ultra"
-msgstr "Axas E4 HD Ultra"
 
 msgid "Aymara"
 msgstr "Аймара"
@@ -3336,9 +3320,6 @@ msgstr "Назад/Повторити"
 
 msgid "Background"
 msgstr "Фон"
-
-msgid "Background check"
-msgstr "Перевірка у фоновому режимі"
 
 msgid "Background color"
 msgstr "Колір фону"
@@ -3529,9 +3510,6 @@ msgstr "Бермуди"
 msgid "Berufe"
 msgstr "Професії"
 
-msgid "Beyonwiz U4"
-msgstr "Beyonwiz U4"
-
 msgid "Beziehung"
 msgstr "Відносини"
 
@@ -3557,7 +3535,7 @@ msgid "Bislama"
 msgstr "Креольська"
 
 msgid "Bit rate"
-msgstr ""
+msgstr "Бітрейт"
 
 msgid "Bitrate"
 msgstr "Бітрейт"
@@ -3623,7 +3601,7 @@ msgid "Boot ID"
 msgstr ""
 
 msgid "Boot information"
-msgstr ""
+msgstr "Інформація загрузчика"
 
 msgid "Boot time"
 msgstr "Час завантаження"
@@ -3705,19 +3683,19 @@ msgid "Buffering %d%%"
 msgstr "Буферизація %d%%"
 
 msgid "Buffers"
-msgstr ""
+msgstr "Буфери"
 
 msgid "Build Brand"
-msgstr ""
+msgstr "Назва Збірки"
 
 msgid "Build Information"
-msgstr ""
+msgstr "Інформація про збірку"
 
 msgid "Build Model"
-msgstr ""
+msgstr "Модель збірки"
 
 msgid "Build information"
-msgstr ""
+msgstr "Інформація про збірку"
 
 msgid "Build information for"
 msgstr ""
@@ -3775,7 +3753,7 @@ msgid "Bytes received"
 msgstr ""
 
 msgid "Bytes sent"
-msgstr ""
+msgstr "Відправлено байтів"
 
 msgid "C"
 msgstr "C"
@@ -3893,19 +3871,19 @@ msgid "CPU"
 msgstr "Процесор"
 
 msgid "CPU architecture"
-msgstr ""
+msgstr "Архітектура ЦПУ"
 
 msgid "CPU brand"
-msgstr ""
+msgstr "Тип ЦПУ"
 
 msgid "CPU priority for script execution"
 msgstr "Пріоритет СПУ для виконання скрипту"
 
 msgid "CPU speed/cores"
-msgstr ""
+msgstr "Швидкість/к-сть ядер ЦПУ"
 
 msgid "CPU temperature"
-msgstr ""
+msgstr "Температура ЦПУ"
 
 #, python-format
 msgid "CPU: %s"
@@ -4120,8 +4098,10 @@ msgstr "Неможливо видалити завантажений імідж"
 msgid "Cannot delete file"
 msgstr "Неможливо видалити файл"
 
-msgid "Cannot determine"
-msgstr "Неможливо визначити"
+#. TRANSLATORS: "Cannot determine (east/west) limit ..., aborting !"
+#, python-format
+msgid "Cannot determine %s limit ..., aborting !"
+msgstr ""
 
 msgid "Cannot find any signal ..., aborting !"
 msgstr "Неможливо знайти будь-який сигнал ..., скасовується!"
@@ -4133,7 +4113,7 @@ msgid "Cannot move to trash can"
 msgstr "Неможливо перемістити в кошик"
 
 msgid "Capacity"
-msgstr ""
+msgstr "Ємність"
 
 msgid "Capacity: "
 msgstr "Ємність: "
@@ -4374,9 +4354,6 @@ msgstr "Перевірити"
 msgid "Check HDD"
 msgstr "Перевірити HDD"
 
-msgid "Check every (hours)"
-msgstr "Перевіряти кожні (години)"
-
 msgid "Check power and input state from TV"
 msgstr "Перевірити живлення та стан входу від телевізора"
 
@@ -4568,7 +4545,7 @@ msgid "Circular right"
 msgstr "Кругова права"
 
 msgid "City"
-msgstr ""
+msgstr "Місто"
 
 msgid "Clean (Just flash and start clean)"
 msgstr "Очистити (Просто прошити і не відновлювати)"
@@ -4598,13 +4575,13 @@ msgid "Clear playlist"
 msgstr "Очистити список відтворення"
 
 msgid "Clear the virtual memory caches"
-msgstr ""
+msgstr "Очистити віртуальну пам’ять"
 
 msgid "Click on your remote on the button you want to change"
 msgstr "Натисніть на пульті ту кнопку, дію якої хочете змінити"
 
 msgid "Client"
-msgstr ""
+msgstr "Клієнт"
 
 #, python-format
 msgid "Client Info ( Oscam-Version: %s )"
@@ -4647,7 +4624,7 @@ msgid "Close the current screen"
 msgstr "Закрити актуальне вікно"
 
 msgid "Close the screen"
-msgstr ""
+msgstr "Закрити екран"
 
 msgid "Close the screen and exit all menus"
 msgstr ""
@@ -4698,7 +4675,7 @@ msgid "Combo"
 msgstr "Комбінований"
 
 msgid "Combo Tuner"
-msgstr ""
+msgstr "Комбінований Тюнер"
 
 msgid "Comedy"
 msgstr "Комедія"
@@ -5188,7 +5165,7 @@ msgid "Connected: "
 msgstr "Під'єднано: "
 
 msgid "Connection information"
-msgstr ""
+msgstr "Інформація про підключення"
 
 msgid "Console"
 msgstr "Консоль"
@@ -5481,10 +5458,7 @@ msgid "Current Status:"
 msgstr "Поточний Статус:"
 
 msgid "Current crash log"
-msgstr ""
-
-msgid "Current device: "
-msgstr "Поточний пристрій: "
+msgstr "Поточний журнал збоїв"
 
 msgid "Current installed"
 msgstr "Встановлено поточний"
@@ -6153,10 +6127,10 @@ msgid "Details for plugin: "
 msgstr "Деталі про плагін: "
 
 msgid "Detected drives"
-msgstr ""
+msgstr "Виявлені диски"
 
 msgid "Detected network servers"
-msgstr ""
+msgstr "Виявлені мережеві сервери"
 
 msgid "Detektiv"
 msgstr "Детектив"
@@ -6168,7 +6142,7 @@ msgid "Device Setup"
 msgstr "Налаштування пристрою"
 
 msgid "Device id"
-msgstr ""
+msgstr "ID пристрою"
 
 msgid "Device mounts"
 msgstr "Монтування пристрою"
@@ -6771,7 +6745,7 @@ msgid "Driver and kernel information"
 msgstr ""
 
 msgid "Drivers version"
-msgstr ""
+msgstr "Версія драйверів"
 
 #, python-format
 msgid "Drivers:\t%s"
@@ -6815,9 +6789,6 @@ msgstr "Е"
 
 msgid "E "
 msgstr "E "
-
-msgid "E3HD/XPEEDLX/GI"
-msgstr "E3HD/XPEEDLX/GI"
 
 msgid "ECM Info"
 msgstr "Інфо ECM"
@@ -7816,9 +7787,6 @@ msgstr "F1"
 msgid "F1 long"
 msgstr "F1 довге натискання"
 
-msgid "F1/F3/F4/F4-TURBO/TRIPLEX"
-msgstr "F1/F3/F4/F4-TURBO/TRIPLEX"
-
 msgid "F2"
 msgstr "F2"
 
@@ -8365,9 +8333,6 @@ msgstr "ГБ"
 msgid "GCC version"
 msgstr ""
 
-msgid "GIGABLUE Black"
-msgstr "GIGABLUE Black"
-
 msgid "GStreamer version"
 msgstr ""
 
@@ -8694,18 +8659,6 @@ msgstr ""
 
 msgid "HD list"
 msgstr "Список HD"
-
-msgid "HD11/HD51/HD1100/HD1200/HD1265/HD1500/HD500C/HD530C/VS1000/VS1500"
-msgstr "HD11/HD51/HD1100/HD1200/HD1265/HD1500/HD500C/HD530C/VS1000/VS1500"
-
-msgid "HD11/HD51/HD1100/HD1200/HD1265/HD1500/HD500C/HD530C/et7x00/et8500/VS1000/VS1500"
-msgstr "HD11/HD51/HD1100/HD1200/HD1265/HD1500/HD500C/HD530C/et7x00/et8500/VS1000/VS1500"
-
-msgid "HD2400"
-msgstr "HD2400"
-
-msgid "HD60/Multibox/Multiboxse"
-msgstr "HD60/Multibox/Multiboxse"
 
 msgid "HDMI"
 msgstr "HDMI"
@@ -10519,9 +10472,6 @@ msgstr "МБ"
 msgid "MENU"
 msgstr "MENU"
 
-msgid "MIRACLEBOX_TWINPLUS"
-msgstr "MIRACLEBOX_TWINPLUS"
-
 msgid "MKUBIFS"
 msgstr ""
 
@@ -10666,9 +10616,6 @@ msgstr "Менська"
 
 msgid "Maori"
 msgstr "Мова маорі"
-
-msgid "MaraM9"
-msgstr "MaraM9"
 
 msgid "Marathi"
 msgstr "Маратхі"
@@ -11989,15 +11936,6 @@ msgstr "Кількість рядків для відображення"
 msgid "Number or SMS style data entry"
 msgstr "Введення даних по номеру, як SMS"
 
-msgid "OCTAGON SF5008"
-msgstr "OCTAGON SF5008"
-
-msgid "OCTAGON_SF4008"
-msgstr "OCTAGON_SF4008"
-
-msgid "ODIN_M7"
-msgstr "ODIN_M7"
-
 msgid "OEM Model"
 msgstr ""
 
@@ -12592,17 +12530,8 @@ msgstr "Відсоток/Смугжка поступу зліва"
 msgid "Percentage/Progress bar right"
 msgstr "Відсоток/Смугжка поступу справа"
 
-msgid "Perform a image backup before updating."
-msgstr "Перед оновленням виконайте резервне копіювання іміджа."
-
-msgid "Perform a setting backup before updating."
-msgstr "Перед оновленням виконайте резервне копіювання налаштувань."
-
 msgid "Perform an on-line flash instead"
 msgstr "Замість цього виконайте онлайн-прошивку"
-
-msgid "Perform an online update check in the background"
-msgstr "Виконати онлайн-перевірку оновлення у фоновому режимі"
 
 msgid "Permanently delete all recordings in the trash can?"
 msgstr "Остаточно видалити всі записи в кошик для сміття?"
@@ -13608,9 +13537,6 @@ msgstr "Захистити меню вимкнення"
 
 msgid "Protect timer menu"
 msgstr "Захистити меню таймерів"
-
-msgid "Protek 4K UHD/HD61"
-msgstr "Protek 4K UHD/HD61"
 
 msgid "Protocol"
 msgstr "Протокол"
@@ -15973,9 +15899,6 @@ msgstr "Налаштування мережі. Тут можете налашт�
 msgid "Setup rotor"
 msgstr "Налаштування мотопідвісу"
 
-msgid "Setup the interval to check for online updates. (in hours)"
-msgstr "Налаштування інтервалу часу перевірки онлайн-оновлень (в годинах)"
-
 msgid "Setup tuner(s)"
 msgstr "Налаштування тюнера(-ів)"
 
@@ -17086,9 +17009,6 @@ msgstr "Інформація менеджера ПЗ"
 msgid "Softwaremanager..."
 msgstr "Менеджер ПЗ..."
 
-msgid "Softwareupdate"
-msgstr "Оновлення ПЗ"
-
 msgid "Solomon Islands"
 msgstr "Соломонові острови"
 
@@ -17370,6 +17290,7 @@ msgstr "Почати з"
 msgid "Starts in a few seconds"
 msgstr "Починається через кілька секунд"
 
+#. TRANSLATORS: "State" is Location Info
 msgid "State"
 msgstr ""
 
@@ -17847,7 +17768,7 @@ msgstr "TEXT"
 
 msgid "TRANSLATOR_INFO"
 msgstr ""
-"Переклад:  kvinto - 04.02.2022\n"
+"Переклад:  kvinto - 10.02.2022\n"
 "Сторінка:    https://gisclub.tv\n"
 "                  kvinto@rambler.ru"
 
@@ -20045,9 +19966,6 @@ msgstr "VOD довге натискання"
 msgid "VPN"
 msgstr "VPN"
 
-msgid "VU+"
-msgstr "VU+"
-
 msgid "Valid"
 msgstr ""
 
@@ -20386,12 +20304,6 @@ msgstr "WPA2"
 msgid "WSS on 4:3"
 msgstr "WSS на 4:3"
 
-msgid "WWIO 4K"
-msgstr "WWIO 4K"
-
-msgid "WWIO_BRE2ZE_TC"
-msgstr "WWIO_BRE2ZE_TC"
-
 msgid "Waffen"
 msgstr "Зброя"
 
@@ -20604,9 +20516,6 @@ msgstr "Якщо включено, то будуть завантажувати�
 
 msgid "When enabled the PiP can be closed by the exit button."
 msgstr "Вкажіть дію по кнопці exit, при активованому піп-вікні."
-
-msgid "When enabled the online checker will also check for experimental versions"
-msgstr "Якщо включено, онлайн-перевірка також буде перевіряти наявність експериментальних версій"
 
 msgid "When enabled the receiver will automatically be switched off."
 msgstr "Після ввімкнення приймач автоматично вимкнеться."
@@ -20913,12 +20822,6 @@ msgstr "Www довге натискання"
 
 msgid "XBox 360 support"
 msgstr "Підтримка XBox 360"
-
-msgid "XP1000"
-msgstr "XP1000"
-
-msgid "XP3000"
-msgstr "XP3000"
 
 msgid "XPicon, ZZZPicon"
 msgstr "XPicon, ZZZPicon"
@@ -21467,20 +21370,8 @@ msgstr "Переключити+Записати наступне"
 msgid "Zeichentrick"
 msgstr "Мультфільм"
 
-msgid "Zgemma H.S/H.2S/H.2H/H5/H7"
-msgstr "Zgemma H.S/H.2S/H.2H/H5/H7"
-
 msgid "Zgemma H.S/H.2S/H.2H/H5/H7 old Model"
 msgstr "Zgemma H.S/H.2S/H.2H/H5/H7 стара модель"
-
-msgid "Zgemma H8/H0/H9/I55Plus old Model"
-msgstr "Zgemma H8/H0/H9/I55Plus стара модель"
-
-msgid "Zgemma Star S/2S/H1/H2"
-msgstr "Zgemma Star S/2S/H1/H2"
-
-msgid "Zgemma i55"
-msgstr "Zgemma i55"
 
 msgid "Zhuang / Chuang"
 msgstr "Zhuang / Chuang"
@@ -22011,24 +21902,6 @@ msgstr "помилка при запуску сканування"
 msgid "error while scanning"
 msgstr "помилка під час сканування"
 
-msgid "et4000"
-msgstr "et4000"
-
-msgid "et5000/6000"
-msgstr "et5000/6000"
-
-msgid "et8000/et10000/et13000"
-msgstr "et8000/et10000/et13000"
-
-msgid "et8000/et10000/et13000/SF5008"
-msgstr "et8000/et10000/et13000/SF5008"
-
-msgid "et9000/et9100"
-msgstr "et9000/et9100"
-
-msgid "et9200/9500/6500"
-msgstr "et9200/9500/6500"
-
 msgid "execute cuts (requires MovieCut plugin)"
 msgstr "виконання редагувань (потрібно MovieCut плагін)"
 
@@ -22332,9 +22205,6 @@ msgstr "дозвілля та відпочинок (загальний)"
 msgid "length"
 msgstr "тривалість"
 
-msgid "limit ..., aborting !"
-msgstr "ліміт..., відмінити!"
-
 msgid "literature"
 msgstr "література"
 
@@ -22421,9 +22291,6 @@ msgstr "фільм (загальна)"
 
 msgid "movie/drama (general)"
 msgstr "фільм/драма (загальні)"
-
-msgid "ms"
-msgstr "мс"
 
 msgid "multi"
 msgstr "мульти"
@@ -23273,6 +23140,145 @@ msgstr "переключення"
 
 msgid "®"
 msgstr "®"
+
+#, python-format
+#~ msgid "%d Mins"
+#~ msgstr "%d Хв"
+
+#~ msgid "Allow unstable (untested) updates"
+#~ msgstr "Дозволити нестабільні (неперевірені) оновлення"
+
+#~ msgid "Automatic image backup"
+#~ msgstr "Автоматичне резервне копіювання іміджу"
+
+#~ msgid "Automatic setting backup"
+#~ msgstr "Автоматичне резервне копіювання налаштувань"
+
+#~ msgid "Axas E4HD Ultra"
+#~ msgstr "Axas E4 HD Ultra"
+
+#~ msgid "Background check"
+#~ msgstr "Перевірка у фоновому режимі"
+
+#~ msgid "Beyonwiz U4"
+#~ msgstr "Beyonwiz U4"
+
+#~ msgid "Cannot determine"
+#~ msgstr "Неможливо визначити"
+
+#~ msgid "Check every (hours)"
+#~ msgstr "Перевіряти кожні (години)"
+
+#~ msgid "Current device: "
+#~ msgstr "Поточний пристрій: "
+
+#~ msgid "E3HD/XPEEDLX/GI"
+#~ msgstr "E3HD/XPEEDLX/GI"
+
+#~ msgid "F1/F3/F4/F4-TURBO/TRIPLEX"
+#~ msgstr "F1/F3/F4/F4-TURBO/TRIPLEX"
+
+#~ msgid "GIGABLUE Black"
+#~ msgstr "GIGABLUE Black"
+
+#~ msgid "HD11/HD51/HD1100/HD1200/HD1265/HD1500/HD500C/HD530C/VS1000/VS1500"
+#~ msgstr "HD11/HD51/HD1100/HD1200/HD1265/HD1500/HD500C/HD530C/VS1000/VS1500"
+
+#~ msgid "HD11/HD51/HD1100/HD1200/HD1265/HD1500/HD500C/HD530C/et7x00/et8500/VS1000/VS1500"
+#~ msgstr "HD11/HD51/HD1100/HD1200/HD1265/HD1500/HD500C/HD530C/et7x00/et8500/VS1000/VS1500"
+
+#~ msgid "HD2400"
+#~ msgstr "HD2400"
+
+#~ msgid "HD60/Multibox/Multiboxse"
+#~ msgstr "HD60/Multibox/Multiboxse"
+
+#~ msgid "MIRACLEBOX_TWINPLUS"
+#~ msgstr "MIRACLEBOX_TWINPLUS"
+
+#~ msgid "MaraM9"
+#~ msgstr "MaraM9"
+
+#~ msgid "OCTAGON SF5008"
+#~ msgstr "OCTAGON SF5008"
+
+#~ msgid "OCTAGON_SF4008"
+#~ msgstr "OCTAGON_SF4008"
+
+#~ msgid "ODIN_M7"
+#~ msgstr "ODIN_M7"
+
+#~ msgid "Perform a image backup before updating."
+#~ msgstr "Перед оновленням виконайте резервне копіювання іміджа."
+
+#~ msgid "Perform a setting backup before updating."
+#~ msgstr "Перед оновленням виконайте резервне копіювання налаштувань."
+
+#~ msgid "Perform an online update check in the background"
+#~ msgstr "Виконати онлайн-перевірку оновлення у фоновому режимі"
+
+#~ msgid "Protek 4K UHD/HD61"
+#~ msgstr "Protek 4K UHD/HD61"
+
+#~ msgid "Setup the interval to check for online updates. (in hours)"
+#~ msgstr "Налаштування інтервалу часу перевірки онлайн-оновлень (в годинах)"
+
+#~ msgid "Softwareupdate"
+#~ msgstr "Оновлення ПЗ"
+
+#~ msgid "VU+"
+#~ msgstr "VU+"
+
+#~ msgid "WWIO 4K"
+#~ msgstr "WWIO 4K"
+
+#~ msgid "WWIO_BRE2ZE_TC"
+#~ msgstr "WWIO_BRE2ZE_TC"
+
+#~ msgid "When enabled the online checker will also check for experimental versions"
+#~ msgstr "Якщо включено, онлайн-перевірка також буде перевіряти наявність експериментальних версій"
+
+#~ msgid "XP1000"
+#~ msgstr "XP1000"
+
+#~ msgid "XP3000"
+#~ msgstr "XP3000"
+
+#~ msgid "Zgemma H.S/H.2S/H.2H/H5/H7"
+#~ msgstr "Zgemma H.S/H.2S/H.2H/H5/H7"
+
+#~ msgid "Zgemma H8/H0/H9/I55Plus old Model"
+#~ msgstr "Zgemma H8/H0/H9/I55Plus стара модель"
+
+#~ msgid "Zgemma Star S/2S/H1/H2"
+#~ msgstr "Zgemma Star S/2S/H1/H2"
+
+#~ msgid "Zgemma i55"
+#~ msgstr "Zgemma i55"
+
+#~ msgid "et4000"
+#~ msgstr "et4000"
+
+#~ msgid "et5000/6000"
+#~ msgstr "et5000/6000"
+
+#~ msgid "et8000/et10000/et13000"
+#~ msgstr "et8000/et10000/et13000"
+
+#~ msgid "et8000/et10000/et13000/SF5008"
+#~ msgstr "et8000/et10000/et13000/SF5008"
+
+#~ msgid "et9000/et9100"
+#~ msgstr "et9000/et9100"
+
+#~ msgid "et9200/9500/6500"
+#~ msgstr "et9200/9500/6500"
+
+#~ msgid "limit ..., aborting !"
+#~ msgstr "ліміт..., відмінити!"
+
+#~ msgid "ms"
+#~ msgstr "мс"
 
 #, python-format
 #~ msgid "  (%s x %s)"

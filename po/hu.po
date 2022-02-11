@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: hu_po v3.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-02-07 20:18+0000\n"
+"POT-Creation-Date: 2022-02-11 14:04+0000\n"
 "PO-Revision-Date: 2021-12-27 15:52+0000\n"
 "Last-Translator: f3rr31 <5920873@disroot.org>\n"
 "Language-Team: Hungarian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/hu/>\n"
@@ -1051,10 +1051,6 @@ msgid "%d Min"
 msgid_plural "%d Mins"
 msgstr[0] "%d perc"
 msgstr[1] "%d perc"
-
-#, python-format
-msgid "%d Mins"
-msgstr "%d perc"
 
 #. TRANSLATORS: Intermediate scanning result, '%d' channel(s) have been found so far
 #, python-format
@@ -2698,9 +2694,6 @@ msgstr "Azonos nyelvű hangsáv és felirat összerendelése"
 msgid "Allow subtitles for hearing impaired"
 msgstr "Hallássérülteknek szánt feliratok engedélyezése"
 
-msgid "Allow unstable (untested) updates"
-msgstr "Instabil (nem tesztelt) frissítések engedélyezése"
-
 msgid "Allow unsupported modes"
 msgstr "Nem támogatott módok engedélyezése"
 
@@ -3206,9 +3199,6 @@ msgstr "Automatikus keresés"
 msgid "Automatic Service Searching"
 msgstr "Automatikus csatornakeresés"
 
-msgid "Automatic image backup"
-msgstr "Automatikus képfájlmentés"
-
 msgid "Automatic resolution"
 msgstr "Automatikus felbontás"
 
@@ -3220,9 +3210,6 @@ msgstr "Automatikus keresés"
 
 msgid "Automatic scan for services"
 msgstr "Automatikus keresése a csatornáknak"
-
-msgid "Automatic setting backup"
-msgstr "Automatikus beállítás mentés"
 
 msgid "Automatically put the TV in standby whenever the receiver goes into standby or deep standby."
 msgstr ""
@@ -3262,9 +3249,6 @@ msgstr ""
 
 msgid "Avoid getting stuck (at the expense of some stuttering) when the jump time is smaller than the time between I-frames."
 msgstr "Kerülje el, hogy elakadjon, ha az ugrásidő kisebb, mint az időkeretek közötti idő."
-
-msgid "Axas E4HD Ultra"
-msgstr "Axas E4HD Ultra"
 
 msgid "Aymara"
 msgstr ""
@@ -3359,9 +3343,6 @@ msgstr "Vissza/Visszahívás"
 
 msgid "Background"
 msgstr "Háttér"
-
-msgid "Background check"
-msgstr "Háttér elenőrzése"
 
 msgid "Background color"
 msgstr "Háttérszín"
@@ -3554,9 +3535,6 @@ msgstr "Bermuda"
 
 msgid "Berufe"
 msgstr "Foglalkozások"
-
-msgid "Beyonwiz U4"
-msgstr "Beyonwiz U4"
 
 msgid "Beziehung"
 msgstr "Kapcsolat"
@@ -4141,8 +4119,10 @@ msgstr "A letöltött kép nem törölhető"
 msgid "Cannot delete file"
 msgstr "Nem lehet törölni a fájlt"
 
-msgid "Cannot determine"
-msgstr "Nem lehet megállapítani"
+#. TRANSLATORS: "Cannot determine (east/west) limit ..., aborting !"
+#, python-format
+msgid "Cannot determine %s limit ..., aborting !"
+msgstr ""
 
 msgid "Cannot find any signal ..., aborting !"
 msgstr "Nem található jel... művelet megszakítva!"
@@ -4397,9 +4377,6 @@ msgstr "Ellenőrzés"
 
 msgid "Check HDD"
 msgstr "Merevlemez ellenőrzés"
-
-msgid "Check every (hours)"
-msgstr "Minden ellenőrzésé (óránként)"
 
 msgid "Check power and input state from TV"
 msgstr "Áramellátás és bemeneti állapot ellenőrzése a TV-készüléken"
@@ -5515,9 +5492,6 @@ msgstr "Jelenlegi állapot:"
 
 msgid "Current crash log"
 msgstr ""
-
-msgid "Current device: "
-msgstr "Aktuális eszköz: "
 
 msgid "Current installed"
 msgstr "Aktuálisan telepített"
@@ -6863,9 +6837,6 @@ msgstr "E"
 msgid "E "
 msgstr " "
 
-msgid "E3HD/XPEEDLX/GI"
-msgstr "E3HD/XPEEDLX/GI"
-
 #, fuzzy
 msgid "ECM Info"
 msgstr "CCcam ECM információ"
@@ -7866,9 +7837,6 @@ msgstr "F1"
 msgid "F1 long"
 msgstr "F1 hosszan"
 
-msgid "F1/F3/F4/F4-TURBO/TRIPLEX"
-msgstr "F1/F3/F4/F4-TURBO/TRIPLEX"
-
 msgid "F2"
 msgstr "F2"
 
@@ -8426,9 +8394,6 @@ msgstr "GB"
 msgid "GCC version"
 msgstr ""
 
-msgid "GIGABLUE Black"
-msgstr "GIGABLUE Black"
-
 msgid "GStreamer version"
 msgstr ""
 
@@ -8758,18 +8723,6 @@ msgstr ""
 
 msgid "HD list"
 msgstr "HD csatornák"
-
-msgid "HD11/HD51/HD1100/HD1200/HD1265/HD1500/HD500C/HD530C/VS1000/VS1500"
-msgstr "HD11/HD51/HD1100/HD1200/HD1265/HD1500/HD500C/HD530C/VS1000/VS1500"
-
-msgid "HD11/HD51/HD1100/HD1200/HD1265/HD1500/HD500C/HD530C/et7x00/et8500/VS1000/VS1500"
-msgstr "HD11/HD51/HD1100/HD1200/HD1265/HD1500/HD500C/HD530C/et7x00/et8500/VS1000/VS1500"
-
-msgid "HD2400"
-msgstr "HD2400"
-
-msgid "HD60/Multibox/Multiboxse"
-msgstr ""
 
 msgid "HDMI"
 msgstr "HDMI"
@@ -10614,9 +10567,6 @@ msgstr "MB"
 msgid "MENU"
 msgstr ""
 
-msgid "MIRACLEBOX_TWINPLUS"
-msgstr "MIRACLEBOX_TWINPLUS"
-
 msgid "MKUBIFS"
 msgstr ""
 
@@ -10768,9 +10718,6 @@ msgstr ""
 
 msgid "Maori"
 msgstr ""
-
-msgid "MaraM9"
-msgstr "MaraM9"
 
 #, fuzzy
 msgid "Marathi"
@@ -12129,15 +12076,6 @@ msgstr "A megjeleníteni kívánt sorok száma"
 msgid "Number or SMS style data entry"
 msgstr "Szám vagy SMS stílusú adatbevitel"
 
-msgid "OCTAGON SF5008"
-msgstr "OCTAGON SF5008"
-
-msgid "OCTAGON_SF4008"
-msgstr "OCTAGON_SF4008"
-
-msgid "ODIN_M7"
-msgstr "ODIN_M7"
-
 msgid "OEM Model"
 msgstr ""
 
@@ -12744,17 +12682,8 @@ msgstr "Százalék/Végrehajtási sáv balra"
 msgid "Percentage/Progress bar right"
 msgstr "Százalék/folyamatjelző sáv jobbra"
 
-msgid "Perform a image backup before updating."
-msgstr "Végezze el a lemezkép biztonsági mentését a frissítés előtt."
-
-msgid "Perform a setting backup before updating."
-msgstr "Végezze el a beállítások mentését a frissítés előtt."
-
 msgid "Perform an on-line flash instead"
 msgstr ""
-
-msgid "Perform an online update check in the background"
-msgstr "Online frissítés ellenőrzése a háttérben"
 
 msgid "Permanently delete all recordings in the trash can?"
 msgstr "A kuka véglegesen kiüríthető?"
@@ -13761,9 +13690,6 @@ msgstr "Készenléti menü védelme"
 
 msgid "Protect timer menu"
 msgstr "Időzítő menü védelme"
-
-msgid "Protek 4K UHD/HD61"
-msgstr "Protek 4K UHD/HD61"
 
 msgid "Protocol"
 msgstr "Protokoll"
@@ -16153,9 +16079,6 @@ msgstr "Hálózat beállítás. Itt tudod beállítani: FHCP, IP, DNS"
 msgid "Setup rotor"
 msgstr "Forgatómotor beállítása"
 
-msgid "Setup the interval to check for online updates. (in hours)"
-msgstr "Állítsa be az intervallumot az online frissítések ellenőrzéséhez (órákban)."
-
 msgid "Setup tuner(s)"
 msgstr "Tuner(ek) beállítás"
 
@@ -17280,9 +17203,6 @@ msgstr "Szoftver kezelő információ"
 msgid "Softwaremanager..."
 msgstr "Szoftverkezelő..."
 
-msgid "Softwareupdate"
-msgstr "Szoftverfrissítés"
-
 msgid "Solomon Islands"
 msgstr "Salamon-szigetek"
 
@@ -17570,6 +17490,7 @@ msgstr "Kezdve"
 msgid "Starts in a few seconds"
 msgstr "Néhány másodperc múlva kezdődik"
 
+#. TRANSLATORS: "State" is Location Info
 msgid "State"
 msgstr ""
 
@@ -20279,9 +20200,6 @@ msgstr "VOD hosszan"
 msgid "VPN"
 msgstr "VPN"
 
-msgid "VU+"
-msgstr "VU+"
-
 msgid "Valid"
 msgstr ""
 
@@ -20625,12 +20543,6 @@ msgstr "WPA2"
 msgid "WSS on 4:3"
 msgstr "WSS 4:3-on"
 
-msgid "WWIO 4K"
-msgstr "WWIO 4K"
-
-msgid "WWIO_BRE2ZE_TC"
-msgstr "WWIO_BRE2ZE_TC"
-
 msgid "Waffen"
 msgstr "Fegyver"
 
@@ -20845,9 +20757,6 @@ msgstr "Ha engedélyezi, a leválasztott felhasználói csatornacsomagok is bet�
 
 msgid "When enabled the PiP can be closed by the exit button."
 msgstr "Kép-a-Képben bezárása a távirányító EXIT gomb megnyomásakor."
-
-msgid "When enabled the online checker will also check for experimental versions"
-msgstr "Engedélyezés esetén az online ellenőrzés ellenőrzi a kísérleti verziókat is"
 
 msgid "When enabled the receiver will automatically be switched off."
 msgstr ""
@@ -21154,12 +21063,6 @@ msgstr "Www hosszan"
 
 msgid "XBox 360 support"
 msgstr "XBox 360 támogatás"
-
-msgid "XP1000"
-msgstr "XP1000"
-
-msgid "XP3000"
-msgstr "XP3000"
 
 msgid "XPicon, ZZZPicon"
 msgstr "XPicon, ZZZPicon"
@@ -21711,21 +21614,8 @@ msgstr "Következőre Ugrás+Felvétel"
 msgid "Zeichentrick"
 msgstr "Élénkség"
 
-msgid "Zgemma H.S/H.2S/H.2H/H5/H7"
-msgstr "Zgemma H.S/H.2S/H.2H/H5/H7"
-
 msgid "Zgemma H.S/H.2S/H.2H/H5/H7 old Model"
 msgstr "Zgemma H.S/H.2S/H.2H/H5/H7 régi modell"
-
-#, fuzzy
-msgid "Zgemma H8/H0/H9/I55Plus old Model"
-msgstr "Zgemma H9/I55Plus régi modell"
-
-msgid "Zgemma Star S/2S/H1/H2"
-msgstr "Zgemma Star S/2S/H1/H2"
-
-msgid "Zgemma i55"
-msgstr "Zgemma i55"
 
 msgid "Zhuang / Chuang"
 msgstr ""
@@ -22261,24 +22151,6 @@ msgstr "hiba a keresés indításakor"
 msgid "error while scanning"
 msgstr "hiba a keresés közben"
 
-msgid "et4000"
-msgstr "et4000"
-
-msgid "et5000/6000"
-msgstr "et5000/6000"
-
-msgid "et8000/et10000/et13000"
-msgstr "et8000/et10000/et13000"
-
-msgid "et8000/et10000/et13000/SF5008"
-msgstr "et8000/et10000/et13000/SF5008"
-
-msgid "et9000/et9100"
-msgstr "et9000/et9100"
-
-msgid "et9200/9500/6500"
-msgstr "et9200/9500/6500"
-
 msgid "execute cuts (requires MovieCut plugin)"
 msgstr "vágások végrehajtása (MovieCut bővítmény szükséges)"
 
@@ -22585,9 +22457,6 @@ msgstr "hobbi/szórakozás (általános)"
 msgid "length"
 msgstr "hossz"
 
-msgid "limit ..., aborting !"
-msgstr "limit... abbahagytam!"
-
 msgid "literature"
 msgstr "irodalom"
 
@@ -22674,9 +22543,6 @@ msgstr "film (általános)"
 
 msgid "movie/drama (general)"
 msgstr "mozi/színház (általános)"
-
-msgid "ms"
-msgstr "ms"
 
 msgid "multi"
 msgstr "multi"
@@ -23526,6 +23392,143 @@ msgstr "ugrás folyamatban"
 
 msgid "®"
 msgstr ""
+
+#, python-format
+#~ msgid "%d Mins"
+#~ msgstr "%d perc"
+
+#~ msgid "Allow unstable (untested) updates"
+#~ msgstr "Instabil (nem tesztelt) frissítések engedélyezése"
+
+#~ msgid "Automatic image backup"
+#~ msgstr "Automatikus képfájlmentés"
+
+#~ msgid "Automatic setting backup"
+#~ msgstr "Automatikus beállítás mentés"
+
+#~ msgid "Axas E4HD Ultra"
+#~ msgstr "Axas E4HD Ultra"
+
+#~ msgid "Background check"
+#~ msgstr "Háttér elenőrzése"
+
+#~ msgid "Beyonwiz U4"
+#~ msgstr "Beyonwiz U4"
+
+#~ msgid "Cannot determine"
+#~ msgstr "Nem lehet megállapítani"
+
+#~ msgid "Check every (hours)"
+#~ msgstr "Minden ellenőrzésé (óránként)"
+
+#~ msgid "Current device: "
+#~ msgstr "Aktuális eszköz: "
+
+#~ msgid "E3HD/XPEEDLX/GI"
+#~ msgstr "E3HD/XPEEDLX/GI"
+
+#~ msgid "F1/F3/F4/F4-TURBO/TRIPLEX"
+#~ msgstr "F1/F3/F4/F4-TURBO/TRIPLEX"
+
+#~ msgid "GIGABLUE Black"
+#~ msgstr "GIGABLUE Black"
+
+#~ msgid "HD11/HD51/HD1100/HD1200/HD1265/HD1500/HD500C/HD530C/VS1000/VS1500"
+#~ msgstr "HD11/HD51/HD1100/HD1200/HD1265/HD1500/HD500C/HD530C/VS1000/VS1500"
+
+#~ msgid "HD11/HD51/HD1100/HD1200/HD1265/HD1500/HD500C/HD530C/et7x00/et8500/VS1000/VS1500"
+#~ msgstr "HD11/HD51/HD1100/HD1200/HD1265/HD1500/HD500C/HD530C/et7x00/et8500/VS1000/VS1500"
+
+#~ msgid "HD2400"
+#~ msgstr "HD2400"
+
+#~ msgid "MIRACLEBOX_TWINPLUS"
+#~ msgstr "MIRACLEBOX_TWINPLUS"
+
+#~ msgid "MaraM9"
+#~ msgstr "MaraM9"
+
+#~ msgid "OCTAGON SF5008"
+#~ msgstr "OCTAGON SF5008"
+
+#~ msgid "OCTAGON_SF4008"
+#~ msgstr "OCTAGON_SF4008"
+
+#~ msgid "ODIN_M7"
+#~ msgstr "ODIN_M7"
+
+#~ msgid "Perform a image backup before updating."
+#~ msgstr "Végezze el a lemezkép biztonsági mentését a frissítés előtt."
+
+#~ msgid "Perform a setting backup before updating."
+#~ msgstr "Végezze el a beállítások mentését a frissítés előtt."
+
+#~ msgid "Perform an online update check in the background"
+#~ msgstr "Online frissítés ellenőrzése a háttérben"
+
+#~ msgid "Protek 4K UHD/HD61"
+#~ msgstr "Protek 4K UHD/HD61"
+
+#~ msgid "Setup the interval to check for online updates. (in hours)"
+#~ msgstr "Állítsa be az intervallumot az online frissítések ellenőrzéséhez (órákban)."
+
+#~ msgid "Softwareupdate"
+#~ msgstr "Szoftverfrissítés"
+
+#~ msgid "VU+"
+#~ msgstr "VU+"
+
+#~ msgid "WWIO 4K"
+#~ msgstr "WWIO 4K"
+
+#~ msgid "WWIO_BRE2ZE_TC"
+#~ msgstr "WWIO_BRE2ZE_TC"
+
+#~ msgid "When enabled the online checker will also check for experimental versions"
+#~ msgstr "Engedélyezés esetén az online ellenőrzés ellenőrzi a kísérleti verziókat is"
+
+#~ msgid "XP1000"
+#~ msgstr "XP1000"
+
+#~ msgid "XP3000"
+#~ msgstr "XP3000"
+
+#~ msgid "Zgemma H.S/H.2S/H.2H/H5/H7"
+#~ msgstr "Zgemma H.S/H.2S/H.2H/H5/H7"
+
+#, fuzzy
+#~ msgid "Zgemma H8/H0/H9/I55Plus old Model"
+#~ msgstr "Zgemma H9/I55Plus régi modell"
+
+#~ msgid "Zgemma Star S/2S/H1/H2"
+#~ msgstr "Zgemma Star S/2S/H1/H2"
+
+#~ msgid "Zgemma i55"
+#~ msgstr "Zgemma i55"
+
+#~ msgid "et4000"
+#~ msgstr "et4000"
+
+#~ msgid "et5000/6000"
+#~ msgstr "et5000/6000"
+
+#~ msgid "et8000/et10000/et13000"
+#~ msgstr "et8000/et10000/et13000"
+
+#~ msgid "et8000/et10000/et13000/SF5008"
+#~ msgstr "et8000/et10000/et13000/SF5008"
+
+#~ msgid "et9000/et9100"
+#~ msgstr "et9000/et9100"
+
+#~ msgid "et9200/9500/6500"
+#~ msgstr "et9200/9500/6500"
+
+#~ msgid "limit ..., aborting !"
+#~ msgstr "limit... abbahagytam!"
+
+#~ msgid "ms"
+#~ msgstr "ms"
 
 #, fuzzy, python-format
 #~ msgid "  (%s x %s)"

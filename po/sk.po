@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-02-07 20:18+0000\n"
+"POT-Creation-Date: 2022-02-11 14:04+0000\n"
 "PO-Revision-Date: 2022-01-25 14:01+0000\n"
 "Last-Translator: Marián Hikaník <podnety@mojepreklady.net>\n"
 "Language-Team: Slovak <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/sk/>\n"
@@ -1022,10 +1022,6 @@ msgid_plural "%d Mins"
 msgstr[0] "%d min"
 msgstr[1] "%d min"
 msgstr[2] "%d min"
-
-#, python-format
-msgid "%d Mins"
-msgstr "%d minút"
 
 #. TRANSLATORS: Intermediate scanning result, '%d' channel(s) have been found so far
 #, python-format
@@ -2677,9 +2673,6 @@ msgstr "Povoliť jazyk titulkov zhodný s jazykom zvuku"
 msgid "Allow subtitles for hearing impaired"
 msgstr "Povoliť titulky pre sluchovo postihnutých"
 
-msgid "Allow unstable (untested) updates"
-msgstr "Povoliť nestabilné (netestované) aktualizácie"
-
 msgid "Allow unsupported modes"
 msgstr "Povoliť nepodporované režimy"
 
@@ -3180,9 +3173,6 @@ msgstr "Automatické skenovanie"
 msgid "Automatic Service Searching"
 msgstr "Automatické hľadanie stanice"
 
-msgid "Automatic image backup"
-msgstr "Automatická záloha Image"
-
 msgid "Automatic resolution"
 msgstr "Automatické rozlíšenie"
 
@@ -3194,9 +3184,6 @@ msgstr "Automatické skenovanie"
 
 msgid "Automatic scan for services"
 msgstr "Automatické vyhľadávanie staníc"
-
-msgid "Automatic setting backup"
-msgstr "Automatická záloha nastavenia"
 
 msgid "Automatically put the TV in standby whenever the receiver goes into standby or deep standby."
 msgstr "Automaticky prepnúť TV do pohotovostného režimu vždy, keď sa prijímač vypne alebo prepne do pohotovostného režimu."
@@ -3236,9 +3223,6 @@ msgstr "Avestčina"
 
 msgid "Avoid getting stuck (at the expense of some stuttering) when the jump time is smaller than the time between I-frames."
 msgstr "Zabráni zamrznutiu v prípade, že je čas skoku menší ako čas medzi I-snímkami. Môže byť viditeľné trhnutie obrazu."
-
-msgid "Axas E4HD Ultra"
-msgstr "Axas E4HD Ultra"
 
 msgid "Aymara"
 msgstr "Aymarčina"
@@ -3332,9 +3316,6 @@ msgstr "Späť/vyvolať znovu"
 
 msgid "Background"
 msgstr "Pozadie"
-
-msgid "Background check"
-msgstr "Kontrola na pozadí"
 
 msgid "Background color"
 msgstr "Farba pozadia"
@@ -3524,9 +3505,6 @@ msgstr "Bermudy"
 
 msgid "Berufe"
 msgstr "Povolania"
-
-msgid "Beyonwiz U4"
-msgstr "Beyonwiz U4"
 
 msgid "Beziehung"
 msgstr "Vzťah"
@@ -4116,8 +4094,10 @@ msgstr "Nemožno vymazať stiahnutý image"
 msgid "Cannot delete file"
 msgstr "Súbor nemožno vymazať"
 
-msgid "Cannot determine"
-msgstr "Nemožno určiť"
+#. TRANSLATORS: "Cannot determine (east/west) limit ..., aborting !"
+#, python-format
+msgid "Cannot determine %s limit ..., aborting !"
+msgstr ""
 
 msgid "Cannot find any signal ..., aborting !"
 msgstr "Nenašiel sa žiadny signál..., prerušuje sa!"
@@ -4369,9 +4349,6 @@ msgstr "Skontrolovať"
 
 msgid "Check HDD"
 msgstr "Skontrolovať HDD"
-
-msgid "Check every (hours)"
-msgstr "Skontrolovať každých (hod.)"
 
 msgid "Check power and input state from TV"
 msgstr "Skontrolovať napájanie a stav vstupu z TV"
@@ -5478,9 +5455,6 @@ msgstr "Aktuálny stav:"
 
 msgid "Current crash log"
 msgstr ""
-
-msgid "Current device: "
-msgstr "Aktuálne zariadenie: "
 
 msgid "Current installed"
 msgstr "Práve nainštalované"
@@ -6812,9 +6786,6 @@ msgstr "Východný"
 msgid "E "
 msgstr "E "
 
-msgid "E3HD/XPEEDLX/GI"
-msgstr "E3HD/XPEEDLX/GI"
-
 msgid "ECM Info"
 msgstr "ECM Info"
 
@@ -7812,9 +7783,6 @@ msgstr "F1"
 msgid "F1 long"
 msgstr "F1 - dlho"
 
-msgid "F1/F3/F4/F4-TURBO/TRIPLEX"
-msgstr "F1/F3/F4/F4-TURBO/TRIPLEX"
-
 msgid "F2"
 msgstr "F2"
 
@@ -8361,9 +8329,6 @@ msgstr "GB"
 msgid "GCC version"
 msgstr ""
 
-msgid "GIGABLUE Black"
-msgstr "GIGABLUE Black"
-
 msgid "GStreamer version"
 msgstr ""
 
@@ -8690,18 +8655,6 @@ msgstr ""
 
 msgid "HD list"
 msgstr "Zoznam HD"
-
-msgid "HD11/HD51/HD1100/HD1200/HD1265/HD1500/HD500C/HD530C/VS1000/VS1500"
-msgstr "HD11/HD51/HD1100/HD1200/HD1265/HD1500/HD500C/HD530C/VS1000/VS1500"
-
-msgid "HD11/HD51/HD1100/HD1200/HD1265/HD1500/HD500C/HD530C/et7x00/et8500/VS1000/VS1500"
-msgstr "HD11/HD51/HD1100/HD1200/HD1265/HD1500/HD500C/HD530C/et7x00/et8500/VS1000/VS1500"
-
-msgid "HD2400"
-msgstr "HD2400"
-
-msgid "HD60/Multibox/Multiboxse"
-msgstr "HD60/Multibox/Multiboxse"
 
 msgid "HDMI"
 msgstr "HDMI"
@@ -10515,9 +10468,6 @@ msgstr "MB"
 msgid "MENU"
 msgstr "MENU"
 
-msgid "MIRACLEBOX_TWINPLUS"
-msgstr "MIRACLEBOX_TWINPLUS"
-
 msgid "MKUBIFS"
 msgstr ""
 
@@ -10662,9 +10612,6 @@ msgstr "Mančina (Manx)"
 
 msgid "Maori"
 msgstr "Maorčina"
-
-msgid "MaraM9"
-msgstr "MaraM9"
 
 msgid "Marathi"
 msgstr "Maráthčina"
@@ -11985,15 +11932,6 @@ msgstr "Počet riadkov zobrazených na zobrazenie"
 msgid "Number or SMS style data entry"
 msgstr "Počet dátových záznamov v štýle SMS"
 
-msgid "OCTAGON SF5008"
-msgstr "OCTAGON SF5008"
-
-msgid "OCTAGON_SF4008"
-msgstr "OCTAGON_SF4008"
-
-msgid "ODIN_M7"
-msgstr "ODIN_M7"
-
 msgid "OEM Model"
 msgstr ""
 
@@ -12588,17 +12526,8 @@ msgstr "Percentá/ukazovateľ priebehu vľavo"
 msgid "Percentage/Progress bar right"
 msgstr "Percentá/ukazovateľ priebehu vpravo"
 
-msgid "Perform a image backup before updating."
-msgstr "Vytvori zálohu image pred aktualizovaním."
-
-msgid "Perform a setting backup before updating."
-msgstr "Vytvoriť zálohu settingu pred aktualizovaním."
-
 msgid "Perform an on-line flash instead"
 msgstr "Namiesto toho vykonať on-line flashovanie"
-
-msgid "Perform an online update check in the background"
-msgstr "Vykonávať online-kontrolu aktualizácií na pozadí"
 
 msgid "Permanently delete all recordings in the trash can?"
 msgstr "Natrvalo vymazať všetky nahrávky z koša?"
@@ -13604,9 +13533,6 @@ msgstr "Chrániť menu pohot. režimu"
 
 msgid "Protect timer menu"
 msgstr "Chrániť menu časovačov"
-
-msgid "Protek 4K UHD/HD61"
-msgstr "Protek 4K UHD/HD61"
 
 msgid "Protocol"
 msgstr "Protokol"
@@ -15969,9 +15895,6 @@ msgstr "Nastavenie siete. Tu môžete nastaviť DHCP, IP, DNS"
 msgid "Setup rotor"
 msgstr "Nastavenie motora"
 
-msgid "Setup the interval to check for online updates. (in hours)"
-msgstr "Nastavte interval kontroly aktualizácií online (v hodinách)"
-
 msgid "Setup tuner(s)"
 msgstr "Nastavenie tunera/tunerov"
 
@@ -17082,9 +17005,6 @@ msgstr "Informácia správcu softvéru"
 msgid "Softwaremanager..."
 msgstr "Správca softvéru..."
 
-msgid "Softwareupdate"
-msgstr "Aktualizácia softvéru"
-
 msgid "Solomon Islands"
 msgstr "Šalamúnove ostrovy"
 
@@ -17366,6 +17286,7 @@ msgstr "Spustenie o"
 msgid "Starts in a few seconds"
 msgstr "Spustí sa o niekoľko sekúnd"
 
+#. TRANSLATORS: "State" is Location Info
 msgid "State"
 msgstr ""
 
@@ -20041,9 +19962,6 @@ msgstr "VOD - dlho"
 msgid "VPN"
 msgstr "VPN"
 
-msgid "VU+"
-msgstr "VU+"
-
 msgid "Valid"
 msgstr ""
 
@@ -20382,12 +20300,6 @@ msgstr "WPA2"
 msgid "WSS on 4:3"
 msgstr "WSS pri 4:3"
 
-msgid "WWIO 4K"
-msgstr "WWIO 4K"
-
-msgid "WWIO_BRE2ZE_TC"
-msgstr "WWIO_BRE2ZE_TC"
-
 msgid "Waffen"
 msgstr "Zbrane"
 
@@ -20600,9 +20512,6 @@ msgstr "Ak je povolené, systém enigma2 načíta aj neprepojené používateľs
 
 msgid "When enabled the PiP can be closed by the exit button."
 msgstr "Ak je povolené, PiP sa bude dať ukončiť tlačidlom EXIT."
-
-msgid "When enabled the online checker will also check for experimental versions"
-msgstr "Ak je povolené, on-line kontrola bude kontrolovať aj dostupnosť experimentálnych verzií"
 
 msgid "When enabled the receiver will automatically be switched off."
 msgstr "Ak je aktivované, prijímač sa automaticky vypne."
@@ -20909,12 +20818,6 @@ msgstr "Www - dlho"
 
 msgid "XBox 360 support"
 msgstr "Podpora pre XBox 360"
-
-msgid "XP1000"
-msgstr "XP1000"
-
-msgid "XP3000"
-msgstr "XP3000"
 
 msgid "XPicon, ZZZPicon"
 msgstr "XPicon, ZZZPicon"
@@ -21463,20 +21366,8 @@ msgstr "Prepnúť + nahrávať ďalej"
 msgid "Zeichentrick"
 msgstr "Kreslené triky"
 
-msgid "Zgemma H.S/H.2S/H.2H/H5/H7"
-msgstr "Zgemma H.S/H.2S/H.2H/H5/H7"
-
 msgid "Zgemma H.S/H.2S/H.2H/H5/H7 old Model"
 msgstr "Zgemma H.S/H.2S/H.2H/H5/H7 starý model"
-
-msgid "Zgemma H8/H0/H9/I55Plus old Model"
-msgstr "Zgemma H8/H0/H9/I55Plus starší model"
-
-msgid "Zgemma Star S/2S/H1/H2"
-msgstr "Zgemma Star S/2S/H1/H2"
-
-msgid "Zgemma i55"
-msgstr "Zgemma i55"
 
 msgid "Zhuang / Chuang"
 msgstr "Čuangčina"
@@ -22007,24 +21898,6 @@ msgstr "chyba pri spúšťaní prehľadávania"
 msgid "error while scanning"
 msgstr "chyba pri prehľadávaní"
 
-msgid "et4000"
-msgstr "et4000"
-
-msgid "et5000/6000"
-msgstr "et5000/6000"
-
-msgid "et8000/et10000/et13000"
-msgstr "et8000/et10000/et13000"
-
-msgid "et8000/et10000/et13000/SF5008"
-msgstr "et8000/et10000/et13000/SF5008"
-
-msgid "et9000/et9100"
-msgstr "et9000/et9100"
-
-msgid "et9200/9500/6500"
-msgstr "et9200/9500/6500"
-
 msgid "execute cuts (requires MovieCut plugin)"
 msgstr "zrealizovať vystrihnutie (vyžaduje plugin MovieCut)"
 
@@ -22328,9 +22201,6 @@ msgstr "koníčky na voľný čas (všeobecne)"
 msgid "length"
 msgstr "dĺžka"
 
-msgid "limit ..., aborting !"
-msgstr "limit ..., ruší sa!"
-
 msgid "literature"
 msgstr "literatúra"
 
@@ -22417,9 +22287,6 @@ msgstr "film (všeobecne)"
 
 msgid "movie/drama (general)"
 msgstr "film/dráma (všeobecne)"
-
-msgid "ms"
-msgstr "ms"
 
 msgid "multi"
 msgstr "multi"
@@ -23269,6 +23136,145 @@ msgstr "prepínanie"
 
 msgid "®"
 msgstr "®"
+
+#, python-format
+#~ msgid "%d Mins"
+#~ msgstr "%d minút"
+
+#~ msgid "Allow unstable (untested) updates"
+#~ msgstr "Povoliť nestabilné (netestované) aktualizácie"
+
+#~ msgid "Automatic image backup"
+#~ msgstr "Automatická záloha Image"
+
+#~ msgid "Automatic setting backup"
+#~ msgstr "Automatická záloha nastavenia"
+
+#~ msgid "Axas E4HD Ultra"
+#~ msgstr "Axas E4HD Ultra"
+
+#~ msgid "Background check"
+#~ msgstr "Kontrola na pozadí"
+
+#~ msgid "Beyonwiz U4"
+#~ msgstr "Beyonwiz U4"
+
+#~ msgid "Cannot determine"
+#~ msgstr "Nemožno určiť"
+
+#~ msgid "Check every (hours)"
+#~ msgstr "Skontrolovať každých (hod.)"
+
+#~ msgid "Current device: "
+#~ msgstr "Aktuálne zariadenie: "
+
+#~ msgid "E3HD/XPEEDLX/GI"
+#~ msgstr "E3HD/XPEEDLX/GI"
+
+#~ msgid "F1/F3/F4/F4-TURBO/TRIPLEX"
+#~ msgstr "F1/F3/F4/F4-TURBO/TRIPLEX"
+
+#~ msgid "GIGABLUE Black"
+#~ msgstr "GIGABLUE Black"
+
+#~ msgid "HD11/HD51/HD1100/HD1200/HD1265/HD1500/HD500C/HD530C/VS1000/VS1500"
+#~ msgstr "HD11/HD51/HD1100/HD1200/HD1265/HD1500/HD500C/HD530C/VS1000/VS1500"
+
+#~ msgid "HD11/HD51/HD1100/HD1200/HD1265/HD1500/HD500C/HD530C/et7x00/et8500/VS1000/VS1500"
+#~ msgstr "HD11/HD51/HD1100/HD1200/HD1265/HD1500/HD500C/HD530C/et7x00/et8500/VS1000/VS1500"
+
+#~ msgid "HD2400"
+#~ msgstr "HD2400"
+
+#~ msgid "HD60/Multibox/Multiboxse"
+#~ msgstr "HD60/Multibox/Multiboxse"
+
+#~ msgid "MIRACLEBOX_TWINPLUS"
+#~ msgstr "MIRACLEBOX_TWINPLUS"
+
+#~ msgid "MaraM9"
+#~ msgstr "MaraM9"
+
+#~ msgid "OCTAGON SF5008"
+#~ msgstr "OCTAGON SF5008"
+
+#~ msgid "OCTAGON_SF4008"
+#~ msgstr "OCTAGON_SF4008"
+
+#~ msgid "ODIN_M7"
+#~ msgstr "ODIN_M7"
+
+#~ msgid "Perform a image backup before updating."
+#~ msgstr "Vytvori zálohu image pred aktualizovaním."
+
+#~ msgid "Perform a setting backup before updating."
+#~ msgstr "Vytvoriť zálohu settingu pred aktualizovaním."
+
+#~ msgid "Perform an online update check in the background"
+#~ msgstr "Vykonávať online-kontrolu aktualizácií na pozadí"
+
+#~ msgid "Protek 4K UHD/HD61"
+#~ msgstr "Protek 4K UHD/HD61"
+
+#~ msgid "Setup the interval to check for online updates. (in hours)"
+#~ msgstr "Nastavte interval kontroly aktualizácií online (v hodinách)"
+
+#~ msgid "Softwareupdate"
+#~ msgstr "Aktualizácia softvéru"
+
+#~ msgid "VU+"
+#~ msgstr "VU+"
+
+#~ msgid "WWIO 4K"
+#~ msgstr "WWIO 4K"
+
+#~ msgid "WWIO_BRE2ZE_TC"
+#~ msgstr "WWIO_BRE2ZE_TC"
+
+#~ msgid "When enabled the online checker will also check for experimental versions"
+#~ msgstr "Ak je povolené, on-line kontrola bude kontrolovať aj dostupnosť experimentálnych verzií"
+
+#~ msgid "XP1000"
+#~ msgstr "XP1000"
+
+#~ msgid "XP3000"
+#~ msgstr "XP3000"
+
+#~ msgid "Zgemma H.S/H.2S/H.2H/H5/H7"
+#~ msgstr "Zgemma H.S/H.2S/H.2H/H5/H7"
+
+#~ msgid "Zgemma H8/H0/H9/I55Plus old Model"
+#~ msgstr "Zgemma H8/H0/H9/I55Plus starší model"
+
+#~ msgid "Zgemma Star S/2S/H1/H2"
+#~ msgstr "Zgemma Star S/2S/H1/H2"
+
+#~ msgid "Zgemma i55"
+#~ msgstr "Zgemma i55"
+
+#~ msgid "et4000"
+#~ msgstr "et4000"
+
+#~ msgid "et5000/6000"
+#~ msgstr "et5000/6000"
+
+#~ msgid "et8000/et10000/et13000"
+#~ msgstr "et8000/et10000/et13000"
+
+#~ msgid "et8000/et10000/et13000/SF5008"
+#~ msgstr "et8000/et10000/et13000/SF5008"
+
+#~ msgid "et9000/et9100"
+#~ msgstr "et9000/et9100"
+
+#~ msgid "et9200/9500/6500"
+#~ msgstr "et9200/9500/6500"
+
+#~ msgid "limit ..., aborting !"
+#~ msgstr "limit ..., ruší sa!"
+
+#~ msgid "ms"
+#~ msgstr "ms"
 
 #, python-format
 #~ msgid "  (%s x %s)"

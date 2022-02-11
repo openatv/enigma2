@@ -11,16 +11,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-02-07 20:18+0000\n"
-"PO-Revision-Date: 2022-02-10 15:54+0100\n"
-"Last-Translator: mike99 <mike99@mail.to>\n"
+"POT-Creation-Date: 2022-02-11 14:04+0000\n"
+"PO-Revision-Date: 2022-02-11 14:45+0000\n"
+"Last-Translator: jbleyel <jbleyel@gmx.net>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/de/>\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Poedit 3.0\n"
+"X-Generator: Weblate 4.11-dev\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 
 msgid ""
@@ -1045,11 +1045,6 @@ msgid "%d Min"
 msgid_plural "%d Mins"
 msgstr[0] "%d Min"
 msgstr[1] "%d Min"
-
-#
-#, python-format
-msgid "%d Mins"
-msgstr "%d Min"
 
 #. TRANSLATORS: Intermediate scanning result, '%d' channel(s) have been found so far
 #, python-format
@@ -2790,9 +2785,6 @@ msgstr "Untertitel und Tonspur in gleicher Sprache erlauben"
 msgid "Allow subtitles for hearing impaired"
 msgstr "Untertitel für Hörgeschädigte erlauben"
 
-msgid "Allow unstable (untested) updates"
-msgstr "Instabile (ungetestete) Updates erlauben"
-
 msgid "Allow unsupported modes"
 msgstr "Nicht unterstützte Modi erlauben"
 
@@ -3331,9 +3323,6 @@ msgstr "Automatischer Suchlauf"
 msgid "Automatic Service Searching"
 msgstr "Automatischer Sendersuchlauf"
 
-msgid "Automatic image backup"
-msgstr "Automatische Image-Sicherung"
-
 msgid "Automatic resolution"
 msgstr "Automatische Auflösung"
 
@@ -3345,9 +3334,6 @@ msgstr "Automatische Suche"
 
 msgid "Automatic scan for services"
 msgstr "Automatischer Suchlauf"
-
-msgid "Automatic setting backup"
-msgstr "Automatische Sicherung der Einstellungen"
 
 msgid "Automatically put the TV in standby whenever the receiver goes into standby or deep standby."
 msgstr "Den Fernseher automatisch zusammen mit dem Receiver in den Standby oder Deep-Standby versetzen."
@@ -3389,9 +3375,6 @@ msgstr "Avestisch"
 
 msgid "Avoid getting stuck (at the expense of some stuttering) when the jump time is smaller than the time between I-frames."
 msgstr "Bei 'Ja' wird ein Hängenbleiben beim Spulen verhindert, wenn die Sprungdistanz kleiner ist als der Abstand zwischen I-Frames (ein gewisses Ruckeln ist dabei unvermeidbar)."
-
-msgid "Axas E4HD Ultra"
-msgstr "Axas E4HD Ultra"
 
 msgid "Aymara"
 msgstr "Aymara"
@@ -3490,9 +3473,6 @@ msgstr "Zurück"
 #
 msgid "Background"
 msgstr "Hintergrund"
-
-msgid "Background check"
-msgstr "Prüfung im Hintergrund"
 
 # 5.1 /Plugins\Extensions\PicturePlayer
 msgid "Background color"
@@ -3698,9 +3678,6 @@ msgstr "Bermuda"
 
 msgid "Berufe"
 msgstr "Berufe"
-
-msgid "Beyonwiz U4"
-msgstr "Beyonwiz U4"
 
 msgid "Beziehung"
 msgstr "Beziehung"
@@ -4319,9 +4296,10 @@ msgstr "Das heruntergeladene Image kann nicht gelöscht werden!"
 msgid "Cannot delete file"
 msgstr "Datei kann nicht gelöscht werden!"
 
-#, fuzzy
-msgid "Cannot determine"
-msgstr "Kann nicht ermittelt werden"
+#. TRANSLATORS: "Cannot determine (east/west) limit ..., aborting !"
+#, python-format
+msgid "Cannot determine %s limit ..., aborting !"
+msgstr "%s kann nicht ermittelt werden ... abbrechen!"
 
 msgid "Cannot find any signal ..., aborting !"
 msgstr "Kein Signal gefunden! Abbruch!"
@@ -4597,9 +4575,6 @@ msgstr "Prüfung"
 
 msgid "Check HDD"
 msgstr "Prüfen der Festplatte"
-
-msgid "Check every (hours)"
-msgstr "Alle x Stunden prüfen"
 
 msgid "Check power and input state from TV"
 msgstr "Überprüfe den Betriebszustand vom TV"
@@ -5686,7 +5661,7 @@ msgstr "Auch bei Skin-Fehlern abstürzen?"
 
 #, python-format
 msgid "Crash log '%s' (%d/%d)"
-msgstr "Absturzprotokoll '%s' (%d/%d)"
+msgstr "Crash-Log '%s' (%d/%d)"
 
 #
 msgid "Create"
@@ -5790,10 +5765,7 @@ msgid "Current Status:"
 msgstr "Status:"
 
 msgid "Current crash log"
-msgstr "Aktuelles Absturzprotokoll"
-
-msgid "Current device: "
-msgstr "Aktuelles Gerät: "
+msgstr "Aktuelles Crash-Log"
 
 msgid "Current installed"
 msgstr "Aktuell installiert"
@@ -6153,7 +6125,7 @@ msgstr "Debuglogs"
 
 #, python-format
 msgid "Debug log '%s' (%d/%d)"
-msgstr "Debug-Protokoll '%s' (%d/%d)"
+msgstr "Debug-Log '%s' (%d/%d)"
 
 msgid "Debug log time format *"
 msgstr "Debug Log Zeitformat *"
@@ -6428,7 +6400,7 @@ msgid "Delete the current timeshift buffer and restart timeshift"
 msgstr "Den aktuellen Timeshift-Puffer löschen und Timeshift neu starten"
 
 msgid "Delete the currently displayed log file"
-msgstr "Die aktuell angezeigte Protokolldatei löschen"
+msgstr "Die aktuell angezeigte Log-Datei löschen"
 
 msgid "Delete the selected files or directories"
 msgstr "Ausgewählte Dateien oder Verzeichnisse löschen"
@@ -6715,7 +6687,7 @@ msgid "Display message before playing next movie"
 msgstr "Info anzeigen, bevor der nächste Film abgespielt wird"
 
 msgid "Display next commit log"
-msgstr "Nächstes Commit-Protokoll anzeigen"
+msgstr "Nächstes Commit-Log anzeigen"
 
 msgid "Display next system information screen"
 msgstr "Nächsten Systeminformationsbildschirm anzeigen"
@@ -6724,7 +6696,7 @@ msgid "Display oscam information."
 msgstr "Oscam-Informationen anzeigen."
 
 msgid "Display previous commit log"
-msgstr "Vorheriges Commit-Protokoll anzeigen"
+msgstr "Vorheriges Commit-Log anzeigen"
 
 msgid "Display previous system information screen"
 msgstr "Vorherigen Systeminformationsbildschirm anzeigen"
@@ -6934,7 +6906,7 @@ msgid "Do you want to continue?"
 msgstr "Möchten Sie fortfahren?"
 
 msgid "Do you want to delete all log files?"
-msgstr "Möchten Sie alle Protokolldateien löschen?"
+msgstr "Möchten Sie alle Log-Dateien löschen?"
 
 # python\Screens\LanguageSelection.py
 msgid ""
@@ -6957,7 +6929,7 @@ msgid "Do you want to delete the old settings in /etc/enigma2 first?"
 msgstr "Möchten Sie zuerst die alten Einstellungen in '/etc/enigma2' löschen?"
 
 msgid "Do you want to delete this log file?"
-msgstr "Möchten Sie diese Protokolldatei löschen?"
+msgstr "Möchten Sie diese Log-Datei löschen?"
 
 #
 msgid "Do you want to do a service scan?"
@@ -7215,9 +7187,6 @@ msgstr "O"
 #
 msgid "E "
 msgstr "O "
-
-msgid "E3HD/XPEEDLX/GI"
-msgstr "E3HD/XPEEDLX/GI"
 
 msgid "ECM Info"
 msgstr "ECM-Info"
@@ -7823,7 +7792,7 @@ msgstr "Fehler"
 
 #, python-format
 msgid "Error %d: Log file '%s' wasn't deleted!  (%s)"
-msgstr "Fehler %d: Protokolldatei '%s' wurde'nicht gelöscht!  (%s)"
+msgstr "Fehler %d: Log-Datei '%s' wurde'nicht gelöscht!  (%s)"
 
 #, python-format
 msgid "Error %d: The logfile '%s' could not be opened.  (%s)"
@@ -8279,9 +8248,6 @@ msgstr "F1"
 
 msgid "F1 long"
 msgstr "F1 lang"
-
-msgid "F1/F3/F4/F4-TURBO/TRIPLEX"
-msgstr "F1/F3/F4/F4-TURBO/TRIPLEX"
 
 msgid "F2"
 msgstr "F2"
@@ -8873,9 +8839,6 @@ msgstr "GB"
 msgid "GCC version"
 msgstr "GCC-Version"
 
-msgid "GIGABLUE Black"
-msgstr "GIGABLUE Black"
-
 msgid "GStreamer version"
 msgstr "GStreamer-Version"
 
@@ -9215,18 +9178,6 @@ msgstr "HD"
 
 msgid "HD list"
 msgstr "HD-Liste"
-
-msgid "HD11/HD51/HD1100/HD1200/HD1265/HD1500/HD500C/HD530C/VS1000/VS1500"
-msgstr "HD11/HD51/HD1100/HD1200/HD1265/HD1500/HD500C/HD530C/VS1000/VS1500"
-
-msgid "HD11/HD51/HD1100/HD1200/HD1265/HD1500/HD500C/HD530C/et7x00/et8500/VS1000/VS1500"
-msgstr "HD11/HD51/HD1100/HD1200/HD1265/HD1500/HD500C/HD530C/et7x00/et8500/VS1000/VS1500"
-
-msgid "HD2400"
-msgstr "HD2400"
-
-msgid "HD60/Multibox/Multiboxse"
-msgstr "HD60/Multibox/Multiboxse"
 
 msgid "HDMI"
 msgstr "HDMI"
@@ -10958,7 +10909,7 @@ msgid "Load/Save/Delete"
 msgstr "Laden/Speichern/Löschen"
 
 msgid "Loading information, please wait..."
-msgstr "Informationen werden geladen, bitte warten..."
+msgstr "Informationen werden geladen. Bitte warten..."
 
 msgid "Local box"
 msgstr "Lokaler Receiver"
@@ -11039,7 +10990,7 @@ msgstr "Logverwaltung"
 
 #, python-format
 msgid "Log file '%s' deleted."
-msgstr "Protokolldatei '%s' gelöscht."
+msgstr "Log-Datei '%s' gelöscht."
 
 # data/setup.xml
 msgid "Log python stack trace on spinner ?"
@@ -11054,7 +11005,7 @@ msgstr "Logverwaltung"
 
 #, python-format
 msgid "Logfile '%s' (%d/%d)"
-msgstr "Protokolldatei '%s' (%d/%d)"
+msgstr "Log-Datei '%s' (%d/%d)"
 
 msgid "Login"
 msgstr "Anmelden"
@@ -11156,9 +11107,6 @@ msgstr "MB"
 
 msgid "MENU"
 msgstr "MENU"
-
-msgid "MIRACLEBOX_TWINPLUS"
-msgstr "MIRACLEBOX_TWINPLUS"
 
 msgid "MKUBIFS"
 msgstr ""
@@ -11315,9 +11263,6 @@ msgstr "Manx"
 
 msgid "Maori"
 msgstr "Maori"
-
-msgid "MaraM9"
-msgstr "MaraM9"
 
 msgid "Marathi"
 msgstr "Marathi"
@@ -12793,15 +12738,6 @@ msgstr "Die Anzahl der anzuzeigenden Zeilen."
 msgid "Number or SMS style data entry"
 msgstr "Zahlen- oder SMS-Eingabemethode"
 
-msgid "OCTAGON SF5008"
-msgstr "OCTAGON SF5008"
-
-msgid "OCTAGON_SF4008"
-msgstr "OCTAGON_SF4008"
-
-msgid "ODIN_M7"
-msgstr "ODIN_M7"
-
 msgid "OEM Model"
 msgstr "OEM-Modell"
 
@@ -13444,17 +13380,8 @@ msgstr "Prozent/Fortschrittsanzeige links"
 msgid "Percentage/Progress bar right"
 msgstr "Prozent/Fortschrittsanzeige rechts"
 
-msgid "Perform a image backup before updating."
-msgstr "Vor der Aktualisierung eine Image-Sicherung durchführen."
-
-msgid "Perform a setting backup before updating."
-msgstr "Vor der Aktualisierung eine Sicherung der Einstellungen durchführen."
-
 msgid "Perform an on-line flash instead"
 msgstr "Führen Sie stattdessen einen Online-Flash durch"
-
-msgid "Perform an online update check in the background"
-msgstr "Eine Prüfung auf Onlineaktualisierung im Hintergrund durchführen."
 
 msgid "Permanently delete all recordings in the trash can?"
 msgstr "Alle Aufnahmen im Papierkorb endgültig löschen?"
@@ -14575,9 +14502,6 @@ msgstr "Ausschaltmenü schützen"
 msgid "Protect timer menu"
 msgstr "Timermenü schützen"
 
-msgid "Protek 4K UHD/HD61"
-msgstr "Protek 4K UHD/HD61"
-
 msgid "Protocol"
 msgstr "Protokoll"
 
@@ -15517,7 +15441,7 @@ msgstr "Setze Wiedergabe fort"
 
 #, python-format
 msgid "Retrieving %s commit log, please wait..."
-msgstr "%s Commit-Protokoll abrufen, bitte warten..."
+msgstr "%s Commit-Log wird abgerufen. Bitte warten..."
 
 msgid "Retrieving image list - Please wait..."
 msgstr "Image-Liste abrufen. Bitte warten..."
@@ -15526,10 +15450,10 @@ msgid "Retrieving image slots - Please wait..."
 msgstr "Image-Slots abrufen. Bitte warten..."
 
 msgid "Retrieving network server information, please wait..."
-msgstr "Netzwerkserverinformationen werden abgerufen, bitte warten..."
+msgstr "Netzwerkserverinformationen werden abgerufen. Bitte warten..."
 
 msgid "Retrieving system information, please wait..."
-msgstr "Systeminformationen werden abgerufen, bitte warten..."
+msgstr "Systeminformationen werden abgerufen. Bitte warten..."
 
 msgid "Return the current selection response"
 msgstr ""
@@ -16312,7 +16236,7 @@ msgid "Select channels to add an offset to the volume."
 msgstr "Kanäle auswählen, um einen Lautstärke-Offset hinzuzufügen."
 
 msgid "Select commit log"
-msgstr "Commit-Protokoll auswählen"
+msgstr "Commit-Log auswählen"
 
 msgid "Select copy destination for:"
 msgstr "Kopierziel auswählen:"
@@ -17145,9 +17069,6 @@ msgstr "Netzwerkeinstellungen. Hier können Sie DHCP, IP, DNS einrichten."
 
 msgid "Setup rotor"
 msgstr "Rotoreinstellungen"
-
-msgid "Setup the interval to check for online updates. (in hours)"
-msgstr "Alle x Stunden auf Onlineaktualisierungen prüfen."
 
 msgid "Setup tuner(s)"
 msgstr "Tunereinstellungen"
@@ -18341,9 +18262,6 @@ msgstr "Softwareverwaltungs-Information"
 msgid "Softwaremanager..."
 msgstr "Softwareverwaltung..."
 
-msgid "Softwareupdate"
-msgstr "Softwareaktualisierung"
-
 msgid "Solomon Islands"
 msgstr "Salomonen"
 
@@ -18652,6 +18570,7 @@ msgstr "Beginnend ab"
 msgid "Starts in a few seconds"
 msgstr "Startet in wenigen Sekunden"
 
+#. TRANSLATORS: "State" is Location Info
 msgid "State"
 msgstr "Staat"
 
@@ -19391,7 +19310,7 @@ msgstr "Ihre %s %s speichert die EPG-Daten nach der eingestellten Zeit automatis
 
 #, python-format
 msgid "The %s commit log contains no information."
-msgstr "Das %s Commit-Protokoll enthält keine Informationen!"
+msgstr "Das %s Commit-Log enthält keine Informationen!"
 
 #, python-format
 msgid "The %s commit logs can't be retrieved, please try again later."
@@ -19399,7 +19318,7 @@ msgstr "Die %s Commit-Logs können nicht abgerufen werden! Bitte versuchen Sie e
 
 #, python-format
 msgid "The '%s' log file contains no information."
-msgstr "Die '%s' Protokolldatei enthält keine Informationen."
+msgstr "Die '%s' Log-Datei enthält keine Informationen."
 
 msgid ""
 "The AutoTimer plugin is not installed!\n"
@@ -21557,9 +21476,6 @@ msgstr "VOD lang"
 msgid "VPN"
 msgstr "VPN"
 
-msgid "VU+"
-msgstr "Vu+"
-
 msgid "Valid"
 msgstr "Gültig"
 
@@ -21942,12 +21858,6 @@ msgstr "WPA2"
 msgid "WSS on 4:3"
 msgstr "WSS bei 4:3"
 
-msgid "WWIO 4K"
-msgstr "WWIO 4K"
-
-msgid "WWIO_BRE2ZE_TC"
-msgstr "WWIO_BRE2ZE_TC"
-
 msgid "Waffen"
 msgstr "Waffen"
 
@@ -22183,9 +22093,6 @@ msgstr "Bei 'Ja' werden alle vorhandenen Favoritenlisten geladen, auch wenn sie 
 # /data/setup.xml
 msgid "When enabled the PiP can be closed by the exit button."
 msgstr "Bei 'Ja' kann der Bild im Bild Modus mit EXIT beendet werden."
-
-msgid "When enabled the online checker will also check for experimental versions"
-msgstr "Wenn aktiviert, werden auch experimentelle Updates gesucht."
 
 msgid "When enabled the receiver will automatically be switched off."
 msgstr "Wenn aktiviert wird der Receiver automatisch ausgeschaltet."
@@ -22513,12 +22420,6 @@ msgstr "www lang"
 
 msgid "XBox 360 support"
 msgstr "Unterstützung für XBox 360"
-
-msgid "XP1000"
-msgstr "XP1000"
-
-msgid "XP3000"
-msgstr "XP3000"
 
 msgid "XPicon, ZZZPicon"
 msgstr "XPicon, ZZZPicon"
@@ -23122,20 +23023,8 @@ msgstr "Nächste Sendung umschalten und aufnehmen"
 msgid "Zeichentrick"
 msgstr "Zeichentrick"
 
-msgid "Zgemma H.S/H.2S/H.2H/H5/H7"
-msgstr "Zgemma H.S/H.2S/H.2H/H5/H7"
-
 msgid "Zgemma H.S/H.2S/H.2H/H5/H7 old Model"
 msgstr "Zgemma H.S/H.2S/H.2H/H5/H7 altes Modell"
-
-msgid "Zgemma H8/H0/H9/I55Plus old Model"
-msgstr "Zgemma H9/I55Plus altes Modell"
-
-msgid "Zgemma Star S/2S/H1/H2"
-msgstr "Zgemma Star S/2S/H1/H2"
-
-msgid "Zgemma i55"
-msgstr "Zgemma i55"
 
 msgid "Zhuang / Chuang"
 msgstr "Zhuang / Chuang"
@@ -23732,24 +23621,6 @@ msgstr "Fehler beim Start der Suche!"
 msgid "error while scanning"
 msgstr "Fehler beim Suchen!"
 
-msgid "et4000"
-msgstr "et4000"
-
-msgid "et5000/6000"
-msgstr "et5000/6000"
-
-msgid "et8000/et10000/et13000"
-msgstr "et8000/et10000/et13000"
-
-msgid "et8000/et10000/et13000/SF5008"
-msgstr "et8000/et10000/et13000/SF5008"
-
-msgid "et9000/et9100"
-msgstr "et9000/et9100"
-
-msgid "et9200/9500/6500"
-msgstr "et9200/9500/6500"
-
 msgid "execute cuts (requires MovieCut plugin)"
 msgstr "Filmschnitt ausführen (erfordert das MovieCut-Plugin)"
 
@@ -24083,9 +23954,6 @@ msgstr "Freizeithobbys (allgemein)"
 msgid "length"
 msgstr "Länge"
 
-msgid "limit ..., aborting !"
-msgstr "Limit erreicht - Abbruch!"
-
 msgid "literature"
 msgstr "Literatur"
 
@@ -24185,9 +24053,6 @@ msgstr "Film (allgemein)"
 
 msgid "movie/drama (general)"
 msgstr "Film/Drama (allgemein)"
-
-msgid "ms"
-msgstr "ms"
 
 msgid "multi"
 msgstr "multi"
@@ -25046,14 +24911,14 @@ msgid "west"
 msgstr "West"
 
 msgid "when asking question about this log"
-msgstr "wenn Sie Fragen zu diesem Protokoll stellen"
+msgstr "wenn Sie Fragen zu diesem Log stellen"
 
 msgid ""
 "when asking question about this log\n"
 "\n"
 "A copy has been sent to yourself."
 msgstr ""
-"wenn Sie Fragen zu diesem Protokoll stellen.\n"
+"wenn Sie Fragen zu diesem Log stellen.\n"
 "\n"
 "Eine Kopie wurde an Sie selbst gesandt."
 
@@ -25132,6 +24997,148 @@ msgstr "Umschalten"
 
 msgid "®"
 msgstr "®"
+
+#
+#, python-format
+#~ msgid "%d Mins"
+#~ msgstr "%d Min"
+
+#, fuzzy
+#~ msgid "Allow unstable (untested) updates"
+#~ msgstr "Instabile (ungetestete) Updates erlauben"
+
+#~ msgid "Automatic image backup"
+#~ msgstr "Automatische Image-Sicherung"
+
+#~ msgid "Automatic setting backup"
+#~ msgstr "Automatische Sicherung der Einstellungen"
+
+#~ msgid "Axas E4HD Ultra"
+#~ msgstr "Axas E4HD Ultra"
+
+#~ msgid "Background check"
+#~ msgstr "Prüfung im Hintergrund"
+
+#~ msgid "Beyonwiz U4"
+#~ msgstr "Beyonwiz U4"
+
+#, fuzzy
+#~ msgid "Cannot determine"
+#~ msgstr "Kann nicht ermittelt werden"
+
+#~ msgid "Check every (hours)"
+#~ msgstr "Alle x Stunden prüfen"
+
+#~ msgid "Current device: "
+#~ msgstr "Aktuelles Gerät: "
+
+#~ msgid "E3HD/XPEEDLX/GI"
+#~ msgstr "E3HD/XPEEDLX/GI"
+
+#~ msgid "F1/F3/F4/F4-TURBO/TRIPLEX"
+#~ msgstr "F1/F3/F4/F4-TURBO/TRIPLEX"
+
+#~ msgid "GIGABLUE Black"
+#~ msgstr "GIGABLUE Black"
+
+#~ msgid "HD11/HD51/HD1100/HD1200/HD1265/HD1500/HD500C/HD530C/VS1000/VS1500"
+#~ msgstr "HD11/HD51/HD1100/HD1200/HD1265/HD1500/HD500C/HD530C/VS1000/VS1500"
+
+#~ msgid "HD11/HD51/HD1100/HD1200/HD1265/HD1500/HD500C/HD530C/et7x00/et8500/VS1000/VS1500"
+#~ msgstr "HD11/HD51/HD1100/HD1200/HD1265/HD1500/HD500C/HD530C/et7x00/et8500/VS1000/VS1500"
+
+#~ msgid "HD2400"
+#~ msgstr "HD2400"
+
+#~ msgid "HD60/Multibox/Multiboxse"
+#~ msgstr "HD60/Multibox/Multiboxse"
+
+#~ msgid "MIRACLEBOX_TWINPLUS"
+#~ msgstr "MIRACLEBOX_TWINPLUS"
+
+#~ msgid "MaraM9"
+#~ msgstr "MaraM9"
+
+#~ msgid "OCTAGON SF5008"
+#~ msgstr "OCTAGON SF5008"
+
+#~ msgid "OCTAGON_SF4008"
+#~ msgstr "OCTAGON_SF4008"
+
+#~ msgid "ODIN_M7"
+#~ msgstr "ODIN_M7"
+
+#~ msgid "Perform a image backup before updating."
+#~ msgstr "Vor der Aktualisierung eine Image-Sicherung durchführen."
+
+#~ msgid "Perform a setting backup before updating."
+#~ msgstr "Vor der Aktualisierung eine Sicherung der Einstellungen durchführen."
+
+#~ msgid "Perform an online update check in the background"
+#~ msgstr "Eine Prüfung auf Onlineaktualisierung im Hintergrund durchführen."
+
+#~ msgid "Protek 4K UHD/HD61"
+#~ msgstr "Protek 4K UHD/HD61"
+
+#~ msgid "Setup the interval to check for online updates. (in hours)"
+#~ msgstr "Alle x Stunden auf Onlineaktualisierungen prüfen."
+
+#~ msgid "Softwareupdate"
+#~ msgstr "Softwareaktualisierung"
+
+#~ msgid "VU+"
+#~ msgstr "Vu+"
+
+#~ msgid "WWIO 4K"
+#~ msgstr "WWIO 4K"
+
+#~ msgid "WWIO_BRE2ZE_TC"
+#~ msgstr "WWIO_BRE2ZE_TC"
+
+#~ msgid "When enabled the online checker will also check for experimental versions"
+#~ msgstr "Wenn aktiviert, werden auch experimentelle Updates gesucht."
+
+#~ msgid "XP1000"
+#~ msgstr "XP1000"
+
+#~ msgid "XP3000"
+#~ msgstr "XP3000"
+
+#~ msgid "Zgemma H.S/H.2S/H.2H/H5/H7"
+#~ msgstr "Zgemma H.S/H.2S/H.2H/H5/H7"
+
+#~ msgid "Zgemma H8/H0/H9/I55Plus old Model"
+#~ msgstr "Zgemma H9/I55Plus altes Modell"
+
+#~ msgid "Zgemma Star S/2S/H1/H2"
+#~ msgstr "Zgemma Star S/2S/H1/H2"
+
+#~ msgid "Zgemma i55"
+#~ msgstr "Zgemma i55"
+
+#~ msgid "et4000"
+#~ msgstr "et4000"
+
+#~ msgid "et5000/6000"
+#~ msgstr "et5000/6000"
+
+#~ msgid "et8000/et10000/et13000"
+#~ msgstr "et8000/et10000/et13000"
+
+#~ msgid "et8000/et10000/et13000/SF5008"
+#~ msgstr "et8000/et10000/et13000/SF5008"
+
+#~ msgid "et9000/et9100"
+#~ msgstr "et9000/et9100"
+
+#~ msgid "et9200/9500/6500"
+#~ msgstr "et9200/9500/6500"
+
+#~ msgid "limit ..., aborting !"
+#~ msgstr "Limit erreicht - Abbruch!"
+
+#~ msgid "ms"
+#~ msgstr "ms"
 
 #, python-format
 #~ msgid "  (%s x %s)"

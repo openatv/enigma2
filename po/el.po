@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Enigma2 Official Greek Translation\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-02-07 20:18+0000\n"
+"POT-Creation-Date: 2022-02-11 14:04+0000\n"
 "PO-Revision-Date: 2021-08-19 12:59+0000\n"
 "Last-Translator: MCelliotG <mcelliotg@gmail.com>\n"
 "Language-Team: Greek <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/el/>\n"
@@ -1049,10 +1049,6 @@ msgid "%d Min"
 msgid_plural "%d Mins"
 msgstr[0] "%d Λεπτό"
 msgstr[1] "%d Λεπτά"
-
-#, python-format
-msgid "%d Mins"
-msgstr "%d Λεπτά"
 
 #. TRANSLATORS: Intermediate scanning result, '%d' channel(s) have been found so far
 #, python-format
@@ -2700,9 +2696,6 @@ msgstr "Να επιτρέπεται η εξίσωση υποτίτλων και 
 msgid "Allow subtitles for hearing impaired"
 msgstr "Να επιτρέπονται υπότιτλοι για άτομα με προβλήματα ακοής"
 
-msgid "Allow unstable (untested) updates"
-msgstr "Να επιτρέπονται οι ασταθείς (μη δοκιμασμένες) ενημερώσεις"
-
 msgid "Allow unsupported modes"
 msgstr "Να επιτρέπονται οι μη υποστηριζόμενες λειτουργίες"
 
@@ -3201,9 +3194,6 @@ msgstr "Αυτόματη ανίχνευση"
 msgid "Automatic Service Searching"
 msgstr "Αυτόματη ανίχνευση υπηρεσιών"
 
-msgid "Automatic image backup"
-msgstr "Αυτόματη εφεδρεία image"
-
 msgid "Automatic resolution"
 msgstr "Αυτόματη ανάλυση"
 
@@ -3215,9 +3205,6 @@ msgstr "Αυτόματη ανίχνευση"
 
 msgid "Automatic scan for services"
 msgstr "Αυτόματη ανίχνευση υπηρεσιών"
-
-msgid "Automatic setting backup"
-msgstr "Αυτόματη εφεδρεία ρύθμισης"
 
 msgid "Automatically put the TV in standby whenever the receiver goes into standby or deep standby."
 msgstr ""
@@ -3257,9 +3244,6 @@ msgstr ""
 
 msgid "Avoid getting stuck (at the expense of some stuttering) when the jump time is smaller than the time between I-frames."
 msgstr "Αποφυγή παγώματος (με μικρές διακοπές αναγκαστικά) όταν ο χρόνος υπερπήδησης είναι μικρότερος του χρόνου μεταξύ των Ι-καρέ."
-
-msgid "Axas E4HD Ultra"
-msgstr "Axas E4HD Ultra"
 
 msgid "Aymara"
 msgstr ""
@@ -3354,9 +3338,6 @@ msgstr "Πίσω/Ανάκληση"
 
 msgid "Background"
 msgstr "Φόντο"
-
-msgid "Background check"
-msgstr "Έλεγχος στο παρασκήνιο"
 
 msgid "Background color"
 msgstr "Χρώμα φόντου"
@@ -3549,9 +3530,6 @@ msgstr "Βερμούδες"
 
 msgid "Berufe"
 msgstr "Επαγγέλματα"
-
-msgid "Beyonwiz U4"
-msgstr "Beyonwiz U4"
 
 msgid "Beziehung"
 msgstr "Σχέσεις"
@@ -4137,8 +4115,10 @@ msgstr "Αδυναμία διαγραφής του κατεβασμένου imag
 msgid "Cannot delete file"
 msgstr "Αδυναμία διαγραφής αρχείου"
 
-msgid "Cannot determine"
-msgstr "Αδυναμία προσδιορισμού"
+#. TRANSLATORS: "Cannot determine (east/west) limit ..., aborting !"
+#, python-format
+msgid "Cannot determine %s limit ..., aborting !"
+msgstr ""
 
 msgid "Cannot find any signal ..., aborting !"
 msgstr "Αδυναμία εύρεσης σήματος ..., ματαίωση !"
@@ -4394,9 +4374,6 @@ msgstr "Έλεγχος"
 
 msgid "Check HDD"
 msgstr "Έλεγχος σκληρού δίσκου"
-
-msgid "Check every (hours)"
-msgstr "Έλεγχος κάθε (ώρες)"
 
 msgid "Check power and input state from TV"
 msgstr "Έλεγχος της ισχύος και της κατάστασης εισόδου από την TV"
@@ -5512,9 +5489,6 @@ msgstr "Τρέχουσα κατάσταση:"
 
 msgid "Current crash log"
 msgstr ""
-
-msgid "Current device: "
-msgstr "Τρέχουσα συσκευή: "
 
 msgid "Current installed"
 msgstr "Τρέχον εγκατεστημένο"
@@ -6863,9 +6837,6 @@ msgstr "Ε"
 msgid "E "
 msgstr " "
 
-msgid "E3HD/XPEEDLX/GI"
-msgstr "E3HD/XPEEDLX/GI"
-
 #, fuzzy
 msgid "ECM Info"
 msgstr "Πληροφορίες ECM CCcam"
@@ -7866,9 +7837,6 @@ msgstr "F1"
 msgid "F1 long"
 msgstr "F1 παρατεταμένο"
 
-msgid "F1/F3/F4/F4-TURBO/TRIPLEX"
-msgstr "F1/F3/F4/F4-TURBO/TRIPLEX"
-
 msgid "F2"
 msgstr "F2"
 
@@ -8426,9 +8394,6 @@ msgstr "GB"
 msgid "GCC version"
 msgstr ""
 
-msgid "GIGABLUE Black"
-msgstr "GIGABLUE Black"
-
 msgid "GStreamer version"
 msgstr ""
 
@@ -8756,18 +8721,6 @@ msgstr ""
 
 msgid "HD list"
 msgstr "Λίστα HD"
-
-msgid "HD11/HD51/HD1100/HD1200/HD1265/HD1500/HD500C/HD530C/VS1000/VS1500"
-msgstr "HD11/HD51/HD1100/HD1200/HD1265/HD1500/HD500C/HD530C/VS1000/VS1500"
-
-msgid "HD11/HD51/HD1100/HD1200/HD1265/HD1500/HD500C/HD530C/et7x00/et8500/VS1000/VS1500"
-msgstr "HD11/HD51/HD1100/HD1200/HD1265/HD1500/HD500C/HD530C/et7x00/et8500/VS1000/VS1500"
-
-msgid "HD2400"
-msgstr "HD2400"
-
-msgid "HD60/Multibox/Multiboxse"
-msgstr ""
 
 msgid "HDMI"
 msgstr "HDMI"
@@ -10612,9 +10565,6 @@ msgstr "MB"
 msgid "MENU"
 msgstr ""
 
-msgid "MIRACLEBOX_TWINPLUS"
-msgstr "MIRACLEBOX_TWINPLUS"
-
 msgid "MKUBIFS"
 msgstr ""
 
@@ -10766,9 +10716,6 @@ msgstr ""
 
 msgid "Maori"
 msgstr ""
-
-msgid "MaraM9"
-msgstr "MaraM9"
 
 #, fuzzy
 msgid "Marathi"
@@ -12131,15 +12078,6 @@ msgstr "Αριθμός γραμμών προς εμφάνιση"
 msgid "Number or SMS style data entry"
 msgstr "Στυλ εισόδου ως αριθμός ή SMS"
 
-msgid "OCTAGON SF5008"
-msgstr "OCTAGON SF5008"
-
-msgid "OCTAGON_SF4008"
-msgstr "OCTAGON_SF4008"
-
-msgid "ODIN_M7"
-msgstr "ODIN_M7"
-
 msgid "OEM Model"
 msgstr ""
 
@@ -12747,17 +12685,8 @@ msgstr "Ποσοστό/μπάρα προόδου αριστερά"
 msgid "Percentage/Progress bar right"
 msgstr "Ποσοστό/μπάρα προόδου δεξιά"
 
-msgid "Perform a image backup before updating."
-msgstr "Εκτέλεσης εφεδρείας image πριν την ενημέρωση."
-
-msgid "Perform a setting backup before updating."
-msgstr "Εκτέλεση εφεδρείας ρυθμίσεων πριν την ενημέρωση."
-
 msgid "Perform an on-line flash instead"
 msgstr ""
-
-msgid "Perform an online update check in the background"
-msgstr "Εκτέλεση ελέγχου διαδικτυακής ενημέρωσης στο παρασκήνιο"
 
 msgid "Permanently delete all recordings in the trash can?"
 msgstr "Οριστική διαγραφή όλων των εγγραφών από τον κάδο;"
@@ -13764,9 +13693,6 @@ msgstr "Προστασία μενού αναμονής"
 
 msgid "Protect timer menu"
 msgstr "Προστασία μενού χρονοδιακοπτών"
-
-msgid "Protek 4K UHD/HD61"
-msgstr "Protek 4K UHD/HD61"
 
 msgid "Protocol"
 msgstr "Πρωτόκολλο"
@@ -16160,9 +16086,6 @@ msgstr "Ρυθμίσεις δικτύου. Εδώ μπορείτε να ρυθμ
 msgid "Setup rotor"
 msgstr "Ρυθμίσεις μοτέρ"
 
-msgid "Setup the interval to check for online updates. (in hours)"
-msgstr "Ορισμός μεσοδιαστήματος ελέγχου για διαδικτυακές ενημερώσεις (σε ώρες)."
-
 msgid "Setup tuner(s)"
 msgstr "Ρυθμίσεις tuner(s)"
 
@@ -17287,9 +17210,6 @@ msgstr "Πληροφορίες διαχείρισης λογισμικού"
 msgid "Softwaremanager..."
 msgstr "Διαχείριση λογισμικού..."
 
-msgid "Softwareupdate"
-msgstr "Ενημέρωση λογισμικού"
-
 msgid "Solomon Islands"
 msgstr "Νήσοι Σολωμόντα"
 
@@ -17577,6 +17497,7 @@ msgstr "Έναρξη από το"
 msgid "Starts in a few seconds"
 msgstr "Ξεκινά σε λίγα δευτερόλεπτα"
 
+#. TRANSLATORS: "State" is Location Info
 msgid "State"
 msgstr ""
 
@@ -20284,9 +20205,6 @@ msgstr "VOD παρατεταμένο"
 msgid "VPN"
 msgstr "VPN"
 
-msgid "VU+"
-msgstr "VU+"
-
 msgid "Valid"
 msgstr ""
 
@@ -20631,12 +20549,6 @@ msgstr "WPA2"
 msgid "WSS on 4:3"
 msgstr "WSS σε 4:3"
 
-msgid "WWIO 4K"
-msgstr "WWIO 4K"
-
-msgid "WWIO_BRE2ZE_TC"
-msgstr "WWIO_BRE2ZE_TC"
-
 msgid "Waffen"
 msgstr "Όπλα"
 
@@ -20851,9 +20763,6 @@ msgstr "Όταν είναι ενεργό, το enigma2 θα φορτώνει τ�
 
 msgid "When enabled the PiP can be closed by the exit button."
 msgstr "Όταν είναι ενεργό, το PiP μπορεί να τερματιστεί με το πλήκτρο εξόδου."
-
-msgid "When enabled the online checker will also check for experimental versions"
-msgstr "Όταν είναι ενεργό, ο διαδικτυακός έλεγχος θα ψάξει επίσης για πειραματικές εκδόσεις"
 
 msgid "When enabled the receiver will automatically be switched off."
 msgstr ""
@@ -21160,12 +21069,6 @@ msgstr "Www παρατεταμένο"
 
 msgid "XBox 360 support"
 msgstr "Υποστήριξη XBox 360"
-
-msgid "XP1000"
-msgstr "XP1000"
-
-msgid "XP3000"
-msgstr "XP3000"
 
 msgid "XPicon, ZZZPicon"
 msgstr "XPicon, ZZZPicon"
@@ -21713,21 +21616,8 @@ msgstr "Μετάβαση+Εγγραφή επόμενου"
 msgid "Zeichentrick"
 msgstr "Κινούμενα σχέδια"
 
-msgid "Zgemma H.S/H.2S/H.2H/H5/H7"
-msgstr "Zgemma H.S/H.2S/H.2H/H5/H7"
-
 msgid "Zgemma H.S/H.2S/H.2H/H5/H7 old Model"
 msgstr "Zgemma H.S/H.2S/H.2H/H5/H7 παλαιό μοντέλο"
-
-#, fuzzy
-msgid "Zgemma H8/H0/H9/I55Plus old Model"
-msgstr "Zgemma H9/I55Plus παλαιό μοντέλο"
-
-msgid "Zgemma Star S/2S/H1/H2"
-msgstr "Zgemma Star S/2S/H1/H2"
-
-msgid "Zgemma i55"
-msgstr "Zgemma i55"
 
 msgid "Zhuang / Chuang"
 msgstr ""
@@ -22263,24 +22153,6 @@ msgstr "σφάλμα έναρξης ανίχνευσης"
 msgid "error while scanning"
 msgstr "σφάλμα κατά την ανίχνευση"
 
-msgid "et4000"
-msgstr "et4000"
-
-msgid "et5000/6000"
-msgstr "et5000/6000"
-
-msgid "et8000/et10000/et13000"
-msgstr "et8000/et10000/et13000"
-
-msgid "et8000/et10000/et13000/SF5008"
-msgstr "et8000/et10000/et13000/SF5008"
-
-msgid "et9000/et9100"
-msgstr "et9000/et9100"
-
-msgid "et9200/9500/6500"
-msgstr "et9200/9500/6500"
-
 msgid "execute cuts (requires MovieCut plugin)"
 msgstr "εκτέλεση περικοπών (απαιτείται το πρόσθετο MovieCut)"
 
@@ -22587,9 +22459,6 @@ msgstr "χόμπι αναψυχής (γενικά)"
 msgid "length"
 msgstr "διάρκεια"
 
-msgid "limit ..., aborting !"
-msgstr "όριο ..., ματαίωση!"
-
 msgid "literature"
 msgstr "λογοτεχνία"
 
@@ -22676,9 +22545,6 @@ msgstr "ταινία (γενικά)"
 
 msgid "movie/drama (general)"
 msgstr "ταινία/δράμα (γενικά)"
-
-msgid "ms"
-msgstr "ms"
 
 msgid "multi"
 msgstr "πολλαπλό"
@@ -23529,6 +23395,143 @@ msgstr "ζάπινγκ"
 
 msgid "®"
 msgstr ""
+
+#, python-format
+#~ msgid "%d Mins"
+#~ msgstr "%d Λεπτά"
+
+#~ msgid "Allow unstable (untested) updates"
+#~ msgstr "Να επιτρέπονται οι ασταθείς (μη δοκιμασμένες) ενημερώσεις"
+
+#~ msgid "Automatic image backup"
+#~ msgstr "Αυτόματη εφεδρεία image"
+
+#~ msgid "Automatic setting backup"
+#~ msgstr "Αυτόματη εφεδρεία ρύθμισης"
+
+#~ msgid "Axas E4HD Ultra"
+#~ msgstr "Axas E4HD Ultra"
+
+#~ msgid "Background check"
+#~ msgstr "Έλεγχος στο παρασκήνιο"
+
+#~ msgid "Beyonwiz U4"
+#~ msgstr "Beyonwiz U4"
+
+#~ msgid "Cannot determine"
+#~ msgstr "Αδυναμία προσδιορισμού"
+
+#~ msgid "Check every (hours)"
+#~ msgstr "Έλεγχος κάθε (ώρες)"
+
+#~ msgid "Current device: "
+#~ msgstr "Τρέχουσα συσκευή: "
+
+#~ msgid "E3HD/XPEEDLX/GI"
+#~ msgstr "E3HD/XPEEDLX/GI"
+
+#~ msgid "F1/F3/F4/F4-TURBO/TRIPLEX"
+#~ msgstr "F1/F3/F4/F4-TURBO/TRIPLEX"
+
+#~ msgid "GIGABLUE Black"
+#~ msgstr "GIGABLUE Black"
+
+#~ msgid "HD11/HD51/HD1100/HD1200/HD1265/HD1500/HD500C/HD530C/VS1000/VS1500"
+#~ msgstr "HD11/HD51/HD1100/HD1200/HD1265/HD1500/HD500C/HD530C/VS1000/VS1500"
+
+#~ msgid "HD11/HD51/HD1100/HD1200/HD1265/HD1500/HD500C/HD530C/et7x00/et8500/VS1000/VS1500"
+#~ msgstr "HD11/HD51/HD1100/HD1200/HD1265/HD1500/HD500C/HD530C/et7x00/et8500/VS1000/VS1500"
+
+#~ msgid "HD2400"
+#~ msgstr "HD2400"
+
+#~ msgid "MIRACLEBOX_TWINPLUS"
+#~ msgstr "MIRACLEBOX_TWINPLUS"
+
+#~ msgid "MaraM9"
+#~ msgstr "MaraM9"
+
+#~ msgid "OCTAGON SF5008"
+#~ msgstr "OCTAGON SF5008"
+
+#~ msgid "OCTAGON_SF4008"
+#~ msgstr "OCTAGON_SF4008"
+
+#~ msgid "ODIN_M7"
+#~ msgstr "ODIN_M7"
+
+#~ msgid "Perform a image backup before updating."
+#~ msgstr "Εκτέλεσης εφεδρείας image πριν την ενημέρωση."
+
+#~ msgid "Perform a setting backup before updating."
+#~ msgstr "Εκτέλεση εφεδρείας ρυθμίσεων πριν την ενημέρωση."
+
+#~ msgid "Perform an online update check in the background"
+#~ msgstr "Εκτέλεση ελέγχου διαδικτυακής ενημέρωσης στο παρασκήνιο"
+
+#~ msgid "Protek 4K UHD/HD61"
+#~ msgstr "Protek 4K UHD/HD61"
+
+#~ msgid "Setup the interval to check for online updates. (in hours)"
+#~ msgstr "Ορισμός μεσοδιαστήματος ελέγχου για διαδικτυακές ενημερώσεις (σε ώρες)."
+
+#~ msgid "Softwareupdate"
+#~ msgstr "Ενημέρωση λογισμικού"
+
+#~ msgid "VU+"
+#~ msgstr "VU+"
+
+#~ msgid "WWIO 4K"
+#~ msgstr "WWIO 4K"
+
+#~ msgid "WWIO_BRE2ZE_TC"
+#~ msgstr "WWIO_BRE2ZE_TC"
+
+#~ msgid "When enabled the online checker will also check for experimental versions"
+#~ msgstr "Όταν είναι ενεργό, ο διαδικτυακός έλεγχος θα ψάξει επίσης για πειραματικές εκδόσεις"
+
+#~ msgid "XP1000"
+#~ msgstr "XP1000"
+
+#~ msgid "XP3000"
+#~ msgstr "XP3000"
+
+#~ msgid "Zgemma H.S/H.2S/H.2H/H5/H7"
+#~ msgstr "Zgemma H.S/H.2S/H.2H/H5/H7"
+
+#, fuzzy
+#~ msgid "Zgemma H8/H0/H9/I55Plus old Model"
+#~ msgstr "Zgemma H9/I55Plus παλαιό μοντέλο"
+
+#~ msgid "Zgemma Star S/2S/H1/H2"
+#~ msgstr "Zgemma Star S/2S/H1/H2"
+
+#~ msgid "Zgemma i55"
+#~ msgstr "Zgemma i55"
+
+#~ msgid "et4000"
+#~ msgstr "et4000"
+
+#~ msgid "et5000/6000"
+#~ msgstr "et5000/6000"
+
+#~ msgid "et8000/et10000/et13000"
+#~ msgstr "et8000/et10000/et13000"
+
+#~ msgid "et8000/et10000/et13000/SF5008"
+#~ msgstr "et8000/et10000/et13000/SF5008"
+
+#~ msgid "et9000/et9100"
+#~ msgstr "et9000/et9100"
+
+#~ msgid "et9200/9500/6500"
+#~ msgstr "et9200/9500/6500"
+
+#~ msgid "limit ..., aborting !"
+#~ msgstr "όριο ..., ματαίωση!"
+
+#~ msgid "ms"
+#~ msgstr "ms"
 
 #, fuzzy, python-format
 #~ msgid "  (%s x %s)"

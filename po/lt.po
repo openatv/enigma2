@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-02-07 20:18+0000\n"
+"POT-Creation-Date: 2022-02-11 14:04+0000\n"
 "PO-Revision-Date: 2022-02-05 00:08+0000\n"
 "Last-Translator: Adga56 <adga45@gmail.com>\n"
 "Language-Team: Lithuanian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/lt/>\n"
@@ -1025,10 +1025,6 @@ msgid_plural "%d Mins"
 msgstr[0] "%d min."
 msgstr[1] "%d min."
 msgstr[2] "%d min."
-
-#, python-format
-msgid "%d Mins"
-msgstr "%d min."
 
 #. TRANSLATORS: Intermediate scanning result, '%d' channel(s) have been found so far
 #, python-format
@@ -2682,9 +2678,6 @@ msgstr "Leisti tos pačios kalbos, kaip garso takelis, subtitrus"
 msgid "Allow subtitles for hearing impaired"
 msgstr "Leisti subtitrus turintiems klausos sutrikimų"
 
-msgid "Allow unstable (untested) updates"
-msgstr "Leisti nestabilius (neišbandytus) atnaujinimus"
-
 msgid "Allow unsupported modes"
 msgstr "Leisti nepalaikomus režimus"
 
@@ -3187,9 +3180,6 @@ msgstr "Automatinė paieška"
 msgid "Automatic Service Searching"
 msgstr "Automatinė kanalų paieška"
 
-msgid "Automatic image backup"
-msgstr "Automatinė atvaizdo atsarginė kopija"
-
 msgid "Automatic resolution"
 msgstr "Automatinė raiška"
 
@@ -3201,9 +3191,6 @@ msgstr "Automatinė paieška"
 
 msgid "Automatic scan for services"
 msgstr "Automatinė kanalų paieška"
-
-msgid "Automatic setting backup"
-msgstr "Automatinė nustatymų atsarginė kopija"
 
 msgid "Automatically put the TV in standby whenever the receiver goes into standby or deep standby."
 msgstr "Automatiškai nustatykite televizorių į budėjimo režimą, kai imtuvas pereina į budėjimo režimą arba gilų budėjimo režimą."
@@ -3243,9 +3230,6 @@ msgstr "Avestanas"
 
 msgid "Avoid getting stuck (at the expense of some stuttering) when the jump time is smaller than the time between I-frames."
 msgstr "Venkite strigimų (bent trumpų užsikirtimų sąskaita), kai šuolio laikas yra mažesnis už laiką tarp I-kadrų."
-
-msgid "Axas E4HD Ultra"
-msgstr "Axas E4HD Ultra"
 
 msgid "Aymara"
 msgstr "Aymara"
@@ -3339,9 +3323,6 @@ msgstr "Atgal/atkurti"
 
 msgid "Background"
 msgstr "Fonas"
-
-msgid "Background check"
-msgstr "Patikrinimas fone"
 
 msgid "Background color"
 msgstr "Fono spalva"
@@ -3531,9 +3512,6 @@ msgstr "Bermudai"
 
 msgid "Berufe"
 msgstr "Profesijos"
-
-msgid "Beyonwiz U4"
-msgstr "Beyonwiz U4"
 
 msgid "Beziehung"
 msgstr "Santykiai"
@@ -4123,8 +4101,10 @@ msgstr "Negalima ištrinti atsisiųsto atvaizdo"
 msgid "Cannot delete file"
 msgstr "Failo ištrinti nepavyko"
 
-msgid "Cannot determine"
-msgstr "Negalima nustatyti"
+#. TRANSLATORS: "Cannot determine (east/west) limit ..., aborting !"
+#, python-format
+msgid "Cannot determine %s limit ..., aborting !"
+msgstr ""
 
 msgid "Cannot find any signal ..., aborting !"
 msgstr "Jokio signalo nerasta …,  nutraukiama !"
@@ -4376,9 +4356,6 @@ msgstr "Tikrinti"
 
 msgid "Check HDD"
 msgstr "Tikrinti HDD"
-
-msgid "Check every (hours)"
-msgstr "Tikrinti kas (val.)"
 
 msgid "Check power and input state from TV"
 msgstr "Patikrinti maitinimo ir įvesties būseną iš TV"
@@ -5492,9 +5469,6 @@ msgstr "Dabartinė būsena:"
 
 msgid "Current crash log"
 msgstr ""
-
-msgid "Current device: "
-msgstr "Dabartinis prietaisas: "
 
 msgid "Current installed"
 msgstr "Dabar įdiegtas atvaizdas"
@@ -6826,9 +6800,6 @@ msgstr "E"
 msgid "E "
 msgstr "Е "
 
-msgid "E3HD/XPEEDLX/GI"
-msgstr "E3HD/XPEEDLX/GI"
-
 msgid "ECM Info"
 msgstr "ECM informacija"
 
@@ -7826,9 +7797,6 @@ msgstr "F1"
 msgid "F1 long"
 msgstr "F2 (ilgai spausti)"
 
-msgid "F1/F3/F4/F4-TURBO/TRIPLEX"
-msgstr "F1/F3/F4/F4-TURBO/TRIPLEX"
-
 msgid "F2"
 msgstr "F2"
 
@@ -8375,9 +8343,6 @@ msgstr "GB"
 msgid "GCC version"
 msgstr ""
 
-msgid "GIGABLUE Black"
-msgstr "GIGABLUE Black"
-
 msgid "GStreamer version"
 msgstr ""
 
@@ -8704,18 +8669,6 @@ msgstr ""
 
 msgid "HD list"
 msgstr "HD sąrašas"
-
-msgid "HD11/HD51/HD1100/HD1200/HD1265/HD1500/HD500C/HD530C/VS1000/VS1500"
-msgstr "HD11/HD51/HD1100/HD1200/HD1265/HD1500/HD500C/HD530C/VS1000/VS1500"
-
-msgid "HD11/HD51/HD1100/HD1200/HD1265/HD1500/HD500C/HD530C/et7x00/et8500/VS1000/VS1500"
-msgstr "HD11/HD51/HD1100/HD1200/HD1265/HD1500/HD500C/HD530C/et7x00/et8500/VS1000/VS1500"
-
-msgid "HD2400"
-msgstr "HD2400"
-
-msgid "HD60/Multibox/Multiboxse"
-msgstr "HD60/Multibox/Multiboxse"
 
 msgid "HDMI"
 msgstr "HDMI"
@@ -10529,9 +10482,6 @@ msgstr "MB"
 msgid "MENU"
 msgstr "MENIU"
 
-msgid "MIRACLEBOX_TWINPLUS"
-msgstr "MIRACLEBOX_TWINPLUS"
-
 msgid "MKUBIFS"
 msgstr ""
 
@@ -10676,9 +10626,6 @@ msgstr "Meno salos"
 
 msgid "Maori"
 msgstr "Maoris"
-
-msgid "MaraM9"
-msgstr "MaraM9"
 
 msgid "Marathi"
 msgstr "Maračių"
@@ -11999,15 +11946,6 @@ msgstr "Rodomas eilučių skaičius"
 msgid "Number or SMS style data entry"
 msgstr "Skaičių ar SMS stiliaus duomenų įvedimas"
 
-msgid "OCTAGON SF5008"
-msgstr "OCTAGON SF5008"
-
-msgid "OCTAGON_SF4008"
-msgstr "OCTAGON_SF4008"
-
-msgid "ODIN_M7"
-msgstr "ODIN_M7"
-
 msgid "OEM Model"
 msgstr ""
 
@@ -12602,17 +12540,8 @@ msgstr "Procentai / eigos juosta kairėje"
 msgid "Percentage/Progress bar right"
 msgstr "Procentai / eigos juosta dešinėje"
 
-msgid "Perform a image backup before updating."
-msgstr "Prieš atnaujinimą, padaryti atvaizdo atsarginę kopiją."
-
-msgid "Perform a setting backup before updating."
-msgstr "Atlikti nustatymų atsarginę kopiją prieš atnaujinimą."
-
 msgid "Perform an on-line flash instead"
 msgstr "Vietoj to atlikite internetinį įdiegimą"
-
-msgid "Perform an online update check in the background"
-msgstr "Atlikti internetinio atnaujinimo patikrinimą fone"
 
 msgid "Permanently delete all recordings in the trash can?"
 msgstr "Negrįžtamai pašalinti visus įrašus iš šiukšlinės?"
@@ -13618,9 +13547,6 @@ msgstr "Apsaugoti išjungimo meniu"
 
 msgid "Protect timer menu"
 msgstr "Apsaugoti laikmačio meniu"
-
-msgid "Protek 4K UHD/HD61"
-msgstr "Protek 4K UHD/HD61"
 
 msgid "Protocol"
 msgstr "Protokolas"
@@ -15983,9 +15909,6 @@ msgstr "Čia galite nustatyti savojo tinklo modulio DHCP, IP, DNS"
 msgid "Setup rotor"
 msgstr "Sukonfigūruoti rotorių"
 
-msgid "Setup the interval to check for online updates. (in hours)"
-msgstr "Nustatykite, kas kiek laiko internete tikrinti atnaujinimus. (valandomis)"
-
 msgid "Setup tuner(s)"
 msgstr "Sukonfigūruoti imtuvą(us)"
 
@@ -17096,9 +17019,6 @@ msgstr "Programinės įrangos informacija"
 msgid "Softwaremanager..."
 msgstr "Programinės įrangos tvarkyklė..."
 
-msgid "Softwareupdate"
-msgstr "Programinės įrangos atnaujinimas"
-
 msgid "Solomon Islands"
 msgstr "Saliamono Salos"
 
@@ -17380,6 +17300,7 @@ msgstr "Paleidžiama"
 msgid "Starts in a few seconds"
 msgstr "Prasidės po kelių sekundžių"
 
+#. TRANSLATORS: "State" is Location Info
 msgid "State"
 msgstr ""
 
@@ -20050,9 +19971,6 @@ msgstr "VOD (ilgai spausti)"
 msgid "VPN"
 msgstr "VPN"
 
-msgid "VU+"
-msgstr "VU+"
-
 msgid "Valid"
 msgstr ""
 
@@ -20391,12 +20309,6 @@ msgstr "WPA2"
 msgid "WSS on 4:3"
 msgstr "WSS į 4:3"
 
-msgid "WWIO 4K"
-msgstr "WWIO 4K"
-
-msgid "WWIO_BRE2ZE_TC"
-msgstr "WWIO_BRE2ZE_TC"
-
 msgid "Waffen"
 msgstr "Ginklai"
 
@@ -20609,9 +20521,6 @@ msgstr "Kai čia įjungta, enigma2 įkels nesusietus vartotojo paketus. Tai rei�
 
 msgid "When enabled the PiP can be closed by the exit button."
 msgstr "Kai čia įjungta, PiP gali būti išjungtas su 'EXIT' mygtuku."
-
-msgid "When enabled the online checker will also check for experimental versions"
-msgstr "Kai čia įjungta, internetinis tikrintuvas tikrins ir eksperimentines versijas"
 
 msgid "When enabled the receiver will automatically be switched off."
 msgstr "Įjungus imtuvas bus automatiškai išjungtas."
@@ -20918,12 +20827,6 @@ msgstr "Www, ilgai spausti"
 
 msgid "XBox 360 support"
 msgstr "Xbox 360 palaikymas"
-
-msgid "XP1000"
-msgstr "XP1000"
-
-msgid "XP3000"
-msgstr "XP3000"
 
 msgid "XPicon, ZZZPicon"
 msgstr "XPicon, ZZZPicon"
@@ -21471,20 +21374,8 @@ msgstr "Jungti ir įrašyti toliau"
 msgid "Zeichentrick"
 msgstr "Animacija"
 
-msgid "Zgemma H.S/H.2S/H.2H/H5/H7"
-msgstr "Zgemma H.S/H.2S/H.2H/H5/H7"
-
 msgid "Zgemma H.S/H.2S/H.2H/H5/H7 old Model"
 msgstr "Zgemma H.S/H.2S/H.2H/H5/H7 senas modelis"
-
-msgid "Zgemma H8/H0/H9/I55Plus old Model"
-msgstr "Zgemma H8/H0/H9/I55Plus senas modelis"
-
-msgid "Zgemma Star S/2S/H1/H2"
-msgstr "Zgemma Star S/2S/H1/H2"
-
-msgid "Zgemma i55"
-msgstr "Zgemma i55"
 
 msgid "Zhuang / Chuang"
 msgstr "Zhuang / Chuang"
@@ -22015,24 +21906,6 @@ msgstr "klaida pradedant paiešką"
 msgid "error while scanning"
 msgstr "klaida, skenuojant"
 
-msgid "et4000"
-msgstr "et4000"
-
-msgid "et5000/6000"
-msgstr "et5000/6000"
-
-msgid "et8000/et10000/et13000"
-msgstr "et8000/et10000/et13000"
-
-msgid "et8000/et10000/et13000/SF5008"
-msgstr "et8000/et10000/et13000/SF5008"
-
-msgid "et9000/et9100"
-msgstr "et9000/et9100"
-
-msgid "et9200/9500/6500"
-msgstr "et9200/9500/6500"
-
 msgid "execute cuts (requires MovieCut plugin)"
 msgstr "vykdyti iškirpimus (reikia MovieCut priedo)"
 
@@ -22336,9 +22209,6 @@ msgstr "laisvalaikio pomėgiai (bendra)"
 msgid "length"
 msgstr "ilgis"
 
-msgid "limit ..., aborting !"
-msgstr "limitas …, nutraukiama !"
-
 msgid "literature"
 msgstr "literatūra"
 
@@ -22425,9 +22295,6 @@ msgstr "filmai (bendrai)"
 
 msgid "movie/drama (general)"
 msgstr "filmai, dramos (bendrai)"
-
-msgid "ms"
-msgstr "ms"
 
 msgid "multi"
 msgstr "daugialypis"
@@ -23278,6 +23145,145 @@ msgstr "perjungimas"
 
 msgid "®"
 msgstr "®"
+
+#, python-format
+#~ msgid "%d Mins"
+#~ msgstr "%d min."
+
+#~ msgid "Allow unstable (untested) updates"
+#~ msgstr "Leisti nestabilius (neišbandytus) atnaujinimus"
+
+#~ msgid "Automatic image backup"
+#~ msgstr "Automatinė atvaizdo atsarginė kopija"
+
+#~ msgid "Automatic setting backup"
+#~ msgstr "Automatinė nustatymų atsarginė kopija"
+
+#~ msgid "Axas E4HD Ultra"
+#~ msgstr "Axas E4HD Ultra"
+
+#~ msgid "Background check"
+#~ msgstr "Patikrinimas fone"
+
+#~ msgid "Beyonwiz U4"
+#~ msgstr "Beyonwiz U4"
+
+#~ msgid "Cannot determine"
+#~ msgstr "Negalima nustatyti"
+
+#~ msgid "Check every (hours)"
+#~ msgstr "Tikrinti kas (val.)"
+
+#~ msgid "Current device: "
+#~ msgstr "Dabartinis prietaisas: "
+
+#~ msgid "E3HD/XPEEDLX/GI"
+#~ msgstr "E3HD/XPEEDLX/GI"
+
+#~ msgid "F1/F3/F4/F4-TURBO/TRIPLEX"
+#~ msgstr "F1/F3/F4/F4-TURBO/TRIPLEX"
+
+#~ msgid "GIGABLUE Black"
+#~ msgstr "GIGABLUE Black"
+
+#~ msgid "HD11/HD51/HD1100/HD1200/HD1265/HD1500/HD500C/HD530C/VS1000/VS1500"
+#~ msgstr "HD11/HD51/HD1100/HD1200/HD1265/HD1500/HD500C/HD530C/VS1000/VS1500"
+
+#~ msgid "HD11/HD51/HD1100/HD1200/HD1265/HD1500/HD500C/HD530C/et7x00/et8500/VS1000/VS1500"
+#~ msgstr "HD11/HD51/HD1100/HD1200/HD1265/HD1500/HD500C/HD530C/et7x00/et8500/VS1000/VS1500"
+
+#~ msgid "HD2400"
+#~ msgstr "HD2400"
+
+#~ msgid "HD60/Multibox/Multiboxse"
+#~ msgstr "HD60/Multibox/Multiboxse"
+
+#~ msgid "MIRACLEBOX_TWINPLUS"
+#~ msgstr "MIRACLEBOX_TWINPLUS"
+
+#~ msgid "MaraM9"
+#~ msgstr "MaraM9"
+
+#~ msgid "OCTAGON SF5008"
+#~ msgstr "OCTAGON SF5008"
+
+#~ msgid "OCTAGON_SF4008"
+#~ msgstr "OCTAGON_SF4008"
+
+#~ msgid "ODIN_M7"
+#~ msgstr "ODIN_M7"
+
+#~ msgid "Perform a image backup before updating."
+#~ msgstr "Prieš atnaujinimą, padaryti atvaizdo atsarginę kopiją."
+
+#~ msgid "Perform a setting backup before updating."
+#~ msgstr "Atlikti nustatymų atsarginę kopiją prieš atnaujinimą."
+
+#~ msgid "Perform an online update check in the background"
+#~ msgstr "Atlikti internetinio atnaujinimo patikrinimą fone"
+
+#~ msgid "Protek 4K UHD/HD61"
+#~ msgstr "Protek 4K UHD/HD61"
+
+#~ msgid "Setup the interval to check for online updates. (in hours)"
+#~ msgstr "Nustatykite, kas kiek laiko internete tikrinti atnaujinimus. (valandomis)"
+
+#~ msgid "Softwareupdate"
+#~ msgstr "Programinės įrangos atnaujinimas"
+
+#~ msgid "VU+"
+#~ msgstr "VU+"
+
+#~ msgid "WWIO 4K"
+#~ msgstr "WWIO 4K"
+
+#~ msgid "WWIO_BRE2ZE_TC"
+#~ msgstr "WWIO_BRE2ZE_TC"
+
+#~ msgid "When enabled the online checker will also check for experimental versions"
+#~ msgstr "Kai čia įjungta, internetinis tikrintuvas tikrins ir eksperimentines versijas"
+
+#~ msgid "XP1000"
+#~ msgstr "XP1000"
+
+#~ msgid "XP3000"
+#~ msgstr "XP3000"
+
+#~ msgid "Zgemma H.S/H.2S/H.2H/H5/H7"
+#~ msgstr "Zgemma H.S/H.2S/H.2H/H5/H7"
+
+#~ msgid "Zgemma H8/H0/H9/I55Plus old Model"
+#~ msgstr "Zgemma H8/H0/H9/I55Plus senas modelis"
+
+#~ msgid "Zgemma Star S/2S/H1/H2"
+#~ msgstr "Zgemma Star S/2S/H1/H2"
+
+#~ msgid "Zgemma i55"
+#~ msgstr "Zgemma i55"
+
+#~ msgid "et4000"
+#~ msgstr "et4000"
+
+#~ msgid "et5000/6000"
+#~ msgstr "et5000/6000"
+
+#~ msgid "et8000/et10000/et13000"
+#~ msgstr "et8000/et10000/et13000"
+
+#~ msgid "et8000/et10000/et13000/SF5008"
+#~ msgstr "et8000/et10000/et13000/SF5008"
+
+#~ msgid "et9000/et9100"
+#~ msgstr "et9000/et9100"
+
+#~ msgid "et9200/9500/6500"
+#~ msgstr "et9200/9500/6500"
+
+#~ msgid "limit ..., aborting !"
+#~ msgstr "limitas …, nutraukiama !"
+
+#~ msgid "ms"
+#~ msgstr "ms"
 
 #, python-format
 #~ msgid "  (%s x %s)"

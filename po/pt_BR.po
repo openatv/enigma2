@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-02-07 20:18+0000\n"
+"POT-Creation-Date: 2022-02-11 14:04+0000\n"
 "PO-Revision-Date: 2021-08-15 18:50+0000\n"
 "Last-Translator: openATV <openatv@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/pt_BR/>\n"
@@ -1102,10 +1102,6 @@ msgid "%d Min"
 msgid_plural "%d Mins"
 msgstr[0] ""
 msgstr[1] ""
-
-#, python-format
-msgid "%d Mins"
-msgstr ""
 
 #. TRANSLATORS: Intermediate scanning result, '%d' channel(s) have been found so far
 #, python-format
@@ -2810,9 +2806,6 @@ msgstr "Permitir legenda igual ao áudio"
 msgid "Allow subtitles for hearing impaired"
 msgstr "Permitir legendas para deficientes auditivos"
 
-msgid "Allow unstable (untested) updates"
-msgstr ""
-
 #, fuzzy
 msgid "Allow unsupported modes"
 msgstr "não suportado"
@@ -3351,10 +3344,6 @@ msgid "Automatic Service Searching"
 msgstr "Buscar canais"
 
 #, fuzzy
-msgid "Automatic image backup"
-msgstr "Busca automática"
-
-#, fuzzy
 msgid "Automatic resolution"
 msgstr "Busca automática"
 
@@ -3366,9 +3355,6 @@ msgid "Automatic scan"
 msgstr "Busca automática"
 
 msgid "Automatic scan for services"
-msgstr ""
-
-msgid "Automatic setting backup"
 msgstr ""
 
 msgid "Automatically put the TV in standby whenever the receiver goes into standby or deep standby."
@@ -3413,9 +3399,6 @@ msgid "Avestan"
 msgstr ""
 
 msgid "Avoid getting stuck (at the expense of some stuttering) when the jump time is smaller than the time between I-frames."
-msgstr ""
-
-msgid "Axas E4HD Ultra"
 msgstr ""
 
 msgid "Aymara"
@@ -3511,10 +3494,6 @@ msgid "Back/Recall"
 msgstr ""
 
 msgid "Background"
-msgstr "Background"
-
-#, fuzzy
-msgid "Background check"
 msgstr "Background"
 
 msgid "Background color"
@@ -3708,9 +3687,6 @@ msgid "Bermuda"
 msgstr ""
 
 msgid "Berufe"
-msgstr ""
-
-msgid "Beyonwiz U4"
 msgstr ""
 
 msgid "Beziehung"
@@ -4311,8 +4287,10 @@ msgstr "Impossível determinar"
 msgid "Cannot delete file"
 msgstr "Impossível determinar"
 
-msgid "Cannot determine"
-msgstr "Impossível determinar"
+#. TRANSLATORS: "Cannot determine (east/west) limit ..., aborting !"
+#, python-format
+msgid "Cannot determine %s limit ..., aborting !"
+msgstr ""
 
 msgid "Cannot find any signal ..., aborting !"
 msgstr "Sem sinal. Cancelando..."
@@ -4589,9 +4567,6 @@ msgid "Check"
 msgstr "Verificar"
 
 msgid "Check HDD"
-msgstr ""
-
-msgid "Check every (hours)"
 msgstr ""
 
 msgid "Check power and input state from TV"
@@ -5774,9 +5749,6 @@ msgstr "Definições atuais:"
 
 msgid "Current crash log"
 msgstr ""
-
-msgid "Current device: "
-msgstr "Dispositivo atual:"
 
 #, fuzzy
 msgid "Current installed"
@@ -7151,9 +7123,6 @@ msgstr "E"
 msgid "E "
 msgstr "E"
 
-msgid "E3HD/XPEEDLX/GI"
-msgstr ""
-
 #, fuzzy
 msgid "ECM Info"
 msgstr "Ver evento"
@@ -8160,9 +8129,6 @@ msgstr ""
 msgid "F1 long"
 msgstr ""
 
-msgid "F1/F3/F4/F4-TURBO/TRIPLEX"
-msgstr ""
-
 msgid "F2"
 msgstr ""
 
@@ -8739,9 +8705,6 @@ msgstr "RGB"
 msgid "GCC version"
 msgstr ""
 
-msgid "GIGABLUE Black"
-msgstr ""
-
 msgid "GStreamer version"
 msgstr ""
 
@@ -9089,18 +9052,6 @@ msgstr ""
 
 msgid "HD list"
 msgstr "Lista HD"
-
-msgid "HD11/HD51/HD1100/HD1200/HD1265/HD1500/HD500C/HD530C/VS1000/VS1500"
-msgstr ""
-
-msgid "HD11/HD51/HD1100/HD1200/HD1265/HD1500/HD500C/HD530C/et7x00/et8500/VS1000/VS1500"
-msgstr ""
-
-msgid "HD2400"
-msgstr ""
-
-msgid "HD60/Multibox/Multiboxse"
-msgstr ""
 
 msgid "HDMI"
 msgstr ""
@@ -11025,9 +10976,6 @@ msgstr "B"
 msgid "MENU"
 msgstr ""
 
-msgid "MIRACLEBOX_TWINPLUS"
-msgstr ""
-
 msgid "MKUBIFS"
 msgstr ""
 
@@ -11175,9 +11123,6 @@ msgid "Manx"
 msgstr ""
 
 msgid "Maori"
-msgstr ""
-
-msgid "MaraM9"
 msgstr ""
 
 msgid "Marathi"
@@ -12584,15 +12529,6 @@ msgstr ""
 msgid "Number or SMS style data entry"
 msgstr ""
 
-msgid "OCTAGON SF5008"
-msgstr ""
-
-msgid "OCTAGON_SF4008"
-msgstr ""
-
-msgid "ODIN_M7"
-msgstr ""
-
 msgid "OEM Model"
 msgstr ""
 
@@ -13223,16 +13159,7 @@ msgstr "Progr. peq. (esquerda)"
 msgid "Percentage/Progress bar right"
 msgstr "Progr. peq. (direita)"
 
-msgid "Perform a image backup before updating."
-msgstr ""
-
-msgid "Perform a setting backup before updating."
-msgstr ""
-
 msgid "Perform an on-line flash instead"
-msgstr ""
-
-msgid "Perform an online update check in the background"
 msgstr ""
 
 msgid "Permanently delete all recordings in the trash can?"
@@ -14257,9 +14184,6 @@ msgid "Protect standby menu"
 msgstr ""
 
 msgid "Protect timer menu"
-msgstr ""
-
-msgid "Protek 4K UHD/HD61"
 msgstr ""
 
 msgid "Protocol"
@@ -16752,9 +16676,6 @@ msgstr ""
 msgid "Setup rotor"
 msgstr ""
 
-msgid "Setup the interval to check for online updates. (in hours)"
-msgstr ""
-
 msgid "Setup tuner(s)"
 msgstr ""
 
@@ -17947,9 +17868,6 @@ msgstr "Informação do gerenciador de software"
 msgid "Softwaremanager..."
 msgstr ""
 
-msgid "Softwareupdate"
-msgstr ""
-
 msgid "Solomon Islands"
 msgstr ""
 
@@ -18243,6 +18161,7 @@ msgstr "Iniciar em"
 msgid "Starts in a few seconds"
 msgstr "Iniciar desencriptação offline"
 
+#. TRANSLATORS: "State" is Location Info
 msgid "State"
 msgstr ""
 
@@ -21026,9 +20945,6 @@ msgstr ""
 msgid "VPN"
 msgstr ""
 
-msgid "VU+"
-msgstr ""
-
 msgid "Valid"
 msgstr ""
 
@@ -21392,12 +21308,6 @@ msgstr "WPA2"
 msgid "WSS on 4:3"
 msgstr "WSS em 4:3"
 
-msgid "WWIO 4K"
-msgstr ""
-
-msgid "WWIO_BRE2ZE_TC"
-msgstr ""
-
 msgid "Waffen"
 msgstr ""
 
@@ -21618,9 +21528,6 @@ msgstr ""
 
 msgid "When enabled the PiP can be closed by the exit button."
 msgstr ""
-
-msgid "When enabled the online checker will also check for experimental versions"
-msgstr "Quando habilitar para checar online, também checar por versões de teste"
 
 msgid "When enabled the receiver will automatically be switched off."
 msgstr ""
@@ -21933,12 +21840,6 @@ msgstr ""
 #, fuzzy
 msgid "XBox 360 support"
 msgstr "não suportado"
-
-msgid "XP1000"
-msgstr ""
-
-msgid "XP3000"
-msgstr ""
 
 msgid "XPicon, ZZZPicon"
 msgstr ""
@@ -22469,19 +22370,7 @@ msgstr "Gravações"
 msgid "Zeichentrick"
 msgstr ""
 
-msgid "Zgemma H.S/H.2S/H.2H/H5/H7"
-msgstr ""
-
 msgid "Zgemma H.S/H.2S/H.2H/H5/H7 old Model"
-msgstr ""
-
-msgid "Zgemma H8/H0/H9/I55Plus old Model"
-msgstr ""
-
-msgid "Zgemma Star S/2S/H1/H2"
-msgstr ""
-
-msgid "Zgemma i55"
 msgstr ""
 
 msgid "Zhuang / Chuang"
@@ -23039,24 +22928,6 @@ msgstr ""
 msgid "error while scanning"
 msgstr ""
 
-msgid "et4000"
-msgstr ""
-
-msgid "et5000/6000"
-msgstr ""
-
-msgid "et8000/et10000/et13000"
-msgstr ""
-
-msgid "et8000/et10000/et13000/SF5008"
-msgstr ""
-
-msgid "et9000/et9100"
-msgstr ""
-
-msgid "et9200/9500/6500"
-msgstr ""
-
 msgid "execute cuts (requires MovieCut plugin)"
 msgstr ""
 
@@ -23374,9 +23245,6 @@ msgstr "Lazer/Hobbies (geral)"
 msgid "length"
 msgstr "comprimento"
 
-msgid "limit ..., aborting !"
-msgstr "limite. Cancelando..."
-
 msgid "literature"
 msgstr "Literatura"
 
@@ -23469,10 +23337,6 @@ msgstr "filme/drama (geral)"
 
 msgid "movie/drama (general)"
 msgstr "Filme/Drama (geral)"
-
-#, fuzzy
-msgid "ms"
-msgstr "ms"
 
 #, fuzzy
 msgid "multi"
@@ -24361,6 +24225,30 @@ msgstr "zapped"
 
 msgid "®"
 msgstr ""
+
+#, fuzzy
+#~ msgid "Automatic image backup"
+#~ msgstr "Busca automática"
+
+#, fuzzy
+#~ msgid "Background check"
+#~ msgstr "Background"
+
+#~ msgid "Cannot determine"
+#~ msgstr "Impossível determinar"
+
+#~ msgid "Current device: "
+#~ msgstr "Dispositivo atual:"
+
+#~ msgid "When enabled the online checker will also check for experimental versions"
+#~ msgstr "Quando habilitar para checar online, também checar por versões de teste"
+
+#~ msgid "limit ..., aborting !"
+#~ msgstr "limite. Cancelando..."
+
+#, fuzzy
+#~ msgid "ms"
+#~ msgstr "ms"
 
 #, fuzzy, python-format
 #~ msgid "  (%s x %s)"
