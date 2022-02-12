@@ -801,7 +801,7 @@ class AutoVideoMode(Screen):
 
 			elif config.av.autores.value == 'all' or (config.av.autores.value == 'hd' and int(new_res) >= 720):
 				autorestyp = 'all or hd'
-				if (config.av.autores_deinterlace.value and HardwareInfo().is_nextgen()) or (config.av.autores_deinterlace.value and not HardwareInfo().is_nextgen() and int(new_res) <= 720):
+				if config.av.autores_deinterlace.value:
 					new_pol = new_pol.replace('i', 'p')
 				if new_res + new_pol + new_rate in iAVSwitch.readAvailableModes():
 					new_mode = new_res + new_pol + new_rate
@@ -831,13 +831,14 @@ class AutoVideoMode(Screen):
 				write_mode = new_mode
 			elif config.av.autores.value == 'hd' and int(new_res) <= 576:
 				autorestyp = 'hd'
-				if (config.av.autores_deinterlace.value and HardwareInfo().is_nextgen()) or (config.av.autores_deinterlace.value and not HardwareInfo().is_nextgen() and not config.av.autores_sd.value == '1080i'):
+				if new_pol == "p":
 					new_mode = config.av.autores_sd.value.replace('i', 'p') + new_rate
 				else:
-					if new_pol in 'p':
-						new_mode = config.av.autores_sd.value.replace('i', 'p') + new_rate
-					else:
-						new_mode = config.av.autores_sd.value + new_rate
+					new_mode = config.av.autores_sd.value + new_rate
+					if config.av.autores_deinterlace.value:
+						test_new_mode = config.av.autores_sd.value.replace('i', 'p') + new_rate
+						if test_new_mode in iAVSwitch.readAvailableModes():
+							new_mode = test_new_mode
 
 				if new_mode == '720p24':
 					new_mode = config.av.autores_720p24.value
