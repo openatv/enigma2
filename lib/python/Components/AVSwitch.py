@@ -277,7 +277,7 @@ class AVSwitch:
 		map = {"cvbs": 0, "rgb": 1, "svideo": 2, "yuv": 3}
 		self.setColorFormat(map[config.av.colorformat.value])
 
-		if about.getCPUString().startswith('STx'):
+		if BoxInfo.getItem("STi"):
 			#call setResolution() with -1,-1 to read the new scrren dimensions without changing the framebuffer resolution
 			from enigma import gMainDC
 			gMainDC.getInstance().setResolution(-1, -1)

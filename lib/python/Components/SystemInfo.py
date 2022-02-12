@@ -363,3 +363,4 @@ SystemInfo["HiSilicon"] = socfamily.startswith("hisi") or fileAccess("/proc/hisi
 SystemInfo["AmlogicFamily"] = socfamily.startswith(("aml", "meson")) or fileAccess("/proc/device-tree/amlogic-dt-id") or fileAccess("/usr/bin/amlhalt") or fileAccess("/sys/module/amports")
 SystemInfo["ArchIsARM64"] = architecture == "aarch64" or "64" in architecture
 SystemInfo["ArchIsARM"] = architecture.startswith(("arm", "cortex"))
+SystemInfo["STi"] = socfamily.startswith("sti")
