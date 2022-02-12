@@ -102,7 +102,6 @@ class VideoWizard(WizardLanguage, ShowRemoteControl):
 
 	def listInputChannels(self):
 		hw_type = HardwareInfo().get_device_name()
-		has_hdmi = HardwareInfo().has_hdmi()
 		list = []
 
 		for port in self.hw.getPortList():
@@ -127,7 +126,6 @@ class VideoWizard(WizardLanguage, ShowRemoteControl):
 
 	def inputSelectionMoved(self):
 		hw_type = HardwareInfo().get_device_name()
-		has_hdmi = HardwareInfo().has_hdmi()
 		print("input selection moved:", self.selection)
 		self.inputSelect(self.selection)
 		if self["portpic"].instance is not None:
