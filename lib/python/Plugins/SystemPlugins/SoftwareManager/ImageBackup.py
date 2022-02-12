@@ -658,12 +658,17 @@ class ImageBackup(Screen):
 		if os.path.exists('/proc/stb/info/chipset'):
 			AboutText += _("Chipset: BCM%s") % about.getChipSetString().lower().replace('\n', '').replace('bcm', '') + "\n"
 
-		AboutText += _("CPU: %s") % about.getCPUString() + "\n"
-		AboutText += _("Cores: %s") % about.getCpuCoresString() + "\n"
+		cpu = about.getCPUInfoString()
+		AboutText += "%s: %s\n" % (_("CPU"), cpu[0])
+		AboutText += "%s: %s/%s\n" % (_("CPU speed/cores"), cpu[1], cpu[2])
+		AboutText += "%s: %s\n" % (_("CPU brand"), about.getCPUBrand())
+		socFamily = BoxInfo.getItem("socfamily")
+		if socFamily:
+			AboutText += "%s: %s\n" % (_("SoC family"), socFamily)
 
 		AboutText += _("Version: %s") % getImageVersion() + "\n"
 		AboutText += _("Build: %s") % getImageBuild() + "\n"
-		AboutText += _("Kernel: %s") % about.getKernelVersionString() + "\n"
+		AboutText += "%s: %s\n" % (_("Kernel version"), BoxInfo.getItem("kernel"))
 
 		string = getDriverDate()
 		year = string[0:4]
