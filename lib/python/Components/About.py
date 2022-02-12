@@ -129,54 +129,6 @@ def getCPUSerial():
 	return _("Undefined")
 
 
-def getCPUSpeedString():
-	if getMachineBuild() in ('u41', 'u42', 'u43', 'u45'):
-		return _("%s GHz") % "1,0"
-	elif getMachineBuild() in ('dags72604', 'vusolo4k', 'vuultimo4k', 'vuzero4k', 'gb72604', 'vuduo4kse'):
-		return _("%s GHz") % "1,5"
-	elif getMachineBuild() in ('formuler1tc', 'formuler1', 'triplex', 'tiviaraplus'):
-		return _("%s GHz") % "1,3"
-	elif getMachineBuild() in ('dagsmv200', 'gbmv200', 'u51', 'u52', 'u53', 'u532', 'u533', 'u54', 'u55', 'u56', 'u57', 'u571', 'u5', 'u5pvr', 'h9', 'i55se', 'h9se', 'h9combose', 'h9combo', 'h10', 'h11', 'cc1', 'sf8008', 'sf8008m', 'sf8008opt', 'sx988', 'hd60', 'hd61', 'pulse4k', 'pulse4kmini', 'i55plus', 'ustym4kpro', 'ustym4kottpremium', 'beyonwizv2', 'viper4k', 'multibox', 'multiboxse'):
-		return _("%s GHz") % "1,6"
-	elif getMachineBuild() in ('vuuno4kse', 'vuuno4k', 'dm900', 'dm920', 'gb7252', 'dags7252', 'xc7439', '8100s'):
-		return _("%s GHz") % "1,7"
-	elif getMachineBuild() in ('alien5', 'hzero', 'h8'):
-		return _("%s GHz") % "2,0"
-	elif getMachineBuild() in ('vuduo4k',):
-		return _("%s GHz") % "2,1"
-	elif getMachineBuild() in ('hd51', 'hd52', 'sf4008', 'vs1500', 'et1x000', 'h7', 'et13000', 'sf5008', 'osmio4k', 'osmio4kplus', 'osmini4k'):
-		try:
-			from binascii import hexlify
-			f = open('/sys/firmware/devicetree/base/cpus/cpu@0/clock-frequency', 'rb')
-			clockfrequency = f.read()
-			f.close()
-			CPUSpeed_Int = round(int(hexlify(clockfrequency), 16) / 1000000, 1)
-			if CPUSpeed_Int >= 1000:
-				return _("%s GHz") % str(round(CPUSpeed_Int / 1000, 1))
-			else:
-				return _("%s MHz") % str(round(CPUSpeed_Int, 1))
-		except:
-			return _("%s GHz") % "1,7"
-	else:
-		try:
-			file = open('/proc/cpuinfo', 'r')
-			lines = file.readlines()
-			for x in lines:
-				splitted = x.split(': ')
-				if len(splitted) > 1:
-					splitted[1] = splitted[1].replace('\n', '')
-					if splitted[0].startswith("cpu MHz"):
-						mhz = float(splitted[1].split(' ')[0])
-						if mhz and mhz >= 1000:
-							mhz = _("%s GHz") % str(round(mhz / 1000, 1))
-						else:
-							mhz = _("%s MHz") % str(round(mhz, 1))
-			file.close()
-			return mhz
-		except IOError:
-			return "unavailable"
-
-
 def getCPUInfoString():
 	cpuCount = 0
 	cpuSpeed = 0
@@ -202,7 +154,7 @@ def getCPUInfoString():
 					print("[About] Read /sys/firmware/devicetree/base/cpus/cpu@0/clock-frequency failed.")
 					cpuSpeed = "-"
 			else:
-				cpuSpeed = int(cpuSpeed) / 1000
+				cpuSpeed = int(cpuSpeed) // 1000
 
 		temperature = None
 		if isfile("/proc/stb/fp/temp_sensor_avs"):
@@ -218,11 +170,11 @@ def getCPUInfoString():
 		elif isfile("/sys/devices/virtual/thermal/thermal_zone0/temp"):
 			temperature = fileReadLine("/sys/devices/virtual/thermal/thermal_zone0/temp", source=MODULE_NAME)
 			if temperature:
-				temperature = int(temperature) / 1000
+				temperature = round(int(temperature) / 1000, 1)
 		elif isfile("/sys/class/thermal/thermal_zone0/temp"):
 			temperature = fileReadLine("/sys/class/thermal/thermal_zone0/temp", source=MODULE_NAME)
 			if temperature:
-				temperature = int(temperature) / 1000
+				temperature = round(int(temperature) / 1000, 1)
 		elif isfile("/proc/hisi/msp/pm_cpu"):
 			lines = fileReadLines("/proc/hisi/msp/pm_cpu", source=MODULE_NAME)
 			if lines:
