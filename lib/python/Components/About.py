@@ -129,9 +129,35 @@ def getCPUSerial():
 	return _("Undefined")
 
 
+def _getCPUSpeedMhz():
+	if getMachineBuild() in ('u41', 'u42', 'u43', 'u45'):
+		return 1000
+	elif getMachineBuild() in ('dags72604', 'vusolo4k', 'vuultimo4k', 'vuzero4k', 'gb72604', 'vuduo4kse'):
+		return 1500
+	elif getMachineBuild() in ('formuler1tc', 'formuler1', 'triplex', 'tiviaraplus'):
+		return 1300
+	elif getMachineBuild() in ('dagsmv200', 'gbmv200', 'u51', 'u52', 'u53', 'u532', 'u533', 'u54', 'u55', 'u56', 'u57', 'u571', 'u5', 'u5pvr', 'h9', 'i55se', 'h9se', 'h9combose', 'h9combo', 'h10', 'h11', 'cc1', 'sf8008', 'sf8008m', 'sf8008opt', 'sx988', 'hd60', 'hd61', 'i55plus', 'ustym4kpro', 'ustym4kottpremium', 'beyonwizv2', 'viper4k', 'multibox', 'multiboxse'):
+		return 1600
+	elif getMachineBuild() in ('vuuno4kse', 'vuuno4k', 'dm900', 'dm920', 'gb7252', 'dags7252', 'xc7439', '8100s'):
+		return 1700
+	elif getMachineBuild() in ('alien5', 'hzero', 'h8'):
+		return 2000
+	elif getMachineBuild() in ('vuduo4k',):
+		return 2100
+	elif getMachineBuild() in ('hd51', 'hd52', 'sf4008', 'vs1500', 'et1x000', 'h7', 'et13000', 'sf5008', 'osmio4k', 'osmio4kplus', 'osmini4k'):
+		try:
+			return round(int(hexlify(open("/sys/firmware/devicetree/base/cpus/cpu@0/clock-frequency", "rb").read()), 16) / 1000000, 1)
+		except:
+			print("[About] Read /sys/firmware/devicetree/base/cpus/cpu@0/clock-frequency failed.")
+			return 1700
+	else:
+		return 0
+
+
 def getCPUInfoString():
 	cpuCount = 0
-	cpuSpeed = 0
+	cpuSpeedStr = "-"
+	cpuSpeedMhz = _getCPUSpeedMhz()
 	processor = ""
 	lines = fileReadLines("/proc/cpuinfo", source=MODULE_NAME)
 	if lines:
@@ -139,22 +165,16 @@ def getCPUInfoString():
 			line = [x.strip() for x in line.strip().split(":", 1)]
 			if not processor and line[0] in ("system type", "model name", "Processor"):
 				processor = line[1].split()[0]
-			elif not cpuSpeed and line[0] == "cpu MHz":
-				cpuSpeed = "%1.0f" % float(line[1])
+			elif not cpuSpeedMhz and line[0] == "cpu MHz":
+				cpuSpeedMhz = float(line[1])
 			elif line[0] == "processor":
 				cpuCount += 1
 		if processor.startswith("ARM") and isfile("/proc/stb/info/chipset"):
 			processor = "%s (%s)" % (fileReadLine("/proc/stb/info/chipset", "", source=MODULE_NAME).upper(), processor)
-		if not cpuSpeed:
+		if not cpuSpeedMhz:
 			cpuSpeed = fileReadLine("/sys/devices/system/cpu/cpu0/cpufreq/cpuinfo_max_freq", source=MODULE_NAME)
-			if cpuSpeed is None:
-				try:
-					cpuSpeed = int(int(hexlify(open("/sys/firmware/devicetree/base/cpus/cpu@0/clock-frequency", "rb").read()), 16) / 100000000) * 100
-				except:
-					print("[About] Read /sys/firmware/devicetree/base/cpus/cpu@0/clock-frequency failed.")
-					cpuSpeed = "-"
-			else:
-				cpuSpeed = int(cpuSpeed) // 1000
+			if cpuSpeed:
+				cpuSpeedMhz = int(cpuSpeed) / 1000
 
 		temperature = None
 		if isfile("/proc/stb/fp/temp_sensor_avs"):
@@ -181,14 +201,20 @@ def getCPUInfoString():
 				for line in lines:
 					if "temperature = " in line:
 						temperature = line.split("temperature = ")[1].split()[0]
+
+		if cpuSpeedMhz and cpuSpeedMhz >= 1000:
+			cpuSpeedStr = _("%s GHz") % str(round(cpuSpeedMhz / 1000, 1))
+		else:
+			cpuSpeedStr = _("%s MHz") % str(round(cpuSpeedMhz, 1))
+
 		if temperature:
 			degree = u"\u00B0"
 			if not isinstance(degree, str):
 				degree = degree.encode("UTF-8", errors="ignore")
 
-			return (processor, "%s MHz" % cpuSpeed, ngettext("%d core", "%d cores", cpuCount) % cpuCount, "%s%sC" % (temperature, degree))
+			return (processor, cpuSpeedStr, ngettext("%d core", "%d cores", cpuCount) % cpuCount, "%s%sC" % (temperature, degree))
 			#return ("%s %s MHz (%s) %s%sC") % (processor, cpuSpeed, ngettext("%d core", "%d cores", cpuCount) % cpuCount, temperature, degree)
-		return (processor, "%s MHz" % cpuSpeed, ngettext("%d core", "%d cores", cpuCount) % cpuCount, "")
+		return (processor, cpuSpeedStr, ngettext("%d core", "%d cores", cpuCount) % cpuCount, "")
 		#return ("%s %s MHz (%s)") % (processor, cpuSpeed, ngettext("%d core", "%d cores", cpuCount) % cpuCount)
 
 
