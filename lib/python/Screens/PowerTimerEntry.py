@@ -60,6 +60,9 @@ class TimerEntry(Screen, ConfigListScreen):
 		ConfigListScreen.__init__(self, self.list, session=session)
 		self.setTitle(_("PowerTimer Entry"))
 		self.createSetup("config")
+		if not self.selectionChanged in self["config"].onSelectionChanged:
+			self["config"].onSelectionChanged.append(self.selectionChanged)
+		self.selectionChanged()
 
 	def createConfig(self):
 		afterevent = {
@@ -416,3 +419,11 @@ class TimerEntry(Screen, ConfigListScreen):
 
 	def keyCancel(self):
 		self.close((False,))
+
+	def selectionChanged(self):
+		if self["config"].getCurrent():
+			if len(self["config"].getCurrent()) > 2 and self["config"].getCurrent()[2]:
+				self["description"].setText(self["config"].getCurrent()[2])
+			elif len(self["config"].getCurrent()) > 1:
+				self["description"].setText(self["config"].getCurrent()[0])
+
