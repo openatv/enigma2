@@ -3,6 +3,7 @@
 # pololoko111 <peciek83@gmail.com>, 2021, 2022.
 # openATV <openatv@gmail.com>, 2021.
 # Grzegorz <grzegorz914@icloud.com>, 2021, 2022.
+# drakulis, 2022.
 msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
@@ -26,7 +27,7 @@ msgid ""
 msgstr ""
 "\n"
 "\n"
-"[Bukiety użytkownika (TV)]\n"
+"[Listy ulubionych (TV)]\n"
 
 msgid ""
 "\n"
@@ -205,7 +206,7 @@ msgid ""
 "[User - bouquets (RADIO)]\n"
 msgstr ""
 "\n"
-"[Bukiety użytkownika (RADIO)]\n"
+"[Listy ulubionych (RADIO)]\n"
 
 #, python-format
 msgid ""
@@ -313,7 +314,7 @@ msgid ""
 "\n"
 "Do you want to install the new settingslist?"
 msgstr ""
-" dostępna !!\n"
+" dostępna!\n"
 "\n"
 "Czy chcesz zainstalować nową listę kanałów?"
 
@@ -2724,7 +2725,7 @@ msgid "Almost there... "
 msgstr "Prawie gotowe... "
 
 msgid "Alpha"
-msgstr "Celujący"
+msgstr "Litera"
 
 msgid "Alphabetical under headings"
 msgstr "Alfabetycznie pod nagłówkami"
@@ -2766,7 +2767,7 @@ msgid "Always include ECM messages in recordings. This overrides the individual 
 msgstr "Zawsze uwzględniaj komunikaty ECM w nagraniach. Zastępuje to globalnie indywidualne ustawienia timera. Umożliwia to późniejsze odszyfrowanie nagrań (czasami nazywane dekodowaniem offline), jeśli odbiornik obsługuje tę funkcję. Domyślnie: wyłączone."
 
 msgid "Always show bouquets"
-msgstr "Zawsze pokazuj bukiety"
+msgstr "Zawsze pokazuj listy ulubionych"
 
 msgid "Always use smart1080p mode"
 msgstr "Zawsze używaj trybu 1080p"
@@ -2866,7 +2867,7 @@ msgid "Are you sure to delete all cuts and marks?"
 msgstr "Czy na pewno chcesz anulować wszystkie cięcia i znaczniki?"
 
 msgid "Are you sure to purge all deleted userbouquets?"
-msgstr "Czy na pewno chcesz wyczyścić wszystkie usunięte bukiety użytkownika?"
+msgstr "Czy na pewno chcesz wyczyścić wszystkie usunięte listy ulubione?"
 
 #, python-format
 msgid "Are you sure to remove all %d.%d%s%s services?"
@@ -2900,7 +2901,7 @@ msgstr "Czy chcesz usunąć wszystkie crash logi:\n"
 
 #, python-format
 msgid "Are you sure you want to delete image slot %s ?"
-msgstr "Czy na pewno chcesz usunąć slot obrazu %s ?"
+msgstr "Czy na pewno chcesz usunąć slot obrazu %s?"
 
 msgid "Are you sure you want to delete the EPG data from:\n"
 msgstr "Czy na pewno chcesz usunąć dane EPG z:\n"
@@ -3143,7 +3144,7 @@ msgid "Auto Volume Level"
 msgstr "Automatyczne dopasowanie głośności"
 
 msgid "Auto chapter split every ? minutes (0=never)"
-msgstr "Automatyczny podział rozdziałów co ? minuty (0=nigdy)"
+msgstr "Automatyczny podział rozdziałów co? minuty (0=nigdy)"
 
 msgid "Auto flesh"
 msgstr "Auto odświeżanie"
@@ -4026,14 +4027,14 @@ msgid ""
 "Switch to live TV and restart Timeshift ?"
 msgstr ""
 "Nie mogę przejść do TV na żywo!\n"
-"Przejść do TV na żywo i ponownie uruchomić Timeshift ?"
+"Przejść do TV na żywo i ponownie uruchomić Timeshift?"
 
 msgid ""
 "Can't play the next Timeshift file!\n"
 "Switch to live TV and restart Timeshift ?"
 msgstr ""
 "Nie można odtworzyć następnego pliku timeshift!\n"
-"Przejść do TV na żywo i ponownie uruchomić timeshift ?"
+"Przejść do TV na żywo i ponownie uruchomić timeshift?"
 
 msgid "Can't play the previous timeshift file! You can try again."
 msgstr "Nie można odtworzyć poprzedniego pliku Timeshift! Możesz spróbować ponownie."
@@ -4108,7 +4109,7 @@ msgid "Cannot determine %s limit ..., aborting !"
 msgstr "Nie można określić limitu %s, Przerywam!"
 
 msgid "Cannot find any signal ..., aborting !"
-msgstr "Nie mogę znaleźć żadnego sygnału ..., anulowanie !"
+msgstr "Nie mogę znaleźć żadnego sygnału ..., anulowanie!"
 
 msgid "Cannot find images - please try later"
 msgstr "Nie można znaleźć systemów - spróbuj później"
@@ -4153,7 +4154,7 @@ msgid "Catalan / Valencian"
 msgstr "Kataloński / Walencki"
 
 msgid "Caution update not yet tested !!"
-msgstr "Uwaga aktualizacja jeszcze nie testowana!!!"
+msgstr "Uwaga aktualizacja nie zostałą jeszcze przetestowana!"
 
 msgid "Cayman Islands"
 msgstr "Kajmany"
@@ -4192,7 +4193,7 @@ msgid "Change Volume offset"
 msgstr "Zmiana Natężenia Głosu"
 
 msgid "Change bouquets in quickzap"
-msgstr "Zmień bukiety w szybkim tempie"
+msgstr "Automatycznie przejdź do następnej listy ulubionych"
 
 msgid "Change buttons for list navigation"
 msgstr "Zmień przyciski do nawigacji po liście"
@@ -4222,7 +4223,7 @@ msgid "Change step size"
 msgstr "Zmień rozmiar skoku"
 
 msgid "Change to bouquet"
-msgstr "Zamień na bukiet"
+msgstr "Zamień na Ulubione"
 
 msgid "Changelog"
 msgstr "Rejestr zmian"
@@ -4275,10 +4276,10 @@ msgid "Channel list context menu"
 msgstr "Kontekstowe menu listy kanałów"
 
 msgid "Channel list cursor behavior"
-msgstr "Lista kanałów zachowanie kursora"
+msgstr "Zachowanie kursora na liście kanałów"
 
 msgid "Channel list on mode change"
-msgstr "Zmiana trybu listy kanałów"
+msgstr "Pokaż listę kanałów po zmianie trybu"
 
 msgid "Channel list preview"
 msgstr "Podgląd listy kanałów"
@@ -4326,7 +4327,7 @@ msgid "Channel:"
 msgstr "Kanał:"
 
 msgid "ChannelEPG settings"
-msgstr "Ustawienia kanału anał EPG"
+msgstr "Ustawienia EPG kanału"
 
 msgid "Channellist menu"
 msgstr "Menu listy kanałów"
@@ -4423,7 +4424,7 @@ msgid "Choice where to put \"%s\""
 msgstr "Wybierz, gdzie umieścić \"%s\""
 
 msgid "Choose Bouquet"
-msgstr "Wybierz bukiet"
+msgstr "Wybierz listę ulubionych"
 
 msgid "Choose Tuner"
 msgstr "Wybierz tuner"
@@ -4567,7 +4568,7 @@ msgid "Clear"
 msgstr "Wyczyść"
 
 msgid "Clear before scan"
-msgstr "Wyczyścić przed skanowaniem"
+msgstr "Wyczyść przed skanowaniem"
 
 msgid "Clear fixed"
 msgstr "Stałe czyszczenie"
@@ -4617,7 +4618,7 @@ msgid "Close bouquet list"
 msgstr "Zamknij listę"
 
 msgid "Close bouquet list."
-msgstr "Zamknij listę bukietów."
+msgstr "Zamknij listę ulubionych."
 
 msgid "Close dialog"
 msgstr "Zamknij okno dialogowe"
@@ -4887,7 +4888,7 @@ msgid "Configure the current keymap file."
 msgstr "Skonfiguruj bieżący plik mapy klawiszy."
 
 msgid "Configure the cursor behaviour in the channel selection list. When opening the channel selection list you can remain on the current service or already select up/down and you are able to revert the B+/B- buttons."
-msgstr "Skonfiguruj zachowanie kursora na liście wyboru kanałów. Po otwarciu listy wyboru kanałów możesz pozostać w bieżącej usłudze lub już wybrać górę / dół i możesz cofnąć przyciski B + / B-."
+msgstr "Skonfiguruj zachowanie kursora na liście kanałów. Po otworzeniu listy kanałów możesz pozostać na bieżącym kanale lub użyć przycisków 'góra' / 'dół' aby zmienić kanał. Dodatkowo możesz użyć 'kanał+' / 'kanał-' aby zmienić listę ulubionych"
 
 msgid "Configure the display resolution and the font used for teletext."
 msgstr "Skonfiguruj rozdzielczość wyświetlania i czcionkę używaną do telegazety."
@@ -5204,7 +5205,7 @@ msgid "Continent"
 msgstr "Kontynent"
 
 msgid "Continue"
-msgstr "Kontynuować"
+msgstr "Kontynuuj"
 
 msgid "Continue in background"
 msgstr "Kontynuuj w tle"
@@ -5219,7 +5220,7 @@ msgid "Continue with the on-line update"
 msgstr "Kontynuuj aktualizacje z internetu"
 
 msgid "Continues"
-msgstr "Kontynuować"
+msgstr "Kontynuuj"
 
 msgid "Continues play (loop)"
 msgstr "Kontynuować Odtwarzanie (w pętli)"
@@ -5361,14 +5362,14 @@ msgid "Crash Logs"
 msgstr "Ustawienia logów"
 
 msgid "Crash at skin error for debug reasons ?"
-msgstr "Awaria przy błędzie skóry z powodów debugowania ?"
+msgstr "Awaria przy błędzie skóry z powodów debugowania?"
 
 #, python-format
 msgid "Crash log '%s' (%d/%d)"
 msgstr "Log awarii '1%s' (2%d/3%d)"
 
 msgid "Create"
-msgstr "Utworzyć"
+msgstr "Utwórz"
 
 msgid "Create Bludisc ISO file"
 msgstr "Utwórz plik Bludisc ISO"
@@ -5386,7 +5387,7 @@ msgid "Create directory/folder"
 msgstr "Utwórz katalog/folder"
 
 msgid "Create separate radio userbouquet"
-msgstr "Utwórz osobny bukiet użytkowników radia"
+msgstr "Utwórz osobną listę ulubionych dla radia"
 
 msgid "Create symlink to file"
 msgstr "Utwórz dowiązanie symboliczne do pliku"
@@ -5557,7 +5558,7 @@ msgid "DHCP Router"
 msgstr "Router DHCP"
 
 msgid "DLNA support"
-msgstr "DLNA wsparcie"
+msgstr "DLNA"
 
 msgid "DMM advanced"
 msgstr "DMM zaawansowane"
@@ -6045,7 +6046,7 @@ msgid "Delete folder"
 msgstr "Usuń folder"
 
 msgid "Delete image"
-msgstr "Usuń system"
+msgstr "Usuń"
 
 msgid "Delete logfile"
 msgstr "Usuń plik logu"
@@ -6404,7 +6405,7 @@ msgid "Do not center DVB subs on this service"
 msgstr "Nie środkuj napisów dla tego kanału"
 
 msgid "Do not change"
-msgstr "Nie należy zmieniać"
+msgstr "Nie zmieniaj"
 
 msgid "Do not flash image"
 msgstr "Nie instaluj systemu"
@@ -6431,22 +6432,22 @@ msgstr ""
 
 #, python-format
 msgid "Do you really want to delete %s ?"
-msgstr "Czy chcesz usunąć %s ?"
+msgstr "Czy chcesz usunąć %s?"
 
 #, python-format
 msgid "Do you really want to delete %s?"
 msgstr "Czy chcesz usunąć %s?"
 
 msgid "Do you really want to delete ?"
-msgstr "Czy chcesz usunąć ?"
+msgstr "Czy chcesz usunąć?"
 
 #, python-format
 msgid ""
 "Do you really want to delete all '%s' tags?\n"
 "(NOTE: 'Cancel' cannot undo this!)"
 msgstr ""
-"Naprawdę chcesz usunąć wszystkie '%s' znaczniki?\n"
-"(UWAGA: 'Anuluj' nie może tego cofnąć!)"
+"Czy naprawdę chcesz usunąć wszystkie znaczniki '%s'?\n"
+"(UWAGA: 'Anuluj' nie spowoduje cofnięcia tej operacji!)"
 
 msgid ""
 "Do you really want to delete all tags?\n"
@@ -6459,7 +6460,7 @@ msgid "Do you really want to delete the recording?"
 msgstr "Czy na pewno chcesz usunąć nagranie?"
 
 msgid "Do you really want to delete this timer ?"
-msgstr "Czy chcesz usunąć ten timer ?"
+msgstr "Czy chcesz usunąć ten timer?"
 
 #, python-format
 msgid "Do you really want to download the plugin \"%s\"?"
@@ -6476,14 +6477,14 @@ msgstr ""
 "Wszystkie dane zostaną utracone!"
 
 msgid "Do you really want to move to trashcan ?"
-msgstr "Czy naprawdę chcesz przenieść do kosza ?"
+msgstr "Czy naprawdę chcesz przenieść do kosza?"
 
 #, python-format
 msgid "Do you really want to permamently remove '%s' from trash can ?"
 msgstr "Czy chcesz trwale usunąć '%s' z kosza?"
 
-msgid "Do you really want to permanently remove from trash can ?"
-msgstr "Czy chcesz trwale usunąć z kosza ?"
+msgid "Do you really want to permanently remove from trash can?"
+msgstr "Czy chcesz trwale usunąć z kosza?"
 
 #, python-format
 msgid "Do you really want to remove directory %s from the disk?"
@@ -6505,20 +6506,20 @@ msgid "Do you want change rights?\n"
 msgstr "Czy chcesz zmienić prawa?\n"
 
 msgid "Do you want to add any additional information ?"
-msgstr "Chcesz dodać dodatkowe informacje ?"
+msgstr "Chcesz dodać dodatkowe informacje?"
 
 msgid ""
 "Do you want to also install samba client ?\n"
 "This allows you to mount your windows shares on this device."
 msgstr ""
-"Chcesz zainstalować klienta samby ?\n"
+"Chcesz zainstalować klienta samby?\n"
 "To pozwala na montowanie zasobów Windows na tym urządzeniu."
 
 msgid ""
 "Do you want to attach a text file to explain the log ?\n"
 "(choose 'No' to type message using virtual keyboard.)"
 msgstr ""
-"Chcesz dołączyć plik tekstowy do loga ?\n"
+"Chcesz dołączyć plik tekstowy do loga?\n"
 "(wybierz \"Nie\", aby wpisać wiadomość za pomocą klawiatury wirtualnej.)"
 
 msgid ""
@@ -6543,7 +6544,7 @@ msgid ""
 "\n"
 msgstr ""
 "Czy chcesz usunąć wszystkie inne języki?\n"
-"Z wyjątkiem angielskiego, francuskiego, niemieckiego i twojego wyboru:\n"
+"Z wyjątkiem angielskiego, francuskiego, niemieckiego i aktualnie wybranego:\n"
 "\n"
 
 msgid ""
@@ -6567,7 +6568,7 @@ msgstr "Chcesz wykonać kolejne ręczne skanowanie kanałów?"
 
 #, python-format
 msgid "Do you want to download the image to %s ?"
-msgstr "Chcesz pobrać img. do %s ?"
+msgstr "Chcesz pobrać img. do %s?"
 
 #, python-format
 msgid ""
@@ -6604,26 +6605,26 @@ msgid "Do you want to reboot your receiver?"
 msgstr "Chcesz ponownie uruchomić odbiornik?"
 
 msgid "Do you want to remove the package:\n"
-msgstr "Chcesz usunąć pakiet:\n"
+msgstr "Czy chcesz usunąć pakiet:\n"
 
 msgid "Do you want to restore your settings?"
-msgstr "Chcesz przywrócić ustawienia?"
+msgstr "Cyz chcesz przywrócić ustawienia?"
 
 msgid "Do you want to resume this playback?"
-msgstr "Chcesz wznowić odtwarzanie?"
+msgstr "Czy chcesz wznowić odtwarzanie?"
 
 msgid ""
 "Do you want to send all selected files:\n"
 "(choose 'No' to only send the currently selected file.)"
 msgstr ""
-"Chcesz wysłać wszystkie wybrane pliki:\n"
+"Czy chcesz wysłać wszystkie wybrane pliki:\n"
 "(Wybierz 'Nie', dla aktualnie wybranego pliku.)"
 
 msgid "Do you want to update your box?"
 msgstr "Czy chcesz zaktualizować odbiornik?"
 
 msgid "Do you want to upgrade the package:\n"
-msgstr "Chcesz zaktualizować pakiet:\n"
+msgstr "Czy chcesz zaktualizować pakiet:\n"
 
 msgid "Do you want to view or run the script?\n"
 msgstr "Czy chcesz wyświetlić lub uruchomić skrypt?\n"
@@ -6829,7 +6830,7 @@ msgid "EPG Actions"
 msgstr "Akcje EPG"
 
 msgid "EPG Bouquet Actions"
-msgstr "Akcje bukietu EPG"
+msgstr "Akcje EPG Ulubionych"
 
 msgid "EPG Cache Check"
 msgstr "Sprawdź buforowanie EPG"
@@ -6948,10 +6949,10 @@ msgid "Edit line "
 msgstr "Edytuj linię "
 
 msgid "Edit mode off"
-msgstr "Wyłącz tryb edycji"
+msgstr "Zakończ edycję"
 
 msgid "Edit mode on"
-msgstr "Włącz tryb edycji"
+msgstr "Edytuj"
 
 msgid "Edit new entry"
 msgstr "Edycja nowego wpisu"
@@ -6960,7 +6961,7 @@ msgid "Edit position is the line end"
 msgstr "Edytuj pozycję to koniec linii"
 
 msgid "Edit settings"
-msgstr "Edytuj ustawienia"
+msgstr "Zmień ustawienia"
 
 #, python-format
 msgid "Edit the Nameserver configuration of your %s %s.\n"
@@ -7135,7 +7136,7 @@ msgid "Enable intro screen"
 msgstr "Włącz ekran intro"
 
 msgid "Enable multiple bouquets"
-msgstr "Włącz tryb wielu bukietów"
+msgstr "Włącz tryb wielu Ulubionych"
 
 msgid "Enable or disable using HDMI-CEC."
 msgstr "Włącz lub wyłącz obsługę HDMI-CEC."
@@ -7186,7 +7187,7 @@ msgid "Enable to display all true/false, yes/no, on/off and enable/disable set u
 msgstr "Włącz wyświetlanie wszystkich prawda/fałsz, tak/nie, włączenie/wyłączanie i włączenie/wyłączanie opcji konfiguracji jako przełącznika graficznego."
 
 msgid "Enable unlinked bouquets"
-msgstr "Włącz niepowiązane bukiety"
+msgstr "Włącz niepowiązane listy ulubionych"
 
 msgid "Enabled"
 msgstr "Włączone"
@@ -7351,7 +7352,7 @@ msgid "Equatorial Guinea"
 msgstr "Gwinea Równikowa"
 
 msgid "Erase"
-msgstr "Wymazać"
+msgstr "Usuń"
 
 msgid "Eritrea"
 msgstr "Erytrea"
@@ -7621,7 +7622,7 @@ msgid "Execution condition"
 msgstr "Warunek wykonania"
 
 msgid "Execution finished!!"
-msgstr "Wykonywanie zakończone!!"
+msgstr "Wykonywanie zakończone!"
 
 msgid "Execution progress:"
 msgstr "Postęp wykonywania:"
@@ -7633,7 +7634,7 @@ msgid "Existing or trial customer"
 msgstr "Istniejący lub testowy użytkownik"
 
 msgid "Exit"
-msgstr "Wyjście"
+msgstr "Wyjdź"
 
 msgid "Exit EPG"
 msgstr "Wyjdź z EPG"
@@ -8107,7 +8108,7 @@ msgid "Flash"
 msgstr "Wgraj"
 
 msgid "Flash Image"
-msgstr "Instalacja systemu"
+msgstr "Zainstaluj"
 
 msgid "Flash On the Fly"
 msgstr "Zainstaluj online"
@@ -8552,7 +8553,7 @@ msgid "Goto position"
 msgstr "Idź na pozycję"
 
 msgid "Goto previous bouquet"
-msgstr "Idź do poprzedniej stony bukietu"
+msgstr "Idź do poprzedniej listy ulubionych"
 
 msgid "Goto previous channel"
 msgstr "Idź do poprzedniego kanału"
@@ -8567,7 +8568,7 @@ msgid "GotoX calibration"
 msgstr "Kalibracja GotoX"
 
 msgid "Grab"
-msgstr "Chwyć"
+msgstr "Złap"
 
 msgid "Graphical EPG"
 msgstr "Graficzny EPG"
@@ -9181,7 +9182,7 @@ msgid "If set to 'yes' the bouquets will be shown each time you open the EPG."
 msgstr "Jeśli jest ustawione na 'tak' ,pakiety pokażą się przy każdym otwarciu EPG."
 
 msgid "If set to 'yes' the channel list will be shown after switching between radio and TV modes."
-msgstr "Jeśli jest ustawione na 'tak' ,lista kanałów pojawi się po przełączeniu między trybami radia i TV."
+msgstr "Jeśli jest ustawione na 'tak', lista kanałów pojawi się po przełączeniu między trybami radia i TV."
 
 msgid "If set to 'yes' the channel number will be displayed in the infobar."
 msgstr "Jeśli ustawione na 'tak' numer kanału będzie wyświetlany na pasku informacyjnym."
@@ -9456,7 +9457,7 @@ msgid "Infotainment"
 msgstr "Info o programie"
 
 msgid "Init"
-msgstr "Zainicjować"
+msgstr "Zainicjuj"
 
 msgid "Initial fast forward speed"
 msgstr "Początkowa prędkość do przodu"
@@ -9480,7 +9481,7 @@ msgid "Inode:"
 msgstr "Inode:"
 
 msgid "Inotify Monitoring"
-msgstr "Monitorowanie podsystemu jądra linuksa"
+msgstr "Monitorowanie Inotify"
 
 msgid "Input"
 msgstr "Wejście"
@@ -9520,7 +9521,7 @@ msgid "Install '%s' and enable this operation"
 msgstr "Zainstaluj '%s' i włącz tę operację"
 
 msgid "Install Failed !!"
-msgstr "Instalacja nieudana !!"
+msgstr "Instalacja nieudana!"
 
 msgid "Install Finished."
 msgstr "Instalacja zakończona."
@@ -9776,7 +9777,7 @@ msgid "Jump back 24 hours"
 msgstr "Cofnij się o 24 godziny"
 
 msgid "Jump first press in channel selection"
-msgstr "Wróć do poprzedniego kanału"
+msgstr "Ustawienie 'Skocz do...' na liście kanałów"
 
 msgid "Jump forward 24 hours"
 msgstr "Skocz do przodu 24 godzin"
@@ -9815,7 +9816,7 @@ msgid "Jump to the currently active locale/language"
 msgstr "Skocz do aktualnie aktywnego regionu/języka"
 
 msgid "Just change Bouquet"
-msgstr "Wystarczy zmienić Bukiet"
+msgstr "Tylko zmień listę ulubionych"
 
 msgid "Just change channels"
 msgstr "Tylko zmień kanał"
@@ -10292,7 +10293,7 @@ msgid "Load tags from the timer and recordings"
 msgstr "Ładuj znaczniki z timera i nagrań"
 
 msgid "Load unlinked userbouquets"
-msgstr "Załaduj niepołączone bukiety użytkownika"
+msgstr "Załaduj niepołączone listy ulubionych"
 
 msgid "Load/Save/Delete"
 msgstr "Załaduj, zapisz, usuń EPG"
@@ -10376,7 +10377,7 @@ msgid "Log file '%s' deleted."
 msgstr "Plik dziennika '%s' usunięty."
 
 msgid "Log python stack trace on spinner ?"
-msgstr "Loguj ślad stosu Pythona na pokrętle?"
+msgstr "Log python stack trace on spinner?"
 
 msgid "Log results to harddisk"
 msgstr "Zapisuj log na HDD"
@@ -10683,7 +10684,7 @@ msgstr "Maks.w dół: "
 
 #, python-format
 msgid "Maximum minutes to jump %d !"
-msgstr "Maksymalna liczba minut, aby przeskoczyć %d !"
+msgstr "Maksymalna liczba minut możliwa do przeskoczenia: %d!"
 
 msgid "Maximum no of days:"
 msgstr "Maksymalna liczba dni:"
@@ -11045,7 +11046,7 @@ msgid "Move folder"
 msgstr "Przenieś folder"
 
 msgid "Move mode off"
-msgstr "Wyłącz tryb przenoszenia"
+msgstr "Zakończ przenoszenie"
 
 msgid "Move mode on"
 msgstr "Przenieś"
@@ -11522,7 +11523,7 @@ msgid "Next Image"
 msgstr "Następny obraz"
 
 msgid "Next bouquet"
-msgstr "Następny bukiet"
+msgstr "Następna lista ulubionych"
 
 msgid "Next page"
 msgstr "Następna strona"
@@ -11558,7 +11559,7 @@ msgid "No Connection"
 msgstr "Brak połączenia"
 
 msgid "No Devices Found !!"
-msgstr "Nie znaleziono urządzeń !!"
+msgstr "Nie znaleziono urządzeń!"
 
 msgid "No ECMPids available"
 msgstr "Brak dostępnych ECMPid"
@@ -11571,7 +11572,7 @@ msgid ""
 "\n"
 "Please install first a settinglist"
 msgstr ""
-"Brak załadowanych ustawień !!\n"
+"Brak załadowanych ustawień!\n"
 "\n"
 "Zainstaluj najpierw listę ustawień"
 
@@ -11852,13 +11853,13 @@ msgid "Not Defined"
 msgstr "Nie określony"
 
 msgid "Not Flashing"
-msgstr "Nie Flashować"
+msgstr "Nie Flash'uj"
 
 msgid "Not Installed"
 msgstr "Nie zainstalowany"
 
 msgid "Not Shown"
-msgstr "Nie Pokazywać"
+msgstr "Nie Pokazany"
 
 msgid "Not allowed with folders"
 msgstr "Niedozwolone w folderach"
@@ -12110,7 +12111,7 @@ msgid "Open Timerlist"
 msgstr "Otwórz listę timerów"
 
 msgid "Open bouquetlist"
-msgstr "Rozwinąć listę bukietów"
+msgstr "Rozwiń listę ulubionych"
 
 msgid "Open context menu"
 msgstr "Otwórz menu podręczne"
@@ -12518,7 +12519,7 @@ msgid "Pause/Continue playback"
 msgstr "Zatrzymaj/Kontynuuj odtwarzanie"
 
 msgid "Pausing"
-msgstr "Pauzować"
+msgstr "Pauzowanie"
 
 msgid "Peak load (max queued requests per workerthread)"
 msgstr "Szczytowe obciążenia"
@@ -12542,7 +12543,7 @@ msgid "Perform an on-line flash instead"
 msgstr "Wykonaj aktualizację z internetu"
 
 msgid "Permanently delete all recordings in the trash can?"
-msgstr "Trwale usunąć wszystkie nagrania z 'Kosza'?"
+msgstr "Czy chcesz trwale usunąć wszystkie nagrania z kosza?"
 
 msgid "Permanently remove all deleted items"
 msgstr "Usuń trwale wszystkie usunięte elementy"
@@ -12731,7 +12732,7 @@ msgid "Please don't panic if you see values that look suspicious."
 msgstr "Nie panikuj jeśli jakieś wartości wyglądają podejrzanie"
 
 msgid "Please enter a name for the new bouquet"
-msgstr "Wpisz nazwę dla nowego bukietu"
+msgstr "Wpisz nazwę nowej listy ulubionych"
 
 msgid "Please enter a name for the new marker"
 msgstr "Wpisz nazwę dla nowego znacznika"
@@ -13359,7 +13360,7 @@ msgid "Press yellow to set this interface as the default interface."
 msgstr "Naciśnij żółty, aby ustawić ten interfejs jako domyślny."
 
 msgid "Pressing the panic button will zap you to this channelnumber in your first bouquet."
-msgstr "Naciśnięcie przycisku paniki spowoduje przejście do danego numeru kanału w pierwszym bukiecie."
+msgstr "Naciśnięcie przycisku paniki spowoduje przejście do tego kanału na pierwszej liście ulubionych."
 
 msgid "Prev Image"
 msgstr "Poprzedni obraz"
@@ -13377,7 +13378,7 @@ msgid "Previous"
 msgstr "Poprzedni"
 
 msgid "Previous bouquet"
-msgstr "Poprzedni bukiet"
+msgstr "Poprzedna lista ulubionych"
 
 msgid "Previous page"
 msgstr "Poprzednia strona"
@@ -13404,13 +13405,13 @@ msgid "Priority"
 msgstr "Priorytet konwertera"
 
 msgid "Probable causes could be"
-msgstr "Prawdopodobne przyczyny mogą być"
+msgstr "Prawdopodobnymi przyczynami mogą być"
 
 msgid "Proc model"
 msgstr "Model Procesora"
 
 msgid "Proceed with the update"
-msgstr "Kontynuuj tą aktualizację"
+msgstr "Kontynuuj aktualizację"
 
 msgid "Process"
 msgstr "Proces"
@@ -13759,19 +13760,19 @@ msgstr "Statystyki Czytnika"
 
 #, python-format
 msgid "Ready to install \"%s\" ?"
-msgstr "Gotowy do instalacji \"%s\" ?"
+msgstr "Gotowy do instalacji \"%s\"?"
 
 #, python-format
 msgid "Ready to install %s ?"
-msgstr "Gotowy do instalacji %s ?"
+msgstr "Gotowy do instalacji %s?"
 
 #, python-format
 msgid "Ready to remove \"%s\" ?"
-msgstr "Gotowy do usunięcia \"%s\" ?"
+msgstr "Gotowy do usunięcia \"%s\"?"
 
 #, python-format
 msgid "Ready to remove %s ?"
-msgstr "Gotowy do usunięcia %s ?"
+msgstr "Gotowy do usunięcia %s?"
 
 msgid "Real Life"
 msgstr "Prawdziwe Życie"
@@ -13830,7 +13831,7 @@ msgid "Rebuild"
 msgstr "Odnów"
 
 msgid "Rebuild LCN bouquet now?"
-msgstr "Odnowić teraz bukiet LCN?"
+msgstr "Czy przebudować LCN listy ulubionych?"
 
 msgid "Rec"
 msgstr "Nagrywanie"
@@ -13964,7 +13965,7 @@ msgid "Records"
 msgstr "Dokumentacja"
 
 msgid "Recovery Mode"
-msgstr "Tryb odzyskiwania"
+msgstr "Tryb awaryjny"
 
 msgid "Red"
 msgstr "Czerwony"
@@ -13999,7 +14000,7 @@ msgid ""
 "Please wait until your %s %s reboots\n"
 "This may take a few minutes"
 msgstr ""
-"Ponowne wgrywanie w toku\n"
+"Wgrywanie w toku\n"
 "Poczekaj aż %s %s uruchomi się ponownie\n"
 "To może zająć kilka minut"
 
@@ -14070,7 +14071,7 @@ msgid "Reloading EPG Cache..."
 msgstr "Przeładowywanie pamięci podręcznej EPG..."
 
 msgid "Reloading bouquets and services..."
-msgstr "Przeładowywanie bukietów i kanałów..."
+msgstr "Przeładowywanie list ulubionych i kanałów..."
 
 msgid "Remaining"
 msgstr "Pozostały"
@@ -14113,16 +14114,16 @@ msgstr "Typ zdalnego sterowania"
 
 #, python-format
 msgid "Removal of this slot will not show in %s Gui.  Are you sure you want to delete image slot %s ?"
-msgstr "Usunięcie tego miejsca nie będzie widoczne w %s Gui. Czy na pewno chcesz usunąć miejsce obrazu %s ?"
+msgstr "Usunięcie tego miejsca nie będzie widoczne w %s Gui. Czy na pewno chcesz usunąć miejsce obrazu %s?"
 
 msgid "Remove"
 msgstr "Usunąć"
 
 msgid "Remove Confirmation"
-msgstr "Usunąć Potwierdzenie"
+msgstr "Potwierdź usunięcie"
 
 msgid "Remove Failed !!"
-msgstr "Usuwanie nieudane !!"
+msgstr "Usuwanie nieudane!"
 
 msgid "Remove Finished."
 msgstr "Usuwanie zakończone."
@@ -14131,25 +14132,25 @@ msgid "Remove Plugins"
 msgstr "Usuwanie wtyczek"
 
 msgid "Remove Quad Channel Entry"
-msgstr "Usunąć wpis kanału Quad"
+msgstr "Usuń wpis kanału Quad"
 
 msgid "Remove Service"
-msgstr "Usunąć Kanał"
+msgstr "Usuń Kanał"
 
 msgid "Remove a mark"
-msgstr "Usunąć znacznik"
+msgstr "Usuń znacznik"
 
 msgid "Remove a nameserver entry"
-msgstr "Usunąć wpis DNS"
+msgstr "Usuń wpis DNS"
 
 msgid "Remove all cuts and marks"
 msgstr "Usuń wszystkie cięcia i znaczniki"
 
 msgid "Remove bookmark"
-msgstr "Usunąć zakładkę"
+msgstr "Usuń zakładkę"
 
 msgid "Remove completed timers after (days)"
-msgstr "Usunąć wykonane timery po (dni)"
+msgstr "Usuń wykonane timery po (dni)"
 
 msgid "Remove confirmation"
 msgstr "Usuń potwierdzenie"
@@ -14179,7 +14180,7 @@ msgid "Remove timer"
 msgstr "Usuń timer"
 
 msgid "Remove title"
-msgstr "Usunąć tytuł"
+msgstr "Usuń tytuł"
 
 msgid "Removing"
 msgstr "Usuwanie"
@@ -14220,7 +14221,7 @@ msgid "Renovation"
 msgstr "Renowacja"
 
 msgid "Repeat"
-msgstr "Powtarzać"
+msgstr "Powtórz"
 
 msgid "Repeat Display Message"
 msgstr "Powtórz wyświetlaną wiadomość"
@@ -14429,7 +14430,7 @@ msgid "Return to previous service"
 msgstr "Powrót do poprzedniego kanału"
 
 msgid "Reverse bouquet buttons"
-msgstr "Odwrócić przyciski bukietów"
+msgstr "Odwrócić przyciski list ulubionych"
 
 msgid "Reverse left file sorting"
 msgstr "Odwróć sortowanie plików w lewo"
@@ -14514,7 +14515,7 @@ msgid "Run Confirmation"
 msgstr "Uruchom potwierdzenie"
 
 msgid "Run how often ?"
-msgstr "Uruchomić jak często ?"
+msgstr "Uruchomić jak często?"
 
 msgid "Run script"
 msgstr "Uruchom skrypt"
@@ -15079,7 +15080,7 @@ msgid "Select Your Skin"
 msgstr "Wybierz swoją skórę"
 
 msgid "Select a bouquet"
-msgstr "Wybierz bukiet"
+msgstr "Wybierz listę ulubionych"
 
 msgid "Select a cardserver from the available list."
 msgstr "Wybierz card serwer z dostępnej listy."
@@ -15552,7 +15553,7 @@ msgid "Service has been added to the favourites."
 msgstr "Kanał został dodany do ulubionych."
 
 msgid "Service has been added to the selected bouquet."
-msgstr "Kanał został dodany do wybranego bukietu."
+msgstr "Kanał został dodany do Ulubionych."
 
 msgid "Service info"
 msgstr "Info o kanale"
@@ -15639,7 +15640,7 @@ msgid "Services"
 msgstr "Kanały"
 
 msgid "Services may be grouped in bouquets. When enabled, you can use more than one bouquet."
-msgstr "Kanały mogą być pogrupowane w bukiety. Po włączeniu tej funkcji możesz użyć więcej niż jednego bukietu."
+msgstr "Kanały mogą być pogrupowane w 'listy ulubionych'. Po włączeniu tej funkcji będziesz mógł stworzyć więcej niż jedną listę."
 
 msgid "Set Basetime"
 msgstr "Ustaw czas bazowy"
@@ -16002,7 +16003,7 @@ msgid "Shellscript"
 msgstr "Shellscript"
 
 msgid "Shift"
-msgstr "Przesunięcie"
+msgstr "Przesuń"
 
 #, python-format
 msgid "Shift: %s"
@@ -16092,7 +16093,7 @@ msgid "Show Box Portal"
 msgstr "Pokaż Box Portal"
 
 msgid "Show CCcam in extensions ?"
-msgstr "Pokazać CCcam w rozszerzeniach ?"
+msgstr "Pokazać CCcam w rozszerzeniach?"
 
 msgid "Show CI messages"
 msgstr "Pokaż wiadomości CI"
@@ -16161,7 +16162,7 @@ msgid "Show Log"
 msgstr "Pokaż Log"
 
 msgid "Show Log Manager in extensions list ?"
-msgstr "Pokazać Log Managera na liście rozszerzeń ?"
+msgstr "Pokazać Log Managera na liście rozszerzeń?"
 
 msgid "Show Main Menu as"
 msgstr "Pokaż menu główne jako"
@@ -16185,7 +16186,7 @@ msgid "Show OScam Info"
 msgstr "Pokaż informacje OScam"
 
 msgid "Show OScam in extensions ?"
-msgstr "Pokazać OScam w rozszerzeniach ?"
+msgstr "Pokazać OScam w rozszerzeniach?"
 
 msgid "Show PIP"
 msgstr "Pokaż PIP"
@@ -16267,7 +16268,7 @@ msgid "Show background when tuned to a radio channel."
 msgstr "Pokaż tapetę dla kanału radiowego."
 
 msgid "Show bouquet on launch"
-msgstr "Pokaż bukiety po uruchomieniu"
+msgstr "Pokaż listy ulubionych po uruchomieniu"
 
 msgid "Show channel number in infobar"
 msgstr "Pokaż numer kanału na infobarze"
@@ -16378,7 +16379,7 @@ msgid "Show in Standby"
 msgstr "Pokaż w trybie czuwania"
 
 msgid "Show in extensions list ?"
-msgstr "Pokazać na liście rozszerzeń ?"
+msgstr "Pokazać na liście rozszerzeń?"
 
 msgid "Show info"
 msgstr "Pokaż info"
@@ -17092,8 +17093,8 @@ msgid ""
 "Sorry, your backup destination is not writeable.\n"
 "Please select a different one."
 msgstr ""
-"Wybrane miejsce na kopię jest nie zapisywalne.\n"
-"Wybierz inną loklizację."
+"Wybrane miejsce na kopię nie jest zapisywalne.\n"
+"Wybierz inną lokalizację."
 
 msgid "Sort"
 msgstr "Sortuj"
@@ -17102,7 +17103,7 @@ msgid "Sort EPG List"
 msgstr "Sortuj listę EPG"
 
 msgid "Sort Extensions list alphabetically"
-msgstr "Sortuj alfabetycznie listę rozszerzeń"
+msgstr "Sortuj alfabetycznie"
 
 msgid "Sort by"
 msgstr "Sortuj według"
@@ -17114,7 +17115,7 @@ msgid "Sort list by"
 msgstr "Sortuj listę w/g"
 
 msgid "Sort list to default and exit?"
-msgstr "Posortować listę do domyślnych i wyjść?"
+msgstr "Posortować listę domyślnie i wyjść?"
 
 msgid "Sort list:"
 msgstr "Sortuj listę:"
@@ -17252,7 +17253,7 @@ msgid "Start RDS interactive"
 msgstr "Uruchom interaktywny RDS"
 
 msgid "Start from the beginning"
-msgstr "Rozpocząć od początku"
+msgstr "Rozpocznij od początku"
 
 msgid "Start instant recording"
 msgstr "Rozpocznij nagrywanie natychmiastowe"
@@ -17261,7 +17262,7 @@ msgid "Start mode"
 msgstr "Tryb Startu"
 
 msgid "Start offline decode"
-msgstr "Rozpocząć dekodowanie offline"
+msgstr "Rozpocznij dekodowanie offline"
 
 msgid "Start recording?"
 msgstr "Rozpocząć nagrywanie?"
@@ -17710,7 +17711,7 @@ msgid "Sync NTP every (minutes)"
 msgstr "Synchronizacji z NTP co (w min.)"
 
 msgid "Sync failure moving back to origin !"
-msgstr "Błąd synchronizacji wraca do początku !"
+msgstr "Błąd synchronizacji wraca do początku!"
 
 msgid "Sync time using"
 msgstr "Synchronizuj czas za pomocą"
@@ -17929,7 +17930,7 @@ msgid "Terrestrial"
 msgstr "Naziemny"
 
 msgid "Terrestrial bouquet:"
-msgstr "Bukiet DVB-T:"
+msgstr "Lista ulubionych DVB-T:"
 
 msgid "Test DiSEqC settings"
 msgstr "Test ustawień DiSEqC"
@@ -18172,7 +18173,7 @@ msgstr ""
 "\n"
 "%s\n"
 "\n"
-"Czy chesz napisać USB flash na tym urządzeniu?"
+"Czy chesz zapisać USB flasher na tym urządzeniu?"
 
 msgid "The following files were found..."
 msgstr "Następujące pliki zostały wykryte..."
@@ -18324,7 +18325,7 @@ msgid "There is a risk that your %s %s will not boot or may malfunction after su
 msgstr "Istnieje ryzyko że %s %s nie uruchomi się ponownie lub nie będzie działał poprawnie po tak dużej aktualizacji."
 
 msgid "There is no signal to lock on !"
-msgstr "Nie ma sygnału, na którym można zablokować !"
+msgstr "Nie ma sygnału, na którym można zablokować!"
 
 msgid ""
 "There might not be enough space on the selected partition..\n"
@@ -18548,7 +18549,7 @@ msgid "This option allows you to choose how to display standard definition video
 msgstr "Ta opcja pozwala na wybór sposobu wyświetlania standardowej definicji wideo na ekranie telewizora."
 
 msgid "This option allows you to choose what the first button press jumps to in channel list screen, (so pressing '2' jumps to 'A' or '2' first), when 'Quick Actions' preset actions are performed. "
-msgstr "Ta opcja pozwala wybrać, do czego przeskakuje pierwsze naciśnięcie przycisku na ekranie listy kanałów (więc naciśnięcie „2” powoduje przejście do „A” lub „2” jako pierwsze), gdy wykonywane są zaprogramowane akcje „Szybkie akcje”. "
+msgstr "Ta opcja pozwala określić działanie pierwszego wciśnięcia przycisku numerycznego na ekranie listy kanałów. Np. wciśnięcie „2” spowoduje przejść do kanału na literę „A” (jeśli ustawione na 'Litera') lub zaczynającego się od cyfry „2” (jeśli ustawione na 'Numer'). "
 
 msgid "This option allows you to choose whether or not to display genre information for the event."
 msgstr "Ta opcja pozwala wybrać, czy wyświetlać informacje o gatunku dla zdarzenia."
@@ -18816,7 +18817,7 @@ msgid "Time history"
 msgstr "Historia czasu"
 
 msgid "Time jump avoid zero step size"
-msgstr "Uniknąć zakłóceń obrazu podczas skoków"
+msgstr "Unikaj zakłóceń obrazu podczas skoków"
 
 msgid "Time jump multiplier for fast backward"
 msgstr "Czas skoku mnożnika dla szybkiego przewijanie do tyłu"
@@ -19051,7 +19052,7 @@ msgid "Toggle aspect ratio..."
 msgstr "Przełącz proporcje..."
 
 msgid "Toggle between bouquet/EPG lists"
-msgstr "Przełącz między listami bukietów/epg"
+msgstr "Przełącz między listami ulubionych/epg"
 
 msgid "Toggle display of the InfoBar"
 msgstr "Przełączanie wyświetlania paska InfoBar"
@@ -19589,7 +19590,7 @@ msgid "Update delay for Events in List"
 msgstr "Opóźnienie aktualizacji dla wydarzenia z listy"
 
 msgid "Update delay for Events in List. Scrolling in List is faster with higher delay, especially on big Lists !"
-msgstr "Opóźnienie aktualizacji dla zdarzeń na liście. Przewijanie listy jest szybsze przy większym opóźnieniu, szczególnie na dużych listach !"
+msgstr "Opóźnienie aktualizacji dla zdarzeń na liście. Przewijanie listy jest szybsze przy większym opóźnieniu, szczególnie na dużych listach!"
 
 msgid "Update failed!"
 msgstr "Aktualizacja nieudana!"
@@ -19601,7 +19602,7 @@ msgid "Update interval (in seconds)"
 msgstr "Interwał aktualizacji (w sek.)"
 
 msgid "Update is reported as faulty !!"
-msgstr "Aktualizacja jest zgłoszona jako uszkodzona!!"
+msgstr "Aktualizacja jest zgłoszona jako uszkodzona!"
 
 msgid ""
 "Update succeeded!\n"
@@ -19894,7 +19895,7 @@ msgid "User  (keymap.usr)"
 msgstr "Użytkownika(keymap.usr)"
 
 msgid "User - bouquets"
-msgstr "Użytkownik-Bukiety"
+msgstr "Listy ulubionych"
 
 msgid "User defined"
 msgstr "Zdefiniowany przez użytkownika"
@@ -20500,10 +20501,10 @@ msgid "Wetter"
 msgstr "Pogoda"
 
 msgid "What Day of month ?"
-msgstr "Co dziennie w miesiącu ?"
+msgstr "Co dziennie w miesiącu?"
 
 msgid "What Day of week ?"
-msgstr "Co dziennie w tygodniu ?"
+msgstr "Co dziennie w tygodniu?"
 
 msgid "What action is required on completion of the timer? 'Auto' lets the box return to the state it had when the timer started. 'Do nothing', 'Go to standby' and 'Go to deep standby' do exactly that."
 msgstr "Jakie działania są podejmowane po ukończeniu Timera? \"Auto\" pozwala, aby tuner powrócił do stanu, w którym znajdował się podczas uruchomienia Timera. \"Nie rób nic\", \"Przejdź do trybu czuwania\" i \"Przejdź do trybu głębokiego czuwania\", wykonuje dokładnie to co jest napisane."
@@ -20518,7 +20519,7 @@ msgid "What would you like to do?"
 msgstr "Co chcesz zrobić?"
 
 msgid "When enabled enigma2 will load unlinked userbouquets. This means that userbouquets that are available, but not included in the bouquets.tv or bouquets.radio files, will still be loaded. This allows you for example to keep your own user bouquet while installed settings are upgraded"
-msgstr "Po włączeniu enigma2 ładuje niepowiązane bukiety użytkowników. Oznacza to, że bukiety użytkowników, które są dostępne, ale nie są zawarte w plikach bouquets.tv lub bouquets.radio, nadal będą ładowane. Pozwala to na przykład zachować własny bukiet użytkowników podczas aktualizacji zainstalowanych ustawień"
+msgstr "Po włączeniu enigma2 ładuje niepowiązane listy ulubionych. Oznacza to, że 'ulubione', które są dostępne, ale nie są zawarte w plikach bouquets.tv lub bouquets.radio, nadal będą ładowane. Pozwala to na przykład zachować własne 'ulubione' podczas aktualizacji ustawień"
 
 msgid "When enabled the PiP can be closed by the exit button."
 msgstr "Po włączeniu PiP można zamknąć za pomocą przycisku wyjścia."
@@ -20542,7 +20543,7 @@ msgid "When enabled, EIT data will be included in http streams. This allows a cl
 msgstr "Jeśli opcja jest włączona, dane EIT osadzone w strumieniach HTTP. umożliwiają wyświetlanie EPG klientowi ."
 
 msgid "When enabled, Enigma2 will load unlinked bouquets. This means that bouquets that are available, but not included in the bouquets.tv or bouquets.radio files, will still be loaded. This allows you for example to keep your own user bouquet while installed settings are upgraded"
-msgstr "Po włączeniu Enigma2 będzie ładować niepowiązane bukiety. Oznacza to, że bukiety, które są dostępne, ale nie są zawarte w plikach bouquets.tv lub bouquets.radio, nadal będą ładowane. Pozwala to na przykład zachować własny bukiet użytkowników podczas aktualizacji zainstalowanych ustawień"
+msgstr "Po włączeniu Enigma2 będzie ładować niepowiązane listy ulubionych. Oznacza to, że 'ulubione', które są dostępne, ale nie są zawarte w plikach bouquets.tv lub bouquets.radio, nadal będą ładowane. Pozwala to na przykład zachować własne listy ulubionych podczas aktualizacji zainstalowanych ustawień"
 
 msgid "When enabled, a popup message will be shown when a movie has finished and the next one will start."
 msgstr "Gdy włączone, okno wiadomość pojawi się gdy film się skończy i rozpocznie następny."
@@ -20575,13 +20576,13 @@ msgid "When enabled, before opkg update there will be opkg clean to make sure no
 msgstr "Gdy włączone, przed aktualizacją opkg będzie wyczyszczone. Włącz to tylko wtedy jeśli nie korzystasz z aktualizacji online."
 
 msgid "When enabled, channel numbering will start at '1' for each bouquet."
-msgstr "Gdy włączone, numerowanie kanałów będzie zaczynać się od '1' dla każdego bukietu."
+msgstr "Gdy włączone, numerowanie kanałów będzie zaczynać się od '1' dla każdej listy ulubionych."
 
 msgid "When enabled, content with an aspect ratio of 4:3 will be stretched to fit the screen."
 msgstr "Gdy włączone, zawartość proporcji obrazu 4:3 będzie rozciągana aby dopasować do ekranu."
 
 msgid "When enabled, continue to the next bouquet when the last channel of the current bouquet is reached while changing channels."
-msgstr "Gdy włączone, po dojściu do ostatniego kanału w danym bukiecie podczas przełączania, automatycznie nastąpi przejście do kolejnego bukietu."
+msgstr "Gdy włączone, przełącz na kolejną listę ulubionych po dojściu do ostatniego kanału w aktualnej liście ulubionych."
 
 msgid "When enabled, deleted recordings are moved to the trash can, instead of being deleted immediately."
 msgstr "Gdy włączone, usunięte nagrania zostaną przeniesione do 'kosza', zamiast natychmiastowego usunięcia."
@@ -20611,7 +20612,7 @@ msgid "When enabled, number markers will be hidden."
 msgstr "Po włączeniu znaczniki liczb będą ukryte."
 
 msgid "When enabled, pressing '0' will zap you to the first channel in your first bouquet and delete your zap-history."
-msgstr "Gdy włączone, naciskając przycisk '0 'będzie przełączony do pierwszego kanału w pierwszym bukiecie i usunie historię przełączania."
+msgstr "Gdy włączone, wciśnięcie '0' automatycznie przełączy na pierwszy kanał w pierwszej liście ulubionych i usunie historię przełączania."
 
 msgid "When enabled, reformat subtitles to match the width of the screen."
 msgstr "Po włączeniu sformatuj napisy w celu dopasowania do szerokości ekranu."
@@ -20703,7 +20704,7 @@ msgid ""
 "Really do a factory reset?"
 msgstr ""
 "Po wykonaniu przywracania ustawień fabrycznych, stracisz wszystkie dane konfiguracyjne\n"
-"(w tym bukiety ,kanały, dane satelitarne ...)\n"
+"(w tym listy ulubionych, kanały, dane satelitarne ...)\n"
 "Po zakończeniu przywracania ustawień fabrycznych, %s %s zostanie automatycznie ponownie uruchomiony!\n"
 "\n"
 "Naprawdę przywrócić ustawienia fabryczne?"
@@ -20769,7 +20770,7 @@ msgid "With popup"
 msgstr "Z okienkiem"
 
 msgid "With this option set to 'yes' the channel lists will always show you the bouquet screen first. If set to 'no' the current bouquet will be opened."
-msgstr "Ustawienie tej opcji na 'tak', zawsze pokaże pierwszy ekran bukietów. Jeśli jest ustawione na 'nie' będzie otwarty obecny bukiet."
+msgstr "Ustawienie tej opcji na 'tak' spowoduje, że lista kanałów najpierw wyświetli listę 'ulubionych'. Jeśli ustawione na 'nie' zostaną wyświetlone kanały obecnej listy ulubionych."
 
 msgid "With this option you can hide Job Tasks from the extension screen (short blue button press)."
 msgstr "Dzięki tej opcji możesz ukryć zadanie pracy z ekranu rozszerzeń (krótkie naciśnięcie niebieski przycisk)."
@@ -21145,7 +21146,7 @@ msgid ""
 msgstr ""
 "%s %s nie jest prawidłowo zamknięty.\n"
 "\n"
-"Czy chcesz umieścić go w %s ?"
+"Czy chcesz umieścić go w %s?"
 
 #, python-format
 msgid "Your %s %s will Reboot..."
@@ -21161,7 +21162,7 @@ msgid ""
 "Ready to install %s ?"
 msgstr ""
 "%s %s zostanie uruchomiony ponownie po zainstalowaniu serwisu\n"
-"Jesteś gotowy do zainstalowania %s ?"
+"Jesteś gotowy do zainstalowania %s?"
 
 #, python-format
 msgid ""
@@ -21252,17 +21253,17 @@ msgid ""
 "\n"
 "Do you still want to update?"
 msgstr ""
-"Twoje img. jest nieaktualne!\n"
+"Twój system jest nieaktualny!\n"
 "\n"
-"Po tak długim czasie istnieje ryzyko że %s %s nie 'wstanie'.\n"
-"po aktualizacji online, lub pokaże dysfunkcji w uruchomionym img.\n"
+"Po tak długim czasie istnieje ryzyko, że aktualizacja online spowoduje "
+"nieprawidłowe działanie systemu lub wręcz sprawi że twój %s %s W OGÓLE SIĘ NIE URUCHOMI!\n"
 "\n"
-"Nowe flashowanie zwiększy stabilność\n"
+"Wgranie nowego systemu 'od zera' zagwarantuje prawidłowe działanie systemu.\n"
 "\n"
-"Online aktualizacja odbędzie się na własne ryzyko !!\n"
+"Aktualizacja online zostanie wykonana na twoją odpowiedzialność!\n"
 "\n"
 "\n"
-"Czy chcesz zaktualizować?"
+"Czy na pewno chcesz zaktualizować?"
 
 msgid ""
 "Your internet connection is not working!\n"
@@ -21353,7 +21354,7 @@ msgid "Zap focused channel on full screen"
 msgstr "Przełączanie na pełnym ekranie"
 
 msgid "Zap mode"
-msgstr "Przełącz na tryb"
+msgstr "Tryb przełączania"
 
 msgid "Zap next"
 msgstr "Przełącz następny"
@@ -21428,7 +21429,7 @@ msgid "[alternative edit]"
 msgstr "[edycja alternatywnych]"
 
 msgid "[bouquet edit]"
-msgstr "[edycja bukietu]"
+msgstr "[edycja ulubionych]"
 
 msgid "[favourite edit]"
 msgstr "[edycja ulubionych]"
@@ -21446,10 +21447,10 @@ msgid "abort alternatives edit"
 msgstr "Przerwij edycję alternatywnych"
 
 msgid "abort bouquet edit"
-msgstr "Przerwij edycję bukietów"
+msgstr "Anuluj edycję ulubionych"
 
 msgid "abort favourites edit"
-msgstr "Przerwij edycję ulubionych"
+msgstr "Anuluj edycję ulubionych"
 
 msgid "about to start"
 msgstr "zaraz się rozpocznie"
@@ -21473,19 +21474,19 @@ msgid "add bookmark"
 msgstr "dodaj zakładkę"
 
 msgid "add bouquet"
-msgstr "Dodaj bukiet"
+msgstr "Utwórz listę ulubionych"
 
 msgid "add bouquet to parental protection"
-msgstr "dodaj bukiet do ochrony rodzicielskiej"
+msgstr "dodaj listę ulubionych do ochrony rodzicielskiej"
 
 msgid "add marker"
 msgstr "Dodaj znacznik"
 
 msgid "add service to bouquet"
-msgstr "Dodaj kanał do bukietu"
+msgstr "Dodaj kanał do listy ulubionych"
 
 msgid "add service to favourites"
-msgstr "dodaj kanał do ulubionych"
+msgstr "dodaj kanał do listy ulubionych"
 
 msgid "add to parental protection"
 msgstr "dodaj do ochrony rodzicielskiej"
@@ -21587,7 +21588,7 @@ msgid "audio tracks"
 msgstr "ścieżki audio"
 
 msgid "auto"
-msgstr "auto"
+msgstr "Auto"
 
 msgid "auto deepstandby"
 msgstr "automatyczne głębokie czuwanie"
@@ -21599,10 +21600,10 @@ msgid "automatic"
 msgstr "automatyczny"
 
 msgid "back"
-msgstr "wróć"
+msgstr "Wróć"
 
 msgid "background image"
-msgstr "obraz w tle"
+msgstr "obraz tła"
 
 msgid "ballet"
 msgstr "balet"
@@ -21661,7 +21662,7 @@ msgid "cartoon/puppets"
 msgstr "animowany"
 
 msgid "center"
-msgstr "centralnie"
+msgstr "wyśrodkuj"
 
 msgid "centered"
 msgstr "wyśrodkowany"
@@ -21712,7 +21713,7 @@ msgid "connected"
 msgstr "połączony"
 
 msgid "continue"
-msgstr "kontynuować"
+msgstr "kontynuuj"
 
 msgid "controlled by HDMI"
 msgstr "sterowane przez HDMI"
@@ -21739,7 +21740,7 @@ msgid "copy folder"
 msgstr "kopiuj folder"
 
 msgid "copy to bouquets"
-msgstr "Kopiuj do bukietów"
+msgstr "Kopiuj do Ulubionych"
 
 msgid "create directory"
 msgstr "utworzyć katalog"
@@ -21782,7 +21783,7 @@ msgid "detective/thriller"
 msgstr "kryminał/thriller"
 
 msgid "disable move mode"
-msgstr "Wyłącz tryb przenoszenia"
+msgstr "Zakończ przenoszenie"
 
 msgid "disabled"
 msgstr "wyłączony"
@@ -21858,7 +21859,7 @@ msgid "enable PIP no HDR"
 msgstr "włącz PIP bez HDR"
 
 msgid "enable bouquet edit"
-msgstr "Włącz edycję bukietu"
+msgstr "Włącz edycję listy ulubionych"
 
 msgid "enable favourite edit"
 msgstr "włącz edycję ulubionych"
@@ -21873,13 +21874,13 @@ msgid "end alternatives edit"
 msgstr "koniec edycji alternatywnych"
 
 msgid "end bouquet edit"
-msgstr "Koniec edycji bukietów"
+msgstr "Zakończ edycję Ulubionych"
 
 msgid "end cut here"
 msgstr "koniec cięcia tutaj"
 
 msgid "end favourites edit"
-msgstr "koniec edycji ulubionych"
+msgstr "zakończ edycę"
 
 msgid "end zapping"
 msgstr "koniec zappingu"
@@ -21984,7 +21985,7 @@ msgid "football/soccer"
 msgstr "piłka nożna"
 
 msgid "for DATA LOSS OR DAMAGE !!!"
-msgstr "za UTRATĘ LUB USZKODZENIE DANYCH !!!"
+msgstr "za UTRATĘ LUB USZKODZENIE DANYCH!"
 
 msgid "force AC3plus"
 msgstr "wymuś AC3plus"
@@ -22326,7 +22327,7 @@ msgid "never"
 msgstr "nigdy"
 
 msgid "never abort"
-msgstr "nigdy nie przerywać"
+msgstr "nigdy nie przerywaj"
 
 msgid "new media"
 msgstr "nowe media"
@@ -22494,7 +22495,7 @@ msgid "previous channel page"
 msgstr "poprzednia strona z kanałami"
 
 msgid "previous/next Bouquet"
-msgstr "poprzedni/następny Bukiet"
+msgstr "poprzedne/następne Ulubione"
 
 msgid "previous/next Page"
 msgstr "poprzednia/następna Strona"
@@ -22506,7 +22507,7 @@ msgid "provider:"
 msgstr "nadawca:"
 
 msgid "purge deleted userbouquets"
-msgstr "Wyczyść usunięte bukiety"
+msgstr "Wyczyść usunięte Ulubione"
 
 msgid "python"
 msgstr "python"
@@ -22552,7 +22553,7 @@ msgid "remove all alternatives"
 msgstr "Usuń wszystkie alternatywne"
 
 msgid "remove all new found flags"
-msgstr "usunąć wszystkie nowe znalezione flagi"
+msgstr "usuń wszystkie nowe znalezione flagi"
 
 msgid "remove before this position"
 msgstr "usuń przed tą pozycją"
@@ -22561,10 +22562,10 @@ msgid "remove bookmark"
 msgstr "usuń zakładkę"
 
 msgid "remove bouquet from parental protection"
-msgstr "usuń bukiet z ochrony rodzicielskiej"
+msgstr "usuń Ulubione z ochrony rodzicielskiej"
 
 msgid "remove cable services"
-msgstr "usunąć usługi telewizji kablowej"
+msgstr "usuń servisy telewizji kablowej"
 
 msgid "remove directory"
 msgstr "usuń katalog"
@@ -22582,7 +22583,7 @@ msgid "remove selected satellite"
 msgstr "Usuń wybranego satelitę"
 
 msgid "remove terrestrial services"
-msgstr "usunąć usługi naziemne"
+msgstr "usuń servisy usługi naziemne"
 
 msgid "remove this mark"
 msgstr "usuń ten znacznik"
@@ -22600,7 +22601,7 @@ msgid "repeated"
 msgstr "powtórzony"
 
 msgid "restore deleted userbouquets"
-msgstr "Przywróć usunięte bukiety użytkowników"
+msgstr "Przywróć usunięte listy ulubionych"
 
 msgid "restoring satellites.xml not possible!"
 msgstr "przywracanie pliku satellites.xml nie jest możliwe!"
@@ -22915,7 +22916,7 @@ msgid "tennis/squash"
 msgstr "tenis/squash"
 
 msgid "this bouquet is protected by a parental control pin"
-msgstr "ten bukiet jest chroniony przez PIN kontroli rodzicielskiej"
+msgstr "ta lista ulubionych jest chroniona PINem kontroli rodzicielskiej"
 
 msgid "this recording"
 msgstr "to nagranie"
@@ -23281,7 +23282,7 @@ msgstr "®"
 #~ msgstr "et9200/9500/6500"
 
 #~ msgid "limit ..., aborting !"
-#~ msgstr "limit ..., przerywanie !"
+#~ msgstr "limit ..., przerywanie!"
 
 #~ msgid "ms"
 #~ msgstr "ms"
@@ -23671,7 +23672,7 @@ msgstr "®"
 
 #, python-format
 #~ msgid "Are you sure you want to update your %s %s ?"
-#~ msgstr "Czy na pewno chcesz zaktualizować %s %s ?"
+#~ msgstr "Czy na pewno chcesz zaktualizować %s %s?"
 
 #~ msgid "Backup Manager"
 #~ msgstr "Menadżer kopii zapasowych"
@@ -23691,7 +23692,7 @@ msgstr "®"
 
 #, python-format
 #~ msgid "Do you want to update your %s %s ?"
-#~ msgstr "Czy chcesz zaktualizować %s %s ?"
+#~ msgstr "Czy chcesz zaktualizować %s %s?"
 
 #~ msgid "Error downloading change log."
 #~ msgstr "Błąd pobierania listy zmian."
@@ -23826,12 +23827,12 @@ msgstr "®"
 #~ "\n"
 #~ "Do you want to flash-online ?"
 #~ msgstr ""
-#~ "Istnieje zbyt wiele pakietów aktualizacyjnych!!!\n"
+#~ "Istnieje zbyt wiele pakietów aktualizacyjnych!!\n"
 #~ "\n"
 #~ "Istnieje ryzyko,że w %s %s nie będzie\n"
-#~ "rozruchu po aktualizacji online,lub pokaże dysfunkcje w img.\n"
+#~ "rozruchu po aktualizacji online, lub pokaże dysfunkcje w img.\n"
 #~ "\n"
-#~ "Należy ponownie wgrać obraz!!\n"
+#~ "Należy ponownie wgrać obraz!\n"
 #~ "\n"
 #~ "Chcesz wgrać teraz online?"
 
@@ -24053,7 +24054,7 @@ msgstr "®"
 #~ msgstr "Ustaw przedział czasowy na 6 godzin"
 
 #~ msgid "Show bouquet selection menu"
-#~ msgstr "Pokaż menu wyboru bukietu"
+#~ msgstr "Pokaż menu wyboru listy ulubionych"
 
 #~ msgid "Stop previous broadcasted service on return to movielist."
 #~ msgstr "Zatrzymaj poprzednią usługę nadawania po powrocie do listy filmów."
