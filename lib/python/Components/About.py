@@ -2,6 +2,7 @@ from array import array
 from binascii import hexlify
 from fcntl import ioctl
 from glob import glob
+from locale import format_string
 from os import popen, stat
 from os.path import isfile
 from re import search
@@ -190,29 +191,32 @@ def getCPUInfoString():
 		elif isfile("/sys/devices/virtual/thermal/thermal_zone0/temp"):
 			temperature = fileReadLine("/sys/devices/virtual/thermal/thermal_zone0/temp", source=MODULE_NAME)
 			if temperature:
-				temperature = round(int(temperature) / 1000, 1)
+				temperature = temperature / 1000
 		elif isfile("/sys/class/thermal/thermal_zone0/temp"):
 			temperature = fileReadLine("/sys/class/thermal/thermal_zone0/temp", source=MODULE_NAME)
 			if temperature:
-				temperature = round(int(temperature) / 1000, 1)
+				temperature = temperature / 1000
 		elif isfile("/proc/hisi/msp/pm_cpu"):
 			lines = fileReadLines("/proc/hisi/msp/pm_cpu", source=MODULE_NAME)
 			if lines:
 				for line in lines:
 					if "temperature = " in line:
-						temperature = line.split("temperature = ")[1].split()[0]
+						temperature = int(line.split("temperature = ")[1].split()[0])
 
 		if cpuSpeedMhz and cpuSpeedMhz >= 1000:
-			cpuSpeedStr = _("%s GHz") % str(round(cpuSpeedMhz / 1000, 1))
+			cpuSpeedStr = _("%s GHz") % format_string("%.1f", cpuSpeedMhz / 1000)
 		else:
-			cpuSpeedStr = _("%s MHz") % str(round(cpuSpeedMhz, 1))
+			cpuSpeedStr = _("%d MHz") % int(cpuSpeedMhz)
 
 		if temperature:
 			degree = u"\u00B0"
 			if not isinstance(degree, str):
 				degree = degree.encode("UTF-8", errors="ignore")
-
-			return (processor, cpuSpeedStr, ngettext("%d core", "%d cores", cpuCount) % cpuCount, "%s%sC" % (temperature, degree))
+			if isinstance(temperature, float):
+				temperature = format_string("%.1f", temperature)
+			else:
+				temperature = str(temperature)
+			return (processor, cpuSpeedStr, ngettext("%d core", "%d cores", cpuCount) % cpuCount, "%s%s C" % (temperature, degree))
 			#return ("%s %s MHz (%s) %s%sC") % (processor, cpuSpeed, ngettext("%d core", "%d cores", cpuCount) % cpuCount, temperature, degree)
 		return (processor, cpuSpeedStr, ngettext("%d core", "%d cores", cpuCount) % cpuCount, "")
 		#return ("%s %s MHz (%s)") % (processor, cpuSpeed, ngettext("%d core", "%d cores", cpuCount) % cpuCount)
@@ -227,7 +231,7 @@ def getSystemTemperature():
 	elif isfile("/proc/stb/fp/temp_sensor"):
 		temperature = fileReadLine("/proc/stb/fp/temp_sensor", source=MODULE_NAME)
 	if temperature:
-		return "%s%sC" % (temperature, u"\u00B0")
+		return "%s%s C" % (temperature, u"\u00B0")
 	return temperature
 
 

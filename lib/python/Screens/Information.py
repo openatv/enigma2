@@ -1,9 +1,9 @@
 from datetime import datetime
 from glob import glob
 from json import loads
+from locale import format_string
 from os import listdir, remove, statvfs
 from os.path import basename, getmtime, isdir, isfile, join as pathjoin
-import re
 from select import select
 from six import PY2
 from ssl import _create_unverified_context  # For python 2.7.11 we need to bypass the certificate check
@@ -73,7 +73,7 @@ def scaleNumber(number, style="Si", suffix="B"):  # This temporary code is borro
 	if negative:
 		result = -result
 	# print("[Information] DEBUG: Number=%d, Digits=%d, Scale=%d, Factor=%d, Result=%f." % (number, digits, scale, 10 ** (scale * 3), result))
-	return "%.3f %s%s%s" % (result, units[scale], ("i" if style == "Iec" and scale else ""), suffix)
+	return "%s %s%s%s" % (format_string("%.3f", result), units[scale], ("i" if style == "Iec" and scale else ""), suffix)
 
 
 BoxProcTypes = {
