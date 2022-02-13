@@ -268,7 +268,7 @@ class TimerEditList(Screen):
 				else:
 					ref = timer.service_ref.ref.toString()
 				begin = timer.begin + config.recording.margin_before.value * 60
-				duration = (timer.end - begin - config.recording.margin_after.value * 60) / 60
+				duration = (timer.end - begin - config.recording.margin_after.value * 60) // 60
 				if duration <= 0:
 					duration = 30 # it seems to be a reminder or a justplay timer without end time, so search epg events for the next 30 min
 				list = epgcache.lookupEvent(['IBDT', (ref, 0, begin, duration)])
