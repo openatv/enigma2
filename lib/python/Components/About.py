@@ -191,11 +191,11 @@ def getCPUInfoString():
 		elif isfile("/sys/devices/virtual/thermal/thermal_zone0/temp"):
 			temperature = fileReadLine("/sys/devices/virtual/thermal/thermal_zone0/temp", source=MODULE_NAME)
 			if temperature:
-				temperature = temperature / 1000
+				temperature = int(temperature) / 1000
 		elif isfile("/sys/class/thermal/thermal_zone0/temp"):
 			temperature = fileReadLine("/sys/class/thermal/thermal_zone0/temp", source=MODULE_NAME)
 			if temperature:
-				temperature = temperature / 1000
+				temperature = int(temperature) / 1000
 		elif isfile("/proc/hisi/msp/pm_cpu"):
 			lines = fileReadLines("/proc/hisi/msp/pm_cpu", source=MODULE_NAME)
 			if lines:
