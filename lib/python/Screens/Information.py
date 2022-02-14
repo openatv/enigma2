@@ -56,8 +56,9 @@ INFO_COLOR = {
 	"M": 0x00ffff00  # Messages.
 }
 
+USECOMMA = "," in format_string("%.1f", 1)
 
-def scaleNumber(number, style="Si", suffix="B"):  # This temporary code is borrowed from the new Storage.py!
+def scaleNumber(number, style="Si", suffix="B", format="%.3f"):  # This temporary code is borrowed from the new Storage.py!
 	units = ["", "K", "M", "G", "T", "P", "E", "Z", "Y"]
 	style = style.capitalize()
 	if style not in ("Si", "Iec", "Jedec"):
@@ -73,7 +74,7 @@ def scaleNumber(number, style="Si", suffix="B"):  # This temporary code is borro
 	if negative:
 		result = -result
 	# print("[Information] DEBUG: Number=%d, Digits=%d, Scale=%d, Factor=%d, Result=%f." % (number, digits, scale, 10 ** (scale * 3), result))
-	return "%s %s%s%s" % (format_string("%.3f", result), units[scale], ("i" if style == "Iec" and scale else ""), suffix)
+	return "%s %s%s%s" % (format_string(format, result), units[scale], ("i" if style == "Iec" and scale else ""), suffix)
 
 
 BoxProcTypes = {
@@ -118,7 +119,10 @@ def formatMinMax(values):
 		if "max=" in value:
 			max = value[4:]
 	if min and max:
-		return "%s - %s" % (min, max)
+		ret = "%s - %s" % (min, max)
+		if USECOMMA:
+			return ret.replace(".", ",")
+		return ret
 	else:
 		return None
 
@@ -959,8 +963,10 @@ class NetworkInformation(InformationBase):
 						info.append(formatLine("P1", _("Signal strength"), self.interfaceData[interface]["signalStrength"]))
 			if "rxBytes" in self.interfaceData[interface] or "txBytes" in self.interfaceData[interface]:
 				info.append("")
-				info.append(formatLine("P1", _("Bytes received"), self.interfaceData[interface]["rxBytes"]))
-				info.append(formatLine("P1", _("Bytes sent"), self.interfaceData[interface]["txBytes"]))
+				rxBytes = int(self.interfaceData[interface]["rxBytes"].split(" ")[0])
+				txBytes = int(self.interfaceData[interface]["txBytes"].split(" ")[0])
+				info.append(formatLine("P1", _("Bytes received"), "%d (%s)" % (rxBytes, scaleNumber(rxBytes, style="Iec", format="%.1f"))))
+				info.append(formatLine("P1", _("Bytes sent"), "%d (%s)" % (txBytes, scaleNumber(txBytes, style="Iec", format="%.1f"))))
 		info += self.geolocationData
 		self["information"].setText("\n".join(info).encode("UTF-8", "ignore") if PY2 else "\n".join(info))
 
