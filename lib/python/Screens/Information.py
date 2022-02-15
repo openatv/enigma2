@@ -1079,13 +1079,11 @@ class ReceiverInformation(InformationBase):
 		if givenId:
 			info.append(formatLine("P1", _("Given device id"), givenId))
 		info.append("")
-		info = info + self.tunerInfo()
-		#info.append(formatLine("H", _("Tuner information")))
-		#info.append("")
-		#nims = nimmanager.nimListCompressed()
-		#for count in range(len(nims)):
-		#	tuner, type = [x.strip() for x in nims[count].split(":", 1)]
-		#	info.append(formatLine("P1", tuner, type))
+		info.append(formatLine("H", _("Tuner information")))
+		nims = nimmanager.nimListCompressed()
+		for count in range(len(nims)):
+			tuner, type = [x.strip() for x in nims[count].split(":", 1)]
+			info.append(formatLine("P1", tuner, type))
 		info.append("")
 		info.append(formatLine("H", _("Drives information")))
 		stat = statvfs("/")
@@ -1146,57 +1144,6 @@ class ReceiverInformation(InformationBase):
 
 	def getSummaryInformation(self):
 		return "Receiver Information"
-
-	def tunerInfo(self):
-		allsystems = ["DVB-S", "DVB-S2", "DVB-C", "DVB-T", "DVB-T2"]
-		info = []
-		nims = nimmanager.nimList()
-		descList = []
-		curIndex = -1
-		for count in range(len(nims)):
-			data = nims[count].split(":")
-			idx = data[0].strip("Tuner").strip()
-			desc = data[1].strip()
-			if descList and descList[curIndex]["desc"] == desc:
-				descList[curIndex]["end"] = idx
-			else:
-				descList.append({
-					"desc": desc,
-					"start": idx,
-					"end": idx,
-					"info" : eDVBResourceManager.getInstance().getFrontendCapabilities(count).splitlines()
-				})
-				curIndex += 1
-			count += 1
-		for count in range(len(descList)):
-			data = descList[count]["start"] if descList[count]["start"] == descList[count]["end"] else ("%s-%s" % (descList[count]["start"], descList[count]["end"]))
-			info.append(formatLine("H", "Tuner %s" % data))
-			try:
-				# TUNER Info
-				info.append(formatLine("P1", _("Name") , descList[count]["desc"]))
-				frontend = descList[count]["info"]
-				frequency = frontend[2].split(":")
-				frequencyvalue = formatMinMax(frequency[1])
-				symbolrate = frontend[3].split(":")
-				symbolratevalue = formatMinMax(symbolrate[1])
-				capabilities = frontend[4].split(":")[1]
-				deliverysystem = frontend[5].split(":")[1]
-				systems = []
-				for system in allsystems:
-					if system.replace("-", "") in deliverysystem:
-						systems.append(system)
-				if systems:
-					info.append(formatLine("P1", _("Systems"), ", ".join(systems)))
-				info.append(formatLine("P1", _("Multistream"), (_("Yes") if "MULTISTREAM" in capabilities else _("No"))))
-				if frequencyvalue:
-					info.append(formatLine("P1", _(frequency[0]), frequencyvalue))
-				if symbolratevalue:
-					info.append(formatLine("P1", _(symbolrate[0]), symbolratevalue))
-				info.append("")
-			except Exception as e:
-				print("[Information] Error get frontends %s" % str(e))
-				pass
-		return info
 
 	def findPackageRevision(self, package, packageList):
 		revision = None
@@ -1597,6 +1544,74 @@ class TranslationInformation(InformationBase):
 
 	def getSummaryInformation(self):
 		return "Translation Information"
+
+
+class TunerInformation(InformationBase):
+	def __init__(self, session):
+		InformationBase.__init__(self, session)
+		self.setTitle(_("Tuner Information"))
+		self.skinName.insert(0, "TunerInformation")
+
+	def displayInformation(self):
+		allsystems = ["DVB-S", "DVB-S2", "DVB-C", "DVB-T", "DVB-T2"]
+		info = []
+		info.append(formatLine("H", _("Detected tuners")))
+		info.append("")
+		nims = nimmanager.nimList()
+		descList = []
+		curIndex = -1
+		for count in range(len(nims)):
+			data = nims[count].split(":")
+			idx = data[0].strip("Tuner").strip()
+			desc = data[1].strip()
+			if descList and descList[curIndex]["desc"] == desc:
+				descList[curIndex]["end"] = idx
+			else:
+				descList.append({
+					"desc": desc,
+					"start": idx,
+					"end": idx,
+					"info" : eDVBResourceManager.getInstance().getFrontendCapabilities(count).splitlines()
+				})
+				curIndex += 1
+			count += 1
+		for count in range(len(descList)):
+			data = descList[count]["start"] if descList[count]["start"] == descList[count]["end"] else ("%s-%s" % (descList[count]["start"], descList[count]["end"]))
+			info.append(formatLine("P1", "Tuner %s" % data))
+			try:
+				# TUNER Info
+				info.append(formatLine("P2", _("Name") , descList[count]["desc"]))
+				frontend = descList[count]["info"]
+				frequency = frontend[2].split(":")
+				frequencyvalue = formatMinMax(frequency[1])
+				symbolrate = frontend[3].split(":")
+				symbolratevalue = formatMinMax(symbolrate[1])
+				capabilities = frontend[4].split(":")[1]
+				deliverysystem = frontend[5].split(":")[1]
+				systems = []
+				for system in allsystems:
+					if system.replace("-", "") in deliverysystem:
+						systems.append(system)
+				if systems:
+					info.append(formatLine("P2", _("Systems"), ", ".join(systems)))
+				info.append(formatLine("P2", _("Multistream"), (_("Yes") if "MULTISTREAM" in capabilities else _("No"))))
+				if frequencyvalue:
+					info.append(formatLine("P2", _(frequency[0]), frequencyvalue))
+				if symbolratevalue:
+					info.append(formatLine("P2", _(symbolrate[0]), symbolratevalue))
+				info.append("")
+			except Exception as e:
+				print("[Information] Error get frontends %s" % str(e))
+				pass
+		self["information"].setText("\n".join(info))
+		return
+
+	def tunerInfo(self):
+		info = []
+		return info
+
+	def getSummaryInformation(self):
+		return "DVB Information"
 
 
 class StreamingInformation(InformationBase):
