@@ -512,7 +512,12 @@ class Menu(Screen, HelpableScreen, ProtectedScreen):
 
 	def __onExecBegin(self):
 		self.onExecBegin.remove(self.__onExecBegin)
-		self.okbuttonClick()
+		if config.usage.menutype.value == "horzanim" and findSkinScreen("Animmain"):
+			return
+		elif config.usage.menutype.value == "horzicon" and findSkinScreen("Iconmain"):
+			return
+		else:
+			self.okbuttonClick()
 
 	def keyNumberGlobal(self, number):
 		self.number = self.number * 10 + number
