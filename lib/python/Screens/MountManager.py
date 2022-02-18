@@ -439,6 +439,7 @@ class DevicePanelConf(Screen, ConfigListScreen):
 		self['Linconn'].hide()
 
 	def buildMy_rec(self, device):
+		device2 = ''
 		try:
 			if device.find('1') > 1:
 				device2 = device.replace('1', '')
