@@ -1130,8 +1130,8 @@ class SelectSatsEntryScreen(Screen):
 			if isinstance(userSatlist, str) and str(sat[0]) in userSatlist:
 				selected = True
 			SatList.append((sat[0], sat[1], sat[2], selected))
-		sat_list = [SelectionEntryComponent(x[1], x[0], x[2], x[3]) for x in SatList]
 		self["list"] = SelectionList(enableWrapAround=True)
+		sat_list = [SelectionEntryComponent(x[1], x[0], x[2], x[3]) for x in SatList]
 		self["list"].setList(sat_list)
 		self["setupActions"] = ActionMap(["SetupActions", "ColorActions"],
 		{
