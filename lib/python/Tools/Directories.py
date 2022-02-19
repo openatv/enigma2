@@ -1,11 +1,11 @@
 from errno import ENOENT, EXDEV
-from inspect import stack
 from os import F_OK, R_OK, W_OK, access, chmod, link, listdir, makedirs, mkdir, readlink, remove, rename, rmdir, sep, stat, statvfs, symlink, utime, walk
 from os.path import basename, dirname, exists, getsize, isdir, isfile, islink, join as pathjoin, normpath, splitext
 from re import compile
 from six import PY2
 from shutil import copy2
 from stat import S_IMODE
+from sys import _getframe as getframe
 from tempfile import mkstemp
 from traceback import print_exc
 from xml.etree.cElementTree import Element, ParseError, fromstring, parse
@@ -133,7 +133,7 @@ def resolveFilename(scope, base="", path_prefix=None):
 			skin = dirname(config.skin.primary_skin.value)
 			path = pathjoin(path, skin)
 		elif scope in (SCOPE_PLUGIN_ABSOLUTE, SCOPE_PLUGIN_RELATIVE):
-			callingCode = normpath(stack()[1][1])
+			callingCode = normpath(getframe(1).f_code.co_filename)
 			plugins = normpath(scopePlugins)
 			path = None
 			if comparePaths(plugins, callingCode):
@@ -198,7 +198,7 @@ def resolveFilename(scope, base="", path_prefix=None):
 		if pathExists(file):
 			path = file
 	elif scope in (SCOPE_PLUGIN_ABSOLUTE, SCOPE_PLUGIN_RELATIVE):
-		callingCode = normpath(stack()[1][1])
+		callingCode = normpath(getframe(1).f_code.co_filename)
 		plugins = normpath(scopePlugins)
 		path = None
 		if comparePaths(plugins, callingCode):
@@ -231,7 +231,7 @@ def fileReadLine(filename, default=None, source=DEFAULT_MODULE_NAME, debug=False
 		line = default
 		msg = "Default"
 	if debug or forceDebug:
-		print("[%s] Line %d: %s '%s' from file '%s'." % (source, stack()[1][0].f_lineno, msg, line, filename))
+		print("[%s] Line %d: %s '%s' from file '%s'." % (source, getframe(1).f_lineno, msg, line, filename))
 	return line
 
 
@@ -246,7 +246,7 @@ def fileWriteLine(filename, line, source=DEFAULT_MODULE_NAME, debug=False):
 		msg = "Failed to write"
 		result = 0
 	if debug or forceDebug:
-		print("[%s] Line %d: %s '%s' to file '%s'." % (source, stack()[1][0].f_lineno, msg, line, filename))
+		print("[%s] Line %d: %s '%s' to file '%s'." % (source, getframe(1).f_lineno, msg, line, filename))
 	return result
 
 
@@ -263,7 +263,7 @@ def fileReadLines(filename, default=None, source=DEFAULT_MODULE_NAME, debug=Fals
 		msg = "Default"
 	if debug or forceDebug:
 		length = len(lines) if lines else 0
-		print("[%s] Line %d: %s %d lines from file '%s'." % (source, stack()[1][0].f_lineno, msg, length, filename))
+		print("[%s] Line %d: %s %d lines from file '%s'." % (source, getframe(1).f_lineno, msg, length, filename))
 	return lines
 
 
@@ -281,7 +281,7 @@ def fileWriteLines(filename, lines, source=DEFAULT_MODULE_NAME, debug=False):
 		msg = "Failed to write"
 		result = 0
 	if debug or forceDebug:
-		print("[%s] Line %d: %s %d lines to file '%s'." % (source, stack()[1][0].f_lineno, msg, len(lines), filename))
+		print("[%s] Line %d: %s %d lines to file '%s'." % (source, getframe(1).f_lineno, msg, len(lines), filename))
 	return result
 
 
@@ -320,7 +320,7 @@ def fileReadXML(filename, default=None, source=DEFAULT_MODULE_NAME, debug=False)
 		else:
 			msg = "Failed to read"
 	if debug or forceDebug:
-		print("[%s] Line %d: %s from XML file '%s'." % (source, stack()[1][0].f_lineno, msg, filename))
+		print("[%s] Line %d: %s from XML file '%s'." % (source, getframe(1).f_lineno, msg, filename))
 	return dom
 
 
