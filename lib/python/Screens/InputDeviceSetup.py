@@ -1,10 +1,8 @@
 from __future__ import print_function
 from __future__ import absolute_import
-from Components.ActionMap import ActionMap, HelpableActionMap
+from Components.ActionMap import HelpableActionMap
 from Components.config import config, ConfigYesNo, getConfigListEntry, ConfigSelection
-from Components.ConfigList import ConfigListScreen
 from Components.InputDevice import inputDevices, iRcTypeControl
-from Components.Pixmap import Pixmap
 from Components.Sources.List import List
 from Components.Sources.StaticText import StaticText
 from Screens.HelpMenu import HelpableScreen
@@ -329,17 +327,19 @@ class RemoteControlType(Setup):
 				("h11", 28)
 				]
 	def __init__(self, session):
-		Setup.__init__(self, session)
-		self.setTitle(_("Setup InputDevice"))
+		self.rctype = None
 		self.defaultRcType = 0
 		self.getDefaultRcType()
+		Setup.__init__(self, session, None)
+		self.setTitle(_("Setup InputDevice"))
 
 	def createSetup(self):
 		settingsList = []
-		rctype = config.plugins.remotecontroltype.rctype.value
-		self.rctype = ConfigSelection(choices=self.rcList, default=str(rctype))
+		if self.rctype == None:
+			rctype = config.plugins.remotecontroltype.rctype.value
+			self.rctype = ConfigSelection(choices=self.rcList, default=str(rctype))
 		settingsList.append(getConfigListEntry(_("Remote control type"), self.rctype))
-		self["config"].list = settingsList	
+		self["config"].list = settingsList
 
 	def getBoxTypeCompatible(self):
 		try:
