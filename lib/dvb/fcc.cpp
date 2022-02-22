@@ -189,8 +189,7 @@ RESULT eFCCServiceManager::stopFCCService()
 
 RESULT eFCCServiceManager::tryFCCService(const eServiceReference &sref, ePtr<iPlayableService> &service)
 {
-	eFCCServiceManager *fcc_mng = eFCCServiceManager::getInstance();
-	if (!fcc_mng->isEnable())
+	if (!isEnable())
 		return -1;
 
 	ePtr<iPlayableService> new_service = 0;
@@ -321,7 +320,8 @@ void eFCCServiceManager::printFCCServices()
 	std::map< ePtr<iPlayableService>, FCCServiceElem >::iterator it = m_FCCServices.begin();
 	for (;it != m_FCCServices.end();++it)
 	{
-		eDebug("[eFCCServiceManager] printFCCServices [*] sref : %s, state : %d, tune : %d, useNormalDecode : %d", it->second.m_service_reference.toString().c_str(), it->second.m_state, isLocked(it->first), it->second.m_useNormalDecode);
+		int isLocked = isLocked(it->first);
+		eDebug("[eFCCServiceManager] printFCCServices [*] sref : %s, state : %d, tune : %d, useNormalDecode : %d", it->second.m_service_reference.toString().c_str(), it->second.m_state, isLocked, it->second.m_useNormalDecode);
 	}
 #else
 	;
@@ -354,7 +354,7 @@ bool eFCCServiceManager::isStateDecoding(iPlayableService* service)
 	}
 	else
 	{
-		eDebug("[eFCCServiceManager] None registered FCC service");
+		eDebug("[eFCCServiceManager] Non registered FCC service");
 	}
 
 	return false;
@@ -370,7 +370,7 @@ void eFCCServiceManager::setNormalDecoding(iPlayableService* service)
 	}
 	else
 	{
-		eDebug("[eFCCServiceManager] None registered FCC service");
+		eDebug("[eFCCServiceManager] Non registered FCC service");
 	}
 }
 
