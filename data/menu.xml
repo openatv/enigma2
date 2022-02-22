@@ -50,15 +50,15 @@
 			<id val="video_menu" />
 			<item entryID="video_setup" level="0" text="Basic settings" weight="0"><screen module="VideoMode" screen="VideoSetup" /></item>
 			<item entryID="osdsetup" level="1" text="OSD Position" weight="50" requires="CanChangeOsdPosition"><screen module="UserInterfacePositioner" screen="UserInterfacePositioner2"/></item>
-			<item entryID="setup_osd3d" level="2" text="OSD 3D Setup" weight="60" requires="CanChange3DOsd"><setup id="osd3d"/></item>
+			<item entryID="setup_osd3d" level="2" text="OSD 3D Setup" weight="60" requires="CanChange3DOsd"><setup id="OSD3D"/></item>
 		</menu>
 
 		<!-- Menu / Settings / Audio Menu -->
 		<menu entryID="audio_menu" level="1" text="Audio" weight="5">
 			<id val="audio_menu" />
-			<item entryID="audio_setup" level="1" text="Basic settings" weight="0"><setup id="AudioSettings"/></item>
-			<item entryID="subtitle_setup" level="2" text="Subtitle settings" weight="10"><setup id="subtitlesetup" /></item>
-			<item entryID="autolanguage_setup" level="1" text="Auto language selection" weight="15"><setup id="autolanguagesetup" /></item>
+			<item entryID="audio_setup" level="1" text="Basic settings" weight="0"><setup id="Audio"/></item>
+			<item entryID="subtitle_setup" level="2" text="Subtitle settings" weight="10"><setup id="Subtitle" /></item>
+			<item entryID="autolanguage_setup" level="1" text="Auto language selection" weight="15"><setup id="AutoLanguage" /></item>
 		</menu>
 
 		<!-- Menu / Settings / Recordings -->
@@ -73,15 +73,15 @@
 		<menu entryID="system_selection" level="0" text="Usage &amp; GUI" weight="15">
 			<id val="system" />
 			<!-- Menu / Settings / GUI / Display-->
-			<item entryID="user_interface" level="0" weight="0"><setup id="userinterface" /></item>
-			<item weight="5" level="0" entryID="remote_setup"><setup id="remotesetup"/></item>
-			<item weight="10" level="0" entryID="channelselection_setup"><setup id="channelselection" /></item>
-			<item weight="15" level="0" entryID="usage_setup"><setup id="usage" /></item>
-			<!--item weight="20" level="0" entryID="specialfeatures_menu"><setup id="specialfeatures" /></item-->
+			<item entryID="user_interface" level="0" weight="0"><setup id="UserInterface" /></item>
+			<item weight="5" level="0" entryID="remote_setup"><setup id="RemoteButton"/></item>
+			<item weight="10" level="0" entryID="channelselection_setup"><setup id="ChannelSelection" /></item>
+			<item weight="15" level="0" entryID="usage_setup"><setup id="Usage" /></item>
+			<!--item weight="20" level="0" entryID="specialfeatures_menu"><setup id="SpecialFeatures" /></item-->
 			<item weight="25" level="0" text="Skin Setup" entryID="skin_setup"><screen module="SkinSelector" screen="SkinSelector"/></item>
 			<menu weight="30" level="0" text="STB Display" entryID="display_selection" requires="Display">
 				<id val="display" />
-				<item weight="0" level="0" entryID="display_setup"><setup id="display" /></item>
+				<item weight="0" level="0" entryID="display_setup"><setup id="Display" /></item>
 				<item weight="5" level="0" text="LCD Skin Setup" entryID="lcd_skin_setup" requires="LCDSKINSetup"><screen module="SkinSelector" screen="LcdSkinSelector"/></item>
 			</menu>
 			<item weight="35" level="2" text="Hotkey Setup" entryID="buttonsetup_setup"><screen module="ButtonSetup" screen="ButtonSetup"/></item>
@@ -95,7 +95,7 @@ from Plugins.SystemPlugins.RemoteControlCode.plugin import RemoteControlCode
 self.session.open(RemoteControlCode)
 					</code>
 				</item>
-				<item entryID="keyboard" level="1" text="Keyboard" weight="40"><setup id="keyboard" /></item>
+				<item entryID="keyboard" level="1" text="Keyboard" weight="40"><setup id="Keyboard" /></item>
 			</menu>
 			<item entryID="locale_setup" level="0" text="Language" weight="70"><screen module="LocaleSelection" /></item>
 		</menu>
@@ -103,12 +103,12 @@ self.session.open(RemoteControlCode)
 		<!-- Menu / Settings / EPG -->
 		<menu entryID="epg_menu" level="2" text="EPG" weight="20">
 			<id val="epg" />
-			<item entryID="setup_epgmulti" level="2" text="MultiEPG settings" weight="110"><setup id="epgmulti" /></item>
-			<item entryID="setup_epgenhanced" level="2" text="SingleEPG settings" weight="115"><setup id="epgenhanced" /></item>
-			<item entryID="setup_epginfobar" level="2" text="InfobarEPG settings" weight="120"><setup id="epginfobar" /></item>
-			<item entryID="setup_epginfobargraphical" level="2" text="Graphical InfobarEPG settings" weight="125"><setup id="epginfobargraphical" /></item>
-			<item entryID="setup_epggraphical" level="2" text="GraphicalEPG settings" weight="130"><setup id="epggraphical" /></item>
-			<item entryID="setup_epgvertical" level="2" text="VerticalEPG settings" weight="135"><setup id="epgvertical" /></item>
+			<item entryID="setup_epgmulti" level="2" text="MultiEPG settings" weight="110"><setup id="EPGMulti" /></item>
+			<item entryID="setup_epgenhanced" level="2" text="SingleEPG settings" weight="115"><setup id="EPGEnhanced" /></item>
+			<item entryID="setup_epginfobar" level="2" text="InfobarEPG settings" weight="120"><setup id="EPGInfobar" /></item>
+			<item entryID="setup_epginfobargraphical" level="2" text="Graphical InfobarEPG settings" weight="125"><setup id="EPGInfobarGraphical" /></item>
+			<item entryID="setup_epggraphical" level="2" text="GraphicalEPG settings" weight="130"><setup id="EPGGraphical" /></item>
+			<item entryID="setup_epgvertical" level="2" text="VerticalEPG settings" weight="135"><setup id="EPGVertical" /></item>
 			<menu entryID="epgloadsave_menu" level="2" text="Load/Save/Delete" weight="200">
 				<id val="epgloadsave_menu" />
 				<item entryID="loadepgcache" level="0" text="Load EPG" weight="0">
@@ -149,13 +149,13 @@ self.session.openWithCallback(msgClosed, EpgDeleteMsg)
 					</code>
 				</item>
 			</menu>
-			<item entryID="epg_setup" level="0" text="Setup" weight="300"><setup id="epgsettings" /></item>
+			<item entryID="epg_setup" level="0" text="Setup" weight="300"><setup id="EPG" /></item>
 		</menu>
 
 		<!-- Menu / Settings / Service Searching -->
 		<menu entryID="service_searching_selection" level="0" text="Reception" weight="25">
 			<id val="scan" />
-			<item entryID="tuner_setup" level="1" text="Basic settings" weight="0" requires="USETunersetup"><setup id="TunerSettings" /></item>
+			<item entryID="tuner_setup" level="1" text="Basic settings" weight="0" requires="USETunersetup"><setup id="Tuner" /></item>
 			<item entryID="tuner_setup" level="0" text="Tuner configuration" weight="1"><screen module="Satconfig" screen="NimSelection" /></item>
 			<item entryID="auto_scan" level="0" text="Automatic Scan" weight="5"><screen module="ScanSetup" screen="ScanSimple" /></item>
 			<item entryID="manual_scan" level="0" text="Manual scan" weight="10"><screen module="ScanSetup" /></item>
@@ -178,7 +178,7 @@ self.session.openWithCallback(msgClosed, EpgDeleteMsg)
 			<!-- Menu / Settings / System / Storage devices -->
 			<menu entryID="hardisk_selection" level="0" text="Storage devices" weight="45" requires="Harddisk">
 				<id val="harddisk" />
-				<item entryID="harddisk_setup" level="1" text="Hard disk setup" weight="0"><setup id="harddisk"/></item>
+				<item entryID="harddisk_setup" level="1" text="Hard disk setup" weight="0"><setup id="HardDisk"/></item>
 				<item entryID="harddisk_init" level="0" text="Initialization" weight="5"><screen module="HarddiskSetup" screen="HarddiskSelection"/></item>
 				<item entryID="harddisk_check" level="0" text="Filesystem Check" weight="10"><screen module="HarddiskSetup" screen="HarddiskFsckSelection"/></item>
 				<item entryID="harddisk_convert" level="0" text="Convert ext3 filesystem to ext4" weight="15" requires="ext4"><screen module="HarddiskSetup" screen="HarddiskConvertExt4Selection"/></item>
@@ -207,8 +207,8 @@ self.session.openWithCallback(msgClosed, EpgDeleteMsg)
 			<item entryID="hdmicec" level="0" text="HDMI-CEC Setup" weight="55" requires="HDMICEC"><screen module="HDMICEC" screen="HDMICECSetup"/></item>
 			<item entryID="script_manager" level="1" text="Script Manager" weight="56"><screen module="ScriptRunner" screen="ScriptRunner"/></item>
 			<item entryID="time_setup" level="0" text="Time" weight="60"><screen module="Time" screen="Time" /></item>
-			<item entryID="logs_setup" level="0" text="Logs settings" weight="70"><setup id="logs" /></item>
-			<item entryID="rfmod_setup" level="1" text="RF output" weight="80" requires="RfModulator"><setup id="RFmod"/></item>
+			<item entryID="logs_setup" level="0" text="Logs settings" weight="70"><setup id="Logs" /></item>
+			<item entryID="rfmod_setup" level="1" text="RF output" weight="80" requires="RfModulator"><setup id="RFModulator"/></item>
 			<item entryID="factory_reset" level="0" text="Factory reset" weight="99">
 				<code>
 from __future__ import print_function

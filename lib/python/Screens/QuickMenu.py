@@ -421,23 +421,23 @@ class QuickMenu(Screen, ProtectedScreen):
 			self.session.open(NetworkTelnet)
 ######## Select System Setup Menu ##############################
 		elif item[0] == _("Customise"):
-			self.openSetup("usage")
+			self.openSetup("Usage")
 		elif item[0] == _("Button Setup"):
-			self.openSetup("remotesetup")
+			self.openSetup("RemoteButton")
 		elif item[0] == _("Display Settings"):
-			self.openSetup("display")
+			self.openSetup("Display")
 		elif item[0] == _("LCD Skin Setup"):
 			self.session.open(LcdSkinSelector)
 		elif item[0] == _("Skin Setup"):
 			self.session.open(SkinSelector)
 		elif item[0] == _("OSD settings"):
-			self.openSetup("userinterface")
+			self.openSetup("UserInterface")
 		elif item[0] == _("Channel selection"):
-			self.openSetup("channelselection")
+			self.openSetup("ChannelSelection")
 		elif item[0] == _("Recording settings"):
 			self.openSetup("Recording")
 		elif item[0] == _("EPG settings"):
-			self.openSetup("epgsettings")
+			self.openSetup("EPG")
 ######## Select Mounts Menu ##############################
 		elif item[0] == _("Mount Manager"):
 			from Plugins.SystemPlugins.NetworkBrowser.MountManager import AutoMountManager
@@ -460,9 +460,9 @@ class QuickMenu(Screen, ProtectedScreen):
 		elif item[0] == _("Video Settings"):
 			self.session.open(VideoSetup)
 		elif item[0] == _("Audio Settings"):
-			self.openSetup("AudioSettings")
+			self.openSetup("Audio")
 		elif item[0] == _("Auto Language"):
-			self.openSetup("autolanguagesetup")
+			self.openSetup("AutoLanguage")
 		elif item[0] == _("Audio Sync"):
 			from Plugins.Extensions.AudioSync.AC3setup import AC3LipSyncSetup
 			plugin_path_audiosync = eEnv.resolve("${libdir}/enigma2/python/Plugins/Extensions/AudioSync")
@@ -527,7 +527,7 @@ class QuickMenu(Screen, ProtectedScreen):
 				self.session.open(MessageBox, _("Sorry MediaScanner is not installed!"), MessageBox.TYPE_INFO, timeout=10)
 ######## Select Harddisk Menu ############################################
 		elif item[0] == _("Harddisk Setup"):
-			self.openSetup("harddisk")
+			self.openSetup("HardDisk")
 		elif item[0] == _("Initialization"):
 			self.session.open(HarddiskSelection)
 		elif item[0] == _("Filesystem Check"):

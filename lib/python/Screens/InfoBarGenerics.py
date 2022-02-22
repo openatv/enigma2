@@ -3362,7 +3362,7 @@ class InfoBarExtensions:
 
 	def open3DSetup(self):
 		from Screens.Setup import Setup
-		self.session.open(Setup, "osd3d")
+		self.session.open(Setup, "OSD3D")
 
 	def openSoftcamPanel(self):
 		from Screens.ShowSoftcamPackages import ShowSoftcamPackages
