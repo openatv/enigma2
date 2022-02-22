@@ -394,19 +394,19 @@ class EPGSelection(Screen, HelpableScreen):
 		self.closeEventViewDialog()
 		key = None
 		if self.type == EPG_TYPE_SINGLE:
-			key = "epgsingle"
+			key = "EPGSingle"
 		elif self.type == EPG_TYPE_MULTI:
-			key = "epgmulti"
+			key = "EPGMulti"
 		elif self.type == EPG_TYPE_ENHANCED:
-			key = "epgenhanced"
+			key = "EPGEnhanced"
 		elif self.type == EPG_TYPE_INFOBAR:
-			key = "epginfobar"
+			key = "EPGInfobar"
 		elif self.type == EPG_TYPE_GRAPH:
-			key = "epggraphical"
+			key = "EPGGraphical"
 		elif self.type == EPG_TYPE_INFOBARGRAPH:
-			key = "epginfobargraphical"
+			key = "EPGInfobarGraphical"
 		elif self.type == EPG_TYPE_VERTICAL:
-			key = "epgvertical"
+			key = "EPGVertical"
 		if key:
 			self.session.openWithCallback(self.onSetupClose, Setup, key)
 
