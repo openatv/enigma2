@@ -2269,7 +2269,13 @@ void eServiceMP3::gstBusCall(GstMessage *msg)
 				{
 					m_paused = false;
 					if (!m_first_paused)
+					{
+						if (eConfigManager::getConfigBoolValue("config.crash.gstdot"))
+						{
+							GST_DEBUG_BIN_TO_DOT_FILE(GST_BIN_CAST(m_gst_playbin), GST_DEBUG_GRAPH_SHOW_ALL, "GStreamer-enigma2");
+						}
 						m_event((iPlayableService*)this, evGstreamerPlayStarted);
+					}
 					m_first_paused = false;
 				}	break;
 				case GST_STATE_CHANGE_PLAYING_TO_PAUSED:

@@ -355,6 +355,12 @@
 		<item level="2" text="Crash at skin error for debug reasons ?" description="if set to 'no', only an debug message is written to the Debug log ">config.crash.skin_error_crash</item>
 		<item level="2" text="Log python stack trace on spinner ?" description="Set to yes for debugging the root cause of a spinner.">config.crash.pystackonspinner</item>
 		<item level="2" text="Debug log time format *" description="This sets the prefix for each line in the debug log. The 'Boot time' is the number of seconds since your %s %s was last booted.">config.crash.debugTimeFormat</item>
+		<item level="2" text="Enable GStreamer debug log *" description="Allows you to enable the GStreamer debug log. They contain very detailed information of everything the GStreamer system does.">config.crash.gstdebug</item>
+		<if conditional="config.crash.gstdebug.value">
+			<item level="2" text="GStreamer debug log category *" description="Only log debug information of GStreamer category. * means all categories.">config.crash.gstdebugcategory</item>
+			<item level="2" text="GStreamer debug log level *" description="Detail of GStreamer log">config.crash.gstdebuglevel</item>
+		</if>
+		<item level="2" text="Enable GStreamer pipeline graphs *" description="Allows you to enable the GStreamer pipeline graphs. These are .dot files that describe the topology of your pipeline, along with the caps negotiated in each link.">config.crash.gstdot</item>
 	</setup>
 	<setup key="MovieSelection" title="Movie List Setup">
 		<item level="0" text="Use trash can in movie list" description="When enabled, deleted recordings are moved to the trash can, instead of being deleted immediately.">config.usage.movielist_trashcan</item>
