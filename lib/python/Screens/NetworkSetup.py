@@ -4062,7 +4062,7 @@ class NetworkPassword(ConfigListScreen, Screen):
 		self['config'].l.setList(self.list)
 
 	def GeneratePassword(self):
-		passwdChars = string.letters + string.digits
+		passwdChars = string.ascii_letters + string.digits
 		passwdLength = 10
 		return ''.join(Random().sample(passwdChars, passwdLength))
 
