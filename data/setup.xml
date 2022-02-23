@@ -275,7 +275,7 @@
 		<item level="0" text="Hard disk standby in box standby after" description="Configure the hard disk drive to go to standby after the specified idle time when the box is in standby.">config.usage.hdd_standby_in_standby</item>
 		<item level="0" text="Use Harddisk Hardware Standby Timer" description="Option to enable the Hardware Standby Timer">config.usage.hdd_timer</item>
 	</setup>
-	<setup key="HdmiCec" title="HDMI-CEC Setup">
+	<setup key="HDMICEC" title="HDMI-CEC Setup">
 		<item level="0"	text="Enabled" description="Enable or disable using HDMI-CEC.">config.hdmicec.enabled</item>
 		<if conditional="config.hdmicec.enabled.value">
 			<item level="0" text="Advanced Settings" description="Enable the advanced HDMI-CEC setting options.">config.hdmicec.advanced_settings</item>
@@ -394,7 +394,7 @@
 		<item level="0" text="F2" description="Allows you to assign the selected function to this button.">config.movielist.btn_F2</item>
 		<item level="0" text="F3" description="Allows you to assign the selected function to this button.">config.movielist.btn_F3</item>
 	</setup>
-	<setup key="network" title="Network setup">
+	<setup key="Network" title="Network setup">
 		<item text="Use DHCP" description="When enabled, use DHCP for the IP configuration.">config.network.dhcp</item>
 		<item text="IP address" description="Configure the IP address.">config.network.ip</item>
 		<item text="Netmask" description="Configure the netmask.">config.network.netmask</item>
@@ -418,7 +418,7 @@
 		<item level="0" text="Depth" description="This option lets you adjust the 3D depth">config.osd.threeDznorm</item>
 		<item level="0" text="Show in extensions list ?" description="This option lets you show the option in the extension screen">config.osd.show3dextensions</item>
 	</setup>
-	<setup key="pluginbrowsersetup" title="Pluginbrowser Settings" level="2">
+	<setup key="PluginBrowser" title="Pluginbrowser Settings" level="2">
 		<item level="2" text="Show translation packages" description="If set to 'yes' it will show the 'PO' packages in browser.">config.pluginbrowser.po</item>
 		<item level="2" text="Show source packages" description="If set to 'yes' it will show the 'SRC' packages in browser.">config.pluginbrowser.src</item>
 	</setup>
@@ -529,7 +529,7 @@
 		<item level="1" text="Channel">config.rfmod.channel</item>
 		<item level="1" text="Finetune">config.rfmod.finetune</item>
 	</setup>
-	<setup key="satconfig" title="Satellite dish setup">
+	<setup key="Satellite" title="Satellite dish setup">
 		<item text="Tuner slot" description="Choose which tuner to configure.">config.sat.tunerslot</item>
 		<item text="Configuration mode" description="Configure the tuner mode.">config.sat.configmode</item>
 		<item text="DiSEqC" description="Configure the DiSEqC mode for this LNB.">config.sat.diseqc</item>
@@ -541,10 +541,8 @@
 		<item level="0" text="Select softcam" description="Select a softcam from the available list.">config.misc.softcams</item>
 		<item level="0" text="Select cardserver" description="Select a cardserver from the available list." conditional="config.misc.cardservers.value != ''">config.misc.cardservers</item>
 		<item level="0" text="Restart" description="Reset the selected devices and save changes of your config when the GREEN button is pressed.">config.misc.restarts</item>
-	</setup>
-	<setup key="softcamsetup" title="Softcam settings" level="2">
-		<item level="2" text="Show CCcam in extensions ?" description="Allows you to show/hide CCcam in extensions (blue button).">config.cccaminfo.showInExtensions</item>
-		<item level="2" text="Show OScam in extensions ?" description="Allows you to show/hide OScam in extensions (blue button).">config.oscaminfo.showInExtensions</item>
+		<item level="2" text="Show CCcam in extensions" description="Allows you to show/hide CCcam in extensions (BLUE button)." conditional="'cccam' in config.misc.softcams.value.lower()">config.cccaminfo.showInExtensions</item>
+		<item level="2" text="Show OScam in extensions" description="Allows you to show/hide OScam in extensions (BLUE button)." conditional="'oscam' in config.misc.softcams.value.lower()">config.oscaminfo.showInExtensions</item>
 	</setup>
 	<setup key="SpecialFeatures" title="Special Features">
 		<!-- This is just a placeholder, the 'specialfeatures' menu is currently disabled. -->
