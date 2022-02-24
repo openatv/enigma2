@@ -59,46 +59,23 @@ class SoftwareTools(PackageInfoHandler):
 				self.getUpdates()
 
 	def getUpdates(self, callback=None):
-		if self.lastDownloadDate is None:
-				if self.NetworkConnectionAvailable:
-					self.lastDownloadDate = time()
-					if self.list_updating is False and callback is None:
-						self.list_updating = True
-						self.opkg.startCmd(OpkgComponent.CMD_UPDATE)
-					elif self.list_updating is False and callback is not None:
-						self.list_updating = True
-						self.NotifierCallback = callback
-						self.opkg.startCmd(OpkgComponent.CMD_UPDATE)
-					elif self.list_updating is True and callback is not None:
-						self.NotifierCallback = callback
-				else:
-					self.list_updating = False
-					if callback is not None:
-						callback(False)
-					elif self.NotifierCallback is not None:
-						self.NotifierCallback(False)
+		if self.NetworkConnectionAvailable:
+			self.lastDownloadDate = time()
+			if callback is not None:
+				self.NotifierCallback = callback
+			if self.list_updating is False:
+				self.list_updating = True
+				self.opkg.startCmd(OpkgComponent.CMD_UPDATE)
 		else:
-			if self.NetworkConnectionAvailable:
-				self.lastDownloadDate = time()
-				if self.list_updating is False and callback is None:
-					self.list_updating = True
-					self.opkg.startCmd(OpkgComponent.CMD_UPDATE)
-				elif self.list_updating is False and callback is not None:
-					self.list_updating = True
-					self.NotifierCallback = callback
-					self.opkg.startCmd(OpkgComponent.CMD_UPDATE)
-				elif self.list_updating is True and callback is not None:
-					self.NotifierCallback = callback
+			if self.lastDownloadDate is not None and self.list_updating and callback is not None:
+				self.NotifierCallback = callback
+				self.startOpkgListAvailable()
 			else:
-				if self.list_updating and callback is not None:
-						self.NotifierCallback = callback
-						self.startOpkgListAvailable()
-				else:
-					self.list_updating = False
-					if callback is not None:
-						callback(False)
-					elif self.NotifierCallback is not None:
-						self.NotifierCallback(False)
+				self.list_updating = False
+				if callback is not None:
+					callback(False)
+				elif self.NotifierCallback is not None:
+					self.NotifierCallback(False)
 
 	def opkgCallback(self, event, param):
 		if event == OpkgComponent.EVENT_ERROR:
