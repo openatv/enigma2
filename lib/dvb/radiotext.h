@@ -21,11 +21,12 @@ class eDVBRdsDecoder: public iObject, public ePESParser, public sigc::trackable
 	unsigned char rass_picture_mask[5];  // 40 bits... (10 * 4 pictures)
 	void addToPictureMask(int id);
 	void removeFromPictureMask(int id);
-	int m_type;
+	int m_mode;
 	int m_pid;
+	int m_audio_type;
 public:
 	enum { RadioTextChanged, RtpTextChanged, RassInteractivePicMaskChanged, RecvRassSlidePic };
-	eDVBRdsDecoder(iDVBDemux *demux, int type);
+	eDVBRdsDecoder(iDVBDemux *demux, int mode, int audio_type);
 	~eDVBRdsDecoder();
 	int start(int pid);
 	void connectEvent(const sigc::slot1<void, int> &slot, ePtr<eConnection> &connection);
@@ -38,6 +39,9 @@ public:
 private:
 	void abortNonAvail();
 	void processPESPacket(uint8_t *pkt, int len);
+	void processPESAACPacket(uint8_t *pkt, int pos, int len);
+	void processAACFrame(uint8_t *data, int len);
+	void processPESMPEGPacket(uint8_t *pkt, int pos, int len);
 	void gotAncillaryData(const uint8_t *data, int len);
 	void process_qdar(unsigned char*);
 	void convertRdsMessageToUTF8(unsigned char* buffer, std::string& message);
