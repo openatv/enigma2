@@ -7,6 +7,7 @@
 #include <dlfcn.h>
 #include <lib/base/eenv.h>
 #include <lib/base/eerror.h>
+#include <lib/base/esimpleconfig.h>
 #include <lib/base/nconfig.h>
 #include <lib/gdi/gmaindc.h>
 #include <asm/ptrace.h>
@@ -24,32 +25,15 @@ static const char *crash_emailaddr =
 /* Defined in bsod.cpp */
 void retrieveLogBuffer(const char **p1, unsigned int *s1, const char **p2, unsigned int *s2);
 
-static const std::string getConfigString(const std::string &key, const std::string &defaultValue)
+static const std::string getConfigString(const char* key, const char* defaultValue)
 {
-	std::string value = eConfigManager::getConfigValue(key.c_str());
+	std::string value = eConfigManager::getConfigValue(key);
 
 	//we get at least the default value if python is still alive
 	if (!value.empty())
 		return value;
 
-	value = defaultValue;
-
-	// get value from enigma2 settings file
-	std::ifstream in(eEnv::resolve("${sysconfdir}/enigma2/settings").c_str());
-	if (in.good()) {
-		do {
-			std::string line;
-			std::getline(in, line);
-			size_t size = key.size();
-			if (!line.compare(0, size, key) && line[size] == '=') {
-				value = line.substr(size + 1);
-				break;
-			}
-		} while (in.good());
-		in.close();
-	}
-
-	return value;
+	return eSimpleConfig::getString(key, defaultValue);
 }
 
 /* get the kernel log aka dmesg */
