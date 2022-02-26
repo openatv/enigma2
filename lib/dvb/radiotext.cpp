@@ -2,13 +2,18 @@
 #include <lib/base/eerror.h>
 #include <lib/dvb/radiotext.h>
 #include <lib/dvb/idemux.h>
+#include <lib/dvb/decoder.h>
 #include <lib/gdi/gpixmap.h>
 
 DEFINE_REF(eDVBRdsDecoder);
 
-eDVBRdsDecoder::eDVBRdsDecoder(iDVBDemux *demux, int type)
+/* mode 0: RDS data is included in the audio stream
+ * mode 1: RDS data is included in a separate stream/PID
+ * audio_type: Used codec for audio stream. This information is needed for mode 0 as RDS data need to be extracted from the audio data
+ */
+eDVBRdsDecoder::eDVBRdsDecoder(iDVBDemux *demux, int mode, int audio_type)
 	:msgPtr(0), bsflag(0), qdar_pos(0), t_ptr(0), qdarmvi_show(0), state(0), m_rtp_togglebit(0), m_rtp_runningbit(0)
-	,m_type(type), m_pid(-1), m_abortTimer(eTimer::create(eApp))
+	,m_mode(mode), m_pid(-1), m_audio_type(audio_type), m_abortTimer(eTimer::create(eApp))
 {
 	setStreamID(0xC0, 0xC0);
 
@@ -20,11 +25,13 @@ eDVBRdsDecoder::eDVBRdsDecoder(iDVBDemux *demux, int type)
 
 	if (demux->createPESReader(eApp, m_pes_reader))
 		eDebug("[RDS/Rass] failed to create PES reader!");
-	else if (type == 0)
+	else if (mode == 0)
 		m_pes_reader->connectRead(sigc::mem_fun(*this, &eDVBRdsDecoder::processData), m_read_connection);
 	else
 		m_pes_reader->connectRead(sigc::mem_fun(*this, &eDVBRdsDecoder::gotAncillaryData), m_read_connection);
 	CONNECT(m_abortTimer->timeout, eDVBRdsDecoder::abortNonAvail);
+
+	eTrace("[RDS] mode %d, audio_type %d", mode, audio_type);
 }
 
 eDVBRdsDecoder::~eDVBRdsDecoder()
@@ -176,6 +183,133 @@ void eDVBRdsDecoder::processPESPacket(uint8_t *data, int len)
 {
 	int pos=9+data[8];// skip pes header
 
+	if (m_audio_type == eDVBAudio::aAAC  || m_audio_type == eDVBAudio::aAACHE)
+		processPESAACPacket(data, pos, len);
+	else
+		processPESMPEGPacket(data, pos, len);
+
+}
+
+void eDVBRdsDecoder::processPESAACPacket(uint8_t *data, int pos, int len)
+{
+	int audioMuxLength;
+
+	while ((pos + 3) < len)
+	{
+		if (data[pos] == 0x56 && (data[pos + 1] & 0xE0) == 0xE0) // find 0x56E (11 bit) loas sync header
+		{
+			audioMuxLength = ((data[pos + 1] & 0x1F) << 8) + data[pos + 2];
+			pos += 3;
+
+			if (audioMuxLength >  (len-pos)) // length invalid -> find sync
+			{
+				eWarning("[RDS] Invalid aac frame");
+				continue;
+			}
+
+			processAACFrame(data + pos, audioMuxLength);
+			pos += audioMuxLength;
+		}
+		else
+		{
+			// eTrace("[RDS] aac stream sync lost");
+			pos++;
+		}
+	}
+}
+
+/* RDS data is included in the DSE element of the AAC bit stream. To find this element you have to parse complete AAC frame as there are almost
+ * no length fields in the data to skip unnecessary elements. To avoid writing another complex AAC parser, we try to find the DSE element
+ * by parsing the frame from the end. This should work in most cases. False positives are recognized later on basis of length and CRC.
+ * Format AAC frame: <other><DSE><FIL><TERM>   // DSE and FIL are optional
+ * An element starts with a 3 bit element ID followed by a 4 bit instance tag (except TERM).
+ * element IDs: <DSE>=4 (100), <FIL>=6 (110), <TERM>=7 (111)
+ * AAC is a bitstream and is not byte-aligned!
+ */
+void eDVBRdsDecoder::processAACFrame(uint8_t *data, int len)
+{
+	int pos = len -1;
+	int tmp;
+	int prev_tmp;
+	int skip_bits = 0;
+	int count = 0;
+
+	// skip trailing 0x00
+	while (pos > 0 && data[pos] == 0x00)
+		pos--;
+
+	// search TERM in the last 2 bytes of the frame
+	if ((pos - 1) < 0)
+		return;
+	tmp = (data[pos - 1] << 8) + data[pos];
+	tmp &= 0xFF;
+	while ((tmp & 0x3) != 0x3 && skip_bits < 7)
+	{
+		tmp >>= 1;
+		skip_bits++;
+	}
+	if (skip_bits == 8) // TERM not found -> frame invalid -> skip it
+	{
+		eWarning("[RDS] Invalid aac frame without TERM");
+		return;
+	}
+
+	// skip TERM
+	skip_bits += 3;
+	if (skip_bits >= 8)
+	{
+		pos--;
+		skip_bits -= 8;
+	}
+
+	// search (simple/empty) FIL in the last 2 bytes of the frame
+	if (pos - 1 < 0)
+		return;
+	tmp = (data[pos - 1] << 8) + data[pos];
+	tmp >>= skip_bits;
+	tmp &= 0xFF;
+	if ((tmp & 0x7F) == 0x60) // FIL present?
+	{
+		skip_bits += 7;
+		if (skip_bits >= 8)
+		{
+			pos--;
+			skip_bits -= 8;
+		}
+	}
+
+	// search DSE
+	// DSE format:  id     tag     align   count     payload
+	//             <100> <4 bits> <1 bit> <8 bits> <count bytes>
+	prev_tmp = -1; // to store potential payload count of bytes
+	while ((pos - 1) > 0 && count < 80) // search in the last 80 bytes for the DSE
+	{
+		prev_tmp = tmp;
+		tmp = (data[pos - 1] << 8) + data[pos];
+		tmp >>= skip_bits;
+		tmp &= 0xFF;
+		if (tmp == 0x80 && count - 1 == prev_tmp && count > 1) // 0x80 = id 100 + tag 0000 + non aligned 0 // todo aligned
+		{
+			uint8_t ancillaryData[count-1];
+			for (int h = 1; h < count; h++)
+			{
+				tmp = (data[pos + h] << 8) + data[pos + h + 1];
+				tmp >>= skip_bits;
+				tmp &= 0xFF;
+				ancillaryData[h-1] = tmp;
+			}
+
+			m_abortTimer->stop();
+			gotAncillaryData(ancillaryData, count-1);
+			return;
+		}
+		count++;
+		pos--;
+	}
+}
+
+void eDVBRdsDecoder::processPESMPEGPacket(uint8_t *data, int pos, int len)
+{
 	while (pos < len)
 	{
 		if ((0xFF & data[pos]) != 0xFF || (0xF0 & data[pos + 1]) != 0xF0)
@@ -354,8 +488,20 @@ void eDVBRdsDecoder::gotAncillaryData(const uint8_t *buf, int len)
 	if (len <= 0)
 		return;
 
-	int pos = m_type ? 0 : len-1;
-	int dir = m_type ? 1 : -1;
+	int pos;
+	int dir;
+
+	// RDS data included in MPEG Audio frames needs to be readed in reverse order
+	if (m_mode == 1 || m_audio_type == eDVBAudio::aAAC || m_audio_type == eDVBAudio::aAACHE)
+	{
+		pos = 0;
+		dir = 1;
+	}
+	else
+	{
+		pos = len-1;
+		dir = -1;
+	}
 
 	//eTraceNoNewLineStart("[RDS] data: ");
 	//for (int j = pos; j < len && j >= 0; j += dir)
@@ -731,7 +877,7 @@ std::string eDVBRdsDecoder::getRassPicture(int page, int subpage)
 int eDVBRdsDecoder::start(int pid)
 {
 	int ret = -1;
-	if (m_pes_reader && !(ret = m_pes_reader->start(pid)) && m_type == 0)
+	if (m_pes_reader && !(ret = m_pes_reader->start(pid)) && m_mode == 0)
 		m_abortTimer->startLongTimer(20);
 	m_pid = pid;
 	return ret;
