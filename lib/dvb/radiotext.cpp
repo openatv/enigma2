@@ -720,7 +720,10 @@ void eDVBRdsDecoder::gotAncillaryData(const uint8_t *buf, int len)
 				// process RT plus tags ...
 				case 38: // Message Element Length
 					text_len=c;
-					++state;
+					if (leninfo == 10 && text_len == 8) // RT plus message has fix size
+						++state;
+					else
+						state = 0;
 					break;
 				case 39: // Application ID (2 bytes); RT+ uses 0x4BD7; ignore all other ids
 					if (c != 0x4B)
