@@ -1212,6 +1212,11 @@ def InitUsageConfig():
 	], default="2")
 	config.crash.debugTimeFormat.save_forced = True
 
+	config.crash.gstdebug = ConfigYesNo(default=False)
+	config.crash.gstdebugcategory = ConfigSelection(default="*", choices=[("*", _("All")), ("*audio*", _("Audio")), ("*video*", _("Video"))])
+	config.crash.gstdebuglevel = ConfigSelection(default="INFO", choices=["none", "ERROR", "WARNING", "FIXME", "INFO", "DEBUG", "LOG", "TRACE", "MEMDUMP"])
+	config.crash.gstdot = ConfigYesNo(default=False)
+
 	debugpath = [('/home/root/logs/', '/home/root/')]
 	for p in harddiskmanager.getMountedPartitions():
 		if exists(p.mountpoint):
