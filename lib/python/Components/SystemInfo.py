@@ -240,6 +240,10 @@ def Check_SysSoftcam():
 				pass
 	return syscam
 
+def Refresh_SysSoftCam():
+	SystemInfo["ShowOscamInfo"] = Check_SysSoftcam() in ("oscam", "ncam")
+	SystemInfo["ShowCCCamInfo"] = Check_SysSoftcam() in ("cccam")
+
 
 model = BoxInfo.getItem("model")
 socfamily = BoxInfo.getItem("socfamily")
@@ -356,7 +360,6 @@ SystemInfo["HasFullHDSkinSupport"] = model not in ("et4000", "et5000", "sh1", "h
 SystemInfo["CanProc"] = SystemInfo["HasMMC"] and getBrandOEM() != "vuplus"
 SystemInfo["canRecovery"] = getMachineBuild() in ("hd51", "vs1500", "h7", "8100s") and ("disk.img", "mmcblk0p1") or getMachineBuild() in ("xc7439", "osmio4k", "osmio4kplus", "osmini4k") and ("emmc.img", "mmcblk1p1") or getMachineBuild() in ("gbmv200", "cc1", "sf8008", "sf8008m", "sf8008opt", "sx988", "ustym4kpro", "ustym4kottpremium", "beyonwizv2", "viper4k", "og2ott4k") and ("usb_update.bin", "none")
 SystemInfo["SoftCam"] = Check_Softcam()
-SystemInfo["ShowOscamInfo"] = Check_SysSoftcam() in ("oscam", "ncam")
 SystemInfo["SmallFlash"] = BoxInfo.getItem("smallflash")
 SystemInfo["MiddleFlash"] = BoxInfo.getItem("middleflash") and not BoxInfo.getItem("smallflash")
 SystemInfo["HiSilicon"] = socfamily.startswith("hisi") or fileAccess("/proc/hisi") or fileAccess("/usr/bin/hihalt") or fileAccess("/usr/lib/hisilicon")
@@ -364,3 +367,4 @@ SystemInfo["AmlogicFamily"] = socfamily.startswith(("aml", "meson")) or fileAcce
 SystemInfo["ArchIsARM64"] = architecture == "aarch64" or "64" in architecture
 SystemInfo["ArchIsARM"] = architecture.startswith(("arm", "cortex"))
 SystemInfo["STi"] = socfamily.startswith("sti")
+Refresh_SysSoftCam()

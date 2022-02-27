@@ -1,10 +1,13 @@
 # -*- coding: UTF-8 -*-
 # CCcam Info by AliAbdul
-from __future__ import print_function
-from os import listdir, remove, rename, system, popen, path
+from base64 import b64encode
+import requests
+from os import listdir, remove, rename, system, popen
+from os.path import dirname, exists
+from urllib.parse import urlparse, urlunparse
+from skin import parameters, getSkinFactor
 
 from enigma import eListboxPythonMultiContent, gFont, loadPNG, RT_HALIGN_RIGHT
-
 from Components.ActionMap import ActionMap, NumberActionMap
 from Components.config import config, getConfigListEntry
 from Components.ConfigList import ConfigListScreen
@@ -14,37 +17,39 @@ from Components.MenuList import MenuList
 from Components.MultiContent import MultiContentEntryText, MultiContentEntryPixmapAlphaBlend
 from Components.ScrollLabel import ScrollLabel
 from Screens.HelpMenu import HelpableScreen
-
 #from Screens.InfoBar import InfoBar
 from Screens.LocationBox import LocationBox
 from Screens.MessageBox import MessageBox
 from Screens.Screen import Screen
 from Screens.VirtualKeyBoard import VirtualKeyBoard
 from Tools.Directories import fileExists, SCOPE_GUISKIN, resolveFilename
-from six.moves.urllib.parse import urlparse, urlunparse
-from twisted.internet import reactor
-from twisted.web.client import HTTPClientFactory
-import skin
-from six import PY3
-
-from base64 import b64encode
 
 #TOGGLE_SHOW = InfoBar.toggleShow
 
-VERSION = "v2"
-DATE = "21.11.2014"
-
+VERSION = "V3"
+DATE = "01.12.2021"
+CFG = "/etc/CCcam.cfg"
+global Counter
+Counter = 0
+AuthHeaders = {
+    "User-Agent": "Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.113 Safari/537.36",
+}
 #############################################################
 
 ###global
-sf = skin.getSkinFactor()
+sf = getSkinFactor()
 ###global
+
+def searchConfig():
+	global CFG, CFG_path
+	CFG = confPath()
+	CFG_path = '/var/etc'
+	if CFG:
+		CFG_path = dirname(CFG)
 
 
 def confPath():
-	search_dirs = ["/usr", "/var", "/etc"]
-	sdirs = " ".join(search_dirs)
-	cmd = 'find %s -name "CCcam.cfg" | head -n 1' % sdirs
+	cmd = 'find /etc -iname "CCcam.cfg" | head -n 1'
 	res = popen(cmd).read()
 	if res == "":
 		return None
@@ -54,61 +59,56 @@ def confPath():
 
 def _parse(url):
 	url = url.strip()
+	print("[CCcamInfo]0 url=%s" % url)
 	parsed = urlparse(url)
 	scheme = parsed[0]
 	path = urlunparse(('', '') + parsed[2:])
-
+	if path == "":
+		path = "/"
 	host, port = parsed[1], 80
-
+	username = ""
+	password = ""
+	print("[CCcamInfo]1 parsed=%s scheme=%s path=%s host=%s port=%s" % (parsed, scheme, path, host, port))
 	if '@' in host:
 		username, host = host.split('@')
 		if ':' in username:
 			username, password = username.split(':')
-		else:
-			password = ""
-	else:
-		username = ""
-		password = ""
-
+			base64string = "%s:%s" % (username, password)
+			base64string = b64encode(base64string.encode('utf-8'))
+			authHeader = "Basic " + base64string
+			AuthHeaders["Authorization"] = authHeader
 	if ':' in host:
 		host, port = host.split(':')
 		port = int(port)
+	print("[CCcamInfo]2 parsed=%s scheme=%s path=%s host=%s port=%s" % (parsed, scheme, path, host, port))
+	url = scheme + '://' + host + ':' + str(port) + path
+	print("[CCcamInfo]1 url=%s AuthHeaders=%s" % (url, AuthHeaders))
+	return url, AuthHeaders
 
-	if path == "":
-		path = "/"
 
-	return scheme, host, port, path, username, password
-
-
-def getPage(url, contextFactory=None, *args, **kwargs):
-	scheme, host, port, path, username, password = _parse(url)
-
-	if username and password:
-		url = scheme + '://' + host + ':' + str(port) + path
-		up = "%s:%s" % (username, password)
-		basicAuth = b64encode(up.encode('utf-8'))
-		if PY3:
-			basicAuth = basicAuth.decode()
-		AuthHeaders = {"Authorization": "Basic %s" % basicAuth}
-		if "headers" in kwargs:
-			kwargs["headers"].update(AuthHeaders)
+def getPage(url, callback, errback):
+	global Counter
+	errormsg = ""
+	url, AuthHeaders = _parse(url)
+	print("[CCcamInfo]2 url=%s" % url)
+	try:
+		response = requests.get(url, headers=AuthHeaders)  # to get content after redirection
+		response.raise_for_status()
+	except requests.exceptions.RequestException as error:
+		print("[CCcamInfo][getPage] incorrect response: %s" % error)
+		if Counter == 0:
+			Counter += 1
+			errormsg = "[CCcamInfo][getPage] incorrect response: %s" % error
+			errback(errormsg)
 		else:
-			kwargs["headers"] = AuthHeaders
-	if PY3:
-		url = url.encode('utf-8')
-	factory = HTTPClientFactory(url, *args, **kwargs)
-	reactor.connectTCP(host, port, factory)
-
-	return factory.deferred
-
-
-def searchConfig():
-	global CFG, CFG_path
-	CFG = confPath()
-	CFG_path = '/var/etc'
-	if CFG:
-		CFG_path = path.dirname(CFG)
-
+			data = ""
+			callback(data)
+	else:
+		try:
+			data = response.content.decode(encoding = 'UTF-8')
+		except:
+			data = response.content.decode(encoding = 'latin-1')
+		callback(data)
 #############################################################
 
 
@@ -216,12 +216,12 @@ menu_list = [
 
 #############################################################
 
-if path.exists(resolveFilename(SCOPE_GUISKIN, "icons/lock_on.png")):
+if exists(resolveFilename(SCOPE_GUISKIN, "icons/lock_on.png")):
 	lock_on = loadPNG(resolveFilename(SCOPE_GUISKIN, "icons/lock_on.png"))
 else:
 	lock_on = loadPNG("/usr/share/enigma2/skin_default/icons/lock_on.png")
 
-if path.exists(resolveFilename(SCOPE_GUISKIN, "icons/lock_off.png")):
+if exists(resolveFilename(SCOPE_GUISKIN, "icons/lock_off.png")):
 	lock_off = loadPNG(resolveFilename(SCOPE_GUISKIN, "icons/lock_off.png"))
 else:
 	lock_off = loadPNG("/usr/share/enigma2/skin_default/icons/lock_off.png")
@@ -290,28 +290,28 @@ def CCcamListEntry(name, idx):
 		idx = "menu"
 	elif idx == 15:
 		idx = "info"
-	if path.exists(resolveFilename(SCOPE_GUISKIN, "buttons/key_%s.png" % str(idx))):
+	if exists(resolveFilename(SCOPE_GUISKIN, "buttons/key_%s.png" % str(idx))):
 		png = resolveFilename(SCOPE_GUISKIN, "buttons/key_%s.png" % str(idx))
 	else:
 		png = "/usr/share/enigma2/skin_default/buttons/key_%s.png" % str(idx)
 	if fileExists(png):
-		x, y, w, h = skin.parameters.get("ChoicelistIcon", (5 * sf, 0, 35 * sf, 25 * sf))
+		x, y, w, h = parameters.get("ChoicelistIcon", (5 * sf, 0, 35 * sf, 25 * sf))
 		res.append(MultiContentEntryPixmapAlphaBlend(pos=(x, y), size=(w, h), png=loadPNG(png)))
-	x, y, w, h = skin.parameters.get("ChoicelistName", (45 * sf, 2 * sf, 550 * sf, 25 * sf))
+	x, y, w, h = parameters.get("ChoicelistName", (45 * sf, 2 * sf, 550 * sf, 25 * sf))
 	res.append(MultiContentEntryText(pos=(x, y), size=(w, h), font=0, text=name))
 	return res
 
 
 def CCcamServerListEntry(name, color):
 	res = [name]
-	if path.exists(resolveFilename(SCOPE_GUISKIN, "buttons/key_%s.png" % color)):
+	if exists(resolveFilename(SCOPE_GUISKIN, "buttons/key_%s.png" % color)):
 		png = resolveFilename(SCOPE_GUISKIN, "buttons/key_%s.png" % color)
 	else:
 		png = "/usr/share/enigma2/skin_default/buttons/key_%s.png" % color
 	if fileExists(png):
-		x, y, w, h = skin.parameters.get("ChoicelistIcon", (5 * sf, 0, 35 * sf, 25 * sf))
+		x, y, w, h = parameters.get("ChoicelistIcon", (5 * sf, 0, 35 * sf, 25 * sf))
 		res.append(MultiContentEntryPixmapAlphaBlend(pos=(x, y), size=(w, h), png=loadPNG(png)))
-	x, y, w, h = skin.parameters.get("ChoicelistName", (45 * sf, 2 * sf, 550 * sf, 25 * sf))
+	x, y, w, h = parameters.get("ChoicelistName", (45 * sf, 2 * sf, 550 * sf, 25 * sf))
 	res.append(MultiContentEntryText(pos=(x, y), size=(w, h), font=0, text=name))
 	return res
 
@@ -349,12 +349,12 @@ def CCcamConfigListEntry(file):
 
 	if content == org:
 		png = lock_on
-		x, y, w, h = skin.parameters.get("SelectionListLock", (5 * sf, 0, 25 * sf, 25 * sf))
+		x, y, w, h = parameters.get("SelectionListLock", (5 * sf, 0, 25 * sf, 25 * sf))
 	else:
 		png = lock_off
-		x, y, w, h = skin.parameters.get("SelectionListLockOff", (5 * sf, 0, 25 * sf, 25 * sf))
+		x, y, w, h = parameters.get("SelectionListLockOff", (5 * sf, 0, 25 * sf, 25 * sf))
 	res.append(MultiContentEntryPixmapAlphaBlend(pos=(x, y), size=(w, h), png=png))
-	x, y, w, h = skin.parameters.get("SelectionListDescr", (45 * sf, 2 * sf, 550 * sf, 25 * sf))
+	x, y, w, h = parameters.get("SelectionListDescr", (45 * sf, 2 * sf, 550 * sf, 25 * sf))
 	res.append(MultiContentEntryText(pos=(x, y), size=(w, h), font=0, text=name))
 
 	return res
@@ -365,12 +365,12 @@ def CCcamMenuConfigListEntry(name, blacklisted):
 
 	if blacklisted:
 		png = lock_off
-		x, y, w, h = skin.parameters.get("SelectionListLockOff", (5 * sf, 0, 25 * sf, 25 * sf))
+		x, y, w, h = parameters.get("SelectionListLockOff", (5 * sf, 0, 25 * sf, 25 * sf))
 	else:
 		png = lock_on
-		x, y, w, h = skin.parameters.get("SelectionListLock", (5 * sf, 0, 25 * sf, 25 * sf))
+		x, y, w, h = parameters.get("SelectionListLock", (5 * sf, 0, 25 * sf, 25 * sf))
 	res.append(MultiContentEntryPixmapAlphaBlend(pos=(x, y), size=(w, h), png=png))
-	x, y, w, h = skin.parameters.get("SelectionListDescr", (45 * sf, 2 * sf, 550 * sf, 25 * sf))
+	x, y, w, h = parameters.get("SelectionListDescr", (45 * sf, 2 * sf, 550 * sf, 25 * sf))
 	res.append(MultiContentEntryText(pos=(x, y), size=(w, h), font=0, text=name))
 
 	return res
@@ -381,7 +381,7 @@ def CCcamMenuConfigListEntry(name, blacklisted):
 class CCcamInfoMain(Screen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
-		Screen.setTitle(self, _("CCcam Info"))
+		self.setTitle(_("CCcam Info"))
 
 		self["menu"] = CCcamList([])
 
@@ -486,19 +486,19 @@ class CCcamInfoMain(Screen):
 			sel = self.menu_list[idx]
 
 			if sel == _("General"):
-				getPage(self.url).addCallback(self.showCCcamGeneral).addErrback(self.getWebpageError)
+				getPage(self.url, self.showCCcamGeneral, self.getWebpageError)
 
 			elif sel == _("Clients"):
-				getPage(self.url + "/clients").addCallback(self.showCCcamClients).addErrback(self.getWebpageError)
+				getPage(self.url + "/clients", self.showCCcamClients, self.getWebpageError)
 
 			elif sel == _("Active clients"):
-				getPage(self.url + "/activeclients").addCallback(self.showCCcamClients).addErrback(self.getWebpageError)
+				getPage(self.url + "/activeclients", self.showCCcamClients, self.getWebpageError)
 
 			elif sel == _("Servers"):
-				getPage(self.url + "/servers").addCallback(self.showCCcamServers).addErrback(self.getWebpageError)
+				getPage(self.url + "/servers", self.showCCcamServers, self.getWebpageError)
 
 			elif sel == _("Shares"):
-				getPage(self.url + "/shares").addCallback(self.showCCcamShares).addErrback(self.getWebpageError)
+				getPage(self.url + "/shares", self.showCCcamShares, self.getWebpageError)
 
 			elif sel == _("Share View"):
 				self.session.openWithCallback(self.workingFinished, CCcamShareViewMenu, self.url)
@@ -507,10 +507,10 @@ class CCcamInfoMain(Screen):
 				self.session.openWithCallback(self.workingFinished, CCcamInfoShareInfo, "None", self.url)
 
 			elif sel == _("Providers"):
-				getPage(self.url + "/providers").addCallback(self.showCCcamProviders).addErrback(self.getWebpageError)
+				getPage(self.url + "/providers", self.showCCcamProviders, self.getWebpageError)
 
 			elif sel == _("Entitlements"):
-				getPage(self.url + "/entitlements").addCallback(self.showCCcamEntitlements).addErrback(self.getWebpageError)
+				getPage(self.url + "/entitlements", self.showCCcamEntitlements, self.getWebpageError)
 
 			elif sel == _("ecm.info"):
 				self.session.openWithCallback(self.showEcmInfoFile, CCcamInfoEcmInfoSelection)
@@ -535,7 +535,7 @@ class CCcamInfoMain(Screen):
 				self.session.openWithCallback(self.workingFinished, CCcamInfoConfigSwitcher)
 
 			else:
-				self.showInfo(_("CCcam Info %s\nby AliAbdul %s\n\nThis plugin shows you the status of your CCcam.") % (VERSION, DATE), _("About"))
+				self.showInfo(_("CCcam Info %s\nby AliAbdul %s\n\nThis screen shows you the status of CCcam.") % (VERSION, DATE), _("About"))
 
 	def red(self):
 		self.keyNumberGlobal(10)
@@ -575,7 +575,7 @@ class CCcamInfoMain(Screen):
 			self["menu"].pageDown()
 
 	def getWebpageError(self, error=""):
-		print(str(error))
+		print("CCcamInfo] WEB page error=%s" % error)
 		self.session.openWithCallback(self.workingFinished, MessageBox, _("Error reading webpage!"), MessageBox.TYPE_ERROR)
 
 	def showFile(self, file):
@@ -599,7 +599,7 @@ class CCcamInfoMain(Screen):
 			idx2 = html.index('<BR></BODY>')
 			html = html[idx + 8:idx2].replace("<BR>", "\n").replace("\n\n", "\n")
 			self.infoToShow = html
-			getPage(self.url + "/shares").addCallback(self.showCCcamGeneral2).addErrback(self.getWebpageError)
+			getPage(self.url + "/shares", self.showCCcamGeneral2, self.getWebpageError)
 		else:
 			self.showInfo(_("Error reading webpage!"), _("Error"))
 
@@ -773,12 +773,9 @@ class CCcamInfoMain(Screen):
 
 	def showFreeMemory(self, result, retval, extra_args):
 		if retval == 0:
-			if PY3:
-				result = result.decode("UTF-8")
 			if result.__contains__("Total:"):
 				idx = result.index("Total:")
 				result = result[idx + 6:]
-
 				tmpList = result.split(" ")
 				list = []
 				for x in tmpList:
@@ -876,7 +873,7 @@ class CCcamShareViewMenu(Screen, HelpableScreen):
 			self.close()
 
 	def getProviders(self):
-		getPage(self.url + "/providers").addCallback(self.readProvidersCallback).addErrback(self.readError)
+		getPage(self.url + "/providers", self.readProvidersCallback, self.readError)
 
 	def readError(self, error=None):
 		self.session.open(MessageBox, _("Error reading webpage!"), MessageBox.TYPE_ERROR)
@@ -1361,7 +1358,7 @@ class CCcamInfoShareInfo(Screen):
 			self.close()
 
 	def readShares(self):
-		getPage(self.url + "/shares").addCallback(self.readSharesCallback).addErrback(self.readSharesError)
+		getPage(self.url + "/shares", self.readSharesCallback, self.readSharesError)
 
 	def readSharesError(self, error=None):
 		self.session.open(MessageBox, _("Error reading webpage!"), MessageBox.TYPE_ERROR)
