@@ -209,24 +209,7 @@ self.session.openWithCallback(msgClosed, EpgDeleteMsg)
 			<item entryID="time_setup" level="0" text="Time" weight="60"><screen module="Time" screen="Time" /></item>
 			<item entryID="logs_setup" level="0" text="Logs settings" weight="70"><setup id="Logs" /></item>
 			<item entryID="rfmod_setup" level="1" text="RF output" weight="80" requires="RfModulator"><setup id="RFModulator"/></item>
-			<item entryID="factory_reset" level="0" text="Factory reset" weight="99">
-				<code>
-from __future__ import print_function
-from Screens.FactoryReset import FactoryReset
-def msgClosed(ret):
-	if ret:
-		from os import system, path, _exit
-		print("[FACTORY RESET] remove dir /etc/enigma2")
-		system("rm -R /etc/enigma2")
-		if path.exists("/media/hdd/images/config"):
-			system("rm -R /media/hdd/images/config")
-		print("[FACTORY RESET] set network to DHCP")
-		system("cp -f /usr/share/enigma2/defaults/interfaces /etc/network/interfaces")
-		system("/etc/init.d/networking restart")
-		_exit(0)
-self.session.openWithCallback(msgClosed, FactoryReset)
-				</code>
-			</item>
+			<item entryID="factory_reset" level="0" text="Factory reset" weight="99"><screen module="FactoryReset" screen="FactoryReset" /></item>
 		</menu>
 	</menu>
 
