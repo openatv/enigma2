@@ -31,7 +31,7 @@ eDVBRdsDecoder::eDVBRdsDecoder(iDVBDemux *demux, int mode, int audio_type)
 		m_pes_reader->connectRead(sigc::mem_fun(*this, &eDVBRdsDecoder::gotAncillaryData), m_read_connection);
 	CONNECT(m_abortTimer->timeout, eDVBRdsDecoder::abortNonAvail);
 
-	eTrace("[RDS] mode %d, audio_type %d", mode, audio_type);
+	//eTrace("[RDS] mode %d, audio_type %d", mode, audio_type);
 }
 
 eDVBRdsDecoder::~eDVBRdsDecoder()
