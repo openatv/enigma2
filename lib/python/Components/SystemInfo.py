@@ -242,7 +242,7 @@ def Check_SysSoftcam():
 
 def Refresh_SysSoftCam():
 	SystemInfo["ShowOscamInfo"] = Check_SysSoftcam() in ("oscam", "ncam")
-	SystemInfo["ShowCCCamInfo"] = Check_SysSoftcam() in ("cccam")
+	SystemInfo["ShowCCCamInfo"] = Check_SysSoftcam() in ("cccam",)
 
 
 model = BoxInfo.getItem("model")
