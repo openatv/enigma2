@@ -1,0 +1,412 @@
+Standardised and Uniform Setup Screens in Enigma2
+-------------------------------------------------
+
+Written by IanSav -  2-Apr-2018
+Updated by IanSav - 11-Jul-2020
+Updated by IanSav - 12-Sep-2020  (Thanks to Prl for suggestions.)
+Updated by IanSav -  3-Oct-2020
+Updated by IanSav -  1-Mar-2022
+
+
+INTRODUCTION:
+=============
+
+Enigma2 is a massive open source project that has many contributors and 
+add-ons.  Over time a number of alternative approaches to performing common 
+tasks have evolved.  This document documents some conventions that can be 
+adopted by all developers, contributors and skin authors to ensure that 
+everyone can work independently but still achieve results that work together 
+interchangeably.
+
+Standard variable names are documented, together with code and skin coding 
+conventions to assist in creating code that works more universally, with 
+additional benefits from improved Setup screen load performance and reduction 
+in merge issues between Enigma2 images.
+
+Lastly, the document explains the operation and features of the refactored 
+Setup screen interface ("Screen/Setup.py").
+
+
+REFACTOR OF "Screens/Setup.py":
+===============================
+
+The refactor of the "Screens/Setup.py" code has been based on various 
+features available in the main Enigma2 images.  That is, the code has been 
+written to make the "Screens/Setup.py" a superset of capabilities from all 
+the images.
+
+The changes, even with the enhancements, can result in a significant 
+reduction in time to generate any "Screens/Setup.py" based screen.  The 
+time taken to build any Setup screen is slightly longer for the first 
+screen item but then about 50 time faster for all subsequent searches.
+
+Significant changes, in no particular order, are:
+
+1)	All setup XML file data is cached into memory on the first access.  
+	Every subsequent access will check if the source file has been 
+	changed.  If so, the file will be reloaded and reprocessed.  If not, 
+	the cached results are returned.  This change can significantly 
+	improve "Screens/Setup.py" screen load times.
+
+	This change also means that the GUI no longer has to be restarted to 
+	allow changes to "setup.xml" to be processed by OpenPLi.
+
+2)	Optimise, improve and enhance generation of Setup screen item lists.  
+	This change allows the list to be processed once for display rather 
+	than the two or three cycles in some previous versions.
+
+3)	Create a log entry if the Setup screen has no valid entries.
+
+4)	Remove remnants of the setup.xml "separation" attribute directive.  
+	This feature is now offered via the skin parameter 
+	"ConfigListSeperator".
+
+5)	When enabled, always obey Setup screen sort setting.
+
+6)	If "%s %s" is found in an item's "text" or "description" attribute 
+	then replace it with the current box machine brand and model name.
+
+7)	Move the description code from the "SetupSummary" class into the main 
+	"Setup" class where it is used.
+
+8) 	For OpenPLi add footnote support.  If the last character of an entry 
+	item is an "*" then when this item is currently selected by the user 
+	a footnote message will appear to advise the user that a restart 
+	will be required if this item is changed.
+
+9)	Add an option to provide "Setup" screen graphic based on matching the 
+	setup "key" attribute with a graphic defined in a new "<setups>" 
+	element in the skin.  This code is conditional on having compatible 
+	changes in "skin.py".
+
+10)	Enable the HELP button to allow users to obtain help while using any 
+	"Screens/Setup.py" based screen.  To be fully operational these 
+	changes also need to be accompanied by appropriate changes to 
+	"Components/ConfigList.py".
+
+	To properly implement HELP and clean up the ActionMaps, the ActionMap 
+	and associated code should be removed from "Screens/Setup.py" and 
+	integrated into the ActionMap in "Components/ConfigList.py".
+
+11)	The "setup_key" skin facility appears to be unused.  The name has 
+	been changed to "Setupkey" to better match existing skin names.  
+	This option allows skin designers to create custom "Setup" based 
+	screens.
+
+	The "setup.xml" file's "setup" tag also offers a "skin" attribute to 
+	also allow for the screen for that setup key to be specified.
+
+	The order of screen selection is first look for a "skin" attribute 
+	screen, then try for a "Setupkey" screen and finally use the 
+	standard "Setup" screen.
+
+12)	Perform a PEP8 clean-up of the code.
+
+13)	Reorganise the imports and code blocks to improve readability of the 
+	refactored code.
+
+14)	Logic functionality has been added to the setup XML file.  The 
+	addition of "if", "elif" and "else" elements allow for "item" 
+	elements to be selected for inclusion or exclusion from any setup 
+	based screen.
+
+15)	The syntax consistency of the "if", "elif" and "item" elements is
+	now checked when the setup XML file is loaded.  Issues are reported 
+	in the log file.
+
+
+STRUCTURE OF "setup.xml" FILES:
+===============================
+
+Syntax:
+	
+	<setupxml>
+		<setup key="sample1" title="Sample1 settings">
+			<item level="0" text="Configuration item 1" description="This is the description text that explains the purpose and settings of config item 1.">configItem1</item>
+			<item level="0" text="Configuration item 2" description="This is the description text that explains the purpose and settings of config item 2.">configItem2</item>
+		</setup>
+		<setup key="sample2" title="Sample2 settings">
+			<item level="0" text="Configuration item 3" description="This is the description text that explains the purpose and settings of config item 3.">configItem3</item>
+			<item level="1" text="Configuration item 4" description="This is the description text that explains the purpose and settings of config item 4.">configItem4</item>
+			<if level="2">
+				<item text="Configuration item 5" description="This is the description text that explains the purpose and settings of config item 5.">configItem5</item>
+			<elif conditional="self.configVariable.value != 'once'" />
+				<item text="Configuration item 6" description="This is the description text that explains the purpose and settings of config item 6.">configItem6</item>
+			<else />
+				<item text="Configuration item 7" description="This is the description text that explains the purpose and settings of config item 7.">configItem7</item>
+			</if>
+		</setup>
+	</setupxml>
+
+The "setupxml" tag defines that the file is a setup configuration file. The 
+"setupxml" tag has no attributes and should contain a list of one or more 
+"setup" tag elements. Each of the "setup" tag elements should contain a list 
+of one or more "item" or "if" elements.  Each "item" tag element must contain 
+a configuration element that has been defined in "Components/UsageConfig.py" 
+or elsewhere.  Each "if" tag element should contain logic attributes "level", 
+"conditional" or "requires" to allow evaluation as to whether or not that 
+element's content will be used for the Setup screen.
+
+Each of the "setup" tags can have the following attributes:
+
+	Attribute	Required	Description
+	---------	--------	-----------
+	"key"		Mandatory	This attribute is the reference name, 
+					or key, used to identify this Setup 
+					screen.  By convention, common usage 
+					and agreement all keys should use 
+					lowercase names.
+
+	"title"		Mandatory	This attribute is the long form title 
+					text used for the heading or title of 
+					this setup screen.
+
+	"showOpenWebIf"	Optional	This attribute is used to signal that 
+					this Setup screen should be made 
+					available in OpenWebIf.
+
+	"requires"	Optional	This attribute is used to test is the 
+					nominated requirements have been met 
+					to enable the activation and use of 
+					this Setup screen.  The "requires" 
+					attribute value can be either the 
+					name of a config variable without 
+					the ".value" attribute, or the name 
+					of a SystemInfo entry.  If the first 
+					character of the attribute argument 
+					is "!" then the argument logic is 
+					inverted.
+
+	"skin"		Optional	This attribute is used to specify an 
+					override screen name defined in the 
+					skin to be used to display this Setup 
+					screen.
+
+Each of the "if" or "elif" tags can have at least one of the "level", 
+"conditional" or "requires" attributes as per the "item" tag as follows.
+
+Each of the "item" tags can have the following attributes:
+
+	Attribute	Required	Description
+	---------	--------	-----------
+	"text"		Mandatory	This attribute is the prompt text 
+					that is displayed to the user when 
+					activating this Setup screen.
+
+	"description"	Recommended	This attribute is the help prompt or 
+					information that can, and should, be 
+					used to offer guidance to users in 
+					when and how to set the associated 
+					configuration option.  If this is 
+					omitted no assistance or information 
+					will be offered to users.
+
+	"level"		Optional	The list of items that may be 
+					displayed in any Setup screen is 
+					dynamic. This attribute determines 
+					the user interface setup mode or 
+					level where this option may be 
+					displayed.  The default level, if 
+					not specified, is 0.
+
+				Level=0 -> Basic / Normal / Simple or higher
+				Level=1 -> Advanced / Intermediate or higher
+				Level=2 -> Expert
+				Level=9 -> Deactivate this entry
+
+	"conditional"	Optional	This attribute allows for programmed 
+					logic to decide is this item is 
+					eligible for display in the Setup 
+					screen.  The "conditional" attribute 
+					value is a Python expression that 
+					must evaluate to a value that can be 
+					converted to a Boolean.  It is 
+					evaluated in the context of a Setup 
+					class instance, and in the expression 
+					self refers to that instance (which 
+					is mainly useful for classes that 
+					derive from Setup, like 
+					MovieBrowserConfiguration).
+
+	"requires"	Optional	This attribute allows for "SystemInfo" 
+					or "config" variables to be used to 
+					enable display of the item.  If the 
+					first character of the attribute 
+					argument is "!" then the argument 
+					logic is inverted.
+
+	NOTE 1:	The text in the "text" and "description" attributes will 
+		be processed by the language translation system.
+
+	NOTE 2:	After the text in the "text" and "description" attributes 
+		has been translated any occurrence of the string "%s %s" will 
+		be replaced by the current make and model of the device upon 
+		which the code is running.
+
+	NOTE 3: If the last character of the "text" attribute is "*" then 
+		when this item is currently selected by the user a footnote 
+		message will appear to advise the user that a restart will be 
+		required if this item is changed.
+
+The payload or data element of the "item" tag should be the config element 
+defined in "Components/UsageConfig.py", or elsewhere, to be managed / changed 
+by the encompassing item tag.
+
+
+"Screens/Setup.py" / "Setup" SCREEN VARIABLES:
+==============================================
+
+	Variable		Description
+	--------		-----------
+	ScreenPath		This variable uses a source="ScreenPath" 
+				render=Label" widget that provides the menu 
+				path to the currently used "Setup" screen.
+
+	Title			This variable uses a source="title" 
+				render=Label" widget that provides the title 
+				of the "Setup" screen.
+
+	setupimage		This variable uses a name="setupimage" 
+				widget that provides a graphic image to 
+				represent the "Setup" screen being displayed.
+
+	config			This variable uses a name="config" widget 
+				that provides the list of available "Setup" 
+				configuration items.
+
+	description		This variable uses a name="description" 
+				widget that provides any available help or 
+				description text for the currently selected 
+				"Setup" item.
+
+	footnote		This variable uses a name="footnote" widget 
+				that provides a footnote message that 
+				typically advises when changing the item's 
+				value may trigger a restart.
+
+	key_red			This variable uses a source="key_red" 
+				render="Label" widget that provides the text 
+				for the RED button.  This variable can also 
+				be used to trigger an associated button 
+				graphic.
+
+	key_green		This variable uses a source="key_green" 
+				render="Label" widget that provides the text 
+				for the GREEN button.  This variable can also 
+				be used to trigger an associated button 
+				graphic.
+
+	key_yellow		This variable uses a source="key_yellow" 
+				render="Label" widget that provides the text 
+				for the YELLOW button.  This variable can 
+				also be used to trigger an associated button 
+				graphic.  The YELLOW button is not used by 
+				the core "Setup" class but may be used by 
+				other code based on the "Setup" class.
+
+	key_blue		This variable uses a source="key_blue" 
+				render="Label" widget that provides the text 
+				for the BLUE button.  This variable can also 
+				be used to trigger an associated button 
+				graphic.  The BLUE button is not used by 
+				the core "Setup" class but may be used by 
+				other code based on the "Setup" class.
+
+	key_menu		This variable uses a source="key_menu" 
+				render="Label" widget that provides a signal 
+				to the skin to display the MENU button.
+
+	key_help		This variable uses a source="key_help" 
+				render="Label" widget that provides a signal 
+				to the skin to display the HELP button.
+
+	VKeyIcon		This variable uses a source="VKeyIcon" 
+				render="Pixmap" widget that provides a signal 
+				to the skin to display the TEXT button when 
+				appropriate.
+
+	HelpWindow		This variable uses a name="HelpWindow" widget 
+				that displays the SMS helper window overlay 
+				when appropriate.
+
+
+SAMPLE "Setup" SCREEN:
+======================
+
+	<screen name="Setup" title="Setup" position="center,center" size="1000,565">
+		<widget source="ScreenPath" render="Label" position="560,0" size="440,15" conditional="ScreenPath" font="Regular;12" halign="right" transparent="1" />
+		<widget source="Title" render="Label" position="560,15" size="440,25" font="Regular;20" halign="right" noWrap="1" transparent="1" />
+		<widget source="key_red" render="Pixmap" pixmap="buttons/red.png" position="0,0" size="140,40" alphatest="blend" conditional="key_red">
+			<convert type="ConditionalShowHide"/>
+		</widget>
+		<widget source="key_red" render="Label" position="0,0" size="140,40" backgroundColor="#9f1313" font="Regular;20" halign="center" transparent="1" valign="center" zPosition="+1" />
+		<widget source="key_green" render="Pixmap" pixmap="buttons/green.png" position="140,0" size="140,40" alphatest="blend" conditional="key_green">
+			<convert type="ConditionalShowHide"/>
+		</widget>
+		<widget source="key_green" render="Label" position="140,0" size="140,40" backgroundColor="#1f771f" font="Regular;20" halign="center" transparent="1" valign="center" zPosition="+1" />
+		<widget source="key_yellow" render="Pixmap" pixmap="buttons/yellow.png" position="280,0" size="140,40" alphatest="blend" conditional="key_yellow">
+			<convert type="ConditionalShowHide"/>
+		</widget>
+		<widget source="key_yellow" render="Label" position="280,0" size="140,40" backgroundColor="#a08500" font="Regular;20" halign="center" transparent="1" valign="center" zPosition="+1" />
+		<widget source="key_blue" render="Pixmap" pixmap="buttons/blue.png" position="420,0" size="140,40" alphatest="blend" conditional="key_blue">
+			<convert type="ConditionalShowHide"/>
+		</widget>
+		<widget source="key_blue" render="Label" position="420,0" size="140,40" backgroundColor="#141484" font="Regular;20" halign="center" transparent="1" valign="center" zPosition="+1" />
+		<widget source="key_menu" render="Pixmap" pixmap="buttons/key_menu.png" position="0,540" size="35,25" alphatest="blend" conditional="key_menu">
+			<convert type="ConditionalShowHide"/>
+		</widget>
+		<widget source="key_help" render="Pixmap" pixmap="buttons/key_help.png" position="40,540" size="35,25" alphatest="blend" conditional="key_help">
+			<convert type="ConditionalShowHide"/>
+		</widget>
+		<widget source="VKeyIcon" render="Pixmap" pixmap="buttons/key_text.png" position="80,540" size="35,25" alphatest="blend" transparent="1">
+			<convert type="ConditionalShowHide"/>
+		</widget>
+		<widget name="HelpWindow" pixmap="buttons/vkey_icon.png" position="0,250" size="1,1" zPosition="+1" />
+		<widget name="setupimage" position="0,50" size="200,400" alphatest="blend" conditional="setupimage" transparent="1" />
+		<widget name="config" position="200,50" size="800,400" enableWrapAround="1" scrollbarMode="showOnDemand" transparent="1" />
+		<widget name="footnote" position="200,460" size="800,20" font="Regular;18" transparent="1" valign="center" />
+		<widget name="description" position="200,490" size="800,75" font="Regular;20" transparent="1" valign="center" />
+	</screen>
+
+
+SKIN "Setups" SUPPORT ELEMENT:
+==============================
+
+Syntax:
+
+	<setups>
+		<setup key="default" image="setup_default.png" />
+		<setup key="sample1" image="setup_key.png" />
+	</setups>
+
+This element is optional but if defined allows a skin designer to associate 
+a graphical image with any "Screens/Setup.py" based screen.  The "setups" 
+tag element has no attributes and contains a list of "setup" tag elements.
+
+Each "setup" tag element must contain two attributes:
+
+	key	This attribute is the value of the key attribute from a 
+		setup.xml file.  If the keys match then this entry defines 
+		a graphical image that is to be used when the nominated 
+		Setup screen is displayed.
+
+	image	This attribute is the pathname of the graphical image that 
+		is to be associated with the Setup screen identified by the 
+		"key" attribute.
+
+There is a special "key" attribute with the name "default".  This entry, 
+if defined, assigns a default graphical image to be used in ALL 
+"Screens/Setup.py" screens that do not have a specifically assigned 
+image.
+
+
+CONCLUSION:
+===========
+
+For all the Enigma2 images there is a significant difference in facilities 
+offered by the "Screens/Setup.py code.  This proposal outlines what I 
+believe to be a conservative approach to making a significant and beneficial 
+change in unifying and standardising the operation of "Setup" screens across 
+the Enigma2 UI.
+
+---END---
