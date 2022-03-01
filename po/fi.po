@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-02-27 22:18+0000\n"
+"POT-Creation-Date: 2022-03-01 17:50+0000\n"
 "PO-Revision-Date: 2022-03-01 14:41+0000\n"
 "Last-Translator: tomppaa <tomzza89@gmail.com>\n"
 "Language-Team: Finnish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/fi/>\n"
@@ -2702,6 +2702,9 @@ msgstr "Määrittää piilotetaanko tunnettujen tiedostojen tiedostopäätteet."
 msgid "Allows you to set the maximum size of the Debug log size (MB). When that size is reached, a new file will be created."
 msgstr "Määritä vianselvityslokin maksimikoko (MB). Kun maksimikoko saavutetaan, luodaan uusi lokitiedosto."
 
+msgid "Allows you to show/hide CCcam in extensions (BLUE button)."
+msgstr "Määrittää näytetäänkö CCcam Info laajennusvalikossa (sininen näppäin)."
+
 msgid "Allows you to show/hide Log Manager in extensions (blue button)."
 msgstr "Määrittää näytetäänkö Lokien hallinta laajennusvalikossa (sininen näppäin)."
 
@@ -5362,6 +5365,9 @@ msgstr "Luo DVD-ISO"
 msgid "Create ISO"
 msgstr "Luo ISO-tiedosto"
 
+msgid "Create a randomly generated password"
+msgstr ""
+
 msgid "Create directory"
 msgstr "Luo hakemisto"
 
@@ -7497,6 +7503,12 @@ msgstr "Ei päivityksiä saatavilla. Yritä myöhemmin uudelleen."
 
 msgid "Error: Checksum is invalid!"
 msgstr "Virhe: Tarkistussumma on virheellinen!"
+
+msgid "Error: The new password may not be blank!"
+msgstr ""
+
+msgid "Error: Unable to change password!"
+msgstr ""
 
 msgid "Error: Unable to process the command!  Please try again later."
 msgstr "Virhe: Komento voidaan suorittaa!  Yritä myöhemmin uudelleen."
@@ -12511,11 +12523,11 @@ msgstr "Salasana (httpkäyttäjä)"
 msgid "Password (httpwd)"
 msgstr "Salasana (httpwd)"
 
+msgid "Password Actions"
+msgstr ""
+
 msgid "Password Setup"
 msgstr "Salasana asetukset"
-
-msgid "Password changed"
-msgstr "Salasana vaihdettu"
 
 msgid "Password:"
 msgstr "Salasana:"
@@ -13754,9 +13766,6 @@ msgstr "Pyöräily"
 
 msgid "Random"
 msgstr "Satunnainen"
-
-msgid "Random password"
-msgstr "Satunnainen salasana"
 
 #, python-format
 msgid "Rating defined by broadcaster - %d"
@@ -15888,6 +15897,9 @@ msgstr "Määrittää tallenteiden juurihakemiston, poistaa '..' sen hakemiston 
 
 msgid "Setting Restored "
 msgstr "Asetukset palautettu "
+
+msgid "Setting a password is strongly advised if your STB is open to the Internet. You must set a password in order to be able to use network services like FTP, Telnet or SSH."
+msgstr ""
 
 msgid "Settings"
 msgstr "Asetukset"
@@ -18313,9 +18325,6 @@ msgstr ""
 "Verkkoavustajaa ei ole asennettu!\n"
 "Asenna se."
 
-msgid "The password can not be blank."
-msgstr "Salasana ei voi olla tyhjä."
-
 #, python-format
 msgid "The path %s already exists."
 msgstr "Hakemisto %s on jo olemassa."
@@ -19532,9 +19541,6 @@ msgstr "Ukraina"
 
 msgid "Umweltbewusstsein"
 msgstr "Umweltbewusstsein"
-
-msgid "Unable to change password"
-msgstr "Salasanan vaihto epäonnistui"
 
 msgid "Unable to create the required directories on the media (e.g. USB stick or Harddisk) - Please verify media and try again!"
 msgstr "Vaadittavia hakemistoja ei voi luoda tietovälineelle (esim. USB-tikku tai kiintolevy) - Tarkista media ja yritä uudelleen!"
@@ -21148,9 +21154,6 @@ msgstr "Swap tiedostoa ei löydy. Tiedosto täytyy luoda ennen aktivointia."
 #, python-format
 msgid "You have to wait %s!"
 msgstr "Sinun täytyy odottaa %s!"
-
-msgid "You must set a root password in order to be able to use network services, such as FTP, telnet or ssh."
-msgstr "Sinun on määritettävä root salasana, että voit käyttää verkkopalveluja, kuten FTP, telnet tai ssh."
 
 msgid "You must set at least one Command"
 msgstr "Vähintään yksi komento on määritettävä"
@@ -23255,8 +23258,20 @@ msgstr "vaihtaa"
 msgid "®"
 msgstr "®"
 
-msgid "Allows you to show/hide CCcam in extensions (BLUE button)."
-msgstr "Määrittää näytetäänkö CCcam Info laajennusvalikossa (sininen näppäin)."
+msgid "Password changed."
+msgstr "Salasana vaihdettu."
+
+msgid "Random Password"
+msgstr "Satunnainen salasana"
+
+#~ msgid "The password can not be blank."
+#~ msgstr "Salasana ei voi olla tyhjä."
+
+#~ msgid "Unable to change password"
+#~ msgstr "Salasanan vaihto epäonnistui"
+
+#~ msgid "You must set a root password in order to be able to use network services, such as FTP, telnet or ssh."
+#~ msgstr "Sinun on määritettävä root salasana, että voit käyttää verkkopalveluja, kuten FTP, telnet tai ssh."
 
 #, python-format
 #~ msgid ""

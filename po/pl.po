@@ -8,9 +8,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-02-27 22:18+0000\n"
-"PO-Revision-Date: 2022-03-01 17:36+0000\n"
-"Last-Translator: drakulis <drakulis@interia.pl>\n"
+"POT-Creation-Date: 2022-03-01 17:50+0000\n"
+"PO-Revision-Date: 2022-03-01 18:17+0000\n"
+"Last-Translator: pololoko111 <peciek83@gmail.com>\n"
 "Language-Team: Polish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/pl/>\n"
 "Language: pl\n"
 "MIME-Version: 1.0\n"
@@ -2722,6 +2722,9 @@ msgstr "Pozwala ukryć rozszerzenia znanych typów plików."
 msgid "Allows you to set the maximum size of the Debug log size (MB). When that size is reached, a new file will be created."
 msgstr "Umożliwia ustawienie maksymalnej wielkości rozmiaru dziennika zdarzeń (MB). Kiedy ten rozmiar zostanie osiągnięty, zostanie utworzony nowy plik."
 
+msgid "Allows you to show/hide CCcam in extensions (BLUE button)."
+msgstr "Umożliwia pokazanie/ukrycie CCcam w rozszerzeniach (niebieski przycisk)."
+
 msgid "Allows you to show/hide Log Manager in extensions (blue button)."
 msgstr "Umożliwia pokazanie/ukrycie menadżera crash logów w rozszerzeniach (niebieski przycisk)."
 
@@ -5380,6 +5383,9 @@ msgstr "Utwórz DVD-ISO"
 msgid "Create ISO"
 msgstr "Utwórz ISO"
 
+msgid "Create a randomly generated password"
+msgstr "Utwórz losowo wygenerowane hasło"
+
 msgid "Create directory"
 msgstr "Tworzenie katalogu"
 
@@ -7516,6 +7522,12 @@ msgstr "Błąd: %s %s nie %s!  Spróbuj ponownie później."
 
 msgid "Error: Checksum is invalid!"
 msgstr "Błąd: Suma kontrolna nieprawidłowa!"
+
+msgid "Error: The new password may not be blank!"
+msgstr "Błąd: nowe hasło nie może być puste!"
+
+msgid "Error: Unable to change password!"
+msgstr "Błąd: nie można zmienić hasła!"
 
 msgid "Error: Unable to process the command!  Please try again later."
 msgstr "Błąd: Nie można przetworzyć polecenia!  Spróbuj ponownie później."
@@ -12517,11 +12529,14 @@ msgstr "Hasło"
 msgid "Password (httpwd)"
 msgstr "Hasło (httpwd)"
 
+msgid "Password Actions"
+msgstr "Działania dotyczące hasła"
+
 msgid "Password Setup"
 msgstr "Ustawienia hasła"
 
-msgid "Password changed"
-msgstr "Hasło zostało zmienione"
+msgid "Password changed."
+msgstr "Hasło zostało zmienione."
 
 msgid "Password:"
 msgstr "Hasło:"
@@ -13759,7 +13774,7 @@ msgstr "Kolarstwo"
 msgid "Random"
 msgstr "Losowo"
 
-msgid "Random password"
+msgid "Random Password"
 msgstr "Losowe hasło"
 
 #, python-format
@@ -15884,6 +15899,9 @@ msgstr "Ustawia folder główny listy filmów, w celu usunięcia '..' na począt
 
 msgid "Setting Restored "
 msgstr "Ustawienie przywrócone "
+
+msgid "Setting a password is strongly advised if your STB is open to the Internet. You must set a password in order to be able to use network services like FTP, Telnet or SSH."
+msgstr "Ustawienie hasła jest zdecydowanie zalecane, jeśli Twój STB jest otwarty na Internet. Musisz ustawić hasło, aby móc korzystać z usług sieciowych, takich jak FTP, Telnet lub SSH."
 
 msgid "Settings"
 msgstr "Ustawienia"
@@ -18308,9 +18326,6 @@ msgstr ""
 "Kreator sieci nie jest zainstalowany!\n"
 "Zainstaluj go najpierw."
 
-msgid "The password can not be blank."
-msgstr "Hasło nie może być puste."
-
 #, python-format
 msgid "The path %s already exists."
 msgstr "Ścieżka %s już istnieje."
@@ -19522,9 +19537,6 @@ msgstr "Ukraiński"
 
 msgid "Umweltbewusstsein"
 msgstr "Świadomość ekologiczna"
-
-msgid "Unable to change password"
-msgstr "Nie można zmienić hasła"
 
 msgid "Unable to create the required directories on the media (e.g. USB stick or Harddisk) - Please verify media and try again!"
 msgstr "Nie można utworzyć wymaganych katalogów na nośniku (np. Pamięć USB lub dysk twardy) - Sprawdź nośnik i spróbuj ponownie!"
@@ -21134,9 +21146,6 @@ msgstr "Uruchomienie może być aktywowane tylko wtedy gdy plik wymiany został 
 #, python-format
 msgid "You have to wait %s!"
 msgstr "Musisz poczekać na %s!"
-
-msgid "You must set a root password in order to be able to use network services, such as FTP, telnet or ssh."
-msgstr "Musisz ustawić hasło roota, aby móc korzystać z usług sieciowych, takich jak FTP, telnet lub ssh."
 
 msgid "You must set at least one Command"
 msgstr "Musisz ustawić przynajmniej jedno polecenie"
@@ -23238,8 +23247,20 @@ msgstr "przełączanie"
 msgid "®"
 msgstr "®"
 
-msgid "Allows you to show/hide CCcam in extensions (BLUE button)."
-msgstr "Umożliwia pokazanie/ukrycie CCcam w rozszerzeniach (niebieski przycisk)."
+#~ msgid "Password changed"
+#~ msgstr "Hasło zostało zmienione"
+
+#~ msgid "Random password"
+#~ msgstr "Losowe hasło"
+
+#~ msgid "The password can not be blank."
+#~ msgstr "Hasło nie może być puste."
+
+#~ msgid "Unable to change password"
+#~ msgstr "Nie można zmienić hasła"
+
+#~ msgid "You must set a root password in order to be able to use network services, such as FTP, telnet or ssh."
+#~ msgstr "Musisz ustawić hasło roota, aby móc korzystać z usług sieciowych, takich jak FTP, telnet lub ssh."
 
 #, python-format
 #~ msgid ""

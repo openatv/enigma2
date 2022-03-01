@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-02-27 22:18+0000\n"
+"POT-Creation-Date: 2022-03-01 17:50+0000\n"
 "PO-Revision-Date: 2022-02-16 19:05+0000\n"
 "Last-Translator: Adga56 <adga45@gmail.com>\n"
 "Language-Team: Lithuanian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/lt/>\n"
@@ -2718,6 +2718,9 @@ msgstr "Leidžia paslėpti žinomų failų tipų plėtinius."
 msgid "Allows you to set the maximum size of the Debug log size (MB). When that size is reached, a new file will be created."
 msgstr "Leidžia jums nustatyti atskirų derinimo žurnalų maksimalius dydžius (MB). Pasiekus, dydį, bus sukuriamas naujas failas."
 
+msgid "Allows you to show/hide CCcam in extensions (BLUE button)."
+msgstr "Leidžia rodyti/slėpti CCcam plėtinius (mėlynas mygtukas)."
+
 msgid "Allows you to show/hide Log Manager in extensions (blue button)."
 msgstr "Leidžia rodyti/slėpti žurnalų valdymą plėtinių lange ('MĖLYNAS' mygtukas)."
 
@@ -5382,6 +5385,9 @@ msgstr "Sukurti DVD-ISO"
 msgid "Create ISO"
 msgstr "Sukurti ISO"
 
+msgid "Create a randomly generated password"
+msgstr ""
+
 msgid "Create directory"
 msgstr "Kurti katalogą"
 
@@ -7518,6 +7524,12 @@ msgstr "Klaida: %s %s ne %s!  Bandykite dar kartą vėliau."
 
 msgid "Error: Checksum is invalid!"
 msgstr "Klaida: kontrolinė suma neleistina!"
+
+msgid "Error: The new password may not be blank!"
+msgstr ""
+
+msgid "Error: Unable to change password!"
+msgstr ""
 
 msgid "Error: Unable to process the command!  Please try again later."
 msgstr "Klaida: nepavyko apdoroti komandos!  Bandykite dar kartą vėliau."
@@ -12516,11 +12528,11 @@ msgstr "Slaptažodis (httpuser)"
 msgid "Password (httpwd)"
 msgstr "Slaptažodis (httpwd)"
 
+msgid "Password Actions"
+msgstr ""
+
 msgid "Password Setup"
 msgstr "Slaptažodžio valdymas"
-
-msgid "Password changed"
-msgstr "Slaptažodis pakeistas"
 
 msgid "Password:"
 msgstr "Slaptažodis:"
@@ -13757,9 +13769,6 @@ msgstr "Dviračių sportas"
 
 msgid "Random"
 msgstr "Atsitiktinis"
-
-msgid "Random password"
-msgstr "Atsitiktinis slaptažodis"
 
 #, python-format
 msgid "Rating defined by broadcaster - %d"
@@ -15880,6 +15889,9 @@ msgstr "Nustato pagrindiniame aplanke filmų sąrašą, norėdami pašalinti į 
 
 msgid "Setting Restored "
 msgstr "Nustatymai atkurti "
+
+msgid "Setting a password is strongly advised if your STB is open to the Internet. You must set a password in order to be able to use network services like FTP, Telnet or SSH."
+msgstr ""
 
 msgid "Settings"
 msgstr "Nustatymai"
@@ -18301,9 +18313,6 @@ msgstr ""
 "Tinklo vedlio plėtinys neįdiegtas!\n"
 "Prašome įdiegti."
 
-msgid "The password can not be blank."
-msgstr "Slaptažodis negali būti tuščias."
-
 #, python-format
 msgid "The path %s already exists."
 msgstr "Kelias %s jau egzistuoja."
@@ -19515,9 +19524,6 @@ msgstr "Ukrainiečių"
 
 msgid "Umweltbewusstsein"
 msgstr "Aplinkosauga"
-
-msgid "Unable to change password"
-msgstr "Nepavyko pakeisti slaptažodžio"
 
 msgid "Unable to create the required directories on the media (e.g. USB stick or Harddisk) - Please verify media and try again!"
 msgstr "Nepavyko sukurti reikiamų katalogų laikmenose (pvz., USB atmintinėje arba kietame diske) - patikrinkite laikmeną ir bandykite dar kartą!"
@@ -21127,9 +21133,6 @@ msgstr "Prieš aktyvuodami auto paleidimą, turite sukurti mainų atminties fail
 #, python-format
 msgid "You have to wait %s!"
 msgstr "Jūs turite laukti %s!"
-
-msgid "You must set a root password in order to be able to use network services, such as FTP, telnet or ssh."
-msgstr "Kad galėtumėte naudotis tinklo paslaugomis, pvz., FTP, telnet arba ssh, turite nustatyti pagrindinį (root) slaptažodį."
 
 msgid "You must set at least one Command"
 msgstr "Turite nustatyti bent vieną komandą"
@@ -23231,8 +23234,20 @@ msgstr "perjungimas"
 msgid "®"
 msgstr "®"
 
-msgid "Allows you to show/hide CCcam in extensions (BLUE button)."
-msgstr "Leidžia rodyti/slėpti CCcam plėtinius (mėlynas mygtukas)."
+msgid "Password changed."
+msgstr "Slaptažodis pakeistas."
+
+msgid "Random Password"
+msgstr "Atsitiktinis slaptažodis"
+
+#~ msgid "The password can not be blank."
+#~ msgstr "Slaptažodis negali būti tuščias."
+
+#~ msgid "Unable to change password"
+#~ msgstr "Nepavyko pakeisti slaptažodžio"
+
+#~ msgid "You must set a root password in order to be able to use network services, such as FTP, telnet or ssh."
+#~ msgstr "Kad galėtumėte naudotis tinklo paslaugomis, pvz., FTP, telnet arba ssh, turite nustatyti pagrindinį (root) slaptažodį."
 
 #, python-format
 #~ msgid ""

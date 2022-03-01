@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-02-27 22:18+0000\n"
+"POT-Creation-Date: 2022-03-01 17:50+0000\n"
 "PO-Revision-Date: 2022-03-01 14:41+0000\n"
 "Last-Translator: lexlong2007 <lexlong2007@163.com>\n"
 "Language-Team: Chinese (Simplified) <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/zh_Hans/>\n"
@@ -5354,6 +5354,9 @@ msgstr "创建DVD-ISO"
 msgid "Create ISO"
 msgstr "创建ISO"
 
+msgid "Create a randomly generated password"
+msgstr ""
+
 msgid "Create directory"
 msgstr "创建目录"
 
@@ -7489,6 +7492,12 @@ msgstr "错误: %s %s 不是 %s!  请稍后再试."
 
 msgid "Error: Checksum is invalid!"
 msgstr "错误:校验和无效！"
+
+msgid "Error: The new password may not be blank!"
+msgstr ""
+
+msgid "Error: Unable to change password!"
+msgstr ""
 
 msgid "Error: Unable to process the command!  Please try again later."
 msgstr "错误:无法处理命令.请稍后再试."
@@ -12486,11 +12495,11 @@ msgstr "密码(http用户)"
 msgid "Password (httpwd)"
 msgstr "密码(httpwd)"
 
+msgid "Password Actions"
+msgstr ""
+
 msgid "Password Setup"
 msgstr "密码设置"
-
-msgid "Password changed"
-msgstr "密码已更改"
 
 msgid "Password:"
 msgstr "密码:"
@@ -13727,9 +13736,6 @@ msgstr "自行车运动"
 
 msgid "Random"
 msgstr "随机"
-
-msgid "Random password"
-msgstr "随机密码"
 
 #, python-format
 msgid "Rating defined by broadcaster - %d"
@@ -15848,6 +15854,9 @@ msgstr "设置的电影列表中的根文件夹,并移除此目录的'..'显示.
 
 msgid "Setting Restored "
 msgstr "恢复设置 "
+
+msgid "Setting a password is strongly advised if your STB is open to the Internet. You must set a password in order to be able to use network services like FTP, Telnet or SSH."
+msgstr ""
 
 msgid "Settings"
 msgstr "设置"
@@ -18272,9 +18281,6 @@ msgstr ""
 "未安装网络向导扩展!\n"
 "请安装它."
 
-msgid "The password can not be blank."
-msgstr "密码不能为空."
-
 #, python-format
 msgid "The path %s already exists."
 msgstr "路径 %s 已存在."
@@ -19486,9 +19492,6 @@ msgstr "乌克兰语"
 
 msgid "Umweltbewusstsein"
 msgstr "环保意识"
-
-msgid "Unable to change password"
-msgstr "无法更改密码"
 
 msgid "Unable to create the required directories on the media (e.g. USB stick or Harddisk) - Please verify media and try again!"
 msgstr "无法在媒体(如U盘或硬盘)上创建所需的目录-请验证媒体并重试!"
@@ -21098,9 +21101,6 @@ msgstr "激活自动开始前必须创建一个交换文件."
 #, python-format
 msgid "You have to wait %s!"
 msgstr "您必须等待 %s!"
-
-msgid "You must set a root password in order to be able to use network services, such as FTP, telnet or ssh."
-msgstr "必须设置root密码才能使用网络服务,例如ftp,telnet或ssh."
 
 msgid "You must set at least one Command"
 msgstr "您必须至少设置一条命令"
@@ -23200,6 +23200,21 @@ msgstr "切换中"
 
 msgid "®"
 msgstr "®"
+
+msgid "Password changed."
+msgstr "密码已更改"
+
+msgid "Random Password"
+msgstr "随机密码"
+
+#~ msgid "The password can not be blank."
+#~ msgstr "密码不能为空."
+
+#~ msgid "Unable to change password"
+#~ msgstr "无法更改密码"
+
+#~ msgid "You must set a root password in order to be able to use network services, such as FTP, telnet or ssh."
+#~ msgstr "必须设置root密码才能使用网络服务,例如ftp,telnet或ssh."
 
 #~ msgid ""
 #~ "CCcam Info %s\n"

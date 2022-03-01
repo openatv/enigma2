@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Italian translation\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-02-27 22:18+0000\n"
+"POT-Creation-Date: 2022-03-01 17:50+0000\n"
 "PO-Revision-Date: 2019-09-01 14:09+0100\n"
 "Last-Translator: Massimo Bambi - Insanity\n"
 "Language-Team: Massimo Bambi <maxbambi@libero.it>\n"
@@ -2748,6 +2748,9 @@ msgstr "Consente di nascondere le estensioni dei file conosciuti."
 msgid "Allows you to set the maximum size of the Debug log size (MB). When that size is reached, a new file will be created."
 msgstr "Consente di impostare la dimensione massima del registro di debug (MB). Raggiunta tale dimensione, viene creato un nuovo file."
 
+msgid "Allows you to show/hide CCcam in extensions (BLUE button)."
+msgstr "Consente di mostrare/nascondere CCcam in pannello (tasto blu)."
+
 msgid "Allows you to show/hide Log Manager in extensions (blue button)."
 msgstr "Consente di mostrare/nascondere Log Manager in pannello (tasto blu)."
 
@@ -5465,6 +5468,9 @@ msgstr "Crea DVD-ISO"
 msgid "Create ISO"
 msgstr "Crea ISO"
 
+msgid "Create a randomly generated password"
+msgstr ""
+
 msgid "Create directory"
 msgstr "Crea cartella"
 
@@ -7637,6 +7643,12 @@ msgid "Error: %s %s not %s!  Please try again later."
 msgstr "Nessun aggiornamento disponibile. Riprova più tardi."
 
 msgid "Error: Checksum is invalid!"
+msgstr ""
+
+msgid "Error: The new password may not be blank!"
+msgstr ""
+
+msgid "Error: Unable to change password!"
 msgstr ""
 
 #, fuzzy
@@ -12798,11 +12810,11 @@ msgstr ""
 msgid "Password (httpwd)"
 msgstr "Password (httpwd)"
 
+msgid "Password Actions"
+msgstr ""
+
 msgid "Password Setup"
 msgstr "Impostazione password"
-
-msgid "Password changed"
-msgstr "Password cambiata"
 
 msgid "Password:"
 msgstr "Password:"
@@ -14055,9 +14067,6 @@ msgstr "team sports"
 
 msgid "Random"
 msgstr "Casuale"
-
-msgid "Random password"
-msgstr "password casuale"
 
 #, python-format
 msgid "Rating defined by broadcaster - %d"
@@ -16234,6 +16243,9 @@ msgstr "Imposta la cartella per le registrazioni perché non siano mostrati i '.
 
 msgid "Setting Restored "
 msgstr "Configurazioni ripristinate"
+
+msgid "Setting a password is strongly advised if your STB is open to the Internet. You must set a password in order to be able to use network services like FTP, Telnet or SSH."
+msgstr ""
 
 msgid "Settings"
 msgstr "Configurazioni"
@@ -18707,9 +18719,6 @@ msgstr ""
 "L'estensione NetworkWizard non è installata!\n"
 "Provvedere a installarla."
 
-msgid "The password can not be blank."
-msgstr "La password non può essere vuota."
-
 #, python-format
 msgid "The path %s already exists."
 msgstr "Percorso %s già esistente."
@@ -19943,9 +19952,6 @@ msgstr "Ucraino"
 
 msgid "Umweltbewusstsein"
 msgstr ""
-
-msgid "Unable to change password"
-msgstr "Impossibile cambiare password"
 
 msgid "Unable to create the required directories on the media (e.g. USB stick or Harddisk) - Please verify media and try again!"
 msgstr "Impossibile creare le cartelle necessarie sul dispositivo (ad es. USB stick o disco fisso) - Per favore verifica il dispositivo e riprova!"
@@ -21586,9 +21592,6 @@ msgstr "Devi creare il file swap prima di attivare l’autostart."
 #, python-format
 msgid "You have to wait %s!"
 msgstr "Occorre attendere per %s!"
-
-msgid "You must set a root password in order to be able to use network services, such as FTP, telnet or ssh."
-msgstr "Devi impostare una password di root per poter usare i servizi di rete, come FTP, telnet o ssh."
 
 msgid "You must set at least one Command"
 msgstr "Devi impostare almeno un comando"
@@ -23720,8 +23723,20 @@ msgstr "zapping"
 msgid "®"
 msgstr "®"
 
-msgid "Allows you to show/hide CCcam in extensions (BLUE button)."
-msgstr "Consente di mostrare/nascondere CCcam in pannello (tasto blu)."
+msgid "Password changed."
+msgstr "Password cambiata."
+
+msgid "Random Password"
+msgstr "password casuale"
+
+#~ msgid "The password can not be blank."
+#~ msgstr "La password non può essere vuota."
+
+#~ msgid "Unable to change password"
+#~ msgstr "Impossibile cambiare password"
+
+#~ msgid "You must set a root password in order to be able to use network services, such as FTP, telnet or ssh."
+#~ msgstr "Devi impostare una password di root per poter usare i servizi di rete, come FTP, telnet o ssh."
 
 #, python-format
 #~ msgid ""

@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-02-27 22:18+0000\n"
+"POT-Creation-Date: 2022-03-01 17:50+0000\n"
 "PO-Revision-Date: 2021-12-30 16:18+0000\n"
 "Last-Translator: Jaime Flores Gil <jaime.flores.gil@gmail.com>\n"
 "Language-Team: Spanish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/es/>\n"
@@ -3052,6 +3052,9 @@ msgstr "Permite que ocultes las extensiones para tipos de archivo conocidos."
 msgid "Allows you to set the maximum size of the Debug log size (MB). When that size is reached, a new file will be created."
 msgstr "Te permite fijar el tamaño máximo del historial de depuración (MB). Cuando se alcance ese tamaño, se creará un archivo nuevo."
 
+msgid "Allows you to show/hide CCcam in extensions (BLUE button)."
+msgstr "Te permite mostrar/ocultar CCcam en extensiones (tecla azul)."
+
 msgid "Allows you to show/hide Log Manager in extensions (blue button)."
 msgstr "Te permite mostrar/ocultar el administrador de historiales en extensiones (tecla azul)."
 
@@ -5971,6 +5974,9 @@ msgstr "Crear DVD-ISO"
 msgid "Create ISO"
 msgstr "Crear ISO"
 
+msgid "Create a randomly generated password"
+msgstr ""
+
 # MovieSelection.py
 msgid "Create directory"
 msgstr "Crear directorio"
@@ -8333,6 +8339,12 @@ msgid "Error: %s %s not %s!  Please try again later."
 msgstr "No hay actualizaciones disponibles. Por favor, inténtelo de nuevo más tarde"
 
 msgid "Error: Checksum is invalid!"
+msgstr ""
+
+msgid "Error: The new password may not be blank!"
+msgstr ""
+
+msgid "Error: Unable to change password!"
 msgstr ""
 
 #, fuzzy
@@ -14007,14 +14019,16 @@ msgstr ""
 msgid "Password (httpwd)"
 msgstr "Contraseña (httpwd)"
 
+msgid "Password Actions"
+msgstr ""
+
 #
 #, fuzzy
 msgid "Password Setup"
 msgstr "Contraseña"
 
-#, fuzzy
-msgid "Password changed"
-msgstr "Contraseña (httpwd)"
+msgid "Password changed."
+msgstr ""
 
 msgid "Password:"
 msgstr "Contraseña:"
@@ -15410,10 +15424,8 @@ msgstr "deportes de equipo"
 msgid "Random"
 msgstr "Aleatorio"
 
-#
-#, fuzzy
-msgid "Random password"
-msgstr "Introduce un nombre nuevo:"
+msgid "Random Password"
+msgstr ""
 
 #, python-format
 msgid "Rating defined by broadcaster - %d"
@@ -17802,6 +17814,9 @@ msgstr "Cambia la carpeta raíz de una lista de películas para eliminar ‘..�
 #, fuzzy
 msgid "Setting Restored "
 msgstr "Ajustes"
+
+msgid "Setting a password is strongly advised if your STB is open to the Internet. You must set a password in order to be able to use network services like FTP, Telnet or SSH."
+msgstr ""
 
 msgid "Settings"
 msgstr "Ajustes"
@@ -20504,9 +20519,6 @@ msgstr ""
 "¡La extensión del asistente de red no está instalada!\n"
 "Por favor, instálelo."
 
-msgid "The password can not be blank."
-msgstr ""
-
 #
 #, python-format
 msgid "The path %s already exists."
@@ -21886,11 +21898,6 @@ msgstr "Ucraniano"
 
 msgid "Umweltbewusstsein"
 msgstr ""
-
-#
-#, fuzzy
-msgid "Unable to change password"
-msgstr "Introduce un nombre nuevo:"
 
 msgid "Unable to create the required directories on the media (e.g. USB stick or Harddisk) - Please verify media and try again!"
 msgstr ""
@@ -23704,9 +23711,6 @@ msgstr "Tienes que crear la memoria swap antes de activar el autoinicio."
 #, python-format
 msgid "You have to wait %s!"
 msgstr "Tienes que esperar %s."
-
-msgid "You must set a root password in order to be able to use network services, such as FTP, telnet or ssh."
-msgstr ""
 
 msgid "You must set at least one Command"
 msgstr "Debe establecer al menos un comando"
@@ -26111,8 +26115,19 @@ msgstr "Zapping"
 msgid "®"
 msgstr ""
 
-msgid "Allows you to show/hide CCcam in extensions (BLUE button)."
-msgstr "Te permite mostrar/ocultar CCcam en extensiones (tecla azul)."
+#, fuzzy
+#~ msgid "Password changed"
+#~ msgstr "Contraseña (httpwd)"
+
+#
+#, fuzzy
+#~ msgid "Random password"
+#~ msgstr "Introduce un nombre nuevo:"
+
+#
+#, fuzzy
+#~ msgid "Unable to change password"
+#~ msgstr "Introduce un nombre nuevo:"
 
 #, python-format
 #~ msgid ""

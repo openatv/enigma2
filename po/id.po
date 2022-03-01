@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openATV / enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-02-27 22:18+0000\n"
+"POT-Creation-Date: 2022-03-01 17:50+0000\n"
 "PO-Revision-Date: 2018-01-14 01:15+0300\n"
 "Last-Translator: DVBS | by budiarno <budiarno@pedode.com>\n"
 "Language-Team: DVBS | by budiarno <budiarno@pedode.com>\n"
@@ -2879,6 +2879,9 @@ msgstr "Memungkinkan anda untuk menyembunyikan ekstensi jenis berkas yg diketahu
 msgid "Allows you to set the maximum size of the Debug log size (MB). When that size is reached, a new file will be created."
 msgstr "Memungkinkan anda menyetel ukuran maksimal Log Debug (MB). Ketika ukuran itu tercapai, maka berkas baru akan dibuat."
 
+msgid "Allows you to show/hide CCcam in extensions (BLUE button)."
+msgstr "Memungkinkan anda menampilkan/menyembunyikan CCcam di ekstensi (tombol biru)."
+
 msgid "Allows you to show/hide Log Manager in extensions (blue button)."
 msgstr "Memungkinkan anda menampilkan/menyembunyikan Log Manager di ekstensi (tombol biru)."
 
@@ -5613,6 +5616,9 @@ msgstr "Create DVD-ISO"
 msgid "Create ISO"
 msgstr "Create ISO"
 
+msgid "Create a randomly generated password"
+msgstr ""
+
 msgid "Create directory"
 msgstr "Create directory"
 
@@ -7803,6 +7809,12 @@ msgid "Error: %s %s not %s!  Please try again later."
 msgstr "No updates available. Please try again later."
 
 msgid "Error: Checksum is invalid!"
+msgstr ""
+
+msgid "Error: The new password may not be blank!"
+msgstr ""
+
+msgid "Error: Unable to change password!"
 msgstr ""
 
 #, fuzzy
@@ -13039,13 +13051,15 @@ msgstr ""
 msgid "Password (httpwd)"
 msgstr "Katakunci (httpwd)"
 
+msgid "Password Actions"
+msgstr ""
+
 #, fuzzy
 msgid "Password Setup"
 msgstr "Katakunci"
 
-#, fuzzy
-msgid "Password changed"
-msgstr "Katakunci (httpwd)"
+msgid "Password changed."
+msgstr ""
 
 msgid "Password:"
 msgstr "Katakunci:"
@@ -14320,9 +14334,8 @@ msgstr "team sports"
 msgid "Random"
 msgstr "Random"
 
-#, fuzzy
-msgid "Random password"
-msgstr "Please enter new name:"
+msgid "Random Password"
+msgstr ""
 
 #, python-format
 msgid "Rating defined by broadcaster - %d"
@@ -16517,6 +16530,9 @@ msgstr "Sets the root folder of movie list, to remove the '..' from benign shown
 
 msgid "Setting Restored "
 msgstr "Setting Restored "
+
+msgid "Setting a password is strongly advised if your STB is open to the Internet. You must set a password in order to be able to use network services like FTP, Telnet or SSH."
+msgstr ""
 
 msgid "Settings"
 msgstr "Settings"
@@ -19023,9 +19039,6 @@ msgstr ""
 "The network wizard extension is not installed!\n"
 "Please install it."
 
-msgid "The password can not be blank."
-msgstr ""
-
 #, python-format
 msgid "The path %s already exists."
 msgstr "The path %s already exists."
@@ -20275,10 +20288,6 @@ msgstr "Ukrainian"
 
 msgid "Umweltbewusstsein"
 msgstr ""
-
-#, fuzzy
-msgid "Unable to change password"
-msgstr "Please enter new name:"
 
 msgid "Unable to create the required directories on the media (e.g. USB stick or Harddisk) - Please verify media and try again!"
 msgstr ""
@@ -21934,9 +21943,6 @@ msgstr "You have to create a Swap File before to activate the autostart."
 #, python-format
 msgid "You have to wait %s!"
 msgstr "You have to wait %s!"
-
-msgid "You must set a root password in order to be able to use network services, such as FTP, telnet or ssh."
-msgstr ""
 
 msgid "You must set at least one Command"
 msgstr "You must set at least one Command"
@@ -24104,8 +24110,17 @@ msgstr "zapping"
 msgid "®"
 msgstr ""
 
-msgid "Allows you to show/hide CCcam in extensions (BLUE button)."
-msgstr "Memungkinkan anda menampilkan/menyembunyikan CCcam di ekstensi (tombol biru)."
+#, fuzzy
+#~ msgid "Password changed"
+#~ msgstr "Katakunci (httpwd)"
+
+#, fuzzy
+#~ msgid "Random password"
+#~ msgstr "Please enter new name:"
+
+#, fuzzy
+#~ msgid "Unable to change password"
+#~ msgstr "Please enter new name:"
 
 #, python-format
 #~ msgid ""

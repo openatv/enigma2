@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-02-27 22:18+0000\n"
+"POT-Creation-Date: 2022-03-01 17:50+0000\n"
 "PO-Revision-Date: 2022-01-25 14:01+0000\n"
 "Last-Translator: Marián Hikaník <podnety@mojepreklady.net>\n"
 "Language-Team: Slovak <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/sk/>\n"
@@ -2713,6 +2713,9 @@ msgstr "Umožňuje skryť prípony známych typov súborov."
 msgid "Allows you to set the maximum size of the Debug log size (MB). When that size is reached, a new file will be created."
 msgstr "Umožňuje nastaviť maximálnu veľkosť správy o ladení (MB). Keď je dosiahnutá, vytvorí sa nový súbor."
 
+msgid "Allows you to show/hide CCcam in extensions (BLUE button)."
+msgstr "Umožňuje zobraziť/skryť CCcam v rozšíreniach (modré tlačidlo)."
+
 msgid "Allows you to show/hide Log Manager in extensions (blue button)."
 msgstr "Umožňuje zobraziť/skryť správcu záznamov v rozšíreniach (modré tlačidlo)."
 
@@ -5368,6 +5371,9 @@ msgstr "Vytvoriť DVD-ISO"
 msgid "Create ISO"
 msgstr "Vytvoriť ISO"
 
+msgid "Create a randomly generated password"
+msgstr ""
+
 msgid "Create directory"
 msgstr "Vytvoriť priečinok"
 
@@ -7503,6 +7509,12 @@ msgid "Error: %s %s not %s!  Please try again later."
 msgstr "Chyba: %s %s nie %s! Skúste neskôr prosím."
 
 msgid "Error: Checksum is invalid!"
+msgstr ""
+
+msgid "Error: The new password may not be blank!"
+msgstr ""
+
+msgid "Error: Unable to change password!"
 msgstr ""
 
 msgid "Error: Unable to process the command!  Please try again later."
@@ -12502,11 +12514,11 @@ msgstr "Heslo (httpuser)"
 msgid "Password (httpwd)"
 msgstr "Heslo (httpwd)"
 
+msgid "Password Actions"
+msgstr ""
+
 msgid "Password Setup"
 msgstr "Nastavenie hesla"
-
-msgid "Password changed"
-msgstr "Heslo zmenené"
 
 msgid "Password:"
 msgstr "Heslo:"
@@ -13743,9 +13755,6 @@ msgstr "Športová cyklistika"
 
 msgid "Random"
 msgstr "Náhodne"
-
-msgid "Random password"
-msgstr "Náhodné heslo"
 
 #, python-format
 msgid "Rating defined by broadcaster - %d"
@@ -15866,6 +15875,9 @@ msgstr "Nastavenie hlavného priečinka zoznamu filmov, na odstránenie '..' zo 
 
 msgid "Setting Restored "
 msgstr "Nastavenia obnovené "
+
+msgid "Setting a password is strongly advised if your STB is open to the Internet. You must set a password in order to be able to use network services like FTP, Telnet or SSH."
+msgstr ""
 
 msgid "Settings"
 msgstr "Nastavenia"
@@ -18292,9 +18304,6 @@ msgstr ""
 "Rozšírenie NetworkWizard nie je nainštalované!\n"
 "Prosím nainštalujte ho."
 
-msgid "The password can not be blank."
-msgstr "Heslo nemôže zostať nevyplnené."
-
 #, python-format
 msgid "The path %s already exists."
 msgstr "Cesta %s už existuje."
@@ -19506,9 +19515,6 @@ msgstr "Ukrajinsky"
 
 msgid "Umweltbewusstsein"
 msgstr "Ekologická uvedomelosť"
-
-msgid "Unable to change password"
-msgstr "Nemožno zmeniť heslo"
 
 msgid "Unable to create the required directories on the media (e.g. USB stick or Harddisk) - Please verify media and try again!"
 msgstr "Nemožno vytvoriť požadované priečinky na médiu (disku USB či pevnom disku). Prosím skontrolujte médium a skúste to ešte raz!"
@@ -21118,9 +21124,6 @@ msgstr "Musíte vytvoriť Swap súbor pred aktivovaním automatického spustenia
 #, python-format
 msgid "You have to wait %s!"
 msgstr "Musíte čakať %s!"
-
-msgid "You must set a root password in order to be able to use network services, such as FTP, telnet or ssh."
-msgstr "Ak chcete mať možnosť použiť sieťové služby (ako napríklad FTP, telnet alebo SSH), musíte nastaviť hlavné heslo."
 
 msgid "You must set at least one Command"
 msgstr "Musíte nastaviť aspoň jeden príkaz"
@@ -23222,8 +23225,20 @@ msgstr "prepínanie"
 msgid "®"
 msgstr "®"
 
-msgid "Allows you to show/hide CCcam in extensions (BLUE button)."
-msgstr "Umožňuje zobraziť/skryť CCcam v rozšíreniach (modré tlačidlo)."
+msgid "Password changed."
+msgstr "Heslo zmenené."
+
+msgid "Random Password"
+msgstr "Náhodné heslo"
+
+#~ msgid "The password can not be blank."
+#~ msgstr "Heslo nemôže zostať nevyplnené."
+
+#~ msgid "Unable to change password"
+#~ msgstr "Nemožno zmeniť heslo"
+
+#~ msgid "You must set a root password in order to be able to use network services, such as FTP, telnet or ssh."
+#~ msgstr "Ak chcete mať možnosť použiť sieťové služby (ako napríklad FTP, telnet alebo SSH), musíte nastaviť hlavné heslo."
 
 #, python-format
 #~ msgid ""

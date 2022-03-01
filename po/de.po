@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-02-27 22:18+0000\n"
-"PO-Revision-Date: 2022-02-11 14:45+0000\n"
+"POT-Creation-Date: 2022-03-01 17:50+0000\n"
+"PO-Revision-Date: 2022-03-01 19:44+0000\n"
 "Last-Translator: jbleyel <jbleyel@gmx.net>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/de/>\n"
 "Language: de\n"
@@ -20,7 +20,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.11-dev\n"
+"X-Generator: Weblate 4.11.1-dev\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 
 msgid ""
@@ -1025,7 +1025,7 @@ msgstr "%d MB"
 
 #, python-format
 msgid "%d MHz"
-msgstr ""
+msgstr "%d MHz"
 
 #. TRANSLATORS: full date representation dayname daynum monthname year in strftime() format! See 'man strftime'
 #. _("%A %e %B %Y")
@@ -2808,10 +2808,10 @@ msgid "Allows you to assign the selected function to this button."
 msgstr "Ausgewählte Funktion der Taste zuweisen."
 
 msgid "Allows you to enable the GStreamer debug log. They contain very detailed information of everything the GStreamer system does."
-msgstr ""
+msgstr "Ein aktiviertes GStreamer Debuglog enthält detaillierte Informationen über alles was das GStreamer-System macht."
 
 msgid "Allows you to enable the GStreamer pipeline graphs. These are .dot files that describe the topology of your pipeline, along with the caps negotiated in each link."
-msgstr ""
+msgstr "Ein aktiviertes GStreamer pipeline graphs erstellt .dot Dateien welche die Struktur der Pipeline und die zwischen den Verbindungen ausgehandelten Eigenschaften enthält."
 
 msgid "Allows you to enable the debug log. They contain very detailed information of everything the system does."
 msgstr "Ein aktiviertes Debuglog enthält detaillierte Informationen über alles was das System macht."
@@ -2824,6 +2824,9 @@ msgstr "Das Ausblenden der Dateiendungen von bekannten Dateiformaten aktivieren.
 
 msgid "Allows you to set the maximum size of the Debug log size (MB). When that size is reached, a new file will be created."
 msgstr "Maximale Größe in Megabyte (MB) des Debuglogs festlegen. Wenn die Größe erreicht ist wird eine neue Datei erstellt."
+
+msgid "Allows you to show/hide CCcam in extensions (BLUE button)."
+msgstr "CCcam-Info unter Erweiterungen (Taste BLAU) anzeigen."
 
 msgid "Allows you to show/hide Log Manager in extensions (blue button)."
 msgstr "Die Logverwaltung unter Erweiterungen (Taste BLAU) anzeigen oder verstecken."
@@ -3953,7 +3956,7 @@ msgid "CAID:SrvID"
 msgstr "CAID:SrvID"
 
 msgid "CCCam Info"
-msgstr ""
+msgstr "CCCam Info"
 
 msgid "CCcam Client Info"
 msgstr "CCcam-Clientinfo"
@@ -3974,6 +3977,10 @@ msgid ""
 "\n"
 "This screen shows you the status of CCcam."
 msgstr ""
+"CCcam-Informationen %s\n"
+"von AliAbdul %s\n"
+"\n"
+"Dieser Bildschirm zeigt Ihnen den Status der CCcam an."
 
 msgid "CCcam Info Config"
 msgstr "Konfiguration von CCcam-Info"
@@ -5675,6 +5682,9 @@ msgstr "DVD ISO-Datei erstellen"
 msgid "Create ISO"
 msgstr "ISO-Datei erstellen"
 
+msgid "Create a randomly generated password"
+msgstr "Erstelle ein Zufallspasswort"
+
 # MovieSelection.py
 msgid "Create directory"
 msgstr "Verzeichnis anlegen"
@@ -6461,7 +6471,7 @@ msgid "Deselected packages usually occur because those packaged are incompatible
 msgstr "Die Abwahl von Paketen erfolgt in der Regel, weil die Pakete mit bestehenden Paketen nicht kompatibel sind.  Dies ist meist harmlos aber es kann sein, dass Ihre %s %s Probleme bekommt."
 
 msgid "Detail of GStreamer log"
-msgstr ""
+msgstr "Umfang des GStreamer log"
 
 msgid "Details for plugin: "
 msgstr "Plugin-Details: "
@@ -6473,7 +6483,7 @@ msgid "Detected network servers"
 msgstr "Erkannte Netzwerkserver"
 
 msgid "Detected tuners"
-msgstr ""
+msgstr "Erkannte Tuner"
 
 msgid "Detektiv"
 msgstr "Detektiv"
@@ -7456,10 +7466,10 @@ msgid "Enable Focus Animation"
 msgstr "Fokusanimation aktivieren"
 
 msgid "Enable GStreamer debug log *"
-msgstr ""
+msgstr "GStreamer Debuglog aktivieren *"
 
 msgid "Enable GStreamer pipeline graphs *"
-msgstr ""
+msgstr "GStreamer Pipeline Graphs aktivieren *"
 
 msgid "Enable IceTV"
 msgstr "IceTV aktivieren"
@@ -7946,6 +7956,12 @@ msgstr ""
 msgid "Error: Checksum is invalid!"
 msgstr "Fehler: Prüfsumme ist ungültig!"
 
+msgid "Error: The new password may not be blank!"
+msgstr "Fehler: Das neue Passwort darf nicht leer sein!"
+
+msgid "Error: Unable to change password!"
+msgstr "Fehler: Passwort kann nicht geändert werden!"
+
 msgid "Error: Unable to process the command!  Please try again later."
 msgstr ""
 "Fehler: Der Befehl kann nicht ausgeführt werden!\n"
@@ -8315,7 +8331,7 @@ msgid "FTP Setup"
 msgstr "FTP-Dateiserver"
 
 msgid "Factory Reset"
-msgstr ""
+msgstr "Werkseinstellungen"
 
 msgid "Factory release"
 msgstr ""
@@ -8821,7 +8837,7 @@ msgid "Full back-up on %s"
 msgstr "Komplettsicherung auf %s"
 
 msgid "Full factory reset"
-msgstr ""
+msgstr "Vollständiges Zurücksetzen auf Werkseinstellungen"
 
 msgid "Full transparency"
 msgstr "Volle Transparenz"
@@ -8856,10 +8872,10 @@ msgid "GCC version"
 msgstr "GCC-Version"
 
 msgid "GStreamer debug log category *"
-msgstr ""
+msgstr "GStreamer Debuglog-Kategorie *"
 
 msgid "GStreamer debug log level *"
-msgstr ""
+msgstr "GStreamer Debuglog Meldungstyp *"
 
 msgid "GStreamer version"
 msgstr "GStreamer-Version"
@@ -11912,7 +11928,7 @@ msgid "MultiLib"
 msgstr ""
 
 msgid "MultiTranscoding"
-msgstr ""
+msgstr "MultiTranscoding"
 
 msgid "Multiboot Image Selector"
 msgstr "Multiboot-Auswahl"
@@ -12895,7 +12911,7 @@ msgid "Only free scan"
 msgstr "Nur frei empfangbare"
 
 msgid "Only log debug information of GStreamer category. * means all categories."
-msgstr ""
+msgstr "Nur Meldungen der ausgewählten GStreamer-Kategorie schreiben. * Bedeutet alle."
 
 msgid "Only move the dish quickly after this hour."
 msgstr "Bewegen Sie die Satellitenschüssel erst nach dieser Stunde."
@@ -13351,12 +13367,12 @@ msgstr "Passwort (httpuser)"
 msgid "Password (httpwd)"
 msgstr "Passwort (httpwd)"
 
+msgid "Password Actions"
+msgstr "Passwort Aktionen"
+
 #
 msgid "Password Setup"
 msgstr "Passwort einrichten"
-
-msgid "Password changed"
-msgstr "Passwort geändert"
 
 msgid "Password:"
 msgstr "Passwort:"
@@ -14724,10 +14740,6 @@ msgstr "Radsport"
 msgid "Random"
 msgstr "zufällig"
 
-#
-msgid "Random password"
-msgstr "Zufallspasswort"
-
 #, python-format
 msgid "Rating defined by broadcaster - %d"
 msgstr "Vom Sender definierte Bewertung - %d"
@@ -15161,34 +15173,34 @@ msgid "Remove a nameserver entry"
 msgstr "Nameserver-Eintrag entfernen"
 
 msgid "Remove all bouquet/tuning data"
-msgstr ""
+msgstr "Lösche alle Bouquet/Sender Daten"
 
 msgid "Remove all cuts and marks"
 msgstr "Alle Markierungen und Schnitte entfernen"
 
 msgid "Remove all network mount data"
-msgstr ""
+msgstr "Lösche alle Netzwerk-Mount Daten"
 
 msgid "Remove all other data"
-msgstr ""
+msgstr "Lösche alle anderen Daten"
 
 msgid "Remove all plugin setting data"
-msgstr ""
+msgstr "Lösche alle Plugin-Einstellungs Daten"
 
 msgid "Remove all resume point data"
-msgstr ""
+msgstr "Lösche alle Aufnahme-Markierungsdaten"
 
 msgid "Remove all settings data"
-msgstr ""
+msgstr "Lösche alle Einstellungen"
 
 msgid "Remove all skin data"
-msgstr ""
+msgstr "Lösche alle Skin Daten"
 
 msgid "Remove all timer data"
-msgstr ""
+msgstr "Lösche alle Timer"
 
 msgid "Remove all user interface data"
-msgstr ""
+msgstr "Lösche alle GUI Daten"
 
 #
 msgid "Remove bookmark"
@@ -15347,7 +15359,7 @@ msgid "Reset and renumerate title names"
 msgstr "Titelnamen zurücksetzen und neu nummerieren"
 
 msgid "Reset network configuration"
-msgstr ""
+msgstr "Netzwerkkonfiguration zurücksetzen"
 
 msgid "Reset persistent PIN code"
 msgstr "PIN zurücksetzen"
@@ -15507,7 +15519,7 @@ msgid "Retrieving system information, please wait..."
 msgstr "Systeminformationen werden abgerufen. Bitte warten..."
 
 msgid "Return the current selection response"
-msgstr ""
+msgstr "Gibt die aktuelle Auswahlantwort zurück"
 
 #
 msgid "Return to movie list"
@@ -16655,6 +16667,9 @@ msgid ""
 "\n"
 "Are you sure you want to continue with the factory reset?"
 msgstr ""
+"Wenn Sie 'Ja' wählen, werden die aktuell ausgewählten Benutzerdaten gelöscht. Diese Aktion kann nicht rückgängig gemacht werden. Bevor Sie fortfahren, sollten Sie eine Sicherungskopie erstellen.\n"
+"\n"
+"Sind Sie sicher, dass Sie mit dem Zurücksetzen auf die Werkseinstellungen fortfahren möchten?"
 
 msgid "Selecting satellites 1 (USALS)"
 msgstr "Auswählen von Satelliten 1 (USALS)"
@@ -17037,6 +17052,9 @@ msgstr "Wählen Sie das Root-Verzeichnis der Aufnahmeliste, um '..' in der Ansic
 msgid "Setting Restored "
 msgstr "Wiederhergestellte Programmliste "
 
+msgid "Setting a password is strongly advised if your STB is open to the Internet. You must set a password in order to be able to use network services like FTP, Telnet or SSH."
+msgstr "Es wird dringend empfohlen, ein Passwort festzulegen, wenn Ihr Receiver mit dem Internet verbunden ist. Sie müssen ein Passwort festlegen, um Netzwerkdienste wie FTP, Telnet oder SSH nutzen zu können."
+
 msgid "Settings"
 msgstr "Einstellungen"
 
@@ -17358,10 +17376,10 @@ msgid "Show Box Portal"
 msgstr "Box-Portal anzeigen"
 
 msgid "Show CCcam Info"
-msgstr ""
+msgstr "CCcam Info anzeigen"
 
 msgid "Show CCcam in extensions"
-msgstr ""
+msgstr "CCcam in Erweiterungen anzeigen"
 
 msgid "Show CI messages"
 msgstr "CI Meldungen anzeigen"
@@ -17463,7 +17481,7 @@ msgid "Show OScam Info"
 msgstr "OScam-Info anzeigen"
 
 msgid "Show OScam in extensions"
-msgstr ""
+msgstr "OScam in Erweiterungen anzeigen"
 
 msgid "Show PIP"
 msgstr "Bild im Bild einschalten"
@@ -17878,7 +17896,7 @@ msgid "Show task list"
 msgstr "Aufgabenliste anzeigen"
 
 msgid "Show the CCcam Info Screen"
-msgstr ""
+msgstr "CCcam-Infobildschirm anzeigen"
 
 msgid "Show the DreamPlex player..."
 msgstr "DreamPlex-Player anzeigen..."
@@ -18027,7 +18045,7 @@ msgid "Sierra Leone"
 msgstr "Sierra Leone"
 
 msgid "Sigma Designs"
-msgstr ""
+msgstr "Sigma Designs"
 
 msgid "Signal Finder"
 msgstr "Signal-Finder"
@@ -19636,9 +19654,6 @@ msgstr ""
 "Die Netzwerkassistent-Erweiterung ist nicht installiert!\n"
 "Bitte installieren Sie sie."
 
-msgid "The password can not be blank."
-msgstr "Das Passwort darf nicht leer sein!"
-
 #
 #, python-format
 msgid "The path %s already exists."
@@ -20765,7 +20780,7 @@ msgid "Tuner Configuration"
 msgstr "Tunereinstellungen"
 
 msgid "Tuner Information"
-msgstr ""
+msgstr "Tuner-Informationen"
 
 #
 msgid "Tuner Setup"
@@ -20776,7 +20791,7 @@ msgid "Tuner configuration"
 msgstr "Tunereinstellungen"
 
 msgid "Tuner information"
-msgstr ""
+msgstr "Tuner-Informationen"
 
 msgid "Tuner is not supported"
 msgstr "Tuner wird nicht unterstützt"
@@ -20961,9 +20976,6 @@ msgstr "Ukrainisch"
 
 msgid "Umweltbewusstsein"
 msgstr "Umweltbewusstsein"
-
-msgid "Unable to change password"
-msgstr "Passwortänderung nicht möglich"
 
 msgid "Unable to create the required directories on the media (e.g. USB stick or Harddisk) - Please verify media and try again!"
 msgstr ""
@@ -22747,13 +22759,6 @@ msgstr "Autostart kann erst aktiviert werden, wenn ein Swap-File erstellt wurde.
 #, python-format
 msgid "You have to wait %s!"
 msgstr "Sie müssen %s warten!"
-
-#
-msgid "You must set a root password in order to be able to use network services, such as FTP, telnet or ssh."
-msgstr ""
-"Sie müssen ein Rootpasswort festlegen, um Netzwerkdienste wie FTP, Telnet oder SSH nutzen zu können.\n"
-"\n"
-"Mit der Taste TXT (Videotext) erhalten Sie eine virtuelle Tastatur."
 
 msgid "You must set at least one Command"
 msgstr "Sie müssen mindestens einen Befehl setzen"
@@ -25072,7 +25077,6 @@ msgstr ""
 "Ihre %s %s könnte jetzt unbenutzbar sein!\n"
 "Bitte im Handbuch nach Hinweisen suchen, bevor Sie Ihre %s %s neu starten."
 
-#
 msgid "zapped"
 msgstr "Umgeschaltet"
 
@@ -25082,8 +25086,24 @@ msgstr "Umschalten"
 msgid "®"
 msgstr "®"
 
-msgid "Allows you to show/hide CCcam in extensions (BLUE button)."
-msgstr "CCcam-Info unter Erweiterungen (Taste BLAU) anzeigen."
+msgid "Password changed."
+msgstr "Passwort geändert."
+
+msgid "Random Password"
+msgstr "Zufallspasswort"
+
+#~ msgid "The password can not be blank."
+#~ msgstr "Das Passwort darf nicht leer sein!"
+
+#~ msgid "Unable to change password"
+#~ msgstr "Passwortänderung nicht möglich"
+
+#
+#~ msgid "You must set a root password in order to be able to use network services, such as FTP, telnet or ssh."
+#~ msgstr ""
+#~ "Sie müssen ein Rootpasswort festlegen, um Netzwerkdienste wie FTP, Telnet oder SSH nutzen zu können.\n"
+#~ "\n"
+#~ "Mit der Taste TXT (Videotext) erhalten Sie eine virtuelle Tastatur."
 
 #, python-format
 #~ msgid ""

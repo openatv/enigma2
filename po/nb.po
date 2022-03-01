@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-02-27 22:18+0000\n"
+"POT-Creation-Date: 2022-03-01 17:50+0000\n"
 "PO-Revision-Date: 2021-08-19 14:13+0000\n"
 "Last-Translator: Allan Nordhøy <epost@anotheragency.no>\n"
 "Language-Team: Norwegian Bokmål <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/nb_NO/>\n"
@@ -5259,6 +5259,9 @@ msgstr "Lag en DVD-ISO"
 msgid "Create ISO"
 msgstr ""
 
+msgid "Create a randomly generated password"
+msgstr ""
+
 msgid "Create directory"
 msgstr "Lag mappe"
 
@@ -7334,6 +7337,12 @@ msgid "Error: %s %s not %s!  Please try again later."
 msgstr ""
 
 msgid "Error: Checksum is invalid!"
+msgstr ""
+
+msgid "Error: The new password may not be blank!"
+msgstr ""
+
+msgid "Error: Unable to change password!"
 msgstr ""
 
 msgid "Error: Unable to process the command!  Please try again later."
@@ -12295,10 +12304,13 @@ msgstr ""
 msgid "Password (httpwd)"
 msgstr ""
 
+msgid "Password Actions"
+msgstr ""
+
 msgid "Password Setup"
 msgstr ""
 
-msgid "Password changed"
+msgid "Password changed."
 msgstr ""
 
 msgid "Password:"
@@ -13494,7 +13506,7 @@ msgstr ""
 msgid "Random"
 msgstr "Tilfeldig"
 
-msgid "Random password"
+msgid "Random Password"
 msgstr ""
 
 #, python-format
@@ -15592,6 +15604,9 @@ msgid "Sets the root folder of movie list, to remove the '..' from benign shown 
 msgstr ""
 
 msgid "Setting Restored "
+msgstr ""
+
+msgid "Setting a password is strongly advised if your STB is open to the Internet. You must set a password in order to be able to use network services like FTP, Telnet or SSH."
 msgstr ""
 
 msgid "Settings"
@@ -17966,9 +17981,6 @@ msgstr ""
 "Utvidelsen for nettverksveiviseren er ikke installert!\n"
 "Vennligst installer den."
 
-msgid "The password can not be blank."
-msgstr ""
-
 #, python-format
 msgid "The path %s already exists."
 msgstr "Banen %s finnes allerede."
@@ -19154,9 +19166,6 @@ msgid "Ukrainian"
 msgstr "Ukrainsk"
 
 msgid "Umweltbewusstsein"
-msgstr ""
-
-msgid "Unable to change password"
 msgstr ""
 
 msgid "Unable to create the required directories on the media (e.g. USB stick or Harddisk) - Please verify media and try again!"
@@ -20725,9 +20734,6 @@ msgstr ""
 #, python-format
 msgid "You have to wait %s!"
 msgstr "Vent litt %s!"
-
-msgid "You must set a root password in order to be able to use network services, such as FTP, telnet or ssh."
-msgstr ""
 
 msgid "You must set at least one Command"
 msgstr ""

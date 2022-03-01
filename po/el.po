@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Enigma2 Official Greek Translation\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-02-27 22:18+0000\n"
+"POT-Creation-Date: 2022-03-01 17:50+0000\n"
 "PO-Revision-Date: 2021-08-19 12:59+0000\n"
 "Last-Translator: MCelliotG <mcelliotg@gmail.com>\n"
 "Language-Team: Greek <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/el/>\n"
@@ -2736,6 +2736,9 @@ msgstr "Επιτρέπει την απόκρυψη των επεκτάσεων �
 msgid "Allows you to set the maximum size of the Debug log size (MB). When that size is reached, a new file will be created."
 msgstr "Επιτρέπει τον ορισμό του μέγιστου μεγέθους του αρχείου Καταγραφής (ΜΒ). Με το πέρας αυτού του μεγέθους, θα δημιουργηθεί ένα νέο αρχείο."
 
+msgid "Allows you to show/hide CCcam in extensions (BLUE button)."
+msgstr "Επιτρέπει ή όχι την εμφάνιση του CCcam στις επεκτάσεις (μπλε πλήκτρο)."
+
 msgid "Allows you to show/hide Log Manager in extensions (blue button)."
 msgstr "Επιτρέπει ή όχι την εμφάνιση της διαχείρισης Καταγραφών στις επεκτάσεις (μπλε πλήκτρο)."
 
@@ -5402,6 +5405,9 @@ msgstr "Δημιουργία DVD-ISO"
 msgid "Create ISO"
 msgstr "Δημιουργία ISO"
 
+msgid "Create a randomly generated password"
+msgstr ""
+
 msgid "Create directory"
 msgstr "Δημιουργία φακέλου"
 
@@ -7557,6 +7563,12 @@ msgid "Error: %s %s not %s!  Please try again later."
 msgstr "Δεν υπάρχουν ενημερώσεις διαθέσιμες. Παρακαλώ δοκιμάστε αργότερα."
 
 msgid "Error: Checksum is invalid!"
+msgstr ""
+
+msgid "Error: The new password may not be blank!"
+msgstr ""
+
+msgid "Error: Unable to change password!"
 msgstr ""
 
 #, fuzzy
@@ -12661,11 +12673,11 @@ msgstr ""
 msgid "Password (httpwd)"
 msgstr "Κωδικός (httpwd)"
 
+msgid "Password Actions"
+msgstr ""
+
 msgid "Password Setup"
 msgstr "Ρυθμίσεις κωδικού πρόσβασης"
-
-msgid "Password changed"
-msgstr "Ο κωδικός άλλαξε"
 
 msgid "Password:"
 msgstr "Κωδικός:"
@@ -13906,9 +13918,6 @@ msgstr "Ποδηλασία"
 
 msgid "Random"
 msgstr "Τυχαίο"
-
-msgid "Random password"
-msgstr "Τυχαίος κωδικός"
 
 #, python-format
 msgid "Rating defined by broadcaster - %d"
@@ -16056,6 +16065,9 @@ msgstr "Ορισμός του φακέλου ρίζας της λίστας τα
 
 msgid "Setting Restored "
 msgstr "Έγινε επαναφορά των ρυθμίσεων "
+
+msgid "Setting a password is strongly advised if your STB is open to the Internet. You must set a password in order to be able to use network services like FTP, Telnet or SSH."
+msgstr ""
 
 msgid "Settings"
 msgstr "Ρυθμίσεις"
@@ -18517,9 +18529,6 @@ msgstr ""
 "Η επέκταση οδηγού δικτύου δεν είναι εγκατεστημένη!\n"
 "Παρακαλώ εγκαταστήστε την."
 
-msgid "The password can not be blank."
-msgstr "Ο κωδικός δεν μπορεί να είναι κενός."
-
 #, python-format
 msgid "The path %s already exists."
 msgstr "Η διαδρομή %s υπάρχει ήδη."
@@ -19747,9 +19756,6 @@ msgstr "Ουκρανικά"
 
 msgid "Umweltbewusstsein"
 msgstr "Περιβαλλοντική ευαισθητοποίηση"
-
-msgid "Unable to change password"
-msgstr "Αδυναμία αλλαγής κωδικού"
 
 msgid "Unable to create the required directories on the media (e.g. USB stick or Harddisk) - Please verify media and try again!"
 msgstr "Αδυναμία δημιουργίας των απαιτούμενων φακέλων στο μέσο (π.χ. USB στικ ή σκληρός δίσκος) - Παρακαλώ ελέγξτε το μέσο και προσπαθήστε ξανά!"
@@ -21370,9 +21376,6 @@ msgstr "Πρέπει να δημιουργήσετε ένα αρχείο swap π
 #, python-format
 msgid "You have to wait %s!"
 msgstr "Περιμένετε για το %s!"
-
-msgid "You must set a root password in order to be able to use network services, such as FTP, telnet or ssh."
-msgstr "Πρέπει να οριστεί ένας κωδικός root για να μπορέσετε να χρησιμοποιήσετε υπηρεσίες δικτύου, όπως τα FTP, telnet ή ssh."
 
 msgid "You must set at least one Command"
 msgstr "Πρέπει να οριστεί τουλάχιστον μία εντολή"
@@ -23481,8 +23484,20 @@ msgstr "ζάπινγκ"
 msgid "®"
 msgstr ""
 
-msgid "Allows you to show/hide CCcam in extensions (BLUE button)."
-msgstr "Επιτρέπει ή όχι την εμφάνιση του CCcam στις επεκτάσεις (μπλε πλήκτρο)."
+msgid "Password changed."
+msgstr "Ο κωδικός άλλαξε."
+
+msgid "Random Password"
+msgstr "Τυχαίος κωδικός"
+
+#~ msgid "The password can not be blank."
+#~ msgstr "Ο κωδικός δεν μπορεί να είναι κενός."
+
+#~ msgid "Unable to change password"
+#~ msgstr "Αδυναμία αλλαγής κωδικού"
+
+#~ msgid "You must set a root password in order to be able to use network services, such as FTP, telnet or ssh."
+#~ msgstr "Πρέπει να οριστεί ένας κωδικός root για να μπορέσετε να χρησιμοποιήσετε υπηρεσίες δικτύου, όπως τα FTP, telnet ή ssh."
 
 #, python-format
 #~ msgid ""

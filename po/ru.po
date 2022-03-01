@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Enigma2 OpenXXX\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-02-27 22:18+0000\n"
+"POT-Creation-Date: 2022-03-01 17:50+0000\n"
 "PO-Revision-Date: 2022-02-24 21:56+0000\n"
 "Last-Translator: igorrrrr <igorzhugan66@gmail.com>\n"
 "Language-Team: Russian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/ru/>\n"
@@ -2714,6 +2714,9 @@ msgstr "Позволит скрыть расширения для известн
 msgid "Allows you to set the maximum size of the Debug log size (MB). When that size is reached, a new file will be created."
 msgstr "Укажите максимальный размер (МБ) для журнала отладки. При достижении этого размера будет создан новый файл."
 
+msgid "Allows you to show/hide CCcam in extensions (BLUE button)."
+msgstr "Позволяет показать/скрыть CCcam в дополнениях (СИНЯЯ кнопка)."
+
 msgid "Allows you to show/hide Log Manager in extensions (blue button)."
 msgstr "Позволяет показать/скрыть менеджер журналов в дополнениях (СИНЯЯ кнопка)."
 
@@ -5369,6 +5372,9 @@ msgstr "Создание DVD-ISO"
 msgid "Create ISO"
 msgstr "Создание ISO"
 
+msgid "Create a randomly generated password"
+msgstr ""
+
 msgid "Create directory"
 msgstr "Создать каталог"
 
@@ -7505,6 +7511,12 @@ msgstr "Ошибка: %s %s, а не %s! Пожалуйста, попробуй�
 
 msgid "Error: Checksum is invalid!"
 msgstr "Ошибка: неверная контрольная сумма!"
+
+msgid "Error: The new password may not be blank!"
+msgstr ""
+
+msgid "Error: Unable to change password!"
+msgstr ""
 
 msgid "Error: Unable to process the command!  Please try again later."
 msgstr "Фид не доступен в связи с проведением профилактики, пожалуйста, попробуйте позже."
@@ -12503,11 +12515,11 @@ msgstr "Пароль (пользователь http)"
 msgid "Password (httpwd)"
 msgstr "Пароль (httpwd)"
 
+msgid "Password Actions"
+msgstr ""
+
 msgid "Password Setup"
 msgstr "Настройка пароля"
-
-msgid "Password changed"
-msgstr "Пароль изменён"
 
 msgid "Password:"
 msgstr "Пароль"
@@ -13744,9 +13756,6 @@ msgstr "Велоспорт"
 
 msgid "Random"
 msgstr "Случайно"
-
-msgid "Random password"
-msgstr "Случайный пароль"
 
 #, python-format
 msgid "Rating defined by broadcaster - %d"
@@ -15867,6 +15876,9 @@ msgstr "Устанавливает корневую папку списка фи
 
 msgid "Setting Restored "
 msgstr "Настройки восстановлены "
+
+msgid "Setting a password is strongly advised if your STB is open to the Internet. You must set a password in order to be able to use network services like FTP, Telnet or SSH."
+msgstr ""
 
 msgid "Settings"
 msgstr "Настройки"
@@ -18290,9 +18302,6 @@ msgstr ""
 "Мастер сети не установлен!\n"
 "Пожалуйста, сначала установите его."
 
-msgid "The password can not be blank."
-msgstr "Пароль не может быть пустым."
-
 #, python-format
 msgid "The path %s already exists."
 msgstr "Этот путь %s уже существует."
@@ -19504,9 +19513,6 @@ msgstr "Украинский"
 
 msgid "Umweltbewusstsein"
 msgstr "Экологическое сознание"
-
-msgid "Unable to change password"
-msgstr "Не удаётся изменить пароль"
 
 msgid "Unable to create the required directories on the media (e.g. USB stick or Harddisk) - Please verify media and try again!"
 msgstr "Невозможно создать необходимые каталоги на носителе (например, USB-накопителе или жёстком диске) - Пожалуйста, проверьте носитель и повторите попытку!"
@@ -21116,9 +21122,6 @@ msgstr "Перед активацией автозапуска сначала н
 #, python-format
 msgid "You have to wait %s!"
 msgstr "Необходимо подождать %s!"
-
-msgid "You must set a root password in order to be able to use network services, such as FTP, telnet or ssh."
-msgstr "Вы должны установить пароль root, чтобы иметь возможность использовать сетевые службы, такие как FTP, telnet или ssh."
 
 msgid "You must set at least one Command"
 msgstr "Вы должны задать как минимум одну команду"
@@ -23220,8 +23223,20 @@ msgstr "Переключение"
 msgid "®"
 msgstr "®"
 
-msgid "Allows you to show/hide CCcam in extensions (BLUE button)."
-msgstr "Позволяет показать/скрыть CCcam в дополнениях (СИНЯЯ кнопка)."
+msgid "Password changed."
+msgstr "Пароль изменён."
+
+msgid "Random Password"
+msgstr "Случайный пароль"
+
+#~ msgid "The password can not be blank."
+#~ msgstr "Пароль не может быть пустым."
+
+#~ msgid "Unable to change password"
+#~ msgstr "Не удаётся изменить пароль"
+
+#~ msgid "You must set a root password in order to be able to use network services, such as FTP, telnet or ssh."
+#~ msgstr "Вы должны установить пароль root, чтобы иметь возможность использовать сетевые службы, такие как FTP, telnet или ssh."
 
 #, python-format
 #~ msgid ""

@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-02-27 22:18+0000\n"
+"POT-Creation-Date: 2022-03-01 17:50+0000\n"
 "PO-Revision-Date: 2022-02-24 21:56+0000\n"
 "Last-Translator: Mr.Servo <mrservo@gmx.de>\n"
 "Language-Team: French <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/fr/>\n"
@@ -2695,6 +2695,9 @@ msgstr "Vous permet de masquer les extensions des fichiers connus."
 msgid "Allows you to set the maximum size of the Debug log size (MB). When that size is reached, a new file will be created."
 msgstr "Permet de définir la taille maximale du log de débogage (Mo). Quand cette taille est atteinte, un nouveau fichier est créé."
 
+msgid "Allows you to show/hide CCcam in extensions (BLUE button)."
+msgstr "Permet d'afficher/masquer CCcam dans les extensions (bouton bleu)."
+
 msgid "Allows you to show/hide Log Manager in extensions (blue button)."
 msgstr "Permet d'afficher/masquer le gestionnaire de log dans les extensions (bouton bleu)."
 
@@ -5355,6 +5358,9 @@ msgstr "Créer DVD-ISO"
 msgid "Create ISO"
 msgstr "Créer un ISO"
 
+msgid "Create a randomly generated password"
+msgstr ""
+
 msgid "Create directory"
 msgstr "Création répertoire"
 
@@ -7493,6 +7499,12 @@ msgid "Error: %s %s not %s!  Please try again later."
 msgstr "Erreur : %s %s pas %s !  Veuillez réessayer plus tard."
 
 msgid "Error: Checksum is invalid!"
+msgstr ""
+
+msgid "Error: The new password may not be blank!"
+msgstr ""
+
+msgid "Error: Unable to change password!"
 msgstr ""
 
 msgid "Error: Unable to process the command!  Please try again later."
@@ -12502,11 +12514,11 @@ msgstr "Mot de passe (httpuser)"
 msgid "Password (httpwd)"
 msgstr "Mot de passe (httppwd)"
 
+msgid "Password Actions"
+msgstr ""
+
 msgid "Password Setup"
 msgstr "Configuration du mot de passe"
-
-msgid "Password changed"
-msgstr "Mot de passe changé"
 
 msgid "Password:"
 msgstr "Mot de passe :"
@@ -13745,9 +13757,6 @@ msgstr "Cyclisme"
 
 msgid "Random"
 msgstr "Aléatoire"
-
-msgid "Random password"
-msgstr "Mot de passe aléatoire"
 
 #, python-format
 msgid "Rating defined by broadcaster - %d"
@@ -15872,6 +15881,9 @@ msgstr "Définir le répertoire principal pour la liste des films, pour enlever 
 
 msgid "Setting Restored "
 msgstr "Paramètre Restauré "
+
+msgid "Setting a password is strongly advised if your STB is open to the Internet. You must set a password in order to be able to use network services like FTP, Telnet or SSH."
+msgstr ""
 
 msgid "Settings"
 msgstr "Paramètres"
@@ -18308,9 +18320,6 @@ msgstr ""
 "L'extension de l'assistant réseau n'est pas installée !\n"
 "Veuillez l'installer."
 
-msgid "The password can not be blank."
-msgstr "Le mot de passe ne peut pas être vide."
-
 #, python-format
 msgid "The path %s already exists."
 msgstr "Le chemin %s existe déjà."
@@ -19539,9 +19548,6 @@ msgstr "Ukrainien"
 
 msgid "Umweltbewusstsein"
 msgstr "Sensibilisation à l'environnement"
-
-msgid "Unable to change password"
-msgstr "Impossible de modifier le mot de passe"
 
 msgid "Unable to create the required directories on the media (e.g. USB stick or Harddisk) - Please verify media and try again!"
 msgstr "Impossible de créer les répertoires requis sur le support (par ex. clé USB ou disque dur) - Veuillez vérifier le support et réessayer !"
@@ -21151,9 +21157,6 @@ msgstr "Vous devez créer un fichier swap avant d'activer le démarrage automati
 #, python-format
 msgid "You have to wait %s!"
 msgstr "Vous devez attendre %s !"
-
-msgid "You must set a root password in order to be able to use network services, such as FTP, telnet or ssh."
-msgstr "Vous devez définir un mot de passe root pour pouvoir utiliser les services réseau, tels que FTP, telnet ou ssh."
 
 msgid "You must set at least one Command"
 msgstr "Vous devez définir au moins une commande"
@@ -23260,8 +23263,20 @@ msgstr "zapping"
 msgid "®"
 msgstr "®"
 
-msgid "Allows you to show/hide CCcam in extensions (BLUE button)."
-msgstr "Permet d'afficher/masquer CCcam dans les extensions (bouton bleu)."
+msgid "Password changed."
+msgstr "Mot de passe changé."
+
+msgid "Random Password"
+msgstr "Mot de passe aléatoire"
+
+#~ msgid "The password can not be blank."
+#~ msgstr "Le mot de passe ne peut pas être vide."
+
+#~ msgid "Unable to change password"
+#~ msgstr "Impossible de modifier le mot de passe"
+
+#~ msgid "You must set a root password in order to be able to use network services, such as FTP, telnet or ssh."
+#~ msgstr "Vous devez définir un mot de passe root pour pouvoir utiliser les services réseau, tels que FTP, telnet ou ssh."
 
 #, python-format
 #~ msgid ""

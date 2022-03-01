@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Apachi70 (OpenATV)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-02-27 22:18+0000\n"
+"POT-Creation-Date: 2022-03-01 17:50+0000\n"
 "PO-Revision-Date: 2021-11-14 06:52+0000\n"
 "Last-Translator: Oğuz Ersen <oguzersen@protonmail.com>\n"
 "Language-Team: Turkish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/tr/>\n"
@@ -2868,6 +2868,9 @@ msgstr "Belli dosya tipi uzantılarını gizlemenizi sağlar."
 msgid "Allows you to set the maximum size of the Debug log size (MB). When that size is reached, a new file will be created."
 msgstr "Hata ayıklama günlüğü boyutunun (MB) maksimum boyutunu ayarlamanıza izin verir. Bu boyuta ulaşıldığında yeni bir dosya oluşturulacak."
 
+msgid "Allows you to show/hide CCcam in extensions (BLUE button)."
+msgstr "CCcam'i uzantılarda (mavi düğme) göstermenize / gizlemenize izin verir."
+
 msgid "Allows you to show/hide Log Manager in extensions (blue button)."
 msgstr "Günlük Yöneticisi'nin eklentilerde görünmesi/gizlenmesi (mavi tuş)."
 
@@ -5709,6 +5712,9 @@ msgstr "DVD-ISO oluştur"
 msgid "Create ISO"
 msgstr "ISO oluştur"
 
+msgid "Create a randomly generated password"
+msgstr ""
+
 #
 msgid "Create directory"
 msgstr "Dizin oluştur"
@@ -8025,6 +8031,12 @@ msgid "Error: %s %s not %s!  Please try again later."
 msgstr "Güncelleme yok. Sonra tekrar deneyin."
 
 msgid "Error: Checksum is invalid!"
+msgstr ""
+
+msgid "Error: The new password may not be blank!"
+msgstr ""
+
+msgid "Error: Unable to change password!"
 msgstr ""
 
 #, fuzzy
@@ -13530,12 +13542,12 @@ msgstr ""
 msgid "Password (httpwd)"
 msgstr "Parola (httpwd)"
 
+msgid "Password Actions"
+msgstr ""
+
 #
 msgid "Password Setup"
 msgstr "Şifre Kurulumu"
-
-msgid "Password changed"
-msgstr "Sifre değişti"
 
 msgid "Password:"
 msgstr "Parola:"
@@ -14902,10 +14914,6 @@ msgstr "takım sporları"
 #
 msgid "Random"
 msgstr "Rastgele"
-
-#
-msgid "Random password"
-msgstr "Rastgele şifre"
 
 #, python-format
 msgid "Rating defined by broadcaster - %d"
@@ -17218,6 +17226,9 @@ msgstr "Klasörün başında görünen '..' kaldırmak için, film listesinin k�
 #
 msgid "Setting Restored "
 msgstr "Ayar geri yüklendi "
+
+msgid "Setting a password is strongly advised if your STB is open to the Internet. You must set a password in order to be able to use network services like FTP, Telnet or SSH."
+msgstr ""
 
 #
 msgid "Settings"
@@ -19824,9 +19835,6 @@ msgstr ""
 "The network wizard extension yüklü değil!\n"
 "Lütfen yükleyin."
 
-msgid "The password can not be blank."
-msgstr "Şifre boş olamaz."
-
 #
 #, python-format
 msgid "The path %s already exists."
@@ -21140,10 +21148,6 @@ msgstr "Ukraynaca"
 
 msgid "Umweltbewusstsein"
 msgstr ""
-
-#
-msgid "Unable to change password"
-msgstr "Şifre değiştirilemiyor"
 
 msgid "Unable to create the required directories on the media (e.g. USB stick or Harddisk) - Please verify media and try again!"
 msgstr "Medyada gerekli dizinler oluşturulamıyor (örn. USB bellek veya Sabit Disk) - Lütfen medyayı doğrulayın ve tekrar deneyin!"
@@ -22895,9 +22899,6 @@ msgstr "Otomatik başlatmayı etkinleştirmek için önce bir Swap Dosyası olu�
 #, python-format
 msgid "You have to wait %s!"
 msgstr "%s beklemelisiniz!"
-
-msgid "You must set a root password in order to be able to use network services, such as FTP, telnet or ssh."
-msgstr "FTP, telnet veya ssh gibi şebeke servislerini kullanabilmek için bir kök şifre belirlemelisiniz."
 
 msgid "You must set at least one Command"
 msgstr "En az bir Komut ayarlamanız gerekir"
@@ -25219,15 +25220,27 @@ msgstr "artık kullanılamaz olabilir. Lütfen% s% s’nizi yeniden başlatmadan
 msgid "zapped"
 msgstr "zapped"
 
-#
 msgid "zapping"
 msgstr "zap"
 
 msgid "®"
 msgstr ""
 
-msgid "Allows you to show/hide CCcam in extensions (BLUE button)."
-msgstr "CCcam'i uzantılarda (mavi düğme) göstermenize / gizlemenize izin verir."
+msgid "Password changed."
+msgstr "Sifre değişti."
+
+msgid "Random Password"
+msgstr "Rastgele şifre"
+
+#~ msgid "The password can not be blank."
+#~ msgstr "Şifre boş olamaz."
+
+#
+#~ msgid "Unable to change password"
+#~ msgstr "Şifre değiştirilemiyor"
+
+#~ msgid "You must set a root password in order to be able to use network services, such as FTP, telnet or ssh."
+#~ msgstr "FTP, telnet veya ssh gibi şebeke servislerini kullanabilmek için bir kök şifre belirlemelisiniz."
 
 #, python-format
 #~ msgid ""

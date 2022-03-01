@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-02-27 22:18+0000\n"
+"POT-Creation-Date: 2022-03-01 17:50+0000\n"
 "PO-Revision-Date: 2021-11-04 23:53+0000\n"
 "Last-Translator: T. Rylle <dk-translation@pm.me>\n"
 "Language-Team: Danish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/da/>\n"
@@ -2694,6 +2694,9 @@ msgstr "Tillader dig at skjule filendelsen for kendte filtyper."
 msgid "Allows you to set the maximum size of the Debug log size (MB). When that size is reached, a new file will be created."
 msgstr "Tillader dig at sætte den maksimale størrelse på fejlsøgningsloggen (MB). Når den størrelse nås, oprettes der en ny fil."
 
+msgid "Allows you to show/hide CCcam in extensions (BLUE button)."
+msgstr "Tillader dig at vise/skjule CCcam i udvidelsesmenuen (blå knap)"
+
 msgid "Allows you to show/hide Log Manager in extensions (blue button)."
 msgstr "Tillader dig at vise/skjule Log-håndtering i udvidelsesmenuen (blå knap)"
 
@@ -5362,6 +5365,9 @@ msgstr "Opret DVD-ISO"
 msgid "Create ISO"
 msgstr "Opret ISO"
 
+msgid "Create a randomly generated password"
+msgstr ""
+
 msgid "Create directory"
 msgstr "Opret mappe"
 
@@ -7492,6 +7498,12 @@ msgid "Error: %s %s not %s!  Please try again later."
 msgstr "Fejl: %s %s ikke %s!  Prøv venligst igen senere."
 
 msgid "Error: Checksum is invalid!"
+msgstr ""
+
+msgid "Error: The new password may not be blank!"
+msgstr ""
+
+msgid "Error: Unable to change password!"
 msgstr ""
 
 msgid "Error: Unable to process the command!  Please try again later."
@@ -12584,11 +12596,11 @@ msgstr ""
 msgid "Password (httpwd)"
 msgstr "Adgangskode (httpwd)"
 
+msgid "Password Actions"
+msgstr ""
+
 msgid "Password Setup"
 msgstr "Adgangskode opsætning"
-
-msgid "Password changed"
-msgstr "Adgangskode ændret"
 
 msgid "Password:"
 msgstr "Adgangskode:"
@@ -13837,9 +13849,6 @@ msgstr "Cykelsport"
 
 msgid "Random"
 msgstr "Tilfældig"
-
-msgid "Random password"
-msgstr "Tilfældig adgangskode"
 
 #, python-format
 msgid "Rating defined by broadcaster - %d"
@@ -15987,6 +15996,9 @@ msgstr "Sæt rodmappe af filmliste, for at fjerne visning af '..' i toppen af de
 
 msgid "Setting Restored "
 msgstr "Indstillinger gendannet "
+
+msgid "Setting a password is strongly advised if your STB is open to the Internet. You must set a password in order to be able to use network services like FTP, Telnet or SSH."
+msgstr ""
 
 msgid "Settings"
 msgstr "Indstillinger"
@@ -18448,9 +18460,6 @@ msgstr ""
 "Netværksassistent udvidelsen er ikke installeret!\n"
 "Installer den venligst."
 
-msgid "The password can not be blank."
-msgstr "Adgangskoden kan ikke være tom."
-
 #, python-format
 msgid "The path %s already exists."
 msgstr "Stien %s findes allerede."
@@ -19672,9 +19681,6 @@ msgstr "Ukrainsk"
 
 msgid "Umweltbewusstsein"
 msgstr ""
-
-msgid "Unable to change password"
-msgstr "Ikke i stand til at ændre adgangskode"
 
 msgid "Unable to create the required directories on the media (e.g. USB stick or Harddisk) - Please verify media and try again!"
 msgstr "Ikke i stand til at oprette de nødvendige mapper på mediet (f.eks. USB-nøgle eller Harddisk) - Kontroller venligst medie og prøv igen!"
@@ -21293,9 +21299,6 @@ msgstr "Du skal først oprette en Swap-fil for at kunne aktivere autostart."
 #, python-format
 msgid "You have to wait %s!"
 msgstr "Du må vente %s!"
-
-msgid "You must set a root password in order to be able to use network services, such as FTP, telnet or ssh."
-msgstr "Du skal sætte en root adgangskode for at kunne bruge netværkstjenester, såsom FTP, telnet eller ssh."
 
 msgid "You must set at least one Command"
 msgstr "Du skal sætte mindst en Kommando"
@@ -23416,8 +23419,20 @@ msgstr "Zapper"
 msgid "®"
 msgstr "®"
 
-msgid "Allows you to show/hide CCcam in extensions (BLUE button)."
-msgstr "Tillader dig at vise/skjule CCcam i udvidelsesmenuen (blå knap)"
+msgid "Password changed."
+msgstr "Adgangskode ændret."
+
+msgid "Random Password"
+msgstr "Tilfældig adgangskode"
+
+#~ msgid "The password can not be blank."
+#~ msgstr "Adgangskoden kan ikke være tom."
+
+#~ msgid "Unable to change password"
+#~ msgstr "Ikke i stand til at ændre adgangskode"
+
+#~ msgid "You must set a root password in order to be able to use network services, such as FTP, telnet or ssh."
+#~ msgstr "Du skal sætte en root adgangskode for at kunne bruge netværkstjenester, såsom FTP, telnet eller ssh."
 
 #, python-format
 #~ msgid ""

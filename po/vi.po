@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-02-27 22:18+0000\n"
+"POT-Creation-Date: 2022-03-01 17:50+0000\n"
 "PO-Revision-Date: 2019-07-27 12:19+0700\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -2735,6 +2735,9 @@ msgstr "Cho phép bạn ẩn phần mở rộng của các loại tệp đã bi�
 msgid "Allows you to set the maximum size of the Debug log size (MB). When that size is reached, a new file will be created."
 msgstr "Cho phép bạn đặt kích thước tối đa của kích thước nhật ký Gỡ lỗi (MB). Khi đạt được kích thước đó, một tệp mới sẽ được tạo."
 
+msgid "Allows you to show/hide CCcam in extensions (BLUE button)."
+msgstr "Cho phép bạn hiển thị / ẩn CCcam trong tiện ích mở rộng (nút màu xanh)."
+
 msgid "Allows you to show/hide Log Manager in extensions (blue button)."
 msgstr "Cho phép bạn hiển thị / ẩn Trình quản lý nhật ký trong tiện ích mở rộng (nút màu xanh)."
 
@@ -5427,6 +5430,9 @@ msgstr "Tạo DVD-ISO"
 msgid "Create ISO"
 msgstr "Tạo ISO"
 
+msgid "Create a randomly generated password"
+msgstr ""
+
 msgid "Create directory"
 msgstr "Tạo thư mục"
 
@@ -7611,6 +7617,12 @@ msgid "Error: %s %s not %s!  Please try again later."
 msgstr "Không có bảng cập nhật có sẵn. Vui lòng thử lại sau."
 
 msgid "Error: Checksum is invalid!"
+msgstr ""
+
+msgid "Error: The new password may not be blank!"
+msgstr ""
+
+msgid "Error: Unable to change password!"
 msgstr ""
 
 #, fuzzy
@@ -12764,11 +12776,11 @@ msgstr ""
 msgid "Password (httpwd)"
 msgstr "Mật khẩu (httpwd)"
 
+msgid "Password Actions"
+msgstr ""
+
 msgid "Password Setup"
 msgstr "Thiết lập mật khẩu"
-
-msgid "Password changed"
-msgstr "Mật khẩu đã được thay đổi"
 
 msgid "Password:"
 msgstr "Mật khẩu:"
@@ -14022,8 +14034,8 @@ msgstr "đội thể thao"
 msgid "Random"
 msgstr "Ngẫu nhiên"
 
-msgid "Random password"
-msgstr "Mật khẩu ngẫu nhiên"
+msgid "Random Password"
+msgstr ""
 
 #, python-format
 msgid "Rating defined by broadcaster - %d"
@@ -16186,6 +16198,9 @@ msgstr "Đặt thư mục gốc của danh sách phim, để xóa '..' khỏi l�
 
 msgid "Setting Restored "
 msgstr "Đã khôi phục cài đặt "
+
+msgid "Setting a password is strongly advised if your STB is open to the Internet. You must set a password in order to be able to use network services like FTP, Telnet or SSH."
+msgstr ""
 
 msgid "Settings"
 msgstr "Cài đặt"
@@ -18658,9 +18673,6 @@ msgstr ""
 "Phần mở rộng thuật sĩ mạng không được cài đặt!\n"
 "Vui lòng cài đặt nó."
 
-msgid "The password can not be blank."
-msgstr "Mật khẩu không thể để trống."
-
 #, python-format
 msgid "The path %s already exists."
 msgstr "Đường dẫn%s đã tồn tại."
@@ -19896,9 +19908,6 @@ msgstr "Tiếng Ukraina"
 
 msgid "Umweltbewusstsein"
 msgstr ""
-
-msgid "Unable to change password"
-msgstr "Không thể thay đổi mật khẩu"
 
 msgid "Unable to create the required directories on the media (e.g. USB stick or Harddisk) - Please verify media and try again!"
 msgstr "Không thể tạo các thư mục cần thiết trên phương tiện (ví dụ: thẻ nhớ USB hoặc Ổ cứng) - Vui lòng xác minh phương tiện và thử lại!"
@@ -21536,9 +21545,6 @@ msgstr "Bạn phải tạo một tập tin hoán đổi trước để kích ho�
 #, python-format
 msgid "You have to wait %s!"
 msgstr "Bạn phải đợi %s!"
-
-msgid "You must set a root password in order to be able to use network services, such as FTP, telnet or ssh."
-msgstr "Bạn phải đặt mật khẩu gốc để có thể sử dụng các dịch vụ mạng, chẳng hạn như FTP, telnet hoặc ssh."
 
 msgid "You must set at least one Command"
 msgstr "Bạn phải đặt ít nhất một Lệnh"
@@ -23665,8 +23671,20 @@ msgstr "hạ gục"
 msgid "®"
 msgstr ""
 
-msgid "Allows you to show/hide CCcam in extensions (BLUE button)."
-msgstr "Cho phép bạn hiển thị / ẩn CCcam trong tiện ích mở rộng (nút màu xanh)."
+msgid "Password changed."
+msgstr "Mật khẩu đã được thay đổi."
+
+#~ msgid "Random password"
+#~ msgstr "Mật khẩu ngẫu nhiên"
+
+#~ msgid "The password can not be blank."
+#~ msgstr "Mật khẩu không thể để trống."
+
+#~ msgid "Unable to change password"
+#~ msgstr "Không thể thay đổi mật khẩu"
+
+#~ msgid "You must set a root password in order to be able to use network services, such as FTP, telnet or ssh."
+#~ msgstr "Bạn phải đặt mật khẩu gốc để có thể sử dụng các dịch vụ mạng, chẳng hạn như FTP, telnet hoặc ssh."
 
 #, python-format
 #~ msgid ""

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-02-27 22:18+0000\n"
+"POT-Creation-Date: 2022-03-01 17:50+0000\n"
 "PO-Revision-Date: 2021-09-13 18:30+0000\n"
 "Last-Translator: Josep Belda <josepmaulet1707@gmail.com>\n"
 "Language-Team: Catalan <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/ca/>\n"
@@ -5762,6 +5762,9 @@ msgstr "Crea DVD-ISO"
 msgid "Create ISO"
 msgstr ""
 
+msgid "Create a randomly generated password"
+msgstr ""
+
 msgid "Create directory"
 msgstr "Crea directori"
 
@@ -8054,6 +8057,12 @@ msgid "Error: %s %s not %s!  Please try again later."
 msgstr ""
 
 msgid "Error: Checksum is invalid!"
+msgstr ""
+
+msgid "Error: The new password may not be blank!"
+msgstr ""
+
+msgid "Error: Unable to change password!"
 msgstr ""
 
 msgid "Error: Unable to process the command!  Please try again later."
@@ -13557,12 +13566,15 @@ msgstr ""
 msgid "Password (httpwd)"
 msgstr ""
 
+msgid "Password Actions"
+msgstr ""
+
 #
 #, fuzzy
 msgid "Password Setup"
 msgstr "Config xarxa"
 
-msgid "Password changed"
+msgid "Password changed."
 msgstr ""
 
 msgid "Password:"
@@ -14928,10 +14940,8 @@ msgstr ""
 msgid "Random"
 msgstr "Random"
 
-#
-#, fuzzy
-msgid "Random password"
-msgstr "Introdueix un nom per al nou marcador"
+msgid "Random Password"
+msgstr ""
 
 #, python-format
 msgid "Rating defined by broadcaster - %d"
@@ -17265,6 +17275,9 @@ msgstr ""
 #, fuzzy
 msgid "Setting Restored "
 msgstr "Configuracions"
+
+msgid "Setting a password is strongly advised if your STB is open to the Internet. You must set a password in order to be able to use network services like FTP, Telnet or SSH."
+msgstr ""
 
 #
 msgid "Settings"
@@ -19856,9 +19869,6 @@ msgstr ""
 "L’extensió de l’assistent de xarxa no està instal·lada.\n"
 "Instal·leu-lo."
 
-msgid "The password can not be blank."
-msgstr ""
-
 #
 #, python-format
 msgid "The path %s already exists."
@@ -21161,11 +21171,6 @@ msgstr "Ukrainian"
 
 msgid "Umweltbewusstsein"
 msgstr ""
-
-#
-#, fuzzy
-msgid "Unable to change password"
-msgstr "Introdueix un nom per al nou marcador"
 
 msgid "Unable to create the required directories on the media (e.g. USB stick or Harddisk) - Please verify media and try again!"
 msgstr "No es poden crear els directoris obligatoris al suport (per exemple, stick USB o Harddisk). Verifiqueu el material i proveu-ho de nou."
@@ -22889,9 +22894,6 @@ msgstr ""
 #, python-format
 msgid "You have to wait %s!"
 msgstr "Heu d’esperar% s!"
-
-msgid "You must set a root password in order to be able to use network services, such as FTP, telnet or ssh."
-msgstr ""
 
 msgid "You must set at least one Command"
 msgstr ""
@@ -25189,6 +25191,16 @@ msgstr "zappejat"
 
 msgid "®"
 msgstr ""
+
+#
+#, fuzzy
+#~ msgid "Random password"
+#~ msgstr "Introdueix un nom per al nou marcador"
+
+#
+#, fuzzy
+#~ msgid "Unable to change password"
+#~ msgstr "Introdueix un nom per al nou marcador"
 
 #
 #, fuzzy

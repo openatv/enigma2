@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2 Kurdish translation\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-02-27 22:18+0000\n"
+"POT-Creation-Date: 2022-03-01 17:50+0000\n"
 "PO-Revision-Date: 2021-08-15 18:50+0000\n"
 "Last-Translator: openATV <openatv@gmail.com>\n"
 "Language-Team: Kurdish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/ku/>\n"
@@ -5670,6 +5670,9 @@ msgstr "Create DVD-ISO"
 msgid "Create ISO"
 msgstr ""
 
+msgid "Create a randomly generated password"
+msgstr ""
+
 msgid "Create directory"
 msgstr "Create directory"
 
@@ -7858,6 +7861,12 @@ msgid "Error: %s %s not %s!  Please try again later."
 msgstr "No updates available. Please try again later."
 
 msgid "Error: Checksum is invalid!"
+msgstr ""
+
+msgid "Error: The new password may not be blank!"
+msgstr ""
+
+msgid "Error: Unable to change password!"
 msgstr ""
 
 #, fuzzy
@@ -13153,13 +13162,15 @@ msgstr ""
 msgid "Password (httpwd)"
 msgstr "Password"
 
+msgid "Password Actions"
+msgstr ""
+
 #, fuzzy
 msgid "Password Setup"
 msgstr "Password"
 
-#, fuzzy
-msgid "Password changed"
-msgstr "Password"
+msgid "Password changed."
+msgstr ""
 
 #, fuzzy
 msgid "Password:"
@@ -14435,9 +14446,8 @@ msgstr "team sports"
 msgid "Random"
 msgstr "Random"
 
-#, fuzzy
-msgid "Random password"
-msgstr "Please enter a new filename"
+msgid "Random Password"
+msgstr ""
 
 #, python-format
 msgid "Rating defined by broadcaster - %d"
@@ -16671,6 +16681,9 @@ msgstr ""
 #, fuzzy
 msgid "Setting Restored "
 msgstr "Settings"
+
+msgid "Setting a password is strongly advised if your STB is open to the Internet. You must set a password in order to be able to use network services like FTP, Telnet or SSH."
+msgstr ""
 
 msgid "Settings"
 msgstr "Settings"
@@ -19220,9 +19233,6 @@ msgstr ""
 "The network wizard extension is not installed!\n"
 "Please install it."
 
-msgid "The password can not be blank."
-msgstr ""
-
 #, python-format
 msgid "The path %s already exists."
 msgstr "The path %s already exists."
@@ -20491,10 +20501,6 @@ msgstr ""
 
 msgid "Umweltbewusstsein"
 msgstr ""
-
-#, fuzzy
-msgid "Unable to change password"
-msgstr "Please enter a new filename"
 
 msgid "Unable to create the required directories on the media (e.g. USB stick or Harddisk) - Please verify media and try again!"
 msgstr ""
@@ -22158,9 +22164,6 @@ msgstr ""
 #, python-format
 msgid "You have to wait %s!"
 msgstr "You have to wait %s!"
-
-msgid "You must set a root password in order to be able to use network services, such as FTP, telnet or ssh."
-msgstr ""
 
 msgid "You must set at least one Command"
 msgstr ""
@@ -24329,6 +24332,18 @@ msgstr "zapped"
 
 msgid "®"
 msgstr ""
+
+#, fuzzy
+#~ msgid "Password changed"
+#~ msgstr "Password"
+
+#, fuzzy
+#~ msgid "Random password"
+#~ msgstr "Please enter a new filename"
+
+#, fuzzy
+#~ msgid "Unable to change password"
+#~ msgstr "Please enter a new filename"
 
 #, fuzzy, python-format
 #~ msgid "Kernel: %s"

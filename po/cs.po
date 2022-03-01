@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-02-27 22:18+0000\n"
+"POT-Creation-Date: 2022-03-01 17:50+0000\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Jjezevec <jjezevecc@seznam.cz>\n"
 "Language-Team: \n"
@@ -2886,6 +2886,9 @@ msgstr "Umožňuje skrýt přípony souborů známých typů."
 msgid "Allows you to set the maximum size of the Debug log size (MB). When that size is reached, a new file will be created."
 msgstr "Umožňuje nastavit maximální velikost zprávy pádu (MB). Když je dosažena, bude vytvořen nový soubor."
 
+msgid "Allows you to show/hide CCcam in extensions (BLUE button)."
+msgstr "Umožňuje zobrazit/skrýt CCcam v rozšířené nabídce (modré tlačítko)."
+
 msgid "Allows you to show/hide Log Manager in extensions (blue button)."
 msgstr "Umožňuje zobrazit/skrýt Správce zpráv v rozšířené nabídce (modré tlačítko)."
 
@@ -5690,6 +5693,9 @@ msgstr "Vytvořit DVD-ISO"
 msgid "Create ISO"
 msgstr "Vytvořit DVD-ISO"
 
+msgid "Create a randomly generated password"
+msgstr ""
+
 msgid "Create directory"
 msgstr "Založit adresář"
 
@@ -7914,6 +7920,12 @@ msgid "Error: %s %s not %s!  Please try again later."
 msgstr "Žádné aktualizace k dispozici. Zkuste to později."
 
 msgid "Error: Checksum is invalid!"
+msgstr ""
+
+msgid "Error: The new password may not be blank!"
+msgstr ""
+
+msgid "Error: Unable to change password!"
 msgstr ""
 
 #, fuzzy
@@ -13255,13 +13267,15 @@ msgstr ""
 msgid "Password (httpwd)"
 msgstr "Heslo (httpwd)"
 
+msgid "Password Actions"
+msgstr ""
+
 #, fuzzy
 msgid "Password Setup"
 msgstr "Heslo"
 
-#, fuzzy
-msgid "Password changed"
-msgstr "Heslo (httpwd)"
+msgid "Password changed."
+msgstr ""
 
 msgid "Password:"
 msgstr "Heslo:"
@@ -14538,9 +14552,8 @@ msgstr "týmové sporty"
 msgid "Random"
 msgstr "Náhodně"
 
-#, fuzzy
-msgid "Random password"
-msgstr "Zadejte heslo"
+msgid "Random Password"
+msgstr ""
 
 #, python-format
 msgid "Rating defined by broadcaster - %d"
@@ -16769,6 +16782,9 @@ msgstr "Nastavte root složku seznamu filmu, odebráním '..' ze začátku názv
 #, fuzzy
 msgid "Setting Restored "
 msgstr "Nastavení"
+
+msgid "Setting a password is strongly advised if your STB is open to the Internet. You must set a password in order to be able to use network services like FTP, Telnet or SSH."
+msgstr ""
 
 msgid "Settings"
 msgstr "Nastavení"
@@ -19347,9 +19363,6 @@ msgstr ""
 "Rozšířený síťový průvodce není nainstalován!\n"
 "Nainstalujte ho."
 
-msgid "The password can not be blank."
-msgstr ""
-
 #, python-format
 msgid "The path %s already exists."
 msgstr "Cesta %s již existuje."
@@ -20632,10 +20645,6 @@ msgstr ""
 
 msgid "Umweltbewusstsein"
 msgstr ""
-
-#, fuzzy
-msgid "Unable to change password"
-msgstr "Zadejte heslo"
 
 msgid "Unable to create the required directories on the media (e.g. USB stick or Harddisk) - Please verify media and try again!"
 msgstr ""
@@ -22332,9 +22341,6 @@ msgstr "Před aktivací Auto-Startem musíte vytvořit odkládací soubor."
 #, python-format
 msgid "You have to wait %s!"
 msgstr "Musíte čekat %s!"
-
-msgid "You must set a root password in order to be able to use network services, such as FTP, telnet or ssh."
-msgstr ""
 
 msgid "You must set at least one Command"
 msgstr "Musíte nastavit alespoň jeden příkaz !"
@@ -24545,8 +24551,17 @@ msgstr "Přepnutý"
 msgid "®"
 msgstr ""
 
-msgid "Allows you to show/hide CCcam in extensions (BLUE button)."
-msgstr "Umožňuje zobrazit/skrýt CCcam v rozšířené nabídce (modré tlačítko)."
+#, fuzzy
+#~ msgid "Password changed"
+#~ msgstr "Heslo (httpwd)"
+
+#, fuzzy
+#~ msgid "Random password"
+#~ msgstr "Zadejte heslo"
+
+#, fuzzy
+#~ msgid "Unable to change password"
+#~ msgstr "Zadejte heslo"
 
 #, python-format
 #~ msgid ""

@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-02-27 22:18+0000\n"
+"POT-Creation-Date: 2022-03-01 17:50+0000\n"
 "PO-Revision-Date: 2021-08-19 12:59+0000\n"
 "Last-Translator: openATV <openatv@gmail.com>\n"
 "Language-Team: Serbian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/sr/>\n"
@@ -5896,6 +5896,9 @@ msgstr "Napravi DVD-ISO"
 msgid "Create ISO"
 msgstr ""
 
+msgid "Create a randomly generated password"
+msgstr ""
+
 #
 msgid "Create directory"
 msgstr "Kreiraj direktorijum"
@@ -8234,6 +8237,12 @@ msgid "Error: %s %s not %s!  Please try again later."
 msgstr ""
 
 msgid "Error: Checksum is invalid!"
+msgstr ""
+
+msgid "Error: The new password may not be blank!"
+msgstr ""
+
+msgid "Error: Unable to change password!"
 msgstr ""
 
 msgid "Error: Unable to process the command!  Please try again later."
@@ -13901,15 +13910,16 @@ msgstr ""
 msgid "Password (httpwd)"
 msgstr ""
 
+msgid "Password Actions"
+msgstr ""
+
 #
 #, fuzzy
 msgid "Password Setup"
 msgstr "Lozinka"
 
-#
-#, fuzzy
-msgid "Password changed"
-msgstr "Lozinka"
+msgid "Password changed."
+msgstr ""
 
 msgid "Password:"
 msgstr ""
@@ -15309,10 +15319,8 @@ msgstr ""
 msgid "Random"
 msgstr "Slučajan"
 
-#
-#, fuzzy
-msgid "Random password"
-msgstr "Molim unesite novo ime datoteke"
+msgid "Random Password"
+msgstr ""
 
 #, python-format
 msgid "Rating defined by broadcaster - %d"
@@ -17701,6 +17709,9 @@ msgstr ""
 #, fuzzy
 msgid "Setting Restored "
 msgstr "Postavke"
+
+msgid "Setting a password is strongly advised if your STB is open to the Internet. You must set a password in order to be able to use network services like FTP, Telnet or SSH."
+msgstr ""
 
 #
 msgid "Settings"
@@ -20385,9 +20396,6 @@ msgstr ""
 "NetworkWizard proširenje nije instalirano!\n"
 "molim instalirajte ga."
 
-msgid "The password can not be blank."
-msgstr ""
-
 #
 #, python-format
 msgid "The path %s already exists."
@@ -21734,11 +21742,6 @@ msgstr ""
 
 msgid "Umweltbewusstsein"
 msgstr ""
-
-#
-#, fuzzy
-msgid "Unable to change password"
-msgstr "Molim unesite novo ime datoteke"
 
 msgid "Unable to create the required directories on the media (e.g. USB stick or Harddisk) - Please verify media and try again!"
 msgstr ""
@@ -23494,9 +23497,6 @@ msgstr ""
 #, python-format
 msgid "You have to wait %s!"
 msgstr "Morate pričekati %s!"
-
-msgid "You must set a root password in order to be able to use network services, such as FTP, telnet or ssh."
-msgstr ""
 
 msgid "You must set at least one Command"
 msgstr ""
@@ -25817,6 +25817,21 @@ msgstr "prebačen"
 
 msgid "®"
 msgstr ""
+
+#
+#, fuzzy
+#~ msgid "Password changed"
+#~ msgstr "Lozinka"
+
+#
+#, fuzzy
+#~ msgid "Random password"
+#~ msgstr "Molim unesite novo ime datoteke"
+
+#
+#, fuzzy
+#~ msgid "Unable to change password"
+#~ msgstr "Molim unesite novo ime datoteke"
 
 #
 #, fuzzy

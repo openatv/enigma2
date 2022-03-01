@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openATV / enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-02-27 22:18+0000\n"
+"POT-Creation-Date: 2022-03-01 17:50+0000\n"
 "PO-Revision-Date: 2017-11-21 13:26+0200\n"
 "Last-Translator: Satelitas\n"
 "Language-Team: TEAM <EMAIL@ADDRESS>\n"
@@ -2874,6 +2874,9 @@ msgstr "Позволява ви да скриете разширенията н�
 msgid "Allows you to set the maximum size of the Debug log size (MB). When that size is reached, a new file will be created."
 msgstr "Позволява ви да зададете максималния размер на Debug log (MB). Когато се достигне този размер, ще бъде създаден нов фаил."
 
+msgid "Allows you to show/hide CCcam in extensions (BLUE button)."
+msgstr "Позволява ви да показвате/скривате CCcam в разширенията (син бутон)."
+
 msgid "Allows you to show/hide Log Manager in extensions (blue button)."
 msgstr "Позволява ви да показвате/скривате Log Manager в разширенията (син бутон)."
 
@@ -5628,6 +5631,9 @@ msgstr "Създай DVD-ISO"
 msgid "Create ISO"
 msgstr "Създай ISO"
 
+msgid "Create a randomly generated password"
+msgstr ""
+
 msgid "Create directory"
 msgstr "Създай директория"
 
@@ -7812,6 +7818,12 @@ msgid "Error: %s %s not %s!  Please try again later."
 msgstr "Няма налични актуализации. Моля, опитайте отново по-късно."
 
 msgid "Error: Checksum is invalid!"
+msgstr ""
+
+msgid "Error: The new password may not be blank!"
+msgstr ""
+
+msgid "Error: Unable to change password!"
 msgstr ""
 
 #, fuzzy
@@ -13070,13 +13082,15 @@ msgstr ""
 msgid "Password (httpwd)"
 msgstr "Парола (httpwd)"
 
+msgid "Password Actions"
+msgstr ""
+
 #, fuzzy
 msgid "Password Setup"
 msgstr "Парола"
 
-#, fuzzy
-msgid "Password changed"
-msgstr "Парола (httpwd)"
+msgid "Password changed."
+msgstr ""
 
 msgid "Password:"
 msgstr "Парола:"
@@ -14340,9 +14354,8 @@ msgstr "отборни спортове"
 msgid "Random"
 msgstr "Произволно"
 
-#, fuzzy
-msgid "Random password"
-msgstr "Моля, въведете ново име:"
+msgid "Random Password"
+msgstr ""
 
 #, python-format
 msgid "Rating defined by broadcaster - %d"
@@ -16545,6 +16558,9 @@ msgstr "Задава главната папка на списъка с филм
 
 msgid "Setting Restored "
 msgstr "Настройка възстановена "
+
+msgid "Setting a password is strongly advised if your STB is open to the Internet. You must set a password in order to be able to use network services like FTP, Telnet or SSH."
+msgstr ""
 
 msgid "Settings"
 msgstr "Настройки"
@@ -19064,9 +19080,6 @@ msgstr ""
 "Разширението на съветника за мрежа не е инсталиран!\n"
 "Моля, инсталирайте го."
 
-msgid "The password can not be blank."
-msgstr ""
-
 #, python-format
 msgid "The path %s already exists."
 msgstr "Пътят %s вeче съществува."
@@ -20326,10 +20339,6 @@ msgstr "Украински"
 
 msgid "Umweltbewusstsein"
 msgstr ""
-
-#, fuzzy
-msgid "Unable to change password"
-msgstr "Моля, въведете ново име:"
 
 msgid "Unable to create the required directories on the media (e.g. USB stick or Harddisk) - Please verify media and try again!"
 msgstr ""
@@ -21987,9 +21996,6 @@ msgstr "Вие имате да създавате Swap File, преди да с�
 #, python-format
 msgid "You have to wait %s!"
 msgstr "Вие трябва да почакате %s!"
-
-msgid "You must set a root password in order to be able to use network services, such as FTP, telnet or ssh."
-msgstr ""
 
 msgid "You must set at least one Command"
 msgstr "Вие трябва да зададете най-малко една команда"
@@ -24165,8 +24171,17 @@ msgstr "превключено на"
 msgid "®"
 msgstr ""
 
-msgid "Allows you to show/hide CCcam in extensions (BLUE button)."
-msgstr "Позволява ви да показвате/скривате CCcam в разширенията (син бутон)."
+#, fuzzy
+#~ msgid "Password changed"
+#~ msgstr "Парола (httpwd)"
+
+#, fuzzy
+#~ msgid "Random password"
+#~ msgstr "Моля, въведете ново име:"
+
+#, fuzzy
+#~ msgid "Unable to change password"
+#~ msgstr "Моля, въведете ново име:"
 
 #, python-format
 #~ msgid ""
