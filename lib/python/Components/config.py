@@ -488,7 +488,7 @@ class ConfigBoolean(ConfigElement):
 		self.value = default
 		self.descriptions = descriptions
 		self.graphic = graphic
-		self.trueValues = ("1", "enable", "on", "true", "yes")
+		self.trueValues = ("1", "enabled", "on", "true", "yes")
 
 	def handleKey(self, key, callback=None):
 		prev = self.value
