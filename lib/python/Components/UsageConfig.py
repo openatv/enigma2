@@ -400,7 +400,7 @@ def InitUsageConfig():
 	config.usage.long_press_emulation_key = ConfigSelection(default="0", choices=[
 		("0", _("None")),
 		(str(KEYIDS["KEY_TV"]), _("TV")),
-		(str(KEYIDS["KEY_RADIO"]), _("Radio")),
+		(str(KEYIDS["KEY_RADIO"]), _("RADIO")),
 		(str(KEYIDS["KEY_AUDIO"]), _("Audio")),
 		(str(KEYIDS["KEY_VIDEO"]), _("List/Fav")),
 		(str(KEYIDS["KEY_HOME"]), _("Home")),
