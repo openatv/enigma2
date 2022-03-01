@@ -439,6 +439,9 @@
 		<item level="0" text="Depth" description="This option lets you adjust the 3D depth">config.osd.threeDznorm</item>
 		<item level="0" text="Show in extensions list ?" description="This option lets you show the option in the extension screen">config.osd.show3dextensions</item>
 	</setup>
+	<setup key="Password" title="Password Setup">
+		<item level="0" text="New password" description="Setting a password is strongly advised if your STB is open to the Internet. You must set a password in order to be able to use network services like FTP, Telnet or SSH.">config.network.password</item>
+	</setup>
 	<setup key="PluginBrowser" title="Pluginbrowser Settings" level="2">
 		<item level="2" text="Show translation packages" description="If set to 'yes' it will show the 'PO' packages in browser.">config.pluginbrowser.po</item>
 		<item level="2" text="Show source packages" description="If set to 'yes' it will show the 'SRC' packages in browser.">config.pluginbrowser.src</item>
