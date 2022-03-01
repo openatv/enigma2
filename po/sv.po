@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-02-11 14:04+0000\n"
+"POT-Creation-Date: 2022-02-27 22:18+0000\n"
 "PO-Revision-Date: 2021-08-15 18:50+0000\n"
 "Last-Translator: openATV <openatv@gmail.com>\n"
 "Language-Team: Swedish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/sv/>\n"
@@ -1108,6 +1108,10 @@ msgstr "%d KB"
 #, python-format
 msgid "%d MB"
 msgstr "%d MB"
+
+#, python-format
+msgid "%d MHz"
+msgstr ""
 
 #. TRANSLATORS: full date representation dayname daynum monthname year in strftime() format! See 'man strftime'
 #. _("%A %e %B %Y")
@@ -2938,6 +2942,12 @@ msgstr "Tillåter dig justera längden för tiden som informationen om upplösni
 msgid "Allows you to assign the selected function to this button."
 msgstr ""
 
+msgid "Allows you to enable the GStreamer debug log. They contain very detailed information of everything the GStreamer system does."
+msgstr ""
+
+msgid "Allows you to enable the GStreamer pipeline graphs. These are .dot files that describe the topology of your pipeline, along with the caps negotiated in each link."
+msgstr ""
+
 msgid "Allows you to enable the debug log. They contain very detailed information of everything the system does."
 msgstr ""
 
@@ -2950,7 +2960,7 @@ msgstr "Låter dig dölja filändelser av kända filtyper"
 msgid "Allows you to set the maximum size of the Debug log size (MB). When that size is reached, a new file will be created."
 msgstr ""
 
-msgid "Allows you to show/hide CCcam in extensions (blue button)."
+msgid "Allows you to show/hide CCcam in extensions (BLUE button)."
 msgstr ""
 
 msgid "Allows you to show/hide Log Manager in extensions (blue button)."
@@ -4118,6 +4128,9 @@ msgstr "CAID"
 msgid "CAID:SrvID"
 msgstr ""
 
+msgid "CCCam Info"
+msgstr ""
+
 msgid "CCcam Client Info"
 msgstr "CCcam Klient Info"
 
@@ -4135,12 +4148,8 @@ msgid ""
 "CCcam Info %s\n"
 "by AliAbdul %s\n"
 "\n"
-"This plugin shows you the status of your CCcam."
+"This screen shows you the status of CCcam."
 msgstr ""
-"CCcam Info %s\n"
-"av AliAbdul %s\n"
-"\n"
-"Detta  plugin visar statusen på din CCcam."
 
 msgid "CCcam Info Config"
 msgstr ""
@@ -4239,10 +4248,6 @@ msgid "CPU speed/cores"
 msgstr ""
 
 msgid "CPU temperature"
-msgstr ""
-
-#, python-format
-msgid "CPU: %s"
 msgstr ""
 
 #
@@ -5785,10 +5790,6 @@ msgstr "Kopierar filer"
 msgid "Copying files"
 msgstr "Kopierar filer"
 
-#, python-format
-msgid "Cores: %s"
-msgstr ""
-
 #
 #, fuzzy
 msgid "Cornish"
@@ -6714,6 +6715,9 @@ msgstr "Avmarkera"
 msgid "Deselected packages usually occur because those packaged are incompatible with existing packages.  While this is mostly harmless it is possible that your %s %s may experience issues."
 msgstr ""
 
+msgid "Detail of GStreamer log"
+msgstr ""
+
 msgid "Details for plugin: "
 msgstr "Detaljer för plugin : "
 
@@ -6721,6 +6725,9 @@ msgid "Detected drives"
 msgstr ""
 
 msgid "Detected network servers"
+msgstr ""
+
+msgid "Detected tuners"
 msgstr ""
 
 msgid "Detektiv"
@@ -7724,6 +7731,12 @@ msgstr "Aktivera EIT EPG"
 msgid "Enable Focus Animation"
 msgstr ""
 
+msgid "Enable GStreamer debug log *"
+msgstr ""
+
+msgid "Enable GStreamer pipeline graphs *"
+msgstr ""
+
 #, fuzzy
 msgid "Enable IceTV"
 msgstr "Aktivera EIT EPG"
@@ -8583,6 +8596,9 @@ msgstr ""
 msgid "FTP Setup"
 msgstr "FTP-Konfiguration"
 
+msgid "Factory Reset"
+msgstr ""
+
 msgid "Factory release"
 msgstr ""
 
@@ -9103,6 +9119,9 @@ msgstr ""
 msgid "Full back-up on %s"
 msgstr ""
 
+msgid "Full factory reset"
+msgstr ""
+
 msgid "Full transparency"
 msgstr "Helt transparent"
 
@@ -9135,6 +9154,12 @@ msgid "GB"
 msgstr "GB"
 
 msgid "GCC version"
+msgstr ""
+
+msgid "GStreamer debug log category *"
+msgstr ""
+
+msgid "GStreamer debug log level *"
 msgstr ""
 
 msgid "GStreamer version"
@@ -10832,10 +10857,6 @@ msgstr ""
 
 msgid "Kernel version"
 msgstr ""
-
-#, python-format
-msgid "Kernel: %s"
-msgstr "Kernel: %s"
 
 #
 msgid "Keyboard"
@@ -13364,6 +13385,9 @@ msgstr "Endast utökningar."
 msgid "Only free scan"
 msgstr "Bara fri sökning"
 
+msgid "Only log debug information of GStreamer category. * means all categories."
+msgstr ""
+
 msgid "Only move the dish quickly after this hour."
 msgstr ""
 
@@ -15703,10 +15727,37 @@ msgstr "Ta bort en markör"
 msgid "Remove a nameserver entry"
 msgstr "Ta bort en namnserver post"
 
+msgid "Remove all bouquet/tuning data"
+msgstr ""
+
 #
 #, fuzzy
 msgid "Remove all cuts and marks"
 msgstr "Ta bort en markör"
+
+msgid "Remove all network mount data"
+msgstr ""
+
+msgid "Remove all other data"
+msgstr ""
+
+msgid "Remove all plugin setting data"
+msgstr ""
+
+msgid "Remove all resume point data"
+msgstr ""
+
+msgid "Remove all settings data"
+msgstr ""
+
+msgid "Remove all skin data"
+msgstr ""
+
+msgid "Remove all timer data"
+msgstr ""
+
+msgid "Remove all user interface data"
+msgstr ""
 
 #
 msgid "Remove bookmark"
@@ -15861,6 +15912,9 @@ msgstr ""
 #
 msgid "Reset and renumerate title names"
 msgstr "Återställ och omnumrera titelnamnen"
+
+msgid "Reset network configuration"
+msgstr ""
 
 msgid "Reset persistent PIN code"
 msgstr "Återställ beständig PIN-kod"
@@ -16698,6 +16752,39 @@ msgstr ""
 msgid "Select 'Yes' to enable editing of this device's settings. Selecting 'No' resets the devices settings to their default values."
 msgstr ""
 
+msgid "Select 'Yes' to remove all main settings configuration data. Selecting this option will set all Enigma2 settings back to their default values.  This will also cause Enigma2 to run the Welcome Wizard on restart."
+msgstr ""
+
+msgid "Select 'Yes' to remove all media player resume data. Selecting this option will remove the data used to allow playback of media files to resume from the position where playback was last stopped. Playback position of recordings is not affected."
+msgstr ""
+
+msgid "Select 'Yes' to remove all network mount data. Selecting this option will remove all network data including automounts and network connection data including connection accounts and passwords. This could cause some Enigma2 functions to fail if they are configured to use these network resources."
+msgstr ""
+
+msgid "Select 'Yes' to remove all other files and directories not covered by the options above."
+msgstr ""
+
+msgid "Select 'Yes' to remove all plugin configuration data. Selecting this option will remove all plugin configuration data that is stored in the Enigma2 configuration folder. This will cause all affected plugins to return to their default settings. This could cause some plugins to not function until configured."
+msgstr ""
+
+msgid "Select 'Yes' to remove all settings, tuning data, timers, resume pointers etc. Selecting this option will restore the configuration to the initial settings before any configuration settings were applied. This is the most reliable form of Factory Reset."
+msgstr ""
+
+msgid "Select 'Yes' to remove all timer configuration data. Selecting this option will clear all timers, autotimers and power timers."
+msgstr ""
+
+msgid "Select 'Yes' to remove all tuning data. Selecting this option will remove all tuning and bouquet data and will make timers non functional until the receiver is retuned."
+msgstr ""
+
+msgid "Select 'Yes' to remove all user customizations of skin data. Selecting this option will remove all user based skin customizations. All affected skins will return to their standard settings. This will also clear any customized boot logos and backdrops."
+msgstr ""
+
+msgid "Select 'Yes' to remove all user interface data. Selecting this option will remove all keymap, menu and setup override data and restore the default definitions."
+msgstr ""
+
+msgid "Select 'Yes' to reset network configuration to the default. This will enable the Ethernet port if it exists and set the receiver to use DHCP. All other network interfaces will be deleted."
+msgstr ""
+
 msgid "Select 'band' if using a 'universal' LNB, otherwise consult your LNB spec sheet."
 msgstr ""
 
@@ -17163,6 +17250,12 @@ msgid ""
 "\n"
 "Do you want to restore this settinglist?"
 msgstr "Vill du återställa dina inställningar?"
+
+msgid ""
+"Selecting 'Yes' will delete the currently selected user data. This action can't be undone. You may want to create a backup before continuing.\n"
+"\n"
+"Are you sure you want to continue with the factory reset?"
+msgstr ""
 
 #
 msgid "Selecting satellites 1 (USALS)"
@@ -17866,7 +17959,10 @@ msgstr "Visa AutoTimerlista"
 msgid "Show Box Portal"
 msgstr ""
 
-msgid "Show CCcam in extensions ?"
+msgid "Show CCcam Info"
+msgstr ""
+
+msgid "Show CCcam in extensions"
 msgstr ""
 
 msgid "Show CI messages"
@@ -17968,7 +18064,7 @@ msgstr ""
 msgid "Show OScam Info"
 msgstr ""
 
-msgid "Show OScam in extensions ?"
+msgid "Show OScam in extensions"
 msgstr ""
 
 msgid "Show PIP"
@@ -18415,6 +18511,9 @@ msgstr ""
 #, fuzzy
 msgid "Show task list"
 msgstr "Öppna kanallistan"
+
+msgid "Show the CCcam Info Screen"
+msgstr ""
 
 msgid "Show the DreamPlex player..."
 msgstr "Visa DreamPlex spelaren..."
@@ -18878,9 +18977,6 @@ msgstr ""
 msgid "Softcam Setup"
 msgstr ""
 
-msgid "Softcam settings"
-msgstr "Softcaminställningar"
-
 msgid "Softcam-Panel"
 msgstr ""
 
@@ -19282,6 +19378,9 @@ msgstr "Stegade mot öster"
 #
 msgid "Stepped west"
 msgstr "Stegade mot väster"
+
+msgid "Sti"
+msgstr ""
 
 #
 msgid "Stop"
@@ -20950,10 +21049,6 @@ msgstr "Tidszon"
 msgid "Time zone area"
 msgstr "Tidszon"
 
-#, fuzzy
-msgid "Time zone settings"
-msgstr "Tidsinställningar"
-
 msgid "Timeline 24 Hour"
 msgstr "Tidslinje 24 timmars"
 
@@ -21384,12 +21479,18 @@ msgstr "Mottagare:"
 msgid "Tuner Configuration"
 msgstr "Tunerkonfiguration"
 
+msgid "Tuner Information"
+msgstr ""
+
 msgid "Tuner Setup"
 msgstr ""
 
 #
 msgid "Tuner configuration"
 msgstr "Mottagarkonfiguration"
+
+msgid "Tuner information"
+msgstr ""
 
 msgid "Tuner is not supported"
 msgstr "Tuner stöds ej"
@@ -22986,21 +23087,6 @@ msgstr ""
 
 msgid "When tuned to a service the system will normally scan the transponder for any changes and save them. Only set to 'yes' if you're absolutely sure what you're doing."
 msgstr ""
-
-#
-#, fuzzy, python-format
-msgid ""
-"When you do a factory reset, you will lose ALL your configuration data\n"
-"(including bouquets, services, satellite data ...)\n"
-"After completion of factory reset, your %s %s will restart automatically!\n"
-"\n"
-"Really do a factory reset?"
-msgstr ""
-"När du utför en fabriksåterställning, kommer du att förlora ALL konfigurationsdata\n"
-"(inkl favoritlistor, kanaler, satellitdata ...)\n"
-"När fabriksåterställningen är klar, kommer din mottagare automatiskt starta om!\n"
-"\n"
-"Verkligen utföra en fabriksåterställning?"
 
 #
 msgid "Where do you want to backup your settings?"
@@ -25736,6 +25822,44 @@ msgstr "zappad"
 
 msgid "®"
 msgstr ""
+
+#, python-format
+#~ msgid ""
+#~ "CCcam Info %s\n"
+#~ "by AliAbdul %s\n"
+#~ "\n"
+#~ "This plugin shows you the status of your CCcam."
+#~ msgstr ""
+#~ "CCcam Info %s\n"
+#~ "av AliAbdul %s\n"
+#~ "\n"
+#~ "Detta  plugin visar statusen på din CCcam."
+
+#, python-format
+#~ msgid "Kernel: %s"
+#~ msgstr "Kernel: %s"
+
+#~ msgid "Softcam settings"
+#~ msgstr "Softcaminställningar"
+
+#, fuzzy
+#~ msgid "Time zone settings"
+#~ msgstr "Tidsinställningar"
+
+#
+#, fuzzy, python-format
+#~ msgid ""
+#~ "When you do a factory reset, you will lose ALL your configuration data\n"
+#~ "(including bouquets, services, satellite data ...)\n"
+#~ "After completion of factory reset, your %s %s will restart automatically!\n"
+#~ "\n"
+#~ "Really do a factory reset?"
+#~ msgstr ""
+#~ "När du utför en fabriksåterställning, kommer du att förlora ALL konfigurationsdata\n"
+#~ "(inkl favoritlistor, kanaler, satellitdata ...)\n"
+#~ "När fabriksåterställningen är klar, kommer din mottagare automatiskt starta om!\n"
+#~ "\n"
+#~ "Verkligen utföra en fabriksåterställning?"
 
 #~ msgid "Automatic image backup"
 #~ msgstr "Automatisk Image backup"

@@ -5,8 +5,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-02-11 14:04+0000\n"
-"PO-Revision-Date: 2022-02-24 21:56+0000\n"
+"POT-Creation-Date: 2022-02-27 22:18+0000\n"
+"PO-Revision-Date: 2022-03-01 14:41+0000\n"
 "Last-Translator: tomppaa <tomzza89@gmail.com>\n"
 "Language-Team: Finnish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/fi/>\n"
 "Language: fi\n"
@@ -14,7 +14,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.11-dev\n"
+"X-Generator: Weblate 4.11.1-dev\n"
 
 msgid ""
 "\n"
@@ -997,6 +997,10 @@ msgstr "%d KB"
 #, python-format
 msgid "%d MB"
 msgstr "%d MB"
+
+#, python-format
+msgid "%d MHz"
+msgstr "%d MHz"
 
 #. TRANSLATORS: full date representation dayname daynum monthname year in strftime() format! See 'man strftime'
 #. _("%A %e %B %Y")
@@ -2680,6 +2684,12 @@ msgstr "Määrittää, kuinka kauan resoluutiotietoa näytetään kuvaruudussa."
 msgid "Allows you to assign the selected function to this button."
 msgstr "Voit määrittää valitun toiminnon tällä painikkeelle."
 
+msgid "Allows you to enable the GStreamer debug log. They contain very detailed information of everything the GStreamer system does."
+msgstr "Voit ottaa käyttöön GStreamerin vianmäärityslokin. Ne sisältävät hyvin yksityiskohtaista tietoa kaikesta, mitä GStreamer järjestelmä tekee."
+
+msgid "Allows you to enable the GStreamer pipeline graphs. These are .dot files that describe the topology of your pipeline, along with the caps negotiated in each link."
+msgstr "Voit ottaa käyttöön GStreamerin graphisen kuvaajan. Nämä ovat .dot-tiedostoja, jotka kuvaavat putkiston topologian sekä kussakin linkissä neuvotellut korkit."
+
 msgid "Allows you to enable the debug log. They contain very detailed information of everything the system does."
 msgstr "Voit ottaa vianmäärityslokin käyttöön. Ne sisältävät hyvin yksityiskohtaisia tietoja kaikesta, mitä järjestelmä tekee."
 
@@ -2691,9 +2701,6 @@ msgstr "Määrittää piilotetaanko tunnettujen tiedostojen tiedostopäätteet."
 
 msgid "Allows you to set the maximum size of the Debug log size (MB). When that size is reached, a new file will be created."
 msgstr "Määritä vianselvityslokin maksimikoko (MB). Kun maksimikoko saavutetaan, luodaan uusi lokitiedosto."
-
-msgid "Allows you to show/hide CCcam in extensions (blue button)."
-msgstr "Määrittää näytetäänkö CCcam Info laajennusvalikossa (sininen näppäin)."
 
 msgid "Allows you to show/hide Log Manager in extensions (blue button)."
 msgstr "Määrittää näytetäänkö Lokien hallinta laajennusvalikossa (sininen näppäin)."
@@ -3752,6 +3759,9 @@ msgstr "CAID"
 msgid "CAID:SrvID"
 msgstr "CAID:SrvID"
 
+msgid "CCCam Info"
+msgstr "CCCam tiedot"
+
 msgid "CCcam Client Info"
 msgstr "CCcam asiakkaan tietoja"
 
@@ -3769,12 +3779,12 @@ msgid ""
 "CCcam Info %s\n"
 "by AliAbdul %s\n"
 "\n"
-"This plugin shows you the status of your CCcam."
+"This screen shows you the status of CCcam."
 msgstr ""
-"CCcam Info %s\n"
-"Tekijä AliAbdul %s\n"
+"CCcam tiedot %s\n"
+"AliAbdul %s\n"
 "\n"
-"Tämä lisäosa näyttää CCcam:in tilan."
+"Tämä ruutu näyttää CCcamin tilan."
 
 msgid "CCcam Info Config"
 msgstr "CCcam Info -asetukset"
@@ -3869,10 +3879,6 @@ msgstr "CPU nopeus/ydintä"
 
 msgid "CPU temperature"
 msgstr "CPU lämpötila"
-
-#, python-format
-msgid "CPU: %s"
-msgstr "Prosessori: %s"
 
 msgid "CVBS"
 msgstr "Komposiitti (CVBS)"
@@ -5281,10 +5287,6 @@ msgstr "Kopioi kansio"
 msgid "Copying files"
 msgstr "Kopioidaan tiedostoja"
 
-#, python-format
-msgid "Cores: %s"
-msgstr "Ydintä: %s"
-
 msgid "Cornish"
 msgstr "Cornish"
 
@@ -6109,6 +6111,9 @@ msgstr "Poista valinta"
 msgid "Deselected packages usually occur because those packaged are incompatible with existing packages.  While this is mostly harmless it is possible that your %s %s may experience issues."
 msgstr "Valitsematta jätetyt paketit eivät ole yhteensopivia olemassa olevien pakettien kanssa.  Vaikka tämä on enimmäkseen vaaratonta, on mahdollista, että %s %s voi esiintyä ongelmia."
 
+msgid "Detail of GStreamer log"
+msgstr "Yksityiskohtaiset tiedot GStreameri lokista"
+
 msgid "Details for plugin: "
 msgstr "Lisäosan tiedot: "
 
@@ -6117,6 +6122,9 @@ msgstr "Tunnistetut asemat"
 
 msgid "Detected network servers"
 msgstr "Tunnistetut verkkopalvelimet"
+
+msgid "Detected tuners"
+msgstr "Havaitut virittimet"
 
 msgid "Detektiv"
 msgstr "Etsivä"
@@ -7020,6 +7028,12 @@ msgstr "Ota käyttöön EIT EPG"
 msgid "Enable Focus Animation"
 msgstr "Ota tarkemmat animaatiot käyttöön"
 
+msgid "Enable GStreamer debug log *"
+msgstr "Ota GStreamer debug loki käyttöön *"
+
+msgid "Enable GStreamer pipeline graphs *"
+msgstr "Ota käyttöön GStreamerin kaavio graafinen *"
+
 msgid "Enable IceTV"
 msgstr "Aktivoi IceTV"
 
@@ -7826,6 +7840,9 @@ msgstr "FTP"
 msgid "FTP Setup"
 msgstr "FTP asetukset"
 
+msgid "Factory Reset"
+msgstr "Tehdasasetusten palautus"
+
 msgid "Factory release"
 msgstr "Julkaisu versio"
 
@@ -8288,6 +8305,9 @@ msgstr "Koko alue RGB"
 msgid "Full back-up on %s"
 msgstr "Täysi backup %s"
 
+msgid "Full factory reset"
+msgstr "Täydellinen tehdasasetusten palautus"
+
 msgid "Full transparency"
 msgstr "Täysi läpinäkyvyys"
 
@@ -8317,6 +8337,12 @@ msgstr "GB"
 
 msgid "GCC version"
 msgstr "GCC versio"
+
+msgid "GStreamer debug log category *"
+msgstr "GStreamerin debug loki luokka *"
+
+msgid "GStreamer debug log level *"
+msgstr "GStreamer virheenkorjauslokin taso *"
 
 msgid "GStreamer version"
 msgstr "GStreamer versio"
@@ -9852,10 +9878,6 @@ msgstr "Kerneli tiedosto"
 
 msgid "Kernel version"
 msgstr "Kernel tiedot"
-
-#, python-format
-msgid "Kernel: %s"
-msgstr "Kerneli: %s"
 
 msgid "Keyboard"
 msgstr "Näppäimistö"
@@ -12061,6 +12083,9 @@ msgstr "Vain laajennukset."
 msgid "Only free scan"
 msgstr "Hae vain salaamattomat"
 
+msgid "Only log debug information of GStreamer category. * means all categories."
+msgstr "Vain GStreamer luokan vikailmoitustiedot. * tarkoittaa kaikkia kategorioita. "
+
 msgid "Only move the dish quickly after this hour."
 msgstr "Siirrä satelliittiantennia vasta tämän tunnin jälkeen."
 
@@ -14137,8 +14162,36 @@ msgstr "Poista merkki"
 msgid "Remove a nameserver entry"
 msgstr "Poista nimipalvelin"
 
+msgid "Remove all bouquet/tuning data"
+msgstr "Poista kaikki Kanavalista/virityksen tiedot"
+
 msgid "Remove all cuts and marks"
 msgstr "Poista kaikki leikkauset ja merkit"
+
+msgid "Remove all network mount data"
+msgstr "Poista kaikki verkon tiedot"
+
+msgid "Remove all other data"
+msgstr "Poista kaikki muut tiedot"
+
+msgid "Remove all plugin setting data"
+msgstr "Poista kaikki lisäosan asetus tiedot"
+
+msgid "Remove all resume point data"
+msgstr "Poista kaikki palautuspiste tiedot"
+
+#, fuzzy
+msgid "Remove all settings data"
+msgstr "Poista kaikki asetukset tiedot"
+
+msgid "Remove all skin data"
+msgstr "Poista kaikki teema tiedot"
+
+msgid "Remove all timer data"
+msgstr "Poista kaikki ajastukset tiedot"
+
+msgid "Remove all user interface data"
+msgstr "Poista kaikki käyttöliittymän tiedot"
 
 msgid "Remove bookmark"
 msgstr "Poista kirjanmerkki"
@@ -14272,6 +14325,9 @@ msgstr "Palauta HDMI-CEC asetukset oletusarvoksi"
 
 msgid "Reset and renumerate title names"
 msgstr "Nollaa ja uudelleenjärjestä otsikot"
+
+msgid "Reset network configuration"
+msgstr "Palauta verkkoasetukset"
 
 msgid "Reset persistent PIN code"
 msgstr "Poista katselun PIN koodi"
@@ -15008,6 +15064,39 @@ msgstr "Valitse 'A' tai 'B', jos antennijärjestelmäsi sitä vaatii, muuten val
 msgid "Select 'Yes' to enable editing of this device's settings. Selecting 'No' resets the devices settings to their default values."
 msgstr "Valitse Kyllä, jos haluat ottaa tämän laitteen asetusten muokkaamisen käyttöön. Jos valitset Ei, laiteasetukset palautetaan oletusarvoihinsa."
 
+msgid "Select 'Yes' to remove all main settings configuration data. Selecting this option will set all Enigma2 settings back to their default values.  This will also cause Enigma2 to run the Welcome Wizard on restart."
+msgstr "Valitse 'Kyllä' poistaaksesi kaikki pääasetusten konfigurointitiedot. Tämän vaihtoehdon valitseminen palauttaa kaikki Enigma2:n asetukset oletusarvoihinsa.  Tämä aiheuttaa myös sen, että Enigma2 suorittaa Asennus Avustaja uudelleenkäynnistyksen yhteydessä."
+
+msgid "Select 'Yes' to remove all media player resume data. Selecting this option will remove the data used to allow playback of media files to resume from the position where playback was last stopped. Playback position of recordings is not affected."
+msgstr "Valitse 'Kyllä' poistaaksesi kaikki toisto soittimen jatko tiedot. Tämän vaihtoehdon valitseminen poistaa tiedot, joiden avulla mediatiedostojen toistoa voidaan jatkaa siitä kohdasta, jossa toisto viimeksi pysäytettiin. Tämä ei vaikuta tallenteiden toistoasentoon."
+
+msgid "Select 'Yes' to remove all network mount data. Selecting this option will remove all network data including automounts and network connection data including connection accounts and passwords. This could cause some Enigma2 functions to fail if they are configured to use these network resources."
+msgstr "Valitse 'Kyllä' poistaaksesi kaikki verkkoon liitetyt tiedot. Tämän vaihtoehdon valitseminen poistaa kaikki verkkotiedot, mukaan lukien automaattiset kiinnitykset ja verkkoyhteys tiedot, mukaan lukien accountit ja salasanat. Tämä voi aiheuttaa joidenkin Enigma2-toimintojen epäonnistumisen, jos ne on määritetty käyttämään näitä verkkoresursseja."
+
+msgid "Select 'Yes' to remove all other files and directories not covered by the options above."
+msgstr "Valitse 'Kyllä' poistaaksesi kaikki muut tiedostot ja hakemistot, joita yllä olevat vaihtoehdot eivät kata."
+
+msgid "Select 'Yes' to remove all plugin configuration data. Selecting this option will remove all plugin configuration data that is stored in the Enigma2 configuration folder. This will cause all affected plugins to return to their default settings. This could cause some plugins to not function until configured."
+msgstr "Valitse 'Kyllä' poistaaksesi kaikki laajennukset tiedot. Tämän vaihtoehdon valitseminen poistaa kaikki Enigma2-konfiguraatiokansioon tallennetut lisäosan konfiguraatiotiedot. Tämä aiheuttaa sen, että kaikki liitännäiset palaavat oletusasetuksiinsa. Tämä voi aiheuttaa sen, että jotkin liitännäiset eivät toimi ennen konfigurointia."
+
+msgid "Select 'Yes' to remove all settings, tuning data, timers, resume pointers etc. Selecting this option will restore the configuration to the initial settings before any configuration settings were applied. This is the most reliable form of Factory Reset."
+msgstr ""
+
+msgid "Select 'Yes' to remove all timer configuration data. Selecting this option will clear all timers, autotimers and power timers."
+msgstr ""
+
+msgid "Select 'Yes' to remove all tuning data. Selecting this option will remove all tuning and bouquet data and will make timers non functional until the receiver is retuned."
+msgstr ""
+
+msgid "Select 'Yes' to remove all user customizations of skin data. Selecting this option will remove all user based skin customizations. All affected skins will return to their standard settings. This will also clear any customized boot logos and backdrops."
+msgstr ""
+
+msgid "Select 'Yes' to remove all user interface data. Selecting this option will remove all keymap, menu and setup override data and restore the default definitions."
+msgstr ""
+
+msgid "Select 'Yes' to reset network configuration to the default. This will enable the Ethernet port if it exists and set the receiver to use DHCP. All other network interfaces will be deleted."
+msgstr ""
+
 msgid "Select 'band' if using a 'universal' LNB, otherwise consult your LNB spec sheet."
 msgstr ""
 "Valitse 'taajuusalue', jos käytössä 'universaali' LNB, muutoin lisätiedot\n"
@@ -15453,6 +15542,12 @@ msgstr ""
 "Valittu ohjelmalista: %s\n"
 "\n"
 "Haluatko palauttaa asetukset listan?"
+
+msgid ""
+"Selecting 'Yes' will delete the currently selected user data. This action can't be undone. You may want to create a backup before continuing.\n"
+"\n"
+"Are you sure you want to continue with the factory reset?"
+msgstr ""
 
 msgid "Selecting satellites 1 (USALS)"
 msgstr "Satelliittivalinta 1 (USALS)"
@@ -16096,8 +16191,11 @@ msgstr "Näytä automaattiajastusluettelo"
 msgid "Show Box Portal"
 msgstr "Näytä Tallennukset"
 
-msgid "Show CCcam in extensions ?"
-msgstr "Näytä Oscam laajennusvalikossa ?"
+msgid "Show CCcam Info"
+msgstr ""
+
+msgid "Show CCcam in extensions"
+msgstr ""
 
 msgid "Show CI messages"
 msgstr "Näytä CI-viestit"
@@ -16189,8 +16287,8 @@ msgstr "Näytä monikanava-EPG"
 msgid "Show OScam Info"
 msgstr "Näytä OScam tiedot"
 
-msgid "Show OScam in extensions ?"
-msgstr "Näytä Oscam laajennusvalikossa ?"
+msgid "Show OScam in extensions"
+msgstr ""
 
 msgid "Show PIP"
 msgstr "Näytä PiP"
@@ -16579,6 +16677,9 @@ msgstr "Näytä järjestelmätiedot"
 
 msgid "Show task list"
 msgstr "Näytä työlista"
+
+msgid "Show the CCcam Info Screen"
+msgstr ""
 
 msgid "Show the DreamPlex player..."
 msgstr "Näytä DreamPlex soitin"
@@ -16976,9 +17077,6 @@ msgstr "Softcam Toiminnot"
 msgid "Softcam Setup"
 msgstr "Softcam Asetukset"
 
-msgid "Softcam settings"
-msgstr "Softcam asetukset"
-
 msgid "Softcam-Panel"
 msgstr "Softcam hallinta"
 
@@ -17339,6 +17437,9 @@ msgstr "Askel itään"
 
 msgid "Stepped west"
 msgstr "Askel länteen"
+
+msgid "Sti"
+msgstr ""
 
 msgid "Stop"
 msgstr "Pysäytä"
@@ -18869,9 +18970,6 @@ msgstr "Aikavyöhyke"
 msgid "Time zone area"
 msgstr "Aikavyöhykkeen alue"
 
-msgid "Time zone settings"
-msgstr "Aikavyöhyke asetukset"
-
 msgid "Timeline 24 Hour"
 msgstr "Kellonaika 24 tunnin muodossa"
 
@@ -19251,11 +19349,17 @@ msgstr "Viritin:"
 msgid "Tuner Configuration"
 msgstr "Viritin Asetukset"
 
+msgid "Tuner Information"
+msgstr ""
+
 msgid "Tuner Setup"
 msgstr "Viritin asetukset"
 
 msgid "Tuner configuration"
 msgstr "Virittimien asetukset"
+
+msgid "Tuner information"
+msgstr ""
 
 msgid "Tuner is not supported"
 msgstr "Viritin ei ole tuettu"
@@ -20706,20 +20810,6 @@ msgstr "Kun vastaanotin herää valmiustilasta tai virransäästötilasta, se l�
 
 msgid "When tuned to a service the system will normally scan the transponder for any changes and save them. Only set to 'yes' if you're absolutely sure what you're doing."
 msgstr "Kun vaihdat kanavalle, normaalisti laite hakee lähettimen tietojen muutokset ja tallentaa ne. Valitse 'kyllä' Vain edistynemmille käyttäjille."
-
-#, python-format
-msgid ""
-"When you do a factory reset, you will lose ALL your configuration data\n"
-"(including bouquets, services, satellite data ...)\n"
-"After completion of factory reset, your %s %s will restart automatically!\n"
-"\n"
-"Really do a factory reset?"
-msgstr ""
-"Jos palautat tehdasasetukset, kaikki tekemäsi omat asetukset häviävät\n"
-"(sisältäen suosikkilistat, kanavat, satelliitit ...)\n"
-"Tehdasasetusten palautuksen jälkeen vastaanotin %s %s käynnistyy automaattisesti uudelleen!\n"
-"\n"
-"Haluatko varmasti palauttaa tehdasasetukset?"
 
 msgid "Where do you want to backup your settings?"
 msgstr "Minne haluat varmuuskopioida asetukset?"
@@ -23164,6 +23254,59 @@ msgstr "vaihtaa"
 
 msgid "®"
 msgstr "®"
+
+msgid "Allows you to show/hide CCcam in extensions (BLUE button)."
+msgstr "Määrittää näytetäänkö CCcam Info laajennusvalikossa (sininen näppäin)."
+
+#, python-format
+#~ msgid ""
+#~ "CCcam Info %s\n"
+#~ "by AliAbdul %s\n"
+#~ "\n"
+#~ "This plugin shows you the status of your CCcam."
+#~ msgstr ""
+#~ "CCcam Info %s\n"
+#~ "Tekijä AliAbdul %s\n"
+#~ "\n"
+#~ "Tämä lisäosa näyttää CCcam:in tilan."
+
+#, python-format
+#~ msgid "CPU: %s"
+#~ msgstr "Prosessori: %s"
+
+#, python-format
+#~ msgid "Cores: %s"
+#~ msgstr "Ydintä: %s"
+
+#, python-format
+#~ msgid "Kernel: %s"
+#~ msgstr "Kerneli: %s"
+
+#~ msgid "Show CCcam in extensions ?"
+#~ msgstr "Näytä Oscam laajennusvalikossa ?"
+
+#~ msgid "Show OScam in extensions ?"
+#~ msgstr "Näytä Oscam laajennusvalikossa ?"
+
+#~ msgid "Softcam settings"
+#~ msgstr "Softcam asetukset"
+
+#~ msgid "Time zone settings"
+#~ msgstr "Aikavyöhyke asetukset"
+
+#, python-format
+#~ msgid ""
+#~ "When you do a factory reset, you will lose ALL your configuration data\n"
+#~ "(including bouquets, services, satellite data ...)\n"
+#~ "After completion of factory reset, your %s %s will restart automatically!\n"
+#~ "\n"
+#~ "Really do a factory reset?"
+#~ msgstr ""
+#~ "Jos palautat tehdasasetukset, kaikki tekemäsi omat asetukset häviävät\n"
+#~ "(sisältäen suosikkilistat, kanavat, satelliitit ...)\n"
+#~ "Tehdasasetusten palautuksen jälkeen vastaanotin %s %s käynnistyy automaattisesti uudelleen!\n"
+#~ "\n"
+#~ "Haluatko varmasti palauttaa tehdasasetukset?"
 
 #, python-format
 #~ msgid "%d Mins"

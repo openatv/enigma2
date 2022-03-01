@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-02-11 14:04+0000\n"
+"POT-Creation-Date: 2022-02-27 22:18+0000\n"
 "PO-Revision-Date: 2022-01-25 14:01+0000\n"
 "Last-Translator: Marián Hikaník <podnety@mojepreklady.net>\n"
 "Language-Team: Slovak <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/sk/>\n"
@@ -998,6 +998,10 @@ msgstr "%d KB"
 #, python-format
 msgid "%d MB"
 msgstr "%d MB"
+
+#, python-format
+msgid "%d MHz"
+msgstr ""
 
 #. TRANSLATORS: full date representation dayname daynum monthname year in strftime() format! See 'man strftime'
 #. _("%A %e %B %Y")
@@ -2691,6 +2695,12 @@ msgstr "Umožňuje upraviť čas zobrazenia rozlíšenia na obrazovke."
 msgid "Allows you to assign the selected function to this button."
 msgstr "Umožňuje prideliť vybranú funkciu tomuto tlačidlu."
 
+msgid "Allows you to enable the GStreamer debug log. They contain very detailed information of everything the GStreamer system does."
+msgstr ""
+
+msgid "Allows you to enable the GStreamer pipeline graphs. These are .dot files that describe the topology of your pipeline, along with the caps negotiated in each link."
+msgstr ""
+
 msgid "Allows you to enable the debug log. They contain very detailed information of everything the system does."
 msgstr "Umožňuje povoliť správu z ladenia. Ta obsahuje podrobné informácie o všetkých udalostiach v systéme."
 
@@ -2702,9 +2712,6 @@ msgstr "Umožňuje skryť prípony známych typov súborov."
 
 msgid "Allows you to set the maximum size of the Debug log size (MB). When that size is reached, a new file will be created."
 msgstr "Umožňuje nastaviť maximálnu veľkosť správy o ladení (MB). Keď je dosiahnutá, vytvorí sa nový súbor."
-
-msgid "Allows you to show/hide CCcam in extensions (blue button)."
-msgstr "Umožňuje zobraziť/skryť CCcam v rozšíreniach (modré tlačidlo)."
 
 msgid "Allows you to show/hide Log Manager in extensions (blue button)."
 msgstr "Umožňuje zobraziť/skryť správcu záznamov v rozšíreniach (modré tlačidlo)."
@@ -3763,6 +3770,9 @@ msgstr "CAID"
 msgid "CAID:SrvID"
 msgstr "CAID:SrvID"
 
+msgid "CCCam Info"
+msgstr ""
+
 msgid "CCcam Client Info"
 msgstr "Info o klientovi CCcam"
 
@@ -3780,12 +3790,8 @@ msgid ""
 "CCcam Info %s\n"
 "by AliAbdul %s\n"
 "\n"
-"This plugin shows you the status of your CCcam."
+"This screen shows you the status of CCcam."
 msgstr ""
-"CCcam Info %s\n"
-"od AliAbdul %s\n"
-"\n"
-"Tento plugin zobrazuje stav vášho CCcamu."
 
 msgid "CCcam Info Config"
 msgstr "Konfiguračné info CCcamu"
@@ -3880,10 +3886,6 @@ msgstr ""
 
 msgid "CPU temperature"
 msgstr ""
-
-#, python-format
-msgid "CPU: %s"
-msgstr "CPU: %s"
 
 msgid "CVBS"
 msgstr "CVBS"
@@ -5291,10 +5293,6 @@ msgstr "Kopírovať priečinok"
 msgid "Copying files"
 msgstr "Kopírovanie súborov"
 
-#, python-format
-msgid "Cores: %s"
-msgstr "Jadrá: %s"
-
 msgid "Cornish"
 msgstr "Kornčina"
 
@@ -6119,6 +6117,9 @@ msgstr "Zrušiť výber"
 msgid "Deselected packages usually occur because those packaged are incompatible with existing packages.  While this is mostly harmless it is possible that your %s %s may experience issues."
 msgstr "Odznačené balíky sa vyskytnú vtedy, keď nie sú pribalené balíky kompatibilné s existujúcimi balíkmi. Väčšinou to nespôsobuje problém, ale pri vašom zariadení %s %s môže dôjsť aj k problémom."
 
+msgid "Detail of GStreamer log"
+msgstr ""
+
 msgid "Details for plugin: "
 msgstr "Podrobnosti o plugine: "
 
@@ -6126,6 +6127,9 @@ msgid "Detected drives"
 msgstr ""
 
 msgid "Detected network servers"
+msgstr ""
+
+msgid "Detected tuners"
 msgstr ""
 
 msgid "Detektiv"
@@ -7031,6 +7035,12 @@ msgstr "Povoliť EIT EPG"
 msgid "Enable Focus Animation"
 msgstr "Zapnúť animáciu zamerania"
 
+msgid "Enable GStreamer debug log *"
+msgstr ""
+
+msgid "Enable GStreamer pipeline graphs *"
+msgstr ""
+
 msgid "Enable IceTV"
 msgstr "Zapnúť IceTV"
 
@@ -7837,6 +7847,9 @@ msgstr "FTP"
 msgid "FTP Setup"
 msgstr "Nastavenie FTP"
 
+msgid "Factory Reset"
+msgstr ""
+
 msgid "Factory release"
 msgstr ""
 
@@ -8299,6 +8312,9 @@ msgstr "Celý rozsah RGB"
 msgid "Full back-up on %s"
 msgstr "Kompletná záloha na %s"
 
+msgid "Full factory reset"
+msgstr ""
+
 msgid "Full transparency"
 msgstr "Priehľadné"
 
@@ -8327,6 +8343,12 @@ msgid "GB"
 msgstr "GB"
 
 msgid "GCC version"
+msgstr ""
+
+msgid "GStreamer debug log category *"
+msgstr ""
+
+msgid "GStreamer debug log level *"
 msgstr ""
 
 msgid "GStreamer version"
@@ -9858,10 +9880,6 @@ msgstr ""
 
 msgid "Kernel version"
 msgstr ""
-
-#, python-format
-msgid "Kernel: %s"
-msgstr "Kernel: %s"
 
 msgid "Keyboard"
 msgstr "Klávesnica"
@@ -12058,6 +12076,9 @@ msgstr "Len rozšírenia."
 msgid "Only free scan"
 msgstr "Hľadať iba nekódované"
 
+msgid "Only log debug information of GStreamer category. * means all categories."
+msgstr ""
+
 msgid "Only move the dish quickly after this hour."
 msgstr "Presúvať parabolu rýchlo len po tejto hodine."
 
@@ -14130,8 +14151,35 @@ msgstr "Odstrániť značku"
 msgid "Remove a nameserver entry"
 msgstr "Odstrániť DNS položku"
 
+msgid "Remove all bouquet/tuning data"
+msgstr ""
+
 msgid "Remove all cuts and marks"
 msgstr "Odstrániť všetky strihy a značky"
+
+msgid "Remove all network mount data"
+msgstr ""
+
+msgid "Remove all other data"
+msgstr ""
+
+msgid "Remove all plugin setting data"
+msgstr ""
+
+msgid "Remove all resume point data"
+msgstr ""
+
+msgid "Remove all settings data"
+msgstr ""
+
+msgid "Remove all skin data"
+msgstr ""
+
+msgid "Remove all timer data"
+msgstr ""
+
+msgid "Remove all user interface data"
+msgstr ""
 
 msgid "Remove bookmark"
 msgstr "Odstrániť záložku"
@@ -14265,6 +14313,9 @@ msgstr "Reset nastavení HDMI-CEC na predvolené"
 
 msgid "Reset and renumerate title names"
 msgstr "Reset a prečíslovať názvy titulov"
+
+msgid "Reset network configuration"
+msgstr ""
 
 msgid "Reset persistent PIN code"
 msgstr "Reset trvalého kódu PIN"
@@ -15003,6 +15054,39 @@ msgstr "Ak to vyžaduje anténny systéme, vyberte možnosť 'A' alebo 'B'. Inak
 msgid "Select 'Yes' to enable editing of this device's settings. Selecting 'No' resets the devices settings to their default values."
 msgstr "Ak chcete aktivovať úpravu nastavení tohto zariadenia, vyberte možnosť 'Áno'. Výberom možnosti 'Nie' resetujete nastavenia zariadenia na predvolené hodnoty."
 
+msgid "Select 'Yes' to remove all main settings configuration data. Selecting this option will set all Enigma2 settings back to their default values.  This will also cause Enigma2 to run the Welcome Wizard on restart."
+msgstr ""
+
+msgid "Select 'Yes' to remove all media player resume data. Selecting this option will remove the data used to allow playback of media files to resume from the position where playback was last stopped. Playback position of recordings is not affected."
+msgstr ""
+
+msgid "Select 'Yes' to remove all network mount data. Selecting this option will remove all network data including automounts and network connection data including connection accounts and passwords. This could cause some Enigma2 functions to fail if they are configured to use these network resources."
+msgstr ""
+
+msgid "Select 'Yes' to remove all other files and directories not covered by the options above."
+msgstr ""
+
+msgid "Select 'Yes' to remove all plugin configuration data. Selecting this option will remove all plugin configuration data that is stored in the Enigma2 configuration folder. This will cause all affected plugins to return to their default settings. This could cause some plugins to not function until configured."
+msgstr ""
+
+msgid "Select 'Yes' to remove all settings, tuning data, timers, resume pointers etc. Selecting this option will restore the configuration to the initial settings before any configuration settings were applied. This is the most reliable form of Factory Reset."
+msgstr ""
+
+msgid "Select 'Yes' to remove all timer configuration data. Selecting this option will clear all timers, autotimers and power timers."
+msgstr ""
+
+msgid "Select 'Yes' to remove all tuning data. Selecting this option will remove all tuning and bouquet data and will make timers non functional until the receiver is retuned."
+msgstr ""
+
+msgid "Select 'Yes' to remove all user customizations of skin data. Selecting this option will remove all user based skin customizations. All affected skins will return to their standard settings. This will also clear any customized boot logos and backdrops."
+msgstr ""
+
+msgid "Select 'Yes' to remove all user interface data. Selecting this option will remove all keymap, menu and setup override data and restore the default definitions."
+msgstr ""
+
+msgid "Select 'Yes' to reset network configuration to the default. This will enable the Ethernet port if it exists and set the receiver to use DHCP. All other network interfaces will be deleted."
+msgstr ""
+
 msgid "Select 'band' if using a 'universal' LNB, otherwise consult your LNB spec sheet."
 msgstr "Vyberte 'band' (pásmo), ak sa používa 'univerzálny' LNB, v opačnom prípade si pozrite špecifikácie vášho LNB."
 
@@ -15438,6 +15522,12 @@ msgstr ""
 "Vybraný zoznam so settingom: %s\n"
 "\n"
 "Naozaj chcete obnoviť tento zoznam so settingom?"
+
+msgid ""
+"Selecting 'Yes' will delete the currently selected user data. This action can't be undone. You may want to create a backup before continuing.\n"
+"\n"
+"Are you sure you want to continue with the factory reset?"
+msgstr ""
 
 msgid "Selecting satellites 1 (USALS)"
 msgstr "Vyberanie družíc 1 (USALS)"
@@ -16079,8 +16169,11 @@ msgstr "Zobraziť zoznam autom. časovačov"
 msgid "Show Box Portal"
 msgstr "Zobraziť portál pre box"
 
-msgid "Show CCcam in extensions ?"
-msgstr "Zobraziť CCcam v rozšíreniach?"
+msgid "Show CCcam Info"
+msgstr ""
+
+msgid "Show CCcam in extensions"
+msgstr ""
 
 msgid "Show CI messages"
 msgstr "Zobraziť správy CI"
@@ -16172,8 +16265,8 @@ msgstr "Zobraziť Multi-EPG"
 msgid "Show OScam Info"
 msgstr ""
 
-msgid "Show OScam in extensions ?"
-msgstr "Zobraziť Oscam v rozšírenom menu?"
+msgid "Show OScam in extensions"
+msgstr ""
 
 msgid "Show PIP"
 msgstr "Zobraziť PiP"
@@ -16562,6 +16655,9 @@ msgstr ""
 
 msgid "Show task list"
 msgstr "Zobraziť zoznam úloh"
+
+msgid "Show the CCcam Info Screen"
+msgstr ""
 
 msgid "Show the DreamPlex player..."
 msgstr "Zobraziť prehrávač DreamPlex..."
@@ -16959,9 +17055,6 @@ msgstr "Akcie pre softcam"
 msgid "Softcam Setup"
 msgstr "Inštalácia softcamu"
 
-msgid "Softcam settings"
-msgstr "Nastavenia softcamu"
-
 msgid "Softcam-Panel"
 msgstr "Panel pre softcam"
 
@@ -17322,6 +17415,9 @@ msgstr "Krok na východ"
 
 msgid "Stepped west"
 msgstr "Krok na západ"
+
+msgid "Sti"
+msgstr ""
 
 msgid "Stop"
 msgstr "Zastaviť"
@@ -18851,9 +18947,6 @@ msgstr "Časová zóna"
 msgid "Time zone area"
 msgstr "Oblasť časovej zóny"
 
-msgid "Time zone settings"
-msgstr "Nastavenia časovej zóny"
-
 msgid "Timeline 24 Hour"
 msgstr "Časová os - 24 hodín"
 
@@ -19233,11 +19326,17 @@ msgstr "Tuner:"
 msgid "Tuner Configuration"
 msgstr "Konfigurácia tunera"
 
+msgid "Tuner Information"
+msgstr ""
+
 msgid "Tuner Setup"
 msgstr "Nastavenie tunera"
 
 msgid "Tuner configuration"
 msgstr "Konfigurácia tunera"
+
+msgid "Tuner information"
+msgstr ""
 
 msgid "Tuner is not supported"
 msgstr "Tuner nie je podporovaný"
@@ -20683,20 +20782,6 @@ msgstr "Keď sa prijímač prebudí z pohotovostného režimu alebo sa zapne, od
 
 msgid "When tuned to a service the system will normally scan the transponder for any changes and save them. Only set to 'yes' if you're absolutely sure what you're doing."
 msgstr "Pri naladení stanice systém za normálnych okolností preskenuje celý transpondér, zaznamená zmeny a uloží ich. Možnosť 'áno' zvoľte iba vtedy, keď presne viete, čo robíte."
-
-#, python-format
-msgid ""
-"When you do a factory reset, you will lose ALL your configuration data\n"
-"(including bouquets, services, satellite data ...)\n"
-"After completion of factory reset, your %s %s will restart automatically!\n"
-"\n"
-"Really do a factory reset?"
-msgstr ""
-"Keď obnovíte továrenské nastavenia, stratíte VŠETKY konfiguračné údaje\n"
-"(vrátane prehľadov, staníc, údajov o družiciach...)\n"
-"Po skončení prechodu na továrenské nastavenia sa %s %s automaticky reštartuje!\n"
-"\n"
-"Naozaj chcete obnoviť továrenské nastavenia?"
 
 msgid "Where do you want to backup your settings?"
 msgstr "Kam chcete zálohovať svoje nastavenia?"
@@ -23136,6 +23221,59 @@ msgstr "prepínanie"
 
 msgid "®"
 msgstr "®"
+
+msgid "Allows you to show/hide CCcam in extensions (BLUE button)."
+msgstr "Umožňuje zobraziť/skryť CCcam v rozšíreniach (modré tlačidlo)."
+
+#, python-format
+#~ msgid ""
+#~ "CCcam Info %s\n"
+#~ "by AliAbdul %s\n"
+#~ "\n"
+#~ "This plugin shows you the status of your CCcam."
+#~ msgstr ""
+#~ "CCcam Info %s\n"
+#~ "od AliAbdul %s\n"
+#~ "\n"
+#~ "Tento plugin zobrazuje stav vášho CCcamu."
+
+#, python-format
+#~ msgid "CPU: %s"
+#~ msgstr "CPU: %s"
+
+#, python-format
+#~ msgid "Cores: %s"
+#~ msgstr "Jadrá: %s"
+
+#, python-format
+#~ msgid "Kernel: %s"
+#~ msgstr "Kernel: %s"
+
+#~ msgid "Show CCcam in extensions ?"
+#~ msgstr "Zobraziť CCcam v rozšíreniach?"
+
+#~ msgid "Show OScam in extensions ?"
+#~ msgstr "Zobraziť Oscam v rozšírenom menu?"
+
+#~ msgid "Softcam settings"
+#~ msgstr "Nastavenia softcamu"
+
+#~ msgid "Time zone settings"
+#~ msgstr "Nastavenia časovej zóny"
+
+#, python-format
+#~ msgid ""
+#~ "When you do a factory reset, you will lose ALL your configuration data\n"
+#~ "(including bouquets, services, satellite data ...)\n"
+#~ "After completion of factory reset, your %s %s will restart automatically!\n"
+#~ "\n"
+#~ "Really do a factory reset?"
+#~ msgstr ""
+#~ "Keď obnovíte továrenské nastavenia, stratíte VŠETKY konfiguračné údaje\n"
+#~ "(vrátane prehľadov, staníc, údajov o družiciach...)\n"
+#~ "Po skončení prechodu na továrenské nastavenia sa %s %s automaticky reštartuje!\n"
+#~ "\n"
+#~ "Naozaj chcete obnoviť továrenské nastavenia?"
 
 #, python-format
 #~ msgid "%d Mins"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-02-11 14:04+0000\n"
+"POT-Creation-Date: 2022-02-27 22:18+0000\n"
 "PO-Revision-Date: 2019-07-27 12:19+0700\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -1028,6 +1028,10 @@ msgstr "%d KB"
 #, python-format
 msgid "%d MB"
 msgstr "%d MB"
+
+#, python-format
+msgid "%d MHz"
+msgstr ""
 
 #. TRANSLATORS: full date representation dayname daynum monthname year in strftime() format! See 'man strftime'
 #. _("%A %e %B %Y")
@@ -2713,6 +2717,12 @@ msgstr "Cho phép bạn điều chỉnh lượng thời gian hiển thị thông
 msgid "Allows you to assign the selected function to this button."
 msgstr ""
 
+msgid "Allows you to enable the GStreamer debug log. They contain very detailed information of everything the GStreamer system does."
+msgstr ""
+
+msgid "Allows you to enable the GStreamer pipeline graphs. These are .dot files that describe the topology of your pipeline, along with the caps negotiated in each link."
+msgstr ""
+
 msgid "Allows you to enable the debug log. They contain very detailed information of everything the system does."
 msgstr "Cho phép bạn kích hoạt nhật ký gỡ lỗi. Chúng chứa thông tin rất chi tiết về mọi thứ hệ thống làm."
 
@@ -2724,9 +2734,6 @@ msgstr "Cho phép bạn ẩn phần mở rộng của các loại tệp đã bi�
 
 msgid "Allows you to set the maximum size of the Debug log size (MB). When that size is reached, a new file will be created."
 msgstr "Cho phép bạn đặt kích thước tối đa của kích thước nhật ký Gỡ lỗi (MB). Khi đạt được kích thước đó, một tệp mới sẽ được tạo."
-
-msgid "Allows you to show/hide CCcam in extensions (blue button)."
-msgstr "Cho phép bạn hiển thị / ẩn CCcam trong tiện ích mở rộng (nút màu xanh)."
 
 msgid "Allows you to show/hide Log Manager in extensions (blue button)."
 msgstr "Cho phép bạn hiển thị / ẩn Trình quản lý nhật ký trong tiện ích mở rộng (nút màu xanh)."
@@ -3799,6 +3806,9 @@ msgstr "CAID"
 msgid "CAID:SrvID"
 msgstr "CAID: SrvID"
 
+msgid "CCCam Info"
+msgstr ""
+
 msgid "CCcam Client Info"
 msgstr "Thông tin khách hàng CCcam"
 
@@ -3816,12 +3826,8 @@ msgid ""
 "CCcam Info %s\n"
 "by AliAbdul %s\n"
 "\n"
-"This plugin shows you the status of your CCcam."
+"This screen shows you the status of CCcam."
 msgstr ""
-"Thông tin CCcam% s\n"
-"bởi AliAbdul% s\n"
-"\n"
-"Plugin này cho bạn thấy trạng thái của CCcam của bạn."
 
 msgid "CCcam Info Config"
 msgstr "Cấu hình thông tin CCcam"
@@ -3916,10 +3922,6 @@ msgstr ""
 
 msgid "CPU temperature"
 msgstr ""
-
-#, python-format
-msgid "CPU: %s"
-msgstr "CPU:% s"
 
 msgid "CVBS"
 msgstr "CVBS"
@@ -5346,10 +5348,6 @@ msgstr "Sao chép các tệp tin"
 msgid "Copying files"
 msgstr "Sao chép các tập tin"
 
-#, python-format
-msgid "Cores: %s"
-msgstr "Lõi:%s"
-
 #, fuzzy
 msgid "Cornish"
 msgstr "Người Đan Mạch"
@@ -6195,6 +6193,9 @@ msgstr "Bỏ chọn"
 msgid "Deselected packages usually occur because those packaged are incompatible with existing packages.  While this is mostly harmless it is possible that your %s %s may experience issues."
 msgstr ""
 
+msgid "Detail of GStreamer log"
+msgstr ""
+
 msgid "Details for plugin: "
 msgstr "Chi tiết cho plugin: "
 
@@ -6202,6 +6203,9 @@ msgid "Detected drives"
 msgstr ""
 
 msgid "Detected network servers"
+msgstr ""
+
+msgid "Detected tuners"
 msgstr ""
 
 msgid "Detektiv"
@@ -7129,6 +7133,12 @@ msgstr "Kích hoạt EIT EPG"
 msgid "Enable Focus Animation"
 msgstr "Kích hoạt tính năng tập trung"
 
+msgid "Enable GStreamer debug log *"
+msgstr ""
+
+msgid "Enable GStreamer pipeline graphs *"
+msgstr ""
+
 #, fuzzy
 msgid "Enable IceTV"
 msgstr "Kích hoạt MiniTV"
@@ -7946,6 +7956,9 @@ msgstr "FTP"
 msgid "FTP Setup"
 msgstr "Thiết lập FTP"
 
+msgid "Factory Reset"
+msgstr ""
+
 msgid "Factory release"
 msgstr ""
 
@@ -8422,6 +8435,9 @@ msgstr "Toàn dải RGB"
 msgid "Full back-up on %s"
 msgstr "Sao lưu đầy đủ trên% s"
 
+msgid "Full factory reset"
+msgstr ""
+
 msgid "Full transparency"
 msgstr "Minh bạch đầy đủ"
 
@@ -8451,6 +8467,12 @@ msgid "GB"
 msgstr "GB"
 
 msgid "GCC version"
+msgstr ""
+
+msgid "GStreamer debug log category *"
+msgstr ""
+
+msgid "GStreamer debug log level *"
 msgstr ""
 
 msgid "GStreamer version"
@@ -10015,10 +10037,6 @@ msgstr ""
 
 msgid "Kernel version"
 msgstr ""
-
-#, python-format
-msgid "Kernel: %s"
-msgstr "Hạt nhân:%s"
 
 msgid "Keyboard"
 msgstr "Bàn phím"
@@ -12306,6 +12324,9 @@ msgstr "Chỉ phần mở rộng."
 msgid "Only free scan"
 msgstr "Chỉ quét miễn phí"
 
+msgid "Only log debug information of GStreamer category. * means all categories."
+msgstr ""
+
 msgid "Only move the dish quickly after this hour."
 msgstr "Chỉ di chuyển chảo nhanh chóng sau giờ này."
 
@@ -14421,8 +14442,35 @@ msgstr "Xóa một dấu"
 msgid "Remove a nameserver entry"
 msgstr "Xóa một mục nhập máy chủ tên"
 
+msgid "Remove all bouquet/tuning data"
+msgstr ""
+
 msgid "Remove all cuts and marks"
 msgstr "Xóa tất cả các vết cắt và dấu"
+
+msgid "Remove all network mount data"
+msgstr ""
+
+msgid "Remove all other data"
+msgstr ""
+
+msgid "Remove all plugin setting data"
+msgstr ""
+
+msgid "Remove all resume point data"
+msgstr ""
+
+msgid "Remove all settings data"
+msgstr ""
+
+msgid "Remove all skin data"
+msgstr ""
+
+msgid "Remove all timer data"
+msgstr ""
+
+msgid "Remove all user interface data"
+msgstr ""
 
 msgid "Remove bookmark"
 msgstr "Xóa dấu trang"
@@ -14556,6 +14604,9 @@ msgstr ""
 
 msgid "Reset and renumerate title names"
 msgstr "Đặt lại và gia hạn tên tiêu đề"
+
+msgid "Reset network configuration"
+msgstr ""
 
 msgid "Reset persistent PIN code"
 msgstr "Đặt lại mã PIN liên tục"
@@ -15306,6 +15357,39 @@ msgstr "Chọn 'A' hoặc 'B' nếu hệ thống trên không của bạn yêu c
 msgid "Select 'Yes' to enable editing of this device's settings. Selecting 'No' resets the devices settings to their default values."
 msgstr ""
 
+msgid "Select 'Yes' to remove all main settings configuration data. Selecting this option will set all Enigma2 settings back to their default values.  This will also cause Enigma2 to run the Welcome Wizard on restart."
+msgstr ""
+
+msgid "Select 'Yes' to remove all media player resume data. Selecting this option will remove the data used to allow playback of media files to resume from the position where playback was last stopped. Playback position of recordings is not affected."
+msgstr ""
+
+msgid "Select 'Yes' to remove all network mount data. Selecting this option will remove all network data including automounts and network connection data including connection accounts and passwords. This could cause some Enigma2 functions to fail if they are configured to use these network resources."
+msgstr ""
+
+msgid "Select 'Yes' to remove all other files and directories not covered by the options above."
+msgstr ""
+
+msgid "Select 'Yes' to remove all plugin configuration data. Selecting this option will remove all plugin configuration data that is stored in the Enigma2 configuration folder. This will cause all affected plugins to return to their default settings. This could cause some plugins to not function until configured."
+msgstr ""
+
+msgid "Select 'Yes' to remove all settings, tuning data, timers, resume pointers etc. Selecting this option will restore the configuration to the initial settings before any configuration settings were applied. This is the most reliable form of Factory Reset."
+msgstr ""
+
+msgid "Select 'Yes' to remove all timer configuration data. Selecting this option will clear all timers, autotimers and power timers."
+msgstr ""
+
+msgid "Select 'Yes' to remove all tuning data. Selecting this option will remove all tuning and bouquet data and will make timers non functional until the receiver is retuned."
+msgstr ""
+
+msgid "Select 'Yes' to remove all user customizations of skin data. Selecting this option will remove all user based skin customizations. All affected skins will return to their standard settings. This will also clear any customized boot logos and backdrops."
+msgstr ""
+
+msgid "Select 'Yes' to remove all user interface data. Selecting this option will remove all keymap, menu and setup override data and restore the default definitions."
+msgstr ""
+
+msgid "Select 'Yes' to reset network configuration to the default. This will enable the Ethernet port if it exists and set the receiver to use DHCP. All other network interfaces will be deleted."
+msgstr ""
+
 msgid "Select 'band' if using a 'universal' LNB, otherwise consult your LNB spec sheet."
 msgstr "Chọn 'băng tần' nếu sử dụng LNB 'phổ quát', nếu không hãy tham khảo bảng thông số LNB của bạn."
 
@@ -15748,6 +15832,12 @@ msgstr ""
 "Danh sách cài đặt được chọn:% s\n"
 "\n"
 "Bạn có muốn khôi phục danh sách thiết lập này?"
+
+msgid ""
+"Selecting 'Yes' will delete the currently selected user data. This action can't be undone. You may want to create a backup before continuing.\n"
+"\n"
+"Are you sure you want to continue with the factory reset?"
+msgstr ""
 
 msgid "Selecting satellites 1 (USALS)"
 msgstr "Chọn vệ tinh 1 (USALS)"
@@ -16404,8 +16494,11 @@ msgstr "Hiển thị danh sách tự động"
 msgid "Show Box Portal"
 msgstr "Hiển thị Cổng thông tin ..."
 
-msgid "Show CCcam in extensions ?"
-msgstr "Hiển thị CCcam trong phần mở rộng?"
+msgid "Show CCcam Info"
+msgstr ""
+
+msgid "Show CCcam in extensions"
+msgstr ""
 
 msgid "Show CI messages"
 msgstr "Hiển thị tin nhắn CI"
@@ -16500,8 +16593,8 @@ msgstr "Hiển thị nhiều EPG"
 msgid "Show OScam Info"
 msgstr ""
 
-msgid "Show OScam in extensions ?"
-msgstr "Hiển thị OScam trong phần mở rộng?"
+msgid "Show OScam in extensions"
+msgstr ""
 
 msgid "Show PIP"
 msgstr "Hiển thị PIP"
@@ -16896,6 +16989,9 @@ msgstr ""
 
 msgid "Show task list"
 msgstr "Hiển thị danh sách nhiệm vụ"
+
+msgid "Show the CCcam Info Screen"
+msgstr ""
 
 msgid "Show the DreamPlex player..."
 msgstr "Hiển thị trình phát DreamPlex ..."
@@ -17304,9 +17400,6 @@ msgstr ""
 msgid "Softcam Setup"
 msgstr "Softcam cài đặt"
 
-msgid "Softcam settings"
-msgstr "Cài đặt softcam"
-
 msgid "Softcam-Panel"
 msgstr "Bảng điều khiển Softcam"
 
@@ -17675,6 +17768,9 @@ msgstr "Bước về phía đông"
 
 msgid "Stepped west"
 msgstr "Bước về phía tây"
+
+msgid "Sti"
+msgstr ""
 
 msgid "Stop"
 msgstr "Dừng lại"
@@ -19227,9 +19323,6 @@ msgstr "Múi giờ"
 msgid "Time zone area"
 msgstr "Múi giờ"
 
-msgid "Time zone settings"
-msgstr "Cài đặt múi giờ"
-
 msgid "Timeline 24 Hour"
 msgstr "Mốc thời gian 24 giờ"
 
@@ -19618,11 +19711,17 @@ msgstr "Bộ chỉnh:"
 msgid "Tuner Configuration"
 msgstr "Cấu hình bộ chỉnh"
 
+msgid "Tuner Information"
+msgstr ""
+
 msgid "Tuner Setup"
 msgstr "Cài đặt bộ chỉnh"
 
 msgid "Tuner configuration"
 msgstr "Cấu hình bộ chỉnh"
+
+msgid "Tuner information"
+msgstr ""
 
 msgid "Tuner is not supported"
 msgstr "Bộ chỉnh tần số không được hỗ trợ"
@@ -21097,20 +21196,6 @@ msgstr ""
 
 msgid "When tuned to a service the system will normally scan the transponder for any changes and save them. Only set to 'yes' if you're absolutely sure what you're doing."
 msgstr "Khi được điều chỉnh đến một dịch vụ, hệ thống thường sẽ quét bộ phát đáp xem có bất kỳ thay đổi nào không và lưu chúng. Chỉ đặt thành 'có' nếu bạn hoàn toàn chắc chắn những gì bạn đang làm."
-
-#, python-format
-msgid ""
-"When you do a factory reset, you will lose ALL your configuration data\n"
-"(including bouquets, services, satellite data ...)\n"
-"After completion of factory reset, your %s %s will restart automatically!\n"
-"\n"
-"Really do a factory reset?"
-msgstr ""
-"Khi bạn thực hiện khôi phục cài đặt gốc, bạn sẽ mất TẤT CẢ dữ liệu cấu hình của mình\n"
-"(bao gồm gói kênh, dịch vụ, dữ liệu vệ tinh ...)\n"
-"Sau khi hoàn thành khôi phục cài đặt gốc,% s% s của bạn sẽ tự động khởi động lại!\n"
-"\n"
-"Thực sự làm một thiết lập lại nhà máy?"
 
 msgid "Where do you want to backup your settings?"
 msgstr "Bạn có muốn khôi phục cài đặt của bạn?"
@@ -23579,6 +23664,59 @@ msgstr "hạ gục"
 
 msgid "®"
 msgstr ""
+
+msgid "Allows you to show/hide CCcam in extensions (BLUE button)."
+msgstr "Cho phép bạn hiển thị / ẩn CCcam trong tiện ích mở rộng (nút màu xanh)."
+
+#, python-format
+#~ msgid ""
+#~ "CCcam Info %s\n"
+#~ "by AliAbdul %s\n"
+#~ "\n"
+#~ "This plugin shows you the status of your CCcam."
+#~ msgstr ""
+#~ "Thông tin CCcam% s\n"
+#~ "bởi AliAbdul% s\n"
+#~ "\n"
+#~ "Plugin này cho bạn thấy trạng thái của CCcam của bạn."
+
+#, python-format
+#~ msgid "CPU: %s"
+#~ msgstr "CPU:% s"
+
+#, python-format
+#~ msgid "Cores: %s"
+#~ msgstr "Lõi:%s"
+
+#, python-format
+#~ msgid "Kernel: %s"
+#~ msgstr "Hạt nhân:%s"
+
+#~ msgid "Show CCcam in extensions ?"
+#~ msgstr "Hiển thị CCcam trong phần mở rộng?"
+
+#~ msgid "Show OScam in extensions ?"
+#~ msgstr "Hiển thị OScam trong phần mở rộng?"
+
+#~ msgid "Softcam settings"
+#~ msgstr "Cài đặt softcam"
+
+#~ msgid "Time zone settings"
+#~ msgstr "Cài đặt múi giờ"
+
+#, python-format
+#~ msgid ""
+#~ "When you do a factory reset, you will lose ALL your configuration data\n"
+#~ "(including bouquets, services, satellite data ...)\n"
+#~ "After completion of factory reset, your %s %s will restart automatically!\n"
+#~ "\n"
+#~ "Really do a factory reset?"
+#~ msgstr ""
+#~ "Khi bạn thực hiện khôi phục cài đặt gốc, bạn sẽ mất TẤT CẢ dữ liệu cấu hình của mình\n"
+#~ "(bao gồm gói kênh, dịch vụ, dữ liệu vệ tinh ...)\n"
+#~ "Sau khi hoàn thành khôi phục cài đặt gốc,% s% s của bạn sẽ tự động khởi động lại!\n"
+#~ "\n"
+#~ "Thực sự làm một thiết lập lại nhà máy?"
 
 #, python-format
 #~ msgid "%d Mins"

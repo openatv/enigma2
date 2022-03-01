@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-02-11 14:04+0000\n"
+"POT-Creation-Date: 2022-02-27 22:18+0000\n"
 "PO-Revision-Date: 2022-02-16 19:05+0000\n"
 "Last-Translator: Adga56 <adga45@gmail.com>\n"
 "Language-Team: Lithuanian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/lt/>\n"
@@ -1001,6 +1001,10 @@ msgstr "%d KB"
 #, python-format
 msgid "%d MB"
 msgstr "%d MB"
+
+#, python-format
+msgid "%d MHz"
+msgstr ""
 
 #. TRANSLATORS: full date representation dayname daynum monthname year in strftime() format! See 'man strftime'
 #. _("%A %e %B %Y")
@@ -2696,6 +2700,12 @@ msgstr "Leidžia koreguoti ekrano raiškos informacijos rodymo laiką."
 msgid "Allows you to assign the selected function to this button."
 msgstr "Leidžia šiam mygtukui priskirti pasirinktą funkciją."
 
+msgid "Allows you to enable the GStreamer debug log. They contain very detailed information of everything the GStreamer system does."
+msgstr ""
+
+msgid "Allows you to enable the GStreamer pipeline graphs. These are .dot files that describe the topology of your pipeline, along with the caps negotiated in each link."
+msgstr ""
+
 msgid "Allows you to enable the debug log. They contain very detailed information of everything the system does."
 msgstr "Leidžia įjungti klaidų žurnalus. Juose yra labai išsami informacija apie visos sistemos darbą."
 
@@ -2707,9 +2717,6 @@ msgstr "Leidžia paslėpti žinomų failų tipų plėtinius."
 
 msgid "Allows you to set the maximum size of the Debug log size (MB). When that size is reached, a new file will be created."
 msgstr "Leidžia jums nustatyti atskirų derinimo žurnalų maksimalius dydžius (MB). Pasiekus, dydį, bus sukuriamas naujas failas."
-
-msgid "Allows you to show/hide CCcam in extensions (blue button)."
-msgstr "Leidžia rodyti/slėpti CCcam plėtinius (mėlynas mygtukas)."
 
 msgid "Allows you to show/hide Log Manager in extensions (blue button)."
 msgstr "Leidžia rodyti/slėpti žurnalų valdymą plėtinių lange ('MĖLYNAS' mygtukas)."
@@ -3770,6 +3777,9 @@ msgstr "CAID"
 msgid "CAID:SrvID"
 msgstr "CAID:SrvID"
 
+msgid "CCCam Info"
+msgstr ""
+
 msgid "CCcam Client Info"
 msgstr "CCcam kliento informacija"
 
@@ -3787,12 +3797,8 @@ msgid ""
 "CCcam Info %s\n"
 "by AliAbdul %s\n"
 "\n"
-"This plugin shows you the status of your CCcam."
+"This screen shows you the status of CCcam."
 msgstr ""
-"CCcam informacija %s\n"
-"AliAbdul %s\n"
-"\n"
-"Šis priedas rodo jūsų CCcam stovį."
 
 msgid "CCcam Info Config"
 msgstr "CCcam informacijos konfigūravimas"
@@ -3887,10 +3893,6 @@ msgstr "Procesoriaus greitis/branduoliai"
 
 msgid "CPU temperature"
 msgstr "PROCESORIAUS temperatūra"
-
-#, python-format
-msgid "CPU: %s"
-msgstr "Procesorius: %s"
 
 msgid "CVBS"
 msgstr "CVBS"
@@ -5305,10 +5307,6 @@ msgstr "Kopijuoti aplanką"
 msgid "Copying files"
 msgstr "Kopijuojami failai"
 
-#, python-format
-msgid "Cores: %s"
-msgstr "Branduoliai: %s"
-
 msgid "Cornish"
 msgstr "Cornish"
 
@@ -6133,6 +6131,9 @@ msgstr "Nepasirinkti"
 msgid "Deselected packages usually occur because those packaged are incompatible with existing packages.  While this is mostly harmless it is possible that your %s %s may experience issues."
 msgstr "Panaikintos pakuotės paprastai atsiranda dėl to, kad supakuotos yra nesuderinamos su esamomis pakuotėmis.  Nors tai dažniausiai nekenksminga, gali būti, kad jūsų %s %s gali susidurti su problemomis."
 
+msgid "Detail of GStreamer log"
+msgstr ""
+
 msgid "Details for plugin: "
 msgstr "Išsamiau apie priedą: "
 
@@ -6141,6 +6142,9 @@ msgstr "Aptikti diskai"
 
 msgid "Detected network servers"
 msgstr "Aptikti tinklo serveriai"
+
+msgid "Detected tuners"
+msgstr ""
 
 msgid "Detektiv"
 msgstr "Detektyvas"
@@ -7045,6 +7049,12 @@ msgstr "Įjungti EIT EPG"
 msgid "Enable Focus Animation"
 msgstr "Įjungti fokusavimo animaciją"
 
+msgid "Enable GStreamer debug log *"
+msgstr ""
+
+msgid "Enable GStreamer pipeline graphs *"
+msgstr ""
+
 msgid "Enable IceTV"
 msgstr "Įjungti IceTV"
 
@@ -7851,6 +7861,9 @@ msgstr "FTP"
 msgid "FTP Setup"
 msgstr "FTP nustatymas"
 
+msgid "Factory Reset"
+msgstr ""
+
 msgid "Factory release"
 msgstr "Gamyklos išleidimas"
 
@@ -8313,6 +8326,9 @@ msgstr "Plačios gamos RGB"
 msgid "Full back-up on %s"
 msgstr "Pilna atsarginė kopija %s"
 
+msgid "Full factory reset"
+msgstr ""
+
 msgid "Full transparency"
 msgstr "Visiškai skaidrus"
 
@@ -8342,6 +8358,12 @@ msgstr "GB"
 
 msgid "GCC version"
 msgstr "GCC versija"
+
+msgid "GStreamer debug log category *"
+msgstr ""
+
+msgid "GStreamer debug log level *"
+msgstr ""
 
 msgid "GStreamer version"
 msgstr "GStreamer versija"
@@ -9872,10 +9894,6 @@ msgstr "Branduolio failas"
 
 msgid "Kernel version"
 msgstr "Branduolio versija"
-
-#, python-format
-msgid "Kernel: %s"
-msgstr "Branduolys: %s"
 
 msgid "Keyboard"
 msgstr "Klaviatūra"
@@ -12072,6 +12090,9 @@ msgstr "Tik plėtinius."
 msgid "Only free scan"
 msgstr "Ieškoti tik nekoduotų kanalų"
 
+msgid "Only log debug information of GStreamer category. * means all categories."
+msgstr ""
+
 msgid "Only move the dish quickly after this hour."
 msgstr "Tik greitai perkelti anteną po šios valandos."
 
@@ -14144,8 +14165,35 @@ msgstr "Pašalinti žymeklį"
 msgid "Remove a nameserver entry"
 msgstr "Pašalinti DNS serverio duomenis"
 
+msgid "Remove all bouquet/tuning data"
+msgstr ""
+
 msgid "Remove all cuts and marks"
 msgstr "Pašalinti visus iškirpimus ir žymeklius"
+
+msgid "Remove all network mount data"
+msgstr ""
+
+msgid "Remove all other data"
+msgstr ""
+
+msgid "Remove all plugin setting data"
+msgstr ""
+
+msgid "Remove all resume point data"
+msgstr ""
+
+msgid "Remove all settings data"
+msgstr ""
+
+msgid "Remove all skin data"
+msgstr ""
+
+msgid "Remove all timer data"
+msgstr ""
+
+msgid "Remove all user interface data"
+msgstr ""
 
 msgid "Remove bookmark"
 msgstr "Pašalinti žymę"
@@ -14279,6 +14327,9 @@ msgstr "Iš naujo nustatyti numatytuosius HDMI-CEC parametrus"
 
 msgid "Reset and renumerate title names"
 msgstr "Nustatyti iš naujo ir pernumeruoti antraščių pavadinimus"
+
+msgid "Reset network configuration"
+msgstr ""
 
 msgid "Reset persistent PIN code"
 msgstr "Išvalyti pastovų PIN kodą"
@@ -15017,6 +15068,39 @@ msgstr "Pasirinkite 'A' arba 'B', jei jūsų antenos sistema reikalauja to, kita
 msgid "Select 'Yes' to enable editing of this device's settings. Selecting 'No' resets the devices settings to their default values."
 msgstr "Pasirinkite 'Taip', kad įgalintumėte šio įrenginio nustatymų redagavimą. Pasirinkus 'Ne', įrenginių nustatymai iš naujo nustato numatytąsias reikšmes."
 
+msgid "Select 'Yes' to remove all main settings configuration data. Selecting this option will set all Enigma2 settings back to their default values.  This will also cause Enigma2 to run the Welcome Wizard on restart."
+msgstr ""
+
+msgid "Select 'Yes' to remove all media player resume data. Selecting this option will remove the data used to allow playback of media files to resume from the position where playback was last stopped. Playback position of recordings is not affected."
+msgstr ""
+
+msgid "Select 'Yes' to remove all network mount data. Selecting this option will remove all network data including automounts and network connection data including connection accounts and passwords. This could cause some Enigma2 functions to fail if they are configured to use these network resources."
+msgstr ""
+
+msgid "Select 'Yes' to remove all other files and directories not covered by the options above."
+msgstr ""
+
+msgid "Select 'Yes' to remove all plugin configuration data. Selecting this option will remove all plugin configuration data that is stored in the Enigma2 configuration folder. This will cause all affected plugins to return to their default settings. This could cause some plugins to not function until configured."
+msgstr ""
+
+msgid "Select 'Yes' to remove all settings, tuning data, timers, resume pointers etc. Selecting this option will restore the configuration to the initial settings before any configuration settings were applied. This is the most reliable form of Factory Reset."
+msgstr ""
+
+msgid "Select 'Yes' to remove all timer configuration data. Selecting this option will clear all timers, autotimers and power timers."
+msgstr ""
+
+msgid "Select 'Yes' to remove all tuning data. Selecting this option will remove all tuning and bouquet data and will make timers non functional until the receiver is retuned."
+msgstr ""
+
+msgid "Select 'Yes' to remove all user customizations of skin data. Selecting this option will remove all user based skin customizations. All affected skins will return to their standard settings. This will also clear any customized boot logos and backdrops."
+msgstr ""
+
+msgid "Select 'Yes' to remove all user interface data. Selecting this option will remove all keymap, menu and setup override data and restore the default definitions."
+msgstr ""
+
+msgid "Select 'Yes' to reset network configuration to the default. This will enable the Ethernet port if it exists and set the receiver to use DHCP. All other network interfaces will be deleted."
+msgstr ""
+
 msgid "Select 'band' if using a 'universal' LNB, otherwise consult your LNB spec sheet."
 msgstr "Jei naudojate 'universalią' LNB, pasirinkite 'juosta', kitaip kreipkitės į savo LNB specifikacijų lapą."
 
@@ -15452,6 +15536,12 @@ msgstr ""
 "Pasirinktas nustatymų sąrašas: %s\n"
 "\n"
 "ar norite atkurti šį nustatymų sąrašą?"
+
+msgid ""
+"Selecting 'Yes' will delete the currently selected user data. This action can't be undone. You may want to create a backup before continuing.\n"
+"\n"
+"Are you sure you want to continue with the factory reset?"
+msgstr ""
 
 msgid "Selecting satellites 1 (USALS)"
 msgstr "Pasirinkti palydovai 1 (USALS)"
@@ -16093,8 +16183,11 @@ msgstr "Rodyti auto laikmačio sąrašą"
 msgid "Show Box Portal"
 msgstr "Rodyti lauko portalą"
 
-msgid "Show CCcam in extensions ?"
-msgstr "Rodyti CCcam plėtinius ?"
+msgid "Show CCcam Info"
+msgstr ""
+
+msgid "Show CCcam in extensions"
+msgstr ""
 
 msgid "Show CI messages"
 msgstr "Rodyti CI pranešimus"
@@ -16186,8 +16279,8 @@ msgstr "Rodyti daugiakanalį EPG"
 msgid "Show OScam Info"
 msgstr "Rodyti 'OScam' informaciją"
 
-msgid "Show OScam in extensions ?"
-msgstr "Rodyti OScam tarp plėtinių ?"
+msgid "Show OScam in extensions"
+msgstr ""
 
 msgid "Show PIP"
 msgstr "Paveikslėlis paveikslėlyje"
@@ -16576,6 +16669,9 @@ msgstr "Rodyti sistemos informaciją"
 
 msgid "Show task list"
 msgstr "Rodyti užduočių sąrašą"
+
+msgid "Show the CCcam Info Screen"
+msgstr ""
 
 msgid "Show the DreamPlex player..."
 msgstr "Rodyti DreamPlex grotuvą..."
@@ -16973,9 +17069,6 @@ msgstr "Emuliatoriaus nustatymai"
 msgid "Softcam Setup"
 msgstr "Emuliatoriaus valdymas"
 
-msgid "Softcam settings"
-msgstr "Emuliatoriaus nustatymai"
-
 msgid "Softcam-Panel"
 msgstr "Emuliatoriaus skydelis"
 
@@ -17336,6 +17429,9 @@ msgstr "Pažingsniui į rytus"
 
 msgid "Stepped west"
 msgstr "Pažingsniui į vakarus"
+
+msgid "Sti"
+msgstr ""
 
 msgid "Stop"
 msgstr "Stabdyti"
@@ -18860,9 +18956,6 @@ msgstr "Laiko juosta"
 msgid "Time zone area"
 msgstr "Laiko juostos teritorija"
 
-msgid "Time zone settings"
-msgstr "Laiko juostos nustatymai"
-
 msgid "Timeline 24 Hour"
 msgstr "Laiko juosta 24 val"
 
@@ -19242,11 +19335,17 @@ msgstr "Imtuvas :"
 msgid "Tuner Configuration"
 msgstr "Imtuvo konfigūravimas"
 
+msgid "Tuner Information"
+msgstr ""
+
 msgid "Tuner Setup"
 msgstr "Imtuvo valdymas"
 
 msgid "Tuner configuration"
 msgstr "Imtuvo konfigūravimas"
+
+msgid "Tuner information"
+msgstr ""
 
 msgid "Tuner is not supported"
 msgstr "Imtuvas nepalaiko"
@@ -20692,20 +20791,6 @@ msgstr "Kai imtuvas atsibunda iš budėjimo arba gilaus budėjimo režimo, jis i
 
 msgid "When tuned to a service the system will normally scan the transponder for any changes and save them. Only set to 'yes' if you're absolutely sure what you're doing."
 msgstr "Įjungus kanalą, sistema paprastai patikrina visus pasikeitimus transponderyje ir juos išsaugo. Nustatykite čia 'taip' tik tada, kai tiksliai žinote, kam tą darote."
-
-#, python-format
-msgid ""
-"When you do a factory reset, you will lose ALL your configuration data\n"
-"(including bouquets, services, satellite data ...)\n"
-"After completion of factory reset, your %s %s will restart automatically!\n"
-"\n"
-"Really do a factory reset?"
-msgstr ""
-"Atkūrę gamyklinius nustatymus, jūs prarasite VISUS savo konfigūracijos duomenis\n"
-"(įskaitant paketus, kanalus, palydovų duomenis...)\n"
-"Po gamyklinių nustatymų atkūrimo jūsų %s %s pasileis iš naujo automatiškai!\n"
-"\n"
-"Tikrai norite atkurti gamyklinius nustatymus?"
 
 msgid "Where do you want to backup your settings?"
 msgstr "Kur išsaugoti nustatymų atsarginę kopiją?"
@@ -23145,6 +23230,59 @@ msgstr "perjungimas"
 
 msgid "®"
 msgstr "®"
+
+msgid "Allows you to show/hide CCcam in extensions (BLUE button)."
+msgstr "Leidžia rodyti/slėpti CCcam plėtinius (mėlynas mygtukas)."
+
+#, python-format
+#~ msgid ""
+#~ "CCcam Info %s\n"
+#~ "by AliAbdul %s\n"
+#~ "\n"
+#~ "This plugin shows you the status of your CCcam."
+#~ msgstr ""
+#~ "CCcam informacija %s\n"
+#~ "AliAbdul %s\n"
+#~ "\n"
+#~ "Šis priedas rodo jūsų CCcam stovį."
+
+#, python-format
+#~ msgid "CPU: %s"
+#~ msgstr "Procesorius: %s"
+
+#, python-format
+#~ msgid "Cores: %s"
+#~ msgstr "Branduoliai: %s"
+
+#, python-format
+#~ msgid "Kernel: %s"
+#~ msgstr "Branduolys: %s"
+
+#~ msgid "Show CCcam in extensions ?"
+#~ msgstr "Rodyti CCcam plėtinius ?"
+
+#~ msgid "Show OScam in extensions ?"
+#~ msgstr "Rodyti OScam tarp plėtinių ?"
+
+#~ msgid "Softcam settings"
+#~ msgstr "Emuliatoriaus nustatymai"
+
+#~ msgid "Time zone settings"
+#~ msgstr "Laiko juostos nustatymai"
+
+#, python-format
+#~ msgid ""
+#~ "When you do a factory reset, you will lose ALL your configuration data\n"
+#~ "(including bouquets, services, satellite data ...)\n"
+#~ "After completion of factory reset, your %s %s will restart automatically!\n"
+#~ "\n"
+#~ "Really do a factory reset?"
+#~ msgstr ""
+#~ "Atkūrę gamyklinius nustatymus, jūs prarasite VISUS savo konfigūracijos duomenis\n"
+#~ "(įskaitant paketus, kanalus, palydovų duomenis...)\n"
+#~ "Po gamyklinių nustatymų atkūrimo jūsų %s %s pasileis iš naujo automatiškai!\n"
+#~ "\n"
+#~ "Tikrai norite atkurti gamyklinius nustatymus?"
 
 #, python-format
 #~ msgid "%d Mins"

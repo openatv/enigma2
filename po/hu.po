@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: hu_po v3.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-02-11 14:04+0000\n"
+"POT-Creation-Date: 2022-02-27 22:18+0000\n"
 "PO-Revision-Date: 2021-12-27 15:52+0000\n"
 "Last-Translator: f3rr31 <5920873@disroot.org>\n"
 "Language-Team: Hungarian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/hu/>\n"
@@ -1028,6 +1028,10 @@ msgstr "%d KB"
 #, python-format
 msgid "%d MB"
 msgstr "%d MB"
+
+#, python-format
+msgid "%d MHz"
+msgstr ""
 
 #. TRANSLATORS: full date representation dayname daynum monthname year in strftime() format! See 'man strftime'
 #. _("%A %e %B %Y")
@@ -2712,6 +2716,12 @@ msgstr "Engedélyezi a felbontási információk megjelenítésének időtartam�
 msgid "Allows you to assign the selected function to this button."
 msgstr ""
 
+msgid "Allows you to enable the GStreamer debug log. They contain very detailed information of everything the GStreamer system does."
+msgstr ""
+
+msgid "Allows you to enable the GStreamer pipeline graphs. These are .dot files that describe the topology of your pipeline, along with the caps negotiated in each link."
+msgstr ""
+
 msgid "Allows you to enable the debug log. They contain very detailed information of everything the system does."
 msgstr "Engedélyezheti a hibakeresési naplót. A naplók nagyon részletes információt tartalmaznak a rendszer mindennemű működéséről."
 
@@ -2723,9 +2733,6 @@ msgstr "Engedélyezi az ismert fájltípusok kiterjesztésének elrejtését."
 
 msgid "Allows you to set the maximum size of the Debug log size (MB). When that size is reached, a new file will be created."
 msgstr "Beállíthatja a Hibakeresési napló maximális méretét (MB). Amikor az aktuális napló elérte ezt a méretet, akkor a rendszer létrehoz egy új napló fájlt."
-
-msgid "Allows you to show/hide CCcam in extensions (blue button)."
-msgstr "Engedélyezi a CCcam megjelenítését/elrejtését a bővítmények között (kék gomb)."
 
 msgid "Allows you to show/hide Log Manager in extensions (blue button)."
 msgstr "Engedélyezi a Log Manager megjelenítését/elrejtését a bővítmények között (kék gomb)."
@@ -3796,6 +3803,9 @@ msgstr "CAID"
 msgid "CAID:SrvID"
 msgstr "CAID:SrvID"
 
+msgid "CCCam Info"
+msgstr ""
+
 msgid "CCcam Client Info"
 msgstr "CCcam kliens Információ"
 
@@ -3813,12 +3823,8 @@ msgid ""
 "CCcam Info %s\n"
 "by AliAbdul %s\n"
 "\n"
-"This plugin shows you the status of your CCcam."
+"This screen shows you the status of CCcam."
 msgstr ""
-"CCcam Info %s\n"
-"by AliAbdul %s\n"
-"\n"
-"Ez a bővítmény megmutatja a CCcam állapotát."
 
 msgid "CCcam Info Config"
 msgstr "CCcam Info Konfiguráció"
@@ -3913,10 +3919,6 @@ msgstr ""
 
 msgid "CPU temperature"
 msgstr ""
-
-#, python-format
-msgid "CPU: %s"
-msgstr "Processzor:  %s"
 
 msgid "CVBS"
 msgstr "CVBS"
@@ -5326,10 +5328,6 @@ msgstr "Mappa másolása"
 msgid "Copying files"
 msgstr "Fájlok másolása"
 
-#, python-format
-msgid "Cores: %s"
-msgstr "Magok: %s"
-
 #, fuzzy
 msgid "Cornish"
 msgstr "Dán"
@@ -6171,6 +6169,9 @@ msgstr "Kijelölés törlése"
 msgid "Deselected packages usually occur because those packaged are incompatible with existing packages.  While this is mostly harmless it is possible that your %s %s may experience issues."
 msgstr ""
 
+msgid "Detail of GStreamer log"
+msgstr ""
+
 msgid "Details for plugin: "
 msgstr "Bővítmény részletei: "
 
@@ -6178,6 +6179,9 @@ msgid "Detected drives"
 msgstr ""
 
 msgid "Detected network servers"
+msgstr ""
+
+msgid "Detected tuners"
 msgstr ""
 
 msgid "Detektiv"
@@ -7084,6 +7088,12 @@ msgstr "EIT EPG engedélyezése"
 msgid "Enable Focus Animation"
 msgstr "Élességállítási animáció engedélyezése"
 
+msgid "Enable GStreamer debug log *"
+msgstr ""
+
+msgid "Enable GStreamer pipeline graphs *"
+msgstr ""
+
 msgid "Enable IceTV"
 msgstr "Az IceTV engedélyezése"
 
@@ -7891,6 +7901,9 @@ msgstr "FTP"
 msgid "FTP Setup"
 msgstr "FTP beállítása"
 
+msgid "Factory Reset"
+msgstr ""
+
 msgid "Factory release"
 msgstr ""
 
@@ -8363,6 +8376,9 @@ msgstr "Teljes Range RGB"
 msgid "Full back-up on %s"
 msgstr "Teljes mentés az %s -on"
 
+msgid "Full factory reset"
+msgstr ""
+
 msgid "Full transparency"
 msgstr "Teljesen áttetsző"
 
@@ -8392,6 +8408,12 @@ msgid "GB"
 msgstr "GB"
 
 msgid "GCC version"
+msgstr ""
+
+msgid "GStreamer debug log category *"
+msgstr ""
+
+msgid "GStreamer debug log level *"
 msgstr ""
 
 msgid "GStreamer version"
@@ -9944,10 +9966,6 @@ msgstr ""
 
 msgid "Kernel version"
 msgstr ""
-
-#, python-format
-msgid "Kernel: %s"
-msgstr "Kernel: %s"
 
 msgid "Keyboard"
 msgstr "Billentyűzet"
@@ -12202,6 +12220,9 @@ msgstr "Csak bővítmények."
 msgid "Only free scan"
 msgstr "Csak szabad keresés"
 
+msgid "Only log debug information of GStreamer category. * means all categories."
+msgstr ""
+
 msgid "Only move the dish quickly after this hour."
 msgstr "Csak gyorsan mozgassa a dish-t ezen óra után."
 
@@ -14291,8 +14312,35 @@ msgstr "Egy jelölő eltávolítása"
 msgid "Remove a nameserver entry"
 msgstr "Révszerver eltávolítása"
 
+msgid "Remove all bouquet/tuning data"
+msgstr ""
+
 msgid "Remove all cuts and marks"
 msgstr "Az összes vágás és jelölés eltávolítása"
+
+msgid "Remove all network mount data"
+msgstr ""
+
+msgid "Remove all other data"
+msgstr ""
+
+msgid "Remove all plugin setting data"
+msgstr ""
+
+msgid "Remove all resume point data"
+msgstr ""
+
+msgid "Remove all settings data"
+msgstr ""
+
+msgid "Remove all skin data"
+msgstr ""
+
+msgid "Remove all timer data"
+msgstr ""
+
+msgid "Remove all user interface data"
+msgstr ""
 
 msgid "Remove bookmark"
 msgstr "Könyvjelző eltávolítása"
@@ -14424,6 +14472,9 @@ msgstr ""
 
 msgid "Reset and renumerate title names"
 msgstr "A tételek újraszámozása"
+
+msgid "Reset network configuration"
+msgstr ""
 
 msgid "Reset persistent PIN code"
 msgstr "Tartós PIN-kód visszaállítása"
@@ -15172,6 +15223,39 @@ msgstr "Válassza az 'A' vagy 'B' opciót, ha a aerial rendszer ezt megköveteli
 msgid "Select 'Yes' to enable editing of this device's settings. Selecting 'No' resets the devices settings to their default values."
 msgstr ""
 
+msgid "Select 'Yes' to remove all main settings configuration data. Selecting this option will set all Enigma2 settings back to their default values.  This will also cause Enigma2 to run the Welcome Wizard on restart."
+msgstr ""
+
+msgid "Select 'Yes' to remove all media player resume data. Selecting this option will remove the data used to allow playback of media files to resume from the position where playback was last stopped. Playback position of recordings is not affected."
+msgstr ""
+
+msgid "Select 'Yes' to remove all network mount data. Selecting this option will remove all network data including automounts and network connection data including connection accounts and passwords. This could cause some Enigma2 functions to fail if they are configured to use these network resources."
+msgstr ""
+
+msgid "Select 'Yes' to remove all other files and directories not covered by the options above."
+msgstr ""
+
+msgid "Select 'Yes' to remove all plugin configuration data. Selecting this option will remove all plugin configuration data that is stored in the Enigma2 configuration folder. This will cause all affected plugins to return to their default settings. This could cause some plugins to not function until configured."
+msgstr ""
+
+msgid "Select 'Yes' to remove all settings, tuning data, timers, resume pointers etc. Selecting this option will restore the configuration to the initial settings before any configuration settings were applied. This is the most reliable form of Factory Reset."
+msgstr ""
+
+msgid "Select 'Yes' to remove all timer configuration data. Selecting this option will clear all timers, autotimers and power timers."
+msgstr ""
+
+msgid "Select 'Yes' to remove all tuning data. Selecting this option will remove all tuning and bouquet data and will make timers non functional until the receiver is retuned."
+msgstr ""
+
+msgid "Select 'Yes' to remove all user customizations of skin data. Selecting this option will remove all user based skin customizations. All affected skins will return to their standard settings. This will also clear any customized boot logos and backdrops."
+msgstr ""
+
+msgid "Select 'Yes' to remove all user interface data. Selecting this option will remove all keymap, menu and setup override data and restore the default definitions."
+msgstr ""
+
+msgid "Select 'Yes' to reset network configuration to the default. This will enable the Ethernet port if it exists and set the receiver to use DHCP. All other network interfaces will be deleted."
+msgstr ""
+
 msgid "Select 'band' if using a 'universal' LNB, otherwise consult your LNB spec sheet."
 msgstr "Ha 'univerzális' LNB-t használ, válassza a 'sáv' lehetőséget, különben forduljon az LNB specifikációs laphoz."
 
@@ -15612,6 +15696,12 @@ msgstr ""
 "Kijelölt beállítási lista:%s\n"
 "\n"
 "Szeretné visszaállítani ezt a beállításlistát?"
+
+msgid ""
+"Selecting 'Yes' will delete the currently selected user data. This action can't be undone. You may want to create a backup before continuing.\n"
+"\n"
+"Are you sure you want to continue with the factory reset?"
+msgstr ""
 
 msgid "Selecting satellites 1 (USALS)"
 msgstr "Műholdak kiválasztása 1. (USALS)"
@@ -16264,8 +16354,11 @@ msgstr "AutoTimer lista megjelenítése"
 msgid "Show Box Portal"
 msgstr "Box Portal megnyitása..."
 
-msgid "Show CCcam in extensions ?"
-msgstr "Mutassa a CCcam-t a bővítmények között?"
+msgid "Show CCcam Info"
+msgstr ""
+
+msgid "Show CCcam in extensions"
+msgstr ""
 
 msgid "Show CI messages"
 msgstr "CI üzenetek mutatása"
@@ -16359,8 +16452,8 @@ msgstr "Multi EPG mutatása"
 msgid "Show OScam Info"
 msgstr ""
 
-msgid "Show OScam in extensions ?"
-msgstr "Megjeleníti az OScam-t a bővítmények között?"
+msgid "Show OScam in extensions"
+msgstr ""
 
 msgid "Show PIP"
 msgstr "Kép-a-Képben megjelenítése"
@@ -16753,6 +16846,9 @@ msgstr ""
 
 msgid "Show task list"
 msgstr "Feladatlista megjelenítése"
+
+msgid "Show the CCcam Info Screen"
+msgstr ""
 
 msgid "Show the DreamPlex player..."
 msgstr "DreamPlex Player mutatása..."
@@ -17159,9 +17255,6 @@ msgstr ""
 msgid "Softcam Setup"
 msgstr "Softcam beállítások"
 
-msgid "Softcam settings"
-msgstr "Softcam beállítások"
-
 msgid "Softcam-Panel"
 msgstr "Softcam Panel"
 
@@ -17526,6 +17619,9 @@ msgstr "Keletre léptetve"
 
 msgid "Stepped west"
 msgstr "Nyugatra léptetve"
+
+msgid "Sti"
+msgstr ""
 
 msgid "Stop"
 msgstr "Állj"
@@ -19074,9 +19170,6 @@ msgstr "Időzóna"
 msgid "Time zone area"
 msgstr "Időzóna területe"
 
-msgid "Time zone settings"
-msgstr "Időzóna beállítások"
-
 msgid "Timeline 24 Hour"
 msgstr "24 órás idővonal"
 
@@ -19464,11 +19557,17 @@ msgstr "Tuner:"
 msgid "Tuner Configuration"
 msgstr "Tuner beállítás"
 
+msgid "Tuner Information"
+msgstr ""
+
 msgid "Tuner Setup"
 msgstr "Tuner Beállítás"
 
 msgid "Tuner configuration"
 msgstr "Tuner beállítása"
+
+msgid "Tuner information"
+msgstr ""
 
 msgid "Tuner is not supported"
 msgstr "Tuner nem támogatott"
@@ -20928,20 +21027,6 @@ msgstr ""
 
 msgid "When tuned to a service the system will normally scan the transponder for any changes and save them. Only set to 'yes' if you're absolutely sure what you're doing."
 msgstr "Ha letiltja a csatornakeresést a háttérben, akkor a keresés során megtalált csatorna nem lesz elmentve."
-
-#, python-format
-msgid ""
-"When you do a factory reset, you will lose ALL your configuration data\n"
-"(including bouquets, services, satellite data ...)\n"
-"After completion of factory reset, your %s %s will restart automatically!\n"
-"\n"
-"Really do a factory reset?"
-msgstr ""
-"Ha visszaállítja a készüléket a gyári állapotba, minden beállítása el fog veszni\n"
-"(beleérve a listákat, a kedvenceket, csatornákat, műholdakat...)!\n"
-"A gyári állapotba helyezés után, a(z) %s %s készülék automatikusan újra fog indulni.\n"
-"\n"
-"Biztos benne, hogy gyári állapotba állítja a készüléket?"
 
 msgid "Where do you want to backup your settings?"
 msgstr "Hova szeretné elmenteni a beállításait?"
@@ -23392,6 +23477,59 @@ msgstr "ugrás folyamatban"
 
 msgid "®"
 msgstr ""
+
+msgid "Allows you to show/hide CCcam in extensions (BLUE button)."
+msgstr "Engedélyezi a CCcam megjelenítését/elrejtését a bővítmények között (kék gomb)."
+
+#, python-format
+#~ msgid ""
+#~ "CCcam Info %s\n"
+#~ "by AliAbdul %s\n"
+#~ "\n"
+#~ "This plugin shows you the status of your CCcam."
+#~ msgstr ""
+#~ "CCcam Info %s\n"
+#~ "by AliAbdul %s\n"
+#~ "\n"
+#~ "Ez a bővítmény megmutatja a CCcam állapotát."
+
+#, python-format
+#~ msgid "CPU: %s"
+#~ msgstr "Processzor:  %s"
+
+#, python-format
+#~ msgid "Cores: %s"
+#~ msgstr "Magok: %s"
+
+#, python-format
+#~ msgid "Kernel: %s"
+#~ msgstr "Kernel: %s"
+
+#~ msgid "Show CCcam in extensions ?"
+#~ msgstr "Mutassa a CCcam-t a bővítmények között?"
+
+#~ msgid "Show OScam in extensions ?"
+#~ msgstr "Megjeleníti az OScam-t a bővítmények között?"
+
+#~ msgid "Softcam settings"
+#~ msgstr "Softcam beállítások"
+
+#~ msgid "Time zone settings"
+#~ msgstr "Időzóna beállítások"
+
+#, python-format
+#~ msgid ""
+#~ "When you do a factory reset, you will lose ALL your configuration data\n"
+#~ "(including bouquets, services, satellite data ...)\n"
+#~ "After completion of factory reset, your %s %s will restart automatically!\n"
+#~ "\n"
+#~ "Really do a factory reset?"
+#~ msgstr ""
+#~ "Ha visszaállítja a készüléket a gyári állapotba, minden beállítása el fog veszni\n"
+#~ "(beleérve a listákat, a kedvenceket, csatornákat, műholdakat...)!\n"
+#~ "A gyári állapotba helyezés után, a(z) %s %s készülék automatikusan újra fog indulni.\n"
+#~ "\n"
+#~ "Biztos benne, hogy gyári állapotba állítja a készüléket?"
 
 #, python-format
 #~ msgid "%d Mins"

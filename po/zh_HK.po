@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-02-11 14:04+0000\n"
+"POT-Creation-Date: 2022-02-27 22:18+0000\n"
 "PO-Revision-Date: 2021-08-15 18:50+0000\n"
 "Last-Translator: openATV <openatv@gmail.com>\n"
 "Language-Team: Chinese (Traditional, Hong Kong) <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/zh_Hant_HK/>\n"
@@ -1016,6 +1016,10 @@ msgstr ""
 
 #, python-format
 msgid "%d MB"
+msgstr ""
+
+#, python-format
+msgid "%d MHz"
 msgstr ""
 
 #. TRANSLATORS: full date representation dayname daynum monthname year in strftime() format! See 'man strftime'
@@ -2780,6 +2784,12 @@ msgstr ""
 msgid "Allows you to assign the selected function to this button."
 msgstr ""
 
+msgid "Allows you to enable the GStreamer debug log. They contain very detailed information of everything the GStreamer system does."
+msgstr ""
+
+msgid "Allows you to enable the GStreamer pipeline graphs. These are .dot files that describe the topology of your pipeline, along with the caps negotiated in each link."
+msgstr ""
+
 msgid "Allows you to enable the debug log. They contain very detailed information of everything the system does."
 msgstr ""
 
@@ -2792,7 +2802,7 @@ msgstr ""
 msgid "Allows you to set the maximum size of the Debug log size (MB). When that size is reached, a new file will be created."
 msgstr ""
 
-msgid "Allows you to show/hide CCcam in extensions (blue button)."
+msgid "Allows you to show/hide CCcam in extensions (BLUE button)."
 msgstr ""
 
 msgid "Allows you to show/hide Log Manager in extensions (blue button)."
@@ -3940,6 +3950,9 @@ msgstr ""
 msgid "CAID:SrvID"
 msgstr ""
 
+msgid "CCCam Info"
+msgstr ""
+
 #, fuzzy
 msgid "CCcam Client Info"
 msgstr "CCcam資訊"
@@ -3959,7 +3972,7 @@ msgid ""
 "CCcam Info %s\n"
 "by AliAbdul %s\n"
 "\n"
-"This plugin shows you the status of your CCcam."
+"This screen shows you the status of CCcam."
 msgstr ""
 
 #, fuzzy
@@ -4068,10 +4081,6 @@ msgid "CPU speed/cores"
 msgstr ""
 
 msgid "CPU temperature"
-msgstr ""
-
-#, python-format
-msgid "CPU: %s"
 msgstr ""
 
 msgid "CVBS"
@@ -5547,10 +5556,6 @@ msgstr ""
 msgid "Copying files"
 msgstr "日誌檔"
 
-#, python-format
-msgid "Cores: %s"
-msgstr ""
-
 #, fuzzy
 msgid "Cornish"
 msgstr "丹麥"
@@ -6439,6 +6444,9 @@ msgstr "取消"
 msgid "Deselected packages usually occur because those packaged are incompatible with existing packages.  While this is mostly harmless it is possible that your %s %s may experience issues."
 msgstr ""
 
+msgid "Detail of GStreamer log"
+msgstr ""
+
 msgid "Details for plugin: "
 msgstr ""
 
@@ -6446,6 +6454,9 @@ msgid "Detected drives"
 msgstr ""
 
 msgid "Detected network servers"
+msgstr ""
+
+msgid "Detected tuners"
 msgstr ""
 
 msgid "Detektiv"
@@ -7390,6 +7401,12 @@ msgstr ""
 msgid "Enable Focus Animation"
 msgstr "啟用HTTP認證"
 
+msgid "Enable GStreamer debug log *"
+msgstr ""
+
+msgid "Enable GStreamer pipeline graphs *"
+msgstr ""
+
 #, fuzzy
 msgid "Enable IceTV"
 msgstr "啟用計時器"
@@ -8224,6 +8241,9 @@ msgstr ""
 msgid "FTP Setup"
 msgstr "EPG設定"
 
+msgid "Factory Reset"
+msgstr ""
+
 msgid "Factory release"
 msgstr ""
 
@@ -8719,6 +8739,9 @@ msgstr ""
 msgid "Full back-up on %s"
 msgstr ""
 
+msgid "Full factory reset"
+msgstr ""
+
 msgid "Full transparency"
 msgstr ""
 
@@ -8751,6 +8774,12 @@ msgid "GB"
 msgstr "RGB"
 
 msgid "GCC version"
+msgstr ""
+
+msgid "GStreamer debug log category *"
+msgstr ""
+
+msgid "GStreamer debug log level *"
 msgstr ""
 
 msgid "GStreamer version"
@@ -10402,10 +10431,6 @@ msgstr ""
 
 msgid "Kernel version"
 msgstr ""
-
-#, fuzzy, python-format
-msgid "Kernel: %s"
-msgstr "內核模組"
 
 msgid "Keyboard"
 msgstr "鍵盤佈局"
@@ -12801,6 +12826,9 @@ msgstr "僅增加部分."
 msgid "Only free scan"
 msgstr ""
 
+msgid "Only log debug information of GStreamer category. * means all categories."
+msgstr ""
+
 msgid "Only move the dish quickly after this hour."
 msgstr ""
 
@@ -15039,9 +15067,36 @@ msgstr "移除標記"
 msgid "Remove a nameserver entry"
 msgstr ""
 
+msgid "Remove all bouquet/tuning data"
+msgstr ""
+
 #, fuzzy
 msgid "Remove all cuts and marks"
 msgstr "移除標記"
+
+msgid "Remove all network mount data"
+msgstr ""
+
+msgid "Remove all other data"
+msgstr ""
+
+msgid "Remove all plugin setting data"
+msgstr ""
+
+msgid "Remove all resume point data"
+msgstr ""
+
+msgid "Remove all settings data"
+msgstr ""
+
+msgid "Remove all skin data"
+msgstr ""
+
+msgid "Remove all timer data"
+msgstr ""
+
+msgid "Remove all user interface data"
+msgstr ""
 
 msgid "Remove bookmark"
 msgstr ""
@@ -15183,6 +15238,9 @@ msgstr ""
 
 msgid "Reset and renumerate title names"
 msgstr "復位並重設標題名稱"
+
+msgid "Reset network configuration"
+msgstr ""
 
 msgid "Reset persistent PIN code"
 msgstr ""
@@ -15985,6 +16043,39 @@ msgstr ""
 msgid "Select 'Yes' to enable editing of this device's settings. Selecting 'No' resets the devices settings to their default values."
 msgstr ""
 
+msgid "Select 'Yes' to remove all main settings configuration data. Selecting this option will set all Enigma2 settings back to their default values.  This will also cause Enigma2 to run the Welcome Wizard on restart."
+msgstr ""
+
+msgid "Select 'Yes' to remove all media player resume data. Selecting this option will remove the data used to allow playback of media files to resume from the position where playback was last stopped. Playback position of recordings is not affected."
+msgstr ""
+
+msgid "Select 'Yes' to remove all network mount data. Selecting this option will remove all network data including automounts and network connection data including connection accounts and passwords. This could cause some Enigma2 functions to fail if they are configured to use these network resources."
+msgstr ""
+
+msgid "Select 'Yes' to remove all other files and directories not covered by the options above."
+msgstr ""
+
+msgid "Select 'Yes' to remove all plugin configuration data. Selecting this option will remove all plugin configuration data that is stored in the Enigma2 configuration folder. This will cause all affected plugins to return to their default settings. This could cause some plugins to not function until configured."
+msgstr ""
+
+msgid "Select 'Yes' to remove all settings, tuning data, timers, resume pointers etc. Selecting this option will restore the configuration to the initial settings before any configuration settings were applied. This is the most reliable form of Factory Reset."
+msgstr ""
+
+msgid "Select 'Yes' to remove all timer configuration data. Selecting this option will clear all timers, autotimers and power timers."
+msgstr ""
+
+msgid "Select 'Yes' to remove all tuning data. Selecting this option will remove all tuning and bouquet data and will make timers non functional until the receiver is retuned."
+msgstr ""
+
+msgid "Select 'Yes' to remove all user customizations of skin data. Selecting this option will remove all user based skin customizations. All affected skins will return to their standard settings. This will also clear any customized boot logos and backdrops."
+msgstr ""
+
+msgid "Select 'Yes' to remove all user interface data. Selecting this option will remove all keymap, menu and setup override data and restore the default definitions."
+msgstr ""
+
+msgid "Select 'Yes' to reset network configuration to the default. This will enable the Ethernet port if it exists and set the receiver to use DHCP. All other network interfaces will be deleted."
+msgstr ""
+
 msgid "Select 'band' if using a 'universal' LNB, otherwise consult your LNB spec sheet."
 msgstr ""
 
@@ -16439,6 +16530,12 @@ msgid ""
 "\n"
 "Do you want to restore this settinglist?"
 msgstr " 是否恢復您的設定?"
+
+msgid ""
+"Selecting 'Yes' will delete the currently selected user data. This action can't be undone. You may want to create a backup before continuing.\n"
+"\n"
+"Are you sure you want to continue with the factory reset?"
+msgstr ""
 
 #, fuzzy
 msgid "Selecting satellites 1 (USALS)"
@@ -17169,9 +17266,11 @@ msgstr "排序自動計時器"
 msgid "Show Box Portal"
 msgstr "顯示藍色面板..."
 
-#, fuzzy
-msgid "Show CCcam in extensions ?"
-msgstr "附件管理"
+msgid "Show CCcam Info"
+msgstr ""
+
+msgid "Show CCcam in extensions"
+msgstr ""
 
 #, fuzzy
 msgid "Show CI messages"
@@ -17279,9 +17378,8 @@ msgstr "多路 EPG"
 msgid "Show OScam Info"
 msgstr ""
 
-#, fuzzy
-msgid "Show OScam in extensions ?"
-msgstr "僅增加部分."
+msgid "Show OScam in extensions"
+msgstr ""
 
 #, fuzzy
 msgid "Show PIP"
@@ -17721,6 +17819,9 @@ msgstr ""
 #, fuzzy
 msgid "Show task list"
 msgstr "顯示最新郵件:"
+
+msgid "Show the CCcam Info Screen"
+msgstr ""
 
 #, fuzzy
 msgid "Show the DreamPlex player..."
@@ -18164,10 +18265,6 @@ msgid "Softcam Setup"
 msgstr "保護設定"
 
 #, fuzzy
-msgid "Softcam settings"
-msgstr "編輯設定"
-
-#, fuzzy
 msgid "Softcam-Panel"
 msgstr "軟體管理"
 
@@ -18557,6 +18654,9 @@ msgid "Stepped east"
 msgstr ""
 
 msgid "Stepped west"
+msgstr ""
+
+msgid "Sti"
 msgstr ""
 
 msgid "Stop"
@@ -20135,10 +20235,6 @@ msgstr "時區"
 msgid "Time zone area"
 msgstr "時區"
 
-#, fuzzy
-msgid "Time zone settings"
-msgstr "自動計時器設定"
-
 msgid "Timeline 24 Hour"
 msgstr ""
 
@@ -20545,12 +20641,18 @@ msgstr "調諧器"
 msgid "Tuner Configuration"
 msgstr "調諧器配置"
 
+msgid "Tuner Information"
+msgstr ""
+
 #, fuzzy
 msgid "Tuner Setup"
 msgstr "調諧器插槽"
 
 msgid "Tuner configuration"
 msgstr "調諧器配置"
+
+msgid "Tuner information"
+msgstr ""
 
 #, fuzzy
 msgid "Tuner is not supported"
@@ -22091,20 +22193,6 @@ msgstr ""
 
 msgid "When tuned to a service the system will normally scan the transponder for any changes and save them. Only set to 'yes' if you're absolutely sure what you're doing."
 msgstr ""
-
-#, fuzzy, python-format
-msgid ""
-"When you do a factory reset, you will lose ALL your configuration data\n"
-"(including bouquets, services, satellite data ...)\n"
-"After completion of factory reset, your %s %s will restart automatically!\n"
-"\n"
-"Really do a factory reset?"
-msgstr ""
-"如果恢復出廠設定，全部個人設定將丟失\n"
-"(包括衛星, 頻道, 自定義組等 ...)\n"
-"完成出廠設定復位後, 接收機將自動重啟!\n"
-"\n"
-"確定要恢復出廠設定嗎?"
 
 msgid "Where do you want to backup your settings?"
 msgstr "在哪里備份您的設定?"
@@ -24632,6 +24720,40 @@ msgstr "轉自"
 
 msgid "®"
 msgstr ""
+
+#, fuzzy, python-format
+#~ msgid "Kernel: %s"
+#~ msgstr "內核模組"
+
+#, fuzzy
+#~ msgid "Show CCcam in extensions ?"
+#~ msgstr "附件管理"
+
+#, fuzzy
+#~ msgid "Show OScam in extensions ?"
+#~ msgstr "僅增加部分."
+
+#, fuzzy
+#~ msgid "Softcam settings"
+#~ msgstr "編輯設定"
+
+#, fuzzy
+#~ msgid "Time zone settings"
+#~ msgstr "自動計時器設定"
+
+#, fuzzy, python-format
+#~ msgid ""
+#~ "When you do a factory reset, you will lose ALL your configuration data\n"
+#~ "(including bouquets, services, satellite data ...)\n"
+#~ "After completion of factory reset, your %s %s will restart automatically!\n"
+#~ "\n"
+#~ "Really do a factory reset?"
+#~ msgstr ""
+#~ "如果恢復出廠設定，全部個人設定將丟失\n"
+#~ "(包括衛星, 頻道, 自定義組等 ...)\n"
+#~ "完成出廠設定復位後, 接收機將自動重啟!\n"
+#~ "\n"
+#~ "確定要恢復出廠設定嗎?"
 
 #, fuzzy
 #~ msgid "Automatic image backup"

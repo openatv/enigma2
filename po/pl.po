@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-02-11 14:04+0000\n"
-"PO-Revision-Date: 2022-02-27 22:28+0000\n"
+"POT-Creation-Date: 2022-02-27 22:18+0000\n"
+"PO-Revision-Date: 2022-03-01 17:36+0000\n"
 "Last-Translator: drakulis <drakulis@interia.pl>\n"
 "Language-Team: Polish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/pl/>\n"
 "Language: pl\n"
@@ -50,7 +50,7 @@ msgid ""
 " Do you want to switch Enigma2 with Android...?"
 msgstr ""
 "\n"
-" Czy chcesz uruchomić Androida...?"
+" Przełączyć z Enigmy na Androida??"
 
 msgid ""
 "\n"
@@ -1003,6 +1003,10 @@ msgstr "%d KB"
 #, python-format
 msgid "%d MB"
 msgstr "%d MB"
+
+#, python-format
+msgid "%d MHz"
+msgstr "%d MHz"
 
 #. TRANSLATORS: full date representation dayname daynum monthname year in strftime() format! See 'man strftime'
 #. _("%A %e %B %Y")
@@ -2425,7 +2429,7 @@ msgid "Add a mark"
 msgstr "Dodaj znacznik"
 
 msgid "Add a nameserver entry"
-msgstr "Dodaj nameserver"
+msgstr "Dodaj server DNS"
 
 msgid "Add a new tag"
 msgstr "Dodaj nowy znacznik"
@@ -2536,7 +2540,7 @@ msgid "Adjust the color settings so that all the color shades are distinguishabl
 msgstr "Dostosuj ustawienia koloru, tak aby wszystkie odcienie były rozpoznawalne, ale jak najbardziej nasycone. Jeśli jesteś zadowolony z rezultatu wciśnij 'OK' aby wyjść z tego menu lub użyj przycisków numerycznych aby zobaczyć inne ekrany testowe."
 
 msgid "Adjust the horizontal position of the letters used for teletext."
-msgstr "Dostosuj poziomą pozycję liter używanych do telegazety."
+msgstr "Dostosuj poziomą pozycję liter używanych w telegazecie."
 
 msgid "Adjust the vertical position of the letters used for teletext."
 msgstr "Skonfiguruj pionowe położenie liter używanych do telegazety."
@@ -2680,7 +2684,7 @@ msgid "Allow subtitle language to equal audio language"
 msgstr "Dostosuj język napisów do języka audio"
 
 msgid "Allow subtitles for hearing impaired"
-msgstr "Dostosuj napisy dla niedosłyszących"
+msgstr "Pozwól na napisy dla niedosłyszących"
 
 msgid "Allow unsupported modes"
 msgstr "Zezwól na użycie niewspieranych trybów"
@@ -2700,6 +2704,12 @@ msgstr "Pozwala określić, czy i jak długo ekran jest wyświetlany, gdy zmieni
 msgid "Allows you to assign the selected function to this button."
 msgstr "Zezwól na przypisanie wybranej funkcji do tego przycisku."
 
+msgid "Allows you to enable the GStreamer debug log. They contain very detailed information of everything the GStreamer system does."
+msgstr "Umożliwia włączenie dziennika debugowania GStreamera. Zawierają bardzo szczegółowe informacje o wszystkim, co robi system GStreamer."
+
+msgid "Allows you to enable the GStreamer pipeline graphs. These are .dot files that describe the topology of your pipeline, along with the caps negotiated in each link."
+msgstr "Umożliwia włączenie wykresów potoku GStreamer. Są to pliki .dot, które opisują topologię potoku wraz z limitami wynegocjowanymi w każdym łączu."
+
 msgid "Allows you to enable the debug log. They contain very detailed information of everything the system does."
 msgstr "Umożliwia włączenie dziennika debugowania. Zawierają bardzo szczegółowe informacje o wszystkim co robi system."
 
@@ -2711,9 +2721,6 @@ msgstr "Pozwala ukryć rozszerzenia znanych typów plików."
 
 msgid "Allows you to set the maximum size of the Debug log size (MB). When that size is reached, a new file will be created."
 msgstr "Umożliwia ustawienie maksymalnej wielkości rozmiaru dziennika zdarzeń (MB). Kiedy ten rozmiar zostanie osiągnięty, zostanie utworzony nowy plik."
-
-msgid "Allows you to show/hide CCcam in extensions (blue button)."
-msgstr "Umożliwia pokazanie/ukrycie CCcam w rozszerzeniach (niebieski przycisk)."
 
 msgid "Allows you to show/hide Log Manager in extensions (blue button)."
 msgstr "Umożliwia pokazanie/ukrycie menadżera crash logów w rozszerzeniach (niebieski przycisk)."
@@ -3770,6 +3777,9 @@ msgstr "CAID"
 msgid "CAID:SrvID"
 msgstr "CAID:SrvID"
 
+msgid "CCCam Info"
+msgstr "Info o CCCam"
+
 msgid "CCcam Client Info"
 msgstr "CCcam Klient Info"
 
@@ -3787,12 +3797,12 @@ msgid ""
 "CCcam Info %s\n"
 "by AliAbdul %s\n"
 "\n"
-"This plugin shows you the status of your CCcam."
+"This screen shows you the status of CCcam."
 msgstr ""
-"CCcam Info %s\n"
+"Informacje o CCcam %s\n"
 "przez AliAbdul %s\n"
 "\n"
-"Wtyczka ta pokazuje stan CCcama."
+"Ten ekran pokazuje status CCcam."
 
 msgid "CCcam Info Config"
 msgstr "Ustawienia CCcam Info"
@@ -3887,10 +3897,6 @@ msgstr "Częstotliwość/Rdzenie CPU"
 
 msgid "CPU temperature"
 msgstr "Temperatura CPU"
-
-#, python-format
-msgid "CPU: %s"
-msgstr "Procesor: %s"
 
 msgid "CVBS"
 msgstr "CVBS"
@@ -4823,7 +4829,7 @@ msgid "Configure interface"
 msgstr "Skonfiguruj interfejs"
 
 msgid "Configure nameservers"
-msgstr "Ustawienia serwerów nazw (DNS)"
+msgstr "Ustawienia DNS"
 
 msgid "Configure on which devices the background delete option should be used."
 msgstr "Skonfiguruj dla jakich urządzeń opcja usuwania w tle ma być użyta."
@@ -4976,7 +4982,7 @@ msgid "Configure the minimum width before showing the 'i' icon, '0' is equal to 
 msgstr "Ustawienia minimalnej szerokość przed wyświetleniem ikony \"i\", \"0\" oznacza ze ikona nie jest widoczna."
 
 msgid "Configure the nameserver (DNS)."
-msgstr "Skonfiguruj nazwę serwera (DNS)."
+msgstr "Skonfiguruj DNS."
 
 msgid "Configure the netmask."
 msgstr "Skonfiguruj maskę sieci."
@@ -5299,10 +5305,6 @@ msgstr "Kopiuj folder"
 msgid "Copying files"
 msgstr "Kopiowanie plików"
 
-#, python-format
-msgid "Cores: %s"
-msgstr "Rdzenie: %s"
-
 msgid "Cornish"
 msgstr "Kornwalijski"
 
@@ -5508,13 +5510,13 @@ msgid "Custom skip time for '7'/'9' buttons"
 msgstr "Czas przeskoku dla klawiszy '7'/'9'"
 
 msgid "Customise"
-msgstr "Dostosuj"
+msgstr "Ustawienia zaawansowane"
 
 msgid "Customise enigma2 personal settings"
 msgstr "Dostosuj ustawienia osobiste Enigmy2"
 
 msgid "Customize"
-msgstr "Dostosuj"
+msgstr "Ustawienia zaawansowane"
 
 msgid "Cut"
 msgstr "Wytnij"
@@ -6127,6 +6129,9 @@ msgstr "Odznacz"
 msgid "Deselected packages usually occur because those packaged are incompatible with existing packages.  While this is mostly harmless it is possible that your %s %s may experience issues."
 msgstr "Odznaczone pakiety zwykle występują, ponieważ te spakowane są niezgodne z istniejącymi pakietami. Chociaż jest to w większości nieszkodliwe, możliwe jest, że %s %s może napotkać problemy."
 
+msgid "Detail of GStreamer log"
+msgstr "Szczegóły logu GStreamer"
+
 msgid "Details for plugin: "
 msgstr "Szczegóły dotyczące wtyczki: "
 
@@ -6135,6 +6140,9 @@ msgstr "Wykryte dyski"
 
 msgid "Detected network servers"
 msgstr "Wykryte serwery sieciowe"
+
+msgid "Detected tuners"
+msgstr "Wykryte tunery"
 
 msgid "Detektiv"
 msgstr "Detektyw"
@@ -6963,7 +6971,7 @@ msgstr "Edytuj ustawienia"
 
 #, python-format
 msgid "Edit the Nameserver configuration of your %s %s.\n"
-msgstr "Edytuj konfigurację serwera %s %s.\n"
+msgstr "Edytuj konfigurację serwera DNS swojego %s %s.\n"
 
 #, python-format
 msgid "Edit the network configuration of your %s %s.\n"
@@ -7038,6 +7046,12 @@ msgstr "Włącz EIT EPG"
 
 msgid "Enable Focus Animation"
 msgstr "Włącz ostrość animacji"
+
+msgid "Enable GStreamer debug log *"
+msgstr "Włącz dziennik debugowania GStreamera *"
+
+msgid "Enable GStreamer pipeline graphs *"
+msgstr "Włącz wykresy potoku GStreamer *"
 
 msgid "Enable IceTV"
 msgstr "Włącz IceTV"
@@ -7671,7 +7685,7 @@ msgid "Exit movie player?"
 msgstr "Wyjść z odtwarzacza?"
 
 msgid "Exit nameserver configuration"
-msgstr "Wyjdź z konfiguracji nazwy serwera"
+msgstr "Wyjdź z konfiguracji DNS"
 
 msgid "Exit network interface list"
 msgstr "Opuść listę interfejsu sieciowego"
@@ -7844,6 +7858,9 @@ msgstr "FTP"
 
 msgid "FTP Setup"
 msgstr "Ustawienia FTP"
+
+msgid "Factory Reset"
+msgstr "Przywrócenie ustawień fabrycznych"
 
 msgid "Factory release"
 msgstr "Wydanie fabryczne"
@@ -8307,6 +8324,9 @@ msgstr "Pełny zakres RGB"
 msgid "Full back-up on %s"
 msgstr "Pełna kopia zapasowa na %s"
 
+msgid "Full factory reset"
+msgstr "Pełne przywrócenie ustawień fabrycznych"
+
 msgid "Full transparency"
 msgstr "Pełna przezroczystość"
 
@@ -8336,6 +8356,12 @@ msgstr "GB"
 
 msgid "GCC version"
 msgstr "Wersja GCC"
+
+msgid "GStreamer debug log category *"
+msgstr "Kategoria dziennika debugowania GStreamer *"
+
+msgid "GStreamer debug log level *"
+msgstr "Poziom dziennika debugowania GStreamer *"
 
 msgid "GStreamer version"
 msgstr "Wersja GStreamer"
@@ -9867,10 +9893,6 @@ msgstr "Plik jądra"
 msgid "Kernel version"
 msgstr "Wersja jądra"
 
-#, python-format
-msgid "Kernel: %s"
-msgstr "Jądro: %s"
-
 msgid "Keyboard"
 msgstr "Klawiatura"
 
@@ -11303,20 +11325,20 @@ msgid "Name:"
 msgstr "Nazwa:"
 
 msgid "Nameserver"
-msgstr "Nazwa serwera"
+msgstr "Serwer DNS"
 
 #, python-format
 msgid "Nameserver %d"
-msgstr "Nazwa serwera %d"
+msgstr "Server DNS %d"
 
 msgid "Nameserver configuration"
 msgstr "Ustawienia DNS"
 
 msgid "Nameserver settings"
-msgstr "Ustawienie nazwy serwerów"
+msgstr "Ustawienia DNS"
 
 msgid "Nameserver setup"
-msgstr "Ustawienie nazwy serwera (DNS)"
+msgstr "Ustawienia DNS"
 
 msgid "Namespace & Orbital pos."
 msgstr "Przestrzeń nazw, poz. orbit."
@@ -12068,6 +12090,9 @@ msgstr "Tylko rozszerzenia."
 msgid "Only free scan"
 msgstr "Skanuj tylko FTA"
 
+msgid "Only log debug information of GStreamer category. * means all categories."
+msgstr "Tylko informacje dziennika debugowania kategorii GStreamer. * oznacza wszystkie kategorie."
+
 msgid "Only move the dish quickly after this hour."
 msgstr "Po tej godzinie przesuń szybko antenę."
 
@@ -12710,7 +12735,7 @@ msgid ""
 "Please configure or verify your Nameservers by filling out the required values.\n"
 "When you are ready press OK to continue."
 msgstr ""
-"Skonfiguruj lub sprawdź dane serwera nazw (DNS).\n"
+"Skonfiguruj lub sprawdź ustawienia DNS.\n"
 "Gdy będziesz gotowy, wciśnij OK aby kontynuować."
 
 msgid ""
@@ -14141,8 +14166,35 @@ msgstr "Usuń znacznik"
 msgid "Remove a nameserver entry"
 msgstr "Usuń wpis DNS"
 
+msgid "Remove all bouquet/tuning data"
+msgstr "Usuń wszystkie dane bukietu/strojenia"
+
 msgid "Remove all cuts and marks"
 msgstr "Usuń wszystkie cięcia i znaczniki"
+
+msgid "Remove all network mount data"
+msgstr "Usuń wszystkie dane montowania w sieci"
+
+msgid "Remove all other data"
+msgstr "Usuń wszystkie inne dane"
+
+msgid "Remove all plugin setting data"
+msgstr "Usuń wszystkie dane ustawień pluginów"
+
+msgid "Remove all resume point data"
+msgstr "Usuń wszystkie dane punktu wznowienia"
+
+msgid "Remove all settings data"
+msgstr "Usuń wszystkie dane ustawień"
+
+msgid "Remove all skin data"
+msgstr "Usuń wszystkie dane skina"
+
+msgid "Remove all timer data"
+msgstr "Usuń wszystkie dane timera"
+
+msgid "Remove all user interface data"
+msgstr "Usuń wszystkie dane interfejsu użytkownika"
 
 msgid "Remove bookmark"
 msgstr "Usuń zakładkę"
@@ -14276,6 +14328,9 @@ msgstr "Przywróć ustawienia domyślne HDMI-CEC"
 
 msgid "Reset and renumerate title names"
 msgstr "Resetuj i zmień numerację nazwy tytułów"
+
+msgid "Reset network configuration"
+msgstr "Zresetuj konfigurację sieci"
 
 msgid "Reset persistent PIN code"
 msgstr "Zresetuj stały kod PIN"
@@ -15014,6 +15069,39 @@ msgstr "Wybierz \"A\" lub \"B\", jeśli wymaga tego system antenowy, w przeciwny
 msgid "Select 'Yes' to enable editing of this device's settings. Selecting 'No' resets the devices settings to their default values."
 msgstr "Wybierz \"Tak\", aby włączyć edycję ustawień urządzenia. Wybierz \"Nie\" aby przywrócić domyślne ustawienia urządzenia."
 
+msgid "Select 'Yes' to remove all main settings configuration data. Selecting this option will set all Enigma2 settings back to their default values.  This will also cause Enigma2 to run the Welcome Wizard on restart."
+msgstr "Wybierz „Tak”, aby usunąć wszystkie dane konfiguracyjne ustawień głównych. Wybranie tej opcji spowoduje przywrócenie wszystkich ustawień Enigmy2 do ich wartości domyślnych. Spowoduje to również, że Enigma2 uruchomi Kreatora Powitalnego przy ponownym uruchomieniu."
+
+msgid "Select 'Yes' to remove all media player resume data. Selecting this option will remove the data used to allow playback of media files to resume from the position where playback was last stopped. Playback position of recordings is not affected."
+msgstr "Wybierz \"Tak\", aby usunąć wszystkie dane wznowienia odtwarzacza multimedialnego. Wybranie tej opcji spowoduje usunięcie danych używanych do wznowienia odtwarzania plików multimedialnych z pozycji, w której odtwarzanie zostało ostatnio zatrzymane. Nie ma to wpływu na pozycję odtwarzania nagrań."
+
+msgid "Select 'Yes' to remove all network mount data. Selecting this option will remove all network data including automounts and network connection data including connection accounts and passwords. This could cause some Enigma2 functions to fail if they are configured to use these network resources."
+msgstr "Wybierz 'Tak' aby usunąć wszystkie dane montowania sieci. Wybranie tej opcji spowoduje usunięcie wszystkich danych sieciowych, w tym automatycznych montaży i danych połączeń sieciowych, w tym kont i haseł połączeń. Może to spowodować awarię niektórych funkcji Enigma2, jeśli są one skonfigurowane do korzystania z tych zasobów sieciowych."
+
+msgid "Select 'Yes' to remove all other files and directories not covered by the options above."
+msgstr "Wybierz 'Tak', aby usunąć wszystkie inne pliki i katalogi nieobjęte powyższymi opcjami."
+
+msgid "Select 'Yes' to remove all plugin configuration data. Selecting this option will remove all plugin configuration data that is stored in the Enigma2 configuration folder. This will cause all affected plugins to return to their default settings. This could cause some plugins to not function until configured."
+msgstr "Wybierz 'Tak' aby usunąć wszystkie dane konfiguracyjne pluginów. Wybranie tej opcji spowoduje usunięcie wszystkich danych konfiguracyjnych pluginów, które są przechowywane w folderze konfiguracyjnym Enigma2. Spowoduje to, że wszystkie wtyczki, których to dotyczy, powrócą do ustawień domyślnych. Może to spowodować, że niektóre wtyczki nie będą działać, dopóki nie zostaną skonfigurowane."
+
+msgid "Select 'Yes' to remove all settings, tuning data, timers, resume pointers etc. Selecting this option will restore the configuration to the initial settings before any configuration settings were applied. This is the most reliable form of Factory Reset."
+msgstr "Wybierz opcję 'Tak', aby usunąć wszystkie ustawienia, dane strojenia, timery, wskaźniki wznowienia itp. Wybranie tej opcji spowoduje przywrócenie konfiguracji do ustawień początkowych, zanim zastosowane zostaną jakiekolwiek ustawienia konfiguracyjne. Jest to najbardziej niezawodna forma Resetu Fabrycznego."
+
+msgid "Select 'Yes' to remove all timer configuration data. Selecting this option will clear all timers, autotimers and power timers."
+msgstr "Wybierz 'Tak' aby usunąć wszystkie dane konfiguracyjne timerów. Wybranie tej opcji spowoduje skasowanie wszystkich timerów, autotimerów i timerów zasilania."
+
+msgid "Select 'Yes' to remove all tuning data. Selecting this option will remove all tuning and bouquet data and will make timers non functional until the receiver is retuned."
+msgstr "Wybierz 'Tak', aby usunąć wszystkie dane strojenia. Wybranie tej opcji spowoduje usunięcie wszystkich danych strojenia i bukietu oraz spowoduje, że timery nie będą działać, dopóki odbiornik nie zostanie ponownie dostrojony."
+
+msgid "Select 'Yes' to remove all user customizations of skin data. Selecting this option will remove all user based skin customizations. All affected skins will return to their standard settings. This will also clear any customized boot logos and backdrops."
+msgstr "Wybierz 'Tak' aby usunąć wszystkie dostosowania danych skórki przez użytkownika. Wybranie tej opcji spowoduje usunięcie wszystkich dostosowań skórek dokonanych przez użytkownika. Wszystkie dotknięte skórki powrócą do swoich standardowych ustawień. Spowoduje to również usunięcie wszystkich niestandardowych logotypów i tła."
+
+msgid "Select 'Yes' to remove all user interface data. Selecting this option will remove all keymap, menu and setup override data and restore the default definitions."
+msgstr "Wybierz 'Tak' aby usunąć wszystkie dane interfejsu użytkownika. Wybranie tej opcji spowoduje usunięcie wszystkich danych dotyczących map klawiszy, menu i zastępowania ustawień oraz przywrócenie domyślnych definicji."
+
+msgid "Select 'Yes' to reset network configuration to the default. This will enable the Ethernet port if it exists and set the receiver to use DHCP. All other network interfaces will be deleted."
+msgstr "Wybierz 'Tak', aby zresetować konfigurację sieci do wartości domyślnej. To włączy port Ethernet, jeśli istnieje i ustawi odbiornik na używanie DHCP. Wszystkie inne interfejsy sieciowe zostaną usunięte."
+
 msgid "Select 'band' if using a 'universal' LNB, otherwise consult your LNB spec sheet."
 msgstr "Wybierz \"pasmo\", jeśli używasz \"uniwersalnego\" konwertera, w przeciwnym razie zapoznaj się z arkuszem specyfikacji konwertera."
 
@@ -15449,6 +15537,15 @@ msgstr ""
 "Wybrana lista ustawień: %s\n"
 "\n"
 "Czy chcesz przywrócić tę listę ustawień?"
+
+msgid ""
+"Selecting 'Yes' will delete the currently selected user data. This action can't be undone. You may want to create a backup before continuing.\n"
+"\n"
+"Are you sure you want to continue with the factory reset?"
+msgstr ""
+"Wybranie opcji \"Tak\" spowoduje usunięcie aktualnie wybranych danych użytkownika. Tej akcji nie można cofnąć. Przed kontynuowaniem można utworzyć kopię zapasową.\n"
+"\n"
+"Czy na pewno chcesz kontynuować przywracanie ustawień fabrycznych?"
 
 msgid "Selecting satellites 1 (USALS)"
 msgstr "Wybieranie satelitów 1 (USALS)"
@@ -16090,7 +16187,10 @@ msgstr "Pokaż listę auto timera"
 msgid "Show Box Portal"
 msgstr "Pokaż Box Portal"
 
-msgid "Show CCcam in extensions ?"
+msgid "Show CCcam Info"
+msgstr "Pokaż CCcam Info"
+
+msgid "Show CCcam in extensions"
 msgstr "Pokaż CCcam w rozszerzeniach"
 
 msgid "Show CI messages"
@@ -16183,7 +16283,7 @@ msgstr "Pokaż EPG wielu kanałów"
 msgid "Show OScam Info"
 msgstr "Pokaż informacje OScam"
 
-msgid "Show OScam in extensions ?"
+msgid "Show OScam in extensions"
 msgstr "Pokaż OScam w rozszerzeniach"
 
 msgid "Show PIP"
@@ -16573,6 +16673,9 @@ msgstr "Pokaż informacje o systemie"
 
 msgid "Show task list"
 msgstr "Pokaż listę zadań"
+
+msgid "Show the CCcam Info Screen"
+msgstr "Pokaż ekran informacyjny CCcam"
 
 msgid "Show the DreamPlex player..."
 msgstr "Pokaż odtwarzacz DreamPlex..."
@@ -16971,9 +17074,6 @@ msgstr "Akcje softcam"
 msgid "Softcam Setup"
 msgstr "Ustawienia softcam"
 
-msgid "Softcam settings"
-msgstr "Ustawienia softcam"
-
 msgid "Softcam-Panel"
 msgstr "Panel softcam"
 
@@ -17334,6 +17434,9 @@ msgstr "Przesunięcie na wschód"
 
 msgid "Stepped west"
 msgstr "Przesunięcie na zachód"
+
+msgid "Sti"
+msgstr "Sti"
 
 msgid "Stop"
 msgstr "Zatrzymaj"
@@ -18696,10 +18799,10 @@ msgid ""
 "- please check your DHCP, cabling and adapter setup\n"
 "- if you configured your nameservers manually please verify your entries in the \"Nameserver\" configuration"
 msgstr ""
-"Ten test sprawdzi poprawność konfiguracji serwera nazw.\n"
+"Ten test sprawdzi poprawność konfiguracji DNS.\n"
 "Jeśli zobaczysz informację 'niepotwierdzone': \n"
-"-sprawdź ustawienia DHCP, przewód i adapter sieciowy\n"
-"-jeśli dokonałeś ręcznej konfiguracji nazwy serwera sprawdź ponownie konfigurację 'nazwy serwera'"
+"- sprawdź ustawienia DHCP, przewód i adapter sieciowy\n"
+"- jeśli dokonałeś ręcznej konfiguracji DNS sprawdź ponownie konfigurację 'Ustawienia DNS'"
 
 msgid ""
 "This test checks whether a network cable is connected to your LAN adapter.\n"
@@ -18859,9 +18962,6 @@ msgstr "Strefa czasowa"
 
 msgid "Time zone area"
 msgstr "Region strefy czasowej"
-
-msgid "Time zone settings"
-msgstr "Ustawienia strefy czasowej"
 
 msgid "Timeline 24 Hour"
 msgstr "Oś czasu 24 godziny"
@@ -19242,11 +19342,17 @@ msgstr "Tuner :"
 msgid "Tuner Configuration"
 msgstr "Konfiguracja tunera"
 
+msgid "Tuner Information"
+msgstr "Informacje o tunerze"
+
 msgid "Tuner Setup"
 msgstr "Tuner"
 
 msgid "Tuner configuration"
 msgstr "Konfiguracja tunera"
+
+msgid "Tuner information"
+msgstr "Informacje o tunerze"
 
 msgid "Tuner is not supported"
 msgstr "Tuner nie obsługiwany"
@@ -20692,20 +20798,6 @@ msgstr "Po uruchomieniu tunera, tuner wyśle komendę wybudzenia do telewizora."
 
 msgid "When tuned to a service the system will normally scan the transponder for any changes and save them. Only set to 'yes' if you're absolutely sure what you're doing."
 msgstr "Gdy nastawiony na kanał będzie normalnie skanować zmiany na transponderze i zapisze je. Tylko ustawiony na 'tak', jeśli jesteś absolutnie pewien, co robisz."
-
-#, python-format
-msgid ""
-"When you do a factory reset, you will lose ALL your configuration data\n"
-"(including bouquets, services, satellite data ...)\n"
-"After completion of factory reset, your %s %s will restart automatically!\n"
-"\n"
-"Really do a factory reset?"
-msgstr ""
-"Po przywróceniu ustawień fabrycznych, stracisz wszystkie dane konfiguracyjne\n"
-"(w tym listy ulubionych, kanały, ustawienia satelit...)\n"
-"Po zakończeniu procesu przywracania, %s %s zostanie automatycznie zrestartowany.\n"
-"\n"
-"Czy na pewno chcesz przywrócić ustawienia fabryczne?"
 
 msgid "Where do you want to backup your settings?"
 msgstr "Gdzie chcesz utworzyć kopię zapasową ustawień?"
@@ -23145,6 +23237,59 @@ msgstr "przełączanie"
 
 msgid "®"
 msgstr "®"
+
+msgid "Allows you to show/hide CCcam in extensions (BLUE button)."
+msgstr "Umożliwia pokazanie/ukrycie CCcam w rozszerzeniach (niebieski przycisk)."
+
+#, python-format
+#~ msgid ""
+#~ "CCcam Info %s\n"
+#~ "by AliAbdul %s\n"
+#~ "\n"
+#~ "This plugin shows you the status of your CCcam."
+#~ msgstr ""
+#~ "CCcam Info %s\n"
+#~ "przez AliAbdul %s\n"
+#~ "\n"
+#~ "Wtyczka ta pokazuje stan CCcama."
+
+#, python-format
+#~ msgid "CPU: %s"
+#~ msgstr "Procesor: %s"
+
+#, python-format
+#~ msgid "Cores: %s"
+#~ msgstr "Rdzenie: %s"
+
+#, python-format
+#~ msgid "Kernel: %s"
+#~ msgstr "Jądro: %s"
+
+#~ msgid "Show CCcam in extensions ?"
+#~ msgstr "Pokaż CCcam w rozszerzeniach"
+
+#~ msgid "Show OScam in extensions ?"
+#~ msgstr "Pokaż OScam w rozszerzeniach"
+
+#~ msgid "Softcam settings"
+#~ msgstr "Ustawienia softcam"
+
+#~ msgid "Time zone settings"
+#~ msgstr "Ustawienia strefy czasowej"
+
+#, python-format
+#~ msgid ""
+#~ "When you do a factory reset, you will lose ALL your configuration data\n"
+#~ "(including bouquets, services, satellite data ...)\n"
+#~ "After completion of factory reset, your %s %s will restart automatically!\n"
+#~ "\n"
+#~ "Really do a factory reset?"
+#~ msgstr ""
+#~ "Po przywróceniu ustawień fabrycznych, stracisz wszystkie dane konfiguracyjne\n"
+#~ "(w tym listy ulubionych, kanały, ustawienia satelit...)\n"
+#~ "Po zakończeniu procesu przywracania, %s %s zostanie automatycznie zrestartowany.\n"
+#~ "\n"
+#~ "Czy na pewno chcesz przywrócić ustawienia fabryczne?"
 
 #, python-format
 #~ msgid "%d Mins"
