@@ -4029,7 +4029,8 @@ class NetworkPassword(Setup):
 		self.container = eConsoleAppContainer()
 		self.container.dataAvail.append(self.dataAvail)
 		self.container.appClosed.append(self.appClosed)
-		retVal = self.container.execute(*("/usr/bin/passwd", "/usr/bin/passwd", self.user))
+		retVal = self.container.execute("echo -e '%s\n%s' | (passwd %s)" % (password, password, self.user))
+		# retVal = self.container.execute(*("/usr/bin/passwd", "/usr/bin/passwd", self.user))
 		if retVal:
 			self.session.open(MessageBox, _("Error: Unable to change password!"), MessageBox.TYPE_ERROR)
 		else:
