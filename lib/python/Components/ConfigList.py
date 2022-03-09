@@ -210,7 +210,7 @@ class ConfigListScreen:
 			"gotAsciiCode": (self.keyGotAscii, _("Keyboard data entry"))
 		}, prio=1, description=_("Common Setup Actions"))
 		self["charConfigActions"].setEnabled(False if fullUI else True)
-		self["editConfigActions"] = HelpableNumberActionMap(self, ["TextEditActions"], {
+		self["editConfigActions"] = HelpableActionMap(self, ["TextEditActions"], {
 			"backspace": (self.keyBackspace, _("Delete character to left of cursor or select AM times")),
 			"delete": (self.keyDelete, _("Delete character under cursor or select PM times")),
 			"erase": (self.keyErase, _("Delete all the text")),
