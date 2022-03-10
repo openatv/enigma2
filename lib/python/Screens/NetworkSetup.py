@@ -4022,6 +4022,7 @@ class NetworkPassword(Setup):
 		self.counter = 0
 		self.timer = eTimer()
 		self.timer.callback.append(self.appClosed)
+		self.language = "C.UTF-8"  # This is a complete hack to negate all the plugins that inappropriately change the language!!!
 
 	def keySave(self):
 		password = config.network.password.value
@@ -4031,7 +4032,8 @@ class NetworkPassword(Setup):
 			return
 		# print("[NetworkSetup] NetworkPassword: Changing the password for '%s' to '%s'." % (self.user, password))
 		print("[NetworkSetup] NetworkPassword: Changing the password for '%s'." % self.user)
-		environ["LANGUAGE"] = "C.UTF-8"  # This is a complete hack to negate all the plugins that inappropriately change the language!!!
+		self.language = environ["LANGUAGE"]  # This is a complete hack to negate all the plugins that inappropriately change the language!!!
+		environ["LANGUAGE"] = "C.UTF-8"
 		self.container = eConsoleAppContainer()
 		self.container.dataAvail.append(self.dataAvail)
 		self.container.appClosed.append(self.appClosed)
@@ -4057,6 +4059,7 @@ class NetworkPassword(Setup):
 
 	def appClosed(self, retVal=ETIMEDOUT):
 		self.timer.stop()
+		environ["LANGUAGE"] = self.language  # This is a complete hack to negate all the plugins that inappropriately change the language!!!
 		if retVal:
 			if retVal == ETIMEDOUT:
 				self.container.kill()
