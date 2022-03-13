@@ -9,15 +9,15 @@ msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-03-01 17:50+0000\n"
-"PO-Revision-Date: 2022-03-01 18:17+0000\n"
-"Last-Translator: pololoko111 <peciek83@gmail.com>\n"
+"PO-Revision-Date: 2022-03-13 10:12+0000\n"
+"Last-Translator: drakulis <drakulis@interia.pl>\n"
 "Language-Team: Polish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/pl/>\n"
 "Language: pl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 4.11.1-dev\n"
+"X-Generator: Weblate 4.12-dev\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 
 msgid ""
@@ -1446,7 +1446,7 @@ msgid "'%s' not installed and no known package"
 msgstr "'%s' niezainstalowany i brak znanego pakietu"
 
 msgid "'Buffer in hours' or 'number of last events'. For deleting older timeshift files, the condition which occurred first has priority."
-msgstr "'Bufor w godzinach' lub 'liczba ostatnich wydarzeń'. Usuwanie plików starszych timeshiftu, stan który wystąpił jako pierwszy ma priorytet."
+msgstr "'Limit bufora w godzinach' lub 'Liczba ostatnio zarejestrowanych wydarzeń' spowoduje usunięcie najstarszego pliku timeshiftu, w zależności od tego, który warunek wystąpił jako pierwszy."
 
 msgid "'Handle standby from TV' has a higher priority than 'Handle input from TV'."
 msgstr "Komenda czuwania z TV ma wyższy priorytet niż komenda wejścia."
@@ -1466,7 +1466,7 @@ msgstr "(1 praca)"
 
 #, python-format
 msgid "(Attention: There will be a restart after %d crashes.)"
-msgstr "(Uwaga: Nastąpi ponowne uruchomienie po %d awariach.)"
+msgstr "(Uwaga: po %d awariach nastąpi automatyczne zrestartowanie.)"
 
 msgid "(FTA Service)"
 msgstr "(Usługa FTA)"
@@ -2188,7 +2188,7 @@ msgid ""
 "Do that now or set extend additional minutes?"
 msgstr ""
 "Timer chce przełączyć %s %s w tryb czuwania.\n"
-"Zobić to teraz czy ustawić dodatkowe minuty?"
+"Zrobić to teraz czy ustawić dodatkowy czas?"
 
 #, python-format
 msgid ""
@@ -2204,7 +2204,7 @@ msgid ""
 "Do that now or set extend additional minutes?"
 msgstr ""
 "Timer chce wyłączyć %s %s.\n"
-"Zobić to teraz czy ustawić dodatkowy czas?"
+"Zrobić to teraz czy ustawić dodatkowy czas?"
 
 msgid "A small overview of the available icon states and actions."
 msgstr "Mały przegląd dostępnych stanów ikon i ich działań."
@@ -3206,13 +3206,13 @@ msgid "Automatically put the TV in standby whenever the receiver goes into stand
 msgstr "Automatycznie wyłącz TV jeśli tuner przejdzie w tryb czuwania lub zostanie wyłączony."
 
 msgid "Automatically start timeshift after"
-msgstr "Automatycznie uruchom timeshift po"
+msgstr "Czas, po którym ma zostać uruchomiony timeshift"
 
 msgid "Automatically turn on external subtitles"
 msgstr "Automatyczne włączenie napisów zewnętrznych"
 
 msgid "Automatically update Client/Server View"
-msgstr "Wyświetlić automatyczną aktualizacje Klient/Serwer?"
+msgstr "Automatycznie aktualizuj widok klienta/serwera"
 
 msgid "Automobil"
 msgstr "Samochód"
@@ -4793,7 +4793,7 @@ msgid "Configure default setting for new timers. Need a restart after changing."
 msgstr "Skonfiguruj domyślne ustawienie dla nowych timerów. Po zmianie wymagany restart."
 
 msgid "Configure for how many minutes finished events should remain visible in the EPG. Useful when you need information about an event which has just finished, or has been delayed."
-msgstr "Skonfiguruj przez ile minut zakończone audycje pozostaną widoczne w EPG. Przydatne, gdy potrzebujesz informacji o programie, który właśnie się zakończył‚ lub się opóżnił."
+msgstr "Skonfiguruj przez jaki czas audycje pozostaną widoczne w EPG. Przydatne, gdy potrzebujesz informacji o programie, który właśnie się zakończył‚ lub się opróźnił."
 
 msgid "Configure for which types of recordings a warning about active recordings is shown when attempting to restart the box or the GUI."
 msgstr "Skonfiguruj dla jakich typów nagrań pojawia się ostrzeżenie o aktywnych nagraniach podczas próby ponownego uruchomienia tunera lub interfejsu."
@@ -4904,7 +4904,7 @@ msgid "Configure the duration in minutes for the screensaver."
 msgstr "Skonfiguruj czas trwania w minutach dla wygaszacza ekranu."
 
 msgid "Configure the duration in minutes for the sleep timer."
-msgstr "Skonfiguruj czas trwania w minutach dla timera."
+msgstr "Skonfiguruj czas trwania timera w minutach."
 
 msgid "Configure the end coordinate in x of the teletext display area."
 msgstr "Skonfiguruj współrzędną końcową w x obszaru wyświetlania telegazety."
@@ -5365,14 +5365,14 @@ msgid "Crash Logs"
 msgstr "Ustawienia logów"
 
 msgid "Crash at skin error for debug reasons"
-msgstr "Czy pokazać błędy skóry (dla celów debuggowania)?"
+msgstr "Awaria przy błędzie skórki z powodów debugowania"
 
 #, python-format
 msgid "Crash log '%s' (%d/%d)"
 msgstr "Log awarii '1%s' (2%d/3%d)"
 
 msgid "Create"
-msgstr "Utworzyć"
+msgstr "Utwórz"
 
 msgid "Create Bludisc ISO file"
 msgstr "Utwórz plik Bludisc ISO"
@@ -6213,7 +6213,7 @@ msgid ""
 "Difference between timer begin and end must be equal or greater than %d minutes.\n"
 "End Action was disabled !"
 msgstr ""
-"Różnica między początkiem i końcem timera musi być równa lub większa niż %d minutes.\n"
+"Różnica między początkiem i końcem timera musi być równa lub większa niż %d minut.\n"
 "Zatrzymanie Akcji Timera zostało wyłączone!"
 
 msgid "Digit entry for service selection"
@@ -6426,7 +6426,7 @@ msgid "Do not record"
 msgstr "Nie nagrywaj"
 
 msgid "Do nothing"
-msgstr "nic nie rób"
+msgstr "Nie rób nic"
 
 msgid ""
 "Do you really want to check the filesystem?\n"
@@ -7238,7 +7238,7 @@ msgid "End long"
 msgstr "Zakończ długo"
 
 msgid "End time"
-msgstr "Czas zakończenia"
+msgstr "Zakończenie"
 
 msgid "Energie"
 msgstr "Energia"
@@ -9194,10 +9194,10 @@ msgid "If set to 'Yes' the same commands will be sent to the TV for deep standby
 msgstr "Jeśli \"Tak\", ta sama komenda zostanie wysłana do TV dla głębokiego czuwania jaka jest wysyłana dla normalnego czuwania."
 
 msgid "If set to 'no', can you save older events even after zapping or interruption of the timeshift."
-msgstr "Jeśli jest ustawiony na 'nie', można zapisać starsze wydarzenia nawet po przełączaniu lub przerwanie timeshiftu."
+msgstr "Jeśli ustawione na „nie”, możesz zapisać starsze wydarzenia nawet po przełączeniu kanału lub przerwaniu timeshift'u."
 
 msgid "If set to 'no', timeshift used only one buffer file. It's recommend 'Timeshift checking for older files [in minutes]' and 'Timeshift checking for free space?' to adjust."
-msgstr "Jeśli jest ustawione na \"nie\", timeshift używa tylko jeden plik bufora.Polecam \"Timeshift sprawdzanie plików starszych [w min.]\" i \"Timeshift sprawdzanie ilości wolnego miejsca?\" aby dopasować."
+msgstr "Jeśli ustawione na \"nie\", timeshift użyje tylko jednego pliku do zapisu kolejnych programów na danym kanale. Zalecane jest dostosowanie opcji \"Sprawdzanie plików starszych [w min.]\" i \"Sprawdź wolne miejsce\"."
 
 msgid "If set to 'yes' channels without EPG will not be shown."
 msgstr "Jeśli jest ustawione na 'tak', kanały bez EPG nie będą wyświetlane."
@@ -9236,7 +9236,7 @@ msgid "If set to 'yes' you can preview channels in the channel list. Press 'OK' 
 msgstr "Jeśli ustawione na „tak”, możesz wyświetlać podgląd kanałów na liście kanałów. Naciśnij 'OK', aby wyświetlić podgląd wybranego kanału. Naciśnij 'OK' drugi raz, aby wyjść i przejść do tego kanału, natomiast naciskając 'EXIT' powrócisz do kanału, na którym zacząłeś."
 
 msgid "If set to 'yes', allows you use the seekbar to jump to a point within the event."
-msgstr "Jeśli jest ustawione na 'tak',pozwala wykorzystać pasek wyszukiwania."
+msgstr "Jeśli ustawione na 'tak', pozwala wykorzystać pasek wyszukiwania do przewijania timeshift'u."
 
 msgid "If set to 'yes; the infobar will be displayed when Fast Forwarding or Rewinding during media playback."
 msgstr "Jeśli jest ustawione na 'tak' ,pasek informacyjny będzie wyświetlany podczas szybkiego przewijania do przodu lub do tyłu(odtwarzacz multimediów)."
@@ -9330,7 +9330,7 @@ msgid "Immediately restart selected devices."
 msgstr "Natychmiast uruchom ponownie wybrane urządzenia."
 
 msgid "In addition to the check at an event start, a repetitive check can be used, so that the conditions 'buffer limit in hours' or 'check free space' are detected earlier."
-msgstr "Oprócz kontroli na początku wydarzenia,powtarzalna kontrola może być używana -warunki \"ograniczenie bufora godzin\" lub \"sprawdzić ilość wolnego miejsca\" są wykrywane wcześniej."
+msgstr "Oprócz sprawdzania na początku zdarzenia można zastosować sprawdzanie powtarzalne, dzięki czemu warunki „Limit bufora w godzinach” lub „Sprawdź wolne miejsce” zostaną wykryte wcześniej."
 
 msgid "In expert mode, configure which tuners will be preferred for recordings, when more than one tuner is available."
 msgstr "W trybie eksperta skonfiguruj, które tunery będą preferowane dla nagrań, gdy dostępny jest więcej niż jeden tuner."
@@ -10409,7 +10409,7 @@ msgid "Log file '%s' deleted."
 msgstr "Plik dziennika '%s' usunięty."
 
 msgid "Log python stack trace on spinner"
-msgstr "Log python stack trace on spinner?"
+msgstr "Debuguj główną przyczynę błędu"
 
 msgid "Log results to harddisk"
 msgstr "Zapisuj log na HDD"
@@ -11914,7 +11914,7 @@ msgid ""
 "Free Space: %sMB\n"
 "Path: %s"
 msgstr ""
-"Za mało wolnego miejsca na dysku!\n"
+"Za mało miejsca na dysku!\n"
 "\n"
 "Rozmiar pliku: %sMB\n"
 "Wolne miejsce: %sMB\n"
@@ -14295,7 +14295,7 @@ msgid "Repeat the sent standby and wakeup commands"
 msgstr "Powtórz wysłane polecenia czuwania i wznowienia"
 
 msgid "Repeat the standby commands"
-msgstr "Powtórzyć polecenia czuwania?"
+msgstr "Powtórz polecenia w trybie gotowości"
 
 msgid "Repeat type"
 msgstr "Typ powtórzenia"
@@ -15121,7 +15121,7 @@ msgid "Select 'band' if using a 'universal' LNB, otherwise consult your LNB spec
 msgstr "Wybierz \"pasmo\", jeśli używasz \"uniwersalnego\" konwertera, w przeciwnym razie zapoznaj się z arkuszem specyfikacji konwertera."
 
 msgid "Select 'enabled' if this tuner has a signal cable connected, otherwise select 'nothing connected'."
-msgstr "Wybierz włączone, jeśli ten tuner ma podłączony sygnałowy, w przeciwnym razie wybierz nic nie podłączone."
+msgstr "Wybierz 'Włączone', jeśli ten tuner ma podłączony sygnałowy, w przeciwnym razie wybierz 'Nie podłączone'."
 
 msgid "Select 'polarisation' if using a 'universal' LNB, otherwise consult your LNB spec sheet."
 msgstr "Wybierz opcję \"polaryzacja\", jeśli używasz \"uniwersalnego\" konwertera LNB, w przeciwnym razie zapoznaj się z arkuszem danych technicznych konwertera LNB."
@@ -15275,13 +15275,13 @@ msgid "Select how the satellite dish is set up. i.e. fixed dish, single LNB, DiS
 msgstr "Wybierz sposób konfiguracji anteny satelitarnej. tj. stała antena, pojedynczy LNB, przełącznik DiSEqC, pozycjoner itp."
 
 msgid "Select how to activate the Quick EPG mode."
-msgstr "Wybierz sposób aktywacji trybu Quick EPG:"
+msgstr "Wybierz sposób aktywacji trybu szybkiego EPG."
 
 msgid "Select how your box will upgrade."
 msgstr "Wybór trybu aktualizacji."
 
 msgid "Select if timeshift must continue when set to record."
-msgstr "Wybierz, czy timeshift ma kontynuować gdy jest ustawiony na nagrywanie."
+msgstr "Określ jaka akcja ma zostać wykonana w momencie gdy zmienisz kanał, a timeshift jest aktywny."
 
 msgid "Select if you want the Subservice mode to be activated."
 msgstr "Wybierz, czy tryb subserwisów ma być aktywowany."
@@ -15398,16 +15398,16 @@ msgid "Select the protocol used by your SCR device. Choices are 'SCR Unicable' (
 msgstr "Wybierz protokół używany przez urządzenie SCR. Dostępne opcje to „SCR Unicable” (Unicable) lub „SCR JESS” (JESS, znany również jako Unicable II)."
 
 msgid "Select the satellite which is connected to Port-A of your switch. If you are unsure select 'automatic' and the receiver will attempt to determine this for you. If nothing is connected to this port, select 'nothing connected'."
-msgstr "Wybierz satelitę podłączonego do portu A przełącznika. Jeśli nie masz pewności, wybierz „automatyczny”, a odbiornik spróbuje to ustalić. Jeśli nic nie jest podłączone do tego portu, wybierz „nic nie połączone”."
+msgstr "Wybierz satelitę podłączonego do portu A przełącznika. Jeśli nie masz pewności, wybierz „automatyczny”, a odbiornik spróbuje to ustalić. Jeśli nic nie jest podłączone do tego portu, wybierz „Nie podłączone”."
 
 msgid "Select the satellite which is connected to Port-B of your switch. If you are unsure select 'automatic' and the receiver will attempt to determine this for you. If nothing is connected to this port, select 'nothing connected'."
-msgstr "Wybierz satelitę podłączonego do portu B przełącznika. Jeśli nie masz pewności, wybierz „automatyczny”, a odbiornik spróbuje to ustalić. Jeśli nic nie jest podłączone do tego portu, wybierz „nic nie połączone”."
+msgstr "Wybierz satelitę podłączonego do portu B przełącznika. Jeśli nie masz pewności, wybierz „automatyczny”, a odbiornik spróbuje to ustalić. Jeśli nic nie jest podłączone do tego portu, wybierz „Nie podłączone”."
 
 msgid "Select the satellite which is connected to Port-C of your switch. If you are unsure select 'automatic' and the receiver will attempt to determine this for you. If nothing is connected to this port, select 'nothing connected'."
-msgstr "Wybierz satelitę podłączonego do portu C przełącznika. Jeśli nie masz pewności, wybierz „automatyczny”, a odbiornik spróbuje to ustalić. Jeśli nic nie jest podłączone do tego portu, wybierz „nic nie połączone”."
+msgstr "Wybierz satelitę podłączonego do portu C przełącznika. Jeśli nie masz pewności, wybierz „automatyczny”, a odbiornik spróbuje to ustalić. Jeśli nic nie jest podłączone do tego portu, wybierz „Nie podłączone”."
 
 msgid "Select the satellite which is connected to Port-D of your switch. If you are unsure select 'automatic' and the receiver will attempt to determine this for you. If nothing is connected to this port, select 'nothing connected'."
-msgstr "Wybierz satelitę podłączonego do portu D przełącznika. Jeśli nie masz pewności, wybierz „automatyczny”, a odbiornik spróbuje to ustalić. Jeśli nic nie jest podłączone do tego portu, wybierz „nic nie połączone”."
+msgstr "Wybierz satelitę podłączonego do portu D przełącznika. Jeśli nie masz pewności, wybierz „automatyczny”, a odbiornik spróbuje to ustalić. Jeśli nic nie jest podłączone do tego portu, wybierz „Nie podłączone”."
 
 msgid "Select the satellite you want to configure. Once that satellite is configured you can select and configure other satellites that will be accessed using this same tuner."
 msgstr "Wybierz satelitę, którą chcesz skonfigurować. Po skonfigurowaniu tego satelity możesz wybrać i skonfigurować inne satelity, które będą dostępne za pomocą tego samego tunera."
@@ -15467,22 +15467,22 @@ msgid "Select what should be done when the %s %s was shutdown incorrectly, or af
 msgstr "Po przywróceniu zasilania twój %s %s zostanie automatycznie uruchomiony. Wybierz, co należy wtedy zrobić."
 
 msgid "Select what you want the Channel +/- button to activate."
-msgstr "Wybierz, co chcesz aktywować przyciskiem 'Kanał +/-':"
+msgstr "Wybierz, co ma aktywować przycisk Kanał +/-"
 
 msgid "Select what you want the EPG button to activate."
-msgstr "Wybierz, co chcesz aktywować przyciskiem 'EPG':"
+msgstr "Wybierz, co ma aktywować przycisk EPG."
 
 msgid "Select what you want the INFO button to activate."
-msgstr "Wybierz, co chcesz aktywować przyciskiem 'INFO':"
+msgstr "Wybierz, co ma aktywować przycisk INFO."
 
 msgid "Select what you want the OK button to activate."
-msgstr "Wybierz, co chcesz aktywować przyciskiem 'OK':"
+msgstr "Wybierz, co chcesz aktywować przyciskiem OK."
 
 msgid "Select what you want the TV button to activate."
-msgstr "Wybierz, co chcesz aktywować przyciskiem 'TV':"
+msgstr "Wybierz, co chcesz aktywować przyciskiem TV."
 
 msgid "Select what you want the Up/Down button to activate."
-msgstr "Wybierz, co chcesz aktywować przyciskiem 'w górę/w dół':"
+msgstr "Wybierz, co chcesz aktywować przyciskiem W górę/W dół."
 
 msgid "Select wireless network"
 msgstr "Wybierz sieć bezprzewodową"
@@ -16495,7 +16495,7 @@ msgid "Show in Standby"
 msgstr "Pokaż w trybie czuwania"
 
 msgid "Show in extensions list"
-msgstr "Pokazać na liście rozszerzeń?"
+msgstr "Pokaż na liście rozszerzeń"
 
 msgid "Show info"
 msgstr "Pokaż info"
@@ -17200,7 +17200,7 @@ msgid "Sorry, no details available!"
 msgstr "Szczegółowy opis niedostępny!"
 
 msgid "Sorry, no physical devices that supports SWAP attached. Can't create Swapfile on network or fat32 filesystems"
-msgstr "Nie ma żadnych fizycznych urządzeń obsługujących plik wymiany. Nie można utworzyć pliku wymiany w sieci i w systemie plików FAT32"
+msgstr "Nie znaleziono dysku, który umożliwiałby utworzenie pliku wymiany. Nie można utworzyć pliku wymiany na dyskach sieciowych ani z systemem plików FAT32"
 
 msgid "Sorry, there was a problem:"
 msgstr "Niestety wystąpił problem:"
@@ -17466,7 +17466,7 @@ msgid "Stop Streams"
 msgstr "Zatrzymaj"
 
 msgid "Stop current event and disable coming events"
-msgstr "Zatrzymać bieżące wydarzenie i wyłączyć nadchodzące wydarzenie"
+msgstr "Zatrzymaj bieżące wydarzenie i wyłącz nadchodzące wydarzenie"
 
 msgid "Stop current event but not coming events"
 msgstr "Zatrzymaj bieżące wydarzenie, ale nie nadchodzące"
@@ -17511,13 +17511,13 @@ msgid "Stop timeshift"
 msgstr "Zatrzymać timeshift"
 
 msgid "Stop timeshift and save timeshift buffer as movie"
-msgstr "Zatrzymaj timeshift i zapisz bufor"
+msgstr "Zatrzymaj timeshift i zapisz jako nagranie"
 
 msgid "Stop timeshift and save timeshift buffer as movie and start recording of current event"
-msgstr "Zatrzymaj timeshift, zapisz bufor i rozpocznij nagrywanie bieżącego wydarzenia"
+msgstr "Zatrzymaj timeshift, zapisz jako nagranie i rozpocznij nagrywanie bieżącego wydarzenia"
 
 msgid "Stop timeshift while recording"
-msgstr "Zatrzymać timeshift podczas nagrywania?"
+msgstr "Zatrzymaj timeshift podczas nagrywania"
 
 msgid "Stops timeshift being used if a recording is in progress. (Advisable for USB sticks.)"
 msgstr "Zatrzymaj timeshift jeśli nagrywanie jest w toku. (Zalecane dla pamięci USB)"
@@ -17686,7 +17686,7 @@ msgid "Swap File Manager"
 msgstr "Menadżer pliku wymiany"
 
 msgid "Swap File not found. You have to create the file before to activate."
-msgstr "Nie znaleziono pliku wymiany. Musisz wcześniej utworzyć plik do aktywacji."
+msgstr "Nie znaleziono pliku wymiany. Najpierw utwórz plik a później go aktywuj."
 
 msgid "Swap Manager"
 msgstr "Menadżer pliku wymiany"
@@ -18269,7 +18269,7 @@ msgid ""
 "Please use the 'additional' and 'excluded' backup selection."
 msgstr ""
 "Nie możesz zmienić domyślnych plików kopii zapasowej.\n"
-"Użyj opcji 'Dodatkowe/Wykluczone z wyboru kopii zapasowej."
+"Użyj opcji 'Dodatkowe/Wykluczone pliki kopii zapasowej."
 
 msgid "The default settings are 5 minutes earlier to wakeup from deep standby. It possibly may be necessary to change this. (e.g.: the actual wake-up time is inaccurate or to late, waiting to a network-drive, etc.)"
 msgstr "Domyślne ustawienie to 5 minut wcześniej, aby mieć pewność że tuner zostanie uruchomiony. Być może konieczna będzie zmiana tego wstawienia np.: gdy rzeczywisty czas wybudzenia jest niedokładny lub z różnych powodów opóźniony, tuner oczekuje na podłączenie dysku sieciowego itp."
@@ -18587,7 +18587,7 @@ msgid "This option allows you can force the HLG Modes for UHD"
 msgstr "Ta opcja pozwala wymusić tryby HLG dla UHD"
 
 msgid "This option allows you choose how to display elapsed time as + or -"
-msgstr "Ta opcja pozwala wybrać sposób wyświetlania czasu,jako  + lub -"
+msgstr "Ta opcja pozwala wybrać sposób wyświetlania czasu, który upłynął jako + lub -"
 
 msgid "This option allows you choose how to display remaining time, or elapsed time, or both."
 msgstr "Ta opcja pozwala wybrać sposób wyświetlania pozostałego czasu lub upływającego czasu, lub obu."
@@ -18737,7 +18737,7 @@ msgid "This option lets you choose the 3D mode"
 msgstr "Ta opcja pozwala wybrać tryb 3D"
 
 msgid "This option lets you show the option in the extension screen."
-msgstr "Ta opcja pozwala wyświetlić na ekranie opcję przedłużenia"
+msgstr "Ta opcja pozwala wyświetlić opcję na ekranie rozszerzenia."
 
 msgid "This option moves the PVR status from the separate window into the MoviePlayer infobar."
 msgstr "Ta opcja przesuwa stan PVR z oddzielnego okna na pasek informacyjny odtwarzacza filmów."
@@ -19060,22 +19060,22 @@ msgid "Timeshift"
 msgstr "Timeshift"
 
 msgid "Timeshift buffer delete after zap"
-msgstr "Wyczyścić bufor timeshiftu po przełączeniu?"
+msgstr "Usuń bufor timeshiftu po przełączeniu kanału"
 
 msgid "Timeshift buffer limit [in hours]"
-msgstr "Limit bufora timeshiftu [w godz.]"
+msgstr "Limit bufora w godzinach"
 
 msgid "Timeshift checking for free space"
-msgstr "Sprawdzić wolne miejsce?"
+msgstr "Timeshift sprawdzanie wolnego miejsca"
 
 msgid "Timeshift checking for older files [in minutes]"
 msgstr "Sprawdzanie starszych plików [w min.]"
 
 msgid "Timeshift event based file splitting"
-msgstr "Wydarzenie oparte na podzielonym pliku"
+msgstr "Zapisuj programy w osobnych plikach"
 
 msgid "Timeshift last events limit [number of events]"
-msgstr "Limit ostatnich wydarzeń [liczba wydarzeń]"
+msgstr "Limit ostatnio zarejestrowanych wydarzeń [ilość]"
 
 msgid "Timeshift location"
 msgstr "Ścieżka zapisu"
@@ -19102,7 +19102,7 @@ msgid "Timeshift will get saved at end of event!"
 msgstr "TimeShift będzie zapisywanany tylko do końca danego wydarzenia!"
 
 msgid "Timeshift-save action on zap"
-msgstr "Zapisz akcje po zmianie kanału"
+msgstr "Akcja po zmianie kanału"
 
 msgid "Timezone"
 msgstr "Strefa czasowa"
@@ -19539,7 +19539,7 @@ msgid "Umweltbewusstsein"
 msgstr "Świadomość ekologiczna"
 
 msgid "Unable to create the required directories on the media (e.g. USB stick or Harddisk) - Please verify media and try again!"
-msgstr "Nie można utworzyć wymaganych katalogów na nośniku (np. Pamięć USB lub dysk twardy) - Sprawdź nośnik i spróbuj ponownie!"
+msgstr "Nie można utworzyć wymaganych katalogów na dysku (np. USB lub dysk twardy) - Sprawdź dysk i spróbuj ponownie!"
 
 msgid "Unattended upgrade without GUI"
 msgstr "Aktualizacja bez nadzoru poza GUI"
@@ -19688,7 +19688,7 @@ msgid "Up/Down button mode"
 msgstr "Akcja dla przycisku 'Góra/Dół'"
 
 msgid "Up/Down buttons also for 'all up/down'"
-msgstr "Przyciski góra/dół również dla 'wszystko w górę/w dół'?"
+msgstr "Przyciski góra/dół również dla 'wszystko w górę/w dół'"
 
 msgid "Update"
 msgstr "Aktualizuj"
@@ -19987,13 +19987,13 @@ msgid "Use time jumps for fast forward/backward"
 msgstr "Użyj czasu przeskoku na szybkie przewijanie do przodu/do tyłu"
 
 msgid "Use timeshift seekbar while timeshifting"
-msgstr "Użyć paska przeszukiwania w trakcie timeshiftu?"
+msgstr "Użyj paska postępu w trakcie timeshiftu"
 
 msgid "Use trash can in movie list"
 msgstr "Użyj kosza w liście filmów"
 
 msgid "Use workaround for wakeup from deep-standby"
-msgstr "Czy zastosować obejście do wybudzania wyłączonego tunera?"
+msgstr "Użyj obejścia do wybudzenia z głębokiego czuwania"
 
 msgid "Used"
 msgstr "Użyte"
@@ -20623,7 +20623,7 @@ msgid "What Day of week ?"
 msgstr "Którego dnia tygodnia?"
 
 msgid "What action is required on completion of the timer? 'Auto' lets the box return to the state it had when the timer started. 'Do nothing', 'Go to standby' and 'Go to deep standby' do exactly that."
-msgstr "Jakie działanie ma być wykonane po ukończeniu Timera? \"Auto\" pozwala, aby tuner powrócił do stanu, w którym znajdował się podczas uruchomienia Timera. \"Nie rób nic\", \"Przejdź do trybu czuwania\" i \"Wyłącz\", wykonuje dokładnie to co jest napisane."
+msgstr "Jakie działanie ma być wykonane po ukończeniu Timera? \"Auto\" pozwala, aby tuner powrócił do stanu, w którym znajdował się podczas uruchomienia Timera. \"Nic nie rób\", \"Przejdź do trybu czuwania\" i \"Wyłącz\", wykonuje dokładnie to co jest napisane."
 
 msgid "What do you want to play?\n"
 msgstr "Co chcesz odtworzyć?\n"
@@ -20746,7 +20746,7 @@ msgid "When enabled, subtitles for the hearing impaired will be preferred over n
 msgstr "Gdy włączone, napisy dla niesłyszących będą preferowane przed normalnymi napisami, jeżeli oba rodzaje są dostępne."
 
 msgid "When enabled, teletext pages will be cached, allowing faster access."
-msgstr "Gdy włączone, strony telegazety będą buforowane, co pozwala na szybszy dostęp."
+msgstr "Po włączeniu, strony telegazety będą buforowane, co spowoduje ich szybsze ładowanie."
 
 msgid "When enabled, teletext subtitles will be displayed at their original position."
 msgstr "Gdy włączone, napisy telegazety będą wyświetlane w oryginalnym położeniu."
@@ -20770,7 +20770,7 @@ msgid "When enabled, the receiver will select an AC3+ track (when available)."
 msgstr "Gdy włączone, zostanie wybrana ścieżka AC3 + (jeśli jest dostępna)."
 
 msgid "When enabled, timeshift starts automatically in background after specified time."
-msgstr "Po włączeniu, przesunięcie czasu rozpoczyna się w tle automatycznie po określonym czasie."
+msgstr "Określ czas, po którym ma zostać włączony timeshift."
 
 msgid "When enabled, use DHCP for the IP configuration."
 msgstr "Gdy włączone, zostanie użyty będzie serwer DHCP do konfiguracji IP."
@@ -21842,7 +21842,7 @@ msgid "copy to bouquets"
 msgstr "Kopiuj do Ulubionych"
 
 msgid "create directory"
-msgstr "utworzyć katalog"
+msgstr "Utwórz katalog"
 
 msgid "create symlink ..."
 msgstr "utwórz dowiązanie symboliczne..."
@@ -22504,7 +22504,7 @@ msgid "not_tested"
 msgstr "nie_testowany"
 
 msgid "nothing connected"
-msgstr "nie podłączony"
+msgstr "Nie podłączone"
 
 msgid "of a DUAL layer medium used."
 msgstr "nośnik dwuwarstwowy zużyty."
@@ -22623,9 +22623,9 @@ msgstr "prawdziwe nagrywania lub strumieniowanie"
 msgid "reboot system"
 msgstr "reboot systemu"
 
-#, python-format
+#, fuzzy, python-format
 msgid "record time changed, start prepare is now: %s"
-msgstr "zmienił się czas nagrywania, rozpoczęcie przygotowania jest teraz: %s"
+msgstr "zmieniono czas nagrywania, przygotowanie do rozpoczęcia wynosi teraz: %s"
 
 msgid "recording..."
 msgstr "nagrywanie..."

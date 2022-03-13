@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-03-01 17:50+0000\n"
-"PO-Revision-Date: 2022-02-14 23:12+0000\n"
+"PO-Revision-Date: 2022-03-13 10:12+0000\n"
 "Last-Translator: Snoete <snoete@hotmail.com>\n"
 "Language-Team: Dutch <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/nl/>\n"
 "Language: nl\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.11-dev\n"
+"X-Generator: Weblate 4.12-dev\n"
 "X-Poedit-Basepath: .\n"
 "X-Poedit-SearchPath-0: ..\n"
 
@@ -1003,7 +1003,7 @@ msgstr "%d MB"
 
 #, python-format
 msgid "%d MHz"
-msgstr ""
+msgstr "%d MHz"
 
 #. TRANSLATORS: full date representation dayname daynum monthname year in strftime() format! See 'man strftime'
 #. _("%A %e %B %Y")
@@ -2680,10 +2680,10 @@ msgid "Allows you to assign the selected function to this button."
 msgstr "Wijs de gekozen functie toe aan deze knop."
 
 msgid "Allows you to enable the GStreamer debug log. They contain very detailed information of everything the GStreamer system does."
-msgstr ""
+msgstr "Hiermee activeert u het GStreamer debug log. Deze bevat gedetailleerde informatie over elke functie van de GStreamer software."
 
 msgid "Allows you to enable the GStreamer pipeline graphs. These are .dot files that describe the topology of your pipeline, along with the caps negotiated in each link."
-msgstr ""
+msgstr "Hiermee kunt u GStreamer pijplijn grafieken maken. Dit zijn .dot bestanden die de topologie van de pijplijn bevatten, inclusief de hoofdletters in elke link."
 
 msgid "Allows you to enable the debug log. They contain very detailed information of everything the system does."
 msgstr "Geeft de mogelijkheid debug-logs te activeren. Deze bevatten zeer gedetailleerde informatie over alles wat het systeem doet."
@@ -3179,7 +3179,7 @@ msgid "Automatic scan for services"
 msgstr "Hier kunt u automatisch naar zenders zoeken"
 
 msgid "Automatically put the TV in standby whenever the receiver goes into standby or deep standby."
-msgstr "Automatisch de TV in Standby zetten wanneer de ontvanger naar standby of deep standby gaat."
+msgstr "Automatisch de TV in Stand-by zetten wanneer de ontvanger naar Stand-by gaat of wordt uitgeschakeld."
 
 msgid "Automatically start timeshift after"
 msgstr "Timeshift automatisch starten na"
@@ -3188,7 +3188,7 @@ msgid "Automatically turn on external subtitles"
 msgstr "Schakel automatisch externe ondertitels in"
 
 msgid "Automatically update Client/Server View"
-msgstr "Automatisch het gebruiker en server overzicht bijwerken?"
+msgstr "Automatisch het gebruiker en server overzicht bijwerken"
 
 msgid "Automobil"
 msgstr "Auto"
@@ -3757,7 +3757,7 @@ msgid "CAID:SrvID"
 msgstr "CAID:SrvID"
 
 msgid "CCCam Info"
-msgstr ""
+msgstr "CCCam Info"
 
 msgid "CCcam Client Info"
 msgstr "CCcam gebruikers info"
@@ -3778,6 +3778,10 @@ msgid ""
 "\n"
 "This screen shows you the status of CCcam."
 msgstr ""
+"CCcam Info %s\n"
+"door AliAbdul %s\n"
+"\n"
+"In dit scherm ziet u de status van CCcam."
 
 msgid "CCcam Info Config"
 msgstr "CCcam Info configuratie"
@@ -4868,7 +4872,7 @@ msgstr ""
 "Opties bij het starten van een film.\n"
 "\n"
 "U kunt kiezen uit: \n"
-"Ga door op laatste positie, Start vanaf het begin of Vraag het de gebruiker."
+"Ga door vanaf de laatste positie, Start vanaf het begin of Vraag het de gebruiker."
 
 msgid "Configure the behavior when reaching the end of a movie, during movie playback."
 msgstr ""
@@ -5439,7 +5443,7 @@ msgid "Crash Logs"
 msgstr "Crash logs"
 
 msgid "Crash at skin error for debug reasons"
-msgstr "Crash bij skinfout voor debug informatie?"
+msgstr "Crash bij skinfout voor debug informatie"
 
 #, python-format
 msgid "Crash log '%s' (%d/%d)"
@@ -5458,7 +5462,7 @@ msgid "Create ISO"
 msgstr "Maak ISO"
 
 msgid "Create a randomly generated password"
-msgstr ""
+msgstr "Maak een willekeurig wachtwoord aan"
 
 msgid "Create directory"
 msgstr "Map aanmaken"
@@ -6218,7 +6222,7 @@ msgid "Deselected packages usually occur because those packaged are incompatible
 msgstr "Gedeselecteerde pakketten komen voor doordat die niet compatibel zijn met al geïnstalleerde pakketten. Hoewel dit normaal gesproken geen kwaad kan, is het mogelijk dat uw %s %s daarna problemen ondervindt."
 
 msgid "Detail of GStreamer log"
-msgstr ""
+msgstr "Detailniveau van het GStreamer log"
 
 msgid "Details for plugin: "
 msgstr "Plug-in informatie: "
@@ -6230,7 +6234,7 @@ msgid "Detected network servers"
 msgstr "Gedetecteerde netwerk servers"
 
 msgid "Detected tuners"
-msgstr ""
+msgstr "Gedetecteerde tuners"
 
 msgid "Detektiv"
 msgstr "Detective"
@@ -7137,10 +7141,10 @@ msgid "Enable Focus Animation"
 msgstr "Animatie focus inschakelen"
 
 msgid "Enable GStreamer debug log *"
-msgstr ""
+msgstr "Activeer het GStreamer debug log *"
 
 msgid "Enable GStreamer pipeline graphs *"
-msgstr ""
+msgstr "Activeer GStreamer pijplijn grafieken *"
 
 msgid "Enable IceTV"
 msgstr "IceTV inschakelen"
@@ -7612,10 +7616,10 @@ msgid "Error: Checksum is invalid!"
 msgstr "Fout: Checksum is ongeldig!"
 
 msgid "Error: The new password may not be blank!"
-msgstr ""
+msgstr "Fout: Het nieuwe wachtwoord mag niet leeg zijn!"
 
 msgid "Error: Unable to change password!"
-msgstr ""
+msgstr "Fout: Kan het wachtwoord niet wijzigen!"
 
 msgid "Error: Unable to process the command!  Please try again later."
 msgstr "Fout: Kan het commando niet uitvoeren!  A.u.b. later nog een keer proberen."
@@ -7960,7 +7964,7 @@ msgid "FTP Setup"
 msgstr "FTP-Bestandsserver"
 
 msgid "Factory Reset"
-msgstr ""
+msgstr "Reset naar fabrieksinstellingen"
 
 msgid "Factory release"
 msgstr "Factory release"
@@ -8425,7 +8429,7 @@ msgid "Full back-up on %s"
 msgstr "Volledige back-up op %s"
 
 msgid "Full factory reset"
-msgstr ""
+msgstr "Volledige reset naar fabrieksinstellingen"
 
 msgid "Full transparency"
 msgstr "Volledig doorzichtig"
@@ -8458,10 +8462,10 @@ msgid "GCC version"
 msgstr "GCC versie"
 
 msgid "GStreamer debug log category *"
-msgstr ""
+msgstr "GStreamer debug log categorie *"
 
 msgid "GStreamer debug log level *"
-msgstr ""
+msgstr "GStreamer debug log niveau *"
 
 msgid "GStreamer version"
 msgstr "GStreamer versie"
@@ -8611,10 +8615,10 @@ msgid "Go to bookmarked folder"
 msgstr "Ga naar de geselecteerde map"
 
 msgid "Go to deep standby"
-msgstr "uw ontvanger afsluiten"
+msgstr "Uw ontvanger afsluiten"
 
 msgid "Go to end of file"
-msgstr "Ga naar einde van bestand"
+msgstr "Ga naar het einde van het bestand"
 
 msgid "Go to first movie or last item"
 msgstr "Ga naar de eerste opname of het laatste item"
@@ -8626,10 +8630,10 @@ msgid "Go to parent directory"
 msgstr "Ga naar bovenliggende map"
 
 msgid "Go to standby"
-msgstr "ga naar stand-by"
+msgstr "Ga naar stand-by"
 
 msgid "Go to start of file"
-msgstr "Ga naar begin van bestand"
+msgstr "Ga naar het begin van het bestand"
 
 msgid "Go up the list"
 msgstr "Ga naar boven in de lijst"
@@ -10503,7 +10507,7 @@ msgid "Log file '%s' deleted."
 msgstr "Log-bestand '%s' verwijderd."
 
 msgid "Log python stack trace on spinner"
-msgstr "Log python stack trace bij spinner?"
+msgstr "Log python stack trace bij spinner"
 
 msgid "Log results to harddisk"
 msgstr "Schrijf resultaten naar de harde schijf"
@@ -12200,7 +12204,7 @@ msgid "Only free scan"
 msgstr "Alleen ongecodeerde zenders scannen"
 
 msgid "Only log debug information of GStreamer category. * means all categories."
-msgstr ""
+msgstr "Alleen log debug informatie van een GStreamer categorie. * dit betekent alle categorieën."
 
 msgid "Only move the dish quickly after this hour."
 msgstr "Verplaats de schotel alléén met hoge snelheid na dit tijdstip."
@@ -12626,7 +12630,7 @@ msgid "Password (httpwd)"
 msgstr "Wachtwoord (httpwd)"
 
 msgid "Password Actions"
-msgstr ""
+msgstr "Wachtwoord acties"
 
 msgid "Password Setup"
 msgstr "Wachtwoord instellen"
@@ -14069,8 +14073,8 @@ msgid ""
 "Recording(s) are in progress or coming up in few seconds!\n"
 "Entering standby, after recording the box will shutdown."
 msgstr ""
-"Opnemen(s) zijn of beginnen binnen enkele seconden!\n"
-"Ga nu naar stand-by, na het opnemen zal de box afsluiten."
+"1 of meerdere opnames zijn zullen binnen enkele seconden starten!\n"
+"Ga nu naar Stand-by, na het opnemen zal de ontvanger afsluiten."
 
 msgid "Recordings"
 msgstr "Opnames"
@@ -14273,34 +14277,34 @@ msgid "Remove a nameserver entry"
 msgstr "Verwijder een naamserver (DNS)"
 
 msgid "Remove all bouquet/tuning data"
-msgstr ""
+msgstr "Verwijder alle favorietenlijst/tuning data"
 
 msgid "Remove all cuts and marks"
 msgstr "Verwijder alle cuts en markeringen"
 
 msgid "Remove all network mount data"
-msgstr ""
+msgstr "Verwijder alle netwerk mount data"
 
 msgid "Remove all other data"
-msgstr ""
+msgstr "Verwijder alle overige data"
 
 msgid "Remove all plugin setting data"
-msgstr ""
+msgstr "Verwijder alle Plug-in instellingen data"
 
 msgid "Remove all resume point data"
-msgstr ""
+msgstr "Verwijder alle hervat punt data"
 
 msgid "Remove all settings data"
-msgstr ""
+msgstr "Verwijder alle zenderlijst data"
 
 msgid "Remove all skin data"
-msgstr ""
+msgstr "Verwijder alle skin data"
 
 msgid "Remove all timer data"
-msgstr ""
+msgstr "Verwijder alle timer data"
 
 msgid "Remove all user interface data"
-msgstr ""
+msgstr "Verwijder alle gebruikers interface data"
 
 msgid "Remove bookmark"
 msgstr "Verwijder bookmark"
@@ -14386,7 +14390,7 @@ msgid "Repeat the sent standby and wakeup commands"
 msgstr "Herhaal de stand-by en ontwaak commando's"
 
 msgid "Repeat the standby commands"
-msgstr "Herhaal de stand-by commando's?"
+msgstr "Herhaal de Stand-by commando's"
 
 msgid "Repeat type"
 msgstr "Herhaal type"
@@ -14436,7 +14440,7 @@ msgid "Reset and renumerate title names"
 msgstr "Reset en hernummertitels"
 
 msgid "Reset network configuration"
-msgstr ""
+msgstr "Reset de netwerk configuratie"
 
 msgid "Reset persistent PIN code"
 msgstr "Reset de pincode"
@@ -14554,7 +14558,7 @@ msgid "Restricted 18+"
 msgstr "18+"
 
 msgid "Resume from last position"
-msgstr "Ga door op laatste positie"
+msgstr "Ga door vanaf de laatste positie"
 
 #, python-format
 msgid "Resume position at %s"
@@ -15178,37 +15182,37 @@ msgid "Select 'Yes' to enable editing of this device's settings. Selecting 'No' 
 msgstr "Kies 'Ja' om wijziging van instellingen op dit apparaat mogelijk te maken. Kies 'Nee' om de instellingen te resetten naar default."
 
 msgid "Select 'Yes' to remove all main settings configuration data. Selecting this option will set all Enigma2 settings back to their default values.  This will also cause Enigma2 to run the Welcome Wizard on restart."
-msgstr ""
+msgstr "Kies 'Ja' om alle belangrijke configuratie instellingen de verwijderen. Met deze optie wordt Enigma2 terug gezet naar default. Hierdoor zal na de herstart de ontvanger starten met de Welkom Wizzard."
 
 msgid "Select 'Yes' to remove all media player resume data. Selecting this option will remove the data used to allow playback of media files to resume from the position where playback was last stopped. Playback position of recordings is not affected."
-msgstr ""
+msgstr "Kies 'Ja' om alle media speler hervat punten te verwijderen. Hierdoor worden alle gegevens verwijderd die het mogelijk maken om daar verder te kijken waar het afspelen van het media bestand de vorige keer is gestopt. Dit heeft geen effect op de hervat punten van opnames."
 
 msgid "Select 'Yes' to remove all network mount data. Selecting this option will remove all network data including automounts and network connection data including connection accounts and passwords. This could cause some Enigma2 functions to fail if they are configured to use these network resources."
-msgstr ""
+msgstr "Kies 'Ja' om alle netwerk mount data te verwijderen. Hierdoor worden alle netwerk gegevens inclusief automounts, netwerkconnectie gegevens en accounts / wachtwoorden verwijderd. Sommige Enigma2 functies zullen niet meer functioneren, wanneer die afhankelijk zijn van die netwerkinstellingen."
 
 msgid "Select 'Yes' to remove all other files and directories not covered by the options above."
-msgstr ""
+msgstr "Kies 'Ja' om alle overige bestanden en mappen te verwijderen die hierboven niet worden omschreven."
 
 msgid "Select 'Yes' to remove all plugin configuration data. Selecting this option will remove all plugin configuration data that is stored in the Enigma2 configuration folder. This will cause all affected plugins to return to their default settings. This could cause some plugins to not function until configured."
-msgstr ""
+msgstr "Kies 'Ja' om alle configuratie data van Plug-ins te verwijderen. Hierdoor worden alle Plug-in configuratie gegevens verwijderd die in de Enigma2 configuratie map zijn opgeslagen. Alle betroffen Plug-ins zullen worden terug gezet naar hun default instellingen en moeten opnieuw worden geconfigureerd."
 
 msgid "Select 'Yes' to remove all settings, tuning data, timers, resume pointers etc. Selecting this option will restore the configuration to the initial settings before any configuration settings were applied. This is the most reliable form of Factory Reset."
-msgstr ""
+msgstr "Kies 'Ja' om alle favorietenlijsten, tuning data, timers, hervat punten en dergelijke te verwijderen. Hierdoor worden alle instellingen terug gezet naar default, dit is de meest betrouwbare methode voor het herstellen van de fabrieksinstellingen."
 
 msgid "Select 'Yes' to remove all timer configuration data. Selecting this option will clear all timers, autotimers and power timers."
-msgstr ""
+msgstr "Kies 'Ja' om alle timer configuratie data te verwijderen. Hierdoor zullen alle timers, autotimers en power timers worden gewist."
 
 msgid "Select 'Yes' to remove all tuning data. Selecting this option will remove all tuning and bouquet data and will make timers non functional until the receiver is retuned."
-msgstr ""
+msgstr "Kies 'Ja' om alle tuning data te verwijderen. Hierdoor worden alle zenders en favorietenlijsten verwijderd. Timers zullen niet meer functioneren totdat er weer zenders zijn opgeslagen in een favorietenlijst."
 
 msgid "Select 'Yes' to remove all user customizations of skin data. Selecting this option will remove all user based skin customizations. All affected skins will return to their standard settings. This will also clear any customized boot logos and backdrops."
-msgstr ""
+msgstr "Kies 'Ja' om alle skin wijzigingen te verwijderen. Hierdoor worden alle wijzigingen die per skin zijn ingesteld verwijderd. Alle betroffen skins worden terug gezet naar default. Eventuele eigen boot logo's en achtergronden worden ook gewist."
 
 msgid "Select 'Yes' to remove all user interface data. Selecting this option will remove all keymap, menu and setup override data and restore the default definitions."
-msgstr ""
+msgstr "Kies 'Ja' om alle gebruikers interface data te verwijderen. Hierdoor worden alle keymap, menu en door de gebruiker gemaakte wijzigingen hersteld naar default."
 
 msgid "Select 'Yes' to reset network configuration to the default. This will enable the Ethernet port if it exists and set the receiver to use DHCP. All other network interfaces will be deleted."
-msgstr ""
+msgstr "Kies 'Ja' om de netwerkconfiguratie te herstellen naar default. Hierdoor zal de Ethernet poort worden geactiveerd (wanneer beschikbaar) en zal de ontvanger DHCP gebruiken. Alle andere netwerk interfaces worden verwijderd."
 
 msgid "Select 'band' if using a 'universal' LNB, otherwise consult your LNB spec sheet."
 msgstr "Selecteer 'band' als u een universele LNB gebruikt. Consulteer de specs van uw LNB."
@@ -15558,28 +15562,28 @@ msgstr "Selecteer beeldmodus"
 msgid "Select what should be done when the %s %s was boot-up, normal playing or goto standby."
 msgstr ""
 "Selecteer wat er moet gebeuren nadat uw\n"
-"%s %s is opgestart, Normaal opstarten of Ga naar stand-by."
+"%s %s is opgestart, Normaal opstarten of naar Stand-by."
 
 msgid "Select what should be done when the %s %s was shutdown incorrectly, or after the Power was lost."
 msgstr "Selecteer wat er gedaan moet worden nadat de %s %s niet correct is uitgezet, of na een stroomuitval."
 
 msgid "Select what you want the Channel +/- button to activate."
-msgstr "Selecteer wat de Ch+/- knoppen moeten doen:"
+msgstr "Selecteer wat de Channel +/- knoppen moeten doen."
 
 msgid "Select what you want the EPG button to activate."
-msgstr "Selecteer wat de EPG-knop moet doen:"
+msgstr "Selecteer wat de EPG-knop moet doen."
 
 msgid "Select what you want the INFO button to activate."
-msgstr "Selecteer wat de INFO-knop moet doen:"
+msgstr "Selecteer wat de INFO-knop moet doen."
 
 msgid "Select what you want the OK button to activate."
-msgstr "Selecteer wat de OK-knop moet doen:"
+msgstr "Selecteer wat de OK-knop moet doen."
 
 msgid "Select what you want the TV button to activate."
-msgstr "Selecteer wat de TV-knop moet doen:"
+msgstr "Selecteer wat de TV-knop moet doen."
 
 msgid "Select what you want the Up/Down button to activate."
-msgstr "Selecteer wat de omhoog/omlaag-knop moet doen:"
+msgstr "Selecteer wat de omhoog/omlaag-knop moet doen."
 
 msgid "Select wireless network"
 msgstr "Secteer draadloos netwerk"
@@ -15655,6 +15659,9 @@ msgid ""
 "\n"
 "Are you sure you want to continue with the factory reset?"
 msgstr ""
+"Kies 'Ja' om alle geselecteerde gegevens te verwijderen. Dit kan niet worden hersteld. Daarom kunt u overwegen om eerst een back-up te maken.\n"
+"\n"
+"Weet u zeker dat u deze ontvanger wilt resetten naar de fabrieksinstellingen?"
 
 msgid "Selecting satellites 1 (USALS)"
 msgstr "Selecteer satellieten 1 (USALS)"
@@ -15998,7 +16005,7 @@ msgid "Setting Restored "
 msgstr "Instellingen hersteld "
 
 msgid "Setting a password is strongly advised if your STB is open to the Internet. You must set a password in order to be able to use network services like FTP, Telnet or SSH."
-msgstr ""
+msgstr "Wij adviseren u een wachtwoord in te stellen wanneer uw ontvanger is verbonden met het internet. Een wachtwoord is noodzakelijk voor het gebruik van FTP, Telnet of SSH."
 
 msgid "Settings"
 msgstr "Instellingen"
@@ -16204,7 +16211,7 @@ msgstr "Seychellen"
 
 #, python-format
 msgid "Shall the USB stick wizard proceed and program the image file %s into flash memory?"
-msgstr "Moet de USB-stick wizard doorgaan en het imagebestand %s naar de flash schrijven?"
+msgstr "Moet de USB-stick wizard doorgaan en het Image-bestand %s naar de flash schrijven?"
 
 msgid "Share Folder's"
 msgstr "Deel mappen"
@@ -16312,10 +16319,10 @@ msgid "Show Box Portal"
 msgstr "Toon Box Portal"
 
 msgid "Show CCcam Info"
-msgstr ""
+msgstr "Toon CCcam Info"
 
 msgid "Show CCcam in extensions"
-msgstr ""
+msgstr "Toon CCcam in het Extensie menu"
 
 msgid "Show CI messages"
 msgstr "Toon CI berichten"
@@ -16384,7 +16391,7 @@ msgid "Show Log"
 msgstr "Toon log"
 
 msgid "Show Log Manager in extensions list"
-msgstr "Toon de Logmanager in Extensies?"
+msgstr "Toon de Log-manager in het Extensiemenu"
 
 msgid "Show Main Menu as"
 msgstr "Toon het hoofdmenu als"
@@ -16408,7 +16415,7 @@ msgid "Show OScam Info"
 msgstr "Toon OScam Info"
 
 msgid "Show OScam in extensions"
-msgstr ""
+msgstr "Toon OScam in het Extensie menu"
 
 msgid "Show PIP"
 msgstr "Toon PiP"
@@ -16805,7 +16812,7 @@ msgid "Show task list"
 msgstr "Toon takenlijst"
 
 msgid "Show the CCcam Info Screen"
-msgstr ""
+msgstr "Toon het CCcam informatiescherm"
 
 msgid "Show the DreamPlex player..."
 msgstr "Toon de Dreamplex speler..."
@@ -17566,7 +17573,7 @@ msgid "Stepped west"
 msgstr "Naar west gestapt"
 
 msgid "Sti"
-msgstr ""
+msgstr "Sti"
 
 msgid "Stop"
 msgstr "Stop"
@@ -17629,7 +17636,7 @@ msgid "Stop timeshift and save timeshift buffer as movie and start recording of 
 msgstr "Stop Timeshift en sla Timeshift-buffer op als opname, en start opname van het huidige programma"
 
 msgid "Stop timeshift while recording"
-msgstr "Timeshift stoppen tijdens opname?"
+msgstr "Timeshift stoppen tijdens een opname"
 
 msgid "Stops timeshift being used if a recording is in progress. (Advisable for USB sticks.)"
 msgstr "Stopt Timeshift tijdens een opname. Aan te raden bij gebruik van een USB-stick."
@@ -18708,7 +18715,7 @@ msgid "This option allows you can force the HLG Modes for UHD"
 msgstr "Met deze optie kunt u de HLG modus voor UHD forceren"
 
 msgid "This option allows you choose how to display elapsed time as + or -"
-msgstr "Kies 'Nee' om de verstreken tijd met een plus-teken weer te geven."
+msgstr "Kies 'Nee' om de verstreken tijd met een + of een - teken weer te geven"
 
 msgid "This option allows you choose how to display remaining time, or elapsed time, or both."
 msgstr "Hier kunt u instellen of u de resterende of de verstreken tijd wilt zien, of beide."
@@ -18878,7 +18885,7 @@ msgid "This option lets you choose the 3D mode"
 msgstr "Hier kunt u de gewenste 3D-modus kiezen"
 
 msgid "This option lets you show the option in the extension screen."
-msgstr "Hiermee stelt u in of de optie in de extentielijst wordt getoond"
+msgstr "Hiermee stelt u in of de optie in de Extensiemenu wordt getoond."
 
 msgid "This option moves the PVR status from the separate window into the MoviePlayer infobar."
 msgstr ""
@@ -19222,13 +19229,13 @@ msgid "Timeshift"
 msgstr "Timeshift"
 
 msgid "Timeshift buffer delete after zap"
-msgstr "Timeshift buffer verwijderen na zenderwissel?"
+msgstr "Timeshift buffer verwijderen na zenderwissel"
 
 msgid "Timeshift buffer limit [in hours]"
 msgstr "Timeshift buffer - limiet in uren"
 
 msgid "Timeshift checking for free space"
-msgstr "Moet Timeshift op vrije ruimte controleren?"
+msgstr "Moet Timeshift op vrije ruimte controleren"
 
 msgid "Timeshift checking for older files [in minutes]"
 msgstr "Timeshift controle van oude bestanden [in minuten]"
@@ -19520,7 +19527,7 @@ msgid "Tuner Configuration"
 msgstr "Tuner configuratie"
 
 msgid "Tuner Information"
-msgstr ""
+msgstr "Tuner informatie"
 
 msgid "Tuner Setup"
 msgstr "Tuner"
@@ -19529,7 +19536,7 @@ msgid "Tuner configuration"
 msgstr "Tuner configuratie"
 
 msgid "Tuner information"
-msgstr ""
+msgstr "Tuner informatie"
 
 msgid "Tuner is not supported"
 msgstr "Tuner wordt niet ondersteund"
@@ -19850,7 +19857,7 @@ msgid "Up/Down button mode"
 msgstr "Omhoog / Omlaag knop"
 
 msgid "Up/Down buttons also for 'all up/down'"
-msgstr "Omhoog/Omlaag knoppen ook voor 'alle omhoog/omlaag'?"
+msgstr "Omhoog/Omlaag knoppen ook voor 'alle omhoog/omlaag' functies"
 
 msgid "Update"
 msgstr "Update"
@@ -20151,13 +20158,13 @@ msgid "Use time jumps for fast forward/backward"
 msgstr "Gebruik tijdssprongen voor snel voor- of achteruit ( << / >> )"
 
 msgid "Use timeshift seekbar while timeshifting"
-msgstr "Sta het gebruik van de seekbar toe tijdens Timeshift?"
+msgstr "Sta het gebruik van de seekbar toe tijdens Timeshift"
 
 msgid "Use trash can in movie list"
 msgstr "Gebruik de prullenbak in de opnamelijst"
 
 msgid "Use workaround for wakeup from deep-standby"
-msgstr "Gebruik de alternatieve methode voor het ontwaken uit deep-standby?"
+msgstr "Gebruik de alternatieve methode voor het ontwaken uit deep-standby"
 
 msgid "Used"
 msgstr "Gebruikt"
@@ -22316,7 +22323,7 @@ msgid "goto current channel and now"
 msgstr "Ga direct naar huidige zender"
 
 msgid "goto deep-standby"
-msgstr "uw ontvanger afsluiten"
+msgstr "Uw ontvanger afsluiten"
 
 msgid "goto first channel"
 msgstr "Ga naar eerste zender"
@@ -22328,7 +22335,7 @@ msgid "goto now"
 msgstr "Ga nu naar"
 
 msgid "goto standby"
-msgstr "Ga naar stand-by"
+msgstr "Ga naar Stand-by"
 
 msgid "grab this frame as bitmap"
 msgstr "Maak van dit scherm een screenshot"

@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-03-01 17:50+0000\n"
-"PO-Revision-Date: 2022-01-25 14:01+0000\n"
+"PO-Revision-Date: 2022-03-10 14:56+0000\n"
 "Last-Translator: Marián Hikaník <podnety@mojepreklady.net>\n"
 "Language-Team: Slovak <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/sk/>\n"
 "Language: sk\n"
@@ -14,7 +14,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
-"X-Generator: Weblate 4.11-dev\n"
+"X-Generator: Weblate 4.12-dev\n"
 
 msgid ""
 "\n"
@@ -1001,7 +1001,7 @@ msgstr "%d MB"
 
 #, python-format
 msgid "%d MHz"
-msgstr ""
+msgstr "%d MHz"
 
 #. TRANSLATORS: full date representation dayname daynum monthname year in strftime() format! See 'man strftime'
 #. _("%A %e %B %Y")
@@ -1038,9 +1038,9 @@ msgstr[2] "nájdených kanálov: %d"
 #, python-format
 msgid "%d core"
 msgid_plural "%d cores"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "%d jadro"
+msgstr[1] "%d jadrá"
+msgstr[2] "%d jadier"
 
 #, python-format
 msgid "%d day"
@@ -1334,7 +1334,7 @@ msgstr "%s GHz"
 
 #, python-format
 msgid "%s Information"
-msgstr ""
+msgstr "%s informácia"
 
 #, python-format
 msgid "%s Information Actions"
@@ -1358,7 +1358,7 @@ msgstr "%s prídavné obrazovky"
 
 #, python-format
 msgid "%s information"
-msgstr ""
+msgstr "%s informácia"
 
 #. TRANSLATORS: The satellite with name '%s' is no longer used after a configuration change. The user is asked whether or not the satellite should be deleted.
 #, python-format
@@ -1678,7 +1678,7 @@ msgid "16:9 Letterbox"
 msgstr "16:9 Letterbox"
 
 msgid "16K"
-msgstr ""
+msgstr "16K"
 
 msgid "18 V"
 msgstr "18 V"
@@ -1906,7 +1906,7 @@ msgid "4:3 PanScan"
 msgstr "4:3 PanScan"
 
 msgid "4K"
-msgstr ""
+msgstr "4K"
 
 msgid "4X"
 msgstr "4X"
@@ -2008,7 +2008,7 @@ msgid "8 hours"
 msgstr "8 hodín"
 
 msgid "8K"
-msgstr ""
+msgstr "8K"
 
 msgid "8bit"
 msgstr "8 bitov"
@@ -2262,10 +2262,10 @@ msgid "AFP Setup"
 msgstr "Nastavenie AFP"
 
 msgid "ARM"
-msgstr ""
+msgstr "ARM"
 
 msgid "ARM64"
-msgstr ""
+msgstr "ARM64"
 
 msgid "ASS file"
 msgstr "Súbor ASS"
@@ -2311,14 +2311,14 @@ msgid "About..."
 msgstr "O prijímači..."
 
 msgid "Access point"
-msgstr ""
+msgstr "Prístupový bod"
 
 msgid "Access to geolocation information requires an internet connection."
-msgstr ""
+msgstr "Prístup ku geolokalizačným informáciám vyžaduje pripojenie na internet."
 
 #, python-format
 msgid "Access to the %s commit logs requires an internet connection."
-msgstr ""
+msgstr "Prístup do %s odovzdaných záznamov vyžaduje pripojenie na internet."
 
 msgid "Accessed:"
 msgstr "Pristupované:"
@@ -2381,7 +2381,7 @@ msgid "Active"
 msgstr "Aktívne"
 
 msgid "Active Streaming Clients"
-msgstr ""
+msgstr "Aktívne streamujúci klienti"
 
 msgid "Active clients"
 msgstr "Aktívni klienti"
@@ -2696,7 +2696,7 @@ msgid "Allows you to assign the selected function to this button."
 msgstr "Umožňuje prideliť vybranú funkciu tomuto tlačidlu."
 
 msgid "Allows you to enable the GStreamer debug log. They contain very detailed information of everything the GStreamer system does."
-msgstr ""
+msgstr "Umožňuje zapnúť záznam pre ladenie GStreamer. Ten obsahuje veľmi podrobné informácie o všetkom, čo robí systém GStreamer."
 
 msgid "Allows you to enable the GStreamer pipeline graphs. These are .dot files that describe the topology of your pipeline, along with the caps negotiated in each link."
 msgstr ""
@@ -2786,10 +2786,10 @@ msgid "Amharic"
 msgstr "Amharský"
 
 msgid "Amlogic"
-msgstr ""
+msgstr "Amlogic"
 
 msgid "Amlogic remote"
-msgstr ""
+msgstr "Diaľkové ovládanie Amlogic"
 
 msgid "An attempt is made to capture the current TV status. If this is not possible due to incorrect or missing status messages it may cause the receiver to respond unexpectedly. On the other hand, tries to respond better to different operating conditions."
 msgstr "Prebehne pokus o zaznamenanie aktuálneho stavu TV. Ak to nie je možné kvôli nesprávnym alebo chýbajúcim správam o stave, môže dôjsť k neočakávanej reakcii prijímača. Ide však o pokus dosiahnuť lepšiu reakciu na rôzne podmienky pri fungovaní prijímača."
@@ -2802,7 +2802,7 @@ msgstr "Chyba pri sťahovaní zoznamu balíčkov. Prosím skúste to znova."
 
 #, python-format
 msgid "An error occurred, error code %d, please try again later."
-msgstr ""
+msgstr "Nastala chyba, ktorá má kód %d, prosím skúste znovu neskôr."
 
 msgid "An unknown error occurred!"
 msgstr "Nastala neznáma chyba!"
@@ -3157,7 +3157,7 @@ msgid "Auto focus commencing ..."
 msgstr "Auto fokus začal..."
 
 msgid "Auto install log"
-msgstr ""
+msgstr "Záznam automatickej inštalácie"
 
 msgid "Auto language selection"
 msgstr "Automatický výber jazyka"
@@ -3541,7 +3541,7 @@ msgid "Bislama"
 msgstr "Bislama"
 
 msgid "Bit rate"
-msgstr ""
+msgstr "Bitová rýchlosť"
 
 msgid "Bitrate"
 msgstr "Dátový tok"
@@ -3604,10 +3604,10 @@ msgid "Boost green"
 msgstr "Zvýrazniť zelenú farbu"
 
 msgid "Boot ID"
-msgstr ""
+msgstr "Boot ID"
 
 msgid "Boot information"
-msgstr ""
+msgstr "Informácia o bootovaní"
 
 msgid "Boot time"
 msgstr "Čas spúšťania"
@@ -3676,10 +3676,10 @@ msgid "British Indian Ocean Territory"
 msgstr "Britské indickooceánske územie"
 
 msgid "Broadcast"
-msgstr ""
+msgstr "Vysielanie"
 
 msgid "Broadcom"
-msgstr ""
+msgstr "Broadcom"
 
 msgid "Brunei Darussalam"
 msgstr "Brunej (Brunejsko-darussalamský štát)"
@@ -3689,22 +3689,22 @@ msgid "Buffering %d%%"
 msgstr "Ukladanie do vyrovnávacej pamäte %d%%"
 
 msgid "Buffers"
-msgstr ""
+msgstr "Vyrovnávacie pamäte"
 
 msgid "Build Brand"
-msgstr ""
+msgstr "Zostavenie pre značku"
 
 msgid "Build Information"
-msgstr ""
+msgstr "Informácia o zostavení"
 
 msgid "Build Model"
-msgstr ""
+msgstr "Zostavenie pre model"
 
 msgid "Build information"
-msgstr ""
+msgstr "Informácia o zostavení"
 
 msgid "Build information for"
-msgstr ""
+msgstr "Informácia o zostavení pre"
 
 #, python-format
 msgid "Build: %s"
@@ -3756,10 +3756,10 @@ msgid "Bypass HDMI EDID Check"
 msgstr "Preskočiť test HDMI EDID"
 
 msgid "Bytes received"
-msgstr ""
+msgstr "Prijaté bajty"
 
 msgid "Bytes sent"
-msgstr ""
+msgstr "Odoslané bajty"
 
 msgid "C"
 msgstr "C"
@@ -3774,7 +3774,7 @@ msgid "CAID:SrvID"
 msgstr "CAID:SrvID"
 
 msgid "CCCam Info"
-msgstr ""
+msgstr "Informácia o CCCam"
 
 msgid "CCcam Client Info"
 msgstr "Info o klientovi CCcam"
@@ -3795,6 +3795,10 @@ msgid ""
 "\n"
 "This screen shows you the status of CCcam."
 msgstr ""
+"Informácia o CCcam %s\n"
+"od AliAbdul %s\n"
+"\n"
+"Táto obrazovka udáva stav CCcam."
 
 msgid "CCcam Info Config"
 msgstr "Konfiguračné info CCcamu"
@@ -3876,19 +3880,19 @@ msgid "CPU"
 msgstr "CPU"
 
 msgid "CPU architecture"
-msgstr ""
+msgstr "Architektúra CPU"
 
 msgid "CPU brand"
-msgstr ""
+msgstr "Značka CPU"
 
 msgid "CPU priority for script execution"
 msgstr "Priorita CPU pre vykonávanie skriptu"
 
 msgid "CPU speed/cores"
-msgstr ""
+msgstr "Rýchlosť/jadrá CPU"
 
 msgid "CPU temperature"
-msgstr ""
+msgstr "Teplota CPU"
 
 msgid "CVBS"
 msgstr "CVBS"
@@ -3906,7 +3910,7 @@ msgid "Cache thumbnails"
 msgstr "Vyrovnávacia pamäť pre náhľady"
 
 msgid "Cached"
-msgstr ""
+msgstr "Uložené do vyrov. pamäte"
 
 msgid "Calculate"
 msgstr "Prepočítať"
@@ -4102,7 +4106,7 @@ msgstr "Súbor nemožno vymazať"
 #. TRANSLATORS: "Cannot determine (east/west) limit ..., aborting !"
 #, python-format
 msgid "Cannot determine %s limit ..., aborting !"
-msgstr ""
+msgstr "Nemožno určiť limit %s ..., prerušuje sa!"
 
 msgid "Cannot find any signal ..., aborting !"
 msgstr "Nenašiel sa žiadny signál..., prerušuje sa!"
@@ -4114,7 +4118,7 @@ msgid "Cannot move to trash can"
 msgstr "Nemožno presunúť do koša"
 
 msgid "Capacity"
-msgstr ""
+msgstr "Kapacita"
 
 msgid "Capacity: "
 msgstr "Kapacita: "
@@ -4546,7 +4550,7 @@ msgid "Circular right"
 msgstr "Kruhová pravá"
 
 msgid "City"
-msgstr ""
+msgstr "Mesto"
 
 msgid "Clean (Just flash and start clean)"
 msgstr "Vyčistiť (len flash a spustiť čisté)"
@@ -4576,13 +4580,13 @@ msgid "Clear playlist"
 msgstr "Vyčistiť playlist"
 
 msgid "Clear the virtual memory caches"
-msgstr ""
+msgstr "Vyčistiť virtuálne vyrovnávacie pamäte"
 
 msgid "Click on your remote on the button you want to change"
 msgstr "Stlačte na diaľkovom ovládači na tlačidlo, ktoré chcete zmeniť"
 
 msgid "Client"
-msgstr ""
+msgstr "Klient"
 
 #, python-format
 msgid "Client Info ( Oscam-Version: %s )"
@@ -4625,10 +4629,10 @@ msgid "Close the current screen"
 msgstr "Zatvoriť aktuálnu obrazovku"
 
 msgid "Close the screen"
-msgstr ""
+msgstr "Zavrieť obrazovku"
 
 msgid "Close the screen and exit all menus"
-msgstr ""
+msgstr "Zavrieť obrazovku a opustiť všetky menu"
 
 msgid "Close the window"
 msgstr "Zatvoriť okno"
@@ -4676,7 +4680,7 @@ msgid "Combo"
 msgstr "Combo"
 
 msgid "Combo Tuner"
-msgstr ""
+msgstr "Combo tuner"
 
 msgid "Comedy"
 msgstr "Komédia"
@@ -4697,16 +4701,16 @@ msgid "Command type"
 msgstr "Typ príkazu"
 
 msgid "Commit Information"
-msgstr ""
+msgstr "Informácia o odoslaní"
 
 msgid "Commit Information Actions"
-msgstr ""
+msgstr "Akcie informácie o odoslaní"
 
 msgid "Commit Logs"
-msgstr ""
+msgstr "Záznamy o odoslaní"
 
 msgid "Common Information Actions"
-msgstr ""
+msgstr "Spoločné akcie pre informáciu"
 
 msgid "Common Interface"
 msgstr "Rozhranie CI"
@@ -4730,7 +4734,7 @@ msgid "Comoros"
 msgstr "Komory"
 
 msgid "Compiled by"
-msgstr ""
+msgstr "Skompiloval"
 
 msgid "Complete"
 msgstr "Komplet"
@@ -4880,7 +4884,7 @@ msgid "Configure the contrast level of the front panel display."
 msgstr "Nastavte úroveň kontrastu displeja na prednom paneli."
 
 msgid "Configure the current keymap file."
-msgstr ""
+msgstr "Konfigurovať aktuálny súbor s mapou tlačidiel (keymap)."
 
 msgid "Configure the cursor behavior in the channel selection list. When opening the channel selection list you can remain on the current service or already select up/down and you are able to revert the B+/B- buttons."
 msgstr "Nastavte správanie kurzora v zozname pre výber kanála. Pri otvorení zoznamu pre výber kanála môžete zostať na aktuálnej stanici alebo umiestniť kurzor vyššie/nižšie. Okrem toho môžete zameniť tlačidlá B+/B-."
@@ -5166,7 +5170,7 @@ msgid "Connected: "
 msgstr "Pripojené: "
 
 msgid "Connection information"
-msgstr ""
+msgstr "Informácia o spojení"
 
 msgid "Console"
 msgstr "Ovládací panel"
@@ -5197,7 +5201,7 @@ msgid "Context long"
 msgstr "Kontext - dlho"
 
 msgid "Continent"
-msgstr ""
+msgstr "Kontinent"
 
 msgid "Continue"
 msgstr "Pokračovať"
@@ -5357,7 +5361,7 @@ msgstr "Spadnúť pri chybe vzhľadu kvôli ladeniu?"
 
 #, python-format
 msgid "Crash log '%s' (%d/%d)"
-msgstr ""
+msgstr "Záznam o páde '%s' (%d/%d)"
 
 msgid "Create"
 msgstr "Vytvoriť"
@@ -5372,7 +5376,7 @@ msgid "Create ISO"
 msgstr "Vytvoriť ISO"
 
 msgid "Create a randomly generated password"
-msgstr ""
+msgstr "Vytvoriť náhodne vygenerované heslo"
 
 msgid "Create directory"
 msgstr "Vytvoriť priečinok"
@@ -5443,7 +5447,7 @@ msgid "Curacao"
 msgstr "Curacao"
 
 msgid "Currency"
-msgstr ""
+msgstr "Mena"
 
 msgid "Current Affairs"
 msgstr "Aktuálne aféry"
@@ -5458,7 +5462,7 @@ msgid "Current Status:"
 msgstr "Aktuálny stav:"
 
 msgid "Current crash log"
-msgstr ""
+msgstr "Aktuálny záznam o páde"
 
 msgid "Current installed"
 msgstr "Práve nainštalované"
