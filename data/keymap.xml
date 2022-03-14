@@ -55,6 +55,15 @@
 		<key id="KEY_YELLOW" mapto="yellowlong" flags="l" />
 		<key id="KEY_BLUE" mapto="blue" flags="b" />
 		<key id="KEY_BLUE" mapto="bluelong" flags="l" />
+		<!-- Keyboard specific buttons -->
+		<key id="KEY_F5" mapto="red" flags="b" />
+		<key id="KEY_F5" mapto="redlong" flags="l" />
+		<key id="KEY_F6" mapto="green" flags="b" />
+		<key id="KEY_F6" mapto="greenlong" flags="l" />
+		<key id="KEY_F7" mapto="yellow" flags="b" />
+		<key id="KEY_F7" mapto="yellowlong" flags="l" />
+		<key id="KEY_F8" mapto="blue" flags="b" />
+		<key id="KEY_F8" mapto="bluelong" flags="l" />
 	</map>
 
 	<map context="HelpActions">
@@ -193,7 +202,7 @@
 		<key id="KEY_BACKSPACE" mapto="backspace" flags="mr" />
 		<key id="KEY_DELETE" mapto="delete" flags="mr" />
 		<KEY id="KEY_F4" mapto="erase" flags="m" />
-		<key id="KEY_INSERT" mapto="toggleInsert" flags="m" />
+		<key id="KEY_INSERT" mapto="toggleOverwrite" flags="m" />
 		<key id="KEY_ASCII" mapto="gotAsciiCode" flags="mr" />
 	</map>
 
