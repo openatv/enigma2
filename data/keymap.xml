@@ -243,6 +243,16 @@
 		<key id="KEY_TAB" mapto="menu" flags="m" />
 	</map>
 
+	<map context="DNSSettingsActions">
+		<key id="KEY_YELLOW" mapto="dnsAdd" flags="m" />
+		<key id="KEY_BLUE" mapto="dnsRemove" flags="m" />
+		<key id="KEY_TV" mapto="moveUp" flags="mr" />
+		<key id="KEY_RADIO" mapto="moveDown" flags="mr" />
+		<!-- Keyboard specific buttons -->
+		<key id="KEY_F7" mapto="dnsAdd" flags="m" />
+		<key id="KEY_F8" mapto="dnsRemove" flags="m" />
+	</map>
+
 	<map context="MsgBoxActions">
 		<!-- Also uses NavigationActions -->
 		<key id="KEY_EXIT" mapto="cancel" flags="m" />
