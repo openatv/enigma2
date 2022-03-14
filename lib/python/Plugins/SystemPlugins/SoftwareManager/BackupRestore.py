@@ -499,7 +499,7 @@ class RestoreScreen(Screen, ConfigListScreen):
 	def doRestore(self):
 		tarcmd = "tar -C / -xzvf " + self.fullbackupfilename
 		for f in BLACKLISTED:
-				tarcmd = tarcmd + " --exclude " + f.strip("/")
+			tarcmd = tarcmd + " --exclude " + f.strip("/")
 		restorecmdlist = ["rm -R /etc/enigma2", tarcmd, MANDATORY_RIGHTS]
 		if pathexists("/proc/stb/vmpeg/0/dst_width"):
 			restorecmdlist += ["echo 0 > /proc/stb/vmpeg/0/dst_height", "echo 0 > /proc/stb/vmpeg/0/dst_left", "echo 0 > /proc/stb/vmpeg/0/dst_top", "echo 0 > /proc/stb/vmpeg/0/dst_width"]
