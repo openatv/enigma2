@@ -606,7 +606,7 @@
 		<item level="0" text="Time zone area" description="Select your time zone area or region.">config.timezone.area</item>
 		<item level="0" text="Time zone" description="Select the time zone within the area or region.">config.timezone.val</item>
 		<item level="0" text="Sync time using" description="Synchronize systemtime using transponder or internet.">config.misc.SyncTimeUsing</item>
-		<if requires="config.misc.SyncTimeUsing">
+		<if conditional="config.misc.SyncTimeUsing.value == '1'">
 			<item level="0" text="NTP server" description="Configure your NTP server.">config.misc.NTPserver</item>
 			<item level="0" text="Sync NTP every (minutes)" description="Setup network time synchronization interval.">config.misc.useNTPminutes</item>
 		</if>
