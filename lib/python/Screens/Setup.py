@@ -1,7 +1,6 @@
 from gettext import dgettext
 from os.path import getmtime, isfile, join as pathjoin
-from six import PY2
-from xml.etree.cElementTree import ParseError, fromstring, parse
+from xml.etree.cElementTree import fromstring
 
 from skin import setups
 from Components.config import ConfigBoolean, ConfigNothing, ConfigSelection, config
@@ -111,7 +110,7 @@ class Setup(ConfigListScreen, Screen, HelpableScreen):
 				skin = setup.get("skin", None)
 				if skin and skin != "":
 					self.skinName.insert(0, skin)
-				title = setup.get("title", None).encode("UTF-8", errors="ignore") if PY2 else setup.get("title", None)
+				title = setup.get("title", None)
 				# If this break is executed then there can only be one setup tag with this key.
 				# This may not be appropriate if conditional setup blocks become available.
 				break
@@ -147,11 +146,11 @@ class Setup(ConfigListScreen, Screen, HelpableScreen):
 
 	def addItem(self, element):
 		if self.pluginLanguageDomain:
-			itemText = dgettext(self.pluginLanguageDomain, element.get("text", "??").encode("UTF-8", errors="ignore")) if PY2 else dgettext(self.pluginLanguageDomain, element.get("text", "??"))
-			itemDescription = dgettext(self.pluginLanguageDomain, element.get("description", " ").encode("UTF-8", errors="ignore")) if PY2 else dgettext(self.pluginLanguageDomain, element.get("description", " "))
+			itemText = dgettext(self.pluginLanguageDomain, element.get("text", "??"))
+			itemDescription = dgettext(self.pluginLanguageDomain, element.get("description", " "))
 		else:
-			itemText = _(element.get("text", "??").encode("UTF-8", errors="ignore")) if PY2 else _(element.get("text", "??"))
-			itemDescription = _(element.get("description", " ").encode("UTF-8", errors="ignore")) if PY2 else _(element.get("description", " "))
+			itemText = _(element.get("text", "??"))
+			itemDescription = _(element.get("description", " "))
 		item = eval(element.text or "") if element.text else ""
 		if item == "":
 			self.list.append((self.formatItemText(itemText),))  # Add the comment line to the config list.
@@ -342,7 +341,7 @@ def setupDom(setup=None, plugin=None):
 			elif element.tag == "elif":
 				pass
 
-	setupFileDom = fromstring("<setupxml></setupxml>")
+	setupFileDom = fromstring("<setupxml />")
 	setupFile = resolveFilename(SCOPE_PLUGINS, pathjoin(plugin, "setup.xml")) if plugin else resolveFilename(SCOPE_SKINS, "setup.xml")
 	global domSetups, setupModTimes
 	try:
@@ -371,7 +370,7 @@ def setupDom(setup=None, plugin=None):
 		for setup in setupFileDom.findall("setup"):
 			key = setup.get("key")
 			if key:  # If there is no key then this element is useless and can be skipped!
-				title = setup.get("title", "").encode("UTF-8", errors="ignore") if PY2 else setup.get("title", "")
+				title = setup.get("title", "")
 				if title == "":
 					print("[Setup] Error: Setup key '%s' title is missing or blank!" % key)
 					title = "** Setup error: '%s' title is missing or blank!" % key
@@ -400,7 +399,7 @@ def getSetupTitle(id):
 	xmlData = setupDom()
 	for x in xmlData.findall("setup"):
 		if x.get("key") == id:
-			return x.get("title", "").encode("UTF-8", errors="ignore") if PY2 else x.get("title", "")
+			return x.get("title", "")
 	print("[Setup] Error: Unknown setup id '%s'!" % repr(id))
 	return "Unknown setup id '%s'!" % repr(id)
 
