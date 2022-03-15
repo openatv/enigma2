@@ -50,23 +50,23 @@
 			<id val="video_menu" />
 			<item entryID="video_setup" level="0" text="Basic settings" weight="0"><screen module="VideoMode" screen="VideoSetup" /></item>
 			<item entryID="osdsetup" level="1" text="OSD Position" weight="50" requires="CanChangeOsdPosition"><screen module="UserInterfacePositioner" screen="UserInterfacePositioner2" /></item>
-			<item entryID="setup_osd3d" level="2" text="OSD 3D Setup" weight="60" requires="CanChange3DOsd"><setup id="OSD3D" /></item>
+			<item entryID="setup_osd3d" level="2" text="OSD 3D Settings" weight="60" requires="CanChange3DOsd"><setup id="OSD3D" /></item>
 		</menu>
 
 		<!-- Menu / Settings / Audio Menu -->
 		<menu entryID="audio_menu" level="1" text="Audio" weight="5">
 			<id val="audio_menu" />
 			<item entryID="audio_setup" level="1" text="Basic settings" weight="0"><setup id="Audio" /></item>
-			<item entryID="subtitle_setup" level="2" text="Subtitle settings" weight="10"><setup id="Subtitle" /></item>
-			<item entryID="autolanguage_setup" level="1" text="Auto language selection" weight="15"><setup id="AutoLanguage" /></item>
+			<item entryID="subtitle_setup" level="2" text="Subtitle Settings" weight="10"><setup id="Subtitle" /></item>
+			<item entryID="autolanguage_setup" level="1" text="Auto Language Settings" weight="15"><setup id="AutoLanguage" /></item>
 		</menu>
 
 		<!-- Menu / Settings / Recordings -->
 		<menu entryID="rec_setup" level="1" text="Recordings &amp; Timeshift" weight="10">
 			<id val="rec" />
-			<item entryID="recording_setup" level="0" text="Recording settings" weight="10"><screen module="Recording" screen="RecordingSettings" /></item>
+			<item entryID="recording_setup" level="0" text="Recording Settings" weight="10"><screen module="Recording" screen="RecordingSettings" /></item>
 			<item entryID="hdmirecord_setup" level="0" text="HDMI-IN Recording settings" weight="15" requires="HDMIin"><setup id="HDMIRecord" /></item>
-			<item entryID="timshift_setup" level="0" text="Timeshift settings" weight="20"><screen module="Timeshift" screen="TimeshiftSettings" /></item>
+			<item entryID="timshift_setup" level="0" text="Timeshift Settings" weight="20"><screen module="Timeshift" screen="TimeshiftSettings" /></item>
 		</menu>
 
 		<!-- Menu / Settings / GUI (Was: Menu / Settings / System) -->
@@ -103,12 +103,12 @@ self.session.open(RemoteControlCode)
 		<!-- Menu / Settings / EPG -->
 		<menu entryID="epg_menu" level="2" text="EPG" weight="20">
 			<id val="epg" />
-			<item entryID="setup_epgmulti" level="2" text="MultiEPG settings" weight="110"><setup id="EPGMulti" /></item>
-			<item entryID="setup_epgenhanced" level="2" text="SingleEPG settings" weight="115"><setup id="EPGEnhanced" /></item>
-			<item entryID="setup_epginfobar" level="2" text="InfobarEPG settings" weight="120"><setup id="EPGInfobar" /></item>
-			<item entryID="setup_epginfobargraphical" level="2" text="Graphical InfobarEPG settings" weight="125"><setup id="EPGInfobarGraphical" /></item>
-			<item entryID="setup_epggraphical" level="2" text="GraphicalEPG settings" weight="130"><setup id="EPGGraphical" /></item>
-			<item entryID="setup_epgvertical" level="2" text="VerticalEPG settings" weight="135"><setup id="EPGVertical" /></item>
+			<item entryID="setup_epgmulti" level="2" text="MultiEPG Settings" weight="110"><setup id="EPGMulti" /></item>
+			<item entryID="setup_epgenhanced" level="2" text="SingleEPG Settings" weight="115"><setup id="EPGEnhanced" /></item>
+			<item entryID="setup_epginfobar" level="2" text="InfobarEPG Settings" weight="120"><setup id="EPGInfobar" /></item>
+			<item entryID="setup_epginfobargraphical" level="2" text="Graphical InfobarEPG Settings" weight="125"><setup id="EPGInfobarGraphical" /></item>
+			<item entryID="setup_epggraphical" level="2" text="GraphicalEPG Settings" weight="130"><setup id="EPGGraphical" /></item>
+			<item entryID="setup_epgvertical" level="2" text="VerticalEPG Settings" weight="135"><setup id="EPGVertical" /></item>
 			<menu entryID="epgloadsave_menu" level="2" text="Load/Save/Delete" weight="200">
 				<id val="epgloadsave_menu" />
 				<item entryID="loadepgcache" level="0" text="Load EPG" weight="0">
@@ -168,7 +168,7 @@ self.session.openWithCallback(msgClosed, EpgDeleteMsg)
 		<!-- Menu / Settings / Common interface -->
 		<menu entryID="cam_setup" level="1" text="Decryption &amp; Parental Control" weight="30">
 			<id val="cam" />
-			<item entryID="softcam_setup" level="0" text="Softcam Setup" weight="50" requires="HAVEINITCAM"><screen module="SoftcamSetup" screen="SoftcamSetup" /></item>
+			<item entryID="softcam_setup" level="0" text="Softcam Settings" weight="50" requires="HAVEINITCAM"><screen module="SoftcamSetup" screen="SoftcamSetup" /></item>
 			<item entryID="softcam_setup" level="0" text="OScamInfo" weight="60" requires="ShowOscamInfo"><screen module="OScamInfo" screen="OscamInfoMenu" /></item>
 			<item entryID="softcam_setup" level="0" text="CCCam Info" weight="70" requires="ShowCCCamInfo"><screen module="CCcamInfo" screen="CCcamInfoMain" /></item>
 			<item entryID="ci_setup" level="1" text="CI Basic settings" weight="80" requires="CommonInterface"><screen module="Ci" screen="CISetup" /></item>
@@ -183,7 +183,7 @@ self.session.openWithCallback(msgClosed, EpgDeleteMsg)
 			<!-- Menu / Settings / System / Storage devices -->
 			<menu entryID="hardisk_selection" level="0" text="Storage devices" weight="45" requires="Harddisk">
 				<id val="harddisk" />
-				<item entryID="harddisk_setup" level="1" text="Hard disk setup" weight="0"><setup id="HardDisk" /></item>
+				<item entryID="harddisk_setup" level="1" text="Hard Disk Settings" weight="0"><setup id="HardDisk" /></item>
 				<item entryID="harddisk_init" level="0" text="Initialization" weight="5"><screen module="HarddiskSetup" screen="HarddiskSelection" /></item>
 				<item entryID="harddisk_check" level="0" text="Filesystem Check" weight="10"><screen module="HarddiskSetup" screen="HarddiskFsckSelection" /></item>
 				<item entryID="harddisk_convert" level="0" text="Convert ext3 filesystem to ext4" weight="15" requires="ext4"><screen module="HarddiskSetup" screen="HarddiskConvertExt4Selection" /></item>
@@ -196,7 +196,7 @@ self.session.openWithCallback(msgClosed, EpgDeleteMsg)
 				<id val="network" />
 				<item entryID="device_setup" level="0" text="Device Setup" weight="0"><screen module="NetworkSetup" screen="NetworkAdapterSelection" /></item>
 				<item entryID="netmounts_setup" level="1" text="Mounts Setup" weight="5"><screen module="NetworkSetup" screen="NetworkMountsMenu" /></item>
-				<item entryID="password_setup" level="2" text="Password Setup" weight="8"><screen module="NetworkSetup" screen="NetworkPassword" /></item>
+				<item entryID="password_setup" level="2" text="Password Settings" weight="8"><screen module="NetworkSetup" screen="NetworkPassword" /></item>
 				<item entryID="netsatpi_setup" level="2" text="SATPI Setup" weight="10"><screen module="NetworkSetup" screen="NetworkSATPI" /></item>
 				<item entryID="netsmba_setup" level="2" text="CIFS/Samba Setup" weight="15"><screen module="NetworkSetup" screen="NetworkSamba" /></item>
 				<item entryID="netftp_setup" level="2" text="FTP Setup" weight="20"><screen module="NetworkSetup" screen="NetworkFtp" /></item>
@@ -209,12 +209,12 @@ self.session.openWithCallback(msgClosed, EpgDeleteMsg)
 				<item entryID="netushare_setup" level="2" text="uShare Setup" weight="55"><screen module="NetworkSetup" screen="NetworkuShare" /></item>
 				<item entryID="netafp_setup" level="2" text="AFP Setup" weight="60"><screen module="NetworkSetup" screen="NetworkAfp" /></item>
 			</menu>
-			<item entryID="hdmicec" level="0" text="HDMI-CEC Setup" weight="55" requires="HDMICEC"><screen module="HDMICEC" screen="HDMICECSetup" /></item>
+			<item entryID="hdmicec" level="0" text="HDMI-CEC Settings" weight="55" requires="HDMICEC"><screen module="HDMICEC" screen="HDMICECSetup" /></item>
 			<item entryID="script_manager" level="1" text="Script Manager" weight="56"><screen module="ScriptRunner" screen="ScriptRunner" /></item>
 			<item entryID="time_setup" level="0" text="Time" weight="60"><screen module="Time" screen="Time" /></item>
-			<item entryID="logs_setup" level="0" text="Logs settings" weight="70"><setup id="Logs" /></item>
-			<item entryID="rfmod_setup" level="1" text="RF output" weight="80" requires="RfModulator"><setup id="RFModulator" /></item>
-			<item entryID="factory_reset" level="0" text="Factory reset" weight="99"><screen module="FactoryReset" screen="FactoryReset" /></item>
+			<item entryID="logs_setup" level="0" text="Logs Settings" weight="70"><setup id="Logs" /></item>
+			<item entryID="rfmod_setup" level="1" text="RF Output Settings" weight="80" requires="RfModulator"><setup id="RFModulator" /></item>
+			<item entryID="factory_reset" level="0" text="Factory Reset" weight="99"><screen module="FactoryReset" screen="FactoryReset" /></item>
 		</menu>
 	</menu>
 

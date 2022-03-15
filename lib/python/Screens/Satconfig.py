@@ -753,8 +753,8 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 	def __init__(self, session, slotid):
 		printCallSequence(10)
 		Screen.__init__(self, session)
-		Screen.setTitle(self, _("Tuner settings"))
-		self.setup_title = _("Tuner settings")
+		Screen.setTitle(self, _("Tuner Settings"))
+		self.setup_title = _("Tuner Settings")
 		self.list = []
 		ServiceStopScreen.__init__(self)
 		self.stopService()

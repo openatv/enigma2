@@ -539,7 +539,7 @@ class UserInterfacePositioner(Screen, ConfigListScreen):
 class OSD3DSetupScreen(Screen, ConfigListScreen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
-		self.setup_title = _("OSD 3D Setup")
+		self.setup_title = _("OSD 3D Settings")
 		self.skinName = "Setup"
 
 		self["HelpWindow"] = Pixmap()

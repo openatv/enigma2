@@ -209,8 +209,8 @@ class QuickMenu(Screen, ProtectedScreen):
 ######## System Setup Menu ##############################
 	def Qsystem(self):
 		self.sublist = []
-		self.sublist.append(QuickSubMenuEntryComponent("Customise", _("Setup Enigma2"), _("Customise enigma2 personal settings")))
-		self.sublist.append(QuickSubMenuEntryComponent("OSD settings", _("OSD Setup"), _("Setup your OSD")))
+		self.sublist.append(QuickSubMenuEntryComponent("Customize", _("Setup Enigma2"), _("Customize enigma2 personal settings")))
+		self.sublist.append(QuickSubMenuEntryComponent("OSD Settings", _("OSD Setup"), _("Setup your OSD")))
 		self.sublist.append(QuickSubMenuEntryComponent("Button Setup", _("Button Setup"), _("Setup your remote buttons")))
 		if BoxInfo.getItem("FrontpanelDisplay") and BoxInfo.getItem("Display"):
 			self.sublist.append(QuickSubMenuEntryComponent("Display Settings", _("Display Setup"), _("Setup your display")))
@@ -218,8 +218,8 @@ class QuickMenu(Screen, ProtectedScreen):
 			self.sublist.append(QuickSubMenuEntryComponent("LCD Skin Setup", _("Select LCD Skin"), _("Setup your LCD")))
 		self.sublist.append(QuickSubMenuEntryComponent("Skin Setup", _("Select Enigma2 Skin"), _("Setup your Skin")))
 		self.sublist.append(QuickSubMenuEntryComponent("Channel selection", _("Channel selection configuration"), _("Setup your Channel selection configuration")))
-		self.sublist.append(QuickSubMenuEntryComponent("Recording settings", _("Recording Setup"), _("Setup your recording config")))
-		self.sublist.append(QuickSubMenuEntryComponent("EPG settings", _("EPG Setup"), _("Setup your EPG config")))
+		self.sublist.append(QuickSubMenuEntryComponent("Recording Settings", _("Recording Setup"), _("Setup your recording config")))
+		self.sublist.append(QuickSubMenuEntryComponent("EPG Settings", _("EPG Setup"), _("Setup your EPG config")))
 		self["sublist"].l.setList(self.sublist)
 
 ######## Network Menu ##############################
@@ -264,7 +264,7 @@ class QuickMenu(Screen, ProtectedScreen):
 	def Qsoftcam(self):
 		self.sublist = []
 		if BoxInfo.getItem("SoftCam"): # show only when there is a softcam installed
-			self.sublist.append(QuickSubMenuEntryComponent("Softcam Setup", _("Control your Softcams"), _("Use the Softcam Panel to control your Cam. This let you start/stop/select a cam")))
+			self.sublist.append(QuickSubMenuEntryComponent("Softcam Settings", _("Control your Softcams"), _("Use the Softcam Panel to control your Cam. This let you start/stop/select a cam")))
 			if BoxInfo.getItem("ShowOscamInfo"): # show only when oscam or ncam is active
 				self.sublist.append(QuickSubMenuEntryComponent("OScamInfo", _("Show OScam Info"), _("Show the OScamInfo Screen")))
 			if BoxInfo.getItem("ShowCCCamInfo"): # show only when CCcam is active
@@ -320,7 +320,7 @@ class QuickMenu(Screen, ProtectedScreen):
 		self.sublist.append(QuickSubMenuEntryComponent("Plugin Browser", _("Open the Plugin Browser"), _("Shows Plugins Browser. Here you can setup installed Plugin")))
 		self.sublist.append(QuickSubMenuEntryComponent("Download Plugins", _("Download and install Plugins"), _("Shows available plugins. Here you can download and install them")))
 		self.sublist.append(QuickSubMenuEntryComponent("Remove Plugins", _("Delete Plugins"), _("Delete and uninstall Plugins. This will remove the Plugin from your box")))
-		self.sublist.append(QuickSubMenuEntryComponent("Plugin Filter", _("Setup Plugin filter"), _("Setup Plugin filter. Here you can select which Plugins are showed in the PluginBrowser")))
+		self.sublist.append(QuickSubMenuEntryComponent("Plugin Filter Settings", _("Setup Plugin filter"), _("Setup Plugin filter. Here you can select which Plugins are showed in the PluginBrowser")))
 		self.sublist.append(QuickSubMenuEntryComponent("IPK Installer", _("Install local extension"), _("Scan for local extensions and install them")))
 		self["sublist"].l.setList(self.sublist)
 
@@ -423,7 +423,7 @@ class QuickMenu(Screen, ProtectedScreen):
 		elif item[0] == _("Telnet"):
 			self.session.open(NetworkTelnet)
 ######## Select System Setup Menu ##############################
-		elif item[0] == _("Customise"):
+		elif item[0] == _("Customize"):
 			self.openSetup("Usage")
 		elif item[0] == _("Button Setup"):
 			self.openSetup("RemoteButton")
@@ -433,13 +433,13 @@ class QuickMenu(Screen, ProtectedScreen):
 			self.session.open(LcdSkinSelector)
 		elif item[0] == _("Skin Setup"):
 			self.session.open(SkinSelector)
-		elif item[0] == _("OSD settings"):
+		elif item[0] == _("OSD Settings"):
 			self.openSetup("UserInterface")
 		elif item[0] == _("Channel selection"):
 			self.openSetup("ChannelSelection")
-		elif item[0] == _("Recording settings"):
+		elif item[0] == _("Recording Settings"):
 			self.openSetup("Recording")
-		elif item[0] == _("EPG settings"):
+		elif item[0] == _("EPG Settings"):
 			self.openSetup("EPG")
 ######## Select Mounts Menu ##############################
 		elif item[0] == _("Mount Manager"):
@@ -453,7 +453,7 @@ class QuickMenu(Screen, ProtectedScreen):
 		elif item[0] == _("Device Manager"):
 			self.session.open(HddMount)
 ######## Select Softcam Menu ##############################
-		elif item[0] == _("Softcam Setup"):
+		elif item[0] == _("Softcam Settings"):
 			self.session.open(SoftcamSetup)
 		elif item[0] == _("OScamInfo"):
 			self.session.open(OscamInfoMenu)
@@ -522,7 +522,7 @@ class QuickMenu(Screen, ProtectedScreen):
 			self.session.open(PluginDownloadBrowser, 0)
 		elif item[0] == _("Remove Plugins"):
 			self.session.open(PluginDownloadBrowser, 1)
-		elif item[0] == _("Plugin Filter"):
+		elif item[0] == _("Plugin Filter Settings"):
 			self.session.open(PluginFilter)
 		elif item[0] == _("IPK Installer"):
 			try:

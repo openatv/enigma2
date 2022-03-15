@@ -3245,7 +3245,7 @@ class InfoBarExtensions:
 		return [((boundFunction(self.getRestartNetworkname), boundFunction(self.openRestartNetwork), lambda: True), None)]
 
 	def get3DSetupname(self):
-		return _("OSD 3D Setup")
+		return _("OSD 3D Settings")
 
 	def getOsd3DSetup(self):
 		if config.osd.show3dextensions.value:

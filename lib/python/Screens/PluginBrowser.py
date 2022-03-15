@@ -810,7 +810,7 @@ class PluginDownloadBrowser(Screen):
 class PluginFilter(Setup):
 	def __init__(self, session):
 		Setup.__init__(self, session, "PluginFilter")
-		self.setTitle(_("Plugin Filter"))
+		self.setTitle(_("Plugin Filter Settings"))
 
 	def saveAll(self):
 		Setup.saveAll(self)

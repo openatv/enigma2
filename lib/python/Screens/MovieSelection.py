@@ -1987,7 +1987,7 @@ class MovieContextMenu(Screen, ProtectedScreen):
 		Screen.__init__(self, session)
 		ProtectedScreen.__init__(self)
 		self.skinName = "Setup"
-		self.setTitle(_("Movie List Setup"))
+		self.setTitle(_("Movie List Settings"))
 		self["HelpWindow"] = Pixmap()
 		self["HelpWindow"].hide()
 		self["VKeyIcon"] = Boolean(False)
@@ -2078,7 +2078,7 @@ class MovieContextMenuSummary(Screen):
 class MovieSelectionSetup(Setup):
 	def __init__(self, session):
 		Setup.__init__(self, session, setup="MovieSelection")
-		self.setTitle(_("Movie List Setup"))
+		self.setTitle(_("Movie List Settings"))
 
 	def keySave(self):
 		self.saveAll()

@@ -52,7 +52,7 @@ class NetworkAdapterSelection(Screen, HelpableScreen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
 		HelpableScreen.__init__(self)
-		Screen.setTitle(self, _("Network Setup"))
+		Screen.setTitle(self, _("Network Settings"))
 
 		self.wlan_errortext = _("No working wireless network adapter found.\nPlease verify that you have attached a compatible WLAN device and your network is configured correctly.")
 		self.lan_errortext = _("No working local network adapter found.\nPlease verify that you have attached a network cable and your network is configured correctly.")
@@ -908,7 +908,7 @@ class AdapterSetupConfiguration(Screen, HelpableScreen):
 	def __init__(self, session, iface):
 		Screen.__init__(self, session)
 		HelpableScreen.__init__(self)
-		Screen.setTitle(self, _("Network Setup"))
+		Screen.setTitle(self, _("Network Settings"))
 		self.iface = iface
 		self.restartLanRef = None
 		self.LinkState = None

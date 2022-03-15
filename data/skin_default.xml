@@ -555,7 +555,7 @@ self.instance.move(ePoint(orgpos.x() + (orgwidth - newwidth)//2, orgpos.y()))
 			</convert>
 		</widget>
 	</screen>
-	<screen name="AdapterSetup" position="center,center" size="560,460" title="Network setup" >
+	<screen name="AdapterSetup" position="center,center" size="560,460" title="Network Settings" >
 		<panel name="BasicTemplate" />
 		<panel name="Red2Panel" />
 		<panel name="Blue2Panel" />
@@ -637,7 +637,7 @@ self.instance.move(ePoint(orgpos.x() + (orgwidth - newwidth)//2, orgpos.y()))
 		<panel name="BasicTemplate" />
 		<widget name="config" position="10,10" zPosition="1" size="540,275" scrollbarMode="showOnDemand" />
 	</screen>
-	<screen name="QuickSubtitlesConfigMenu" position="50,50" size="480,255" title="Subtitle settings" backgroundColor="#7f000000" flags="wfNoBorder">
+	<screen name="QuickSubtitlesConfigMenu" position="50,50" size="480,255" title="Subtitle Settings" backgroundColor="#7f000000" flags="wfNoBorder">
 		<widget name="config" position="5,5" size="470,225" font="Regular;18" zPosition="1" transparent="1" valign="center" />
 		<widget name="videofps" position="5,230" size="470,20" backgroundColor="secondBG" transparent="1" zPosition="1" font="Regular;16" valign="center" halign="left" foregroundColor="blue"/>
 	</screen>
@@ -718,7 +718,7 @@ self.autoResize()
 		<widget name="title" position="10,120" size="280,50" />
 		<widget name="theClock" position="10,60" size="280,50" />
 	</screen>
-	<screen name="configOSD" position="center,center" size="460,350" flags="wfNoBorder" title="OSD settings">
+	<screen name="configOSD" position="center,center" size="460,350" flags="wfNoBorder" title="OSD Settings">
 		<widget name="okbutton" position="20,270" size="205,40" />
 		<widget name="txt_alpha" position="20,20" size="110,20" />
 		<widget name="sld_alpha" position="150,20" size="290,20" />
@@ -1130,7 +1130,7 @@ self.autoResize()
 		<widget name="InfoTextBorder" pixmap="skin_default/border_info.png" position="10,50" zPosition="20" size="550,300" alphatest="on" />
 		<widget name="InfoText" position="15,55" size="541,290" zPosition="25" font="Regular;21" />
 	</screen>
-	<screen name="NetworkSetup" position="center,center" size="560,460" title="Network setup">
+	<screen name="NetworkSetup" position="center,center" size="560,460" title="Network Settings">
 		<panel name="BasicTemplate" />
 		<widget name="menu" position="10,10" size="540,350" />
 	</screen>
@@ -1978,7 +1978,7 @@ self.autoResize()
 		<widget name="config" position="3,80" scrollbarMode="showOnDemand" size="540,260" source="menu" transparent="10" itemHeight="20" enableWrapAround="1" zPosition="1" />
 		<widget name="Linconn" position="3,360" size="540,60" zPosition="10" font="Enigma;16" halign="center" valign="center" transparent="0" foregroundColor="secondFG" />
 	</screen>
-	<screen name="VIXSoftcamManager" position="center,center" size="560,460" title="Softcam Setup">
+	<screen name="VIXSoftcamManager" position="center,center" size="560,460" title="Softcam Settings">
 		<panel name="BasicTemplate" />
 		<panel name="Red1Panel" />
 		<panel name="Green1Panel" />
