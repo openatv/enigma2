@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-03-01 17:50+0000\n"
-"PO-Revision-Date: 2022-03-07 14:59+0000\n"
+"POT-Creation-Date: 2022-03-15 12:24+0000\n"
+"PO-Revision-Date: 2022-03-15 17:52+0000\n"
 "Last-Translator: Adga56 <adga45@gmail.com>\n"
 "Language-Team: Lithuanian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/lt/>\n"
 "Language: lt\n"
@@ -1631,8 +1631,8 @@ msgstr "12 simbolių"
 msgid "12 hours"
 msgstr "12 valandų"
 
-msgid "12, show latin-1 characters except for greek and cyrillic, switch to 8 if needed."
-msgstr "12, rodyti latin-1 simbolius, išskyrus graikų ir kirilicą, jei reikia, perjunkite 8."
+msgid "12, show Latin-1 characters except for greek and cyrillic, switch to 8 if needed."
+msgstr "12, rodyti lotyniškus-1 simbolius, išskyrus graikų ir kirilicos simbolius, jei reikia, pereikite prie 8."
 
 msgid "128"
 msgstr "128"
@@ -2421,11 +2421,11 @@ msgstr "Pridėti jungimo laikmatį"
 msgid "Add Zap+Record Timer"
 msgstr "Pridėti jungimo ir įrašymo laikmatį"
 
+msgid "Add a DNS entry"
+msgstr "DNS įrašo įtraukimas"
+
 msgid "Add a mark"
 msgstr "Pridėti žymą"
-
-msgid "Add a nameserver entry"
-msgstr "Pridėti DNS serverį"
 
 msgid "Add a new tag"
 msgstr "Įtraukti naują žymę"
@@ -3133,6 +3133,9 @@ msgstr "Automatinė kalba"
 msgid "Auto Language Selection"
 msgstr "Automatinis kalbos pasirinkimas"
 
+msgid "Auto Language Settings"
+msgstr "Automatinės kalbos parametrai"
+
 msgid "Auto Modes Selected."
 msgstr "Pasirinkti automatiniai režimai."
 
@@ -3162,9 +3165,6 @@ msgstr "Pradedamas auto fokusavimas..."
 
 msgid "Auto install log"
 msgstr "Automatinio diegimo žurnalas"
-
-msgid "Auto Language Settings"
-msgstr "Automatinis kalbos pasirinkimas"
 
 msgid "Auto scart switching"
 msgstr "Automatinis skarto perjungimas"
@@ -3268,6 +3268,15 @@ msgstr "BER:"
 
 msgid "BLUDISC RECORDABLE"
 msgstr "ĮRAŠOMAS BLURAY DISKAS"
+
+msgid "BLUE button"
+msgstr "MĖLYNAS mygtukas"
+
+msgid "BLUE long"
+msgstr "MĖLYNA ilgai"
+
+msgid "BLUE switch: BLUE/BLUE long"
+msgstr "MĖLYNAS mygtukas: MĖLYNAS/MĖLYNAS ilgas"
 
 msgid "BT 2020 CL"
 msgstr "BT 2020 CL"
@@ -3577,15 +3586,6 @@ msgstr "\"Kvadratavimosi\" triukšmų šalinimas"
 msgid "Blue"
 msgstr "Mėlynas"
 
-msgid "BLUE button"
-msgstr "MĖLYNAS mygtukas"
-
-msgid "BLUE long"
-msgstr "MĖLYNA ilgai"
-
-msgid "BLUE switch: BLUE/BLUE long"
-msgstr "MĖLYNAS mygtukas: MĖLYNAS/MĖLYNAS ilgas"
-
 msgid "Bluetooth Setup"
 msgstr "Bluetooth sąranka"
 
@@ -3840,6 +3840,9 @@ msgstr "KAN.%s"
 
 msgid "CHANGE BOUQUET"
 msgstr "KEISTI PAKETĄ"
+
+msgid "CHANNEL +/-"
+msgstr "KANALAS +/-"
 
 msgid "CI (Common Interface) Setup"
 msgstr "CI (Įstatomo modulio) nustatymas"
@@ -4246,9 +4249,6 @@ msgstr "Kanalas"
 msgid "Channel \t\t\tVolume +"
 msgstr "Kanalas \t\t\tGarsumas +"
 
-msgid "CHANNEL +/-"
-msgstr "KANALAS +/-"
-
 msgid "Channel +/- button mode"
 msgstr "Kanalo +/-mygtukų režimas"
 
@@ -4263,6 +4263,9 @@ msgstr "Kanalo informacija"
 
 msgid "Channel List"
 msgstr "Kanalų sąrašas"
+
+msgid "Channel Selection Settings"
+msgstr "Kanalo pasirinkimo parametrai"
 
 msgid "Channel button always changes sides"
 msgstr "Kanalo mygtukas visada keičia puses"
@@ -4311,9 +4314,6 @@ msgstr "Kanalo pasirinkimas"
 
 msgid "Channel selection configuration"
 msgstr "Kanalų pasirinkimo konfigūravimas"
-
-msgid "Channel Selection Settings"
-msgstr "Kanalų pasirinkimo nustatymai"
 
 msgid "Channel up"
 msgstr "Kanalą aukštyn"
@@ -4644,8 +4644,8 @@ msgstr "Uždaryti langą"
 msgid "Close title selection"
 msgstr "Užverti pavadinimo pasirinkimą"
 
-msgid "Cloudflare"
-msgstr "Debesų pliūpsnis"
+msgid "Cloudflare DNS"
+msgstr "Cloudflare DNS"
 
 msgid "Cocos (Keeling) Islands"
 msgstr "Kokosų (Kylingo) salos"
@@ -4945,8 +4945,8 @@ msgstr "Konfigūruokite, kas vyks ilgai paspaudus 'įjungimo' mygtuką."
 msgid "Configure the function of a short press on the power button."
 msgstr "Konfigūruokite, kas vyks trumpai paspaudus 'įjungimo' mygtuką."
 
-msgid "Configure the function of the <  > buttons."
-msgstr "Konfigūruokite '< >' mygtukų funkciją."
+msgid "Configure the function of the < and > buttons."
+msgstr "Konfigūruoti mygtukų < ir > funkciją."
 
 msgid "Configure the gateway."
 msgstr "Konfigūruokite tinklo šliuzą."
@@ -5518,14 +5518,14 @@ msgstr "Pasirinktinai praleisti laiką '4'/'6' mygtukams"
 msgid "Custom skip time for '7'/'9' buttons"
 msgstr "Pasirinktinai praleisti laiką '7'/'9' mygtukams"
 
-msgid "Customise"
-msgstr "Pasirinktinis nustatymas"
-
-msgid "Customize enigma2 personal settings"
-msgstr "Suasmeninti enigma2 nustatymus"
-
 msgid "Customize"
 msgstr "Asmeniniai pasirinkimai"
+
+msgid "Customize System Settings"
+msgstr "Tinkinkite sistemos nustatymus"
+
+msgid "Customize enigma2 personal settings"
+msgstr "Enigma2 asmeninių parametrų tinkinimas"
 
 msgid "Cut"
 msgstr "Iškirpti"
@@ -5563,9 +5563,6 @@ msgstr "DAC"
 msgid "DHCP"
 msgstr "DHCP"
 
-msgid "DHCP Router"
-msgstr "DHCP maršrutizatorius"
-
 msgid "DLNA support"
 msgstr "DLNA palaikymas"
 
@@ -5574,6 +5571,15 @@ msgstr "DMM išsamiai"
 
 msgid "DMM normal"
 msgstr "DMM veikiantis"
+
+msgid "DNS (Dynamic Name Server) Actions"
+msgstr "DNS (dinaminio vardų serverio) veiksmai"
+
+msgid "DNS Settings"
+msgstr "DNS parametrai"
+
+msgid "DNS data source"
+msgstr "DNS duomenų šaltinis"
 
 msgid ""
 "DO NOT POWER OFF YOUR DEVICE WHILE UPDATING!\n"
@@ -6865,6 +6871,9 @@ msgstr "EPG paieška"
 msgid "EPG Selection"
 msgstr "EPG pasirinkimas"
 
+msgid "EPG Settings"
+msgstr "EPG parametrai"
+
 msgid "EPG Setup"
 msgstr "EPG nustatymas"
 
@@ -6910,9 +6919,6 @@ msgstr "EPG paieška"
 
 msgid "EPG selection"
 msgstr "EPG pasirinkimas"
-
-msgid "EPG Settings"
-msgstr "EPG nustatymai"
 
 msgid "EPGSearch"
 msgstr "EPG paieška"
@@ -7294,6 +7300,10 @@ msgstr "Paprasta Enigma"
 msgid "Enter"
 msgstr "Įrašykite"
 
+#, python-format
+msgid "Enter DNS (Dynamic Name Server) %d's IP address."
+msgstr "Įveskite DNS (dinaminis vardų serveris) %d IP adresą."
+
 msgid "Enter PIN"
 msgstr "Įrašykite PIN kodą"
 
@@ -7388,6 +7398,14 @@ msgstr "klaida %d: žurnalo failas '%s' nebuvo panaikintas!  (%s)"
 #, python-format
 msgid "Error %d: The logfile '%s' could not be opened.  (%s)"
 msgstr "klaida %d: nepavyko atidaryti žurnalo '%s'.  (%s)"
+
+#, python-format
+msgid "Error %d: Unable to change password!  (%s)"
+msgstr "Klaida %d: slaptažodžio keisti neįmanoma!  (%s)"
+
+#, python-format
+msgid "Error %d: Unable to start 'passwd' command!"
+msgstr "Klaida %d: Nepavyko paleisti 'passwd' komandos!"
 
 #, python-format
 msgid "Error '%s' encountered retrieving the %s commit logs!"
@@ -7523,11 +7541,11 @@ msgstr "Klaida: %s %s ne %s!  Bandykite dar kartą vėliau."
 msgid "Error: Checksum is invalid!"
 msgstr "Klaida: kontrolinė suma neleistina!"
 
+msgid "Error: Interaction failure, unable to change password!"
+msgstr "Klaida: veiksmo klaida, slaptažodžio keisti neįmanoma!"
+
 msgid "Error: The new password may not be blank!"
 msgstr "Klaida: naujas slaptažodis negali būti tuščias!"
-
-msgid "Error: Unable to change password!"
-msgstr "Klaida: nepavyksta pakeisti slaptažodžio!"
 
 msgid "Error: Unable to process the command!  Please try again later."
 msgstr "Klaida: nepavyko apdoroti komandos!  Bandykite dar kartą vėliau."
@@ -7874,11 +7892,11 @@ msgstr "FTP nustatymas"
 msgid "Factory Reset"
 msgstr "Gamyklinis nustatymas iš naujo"
 
+msgid "Factory Reset Settings"
+msgstr "Gamyklinio atstatymo parametrai iš naujo"
+
 msgid "Factory release"
 msgstr "Gamyklos išleidimas"
-
-msgid "Factory reset"
-msgstr "Atkurti gamyklines nuostatas"
 
 msgid "Fade the Infobar on hide"
 msgstr "Info juosta užsidarydama išbluks"
@@ -8369,6 +8387,12 @@ msgstr "GB"
 msgid "GCC version"
 msgstr "GCC versija"
 
+msgid "GREEN button"
+msgstr "ŽALIAS mygtukas"
+
+msgid "GREEN long"
+msgstr "ŽALIA ilgai"
+
 msgid "GStreamer debug log category *"
 msgstr "GStreamer derinimo žurnalo kategorija *"
 
@@ -8627,12 +8651,6 @@ msgstr "Graikų"
 msgid "Green"
 msgstr "Žalias"
 
-msgid "GREEN button"
-msgstr "ŽALIAS mygtukas"
-
-msgid "GREEN long"
-msgstr "ŽALIA ilgai"
-
 msgid "Greenland"
 msgstr "Grenlandija"
 
@@ -8718,10 +8736,10 @@ msgid "HDMI HDR Type"
 msgstr "HDMI HDR tipas"
 
 msgid "HDMI Recording Settings"
-msgstr "HDMI įrašymas"
+msgstr "HDMI įrašymo parametrai"
 
 msgid "HDMI-CEC Settings"
-msgstr "HDMI-CEC sąranka"
+msgstr "HDMI-CEC parametrai"
 
 msgid "HDMI-CEC Setup Actions"
 msgstr "HDMI-CEC sąrankos veiksmai"
@@ -8784,7 +8802,7 @@ msgid "Handle wakeup from TV"
 msgstr "Įjungti imtuvą, įjungiant TV"
 
 msgid "Hard Disk Settings"
-msgstr "Kietojo disko valdymas"
+msgstr "Kietojo disko parametrai"
 
 msgid "Hard disk standby after"
 msgstr "Kietasis diskas išsijungs po"
@@ -9250,7 +9268,7 @@ msgstr "Jei įjungtas gilus pristabdymo sprendimas, palaukite, kol bus sinchroni
 msgid "If the free space is less than setting value, then an attempt is made to delete the old timeshift files."
 msgstr "Jei laisvos vietos yra mažiau, nei nustatyta reikšmė, tada bus bandoma ištrinti senus laiko poslinkio failus."
 
-msgid "If the text is too long to be displayed on the front panel, it will be repeated (number of times):"
+msgid "If the text is too long to be displayed on the front panel, it will be repeated (number of times)."
 msgstr "Jei tekstas per ilgas ir netelpa į priekinį imtuvo ekraną, jis bus kartojamas (kartų):"
 
 msgid "If using multiple uncommitted switches the DiSEqC commands must be sent multiple times. Set to the number of uncommitted switches in the chain minus one."
@@ -9525,6 +9543,9 @@ msgstr "Įėjimas"
 msgid "Input "
 msgstr "Įvestis "
 
+msgid "Input Device Settings"
+msgstr "Įvesties įrenginio parametrai"
+
 msgid "Input Stream ID"
 msgstr "Srauto įvesties ID"
 
@@ -9539,9 +9560,6 @@ msgstr "Įvesties įrenginiai"
 
 msgid "Input scroll position"
 msgstr "Įvesties slinkties padėtis"
-
-msgid "Input Device Settings"
-msgstr "Įvesties įrenginio nustatymas"
 
 msgid "Insert"
 msgstr "Įterpti"
@@ -9908,6 +9926,9 @@ msgstr "Branduolio versija"
 msgid "Keyboard"
 msgstr "Klaviatūra"
 
+msgid "Keyboard Settings"
+msgstr "Klaviatūros parametrai"
+
 msgid "Keyboard data entry"
 msgstr "Klaviatūros duomenų įvedimas"
 
@@ -9916,9 +9937,6 @@ msgstr "Klaviatūra"
 
 msgid "Keyboard map"
 msgstr "Klaviatūros išdėstymas"
-
-msgid "Keyboard Settings"
-msgstr "Klaviatūros valdymas"
 
 msgid "Kikuyu / Gikuyu"
 msgstr "Kikuyu / Gikuyu"
@@ -10364,7 +10382,7 @@ msgid "Locale (Descending)"
 msgstr "Lokalė (mažėjimo tvarka)"
 
 msgid "Locale Selection Settings"
-msgstr "Lokalės pasirinkimo nustatymas"
+msgstr "Lokalės pasirinkimo parametrai"
 
 msgid "Locale already selected."
 msgstr "Lokalė jau pasirinkta."
@@ -10431,14 +10449,14 @@ msgstr "Prisijungimas prie IceTV serverio"
 msgid "Logs"
 msgstr "Žurnalai"
 
+msgid "Logs Settings"
+msgstr "Žurnalų nustatymai"
+
 msgid "Logs location"
 msgstr "Žurnalų vieta"
 
 msgid "Logs older then the set no of days will be deleted."
 msgstr "Senesni žurnalai, negu (nurodyti dienų) bus ištrinti."
-
-msgid "Logs Settings"
-msgstr "Žurnalų nustatymai"
 
 msgid "Long << / >>"
 msgstr "Ilgas spaudimas << / >>"
@@ -11081,6 +11099,12 @@ msgstr "Išjungti perkėlimą"
 msgid "Move mode on"
 msgstr "Įjungti perkėlimą"
 
+msgid "Move the current DNS entry down one line"
+msgstr "Perkelti dabartinį DNS įrašą viena eilute žemyn"
+
+msgid "Move the current DNS entry up one line"
+msgstr "Perkelti dabartinį DNS įrašą į vieną eilutę aukštyn"
+
 msgid "Move the keyboard cursor down"
 msgstr "Perkelkite klaviatūros žymeklį žemyn"
 
@@ -11178,7 +11202,7 @@ msgid "Movie List Actions"
 msgstr "Filmų sąrašo veiksmai"
 
 msgid "Movie List Settings"
-msgstr "Filmų sąrašo valdymas"
+msgstr "Filmų sąrašo parametrai"
 
 msgid "Movie Player Actions"
 msgstr "Filmo grotuvo veiksmai"
@@ -11331,18 +11355,15 @@ msgstr "Pavadinimas"
 msgid "Name reverse"
 msgstr "Atvirkštinis pavadinimas"
 
+#, python-format
+msgid "Name server %d"
+msgstr "Vardų serverio %d"
+
 msgid "Name:"
 msgstr "Pavadinimas:"
 
 msgid "Nameserver"
 msgstr "DNS serveris"
-
-#, python-format
-msgid "Nameserver %d"
-msgstr "DNS serveris %d"
-
-msgid "Nameserver configuration"
-msgstr "DNS serverio konfigūracija"
 
 msgid "Nameserver settings"
 msgstr "DNS serverio nustatymai"
@@ -11434,8 +11455,8 @@ msgstr "Paleisti tinklą iš naujo"
 msgid "Network Services"
 msgstr "Tinklo paslaugos"
 
-msgid "Network Setup"
-msgstr "Tinklo nustatymas"
+msgid "Network Settings"
+msgstr "Tinklo parametrai"
 
 msgid "Network Test"
 msgstr "Tinklo testavimas"
@@ -11463,9 +11484,6 @@ msgstr "Tinklo pavadinimas (SSID)"
 
 msgid "Network scan"
 msgstr "Tinklo paieška"
-
-msgid "Network Settings"
-msgstr "Tinklo nustatymas"
 
 msgid "Network test"
 msgstr "Tinklo testavimas"
@@ -12013,14 +12031,14 @@ msgstr "OSD reguliavimas"
 msgid "OSD Position"
 msgstr "OSD pozicija"
 
+msgid "OSD Settings"
+msgstr "OSD nustatymai"
+
 msgid "OSD Setup"
 msgstr "OSD valdymas"
 
 msgid "OSD name request"
 msgstr "OSD pavadinimo užklausa"
-
-msgid "OSD Settings"
-msgstr "OSD nustatymai"
 
 msgid "OScam Info"
 msgstr "OScam informacija"
@@ -12247,11 +12265,11 @@ msgstr "Orijų"
 msgid "Oromo"
 msgstr "Oromo"
 
-msgid "Oscam Info Settings"
-msgstr "Oscam Info - konfigūracija"
-
 msgid "Oscam Info - Main Menu"
 msgstr "Oscam Info - pagrindinis meniu"
+
+msgid "Oscam Info Settings"
+msgstr "Oscam informacijos parametrai"
 
 #, python-format
 msgid "Oscam Log ( Oscam-Version: %s )"
@@ -12530,7 +12548,10 @@ msgid "Password Actions"
 msgstr "Slaptažodžio veiksmai"
 
 msgid "Password Settings"
-msgstr "Slaptažodžio valdymas"
+msgstr "Slaptažodžio parametrai"
+
+msgid "Password changed."
+msgstr "Slaptažodis pakeistas."
 
 msgid "Password:"
 msgstr "Slaptažodis:"
@@ -13101,8 +13122,11 @@ msgstr "Palaukite... Beveik baigta! "
 msgid "Plugin Browser"
 msgstr "Priedų naršyklė"
 
+msgid "Plugin Browser Settings"
+msgstr "Priedo naršyklės parametrai"
+
 msgid "Plugin Filter Settings"
-msgstr "Priedų filtras"
+msgstr "Priedo filtro parametrai"
 
 msgid "Plugin details"
 msgstr "Priedo informacija"
@@ -13112,9 +13136,6 @@ msgstr "Priedų tvarkyklės aktyvumo informacija"
 
 msgid "Plugin manager help"
 msgstr "Priedų tvarkyklės pagalba"
-
-msgid "Plugin Browser Settings"
-msgstr "Priedų naršyklės parametrai"
 
 msgid "Plugins"
 msgstr "Priedai"
@@ -13705,6 +13726,12 @@ msgstr "Greitasis meniu/plėtiniai"
 msgid "Quiz"
 msgstr "Viktorina"
 
+msgid "RADIO"
+msgstr "RADIJAS"
+
+msgid "RADIO long"
+msgstr "RADIO ilgas spaudimas"
+
 msgid "RAM (Details)"
 msgstr "RAM (Išsami informacija)"
 
@@ -13747,26 +13774,29 @@ msgstr "REC simbolis laukimo režime"
 msgid "REC Symbol in use"
 msgstr "REC simbolis, naudojamas"
 
+msgid "RED button"
+msgstr "RAUDONAS mygtukas"
+
+msgid "RED long"
+msgstr "RAUDONAS ilgas mygtukas"
+
 msgid "RF Output Settings"
-msgstr "RF išėjimas"
+msgstr "RF išvesties parametrai"
 
 msgid "RGB"
 msgstr "RGB"
 
-msgid "RADIO"
-msgstr "RADIJAS"
-
 msgid "Radio Channel Selection"
 msgstr "Radijo kanalo pasirinkimas"
-
-msgid "RADIO long"
-msgstr "RADIO ilgas spaudimas"
 
 msgid "Radsport"
 msgstr "Dviračių sportas"
 
 msgid "Random"
 msgstr "Atsitiktinis"
+
+msgid "Random Password"
+msgstr "Atsitiktinis slaptažodis"
 
 #, python-format
 msgid "Rating defined by broadcaster - %d"
@@ -13929,6 +13959,9 @@ msgstr "Įrašymas"
 msgid "Recording Actions"
 msgstr "Įrašymo veiksmai"
 
+msgid "Recording Settings"
+msgstr "Įrašymo nustatymai"
+
 msgid "Recording Setup"
 msgstr "Įrašymo valdymas"
 
@@ -13946,9 +13979,6 @@ msgstr "Vyksta įrašymas"
 
 msgid "Recording running"
 msgstr "Įrašymas veikia"
-
-msgid "Recording Settings"
-msgstr "Įrašymo nustatymai"
 
 msgid "Recording started"
 msgstr "Įrašymas pradėtas"
@@ -13999,17 +14029,11 @@ msgstr "Atkūrimo režimas"
 msgid "Red"
 msgstr "Raudonas"
 
-msgid "RED button"
-msgstr "RAUDONAS mygtukas"
-
 msgid "Red button..."
 msgstr "Raudonas mygtukas..."
 
 msgid "Red colored"
 msgstr "Raudonos spalvos"
-
-msgid "RED long"
-msgstr "RAUDONAS ilgas mygtukas"
 
 msgid "Red/HbbTV Button Actions"
 msgstr "Raudono / HbbTV mygtuko veiksmai"
@@ -14129,6 +14153,9 @@ msgstr "Atsiminti kanalo PIN"
 msgid "Remote Control"
 msgstr "Nuotolinio valdymo pultas"
 
+msgid "Remote Control Button Settings"
+msgstr "Nuotolinio valdymo mygtuko parametrai"
+
 msgid "Remote Control Code"
 msgstr "Nuotolinio valdymo pulto kodas"
 
@@ -14166,11 +14193,11 @@ msgstr "Pašalinti Quad kanalo įrašą"
 msgid "Remove Service"
 msgstr "Pašalinti"
 
+msgid "Remove a DNS entry"
+msgstr "DNS įrašo šalinimas"
+
 msgid "Remove a mark"
 msgstr "Pašalinti žymeklį"
-
-msgid "Remove a nameserver entry"
-msgstr "Pašalinti DNS serverio duomenis"
 
 msgid "Remove all bouquet/tuning data"
 msgstr "Pašalinti visus paketus / derinimo duomenis"
@@ -14551,6 +14578,9 @@ msgstr "Šakninis failas"
 msgid "Rotor turning speed"
 msgstr "Rotoriaus sukimosi greitis"
 
+msgid "Router / Gateway"
+msgstr "Maršrutizatorius / šliuzas"
+
 msgid "Routing request"
 msgstr "Maršrutizavimo užklausa"
 
@@ -14756,11 +14786,11 @@ msgstr "Palydovų ieškiklis"
 msgid "Satellite"
 msgstr "Palydovas"
 
+msgid "Satellite Dish Settings"
+msgstr "Palydovo lėkštės nustatymas"
+
 msgid "Satellite configuration mode"
 msgstr "Palydovo konfigūravimas"
-
-msgid "Satellite Dish Settings"
-msgstr "Palydovinės antenos sąranka"
 
 msgid "Satellite equipment"
 msgstr "Palydovinė įranga"
@@ -15414,6 +15444,9 @@ msgstr "Pasirinkite paslinktų simbolių rinkinį tik kitam simboliui"
 
 msgid "Select the sleep timer action."
 msgstr "Pasirinkite budėjimo laikmačio veiksmą."
+
+msgid "Select the source of the default DNS settings."
+msgstr "Pasirinkite numatytųjų DNS parametrų šaltinį."
 
 msgid "Select the time delay before the button starts repeating."
 msgstr "Pasirinkite laiko delsą prieš mygtuko kartojimą."
@@ -17080,7 +17113,7 @@ msgid "Softcam Actions"
 msgstr "Emuliatoriaus nustatymai"
 
 msgid "Softcam Settings"
-msgstr "Emuliatoriaus valdymas"
+msgstr "Emuliatoriaus nustatymai"
 
 msgid "Softcam-Panel"
 msgstr "Emuliatoriaus skydelis"
@@ -17296,7 +17329,7 @@ msgid "Special 2"
 msgstr "Simboliai 2"
 
 msgid "Special Features Settings"
-msgstr "Ypatingi požymiai"
+msgstr "Specialiųjų funkcijų parametrai"
 
 msgid "Speed"
 msgstr "Greitis"
@@ -17410,8 +17443,8 @@ msgstr "Prasidės po kelių sekundžių"
 msgid "State"
 msgstr "Būklė"
 
-msgid "Static IP or Custom"
-msgstr "Statinis IP arba pasirinktinis"
+msgid "Static IP / Custom"
+msgstr "Statinis IP / Pasirinktinis"
 
 msgid "Status"
 msgstr "Būsena"
@@ -17509,14 +17542,14 @@ msgstr "Stabdyti laiko poslinkį, išsaugoti įsimintą laiko poslinkį, kaip fi
 msgid "Stop timeshift while recording"
 msgstr "Stabdyti laiko poslinkį įrašinėjant"
 
-msgid "Stops timeshift being used if a recording is in progress. (Advisable for USB sticks.)"
-msgstr "Sustabdo laiko poslinkio naudojimą, jei vyksta įrašymas. (Patartina USB atmintinėms.)"
-
 msgid "Stopped"
 msgstr "Sustabdyta"
 
 msgid "Stopping Softcam"
 msgstr "Stabdomas emuliatorius"
+
+msgid "Stops timeshift being used if a recording is in progress. (Advisable for USB sticks.)"
+msgstr "Sustabdo laiko poslinkio naudojimą, jei vyksta įrašymas. (Patartina USB atmintinėms.)"
 
 msgid "Storage devices"
 msgstr "Saugojimo įrenginiai"
@@ -17594,6 +17627,9 @@ msgstr "Subtitrų veiksmai"
 msgid "Subtitle Quickmenu"
 msgstr "Subtitrų greitasis meniu"
 
+msgid "Subtitle Settings"
+msgstr "Subtitrų nustatymai"
+
 msgid "Subtitle alignment"
 msgstr "Subtitrų lygiavimas"
 
@@ -17635,9 +17671,6 @@ msgstr "Subtitrų pasirinkimas"
 
 msgid "Subtitle selection..."
 msgstr "Subtitrų pasirinkimas..."
-
-msgid "Subtitle Settings"
-msgstr "Subtitrų nustatymai"
 
 msgid "Subtitles"
 msgstr "Subtitrai"
@@ -17886,7 +17919,7 @@ msgid "TEXT"
 msgstr "TEKSTAS"
 
 msgid "TRANSLATOR_INFO"
-msgstr "2022-03-06 adga45@gmail.com"
+msgstr "2022-03-15 adga45@gmail.com"
 
 msgid "TS file is too large for ISO9660 level 1!"
 msgstr "TS failas yra per didelis ISO9660 lygmeniui 1!"
@@ -18475,6 +18508,12 @@ msgstr "Ši parinktis leidžia nustatyti rodomų eilučių skaičių."
 msgid "This allows you to set the number of digits to 5, if you have more than 9999 channels."
 msgstr "Ši parinktis leidžia nustatyti 5 skaitmenų skaičių, jei turite daugiau nei 9999 kanalus."
 
+msgid "This allows you to show OpenPLi modules in downloads"
+msgstr "Tai leidžia rodyti OpenPLi modulius atsisiuntimuose"
+
+msgid "This allows you to show OpenViX modules in downloads"
+msgstr "Tai leidžia jums rodyti OpenViX modulius atsisiuntimuose"
+
 msgid "This allows you to show drivers modules in downloads"
 msgstr "Ši parinktis leidžia jums parodyti modulių tvarkykles, skirtas atsisiuntimui"
 
@@ -18496,9 +18535,6 @@ msgstr "Ši parinktis leidžia jums parodyti m2k modulius, skirtus atsisiuntimui
 msgid "This allows you to show picons modules in downloads"
 msgstr "Ši parinktis leidžia jums parodyti logotipų modulius, skirtus atsisiuntimui"
 
-msgid "This allows you to show OpenPLi modules in downloads"
-msgstr "Tai leidžia rodyti OpenPLi modulius atsisiuntimuose"
-
 msgid "This allows you to show security modules in downloads"
 msgstr "Ši parinktis leidžia jums parodyti saugumo modulius, skirtus atsisiuntimui"
 
@@ -18513,9 +18549,6 @@ msgstr "Ši parinktis leidžia jums parodyti emuliatorių modulius, skirtus atsi
 
 msgid "This allows you to show system plugin modules in downloads"
 msgstr "Tai leidžia jums rodyti sistemos priedų modulius atsisiuntimuose"
-
-msgid "This allows you to show OpenViX modules in downloads"
-msgstr "Tai leidžia jums rodyti OpenViX modulius atsisiuntimuose"
 
 msgid "This allows you to show weblinks modules in downloads"
 msgstr "Ši parinktis leidžia jums parodyti web nuorodų modulius, skirtus atsisiuntimui"
@@ -18890,6 +18923,9 @@ msgstr "Tigrinija"
 msgid "Time"
 msgstr "Laiko nustatymai"
 
+msgid "Time Settings"
+msgstr "Laiko nustatymai"
+
 msgid "Time Setup Actions"
 msgstr "Laiko nustatymo veiksmai"
 
@@ -18947,9 +18983,6 @@ msgstr "Laikas, reikalingas šiam procesui: %s"
 
 msgid "Time scale"
 msgstr "Laiko skalė"
-
-msgid "Time Settings"
-msgstr "Laiko nustatymai"
 
 msgid "Time style"
 msgstr "Laiko stilius"
@@ -19047,6 +19080,9 @@ msgstr "Laikmačiai"
 msgid "Timeshift"
 msgstr "Laiko poslinkis"
 
+msgid "Timeshift Settings"
+msgstr "Laiko poslinkio nustatymai"
+
 msgid "Timeshift buffer delete after zap"
 msgstr "Laiko poslinkio buferio naikinimas po perjungimo"
 
@@ -19082,9 +19118,6 @@ msgstr "Išsaugoti laiko poslinkio įrašą  (sustabdyti po dabartinio įvykio)"
 
 msgid "Timeshift saved to your harddisk!"
 msgstr "Laiko poslinkis išsaugotas jūsų kietame diske!"
-
-msgid "Timeshift Settings"
-msgstr "Laiko poslinkio nustatymai"
 
 msgid "Timeshift will get saved at end of event!"
 msgstr "Laiko poslinkis bus išsaugotas įvykio pabaigoje!"
@@ -19348,6 +19381,9 @@ msgstr "Imtuvo konfigūravimas"
 msgid "Tuner Information"
 msgstr "Imtuvo informacija"
 
+msgid "Tuner Settings"
+msgstr "Imtuvo nustatymai"
+
 msgid "Tuner Setup"
 msgstr "Imtuvo valdymas"
 
@@ -19365,9 +19401,6 @@ msgstr "Imtuvo tiesioginės reikšmės"
 
 msgid "Tuner setting values"
 msgstr "Nustatymo reikšmės"
-
-msgid "Tuner Settings"
-msgstr "Imtuvo nustatymai"
 
 msgid "Tuner slot"
 msgstr "Imtuvo lizdas"
@@ -20932,6 +20965,12 @@ msgstr "YCbCr422"
 msgid "YCbCr444"
 msgstr "YCbCr444"
 
+msgid "YELLOW button"
+msgstr "GELTONAS mygtukas"
+
+msgid "YELLOW long"
+msgstr "GELTONAS ilgas spaudimas"
+
 msgid "YPbPr"
 msgstr "YPbPr"
 
@@ -20943,12 +20982,6 @@ msgstr "Geltonas"
 
 msgid "Yellow DVB subtitles"
 msgstr "Geltoni DVB subtitrai"
-
-msgid "YELLOW button"
-msgstr "GELTONAS mygtukas"
-
-msgid "YELLOW long"
-msgstr "GELTONAS ilgas spaudimas"
 
 msgid "Yemen"
 msgstr "Jemenas"
@@ -23232,11 +23265,48 @@ msgstr "perjungimas"
 msgid "®"
 msgstr "®"
 
-msgid "Password changed."
-msgstr "Slaptažodis pakeistas."
+#~ msgid "12, show latin-1 characters except for greek and cyrillic, switch to 8 if needed."
+#~ msgstr "12, rodyti latin-1 simbolius, išskyrus graikų ir kirilicą, jei reikia, perjunkite 8."
 
-msgid "Random Password"
-msgstr "Atsitiktinis slaptažodis"
+#~ msgid "Add a nameserver entry"
+#~ msgstr "Pridėti DNS serverį"
+
+#~ msgid "Cloudflare"
+#~ msgstr "Debesų pliūpsnis"
+
+#~ msgid "Configure the function of the <  > buttons."
+#~ msgstr "Konfigūruokite '< >' mygtukų funkciją."
+
+#~ msgid "Customise"
+#~ msgstr "Pasirinktinis nustatymas"
+
+#~ msgid "DHCP Router"
+#~ msgstr "DHCP maršrutizatorius"
+
+#~ msgid "Error: Unable to change password!"
+#~ msgstr "Klaida: nepavyksta pakeisti slaptažodžio!"
+
+#~ msgid "Factory reset"
+#~ msgstr "Atkurti gamyklines nuostatas"
+
+#~ msgid "If the text is too long to be displayed on the front panel, it will be repeated (number of times):"
+#~ msgstr "Jei tekstas per ilgas ir netelpa į priekinį imtuvo ekraną, jis bus kartojamas (kartų):"
+
+#, python-format
+#~ msgid "Nameserver %d"
+#~ msgstr "DNS serveris %d"
+
+#~ msgid "Nameserver configuration"
+#~ msgstr "DNS serverio konfigūracija"
+
+#~ msgid "Network Setup"
+#~ msgstr "Tinklo nustatymas"
+
+#~ msgid "Remove a nameserver entry"
+#~ msgstr "Pašalinti DNS serverio duomenis"
+
+#~ msgid "Static IP or Custom"
+#~ msgstr "Statinis IP arba pasirinktinis"
 
 #~ msgid "The password can not be blank."
 #~ msgstr "Slaptažodis negali būti tuščias."

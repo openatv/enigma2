@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2 Kurdish translation\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-03-01 17:50+0000\n"
+"POT-Creation-Date: 2022-03-15 12:24+0000\n"
 "PO-Revision-Date: 2021-08-15 18:50+0000\n"
 "Last-Translator: openATV <openatv@gmail.com>\n"
 "Language-Team: Kurdish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/ku/>\n"
@@ -1709,7 +1709,7 @@ msgstr "special characters"
 msgid "12 hours"
 msgstr "%d hour"
 
-msgid "12, show latin-1 characters except for greek and cyrillic, switch to 8 if needed."
+msgid "12, show Latin-1 characters except for greek and cyrillic, switch to 8 if needed."
 msgstr ""
 
 #, fuzzy
@@ -2534,11 +2534,11 @@ msgstr "Add timer"
 msgid "Add Zap+Record Timer"
 msgstr "Add timer"
 
+msgid "Add a DNS entry"
+msgstr ""
+
 msgid "Add a mark"
 msgstr "İşareté léki"
-
-msgid "Add a nameserver entry"
-msgstr "Yek Navé nu léke"
 
 msgid "Add a new tag"
 msgstr ""
@@ -3299,6 +3299,9 @@ msgstr ""
 msgid "Auto Language Selection"
 msgstr ""
 
+msgid "Auto Language Settings"
+msgstr "Auto Ziman Çékirin"
+
 #, fuzzy
 msgid "Auto Modes Selected."
 msgstr "no CAId selected"
@@ -3332,9 +3335,6 @@ msgstr "Auto netkirin ..."
 
 msgid "Auto install log"
 msgstr ""
-
-msgid "Auto Language Settings"
-msgstr "Auto Ziman Çékirin"
 
 msgid "Auto scart switching"
 msgstr "Auto scart switching"
@@ -3449,6 +3449,16 @@ msgid "BER:"
 msgstr "BER:"
 
 msgid "BLUDISC RECORDABLE"
+msgstr ""
+
+#, fuzzy
+msgid "BLUE button"
+msgstr "Red button..."
+
+msgid "BLUE long"
+msgstr ""
+
+msgid "BLUE switch: BLUE/BLUE long"
 msgstr ""
 
 msgid "BT 2020 CL"
@@ -3769,16 +3779,6 @@ msgid "Blue"
 msgstr ""
 
 #, fuzzy
-msgid "BLUE button"
-msgstr "Red button..."
-
-msgid "BLUE long"
-msgstr ""
-
-msgid "BLUE switch: BLUE/BLUE long"
-msgstr ""
-
-#, fuzzy
 msgid "Bluetooth Setup"
 msgstr "Pozisyoner Çéki"
 
@@ -4038,6 +4038,10 @@ msgstr ""
 
 msgid "CHANGE BOUQUET"
 msgstr ""
+
+#, fuzzy
+msgid "CHANNEL +/-"
+msgstr "Qanal"
 
 msgid "CI (Common Interface) Setup"
 msgstr ""
@@ -4450,10 +4454,6 @@ msgstr "Qanal"
 msgid "Channel \t\t\tVolume +"
 msgstr ""
 
-#, fuzzy
-msgid "CHANNEL +/-"
-msgstr "Qanal"
-
 msgid "Channel +/- button mode"
 msgstr ""
 
@@ -4472,6 +4472,10 @@ msgstr "Qanal"
 #, fuzzy
 msgid "Channel List"
 msgstr "Qanal Liste "
+
+#, fuzzy
+msgid "Channel Selection Settings"
+msgstr "Eyara Kolleksiyon"
 
 #, fuzzy
 msgid "Channel button always changes sides"
@@ -4531,10 +4535,6 @@ msgstr "Channel selection"
 
 msgid "Channel selection configuration"
 msgstr ""
-
-#, fuzzy
-msgid "Channel Selection Settings"
-msgstr "Eyara Kolleksiyon"
 
 msgid "Channel up"
 msgstr ""
@@ -4886,7 +4886,7 @@ msgstr ""
 msgid "Close title selection"
 msgstr "Close title selection"
 
-msgid "Cloudflare"
+msgid "Cloudflare DNS"
 msgstr ""
 
 msgid "Cocos (Keeling) Islands"
@@ -5201,9 +5201,8 @@ msgstr ""
 msgid "Configure the function of a short press on the power button."
 msgstr ""
 
-#, fuzzy
-msgid "Configure the function of the <  > buttons."
-msgstr "Configure the function of a short press on the power button."
+msgid "Configure the function of the < and > buttons."
+msgstr ""
 
 msgid "Configure the gateway."
 msgstr "Configure the gateway."
@@ -5812,14 +5811,14 @@ msgstr "Custom skip time for '4'/'6' buttons"
 msgid "Custom skip time for '7'/'9' buttons"
 msgstr "Custom skip time for '7'/'9' buttons"
 
-msgid "Customise"
+msgid "Customize"
+msgstr "Weki Xwu Çéki"
+
+msgid "Customize System Settings"
 msgstr ""
 
 msgid "Customize enigma2 personal settings"
 msgstr ""
-
-msgid "Customize"
-msgstr "Weki Xwu Çéki"
 
 msgid "Cut"
 msgstr "Cut"
@@ -5860,10 +5859,6 @@ msgid "DHCP"
 msgstr "DHCP"
 
 #, fuzzy
-msgid "DHCP Router"
-msgstr "Temami"
-
-#, fuzzy
 msgid "DLNA support"
 msgstr "not supported"
 
@@ -5872,6 +5867,15 @@ msgstr "DMM advanced"
 
 msgid "DMM normal"
 msgstr "DMM normal"
+
+msgid "DNS (Dynamic Name Server) Actions"
+msgstr ""
+
+msgid "DNS Settings"
+msgstr ""
+
+msgid "DNS data source"
+msgstr ""
 
 msgid ""
 "DO NOT POWER OFF YOUR DEVICE WHILE UPDATING!\n"
@@ -7204,6 +7208,9 @@ msgstr "Searching"
 msgid "EPG Selection"
 msgstr ""
 
+msgid "EPG Settings"
+msgstr "EPG Çékirin"
+
 msgid "EPG Setup"
 msgstr ""
 
@@ -7244,9 +7251,6 @@ msgstr "Searching"
 
 msgid "EPG selection"
 msgstr "EPG selection"
-
-msgid "EPG Settings"
-msgstr "EPG Çékirin"
 
 msgid "EPGSearch"
 msgstr ""
@@ -7644,6 +7648,10 @@ msgstr ""
 msgid "Enter"
 msgstr "center"
 
+#, python-format
+msgid "Enter DNS (Dynamic Name Server) %d's IP address."
+msgstr ""
+
 msgid "Enter PIN"
 msgstr ""
 
@@ -7741,6 +7749,14 @@ msgstr ""
 
 #, python-format
 msgid "Error %d: The logfile '%s' could not be opened.  (%s)"
+msgstr ""
+
+#, python-format
+msgid "Error %d: Unable to change password!  (%s)"
+msgstr ""
+
+#, python-format
+msgid "Error %d: Unable to start 'passwd' command!"
 msgstr ""
 
 #, python-format
@@ -7857,10 +7873,10 @@ msgstr "No updates available. Please try again later."
 msgid "Error: Checksum is invalid!"
 msgstr ""
 
-msgid "Error: The new password may not be blank!"
+msgid "Error: Interaction failure, unable to change password!"
 msgstr ""
 
-msgid "Error: Unable to change password!"
+msgid "Error: The new password may not be blank!"
 msgstr ""
 
 #, fuzzy
@@ -8221,11 +8237,11 @@ msgstr "Çékirin"
 msgid "Factory Reset"
 msgstr ""
 
-msgid "Factory release"
+msgid "Factory Reset Settings"
 msgstr ""
 
-msgid "Factory reset"
-msgstr "Reseta Fabrikayé "
+msgid "Factory release"
+msgstr ""
 
 msgid "Fade the Infobar on hide"
 msgstr ""
@@ -8745,6 +8761,13 @@ msgstr "RGB"
 msgid "GCC version"
 msgstr ""
 
+#, fuzzy
+msgid "GREEN button"
+msgstr "Red button..."
+
+msgid "GREEN long"
+msgstr ""
+
 msgid "GStreamer debug log category *"
 msgstr ""
 
@@ -9020,13 +9043,6 @@ msgid "Greek"
 msgstr "Greek"
 
 msgid "Green"
-msgstr ""
-
-#, fuzzy
-msgid "GREEN button"
-msgstr "Red button..."
-
-msgid "GREEN long"
 msgstr ""
 
 msgid "Greenland"
@@ -9677,7 +9693,7 @@ msgstr ""
 msgid "If the free space is less than setting value, then an attempt is made to delete the old timeshift files."
 msgstr ""
 
-msgid "If the text is too long to be displayed on the front panel, it will be repeated (number of times):"
+msgid "If the text is too long to be displayed on the front panel, it will be repeated (number of times)."
 msgstr ""
 
 msgid "If using multiple uncommitted switches the DiSEqC commands must be sent multiple times. Set to the number of uncommitted switches in the chain minus one."
@@ -9956,6 +9972,9 @@ msgstr "Input"
 msgid "Input "
 msgstr "Input"
 
+msgid "Input Device Settings"
+msgstr ""
+
 msgid "Input Stream ID"
 msgstr ""
 
@@ -9971,9 +9990,6 @@ msgid "Input devices"
 msgstr "device girédayi"
 
 msgid "Input scroll position"
-msgstr ""
-
-msgid "Input Device Settings"
 msgstr ""
 
 msgid "Insert"
@@ -10371,6 +10387,9 @@ msgstr ""
 msgid "Keyboard"
 msgstr "Keyboard"
 
+msgid "Keyboard Settings"
+msgstr "Keyboard Settings"
+
 #, fuzzy
 msgid "Keyboard data entry"
 msgstr "Keyboard Settings"
@@ -10381,9 +10400,6 @@ msgstr "Keyboard"
 
 msgid "Keyboard map"
 msgstr "Keyboard map"
-
-msgid "Keyboard Settings"
-msgstr "Keyboard Settings"
 
 msgid "Kikuyu / Gikuyu"
 msgstr ""
@@ -10932,15 +10948,15 @@ msgid "Logs"
 msgstr ""
 
 #, fuzzy
+msgid "Logs Settings"
+msgstr "A/V Çékirin"
+
+#, fuzzy
 msgid "Logs location"
 msgstr "Location"
 
 msgid "Logs older then the set no of days will be deleted."
 msgstr ""
-
-#, fuzzy
-msgid "Logs Settings"
-msgstr "A/V Çékirin"
 
 msgid "Long << / >>"
 msgstr ""
@@ -11623,6 +11639,12 @@ msgstr "[move mode]"
 msgid "Move mode on"
 msgstr "Movement"
 
+msgid "Move the current DNS entry down one line"
+msgstr ""
+
+msgid "Move the current DNS entry up one line"
+msgstr ""
+
 msgid "Move the keyboard cursor down"
 msgstr ""
 
@@ -11899,20 +11921,16 @@ msgstr "Name"
 msgid "Name reverse"
 msgstr "Nameserver"
 
+#, python-format
+msgid "Name server %d"
+msgstr ""
+
 #, fuzzy
 msgid "Name:"
 msgstr "Name"
 
 msgid "Nameserver"
 msgstr "Nameserver"
-
-#, python-format
-msgid "Nameserver %d"
-msgstr "Nameserver %d"
-
-#, fuzzy
-msgid "Nameserver configuration"
-msgstr "Exit nameserver configuration"
 
 msgid "Nameserver settings"
 msgstr "Nameserver settings"
@@ -12011,8 +12029,7 @@ msgstr ""
 msgid "Network Services"
 msgstr ""
 
-#, fuzzy
-msgid "Network Setup"
+msgid "Network Settings"
 msgstr "Network Settings"
 
 #, fuzzy
@@ -12043,9 +12060,6 @@ msgstr "Network name (SSID)"
 
 msgid "Network scan"
 msgstr "Network scan"
-
-msgid "Network Settings"
-msgstr "Network Settings"
 
 msgid "Network test"
 msgstr "Network test"
@@ -12615,15 +12629,15 @@ msgstr ""
 msgid "OSD Position"
 msgstr ""
 
+msgid "OSD Settings"
+msgstr "OSD Settings"
+
 #, fuzzy
 msgid "OSD Setup"
 msgstr "Çékirin"
 
 msgid "OSD name request"
 msgstr "OSD name request"
-
-msgid "OSD Settings"
-msgstr "OSD Settings"
 
 msgid "OScam Info"
 msgstr ""
@@ -12862,12 +12876,12 @@ msgstr ""
 msgid "Oromo"
 msgstr ""
 
+msgid "Oscam Info - Main Menu"
+msgstr ""
+
 #, fuzzy
 msgid "Oscam Info Settings"
 msgstr "Manual configuration"
-
-msgid "Oscam Info - Main Menu"
-msgstr ""
 
 #, python-format
 msgid "Oscam Log ( Oscam-Version: %s )"
@@ -13736,6 +13750,9 @@ msgstr "Please wait..."
 msgid "Plugin Browser"
 msgstr "Plugin browser"
 
+msgid "Plugin Browser Settings"
+msgstr ""
+
 msgid "Plugin Filter Settings"
 msgstr ""
 
@@ -13748,9 +13765,6 @@ msgstr "Plugin manager activity information"
 
 msgid "Plugin manager help"
 msgstr "Plugin manager help"
-
-msgid "Plugin Browser Settings"
-msgstr ""
 
 msgid "Plugins"
 msgstr "Girédayi"
@@ -14374,6 +14388,12 @@ msgstr ""
 msgid "Quiz"
 msgstr ""
 
+msgid "RADIO"
+msgstr "RADIO"
+
+msgid "RADIO long"
+msgstr ""
+
 msgid "RAM (Details)"
 msgstr ""
 
@@ -14417,21 +14437,22 @@ msgstr ""
 msgid "REC Symbol in use"
 msgstr ""
 
+#, fuzzy
+msgid "RED button"
+msgstr "Red button..."
+
+msgid "RED long"
+msgstr ""
+
 msgid "RF Output Settings"
 msgstr "RF Output Settings"
 
 msgid "RGB"
 msgstr "RGB"
 
-msgid "RADIO"
-msgstr "RADIO"
-
 #, fuzzy
 msgid "Radio Channel Selection"
 msgstr "Channel selection"
-
-msgid "RADIO long"
-msgstr ""
 
 #, fuzzy
 msgid "Radsport"
@@ -14610,6 +14631,10 @@ msgstr "Recording"
 msgid "Recording Actions"
 msgstr "Reception settings"
 
+#, fuzzy
+msgid "Recording Settings"
+msgstr "Reception settings"
+
 msgid "Recording Setup"
 msgstr ""
 
@@ -14630,10 +14655,6 @@ msgstr "Recording in progress"
 
 #, fuzzy
 msgid "Recording running"
-msgstr "Reception settings"
-
-#, fuzzy
-msgid "Recording Settings"
 msgstr "Reception settings"
 
 #, fuzzy
@@ -14689,17 +14710,10 @@ msgstr "Qeyd"
 msgid "Red"
 msgstr "Rec"
 
-#, fuzzy
-msgid "RED button"
-msgstr "Red button..."
-
 msgid "Red button..."
 msgstr "Red button..."
 
 msgid "Red colored"
-msgstr ""
-
-msgid "RED long"
 msgstr ""
 
 msgid "Red/HbbTV Button Actions"
@@ -14829,6 +14843,9 @@ msgstr "Remember service PIN"
 msgid "Remote Control"
 msgstr ""
 
+msgid "Remote Control Button Settings"
+msgstr ""
+
 msgid "Remote Control Code"
 msgstr ""
 
@@ -14871,11 +14888,11 @@ msgstr "Remove a nameserver entry"
 msgid "Remove Service"
 msgstr "Remove timer"
 
+msgid "Remove a DNS entry"
+msgstr ""
+
 msgid "Remove a mark"
 msgstr "Remove a mark"
-
-msgid "Remove a nameserver entry"
-msgstr "Remove a nameserver entry"
 
 msgid "Remove all bouquet/tuning data"
 msgstr ""
@@ -15277,6 +15294,9 @@ msgstr ""
 msgid "Rotor turning speed"
 msgstr "Rotor turning speed"
 
+msgid "Router / Gateway"
+msgstr ""
+
 #, fuzzy
 msgid "Routing request"
 msgstr "Source request"
@@ -15489,12 +15509,12 @@ msgstr ""
 msgid "Satellite"
 msgstr "Satellite"
 
+msgid "Satellite Dish Settings"
+msgstr "Satellite Dish Settings"
+
 #, fuzzy
 msgid "Satellite configuration mode"
 msgstr "Çékirina Ru"
-
-msgid "Satellite Dish Settings"
-msgstr "Satellite Dish Settings"
 
 msgid "Satellite equipment"
 msgstr "Satellite equipment"
@@ -16170,6 +16190,9 @@ msgid "Select the shifted character set for the next character only"
 msgstr ""
 
 msgid "Select the sleep timer action."
+msgstr ""
+
+msgid "Select the source of the default DNS settings."
 msgstr ""
 
 msgid "Select the time delay before the button starts repeating."
@@ -18296,7 +18319,7 @@ msgstr "Start offline decode"
 msgid "State"
 msgstr ""
 
-msgid "Static IP or Custom"
+msgid "Static IP / Custom"
 msgstr ""
 
 msgid "Status"
@@ -18399,13 +18422,13 @@ msgstr ""
 msgid "Stop timeshift while recording"
 msgstr "Stop timeshift?"
 
-msgid "Stops timeshift being used if a recording is in progress. (Advisable for USB sticks.)"
-msgstr ""
-
 msgid "Stopped"
 msgstr "Stopped"
 
 msgid "Stopping Softcam"
+msgstr ""
+
+msgid "Stops timeshift being used if a recording is in progress. (Advisable for USB sticks.)"
 msgstr ""
 
 #, fuzzy
@@ -18490,6 +18513,9 @@ msgstr "Subtitle selection"
 msgid "Subtitle Quickmenu"
 msgstr "Subtitle alignment"
 
+msgid "Subtitle Settings"
+msgstr "Çékirina Bin nivisi"
+
 msgid "Subtitle alignment"
 msgstr "Subtitle alignment"
 
@@ -18533,9 +18559,6 @@ msgstr "Subtitle selection"
 
 msgid "Subtitle selection..."
 msgstr "Subtitle selection..."
-
-msgid "Subtitle Settings"
-msgstr "Çékirina Bin nivisi"
 
 msgid "Subtitles"
 msgstr "Subtitles"
@@ -19387,6 +19410,12 @@ msgstr ""
 msgid "This allows you to set the number of digits to 5, if you have more than 9999 channels."
 msgstr ""
 
+msgid "This allows you to show OpenPLi modules in downloads"
+msgstr ""
+
+msgid "This allows you to show OpenViX modules in downloads"
+msgstr ""
+
 msgid "This allows you to show drivers modules in downloads"
 msgstr ""
 
@@ -19408,9 +19437,6 @@ msgstr ""
 msgid "This allows you to show picons modules in downloads"
 msgstr ""
 
-msgid "This allows you to show OpenPLi modules in downloads"
-msgstr ""
-
 msgid "This allows you to show security modules in downloads"
 msgstr ""
 
@@ -19424,9 +19450,6 @@ msgid "This allows you to show softcams modules in downloads"
 msgstr ""
 
 msgid "This allows you to show system plugin modules in downloads"
-msgstr ""
-
-msgid "This allows you to show OpenViX modules in downloads"
 msgstr ""
 
 msgid "This allows you to show weblinks modules in downloads"
@@ -19811,6 +19834,10 @@ msgstr ""
 msgid "Time"
 msgstr "Time"
 
+#, fuzzy
+msgid "Time Settings"
+msgstr "Edit settings"
+
 msgid "Time Setup Actions"
 msgstr ""
 
@@ -19872,10 +19899,6 @@ msgstr ""
 
 msgid "Time scale"
 msgstr "Time scale"
-
-#, fuzzy
-msgid "Time Settings"
-msgstr "Edit settings"
 
 #, fuzzy
 msgid "Time style"
@@ -19984,6 +20007,10 @@ msgstr "Vext"
 msgid "Timeshift"
 msgstr "Timeshift"
 
+#, fuzzy
+msgid "Timeshift Settings"
+msgstr "Timeshift location"
+
 msgid "Timeshift buffer delete after zap"
 msgstr ""
 
@@ -20022,10 +20049,6 @@ msgstr "Add recording (stop after current event)"
 
 msgid "Timeshift saved to your harddisk!"
 msgstr ""
-
-#, fuzzy
-msgid "Timeshift Settings"
-msgstr "Timeshift location"
 
 msgid "Timeshift will get saved at end of event!"
 msgstr ""
@@ -20304,6 +20327,10 @@ msgstr ""
 msgid "Tuner Information"
 msgstr ""
 
+#, fuzzy
+msgid "Tuner Settings"
+msgstr "Tuner status"
+
 msgid "Tuner Setup"
 msgstr ""
 
@@ -20322,10 +20349,6 @@ msgstr "Tuner status"
 
 #, fuzzy
 msgid "Tuner setting values"
-msgstr "Tuner status"
-
-#, fuzzy
-msgid "Tuner Settings"
 msgstr "Tuner status"
 
 msgid "Tuner slot"
@@ -21956,6 +21979,13 @@ msgstr ""
 msgid "YCbCr444"
 msgstr ""
 
+#, fuzzy
+msgid "YELLOW button"
+msgstr "Red button..."
+
+msgid "YELLOW long"
+msgstr ""
+
 msgid "YPbPr"
 msgstr "YPbPr"
 
@@ -21967,13 +21997,6 @@ msgstr ""
 
 msgid "Yellow DVB subtitles"
 msgstr "Yellow DVB subtitles"
-
-#, fuzzy
-msgid "YELLOW button"
-msgstr "Red button..."
-
-msgid "YELLOW long"
-msgstr ""
 
 #, fuzzy
 msgid "Yemen"
@@ -24323,6 +24346,35 @@ msgstr "zapped"
 
 msgid "®"
 msgstr ""
+
+#~ msgid "Add a nameserver entry"
+#~ msgstr "Yek Navé nu léke"
+
+#, fuzzy
+#~ msgid "Configure the function of the <  > buttons."
+#~ msgstr "Configure the function of a short press on the power button."
+
+#, fuzzy
+#~ msgid "DHCP Router"
+#~ msgstr "Temami"
+
+#~ msgid "Factory reset"
+#~ msgstr "Reseta Fabrikayé "
+
+#, python-format
+#~ msgid "Nameserver %d"
+#~ msgstr "Nameserver %d"
+
+#, fuzzy
+#~ msgid "Nameserver configuration"
+#~ msgstr "Exit nameserver configuration"
+
+#, fuzzy
+#~ msgid "Network Setup"
+#~ msgstr "Network Settings"
+
+#~ msgid "Remove a nameserver entry"
+#~ msgstr "Remove a nameserver entry"
 
 #, fuzzy
 #~ msgid "Password changed"

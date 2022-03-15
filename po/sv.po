@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-03-01 17:50+0000\n"
+"POT-Creation-Date: 2022-03-15 12:24+0000\n"
 "PO-Revision-Date: 2021-08-15 18:50+0000\n"
 "Last-Translator: openATV <openatv@gmail.com>\n"
 "Language-Team: Swedish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/sv/>\n"
@@ -1751,7 +1751,7 @@ msgstr "speciella tecken"
 msgid "12 hours"
 msgstr "Timme"
 
-msgid "12, show latin-1 characters except for greek and cyrillic, switch to 8 if needed."
+msgid "12, show Latin-1 characters except for greek and cyrillic, switch to 8 if needed."
 msgstr ""
 
 #
@@ -2624,13 +2624,12 @@ msgstr "Lägg till Timer"
 msgid "Add Zap+Record Timer"
 msgstr "Lägg till en inspelningstimer."
 
+msgid "Add a DNS entry"
+msgstr ""
+
 #
 msgid "Add a mark"
 msgstr "Lägg till markör"
-
-#
-msgid "Add a nameserver entry"
-msgstr "Lägg till en namnserver post"
 
 msgid "Add a new tag"
 msgstr ""
@@ -3418,6 +3417,9 @@ msgstr ""
 msgid "Auto Language Selection"
 msgstr ""
 
+msgid "Auto Language Settings"
+msgstr "Automatiskt språkval"
+
 #
 #, fuzzy
 msgid "Auto Modes Selected."
@@ -3455,9 +3457,6 @@ msgstr "Autofokus startar..."
 
 msgid "Auto install log"
 msgstr ""
-
-msgid "Auto Language Settings"
-msgstr "Automatiskt språkval"
 
 #
 msgid "Auto scart switching"
@@ -3573,6 +3572,16 @@ msgid "BER:"
 msgstr "BER :"
 
 msgid "BLUDISC RECORDABLE"
+msgstr ""
+
+#, fuzzy
+msgid "BLUE button"
+msgstr "Knapp"
+
+msgid "BLUE long"
+msgstr "Blå lång"
+
+msgid "BLUE switch: BLUE/BLUE long"
 msgstr ""
 
 msgid "BT 2020 CL"
@@ -3915,16 +3924,6 @@ msgid "Blue"
 msgstr "Blå"
 
 #, fuzzy
-msgid "BLUE button"
-msgstr "Knapp"
-
-msgid "BLUE long"
-msgstr "Blå lång"
-
-msgid "BLUE switch: BLUE/BLUE long"
-msgstr ""
-
-#, fuzzy
 msgid "Bluetooth Setup"
 msgstr "Knappinställning"
 
@@ -4184,6 +4183,11 @@ msgstr ""
 
 msgid "CHANGE BOUQUET"
 msgstr "BYTE FAVORITLISTA"
+
+#
+#, fuzzy
+msgid "CHANNEL +/-"
+msgstr "Kanal"
 
 #
 msgid "CI (Common Interface) Setup"
@@ -4612,11 +4616,6 @@ msgstr "Kanal"
 msgid "Channel \t\t\tVolume +"
 msgstr ""
 
-#
-#, fuzzy
-msgid "CHANNEL +/-"
-msgstr "Kanal"
-
 msgid "Channel +/- button mode"
 msgstr "Kanal +/-  knappinställning"
 
@@ -4634,6 +4633,10 @@ msgstr "Kanal info"
 
 msgid "Channel List"
 msgstr "Kanallista"
+
+#
+msgid "Channel Selection Settings"
+msgstr "Kanalvalsinställning"
 
 #, fuzzy
 msgid "Channel button always changes sides"
@@ -4689,10 +4692,6 @@ msgstr "Kanallista"
 
 msgid "Channel selection configuration"
 msgstr ""
-
-#
-msgid "Channel Selection Settings"
-msgstr "Kanalvalsinställning"
 
 #
 msgid "Channel up"
@@ -5060,7 +5059,7 @@ msgstr ""
 msgid "Close title selection"
 msgstr "Stäng titelval"
 
-msgid "Cloudflare"
+msgid "Cloudflare DNS"
 msgstr ""
 
 msgid "Cocos (Keeling) Islands"
@@ -5395,8 +5394,8 @@ msgstr ""
 msgid "Configure the function of a short press on the power button."
 msgstr ""
 
-msgid "Configure the function of the <  > buttons."
-msgstr "Konfigurera <  > knapparnas funktion."
+msgid "Configure the function of the < and > buttons."
+msgstr ""
 
 msgid "Configure the gateway."
 msgstr "Konfigurera gatewayen."
@@ -6024,15 +6023,15 @@ msgstr "Valfri hopptid för '4'/'6' knapparna"
 msgid "Custom skip time for '7'/'9' buttons"
 msgstr "Valfri hopptid för '7'/'9' knapparna"
 
-msgid "Customise"
+#
+msgid "Customize"
+msgstr "Anpassningar"
+
+msgid "Customize System Settings"
 msgstr ""
 
 msgid "Customize enigma2 personal settings"
 msgstr ""
-
-#
-msgid "Customize"
-msgstr "Anpassningar"
 
 #
 msgid "Cut"
@@ -6077,11 +6076,6 @@ msgstr "DAC"
 msgid "DHCP"
 msgstr "DHCP"
 
-#
-#, fuzzy
-msgid "DHCP Router"
-msgstr "Komplett"
-
 msgid "DLNA support"
 msgstr "DLNA support"
 
@@ -6090,6 +6084,15 @@ msgstr "DMM avancerat"
 
 msgid "DMM normal"
 msgstr "DMM normal"
+
+msgid "DNS (Dynamic Name Server) Actions"
+msgstr ""
+
+msgid "DNS Settings"
+msgstr ""
+
+msgid "DNS data source"
+msgstr ""
 
 msgid ""
 "DO NOT POWER OFF YOUR DEVICE WHILE UPDATING!\n"
@@ -7511,6 +7514,9 @@ msgstr "EPG Sökning"
 msgid "EPG Selection"
 msgstr ""
 
+msgid "EPG Settings"
+msgstr "EPG inställningar"
+
 msgid "EPG Setup"
 msgstr ""
 
@@ -7549,9 +7555,6 @@ msgstr "EPG Sökning"
 
 msgid "EPG selection"
 msgstr "EPG val"
-
-msgid "EPG Settings"
-msgstr "EPG inställningar"
 
 msgid "EPGSearch"
 msgstr ""
@@ -7986,6 +7989,10 @@ msgstr ""
 msgid "Enter"
 msgstr "centrera"
 
+#, python-format
+msgid "Enter DNS (Dynamic Name Server) %d's IP address."
+msgstr ""
+
 msgid "Enter PIN"
 msgstr "Ange PIN"
 
@@ -8088,6 +8095,14 @@ msgstr ""
 
 #, python-format
 msgid "Error %d: The logfile '%s' could not be opened.  (%s)"
+msgstr ""
+
+#, python-format
+msgid "Error %d: Unable to change password!  (%s)"
+msgstr ""
+
+#, python-format
+msgid "Error %d: Unable to start 'passwd' command!"
 msgstr ""
 
 #, python-format
@@ -8212,10 +8227,10 @@ msgstr "Inga uppdateringar tillgängliga. V.v. försök igen senare. "
 msgid "Error: Checksum is invalid!"
 msgstr ""
 
-msgid "Error: The new password may not be blank!"
+msgid "Error: Interaction failure, unable to change password!"
 msgstr ""
 
-msgid "Error: Unable to change password!"
+msgid "Error: The new password may not be blank!"
 msgstr ""
 
 #, fuzzy
@@ -8602,12 +8617,11 @@ msgstr "FTP-Konfiguration"
 msgid "Factory Reset"
 msgstr ""
 
-msgid "Factory release"
+msgid "Factory Reset Settings"
 msgstr ""
 
-#
-msgid "Factory reset"
-msgstr "Fabriksåterställning"
+msgid "Factory release"
+msgstr ""
 
 msgid "Fade the Infobar on hide"
 msgstr ""
@@ -9159,6 +9173,13 @@ msgstr "GB"
 msgid "GCC version"
 msgstr ""
 
+#, fuzzy
+msgid "GREEN button"
+msgstr "Grön lång"
+
+msgid "GREEN long"
+msgstr "Grön lång"
+
 msgid "GStreamer debug log category *"
 msgstr ""
 
@@ -9449,13 +9470,6 @@ msgstr "Grekiska"
 #
 msgid "Green"
 msgstr "Grön"
-
-#, fuzzy
-msgid "GREEN button"
-msgstr "Grön lång"
-
-msgid "GREEN long"
-msgstr "Grön lång"
 
 #, fuzzy
 msgid "Greenland"
@@ -10131,8 +10145,8 @@ msgstr ""
 msgid "If the free space is less than setting value, then an attempt is made to delete the old timeshift files."
 msgstr ""
 
-msgid "If the text is too long to be displayed on the front panel, it will be repeated (number of times):"
-msgstr "Om texten är för lång att visas på frontpanelen, upprepas den (antal gånger):"
+msgid "If the text is too long to be displayed on the front panel, it will be repeated (number of times)."
+msgstr ""
 
 msgid "If using multiple uncommitted switches the DiSEqC commands must be sent multiple times. Set to the number of uncommitted switches in the chain minus one."
 msgstr ""
@@ -10429,6 +10443,9 @@ msgstr "Ingång"
 msgid "Input "
 msgstr "Ingång"
 
+msgid "Input Device Settings"
+msgstr ""
+
 msgid "Input Stream ID"
 msgstr ""
 
@@ -10444,9 +10461,6 @@ msgid "Input devices"
 msgstr "Enheter för inmatning"
 
 msgid "Input scroll position"
-msgstr ""
-
-msgid "Input Device Settings"
 msgstr ""
 
 msgid "Insert"
@@ -10865,6 +10879,9 @@ msgstr ""
 msgid "Keyboard"
 msgstr "Tangentbord"
 
+msgid "Keyboard Settings"
+msgstr "Tangentbordskonfiguration"
+
 #, fuzzy
 msgid "Keyboard data entry"
 msgstr "Tangentbordskonfiguration"
@@ -10877,9 +10894,6 @@ msgstr "Tangentbord"
 #
 msgid "Keyboard map"
 msgstr "Tangentbordslayout"
-
-msgid "Keyboard Settings"
-msgstr "Tangentbordskonfiguration"
 
 msgid "Kikuyu / Gikuyu"
 msgstr ""
@@ -11468,14 +11482,14 @@ msgstr ""
 msgid "Logs"
 msgstr ""
 
+msgid "Logs Settings"
+msgstr "Logginställningar"
+
 msgid "Logs location"
 msgstr "Sökväg loggar"
 
 msgid "Logs older then the set no of days will be deleted."
 msgstr ""
-
-msgid "Logs Settings"
-msgstr "Logginställningar"
 
 msgid "Long << / >>"
 msgstr "Lång << / >>"
@@ -12206,6 +12220,12 @@ msgstr "[flyttläge]"
 msgid "Move mode on"
 msgstr "Förflyttning"
 
+msgid "Move the current DNS entry down one line"
+msgstr ""
+
+msgid "Move the current DNS entry up one line"
+msgstr ""
+
 msgid "Move the keyboard cursor down"
 msgstr ""
 
@@ -12510,22 +12530,16 @@ msgstr "Namn"
 msgid "Name reverse"
 msgstr "Namnserver"
 
+#, python-format
+msgid "Name server %d"
+msgstr ""
+
 msgid "Name:"
 msgstr "Namn:"
 
 #
 msgid "Nameserver"
 msgstr "Namnserver"
-
-#
-#, python-format
-msgid "Nameserver %d"
-msgstr "Namnserver %d"
-
-#
-#, fuzzy
-msgid "Nameserver configuration"
-msgstr "Avsluta namnserverkonfiguration"
 
 #
 msgid "Nameserver settings"
@@ -12630,7 +12644,7 @@ msgid "Network Services"
 msgstr ""
 
 #
-msgid "Network Setup"
+msgid "Network Settings"
 msgstr "Nätverksinställningar"
 
 msgid "Network Test"
@@ -12662,10 +12676,6 @@ msgstr "Nätverksnamn (SSID)"
 #
 msgid "Network scan"
 msgstr "Sök nätverk"
-
-#
-msgid "Network Settings"
-msgstr "Nätverksinställningar"
 
 #
 msgid "Network test"
@@ -13293,15 +13303,15 @@ msgstr ""
 msgid "OSD Position"
 msgstr ""
 
+msgid "OSD Settings"
+msgstr "OSD inställning"
+
 #, fuzzy
 msgid "OSD Setup"
 msgstr "OSD 3D Inställning"
 
 msgid "OSD name request"
 msgstr "OSD namnförfrågan"
-
-msgid "OSD Settings"
-msgstr "OSD inställning"
 
 msgid "OScam Info"
 msgstr "OScam Info"
@@ -13551,11 +13561,11 @@ msgstr ""
 msgid "Oromo"
 msgstr ""
 
-msgid "Oscam Info Settings"
-msgstr "Oscam Info - Konfiguration"
-
 msgid "Oscam Info - Main Menu"
 msgstr "Oscam Info - Huvudmeny"
+
+msgid "Oscam Info Settings"
+msgstr "Oscam Info - Konfiguration"
 
 #, python-format
 msgid "Oscam Log ( Oscam-Version: %s )"
@@ -14506,6 +14516,9 @@ msgstr "Vänligen vänta..."
 msgid "Plugin Browser"
 msgstr "Pluginhanterare"
 
+msgid "Plugin Browser Settings"
+msgstr ""
+
 msgid "Plugin Filter Settings"
 msgstr ""
 
@@ -14519,9 +14532,6 @@ msgstr "Pluginhanterare aktivitetsinformation"
 #
 msgid "Plugin manager help"
 msgstr "Pluginhanterare hjälp"
-
-msgid "Plugin Browser Settings"
-msgstr ""
 
 #
 msgid "Plugins"
@@ -15195,6 +15205,12 @@ msgstr ""
 msgid "Quiz"
 msgstr ""
 
+msgid "RADIO"
+msgstr "RADIO"
+
+msgid "RADIO long"
+msgstr ""
+
 msgid "RAM (Details)"
 msgstr ""
 
@@ -15239,6 +15255,13 @@ msgstr ""
 msgid "REC Symbol in use"
 msgstr ""
 
+#, fuzzy
+msgid "RED button"
+msgstr "Röd knapp..."
+
+msgid "RED long"
+msgstr "Röd lång"
+
 #
 msgid "RF Output Settings"
 msgstr "RF ut"
@@ -15247,16 +15270,10 @@ msgstr "RF ut"
 msgid "RGB"
 msgstr "RGB"
 
-msgid "RADIO"
-msgstr "RADIO"
-
 #
 #, fuzzy
 msgid "Radio Channel Selection"
 msgstr "Kanalval"
-
-msgid "RADIO long"
-msgstr ""
 
 #, fuzzy
 msgid "Radsport"
@@ -15453,6 +15470,9 @@ msgstr "Spelar in"
 msgid "Recording Actions"
 msgstr "Inspelningar"
 
+msgid "Recording Settings"
+msgstr ""
+
 msgid "Recording Setup"
 msgstr "Inspellningsinställningar"
 
@@ -15476,9 +15496,6 @@ msgstr "Inspelning pågår"
 #, fuzzy
 msgid "Recording running"
 msgstr "Spelar in"
-
-msgid "Recording Settings"
-msgstr ""
 
 #, fuzzy
 msgid "Recording started"
@@ -15536,19 +15553,12 @@ msgstr "Spela in"
 msgid "Red"
 msgstr "Röd"
 
-#, fuzzy
-msgid "RED button"
-msgstr "Röd knapp..."
-
 msgid "Red button..."
 msgstr "Röd knapp..."
 
 #
 msgid "Red colored"
 msgstr "Rödfärgad"
-
-msgid "RED long"
-msgstr "Röd lång"
 
 msgid "Red/HbbTV Button Actions"
 msgstr ""
@@ -15680,6 +15690,9 @@ msgstr "Kom ihåg service PIN"
 msgid "Remote Control"
 msgstr ""
 
+msgid "Remote Control Button Settings"
+msgstr ""
+
 msgid "Remote Control Code"
 msgstr ""
 
@@ -15722,13 +15735,12 @@ msgstr "Ta bort en namnserver post"
 msgid "Remove Service"
 msgstr "Ta bort Kanal"
 
+msgid "Remove a DNS entry"
+msgstr ""
+
 #
 msgid "Remove a mark"
 msgstr "Ta bort en markör"
-
-#
-msgid "Remove a nameserver entry"
-msgstr "Ta bort en namnserver post"
 
 msgid "Remove all bouquet/tuning data"
 msgstr ""
@@ -16172,6 +16184,9 @@ msgstr ""
 msgid "Rotor turning speed"
 msgstr "Rotorns rotationsfart"
 
+msgid "Router / Gateway"
+msgstr ""
+
 #, fuzzy
 msgid "Routing request"
 msgstr "Källförfrågan"
@@ -16392,13 +16407,13 @@ msgstr ""
 msgid "Satellite"
 msgstr "Satellit"
 
-#, fuzzy
-msgid "Satellite configuration mode"
-msgstr "Konfigurationsläge"
-
 #
 msgid "Satellite Dish Settings"
 msgstr "Installering av Parabolantenn"
+
+#, fuzzy
+msgid "Satellite configuration mode"
+msgstr "Konfigurationsläge"
 
 #
 msgid "Satellite equipment"
@@ -17124,6 +17139,9 @@ msgid "Select the shifted character set for the next character only"
 msgstr ""
 
 msgid "Select the sleep timer action."
+msgstr ""
+
+msgid "Select the source of the default DNS settings."
 msgstr ""
 
 msgid "Select the time delay before the button starts repeating."
@@ -19348,7 +19366,7 @@ msgstr "Starta avkodning offline"
 msgid "State"
 msgstr ""
 
-msgid "Static IP or Custom"
+msgid "Static IP / Custom"
 msgstr ""
 
 msgid "Status"
@@ -19463,13 +19481,13 @@ msgstr ""
 msgid "Stop timeshift while recording"
 msgstr "Stoppa timeshift under inspelning?"
 
-msgid "Stops timeshift being used if a recording is in progress. (Advisable for USB sticks.)"
-msgstr ""
-
 msgid "Stopped"
 msgstr "Stoppad"
 
 msgid "Stopping Softcam"
+msgstr ""
+
+msgid "Stops timeshift being used if a recording is in progress. (Advisable for USB sticks.)"
 msgstr ""
 
 #
@@ -19563,6 +19581,9 @@ msgstr "Textningsval"
 msgid "Subtitle Quickmenu"
 msgstr "Snabbmeny för undertext"
 
+msgid "Subtitle Settings"
+msgstr "Undertext Inställningar"
+
 msgid "Subtitle alignment"
 msgstr "Undertextens placering"
 
@@ -19606,9 +19627,6 @@ msgstr "Undertextval"
 
 msgid "Subtitle selection..."
 msgstr "Val av undertext..."
-
-msgid "Subtitle Settings"
-msgstr "Undertext Inställningar"
 
 #
 msgid "Subtitles"
@@ -20502,6 +20520,12 @@ msgstr ""
 msgid "This allows you to set the number of digits to 5, if you have more than 9999 channels."
 msgstr ""
 
+msgid "This allows you to show OpenPLi modules in downloads"
+msgstr ""
+
+msgid "This allows you to show OpenViX modules in downloads"
+msgstr ""
+
 msgid "This allows you to show drivers modules in downloads"
 msgstr ""
 
@@ -20524,9 +20548,6 @@ msgstr ""
 msgid "This allows you to show picons modules in downloads"
 msgstr ""
 
-msgid "This allows you to show OpenPLi modules in downloads"
-msgstr ""
-
 msgid "This allows you to show security modules in downloads"
 msgstr ""
 
@@ -20541,9 +20562,6 @@ msgid "This allows you to show softcams modules in downloads"
 msgstr ""
 
 msgid "This allows you to show system plugin modules in downloads"
-msgstr ""
-
-msgid "This allows you to show OpenViX modules in downloads"
 msgstr ""
 
 msgid "This allows you to show weblinks modules in downloads"
@@ -20963,6 +20981,9 @@ msgstr ""
 msgid "Time"
 msgstr "Tid"
 
+msgid "Time Settings"
+msgstr "Tidsinställningar"
+
 msgid "Time Setup Actions"
 msgstr ""
 
@@ -21027,9 +21048,6 @@ msgstr ""
 #
 msgid "Time scale"
 msgstr "Tidskala"
-
-msgid "Time Settings"
-msgstr "Tidsinställningar"
 
 #
 #, fuzzy
@@ -21148,6 +21166,9 @@ msgstr "Timers"
 msgid "Timeshift"
 msgstr "Timeshift"
 
+msgid "Timeshift Settings"
+msgstr "Timeshift-inställningar"
+
 msgid "Timeshift buffer delete after zap"
 msgstr ""
 
@@ -21185,9 +21206,6 @@ msgstr "Timeshift spara inspelning (stoppa efter nuvarande händelse)"
 
 msgid "Timeshift saved to your harddisk!"
 msgstr "Timeshift sparad till din hårddisk!"
-
-msgid "Timeshift Settings"
-msgstr "Timeshift-inställningar"
 
 msgid "Timeshift will get saved at end of event!"
 msgstr "Timeshift kommer att sparas vid händelsens slut!"
@@ -21485,6 +21503,9 @@ msgstr "Tunerkonfiguration"
 msgid "Tuner Information"
 msgstr ""
 
+msgid "Tuner Settings"
+msgstr "Mottagarinställningar"
+
 msgid "Tuner Setup"
 msgstr ""
 
@@ -21504,9 +21525,6 @@ msgstr "Tuner live värden"
 
 msgid "Tuner setting values"
 msgstr "Tuner inställningsvärden"
-
-msgid "Tuner Settings"
-msgstr "Mottagarinställningar"
 
 msgid "Tuner slot"
 msgstr "Tuner Slot"
@@ -23232,6 +23250,13 @@ msgstr ""
 msgid "YCbCr444"
 msgstr ""
 
+#, fuzzy
+msgid "YELLOW button"
+msgstr "Gul lång"
+
+msgid "YELLOW long"
+msgstr "Gul lång"
+
 #
 msgid "YPbPr"
 msgstr "YPbPr"
@@ -23246,13 +23271,6 @@ msgstr "gul"
 
 msgid "Yellow DVB subtitles"
 msgstr "Gula DVB undertexter"
-
-#, fuzzy
-msgid "YELLOW button"
-msgstr "Gul lång"
-
-msgid "YELLOW long"
-msgstr "Gul lång"
 
 #
 #, fuzzy
@@ -25814,6 +25832,43 @@ msgstr "zappad"
 
 msgid "®"
 msgstr ""
+
+#
+#~ msgid "Add a nameserver entry"
+#~ msgstr "Lägg till en namnserver post"
+
+#~ msgid "Configure the function of the <  > buttons."
+#~ msgstr "Konfigurera <  > knapparnas funktion."
+
+#
+#, fuzzy
+#~ msgid "DHCP Router"
+#~ msgstr "Komplett"
+
+#
+#~ msgid "Factory reset"
+#~ msgstr "Fabriksåterställning"
+
+#~ msgid "If the text is too long to be displayed on the front panel, it will be repeated (number of times):"
+#~ msgstr "Om texten är för lång att visas på frontpanelen, upprepas den (antal gånger):"
+
+#
+#, python-format
+#~ msgid "Nameserver %d"
+#~ msgstr "Namnserver %d"
+
+#
+#, fuzzy
+#~ msgid "Nameserver configuration"
+#~ msgstr "Avsluta namnserverkonfiguration"
+
+#
+#~ msgid "Network Setup"
+#~ msgstr "Nätverksinställningar"
+
+#
+#~ msgid "Remove a nameserver entry"
+#~ msgstr "Ta bort en namnserver post"
 
 #, fuzzy
 #~ msgid "Password changed"

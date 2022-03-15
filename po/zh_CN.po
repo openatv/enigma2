@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-03-01 17:50+0000\n"
+"POT-Creation-Date: 2022-03-15 12:24+0000\n"
 "PO-Revision-Date: 2022-03-01 14:41+0000\n"
 "Last-Translator: lexlong2007 <lexlong2007@163.com>\n"
 "Language-Team: Chinese (Simplified) <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/zh_Hans/>\n"
@@ -1607,8 +1607,8 @@ msgstr "12 个字符"
 msgid "12 hours"
 msgstr "12小时"
 
-msgid "12, show latin-1 characters except for greek and cyrillic, switch to 8 if needed."
-msgstr "12,显示除希腊语和西里尔字母外的latin-1字符,如果需要可以切换为8."
+msgid "12, show Latin-1 characters except for greek and cyrillic, switch to 8 if needed."
+msgstr ""
 
 msgid "128"
 msgstr "128"
@@ -2397,11 +2397,11 @@ msgstr "添加换台定时器"
 msgid "Add Zap+Record Timer"
 msgstr "添加快速定时器+录制定时器"
 
+msgid "Add a DNS entry"
+msgstr ""
+
 msgid "Add a mark"
 msgstr "添加一个标记"
-
-msgid "Add a nameserver entry"
-msgstr "添加域名服务器条目"
 
 msgid "Add a new tag"
 msgstr "增加新标签"
@@ -3103,6 +3103,9 @@ msgstr "自动语言"
 msgid "Auto Language Selection"
 msgstr "自动选择语言"
 
+msgid "Auto Language Settings"
+msgstr "自动选择语言"
+
 msgid "Auto Modes Selected."
 msgstr "已选择自动模式."
 
@@ -3132,9 +3135,6 @@ msgstr "启动自动对焦..."
 
 msgid "Auto install log"
 msgstr "自动安装日志"
-
-msgid "Auto Language Settings"
-msgstr "自动选择语言"
 
 msgid "Auto scart switching"
 msgstr "自动转换开关"
@@ -3238,6 +3238,15 @@ msgstr "误码率:"
 
 msgid "BLUDISC RECORDABLE"
 msgstr "可录制光盘"
+
+msgid "BLUE button"
+msgstr "蓝色键"
+
+msgid "BLUE long"
+msgstr "蓝色键 长按"
+
+msgid "BLUE switch: BLUE/BLUE long"
+msgstr "蓝键切换:蓝键－短按/蓝键－长按"
 
 msgid "BT 2020 CL"
 msgstr "BT 2020 CL"
@@ -3547,15 +3556,6 @@ msgstr "降噪"
 msgid "Blue"
 msgstr "蓝色"
 
-msgid "BLUE button"
-msgstr "蓝色键"
-
-msgid "BLUE long"
-msgstr "蓝色键 长按"
-
-msgid "BLUE switch: BLUE/BLUE long"
-msgstr "蓝键切换:蓝键－短按/蓝键－长按"
-
 msgid "Bluetooth Setup"
 msgstr "蓝牙设置"
 
@@ -3810,6 +3810,9 @@ msgstr "频道%s"
 
 msgid "CHANGE BOUQUET"
 msgstr "更改自定义"
+
+msgid "CHANNEL +/-"
+msgstr "频道+/-"
 
 msgid "CI (Common Interface) Setup"
 msgstr "CI(通用接口)设置"
@@ -4216,9 +4219,6 @@ msgstr "频道"
 msgid "Channel \t\t\tVolume +"
 msgstr "频道 \t\t\t音量加 +"
 
-msgid "CHANNEL +/-"
-msgstr "频道+/-"
-
 msgid "Channel +/- button mode"
 msgstr "频道+/-键 模式"
 
@@ -4233,6 +4233,9 @@ msgstr "频道信息"
 
 msgid "Channel List"
 msgstr "频道列表"
+
+msgid "Channel Selection Settings"
+msgstr "频道选择设置"
 
 msgid "Channel button always changes sides"
 msgstr "Channel键总是用于切换窗口"
@@ -4281,9 +4284,6 @@ msgstr "频道选择"
 
 msgid "Channel selection configuration"
 msgstr "频道选择配置"
-
-msgid "Channel Selection Settings"
-msgstr "频道选择设置"
 
 msgid "Channel up"
 msgstr "频道向上"
@@ -4614,8 +4614,8 @@ msgstr "关闭此窗口"
 msgid "Close title selection"
 msgstr "关闭标题选择"
 
-msgid "Cloudflare"
-msgstr "CloudFlare"
+msgid "Cloudflare DNS"
+msgstr ""
 
 msgid "Cocos (Keeling) Islands"
 msgstr "科科斯(基林)群岛"
@@ -4910,8 +4910,8 @@ msgstr "配置长按电源键功能."
 msgid "Configure the function of a short press on the power button."
 msgstr "配置电源键短按功能."
 
-msgid "Configure the function of the <  > buttons."
-msgstr "配置<  >按键的功能."
+msgid "Configure the function of the < and > buttons."
+msgstr ""
 
 msgid "Configure the gateway."
 msgstr "配置网关."
@@ -5483,14 +5483,14 @@ msgstr "自定义跳转时间4/6'键"
 msgid "Custom skip time for '7'/'9' buttons"
 msgstr "自定义跳转时间7/9'键"
 
-msgid "Customise"
-msgstr "自定义"
+msgid "Customize"
+msgstr "自定设置"
+
+msgid "Customize System Settings"
+msgstr ""
 
 msgid "Customize enigma2 personal settings"
 msgstr "自定义enigma2个人设置"
-
-msgid "Customize"
-msgstr "自定设置"
 
 msgid "Cut"
 msgstr "剪切"
@@ -5528,9 +5528,6 @@ msgstr "DAC"
 msgid "DHCP"
 msgstr "DHCP协议"
 
-msgid "DHCP Router"
-msgstr "DHCP路由器"
-
 msgid "DLNA support"
 msgstr "DLNA支持"
 
@@ -5539,6 +5536,15 @@ msgstr "高级DMM"
 
 msgid "DMM normal"
 msgstr "普通DMM"
+
+msgid "DNS (Dynamic Name Server) Actions"
+msgstr ""
+
+msgid "DNS Settings"
+msgstr ""
+
+msgid "DNS data source"
+msgstr ""
 
 msgid ""
 "DO NOT POWER OFF YOUR DEVICE WHILE UPDATING!\n"
@@ -6829,6 +6835,9 @@ msgstr "EPG搜索"
 msgid "EPG Selection"
 msgstr "EPG选择"
 
+msgid "EPG Settings"
+msgstr "EPG设置"
+
 msgid "EPG Setup"
 msgstr "EPG设置"
 
@@ -6874,9 +6883,6 @@ msgstr "EPG搜索"
 
 msgid "EPG selection"
 msgstr "EPG选择"
-
-msgid "EPG Settings"
-msgstr "EPG设置"
 
 msgid "EPGSearch"
 msgstr "EPG搜索"
@@ -7258,6 +7264,10 @@ msgstr "Enigma面板灯"
 msgid "Enter"
 msgstr "输入"
 
+#, python-format
+msgid "Enter DNS (Dynamic Name Server) %d's IP address."
+msgstr ""
+
 msgid "Enter PIN"
 msgstr "输入PIN"
 
@@ -7352,6 +7362,14 @@ msgstr "错误%d:未删除日志文件'%s'!   (%s)"
 #, python-format
 msgid "Error %d: The logfile '%s' could not be opened.  (%s)"
 msgstr "错误%d:无法打开日志文件'%s'.  (%s)"
+
+#, python-format
+msgid "Error %d: Unable to change password!  (%s)"
+msgstr ""
+
+#, python-format
+msgid "Error %d: Unable to start 'passwd' command!"
+msgstr ""
 
 #, python-format
 msgid "Error '%s' encountered retrieving the %s commit logs!"
@@ -7487,10 +7505,10 @@ msgstr "错误: %s %s 不是 %s!  请稍后再试."
 msgid "Error: Checksum is invalid!"
 msgstr "错误:校验和无效！"
 
-msgid "Error: The new password may not be blank!"
+msgid "Error: Interaction failure, unable to change password!"
 msgstr ""
 
-msgid "Error: Unable to change password!"
+msgid "Error: The new password may not be blank!"
 msgstr ""
 
 msgid "Error: Unable to process the command!  Please try again later."
@@ -7838,11 +7856,11 @@ msgstr "FTP设置"
 msgid "Factory Reset"
 msgstr ""
 
+msgid "Factory Reset Settings"
+msgstr ""
+
 msgid "Factory release"
 msgstr "出厂版本"
-
-msgid "Factory reset"
-msgstr "恢复出厂设置"
 
 msgid "Fade the Infobar on hide"
 msgstr "隐藏时淡入信息栏"
@@ -8333,6 +8351,12 @@ msgstr "GB"
 msgid "GCC version"
 msgstr "GCC版本"
 
+msgid "GREEN button"
+msgstr "绿色键"
+
+msgid "GREEN long"
+msgstr "绿色键 长按"
+
 msgid "GStreamer debug log category *"
 msgstr ""
 
@@ -8590,12 +8614,6 @@ msgstr "希腊语"
 
 msgid "Green"
 msgstr "绿色"
-
-msgid "GREEN button"
-msgstr "绿色键"
-
-msgid "GREEN long"
-msgstr "绿色键 长按"
 
 msgid "Greenland"
 msgstr "格陵兰岛"
@@ -9214,8 +9232,8 @@ msgstr "如果启用了深度待机解决方法,则会等待系统时间同步.�
 msgid "If the free space is less than setting value, then an attempt is made to delete the old timeshift files."
 msgstr "如果可用空间低于设定值,然后尝试删除旧文件移."
 
-msgid "If the text is too long to be displayed on the front panel, it will be repeated (number of times):"
-msgstr "如果文本太长,不能显示在前面板上,它将被重复(次数):"
+msgid "If the text is too long to be displayed on the front panel, it will be repeated (number of times)."
+msgstr ""
 
 msgid "If using multiple uncommitted switches the DiSEqC commands must be sent multiple times. Set to the number of uncommitted switches in the chain minus one."
 msgstr "如果使用多个未提交的开关,则必须多次设置DISEQC命令.设置为链中未提交的开关数减去1."
@@ -9489,6 +9507,9 @@ msgstr "输入"
 msgid "Input "
 msgstr "输入 "
 
+msgid "Input Device Settings"
+msgstr "输入设备设置"
+
 msgid "Input Stream ID"
 msgstr "输入流ID"
 
@@ -9503,9 +9524,6 @@ msgstr "输入设备"
 
 msgid "Input scroll position"
 msgstr "输入滚动位置"
-
-msgid "Input Device Settings"
-msgstr "输入设备设置"
 
 msgid "Insert"
 msgstr "插入"
@@ -9872,6 +9890,9 @@ msgstr "内核版本"
 msgid "Keyboard"
 msgstr "键盘"
 
+msgid "Keyboard Settings"
+msgstr "键盘设置"
+
 msgid "Keyboard data entry"
 msgstr "键盘数据输入"
 
@@ -9880,9 +9901,6 @@ msgstr "Keyboard键 长按"
 
 msgid "Keyboard map"
 msgstr "键盘映射"
-
-msgid "Keyboard Settings"
-msgstr "键盘设置"
 
 msgid "Kikuyu / Gikuyu"
 msgstr "基库尤"
@@ -10394,14 +10412,14 @@ msgstr "登录IceTV服务器"
 msgid "Logs"
 msgstr "日志"
 
+msgid "Logs Settings"
+msgstr "日志设置"
+
 msgid "Logs location"
 msgstr "日志位置"
 
 msgid "Logs older then the set no of days will be deleted."
 msgstr "超过设置的天数的日志将被删除."
-
-msgid "Logs Settings"
-msgstr "日志设置"
 
 msgid "Long << / >>"
 msgstr "长按 << / >> 键"
@@ -11044,6 +11062,12 @@ msgstr "关闭移动模式"
 msgid "Move mode on"
 msgstr "开启移动模式"
 
+msgid "Move the current DNS entry down one line"
+msgstr ""
+
+msgid "Move the current DNS entry up one line"
+msgstr ""
+
 msgid "Move the keyboard cursor down"
 msgstr "向下移动键盘光标"
 
@@ -11294,18 +11318,15 @@ msgstr "调谐器名称"
 msgid "Name reverse"
 msgstr "名称反向"
 
+#, python-format
+msgid "Name server %d"
+msgstr ""
+
 msgid "Name:"
 msgstr "频道名称:"
 
 msgid "Nameserver"
 msgstr "DNS服务器"
-
-#, python-format
-msgid "Nameserver %d"
-msgstr "DNS 服务器 %d"
-
-msgid "Nameserver configuration"
-msgstr "DNS服务器配置"
 
 msgid "Nameserver settings"
 msgstr "DNS设置"
@@ -11397,8 +11418,8 @@ msgstr "重启网络"
 msgid "Network Services"
 msgstr "网络服务"
 
-msgid "Network Setup"
-msgstr "网络设置"
+msgid "Network Settings"
+msgstr "网络选项"
 
 msgid "Network Test"
 msgstr "网络测试"
@@ -11426,9 +11447,6 @@ msgstr "网络名称(SSID)"
 
 msgid "Network scan"
 msgstr "网络扫描"
-
-msgid "Network Settings"
-msgstr "网络选项"
 
 msgid "Network test"
 msgstr "网络测试"
@@ -11976,14 +11994,14 @@ msgstr "OSD调整"
 msgid "OSD Position"
 msgstr "OSD位置"
 
+msgid "OSD Settings"
+msgstr "OSD选项"
+
 msgid "OSD Setup"
 msgstr "OSD设置"
 
 msgid "OSD name request"
 msgstr "OSD名称请求"
-
-msgid "OSD Settings"
-msgstr "OSD选项"
 
 msgid "OScam Info"
 msgstr "oscam信息"
@@ -12210,11 +12228,11 @@ msgstr "奥里亚"
 msgid "Oromo"
 msgstr "奥罗莫"
 
-msgid "Oscam Info Settings"
-msgstr "oscam信息-配置"
-
 msgid "Oscam Info - Main Menu"
 msgstr "oscam信息-主菜单"
+
+msgid "Oscam Info Settings"
+msgstr "oscam信息-配置"
 
 #, python-format
 msgid "Oscam Log ( Oscam-Version: %s )"
@@ -12494,6 +12512,9 @@ msgstr ""
 
 msgid "Password Settings"
 msgstr "密码设置"
+
+msgid "Password changed."
+msgstr "密码已更改"
 
 msgid "Password:"
 msgstr "密码:"
@@ -13064,6 +13085,9 @@ msgstr "请稍候...即将完成! "
 msgid "Plugin Browser"
 msgstr "插件浏览器"
 
+msgid "Plugin Browser Settings"
+msgstr "插件浏览器设置"
+
 msgid "Plugin Filter Settings"
 msgstr "插件筛选"
 
@@ -13075,9 +13099,6 @@ msgstr "插件管理活动信息"
 
 msgid "Plugin manager help"
 msgstr "插件管理器帮助"
-
-msgid "Plugin Browser Settings"
-msgstr "插件浏览器设置"
 
 msgid "Plugins"
 msgstr "插件"
@@ -13668,6 +13689,12 @@ msgstr "快捷菜单/附件"
 msgid "Quiz"
 msgstr "知识问答"
 
+msgid "RADIO"
+msgstr "广播"
+
+msgid "RADIO long"
+msgstr "Radio键长按"
+
 msgid "RAM (Details)"
 msgstr "RAM(详细信息)"
 
@@ -13710,26 +13737,29 @@ msgstr "待机状态下的REC符号为"
 msgid "REC Symbol in use"
 msgstr "使用中的REC符号为"
 
+msgid "RED button"
+msgstr "红色按键"
+
+msgid "RED long"
+msgstr "红键 长按"
+
 msgid "RF Output Settings"
 msgstr "RF输出"
 
 msgid "RGB"
 msgstr "RGB颜色"
 
-msgid "RADIO"
-msgstr "广播"
-
 msgid "Radio Channel Selection"
 msgstr "电台频道选择"
-
-msgid "RADIO long"
-msgstr "Radio键长按"
 
 msgid "Radsport"
 msgstr "自行车运动"
 
 msgid "Random"
 msgstr "随机"
+
+msgid "Random Password"
+msgstr "随机密码"
 
 #, python-format
 msgid "Rating defined by broadcaster - %d"
@@ -13892,6 +13922,9 @@ msgstr "正在录制"
 msgid "Recording Actions"
 msgstr "录像操作"
 
+msgid "Recording Settings"
+msgstr "录像设置"
+
 msgid "Recording Setup"
 msgstr "录制设置"
 
@@ -13909,9 +13942,6 @@ msgstr "录制进行中"
 
 msgid "Recording running"
 msgstr "正在录制"
-
-msgid "Recording Settings"
-msgstr "录像设置"
 
 msgid "Recording started"
 msgstr "录制已开始"
@@ -13962,17 +13992,11 @@ msgstr "恢复模式"
 msgid "Red"
 msgstr "红色"
 
-msgid "RED button"
-msgstr "红色按键"
-
 msgid "Red button..."
 msgstr "红色键..."
 
 msgid "Red colored"
 msgstr "红色"
-
-msgid "RED long"
-msgstr "红键 长按"
 
 msgid "Red/HbbTV Button Actions"
 msgstr "红色/HbbTV 按钮操作"
@@ -14092,6 +14116,9 @@ msgstr "记住频道PIN"
 msgid "Remote Control"
 msgstr "遥控器"
 
+msgid "Remote Control Button Settings"
+msgstr ""
+
 msgid "Remote Control Code"
 msgstr "遥控器代码"
 
@@ -14129,11 +14156,11 @@ msgstr "删除四画面频道条目"
 msgid "Remove Service"
 msgstr "删除频道"
 
+msgid "Remove a DNS entry"
+msgstr ""
+
 msgid "Remove a mark"
 msgstr "删除标记"
-
-msgid "Remove a nameserver entry"
-msgstr "删除一个DNS服务器"
 
 msgid "Remove all bouquet/tuning data"
 msgstr ""
@@ -14514,6 +14541,9 @@ msgstr "根文件"
 msgid "Rotor turning speed"
 msgstr "极轴转速"
 
+msgid "Router / Gateway"
+msgstr ""
+
 msgid "Routing request"
 msgstr "路由请求"
 
@@ -14719,11 +14749,11 @@ msgstr "寻星仪"
 msgid "Satellite"
 msgstr "卫星"
 
-msgid "Satellite configuration mode"
-msgstr "卫星配置模式"
-
 msgid "Satellite Dish Settings"
 msgstr "卫星天线设置"
+
+msgid "Satellite configuration mode"
+msgstr "卫星配置模式"
 
 msgid "Satellite equipment"
 msgstr "卫星设备"
@@ -15375,6 +15405,9 @@ msgstr "仅为下一个字符选择移位字符集"
 
 msgid "Select the sleep timer action."
 msgstr "选择睡眠定时器操作."
+
+msgid "Select the source of the default DNS settings."
+msgstr ""
 
 msgid "Select the time delay before the button starts repeating."
 msgstr "选择按键开始重复之前的时间延迟."
@@ -17369,8 +17402,8 @@ msgstr "几秒钟后开始"
 msgid "State"
 msgstr "省市自治区"
 
-msgid "Static IP or Custom"
-msgstr "静态IP或自定义"
+msgid "Static IP / Custom"
+msgstr ""
 
 msgid "Status"
 msgstr "网络状态"
@@ -17468,14 +17501,14 @@ msgstr "停止时移并将时移缓冲区保存为电影同时开始录制当前
 msgid "Stop timeshift while recording"
 msgstr "录制时停止时移？"
 
-msgid "Stops timeshift being used if a recording is in progress. (Advisable for USB sticks.)"
-msgstr "如果录制正在进行,则停止的时移会被使用.(建议使用U盘)"
-
 msgid "Stopped"
 msgstr "已停止"
 
 msgid "Stopping Softcam"
 msgstr "停止softcam"
+
+msgid "Stops timeshift being used if a recording is in progress. (Advisable for USB sticks.)"
+msgstr "如果录制正在进行,则停止的时移会被使用.(建议使用U盘)"
 
 msgid "Storage devices"
 msgstr "存储设备"
@@ -17553,6 +17586,9 @@ msgstr "字幕操作"
 msgid "Subtitle Quickmenu"
 msgstr "字幕快捷菜单"
 
+msgid "Subtitle Settings"
+msgstr "字幕设置"
+
 msgid "Subtitle alignment"
 msgstr "字幕对齐"
 
@@ -17594,9 +17630,6 @@ msgstr "字幕选择"
 
 msgid "Subtitle selection..."
 msgstr "字幕选择..."
-
-msgid "Subtitle Settings"
-msgstr "字幕设置"
 
 msgid "Subtitles"
 msgstr "字幕"
@@ -18436,6 +18469,12 @@ msgstr "这允许您更改显示的行数."
 msgid "This allows you to set the number of digits to 5, if you have more than 9999 channels."
 msgstr "如果您有超过9999个频道,这允许您将数字位数设置为5."
 
+msgid "This allows you to show OpenPLi modules in downloads"
+msgstr "此配置选项允许你在下载中显示Pli模块"
+
+msgid "This allows you to show OpenViX modules in downloads"
+msgstr "此配置选项允许你在下载中显示VIX模块"
+
 msgid "This allows you to show drivers modules in downloads"
 msgstr "此配置选项允许你在下载中显示驱动模块"
 
@@ -18457,9 +18496,6 @@ msgstr "此配置选项允许你在下载中显示MWK模块"
 msgid "This allows you to show picons modules in downloads"
 msgstr "此配置选项允许你在下载中显示Picon模块"
 
-msgid "This allows you to show OpenPLi modules in downloads"
-msgstr "此配置选项允许你在下载中显示Pli模块"
-
 msgid "This allows you to show security modules in downloads"
 msgstr "此配置选项允许你在下载中显示安全模块"
 
@@ -18474,9 +18510,6 @@ msgstr "此配置选项允许你在下载中显示Softcams模块"
 
 msgid "This allows you to show system plugin modules in downloads"
 msgstr "此配置选项允许你在下载中显示系统插件模块"
-
-msgid "This allows you to show OpenViX modules in downloads"
-msgstr "此配置选项允许你在下载中显示VIX模块"
 
 msgid "This allows you to show weblinks modules in downloads"
 msgstr "此配置选项允许你在下载中显示网页链接模块"
@@ -18851,6 +18884,9 @@ msgstr "提格里尼亚语"
 msgid "Time"
 msgstr "时间"
 
+msgid "Time Settings"
+msgstr "时间设置"
+
 msgid "Time Setup Actions"
 msgstr "时间设置操作"
 
@@ -18908,9 +18944,6 @@ msgstr "此过程所需的时间：%s"
 
 msgid "Time scale"
 msgstr "时间刻度"
-
-msgid "Time Settings"
-msgstr "时间设置"
 
 msgid "Time style"
 msgstr "时间格式"
@@ -19008,6 +19041,9 @@ msgstr "定时器"
 msgid "Timeshift"
 msgstr "时移"
 
+msgid "Timeshift Settings"
+msgstr "时移设置"
+
 msgid "Timeshift buffer delete after zap"
 msgstr "切换后是否删除时移缓存?"
 
@@ -19043,9 +19079,6 @@ msgstr "保存时移录像 (当前事件停止后)"
 
 msgid "Timeshift saved to your harddisk!"
 msgstr "时移已保存到硬盘！"
-
-msgid "Timeshift Settings"
-msgstr "时移设置"
 
 msgid "Timeshift will get saved at end of event!"
 msgstr "时移将在事件结束时保存！"
@@ -19309,6 +19342,9 @@ msgstr "调谐器配置"
 msgid "Tuner Information"
 msgstr "调谐器信息"
 
+msgid "Tuner Settings"
+msgstr "调谐器设置"
+
 msgid "Tuner Setup"
 msgstr "调谐器设置"
 
@@ -19326,9 +19362,6 @@ msgstr "调谐器实时值"
 
 msgid "Tuner setting values"
 msgstr "调谐器设置值"
-
-msgid "Tuner Settings"
-msgstr "调谐器设置"
 
 msgid "Tuner slot"
 msgstr "调谐器插槽"
@@ -20893,6 +20926,12 @@ msgstr "YCbCr422"
 msgid "YCbCr444"
 msgstr "YCbCr444"
 
+msgid "YELLOW button"
+msgstr "黄色键"
+
+msgid "YELLOW long"
+msgstr "黄色键 长按"
+
 msgid "YPbPr"
 msgstr "色差"
 
@@ -20904,12 +20943,6 @@ msgstr "黄色"
 
 msgid "Yellow DVB subtitles"
 msgstr "黄色DVB字幕"
-
-msgid "YELLOW button"
-msgstr "黄色键"
-
-msgid "YELLOW long"
-msgstr "黄色键 长按"
 
 msgid "Yemen"
 msgstr "也门"
@@ -23192,11 +23225,45 @@ msgstr "切换中"
 msgid "®"
 msgstr "®"
 
-msgid "Password changed."
-msgstr "密码已更改"
+#~ msgid "12, show latin-1 characters except for greek and cyrillic, switch to 8 if needed."
+#~ msgstr "12,显示除希腊语和西里尔字母外的latin-1字符,如果需要可以切换为8."
 
-msgid "Random Password"
-msgstr "随机密码"
+#~ msgid "Add a nameserver entry"
+#~ msgstr "添加域名服务器条目"
+
+#~ msgid "Cloudflare"
+#~ msgstr "CloudFlare"
+
+#~ msgid "Configure the function of the <  > buttons."
+#~ msgstr "配置<  >按键的功能."
+
+#~ msgid "Customise"
+#~ msgstr "自定义"
+
+#~ msgid "DHCP Router"
+#~ msgstr "DHCP路由器"
+
+#~ msgid "Factory reset"
+#~ msgstr "恢复出厂设置"
+
+#~ msgid "If the text is too long to be displayed on the front panel, it will be repeated (number of times):"
+#~ msgstr "如果文本太长,不能显示在前面板上,它将被重复(次数):"
+
+#, python-format
+#~ msgid "Nameserver %d"
+#~ msgstr "DNS 服务器 %d"
+
+#~ msgid "Nameserver configuration"
+#~ msgstr "DNS服务器配置"
+
+#~ msgid "Network Setup"
+#~ msgstr "网络设置"
+
+#~ msgid "Remove a nameserver entry"
+#~ msgstr "删除一个DNS服务器"
+
+#~ msgid "Static IP or Custom"
+#~ msgstr "静态IP或自定义"
 
 #~ msgid "The password can not be blank."
 #~ msgstr "密码不能为空."

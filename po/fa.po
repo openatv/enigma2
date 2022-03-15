@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-03-01 17:50+0000\n"
+"POT-Creation-Date: 2022-03-15 12:24+0000\n"
 "PO-Revision-Date: 2021-09-15 14:20+0000\n"
 "Last-Translator: Hamed Beyrami <h.beyrami@outlook.com>\n"
 "Language-Team: Persian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/fa/>\n"
@@ -1677,7 +1677,7 @@ msgstr "کاراکتر های خاص"
 msgid "12 hours"
 msgstr ""
 
-msgid "12, show latin-1 characters except for greek and cyrillic, switch to 8 if needed."
+msgid "12, show Latin-1 characters except for greek and cyrillic, switch to 8 if needed."
 msgstr ""
 
 #, fuzzy
@@ -2480,12 +2480,11 @@ msgstr "اضافه کردن زمان"
 msgid "Add Zap+Record Timer"
 msgstr "اضافه کردن زمان"
 
+msgid "Add a DNS entry"
+msgstr ""
+
 msgid "Add a mark"
 msgstr "اضافه کردن علامت"
-
-#, fuzzy
-msgid "Add a nameserver entry"
-msgstr "اضافه کردن یک مورد nameserver"
 
 msgid "Add a new tag"
 msgstr ""
@@ -3229,6 +3228,9 @@ msgstr ""
 msgid "Auto Language Selection"
 msgstr ""
 
+msgid "Auto Language Settings"
+msgstr ""
+
 #
 #, fuzzy
 msgid "Auto Modes Selected."
@@ -3265,9 +3267,6 @@ msgid "Auto focus commencing ..."
 msgstr ""
 
 msgid "Auto install log"
-msgstr ""
-
-msgid "Auto Language Settings"
 msgstr ""
 
 msgid "Auto scart switching"
@@ -3378,6 +3377,16 @@ msgid "BER:"
 msgstr "مقدار خطا:"
 
 msgid "BLUDISC RECORDABLE"
+msgstr ""
+
+#, fuzzy
+msgid "BLUE button"
+msgstr "دکمه قرمز"
+
+msgid "BLUE long"
+msgstr ""
+
+msgid "BLUE switch: BLUE/BLUE long"
 msgstr ""
 
 msgid "BT 2020 CL"
@@ -3699,16 +3708,6 @@ msgid "Blue"
 msgstr ""
 
 #, fuzzy
-msgid "BLUE button"
-msgstr "دکمه قرمز"
-
-msgid "BLUE long"
-msgstr ""
-
-msgid "BLUE switch: BLUE/BLUE long"
-msgstr ""
-
-#, fuzzy
 msgid "Bluetooth Setup"
 msgstr "تنظیمات شبکه"
 
@@ -3964,6 +3963,10 @@ msgstr ""
 
 msgid "CHANGE BOUQUET"
 msgstr ""
+
+#, fuzzy
+msgid "CHANNEL +/-"
+msgstr "کانال"
 
 msgid "CI (Common Interface) Setup"
 msgstr ""
@@ -4370,10 +4373,6 @@ msgstr "کانال"
 msgid "Channel \t\t\tVolume +"
 msgstr ""
 
-#, fuzzy
-msgid "CHANNEL +/-"
-msgstr "کانال"
-
 msgid "Channel +/- button mode"
 msgstr ""
 
@@ -4389,6 +4388,10 @@ msgstr ""
 
 msgid "Channel List"
 msgstr ""
+
+#, fuzzy
+msgid "Channel Selection Settings"
+msgstr "تنظیمات مجموعه"
 
 msgid "Channel button always changes sides"
 msgstr ""
@@ -4440,10 +4443,6 @@ msgstr "انتخاب کانال"
 
 msgid "Channel selection configuration"
 msgstr ""
-
-#, fuzzy
-msgid "Channel Selection Settings"
-msgstr "تنظیمات مجموعه"
 
 msgid "Channel up"
 msgstr ""
@@ -4783,7 +4782,7 @@ msgstr ""
 msgid "Close title selection"
 msgstr "بستن انتخاب کردن عنوان"
 
-msgid "Cloudflare"
+msgid "Cloudflare DNS"
 msgstr ""
 
 msgid "Cocos (Keeling) Islands"
@@ -5093,7 +5092,7 @@ msgstr ""
 msgid "Configure the function of a short press on the power button."
 msgstr ""
 
-msgid "Configure the function of the <  > buttons."
+msgid "Configure the function of the < and > buttons."
 msgstr ""
 
 msgid "Configure the gateway."
@@ -5695,14 +5694,14 @@ msgstr "پرش سفارشی زمان برای کلید های 4 و 6"
 msgid "Custom skip time for '7'/'9' buttons"
 msgstr "پرش سفارشی زمان برای کلید های 7 و 9"
 
-msgid "Customise"
+msgid "Customize"
+msgstr "سفارشی"
+
+msgid "Customize System Settings"
 msgstr ""
 
 msgid "Customize enigma2 personal settings"
 msgstr ""
-
-msgid "Customize"
-msgstr "سفارشی"
 
 msgid "Cut"
 msgstr "برش"
@@ -5742,10 +5741,6 @@ msgstr ""
 msgid "DHCP"
 msgstr "DHCP"
 
-#, fuzzy
-msgid "DHCP Router"
-msgstr "کامل"
-
 msgid "DLNA support"
 msgstr ""
 
@@ -5753,6 +5748,15 @@ msgid "DMM advanced"
 msgstr ""
 
 msgid "DMM normal"
+msgstr ""
+
+msgid "DNS (Dynamic Name Server) Actions"
+msgstr ""
+
+msgid "DNS Settings"
+msgstr ""
+
+msgid "DNS data source"
 msgstr ""
 
 msgid ""
@@ -7072,6 +7076,9 @@ msgstr ""
 msgid "EPG Selection"
 msgstr ""
 
+msgid "EPG Settings"
+msgstr ""
+
 msgid "EPG Setup"
 msgstr ""
 
@@ -7109,9 +7116,6 @@ msgstr ""
 
 msgid "EPG selection"
 msgstr "EPG انتخاب"
-
-msgid "EPG Settings"
-msgstr ""
 
 msgid "EPGSearch"
 msgstr ""
@@ -7505,6 +7509,10 @@ msgstr ""
 msgid "Enter"
 msgstr "مرکز"
 
+#, python-format
+msgid "Enter DNS (Dynamic Name Server) %d's IP address."
+msgstr ""
+
 msgid "Enter PIN"
 msgstr ""
 
@@ -7600,6 +7608,14 @@ msgstr ""
 
 #, python-format
 msgid "Error %d: The logfile '%s' could not be opened.  (%s)"
+msgstr ""
+
+#, python-format
+msgid "Error %d: Unable to change password!  (%s)"
+msgstr ""
+
+#, python-format
+msgid "Error %d: Unable to start 'passwd' command!"
 msgstr ""
 
 #, python-format
@@ -7716,10 +7732,10 @@ msgstr ""
 msgid "Error: Checksum is invalid!"
 msgstr ""
 
-msgid "Error: The new password may not be blank!"
+msgid "Error: Interaction failure, unable to change password!"
 msgstr ""
 
-msgid "Error: Unable to change password!"
+msgid "Error: The new password may not be blank!"
 msgstr ""
 
 msgid "Error: Unable to process the command!  Please try again later."
@@ -8081,11 +8097,11 @@ msgstr ""
 msgid "Factory Reset"
 msgstr ""
 
-msgid "Factory release"
+msgid "Factory Reset Settings"
 msgstr ""
 
-msgid "Factory reset"
-msgstr "بازگشت به حالت کارخانه ای"
+msgid "Factory release"
+msgstr ""
 
 msgid "Fade the Infobar on hide"
 msgstr ""
@@ -8595,6 +8611,13 @@ msgstr ""
 msgid "GCC version"
 msgstr ""
 
+#, fuzzy
+msgid "GREEN button"
+msgstr "دکمه قرمز"
+
+msgid "GREEN long"
+msgstr ""
+
 msgid "GStreamer debug log category *"
 msgstr ""
 
@@ -8860,13 +8883,6 @@ msgid "Greek"
 msgstr "یونانی"
 
 msgid "Green"
-msgstr ""
-
-#, fuzzy
-msgid "GREEN button"
-msgstr "دکمه قرمز"
-
-msgid "GREEN long"
 msgstr ""
 
 msgid "Greenland"
@@ -9508,7 +9524,7 @@ msgstr ""
 msgid "If the free space is less than setting value, then an attempt is made to delete the old timeshift files."
 msgstr ""
 
-msgid "If the text is too long to be displayed on the front panel, it will be repeated (number of times):"
+msgid "If the text is too long to be displayed on the front panel, it will be repeated (number of times)."
 msgstr ""
 
 msgid "If using multiple uncommitted switches the DiSEqC commands must be sent multiple times. Set to the number of uncommitted switches in the chain minus one."
@@ -9784,6 +9800,9 @@ msgstr "ورودی"
 msgid "Input "
 msgstr "ورودی"
 
+msgid "Input Device Settings"
+msgstr ""
+
 msgid "Input Stream ID"
 msgstr ""
 
@@ -9798,9 +9817,6 @@ msgid "Input devices"
 msgstr ""
 
 msgid "Input scroll position"
-msgstr ""
-
-msgid "Input Device Settings"
 msgstr ""
 
 msgid "Insert"
@@ -10196,6 +10212,9 @@ msgstr ""
 msgid "Keyboard"
 msgstr "صفحه کلید"
 
+msgid "Keyboard Settings"
+msgstr ""
+
 #, fuzzy
 msgid "Keyboard data entry"
 msgstr "نقشه صفحه کلید"
@@ -10206,9 +10225,6 @@ msgstr "صفحه کلید"
 
 msgid "Keyboard map"
 msgstr "نقشه صفحه کلید"
-
-msgid "Keyboard Settings"
-msgstr ""
 
 msgid "Kikuyu / Gikuyu"
 msgstr ""
@@ -10746,13 +10762,13 @@ msgstr ""
 msgid "Logs"
 msgstr ""
 
+msgid "Logs Settings"
+msgstr ""
+
 msgid "Logs location"
 msgstr ""
 
 msgid "Logs older then the set no of days will be deleted."
-msgstr ""
-
-msgid "Logs Settings"
 msgstr ""
 
 msgid "Long << / >>"
@@ -11433,6 +11449,12 @@ msgstr "[حالت حرکت]"
 msgid "Move mode on"
 msgstr "جابجایی به شرق"
 
+msgid "Move the current DNS entry down one line"
+msgstr ""
+
+msgid "Move the current DNS entry up one line"
+msgstr ""
+
 msgid "Move the keyboard cursor down"
 msgstr ""
 
@@ -11708,19 +11730,15 @@ msgstr "نام"
 msgid "Name reverse"
 msgstr "Nameserver"
 
+#, python-format
+msgid "Name server %d"
+msgstr ""
+
 msgid "Name:"
 msgstr ""
 
 msgid "Nameserver"
 msgstr "Nameserver"
-
-#, python-format
-msgid "Nameserver %d"
-msgstr "Nameserver %d"
-
-#, fuzzy
-msgid "Nameserver configuration"
-msgstr "خروج از پیکربندی nameserver"
 
 msgid "Nameserver settings"
 msgstr "Nameserver تنظیمات"
@@ -11816,7 +11834,7 @@ msgstr ""
 msgid "Network Services"
 msgstr ""
 
-msgid "Network Setup"
+msgid "Network Settings"
 msgstr "تنظیمات شبکه"
 
 msgid "Network Test"
@@ -11847,9 +11865,6 @@ msgstr "نام شبکه (SSID)"
 
 msgid "Network scan"
 msgstr "اسکن شبکه"
-
-msgid "Network Settings"
-msgstr "تنظیمات شبکه"
 
 msgid "Network test"
 msgstr "تست شبکه"
@@ -12422,15 +12437,15 @@ msgstr ""
 msgid "OSD Position"
 msgstr ""
 
+msgid "OSD Settings"
+msgstr "OSD تنظیمات"
+
 #, fuzzy
 msgid "OSD Setup"
 msgstr "تنظیمات"
 
 msgid "OSD name request"
 msgstr "درخواست نام OSD"
-
-msgid "OSD Settings"
-msgstr "OSD تنظیمات"
 
 msgid "OScam Info"
 msgstr ""
@@ -12667,10 +12682,10 @@ msgstr ""
 msgid "Oromo"
 msgstr ""
 
-msgid "Oscam Info Settings"
+msgid "Oscam Info - Main Menu"
 msgstr ""
 
-msgid "Oscam Info - Main Menu"
+msgid "Oscam Info Settings"
 msgstr ""
 
 #, python-format
@@ -13539,6 +13554,9 @@ msgstr "لطفا صبر کنید"
 msgid "Plugin Browser"
 msgstr ""
 
+msgid "Plugin Browser Settings"
+msgstr ""
+
 msgid "Plugin Filter Settings"
 msgstr ""
 
@@ -13552,9 +13570,6 @@ msgstr "اطلاعات فعالیت مدیریت پلاگین"
 #
 msgid "Plugin manager help"
 msgstr "راهنمای مدیریت پلاگین"
-
-msgid "Plugin Browser Settings"
-msgstr ""
 
 msgid "Plugins"
 msgstr "پلاگین ها"
@@ -14170,6 +14185,12 @@ msgstr ""
 msgid "Quiz"
 msgstr ""
 
+msgid "RADIO"
+msgstr "رادیو"
+
+msgid "RADIO long"
+msgstr ""
+
 msgid "RAM (Details)"
 msgstr ""
 
@@ -14213,21 +14234,22 @@ msgstr ""
 msgid "REC Symbol in use"
 msgstr ""
 
+#, fuzzy
+msgid "RED button"
+msgstr "دکمه قرمز"
+
+msgid "RED long"
+msgstr ""
+
 msgid "RF Output Settings"
 msgstr "خروجی RF"
 
 msgid "RGB"
 msgstr "RGB"
 
-msgid "RADIO"
-msgstr "رادیو"
-
 #, fuzzy
 msgid "Radio Channel Selection"
 msgstr "انتخاب کانال"
-
-msgid "RADIO long"
-msgstr ""
 
 msgid "Radsport"
 msgstr ""
@@ -14406,6 +14428,9 @@ msgstr "در حال ضبط"
 msgid "Recording Actions"
 msgstr "ضبط شده ها"
 
+msgid "Recording Settings"
+msgstr ""
+
 msgid "Recording Setup"
 msgstr ""
 
@@ -14427,9 +14452,6 @@ msgstr "ضبط در حال پیشرفت"
 #, fuzzy
 msgid "Recording running"
 msgstr "در حال ضبط"
-
-msgid "Recording Settings"
-msgstr ""
 
 #, fuzzy
 msgid "Recording started"
@@ -14483,17 +14505,10 @@ msgstr "ضبط"
 msgid "Red"
 msgstr ""
 
-#, fuzzy
-msgid "RED button"
-msgstr "دکمه قرمز"
-
 msgid "Red button..."
 msgstr "دکمه قرمز"
 
 msgid "Red colored"
-msgstr ""
-
-msgid "RED long"
 msgstr ""
 
 msgid "Red/HbbTV Button Actions"
@@ -14615,6 +14630,9 @@ msgstr "به یاد داشتن رمز کانال"
 msgid "Remote Control"
 msgstr ""
 
+msgid "Remote Control Button Settings"
+msgstr ""
+
 msgid "Remote Control Code"
 msgstr ""
 
@@ -14654,12 +14672,11 @@ msgstr "حذف یک مورد nameserver"
 msgid "Remove Service"
 msgstr ""
 
+msgid "Remove a DNS entry"
+msgstr ""
+
 msgid "Remove a mark"
 msgstr "حذف علامت"
-
-#, fuzzy
-msgid "Remove a nameserver entry"
-msgstr "حذف یک مورد nameserver"
 
 msgid "Remove all bouquet/tuning data"
 msgstr ""
@@ -15063,6 +15080,9 @@ msgstr ""
 msgid "Rotor turning speed"
 msgstr "سرعت چرخش موتور"
 
+msgid "Router / Gateway"
+msgstr ""
+
 msgid "Routing request"
 msgstr ""
 
@@ -15276,12 +15296,12 @@ msgid "Satellite"
 msgstr "ماهواره"
 
 #, fuzzy
-msgid "Satellite configuration mode"
-msgstr "پیکربندی"
-
-#, fuzzy
 msgid "Satellite Dish Settings"
 msgstr "تجهیزات ماهواره"
+
+#, fuzzy
+msgid "Satellite configuration mode"
+msgstr "پیکربندی"
 
 msgid "Satellite equipment"
 msgstr "تجهیزات ماهواره"
@@ -15960,6 +15980,9 @@ msgid "Select the shifted character set for the next character only"
 msgstr ""
 
 msgid "Select the sleep timer action."
+msgstr ""
+
+msgid "Select the source of the default DNS settings."
 msgstr ""
 
 msgid "Select the time delay before the button starts repeating."
@@ -18041,7 +18064,7 @@ msgstr ""
 msgid "State"
 msgstr ""
 
-msgid "Static IP or Custom"
+msgid "Static IP / Custom"
 msgstr ""
 
 msgid "Status"
@@ -18147,13 +18170,13 @@ msgstr ""
 msgid "Stop timeshift while recording"
 msgstr ""
 
-msgid "Stops timeshift being used if a recording is in progress. (Advisable for USB sticks.)"
-msgstr ""
-
 msgid "Stopped"
 msgstr "متوقف شده"
 
 msgid "Stopping Softcam"
+msgstr ""
+
+msgid "Stops timeshift being used if a recording is in progress. (Advisable for USB sticks.)"
 msgstr ""
 
 #, fuzzy
@@ -18237,6 +18260,9 @@ msgstr "انتخاب زیرنویس"
 msgid "Subtitle Quickmenu"
 msgstr "انتخاب زیرنویس"
 
+msgid "Subtitle Settings"
+msgstr ""
+
 msgid "Subtitle alignment"
 msgstr "تراز زیرنویس"
 
@@ -18278,9 +18304,6 @@ msgstr "انتخاب زیرنویس"
 
 msgid "Subtitle selection..."
 msgstr "انتخاب زیرنویس"
-
-msgid "Subtitle Settings"
-msgstr ""
 
 msgid "Subtitles"
 msgstr "زیرنویس ها"
@@ -19118,6 +19141,12 @@ msgstr ""
 msgid "This allows you to set the number of digits to 5, if you have more than 9999 channels."
 msgstr ""
 
+msgid "This allows you to show OpenPLi modules in downloads"
+msgstr ""
+
+msgid "This allows you to show OpenViX modules in downloads"
+msgstr ""
+
 msgid "This allows you to show drivers modules in downloads"
 msgstr ""
 
@@ -19139,9 +19168,6 @@ msgstr ""
 msgid "This allows you to show picons modules in downloads"
 msgstr ""
 
-msgid "This allows you to show OpenPLi modules in downloads"
-msgstr ""
-
 msgid "This allows you to show security modules in downloads"
 msgstr ""
 
@@ -19155,9 +19181,6 @@ msgid "This allows you to show softcams modules in downloads"
 msgstr ""
 
 msgid "This allows you to show system plugin modules in downloads"
-msgstr ""
-
-msgid "This allows you to show OpenViX modules in downloads"
 msgstr ""
 
 msgid "This allows you to show weblinks modules in downloads"
@@ -19516,6 +19539,9 @@ msgstr ""
 msgid "Time"
 msgstr "زمان"
 
+msgid "Time Settings"
+msgstr ""
+
 msgid "Time Setup Actions"
 msgstr ""
 
@@ -19577,9 +19603,6 @@ msgstr ""
 #, fuzzy
 msgid "Time scale"
 msgstr "انتخاب زمان"
-
-msgid "Time Settings"
-msgstr ""
 
 #, fuzzy
 msgid "Time style"
@@ -19683,6 +19706,9 @@ msgstr ""
 msgid "Timeshift"
 msgstr "تغییر زمان"
 
+msgid "Timeshift Settings"
+msgstr ""
+
 msgid "Timeshift buffer delete after zap"
 msgstr ""
 
@@ -19717,9 +19743,6 @@ msgid "Timeshift save recording (stop after current event)"
 msgstr ""
 
 msgid "Timeshift saved to your harddisk!"
-msgstr ""
-
-msgid "Timeshift Settings"
 msgstr ""
 
 msgid "Timeshift will get saved at end of event!"
@@ -19991,6 +20014,9 @@ msgstr "پیکربندی تیونر"
 msgid "Tuner Information"
 msgstr ""
 
+msgid "Tuner Settings"
+msgstr ""
+
 msgid "Tuner Setup"
 msgstr ""
 
@@ -20010,9 +20036,6 @@ msgstr "وضعیت تیونر"
 #, fuzzy
 msgid "Tuner setting values"
 msgstr "وضعیت تیونر"
-
-msgid "Tuner Settings"
-msgstr ""
 
 msgid "Tuner slot"
 msgstr "شکاف تیونر"
@@ -21622,6 +21645,13 @@ msgstr "YCbCr422"
 msgid "YCbCr444"
 msgstr "YCbCr444"
 
+#, fuzzy
+msgid "YELLOW button"
+msgstr "دکمه قرمز"
+
+msgid "YELLOW long"
+msgstr ""
+
 msgid "YPbPr"
 msgstr "YPbPr"
 
@@ -21633,13 +21663,6 @@ msgstr "زرد"
 
 msgid "Yellow DVB subtitles"
 msgstr "زیرنویس زرد DVB"
-
-#, fuzzy
-msgid "YELLOW button"
-msgstr "دکمه قرمز"
-
-msgid "YELLOW long"
-msgstr ""
 
 msgid "Yemen"
 msgstr "یمن"
@@ -23928,6 +23951,32 @@ msgstr "حذف شد"
 
 msgid "®"
 msgstr ""
+
+#, fuzzy
+#~ msgid "Add a nameserver entry"
+#~ msgstr "اضافه کردن یک مورد nameserver"
+
+#, fuzzy
+#~ msgid "DHCP Router"
+#~ msgstr "کامل"
+
+#~ msgid "Factory reset"
+#~ msgstr "بازگشت به حالت کارخانه ای"
+
+#, python-format
+#~ msgid "Nameserver %d"
+#~ msgstr "Nameserver %d"
+
+#, fuzzy
+#~ msgid "Nameserver configuration"
+#~ msgstr "خروج از پیکربندی nameserver"
+
+#~ msgid "Network Setup"
+#~ msgstr "تنظیمات شبکه"
+
+#, fuzzy
+#~ msgid "Remove a nameserver entry"
+#~ msgstr "حذف یک مورد nameserver"
 
 #
 #, fuzzy

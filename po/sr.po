@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-03-01 17:50+0000\n"
+"POT-Creation-Date: 2022-03-15 12:24+0000\n"
 "PO-Revision-Date: 2021-08-19 12:59+0000\n"
 "Last-Translator: openATV <openatv@gmail.com>\n"
 "Language-Team: Serbian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/sr/>\n"
@@ -1755,7 +1755,7 @@ msgstr "posebni karakteri"
 msgid "12 hours"
 msgstr ""
 
-msgid "12, show latin-1 characters except for greek and cyrillic, switch to 8 if needed."
+msgid "12, show Latin-1 characters except for greek and cyrillic, switch to 8 if needed."
 msgstr ""
 
 #
@@ -2623,14 +2623,12 @@ msgstr "Dodaj Tajmer"
 msgid "Add Zap+Record Timer"
 msgstr "Dodaj Tajmer"
 
+msgid "Add a DNS entry"
+msgstr ""
+
 #
 msgid "Add a mark"
 msgstr "Dodaj oznaku"
-
-#
-#, fuzzy
-msgid "Add a nameserver entry"
-msgstr "Dodaj nejmserver"
 
 msgid "Add a new tag"
 msgstr ""
@@ -3426,6 +3424,9 @@ msgstr ""
 msgid "Auto Language Selection"
 msgstr ""
 
+msgid "Auto Language Settings"
+msgstr ""
+
 #
 #, fuzzy
 msgid "Auto Modes Selected."
@@ -3466,9 +3467,6 @@ msgid "Auto focus commencing ..."
 msgstr ""
 
 msgid "Auto install log"
-msgstr ""
-
-msgid "Auto Language Settings"
 msgstr ""
 
 #
@@ -3591,6 +3589,15 @@ msgid "BER:"
 msgstr "BER:"
 
 msgid "BLUDISC RECORDABLE"
+msgstr ""
+
+msgid "BLUE button"
+msgstr ""
+
+msgid "BLUE long"
+msgstr ""
+
+msgid "BLUE switch: BLUE/BLUE long"
 msgstr ""
 
 msgid "BT 2020 CL"
@@ -3934,15 +3941,6 @@ msgstr "Blokiraj smanjenje šuma"
 msgid "Blue"
 msgstr ""
 
-msgid "BLUE button"
-msgstr ""
-
-msgid "BLUE long"
-msgstr ""
-
-msgid "BLUE switch: BLUE/BLUE long"
-msgstr ""
-
 #
 #, fuzzy
 msgid "Bluetooth Setup"
@@ -4206,6 +4204,11 @@ msgstr ""
 
 msgid "CHANGE BOUQUET"
 msgstr ""
+
+#
+#, fuzzy
+msgid "CHANNEL +/-"
+msgstr "Kanal"
 
 msgid "CI (Common Interface) Setup"
 msgstr ""
@@ -4646,11 +4649,6 @@ msgstr "Kanal"
 msgid "Channel \t\t\tVolume +"
 msgstr ""
 
-#
-#, fuzzy
-msgid "CHANNEL +/-"
-msgstr "Kanal"
-
 msgid "Channel +/- button mode"
 msgstr ""
 
@@ -4667,6 +4665,11 @@ msgstr ""
 
 msgid "Channel List"
 msgstr ""
+
+#
+#, fuzzy
+msgid "Channel Selection Settings"
+msgstr "Postavke kolekcije"
 
 msgid "Channel button always changes sides"
 msgstr ""
@@ -4722,11 +4725,6 @@ msgstr "Izbor kanala"
 
 msgid "Channel selection configuration"
 msgstr ""
-
-#
-#, fuzzy
-msgid "Channel Selection Settings"
-msgstr "Postavke kolekcije"
 
 msgid "Channel up"
 msgstr ""
@@ -5091,7 +5089,7 @@ msgstr ""
 msgid "Close title selection"
 msgstr "Zatvori zbor naslova"
 
-msgid "Cloudflare"
+msgid "Cloudflare DNS"
 msgstr ""
 
 msgid "Cocos (Keeling) Islands"
@@ -5420,7 +5418,7 @@ msgstr ""
 msgid "Configure the function of a short press on the power button."
 msgstr ""
 
-msgid "Configure the function of the <  > buttons."
+msgid "Configure the function of the < and > buttons."
 msgstr ""
 
 msgid "Configure the gateway."
@@ -6052,15 +6050,15 @@ msgstr "Podesivo vreme preskoka za '4'/'6'-tipke"
 msgid "Custom skip time for '7'/'9' buttons"
 msgstr "Podesivo vreme preskoka za '7'/'9'-tipke"
 
-msgid "Customise"
+#
+msgid "Customize"
+msgstr "Prilagodi"
+
+msgid "Customize System Settings"
 msgstr ""
 
 msgid "Customize enigma2 personal settings"
 msgstr ""
-
-#
-msgid "Customize"
-msgstr "Prilagodi"
 
 #
 msgid "Cut"
@@ -6106,11 +6104,6 @@ msgstr ""
 msgid "DHCP"
 msgstr "DHCP"
 
-#
-#, fuzzy
-msgid "DHCP Router"
-msgstr "Kompletno"
-
 msgid "DLNA support"
 msgstr ""
 
@@ -6118,6 +6111,15 @@ msgid "DMM advanced"
 msgstr ""
 
 msgid "DMM normal"
+msgstr ""
+
+msgid "DNS (Dynamic Name Server) Actions"
+msgstr ""
+
+msgid "DNS Settings"
+msgstr ""
+
+msgid "DNS data source"
 msgstr ""
 
 msgid ""
@@ -7539,6 +7541,9 @@ msgstr ""
 msgid "EPG Selection"
 msgstr ""
 
+msgid "EPG Settings"
+msgstr ""
+
 msgid "EPG Setup"
 msgstr ""
 
@@ -7575,9 +7580,6 @@ msgid "EPG search"
 msgstr ""
 
 msgid "EPG selection"
-msgstr ""
-
-msgid "EPG Settings"
 msgstr ""
 
 msgid "EPGSearch"
@@ -8010,6 +8012,10 @@ msgstr ""
 msgid "Enter"
 msgstr "Interni fleš"
 
+#, python-format
+msgid "Enter DNS (Dynamic Name Server) %d's IP address."
+msgstr ""
+
 msgid "Enter PIN"
 msgstr ""
 
@@ -8111,6 +8117,14 @@ msgstr ""
 
 #, python-format
 msgid "Error %d: The logfile '%s' could not be opened.  (%s)"
+msgstr ""
+
+#, python-format
+msgid "Error %d: Unable to change password!  (%s)"
+msgstr ""
+
+#, python-format
+msgid "Error %d: Unable to start 'passwd' command!"
 msgstr ""
 
 #, python-format
@@ -8233,10 +8247,10 @@ msgstr ""
 msgid "Error: Checksum is invalid!"
 msgstr ""
 
-msgid "Error: The new password may not be blank!"
+msgid "Error: Interaction failure, unable to change password!"
 msgstr ""
 
-msgid "Error: Unable to change password!"
+msgid "Error: The new password may not be blank!"
 msgstr ""
 
 msgid "Error: Unable to process the command!  Please try again later."
@@ -8626,12 +8640,11 @@ msgstr ""
 msgid "Factory Reset"
 msgstr ""
 
-msgid "Factory release"
+msgid "Factory Reset Settings"
 msgstr ""
 
-#
-msgid "Factory reset"
-msgstr "Fabrički reset"
+msgid "Factory release"
+msgstr ""
 
 msgid "Fade the Infobar on hide"
 msgstr ""
@@ -9184,6 +9197,12 @@ msgstr ""
 msgid "GCC version"
 msgstr ""
 
+msgid "GREEN button"
+msgstr ""
+
+msgid "GREEN long"
+msgstr ""
+
 msgid "GStreamer debug log category *"
 msgstr ""
 
@@ -9473,12 +9492,6 @@ msgid "Greek"
 msgstr "Grčki"
 
 msgid "Green"
-msgstr ""
-
-msgid "GREEN button"
-msgstr ""
-
-msgid "GREEN long"
 msgstr ""
 
 msgid "Greenland"
@@ -10142,7 +10155,7 @@ msgstr ""
 msgid "If the free space is less than setting value, then an attempt is made to delete the old timeshift files."
 msgstr ""
 
-msgid "If the text is too long to be displayed on the front panel, it will be repeated (number of times):"
+msgid "If the text is too long to be displayed on the front panel, it will be repeated (number of times)."
 msgstr ""
 
 msgid "If using multiple uncommitted switches the DiSEqC commands must be sent multiple times. Set to the number of uncommitted switches in the chain minus one."
@@ -10441,6 +10454,9 @@ msgstr "Ulaz "
 msgid "Input "
 msgstr "Ulaz "
 
+msgid "Input Device Settings"
+msgstr ""
+
 msgid "Input Stream ID"
 msgstr ""
 
@@ -10455,9 +10471,6 @@ msgid "Input devices"
 msgstr ""
 
 msgid "Input scroll position"
-msgstr ""
-
-msgid "Input Device Settings"
 msgstr ""
 
 msgid "Insert"
@@ -10891,6 +10904,9 @@ msgstr ""
 msgid "Keyboard"
 msgstr "Tastatura"
 
+msgid "Keyboard Settings"
+msgstr ""
+
 #
 #, fuzzy
 msgid "Keyboard data entry"
@@ -10905,9 +10921,6 @@ msgstr "Tastatura"
 #, fuzzy
 msgid "Keyboard map"
 msgstr "Mapa tastature"
-
-msgid "Keyboard Settings"
-msgstr ""
 
 msgid "Kikuyu / Gikuyu"
 msgstr ""
@@ -11502,13 +11515,13 @@ msgstr ""
 msgid "Logs"
 msgstr ""
 
+msgid "Logs Settings"
+msgstr ""
+
 msgid "Logs location"
 msgstr ""
 
 msgid "Logs older then the set no of days will be deleted."
-msgstr ""
-
-msgid "Logs Settings"
 msgstr ""
 
 msgid "Long << / >>"
@@ -12244,6 +12257,12 @@ msgstr "[mod premeštanja]"
 msgid "Move mode on"
 msgstr "Pokreći na istok"
 
+msgid "Move the current DNS entry down one line"
+msgstr ""
+
+msgid "Move the current DNS entry up one line"
+msgstr ""
+
 msgid "Move the keyboard cursor down"
 msgstr ""
 
@@ -12558,22 +12577,16 @@ msgstr "Ime"
 msgid "Name reverse"
 msgstr "Nejmserver"
 
+#, python-format
+msgid "Name server %d"
+msgstr ""
+
 msgid "Name:"
 msgstr ""
 
 #
 msgid "Nameserver"
 msgstr "Nejmserver"
-
-#
-#, python-format
-msgid "Nameserver %d"
-msgstr "Nejmserver %d"
-
-#
-#, fuzzy
-msgid "Nameserver configuration"
-msgstr "Napustite konfiguraciju nejmservera"
 
 #
 msgid "Nameserver settings"
@@ -12675,8 +12688,8 @@ msgid "Network Services"
 msgstr ""
 
 #
-msgid "Network Setup"
-msgstr "Postavke Mreže"
+msgid "Network Settings"
+msgstr "Mrežne postavke "
 
 msgid "Network Test"
 msgstr ""
@@ -12708,10 +12721,6 @@ msgstr "Test mreže:"
 #
 msgid "Network scan"
 msgstr "Pretraga mreže"
-
-#
-msgid "Network Settings"
-msgstr "Mrežne postavke "
 
 #
 msgid "Network test"
@@ -13341,15 +13350,15 @@ msgstr ""
 msgid "OSD Position"
 msgstr ""
 
+msgid "OSD Settings"
+msgstr ""
+
 #
 #, fuzzy
 msgid "OSD Setup"
 msgstr "Podešavanje"
 
 msgid "OSD name request"
-msgstr ""
-
-msgid "OSD Settings"
 msgstr ""
 
 msgid "OScam Info"
@@ -13598,10 +13607,10 @@ msgstr ""
 msgid "Oromo"
 msgstr ""
 
-msgid "Oscam Info Settings"
+msgid "Oscam Info - Main Menu"
 msgstr ""
 
-msgid "Oscam Info - Main Menu"
+msgid "Oscam Info Settings"
 msgstr ""
 
 #, python-format
@@ -14563,6 +14572,9 @@ msgstr "Molim sačekajte"
 msgid "Plugin Browser"
 msgstr ""
 
+msgid "Plugin Browser Settings"
+msgstr ""
+
 msgid "Plugin Filter Settings"
 msgstr ""
 
@@ -14576,9 +14588,6 @@ msgstr "Info o aktivnosti menadžera dodataka"
 #
 msgid "Plugin manager help"
 msgstr "Menadžer dodataka,pomoć"
-
-msgid "Plugin Browser Settings"
-msgstr ""
 
 #
 msgid "Plugins"
@@ -15243,6 +15252,12 @@ msgstr ""
 msgid "Quiz"
 msgstr ""
 
+msgid "RADIO"
+msgstr "RADIO"
+
+msgid "RADIO long"
+msgstr ""
+
 msgid "RAM (Details)"
 msgstr ""
 
@@ -15287,6 +15302,12 @@ msgstr ""
 msgid "REC Symbol in use"
 msgstr ""
 
+msgid "RED button"
+msgstr ""
+
+msgid "RED long"
+msgstr ""
+
 #
 msgid "RF Output Settings"
 msgstr "RF Izlaz"
@@ -15295,16 +15316,10 @@ msgstr "RF Izlaz"
 msgid "RGB"
 msgstr "RGB"
 
-msgid "RADIO"
-msgstr "RADIO"
-
 #
 #, fuzzy
 msgid "Radio Channel Selection"
 msgstr "Izbor kanala"
-
-msgid "RADIO long"
-msgstr ""
 
 msgid "Radsport"
 msgstr ""
@@ -15498,6 +15513,9 @@ msgstr "Snimanje"
 msgid "Recording Actions"
 msgstr "Snimanja"
 
+msgid "Recording Settings"
+msgstr ""
+
 msgid "Recording Setup"
 msgstr ""
 
@@ -15523,9 +15541,6 @@ msgstr ""
 #, fuzzy
 msgid "Recording running"
 msgstr "Snimanje"
-
-msgid "Recording Settings"
-msgstr ""
 
 #
 #, fuzzy
@@ -15585,16 +15600,10 @@ msgstr "Snimanje "
 msgid "Red"
 msgstr ""
 
-msgid "RED button"
-msgstr ""
-
 msgid "Red button..."
 msgstr ""
 
 msgid "Red colored"
-msgstr ""
-
-msgid "RED long"
 msgstr ""
 
 msgid "Red/HbbTV Button Actions"
@@ -15720,6 +15729,9 @@ msgstr "Zapamti PIN kanala"
 msgid "Remote Control"
 msgstr ""
 
+msgid "Remote Control Button Settings"
+msgstr ""
+
 msgid "Remote Control Code"
 msgstr ""
 
@@ -15763,14 +15775,12 @@ msgstr "Uklonite unos nejmservera"
 msgid "Remove Service"
 msgstr ""
 
+msgid "Remove a DNS entry"
+msgstr ""
+
 #
 msgid "Remove a mark"
 msgstr "Obriši oznaku"
-
-#
-#, fuzzy
-msgid "Remove a nameserver entry"
-msgstr "Uklonite unos nejmservera"
 
 msgid "Remove all bouquet/tuning data"
 msgstr ""
@@ -16217,6 +16227,9 @@ msgstr ""
 msgid "Rotor turning speed"
 msgstr "Brzina okretanja rotora"
 
+msgid "Router / Gateway"
+msgstr ""
+
 msgid "Routing request"
 msgstr ""
 
@@ -16438,13 +16451,13 @@ msgstr "Satelit"
 
 #
 #, fuzzy
-msgid "Satellite configuration mode"
-msgstr "Konfigurišem"
+msgid "Satellite Dish Settings"
+msgstr "Postavke satelitske opreme"
 
 #
 #, fuzzy
-msgid "Satellite Dish Settings"
-msgstr "Postavke satelitske opreme"
+msgid "Satellite configuration mode"
+msgstr "Konfigurišem"
 
 #
 msgid "Satellite equipment"
@@ -17187,6 +17200,9 @@ msgid "Select the shifted character set for the next character only"
 msgstr ""
 
 msgid "Select the sleep timer action."
+msgstr ""
+
+msgid "Select the source of the default DNS settings."
 msgstr ""
 
 msgid "Select the time delay before the button starts repeating."
@@ -19415,7 +19431,7 @@ msgstr ""
 msgid "State"
 msgstr ""
 
-msgid "Static IP or Custom"
+msgid "Static IP / Custom"
 msgstr ""
 
 msgid "Status"
@@ -19537,13 +19553,13 @@ msgstr ""
 msgid "Stop timeshift while recording"
 msgstr ""
 
-msgid "Stops timeshift being used if a recording is in progress. (Advisable for USB sticks.)"
-msgstr ""
-
 msgid "Stopped"
 msgstr ""
 
 msgid "Stopping Softcam"
+msgstr ""
+
+msgid "Stops timeshift being used if a recording is in progress. (Advisable for USB sticks.)"
 msgstr ""
 
 #
@@ -19637,6 +19653,9 @@ msgstr "Izbor subtitlova"
 msgid "Subtitle Quickmenu"
 msgstr "Izbor subtitlova"
 
+msgid "Subtitle Settings"
+msgstr ""
+
 msgid "Subtitle alignment"
 msgstr ""
 
@@ -19678,9 +19697,6 @@ msgid "Subtitle selection"
 msgstr "Izbor subtitlova"
 
 msgid "Subtitle selection..."
-msgstr ""
-
-msgid "Subtitle Settings"
 msgstr ""
 
 #
@@ -20571,6 +20587,12 @@ msgstr ""
 msgid "This allows you to set the number of digits to 5, if you have more than 9999 channels."
 msgstr ""
 
+msgid "This allows you to show OpenPLi modules in downloads"
+msgstr ""
+
+msgid "This allows you to show OpenViX modules in downloads"
+msgstr ""
+
 msgid "This allows you to show drivers modules in downloads"
 msgstr ""
 
@@ -20592,9 +20614,6 @@ msgstr ""
 msgid "This allows you to show picons modules in downloads"
 msgstr ""
 
-msgid "This allows you to show OpenPLi modules in downloads"
-msgstr ""
-
 msgid "This allows you to show security modules in downloads"
 msgstr ""
 
@@ -20608,9 +20627,6 @@ msgid "This allows you to show softcams modules in downloads"
 msgstr ""
 
 msgid "This allows you to show system plugin modules in downloads"
-msgstr ""
-
-msgid "This allows you to show OpenViX modules in downloads"
 msgstr ""
 
 msgid "This allows you to show weblinks modules in downloads"
@@ -20998,6 +21014,9 @@ msgstr ""
 msgid "Time"
 msgstr "Vreme"
 
+msgid "Time Settings"
+msgstr ""
+
 msgid "Time Setup Actions"
 msgstr ""
 
@@ -21063,9 +21082,6 @@ msgstr ""
 #, fuzzy
 msgid "Time scale"
 msgstr "Izbor tajmera "
-
-msgid "Time Settings"
-msgstr ""
 
 #
 #, fuzzy
@@ -21191,6 +21207,9 @@ msgstr ""
 msgid "Timeshift"
 msgstr "Vrem. pomak"
 
+msgid "Timeshift Settings"
+msgstr ""
+
 msgid "Timeshift buffer delete after zap"
 msgstr ""
 
@@ -21227,9 +21246,6 @@ msgid "Timeshift save recording (stop after current event)"
 msgstr ""
 
 msgid "Timeshift saved to your harddisk!"
-msgstr ""
-
-msgid "Timeshift Settings"
 msgstr ""
 
 msgid "Timeshift will get saved at end of event!"
@@ -21526,6 +21542,9 @@ msgstr ""
 msgid "Tuner Information"
 msgstr ""
 
+msgid "Tuner Settings"
+msgstr ""
+
 msgid "Tuner Setup"
 msgstr ""
 
@@ -21548,9 +21567,6 @@ msgstr "Status tjunera"
 #, fuzzy
 msgid "Tuner setting values"
 msgstr "Status tjunera"
-
-msgid "Tuner Settings"
-msgstr ""
 
 msgid "Tuner slot"
 msgstr ""
@@ -23274,6 +23290,12 @@ msgstr ""
 msgid "YCbCr444"
 msgstr ""
 
+msgid "YELLOW button"
+msgstr ""
+
+msgid "YELLOW long"
+msgstr ""
+
 #
 msgid "YPbPr"
 msgstr "YPbPr"
@@ -23286,12 +23308,6 @@ msgid "Yellow"
 msgstr ""
 
 msgid "Yellow DVB subtitles"
-msgstr ""
-
-msgid "YELLOW button"
-msgstr ""
-
-msgid "YELLOW long"
 msgstr ""
 
 #
@@ -25808,6 +25824,39 @@ msgstr "prebačen"
 
 msgid "®"
 msgstr ""
+
+#
+#, fuzzy
+#~ msgid "Add a nameserver entry"
+#~ msgstr "Dodaj nejmserver"
+
+#
+#, fuzzy
+#~ msgid "DHCP Router"
+#~ msgstr "Kompletno"
+
+#
+#~ msgid "Factory reset"
+#~ msgstr "Fabrički reset"
+
+#
+#, python-format
+#~ msgid "Nameserver %d"
+#~ msgstr "Nejmserver %d"
+
+#
+#, fuzzy
+#~ msgid "Nameserver configuration"
+#~ msgstr "Napustite konfiguraciju nejmservera"
+
+#
+#~ msgid "Network Setup"
+#~ msgstr "Postavke Mreže"
+
+#
+#, fuzzy
+#~ msgid "Remove a nameserver entry"
+#~ msgstr "Uklonite unos nejmservera"
 
 #
 #, fuzzy

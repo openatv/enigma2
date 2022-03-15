@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-03-01 17:50+0000\n"
+"POT-Creation-Date: 2022-03-15 12:24+0000\n"
 "PO-Revision-Date: 2021-08-15 18:50+0000\n"
 "Last-Translator: openATV <openatv@gmail.com>\n"
 "Language-Team: Chinese (Traditional, Hong Kong) <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/zh_Hant_HK/>\n"
@@ -1623,7 +1623,7 @@ msgstr "分3個字元"
 msgid "12 hours"
 msgstr "1 小時"
 
-msgid "12, show latin-1 characters except for greek and cyrillic, switch to 8 if needed."
+msgid "12, show Latin-1 characters except for greek and cyrillic, switch to 8 if needed."
 msgstr ""
 
 #, fuzzy
@@ -2477,11 +2477,11 @@ msgstr "添加到計時器"
 msgid "Add Zap+Record Timer"
 msgstr ""
 
+msgid "Add a DNS entry"
+msgstr ""
+
 msgid "Add a mark"
 msgstr "增加標記"
-
-msgid "Add a nameserver entry"
-msgstr ""
 
 msgid "Add a new tag"
 msgstr ""
@@ -3249,6 +3249,9 @@ msgstr "語言"
 msgid "Auto Language Selection"
 msgstr "語言選擇"
 
+msgid "Auto Language Settings"
+msgstr ""
+
 #, fuzzy
 msgid "Auto Modes Selected."
 msgstr "節目包選擇."
@@ -3281,9 +3284,6 @@ msgid "Auto focus commencing ..."
 msgstr ""
 
 msgid "Auto install log"
-msgstr ""
-
-msgid "Auto Language Settings"
 msgstr ""
 
 msgid "Auto scart switching"
@@ -3400,6 +3400,17 @@ msgid "BER:"
 msgstr "BER:"
 
 msgid "BLUDISC RECORDABLE"
+msgstr ""
+
+#, fuzzy
+msgid "BLUE button"
+msgstr "藍色增強"
+
+#, fuzzy
+msgid "BLUE long"
+msgstr "藍色增強"
+
+msgid "BLUE switch: BLUE/BLUE long"
 msgstr ""
 
 msgid "BT 2020 CL"
@@ -3731,17 +3742,6 @@ msgid "Blue"
 msgstr ""
 
 #, fuzzy
-msgid "BLUE button"
-msgstr "藍色增強"
-
-#, fuzzy
-msgid "BLUE long"
-msgstr "藍色增強"
-
-msgid "BLUE switch: BLUE/BLUE long"
-msgstr ""
-
-#, fuzzy
 msgid "Bluetooth Setup"
 msgstr "網路設定"
 
@@ -4016,6 +4016,10 @@ msgstr ""
 
 msgid "CHANGE BOUQUET"
 msgstr ""
+
+#, fuzzy
+msgid "CHANNEL +/-"
+msgstr "頻道"
 
 #, fuzzy
 msgid "CI (Common Interface) Setup"
@@ -4435,10 +4439,6 @@ msgstr "頻道"
 msgid "Channel \t\t\tVolume +"
 msgstr ""
 
-#, fuzzy
-msgid "CHANNEL +/-"
-msgstr "頻道"
-
 msgid "Channel +/- button mode"
 msgstr ""
 
@@ -4457,6 +4457,10 @@ msgstr "頻道"
 #, fuzzy
 msgid "Channel List"
 msgstr "頻道"
+
+#, fuzzy
+msgid "Channel Selection Settings"
+msgstr "收藏設定"
 
 msgid "Channel button always changes sides"
 msgstr ""
@@ -4515,10 +4519,6 @@ msgstr ""
 #, fuzzy
 msgid "Channel selection configuration"
 msgstr "打開DNS設定"
-
-#, fuzzy
-msgid "Channel Selection Settings"
-msgstr "收藏設定"
 
 #, fuzzy
 msgid "Channel up"
@@ -4866,7 +4866,7 @@ msgstr ""
 msgid "Close title selection"
 msgstr "關閉標題選項"
 
-msgid "Cloudflare"
+msgid "Cloudflare DNS"
 msgstr ""
 
 msgid "Cocos (Keeling) Islands"
@@ -5172,7 +5172,7 @@ msgstr ""
 msgid "Configure the function of a short press on the power button."
 msgstr ""
 
-msgid "Configure the function of the <  > buttons."
+msgid "Configure the function of the < and > buttons."
 msgstr ""
 
 msgid "Configure the gateway."
@@ -5779,16 +5779,15 @@ msgstr ""
 msgid "Custom skip time for '7'/'9' buttons"
 msgstr ""
 
-#, fuzzy
-msgid "Customise"
+msgid "Customize"
 msgstr "高級設定"
+
+msgid "Customize System Settings"
+msgstr ""
 
 #, fuzzy
 msgid "Customize enigma2 personal settings"
 msgstr "自定義藍色面板資訊條設定"
-
-msgid "Customize"
-msgstr "高級設定"
 
 msgid "Cut"
 msgstr "剪切"
@@ -5830,10 +5829,6 @@ msgid "DHCP"
 msgstr "DHCP"
 
 #, fuzzy
-msgid "DHCP Router"
-msgstr "完成"
-
-#, fuzzy
 msgid "DLNA support"
 msgstr "不支援的"
 
@@ -5841,6 +5836,15 @@ msgid "DMM advanced"
 msgstr ""
 
 msgid "DMM normal"
+msgstr ""
+
+msgid "DNS (Dynamic Name Server) Actions"
+msgstr ""
+
+msgid "DNS Settings"
+msgstr ""
+
+msgid "DNS data source"
 msgstr ""
 
 msgid ""
@@ -7199,6 +7203,9 @@ msgstr "EPG 搜索"
 msgid "EPG Selection"
 msgstr "EPG 選擇"
 
+msgid "EPG Settings"
+msgstr ""
+
 msgid "EPG Setup"
 msgstr "EPG 設定"
 
@@ -7239,9 +7246,6 @@ msgid "EPG search"
 msgstr "EPG 搜索"
 
 msgid "EPG selection"
-msgstr ""
-
-msgid "EPG Settings"
 msgstr ""
 
 #, fuzzy
@@ -7653,6 +7657,10 @@ msgstr "夜晚"
 msgid "Enter"
 msgstr "間隔"
 
+#, python-format
+msgid "Enter DNS (Dynamic Name Server) %d's IP address."
+msgstr ""
+
 msgid "Enter PIN"
 msgstr ""
 
@@ -7750,6 +7758,14 @@ msgstr ""
 
 #, python-format
 msgid "Error %d: The logfile '%s' could not be opened.  (%s)"
+msgstr ""
+
+#, python-format
+msgid "Error %d: Unable to change password!  (%s)"
+msgstr ""
+
+#, python-format
+msgid "Error %d: Unable to start 'passwd' command!"
 msgstr ""
 
 #, python-format
@@ -7866,10 +7882,10 @@ msgstr ""
 msgid "Error: Checksum is invalid!"
 msgstr ""
 
-msgid "Error: The new password may not be blank!"
+msgid "Error: Interaction failure, unable to change password!"
 msgstr ""
 
-msgid "Error: Unable to change password!"
+msgid "Error: The new password may not be blank!"
 msgstr ""
 
 msgid "Error: Unable to process the command!  Please try again later."
@@ -8245,11 +8261,11 @@ msgstr "EPG設定"
 msgid "Factory Reset"
 msgstr ""
 
-msgid "Factory release"
+msgid "Factory Reset Settings"
 msgstr ""
 
-msgid "Factory reset"
-msgstr "出廠設定"
+msgid "Factory release"
+msgstr ""
 
 msgid "Fade the Infobar on hide"
 msgstr ""
@@ -8777,6 +8793,14 @@ msgstr "RGB"
 msgid "GCC version"
 msgstr ""
 
+#, fuzzy
+msgid "GREEN button"
+msgstr "綠色增強"
+
+#, fuzzy
+msgid "GREEN long"
+msgstr "綠色增強"
+
 msgid "GStreamer debug log category *"
 msgstr ""
 
@@ -9058,14 +9082,6 @@ msgstr "希臘語"
 #, fuzzy
 msgid "Green"
 msgstr "希臘語"
-
-#, fuzzy
-msgid "GREEN button"
-msgstr "綠色增強"
-
-#, fuzzy
-msgid "GREEN long"
-msgstr "綠色增強"
 
 #, fuzzy
 msgid "Greenland"
@@ -9729,7 +9745,7 @@ msgstr ""
 msgid "If the free space is less than setting value, then an attempt is made to delete the old timeshift files."
 msgstr ""
 
-msgid "If the text is too long to be displayed on the front panel, it will be repeated (number of times):"
+msgid "If the text is too long to be displayed on the front panel, it will be repeated (number of times)."
 msgstr ""
 
 msgid "If using multiple uncommitted switches the DiSEqC commands must be sent multiple times. Set to the number of uncommitted switches in the chain minus one."
@@ -10016,6 +10032,9 @@ msgstr "輸入"
 msgid "Input "
 msgstr "輸入 1"
 
+msgid "Input Device Settings"
+msgstr ""
+
 msgid "Input Stream ID"
 msgstr ""
 
@@ -10030,9 +10049,6 @@ msgid "Input devices"
 msgstr ""
 
 msgid "Input scroll position"
-msgstr ""
-
-msgid "Input Device Settings"
 msgstr ""
 
 msgid "Insert"
@@ -10436,6 +10452,9 @@ msgstr ""
 msgid "Keyboard"
 msgstr "鍵盤佈局"
 
+msgid "Keyboard Settings"
+msgstr ""
+
 #, fuzzy
 msgid "Keyboard data entry"
 msgstr "鍵盤佈局"
@@ -10445,9 +10464,6 @@ msgid "Keyboard long"
 msgstr "鍵盤佈局"
 
 msgid "Keyboard map"
-msgstr ""
-
-msgid "Keyboard Settings"
 msgstr ""
 
 msgid "Kikuyu / Gikuyu"
@@ -11004,15 +11020,15 @@ msgid "Logs"
 msgstr ""
 
 #, fuzzy
+msgid "Logs Settings"
+msgstr "Crashlog設定"
+
+#, fuzzy
 msgid "Logs location"
 msgstr "位置"
 
 msgid "Logs older then the set no of days will be deleted."
 msgstr ""
-
-#, fuzzy
-msgid "Logs Settings"
-msgstr "Crashlog設定"
 
 msgid "Long << / >>"
 msgstr ""
@@ -11711,6 +11727,12 @@ msgstr "[移動模式]"
 msgid "Move mode on"
 msgstr "[移動模式]"
 
+msgid "Move the current DNS entry down one line"
+msgstr ""
+
+msgid "Move the current DNS entry up one line"
+msgstr ""
+
 #, fuzzy
 msgid "Move the keyboard cursor down"
 msgstr "打開虛擬鍵盤輸入幫助"
@@ -11997,20 +12019,16 @@ msgstr "名稱"
 msgid "Name reverse"
 msgstr "DNS伺服器"
 
+#, python-format
+msgid "Name server %d"
+msgstr ""
+
 #, fuzzy
 msgid "Name:"
 msgstr "名稱"
 
 msgid "Nameserver"
 msgstr "DNS伺服器"
-
-#, python-format
-msgid "Nameserver %d"
-msgstr "DNS %d"
-
-#, fuzzy
-msgid "Nameserver configuration"
-msgstr "調諧器配置"
 
 msgid "Nameserver settings"
 msgstr "DNS設定"
@@ -12114,7 +12132,7 @@ msgstr "網路測驗"
 msgid "Network Services"
 msgstr "網路測驗"
 
-msgid "Network Setup"
+msgid "Network Settings"
 msgstr "網路設定"
 
 #, fuzzy
@@ -12146,9 +12164,6 @@ msgstr ""
 
 msgid "Network scan"
 msgstr "網路掃描"
-
-msgid "Network Settings"
-msgstr "網路設定"
 
 msgid "Network test"
 msgstr "網路測驗"
@@ -12734,14 +12749,14 @@ msgstr ""
 msgid "OSD Position"
 msgstr "調整資訊條顯示位置"
 
+msgid "OSD Settings"
+msgstr ""
+
 #, fuzzy
 msgid "OSD Setup"
 msgstr "設定"
 
 msgid "OSD name request"
-msgstr ""
-
-msgid "OSD Settings"
 msgstr ""
 
 #, fuzzy
@@ -12992,12 +13007,12 @@ msgid "Oromo"
 msgstr ""
 
 #, fuzzy
-msgid "Oscam Info Settings"
-msgstr "Gemini 配置"
-
-#, fuzzy
 msgid "Oscam Info - Main Menu"
 msgstr "CCcam 資訊"
+
+#, fuzzy
+msgid "Oscam Info Settings"
+msgstr "Gemini 配置"
 
 #, python-format
 msgid "Oscam Log ( Oscam-Version: %s )"
@@ -13895,6 +13910,10 @@ msgid "Plugin Browser"
 msgstr "流覽插件"
 
 #, fuzzy
+msgid "Plugin Browser Settings"
+msgstr "流覽插件"
+
+#, fuzzy
 msgid "Plugin Filter Settings"
 msgstr "流覽插件"
 
@@ -13907,10 +13926,6 @@ msgstr "插件管理活動資訊"
 
 msgid "Plugin manager help"
 msgstr "插件管理幫助"
-
-#, fuzzy
-msgid "Plugin Browser Settings"
-msgstr "流覽插件"
 
 msgid "Plugins"
 msgstr "插件"
@@ -14557,6 +14572,12 @@ msgstr "擴展"
 msgid "Quiz"
 msgstr ""
 
+msgid "RADIO"
+msgstr ""
+
+msgid "RADIO long"
+msgstr ""
+
 msgid "RAM (Details)"
 msgstr ""
 
@@ -14601,21 +14622,21 @@ msgstr ""
 msgid "REC Symbol in use"
 msgstr ""
 
+msgid "RED button"
+msgstr ""
+
+msgid "RED long"
+msgstr ""
+
 msgid "RF Output Settings"
 msgstr "RF-輸出"
 
 msgid "RGB"
 msgstr "RGB"
 
-msgid "RADIO"
-msgstr ""
-
 #, fuzzy
 msgid "Radio Channel Selection"
 msgstr "頻道選擇"
-
-msgid "RADIO long"
-msgstr ""
 
 msgid "Radsport"
 msgstr ""
@@ -14799,6 +14820,10 @@ msgid "Recording Actions"
 msgstr "錄影位置設定"
 
 #, fuzzy
+msgid "Recording Settings"
+msgstr "錄影位置設定"
+
+#, fuzzy
 msgid "Recording Setup"
 msgstr "正在錄製"
 
@@ -14819,10 +14844,6 @@ msgstr ""
 
 #, fuzzy
 msgid "Recording running"
-msgstr "錄影位置設定"
-
-#, fuzzy
-msgid "Recording Settings"
 msgstr "錄影位置設定"
 
 #, fuzzy
@@ -14883,16 +14904,10 @@ msgstr "每天"
 msgid "Red"
 msgstr "讀取"
 
-msgid "RED button"
-msgstr ""
-
 msgid "Red button..."
 msgstr ""
 
 msgid "Red colored"
-msgstr ""
-
-msgid "RED long"
 msgstr ""
 
 msgid "Red/HbbTV Button Actions"
@@ -15021,6 +15036,9 @@ msgstr ""
 msgid "Remote Control"
 msgstr ""
 
+msgid "Remote Control Button Settings"
+msgstr ""
+
 #, fuzzy
 msgid "Remote Control Code"
 msgstr "遠程控制"
@@ -15063,11 +15081,11 @@ msgstr "移除DNS項目"
 msgid "Remove Service"
 msgstr "移除標題"
 
+msgid "Remove a DNS entry"
+msgstr ""
+
 msgid "Remove a mark"
 msgstr "移除標記"
-
-msgid "Remove a nameserver entry"
-msgstr ""
 
 msgid "Remove all bouquet/tuning data"
 msgstr ""
@@ -15478,6 +15496,9 @@ msgstr ""
 msgid "Rotor turning speed"
 msgstr "Rotor轉速"
 
+msgid "Router / Gateway"
+msgstr ""
+
 msgid "Routing request"
 msgstr ""
 
@@ -15698,12 +15719,12 @@ msgstr "尋星"
 msgid "Satellite"
 msgstr "衛星"
 
+msgid "Satellite Dish Settings"
+msgstr ""
+
 #, fuzzy
 msgid "Satellite configuration mode"
 msgstr "配置模式"
-
-msgid "Satellite Dish Settings"
-msgstr ""
 
 msgid "Satellite equipment"
 msgstr ""
@@ -16409,6 +16430,9 @@ msgstr ""
 #, fuzzy
 msgid "Select the sleep timer action."
 msgstr "定時休眠:"
+
+msgid "Select the source of the default DNS settings."
+msgstr ""
 
 msgid "Select the time delay before the button starts repeating."
 msgstr ""
@@ -18627,7 +18651,7 @@ msgstr "錄製後的空白時間"
 msgid "State"
 msgstr ""
 
-msgid "Static IP or Custom"
+msgid "Static IP / Custom"
 msgstr ""
 
 #, fuzzy
@@ -18732,13 +18756,13 @@ msgstr ""
 msgid "Stop timeshift while recording"
 msgstr "在哪里保存時光平移臨時錄製的內容?"
 
-msgid "Stops timeshift being used if a recording is in progress. (Advisable for USB sticks.)"
-msgstr ""
-
 msgid "Stopped"
 msgstr "停止"
 
 msgid "Stopping Softcam"
+msgstr ""
+
+msgid "Stops timeshift being used if a recording is in progress. (Advisable for USB sticks.)"
 msgstr ""
 
 #, fuzzy
@@ -18825,6 +18849,9 @@ msgstr "字幕選擇"
 msgid "Subtitle Quickmenu"
 msgstr ""
 
+msgid "Subtitle Settings"
+msgstr ""
+
 msgid "Subtitle alignment"
 msgstr ""
 
@@ -18866,9 +18893,6 @@ msgid "Subtitle selection"
 msgstr "字幕選擇"
 
 msgid "Subtitle selection..."
-msgstr ""
-
-msgid "Subtitle Settings"
 msgstr ""
 
 msgid "Subtitles"
@@ -19750,6 +19774,12 @@ msgstr ""
 msgid "This allows you to set the number of digits to 5, if you have more than 9999 channels."
 msgstr ""
 
+msgid "This allows you to show OpenPLi modules in downloads"
+msgstr ""
+
+msgid "This allows you to show OpenViX modules in downloads"
+msgstr ""
+
 msgid "This allows you to show drivers modules in downloads"
 msgstr ""
 
@@ -19771,9 +19801,6 @@ msgstr ""
 msgid "This allows you to show picons modules in downloads"
 msgstr ""
 
-msgid "This allows you to show OpenPLi modules in downloads"
-msgstr ""
-
 msgid "This allows you to show security modules in downloads"
 msgstr ""
 
@@ -19787,9 +19814,6 @@ msgid "This allows you to show softcams modules in downloads"
 msgstr ""
 
 msgid "This allows you to show system plugin modules in downloads"
-msgstr ""
-
-msgid "This allows you to show OpenViX modules in downloads"
 msgstr ""
 
 msgid "This allows you to show weblinks modules in downloads"
@@ -20150,6 +20174,10 @@ msgstr ""
 msgid "Time"
 msgstr "時間"
 
+#, fuzzy
+msgid "Time Settings"
+msgstr "自動計時器設定"
+
 msgid "Time Setup Actions"
 msgstr ""
 
@@ -20214,10 +20242,6 @@ msgstr ""
 
 msgid "Time scale"
 msgstr ""
-
-#, fuzzy
-msgid "Time Settings"
-msgstr "自動計時器設定"
 
 #, fuzzy
 msgid "Time style"
@@ -20327,6 +20351,10 @@ msgstr "計時器"
 msgid "Timeshift"
 msgstr "時光平移"
 
+#, fuzzy
+msgid "Timeshift Settings"
+msgstr "時光平移位置"
+
 msgid "Timeshift buffer delete after zap"
 msgstr ""
 
@@ -20364,10 +20392,6 @@ msgstr "添加錄影 (當前事件停止後)"
 
 msgid "Timeshift saved to your harddisk!"
 msgstr ""
-
-#, fuzzy
-msgid "Timeshift Settings"
-msgstr "時光平移位置"
 
 msgid "Timeshift will get saved at end of event!"
 msgstr ""
@@ -20647,6 +20671,10 @@ msgid "Tuner Information"
 msgstr ""
 
 #, fuzzy
+msgid "Tuner Settings"
+msgstr "調諧器資訊"
+
+#, fuzzy
 msgid "Tuner Setup"
 msgstr "調諧器插槽"
 
@@ -20666,10 +20694,6 @@ msgstr "調諧器資訊"
 
 #, fuzzy
 msgid "Tuner setting values"
-msgstr "調諧器資訊"
-
-#, fuzzy
-msgid "Tuner Settings"
 msgstr "調諧器資訊"
 
 msgid "Tuner slot"
@@ -21505,6 +21529,10 @@ msgid "Video PID"
 msgstr ""
 
 #, fuzzy
+msgid "Video Settings"
+msgstr "編輯設定"
+
+#, fuzzy
 msgid "Video clipping"
 msgstr "視頻微調"
 
@@ -21580,10 +21608,6 @@ msgstr "視頻輸出"
 
 msgid "Video output mode for UHD"
 msgstr ""
-
-#, fuzzy
-msgid "Video Settings"
-msgstr "編輯設定"
 
 #, fuzzy
 msgid "Video: "
@@ -22327,6 +22351,12 @@ msgstr ""
 msgid "YCbCr444"
 msgstr ""
 
+msgid "YELLOW button"
+msgstr ""
+
+msgid "YELLOW long"
+msgstr ""
+
 msgid "YPbPr"
 msgstr "YPbPr"
 
@@ -22338,12 +22368,6 @@ msgid "Yellow"
 msgstr "黃色"
 
 msgid "Yellow DVB subtitles"
-msgstr ""
-
-msgid "YELLOW button"
-msgstr ""
-
-msgid "YELLOW long"
 msgstr ""
 
 msgid "Yemen"
@@ -24711,6 +24735,28 @@ msgstr "轉自"
 
 msgid "®"
 msgstr ""
+
+#, fuzzy
+#~ msgid "Customise"
+#~ msgstr "高級設定"
+
+#, fuzzy
+#~ msgid "DHCP Router"
+#~ msgstr "完成"
+
+#~ msgid "Factory reset"
+#~ msgstr "出廠設定"
+
+#, python-format
+#~ msgid "Nameserver %d"
+#~ msgstr "DNS %d"
+
+#, fuzzy
+#~ msgid "Nameserver configuration"
+#~ msgstr "調諧器配置"
+
+#~ msgid "Network Setup"
+#~ msgstr "網路設定"
 
 #, fuzzy
 #~ msgid "Password changed"

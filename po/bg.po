@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openATV / enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-03-01 17:50+0000\n"
+"POT-Creation-Date: 2022-03-15 12:24+0000\n"
 "PO-Revision-Date: 2017-11-21 13:26+0200\n"
 "Last-Translator: Satelitas\n"
 "Language-Team: TEAM <EMAIL@ADDRESS>\n"
@@ -1739,7 +1739,7 @@ msgstr ""
 msgid "12 hours"
 msgstr "24+ Часове"
 
-msgid "12, show latin-1 characters except for greek and cyrillic, switch to 8 if needed."
+msgid "12, show Latin-1 characters except for greek and cyrillic, switch to 8 if needed."
 msgstr ""
 
 msgid "128"
@@ -2569,11 +2569,11 @@ msgstr "Добави таймер"
 msgid "Add Zap+Record Timer"
 msgstr "Добави записващ таймер"
 
+msgid "Add a DNS entry"
+msgstr ""
+
 msgid "Add a mark"
 msgstr "Добави отметка"
-
-msgid "Add a nameserver entry"
-msgstr "Добави nameserver запис"
 
 msgid "Add a new tag"
 msgstr ""
@@ -3308,6 +3308,9 @@ msgstr "Автоматичен език"
 msgid "Auto Language Selection"
 msgstr "Избор на автоматичен език"
 
+msgid "Auto Language Settings"
+msgstr "Избор на автоматичен език"
+
 #, fuzzy
 msgid "Auto Modes Selected."
 msgstr "не е избран CAId"
@@ -3339,9 +3342,6 @@ msgstr "Автоматичното фокусиране е започнало ..
 
 msgid "Auto install log"
 msgstr ""
-
-msgid "Auto Language Settings"
-msgstr "Избор на автоматичен език"
 
 msgid "Auto scart switching"
 msgstr "Автоматично превключване на Scart"
@@ -3448,6 +3448,15 @@ msgstr "BER:"
 
 msgid "BLUDISC RECORDABLE"
 msgstr "Записваем Bludisc"
+
+msgid "BLUE button"
+msgstr "Син бутон"
+
+msgid "BLUE long"
+msgstr "Дълго синьо"
+
+msgid "BLUE switch: BLUE/BLUE long"
+msgstr "Син превключвател: Синьо-късо/Синьо-дълго"
 
 msgid "BT 2020 CL"
 msgstr "BT 2020 CL"
@@ -3772,15 +3781,6 @@ msgstr "Блокиране на шумовите смущения"
 msgid "Blue"
 msgstr "Син"
 
-msgid "BLUE button"
-msgstr "Син бутон"
-
-msgid "BLUE long"
-msgstr "Дълго синьо"
-
-msgid "BLUE switch: BLUE/BLUE long"
-msgstr "Син превключвател: Синьо-късо/Синьо-дълго"
-
 #, fuzzy
 msgid "Bluetooth Setup"
 msgstr "Настройка на бутон"
@@ -4036,6 +4036,10 @@ msgstr "CH%s"
 
 msgid "CHANGE BOUQUET"
 msgstr "ПРОМЕНИ БУКЕТ"
+
+#, fuzzy
+msgid "CHANNEL +/-"
+msgstr "Канал 1"
 
 msgid "CI (Common Interface) Setup"
 msgstr "CI (Общ интерфейс) Настройка"
@@ -4447,10 +4451,6 @@ msgstr "Канал"
 msgid "Channel \t\t\tVolume +"
 msgstr "Channel \t\t\tVolume +"
 
-#, fuzzy
-msgid "CHANNEL +/-"
-msgstr "Канал 1"
-
 msgid "Channel +/- button mode"
 msgstr "Режим на (Channel +/-) бутони"
 
@@ -4465,6 +4465,9 @@ msgstr "Информация за канала"
 
 msgid "Channel List"
 msgstr "Списък с канали"
+
+msgid "Channel Selection Settings"
+msgstr "Настройки за избор на канал"
 
 #, fuzzy
 msgid "Channel button always changes sides"
@@ -4518,9 +4521,6 @@ msgstr "Избор на канал"
 
 msgid "Channel selection configuration"
 msgstr "Конфигурация за избор на канал"
-
-msgid "Channel Selection Settings"
-msgstr "Настройки за избор на канал"
 
 msgid "Channel up"
 msgstr "Канал нагоре"
@@ -4860,7 +4860,7 @@ msgstr ""
 msgid "Close title selection"
 msgstr "Затвори избора на име"
 
-msgid "Cloudflare"
+msgid "Cloudflare DNS"
 msgstr ""
 
 msgid "Cocos (Keeling) Islands"
@@ -5173,8 +5173,8 @@ msgstr "Конфигуриране на функцията на дълго на�
 msgid "Configure the function of a short press on the power button."
 msgstr "Конфигуриране на функцията на кратко натискане на бутона за захранване."
 
-msgid "Configure the function of the <  > buttons."
-msgstr "Конфигуриране на функцията с  <  > бутоните."
+msgid "Configure the function of the < and > buttons."
+msgstr ""
 
 msgid "Configure the gateway."
 msgstr "Конфигуриране на шлюза."
@@ -5767,14 +5767,14 @@ msgstr "Персонализирано време за прескачане на
 msgid "Custom skip time for '7'/'9' buttons"
 msgstr "Персонализирано време за прескачане на '7'/'9' бутони"
 
-msgid "Customise"
+msgid "Customize"
 msgstr "Персонализиране"
+
+msgid "Customize System Settings"
+msgstr ""
 
 msgid "Customize enigma2 personal settings"
 msgstr "Персонализиране на enigma2 лични настройки"
-
-msgid "Customize"
-msgstr "Персонализиране"
 
 msgid "Cut"
 msgstr "Изрежи"
@@ -5814,10 +5814,6 @@ msgstr "DAC"
 msgid "DHCP"
 msgstr "DHCP"
 
-#, fuzzy
-msgid "DHCP Router"
-msgstr "Пълно"
-
 msgid "DLNA support"
 msgstr "DLNA поддръжка"
 
@@ -5826,6 +5822,15 @@ msgstr "DMM за напреднали"
 
 msgid "DMM normal"
 msgstr "DMM нормален"
+
+msgid "DNS (Dynamic Name Server) Actions"
+msgstr ""
+
+msgid "DNS Settings"
+msgstr ""
+
+msgid "DNS data source"
+msgstr ""
 
 msgid ""
 "DO NOT POWER OFF YOUR DEVICE WHILE UPDATING!\n"
@@ -7150,6 +7155,9 @@ msgstr "EPG Търсене"
 msgid "EPG Selection"
 msgstr "EPG селекция"
 
+msgid "EPG Settings"
+msgstr "EPG настройки"
+
 msgid "EPG Setup"
 msgstr "Настройка за EPG"
 
@@ -7187,9 +7195,6 @@ msgstr "EPG Търсене"
 
 msgid "EPG selection"
 msgstr "EPG селекция"
-
-msgid "EPG Settings"
-msgstr "EPG настройки"
 
 msgid "EPGSearch"
 msgstr "EPG Търсене"
@@ -7585,6 +7590,10 @@ msgstr ""
 msgid "Enter"
 msgstr "център"
 
+#, python-format
+msgid "Enter DNS (Dynamic Name Server) %d's IP address."
+msgstr ""
+
 msgid "Enter PIN"
 msgstr "Въведете PIN"
 
@@ -7681,6 +7690,14 @@ msgstr ""
 
 #, python-format
 msgid "Error %d: The logfile '%s' could not be opened.  (%s)"
+msgstr ""
+
+#, python-format
+msgid "Error %d: Unable to change password!  (%s)"
+msgstr ""
+
+#, python-format
+msgid "Error %d: Unable to start 'passwd' command!"
 msgstr ""
 
 #, python-format
@@ -7814,10 +7831,10 @@ msgstr "Няма налични актуализации. Моля, опитай
 msgid "Error: Checksum is invalid!"
 msgstr ""
 
-msgid "Error: The new password may not be blank!"
+msgid "Error: Interaction failure, unable to change password!"
 msgstr ""
 
-msgid "Error: Unable to change password!"
+msgid "Error: The new password may not be blank!"
 msgstr ""
 
 #, fuzzy
@@ -8175,11 +8192,11 @@ msgstr "FTP настройка"
 msgid "Factory Reset"
 msgstr ""
 
-msgid "Factory release"
+msgid "Factory Reset Settings"
 msgstr ""
 
-msgid "Factory reset"
-msgstr "Фабрично нулиране"
+msgid "Factory release"
+msgstr ""
 
 msgid "Fade the Infobar on hide"
 msgstr "Затихване на изчезващия инфобар"
@@ -8697,6 +8714,12 @@ msgstr "GB"
 msgid "GCC version"
 msgstr ""
 
+msgid "GREEN button"
+msgstr "Зелен бутон"
+
+msgid "GREEN long"
+msgstr "Зелено дълго"
+
 msgid "GStreamer debug log category *"
 msgstr ""
 
@@ -8968,12 +8991,6 @@ msgstr "Гръцки"
 
 msgid "Green"
 msgstr "Зелен"
-
-msgid "GREEN button"
-msgstr "Зелен бутон"
-
-msgid "GREEN long"
-msgstr "Зелено дълго"
 
 #, fuzzy
 msgid "Greenland"
@@ -9625,8 +9642,8 @@ msgstr ""
 msgid "If the free space is less than setting value, then an attempt is made to delete the old timeshift files."
 msgstr "Ако свободното пространство е по-малко от зададената стойност, тогава се прави опит за изтриване на старите файлове за timeshift."
 
-msgid "If the text is too long to be displayed on the front panel, it will be repeated (number of times):"
-msgstr "Ако текстът е твърде дълъг, за да се покаже на предния панел, той ще бъде повторен (няколко пъти):"
+msgid "If the text is too long to be displayed on the front panel, it will be repeated (number of times)."
+msgstr ""
 
 msgid "If using multiple uncommitted switches the DiSEqC commands must be sent multiple times. Set to the number of uncommitted switches in the chain minus one."
 msgstr ""
@@ -9904,6 +9921,9 @@ msgstr "Вход"
 msgid "Input "
 msgstr "Вход"
 
+msgid "Input Device Settings"
+msgstr ""
+
 msgid "Input Stream ID"
 msgstr ""
 
@@ -9919,9 +9939,6 @@ msgid "Input devices"
 msgstr "Входни устройства"
 
 msgid "Input scroll position"
-msgstr ""
-
-msgid "Input Device Settings"
 msgstr ""
 
 msgid "Insert"
@@ -10306,6 +10323,9 @@ msgstr ""
 msgid "Keyboard"
 msgstr "Клавиатура"
 
+msgid "Keyboard Settings"
+msgstr "Настройка на клавиатурата"
+
 #, fuzzy
 msgid "Keyboard data entry"
 msgstr "Настройка на клавиатурата"
@@ -10316,9 +10336,6 @@ msgstr "Клавиатура"
 
 msgid "Keyboard map"
 msgstr "Карта клавиатура"
-
-msgid "Keyboard Settings"
-msgstr "Настройка на клавиатурата"
 
 msgid "Kikuyu / Gikuyu"
 msgstr ""
@@ -10863,14 +10880,14 @@ msgstr ""
 msgid "Logs"
 msgstr ""
 
+msgid "Logs Settings"
+msgstr "Настройки за дневниците"
+
 msgid "Logs location"
 msgstr "Местоположение дневници"
 
 msgid "Logs older then the set no of days will be deleted."
 msgstr "Дневниците, по-стари, след зададените дни ще бъдат изтрити."
-
-msgid "Logs Settings"
-msgstr "Настройки за дневниците"
 
 msgid "Long << / >>"
 msgstr "Дълго << / >>"
@@ -11546,6 +11563,12 @@ msgstr "Движение режим изкл"
 msgid "Move mode on"
 msgstr "Движение режим вкл"
 
+msgid "Move the current DNS entry down one line"
+msgstr ""
+
+msgid "Move the current DNS entry up one line"
+msgstr ""
+
 msgid "Move the keyboard cursor down"
 msgstr ""
 
@@ -11816,19 +11839,15 @@ msgstr "Име"
 msgid "Name reverse"
 msgstr "Nameserver"
 
+#, python-format
+msgid "Name server %d"
+msgstr ""
+
 msgid "Name:"
 msgstr "Име:"
 
 msgid "Nameserver"
 msgstr "Nameserver"
-
-#, python-format
-msgid "Nameserver %d"
-msgstr "Nameserver %d"
-
-#, fuzzy
-msgid "Nameserver configuration"
-msgstr "Изход от конфигурацията на сървъра за имена"
 
 msgid "Nameserver settings"
 msgstr "Nameserver settings"
@@ -11924,7 +11943,7 @@ msgstr "Рестартиране мрежа"
 msgid "Network Services"
 msgstr "Мрежови сервизи"
 
-msgid "Network Setup"
+msgid "Network Settings"
 msgstr "Мрежова настройка"
 
 msgid "Network Test"
@@ -11953,9 +11972,6 @@ msgstr "Име на мрежата (SSID)"
 
 msgid "Network scan"
 msgstr "Мрежово сканиране"
-
-msgid "Network Settings"
-msgstr "Мрежова настройка"
 
 msgid "Network test"
 msgstr "Тест мрежа"
@@ -12534,14 +12550,14 @@ msgstr "OSD приспособяване"
 msgid "OSD Position"
 msgstr "Позиция OSD"
 
+msgid "OSD Settings"
+msgstr "OSD настройки"
+
 msgid "OSD Setup"
 msgstr "Настройка на OSD"
 
 msgid "OSD name request"
 msgstr "Искане за име на OSD"
-
-msgid "OSD Settings"
-msgstr "OSD настройки"
 
 msgid "OScam Info"
 msgstr "OScam инфо"
@@ -12782,11 +12798,11 @@ msgstr ""
 msgid "Oromo"
 msgstr ""
 
-msgid "Oscam Info Settings"
-msgstr "Oscam инфо - Конфигурация"
-
 msgid "Oscam Info - Main Menu"
 msgstr "Oscam инфо - Основно меню"
+
+msgid "Oscam Info Settings"
+msgstr "Oscam инфо - Конфигурация"
 
 #, python-format
 msgid "Oscam Log ( Oscam-Version: %s )"
@@ -13653,6 +13669,9 @@ msgstr "Моля изчакайте..."
 msgid "Plugin Browser"
 msgstr "Браузър за плъгини"
 
+msgid "Plugin Browser Settings"
+msgstr "Настройки за браузъра за плъгини"
+
 msgid "Plugin Filter Settings"
 msgstr "Филтър за плъгини"
 
@@ -13664,9 +13683,6 @@ msgstr "Информация за активността на мениджъра
 
 msgid "Plugin manager help"
 msgstr "Помощник на мениджъра на плъгини"
-
-msgid "Plugin Browser Settings"
-msgstr "Настройки за браузъра за плъгини"
 
 msgid "Plugins"
 msgstr "Плъгини"
@@ -14282,6 +14298,12 @@ msgstr "QuickMenu/Extensions"
 msgid "Quiz"
 msgstr ""
 
+msgid "RADIO"
+msgstr "Радио"
+
+msgid "RADIO long"
+msgstr "RADIO long"
+
 msgid "RAM (Details)"
 msgstr ""
 
@@ -14326,20 +14348,20 @@ msgstr "само в Standby"
 msgid "REC Symbol in use"
 msgstr "REC Symbol"
 
+msgid "RED button"
+msgstr "Червен бутон"
+
+msgid "RED long"
+msgstr "Червено дълго"
+
 msgid "RF Output Settings"
 msgstr "RF изход"
 
 msgid "RGB"
 msgstr "RGB"
 
-msgid "RADIO"
-msgstr "Радио"
-
 msgid "Radio Channel Selection"
 msgstr "Radio Channel Selection"
-
-msgid "RADIO long"
-msgstr "RADIO long"
 
 #, fuzzy
 msgid "Radsport"
@@ -14515,6 +14537,9 @@ msgstr "Записване"
 msgid "Recording Actions"
 msgstr "Настройки за записване"
 
+msgid "Recording Settings"
+msgstr "Настройки за записване"
+
 msgid "Recording Setup"
 msgstr "Настройка на записване"
 
@@ -14535,9 +14560,6 @@ msgstr "Записването е в прогрес"
 
 #, fuzzy
 msgid "Recording running"
-msgstr "Настройки за записване"
-
-msgid "Recording Settings"
 msgstr "Настройки за записване"
 
 #, fuzzy
@@ -14593,17 +14615,11 @@ msgstr "Режим на възстановяване"
 msgid "Red"
 msgstr "Червен"
 
-msgid "RED button"
-msgstr "Червен бутон"
-
 msgid "Red button..."
 msgstr "Червен бутон..."
 
 msgid "Red colored"
 msgstr "Червено оцветен"
-
-msgid "RED long"
-msgstr "Червено дълго"
 
 msgid "Red/HbbTV Button Actions"
 msgstr ""
@@ -14730,6 +14746,9 @@ msgstr "Запомни PIN на сервиза"
 msgid "Remote Control"
 msgstr ""
 
+msgid "Remote Control Button Settings"
+msgstr ""
+
 msgid "Remote Control Code"
 msgstr "Код дистанционно управление"
 
@@ -14768,11 +14787,11 @@ msgstr "Премахване на вписването на сървър за и
 msgid "Remove Service"
 msgstr "Премахване на сервиза"
 
+msgid "Remove a DNS entry"
+msgstr ""
+
 msgid "Remove a mark"
 msgstr "Премахване на отметката"
-
-msgid "Remove a nameserver entry"
-msgstr "Премахване на вписването на сървър за имена"
 
 msgid "Remove all bouquet/tuning data"
 msgstr ""
@@ -15169,6 +15188,9 @@ msgstr ""
 msgid "Rotor turning speed"
 msgstr "Скорост на въртене на ротора"
 
+msgid "Router / Gateway"
+msgstr ""
+
 #, fuzzy
 msgid "Routing request"
 msgstr "Източник поискване"
@@ -15384,11 +15406,11 @@ msgstr "Търсач на сателит"
 msgid "Satellite"
 msgstr "Сателит"
 
-msgid "Satellite configuration mode"
-msgstr "Режим на спътникова конфигурация"
-
 msgid "Satellite Dish Settings"
 msgstr "Настройка на сателитна антена"
+
+msgid "Satellite configuration mode"
+msgstr "Режим на спътникова конфигурация"
 
 msgid "Satellite equipment"
 msgstr "Сателитно оборудване"
@@ -16057,6 +16079,9 @@ msgstr ""
 
 msgid "Select the sleep timer action."
 msgstr "Изберете действието на таймера за сън."
+
+msgid "Select the source of the default DNS settings."
+msgstr ""
 
 msgid "Select the time delay before the button starts repeating."
 msgstr ""
@@ -18144,7 +18169,7 @@ msgstr "Старт на офлайн декодиране"
 msgid "State"
 msgstr ""
 
-msgid "Static IP or Custom"
+msgid "Static IP / Custom"
 msgstr ""
 
 msgid "Status"
@@ -18244,14 +18269,14 @@ msgstr "Стоп на TimeShift и запази TimeShift буфер като ф
 msgid "Stop timeshift while recording"
 msgstr "Стоп на timeshift докато записва?"
 
-msgid "Stops timeshift being used if a recording is in progress. (Advisable for USB sticks.)"
-msgstr "Стоп на използване на timeshift, ако записа е в ход. (Препоръчително за USB стикове)"
-
 msgid "Stopped"
 msgstr "Спряно"
 
 msgid "Stopping Softcam"
 msgstr "Спиране Softcam"
+
+msgid "Stops timeshift being used if a recording is in progress. (Advisable for USB sticks.)"
+msgstr "Стоп на използване на timeshift, ако записа е в ход. (Препоръчително за USB стикове)"
 
 msgid "Storage devices"
 msgstr "Устройства за съхранение"
@@ -18334,6 +18359,9 @@ msgstr "Избор на субтитри"
 msgid "Subtitle Quickmenu"
 msgstr "Бързо меню за субтитри"
 
+msgid "Subtitle Settings"
+msgstr "Настройки за субтитри"
+
 msgid "Subtitle alignment"
 msgstr "Подравняване на субтитрите"
 
@@ -18376,9 +18404,6 @@ msgstr "Избор на субтитри"
 
 msgid "Subtitle selection..."
 msgstr "Избор на субтитри..."
-
-msgid "Subtitle Settings"
-msgstr "Настройки за субтитри"
 
 msgid "Subtitles"
 msgstr "Субтитри"
@@ -19240,6 +19265,12 @@ msgstr "Това ви позволява да промените броя на �
 msgid "This allows you to set the number of digits to 5, if you have more than 9999 channels."
 msgstr "Това ви позволява да зададете броя на цифрите на 5,ако имате повече от 9999 канала."
 
+msgid "This allows you to show OpenPLi modules in downloads"
+msgstr "Това ви позволява да се покажат pli modules в изтеглянията"
+
+msgid "This allows you to show OpenViX modules in downloads"
+msgstr "Това ви позволява да се покажат vix modules в изтеглянията"
+
 msgid "This allows you to show drivers modules in downloads"
 msgstr "Това ви позволява да се покажат drivers modules в изтеглянията"
 
@@ -19262,9 +19293,6 @@ msgstr "Това ви позволява да се покажат m2k modules в
 msgid "This allows you to show picons modules in downloads"
 msgstr "Това ви позволява да се покажат picons modules в изтеглянията"
 
-msgid "This allows you to show OpenPLi modules in downloads"
-msgstr "Това ви позволява да се покажат pli modules в изтеглянията"
-
 msgid "This allows you to show security modules in downloads"
 msgstr "Това ви позволява да се покажат security modules в изтеглянията"
 
@@ -19280,9 +19308,6 @@ msgstr "Това ви позволява да се покажат softcams modul
 
 msgid "This allows you to show system plugin modules in downloads"
 msgstr "Това ви позволява да се покажат systemplugins modules в изтеглянията"
-
-msgid "This allows you to show OpenViX modules in downloads"
-msgstr "Това ви позволява да се покажат vix modules в изтеглянията"
 
 msgid "This allows you to show weblinks modules in downloads"
 msgstr "Това ви позволява да се покажат weblinks modules в изтеглянията"
@@ -19669,6 +19694,9 @@ msgstr ""
 msgid "Time"
 msgstr "Време"
 
+msgid "Time Settings"
+msgstr "Времеви настройки"
+
 msgid "Time Setup Actions"
 msgstr ""
 
@@ -19730,9 +19758,6 @@ msgstr ""
 
 msgid "Time scale"
 msgstr "Времева скала"
-
-msgid "Time Settings"
-msgstr "Времеви настройки"
 
 #, fuzzy
 msgid "Time style"
@@ -19836,6 +19861,9 @@ msgstr "Таймери"
 msgid "Timeshift"
 msgstr "Timeshift"
 
+msgid "Timeshift Settings"
+msgstr "TimeShift настройки"
+
 msgid "Timeshift buffer delete after zap"
 msgstr "Изтриване на Timeshift буфер след превключване?"
 
@@ -19871,9 +19899,6 @@ msgstr "Timeshift запазва запис (стоп след текущото 
 
 msgid "Timeshift saved to your harddisk!"
 msgstr "Timeshift запазен на вашия harddisk!"
-
-msgid "Timeshift Settings"
-msgstr "TimeShift настройки"
 
 msgid "Timeshift will get saved at end of event!"
 msgstr "Timeshift ще се запази в края на събитието!"
@@ -20145,6 +20170,9 @@ msgstr "Конфигурация тунер"
 msgid "Tuner Information"
 msgstr ""
 
+msgid "Tuner Settings"
+msgstr "Настройки за тунер"
+
 msgid "Tuner Setup"
 msgstr "Настройка на тунер"
 
@@ -20163,9 +20191,6 @@ msgstr "Състояние на тунера"
 
 #, fuzzy
 msgid "Tuner setting values"
-msgstr "Настройки за тунер"
-
-msgid "Tuner Settings"
 msgstr "Настройки за тунер"
 
 msgid "Tuner slot"
@@ -20977,6 +21002,9 @@ msgstr "Видео"
 msgid "Video PID"
 msgstr "Видео PID"
 
+msgid "Video Settings"
+msgstr "Видео настройки"
+
 msgid "Video clipping"
 msgstr "Видео подрязване"
 
@@ -21046,9 +21074,6 @@ msgstr "Режим видео изход за SD"
 
 msgid "Video output mode for UHD"
 msgstr "Режим видео изход за UHD"
-
-msgid "Video Settings"
-msgstr "Видео настройки"
 
 msgid "Video: "
 msgstr "Видео: "
@@ -21786,6 +21811,12 @@ msgstr ""
 msgid "YCbCr444"
 msgstr ""
 
+msgid "YELLOW button"
+msgstr "Жълт бутон"
+
+msgid "YELLOW long"
+msgstr "Дълго жълто"
+
 msgid "YPbPr"
 msgstr "YPbPr"
 
@@ -21797,12 +21828,6 @@ msgstr "Жълт"
 
 msgid "Yellow DVB subtitles"
 msgstr "Жълти DVB субтитри"
-
-msgid "YELLOW button"
-msgstr "Жълт бутон"
-
-msgid "YELLOW long"
-msgstr "Дълго жълто"
 
 #, fuzzy
 msgid "Yemen"
@@ -24161,6 +24186,39 @@ msgstr "превключено на"
 
 msgid "®"
 msgstr ""
+
+#~ msgid "Add a nameserver entry"
+#~ msgstr "Добави nameserver запис"
+
+#~ msgid "Configure the function of the <  > buttons."
+#~ msgstr "Конфигуриране на функцията с  <  > бутоните."
+
+#~ msgid "Customise"
+#~ msgstr "Персонализиране"
+
+#, fuzzy
+#~ msgid "DHCP Router"
+#~ msgstr "Пълно"
+
+#~ msgid "Factory reset"
+#~ msgstr "Фабрично нулиране"
+
+#~ msgid "If the text is too long to be displayed on the front panel, it will be repeated (number of times):"
+#~ msgstr "Ако текстът е твърде дълъг, за да се покаже на предния панел, той ще бъде повторен (няколко пъти):"
+
+#, python-format
+#~ msgid "Nameserver %d"
+#~ msgstr "Nameserver %d"
+
+#, fuzzy
+#~ msgid "Nameserver configuration"
+#~ msgstr "Изход от конфигурацията на сървъра за имена"
+
+#~ msgid "Network Setup"
+#~ msgstr "Мрежова настройка"
+
+#~ msgid "Remove a nameserver entry"
+#~ msgstr "Премахване на вписването на сървър за имена"
 
 #, fuzzy
 #~ msgid "Password changed"

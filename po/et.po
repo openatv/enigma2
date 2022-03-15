@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV-Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-03-01 17:50+0000\n"
+"POT-Creation-Date: 2022-03-15 12:24+0000\n"
 "PO-Revision-Date: 2021-08-21 11:46+0000\n"
 "Last-Translator: openATV <openatv@gmail.com>\n"
 "Language-Team: Estonian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/et/>\n"
@@ -1615,8 +1615,8 @@ msgstr "12 tähemärki"
 msgid "12 hours"
 msgstr "12 tundi"
 
-msgid "12, show latin-1 characters except for greek and cyrillic, switch to 8 if needed."
-msgstr "12, kuva latin-1 tähemärke v.a. kreeka ja kirillitsa, vajadusel vaheta 8 peale."
+msgid "12, show Latin-1 characters except for greek and cyrillic, switch to 8 if needed."
+msgstr ""
 
 msgid "128"
 msgstr "128"
@@ -2425,11 +2425,11 @@ msgstr "Lisa kanalivahetustaimer"
 msgid "Add Zap+Record Timer"
 msgstr "Lisa kanalivahetus- ja salvestustaimer"
 
+msgid "Add a DNS entry"
+msgstr ""
+
 msgid "Add a mark"
 msgstr "Lisa tähis"
-
-msgid "Add a nameserver entry"
-msgstr "Lisa nimeserver"
 
 msgid "Add a new tag"
 msgstr ""
@@ -3154,6 +3154,9 @@ msgstr "Automaatne keelevalik"
 msgid "Auto Language Selection"
 msgstr "Automaatsed keelevalikud"
 
+msgid "Auto Language Settings"
+msgstr "Automaatsed keelevalikud"
+
 msgid "Auto Modes Selected."
 msgstr "Automaatsed režiimid valitud."
 
@@ -3183,9 +3186,6 @@ msgstr "Autofookus käivitub..."
 
 msgid "Auto install log"
 msgstr ""
-
-msgid "Auto Language Settings"
-msgstr "Automaatsed keelevalikud"
 
 msgid "Auto scart switching"
 msgstr "Autom. SCART ümberlülitus"
@@ -3292,6 +3292,15 @@ msgstr "BER:"
 
 msgid "BLUDISC RECORDABLE"
 msgstr "KIRJUTATAV BLUDISC"
+
+msgid "BLUE button"
+msgstr "Sinine nupp"
+
+msgid "BLUE long"
+msgstr "Sinine - pikk"
+
+msgid "BLUE switch: BLUE/BLUE long"
+msgstr "Lühike SININE/pikk SININE vahetus"
 
 msgid "BT 2020 CL"
 msgstr "BT 2020 CL"
@@ -3608,15 +3617,6 @@ msgstr "Plokkmüra vähendamine"
 msgid "Blue"
 msgstr "Sinine"
 
-msgid "BLUE button"
-msgstr "Sinine nupp"
-
-msgid "BLUE long"
-msgstr "Sinine - pikk"
-
-msgid "BLUE switch: BLUE/BLUE long"
-msgstr "Lühike SININE/pikk SININE vahetus"
-
 msgid "Bluetooth Setup"
 msgstr "Bluetooth seaded"
 
@@ -3871,6 +3871,10 @@ msgstr "CH%s"
 
 msgid "CHANGE BOUQUET"
 msgstr "LEMMIKNIMEKIRJA VAHETUS"
+
+#, fuzzy
+msgid "CHANNEL +/-"
+msgstr "Kanal 1"
 
 msgid "CI (Common Interface) Setup"
 msgstr "CI seadistamine"
@@ -4282,10 +4286,6 @@ msgstr "Kanal"
 msgid "Channel \t\t\tVolume +"
 msgstr "Kanal \t\t\tHelitugevus +"
 
-#, fuzzy
-msgid "CHANNEL +/-"
-msgstr "Kanal 1"
-
 msgid "Channel +/- button mode"
 msgstr "CH +/- nuppude vajutus"
 
@@ -4300,6 +4300,9 @@ msgstr "Kanaliinfo"
 
 msgid "Channel List"
 msgstr "Kanalinimekiri"
+
+msgid "Channel Selection Settings"
+msgstr "Kanalivaliku seaded"
 
 msgid "Channel button always changes sides"
 msgstr "Kanalinupud vahetavad alati pooli"
@@ -4348,9 +4351,6 @@ msgid "Channel selection"
 msgstr "Kanalivalik"
 
 msgid "Channel selection configuration"
-msgstr "Kanalivaliku seaded"
-
-msgid "Channel Selection Settings"
 msgstr "Kanalivaliku seaded"
 
 msgid "Channel up"
@@ -4689,7 +4689,7 @@ msgstr ""
 msgid "Close title selection"
 msgstr "Sulge pealkirja valik"
 
-msgid "Cloudflare"
+msgid "Cloudflare DNS"
 msgstr ""
 
 msgid "Cocos (Keeling) Islands"
@@ -4995,8 +4995,8 @@ msgstr "Määra, mida toitenupu pikk vajutus teeb."
 msgid "Configure the function of a short press on the power button."
 msgstr "Määra, mida toitenupu lühike vajutus teeb."
 
-msgid "Configure the function of the <  > buttons."
-msgstr "Määra <  > nuppude toiming."
+msgid "Configure the function of the < and > buttons."
+msgstr ""
 
 msgid "Configure the gateway."
 msgstr "Seadista lüüs."
@@ -5583,16 +5583,15 @@ msgstr "'4'/'6'-nuppude hüppe kohandatud pikkus"
 msgid "Custom skip time for '7'/'9' buttons"
 msgstr "'7'/'9'-nuppude hüppe kohandatud pikkus"
 
-# Quick Menue
-msgid "Customise"
-msgstr "Kasutaja valikud"
+msgid "Customize"
+msgstr "Kasutaja eelistused"
+
+msgid "Customize System Settings"
+msgstr ""
 
 # Quick Menue
 msgid "Customize enigma2 personal settings"
 msgstr "Kohanda enigma2 isiklikke sätteid"
-
-msgid "Customize"
-msgstr "Kasutaja eelistused"
 
 msgid "Cut"
 msgstr "Lõika"
@@ -5632,10 +5631,6 @@ msgstr "DAC"
 msgid "DHCP"
 msgstr "DHCP"
 
-#, fuzzy
-msgid "DHCP Router"
-msgstr "Täielik"
-
 msgid "DLNA support"
 msgstr "DLNA tugi"
 
@@ -5644,6 +5639,15 @@ msgstr "DMM täpne"
 
 msgid "DMM normal"
 msgstr "DMM tavaline"
+
+msgid "DNS (Dynamic Name Server) Actions"
+msgstr ""
+
+msgid "DNS Settings"
+msgstr ""
+
+msgid "DNS data source"
+msgstr ""
 
 msgid ""
 "DO NOT POWER OFF YOUR DEVICE WHILE UPDATING!\n"
@@ -6971,6 +6975,9 @@ msgstr "EPG otsing"
 msgid "EPG Selection"
 msgstr "EPG valik"
 
+msgid "EPG Settings"
+msgstr "EPG seaded"
+
 msgid "EPG Setup"
 msgstr "EPG seadistamine"
 
@@ -7016,9 +7023,6 @@ msgstr "EPG otsing"
 
 msgid "EPG selection"
 msgstr "EPG valik"
-
-msgid "EPG Settings"
-msgstr "EPG seaded"
 
 msgid "EPGSearch"
 msgstr "EPG otsing"
@@ -7418,6 +7422,10 @@ msgstr ""
 msgid "Enter"
 msgstr "Enter"
 
+#, python-format
+msgid "Enter DNS (Dynamic Name Server) %d's IP address."
+msgstr ""
+
 msgid "Enter PIN"
 msgstr "Sisesta PIN"
 
@@ -7512,6 +7520,14 @@ msgstr ""
 
 #, python-format
 msgid "Error %d: The logfile '%s' could not be opened.  (%s)"
+msgstr ""
+
+#, python-format
+msgid "Error %d: Unable to change password!  (%s)"
+msgstr ""
+
+#, python-format
+msgid "Error %d: Unable to start 'passwd' command!"
 msgstr ""
 
 #, python-format
@@ -7654,10 +7670,10 @@ msgstr "Uuendusi ei ole. Proovi hiljem uuesti."
 msgid "Error: Checksum is invalid!"
 msgstr ""
 
-msgid "Error: The new password may not be blank!"
+msgid "Error: Interaction failure, unable to change password!"
 msgstr ""
 
-msgid "Error: Unable to change password!"
+msgid "Error: The new password may not be blank!"
 msgstr ""
 
 #, fuzzy
@@ -8013,11 +8029,11 @@ msgstr "FTP seaded"
 msgid "Factory Reset"
 msgstr ""
 
-msgid "Factory release"
+msgid "Factory Reset Settings"
 msgstr ""
 
-msgid "Factory reset"
-msgstr "Algseadistus"
+msgid "Factory release"
+msgstr ""
 
 msgid "Fade the Infobar on hide"
 msgstr "Luba inforiba hajumine"
@@ -8530,6 +8546,12 @@ msgstr "GB"
 msgid "GCC version"
 msgstr ""
 
+msgid "GREEN button"
+msgstr "Roheline nupp"
+
+msgid "GREEN long"
+msgstr "Roheline - pikk"
+
 msgid "GStreamer debug log category *"
 msgstr ""
 
@@ -8794,12 +8816,6 @@ msgstr "Kreeka"
 
 msgid "Green"
 msgstr "Roheline"
-
-msgid "GREEN button"
-msgstr "Roheline nupp"
-
-msgid "GREEN long"
-msgstr "Roheline - pikk"
 
 msgid "Greenland"
 msgstr "Gröönimaa"
@@ -9438,8 +9454,8 @@ msgstr ""
 msgid "If the free space is less than setting value, then an attempt is made to delete the old timeshift files."
 msgstr "Kui vaba kettaruumi on määratud väärtusest vähem, üritatakse kustutada vanu ajanihke faile."
 
-msgid "If the text is too long to be displayed on the front panel, it will be repeated (number of times):"
-msgstr "Kui tekst on esipaneelil kuvamiseks liiga pikk, korratakse seda (kordade arv:)"
+msgid "If the text is too long to be displayed on the front panel, it will be repeated (number of times)."
+msgstr ""
 
 msgid "If using multiple uncommitted switches the DiSEqC commands must be sent multiple times. Set to the number of uncommitted switches in the chain minus one."
 msgstr ""
@@ -9722,6 +9738,9 @@ msgstr "Sisend"
 msgid "Input "
 msgstr "Sisend "
 
+msgid "Input Device Settings"
+msgstr ""
+
 msgid "Input Stream ID"
 msgstr "Sisendvoo ID"
 
@@ -9735,9 +9754,6 @@ msgid "Input devices"
 msgstr "Sisendseadmed"
 
 msgid "Input scroll position"
-msgstr ""
-
-msgid "Input Device Settings"
 msgstr ""
 
 msgid "Insert"
@@ -10120,6 +10136,9 @@ msgstr ""
 msgid "Keyboard"
 msgstr "Klaviatuur"
 
+msgid "Keyboard Settings"
+msgstr "Klaviatuuri seaded"
+
 msgid "Keyboard data entry"
 msgstr "Klaviatuuri andmesisestus"
 
@@ -10129,9 +10148,6 @@ msgstr "Klaviatuur"
 
 msgid "Keyboard map"
 msgstr "Klaviatuur"
-
-msgid "Keyboard Settings"
-msgstr "Klaviatuuri seaded"
 
 msgid "Kikuyu / Gikuyu"
 msgstr ""
@@ -10669,15 +10685,15 @@ msgstr ""
 msgid "Logs"
 msgstr ""
 
+msgid "Logs Settings"
+msgstr "Logimise seaded"
+
 msgid "Logs location"
 msgstr "Logide asukoht"
 
 # crashlog
 msgid "Logs older then the set no of days will be deleted."
 msgstr "Logid, mis on määratud päevade arvust vanemad, kustutatakse."
-
-msgid "Logs Settings"
-msgstr "Logimise seaded"
 
 msgid "Long << / >>"
 msgstr "Pikk << / >>"
@@ -11365,6 +11381,12 @@ msgstr "Keela liigutamine"
 msgid "Move mode on"
 msgstr "Luba liigutamine"
 
+msgid "Move the current DNS entry down one line"
+msgstr ""
+
+msgid "Move the current DNS entry up one line"
+msgstr ""
+
 #, fuzzy
 msgid "Move the keyboard cursor down"
 msgstr "Liiguta virtuaalklahvistiku kursorit alla"
@@ -11640,19 +11662,15 @@ msgstr "Nimi"
 msgid "Name reverse"
 msgstr "Pööratud tähestikuline"
 
+#, python-format
+msgid "Name server %d"
+msgstr ""
+
 msgid "Name:"
 msgstr "Nimi:"
 
 msgid "Nameserver"
 msgstr "Nimeserver"
-
-#, python-format
-msgid "Nameserver %d"
-msgstr "Nimeserver %d"
-
-#, fuzzy
-msgid "Nameserver configuration"
-msgstr "Välju nimeserverite seadistusest"
 
 msgid "Nameserver settings"
 msgstr "Nimeserveri seaded"
@@ -11755,7 +11773,7 @@ msgstr "Võrgu taaskäivitamine"
 msgid "Network Services"
 msgstr "Võrguteenused"
 
-msgid "Network Setup"
+msgid "Network Settings"
 msgstr "Võrgu häälestamine"
 
 msgid "Network Test"
@@ -11785,9 +11803,6 @@ msgstr "Võrgu nimi (SSID)"
 
 msgid "Network scan"
 msgstr "Võrguotsing"
-
-msgid "Network Settings"
-msgstr "Võrgu häälestamine"
 
 msgid "Network test"
 msgstr "Võrgu testimine"
@@ -12362,14 +12377,14 @@ msgstr "Ekraanigraafika kohandamine"
 msgid "OSD Position"
 msgstr "Ekraanigraafika asetus"
 
+msgid "OSD Settings"
+msgstr "Ekraanigraafika seaded"
+
 msgid "OSD Setup"
 msgstr "Ekraanigraafika seadistamine"
 
 msgid "OSD name request"
 msgstr "OSD nime päring"
-
-msgid "OSD Settings"
-msgstr "Ekraanigraafika seaded"
 
 msgid "OScam Info"
 msgstr "OScam info"
@@ -12611,11 +12626,11 @@ msgstr ""
 msgid "Oromo"
 msgstr ""
 
-msgid "Oscam Info Settings"
-msgstr "Oscam info - seadistus"
-
 msgid "Oscam Info - Main Menu"
 msgstr "Oscam info - peamenüü"
+
+msgid "Oscam Info Settings"
+msgstr "Oscam info - seadistus"
 
 #, python-format
 msgid "Oscam Log ( Oscam-Version: %s )"
@@ -12913,6 +12928,9 @@ msgstr ""
 
 msgid "Password Settings"
 msgstr "Parooli seadistus"
+
+msgid "Password changed."
+msgstr "Parool muudetud."
 
 msgid "Password:"
 msgstr "Parool:"
@@ -13501,6 +13519,9 @@ msgstr "Oota... peaaegu tehtud! "
 msgid "Plugin Browser"
 msgstr "Pluginad"
 
+msgid "Plugin Browser Settings"
+msgstr "Pluginamenüü seaded"
+
 msgid "Plugin Filter Settings"
 msgstr "Pluginate filter"
 
@@ -13512,9 +13533,6 @@ msgstr "Pluginahalduri tegevuse andmed"
 
 msgid "Plugin manager help"
 msgstr "Pluginahalduri abi"
-
-msgid "Plugin Browser Settings"
-msgstr "Pluginamenüü seaded"
 
 msgid "Plugins"
 msgstr "Pluginad"
@@ -14127,6 +14145,12 @@ msgstr "Kiirmenüü/laiendused"
 msgid "Quiz"
 msgstr ""
 
+msgid "RADIO"
+msgstr "Raadio"
+
+msgid "RADIO long"
+msgstr "Radio - pikk"
+
 msgid "RAM (Details)"
 msgstr ""
 
@@ -14169,20 +14193,20 @@ msgstr "REC sümbol ooteseisundis"
 msgid "REC Symbol in use"
 msgstr "REC sümbol kasutuses"
 
+msgid "RED button"
+msgstr "Punane nupp"
+
+msgid "RED long"
+msgstr "Punane - pikk"
+
 msgid "RF Output Settings"
 msgstr "RF-väljund"
 
 msgid "RGB"
 msgstr "RGB"
 
-msgid "RADIO"
-msgstr "Raadio"
-
 msgid "Radio Channel Selection"
 msgstr "Raadiokanalid"
-
-msgid "RADIO long"
-msgstr "Radio - pikk"
 
 #, fuzzy
 msgid "Radsport"
@@ -14190,6 +14214,9 @@ msgstr "meeskonnasport"
 
 msgid "Random"
 msgstr "Juhuslik"
+
+msgid "Random Password"
+msgstr "Juhuslik parool"
 
 #, python-format
 msgid "Rating defined by broadcaster - %d"
@@ -14355,6 +14382,9 @@ msgstr "Salvestus"
 msgid "Recording Actions"
 msgstr "Salvestamise seaded"
 
+msgid "Recording Settings"
+msgstr "Salvestamise seaded"
+
 msgid "Recording Setup"
 msgstr "Salvestuse seadistamine"
 
@@ -14375,9 +14405,6 @@ msgstr "Toimub salvestamine"
 
 #, fuzzy
 msgid "Recording running"
-msgstr "Salvestamise seaded"
-
-msgid "Recording Settings"
 msgstr "Salvestamise seaded"
 
 #, fuzzy
@@ -14433,17 +14460,11 @@ msgstr "Taasterežiim"
 msgid "Red"
 msgstr "Punane"
 
-msgid "RED button"
-msgstr "Punane nupp"
-
 msgid "Red button..."
 msgstr "Punane nupp"
 
 msgid "Red colored"
 msgstr "Punast värvi"
-
-msgid "RED long"
-msgstr "Punane - pikk"
 
 msgid "Red/HbbTV Button Actions"
 msgstr ""
@@ -14570,6 +14591,9 @@ msgstr "Kanali PIN jäetakse meelde"
 msgid "Remote Control"
 msgstr ""
 
+msgid "Remote Control Button Settings"
+msgstr ""
+
 msgid "Remote Control Code"
 msgstr "Puldi kood"
 
@@ -14608,11 +14632,11 @@ msgstr "Eemalda Quad PiP kanal"
 msgid "Remove Service"
 msgstr "Eemalda teenus"
 
+msgid "Remove a DNS entry"
+msgstr ""
+
 msgid "Remove a mark"
 msgstr "Eemalda märk"
-
-msgid "Remove a nameserver entry"
-msgstr "Eemalda nimeserver"
 
 msgid "Remove all bouquet/tuning data"
 msgstr ""
@@ -15001,6 +15025,9 @@ msgstr ""
 msgid "Rotor turning speed"
 msgstr "Ajami pööramise kiirus"
 
+msgid "Router / Gateway"
+msgstr ""
+
 msgid "Routing request"
 msgstr "Marsruutimise päring"
 
@@ -15218,11 +15245,11 @@ msgstr "Signaalimõõdik"
 msgid "Satellite"
 msgstr "Satelliit"
 
-msgid "Satellite configuration mode"
-msgstr "Satelliitide seadistamine"
-
 msgid "Satellite Dish Settings"
 msgstr "Antenni seaded"
+
+msgid "Satellite configuration mode"
+msgstr "Satelliitide seadistamine"
 
 msgid "Satellite equipment"
 msgstr "Satelliidivarustus"
@@ -15896,6 +15923,9 @@ msgstr "Kustuta teksti puhvri kursori alla jääv tähemärk"
 
 msgid "Select the sleep timer action."
 msgstr "Vali unetaimeri tegevus."
+
+msgid "Select the source of the default DNS settings."
+msgstr ""
 
 msgid "Select the time delay before the button starts repeating."
 msgstr ""
@@ -17974,7 +18004,7 @@ msgstr "Käivita võrguta dekodeerimine"
 msgid "State"
 msgstr ""
 
-msgid "Static IP or Custom"
+msgid "Static IP / Custom"
 msgstr ""
 
 msgid "Status"
@@ -18074,14 +18104,14 @@ msgstr "Lõpeta ajanihe, talleta ajanihke puhver ja alusta käesoleva saate salv
 msgid "Stop timeshift while recording"
 msgstr "Ajanihke peatamine salvestamise ajal"
 
-msgid "Stops timeshift being used if a recording is in progress. (Advisable for USB sticks.)"
-msgstr "Peatab ajanihke salvestamise ajaks. (Soovitatav, kui kasutatakse usb pulka)."
-
 msgid "Stopped"
 msgstr "Peatatud"
 
 msgid "Stopping Softcam"
 msgstr "EMU peatamine"
+
+msgid "Stops timeshift being used if a recording is in progress. (Advisable for USB sticks.)"
+msgstr "Peatab ajanihke salvestamise ajaks. (Soovitatav, kui kasutatakse usb pulka)."
 
 msgid "Storage devices"
 msgstr "Andmekandjad"
@@ -18163,6 +18193,9 @@ msgstr "Subtiitrite valik"
 msgid "Subtitle Quickmenu"
 msgstr "Subtiitrite kiirmenüü"
 
+msgid "Subtitle Settings"
+msgstr "Subtiitrite seaded"
+
 msgid "Subtitle alignment"
 msgstr "Subtiitrite joondus"
 
@@ -18204,9 +18237,6 @@ msgstr "Subtiitrite valik"
 
 msgid "Subtitle selection..."
 msgstr "Subtiitrite valik"
-
-msgid "Subtitle Settings"
-msgstr "Subtiitrite seaded"
 
 msgid "Subtitles"
 msgstr "Subtiitrid"
@@ -19082,6 +19112,12 @@ msgstr "Siin saab muuta kuvatavate ridade arvu."
 msgid "This allows you to set the number of digits to 5, if you have more than 9999 channels."
 msgstr "Võimalik on määrata kuni 5 numbrikohta, kui kanaleid on rohkem kui 9999."
 
+msgid "This allows you to show OpenPLi modules in downloads"
+msgstr "See lubab saadaolevate pli moodulite kuvamise"
+
+msgid "This allows you to show OpenViX modules in downloads"
+msgstr "See lubab saadaolevate vix moodulite kuvamise"
+
 msgid "This allows you to show drivers modules in downloads"
 msgstr "See lubab saadaolevate ajurite kuvamise"
 
@@ -19103,9 +19139,6 @@ msgstr "See lubab saadaolevate m2k moodulite kuvamise"
 msgid "This allows you to show picons modules in downloads"
 msgstr "See lubab saadaolevate pikonite kuvamise"
 
-msgid "This allows you to show OpenPLi modules in downloads"
-msgstr "See lubab saadaolevate pli moodulite kuvamise"
-
 msgid "This allows you to show security modules in downloads"
 msgstr "See lubab saadaolevate turvamoodulite kuvamise"
 
@@ -19120,9 +19153,6 @@ msgstr "See lubab saadaolevate emulaatorite kuvamise"
 
 msgid "This allows you to show system plugin modules in downloads"
 msgstr "See lubab saadaolevate süsteemipluginate kuvamise"
-
-msgid "This allows you to show OpenViX modules in downloads"
-msgstr "See lubab saadaolevate vix moodulite kuvamise"
 
 msgid "This allows you to show weblinks modules in downloads"
 msgstr "See lubab saadaolevate veebilinkide kuvamise"
@@ -19512,6 +19542,9 @@ msgstr ""
 msgid "Time"
 msgstr "Aeg"
 
+msgid "Time Settings"
+msgstr "Aja seaded"
+
 msgid "Time Setup Actions"
 msgstr ""
 
@@ -19576,9 +19609,6 @@ msgstr "Toiminguks kulunud aeg: %s"
 
 msgid "Time scale"
 msgstr "Ajavahemik"
-
-msgid "Time Settings"
-msgstr "Aja seaded"
 
 msgid "Time style"
 msgstr "Kellaaja kuju"
@@ -19683,6 +19713,9 @@ msgstr "Taimerid"
 msgid "Timeshift"
 msgstr "Ajanihe"
 
+msgid "Timeshift Settings"
+msgstr "Ajanihke seaded"
+
 msgid "Timeshift buffer delete after zap"
 msgstr "Ajanihke puhvri kustutamine pärast kanalivahetust"
 
@@ -19718,9 +19751,6 @@ msgstr "Ajanihke talletamine (lõpeta peale praegust saadet)"
 
 msgid "Timeshift saved to your harddisk!"
 msgstr "Ajanihe talletati kõvakettale!"
-
-msgid "Timeshift Settings"
-msgstr "Ajanihke seaded"
 
 msgid "Timeshift will get saved at end of event!"
 msgstr "Ajanihe talletatakse saate lõppedes!"
@@ -19995,6 +20025,9 @@ msgstr "Tuuneri seaded"
 msgid "Tuner Information"
 msgstr ""
 
+msgid "Tuner Settings"
+msgstr "Tuuneri seaded"
+
 #
 msgid "Tuner Setup"
 msgstr "Tuuneri seaded"
@@ -20014,9 +20047,6 @@ msgstr "Tuuneri olek"
 
 #, fuzzy
 msgid "Tuner setting values"
-msgstr "Tuuneri seaded"
-
-msgid "Tuner Settings"
 msgstr "Tuuneri seaded"
 
 msgid "Tuner slot"
@@ -21648,6 +21678,12 @@ msgstr "YCbCr422"
 msgid "YCbCr444"
 msgstr "YCbCr444"
 
+msgid "YELLOW button"
+msgstr "Kollane nupp"
+
+msgid "YELLOW long"
+msgstr "Kollane - pikk"
+
 msgid "YPbPr"
 msgstr "YPbPr"
 
@@ -21659,12 +21695,6 @@ msgstr "Kollane"
 
 msgid "Yellow DVB subtitles"
 msgstr "Kollased DVB subtiitrid"
-
-msgid "YELLOW button"
-msgstr "Kollane nupp"
-
-msgid "YELLOW long"
-msgstr "Kollane - pikk"
 
 msgid "Yemen"
 msgstr "Jeemen"
@@ -24010,11 +24040,42 @@ msgstr "Kanalivahetus"
 msgid "®"
 msgstr ""
 
-msgid "Password changed."
-msgstr "Parool muudetud."
+#~ msgid "12, show latin-1 characters except for greek and cyrillic, switch to 8 if needed."
+#~ msgstr "12, kuva latin-1 tähemärke v.a. kreeka ja kirillitsa, vajadusel vaheta 8 peale."
 
-msgid "Random Password"
-msgstr "Juhuslik parool"
+#~ msgid "Add a nameserver entry"
+#~ msgstr "Lisa nimeserver"
+
+#~ msgid "Configure the function of the <  > buttons."
+#~ msgstr "Määra <  > nuppude toiming."
+
+# Quick Menue
+#~ msgid "Customise"
+#~ msgstr "Kasutaja valikud"
+
+#, fuzzy
+#~ msgid "DHCP Router"
+#~ msgstr "Täielik"
+
+#~ msgid "Factory reset"
+#~ msgstr "Algseadistus"
+
+#~ msgid "If the text is too long to be displayed on the front panel, it will be repeated (number of times):"
+#~ msgstr "Kui tekst on esipaneelil kuvamiseks liiga pikk, korratakse seda (kordade arv:)"
+
+#, python-format
+#~ msgid "Nameserver %d"
+#~ msgstr "Nimeserver %d"
+
+#, fuzzy
+#~ msgid "Nameserver configuration"
+#~ msgstr "Välju nimeserverite seadistusest"
+
+#~ msgid "Network Setup"
+#~ msgstr "Võrgu häälestamine"
+
+#~ msgid "Remove a nameserver entry"
+#~ msgstr "Eemalda nimeserver"
 
 #~ msgid "The password can not be blank."
 #~ msgstr "Parool ei tohi olla tühi."

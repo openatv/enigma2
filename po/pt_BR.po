@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-03-01 17:50+0000\n"
+"POT-Creation-Date: 2022-03-15 12:24+0000\n"
 "PO-Revision-Date: 2021-08-15 18:50+0000\n"
 "Last-Translator: openATV <openatv@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/pt_BR/>\n"
@@ -1703,7 +1703,7 @@ msgstr "caracteres especiais"
 msgid "12 hours"
 msgstr "%d hora"
 
-msgid "12, show latin-1 characters except for greek and cyrillic, switch to 8 if needed."
+msgid "12, show Latin-1 characters except for greek and cyrillic, switch to 8 if needed."
 msgstr ""
 
 #, fuzzy
@@ -2528,11 +2528,11 @@ msgstr "Adicionar tempo"
 msgid "Add Zap+Record Timer"
 msgstr "Adic./Remov. gravação do evento atual"
 
+msgid "Add a DNS entry"
+msgstr ""
+
 msgid "Add a mark"
 msgstr "Adicionar marcador"
-
-msgid "Add a nameserver entry"
-msgstr "Adicionar servidor DNS"
 
 msgid "Add a new tag"
 msgstr ""
@@ -3289,6 +3289,9 @@ msgstr ""
 msgid "Auto Language Selection"
 msgstr ""
 
+msgid "Auto Language Settings"
+msgstr "Seleção de idioma automático"
+
 #, fuzzy
 msgid "Auto Modes Selected."
 msgstr "CAID não selecionado"
@@ -3322,9 +3325,6 @@ msgstr "Iniciando auto-foco..."
 
 msgid "Auto install log"
 msgstr ""
-
-msgid "Auto Language Settings"
-msgstr "Seleção de idioma automático"
 
 msgid "Auto scart switching"
 msgstr "Usar auto-scart"
@@ -3438,6 +3438,16 @@ msgid "BER:"
 msgstr ""
 
 msgid "BLUDISC RECORDABLE"
+msgstr ""
+
+#, fuzzy
+msgid "BLUE button"
+msgstr "Botão vermelho..."
+
+msgid "BLUE long"
+msgstr ""
+
+msgid "BLUE switch: BLUE/BLUE long"
 msgstr ""
 
 msgid "BT 2020 CL"
@@ -3758,16 +3768,6 @@ msgid "Blue"
 msgstr ""
 
 #, fuzzy
-msgid "BLUE button"
-msgstr "Botão vermelho..."
-
-msgid "BLUE long"
-msgstr ""
-
-msgid "BLUE switch: BLUE/BLUE long"
-msgstr ""
-
-#, fuzzy
 msgid "Bluetooth Setup"
 msgstr "Config. de rede"
 
@@ -4027,6 +4027,10 @@ msgstr ""
 
 msgid "CHANGE BOUQUET"
 msgstr ""
+
+#, fuzzy
+msgid "CHANNEL +/-"
+msgstr "Canal"
 
 msgid "CI (Common Interface) Setup"
 msgstr ""
@@ -4438,10 +4442,6 @@ msgstr "Canal"
 msgid "Channel \t\t\tVolume +"
 msgstr ""
 
-#, fuzzy
-msgid "CHANNEL +/-"
-msgstr "Canal"
-
 msgid "Channel +/- button mode"
 msgstr ""
 
@@ -4459,6 +4459,10 @@ msgstr "Informação do canal"
 #, fuzzy
 msgid "Channel List"
 msgstr "Menu da lista de canais"
+
+#, fuzzy
+msgid "Channel Selection Settings"
+msgstr "Definições da coleção"
 
 #, fuzzy
 msgid "Channel button always changes sides"
@@ -4518,10 +4522,6 @@ msgstr "Canais"
 
 msgid "Channel selection configuration"
 msgstr ""
-
-#, fuzzy
-msgid "Channel Selection Settings"
-msgstr "Definições da coleção"
 
 msgid "Channel up"
 msgstr ""
@@ -4873,7 +4873,7 @@ msgstr ""
 msgid "Close title selection"
 msgstr "Fechar a seleção de título"
 
-msgid "Cloudflare"
+msgid "Cloudflare DNS"
 msgstr ""
 
 msgid "Cocos (Keeling) Islands"
@@ -5190,9 +5190,8 @@ msgstr ""
 msgid "Configure the function of a short press on the power button."
 msgstr ""
 
-#, fuzzy
-msgid "Configure the function of the <  > buttons."
-msgstr "Configurar a função ao apertar levemente o botão power."
+msgid "Configure the function of the < and > buttons."
+msgstr ""
 
 msgid "Configure the gateway."
 msgstr "Configurar o gateway."
@@ -5801,14 +5800,14 @@ msgstr "Tempo de salto para os botões 4/6"
 msgid "Custom skip time for '7'/'9' buttons"
 msgstr "Tempo de salto para os botões 7/9"
 
-msgid "Customise"
+msgid "Customize"
+msgstr "Personalizar"
+
+msgid "Customize System Settings"
 msgstr ""
 
 msgid "Customize enigma2 personal settings"
 msgstr ""
-
-msgid "Customize"
-msgstr "Personalizar"
 
 msgid "Cut"
 msgstr "Cortar"
@@ -5849,10 +5848,6 @@ msgid "DHCP"
 msgstr "DHCP"
 
 #, fuzzy
-msgid "DHCP Router"
-msgstr "Completo"
-
-#, fuzzy
 msgid "DLNA support"
 msgstr "não suportado"
 
@@ -5861,6 +5856,15 @@ msgstr "DMM avançados"
 
 msgid "DMM normal"
 msgstr "DMM normal"
+
+msgid "DNS (Dynamic Name Server) Actions"
+msgstr ""
+
+msgid "DNS Settings"
+msgstr ""
+
+msgid "DNS data source"
+msgstr ""
 
 msgid ""
 "DO NOT POWER OFF YOUR DEVICE WHILE UPDATING!\n"
@@ -7193,6 +7197,9 @@ msgstr "Procurando..."
 msgid "EPG Selection"
 msgstr ""
 
+msgid "EPG Settings"
+msgstr "Editar definições"
+
 msgid "EPG Setup"
 msgstr ""
 
@@ -7233,9 +7240,6 @@ msgstr "Procurando..."
 
 msgid "EPG selection"
 msgstr "Selecionar EPG"
-
-msgid "EPG Settings"
-msgstr "Editar definições"
 
 msgid "EPGSearch"
 msgstr ""
@@ -7633,6 +7637,10 @@ msgstr ""
 msgid "Enter"
 msgstr "centro"
 
+#, python-format
+msgid "Enter DNS (Dynamic Name Server) %d's IP address."
+msgstr ""
+
 msgid "Enter PIN"
 msgstr ""
 
@@ -7730,6 +7738,14 @@ msgstr ""
 
 #, python-format
 msgid "Error %d: The logfile '%s' could not be opened.  (%s)"
+msgstr ""
+
+#, python-format
+msgid "Error %d: Unable to change password!  (%s)"
+msgstr ""
+
+#, python-format
+msgid "Error %d: Unable to start 'passwd' command!"
 msgstr ""
 
 #, python-format
@@ -7846,10 +7862,10 @@ msgstr "Sem atualizações disponíveis. Por favor tente mais tarde."
 msgid "Error: Checksum is invalid!"
 msgstr ""
 
-msgid "Error: The new password may not be blank!"
+msgid "Error: Interaction failure, unable to change password!"
 msgstr ""
 
-msgid "Error: Unable to change password!"
+msgid "Error: The new password may not be blank!"
 msgstr ""
 
 #, fuzzy
@@ -8208,11 +8224,11 @@ msgstr "Definições"
 msgid "Factory Reset"
 msgstr ""
 
-msgid "Factory release"
+msgid "Factory Reset Settings"
 msgstr ""
 
-msgid "Factory reset"
-msgstr "Reset de fábrica"
+msgid "Factory release"
+msgstr ""
 
 msgid "Fade the Infobar on hide"
 msgstr ""
@@ -8731,6 +8747,13 @@ msgstr "RGB"
 msgid "GCC version"
 msgstr ""
 
+#, fuzzy
+msgid "GREEN button"
+msgstr "Botão vermelho..."
+
+msgid "GREEN long"
+msgstr ""
+
 msgid "GStreamer debug log category *"
 msgstr ""
 
@@ -9006,13 +9029,6 @@ msgid "Greek"
 msgstr "Grego"
 
 msgid "Green"
-msgstr ""
-
-#, fuzzy
-msgid "GREEN button"
-msgstr "Botão vermelho..."
-
-msgid "GREEN long"
 msgstr ""
 
 msgid "Greenland"
@@ -9664,7 +9680,7 @@ msgstr ""
 msgid "If the free space is less than setting value, then an attempt is made to delete the old timeshift files."
 msgstr ""
 
-msgid "If the text is too long to be displayed on the front panel, it will be repeated (number of times):"
+msgid "If the text is too long to be displayed on the front panel, it will be repeated (number of times)."
 msgstr ""
 
 msgid "If using multiple uncommitted switches the DiSEqC commands must be sent multiple times. Set to the number of uncommitted switches in the chain minus one."
@@ -9943,6 +9959,9 @@ msgstr "Entrada"
 msgid "Input "
 msgstr "Entrada"
 
+msgid "Input Device Settings"
+msgstr ""
+
 msgid "Input Stream ID"
 msgstr ""
 
@@ -9958,9 +9977,6 @@ msgid "Input devices"
 msgstr "Dispositivos"
 
 msgid "Input scroll position"
-msgstr ""
-
-msgid "Input Device Settings"
 msgstr ""
 
 msgid "Insert"
@@ -10357,6 +10373,9 @@ msgstr ""
 msgid "Keyboard"
 msgstr "Teclado"
 
+msgid "Keyboard Settings"
+msgstr "Configuração do teclado"
+
 #, fuzzy
 msgid "Keyboard data entry"
 msgstr "Configuração do teclado"
@@ -10367,9 +10386,6 @@ msgstr "Teclado"
 
 msgid "Keyboard map"
 msgstr "Mapa do teclado"
-
-msgid "Keyboard Settings"
-msgstr "Configuração do teclado"
 
 msgid "Kikuyu / Gikuyu"
 msgstr ""
@@ -10917,15 +10933,15 @@ msgid "Logs"
 msgstr ""
 
 #, fuzzy
+msgid "Logs Settings"
+msgstr "Definições de relatórios de erros"
+
+#, fuzzy
 msgid "Logs location"
 msgstr "Localização"
 
 msgid "Logs older then the set no of days will be deleted."
 msgstr ""
-
-#, fuzzy
-msgid "Logs Settings"
-msgstr "Definições de relatórios de erros"
 
 msgid "Long << / >>"
 msgstr ""
@@ -11606,6 +11622,12 @@ msgstr "[modo deslocar]"
 msgid "Move mode on"
 msgstr "Mover 'leste'"
 
+msgid "Move the current DNS entry down one line"
+msgstr ""
+
+msgid "Move the current DNS entry up one line"
+msgstr ""
+
 msgid "Move the keyboard cursor down"
 msgstr ""
 
@@ -11882,20 +11904,16 @@ msgstr "Nome"
 msgid "Name reverse"
 msgstr "Servidor DNS"
 
+#, python-format
+msgid "Name server %d"
+msgstr ""
+
 #, fuzzy
 msgid "Name:"
 msgstr "Nome"
 
 msgid "Nameserver"
 msgstr "Servidor DNS"
-
-#, python-format
-msgid "Nameserver %d"
-msgstr "Servidor DNS %d"
-
-#, fuzzy
-msgid "Nameserver configuration"
-msgstr "Sair da configuração do servidor de DNS"
 
 msgid "Nameserver settings"
 msgstr "Configurar DNS"
@@ -11994,8 +12012,8 @@ msgstr ""
 msgid "Network Services"
 msgstr ""
 
-msgid "Network Setup"
-msgstr "Config. de rede"
+msgid "Network Settings"
+msgstr "Configurar rede"
 
 #, fuzzy
 msgid "Network Test"
@@ -12025,9 +12043,6 @@ msgstr "Nome da rede (SSID)"
 
 msgid "Network scan"
 msgstr "Busca de rede (NIT)"
-
-msgid "Network Settings"
-msgstr "Configurar rede"
 
 msgid "Network test"
 msgstr "Teste de rede"
@@ -12597,15 +12612,15 @@ msgstr ""
 msgid "OSD Position"
 msgstr ""
 
+msgid "OSD Settings"
+msgstr "Configurar OSD"
+
 #, fuzzy
 msgid "OSD Setup"
 msgstr "Definições Sat / Antena"
 
 msgid "OSD name request"
 msgstr "Solicitação do nome de OSD"
-
-msgid "OSD Settings"
-msgstr "Configurar OSD"
 
 msgid "OScam Info"
 msgstr ""
@@ -12844,12 +12859,12 @@ msgstr ""
 msgid "Oromo"
 msgstr ""
 
+msgid "Oscam Info - Main Menu"
+msgstr ""
+
 #, fuzzy
 msgid "Oscam Info Settings"
 msgstr "Configuração manual"
-
-msgid "Oscam Info - Main Menu"
-msgstr ""
 
 #, python-format
 msgid "Oscam Log ( Oscam-Version: %s )"
@@ -13717,6 +13732,9 @@ msgstr "Por favor aguarde..."
 msgid "Plugin Browser"
 msgstr "Plugins instalados"
 
+msgid "Plugin Browser Settings"
+msgstr ""
+
 msgid "Plugin Filter Settings"
 msgstr ""
 
@@ -13729,9 +13747,6 @@ msgstr "Informação de atividade do gerenciador de plugins"
 
 msgid "Plugin manager help"
 msgstr "Ajuda do gerenciador de plugins"
-
-msgid "Plugin Browser Settings"
-msgstr ""
 
 msgid "Plugins"
 msgstr "Plugins"
@@ -14355,6 +14370,12 @@ msgstr ""
 msgid "Quiz"
 msgstr ""
 
+msgid "RADIO"
+msgstr "Rádio"
+
+msgid "RADIO long"
+msgstr ""
+
 msgid "RAM (Details)"
 msgstr ""
 
@@ -14398,21 +14419,22 @@ msgstr ""
 msgid "REC Symbol in use"
 msgstr ""
 
+#, fuzzy
+msgid "RED button"
+msgstr "Botão vermelho..."
+
+msgid "RED long"
+msgstr ""
+
 msgid "RF Output Settings"
 msgstr "Saida RF"
 
 msgid "RGB"
 msgstr "RGB"
 
-msgid "RADIO"
-msgstr "Rádio"
-
 #, fuzzy
 msgid "Radio Channel Selection"
 msgstr "Seleção de canal"
-
-msgid "RADIO long"
-msgstr ""
 
 #, fuzzy
 msgid "Radsport"
@@ -14591,6 +14613,10 @@ msgstr "Gravando..."
 msgid "Recording Actions"
 msgstr "Definições de recepção"
 
+#, fuzzy
+msgid "Recording Settings"
+msgstr "Definições de recepção"
+
 msgid "Recording Setup"
 msgstr ""
 
@@ -14611,10 +14637,6 @@ msgstr "Gravação em andamento"
 
 #, fuzzy
 msgid "Recording running"
-msgstr "Definições de recepção"
-
-#, fuzzy
-msgid "Recording Settings"
 msgstr "Definições de recepção"
 
 #, fuzzy
@@ -14670,17 +14692,10 @@ msgstr "Gravações"
 msgid "Red"
 msgstr "Rec"
 
-#, fuzzy
-msgid "RED button"
-msgstr "Botão vermelho..."
-
 msgid "Red button..."
 msgstr "Botão vermelho"
 
 msgid "Red colored"
-msgstr ""
-
-msgid "RED long"
 msgstr ""
 
 msgid "Red/HbbTV Button Actions"
@@ -14810,6 +14825,9 @@ msgstr "Lembrar senha"
 msgid "Remote Control"
 msgstr ""
 
+msgid "Remote Control Button Settings"
+msgstr ""
+
 msgid "Remote Control Code"
 msgstr ""
 
@@ -14851,11 +14869,11 @@ msgstr "Apagar entrada de servidor de DNS"
 msgid "Remove Service"
 msgstr "Remover temporizador"
 
+msgid "Remove a DNS entry"
+msgstr ""
+
 msgid "Remove a mark"
 msgstr "Remover marca"
-
-msgid "Remove a nameserver entry"
-msgstr "Remover entrada de servidor DNS"
 
 msgid "Remove all bouquet/tuning data"
 msgstr ""
@@ -15255,6 +15273,9 @@ msgstr ""
 msgid "Rotor turning speed"
 msgstr "Velocidade de giro do motor"
 
+msgid "Router / Gateway"
+msgstr ""
+
 #, fuzzy
 msgid "Routing request"
 msgstr "Requesito de fonte"
@@ -15467,12 +15488,12 @@ msgstr ""
 msgid "Satellite"
 msgstr "Satélite"
 
+msgid "Satellite Dish Settings"
+msgstr "Definições da antena"
+
 #, fuzzy
 msgid "Satellite configuration mode"
 msgstr "Modo de configuração"
-
-msgid "Satellite Dish Settings"
-msgstr "Definições da antena"
 
 msgid "Satellite equipment"
 msgstr "Equipamento de satélite"
@@ -16150,6 +16171,9 @@ msgid "Select the shifted character set for the next character only"
 msgstr ""
 
 msgid "Select the sleep timer action."
+msgstr ""
+
+msgid "Select the source of the default DNS settings."
 msgstr ""
 
 msgid "Select the time delay before the button starts repeating."
@@ -18271,7 +18295,7 @@ msgstr "Iniciar desencriptação offline"
 msgid "State"
 msgstr ""
 
-msgid "Static IP or Custom"
+msgid "Static IP / Custom"
 msgstr ""
 
 msgid "Status"
@@ -18373,13 +18397,13 @@ msgstr ""
 msgid "Stop timeshift while recording"
 msgstr "Parar o timeshift?"
 
-msgid "Stops timeshift being used if a recording is in progress. (Advisable for USB sticks.)"
-msgstr ""
-
 msgid "Stopped"
 msgstr "Parado"
 
 msgid "Stopping Softcam"
+msgstr ""
+
+msgid "Stops timeshift being used if a recording is in progress. (Advisable for USB sticks.)"
 msgstr ""
 
 #, fuzzy
@@ -18464,6 +18488,9 @@ msgstr "Seleção de legendas"
 msgid "Subtitle Quickmenu"
 msgstr "Menu de legendas"
 
+msgid "Subtitle Settings"
+msgstr "Configurações de legendas"
+
 msgid "Subtitle alignment"
 msgstr "Alinhamento da legenda"
 
@@ -18506,9 +18533,6 @@ msgstr "Selecionar legenda"
 
 msgid "Subtitle selection..."
 msgstr "Seleção de legendas..."
-
-msgid "Subtitle Settings"
-msgstr "Configurações de legendas"
 
 msgid "Subtitles"
 msgstr "Legendas"
@@ -19361,6 +19385,12 @@ msgstr ""
 msgid "This allows you to set the number of digits to 5, if you have more than 9999 channels."
 msgstr ""
 
+msgid "This allows you to show OpenPLi modules in downloads"
+msgstr ""
+
+msgid "This allows you to show OpenViX modules in downloads"
+msgstr ""
+
 msgid "This allows you to show drivers modules in downloads"
 msgstr ""
 
@@ -19382,9 +19412,6 @@ msgstr ""
 msgid "This allows you to show picons modules in downloads"
 msgstr ""
 
-msgid "This allows you to show OpenPLi modules in downloads"
-msgstr ""
-
 msgid "This allows you to show security modules in downloads"
 msgstr ""
 
@@ -19398,9 +19425,6 @@ msgid "This allows you to show softcams modules in downloads"
 msgstr ""
 
 msgid "This allows you to show system plugin modules in downloads"
-msgstr ""
-
-msgid "This allows you to show OpenViX modules in downloads"
 msgstr ""
 
 msgid "This allows you to show weblinks modules in downloads"
@@ -19797,6 +19821,10 @@ msgstr ""
 msgid "Time"
 msgstr "Hora"
 
+#, fuzzy
+msgid "Time Settings"
+msgstr "Editar definições"
+
 msgid "Time Setup Actions"
 msgstr ""
 
@@ -19858,10 +19886,6 @@ msgstr ""
 
 msgid "Time scale"
 msgstr "Escala de tempo"
-
-#, fuzzy
-msgid "Time Settings"
-msgstr "Editar definições"
 
 #, fuzzy
 msgid "Time style"
@@ -19970,6 +19994,10 @@ msgstr "Gravações"
 msgid "Timeshift"
 msgstr "Timeshift"
 
+#, fuzzy
+msgid "Timeshift Settings"
+msgstr "Localização para timeshift"
+
 msgid "Timeshift buffer delete after zap"
 msgstr ""
 
@@ -20008,10 +20036,6 @@ msgstr "Iniciar gravação (terminar no final deste programa)"
 
 msgid "Timeshift saved to your harddisk!"
 msgstr ""
-
-#, fuzzy
-msgid "Timeshift Settings"
-msgstr "Localização para timeshift"
 
 msgid "Timeshift will get saved at end of event!"
 msgstr ""
@@ -20291,6 +20315,10 @@ msgstr ""
 msgid "Tuner Information"
 msgstr ""
 
+#, fuzzy
+msgid "Tuner Settings"
+msgstr "Estado do tuner"
+
 msgid "Tuner Setup"
 msgstr ""
 
@@ -20309,10 +20337,6 @@ msgstr "Estado do tuner"
 
 #, fuzzy
 msgid "Tuner setting values"
-msgstr "Estado do tuner"
-
-#, fuzzy
-msgid "Tuner Settings"
 msgstr "Estado do tuner"
 
 msgid "Tuner slot"
@@ -21943,6 +21967,13 @@ msgstr ""
 msgid "YCbCr444"
 msgstr ""
 
+#, fuzzy
+msgid "YELLOW button"
+msgstr "Botão vermelho..."
+
+msgid "YELLOW long"
+msgstr ""
+
 msgid "YPbPr"
 msgstr "YPbPr"
 
@@ -21954,13 +21985,6 @@ msgstr ""
 
 msgid "Yellow DVB subtitles"
 msgstr "Legendas DVB em amarelo"
-
-#, fuzzy
-msgid "YELLOW button"
-msgstr "Botão vermelho..."
-
-msgid "YELLOW long"
-msgstr ""
 
 #, fuzzy
 msgid "Yemen"
@@ -24309,6 +24333,34 @@ msgstr "zapped"
 
 msgid "®"
 msgstr ""
+
+#~ msgid "Add a nameserver entry"
+#~ msgstr "Adicionar servidor DNS"
+
+#, fuzzy
+#~ msgid "Configure the function of the <  > buttons."
+#~ msgstr "Configurar a função ao apertar levemente o botão power."
+
+#, fuzzy
+#~ msgid "DHCP Router"
+#~ msgstr "Completo"
+
+#~ msgid "Factory reset"
+#~ msgstr "Reset de fábrica"
+
+#, python-format
+#~ msgid "Nameserver %d"
+#~ msgstr "Servidor DNS %d"
+
+#, fuzzy
+#~ msgid "Nameserver configuration"
+#~ msgstr "Sair da configuração do servidor de DNS"
+
+#~ msgid "Network Setup"
+#~ msgstr "Config. de rede"
+
+#~ msgid "Remove a nameserver entry"
+#~ msgstr "Remover entrada de servidor DNS"
 
 #, fuzzy
 #~ msgid "Password changed"

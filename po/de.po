@@ -11,16 +11,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-03-01 17:50+0000\n"
-"PO-Revision-Date: 2022-03-01 19:44+0000\n"
-"Last-Translator: jbleyel <jbleyel@gmx.net>\n"
+"POT-Creation-Date: 2022-03-15 12:24+0000\n"
+"PO-Revision-Date: 2022-03-15 18:14+0000\n"
+"Last-Translator: VfBFan <drop0815@posteo.de>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/de/>\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.11.1-dev\n"
+"X-Generator: Weblate 4.12-dev\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 
 msgid ""
@@ -1072,8 +1072,8 @@ msgstr[1] "%d Tage"
 #, python-format
 msgid "%d feed catalog package was updated."
 msgid_plural "%d feed catalog packages were updated."
-msgstr[0] "%d feed Paket aktualisiert."
-msgstr[1] "%d feed Pakete aktualisiert."
+msgstr[0] "%d Feed-Paket aktualisiert."
+msgstr[1] "%d Feed-Pakete aktualisiert."
 
 #, python-format
 msgid "%d hour"
@@ -1646,8 +1646,8 @@ msgstr "12 Zeichen"
 msgid "12 hours"
 msgstr "12 Stunden"
 
-msgid "12, show latin-1 characters except for greek and cyrillic, switch to 8 if needed."
-msgstr "12, zeigt Latin-1 Zeichensatz außer griechisch und kyrillisch, umschalten auf 8, wenn benötigt."
+msgid "12, show Latin-1 characters except for greek and cyrillic, switch to 8 if needed."
+msgstr "12, zeigt Latin-1-Zeichen an, außer für Griechisch und Kyrillisch, schaltet bei Bedarf auf 8 um."
 
 msgid "128"
 msgstr "128"
@@ -2396,7 +2396,7 @@ msgid "About..."
 msgstr "Über..."
 
 msgid "Access point"
-msgstr ""
+msgstr "Access point"
 
 msgid "Access to geolocation information requires an internet connection."
 msgstr "Die Standortbestimmung benötigt eine Internetverbindung."
@@ -2507,12 +2507,12 @@ msgstr "Timer 'Umschalten' hinzufügen"
 msgid "Add Zap+Record Timer"
 msgstr "Timer 'Umschalten und aufnehmen' hinzufügen"
 
+msgid "Add a DNS entry"
+msgstr "Hinzufügen eines DNS-Eintrags"
+
 #
 msgid "Add a mark"
 msgstr "Marker hinzufügen"
-
-msgid "Add a nameserver entry"
-msgstr "Nameserver-Eintrag hinzufügen"
 
 msgid "Add a new tag"
 msgstr "Neuen Tag hinzufügen"
@@ -3273,6 +3273,9 @@ msgstr "Automatische Sprachauswahl"
 msgid "Auto Language Selection"
 msgstr "Automatische Sprachauswahl"
 
+msgid "Auto Language Settings"
+msgstr "Automatische Sprachauswahl"
+
 msgid "Auto Modes Selected."
 msgstr "Automodus ausgewählt."
 
@@ -3303,9 +3306,6 @@ msgstr "Autofokus startet..."
 
 msgid "Auto install log"
 msgstr "Autoinstall Log"
-
-msgid "Auto Language Settings"
-msgstr "Automatische Sprachauswahl"
 
 msgid "Auto scart switching"
 msgstr "Automatische Scart-Umschaltung"
@@ -3415,6 +3415,15 @@ msgstr "BER:"
 
 msgid "BLUDISC RECORDABLE"
 msgstr "Beschreibbare Blu-ray"
+
+msgid "BLUE button"
+msgstr "Taste BLAU"
+
+msgid "BLUE long"
+msgstr "BLAU lang"
+
+msgid "BLUE switch: BLUE/BLUE long"
+msgstr "Funktion der Taste BLAU kurz/lang"
 
 msgid "BT 2020 CL"
 msgstr "BT 2020 CL"
@@ -3744,15 +3753,6 @@ msgstr "Block-Rauschen-Reduzierung"
 msgid "Blue"
 msgstr "Blau"
 
-msgid "BLUE button"
-msgstr "Taste BLAU"
-
-msgid "BLUE long"
-msgstr "BLAU lang"
-
-msgid "BLUE switch: BLUE/BLUE long"
-msgstr "Funktion der Taste BLAU kurz/lang"
-
 msgid "Bluetooth Setup"
 msgstr "Bluetooth-Einstellungen"
 
@@ -3777,10 +3777,10 @@ msgid "Boost green"
 msgstr "Grünanteil erhöhen"
 
 msgid "Boot ID"
-msgstr "Boot ID"
+msgstr "Boot-ID"
 
 msgid "Boot information"
-msgstr "Boot Informationen"
+msgstr "Boot-Informationen"
 
 msgid "Boot time"
 msgstr "Bootzeit"
@@ -3870,16 +3870,16 @@ msgid "Build Brand"
 msgstr ""
 
 msgid "Build Information"
-msgstr "Build Informationen"
+msgstr "Build-Informationen"
 
 msgid "Build Model"
 msgstr ""
 
 msgid "Build information"
-msgstr "Build Informationen"
+msgstr "Build-Informationen"
 
 msgid "Build information for"
-msgstr "Build Informationen für"
+msgstr "Build-Informationen für"
 
 #, python-format
 msgid "Build: %s"
@@ -4015,6 +4015,10 @@ msgstr "CH%s"
 
 msgid "CHANGE BOUQUET"
 msgstr "Bouquet wechseln"
+
+#
+msgid "CHANNEL +/-"
+msgstr "Kanal +/-"
 
 msgid "CI (Common Interface) Setup"
 msgstr "CI-Einstellungen"
@@ -4452,10 +4456,6 @@ msgstr "Kanal"
 msgid "Channel \t\t\tVolume +"
 msgstr "Kanal \t\t\tLautstärke +"
 
-#
-msgid "CHANNEL +/-"
-msgstr "Kanal +/-"
-
 msgid "Channel +/- button mode"
 msgstr "Funktion der Tasten P+/CH+ und P-/CH-"
 
@@ -4469,6 +4469,10 @@ msgid "Channel Info"
 msgstr "Programm-Informationen"
 
 msgid "Channel List"
+msgstr "Senderliste"
+
+#
+msgid "Channel Selection Settings"
 msgstr "Senderliste"
 
 msgid "Channel button always changes sides"
@@ -4522,10 +4526,6 @@ msgstr "Senderliste"
 
 msgid "Channel selection configuration"
 msgstr "Senderliste Konfiguration"
-
-#
-msgid "Channel Selection Settings"
-msgstr "Senderliste"
 
 msgid "Channel up"
 msgstr "Nächster Sender"
@@ -4863,13 +4863,13 @@ msgid "Close dialog"
 msgstr "Dialog schließen"
 
 msgid "Close screen"
-msgstr "Screen schließen"
+msgstr "Bildschirm schließen"
 
 msgid "Close the current screen"
-msgstr "Aktuellen Screen schließen"
+msgstr "Aktuellen Bildschirm schließen"
 
 msgid "Close the screen"
-msgstr "Screen schließen"
+msgstr "Bildschirm schließen"
 
 msgid "Close the screen and exit all menus"
 msgstr "Screen schließen und alle Menüs verlassen"
@@ -4881,8 +4881,8 @@ msgstr "Fenster schließen"
 msgid "Close title selection"
 msgstr "Titelauswahl schließen"
 
-msgid "Cloudflare"
-msgstr "Cloudflare"
+msgid "Cloudflare DNS"
+msgstr "Cloudflare DNS"
 
 msgid "Cocos (Keeling) Islands"
 msgstr "Kokosinseln"
@@ -5211,9 +5211,8 @@ msgstr "Wählen Sie, was langes Drücken der Ausschalttaste bewirken soll."
 msgid "Configure the function of a short press on the power button."
 msgstr "Wählen Sie, was Drücken der Ausschalttaste bewirken soll."
 
-#
-msgid "Configure the function of the <  > buttons."
-msgstr "Wählen Sie, was die Tasten < > bewirken sollen."
+msgid "Configure the function of the < and > buttons."
+msgstr "Konfigurieren Sie die Funktion der Tasten < und >."
 
 msgid "Configure the gateway."
 msgstr "Das Gateway einstellen."
@@ -5822,17 +5821,16 @@ msgstr "Benutzerdefinierte Sprungzeit für die Tasten '4' und '6'"
 msgid "Custom skip time for '7'/'9' buttons"
 msgstr "Benutzerdefinierte Sprungzeit für die Tasten '7' und '9'"
 
-# Quick Menue
-msgid "Customise"
-msgstr "Extraanpassungen"
+#
+msgid "Customize"
+msgstr "Extras"
+
+msgid "Customize System Settings"
+msgstr "Systemeinstellungen anpassen"
 
 # Quick Menue
 msgid "Customize enigma2 personal settings"
 msgstr "Stellen Sie Enigma2 auf Ihre persönlichen Bedürfnisse ein"
-
-#
-msgid "Customize"
-msgstr "Extras"
 
 #
 msgid "Cut"
@@ -5872,9 +5870,6 @@ msgstr "DAC"
 msgid "DHCP"
 msgstr "DHCP"
 
-msgid "DHCP Router"
-msgstr "DHCP-Router"
-
 msgid "DLNA support"
 msgstr "DLNA"
 
@@ -5883,6 +5878,15 @@ msgstr "DMM advanced"
 
 msgid "DMM normal"
 msgstr "DMM normal"
+
+msgid "DNS (Dynamic Name Server) Actions"
+msgstr "DNS (Dynamic Name Server)-Aktionen"
+
+msgid "DNS Settings"
+msgstr "DNS-Einstellungen"
+
+msgid "DNS data source"
+msgstr "DNS-Datenquelle"
 
 msgid ""
 "DO NOT POWER OFF YOUR DEVICE WHILE UPDATING!\n"
@@ -6218,7 +6222,7 @@ msgid "Defaults"
 msgstr "Standards"
 
 msgid "Define additional delay in milliseconds before start of http(s) streams."
-msgstr "Verzögerung in Millisekunden vor dem Start von http(s)-Streams."
+msgstr "Legt die zusätzliche Verzögerung in Millisekunden vor dem Start von http(s)-Streams fest."
 
 msgid "Defined / Active"
 msgstr "Definiert / Aktiv"
@@ -7253,6 +7257,10 @@ msgstr "EPG-Suche"
 msgid "EPG Selection"
 msgstr "EPG-Auswahl"
 
+#
+msgid "EPG Settings"
+msgstr "EPG"
+
 msgid "EPG Setup"
 msgstr "EPG-Einstellungen"
 
@@ -7298,10 +7306,6 @@ msgstr "EPG-Suche"
 
 msgid "EPG selection"
 msgstr "EPG-Auswahl"
-
-#
-msgid "EPG Settings"
-msgstr "EPG"
 
 msgid "EPGSearch"
 msgstr "EPG-Suche"
@@ -7710,6 +7714,10 @@ msgstr "Enigmalight"
 msgid "Enter"
 msgstr "Eintragen"
 
+#, python-format
+msgid "Enter DNS (Dynamic Name Server) %d's IP address."
+msgstr "Geben Sie die IP-Adresse von DNS (Dynamic Name Server) %d ein."
+
 msgid "Enter PIN"
 msgstr "PIN eingeben"
 
@@ -7810,6 +7818,14 @@ msgstr "Fehler %d: Log-Datei '%s' wurde'nicht gelöscht!  (%s)"
 #, python-format
 msgid "Error %d: The logfile '%s' could not be opened.  (%s)"
 msgstr "Fehler %d: Die Logdatei '%s' konnte nicht geöffnet werden! (%s)"
+
+#, python-format
+msgid "Error %d: Unable to change password!  (%s)"
+msgstr "Fehler %d: Kennwort kann nicht geändert werden! (%s)"
+
+#, python-format
+msgid "Error %d: Unable to start 'passwd' command!"
+msgstr "Fehler %d: Befehl 'passwd' konnte nicht gestartet werden!"
 
 #, python-format
 msgid "Error '%s' encountered retrieving the %s commit logs!"
@@ -7949,11 +7965,11 @@ msgstr ""
 msgid "Error: Checksum is invalid!"
 msgstr "Fehler: Prüfsumme ist ungültig!"
 
+msgid "Error: Interaction failure, unable to change password!"
+msgstr "Fehler: Interaktionsfehler, Passwort kann nicht geändert werden!"
+
 msgid "Error: The new password may not be blank!"
 msgstr "Fehler: Das neue Passwort darf nicht leer sein!"
-
-msgid "Error: Unable to change password!"
-msgstr "Fehler: Passwort kann nicht geändert werden!"
 
 msgid "Error: Unable to process the command!  Please try again later."
 msgstr ""
@@ -8326,12 +8342,11 @@ msgstr "FTP-Dateiserver"
 msgid "Factory Reset"
 msgstr "Werkseinstellungen"
 
+msgid "Factory Reset Settings"
+msgstr "Einstellungen zum Zurücksetzen auf die Werkseinstellungen"
+
 msgid "Factory release"
 msgstr ""
-
-#
-msgid "Factory reset"
-msgstr "Werkseinstellungen"
 
 msgid "Fade the Infobar on hide"
 msgstr "Bei 'Ja' wird die Infoleiste langsam ausgeblendet."
@@ -8864,6 +8879,12 @@ msgstr "GB"
 msgid "GCC version"
 msgstr "GCC-Version"
 
+msgid "GREEN button"
+msgstr "Taste GRÜN"
+
+msgid "GREEN long"
+msgstr "GRÜN lang"
+
 msgid "GStreamer debug log category *"
 msgstr "GStreamer Debuglog-Kategorie *"
 
@@ -9134,12 +9155,6 @@ msgstr "Griechisch"
 
 msgid "Green"
 msgstr "Grün"
-
-msgid "GREEN button"
-msgstr "Taste GRÜN"
-
-msgid "GREEN long"
-msgstr "GRÜN lang"
 
 msgid "Greenland"
 msgstr "Grönland"
@@ -9543,7 +9558,7 @@ msgid "How many minutes do you want to record?"
 msgstr "Wie viele Minuten möchten Sie aufnehmen?"
 
 msgid "Http(s) stream start delay"
-msgstr "Http(s) Stream Startverzögerung"
+msgstr "Startverzögerung für http(s)-Streams"
 
 #
 msgid "Hue"
@@ -9608,7 +9623,7 @@ msgid "ISO path"
 msgstr "ISO-Datei-Ausgabepfad"
 
 msgid "ISP"
-msgstr ""
+msgstr "ISP"
 
 msgid "IceTV"
 msgstr "IceTV"
@@ -9772,8 +9787,8 @@ msgstr "Wenn der Deep-Standby-Workaround aktiviert ist wird gewartet, bis die Sy
 msgid "If the free space is less than setting value, then an attempt is made to delete the old timeshift files."
 msgstr "Wenn der freie Speicherplatz kleiner als der eingestellte Wert ist, wird versucht, die alten Timeshift-Dateien zu löschen."
 
-msgid "If the text is too long to be displayed on the front panel, it will be repeated (number of times):"
-msgstr "Wenn der Text zu lang für das Display ist, wird er wiederholt angezeigt. Anzahl der Durchgänge:"
+msgid "If the text is too long to be displayed on the front panel, it will be repeated (number of times)."
+msgstr "Wenn der Text zu lang ist, um auf dem Bedienfeld angezeigt zu werden, wird er wiederholt (Anzahl der Wiederholungen)."
 
 msgid "If using multiple uncommitted switches the DiSEqC commands must be sent multiple times. Set to the number of uncommitted switches in the chain minus one."
 msgstr "Wenn mehrere nicht festgeschriebene Switches verwendet werden, müssen die DiSEqC-Befehle mehrmals gesendet werden. Legen Sie die Anzahl der nicht festgeschriebenen Switches in der Kette minus eins fest."
@@ -10065,6 +10080,9 @@ msgstr "Eingabe"
 msgid "Input "
 msgstr "Eingabe "
 
+msgid "Input Device Settings"
+msgstr "Eingabegeräte Einstellungen"
+
 #, fuzzy
 msgid "Input Stream ID"
 msgstr "Input Stream ID"
@@ -10080,9 +10098,6 @@ msgstr "Eingabegeräte"
 
 msgid "Input scroll position"
 msgstr "Scrollposition eingeben"
-
-msgid "Input Device Settings"
-msgstr "Eingabegeräte Einstellungen"
 
 msgid "Insert"
 msgstr "Einfügen"
@@ -10478,6 +10493,10 @@ msgid "Keyboard"
 msgstr "Externe Tastatur"
 
 #
+msgid "Keyboard Settings"
+msgstr "Tastatur"
+
+#
 msgid "Keyboard data entry"
 msgstr "Tastatureingabe"
 
@@ -10489,10 +10508,6 @@ msgstr "Externe Tastatur lang"
 #
 msgid "Keyboard map"
 msgstr "Tastaturlayout"
-
-#
-msgid "Keyboard Settings"
-msgstr "Tastatur"
 
 msgid "Kikuyu / Gikuyu"
 msgstr "Kikuyu / Gikuyu"
@@ -10783,7 +10798,7 @@ msgid "Liberia"
 msgstr "Liberia"
 
 msgid "Libs"
-msgstr ""
+msgstr "Libs"
 
 msgid "Libya"
 msgstr "Libyen"
@@ -11046,16 +11061,16 @@ msgstr "Anmelden beim IceTV-Server"
 msgid "Logs"
 msgstr "Logs"
 
+#
+msgid "Logs Settings"
+msgstr "Logs"
+
 msgid "Logs location"
 msgstr "Speicherort für Logs"
 
 # crashlog
 msgid "Logs older then the set no of days will be deleted."
 msgstr "Logdateien die älter sind als diese Anzahl von Tagen werden gelöscht."
-
-#
-msgid "Logs Settings"
-msgstr "Logs"
 
 msgid "Long << / >>"
 msgstr "Lang << / >>"
@@ -11136,7 +11151,7 @@ msgid "MENU"
 msgstr "MENU"
 
 msgid "MKUBIFS"
-msgstr ""
+msgstr "MKUBIFS"
 
 msgid "MMA"
 msgstr "MMA"
@@ -11152,16 +11167,16 @@ msgid "MOUSE long"
 msgstr "MAUS lang"
 
 msgid "MTD boot"
-msgstr ""
+msgstr "MTD-Boot"
 
 msgid "MTD kernel"
-msgstr ""
+msgstr "MTD-Kernel"
 
 msgid "MTD root"
-msgstr ""
+msgstr "MTD-Stamm"
 
 msgid "MTU"
-msgstr ""
+msgstr "MTU"
 
 msgid "Macao"
 msgstr "Macau"
@@ -11756,6 +11771,12 @@ msgstr "Verschiebemodus aus"
 msgid "Move mode on"
 msgstr "Verschiebemodus an"
 
+msgid "Move the current DNS entry down one line"
+msgstr "Den aktuellen DNS-Eintrag eine Zeile nach unten verschieben"
+
+msgid "Move the current DNS entry up one line"
+msgstr "Den aktuellen DNS-Eintrag eine Zeile nach oben verschieben"
+
 #
 msgid "Move the keyboard cursor down"
 msgstr "Bewegen Sie den Tastatur-Cursor nach unten"
@@ -12040,20 +12061,16 @@ msgstr "Name"
 msgid "Name reverse"
 msgstr "Name absteigend"
 
+#, python-format
+msgid "Name server %d"
+msgstr "Nameserver %d"
+
 msgid "Name:"
 msgstr "Name:"
 
 #
 msgid "Nameserver"
 msgstr "Nameserver"
-
-#
-#, python-format
-msgid "Nameserver %d"
-msgstr "Nameserver %d"
-
-msgid "Nameserver configuration"
-msgstr "Nameserver-Konfiguration"
 
 #
 msgid "Nameserver settings"
@@ -12159,8 +12176,7 @@ msgstr "Netzwerk-Neustart"
 msgid "Network Services"
 msgstr "Netzwerkdienste"
 
-#
-msgid "Network Setup"
+msgid "Network Settings"
 msgstr "Netzwerkeinrichtung"
 
 msgid "Network Test"
@@ -12192,9 +12208,6 @@ msgstr "Netzwerkname (SSID)"
 #
 msgid "Network scan"
 msgstr "Netzwerksuchlauf"
-
-msgid "Network Settings"
-msgstr "Netzwerkeinrichtung"
 
 #
 msgid "Network test"
@@ -12809,15 +12822,15 @@ msgstr "OSD Overscan"
 msgid "OSD Position"
 msgstr "OSD Kalibrieren"
 
+msgid "OSD Settings"
+msgstr "OSD"
+
 # Quick Menue
 msgid "OSD Setup"
 msgstr "Bedienoberfläche/OSD anpassen"
 
 msgid "OSD name request"
 msgstr "OSD-Sprache"
-
-msgid "OSD Settings"
-msgstr "OSD"
 
 msgid "OScam Info"
 msgstr "OSCam-Info"
@@ -13060,11 +13073,11 @@ msgstr "Oriya"
 msgid "Oromo"
 msgstr "Oromo"
 
-msgid "Oscam Info Settings"
-msgstr "OSCam-Info - Einstellungen"
-
 msgid "Oscam Info - Main Menu"
 msgstr "OSCam-Info - Hauptmenü"
+
+msgid "Oscam Info Settings"
+msgstr "OSCam-Info - Einstellungen"
 
 #, python-format
 msgid "Oscam Log ( Oscam-Version: %s )"
@@ -13366,6 +13379,9 @@ msgstr "Passwort Aktionen"
 #
 msgid "Password Settings"
 msgstr "Passwort einrichten"
+
+msgid "Password changed."
+msgstr "Passwort geändert."
 
 msgid "Password:"
 msgstr "Passwort:"
@@ -14010,6 +14026,9 @@ msgstr "Fast fertig! Bitte warten..."
 msgid "Plugin Browser"
 msgstr "Plugin-Manager"
 
+msgid "Plugin Browser Settings"
+msgstr "Plugin-Manager"
+
 msgid "Plugin Filter Settings"
 msgstr "Plugin-Filter"
 
@@ -14023,9 +14042,6 @@ msgstr "Plugin-Manager: geplante Aktionen"
 #
 msgid "Plugin manager help"
 msgstr "Plugin-Manager Hilfe"
-
-msgid "Plugin Browser Settings"
-msgstr "Plugin-Manager"
 
 #
 msgid "Plugins"
@@ -14666,6 +14682,12 @@ msgstr "Schnellstartmenü/Erweiterungen"
 msgid "Quiz"
 msgstr "Quiz"
 
+msgid "RADIO"
+msgstr "RADIO"
+
+msgid "RADIO long"
+msgstr "Radio lang"
+
 msgid "RAM (Details)"
 msgstr "Arbeitsspeicher (Einzelheiten)"
 
@@ -14708,6 +14730,12 @@ msgstr "Aufnahmesymbol im Standby"
 msgid "REC Symbol in use"
 msgstr "Aufnahmesymbol im Betrieb"
 
+msgid "RED button"
+msgstr "Taste ROT"
+
+msgid "RED long"
+msgstr "ROT lang"
+
 #
 msgid "RF Output Settings"
 msgstr "RF-Ausgang"
@@ -14716,14 +14744,8 @@ msgstr "RF-Ausgang"
 msgid "RGB"
 msgstr "RGB"
 
-msgid "RADIO"
-msgstr "RADIO"
-
 msgid "Radio Channel Selection"
 msgstr "Radio-Senderliste"
-
-msgid "RADIO long"
-msgstr "Radio lang"
 
 #
 msgid "Radsport"
@@ -14732,6 +14754,9 @@ msgstr "Radsport"
 #
 msgid "Random"
 msgstr "zufällig"
+
+msgid "Random Password"
+msgstr "Zufallspasswort"
 
 #, python-format
 msgid "Rating defined by broadcaster - %d"
@@ -14904,6 +14929,9 @@ msgstr "Aufnahme"
 msgid "Recording Actions"
 msgstr "Aufnahmeaktionen"
 
+msgid "Recording Settings"
+msgstr "Aufnahmen"
+
 msgid "Recording Setup"
 msgstr "Aufnahmen"
 
@@ -14921,9 +14949,6 @@ msgstr "Aufnahme läuft"
 
 msgid "Recording running"
 msgstr "Aufnahme läuft"
-
-msgid "Recording Settings"
-msgstr "Aufnahmen"
 
 msgid "Recording started"
 msgstr "Aufnahme gestartet"
@@ -14980,18 +15005,12 @@ msgstr "Wartungsmodus"
 msgid "Red"
 msgstr "Rot"
 
-msgid "RED button"
-msgstr "Taste ROT"
-
 #
 msgid "Red button..."
 msgstr "Taste ROT..."
 
 msgid "Red colored"
 msgstr "Roter Sendername"
-
-msgid "RED long"
-msgstr "ROT lang"
 
 msgid "Red/HbbTV Button Actions"
 msgstr "Tastenaktionen ROT/HbbTV"
@@ -15118,6 +15137,9 @@ msgstr "Service-PIN merken"
 msgid "Remote Control"
 msgstr "Fernbedienung"
 
+msgid "Remote Control Button Settings"
+msgstr "Einstellungen der Fernbedienungstasten"
+
 msgid "Remote Control Code"
 msgstr "Fernbedienungscode"
 
@@ -15158,12 +15180,12 @@ msgstr "Entferne Sendergruppe"
 msgid "Remove Service"
 msgstr "Dienst entfernen"
 
+msgid "Remove a DNS entry"
+msgstr "Entfernen eines DNS-Eintrags"
+
 #
 msgid "Remove a mark"
 msgstr "Markierung entfernen"
-
-msgid "Remove a nameserver entry"
-msgstr "Nameserver-Eintrag entfernen"
 
 msgid "Remove all bouquet/tuning data"
 msgstr "Lösche alle Bouquet/Sender Daten"
@@ -15592,6 +15614,9 @@ msgstr "Root-Datei"
 msgid "Rotor turning speed"
 msgstr "Rotor Drehgeschwindigkeit"
 
+msgid "Router / Gateway"
+msgstr "Router / Gateway"
+
 msgid "Routing request"
 msgstr "Routinganfrage"
 
@@ -15808,11 +15833,11 @@ msgstr "Signal-Finder"
 msgid "Satellite"
 msgstr "Satellit"
 
-msgid "Satellite configuration mode"
-msgstr "Satelliten-Konfigurationsmodus"
-
 msgid "Satellite Dish Settings"
 msgstr "Satelliten-Einrichtung"
+
+msgid "Satellite configuration mode"
+msgstr "Satelliten-Konfigurationsmodus"
 
 #
 msgid "Satellite equipment"
@@ -16160,37 +16185,37 @@ msgid "Select 'Yes' to enable editing of this device's settings. Selecting 'No' 
 msgstr "Wählen Sie 'Ja', um die Einstellungen dieses Gerätes bearbeiten zu können oder 'Nein', um die Geräteeinstellungen auf ihre Standardwerte zurückzusetzen."
 
 msgid "Select 'Yes' to remove all main settings configuration data. Selecting this option will set all Enigma2 settings back to their default values.  This will also cause Enigma2 to run the Welcome Wizard on restart."
-msgstr ""
+msgstr "Wählen Sie 'Ja', um alle Konfigurationsdaten zu löschen. Wenn Sie diese Option wählen, werden alle Enigma2-Einstellungen auf ihre Standardwerte zurückgesetzt.  Dies führt auch dazu, dass Enigma2 beim Neustart den Willkommensassistenten ausführt."
 
 msgid "Select 'Yes' to remove all media player resume data. Selecting this option will remove the data used to allow playback of media files to resume from the position where playback was last stopped. Playback position of recordings is not affected."
-msgstr ""
+msgstr "Wählen Sie 'Ja', um alle Fortsetzungsdaten des Media Players zu entfernen. Wenn Sie diese Option wählen, werden die Daten entfernt, mit denen die Wiedergabe von Mediendateien an der Stelle fortgesetzt werden kann, an der die Wiedergabe zuletzt gestoppt wurde. Die Wiedergabeposition von Aufnahmen ist davon nicht betroffen."
 
 msgid "Select 'Yes' to remove all network mount data. Selecting this option will remove all network data including automounts and network connection data including connection accounts and passwords. This could cause some Enigma2 functions to fail if they are configured to use these network resources."
-msgstr ""
+msgstr "Wählen Sie 'Ja', um alle Netzwerk-Mount-Daten zu entfernen. Wenn Sie diese Option wählen, werden alle Netzwerkdaten einschließlich Autoaktivierungen und Netzwerkverbindungsdaten einschließlich Verbindungskonten und Passwörtern entfernt. Dies kann dazu führen, dass einige Enigma2-Funktionen fehlschlagen, wenn sie für die Verwendung dieser Netzwerkressourcen konfiguriert sind."
 
 msgid "Select 'Yes' to remove all other files and directories not covered by the options above."
-msgstr ""
+msgstr "Wählen Sie 'Ja', um alle anderen Dateien und Verzeichnisse zu entfernen, die nicht von den oben genannten Optionen abgedeckt werden."
 
 msgid "Select 'Yes' to remove all plugin configuration data. Selecting this option will remove all plugin configuration data that is stored in the Enigma2 configuration folder. This will cause all affected plugins to return to their default settings. This could cause some plugins to not function until configured."
-msgstr ""
+msgstr "Wählen Sie 'Ja', um alle Plugin-Konfigurationsdaten zu entfernen. Wenn Sie diese Option wählen, werden alle Plugin-Konfigurationsdaten, die im Enigma2-Konfigurationsordner gespeichert sind, gelöscht. Dies führt dazu, dass alle betroffenen Plugins auf ihre Standardeinstellungen zurückgesetzt werden. Dies kann dazu führen, dass einige Plugins nicht funktionieren, bis sie konfiguriert sind."
 
 msgid "Select 'Yes' to remove all settings, tuning data, timers, resume pointers etc. Selecting this option will restore the configuration to the initial settings before any configuration settings were applied. This is the most reliable form of Factory Reset."
-msgstr ""
+msgstr "Wählen Sie 'Ja', um alle Einstellungen, Empfangsdaten, Timer, Fortsetzungszeiger usw. zu entfernen. Wenn Sie diese Option wählen, wird die Konfiguration auf die ursprünglichen Einstellungen zurückgesetzt, bevor irgendwelche Konfigurationseinstellungen vorgenommen wurden. Dies ist die zuverlässigste Form des Factory Reset."
 
 msgid "Select 'Yes' to remove all timer configuration data. Selecting this option will clear all timers, autotimers and power timers."
-msgstr ""
+msgstr "Wählen Sie 'Ja', um alle Timer-Konfigurationsdaten zu löschen. Wenn Sie diese Option wählen, werden alle Timer, Autotimer und Power Timer gelöscht."
 
 msgid "Select 'Yes' to remove all tuning data. Selecting this option will remove all tuning and bouquet data and will make timers non functional until the receiver is retuned."
-msgstr ""
+msgstr "Wählen Sie 'Ja', um alle Empfangsdaten zu löschen. Wenn Sie diese Option wählen, werden alle Empfangs- und Bouquetdaten gelöscht und die Timer sind nicht funktionsfähig, bis der Empfänger neu abgestimmt wurde."
 
 msgid "Select 'Yes' to remove all user customizations of skin data. Selecting this option will remove all user based skin customizations. All affected skins will return to their standard settings. This will also clear any customized boot logos and backdrops."
-msgstr ""
+msgstr "Wählen Sie 'Ja', um alle Benutzeranpassungen der Skin-Daten zu entfernen. Wenn Sie diese Option wählen, werden alle benutzerbasierten Skin-Anpassungen entfernt. Alle betroffenen Skins werden auf ihre Standardeinstellungen zurückgesetzt. Dadurch werden auch alle benutzerdefinierten Boot-Logos und Hintergrundbilder gelöscht."
 
 msgid "Select 'Yes' to remove all user interface data. Selecting this option will remove all keymap, menu and setup override data and restore the default definitions."
-msgstr ""
+msgstr "Wählen Sie 'Ja', um alle Daten der Benutzeroberfläche zu entfernen. Wenn Sie diese Option wählen, werden alle Tastaturbelegungs-, Menü- und Setup-Überschreibungsdaten entfernt und die Standarddefinitionen wiederhergestellt."
 
 msgid "Select 'Yes' to reset network configuration to the default. This will enable the Ethernet port if it exists and set the receiver to use DHCP. All other network interfaces will be deleted."
-msgstr ""
+msgstr "Wählen Sie 'Ja', um die Netzwerkkonfiguration auf die Standardwerte zurückzusetzen. Dadurch wird der Ethernet-Anschluss aktiviert, sofern er vorhanden ist, und der Empfänger auf die Verwendung von DHCP eingestellt. Alle anderen Netzwerkschnittstellen werden gelöscht."
 
 msgid "Select 'band' if using a 'universal' LNB, otherwise consult your LNB spec sheet."
 msgstr "Wählen Sie 'Band', wenn Sie ein 'universelles' LNB verwenden, andernfalls konsultieren Sie Ihr LNB-Datenblatt."
@@ -16520,6 +16545,9 @@ msgstr "Shift nur für das nächste Zeichen benutzen"
 
 msgid "Select the sleep timer action."
 msgstr "Wählen Sie die Ausschalttimer-Aktion aus."
+
+msgid "Select the source of the default DNS settings."
+msgstr "Wählen Sie die Quelle der Standard-DNS-Einstellungen aus."
 
 msgid "Select the time delay before the button starts repeating."
 msgstr "Zeitverzögerung wählen, bevor sich die Taste zu wiederholen beginnt."
@@ -17758,7 +17786,7 @@ msgid "Show network mounts ..."
 msgstr "Netzwerklaufwerke anzeigen..."
 
 msgid "Show next event"
-msgstr "Nächstes Ereignis anzeigen"
+msgstr "Nächste Sendung anzeigen"
 
 msgid "Show next image"
 msgstr "Nächstes Bild anzeigen"
@@ -17789,7 +17817,7 @@ msgid "Show preview of current mode (*)."
 msgstr "Vorschau des aktuellen Modus anzeigen (*)."
 
 msgid "Show previous event"
-msgstr "Vorheriges Ereignis anzeigen"
+msgstr "Vorherige Sendung anzeigen"
 
 msgid "Show previous image"
 msgstr "Vorheriges Bild anzeigen"
@@ -17894,9 +17922,8 @@ msgstr "CCcam-Infobildschirm anzeigen"
 msgid "Show the DreamPlex player..."
 msgstr "DreamPlex-Player anzeigen..."
 
-#, fuzzy
 msgid "Show the OScamInfo Screen"
-msgstr "Anzeigen des OScamInfo-Bildschirms"
+msgstr "OScamInfo-Bildschirm anzeigen"
 
 #
 msgid "Show the Power Timer"
@@ -18287,7 +18314,7 @@ msgid "Smpte 240M"
 msgstr "Smpte 240M"
 
 msgid "SoC family"
-msgstr ""
+msgstr "SoC-Familie"
 
 msgid "Soap"
 msgstr "Soap"
@@ -18678,8 +18705,8 @@ msgstr "Startet in wenigen Sekunden"
 msgid "State"
 msgstr "Staat"
 
-msgid "Static IP or Custom"
-msgstr "Statische IP oder Benutzerdefiniert"
+msgid "Static IP / Custom"
+msgstr "Statische IP / Benutzerdefiniert"
 
 msgid "Status"
 msgstr "Status"
@@ -18784,14 +18811,14 @@ msgstr "Timeshift stoppen und den Timeshift-Puffer als Film speichern und die ak
 msgid "Stop timeshift while recording"
 msgstr "Timeshift während Aufnahme beenden"
 
-msgid "Stops timeshift being used if a recording is in progress. (Advisable for USB sticks.)"
-msgstr "Beendet Timeshift, wenn eine Aufnahme läuft. Ratsam bei der Verwendung eines USB-Sticks."
-
 msgid "Stopped"
 msgstr "Beendet"
 
 msgid "Stopping Softcam"
 msgstr "Stoppe Softcam"
+
+msgid "Stops timeshift being used if a recording is in progress. (Advisable for USB sticks.)"
+msgstr "Beendet Timeshift, wenn eine Aufnahme läuft. Ratsam bei der Verwendung eines USB-Sticks."
 
 #
 msgid "Storage devices"
@@ -18875,6 +18902,9 @@ msgstr "Untertitel-Aktionen"
 msgid "Subtitle Quickmenu"
 msgstr "Untertitel-Schnellstartmenü"
 
+msgid "Subtitle Settings"
+msgstr "Untertitel"
+
 msgid "Subtitle alignment"
 msgstr "Untertitelposition horizontal"
 
@@ -18916,9 +18946,6 @@ msgstr "Untertitel auswählen"
 
 msgid "Subtitle selection..."
 msgstr "Untertitel auswählen..."
-
-msgid "Subtitle Settings"
-msgstr "Untertitel"
 
 #
 msgid "Subtitles"
@@ -19015,7 +19042,7 @@ msgid "Swimming"
 msgstr "Schwimmen"
 
 msgid "Switch BLUE short (QuickMenu) with BLUE long (Extensions)"
-msgstr "BLAU kurz (Schnellstartmenü) mit BLAU lang (Erweiterungen) tauschen."
+msgstr "BLAU kurz (Schnellstartmenü) mit BLAU lang (Erweiterungen) tauschen"
 
 msgid "Switch EPG Page Down"
 msgstr "EPG-Seite nach unten wechseln"
@@ -19827,6 +19854,12 @@ msgstr "Die Anzahl der angezeigten Zeilen einstellen."
 msgid "This allows you to set the number of digits to 5, if you have more than 9999 channels."
 msgstr "Stellen Sie die Anzahl der Stellen auf 5, wenn Sie mehr als 9999 Sender haben."
 
+msgid "This allows you to show OpenPLi modules in downloads"
+msgstr "PLI-Erweiterungen im Downloadbereich anzeigen"
+
+msgid "This allows you to show OpenViX modules in downloads"
+msgstr "VIX-Erweiterungen im Downloadbereich anzeigen"
+
 msgid "This allows you to show drivers modules in downloads"
 msgstr "Treiber im Downloadbereich anzeigen."
 
@@ -19848,9 +19881,6 @@ msgstr "M2K-Erweiterungen im Downloadbereich anzeigen."
 msgid "This allows you to show picons modules in downloads"
 msgstr "Senderlogos (Picons) falls vorhanden im Downloadbereich anzeigen."
 
-msgid "This allows you to show OpenPLi modules in downloads"
-msgstr "PLI-Erweiterungen im Downloadbereich anzeigen."
-
 msgid "This allows you to show security modules in downloads"
 msgstr "Sicherheitserweiterungen im Downloadbereich anzeigen."
 
@@ -19864,10 +19894,7 @@ msgid "This allows you to show softcams modules in downloads"
 msgstr "Softcams im Downloadbereich anzeigen."
 
 msgid "This allows you to show system plugin modules in downloads"
-msgstr "Systemplugins im Downloadbereich anzeigen."
-
-msgid "This allows you to show OpenViX modules in downloads"
-msgstr "VIX-Erweiterungen im Downloadbereich anzeigen."
+msgstr "Systemplugins im Downloadbereich anzeigen"
 
 msgid "This allows you to show weblinks modules in downloads"
 msgstr "Weblinks im Downloadbereich anzeigen."
@@ -20268,6 +20295,9 @@ msgstr "Tigrinya"
 msgid "Time"
 msgstr "Zeit"
 
+msgid "Time Settings"
+msgstr "Zeit"
+
 msgid "Time Setup Actions"
 msgstr "Zeiteinstellungs-Aktionen"
 
@@ -20332,9 +20362,6 @@ msgstr "Zeit für den gesamten Vorgang: %s"
 
 msgid "Time scale"
 msgstr "Zeitskala"
-
-msgid "Time Settings"
-msgstr "Zeit"
 
 msgid "Time style"
 msgstr "Zeitformat"
@@ -20445,6 +20472,9 @@ msgstr "Timer"
 msgid "Timeshift"
 msgstr "Timeshift"
 
+msgid "Timeshift Settings"
+msgstr "Timeshift"
+
 msgid "Timeshift buffer delete after zap"
 msgstr "Timeshift-Puffer beim Umschalten löschen?"
 
@@ -20482,9 +20512,6 @@ msgstr "Timeshift-Aufnahme speichern (Stopp nach laufender Sendung)"
 
 msgid "Timeshift saved to your harddisk!"
 msgstr "Timeshift auf Festplatte gespeichert!"
-
-msgid "Timeshift Settings"
-msgstr "Timeshift"
 
 msgid "Timeshift will get saved at end of event!"
 msgstr "Timeshift wird am Ende des Ereignisses gespeichert!"
@@ -20776,6 +20803,10 @@ msgid "Tuner Information"
 msgstr "Tuner-Informationen"
 
 #
+msgid "Tuner Settings"
+msgstr "Tunereinstellungen"
+
+#
 msgid "Tuner Setup"
 msgstr "Tunereinstellungen"
 
@@ -20794,10 +20825,6 @@ msgstr "Tuner-Livewerte"
 
 msgid "Tuner setting values"
 msgstr "Tuner-Einstellwerte"
-
-#
-msgid "Tuner Settings"
-msgstr "Tunereinstellungen"
 
 msgid "Tuner slot"
 msgstr "Tuner-Steckplatz"
@@ -20912,7 +20939,7 @@ msgid "Type: "
 msgstr "Typ: "
 
 msgid "UBINIZE"
-msgstr ""
+msgstr "UBINIZE"
 
 msgid "UHD Test"
 msgstr "UHD-Test"
@@ -22522,6 +22549,12 @@ msgstr "YCbCr422"
 msgid "YCbCr444"
 msgstr "YCbCr444"
 
+msgid "YELLOW button"
+msgstr "Taste GELB"
+
+msgid "YELLOW long"
+msgstr "GELB lang"
+
 #
 msgid "YPbPr"
 msgstr "YPbPr"
@@ -22535,12 +22568,6 @@ msgstr "Gelb"
 
 msgid "Yellow DVB subtitles"
 msgstr "DVB-Untertitel in gelb"
-
-msgid "YELLOW button"
-msgstr "Taste GELB"
-
-msgid "YELLOW long"
-msgstr "GELB lang"
 
 msgid "Yemen"
 msgstr "Jemen"
@@ -25076,11 +25103,53 @@ msgstr "Umschalten"
 msgid "®"
 msgstr "®"
 
-msgid "Password changed."
-msgstr "Passwort geändert."
+#~ msgid "12, show latin-1 characters except for greek and cyrillic, switch to 8 if needed."
+#~ msgstr "12, zeigt Latin-1 Zeichensatz außer griechisch und kyrillisch, umschalten auf 8, wenn benötigt."
 
-msgid "Random Password"
-msgstr "Zufallspasswort"
+#~ msgid "Add a nameserver entry"
+#~ msgstr "Nameserver-Eintrag hinzufügen"
+
+#~ msgid "Cloudflare"
+#~ msgstr "Cloudflare"
+
+#
+#~ msgid "Configure the function of the <  > buttons."
+#~ msgstr "Wählen Sie, was die Tasten < > bewirken sollen."
+
+# Quick Menue
+#~ msgid "Customise"
+#~ msgstr "Extraanpassungen"
+
+#~ msgid "DHCP Router"
+#~ msgstr "DHCP-Router"
+
+#~ msgid "Error: Unable to change password!"
+#~ msgstr "Fehler: Passwort kann nicht geändert werden!"
+
+#
+#~ msgid "Factory reset"
+#~ msgstr "Werkseinstellungen"
+
+#~ msgid "If the text is too long to be displayed on the front panel, it will be repeated (number of times):"
+#~ msgstr "Wenn der Text zu lang für das Display ist, wird er wiederholt angezeigt. Anzahl der Durchgänge:"
+
+#
+#, python-format
+#~ msgid "Nameserver %d"
+#~ msgstr "Nameserver %d"
+
+#~ msgid "Nameserver configuration"
+#~ msgstr "Nameserver-Konfiguration"
+
+#
+#~ msgid "Network Setup"
+#~ msgstr "Netzwerkeinrichtung"
+
+#~ msgid "Remove a nameserver entry"
+#~ msgstr "Nameserver-Eintrag entfernen"
+
+#~ msgid "Static IP or Custom"
+#~ msgstr "Statische IP oder Benutzerdefiniert"
 
 #~ msgid "The password can not be blank."
 #~ msgstr "Das Passwort darf nicht leer sein!"
