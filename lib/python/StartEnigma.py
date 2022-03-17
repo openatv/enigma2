@@ -588,30 +588,6 @@ def setLoadUnlinkedUserbouquets(configElement):
 	enigma.eDVBDB.getInstance().setLoadUnlinkedUserbouquets(configElement.value)
 
 
-def useSyncUsingChanged(configelement):
-	if config.misc.SyncTimeUsing.value == "0":
-		print("[Time By]: Transponder")
-		enigma.eDVBLocalTimeHandler.getInstance().setUseDVBTime(True)
-		enigma.eEPGCache.getInstance().timeUpdated()
-	else:
-		print("[Time By]: NTP")
-		enigma.eDVBLocalTimeHandler.getInstance().setUseDVBTime(False)
-		enigma.eEPGCache.getInstance().timeUpdated()
-
-
-def NTPserverChanged(configelement):
-	if config.misc.NTPserver.value == "pool.ntp.org":
-		return
-	print("[NTPDATE] save /etc/default/ntpdate")
-	f = open("/etc/default/ntpdate", "w")
-	f.write('NTPSERVERS="' + config.misc.NTPserver.value + '"')
-	f.close()
-	os.chmod("/etc/default/ntpdate", 0o755)
-	from Components.Console import Console
-	Console = Console()
-	Console.ePopen('/usr/bin/ntpdate-sync')
-
-
 def dump(dir, p=""):
 	had = dict()
 	if isinstance(dir, dict):
@@ -816,9 +792,6 @@ config.misc.startCounter = ConfigInteger(default=0) # number of e2 starts...
 config.misc.standbyCounter = NoSave(ConfigInteger(default=0)) # number of standby
 config.misc.DeepStandby = NoSave(ConfigYesNo(default=False)) # detect deepstandby
 
-config.misc.SyncTimeUsing.addNotifier(useSyncUsingChanged)
-config.misc.NTPserver.addNotifier(NTPserverChanged, immediate_feedback=True)
-
 profile("LOAD:Plugin")
 # initialize autorun plugins and plugin menu entries
 from Components.PluginComponent import plugins
@@ -894,8 +867,8 @@ import Screens.LogManager
 Screens.LogManager.AutoLogManager()
 
 profile("Init:NTPSync")
-import Components.NetworkTime
-Components.NetworkTime.AutoNTPSync()
+from Components.NetworkTime import ntpSyncPoller
+ntpSyncPoller.startTimer()
 
 profile("keymapparser")
 import keymapparser
