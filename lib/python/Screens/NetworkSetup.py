@@ -305,13 +305,11 @@ class DNSSettings(Setup):
 				if option != "custom":
 					self.dnsOptions["custom"] = [[0, 0, 0, 0]]
 				config.usage.dns.value = option
-				config.usage.dns.save()
 				dnsRefresh(refresh)
 				return option
 		option = "custom"
 		self.dnsOptions[option] = dnsServers[:]
 		config.usage.dns.value = option
-		config.usage.dns.save()
 		dnsRefresh(refresh)
 		return option
 
