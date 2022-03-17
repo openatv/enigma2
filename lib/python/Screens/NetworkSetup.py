@@ -1670,7 +1670,7 @@ class NetworkMountsMenu(Screen, HelpableScreen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
 		HelpableScreen.__init__(self)
-		Screen.setTitle(self, _("Mounts Setup"))
+		Screen.setTitle(self, _("Mounts Settings"))
 		self.onChangedEntry = []
 		self.mainmenu = self.genMainMenu()
 		self["menulist"] = MenuList(self.mainmenu)
@@ -1769,7 +1769,7 @@ class NetworkMountsMenu(Screen, HelpableScreen):
 class NetworkAfp(Screen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
-		Screen.setTitle(self, _("AFP Setup"))
+		Screen.setTitle(self, _("AFP Settings"))
 		self.skinName = "NetworkAfp"
 		self.onChangedEntry = []
 		self['lab1'] = Label(_("Autostart:"))
@@ -1903,7 +1903,7 @@ class NetworkAfp(Screen):
 			self['labactive'].show()
 			self['key_green'].setText(_("Start"))
 			status_summary = self['lab2'].text + ' ' + self['labstop'].text
-		title = _("AFP Setup")
+		title = _("AFP Settings")
 		autostartstatus_summary = self['lab1'].text + ' ' + self['labactive'].text
 
 		for cb in self.onChangedEntry:
@@ -1914,7 +1914,7 @@ class NetworkAfp(Screen):
 class NetworkSABnzbd(Screen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
-		Screen.setTitle(self, _("SABnzbd Setup"))
+		Screen.setTitle(self, _("SABnzbd Settings"))
 		self.skinName = "NetworkSABnzbd"
 		self.onChangedEntry = []
 		self['lab1'] = Label(_("Autostart:"))
@@ -2054,7 +2054,7 @@ class NetworkSABnzbd(Screen):
 			self['labactive'].show()
 			self['key_green'].setText(_("Start"))
 			status_summary = self['lab2'].text + ' ' + self['labstop'].text
-		title = _("SABnzbd Setup")
+		title = _("SABnzbd Settings")
 		autostartstatus_summary = self['lab1'].text + ' ' + self['labactive'].text
 
 		for cb in self.onChangedEntry:
@@ -2066,7 +2066,7 @@ class NetworkSABnzbd(Screen):
 class NetworkFtp(Screen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
-		Screen.setTitle(self, _("FTP Setup"))
+		Screen.setTitle(self, _("FTP Settings"))
 		self.skinName = "NetworkSamba"
 		self.onChangedEntry = []
 		self['lab1'] = Label(_("Autostart:"))
@@ -2138,7 +2138,7 @@ class NetworkFtp(Screen):
 			self['labactive'].show()
 			self['key_green'].setText(_("Start"))
 			status_summary = self['lab2'].text + ' ' + self['labstop'].text
-		title = _("FTP Setup")
+		title = _("FTP Settings")
 		autostartstatus_summary = self['lab1'].text + ' ' + self['labactive'].text
 
 		for cb in self.onChangedEntry:
@@ -2148,7 +2148,7 @@ class NetworkFtp(Screen):
 class NetworkNfs(Screen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
-		Screen.setTitle(self, _("NFS Setup"))
+		Screen.setTitle(self, _("NFS Settings"))
 		self.skinName = "NetworkNfs"
 		self.onChangedEntry = []
 		self['lab1'] = Label(_("Autostart:"))
@@ -2278,7 +2278,7 @@ class NetworkNfs(Screen):
 			self['labrun'].hide()
 			self['key_green'].setText(_("Start"))
 			status_summary = self['lab2'].text + ' ' + self['labstop'].text
-		title = _("NFS Setup")
+		title = _("NFS Settings")
 		autostartstatus_summary = self['lab1'].text + ' ' + self['labactive'].text
 
 		for cb in self.onChangedEntry:
@@ -2288,7 +2288,7 @@ class NetworkNfs(Screen):
 class NetworkOpenvpn(Screen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
-		Screen.setTitle(self, _("OpenVpn Setup"))
+		Screen.setTitle(self, _("OpenVPN Settings"))
 		self.skinName = "NetworkOpenvpn"
 		self.onChangedEntry = []
 		self['lab1'] = Label(_("Autostart:"))
@@ -2426,7 +2426,7 @@ class NetworkOpenvpn(Screen):
 			self['labrun'].hide()
 			self['key_green'].setText(_("Start"))
 			status_summary = self['lab2'].text + ' ' + self['labstop'].text
-		title = _("OpenVpn Setup")
+		title = _("OpenVPN Settings")
 		autostartstatus_summary = self['lab1'].text + ' ' + self['labactive'].text
 
 		self['labconfig'].show()
@@ -2647,7 +2647,7 @@ class NetworkSambaLog(Screen):
 class NetworkTelnet(Screen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
-		Screen.setTitle(self, _("Telnet Setup"))
+		Screen.setTitle(self, _("Telnet Settings"))
 		self.skinName = "NetworkSamba"
 		self.onChangedEntry = []
 		self['lab1'] = Label(_("Autostart:"))
@@ -2717,7 +2717,7 @@ class NetworkTelnet(Screen):
 			self['labactive'].show()
 			self['key_green'].setText(_("Start"))
 			status_summary = self['lab2'].text + ' ' + self['labstop'].text
-		title = _("Telnet Setup")
+		title = _("Telnet Settings")
 		autostartstatus_summary = self['lab1'].text + ' ' + self['labactive'].text
 
 		for cb in self.onChangedEntry:
@@ -2727,7 +2727,7 @@ class NetworkTelnet(Screen):
 class NetworkInadyn(Screen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
-		Screen.setTitle(self, _("Inadyn Setup"))
+		Screen.setTitle(self, _("Inadyn Settings"))
 		self.onChangedEntry = []
 		self['autostart'] = Label(_("Autostart:"))
 		self['labactive'] = Label(_(_("Active")))
@@ -2904,7 +2904,7 @@ class NetworkInadyn(Screen):
 						self['sactive'].show()
 					self['labsys'].setText(line)
 			f.close()
-		title = _("Inadyn Setup")
+		title = _("Inadyn Settings")
 
 		for cb in self.onChangedEntry:
 			cb(title, status_summary, autostartstatus_summary)
@@ -2922,7 +2922,7 @@ class NetworkInadynSetup(Screen, ConfigListScreen):
 		self.onChangedEntry = []
 		self.list = []
 		ConfigListScreen.__init__(self, self.list, session=session, on_change=self.selectionChanged)
-		Screen.setTitle(self, _("Inadyn Setup"))
+		Screen.setTitle(self, _("Inadyn Settings"))
 		self['key_red'] = Label(_("Save"))
 		self['actions'] = ActionMap(['WizardActions', 'ColorActions', 'VirtualKeyboardActions'], {'red': self.saveIna, 'back': self.close, 'showVirtualKeyboard': self.KeyText})
 		self["HelpWindow"] = Pixmap()
@@ -3072,7 +3072,7 @@ config.networkushare.mediafolders = NoSave(ConfigLocations(default=None))
 class NetworkuShare(Screen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
-		Screen.setTitle(self, _("uShare Setup"))
+		Screen.setTitle(self, _("uShare Settings"))
 		self.onChangedEntry = []
 		self['autostart'] = Label(_("Autostart:"))
 		self['labactive'] = Label(_(_("Active")))
@@ -3285,7 +3285,7 @@ class NetworkuShare(Screen):
 						self['dlnaactive'].show()
 						self['dlnainactive'].hide()
 			f.close()
-		title = _("uShare Setup")
+		title = _("uShare Settings")
 
 		for cb in self.onChangedEntry:
 			cb(title, status_summary, autostartstatus_summary)
@@ -3300,11 +3300,11 @@ class NetworkuShare(Screen):
 class NetworkuShareSetup(Screen, ConfigListScreen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
-		Screen.setTitle(self, _("uShare Setup"))
+		Screen.setTitle(self, _("uShare Settings"))
 		self.onChangedEntry = []
 		self.list = []
 		ConfigListScreen.__init__(self, self.list, session=session, on_change=self.selectionChanged)
-		Screen.setTitle(self, _("uShare Setup"))
+		Screen.setTitle(self, _("uShare Settings"))
 		self['key_red'] = Label(_("Save"))
 		self['key_green'] = Label(_("Shares"))
 		self['actions'] = ActionMap(['WizardActions', 'ColorActions', 'VirtualKeyboardActions'], {'red': self.saveuShare, 'green': self.selectfolders, 'back': self.close, 'showVirtualKeyboard': self.KeyText})
@@ -3575,7 +3575,7 @@ config.networkminidlna.mediafolders = NoSave(ConfigLocations(default=None))
 class NetworkMiniDLNA(Screen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
-		Screen.setTitle(self, _("MiniDLNA Setup"))
+		Screen.setTitle(self, _("MiniDLNA Settings"))
 		self.onChangedEntry = []
 		self['autostart'] = Label(_("Autostart:"))
 		self['labactive'] = Label(_(_("Active")))
@@ -3774,7 +3774,7 @@ class NetworkMiniDLNA(Screen):
 						self['dlnaactive'].show()
 						self['dlnainactive'].hide()
 			f.close()
-		title = _("MiniDLNA Setup")
+		title = _("MiniDLNA Settings")
 
 		for cb in self.onChangedEntry:
 			cb(title, status_summary, autostartstatus_summary)
@@ -3789,11 +3789,11 @@ class NetworkMiniDLNA(Screen):
 class NetworkMiniDLNASetup(Screen, ConfigListScreen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
-		Screen.setTitle(self, _("MiniDLNA Setup"))
+		Screen.setTitle(self, _("MiniDLNA Settings"))
 		self.onChangedEntry = []
 		self.list = []
 		ConfigListScreen.__init__(self, self.list, session=session, on_change=self.selectionChanged)
-		Screen.setTitle(self, _("MiniDLNA Setup"))
+		Screen.setTitle(self, _("MiniDLNA Settings"))
 		self.skinName = "NetworkuShareSetup"
 		self['key_red'] = Label(_("Save"))
 		self['key_green'] = Label(_("Shares"))
@@ -4137,7 +4137,7 @@ class NetworkPassword(Setup):
 class NetworkSATPI(Screen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
-		Screen.setTitle(self, _("SATPI Setup"))
+		Screen.setTitle(self, _("SATPI Settings"))
 		self.skinName = "NetworkSATPI"
 		self.onChangedEntry = []
 		self['lab1'] = Label(_("Autostart:"))
@@ -4275,7 +4275,7 @@ class NetworkSATPI(Screen):
 			self['labactive'].show()
 			self['key_green'].setText(_("Start"))
 			status_summary = self['lab2'].text + ' ' + self['labstop'].text
-		title = _("SATPI Setup")
+		title = _("SATPI Settings")
 		autostartstatus_summary = self['lab1'].text + ' ' + self['labactive'].text
 
 		for cb in self.onChangedEntry:

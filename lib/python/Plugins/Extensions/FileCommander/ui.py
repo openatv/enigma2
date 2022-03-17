@@ -494,7 +494,7 @@ class FileCommanderScreen(Screen, HelpableScreen, key_actions):
 			cfg.bookmarks.value = bookmarks
 			cfg.bookmarks.save()
 		bookmarks = [(x, x) for x in bookmarks]
-		bookmarks.append((_("Storage devices"), None))
+		bookmarks.append((_("Storage Devices"), None))
 		self.session.openWithCallback(self.locationCB, ChoiceBox, title=_("Select a path"), list=bookmarks, reorderConfig="fc_bookmarks_order")
 
 	def locationCB(self, answer):

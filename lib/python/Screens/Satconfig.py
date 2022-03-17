@@ -924,7 +924,7 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 class NimSelection(Screen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
-		Screen.setTitle(self, _("Tuner configuration"))
+		Screen.setTitle(self, _("Tuner Configuration"))
 
 		self.list = [None] * nimmanager.getSlotCount()
 		self["nimlist"] = List(self.list)

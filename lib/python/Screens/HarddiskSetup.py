@@ -109,7 +109,7 @@ class HarddiskSelection(Screen):
 class HarddiskFsckSelection(HarddiskSelection):
 	def __init__(self, session):
 		HarddiskSelection.__init__(self, session)
-		Screen.setTitle(self, _("Filesystem Check"))
+		Screen.setTitle(self, _("File System Check"))
 		self.skinName = "HarddiskSelection"
 
 	def doIt(self, selection):

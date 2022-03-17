@@ -30,7 +30,7 @@ file = open(resolveFilename(SCOPE_SKINS, "menu.xml"), "r")
 mdom = parse(file)
 file.close()
 
-mainmenu = _("Main menu")
+mainmenu = _("Main Menu")
 lastMenuID = None
 
 nomainmenupath = False if exists(resolveFilename(SCOPE_GUISKIN, "mainmenu")) else True

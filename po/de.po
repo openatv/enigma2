@@ -12,8 +12,8 @@ msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-03-15 12:24+0000\n"
-"PO-Revision-Date: 2022-03-15 18:14+0000\n"
-"Last-Translator: VfBFan <drop0815@posteo.de>\n"
+"PO-Revision-Date: 2022-03-16 19:06+0000\n"
+"Last-Translator: jbleyel <jbleyel@gmx.net>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/de/>\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
@@ -2115,7 +2115,7 @@ msgstr ""
 
 #, python-format
 msgid "A crashlog was %s created in '%s'"
-msgstr "Ein Crashlog wurde %s in '%s' erstellt"
+msgstr "Ein Crash-Log wurde %s in '%s' erstellt"
 
 msgid "A file from media is in use!"
 msgstr "Eine Mediendatei ist in Benutzung!"
@@ -2339,7 +2339,7 @@ msgstr "AFL"
 msgid "AFP"
 msgstr "AFP"
 
-msgid "AFP Setup"
+msgid "AFP Settings"
 msgstr "AFP-Dateiserver"
 
 msgid "ARM"
@@ -2403,7 +2403,7 @@ msgstr "Die Standortbestimmung benötigt eine Internetverbindung."
 
 #, python-format
 msgid "Access to the %s commit logs requires an internet connection."
-msgstr "Der Zugriff auf das %s Commit Log benötigt eine Internetverbindung."
+msgstr "Der Zugriff auf das %s Commit-Log benötigt eine Internetverbindung."
 
 msgid "Accessed:"
 msgstr "Zugegriffen:"
@@ -2808,13 +2808,13 @@ msgid "Allows you to assign the selected function to this button."
 msgstr "Ausgewählte Funktion der Taste zuweisen."
 
 msgid "Allows you to enable the GStreamer debug log. They contain very detailed information of everything the GStreamer system does."
-msgstr "Ein aktiviertes GStreamer Debuglog enthält detaillierte Informationen über alles was das GStreamer-System macht."
+msgstr "Ein aktiviertes GStreamer Debug-Log enthält detaillierte Informationen über alles was das GStreamer-System macht."
 
 msgid "Allows you to enable the GStreamer pipeline graphs. These are .dot files that describe the topology of your pipeline, along with the caps negotiated in each link."
-msgstr "Ein aktiviertes GStreamer pipeline graphs erstellt .dot Dateien welche die Struktur der Pipeline und die zwischen den Verbindungen ausgehandelten Eigenschaften enthält."
+msgstr "Ein aktiviertes GStreamer Pipeline Graphs erstellt '.dot' Dateien, welche die Struktur der Pipeline und die zwischen den Verbindungen ausgehandelten Eigenschaften enthalten."
 
 msgid "Allows you to enable the debug log. They contain very detailed information of everything the system does."
-msgstr "Ein aktiviertes Debuglog enthält detaillierte Informationen über alles was das System macht."
+msgstr "Ein aktiviertes Debug-Log enthält detaillierte Informationen über alles was das System macht."
 
 msgid "Allows you to enable/disable displaying icons on the frontpanel."
 msgstr "Anzeige von Icons auf dem Display erlauben."
@@ -2823,7 +2823,7 @@ msgid "Allows you to hide the extensions of known file types."
 msgstr "Das Ausblenden der Dateiendungen von bekannten Dateiformaten aktivieren."
 
 msgid "Allows you to set the maximum size of the Debug log size (MB). When that size is reached, a new file will be created."
-msgstr "Maximale Größe in Megabyte (MB) des Debuglogs festlegen. Wenn die Größe erreicht ist wird eine neue Datei erstellt."
+msgstr "Maximale Größe in Megabyte (MB) des Debug-Logs festlegen. Wenn die Größe erreicht ist wird eine neue Datei erstellt."
 
 msgid "Allows you to show/hide CCcam in extensions (BLUE button)."
 msgstr "CCcam-Info unter Erweiterungen (Taste BLAU) anzeigen."
@@ -3305,7 +3305,7 @@ msgid "Auto focus commencing ..."
 msgstr "Autofokus startet..."
 
 msgid "Auto install log"
-msgstr "Autoinstall Log"
+msgstr "Autoinstall-Log"
 
 msgid "Auto scart switching"
 msgstr "Automatische Scart-Umschaltung"
@@ -3520,7 +3520,7 @@ msgid "Backup Location"
 msgstr "Speicherort für die Sicherung"
 
 msgid "Backup Log"
-msgstr "Sicherungslog"
+msgstr "Sicherungs-Log"
 
 msgid "Backup Mode"
 msgstr "Sicherungsmodus"
@@ -4023,7 +4023,7 @@ msgstr "Kanal +/-"
 msgid "CI (Common Interface) Setup"
 msgstr "CI-Einstellungen"
 
-msgid "CI Basic settings"
+msgid "CI Basic Settings"
 msgstr "CI-Grundeinstellungen"
 
 msgid "CI Legacy"
@@ -4045,10 +4045,10 @@ msgstr "CI-Zuweisung"
 msgid "CI slot: "
 msgstr "CI-Schacht: "
 
-msgid "CIFS/Samba Setup"
+msgid "CIFS/Samba Settings"
 msgstr "CIFS/Samba-Dateiserver"
 
-msgid "CIHelper Setup"
+msgid "CI Helper Settings"
 msgstr "CIHelper-Einstellungen"
 
 msgid "CIHelper for SLOT CI0"
@@ -4700,7 +4700,7 @@ msgstr ""
 "Nicht jeder Skin unterstützt jede Einstellung."
 
 msgid "Choose the location for crash and debug logs."
-msgstr "Wählen Sie den Speicherort für Crash- und Debuglogs."
+msgstr "Wählen Sie den Speicherort für Crash- und Debug-Logs."
 
 msgid "Choose the location where the EPG data will be stored when the %s %s is shut down. The location must be available at boot time."
 msgstr "Wählen Sie einen Ort zur Speicherung der EPG-Daten, wenn die %s %s ausgeschaltet wird. Dieser Ort muss beim Start verfügbar sein."
@@ -5539,7 +5539,7 @@ msgstr "Steuern Sie die Animationsgeschwindigkeit der Tastenanzeige im Hilfebild
 msgid "Control your Softcams"
 msgstr "Kontrolle der Softcams"
 
-msgid "Convert ext3 filesystem to ext4"
+msgid "Convert EXT3 File System to EXT4"
 msgstr "EXT3 nach EXT4 konvertieren"
 
 msgid "Convert ext3 to ext4"
@@ -5654,7 +5654,7 @@ msgid "Country for EPG event rating information"
 msgstr "Land für EPG-Ereignisbewertungsinformationen"
 
 msgid "Crash Logs"
-msgstr "Crashlogs"
+msgstr "Crash-Logs"
 
 # data/setup.xml
 msgid "Crash at skin error for debug reasons"
@@ -6130,14 +6130,14 @@ msgid "Deactivate"
 msgstr "Deaktivieren"
 
 msgid "Debug Logs"
-msgstr "Debuglogs"
+msgstr "Debug-Logs"
 
 #, python-format
 msgid "Debug log '%s' (%d/%d)"
 msgstr "Debug-Log '%s' (%d/%d)"
 
 msgid "Debug log time format *"
-msgstr "Debug Log Zeitformat *"
+msgstr "Debug-Log Zeitformat *"
 
 msgid "Decryption & Parental Control"
 msgstr "Entschlüsselung & Jugendschutz"
@@ -6409,7 +6409,7 @@ msgid "Delete the current timeshift buffer and restart timeshift"
 msgstr "Den aktuellen Timeshift-Puffer löschen und Timeshift neu starten"
 
 msgid "Delete the currently displayed log file"
-msgstr "Die aktuell angezeigte Log-Datei löschen"
+msgstr "Die aktuell angezeigte Logdatei löschen"
 
 msgid "Delete the selected files or directories"
 msgstr "Ausgewählte Dateien oder Verzeichnisse löschen"
@@ -6472,7 +6472,7 @@ msgid "Deselected packages usually occur because those packaged are incompatible
 msgstr "Die Abwahl von Paketen erfolgt in der Regel, weil die Pakete mit bestehenden Paketen nicht kompatibel sind.  Dies ist meist harmlos aber es kann sein, dass Ihre %s %s Probleme bekommt."
 
 msgid "Detail of GStreamer log"
-msgstr "Umfang des GStreamer log"
+msgstr "Umfang des GStreamer-Logs"
 
 msgid "Details for plugin: "
 msgstr "Plugin-Details: "
@@ -6493,7 +6493,7 @@ msgstr "Detektiv"
 msgid "Device Manager"
 msgstr "Geräteverwaltung"
 
-msgid "Device Setup"
+msgid "Device Settings"
 msgstr "Netzwerkadapter-Einstellungen"
 
 msgid "Device id"
@@ -6917,7 +6917,7 @@ msgid "Do you want to continue?"
 msgstr "Möchten Sie fortfahren?"
 
 msgid "Do you want to delete all log files?"
-msgstr "Möchten Sie alle Log-Dateien löschen?"
+msgstr "Möchten Sie alle Logdateien löschen?"
 
 # python\Screens\LanguageSelection.py
 msgid ""
@@ -6940,7 +6940,7 @@ msgid "Do you want to delete the old settings in /etc/enigma2 first?"
 msgstr "Möchten Sie zuerst die alten Einstellungen in '/etc/enigma2' löschen?"
 
 msgid "Do you want to delete this log file?"
-msgstr "Möchten Sie diese Log-Datei löschen?"
+msgstr "Möchten Sie diese Logdatei löschen?"
 
 #
 msgid "Do you want to do a service scan?"
@@ -7463,7 +7463,7 @@ msgid "Enable Focus Animation"
 msgstr "Fokusanimation aktivieren"
 
 msgid "Enable GStreamer debug log *"
-msgstr "GStreamer Debuglog aktivieren *"
+msgstr "GStreamer Debug-Log aktivieren *"
 
 msgid "Enable GStreamer pipeline graphs *"
 msgstr "GStreamer Pipeline Graphs aktivieren *"
@@ -7546,10 +7546,10 @@ msgid "Enable cut file support for non *.ts files. (e.g. mp4)"
 msgstr "Bei 'Ja' wird die Unterstützung von Schnittdateien für nicht '.ts'-Dateien (z.B. MP4) aktiviert."
 
 msgid "Enable debug log"
-msgstr "Debuglog aktivieren"
+msgstr "Debug-Log aktivieren"
 
 msgid "Enable debug log *"
-msgstr "Debuglog aktivieren *"
+msgstr "Debug-Log aktivieren *"
 
 msgid "Enable digital downmix"
 msgstr "Dolby Digital Downmix aktivieren"
@@ -7597,19 +7597,19 @@ msgid "Enable the current value of the slider at end of the slider bar."
 msgstr "Bei 'Ja' wird in Menüs mit Schiebereglern rechts neben dem Schieberegler der aktuell eingestellte Wert als Zahl angezeigt."
 
 msgid "Enable this option to add action map / remote control mapping data to the debug log file."
-msgstr "Aktivieren, um dem Debuglog Action-Map-Daten hinzuzufügen."
+msgstr "Aktivieren, um dem Debug-Log Action-Map-Daten hinzuzufügen."
 
 msgid "Enable this option to add keyboard keymap data to the debug log file."
-msgstr "Aktivieren, um dem Debuglog Tastaturdaten hinzuzufügen."
+msgstr "Aktivieren, um dem Debug-Log Tastaturdaten hinzuzufügen."
 
 msgid "Enable this option to add opkg output data to the debug log file."
-msgstr "Aktivieren Sie diese Option, um opkg-Ausgabedaten in die Debug-Log aufzunehmen."
+msgstr "Aktivieren Sie diese Option, um opkg-Ausgabedaten in das Debug-Log aufzunehmen."
 
 msgid "Enable this option to add remote control data to the debug log file."
-msgstr "Aktivieren, um dem Debuglog Fernbedienungsdaten hinzuzufügen."
+msgstr "Aktivieren, um dem Debug-Log Fernbedienungsdaten hinzuzufügen."
 
 msgid "Enable this option to add screen names and resolution data to the debug log file."
-msgstr "Aktivieren, um dem Debuglog Bildschirmnamen und Auflösungsdaten hinzuzufügen."
+msgstr "Aktivieren, um dem Debug-Log Bildschirmnamen und Auflösungsdaten hinzuzufügen."
 
 msgid "Enable this setting if your aerial system needs power"
 msgstr "Aktivieren Sie diese Einstellung, wenn Ihr Antennensystem Strom benötigt"
@@ -7813,7 +7813,7 @@ msgstr "Fehler"
 
 #, python-format
 msgid "Error %d: Log file '%s' wasn't deleted!  (%s)"
-msgstr "Fehler %d: Log-Datei '%s' wurde'nicht gelöscht!  (%s)"
+msgstr "Fehler %d: Logdatei '%s' wurde'nicht gelöscht!  (%s)"
 
 #, python-format
 msgid "Error %d: The logfile '%s' could not be opened.  (%s)"
@@ -7835,7 +7835,7 @@ msgid "Error Download Setting"
 msgstr "Fehler beim Download!"
 
 msgid "Error code"
-msgstr "Fehler-Code"
+msgstr "Fehlercode"
 
 msgid ""
 "Error creating EHD-Skin.\n"
@@ -8336,7 +8336,7 @@ msgstr "FreeTV (FTA)"
 msgid "FTP"
 msgstr "FTP"
 
-msgid "FTP Setup"
+msgid "FTP Settings"
 msgstr "FTP-Dateiserver"
 
 msgid "Factory Reset"
@@ -8533,7 +8533,7 @@ msgid "Files/folders to exclude from backup"
 msgstr "Nicht zu sichernde Dateien"
 
 #
-msgid "Filesystem Check"
+msgid "File System Check"
 msgstr "Dateisystemüberprüfung"
 
 msgid "Filesystem check your Harddisk"
@@ -8886,10 +8886,10 @@ msgid "GREEN long"
 msgstr "GRÜN lang"
 
 msgid "GStreamer debug log category *"
-msgstr "GStreamer Debuglog-Kategorie *"
+msgstr "GStreamer Debug-Log Kategorie *"
 
 msgid "GStreamer debug log level *"
-msgstr "GStreamer Debuglog Meldungstyp *"
+msgstr "GStreamer Debug-Log Meldungstyp *"
 
 msgid "GStreamer version"
 msgstr "GStreamer-Version"
@@ -9697,7 +9697,7 @@ msgid "If 'never', will force restart despite that after 100 crashes."
 msgstr "Auch bei 'niemals' wird trotzdem nach 100 Abstürzen ein Neustart der Benutzeroberfläche erzwungen."
 
 msgid "If 'never', will write crash log despite that for the first crash."
-msgstr "Auch bei 'niemals' wird trotzdem beim ersten Absturz ein Crashlog geschrieben."
+msgstr "Auch bei 'niemals' wird trotzdem beim ersten Absturz ein Crash-Log geschrieben."
 
 msgid "If an action is user-configurable, its help entry will be flagged with a '(C)' suffix."
 msgstr "Wenn eine Aktion vom Benutzer konfigurierbar ist, wird der Hilfeeintrag mit einem '(C)'-Suffix gekennzeichnet."
@@ -9910,7 +9910,7 @@ msgstr "Inadyn"
 msgid "Inadyn Log"
 msgstr "Inadyn-Log"
 
-msgid "Inadyn Setup"
+msgid "Inadyn Settings"
 msgstr "Inadyn (DynDNS)"
 
 msgid "Include AIT in http streams"
@@ -10820,7 +10820,7 @@ msgid "Limit character set for recording filenames"
 msgstr "Beschränken des Zeichensatzes für Aufnahme-Dateinamen"
 
 msgid "Limit debug log size (MB)"
-msgstr "Größenbegrenzung in MB des Debuglogs"
+msgstr "Größenbegrenzung in MB des Debug-Logs"
 
 #
 msgid "Limit east"
@@ -11032,7 +11032,7 @@ msgstr "Logverwaltung"
 
 #, python-format
 msgid "Log file '%s' deleted."
-msgstr "Log-Datei '%s' gelöscht."
+msgstr "Logdatei '%s' gelöscht."
 
 # data/setup.xml
 msgid "Log python stack trace on spinner"
@@ -11047,7 +11047,7 @@ msgstr "Logverwaltung"
 
 #, python-format
 msgid "Logfile '%s' (%d/%d)"
-msgstr "Log-Datei '%s' (%d/%d)"
+msgstr "Logdatei '%s' (%d/%d)"
 
 msgid "Login"
 msgstr "Anmelden"
@@ -11197,7 +11197,7 @@ msgstr "Magic"
 msgid "Magic long"
 msgstr "Magic lang"
 
-msgid "Main menu"
+msgid "Main Menu"
 msgstr "Hauptmenü"
 
 #
@@ -11505,7 +11505,7 @@ msgstr "MiniDLNA"
 msgid "MiniDLNA Log"
 msgstr "MiniDLNA-Log"
 
-msgid "MiniDLNA Setup"
+msgid "MiniDLNA Settings"
 msgstr "MiniDLNA-Medienserver"
 
 msgid "MiniTV"
@@ -11685,7 +11685,7 @@ msgstr "Mounts"
 msgid "Mounts Devices"
 msgstr "Gerätemounts"
 
-msgid "Mounts Setup"
+msgid "Mounts Settings"
 msgstr "Externe Freigaben einbinden"
 
 msgid "Move"
@@ -12030,7 +12030,7 @@ msgstr ""
 msgid "NFS"
 msgstr "NFS"
 
-msgid "NFS Setup"
+msgid "NFS Settings"
 msgstr "NFS-Dateiserver"
 
 msgid "NIM & Type"
@@ -12943,7 +12943,7 @@ msgstr "AutoTimer anzeigen"
 
 #
 msgid "Open AutoTimerlist"
-msgstr "AutoTimerliste anzeigen"
+msgstr "AutoTimer-Liste anzeigen"
 
 msgid "Open EPGSearch"
 msgstr "Öffne EPG-Suche"
@@ -13026,7 +13026,7 @@ msgstr "OpenSSL-Version"
 msgid "OpenVPN"
 msgstr "OpenVPN"
 
-msgid "OpenVPN Setup"
+msgid "OpenVPN Settings"
 msgstr "OpenVPN"
 
 msgid "OpenVpn Log"
@@ -15685,7 +15685,7 @@ msgstr "S-Video"
 msgid "SABnzbd"
 msgstr "SABnzbd"
 
-msgid "SABnzbd Setup"
+msgid "SABnzbd Settings"
 msgstr "SABnzbd (Binary News)"
 
 msgid "SAT"
@@ -15700,7 +15700,7 @@ msgstr "SATA"
 msgid "SATPI"
 msgstr "SATPI"
 
-msgid "SATPI Setup"
+msgid "SATPI Settings"
 msgstr "SATPI (SATIP-Server)"
 
 msgid "SCPC optimized search range"
@@ -16200,10 +16200,10 @@ msgid "Select 'Yes' to remove all plugin configuration data. Selecting this opti
 msgstr "Wählen Sie 'Ja', um alle Plugin-Konfigurationsdaten zu entfernen. Wenn Sie diese Option wählen, werden alle Plugin-Konfigurationsdaten, die im Enigma2-Konfigurationsordner gespeichert sind, gelöscht. Dies führt dazu, dass alle betroffenen Plugins auf ihre Standardeinstellungen zurückgesetzt werden. Dies kann dazu führen, dass einige Plugins nicht funktionieren, bis sie konfiguriert sind."
 
 msgid "Select 'Yes' to remove all settings, tuning data, timers, resume pointers etc. Selecting this option will restore the configuration to the initial settings before any configuration settings were applied. This is the most reliable form of Factory Reset."
-msgstr "Wählen Sie 'Ja', um alle Einstellungen, Empfangsdaten, Timer, Fortsetzungszeiger usw. zu entfernen. Wenn Sie diese Option wählen, wird die Konfiguration auf die ursprünglichen Einstellungen zurückgesetzt, bevor irgendwelche Konfigurationseinstellungen vorgenommen wurden. Dies ist die zuverlässigste Form des Factory Reset."
+msgstr "Wählen Sie 'Ja', um alle Einstellungen, Empfangsdaten, Timer, Fortsetzungszeiger usw. zu entfernen. Wenn Sie diese Option wählen, wird die Konfiguration auf die ursprünglichen Einstellungen zurückgesetzt, bevor irgendwelche Konfigurationseinstellungen vorgenommen wurden. Dies ist die zuverlässigste Form für die Werkseinstellungen."
 
 msgid "Select 'Yes' to remove all timer configuration data. Selecting this option will clear all timers, autotimers and power timers."
-msgstr "Wählen Sie 'Ja', um alle Timer-Konfigurationsdaten zu löschen. Wenn Sie diese Option wählen, werden alle Timer, Autotimer und Power Timer gelöscht."
+msgstr "Wählen Sie 'Ja', um alle Timer-Konfigurationsdaten zu löschen. Wenn Sie diese Option wählen, werden alle Timer, AutoTimer und PowerTimer gelöscht."
 
 msgid "Select 'Yes' to remove all tuning data. Selecting this option will remove all tuning and bouquet data and will make timers non functional until the receiver is retuned."
 msgstr "Wählen Sie 'Ja', um alle Empfangsdaten zu löschen. Wenn Sie diese Option wählen, werden alle Empfangs- und Bouquetdaten gelöscht und die Timer sind nicht funktionsfähig, bis der Empfänger neu abgestimmt wurde."
@@ -18821,7 +18821,7 @@ msgid "Stops timeshift being used if a recording is in progress. (Advisable for 
 msgstr "Beendet Timeshift, wenn eine Aufnahme läuft. Ratsam bei der Verwendung eines USB-Sticks."
 
 #
-msgid "Storage devices"
+msgid "Storage Devices"
 msgstr "Speichergeräte"
 
 #
@@ -19365,7 +19365,7 @@ msgstr "Telnet"
 msgid "Telnet Port"
 msgstr "Telnet-Port"
 
-msgid "Telnet Setup"
+msgid "Telnet Settings"
 msgstr "Telnet-Zugang"
 
 msgid "Telugu"
@@ -19451,7 +19451,7 @@ msgstr "Die %s Commit-Logs können nicht abgerufen werden! Bitte versuchen Sie e
 
 #, python-format
 msgid "The '%s' log file contains no information."
-msgstr "Die '%s' Log-Datei enthält keine Informationen."
+msgstr "Die '%s' Logdatei enthält keine Informationen."
 
 msgid ""
 "The AutoTimer plugin is not installed!\n"
@@ -20418,7 +20418,7 @@ msgstr "Timer ist nicht aktiviert"
 
 #
 msgid "Timer log"
-msgstr "Timerlog"
+msgstr "Timer-Log"
 
 msgid ""
 "Timer overlap in pm_timers.xml detected!\n"
@@ -20796,9 +20796,6 @@ msgstr "Tuner "
 msgid "Tuner :"
 msgstr "Tuner:"
 
-msgid "Tuner Configuration"
-msgstr "Tunereinstellungen"
-
 msgid "Tuner Information"
 msgstr "Tuner-Informationen"
 
@@ -20811,7 +20808,7 @@ msgid "Tuner Setup"
 msgstr "Tunereinstellungen"
 
 #
-msgid "Tuner configuration"
+msgid "Tuner Configuration"
 msgstr "Tunereinstellungen"
 
 msgid "Tuner information"
@@ -23961,7 +23958,7 @@ msgstr "Horizontal"
 
 # data/setup.xml
 msgid "if set to 'no', only an debug message is written to the Debug log "
-msgstr "Bei 'Nein' gibt es bei Fehlern im Skin nur einen Eintrag im Debuglog. "
+msgstr "Bei 'Nein' gibt es bei Fehlern im Skin nur einen Eintrag im Debug-Log. "
 
 msgid "increase uphop by 1"
 msgstr "Uphop um 1 erhöhen"
@@ -24895,7 +24892,7 @@ msgid "uShare Port"
 msgstr "uShare-Port"
 
 #
-msgid "uShare Setup"
+msgid "uShare Settings"
 msgstr "uShare-Medienserver"
 
 msgid "unavailable"

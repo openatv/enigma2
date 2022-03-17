@@ -329,7 +329,7 @@ class QuickMenu(Screen, ProtectedScreen):
 		self.sublist = []
 		self.sublist.append(QuickSubMenuEntryComponent("Harddisk Setup", _("Harddisk Setup"), _("Setup your Harddisk")))
 		self.sublist.append(QuickSubMenuEntryComponent("Initialization", _("Format HDD"), _("Format your Harddisk")))
-		self.sublist.append(QuickSubMenuEntryComponent("Filesystem Check", _("Check HDD"), _("Filesystem check your Harddisk")))
+		self.sublist.append(QuickSubMenuEntryComponent("File System Check", _("Check HDD"), _("Filesystem check your Harddisk")))
 		if isFileSystemSupported("ext4"):
 			self.sublist.append(QuickSubMenuEntryComponent("Convert ext3 to ext4", _("Convert filesystem ext3 to ext4"), _("Convert filesystem ext3 to ext4")))
 		self["sublist"].l.setList(self.sublist)
@@ -535,7 +535,7 @@ class QuickMenu(Screen, ProtectedScreen):
 			self.openSetup("HardDisk")
 		elif item[0] == _("Initialization"):
 			self.session.open(HarddiskSelection)
-		elif item[0] == _("Filesystem Check"):
+		elif item[0] == _("File System Check"):
 			self.session.open(HarddiskFsckSelection)
 		elif item[0] == _("Convert ext3 to ext4"):
 			self.session.open(HarddiskConvertExt4Selection)

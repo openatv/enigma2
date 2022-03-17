@@ -191,7 +191,7 @@ def getButtonSetupFunctions():
 			twinPlugins.append(plugin.name)
 	ButtonSetupFunctions.append((_("Show vertical Program Guide"), "Infobar/openVerticalEPG", "EPG"))
 	ButtonSetupFunctions.append((_("Show graphical multi EPG"), "Infobar/openGraphEPG", "EPG"))
-	ButtonSetupFunctions.append((_("Main menu"), "Infobar/mainMenu", "InfoBar"))
+	ButtonSetupFunctions.append((_("Main Menu"), "Infobar/mainMenu", "InfoBar"))
 	ButtonSetupFunctions.append((_("Show help"), "Infobar/showHelp", "InfoBar"))
 	ButtonSetupFunctions.append((_("Show extension selection"), "Infobar/showExtensionSelection", "InfoBar"))
 	ButtonSetupFunctions.append((_("Zap down"), "Infobar/zapDown", "InfoBar"))

@@ -32,7 +32,7 @@ class SABnzbdSetupScreen(Screen):
 
 	def __init__(self, session):
 		Screen.__init__(self, session)
-		Screen.setTitle(self, _("SABnzbd Setup"))
+		Screen.setTitle(self, _("SABnzbd Settings"))
 		self.skinName = "NetworkServiceSetup"
 		self.onChangedEntry = []
 		self['lab1'] = Label(_("Autostart:"))
@@ -157,7 +157,7 @@ class SABnzbdSetupScreen(Screen):
 			self['labactive'].show()
 			self['key_green'].setText(_("Start"))
 			status_summary = self['lab2'].text + ' ' + self['labstop'].text
-		title = _("SABnzbd Setup")
+		title = _("SABnzbd Settings")
 		autostartstatus_summary = self['lab1'].text + ' ' + self['labactive'].text
 
 		for cb in self.onChangedEntry:

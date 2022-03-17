@@ -353,13 +353,13 @@ self.instance.move(ePoint(orgpos.x() + (orgwidth - newwidth)//2, orgpos.y()))
 		<widget name="RtpText" position="50,510" size="620,29" font="Regular;21" halign="right" noWrap="1" backgroundColor="#003258" />
 		<widget name="RassLogo" pixmap="skin_default/icons/rass_logo.png" position="50,445" size="50,21" />
 	</screen>
-	<screen name="Menu" position="center,center" size="560,460" title="Main menu">
+	<screen name="Menu" position="center,center" size="560,460" title="Main Menu">
 		<panel name="BasicTemplate" />
 		<widget source="menu" render="Listbox" position="10,55" size="520,350" scrollbarMode="showOnDemand"  itemHeight="35" font="Regular;28">
 			<convert type="StringList"/>
 		</widget>
 	</screen>
-	<screen name="Setup" position="center,center" size="560,460" backgroundColor="transBG" title="Main menu">
+	<screen name="Setup" position="center,center" size="560,460" backgroundColor="transBG" title="Main Menu">
 		<panel name="BasicTemplate" />		<panel name="Red2Panel" />
 		<panel name="Green2Panel" />
 		<widget name="config" position="10,45" scrollbarMode="showOnDemand" size="540,300" source="menu" transparent="10" itemHeight="20" enableWrapAround="1" zPosition="1" />
@@ -938,7 +938,7 @@ self.autoResize()
 		<widget name="timeline5" position="0,65" zPosition="1" size="1,365" pixmap="skin_default/timeline.png" />
 		<widget name="timeline_now" position="0,64" zPosition="2" size="19,10" pixmap="skin_default/timeline-now.png" alphatest="on" />
 	</screen>
-	<screen name="VideoEnhancementSetup" position="center,center" size="560,460" backgroundColor="transBG" title="Main menu">
+	<screen name="VideoEnhancementSetup" position="center,center" size="560,460" backgroundColor="transBG" title="Main Menu">
 		<panel name="BasicTemplate" />
 		<panel name="Red2Panel" />
 		<panel name="Green2Panel" />
