@@ -397,9 +397,6 @@ class DNSSettings(Setup):
 		self.createSetup()
 		self["config"].setCurrentIndex(self.dnsStart + index)
 
-	def run(self):  # Invoked from the Wizard.
-		self.keySave()
-
 	def getNetworkRoutes(self):
 		# # cat /proc/net/route
 		# Iface   Destination     Gateway         Flags   RefCnt  Use     Metric  Mask            MTU     Window  IRTT
