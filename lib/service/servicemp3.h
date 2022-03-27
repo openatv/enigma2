@@ -338,6 +338,7 @@ private:
 		stIdle, stRunning, stStopped,
 	};
 	int m_state;
+	bool m_gstdot;
 	GstElement *m_gst_playbin;
 	GstTagList *m_stream_tags;
 	bool m_coverart;

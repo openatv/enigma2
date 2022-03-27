@@ -541,6 +541,7 @@ eServiceMP3::eServiceMP3(eServiceReference ref):
 	m_aspect = m_width = m_height = m_framerate = m_progressive = m_gamma = -1;
 
 	m_state = stIdle;
+	m_gstdot = eConfigManager::getConfigBoolValue("config.crash.gstdot");
 	m_coverart = false;
 	m_subtitles_paused = false;
 	// eDebug("[eServiceMP3] construct!");
@@ -2216,7 +2217,16 @@ void eServiceMP3::gstBusCall(GstMessage *msg)
 
 			if(old_state == new_state)
 				break;
-			eDebug("[eServiceMP3] ****STATE TRANSITION %s -> %s ****", gst_element_state_get_name(old_state), gst_element_state_get_name(new_state));
+
+			std::string s_old_state(gst_element_state_get_name(old_state));
+			std::string s_new_state(gst_element_state_get_name(new_state));
+			eDebug("[eServiceMP3] ****STATE TRANSITION %s -> %s ****", s_old_state.c_str(), s_new_state.c_str());
+
+			if (m_gstdot)
+			{
+				std::string s_graph_filename = "GStreamer-enigma2." + s_old_state + "_" + s_new_state;
+				GST_DEBUG_BIN_TO_DOT_FILE_WITH_TS(GST_BIN_CAST(m_gst_playbin), GST_DEBUG_GRAPH_SHOW_ALL, s_graph_filename.c_str());
+			}
 
 			transition = (GstStateChange)GST_STATE_TRANSITION(old_state, new_state);
 
@@ -2304,13 +2314,7 @@ void eServiceMP3::gstBusCall(GstMessage *msg)
 				{
 					m_paused = false;
 					if (!m_first_paused)
-					{
-						if (eConfigManager::getConfigBoolValue("config.crash.gstdot"))
-						{
-							GST_DEBUG_BIN_TO_DOT_FILE(GST_BIN_CAST(m_gst_playbin), GST_DEBUG_GRAPH_SHOW_ALL, "GStreamer-enigma2");
-						}
 						m_event((iPlayableService*)this, evGstreamerPlayStarted);
-					}
 					m_first_paused = false;
 				}	break;
 				case GST_STATE_CHANGE_PLAYING_TO_PAUSED:
