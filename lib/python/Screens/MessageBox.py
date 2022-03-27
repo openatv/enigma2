@@ -49,7 +49,7 @@ class MessageBox(Screen, HelpableScreen):
 		else:
 			self["list"] = MenuList([])
 			self["list"].hide()
-			self.list = None
+			self.list = []
 		self.timeout = timeout
 		if close_on_any_key == True:  # Process legacy close_on_any_key argument.
 			closeOnAnyKey = True
