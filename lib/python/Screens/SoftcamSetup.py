@@ -76,8 +76,9 @@ class SoftcamSetup(Setup):
 		if device:
 			self.restart(device="e%s" % device)
 		else:
-			Setup.keySave(self)
+			self.saveAll()
 			Refresh_SysSoftCam()
+			self.close()
 
 	def keyCancel(self):
 		Setup.keyCancel(self)
@@ -146,7 +147,9 @@ class SoftcamSetup(Setup):
 			self.mbox.close()
 		self.session.nav.playService(self.oldref, adjust=False)
 		if "e" in self.device:
-			Setup.keySave(self)
+			self.saveAll()
+			Refresh_SysSoftCam()
+			self.close()
 
 	def setEcmInfo(self):
 		(newEcmFound, ecmInfo) = self.ecminfo.getEcm()
