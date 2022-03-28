@@ -37,6 +37,9 @@ class MenuList(GUIComponent):
 	def getSelectedIndex(self):
 		return self.l.getCurrentSelectionIndex()
 
+	def getList(self):
+		return self.list
+
 	def setList(self, list):
 		self.list = list
 		self.l.setList(self.list)
