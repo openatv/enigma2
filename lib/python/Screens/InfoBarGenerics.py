@@ -3185,7 +3185,7 @@ class InfoBarExtensions:
 		self.addExtension(extension=self.getOsd3DSetup, type=InfoBarExtensions.EXTENSION_LIST)
 		self.addExtension(extension=self.getCCcamInfo, type=InfoBarExtensions.EXTENSION_LIST)
 		self.addExtension(extension=self.getOScamInfo, type=InfoBarExtensions.EXTENSION_LIST)
-		self.addExtension(extension=self.getSoftcamPanel, type=InfoBarExtensions.EXTENSION_LIST)
+		self.addExtension(extension=self.getSoftcamSetup, type=InfoBarExtensions.EXTENSION_LIST)
 		if config.usage.show_restart_network_extensionslist.getValue() is True:
 			self.addExtension(extension=self.getRestartNetwork, type=InfoBarExtensions.EXTENSION_LIST)
 
@@ -3229,12 +3229,12 @@ class InfoBarExtensions:
 		else:
 			return []
 
-	def getSoftcamPanelname(self):
-		return _("Softcam-Panel")
+	def getSoftcamSetupname(self):
+		return _("Softcam Settings")
 
-	def getSoftcamPanel(self):
+	def getSoftcamSetup(self):
 		if BoxInfo.getItem("SoftCam"):
-			return [((boundFunction(self.getSoftcamPanelname), boundFunction(self.openSoftcamPanel), lambda: True), None)]
+			return [((boundFunction(self.getSoftcamSetupname), boundFunction(self.openSoftcamSetup), lambda: True), None)]
 		else:
 			return []
 
@@ -3364,9 +3364,9 @@ class InfoBarExtensions:
 		from Screens.Setup import Setup
 		self.session.open(Setup, "OSD3D")
 
-	def openSoftcamPanel(self):
-		from Screens.ShowSoftcamPackages import ShowSoftcamPackages
-		self.session.open(ShowSoftcamPackages)
+	def openSoftcamSetup(self):
+		from Screens.SoftcamSetup import SoftcamSetup
+		self.session.open(SoftcamSetup)
 
 	def openRestartNetwork(self):
 		try:
