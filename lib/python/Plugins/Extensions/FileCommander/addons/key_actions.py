@@ -437,6 +437,16 @@ class key_actions(stat_info):
 			return
 		self.run_prog("mediainfo")
 
+	def run_dirsize(self):
+		if self.disableActions_Timer.isActive():
+			return
+		filename = self.SOURCELIST.getFilename()
+		sourceDir = self.SOURCELIST.getCurrentDirectory()
+		filepath = os.path.join(sourceDir, filename)
+		if os.path.isdir(filepath):
+			cmd = "du -h -d 0 %s" % filepath
+			self._progConsole = self.session.open(Console, cmdlist=(cmd,), finishedCallback=self.progConsoleCB)
+
 	def run_prog(self, prog, args=None):
 		if not self.have_program(prog):
 			pkg = self.progPackages.get(prog)
@@ -493,6 +503,11 @@ class key_actions(stat_info):
 		if self.disableActions_Timer.isActive():
 			return
 		return self.help_run_prog("mediainfo")
+
+	def help_run_dirsize(self):
+		if self.disableActions_Timer.isActive():
+			return
+		return _("Display directory size")
 
 	def help_run_prog(self, prog):
 		if self.have_program(prog):

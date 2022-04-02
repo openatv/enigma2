@@ -290,6 +290,7 @@ class FileCommanderScreen(Screen, HelpableScreen, key_actions):
 			"5": (self.goDefaultfolder, _("Go to bookmarked folder")),
 			"6": (self.run_file, self.help_run_file),
 			"7": (self.run_ffprobe, self.help_run_ffprobe),
+			"8": (self.run_dirsize, self.help_run_dirsize),
 			# "8": (self.run_mediainfo, self.help_run_mediainfo),
 			"9": (self.run_hashes, _("Calculate file checksums")),
 			"startTeletext": (self.file_viewer, _("View or edit file (if size < 1MB)")),
