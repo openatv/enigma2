@@ -166,8 +166,12 @@ class ImageBackup(Screen):
 
 				self.getImageList = self.saveImageList
 				if SystemInfo["canMultiBoot"]:
+					if SystemInfo["HasMultibootMTD"]:
+						self.MTDROOTFS = SystemInfo["canMultiBoot"][self.SLOT]["device"]
+					else:
+						self.MTDROOTFS = SystemInfo["canMultiBoot"][self.SLOT]["device"].split('/')[2]
 					self.MTDKERNEL = SystemInfo["canMultiBoot"][self.SLOT]["kernel"].split('/')[2]
-					self.MTDROOTFS = SystemInfo["canMultiBoot"][self.SLOT]["device"].split('/')[2]
+
 					if SystemInfo["HasRootSubdir"]:
 						self.ROOTFSSUBDIR = SystemInfo["canMultiBoot"][self.SLOT]['rootsubdir']
 				else:
@@ -244,7 +248,10 @@ class ImageBackup(Screen):
 				os.system("sync")
 				if SystemInfo["canMultiBoot"]:
 					if SystemInfo["HasRootSubdir"]:
-						os.system("mount /dev/%s /tmp/bi/RootSubdir" % self.MTDROOTFS)
+						if SystemInfo["HasMultibootMTD"]:
+							os.system("mount -t ubifs %s /tmp/bi/RootSubdir" % self.MTDROOTFS)
+						else:
+							os.system("mount /dev/%s /tmp/bi/RootSubdir" % self.MTDROOTFS)
 						self.backuproot = self.backuproot + self.ROOTFSSUBDIR
 					else:
 						os.system("mount /dev/%s %s" % (self.MTDROOTFS, self.backuproot))
@@ -274,10 +281,11 @@ class ImageBackup(Screen):
 					if self.RECOVERY:
 						cmd1 = None
 						cmd2 = None
+						cmd3 = None
 					else:
 						cmd1 = "%s -cf %s/rootfs.tar -C %s --exclude ./var/nmbd --exclude ./.resizerootfs --exclude ./.resize-rootfs --exclude ./.resize-linuxrootfs --exclude ./.resize-userdata --exclude ./var/lib/samba/private/msg.sock --exclude ./var/lib/samba/msg.sock/* --exclude ./run/avahi-daemon/socket ." % (self.MKFS_TAR, self.WORKDIR, self.backuproot)
-						cmd2 = "%s %s/rootfs.tar" % (self.BZIP2, self.WORKDIR)
-					cmd3 = None
+						cmd2 = "sync"
+						cmd3 = "%s %s/rootfs.tar" % (self.BZIP2, self.WORKDIR)
 
 				cmdlist = []
 				cmdlist.append(self.message)
