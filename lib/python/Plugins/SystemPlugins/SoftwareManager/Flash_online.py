@@ -515,8 +515,10 @@ class FlashImage(Screen):
 		if imagefiles:
 			self.ROOTFSSUBDIR = "none"
 			if SystemInfo["canMultiBoot"]:
-				self.MTDKERNEL = SystemInfo["canMultiBoot"][self.multibootslot]["kernel"].split('/')[2]
-				self.MTDROOTFS = SystemInfo["canMultiBoot"][self.multibootslot]["device"].split('/')[2]
+				if SystemInfo["HasMultibootMTD"]:
+					self.MTDROOTFS = SystemInfo["canMultiBoot"][self.multibootslot]["device"]
+				else:
+					self.MTDROOTFS = SystemInfo["canMultiBoot"][self.multibootslot]["device"].split('/')[2]
 				if SystemInfo["HasRootSubdir"]:
 					self.ROOTFSSUBDIR = SystemInfo["canMultiBoot"][self.multibootslot]['rootsubdir']
 			else:

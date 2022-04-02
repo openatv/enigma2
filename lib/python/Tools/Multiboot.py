@@ -12,11 +12,14 @@ from Tools.Directories import pathExists
 Imagemount = "/tmp/multibootcheck"
 Imageroot = "/tmp/imageroot"
 
+def getMountType():
+	if SystemInfo["HasMultibootMTD"]:
+		return "-t ubifs"
 
 def getMBbootdevice():
 	if not path.isdir(Imagemount):
 		mkdir(Imagemount)
-	for device in ('/dev/block/by-name/bootoptions', '/dev/mmcblk0p1', '/dev/mmcblk1p1', '/dev/mmcblk0p3', '/dev/mmcblk0p4'):
+	for device in ('/dev/block/by-name/bootoptions', '/dev/mmcblk0p1', '/dev/mmcblk1p1', '/dev/mmcblk0p3', '/dev/mmcblk0p4', '/dev/mtdblock2'):
 		if path.exists(device):
 			Console().ePopen("mount %s %s" % (device, Imagemount))
 			if path.isfile(path.join(Imagemount, "STARTUP")):
@@ -49,16 +52,20 @@ def getMultibootslots():
 					if "root=" in line:
 						line = line.rstrip("\n")
 						device = getparam(line, "root")
-						if path.exists(device):
+						if path.exists(device) or device == "ubi0:ubifs":
 							slot["device"] = device
 							slot["startupfile"] = path.basename(file)
 							if "sda" in line:
 								slot["kernel"] = "/dev/sda%s" % line.split("sda", 1)[1].split(" ", 1)[0]
 								slot["rootsubdir"] = None
+							elif "ubi.mtd=" in line:
+								slot["kernel"] = "/dev/mtd%s" % line.split("mtd", 1)[1].split(" ", 1)[0]
 							else:
 								slot["kernel"] = "%sp%s" % (device.split("p")[0], int(device.split("p")[1]) - 1)
 							if "rootsubdir" in line:
 								SystemInfo["HasRootSubdir"] = True
+								if "ubi.mtd=" in line:
+									SystemInfo["HasMultibootMTD"] = True
 								print "[multiboot] [getMultibootslots] HasRootSubdir is set to:%s" % SystemInfo["HasRootSubdir"]
 								slot["rootsubdir"] = getparam(line, "rootsubdir")
 								slot["kernel"] = getparam(line, "kernel")
@@ -87,12 +94,18 @@ def GetCurrentImage():
 
 def GetCurrentKern():
 	if SystemInfo["HasRootSubdir"]:
-		return SystemInfo["HasRootSubdir"] and (int(open("/sys/firmware/devicetree/base/chosen/bootargs", "r").read()[:-1].split("kernel=/dev/mmcblk0p")[1].split(" ")[0]))
+		if SystemInfo["HasMultibootMTD"]:
+			return SystemInfo["HasRootSubdir"] and (int(open("/sys/firmware/devicetree/base/chosen/bootargs", "r").read()[:-1].split("kernel=/dev/mtd")[1].split(" ")[0]))
+		else:
+			return SystemInfo["HasRootSubdir"] and (int(open("/sys/firmware/devicetree/base/chosen/bootargs", "r").read()[:-1].split("kernel=/dev/mmcblk0p")[1].split(" ")[0]))
 
 
 def GetCurrentRoot():
 	if SystemInfo["HasRootSubdir"]:
-		return SystemInfo["HasRootSubdir"] and (int(open("/sys/firmware/devicetree/base/chosen/bootargs", "r").read()[:-1].split("root=/dev/mmcblk0p")[1].split(" ")[0]))
+		if SystemInfo["HasMultibootMTD"]:
+			return SystemInfo["HasRootSubdir"] and (int(open("/sys/firmware/devicetree/base/chosen/bootargs", "r").read()[:-1].split("ubi.mtd=")[1].split(" ")[0]))
+		else:
+			return SystemInfo["HasRootSubdir"] and (int(open("/sys/firmware/devicetree/base/chosen/bootargs", "r").read()[:-1].split("root=/dev/mmcblk0p")[1].split(" ")[0]))
 
 
 def GetCurrentImageMode():
@@ -149,6 +162,8 @@ def GetBoxName():
 class GetImagelist():
 	MOUNT = 0
 	UNMOUNT = 1
+	if SystemInfo["HasMultibootMTD"]:
+		mounttype = "-t ubifs"
 
 	def __init__(self, callback):
 		if SystemInfo["canMultiBoot"]:
@@ -168,7 +183,7 @@ class GetImagelist():
 			self.container.ePopen("umount %s" % Imageroot, self.appClosed)
 		else:
 			self.slot = self.slots.pop(0)
-			self.container.ePopen("mount %s %s" % (SystemInfo["canMultiBoot"][self.slot]["device"], Imageroot), self.appClosed)
+			self.container.ePopen("mount %s %s %s" % (getMountType(), SystemInfo["canMultiBoot"][self.slot]["device"], Imageroot), self.appClosed)
 
 	def appClosed(self, data="", retval=0, extra_args=None):
 		BuildVersion = "  "
@@ -332,7 +347,7 @@ class EmptySlot():
 		if self.phase == self.UNMOUNT:
 			self.container.ePopen("umount %s" % Imageroot, self.appClosed)
 		else:
-			self.container.ePopen("mount %s %s" % (SystemInfo["canMultiBoot"][self.slot]["device"], Imageroot), self.appClosed)
+			self.container.ePopen("mount %s %s %s" % (getMountType(), SystemInfo["canMultiBoot"][self.slot]["device"], Imageroot), self.appClosed)
 
 	def appClosed(self, data="", retval=0, extra_args=None):
 		if retval == 0 and self.phase == self.MOUNT:
