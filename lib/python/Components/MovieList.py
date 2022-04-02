@@ -371,7 +371,7 @@ class MovieList(GUIComponent):
 					res.append(MultiContentEntryText(pos=(textPosX, 0), size=(width - textPosX - dateSize - listMarginX - listEndX, ih), font=0, flags=RT_HALIGN_LEFT | RT_VALIGN_CENTER, text=_("Deleted items")))
 					res.append(MultiContentEntryText(pos=(width - dateSize - listEndX, textPosY), size=(dateSize, self.itemHeight), font=1, flags=RT_HALIGN_RIGHT | RT_VALIGN_CENTER, text=_("Trashcan")))
 					return res
-			if not config.movielist.show_underlines.value:
+			if not config.movielist.show_underscores.value:
 				txt = txt.replace('_', ' ').strip()
 			dateSize = getTextBoundarySize(self.instance, self.dateFont, self.l.getItemSize(), _("Directory")).width()
 			res.append(MultiContentEntryPixmapAlphaBlend(pos=(iconPosX, iconPosY), size=(iconSize, iconSize), png=self.iconFolder))
@@ -384,7 +384,7 @@ class MovieList(GUIComponent):
 			x = self.list[cur_idx] # x = ref,info,begin,...
 			data.len = 0 #dont recalc movielist to speedup loading the list
 			self.list[cur_idx] = (x[0], x[1], x[2], data) #update entry in list... so next time we don't need to recalc
-			if config.movielist.show_underlines.value:
+			if config.movielist.show_underscores.value:
 				data.txt = info.getName(serviceref)
 			else:
 				data.txt = info.getName(serviceref).replace('_', ' ').strip()
