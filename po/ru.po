@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Enigma2 OpenXXX\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-03-15 12:24+0000\n"
+"POT-Creation-Date: 2022-04-02 20:55+0000\n"
 "PO-Revision-Date: 2022-03-16 19:06+0000\n"
 "Last-Translator: igorrrrr <igorzhugan66@gmail.com>\n"
 "Language-Team: Russian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/ru/>\n"
@@ -3844,6 +3844,9 @@ msgstr "Настройки CI"
 msgid "CI Basic Settings"
 msgstr "Основные настройки CI"
 
+msgid "CI Helper Settings"
+msgstr "Настройки CIHelper"
+
 msgid "CI Legacy"
 msgstr "CI"
 
@@ -3864,9 +3867,6 @@ msgstr "Слот CI: "
 
 msgid "CIFS/Samba Settings"
 msgstr "Настройки CIFS/Samba"
-
-msgid "CI Helper Settings"
-msgstr "Настройки CIHelper"
 
 msgid "CIHelper for SLOT CI0"
 msgstr "CIHelper для слота CI0"
@@ -6334,6 +6334,9 @@ msgstr "Настройки дисплея"
 msgid "Display and user interface"
 msgstr "Дисплей и пользовательский интерфейс"
 
+msgid "Display directory size"
+msgstr ""
+
 msgid "Display message before playing next movie"
 msgstr "Сообщение перед воспроизведением следующей записи"
 
@@ -8024,6 +8027,9 @@ msgstr "Контекстное меню менеджера файлов"
 msgid "File Commander menu"
 msgstr "Меню менеджера файлов"
 
+msgid "File System Check"
+msgstr "Проверка файловой системы"
+
 msgid "File appears to be busy.\n"
 msgstr "Файл занят\n"
 
@@ -8062,9 +8068,6 @@ msgstr "Название файла"
 
 msgid "Files/folders to exclude from backup"
 msgstr "Исключить из резервной копии"
-
-msgid "File System Check"
-msgstr "Проверка файловой системы"
 
 msgid "Filesystem check your Harddisk"
 msgstr "Проверка файловой системы жёсткого диска"
@@ -9170,6 +9173,9 @@ msgstr "Если 'никогда', несмотря на это, будет за
 
 msgid "If an action is user-configurable, its help entry will be flagged with a '(C)' suffix."
 msgstr "Если действие настраивается пользователем, его запись в справке будет помечена суффиксом '(C)'."
+
+msgid "If disabled, underscore characters in file and directory names are not shown and are replaced with spaces."
+msgstr ""
 
 msgid "If editing a file, can you set the cursor start position at end or begin of the line."
 msgstr "При редактировании файла Вы можете установить начальную позицию курсора в конце или начале строки."
@@ -10641,9 +10647,6 @@ msgstr "Ручной поиск каналов"
 
 msgid "Manual configuration"
 msgstr "Ручная настройка"
-
-msgid "Manual scan"
-msgstr "Ручной поиск"
 
 msgid "Manual scan for services"
 msgstr "Ручной поиск каналов"
@@ -12212,9 +12215,6 @@ msgstr "Настройки OpenVPN"
 
 msgid "OpenVpn Log"
 msgstr "Журнал OpenVPN"
-
-msgid "OpenVpn Setup"
-msgstr "Настройки OpenVPN"
 
 msgid "Operating LED status in deep standby mode"
 msgstr "Состояние индикатора работы в режиме глубокого ожидания"
@@ -16769,6 +16769,9 @@ msgstr "Показать оставшееся/истёкшее время как
 msgid "Show two lines per entry"
 msgstr "Показать две строки для каждой записи"
 
+msgid "Show underscore characters in filenames"
+msgstr ""
+
 msgid "Show unknown Videoresolution as next higher or as highest screen resolution."
 msgstr "Показывать неизвестное разрешение как следующее более высокое или как максимальное."
 
@@ -17101,9 +17104,6 @@ msgstr "Действия Softcam"
 
 msgid "Softcam Settings"
 msgstr "Настройка ЭМУ"
-
-msgid "Softcam-Panel"
-msgstr "Панель эмуляторов"
 
 msgid "Software"
 msgstr "ПО"
@@ -19364,6 +19364,9 @@ msgstr "Тюнер "
 msgid "Tuner :"
 msgstr "Тюнер "
 
+msgid "Tuner Configuration"
+msgstr "Настройка тюнера"
+
 msgid "Tuner Information"
 msgstr "Информация о тюнере"
 
@@ -19371,9 +19374,6 @@ msgid "Tuner Settings"
 msgstr "Настройки тюнера"
 
 msgid "Tuner Setup"
-msgstr "Настройка тюнера"
-
-msgid "Tuner Configuration"
 msgstr "Настройка тюнера"
 
 msgid "Tuner information"
@@ -23250,6 +23250,15 @@ msgstr "Переключение"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Manual scan"
+#~ msgstr "Ручной поиск"
+
+#~ msgid "OpenVpn Setup"
+#~ msgstr "Настройки OpenVPN"
+
+#~ msgid "Softcam-Panel"
+#~ msgstr "Панель эмуляторов"
 
 #~ msgid "12, show latin-1 characters except for greek and cyrillic, switch to 8 if needed."
 #~ msgstr "12 - показать набор символов Latin-1, кроме греческого и кириллицы, переключитесь на 8, если это необходимо."

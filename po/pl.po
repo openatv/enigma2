@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-03-15 12:24+0000\n"
-"PO-Revision-Date: 2022-03-13 10:12+0000\n"
+"POT-Creation-Date: 2022-04-02 20:55+0000\n"
+"PO-Revision-Date: 2022-03-30 12:11+0000\n"
 "Last-Translator: drakulis <drakulis@interia.pl>\n"
 "Language-Team: Polish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/pl/>\n"
 "Language: pl\n"
@@ -1636,7 +1636,7 @@ msgid "12 hours"
 msgstr "12 Godzin"
 
 msgid "12, show Latin-1 characters except for greek and cyrillic, switch to 8 if needed."
-msgstr ""
+msgstr "12, wyświetla znaki alfabetu łacińskiego-1 z wyjątkiem greckiego i cyrylicy, w razie potrzeby przełącz na 8."
 
 msgid "128"
 msgstr "128"
@@ -2426,7 +2426,7 @@ msgid "Add Zap+Record Timer"
 msgstr "Dodaj timer zap + nagrywanie"
 
 msgid "Add a DNS entry"
-msgstr ""
+msgstr "Dodaj wpis DNS"
 
 msgid "Add a mark"
 msgstr "Dodaj znacznik"
@@ -3850,6 +3850,9 @@ msgstr "Ustawienia CI (Common Interface)"
 msgid "CI Basic Settings"
 msgstr "Ustawienia modułu CI"
 
+msgid "CI Helper Settings"
+msgstr "Ustawienia CI helper"
+
 msgid "CI Legacy"
 msgstr "Legacy CI"
 
@@ -3870,9 +3873,6 @@ msgstr "Gniazdo CI: "
 
 msgid "CIFS/Samba Settings"
 msgstr "Ustawienia CIFS/Samba"
-
-msgid "CI Helper Settings"
-msgstr "Ustawienia CI helper"
 
 msgid "CIHelper for SLOT CI0"
 msgstr "CIHelper dla SLOT CI0"
@@ -4646,7 +4646,7 @@ msgid "Close title selection"
 msgstr "Zamknij wybór tytułu"
 
 msgid "Cloudflare DNS"
-msgstr ""
+msgstr "DNS Cloudflare"
 
 msgid "Cocos (Keeling) Islands"
 msgstr "Wyspy Kokosowe"
@@ -4940,7 +4940,7 @@ msgid "Configure the function of a short press on the power button."
 msgstr "Akcja dla przycisku 'Power' po krótkim naciśnięciu."
 
 msgid "Configure the function of the < and > buttons."
-msgstr ""
+msgstr "Skonfiguruj funkcję przycisków < i >."
 
 msgid "Configure the gateway."
 msgstr "Skonfiguruj ustawienia 'bramy'."
@@ -5516,7 +5516,7 @@ msgid "Customize"
 msgstr "Ustawienia zaawansowane"
 
 msgid "Customize System Settings"
-msgstr ""
+msgstr "Ustawienia Zaawansowane"
 
 msgid "Customize enigma2 personal settings"
 msgstr "Dostosuj ustawienia osobiste Enigmy2"
@@ -5567,13 +5567,13 @@ msgid "DMM normal"
 msgstr "DMM normalny"
 
 msgid "DNS (Dynamic Name Server) Actions"
-msgstr ""
+msgstr "Akcje DNS (Dynamic Name Server)"
 
 msgid "DNS Settings"
-msgstr ""
+msgstr "Ustawienia DNS"
 
 msgid "DNS data source"
-msgstr ""
+msgstr "Źródło danych DNS"
 
 msgid ""
 "DO NOT POWER OFF YOUR DEVICE WHILE UPDATING!\n"
@@ -6267,7 +6267,7 @@ msgid "Directory long"
 msgstr "Katalog (długo)"
 
 msgid "Disable"
-msgstr "Wyłączone"
+msgstr "Wyłącz"
 
 msgid "Disable Animations"
 msgstr "Wyłącz Animacje"
@@ -6340,6 +6340,9 @@ msgstr "Ustawienia wyświetlacza"
 
 msgid "Display and user interface"
 msgstr "Wyświetlacz i interfejs użytkownika"
+
+msgid "Display directory size"
+msgstr ""
 
 msgid "Display message before playing next movie"
 msgstr "Wyświetlanie wiadomości przed rozpoczęciem kolejnego filmu"
@@ -7296,7 +7299,7 @@ msgstr "Wprowadź"
 
 #, python-format
 msgid "Enter DNS (Dynamic Name Server) %d's IP address."
-msgstr ""
+msgstr "Wprowadź DNS (Dynamic Name Server) %d's IP adres."
 
 msgid "Enter PIN"
 msgstr "Wpisz PIN"
@@ -7395,11 +7398,11 @@ msgstr "Błąd %d: Plik logu '%s' nie może być otwarty!  (%s)"
 
 #, python-format
 msgid "Error %d: Unable to change password!  (%s)"
-msgstr ""
+msgstr "Błąd %d: Nie można zmienić hasła!  (%s)"
 
 #, python-format
 msgid "Error %d: Unable to start 'passwd' command!"
-msgstr ""
+msgstr "Błąd %d: Nie można uruchomić polecenia 'passwd'!"
 
 #, python-format
 msgid "Error '%s' encountered retrieving the %s commit logs!"
@@ -7536,7 +7539,7 @@ msgid "Error: Checksum is invalid!"
 msgstr "Błąd: Suma kontrolna nieprawidłowa!"
 
 msgid "Error: Interaction failure, unable to change password!"
-msgstr ""
+msgstr "Błąd: nieudana interakcja, nie można zmienić hasła!"
 
 msgid "Error: The new password may not be blank!"
 msgstr "Błąd: nowe hasło nie może być puste!"
@@ -7887,7 +7890,7 @@ msgid "Factory Reset"
 msgstr "Przywrócenie ustawień fabrycznych"
 
 msgid "Factory Reset Settings"
-msgstr ""
+msgstr "Ustawienia przywracania ustawień fabrycznych"
 
 msgid "Factory release"
 msgstr "Wydanie fabryczne"
@@ -8031,6 +8034,9 @@ msgstr "Menu kontekstowe File Commander"
 msgid "File Commander menu"
 msgstr "Menu File Commander"
 
+msgid "File System Check"
+msgstr "Sprawdź system plików"
+
 msgid "File appears to be busy.\n"
 msgstr "Plik wydaje się być zajęty.\n"
 
@@ -8069,9 +8075,6 @@ msgstr "Nazwa pliku"
 
 msgid "Files/folders to exclude from backup"
 msgstr "Wykluczone pliki z kopii zapasowej"
-
-msgid "File System Check"
-msgstr "Sprawdź system plików"
 
 msgid "Filesystem check your Harddisk"
 msgstr "Sprawdź system plików HDD"
@@ -9178,6 +9181,9 @@ msgstr "Jeśli 'nigdy', mimo to zapisze dziennik awarii dla pierwszej awarii."
 msgid "If an action is user-configurable, its help entry will be flagged with a '(C)' suffix."
 msgstr "Jeśli akcja jest konfigurowalna przez użytkownika, jej wpis pomocy zostanie oznaczony sufiksem „(C)”."
 
+msgid "If disabled, underscore characters in file and directory names are not shown and are replaced with spaces."
+msgstr ""
+
 msgid "If editing a file, can you set the cursor start position at end or begin of the line."
 msgstr "W przypadku edytowania pliku można ustawić pozycję początkową kursora na końcu lub na początku wiersza."
 
@@ -9263,7 +9269,7 @@ msgid "If the free space is less than setting value, then an attempt is made to 
 msgstr "Jeśli ilość wolnego miejsca jest mniejsza niż ustawiona wartości, to następnie usuwa stare pliki Timeshiftu."
 
 msgid "If the text is too long to be displayed on the front panel, it will be repeated (number of times)."
-msgstr ""
+msgstr "Jeśli tekst jest zbyt długi, aby można go było wyświetlić na panelu przednim, zostanie powtórzony (określoną liczbę razy)."
 
 msgid "If using multiple uncommitted switches the DiSEqC commands must be sent multiple times. Set to the number of uncommitted switches in the chain minus one."
 msgstr "W przypadku korzystania z wielu niezaangażowanych przełączników polecenia DiSEqC muszą być wysyłane wiele razy. Ustaw liczbę niezaangażowanych przełączników w łańcuchu minus jeden."
@@ -10651,9 +10657,6 @@ msgstr "Ręczne wyszukiwanie kanałów"
 msgid "Manual configuration"
 msgstr "Ustawienia ręczne"
 
-msgid "Manual scan"
-msgstr "Skanowanie ręczne"
-
 msgid "Manual scan for services"
 msgstr "Ręczne skanowanie kanałów"
 
@@ -11096,10 +11099,10 @@ msgid "Move mode on"
 msgstr "Przenieś"
 
 msgid "Move the current DNS entry down one line"
-msgstr ""
+msgstr "Przesuń bieżący wpis DNS o jeden wiersz w dół"
 
 msgid "Move the current DNS entry up one line"
-msgstr ""
+msgstr "Przesuń bieżący wpis DNS o jeden wiersz w górę"
 
 msgid "Move the keyboard cursor down"
 msgstr "Przesuń kursor klawiatury w dół"
@@ -11353,7 +11356,7 @@ msgstr "Nazwa odwrotna"
 
 #, python-format
 msgid "Name server %d"
-msgstr ""
+msgstr "Nazwa serwera %d"
 
 msgid "Name:"
 msgstr "Nazwa:"
@@ -12222,9 +12225,6 @@ msgstr "Ustawienia OpenVPN"
 
 msgid "OpenVpn Log"
 msgstr "OpenVpn Logowanie"
-
-msgid "OpenVpn Setup"
-msgstr "OpenVPN-Ustawienie"
 
 msgid "Operating LED status in deep standby mode"
 msgstr "Stan diody LED po wyłączeniu tunera"
@@ -13816,11 +13816,11 @@ msgstr "Statystyki Czytnika"
 
 #, python-format
 msgid "Ready to install \"%s\" ?"
-msgstr "Czy jesteś gotowy aby zainstalować \"%s\"?"
+msgstr "Czy chcesz zainstalować \"%s\"?"
 
 #, python-format
 msgid "Ready to install %s ?"
-msgstr "Czy jesteś gotowy aby zainstalować \"%s\"?"
+msgstr "Czy chcesz zainstalować \"%s\"?"
 
 #, python-format
 msgid "Ready to remove \"%s\" ?"
@@ -14151,7 +14151,7 @@ msgid "Remote Control"
 msgstr "Pilot zdalnego sterowania"
 
 msgid "Remote Control Button Settings"
-msgstr ""
+msgstr "Ustawienia przycisków pilota"
 
 msgid "Remote Control Code"
 msgstr "Kod do pilota zdalnego sterowania"
@@ -14191,7 +14191,7 @@ msgid "Remove Service"
 msgstr "Usuń kanał"
 
 msgid "Remove a DNS entry"
-msgstr ""
+msgstr "Usuń wpis DNS"
 
 msgid "Remove a mark"
 msgstr "Usuń znacznik"
@@ -14576,7 +14576,7 @@ msgid "Rotor turning speed"
 msgstr "Prędkość obrotu obrotnicy"
 
 msgid "Router / Gateway"
-msgstr ""
+msgstr "Router / Brama"
 
 msgid "Routing request"
 msgstr "Żądanie trasy"
@@ -15443,7 +15443,7 @@ msgid "Select the sleep timer action."
 msgstr "Akcja dla timera czuwania."
 
 msgid "Select the source of the default DNS settings."
-msgstr ""
+msgstr "Wybierz źródło domyślnych ustawień DNS."
 
 msgid "Select the time delay before the button starts repeating."
 msgstr "Wybierz opóźnienie zanim przycisk rozpocznie powtarzanie."
@@ -16779,6 +16779,9 @@ msgstr "Pokaż transponder pozostały/upływający jako"
 msgid "Show two lines per entry"
 msgstr "Pokaż dwie linie na liście kanałów"
 
+msgid "Show underscore characters in filenames"
+msgstr ""
+
 msgid "Show unknown Videoresolution as next higher or as highest screen resolution."
 msgstr "Pokaż nieznaną rozdzielczość wideo jako następną wyższą lub najwyższą rozdzielczość ekranu."
 
@@ -17113,9 +17116,6 @@ msgstr "Akcje softcam"
 msgid "Softcam Settings"
 msgstr "Ustawienia softcam"
 
-msgid "Softcam-Panel"
-msgstr "Panel softcam"
-
 msgid "Software"
 msgstr "Oprogramowanie"
 
@@ -17442,7 +17442,7 @@ msgid "State"
 msgstr "Stan"
 
 msgid "Static IP / Custom"
-msgstr ""
+msgstr "Statyczne IP / Niestandardowe"
 
 msgid "Status"
 msgstr "Stan"
@@ -19375,6 +19375,9 @@ msgstr "Tuner "
 msgid "Tuner :"
 msgstr "Tuner :"
 
+msgid "Tuner Configuration"
+msgstr "Konfiguracja tunera"
+
 msgid "Tuner Information"
 msgstr "Informacje o tunerze"
 
@@ -19383,9 +19386,6 @@ msgstr "Ustawienia tunera"
 
 msgid "Tuner Setup"
 msgstr "Tuner"
-
-msgid "Tuner Configuration"
-msgstr "Konfiguracja tunera"
 
 msgid "Tuner information"
 msgstr "Informacje o tunerze"
@@ -22638,7 +22638,7 @@ msgstr "prawdziwe nagrywania lub strumieniowanie"
 msgid "reboot system"
 msgstr "reboot systemu"
 
-#, fuzzy, python-format
+#, python-format
 msgid "record time changed, start prepare is now: %s"
 msgstr "zmieniono czas nagrywania, przygotowanie do rozpoczęcia wynosi teraz: %s"
 
@@ -23261,6 +23261,15 @@ msgstr "przełączanie"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Manual scan"
+#~ msgstr "Skanowanie ręczne"
+
+#~ msgid "OpenVpn Setup"
+#~ msgstr "OpenVPN-Ustawienie"
+
+#~ msgid "Softcam-Panel"
+#~ msgstr "Panel softcam"
 
 #~ msgid "12, show latin-1 characters except for greek and cyrillic, switch to 8 if needed."
 #~ msgstr "12, pokaż znaki łacińskie-1 z wyjątkiem greckiego i cyrylicy, w razie potrzeby przełącz się na 8."

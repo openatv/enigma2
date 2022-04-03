@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-03-15 12:24+0000\n"
+"POT-Creation-Date: 2022-04-02 20:55+0000\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Jjezevec <jjezevecc@seznam.cz>\n"
 "Language-Team: \n"
@@ -4080,6 +4080,10 @@ msgstr "Nastavení rozhraní CI"
 msgid "CI Basic Settings"
 msgstr "Základní nastavení"
 
+#, fuzzy
+msgid "CI Helper Settings"
+msgstr "Nastavení Telnetu"
+
 msgid "CI Legacy"
 msgstr ""
 
@@ -4102,10 +4106,6 @@ msgstr "Nenalezen CI slot"
 
 msgid "CIFS/Samba Settings"
 msgstr "Nastavení CIFS/Samba"
-
-#, fuzzy
-msgid "CI Helper Settings"
-msgstr "Nastavení Telnetu"
 
 msgid "CIHelper for SLOT CI0"
 msgstr ""
@@ -6706,6 +6706,9 @@ msgstr "Nastavení displeje VFD"
 msgid "Display and user interface"
 msgstr "Displej a uživatelské rozhraní"
 
+msgid "Display directory size"
+msgstr ""
+
 msgid "Display message before playing next movie"
 msgstr "Zobrazit zprávu před dalším přehrávaným filmem"
 
@@ -8454,6 +8457,9 @@ msgstr "Související nabídka k seznamu kanálů"
 msgid "File Commander menu"
 msgstr ""
 
+msgid "File System Check"
+msgstr "Kontrola souborového systému"
+
 msgid "File appears to be busy.\n"
 msgstr "Soubor je asi zaneprázdněn.\n"
 
@@ -8494,9 +8500,6 @@ msgstr "Název souboru"
 
 msgid "Files/folders to exclude from backup"
 msgstr "Soubory/složky vyloučené ze záloh"
-
-msgid "File System Check"
-msgstr "Kontrola souborového systému"
 
 msgid "Filesystem check your Harddisk"
 msgstr "Kontroluje souborový systém vašich disků"
@@ -9672,6 +9675,9 @@ msgid "If 'never', will write crash log despite that for the first crash."
 msgstr ""
 
 msgid "If an action is user-configurable, its help entry will be flagged with a '(C)' suffix."
+msgstr ""
+
+msgid "If disabled, underscore characters in file and directory names are not shown and are replaced with spaces."
 msgstr ""
 
 msgid "If editing a file, can you set the cursor start position at end or begin of the line."
@@ -11229,9 +11235,6 @@ msgstr "Hledání programů"
 
 msgid "Manual configuration"
 msgstr "Ruční konfigurace"
-
-msgid "Manual scan"
-msgstr "Ruční ladění programů"
 
 msgid "Manual scan for services"
 msgstr "Ruční vyhledávání programů"
@@ -12931,9 +12934,6 @@ msgstr "Nastavení OpenVPN"
 
 msgid "OpenVpn Log"
 msgstr "Zpráva OpenVPN"
-
-msgid "OpenVpn Setup"
-msgstr "Nastavení OpenVPN"
 
 #, fuzzy
 msgid "Operating LED status in deep standby mode"
@@ -17721,6 +17721,9 @@ msgstr "Zobrazit čas události Zbývající/Uplynulý"
 msgid "Show two lines per entry"
 msgstr "Zobrazit Merlin EPG Centrum"
 
+msgid "Show underscore characters in filenames"
+msgstr ""
+
 msgid "Show unknown Videoresolution as next higher or as highest screen resolution."
 msgstr ""
 
@@ -18075,10 +18078,6 @@ msgstr ""
 #, fuzzy
 msgid "Softcam Settings"
 msgstr "Nastavení Softcam panelu"
-
-#, fuzzy
-msgid "Softcam-Panel"
-msgstr "Softcam-panel"
 
 msgid "Software"
 msgstr "Software"
@@ -20464,6 +20463,9 @@ msgstr "Tuner :"
 msgid "Tuner :"
 msgstr "Tuner :"
 
+msgid "Tuner Configuration"
+msgstr "Konfigurace tunerů"
+
 msgid "Tuner Information"
 msgstr ""
 
@@ -20472,9 +20474,6 @@ msgstr "Nastavení tuneru"
 
 msgid "Tuner Setup"
 msgstr "Hledání programů"
-
-msgid "Tuner Configuration"
-msgstr "Konfigurace tunerů"
 
 msgid "Tuner information"
 msgstr ""
@@ -24563,6 +24562,16 @@ msgstr "Přepnutý"
 
 msgid "®"
 msgstr ""
+
+#~ msgid "Manual scan"
+#~ msgstr "Ruční ladění programů"
+
+#~ msgid "OpenVpn Setup"
+#~ msgstr "Nastavení OpenVPN"
+
+#, fuzzy
+#~ msgid "Softcam-Panel"
+#~ msgstr "Softcam-panel"
 
 #~ msgid "Add a nameserver entry"
 #~ msgstr "Přidat nameserver"

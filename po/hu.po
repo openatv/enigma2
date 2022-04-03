@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: hu_po v3.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-03-15 12:24+0000\n"
+"POT-Creation-Date: 2022-04-02 20:55+0000\n"
 "PO-Revision-Date: 2022-03-10 14:56+0000\n"
 "Last-Translator: H. Árkosi Róbert <robreg@zsurob.hu>\n"
 "Language-Team: Hungarian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/hu/>\n"
@@ -3875,6 +3875,9 @@ msgstr "CI (Common Interface) beállítása"
 msgid "CI Basic Settings"
 msgstr "CI alapbeállítások"
 
+msgid "CI Helper Settings"
+msgstr "CIHelper beállítása"
+
 msgid "CI Legacy"
 msgstr "CI Legacy"
 
@@ -3895,9 +3898,6 @@ msgstr "CI foglalat: "
 
 msgid "CIFS/Samba Settings"
 msgstr "CIFS/Samba beállítása"
-
-msgid "CI Helper Settings"
-msgstr "CIHelper beállítása"
 
 msgid "CIHelper for SLOT CI0"
 msgstr "CIHelper a SLOT CI0 számára"
@@ -6380,6 +6380,9 @@ msgstr "Kijelző beállítás"
 msgid "Display and user interface"
 msgstr "Kijelző és felhasználói felület"
 
+msgid "Display directory size"
+msgstr ""
+
 msgid "Display message before playing next movie"
 msgstr "A következő fájl lejátszása előtt üzenet megjelenítése"
 
@@ -8071,6 +8074,9 @@ msgstr "File Commander helyi menü"
 msgid "File Commander menu"
 msgstr "File Commander menü"
 
+msgid "File System Check"
+msgstr "Fájlrendszer ellenőrzése"
+
 msgid "File appears to be busy.\n"
 msgstr "A fájl használatban van.\n"
 
@@ -8110,9 +8116,6 @@ msgstr "fájlnév"
 
 msgid "Files/folders to exclude from backup"
 msgstr "Fájlok/mappák kizárása a mentésből"
-
-msgid "File System Check"
-msgstr "Fájlrendszer ellenőrzése"
 
 msgid "Filesystem check your Harddisk"
 msgstr "A merevlemez fájlrendszerének ellenőrzése"
@@ -9231,6 +9234,9 @@ msgid "If 'never', will write crash log despite that for the first crash."
 msgstr "Ha 'soha', akkor az első összeomlás ellenére is beírja az összeomlási naplóba."
 
 msgid "If an action is user-configurable, its help entry will be flagged with a '(C)' suffix."
+msgstr ""
+
+msgid "If disabled, underscore characters in file and directory names are not shown and are replaced with spaces."
 msgstr ""
 
 msgid "If editing a file, can you set the cursor start position at end or begin of the line."
@@ -10735,9 +10741,6 @@ msgstr "Kézi csatornakeresés"
 
 msgid "Manual configuration"
 msgstr "Kézi konfiguráció"
-
-msgid "Manual scan"
-msgstr "Kézi keresés"
 
 msgid "Manual scan for services"
 msgstr "Kézi keresése a csatornáknak"
@@ -12351,9 +12354,6 @@ msgstr "OpenVPN beállítása"
 
 msgid "OpenVpn Log"
 msgstr "OpenVpn Napló"
-
-msgid "OpenVpn Setup"
-msgstr "OpenVPN beállítása"
 
 msgid "Operating LED status in deep standby mode"
 msgstr "A Power LED állapota a készülék Kikapcsolt állapotában"
@@ -16951,6 +16951,9 @@ msgstr "A TV adás Hátralévő/Eltelt idő kijelzési formája"
 msgid "Show two lines per entry"
 msgstr "Bejegyzésenként két sor megjelenítése"
 
+msgid "Show underscore characters in filenames"
+msgstr ""
+
 msgid "Show unknown Videoresolution as next higher or as highest screen resolution."
 msgstr "Az ismeretlen videofelbontása a következő magasabb vagy legmagasabb képernyőfelbontásként."
 
@@ -17285,9 +17288,6 @@ msgstr ""
 
 msgid "Softcam Settings"
 msgstr "Softcam beállítások"
-
-msgid "Softcam-Panel"
-msgstr "Softcam Panel"
 
 msgid "Software"
 msgstr "Szoftver"
@@ -19582,6 +19582,9 @@ msgstr "Tuner "
 msgid "Tuner :"
 msgstr "Tuner:"
 
+msgid "Tuner Configuration"
+msgstr "Tuner beállítása"
+
 msgid "Tuner Information"
 msgstr ""
 
@@ -19590,9 +19593,6 @@ msgstr "Tuner beállításai"
 
 msgid "Tuner Setup"
 msgstr "Tuner Beállítás"
-
-msgid "Tuner Configuration"
-msgstr "Tuner beállítása"
 
 msgid "Tuner information"
 msgstr ""
@@ -23492,6 +23492,15 @@ msgstr "ugrás folyamatban"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Manual scan"
+#~ msgstr "Kézi keresés"
+
+#~ msgid "OpenVpn Setup"
+#~ msgstr "OpenVPN beállítása"
+
+#~ msgid "Softcam-Panel"
+#~ msgstr "Softcam Panel"
 
 #~ msgid "12, show latin-1 characters except for greek and cyrillic, switch to 8 if needed."
 #~ msgstr "12, latin-1 karaktereket jelenít meg a görög és a cirillikus kivételével, ha szükséges 8-ra vált."

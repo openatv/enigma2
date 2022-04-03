@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-03-15 12:24+0000\n"
+"POT-Creation-Date: 2022-04-02 20:55+0000\n"
 "PO-Revision-Date: 2022-02-24 21:56+0000\n"
 "Last-Translator: Mr.Servo <mrservo@gmx.de>\n"
 "Language-Team: French <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/fr/>\n"
@@ -3821,6 +3821,9 @@ msgstr "Configuration CI (Interface Commune)"
 msgid "CI Basic Settings"
 msgstr "Paramètres ci de base"
 
+msgid "CI Helper Settings"
+msgstr "Configurer CIHelper"
+
 msgid "CI Legacy"
 msgstr "CI Legacy"
 
@@ -3841,9 +3844,6 @@ msgstr "slot CI : "
 
 msgid "CIFS/Samba Settings"
 msgstr "Configuration CIFS/Samba"
-
-msgid "CI Helper Settings"
-msgstr "Configurer CIHelper"
 
 msgid "CIHelper for SLOT CI0"
 msgstr "CIHelper pour le SLOT CI0"
@@ -6317,6 +6317,9 @@ msgstr "Configuration d'affichage"
 msgid "Display and user interface"
 msgstr "Affichage et interface utilisateur"
 
+msgid "Display directory size"
+msgstr ""
+
 msgid "Display message before playing next movie"
 msgstr "Afficher un message avant de lancer le prochain film"
 
@@ -8011,6 +8014,9 @@ msgstr "Menu contextuel File Commander"
 msgid "File Commander menu"
 msgstr "File Commander menu"
 
+msgid "File System Check"
+msgstr "Vérification du système de fichiers"
+
 msgid "File appears to be busy.\n"
 msgstr "Le fichier semble être occupé.\n"
 
@@ -8049,9 +8055,6 @@ msgstr "Nom de fichier"
 
 msgid "Files/folders to exclude from backup"
 msgstr "Fichiers/répertoires à exclure de la sauvegarde"
-
-msgid "File System Check"
-msgstr "Vérification du système de fichiers"
 
 msgid "Filesystem check your Harddisk"
 msgstr "Vérification du système de fichiers de votre disque dur"
@@ -9158,6 +9161,9 @@ msgstr "Si 'jamais', écrira le journal des plantages malgré cela pour le premi
 
 msgid "If an action is user-configurable, its help entry will be flagged with a '(C)' suffix."
 msgstr "Si une action est configurable par l'utilisateur, son entrée d'aide sera marquée d'un suffixe '(C)'."
+
+msgid "If disabled, underscore characters in file and directory names are not shown and are replaced with spaces."
+msgstr ""
 
 msgid "If editing a file, can you set the cursor start position at end or begin of the line."
 msgstr "Si vous modifiez un fichier, pouvez-vous définir la position de départ du curseur à la fin ou au début de la ligne."
@@ -10628,9 +10634,6 @@ msgstr "Recherche Manuelle du Service"
 
 msgid "Manual configuration"
 msgstr "Configuration manuelle"
-
-msgid "Manual scan"
-msgstr "Recherche manuelle"
 
 msgid "Manual scan for services"
 msgstr "Scan manuel des services"
@@ -12206,9 +12209,6 @@ msgstr "Configuration OpenVPN"
 
 msgid "OpenVpn Log"
 msgstr "Log OpenVPN"
-
-msgid "OpenVpn Setup"
-msgstr "Configuration OpenVPN"
 
 msgid "Operating LED status in deep standby mode"
 msgstr "État de la LED de fonctionnement en veille profonde"
@@ -16771,6 +16771,9 @@ msgstr "Afficher le temps restant/écoulé du transpondeur comme"
 msgid "Show two lines per entry"
 msgstr "Afficher deux lignes par entrée"
 
+msgid "Show underscore characters in filenames"
+msgstr ""
+
 msgid "Show unknown Videoresolution as next higher or as highest screen resolution."
 msgstr "Afficher la résolution vidéo inconnue comme la plus haute suivante ou la résolution d'écran la plus élevée."
 
@@ -17105,10 +17108,6 @@ msgstr "Actions Softcam"
 
 msgid "Softcam Settings"
 msgstr "Configuration Softcam"
-
-# TODO
-msgid "Softcam-Panel"
-msgstr "Panneau-Softcam"
 
 msgid "Software"
 msgstr "Logiciel"
@@ -19392,6 +19391,9 @@ msgstr "Tuner "
 msgid "Tuner :"
 msgstr "Tuner :"
 
+msgid "Tuner Configuration"
+msgstr "Configuration du tuner"
+
 msgid "Tuner Information"
 msgstr ""
 
@@ -19400,9 +19402,6 @@ msgstr "Paramètres du tuner"
 
 msgid "Tuner Setup"
 msgstr "Configuration du Tuner"
-
-msgid "Tuner Configuration"
-msgstr "Configuration du tuner"
 
 msgid "Tuner information"
 msgstr ""
@@ -23283,6 +23282,16 @@ msgstr "zapping"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Manual scan"
+#~ msgstr "Recherche manuelle"
+
+#~ msgid "OpenVpn Setup"
+#~ msgstr "Configuration OpenVPN"
+
+# TODO
+#~ msgid "Softcam-Panel"
+#~ msgstr "Panneau-Softcam"
 
 #~ msgid "12, show latin-1 characters except for greek and cyrillic, switch to 8 if needed."
 #~ msgstr "12, affiche les caractères latin-1 à l'exception du grec et du cyrillique, basculer à 8 si nécessaire."

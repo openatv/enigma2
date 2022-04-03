@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-03-15 12:24+0000\n"
-"PO-Revision-Date: 2022-03-18 09:06+0000\n"
+"POT-Creation-Date: 2022-04-02 20:55+0000\n"
+"PO-Revision-Date: 2022-03-28 08:07+0000\n"
 "Last-Translator: Adga56 <adga45@gmail.com>\n"
 "Language-Team: Lithuanian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/lt/>\n"
 "Language: lt\n"
@@ -3850,6 +3850,9 @@ msgstr "CI (Įstatomo modulio) nustatymas"
 msgid "CI Basic Settings"
 msgstr "CI pagrindiniai parametrai"
 
+msgid "CI Helper Settings"
+msgstr "CI žinyno parametrai"
+
 msgid "CI Legacy"
 msgstr "CI įprastinis"
 
@@ -3871,9 +3874,6 @@ msgstr "CI lizdas: "
 msgid "CIFS/Samba Settings"
 msgstr "CIFS/Samba parametrai"
 
-msgid "CI Helper Settings"
-msgstr "CI žinyno parametrai"
-
 msgid "CIHelper for SLOT CI0"
 msgstr "CI padėjėjas lizdui CI0"
 
@@ -3887,19 +3887,19 @@ msgid "CPU"
 msgstr "Procesorius"
 
 msgid "CPU architecture"
-msgstr "PROCESORIAUS architektūra"
+msgstr "Architektūra"
 
 msgid "CPU brand"
-msgstr "PROCESORIAUS prekės ženklas"
+msgstr "Gamintojas"
 
 msgid "CPU priority for script execution"
 msgstr "CPU prioritetas scenarijų vykdymui"
 
 msgid "CPU speed/cores"
-msgstr "Procesoriaus greitis/branduoliai"
+msgstr "Greitis/branduoliai"
 
 msgid "CPU temperature"
-msgstr "PROCESORIAUS temperatūra"
+msgstr "Temperatūra"
 
 msgid "CVBS"
 msgstr "CVBS"
@@ -6347,6 +6347,9 @@ msgstr "Monitoriaus valdymas"
 msgid "Display and user interface"
 msgstr "Monitorius ir vartotojo sąsaja"
 
+msgid "Display directory size"
+msgstr ""
+
 msgid "Display message before playing next movie"
 msgstr "Prieš sekantį filmą, parodyti žinutę"
 
@@ -6776,7 +6779,7 @@ msgid "Drivers:\t%s"
 msgstr "Tvarkyklės:\t%s"
 
 msgid "Drives"
-msgstr "Tarkyklės"
+msgstr "Diskų informacija"
 
 msgid "Drives Information"
 msgstr "Diskų informacija"
@@ -8037,6 +8040,9 @@ msgstr "Failų valdytojo kontekstinis meniu"
 msgid "File Commander menu"
 msgstr "Failų valdytojo meniu"
 
+msgid "File System Check"
+msgstr "Failų sistemos tikrinimas"
+
 msgid "File appears to be busy.\n"
 msgstr "Failas tikriausiai užimtas.\n"
 
@@ -8075,9 +8081,6 @@ msgstr "Failo pavadinimas"
 
 msgid "Files/folders to exclude from backup"
 msgstr "Failai/aplankai, neįtraukti į atsarginę kopiją"
-
-msgid "File System Check"
-msgstr "Failų sistemos tikrinimas"
 
 msgid "Filesystem check your Harddisk"
 msgstr "Tikrinama HDD failų sistema"
@@ -9183,6 +9186,9 @@ msgstr "Jei \"niekada\", įrašys pranešimą apie gedimą, nepaisant to, kad į
 
 msgid "If an action is user-configurable, its help entry will be flagged with a '(C)' suffix."
 msgstr "Jei veiksmą galima konfigūruoti vartotojui, jo žinyno įrašas bus pažymėtas priesaga '(C)'."
+
+msgid "If disabled, underscore characters in file and directory names are not shown and are replaced with spaces."
+msgstr ""
 
 msgid "If editing a file, can you set the cursor start position at end or begin of the line."
 msgstr "Jei redaguojate failą, galite nustatyti žymeklio pradinę padėtį linijos pabaigoje arba pradžioje."
@@ -10654,9 +10660,6 @@ msgstr "Rankinė kanalų paieška"
 
 msgid "Manual configuration"
 msgstr "Rankinė konfigūracija"
-
-msgid "Manual scan"
-msgstr "Rankinė paieška"
 
 msgid "Manual scan for services"
 msgstr "Rankinė kanalų paieška"
@@ -12225,9 +12228,6 @@ msgstr "OpenVPN parametrai"
 
 msgid "OpenVpn Log"
 msgstr "OpenVpn loginis žurnalas"
-
-msgid "OpenVpn Setup"
-msgstr "OpenVpn nustatymas"
 
 msgid "Operating LED status in deep standby mode"
 msgstr "LED būsenos veikimas gilaus laukimo režimu"
@@ -16782,6 +16782,9 @@ msgstr "Rodyti transponderio liko/praėjo kaip"
 msgid "Show two lines per entry"
 msgstr "Rodyti dvi eilutes viename įraše"
 
+msgid "Show underscore characters in filenames"
+msgstr ""
+
 msgid "Show unknown Videoresolution as next higher or as highest screen resolution."
 msgstr "Rodyti nežinomą vaizdo raišką, kaip kitą didesnę arba kaip didžiausią ekrano raišką."
 
@@ -17114,9 +17117,6 @@ msgstr "Emuliatoriaus nustatymai"
 
 msgid "Softcam Settings"
 msgstr "Emuliatoriaus nustatymai"
-
-msgid "Softcam-Panel"
-msgstr "Emuliatoriaus skydelis"
 
 msgid "Software"
 msgstr "Programinė įranga"
@@ -17919,7 +17919,7 @@ msgid "TEXT"
 msgstr "TEKSTAS"
 
 msgid "TRANSLATOR_INFO"
-msgstr "2022-03-17 adga45@gmail.com"
+msgstr "2022-03-25 adga45@gmail.com"
 
 msgid "TS file is too large for ISO9660 level 1!"
 msgstr "TS failas yra per didelis ISO9660 lygmeniui 1!"
@@ -19375,6 +19375,9 @@ msgstr "Imtuvas "
 msgid "Tuner :"
 msgstr "Imtuvas :"
 
+msgid "Tuner Configuration"
+msgstr "Imtuvo konfigūravimas"
+
 msgid "Tuner Information"
 msgstr "Imtuvo informacija"
 
@@ -19383,9 +19386,6 @@ msgstr "Imtuvo nustatymai"
 
 msgid "Tuner Setup"
 msgstr "Imtuvo valdymas"
-
-msgid "Tuner Configuration"
-msgstr "Imtuvo konfigūravimas"
 
 msgid "Tuner information"
 msgstr "Imtuvo informacija"
@@ -23261,6 +23261,15 @@ msgstr "perjungimas"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Manual scan"
+#~ msgstr "Rankinė paieška"
+
+#~ msgid "OpenVpn Setup"
+#~ msgstr "OpenVpn nustatymas"
+
+#~ msgid "Softcam-Panel"
+#~ msgstr "Emuliatoriaus skydelis"
 
 #~ msgid "12, show latin-1 characters except for greek and cyrillic, switch to 8 if needed."
 #~ msgstr "12, rodyti latin-1 simbolius, išskyrus graikų ir kirilicą, jei reikia, perjunkite 8."

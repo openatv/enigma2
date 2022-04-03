@@ -11,16 +11,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-03-15 12:24+0000\n"
-"PO-Revision-Date: 2022-03-31 22:57+0200\n"
-"Last-Translator: mike99 <mike99@mail.to>\n"
+"POT-Creation-Date: 2022-04-02 20:55+0000\n"
+"PO-Revision-Date: 2022-04-02 22:40+0000\n"
+"Last-Translator: jbleyel <jbleyel@gmx.net>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/de/>\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Poedit 3.0.1\n"
+"X-Generator: Weblate 4.12-dev\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 
 msgid ""
@@ -4026,6 +4026,9 @@ msgstr "CI-Einstellungen"
 msgid "CI Basic Settings"
 msgstr "CI-Grundeinstellungen"
 
+msgid "CI Helper Settings"
+msgstr "CIHelper-Einstellungen"
+
 msgid "CI Legacy"
 msgstr "CI-Legacy"
 
@@ -4047,9 +4050,6 @@ msgstr "CI-Schacht: "
 
 msgid "CIFS/Samba Settings"
 msgstr "CIFS/Samba-Dateiserver"
-
-msgid "CI Helper Settings"
-msgstr "CIHelper-Einstellungen"
 
 msgid "CIHelper for SLOT CI0"
 msgstr "CIHelper für SLOT CI0"
@@ -5212,7 +5212,7 @@ msgid "Configure the function of a short press on the power button."
 msgstr "Wählen Sie, was Drücken der Ausschalttaste bewirken soll."
 
 msgid "Configure the function of the < and > buttons."
-msgstr "Konfigurieren Sie die Funktion der Tasten < und >."
+msgstr "Wählen Sie, was die Tasten < und > bewirken sollen."
 
 msgid "Configure the gateway."
 msgstr "Das Gateway einstellen."
@@ -6696,6 +6696,9 @@ msgstr "Display einstellen"
 # SoftwareManager/plugin.py
 msgid "Display and user interface"
 msgstr "Anzeige und Oberfläche"
+
+msgid "Display directory size"
+msgstr "Verzeichnisgröße anzeigen"
 
 #
 msgid "Display message before playing next movie"
@@ -8492,6 +8495,10 @@ msgstr "File Commander - Kontextmenü"
 msgid "File Commander menu"
 msgstr "File Commander - Menü"
 
+#
+msgid "File System Check"
+msgstr "Dateisystemüberprüfung"
+
 msgid "File appears to be busy.\n"
 msgstr "Datei scheint in Benutzung zu sein.\n"
 
@@ -8531,10 +8538,6 @@ msgstr "Dateiname"
 
 msgid "Files/folders to exclude from backup"
 msgstr "Nicht zu sichernde Dateien"
-
-#
-msgid "File System Check"
-msgstr "Dateisystemüberprüfung"
 
 msgid "Filesystem check your Harddisk"
 msgstr "Dateisystem der Festplatte überprüfen"
@@ -9406,12 +9409,6 @@ msgstr "Bei 'Ja' werden Fehlermeldungen beim Umschalten unterdrückt."
 msgid "Hide known extensions"
 msgstr "Bekannte Dateiendungen ausblenden"
 
-msgid "Show underscore characters in filenames"
-msgstr "Unterstriche anzeigen"
-
-msgid "If disabled, underscore characters in file and directory names are not shown and are replaced with spaces."
-msgstr "Wenn deaktiviert, werden Unterstriche in Dateien und Verzeichnissen durch Leerzeichen ersetzt angezeigt."
-
 msgid "Hide mute notification"
 msgstr "Die Stummschaltungsanzeige ausblenden"
 
@@ -9707,6 +9704,9 @@ msgstr "Auch bei 'niemals' wird trotzdem beim ersten Absturz ein Crash-Log gesch
 
 msgid "If an action is user-configurable, its help entry will be flagged with a '(C)' suffix."
 msgstr "Wenn eine Aktion vom Benutzer konfigurierbar ist, wird der Hilfeeintrag mit einem '(C)'-Suffix gekennzeichnet."
+
+msgid "If disabled, underscore characters in file and directory names are not shown and are replaced with spaces."
+msgstr "Wenn deaktiviert, werden Unterstriche in Dateien und Verzeichnissen durch Leerzeichen ersetzt angezeigt."
 
 msgid "If editing a file, can you set the cursor start position at end or begin of the line."
 msgstr "Wählen Sie, ob der Cursor beim Bearbeiten einer Datei am Anfang oder Ende der Zeile stehen soll."
@@ -11290,10 +11290,6 @@ msgstr "Manueller Suchlauf"
 
 msgid "Manual configuration"
 msgstr "Manuelle Konfiguration"
-
-#
-msgid "Manual scan"
-msgstr "Manueller Suchlauf"
 
 msgid "Manual scan for services"
 msgstr "Manueller Suchlauf"
@@ -13037,9 +13033,6 @@ msgstr "OpenVPN"
 
 msgid "OpenVpn Log"
 msgstr "OpenVPN-Log"
-
-msgid "OpenVpn Setup"
-msgstr "OpenVPN-Einstellungen"
 
 msgid "Operating LED status in deep standby mode"
 msgstr "Betriebsstatus der LED im Deep-Standby"
@@ -17992,6 +17985,9 @@ msgstr "Transponder verbleibende/verstrichene Zeit in"
 msgid "Show two lines per entry"
 msgstr "Zwei Zeilen pro Eintrag anzeigen"
 
+msgid "Show underscore characters in filenames"
+msgstr "Unterstriche anzeigen"
+
 msgid "Show unknown Videoresolution as next higher or as highest screen resolution."
 msgstr "Unbekannte Videoauflösungen mit der nächsthöheren oder höchsten Auflösung anzeigen."
 
@@ -18351,9 +18347,6 @@ msgstr "Softcam-Aktionen"
 
 msgid "Softcam Settings"
 msgstr "Softcam-Einrichtung"
-
-msgid "Softcam-Panel"
-msgstr "Softcam-Panel"
 
 #
 msgid "Software"
@@ -19048,7 +19041,7 @@ msgid "Swimming"
 msgstr "Schwimmen"
 
 msgid "Switch BLUE short (QuickMenu) with BLUE long (Extensions)"
-msgstr "BLAU kurz (Schnellstartmenü) mit BLAU lang (Erweiterungen) tauschen"
+msgstr "BLAU kurz (Schnellstartmenü) mit BLAU lang (Erweiterungen) tauschen."
 
 msgid "Switch EPG Page Down"
 msgstr "EPG-Seite nach unten wechseln"
@@ -20802,6 +20795,10 @@ msgstr "Tuner "
 msgid "Tuner :"
 msgstr "Tuner:"
 
+#
+msgid "Tuner Configuration"
+msgstr "Tunereinstellungen"
+
 msgid "Tuner Information"
 msgstr "Tuner-Informationen"
 
@@ -20811,10 +20808,6 @@ msgstr "Tunereinstellungen"
 
 #
 msgid "Tuner Setup"
-msgstr "Tunereinstellungen"
-
-#
-msgid "Tuner Configuration"
 msgstr "Tunereinstellungen"
 
 msgid "Tuner information"
@@ -25105,6 +25098,16 @@ msgstr "Umschalten"
 
 msgid "®"
 msgstr "®"
+
+#
+#~ msgid "Manual scan"
+#~ msgstr "Manueller Suchlauf"
+
+#~ msgid "OpenVpn Setup"
+#~ msgstr "OpenVPN-Einstellungen"
+
+#~ msgid "Softcam-Panel"
+#~ msgstr "Softcam-Panel"
 
 #~ msgid "12, show latin-1 characters except for greek and cyrillic, switch to 8 if needed."
 #~ msgstr "12, zeigt Latin-1 Zeichensatz außer griechisch und kyrillisch, umschalten auf 8, wenn benötigt."

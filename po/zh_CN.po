@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-03-15 12:24+0000\n"
+"POT-Creation-Date: 2022-04-02 20:55+0000\n"
 "PO-Revision-Date: 2022-03-01 14:41+0000\n"
 "Last-Translator: lexlong2007 <lexlong2007@163.com>\n"
 "Language-Team: Chinese (Simplified) <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/zh_Hans/>\n"
@@ -3820,6 +3820,9 @@ msgstr "CI(通用接口)设置"
 msgid "CI Basic Settings"
 msgstr "CI基本设置"
 
+msgid "CI Helper Settings"
+msgstr "CI 助手设置"
+
 msgid "CI Legacy"
 msgstr "CI 传统"
 
@@ -3840,9 +3843,6 @@ msgstr "CI插槽: "
 
 msgid "CIFS/Samba Settings"
 msgstr "CIFS/Samba设置"
-
-msgid "CI Helper Settings"
-msgstr "CI 助手设置"
 
 msgid "CIHelper for SLOT CI0"
 msgstr "CI为CI0辅助插槽"
@@ -6312,6 +6312,9 @@ msgstr "显示设置"
 msgid "Display and user interface"
 msgstr "显示和用户界面"
 
+msgid "Display directory size"
+msgstr ""
+
 msgid "Display message before playing next movie"
 msgstr "在播放下一部电影之前显示消息"
 
@@ -8001,6 +8004,9 @@ msgstr "文件管理器上下文菜单"
 msgid "File Commander menu"
 msgstr "文件管理器菜单"
 
+msgid "File System Check"
+msgstr "检查文件系统"
+
 msgid "File appears to be busy.\n"
 msgstr "文件占用中.\n"
 
@@ -8039,9 +8045,6 @@ msgstr "文件名"
 
 msgid "Files/folders to exclude from backup"
 msgstr "要从备份中排除的文件/文件夹"
-
-msgid "File System Check"
-msgstr "检查文件系统"
 
 msgid "Filesystem check your Harddisk"
 msgstr "检查硬盘里的文件系统"
@@ -9147,6 +9150,9 @@ msgstr "如果选择'从不',尽管第一次崩溃,仍会写入崩溃日志."
 
 msgid "If an action is user-configurable, its help entry will be flagged with a '(C)' suffix."
 msgstr "如果某选项是用户可配置的,则其帮助条目将被标记为'(C)'后缀."
+
+msgid "If disabled, underscore characters in file and directory names are not shown and are replaced with spaces."
+msgstr ""
 
 msgid "If editing a file, can you set the cursor start position at end or begin of the line."
 msgstr "如果编辑一个文件,是否可以将光标开始位置设置在行尾或行首."
@@ -10617,9 +10623,6 @@ msgstr "手动频道搜索"
 
 msgid "Manual configuration"
 msgstr "手动配置"
-
-msgid "Manual scan"
-msgstr "手动扫描"
 
 msgid "Manual scan for services"
 msgstr "手动扫描频道"
@@ -12188,9 +12191,6 @@ msgstr "OpenVPN设置"
 
 msgid "OpenVpn Log"
 msgstr "OpenVPN日志"
-
-msgid "OpenVpn Setup"
-msgstr "OpenVPN设置"
 
 msgid "Operating LED status in deep standby mode"
 msgstr "深度待机模式下LED状态设置"
@@ -16740,6 +16740,9 @@ msgstr "将转发器剩余/已使用 显示为"
 msgid "Show two lines per entry"
 msgstr "每项用两行显示"
 
+msgid "Show underscore characters in filenames"
+msgstr ""
+
 msgid "Show unknown Videoresolution as next higher or as highest screen resolution."
 msgstr "将未知的视频分辨率显示为下一个更高或最高的屏幕分辨率."
 
@@ -17072,9 +17075,6 @@ msgstr "Softcam 操作"
 
 msgid "Softcam Settings"
 msgstr "Softcam设置"
-
-msgid "Softcam-Panel"
-msgstr "SoftCam-面板"
 
 msgid "Software"
 msgstr "软件"
@@ -19336,6 +19336,9 @@ msgstr "调谐器 "
 msgid "Tuner :"
 msgstr "调谐器:"
 
+msgid "Tuner Configuration"
+msgstr "调谐器配置"
+
 msgid "Tuner Information"
 msgstr "调谐器信息"
 
@@ -19344,9 +19347,6 @@ msgstr "调谐器设置"
 
 msgid "Tuner Setup"
 msgstr "调谐器设置"
-
-msgid "Tuner Configuration"
-msgstr "调谐器配置"
 
 msgid "Tuner information"
 msgstr "调谐器信息"
@@ -23221,6 +23221,15 @@ msgstr "切换中"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Manual scan"
+#~ msgstr "手动扫描"
+
+#~ msgid "OpenVpn Setup"
+#~ msgstr "OpenVPN设置"
+
+#~ msgid "Softcam-Panel"
+#~ msgstr "SoftCam-面板"
 
 #~ msgid "12, show latin-1 characters except for greek and cyrillic, switch to 8 if needed."
 #~ msgstr "12,显示除希腊语和西里尔字母外的latin-1字符,如果需要可以切换为8."

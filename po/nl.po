@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-03-15 12:24+0000\n"
-"PO-Revision-Date: 2022-03-17 18:10+0000\n"
+"POT-Creation-Date: 2022-04-02 20:55+0000\n"
+"PO-Revision-Date: 2022-03-28 08:07+0000\n"
 "Last-Translator: Snoete <snoete@hotmail.com>\n"
 "Language-Team: Dutch <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/nl/>\n"
 "Language: nl\n"
@@ -3826,6 +3826,9 @@ msgstr "CI (Common Interface) Instellen"
 msgid "CI Basic Settings"
 msgstr "CI Basis instellingen"
 
+msgid "CI Helper Settings"
+msgstr "CIHelper instellingen"
+
 msgid "CI Legacy"
 msgstr "CI standaard"
 
@@ -3846,9 +3849,6 @@ msgstr "CI slot: "
 
 msgid "CIFS/Samba Settings"
 msgstr "CIFS/Samba-Bestandsserver"
-
-msgid "CI Helper Settings"
-msgstr "CIHelper instellingen"
 
 msgid "CIHelper for SLOT CI0"
 msgstr "CIHelper voor SLOT CI0"
@@ -6427,6 +6427,9 @@ msgstr "Het OLED/LCD scherm instellen"
 msgid "Display and user interface"
 msgstr "Scherm- en gebruikersinterface"
 
+msgid "Display directory size"
+msgstr ""
+
 msgid "Display message before playing next movie"
 msgstr "Een bericht weergeven voordat de volgende film start"
 
@@ -8123,6 +8126,9 @@ msgstr "File Commander contextmenu"
 msgid "File Commander menu"
 msgstr "File Commander menu"
 
+msgid "File System Check"
+msgstr "Bestandssysteemcontrole"
+
 msgid "File appears to be busy.\n"
 msgstr "Bestand mogelijk in gebruik door ander proces.\n"
 
@@ -8161,9 +8167,6 @@ msgstr "bestandnaam"
 
 msgid "Files/folders to exclude from backup"
 msgstr "Uitgesloten back-up bestanden"
-
-msgid "File System Check"
-msgstr "Bestandssysteemcontrole"
 
 msgid "Filesystem check your Harddisk"
 msgstr "Het bestandssysteem van uw harde schijf controleren."
@@ -9272,6 +9275,9 @@ msgstr "Bij 'nooit' zal toch een crash log worden opgeslagen bij de eerste crash
 
 msgid "If an action is user-configurable, its help entry will be flagged with a '(C)' suffix."
 msgstr "Wanneer een actie instelbaar is, wordt de bijbehorende help functie gemarkeerd met een '(C)'."
+
+msgid "If disabled, underscore characters in file and directory names are not shown and are replaced with spaces."
+msgstr ""
 
 msgid "If editing a file, can you set the cursor start position at end or begin of the line."
 msgstr "Bij bewerken van bestand, kunt u de cursor startpositie plaatsten aan het einde of begin van de regel."
@@ -10748,9 +10754,6 @@ msgstr "Handmatig zenders zoeken"
 
 msgid "Manual configuration"
 msgstr "Handmatige configuratie"
-
-msgid "Manual scan"
-msgstr "Handmatig zoeken"
 
 msgid "Manual scan for services"
 msgstr "Hier kunt u handmatig naar zenders zoeken."
@@ -12322,9 +12325,6 @@ msgstr "OpenVPN"
 
 msgid "OpenVpn Log"
 msgstr "OpenVPN log"
-
-msgid "OpenVpn Setup"
-msgstr "OpenVPN instellingen"
 
 msgid "Operating LED status in deep standby mode"
 msgstr "Operationele LED-status wanneer uitgeschakeld"
@@ -16194,7 +16194,7 @@ msgid "Setup your Tuner and search for channels"
 msgstr "Hier kunt u de tuners instellen en zenders zoeken."
 
 msgid "Setup your Video Mode, Video Output and other Video Settings"
-msgstr "Hier kunt u alles instellen wat met Video te maken heeft."
+msgstr "Hier kunt u alles instellen wat met Audio en Video te maken heeft"
 
 msgid "Setup your display"
 msgstr "Stel het OLED/LCD display in naar uw persoonlijke voorkeur."
@@ -16904,6 +16904,9 @@ msgstr "Toon live-tv resterend/verstreken tijd als"
 msgid "Show two lines per entry"
 msgstr "Toon twee regels per zender"
 
+msgid "Show underscore characters in filenames"
+msgstr ""
+
 msgid "Show unknown Videoresolution as next higher or as highest screen resolution."
 msgstr "Toon onbekende videoresolutie als hogere of hoogste scherm resolutie."
 
@@ -17238,9 +17241,6 @@ msgstr "Softcam Acties"
 
 msgid "Softcam Settings"
 msgstr "Softcam configuratie"
-
-msgid "Softcam-Panel"
-msgstr "Softcam paneel"
 
 msgid "Software"
 msgstr "Software"
@@ -19550,6 +19550,9 @@ msgstr "Tuner "
 msgid "Tuner :"
 msgstr "Tuner:"
 
+msgid "Tuner Configuration"
+msgstr "Tuner configuratie"
+
 msgid "Tuner Information"
 msgstr "Tuner informatie"
 
@@ -19558,9 +19561,6 @@ msgstr "Tuner instellingen"
 
 msgid "Tuner Setup"
 msgstr "Tuner"
-
-msgid "Tuner Configuration"
-msgstr "Tuner configuratie"
 
 msgid "Tuner information"
 msgstr "Tuner informatie"
@@ -22740,7 +22740,7 @@ msgid "on READ ONLY medium."
 msgstr "op ALLEEN LEZEN medium."
 
 msgid "on how to restore the image"
-msgstr "Omschrijving hoe een image hersteld kan worden."
+msgstr "omschrijving hoe een image hersteld kan worden."
 
 msgid "once"
 msgstr "éénmalig"
@@ -23460,6 +23460,15 @@ msgstr "zappen"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Manual scan"
+#~ msgstr "Handmatig zoeken"
+
+#~ msgid "OpenVpn Setup"
+#~ msgstr "OpenVPN instellingen"
+
+#~ msgid "Softcam-Panel"
+#~ msgstr "Softcam paneel"
 
 #~ msgid "12, show latin-1 characters except for greek and cyrillic, switch to 8 if needed."
 #~ msgstr "12, toon latin-1 karakters behalve voor grieks en cyrillisch, en wissel naar 8 wanneer nodig."

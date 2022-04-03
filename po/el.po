@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Enigma2 Official Greek Translation\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-03-15 12:24+0000\n"
+"POT-Creation-Date: 2022-04-02 20:55+0000\n"
 "PO-Revision-Date: 2021-08-19 12:59+0000\n"
 "Last-Translator: MCelliotG <mcelliotg@gmail.com>\n"
 "Language-Team: Greek <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/el/>\n"
@@ -3868,6 +3868,9 @@ msgstr "Ρυθμίσεις CI (Κοινής διεπαφής)"
 msgid "CI Basic Settings"
 msgstr "Βασικές ρυθμίσεις CI"
 
+msgid "CI Helper Settings"
+msgstr "Ρυθμίσεις CIHelper"
+
 msgid "CI Legacy"
 msgstr "CI πιστοποίηση"
 
@@ -3888,9 +3891,6 @@ msgstr "Θύρα CI: "
 
 msgid "CIFS/Samba Settings"
 msgstr "Ρυθμίσεις CIFS/Samba"
-
-msgid "CI Helper Settings"
-msgstr "Ρυθμίσεις CIHelper"
 
 msgid "CIHelper for SLOT CI0"
 msgstr "CIHelper για τη ΘΥΡΑ CI0"
@@ -6378,6 +6378,9 @@ msgstr "Ρυθμίσεις οθόνης ενδείξεων"
 msgid "Display and user interface"
 msgstr "Οθόνη και διεπαφή χρήστη"
 
+msgid "Display directory size"
+msgstr ""
+
 msgid "Display message before playing next movie"
 msgstr "Εμφάνιση μηνύματος πριν από την αναπαραγωγή της επόμενης ταινίας"
 
@@ -8075,6 +8078,9 @@ msgstr "Μενού περιεχομένων του File Commander"
 msgid "File Commander menu"
 msgstr "Μενού του File Commander"
 
+msgid "File System Check"
+msgstr "Έλεγχος συστήματος αρχείων"
+
 msgid "File appears to be busy.\n"
 msgstr "Το αρχείο είναι απασχολημένο. \n"
 
@@ -8114,9 +8120,6 @@ msgstr "όνομα αρχείου"
 
 msgid "Files/folders to exclude from backup"
 msgstr "Αρχεία/φάκελοι προς εξαίρεση από την εφεδρεία"
-
-msgid "File System Check"
-msgstr "Έλεγχος συστήματος αρχείων"
 
 msgid "Filesystem check your Harddisk"
 msgstr "Έλεγχος συστήματος αρχείων του σκληρού δίσκου"
@@ -9235,6 +9238,9 @@ msgid "If 'never', will write crash log despite that for the first crash."
 msgstr "Το 'ποτέ' θα εγγράψει το αρχείο καταγραφής για το πρώτο κρασάρισμα."
 
 msgid "If an action is user-configurable, its help entry will be flagged with a '(C)' suffix."
+msgstr ""
+
+msgid "If disabled, underscore characters in file and directory names are not shown and are replaced with spaces."
 msgstr ""
 
 msgid "If editing a file, can you set the cursor start position at end or begin of the line."
@@ -10739,9 +10745,6 @@ msgstr "Χειροκίνητη ανίχνευση υπηρεσιών"
 
 msgid "Manual configuration"
 msgstr "Χειροκίνητη ρύθμιση"
-
-msgid "Manual scan"
-msgstr "Χειροκίνητη ανίχνευση"
 
 msgid "Manual scan for services"
 msgstr "Χειροκίνητη ανίχνευση υπηρεσιών"
@@ -12360,9 +12363,6 @@ msgstr "Ρυθμίσεις OpenVPN"
 
 msgid "OpenVpn Log"
 msgstr "Καταγραφή OpenVPN"
-
-msgid "OpenVpn Setup"
-msgstr "Ρυθμίσεις OpenVPN"
 
 msgid "Operating LED status in deep standby mode"
 msgstr "Κατάσταση λειτουργίας LED κατά τη βαθιά αναμονή"
@@ -16964,6 +16964,9 @@ msgstr "Εμφάνιση χρόνου που απέμεινε/παρήλθε ω�
 msgid "Show two lines per entry"
 msgstr "Εμφάνιση δύο γραμμών ανά στοιχείο"
 
+msgid "Show underscore characters in filenames"
+msgstr ""
+
 msgid "Show unknown Videoresolution as next higher or as highest screen resolution."
 msgstr "Εμφάνιση άγνωστης ανάλυσης εικόνας ως επόμενη υψηλότερη ή ύψιστη ανάλυση οθόνης."
 
@@ -17298,9 +17301,6 @@ msgstr ""
 
 msgid "Softcam Settings"
 msgstr "Ρυθμίσεις softcam"
-
-msgid "Softcam-Panel"
-msgstr "Πίνακας-softcam"
 
 msgid "Software"
 msgstr "Λογισμικό"
@@ -19593,6 +19593,9 @@ msgstr "Tuner "
 msgid "Tuner :"
 msgstr "Tuner :"
 
+msgid "Tuner Configuration"
+msgstr "Ρύθμιση tuner"
+
 msgid "Tuner Information"
 msgstr ""
 
@@ -19601,9 +19604,6 @@ msgstr "Ρυθμίσεις tuner"
 
 msgid "Tuner Setup"
 msgstr "Ρυθμίσεις tuner"
-
-msgid "Tuner Configuration"
-msgstr "Ρύθμιση tuner"
 
 msgid "Tuner information"
 msgstr ""
@@ -23502,6 +23502,15 @@ msgstr "ζάπινγκ"
 
 msgid "®"
 msgstr ""
+
+#~ msgid "Manual scan"
+#~ msgstr "Χειροκίνητη ανίχνευση"
+
+#~ msgid "OpenVpn Setup"
+#~ msgstr "Ρυθμίσεις OpenVPN"
+
+#~ msgid "Softcam-Panel"
+#~ msgstr "Πίνακας-softcam"
 
 #~ msgid "12, show latin-1 characters except for greek and cyrillic, switch to 8 if needed."
 #~ msgstr "12, εμφάνιση latin-1 χαρακτήρων εκτός ελληνικών και κυριλλικών, αλλάξτε σε 8 αν απαιτείται."

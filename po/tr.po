@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Apachi70 (OpenATV)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-03-15 12:24+0000\n"
+"POT-Creation-Date: 2022-04-02 20:55+0000\n"
 "PO-Revision-Date: 2021-11-14 06:52+0000\n"
 "Last-Translator: Oğuz Ersen <oguzersen@protonmail.com>\n"
 "Language-Team: Turkish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/tr/>\n"
@@ -4073,6 +4073,9 @@ msgstr "CI (Ortak Arayüz) Kurulumu"
 msgid "CI Basic Settings"
 msgstr "CI Temel ayarlar"
 
+msgid "CI Helper Settings"
+msgstr "CI Yardımcısı Kurulumu"
+
 msgid "CI Legacy"
 msgstr "CI Legacy"
 
@@ -4094,9 +4097,6 @@ msgstr "CI yuvası: "
 
 msgid "CIFS/Samba Settings"
 msgstr "Samba Kurulumu"
-
-msgid "CI Helper Settings"
-msgstr "CI Yardımcısı Kurulumu"
 
 msgid "CIHelper for SLOT CI0"
 msgstr "CIHelper for SLOT CI0"
@@ -6763,6 +6763,9 @@ msgstr "Görünüm Kurulumu"
 msgid "Display and user interface"
 msgstr "Görünüm ve kullanıcı arayüzü"
 
+msgid "Display directory size"
+msgstr ""
+
 msgid "Display message before playing next movie"
 msgstr "Sonraki filmi oynatmadan önce mesaj göster"
 
@@ -8581,6 +8584,9 @@ msgstr "Dosya Komutu bağlam menüsü"
 msgid "File Commander menu"
 msgstr "Dosya Komut menüsü"
 
+msgid "File System Check"
+msgstr "Dosya sistemi kontrolü"
+
 msgid "File appears to be busy.\n"
 msgstr "Dosya kullanımda.\n"
 
@@ -8622,9 +8628,6 @@ msgstr "dosyaadı"
 
 msgid "Files/folders to exclude from backup"
 msgstr "Yedeklemeden hariç tutulacak dosyalar / klasörler"
-
-msgid "File System Check"
-msgstr "Dosya sistemi kontrolü"
 
 msgid "Filesystem check your Harddisk"
 msgstr "Harddisk dosya sistemi kontrolü"
@@ -9828,6 +9831,9 @@ msgid "If 'never', will write crash log despite that for the first crash."
 msgstr "Eğer 'asla' ise, ilk çarpışma için buna rağmen çarpışma günlüğü yazacaktır."
 
 msgid "If an action is user-configurable, its help entry will be flagged with a '(C)' suffix."
+msgstr ""
+
+msgid "If disabled, underscore characters in file and directory names are not shown and are replaced with spaces."
 msgstr ""
 
 msgid "If editing a file, can you set the cursor start position at end or begin of the line."
@@ -11439,9 +11445,6 @@ msgstr "Manuel Servis Arama"
 
 msgid "Manual configuration"
 msgstr "El ile yapılandırma"
-
-msgid "Manual scan"
-msgstr "Elle arama"
 
 msgid "Manual scan for services"
 msgstr "Kanallar için elle arama"
@@ -13207,9 +13210,6 @@ msgstr "VPN Kurulumu Aç"
 
 msgid "OpenVpn Log"
 msgstr "OpenVPN Günlüğü"
-
-msgid "OpenVpn Setup"
-msgstr "OpenVPN Kurulumu"
 
 msgid "Operating LED status in deep standby mode"
 msgstr "Derin bekleme modunda çalışma LED durumu"
@@ -18156,6 +18156,9 @@ msgstr "Transponder kalan/geçen zamanı göster"
 msgid "Show two lines per entry"
 msgstr "Olaylar arasındaki bölüm çizgilerini göster."
 
+msgid "Show underscore characters in filenames"
+msgstr ""
+
 msgid "Show unknown Videoresolution as next higher or as highest screen resolution."
 msgstr "Bilinmeyen Video çözünürlüğünü bir sonraki daha yüksek veya en yüksek ekran çözünürlüğünde göster."
 
@@ -18523,9 +18526,6 @@ msgstr ""
 
 msgid "Softcam Settings"
 msgstr "Softcam Kurulumu"
-
-msgid "Softcam-Panel"
-msgstr "Softcam Panel"
 
 #
 msgid "Software"
@@ -20960,6 +20960,10 @@ msgstr "Tuner "
 msgid "Tuner :"
 msgstr "Tuner :"
 
+#
+msgid "Tuner Configuration"
+msgstr "Tuner kurulumu"
+
 msgid "Tuner Information"
 msgstr ""
 
@@ -20968,10 +20972,6 @@ msgstr "Tuner ayarları"
 
 msgid "Tuner Setup"
 msgstr "Tuner  Kurulumu"
-
-#
-msgid "Tuner Configuration"
-msgstr "Tuner kurulumu"
 
 msgid "Tuner information"
 msgstr ""
@@ -25237,6 +25237,15 @@ msgstr "zap"
 
 msgid "®"
 msgstr ""
+
+#~ msgid "Manual scan"
+#~ msgstr "Elle arama"
+
+#~ msgid "OpenVpn Setup"
+#~ msgstr "OpenVPN Kurulumu"
+
+#~ msgid "Softcam-Panel"
+#~ msgstr "Softcam Panel"
 
 #~ msgid "12, show latin-1 characters except for greek and cyrillic, switch to 8 if needed."
 #~ msgstr "Şekil 12'de Yunanca ve Kiril hariç latin-1 karakterleri gösteriliyor, gerekirse 8'e geçiliyor."

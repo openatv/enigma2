@@ -5,8 +5,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-03-15 12:24+0000\n"
-"PO-Revision-Date: 2022-03-15 11:32+0000\n"
+"POT-Creation-Date: 2022-04-02 20:55+0000\n"
+"PO-Revision-Date: 2022-04-02 20:47+0000\n"
 "Last-Translator: Marián Hikaník <podnety@mojepreklady.net>\n"
 "Language-Team: Slovak <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/sk/>\n"
 "Language: sk\n"
@@ -1627,7 +1627,7 @@ msgid "12 hours"
 msgstr "12 hodín"
 
 msgid "12, show Latin-1 characters except for greek and cyrillic, switch to 8 if needed."
-msgstr ""
+msgstr "12, zobrazuje znaky Latin-1 s výnimkou gréčtiny a cyriliky, v prípade potreby prepnite na 8."
 
 msgid "128"
 msgstr "128"
@@ -2417,7 +2417,7 @@ msgid "Add Zap+Record Timer"
 msgstr "Pridať časovač zapnutia + nahrávania"
 
 msgid "Add a DNS entry"
-msgstr ""
+msgstr "Pridať záznam DNS"
 
 msgid "Add a mark"
 msgstr "Pridať značku"
@@ -3843,6 +3843,9 @@ msgstr "Nastavenie CI (Common Interface)"
 msgid "CI Basic Settings"
 msgstr "Základné nastavenia CI"
 
+msgid "CI Helper Settings"
+msgstr "Nastavenie CIHelper"
+
 msgid "CI Legacy"
 msgstr "Staršie CI (Legacy)"
 
@@ -3863,9 +3866,6 @@ msgstr "Slot CI: "
 
 msgid "CIFS/Samba Settings"
 msgstr "Nastavenie CIFS/Samba"
-
-msgid "CI Helper Settings"
-msgstr "Nastavenie CIHelper"
 
 msgid "CIHelper for SLOT CI0"
 msgstr "CIHelper pre SLOT CI0"
@@ -4638,7 +4638,7 @@ msgid "Close title selection"
 msgstr "Zatvoriť výber titulu"
 
 msgid "Cloudflare DNS"
-msgstr ""
+msgstr "Cloudflare DNS"
 
 msgid "Cocos (Keeling) Islands"
 msgstr "Kokosové ostrovy"
@@ -4932,7 +4932,7 @@ msgid "Configure the function of a short press on the power button."
 msgstr "Nastavte funkciu pre krátke stlačenie tlačidla napájania."
 
 msgid "Configure the function of the < and > buttons."
-msgstr ""
+msgstr "Konfigurovať funkciu tlačidiel < a >."
 
 msgid "Configure the gateway."
 msgstr "Nastavte bránu."
@@ -5508,7 +5508,7 @@ msgid "Customize"
 msgstr "Prispôsobiť"
 
 msgid "Customize System Settings"
-msgstr ""
+msgstr "Prispôsobiť systémové nastavenia"
 
 msgid "Customize enigma2 personal settings"
 msgstr "Prispôsobenie osobných nastavení systému enigma2"
@@ -5559,13 +5559,13 @@ msgid "DMM normal"
 msgstr "DMM normálne"
 
 msgid "DNS (Dynamic Name Server) Actions"
-msgstr ""
+msgstr "Akcie DNS (Dynamic Name Server)"
 
 msgid "DNS Settings"
-msgstr ""
+msgstr "Nastavenia DNS"
 
 msgid "DNS data source"
-msgstr ""
+msgstr "Zdroj údajov DNS"
 
 msgid ""
 "DO NOT POWER OFF YOUR DEVICE WHILE UPDATING!\n"
@@ -6332,6 +6332,9 @@ msgstr "Nastavenie displeja"
 
 msgid "Display and user interface"
 msgstr "Zobrazenie a používateľské rozhranie"
+
+msgid "Display directory size"
+msgstr ""
 
 msgid "Display message before playing next movie"
 msgstr "Zobrazovať správu pred prehrávaním ďalšieho filmu"
@@ -7288,7 +7291,7 @@ msgstr "Zadať"
 
 #, python-format
 msgid "Enter DNS (Dynamic Name Server) %d's IP address."
-msgstr ""
+msgstr "Zadajte IP adresu DNS (Dynamic Name Server) %d."
 
 msgid "Enter PIN"
 msgstr "Zadať PIN"
@@ -7387,11 +7390,11 @@ msgstr "Chyba %d: súbor so záznamom '%s' sa nedal otvoriť.  (%s)"
 
 #, python-format
 msgid "Error %d: Unable to change password!  (%s)"
-msgstr ""
+msgstr "Chyba %d: nemožno zmeniť heslo)  (%s)"
 
 #, python-format
 msgid "Error %d: Unable to start 'passwd' command!"
-msgstr ""
+msgstr "Chyba %d: Nemožno spustiť príkaz 'passwd'!"
 
 #, python-format
 msgid "Error '%s' encountered retrieving the %s commit logs!"
@@ -7528,7 +7531,7 @@ msgid "Error: Checksum is invalid!"
 msgstr "Chyba: kontrolný súčet je neplatný!"
 
 msgid "Error: Interaction failure, unable to change password!"
-msgstr ""
+msgstr "Chyba: zlyhanie interakcie, nemožno zmeniť heslo!"
 
 msgid "Error: The new password may not be blank!"
 msgstr "Chyba: nové heslo nemôže zostať prázdne!"
@@ -7879,7 +7882,7 @@ msgid "Factory Reset"
 msgstr "Výrobné nastavenia"
 
 msgid "Factory Reset Settings"
-msgstr ""
+msgstr "Nastavenia továrenského resetovania"
 
 msgid "Factory release"
 msgstr "Továrenské vydanie"
@@ -8023,6 +8026,9 @@ msgstr "Kontextové menu správcu súborov"
 msgid "File Commander menu"
 msgstr "Menu správcu súborov"
 
+msgid "File System Check"
+msgstr "Kontrola súborového systému"
+
 msgid "File appears to be busy.\n"
 msgstr "Súbor sa zdá byť zaneprázdnený.\n"
 
@@ -8061,9 +8067,6 @@ msgstr "Názov súboru"
 
 msgid "Files/folders to exclude from backup"
 msgstr "Súbory/priečinky vylúčené zo zálohy"
-
-msgid "File System Check"
-msgstr "Kontrola súborového systému"
 
 msgid "Filesystem check your Harddisk"
 msgstr "Kontrola vášho súborového systému"
@@ -9170,6 +9173,9 @@ msgstr "Ak je nastavená možnosť 'nikdy', zapíše sa pre prvý pád aj naprie
 msgid "If an action is user-configurable, its help entry will be flagged with a '(C)' suffix."
 msgstr "Ak je akcia konfigurovateľná, jej položka pomocníka bude označená príponou „(C)“."
 
+msgid "If disabled, underscore characters in file and directory names are not shown and are replaced with spaces."
+msgstr ""
+
 msgid "If editing a file, can you set the cursor start position at end or begin of the line."
 msgstr "Pri úprave súboru môžete nastaviť počiatočnú pozíciu kurzora na koniec alebo na začiatok riadku."
 
@@ -9255,7 +9261,7 @@ msgid "If the free space is less than setting value, then an attempt is made to 
 msgstr "Pri poklese voľného miesta pod túto nastavenú hodnotu dôjde k pokusu o vymazanie starých súborov timeshiftu."
 
 msgid "If the text is too long to be displayed on the front panel, it will be repeated (number of times)."
-msgstr ""
+msgstr "Ak je text príliš dlhý na to, aby sa zobrazil na prednom paneli, bude sa opakovať (počet opakovaní)."
 
 msgid "If using multiple uncommitted switches the DiSEqC commands must be sent multiple times. Set to the number of uncommitted switches in the chain minus one."
 msgstr "Ak sa používajú viaceré prepínače typu uncommitted, musia sa príkazy DiSEqC odosielať viackrát. Nastavte počet pevne zapísaných prepínačov v reťazci, mínus jedna."
@@ -10641,9 +10647,6 @@ msgstr "Ručné hľadanie stanice"
 msgid "Manual configuration"
 msgstr "Ručná konfigurácia"
 
-msgid "Manual scan"
-msgstr "Ručné skenovanie"
-
 msgid "Manual scan for services"
 msgstr "Ručné vyhľadávanie staníc"
 
@@ -11086,10 +11089,10 @@ msgid "Move mode on"
 msgstr "Režim presúvania zap."
 
 msgid "Move the current DNS entry down one line"
-msgstr ""
+msgstr "Presunúť aktuálny záznam DNS o jeden riadok nižšie"
 
 msgid "Move the current DNS entry up one line"
-msgstr ""
+msgstr "Presunúť aktuálny záznam DNS o jeden riadok vyššie"
 
 msgid "Move the keyboard cursor down"
 msgstr "Presunúť kurzor klávesnice nadol"
@@ -11343,7 +11346,7 @@ msgstr "Názov - opačne"
 
 #, python-format
 msgid "Name server %d"
-msgstr ""
+msgstr "Názov servera %d"
 
 msgid "Name:"
 msgstr "Názov:"
@@ -12211,9 +12214,6 @@ msgstr "Nastavenie OpenVPN"
 
 msgid "OpenVpn Log"
 msgstr "Správa OpenVPN"
-
-msgid "OpenVpn Setup"
-msgstr "Nastavenie OpenVPN"
 
 msgid "Operating LED status in deep standby mode"
 msgstr "Stav operačnej LED v režime vypnutia"
@@ -14140,7 +14140,7 @@ msgid "Remote Control"
 msgstr "Diaľkové ovládanie"
 
 msgid "Remote Control Button Settings"
-msgstr ""
+msgstr "Nastavenia tlačidiel diaľ. ovládania"
 
 msgid "Remote Control Code"
 msgstr "Kód diaľkového ovládania"
@@ -14180,7 +14180,7 @@ msgid "Remove Service"
 msgstr "Odstrániť stanicu/službu"
 
 msgid "Remove a DNS entry"
-msgstr ""
+msgstr "Odstrániť záznam DNS"
 
 msgid "Remove a mark"
 msgstr "Odstrániť značku"
@@ -14565,7 +14565,7 @@ msgid "Rotor turning speed"
 msgstr "Rýchlosť otáčania motora"
 
 msgid "Router / Gateway"
-msgstr ""
+msgstr "Router/brána"
 
 msgid "Routing request"
 msgstr "Routing požiadavky"
@@ -15432,7 +15432,7 @@ msgid "Select the sleep timer action."
 msgstr "Vyberte akciu pre časovač uspania."
 
 msgid "Select the source of the default DNS settings."
-msgstr ""
+msgstr "Vyberte zdroj predvolených nastavení DNS."
 
 msgid "Select the time delay before the button starts repeating."
 msgstr "Vybrať oneskorenie pred spustením opakovania tlačidla."
@@ -16768,6 +16768,9 @@ msgstr "Zobraziť transpondér - zostávajúce/uplynulé ako"
 msgid "Show two lines per entry"
 msgstr "Zobraziť dva riadky na záznam"
 
+msgid "Show underscore characters in filenames"
+msgstr ""
+
 msgid "Show unknown Videoresolution as next higher or as highest screen resolution."
 msgstr "Zobraziť neznáme rozlíšenie videa ako najbližšie vyššie alebo najvyššie rozlíšenie obrazovky."
 
@@ -17101,9 +17104,6 @@ msgstr "Akcie pre softcam"
 msgid "Softcam Settings"
 msgstr "Inštalácia softcamu"
 
-msgid "Softcam-Panel"
-msgstr "Panel pre softcam"
-
 msgid "Software"
 msgstr "Softvér"
 
@@ -17430,7 +17430,7 @@ msgid "State"
 msgstr "Štát"
 
 msgid "Static IP / Custom"
-msgstr ""
+msgstr "Statická IP/Definovaná používateľom"
 
 msgid "Status"
 msgstr "Stav"
@@ -19366,6 +19366,9 @@ msgstr "Tuner "
 msgid "Tuner :"
 msgstr "Tuner:"
 
+msgid "Tuner Configuration"
+msgstr "Konfigurácia tunera"
+
 msgid "Tuner Information"
 msgstr "Informácia o tuneri"
 
@@ -19374,9 +19377,6 @@ msgstr "Nastavenia tunera"
 
 msgid "Tuner Setup"
 msgstr "Nastavenie tunera"
-
-msgid "Tuner Configuration"
-msgstr "Konfigurácia tunera"
 
 msgid "Tuner information"
 msgstr "Informácia o tuneri"
@@ -23252,6 +23252,15 @@ msgstr "prepínanie"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Manual scan"
+#~ msgstr "Ručné skenovanie"
+
+#~ msgid "OpenVpn Setup"
+#~ msgstr "Nastavenie OpenVPN"
+
+#~ msgid "Softcam-Panel"
+#~ msgstr "Panel pre softcam"
 
 #~ msgid "12, show latin-1 characters except for greek and cyrillic, switch to 8 if needed."
 #~ msgstr "12, zobraziť znaky sady Latin-1 s výnimkou pre gréčtinu a cyriliku, v prípade potreby prepnite na 8."

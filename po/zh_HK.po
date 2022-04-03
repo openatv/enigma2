@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-03-15 12:24+0000\n"
+"POT-Creation-Date: 2022-04-02 20:55+0000\n"
 "PO-Revision-Date: 2021-08-15 18:50+0000\n"
 "Last-Translator: openATV <openatv@gmail.com>\n"
 "Language-Team: Chinese (Traditional, Hong Kong) <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/zh_Hant_HK/>\n"
@@ -4029,6 +4029,10 @@ msgstr "通用介面 (CI)"
 msgid "CI Basic Settings"
 msgstr "Crashlog設定"
 
+#, fuzzy
+msgid "CI Helper Settings"
+msgstr "DNS設定"
+
 msgid "CI Legacy"
 msgstr ""
 
@@ -4051,10 +4055,6 @@ msgstr "未找到CI插座"
 
 msgid "CIFS/Samba Settings"
 msgstr ""
-
-#, fuzzy
-msgid "CI Helper Settings"
-msgstr "DNS設定"
 
 msgid "CIHelper for SLOT CI0"
 msgstr ""
@@ -6667,6 +6667,9 @@ msgstr "OLED設定"
 msgid "Display and user interface"
 msgstr "顯示和用戶介面"
 
+msgid "Display directory size"
+msgstr ""
+
 msgid "Display message before playing next movie"
 msgstr ""
 
@@ -8414,6 +8417,9 @@ msgstr ""
 msgid "File Commander menu"
 msgstr ""
 
+msgid "File System Check"
+msgstr "檔系統檢視"
+
 msgid "File appears to be busy.\n"
 msgstr ""
 
@@ -8453,9 +8459,6 @@ msgstr "檔案名"
 #, fuzzy
 msgid "Files/folders to exclude from backup"
 msgstr "選擇要備份的檔/目錄"
-
-msgid "File System Check"
-msgstr "檔系統檢視"
 
 #, fuzzy
 msgid "Filesystem check your Harddisk"
@@ -9659,6 +9662,9 @@ msgid "If 'never', will write crash log despite that for the first crash."
 msgstr ""
 
 msgid "If an action is user-configurable, its help entry will be flagged with a '(C)' suffix."
+msgstr ""
+
+msgid "If disabled, underscore characters in file and directory names are not shown and are replaced with spaces."
 msgstr ""
 
 msgid "If editing a file, can you set the cursor start position at end or begin of the line."
@@ -11237,9 +11243,6 @@ msgid "Manual Service Searching"
 msgstr "頻道掃描"
 
 msgid "Manual configuration"
-msgstr ""
-
-msgid "Manual scan"
 msgstr ""
 
 #, fuzzy
@@ -12963,10 +12966,6 @@ msgstr "Gemini 設定"
 
 msgid "OpenVpn Log"
 msgstr ""
-
-#, fuzzy
-msgid "OpenVpn Setup"
-msgstr "Gemini 設定"
 
 msgid "Operating LED status in deep standby mode"
 msgstr ""
@@ -17932,6 +17931,9 @@ msgstr "顯示轉發器資訊"
 msgid "Show two lines per entry"
 msgstr "顯示Gemini專案"
 
+msgid "Show underscore characters in filenames"
+msgstr ""
+
 msgid "Show unknown Videoresolution as next higher or as highest screen resolution."
 msgstr ""
 
@@ -18292,10 +18294,6 @@ msgstr ""
 #, fuzzy
 msgid "Softcam Settings"
 msgstr "保護設定"
-
-#, fuzzy
-msgid "Softcam-Panel"
-msgstr "軟體管理"
 
 msgid "Software"
 msgstr ""
@@ -20663,6 +20661,9 @@ msgstr "調諧器"
 msgid "Tuner :"
 msgstr "調諧器"
 
+msgid "Tuner Configuration"
+msgstr "調諧器配置"
+
 msgid "Tuner Information"
 msgstr ""
 
@@ -20673,9 +20674,6 @@ msgstr "調諧器資訊"
 #, fuzzy
 msgid "Tuner Setup"
 msgstr "調諧器插槽"
-
-msgid "Tuner Configuration"
-msgstr "調諧器配置"
 
 msgid "Tuner information"
 msgstr ""
@@ -24731,6 +24729,14 @@ msgstr "轉自"
 
 msgid "®"
 msgstr ""
+
+#, fuzzy
+#~ msgid "OpenVpn Setup"
+#~ msgstr "Gemini 設定"
+
+#, fuzzy
+#~ msgid "Softcam-Panel"
+#~ msgstr "軟體管理"
 
 #, fuzzy
 #~ msgid "Customise"
