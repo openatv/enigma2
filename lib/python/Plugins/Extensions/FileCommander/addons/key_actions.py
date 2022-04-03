@@ -450,7 +450,7 @@ class key_actions(stat_info):
 		sourceDir = self.SOURCELIST.getCurrentDirectory()
 		filepath = os.path.join(sourceDir, filename)
 		if os.path.isdir(filepath):
-			cmd = "du -h -d 0 %s" % filepath
+			cmd = "du -h -d 0 \"%s\"" % filepath
 			self._progConsole = self.session.open(Console, cmdlist=(cmd,), finishedCallback=self.progConsoleCB)
 
 	def run_prog(self, prog, args=None):
