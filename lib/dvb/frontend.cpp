@@ -2073,7 +2073,7 @@ int eDVBFrontend::tuneLoopInt()  // called by m_tuneTimer
 		if (sec_fe != this && !prev->m_inuse)
 		{
 			int state = sec_fe->m_state;
-			if (state != eDVBFrontend::stateIdle && state != stateClosed)
+			if (!m_fbc && state != eDVBFrontend::stateIdle && state != stateClosed)
 			{
 				sec_fe->m_sn->stop();
 				state = sec_fe->m_state = stateIdle;
