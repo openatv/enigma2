@@ -116,6 +116,7 @@ config.plugins.filecommander.sortingLeft_tmp = NoSave(ConfigText(default=tmpLeft
 config.plugins.filecommander.sortingRight_tmp = NoSave(ConfigText(default=tmpRight))
 config.plugins.filecommander.path_left_tmp = NoSave(ConfigText(default=config.plugins.filecommander.path_left.value))
 config.plugins.filecommander.path_right_tmp = NoSave(ConfigText(default=config.plugins.filecommander.path_right.value))
+config.plugins.filecommander.calulate_directorysize = ConfigYesNo(default=False)
 
 cfg = config.plugins.filecommander
 
@@ -325,6 +326,11 @@ class FileCommanderScreen(Screen, HelpableScreen, key_actions):
 		self.checkJobs_Timer.callback.append(self.checkJobs_TimerCB)
 		#self.onLayoutFinish.append(self.onLayout)
 		self.onLayoutFinish.append(self.checkJobs_TimerCB)
+
+		config.plugins.filecommander.calulate_directorysize.addNotifier(self.calulate_directorysizeChanged)
+
+	def calulate_directorysizeChanged(self, configElement):
+		self.calulate_directorysize = configElement.value
 
 	def onLayout(self):
 		if self.jobs_old:
@@ -975,7 +981,7 @@ class FileCommanderScreen(Screen, HelpableScreen, key_actions):
 				else:
 					pathname = dir # parent folder
 				self[side + "_head1"].text = pathname
-				self[side + "_head2"].updateList(self.statInfo(self[side]))
+				self[side + "_head2"].updateList(self.statInfo(self[side], self.calulate_directorysize))
 			else:
 				self[side + "_head1"].text = ""
 				self[side + "_head2"].updateList(())
@@ -1424,7 +1430,7 @@ class FileCommanderScreenFileSelect(Screen, HelpableScreen, key_actions):
 				else:
 					pathname = dir # parent folder
 				self[side + "_head1"].text = pathname
-				self[side + "_head2"].updateList(self.statInfo(self[side]))
+				self[side + "_head2"].updateList(self.statInfo(self[side], self.calulate_directorysize))
 			else:
 				self[side + "_head1"].text = ""
 				self[side + "_head2"].updateList(())
