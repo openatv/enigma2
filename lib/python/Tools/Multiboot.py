@@ -183,7 +183,11 @@ class GetImagelist():
 			self.container.ePopen("umount %s" % Imageroot, self.appClosed)
 		else:
 			self.slot = self.slots.pop(0)
-			self.container.ePopen("mount %s %s %s" % (getMountType(), SystemInfo["canMultiBoot"][self.slot]["device"], Imageroot), self.appClosed)
+			if SystemInfo["HasMultibootMTD"]:
+				self.container.ePopen("mount -t ubifs %s %s" % (SystemInfo["canMultiBoot"][self.slot]["device"], Imageroot), self.appClosed)
+			else:
+				self.container.ePopen("mount %s %s" % (SystemInfo["canMultiBoot"][self.slot]["device"], Imageroot), self.appClosed)
+
 
 	def appClosed(self, data="", retval=0, extra_args=None):
 		BuildVersion = "  "
@@ -347,7 +351,10 @@ class EmptySlot():
 		if self.phase == self.UNMOUNT:
 			self.container.ePopen("umount %s" % Imageroot, self.appClosed)
 		else:
-			self.container.ePopen("mount %s %s %s" % (getMountType(), SystemInfo["canMultiBoot"][self.slot]["device"], Imageroot), self.appClosed)
+			if SystemInfo["HasMultibootMTD"]:
+				self.container.ePopen("mount -t ubifs %s %s" % (SystemInfo["canMultiBoot"][self.slot]["device"], Imageroot), self.appClosed)
+			else:
+				self.container.ePopen("mount %s %s" % (SystemInfo["canMultiBoot"][self.slot]["device"], Imageroot), self.appClosed)
 
 	def appClosed(self, data="", retval=0, extra_args=None):
 		if retval == 0 and self.phase == self.MOUNT:
