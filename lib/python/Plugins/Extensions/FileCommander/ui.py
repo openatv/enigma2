@@ -116,7 +116,7 @@ config.plugins.filecommander.sortingLeft_tmp = NoSave(ConfigText(default=tmpLeft
 config.plugins.filecommander.sortingRight_tmp = NoSave(ConfigText(default=tmpRight))
 config.plugins.filecommander.path_left_tmp = NoSave(ConfigText(default=config.plugins.filecommander.path_left.value))
 config.plugins.filecommander.path_right_tmp = NoSave(ConfigText(default=config.plugins.filecommander.path_right.value))
-config.plugins.filecommander.calulate_directorysize = ConfigYesNo(default=False)
+config.plugins.filecommander.calculate_directorysize = ConfigYesNo(default=False)
 
 cfg = config.plugins.filecommander
 
@@ -327,10 +327,10 @@ class FileCommanderScreen(Screen, HelpableScreen, key_actions):
 		#self.onLayoutFinish.append(self.onLayout)
 		self.onLayoutFinish.append(self.checkJobs_TimerCB)
 
-		config.plugins.filecommander.calulate_directorysize.addNotifier(self.calulate_directorysizeChanged)
+		config.plugins.filecommander.calculate_directorysize.addNotifier(self.calculate_directorysizeChanged)
 
-	def calulate_directorysizeChanged(self, configElement):
-		self.calulate_directorysize = configElement.value
+	def calculate_directorysizeChanged(self, configElement):
+		self.calculate_directorysize = configElement.value
 
 	def onLayout(self):
 		if self.jobs_old:
@@ -981,7 +981,7 @@ class FileCommanderScreen(Screen, HelpableScreen, key_actions):
 				else:
 					pathname = dir # parent folder
 				self[side + "_head1"].text = pathname
-				self[side + "_head2"].updateList(self.statInfo(self[side], self.calulate_directorysize))
+				self[side + "_head2"].updateList(self.statInfo(self[side], self.calculate_directorysize))
 			else:
 				self[side + "_head1"].text = ""
 				self[side + "_head2"].updateList(())
@@ -1430,7 +1430,7 @@ class FileCommanderScreenFileSelect(Screen, HelpableScreen, key_actions):
 				else:
 					pathname = dir # parent folder
 				self[side + "_head1"].text = pathname
-				self[side + "_head2"].updateList(self.statInfo(self[side], self.calulate_directorysize))
+				self[side + "_head2"].updateList(self.statInfo(self[side]))
 			else:
 				self[side + "_head1"].text = ""
 				self[side + "_head2"].updateList(())
