@@ -279,7 +279,7 @@
 		<item level="2" text="YELLOW button" description="Set to what you want the button to do.">config.epgselection.vertical_yellow</item>
 		<item level="2" text="BLUE button" description="Set to what you want the button to do.">config.epgselection.vertical_blue</item>
 	</setup>
-	<setup key="FactoryReset" title="Factory Reset Settings">
+	<setup key="FactoryReset" title="Factory Reset">
 		<item level="0" text="Full factory reset" description="Select 'Yes' to remove all settings, tuning data, timers, resume pointers etc. Selecting this option will restore the configuration to the initial settings before any configuration settings were applied. This is the most reliable form of Factory Reset.">config.factory.resetFull</item>
 		<if conditional="not config.factory.resetFull.value">
 			<item level="0" text="Reset network configuration" description="Select 'Yes' to reset network configuration to the default. This will enable the Ethernet port if it exists and set the receiver to use DHCP. All other network interfaces will be deleted.">config.factory.resetNetwork</item>
