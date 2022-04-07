@@ -29,7 +29,6 @@ class FactoryReset(Setup, ProtectedScreen):
 		config.factory.resetOthers = NoSave(ConfigYesNo(default=True))
 		Setup.__init__(self, session=session, setup="FactoryReset")
 		ProtectedScreen.__init__(self)
-		self.setTitle(_("Factory Reset"))
 		self["key_green"].text = _("Reset")
 
 	def isProtected(self):
