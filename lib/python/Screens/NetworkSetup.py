@@ -272,7 +272,6 @@ class DNSSettings(Setup):
 		self.dnsServers = self.dnsOptions[option][:]
 		self.entryAdded = False
 		Setup.__init__(self, session=session, setup="DNS")
-		self.setTitle(_("DNS Settings"))
 		self["key_yellow"] = StaticText(_("Add"))
 		self["key_blue"] = StaticText("")
 		dnsDescription = _("DNS (Dynamic Name Server) Actions")
