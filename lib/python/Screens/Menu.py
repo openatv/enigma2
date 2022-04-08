@@ -132,7 +132,6 @@ class Menu(Screen, HelpableScreen, ProtectedScreen):
 	def __init__(self, session, parent):
 		Screen.__init__(self, session)
 		HelpableScreen.__init__(self)
-		ProtectedScreen.__init__(self)
 		self.parentMenu = parent
 		self.menuList = []
 		self["menu"] = List(self.menuList)
@@ -146,6 +145,7 @@ class Menu(Screen, HelpableScreen, ProtectedScreen):
 		self.selected_entry = None
 		self.sub_menu_sort = None
 		self.createMenuList()
+		ProtectedScreen.__init__(self)
 		# for the skin: first try a menu_<menuID>, then Menu
 		self.skinName = []
 		if self.menuID is not None:
