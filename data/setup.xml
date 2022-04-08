@@ -317,7 +317,7 @@
 			<item level="0" text="Switch off the TV to correct input" description="Some TV devices can't swich to correct input if a another HDMI port active. This setting sets the TV to standby before the switch. (If the TV does not turn back on it may require a slower transmission interval or the repetition of wake-up commands.)" conditional="config.hdmicec.advanced_settings.value and config.hdmicec.report_active_source.value">config.hdmicec.workaround_activesource</item>
 			<item level="0" text="Handle wakeup from TV" description="When enabled the receiver will automatically wake from standby when the TV is turned on.">config.hdmicec.handle_tv_wakeup</item>
 			<item level="0" text="Handle standby from TV" description="When enabled the receiver will automatically return to standby when the TV is turned off.">config.hdmicec.handle_tv_standby</item>
-			<if conditiona="config.hdmicec.advanced_settings.value">
+			<if conditional="config.hdmicec.advanced_settings.value">
 				<item level="0" text="Handle input from TV" description="Allows the TV remote to be used to control the receiver.">config.hdmicec.handle_tv_input</item>
 				<item level="0" text="Time delay until standby or deep standby" description="'Handle standby from TV' has a higher priority than 'Handle input from TV'." conditional="config.hdmicec.handle_tv_standby.value != 'disabled' or config.hdmicec.handle_tv_input.value != 'disabled'">config.hdmicec.handle_tv_delaytime</item>
 			</if>
