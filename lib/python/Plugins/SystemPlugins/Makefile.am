@@ -15,7 +15,7 @@ SUBDIRS += AnimationSetup
 endif
 
 if DREAMBOX
-SUBDIRS += FrontprocessorUpgrade NFIFlash
+SUBDIRS += FrontprocessorUpgrade
 endif
 
 if DM900
