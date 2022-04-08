@@ -63,14 +63,14 @@ void eDVBCIDateTimeSession::sendDateTime()
 	tv %= 60;
 	uint8_t ss = tv;
 
-	msg[0] = 5; // not using offset
-	msg[1] = (mjd >> 8) & 0xff;
-	msg[2] = mjd & 0xff;
-	msg[3] = ((hh / 10) << 4) | (hh % 10);
-	msg[4] = ((mm / 10) << 4) | (mm % 10);
-	msg[5] = ((ss / 10) << 4) | (ss % 10);
+	// not using offset
+	msg[0] = (mjd >> 8) & 0xff;
+	msg[1] = mjd & 0xff;
+	msg[2] = ((hh / 10) << 4) | (hh % 10);
+	msg[3] = ((mm / 10) << 4) | (mm % 10);
+	msg[4] = ((ss / 10) << 4) | (ss % 10);
 
-	sendAPDU(tag, msg, 6);
+	sendAPDU(tag, msg, 5);
 
 	if (m_interval > 0)
 	{
