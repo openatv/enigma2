@@ -1,15 +1,14 @@
 from errno import ENOENT
 from os.path import basename, dirname, isfile, join as pathjoin, splitext
 from os import listdir, unlink
-from six import PY2
 from xml.etree.cElementTree import Element, ElementTree, fromstring
 
 from enigma import BT_ALPHABLEND, BT_ALPHATEST, BT_HALIGN_CENTER, BT_HALIGN_LEFT, BT_HALIGN_RIGHT, BT_KEEP_ASPECT_RATIO, BT_SCALE, BT_VALIGN_BOTTOM, BT_VALIGN_CENTER, BT_VALIGN_TOP, addFont, eLabel, ePixmap, ePoint, eRect, eSize, eWindow, eWindowStyleManager, eWindowStyleSkinned, getDesktop, gFont, getFontFaces, gMainDC, gRGB, setListBoxScrollbarStyle
 
 from Components.config import ConfigSubsection, ConfigText, config
 from Components.RcModel import rc_model
-from Components.Sources.Source import ObsoleteSource
 from Components.SystemInfo import BoxInfo
+from Components.Sources.Source import ObsoleteSource
 from Tools.Directories import SCOPE_CONFIG, SCOPE_LCDSKIN, SCOPE_GUISKIN, SCOPE_FONTS, SCOPE_SKINS, pathExists, resolveFilename, fileReadXML
 from Tools.Import import my_import
 from Tools.LoadPixmap import LoadPixmap
@@ -470,14 +469,14 @@ def collectAttributes(skinAttributes, node, context, skinPath=None, ignore=(), f
 			# listbox; when the scrollbar setting is applied after the size, a scrollbar
 			# will not be shown until the selection moves for the first time.
 			if attrib == "size":
-				size = value.encode("UTF-8", errors="ignore") if PY2 else value
+				size = value
 			elif attrib == "position":
-				pos = value.encode("UTF-8", errors="ignore") if PY2 else value
+				pos = value
 			elif attrib == "font":
-				font = value.encode("UTF-8", errors="ignore") if PY2 else value
+				font = value
 				skinAttributes.append((attrib, font))
 			else:
-				value = value.encode("UTF-8", errors="ignore") if PY2 else value
+				value = value
 				skinAttributes.append((attrib, value))
 	if pos is not None:
 		pos, size = context.parse(pos, size, font)
@@ -1399,7 +1398,7 @@ def readSkin(screen, skin, names, desktop):
 		screen.additionalWidgets.append(w)
 
 	def processScreen(widget, context):
-		widgets = widget.getchildren() if PY2 else widget
+		widgets = widget
 		for w in widgets.findall('constant-widget'):
 			processConstant(w, context)
 		for w in widgets:
