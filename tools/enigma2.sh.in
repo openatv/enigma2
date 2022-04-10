@@ -203,6 +203,8 @@ case $ret in
 			mkdir -p /tmp/bootoptions
 			mount /dev/block/by-name/bootoptions /tmp/bootoptions
 			cp -f /tmp/bootoptions/STARTUP_RECOVERY /tmp/bootoptions/STARTUP_ONCE
+		elif [ -e /boot/STARTUP_RECOVERY ]; then
+			cp -f /boot/STARTUP_RECOVERY /boot/STARTUP_ONCE
 		else
 			echo "rescue" > /proc/stb/fp/boot_mode
 		fi
