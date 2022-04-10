@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-04-02 20:55+0000\n"
+"POT-Creation-Date: 2022-04-10 10:23+0000\n"
 "PO-Revision-Date: 2022-03-23 19:56+0000\n"
 "Last-Translator: tomppaa <tomzza89@gmail.com>\n"
 "Language-Team: Finnish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/fi/>\n"
@@ -3904,6 +3904,9 @@ msgstr "Välimuistissa"
 msgid "Calculate"
 msgstr "Laske"
 
+msgid "Calculate and show size of directory. Note: This can be slow down the UI on selection of a folder!"
+msgstr ""
+
 msgid "Calculate file checksums"
 msgstr "Laske tiedostojen tarkistus"
 
@@ -4214,9 +4217,6 @@ msgstr "Muuta askelkokoa"
 
 msgid "Change to bouquet"
 msgstr "Vaihda suosikkilistalle"
-
-msgid "Changelog"
-msgstr "Muutosloki"
 
 #, python-format
 msgid ""
@@ -5299,10 +5299,6 @@ msgstr "Costa Rica"
 msgid "Cote d'Ivoire / Ivory Coast"
 msgstr "Norsunluurannikko"
 
-#, python-format
-msgid "Could not connect to %s %s .NFI image feed server:"
-msgstr "%s %s NFI ohjelmistopäivitys palvelimeen ei saatu yhteyttä:"
-
 msgid "Could not connect to server"
 msgstr "Palvelimeen ei saatu yhteyttä"
 
@@ -5478,9 +5474,6 @@ msgstr "Nykyinen versio tuntematon"
 
 msgid "Current version:"
 msgstr "Versio:"
-
-msgid "Currently installed image"
-msgstr "Asennettu ohjelmisto"
 
 msgid "Custom"
 msgstr "Muokattu"
@@ -6323,9 +6316,6 @@ msgstr "Näyttöpaneelin Asetukset"
 msgid "Display and user interface"
 msgstr "Näyttö ja käyttöliittymä"
 
-msgid "Display directory size"
-msgstr ""
-
 msgid "Display message before playing next movie"
 msgstr "Näytä viesti ennen seuraavan tallenteen toistoa"
 
@@ -6564,10 +6554,6 @@ msgid "Do you want to do another manual service scan?"
 msgstr "Haluatko tehdä uuden manuaalihaun?"
 
 #, python-format
-msgid "Do you want to download the image to %s ?"
-msgstr "Haluatko ladata ohjelmistopäivityksen %s :lle ?"
-
-#, python-format
 msgid ""
 "Do you want to flash image\n"
 "%s"
@@ -6684,16 +6670,6 @@ msgstr[1] "Valmis - Asennettu, päivitetty tai poistettu %d ohjelmapakettia (%s)
 
 msgid "Down"
 msgstr "Alas"
-
-msgid "Download"
-msgstr "Lataa"
-
-#, python-format
-msgid "Download %s from server"
-msgstr "Lataa %s palvelimelta"
-
-msgid "Download .NFI-files for USB-flasher"
-msgstr "Lataa .NFI-tiedostoja USB-päivitysohjelmalle"
 
 msgid "Download Plugins"
 msgstr "Lataa lisäosia"
@@ -7870,9 +7846,6 @@ msgstr "FTP asetukset"
 msgid "Factory Reset"
 msgstr "Tehdasasetusten palautus"
 
-msgid "Factory Reset Settings"
-msgstr "Tehdasasetusten palautus"
-
 msgid "Factory release"
 msgstr "Julkaisu versio"
 
@@ -8127,9 +8100,6 @@ msgstr "Kiinteä"
 msgid "Fixed X11 font (SD)"
 msgstr "Kiinteä X11 fontti merkistö (SD)"
 
-msgid "Flash"
-msgstr "Päivitä"
-
 msgid "Flash Image"
 msgstr "Päivitä Image"
 
@@ -8157,9 +8127,6 @@ msgstr "Päivittää"
 
 msgid "Flashing Image"
 msgstr "Päivittää ohjelmistoa"
-
-msgid "Flashing failed"
-msgstr "Päivitys epäonnistui"
 
 msgid "Flashing image successful"
 msgstr "Ohjelmiston päivitys onnistui"
@@ -8490,12 +8457,6 @@ msgstr "Yhteiskunta"
 
 msgid "Gesundheit"
 msgstr "Terveys"
-
-msgid "Get latest experimental image"
-msgstr "Hae viimeisin image (testiversio)"
-
-msgid "Get latest release image"
-msgstr "Hae viimeisin virallinen image-versio"
 
 msgid "Getting Event Info failed!"
 msgstr "Ohjelmatietojen haku epäonnistui!"
@@ -11303,12 +11264,6 @@ msgstr "Ei saatavilla"
 msgid "NEXT"
 msgstr "Seuraava"
 
-msgid "NFI image flashing"
-msgstr "NFI päivityksen asennus"
-
-msgid "NFI image flashing completed. Press Yellow to Reboot!"
-msgstr "NFI päivityksen asennus on suoritettu. Käynnistä uudelleen keltaisella näppäimellä!"
-
 msgid "NFS"
 msgstr "NFS"
 
@@ -11652,9 +11607,6 @@ msgstr "Ei demux saatavilla"
 
 msgid "No description available."
 msgstr "Kuvausta ei ole saatavilla."
-
-msgid "No details for this image file"
-msgstr "Tästä image-tiedostosta ei löydy lisätietoja"
 
 msgid "No displayable files on this medium found!"
 msgstr "Tiedostoja ei löytynyt!"
@@ -12740,9 +12692,6 @@ msgstr "Aseta tallennuksen päättymisaika"
 msgid "Please check the manual of the receiver"
 msgstr "Tarkista vastaanottimen ohjekirjasta"
 
-msgid "Please check your network settings!"
-msgstr "Tarkista verkkoasetukset!"
-
 msgid "Please choose CCcam-Reader"
 msgstr "Valitse CCcam-lukija"
 
@@ -12868,9 +12817,6 @@ msgstr "Valitse tallennettava alipalvelu."
 
 msgid "Please select a subservice..."
 msgstr "Valitse alipalvelu."
-
-msgid "Please select an NFI file and press green key to flash!"
-msgstr "Valitse NFI-tiedosto ja aloita päivitys vihreällä näppäimellä!"
 
 msgid "Please select an acceptable directory."
 msgstr "Valitse hyväksyttävä hakemisto."
@@ -13300,9 +13246,6 @@ msgstr "Ensisijainen viritin tallennuksiin, monivalinta sallittu"
 
 msgid "Preparation time for recording (seconds)"
 msgstr "Tallennuksen valmisteluaika (sekuntia)"
-
-msgid "Prepare another USB stick for image flashing"
-msgstr "Valmistele toinen USB-muistitikku image-päivitystä varten"
 
 msgid "Preparing... Please wait"
 msgstr "Valmistellaan... Odota hetki"
@@ -14452,9 +14395,6 @@ msgstr "Palauta Asetukset"
 msgid "Restore backups"
 msgstr "Palauta varmuuskopiot"
 
-msgid "Restore is running..."
-msgstr "Palautus käynnissä..."
-
 msgid "Restore settings from a backup"
 msgstr "Palauta asetukset varmuuskopiosta"
 
@@ -15240,9 +15180,6 @@ msgstr "Lisää varmuuskopioitavat tiedostot"
 msgid "Select additional files to backup"
 msgstr "Valitse varmuuskopioitavat lisätiedostot"
 
-msgid "Select an image to be downloaded"
-msgstr "Valitse ladattava image"
-
 msgid "Select audio track"
 msgstr "Valitse ääniraita"
 
@@ -15269,9 +15206,6 @@ msgstr "Valitse kohde kopioinnille:"
 
 msgid "Select default EPG type..."
 msgstr "Valitse oletus ohjelmaoppaan tyyppi."
-
-msgid "Select desired image from feed list"
-msgstr "Valitse haluamasi image-versio syötelistasta"
 
 msgid "Select destination for:"
 msgstr "Valitse kohde:"
@@ -16123,10 +16057,6 @@ msgstr "Määritä käyttämäsi satelliittilaitteet"
 msgid "Seychelles"
 msgstr "Seychelles"
 
-#, python-format
-msgid "Shall the USB stick wizard proceed and program the image file %s into flash memory?"
-msgstr "Saako USB-muistiavustaja jatkaa ja kirjoittaa päivityksen %s sisäiseen muistiin?"
-
 msgid "Share Folder's"
 msgstr "Jaa kansiot"
 
@@ -16258,6 +16188,9 @@ msgstr "Näytä yhden kanavan EPG"
 
 msgid "Show CoolTVGuide"
 msgstr "Näytä CoolTVOpas"
+
+msgid "Show Directory size"
+msgstr ""
 
 msgid "Show Display Icons"
 msgstr "Näytä näyttökuvakkeet"
@@ -18250,13 +18183,6 @@ msgid "The TV was switched to the recording service!\n"
 msgstr "Se vaihdettiin asemalle, jolla nauhoitus on käynnissä!\n"
 
 msgid ""
-"The USB stick was prepared to be bootable.\n"
-"Now you can download an NFI image file!"
-msgstr ""
-"USB muistitikusta tehtiin automaattisesti käynnistyvä.\n"
-"Voit nyt ladata NFI-tiedoston!"
-
-msgid ""
 "The VideoMode plugin is not installed!\n"
 "Please install it."
 msgstr ""
@@ -18308,20 +18234,6 @@ msgstr "Vakioasetukset ovat herätysaika - 5 minuuttia ja ajastimen käynnistys 
 msgid "The detailed information is intended for developers only."
 msgstr "Yksityiskohtaiset tiedot on tarkoitettu vain kehittäjille."
 
-#, python-format
-msgid ""
-"The following device was found:\n"
-"\n"
-"%s\n"
-"\n"
-"Do you want to write the USB flasher to this stick?"
-msgstr ""
-"Seuraava laite löytyi:\n"
-"\n"
-"%s\n"
-"\n"
-"Haluatko tallentaa ohjelmistopäivitysohjelman tälle USB-muistitikulle?"
-
 msgid "The following files were found..."
 msgstr "Seuraavat tiedostot löytyi..."
 
@@ -18343,9 +18255,6 @@ msgstr "Kuvan korkeus. Tulo skaalataan vastaamaan tätä arvoa."
 
 msgid "The loopthrough setting is wrong."
 msgstr "Läpisyötön asetus on väärä."
-
-msgid "The md5sum validation failed, the file may be corrupted!"
-msgstr "MD5-tarkistus epäonnistui, tiedosto voi olla vioittunut!"
 
 msgid ""
 "The network wizard extension is not installed!\n"
@@ -18437,10 +18346,6 @@ msgstr ""
 
 msgid "The wizard can backup your current settings. Do you want to do a backup now?"
 msgstr "Avustaja voi kopioida nykyiset asetuksesi. Haluatko varmuuskopioida asetukset?"
-
-#, python-format
-msgid "The wizard found a configuration backup. Do you want to restore your old settings from %s?"
-msgstr "Avustaja löysi asetusten varmuuskopion. Haluatko, että vanhat asetukset palautetaan tiedostosta %s?"
 
 msgid "The wizard is finished now."
 msgstr "Avustaja on lopettanut. Paina OK."
@@ -18802,18 +18707,6 @@ msgstr "Tämä asetus määrittää ääriviivakorostumien vaimennuksen."
 msgid "This option sets up the picture sharpness, used when the picture is being upscaled."
 msgstr "Tämä asetus määrittää kuvan terävyyden, käytetään kun kuva skaalataan suurempaan tarkkuuteen."
 
-#, python-format
-msgid ""
-"This plugin creates a USB stick which can be used to update the firmware of your %s %s without the need for a network or WLAN connection.\n"
-"First, a USB stick needs to be prepared so that it becomes bootable.\n"
-"In the next step, an NFI image file can be downloaded from the update server and saved on the USB stick.\n"
-"If you already have a prepared bootable USB stick, please insert it now. Otherwise plug in a USB stick with a minimum size of 64 MB!"
-msgstr ""
-"Tämä lisäosa luo USB-muistitikun jolla %s %s:n ohjelmisto voidaan päivittää ilman verkkoyhteyttä. \n"
-"Aluksi USB-muistitikku pitää alustaa, jotta siitä tulee automaattisesti käynnistyvä.\n"
-"Seuraavaksi NFI-tiedosto voidaan ladata päivityspalvelimelta ja tallentaa USB-muistitikulle.\n"
-"Jos olet jo tehnyt automaattisesti käynnistyvän USB-muistitikun, kytke se nyt. Muussa tapauksessa kytke vähintään 64MB:n kokoinen USB-muistitikku!"
-
 msgid "This plugin is installed."
 msgstr "Tämä lisäosa on asennettu."
 
@@ -19151,18 +19044,6 @@ msgstr "Tila"
 
 msgid "To restore the image:"
 msgstr "Imagen palauttaminen:"
-
-#, python-format
-msgid ""
-"To update your %s %s firmware, please follow these steps:\n"
-"1) Turn off your box with the rear power switch and make sure the bootable USB stick is plugged in.\n"
-"2) Turn mains back on and hold the DOWN button on the front panel pressed for 10 seconds.\n"
-"3) Wait for bootup and follow instructions of the wizard."
-msgstr ""
-"Päivitä %s %s:n ohjelmisto näiden ohjeiden mukaisesti:\n"
-"1) Kytke virta pois päältä takapaneelin kytkimestä ja liitä automaattisesti käynnistyvä USB-muistitikku.\n"
-"2) Kytke virta takaisin päälle ja pidä etupaneelin nuoli alas -näppäintä 10 sekuntia pohjassa.\n"
-"3) Odota käynnistymistä ja seuraa ohjeita."
 
 msgid "Today"
 msgstr "Tänään"
@@ -19540,9 +19421,6 @@ msgstr "USALS siirtää automaattisesti moottoroidun lautasen oikeaan satelliitt
 
 msgid "USB Stick"
 msgstr "USB muistitikku"
-
-msgid "USB stick wizard"
-msgstr "USB muistitikku avustaja"
 
 msgid "USB switch ERROR! - already on USB"
 msgstr "USB vaihdon VIRHE! - jo USB:lla"
@@ -21139,9 +21017,6 @@ msgstr "Olet jo lähettänyt tämän lokin, haluatko varmasti lähettää tämä
 msgid "You have chosen to backup your settings. Please press OK to start the backup now."
 msgstr "Valitsit asetusten varmuuskopioinnin. Aloita painamalla OK näppäintä."
 
-msgid "You have chosen to create a new .NFI flasher bootable USB stick. This will repartition the USB stick and therefore all data on it will be erased."
-msgstr "Olet valinnut .NFI-päivitysohjelman asennuksen USB-muistitikulle. Tämä toiminto osioi USB-muistitikun ja tuhoaa siltä kaikki tiedostot."
-
 msgid "You have chosen to restore your settings. Enigma2 will restart after restore. Please press OK to start the restore now."
 msgstr "Valitsit asetusten palautuksen. Enigma2 käynnistyy uudelleen palautuksen jälkeen. Aloita painamalla OK näppäintä."
 
@@ -21846,9 +21721,6 @@ msgstr "vahvistettu"
 msgid "connected"
 msgstr "kytketty"
 
-msgid "continue"
-msgstr "jatka"
-
 msgid "controlled by HDMI"
 msgstr "HDMI:n hallitsema"
 
@@ -21884,10 +21756,6 @@ msgstr "luo symboli linkki"
 
 msgid "current affairs (general)"
 msgstr "uutiset/ajankohtaisohjelmat (yleinen)"
-
-#, python-format
-msgid "currently installed image: %s"
-msgstr "nykyinen ohjelmisto: %s"
 
 msgid "daily"
 msgstr "Päivittäin"
@@ -23280,6 +23148,141 @@ msgstr "vaihtaa"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Changelog"
+#~ msgstr "Muutosloki"
+
+#, python-format
+#~ msgid "Could not connect to %s %s .NFI image feed server:"
+#~ msgstr "%s %s NFI ohjelmistopäivitys palvelimeen ei saatu yhteyttä:"
+
+#~ msgid "Currently installed image"
+#~ msgstr "Asennettu ohjelmisto"
+
+#, python-format
+#~ msgid "Do you want to download the image to %s ?"
+#~ msgstr "Haluatko ladata ohjelmistopäivityksen %s :lle ?"
+
+#~ msgid "Download"
+#~ msgstr "Lataa"
+
+#, python-format
+#~ msgid "Download %s from server"
+#~ msgstr "Lataa %s palvelimelta"
+
+#~ msgid "Download .NFI-files for USB-flasher"
+#~ msgstr "Lataa .NFI-tiedostoja USB-päivitysohjelmalle"
+
+#~ msgid "Factory Reset Settings"
+#~ msgstr "Tehdasasetusten palautus"
+
+#~ msgid "Flash"
+#~ msgstr "Päivitä"
+
+#~ msgid "Flashing failed"
+#~ msgstr "Päivitys epäonnistui"
+
+#~ msgid "Get latest experimental image"
+#~ msgstr "Hae viimeisin image (testiversio)"
+
+#~ msgid "Get latest release image"
+#~ msgstr "Hae viimeisin virallinen image-versio"
+
+#~ msgid "NFI image flashing"
+#~ msgstr "NFI päivityksen asennus"
+
+#~ msgid "NFI image flashing completed. Press Yellow to Reboot!"
+#~ msgstr "NFI päivityksen asennus on suoritettu. Käynnistä uudelleen keltaisella näppäimellä!"
+
+#~ msgid "No details for this image file"
+#~ msgstr "Tästä image-tiedostosta ei löydy lisätietoja"
+
+#~ msgid "Please check your network settings!"
+#~ msgstr "Tarkista verkkoasetukset!"
+
+#~ msgid "Please select an NFI file and press green key to flash!"
+#~ msgstr "Valitse NFI-tiedosto ja aloita päivitys vihreällä näppäimellä!"
+
+#~ msgid "Prepare another USB stick for image flashing"
+#~ msgstr "Valmistele toinen USB-muistitikku image-päivitystä varten"
+
+#~ msgid "Restore is running..."
+#~ msgstr "Palautus käynnissä..."
+
+#~ msgid "Select an image to be downloaded"
+#~ msgstr "Valitse ladattava image"
+
+#~ msgid "Select desired image from feed list"
+#~ msgstr "Valitse haluamasi image-versio syötelistasta"
+
+#, python-format
+#~ msgid "Shall the USB stick wizard proceed and program the image file %s into flash memory?"
+#~ msgstr "Saako USB-muistiavustaja jatkaa ja kirjoittaa päivityksen %s sisäiseen muistiin?"
+
+#~ msgid ""
+#~ "The USB stick was prepared to be bootable.\n"
+#~ "Now you can download an NFI image file!"
+#~ msgstr ""
+#~ "USB muistitikusta tehtiin automaattisesti käynnistyvä.\n"
+#~ "Voit nyt ladata NFI-tiedoston!"
+
+#, python-format
+#~ msgid ""
+#~ "The following device was found:\n"
+#~ "\n"
+#~ "%s\n"
+#~ "\n"
+#~ "Do you want to write the USB flasher to this stick?"
+#~ msgstr ""
+#~ "Seuraava laite löytyi:\n"
+#~ "\n"
+#~ "%s\n"
+#~ "\n"
+#~ "Haluatko tallentaa ohjelmistopäivitysohjelman tälle USB-muistitikulle?"
+
+#~ msgid "The md5sum validation failed, the file may be corrupted!"
+#~ msgstr "MD5-tarkistus epäonnistui, tiedosto voi olla vioittunut!"
+
+#, python-format
+#~ msgid "The wizard found a configuration backup. Do you want to restore your old settings from %s?"
+#~ msgstr "Avustaja löysi asetusten varmuuskopion. Haluatko, että vanhat asetukset palautetaan tiedostosta %s?"
+
+#, python-format
+#~ msgid ""
+#~ "This plugin creates a USB stick which can be used to update the firmware of your %s %s without the need for a network or WLAN connection.\n"
+#~ "First, a USB stick needs to be prepared so that it becomes bootable.\n"
+#~ "In the next step, an NFI image file can be downloaded from the update server and saved on the USB stick.\n"
+#~ "If you already have a prepared bootable USB stick, please insert it now. Otherwise plug in a USB stick with a minimum size of 64 MB!"
+#~ msgstr ""
+#~ "Tämä lisäosa luo USB-muistitikun jolla %s %s:n ohjelmisto voidaan päivittää ilman verkkoyhteyttä. \n"
+#~ "Aluksi USB-muistitikku pitää alustaa, jotta siitä tulee automaattisesti käynnistyvä.\n"
+#~ "Seuraavaksi NFI-tiedosto voidaan ladata päivityspalvelimelta ja tallentaa USB-muistitikulle.\n"
+#~ "Jos olet jo tehnyt automaattisesti käynnistyvän USB-muistitikun, kytke se nyt. Muussa tapauksessa kytke vähintään 64MB:n kokoinen USB-muistitikku!"
+
+#, python-format
+#~ msgid ""
+#~ "To update your %s %s firmware, please follow these steps:\n"
+#~ "1) Turn off your box with the rear power switch and make sure the bootable USB stick is plugged in.\n"
+#~ "2) Turn mains back on and hold the DOWN button on the front panel pressed for 10 seconds.\n"
+#~ "3) Wait for bootup and follow instructions of the wizard."
+#~ msgstr ""
+#~ "Päivitä %s %s:n ohjelmisto näiden ohjeiden mukaisesti:\n"
+#~ "1) Kytke virta pois päältä takapaneelin kytkimestä ja liitä automaattisesti käynnistyvä USB-muistitikku.\n"
+#~ "2) Kytke virta takaisin päälle ja pidä etupaneelin nuoli alas -näppäintä 10 sekuntia pohjassa.\n"
+#~ "3) Odota käynnistymistä ja seuraa ohjeita."
+
+#~ msgid "USB stick wizard"
+#~ msgstr "USB muistitikku avustaja"
+
+#~ msgid "You have chosen to create a new .NFI flasher bootable USB stick. This will repartition the USB stick and therefore all data on it will be erased."
+#~ msgstr "Olet valinnut .NFI-päivitysohjelman asennuksen USB-muistitikulle. Tämä toiminto osioi USB-muistitikun ja tuhoaa siltä kaikki tiedostot."
+
+#~ msgid "continue"
+#~ msgstr "jatka"
+
+#, python-format
+#~ msgid "currently installed image: %s"
+#~ msgstr "nykyinen ohjelmisto: %s"
 
 #~ msgid "Manual scan"
 #~ msgstr "Manuaalihaku"

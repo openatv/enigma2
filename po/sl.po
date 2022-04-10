@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-04-02 20:55+0000\n"
+"POT-Creation-Date: 2022-04-10 10:23+0000\n"
 "PO-Revision-Date: 2016-04-02 23:18+0200\n"
 "Last-Translator: Andy Blackburn <andyblac@icloud.com>\n"
 "Language-Team: OldSkul from www.linux-sprejemniki.info\n"
@@ -4301,6 +4301,9 @@ msgstr ""
 msgid "Calculate"
 msgstr ""
 
+msgid "Calculate and show size of directory. Note: This can be slow down the UI on selection of a folder!"
+msgstr ""
+
 msgid "Calculate file checksums"
 msgstr ""
 
@@ -4638,10 +4641,6 @@ msgstr ""
 #, fuzzy
 msgid "Change to bouquet"
 msgstr "Dodajanje v paket"
-
-#
-msgid "Changelog"
-msgstr "Dnevnik sprememb"
 
 #, python-format
 msgid ""
@@ -5840,10 +5839,6 @@ msgstr ""
 msgid "Cote d'Ivoire / Ivory Coast"
 msgstr ""
 
-#, python-format
-msgid "Could not connect to %s %s .NFI image feed server:"
-msgstr ""
-
 #
 #, fuzzy
 msgid "Could not connect to server"
@@ -6051,9 +6046,6 @@ msgstr ""
 #
 msgid "Current version:"
 msgstr "Trenutna različica:"
-
-msgid "Currently installed image"
-msgstr "Trenutna nameščena slika"
 
 #
 #, fuzzy
@@ -7021,9 +7013,6 @@ msgstr ""
 msgid "Display and user interface"
 msgstr ""
 
-msgid "Display directory size"
-msgstr ""
-
 msgid "Display message before playing next movie"
 msgstr ""
 
@@ -7266,10 +7255,6 @@ msgstr "Želite iskati kanale?"
 msgid "Do you want to do another manual service scan?"
 msgstr "Želite ponovno ročno iskati kanale?"
 
-#, python-format
-msgid "Do you want to download the image to %s ?"
-msgstr "Želite presneti sliko k %s?"
-
 #, fuzzy, python-format
 msgid ""
 "Do you want to flash image\n"
@@ -7397,19 +7382,6 @@ msgstr[2] "Končano - nameščeno, nadgrajeno ali izbrisano %d paketov z %d napa
 
 msgid "Down"
 msgstr ""
-
-#
-msgid "Download"
-msgstr "Prenesi"
-
-#, fuzzy, python-format
-msgid "Download %s from server"
-msgstr "Prenesi %s iz serverja"
-
-#
-#, fuzzy
-msgid "Download .NFI-files for USB-flasher"
-msgstr "Prenesi .NFI-datoteke za programsko nadgradnjo preko USB"
 
 msgid "Download Plugins"
 msgstr ""
@@ -8704,9 +8676,6 @@ msgstr "FTP nastavitve"
 msgid "Factory Reset"
 msgstr ""
 
-msgid "Factory Reset Settings"
-msgstr ""
-
 msgid "Factory release"
 msgstr ""
 
@@ -8989,10 +8958,6 @@ msgid "Fixed X11 font (SD)"
 msgstr ""
 
 #
-msgid "Flash"
-msgstr "Nadgradi"
-
-#
 #, fuzzy
 msgid "Flash Image"
 msgstr "Nadgradi"
@@ -9022,10 +8987,6 @@ msgstr ""
 #
 #, fuzzy
 msgid "Flashing Image"
-msgstr "Nadgradnja ni uspela"
-
-#
-msgid "Flashing failed"
 msgstr "Nadgradnja ni uspela"
 
 msgid "Flashing image successful"
@@ -9403,12 +9364,6 @@ msgid "Gesellschaft"
 msgstr ""
 
 msgid "Gesundheit"
-msgstr ""
-
-msgid "Get latest experimental image"
-msgstr ""
-
-msgid "Get latest release image"
 msgstr ""
 
 msgid "Getting Event Info failed!"
@@ -12623,13 +12578,6 @@ msgstr "N/A"
 msgid "NEXT"
 msgstr ""
 
-msgid "NFI image flashing"
-msgstr ""
-
-#
-msgid "NFI image flashing completed. Press Yellow to Reboot!"
-msgstr "NFI nadgradnja programske opreme je končana. Za ponovni zagon pritisnite rumeno tipko!"
-
 msgid "NFS"
 msgstr ""
 
@@ -13022,10 +12970,6 @@ msgstr "Opis ni na voljo."
 #
 msgid "No description available."
 msgstr "Opis ni na voljo."
-
-#
-msgid "No details for this image file"
-msgstr "Ni podrobnih podatkov o programski opremi"
 
 #
 msgid "No displayable files on this medium found!"
@@ -14270,10 +14214,6 @@ msgstr "Spremenite čas konca snemanja"
 msgid "Please check the manual of the receiver"
 msgstr "Vnesite ime nove mape:"
 
-#
-msgid "Please check your network settings!"
-msgstr "Preverite vaše omrežne nastavitve!"
-
 msgid "Please choose CCcam-Reader"
 msgstr ""
 
@@ -14430,9 +14370,6 @@ msgstr "Izberite snemanje pod-storitve."
 #
 msgid "Please select a subservice..."
 msgstr "Izberite pod-storitev:"
-
-msgid "Please select an NFI file and press green key to flash!"
-msgstr "Izberite .NFI datoteko in pritisnite zeleno tipko za začetek postopka!"
 
 msgid "Please select an acceptable directory."
 msgstr ""
@@ -14903,9 +14840,6 @@ msgstr ""
 #, fuzzy
 msgid "Preparation time for recording (seconds)"
 msgstr "Meja pred snemanjem (v minutah)"
-
-msgid "Prepare another USB stick for image flashing"
-msgstr ""
 
 #
 msgid "Preparing... Please wait"
@@ -16224,10 +16158,6 @@ msgstr ""
 msgid "Restore backups"
 msgstr "Povrnitev varnostne kopije"
 
-#
-msgid "Restore is running..."
-msgstr "Poteka obnavljanje..."
-
 msgid "Restore settings from a backup"
 msgstr ""
 
@@ -17114,10 +17044,6 @@ msgstr ""
 msgid "Select additional files to backup"
 msgstr ""
 
-#, fuzzy
-msgid "Select an image to be downloaded"
-msgstr "Izberite sliko za prenos"
-
 #
 msgid "Select audio track"
 msgstr "Izberite zvočni nosilec"
@@ -17150,10 +17076,6 @@ msgstr ""
 
 msgid "Select default EPG type..."
 msgstr ""
-
-#
-msgid "Select desired image from feed list"
-msgstr "Izberite željeno sliko (image) iz liste"
 
 #
 msgid "Select destination for:"
@@ -18079,11 +18001,6 @@ msgstr "Satelitska oprema"
 msgid "Seychelles"
 msgstr ""
 
-#
-#, python-format
-msgid "Shall the USB stick wizard proceed and program the image file %s into flash memory?"
-msgstr ""
-
 msgid "Share Folder's"
 msgstr ""
 
@@ -18218,6 +18135,9 @@ msgid "Show CoolSingleGuide"
 msgstr ""
 
 msgid "Show CoolTVGuide"
+msgstr ""
+
+msgid "Show Directory size"
 msgstr ""
 
 msgid "Show Display Icons"
@@ -20489,11 +20409,6 @@ msgid "The TV was switched to the recording service!\n"
 msgstr ""
 
 msgid ""
-"The USB stick was prepared to be bootable.\n"
-"Now you can download an NFI image file!"
-msgstr ""
-
-msgid ""
 "The VideoMode plugin is not installed!\n"
 "Please install it."
 msgstr ""
@@ -20541,21 +20456,6 @@ msgid "The detailed information is intended for developers only."
 msgstr ""
 
 #
-#, python-format
-msgid ""
-"The following device was found:\n"
-"\n"
-"%s\n"
-"\n"
-"Do you want to write the USB flasher to this stick?"
-msgstr ""
-"Najdene naprave:\n"
-"\n"
-"%s\n"
-"\n"
-"Ali želite zapisati orodje za USB programsko nadgradnjo na ključ?"
-
-#
 msgid "The following files were found..."
 msgstr "Najdene datoteke:"
 
@@ -20574,9 +20474,6 @@ msgid "The height of the picture. The input will be scaled to match this value."
 msgstr ""
 
 msgid "The loopthrough setting is wrong."
-msgstr ""
-
-msgid "The md5sum validation failed, the file may be corrupted!"
 msgstr ""
 
 #
@@ -20674,10 +20571,6 @@ msgstr ""
 #
 msgid "The wizard can backup your current settings. Do you want to do a backup now?"
 msgstr "Čarovnik bo kreiral varnostno kopijo vaših trenutnih nastavitev. Želite to storiti sedaj?"
-
-#, python-format
-msgid "The wizard found a configuration backup. Do you want to restore your old settings from %s?"
-msgstr "Čarovnik je našel shranjene nastavitve. Želite obnoviti te nastavitve iz %s?"
 
 #
 msgid "The wizard is finished now."
@@ -21043,14 +20936,6 @@ msgid "This option sets the surpression of false digital contours, that are the 
 msgstr ""
 
 msgid "This option sets up the picture sharpness, used when the picture is being upscaled."
-msgstr ""
-
-#, python-format
-msgid ""
-"This plugin creates a USB stick which can be used to update the firmware of your %s %s without the need for a network or WLAN connection.\n"
-"First, a USB stick needs to be prepared so that it becomes bootable.\n"
-"In the next step, an NFI image file can be downloaded from the update server and saved on the USB stick.\n"
-"If you already have a prepared bootable USB stick, please insert it now. Otherwise plug in a USB stick with a minimum size of 64 MB!"
 msgstr ""
 
 #
@@ -21444,18 +21329,6 @@ msgstr "Način za določanje naslovov"
 #, fuzzy
 msgid "To restore the image:"
 msgstr "Da, povrni shranjene nastavitve"
-
-#, fuzzy, python-format
-msgid ""
-"To update your %s %s firmware, please follow these steps:\n"
-"1) Turn off your box with the rear power switch and make sure the bootable USB stick is plugged in.\n"
-"2) Turn mains back on and hold the DOWN button on the front panel pressed for 10 seconds.\n"
-"3) Wait for bootup and follow instructions of the wizard."
-msgstr ""
-"Za posodobitev  programske opreme sprejemnika sledite naslednjim korakom:\n"
-"1) Izklopite napravo s pomočjo stikala na zadnji strani sprejemnika in priklopite USB ključ.\n"
-"2) Ponovno prižgite sprejemnik in držite pritisnjeno tipko DOL na sprednji strani naprave 10 sekund.\n"
-"3) Počakajte na ponovni zagon in sledite navodilom čarovnika."
 
 #
 msgid "Today"
@@ -21894,10 +21767,6 @@ msgstr ""
 
 msgid "USB Stick"
 msgstr ""
-
-#
-msgid "USB stick wizard"
-msgstr "Čarovnik USB ključa"
 
 msgid "USB switch ERROR! - already on USB"
 msgstr ""
@@ -23640,10 +23509,6 @@ msgid "You have chosen to backup your settings. Please press OK to start the bac
 msgstr "Izbrali ste si opcijo shranitve vaših nastavitev. Za začetek procesa pritisnite OK!"
 
 #
-msgid "You have chosen to create a new .NFI flasher bootable USB stick. This will repartition the USB stick and therefore all data on it will be erased."
-msgstr "Izbrali ste opcijo kreiranja novega .NFI zagonskega USB ključa. Iz ključa bodo izbrisani vsi podatki!"
-
-#
 msgid "You have chosen to restore your settings. Enigma2 will restart after restore. Please press OK to start the restore now."
 msgstr "Izbrali ste si opcijo obnove vaših nastavitev. Enigma 2 se bo po opravljenem procesu ponovno zagnala. Za začetek procesa pritisnite OK!"
 
@@ -24380,10 +24245,6 @@ msgstr "potrjeno"
 msgid "connected"
 msgstr "povezano"
 
-#
-msgid "continue"
-msgstr "Nadaljuj"
-
 msgid "controlled by HDMI"
 msgstr ""
 
@@ -24422,10 +24283,6 @@ msgstr ""
 
 msgid "current affairs (general)"
 msgstr ""
-
-#, python-format
-msgid "currently installed image: %s"
-msgstr "trenutno nameščena slika (image): %s"
 
 #
 msgid "daily"
@@ -26020,6 +25877,112 @@ msgstr "preklopljen"
 
 msgid "®"
 msgstr ""
+
+#
+#~ msgid "Changelog"
+#~ msgstr "Dnevnik sprememb"
+
+#~ msgid "Currently installed image"
+#~ msgstr "Trenutna nameščena slika"
+
+#, python-format
+#~ msgid "Do you want to download the image to %s ?"
+#~ msgstr "Želite presneti sliko k %s?"
+
+#
+#~ msgid "Download"
+#~ msgstr "Prenesi"
+
+#, fuzzy, python-format
+#~ msgid "Download %s from server"
+#~ msgstr "Prenesi %s iz serverja"
+
+#
+#, fuzzy
+#~ msgid "Download .NFI-files for USB-flasher"
+#~ msgstr "Prenesi .NFI-datoteke za programsko nadgradnjo preko USB"
+
+#
+#~ msgid "Flash"
+#~ msgstr "Nadgradi"
+
+#
+#~ msgid "Flashing failed"
+#~ msgstr "Nadgradnja ni uspela"
+
+#
+#~ msgid "NFI image flashing completed. Press Yellow to Reboot!"
+#~ msgstr "NFI nadgradnja programske opreme je končana. Za ponovni zagon pritisnite rumeno tipko!"
+
+#
+#~ msgid "No details for this image file"
+#~ msgstr "Ni podrobnih podatkov o programski opremi"
+
+#
+#~ msgid "Please check your network settings!"
+#~ msgstr "Preverite vaše omrežne nastavitve!"
+
+#~ msgid "Please select an NFI file and press green key to flash!"
+#~ msgstr "Izberite .NFI datoteko in pritisnite zeleno tipko za začetek postopka!"
+
+#
+#~ msgid "Restore is running..."
+#~ msgstr "Poteka obnavljanje..."
+
+#, fuzzy
+#~ msgid "Select an image to be downloaded"
+#~ msgstr "Izberite sliko za prenos"
+
+#
+#~ msgid "Select desired image from feed list"
+#~ msgstr "Izberite željeno sliko (image) iz liste"
+
+#
+#, python-format
+#~ msgid ""
+#~ "The following device was found:\n"
+#~ "\n"
+#~ "%s\n"
+#~ "\n"
+#~ "Do you want to write the USB flasher to this stick?"
+#~ msgstr ""
+#~ "Najdene naprave:\n"
+#~ "\n"
+#~ "%s\n"
+#~ "\n"
+#~ "Ali želite zapisati orodje za USB programsko nadgradnjo na ključ?"
+
+#, python-format
+#~ msgid "The wizard found a configuration backup. Do you want to restore your old settings from %s?"
+#~ msgstr "Čarovnik je našel shranjene nastavitve. Želite obnoviti te nastavitve iz %s?"
+
+#, fuzzy, python-format
+#~ msgid ""
+#~ "To update your %s %s firmware, please follow these steps:\n"
+#~ "1) Turn off your box with the rear power switch and make sure the bootable USB stick is plugged in.\n"
+#~ "2) Turn mains back on and hold the DOWN button on the front panel pressed for 10 seconds.\n"
+#~ "3) Wait for bootup and follow instructions of the wizard."
+#~ msgstr ""
+#~ "Za posodobitev  programske opreme sprejemnika sledite naslednjim korakom:\n"
+#~ "1) Izklopite napravo s pomočjo stikala na zadnji strani sprejemnika in priklopite USB ključ.\n"
+#~ "2) Ponovno prižgite sprejemnik in držite pritisnjeno tipko DOL na sprednji strani naprave 10 sekund.\n"
+#~ "3) Počakajte na ponovni zagon in sledite navodilom čarovnika."
+
+#
+#~ msgid "USB stick wizard"
+#~ msgstr "Čarovnik USB ključa"
+
+#
+#~ msgid "You have chosen to create a new .NFI flasher bootable USB stick. This will repartition the USB stick and therefore all data on it will be erased."
+#~ msgstr "Izbrali ste opcijo kreiranja novega .NFI zagonskega USB ključa. Iz ključa bodo izbrisani vsi podatki!"
+
+#
+#~ msgid "continue"
+#~ msgstr "Nadaljuj"
+
+#, python-format
+#~ msgid "currently installed image: %s"
+#~ msgstr "trenutno nameščena slika (image): %s"
 
 #
 #, fuzzy

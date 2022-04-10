@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-04-02 20:55+0000\n"
+"POT-Creation-Date: 2022-04-10 10:23+0000\n"
 "PO-Revision-Date: 2022-04-06 22:09+0000\n"
 "Last-Translator: Adga56 <adga45@gmail.com>\n"
 "Language-Team: Lithuanian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/lt/>\n"
@@ -3922,6 +3922,9 @@ msgstr "Sukaupta talpykloje"
 msgid "Calculate"
 msgstr "Apskaičiuoti"
 
+msgid "Calculate and show size of directory. Note: This can be slow down the UI on selection of a folder!"
+msgstr ""
+
 msgid "Calculate file checksums"
 msgstr "Apskaičiuoti failo kontrolines sumas"
 
@@ -4231,9 +4234,6 @@ msgstr "Keisti žingsnio dydį"
 
 msgid "Change to bouquet"
 msgstr "Keisti į paketą"
-
-msgid "Changelog"
-msgstr "Pakeitimų žurnalas"
 
 #, python-format
 msgid ""
@@ -5323,10 +5323,6 @@ msgstr "Kosta Rika"
 msgid "Cote d'Ivoire / Ivory Coast"
 msgstr "Dramblio Kaulo Krantas"
 
-#, python-format
-msgid "Could not connect to %s %s .NFI image feed server:"
-msgstr "Nepavyko prisijungti prie %s %s .NFI atvaizdo šaltinių serverio:"
-
 msgid "Could not connect to server"
 msgstr "Prie serverio prisijungti nepavyko"
 
@@ -5502,9 +5498,6 @@ msgstr "Dabartinė versija nežinoma"
 
 msgid "Current version:"
 msgstr "Dabartinė versija:"
-
-msgid "Currently installed image"
-msgstr "Dabar įdiegtas atvaizdas"
 
 msgid "Custom"
 msgstr "Pasirinktinis"
@@ -6347,9 +6340,6 @@ msgstr "Monitoriaus valdymas"
 msgid "Display and user interface"
 msgstr "Monitorius ir vartotojo sąsaja"
 
-msgid "Display directory size"
-msgstr "Rodyti katalogo dydį"
-
 msgid "Display message before playing next movie"
 msgstr "Prieš sekantį filmą, parodyti žinutę"
 
@@ -6588,10 +6578,6 @@ msgid "Do you want to do another manual service scan?"
 msgstr "Ar norite atlikti kitą rankinę kanalų paiešką?"
 
 #, python-format
-msgid "Do you want to download the image to %s ?"
-msgstr "Ar norite parsisiųsti atvaizdą į %s ?"
-
-#, python-format
 msgid ""
 "Do you want to flash image\n"
 "%s"
@@ -6709,16 +6695,6 @@ msgstr[2] "Baigta - įdiegta, atnaujinta arba pašalinta %d paketų (%s)"
 
 msgid "Down"
 msgstr "Žemyn"
-
-msgid "Download"
-msgstr "Atsisiuntimas"
-
-#, python-format
-msgid "Download %s from server"
-msgstr "Parsisiųsti %s iš serverio"
-
-msgid "Download .NFI-files for USB-flasher"
-msgstr "Parsiųsti .NFI failus diegimui iš USB"
 
 msgid "Download Plugins"
 msgstr "Parsisiųsti priedus"
@@ -7895,9 +7871,6 @@ msgstr "FTP parametrai"
 msgid "Factory Reset"
 msgstr "Gamyklinis nustatymas iš naujo"
 
-msgid "Factory Reset Settings"
-msgstr "Gamyklinio atstatymo parametrai iš naujo"
-
 msgid "Factory release"
 msgstr "Gamyklos išleidimas"
 
@@ -8152,9 +8125,6 @@ msgstr "Fiksuota"
 msgid "Fixed X11 font (SD)"
 msgstr "Fiksuotas X11 šriftas (SD)"
 
-msgid "Flash"
-msgstr "Vidinė atmintis"
-
 msgid "Flash Image"
 msgstr "Įdiegti atvaizdą"
 
@@ -8182,9 +8152,6 @@ msgstr "Įdiegimas"
 
 msgid "Flashing Image"
 msgstr "Įdiegtas atvaizdas"
-
-msgid "Flashing failed"
-msgstr "Įdiegti nepavyko"
 
 msgid "Flashing image successful"
 msgstr "Atvaizdas įdiegtas sėkmingai"
@@ -8515,12 +8482,6 @@ msgstr "Įmonės"
 
 msgid "Gesundheit"
 msgstr "Sveikata"
-
-msgid "Get latest experimental image"
-msgstr "Gauti naujausią eksperimentinį atvaizdą"
-
-msgid "Get latest release image"
-msgstr "Gauti naujausios versijos atvaizdą"
 
 msgid "Getting Event Info failed!"
 msgstr "Informacijos apie įvykį gauti nepavyko!"
@@ -11322,12 +11283,6 @@ msgstr "Nėra duomenų"
 msgid "NEXT"
 msgstr "KITAS"
 
-msgid "NFI image flashing"
-msgstr "NFI atvaizdo įdiegimas"
-
-msgid "NFI image flashing completed. Press Yellow to Reboot!"
-msgstr "NFI atvaizdas įdiegtas. Norėdami paleisti iš naujo, spauskite geltoną mygtuką!"
-
 msgid "NFS"
 msgstr "NFS"
 
@@ -11669,9 +11624,6 @@ msgstr "Nėra demux"
 
 msgid "No description available."
 msgstr "Nėra aprašymo."
-
-msgid "No details for this image file"
-msgstr "Nėra informacijos apie šį atvaizdą"
 
 msgid "No displayable files on this medium found!"
 msgstr "Jokių failų čia nerasta!"
@@ -12749,9 +12701,6 @@ msgstr "Pakeiskite įrašymo pabaigos laiką"
 msgid "Please check the manual of the receiver"
 msgstr "Prašome patikrinti imtuvo vadovą"
 
-msgid "Please check your network settings!"
-msgstr "Patikrinkite tinklo nustatymus!"
-
 msgid "Please choose CCcam-Reader"
 msgstr "Pasirinkite Cccam skaitytuvą"
 
@@ -12877,9 +12826,6 @@ msgstr "Pasirinkite subkanalą įrašymui..."
 
 msgid "Please select a subservice..."
 msgstr "Pasirinkite subkanalą..."
-
-msgid "Please select an NFI file and press green key to flash!"
-msgstr "Prašome išsirinkti NFI failą ir spauskite žalią mygtuką atvaizdo įkėlimui!"
 
 msgid "Please select an acceptable directory."
 msgstr "Pasirinkite priimtiną katalogą."
@@ -13307,9 +13253,6 @@ msgstr "Įrašams pageidaujami imtuvai, galima pasirinkti keletą"
 
 msgid "Preparation time for recording (seconds)"
 msgstr "Pasirengimas įrašymui (sek.)"
-
-msgid "Prepare another USB stick for image flashing"
-msgstr "Paruoškite kitą USB laikmeną atvaizdo diegimui"
 
 msgid "Preparing... Please wait"
 msgstr "Ruošiama... prašome laukti"
@@ -14459,9 +14402,6 @@ msgstr "Atkurti nustatymus"
 msgid "Restore backups"
 msgstr "Atkurti atsargines kopijas"
 
-msgid "Restore is running..."
-msgstr "Vyksta atkūrimas..."
-
 msgid "Restore settings from a backup"
 msgstr "Atkurti nustatymus iš atsarginės kopijos"
 
@@ -15241,9 +15181,6 @@ msgstr "Pasirinkite papildomus failus atsarginei kopijai"
 msgid "Select additional files to backup"
 msgstr "Papildomi failai atsarginei kopijai"
 
-msgid "Select an image to be downloaded"
-msgstr "Pasirinkite atvaizdą, kurį norite atsisiųsti"
-
 msgid "Select audio track"
 msgstr "Pasirinkite garso takelį"
 
@@ -15270,9 +15207,6 @@ msgstr "Pasirinkite kopijos vietą:"
 
 msgid "Select default EPG type..."
 msgstr "Pasirinkite numatytąjį EPG tipą..."
-
-msgid "Select desired image from feed list"
-msgstr "Pasirinkite pageidaujamą atvaizdą iš šaltinių sąrašo"
 
 msgid "Select destination for:"
 msgstr "Pasirinkite vietą:"
@@ -16120,10 +16054,6 @@ msgstr "Sukonfigūruoti palydovinę įrangą"
 msgid "Seychelles"
 msgstr "Seišeliai"
 
-#, python-format
-msgid "Shall the USB stick wizard proceed and program the image file %s into flash memory?"
-msgstr "Ar USB atmintinės vedliui vykdyti programos atvaizdo failą %s į \"vidinę\" atmintį?"
-
 msgid "Share Folder's"
 msgstr "Bendrai naudojami aplankai"
 
@@ -16255,6 +16185,9 @@ msgstr "Rodyti CoolSingle vadovą"
 
 msgid "Show CoolTVGuide"
 msgstr "Rodyti CoolTV vadovą"
+
+msgid "Show Directory size"
+msgstr ""
 
 msgid "Show Display Icons"
 msgstr "Rodyti ekrano piktogramas"
@@ -18243,13 +18176,6 @@ msgid "The TV was switched to the recording service!\n"
 msgstr "TV buvo perjungtas į įrašomą kanalą!\n"
 
 msgid ""
-"The USB stick was prepared to be bootable.\n"
-"Now you can download an NFI image file!"
-msgstr ""
-"USB laikmena paruošta paleidimui.\n"
-"Dabar, jūs galite parsisiųsti NFI atvaizdo failą!"
-
-msgid ""
 "The VideoMode plugin is not installed!\n"
 "Please install it."
 msgstr ""
@@ -18301,20 +18227,6 @@ msgstr "Numatytieji parametrai yra: budinimo laikas - 5 min ir laikmačio pradž
 msgid "The detailed information is intended for developers only."
 msgstr "Išsami informacija skirta tik kūrėjams."
 
-#, python-format
-msgid ""
-"The following device was found:\n"
-"\n"
-"%s\n"
-"\n"
-"Do you want to write the USB flasher to this stick?"
-msgstr ""
-"Surastas įrenginys:\n"
-"\n"
-"%s\n"
-"\n"
-"Jūs norite įrašyti USB diegėją į šį raktelį?"
-
 msgid "The following files were found..."
 msgstr "Buvo surasti šie failai..."
 
@@ -18336,9 +18248,6 @@ msgstr "Vaizdo aukštis. Įvestis bus mažinama, kad atitiktų šią reikšmę."
 
 msgid "The loopthrough setting is wrong."
 msgstr "Ciklo parametras neteisingas."
-
-msgid "The md5sum validation failed, the file may be corrupted!"
-msgstr "Md5sum patvirtinimas nepavyko, failas galimai sugadintas!"
 
 msgid ""
 "The network wizard extension is not installed!\n"
@@ -18430,10 +18339,6 @@ msgstr ""
 
 msgid "The wizard can backup your current settings. Do you want to do a backup now?"
 msgstr "Nustatymų vedlys gali išsaugoti Jūsų dabartinius nustatymus. Jūs norite tai padaryti dabar?"
-
-#, python-format
-msgid "The wizard found a configuration backup. Do you want to restore your old settings from %s?"
-msgstr "Vedlys surado konfigūracijos atsarginę kopiją. Jūs norite atkurti savo senus nustatymus iš %s?"
 
 msgid "The wizard is finished now."
 msgstr "Vedlys baigė darbą."
@@ -18793,18 +18698,6 @@ msgstr "Ši parinktis nustato klaidingų skaitmeninių kontūrų, kurie yra iš 
 msgid "This option sets up the picture sharpness, used when the picture is being upscaled."
 msgstr "Nustato paveikslėlių vaizdo ryškumą keičiantis masteliui."
 
-#, python-format
-msgid ""
-"This plugin creates a USB stick which can be used to update the firmware of your %s %s without the need for a network or WLAN connection.\n"
-"First, a USB stick needs to be prepared so that it becomes bootable.\n"
-"In the next step, an NFI image file can be downloaded from the update server and saved on the USB stick.\n"
-"If you already have a prepared bootable USB stick, please insert it now. Otherwise plug in a USB stick with a minimum size of 64 MB!"
-msgstr ""
-"Šis priedas sukuria USB laikmeną, kuri gali būti panaudota, kad atnaujinti jūsų %s %s programinę įrangą be tinklo ryšio.\n"
-"Iš pradžių USB laikmena turi būti paruošta, kad taptų naudotina įkrovai.\n"
-"Kitame žingsnyje NFI atvaizdo failas gali būti parsisiųstas iš atnaujinimo serverio ir išsaugotas USB laikmenoje.\n"
-"Jei jau turite parengtą įkrovos USB laikmeną, įdėkite ją dabar. Jei ne, įdėkite mažiausiai 64 MB dydžio USB laikmeną!"
-
 msgid "This plugin is installed."
 msgstr "Šis priedas yra įdiegtas."
 
@@ -19142,18 +19035,6 @@ msgstr "Pavadinimo nustatymo būdas"
 
 msgid "To restore the image:"
 msgstr "Kad atkurti atvaizdą:"
-
-#, python-format
-msgid ""
-"To update your %s %s firmware, please follow these steps:\n"
-"1) Turn off your box with the rear power switch and make sure the bootable USB stick is plugged in.\n"
-"2) Turn mains back on and hold the DOWN button on the front panel pressed for 10 seconds.\n"
-"3) Wait for bootup and follow instructions of the wizard."
-msgstr ""
-"Kad atnaujintumėte savo %s %s programinę įrangą, atlikite šiuos žingsnius:\n"
-"1) Išjunkite imtuvą galiniu įtampos mygtuku ir įsitikinkite, kad USB laikmena su įkrovos atvaizdu pajungta.\n"
-"2) Įjunkite įtampą ir laikykite NUSPAUSTĄ 'On/Off' mygtuką ant priekinės panelės 10 sekundžių.\n"
-"3) Laukite įkrovos ir veikite pagal vedlio instrukcijas."
 
 msgid "Today"
 msgstr "Šiandien"
@@ -19528,9 +19409,6 @@ msgstr "USALS automatiškai perkelia motorizuotą anteną į tinkamą palydovą,
 
 msgid "USB Stick"
 msgstr "USB laikmena"
-
-msgid "USB stick wizard"
-msgstr "USB laikmenos vedlys"
 
 msgid "USB switch ERROR! - already on USB"
 msgstr "USB jungimo KLAIDA! - jau USB"
@@ -21123,9 +21001,6 @@ msgstr "Jūs jau nusiuntėte šį žurnalą, ar jūs tikrai norite išsiųsti š
 msgid "You have chosen to backup your settings. Please press OK to start the backup now."
 msgstr "Jūs nusprendėte padaryti atsarginę kopiją savo nustatymų. Prašome spausti OK, kad pradėtumėte atsarginę kopiją dabar."
 
-msgid "You have chosen to create a new .NFI flasher bootable USB stick. This will repartition the USB stick and therefore all data on it will be erased."
-msgstr "Jūs nusprendėte sukurti naują .NFI diegėją USB rakte. Tada bus perdalintas USB raktas ir visi duomenys jame bus ištrinti."
-
 msgid "You have chosen to restore your settings. Enigma2 will restart after restore. Please press OK to start the restore now."
 msgstr "Jūs nusprendėte atkurti savo nustatymus. Enigma2 iš naujo pasileis po atkūrimo. Prašome spausti OK, kad pradėtumėte atkūrimą dabar."
 
@@ -21825,9 +21700,6 @@ msgstr "patvirtinta"
 msgid "connected"
 msgstr "prisijungta"
 
-msgid "continue"
-msgstr "tęsti"
-
 msgid "controlled by HDMI"
 msgstr "valdoma HDMI"
 
@@ -21863,10 +21735,6 @@ msgstr "sukurti nuorodą ..."
 
 msgid "current affairs (general)"
 msgstr "aktualijos (bendrai)"
-
-#, python-format
-msgid "currently installed image: %s"
-msgstr "dabar įdiegtas atvaizdas: %s"
 
 msgid "daily"
 msgstr "kasdien"
@@ -23261,6 +23129,144 @@ msgstr "perjungimas"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Changelog"
+#~ msgstr "Pakeitimų žurnalas"
+
+#, python-format
+#~ msgid "Could not connect to %s %s .NFI image feed server:"
+#~ msgstr "Nepavyko prisijungti prie %s %s .NFI atvaizdo šaltinių serverio:"
+
+#~ msgid "Currently installed image"
+#~ msgstr "Dabar įdiegtas atvaizdas"
+
+#~ msgid "Display directory size"
+#~ msgstr "Rodyti katalogo dydį"
+
+#, python-format
+#~ msgid "Do you want to download the image to %s ?"
+#~ msgstr "Ar norite parsisiųsti atvaizdą į %s ?"
+
+#~ msgid "Download"
+#~ msgstr "Atsisiuntimas"
+
+#, python-format
+#~ msgid "Download %s from server"
+#~ msgstr "Parsisiųsti %s iš serverio"
+
+#~ msgid "Download .NFI-files for USB-flasher"
+#~ msgstr "Parsiųsti .NFI failus diegimui iš USB"
+
+#~ msgid "Factory Reset Settings"
+#~ msgstr "Gamyklinio atstatymo parametrai iš naujo"
+
+#~ msgid "Flash"
+#~ msgstr "Vidinė atmintis"
+
+#~ msgid "Flashing failed"
+#~ msgstr "Įdiegti nepavyko"
+
+#~ msgid "Get latest experimental image"
+#~ msgstr "Gauti naujausią eksperimentinį atvaizdą"
+
+#~ msgid "Get latest release image"
+#~ msgstr "Gauti naujausios versijos atvaizdą"
+
+#~ msgid "NFI image flashing"
+#~ msgstr "NFI atvaizdo įdiegimas"
+
+#~ msgid "NFI image flashing completed. Press Yellow to Reboot!"
+#~ msgstr "NFI atvaizdas įdiegtas. Norėdami paleisti iš naujo, spauskite geltoną mygtuką!"
+
+#~ msgid "No details for this image file"
+#~ msgstr "Nėra informacijos apie šį atvaizdą"
+
+#~ msgid "Please check your network settings!"
+#~ msgstr "Patikrinkite tinklo nustatymus!"
+
+#~ msgid "Please select an NFI file and press green key to flash!"
+#~ msgstr "Prašome išsirinkti NFI failą ir spauskite žalią mygtuką atvaizdo įkėlimui!"
+
+#~ msgid "Prepare another USB stick for image flashing"
+#~ msgstr "Paruoškite kitą USB laikmeną atvaizdo diegimui"
+
+#~ msgid "Restore is running..."
+#~ msgstr "Vyksta atkūrimas..."
+
+#~ msgid "Select an image to be downloaded"
+#~ msgstr "Pasirinkite atvaizdą, kurį norite atsisiųsti"
+
+#~ msgid "Select desired image from feed list"
+#~ msgstr "Pasirinkite pageidaujamą atvaizdą iš šaltinių sąrašo"
+
+#, python-format
+#~ msgid "Shall the USB stick wizard proceed and program the image file %s into flash memory?"
+#~ msgstr "Ar USB atmintinės vedliui vykdyti programos atvaizdo failą %s į \"vidinę\" atmintį?"
+
+#~ msgid ""
+#~ "The USB stick was prepared to be bootable.\n"
+#~ "Now you can download an NFI image file!"
+#~ msgstr ""
+#~ "USB laikmena paruošta paleidimui.\n"
+#~ "Dabar, jūs galite parsisiųsti NFI atvaizdo failą!"
+
+#, python-format
+#~ msgid ""
+#~ "The following device was found:\n"
+#~ "\n"
+#~ "%s\n"
+#~ "\n"
+#~ "Do you want to write the USB flasher to this stick?"
+#~ msgstr ""
+#~ "Surastas įrenginys:\n"
+#~ "\n"
+#~ "%s\n"
+#~ "\n"
+#~ "Jūs norite įrašyti USB diegėją į šį raktelį?"
+
+#~ msgid "The md5sum validation failed, the file may be corrupted!"
+#~ msgstr "Md5sum patvirtinimas nepavyko, failas galimai sugadintas!"
+
+#, python-format
+#~ msgid "The wizard found a configuration backup. Do you want to restore your old settings from %s?"
+#~ msgstr "Vedlys surado konfigūracijos atsarginę kopiją. Jūs norite atkurti savo senus nustatymus iš %s?"
+
+#, python-format
+#~ msgid ""
+#~ "This plugin creates a USB stick which can be used to update the firmware of your %s %s without the need for a network or WLAN connection.\n"
+#~ "First, a USB stick needs to be prepared so that it becomes bootable.\n"
+#~ "In the next step, an NFI image file can be downloaded from the update server and saved on the USB stick.\n"
+#~ "If you already have a prepared bootable USB stick, please insert it now. Otherwise plug in a USB stick with a minimum size of 64 MB!"
+#~ msgstr ""
+#~ "Šis priedas sukuria USB laikmeną, kuri gali būti panaudota, kad atnaujinti jūsų %s %s programinę įrangą be tinklo ryšio.\n"
+#~ "Iš pradžių USB laikmena turi būti paruošta, kad taptų naudotina įkrovai.\n"
+#~ "Kitame žingsnyje NFI atvaizdo failas gali būti parsisiųstas iš atnaujinimo serverio ir išsaugotas USB laikmenoje.\n"
+#~ "Jei jau turite parengtą įkrovos USB laikmeną, įdėkite ją dabar. Jei ne, įdėkite mažiausiai 64 MB dydžio USB laikmeną!"
+
+#, python-format
+#~ msgid ""
+#~ "To update your %s %s firmware, please follow these steps:\n"
+#~ "1) Turn off your box with the rear power switch and make sure the bootable USB stick is plugged in.\n"
+#~ "2) Turn mains back on and hold the DOWN button on the front panel pressed for 10 seconds.\n"
+#~ "3) Wait for bootup and follow instructions of the wizard."
+#~ msgstr ""
+#~ "Kad atnaujintumėte savo %s %s programinę įrangą, atlikite šiuos žingsnius:\n"
+#~ "1) Išjunkite imtuvą galiniu įtampos mygtuku ir įsitikinkite, kad USB laikmena su įkrovos atvaizdu pajungta.\n"
+#~ "2) Įjunkite įtampą ir laikykite NUSPAUSTĄ 'On/Off' mygtuką ant priekinės panelės 10 sekundžių.\n"
+#~ "3) Laukite įkrovos ir veikite pagal vedlio instrukcijas."
+
+#~ msgid "USB stick wizard"
+#~ msgstr "USB laikmenos vedlys"
+
+#~ msgid "You have chosen to create a new .NFI flasher bootable USB stick. This will repartition the USB stick and therefore all data on it will be erased."
+#~ msgstr "Jūs nusprendėte sukurti naują .NFI diegėją USB rakte. Tada bus perdalintas USB raktas ir visi duomenys jame bus ištrinti."
+
+#~ msgid "continue"
+#~ msgstr "tęsti"
+
+#, python-format
+#~ msgid "currently installed image: %s"
+#~ msgstr "dabar įdiegtas atvaizdas: %s"
 
 #~ msgid "Manual scan"
 #~ msgstr "Rankinė paieška"

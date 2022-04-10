@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Apachi70 (OpenATV)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-04-02 20:55+0000\n"
+"POT-Creation-Date: 2022-04-10 10:23+0000\n"
 "PO-Revision-Date: 2021-11-14 06:52+0000\n"
 "Last-Translator: Oğuz Ersen <oguzersen@protonmail.com>\n"
 "Language-Team: Turkish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/tr/>\n"
@@ -4148,6 +4148,9 @@ msgstr ""
 msgid "Calculate"
 msgstr "Hesapla"
 
+msgid "Calculate and show size of directory. Note: This can be slow down the UI on selection of a folder!"
+msgstr ""
+
 msgid "Calculate file checksums"
 msgstr "Dosya sağlama toplamlarını hesapla"
 
@@ -4474,9 +4477,6 @@ msgstr "Ayar yapılırken atlama boyutu"
 #
 msgid "Change to bouquet"
 msgstr "Buket değiştir"
-
-msgid "Changelog"
-msgstr "Değişiklik günlüğü"
 
 #, python-format
 msgid ""
@@ -5640,11 +5640,6 @@ msgid "Cote d'Ivoire / Ivory Coast"
 msgstr "Fildişi Sahili"
 
 #
-#, python-format
-msgid "Could not connect to %s %s .NFI image feed server:"
-msgstr "%s %s .NFI besleme sunucusuna bağlanamıyor:"
-
-#
 msgid "Could not connect to server"
 msgstr "Sunucuya bağlanılamadı"
 
@@ -5836,9 +5831,6 @@ msgstr ""
 #
 msgid "Current version:"
 msgstr "Geçerli sürüm:"
-
-msgid "Currently installed image"
-msgstr "Yüklü imaj"
 
 #
 msgid "Custom"
@@ -6763,9 +6755,6 @@ msgstr "Görünüm Kurulumu"
 msgid "Display and user interface"
 msgstr "Görünüm ve kullanıcı arayüzü"
 
-msgid "Display directory size"
-msgstr ""
-
 msgid "Display message before playing next movie"
 msgstr "Sonraki filmi oynatmadan önce mesaj göster"
 
@@ -7011,10 +7000,6 @@ msgid "Do you want to do another manual service scan?"
 msgstr "Başka kanal taraması yapacak mısınız?"
 
 #, python-format
-msgid "Do you want to download the image to %s ?"
-msgstr "%s imajını indirmek istiyor musunuz?"
-
-#, python-format
 msgid ""
 "Do you want to flash image\n"
 "%s"
@@ -7145,18 +7130,6 @@ msgstr[0] "Tamam - %d paket yüklendi, yükseltildi veya kaldırıldı (%s)"
 
 msgid "Down"
 msgstr "Aşağı"
-
-#
-msgid "Download"
-msgstr "İndir"
-
-#, python-format
-msgid "Download %s from server"
-msgstr "Sunucudan %s indir"
-
-#
-msgid "Download .NFI-files for USB-flasher"
-msgstr "USB bellek için .NFI dosyası indir"
 
 msgid "Download Plugins"
 msgstr "Eklentileri iİndir"
@@ -8428,9 +8401,6 @@ msgstr "FTP Kurulum"
 msgid "Factory Reset"
 msgstr ""
 
-msgid "Factory Reset Settings"
-msgstr ""
-
 msgid "Factory release"
 msgstr ""
 
@@ -8706,10 +8676,6 @@ msgstr "Sabit"
 msgid "Fixed X11 font (SD)"
 msgstr "Sabit X11 yazı tipi (SD)"
 
-#
-msgid "Flash"
-msgstr "Flaş"
-
 msgid "Flash Image"
 msgstr "Flaş Image"
 
@@ -8738,10 +8704,6 @@ msgstr "Flaşlıyor"
 #
 msgid "Flashing Image"
 msgstr "Flashing Image"
-
-#
-msgid "Flashing failed"
-msgstr "Flaşlama başarısız"
 
 msgid "Flashing image successful"
 msgstr "Flashing image başarılı"
@@ -9112,12 +9074,6 @@ msgstr "Seçimi kaldır"
 #, fuzzy
 msgid "Gesundheit"
 msgstr "Fahrenhayt"
-
-msgid "Get latest experimental image"
-msgstr "Son deneysel imajı al"
-
-msgid "Get latest release image"
-msgstr "Son yayımlanan imajı al"
 
 msgid "Getting Event Info failed!"
 msgstr "Etkinlik Bilgisi alınamadı!"
@@ -12201,13 +12157,6 @@ msgstr "Kullanılamaz"
 msgid "NEXT"
 msgstr "SONRA"
 
-msgid "NFI image flashing"
-msgstr "NFI İmaj Flaşlama"
-
-#
-msgid "NFI image flashing completed. Press Yellow to Reboot!"
-msgstr "NFI görüntüsü yanıp sönüyor. Yeniden başlatmak için Sarı'ya basın!"
-
 msgid "NFS"
 msgstr "NFS"
 
@@ -12592,10 +12541,6 @@ msgstr "Ücretsiz dizin yok"
 #
 msgid "No description available."
 msgstr "Açıklayıcı bilgi yok."
-
-#
-msgid "No details for this image file"
-msgstr "Bu imaj dosyasının detay bilgisisi yok"
 
 #
 msgid "No displayable files on this medium found!"
@@ -13775,10 +13720,6 @@ msgstr "Lütfen kayıt bitiş zamanını değiştirin"
 msgid "Please check the manual of the receiver"
 msgstr "Lütfen alıcının kullanım kılavuzunu kontrol edin"
 
-#
-msgid "Please check your network settings!"
-msgstr "Lütfen ağ ayarlarını kontrol edin!"
-
 msgid "Please choose CCcam-Reader"
 msgstr "Lütfen CCcam-Okuyucu seçin"
 
@@ -13926,9 +13867,6 @@ msgstr "Lütfen kaydetmek istediğiniz alt servisi seçin..."
 #
 msgid "Please select a subservice..."
 msgstr "Lütfen bir alt servis seçin..."
-
-msgid "Please select an NFI file and press green key to flash!"
-msgstr "Lütfen NFI dosyasını seçtikten sonra flaşlamak için yeşil tuşa basın!"
 
 msgid "Please select an acceptable directory."
 msgstr ""
@@ -14398,9 +14336,6 @@ msgstr "Kayıtlar için tercih edilen tunerler, çoklu seçime izin verilir"
 #
 msgid "Preparation time for recording (seconds)"
 msgstr "Kayıt için hazırlık süresi (saniye)"
-
-msgid "Prepare another USB stick for image flashing"
-msgstr "İmaj flaşlaması için başka bir USB bellek hazırlayın"
 
 #
 msgid "Preparing... Please wait"
@@ -15663,10 +15598,6 @@ msgstr "Ayarları Geri Yükle"
 msgid "Restore backups"
 msgstr "Yedekleri geri yükle"
 
-#
-msgid "Restore is running..."
-msgstr "Geri yükleme çalışıyor..."
-
 msgid "Restore settings from a backup"
 msgstr "Ayarları bir yedeklemeden geri yükle"
 
@@ -16508,9 +16439,6 @@ msgstr "Ek yedek dosyaları seçin"
 msgid "Select additional files to backup"
 msgstr "Yedeklenecek ek dosyaları seçin"
 
-msgid "Select an image to be downloaded"
-msgstr "İndirmek istediğiniz bellenimi seçin"
-
 #
 msgid "Select audio track"
 msgstr "Ses izi seçin"
@@ -16541,9 +16469,6 @@ msgstr "Kopya için hedef seçin:"
 
 msgid "Select default EPG type..."
 msgstr "Varsayılan ERPG tipini seçin..."
-
-msgid "Select desired image from feed list"
-msgstr "Besleme listesinden istenilen bir imajı seçin"
 
 msgid "Select destination for:"
 msgstr "Hedefi seçin:"
@@ -17445,11 +17370,6 @@ msgstr "Uydu ekipmanınızı kurun"
 msgid "Seychelles"
 msgstr "Seyşeller"
 
-#
-#, python-format
-msgid "Shall the USB stick wizard proceed and program the image file %s into flash memory?"
-msgstr "USB bellek sihirbazı başlayıp %s imaj dosyasını flaş belleğe programlasın mı?"
-
 msgid "Share Folder's"
 msgstr "Paylaşım Klasörünün"
 
@@ -17587,6 +17507,9 @@ msgstr "CoolSingleGuide göster"
 
 msgid "Show CoolTVGuide"
 msgstr "CoolTVGuide göster"
+
+msgid "Show Directory size"
+msgstr ""
 
 msgid "Show Display Icons"
 msgstr "Görüntü ikonlarını göster"
@@ -19746,13 +19669,6 @@ msgid "The TV was switched to the recording service!\n"
 msgstr "TV kayıt servisine geçti!\n"
 
 msgid ""
-"The USB stick was prepared to be bootable.\n"
-"Now you can download an NFI image file!"
-msgstr ""
-"USB bellek önyüklenebilir olarak hazırlandı.\n"
-"Şimdi NFI imaj dosyasını indirebilirsiniz!"
-
-msgid ""
 "The VideoMode plugin is not installed!\n"
 "Please install it."
 msgstr ""
@@ -19806,21 +19722,6 @@ msgid "The detailed information is intended for developers only."
 msgstr ""
 
 #
-#, python-format
-msgid ""
-"The following device was found:\n"
-"\n"
-"%s\n"
-"\n"
-"Do you want to write the USB flasher to this stick?"
-msgstr ""
-"Aşağıdaki aygıt bulundu:\n"
-"\n"
-"%s\n"
-"\n"
-"USB flaşlayıcıyı bu USB belleğe yazmak istiyor musunuz?"
-
-#
 msgid "The following files were found..."
 msgstr "Aşağıdaki dosyalar bulundu..."
 
@@ -19842,9 +19743,6 @@ msgstr "Resmin yüksekliği. Girdi, bu değere uyacak şekilde ölçeklendirilec
 
 msgid "The loopthrough setting is wrong."
 msgstr "Döngü ayarı yanlış."
-
-msgid "The md5sum validation failed, the file may be corrupted!"
-msgstr "Md5sum doğrulaması başarısız oldu, dosya bozulmuş!"
 
 msgid ""
 "The network wizard extension is not installed!\n"
@@ -19944,10 +19842,6 @@ msgstr ""
 #
 msgid "The wizard can backup your current settings. Do you want to do a backup now?"
 msgstr "Bu sihirbaz geçerli ayarlarınızın yedeğini alacaktır. Yedeği şimdi almak istiyor musunuz?"
-
-#, python-format
-msgid "The wizard found a configuration backup. Do you want to restore your old settings from %s?"
-msgstr "Sihirbaz bir yapılandırma yedeği buldu. %s den eski ayarlarınızın geri yüklenmesini ister misiniz??"
 
 #
 msgid "The wizard is finished now."
@@ -20321,18 +20215,6 @@ msgstr "Bu seçenek, sınırlı sayıdaki ayrık değerlerin sonucu oluşan yanl
 msgid "This option sets up the picture sharpness, used when the picture is being upscaled."
 msgstr "Bu seçenek resim keskinliğini ayarlar, resim çözünürlüğü arttırılırken kullanılır."
 
-#, python-format
-msgid ""
-"This plugin creates a USB stick which can be used to update the firmware of your %s %s without the need for a network or WLAN connection.\n"
-"First, a USB stick needs to be prepared so that it becomes bootable.\n"
-"In the next step, an NFI image file can be downloaded from the update server and saved on the USB stick.\n"
-"If you already have a prepared bootable USB stick, please insert it now. Otherwise plug in a USB stick with a minimum size of 64 MB!"
-msgstr ""
-"Bu eklenti, %s %s bellenim güncellenmesininde kullanılacak USB belleği hazırlar.\n"
-"İlk önce, USB belleğinin önyüklenebilir olarak hazırlanması gerekir.\n"
-"Sonraki adımda, güncelleme sunucusundan bir NFI imajı indirilir ve USB belleği üzerine saklanır.\n"
-"Eğer daha önce, önyüklenebilir bir USB belleği hazırladıysanız, lütfen şimdi onu takın. Aksi halinde en az 64 MB kapasiteli bir USB belleği takın!"
-
 #
 msgid "This plugin is installed."
 msgstr "Bu eklenti yüklü."
@@ -20702,18 +20584,6 @@ msgstr "Başlıkseti kipi"
 
 msgid "To restore the image:"
 msgstr "Görüntüyü geri yüklemek için:"
-
-#, python-format
-msgid ""
-"To update your %s %s firmware, please follow these steps:\n"
-"1) Turn off your box with the rear power switch and make sure the bootable USB stick is plugged in.\n"
-"2) Turn mains back on and hold the DOWN button on the front panel pressed for 10 seconds.\n"
-"3) Wait for bootup and follow instructions of the wizard."
-msgstr ""
-"%s %s bellenim güncellemesi için lütfen bu adımları takip edin:\n"
-"1) Alıcınızı arka güç anahtarından kapatın ve önyüklenebilir USB belleğini takın.\n"
-"2) Arka güç anahtarını açın ve ön paneldeki AŞAĞI tuşunu 10 saniye basılı tutun.\n"
-"3) Yüklemeyi bekleyin ve sihirbazın yönergesini takip edin."
 
 #
 msgid "Today"
@@ -21135,10 +21005,6 @@ msgstr "USALS, motorlu bir yemeği otomatik olarak kullanıcının girdiği koor
 
 msgid "USB Stick"
 msgstr "USB Bellek"
-
-#
-msgid "USB stick wizard"
-msgstr "USB bellek sihirbazı"
 
 msgid "USB switch ERROR! - already on USB"
 msgstr "USB anahtarı HATA! - zaten USB'de"
@@ -22871,10 +22737,6 @@ msgid "You have chosen to backup your settings. Please press OK to start the bac
 msgstr "Ayarlarınızı yedeklemeyi seçtiniz. Yedeklemeyi başlatmak için lütfen OK tuşuna basın."
 
 #
-msgid "You have chosen to create a new .NFI flasher bootable USB stick. This will repartition the USB stick and therefore all data on it will be erased."
-msgstr "Önyükleme yapabilir .NFI flaşlayıcı USB bellek oluşturmayı seçtiniz. Bu işlem USB belleğin yeniden bölüntülenmesi gerektirdiğinden içeriğindeki tüm veriler silinecektir."
-
-#
 msgid "You have chosen to restore your settings. Enigma2 will restart after restore. Please press OK to start the restore now."
 msgstr "Ayarlarınızı geri yüklemeyi seçtiniz. Geri yüklemeden sonra Enigma2 yeniden başlayacaktır. Lütfen geri yüklemeyi şimdi başlatmak için OK tuşuna basın."
 
@@ -23635,10 +23497,6 @@ msgstr "onaylandı"
 msgid "connected"
 msgstr "bağlandı"
 
-#
-msgid "continue"
-msgstr "devam"
-
 msgid "controlled by HDMI"
 msgstr "hdmi tarafından kontrol edilir"
 
@@ -23677,10 +23535,6 @@ msgstr "sembolik link oluştur ..."
 #, fuzzy
 msgid "current affairs (general)"
 msgstr "haberler/günlük olaylar (genel)"
-
-#, python-format
-msgid "currently installed image: %s"
-msgstr "yüklü imaj: %s"
 
 #
 msgid "daily"
@@ -25237,6 +25091,152 @@ msgstr "zap"
 
 msgid "®"
 msgstr ""
+
+#~ msgid "Changelog"
+#~ msgstr "Değişiklik günlüğü"
+
+#
+#, python-format
+#~ msgid "Could not connect to %s %s .NFI image feed server:"
+#~ msgstr "%s %s .NFI besleme sunucusuna bağlanamıyor:"
+
+#~ msgid "Currently installed image"
+#~ msgstr "Yüklü imaj"
+
+#, python-format
+#~ msgid "Do you want to download the image to %s ?"
+#~ msgstr "%s imajını indirmek istiyor musunuz?"
+
+#
+#~ msgid "Download"
+#~ msgstr "İndir"
+
+#, python-format
+#~ msgid "Download %s from server"
+#~ msgstr "Sunucudan %s indir"
+
+#
+#~ msgid "Download .NFI-files for USB-flasher"
+#~ msgstr "USB bellek için .NFI dosyası indir"
+
+#
+#~ msgid "Flash"
+#~ msgstr "Flaş"
+
+#
+#~ msgid "Flashing failed"
+#~ msgstr "Flaşlama başarısız"
+
+#~ msgid "Get latest experimental image"
+#~ msgstr "Son deneysel imajı al"
+
+#~ msgid "Get latest release image"
+#~ msgstr "Son yayımlanan imajı al"
+
+#~ msgid "NFI image flashing"
+#~ msgstr "NFI İmaj Flaşlama"
+
+#
+#~ msgid "NFI image flashing completed. Press Yellow to Reboot!"
+#~ msgstr "NFI görüntüsü yanıp sönüyor. Yeniden başlatmak için Sarı'ya basın!"
+
+#
+#~ msgid "No details for this image file"
+#~ msgstr "Bu imaj dosyasının detay bilgisisi yok"
+
+#
+#~ msgid "Please check your network settings!"
+#~ msgstr "Lütfen ağ ayarlarını kontrol edin!"
+
+#~ msgid "Please select an NFI file and press green key to flash!"
+#~ msgstr "Lütfen NFI dosyasını seçtikten sonra flaşlamak için yeşil tuşa basın!"
+
+#~ msgid "Prepare another USB stick for image flashing"
+#~ msgstr "İmaj flaşlaması için başka bir USB bellek hazırlayın"
+
+#
+#~ msgid "Restore is running..."
+#~ msgstr "Geri yükleme çalışıyor..."
+
+#~ msgid "Select an image to be downloaded"
+#~ msgstr "İndirmek istediğiniz bellenimi seçin"
+
+#~ msgid "Select desired image from feed list"
+#~ msgstr "Besleme listesinden istenilen bir imajı seçin"
+
+#
+#, python-format
+#~ msgid "Shall the USB stick wizard proceed and program the image file %s into flash memory?"
+#~ msgstr "USB bellek sihirbazı başlayıp %s imaj dosyasını flaş belleğe programlasın mı?"
+
+#~ msgid ""
+#~ "The USB stick was prepared to be bootable.\n"
+#~ "Now you can download an NFI image file!"
+#~ msgstr ""
+#~ "USB bellek önyüklenebilir olarak hazırlandı.\n"
+#~ "Şimdi NFI imaj dosyasını indirebilirsiniz!"
+
+#
+#, python-format
+#~ msgid ""
+#~ "The following device was found:\n"
+#~ "\n"
+#~ "%s\n"
+#~ "\n"
+#~ "Do you want to write the USB flasher to this stick?"
+#~ msgstr ""
+#~ "Aşağıdaki aygıt bulundu:\n"
+#~ "\n"
+#~ "%s\n"
+#~ "\n"
+#~ "USB flaşlayıcıyı bu USB belleğe yazmak istiyor musunuz?"
+
+#~ msgid "The md5sum validation failed, the file may be corrupted!"
+#~ msgstr "Md5sum doğrulaması başarısız oldu, dosya bozulmuş!"
+
+#, python-format
+#~ msgid "The wizard found a configuration backup. Do you want to restore your old settings from %s?"
+#~ msgstr "Sihirbaz bir yapılandırma yedeği buldu. %s den eski ayarlarınızın geri yüklenmesini ister misiniz??"
+
+#, python-format
+#~ msgid ""
+#~ "This plugin creates a USB stick which can be used to update the firmware of your %s %s without the need for a network or WLAN connection.\n"
+#~ "First, a USB stick needs to be prepared so that it becomes bootable.\n"
+#~ "In the next step, an NFI image file can be downloaded from the update server and saved on the USB stick.\n"
+#~ "If you already have a prepared bootable USB stick, please insert it now. Otherwise plug in a USB stick with a minimum size of 64 MB!"
+#~ msgstr ""
+#~ "Bu eklenti, %s %s bellenim güncellenmesininde kullanılacak USB belleği hazırlar.\n"
+#~ "İlk önce, USB belleğinin önyüklenebilir olarak hazırlanması gerekir.\n"
+#~ "Sonraki adımda, güncelleme sunucusundan bir NFI imajı indirilir ve USB belleği üzerine saklanır.\n"
+#~ "Eğer daha önce, önyüklenebilir bir USB belleği hazırladıysanız, lütfen şimdi onu takın. Aksi halinde en az 64 MB kapasiteli bir USB belleği takın!"
+
+#, python-format
+#~ msgid ""
+#~ "To update your %s %s firmware, please follow these steps:\n"
+#~ "1) Turn off your box with the rear power switch and make sure the bootable USB stick is plugged in.\n"
+#~ "2) Turn mains back on and hold the DOWN button on the front panel pressed for 10 seconds.\n"
+#~ "3) Wait for bootup and follow instructions of the wizard."
+#~ msgstr ""
+#~ "%s %s bellenim güncellemesi için lütfen bu adımları takip edin:\n"
+#~ "1) Alıcınızı arka güç anahtarından kapatın ve önyüklenebilir USB belleğini takın.\n"
+#~ "2) Arka güç anahtarını açın ve ön paneldeki AŞAĞI tuşunu 10 saniye basılı tutun.\n"
+#~ "3) Yüklemeyi bekleyin ve sihirbazın yönergesini takip edin."
+
+#
+#~ msgid "USB stick wizard"
+#~ msgstr "USB bellek sihirbazı"
+
+#
+#~ msgid "You have chosen to create a new .NFI flasher bootable USB stick. This will repartition the USB stick and therefore all data on it will be erased."
+#~ msgstr "Önyükleme yapabilir .NFI flaşlayıcı USB bellek oluşturmayı seçtiniz. Bu işlem USB belleğin yeniden bölüntülenmesi gerektirdiğinden içeriğindeki tüm veriler silinecektir."
+
+#
+#~ msgid "continue"
+#~ msgstr "devam"
+
+#, python-format
+#~ msgid "currently installed image: %s"
+#~ msgstr "yüklü imaj: %s"
 
 #~ msgid "Manual scan"
 #~ msgstr "Elle arama"

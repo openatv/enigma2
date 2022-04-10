@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-04-02 20:55+0000\n"
-"PO-Revision-Date: 2022-03-22 10:55+0000\n"
+"POT-Creation-Date: 2022-04-10 10:23+0000\n"
+"PO-Revision-Date: 2022-04-10 19:53+0000\n"
 "Last-Translator: kvinto <badsystem@ukr.net>\n"
 "Language-Team: Ukrainian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/uk/>\n"
 "Language: uk\n"
@@ -3919,6 +3919,9 @@ msgstr "Кешовано"
 msgid "Calculate"
 msgstr "Обчислення"
 
+msgid "Calculate and show size of directory. Note: This can be slow down the UI on selection of a folder!"
+msgstr "Розрахувати та показати розмір каталогу. Примітка: це може сповільнити інтерфейс користувача під час вибору папки!"
+
 msgid "Calculate file checksums"
 msgstr "Обчислення контрольної суми файлу"
 
@@ -4228,9 +4231,6 @@ msgstr "Змінити розмір кроку"
 
 msgid "Change to bouquet"
 msgstr "Змінити фаворитний список"
-
-msgid "Changelog"
-msgstr "Журнал змін"
 
 #, python-format
 msgid ""
@@ -5313,10 +5313,6 @@ msgstr "Коста Ріка"
 msgid "Cote d'Ivoire / Ivory Coast"
 msgstr "Кот -д'Івуар / Французька"
 
-#, python-format
-msgid "Could not connect to %s %s .NFI image feed server:"
-msgstr "Не вдалося підключитися до %s %s .NFI сервер іміджу:"
-
 msgid "Could not connect to server"
 msgstr "Не вдалося підключитися до сервера"
 
@@ -5492,9 +5488,6 @@ msgstr "Поточна версія невідома"
 
 msgid "Current version:"
 msgstr "Поточна версія:"
-
-msgid "Currently installed image"
-msgstr "Встановлений імідж"
 
 msgid "Custom"
 msgstr "Користувацька"
@@ -6337,9 +6330,6 @@ msgstr "Налаштування LCD"
 msgid "Display and user interface"
 msgstr "Дисплей і графічний інтерфейс користувача"
 
-msgid "Display directory size"
-msgstr ""
-
 msgid "Display message before playing next movie"
 msgstr "Показати повідомлення перед початком наступного запису"
 
@@ -6578,10 +6568,6 @@ msgid "Do you want to do another manual service scan?"
 msgstr "Хочете виконати ще один ручний пошук каналів?"
 
 #, python-format
-msgid "Do you want to download the image to %s ?"
-msgstr "Хочете виконати завантаження іміджу до %s ?"
-
-#, python-format
 msgid ""
 "Do you want to flash image\n"
 "%s"
@@ -6699,16 +6685,6 @@ msgstr[2] "Виконано - Встановлено, оновлено чи ви
 
 msgid "Down"
 msgstr "Вниз"
-
-msgid "Download"
-msgstr "Завантажити"
-
-#, python-format
-msgid "Download %s from server"
-msgstr "Завантаження %s із сервера"
-
-msgid "Download .NFI-files for USB-flasher"
-msgstr "Завантаження .NFI-файлу на USB-носій"
 
 msgid "Download Plugins"
 msgstr "Завантажити Плагіни"
@@ -7885,9 +7861,6 @@ msgstr "Налаштування FTP"
 msgid "Factory Reset"
 msgstr "Скидання на Заводські налаштування"
 
-msgid "Factory Reset Settings"
-msgstr "Налаштування скидання до Заводських налаштувань"
-
 msgid "Factory release"
 msgstr "Заводський випуск"
 
@@ -8142,9 +8115,6 @@ msgstr "Фіксований"
 msgid "Fixed X11 font (SD)"
 msgstr "Фіксований шрифт Х11 (SD)"
 
-msgid "Flash"
-msgstr "Запис"
-
 msgid "Flash Image"
 msgstr "Запис Іміджа"
 
@@ -8172,9 +8142,6 @@ msgstr "Іконка"
 
 msgid "Flashing Image"
 msgstr "Прошивка Іміджа"
-
-msgid "Flashing failed"
-msgstr "Прошивка невдала"
 
 msgid "Flashing image successful"
 msgstr "Вдалий запис іміджу"
@@ -8505,12 +8472,6 @@ msgstr "Соціальна"
 
 msgid "Gesundheit"
 msgstr "Здоров’я"
-
-msgid "Get latest experimental image"
-msgstr "Отримати останній експериментальний імідж"
-
-msgid "Get latest release image"
-msgstr "Отримати останній створений імідж"
 
 msgid "Getting Event Info failed!"
 msgstr "Помилка отримання інформації про поточну подію!"
@@ -9178,7 +9139,7 @@ msgid "If an action is user-configurable, its help entry will be flagged with a 
 msgstr "Якщо дію можна налаштувати користувачем, запис про неї буде позначено символом '(C)'."
 
 msgid "If disabled, underscore characters in file and directory names are not shown and are replaced with spaces."
-msgstr ""
+msgstr "Якщо вимкнено, символи підкреслення в назвах файлів і каталогів не відображаються і замінюються пробілами."
 
 msgid "If editing a file, can you set the cursor start position at end or begin of the line."
 msgstr "Якщо Ви редагуєте файл, Ви можете встановити початкову позицію курсору в кінці або на початку рядка."
@@ -11312,12 +11273,6 @@ msgstr "Не визначено"
 msgid "NEXT"
 msgstr "НАСТУПНА"
 
-msgid "NFI image flashing"
-msgstr "Програмування NFI іміджа"
-
-msgid "NFI image flashing completed. Press Yellow to Reboot!"
-msgstr "Запис NFI іміджу завершено. Натисніть Жовту для перезавантаження!"
-
 msgid "NFS"
 msgstr "NFS"
 
@@ -11659,9 +11614,6 @@ msgstr "Немає демуксиплексу"
 
 msgid "No description available."
 msgstr "Опис відсутній."
-
-msgid "No details for this image file"
-msgstr "Нема деталей про цей імідж"
 
 msgid "No displayable files on this medium found!"
 msgstr "Потрібних файлів на цьому носії не знайдено!"
@@ -12739,9 +12691,6 @@ msgstr "Будь ласка, змініть час закінчення запи
 msgid "Please check the manual of the receiver"
 msgstr "Будь ласка, прочитайте інструкцію приймача"
 
-msgid "Please check your network settings!"
-msgstr "Будь ласка, перевірте налаштування вашої мережі!"
-
 msgid "Please choose CCcam-Reader"
 msgstr "Будь ласка, виберіть CCcam-Рідер"
 
@@ -12867,9 +12816,6 @@ msgstr "Будь ласка, виберіть підканал для запис
 
 msgid "Please select a subservice..."
 msgstr "Будь ласка, виберіть підканал..."
-
-msgid "Please select an NFI file and press green key to flash!"
-msgstr "Будь ласка, виберіть файл NFI і натисніть зелену кнопку для запису!"
 
 msgid "Please select an acceptable directory."
 msgstr "Виберіть прийнятний каталог."
@@ -13297,9 +13243,6 @@ msgstr "Пріоритетний тюнер для запису, дозволе�
 
 msgid "Preparation time for recording (seconds)"
 msgstr "Час підготовки до запису (у секундах)"
-
-msgid "Prepare another USB stick for image flashing"
-msgstr "Підготувати інший USB-носій для встановлення іміджа"
 
 msgid "Preparing... Please wait"
 msgstr "Приготування... Зачекайте, будь ласка"
@@ -14449,9 +14392,6 @@ msgstr "Відновлення Налаштування"
 msgid "Restore backups"
 msgstr "Відновлення резервних копій"
 
-msgid "Restore is running..."
-msgstr "Виконується відновлення..."
-
 msgid "Restore settings from a backup"
 msgstr "Відновити налаштування з резервної копії"
 
@@ -15231,9 +15171,6 @@ msgstr "Вибір додаткових файлів резервної копі
 msgid "Select additional files to backup"
 msgstr "Виберіть додаткові файли для резервного копіювання"
 
-msgid "Select an image to be downloaded"
-msgstr "Вибрати імідж для завантаження"
-
 msgid "Select audio track"
 msgstr "Вибір аудіо доріжки"
 
@@ -15260,9 +15197,6 @@ msgstr "Виберіть місце для копіювання:"
 
 msgid "Select default EPG type..."
 msgstr "Вибір тип ЕПГ за умовчанням..."
-
-msgid "Select desired image from feed list"
-msgstr "Виберіть потрібний імідж з списку фіду"
 
 msgid "Select destination for:"
 msgstr "Виберіть призначення для:"
@@ -16110,10 +16044,6 @@ msgstr "Налаштування Вашого супутникового обл�
 msgid "Seychelles"
 msgstr "Сейшели"
 
-#, python-format
-msgid "Shall the USB stick wizard proceed and program the image file %s into flash memory?"
-msgstr "Чи повинен майстер з USB носія встановлювати і програмувати файли іміджу %s у флеш пам'ять?"
-
 msgid "Share Folder's"
 msgstr "Доступні папки"
 
@@ -16245,6 +16175,9 @@ msgstr "Показати CoolSingleGuide"
 
 msgid "Show CoolTVGuide"
 msgstr "Показати CoolTVGuide"
+
+msgid "Show Directory size"
+msgstr "Показати розмір каталогу"
 
 msgid "Show Display Icons"
 msgstr "Показати іконки на дисплеї"
@@ -16773,7 +16706,7 @@ msgid "Show two lines per entry"
 msgstr "Список каналів у два рядки"
 
 msgid "Show underscore characters in filenames"
-msgstr ""
+msgstr "Показувати символи підкреслення в назвах файлів"
 
 msgid "Show unknown Videoresolution as next higher or as highest screen resolution."
 msgstr "Показати невідоме відео розширення, в наступному вищому або високому розширенні екрану."
@@ -17909,7 +17842,7 @@ msgid "TEXT"
 msgstr "TEXT"
 
 msgid "TRANSLATOR_INFO"
-msgstr "Переклад:  kvinto - 21.03.2022"
+msgstr "Переклад:  kvinto - 10.04.2022"
 
 msgid "TS file is too large for ISO9660 level 1!"
 msgstr "TS файл занадто великий для ISO9660 рівень 1!"
@@ -18235,13 +18168,6 @@ msgid "The TV was switched to the recording service!\n"
 msgstr "ТБ переключено на записуваний канал!\n"
 
 msgid ""
-"The USB stick was prepared to be bootable.\n"
-"Now you can download an NFI image file!"
-msgstr ""
-"USB носій підготовлений як завантажувальний.\n"
-"Тепер ви можете встановити імідж NFI!"
-
-msgid ""
 "The VideoMode plugin is not installed!\n"
 "Please install it."
 msgstr ""
@@ -18293,20 +18219,6 @@ msgstr "Налаштування за замовчуванням часу вкл
 msgid "The detailed information is intended for developers only."
 msgstr "Детальна інформація призначена лише для розробників."
 
-#, python-format
-msgid ""
-"The following device was found:\n"
-"\n"
-"%s\n"
-"\n"
-"Do you want to write the USB flasher to this stick?"
-msgstr ""
-"Знайдено пристрій:\n"
-"\n"
-"%s\n"
-"\n"
-"Бажаєте записати USB-Флешер на цю флешку?"
-
 msgid "The following files were found..."
 msgstr "Слідуючі файли було знайдено..."
 
@@ -18328,9 +18240,6 @@ msgstr "Висота зображення. Вхід буде змінено, щ�
 
 msgid "The loopthrough setting is wrong."
 msgstr "Налаштування петлі неправильне."
-
-msgid "The md5sum validation failed, the file may be corrupted!"
-msgstr "Помилка перевірки суми MD5, можливо файл пошкоджений!"
 
 msgid ""
 "The network wizard extension is not installed!\n"
@@ -18422,10 +18331,6 @@ msgstr ""
 
 msgid "The wizard can backup your current settings. Do you want to do a backup now?"
 msgstr "Майстер може зберегти Ваші налаштування. Бажаєте зробити копію зараз?"
-
-#, python-format
-msgid "The wizard found a configuration backup. Do you want to restore your old settings from %s?"
-msgstr "Майстер виявив резервну копію конфігурації. Бажаєте відновити старі налаштування з %s?"
 
 msgid "The wizard is finished now."
 msgstr "Майстер завершив роботу."
@@ -18785,18 +18690,6 @@ msgstr "Ця опція встановлює придушення фіктивн
 msgid "This option sets up the picture sharpness, used when the picture is being upscaled."
 msgstr "Ця опція налаштовує різкість зображення, має значення, якщо зображення має бути збільшено."
 
-#, python-format
-msgid ""
-"This plugin creates a USB stick which can be used to update the firmware of your %s %s without the need for a network or WLAN connection.\n"
-"First, a USB stick needs to be prepared so that it becomes bootable.\n"
-"In the next step, an NFI image file can be downloaded from the update server and saved on the USB stick.\n"
-"If you already have a prepared bootable USB stick, please insert it now. Otherwise plug in a USB stick with a minimum size of 64 MB!"
-msgstr ""
-"Цей плагін підготує USB-флешку, яка може бути використана для оновлення прошивки %s %s, без необхідності мережі або бездротового з'єднання.\n"
-"Спершу, USB-флешку необхідно підготувати так, щоб вона стала завантажувальною.\n"
-"В наступному кроці, NFI файл іміджу можна завантажити з сервера оновлень і збереження на USB флеш.\n"
-"Якщо ви вже підготували завантажувальну USB-флеш, будь ласка, підключіть її зараз. В іншому випадку підключіть USB флеш з мінімальним розміром 64 Мб!"
-
 msgid "This plugin is installed."
 msgstr "Плагін встановлений."
 
@@ -19134,18 +19027,6 @@ msgstr "Режим встановлення заголовку"
 
 msgid "To restore the image:"
 msgstr "Щоб відновити імідж:"
-
-#, python-format
-msgid ""
-"To update your %s %s firmware, please follow these steps:\n"
-"1) Turn off your box with the rear power switch and make sure the bootable USB stick is plugged in.\n"
-"2) Turn mains back on and hold the DOWN button on the front panel pressed for 10 seconds.\n"
-"3) Wait for bootup and follow instructions of the wizard."
-msgstr ""
-"Для оновлення прошивки %s %s, виконайте наступні дії:\n"
-"1) Вимкніть Ваш приймач заднім вимикачем і переконайтесь, що завантажувальний USB-носій підключено.\n"
-"2) Увімкніть приймач знову і утримуйте кнопку ВНИЗ на передній панелі кнопок протягом 10 секунд.\n"
-"3) Дочекатися завантаження і дотримуйтесь інструкцій майстра."
 
 msgid "Today"
 msgstr "Сьогодні"
@@ -19520,9 +19401,6 @@ msgstr "USALS автоматично переміщує антену до пот
 
 msgid "USB Stick"
 msgstr "USB Носій"
-
-msgid "USB stick wizard"
-msgstr "Помічник USB носія"
 
 msgid "USB switch ERROR! - already on USB"
 msgstr "USB перемикач ПОМИЛКА! - вже на USB"
@@ -21115,9 +20993,6 @@ msgstr "Цей лог вже був відправлений. Хочете ще 
 msgid "You have chosen to backup your settings. Please press OK to start the backup now."
 msgstr "Ви вибрали копіювання ваших налаштувань. Натисніть OK для початку копіювання."
 
-msgid "You have chosen to create a new .NFI flasher bootable USB stick. This will repartition the USB stick and therefore all data on it will be erased."
-msgstr "Ви вибрали створення нового завантажувального USB носія. Це перерозподілить USB носій і видалить всі дані."
-
 msgid "You have chosen to restore your settings. Enigma2 will restart after restore. Please press OK to start the restore now."
 msgstr "Ви вибрали відновлення налаштувань. Enigma2 буде перезавантажена відразу після відновлення. Натисніть ОК для відновлення."
 
@@ -21818,9 +21693,6 @@ msgstr "підтверджений"
 msgid "connected"
 msgstr "під'єднаний"
 
-msgid "continue"
-msgstr "продовжити"
-
 msgid "controlled by HDMI"
 msgstr "управляється HDMI"
 
@@ -21856,10 +21728,6 @@ msgstr "створити посилання..."
 
 msgid "current affairs (general)"
 msgstr "поточні події (загальні)"
-
-#, python-format
-msgid "currently installed image: %s"
-msgstr "поточний встановлений імідж: %s"
 
 msgid "daily"
 msgstr "щодня"
@@ -23253,6 +23121,141 @@ msgstr "переключення"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Changelog"
+#~ msgstr "Журнал змін"
+
+#, python-format
+#~ msgid "Could not connect to %s %s .NFI image feed server:"
+#~ msgstr "Не вдалося підключитися до %s %s .NFI сервер іміджу:"
+
+#~ msgid "Currently installed image"
+#~ msgstr "Встановлений імідж"
+
+#, python-format
+#~ msgid "Do you want to download the image to %s ?"
+#~ msgstr "Хочете виконати завантаження іміджу до %s ?"
+
+#~ msgid "Download"
+#~ msgstr "Завантажити"
+
+#, python-format
+#~ msgid "Download %s from server"
+#~ msgstr "Завантаження %s із сервера"
+
+#~ msgid "Download .NFI-files for USB-flasher"
+#~ msgstr "Завантаження .NFI-файлу на USB-носій"
+
+#~ msgid "Factory Reset Settings"
+#~ msgstr "Налаштування скидання до Заводських налаштувань"
+
+#~ msgid "Flash"
+#~ msgstr "Запис"
+
+#~ msgid "Flashing failed"
+#~ msgstr "Прошивка невдала"
+
+#~ msgid "Get latest experimental image"
+#~ msgstr "Отримати останній експериментальний імідж"
+
+#~ msgid "Get latest release image"
+#~ msgstr "Отримати останній створений імідж"
+
+#~ msgid "NFI image flashing"
+#~ msgstr "Програмування NFI іміджа"
+
+#~ msgid "NFI image flashing completed. Press Yellow to Reboot!"
+#~ msgstr "Запис NFI іміджу завершено. Натисніть Жовту для перезавантаження!"
+
+#~ msgid "No details for this image file"
+#~ msgstr "Нема деталей про цей імідж"
+
+#~ msgid "Please check your network settings!"
+#~ msgstr "Будь ласка, перевірте налаштування вашої мережі!"
+
+#~ msgid "Please select an NFI file and press green key to flash!"
+#~ msgstr "Будь ласка, виберіть файл NFI і натисніть зелену кнопку для запису!"
+
+#~ msgid "Prepare another USB stick for image flashing"
+#~ msgstr "Підготувати інший USB-носій для встановлення іміджа"
+
+#~ msgid "Restore is running..."
+#~ msgstr "Виконується відновлення..."
+
+#~ msgid "Select an image to be downloaded"
+#~ msgstr "Вибрати імідж для завантаження"
+
+#~ msgid "Select desired image from feed list"
+#~ msgstr "Виберіть потрібний імідж з списку фіду"
+
+#, python-format
+#~ msgid "Shall the USB stick wizard proceed and program the image file %s into flash memory?"
+#~ msgstr "Чи повинен майстер з USB носія встановлювати і програмувати файли іміджу %s у флеш пам'ять?"
+
+#~ msgid ""
+#~ "The USB stick was prepared to be bootable.\n"
+#~ "Now you can download an NFI image file!"
+#~ msgstr ""
+#~ "USB носій підготовлений як завантажувальний.\n"
+#~ "Тепер ви можете встановити імідж NFI!"
+
+#, python-format
+#~ msgid ""
+#~ "The following device was found:\n"
+#~ "\n"
+#~ "%s\n"
+#~ "\n"
+#~ "Do you want to write the USB flasher to this stick?"
+#~ msgstr ""
+#~ "Знайдено пристрій:\n"
+#~ "\n"
+#~ "%s\n"
+#~ "\n"
+#~ "Бажаєте записати USB-Флешер на цю флешку?"
+
+#~ msgid "The md5sum validation failed, the file may be corrupted!"
+#~ msgstr "Помилка перевірки суми MD5, можливо файл пошкоджений!"
+
+#, python-format
+#~ msgid "The wizard found a configuration backup. Do you want to restore your old settings from %s?"
+#~ msgstr "Майстер виявив резервну копію конфігурації. Бажаєте відновити старі налаштування з %s?"
+
+#, python-format
+#~ msgid ""
+#~ "This plugin creates a USB stick which can be used to update the firmware of your %s %s without the need for a network or WLAN connection.\n"
+#~ "First, a USB stick needs to be prepared so that it becomes bootable.\n"
+#~ "In the next step, an NFI image file can be downloaded from the update server and saved on the USB stick.\n"
+#~ "If you already have a prepared bootable USB stick, please insert it now. Otherwise plug in a USB stick with a minimum size of 64 MB!"
+#~ msgstr ""
+#~ "Цей плагін підготує USB-флешку, яка може бути використана для оновлення прошивки %s %s, без необхідності мережі або бездротового з'єднання.\n"
+#~ "Спершу, USB-флешку необхідно підготувати так, щоб вона стала завантажувальною.\n"
+#~ "В наступному кроці, NFI файл іміджу можна завантажити з сервера оновлень і збереження на USB флеш.\n"
+#~ "Якщо ви вже підготували завантажувальну USB-флеш, будь ласка, підключіть її зараз. В іншому випадку підключіть USB флеш з мінімальним розміром 64 Мб!"
+
+#, python-format
+#~ msgid ""
+#~ "To update your %s %s firmware, please follow these steps:\n"
+#~ "1) Turn off your box with the rear power switch and make sure the bootable USB stick is plugged in.\n"
+#~ "2) Turn mains back on and hold the DOWN button on the front panel pressed for 10 seconds.\n"
+#~ "3) Wait for bootup and follow instructions of the wizard."
+#~ msgstr ""
+#~ "Для оновлення прошивки %s %s, виконайте наступні дії:\n"
+#~ "1) Вимкніть Ваш приймач заднім вимикачем і переконайтесь, що завантажувальний USB-носій підключено.\n"
+#~ "2) Увімкніть приймач знову і утримуйте кнопку ВНИЗ на передній панелі кнопок протягом 10 секунд.\n"
+#~ "3) Дочекатися завантаження і дотримуйтесь інструкцій майстра."
+
+#~ msgid "USB stick wizard"
+#~ msgstr "Помічник USB носія"
+
+#~ msgid "You have chosen to create a new .NFI flasher bootable USB stick. This will repartition the USB stick and therefore all data on it will be erased."
+#~ msgstr "Ви вибрали створення нового завантажувального USB носія. Це перерозподілить USB носій і видалить всі дані."
+
+#~ msgid "continue"
+#~ msgstr "продовжити"
+
+#, python-format
+#~ msgid "currently installed image: %s"
+#~ msgstr "поточний встановлений імідж: %s"
 
 #~ msgid "Manual scan"
 #~ msgstr "Ручний пошук"

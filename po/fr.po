@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-04-02 20:55+0000\n"
+"POT-Creation-Date: 2022-04-10 10:23+0000\n"
 "PO-Revision-Date: 2022-02-24 21:56+0000\n"
 "Last-Translator: Mr.Servo <mrservo@gmx.de>\n"
 "Language-Team: French <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/fr/>\n"
@@ -3893,6 +3893,9 @@ msgstr ""
 msgid "Calculate"
 msgstr "Calculer"
 
+msgid "Calculate and show size of directory. Note: This can be slow down the UI on selection of a folder!"
+msgstr ""
+
 msgid "Calculate file checksums"
 msgstr "Calculer les sommes de contrôle des fichiers"
 
@@ -4202,9 +4205,6 @@ msgstr "Changer taille du pas"
 
 msgid "Change to bouquet"
 msgstr "Changer vers bouquet"
-
-msgid "Changelog"
-msgstr "Changelog"
 
 #, python-format
 msgid ""
@@ -5292,10 +5292,6 @@ msgstr "Costa Rica"
 msgid "Cote d'Ivoire / Ivory Coast"
 msgstr "Côte d'Ivoire / Côte d'Ivoire"
 
-#, python-format
-msgid "Could not connect to %s %s .NFI image feed server:"
-msgstr "Impossible de se connecter au serveur d'image %s %s .NFI :"
-
 msgid "Could not connect to server"
 msgstr "N'a pas pu se connecter au serveur"
 
@@ -5471,9 +5467,6 @@ msgstr ""
 
 msgid "Current version:"
 msgstr "Version actuelle :"
-
-msgid "Currently installed image"
-msgstr "Image installé actuellement"
 
 msgid "Custom"
 msgstr "Personnalisé(e)"
@@ -6317,9 +6310,6 @@ msgstr "Configuration d'affichage"
 msgid "Display and user interface"
 msgstr "Affichage et interface utilisateur"
 
-msgid "Display directory size"
-msgstr ""
-
 msgid "Display message before playing next movie"
 msgstr "Afficher un message avant de lancer le prochain film"
 
@@ -6558,10 +6548,6 @@ msgid "Do you want to do another manual service scan?"
 msgstr "Voulez-vous faire une autre analyse manuelle des services ?"
 
 #, python-format
-msgid "Do you want to download the image to %s ?"
-msgstr "Voulez-vous télécharger l'image vers %s ?"
-
-#, python-format
 msgid ""
 "Do you want to flash image\n"
 "%s"
@@ -6679,16 +6665,6 @@ msgstr[1] "Terminé - %d paquets (%s) installés, mis à jour ou supprimés"
 
 msgid "Down"
 msgstr "Bas"
-
-msgid "Download"
-msgstr "Télécharger"
-
-#, python-format
-msgid "Download %s from server"
-msgstr "Télécharger %s depuis le serveur"
-
-msgid "Download .NFI-files for USB-flasher"
-msgstr "Téléchargement fichiers .NFI pour flasheur-USB"
 
 msgid "Download Plugins"
 msgstr "Télécharger plugins"
@@ -7869,9 +7845,6 @@ msgstr "Configuration FTP"
 msgid "Factory Reset"
 msgstr ""
 
-msgid "Factory Reset Settings"
-msgstr ""
-
 msgid "Factory release"
 msgstr ""
 
@@ -8126,9 +8099,6 @@ msgstr "Fixé"
 msgid "Fixed X11 font (SD)"
 msgstr "Police fixe X11 (SD)"
 
-msgid "Flash"
-msgstr "Flasher"
-
 msgid "Flash Image"
 msgstr "Flasher image"
 
@@ -8156,9 +8126,6 @@ msgstr "Flashage"
 
 msgid "Flashing Image"
 msgstr "Flashage de l’image"
-
-msgid "Flashing failed"
-msgstr "Echec du flashage"
 
 msgid "Flashing image successful"
 msgstr "Image flashée avec succès"
@@ -8490,12 +8457,6 @@ msgstr "Société"
 
 msgid "Gesundheit"
 msgstr "Sois béni"
-
-msgid "Get latest experimental image"
-msgstr "Obtenir la dernière image expérimentale"
-
-msgid "Get latest release image"
-msgstr "Obtenir la dernière image publiée"
 
 msgid "Getting Event Info failed!"
 msgstr "Impossible de retrouver les infos de l'événement !"
@@ -11299,12 +11260,6 @@ msgstr "N/A"
 msgid "NEXT"
 msgstr "SUIVANT"
 
-msgid "NFI image flashing"
-msgstr "Flashage de l'image NFI"
-
-msgid "NFI image flashing completed. Press Yellow to Reboot!"
-msgstr "Flashage de l'image NFI terminé. Appuyez sur le bouton Jaune pour Redémarrer !"
-
 msgid "NFS"
 msgstr "NFS"
 
@@ -11646,9 +11601,6 @@ msgstr "Aucun demux disponible"
 
 msgid "No description available."
 msgstr "Description non disponible."
-
-msgid "No details for this image file"
-msgstr "Aucuns détails pour ce fichier image"
 
 msgid "No displayable files on this medium found!"
 msgstr "Aucun fichier affichable sur ce support n'a été trouvé !"
@@ -12731,9 +12683,6 @@ msgstr "Veuillez changer l'heure de fin de l'enregistrement"
 msgid "Please check the manual of the receiver"
 msgstr "Veuillez consulter le manuel du récepteur"
 
-msgid "Please check your network settings!"
-msgstr "Veuillez vérifier vos paramètres réseau !"
-
 msgid "Please choose CCcam-Reader"
 msgstr "Merci de choisir un lecteur CCcam"
 
@@ -12859,9 +12808,6 @@ msgstr "Veuillez choisir un sous-service à enregistrer..."
 
 msgid "Please select a subservice..."
 msgstr "Veuillez choisir un sous-service..."
-
-msgid "Please select an NFI file and press green key to flash!"
-msgstr "Veuillez choisir un fichier NFI et appouyez sur la bouton Vert pour flasher !"
 
 msgid "Please select an acceptable directory."
 msgstr "Veuillez sélectionner un répertoire acceptable."
@@ -13289,9 +13235,6 @@ msgstr "Tuners préférés pour les enregistrements, sélection multiple autoris
 
 msgid "Preparation time for recording (seconds)"
 msgstr "Temps de préparation de l'enregistrement (secondes)"
-
-msgid "Prepare another USB stick for image flashing"
-msgstr "Préparer une nouvelle clé USB pour flasher l'image"
 
 msgid "Preparing... Please wait"
 msgstr "En préparation... Veuillez patienter"
@@ -14447,9 +14390,6 @@ msgstr "Restaurer les paramètres"
 msgid "Restore backups"
 msgstr "Restaurer sauvegardes"
 
-msgid "Restore is running..."
-msgstr "Restauration en cours..."
-
 msgid "Restore settings from a backup"
 msgstr "Restaurer les paramètres à partir d'une sauvegarde"
 
@@ -15228,9 +15168,6 @@ msgstr "Choisir les fichiers additionnels à sauvegarder"
 msgid "Select additional files to backup"
 msgstr "Choisir les fichiers additionnels à sauvegarder"
 
-msgid "Select an image to be downloaded"
-msgstr "Choisir l'image à télécharger"
-
 msgid "Select audio track"
 msgstr "Sélectionner la piste audio"
 
@@ -15257,9 +15194,6 @@ msgstr "Sélectionnez la destination de la copie pour :"
 
 msgid "Select default EPG type..."
 msgstr "Choisir le type d'EPG par défaut…"
-
-msgid "Select desired image from feed list"
-msgstr "Choisir l'image désirée depuis la liste des feeds"
 
 msgid "Select destination for:"
 msgstr "Sélectionnez la destination pour :"
@@ -16105,10 +16039,6 @@ msgstr "Configurer votre équipement satellite"
 msgid "Seychelles"
 msgstr "Seychelles"
 
-#, python-format
-msgid "Shall the USB stick wizard proceed and program the image file %s into flash memory?"
-msgstr "L'assistant clé USB doit-il procéder et programmer le dossier d'image %s dans la mémoire Flash ?"
-
 msgid "Share Folder's"
 msgstr "Répertoires partagés"
 
@@ -16240,6 +16170,9 @@ msgstr "Afficher CoolSingleGuide"
 
 msgid "Show CoolTVGuide"
 msgstr "Afficher CoolTVGuide"
+
+msgid "Show Directory size"
+msgstr ""
 
 msgid "Show Display Icons"
 msgstr "Afficher les icônes à l'écran"
@@ -18242,13 +18175,6 @@ msgid "The TV was switched to the recording service!\n"
 msgstr "La TV a zappé sur la chaîne enregistrée !\n"
 
 msgid ""
-"The USB stick was prepared to be bootable.\n"
-"Now you can download an NFI image file!"
-msgstr ""
-"La clé USB a été préparée pour être bootable.\n"
-"Vous pouvez maintenant télécharger un fichier image NFI !"
-
-msgid ""
 "The VideoMode plugin is not installed!\n"
 "Please install it."
 msgstr ""
@@ -18300,20 +18226,6 @@ msgstr "Le paramètre par défaut de l'heure de démarrage est : -5 minutes et d
 msgid "The detailed information is intended for developers only."
 msgstr ""
 
-#, python-format
-msgid ""
-"The following device was found:\n"
-"\n"
-"%s\n"
-"\n"
-"Do you want to write the USB flasher to this stick?"
-msgstr ""
-"Le périphérique suivant a été trouvé :\n"
-"\n"
-"%s\n"
-"\n"
-"Souhaitez-vous écrire le flasheur USB sur cette clé ?"
-
 msgid "The following files were found..."
 msgstr "Les fichiers suivant ont été trouvés..."
 
@@ -18335,9 +18247,6 @@ msgstr "La hauteur de l'image. L'entrée sera mise à l'échelle pour correspond
 
 msgid "The loopthrough setting is wrong."
 msgstr "Le paramètre de bouclage (loopthrough) est incorrect."
-
-msgid "The md5sum validation failed, the file may be corrupted!"
-msgstr "La validation md5sum a échoué, le fichier est peut-être corrompu !"
 
 msgid ""
 "The network wizard extension is not installed!\n"
@@ -18431,10 +18340,6 @@ msgstr ""
 
 msgid "The wizard can backup your current settings. Do you want to do a backup now?"
 msgstr "L'assistant peut sauvegarder vos paramètres actuels. Voulez-vous les sauvegarder maintenant ?"
-
-#, python-format
-msgid "The wizard found a configuration backup. Do you want to restore your old settings from %s?"
-msgstr "L'assistant à trouvé une configuration sauvegardée. Voulez-vous restaurer vos anciens paramètres depuis %s ?"
 
 msgid "The wizard is finished now."
 msgstr "L'assistant est terminé."
@@ -18796,18 +18701,6 @@ msgstr "Cette option définit la supression de faux contours numériques, qui so
 msgid "This option sets up the picture sharpness, used when the picture is being upscaled."
 msgstr "Cette option définit la netteté de l'image, utilisée lorsque l'image est rehaussée."
 
-#, python-format
-msgid ""
-"This plugin creates a USB stick which can be used to update the firmware of your %s %s without the need for a network or WLAN connection.\n"
-"First, a USB stick needs to be prepared so that it becomes bootable.\n"
-"In the next step, an NFI image file can be downloaded from the update server and saved on the USB stick.\n"
-"If you already have a prepared bootable USB stick, please insert it now. Otherwise plug in a USB stick with a minimum size of 64 MB!"
-msgstr ""
-"Ce plugin crée une clé USB qui peut être utilisé pour mettre à jour le logiciel de votre %s %s sans l'aide d'une connexion réseau ou sans-fil.\n"
-"Premièrement, une clé USB doit être préparée pour devenir bootable.\n"
-"Dans l'étape suivante, un fichier image NFI peut être téléchargé depuis le serveur de mise à jour et copié sur la clé USB.\n"
-"Si vous avez déjà préparé une clé USB bootable, veuillez l'insérer maintenant. Sinon insérez une clé USB avec une taille minimum de 64 Mo !"
-
 msgid "This plugin is installed."
 msgstr "Ce plugin est installé."
 
@@ -19154,18 +19047,6 @@ msgstr "Mode jeu titre"
 
 msgid "To restore the image:"
 msgstr "Pour restaurer l'image :"
-
-#, python-format
-msgid ""
-"To update your %s %s firmware, please follow these steps:\n"
-"1) Turn off your box with the rear power switch and make sure the bootable USB stick is plugged in.\n"
-"2) Turn mains back on and hold the DOWN button on the front panel pressed for 10 seconds.\n"
-"3) Wait for bootup and follow instructions of the wizard."
-msgstr ""
-"Pour mettre à jour le logiciel de votre %s %s, merci de suivre les étapes suivantes :\n"
-"1) Éteindre votre récepteur par l'interrupteur arrière et assurez-vous qu'une clé USB bootable est connectée.\n"
-"2) Rallumer l'interrupteur et maintenir la touche BAS du panneau avant appuyée pendant 10 secondes.\n"
-"3) Attendre le démarrage et suivre les instructions de l'assistant."
 
 msgid "Today"
 msgstr "Aujourd'hui"
@@ -19544,9 +19425,6 @@ msgstr "USALS déplace automatiquement une antenne motorisée sur le satellite c
 
 msgid "USB Stick"
 msgstr "Clé USB"
-
-msgid "USB stick wizard"
-msgstr "Assistant clé USB"
 
 msgid "USB switch ERROR! - already on USB"
 msgstr "ERREUR du commutateur USB ! - déjà sur USB"
@@ -21139,9 +21017,6 @@ msgstr "Vous avez déjà envoyé ce log, êtes-vous sûr de vouloir renvoyer ce 
 msgid "You have chosen to backup your settings. Please press OK to start the backup now."
 msgstr "Vous avez choisi de sauvegarder vos paramètres. Veuillez appuyer sur OK pour commencer la sauvegarde."
 
-msgid "You have chosen to create a new .NFI flasher bootable USB stick. This will repartition the USB stick and therefore all data on it will be erased."
-msgstr "Vous avez choisi de créer une nouvelle clé USB flasheur bootable .NFI. Ceci repartitionnera la clé USB et par conséquent effacera toutes les données dessus."
-
 msgid "You have chosen to restore your settings. Enigma2 will restart after restore. Please press OK to start the restore now."
 msgstr "Vious avez choisi de restaurer vos paramètres. Enigma2 redémarrera après la restauration. Veuillez appuyer sur OK pour démarrer la restauration."
 
@@ -21847,9 +21722,6 @@ msgstr "Confirmé"
 msgid "connected"
 msgstr "Connecté"
 
-msgid "continue"
-msgstr "continuer"
-
 msgid "controlled by HDMI"
 msgstr "Contrôlé par HDMI"
 
@@ -21885,10 +21757,6 @@ msgstr "créer un lien symbolique..."
 
 msgid "current affairs (general)"
 msgstr "affaires courantes (général)"
-
-#, python-format
-msgid "currently installed image: %s"
-msgstr "image actuellement installée : %s"
 
 msgid "daily"
 msgstr "Quotidien"
@@ -23282,6 +23150,138 @@ msgstr "zapping"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Changelog"
+#~ msgstr "Changelog"
+
+#, python-format
+#~ msgid "Could not connect to %s %s .NFI image feed server:"
+#~ msgstr "Impossible de se connecter au serveur d'image %s %s .NFI :"
+
+#~ msgid "Currently installed image"
+#~ msgstr "Image installé actuellement"
+
+#, python-format
+#~ msgid "Do you want to download the image to %s ?"
+#~ msgstr "Voulez-vous télécharger l'image vers %s ?"
+
+#~ msgid "Download"
+#~ msgstr "Télécharger"
+
+#, python-format
+#~ msgid "Download %s from server"
+#~ msgstr "Télécharger %s depuis le serveur"
+
+#~ msgid "Download .NFI-files for USB-flasher"
+#~ msgstr "Téléchargement fichiers .NFI pour flasheur-USB"
+
+#~ msgid "Flash"
+#~ msgstr "Flasher"
+
+#~ msgid "Flashing failed"
+#~ msgstr "Echec du flashage"
+
+#~ msgid "Get latest experimental image"
+#~ msgstr "Obtenir la dernière image expérimentale"
+
+#~ msgid "Get latest release image"
+#~ msgstr "Obtenir la dernière image publiée"
+
+#~ msgid "NFI image flashing"
+#~ msgstr "Flashage de l'image NFI"
+
+#~ msgid "NFI image flashing completed. Press Yellow to Reboot!"
+#~ msgstr "Flashage de l'image NFI terminé. Appuyez sur le bouton Jaune pour Redémarrer !"
+
+#~ msgid "No details for this image file"
+#~ msgstr "Aucuns détails pour ce fichier image"
+
+#~ msgid "Please check your network settings!"
+#~ msgstr "Veuillez vérifier vos paramètres réseau !"
+
+#~ msgid "Please select an NFI file and press green key to flash!"
+#~ msgstr "Veuillez choisir un fichier NFI et appouyez sur la bouton Vert pour flasher !"
+
+#~ msgid "Prepare another USB stick for image flashing"
+#~ msgstr "Préparer une nouvelle clé USB pour flasher l'image"
+
+#~ msgid "Restore is running..."
+#~ msgstr "Restauration en cours..."
+
+#~ msgid "Select an image to be downloaded"
+#~ msgstr "Choisir l'image à télécharger"
+
+#~ msgid "Select desired image from feed list"
+#~ msgstr "Choisir l'image désirée depuis la liste des feeds"
+
+#, python-format
+#~ msgid "Shall the USB stick wizard proceed and program the image file %s into flash memory?"
+#~ msgstr "L'assistant clé USB doit-il procéder et programmer le dossier d'image %s dans la mémoire Flash ?"
+
+#~ msgid ""
+#~ "The USB stick was prepared to be bootable.\n"
+#~ "Now you can download an NFI image file!"
+#~ msgstr ""
+#~ "La clé USB a été préparée pour être bootable.\n"
+#~ "Vous pouvez maintenant télécharger un fichier image NFI !"
+
+#, python-format
+#~ msgid ""
+#~ "The following device was found:\n"
+#~ "\n"
+#~ "%s\n"
+#~ "\n"
+#~ "Do you want to write the USB flasher to this stick?"
+#~ msgstr ""
+#~ "Le périphérique suivant a été trouvé :\n"
+#~ "\n"
+#~ "%s\n"
+#~ "\n"
+#~ "Souhaitez-vous écrire le flasheur USB sur cette clé ?"
+
+#~ msgid "The md5sum validation failed, the file may be corrupted!"
+#~ msgstr "La validation md5sum a échoué, le fichier est peut-être corrompu !"
+
+#, python-format
+#~ msgid "The wizard found a configuration backup. Do you want to restore your old settings from %s?"
+#~ msgstr "L'assistant à trouvé une configuration sauvegardée. Voulez-vous restaurer vos anciens paramètres depuis %s ?"
+
+#, python-format
+#~ msgid ""
+#~ "This plugin creates a USB stick which can be used to update the firmware of your %s %s without the need for a network or WLAN connection.\n"
+#~ "First, a USB stick needs to be prepared so that it becomes bootable.\n"
+#~ "In the next step, an NFI image file can be downloaded from the update server and saved on the USB stick.\n"
+#~ "If you already have a prepared bootable USB stick, please insert it now. Otherwise plug in a USB stick with a minimum size of 64 MB!"
+#~ msgstr ""
+#~ "Ce plugin crée une clé USB qui peut être utilisé pour mettre à jour le logiciel de votre %s %s sans l'aide d'une connexion réseau ou sans-fil.\n"
+#~ "Premièrement, une clé USB doit être préparée pour devenir bootable.\n"
+#~ "Dans l'étape suivante, un fichier image NFI peut être téléchargé depuis le serveur de mise à jour et copié sur la clé USB.\n"
+#~ "Si vous avez déjà préparé une clé USB bootable, veuillez l'insérer maintenant. Sinon insérez une clé USB avec une taille minimum de 64 Mo !"
+
+#, python-format
+#~ msgid ""
+#~ "To update your %s %s firmware, please follow these steps:\n"
+#~ "1) Turn off your box with the rear power switch and make sure the bootable USB stick is plugged in.\n"
+#~ "2) Turn mains back on and hold the DOWN button on the front panel pressed for 10 seconds.\n"
+#~ "3) Wait for bootup and follow instructions of the wizard."
+#~ msgstr ""
+#~ "Pour mettre à jour le logiciel de votre %s %s, merci de suivre les étapes suivantes :\n"
+#~ "1) Éteindre votre récepteur par l'interrupteur arrière et assurez-vous qu'une clé USB bootable est connectée.\n"
+#~ "2) Rallumer l'interrupteur et maintenir la touche BAS du panneau avant appuyée pendant 10 secondes.\n"
+#~ "3) Attendre le démarrage et suivre les instructions de l'assistant."
+
+#~ msgid "USB stick wizard"
+#~ msgstr "Assistant clé USB"
+
+#~ msgid "You have chosen to create a new .NFI flasher bootable USB stick. This will repartition the USB stick and therefore all data on it will be erased."
+#~ msgstr "Vous avez choisi de créer une nouvelle clé USB flasheur bootable .NFI. Ceci repartitionnera la clé USB et par conséquent effacera toutes les données dessus."
+
+#~ msgid "continue"
+#~ msgstr "continuer"
+
+#, python-format
+#~ msgid "currently installed image: %s"
+#~ msgstr "image actuellement installée : %s"
 
 #~ msgid "Manual scan"
 #~ msgstr "Recherche manuelle"

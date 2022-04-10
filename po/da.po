@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-04-02 20:55+0000\n"
+"POT-Creation-Date: 2022-04-10 10:23+0000\n"
 "PO-Revision-Date: 2021-11-04 23:53+0000\n"
 "Last-Translator: T. Rylle <dk-translation@pm.me>\n"
 "Language-Team: Danish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/da/>\n"
@@ -3900,6 +3900,9 @@ msgstr ""
 msgid "Calculate"
 msgstr "Beregn"
 
+msgid "Calculate and show size of directory. Note: This can be slow down the UI on selection of a folder!"
+msgstr ""
+
 msgid "Calculate file checksums"
 msgstr "Beregn filens kontrolsum"
 
@@ -4209,9 +4212,6 @@ msgstr "Skift trin afstand"
 
 msgid "Change to bouquet"
 msgstr "Skift til Buket"
-
-msgid "Changelog"
-msgstr "Ændringslog"
 
 #, python-format
 msgid ""
@@ -5299,10 +5299,6 @@ msgstr "Costa Rica"
 msgid "Cote d'Ivoire / Ivory Coast"
 msgstr "Elfenbenskysten"
 
-#, python-format
-msgid "Could not connect to %s %s .NFI image feed server:"
-msgstr "Kunne ikke forbinde til %s %s .NFI Image feed-server:"
-
 msgid "Could not connect to server"
 msgstr "Kunne ikke forbinde til server"
 
@@ -5478,9 +5474,6 @@ msgstr ""
 
 msgid "Current version:"
 msgstr "Nuværende Version:"
-
-msgid "Currently installed image"
-msgstr "Aktuel installeret Image"
 
 msgid "Custom"
 msgstr "Brugerdefineret"
@@ -6323,9 +6316,6 @@ msgstr "Skærmopsætning"
 msgid "Display and user interface"
 msgstr "Skærm og brugergrænseflade"
 
-msgid "Display directory size"
-msgstr ""
-
 msgid "Display message before playing next movie"
 msgstr "Vis besked inden afspilning af næste film"
 
@@ -6560,10 +6550,6 @@ msgid "Do you want to do another manual service scan?"
 msgstr "Vil du foretage en ny manuel kanalsøgning ?"
 
 #, python-format
-msgid "Do you want to download the image to %s ?"
-msgstr "Vil du downloade imaget til %s ?"
-
-#, python-format
 msgid ""
 "Do you want to flash image\n"
 "%s"
@@ -6680,16 +6666,6 @@ msgstr[1] "Færdig - Installerede, opgraderede eller fjernede %d pakker (%s)"
 
 msgid "Down"
 msgstr "Ned"
-
-msgid "Download"
-msgstr "Download"
-
-#, python-format
-msgid "Download %s from server"
-msgstr "Download %s fra server"
-
-msgid "Download .NFI-files for USB-flasher"
-msgstr "Download .NFI-filer til USB nøgle"
 
 msgid "Download Plugins"
 msgstr "Download Plugins"
@@ -7869,9 +7845,6 @@ msgstr "FTP opsætning"
 msgid "Factory Reset"
 msgstr ""
 
-msgid "Factory Reset Settings"
-msgstr ""
-
 msgid "Factory release"
 msgstr ""
 
@@ -8129,9 +8102,6 @@ msgstr "Fast"
 msgid "Fixed X11 font (SD)"
 msgstr "Fast X11 skrifttype (SD)"
 
-msgid "Flash"
-msgstr "Flash"
-
 msgid "Flash Image"
 msgstr "Flash Image"
 
@@ -8159,9 +8129,6 @@ msgstr "Blinker"
 
 msgid "Flashing Image"
 msgstr "Flasher Image"
-
-msgid "Flashing failed"
-msgstr "Flashing mislykkedes"
 
 msgid "Flashing image successful"
 msgstr "Flash af Image lykkedes"
@@ -8495,12 +8462,6 @@ msgstr ""
 
 msgid "Gesundheit"
 msgstr "Sundhed"
-
-msgid "Get latest experimental image"
-msgstr "Hent seneste eksperiment Image"
-
-msgid "Get latest release image"
-msgstr "Hent seneste Image"
 
 msgid "Getting Event Info failed!"
 msgstr "Kunne ikke hente Begivenhedsinfo!"
@@ -11363,12 +11324,6 @@ msgstr "Ikke tilgængelig"
 msgid "NEXT"
 msgstr "NÆSTE"
 
-msgid "NFI image flashing"
-msgstr "NFI Image flashing"
-
-msgid "NFI image flashing completed. Press Yellow to Reboot!"
-msgstr "NFI Image flashing gennemført. Tryk gul knap for at genstarte!"
-
 msgid "NFS"
 msgstr "NFS"
 
@@ -11716,9 +11671,6 @@ msgstr "Ingen demux tilgængelig"
 
 msgid "No description available."
 msgstr "Ingen beskrivelse tilgængelig."
-
-msgid "No details for this image file"
-msgstr "Ingen detaljer for denne image fil"
 
 msgid "No displayable files on this medium found!"
 msgstr "Der findes ingen synlige filer på dette medie!"
@@ -12816,9 +12768,6 @@ msgstr "Ændre venligst optagelse sluttid"
 msgid "Please check the manual of the receiver"
 msgstr "Se venligst vejledningen til modtageren."
 
-msgid "Please check your network settings!"
-msgstr "Tjek venligst din netværks opsætning!"
-
 msgid "Please choose CCcam-Reader"
 msgstr "Vælg venligst CCcam-Læser"
 
@@ -12944,9 +12893,6 @@ msgstr "Vælg en underkanal til at optagelse..."
 
 msgid "Please select a subservice..."
 msgstr "Vælg venligst en underkanal..."
-
-msgid "Please select an NFI file and press green key to flash!"
-msgstr "Vælg venligst en NFI-fil og tryk på grøn knap for at flashe!"
 
 #, fuzzy
 msgid "Please select an acceptable directory."
@@ -13375,9 +13321,6 @@ msgstr "Foretrukne Tunere til optagelser, valg af flere tilladt"
 
 msgid "Preparation time for recording (seconds)"
 msgstr "Forberedelsestid for optagelse (sekunder)"
-
-msgid "Prepare another USB stick for image flashing"
-msgstr "Forbered en anden USB nøgle for Image installation"
 
 msgid "Preparing... Please wait"
 msgstr "Forbereder... Vent venligst"
@@ -14535,9 +14478,6 @@ msgstr "Gendan indstillinger"
 msgid "Restore backups"
 msgstr "Gendan backup"
 
-msgid "Restore is running..."
-msgstr "Gendannelse kører..."
-
 msgid "Restore settings from a backup"
 msgstr "Gendan indstillinger fra en sikkerhedskopi"
 
@@ -15328,9 +15268,6 @@ msgstr "Vælg yderligere sikkerhedskopieringsfiler"
 msgid "Select additional files to backup"
 msgstr "Vælg yderligere filer til sikkerhedskopiering"
 
-msgid "Select an image to be downloaded"
-msgstr "Vælg et Image der skal downloades"
-
 msgid "Select audio track"
 msgstr "Vælg lydspor"
 
@@ -15357,9 +15294,6 @@ msgstr "Vælg kopi destination for:"
 
 msgid "Select default EPG type..."
 msgstr "Vælg standard EPG type..."
-
-msgid "Select desired image from feed list"
-msgstr "Vælg ønsket imgage fra listen"
 
 msgid "Select destination for:"
 msgstr "Vælg destination for:"
@@ -16220,10 +16154,6 @@ msgstr "Sæt dit satellitudstyr op"
 msgid "Seychelles"
 msgstr ""
 
-#, python-format
-msgid "Shall the USB stick wizard proceed and program the image file %s into flash memory?"
-msgstr "Skal USB-nøgle guiden fortsætte og programmere Image-filen %s i Flash hukommelsen ?"
-
 msgid "Share Folder's"
 msgstr "Delte mapper"
 
@@ -16356,6 +16286,9 @@ msgstr "Vis CoolSingleGuide"
 
 msgid "Show CoolTVGuide"
 msgstr "Vis CoolTVGuide"
+
+msgid "Show Directory size"
+msgstr ""
 
 msgid "Show Display Icons"
 msgstr "Vis skærmikoner"
@@ -18382,13 +18315,6 @@ msgid "The TV was switched to the recording service!\n"
 msgstr "TV'et blev skiftet til optagekanalen!\n"
 
 msgid ""
-"The USB stick was prepared to be bootable.\n"
-"Now you can download an NFI image file!"
-msgstr ""
-"USB nøglen er klargjort til boot.\n"
-"nu kan du hente et NFI image!"
-
-msgid ""
 "The VideoMode plugin is not installed!\n"
 "Please install it."
 msgstr ""
@@ -18440,20 +18366,6 @@ msgstr "Standardindstillingerne er opvågningstid - 5 minutter og Timer starttid
 msgid "The detailed information is intended for developers only."
 msgstr ""
 
-#, python-format
-msgid ""
-"The following device was found:\n"
-"\n"
-"%s\n"
-"\n"
-"Do you want to write the USB flasher to this stick?"
-msgstr ""
-"Følgende device blev fundet:\n"
-"\n"
-"%s\n"
-"\n"
-"Vil du skrive USB flasher til denne USB nøgle ?"
-
 msgid "The following files were found..."
 msgstr "Følgende filer fandtes..."
 
@@ -18475,9 +18387,6 @@ msgstr "Højden af billedet. Inddata bliver skaleret til passe til denne værdi.
 
 msgid "The loopthrough setting is wrong."
 msgstr "Loopthrough indstillingen er forkert."
-
-msgid "The md5sum validation failed, the file may be corrupted!"
-msgstr "Validering af md5sum mislykkedes, filen kan være skadet!"
 
 msgid ""
 "The network wizard extension is not installed!\n"
@@ -18569,10 +18478,6 @@ msgstr ""
 
 msgid "The wizard can backup your current settings. Do you want to do a backup now?"
 msgstr "Assistenten kan gemme dine nuværende indstillinger. Vil du gemme dine indstillinger nu ?"
-
-#, python-format
-msgid "The wizard found a configuration backup. Do you want to restore your old settings from %s?"
-msgstr "Assistenten har fundet en konfigurationssikkerhedskopi. Vil du gendanne dine gamle indstillinger fra %s ?"
 
 msgid "The wizard is finished now."
 msgstr "Assistenten er nu gennemført."
@@ -18933,18 +18838,6 @@ msgstr "Denne mulighed sætter hæmningen af falske digitale konturer, som er re
 msgid "This option sets up the picture sharpness, used when the picture is being upscaled."
 msgstr "Denne mulighed sætter den billedeskarphed op, der bruges når billedet opskaleres."
 
-#, python-format
-msgid ""
-"This plugin creates a USB stick which can be used to update the firmware of your %s %s without the need for a network or WLAN connection.\n"
-"First, a USB stick needs to be prepared so that it becomes bootable.\n"
-"In the next step, an NFI image file can be downloaded from the update server and saved on the USB stick.\n"
-"If you already have a prepared bootable USB stick, please insert it now. Otherwise plug in a USB stick with a minimum size of 64 MB!"
-msgstr ""
-"Dette Plugin opretter en USB-nøgle, der kan bruges til at opdatere firmwaren på din %s %s uden behov for en netværks- eller WLAN forbindelse.\n"
-"Først skal USB-nøglen forberedes så den bliver bootbar.\n"
-"I næste trin kan et NFI Image-fil downolades fra opdateringsserveren og gemmes på USB-nøglen.\n"
-"Hvis du allerede har forberedt en bootbar USB-nøgle, så indsæt den venligst nu. Eller indsæt en USB-nøgle med på mindst 64 Mb!"
-
 msgid "This plugin is installed."
 msgstr "Dette plugin er installeret."
 
@@ -19284,18 +19177,6 @@ msgstr "Titelopsætning tilstand"
 
 msgid "To restore the image:"
 msgstr "For at gendanne Image:"
-
-#, python-format
-msgid ""
-"To update your %s %s firmware, please follow these steps:\n"
-"1) Turn off your box with the rear power switch and make sure the bootable USB stick is plugged in.\n"
-"2) Turn mains back on and hold the DOWN button on the front panel pressed for 10 seconds.\n"
-"3) Wait for bootup and follow instructions of the wizard."
-msgstr ""
-"For at opdatere din %s %s firmware, følg venligst disse trin:\n"
-"1) Sluk for din boks med kontakten bagpå og sikre at den bootbare USB-nøgle er sat i.\n"
-"2) Tænd for boksen igen og hold NED knappen på frontpanelet nedtrykt i 10 sekunder.\n"
-"3) Vent til der bootes op og følg instruktionerne i assistenten."
 
 msgid "Today"
 msgstr "Idag"
@@ -19677,9 +19558,6 @@ msgstr "USALS flytter automatisk en motoriseret skål til den rigtige satellit b
 
 msgid "USB Stick"
 msgstr "USB stick"
-
-msgid "USB stick wizard"
-msgstr "USB nøgle assistenten"
 
 msgid "USB switch ERROR! - already on USB"
 msgstr "USB skifte FEJL! - allerede på USB"
@@ -21281,9 +21159,6 @@ msgstr "Du har allerede sendt denne log, er du sikker på at du vil gensende den
 msgid "You have chosen to backup your settings. Please press OK to start the backup now."
 msgstr "Du har valgt ar sikkerhedskopiere dine indstillinger. Tryk venligst på OK for at starte sikkerhedskopieringen nu."
 
-msgid "You have chosen to create a new .NFI flasher bootable USB stick. This will repartition the USB stick and therefore all data on it will be erased."
-msgstr "Du har valgt at oprette ny .NFI flash bootbar USB stick. Dette vil repartitionere USB sticken og derfor vil alle data på den blive slettet."
-
 msgid "You have chosen to restore your settings. Enigma2 will restart after restore. Please press OK to start the restore now."
 msgstr "Du har valgt at gendanne dine indstillinger. Enigma2 vil genstarte efter gendannelsen. Tryk venligst på OK for at starte gendannelsen nu."
 
@@ -21985,9 +21860,6 @@ msgstr "Bekræftet"
 msgid "connected"
 msgstr "Tilsluttet"
 
-msgid "continue"
-msgstr "fortsæt"
-
 msgid "controlled by HDMI"
 msgstr "Styret af HDMI"
 
@@ -22023,10 +21895,6 @@ msgstr "Opret symlænke..."
 
 msgid "current affairs (general)"
 msgstr "Aktuelle begivenheder (Generelt)"
-
-#, python-format
-msgid "currently installed image: %s"
-msgstr "nuværende installerede image: %s"
 
 msgid "daily"
 msgstr "Daglig"
@@ -23438,6 +23306,138 @@ msgstr "Zapper"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Changelog"
+#~ msgstr "Ændringslog"
+
+#, python-format
+#~ msgid "Could not connect to %s %s .NFI image feed server:"
+#~ msgstr "Kunne ikke forbinde til %s %s .NFI Image feed-server:"
+
+#~ msgid "Currently installed image"
+#~ msgstr "Aktuel installeret Image"
+
+#, python-format
+#~ msgid "Do you want to download the image to %s ?"
+#~ msgstr "Vil du downloade imaget til %s ?"
+
+#~ msgid "Download"
+#~ msgstr "Download"
+
+#, python-format
+#~ msgid "Download %s from server"
+#~ msgstr "Download %s fra server"
+
+#~ msgid "Download .NFI-files for USB-flasher"
+#~ msgstr "Download .NFI-filer til USB nøgle"
+
+#~ msgid "Flash"
+#~ msgstr "Flash"
+
+#~ msgid "Flashing failed"
+#~ msgstr "Flashing mislykkedes"
+
+#~ msgid "Get latest experimental image"
+#~ msgstr "Hent seneste eksperiment Image"
+
+#~ msgid "Get latest release image"
+#~ msgstr "Hent seneste Image"
+
+#~ msgid "NFI image flashing"
+#~ msgstr "NFI Image flashing"
+
+#~ msgid "NFI image flashing completed. Press Yellow to Reboot!"
+#~ msgstr "NFI Image flashing gennemført. Tryk gul knap for at genstarte!"
+
+#~ msgid "No details for this image file"
+#~ msgstr "Ingen detaljer for denne image fil"
+
+#~ msgid "Please check your network settings!"
+#~ msgstr "Tjek venligst din netværks opsætning!"
+
+#~ msgid "Please select an NFI file and press green key to flash!"
+#~ msgstr "Vælg venligst en NFI-fil og tryk på grøn knap for at flashe!"
+
+#~ msgid "Prepare another USB stick for image flashing"
+#~ msgstr "Forbered en anden USB nøgle for Image installation"
+
+#~ msgid "Restore is running..."
+#~ msgstr "Gendannelse kører..."
+
+#~ msgid "Select an image to be downloaded"
+#~ msgstr "Vælg et Image der skal downloades"
+
+#~ msgid "Select desired image from feed list"
+#~ msgstr "Vælg ønsket imgage fra listen"
+
+#, python-format
+#~ msgid "Shall the USB stick wizard proceed and program the image file %s into flash memory?"
+#~ msgstr "Skal USB-nøgle guiden fortsætte og programmere Image-filen %s i Flash hukommelsen ?"
+
+#~ msgid ""
+#~ "The USB stick was prepared to be bootable.\n"
+#~ "Now you can download an NFI image file!"
+#~ msgstr ""
+#~ "USB nøglen er klargjort til boot.\n"
+#~ "nu kan du hente et NFI image!"
+
+#, python-format
+#~ msgid ""
+#~ "The following device was found:\n"
+#~ "\n"
+#~ "%s\n"
+#~ "\n"
+#~ "Do you want to write the USB flasher to this stick?"
+#~ msgstr ""
+#~ "Følgende device blev fundet:\n"
+#~ "\n"
+#~ "%s\n"
+#~ "\n"
+#~ "Vil du skrive USB flasher til denne USB nøgle ?"
+
+#~ msgid "The md5sum validation failed, the file may be corrupted!"
+#~ msgstr "Validering af md5sum mislykkedes, filen kan være skadet!"
+
+#, python-format
+#~ msgid "The wizard found a configuration backup. Do you want to restore your old settings from %s?"
+#~ msgstr "Assistenten har fundet en konfigurationssikkerhedskopi. Vil du gendanne dine gamle indstillinger fra %s ?"
+
+#, python-format
+#~ msgid ""
+#~ "This plugin creates a USB stick which can be used to update the firmware of your %s %s without the need for a network or WLAN connection.\n"
+#~ "First, a USB stick needs to be prepared so that it becomes bootable.\n"
+#~ "In the next step, an NFI image file can be downloaded from the update server and saved on the USB stick.\n"
+#~ "If you already have a prepared bootable USB stick, please insert it now. Otherwise plug in a USB stick with a minimum size of 64 MB!"
+#~ msgstr ""
+#~ "Dette Plugin opretter en USB-nøgle, der kan bruges til at opdatere firmwaren på din %s %s uden behov for en netværks- eller WLAN forbindelse.\n"
+#~ "Først skal USB-nøglen forberedes så den bliver bootbar.\n"
+#~ "I næste trin kan et NFI Image-fil downolades fra opdateringsserveren og gemmes på USB-nøglen.\n"
+#~ "Hvis du allerede har forberedt en bootbar USB-nøgle, så indsæt den venligst nu. Eller indsæt en USB-nøgle med på mindst 64 Mb!"
+
+#, python-format
+#~ msgid ""
+#~ "To update your %s %s firmware, please follow these steps:\n"
+#~ "1) Turn off your box with the rear power switch and make sure the bootable USB stick is plugged in.\n"
+#~ "2) Turn mains back on and hold the DOWN button on the front panel pressed for 10 seconds.\n"
+#~ "3) Wait for bootup and follow instructions of the wizard."
+#~ msgstr ""
+#~ "For at opdatere din %s %s firmware, følg venligst disse trin:\n"
+#~ "1) Sluk for din boks med kontakten bagpå og sikre at den bootbare USB-nøgle er sat i.\n"
+#~ "2) Tænd for boksen igen og hold NED knappen på frontpanelet nedtrykt i 10 sekunder.\n"
+#~ "3) Vent til der bootes op og følg instruktionerne i assistenten."
+
+#~ msgid "USB stick wizard"
+#~ msgstr "USB nøgle assistenten"
+
+#~ msgid "You have chosen to create a new .NFI flasher bootable USB stick. This will repartition the USB stick and therefore all data on it will be erased."
+#~ msgstr "Du har valgt at oprette ny .NFI flash bootbar USB stick. Dette vil repartitionere USB sticken og derfor vil alle data på den blive slettet."
+
+#~ msgid "continue"
+#~ msgstr "fortsæt"
+
+#, python-format
+#~ msgid "currently installed image: %s"
+#~ msgstr "nuværende installerede image: %s"
 
 #~ msgid "Manual scan"
 #~ msgstr "Manuel søgning"

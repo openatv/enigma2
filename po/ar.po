@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-04-02 20:55+0000\n"
+"POT-Creation-Date: 2022-04-10 10:23+0000\n"
 "PO-Revision-Date: 2022-01-26 21:01+0100\n"
 "Last-Translator: Islam <islamsabry2009@gmail.com>\n"
 "Language-Team: Arabic <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/ar/>\n"
@@ -4165,6 +4165,9 @@ msgstr ""
 msgid "Calculate"
 msgstr "أحسب"
 
+msgid "Calculate and show size of directory. Note: This can be slow down the UI on selection of a folder!"
+msgstr ""
+
 msgid "Calculate file checksums"
 msgstr ""
 
@@ -4497,9 +4500,6 @@ msgstr "تغيير مقاس الخطوه"
 #, fuzzy
 msgid "Change to bouquet"
 msgstr "إضافه الى الباقه"
-
-msgid "Changelog"
-msgstr ""
 
 #, python-format
 msgid ""
@@ -5628,11 +5628,6 @@ msgid "Cote d'Ivoire / Ivory Coast"
 msgstr ""
 
 #
-#, fuzzy, python-format
-msgid "Could not connect to %s %s .NFI image feed server:"
-msgstr "NFIتعذر إتصال الدريم بوكس بخادم تغذية صور "
-
-#
 #, fuzzy
 msgid "Could not connect to server"
 msgstr "NFIتعذر إتصال الدريم بوكس بخادم تغذية صور "
@@ -5818,9 +5813,6 @@ msgstr ""
 
 msgid "Current version:"
 msgstr "الاصدار الحالى:"
-
-msgid "Currently installed image"
-msgstr ""
 
 #, fuzzy
 msgid "Custom"
@@ -6714,9 +6706,6 @@ msgstr ""
 msgid "Display and user interface"
 msgstr "عرض و واجهه مستخدم"
 
-msgid "Display directory size"
-msgstr ""
-
 msgid "Display message before playing next movie"
 msgstr "عرض رسالة قبل تشغيل الفيلم القادم"
 
@@ -6939,10 +6928,6 @@ msgstr "هل تريد عمل بحث"
 msgid "Do you want to do another manual service scan?"
 msgstr "هل تريد عمل بحث يدوى جديد ؟"
 
-#, python-format
-msgid "Do you want to download the image to %s ?"
-msgstr ""
-
 #, fuzzy, python-format
 msgid ""
 "Do you want to flash image\n"
@@ -7063,16 +7048,6 @@ msgstr[4] "تم - تثبيت ، تحديث أو حذف %d الرزم والاخ�
 msgstr[5] "تم - تثبيت ، تحديث أو حذف %d الرزم والاخطاء%d "
 
 msgid "Down"
-msgstr ""
-
-msgid "Download"
-msgstr "تحميل"
-
-#, python-format
-msgid "Download %s from server"
-msgstr ""
-
-msgid "Download .NFI-files for USB-flasher"
 msgstr ""
 
 msgid "Download Plugins"
@@ -8264,9 +8239,6 @@ msgstr ""
 msgid "Factory Reset"
 msgstr ""
 
-msgid "Factory Reset Settings"
-msgstr ""
-
 msgid "Factory release"
 msgstr ""
 
@@ -8529,9 +8501,6 @@ msgstr "ثابت"
 msgid "Fixed X11 font (SD)"
 msgstr ""
 
-msgid "Flash"
-msgstr "شحن"
-
 #, fuzzy
 msgid "Flash Image"
 msgstr "شحن"
@@ -8560,9 +8529,6 @@ msgstr ""
 
 #, fuzzy
 msgid "Flashing Image"
-msgstr "فشل الشحن"
-
-msgid "Flashing failed"
 msgstr "فشل الشحن"
 
 msgid "Flashing image successful"
@@ -8924,12 +8890,6 @@ msgid "Gesellschaft"
 msgstr "إلغاء الاختيار"
 
 msgid "Gesundheit"
-msgstr ""
-
-msgid "Get latest experimental image"
-msgstr ""
-
-msgid "Get latest release image"
 msgstr ""
 
 msgid "Getting Event Info failed!"
@@ -11928,15 +11888,6 @@ msgstr "غير مطابق"
 msgid "NEXT"
 msgstr ""
 
-#
-#, fuzzy
-msgid "NFI image flashing"
-msgstr "شحن صوره NFI"
-
-#
-msgid "NFI image flashing completed. Press Yellow to Reboot!"
-msgstr "تم النتهاء من شحن صوره NFI، رجاء الضغط على الذر الاصفر لاعادة التشغيل !"
-
 msgid "NFS"
 msgstr ""
 
@@ -12311,10 +12262,6 @@ msgstr "لا يوجد وصف"
 #
 msgid "No description available."
 msgstr "لايوجد وصف متوفر."
-
-#
-msgid "No details for this image file"
-msgstr "لا يوجد تفاصيل لملف الصوره هذا"
 
 #
 msgid "No displayable files on this medium found!"
@@ -13478,9 +13425,6 @@ msgstr "من فضلك قم بتغيير وقت إنتهاء التسجيل"
 msgid "Please check the manual of the receiver"
 msgstr "من فضلك أدخل أسم الدليل الجديد"
 
-msgid "Please check your network settings!"
-msgstr "من فضلك أفحص إعدادات الشبكه!"
-
 msgid "Please choose CCcam-Reader"
 msgstr ""
 
@@ -13613,9 +13557,6 @@ msgstr "من فضلك أختار الخدمه الفرعيه المطلوب تس
 #
 msgid "Please select a subservice..."
 msgstr "من فضلك أختار الخدمه الفرعيه..."
-
-msgid "Please select an NFI file and press green key to flash!"
-msgstr ""
 
 msgid "Please select an acceptable directory."
 msgstr ""
@@ -14042,9 +13983,6 @@ msgstr ""
 #, fuzzy
 msgid "Preparation time for recording (seconds)"
 msgstr "الهامش قبل التسجيل (بالدقائق)"
-
-msgid "Prepare another USB stick for image flashing"
-msgstr ""
 
 #
 msgid "Preparing... Please wait"
@@ -15258,9 +15196,6 @@ msgstr ""
 msgid "Restore backups"
 msgstr "إستعادة النسخة الإحتياطية"
 
-msgid "Restore is running..."
-msgstr "الاستعاده قيد التنفيذ"
-
 msgid "Restore settings from a backup"
 msgstr ""
 
@@ -16092,9 +16027,6 @@ msgstr ""
 msgid "Select additional files to backup"
 msgstr ""
 
-msgid "Select an image to be downloaded"
-msgstr ""
-
 msgid "Select audio track"
 msgstr "أختار مسار الصوت"
 
@@ -16123,9 +16055,6 @@ msgid "Select copy destination for:"
 msgstr "حدد وجهة النسخ لـ:"
 
 msgid "Select default EPG type..."
-msgstr ""
-
-msgid "Select desired image from feed list"
 msgstr ""
 
 msgid "Select destination for:"
@@ -17003,11 +16932,6 @@ msgstr "اعداد معدات الأقمار الصناعية"
 msgid "Seychelles"
 msgstr "سيشيل"
 
-#
-#, python-format
-msgid "Shall the USB stick wizard proceed and program the image file %s into flash memory?"
-msgstr ""
-
 msgid "Share Folder's"
 msgstr ""
 
@@ -17139,6 +17063,9 @@ msgid "Show CoolSingleGuide"
 msgstr ""
 
 msgid "Show CoolTVGuide"
+msgstr ""
+
+msgid "Show Directory size"
 msgstr ""
 
 msgid "Show Display Icons"
@@ -19274,11 +19201,6 @@ msgid "The TV was switched to the recording service!\n"
 msgstr ""
 
 msgid ""
-"The USB stick was prepared to be bootable.\n"
-"Now you can download an NFI image file!"
-msgstr ""
-
-msgid ""
 "The VideoMode plugin is not installed!\n"
 "Please install it."
 msgstr ""
@@ -19322,20 +19244,6 @@ msgstr ""
 msgid "The detailed information is intended for developers only."
 msgstr ""
 
-#, python-format
-msgid ""
-"The following device was found:\n"
-"\n"
-"%s\n"
-"\n"
-"Do you want to write the USB flasher to this stick?"
-msgstr ""
-"تم العثور على هذه الاجهزه:\n"
-"\n"
-"%s \n"
-"\n"
-"هل تريد كتابه شاحن الـusb على هذه العصا؟"
-
 #
 msgid "The following files were found..."
 msgstr "تم العثور على هذه الملفات..."
@@ -19355,9 +19263,6 @@ msgid "The height of the picture. The input will be scaled to match this value."
 msgstr ""
 
 msgid "The loopthrough setting is wrong."
-msgstr ""
-
-msgid "The md5sum validation failed, the file may be corrupted!"
 msgstr ""
 
 msgid ""
@@ -19455,10 +19360,6 @@ msgstr ""
 
 msgid "The wizard can backup your current settings. Do you want to do a backup now?"
 msgstr "من خلال هذه النافذه يمكنك عمل نسخه إحتياطيه  للإعدادات الحاليه . هل تريد عمل نسخه إحتياطيه  الان ؟"
-
-#, python-format
-msgid "The wizard found a configuration backup. Do you want to restore your old settings from %s?"
-msgstr ""
 
 msgid "The wizard is finished now."
 msgstr "إنتهاء نافذة الاعدادات الان ."
@@ -19820,14 +19721,6 @@ msgstr "يحدد هذا الخيار قمع القيم الرقمية الخاط
 
 msgid "This option sets up the picture sharpness, used when the picture is being upscaled."
 msgstr "هذا الخيار لتوضيح وضوح الصورة، وتستخدم عندما يتم نشرا الصورة."
-
-#, python-format
-msgid ""
-"This plugin creates a USB stick which can be used to update the firmware of your %s %s without the need for a network or WLAN connection.\n"
-"First, a USB stick needs to be prepared so that it becomes bootable.\n"
-"In the next step, an NFI image file can be downloaded from the update server and saved on the USB stick.\n"
-"If you already have a prepared bootable USB stick, please insert it now. Otherwise plug in a USB stick with a minimum size of 64 MB!"
-msgstr ""
 
 msgid "This plugin is installed."
 msgstr "هذا البلج إنز مثبت."
@@ -20202,14 +20095,6 @@ msgstr "وضع عنوان للإعدادات"
 #, fuzzy
 msgid "To restore the image:"
 msgstr "نعم، أستعد الاعدادات الان"
-
-#, python-format
-msgid ""
-"To update your %s %s firmware, please follow these steps:\n"
-"1) Turn off your box with the rear power switch and make sure the bootable USB stick is plugged in.\n"
-"2) Turn mains back on and hold the DOWN button on the front panel pressed for 10 seconds.\n"
-"3) Wait for bootup and follow instructions of the wizard."
-msgstr ""
 
 #
 msgid "Today"
@@ -20622,10 +20507,6 @@ msgid "USALS automatically moves a motorised dish to the correct satellite based
 msgstr "يقوم نظام الأقمار العالمي تلقائيا بتحريك الطبق المتحرك إلى القمر الصناعي الصحيح استنادا إلى الإحداثيات التي ادخلها المستخدم. بدون نظام الأقمار العالمي كل الأقمار الصناعية ونحن بحاجه إلى ان يكون إعدادها وحفظها بشكل فردي."
 
 msgid "USB Stick"
-msgstr ""
-
-#
-msgid "USB stick wizard"
 msgstr ""
 
 msgid "USB switch ERROR! - already on USB"
@@ -22275,10 +22156,6 @@ msgstr ""
 msgid "You have chosen to backup your settings. Please press OK to start the backup now."
 msgstr "إذا أخترت عمل نسخه إحتياطيه  للاعدادات ، من فضلك أضغط موافق اتبدأ النسخه الإحتياطيه الان"
 
-#
-msgid "You have chosen to create a new .NFI flasher bootable USB stick. This will repartition the USB stick and therefore all data on it will be erased."
-msgstr ""
-
 msgid "You have chosen to restore your settings. Enigma2 will restart after restore. Please press OK to start the restore now."
 msgstr "لقد أخترت أن تستعيد الاعدادات . سيتم إعادة تشغيل الاينجما2 بعد الاستعاده .أضغط موافق لتبدأ الاستعاده الان ."
 
@@ -22971,9 +22848,6 @@ msgstr "تم التأكيد"
 msgid "connected"
 msgstr "تم الاتصال"
 
-msgid "continue"
-msgstr "استمرار"
-
 msgid "controlled by HDMI"
 msgstr ""
 
@@ -23009,10 +22883,6 @@ msgid "create symlink ..."
 msgstr ""
 
 msgid "current affairs (general)"
-msgstr ""
-
-#, python-format
-msgid "currently installed image: %s"
 msgstr ""
 
 #
@@ -24487,6 +24357,56 @@ msgstr "تم الانتقال"
 
 msgid "®"
 msgstr ""
+
+#
+#, fuzzy, python-format
+#~ msgid "Could not connect to %s %s .NFI image feed server:"
+#~ msgstr "NFIتعذر إتصال الدريم بوكس بخادم تغذية صور "
+
+#~ msgid "Download"
+#~ msgstr "تحميل"
+
+#~ msgid "Flash"
+#~ msgstr "شحن"
+
+#~ msgid "Flashing failed"
+#~ msgstr "فشل الشحن"
+
+#
+#, fuzzy
+#~ msgid "NFI image flashing"
+#~ msgstr "شحن صوره NFI"
+
+#
+#~ msgid "NFI image flashing completed. Press Yellow to Reboot!"
+#~ msgstr "تم النتهاء من شحن صوره NFI، رجاء الضغط على الذر الاصفر لاعادة التشغيل !"
+
+#
+#~ msgid "No details for this image file"
+#~ msgstr "لا يوجد تفاصيل لملف الصوره هذا"
+
+#~ msgid "Please check your network settings!"
+#~ msgstr "من فضلك أفحص إعدادات الشبكه!"
+
+#~ msgid "Restore is running..."
+#~ msgstr "الاستعاده قيد التنفيذ"
+
+#, python-format
+#~ msgid ""
+#~ "The following device was found:\n"
+#~ "\n"
+#~ "%s\n"
+#~ "\n"
+#~ "Do you want to write the USB flasher to this stick?"
+#~ msgstr ""
+#~ "تم العثور على هذه الاجهزه:\n"
+#~ "\n"
+#~ "%s \n"
+#~ "\n"
+#~ "هل تريد كتابه شاحن الـusb على هذه العصا؟"
+
+#~ msgid "continue"
+#~ msgstr "استمرار"
 
 #~ msgid "Manual scan"
 #~ msgstr "بحـث يدوي"

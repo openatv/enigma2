@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-04-02 20:55+0000\n"
+"POT-Creation-Date: 2022-04-10 10:23+0000\n"
 "PO-Revision-Date: 2022-03-01 14:41+0000\n"
 "Last-Translator: lexlong2007 <lexlong2007@163.com>\n"
 "Language-Team: Chinese (Simplified) <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/zh_Hans/>\n"
@@ -3892,6 +3892,9 @@ msgstr "已缓存"
 msgid "Calculate"
 msgstr "计算"
 
+msgid "Calculate and show size of directory. Note: This can be slow down the UI on selection of a folder!"
+msgstr ""
+
 msgid "Calculate file checksums"
 msgstr "计算文件校验和"
 
@@ -4201,9 +4204,6 @@ msgstr "更改步进大小"
 
 msgid "Change to bouquet"
 msgstr "更改为自定义组"
-
-msgid "Changelog"
-msgstr "更新日志"
 
 #, python-format
 msgid ""
@@ -5288,10 +5288,6 @@ msgstr "哥斯达黎加"
 msgid "Cote d'Ivoire / Ivory Coast"
 msgstr "象牙海岸"
 
-#, python-format
-msgid "Could not connect to %s %s .NFI image feed server:"
-msgstr "无法连接到 %s %s .NFI镜像订阅服务器:"
-
 msgid "Could not connect to server"
 msgstr "无法连接到服务器"
 
@@ -5467,9 +5463,6 @@ msgstr "当前版本未知"
 
 msgid "Current version:"
 msgstr "当前版本:"
-
-msgid "Currently installed image"
-msgstr "当前已安装的镜像"
 
 msgid "Custom"
 msgstr "自定义"
@@ -6312,9 +6305,6 @@ msgstr "显示设置"
 msgid "Display and user interface"
 msgstr "显示和用户界面"
 
-msgid "Display directory size"
-msgstr ""
-
 msgid "Display message before playing next movie"
 msgstr "在播放下一部电影之前显示消息"
 
@@ -6553,10 +6543,6 @@ msgid "Do you want to do another manual service scan?"
 msgstr "是否进行其他手动频道扫描?"
 
 #, python-format
-msgid "Do you want to download the image to %s ?"
-msgstr "是否下载镜像到 %s ?"
-
-#, python-format
 msgid ""
 "Do you want to flash image\n"
 "%s"
@@ -6673,16 +6659,6 @@ msgstr[1] "完成-已安装,升级或删除了 %d 个软件包 (%s)"
 
 msgid "Down"
 msgstr "向下"
-
-msgid "Download"
-msgstr "下载"
-
-#, python-format
-msgid "Download %s from server"
-msgstr "从服务器下载 %s"
-
-msgid "Download .NFI-files for USB-flasher"
-msgstr "下载镜像文件用于U盘刷机"
 
 msgid "Download Plugins"
 msgstr "下载插件"
@@ -7859,9 +7835,6 @@ msgstr "FTP设置"
 msgid "Factory Reset"
 msgstr ""
 
-msgid "Factory Reset Settings"
-msgstr ""
-
 msgid "Factory release"
 msgstr "出厂版本"
 
@@ -8116,9 +8089,6 @@ msgstr "固定"
 msgid "Fixed X11 font (SD)"
 msgstr "固定的X11字体(标清)"
 
-msgid "Flash"
-msgstr "刷写"
-
 msgid "Flash Image"
 msgstr "刷写镜像"
 
@@ -8146,9 +8116,6 @@ msgstr "刷写"
 
 msgid "Flashing Image"
 msgstr "刷写镜像"
-
-msgid "Flashing failed"
-msgstr "刷机失败"
 
 msgid "Flashing image successful"
 msgstr "镜像刷写成功"
@@ -8479,12 +8446,6 @@ msgstr "社会"
 
 msgid "Gesundheit"
 msgstr "健康"
-
-msgid "Get latest experimental image"
-msgstr "获取最新的测试镜像"
-
-msgid "Get latest release image"
-msgstr "获取最新发布的镜像"
 
 msgid "Getting Event Info failed!"
 msgstr "获取事件信息失败！"
@@ -11285,12 +11246,6 @@ msgstr "无数据"
 msgid "NEXT"
 msgstr "接下来"
 
-msgid "NFI image flashing"
-msgstr "NFI镜像刷机中"
-
-msgid "NFI image flashing completed. Press Yellow to Reboot!"
-msgstr "NFI镜像刷机完成.请按黄色键重启!"
-
 msgid "NFS"
 msgstr "NFS"
 
@@ -11632,9 +11587,6 @@ msgstr "没有可用的解析器"
 
 msgid "No description available."
 msgstr "无描述可用."
-
-msgid "No details for this image file"
-msgstr "无此镜像的详细信息"
 
 msgid "No displayable files on this medium found!"
 msgstr "在此介质上没有发现可显示的文件！"
@@ -12712,9 +12664,6 @@ msgstr "请更改录像结束时间"
 msgid "Please check the manual of the receiver"
 msgstr "请检查接收器的手册"
 
-msgid "Please check your network settings!"
-msgstr "请检查您的网络设置！"
-
 msgid "Please choose CCcam-Reader"
 msgstr "请选择CCcam阅读器"
 
@@ -12840,9 +12789,6 @@ msgstr "请选择要录制的子频道..."
 
 msgid "Please select a subservice..."
 msgstr "请选择一个子频道..."
-
-msgid "Please select an NFI file and press green key to flash!"
-msgstr "请选择一个NFI文件并按绿色键刷写!"
 
 msgid "Please select an acceptable directory."
 msgstr "请选择一个合适的目录."
@@ -13270,9 +13216,6 @@ msgstr "录制首选调谐器,允许的多重选择"
 
 msgid "Preparation time for recording (seconds)"
 msgstr "录制准备时间(秒)"
-
-msgid "Prepare another USB stick for image flashing"
-msgstr "准备其他U盘来刷写镜像"
 
 msgid "Preparing... Please wait"
 msgstr "准备中... 请稍候"
@@ -14422,9 +14365,6 @@ msgstr "恢复设置"
 msgid "Restore backups"
 msgstr "恢复备份"
 
-msgid "Restore is running..."
-msgstr "正在恢复..."
-
 msgid "Restore settings from a backup"
 msgstr "从备份恢复设置"
 
@@ -15202,9 +15142,6 @@ msgstr "选择额外的备份文件"
 msgid "Select additional files to backup"
 msgstr "选择额外的文件来备份"
 
-msgid "Select an image to be downloaded"
-msgstr "选择要下载的镜像"
-
 msgid "Select audio track"
 msgstr "选择音轨"
 
@@ -15231,9 +15168,6 @@ msgstr "选择复制目标为:"
 
 msgid "Select default EPG type..."
 msgstr "选择默认的EPG类型..."
-
-msgid "Select desired image from feed list"
-msgstr "从源列表中选择所需的镜像"
 
 msgid "Select destination for:"
 msgstr "选择目标为:"
@@ -16078,10 +16012,6 @@ msgstr "卫星设备设置"
 msgid "Seychelles"
 msgstr "塞舌尔"
 
-#, python-format
-msgid "Shall the USB stick wizard proceed and program the image file %s into flash memory?"
-msgstr "是否通过USB向导程序将系统固件文件%s烧录到闪存?"
-
 msgid "Share Folder's"
 msgstr "共享文件夹"
 
@@ -16213,6 +16143,9 @@ msgstr "显示CoolSingleGuide"
 
 msgid "Show CoolTVGuide"
 msgstr "显示CoolTVGuide"
+
+msgid "Show Directory size"
+msgstr ""
 
 msgid "Show Display Icons"
 msgstr "显示图标"
@@ -18204,13 +18137,6 @@ msgid "The TV was switched to the recording service!\n"
 msgstr "电视已切换到录像频道！\n"
 
 msgid ""
-"The USB stick was prepared to be bootable.\n"
-"Now you can download an NFI image file!"
-msgstr ""
-"U盘已准备好可启动.\n"
-"现在您可以下载NFI镜像文件了!"
-
-msgid ""
 "The VideoMode plugin is not installed!\n"
 "Please install it."
 msgstr ""
@@ -18262,20 +18188,6 @@ msgstr "默认设置为唤醒时间-5分钟和定时器开始时间+5分钟.此�
 msgid "The detailed information is intended for developers only."
 msgstr "详细信息仅供开发人员使用."
 
-#, python-format
-msgid ""
-"The following device was found:\n"
-"\n"
-"%s\n"
-"\n"
-"Do you want to write the USB flasher to this stick?"
-msgstr ""
-"发现如下设备:\n"
-"\n"
-"%s\n"
-"\n"
-"是否刷写这个设备?"
-
 msgid "The following files were found..."
 msgstr "找到以下文件..."
 
@@ -18297,9 +18209,6 @@ msgstr "图片的高度.输入将被缩放以匹配该值."
 
 msgid "The loopthrough setting is wrong."
 msgstr "循环设置错误."
-
-msgid "The md5sum validation failed, the file may be corrupted!"
-msgstr "md5验证失败,文件可能已损坏!"
 
 msgid ""
 "The network wizard extension is not installed!\n"
@@ -18391,10 +18300,6 @@ msgstr ""
 
 msgid "The wizard can backup your current settings. Do you want to do a backup now?"
 msgstr "该向导可以备份您的当前设置.是否现在备份?"
-
-#, python-format
-msgid "The wizard found a configuration backup. Do you want to restore your old settings from %s?"
-msgstr "向导找到一个配置备份.是否恢复你的旧设置 %s?"
 
 msgid "The wizard is finished now."
 msgstr "向导现在已完成设置."
@@ -18754,18 +18659,6 @@ msgstr "这个选项设置的虚假数字轮廓的抑制,这是一个数量有�
 msgid "This option sets up the picture sharpness, used when the picture is being upscaled."
 msgstr "这个选项设置图片的清晰度,使用时的照片被放大."
 
-#, python-format
-msgid ""
-"This plugin creates a USB stick which can be used to update the firmware of your %s %s without the need for a network or WLAN connection.\n"
-"First, a USB stick needs to be prepared so that it becomes bootable.\n"
-"In the next step, an NFI image file can be downloaded from the update server and saved on the USB stick.\n"
-"If you already have a prepared bootable USB stick, please insert it now. Otherwise plug in a USB stick with a minimum size of 64 MB!"
-msgstr ""
-"这个插件创建一个可用于更新你的镜像U盘 %s %s 不需要网络或无线局域网连接.\n"
-"首先,需要准备一个U盘,使其成为可启动的.\n"
-"在下一步中,NFI镜像可以从更新服务器下载并保存在U盘.\n"
-"如果你已经准备启动的U盘,请将其插入.以最小64MB的大小!"
-
 msgid "This plugin is installed."
 msgstr "此插件已安装."
 
@@ -19103,18 +18996,6 @@ msgstr "标题设置模式"
 
 msgid "To restore the image:"
 msgstr "要恢复固件:"
-
-#, python-format
-msgid ""
-"To update your %s %s firmware, please follow these steps:\n"
-"1) Turn off your box with the rear power switch and make sure the bootable USB stick is plugged in.\n"
-"2) Turn mains back on and hold the DOWN button on the front panel pressed for 10 seconds.\n"
-"3) Wait for bootup and follow instructions of the wizard."
-msgstr ""
-"更新你的 %s %s镜像,请按照以下步骤:\n"
-"1) 关掉你的机顶盒后面的电源开关,确保可启动的USB插入.\n"
-"2) 打开电源,按住前面板上的键按下10秒.\n"
-"3) 等待启动并按照向导中的说明."
 
 msgid "Today"
 msgstr "今天"
@@ -19489,9 +19370,6 @@ msgstr "USALS会根据用户输入的坐标自动将机动天线移至正确的�
 
 msgid "USB Stick"
 msgstr "U盘"
-
-msgid "USB stick wizard"
-msgstr "U盘向导"
 
 msgid "USB switch ERROR! - already on USB"
 msgstr "USB切换错误!-已经在USB上了"
@@ -21084,9 +20962,6 @@ msgstr "你已发送过此日志,确定要重新发送这篇日志:\n"
 msgid "You have chosen to backup your settings. Please press OK to start the backup now."
 msgstr "你已选择备份设置.请按OK键马上开始."
 
-msgid "You have chosen to create a new .NFI flasher bootable USB stick. This will repartition the USB stick and therefore all data on it will be erased."
-msgstr "您已选择创建新的.NFI闪存可启动U盘.这将会将U盘重新分区,因此U盘中的所有数据将被删除."
-
 msgid "You have chosen to restore your settings. Enigma2 will restart after restore. Please press OK to start the restore now."
 msgstr "您选择恢复设置.Enigma2将重启恢复后.请按OK键开始恢复."
 
@@ -21787,9 +21662,6 @@ msgstr "确认"
 msgid "connected"
 msgstr "已连接"
 
-msgid "continue"
-msgstr "继续"
-
 msgid "controlled by HDMI"
 msgstr "由HDMI控制"
 
@@ -21825,10 +21697,6 @@ msgstr "创建符号链接..."
 
 msgid "current affairs (general)"
 msgstr "新闻/时事(一般)"
-
-#, python-format
-msgid "currently installed image: %s"
-msgstr "当前安装镜像: %s"
 
 msgid "daily"
 msgstr "每天"
@@ -23221,6 +23089,138 @@ msgstr "切换中"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Changelog"
+#~ msgstr "更新日志"
+
+#, python-format
+#~ msgid "Could not connect to %s %s .NFI image feed server:"
+#~ msgstr "无法连接到 %s %s .NFI镜像订阅服务器:"
+
+#~ msgid "Currently installed image"
+#~ msgstr "当前已安装的镜像"
+
+#, python-format
+#~ msgid "Do you want to download the image to %s ?"
+#~ msgstr "是否下载镜像到 %s ?"
+
+#~ msgid "Download"
+#~ msgstr "下载"
+
+#, python-format
+#~ msgid "Download %s from server"
+#~ msgstr "从服务器下载 %s"
+
+#~ msgid "Download .NFI-files for USB-flasher"
+#~ msgstr "下载镜像文件用于U盘刷机"
+
+#~ msgid "Flash"
+#~ msgstr "刷写"
+
+#~ msgid "Flashing failed"
+#~ msgstr "刷机失败"
+
+#~ msgid "Get latest experimental image"
+#~ msgstr "获取最新的测试镜像"
+
+#~ msgid "Get latest release image"
+#~ msgstr "获取最新发布的镜像"
+
+#~ msgid "NFI image flashing"
+#~ msgstr "NFI镜像刷机中"
+
+#~ msgid "NFI image flashing completed. Press Yellow to Reboot!"
+#~ msgstr "NFI镜像刷机完成.请按黄色键重启!"
+
+#~ msgid "No details for this image file"
+#~ msgstr "无此镜像的详细信息"
+
+#~ msgid "Please check your network settings!"
+#~ msgstr "请检查您的网络设置！"
+
+#~ msgid "Please select an NFI file and press green key to flash!"
+#~ msgstr "请选择一个NFI文件并按绿色键刷写!"
+
+#~ msgid "Prepare another USB stick for image flashing"
+#~ msgstr "准备其他U盘来刷写镜像"
+
+#~ msgid "Restore is running..."
+#~ msgstr "正在恢复..."
+
+#~ msgid "Select an image to be downloaded"
+#~ msgstr "选择要下载的镜像"
+
+#~ msgid "Select desired image from feed list"
+#~ msgstr "从源列表中选择所需的镜像"
+
+#, python-format
+#~ msgid "Shall the USB stick wizard proceed and program the image file %s into flash memory?"
+#~ msgstr "是否通过USB向导程序将系统固件文件%s烧录到闪存?"
+
+#~ msgid ""
+#~ "The USB stick was prepared to be bootable.\n"
+#~ "Now you can download an NFI image file!"
+#~ msgstr ""
+#~ "U盘已准备好可启动.\n"
+#~ "现在您可以下载NFI镜像文件了!"
+
+#, python-format
+#~ msgid ""
+#~ "The following device was found:\n"
+#~ "\n"
+#~ "%s\n"
+#~ "\n"
+#~ "Do you want to write the USB flasher to this stick?"
+#~ msgstr ""
+#~ "发现如下设备:\n"
+#~ "\n"
+#~ "%s\n"
+#~ "\n"
+#~ "是否刷写这个设备?"
+
+#~ msgid "The md5sum validation failed, the file may be corrupted!"
+#~ msgstr "md5验证失败,文件可能已损坏!"
+
+#, python-format
+#~ msgid "The wizard found a configuration backup. Do you want to restore your old settings from %s?"
+#~ msgstr "向导找到一个配置备份.是否恢复你的旧设置 %s?"
+
+#, python-format
+#~ msgid ""
+#~ "This plugin creates a USB stick which can be used to update the firmware of your %s %s without the need for a network or WLAN connection.\n"
+#~ "First, a USB stick needs to be prepared so that it becomes bootable.\n"
+#~ "In the next step, an NFI image file can be downloaded from the update server and saved on the USB stick.\n"
+#~ "If you already have a prepared bootable USB stick, please insert it now. Otherwise plug in a USB stick with a minimum size of 64 MB!"
+#~ msgstr ""
+#~ "这个插件创建一个可用于更新你的镜像U盘 %s %s 不需要网络或无线局域网连接.\n"
+#~ "首先,需要准备一个U盘,使其成为可启动的.\n"
+#~ "在下一步中,NFI镜像可以从更新服务器下载并保存在U盘.\n"
+#~ "如果你已经准备启动的U盘,请将其插入.以最小64MB的大小!"
+
+#, python-format
+#~ msgid ""
+#~ "To update your %s %s firmware, please follow these steps:\n"
+#~ "1) Turn off your box with the rear power switch and make sure the bootable USB stick is plugged in.\n"
+#~ "2) Turn mains back on and hold the DOWN button on the front panel pressed for 10 seconds.\n"
+#~ "3) Wait for bootup and follow instructions of the wizard."
+#~ msgstr ""
+#~ "更新你的 %s %s镜像,请按照以下步骤:\n"
+#~ "1) 关掉你的机顶盒后面的电源开关,确保可启动的USB插入.\n"
+#~ "2) 打开电源,按住前面板上的键按下10秒.\n"
+#~ "3) 等待启动并按照向导中的说明."
+
+#~ msgid "USB stick wizard"
+#~ msgstr "U盘向导"
+
+#~ msgid "You have chosen to create a new .NFI flasher bootable USB stick. This will repartition the USB stick and therefore all data on it will be erased."
+#~ msgstr "您已选择创建新的.NFI闪存可启动U盘.这将会将U盘重新分区,因此U盘中的所有数据将被删除."
+
+#~ msgid "continue"
+#~ msgstr "继续"
+
+#, python-format
+#~ msgid "currently installed image: %s"
+#~ msgstr "当前安装镜像: %s"
 
 #~ msgid "Manual scan"
 #~ msgstr "手动扫描"

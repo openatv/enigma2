@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-04-02 20:55+0000\n"
+"POT-Creation-Date: 2022-04-10 10:23+0000\n"
 "PO-Revision-Date: 2021-09-15 14:20+0000\n"
 "Last-Translator: Hamed Beyrami <h.beyrami@outlook.com>\n"
 "Language-Team: Persian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/fa/>\n"
@@ -4049,6 +4049,9 @@ msgstr ""
 msgid "Calculate"
 msgstr "محاسبه"
 
+msgid "Calculate and show size of directory. Note: This can be slow down the UI on selection of a folder!"
+msgstr ""
+
 msgid "Calculate file checksums"
 msgstr ""
 
@@ -4357,9 +4360,6 @@ msgstr "تغییر اندازه step"
 #, fuzzy
 msgid "Change to bouquet"
 msgstr "اضافه کردن به لیست"
-
-msgid "Changelog"
-msgstr "تغییرات"
 
 #, python-format
 msgid ""
@@ -5485,10 +5485,6 @@ msgstr ""
 msgid "Cote d'Ivoire / Ivory Coast"
 msgstr ""
 
-#, fuzzy, python-format
-msgid "Could not connect to %s %s .NFI image feed server:"
-msgstr "ارتباط با سرور ایمیج NFI دستگاه میسر نیست"
-
 #, fuzzy
 msgid "Could not connect to server"
 msgstr "ارتباط با سرور ایمیج NFI دستگاه میسر نیست"
@@ -5677,9 +5673,6 @@ msgstr ""
 
 msgid "Current version:"
 msgstr "نسخه فعلی:"
-
-msgid "Currently installed image"
-msgstr "ایمیج نصب شده فعلی"
 
 #, fuzzy
 msgid "Custom"
@@ -6565,9 +6558,6 @@ msgstr ""
 msgid "Display and user interface"
 msgstr "نمایش و رابط کاربری"
 
-msgid "Display directory size"
-msgstr ""
-
 msgid "Display message before playing next movie"
 msgstr ""
 
@@ -6790,10 +6780,6 @@ msgstr "آیا میخواهید اسکن کانال انجام شود ؟"
 msgid "Do you want to do another manual service scan?"
 msgstr "آیا میخواهید اسکن دستی کانال دیگری انجام شود ؟"
 
-#, python-format
-msgid "Do you want to download the image to %s ?"
-msgstr "آیا میخواهید ایمیج را در %s دانلود کنید ؟"
-
 #, fuzzy, python-format
 msgid ""
 "Do you want to flash image\n"
@@ -6907,17 +6893,6 @@ msgstr[0] "انجام شد ، تعداد %d بسته با %d خطا نصب ، ب
 
 msgid "Down"
 msgstr ""
-
-msgid "Download"
-msgstr "دانلود"
-
-#, fuzzy, python-format
-msgid "Download %s from server"
-msgstr "دانلود %s از سرور"
-
-#, fuzzy
-msgid "Download .NFI-files for USB-flasher"
-msgstr "دانلود فایل های NFI برای USB-Flasher"
 
 msgid "Download Plugins"
 msgstr ""
@@ -8100,9 +8075,6 @@ msgstr ""
 msgid "Factory Reset"
 msgstr ""
 
-msgid "Factory Reset Settings"
-msgstr ""
-
 msgid "Factory release"
 msgstr ""
 
@@ -8363,9 +8335,6 @@ msgstr ""
 msgid "Fixed X11 font (SD)"
 msgstr ""
 
-msgid "Flash"
-msgstr "فلش"
-
 #, fuzzy
 msgid "Flash Image"
 msgstr "فلش"
@@ -8394,9 +8363,6 @@ msgstr ""
 
 #, fuzzy
 msgid "Flashing Image"
-msgstr "فلش کردن ناموفق"
-
-msgid "Flashing failed"
 msgstr "فلش کردن ناموفق"
 
 msgid "Flashing image successful"
@@ -8743,12 +8709,6 @@ msgstr "عدم انتخاب"
 
 msgid "Gesundheit"
 msgstr ""
-
-msgid "Get latest experimental image"
-msgstr "دریافت آخرین ایمیج آزمایشی منتشر شده"
-
-msgid "Get latest release image"
-msgstr "دریافت آخرین ایمیج منتشر شده"
 
 msgid "Getting Event Info failed!"
 msgstr ""
@@ -11693,14 +11653,6 @@ msgstr "در دسترس نیست"
 msgid "NEXT"
 msgstr "بعدی"
 
-#
-#, fuzzy
-msgid "NFI image flashing"
-msgstr "فلش کردن ایمیج NFI"
-
-msgid "NFI image flashing completed. Press Yellow to Reboot!"
-msgstr ""
-
 msgid "NFS"
 msgstr ""
 
@@ -12062,9 +12014,6 @@ msgstr "هیچ توضیحی در دسترس نیست"
 #
 msgid "No description available."
 msgstr "هیچ توضیحی در دسترس نیست"
-
-msgid "No details for this image file"
-msgstr "هیچ مشخصاتی برای این ایمیج وجود ندارد"
 
 #
 msgid "No displayable files on this medium found!"
@@ -13204,9 +13153,6 @@ msgstr "لطفا زمان پایان ضبط کردن را تغییر دهید"
 msgid "Please check the manual of the receiver"
 msgstr "لطفا نام پوشه جدید را وارد کنید"
 
-msgid "Please check your network settings!"
-msgstr "لطفا تنظیمات شبکه خود را بررسی کنید"
-
 msgid "Please choose CCcam-Reader"
 msgstr ""
 
@@ -13337,9 +13283,6 @@ msgstr "لطفا یک کانال فرعی را برای ضبط انتخاب کن
 
 msgid "Please select a subservice..."
 msgstr "لطفا یک کانال فرعی انتخاب کنید"
-
-msgid "Please select an NFI file and press green key to flash!"
-msgstr ""
 
 msgid "Please select an acceptable directory."
 msgstr ""
@@ -13751,9 +13694,6 @@ msgstr ""
 #, fuzzy
 msgid "Preparation time for recording (seconds)"
 msgstr "ترکیب نام های فایل های ضبط"
-
-msgid "Prepare another USB stick for image flashing"
-msgstr ""
 
 msgid "Preparing... Please wait"
 msgstr "در حال آماده سازی - لطفا صبر کنید"
@@ -14952,10 +14892,6 @@ msgstr ""
 msgid "Restore backups"
 msgstr "بازگردانی نسخه های پشتیبان"
 
-#
-msgid "Restore is running..."
-msgstr "بازگردانی در حال اجرا است"
-
 msgid "Restore settings from a backup"
 msgstr ""
 
@@ -15768,10 +15704,6 @@ msgstr ""
 msgid "Select additional files to backup"
 msgstr ""
 
-#, fuzzy
-msgid "Select an image to be downloaded"
-msgstr "انتخاب ایمیج برای دانلود"
-
 msgid "Select audio track"
 msgstr "انتخاب آهنگ صوتی"
 
@@ -15800,9 +15732,6 @@ msgstr "انتخاب مقصد رونوشت برای:"
 
 msgid "Select default EPG type..."
 msgstr ""
-
-msgid "Select desired image from feed list"
-msgstr "انتخاب ایمیج درخواستی از لیست"
 
 msgid "Select destination for:"
 msgstr "انتخاب مقصد برای:"
@@ -16668,11 +16597,6 @@ msgstr "تجهیزات ماهواره"
 msgid "Seychelles"
 msgstr ""
 
-#
-#, python-format
-msgid "Shall the USB stick wizard proceed and program the image file %s into flash memory?"
-msgstr ""
-
 msgid "Share Folder's"
 msgstr ""
 
@@ -16806,6 +16730,9 @@ msgid "Show CoolSingleGuide"
 msgstr ""
 
 msgid "Show CoolTVGuide"
+msgstr ""
+
+msgid "Show Directory size"
 msgstr ""
 
 msgid "Show Display Icons"
@@ -18882,11 +18809,6 @@ msgid "The TV was switched to the recording service!\n"
 msgstr ""
 
 msgid ""
-"The USB stick was prepared to be bootable.\n"
-"Now you can download an NFI image file!"
-msgstr ""
-
-msgid ""
 "The VideoMode plugin is not installed!\n"
 "Please install it."
 msgstr ""
@@ -18931,20 +18853,6 @@ msgstr ""
 msgid "The detailed information is intended for developers only."
 msgstr ""
 
-#, python-format
-msgid ""
-"The following device was found:\n"
-"\n"
-"%s\n"
-"\n"
-"Do you want to write the USB flasher to this stick?"
-msgstr ""
-"دستگاه های زیر یافت شدند :\n"
-"\n"
-"%s\n"
-"\n"
-"آیا میخواهید فلش کننده USB روی این وسیله نوشته شود ؟"
-
 #
 msgid "The following files were found..."
 msgstr "فایل های زیر یافت شدند"
@@ -18965,9 +18873,6 @@ msgstr ""
 
 msgid "The loopthrough setting is wrong."
 msgstr ""
-
-msgid "The md5sum validation failed, the file may be corrupted!"
-msgstr "تایید md5sum ناموفق بود ، فایل احتمالا خراب است"
 
 #, fuzzy
 msgid ""
@@ -19061,10 +18966,6 @@ msgstr ""
 
 msgid "The wizard can backup your current settings. Do you want to do a backup now?"
 msgstr "هدایتگر میتواند از تنظیمات فعلی شما نسخه پشتیبان تهیه کند ، آیا میخواهید الان نسخه پشتیبان تهیه شود ؟"
-
-#, python-format
-msgid "The wizard found a configuration backup. Do you want to restore your old settings from %s?"
-msgstr "هدایتگر یک نسخه پشتیبان پیکربندی شده یافت ، آیا میخواهید تنظیمات قبلی شما از %s بازگردانی شود ؟"
 
 msgid "The wizard is finished now."
 msgstr "هدایتگر به پایان رسید"
@@ -19428,14 +19329,6 @@ msgstr ""
 msgid "This option sets up the picture sharpness, used when the picture is being upscaled."
 msgstr ""
 
-#, python-format
-msgid ""
-"This plugin creates a USB stick which can be used to update the firmware of your %s %s without the need for a network or WLAN connection.\n"
-"First, a USB stick needs to be prepared so that it becomes bootable.\n"
-"In the next step, an NFI image file can be downloaded from the update server and saved on the USB stick.\n"
-"If you already have a prepared bootable USB stick, please insert it now. Otherwise plug in a USB stick with a minimum size of 64 MB!"
-msgstr ""
-
 #
 msgid "This plugin is installed."
 msgstr "این پلاگین نصب شده است"
@@ -19770,14 +19663,6 @@ msgstr "حالت تنظیم عنوان"
 #, fuzzy
 msgid "To restore the image:"
 msgstr "بله ، بازگردانی تنظیمات حالا"
-
-#, python-format
-msgid ""
-"To update your %s %s firmware, please follow these steps:\n"
-"1) Turn off your box with the rear power switch and make sure the bootable USB stick is plugged in.\n"
-"2) Turn mains back on and hold the DOWN button on the front panel pressed for 10 seconds.\n"
-"3) Wait for bootup and follow instructions of the wizard."
-msgstr ""
 
 msgid "Today"
 msgstr "امروز"
@@ -20174,9 +20059,6 @@ msgstr ""
 
 msgid "USB Stick"
 msgstr ""
-
-msgid "USB stick wizard"
-msgstr "USB stick هدایتگر"
 
 msgid "USB switch ERROR! - already on USB"
 msgstr ""
@@ -21802,9 +21684,6 @@ msgstr ""
 msgid "You have chosen to backup your settings. Please press OK to start the backup now."
 msgstr "شما تهیه نسخه پشتیبان از تنظیمات خود را انتخاب کرده اید ، لطفا دکمه OK را برای شروع تهیه نسخه پشتیبان فشار دهید"
 
-msgid "You have chosen to create a new .NFI flasher bootable USB stick. This will repartition the USB stick and therefore all data on it will be erased."
-msgstr ""
-
 #
 msgid "You have chosen to restore your settings. Enigma2 will restart after restore. Please press OK to start the restore now."
 msgstr "شما بازگردانی تنظیمات خود را انتخاب کرده اید ، انیگما 2 بعد از بازگردانی دوباره راه اندازی میشود ، برای شروع بازگردانی دکمه OK را فشار دهید"
@@ -22480,9 +22359,6 @@ msgstr "تایید شد"
 msgid "connected"
 msgstr "وصل شد"
 
-msgid "continue"
-msgstr "ادامه"
-
 msgid "controlled by HDMI"
 msgstr ""
 
@@ -22519,10 +22395,6 @@ msgstr ""
 
 msgid "current affairs (general)"
 msgstr ""
-
-#, python-format
-msgid "currently installed image: %s"
-msgstr "ایمیج نصب شده فعلی: %s"
 
 msgid "daily"
 msgstr "روزانه"
@@ -23948,6 +23820,96 @@ msgstr "حذف شد"
 
 msgid "®"
 msgstr ""
+
+#~ msgid "Changelog"
+#~ msgstr "تغییرات"
+
+#, fuzzy, python-format
+#~ msgid "Could not connect to %s %s .NFI image feed server:"
+#~ msgstr "ارتباط با سرور ایمیج NFI دستگاه میسر نیست"
+
+#~ msgid "Currently installed image"
+#~ msgstr "ایمیج نصب شده فعلی"
+
+#, python-format
+#~ msgid "Do you want to download the image to %s ?"
+#~ msgstr "آیا میخواهید ایمیج را در %s دانلود کنید ؟"
+
+#~ msgid "Download"
+#~ msgstr "دانلود"
+
+#, fuzzy, python-format
+#~ msgid "Download %s from server"
+#~ msgstr "دانلود %s از سرور"
+
+#, fuzzy
+#~ msgid "Download .NFI-files for USB-flasher"
+#~ msgstr "دانلود فایل های NFI برای USB-Flasher"
+
+#~ msgid "Flash"
+#~ msgstr "فلش"
+
+#~ msgid "Flashing failed"
+#~ msgstr "فلش کردن ناموفق"
+
+#~ msgid "Get latest experimental image"
+#~ msgstr "دریافت آخرین ایمیج آزمایشی منتشر شده"
+
+#~ msgid "Get latest release image"
+#~ msgstr "دریافت آخرین ایمیج منتشر شده"
+
+#
+#, fuzzy
+#~ msgid "NFI image flashing"
+#~ msgstr "فلش کردن ایمیج NFI"
+
+#~ msgid "No details for this image file"
+#~ msgstr "هیچ مشخصاتی برای این ایمیج وجود ندارد"
+
+#~ msgid "Please check your network settings!"
+#~ msgstr "لطفا تنظیمات شبکه خود را بررسی کنید"
+
+#
+#~ msgid "Restore is running..."
+#~ msgstr "بازگردانی در حال اجرا است"
+
+#, fuzzy
+#~ msgid "Select an image to be downloaded"
+#~ msgstr "انتخاب ایمیج برای دانلود"
+
+#~ msgid "Select desired image from feed list"
+#~ msgstr "انتخاب ایمیج درخواستی از لیست"
+
+#, python-format
+#~ msgid ""
+#~ "The following device was found:\n"
+#~ "\n"
+#~ "%s\n"
+#~ "\n"
+#~ "Do you want to write the USB flasher to this stick?"
+#~ msgstr ""
+#~ "دستگاه های زیر یافت شدند :\n"
+#~ "\n"
+#~ "%s\n"
+#~ "\n"
+#~ "آیا میخواهید فلش کننده USB روی این وسیله نوشته شود ؟"
+
+#~ msgid "The md5sum validation failed, the file may be corrupted!"
+#~ msgstr "تایید md5sum ناموفق بود ، فایل احتمالا خراب است"
+
+#, python-format
+#~ msgid "The wizard found a configuration backup. Do you want to restore your old settings from %s?"
+#~ msgstr "هدایتگر یک نسخه پشتیبان پیکربندی شده یافت ، آیا میخواهید تنظیمات قبلی شما از %s بازگردانی شود ؟"
+
+#~ msgid "USB stick wizard"
+#~ msgstr "USB stick هدایتگر"
+
+#~ msgid "continue"
+#~ msgstr "ادامه"
+
+#, python-format
+#~ msgid "currently installed image: %s"
+#~ msgstr "ایمیج نصب شده فعلی: %s"
 
 #~ msgid "Manual scan"
 #~ msgstr "اسکن دستی"

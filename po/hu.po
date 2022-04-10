@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: hu_po v3.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-04-02 20:55+0000\n"
+"POT-Creation-Date: 2022-04-10 10:23+0000\n"
 "PO-Revision-Date: 2022-03-10 14:56+0000\n"
 "Last-Translator: H. Árkosi Róbert <robreg@zsurob.hu>\n"
 "Language-Team: Hungarian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/hu/>\n"
@@ -3947,6 +3947,9 @@ msgstr ""
 msgid "Calculate"
 msgstr "Számítás"
 
+msgid "Calculate and show size of directory. Note: This can be slow down the UI on selection of a folder!"
+msgstr ""
+
 msgid "Calculate file checksums"
 msgstr "Fájlellenőrző összegek számítása"
 
@@ -4250,9 +4253,6 @@ msgstr "Lépésmérték módosítása"
 
 msgid "Change to bouquet"
 msgstr "Csatornacsomagra váltás"
-
-msgid "Changelog"
-msgstr "Változási napló"
 
 #, python-format
 msgid ""
@@ -5343,10 +5343,6 @@ msgstr "Costa Rica"
 msgid "Cote d'Ivoire / Ivory Coast"
 msgstr "Elefántcsontpart"
 
-#, python-format
-msgid "Could not connect to %s %s .NFI image feed server:"
-msgstr "Nem lehet csatlakozni a(z) %s %s .NFI Image feed szerverhez:"
-
 msgid "Could not connect to server"
 msgstr "Nem lehet kapcsolódni a kiszolgálóhoz"
 
@@ -5522,9 +5518,6 @@ msgstr ""
 
 msgid "Current version:"
 msgstr "Aktuális verzió:"
-
-msgid "Currently installed image"
-msgstr "Az aktuálisan telepített lemezkép"
 
 msgid "Custom"
 msgstr "Egyedi"
@@ -6380,9 +6373,6 @@ msgstr "Kijelző beállítás"
 msgid "Display and user interface"
 msgstr "Kijelző és felhasználói felület"
 
-msgid "Display directory size"
-msgstr ""
-
 msgid "Display message before playing next movie"
 msgstr "A következő fájl lejátszása előtt üzenet megjelenítése"
 
@@ -6617,10 +6607,6 @@ msgid "Do you want to do another manual service scan?"
 msgstr "Szeretne most egy másik kézi keresést lefuttatni?"
 
 #, python-format
-msgid "Do you want to download the image to %s ?"
-msgstr "Szeretné letölteni a lemezképet a következőre: %s ?"
-
-#, python-format
 msgid ""
 "Do you want to flash image\n"
 "%s"
@@ -6737,16 +6723,6 @@ msgstr[1] "%d szoftvercsomag telepítése, frissítése vagy eltávolítása elk
 
 msgid "Down"
 msgstr "Lefelé"
-
-msgid "Download"
-msgstr "Letöltés"
-
-#, python-format
-msgid "Download %s from server"
-msgstr "%s letöltése a szerverről"
-
-msgid "Download .NFI-files for USB-flasher"
-msgstr ".NFI fájlok letöltése az USB Flasherhez"
 
 msgid "Download Plugins"
 msgstr "Bővítmények letöltése"
@@ -7926,9 +7902,6 @@ msgstr "FTP beállítása"
 msgid "Factory Reset"
 msgstr ""
 
-msgid "Factory Reset Settings"
-msgstr ""
-
 msgid "Factory release"
 msgstr ""
 
@@ -8187,9 +8160,6 @@ msgstr "Rögzített"
 msgid "Fixed X11 font (SD)"
 msgstr "Rögzítve X11 betűként (SD)"
 
-msgid "Flash"
-msgstr "Flash"
-
 msgid "Flash Image"
 msgstr "Flash lemezkép"
 
@@ -8217,9 +8187,6 @@ msgstr "Flashelés"
 
 msgid "Flashing Image"
 msgstr "Lemezkép Flashelés"
-
-msgid "Flashing failed"
-msgstr "Flashelés sikertelen"
 
 msgid "Flashing image successful"
 msgstr "Lemezkép Flashelés sikeres"
@@ -8559,12 +8526,6 @@ msgstr "Társaság"
 
 msgid "Gesundheit"
 msgstr "Egészség"
-
-msgid "Get latest experimental image"
-msgstr "A legújabb kísérleti image megszerzése"
-
-msgid "Get latest release image"
-msgstr "A legújabb hivatalos image megszerzése"
 
 msgid "Getting Event Info failed!"
 msgstr "Az eseményadatok beszerzése sikertelen!"
@@ -11432,12 +11393,6 @@ msgstr "N/A"
 msgid "NEXT"
 msgstr "KÖVETKEZŐ"
 
-msgid "NFI image flashing"
-msgstr "NFI Image Flashelés"
-
-msgid "NFI image flashing completed. Press Yellow to Reboot!"
-msgstr "NFI image flashelése megörtént. Nyomja meg a Sárga gombot az újraindításhoz!"
-
 msgid "NFS"
 msgstr "NFS"
 
@@ -11784,9 +11739,6 @@ msgstr "Nem áll rendelkezésre demux"
 
 msgid "No description available."
 msgstr "Nincs elérhető leírás."
-
-msgid "No details for this image file"
-msgstr "Ehhez az image fájlhoz nincs leírás"
 
 msgid "No displayable files on this medium found!"
 msgstr "A hordozón nem található lejátszható fájl!"
@@ -12881,9 +12833,6 @@ msgstr "Befejezés ideje"
 msgid "Please check the manual of the receiver"
 msgstr "Kérjük, ellenőrizze a vevőkészülék kézikönyvét"
 
-msgid "Please check your network settings!"
-msgstr "Kérem, ellenőrizze a hálózati beállításokat!"
-
 msgid "Please choose CCcam-Reader"
 msgstr "Kérem, válasszon egy CCcam-Reader-t"
 
@@ -13009,9 +12958,6 @@ msgstr "Válasszon egy alcsatornát a felvételhez..."
 
 msgid "Please select a subservice..."
 msgstr "Válasszon egy alcsatornát..."
-
-msgid "Please select an NFI file and press green key to flash!"
-msgstr "Kérem, válasszon egy NFI fájlt, majd nyomja meg a Zöld gombot a flash-eléshez!"
 
 msgid "Please select an acceptable directory."
 msgstr ""
@@ -13436,9 +13382,6 @@ msgstr "Tuner(ek) kiválasztása"
 
 msgid "Preparation time for recording (seconds)"
 msgstr "A felvétel előkészítésének ideje (másodperc)"
-
-msgid "Prepare another USB stick for image flashing"
-msgstr "Egy másuk USB adathordozó előkészítése készülék-frissítésre"
 
 msgid "Preparing... Please wait"
 msgstr "Előkészítés... Kérem, várjon"
@@ -14592,9 +14535,6 @@ msgstr "Beállítások visszaállítása"
 msgid "Restore backups"
 msgstr "Mentések visszaállítása"
 
-msgid "Restore is running..."
-msgstr "Visszaállítás folyamatban..."
-
 msgid "Restore settings from a backup"
 msgstr "Beállítások visszaállítása mentésből"
 
@@ -15384,9 +15324,6 @@ msgstr "További mentési fájlok kiválasztása"
 msgid "Select additional files to backup"
 msgstr "Biztonsági mentésbe helyezendő fájlok"
 
-msgid "Select an image to be downloaded"
-msgstr "Válasszon egy letöltendő image-t"
-
 msgid "Select audio track"
 msgstr "Hangsáv kiválasztása"
 
@@ -15413,9 +15350,6 @@ msgstr "Másolási cél kiválasztása ehhez:"
 
 msgid "Select default EPG type..."
 msgstr "Válassza ki az alapértelmezett EPG típusát ..."
-
-msgid "Select desired image from feed list"
-msgstr "Válassza ki a listából a kívánt image-et"
 
 msgid "Select destination for:"
 msgstr "Cél kiválasztása ehhez:"
@@ -16275,10 +16209,6 @@ msgstr "Műholvevő-berendezés"
 msgid "Seychelles"
 msgstr "Seychelle-szigetek"
 
-#, python-format
-msgid "Shall the USB stick wizard proceed and program the image file %s into flash memory?"
-msgstr "Biztos benne, hogy az USB meghajtón lévő %s lemezképet flashelni szeretné a készülékre?"
-
 msgid "Share Folder's"
 msgstr "Mappa megosztása"
 
@@ -16411,6 +16341,9 @@ msgstr "CoolSingleGuide mutatása"
 
 msgid "Show CoolTVGuide"
 msgstr "CoolTVGuide mutatása"
+
+msgid "Show Directory size"
+msgstr ""
 
 msgid "Show Display Icons"
 msgstr "A kijelző ikonjainak megjelenítése"
@@ -18441,13 +18374,6 @@ msgid "The TV was switched to the recording service!\n"
 msgstr "A felvétel rögzítésre nem lehetett átváltani a TV élő adásáról!\n"
 
 msgid ""
-"The USB stick was prepared to be bootable.\n"
-"Now you can download an NFI image file!"
-msgstr ""
-"Az USB meghajtó bootolható lett.\n"
-"Most már tölthető rá NFI fájl!"
-
-msgid ""
 "The VideoMode plugin is not installed!\n"
 "Please install it."
 msgstr ""
@@ -18499,20 +18425,6 @@ msgstr "Az alapértelmezett beállítás: az ébresztési idő - 5 perc és az i
 msgid "The detailed information is intended for developers only."
 msgstr ""
 
-#, python-format
-msgid ""
-"The following device was found:\n"
-"\n"
-"%s\n"
-"\n"
-"Do you want to write the USB flasher to this stick?"
-msgstr ""
-"A következő eszközt találtam:\n"
-"\n"
-"%s\n"
-"\n"
-"Fel szeretné írni az USB flashelőt erre a pendrájvra?"
-
 msgid "The following files were found..."
 msgstr "Az alábbi fájlokat találta a rendszer..."
 
@@ -18534,9 +18446,6 @@ msgstr "A kép magassága. A bemenetet a fenti értékhez igazítva skálázzák
 
 msgid "The loopthrough setting is wrong."
 msgstr "Az átfűzés beállítása hibás."
-
-msgid "The md5sum validation failed, the file may be corrupted!"
-msgstr "Az md5 ellenőrzés sikertelen, a fájl valószínűleg sérült!"
 
 msgid ""
 "The network wizard extension is not installed!\n"
@@ -18628,10 +18537,6 @@ msgstr ""
 
 msgid "The wizard can backup your current settings. Do you want to do a backup now?"
 msgstr "A varázsló el tudja menteni a jelenlegi beállításait. szeretne most egy mentést csinálni?"
-
-#, python-format
-msgid "The wizard found a configuration backup. Do you want to restore your old settings from %s?"
-msgstr "A Varázsló talált egy korábbi mentést. Szeretné visszaállítani a beállításokat %s-ből?"
 
 msgid "The wizard is finished now."
 msgstr "A varázsló befejezte feladatát."
@@ -18992,18 +18897,6 @@ msgstr "Ezzel beállítja a hibás digitális körvonalak elfojtását."
 msgid "This option sets up the picture sharpness, used when the picture is being upscaled."
 msgstr "Ezzel beállítja a kép élességét, amelyet a kép felskálázásnál használ."
 
-#, python-format
-msgid ""
-"This plugin creates a USB stick which can be used to update the firmware of your %s %s without the need for a network or WLAN connection.\n"
-"First, a USB stick needs to be prepared so that it becomes bootable.\n"
-"In the next step, an NFI image file can be downloaded from the update server and saved on the USB stick.\n"
-"If you already have a prepared bootable USB stick, please insert it now. Otherwise plug in a USB stick with a minimum size of 64 MB!"
-msgstr ""
-"Ez a bővítmény létrehoz egy USB meghajtót, amely felhasználható a(z) %s %s firmware frissítésére hálózati vagy WLAN-kapcsolat nélkül.\n"
-"Először elő kell készíteni egy USB meghajtót, hogy az indíthatóvá váljon.\n"
-"A következő lépésben letölthető egy NFI lemezképfájl a frissítőkiszolgálóról, és az elmenthető az USB meghajtóra.\n"
-"Ha már van elkészített indítható USB meghajtó, kérjük, helyezze be most. Egyébként csatlakoztasson legalább 64 MB méretű USB meghajtót!"
-
 msgid "This plugin is installed."
 msgstr "A bővítmény telepítve van."
 
@@ -19345,18 +19238,6 @@ msgstr "Tétel-szett mód"
 
 msgid "To restore the image:"
 msgstr "A lemezkép visszaállítása:"
-
-#, python-format
-msgid ""
-"To update your %s %s firmware, please follow these steps:\n"
-"1) Turn off your box with the rear power switch and make sure the bootable USB stick is plugged in.\n"
-"2) Turn mains back on and hold the DOWN button on the front panel pressed for 10 seconds.\n"
-"3) Wait for bootup and follow instructions of the wizard."
-msgstr ""
-"A(z) %s %s készülék szoftverének frissítéséhez, az alábbi lépéseket tegye meg:\n"
-"1) Áramtalanítsa a készüléket, majd csatlakoztassa az USB-s adathordozót.\n"
-"2) Helyezze áram alá a készüléket, közben tartsa lenyomva az előlapon a LE gombot 10 másodpercig.\n"
-"3) Várjon a bootolás befejezésére, majd kövesse a Varázsló utasításait."
 
 msgid "Today"
 msgstr "Ma"
@@ -19740,9 +19621,6 @@ msgstr "Az USALS automatikusan áthelyezi a motorizált antennát a megfelelő m
 
 msgid "USB Stick"
 msgstr "USB-stick"
-
-msgid "USB stick wizard"
-msgstr "USB-s hordozó Varázsló"
 
 msgid "USB switch ERROR! - already on USB"
 msgstr "USB kapcsoló HIBA! - már az USB-n"
@@ -21346,9 +21224,6 @@ msgstr "Már elküldted ezt a naplót, biztos, hogy ezt a naplót újra szeretn�
 msgid "You have chosen to backup your settings. Please press OK to start the backup now."
 msgstr "Ön azt választotta, hogy a beállításairól egy biztonsági másolatot készít. Kérem, nyomja le az OK gombot a folytatáshoz."
 
-msgid "You have chosen to create a new .NFI flasher bootable USB stick. This will repartition the USB stick and therefore all data on it will be erased."
-msgstr "Azt választotta hogy létrehoz egy új .NFI flasher bootolható USB sticket. Ez az USB sticket újra fogja partícionálni, ezért az azon található összes adat el fog veszni."
-
 msgid "You have chosen to restore your settings. Enigma2 will restart after restore. Please press OK to start the restore now."
 msgstr "Ön azt választotta, hogy a beállításokat visszaállítja egy korábbi biztonsági mentésből. A folyamat végén az Enigma2 újra fog indulni. Kérem, nyomja le az OK gombot a folytatáshoz."
 
@@ -22053,9 +21928,6 @@ msgstr "visszaigazolt"
 msgid "connected"
 msgstr "csatlakoztatva"
 
-msgid "continue"
-msgstr "folytatás"
-
 msgid "controlled by HDMI"
 msgstr "HDMI vezérléssel"
 
@@ -22091,10 +21963,6 @@ msgstr "szimbolikus hivatkozás létrehozása..."
 
 msgid "current affairs (general)"
 msgstr "aktuális ügyek (általános)"
-
-#, python-format
-msgid "currently installed image: %s"
-msgstr "aktuálisan feltelepített image: %s"
 
 msgid "daily"
 msgstr "naponta"
@@ -23492,6 +23360,138 @@ msgstr "ugrás folyamatban"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Changelog"
+#~ msgstr "Változási napló"
+
+#, python-format
+#~ msgid "Could not connect to %s %s .NFI image feed server:"
+#~ msgstr "Nem lehet csatlakozni a(z) %s %s .NFI Image feed szerverhez:"
+
+#~ msgid "Currently installed image"
+#~ msgstr "Az aktuálisan telepített lemezkép"
+
+#, python-format
+#~ msgid "Do you want to download the image to %s ?"
+#~ msgstr "Szeretné letölteni a lemezképet a következőre: %s ?"
+
+#~ msgid "Download"
+#~ msgstr "Letöltés"
+
+#, python-format
+#~ msgid "Download %s from server"
+#~ msgstr "%s letöltése a szerverről"
+
+#~ msgid "Download .NFI-files for USB-flasher"
+#~ msgstr ".NFI fájlok letöltése az USB Flasherhez"
+
+#~ msgid "Flash"
+#~ msgstr "Flash"
+
+#~ msgid "Flashing failed"
+#~ msgstr "Flashelés sikertelen"
+
+#~ msgid "Get latest experimental image"
+#~ msgstr "A legújabb kísérleti image megszerzése"
+
+#~ msgid "Get latest release image"
+#~ msgstr "A legújabb hivatalos image megszerzése"
+
+#~ msgid "NFI image flashing"
+#~ msgstr "NFI Image Flashelés"
+
+#~ msgid "NFI image flashing completed. Press Yellow to Reboot!"
+#~ msgstr "NFI image flashelése megörtént. Nyomja meg a Sárga gombot az újraindításhoz!"
+
+#~ msgid "No details for this image file"
+#~ msgstr "Ehhez az image fájlhoz nincs leírás"
+
+#~ msgid "Please check your network settings!"
+#~ msgstr "Kérem, ellenőrizze a hálózati beállításokat!"
+
+#~ msgid "Please select an NFI file and press green key to flash!"
+#~ msgstr "Kérem, válasszon egy NFI fájlt, majd nyomja meg a Zöld gombot a flash-eléshez!"
+
+#~ msgid "Prepare another USB stick for image flashing"
+#~ msgstr "Egy másuk USB adathordozó előkészítése készülék-frissítésre"
+
+#~ msgid "Restore is running..."
+#~ msgstr "Visszaállítás folyamatban..."
+
+#~ msgid "Select an image to be downloaded"
+#~ msgstr "Válasszon egy letöltendő image-t"
+
+#~ msgid "Select desired image from feed list"
+#~ msgstr "Válassza ki a listából a kívánt image-et"
+
+#, python-format
+#~ msgid "Shall the USB stick wizard proceed and program the image file %s into flash memory?"
+#~ msgstr "Biztos benne, hogy az USB meghajtón lévő %s lemezképet flashelni szeretné a készülékre?"
+
+#~ msgid ""
+#~ "The USB stick was prepared to be bootable.\n"
+#~ "Now you can download an NFI image file!"
+#~ msgstr ""
+#~ "Az USB meghajtó bootolható lett.\n"
+#~ "Most már tölthető rá NFI fájl!"
+
+#, python-format
+#~ msgid ""
+#~ "The following device was found:\n"
+#~ "\n"
+#~ "%s\n"
+#~ "\n"
+#~ "Do you want to write the USB flasher to this stick?"
+#~ msgstr ""
+#~ "A következő eszközt találtam:\n"
+#~ "\n"
+#~ "%s\n"
+#~ "\n"
+#~ "Fel szeretné írni az USB flashelőt erre a pendrájvra?"
+
+#~ msgid "The md5sum validation failed, the file may be corrupted!"
+#~ msgstr "Az md5 ellenőrzés sikertelen, a fájl valószínűleg sérült!"
+
+#, python-format
+#~ msgid "The wizard found a configuration backup. Do you want to restore your old settings from %s?"
+#~ msgstr "A Varázsló talált egy korábbi mentést. Szeretné visszaállítani a beállításokat %s-ből?"
+
+#, python-format
+#~ msgid ""
+#~ "This plugin creates a USB stick which can be used to update the firmware of your %s %s without the need for a network or WLAN connection.\n"
+#~ "First, a USB stick needs to be prepared so that it becomes bootable.\n"
+#~ "In the next step, an NFI image file can be downloaded from the update server and saved on the USB stick.\n"
+#~ "If you already have a prepared bootable USB stick, please insert it now. Otherwise plug in a USB stick with a minimum size of 64 MB!"
+#~ msgstr ""
+#~ "Ez a bővítmény létrehoz egy USB meghajtót, amely felhasználható a(z) %s %s firmware frissítésére hálózati vagy WLAN-kapcsolat nélkül.\n"
+#~ "Először elő kell készíteni egy USB meghajtót, hogy az indíthatóvá váljon.\n"
+#~ "A következő lépésben letölthető egy NFI lemezképfájl a frissítőkiszolgálóról, és az elmenthető az USB meghajtóra.\n"
+#~ "Ha már van elkészített indítható USB meghajtó, kérjük, helyezze be most. Egyébként csatlakoztasson legalább 64 MB méretű USB meghajtót!"
+
+#, python-format
+#~ msgid ""
+#~ "To update your %s %s firmware, please follow these steps:\n"
+#~ "1) Turn off your box with the rear power switch and make sure the bootable USB stick is plugged in.\n"
+#~ "2) Turn mains back on and hold the DOWN button on the front panel pressed for 10 seconds.\n"
+#~ "3) Wait for bootup and follow instructions of the wizard."
+#~ msgstr ""
+#~ "A(z) %s %s készülék szoftverének frissítéséhez, az alábbi lépéseket tegye meg:\n"
+#~ "1) Áramtalanítsa a készüléket, majd csatlakoztassa az USB-s adathordozót.\n"
+#~ "2) Helyezze áram alá a készüléket, közben tartsa lenyomva az előlapon a LE gombot 10 másodpercig.\n"
+#~ "3) Várjon a bootolás befejezésére, majd kövesse a Varázsló utasításait."
+
+#~ msgid "USB stick wizard"
+#~ msgstr "USB-s hordozó Varázsló"
+
+#~ msgid "You have chosen to create a new .NFI flasher bootable USB stick. This will repartition the USB stick and therefore all data on it will be erased."
+#~ msgstr "Azt választotta hogy létrehoz egy új .NFI flasher bootolható USB sticket. Ez az USB sticket újra fogja partícionálni, ezért az azon található összes adat el fog veszni."
+
+#~ msgid "continue"
+#~ msgstr "folytatás"
+
+#, python-format
+#~ msgid "currently installed image: %s"
+#~ msgstr "aktuálisan feltelepített image: %s"
 
 #~ msgid "Manual scan"
 #~ msgstr "Kézi keresés"

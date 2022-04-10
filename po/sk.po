@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-04-02 20:55+0000\n"
+"POT-Creation-Date: 2022-04-10 10:23+0000\n"
 "PO-Revision-Date: 2022-04-02 20:47+0000\n"
 "Last-Translator: Marián Hikaník <podnety@mojepreklady.net>\n"
 "Language-Team: Slovak <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/sk/>\n"
@@ -3915,6 +3915,9 @@ msgstr "Uložené do vyrov. pamäte"
 msgid "Calculate"
 msgstr "Prepočítať"
 
+msgid "Calculate and show size of directory. Note: This can be slow down the UI on selection of a folder!"
+msgstr ""
+
 msgid "Calculate file checksums"
 msgstr "Vypočítať kontrolné súčty súboru"
 
@@ -4224,9 +4227,6 @@ msgstr "Zmeniť veľkosť kroku"
 
 msgid "Change to bouquet"
 msgstr "Zmeniť na prehľad"
-
-msgid "Changelog"
-msgstr "Protokol zmien"
 
 #, python-format
 msgid ""
@@ -5309,10 +5309,6 @@ msgstr "Kostarika"
 msgid "Cote d'Ivoire / Ivory Coast"
 msgstr "Pobrežie Slonoviny"
 
-#, python-format
-msgid "Could not connect to %s %s .NFI image feed server:"
-msgstr "Nemožno sa pripojiť na %s %s. Zdrojový server pre image NFI:"
-
 msgid "Could not connect to server"
 msgstr "Nemožno sa pripojiť na server"
 
@@ -5488,9 +5484,6 @@ msgstr "Aktuálna verzia nie je známa"
 
 msgid "Current version:"
 msgstr "Aktuálna verzia:"
-
-msgid "Currently installed image"
-msgstr "Aktuálne nainštalovaný image"
 
 msgid "Custom"
 msgstr "Používateľské"
@@ -6333,9 +6326,6 @@ msgstr "Nastavenie displeja"
 msgid "Display and user interface"
 msgstr "Zobrazenie a používateľské rozhranie"
 
-msgid "Display directory size"
-msgstr ""
-
 msgid "Display message before playing next movie"
 msgstr "Zobrazovať správu pred prehrávaním ďalšieho filmu"
 
@@ -6574,10 +6564,6 @@ msgid "Do you want to do another manual service scan?"
 msgstr "Chcete urobiť ďalšie ručné vyhľadávanie staníc?"
 
 #, python-format
-msgid "Do you want to download the image to %s ?"
-msgstr "Chcete stiahnuť image na %s?"
-
-#, python-format
 msgid ""
 "Do you want to flash image\n"
 "%s"
@@ -6695,16 +6681,6 @@ msgstr[2] "Dokončené - bolo nainštalovaných, aktualizovaných alebo odstrán
 
 msgid "Down"
 msgstr "Nadol"
-
-msgid "Download"
-msgstr "Stiahnuť"
-
-#, python-format
-msgid "Download %s from server"
-msgstr "Stiahnuť %s zo serveru"
-
-msgid "Download .NFI-files for USB-flasher"
-msgstr "Stiahnuť súbory .NFI pre USB-Flasher"
 
 msgid "Download Plugins"
 msgstr "Stiahnuť pluginy"
@@ -7881,9 +7857,6 @@ msgstr "Nastavenie FTP"
 msgid "Factory Reset"
 msgstr "Výrobné nastavenia"
 
-msgid "Factory Reset Settings"
-msgstr "Nastavenia továrenského resetovania"
-
 msgid "Factory release"
 msgstr "Továrenské vydanie"
 
@@ -8138,9 +8111,6 @@ msgstr "Pevný"
 msgid "Fixed X11 font (SD)"
 msgstr "Písmo Fixed X11 (SD)"
 
-msgid "Flash"
-msgstr "Flash"
-
 msgid "Flash Image"
 msgstr "Flashovanie image"
 
@@ -8168,9 +8138,6 @@ msgstr "Flashovanie"
 
 msgid "Flashing Image"
 msgstr "Flashovanie image"
-
-msgid "Flashing failed"
-msgstr "Flashovanie neúspešné"
 
 msgid "Flashing image successful"
 msgstr "Flashovanie image bolo úspešné"
@@ -8501,12 +8468,6 @@ msgstr "Spoločnosť"
 
 msgid "Gesundheit"
 msgstr "Zdravie"
-
-msgid "Get latest experimental image"
-msgstr "Získať najnovší experimentálny image"
-
-msgid "Get latest release image"
-msgstr "Získať najnovší hotový image"
 
 msgid "Getting Event Info failed!"
 msgstr "Načítanie informácie o udalosti zlyhalo!"
@@ -11308,12 +11269,6 @@ msgstr "nedostupné"
 msgid "NEXT"
 msgstr "ĎALEJ"
 
-msgid "NFI image flashing"
-msgstr "Nahrať NFI image"
-
-msgid "NFI image flashing completed. Press Yellow to Reboot!"
-msgstr "Flashovanie image .NFI dokončené. Stlačením žltého tlačidla reštartujte!"
-
 msgid "NFS"
 msgstr "NFS"
 
@@ -11655,9 +11610,6 @@ msgstr "Nie je dostupné žiadne demultiplexovanie"
 
 msgid "No description available."
 msgstr "Popis nie je k dispozícii."
-
-msgid "No details for this image file"
-msgstr "Žiadne podrobnosti k tomuto súboru image"
 
 msgid "No displayable files on this medium found!"
 msgstr "Na tomto médiu sa nenašli žiadne zobraziteľné súbory!"
@@ -12735,9 +12687,6 @@ msgstr "Prosím zmeňte čas ukončenia nahrávania"
 msgid "Please check the manual of the receiver"
 msgstr "Prosím pozrite si návod od prijímača"
 
-msgid "Please check your network settings!"
-msgstr "Prosím skontrolujte nastavenia siete!"
-
 msgid "Please choose CCcam-Reader"
 msgstr "Prosím vyberte čítačku CCcam"
 
@@ -12863,9 +12812,6 @@ msgstr "Prosím vyberte podradenú stanicu na nahrávanie..."
 
 msgid "Please select a subservice..."
 msgstr "Prosím vyberte podradenú stanicu..."
-
-msgid "Please select an NFI file and press green key to flash!"
-msgstr "Prosím vyberte súbor NFI a stlačením zeleného tlačidla spustite flashovanie!"
 
 msgid "Please select an acceptable directory."
 msgstr "Vyberte prijateľný priečinok."
@@ -13293,9 +13239,6 @@ msgstr "Preferované tunery pre nahrávky, je možný aj výber viacerých"
 
 msgid "Preparation time for recording (seconds)"
 msgstr "Čas prípravy pred nahrávaním (v sek.)"
-
-msgid "Prepare another USB stick for image flashing"
-msgstr "Pripravte si iný kľúč USB na flashovanie image"
 
 msgid "Preparing... Please wait"
 msgstr "Pripravuje sa... Prosím čakajte"
@@ -14445,9 +14388,6 @@ msgstr "Obnoviť nastavenia"
 msgid "Restore backups"
 msgstr "Obnoviť zálohy"
 
-msgid "Restore is running..."
-msgstr "Prebieha obnova..."
-
 msgid "Restore settings from a backup"
 msgstr "Obnoviť nastavenia zo zálohy"
 
@@ -15227,9 +15167,6 @@ msgstr "Vybrať doplnkové záložné súbory"
 msgid "Select additional files to backup"
 msgstr "Výber doplnkových súborov, ktoré chcete zálohovať"
 
-msgid "Select an image to be downloaded"
-msgstr "Vyberte image na stiahnutie"
-
 msgid "Select audio track"
 msgstr "Vyberte zvukovú stopu"
 
@@ -15256,9 +15193,6 @@ msgstr "Vyberte cieľ. umiestnenie kópie pre:"
 
 msgid "Select default EPG type..."
 msgstr "Vyberte predvolený typ EPG..."
-
-msgid "Select desired image from feed list"
-msgstr "Vyberte požadovaný image zo zoznamu zdrojov softvéru"
 
 msgid "Select destination for:"
 msgstr "Vyberte umiestnenie pre:"
@@ -16106,10 +16040,6 @@ msgstr "Nastavenie satelitnej výbavy"
 msgid "Seychelles"
 msgstr "Seychelly"
 
-#, python-format
-msgid "Shall the USB stick wizard proceed and program the image file %s into flash memory?"
-msgstr "Má sprievodca kľúčom USB pokračovať a naprogramovať súbor image %s do pamäte flash?"
-
 msgid "Share Folder's"
 msgstr "Zdieľané priečinky"
 
@@ -16241,6 +16171,9 @@ msgstr "Zobraziť CoolSingleGuide"
 
 msgid "Show CoolTVGuide"
 msgstr "Zobraziť CoolTVGuide"
+
+msgid "Show Directory size"
+msgstr ""
 
 msgid "Show Display Icons"
 msgstr "Zobraziť ikony na displeji"
@@ -18234,13 +18167,6 @@ msgid "The TV was switched to the recording service!\n"
 msgstr "TV bola prepnutá na nahrávanú stanicu!\n"
 
 msgid ""
-"The USB stick was prepared to be bootable.\n"
-"Now you can download an NFI image file!"
-msgstr ""
-"Kľúč USB je pripravený ako bootovateľný.\n"
-"Teraz môžete stiahnuť súbor NFI!"
-
-msgid ""
 "The VideoMode plugin is not installed!\n"
 "Please install it."
 msgstr ""
@@ -18292,20 +18218,6 @@ msgstr "Predvolené nastavenie je: čas prebudenia - 5 minút a časovač v čas
 msgid "The detailed information is intended for developers only."
 msgstr "Podrobná informácia je určená len pre vývojárov."
 
-#, python-format
-msgid ""
-"The following device was found:\n"
-"\n"
-"%s\n"
-"\n"
-"Do you want to write the USB flasher to this stick?"
-msgstr ""
-"Bolo zistené, že nasledujúce zariadenie:\n"
-"\n"
-"%s\n"
-"\n"
-"Chcete zapísať USB flasher na tento kľúč?"
-
 msgid "The following files were found..."
 msgstr "Boli nájdené tieto súbory..."
 
@@ -18327,9 +18239,6 @@ msgstr "Výška obrazu. Mierka vstupu sa zmení tak, aby zodpovedala tejto hodno
 
 msgid "The loopthrough setting is wrong."
 msgstr "Nastavenie slučky je nesprávne."
-
-msgid "The md5sum validation failed, the file may be corrupted!"
-msgstr "Overovanie súčtu md5 zlyhalo. Súbor je asi porušený!"
 
 msgid ""
 "The network wizard extension is not installed!\n"
@@ -18421,10 +18330,6 @@ msgstr ""
 
 msgid "The wizard can backup your current settings. Do you want to do a backup now?"
 msgstr "Sprievodca môže zálohovať aktuálne nastavenia. Chcete teraz zálohovať?"
-
-#, python-format
-msgid "The wizard found a configuration backup. Do you want to restore your old settings from %s?"
-msgstr "Sprievodca našiel zálohu nastavení. Chcete obnoviť staré nastavenia z %s?"
 
 msgid "The wizard is finished now."
 msgstr "Sprievodca teraz skončil."
@@ -18784,18 +18689,6 @@ msgstr "Táto voľba nastaví potlačovanie falošných, digitálnych obrysov. T
 msgid "This option sets up the picture sharpness, used when the picture is being upscaled."
 msgstr "Táto voľba nastaví ostrosť obrazu, ktorý sa používa, keď je obraz práve zväčšený."
 
-#, python-format
-msgid ""
-"This plugin creates a USB stick which can be used to update the firmware of your %s %s without the need for a network or WLAN connection.\n"
-"First, a USB stick needs to be prepared so that it becomes bootable.\n"
-"In the next step, an NFI image file can be downloaded from the update server and saved on the USB stick.\n"
-"If you already have a prepared bootable USB stick, please insert it now. Otherwise plug in a USB stick with a minimum size of 64 MB!"
-msgstr ""
-"Tento plugin vytvorí USB kľúč, ktorý možno použiť na aktualizáciu firmwaru prijímača %s %s bez potreby siete alebo pripojenia WLAN.\n"
-"Najskôr je potrebné pripraviť USB kľúč tak, aby bol bootovací.\n"
-"V ďalšom kroku možno stiahnuť súbor NFI s image, zo servera s aktualizáciami a uložiť na USB kľúč.\n"
-"Ak už máte pripravený bootovací USB kľúč, prosím vložte ho. V opačnom prípade pripojte USB kľúč s minim. kapacitou 64 MB!"
-
 msgid "This plugin is installed."
 msgstr "Tento plugin je nainštalovaný."
 
@@ -19133,18 +19026,6 @@ msgstr "Režim sady titulov"
 
 msgid "To restore the image:"
 msgstr "Na obnovenie image:"
-
-#, python-format
-msgid ""
-"To update your %s %s firmware, please follow these steps:\n"
-"1) Turn off your box with the rear power switch and make sure the bootable USB stick is plugged in.\n"
-"2) Turn mains back on and hold the DOWN button on the front panel pressed for 10 seconds.\n"
-"3) Wait for bootup and follow instructions of the wizard."
-msgstr ""
-"Ak chcete aktualizovať firmware prijímača %s %s, prosím postupujte takto:\n"
-"1) Vypnite prijímač vypínačom na zadnej strane a uistite sa, že je pripojený bootovateľný disk USB.\n"
-"2) Zapnite hlavný vypínač na zadnej strane a držte stlačené tlačidlo NADOL na prednom paneli počas 10 sekúnd.\n"
-"3) Počkajte na nabootovanie a dodržiavajte inštrukcie sprievodcu."
 
 msgid "Today"
 msgstr "Dnes"
@@ -19519,9 +19400,6 @@ msgstr "Systém USALS automaticky otáča motorizovanú parabolu na správnu dru
 
 msgid "USB Stick"
 msgstr "USB kľúč"
-
-msgid "USB stick wizard"
-msgstr "Sprievodca pre USB kľúč"
 
 msgid "USB switch ERROR! - already on USB"
 msgstr "CHYBA prepnutia USB - už na USB"
@@ -21114,9 +20992,6 @@ msgstr "Už ste odoslali tento protokol, ste si istí, že chcete, aby bol opät
 msgid "You have chosen to backup your settings. Please press OK to start the backup now."
 msgstr "Vybrali ste si zálohovanie nastavení. Stlačením tlačidla OK spustíte zálohovanie."
 
-msgid "You have chosen to create a new .NFI flasher bootable USB stick. This will repartition the USB stick and therefore all data on it will be erased."
-msgstr "Zvolili ste si vytvorenie nového bootovateľného USB kľúča pre zápis .NFI. Pritom sa vytvorí nová partícia na kľúči a stratíte všetky dáta, ktoré sú na ňom."
-
 msgid "You have chosen to restore your settings. Enigma2 will restart after restore. Please press OK to start the restore now."
 msgstr "Vybrali ste si obnovu nastavení. Po obnovení sa Enigma2 reštartuje. Stlačením tlačidla OK spustíte obnovu."
 
@@ -21817,9 +21692,6 @@ msgstr "potvrdené"
 msgid "connected"
 msgstr "pripojené"
 
-msgid "continue"
-msgstr "pokračovať"
-
 msgid "controlled by HDMI"
 msgstr "ovládané HDMI"
 
@@ -21855,10 +21727,6 @@ msgstr "vytvoriť symb. odkaz..."
 
 msgid "current affairs (general)"
 msgstr "aktuálne aféry (obecne)"
-
-#, python-format
-msgid "currently installed image: %s"
-msgstr "aktuálne nainštalovaný image: %s"
 
 msgid "daily"
 msgstr "denne"
@@ -23252,6 +23120,141 @@ msgstr "prepínanie"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Changelog"
+#~ msgstr "Protokol zmien"
+
+#, python-format
+#~ msgid "Could not connect to %s %s .NFI image feed server:"
+#~ msgstr "Nemožno sa pripojiť na %s %s. Zdrojový server pre image NFI:"
+
+#~ msgid "Currently installed image"
+#~ msgstr "Aktuálne nainštalovaný image"
+
+#, python-format
+#~ msgid "Do you want to download the image to %s ?"
+#~ msgstr "Chcete stiahnuť image na %s?"
+
+#~ msgid "Download"
+#~ msgstr "Stiahnuť"
+
+#, python-format
+#~ msgid "Download %s from server"
+#~ msgstr "Stiahnuť %s zo serveru"
+
+#~ msgid "Download .NFI-files for USB-flasher"
+#~ msgstr "Stiahnuť súbory .NFI pre USB-Flasher"
+
+#~ msgid "Factory Reset Settings"
+#~ msgstr "Nastavenia továrenského resetovania"
+
+#~ msgid "Flash"
+#~ msgstr "Flash"
+
+#~ msgid "Flashing failed"
+#~ msgstr "Flashovanie neúspešné"
+
+#~ msgid "Get latest experimental image"
+#~ msgstr "Získať najnovší experimentálny image"
+
+#~ msgid "Get latest release image"
+#~ msgstr "Získať najnovší hotový image"
+
+#~ msgid "NFI image flashing"
+#~ msgstr "Nahrať NFI image"
+
+#~ msgid "NFI image flashing completed. Press Yellow to Reboot!"
+#~ msgstr "Flashovanie image .NFI dokončené. Stlačením žltého tlačidla reštartujte!"
+
+#~ msgid "No details for this image file"
+#~ msgstr "Žiadne podrobnosti k tomuto súboru image"
+
+#~ msgid "Please check your network settings!"
+#~ msgstr "Prosím skontrolujte nastavenia siete!"
+
+#~ msgid "Please select an NFI file and press green key to flash!"
+#~ msgstr "Prosím vyberte súbor NFI a stlačením zeleného tlačidla spustite flashovanie!"
+
+#~ msgid "Prepare another USB stick for image flashing"
+#~ msgstr "Pripravte si iný kľúč USB na flashovanie image"
+
+#~ msgid "Restore is running..."
+#~ msgstr "Prebieha obnova..."
+
+#~ msgid "Select an image to be downloaded"
+#~ msgstr "Vyberte image na stiahnutie"
+
+#~ msgid "Select desired image from feed list"
+#~ msgstr "Vyberte požadovaný image zo zoznamu zdrojov softvéru"
+
+#, python-format
+#~ msgid "Shall the USB stick wizard proceed and program the image file %s into flash memory?"
+#~ msgstr "Má sprievodca kľúčom USB pokračovať a naprogramovať súbor image %s do pamäte flash?"
+
+#~ msgid ""
+#~ "The USB stick was prepared to be bootable.\n"
+#~ "Now you can download an NFI image file!"
+#~ msgstr ""
+#~ "Kľúč USB je pripravený ako bootovateľný.\n"
+#~ "Teraz môžete stiahnuť súbor NFI!"
+
+#, python-format
+#~ msgid ""
+#~ "The following device was found:\n"
+#~ "\n"
+#~ "%s\n"
+#~ "\n"
+#~ "Do you want to write the USB flasher to this stick?"
+#~ msgstr ""
+#~ "Bolo zistené, že nasledujúce zariadenie:\n"
+#~ "\n"
+#~ "%s\n"
+#~ "\n"
+#~ "Chcete zapísať USB flasher na tento kľúč?"
+
+#~ msgid "The md5sum validation failed, the file may be corrupted!"
+#~ msgstr "Overovanie súčtu md5 zlyhalo. Súbor je asi porušený!"
+
+#, python-format
+#~ msgid "The wizard found a configuration backup. Do you want to restore your old settings from %s?"
+#~ msgstr "Sprievodca našiel zálohu nastavení. Chcete obnoviť staré nastavenia z %s?"
+
+#, python-format
+#~ msgid ""
+#~ "This plugin creates a USB stick which can be used to update the firmware of your %s %s without the need for a network or WLAN connection.\n"
+#~ "First, a USB stick needs to be prepared so that it becomes bootable.\n"
+#~ "In the next step, an NFI image file can be downloaded from the update server and saved on the USB stick.\n"
+#~ "If you already have a prepared bootable USB stick, please insert it now. Otherwise plug in a USB stick with a minimum size of 64 MB!"
+#~ msgstr ""
+#~ "Tento plugin vytvorí USB kľúč, ktorý možno použiť na aktualizáciu firmwaru prijímača %s %s bez potreby siete alebo pripojenia WLAN.\n"
+#~ "Najskôr je potrebné pripraviť USB kľúč tak, aby bol bootovací.\n"
+#~ "V ďalšom kroku možno stiahnuť súbor NFI s image, zo servera s aktualizáciami a uložiť na USB kľúč.\n"
+#~ "Ak už máte pripravený bootovací USB kľúč, prosím vložte ho. V opačnom prípade pripojte USB kľúč s minim. kapacitou 64 MB!"
+
+#, python-format
+#~ msgid ""
+#~ "To update your %s %s firmware, please follow these steps:\n"
+#~ "1) Turn off your box with the rear power switch and make sure the bootable USB stick is plugged in.\n"
+#~ "2) Turn mains back on and hold the DOWN button on the front panel pressed for 10 seconds.\n"
+#~ "3) Wait for bootup and follow instructions of the wizard."
+#~ msgstr ""
+#~ "Ak chcete aktualizovať firmware prijímača %s %s, prosím postupujte takto:\n"
+#~ "1) Vypnite prijímač vypínačom na zadnej strane a uistite sa, že je pripojený bootovateľný disk USB.\n"
+#~ "2) Zapnite hlavný vypínač na zadnej strane a držte stlačené tlačidlo NADOL na prednom paneli počas 10 sekúnd.\n"
+#~ "3) Počkajte na nabootovanie a dodržiavajte inštrukcie sprievodcu."
+
+#~ msgid "USB stick wizard"
+#~ msgstr "Sprievodca pre USB kľúč"
+
+#~ msgid "You have chosen to create a new .NFI flasher bootable USB stick. This will repartition the USB stick and therefore all data on it will be erased."
+#~ msgstr "Zvolili ste si vytvorenie nového bootovateľného USB kľúča pre zápis .NFI. Pritom sa vytvorí nová partícia na kľúči a stratíte všetky dáta, ktoré sú na ňom."
+
+#~ msgid "continue"
+#~ msgstr "pokračovať"
+
+#, python-format
+#~ msgid "currently installed image: %s"
+#~ msgstr "aktuálne nainštalovaný image: %s"
 
 #~ msgid "Manual scan"
 #~ msgstr "Ručné skenovanie"

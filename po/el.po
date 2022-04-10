@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Enigma2 Official Greek Translation\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-04-02 20:55+0000\n"
+"POT-Creation-Date: 2022-04-10 10:23+0000\n"
 "PO-Revision-Date: 2021-08-19 12:59+0000\n"
 "Last-Translator: MCelliotG <mcelliotg@gmail.com>\n"
 "Language-Team: Greek <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/el/>\n"
@@ -3941,6 +3941,9 @@ msgstr ""
 msgid "Calculate"
 msgstr "Υπολογισμός"
 
+msgid "Calculate and show size of directory. Note: This can be slow down the UI on selection of a folder!"
+msgstr ""
+
 msgid "Calculate file checksums"
 msgstr "Υπολογισμός συνόλου ελέγχου αρχείου"
 
@@ -4244,9 +4247,6 @@ msgstr "Αλλαγή μεγέθους βήματος"
 
 msgid "Change to bouquet"
 msgstr "Αλλαγή σε μπουκέτο"
-
-msgid "Changelog"
-msgstr "Καταγραφολόγιο αλλαγών"
 
 #, python-format
 msgid ""
@@ -5339,10 +5339,6 @@ msgstr "Κόστα Ρίκα"
 msgid "Cote d'Ivoire / Ivory Coast"
 msgstr "Ακτή Ελεφαντοστού"
 
-#, python-format
-msgid "Could not connect to %s %s .NFI image feed server:"
-msgstr "Αδυναμία σύνδεσης στην πηγή image .NFI του %s %s:"
-
 msgid "Could not connect to server"
 msgstr "Αδυναμία σύνδεσης στον διακομιστή"
 
@@ -5518,9 +5514,6 @@ msgstr ""
 
 msgid "Current version:"
 msgstr "Τρέχουσα έκδοση:"
-
-msgid "Currently installed image"
-msgstr "Τρέχον εγκατεστημένο image"
 
 msgid "Custom"
 msgstr "Προσαρμογή"
@@ -6378,9 +6371,6 @@ msgstr "Ρυθμίσεις οθόνης ενδείξεων"
 msgid "Display and user interface"
 msgstr "Οθόνη και διεπαφή χρήστη"
 
-msgid "Display directory size"
-msgstr ""
-
 msgid "Display message before playing next movie"
 msgstr "Εμφάνιση μηνύματος πριν από την αναπαραγωγή της επόμενης ταινίας"
 
@@ -6616,10 +6606,6 @@ msgid "Do you want to do another manual service scan?"
 msgstr "Θέλετε να γίνει μία ακόμα χειροκίνητη ανίχνευση;"
 
 #, python-format
-msgid "Do you want to download the image to %s ?"
-msgstr "Θέλετε να γίνει λήψη του image στο %s ;"
-
-#, python-format
 msgid ""
 "Do you want to flash image\n"
 "%s"
@@ -6738,16 +6724,6 @@ msgstr[1] "Τέλος - Εγκαταστάθηκαν, αναβαθμίστηκα
 
 msgid "Down"
 msgstr "Κάτω"
-
-msgid "Download"
-msgstr "Λήψη"
-
-#, python-format
-msgid "Download %s from server"
-msgstr "Λήψη του %s από τον διακομιστή"
-
-msgid "Download .NFI-files for USB-flasher"
-msgstr "Λήψη αρχείων .NFI για φλασάρισμα από USB"
 
 msgid "Download Plugins"
 msgstr "Λήψη προσθέτων"
@@ -7930,9 +7906,6 @@ msgstr "Ρυθμίσεις FTP"
 msgid "Factory Reset"
 msgstr ""
 
-msgid "Factory Reset Settings"
-msgstr ""
-
 msgid "Factory release"
 msgstr ""
 
@@ -8191,9 +8164,6 @@ msgstr "Σταθερό"
 msgid "Fixed X11 font (SD)"
 msgstr "Σταθερή γραμματοσειρά X11 (SD)"
 
-msgid "Flash"
-msgstr "Φλασάρισμα"
-
 msgid "Flash Image"
 msgstr "Φλασάρισμα image"
 
@@ -8221,9 +8191,6 @@ msgstr "Αναβοσβηνόμενο"
 
 msgid "Flashing Image"
 msgstr "Φλασάρισμα του Image"
-
-msgid "Flashing failed"
-msgstr "Το φλασάρισμα απέτυχε"
 
 msgid "Flashing image successful"
 msgstr "Επιτυχές φλασάρισμα του image"
@@ -8561,12 +8528,6 @@ msgstr "Εταιρικά"
 
 msgid "Gesundheit"
 msgstr "Υγεία"
-
-msgid "Get latest experimental image"
-msgstr "Λήψη τελευταίου πειραματικού image"
-
-msgid "Get latest release image"
-msgstr "Λήψη του πιο πρόσφατου image"
 
 msgid "Getting Event Info failed!"
 msgstr "Αποτυχία λήψης πληροφοριών προγράμματος!"
@@ -11437,12 +11398,6 @@ msgstr "Μ/Δ"
 msgid "NEXT"
 msgstr "ΕΠΟΜΕΝΟ"
 
-msgid "NFI image flashing"
-msgstr "Φλασάριμα image NFI"
-
-msgid "NFI image flashing completed. Press Yellow to Reboot!"
-msgstr "Το φλασάρισμα του NFI image ολοκληρώθηκε. Πιέστε το Κίτρινο για επανεκκίνηση!"
-
 msgid "NFS"
 msgstr "NFS"
 
@@ -11791,9 +11746,6 @@ msgstr "Μη διαθέσιμη απόπλεξη"
 
 msgid "No description available."
 msgstr "Μη διαθέσιμη περιγραφή."
-
-msgid "No details for this image file"
-msgstr "Απουσία πληροφοριών για αυτό το αρχείο image"
 
 msgid "No displayable files on this medium found!"
 msgstr "Δεν υπάρχουν αρχεία προς εμφάνιση σε αυτό το μέσο!"
@@ -12890,9 +12842,6 @@ msgstr "Παρακαλώ αλλάξτε την ώρα τερματισμού"
 msgid "Please check the manual of the receiver"
 msgstr "Παρακαλώ ελέγξτε το εγχειρίδιο χρήσης του δέκτη"
 
-msgid "Please check your network settings!"
-msgstr "Παρακαλώ ελέγξτε τις ρυθμίσεις δικτύου!"
-
 msgid "Please choose CCcam-Reader"
 msgstr "Παρακαλώ επιλέξτε αναγνώστη CCcam"
 
@@ -13017,9 +12966,6 @@ msgstr "Επιλέξτε μια υπό-υπηρεσία για εγγραφή...
 
 msgid "Please select a subservice..."
 msgstr "Επιλέξτε μια υπό-υπηρεσία..."
-
-msgid "Please select an NFI file and press green key to flash!"
-msgstr "Επιλέξτε ένα αρχείο NFI και πιέστε το πράσινο για φλασάρισμα!"
 
 msgid "Please select an acceptable directory."
 msgstr ""
@@ -13444,9 +13390,6 @@ msgstr "Προτιμώμενα tuners για εγγραφές, επιτρέπε�
 
 msgid "Preparation time for recording (seconds)"
 msgstr "Χρόνος προετοιμασίας για εγγραφή (δευτερόλεπτα)"
-
-msgid "Prepare another USB stick for image flashing"
-msgstr "Προετοιμασία άλλου USB στικ για φλασάρισμα image"
 
 msgid "Preparing... Please wait"
 msgstr "Παρακαλώ περιμένετε, προετοιμασία…"
@@ -14601,9 +14544,6 @@ msgstr "Επαναφορά ρυθμίσεων"
 msgid "Restore backups"
 msgstr "Επαναφορά αντιγράφων ασφαλείας"
 
-msgid "Restore is running..."
-msgstr "Επαναφορά σε εκτέλεση..."
-
 msgid "Restore settings from a backup"
 msgstr "Επαναφορά ρυθμίσεων από αντίγραφο ασφαλείας"
 
@@ -15394,9 +15334,6 @@ msgstr "Επιλογή επιπρόσθετων αντιγράφων ασφαλ�
 msgid "Select additional files to backup"
 msgstr "Επιλογή επιπρόσθετων αρχείων προς εφεδρεία"
 
-msgid "Select an image to be downloaded"
-msgstr "Επιλογή ενός image για λήψη"
-
 msgid "Select audio track"
 msgstr "Επιλογή καναλιού ήχου"
 
@@ -15423,9 +15360,6 @@ msgstr "Επιλογή προορισμού αντιγραφής για το:"
 
 msgid "Select default EPG type..."
 msgstr "Επιλογή προεπιλεγμένου τύπου EPG..."
-
-msgid "Select desired image from feed list"
-msgstr "Επιλογή του επιθυμητού image από τη λίστα πηγών"
 
 msgid "Select destination for:"
 msgstr "Επιλογή προορισμού για το:"
@@ -16288,10 +16222,6 @@ msgstr "Ρυθμίσεις δορυφορικού εξοπλισμού"
 msgid "Seychelles"
 msgstr "Σεϋχέλλες"
 
-#, python-format
-msgid "Shall the USB stick wizard proceed and program the image file %s into flash memory?"
-msgstr "Να προχωρήσει ο οδηγός USB στικ και να γίνει προγραμματισμός του αρχείου image %s στη μνήμη flash;"
-
 msgid "Share Folder's"
 msgstr "Κοινόχρηστοι φάκελοι"
 
@@ -16424,6 +16354,9 @@ msgstr "Εμφάνιση του Cool Μονού Οδηγού"
 
 msgid "Show CoolTVGuide"
 msgstr "Εμφάνιση του Cool TV Οδηγού"
+
+msgid "Show Directory size"
+msgstr ""
 
 msgid "Show Display Icons"
 msgstr "Εμφάνιση εικονιδίων οθόνης"
@@ -18450,13 +18383,6 @@ msgid "The TV was switched to the recording service!\n"
 msgstr "Η TV μετέβη στην υπηρεσία προς εγγραφή!\n"
 
 msgid ""
-"The USB stick was prepared to be bootable.\n"
-"Now you can download an NFI image file!"
-msgstr ""
-"Έγινε προετοιμασία του USB στικ ως εκκινήσιμο.\n"
-"Τώρα μπορείτε να κατεβάσετε ένα αρχείο image NFI!"
-
-msgid ""
 "The VideoMode plugin is not installed!\n"
 "Please install it."
 msgstr ""
@@ -18508,20 +18434,6 @@ msgstr "Η προεπιλεγμένες ρυθμίσεις είναι: χρόν�
 msgid "The detailed information is intended for developers only."
 msgstr ""
 
-#, python-format
-msgid ""
-"The following device was found:\n"
-"\n"
-"%s\n"
-"\n"
-"Do you want to write the USB flasher to this stick?"
-msgstr ""
-"Βρέθηκε η ακόλουθη συσκευή:\n"
-"\n"
-"%s\n"
-"\n"
-"Θέλετε να εγγράψετε το USB flasher σε αυτό το στικ ;"
-
 msgid "The following files were found..."
 msgstr "Βρέθηκαν τα παρακάτω αρχεία..."
 
@@ -18543,9 +18455,6 @@ msgstr "Το ύψος της εικόνας. Η είσοδος θα κλιμακ
 
 msgid "The loopthrough setting is wrong."
 msgstr "Λανθασμένη ρύθμιση loopthrough."
-
-msgid "The md5sum validation failed, the file may be corrupted!"
-msgstr "Η επικύρωση md5sum απέτυχε, πιθανώς κατεστραμμένο αρχείο!"
 
 msgid ""
 "The network wizard extension is not installed!\n"
@@ -18637,10 +18546,6 @@ msgstr ""
 
 msgid "The wizard can backup your current settings. Do you want to do a backup now?"
 msgstr "Ο οδηγός μπορεί να κρατήσει αντίγραφο των ρυθμίσεων. Να κρατήσει αντίγραφο τώρα;"
-
-#, python-format
-msgid "The wizard found a configuration backup. Do you want to restore your old settings from %s?"
-msgstr "Ο οδηγός βρήκε ένα αντίγραφο ασφαλείας ρυθμίσεων. Θέλετε να επαναφέρετε τις παλιές ρυθμίσεις σας από το %s;"
 
 msgid "The wizard is finished now."
 msgstr "Ο οδηγός ολοκληρώθηκε."
@@ -19001,18 +18906,6 @@ msgstr "Αυτή η επιλογή ρυθμίζει τη συμπίεση των
 msgid "This option sets up the picture sharpness, used when the picture is being upscaled."
 msgstr "Αυτή η επιλογή ρυθμίζει την οξύτητα της εικόνας, όταν γίνεται upscale."
 
-#, python-format
-msgid ""
-"This plugin creates a USB stick which can be used to update the firmware of your %s %s without the need for a network or WLAN connection.\n"
-"First, a USB stick needs to be prepared so that it becomes bootable.\n"
-"In the next step, an NFI image file can be downloaded from the update server and saved on the USB stick.\n"
-"If you already have a prepared bootable USB stick, please insert it now. Otherwise plug in a USB stick with a minimum size of 64 MB!"
-msgstr ""
-"Αυτό το πρόσθετο δημιουργεί ένα USB στικ που μπορεί να χρησιμοποιηθεί για να ενημερωθεί το λογισμικό του %s %s σας χωρίς την ανάγκη μίας ενσύρματης ή ασύρματης σύνδεσης δικτύου.\n"
-"Πρώτα, πρέπει να γίνει προετοιμασία ενός USB στικ, ώστε να είναι εκκινήσιμο.\n"
-"Στο επόμενο βήμα μπορείτε να κατεβάσετε ένα image NFI από το διακομιστή ενημερώσεων και να το αποθηκεύσετε στο USB στικ.\n"
-"Αν έχετε ήδη ετοιμάσει το εκκινήσιμο USB στικ, παρακαλώ εισάγετέ το τώρα. Αλλιώς, συνδέστε ένα USB στικ με ελάχιστο μέγεθος 64 MB!"
-
 msgid "This plugin is installed."
 msgstr "Αυτό το πρόσθετο είναι εγκατεστημένο."
 
@@ -19356,18 +19249,6 @@ msgstr "Λειτουργία τιτλοδοσίας"
 
 msgid "To restore the image:"
 msgstr "Για την αποκατάσταση του image:"
-
-#, python-format
-msgid ""
-"To update your %s %s firmware, please follow these steps:\n"
-"1) Turn off your box with the rear power switch and make sure the bootable USB stick is plugged in.\n"
-"2) Turn mains back on and hold the DOWN button on the front panel pressed for 10 seconds.\n"
-"3) Wait for bootup and follow instructions of the wizard."
-msgstr ""
-"Για να ενημερώσετε το λογισμικό του %s %s σας, ακολουθήστε τα παρακάτω βήματα:\n"
-"1) Κλείστε τον δέκτη από το διακόπτη τροφοδοσίας και σιγουρευτείτε ότι έχετε συνδέσει ένα εκκινήσιμο USB στικ.\n"
-"2) Ανοίξτε το διακόπτη και κρατήστε πιεσμένο το πλήκτρο ΚΑΤΩ στην πρόσοψη για 10 δευτερόλεπτα .\n"
-"3) Περιμένετε την εκκίνηση και ακολουθήστε τα βήματα του οδηγού."
 
 msgid "Today"
 msgstr "Σήμερα"
@@ -19751,9 +19632,6 @@ msgstr "Το USALS μετακινεί αυτόματα το κάτοπτρο σ�
 
 msgid "USB Stick"
 msgstr "USB στικ"
-
-msgid "USB stick wizard"
-msgstr "Οδηγός USB στικ"
 
 msgid "USB switch ERROR! - already on USB"
 msgstr "ΣΦΑΛΜΑ αλλαγής κάρτας SD! - ήδη στο USB"
@@ -21357,9 +21235,6 @@ msgstr "Έχετε ήδη στείλει αυτή την καταγραφή, σ�
 msgid "You have chosen to backup your settings. Please press OK to start the backup now."
 msgstr "Επιλέξατε να κρατηθεί αντίγραφο ασφαλείας των ρυθμίσεων. Πιέστε ΟΚ για να ξεκινήσει η διαδικασία τώρα."
 
-msgid "You have chosen to create a new .NFI flasher bootable USB stick. This will repartition the USB stick and therefore all data on it will be erased."
-msgstr "Επιλέξατε να δημιουργήσετε νέο εκκινήσιμο USB στικ για εγκατάσταση NFI. Θα γίνει εκ νέου κατάτμηση του USB στικ και όλα τα δεδομένα σε αυτό θα χαθούν."
-
 msgid "You have chosen to restore your settings. Enigma2 will restart after restore. Please press OK to start the restore now."
 msgstr "Επιλέξατε επαναφορά των ρυθμίσεων. Θα γίνει επανεκκίνηση του Enigma2 μετά την επαναφορά. Πιέστε ΟΚ για να ξεκινήσει η διαδικασία τώρα."
 
@@ -22062,9 +21937,6 @@ msgstr "επιβεβαιωμένο"
 msgid "connected"
 msgstr "συνδεδεμένο"
 
-msgid "continue"
-msgstr "συνέχιση"
-
 msgid "controlled by HDMI"
 msgstr "ελέγχεται από το HDMI"
 
@@ -22100,10 +21972,6 @@ msgstr "δημιουργία συντόμευσης..."
 
 msgid "current affairs (general)"
 msgstr "επικαιρότητα (γενικά)"
-
-#, python-format
-msgid "currently installed image: %s"
-msgstr "τρέχον εγκατεστημένο image: %s"
 
 msgid "daily"
 msgstr "καθημερινά"
@@ -23502,6 +23370,138 @@ msgstr "ζάπινγκ"
 
 msgid "®"
 msgstr ""
+
+#~ msgid "Changelog"
+#~ msgstr "Καταγραφολόγιο αλλαγών"
+
+#, python-format
+#~ msgid "Could not connect to %s %s .NFI image feed server:"
+#~ msgstr "Αδυναμία σύνδεσης στην πηγή image .NFI του %s %s:"
+
+#~ msgid "Currently installed image"
+#~ msgstr "Τρέχον εγκατεστημένο image"
+
+#, python-format
+#~ msgid "Do you want to download the image to %s ?"
+#~ msgstr "Θέλετε να γίνει λήψη του image στο %s ;"
+
+#~ msgid "Download"
+#~ msgstr "Λήψη"
+
+#, python-format
+#~ msgid "Download %s from server"
+#~ msgstr "Λήψη του %s από τον διακομιστή"
+
+#~ msgid "Download .NFI-files for USB-flasher"
+#~ msgstr "Λήψη αρχείων .NFI για φλασάρισμα από USB"
+
+#~ msgid "Flash"
+#~ msgstr "Φλασάρισμα"
+
+#~ msgid "Flashing failed"
+#~ msgstr "Το φλασάρισμα απέτυχε"
+
+#~ msgid "Get latest experimental image"
+#~ msgstr "Λήψη τελευταίου πειραματικού image"
+
+#~ msgid "Get latest release image"
+#~ msgstr "Λήψη του πιο πρόσφατου image"
+
+#~ msgid "NFI image flashing"
+#~ msgstr "Φλασάριμα image NFI"
+
+#~ msgid "NFI image flashing completed. Press Yellow to Reboot!"
+#~ msgstr "Το φλασάρισμα του NFI image ολοκληρώθηκε. Πιέστε το Κίτρινο για επανεκκίνηση!"
+
+#~ msgid "No details for this image file"
+#~ msgstr "Απουσία πληροφοριών για αυτό το αρχείο image"
+
+#~ msgid "Please check your network settings!"
+#~ msgstr "Παρακαλώ ελέγξτε τις ρυθμίσεις δικτύου!"
+
+#~ msgid "Please select an NFI file and press green key to flash!"
+#~ msgstr "Επιλέξτε ένα αρχείο NFI και πιέστε το πράσινο για φλασάρισμα!"
+
+#~ msgid "Prepare another USB stick for image flashing"
+#~ msgstr "Προετοιμασία άλλου USB στικ για φλασάρισμα image"
+
+#~ msgid "Restore is running..."
+#~ msgstr "Επαναφορά σε εκτέλεση..."
+
+#~ msgid "Select an image to be downloaded"
+#~ msgstr "Επιλογή ενός image για λήψη"
+
+#~ msgid "Select desired image from feed list"
+#~ msgstr "Επιλογή του επιθυμητού image από τη λίστα πηγών"
+
+#, python-format
+#~ msgid "Shall the USB stick wizard proceed and program the image file %s into flash memory?"
+#~ msgstr "Να προχωρήσει ο οδηγός USB στικ και να γίνει προγραμματισμός του αρχείου image %s στη μνήμη flash;"
+
+#~ msgid ""
+#~ "The USB stick was prepared to be bootable.\n"
+#~ "Now you can download an NFI image file!"
+#~ msgstr ""
+#~ "Έγινε προετοιμασία του USB στικ ως εκκινήσιμο.\n"
+#~ "Τώρα μπορείτε να κατεβάσετε ένα αρχείο image NFI!"
+
+#, python-format
+#~ msgid ""
+#~ "The following device was found:\n"
+#~ "\n"
+#~ "%s\n"
+#~ "\n"
+#~ "Do you want to write the USB flasher to this stick?"
+#~ msgstr ""
+#~ "Βρέθηκε η ακόλουθη συσκευή:\n"
+#~ "\n"
+#~ "%s\n"
+#~ "\n"
+#~ "Θέλετε να εγγράψετε το USB flasher σε αυτό το στικ ;"
+
+#~ msgid "The md5sum validation failed, the file may be corrupted!"
+#~ msgstr "Η επικύρωση md5sum απέτυχε, πιθανώς κατεστραμμένο αρχείο!"
+
+#, python-format
+#~ msgid "The wizard found a configuration backup. Do you want to restore your old settings from %s?"
+#~ msgstr "Ο οδηγός βρήκε ένα αντίγραφο ασφαλείας ρυθμίσεων. Θέλετε να επαναφέρετε τις παλιές ρυθμίσεις σας από το %s;"
+
+#, python-format
+#~ msgid ""
+#~ "This plugin creates a USB stick which can be used to update the firmware of your %s %s without the need for a network or WLAN connection.\n"
+#~ "First, a USB stick needs to be prepared so that it becomes bootable.\n"
+#~ "In the next step, an NFI image file can be downloaded from the update server and saved on the USB stick.\n"
+#~ "If you already have a prepared bootable USB stick, please insert it now. Otherwise plug in a USB stick with a minimum size of 64 MB!"
+#~ msgstr ""
+#~ "Αυτό το πρόσθετο δημιουργεί ένα USB στικ που μπορεί να χρησιμοποιηθεί για να ενημερωθεί το λογισμικό του %s %s σας χωρίς την ανάγκη μίας ενσύρματης ή ασύρματης σύνδεσης δικτύου.\n"
+#~ "Πρώτα, πρέπει να γίνει προετοιμασία ενός USB στικ, ώστε να είναι εκκινήσιμο.\n"
+#~ "Στο επόμενο βήμα μπορείτε να κατεβάσετε ένα image NFI από το διακομιστή ενημερώσεων και να το αποθηκεύσετε στο USB στικ.\n"
+#~ "Αν έχετε ήδη ετοιμάσει το εκκινήσιμο USB στικ, παρακαλώ εισάγετέ το τώρα. Αλλιώς, συνδέστε ένα USB στικ με ελάχιστο μέγεθος 64 MB!"
+
+#, python-format
+#~ msgid ""
+#~ "To update your %s %s firmware, please follow these steps:\n"
+#~ "1) Turn off your box with the rear power switch and make sure the bootable USB stick is plugged in.\n"
+#~ "2) Turn mains back on and hold the DOWN button on the front panel pressed for 10 seconds.\n"
+#~ "3) Wait for bootup and follow instructions of the wizard."
+#~ msgstr ""
+#~ "Για να ενημερώσετε το λογισμικό του %s %s σας, ακολουθήστε τα παρακάτω βήματα:\n"
+#~ "1) Κλείστε τον δέκτη από το διακόπτη τροφοδοσίας και σιγουρευτείτε ότι έχετε συνδέσει ένα εκκινήσιμο USB στικ.\n"
+#~ "2) Ανοίξτε το διακόπτη και κρατήστε πιεσμένο το πλήκτρο ΚΑΤΩ στην πρόσοψη για 10 δευτερόλεπτα .\n"
+#~ "3) Περιμένετε την εκκίνηση και ακολουθήστε τα βήματα του οδηγού."
+
+#~ msgid "USB stick wizard"
+#~ msgstr "Οδηγός USB στικ"
+
+#~ msgid "You have chosen to create a new .NFI flasher bootable USB stick. This will repartition the USB stick and therefore all data on it will be erased."
+#~ msgstr "Επιλέξατε να δημιουργήσετε νέο εκκινήσιμο USB στικ για εγκατάσταση NFI. Θα γίνει εκ νέου κατάτμηση του USB στικ και όλα τα δεδομένα σε αυτό θα χαθούν."
+
+#~ msgid "continue"
+#~ msgstr "συνέχιση"
+
+#, python-format
+#~ msgid "currently installed image: %s"
+#~ msgstr "τρέχον εγκατεστημένο image: %s"
 
 #~ msgid "Manual scan"
 #~ msgstr "Χειροκίνητη ανίχνευση"

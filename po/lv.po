@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-04-02 20:55+0000\n"
+"POT-Creation-Date: 2022-04-10 10:23+0000\n"
 "PO-Revision-Date: 2016-04-02 23:17+0200\n"
 "Last-Translator: Andy Blackburn <andyblac@icloud.com>\n"
 "Language-Team: Ivo / enigma2 (c) <ivog@apolllo.lv>\n"
@@ -4240,6 +4240,9 @@ msgstr ""
 msgid "Calculate"
 msgstr ""
 
+msgid "Calculate and show size of directory. Note: This can be slow down the UI on selection of a folder!"
+msgstr ""
+
 msgid "Calculate file checksums"
 msgstr ""
 
@@ -4578,9 +4581,6 @@ msgstr ""
 #, fuzzy
 msgid "Change to bouquet"
 msgstr "Pievienot buķetei"
-
-msgid "Changelog"
-msgstr ""
 
 #, python-format
 msgid ""
@@ -5765,11 +5765,6 @@ msgid "Cote d'Ivoire / Ivory Coast"
 msgstr ""
 
 #
-#, fuzzy, python-format
-msgid "Could not connect to %s %s .NFI image feed server:"
-msgstr "Nevar savienoties ar %s %s .NFI imidža barotnes serveris:"
-
-#
 #, fuzzy
 msgid "Could not connect to server"
 msgstr "Nevar savienoties ar %s %s .NFI imidža barotnes serveris:"
@@ -5971,9 +5966,6 @@ msgstr ""
 #
 msgid "Current version:"
 msgstr "Pašreizējā versija:"
-
-msgid "Currently installed image"
-msgstr ""
 
 #
 #, fuzzy
@@ -6932,9 +6924,6 @@ msgstr ""
 msgid "Display and user interface"
 msgstr ""
 
-msgid "Display directory size"
-msgstr ""
-
 msgid "Display message before playing next movie"
 msgstr ""
 
@@ -7174,10 +7163,6 @@ msgstr "Vai vēleties meklēt kanālus?"
 msgid "Do you want to do another manual service scan?"
 msgstr "Vai vēleties manuāli meklēt citus kanālus?"
 
-#, python-format
-msgid "Do you want to download the image to %s ?"
-msgstr ""
-
 #
 #, fuzzy, python-format
 msgid ""
@@ -7305,19 +7290,6 @@ msgstr[1] "Pabeigts - uzstādītas, atjauninātas vai dzēstas %d pakotnes ar %d
 
 msgid "Down"
 msgstr ""
-
-#
-msgid "Download"
-msgstr "Lejuplādēt"
-
-#, python-format
-msgid "Download %s from server"
-msgstr ""
-
-#
-#, fuzzy
-msgid "Download .NFI-files for USB-flasher"
-msgstr "Lejuplādēt .NFI-datnes priekš USB-ielādes"
 
 msgid "Download Plugins"
 msgstr ""
@@ -8583,9 +8555,6 @@ msgstr ""
 msgid "Factory Reset"
 msgstr ""
 
-msgid "Factory Reset Settings"
-msgstr ""
-
 msgid "Factory release"
 msgstr ""
 
@@ -8864,10 +8833,6 @@ msgid "Fixed X11 font (SD)"
 msgstr ""
 
 #
-msgid "Flash"
-msgstr "Iekšējā atmiņa"
-
-#
 #, fuzzy
 msgid "Flash Image"
 msgstr "Iekšējā atmiņa"
@@ -8897,10 +8862,6 @@ msgstr ""
 #
 #, fuzzy
 msgid "Flashing Image"
-msgstr "Lādēšana neizdevās"
-
-#
-msgid "Flashing failed"
 msgstr "Lādēšana neizdevās"
 
 msgid "Flashing image successful"
@@ -9280,12 +9241,6 @@ msgid "Gesellschaft"
 msgstr "Neizvēlēties"
 
 msgid "Gesundheit"
-msgstr ""
-
-msgid "Get latest experimental image"
-msgstr ""
-
-msgid "Get latest release image"
 msgstr ""
 
 msgid "Getting Event Info failed!"
@@ -12468,13 +12423,6 @@ msgstr "N/A"
 msgid "NEXT"
 msgstr ""
 
-msgid "NFI image flashing"
-msgstr ""
-
-#
-msgid "NFI image flashing completed. Press Yellow to Reboot!"
-msgstr "NFI imidža lādēšana pabeigta. Spiediet dzelteno pogu, lai atsāknētu!"
-
 msgid "NFS"
 msgstr ""
 
@@ -12864,10 +12812,6 @@ msgstr "Daži spraudņi nav pieejami:\n"
 #
 msgid "No description available."
 msgstr ""
-
-#
-msgid "No details for this image file"
-msgstr "Nav informācijas par šo imidža datni"
 
 #
 msgid "No displayable files on this medium found!"
@@ -14092,10 +14036,6 @@ msgstr "Lūdzu nomainiet ieraksta beigu laiku"
 msgid "Please check the manual of the receiver"
 msgstr "Lūdzu ievadiet jaunās mapes nosaukumu"
 
-#
-msgid "Please check your network settings!"
-msgstr "Lūdzu pārbaudiet tīkla iestatījumus!"
-
 msgid "Please choose CCcam-Reader"
 msgstr ""
 
@@ -14250,9 +14190,6 @@ msgstr "Lūdzu izvēlieties papildkanālu ierakstam..."
 #
 msgid "Please select a subservice..."
 msgstr "Lūdzu izvēlieties papildkanālu..."
-
-msgid "Please select an NFI file and press green key to flash!"
-msgstr ""
 
 msgid "Please select an acceptable directory."
 msgstr ""
@@ -14708,9 +14645,6 @@ msgstr ""
 #, fuzzy
 msgid "Preparation time for recording (seconds)"
 msgstr "Atstarpe pirms ieraksta (minūtēs)"
-
-msgid "Prepare another USB stick for image flashing"
-msgstr ""
 
 #
 msgid "Preparing... Please wait"
@@ -16005,10 +15939,6 @@ msgstr ""
 msgid "Restore backups"
 msgstr ""
 
-#
-msgid "Restore is running..."
-msgstr ""
-
 msgid "Restore settings from a backup"
 msgstr ""
 
@@ -16888,9 +16818,6 @@ msgstr ""
 msgid "Select additional files to backup"
 msgstr ""
 
-msgid "Select an image to be downloaded"
-msgstr ""
-
 #
 msgid "Select audio track"
 msgstr "Izvēlēties skaņas celiņu"
@@ -16922,9 +16849,6 @@ msgid "Select copy destination for:"
 msgstr ""
 
 msgid "Select default EPG type..."
-msgstr ""
-
-msgid "Select desired image from feed list"
 msgstr ""
 
 msgid "Select destination for:"
@@ -17836,11 +17760,6 @@ msgstr "Pavadoņa piederumu iestatne"
 msgid "Seychelles"
 msgstr ""
 
-#
-#, python-format
-msgid "Shall the USB stick wizard proceed and program the image file %s into flash memory?"
-msgstr ""
-
 msgid "Share Folder's"
 msgstr ""
 
@@ -17974,6 +17893,9 @@ msgid "Show CoolSingleGuide"
 msgstr ""
 
 msgid "Show CoolTVGuide"
+msgstr ""
+
+msgid "Show Directory size"
 msgstr ""
 
 msgid "Show Display Icons"
@@ -20203,11 +20125,6 @@ msgid "The TV was switched to the recording service!\n"
 msgstr ""
 
 msgid ""
-"The USB stick was prepared to be bootable.\n"
-"Now you can download an NFI image file!"
-msgstr ""
-
-msgid ""
 "The VideoMode plugin is not installed!\n"
 "Please install it."
 msgstr ""
@@ -20253,21 +20170,6 @@ msgid "The detailed information is intended for developers only."
 msgstr ""
 
 #
-#, python-format
-msgid ""
-"The following device was found:\n"
-"\n"
-"%s\n"
-"\n"
-"Do you want to write the USB flasher to this stick?"
-msgstr ""
-"Atrasta sekojoša ierīce:\n"
-"\n"
-"%s\n"
-"\n"
-"Vai vēlaties ierakstīt USB lādētāju šajā atmiņas ierīcē?"
-
-#
 msgid "The following files were found..."
 msgstr ""
 
@@ -20286,9 +20188,6 @@ msgid "The height of the picture. The input will be scaled to match this value."
 msgstr ""
 
 msgid "The loopthrough setting is wrong."
-msgstr ""
-
-msgid "The md5sum validation failed, the file may be corrupted!"
 msgstr ""
 
 #
@@ -20394,10 +20293,6 @@ msgstr ""
 #
 msgid "The wizard can backup your current settings. Do you want to do a backup now?"
 msgstr "Vednis var izveidot pašreizējo iestatījumu dublējumkopiju. Vai vēlaties veidot dublējumkopiju tagad?"
-
-#, python-format
-msgid "The wizard found a configuration backup. Do you want to restore your old settings from %s?"
-msgstr ""
 
 #
 msgid "The wizard is finished now."
@@ -20761,14 +20656,6 @@ msgid "This option sets the surpression of false digital contours, that are the 
 msgstr ""
 
 msgid "This option sets up the picture sharpness, used when the picture is being upscaled."
-msgstr ""
-
-#, python-format
-msgid ""
-"This plugin creates a USB stick which can be used to update the firmware of your %s %s without the need for a network or WLAN connection.\n"
-"First, a USB stick needs to be prepared so that it becomes bootable.\n"
-"In the next step, an NFI image file can be downloaded from the update server and saved on the USB stick.\n"
-"If you already have a prepared bootable USB stick, please insert it now. Otherwise plug in a USB stick with a minimum size of 64 MB!"
 msgstr ""
 
 #
@@ -21161,14 +21048,6 @@ msgstr "Nosaukuma iestatīšanas režīms"
 #, fuzzy
 msgid "To restore the image:"
 msgstr "Jā, atjaunot iestatījumus tagad"
-
-#, python-format
-msgid ""
-"To update your %s %s firmware, please follow these steps:\n"
-"1) Turn off your box with the rear power switch and make sure the bootable USB stick is plugged in.\n"
-"2) Turn mains back on and hold the DOWN button on the front panel pressed for 10 seconds.\n"
-"3) Wait for bootup and follow instructions of the wizard."
-msgstr ""
 
 #
 msgid "Today"
@@ -21607,10 +21486,6 @@ msgstr ""
 
 msgid "USB Stick"
 msgstr ""
-
-#
-msgid "USB stick wizard"
-msgstr "USB atmiņas vednis"
 
 msgid "USB switch ERROR! - already on USB"
 msgstr ""
@@ -23335,10 +23210,6 @@ msgid "You have chosen to backup your settings. Please press OK to start the bac
 msgstr "Jūs izvēlējāties veidot iestatījumu dublējumkopiju. Lūdzu spiediet OK, lai sāktu kopijas veidošanu."
 
 #
-msgid "You have chosen to create a new .NFI flasher bootable USB stick. This will repartition the USB stick and therefore all data on it will be erased."
-msgstr "Jūs izvēlējāties veidot jaunu .NFI lādētāja sāknējamu USB atmiņu. Tadēļ USB atmiņa tiks pārdalīta un dzēsti visi tajā esošie dati."
-
-#
 msgid "You have chosen to restore your settings. Enigma2 will restart after restore. Please press OK to start the restore now."
 msgstr "You have chosen to restore your settings. Enigma2 will restart after restore. Please press OK to start the restore now."
 
@@ -24052,10 +23923,6 @@ msgstr "apstiprināts(a)"
 msgid "connected"
 msgstr "pievienots"
 
-#
-msgid "continue"
-msgstr "turpināt"
-
 msgid "controlled by HDMI"
 msgstr ""
 
@@ -24094,10 +23961,6 @@ msgid "create symlink ..."
 msgstr ""
 
 msgid "current affairs (general)"
-msgstr ""
-
-#, python-format
-msgid "currently installed image: %s"
 msgstr ""
 
 #
@@ -25682,6 +25545,67 @@ msgstr "pārslēgts"
 
 msgid "®"
 msgstr ""
+
+#
+#, fuzzy, python-format
+#~ msgid "Could not connect to %s %s .NFI image feed server:"
+#~ msgstr "Nevar savienoties ar %s %s .NFI imidža barotnes serveris:"
+
+#
+#~ msgid "Download"
+#~ msgstr "Lejuplādēt"
+
+#
+#, fuzzy
+#~ msgid "Download .NFI-files for USB-flasher"
+#~ msgstr "Lejuplādēt .NFI-datnes priekš USB-ielādes"
+
+#
+#~ msgid "Flash"
+#~ msgstr "Iekšējā atmiņa"
+
+#
+#~ msgid "Flashing failed"
+#~ msgstr "Lādēšana neizdevās"
+
+#
+#~ msgid "NFI image flashing completed. Press Yellow to Reboot!"
+#~ msgstr "NFI imidža lādēšana pabeigta. Spiediet dzelteno pogu, lai atsāknētu!"
+
+#
+#~ msgid "No details for this image file"
+#~ msgstr "Nav informācijas par šo imidža datni"
+
+#
+#~ msgid "Please check your network settings!"
+#~ msgstr "Lūdzu pārbaudiet tīkla iestatījumus!"
+
+#
+#, python-format
+#~ msgid ""
+#~ "The following device was found:\n"
+#~ "\n"
+#~ "%s\n"
+#~ "\n"
+#~ "Do you want to write the USB flasher to this stick?"
+#~ msgstr ""
+#~ "Atrasta sekojoša ierīce:\n"
+#~ "\n"
+#~ "%s\n"
+#~ "\n"
+#~ "Vai vēlaties ierakstīt USB lādētāju šajā atmiņas ierīcē?"
+
+#
+#~ msgid "USB stick wizard"
+#~ msgstr "USB atmiņas vednis"
+
+#
+#~ msgid "You have chosen to create a new .NFI flasher bootable USB stick. This will repartition the USB stick and therefore all data on it will be erased."
+#~ msgstr "Jūs izvēlējāties veidot jaunu .NFI lādētāja sāknējamu USB atmiņu. Tadēļ USB atmiņa tiks pārdalīta un dzēsti visi tajā esošie dati."
+
+#
+#~ msgid "continue"
+#~ msgstr "turpināt"
 
 #
 #, fuzzy

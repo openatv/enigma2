@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV-Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-04-02 20:55+0000\n"
+"POT-Creation-Date: 2022-04-10 10:23+0000\n"
 "PO-Revision-Date: 2021-08-21 11:46+0000\n"
 "Last-Translator: openATV <openatv@gmail.com>\n"
 "Language-Team: Estonian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/et/>\n"
@@ -3955,6 +3955,9 @@ msgstr ""
 msgid "Calculate"
 msgstr "Arvuta"
 
+msgid "Calculate and show size of directory. Note: This can be slow down the UI on selection of a folder!"
+msgstr ""
+
 msgid "Calculate file checksums"
 msgstr "Arvuta failide kontrollsummad"
 
@@ -4268,9 +4271,6 @@ msgstr "Muuda sammu suurust"
 
 msgid "Change to bouquet"
 msgstr "Vaheta lemmiknimekirja"
-
-msgid "Changelog"
-msgstr "Muudatused"
 
 #, python-format
 msgid ""
@@ -5382,10 +5382,6 @@ msgstr "Costa Rica"
 msgid "Cote d'Ivoire / Ivory Coast"
 msgstr "Elevandiluurannik"
 
-#, python-format
-msgid "Could not connect to %s %s .NFI image feed server:"
-msgstr "Ei saa ühendust %s %s .NFI püsivara serveriga:"
-
 msgid "Could not connect to server"
 msgstr "Ühenduse loomine serveriga nurjus"
 
@@ -5566,9 +5562,6 @@ msgstr ""
 
 msgid "Current version:"
 msgstr "Praegune versioon:"
-
-msgid "Currently installed image"
-msgstr "Paigaldatud püsivara"
 
 msgid "Custom"
 msgstr "Kohandatud"
@@ -6444,9 +6437,6 @@ msgstr "Esipaneeli seadistamine"
 msgid "Display and user interface"
 msgstr "Esipaneel ja kasutajaliides"
 
-msgid "Display directory size"
-msgstr ""
-
 msgid "Display message before playing next movie"
 msgstr "Teavitus enne järgmise filmi alustamist"
 
@@ -6680,10 +6670,6 @@ msgid "Do you want to do another manual service scan?"
 msgstr "Kas teha uus käsiotsing?"
 
 #, python-format
-msgid "Do you want to download the image to %s ?"
-msgstr "Kas laadida tõmmis asukohta %s?"
-
-#, python-format
 msgid ""
 "Do you want to flash image\n"
 "%s"
@@ -6805,16 +6791,6 @@ msgstr[1] "Valmis - paigaldati, uuendati või eemaldati %d paketti (%s)"
 
 msgid "Down"
 msgstr "Alla"
-
-msgid "Download"
-msgstr "Allalaadimine"
-
-#, python-format
-msgid "Download %s from server"
-msgstr "Hangi %s serverist"
-
-msgid "Download .NFI-files for USB-flasher"
-msgstr "Hangi .NFI-failid USB-le"
 
 #
 msgid "Download Plugins"
@@ -8032,9 +8008,6 @@ msgstr "FTP seaded"
 msgid "Factory Reset"
 msgstr ""
 
-msgid "Factory Reset Settings"
-msgstr ""
-
 msgid "Factory release"
 msgstr ""
 
@@ -8296,9 +8269,6 @@ msgstr "Määratud"
 msgid "Fixed X11 font (SD)"
 msgstr "Määratud X11 kirjatüüp (SD)"
 
-msgid "Flash"
-msgstr "Paigalda"
-
 msgid "Flash Image"
 msgstr "Püsivara paigaldus"
 
@@ -8328,9 +8298,6 @@ msgstr "Vilkuv"
 
 msgid "Flashing Image"
 msgstr "Püsivara paigaldamine"
-
-msgid "Flashing failed"
-msgstr "Püsivara paigaldamine nurjus"
 
 msgid "Flashing image successful"
 msgstr "Püsivara paigaldatud"
@@ -8681,12 +8648,6 @@ msgstr "Tühista valik"
 #, fuzzy
 msgid "Gesundheit"
 msgstr "Fahrenheit"
-
-msgid "Get latest experimental image"
-msgstr "Hangi uusim eksperimentaalne püsivara"
-
-msgid "Get latest release image"
-msgstr "Hangi uusim stabiilne püsivara"
 
 msgid "Getting Event Info failed!"
 msgstr "Saateinfo hankimine nurjus!"
@@ -11627,12 +11588,6 @@ msgstr "Ei ole kasutusel"
 msgid "NEXT"
 msgstr "JÄRGMINE"
 
-msgid "NFI image flashing"
-msgstr "NFI tõmmise paigaldamine"
-
-msgid "NFI image flashing completed. Press Yellow to Reboot!"
-msgstr "NFI tõmmis on paigaldatud. Taaskäivitamiseks vajuta kollast nuppu!"
-
 msgid "NFS"
 msgstr "NFS"
 
@@ -12001,9 +11956,6 @@ msgstr "Vaba indeks puudub"
 
 msgid "No description available."
 msgstr "Sisututvustus puudub."
-
-msgid "No details for this image file"
-msgstr "Selle tõmmise kohta pole teavet"
 
 msgid "No displayable files on this medium found!"
 msgstr "Sellel andmekandjal pole kuvatavaid faile!"
@@ -13140,9 +13092,6 @@ msgstr "Muuda salvestuse lõpuaega"
 msgid "Please check the manual of the receiver"
 msgstr "Uuri vastuvõtja käsiraamatut"
 
-msgid "Please check your network settings!"
-msgstr "Kontrolli võrgu seadeid!"
-
 msgid "Please choose CCcam-Reader"
 msgstr "Vali CCcam-lugeja"
 
@@ -13269,9 +13218,6 @@ msgstr "Vali salvestatav alamkanal"
 
 msgid "Please select a subservice..."
 msgstr "Vali alamkanal"
-
-msgid "Please select an NFI file and press green key to flash!"
-msgstr "Vali NFI fail ja vajuta paigaldamiseks rohelist nuppu!"
 
 msgid "Please select an acceptable directory."
 msgstr ""
@@ -13707,9 +13653,6 @@ msgstr "Eelistatud tuunerid salvestamiseks. Lubatud on mitu valikut"
 
 msgid "Preparation time for recording (seconds)"
 msgstr "Salvestuseks valmistumise aeg (sek)"
-
-msgid "Prepare another USB stick for image flashing"
-msgstr "Valmista tõmmise paigaldamiseks ette teine USB pulk"
 
 msgid "Preparing... Please wait"
 msgstr "Ettevalmistamine...Oota"
@@ -14901,9 +14844,6 @@ msgstr "Seadistuste taastamine"
 msgid "Restore backups"
 msgstr "Taasta varukoopiaid"
 
-msgid "Restore is running..."
-msgstr "Taastamine..."
-
 msgid "Restore settings from a backup"
 msgstr "Taasta seadistused varukoopiast"
 
@@ -15713,9 +15653,6 @@ msgstr "Lisafailid varundamiseks"
 msgid "Select additional files to backup"
 msgstr "Vali veel faile varundamiseks"
 
-msgid "Select an image to be downloaded"
-msgstr "Vali sellest nimekirjast"
-
 msgid "Select audio track"
 msgstr "Vali heliriba"
 
@@ -15742,9 +15679,6 @@ msgstr "Vali kopeerimise asukoht:"
 
 msgid "Select default EPG type..."
 msgstr "Vali saatekava laad"
-
-msgid "Select desired image from feed list"
-msgstr "Vali nimekirjast soovitud tõmmis"
 
 msgid "Select destination for:"
 msgstr "Vali asukoht:"
@@ -16624,10 +16558,6 @@ msgstr "Seadista satelliidivarustus"
 msgid "Seychelles"
 msgstr "Seišellid"
 
-#, python-format
-msgid "Shall the USB stick wizard proceed and program the image file %s into flash memory?"
-msgstr "Kas USB pulga abiline alustab toimingut ja paigaldab tõmmise %s välkmälusse?"
-
 msgid "Share Folder's"
 msgstr "Jagatud kataloogid"
 
@@ -16765,6 +16695,9 @@ msgstr "Kuva CoolSingleGuide"
 
 msgid "Show CoolTVGuide"
 msgstr "Kuva CoolTVGuide"
+
+msgid "Show Directory size"
+msgstr ""
 
 msgid "Show Display Icons"
 msgstr "Kuva ikoonid"
@@ -18836,13 +18769,6 @@ msgid "The TV was switched to the recording service!\n"
 msgstr "Vastuvõtja lülitati salvestavale kanalile!\n"
 
 msgid ""
-"The USB stick was prepared to be bootable.\n"
-"Now you can download an NFI image file!"
-msgstr ""
-"USB pulk on nüüd alglaaditav.\n"
-"Nüüd saad NFI tõmmise alla laadida!"
-
-msgid ""
 "The VideoMode plugin is not installed!\n"
 "Please install it."
 msgstr ""
@@ -18894,20 +18820,6 @@ msgstr "Vaikeväärtused on: äratusaeg '- 5 minutit' ja taimeri algusaeg '+ 5 m
 msgid "The detailed information is intended for developers only."
 msgstr ""
 
-#, python-format
-msgid ""
-"The following device was found:\n"
-"\n"
-"%s\n"
-"\n"
-"Do you want to write the USB flasher to this stick?"
-msgstr ""
-"Leitud USB pulk:\n"
-"\n"
-"%s\n"
-"\n"
-"Kas soovid seda kasutada püsivara paigaldamiseks?"
-
 msgid "The following files were found..."
 msgstr "Leiti järgnevad failid..."
 
@@ -18929,9 +18841,6 @@ msgstr "Pildi kõrgus. Sisend skaleeritakse selle väärtuse järgi."
 
 msgid "The loopthrough setting is wrong."
 msgstr "Läbiviigu seadistus on vale."
-
-msgid "The md5sum validation failed, the file may be corrupted!"
-msgstr "md5sum kontroll ebaõnnestus, fail võib olla rikutud!"
 
 msgid ""
 "The network wizard extension is not installed!\n"
@@ -19026,10 +18935,6 @@ msgstr ""
 
 msgid "The wizard can backup your current settings. Do you want to do a backup now?"
 msgstr "Praegustest seadistustest saab teha varukoopia. Kas teha seda nüüd?"
-
-#, python-format
-msgid "The wizard found a configuration backup. Do you want to restore your old settings from %s?"
-msgstr "Abiline leidis seadistuste varukoopia. Kas taastada vanad %s seadistused?"
 
 msgid "The wizard is finished now."
 msgstr "Abiline on nüüd läbitud."
@@ -19407,18 +19312,6 @@ msgstr "See valik summutab digitaalsed võltskontuurid, mis on vähese diskreets
 msgid "This option sets up the picture sharpness, used when the picture is being upscaled."
 msgstr "See valik määrab pildi teravuse ülesskaleerimisel."
 
-#, python-format
-msgid ""
-"This plugin creates a USB stick which can be used to update the firmware of your %s %s without the need for a network or WLAN connection.\n"
-"First, a USB stick needs to be prepared so that it becomes bootable.\n"
-"In the next step, an NFI image file can be downloaded from the update server and saved on the USB stick.\n"
-"If you already have a prepared bootable USB stick, please insert it now. Otherwise plug in a USB stick with a minimum size of 64 MB!"
-msgstr ""
-"See plugin valmistab ette USB pulga, mida saab kasutada %s %s püsivara uuendamiseks ilma võrgu- või WLAN ühenduseta. \n"
-"Algul tuleb USB pulk teha alglaetavaks. \n"
-"Siis saab uuenduste serverist hankida NFI image faili ja salvestada selle USB pulgale. \n"
-"Kui oled alglaetava USB pulga juba ettevalmistanud, siis ühenda see nüüd. Vastasel korral ühenda min. 64 MB USB pulk!"
-
 msgid "This plugin is installed."
 msgstr "See plugin on paigaldatud."
 
@@ -19776,18 +19669,6 @@ msgstr "Pealkirja seadmine"
 
 msgid "To restore the image:"
 msgstr "Püsivara taastamiseks:"
-
-#, python-format
-msgid ""
-"To update your %s %s firmware, please follow these steps:\n"
-"1) Turn off your box with the rear power switch and make sure the bootable USB stick is plugged in.\n"
-"2) Turn mains back on and hold the DOWN button on the front panel pressed for 10 seconds.\n"
-"3) Wait for bootup and follow instructions of the wizard."
-msgstr ""
-"%s %s püsivara uuendamiseks toimi järgnevalt: \n"
-"1) Lülita vastuvõtja tagumisest lülitist välja ja veendu, et alglaaditav USB pulk on ühendatud. \n"
-"2) Lülita vastuvõtja sisse, hoides DOWN nuppu esipaneelil vajutatuna 10 sekundi jooksul. \n"
-"3) Oota alglaadimist ja jälgi abilise juhendeid ekraanil."
 
 msgid "Today"
 msgstr "Täna"
@@ -20180,9 +20061,6 @@ msgstr "USALS liigutab ajamiga mootori õige satelliidi peale automaatselt vasta
 #
 msgid "USB Stick"
 msgstr "USB mälupulk"
-
-msgid "USB stick wizard"
-msgstr "USB abimees"
 
 msgid "USB switch ERROR! - already on USB"
 msgstr "USB vahetuse VIGA! - USB on juba kasutuses"
@@ -21838,9 +21716,6 @@ msgstr "Oled selle logi juba saatnud, kas tõesti saata uuesti:\n"
 msgid "You have chosen to backup your settings. Please press OK to start the backup now."
 msgstr "Otsustasid luua varukoopia kõvakettale. Vajuta OK alustamiseks nüüd."
 
-msgid "You have chosen to create a new .NFI flasher bootable USB stick. This will repartition the USB stick and therefore all data on it will be erased."
-msgstr "Otsustasid luua uue alglaetava USB-pulga. Kõik vana info USB pulgal läheb kaduma."
-
 msgid "You have chosen to restore your settings. Enigma2 will restart after restore. Please press OK to start the restore now."
 msgstr "Oled otsustanud seadistused taastada. Selle lõpetuseks vastuvõtja taaskäivitub. Taastamise alustamiseks vajuta OK."
 
@@ -22566,9 +22441,6 @@ msgstr "kinnitatud"
 msgid "connected"
 msgstr "ühendatud"
 
-msgid "continue"
-msgstr "Jätka"
-
 msgid "controlled by HDMI"
 msgstr "HDMI juhitav"
 
@@ -22605,10 +22477,6 @@ msgstr "loo nimeviit"
 #, fuzzy
 msgid "current affairs (general)"
 msgstr "uudised/päevakajalised sündmused"
-
-#, python-format
-msgid "currently installed image: %s"
-msgstr "paigaldatud püsivara: %s"
 
 msgid "daily"
 msgstr "Iga päev"
@@ -24036,6 +23904,138 @@ msgstr "Kanalivahetus"
 
 msgid "®"
 msgstr ""
+
+#~ msgid "Changelog"
+#~ msgstr "Muudatused"
+
+#, python-format
+#~ msgid "Could not connect to %s %s .NFI image feed server:"
+#~ msgstr "Ei saa ühendust %s %s .NFI püsivara serveriga:"
+
+#~ msgid "Currently installed image"
+#~ msgstr "Paigaldatud püsivara"
+
+#, python-format
+#~ msgid "Do you want to download the image to %s ?"
+#~ msgstr "Kas laadida tõmmis asukohta %s?"
+
+#~ msgid "Download"
+#~ msgstr "Allalaadimine"
+
+#, python-format
+#~ msgid "Download %s from server"
+#~ msgstr "Hangi %s serverist"
+
+#~ msgid "Download .NFI-files for USB-flasher"
+#~ msgstr "Hangi .NFI-failid USB-le"
+
+#~ msgid "Flash"
+#~ msgstr "Paigalda"
+
+#~ msgid "Flashing failed"
+#~ msgstr "Püsivara paigaldamine nurjus"
+
+#~ msgid "Get latest experimental image"
+#~ msgstr "Hangi uusim eksperimentaalne püsivara"
+
+#~ msgid "Get latest release image"
+#~ msgstr "Hangi uusim stabiilne püsivara"
+
+#~ msgid "NFI image flashing"
+#~ msgstr "NFI tõmmise paigaldamine"
+
+#~ msgid "NFI image flashing completed. Press Yellow to Reboot!"
+#~ msgstr "NFI tõmmis on paigaldatud. Taaskäivitamiseks vajuta kollast nuppu!"
+
+#~ msgid "No details for this image file"
+#~ msgstr "Selle tõmmise kohta pole teavet"
+
+#~ msgid "Please check your network settings!"
+#~ msgstr "Kontrolli võrgu seadeid!"
+
+#~ msgid "Please select an NFI file and press green key to flash!"
+#~ msgstr "Vali NFI fail ja vajuta paigaldamiseks rohelist nuppu!"
+
+#~ msgid "Prepare another USB stick for image flashing"
+#~ msgstr "Valmista tõmmise paigaldamiseks ette teine USB pulk"
+
+#~ msgid "Restore is running..."
+#~ msgstr "Taastamine..."
+
+#~ msgid "Select an image to be downloaded"
+#~ msgstr "Vali sellest nimekirjast"
+
+#~ msgid "Select desired image from feed list"
+#~ msgstr "Vali nimekirjast soovitud tõmmis"
+
+#, python-format
+#~ msgid "Shall the USB stick wizard proceed and program the image file %s into flash memory?"
+#~ msgstr "Kas USB pulga abiline alustab toimingut ja paigaldab tõmmise %s välkmälusse?"
+
+#~ msgid ""
+#~ "The USB stick was prepared to be bootable.\n"
+#~ "Now you can download an NFI image file!"
+#~ msgstr ""
+#~ "USB pulk on nüüd alglaaditav.\n"
+#~ "Nüüd saad NFI tõmmise alla laadida!"
+
+#, python-format
+#~ msgid ""
+#~ "The following device was found:\n"
+#~ "\n"
+#~ "%s\n"
+#~ "\n"
+#~ "Do you want to write the USB flasher to this stick?"
+#~ msgstr ""
+#~ "Leitud USB pulk:\n"
+#~ "\n"
+#~ "%s\n"
+#~ "\n"
+#~ "Kas soovid seda kasutada püsivara paigaldamiseks?"
+
+#~ msgid "The md5sum validation failed, the file may be corrupted!"
+#~ msgstr "md5sum kontroll ebaõnnestus, fail võib olla rikutud!"
+
+#, python-format
+#~ msgid "The wizard found a configuration backup. Do you want to restore your old settings from %s?"
+#~ msgstr "Abiline leidis seadistuste varukoopia. Kas taastada vanad %s seadistused?"
+
+#, python-format
+#~ msgid ""
+#~ "This plugin creates a USB stick which can be used to update the firmware of your %s %s without the need for a network or WLAN connection.\n"
+#~ "First, a USB stick needs to be prepared so that it becomes bootable.\n"
+#~ "In the next step, an NFI image file can be downloaded from the update server and saved on the USB stick.\n"
+#~ "If you already have a prepared bootable USB stick, please insert it now. Otherwise plug in a USB stick with a minimum size of 64 MB!"
+#~ msgstr ""
+#~ "See plugin valmistab ette USB pulga, mida saab kasutada %s %s püsivara uuendamiseks ilma võrgu- või WLAN ühenduseta. \n"
+#~ "Algul tuleb USB pulk teha alglaetavaks. \n"
+#~ "Siis saab uuenduste serverist hankida NFI image faili ja salvestada selle USB pulgale. \n"
+#~ "Kui oled alglaetava USB pulga juba ettevalmistanud, siis ühenda see nüüd. Vastasel korral ühenda min. 64 MB USB pulk!"
+
+#, python-format
+#~ msgid ""
+#~ "To update your %s %s firmware, please follow these steps:\n"
+#~ "1) Turn off your box with the rear power switch and make sure the bootable USB stick is plugged in.\n"
+#~ "2) Turn mains back on and hold the DOWN button on the front panel pressed for 10 seconds.\n"
+#~ "3) Wait for bootup and follow instructions of the wizard."
+#~ msgstr ""
+#~ "%s %s püsivara uuendamiseks toimi järgnevalt: \n"
+#~ "1) Lülita vastuvõtja tagumisest lülitist välja ja veendu, et alglaaditav USB pulk on ühendatud. \n"
+#~ "2) Lülita vastuvõtja sisse, hoides DOWN nuppu esipaneelil vajutatuna 10 sekundi jooksul. \n"
+#~ "3) Oota alglaadimist ja jälgi abilise juhendeid ekraanil."
+
+#~ msgid "USB stick wizard"
+#~ msgstr "USB abimees"
+
+#~ msgid "You have chosen to create a new .NFI flasher bootable USB stick. This will repartition the USB stick and therefore all data on it will be erased."
+#~ msgstr "Otsustasid luua uue alglaetava USB-pulga. Kõik vana info USB pulgal läheb kaduma."
+
+#~ msgid "continue"
+#~ msgstr "Jätka"
+
+#, python-format
+#~ msgid "currently installed image: %s"
+#~ msgstr "paigaldatud püsivara: %s"
 
 #~ msgid "Manual scan"
 #~ msgstr "Käsiotsing"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-04-02 20:55+0000\n"
+"POT-Creation-Date: 2022-04-10 10:23+0000\n"
 "PO-Revision-Date: 2019-07-27 12:19+0700\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -3948,6 +3948,9 @@ msgstr ""
 msgid "Calculate"
 msgstr "Tính toán"
 
+msgid "Calculate and show size of directory. Note: This can be slow down the UI on selection of a folder!"
+msgstr ""
+
 msgid "Calculate file checksums"
 msgstr "Tính toán tổng kiểm tra"
 
@@ -4259,9 +4262,6 @@ msgstr "Thay đổi kích thước bước"
 
 msgid "Change to bouquet"
 msgstr "Đổi thành gói kênh"
-
-msgid "Changelog"
-msgstr "Thay đổi"
 
 #, python-format
 msgid ""
@@ -5362,10 +5362,6 @@ msgstr "Costa Rica"
 msgid "Cote d'Ivoire / Ivory Coast"
 msgstr "Bờ biển ngà"
 
-#, python-format
-msgid "Could not connect to %s %s .NFI image feed server:"
-msgstr "Không thể kết nối với máy chủ nguồn cấp hình ảnh%s%s .NFI:"
-
 msgid "Could not connect to server"
 msgstr "Không thể kết nối đến máy chủ"
 
@@ -5545,9 +5541,6 @@ msgstr ""
 
 msgid "Current version:"
 msgstr "Phiên bản hiện tại:"
-
-msgid "Currently installed image"
-msgstr "Hiện đang cài đặt hình ảnh"
 
 msgid "Custom"
 msgstr "Tập quán"
@@ -6410,9 +6403,6 @@ msgstr "Cài đặt hiển thị"
 msgid "Display and user interface"
 msgstr "Giao diện hiển thị và người dùng"
 
-msgid "Display directory size"
-msgstr ""
-
 msgid "Display message before playing next movie"
 msgstr "Hiển thị thông báo trước khi phát phim tiếp theo"
 
@@ -6652,10 +6642,6 @@ msgid "Do you want to do another manual service scan?"
 msgstr "Bạn có muốn thực hiện quét dịch vụ thủ công khác không?"
 
 #, python-format
-msgid "Do you want to download the image to %s ?"
-msgstr "Bạn có muốn tải hình ảnh xuống % s không?"
-
-#, python-format
 msgid ""
 "Do you want to flash image\n"
 "%s"
@@ -6774,16 +6760,6 @@ msgstr[0] "Xong - Đã cài đặt, nâng cấp hoặc gỡ bỏ gói%d (%s)"
 
 msgid "Down"
 msgstr "Đi xuống danh sách"
-
-msgid "Download"
-msgstr "Tải xuống"
-
-#, python-format
-msgid "Download %s from server"
-msgstr "Tải xuống%s từ máy chủ"
-
-msgid "Download .NFI-files for USB-flasher"
-msgstr "Tải xuống các tệp .NFI cho USB-flasher"
 
 msgid "Download Plugins"
 msgstr "Tải xuống plugin"
@@ -7985,9 +7961,6 @@ msgstr "Thiết lập FTP"
 msgid "Factory Reset"
 msgstr ""
 
-msgid "Factory Reset Settings"
-msgstr ""
-
 msgid "Factory release"
 msgstr ""
 
@@ -8248,9 +8221,6 @@ msgstr "Đã sửa"
 msgid "Fixed X11 font (SD)"
 msgstr "Đã sửa lỗi phông chữ X11 (SD)"
 
-msgid "Flash"
-msgstr "Đèn flash"
-
 msgid "Flash Image"
 msgstr "Hình ảnh flash"
 
@@ -8278,9 +8248,6 @@ msgstr "Hình ảnh nhấp nháy thành công"
 
 msgid "Flashing Image"
 msgstr "Hình ảnh nhấp nháy"
-
-msgid "Flashing failed"
-msgstr "Nhấp nháy không thành công"
 
 msgid "Flashing image successful"
 msgstr "Hình ảnh nhấp nháy thành công"
@@ -8627,12 +8594,6 @@ msgstr "Bỏ chọn"
 #, fuzzy
 msgid "Gesundheit"
 msgstr "Fahrenheit"
-
-msgid "Get latest experimental image"
-msgstr "Nhận hình ảnh thử nghiệm mới nhất"
-
-msgid "Get latest release image"
-msgstr "Nhận hình ảnh phát hành mới nhất"
 
 msgid "Getting Event Info failed!"
 msgstr "Nhận thông tin sự kiện không thành công!"
@@ -11529,12 +11490,6 @@ msgstr "N/A"
 msgid "NEXT"
 msgstr "KẾ TIẾP"
 
-msgid "NFI image flashing"
-msgstr "Hình ảnh NFI nhấp nháy"
-
-msgid "NFI image flashing completed. Press Yellow to Reboot!"
-msgstr "Hình ảnh NFI nhấp nháy hoàn thành. Nhấn màu vàng để khởi động lại!"
-
 msgid "NFS"
 msgstr "NFS"
 
@@ -11892,9 +11847,6 @@ msgstr "Không có chỉ số miễn phí có sẵn"
 
 msgid "No description available."
 msgstr "Không có mô tả."
-
-msgid "No details for this image file"
-msgstr "Không có chi tiết cho tập tin hình ảnh này"
 
 msgid "No displayable files on this medium found!"
 msgstr "Không tìm thấy tập tin nào trên phương tiện này!"
@@ -12996,9 +12948,6 @@ msgstr "Vui lòng thay đổi thời gian ghi âm"
 msgid "Please check the manual of the receiver"
 msgstr "Vui lòng kiểm tra hướng dẫn của đầu thu"
 
-msgid "Please check your network settings!"
-msgstr "Vui lòng kiểm tra cài đặt mạng của bạn!"
-
 msgid "Please choose CCcam-Reader"
 msgstr "Vui lòng chọn CCcam-Reader"
 
@@ -13122,9 +13071,6 @@ msgstr "Vui lòng chọn một dịch vụ phụ để ghi lại ..."
 
 msgid "Please select a subservice..."
 msgstr "Vui lòng chọn một dịch vụ phụ ..."
-
-msgid "Please select an NFI file and press green key to flash!"
-msgstr "Vui lòng chọn một tệp NFI và nhấn phím màu xanh lá cây để flash!"
 
 msgid "Please select an acceptable directory."
 msgstr ""
@@ -13553,9 +13499,6 @@ msgstr "Bộ điều chỉnh ưa thích cho bản ghi, cho phép nhiều lựa c
 
 msgid "Preparation time for recording (seconds)"
 msgstr "Thời gian chuẩn bị để ghi âm (giây)"
-
-msgid "Prepare another USB stick for image flashing"
-msgstr "Chuẩn bị một thanh USB khác để nhấp nháy hình ảnh"
 
 msgid "Preparing... Please wait"
 msgstr "Chuẩn bị ... Xin vui lòng chờ"
@@ -14730,9 +14673,6 @@ msgstr "Khôi phục cài đặt"
 msgid "Restore backups"
 msgstr "Khôi phục bản sao lưu"
 
-msgid "Restore is running..."
-msgstr "Khôi phục đang chạy ..."
-
 msgid "Restore settings from a backup"
 msgstr "Khôi phục cài đặt từ bản sao lưu"
 
@@ -15524,9 +15464,6 @@ msgstr "Chọn tập tin sao lưu bổ sung"
 msgid "Select additional files to backup"
 msgstr "Chọn tập tin bổ sung để sao lưu"
 
-msgid "Select an image to be downloaded"
-msgstr "Chọn một hình ảnh để được tải xuống"
-
 msgid "Select audio track"
 msgstr "Chọn audio"
 
@@ -15553,9 +15490,6 @@ msgstr "Chọn đích sao chép cho:"
 
 msgid "Select default EPG type..."
 msgstr "Chọn loại EPG mặc định ..."
-
-msgid "Select desired image from feed list"
-msgstr "Chọn hình ảnh mong muốn từ danh sách nguồn cấp"
 
 msgid "Select destination for:"
 msgstr "Chọn điểm đến cho:"
@@ -16418,10 +16352,6 @@ msgstr "Cài đặt thiết bị vệ tinh của bạn"
 msgid "Seychelles"
 msgstr "Đảo Seychelles"
 
-#, python-format
-msgid "Shall the USB stick wizard proceed and program the image file %s into flash memory?"
-msgstr "Trình hướng dẫn thanh USB có tiến hành và lập trình tệp hình ảnh% s vào bộ nhớ flash không?"
-
 msgid "Share Folder's"
 msgstr "Chia sẻ thư mục"
 
@@ -16557,6 +16487,9 @@ msgstr "Hiển thị Hướng dẫn CoolSingel"
 
 msgid "Show CoolTVGuide"
 msgstr "Hiển thị hướng dẫn truyền hình"
+
+msgid "Show Directory size"
+msgstr ""
 
 msgid "Show Display Icons"
 msgstr "Hiển thị biểu tượng hiển thị"
@@ -18591,13 +18524,6 @@ msgid "The TV was switched to the recording service!\n"
 msgstr "TV đã được chuyển sang dịch vụ ghi âm!\n"
 
 msgid ""
-"The USB stick was prepared to be bootable.\n"
-"Now you can download an NFI image file!"
-msgstr ""
-"Thanh USB đã được chuẩn bị để có thể khởi động.\n"
-"Bây giờ bạn có thể tải xuống một tệp hình ảnh NFI!"
-
-msgid ""
 "The VideoMode plugin is not installed!\n"
 "Please install it."
 msgstr ""
@@ -18649,20 +18575,6 @@ msgstr "Cài đặt mặc định là thời gian thức dậy - 5 phút và th�
 msgid "The detailed information is intended for developers only."
 msgstr ""
 
-#, python-format
-msgid ""
-"The following device was found:\n"
-"\n"
-"%s\n"
-"\n"
-"Do you want to write the USB flasher to this stick?"
-msgstr ""
-"Thiết bị sau đây đã được tìm thấy:\n"
-"\n"
-"%s\n"
-"\n"
-"Bạn có muốn viết USB flasher vào thanh này không?"
-
 msgid "The following files were found..."
 msgstr "Các tập tin sau đã được tìm thấy ..."
 
@@ -18684,9 +18596,6 @@ msgstr "Chiều cao của hình ảnh. Đầu vào sẽ được thu nhỏ để
 
 msgid "The loopthrough setting is wrong."
 msgstr "Cài đặt vòng lặp là sai."
-
-msgid "The md5sum validation failed, the file may be corrupted!"
-msgstr "Xác thực md5sum không thành công, tập tin có thể bị hỏng!"
 
 msgid ""
 "The network wizard extension is not installed!\n"
@@ -18778,10 +18687,6 @@ msgstr ""
 
 msgid "The wizard can backup your current settings. Do you want to do a backup now?"
 msgstr "Trình hướng dẫn có thể sao lưu các cài đặt hiện tại của bạn. Bạn có muốn làm một bản sao lưu bây giờ?"
-
-#, python-format
-msgid "The wizard found a configuration backup. Do you want to restore your old settings from %s?"
-msgstr "Trình hướng dẫn tìm thấy bản sao lưu cấu hình. Bạn có muốn khôi phục cài đặt cũ của mình từ % s không?"
 
 msgid "The wizard is finished now."
 msgstr "Đã kết thúc."
@@ -19148,18 +19053,6 @@ msgstr "Tùy chọn này đặt việc triệt tiêu các đường viền kỹ 
 msgid "This option sets up the picture sharpness, used when the picture is being upscaled."
 msgstr "Tùy chọn này thiết lập độ sắc nét của hình ảnh, được sử dụng khi hình ảnh được nâng cấp."
 
-#, python-format
-msgid ""
-"This plugin creates a USB stick which can be used to update the firmware of your %s %s without the need for a network or WLAN connection.\n"
-"First, a USB stick needs to be prepared so that it becomes bootable.\n"
-"In the next step, an NFI image file can be downloaded from the update server and saved on the USB stick.\n"
-"If you already have a prepared bootable USB stick, please insert it now. Otherwise plug in a USB stick with a minimum size of 64 MB!"
-msgstr ""
-"Plugin này tạo ra một thanh USB có thể được sử dụng để cập nhật chương trình cơ sở cho % s% s của bạn mà không cần kết nối mạng hoặc mạng WLAN.\n"
-"Đầu tiên, một thanh USB cần được chuẩn bị để nó có khả năng khởi động.\n"
-"Trong bước tiếp theo, một tệp hình ảnh NFI có thể được tải xuống từ máy chủ cập nhật và được lưu trên thanh USB.\n"
-"Nếu bạn đã có một thanh USB có thể khởi động được chuẩn bị, vui lòng cắm nó ngay bây giờ. Nếu không thì cắm một thanh USB với kích thước tối thiểu 64 MB!"
-
 msgid "This plugin is installed."
 msgstr "Plugin này được cài đặt."
 
@@ -19504,18 +19397,6 @@ msgstr "Chế độ tiêu đề"
 
 msgid "To restore the image:"
 msgstr "Để khôi phục lại hình ảnh:"
-
-#, python-format
-msgid ""
-"To update your %s %s firmware, please follow these steps:\n"
-"1) Turn off your box with the rear power switch and make sure the bootable USB stick is plugged in.\n"
-"2) Turn mains back on and hold the DOWN button on the front panel pressed for 10 seconds.\n"
-"3) Wait for bootup and follow instructions of the wizard."
-msgstr ""
-"Để cập nhật chương trình cơ sở % s% s của bạn, vui lòng làm theo các bước sau:\n"
-"1) Tắt hộp của bạn bằng công tắc nguồn phía sau và đảm bảo cắm USB có thể khởi động.\n"
-"2) Bật nguồn điện trở lại và giữ nút XUỐNG trên bảng mặt trước được nhấn trong 10 giây.\n"
-"3) Đợi khởi động và làm theo hướng dẫn của trình hướng dẫn."
 
 msgid "Today"
 msgstr "Hôm nay"
@@ -19900,9 +19781,6 @@ msgstr "USALS tự động di chuyển một đĩa có động cơ đến đúng
 
 msgid "USB Stick"
 msgstr "Thanh USB"
-
-msgid "USB stick wizard"
-msgstr "Trình hướng dẫn thanh USB"
 
 msgid "USB switch ERROR! - already on USB"
 msgstr "Công tắc USB LRI! - đã có trên USB"
@@ -21523,9 +21401,6 @@ msgstr "Bạn đã gửi nhật ký này, bạn có chắc chắn muốn gửi l
 msgid "You have chosen to backup your settings. Please press OK to start the backup now."
 msgstr "Bạn đã chọn sao lưu các thiết lập của bạn. Vui lòng nhấn OK để bắt đầu sao lưu ngay bây giờ."
 
-msgid "You have chosen to create a new .NFI flasher bootable USB stick. This will repartition the USB stick and therefore all data on it will be erased."
-msgstr "Bạn đã chọn tạo một thanh USB khởi động flasher .NFI mới. Điều này sẽ phân vùng lại thanh USB và do đó tất cả dữ liệu trên nó sẽ bị xóa."
-
 msgid "You have chosen to restore your settings. Enigma2 will restart after restore. Please press OK to start the restore now."
 msgstr "Bạn đã chọn để khôi phục cài đặt của bạn. Enigma2 sẽ khởi động lại sau khi khôi phục. Vui lòng nhấn OK để bắt đầu khôi phục ngay bây giờ."
 
@@ -22234,9 +22109,6 @@ msgstr "xác nhận"
 msgid "connected"
 msgstr "đã kết nối"
 
-msgid "continue"
-msgstr "tiếp tục"
-
 msgid "controlled by HDMI"
 msgstr "được điều khiển bởi HDMI"
 
@@ -22273,10 +22145,6 @@ msgstr "tạo liên kết tượng trưng ..."
 #, fuzzy
 msgid "current affairs (general)"
 msgstr "tin tức / vấn đề thời sự (chung)"
-
-#, python-format
-msgid "currently installed image: %s"
-msgstr "hình ảnh hiện được cài đặt:%s"
 
 msgid "daily"
 msgstr "hằng ngày"
@@ -23686,6 +23554,138 @@ msgstr "hạ gục"
 
 msgid "®"
 msgstr ""
+
+#~ msgid "Changelog"
+#~ msgstr "Thay đổi"
+
+#, python-format
+#~ msgid "Could not connect to %s %s .NFI image feed server:"
+#~ msgstr "Không thể kết nối với máy chủ nguồn cấp hình ảnh%s%s .NFI:"
+
+#~ msgid "Currently installed image"
+#~ msgstr "Hiện đang cài đặt hình ảnh"
+
+#, python-format
+#~ msgid "Do you want to download the image to %s ?"
+#~ msgstr "Bạn có muốn tải hình ảnh xuống % s không?"
+
+#~ msgid "Download"
+#~ msgstr "Tải xuống"
+
+#, python-format
+#~ msgid "Download %s from server"
+#~ msgstr "Tải xuống%s từ máy chủ"
+
+#~ msgid "Download .NFI-files for USB-flasher"
+#~ msgstr "Tải xuống các tệp .NFI cho USB-flasher"
+
+#~ msgid "Flash"
+#~ msgstr "Đèn flash"
+
+#~ msgid "Flashing failed"
+#~ msgstr "Nhấp nháy không thành công"
+
+#~ msgid "Get latest experimental image"
+#~ msgstr "Nhận hình ảnh thử nghiệm mới nhất"
+
+#~ msgid "Get latest release image"
+#~ msgstr "Nhận hình ảnh phát hành mới nhất"
+
+#~ msgid "NFI image flashing"
+#~ msgstr "Hình ảnh NFI nhấp nháy"
+
+#~ msgid "NFI image flashing completed. Press Yellow to Reboot!"
+#~ msgstr "Hình ảnh NFI nhấp nháy hoàn thành. Nhấn màu vàng để khởi động lại!"
+
+#~ msgid "No details for this image file"
+#~ msgstr "Không có chi tiết cho tập tin hình ảnh này"
+
+#~ msgid "Please check your network settings!"
+#~ msgstr "Vui lòng kiểm tra cài đặt mạng của bạn!"
+
+#~ msgid "Please select an NFI file and press green key to flash!"
+#~ msgstr "Vui lòng chọn một tệp NFI và nhấn phím màu xanh lá cây để flash!"
+
+#~ msgid "Prepare another USB stick for image flashing"
+#~ msgstr "Chuẩn bị một thanh USB khác để nhấp nháy hình ảnh"
+
+#~ msgid "Restore is running..."
+#~ msgstr "Khôi phục đang chạy ..."
+
+#~ msgid "Select an image to be downloaded"
+#~ msgstr "Chọn một hình ảnh để được tải xuống"
+
+#~ msgid "Select desired image from feed list"
+#~ msgstr "Chọn hình ảnh mong muốn từ danh sách nguồn cấp"
+
+#, python-format
+#~ msgid "Shall the USB stick wizard proceed and program the image file %s into flash memory?"
+#~ msgstr "Trình hướng dẫn thanh USB có tiến hành và lập trình tệp hình ảnh% s vào bộ nhớ flash không?"
+
+#~ msgid ""
+#~ "The USB stick was prepared to be bootable.\n"
+#~ "Now you can download an NFI image file!"
+#~ msgstr ""
+#~ "Thanh USB đã được chuẩn bị để có thể khởi động.\n"
+#~ "Bây giờ bạn có thể tải xuống một tệp hình ảnh NFI!"
+
+#, python-format
+#~ msgid ""
+#~ "The following device was found:\n"
+#~ "\n"
+#~ "%s\n"
+#~ "\n"
+#~ "Do you want to write the USB flasher to this stick?"
+#~ msgstr ""
+#~ "Thiết bị sau đây đã được tìm thấy:\n"
+#~ "\n"
+#~ "%s\n"
+#~ "\n"
+#~ "Bạn có muốn viết USB flasher vào thanh này không?"
+
+#~ msgid "The md5sum validation failed, the file may be corrupted!"
+#~ msgstr "Xác thực md5sum không thành công, tập tin có thể bị hỏng!"
+
+#, python-format
+#~ msgid "The wizard found a configuration backup. Do you want to restore your old settings from %s?"
+#~ msgstr "Trình hướng dẫn tìm thấy bản sao lưu cấu hình. Bạn có muốn khôi phục cài đặt cũ của mình từ % s không?"
+
+#, python-format
+#~ msgid ""
+#~ "This plugin creates a USB stick which can be used to update the firmware of your %s %s without the need for a network or WLAN connection.\n"
+#~ "First, a USB stick needs to be prepared so that it becomes bootable.\n"
+#~ "In the next step, an NFI image file can be downloaded from the update server and saved on the USB stick.\n"
+#~ "If you already have a prepared bootable USB stick, please insert it now. Otherwise plug in a USB stick with a minimum size of 64 MB!"
+#~ msgstr ""
+#~ "Plugin này tạo ra một thanh USB có thể được sử dụng để cập nhật chương trình cơ sở cho % s% s của bạn mà không cần kết nối mạng hoặc mạng WLAN.\n"
+#~ "Đầu tiên, một thanh USB cần được chuẩn bị để nó có khả năng khởi động.\n"
+#~ "Trong bước tiếp theo, một tệp hình ảnh NFI có thể được tải xuống từ máy chủ cập nhật và được lưu trên thanh USB.\n"
+#~ "Nếu bạn đã có một thanh USB có thể khởi động được chuẩn bị, vui lòng cắm nó ngay bây giờ. Nếu không thì cắm một thanh USB với kích thước tối thiểu 64 MB!"
+
+#, python-format
+#~ msgid ""
+#~ "To update your %s %s firmware, please follow these steps:\n"
+#~ "1) Turn off your box with the rear power switch and make sure the bootable USB stick is plugged in.\n"
+#~ "2) Turn mains back on and hold the DOWN button on the front panel pressed for 10 seconds.\n"
+#~ "3) Wait for bootup and follow instructions of the wizard."
+#~ msgstr ""
+#~ "Để cập nhật chương trình cơ sở % s% s của bạn, vui lòng làm theo các bước sau:\n"
+#~ "1) Tắt hộp của bạn bằng công tắc nguồn phía sau và đảm bảo cắm USB có thể khởi động.\n"
+#~ "2) Bật nguồn điện trở lại và giữ nút XUỐNG trên bảng mặt trước được nhấn trong 10 giây.\n"
+#~ "3) Đợi khởi động và làm theo hướng dẫn của trình hướng dẫn."
+
+#~ msgid "USB stick wizard"
+#~ msgstr "Trình hướng dẫn thanh USB"
+
+#~ msgid "You have chosen to create a new .NFI flasher bootable USB stick. This will repartition the USB stick and therefore all data on it will be erased."
+#~ msgstr "Bạn đã chọn tạo một thanh USB khởi động flasher .NFI mới. Điều này sẽ phân vùng lại thanh USB và do đó tất cả dữ liệu trên nó sẽ bị xóa."
+
+#~ msgid "continue"
+#~ msgstr "tiếp tục"
+
+#, python-format
+#~ msgid "currently installed image: %s"
+#~ msgstr "hình ảnh hiện được cài đặt:%s"
 
 #~ msgid "Manual scan"
 #~ msgstr "Quét thủ công"

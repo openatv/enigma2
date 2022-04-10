@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-04-02 20:55+0000\n"
+"POT-Creation-Date: 2022-04-10 10:23+0000\n"
 "PO-Revision-Date: 2021-08-15 18:50+0000\n"
 "Last-Translator: openATV <openatv@gmail.com>\n"
 "Language-Team: Chinese (Traditional, Hong Kong) <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/zh_Hant_HK/>\n"
@@ -4104,6 +4104,9 @@ msgstr ""
 msgid "Calculate"
 msgstr ""
 
+msgid "Calculate and show size of directory. Note: This can be slow down the UI on selection of a folder!"
+msgstr ""
+
 msgid "Calculate file checksums"
 msgstr ""
 
@@ -4423,9 +4426,6 @@ msgstr "調整"
 #, fuzzy
 msgid "Change to bouquet"
 msgstr "添加到自定義組"
-
-msgid "Changelog"
-msgstr ""
 
 #, python-format
 msgid ""
@@ -5565,10 +5565,6 @@ msgstr ""
 msgid "Cote d'Ivoire / Ivory Coast"
 msgstr ""
 
-#, fuzzy, python-format
-msgid "Could not connect to %s %s .NFI image feed server:"
-msgstr "不能連接到Dreambox .NFI檔從伺服器:"
-
 #, fuzzy
 msgid "Could not connect to server"
 msgstr "不能連接到Dreambox .NFI檔從伺服器:"
@@ -5762,9 +5758,6 @@ msgstr ""
 
 msgid "Current version:"
 msgstr "當前版本:"
-
-msgid "Currently installed image"
-msgstr ""
 
 #, fuzzy
 msgid "Custom"
@@ -6667,9 +6660,6 @@ msgstr "OLED設定"
 msgid "Display and user interface"
 msgstr "顯示和用戶介面"
 
-msgid "Display directory size"
-msgstr ""
-
 msgid "Display message before playing next movie"
 msgstr ""
 
@@ -6903,10 +6893,6 @@ msgstr " 是否開始頻道掃描?"
 msgid "Do you want to do another manual service scan?"
 msgstr " 是否手動掃描其他頻道?"
 
-#, python-format
-msgid "Do you want to download the image to %s ?"
-msgstr ""
-
 #, fuzzy, python-format
 msgid ""
 "Do you want to flash image\n"
@@ -7028,16 +7014,6 @@ msgstr[1] "完成 - 安裝, 升級或移除 %d 套裝軟體出現 %d 錯誤"
 #, fuzzy
 msgid "Down"
 msgstr "下載"
-
-msgid "Download"
-msgstr "下載"
-
-#, python-format
-msgid "Download %s from server"
-msgstr ""
-
-msgid "Download .NFI-files for USB-flasher"
-msgstr ""
 
 msgid "Download Plugins"
 msgstr "下載插件"
@@ -8264,9 +8240,6 @@ msgstr "EPG設定"
 msgid "Factory Reset"
 msgstr ""
 
-msgid "Factory Reset Settings"
-msgstr ""
-
 msgid "Factory release"
 msgstr ""
 
@@ -8535,9 +8508,6 @@ msgstr ""
 msgid "Fixed X11 font (SD)"
 msgstr ""
 
-msgid "Flash"
-msgstr ""
-
 #, fuzzy
 msgid "Flash Image"
 msgstr "安裝失敗"
@@ -8570,9 +8540,6 @@ msgstr "安裝失敗"
 
 #, fuzzy
 msgid "Flashing Image"
-msgstr "安裝失敗"
-
-msgid "Flashing failed"
 msgstr "安裝失敗"
 
 #, fuzzy
@@ -8927,12 +8894,6 @@ msgid "Gesellschaft"
 msgstr "取消"
 
 msgid "Gesundheit"
-msgstr ""
-
-msgid "Get latest experimental image"
-msgstr ""
-
-msgid "Get latest release image"
 msgstr ""
 
 msgid "Getting Event Info failed!"
@@ -11981,14 +11942,6 @@ msgstr "N/A"
 msgid "NEXT"
 msgstr "下一個"
 
-msgid "NFI image flashing"
-msgstr ""
-
-msgid "NFI image flashing completed. Press Yellow to Reboot!"
-msgstr ""
-"NFI Image安裝完成.\n"
-"按黃鍵重啟Dreambox!"
-
 msgid "NFS"
 msgstr ""
 
@@ -12367,9 +12320,6 @@ msgstr "無可用資訊"
 
 msgid "No description available."
 msgstr "無可用的描述."
-
-msgid "No details for this image file"
-msgstr "這個韧體沒有詳細說明"
 
 msgid "No displayable files on this medium found!"
 msgstr "在這個媒介上未發現檔!"
@@ -13537,9 +13487,6 @@ msgstr "請更改錄製結束時間"
 msgid "Please check the manual of the receiver"
 msgstr "為新的目錄重命名"
 
-msgid "Please check your network settings!"
-msgstr "請檢視網路設定！"
-
 #, fuzzy
 msgid "Please choose CCcam-Reader"
 msgstr "請選擇套裝軟體..."
@@ -13678,9 +13625,6 @@ msgstr "請選擇要錄製的字幕..."
 
 msgid "Please select a subservice..."
 msgstr "請選擇一個字幕..."
-
-msgid "Please select an NFI file and press green key to flash!"
-msgstr ""
 
 msgid "Please select an acceptable directory."
 msgstr ""
@@ -14119,9 +14063,6 @@ msgstr ""
 #, fuzzy
 msgid "Preparation time for recording (seconds)"
 msgstr "添加錄影 (輸入錄影結束時間)"
-
-msgid "Prepare another USB stick for image flashing"
-msgstr ""
 
 msgid "Preparing... Please wait"
 msgstr "準備中... 請稍候!"
@@ -15367,9 +15308,6 @@ msgstr "恢復系統設定"
 msgid "Restore backups"
 msgstr "恢復備份"
 
-msgid "Restore is running..."
-msgstr "正在恢復..."
-
 #, fuzzy
 msgid "Restore settings from a backup"
 msgstr "恢復備份"
@@ -16212,9 +16150,6 @@ msgstr "選擇音軌"
 msgid "Select additional files to backup"
 msgstr "選擇要備份的檔/目錄"
 
-msgid "Select an image to be downloaded"
-msgstr ""
-
 msgid "Select audio track"
 msgstr "選擇音軌"
 
@@ -16241,9 +16176,6 @@ msgid "Select copy destination for:"
 msgstr ""
 
 msgid "Select default EPG type..."
-msgstr ""
-
-msgid "Select desired image from feed list"
 msgstr ""
 
 msgid "Select destination for:"
@@ -17176,10 +17108,6 @@ msgstr ""
 msgid "Seychelles"
 msgstr ""
 
-#, python-format
-msgid "Shall the USB stick wizard proceed and program the image file %s into flash memory?"
-msgstr ""
-
 #, fuzzy
 msgid "Share Folder's"
 msgstr "共用"
@@ -17322,6 +17250,9 @@ msgid "Show CoolSingleGuide"
 msgstr ""
 
 msgid "Show CoolTVGuide"
+msgstr ""
+
+msgid "Show Directory size"
 msgstr ""
 
 #, fuzzy
@@ -19514,11 +19445,6 @@ msgstr ""
 msgid "The TV was switched to the recording service!\n"
 msgstr "定時錄製開始,即將切換到預錄頻道!\n"
 
-msgid ""
-"The USB stick was prepared to be bootable.\n"
-"Now you can download an NFI image file!"
-msgstr ""
-
 #, fuzzy
 msgid ""
 "The VideoMode plugin is not installed!\n"
@@ -19567,20 +19493,6 @@ msgstr ""
 msgid "The detailed information is intended for developers only."
 msgstr ""
 
-#, python-format
-msgid ""
-"The following device was found:\n"
-"\n"
-"%s\n"
-"\n"
-"Do you want to write the USB flasher to this stick?"
-msgstr ""
-"下列裝備被發現:\n"
-"\n"
-"%s\n"
-"\n"
-"是否刷新這個U盤?"
-
 msgid "The following files were found..."
 msgstr "下列文件被發現..."
 
@@ -19599,9 +19511,6 @@ msgid "The height of the picture. The input will be scaled to match this value."
 msgstr ""
 
 msgid "The loopthrough setting is wrong."
-msgstr ""
-
-msgid "The md5sum validation failed, the file may be corrupted!"
 msgstr ""
 
 msgid ""
@@ -19687,10 +19596,6 @@ msgstr ""
 
 msgid "The wizard can backup your current settings. Do you want to do a backup now?"
 msgstr "該嚮導可以備份您當前的設定.您想要做的一個備份嗎？"
-
-#, python-format
-msgid "The wizard found a configuration backup. Do you want to restore your old settings from %s?"
-msgstr ""
 
 msgid "The wizard is finished now."
 msgstr "嚮導已完成設定."
@@ -20058,14 +19963,6 @@ msgstr ""
 msgid "This option sets up the picture sharpness, used when the picture is being upscaled."
 msgstr ""
 
-#, python-format
-msgid ""
-"This plugin creates a USB stick which can be used to update the firmware of your %s %s without the need for a network or WLAN connection.\n"
-"First, a USB stick needs to be prepared so that it becomes bootable.\n"
-"In the next step, an NFI image file can be downloaded from the update server and saved on the USB stick.\n"
-"If you already have a prepared bootable USB stick, please insert it now. Otherwise plug in a USB stick with a minimum size of 64 MB!"
-msgstr ""
-
 msgid "This plugin is installed."
 msgstr "這個插件已安裝."
 
@@ -20416,18 +20313,6 @@ msgstr "標題設定模式"
 #, fuzzy
 msgid "To restore the image:"
 msgstr "是，立即還原設定"
-
-#, fuzzy, python-format
-msgid ""
-"To update your %s %s firmware, please follow these steps:\n"
-"1) Turn off your box with the rear power switch and make sure the bootable USB stick is plugged in.\n"
-"2) Turn mains back on and hold the DOWN button on the front panel pressed for 10 seconds.\n"
-"3) Wait for bootup and follow instructions of the wizard."
-msgstr ""
-"若要更新您的Dreambox韧體，請按照下列步驟:\n"
-"1) 關閉電源並插入可引導U盤.\n"
-"2) 通電並按住面板下鍵10秒.\n"
-"3) 等待啟動,按照嚮導提示操作."
 
 msgid "Today"
 msgstr "今天"
@@ -20830,9 +20715,6 @@ msgstr ""
 
 msgid "USB Stick"
 msgstr "USB-Stick"
-
-msgid "USB stick wizard"
-msgstr "USB Stick 嚮導"
 
 msgid "USB switch ERROR! - already on USB"
 msgstr ""
@@ -22505,9 +22387,6 @@ msgstr ""
 msgid "You have chosen to backup your settings. Please press OK to start the backup now."
 msgstr "您已選擇要備份您的設定。請按OK鍵開始備份。"
 
-msgid "You have chosen to create a new .NFI flasher bootable USB stick. This will repartition the USB stick and therefore all data on it will be erased."
-msgstr "您已經選擇創建一個新的用於安裝.NFI的啟動U盤,這將重新對U盤進行格式化,所有資料將被刪除."
-
 msgid "You have chosen to restore your settings. Enigma2 will restart after restore. Please press OK to start the restore now."
 msgstr "您已經選擇恢復備份設定.恢復後將重啟Enigma2.請按OK開始恢復備份."
 
@@ -23206,9 +23085,6 @@ msgstr "測驗通過"
 msgid "connected"
 msgstr "已連接"
 
-msgid "continue"
-msgstr "繼續"
-
 msgid "controlled by HDMI"
 msgstr ""
 
@@ -23247,10 +23123,6 @@ msgstr "創建Symlink為 '"
 #, fuzzy
 msgid "current affairs (general)"
 msgstr "下一個頻道"
-
-#, python-format
-msgid "currently installed image: %s"
-msgstr ""
 
 msgid "daily"
 msgstr "每天"
@@ -24729,6 +24601,65 @@ msgstr "轉自"
 
 msgid "®"
 msgstr ""
+
+#, fuzzy, python-format
+#~ msgid "Could not connect to %s %s .NFI image feed server:"
+#~ msgstr "不能連接到Dreambox .NFI檔從伺服器:"
+
+#~ msgid "Download"
+#~ msgstr "下載"
+
+#~ msgid "Flashing failed"
+#~ msgstr "安裝失敗"
+
+#~ msgid "NFI image flashing completed. Press Yellow to Reboot!"
+#~ msgstr ""
+#~ "NFI Image安裝完成.\n"
+#~ "按黃鍵重啟Dreambox!"
+
+#~ msgid "No details for this image file"
+#~ msgstr "這個韧體沒有詳細說明"
+
+#~ msgid "Please check your network settings!"
+#~ msgstr "請檢視網路設定！"
+
+#~ msgid "Restore is running..."
+#~ msgstr "正在恢復..."
+
+#, python-format
+#~ msgid ""
+#~ "The following device was found:\n"
+#~ "\n"
+#~ "%s\n"
+#~ "\n"
+#~ "Do you want to write the USB flasher to this stick?"
+#~ msgstr ""
+#~ "下列裝備被發現:\n"
+#~ "\n"
+#~ "%s\n"
+#~ "\n"
+#~ "是否刷新這個U盤?"
+
+#, fuzzy, python-format
+#~ msgid ""
+#~ "To update your %s %s firmware, please follow these steps:\n"
+#~ "1) Turn off your box with the rear power switch and make sure the bootable USB stick is plugged in.\n"
+#~ "2) Turn mains back on and hold the DOWN button on the front panel pressed for 10 seconds.\n"
+#~ "3) Wait for bootup and follow instructions of the wizard."
+#~ msgstr ""
+#~ "若要更新您的Dreambox韧體，請按照下列步驟:\n"
+#~ "1) 關閉電源並插入可引導U盤.\n"
+#~ "2) 通電並按住面板下鍵10秒.\n"
+#~ "3) 等待啟動,按照嚮導提示操作."
+
+#~ msgid "USB stick wizard"
+#~ msgstr "USB Stick 嚮導"
+
+#~ msgid "You have chosen to create a new .NFI flasher bootable USB stick. This will repartition the USB stick and therefore all data on it will be erased."
+#~ msgstr "您已經選擇創建一個新的用於安裝.NFI的啟動U盤,這將重新對U盤進行格式化,所有資料將被刪除."
+
+#~ msgid "continue"
+#~ msgstr "繼續"
 
 #, fuzzy
 #~ msgid "OpenVpn Setup"
