@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-02-11 14:04+0000\n"
+"POT-Creation-Date: 2022-04-10 10:23+0000\n"
 "PO-Revision-Date: 2016-04-02 23:09+0200\n"
 "Last-Translator: Stig-O <stiose@hotmail.com>\n"
 "Language-Team: Stig-O\n"
@@ -1119,6 +1119,10 @@ msgstr "%d KB"
 msgid "%d MB"
 msgstr "%d MB"
 
+#, python-format
+msgid "%d MHz"
+msgstr ""
+
 #. TRANSLATORS: full date representation dayname daynum monthname year in strftime() format! See 'man strftime'
 #. _("%A %e %B %Y")
 #. TRANSLATORS: short time representation hour:minute in strftime() format! See 'man strftime'
@@ -1771,7 +1775,7 @@ msgstr "spesialtegn"
 msgid "12 hours"
 msgstr "Time"
 
-msgid "12, show latin-1 characters except for greek and cyrillic, switch to 8 if needed."
+msgid "12, show Latin-1 characters except for greek and cyrillic, switch to 8 if needed."
 msgstr ""
 
 #
@@ -2469,7 +2473,7 @@ msgstr "PAL"
 msgid "AFP"
 msgstr ""
 
-msgid "AFP Setup"
+msgid "AFP Settings"
 msgstr "AFP Oppsett"
 
 msgid "ARM"
@@ -2553,10 +2557,10 @@ msgstr "Tilgangspunkt:"
 msgid "Action"
 msgstr "Plassering"
 
-msgid "Action on long powerbutton press"
+msgid "Action on long POWER button press"
 msgstr ""
 
-msgid "Action on short powerbutton press"
+msgid "Action on short POWER button press"
 msgstr ""
 
 msgid "Activate"
@@ -2651,13 +2655,12 @@ msgstr "Legg til Timer"
 msgid "Add Zap+Record Timer"
 msgstr "Legge til timer"
 
+msgid "Add a DNS entry"
+msgstr ""
+
 #
 msgid "Add a mark"
 msgstr "Legge til markør"
-
-#
-msgid "Add a nameserver entry"
-msgstr "Legg til navneserver oppføring"
 
 msgid "Add a new tag"
 msgstr ""
@@ -2967,6 +2970,12 @@ msgstr "Tillater deg å justere hvor lenge informasjonen om skjermoppløsning vi
 msgid "Allows you to assign the selected function to this button."
 msgstr ""
 
+msgid "Allows you to enable the GStreamer debug log. They contain very detailed information of everything the GStreamer system does."
+msgstr ""
+
+msgid "Allows you to enable the GStreamer pipeline graphs. These are .dot files that describe the topology of your pipeline, along with the caps negotiated in each link."
+msgstr ""
+
 msgid "Allows you to enable the debug log. They contain very detailed information of everything the system does."
 msgstr ""
 
@@ -2979,13 +2988,13 @@ msgstr "Tillater deg å skjule utvidelser av kjente filtyper."
 msgid "Allows you to set the maximum size of the Debug log size (MB). When that size is reached, a new file will be created."
 msgstr ""
 
-msgid "Allows you to show/hide CCcam in extensions (blue button)."
+msgid "Allows you to show/hide CCcam in extensions (BLUE button)."
 msgstr ""
 
-msgid "Allows you to show/hide Log Manager in extensions (blue button)."
+msgid "Allows you to show/hide Log Manager in extensions (BLUE button)."
 msgstr "Lar deg vise/skjule logg behandling under utvidelser (blå knapp)."
 
-msgid "Allows you to show/hide OScam in extensions (blue button)."
+msgid "Allows you to show/hide OScam in extensions (BLUE button)."
 msgstr ""
 
 msgid "Almost there... "
@@ -3388,9 +3397,6 @@ msgstr "Lang rød"
 msgid "Audio options..."
 msgstr "Lyd valg..."
 
-msgid "Audio settings"
-msgstr ""
-
 #, fuzzy
 msgid "Audio volume step size"
 msgstr "Tuning trinn størrelse"
@@ -3439,6 +3445,9 @@ msgstr ""
 msgid "Auto Language Selection"
 msgstr ""
 
+msgid "Auto Language Settings"
+msgstr "Auto språk valg"
+
 #
 #, fuzzy
 msgid "Auto Modes Selected."
@@ -3475,9 +3484,6 @@ msgstr "Auto fokus påbegynnes..."
 
 msgid "Auto install log"
 msgstr ""
-
-msgid "Auto language selection"
-msgstr "Auto språk valg"
 
 #
 msgid "Auto scart switching"
@@ -3529,7 +3535,7 @@ msgstr "Starte timeshift  automatisk etter"
 msgid "Automatically turn on external subtitles"
 msgstr "Slå på eksterne undertekster automatisk "
 
-msgid "Automatically update Client/Server View?"
+msgid "Automatically update Client/Server View"
 msgstr "Automatisk oppdateres Client/Server visnig?"
 
 #
@@ -3594,6 +3600,16 @@ msgid "BER:"
 msgstr ""
 
 msgid "BLUDISC RECORDABLE"
+msgstr ""
+
+#, fuzzy
+msgid "BLUE button"
+msgstr "Knapp"
+
+msgid "BLUE long"
+msgstr "Lang blå"
+
+msgid "BLUE switch: BLUE/BLUE long"
 msgstr ""
 
 msgid "BT 2020 CL"
@@ -3935,16 +3951,6 @@ msgid "Blue"
 msgstr "Blå"
 
 #, fuzzy
-msgid "Blue button"
-msgstr "Knapp"
-
-msgid "Blue long"
-msgstr "Lang blå"
-
-msgid "BlueSwitch: Blue-Short/Blue-Long"
-msgstr ""
-
-#, fuzzy
 msgid "Bluetooth Setup"
 msgstr "Telnet Oppsett"
 
@@ -4147,6 +4153,9 @@ msgstr "CAID"
 msgid "CAID:SrvID"
 msgstr ""
 
+msgid "CCCam Info"
+msgstr ""
+
 msgid "CCcam Client Info"
 msgstr "CCcam Klient Info"
 
@@ -4164,12 +4173,8 @@ msgid ""
 "CCcam Info %s\n"
 "by AliAbdul %s\n"
 "\n"
-"This plugin shows you the status of your CCcam."
+"This screen shows you the status of CCcam."
 msgstr ""
-"CCcam Info %s\n"
-"av AliAbdul %s\n"
-"\n"
-"Dette plugin viser deg statusen til CCcam."
 
 msgid "CCcam Info Config"
 msgstr "CCcam Info Konfigurasjons"
@@ -4208,13 +4213,21 @@ msgstr ""
 msgid "CHANGE BOUQUET"
 msgstr "BYTT KANALLISTE"
 
+#
+#, fuzzy
+msgid "CHANNEL +/-"
+msgstr "Kanal"
+
 msgid "CI (Common Interface) Setup"
 msgstr ""
 
 #
 #, fuzzy
-msgid "CI Basic settings"
+msgid "CI Basic Settings"
 msgstr "Endre innstillinger"
+
+msgid "CI Helper Settings"
+msgstr ""
 
 msgid "CI Legacy"
 msgstr ""
@@ -4236,11 +4249,8 @@ msgstr "CI tildeling"
 msgid "CI slot: "
 msgstr ""
 
-msgid "CIFS/Samba Setup"
+msgid "CIFS/Samba Settings"
 msgstr "Samba Oppsett"
-
-msgid "CIHelper Setup"
-msgstr ""
 
 msgid "CIHelper for SLOT CI0"
 msgstr ""
@@ -4270,10 +4280,6 @@ msgstr ""
 msgid "CPU temperature"
 msgstr ""
 
-#, python-format
-msgid "CPU: %s"
-msgstr ""
-
 #
 msgid "CVBS"
 msgstr "CVBS"
@@ -4297,6 +4303,9 @@ msgstr ""
 
 msgid "Calculate"
 msgstr "Beregn"
+
+msgid "Calculate and show size of directory. Note: This can be slow down the UI on selection of a folder!"
+msgstr ""
 
 msgid "Calculate file checksums"
 msgstr ""
@@ -4625,9 +4634,6 @@ msgstr "Endre trinn størrelse"
 msgid "Change to bouquet"
 msgstr "Bytt til favorittliste"
 
-msgid "Changelog"
-msgstr "Endringslogg"
-
 #, python-format
 msgid ""
 "Changes need a system restart to take effect.\n"
@@ -4640,11 +4646,6 @@ msgstr "Kanal"
 
 msgid "Channel \t\t\tVolume +"
 msgstr ""
-
-#
-#, fuzzy
-msgid "Channel +/-"
-msgstr "Kanal"
 
 msgid "Channel +/- button mode"
 msgstr "Kanal +/- knappe modus"
@@ -4663,6 +4664,10 @@ msgstr "Kanal info"
 
 msgid "Channel List"
 msgstr "Kanalliste"
+
+#
+msgid "Channel Selection Settings"
+msgstr "Kanalvalg innstillinger"
 
 #, fuzzy
 msgid "Channel button always changes sides"
@@ -4719,10 +4724,6 @@ msgstr "Kanalvalg"
 msgid "Channel selection configuration"
 msgstr ""
 
-#
-msgid "Channel selection settings"
-msgstr "Kanalvalg innstillinger"
-
 msgid "Channel up"
 msgstr ""
 
@@ -4740,7 +4741,7 @@ msgid "Channel:"
 msgstr "Kanal:"
 
 #
-msgid "ChannelEPG settings"
+msgid "ChannelEPG Settings"
 msgstr "KanalEPG oppsett"
 
 msgid "Channellist menu"
@@ -4897,7 +4898,7 @@ msgstr ""
 msgid "Choose the front panel display formatting style for times. 'H' / 'HH' is the hour for a 24 hour clock, 'h' / 'hh' is the hour for a 12 hour clock, 'mm' is the minutes.  ('HH' and 'hh' have leading zeros for single digit values.) The front panel display will be based on your choice but can be influenced any applicable skin."
 msgstr ""
 
-msgid "Choose the location for crash and debuglogs."
+msgid "Choose the location for crash and debug logs."
 msgstr ""
 
 msgid "Choose the location where the EPG data will be stored when the %s %s is shut down. The location must be available at boot time."
@@ -5088,7 +5089,7 @@ msgstr ""
 msgid "Close title selection"
 msgstr "Lukk tittel valg"
 
-msgid "Cloudflare"
+msgid "Cloudflare DNS"
 msgstr ""
 
 msgid "Cocos (Keeling) Islands"
@@ -5251,10 +5252,10 @@ msgstr "Konfigurasjonsmodus"
 msgid "Configuration options for the HELP screen can be found in 'MENU > Setup > Usage & User Interface > Settings'."
 msgstr ""
 
-msgid "Configure an additional delay to improve external subtitle synchronisation."
+msgid "Configure an additional delay to improve external subtitle synchronization."
 msgstr "Konfigurer en ekstra forsinkelse for å bedre ekstern undertekst synkronisering."
 
-msgid "Configure an additional delay to improve subtitle synchronisation."
+msgid "Configure an additional delay to improve subtitle synchronization."
 msgstr "Konfigurer en ekstra forsinkelse for å bedre undertekst synkronisering."
 
 msgid "Configure default setting for new timers. Need a restart after changing."
@@ -5367,7 +5368,7 @@ msgstr "Konfigurer kontrastnivået på frontdisplayet."
 msgid "Configure the current keymap file."
 msgstr ""
 
-msgid "Configure the cursor behaviour in the channel selection list. When opening the channel selection list you can remain on the current service or already select up/down and you are able to revert the B+/B- buttons."
+msgid "Configure the cursor behavior in the channel selection list. When opening the channel selection list you can remain on the current service or already select up/down and you are able to revert the B+/B- buttons."
 msgstr ""
 
 #, fuzzy
@@ -5419,8 +5420,8 @@ msgstr ""
 msgid "Configure the function of a short press on the power button."
 msgstr ""
 
-msgid "Configure the function of the <  > buttons."
-msgstr "Konfigurere funksjonen til < > knappene."
+msgid "Configure the function of the < and > buttons."
+msgstr ""
 
 msgid "Configure the gateway."
 msgstr "Konfigurer gateway."
@@ -5749,7 +5750,7 @@ msgstr ""
 msgid "Control your Softcams"
 msgstr ""
 
-msgid "Convert ext3 filesystem to ext4"
+msgid "Convert EXT3 File System to EXT4"
 msgstr "Konverter filsystem ext3 til ext4"
 
 msgid "Convert ext3 to ext4"
@@ -5815,10 +5816,6 @@ msgstr "Kopiering av filer"
 msgid "Copying files"
 msgstr "Kopiering av filer"
 
-#, python-format
-msgid "Cores: %s"
-msgstr ""
-
 #
 #, fuzzy
 msgid "Cornish"
@@ -5832,10 +5829,6 @@ msgstr ""
 
 msgid "Cote d'Ivoire / Ivory Coast"
 msgstr ""
-
-#, python-format
-msgid "Could not connect to %s %s .NFI image feed server:"
-msgstr "Kunne ikke koble til din %s %s .NFI Image Feed Server:"
 
 #, fuzzy
 msgid "Could not connect to server"
@@ -5881,7 +5874,7 @@ msgstr ""
 msgid "Crash Logs"
 msgstr "Feil logg"
 
-msgid "Crash at skin error for debug reasons ?"
+msgid "Crash at skin error for debug reasons"
 msgstr ""
 
 #, python-format
@@ -5899,6 +5892,9 @@ msgid "Create DVD-ISO"
 msgstr "Lage DVD-ISO"
 
 msgid "Create ISO"
+msgstr ""
+
+msgid "Create a randomly generated password"
 msgstr ""
 
 msgid "Create directory"
@@ -6031,9 +6027,6 @@ msgstr ""
 msgid "Current version:"
 msgstr "Aktuell Versjon:"
 
-msgid "Currently installed image"
-msgstr "Installert image"
-
 #
 msgid "Custom"
 msgstr "Tilpass"
@@ -6049,15 +6042,15 @@ msgstr "Valgfritt hopptid for '4'/'6'-tastene"
 msgid "Custom skip time for '7'/'9' buttons"
 msgstr "Valgfritt hopptid for '7'/96'-tastene"
 
-msgid "Customise"
-msgstr ""
-
-msgid "Customise enigma2 personal settings"
-msgstr ""
-
 #
 msgid "Customize"
 msgstr "Tilpass"
+
+msgid "Customize System Settings"
+msgstr ""
+
+msgid "Customize enigma2 personal settings"
+msgstr ""
 
 #
 msgid "Cut"
@@ -6102,11 +6095,6 @@ msgstr "DAC"
 msgid "DHCP"
 msgstr "DHCP"
 
-#
-#, fuzzy
-msgid "DHCP Router"
-msgstr "Komplett"
-
 msgid "DLNA support"
 msgstr "DLNA støtte"
 
@@ -6115,6 +6103,15 @@ msgstr "DMM avanserte"
 
 msgid "DMM normal"
 msgstr "DMM normal"
+
+msgid "DNS (Dynamic Name Server) Actions"
+msgstr ""
+
+msgid "DNS Settings"
+msgstr ""
+
+msgid "DNS data source"
+msgstr ""
 
 msgid ""
 "DO NOT POWER OFF YOUR DEVICE WHILE UPDATING!\n"
@@ -6748,6 +6745,9 @@ msgstr "Oppheve valget"
 msgid "Deselected packages usually occur because those packaged are incompatible with existing packages.  While this is mostly harmless it is possible that your %s %s may experience issues."
 msgstr ""
 
+msgid "Detail of GStreamer log"
+msgstr ""
+
 msgid "Details for plugin: "
 msgstr "Plugin detaljer:"
 
@@ -6757,13 +6757,16 @@ msgstr ""
 msgid "Detected network servers"
 msgstr ""
 
+msgid "Detected tuners"
+msgstr ""
+
 msgid "Detektiv"
 msgstr ""
 
 msgid "Device Manager"
 msgstr ""
 
-msgid "Device Setup"
+msgid "Device Settings"
 msgstr ""
 
 msgid "Device id"
@@ -6993,9 +6996,6 @@ msgstr ""
 msgid "Display selection list as a selection menu"
 msgstr ""
 
-msgid "Display settings"
-msgstr ""
-
 msgid "Display the EIT now/next eventdata in infobar."
 msgstr "Vis EIT nå/neste programdata i infolinjen."
 
@@ -7223,10 +7223,6 @@ msgstr "Vil du utføre et kanalsøk?"
 msgid "Do you want to do another manual service scan?"
 msgstr "Vil du gjøre enda et manuelt kanalsøk?"
 
-#, python-format
-msgid "Do you want to download the image to %s ?"
-msgstr "Vil du laste ned bildet til %s ?"
-
 #, fuzzy, python-format
 msgid ""
 "Do you want to flash image\n"
@@ -7356,17 +7352,6 @@ msgstr[1] "Ferdig - Installerte, oppgraderte eller fjernet %d pakker (%s)"
 
 msgid "Down"
 msgstr ""
-
-#
-msgid "Download"
-msgstr "Nedlasting"
-
-#, python-format
-msgid "Download %s from server"
-msgstr "Last ned %s fra server"
-
-msgid "Download .NFI-files for USB-flasher"
-msgstr "Last ned .NFI-Filer for USB-Flasher"
 
 msgid "Download Plugins"
 msgstr ""
@@ -7537,6 +7522,9 @@ msgstr "EPG Søk"
 msgid "EPG Selection"
 msgstr ""
 
+msgid "EPG Settings"
+msgstr "EPG Oppsett"
+
 msgid "EPG Setup"
 msgstr ""
 
@@ -7575,9 +7563,6 @@ msgstr "EPG Søk"
 
 msgid "EPG selection"
 msgstr ""
-
-msgid "EPG settings"
-msgstr "EPG Oppsett"
 
 msgid "EPGSearch"
 msgstr ""
@@ -7751,6 +7736,12 @@ msgid "Enable EIT EPG"
 msgstr "Aktivere EIT EPG"
 
 msgid "Enable Focus Animation"
+msgstr ""
+
+msgid "Enable GStreamer debug log *"
+msgstr ""
+
+msgid "Enable GStreamer pipeline graphs *"
 msgstr ""
 
 #, fuzzy
@@ -8002,6 +7993,10 @@ msgstr ""
 msgid "Enter"
 msgstr "senter"
 
+#, python-format
+msgid "Enter DNS (Dynamic Name Server) %d's IP address."
+msgstr ""
+
 msgid "Enter PIN"
 msgstr ""
 
@@ -8105,6 +8100,14 @@ msgstr ""
 
 #, python-format
 msgid "Error %d: The logfile '%s' could not be opened.  (%s)"
+msgstr ""
+
+#, python-format
+msgid "Error %d: Unable to change password!  (%s)"
+msgstr ""
+
+#, python-format
+msgid "Error %d: Unable to start 'passwd' command!"
 msgstr ""
 
 #, python-format
@@ -8227,6 +8230,12 @@ msgid "Error: %s %s not %s!  Please try again later."
 msgstr "Ingen oppdatering tilgjengelig. Vennligst prøv igjen senere."
 
 msgid "Error: Checksum is invalid!"
+msgstr ""
+
+msgid "Error: Interaction failure, unable to change password!"
+msgstr ""
+
+msgid "Error: The new password may not be blank!"
 msgstr ""
 
 #, fuzzy
@@ -8527,7 +8536,7 @@ msgstr ""
 msgid "External subtitle color"
 msgstr "Ekstern undertekst farge"
 
-msgid "External subtitle dialog colorisation"
+msgid "External subtitle dialog colorization"
 msgstr ""
 
 msgid "External subtitle switch fonts"
@@ -8607,15 +8616,14 @@ msgstr ""
 msgid "FTP"
 msgstr ""
 
-msgid "FTP Setup"
+msgid "FTP Settings"
 msgstr "FTP Oppsett"
+
+msgid "Factory Reset"
+msgstr ""
 
 msgid "Factory release"
 msgstr ""
-
-#
-msgid "Factory reset"
-msgstr "Gjenopprett fabrikkinnstillingene"
 
 msgid "Fade the Infobar on hide"
 msgstr ""
@@ -8770,6 +8778,10 @@ msgstr "Kanallistens innholdsmenyen"
 msgid "File Commander menu"
 msgstr ""
 
+#
+msgid "File System Check"
+msgstr "Filsystem Sjekk"
+
 msgid "File appears to be busy.\n"
 msgstr "Filen ser ut til å være opptatt.\n"
 
@@ -8812,10 +8824,6 @@ msgstr "filnavn"
 
 msgid "Files/folders to exclude from backup"
 msgstr ""
-
-#
-msgid "Filesystem Check"
-msgstr "Filsystem Sjekk"
 
 msgid "Filesystem check your Harddisk"
 msgstr ""
@@ -8896,10 +8904,6 @@ msgstr "Fikset"
 msgid "Fixed X11 font (SD)"
 msgstr ""
 
-#
-msgid "Flash"
-msgstr "Flash"
-
 #, fuzzy
 msgid "Flash Image"
 msgstr "Flashing"
@@ -8929,10 +8933,6 @@ msgstr "Flashing"
 #
 #, fuzzy
 msgid "Flashing Image"
-msgstr "Flashing feilet!"
-
-#
-msgid "Flashing failed"
 msgstr "Flashing feilet!"
 
 msgid "Flashing image successful"
@@ -9137,6 +9137,9 @@ msgstr ""
 msgid "Full back-up on %s"
 msgstr ""
 
+msgid "Full factory reset"
+msgstr ""
+
 msgid "Full transparency"
 msgstr "Full gjennomsiktighet"
 
@@ -9167,6 +9170,19 @@ msgid "GB"
 msgstr "GB"
 
 msgid "GCC version"
+msgstr ""
+
+#, fuzzy
+msgid "GREEN button"
+msgstr "Lang grønn"
+
+msgid "GREEN long"
+msgstr "Lang grønn"
+
+msgid "GStreamer debug log category *"
+msgstr ""
+
+msgid "GStreamer debug log level *"
 msgstr ""
 
 msgid "GStreamer version"
@@ -9298,12 +9314,6 @@ msgstr "Oppheve valget"
 msgid "Gesundheit"
 msgstr ""
 
-msgid "Get latest experimental image"
-msgstr "Få siste experimental image"
-
-msgid "Get latest release image"
-msgstr "Få siste release image"
-
 msgid "Getting Event Info failed!"
 msgstr "Å få program info feilet!"
 
@@ -9432,11 +9442,11 @@ msgstr ""
 msgid "Graphical EPG"
 msgstr "Grafisk EPG"
 
-msgid "Graphical InfobarEPG settings"
+msgid "Graphical InfobarEPG Settings"
 msgstr ""
 
 #
-msgid "GraphicalEPG settings"
+msgid "GraphicalEPG Settings"
 msgstr "Grafiske EPG innstillinger"
 
 msgid "Graphics"
@@ -9454,13 +9464,6 @@ msgstr "Gresk"
 #
 msgid "Green"
 msgstr "Grønn"
-
-#, fuzzy
-msgid "Green button"
-msgstr "Lang grønn"
-
-msgid "Green long"
-msgstr "Lang grønn"
 
 #, fuzzy
 msgid "Greenland"
@@ -9551,10 +9554,10 @@ msgstr ""
 
 #
 #, fuzzy
-msgid "HDMI Recording"
+msgid "HDMI Recording Settings"
 msgstr "Spiller inn"
 
-msgid "HDMI-CEC Setup"
+msgid "HDMI-CEC Settings"
 msgstr ""
 
 msgid "HDMI-CEC Setup Actions"
@@ -9625,7 +9628,7 @@ msgid "Handle wakeup from TV"
 msgstr "Håndter oppvåkning fra TV"
 
 #
-msgid "Hard disk setup"
+msgid "Hard Disk Settings"
 msgstr "Harddisk oppsett"
 
 #
@@ -10049,6 +10052,9 @@ msgstr ""
 msgid "If an action is user-configurable, its help entry will be flagged with a '(C)' suffix."
 msgstr ""
 
+msgid "If disabled, underscore characters in file and directory names are not shown and are replaced with spaces."
+msgstr ""
+
 msgid "If editing a file, can you set the cursor start position at end or begin of the line."
 msgstr ""
 
@@ -10134,8 +10140,8 @@ msgstr ""
 msgid "If the free space is less than setting value, then an attempt is made to delete the old timeshift files."
 msgstr ""
 
-msgid "If the text is too long to be displayed on the front panel, it will be repeated (number of times):"
-msgstr "Hvis teksten er for lang til å bli fremvist på frontpanelet, vil det bli gjentatt (flere ganger):"
+msgid "If the text is too long to be displayed on the front panel, it will be repeated (number of times)."
+msgstr ""
 
 msgid "If using multiple uncommitted switches the DiSEqC commands must be sent multiple times. Set to the number of uncommitted switches in the chain minus one."
 msgstr ""
@@ -10251,7 +10257,7 @@ msgstr ""
 msgid "Inadyn Log"
 msgstr "Inadyn Logg"
 
-msgid "Inadyn Setup"
+msgid "Inadyn Settings"
 msgstr "Inadyn Oppsett"
 
 msgid "Include AIT in http streams"
@@ -10377,7 +10383,7 @@ msgid "Infobar:"
 msgstr "Informasjonslinje EPG"
 
 #
-msgid "InfobarEPG settings"
+msgid "InfobarEPG Settings"
 msgstr "InfobarEPG innstillinger"
 
 #
@@ -10428,6 +10434,9 @@ msgstr "Input"
 msgid "Input "
 msgstr "Input"
 
+msgid "Input Device Settings"
+msgstr ""
+
 msgid "Input Stream ID"
 msgstr ""
 
@@ -10443,9 +10452,6 @@ msgid "Input devices"
 msgstr "Inndata enheter"
 
 msgid "Input scroll position"
-msgstr ""
-
-msgid "InputDevice Setup"
 msgstr ""
 
 msgid "Insert"
@@ -10858,13 +10864,12 @@ msgstr ""
 msgid "Kernel version"
 msgstr ""
 
-#, python-format
-msgid "Kernel: %s"
-msgstr "Kernel: %s"
-
 #
 msgid "Keyboard"
 msgstr "Tastatur"
+
+msgid "Keyboard Settings"
+msgstr "Tastatur innstillinger"
 
 #, fuzzy
 msgid "Keyboard data entry"
@@ -10878,9 +10883,6 @@ msgstr "Tastatur"
 #
 msgid "Keyboard map"
 msgstr "Tastaturlayout"
-
-msgid "Keyboard setup"
-msgstr "Tastatur innstillinger"
 
 msgid "Kikuyu / Gikuyu"
 msgstr ""
@@ -11220,7 +11222,7 @@ msgstr "Grensen for feil logg størrelse (MB)"
 msgid "Limit east"
 msgstr "Grense øst"
 
-msgid "Limit the characters that can be used in recording filenames to (7 bit) ascii. This ensures compatibility with operating systems or file systems with limited character sets."
+msgid "Limit the characters that can be used in recording filenames to (7 bit) ASCII. This ensures compatibility with operating systems or file systems with limited character sets."
 msgstr "Setter grensen for hvilke tegn som kan brukes i opptaks filnavn til (7 bit) ascii. Dette sikrer kompatibilitet med operativsystemer eller filsystemer med begrenset tegnsett."
 
 #
@@ -11392,7 +11394,7 @@ msgstr ""
 
 #
 #, fuzzy
-msgid "Locale Selection Setup"
+msgid "Locale Selection Settings"
 msgstr "Posisjons Oppsett"
 
 msgid "Locale already selected."
@@ -11444,7 +11446,7 @@ msgstr "ogg Behandler"
 msgid "Log file '%s' deleted."
 msgstr ""
 
-msgid "Log python stack trace on spinner ?"
+msgid "Log python stack trace on spinner"
 msgstr ""
 
 #
@@ -11470,14 +11472,14 @@ msgstr ""
 msgid "Logs"
 msgstr ""
 
+msgid "Logs Settings"
+msgstr "Logg innstillinger"
+
 msgid "Logs location"
 msgstr "Logg plassering"
 
 msgid "Logs older then the set no of days will be deleted."
 msgstr ""
-
-msgid "Logs settings"
-msgstr "Logg innstillinger"
 
 msgid "Long << / >>"
 msgstr "Lang << / >>"
@@ -11609,7 +11611,7 @@ msgid "Magic long"
 msgstr "Lang rød"
 
 #
-msgid "Main menu"
+msgid "Main Menu"
 msgstr "Hovedmeny"
 
 #
@@ -11701,9 +11703,6 @@ msgstr "Kanalsøk"
 msgid "Manual configuration"
 msgstr "Manuell konfigurering"
 
-msgid "Manual scan"
-msgstr "Manuelt søk"
-
 msgid "Manual scan for services"
 msgstr ""
 
@@ -11791,14 +11790,14 @@ msgstr "Maks ned:"
 msgid "Maximum minutes to jump %d !"
 msgstr ""
 
-msgid "Maximum no of days:"
+msgid "Maximum no of days"
 msgstr ""
 
 #, fuzzy
 msgid "Maximum number of days in EPG"
 msgstr "Maksimalt antall dager"
 
-msgid "Maximum space used (MB):"
+msgid "Maximum space used (MB)"
 msgstr ""
 
 msgid "Mayotte"
@@ -11926,7 +11925,7 @@ msgstr ""
 msgid "MiniDLNA Log"
 msgstr "MiniDLNA Logg"
 
-msgid "MiniDLNA Setup"
+msgid "MiniDLNA Settings"
 msgstr "MiniDLNA Oppsett"
 
 msgid "MiniTV"
@@ -12104,7 +12103,7 @@ msgstr ""
 msgid "Mounts Devices"
 msgstr ""
 
-msgid "Mounts Setup"
+msgid "Mounts Settings"
 msgstr "Mount Oppsett"
 
 msgid "Move"
@@ -12203,6 +12202,12 @@ msgstr "[flytte modus]"
 #, fuzzy
 msgid "Move mode on"
 msgstr "Bevegelse"
+
+msgid "Move the current DNS entry down one line"
+msgstr ""
+
+msgid "Move the current DNS entry up one line"
+msgstr ""
 
 msgid "Move the keyboard cursor down"
 msgstr ""
@@ -12315,7 +12320,7 @@ msgstr "Filmliste"
 msgid "Movie List Actions"
 msgstr "Film utvalg"
 
-msgid "Movie List Setup"
+msgid "Movie List Settings"
 msgstr "Filmliste Oppsett"
 
 #
@@ -12374,7 +12379,7 @@ msgid "MultiBootSelector Actions"
 msgstr "Velg Plassering"
 
 #
-msgid "MultiEPG settings"
+msgid "MultiEPG Settings"
 msgstr "MultiEPG innstillinger"
 
 msgid "MultiLib"
@@ -12460,17 +12465,10 @@ msgstr "Ikke tilgjengelig"
 msgid "NEXT"
 msgstr ""
 
-msgid "NFI image flashing"
-msgstr "NFI image flashing"
-
-#
-msgid "NFI image flashing completed. Press Yellow to Reboot!"
-msgstr "NFI image flashing ferdig. Trykk GUL knapp for å restart!"
-
 msgid "NFS"
 msgstr ""
 
-msgid "NFS Setup"
+msgid "NFS Settings"
 msgstr "NFS Oppsett"
 
 msgid "NIM & Type"
@@ -12502,22 +12500,16 @@ msgstr "Navn"
 msgid "Name reverse"
 msgstr "Navneserver"
 
+#, python-format
+msgid "Name server %d"
+msgstr ""
+
 msgid "Name:"
 msgstr "Navn:"
 
 #
 msgid "Nameserver"
 msgstr "Navneserver"
-
-#
-#, python-format
-msgid "Nameserver %d"
-msgstr "Navneserver %d"
-
-#
-#, fuzzy
-msgid "Nameserver configuration"
-msgstr "Avslutt nameserver innstilling"
 
 #
 msgid "Nameserver settings"
@@ -12621,8 +12613,8 @@ msgid "Network Services"
 msgstr ""
 
 #
-msgid "Network Setup"
-msgstr "Nettverk Oppsett"
+msgid "Network Settings"
+msgstr "Nettverksinnstillinger"
 
 msgid "Network Test"
 msgstr "Nettverks Test"
@@ -12652,10 +12644,6 @@ msgstr "Nettverks navn (SSID)"
 #
 msgid "Network scan"
 msgstr "Nettverkssøk"
-
-#
-msgid "Network setup"
-msgstr "Nettverksinnstillinger"
 
 #
 msgid "Network test"
@@ -12864,10 +12852,6 @@ msgstr "Ingen gratis indekser tilgjengelig"
 #
 msgid "No description available."
 msgstr "Ingen beskrivelse tilgjengelig."
-
-#
-msgid "No details for this image file"
-msgstr "Ingen detaljer for denne image fil"
 
 #
 msgid "No displayable files on this medium found!"
@@ -13272,7 +13256,7 @@ msgstr ""
 msgid "OSD"
 msgstr ""
 
-msgid "OSD 3D Setup"
+msgid "OSD 3D Settings"
 msgstr "OSD 3D Oppsett"
 
 msgid "OSD Adjustment"
@@ -13281,15 +13265,15 @@ msgstr ""
 msgid "OSD Position"
 msgstr ""
 
+msgid "OSD Settings"
+msgstr "OSD oppsett"
+
 #, fuzzy
 msgid "OSD Setup"
 msgstr "OSD 3D Oppsett"
 
 msgid "OSD name request"
 msgstr "OSD navne forespørsel"
-
-msgid "OSD settings"
-msgstr "OSD oppsett"
 
 msgid "OScam Info"
 msgstr "OScam Info"
@@ -13375,6 +13359,9 @@ msgstr "Kun utvidelser."
 #
 msgid "Only free scan"
 msgstr "Bare gratiskanaler"
+
+msgid "Only log debug information of GStreamer category. * means all categories."
+msgstr ""
 
 msgid "Only move the dish quickly after this hour."
 msgstr ""
@@ -13483,14 +13470,11 @@ msgstr ""
 msgid "OpenVPN"
 msgstr ""
 
-msgid "OpenVPN Setup"
+msgid "OpenVPN Settings"
 msgstr ""
 
 msgid "OpenVpn Log"
 msgstr "Åpne Vpn logg"
-
-msgid "OpenVpn Setup"
-msgstr "Åpne Vpn Oppsett"
 
 #, fuzzy
 msgid "Operating LED status in deep standby mode"
@@ -13533,11 +13517,11 @@ msgstr ""
 msgid "Oromo"
 msgstr ""
 
-msgid "Oscam Info - Configuration"
-msgstr "Oscam Info - Konfigurasjon"
-
 msgid "Oscam Info - Main Menu"
 msgstr "Oscam Info - Hovedmeny"
+
+msgid "Oscam Info Settings"
+msgstr "Oscam Info - Konfigurasjon"
 
 #, python-format
 msgid "Oscam Log ( Oscam-Version: %s )"
@@ -13843,14 +13827,16 @@ msgstr ""
 msgid "Password (httpwd)"
 msgstr "Passord (httpwd)"
 
+msgid "Password Actions"
+msgstr ""
+
 #
 #, fuzzy
-msgid "Password Setup"
+msgid "Password Settings"
 msgstr "Passord"
 
-#, fuzzy
-msgid "Password changed"
-msgstr "Passord (httpwd)"
+msgid "Password changed."
+msgstr ""
 
 msgid "Password:"
 msgstr "Passord:"
@@ -14081,10 +14067,6 @@ msgstr "Vennligst endre sluttid for innspilling"
 msgid "Please check the manual of the receiver"
 msgstr "Vennligst sett navn på den nye katalogen"
 
-#
-msgid "Please check your network settings!"
-msgstr "Vennligst sjekk nettverksinnstillinger!"
-
 msgid "Please choose CCcam-Reader"
 msgstr "Vennligst vel CCcam-Leser"
 
@@ -14242,9 +14224,6 @@ msgstr "Vennligst velg en underkanal for innspilling"
 #
 msgid "Please select a subservice..."
 msgstr "Vennligst velg en underkanal"
-
-msgid "Please select an NFI file and press green key to flash!"
-msgstr "Vennligst velg en NFI fil og trykk grønn tast for å flashe!"
 
 msgid "Please select an acceptable directory."
 msgstr ""
@@ -14483,7 +14462,10 @@ msgstr "Vennligst vent..."
 msgid "Plugin Browser"
 msgstr "Plugin Visning"
 
-msgid "Plugin Filter"
+msgid "Plugin Browser Settings"
+msgstr ""
+
+msgid "Plugin Filter Settings"
 msgstr ""
 
 msgid "Plugin details"
@@ -14496,9 +14478,6 @@ msgstr "Plugin behandling aktivitets info"
 #
 msgid "Plugin manager help"
 msgstr "Plugin behandlings hjelp"
-
-msgid "Pluginbrowser Settings"
-msgstr ""
 
 #
 msgid "Plugins"
@@ -14703,9 +14682,6 @@ msgstr "Foretrukne tuner for opptak"
 msgid "Preparation time for recording (seconds)"
 msgstr "Margin før opptak (i minutter)"
 
-msgid "Prepare another USB stick for image flashing"
-msgstr "Klargjør en annen USB pinne til image flashing"
-
 #
 msgid "Preparing... Please wait"
 msgstr "Forbereder.. Vennligst vent"
@@ -14822,7 +14798,7 @@ msgstr ""
 msgid "Press yellow to set this interface as the default interface."
 msgstr ""
 
-msgid "Pressing the panic button will zap you to this channelnumber in your first bouquet."
+msgid "Pressing the panic button will zap you to this channel number in your first bouquet."
 msgstr ""
 
 msgid "Prev Image"
@@ -15162,6 +15138,12 @@ msgstr ""
 msgid "Quiz"
 msgstr ""
 
+msgid "RADIO"
+msgstr "RADIO"
+
+msgid "RADIO long"
+msgstr ""
+
 msgid "RAM (Details)"
 msgstr ""
 
@@ -15206,24 +15188,25 @@ msgstr ""
 msgid "REC Symbol in use"
 msgstr ""
 
+#, fuzzy
+msgid "RED button"
+msgstr "Rød knapp..."
+
+msgid "RED long"
+msgstr "Lang rød"
+
 #
-msgid "RF output"
+msgid "RF Output Settings"
 msgstr "RF utgang"
 
 #
 msgid "RGB"
 msgstr "RGB"
 
-msgid "Radio"
-msgstr "Radio"
-
 #
 #, fuzzy
 msgid "Radio Channel Selection"
 msgstr "Kanalvalg"
-
-msgid "Radio long"
-msgstr ""
 
 #, fuzzy
 msgid "Radsport"
@@ -15233,10 +15216,8 @@ msgstr "lagidretter"
 msgid "Random"
 msgstr "Tilfeldig"
 
-#
-#, fuzzy
-msgid "Random password"
-msgstr "Vennligst skriv inn nytt navn:"
+msgid "Random Password"
+msgstr ""
 
 #, python-format
 msgid "Rating defined by broadcaster - %d"
@@ -15419,6 +15400,9 @@ msgstr "Spiller inn"
 msgid "Recording Actions"
 msgstr "Opptaksinnstillinger"
 
+msgid "Recording Settings"
+msgstr "Opptaksinnstillinger"
+
 msgid "Recording Setup"
 msgstr ""
 
@@ -15439,9 +15423,6 @@ msgstr "Opptak pågår"
 
 #, fuzzy
 msgid "Recording running"
-msgstr "Opptaksinnstillinger"
-
-msgid "Recording settings"
 msgstr "Opptaksinnstillinger"
 
 #, fuzzy
@@ -15501,18 +15482,11 @@ msgstr "Spille inn"
 msgid "Red"
 msgstr "Rød"
 
-#, fuzzy
-msgid "Red button"
-msgstr "Rød knapp..."
-
 msgid "Red button..."
 msgstr "Rød knapp..."
 
 msgid "Red colored"
 msgstr ""
-
-msgid "Red long"
-msgstr "Lang rød"
 
 msgid "Red/HbbTV Button Actions"
 msgstr ""
@@ -15644,6 +15618,9 @@ msgstr "Husk kanal PIN"
 msgid "Remote Control"
 msgstr ""
 
+msgid "Remote Control Button Settings"
+msgstr ""
+
 msgid "Remote Control Code"
 msgstr ""
 
@@ -15685,17 +15662,44 @@ msgstr "Fjern navneserver oppføring"
 msgid "Remove Service"
 msgstr "Fjern Kanal"
 
+msgid "Remove a DNS entry"
+msgstr ""
+
 #
 msgid "Remove a mark"
 msgstr "Fjern en markør"
 
-msgid "Remove a nameserver entry"
-msgstr "Fjern navneserver oppføring"
+msgid "Remove all bouquet/tuning data"
+msgstr ""
 
 #
 #, fuzzy
 msgid "Remove all cuts and marks"
 msgstr "Fjern en markør"
+
+msgid "Remove all network mount data"
+msgstr ""
+
+msgid "Remove all other data"
+msgstr ""
+
+msgid "Remove all plugin setting data"
+msgstr ""
+
+msgid "Remove all resume point data"
+msgstr ""
+
+msgid "Remove all settings data"
+msgstr ""
+
+msgid "Remove all skin data"
+msgstr ""
+
+msgid "Remove all timer data"
+msgstr ""
+
+msgid "Remove all user interface data"
+msgstr ""
 
 #
 msgid "Remove bookmark"
@@ -15794,7 +15798,7 @@ msgstr "Gjenta display melding"
 msgid "Repeat the sent standby and wakeup commands"
 msgstr ""
 
-msgid "Repeat the standby commands?"
+msgid "Repeat the standby commands"
 msgstr ""
 
 #
@@ -15848,6 +15852,9 @@ msgstr ""
 #
 msgid "Reset and renumerate title names"
 msgstr "Reset og nummerer tittel navn."
+
+msgid "Reset network configuration"
+msgstr ""
 
 msgid "Reset persistent PIN code"
 msgstr ""
@@ -15961,10 +15968,6 @@ msgstr ""
 #
 msgid "Restore backups"
 msgstr "Gjenopprett Sikkerhetskopier"
-
-#
-msgid "Restore is running..."
-msgstr "Gjenoppretting kjører..."
 
 msgid "Restore settings from a backup"
 msgstr ""
@@ -16100,6 +16103,9 @@ msgstr ""
 msgid "Rotor turning speed"
 msgstr "Motor dreie hastighet"
 
+msgid "Router / Gateway"
+msgstr ""
+
 #, fuzzy
 msgid "Routing request"
 msgstr "Kilde forespørsel"
@@ -16168,7 +16174,7 @@ msgstr "S-Video"
 msgid "SABnzbd"
 msgstr ""
 
-msgid "SABnzbd Setup"
+msgid "SABnzbd Settings"
 msgstr "SABnzbd Oppsett"
 
 msgid "SAT"
@@ -16184,7 +16190,7 @@ msgid "SATPI"
 msgstr ""
 
 #, fuzzy
-msgid "SATPI Setup"
+msgid "SATPI Settings"
 msgstr "AFP Oppsett"
 
 msgid "SCPC optimized search range"
@@ -16319,13 +16325,13 @@ msgstr ""
 msgid "Satellite"
 msgstr "Satellitt"
 
+#
+msgid "Satellite Dish Settings"
+msgstr "Parabol oppsett"
+
 #, fuzzy
 msgid "Satellite configuration mode"
 msgstr "Konfigurasjonsmodus"
-
-#
-msgid "Satellite dish setup"
-msgstr "Parabol oppsett"
 
 #
 msgid "Satellite equipment"
@@ -16682,6 +16688,39 @@ msgstr ""
 msgid "Select 'Yes' to enable editing of this device's settings. Selecting 'No' resets the devices settings to their default values."
 msgstr ""
 
+msgid "Select 'Yes' to remove all main settings configuration data. Selecting this option will set all Enigma2 settings back to their default values.  This will also cause Enigma2 to run the Welcome Wizard on restart."
+msgstr ""
+
+msgid "Select 'Yes' to remove all media player resume data. Selecting this option will remove the data used to allow playback of media files to resume from the position where playback was last stopped. Playback position of recordings is not affected."
+msgstr ""
+
+msgid "Select 'Yes' to remove all network mount data. Selecting this option will remove all network data including automounts and network connection data including connection accounts and passwords. This could cause some Enigma2 functions to fail if they are configured to use these network resources."
+msgstr ""
+
+msgid "Select 'Yes' to remove all other files and directories not covered by the options above."
+msgstr ""
+
+msgid "Select 'Yes' to remove all plugin configuration data. Selecting this option will remove all plugin configuration data that is stored in the Enigma2 configuration folder. This will cause all affected plugins to return to their default settings. This could cause some plugins to not function until configured."
+msgstr ""
+
+msgid "Select 'Yes' to remove all settings, tuning data, timers, resume pointers etc. Selecting this option will restore the configuration to the initial settings before any configuration settings were applied. This is the most reliable form of Factory Reset."
+msgstr ""
+
+msgid "Select 'Yes' to remove all timer configuration data. Selecting this option will clear all timers, autotimers and power timers."
+msgstr ""
+
+msgid "Select 'Yes' to remove all tuning data. Selecting this option will remove all tuning and bouquet data and will make timers non functional until the receiver is retuned."
+msgstr ""
+
+msgid "Select 'Yes' to remove all user customizations of skin data. Selecting this option will remove all user based skin customizations. All affected skins will return to their standard settings. This will also clear any customized boot logos and backdrops."
+msgstr ""
+
+msgid "Select 'Yes' to remove all user interface data. Selecting this option will remove all keymap, menu and setup override data and restore the default definitions."
+msgstr ""
+
+msgid "Select 'Yes' to reset network configuration to the default. This will enable the Ethernet port if it exists and set the receiver to use DHCP. All other network interfaces will be deleted."
+msgstr ""
+
 msgid "Select 'band' if using a 'universal' LNB, otherwise consult your LNB spec sheet."
 msgstr ""
 
@@ -16795,9 +16834,6 @@ msgstr ""
 msgid "Select additional files to backup"
 msgstr ""
 
-msgid "Select an image to be downloaded"
-msgstr "Velg et image som skal lastes ned"
-
 #
 msgid "Select audio track"
 msgstr "Velg lydspor"
@@ -16830,9 +16866,6 @@ msgstr "Velg kopi mål for:"
 msgid "Select default EPG type..."
 msgstr "Velg standard EPG type..."
 
-msgid "Select desired image from feed list"
-msgstr "Velg ønsket image fra feed liste"
-
 msgid "Select destination for:"
 msgstr "Velg mål for:"
 
@@ -16855,7 +16888,7 @@ msgstr ""
 msgid "Select how the satellite dish is set up. i.e. fixed dish, single LNB, DiSEqC switch, positioner, etc."
 msgstr ""
 
-msgid "Select how to activate the Quick EPG mode:"
+msgid "Select how to activate the Quick EPG mode."
 msgstr "Velg hvordan du aktiverer hurtig EPG-modus:"
 
 msgid "Select how your box will upgrade."
@@ -17017,6 +17050,9 @@ msgstr ""
 msgid "Select the sleep timer action."
 msgstr ""
 
+msgid "Select the source of the default DNS settings."
+msgstr ""
+
 msgid "Select the time delay before the button starts repeating."
 msgstr ""
 
@@ -17064,22 +17100,22 @@ msgstr ""
 msgid "Select what should be done when the %s %s was shutdown incorrectly, or after the Power was lost."
 msgstr ""
 
-msgid "Select what you want the Channel +/- button to activate:"
+msgid "Select what you want the Channel +/- button to activate."
 msgstr ""
 
-msgid "Select what you want the EPG button to activate:"
+msgid "Select what you want the EPG button to activate."
 msgstr ""
 
-msgid "Select what you want the INFO button to activate:"
+msgid "Select what you want the INFO button to activate."
 msgstr ""
 
-msgid "Select what you want the OK button to activate:"
+msgid "Select what you want the OK button to activate."
 msgstr ""
 
-msgid "Select what you want the TV button to activate:"
+msgid "Select what you want the TV button to activate."
 msgstr ""
 
-msgid "Select what you want the Up/Down button to activate:"
+msgid "Select what you want the Up/Down button to activate."
 msgstr ""
 
 #
@@ -17144,6 +17180,12 @@ msgid ""
 "\n"
 "Do you want to restore this settinglist?"
 msgstr "Vil du hente inn dine innstillinger?"
+
+msgid ""
+"Selecting 'Yes' will delete the currently selected user data. This action can't be undone. You may want to create a backup before continuing.\n"
+"\n"
+"Are you sure you want to continue with the factory reset?"
+msgstr ""
 
 msgid "Selecting satellites 1 (USALS)"
 msgstr ""
@@ -17528,6 +17570,9 @@ msgstr "Angir rotmappen for filmliste, for å fjerne '..' for vist i denne mappe
 msgid "Setting Restored "
 msgstr "Innstillinger"
 
+msgid "Setting a password is strongly advised if your STB is open to the Internet. You must set a password in order to be able to use network services like FTP, Telnet or SSH."
+msgstr ""
+
 #
 msgid "Settings"
 msgstr "Innstillinger"
@@ -17729,11 +17774,6 @@ msgstr "Konfigurer ditt satellitt utstyr."
 msgid "Seychelles"
 msgstr ""
 
-#
-#, python-format
-msgid "Shall the USB stick wizard proceed and program the image file %s into flash memory?"
-msgstr "Skal USB pinne veiviser fortsette å programmere image filen %s til flash minne?"
-
 msgid "Share Folder's"
 msgstr "Delt mappe"
 
@@ -17846,7 +17886,10 @@ msgstr "Vis AutoTimer Listen"
 msgid "Show Box Portal"
 msgstr ""
 
-msgid "Show CCcam in extensions ?"
+msgid "Show CCcam Info"
+msgstr ""
+
+msgid "Show CCcam in extensions"
 msgstr ""
 
 msgid "Show CI messages"
@@ -17868,6 +17911,9 @@ msgid "Show CoolSingleGuide"
 msgstr ""
 
 msgid "Show CoolTVGuide"
+msgstr ""
+
+msgid "Show Directory size"
 msgstr ""
 
 msgid "Show Display Icons"
@@ -17920,7 +17966,7 @@ msgstr "Vis info linjen "
 msgid "Show Log"
 msgstr "Vis Logg"
 
-msgid "Show Log Manager in extensions list ?"
+msgid "Show Log Manager in extensions list"
 msgstr "Vis logg behandling i utvidelser listen?"
 
 #
@@ -17947,7 +17993,7 @@ msgstr ""
 msgid "Show OScam Info"
 msgstr ""
 
-msgid "Show OScam in extensions ?"
+msgid "Show OScam in extensions"
 msgstr ""
 
 msgid "Show PIP"
@@ -18165,7 +18211,7 @@ msgstr "Programvareadministrasjons informasjon"
 msgid "Show in Standby"
 msgstr "Auto Dvalemodus"
 
-msgid "Show in extensions list ?"
+msgid "Show in extensions list"
 msgstr "Vis i utvidelser listen?"
 
 #
@@ -18389,6 +18435,9 @@ msgstr ""
 msgid "Show task list"
 msgstr "Sorter listen etter:"
 
+msgid "Show the CCcam Info Screen"
+msgstr ""
+
 msgid "Show the DreamPlex player..."
 msgstr "Vis DreamPlex spilleren..."
 
@@ -18463,6 +18512,9 @@ msgid "Show transponder remaining/elapsed as"
 msgstr "Vis transponder gjenværende/medgått som"
 
 msgid "Show two lines per entry"
+msgstr ""
+
+msgid "Show underscore characters in filenames"
 msgstr ""
 
 msgid "Show unknown Videoresolution as next higher or as highest screen resolution."
@@ -18628,7 +18680,7 @@ msgid "Single step (GOP)"
 msgstr "Enkelt trinn (GOP)"
 
 #
-msgid "SingleEPG settings"
+msgid "SingleEPG Settings"
 msgstr "SingleEPG innstillinger"
 
 msgid "Sinhala / Sinhalese"
@@ -18843,13 +18895,7 @@ msgstr ""
 msgid "Softcam Actions"
 msgstr ""
 
-msgid "Softcam Setup"
-msgstr ""
-
-msgid "Softcam settings"
-msgstr "Softcam innstillinger"
-
-msgid "Softcam-Panel"
+msgid "Softcam Settings"
 msgstr ""
 
 #
@@ -19075,7 +19121,7 @@ msgstr "Serial No"
 msgid "Special 2"
 msgstr "Serial No"
 
-msgid "Special Features"
+msgid "Special Features Settings"
 msgstr ""
 
 msgid "Speed"
@@ -19208,7 +19254,7 @@ msgstr "Begynn offline dekoding"
 msgid "State"
 msgstr ""
 
-msgid "Static IP or Custom"
+msgid "Static IP / Custom"
 msgstr ""
 
 msgid "Status"
@@ -19244,6 +19290,9 @@ msgstr "Steg øst"
 #
 msgid "Stepped west"
 msgstr "Steg vest"
+
+msgid "Sti"
+msgstr ""
 
 #
 msgid "Stop"
@@ -19318,11 +19367,8 @@ msgstr ""
 msgid "Stop timeshift and save timeshift buffer as movie and start recording of current event"
 msgstr ""
 
-msgid "Stop timeshift while recording?"
+msgid "Stop timeshift while recording"
 msgstr "Stopp timeshift under innspillingen?"
-
-msgid "Stop's timeshift being used if a recording is in progress. (advisable for usb sticks)"
-msgstr ""
 
 msgid "Stopped"
 msgstr "Stoppet"
@@ -19330,8 +19376,11 @@ msgstr "Stoppet"
 msgid "Stopping Softcam"
 msgstr ""
 
+msgid "Stops timeshift being used if a recording is in progress. (Advisable for USB sticks.)"
+msgstr ""
+
 #
-msgid "Storage devices"
+msgid "Storage Devices"
 msgstr "Liste over lagringsenheter"
 
 #
@@ -19401,7 +19450,7 @@ msgid "Subservice list..."
 msgstr "Underkanaler"
 
 #, fuzzy
-msgid "Subservice mode (green Button)"
+msgid "Subservice mode (GREEN button)"
 msgstr "Underkanal modus"
 
 #
@@ -19419,6 +19468,9 @@ msgstr "Undertekst valg"
 #
 msgid "Subtitle Quickmenu"
 msgstr "Undertekst Hurtigmeny"
+
+msgid "Subtitle Settings"
+msgstr "Undertekst innstillinger"
 
 msgid "Subtitle alignment"
 msgstr "Undertekst justering"
@@ -19463,9 +19515,6 @@ msgstr "Undertekst valg"
 
 msgid "Subtitle selection..."
 msgstr "Undertekst valg"
-
-msgid "Subtitle settings"
-msgstr "Undertekst innstillinger"
 
 #
 msgid "Subtitles"
@@ -19561,7 +19610,7 @@ msgstr "Svensk"
 msgid "Swimming"
 msgstr ""
 
-msgid "Switch Blue-Short (QuickMenu) with Blue-Long (Extensions)"
+msgid "Switch BLUE short (QuickMenu) with BLUE long (Extensions)"
 msgstr ""
 
 msgid "Switch EPG Page Down"
@@ -19899,7 +19948,7 @@ msgstr "Telnet grensesnitt"
 msgid "Telnet Port"
 msgstr "Telnet Port"
 
-msgid "Telnet Setup"
+msgid "Telnet Settings"
 msgstr "Telnet Oppsett"
 
 msgid "Telugu"
@@ -20085,13 +20134,6 @@ msgid "The TV was switched to the recording service!\n"
 msgstr ""
 
 msgid ""
-"The USB stick was prepared to be bootable.\n"
-"Now you can download an NFI image file!"
-msgstr ""
-"USB pinnen er klargjort til å være oppstartbar.\n"
-"Nå kan du laste ned en NFI image fil!"
-
-msgid ""
 "The VideoMode plugin is not installed!\n"
 "Please install it."
 msgstr ""
@@ -20138,21 +20180,6 @@ msgid "The detailed information is intended for developers only."
 msgstr ""
 
 #
-#, python-format
-msgid ""
-"The following device was found:\n"
-"\n"
-"%s\n"
-"\n"
-"Do you want to write the USB flasher to this stick?"
-msgstr ""
-"Følgende enheter ble funnet:\n"
-"\n"
-"%s\n"
-"\n"
-"Ønsker du å skrive USB flasher til denne pinnen?"
-
-#
 msgid "The following files were found..."
 msgstr "Følgende filer ble funnet..."
 
@@ -20173,18 +20200,12 @@ msgstr ""
 msgid "The loopthrough setting is wrong."
 msgstr "Loopthrough innstillingene er feil."
 
-msgid "The md5sum validation failed, the file may be corrupted!"
-msgstr "Md5sum validering mislyktes, filen kan være ødelagt!"
-
 msgid ""
 "The network wizard extension is not installed!\n"
 "Please install it."
 msgstr ""
 "Nettverket veiviser er ikke installert!\n"
 "Vennligst installer den."
-
-msgid "The password can not be blank."
-msgstr ""
 
 #
 #, python-format
@@ -20276,10 +20297,6 @@ msgstr ""
 msgid "The wizard can backup your current settings. Do you want to do a backup now?"
 msgstr "Guiden kan ta backup av dine nåværende innstillinger. Vil du ta backup nå?"
 
-#, python-format
-msgid "The wizard found a configuration backup. Do you want to restore your old settings from %s?"
-msgstr "Veiviser har funnet en sikkerhetskopi. Vil du gjenopprette gamle innstillinger fra %s?"
-
 #
 msgid "The wizard is finished now."
 msgstr "Guiden er ferdig nå."
@@ -20361,6 +20378,12 @@ msgstr ""
 msgid "This allows you to set the number of digits to 5, if you have more than 9999 channels."
 msgstr ""
 
+msgid "This allows you to show OpenPLi modules in downloads"
+msgstr ""
+
+msgid "This allows you to show OpenViX modules in downloads"
+msgstr ""
+
 msgid "This allows you to show drivers modules in downloads"
 msgstr ""
 
@@ -20383,9 +20406,6 @@ msgstr ""
 msgid "This allows you to show picons modules in downloads"
 msgstr ""
 
-msgid "This allows you to show pli modules in downloads"
-msgstr ""
-
 msgid "This allows you to show security modules in downloads"
 msgstr ""
 
@@ -20399,10 +20419,7 @@ msgstr "Dette alternativet lar deg deaktivere sortering av plugin leseren."
 msgid "This allows you to show softcams modules in downloads"
 msgstr ""
 
-msgid "This allows you to show systemplugins modules in downloads"
-msgstr ""
-
-msgid "This allows you to show vix modules in downloads"
+msgid "This allows you to show system plugin modules in downloads"
 msgstr ""
 
 msgid "This allows you to show weblinks modules in downloads"
@@ -20471,7 +20488,7 @@ msgstr "Dette alternativet lar deg velge 3D-modus"
 msgid "This option allows you can force the HLG Modes for UHD"
 msgstr "Dette alternativet lar deg velge 3D-modus"
 
-msgid "This option allows you choose how to display elapsed time  as + or -"
+msgid "This option allows you choose how to display elapsed time as + or -"
 msgstr ""
 
 msgid "This option allows you choose how to display remaining time, or elapsed time, or both."
@@ -20517,7 +20534,7 @@ msgstr "Dette valget gjør at du kan øke grønne toner i bildet."
 msgid "This option allows you to bypass HDMI EDID check"
 msgstr "Dette alternativet konfigurerer så du kan gå utenom HDMI EDID sjekk"
 
-msgid "This option allows you to change the virtuell loadspeaker position."
+msgid "This option allows you to change the virtual loudspeaker position."
 msgstr ""
 
 msgid "This option allows you to choose from the two channel lists that are available."
@@ -20633,7 +20650,7 @@ msgstr "Med dette alternativet kan du justere gjennomsiktigheten til brukergrens
 msgid "This option lets you choose the 3D mode"
 msgstr "Dette alternativet lar deg velge 3D-modus"
 
-msgid "This option lets you show the option in the extension screen"
+msgid "This option lets you show the option in the extension screen."
 msgstr "Dette alternativet lar deg vise alternativet i tilleggsskjerm"
 
 msgid "This option moves the PVR status from the separate window into the MoviePlayer infobar."
@@ -20668,18 +20685,6 @@ msgstr "Dette alternativet surpression av falske digitale konturer, som er et re
 
 msgid "This option sets up the picture sharpness, used when the picture is being upscaled."
 msgstr "Dette alternativet setter opp bildets skarphet, brukes når bildet blir oppskalert."
-
-#, python-format
-msgid ""
-"This plugin creates a USB stick which can be used to update the firmware of your %s %s without the need for a network or WLAN connection.\n"
-"First, a USB stick needs to be prepared so that it becomes bootable.\n"
-"In the next step, an NFI image file can be downloaded from the update server and saved on the USB stick.\n"
-"If you already have a prepared bootable USB stick, please insert it now. Otherwise plug in a USB stick with a minimum size of 64 MB!"
-msgstr ""
-"Denne plugin lager en USB penn som kan brukses til å oppdatere din %s %s fastvare uten at du trenger nettverkstilkobling.\n"
-"Først, en USB pinne må bli klargjort så den blir startbar.\n"
-"I neste trinn,, en NFI image fil kan lastes ned fra serveren og bli lagret til USB pinnen.\n"
-"Hvis du allerede har klargjort en startbar USB pinne, sett den inn nå. Hvis ikke sett inn en med på minimum 64 MB!"
 
 #
 msgid "This plugin is installed."
@@ -20813,6 +20818,9 @@ msgstr ""
 msgid "Time"
 msgstr "Tid"
 
+msgid "Time Settings"
+msgstr "Tidsinnstillinger"
+
 msgid "Time Setup Actions"
 msgstr ""
 
@@ -20878,9 +20886,6 @@ msgstr ""
 msgid "Time scale"
 msgstr "Tidsskala"
 
-msgid "Time settings"
-msgstr "Tidsinnstillinger"
-
 #
 #, fuzzy
 msgid "Time style"
@@ -20901,10 +20906,6 @@ msgstr "Tidssone"
 #, fuzzy
 msgid "Time zone area"
 msgstr "Tidssone"
-
-#, fuzzy
-msgid "Time zone settings"
-msgstr "Tidsinnstillinger"
 
 msgid "Timeline 24 Hour"
 msgstr "Tidslinje 24 timers"
@@ -21001,13 +21002,16 @@ msgstr "Timer"
 msgid "Timeshift"
 msgstr "Timeshift"
 
-msgid "Timeshift buffer delete after zap?"
+msgid "Timeshift Settings"
+msgstr "Timeshift innstillinger"
+
+msgid "Timeshift buffer delete after zap"
 msgstr ""
 
 msgid "Timeshift buffer limit [in hours]"
 msgstr ""
 
-msgid "Timeshift checking for free space?"
+msgid "Timeshift checking for free space"
 msgstr ""
 
 msgid "Timeshift checking for older files [in minutes]"
@@ -21039,9 +21043,6 @@ msgstr "Timeshift lagre opptak (stoppe etter nåværende program)"
 msgid "Timeshift saved to your harddisk!"
 msgstr "Timeshift lagres til din harddisk!"
 
-msgid "Timeshift settings"
-msgstr "Timeshift innstillinger"
-
 msgid "Timeshift will get saved at end of event!"
 msgstr "Timeshift vil bli lagret på slutten av dette programmet!"
 
@@ -21070,18 +21071,6 @@ msgstr "Tittelsetting modus"
 #, fuzzy
 msgid "To restore the image:"
 msgstr "Ja, legg tilbake innstillingene nå"
-
-#, python-format
-msgid ""
-"To update your %s %s firmware, please follow these steps:\n"
-"1) Turn off your box with the rear power switch and make sure the bootable USB stick is plugged in.\n"
-"2) Turn mains back on and hold the DOWN button on the front panel pressed for 10 seconds.\n"
-"3) Wait for bootup and follow instructions of the wizard."
-msgstr ""
-"For å oppdatere din %s %s fastvare, følg disse trinnene:\n"
-"1) Slå av boksen med knappen bak og sørg for at en startbar USB pinne er koblet til.\n"
-"2) Slå på igjen og følg veiviseren videre.\n"
-"3) Vent på at den startes opp og følg veiviseren videre."
 
 #
 msgid "Today"
@@ -21330,15 +21319,21 @@ msgstr ""
 msgid "Tuner :"
 msgstr "Tuner :"
 
+#
 msgid "Tuner Configuration"
+msgstr "Tuner konfigurasjon"
+
+msgid "Tuner Information"
 msgstr ""
+
+msgid "Tuner Settings"
+msgstr "Tuner innstillinger"
 
 msgid "Tuner Setup"
 msgstr ""
 
-#
-msgid "Tuner configuration"
-msgstr "Tuner konfigurasjon"
+msgid "Tuner information"
+msgstr ""
 
 msgid "Tuner is not supported"
 msgstr "Tuner støttes ikke"
@@ -21350,9 +21345,6 @@ msgstr "Tuner status"
 
 #, fuzzy
 msgid "Tuner setting values"
-msgstr "Tuner innstillinger"
-
-msgid "Tuner settings"
 msgstr "Tuner innstillinger"
 
 msgid "Tuner slot"
@@ -21510,10 +21502,6 @@ msgstr ""
 msgid "USB Stick"
 msgstr ""
 
-#
-msgid "USB stick wizard"
-msgstr "USB pinne veiviseren"
-
 msgid "USB switch ERROR! - already on USB"
 msgstr ""
 
@@ -21537,11 +21525,6 @@ msgstr ""
 
 msgid "Umweltbewusstsein"
 msgstr ""
-
-#
-#, fuzzy
-msgid "Unable to change password"
-msgstr "Vennligst skriv inn nytt navn:"
 
 msgid "Unable to create the required directories on the media (e.g. USB stick or Harddisk) - Please verify media and try again!"
 msgstr ""
@@ -21710,7 +21693,7 @@ msgstr ""
 msgid "Up/Down button mode"
 msgstr ""
 
-msgid "Up/Down buttons also for 'all up/down'?"
+msgid "Up/Down buttons also for 'all up/down'"
 msgstr ""
 
 #
@@ -22025,13 +22008,13 @@ msgstr "Bruke denne bilde forbedrings innstilling?"
 msgid "Use time jumps for fast forward/backward"
 msgstr ""
 
-msgid "Use timeshift seekbar while timeshifting?"
+msgid "Use timeshift seekbar while timeshifting"
 msgstr "Bruk timeshift søkebar mens timeshifting?"
 
 msgid "Use trash can in movie list"
 msgstr "Bruk søppelbøtte i opptakslisten"
 
-msgid "Use workaround for wakeup from deep-standby?"
+msgid "Use workaround for wakeup from deep-standby"
 msgstr ""
 
 msgid "Used"
@@ -22188,11 +22171,11 @@ msgstr "Vertikal"
 msgid "Vertical EPG"
 msgstr "Vertikal"
 
-msgid "Vertical alignement for the event-progress."
+msgid "Vertical alignment for the event-progress."
 msgstr ""
 
 #, fuzzy
-msgid "Vertical alignement for the service number."
+msgid "Vertical alignment for the service number."
 msgstr "Konfigurer avstanden til kanalnavnet."
 
 msgid "Vertical turning speed"
@@ -22200,7 +22183,7 @@ msgstr "Vertikal snuhastighet"
 
 #
 #, fuzzy
-msgid "VerticalEPG settings"
+msgid "VerticalEPG Settings"
 msgstr "Grafiske EPG innstillinger"
 
 #, fuzzy
@@ -22308,9 +22291,6 @@ msgstr "Video Utgang"
 #, fuzzy
 msgid "Video output mode for UHD"
 msgstr "Video Utgang"
-
-msgid "Video settings"
-msgstr ""
 
 #, fuzzy
 msgid "Video: "
@@ -22788,10 +22768,10 @@ msgstr "Når funksjonen er aktivert, vil EIT data inkluderes i http streams. Det
 msgid "When enabled, Enigma2 will load unlinked bouquets. This means that bouquets that are available, but not included in the bouquets.tv or bouquets.radio files, will still be loaded. This allows you for example to keep your own user bouquet while installed settings are upgraded"
 msgstr ""
 
-msgid "When enabled, a popup message will be shown when a movie has finished and the next one will start."
+msgid "When enabled, a pop up message will be shown when a movie has finished and the next one will start."
 msgstr "Når funksjonen er aktivert, vil en popup-melding vises når en film er ferdig, og neste vil starte."
 
-msgid "When enabled, a popup message will be shown when a recording starts."
+msgid "When enabled, a pop up message will be shown when a recording starts."
 msgstr "Når funksjonen er aktivert, vil en popup-melding vises når et opptak starter."
 
 msgid "When enabled, a recording is allowed to abort picture-in-picture mode, when there are no free tuners."
@@ -22803,7 +22783,7 @@ msgstr ""
 msgid "When enabled, a recording is allowed to abort streaming, when there are no free tuners."
 msgstr ""
 
-msgid "When enabled, a recording is allowed to interrupt live tv, when there are no free tuners."
+msgid "When enabled, a recording is allowed to interrupt live TV, when there are no free tuners."
 msgstr ""
 
 msgid "When enabled, a warning will be displayed and the user will get an option to stop or to continue the timeshift."
@@ -22815,7 +22795,7 @@ msgstr ""
 msgid "When enabled, authentication is required to watch http streams."
 msgstr ""
 
-msgid "When enabled, before opkg update there will be opkg clean to make sure nothing ruine the update but only enable this when you can not update online."
+msgid "When enabled, before opkg update there will be opkg clean to make sure nothing ruins the update but only enable this when you can not update online."
 msgstr ""
 
 msgid "When enabled, channel numbering will start at '1' for each bouquet."
@@ -22938,20 +22918,6 @@ msgstr ""
 msgid "When tuned to a service the system will normally scan the transponder for any changes and save them. Only set to 'yes' if you're absolutely sure what you're doing."
 msgstr ""
 
-#, python-format
-msgid ""
-"When you do a factory reset, you will lose ALL your configuration data\n"
-"(including bouquets, services, satellite data ...)\n"
-"After completion of factory reset, your %s %s will restart automatically!\n"
-"\n"
-"Really do a factory reset?"
-msgstr ""
-"Når du tilbakestiller til fabrikksinntillinger vil du miste alle dine data\n"
-"(inkludert kanalliste, kanaler, satellitter...)\n"
-"Når tilbakestilling er ferdig, vil din %s %s starte om igjen automatisk!\n"
-"\n"
-"Vil du virkelig tilbakestille?"
-
 #
 msgid "Where do you want to backup your settings?"
 msgstr "Hvor vil du lagre backup av dine innstillinger?"
@@ -23024,7 +22990,7 @@ msgstr "Med popup"
 msgid "With this option set to 'yes' the channel lists will always show you the bouquet screen first. If set to 'no' the current bouquet will be opened."
 msgstr ""
 
-msgid "With this option you can hide Job Tasks from the extension screen (short blue button press)."
+msgid "With this option you can hide Job Tasks from the extension screen (BLUE button press)."
 msgstr "Med dette alternativet kan du skjule arbeidsoppgaver fra forlengelses bildet (kort blå knappetrykk)."
 
 msgid "With this option you can switch off the display during operation."
@@ -23102,6 +23068,13 @@ msgstr ""
 msgid "YCbCr444"
 msgstr ""
 
+#, fuzzy
+msgid "YELLOW button"
+msgstr "Lang gul"
+
+msgid "YELLOW long"
+msgstr "Lang gul"
+
 #
 msgid "YPbPr"
 msgstr "YPbPr"
@@ -23116,13 +23089,6 @@ msgstr "Gul"
 
 msgid "Yellow DVB subtitles"
 msgstr "Gule DVB undertekster"
-
-#, fuzzy
-msgid "Yellow button"
-msgstr "Lang gul"
-
-msgid "Yellow long"
-msgstr "Lang gul"
 
 #
 #, fuzzy
@@ -23287,10 +23253,6 @@ msgid "You have chosen to backup your settings. Please press OK to start the bac
 msgstr "Du har valgt å lage sikkerhetskopi av dine innstillinger. Trykk OK for å ta sikkerhetskopi."
 
 #
-msgid "You have chosen to create a new .NFI flasher bootable USB stick. This will repartition the USB stick and therefore all data on it will be erased."
-msgstr "Du har valgt å lage ny .NFI flasher bootable USB stick. Dette ompartisjonerer USB pinnen og all data vil bli slettet."
-
-#
 msgid "You have chosen to restore your settings. Enigma2 will restart after restore. Please press OK to start the restore now."
 msgstr "Du har valgt å gjenopprette dine innstillinger. Brukergrensesnitt blir restart etter gjenoppretting. Trykk OK for å gjenopprette nå."
 
@@ -23327,9 +23289,6 @@ msgstr ""
 #, python-format
 msgid "You have to wait %s!"
 msgstr "Du må vente %s!"
-
-msgid "You must set a root password in order to be able to use network services, such as FTP, telnet or ssh."
-msgstr ""
 
 msgid "You must set at least one Command"
 msgstr ""
@@ -24042,10 +24001,6 @@ msgstr "bekreftet"
 msgid "connected"
 msgstr "tilkoblet"
 
-#
-msgid "continue"
-msgstr "fortsett"
-
 msgid "controlled by HDMI"
 msgstr ""
 
@@ -24087,10 +24042,6 @@ msgstr ""
 #, fuzzy
 msgid "current affairs (general)"
 msgstr "nyheter/aktualitets (generelt)"
-
-#, python-format
-msgid "currently installed image: %s"
-msgstr "nåværende installert image: %s"
 
 #
 msgid "daily"
@@ -25467,7 +25418,7 @@ msgstr "uShare Navn"
 msgid "uShare Port"
 msgstr "uShare Port"
 
-msgid "uShare Setup"
+msgid "uShare Settings"
 msgstr "uShare Oppsett"
 
 msgid "unavailable"
@@ -25685,6 +25636,243 @@ msgstr "zapped"
 
 msgid "®"
 msgstr ""
+
+#~ msgid "Changelog"
+#~ msgstr "Endringslogg"
+
+#, python-format
+#~ msgid "Could not connect to %s %s .NFI image feed server:"
+#~ msgstr "Kunne ikke koble til din %s %s .NFI Image Feed Server:"
+
+#~ msgid "Currently installed image"
+#~ msgstr "Installert image"
+
+#, python-format
+#~ msgid "Do you want to download the image to %s ?"
+#~ msgstr "Vil du laste ned bildet til %s ?"
+
+#
+#~ msgid "Download"
+#~ msgstr "Nedlasting"
+
+#, python-format
+#~ msgid "Download %s from server"
+#~ msgstr "Last ned %s fra server"
+
+#~ msgid "Download .NFI-files for USB-flasher"
+#~ msgstr "Last ned .NFI-Filer for USB-Flasher"
+
+#
+#~ msgid "Flash"
+#~ msgstr "Flash"
+
+#
+#~ msgid "Flashing failed"
+#~ msgstr "Flashing feilet!"
+
+#~ msgid "Get latest experimental image"
+#~ msgstr "Få siste experimental image"
+
+#~ msgid "Get latest release image"
+#~ msgstr "Få siste release image"
+
+#~ msgid "NFI image flashing"
+#~ msgstr "NFI image flashing"
+
+#
+#~ msgid "NFI image flashing completed. Press Yellow to Reboot!"
+#~ msgstr "NFI image flashing ferdig. Trykk GUL knapp for å restart!"
+
+#
+#~ msgid "No details for this image file"
+#~ msgstr "Ingen detaljer for denne image fil"
+
+#
+#~ msgid "Please check your network settings!"
+#~ msgstr "Vennligst sjekk nettverksinnstillinger!"
+
+#~ msgid "Please select an NFI file and press green key to flash!"
+#~ msgstr "Vennligst velg en NFI fil og trykk grønn tast for å flashe!"
+
+#~ msgid "Prepare another USB stick for image flashing"
+#~ msgstr "Klargjør en annen USB pinne til image flashing"
+
+#
+#~ msgid "Restore is running..."
+#~ msgstr "Gjenoppretting kjører..."
+
+#~ msgid "Select an image to be downloaded"
+#~ msgstr "Velg et image som skal lastes ned"
+
+#~ msgid "Select desired image from feed list"
+#~ msgstr "Velg ønsket image fra feed liste"
+
+#
+#, python-format
+#~ msgid "Shall the USB stick wizard proceed and program the image file %s into flash memory?"
+#~ msgstr "Skal USB pinne veiviser fortsette å programmere image filen %s til flash minne?"
+
+#~ msgid ""
+#~ "The USB stick was prepared to be bootable.\n"
+#~ "Now you can download an NFI image file!"
+#~ msgstr ""
+#~ "USB pinnen er klargjort til å være oppstartbar.\n"
+#~ "Nå kan du laste ned en NFI image fil!"
+
+#
+#, python-format
+#~ msgid ""
+#~ "The following device was found:\n"
+#~ "\n"
+#~ "%s\n"
+#~ "\n"
+#~ "Do you want to write the USB flasher to this stick?"
+#~ msgstr ""
+#~ "Følgende enheter ble funnet:\n"
+#~ "\n"
+#~ "%s\n"
+#~ "\n"
+#~ "Ønsker du å skrive USB flasher til denne pinnen?"
+
+#~ msgid "The md5sum validation failed, the file may be corrupted!"
+#~ msgstr "Md5sum validering mislyktes, filen kan være ødelagt!"
+
+#, python-format
+#~ msgid "The wizard found a configuration backup. Do you want to restore your old settings from %s?"
+#~ msgstr "Veiviser har funnet en sikkerhetskopi. Vil du gjenopprette gamle innstillinger fra %s?"
+
+#, python-format
+#~ msgid ""
+#~ "This plugin creates a USB stick which can be used to update the firmware of your %s %s without the need for a network or WLAN connection.\n"
+#~ "First, a USB stick needs to be prepared so that it becomes bootable.\n"
+#~ "In the next step, an NFI image file can be downloaded from the update server and saved on the USB stick.\n"
+#~ "If you already have a prepared bootable USB stick, please insert it now. Otherwise plug in a USB stick with a minimum size of 64 MB!"
+#~ msgstr ""
+#~ "Denne plugin lager en USB penn som kan brukses til å oppdatere din %s %s fastvare uten at du trenger nettverkstilkobling.\n"
+#~ "Først, en USB pinne må bli klargjort så den blir startbar.\n"
+#~ "I neste trinn,, en NFI image fil kan lastes ned fra serveren og bli lagret til USB pinnen.\n"
+#~ "Hvis du allerede har klargjort en startbar USB pinne, sett den inn nå. Hvis ikke sett inn en med på minimum 64 MB!"
+
+#, python-format
+#~ msgid ""
+#~ "To update your %s %s firmware, please follow these steps:\n"
+#~ "1) Turn off your box with the rear power switch and make sure the bootable USB stick is plugged in.\n"
+#~ "2) Turn mains back on and hold the DOWN button on the front panel pressed for 10 seconds.\n"
+#~ "3) Wait for bootup and follow instructions of the wizard."
+#~ msgstr ""
+#~ "For å oppdatere din %s %s fastvare, følg disse trinnene:\n"
+#~ "1) Slå av boksen med knappen bak og sørg for at en startbar USB pinne er koblet til.\n"
+#~ "2) Slå på igjen og følg veiviseren videre.\n"
+#~ "3) Vent på at den startes opp og følg veiviseren videre."
+
+#
+#~ msgid "USB stick wizard"
+#~ msgstr "USB pinne veiviseren"
+
+#
+#~ msgid "You have chosen to create a new .NFI flasher bootable USB stick. This will repartition the USB stick and therefore all data on it will be erased."
+#~ msgstr "Du har valgt å lage ny .NFI flasher bootable USB stick. Dette ompartisjonerer USB pinnen og all data vil bli slettet."
+
+#
+#~ msgid "continue"
+#~ msgstr "fortsett"
+
+#, python-format
+#~ msgid "currently installed image: %s"
+#~ msgstr "nåværende installert image: %s"
+
+#~ msgid "Manual scan"
+#~ msgstr "Manuelt søk"
+
+#~ msgid "OpenVpn Setup"
+#~ msgstr "Åpne Vpn Oppsett"
+
+#
+#~ msgid "Add a nameserver entry"
+#~ msgstr "Legg til navneserver oppføring"
+
+#~ msgid "Configure the function of the <  > buttons."
+#~ msgstr "Konfigurere funksjonen til < > knappene."
+
+#
+#, fuzzy
+#~ msgid "DHCP Router"
+#~ msgstr "Komplett"
+
+#
+#~ msgid "Factory reset"
+#~ msgstr "Gjenopprett fabrikkinnstillingene"
+
+#~ msgid "If the text is too long to be displayed on the front panel, it will be repeated (number of times):"
+#~ msgstr "Hvis teksten er for lang til å bli fremvist på frontpanelet, vil det bli gjentatt (flere ganger):"
+
+#
+#, python-format
+#~ msgid "Nameserver %d"
+#~ msgstr "Navneserver %d"
+
+#
+#, fuzzy
+#~ msgid "Nameserver configuration"
+#~ msgstr "Avslutt nameserver innstilling"
+
+#
+#~ msgid "Network Setup"
+#~ msgstr "Nettverk Oppsett"
+
+#~ msgid "Remove a nameserver entry"
+#~ msgstr "Fjern navneserver oppføring"
+
+#, fuzzy
+#~ msgid "Password changed"
+#~ msgstr "Passord (httpwd)"
+
+#
+#, fuzzy
+#~ msgid "Random password"
+#~ msgstr "Vennligst skriv inn nytt navn:"
+
+#
+#, fuzzy
+#~ msgid "Unable to change password"
+#~ msgstr "Vennligst skriv inn nytt navn:"
+
+#, python-format
+#~ msgid ""
+#~ "CCcam Info %s\n"
+#~ "by AliAbdul %s\n"
+#~ "\n"
+#~ "This plugin shows you the status of your CCcam."
+#~ msgstr ""
+#~ "CCcam Info %s\n"
+#~ "av AliAbdul %s\n"
+#~ "\n"
+#~ "Dette plugin viser deg statusen til CCcam."
+
+#, python-format
+#~ msgid "Kernel: %s"
+#~ msgstr "Kernel: %s"
+
+#~ msgid "Softcam settings"
+#~ msgstr "Softcam innstillinger"
+
+#, fuzzy
+#~ msgid "Time zone settings"
+#~ msgstr "Tidsinnstillinger"
+
+#, python-format
+#~ msgid ""
+#~ "When you do a factory reset, you will lose ALL your configuration data\n"
+#~ "(including bouquets, services, satellite data ...)\n"
+#~ "After completion of factory reset, your %s %s will restart automatically!\n"
+#~ "\n"
+#~ "Really do a factory reset?"
+#~ msgstr ""
+#~ "Når du tilbakestiller til fabrikksinntillinger vil du miste alle dine data\n"
+#~ "(inkludert kanalliste, kanaler, satellitter...)\n"
+#~ "Når tilbakestilling er ferdig, vil din %s %s starte om igjen automatisk!\n"
+#~ "\n"
+#~ "Vil du virkelig tilbakestille?"
 
 #~ msgid "Automatic image backup"
 #~ msgstr "Automatisk image sikkerhetskopiering"

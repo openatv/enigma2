@@ -5,8 +5,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Enigma2 OpenXXX\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-02-11 14:04+0000\n"
-"PO-Revision-Date: 2022-02-16 19:05+0000\n"
+"POT-Creation-Date: 2022-04-10 10:23+0000\n"
+"PO-Revision-Date: 2022-04-05 18:10+0000\n"
 "Last-Translator: igorrrrr <igorzhugan66@gmail.com>\n"
 "Language-Team: Russian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/ru/>\n"
 "Language: ru\n"
@@ -14,7 +14,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 4.11-dev\n"
+"X-Generator: Weblate 4.12-dev\n"
 "X-Poedit-SourceCharset: iso-8859-5\n"
 
 msgid ""
@@ -1000,6 +1000,10 @@ msgstr "%d Кб"
 msgid "%d MB"
 msgstr "%d Мб"
 
+#, python-format
+msgid "%d MHz"
+msgstr "%d МГц"
+
 #. TRANSLATORS: full date representation dayname daynum monthname year in strftime() format! See 'man strftime'
 #. _("%A %e %B %Y")
 #. TRANSLATORS: short time representation hour:minute in strftime() format! See 'man strftime'
@@ -1623,8 +1627,8 @@ msgstr "12 символов"
 msgid "12 hours"
 msgstr "12 часов"
 
-msgid "12, show latin-1 characters except for greek and cyrillic, switch to 8 if needed."
-msgstr "12 - показать набор символов Latin-1, кроме греческого и кириллицы, переключитесь на 8, если это необходимо."
+msgid "12, show Latin-1 characters except for greek and cyrillic, switch to 8 if needed."
+msgstr "12, показать символы Latin-1, кроме греческого и кириллицы, при необходимости переключиться на 8."
 
 msgid "128"
 msgstr "128"
@@ -2255,7 +2259,7 @@ msgstr "AFL"
 msgid "AFP"
 msgstr "AFP"
 
-msgid "AFP Setup"
+msgid "AFP Settings"
 msgstr "Настройки AFP"
 
 msgid "ARM"
@@ -2326,10 +2330,10 @@ msgstr "Точка доступа:"
 msgid "Action"
 msgstr "Действие"
 
-msgid "Action on long powerbutton press"
+msgid "Action on long POWER button press"
 msgstr "Кнопка вкл/выкл (долгое нажатие)"
 
-msgid "Action on short powerbutton press"
+msgid "Action on short POWER button press"
 msgstr "Кнопка вкл/выкл"
 
 msgid "Activate"
@@ -2413,11 +2417,11 @@ msgstr "Добавить Zap-таймер"
 msgid "Add Zap+Record Timer"
 msgstr "Добавить таймер Zap+Запись"
 
+msgid "Add a DNS entry"
+msgstr "Добавить запись DNS"
+
 msgid "Add a mark"
 msgstr "Добавить метку"
-
-msgid "Add a nameserver entry"
-msgstr "Добавить сервер DNS"
 
 msgid "Add a new tag"
 msgstr "Добавить новый тег"
@@ -2692,6 +2696,12 @@ msgstr "Позволяет настроить время, в течение ко
 msgid "Allows you to assign the selected function to this button."
 msgstr "Позволяет назначить этой кнопке выбранную функцию."
 
+msgid "Allows you to enable the GStreamer debug log. They contain very detailed information of everything the GStreamer system does."
+msgstr "Позволяет включить журнал отладки GStreamer. В них содержится очень подробная информация обо всем, что делает система GStreamer."
+
+msgid "Allows you to enable the GStreamer pipeline graphs. These are .dot files that describe the topology of your pipeline, along with the caps negotiated in each link."
+msgstr "Позволяет включить графы конвейера GStreamer. Это файлы .dot, которые описывают топологию Вашего конвейера, а также ограничения, согласованные в каждой ссылке."
+
 msgid "Allows you to enable the debug log. They contain very detailed information of everything the system does."
 msgstr "Разрешить журнал отладки. Журнал отладки содержит подробную информацию обо всём, что система делает."
 
@@ -2704,13 +2714,13 @@ msgstr "Позволит скрыть расширения для известн
 msgid "Allows you to set the maximum size of the Debug log size (MB). When that size is reached, a new file will be created."
 msgstr "Укажите максимальный размер (МБ) для журнала отладки. При достижении этого размера будет создан новый файл."
 
-msgid "Allows you to show/hide CCcam in extensions (blue button)."
+msgid "Allows you to show/hide CCcam in extensions (BLUE button)."
 msgstr "Позволяет показать/скрыть CCcam в дополнениях (СИНЯЯ кнопка)."
 
-msgid "Allows you to show/hide Log Manager in extensions (blue button)."
+msgid "Allows you to show/hide Log Manager in extensions (BLUE button)."
 msgstr "Позволяет показать/скрыть менеджер журналов в дополнениях (СИНЯЯ кнопка)."
 
-msgid "Allows you to show/hide OScam in extensions (blue button)."
+msgid "Allows you to show/hide OScam in extensions (BLUE button)."
 msgstr "Позволяет показать/скрыть OScam в дополнениях (СИНЯЯ кнопка)."
 
 msgid "Almost there... "
@@ -3081,9 +3091,6 @@ msgstr "Аудио долгий"
 msgid "Audio options..."
 msgstr "Настройки аудио..."
 
-msgid "Audio settings"
-msgstr "Настройки аудио"
-
 msgid "Audio volume step size"
 msgstr "Шаг громкости звука"
 
@@ -3120,6 +3127,9 @@ msgstr "Автовыбор языка"
 msgid "Auto Language Selection"
 msgstr "Автоматический выбор языка"
 
+msgid "Auto Language Settings"
+msgstr "Автоматический выбор языка"
+
 msgid "Auto Modes Selected."
 msgstr "Выбраны автоматические режимы."
 
@@ -3149,9 +3159,6 @@ msgstr "Автофокусировка началась..."
 
 msgid "Auto install log"
 msgstr "Журнал автоматической установки"
-
-msgid "Auto language selection"
-msgstr "Автоматический выбор языка"
 
 msgid "Auto scart switching"
 msgstr "Автопереключение SCART"
@@ -3195,8 +3202,8 @@ msgstr "Включить таймшифт после"
 msgid "Automatically turn on external subtitles"
 msgstr "Автоматически переключать на внешние субтитры"
 
-msgid "Automatically update Client/Server View?"
-msgstr "Автообновление просмотра клиент/сервер?"
+msgid "Automatically update Client/Server View"
+msgstr "Автообновление просмотра клиент/сервер"
 
 msgid "Automobil"
 msgstr "Автомобиль"
@@ -3255,6 +3262,15 @@ msgstr "BER"
 
 msgid "BLUDISC RECORDABLE"
 msgstr "BLUDISC записываемый"
+
+msgid "BLUE button"
+msgstr "Синяя кнопка"
+
+msgid "BLUE long"
+msgstr "Синяя, долгая"
+
+msgid "BLUE switch: BLUE/BLUE long"
+msgstr "Синяя кнопка (короткое/долгое)"
 
 msgid "BT 2020 CL"
 msgstr "BT 2020 CL"
@@ -3564,15 +3580,6 @@ msgstr "Понижение блочных шумов"
 msgid "Blue"
 msgstr "Синий"
 
-msgid "Blue button"
-msgstr "Синяя кнопка"
-
-msgid "Blue long"
-msgstr "Синяя, долгая"
-
-msgid "BlueSwitch: Blue-Short/Blue-Long"
-msgstr "Синяя кнопка (короткое/долгое)"
-
 msgid "Bluetooth Setup"
 msgstr "Настройки Bluetooth"
 
@@ -3764,6 +3771,9 @@ msgstr "CAID"
 msgid "CAID:SrvID"
 msgstr "CAID: SrvID"
 
+msgid "CCCam Info"
+msgstr "Инфо CCCam"
+
 msgid "CCcam Client Info"
 msgstr "CCcam клиент инфо"
 
@@ -3781,12 +3791,12 @@ msgid ""
 "CCcam Info %s\n"
 "by AliAbdul %s\n"
 "\n"
-"This plugin shows you the status of your CCcam."
+"This screen shows you the status of CCcam."
 msgstr ""
-"CCcam инфо %s\n"
-"от AliAbdul %s\n"
+"Инфо о CCcam %s\n"
+"от АлиАбдул %s\n"
 "\n"
-"Плагин показывает статус CCcam."
+"Этот экран показывает Вам статус CCcam."
 
 msgid "CCcam Info Config"
 msgstr "Настройки CCcam инфо"
@@ -3825,11 +3835,17 @@ msgstr "К. %s"
 msgid "CHANGE BOUQUET"
 msgstr "Изменить фаворит"
 
+msgid "CHANNEL +/-"
+msgstr "Канал +/-"
+
 msgid "CI (Common Interface) Setup"
 msgstr "Настройки CI"
 
-msgid "CI Basic settings"
+msgid "CI Basic Settings"
 msgstr "Основные настройки CI"
+
+msgid "CI Helper Settings"
+msgstr "Настройки CIHelper"
 
 msgid "CI Legacy"
 msgstr "CI"
@@ -3849,11 +3865,8 @@ msgstr "Назначение CI"
 msgid "CI slot: "
 msgstr "Слот CI: "
 
-msgid "CIFS/Samba Setup"
+msgid "CIFS/Samba Settings"
 msgstr "Настройки CIFS/Samba"
-
-msgid "CIHelper Setup"
-msgstr "Настройки CIHelper"
 
 msgid "CIHelper for SLOT CI0"
 msgstr "CIHelper для слота CI0"
@@ -3882,10 +3895,6 @@ msgstr "Скорость процессора/ядра"
 msgid "CPU temperature"
 msgstr "Температура процессора"
 
-#, python-format
-msgid "CPU: %s"
-msgstr "ЦП: %s"
-
 msgid "CVBS"
 msgstr "CVBS"
 
@@ -3906,6 +3915,9 @@ msgstr "Кэшировано"
 
 msgid "Calculate"
 msgstr "Рассчитать"
+
+msgid "Calculate and show size of directory. Note: This can be slow down the UI on selection of a folder!"
+msgstr ""
 
 msgid "Calculate file checksums"
 msgstr "Вычисление контрольных сумм файлов"
@@ -4217,9 +4229,6 @@ msgstr "Изменение размера шага"
 msgid "Change to bouquet"
 msgstr "Переключиться на фаворит"
 
-msgid "Changelog"
-msgstr "Журнал изменений"
-
 #, python-format
 msgid ""
 "Changes need a system restart to take effect.\n"
@@ -4234,9 +4243,6 @@ msgstr "Канал"
 msgid "Channel \t\t\tVolume +"
 msgstr "Канал \t\t\tЗвук +"
 
-msgid "Channel +/-"
-msgstr "Канал +/-"
-
 msgid "Channel +/- button mode"
 msgstr "Кнопки Channel +/-"
 
@@ -4250,6 +4256,9 @@ msgid "Channel Info"
 msgstr "Информация канала"
 
 msgid "Channel List"
+msgstr "Список каналов"
+
+msgid "Channel Selection Settings"
 msgstr "Список каналов"
 
 msgid "Channel button always changes sides"
@@ -4300,9 +4309,6 @@ msgstr "Выбор канала"
 msgid "Channel selection configuration"
 msgstr "Настройки селектора каналов"
 
-msgid "Channel selection settings"
-msgstr "Список каналов"
-
 msgid "Channel up"
 msgstr "Канал вверх"
 
@@ -4318,7 +4324,7 @@ msgstr "Переключение каналов в режиме задержки
 msgid "Channel:"
 msgstr "Канал"
 
-msgid "ChannelEPG settings"
+msgid "ChannelEPG Settings"
 msgstr "Настройки ТВ-гида"
 
 msgid "Channellist menu"
@@ -4460,7 +4466,7 @@ msgstr "Выберите стиль форматирования отображ�
 msgid "Choose the front panel display formatting style for times. 'H' / 'HH' is the hour for a 24 hour clock, 'h' / 'hh' is the hour for a 12 hour clock, 'mm' is the minutes.  ('HH' and 'hh' have leading zeros for single digit values.) The front panel display will be based on your choice but can be influenced any applicable skin."
 msgstr "Выберите стиль форматирования дисплея передней панели для времени. 'Ч' / 'ЧЧ' - это час для 24-часовых часов, 'ч' / 'чч' - час для 12-часовых часов, 'мм' - это минуты.  ('ЧЧ' и 'чч' имеют начальные нули для однозначных значений.) Дисплей передней панели будет основан на Вашем выборе, но может быть подвержен влиянию любого применяемого скина."
 
-msgid "Choose the location for crash and debuglogs."
+msgid "Choose the location for crash and debug logs."
 msgstr "Выберите расположение для журналов сбоя и отладки."
 
 msgid "Choose the location where the EPG data will be stored when the %s %s is shut down. The location must be available at boot time."
@@ -4632,8 +4638,8 @@ msgstr "Закрыть окно"
 msgid "Close title selection"
 msgstr "Закрыть выбор названия"
 
-msgid "Cloudflare"
-msgstr "Облачность"
+msgid "Cloudflare DNS"
+msgstr "Облачный DNS"
 
 msgid "Cocos (Keeling) Islands"
 msgstr "Кокосовые (Килинг) острова"
@@ -4767,10 +4773,10 @@ msgstr "Режим конфигурации"
 msgid "Configuration options for the HELP screen can be found in 'MENU > Setup > Usage & User Interface > Settings'."
 msgstr "Параметры конфигурации для экрана HELP можно найти в 'МЕНЮ> Настройка> Пользователи > Пользовательский интерфейс> Настройки'."
 
-msgid "Configure an additional delay to improve external subtitle synchronisation."
+msgid "Configure an additional delay to improve external subtitle synchronization."
 msgstr "Настройка дополнительной задержки для улучшения синхронизации внешних субтитров."
 
-msgid "Configure an additional delay to improve subtitle synchronisation."
+msgid "Configure an additional delay to improve subtitle synchronization."
 msgstr "Настройка дополнительной задержки для улучшения синхронизации субтитров."
 
 msgid "Configure default setting for new timers. Need a restart after changing."
@@ -4878,7 +4884,7 @@ msgstr "Установите уровень контрастности для д
 msgid "Configure the current keymap file."
 msgstr "Настройте текущий файл раскладки клавиатуры."
 
-msgid "Configure the cursor behaviour in the channel selection list. When opening the channel selection list you can remain on the current service or already select up/down and you are able to revert the B+/B- buttons."
+msgid "Configure the cursor behavior in the channel selection list. When opening the channel selection list you can remain on the current service or already select up/down and you are able to revert the B+/B- buttons."
 msgstr "Настройка поведения курсора в списке каналов. При открытии списка каналов кнопками курсор можете оставить на текущем канале или перенесённым вверх или вниз выбором кнопки CHANNEL +/- или же можно задать обратный порядок."
 
 msgid "Configure the display resolution and the font used for teletext."
@@ -4926,8 +4932,8 @@ msgstr "Настройка функции длительного нажатия 
 msgid "Configure the function of a short press on the power button."
 msgstr "Настройка функции короткого нажатия на кнопку питания."
 
-msgid "Configure the function of the <  > buttons."
-msgstr "Настройте функцию < > кнопок."
+msgid "Configure the function of the < and > buttons."
+msgstr "Настройте функции кнопок < и >."
 
 msgid "Configure the gateway."
 msgstr "Настройка шлюза."
@@ -5234,7 +5240,7 @@ msgstr "Управляйте скоростью анимации индикат�
 msgid "Control your Softcams"
 msgstr "Управление эмуляторами"
 
-msgid "Convert ext3 filesystem to ext4"
+msgid "Convert EXT3 File System to EXT4"
 msgstr "Преобразование ext3 в ext4"
 
 msgid "Convert ext3 to ext4"
@@ -5292,10 +5298,6 @@ msgstr "Скопировать папку"
 msgid "Copying files"
 msgstr "Копирование файлов"
 
-#, python-format
-msgid "Cores: %s"
-msgstr "Ядра %s"
-
 msgid "Cornish"
 msgstr "Корнуоллский"
 
@@ -5307,10 +5309,6 @@ msgstr "Коста-Рика"
 
 msgid "Cote d'Ivoire / Ivory Coast"
 msgstr "Кот-д'Ивуар / Берег Слоновой Кости"
-
-#, python-format
-msgid "Could not connect to %s %s .NFI image feed server:"
-msgstr "Невозможно связаться с сервером имиджа %s %s .NFI"
 
 msgid "Could not connect to server"
 msgstr "Невозможно подключиться к серверу"
@@ -5352,8 +5350,8 @@ msgstr "Информация о стране для рейтинга событ�
 msgid "Crash Logs"
 msgstr "Файлы аварии"
 
-msgid "Crash at skin error for debug reasons ?"
-msgstr "Сбой при ошибке скина по причинам отладки?"
+msgid "Crash at skin error for debug reasons"
+msgstr "Сбой при ошибке скина по причинам отладки"
 
 #, python-format
 msgid "Crash log '%s' (%d/%d)"
@@ -5370,6 +5368,9 @@ msgstr "Создание DVD-ISO"
 
 msgid "Create ISO"
 msgstr "Создание ISO"
+
+msgid "Create a randomly generated password"
+msgstr "Создайте случайно сгенерированный пароль"
 
 msgid "Create directory"
 msgstr "Создать каталог"
@@ -5485,9 +5486,6 @@ msgstr "Текущая версия неизвестна"
 msgid "Current version:"
 msgstr "Текущая версия"
 
-msgid "Currently installed image"
-msgstr "Текущая прошивка"
-
 msgid "Custom"
 msgstr "Пользовательские"
 
@@ -5500,14 +5498,14 @@ msgstr "Время пропуска для кнопок '4'/'6'"
 msgid "Custom skip time for '7'/'9' buttons"
 msgstr "Время пропуска для кнопок '7'/'9'"
 
-msgid "Customise"
-msgstr "Доп. настройки"
-
-msgid "Customise enigma2 personal settings"
-msgstr "Пользовательские настройки Enigma2"
-
 msgid "Customize"
 msgstr "Доп. настройки"
+
+msgid "Customize System Settings"
+msgstr "Настроить параметры системы"
+
+msgid "Customize enigma2 personal settings"
+msgstr "Пользовательские настройки Enigma2"
 
 msgid "Cut"
 msgstr "Нарезка"
@@ -5545,9 +5543,6 @@ msgstr "DAC"
 msgid "DHCP"
 msgstr "DHCP"
 
-msgid "DHCP Router"
-msgstr "DHCP-маршрутизатор"
-
 msgid "DLNA support"
 msgstr "Поддержка DLNA"
 
@@ -5556,6 +5551,15 @@ msgstr "DMM расширенный"
 
 msgid "DMM normal"
 msgstr "DMM стандарт"
+
+msgid "DNS (Dynamic Name Server) Actions"
+msgstr "Действия DNS (сервер динамических имён)"
+
+msgid "DNS Settings"
+msgstr "Настройки DNS"
+
+msgid "DNS data source"
+msgstr "Источник данных DNS"
 
 msgid ""
 "DO NOT POWER OFF YOUR DEVICE WHILE UPDATING!\n"
@@ -6120,6 +6124,9 @@ msgstr "Снять выбор"
 msgid "Deselected packages usually occur because those packaged are incompatible with existing packages.  While this is mostly harmless it is possible that your %s %s may experience issues."
 msgstr "Невыбранные пакеты обычно возникают из-за того, что эти пакеты несовместимы с существующими пакетами. Хотя это в основном безвредно, возможно, что у Вашего %s %s могут возникнуть проблемы."
 
+msgid "Detail of GStreamer log"
+msgstr "Деталь журнала GStreamer"
+
 msgid "Details for plugin: "
 msgstr "Подробнее о плагине "
 
@@ -6129,13 +6136,16 @@ msgstr "Обнаруженные диски"
 msgid "Detected network servers"
 msgstr "Обнаруженные сетевые серверы"
 
+msgid "Detected tuners"
+msgstr "Обнаруженные тюнеры"
+
 msgid "Detektiv"
 msgstr "Детектив"
 
 msgid "Device Manager"
 msgstr "Диспетчер устройств"
 
-msgid "Device Setup"
+msgid "Device Settings"
 msgstr "Настройки устройств"
 
 msgid "Device id"
@@ -6338,9 +6348,6 @@ msgstr "Показать предыдущий экран информации о
 msgid "Display selection list as a selection menu"
 msgstr "Отображение списка выбора в виде меню выбора"
 
-msgid "Display settings"
-msgstr "Настройки дисплея"
-
 msgid "Display the EIT now/next eventdata in infobar."
 msgstr "Передачи сейчас/следующая отображать в инфобаре из EIT."
 
@@ -6360,16 +6367,16 @@ msgid "Distribution"
 msgstr "Дистрибутив"
 
 msgid "Distribution architecture"
-msgstr "Архитектура дистрибутива"
+msgstr "Архитектура"
 
 msgid "Distribution build"
 msgstr "Сборка дистрибутива"
 
 msgid "Distribution build date"
-msgstr "Дата сборки дистрибутива"
+msgstr "Дата сборки"
 
 msgid "Distribution file system"
-msgstr "Файловая система:"
+msgstr "Файловая система"
 
 msgid "Distribution folder"
 msgstr "Папка дистрибутива"
@@ -6558,10 +6565,6 @@ msgid "Do you want to do another manual service scan?"
 msgstr "Продолжить ручной поиск?"
 
 #, python-format
-msgid "Do you want to download the image to %s ?"
-msgstr "Хотите загрузить имидж в %s?"
-
-#, python-format
 msgid ""
 "Do you want to flash image\n"
 "%s"
@@ -6679,16 +6682,6 @@ msgstr[2] "Готово - Установлены, обновлены или уд
 
 msgid "Down"
 msgstr "Вниз"
-
-msgid "Download"
-msgstr "Загрузить"
-
-#, python-format
-msgid "Download %s from server"
-msgstr "Загрузить %s с сервера"
-
-msgid "Download .NFI-files for USB-flasher"
-msgstr "Загрузить .NFI файлы из USB"
 
 msgid "Download Plugins"
 msgstr "Установка плагинов"
@@ -6844,6 +6837,9 @@ msgstr "Поиск по ТВ-гиду"
 msgid "EPG Selection"
 msgstr "Выбор ТВ-гида"
 
+msgid "EPG Settings"
+msgstr "Настройки ТВ-гида"
+
 msgid "EPG Setup"
 msgstr "Настройки ТВ-гида"
 
@@ -6889,9 +6885,6 @@ msgstr "Поиск по ТВ-гиду"
 
 msgid "EPG selection"
 msgstr "Выбор ТВ-гида"
-
-msgid "EPG settings"
-msgstr "Настройки ТВ-гида"
 
 msgid "EPGSearch"
 msgstr "Поиск по ТВ-гиду"
@@ -7031,6 +7024,12 @@ msgstr "Включить ТВ-гид EIT"
 
 msgid "Enable Focus Animation"
 msgstr "Включить анимацию фокуса"
+
+msgid "Enable GStreamer debug log *"
+msgstr "Включить журнал отладки GStreamer *"
+
+msgid "Enable GStreamer pipeline graphs *"
+msgstr "Включить графы конвейера GStreamer *"
 
 msgid "Enable IceTV"
 msgstr "Включить IceTV"
@@ -7253,7 +7252,7 @@ msgid "Enigma2 information"
 msgstr "Информация об Enigma2"
 
 msgid "Enigma2 revision"
-msgstr "Версия Enigma2"
+msgstr "Ревизия Enigma2"
 
 msgid "Enigma2 skin selector"
 msgstr "Селектор скинов Enigma2"
@@ -7266,6 +7265,10 @@ msgstr "Энигмалайт"
 
 msgid "Enter"
 msgstr "Ввод"
+
+#, python-format
+msgid "Enter DNS (Dynamic Name Server) %d's IP address."
+msgstr "Введите IP-адрес DNS (сервер динамических имён) %d's."
 
 msgid "Enter PIN"
 msgstr "Введите PIN-код"
@@ -7361,6 +7364,14 @@ msgstr "Ошибка %d: файл журнала '%s' не удалён!  (%s)"
 #, python-format
 msgid "Error %d: The logfile '%s' could not be opened.  (%s)"
 msgstr "Ошибка %d: Файл журнала '%s' не удалось открыть.  (%s)"
+
+#, python-format
+msgid "Error %d: Unable to change password!  (%s)"
+msgstr "Ошибка %d: Невозможно изменить пароль! (%s)"
+
+#, python-format
+msgid "Error %d: Unable to start 'passwd' command!"
+msgstr "Ошибка %d: невозможно запустить команду 'passwd'!"
 
 #, python-format
 msgid "Error '%s' encountered retrieving the %s commit logs!"
@@ -7495,6 +7506,12 @@ msgstr "Ошибка: %s %s, а не %s! Пожалуйста, попробуй�
 
 msgid "Error: Checksum is invalid!"
 msgstr "Ошибка: неверная контрольная сумма!"
+
+msgid "Error: Interaction failure, unable to change password!"
+msgstr "Ошибка: сбой взаимодействия, невозможно изменить пароль!"
+
+msgid "Error: The new password may not be blank!"
+msgstr "Ошибка: Новый пароль не может быть пустым!"
 
 msgid "Error: Unable to process the command!  Please try again later."
 msgstr "Фид не доступен в связи с проведением профилактики, пожалуйста, попробуйте позже."
@@ -7760,7 +7777,7 @@ msgstr "Внешний накопитель %s"
 msgid "External subtitle color"
 msgstr "Цвет внешних субтитров"
 
-msgid "External subtitle dialog colorisation"
+msgid "External subtitle dialog colorization"
 msgstr "Цветовая гамма для внешних субтитров"
 
 msgid "External subtitle switch fonts"
@@ -7835,14 +7852,14 @@ msgstr "FTP"
 msgid "FTP"
 msgstr "FTP"
 
-msgid "FTP Setup"
+msgid "FTP Settings"
 msgstr "Настройки FTP"
+
+msgid "Factory Reset"
+msgstr "Сброс к заводским настройкам"
 
 msgid "Factory release"
 msgstr "Заводской выпуск"
-
-msgid "Factory reset"
-msgstr "Сброс всех настроек"
 
 msgid "Fade the Infobar on hide"
 msgstr "Затухание инфобара при исчезании"
@@ -7983,6 +8000,9 @@ msgstr "Контекстное меню менеджера файлов"
 msgid "File Commander menu"
 msgstr "Меню менеджера файлов"
 
+msgid "File System Check"
+msgstr "Проверка файловой системы"
+
 msgid "File appears to be busy.\n"
 msgstr "Файл занят\n"
 
@@ -8021,9 +8041,6 @@ msgstr "Название файла"
 
 msgid "Files/folders to exclude from backup"
 msgstr "Исключить из резервной копии"
-
-msgid "Filesystem Check"
-msgstr "Проверка файловой системы"
 
 msgid "Filesystem check your Harddisk"
 msgstr "Проверка файловой системы жёсткого диска"
@@ -8095,9 +8112,6 @@ msgstr "Фиксировано"
 msgid "Fixed X11 font (SD)"
 msgstr "Шрифт Fixed X11 (SD)"
 
-msgid "Flash"
-msgstr "Прошивка"
-
 msgid "Flash Image"
 msgstr "Записать имидж"
 
@@ -8125,9 +8139,6 @@ msgstr "Мигающая иконка"
 
 msgid "Flashing Image"
 msgstr "Прошивка имиджа"
-
-msgid "Flashing failed"
-msgstr "Прошивка не удалась"
 
 msgid "Flashing image successful"
 msgstr "Имидж успешно прошит"
@@ -8300,6 +8311,9 @@ msgstr "Полный RGB"
 msgid "Full back-up on %s"
 msgstr "Полное копирование на %s"
 
+msgid "Full factory reset"
+msgstr "Полный сброс до заводских настроек"
+
 msgid "Full transparency"
 msgstr "Полная прозрачность"
 
@@ -8330,6 +8344,18 @@ msgstr "Гб"
 msgid "GCC version"
 msgstr "Версия GCC"
 
+msgid "GREEN button"
+msgstr "Зелёная кнопка"
+
+msgid "GREEN long"
+msgstr "Зелёная, долгая"
+
+msgid "GStreamer debug log category *"
+msgstr "Категория журнала отладки GStreamer *"
+
+msgid "GStreamer debug log level *"
+msgstr "Уровень журнала отладки GStreamer *"
+
 msgid "GStreamer version"
 msgstr "Версия GStreamer"
 
@@ -8337,21 +8363,21 @@ msgid ""
 "GUI needs a restart to apply a new language\n"
 "Do you want to restart the GUI now?"
 msgstr ""
-"Для применения нового языка требуется перезагрузка графического интерфейса пользователя\n"
+"Для применения нового языка требуется перезагрузка графического интерфейса \n"
 "Вы хотите перезапустить графический интерфейс сейчас?"
 
 msgid ""
 "GUI needs a restart to apply a new skin\n"
 "Do you want to Restart the GUI now?"
 msgstr ""
-"Для применения нового скина требуется перезагрузка графического интерфейса пользователя\n"
+"Для применения нового скина требуется перезагрузка графического интерфейса \n"
 "Вы хотите перезапустить графический интерфейс сейчас?"
 
 msgid ""
 "GUI needs a restart to apply a new skin\n"
 "Do you want to restart the GUI now?"
 msgstr ""
-"Для применения нового скина требуется перезагрузка графического интерфейса пользователя\n"
+"Для применения нового скина требуется перезагрузка графического интерфейса \n"
 "Вы хотите перезапустить графический интерфейс сейчас?"
 
 msgid "Gabon"
@@ -8443,12 +8469,6 @@ msgstr "Общество"
 
 msgid "Gesundheit"
 msgstr "Здоровье"
-
-msgid "Get latest experimental image"
-msgstr "Получить последний тестовый имидж"
-
-msgid "Get latest release image"
-msgstr "Получить последний стабильный имидж"
 
 msgid "Getting Event Info failed!"
 msgstr "Ошибка получения информации о текущем событии!"
@@ -8564,10 +8584,10 @@ msgstr "Захват"
 msgid "Graphical EPG"
 msgstr "Графический ТВ-гид"
 
-msgid "Graphical InfobarEPG settings"
+msgid "Graphical InfobarEPG Settings"
 msgstr "Настройки графического инфобара"
 
-msgid "GraphicalEPG settings"
+msgid "GraphicalEPG Settings"
 msgstr "Настройки графического ТВ-гида"
 
 msgid "Graphics"
@@ -8581,12 +8601,6 @@ msgstr "Греческий"
 
 msgid "Green"
 msgstr "Зелёный"
-
-msgid "Green button"
-msgstr "Зелёная кнопка"
-
-msgid "Green long"
-msgstr "Зелёная, долгая"
 
 msgid "Greenland"
 msgstr "Гренландия"
@@ -8672,10 +8686,10 @@ msgstr "Цветовое пространство HDMI"
 msgid "HDMI HDR Type"
 msgstr "Тип HDMI HDR"
 
-msgid "HDMI Recording"
+msgid "HDMI Recording Settings"
 msgstr "Запись по HDMI"
 
-msgid "HDMI-CEC Setup"
+msgid "HDMI-CEC Settings"
 msgstr "Настройка HDMI-CEC"
 
 msgid "HDMI-CEC Setup Actions"
@@ -8738,7 +8752,7 @@ msgstr "Уйти в режим ожидания с ТВ"
 msgid "Handle wakeup from TV"
 msgstr "Включить при включении ТВ"
 
-msgid "Hard disk setup"
+msgid "Hard Disk Settings"
 msgstr "Настройка диска"
 
 msgid "Hard disk standby after"
@@ -9121,6 +9135,9 @@ msgstr "Если 'никогда', несмотря на это, будет за
 msgid "If an action is user-configurable, its help entry will be flagged with a '(C)' suffix."
 msgstr "Если действие настраивается пользователем, его запись в справке будет помечена суффиксом '(C)'."
 
+msgid "If disabled, underscore characters in file and directory names are not shown and are replaced with spaces."
+msgstr "Если отключено, символы подчеркивания в именах файлов и каталогов не отображаются и заменяются пробелами."
+
 msgid "If editing a file, can you set the cursor start position at end or begin of the line."
 msgstr "При редактировании файла Вы можете установить начальную позицию курсора в конце или начале строки."
 
@@ -9205,8 +9222,8 @@ msgstr "Если включен обходной путь глубокого о�
 msgid "If the free space is less than setting value, then an attempt is made to delete the old timeshift files."
 msgstr "Если свободное пространство меньше, чем требуемое значение, будут удалены старые файлы таймшифта."
 
-msgid "If the text is too long to be displayed on the front panel, it will be repeated (number of times):"
-msgstr "При показе на дисплее (на передней панели) длинного текста, текст будет повторяться (количество раз):"
+msgid "If the text is too long to be displayed on the front panel, it will be repeated (number of times)."
+msgstr "Если текст слишком длинный для отображения на передней панели, он будет повторяться (количество раз)."
 
 msgid "If using multiple uncommitted switches the DiSEqC commands must be sent multiple times. Set to the number of uncommitted switches in the chain minus one."
 msgstr "При использовании нескольких незафиксированных переключателей команды DiSEqC должны отправляться несколько раз. Установите количество незафиксированных переключателей в цепочке минус один."
@@ -9324,7 +9341,7 @@ msgstr "Inadyn"
 msgid "Inadyn Log"
 msgstr "Журнал Inadyn"
 
-msgid "Inadyn Setup"
+msgid "Inadyn Settings"
 msgstr "Настройки Inadyn"
 
 msgid "Include AIT in http streams"
@@ -9400,7 +9417,7 @@ msgid "Info button (short)"
 msgstr "Кнопка Info (Короткое нажатие)"
 
 msgid "Info file checksum"
-msgstr "Контрольная сумма файла"
+msgstr "Контрольная сумма"
 
 msgid "Info file override"
 msgstr "Переопределение информационного файла"
@@ -9438,7 +9455,7 @@ msgstr "Источник отображения данных в инфобаре
 msgid "Infobar:"
 msgstr "Инфобар:"
 
-msgid "InfobarEPG settings"
+msgid "InfobarEPG Settings"
 msgstr "Настройки инфобара ТВ-гида"
 
 msgid "Information"
@@ -9480,6 +9497,9 @@ msgstr "Ввод данных"
 msgid "Input "
 msgstr "Вход "
 
+msgid "Input Device Settings"
+msgstr "Настройка устройства ввода"
+
 msgid "Input Stream ID"
 msgstr "ID входящего потока"
 
@@ -9494,9 +9514,6 @@ msgstr "Устройства ввода"
 
 msgid "Input scroll position"
 msgstr "Положение прокрутки ввода"
-
-msgid "InputDevice Setup"
-msgstr "Настройка устройства ввода"
 
 msgid "Insert"
 msgstr "Вставка"
@@ -9860,12 +9877,11 @@ msgstr "Файл ядра"
 msgid "Kernel version"
 msgstr "Версия ядра"
 
-#, python-format
-msgid "Kernel: %s"
-msgstr "Ядро:\\t\\t%s"
-
 msgid "Keyboard"
 msgstr "Клавиатура"
+
+msgid "Keyboard Settings"
+msgstr "Настройки клавиатуры"
 
 msgid "Keyboard data entry"
 msgstr "Ввод данных с клавиатуры"
@@ -9875,9 +9891,6 @@ msgstr "Клавиатура долгая"
 
 msgid "Keyboard map"
 msgstr "Раскладка клавиатуры"
-
-msgid "Keyboard setup"
-msgstr "Настройки клавиатуры"
 
 msgid "Kikuyu / Gikuyu"
 msgstr "Kikuyu / Gikuyu"
@@ -10074,7 +10087,7 @@ msgid "Last config"
 msgstr "Последний конфиг"
 
 msgid "Last flash"
-msgstr "Последняя флеш"
+msgstr "Последняя прошивка"
 
 msgid "Last speed"
 msgstr "Последняя скорость"
@@ -10178,7 +10191,7 @@ msgstr "Ограничить размер журнала отладки (Мб)"
 msgid "Limit east"
 msgstr "Ограничение на восток"
 
-msgid "Limit the characters that can be used in recording filenames to (7 bit) ascii. This ensures compatibility with operating systems or file systems with limited character sets."
+msgid "Limit the characters that can be used in recording filenames to (7 bit) ASCII. This ensures compatibility with operating systems or file systems with limited character sets."
 msgstr "Ограничьте символы, которые можно использовать при записи имён файлов, (7 бит) ascii. Это обеспечивает совместимость с операционными системами или файловыми системами с ограниченным набором символов."
 
 msgid "Limit west"
@@ -10209,7 +10222,7 @@ msgid "Link target:"
 msgstr "Цель ссылки:"
 
 msgid "Link:"
-msgstr "Состояние"
+msgstr "Ссылка:"
 
 msgid "Linked titles with a DVD menu"
 msgstr "Заголовки связанные с DVD меню"
@@ -10322,7 +10335,7 @@ msgstr "Локаль (по возрастанию)"
 msgid "Locale (Descending)"
 msgstr "Локаль (по убыванию)"
 
-msgid "Locale Selection Setup"
+msgid "Locale Selection Settings"
 msgstr "Настройка выбора локали"
 
 msgid "Locale already selected."
@@ -10365,8 +10378,8 @@ msgstr "Управление журналами"
 msgid "Log file '%s' deleted."
 msgstr "Файл журнала '%s' удалён."
 
-msgid "Log python stack trace on spinner ?"
-msgstr "Запись трассировки стека python на спиннере?"
+msgid "Log python stack trace on spinner"
+msgstr "Запись трассировки стека python на спиннере"
 
 msgid "Log results to harddisk"
 msgstr "Записать результаты на HDD"
@@ -10390,14 +10403,14 @@ msgstr "Вход на сервер IceTV"
 msgid "Logs"
 msgstr "Журналы"
 
+msgid "Logs Settings"
+msgstr "Настройки журналов"
+
 msgid "Logs location"
 msgstr "Расположение журналов"
 
 msgid "Logs older then the set no of days will be deleted."
 msgstr "Журналы старше заданного количества дней будут удалены."
-
-msgid "Logs settings"
-msgstr "Настройки журналов"
 
 msgid "Long << / >>"
 msgstr "Долгое нажатие << / >>"
@@ -10514,7 +10527,7 @@ msgstr "Магия"
 msgid "Magic long"
 msgstr "Магия длинная"
 
-msgid "Main menu"
+msgid "Main Menu"
 msgstr "Главное меню"
 
 msgid "Mainmenu"
@@ -10596,9 +10609,6 @@ msgstr "Ручной поиск каналов"
 msgid "Manual configuration"
 msgstr "Ручная настройка"
 
-msgid "Manual scan"
-msgstr "Ручной поиск"
-
 msgid "Manual scan for services"
 msgstr "Ручной поиск каналов"
 
@@ -10675,13 +10685,13 @@ msgstr "Макс вниз "
 msgid "Maximum minutes to jump %d !"
 msgstr "Максимум минут для перехода %d!"
 
-msgid "Maximum no of days:"
+msgid "Maximum no of days"
 msgstr "Максимальное количество дней"
 
 msgid "Maximum number of days in EPG"
 msgstr "Максимальное количество дней в ТВ-гиде"
 
-msgid "Maximum space used (MB):"
+msgid "Maximum space used (MB)"
 msgstr "Максимальное использование пространства диска (Mб)"
 
 msgid "Mayotte"
@@ -10795,7 +10805,7 @@ msgstr "MiniDLNA "
 msgid "MiniDLNA Log"
 msgstr "Журнал MiniDLNA"
 
-msgid "MiniDLNA Setup"
+msgid "MiniDLNA Settings"
 msgstr "Настройки MiniDLNA"
 
 msgid "MiniTV"
@@ -10841,7 +10851,7 @@ msgid "Missing "
 msgstr "Отсутствует "
 
 msgid "Mobile connection"
-msgstr "Мобильная подключение"
+msgstr "Мобильная сеть"
 
 msgid "Mode"
 msgstr "Режим"
@@ -10961,7 +10971,7 @@ msgstr "Точки монтирования"
 msgid "Mounts Devices"
 msgstr "Подключенные устройства"
 
-msgid "Mounts Setup"
+msgid "Mounts Settings"
 msgstr "Настройки монтирования"
 
 msgid "Move"
@@ -11039,6 +11049,12 @@ msgstr "Отключение режима перемещения"
 
 msgid "Move mode on"
 msgstr "Перемещение вкл"
+
+msgid "Move the current DNS entry down one line"
+msgstr "Переместить текущую запись DNS на одну строку вниз"
+
+msgid "Move the current DNS entry up one line"
+msgstr "Переместить текущую запись DNS вверх на одну строку"
 
 msgid "Move the keyboard cursor down"
 msgstr "Перемещение курсора клавиатуры вниз"
@@ -11136,7 +11152,7 @@ msgstr "Список записей"
 msgid "Movie List Actions"
 msgstr "Действия по списку фильмов"
 
-msgid "Movie List Setup"
+msgid "Movie List Settings"
 msgstr "Настройка списка фильмов"
 
 msgid "Movie Player Actions"
@@ -11181,7 +11197,7 @@ msgstr "Селектор имиджей MultiBoot"
 msgid "MultiBootSelector Actions"
 msgstr "Действия селектора мультизагрузки"
 
-msgid "MultiEPG settings"
+msgid "MultiEPG Settings"
 msgstr "Настройки мульти ТВ-гида"
 
 msgid "MultiLib"
@@ -11254,16 +11270,10 @@ msgstr "Недоступно"
 msgid "NEXT"
 msgstr "Далее"
 
-msgid "NFI image flashing"
-msgstr "Прошить имидж NFI"
-
-msgid "NFI image flashing completed. Press Yellow to Reboot!"
-msgstr "NFI имидж удачно установлен. Нажмите жёлтую клавишу для перезагрузки!"
-
 msgid "NFS"
 msgstr "NFS"
 
-msgid "NFS Setup"
+msgid "NFS Settings"
 msgstr "Настройки NFS"
 
 msgid "NIM & Type"
@@ -11290,18 +11300,15 @@ msgstr "Имя"
 msgid "Name reverse"
 msgstr "Реверс имени"
 
+#, python-format
+msgid "Name server %d"
+msgstr "Сервер имён %d"
+
 msgid "Name:"
 msgstr "Имя"
 
 msgid "Nameserver"
 msgstr "DNS сервер"
-
-#, python-format
-msgid "Nameserver %d"
-msgstr "DNS сервер %d"
-
-msgid "Nameserver configuration"
-msgstr "Конфигурация сервера имён"
 
 msgid "Nameserver settings"
 msgstr "Настройка DNS"
@@ -11310,7 +11317,7 @@ msgid "Nameserver setup"
 msgstr "Настройка DNS"
 
 msgid "Namespace & Orbital pos."
-msgstr "Орбитальная позиция"
+msgstr "Орбитальная позиция."
 
 msgid "Namibia"
 msgstr "Намибия"
@@ -11393,8 +11400,8 @@ msgstr "Перезапуск сети"
 msgid "Network Services"
 msgstr "Сетевые службы"
 
-msgid "Network Setup"
-msgstr "Настройка сети"
+msgid "Network Settings"
+msgstr "Настройки сети"
 
 msgid "Network Test"
 msgstr "Тестирование сети"
@@ -11422,9 +11429,6 @@ msgstr "Сетевое имя (SSID)"
 
 msgid "Network scan"
 msgstr "Поиск сети"
-
-msgid "Network setup"
-msgstr "Настройки сети"
 
 msgid "Network test"
 msgstr "Тест сети"
@@ -11607,9 +11611,6 @@ msgstr "Нет доступных демультиплексоров"
 
 msgid "No description available."
 msgstr "Краткого описания нет."
-
-msgid "No details for this image file"
-msgstr "Нет подробностей об этом имидже"
 
 msgid "No displayable files on this medium found!"
 msgstr "Нет отображаемых файлов на этом носителе!"
@@ -11963,7 +11964,7 @@ msgstr "Очистной режим OPKG"
 msgid "OSD"
 msgstr "OSD"
 
-msgid "OSD 3D Setup"
+msgid "OSD 3D Settings"
 msgstr "Настройки 3D"
 
 msgid "OSD Adjustment"
@@ -11972,14 +11973,14 @@ msgstr "OSD регулировка"
 msgid "OSD Position"
 msgstr "Настройки OSD"
 
+msgid "OSD Settings"
+msgstr "Общие настройки"
+
 msgid "OSD Setup"
 msgstr "Настройка интерфейса"
 
 msgid "OSD name request"
 msgstr "Запрос OSD имени"
-
-msgid "OSD settings"
-msgstr "Общие настройки"
 
 msgid "OScam Info"
 msgstr "Информация OScam"
@@ -12058,6 +12059,9 @@ msgstr "Только дополнения."
 
 msgid "Only free scan"
 msgstr "Искать только открытые"
+
+msgid "Only log debug information of GStreamer category. * means all categories."
+msgstr "Записывать в журнал только отладочную информацию категории GStreamer. * означает все категории."
 
 msgid "Only move the dish quickly after this hour."
 msgstr "Только после этого времени быстро перемещайте тарелку."
@@ -12158,14 +12162,11 @@ msgstr "Версия OpenSSL"
 msgid "OpenVPN"
 msgstr "OpenVPN"
 
-msgid "OpenVPN Setup"
+msgid "OpenVPN Settings"
 msgstr "Настройки OpenVPN"
 
 msgid "OpenVpn Log"
 msgstr "Журнал OpenVPN"
-
-msgid "OpenVpn Setup"
-msgstr "Настройки OpenVPN"
 
 msgid "Operating LED status in deep standby mode"
 msgstr "Состояние индикатора работы в режиме глубокого ожидания"
@@ -12203,11 +12204,11 @@ msgstr "Ория"
 msgid "Oromo"
 msgstr "Оромо"
 
-msgid "Oscam Info - Configuration"
-msgstr "Настройки"
-
 msgid "Oscam Info - Main Menu"
 msgstr "Главное меню"
+
+msgid "Oscam Info Settings"
+msgstr "Настройки"
 
 #, python-format
 msgid "Oscam Log ( Oscam-Version: %s )"
@@ -12482,11 +12483,14 @@ msgstr "Пароль (пользователь http)"
 msgid "Password (httpwd)"
 msgstr "Пароль (httpwd)"
 
-msgid "Password Setup"
+msgid "Password Actions"
+msgstr "Действия с паролем"
+
+msgid "Password Settings"
 msgstr "Настройка пароля"
 
-msgid "Password changed"
-msgstr "Пароль изменён"
+msgid "Password changed."
+msgstr "Пароль изменён."
 
 msgid "Password:"
 msgstr "Пароль"
@@ -12684,9 +12688,6 @@ msgstr "Пожалуйста, измените время окончания з�
 msgid "Please check the manual of the receiver"
 msgstr "Пожалуйста, проверьте руководство по эксплуатации ресивера"
 
-msgid "Please check your network settings!"
-msgstr "Пожалуйста, проверьте настройки сети!"
-
 msgid "Please choose CCcam-Reader"
 msgstr "Пожалуйста, выберите CCcam-ридер"
 
@@ -12717,7 +12718,7 @@ msgid "Please do not change any values unless you know what you are doing!"
 msgstr "Пожалуйста, не меняйте параметры, если не разбираетесь в этом!"
 
 msgid "Please don't panic if you see values that look suspicious."
-msgstr "Пожалуйста, не паникуйте, если увидите значения, которые выглядят подозрительно."
+msgstr "Не паникуйте, если увидите значения, которые выглядят подозрительно."
 
 msgid "Please enter a name for the new bouquet"
 msgstr "Пожалуйста, введите имя для нового пакета"
@@ -12812,9 +12813,6 @@ msgstr "Пожалуйста, выберите подсервис для зап�
 
 msgid "Please select a subservice..."
 msgstr "Пожалуйста, выберите подсервис..."
-
-msgid "Please select an NFI file and press green key to flash!"
-msgstr "Пожалуйста, выберите файл NFI, и нажмите ЗЕЛЁНУЮ кнопку!"
 
 msgid "Please select an acceptable directory."
 msgstr "Пожалуйста, выберите приемлемый каталог."
@@ -13057,7 +13055,10 @@ msgstr "Пожалуйста, подождите... почти готово! "
 msgid "Plugin Browser"
 msgstr "Браузер плагинов"
 
-msgid "Plugin Filter"
+msgid "Plugin Browser Settings"
+msgstr "Настройки списка плагинов"
+
+msgid "Plugin Filter Settings"
 msgstr "Фильтр плагинов"
 
 msgid "Plugin details"
@@ -13068,9 +13069,6 @@ msgstr "Информация об активности менеджера пла
 
 msgid "Plugin manager help"
 msgstr "Помощь по менеджеру плагинов"
-
-msgid "Pluginbrowser Settings"
-msgstr "Настройки списка плагинов"
 
 msgid "Plugins"
 msgstr "Плагины"
@@ -13243,9 +13241,6 @@ msgstr "Приоритетные тюнеры для записи"
 msgid "Preparation time for recording (seconds)"
 msgstr "Время подготовки к записи (секунды)"
 
-msgid "Prepare another USB stick for image flashing"
-msgstr "Приоритет другого USB-флеша для установки системы"
-
 msgid "Preparing... Please wait"
 msgstr "Подготовка. Пожалуйста подождите"
 
@@ -13347,7 +13342,7 @@ msgstr "Нажимите эту кнопку для включения режи�
 msgid "Press yellow to set this interface as the default interface."
 msgstr "Нажмите ЖЁЛТУЮ кнопку, чтобы назначить данный интерфейс по умолчанию."
 
-msgid "Pressing the panic button will zap you to this channelnumber in your first bouquet."
+msgid "Pressing the panic button will zap you to this channel number in your first bouquet."
 msgstr "При нажатии тревожной кнопки будете переключены на этот номер канала в первом фаворите."
 
 msgid "Prev Image"
@@ -13661,11 +13656,17 @@ msgstr "Быстрое меню/Дополнения"
 msgid "Quiz"
 msgstr "Викторина"
 
+msgid "RADIO"
+msgstr "Радио"
+
+msgid "RADIO long"
+msgstr "Радио, долгая"
+
 msgid "RAM (Details)"
-msgstr "ОЗУ (Подробности)"
+msgstr "ОЗУ (подробно)"
 
 msgid "RAM (Summary)"
-msgstr "ОЗУ (Сводка)"
+msgstr "ОЗУ (обзор)"
 
 msgid "RC custom code"
 msgstr "Пользовательский код RC"
@@ -13703,20 +13704,20 @@ msgstr "Символ REC в режиме ожидания"
 msgid "REC Symbol in use"
 msgstr "Используемый символ REC"
 
-msgid "RF output"
+msgid "RED button"
+msgstr "Красная кнопка"
+
+msgid "RED long"
+msgstr "Красная, долгая"
+
+msgid "RF Output Settings"
 msgstr "ВЧ выход"
 
 msgid "RGB"
 msgstr "RGB"
 
-msgid "Radio"
-msgstr "Радио"
-
 msgid "Radio Channel Selection"
 msgstr "Список радиоканалов"
-
-msgid "Radio long"
-msgstr "Радио, долгая"
 
 msgid "Radsport"
 msgstr "Велоспорт"
@@ -13724,7 +13725,7 @@ msgstr "Велоспорт"
 msgid "Random"
 msgstr "Случайно"
 
-msgid "Random password"
+msgid "Random Password"
 msgstr "Случайный пароль"
 
 #, python-format
@@ -13888,6 +13889,9 @@ msgstr "Запись"
 msgid "Recording Actions"
 msgstr "Настройки записи"
 
+msgid "Recording Settings"
+msgstr "Настройки записи"
+
 msgid "Recording Setup"
 msgstr "Настройки записи"
 
@@ -13905,9 +13909,6 @@ msgstr "Идёт запись"
 
 msgid "Recording running"
 msgstr "Запись идёт"
-
-msgid "Recording settings"
-msgstr "Настройки записи"
 
 msgid "Recording started"
 msgstr "Запись начата"
@@ -13958,17 +13959,11 @@ msgstr "Режим восстановления"
 msgid "Red"
 msgstr "Красный"
 
-msgid "Red button"
-msgstr "Красная кнопка"
-
 msgid "Red button..."
 msgstr "КРАСНАЯ кнопка..."
 
 msgid "Red colored"
 msgstr "Название канала красным цветом"
-
-msgid "Red long"
-msgstr "Красная, долгая"
 
 msgid "Red/HbbTV Button Actions"
 msgstr "Действия КРАСНОЙ кнопки/HbbTV"
@@ -14088,6 +14083,9 @@ msgstr "Помнить пин-код канала"
 msgid "Remote Control"
 msgstr "Пульт"
 
+msgid "Remote Control Button Settings"
+msgstr "Настройки кнопок пульта ДУ"
+
 msgid "Remote Control Code"
 msgstr "Код дистанционного управления"
 
@@ -14125,14 +14123,41 @@ msgstr "Удалить 4X канал"
 msgid "Remove Service"
 msgstr "Удалить канал"
 
+msgid "Remove a DNS entry"
+msgstr "Удалить запись DNS"
+
 msgid "Remove a mark"
 msgstr "Удалить метку"
 
-msgid "Remove a nameserver entry"
-msgstr "Удалить DNS-сервер"
+msgid "Remove all bouquet/tuning data"
+msgstr "Удалить все данные букета/настройки"
 
 msgid "Remove all cuts and marks"
 msgstr "Удалить всё"
+
+msgid "Remove all network mount data"
+msgstr "Удалить все данные сетевого подключения"
+
+msgid "Remove all other data"
+msgstr "Удалить все остальные данные"
+
+msgid "Remove all plugin setting data"
+msgstr "Удалить все данные настроек плагина"
+
+msgid "Remove all resume point data"
+msgstr "Удалить все данные точки возобновления"
+
+msgid "Remove all settings data"
+msgstr "Удалить все данные настроек"
+
+msgid "Remove all skin data"
+msgstr "Удалить все данные скина"
+
+msgid "Remove all timer data"
+msgstr "Удалить все данные таймера"
+
+msgid "Remove all user interface data"
+msgstr "Удалить все данные пользовательского интерфейса"
 
 msgid "Remove bookmark"
 msgstr "Удалить закладку"
@@ -14217,8 +14242,8 @@ msgstr "Повторять сообщения дисплея"
 msgid "Repeat the sent standby and wakeup commands"
 msgstr "Повтор отправленны[ команд режима ожидания и пробуждения"
 
-msgid "Repeat the standby commands?"
-msgstr "Повторить команды режима ожидания?"
+msgid "Repeat the standby commands"
+msgstr "Повторить команды режима ожидания"
 
 msgid "Repeat type"
 msgstr "Повторять"
@@ -14266,6 +14291,9 @@ msgstr "Сбросить настройки HDMI-CEC по умолчанию"
 
 msgid "Reset and renumerate title names"
 msgstr "Сбросить и перенумеровать заголовки"
+
+msgid "Reset network configuration"
+msgstr "Сбросить конфигурацию сети"
 
 msgid "Reset persistent PIN code"
 msgstr "Сбросить пин-код"
@@ -14360,9 +14388,6 @@ msgstr "Восстановить настройки"
 
 msgid "Restore backups"
 msgstr "Востановление резервных копий"
-
-msgid "Restore is running..."
-msgstr "Выполняется восстановление..."
 
 msgid "Restore settings from a backup"
 msgstr "Восстановить настройки из копии"
@@ -14480,6 +14505,9 @@ msgstr "Корневой файл"
 msgid "Rotor turning speed"
 msgstr "Скорость вращения мотора"
 
+msgid "Router / Gateway"
+msgstr "Маршрутизатор/шлюз"
+
 msgid "Routing request"
 msgstr "Запрос на маршрутизацию"
 
@@ -14544,7 +14572,7 @@ msgstr "S-Видео"
 msgid "SABnzbd"
 msgstr "SABnzbd"
 
-msgid "SABnzbd Setup"
+msgid "SABnzbd Settings"
 msgstr "Настройки SABnzbd"
 
 msgid "SAT"
@@ -14559,7 +14587,7 @@ msgstr "SATA"
 msgid "SATPI"
 msgstr "SATPI"
 
-msgid "SATPI Setup"
+msgid "SATPI Settings"
 msgstr "Настройка SATPI"
 
 msgid "SCPC optimized search range"
@@ -14685,11 +14713,11 @@ msgstr "Поиск спутников"
 msgid "Satellite"
 msgstr "Спутник"
 
+msgid "Satellite Dish Settings"
+msgstr "Настройки спутникового оборудования"
+
 msgid "Satellite configuration mode"
 msgstr "Режим настройки спутника"
-
-msgid "Satellite dish setup"
-msgstr "Настройки спутникового оборудования"
 
 msgid "Satellite equipment"
 msgstr "Спутниковое оборудование"
@@ -15004,6 +15032,39 @@ msgstr "Выберите 'A' или 'B', если этого требует Ва
 msgid "Select 'Yes' to enable editing of this device's settings. Selecting 'No' resets the devices settings to their default values."
 msgstr "Выберите 'Да', чтобы разрешить редактирование настроек этого устройства. Выбор 'Нет' сбрасывает настройки устройств до значений по умолчанию."
 
+msgid "Select 'Yes' to remove all main settings configuration data. Selecting this option will set all Enigma2 settings back to their default values.  This will also cause Enigma2 to run the Welcome Wizard on restart."
+msgstr "Выберите 'Да', чтобы удалить все данные конфигурации основных параметров. Выбор этой опции вернет все настройки Enigma2 к значениям по умолчанию. Это также заставит Enigma2 запускать мастер приветствия при перезапуске."
+
+msgid "Select 'Yes' to remove all media player resume data. Selecting this option will remove the data used to allow playback of media files to resume from the position where playback was last stopped. Playback position of recordings is not affected."
+msgstr "Выберите 'Да', чтобы удалить все данные возобновления работы медиаплеера. При выборе этого параметра будут удалены данные, используемые для возобновления воспроизведения медиафайлов с того места, где воспроизведение было остановлено в последний раз. Позиция воспроизведения записей не изменяется."
+
+msgid "Select 'Yes' to remove all network mount data. Selecting this option will remove all network data including automounts and network connection data including connection accounts and passwords. This could cause some Enigma2 functions to fail if they are configured to use these network resources."
+msgstr "Выберите 'Да', чтобы удалить все данные сетевого подключения. При выборе этого параметра будут удалены все сетевые данные, включая автомонтирование и данные сетевого подключения, включая учётные записи подключения и пароли. Это может привести к сбою некоторых функций Enigma2, если они настроены на использование этих сетевых ресурсов."
+
+msgid "Select 'Yes' to remove all other files and directories not covered by the options above."
+msgstr "Выберите 'Да', чтобы удалить все остальные файлы и каталоги, не указанные выше."
+
+msgid "Select 'Yes' to remove all plugin configuration data. Selecting this option will remove all plugin configuration data that is stored in the Enigma2 configuration folder. This will cause all affected plugins to return to their default settings. This could cause some plugins to not function until configured."
+msgstr "Выберите 'Да', чтобы удалить все данные конфигурации плагина. Выбор этой опции удалит все данные конфигурации плагина, хранящиеся в папке конфигурации Enigma2. Это приведёт к тому, что все затронутые плагины вернутся к своим настройкам по умолчанию. Это может привести к тому, что некоторые плагины не будут работать до тех пор, пока они не будут настроены."
+
+msgid "Select 'Yes' to remove all settings, tuning data, timers, resume pointers etc. Selecting this option will restore the configuration to the initial settings before any configuration settings were applied. This is the most reliable form of Factory Reset."
+msgstr "Выберите 'Да', чтобы удалить все настройки, данные настройки, таймеры, указатели возобновления и т. д. При выборе этой опции конфигурация будет восстановлена до первоначальных настроек до применения каких-либо настроек конфигурации. Это самая надёжная форма сброса к заводским настройкам."
+
+msgid "Select 'Yes' to remove all timer configuration data. Selecting this option will clear all timers, autotimers and power timers."
+msgstr "Выберите 'Да', чтобы удалить все данные конфигурации таймера. Выбор этой опции приведёт к сбросу всех таймеров, автотаймеров и таймеров питания."
+
+msgid "Select 'Yes' to remove all tuning data. Selecting this option will remove all tuning and bouquet data and will make timers non functional until the receiver is retuned."
+msgstr "Выберите 'Да', чтобы удалить все данные настройки. При выборе этой опции будут удалены все настройки и данные букета, а таймеры не будут работать до тех пор, пока ресивер не будет перенастроен."
+
+msgid "Select 'Yes' to remove all user customizations of skin data. Selecting this option will remove all user based skin customizations. All affected skins will return to their standard settings. This will also clear any customized boot logos and backdrops."
+msgstr "Выберите 'Да', чтобы удалить все пользовательские настройки данных скина. Выбор этой опции удалит все пользовательские настройки скина. Все затронутые скины вернутся к своим стандартным настройкам. Это также удалит любые настраиваемые загрузочные логотипы и фоны."
+
+msgid "Select 'Yes' to remove all user interface data. Selecting this option will remove all keymap, menu and setup override data and restore the default definitions."
+msgstr "Выберите 'Да', чтобы удалить все данные пользовательского интерфейса. При выборе этой опции будут удалены все данные раскладки клавиатуры, меню и настроек, а также восстановлены определения по умолчанию."
+
+msgid "Select 'Yes' to reset network configuration to the default. This will enable the Ethernet port if it exists and set the receiver to use DHCP. All other network interfaces will be deleted."
+msgstr "Выберите 'Да', чтобы восстановить настройки сети по умолчанию. Это активирует порт Ethernet, если он существует, и настроит ресивер на использование DHCP. Все остальные сетевые интерфейсы будут удалены."
+
 msgid "Select 'band' if using a 'universal' LNB, otherwise consult your LNB spec sheet."
 msgstr "Выберите 'диапазон', если используете 'универсальный' LNB, в противном случае обратитесь к спецификациям LNB."
 
@@ -15107,9 +15168,6 @@ msgstr "Добавить файлы в резервную копию"
 msgid "Select additional files to backup"
 msgstr "Выбор дополнительных файлов резервных копий"
 
-msgid "Select an image to be downloaded"
-msgstr "Выберите прошивку для загрузки"
-
 msgid "Select audio track"
 msgstr "Выбрать звуковую дорожку"
 
@@ -15137,9 +15195,6 @@ msgstr "Выберите место для копии"
 msgid "Select default EPG type..."
 msgstr "Выбрать тип EPG по умолчанию ..."
 
-msgid "Select desired image from feed list"
-msgstr "Выберите желаемый имидж из списка"
-
 msgid "Select destination for:"
 msgstr "Выберите пункт назначения для"
 
@@ -15161,8 +15216,8 @@ msgstr "Выберите, как быстро тарелка должна пер
 msgid "Select how the satellite dish is set up. i.e. fixed dish, single LNB, DiSEqC switch, positioner, etc."
 msgstr "Выберите способ настройки спутниковой антенны. т.е. фиксированная тарелка, одиночный LNB, переключатель DiSEqC, позиционер и т. д."
 
-msgid "Select how to activate the Quick EPG mode:"
-msgstr "Выбор активации режима быстрого ТВ-гида"
+msgid "Select how to activate the Quick EPG mode."
+msgstr "Выбор активации режима быстрого ТВ-гида."
 
 msgid "Select how your box will upgrade."
 msgstr "Выберите способ обновления Вашего ресивера."
@@ -15311,6 +15366,9 @@ msgstr "Выберите смещённый набор символов толь
 msgid "Select the sleep timer action."
 msgstr "Выберите действие таймера сна."
 
+msgid "Select the source of the default DNS settings."
+msgstr "Выберите источник настроек DNS по умолчанию."
+
 msgid "Select the time delay before the button starts repeating."
 msgstr "Выберите время задержки до того, как кнопка начнёт повторяться."
 
@@ -15353,23 +15411,23 @@ msgstr "Выберите, что делать, когда %s%s загружае�
 msgid "Select what should be done when the %s %s was shutdown incorrectly, or after the Power was lost."
 msgstr "Выберите, что должно произойти, если %s %s некорректно выключен или произошёл сбой питания."
 
-msgid "Select what you want the Channel +/- button to activate:"
-msgstr "Выбор действия для кнопки Channel +/-"
+msgid "Select what you want the Channel +/- button to activate."
+msgstr "Выбор действия для кнопки Channel +/-."
 
-msgid "Select what you want the EPG button to activate:"
-msgstr "Выбор действия для кнопки EPG"
+msgid "Select what you want the EPG button to activate."
+msgstr "Выбор действия для кнопки EPG."
 
-msgid "Select what you want the INFO button to activate:"
-msgstr "Выбор действия для кнопки INFO"
+msgid "Select what you want the INFO button to activate."
+msgstr "Выбор действия для кнопки INFO."
 
-msgid "Select what you want the OK button to activate:"
-msgstr "Выбор действия для кнопки OK"
+msgid "Select what you want the OK button to activate."
+msgstr "Выбор действия для кнопки OK."
 
-msgid "Select what you want the TV button to activate:"
-msgstr "Выбор действия для кнопки ТВ"
+msgid "Select what you want the TV button to activate."
+msgstr "Выбор действия для кнопки ТВ."
 
-msgid "Select what you want the Up/Down button to activate:"
-msgstr "Выбор действия для красной кнопок Вверх/Вниз"
+msgid "Select what you want the Up/Down button to activate."
+msgstr "Выбор действия для красной кнопок Вверх/Вниз."
 
 msgid "Select wireless network"
 msgstr "Выберите беспроводную сеть"
@@ -15439,6 +15497,15 @@ msgstr ""
 "Выбранный список настроек: %s\n"
 "\n"
 "Вы хотите восстановить этот список настроек?"
+
+msgid ""
+"Selecting 'Yes' will delete the currently selected user data. This action can't be undone. You may want to create a backup before continuing.\n"
+"\n"
+"Are you sure you want to continue with the factory reset?"
+msgstr ""
+"При выборе 'Да' будут удалены текущие выбранные пользовательские данные. Это действие нельзя отменить. Вы можете создать резервную копию, прежде чем продолжить.\n"
+"\n"
+"Вы уверены, что хотите продолжить сброс настроек?"
 
 msgid "Selecting satellites 1 (USALS)"
 msgstr "Выбор спутника 1 (USALS)"
@@ -15778,6 +15845,9 @@ msgstr "Устанавливает корневую папку списка фи
 msgid "Setting Restored "
 msgstr "Настройки восстановлены "
 
+msgid "Setting a password is strongly advised if your STB is open to the Internet. You must set a password in order to be able to use network services like FTP, Telnet or SSH."
+msgstr "Настоятельно рекомендуется установить пароль, если ваш STB открыт для доступа в Интернет. Вы должны установить пароль, чтобы иметь возможность использовать такие сетевые службы, как FTP, Telnet или SSH."
+
 msgid "Settings"
 msgstr "Настройки"
 
@@ -15971,10 +16041,6 @@ msgstr "Настройка спутникового оборудования"
 msgid "Seychelles"
 msgstr "Сейшельские острова"
 
-#, python-format
-msgid "Shall the USB stick wizard proceed and program the image file %s into flash memory?"
-msgstr "Должен ли мастер USB-флеша установить имидж %s во внутреннюю флеш-память?"
-
 msgid "Share Folder's"
 msgstr "Общие папки"
 
@@ -16080,8 +16146,11 @@ msgstr "Показать список автотаймера"
 msgid "Show Box Portal"
 msgstr "Показать Box Portal"
 
-msgid "Show CCcam in extensions ?"
-msgstr "Показать CCcam в меню дополнений?"
+msgid "Show CCcam Info"
+msgstr "Показать инфо о CCcam"
+
+msgid "Show CCcam in extensions"
+msgstr "Показать CCcam в расширениях"
 
 msgid "Show CI messages"
 msgstr "Показать сообщения CI"
@@ -16103,6 +16172,9 @@ msgstr "Показать CoolSingleGuide"
 
 msgid "Show CoolTVGuide"
 msgstr "Показать CoolTVGuide"
+
+msgid "Show Directory size"
+msgstr ""
 
 msgid "Show Display Icons"
 msgstr "Показать иконки на дисплее"
@@ -16149,8 +16221,8 @@ msgstr "MiniTV в главном меню"
 msgid "Show Log"
 msgstr "Показать журнал"
 
-msgid "Show Log Manager in extensions list ?"
-msgstr "Показать менеджер журналов в меню дополнений?"
+msgid "Show Log Manager in extensions list"
+msgstr "Показать менеджер журналов в меню дополнений"
 
 msgid "Show Main Menu as"
 msgstr "Показать главное меню как"
@@ -16173,8 +16245,8 @@ msgstr "Показать мульти ТВ-гид"
 msgid "Show OScam Info"
 msgstr "Показать информацию OScam"
 
-msgid "Show OScam in extensions ?"
-msgstr "Показать OScam в меню дополнений?"
+msgid "Show OScam in extensions"
+msgstr "Показать OScam в расширениях"
 
 msgid "Show PIP"
 msgstr "Показать PiP"
@@ -16366,8 +16438,8 @@ msgstr "Показать информацию об имидже"
 msgid "Show in Standby"
 msgstr "Показать в режиме ожидания"
 
-msgid "Show in extensions list ?"
-msgstr "Показать в меню дополнений?"
+msgid "Show in extensions list"
+msgstr "Показать в меню дополнений"
 
 msgid "Show info"
 msgstr "Показать инфо"
@@ -16564,6 +16636,9 @@ msgstr "Показать системную информацию"
 msgid "Show task list"
 msgstr "Показать список задач"
 
+msgid "Show the CCcam Info Screen"
+msgstr "Показать инфо-экран CCcam"
+
 msgid "Show the DreamPlex player..."
 msgstr "Показать DreamPlex плеер..."
 
@@ -16626,6 +16701,9 @@ msgstr "Показать оставшееся/истёкшее время как
 
 msgid "Show two lines per entry"
 msgstr "Показать две строки для каждой записи"
+
+msgid "Show underscore characters in filenames"
+msgstr "Показывать символы подчеркивания в именах файлов"
 
 msgid "Show unknown Videoresolution as next higher or as highest screen resolution."
 msgstr "Показывать неизвестное разрешение как следующее более высокое или как максимальное."
@@ -16765,7 +16843,7 @@ msgstr "Один спутник"
 msgid "Single step (GOP)"
 msgstr "Покадрово"
 
-msgid "SingleEPG settings"
+msgid "SingleEPG Settings"
 msgstr "Настройки одиночного ТВ-гида"
 
 msgid "Sinhala / Sinhalese"
@@ -16957,14 +17035,8 @@ msgstr "Панель эмуляторов"
 msgid "Softcam Actions"
 msgstr "Действия Softcam"
 
-msgid "Softcam Setup"
+msgid "Softcam Settings"
 msgstr "Настройка ЭМУ"
-
-msgid "Softcam settings"
-msgstr "Настройки эмуляторов"
-
-msgid "Softcam-Panel"
-msgstr "Панель эмуляторов"
 
 msgid "Software"
 msgstr "ПО"
@@ -17176,7 +17248,7 @@ msgstr "Спец. 1"
 msgid "Special 2"
 msgstr "Спец. 2"
 
-msgid "Special Features"
+msgid "Special Features Settings"
 msgstr "Особые настройки"
 
 msgid "Speed"
@@ -17289,10 +17361,10 @@ msgstr "Запускается через несколько секунд"
 
 #. TRANSLATORS: "State" is Location Info
 msgid "State"
-msgstr "Состояние"
+msgstr "Регион"
 
-msgid "Static IP or Custom"
-msgstr "Статический IP-адрес или пользовательский"
+msgid "Static IP / Custom"
+msgstr "Статический IP/Пользовательский"
 
 msgid "Status"
 msgstr "Состояние"
@@ -17323,6 +17395,9 @@ msgstr "Поворот на восток"
 
 msgid "Stepped west"
 msgstr "Поворот на запад"
+
+msgid "Sti"
+msgstr "Sti"
 
 msgid "Stop"
 msgstr "Стоп"
@@ -17384,11 +17459,8 @@ msgstr "Остановить таймшифт и сохоанить буфер �
 msgid "Stop timeshift and save timeshift buffer as movie and start recording of current event"
 msgstr "Остановить таймшифт и сохранить буфер таймшифта как запись и начать запись текущей передачи"
 
-msgid "Stop timeshift while recording?"
-msgstr "Остановить таймшифт на время записи?"
-
-msgid "Stop's timeshift being used if a recording is in progress. (advisable for usb sticks)"
-msgstr "Укажите, нужно ли остановить таймшифт, если идёт запись (Желательно, если используется USB, а не HDD)"
+msgid "Stop timeshift while recording"
+msgstr "Остановить таймшифт на время записи"
 
 msgid "Stopped"
 msgstr "Остановлено"
@@ -17396,7 +17468,10 @@ msgstr "Остановлено"
 msgid "Stopping Softcam"
 msgstr "Остановка эмулятора"
 
-msgid "Storage devices"
+msgid "Stops timeshift being used if a recording is in progress. (Advisable for USB sticks.)"
+msgstr "Укажите, нужно ли остановить таймшифт, если идёт запись (Желательно, если используется USB, а не HDD)"
+
+msgid "Storage Devices"
 msgstr "Устройства хранения"
 
 msgid "Store position"
@@ -17418,7 +17493,7 @@ msgid "Streaming"
 msgstr "Приём (передача) потока"
 
 msgid "Streaming Clients"
-msgstr "Информация о потоковых клиентах"
+msgstr "Потоковые клиенты"
 
 msgid "Streaming Information Actions"
 msgstr "Действия с потоковой информацией"
@@ -17457,7 +17532,7 @@ msgstr "Действия быстрого меню"
 msgid "Subservice list..."
 msgstr "Подсервисы..."
 
-msgid "Subservice mode (green Button)"
+msgid "Subservice mode (GREEN button)"
 msgstr "Режим субсервиса (ЗЕЛЁНАЯ кнопка)"
 
 msgid "Subservices"
@@ -17471,6 +17546,9 @@ msgstr "Выбор субтитров"
 
 msgid "Subtitle Quickmenu"
 msgstr "Быстрое меню субтитров"
+
+msgid "Subtitle Settings"
+msgstr "Настройки субтитров"
 
 msgid "Subtitle alignment"
 msgstr "Положение субтитров"
@@ -17513,9 +17591,6 @@ msgstr "Выбор субтитров"
 
 msgid "Subtitle selection..."
 msgstr "Выбор субтитров..."
-
-msgid "Subtitle settings"
-msgstr "Настройки субтитров"
 
 msgid "Subtitles"
 msgstr "Субтитры"
@@ -17601,7 +17676,7 @@ msgstr "Шведский"
 msgid "Swimming"
 msgstr "Плавание"
 
-msgid "Switch Blue-Short (QuickMenu) with Blue-Long (Extensions)"
+msgid "Switch BLUE short (QuickMenu) with BLUE long (Extensions)"
 msgstr "Поменять короткое нажатие синей кнопки (Быстрое меню) с долгим нажатием (Меню дополнений)"
 
 msgid "Switch EPG Page Down"
@@ -17764,7 +17839,7 @@ msgid "TEXT"
 msgstr "ТЕКСТ"
 
 msgid "TRANSLATOR_INFO"
-msgstr "Коррекция перевода Monja 16.02.2022"
+msgstr "Коррекция перевода Monja 03.04.2022"
 
 msgid "TS file is too large for ISO9660 level 1!"
 msgstr "TS файл слишком большой для ISO9660 уровень 1!"
@@ -17904,7 +17979,7 @@ msgstr "Интерфейс Telnet"
 msgid "Telnet Port"
 msgstr "Telnet-Порт"
 
-msgid "Telnet Setup"
+msgid "Telnet Settings"
 msgstr "Настройки Telnet"
 
 msgid "Telugu"
@@ -18090,13 +18165,6 @@ msgid "The TV was switched to the recording service!\n"
 msgstr "ТВ переключен на записываемый канал!\n"
 
 msgid ""
-"The USB stick was prepared to be bootable.\n"
-"Now you can download an NFI image file!"
-msgstr ""
-"USB-флеш подготовлен как загрузочный\n"
-"Теперь Вы можете установить NFI образ!"
-
-msgid ""
 "The VideoMode plugin is not installed!\n"
 "Please install it."
 msgstr ""
@@ -18148,20 +18216,6 @@ msgstr "Настройки по умолчанию: 'время пробужде
 msgid "The detailed information is intended for developers only."
 msgstr "Подробная информация предназначена только для разработчиков."
 
-#, python-format
-msgid ""
-"The following device was found:\n"
-"\n"
-"%s\n"
-"\n"
-"Do you want to write the USB flasher to this stick?"
-msgstr ""
-"Найдено устройство\n"
-"\n"
-"%s\n"
-"\n"
-"Хотите установить USB флешер на это устройство?"
-
 msgid "The following files were found..."
 msgstr "Следующие файлы были найдены..."
 
@@ -18184,18 +18238,12 @@ msgstr "Высота рисунка. Вход будет масштабиров�
 msgid "The loopthrough setting is wrong."
 msgstr "Настройки петли неверны."
 
-msgid "The md5sum validation failed, the file may be corrupted!"
-msgstr "MD5 сумма файла неверна, файл вероятно повреждён!"
-
 msgid ""
 "The network wizard extension is not installed!\n"
 "Please install it."
 msgstr ""
 "Мастер сети не установлен!\n"
 "Пожалуйста, сначала установите его."
-
-msgid "The password can not be blank."
-msgstr "Пароль не может быть пустым."
 
 #, python-format
 msgid "The path %s already exists."
@@ -18281,10 +18329,6 @@ msgstr ""
 msgid "The wizard can backup your current settings. Do you want to do a backup now?"
 msgstr "Мастер может сохранить Ваши текущие настройки. Хотите сделать это сейчас?"
 
-#, python-format
-msgid "The wizard found a configuration backup. Do you want to restore your old settings from %s?"
-msgstr "Мастер нашел копию настроек. Хотите восстановить настройки из файла %s?"
-
 msgid "The wizard is finished now."
 msgstr "Мастер закончил работу."
 
@@ -18358,6 +18402,12 @@ msgstr "Это позволяет изменить количество отоб
 msgid "This allows you to set the number of digits to 5, if you have more than 9999 channels."
 msgstr "Здесь можно задать количество цифр 5, если у Вас более чем 9999 каналов."
 
+msgid "This allows you to show OpenPLi modules in downloads"
+msgstr "Это позволит Вам просмотреть модули pli при загрузке"
+
+msgid "This allows you to show OpenViX modules in downloads"
+msgstr "Это позволит Вам просмотреть модули vix при загрузке"
+
 msgid "This allows you to show drivers modules in downloads"
 msgstr "Это позволит Вам просмотреть драйверы при загрузке"
 
@@ -18379,9 +18429,6 @@ msgstr "Это позволит Вам просмотреть модули m2k �
 msgid "This allows you to show picons modules in downloads"
 msgstr "Это позволит Вам просмотреть пиконы при загрузке"
 
-msgid "This allows you to show pli modules in downloads"
-msgstr "Это позволит Вам просмотреть модули pli при загрузке"
-
 msgid "This allows you to show security modules in downloads"
 msgstr "Это позволит Вам просмотреть модули защиты при загрузке"
 
@@ -18394,11 +18441,8 @@ msgstr "Это позволит Вам просмотреть скины при 
 msgid "This allows you to show softcams modules in downloads"
 msgstr "Это позволит Вам просмотреть файлы эмуляторов при загрузке"
 
-msgid "This allows you to show systemplugins modules in downloads"
+msgid "This allows you to show system plugin modules in downloads"
 msgstr "Это позволит Вам просмотреть системные плагины при загрузке"
-
-msgid "This allows you to show vix modules in downloads"
-msgstr "Это позволит Вам просмотреть модули vix при загрузке"
 
 msgid "This allows you to show weblinks modules in downloads"
 msgstr "Это позволит Вам просмотреть файлы ссылок при загрузке"
@@ -18457,7 +18501,7 @@ msgstr "Эта опция позволяет принудительно уста
 msgid "This option allows you can force the HLG Modes for UHD"
 msgstr "Эта опция позволяет принудительно установить режимы HLG для UHD"
 
-msgid "This option allows you choose how to display elapsed time  as + or -"
+msgid "This option allows you choose how to display elapsed time as + or -"
 msgstr "Эта опция позволяет выбрать, как показать прошедшее время, как + или -"
 
 msgid "This option allows you choose how to display remaining time, or elapsed time, or both."
@@ -18502,7 +18546,7 @@ msgstr "Эта опция позволяет увеличить зелёные �
 msgid "This option allows you to bypass HDMI EDID check"
 msgstr "Эта опция позволяет пропускать проверку HDMI EDID"
 
-msgid "This option allows you to change the virtuell loadspeaker position."
+msgid "This option allows you to change the virtual loudspeaker position."
 msgstr "Эта опция позволяет изменять положение виртуального динамика."
 
 msgid "This option allows you to choose from the two channel lists that are available."
@@ -18607,8 +18651,8 @@ msgstr "Здесь можете настроить прозрачность по
 msgid "This option lets you choose the 3D mode"
 msgstr "Эта опция позволяет режим 3D"
 
-msgid "This option lets you show the option in the extension screen"
-msgstr "Эта опция позволяет добавить параметр в меню дополнений"
+msgid "This option lets you show the option in the extension screen."
+msgstr "Эта опция позволяет добавить параметр в меню дополнений."
 
 msgid "This option moves the PVR status from the separate window into the MoviePlayer infobar."
 msgstr "Эта опция перемещает статус PVR из отдельного окна в инфобар медиаплеера."
@@ -18642,18 +18686,6 @@ msgstr "Эта опция устанавливает подавление лож
 
 msgid "This option sets up the picture sharpness, used when the picture is being upscaled."
 msgstr "Этот параметр устанавливает резкость изображения, используемую при масштабировании изображения."
-
-#, python-format
-msgid ""
-"This plugin creates a USB stick which can be used to update the firmware of your %s %s without the need for a network or WLAN connection.\n"
-"First, a USB stick needs to be prepared so that it becomes bootable.\n"
-"In the next step, an NFI image file can be downloaded from the update server and saved on the USB stick.\n"
-"If you already have a prepared bootable USB stick, please insert it now. Otherwise plug in a USB stick with a minimum size of 64 MB!"
-msgstr ""
-"Этот плагин создаёт USB-флеш, который может использоваться, чтобы обновить прошивку Вашего %s %s без подключения к Интернету\n"
-"Во-первых, USB должен быть самозагрузочным\n"
-"Затем файл имиджа NFI нужно загрузить с сервера обновления и сохранить на USB\n"
-"Если у Вас уже есть загрузочный USB, пожалуйста, вставьте. Объём USB должен быть не менее 64 Мб!"
 
 msgid "This plugin is installed."
 msgstr "Этот плагин установлен."
@@ -18773,6 +18805,9 @@ msgstr "Тигринья"
 msgid "Time"
 msgstr "Время"
 
+msgid "Time Settings"
+msgstr "Настройки времени"
+
 msgid "Time Setup Actions"
 msgstr "Действия по настройке времени"
 
@@ -18831,9 +18866,6 @@ msgstr "Время, необходимое для этого процесса: %
 msgid "Time scale"
 msgstr "Шкала времени"
 
-msgid "Time settings"
-msgstr "Настройки времени"
-
 msgid "Time style"
 msgstr "Стиль времени"
 
@@ -18848,9 +18880,6 @@ msgstr "Часовой пояс"
 
 msgid "Time zone area"
 msgstr "Область часового пояса"
-
-msgid "Time zone settings"
-msgstr "Настройки часового пояса"
 
 msgid "Timeline 24 Hour"
 msgstr "Линия времени 24 часа"
@@ -18933,14 +18962,17 @@ msgstr "Таймеры"
 msgid "Timeshift"
 msgstr "Таймшифт"
 
-msgid "Timeshift buffer delete after zap?"
-msgstr "Удалить буфер таймшифта после переключения?"
+msgid "Timeshift Settings"
+msgstr "Настройки таймшифта"
+
+msgid "Timeshift buffer delete after zap"
+msgstr "Удалить буфер таймшифта после переключения"
 
 msgid "Timeshift buffer limit [in hours]"
 msgstr "Ограничить буфер таймшифта [В часах]"
 
-msgid "Timeshift checking for free space?"
-msgstr "Проверить наличие свободного дискового пространства?"
+msgid "Timeshift checking for free space"
+msgstr "Проверить наличие свободного дискового пространства"
 
 msgid "Timeshift checking for older files [in minutes]"
 msgstr "Проверить наличие старых файлов таймшифта [В минутах]"
@@ -18969,9 +19001,6 @@ msgstr "Сохранение записи таймшифта (Остановит
 msgid "Timeshift saved to your harddisk!"
 msgstr "Файл таймшифта сохранён на жёсткий диск!"
 
-msgid "Timeshift settings"
-msgstr "Настройки таймшифта"
-
 msgid "Timeshift will get saved at end of event!"
 msgstr "Файл таймшифта будет сохранён в конце события!"
 
@@ -18995,18 +19024,6 @@ msgstr "Режим установки заголовка"
 
 msgid "To restore the image:"
 msgstr "Чтобы восстановить имидж:"
-
-#, python-format
-msgid ""
-"To update your %s %s firmware, please follow these steps:\n"
-"1) Turn off your box with the rear power switch and make sure the bootable USB stick is plugged in.\n"
-"2) Turn mains back on and hold the DOWN button on the front panel pressed for 10 seconds.\n"
-"3) Wait for bootup and follow instructions of the wizard."
-msgstr ""
-"Чтобы обновить Ваш %s %s, пожалуйста выполните следующие действия:\n"
-"1) Выключите ресивер тумблером сзади и убедитесь, что загрузочный USB подключён.\n"
-"2) Включите ресивер и нажмите кнопку 'ВНИЗ' на передней панели ресивера около 10 секунд.\n"
-"Дождитесь загрузки и следуйте указаниям мастера."
 
 msgid "Today"
 msgstr "Сегодня"
@@ -19231,11 +19248,17 @@ msgstr "Тюнер "
 msgid "Tuner Configuration"
 msgstr "Настройка тюнера"
 
+msgid "Tuner Information"
+msgstr "Информация о тюнере"
+
+msgid "Tuner Settings"
+msgstr "Настройки тюнера"
+
 msgid "Tuner Setup"
 msgstr "Настройка тюнера"
 
-msgid "Tuner configuration"
-msgstr "Настройка тюнера"
+msgid "Tuner information"
+msgstr "Информация о тюнере"
 
 msgid "Tuner is not supported"
 msgstr "Неподдерживаемый тюнер"
@@ -19244,9 +19267,6 @@ msgid "Tuner live values"
 msgstr "Состояние тюнера"
 
 msgid "Tuner setting values"
-msgstr "Настройки тюнера"
-
-msgid "Tuner settings"
 msgstr "Настройки тюнера"
 
 msgid "Tuner slot"
@@ -19379,9 +19399,6 @@ msgstr "USALS автоматически перемещает моторизов
 msgid "USB Stick"
 msgstr "USB флеш"
 
-msgid "USB stick wizard"
-msgstr "Мастер USB"
-
 msgid "USB switch ERROR! - already on USB"
 msgstr "ОШИБКА USB-переключателя! - уже на USB"
 
@@ -19405,9 +19422,6 @@ msgstr "Украинский"
 
 msgid "Umweltbewusstsein"
 msgstr "Экологическое сознание"
-
-msgid "Unable to change password"
-msgstr "Не удаётся изменить пароль"
 
 msgid "Unable to create the required directories on the media (e.g. USB stick or Harddisk) - Please verify media and try again!"
 msgstr "Невозможно создать необходимые каталоги на носителе (например, USB-накопителе или жёстком диске) - Пожалуйста, проверьте носитель и повторите попытку!"
@@ -19558,8 +19572,8 @@ msgstr "Вверх"
 msgid "Up/Down button mode"
 msgstr "Кнопки Вверх/Вниз"
 
-msgid "Up/Down buttons also for 'all up/down'?"
-msgstr "Кнопки ВВЕРХ/ВНИЗ также для 'всех вверх/вниз'?"
+msgid "Up/Down buttons also for 'all up/down'"
+msgstr "Кнопки ВВЕРХ/ВНИЗ также для 'всех ВВЕРХ/ВНИЗ'"
 
 msgid "Update"
 msgstr "Обновление"
@@ -19857,14 +19871,14 @@ msgstr "Использовать данные настройки видео?"
 msgid "Use time jumps for fast forward/backward"
 msgstr "Шаги для быстрой перемотки вперёд/назад"
 
-msgid "Use timeshift seekbar while timeshifting?"
-msgstr "Использовать Seekbar во время работы таймшифта?"
+msgid "Use timeshift seekbar while timeshifting"
+msgstr "Использовать Seekbar во время работы таймшифта"
 
 msgid "Use trash can in movie list"
 msgstr "Использование корзины в списке фильмов"
 
-msgid "Use workaround for wakeup from deep-standby?"
-msgstr "Другой путь для выхода из глубокого режима ожидания?"
+msgid "Use workaround for wakeup from deep-standby"
+msgstr "Другой путь для выхода из глубокого режима ожидания"
 
 msgid "Used"
 msgstr "Используется"
@@ -20001,16 +20015,16 @@ msgstr "Вертикальная"
 msgid "Vertical EPG"
 msgstr "Вертикальный EPG"
 
-msgid "Vertical alignement for the event-progress."
+msgid "Vertical alignment for the event-progress."
 msgstr "Выравнивание по вертикали для события-прогресса."
 
-msgid "Vertical alignement for the service number."
+msgid "Vertical alignment for the service number."
 msgstr "Выравнивание по вертикали для номера канала."
 
 msgid "Vertical turning speed"
 msgstr "Скорость поворота по верт поляризации"
 
-msgid "VerticalEPG settings"
+msgid "VerticalEPG Settings"
 msgstr "Настройки графического ТВ-гида"
 
 msgid "Very fast"
@@ -20103,9 +20117,6 @@ msgstr "Режим видеовыхода для SD"
 
 msgid "Video output mode for UHD"
 msgstr "Режим видеовыхода для UHD"
-
-msgid "Video settings"
-msgstr "Настройки видео"
 
 msgid "Video: "
 msgstr "Видео: "
@@ -20532,10 +20543,10 @@ msgstr "Если эта функция включена, данные EIT буд
 msgid "When enabled, Enigma2 will load unlinked bouquets. This means that bouquets that are available, but not included in the bouquets.tv or bouquets.radio files, will still be loaded. This allows you for example to keep your own user bouquet while installed settings are upgraded"
 msgstr "Если включено, то будут загружаться невыбранные букеты пользователя. Это означает, букеты существуют, но не были включены в файлы bouquets.tv или bouquets.radio. Это позволит Вам внедрить свой собственный букет в существующий список букетов"
 
-msgid "When enabled, a popup message will be shown when a movie has finished and the next one will start."
+msgid "When enabled, a pop up message will be shown when a movie has finished and the next one will start."
 msgstr "Показать всплывающее окно, когда один фильм закончился, а следующий начинается."
 
-msgid "When enabled, a popup message will be shown when a recording starts."
+msgid "When enabled, a pop up message will be shown when a recording starts."
 msgstr "Показать всплывающее окно, когда начинается запись."
 
 msgid "When enabled, a recording is allowed to abort picture-in-picture mode, when there are no free tuners."
@@ -20547,7 +20558,7 @@ msgstr "При активации, запись прервёт псевдоза�
 msgid "When enabled, a recording is allowed to abort streaming, when there are no free tuners."
 msgstr "При активации, запись прервёт потоковое вещание, если нет свободного тюнера."
 
-msgid "When enabled, a recording is allowed to interrupt live tv, when there are no free tuners."
+msgid "When enabled, a recording is allowed to interrupt live TV, when there are no free tuners."
 msgstr "Если включено, при начале записи просматриваемая передача будет прервана, если нет свободного тюнера."
 
 msgid "When enabled, a warning will be displayed and the user will get an option to stop or to continue the timeshift."
@@ -20559,7 +20570,7 @@ msgstr "Если этот параметр включен, всегда деск
 msgid "When enabled, authentication is required to watch http streams."
 msgstr "Если включено, требуется аутентификация для просмотра HTTP потока."
 
-msgid "When enabled, before opkg update there will be opkg clean to make sure nothing ruine the update but only enable this when you can not update online."
+msgid "When enabled, before opkg update there will be opkg clean to make sure nothing ruins the update but only enable this when you can not update online."
 msgstr "Если этот параметр включён, перед обновлением opkg он будет очищен, чтобы ничего не испортило обновление, но включайте его только тогда, когда Вы не можете выполнить обновление онлайн."
 
 msgid "When enabled, channel numbering will start at '1' for each bouquet."
@@ -20682,20 +20693,6 @@ msgstr "Когда ресивер выходит из режима ожидан�
 msgid "When tuned to a service the system will normally scan the transponder for any changes and save them. Only set to 'yes' if you're absolutely sure what you're doing."
 msgstr "При отрицательном значении, система будет сканировать транспондер в фоновом режиме на предмет изменений и сохранять их. Выберите 'Да', если только абсолютно уверены, что делаете."
 
-#, python-format
-msgid ""
-"When you do a factory reset, you will lose ALL your configuration data\n"
-"(including bouquets, services, satellite data ...)\n"
-"After completion of factory reset, your %s %s will restart automatically!\n"
-"\n"
-"Really do a factory reset?"
-msgstr ""
-"При сбросе на заводские установки будут удалены все конфигурационные данные\n"
-"(Включая пакеты, каналы, данные спутников)\n"
-"После завершения сброса Ваш %s %s будет автоматически перезагружен!\n"
-"\n"
-"Действительно хотите сбросить на заводские установки?"
-
 msgid "Where do you want to backup your settings?"
 msgstr "Где Вы хотите сохранить настройки?"
 
@@ -20759,7 +20756,7 @@ msgstr "С показом сообщения"
 msgid "With this option set to 'yes' the channel lists will always show you the bouquet screen first. If set to 'no' the current bouquet will be opened."
 msgstr "Если выбрано 'Да', список каналов будет открываться в первом фаворите. Если выбрано 'Нет', список каналов будет открываться в текущем фаворите."
 
-msgid "With this option you can hide Job Tasks from the extension screen (short blue button press)."
+msgid "With this option you can hide Job Tasks from the extension screen (BLUE button press)."
 msgstr "Эта опция позволяет скрыть задачи из списка дополнений (вызываемым коротким нажатием СИНЕЙ кнопки)."
 
 msgid "With this option you can switch off the display during operation."
@@ -20832,6 +20829,12 @@ msgstr "YCbCr422"
 msgid "YCbCr444"
 msgstr "YCbCr444"
 
+msgid "YELLOW button"
+msgstr "Жёлтая кнопка"
+
+msgid "YELLOW long"
+msgstr "Жёлтая, долгая"
+
 msgid "YPbPr"
 msgstr "YPbPr"
 
@@ -20843,12 +20846,6 @@ msgstr "Жёлтый"
 
 msgid "Yellow DVB subtitles"
 msgstr "Жёлтые DVB субтитры"
-
-msgid "Yellow button"
-msgstr "Жёлтая кнопка"
-
-msgid "Yellow long"
-msgstr "Жёлтая, долгая"
 
 msgid "Yemen"
 msgstr "Йемен"
@@ -20993,9 +20990,6 @@ msgstr "Этот журнал уже был отправлен. Хотите е�
 msgid "You have chosen to backup your settings. Please press OK to start the backup now."
 msgstr "Вы выбрали сохранение настроек. Пожалуйста нажмите ОК для начала копирования."
 
-msgid "You have chosen to create a new .NFI flasher bootable USB stick. This will repartition the USB stick and therefore all data on it will be erased."
-msgstr "Вы выбрали создание нового загрузочного внешнего USB накопителя. USB накопитель будет отформатирован и все данные будут утеряны."
-
 msgid "You have chosen to restore your settings. Enigma2 will restart after restore. Please press OK to start the restore now."
 msgstr "Вы выбрали восстановление настроек. Enigma2 будет перезапущена сразу после восстановления. Нажмите ОК для восстановления."
 
@@ -21031,9 +21025,6 @@ msgstr "Перед активацией автозапуска сначала н
 #, python-format
 msgid "You have to wait %s!"
 msgstr "Необходимо подождать %s!"
-
-msgid "You must set a root password in order to be able to use network services, such as FTP, telnet or ssh."
-msgstr "Вы должны установить пароль root, чтобы иметь возможность использовать сетевые службы, такие как FTP, telnet или ssh."
 
 msgid "You must set at least one Command"
 msgstr "Вы должны задать как минимум одну команду"
@@ -21699,9 +21690,6 @@ msgstr "Подтверждено"
 msgid "connected"
 msgstr "Подключено"
 
-msgid "continue"
-msgstr "Продолжить"
-
 msgid "controlled by HDMI"
 msgstr "Управление по HDMI"
 
@@ -21737,10 +21725,6 @@ msgstr "создать симлинк ..."
 
 msgid "current affairs (general)"
 msgstr "текущие события (общие)"
-
-#, python-format
-msgid "currently installed image: %s"
-msgstr "Текущий установленный имидж %s"
 
 msgid "daily"
 msgstr "Ежедневно"
@@ -22944,7 +22928,7 @@ msgstr "Имя uShare"
 msgid "uShare Port"
 msgstr "Порт uShare"
 
-msgid "uShare Setup"
+msgid "uShare Settings"
 msgstr "Настройки uShare"
 
 msgid "unavailable"
@@ -23134,6 +23118,255 @@ msgstr "Переключение"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Changelog"
+#~ msgstr "Журнал изменений"
+
+#, python-format
+#~ msgid "Could not connect to %s %s .NFI image feed server:"
+#~ msgstr "Невозможно связаться с сервером имиджа %s %s .NFI"
+
+#~ msgid "Currently installed image"
+#~ msgstr "Текущая прошивка"
+
+#~ msgid "Display directory size"
+#~ msgstr "Показать размер каталога"
+
+#, python-format
+#~ msgid "Do you want to download the image to %s ?"
+#~ msgstr "Хотите загрузить имидж в %s?"
+
+#~ msgid "Download"
+#~ msgstr "Загрузить"
+
+#, python-format
+#~ msgid "Download %s from server"
+#~ msgstr "Загрузить %s с сервера"
+
+#~ msgid "Download .NFI-files for USB-flasher"
+#~ msgstr "Загрузить .NFI файлы из USB"
+
+#~ msgid "Factory Reset Settings"
+#~ msgstr "Настройки сброса к заводским настройкам"
+
+#~ msgid "Flash"
+#~ msgstr "Прошивка"
+
+#~ msgid "Flashing failed"
+#~ msgstr "Прошивка не удалась"
+
+#~ msgid "Get latest experimental image"
+#~ msgstr "Получить последний тестовый имидж"
+
+#~ msgid "Get latest release image"
+#~ msgstr "Получить последний стабильный имидж"
+
+#~ msgid "NFI image flashing"
+#~ msgstr "Прошить имидж NFI"
+
+#~ msgid "NFI image flashing completed. Press Yellow to Reboot!"
+#~ msgstr "NFI имидж удачно установлен. Нажмите жёлтую клавишу для перезагрузки!"
+
+#~ msgid "No details for this image file"
+#~ msgstr "Нет подробностей об этом имидже"
+
+#~ msgid "Please check your network settings!"
+#~ msgstr "Пожалуйста, проверьте настройки сети!"
+
+#~ msgid "Please select an NFI file and press green key to flash!"
+#~ msgstr "Пожалуйста, выберите файл NFI, и нажмите ЗЕЛЁНУЮ кнопку!"
+
+#~ msgid "Prepare another USB stick for image flashing"
+#~ msgstr "Приоритет другого USB-флеша для установки системы"
+
+#~ msgid "Restore is running..."
+#~ msgstr "Выполняется восстановление..."
+
+#~ msgid "Select an image to be downloaded"
+#~ msgstr "Выберите прошивку для загрузки"
+
+#~ msgid "Select desired image from feed list"
+#~ msgstr "Выберите желаемый имидж из списка"
+
+#, python-format
+#~ msgid "Shall the USB stick wizard proceed and program the image file %s into flash memory?"
+#~ msgstr "Должен ли мастер USB-флеша установить имидж %s во внутреннюю флеш-память?"
+
+#~ msgid ""
+#~ "The USB stick was prepared to be bootable.\n"
+#~ "Now you can download an NFI image file!"
+#~ msgstr ""
+#~ "USB-флеш подготовлен как загрузочный\n"
+#~ "Теперь Вы можете установить NFI образ!"
+
+#, python-format
+#~ msgid ""
+#~ "The following device was found:\n"
+#~ "\n"
+#~ "%s\n"
+#~ "\n"
+#~ "Do you want to write the USB flasher to this stick?"
+#~ msgstr ""
+#~ "Найдено устройство\n"
+#~ "\n"
+#~ "%s\n"
+#~ "\n"
+#~ "Хотите установить USB флешер на это устройство?"
+
+#~ msgid "The md5sum validation failed, the file may be corrupted!"
+#~ msgstr "MD5 сумма файла неверна, файл вероятно повреждён!"
+
+#, python-format
+#~ msgid "The wizard found a configuration backup. Do you want to restore your old settings from %s?"
+#~ msgstr "Мастер нашел копию настроек. Хотите восстановить настройки из файла %s?"
+
+#, python-format
+#~ msgid ""
+#~ "This plugin creates a USB stick which can be used to update the firmware of your %s %s without the need for a network or WLAN connection.\n"
+#~ "First, a USB stick needs to be prepared so that it becomes bootable.\n"
+#~ "In the next step, an NFI image file can be downloaded from the update server and saved on the USB stick.\n"
+#~ "If you already have a prepared bootable USB stick, please insert it now. Otherwise plug in a USB stick with a minimum size of 64 MB!"
+#~ msgstr ""
+#~ "Этот плагин создаёт USB-флеш, который может использоваться, чтобы обновить прошивку Вашего %s %s без подключения к Интернету\n"
+#~ "Во-первых, USB должен быть самозагрузочным\n"
+#~ "Затем файл имиджа NFI нужно загрузить с сервера обновления и сохранить на USB\n"
+#~ "Если у Вас уже есть загрузочный USB, пожалуйста, вставьте. Объём USB должен быть не менее 64 Мб!"
+
+#, python-format
+#~ msgid ""
+#~ "To update your %s %s firmware, please follow these steps:\n"
+#~ "1) Turn off your box with the rear power switch and make sure the bootable USB stick is plugged in.\n"
+#~ "2) Turn mains back on and hold the DOWN button on the front panel pressed for 10 seconds.\n"
+#~ "3) Wait for bootup and follow instructions of the wizard."
+#~ msgstr ""
+#~ "Чтобы обновить Ваш %s %s, пожалуйста выполните следующие действия:\n"
+#~ "1) Выключите ресивер тумблером сзади и убедитесь, что загрузочный USB подключён.\n"
+#~ "2) Включите ресивер и нажмите кнопку 'ВНИЗ' на передней панели ресивера около 10 секунд.\n"
+#~ "Дождитесь загрузки и следуйте указаниям мастера."
+
+#~ msgid "USB stick wizard"
+#~ msgstr "Мастер USB"
+
+#~ msgid "You have chosen to create a new .NFI flasher bootable USB stick. This will repartition the USB stick and therefore all data on it will be erased."
+#~ msgstr "Вы выбрали создание нового загрузочного внешнего USB накопителя. USB накопитель будет отформатирован и все данные будут утеряны."
+
+#~ msgid "continue"
+#~ msgstr "Продолжить"
+
+#, python-format
+#~ msgid "currently installed image: %s"
+#~ msgstr "Текущий установленный имидж %s"
+
+#~ msgid "Manual scan"
+#~ msgstr "Ручной поиск"
+
+#~ msgid "OpenVpn Setup"
+#~ msgstr "Настройки OpenVPN"
+
+#~ msgid "Softcam-Panel"
+#~ msgstr "Панель эмуляторов"
+
+#~ msgid "12, show latin-1 characters except for greek and cyrillic, switch to 8 if needed."
+#~ msgstr "12 - показать набор символов Latin-1, кроме греческого и кириллицы, переключитесь на 8, если это необходимо."
+
+#~ msgid "Add a nameserver entry"
+#~ msgstr "Добавить сервер DNS"
+
+#~ msgid "Cloudflare"
+#~ msgstr "Облачность"
+
+#~ msgid "Configure the function of the <  > buttons."
+#~ msgstr "Настройте функцию < > кнопок."
+
+#~ msgid "Customise"
+#~ msgstr "Доп. настройки"
+
+#~ msgid "DHCP Router"
+#~ msgstr "DHCP-маршрутизатор"
+
+#~ msgid "Error: Unable to change password!"
+#~ msgstr "Ошибка: Невозможно изменить пароль!"
+
+#~ msgid "Factory reset"
+#~ msgstr "Сброс всех настроек"
+
+#~ msgid "If the text is too long to be displayed on the front panel, it will be repeated (number of times):"
+#~ msgstr "При показе на дисплее (на передней панели) длинного текста, текст будет повторяться (количество раз):"
+
+#, python-format
+#~ msgid "Nameserver %d"
+#~ msgstr "DNS сервер %d"
+
+#~ msgid "Nameserver configuration"
+#~ msgstr "Конфигурация сервера имён"
+
+#~ msgid "Network Setup"
+#~ msgstr "Настройка сети"
+
+#~ msgid "Remove a nameserver entry"
+#~ msgstr "Удалить DNS-сервер"
+
+#~ msgid "Static IP or Custom"
+#~ msgstr "Статический IP-адрес или пользовательский"
+
+#~ msgid "The password can not be blank."
+#~ msgstr "Пароль не может быть пустым."
+
+#~ msgid "Unable to change password"
+#~ msgstr "Не удаётся изменить пароль"
+
+#~ msgid "You must set a root password in order to be able to use network services, such as FTP, telnet or ssh."
+#~ msgstr "Вы должны установить пароль root, чтобы иметь возможность использовать сетевые службы, такие как FTP, telnet или ssh."
+
+#, python-format
+#~ msgid ""
+#~ "CCcam Info %s\n"
+#~ "by AliAbdul %s\n"
+#~ "\n"
+#~ "This plugin shows you the status of your CCcam."
+#~ msgstr ""
+#~ "CCcam инфо %s\n"
+#~ "от AliAbdul %s\n"
+#~ "\n"
+#~ "Плагин показывает статус CCcam."
+
+#, python-format
+#~ msgid "CPU: %s"
+#~ msgstr "ЦП: %s"
+
+#, python-format
+#~ msgid "Cores: %s"
+#~ msgstr "Ядра %s"
+
+#, python-format
+#~ msgid "Kernel: %s"
+#~ msgstr "Ядро:\\t\\t%s"
+
+#~ msgid "Show CCcam in extensions ?"
+#~ msgstr "Показать CCcam в меню дополнений?"
+
+#~ msgid "Show OScam in extensions ?"
+#~ msgstr "Показать OScam в меню дополнений?"
+
+#~ msgid "Softcam settings"
+#~ msgstr "Настройки эмуляторов"
+
+#~ msgid "Time zone settings"
+#~ msgstr "Настройки часового пояса"
+
+#, python-format
+#~ msgid ""
+#~ "When you do a factory reset, you will lose ALL your configuration data\n"
+#~ "(including bouquets, services, satellite data ...)\n"
+#~ "After completion of factory reset, your %s %s will restart automatically!\n"
+#~ "\n"
+#~ "Really do a factory reset?"
+#~ msgstr ""
+#~ "При сбросе на заводские установки будут удалены все конфигурационные данные\n"
+#~ "(Включая пакеты, каналы, данные спутников)\n"
+#~ "После завершения сброса Ваш %s %s будет автоматически перезагружен!\n"
+#~ "\n"
+#~ "Действительно хотите сбросить на заводские установки?"
 
 #, python-format
 #~ msgid "%d Mins"
@@ -23528,28 +23761,28 @@ msgstr "®"
 #~ msgid "RAM"
 #~ msgstr "Оперативная память"
 
-#~ msgid "Select Red-key action"
+#~ msgid "Select RED action"
 #~ msgstr "Красная кнопка"
 
-#~ msgid "Select Red-key action long"
+#~ msgid "Select RED long action"
 #~ msgstr "Красная кнопка (долгое нажатие)"
 
-#~ msgid "Select Yellow Key Action"
+#~ msgid "Select YELLOW action"
 #~ msgstr "Жёлтая кнопка"
 
-#~ msgid "Select Yellow Key Action long"
+#~ msgid "Select YELLOW long action"
 #~ msgstr "Жёлтая кнопка (долгое нажатие)"
 
-#~ msgid "Select what you want the RED button to activate:"
+#~ msgid "Select what you want the RED button to activate."
 #~ msgstr "Выбор действия для красной кнопки"
 
-#~ msgid "Select what you want the RED-Long button to activate:"
+#~ msgid "Select what you want the RED long button to activate."
 #~ msgstr "Выбор действия для красной кнопки (Долгое нажатие)"
 
-#~ msgid "Select what you want the YELLOW button to activate:"
+#~ msgid "Select what you want the YELLOW button to activate."
 #~ msgstr "Выбор действия для жёлтой кнопки"
 
-#~ msgid "Select what you want the YELLOW-Long button to activate:"
+#~ msgid "Select what you want the YELLOW long button to activate."
 #~ msgstr "Выберите действие для долгого нажатия жёлтой кнопки"
 
 #, python-format
@@ -24307,9 +24540,6 @@ msgstr "®"
 #, fuzzy
 #~ msgid "%s %s %s."
 #~ msgstr "Перезапуск %s %s"
-
-#~ msgid "OSD Settings"
-#~ msgstr "Общие настройки"
 
 #~ msgid "Show on Display"
 #~ msgstr "Показать на дисплее"

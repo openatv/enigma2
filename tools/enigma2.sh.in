@@ -36,7 +36,7 @@ fi
 
 if [ -e /proc/stb/info/boxtype ]; then
 	stbcheck=`cat /proc/stb/info/boxtype`
-	if [ $stbcheck == "sf8008" ] || [ $stbcheck == "sf8008m" ] || [ $stbcheck == "sf8008opt" ] || [ $stbcheck == "sx988" ] || [ $stbcheck == "ustym4kpro" ] || [ $stbcheck == "ustym4kottpremium" ] || [ $stbcheck == "cc1" ] || [ $stbcheck == "trio4k" ] || [ $stbcheck == "gbip4k" ] || [ $stbcheck == "gbmv200" ] || [ $stbcheck == "beyonwizv2" ] || [ $stbcheck == "viper4k" ] || [ $stbcheck == "og2ott4k" ]; then
+	if [ $stbcheck == "sf8008" ] || [ $stbcheck == "sf8008m" ] || [ $stbcheck == "sf8008opt" ] || [ $stbcheck == "sx988" ] || [ $stbcheck == "ustym4kpro" ] || [ $stbcheck == "ustym4kottpremium" ] || [ $stbcheck == "cc1" ] || [ $stbcheck == "trio4k" ] || [ $stbcheck == "gbip4k" ] || [ $stbcheck == "gbmv200" ] || [ $stbcheck == "beyonwizv2" ] || [ $stbcheck == "viper4k" ] || [ $stbcheck == "og2ott4k" ] || [ $stbcheck == "sfx6008" ]; then
 		count=`ps -ef |grep libreader |grep -v "grep" |wc -l`
 		if [ 0 == $count ];then
 			libreader 720P_50
@@ -139,23 +139,48 @@ sysctl -p
 
 export LC_CTYPE="en_US.UTF-8"
 
+# Randomize timestamp if clock is not set
+RANDOMIZE1970=''
+time=`date +%Y` ;
+if [ "$time" = 1970 ]; then
+	RANDOMIZE1970="$(strings /dev/urandom | grep -o '[[:alnum:]]' | head -n 5 | tr -d '\n')"
+fi
+
 # Set time format used to prefix each line in the debug logs.
 DEBUGTIME=`sed -En 's|^config\.crash\.debugTimeFormat=(.+)$|\1|p' "@sysconfdir@/enigma2/settings"`
 [ -n "${DEBUGTIME}" ] || DEBUGTIME="2"
 DEBUG_TIME="${DEBUGTIME}"
 
+# Create and set log folder
+LOGFOLDER="/home/root/logs/"
+if [ ! -d $LOGFOLDER ] ; then mkdir -p $LOGFOLDER; fi
+if [ "$(grep config.crash.debug_path= /etc/enigma2/settings | sed 's/config.crash.debug_path=//g')" != "" -a -d "$(grep config.crash.debug_path= /etc/enigma2/settings | sed 's/config.crash.debug_path=//g')" ]; then
+	LOGFOLDER=$(grep config.crash.debug_path= /etc/enigma2/settings | sed 's/config.crash.debug_path=//g')
+fi
+
+# Enable and configure gstreamer debug log of category and level without color
+if [ "$(grep -i config.crash.gstdebug=true /etc/enigma2/settings)" != "" ]; then
+	GSTDEBUGCATEGORY="*"
+	GSTDEBUGLEVEL="INFO"
+	if [ "$(grep config.crash.gstdebugcategory= /etc/enigma2/settings | sed 's/config.crash.gstdebugcategory=//g')" != "" ]; then
+		GSTDEBUGCATEGORY=$(grep config.crash.gstdebugcategory= /etc/enigma2/settings | sed 's/config.crash.gstdebugcategory=//g')
+	fi
+	if [ "$(grep config.crash.gstdebuglevel= /etc/enigma2/settings | sed 's/config.crash.gstdebuglevel=//g')" != "" ]; then
+		GSTDEBUGLEVEL=$(grep config.crash.gstdebuglevel= /etc/enigma2/settings | sed 's/config.crash.gstdebuglevel=//g')
+	fi
+	export GST_DEBUG_FILE="${LOGFOLDER}GStreamer-debug-$(date +%Y%m%d_%H-%M-%S)${RANDOMIZE1970}.log"
+	export GST_DEBUG="${GSTDEBUGCATEGORY}:${GSTDEBUGLEVEL}"
+	export GST_DEBUG_NO_COLOR="1"
+fi
+
+# Enable and set gstreamer directory for pipeline graphs that are not created if directory is not set
+if [ "$(grep -i config.crash.gstdot=true /etc/enigma2/settings)" != "" ]; then
+	export GST_DEBUG_DUMP_DOT_DIR=${LOGFOLDER}
+fi
+
+# Start enigma2 with or without debug
 if [ "$(grep -i config.crash.enabledebug=true /etc/enigma2/settings)" != "" ]; then
 	DEBUG_LVL='4'
-	RANDOMIZE1970=''
-	time=`date +%Y` ;
-	if [ "$time" = 1970 ]; then
-		RANDOMIZE1970="$(strings /dev/urandom | grep -o '[[:alnum:]]' | head -n 5 | tr -d '\n')"
-	fi
-	LOGFOLDER="/home/root/logs/"
-	if [ ! -d $LOGFOLDER ] ; then mkdir -p $LOGFOLDER; fi
-	if [ "$(grep config.crash.debug_path= /etc/enigma2/settings | sed 's/config.crash.debug_path=//g')" != "" -a -d "$(grep config.crash.debug_path= /etc/enigma2/settings | sed 's/config.crash.debug_path=//g')" ]; then
-		LOGFOLDER=$(grep config.crash.debug_path= /etc/enigma2/settings | sed 's/config.crash.debug_path=//g')
-	fi
 	LD_PRELOAD=$LIBS ENIGMA_DEBUG_LVL=$DEBUG_LVL ENIGMA_DEBUG_TIME="${DEBUG_TIME}" @bindir@/enigma2 &> ${LOGFOLDER}Enigma2-debug-$(date +%Y%m%d_%H-%M-%S)${RANDOMIZE1970}.log
 else
 	LD_PRELOAD=$LIBS ENIGMA_DEBUG_LVL=$DEBUG_LVL ENIGMA_DEBUG_TIME="${DEBUG_TIME}" @bindir@/enigma2
@@ -185,7 +210,7 @@ if [ "$ret" -ne "1" ]; then
 			killall -9 showiframe; sleep 5
 		fi
 		stbcheck=`cat /proc/stb/info/boxtype`
-		if [ $stbcheck == "sf8008" ] || [ $stbcheck == "sf8008m" ] || [ $stbcheck == "sf8008opt" ] || [ $stbcheck == "sx988" ] || [ $stbcheck == "ustym4kpro" ] || [ $stbcheck == "ustym4kottpremium" ] || [ $stbcheck == "cc1" ] || [ $stbcheck == "trio4k" ] || [ $stbcheck == "gbip4k" ] || [ $stbcheck == "gbmv200" ] || [ $stbcheck == "beyonwizv2" ] || [ $stbcheck == "viper4k" ] || [ $stbcheck == "og2ott4k" ]; then
+		if [ $stbcheck == "sf8008" ] || [ $stbcheck == "sf8008m" ] || [ $stbcheck == "sf8008opt" ] || [ $stbcheck == "sx988" ] || [ $stbcheck == "ustym4kpro" ] || [ $stbcheck == "ustym4kottpremium" ] || [ $stbcheck == "cc1" ] || [ $stbcheck == "trio4k" ] || [ $stbcheck == "gbip4k" ] || [ $stbcheck == "gbmv200" ] || [ $stbcheck == "beyonwizv2" ] || [ $stbcheck == "viper4k" ] || [ $stbcheck == "og2ott4k" ] || [ $stbcheck == "sfx6008" ]; then
 			killall -9 libreader; sleep 5
 		fi
 	fi

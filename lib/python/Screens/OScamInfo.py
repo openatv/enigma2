@@ -1152,7 +1152,7 @@ class oscReaderStats(Screen, OscamInfo):
 class OscamInfoSetup(Setup):
 	def __init__(self, session, msg=None):
 		Setup.__init__(self, session, setup="OscamInfo")
-		self.setTitle(_("Oscam Info - Configuration"))
+		self.setTitle(_("Oscam Info Settings"))
 		self.msg = msg
 		if self.msg:
 			self.msg = "Error:\n%s" % self.msg

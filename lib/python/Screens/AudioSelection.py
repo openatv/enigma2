@@ -562,7 +562,7 @@ class AudioSelection(Screen, ConfigListScreen):
 
 	def protectResult(self, answer):
 		if answer:
-			self.session.open(Setup, "autolanguagesetup")
+			self.session.open(Setup, "AutoLanguage")
 			self.protectContextMenu = False
 		elif answer is not None:
 			self.session.openWithCallback(self.close, MessageBox, _("The pin code you entered is wrong."), MessageBox.TYPE_ERROR)

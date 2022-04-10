@@ -62,7 +62,7 @@ class VideoSetup(Screen, ConfigListScreen):
 		Screen.__init__(self, session)
 		# for the skin: first try VideoSetup, then Setup, this allows individual skinning
 		self.skinName = ["VideoSetup", "Setup"]
-		self.setTitle(_("Video settings"))
+		self.setTitle(_("Video Settings"))
 		self["HelpWindow"] = Pixmap()
 		self["HelpWindow"].hide()
 		self["VKeyIcon"] = Boolean(False)

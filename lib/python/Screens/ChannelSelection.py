@@ -141,7 +141,7 @@ EDIT_BOUQUET = 1
 EDIT_ALTERNATIVES = 2
 
 
-def append_when_current_valid(current, menu, args, level=0, key=""):
+def append_when_current_valid(current, menu, args, level=0, key="dummy"):
 	if current and current.valid() and level <= config.usage.setup_level.index:
 		menu.append(ChoiceEntryComponent(key, args))
 
@@ -194,7 +194,7 @@ class ChannelContextMenu(Screen):
 		self.parentalControl = parentalControl
 		self.parentalControlEnabled = config.ParentalControl.servicepinactive.value
 
-		menu.append(ChoiceEntryComponent(text=(_("Settings..."), boundFunction(self.openSetup))))
+		menu.append(ChoiceEntryComponent(key="dummy", text=(_("Settings..."), boundFunction(self.openSetup))))
 		if not (current_sel_path or current_sel_flags & (eServiceReference.isDirectory | eServiceReference.isMarker)):
 			append_when_current_valid(current, menu, (_("show transponder info"), self.showServiceInformations), level=2)
 		if csel.bouquet_mark_edit == OFF and not csel.entry_marked:
@@ -277,7 +277,7 @@ class ChannelContextMenu(Screen):
 							append_when_current_valid(current, menu, (_("add bouquet to parental protection"), boundFunction(self.addParentalProtection, csel.getCurrentSelection())), level=0)
 						else:
 							append_when_current_valid(current, menu, (_("remove bouquet from parental protection"), boundFunction(self.removeParentalProtection, csel.getCurrentSelection())), level=0)
-					menu.append(ChoiceEntryComponent(text=(_("add bouquet"), self.showBouquetInputBox)))
+					menu.append(ChoiceEntryComponent(key="dummy", text=(_("add bouquet"), self.showBouquetInputBox)))
 					append_when_current_valid(current, menu, (_("rename entry"), self.renameEntry), level=0, key="2")
 					append_when_current_valid(current, menu, (_("remove entry"), self.removeEntry), level=0, key="8")
 					self.removeFunction = self.removeBouquet
@@ -292,7 +292,7 @@ class ChannelContextMenu(Screen):
 					append_when_current_valid(current, menu, (_("enable move mode"), self.toggleMoveMode), level=1, key="6")
 				if not csel.entry_marked and not inBouquetRootList and current_root and not (current_root.flags & eServiceReference.isGroup):
 					if current.type != -1:
-						menu.append(ChoiceEntryComponent(text=(_("add marker"), self.showMarkerInputBox)))
+						menu.append(ChoiceEntryComponent(key="dummy", text=(_("add marker"), self.showMarkerInputBox)))
 					if not csel.movemode:
 						if haveBouquets:
 							append_when_current_valid(current, menu, (_("enable bouquet edit"), self.bouquetMarkStart), level=0)
@@ -319,7 +319,7 @@ class ChannelContextMenu(Screen):
 				else:
 					append_when_current_valid(current, menu, (_("end alternatives edit"), self.bouquetMarkEnd), level=0)
 					append_when_current_valid(current, menu, (_("abort alternatives edit"), self.bouquetMarkAbort), level=0)
-		menu.append(ChoiceEntryComponent(text=(_("Reload Services"), self.reloadServices)))
+		menu.append(ChoiceEntryComponent(key="dummy", text=(_("Reload Services"), self.reloadServices)))
 		self["menu"] = ChoiceList(menu)
 
 	def set3DMode(self, value):
@@ -457,7 +457,7 @@ class ChannelContextMenu(Screen):
 
 	def openSetup(self):
 		from Screens.Setup import Setup
-		self.session.openWithCallback(self.cancelClick, Setup, "channelselection")
+		self.session.openWithCallback(self.cancelClick, Setup, "ChannelSelection")
 
 	def cancelClick(self, dummy=False):
 		self.close(False)

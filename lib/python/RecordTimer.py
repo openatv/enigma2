@@ -376,7 +376,7 @@ class RecordTimerEntry(timer.TimerEntry, object):
 		else:
 			if not self.calculateFilename():
 				self.do_backoff()
-				self.start_prepare = time() + self.backoff
+				self.start_prepare = int(time() + self.backoff)
 				return False
 			rec_ref = self.service_ref and self.service_ref.ref
 			if rec_ref and rec_ref.flags & eServiceReference.isGroup:
@@ -411,7 +411,7 @@ class RecordTimerEntry(timer.TimerEntry, object):
 							name = event_name
 							if not self.calculateFilename(event_name):
 								self.do_backoff()
-								self.start_prepare = time() + self.backoff
+								self.start_prepare = int(time() + self.backoff)
 								return False
 					event_id = evt.getEventId()
 				else:
@@ -431,7 +431,7 @@ class RecordTimerEntry(timer.TimerEntry, object):
 				# we must calc nur start time before stopRecordService call because in Screens/Standby.py TryQuitMainloop tries to get
 				# the next start time in evEnd event handler...
 				self.do_backoff()
-				self.start_prepare = time() + self.backoff
+				self.start_prepare = int(time() + self.backoff)
 
 				NavigationInstance.instance.stopRecordService(self.record_service)
 				self.record_service = None
@@ -468,18 +468,18 @@ class RecordTimerEntry(timer.TimerEntry, object):
 
 		if next_state == self.StatePrepared:
 			if self.messageBoxAnswerPending:
-				self.start_prepare = time() + 1 # call again in 1 second
+				self.start_prepare = int(time()) + 1 # call again in 1 second
 				return False
 
 			if self.justTriedFreeingTuner:
-				self.start_prepare = time() + 5 # tryPrepare in 5 seconds
+				self.start_prepare = int(time()) + 5 # tryPrepare in 5 seconds
 				self.justTriedFreeingTuner = False
 				return False
 
 			if not self.justplay and not self.freespace():
 				if self.MountPathErrorNumber < 3 and self.MountPathRetryCounter < 3:
 					self.MountPathRetryCounter += 1
-					self.start_prepare = time() + 5 # tryPrepare in 5 seconds
+					self.start_prepare = int(time()) + 5 # tryPrepare in 5 seconds
 					self.log(0, "next try in 5 seconds ...(%d/3)" % self.MountPathRetryCounter)
 					return False
 				message = _("Write error at start of recording. %s\n%s") % ((_("Disk was not found!"), _("Disk is not writable!"), _("Disk full?"))[self.MountPathErrorNumber - 1], self.name)
@@ -1092,10 +1092,10 @@ class RecordTimerEntry(timer.TimerEntry, object):
 
 	def timeChanged(self):
 		old_prepare = self.start_prepare
-		self.start_prepare = self.begin - config.recording.prepare_time.value #self.prepare_time
+		self.start_prepare = int(self.begin) - config.recording.prepare_time.value #self.prepare_time
 		self.backoff = 0
 
-		if int(old_prepare) > 60 and int(old_prepare) != int(self.start_prepare):
+		if old_prepare > 60 and old_prepare != self.start_prepare:
 			self.log(15, _("record time changed, start prepare is now: %s") % ctime(self.start_prepare))
 
 	def check_justplay(self):

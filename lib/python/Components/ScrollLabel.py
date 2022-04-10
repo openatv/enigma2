@@ -158,7 +158,7 @@ class ScrollLabel(GUIComponent):
 
 	def updateScrollbar(self):
 		vis = max(100 * self.pageHeight // self.TotalTextHeight, 3)
-		start = (100 - vis) * self.curPos // (self.TotalTextHeight - self.pageHeight)
+		start = (100 - vis) * self.curPos // ((self.TotalTextHeight - self.pageHeight) or 1)
 		self.scrollbar.setStartEnd(start, start + vis)
 
 	def GUIcreate(self, parent):

@@ -19,9 +19,9 @@ class TextCase(Converter):
 	def getText(self):
 		originaltext = self.source.getText()
 		if self.type == self.UPPER:
-			return originaltext.decode('utf-8').upper().encode('utf-8')
+			return originaltext.upper()
 		elif self.type == self.LOWER:
-			return originaltext.decode('utf-8').lower().encode('utf-8')
+			return originaltext.lower()
 		else:
 			return originaltext
 

@@ -57,6 +57,7 @@ config.movielist.settings_per_directory = ConfigYesNo(default=True)
 config.movielist.root = ConfigSelection(default="/media", choices=["/", "/media", "/media/hdd", "/media/hdd/movie", "/media/usb", "/media/usb/movie"])
 config.movielist.hide_extensions = ConfigYesNo(default=False)
 config.movielist.stop_service = ConfigYesNo(default=True)
+config.movielist.show_underscores = ConfigYesNo(default=False)
 
 userDefinedButtons = None
 last_selected_dest = []
@@ -1987,7 +1988,7 @@ class MovieContextMenu(Screen, ProtectedScreen):
 		Screen.__init__(self, session)
 		ProtectedScreen.__init__(self)
 		self.skinName = "Setup"
-		self.setTitle(_("Movie List Setup"))
+		self.setTitle(_("Movie List Settings"))
 		self["HelpWindow"] = Pixmap()
 		self["HelpWindow"].hide()
 		self["VKeyIcon"] = Boolean(False)
@@ -2078,7 +2079,7 @@ class MovieContextMenuSummary(Screen):
 class MovieSelectionSetup(Setup):
 	def __init__(self, session):
 		Setup.__init__(self, session, setup="MovieSelection")
-		self.setTitle(_("Movie List Setup"))
+		self.setTitle(_("Movie List Settings"))
 
 	def keySave(self):
 		self.saveAll()

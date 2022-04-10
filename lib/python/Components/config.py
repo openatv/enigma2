@@ -1,7 +1,6 @@
 from copy import copy as shallowcopy
 from os import fsync, rename, sep
 from os.path import realpath
-from six import PY2
 from time import localtime, strftime, struct_time
 
 from enigma import getPrevAsciiCode
@@ -11,8 +10,6 @@ from Tools.Directories import SCOPE_CONFIG, fileAccess, resolveFilename
 from Tools.LoadPixmap import LoadPixmap
 from Tools.NumericalTextInput import NumericalTextInput
 from Components.Harddisk import harddiskmanager  # This import is order critical!
-
-pyunichr = unichr if PY2 else chr
 
 ACTIONKEY_LEFT = 0
 ACTIONKEY_RIGHT = 1
@@ -488,7 +485,7 @@ class ConfigBoolean(ConfigElement):
 		self.value = default
 		self.descriptions = descriptions
 		self.graphic = graphic
-		self.trueValues = ("1", "enable", "on", "true", "yes")
+		self.trueValues = ("1", "enabled", "on", "true", "yes")
 
 	def handleKey(self, key, callback=None):
 		prev = self.value
@@ -1299,7 +1296,7 @@ class ConfigClock(ConfigSequence):
 		newtime[4] = self._value[1]
 		newtime = struct_time(newtime)
 		value = strftime(config.usage.time.short.value.replace("%-I", "%_I").replace("%-H", "%_H"), newtime)
-		return value, mPos
+		return (value, mPos)
 
 
 class ConfigDate(ConfigSequence):
@@ -1359,7 +1356,6 @@ class ConfigPIN(ConfigInteger):
 			raise TypeError("[Config] Error: 'ConfigPIN' default must be an integer!")
 		if censor != "" and (isinstance(censor, str) and len(censor) != 1): # and (isinstance(censor, unicode) and len(censor) != 1):
 			raise ValueError("[Config] Error: Censor must be a single char (or \"\")!")
-		censor = censor.encode("UTF-8", errors="ignore") if PY2 else censor
 		ConfigInteger.__init__(self, default=default, limits=(0, (10 ** pinLength) - 1), censor=censor)
 		self.pinLength = pinLength
 
@@ -1370,26 +1366,32 @@ class ConfigPIN(ConfigInteger):
 class ConfigIP(ConfigSequence):
 	def __init__(self, default, auto_jump=False):
 		ConfigSequence.__init__(self, seperator=".", limits=[(0, 255), (0, 255), (0, 255), (0, 255)], default=default)
-		self.block_len = [len(str(x[1])) for x in self.limits]
-		self.marked_block = 0
+		self.autoJump = auto_jump
+		self.markedPos = 0
 		self.overwrite = True
-		self.auto_jump = auto_jump
 		self.zeroPad = False
 
 	def handleKey(self, key, callback=None):
-		if key == ACTIONKEY_LEFT:
-			if self.marked_block > 0:
-				self.marked_block -= 1
+		if key == ACTIONKEY_FIRST:
+			self.markedPos = 0
+			self.overwrite = True
+		elif key == ACTIONKEY_LEFT:
+			if self.markedPos > 0:
+				self.markedPos -= 1
 			self.overwrite = True
 		elif key == ACTIONKEY_RIGHT:
-			if self.marked_block < len(self.limits) - 1:
-				self.marked_block += 1
-			self.overwrite = True
-		elif key == ACTIONKEY_FIRST:
-			self.marked_block = 0
+			if self.markedPos < len(self.limits) - 1:
+				self.markedPos += 1
 			self.overwrite = True
 		elif key == ACTIONKEY_LAST:
-			self.marked_block = len(self.limits) - 1
+			self.markedPos = len(self.limits) - 1
+			self.overwrite = True
+		elif key in (ACTIONKEY_DELETE, ACTIONKEY_BACKSPACE):
+			self._value[self.markedPos] = 0
+			self.overwrite = True
+		elif key == ACTIONKEY_ERASE:
+			self.markedPos = 0
+			self._value = [0, 0, 0, 0]
 			self.overwrite = True
 		elif key in ACTIONKEY_NUMBERS or key == ACTIONKEY_ASCII:
 			if key == ACTIONKEY_ASCII:
@@ -1399,41 +1401,35 @@ class ConfigIP(ConfigSequence):
 				number = code - 48
 			else:
 				number = getKeyNumber(key)
-			oldvalue = self._value[self.marked_block]
+			prev = self._value[:]
 			if self.overwrite:
-				self._value[self.marked_block] = number
+				self._value[self.markedPos] = number
 				self.overwrite = False
 			else:
-				oldvalue *= 10
-				newvalue = oldvalue + number
-				if self.auto_jump and newvalue > self.limits[self.marked_block][1] and self.marked_block < len(self.limits) - 1:
+				newValue = (self._value[self.markedPos] * 10) + number
+				if self.autoJump and newValue > self.limits[self.markedPos][1] and self.markedPos < len(self.limits) - 1:
 					self.handleKey(ACTIONKEY_RIGHT, callback)
 					self.handleKey(key, callback)
 					return
 				else:
-					self._value[self.marked_block] = newvalue
-			if len(str(self._value[self.marked_block])) >= self.block_len[self.marked_block]:
+					self._value[self.markedPos] = newValue
+			if len(str(self._value[self.markedPos])) >= self.blockLen[self.markedPos]:
 				self.handleKey(ACTIONKEY_RIGHT, callback)
 			self.validate()
-			self.changed()
+			if self._value != prev:
+				self.changed()
+				if callable(callback):
+					callback()
 
 	def getMulti(self, selected):
 		(value, mBlock) = self.genText()
-		if self.enabled:
-			return ("mtext"[1 - selected:], value, mBlock)
-		else:
-			return ("text", value)
+		return ("mtext"[1 - selected:], value, mBlock) if self.enabled else ("text", value)
 
 	def genText(self):
-		value = ""
-		block_strlen = []
-		for i in self._value:
-			block_strlen.append(len(str(i)))
-			if value:
-				value += self.seperator
-			value += str(i)
-		leftPos = sum(block_strlen[:(self.marked_block)]) + self.marked_block
-		rightPos = sum(block_strlen[:(self.marked_block + 1)]) + self.marked_block
+		value = self.seperator.join([str(x) for x in self._value])
+		blockLen = [len(str(x)) for x in self._value]
+		leftPos = sum(blockLen[:self.markedPos]) + self.markedPos
+		rightPos = sum(blockLen[:self.markedPos + 1]) + self.markedPos
 		mBlock = list(range(leftPos, rightPos))
 		return (value, mBlock)
 
@@ -1656,7 +1652,7 @@ class ConfigText(ConfigElement, NumericalTextInput):
 			self.overwrite = not self.overwrite
 		elif key == ACTIONKEY_ASCII:
 			self.timeout()
-			newChar = pyunichr(getPrevAsciiCode())
+			newChar = chr(getPrevAsciiCode())
 			if not self.useableChars or newChar in self.useableChars:
 				if self.allmarked:
 					self.deleteAllChars()
@@ -1736,7 +1732,7 @@ class ConfigText(ConfigElement, NumericalTextInput):
 				self.offset = max(0, textlen - self.visible_width)
 
 	def getText(self):
-		return self.text.encode("UTF-8", errors="ignore") if PY2 else self.text
+		return self.text
 
 	def getMulti(self, selected):
 		padding = u"\u00A0" if selected else ""
@@ -1752,7 +1748,7 @@ class ConfigText(ConfigElement, NumericalTextInput):
 			else:
 				mark = [self.markedPos]
 			multi = "%s%s" % (self.text, padding)
-		return ("mtext"[1 - selected:], multi.encode("UTF-8", errors="ignore") if PY2 else multi, mark)
+		return ("mtext"[1 - selected:], multi, mark)
 
 	def showHelp(self, session):
 		if session is not None and self.help_window is not None:
@@ -1782,18 +1778,11 @@ class ConfigText(ConfigElement, NumericalTextInput):
 		ConfigElement.onDeselect(self, session)
 
 	def getValue(self):
-		if PY2:
-			try:
-				return self.text.encode("UTF-8", errors="strict")
-			except UnicodeDecodeError:
-				print("[Config] Broken UTF8!")
-				return self.text.encode("UTF-8", errors="ignore")
-		else:
-			return self.text
+		return self.text
 
 	def setValue(self, value):
 		prev = self.text if hasattr(self, "text") else None
-		if PY2 or isinstance(value, bytes): # DEBUG: If bytes on PY3 we can print this and then convert.
+		if isinstance(value, bytes):  # DEBUG: If bytes on PY3 we can print this and then convert.
 			try:
 				self.text = value.decode("UTF-8", errors="strict")
 			except UnicodeDecodeError:
@@ -1911,7 +1900,7 @@ class ConfigNumber(ConfigText):
 					return
 			else:
 				ascii = getKeyNumber(key) + 48
-			newChar = pyunichr(ascii)
+			newChar = chr(ascii)
 			if self.allmarked:
 				self.deleteAllChars()
 				self.allmarked = False
@@ -1957,7 +1946,7 @@ class ConfigPassword(ConfigText):
 		ConfigText.__init__(self, default=default, fixed_size=fixed_size, visible_width=visible_width)
 		if censor != "" and (isinstance(censor, str) and len(censor) != 1) and (isinstance(censor, unicode) and len(censor) != 1):
 			raise ValueError("[Config] Error: Censor must be a single char (or \"\")!")
-		self.censor = censor.encode("UTF-8", errors="ignore") if PY2 else censor
+		self.censor = censor
 		self.hidden = True
 
 	def getMulti(self, selected):
@@ -2218,12 +2207,8 @@ class Config(ConfigSubsection):
 	def loadFromFile(self, filename, baseFile=True, base_file=None):  # DEBUG: base_file is deprecated, only used in Components/PackageInfo.py
 		if base_file is not None:
 			baseFile = base_file
-		if PY2:
-			with open(filename, "r") as fd:
-				self.unpickle(fd, baseFile)
-		else:
-			with open(filename, "r", encoding="UTF-8") as fd:
-				self.unpickle(fd, baseFile)
+		with open(filename, "r", encoding="UTF-8") as fd:
+			self.unpickle(fd, baseFile)
 
 	def saveToFile(self, filename):
 		try:

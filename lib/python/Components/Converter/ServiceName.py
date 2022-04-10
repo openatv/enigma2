@@ -57,7 +57,7 @@ class ServiceName(Converter):
 			name = service and info.getName(service)
 			if name is None:
 				name = info.getName()
-			name = name.replace('\xc2\x86', '').replace('\xc2\x87', '')
+			name = name.replace('\xc2\x86', '').replace('\xc2\x87', '').replace('_', ' ')
 			if self.type == self.NAME_EVENT:
 				act_event = info and info.getEvent(0)
 				if not act_event and info:

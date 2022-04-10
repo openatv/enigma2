@@ -31,8 +31,8 @@ import pwd
 import grp
 import time
 import re
-
 import os
+from pathlib import Path
 
 # Addons
 from .unrar import RarMenuScreen
@@ -275,7 +275,10 @@ class key_actions(stat_info):
 		info += _("Mode %s (%04o)") % (self.fileModeStr(st.st_mode), stat.S_IMODE(st.st_mode))
 		return info
 
-	def statInfo(self, dirsource):
+	def get_dirSize(self, folder: str) -> int:
+		return sum(p.stat().st_size for p in (f for f in Path(folder).rglob('*') if f.is_file()))
+
+	def statInfo(self, dirsource, dirsize=False):
 		filename = dirsource.getFilename()
 		sourceDir = dirsource.getCurrentDirectory()
 		if dirsource.canDescent():
@@ -303,8 +306,11 @@ class key_actions(stat_info):
 		if stat.S_ISCHR(st.st_mode) or stat.S_ISBLK(st.st_mode):
 			sizes = ("", "", "")
 		else:
-			bytesize = "%s" % "{:n}".format(st.st_size)
-			scaledsize = ' '.join(self.SIZESCALER.scale(st.st_size)) + 'B'
+			sz = st.st_size
+			if dirsize and os.path.isdir(os.path.normpath(pathname)):
+				sz = self.get_dirSize(folder=os.path.normpath(pathname))
+			bytesize = "%s" % "{:n}".format(sz)
+			scaledsize = ' '.join(self.SIZESCALER.scale(sz)) + 'B'
 			sizes = (
 				bytesize,  # 10
 				_("%s") % scaledsize,  # 11
@@ -437,6 +443,16 @@ class key_actions(stat_info):
 			return
 		self.run_prog("mediainfo")
 
+	def run_dirsize(self):
+		if self.disableActions_Timer.isActive():
+			return
+		filename = self.SOURCELIST.getFilename()
+		sourceDir = self.SOURCELIST.getCurrentDirectory()
+		filepath = os.path.join(sourceDir, filename)
+		if os.path.isdir(filepath):
+			cmd = "du -h -d 0 \"%s\"" % filepath
+			self._progConsole = self.session.open(Console, cmdlist=(cmd,), finishedCallback=self.progConsoleCB)
+
 	def run_prog(self, prog, args=None):
 		if not self.have_program(prog):
 			pkg = self.progPackages.get(prog)
@@ -493,6 +509,11 @@ class key_actions(stat_info):
 		if self.disableActions_Timer.isActive():
 			return
 		return self.help_run_prog("mediainfo")
+
+	def help_run_dirsize(self):
+		if self.disableActions_Timer.isActive():
+			return
+		return _("Show Directory size")
 
 	def help_run_prog(self, prog):
 		if self.have_program(prog):

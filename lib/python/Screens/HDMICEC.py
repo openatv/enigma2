@@ -7,8 +7,8 @@ from Screens.Setup import Setup
 
 class HDMICECSetup(Setup):
 	def __init__(self, session):
-		Setup.__init__(self, session=session, setup="HdmiCec")
-		self.setTitle(_("HDMI-CEC Setup"))
+		Setup.__init__(self, session=session, setup="HDMICEC")
+		self.setTitle(_("HDMI-CEC Settings"))
 		self["addressActions"] = HelpableActionMap(self, ["ColorActions"], {
 			"yellow": (self.updateFixedAddress, _("Set current CEC address as fixed address"))
 		}, prio=0, description=_("HDMI-CEC Setup Actions"))

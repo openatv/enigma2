@@ -98,7 +98,7 @@ class CISetup(Screen, ConfigListScreen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
 		self.skinName = ["Setup"]
-		self.setTitle(_("CI Basic settings"))
+		self.setTitle(_("CI Basic Settings"))
 		self["HelpWindow"] = Pixmap()
 		self["HelpWindow"].hide()
 		self["VKeyIcon"] = Boolean(False)
@@ -699,7 +699,7 @@ class PermanentPinEntry(Screen, ConfigListScreen):
 class CIHelper(Screen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
-		Screen.setTitle(self, _("CIHelper Setup"))
+		Screen.setTitle(self, _("CI Helper Settings"))
 		self.skinName = "CIHelper"
 		self.onChangedEntry = []
 		self['ci0'] = Label(_("CIHelper for SLOT CI0"))
@@ -797,7 +797,7 @@ class CIHelper(Screen):
 					self['ci1inactive'].hide()
 					self['ci1'].hide()
 				f.close()
-		title = _("CIHelper Setup")
+		title = _("CI Helper Settings")
 
 		for cb in self.onChangedEntry:
 			cb(title, status_summary, autostartstatus_summary)
@@ -809,11 +809,11 @@ class CIHelper(Screen):
 class CIHelperSetup(Screen, ConfigListScreen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
-		Screen.setTitle(self, _("CIHelper Setup"))
+		Screen.setTitle(self, _("CI Helper Settings"))
 		self.onChangedEntry = []
 		self.list = []
 		ConfigListScreen.__init__(self, self.list, session=session, on_change=self.selectionChanged)
-		Screen.setTitle(self, _("CIHelper Setup"))
+		Screen.setTitle(self, _("CI Helper Settings"))
 		self['key_red'] = Label(_("Save"))
 		self['actions'] = ActionMap(['WizardActions', 'ColorActions'], {'red': self.saveCIHelper, 'back': self.close})
 		self.updateList()

@@ -557,9 +557,9 @@ class DevicePanelConf(Screen, ConfigListScreen):
 				if (((float(size) / 1024) / 1024) / 1024) > 1:
 					des = _("Size: ") + str(round((((float(size) / 1024) / 1024) / 1024), 2)) + _("TB")
 				elif ((size / 1024) / 1024) > 1:
-					des = _("Size: ") + str((size / 1024) / 1024) + _("GB")
+					des = _("Size: ") + str((size // 1024) // 1024) + _("GB")
 				else:
-					des = _("Size: ") + str(size / 1024) + _("MB")
+					des = _("Size: ") + str(size // 1024) + _("MB")
 			else:
 				try:
 					size = open('/sys/block/' + device2 + '/' + device + '/size').read()
@@ -570,9 +570,9 @@ class DevicePanelConf(Screen, ConfigListScreen):
 				if ((((float(size) / 2) / 1024) / 1024) / 1024) > 1:
 					des = _("Size: ") + str(round(((((float(size) / 2) / 1024) / 1024) / 1024), 2)) + _("TB")
 				elif (((size / 2) / 1024) / 1024) > 1:
-					des = _("Size: ") + str(((size / 2) / 1024) / 1024) + _("GB")
+					des = _("Size: ") + str(((size // 2) // 1024) // 1024) + _("GB")
 				else:
-					des = _("Size: ") + str((size / 2) / 1024) + _("MB")
+					des = _("Size: ") + str((size // 2) // 1024) + _("MB")
 		f.close()
 		item = NoSave(ConfigSelection(default='/media/' + device, choices=[('/media/' + device, '/media/' + device),
 		('/media/hdd', '/media/hdd'),

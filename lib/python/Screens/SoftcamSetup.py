@@ -6,6 +6,7 @@ from Components.ActionMap import HelpableActionMap
 from Components.config import ConfigSelection, config
 from Components.ScrollLabel import ScrollLabel
 from Components.Sources.StaticText import StaticText
+from Components.SystemInfo import Refresh_SysSoftCam
 from Screens.Setup import Setup
 from Tools.camcontrol import CamControl
 from Tools.Directories import isPluginInstalled
@@ -75,7 +76,9 @@ class SoftcamSetup(Setup):
 		if device:
 			self.restart(device="e%s" % device)
 		else:
-			Setup.keySave(self)
+			self.saveAll()
+			Refresh_SysSoftCam()
+			self.close()
 
 	def keyCancel(self):
 		Setup.keyCancel(self)
@@ -144,7 +147,9 @@ class SoftcamSetup(Setup):
 			self.mbox.close()
 		self.session.nav.playService(self.oldref, adjust=False)
 		if "e" in self.device:
-			Setup.keySave(self)
+			self.saveAll()
+			Refresh_SysSoftCam()
+			self.close()
 
 	def setEcmInfo(self):
 		(newEcmFound, ecmInfo) = self.ecminfo.getEcm()

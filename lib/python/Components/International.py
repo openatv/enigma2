@@ -548,8 +548,8 @@ class International:
 		self.activeLocale = "en_US"
 		self.catalog = None
 		self.callbacks = []
-		# environ["LANG"] = "en_US.UTF-8"  # Force the environment to US English so all shell command run from Enigma2 can be parsed in English (as coded).
-		# environ["LANGUAGE"] = "en_US.UTF-8"
+		# environ["LANG"] = "C.UTF-8"  # Force the environment to US English so all shell commands run from Enigma2 can be parsed in English (as coded).
+		# environ["LANGUAGE"] = "C.UTF-8"
 		self.buildISO3166()  # This should not be required when all Enigma2 code comes here for country and language data.
 		self.initInternational()
 

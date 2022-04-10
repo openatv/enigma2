@@ -4,7 +4,7 @@
 		Executes Screen called "classname" from module "Screen.mod".
 		If no module is given, Screen must be globally available.
 		If no screen is given, module is used as screen class name.
-		Arguments must be comma seperated (will be fed to eval), and can
+		Arguments must be comma separated (will be fed to eval), and can
 			use stuff from module.
 		(Of course you must specify at least one of module, screen.)
 	<setup id="id" />
@@ -14,7 +14,7 @@
 -->
 
 <!-- Main Menu -->
-<menu text="Mainmenu" title="Main menu">
+<menu text="Mainmenu" title="Main Menu">
 	<id val="mainmenu" />
 
 	<!-- Menu / Information -->
@@ -49,42 +49,42 @@
 		<menu entryID="video_menu" level="0" text="Video" weight="0">
 			<id val="video_menu" />
 			<item entryID="video_setup" level="0" text="Basic settings" weight="0"><screen module="VideoMode" screen="VideoSetup" /></item>
-			<item entryID="osdsetup" level="1" text="OSD Position" weight="50" requires="CanChangeOsdPosition"><screen module="UserInterfacePositioner" screen="UserInterfacePositioner2"/></item>
-			<item entryID="setup_osd3d" level="2" text="OSD 3D Setup" weight="60" requires="CanChange3DOsd"><setup id="osd3d"/></item>
+			<item entryID="osdsetup" level="1" text="OSD Position" weight="50" requires="CanChangeOsdPosition"><screen module="UserInterfacePositioner" screen="UserInterfacePositioner2" /></item>
+			<item entryID="setup_osd3d" level="2" text="OSD 3D Settings" weight="60" requires="CanChange3DOsd"><setup id="OSD3D" /></item>
 		</menu>
 
 		<!-- Menu / Settings / Audio Menu -->
 		<menu entryID="audio_menu" level="1" text="Audio" weight="5">
 			<id val="audio_menu" />
-			<item entryID="audio_setup" level="1" text="Basic settings" weight="0"><setup id="AudioSettings"/></item>
-			<item entryID="subtitle_setup" level="2" text="Subtitle settings" weight="10"><setup id="subtitlesetup" /></item>
-			<item entryID="autolanguage_setup" level="1" text="Auto language selection" weight="15"><setup id="autolanguagesetup" /></item>
+			<item entryID="audio_setup" level="1" text="Basic settings" weight="0"><setup id="Audio" /></item>
+			<item entryID="subtitle_setup" level="2" text="Subtitle Settings" weight="10"><setup id="Subtitle" /></item>
+			<item entryID="autolanguage_setup" level="1" text="Auto Language Settings" weight="15"><setup id="AutoLanguage" /></item>
 		</menu>
 
 		<!-- Menu / Settings / Recordings -->
 		<menu entryID="rec_setup" level="1" text="Recordings &amp; Timeshift" weight="10">
 			<id val="rec" />
-			<item entryID="recording_setup" level="0" text="Recording settings" weight="10"><screen module="Recording" screen="RecordingSettings" /></item>
-			<item entryID="hdmirecord_setup" level="0" text="HDMI-IN Recording settings" weight="15" requires="HDMIin"><setup id="HDMIRecord"/></item>
-			<item entryID="timshift_setup" level="0" text="Timeshift settings" weight="20"><screen module="Timeshift" screen="TimeshiftSettings" /></item>
+			<item entryID="recording_setup" level="0" text="Recording Settings" weight="10"><screen module="Recording" screen="RecordingSettings" /></item>
+			<item entryID="hdmirecord_setup" level="0" text="HDMI-IN Recording settings" weight="15" requires="HDMIin"><setup id="HDMIRecord" /></item>
+			<item entryID="timshift_setup" level="0" text="Timeshift Settings" weight="20"><screen module="Timeshift" screen="TimeshiftSettings" /></item>
 		</menu>
 
 		<!-- Menu / Settings / GUI (Was: Menu / Settings / System) -->
 		<menu entryID="system_selection" level="0" text="Usage &amp; GUI" weight="15">
 			<id val="system" />
 			<!-- Menu / Settings / GUI / Display-->
-			<item entryID="user_interface" level="0" weight="0"><setup id="userinterface" /></item>
-			<item weight="5" level="0" entryID="remote_setup"><setup id="remotesetup"/></item>
-			<item weight="10" level="0" entryID="channelselection_setup"><setup id="channelselection" /></item>
-			<item weight="15" level="0" entryID="usage_setup"><setup id="usage" /></item>
-			<!--item weight="20" level="0" entryID="specialfeatures_menu"><setup id="specialfeatures" /></item-->
-			<item weight="25" level="0" text="Skin Setup" entryID="skin_setup"><screen module="SkinSelector" screen="SkinSelector"/></item>
+			<item entryID="user_interface" level="0" weight="0"><setup id="UserInterface" /></item>
+			<item weight="5" level="0" entryID="remote_setup"><setup id="RemoteButton" /></item>
+			<item weight="10" level="0" entryID="channelselection_setup"><setup id="ChannelSelection" /></item>
+			<item weight="15" level="0" entryID="usage_setup"><setup id="Usage" /></item>
+			<!--item weight="20" level="0" entryID="specialfeatures_menu"><setup id="SpecialFeatures" /></item-->
+			<item weight="25" level="0" text="Skin Setup" entryID="skin_setup"><screen module="SkinSelector" screen="SkinSelector" /></item>
 			<menu weight="30" level="0" text="STB Display" entryID="display_selection" requires="Display">
 				<id val="display" />
-				<item weight="0" level="0" entryID="display_setup"><setup id="display" /></item>
-				<item weight="5" level="0" text="LCD Skin Setup" entryID="lcd_skin_setup" requires="LCDSKINSetup"><screen module="SkinSelector" screen="LcdSkinSelector"/></item>
+				<item weight="0" level="0" entryID="display_setup"><setup id="Display" /></item>
+				<item weight="5" level="0" text="LCD Skin Setup" entryID="lcd_skin_setup" requires="LCDSKINSetup"><screen module="SkinSelector" screen="LcdSkinSelector" /></item>
 			</menu>
-			<item weight="35" level="2" text="Hotkey Setup" entryID="buttonsetup_setup"><screen module="ButtonSetup" screen="ButtonSetup"/></item>
+			<item weight="35" level="2" text="Hotkey Setup" entryID="buttonsetup_setup"><screen module="ButtonSetup" screen="ButtonSetup" /></item>
 			<!-- Menu / Settings / System / Extended System / OSD settings -->
 			<menu weight="40" level="1" text="Extended GUI" entryID="osd_setup">
 				<id val="osd_menu" />
@@ -95,7 +95,7 @@ from Plugins.SystemPlugins.RemoteControlCode.plugin import RemoteControlCode
 self.session.open(RemoteControlCode)
 					</code>
 				</item>
-				<item entryID="keyboard" level="1" text="Keyboard" weight="40"><setup id="keyboard" /></item>
+				<item entryID="keyboard" level="1" text="Keyboard" weight="40"><setup id="Keyboard" /></item>
 			</menu>
 			<item entryID="locale_setup" level="0" text="Language" weight="70"><screen module="LocaleSelection" /></item>
 		</menu>
@@ -103,71 +103,76 @@ self.session.open(RemoteControlCode)
 		<!-- Menu / Settings / EPG -->
 		<menu entryID="epg_menu" level="2" text="EPG" weight="20">
 			<id val="epg" />
-			<item entryID="setup_epgmulti" level="2" text="MultiEPG settings" weight="110"><setup id="epgmulti" /></item>
-			<item entryID="setup_epgenhanced" level="2" text="SingleEPG settings" weight="115"><setup id="epgenhanced" /></item>
-			<item entryID="setup_epginfobar" level="2" text="InfobarEPG settings" weight="120"><setup id="epginfobar" /></item>
-			<item entryID="setup_epginfobargraphical" level="2" text="Graphical InfobarEPG settings" weight="125"><setup id="epginfobargraphical" /></item>
-			<item entryID="setup_epggraphical" level="2" text="GraphicalEPG settings" weight="130"><setup id="epggraphical" /></item>
-			<item entryID="setup_epgvertical" level="2" text="VerticalEPG settings" weight="135"><setup id="epgvertical" /></item>
+			<item entryID="epg_setup" level="0" text="EPG Settings" weight="105"><setup id="EPG" /></item>
+			<item entryID="setup_epgmulti" level="2" text="MultiEPG Settings" weight="110"><setup id="EPGMulti" /></item>
+			<item entryID="setup_epgenhanced" level="2" text="SingleEPG Settings" weight="115"><setup id="EPGEnhanced" /></item>
+			<item entryID="setup_epginfobar" level="2" text="InfobarEPG Settings" weight="120"><setup id="EPGInfobar" /></item>
+			<item entryID="setup_epginfobargraphical" level="2" text="Graphical InfobarEPG Settings" weight="125"><setup id="EPGInfobarGraphical" /></item>
+			<item entryID="setup_epggraphical" level="2" text="GraphicalEPG Settings" weight="130"><setup id="EPGGraphical" /></item>
+			<item entryID="setup_epgvertical" level="2" text="VerticalEPG Settings" weight="135"><setup id="EPGVertical" /></item>
 			<menu entryID="epgloadsave_menu" level="2" text="Load/Save/Delete" weight="200">
 				<id val="epgloadsave_menu" />
 				<item entryID="loadepgcache" level="0" text="Load EPG" weight="0">
 					<code>
-from Components.EpgLoadSave import EpgLoadMsg
 def msgClosed(ret):
 	if ret:
 		from enigma import eEPGCache
 		epgcache = eEPGCache.getInstance()
 		epgcache.load()
+
+from Components.EpgLoadSave import EpgLoadMsg
 self.session.openWithCallback(msgClosed, EpgLoadMsg)
 					</code>
 				</item>
 				<item entryID="saveepgcache" level="0" text="Save EPG" weight="50">
 					<code>
-from Components.EpgLoadSave import EpgSaveMsg
 def msgClosed(ret):
 	if ret:
 		from enigma import eEPGCache
 		epgcache = eEPGCache.getInstance()
 		epgcache.save()
+
+from Components.EpgLoadSave import EpgSaveMsg
 self.session.openWithCallback(msgClosed, EpgSaveMsg)
 					</code>
 				</item>
 				<item entryID="deleteepgcache" level="0" text="Delete EPG" weight="60">
 					<code>
-from Components.EpgLoadSave import EpgDeleteMsg
 def msgClosed(ret):
 	if ret:
-		import os
-		from Components.config import config
-		if os.path.exists(config.misc.epgcache_filename.value):
-			os.remove(config.misc.epgcache_filename.value)
+		from os import remove
+		from os.path import exists
 		from enigma import eEPGCache
+		from Components.config import config
+		if exists(config.misc.epgcache_filename.value):
+			remove(config.misc.epgcache_filename.value)
 		epgcache = eEPGCache.getInstance()
 		epgcache.flushEPG()
+
+from Components.EpgLoadSave import EpgDeleteMsg
 self.session.openWithCallback(msgClosed, EpgDeleteMsg)
 					</code>
 				</item>
 			</menu>
-			<item entryID="epg_setup" level="0" text="Setup" weight="300"><setup id="epgsettings" /></item>
 		</menu>
 
 		<!-- Menu / Settings / Service Searching -->
 		<menu entryID="service_searching_selection" level="0" text="Reception" weight="25">
 			<id val="scan" />
-			<item entryID="tuner_setup" level="1" text="Basic settings" weight="0" requires="USETunersetup"><setup id="TunerSettings" /></item>
-			<item entryID="tuner_setup" level="0" text="Tuner configuration" weight="1"><screen module="Satconfig" screen="NimSelection" /></item>
+			<item entryID="tuner_setup" level="1" text="Basic settings" weight="0" requires="USETunersetup"><setup id="Tuner" /></item>
+			<item entryID="tuner_setup" level="0" text="Tuner Configuration" weight="1"><screen module="Satconfig" screen="NimSelection" /></item>
 			<item entryID="auto_scan" level="0" text="Automatic Scan" weight="5"><screen module="ScanSetup" screen="ScanSimple" /></item>
-			<item entryID="manual_scan" level="0" text="Manual scan" weight="10"><screen module="ScanSetup" /></item>
+			<item entryID="manual_scan" level="0" text="Manual Scan" weight="10"><screen module="ScanSetup" /></item>
 		</menu>
 
 		<!-- Menu / Settings / Common interface -->
 		<menu entryID="cam_setup" level="1" text="Decryption &amp; Parental Control" weight="30">
 			<id val="cam" />
-			<item entryID="softcam_setup" level="0" text="Softcam Setup" weight="50" requires="HAVEINITCAM"><screen module="SoftcamSetup" screen="SoftcamSetup"/></item>
-			<item entryID="softcam_setup" level="0" text="OScamInfo" weight="60" requires="ShowOscamInfo"><screen module="OScamInfo" screen="OscamInfoMenu"/></item>
-			<item entryID="ci_setup" level="1" text="CI Basic settings" weight="80" requires="CommonInterface"><screen module="Ci" screen="CISetup" /></item>
-			<item entryID="ci_setup" level="1" text="CIHelper Setup" weight="90" requires="CIHelper"><screen module="Ci" screen="CIHelper" /></item>
+			<item entryID="softcam_setup" level="0" text="Softcam Settings" weight="50" requires="HAVEINITCAM"><screen module="SoftcamSetup" screen="SoftcamSetup" /></item>
+			<item entryID="softcam_setup" level="0" text="OScamInfo" weight="60" requires="ShowOscamInfo"><screen module="OScamInfo" screen="OscamInfoMenu" /></item>
+			<item entryID="softcam_setup" level="0" text="CCCam Info" weight="70" requires="ShowCCCamInfo"><screen module="CCcamInfo" screen="CCcamInfoMain" /></item>
+			<item entryID="ci_setup" level="1" text="CI Basic Settings" weight="80" requires="CommonInterface"><screen module="Ci" screen="CISetup" /></item>
+			<item entryID="ci_setup" level="1" text="CI Helper Settings" weight="90" requires="CIHelper"><screen module="Ci" screen="CIHelper" /></item>
 			<item entryID="ci_setup" level="1" text="Common Interface" weight="100" requires="CommonInterface"><screen module="Ci" screen="CiSelection" /></item>
 			<item entryID="parental_setup" level="0" text="Parental control" weight="200"><screen module="ParentalControlSetup" screen="ParentalControlSetup" /></item>
 		</menu>
@@ -176,57 +181,40 @@ self.session.openWithCallback(msgClosed, EpgDeleteMsg)
 		<menu entryID="extended_selection" level="0" text="System" weight="95">
 			<id val="extended" />
 			<!-- Menu / Settings / System / Storage devices -->
-			<menu entryID="hardisk_selection" level="0" text="Storage devices" weight="45" requires="Harddisk">
+			<menu entryID="hardisk_selection" level="0" text="Storage Devices" weight="45" requires="Harddisk">
 				<id val="harddisk" />
-				<item entryID="harddisk_setup" level="1" text="Hard disk setup" weight="0"><setup id="harddisk"/></item>
-				<item entryID="harddisk_init" level="0" text="Initialization" weight="5"><screen module="HarddiskSetup" screen="HarddiskSelection"/></item>
-				<item entryID="harddisk_check" level="0" text="Filesystem Check" weight="10"><screen module="HarddiskSetup" screen="HarddiskFsckSelection"/></item>
-				<item entryID="harddisk_convert" level="0" text="Convert ext3 filesystem to ext4" weight="15" requires="ext4"><screen module="HarddiskSetup" screen="HarddiskConvertExt4Selection"/></item>
-				<item entryID="mount_manager" level="0" text="Mount Manager" weight="20"><screen module="MountManager" screen="HddMount"/></item>
-				<item entryID="swap_manager" level="2" text="Swap Manager" weight="30"><screen module="SwapManager" screen="Swap"/></item>
+				<item entryID="harddisk_setup" level="1" text="Hard Disk Settings" weight="0"><setup id="HardDisk" /></item>
+				<item entryID="harddisk_init" level="0" text="Initialization" weight="5"><screen module="HarddiskSetup" screen="HarddiskSelection" /></item>
+				<item entryID="harddisk_check" level="0" text="File System Check" weight="10"><screen module="HarddiskSetup" screen="HarddiskFsckSelection" /></item>
+				<item entryID="harddisk_convert" level="0" text="Convert EXT3 File System to EXT4" weight="15" requires="ext4"><screen module="HarddiskSetup" screen="HarddiskConvertExt4Selection" /></item>
+				<item entryID="mount_manager" level="0" text="Mount Manager" weight="20"><screen module="MountManager" screen="HddMount" /></item>
+				<item entryID="swap_manager" level="2" text="Swap Manager" weight="30"><screen module="SwapManager" screen="Swap" /></item>
 			</menu>
 
 			<!-- Menu / Settings / System / Network -->
 			<menu entryID="network_menu" level="0" text="Network" weight="50">
 				<id val="network" />
-				<item entryID="device_setup" level="0" text="Device Setup" weight="0"><screen module="NetworkSetup" screen="NetworkAdapterSelection"/></item>
-				<item entryID="netmounts_setup" level="1" text="Mounts Setup" weight="5"><screen module="NetworkSetup" screen="NetworkMountsMenu"/></item>
-				<item entryID="password_setup" level="2" text="Password Setup" weight="8"><screen module="NetworkSetup" screen="NetworkPassword"/></item>
-				<item entryID="netsatpi_setup" level="2" text="SATPI Setup" weight="10"><screen module="NetworkSetup" screen="NetworkSATPI"/></item>
-				<item entryID="netsmba_setup" level="2" text="CIFS/Samba Setup" weight="15"><screen module="NetworkSetup" screen="NetworkSamba"/></item>
-				<item entryID="netftp_setup" level="2" text="FTP Setup" weight="20"><screen module="NetworkSetup" screen="NetworkFtp"/></item>
-				<item entryID="Inadyn_setup" level="2" text="Inadyn Setup" weight="25"><screen module="NetworkSetup" screen="NetworkInadyn"/></item>
-				<item entryID="minidlna_setup" level="2" text="MiniDLNA Setup" weight="30"><screen module="NetworkSetup" screen="NetworkMiniDLNA"/></item>
-				<item entryID="netnfs_setup" level="2" text="NFS Setup" weight="35"><screen module="NetworkSetup" screen="NetworkNfs"/></item>
-				<item entryID="netvpn_setup" level="2" text="OpenVPN Setup" weight="40"><screen module="NetworkSetup" screen="NetworkOpenvpn"/></item>
-				<item entryID="netsabnzbd_setup" level="2" text="SABnzbd Setup" weight="45"><screen module="NetworkSetup" screen="NetworkSABnzbd"/></item>
-				<item entryID="nettelnet_setup" level="2" text="Telnet Setup" weight="50"><screen module="NetworkSetup" screen="NetworkTelnet"/></item>
-				<item entryID="netushare_setup" level="2" text="uShare Setup" weight="55"><screen module="NetworkSetup" screen="NetworkuShare"/></item>
-				<item entryID="netafp_setup" level="2" text="AFP Setup" weight="60"><screen module="NetworkSetup" screen="NetworkAfp"/></item>
+				<item entryID="device_setup" level="0" text="Device Settings" weight="0"><screen module="NetworkSetup" screen="NetworkAdapterSelection" /></item>
+				<item entryID="netmounts_setup" level="1" text="Mounts Settings" weight="5"><screen module="NetworkSetup" screen="NetworkMountsMenu" /></item>
+				<item entryID="password_setup" level="2" text="Password Settings" weight="8"><screen module="NetworkSetup" screen="NetworkPassword" /></item>
+				<item entryID="netsatpi_setup" level="2" text="SATPI Settings" weight="10"><screen module="NetworkSetup" screen="NetworkSATPI" /></item>
+				<item entryID="netsmba_setup" level="2" text="CIFS/Samba Settings" weight="15"><screen module="NetworkSetup" screen="NetworkSamba" /></item>
+				<item entryID="netftp_setup" level="2" text="FTP Settings" weight="20"><screen module="NetworkSetup" screen="NetworkFtp" /></item>
+				<item entryID="Inadyn_setup" level="2" text="Inadyn Settings" weight="25"><screen module="NetworkSetup" screen="NetworkInadyn" /></item>
+				<item entryID="minidlna_setup" level="2" text="MiniDLNA Settings" weight="30"><screen module="NetworkSetup" screen="NetworkMiniDLNA" /></item>
+				<item entryID="netnfs_setup" level="2" text="NFS Settings" weight="35"><screen module="NetworkSetup" screen="NetworkNfs" /></item>
+				<item entryID="netvpn_setup" level="2" text="OpenVPN Settings" weight="40"><screen module="NetworkSetup" screen="NetworkOpenvpn" /></item>
+				<item entryID="netsabnzbd_setup" level="2" text="SABnzbd Settings" weight="45"><screen module="NetworkSetup" screen="NetworkSABnzbd" /></item>
+				<item entryID="nettelnet_setup" level="2" text="Telnet Settings" weight="50"><screen module="NetworkSetup" screen="NetworkTelnet" /></item>
+				<item entryID="netushare_setup" level="2" text="uShare Settings" weight="55"><screen module="NetworkSetup" screen="NetworkuShare" /></item>
+				<item entryID="netafp_setup" level="2" text="AFP Settings" weight="60"><screen module="NetworkSetup" screen="NetworkAfp" /></item>
 			</menu>
-			<item entryID="hdmicec" level="0" text="HDMI-CEC Setup" weight="55" requires="HDMICEC"><screen module="HDMICEC" screen="HDMICECSetup"/></item>
-			<item entryID="script_manager" level="1" text="Script Manager" weight="56"><screen module="ScriptRunner" screen="ScriptRunner"/></item>
-			<item entryID="time_setup" level="0" text="Time" weight="60"><screen module="Time" screen="Time" /></item>
-			<item entryID="logs_setup" level="0" text="Logs settings" weight="70"><setup id="logs" /></item>
-			<item entryID="rfmod_setup" level="1" text="RF output" weight="80" requires="RfModulator"><setup id="RFmod"/></item>
-			<item entryID="factory_reset" level="0" text="Factory reset" weight="99">
-				<code>
-from __future__ import print_function
-from Screens.FactoryReset import FactoryReset
-def msgClosed(ret):
-	if ret:
-		from os import system, path, _exit
-		print("[FACTORY RESET] remove dir /etc/enigma2")
-		system("rm -R /etc/enigma2")
-		if path.exists("/media/hdd/images/config"):
-			system("rm -R /media/hdd/images/config")
-		print("[FACTORY RESET] set network to DHCP")
-		system("cp -f /usr/share/enigma2/defaults/interfaces /etc/network/interfaces")
-		system("/etc/init.d/networking restart")
-		_exit(0)
-self.session.openWithCallback(msgClosed, FactoryReset)
-				</code>
-			</item>
+			<item entryID="hdmicec" level="0" text="HDMI-CEC Settings" weight="55" requires="HDMICEC"><screen module="HDMICEC" screen="HDMICECSetup" /></item>
+			<item entryID="script_manager" level="1" text="Script Manager" weight="56"><screen module="ScriptRunner" screen="ScriptRunner" /></item>
+			<item entryID="time_setup" level="0" text="Time Settings" weight="60"><screen module="Time" screen="Time" /></item>
+			<item entryID="logs_setup" level="0" text="Logs Settings" weight="70"><setup id="Logs" /></item>
+			<item entryID="rfmod_setup" level="1" text="RF Output Settings" weight="80" requires="RfModulator"><setup id="RFModulator" /></item>
+			<item entryID="factory_reset" level="0" text="Factory Reset" weight="99"><screen module="FactoryReset" screen="FactoryReset" /></item>
 		</menu>
 	</menu>
 
@@ -235,13 +223,13 @@ self.session.openWithCallback(msgClosed, FactoryReset)
 		<id val="shutdown" />
 		<item entryID="deep_standby" level="0" text="Deep Standby" weight="0" requires="DeepstandbySupport">
 			<code>
-from Screens.Standby import TryQuitMainloop
 from Screens.MessageBox import MessageBox
+from Screens.Standby import QUIT_SHUTDOWN, TryQuitMainloop
 recordings = self.session.nav.getRecordingsCheckBeforeActivateDeepStandby()
 if recordings:
 	self.session.openWithCallback(self.gotoStandby, MessageBox, _("Recording(s) are in progress or coming up in few seconds!\nEntering standby, after recording the box will shutdown."), type=MessageBox.TYPE_INFO, close_on_any_key=True, timeout=10)
 else:
-	self.session.open(TryQuitMainloop, 1)
+	self.session.open(TryQuitMainloop, QUIT_SHUTDOWN)
 			</code>
 		</item>
 		<item entryID="shutdown" level="0" text="Shutdown" weight="5" requires="!DeepstandbySupport"><screen module="Standby" screen="TryQuitMainloop">1</screen></item>
@@ -249,16 +237,16 @@ else:
 		<!--item entryID="SDswap" level="0" text="SDroot" weight="7" requires="HasSDswap"><screen module="SDswap" screen="SDswap">1</screen></item-->
 		<item entryID="wol_standby" level="0" text="WOL Standby" weight="10" requires="GBWOL">
 			<code>
-from Screens.Standby import TryQuitMainloop
 from Screens.MessageBox import MessageBox
+from Screens.Standby import QUIT_WOLSHUTDOWN, TryQuitMainloop
 recordings = self.session.nav.getRecordingsCheckBeforeActivateDeepStandby()
 if recordings:
 	self.session.openWithCallback(self.gotoStandby, MessageBox, _("Recording(s) are in progress or coming up in few seconds!\nEntering standby, after recording the box will shutdown."), type=MessageBox.TYPE_INFO, close_on_any_key=True, timeout=10)
 else:
-	self.session.open(TryQuitMainloop, 45)
+	self.session.open(TryQuitMainloop, QUIT_WOLSHUTDOWN)
 			</code>
 		</item>
-		<item entryID="standby" level="0" text="Standby" weight="15"><screen module="Standby" screen="Standby"/></item>
+		<item entryID="standby" level="0" text="Standby" weight="15"><screen module="Standby" screen="Standby" /></item>
 		<item entryID="sleep" level="0" text="Sleep Timer" weight="20" requires="DeepstandbySupport"><screen module="SleepTimerEdit" screen="SleepTimerEdit" /></item>
 		<item entryID="restart" level="0" text="Restart" weight="25"><screen module="Standby" screen="TryQuitMainloop">2</screen></item>
 		<item entryID="restart_enigma" level="0" text="Restart GUI" weight="30"><screen module="Standby" screen="TryQuitMainloop">3</screen></item>

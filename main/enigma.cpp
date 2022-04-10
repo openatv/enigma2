@@ -15,6 +15,7 @@
 #include <lib/base/ebase.h>
 #include <lib/base/eenv.h>
 #include <lib/base/eerror.h>
+#include <lib/base/esimpleconfig.h>
 #include <lib/base/init.h>
 #include <lib/base/init_num.h>
 #include <lib/base/nconfig.h>
@@ -177,31 +178,16 @@ bool replace(std::string& str, const std::string& from, const std::string& to)
 	return true;
 }
 
-static const std::string getConfigCurrentSpinner(const std::string &key)
+static const std::string getConfigCurrentSpinner(const char* key)
 {
-	std::string value = "spinner";
-	std::ifstream in(eEnv::resolve("${sysconfdir}/enigma2/settings").c_str());
-	
-	if (in.good()) {
-		do {
-			std::string line;
-			std::getline(in, line);
-			size_t size = key.size();
-			if (line.compare(0, size, key)== 0) {
-				value = line.substr(size + 1);
-				replace(value, "skin.xml", "spinner");
-				break;
-			}
-		} while (in.good());
-		in.close();
-	}
+	auto value = eSimpleConfig::getString(key);
 
 	// if value is not empty, means config.skin.primary_skin exist in settings file
+
 	if (!value.empty()) 
 	{
-
-		// check /usr/share/enigma2/MYSKIN/spinner/wait1.png
-		std::string png_location = "/usr/share/enigma2/" + value + "/wait1.png";
+		replace(value, "skin.xml", "spinner");
+		std::string png_location = eEnv::resolve("${datadir}/enigma2/" + value + "/wait1.png");
 		std::ifstream png(png_location.c_str());
 		if (png.good()) {
 			png.close();
@@ -214,7 +200,7 @@ static const std::string getConfigCurrentSpinner(const std::string &key)
 	value = "skin_default/spinner";
 
 	// check /usr/share/enigma2/skin_default/spinner/wait1.png
-	std::string png_location = "/usr/share/enigma2/" + value + "/wait1.png";
+	std::string png_location = eEnv::resolve("${datadir}/enigma2/" + value + "/wait1.png");
 	std::ifstream png(png_location.c_str());
 	if (png.good()) {
 		png.close();
@@ -224,30 +210,6 @@ static const std::string getConfigCurrentSpinner(const std::string &key)
 		return "spinner";  // ( /usr/share/enigma2/skin_default/spinner/wait1.png DOES NOT exist )
 
 }
-
-static const std::string getConfigValue(const std::string &key, const std::string &defvalue)
-{
-	std::string value = defvalue;
-	std::ifstream in(eEnv::resolve("${sysconfdir}/enigma2/settings").c_str());
-	
-	if (in.good()) {
-		do {
-			std::string line;
-			std::getline(in, line);
-			size_t size = key.size();
-			if (line.compare(0, size, key)== 0) {
-				value = line.substr(size + 1);
-				break;
-			}
-		} while (in.good());
-		in.close();
-	}
-	if (value.empty()) 
-		return defvalue;
-	else
-		return value;
-}
-
 
 int exit_code;
 
@@ -376,7 +338,7 @@ int main(int argc, char **argv)
 	dsk_lcd.setRedrawTask(main);
 
 	std::string active_skin = getConfigCurrentSpinner("config.skin.primary_skin");
-	std::string spinnerPostion = getConfigValue("config.misc.spinnerPosition", "100,100");
+	std::string spinnerPostion = eSimpleConfig::getString("config.misc.spinnerPosition", "100,100");
 	int spinnerPostionX,spinnerPostionY;
 	if (sscanf(spinnerPostion.c_str(), "%d,%d", &spinnerPostionX, &spinnerPostionY) != 2)
 	{

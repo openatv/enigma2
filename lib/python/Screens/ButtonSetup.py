@@ -21,13 +21,13 @@ import os
 
 def getButtonSetupKeys():
 	return [(_("Red"), "red", ""),
-		(_("Red long"), "red_long", ""),
+		(_("RED long"), "red_long", ""),
 		(_("Green"), "green", ""),
-		(_("Green long"), "green_long", ""),
+		(_("GREEN long"), "green_long", ""),
 		(_("Yellow"), "yellow", ""),
-		(_("Yellow long"), "yellow_long", ""),
+		(_("YELLOW long"), "yellow_long", ""),
 		(_("Blue"), "blue", ""),
-		(_("Blue long"), "blue_long", ""),
+		(_("BLUE long"), "blue_long", ""),
 		(_("Info (EPG)"), "info", "Infobar/InfoPressed/1"),
 		(_("Info (EPG) Long"), "info_long", "Infobar/showEventInfoPlugins/1"),
 		(_("Epg/Guide"), "epg", "Infobar/EPGPressed/1"),
@@ -47,8 +47,8 @@ def getButtonSetupKeys():
 		(_("EJECTCD"), "ejectcd", ""),
 		(_("EJECTCD long"), "ejectcd_long", ""),
 		(_("TV"), "showTv", ""),
-		(_("Radio"), "radio", ""),
-		(_("Radio long"), "radio_long", ""),
+		(_("RADIO"), "radio", ""),
+		(_("RADIO long"), "radio_long", ""),
 		(_("Rec"), "rec", ""),
 		(_("Rec long"), "rec_long", ""),
 		(_("Teletext"), "text", ""),
@@ -191,7 +191,7 @@ def getButtonSetupFunctions():
 			twinPlugins.append(plugin.name)
 	ButtonSetupFunctions.append((_("Show vertical Program Guide"), "Infobar/openVerticalEPG", "EPG"))
 	ButtonSetupFunctions.append((_("Show graphical multi EPG"), "Infobar/openGraphEPG", "EPG"))
-	ButtonSetupFunctions.append((_("Main menu"), "Infobar/mainMenu", "InfoBar"))
+	ButtonSetupFunctions.append((_("Main Menu"), "Infobar/mainMenu", "InfoBar"))
 	ButtonSetupFunctions.append((_("Show help"), "Infobar/showHelp", "InfoBar"))
 	ButtonSetupFunctions.append((_("Show extension selection"), "Infobar/showExtensionSelection", "InfoBar"))
 	ButtonSetupFunctions.append((_("Zap down"), "Infobar/zapDown", "InfoBar"))
@@ -251,7 +251,7 @@ def getButtonSetupFunctions():
 	ButtonSetupFunctions.append((_("Automatic Scan"), "Module/Screens.ScanSetup/ScanSimple", "Scanning"))
 	for plugin in plugins.getPluginsForMenu("scan"):
 		ButtonSetupFunctions.append((plugin[0], "MenuPlugin/scan/" + plugin[2], "Scanning"))
-	ButtonSetupFunctions.append((_("Network setup"), "Module/Screens.NetworkSetup/NetworkAdapterSelection", "Setup"))
+	ButtonSetupFunctions.append((_("Network Settings"), "Module/Screens.NetworkSetup/NetworkAdapterSelection", "Setup"))
 	ButtonSetupFunctions.append((_("Network menu"), "Infobar/showNetworkMounts", "Setup"))
 	ButtonSetupFunctions.append((_("VPN"), "Module/Screens.NetworkSetup/NetworkOpenvpn", "Setup"))
 	ButtonSetupFunctions.append((_("Plugin Browser"), "Module/Screens.PluginBrowser/PluginBrowser", "Setup"))
@@ -270,11 +270,11 @@ def getButtonSetupFunctions():
 	ButtonSetupFunctions.append((_("Deep standby"), "Module/Screens.Standby/TryQuitMainloop/1", "Power"))
 	ButtonSetupFunctions.append((_("SleepTimer"), "Module/Screens.SleepTimerEdit/SleepTimerEdit", "Power"))
 	ButtonSetupFunctions.append((_("PowerTimer"), "Module/Screens.PowerTimerEdit/PowerTimerEditList", "Power"))
-	ButtonSetupFunctions.append((_("Usage Setup"), "Setup/usage", "Setup"))
-	ButtonSetupFunctions.append((_("User interface settings"), "Setup/userinterface", "Setup"))
-	ButtonSetupFunctions.append((_("Recording Setup"), "Setup/recording", "Setup"))
-	ButtonSetupFunctions.append((_("Harddisk Setup"), "Setup/harddisk", "Setup"))
-	ButtonSetupFunctions.append((_("Subtitles Settings"), "Setup/subtitlesetup", "Setup"))
+	ButtonSetupFunctions.append((_("Usage Setup"), "Setup/Usage", "Setup"))
+	ButtonSetupFunctions.append((_("User interface settings"), "Setup/UserInterface", "Setup"))
+	ButtonSetupFunctions.append((_("Recording Setup"), "Setup/Recording", "Setup"))
+	ButtonSetupFunctions.append((_("Harddisk Setup"), "Setup/HardDisk", "Setup"))
+	ButtonSetupFunctions.append((_("Subtitles Settings"), "Setup/Subtitle", "Setup"))
 	ButtonSetupFunctions.append((_("Language"), "Module/Screens.LocaleSelection/LocaleSelection", "Setup"))
 	ButtonSetupFunctions.append((_("OscamInfo Mainmenu"), "Module/Screens.OScamInfo/OscamInfoMenu", "Plugins"))
 	ButtonSetupFunctions.append((_("CCcamInfo Mainmenu"), "Module/Screens.CCcamInfo/CCcamInfoMain", "Plugins"))

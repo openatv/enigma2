@@ -141,7 +141,7 @@ def _getCPUSpeedMhz():
 		return 1600
 	elif getMachineBuild() in ('vuuno4kse', 'vuuno4k', 'dm900', 'dm920', 'gb7252', 'dags7252', 'xc7439', '8100s'):
 		return 1700
-	elif getMachineBuild() in ('alien5', 'hzero', 'h8'):
+	elif getMachineBuild() in ('alien5', 'hzero', 'h8', 'sfx6008'):
 		return 2000
 	elif getMachineBuild() in ('vuduo4k',):
 		return 2100
