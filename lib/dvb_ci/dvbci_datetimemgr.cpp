@@ -26,7 +26,6 @@ int eDVBCIDateTimeSession::receivedAPDU(const unsigned char *tag,const void *dat
 			m_interval = (data && len) ? ((unsigned char *)data)[0] : 0;
 			state=stateSendDateTime;
 			return 1;
-			break;
 		default:
 			eDebug("[CI DT] unknown APDU tag 9F 84 %02x", tag[2]);
 			break;
@@ -39,15 +38,15 @@ int eDVBCIDateTimeSession::doAction()
 {
 	switch (state)
 	{
-	case stateStarted:
-		return 0;
-	case stateSendDateTime:
-		sendDateTime();
-		return 0;
-	case stateFinal:
-		eDebug("[CI DT] stateFinal und action! kann doch garnicht sein ;)");
-	default:
-		return 0;
+		case stateSendDateTime:
+			sendDateTime();
+			return 0;
+		case stateFinal:
+			eDebug("[CI DT] stateFinal und action! kann doch garnicht sein ;)");
+			[[fallthrough]];
+		case stateStarted:
+		default:
+			return 0;
 	}
 }
 
@@ -64,14 +63,14 @@ void eDVBCIDateTimeSession::sendDateTime()
 	tv %= 60;
 	uint8_t ss = tv;
 
-	msg[0] = 5; // not using offset
-	msg[1] = (mjd >> 8) & 0xff;
-	msg[2] = mjd & 0xff;
-	msg[3] = ((hh / 10) << 4) | (hh % 10);
-	msg[4] = ((mm / 10) << 4) | (mm % 10);
-	msg[5] = ((ss / 10) << 4) | (ss % 10);
+	// not using offset
+	msg[0] = (mjd >> 8) & 0xff;
+	msg[1] = mjd & 0xff;
+	msg[2] = ((hh / 10) << 4) | (hh % 10);
+	msg[3] = ((mm / 10) << 4) | (mm % 10);
+	msg[4] = ((ss / 10) << 4) | (ss % 10);
 
-	sendAPDU(tag, msg, 6);
+	sendAPDU(tag, msg, 5);
 
 	if (m_interval > 0)
 	{

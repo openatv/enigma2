@@ -30,7 +30,7 @@ void eServerSocket::notifier(int)
 	newConnection(clientfd);
 }
 
-eServerSocket::eServerSocket(int port, eMainloop *ml): m_port(port), eSocket(ml, AF_INET6)
+eServerSocket::eServerSocket(int port, eMainloop *ml): eSocket(ml, AF_INET6), m_port(port)
 {
 	struct sockaddr_in6 serv_addr;
 	strRemoteHost = "";

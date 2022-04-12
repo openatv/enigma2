@@ -437,10 +437,10 @@
 	</widget>
 </screen>
 
-<!--MessageBox_summary-->
-<screen name="MessageBox_summary" position="0,0" size="400,240">
-	<widget source="parent.Text" render="Label" position="2,10" size="396,165" font="LCD1;44" halign="center" valign="top" backgroundColor="oledbackground2" />
-	<widget source="parent.selectedChoice" render="Label" position="2,178" size="396,44" font="LCD1;44" halign="center" foregroundColor="#FFFFFF" />
+<!--MessageBoxSummary-->
+<screen name="MessageBoxSummary" position="0,0" size="400,240">
+	<widget source="text" render="Label" position="2,10" size="396,165" font="LCD1;44" halign="center" valign="top" backgroundColor="oledbackground2" />
+	<widget source="option" render="Label" position="2,178" size="396,44" font="LCD1;44" halign="center" foregroundColor="#FFFFFF" />
 	<widget source="session.RecordState" render="FixedLabel" text=" " position="399,239" zPosition="2" size="1,1" font="LCD1;1" halign="left" valign="top" foregroundColor="white" backgroundColor="#FF0000">
 		  <convert type="ConditionalShowHide">Blink</convert>
 	</widget>

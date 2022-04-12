@@ -1,8 +1,11 @@
-from GUIComponent import GUIComponent
+from __future__ import absolute_import
+from __future__ import division
+from Components.GUIComponent import GUIComponent
 
 from enigma import eLabel, eSlider, iFrontendInformation
 
 from math import log
+
 
 class TunerInfo(GUIComponent):
 	SNR = 0
@@ -19,7 +22,7 @@ class TunerInfo(GUIComponent):
 	SYNC_STATE = 8
 	LOCK = 9
 
-	def __init__(self, type, servicefkt = None, frontendfkt = None, statusDict = None):
+	def __init__(self, type, servicefkt=None, frontendfkt=None, statusDict=None):
 		GUIComponent.__init__(self)
 		self.instance = None
 		self.message = None
@@ -40,20 +43,20 @@ class TunerInfo(GUIComponent):
 		if self.instance:
 			self.instance.setValue(self.value)
 
-	def calc(self,val):
+	def calc(self, val):
 		if not val:
 			return 0
 		if val < 2500:
-			return long(log(val)/log(2))
-		return val*100/65535
+			return int(log(val) / log(2))
+		return val * 100 // 65535
 
 	def update(self):
 		if self.type == self.SNR_DB:
 			value = self.getValue(self.SNR_DB)
 		elif self.type == self.SNR_PERCENTAGE or self.type == self.SNR_BAR:
-			value = self.getValue(self.SNR) * 100 / 65536
+			value = self.getValue(self.SNR) * 100 // 65536
 		elif self.type == self.AGC_PERCENTAGE or self.type == self.AGC_BAR:
-			value = self.getValue(self.AGC) * 100 / 65536
+			value = self.getValue(self.AGC) * 100 // 65536
 		elif self.type == self.BER_VALUE or self.type == self.BER_BAR:
 			value = self.getValue(self.BER)
 		elif self.type == self.LOCK_STATE:
@@ -61,7 +64,7 @@ class TunerInfo(GUIComponent):
 
 		if self.type == self.SNR_DB:
 			if value is not None and value != 0x12345678:
-				self.setText("%3.02f dB" % (value / 100.0))
+				self.setText("%3.02f dB" % (value // 100.0))
 			else:
 				self.setText("")
 		elif self.type == self.SNR_PERCENTAGE or self.type == self.AGC_PERCENTAGE:

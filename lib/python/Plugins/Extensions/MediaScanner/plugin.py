@@ -3,6 +3,7 @@ from Components.Scanner import scanDevice
 from Screens.InfoBar import InfoBar
 import os
 
+
 def execute(option):
 	#print "execute", option
 	if option is None:
@@ -10,6 +11,7 @@ def execute(option):
 
 	(_, scanner, files, session) = option
 	scanner.open(files, session)
+
 
 def mountpoint_choosen(option):
 	if option is None:
@@ -21,41 +23,48 @@ def mountpoint_choosen(option):
 	(description, mountpoint, session) = option
 	res = scanDevice(mountpoint)
 
-	list = [ (r.description, r, res[r], session) for r in res ]
+	list = [(r.description, r, res[r], session) for r in res]
 
 	if not list:
 		from Screens.MessageBox import MessageBox
-		if os.access(mountpoint, os.F_OK|os.R_OK):
-			session.open(MessageBox, _("No displayable files on this medium found!"), MessageBox.TYPE_INFO, simple = True, timeout = 5)
+		if os.access(mountpoint, os.F_OK | os.R_OK):
+			session.open(MessageBox, _("No displayable files on this medium found!"), MessageBox.TYPE_INFO, simple=True, timeout=5)
 		#else:
 		#	print "ignore", mountpoint, "because its not accessible"
 		return
 
 	session.openWithCallback(execute, ChoiceBox,
-		title = _("The following files were found..."),
-		list = list)
+		title=_("The following files were found..."),
+		list=list)
+
 
 def scan(session):
 	from Screens.ChoiceBox import ChoiceBox
-	parts = [ (r.tabbedDescription(), r.mountpoint, session) for r in harddiskmanager.getMountedPartitions(onlyhotplug = False) if os.access(r.mountpoint, os.F_OK|os.R_OK) ]
-	parts.append( (_("Memory") + "\t/tmp", "/tmp", session) )
-	session.openWithCallback(mountpoint_choosen, ChoiceBox, title = _("Please select medium to be scanned"), list = parts)
+	parts = [(r.tabbedDescription(), r.mountpoint, session) for r in harddiskmanager.getMountedPartitions(onlyhotplug=False) if os.access(r.mountpoint, os.F_OK | os.R_OK)]
+	parts.append((_("Memory") + "\t/tmp", "/tmp", session))
+	session.openWithCallback(mountpoint_choosen, ChoiceBox, title=_("Please select medium to be scanned"), list=parts)
+
 
 def main(session, **kwargs):
 	scan(session)
 
+
 def menuEntry(*args):
 	mountpoint_choosen(args)
 
+
 from Components.Harddisk import harddiskmanager
+
 
 def menuHook(menuid):
 	if menuid != "mainmenu":
-		return [ ]
+		return []
 	from Tools.BoundFunction import boundFunction
-	return [(("%s (files)") % r.description, boundFunction(menuEntry, r.description, r.mountpoint), "hotplug_%s" % r.mountpoint, None) for r in harddiskmanager.getMountedPartitions(onlyhotplug = True)]
+	return [(("%s (files)") % r.description, boundFunction(menuEntry, r.description, r.mountpoint), "hotplug_%s" % r.mountpoint, None) for r in harddiskmanager.getMountedPartitions(onlyhotplug=True)]
+
 
 global_session = None
+
 
 def partitionListChanged(action, device):
 	if InfoBar.instance:
@@ -70,9 +79,11 @@ def partitionListChanged(action, device):
 	#else:
 			#print "hotplug event.. but no infobar"
 
+
 def sessionstart(reason, session):
 	global global_session
 	global_session = session
+
 
 def autostart(reason, **kwargs):
 	global global_session
@@ -82,10 +93,11 @@ def autostart(reason, **kwargs):
 		harddiskmanager.on_partition_list_change.remove(partitionListChanged)
 		global_session = None
 
+
 def Plugins(**kwargs):
 	return [
-		PluginDescriptor(name=_("Media scanner"), description=_("Scan files..."), where = PluginDescriptor.WHERE_PLUGINMENU, icon="MediaScanner.png", needsRestart = True, fnc=main),
+		PluginDescriptor(name=_("Media scanner"), description=_("Scan files..."), where=PluginDescriptor.WHERE_PLUGINMENU, icon="MediaScanner.png", needsRestart=True, fnc=main),
 #		PluginDescriptor(where = PluginDescriptor.WHERE_MENU, fnc=menuHook),
-		PluginDescriptor(where = PluginDescriptor.WHERE_SESSIONSTART, needsRestart = True, fnc = sessionstart),
-		PluginDescriptor(where = PluginDescriptor.WHERE_AUTOSTART, needsRestart = True, fnc = autostart)
+		PluginDescriptor(where=PluginDescriptor.WHERE_SESSIONSTART, needsRestart=True, fnc=sessionstart),
+		PluginDescriptor(where=PluginDescriptor.WHERE_AUTOSTART, needsRestart=True, fnc=autostart)
 		]

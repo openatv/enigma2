@@ -1,15 +1,17 @@
+from __future__ import absolute_import
 from Screens.Screen import Screen
 from Components.ActionMap import NumberActionMap
 from Components.Label import Label
 from Screens.ChoiceBox import ChoiceBox
 from Screens.MessageBox import MessageBox
-from InfoBarGenerics import InfoBarShowHide, InfoBarMenu, InfoBarInstantRecord, InfoBarTimeshift, InfoBarSeek, InfoBarTimeshiftState, InfoBarExtensions, InfoBarSubtitleSupport, InfoBarAudioSelection
+from Screens.InfoBarGenerics import InfoBarShowHide, InfoBarMenu, InfoBarInstantRecord, InfoBarTimeshift, InfoBarSeek, InfoBarTimeshiftState, InfoBarExtensions, InfoBarSubtitleSupport, InfoBarAudioSelection
 from enigma import eServiceReference
 from Components.ServiceEventTracker import InfoBarBase
 
-class SubservicesQuickzap(InfoBarBase, InfoBarShowHide, InfoBarMenu, \
-		InfoBarInstantRecord, InfoBarSeek, InfoBarTimeshift, \
-		InfoBarTimeshiftState, InfoBarExtensions, InfoBarSubtitleSupport, \
+
+class SubservicesQuickzap(InfoBarBase, InfoBarShowHide, InfoBarMenu,
+		InfoBarInstantRecord, InfoBarSeek, InfoBarTimeshift,
+		InfoBarTimeshiftState, InfoBarExtensions, InfoBarSubtitleSupport,
 		InfoBarAudioSelection, Screen):
 	def __init__(self, session, subservices):
 		Screen.__init__(self, session)
@@ -24,7 +26,7 @@ class SubservicesQuickzap(InfoBarBase, InfoBarShowHide, InfoBarMenu, \
 		self.__lastservice = self.currentlyPlayingSubservice = self.getSubserviceIndex(self.session.nav.getCurrentlyPlayingServiceReference())
 		self["CurrentSubserviceNumber"] = Label("")
 		self.currentSubserviceNumberLabel = self["CurrentSubserviceNumber"]
-		self["actions"] = NumberActionMap( [ "InfobarSubserviceQuickzapActions", "NumberActions", "DirectionActions", "ColorActions" ],
+		self["actions"] = NumberActionMap(["InfobarSubserviceQuickzapActions", "NumberActions", "DirectionActions", "ColorActions"],
 			{
 				"up": self.showSelection,
 				"down": self.showSelection,

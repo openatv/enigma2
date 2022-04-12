@@ -3,14 +3,14 @@
 
 #include <lib/driver/rc.h>
 
-#include <SDL.h>
+#include <SDL2/SDL.h>
 
 class eSDLInputDevice : public eRCDevice
 {
 private:
 	bool m_escape;
 	unsigned int m_unicode;
-	int translateKey(SDLKey key);
+	int translateKey(SDL_Keycode key);
 
 public:
 	eSDLInputDevice(eRCDriver *driver);

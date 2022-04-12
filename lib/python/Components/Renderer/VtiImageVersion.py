@@ -1,7 +1,8 @@
 from Components.VariableText import VariableText
-from Renderer import Renderer
+from Components.Renderer.Renderer import Renderer
 from enigma import eLabel
 from boxbranding import getImageVersion
+
 
 class VtiImageVersion(VariableText, Renderer):
 

@@ -1,19 +1,21 @@
-from Components.Element import cached
-from enigma import eTimer
-from time import time as getTime
+from time import time as gettime
 
-from Source import Source
+from enigma import eTimer
+
+from Components.Element import cached
+from Components.Sources.Source import Source
+
 
 class Clock(Source):
 	def __init__(self):
 		Source.__init__(self)
-		self.clock_timer = eTimer()
-		self.clock_timer.callback.append(self.poll)
-		self.clock_timer.start(1000)
+		self.clockTimer = eTimer()
+		self.clockTimer.callback.append(self.poll)
+		self.clockTimer.start(1000)
 
 	@cached
 	def getClock(self):
-		return getTime()
+		return gettime()
 
 	time = property(getClock)
 
@@ -22,11 +24,11 @@ class Clock(Source):
 
 	def doSuspend(self, suspended):
 		if suspended:
-			self.clock_timer.stop()
+			self.clockTimer.stop()
 		else:
-			self.clock_timer.start(1000)
+			self.clockTimer.start(1000)
 			self.poll()
 
 	def destroy(self):
-		self.clock_timer.callback.remove(self.poll)
+		self.clockTimer.callback.remove(self.poll)
 		Source.destroy(self)

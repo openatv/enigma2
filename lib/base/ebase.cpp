@@ -100,7 +100,7 @@ void eTimer::changeInterval(long msek)
 	else
 		bActive=true; // then activate Timer
 
-	interval = msek;   			 			// set new Interval
+	interval = msek;	 			// set new Interval
 	nextActivation += interval;		// calc nextActivation
 
 	context.addTimer(this);				// add Timer to context TimerList
@@ -170,11 +170,9 @@ void eMainloop::removeSocketNotifier(eSocketNotifier *sn)
 	eFatal("[eMainloop::removeSocketNotifier] removed socket notifier which is not present, fd=%d", fd);
 }
 
-int eMainloop::processOneEvent(unsigned int twisted_timeout, PyObject **res, ePyObject additional)
+int eMainloop::processOneEvent(long user_timeout, PyObject **res, ePyObject additional)
 {
 	int return_reason = 0;
-		/* get current time */
-
 	if (additional && !PyDict_Check(additional))
 		eFatal("[eMainloop::processOneEvent] additional, but it's not dict");
 
@@ -188,6 +186,7 @@ int eMainloop::processOneEvent(unsigned int twisted_timeout, PyObject **res, ePy
 		if (it != m_timer_list.end())
 		{
 			eTimer *tmr = *it;
+			/* get current time */
 			timespec now;
 			clock_gettime(CLOCK_MONOTONIC, &now);
 			/* process all timers which are ready. first remove them out of the list. */
@@ -210,9 +209,9 @@ int eMainloop::processOneEvent(unsigned int twisted_timeout, PyObject **res, ePy
 		}
 	}
 
-	if ((twisted_timeout > 0) && (poll_timeout > 0) && ((unsigned int)poll_timeout > twisted_timeout))
+	if (poll_timeout < 0 || (user_timeout >= 0 && poll_timeout > user_timeout))
 	{
-		poll_timeout = twisted_timeout;
+		poll_timeout = user_timeout;
 		return_reason = 1;
 	}
 
@@ -250,6 +249,7 @@ int eMainloop::processOneEvent(unsigned int twisted_timeout, PyObject **res, ePy
 		}
 	}
 
+
 	ret = _poll(pfd, fdcount, poll_timeout);
 
 	/* ret > 0 means that there are some active poll entries. */
@@ -276,14 +276,14 @@ int eMainloop::processOneEvent(unsigned int twisted_timeout, PyObject **res, ePy
 					m_inActivate = 0;
 				}
 				if (pfd[i].revents & (POLLERR|POLLHUP|POLLNVAL))
-					eLog(5, "[eMainloop::processOneEvent] unhandled POLLERR/HUP/NVAL for fd %d(%d)", pfd[i].fd, pfd[i].revents);
+					eTrace("[eMainloop::processOneEvent] unhandled POLLERR/HUP/NVAL for fd %d(%d)", pfd[i].fd, pfd[i].revents);
 			}
 		}
 		for (; i < fdcount; ++i)
 		{
 			if (pfd[i].revents)
 			{
-				if (!*res)
+				if (!*res)  // NOSONAR
 					*res = PyList_New(0);
 				ePyObject it = PyTuple_New(2);
 				PyTuple_SET_ITEM(it, 0, PyInt_FromLong(pfd[i].fd));
@@ -301,7 +301,6 @@ int eMainloop::processOneEvent(unsigned int twisted_timeout, PyObject **res, ePy
 		else
 			return_reason = 2; /* don't assume the timeout has passed when we got a signal */
 	}
-
 	return return_reason;
 }
 
@@ -338,7 +337,7 @@ int eMainloop::iterate(unsigned int twisted_timeout, PyObject **res, ePyObject d
 		if (app_quit_now)
 			return -1;
 
-		int to = 0;
+		int to = -1;
 		if (twisted_timeout)
 		{
 			timespec now, timeout;

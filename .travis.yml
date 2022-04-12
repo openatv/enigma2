@@ -1,29 +1,7 @@
 language: cpp
 
 sudo: required
-dist: trusty
-
-addons:
-  apt:
-    packages:
-    - linux-libc-dev
-    - git
-    - build-essential
-    - automake
-    - libtool
-    - python-dev
-    - zlib1g-dev
-    - gettext
-    - swig
-    - libgstreamer1.0-dev
-    - libgstreamer-plugins-base1.0-dev
-    - libfreetype6-dev
-    - libsigc++-2.0-dev
-    - libfribidi-dev
-    - libssl-dev
-    - libavahi-client-dev
-    - libjpeg-turbo8-dev
-    - libgif-dev
+dist: bionic
 
 matrix:
   include:
@@ -33,13 +11,13 @@ matrix:
           sources:
             - ubuntu-toolchain-r-test
           packages:
-            - g++-6
+            - g++-8
             - linux-libc-dev
             - git
             - build-essential
             - automake
             - libtool
-            - python-dev
+            - python3.8-dev
             - zlib1g-dev
             - gettext
             - swig
@@ -53,36 +31,10 @@ matrix:
             - libjpeg-turbo8-dev
             - libgif-dev
       env:
-        - MATRIX_EVAL="CC=gcc-6 && CXX=g++-6"
-
-    - os: linux
-      addons:
-        apt:
-          sources:
-            - ubuntu-toolchain-r-test
-          packages:
-            - g++-7
-            - linux-libc-dev
-            - git
-            - build-essential
-            - automake
-            - libtool
-            - python-dev
-            - zlib1g-dev
-            - gettext
-            - swig
-            - libgstreamer1.0-dev
-            - libgstreamer-plugins-base1.0-dev
-            - libfreetype6-dev
-            - libsigc++-2.0-dev
-            - libfribidi-dev
-            - libssl-dev
-            - libavahi-client-dev
-            - libjpeg-turbo8-dev
-            - libgif-dev
-      env:
-        - MATRIX_EVAL="CC=gcc-7 && CXX=g++-7"
-
+        - MATRIX_EVAL="CC=gcc-8 && CXX=g++-8 && PYTHON=3.8"
+      before_install:
+        - pyenv global 3.8
+        - pip3 install --upgrade pip tox six
     - os: linux
       addons:
         apt:
@@ -110,19 +62,76 @@ matrix:
             - libgif-dev
       env:
         - MATRIX_EVAL="CC=gcc-8 && CXX=g++-8"
-
+    - os: linux
+      addons:
+        apt:
+          sources:
+            - ubuntu-toolchain-r-test
+          packages:
+            - g++-10
+            - linux-libc-dev
+            - git
+            - build-essential
+            - automake
+            - libtool
+            - python3.8-dev
+            - zlib1g-dev
+            - gettext
+            - swig
+            - libgstreamer1.0-dev
+            - libgstreamer-plugins-base1.0-dev
+            - libfreetype6-dev
+            - libsigc++-2.0-dev
+            - libfribidi-dev
+            - libssl-dev
+            - libavahi-client-dev
+            - libjpeg-turbo8-dev
+            - libgif-dev
+      env:
+        - MATRIX_EVAL="CC=gcc-10 && CXX=g++-10 && PYTHON=3.8"
+      before_install:
+        - pyenv global 3.8
+        - pip3 install --upgrade pip tox six
+    - os: linux
+      addons:
+        apt:
+          sources:
+            - ubuntu-toolchain-r-test
+          packages:
+            - g++-10
+            - linux-libc-dev
+            - git
+            - build-essential
+            - automake
+            - libtool
+            - python-dev
+            - zlib1g-dev
+            - gettext
+            - swig
+            - libgstreamer1.0-dev
+            - libgstreamer-plugins-base1.0-dev
+            - libfreetype6-dev
+            - libsigc++-2.0-dev
+            - libfribidi-dev
+            - libssl-dev
+            - libavahi-client-dev
+            - libjpeg-turbo8-dev
+            - libgif-dev
+      env:
+        - MATRIX_EVAL="CC=gcc-10 && CXX=g++-10"
 git:
   depth: 10
 
 before_install:
-    - eval "${MATRIX_EVAL}"
-    - curl -L https://people.freedesktop.org/~slomo/gstreamer.tar.gz | tar xz
-    - sed -i "s;prefix=/root/gstreamer;prefix=$PWD/gstreamer;g" $PWD/gstreamer/lib/x86_64-linux-gnu/pkgconfig/*.pc
-    - export PKG_CONFIG_PATH=$PWD/gstreamer/lib/x86_64-linux-gnu/pkgconfig
-    - export GST_PLUGIN_SYSTEM_PATH=$PWD/gstreamer/lib/x86_64-linux-gnu/gstreamer-1.0
-    - export GST_PLUGIN_SCANNER=$PWD/gstreamer/libexec/gstreamer-1.0/gst-plugin-scanner
-    - export PATH=$PATH:$PWD/gstreamer/bin
-    - export LD_LIBRARY_PATH=$PWD/gstreamer/lib/x86_64-linux-gnu:$LD_LIBRARY_PATH
+  - pip install --upgrade pip tox six
+  - eval "${MATRIX_EVAL}"
+  - curl -L https://people.freedesktop.org/~slomo/gstreamer.tar.gz | tar xz
+  - sed -i "s;prefix=/root/gstreamer;prefix=$PWD/gstreamer;g" $PWD/gstreamer/lib/x86_64-linux-gnu/pkgconfig/*.pc
+  - export PKG_CONFIG_PATH=$PWD/gstreamer/lib/x86_64-linux-gnu/pkgconfig
+  - export GST_PLUGIN_SYSTEM_PATH=$PWD/gstreamer/lib/x86_64-linux-gnu/gstreamer-1.0
+  - export GST_PLUGIN_SCANNER=$PWD/gstreamer/libexec/gstreamer-1.0/gst-plugin-scanner
+  - export PATH=$PATH:$PWD/gstreamer/bin
+  - export LD_LIBRARY_PATH=$PWD/gstreamer/lib/x86_64-linux-gnu:$LD_LIBRARY_PATH
 
 script:
 - echo installing libdvbsi++

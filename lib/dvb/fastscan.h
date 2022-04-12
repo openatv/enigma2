@@ -82,7 +82,7 @@ typedef FastScanServiceList::const_iterator FastScanServiceListConstIterator;
 class FastScanServicesSection : public LongCrcSection
 {
 protected:
-	unsigned versionNumber : 5;
+	//unsigned versionNumber : 5;
 	FastScanServiceList services;
 
 public:
@@ -115,7 +115,8 @@ public:
 	uint16_t getOriginalNetworkId(void) const;
 	uint16_t getTransportStreamId(void) const;
 	uint16_t getOrbitalPosition(void) const;
-	int32_t getFrequency(void) const;
+	uint8_t getWestEastFlag(void) const;
+	uint32_t getFrequency(void) const;
 	uint8_t getPolarization(void) const;
 	uint8_t getRollOff(void) const;
 	uint8_t getModulationSystem(void) const;
@@ -134,7 +135,7 @@ typedef FastScanTransportStreamList::const_iterator FastScanTransportStreamListC
 class FastScanNetworkSection : public LongCrcSection, public NetworkNameDescriptor
 {
 protected:
-	unsigned versionNumber : 5;
+	//unsigned versionNumber : 5;
 	FastScanTransportStreamList transportStreams;
 
 public:

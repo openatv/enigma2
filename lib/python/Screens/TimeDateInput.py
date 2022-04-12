@@ -1,26 +1,28 @@
-from Screen import Screen
-from Components.config import ConfigClock, ConfigDateTime, getConfigListEntry
+from __future__ import absolute_import
+from Screens.Screen import Screen
+from Components.config import config, ConfigClock, ConfigDateTime, getConfigListEntry
 from Components.ActionMap import NumberActionMap
 from Components.ConfigList import ConfigListScreen
-from Components.Label import Label
-from Components.Pixmap import Pixmap
+from Components.Sources.StaticText import StaticText
 import time
 import datetime
+
 
 class TimeDateInput(Screen, ConfigListScreen):
 	def __init__(self, session, config_time=None, config_date=None):
 		Screen.__init__(self, session)
-		self["oktext"] = Label(_("OK"))
-		self["canceltext"] = Label(_("Cancel"))
-		self["ok"] = Pixmap()
-		self["cancel"] = Pixmap()
+		self.setTitle(_("Date/time input"))
+		self["key_red"] = StaticText(_("Cancel"))
+		self["key_green"] = StaticText(_("OK"))
 
 		self.createConfig(config_date, config_time)
 
-		self["actions"] = NumberActionMap(["SetupActions"],
+		self["actions"] = NumberActionMap(["SetupActions", "OkCancelActions", "ColorActions"],
 		{
-			"ok": self.keySelect,
+			"ok": self.keyGo,
+			"green": self.keyGo,
 			"save": self.keyGo,
+			"red": self.keyCancel,
 			"cancel": self.keyCancel,
 		}, -2)
 
@@ -33,11 +35,11 @@ class TimeDateInput(Screen, ConfigListScreen):
 		if conf_time:
 			self.save_mask |= 1
 		else:
-			conf_time = ConfigClock(default = time.time()),
+			conf_time = ConfigClock(default=time.time()),
 		if conf_date:
 			self.save_mask |= 2
 		else:
-			conf_date = ConfigDateTime(default = time.time(), formatstring = _("%d.%B %Y"), increment = 86400)
+			conf_date = ConfigDateTime(default=time.time(), formatstring=config.usage.date.full.value, increment=86400)
 		self.timeinput_date = conf_date
 		self.timeinput_time = conf_time
 
@@ -60,9 +62,6 @@ class TimeDateInput(Screen, ConfigListScreen):
 		if sel and sel[1] == self.timeinput_time:
 			self.timeinput_time.increment()
 			self["config"].invalidateCurrent()
-
-	def keySelect(self):
-		self.keyGo()
 
 	def getTimestamp(self, date, mytime):
 		d = time.localtime(date)

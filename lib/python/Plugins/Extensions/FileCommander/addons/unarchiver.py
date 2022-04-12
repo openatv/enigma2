@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: iso-8859-1 -*-
 
+from __future__ import print_function
 from Screens.MessageBox import MessageBox
 from Components.Label import Label
 from Screens.Screen import Screen
@@ -11,10 +12,12 @@ from Components.MultiContent import MultiContentEntryText, MultiContentEntryProg
 from enigma import eConsoleAppContainer, eListboxPythonMultiContent, gFont, RT_HALIGN_LEFT, RT_HALIGN_CENTER, RT_VALIGN_CENTER
 import subprocess
 import skin
+import six
 
 pname = _("File Commander - generalised archive handler")
 pdesc = _("unpack archives")
 pversion = "0.0-r1"
+
 
 class ArchiverMenuScreen(Screen):
 	skin = """
@@ -33,7 +36,6 @@ class ArchiverMenuScreen(Screen):
 		</screen>"""
 
 	def __init__(self, session, sourcelist, targetlist):
-		self.session = session
 
 		self.pname = pname
 		self.pdesc = pdesc
@@ -80,35 +82,35 @@ class ArchiverMenuScreen(Screen):
 
 	def onLayout(self):
 		self.setTitle(self.pname)
-		self.chooseMenuList.setList(map(self.ListEntry, self.list))
+		self.chooseMenuList.setList(list(map(self.ListEntry, self.list)))
 
 	def ListEntry(self, entry):
-		x, y, w, h = skin.parameters.get("FileListName",(10, 0, 1180, 25))
+		x, y, w, h = skin.parameters.get("FileListName", (10, 0, 1180, 25))
 		x = 10
 		w = self['list_left'].l.getItemSize().width()
 		return [
 			entry,
-			MultiContentEntryText(pos=(x, y), size=(w-x, h), font=0, flags=RT_HALIGN_LEFT, text=entry[0])
+			MultiContentEntryText(pos=(x, y), size=(w - x, h), font=0, flags=RT_HALIGN_LEFT, text=entry[0])
 		]
 
 	def UnpackListEntry(self, entry):
 		# print "[ArchiverMenuScreen] UnpackListEntry", entry
 		currentProgress = int(float(100) / float(int(100)) * int(entry))
 		progpercent = str(currentProgress) + "%"
-		x, y, w, h = skin.parameters.get("FileListMultiName",(60, 0, 1180, 25))
+		x, y, w, h = skin.parameters.get("FileListMultiName", (60, 0, 1180, 25))
 		x2 = x
 		x = 10
 		w = self['list_left'].l.getItemSize().width()
 		return [
 			entry,
-			MultiContentEntryProgress(pos=(x+x2, y+int(h/3)), size=(w-(x+x2), int(h/3)), percent=int(currentProgress), borderWidth=1),
+			MultiContentEntryProgress(pos=(x + x2, y + int(h / 3)), size=(w - (x + x2), int(h / 3)), percent=int(currentProgress), borderWidth=1),
 			MultiContentEntryText(pos=(x, y), size=(x2, h), font=0, flags=RT_HALIGN_LEFT, text=str(progpercent))
 		]
 
 	def ok(self):
 		selectName = self['list_left'].getCurrent()[0][0]
 		self.selectId = self['list_left'].getCurrent()[0][1]
-		print "[ArchiverMenuScreen] Select:", selectName, self.selectId
+		print("[ArchiverMenuScreen] Select:", selectName, self.selectId)
 		self.unpackModus(self.selectId)
 
 	def unpackModus(self, id):
@@ -128,18 +130,21 @@ class ArchiverMenuScreen(Screen):
 		# of the command. It must have an API compatible
 		# with ArchiverInfoScreen.
 
-		print "[ArchiverMenuScreen] unpackPopen", cmd
+		print("[ArchiverMenuScreen] unpackPopen", cmd)
 		try:
 			shellcmd = type(cmd) not in (tuple, list)
-			p = subprocess.Popen(cmd, shell=shellcmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+			p = subprocess.Popen(cmd, shell=shellcmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
 		except OSError as ex:
 			cmdname = cmd.split()[0] if shellcmd else cmd[0]
 			msg = _("Can not run %s: %s.\n%s may be in a plugin that is not installed.") % (cmdname, ex.strerror, cmdname)
-			print "[ArchiverMenuScreen]", msg
+			print("[ArchiverMenuScreen]", msg)
 			self.session.open(MessageBox, msg, MessageBox.TYPE_ERROR)
 			return
-		output = map(str.splitlines, p.communicate())
-		if output[0] and output[1]:
+		stdout, stderr = p.communicate()
+		output = []
+		output.append(stdout.split('\n'))
+		output.append(stderr.split('\n'))
+		if stdout and stderr:
 			output[1].append("----------")
 		self.extractlist = [(l,) for l in output[1] + output[0]]
 		if not self.extractlist:
@@ -161,7 +166,7 @@ class ArchiverMenuScreen(Screen):
 		# progress indicator using the command output
 		# (see unrar.py)
 
-		print "[ArchiverMenuScreen] unpackEConsoleApp", cmd
+		print("[ArchiverMenuScreen] unpackEConsoleApp", cmd)
 		self.errlog = ""
 		self.container = eConsoleAppContainer()
 		self.container.appClosed.append(boundFunction(self.extractDone, self.filename))
@@ -176,7 +181,7 @@ class ArchiverMenuScreen(Screen):
 			self.container.execute(cmd)
 
 	def extractDone(self, filename, data):
-		print "[ArchiverMenuScreen] extractDone", data
+		print("[ArchiverMenuScreen] extractDone", data)
 		if data:
 			type = MessageBox.TYPE_ERROR
 			timeout = 15
@@ -195,10 +200,12 @@ class ArchiverMenuScreen(Screen):
 		self.session.open(MessageBox, message, type, timeout=timeout)
 
 	def logerrs(self, data):
+		data = six.ensure_str(data)
 		self.errlog += data
 
 	def cancel(self):
 		self.close(False)
+
 
 class ArchiverInfoScreen(Screen):
 	skin = """
@@ -215,14 +222,13 @@ class ArchiverInfoScreen(Screen):
 			<ePixmap position="955,570" size="260,25" zPosition="0" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/FileCommander/pic/button_blue.png" transparent="1" alphatest="on"/>
 		</screen>"""
 
-	def __init__(self, session, list, sourceDir, filename):
-		self.session = session
+	def __init__(self, session, liste, sourceDir, filename):
 
 		self.pname = pname
 		self.pdesc = pdesc
 		self.pversion = pversion
 
-		self.list = list
+		self.list = liste
 		self.sourceDir = sourceDir
 		self.filename = filename
 		Screen.__init__(self, session)
@@ -251,19 +257,19 @@ class ArchiverInfoScreen(Screen):
 	def onLayout(self):
 		self.setTitle(self.pname)
 		if len(self.list) != 0:
-			self.chooseMenuList.setList(map(self.ListEntry, self.list))
+			self.chooseMenuList.setList(list(map(self.ListEntry, self.list)))
 
 	def ListEntry(self, entry):
-		x, y, w, h = skin.parameters.get("FileListName",(10, 0, 1180, 25))
+		x, y, w, h = skin.parameters.get("FileListName", (10, 0, 1180, 25))
 		x = 10
 		w = self['list_left'].l.getItemSize().width()
 		flags = RT_HALIGN_LEFT
-		if 'Plugins.Extensions.FileCommander.addons.unzip.UnpackInfoScreen' in `self`:
+		if 'Plugins.Extensions.FileCommander.addons.unzip.UnpackInfoScreen' in repr(self):
 			flags = RT_HALIGN_LEFT | RT_VALIGN_CENTER
 			y *= 2
 		return [
 			entry,
-			MultiContentEntryText(pos=(x, int(y)), size=(w-x, h), font=0, flags=flags, text=entry[0])
+			MultiContentEntryText(pos=(x, int(y)), size=(w - x, h), font=0, flags=flags, text=entry[0])
 		]
 
 	def cancel(self):

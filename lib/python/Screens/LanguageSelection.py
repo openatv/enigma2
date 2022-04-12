@@ -1,3 +1,4 @@
+from __future__ import print_function
 from Screens.Screen import Screen
 from Screens.MessageBox import MessageBox
 from Screens.Standby import TryQuitMainloop
@@ -11,25 +12,28 @@ from Components.Pixmap import Pixmap
 from Components.Language_cache import LANG_TEXT
 from enigma import eTimer
 
-from Screens.Rc import Rc
+from Screens.HelpMenu import ShowRemoteControl
 
-from Tools.Directories import resolveFilename, SCOPE_ACTIVE_SKIN
+from Tools.Directories import resolveFilename, SCOPE_GUISKIN
 from Tools.LoadPixmap import LoadPixmap
 import gettext
 
 inWizzard = False
 
+
 def LanguageEntryComponent(file, name, index):
-	png = LoadPixmap(resolveFilename(SCOPE_ACTIVE_SKIN, "countries/" + index + ".png"))
+	png = LoadPixmap(resolveFilename(SCOPE_GUISKIN, "countries/" + index + ".png"))
 	if png is None:
-		png = LoadPixmap(resolveFilename(SCOPE_ACTIVE_SKIN, "countries/" + file + ".png"))
+		png = LoadPixmap(resolveFilename(SCOPE_GUISKIN, "countries/" + file + ".png"))
 		if png is None:
-			png = LoadPixmap(resolveFilename(SCOPE_ACTIVE_SKIN, "countries/missing.png"))
+			png = LoadPixmap(resolveFilename(SCOPE_GUISKIN, "countries/missing.png"))
 	res = (index, name, png)
 	return res
 
+
 def _cached(x):
 	return LANG_TEXT.get(config.osd.language.value, {}).get(x, "")
+
 
 class LanguageSelection(Screen):
 	def __init__(self, session):
@@ -68,8 +72,8 @@ class LanguageSelection(Screen):
 		}, -1)
 
 	def updateCache(self):
-		print"updateCache"
-		self["languages"].setList([('update cache',_('Updating cache, please wait...'),None)])
+		print("updateCache")
+		self["languages"].setList([('update cache', _('Updating cache, please wait...'), None)])
 		self.updateTimer = eTimer()
 		self.updateTimer.callback.append(self.startupdateCache)
 		self.updateTimer.start(100)
@@ -79,7 +83,7 @@ class LanguageSelection(Screen):
 		language.updateLanguageCache()
 		self["languages"].setList(self.list)
 		self.selectActiveLanguage()
-		
+
 	def selectActiveLanguage(self):
 		activeLanguage = language.getActiveLanguage()
 		pos = 0
@@ -100,7 +104,7 @@ class LanguageSelection(Screen):
 			self.close()
 		else:
 			if self.oldActiveLanguage != config.osd.language.value:
-				self.session.openWithCallback(self.restartGUI, MessageBox,_("GUI needs a restart to apply a new language\nDo you want to restart the GUI now?"), MessageBox.TYPE_YESNO)
+				self.session.openWithCallback(self.restartGUI, MessageBox, _("GUI needs a restart to apply a new language\nDo you want to restart the GUI now?"), MessageBox.TYPE_YESNO)
 			else:
 				self.close()
 
@@ -129,7 +133,7 @@ class LanguageSelection(Screen):
 			if curlang == t[0]:
 				lang = t[1]
 				break
-		self.session.openWithCallback(self.delLangCB, MessageBox, _("Do you want to delete all other languages?\nExcept English, French, German and your selection:\n\n") + _("%s") %(lang), default = False)
+		self.session.openWithCallback(self.delLangCB, MessageBox, _("Do you want to delete all other languages?\nExcept English, French, German and your selection:\n\n") + _("%s") % (lang), default=False)
 
 	def delLangCB(self, anwser):
 		if anwser:
@@ -138,8 +142,8 @@ class LanguageSelection(Screen):
 			self.updateList()
 			self.selectActiveLanguage()
 
-	def run(self, justlocal = False):
-		print "updating language..."
+	def run(self, justlocal=False):
+		print("updating language...")
 		lang = self["languages"].getCurrent()[0]
 
 		if lang == 'update cache':
@@ -166,14 +170,14 @@ class LanguageSelection(Screen):
 		language.activateLanguage(lang)
 		config.misc.languageselected.value = 0
 		config.misc.languageselected.save()
-		print "ok"
+		print("ok")
 
 	def updateList(self):
 		languageList = language.getLanguageList()
 		if not languageList: # no language available => display only english
-			list = [ LanguageEntryComponent("en", "English (US)", "en_US") ]
+			list = [LanguageEntryComponent("en", "English (US)", "en_US")]
 		else:
-			list = [ LanguageEntryComponent(file = x[1][2].lower(), name = x[1][0], index = x[0]) for x in languageList]
+			list = [LanguageEntryComponent(file=x[1][2].lower(), name=x[1][0], index=x[0]) for x in languageList]
 		self.list = list
 		self["languages"].list = list
 
@@ -181,19 +185,19 @@ class LanguageSelection(Screen):
 		from Screens.PluginBrowser import PluginDownloadBrowser
 		self.session.openWithCallback(self.update_after_installLanguage, PluginDownloadBrowser, 0)
 
-
 	def update_after_installLanguage(self):
 		language.InitLang()
 		self.updateList()
 		self.selectActiveLanguage()
 
 	def changed(self):
-		self.run(justlocal = True)
+		self.run(justlocal=True)
 
-class LanguageWizard(LanguageSelection, Rc):
+
+class LanguageWizard(LanguageSelection, ShowRemoteControl):
 	def __init__(self, session):
 		LanguageSelection.__init__(self, session)
-		Rc.__init__(self)
+		ShowRemoteControl.__init__(self)
 		global inWizzard
 		inWizzard = True
 		self.onLayoutFinish.append(self.selectKeys)
@@ -209,7 +213,7 @@ class LanguageWizard(LanguageSelection, Rc):
 		self.selectKey("DOWN")
 
 	def changed(self):
-		self.run(justlocal = True)
+		self.run(justlocal=True)
 		self.setText()
 
 	def setText(self):
@@ -218,6 +222,7 @@ class LanguageWizard(LanguageSelection, Rc):
 
 	def createSummary(self):
 		return LanguageWizardSummary
+
 
 class LanguageWizardSummary(Screen):
 	def __init__(self, session, parent):

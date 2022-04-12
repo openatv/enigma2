@@ -1,13 +1,14 @@
-import skin
-from HTMLComponent import HTMLComponent
-from GUIComponent import GUIComponent
-from enigma import eLabel, eWidget, eSlider, fontRenderClass, ePoint, eSize
+from enigma import eLabel, ePoint, eSize, eSlider, eWidget, fontRenderClass
 
-class ScrollLabel(HTMLComponent, GUIComponent):
+from skin import applyAllAttributes
+from Components.GUIComponent import GUIComponent
+
+
+class ScrollLabel(GUIComponent):
 	def __init__(self, text="", showscrollbar=True):
 		GUIComponent.__init__(self)
 		self.message = text
-		self.showscrollbar=showscrollbar
+		self.showscrollbar = showscrollbar
 		self.instance = None
 		self.long_text = None
 		self.right_text = None
@@ -29,63 +30,52 @@ class ScrollLabel(HTMLComponent, GUIComponent):
 		if self.skinAttributes:
 			widget_attribs = []
 			scrollbar_attribs = []
-			remove_attribs = [ ]
-			for (attrib, value) in self.skinAttributes:
-				if "itemHeight" in attrib:
+			scrollbarAttrib = ["scrollbarSliderForegroundColor", "scrollbarSliderBorderColor", "scrollbarSliderPicture", "scrollbarBackgroundPicture"]
+			for (attrib, value) in self.skinAttributes[:]:
+				if attrib in scrollbarAttrib:
+					scrollbar_attribs.append((attrib, value))
+					self.skinAttributes.remove((attrib, value))
+				elif "borderColor" in attrib or "borderWidth" in attrib:
+					scrollbar_attribs.append((attrib, value))
+				elif "itemHeight" in attrib:
 					itemHeight = int(value)
-					remove_attribs.append((attrib, value))
-				if "scrollbarMode" in attrib:
+					self.skinAttributes.remove((attrib, value))
+				elif "scrollbarMode" in attrib:
 					self.scrollbarmode = value
-					remove_attribs.append((attrib, value))
-				if "borderColor" in attrib or "borderWidth" in attrib:
-					scrollbar_attribs.append((attrib,value))
-				if "transparent" in attrib or "backgroundColor" in attrib:
-					widget_attribs.append((attrib,value))
-				if "scrollbarSliderForegroundColor" in attrib:
-					scrollbar_attribs.append((attrib,value))
-					remove_attribs.append((attrib, value))
-				if "scrollbarSliderBorderColor" in attrib:
-					scrollbar_attribs.append((attrib,value))
-					remove_attribs.append((attrib, value))
-				if "scrollbarSliderPicture" in attrib:
-					scrollbar_attribs.append((attrib,value))
-					remove_attribs.append((attrib, value))
-				if "scrollbarBackgroundPicture" in attrib:
-					scrollbar_attribs.append((attrib,value))
-					remove_attribs.append((attrib, value))
-				if "scrollbarWidth" in attrib:
+					self.skinAttributes.remove((attrib, value))
+				elif "transparent" in attrib or "backgroundColor" in attrib:
+					widget_attribs.append((attrib, value))
+				elif "scrollbarWidth" in attrib:
 					scrollbarWidth = int(value)
-					remove_attribs.append((attrib, value))
-				if "scrollbarSliderBorderWidth" in attrib:
+					self.skinAttributes.remove((attrib, value))
+				elif "scrollbarSliderBorderWidth" in attrib:
 					scrollbarBorderWidth = int(value)
-					remove_attribs.append((attrib, value))
-				if "split" in attrib:
-					self.split = int(value)
+					self.skinAttributes.remove((attrib, value))
+				elif "split" in attrib:
+					self.split = 1 if value.lower() in ("1", "enabled", "on", "split", "true", "yes") else 0
 					if self.split:
 						self.right_text = eLabel(self.instance)
-					self.skinAttributes.remove((attrib, value))	
-				if "colposition" in attrib:
+					self.skinAttributes.remove((attrib, value))
+				elif "colposition" in attrib or "colPosition" in attrib:
 					self.column = int(value)
-				if "dividechar" in attrib:
+				elif "dividechar" in attrib or "divideChar" in attrib:
 					self.splitchar = value
-			for (attrib, value) in remove_attribs:
-				self.skinAttributes.remove((attrib, value))
 			if self.split:
-				skin.applyAllAttributes(self.long_text, desktop, self.skinAttributes + [("halign", "left")], parent.scale)
-				skin.applyAllAttributes(self.right_text, desktop, self.skinAttributes + [("transparent", "1"), ("halign", "left" if self.column else "right")], parent.scale)
+				applyAllAttributes(self.long_text, desktop, self.skinAttributes + [("halign", "left")], parent.scale)
+				applyAllAttributes(self.right_text, desktop, self.skinAttributes + [("transparent", "1"), ("halign", "left" if self.column else "right")], parent.scale)
 			else:
-				skin.applyAllAttributes(self.long_text, desktop, self.skinAttributes, parent.scale)
-			skin.applyAllAttributes(self.instance, desktop, widget_attribs, parent.scale)
-			skin.applyAllAttributes(self.scrollbar, desktop, scrollbar_attribs + widget_attribs, parent.scale)
+				applyAllAttributes(self.long_text, desktop, self.skinAttributes, parent.scale)
+			applyAllAttributes(self.instance, desktop, widget_attribs, parent.scale)
+			applyAllAttributes(self.scrollbar, desktop, scrollbar_attribs + widget_attribs, parent.scale)
 			ret = True
 		self.pageWidth = self.long_text.size().width()
 		self.lineheight = fontRenderClass.getInstance().getLineHeight(self.long_text.getFont()) or itemHeight # assume a random lineheight if nothing is visible
 		lines = int(self.long_text.size().height() / self.lineheight)
 		self.pageHeight = int(lines * self.lineheight)
 		self.instance.move(self.long_text.position())
-		self.instance.resize(eSize(self.pageWidth, self.pageHeight + int(self.lineheight/6)))
-		self.scrollbar.move(ePoint(self.pageWidth-scrollbarWidth,0))
-		self.scrollbar.resize(eSize(scrollbarWidth,self.pageHeight+ int(self.lineheight/6)))
+		self.instance.resize(eSize(self.pageWidth, self.pageHeight + int(self.lineheight / 6)))
+		self.scrollbar.move(ePoint(self.pageWidth - scrollbarWidth, 0))
+		self.scrollbar.resize(eSize(scrollbarWidth, self.pageHeight + int(self.lineheight / 6)))
 		self.scrollbar.setOrientation(eSlider.orVertical)
 		self.scrollbar.setRange(0, 100)
 		self.scrollbar.setBorderWidth(scrollbarBorderWidth)
@@ -128,25 +118,47 @@ class ScrollLabel(HTMLComponent, GUIComponent):
 	def appendText(self, text, showBottom=True):
 		self.setText(self.message + text, showBottom)
 
+	def moveTop(self):
+		self.setPos(0)
+		self.updateScrollbar()
+
+	def homePage(self):
+		return self.moveTop()
+
 	def pageUp(self):
 		if self.TotalTextHeight > self.pageHeight:
 			self.setPos(self.curPos - self.pageHeight)
 			self.updateScrollbar()
+
+	def moveUp(self):
+		self.setPos(self.curPos - int(self.lineheight))
+		self.updateScrollbar()
+
+	def moveDown(self):
+		self.setPos(self.curPos + int(self.lineheight))
+		self.updateScrollbar()
 
 	def pageDown(self):
 		if self.TotalTextHeight > self.pageHeight:
 			self.setPos(self.curPos + self.pageHeight)
 			self.updateScrollbar()
 
+	def moveBottom(self):
+		self.lastPage()
+		self.updateScrollbar()
+
+	def endPage(self):
+		return self.moveBottom()
+
 	def lastPage(self):
-		self.setPos(self.TotalTextHeight-self.pageHeight)
+		self.setPos(self.TotalTextHeight - self.pageHeight)
 
 	def isAtLastPage(self):
 		return self.TotalTextHeight <= self.pageHeight or self.curPos == self.TotalTextHeight - self.pageHeight
 
 	def updateScrollbar(self):
-		vis = max(100 * self.pageHeight / self.TotalTextHeight, 3)
-		start = (100 - vis) * self.curPos / (self.TotalTextHeight - self.pageHeight)
+		vis = max(100 * self.pageHeight // self.TotalTextHeight, 3)
+		start = (100 - vis) * self.curPos // ((self.TotalTextHeight - self.pageHeight) or 1)
 		self.scrollbar.setStartEnd(start, start + vis)
 
 	def GUIcreate(self, parent):
@@ -159,9 +171,6 @@ class ScrollLabel(HTMLComponent, GUIComponent):
 		self.scrollbar = None
 		self.instance = None
 		self.right_text = None
-
-	def produceHTML(self):
-		return self.message
 
 	def getText(self):
 		return self.message

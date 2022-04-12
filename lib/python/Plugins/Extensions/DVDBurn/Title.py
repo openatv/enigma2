@@ -1,31 +1,35 @@
+from __future__ import absolute_import
 from Components.config import ConfigSubsection, ConfigSubList, ConfigInteger, ConfigText, ConfigSelection
-import TitleCutter
+from . import TitleCutter
+
 
 class ConfigFixedText(ConfigText):
 	def __init__(self, text, visible_width=60):
-		ConfigText.__init__(self, default = text, fixed_size = True, visible_width = visible_width)
+		ConfigText.__init__(self, default=text, fixed_size=True, visible_width=visible_width)
+
 	def handleKey(self, key):
 		pass
+
 
 class Title:
 	def __init__(self, project):
 		self.properties = ConfigSubsection()
-		self.properties.menutitle = ConfigText(fixed_size = False, visible_width = 80)
-		self.properties.menusubtitle = ConfigText(fixed_size = False, visible_width = 80)
-		self.properties.aspect = ConfigSelection(choices = [("4:3", _("4:3")), ("16:9", _("16:9"))])
-		self.properties.widescreen = ConfigSelection(choices = [("nopanscan", "nopanscan"), ("noletterbox", "noletterbox")])
-		self.properties.autochapter = ConfigInteger(default = 0, limits = (0, 60))
+		self.properties.menutitle = ConfigText(fixed_size=False, visible_width=80)
+		self.properties.menusubtitle = ConfigText(fixed_size=False, visible_width=80)
+		self.properties.aspect = ConfigSelection(choices=[("4:3", _("4:3")), ("16:9", _("16:9"))])
+		self.properties.widescreen = ConfigSelection(choices=[("nopanscan", "nopanscan"), ("noletterbox", "noletterbox")])
+		self.properties.autochapter = ConfigInteger(default=0, limits=(0, 60))
 		self.properties.audiotracks = ConfigSubList()
 		self.DVBname = _("Title")
 		self.DVBdescr = _("Description")
 		self.DVBchannel = _("Channel")
-		self.cuesheet = [ ]
+		self.cuesheet = []
 		self.source = None
 		self.filesize = 0
 		self.estimatedDiskspace = 0
 		self.inputfile = ""
-		self.cutlist = [ ]
-		self.chaptermarks = [ ]
+		self.cutlist = []
+		self.chaptermarks = []
 		self.timeCreate = None
 		self.project = project
 		self.length = 0
@@ -33,7 +37,7 @@ class Title:
 		self.VideoPID = -1
 		self.framerate = 0
 		self.progressive = -1
-		self.resolution = (-1,-1)
+		self.resolution = (-1, -1)
 
 	def addService(self, service):
 		from os import path
@@ -56,13 +60,13 @@ class Title:
 		self.filesize = path.getsize(self.inputfile)
 		self.estimatedDiskspace = self.filesize
 		self.length = info.getLength(service)
-						
+
 	def addFile(self, filename):
 		from enigma import eServiceReference
 		ref = eServiceReference(1, 0, filename)
 		self.addService(ref)
 		self.project.session.openWithCallback(self.titleEditDone, TitleCutter.CutlistReader, self)
-	
+
 	def titleEditDone(self, cutlist):
 		self.initDVDmenuText(len(self.project.titles))
 		self.cuesheet = cutlist
@@ -77,12 +81,12 @@ class Title:
 		template = template.replace("$i", str(track))
 		template = template.replace("$t", self.DVBname)
 		template = template.replace("$d", self.DVBdescr)
-		template = template.replace("$c", str(len(self.chaptermarks)+1))
+		template = template.replace("$c", str(len(self.chaptermarks) + 1))
 		template = template.replace("$f", self.inputfile)
 		template = template.replace("$C", self.DVBchannel)
-		
+
 		#if template.find("$A") >= 0:
-		audiolist = [ ]
+		audiolist = []
 		for audiotrack in self.properties.audiotracks:
 			active = audiotrack.active.getValue()
 			if active:
@@ -94,7 +98,7 @@ class Title:
 
 		if template.find("$l") >= 0:
 			l = self.length
-			lengthstring = "%d:%02d:%02d" % (l/3600, l%3600/60, l%60)
+			lengthstring = "%d:%02d:%02d" % (l / 3600, l % 3600 / 60, l % 60)
 			template = template.replace("$l", lengthstring)
 		if self.timeCreate:
 			template = template.replace("$Y", str(self.timeCreate[0]))
@@ -116,13 +120,13 @@ class Title:
 		accumulated_at = 0
 		last_in = 0
 
-		self.cutlist = [ ]
-		self.chaptermarks = [ ]
+		self.cutlist = []
+		self.chaptermarks = []
 
 		# our demuxer expects *strictly* IN,OUT lists.
 		currently_in = not any(type == CUT_TYPE_IN for pts, type in self.cuesheet)
 		if currently_in:
-			self.cutlist.append(0) # emulate "in" at first		
+			self.cutlist.append(0) # emulate "in" at first
 
 		for (pts, type) in self.cuesheet:
 			#print "pts=", pts, "type=", type, "accumulated_in=", accumulated_in, "accumulated_at=", accumulated_at, "last_in=", last_in
@@ -135,7 +139,7 @@ class Title:
 				self.cutlist.append(pts)
 
 				# accumulate the segment
-				accumulated_in += pts - last_in 
+				accumulated_in += pts - last_in
 				accumulated_at = pts
 				currently_in = False
 
@@ -144,20 +148,20 @@ class Title:
 				# as the in/out points are not.
 				reloc_pts = pts - last_in + accumulated_in
 				self.chaptermarks.append(reloc_pts)
-				
+
 		if len(self.cutlist) > 1:
-			part = accumulated_in / (self.length*90000.0)
-			usedsize = int ( part * self.filesize )
+			part = accumulated_in / (self.length * 90000.0)
+			usedsize = int(part * self.filesize)
 			self.estimatedDiskspace = usedsize
 			self.length = accumulated_in / 90000
 
 	def getChapterMarks(self, template="$h:$m:$s.$t"):
-		timestamps = [ ]
-		chapters = [ ]
+		timestamps = []
+		chapters = []
 		minutes = self.properties.autochapter.getValue()
 		if len(self.chaptermarks) < 1 and minutes > 0:
 			chapterpts = 0
-			while chapterpts < (self.length-60*minutes)*90000:
+			while chapterpts < (self.length - 60 * minutes) * 90000:
 				chapterpts += 90000 * 60 * minutes
 				chapters.append(chapterpts)
 		else:

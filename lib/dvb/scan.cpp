@@ -31,7 +31,6 @@
 #define SCAN_eDebug(x...) do { if (m_scan_debug) eDebug(x); } while(0)
 #define SCAN_eDebugNoNewLineStart(x...) do { if (m_scan_debug) eDebugNoNewLineStart(x); } while(0)
 #define SCAN_eDebugNoNewLine(x...) do { if (m_scan_debug) eDebugNoNewLine(x); } while(0)
-#define SCAN_eDebugNoNewLineEnd(x...) do { if (m_scan_debug) eDebugNoNewLineEnd(x); } while(0)
 
 DEFINE_REF(eDVBScan);
 
@@ -47,7 +46,7 @@ eDVBScan::eDVBScan(iDVBChannel *channel, bool usePAT, bool debug)
 	,m_scan_debug(debug)
 {
 	if (m_channel->getDemux(m_demux))
-		SCAN_eDebug("scan: failed to allocate demux!");
+		SCAN_eDebug("[eDVBScan] failed to allocate demux!");
 	m_channel->connectStateChange(sigc::mem_fun(*this, &eDVBScan::stateChange), m_stateChanged_connection);
 	m_lcn_file = NULL;
 }
@@ -60,68 +59,11 @@ eDVBScan::~eDVBScan()
 
 int eDVBScan::isValidONIDTSID(int orbital_position, eOriginalNetworkID onid, eTransportStreamID tsid)
 {
-	int ret;
-	switch (onid.get())
+	if(onid.get() == 0 || onid.get() == 1 && tsid < 2 || onid.get() >= 0xFF00)
 	{
-	case 0:
-	case 0x1111:
-		ret=0;
-		break;
-	case 0x13E:  // workaround for 11258H and 11470V on hotbird with same ONID/TSID (0x13E/0x578)
-		ret = orbital_position != 130 || tsid != 0x578;
-		break;
-	case 1:
-		ret = orbital_position == 192;
-		break;
-	case 0x00B1:
-		ret = tsid != 0x00B0;
-		break;
-	case 0x00eb:
-		ret = tsid != 0x4321;
-		break;
-	case 0x0002:
-		ret = absdiff(orbital_position, 282) < 6 && tsid != 2019;
-		// 12070H and 10936V have same tsid/onid.. but even the same services are provided
-		break;
-	case 0x2000:
-		ret = tsid != 0x1000;
-		break;
-	case 0x5E: // Sirius 4.8E 12322V and 12226H
-		ret = absdiff(orbital_position, 48) < 3 && tsid != 1;
-		break;
-	case 0x0070: // Eutelsat W7 36.0E 12174L and 12284R have same ONID/TSID (0x0070/0x0008)
-		ret = orbital_position != 360 || tsid != 0x0008;
-		break;
-	case 10100: // Eutelsat W7 36.0E 11644V and 11652V
-		ret = orbital_position != 360 || tsid != 10187;
-		break;
-	case 42: // Tuerksat 42.0E
-		ret = orbital_position != 420 || (
-		    tsid != 8 && // 11830V 12729V
-		    tsid != 5 && // 12679V 12685H
-		    tsid != 2 && // 11096V 12015H
-		    tsid != 55); // 11996V 11716V
-		break;
-	case 100: // Intelsat 10 68.5E 3808V 3796V 4012V, Amos 4.0W 10723V 11571H
-		ret = (orbital_position != 685 && orbital_position != 3560) || tsid != 1;
-		break;
-	case 70: // Thor 0.8W 11862H 12341V
-		ret = absdiff(orbital_position, 3592) < 3 && tsid != 46;
-		break;
-	case 32: // NSS 806 (40.5W) 4059R, 3774L
-		ret = orbital_position != 3195 || tsid != 21;
-		break;
-	case 126:  // 11221H and 11387H on Utelsat 7.0E with same ONID/TSID (126/40700) and 11304H, 11262H (126/30300) 
-		ret = orbital_position != 70 || (tsid != 40700 && tsid !=30300);
-		break;
-	case 3622:  // 11881H and 12284V on Badr 26.0E with same ONID/TSID (3622/100)
-		ret = orbital_position != 260 || tsid != 100;
-		break;
-	default:
-		ret = onid.get() < 0xFF00;
-		break;
+		return 0;
 	}
-	return ret;
+	return 1;
 }
 
 eDVBNamespace eDVBScan::buildNamespace(eOriginalNetworkID onid, eTransportStreamID tsid, unsigned long hash)
@@ -527,7 +469,7 @@ void eDVBScan::PMTready(int err)
 				case 0x02: // MPEG 2 video
 					isvideo = 1;
 					forced_video = 1;
-					//break; fall through !!!
+					[[fallthrough]];
 				case 0x03: // MPEG 1 audio
 				case 0x04: // MPEG 2 audio
 				case 0x0f: // MPEG 2 AAC
@@ -537,6 +479,7 @@ void eDVBScan::PMTready(int err)
 						forced_audio = 1;
 						isaudio = 1;
 					}
+					[[fallthrough]];
 				case 0x06: // PES Private
 				case 0x81: // user private
 				case 0xEA: // TS_PSI_ST_SMPTE_VC1
@@ -564,22 +507,23 @@ void eDVBScan::PMTready(int err)
 								isvideo = 1;
 								break;
 							case REGISTRATION_DESCRIPTOR: /* some services don't have a separate AC3 descriptor */
-							{
-								RegistrationDescriptor *d = (RegistrationDescriptor*)(*desc);
-								switch (d->getFormatIdentifier())
 								{
-								case 0x44545331 ... 0x44545333: // DTS1/DTS2/DTS3
-								case 0x41432d33: // == 'AC-3'
-								case 0x42535344: // == 'BSSD' (LPCM)
-									isaudio = 1;
-									break;
-								case 0x56432d31: // == 'VC-1'
-									isvideo = 1;
-									break;
-								default:
-									break;
+									RegistrationDescriptor *d = (RegistrationDescriptor*)(*desc);
+									switch (d->getFormatIdentifier())
+									{
+									case 0x44545331 ... 0x44545333: // DTS1/DTS2/DTS3
+									case 0x41432d33: // == 'AC-3'
+									case 0x42535344: // == 'BSSD' (LPCM)
+										isaudio = 1;
+										break;
+									case 0x56432d31: // == 'VC-1'
+										isvideo = 1;
+										break;
+									default:
+										break;
+									}
 								}
-							}
+								[[fallthrough]];
 							default:
 								break;
 							}
@@ -587,6 +531,7 @@ void eDVBScan::PMTready(int err)
 						if (tag == CA_DESCRIPTOR)
 							is_scrambled = 1;
 					}
+					[[fallthrough]];
 				default:
 					break;
 				}
@@ -697,7 +642,7 @@ void eDVBScan::addChannelToScan(iDVBFrontendParameters *feparm)
 	{
 		eDVBFrontendParametersCable parm;
 		feparm->getDVBC(parm);
-		SCAN_eDebug("[eDVBScan] try to add %d %d %d %d",
+		SCAN_eDebug("[eDVBScan] try to add cable %d %d %d %d",
 			parm.frequency, parm.symbol_rate, parm.modulation, parm.fec_inner);
 		break;
 	}
@@ -705,7 +650,7 @@ void eDVBScan::addChannelToScan(iDVBFrontendParameters *feparm)
 	{
 		eDVBFrontendParametersTerrestrial parm;
 		feparm->getDVBT(parm);
-		SCAN_eDebug("[eDVBScan] try to add %d %d %d %d %d %d %d %d",
+		SCAN_eDebug("[eDVBScan] try to add terres %d %d %d %d %d %d %d %d",
 			parm.frequency, parm.modulation, parm.transmission_mode, parm.hierarchy,
 			parm.guard_interval, parm.code_rate_LP, parm.code_rate_HP, parm.bandwidth);
 		break;
@@ -905,6 +850,7 @@ void eDVBScan::channelDone()
 							break; // when current locked transponder is no satellite transponder ignore this descriptor
 
 						S2SatelliteDeliverySystemDescriptor &d = (S2SatelliteDeliverySystemDescriptor&)**desc;
+						[[fallthrough]];
 					}
 					case SATELLITE_DELIVERY_SYSTEM_DESCRIPTOR:
 					{
@@ -1213,17 +1159,18 @@ void eDVBScan::channelDone()
 				case iDVBFrontend::feTerrestrial:
 				case iDVBFrontend::feCable:
 				case iDVBFrontend::feATSC:
-				{
-					ePtr<iDVBFrontend> fe;
-					if (!m_channel->getFrontend(fe))
 					{
-						int frequency = fe->readFrontendData(iFrontendInformation_ENUMS::frequency);
-//						eDebug("[eDVBScan] add tuner data for tsid %04x, onid %04x, ns %08x",
-//							m_chid_current.transport_stream_id.get(), m_chid_current.original_network_id.get(),
-//							m_chid_current.dvbnamespace.get());
-						m_tuner_data.insert(std::pair<eDVBChannelID, int>(m_chid_current, frequency));
+						ePtr<iDVBFrontend> fe;
+						if (!m_channel->getFrontend(fe))
+						{
+							int frequency = fe->readFrontendData(iFrontendInformation_ENUMS::frequency);
+	//						eDebug("[eDVBScan] add tuner data for tsid %04x, onid %04x, ns %08x",
+	//							m_chid_current.transport_stream_id.get(), m_chid_current.original_network_id.get(),
+	//							m_chid_current.dvbnamespace.get());
+							m_tuner_data.insert(std::pair<eDVBChannelID, int>(m_chid_current, frequency));
+						}
 					}
-				}
+					[[fallthrough]];
 				default:
 					break;
 			}
@@ -1576,11 +1523,11 @@ RESULT eDVBScan::processSDT(eDVBNamespace dvbnamespace, const ServiceDescription
 		{
 			if (it->second.scrambled)
 			{
-				SCAN_eDebugNoNewLineEnd("is scrambled!");
+				SCAN_eDebugNoNewLine("is scrambled!");
 				is_crypted = true;
 			}
 			else
-				SCAN_eDebugNoNewLineEnd("is free");
+				SCAN_eDebugNoNewLine("is free");
 		}
 		SCAN_eDebugNoNewLine("\n");
 

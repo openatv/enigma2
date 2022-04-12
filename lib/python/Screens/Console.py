@@ -1,3 +1,4 @@
+from __future__ import print_function
 from enigma import eConsoleAppContainer
 from Screens.Screen import Screen
 from Components.ActionMap import ActionMap
@@ -5,6 +6,8 @@ from Components.ScrollLabel import ScrollLabel
 from Components.Sources.StaticText import StaticText
 from Screens.MessageBox import MessageBox
 from Components.Label import Label
+import six
+
 
 class Console(Screen):
 
@@ -13,7 +16,7 @@ class Console(Screen):
 	# Strings are executed by sh -c strng
 	# lists/tuples are executed by execvp(lst[0], lst)
 
-	def __init__(self, session, title = _("Console"), cmdlist = None, finishedCallback = None, closeOnSuccess = False):
+	def __init__(self, session, title=_("Console"), cmdlist=None, finishedCallback=None, closeOnSuccess=False):
 		Screen.__init__(self, session)
 
 		self.finishedCallback = finishedCallback
@@ -62,7 +65,7 @@ class Console(Screen):
 	def startRun(self):
 		self["text"].setText(_("Execution progress:") + "\n\n")
 		self["summary_description"].setText(_("Execution progress:"))
-		print "[Console] executing in run", self.run, " the command:", self.cmdlist[self.run]
+		print("[Console] executing in run", self.run, " the command:", self.cmdlist[self.run])
 		if self.doExec(self.cmdlist[self.run]): #start of container application failed...
 			self.runFinished(-1) # so we must call runFinished manual
 
@@ -125,7 +128,7 @@ class Console(Screen):
 		else:
 			self.cancel_msg = self.session.openWithCallback(self.cancelCB, MessageBox, _("Cancel execution?"), type=MessageBox.TYPE_YESNO, default=False)
 
-	def cancelCB(self, ret = None):
+	def cancelCB(self, ret=None):
 		self.cancel_msg = None
 		if ret:
 			self.cancel(True)
@@ -133,8 +136,8 @@ class Console(Screen):
 	def saveOutputText(self):
 		from time import time, localtime
 		lt = localtime(time())
-		self.output_file = '/tmp/%02d%02d%02d_console.txt' %(lt[3],lt[4],lt[5])
-		self.session.openWithCallback(self.saveOutputTextCB, MessageBox, _("Save the commands and the output to a file?\n('%s')") %self.output_file, type=MessageBox.TYPE_YESNO, default=True)
+		self.output_file = '/tmp/%02d%02d%02d_console.txt' % (lt[3], lt[4], lt[5])
+		self.session.openWithCallback(self.saveOutputTextCB, MessageBox, _("Save the commands and the output to a file?\n('%s')") % self.output_file, type=MessageBox.TYPE_YESNO, default=True)
 
 	def formatCmdList(self, source):
 		if isinstance(source, (list, tuple)):
@@ -144,7 +147,7 @@ class Console(Screen):
 		else:
 			yield source
 
-	def saveOutputTextCB(self, ret = None):
+	def saveOutputTextCB(self, ret=None):
 		if ret:
 			from os import path
 			failtext = _("Path to save not exist: '/tmp/'")
@@ -152,20 +155,20 @@ class Console(Screen):
 				text = 'commands ...\n\n'
 				try:
 					cmdlist = list(self.formatCmdList(self.cmdlist))
-					text += 'command line: %s\n\n' %cmdlist[0]
+					text += 'command line: %s\n\n' % cmdlist[0]
 					script = ''
 					for cmd in cmdlist[0].split():
 						if '.' in cmd:
-							if cmd[-3:] in ('.py', '.sh'):
+							if cmd[-3:] in ('.py', '.sh') or cmd[-4:] == '.pyc':
 								script = cmd
 							break
 					if script and path.isfile(script):
-						text += 'script listing: %s\n\n%s\n\n' %(script, self.readFile(script))
+						text += 'script listing: %s\n\n%s\n\n' % (script, self.readFile(script))
 					if len(cmdlist) > 1:
 						text += 'next commands:\n\n' + '\n'.join(cmdlist[1:]) + '\n\n'
 				except:
 					text += 'error read commands!!!\n\n'
-				text += '-'*50 + '\n\noutputs ...\n\n%s' %self["text"].getText()
+				text += '-' * 50 + '\n\noutputs ...\n\n%s' % self["text"].getText()
 				try:
 					f = open(self.output_file, 'w')
 					f.write(text)
@@ -173,14 +176,14 @@ class Console(Screen):
 					self["key_green"].setText(_("Load"))
 					return
 				except:
-					failtext = _("File write error: '%s'") %self.output_file
+					failtext = _("File write error: '%s'") % self.output_file
 			self.output_file = 'end'
 			self["key_green"].setText(_(" "))
 			self.session.open(MessageBox, failtext, type=MessageBox.TYPE_ERROR)
 		else:
 			self.output_file = ''
 
-	def toggleScreenHide(self, setshow = False):
+	def toggleScreenHide(self, setshow=False):
 		if self.screen_hide or setshow:
 			self.show()
 		else:
@@ -196,10 +199,10 @@ class Console(Screen):
 			if file == self.output_file:
 				rd = self["text"].getText()
 			else:
-				rd = "File read error: '%s'\n" %file
+				rd = "File read error: '%s'\n" % file
 		return rd
 
-	def cancel(self, force = False):
+	def cancel(self, force=False):
 		if self.screen_hide:
 			self.toggleScreenHide()
 			return
@@ -211,4 +214,5 @@ class Console(Screen):
 				self.container.kill()
 
 	def dataAvail(self, str):
+		str = six.ensure_str(str)
 		self["text"].appendText(str)

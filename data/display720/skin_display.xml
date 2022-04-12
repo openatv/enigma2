@@ -319,16 +319,14 @@
 		<panel name="SummaryClockPanel" />
 	</screen>
 	
-	<screen name="MessageBox_summary" position="0,0" size="720,576"> 
-		<widget source="parent.Text" render="Label" position="10,20" size="670,376" font="FdLcD;60" halign="center" valign="center" />
-		<widget source="parent.selectedChoice" render="Label" position="22,422" size="670,63" foregroundColor="#e5b243" font="FdLcDLight;60" halign="center" valign="top" />
+	<screen name="MessageBoxSummary" position="0,0" size="720,576"> 
+		<widget source="text" render="Label" position="10,20" size="670,376" font="FdLcD;60" halign="center" valign="center" />
+		<widget source="option" render="Label" position="22,422" size="670,63" foregroundColor="#e5b243" font="FdLcDLight;60" halign="center" valign="top" />
 		<panel name="SummaryClockPanel" />
 	</screen>
 	
-	<screen name="MessageBoxSimple_summary" position="0,0" size="720,576"> 
-		<widget source="parent.Text" render="Label" position="10,20" size="670,376" font="FdLcD;60" halign="center" valign="center" />
-		<widget source="parent.selectedChoice" render="Label" position="22,422" size="670,63" foregroundColor="#e5b243" font="FdLcDLight;60" halign="center" valign="top" />
-		<panel name="SummaryClockPanel" />
+	<screen name="MessageBoxSimpleSummary" position="0,0" size="720,576"> 
+		<panel name="MessageBoxSummary" />
 	</screen>
 	
 <!-- Infopanel -->
@@ -409,7 +407,7 @@
 		<panel name="SummaryClockPanel" />
 	</screen>
 	<screen name="IMDbLCDScreen" position="0,0" size="720,576">
-		<eLabel text="IMDB Search" position="15,20" foregroundColor="#e5b243" size="670,500" font="FdLcD;90" halign="center" valign="center" />
+		<eLabel text="IMDb Search" position="15,20" foregroundColor="#e5b243" size="670,500" font="FdLcD;90" halign="center" valign="center" />
 		<panel name="SummaryClockPanel" />
 	</screen>
 	<screen name="GraphicalInfoBarEPG_summary" position="0,0" size="720,576">

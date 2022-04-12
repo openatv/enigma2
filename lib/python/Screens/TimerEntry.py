@@ -1,31 +1,34 @@
 # -*- coding: utf-8 -*-
-from time import localtime, mktime, time, strftime
+from __future__ import absolute_import
 from datetime import datetime
+from os import statvfs
+from time import localtime, mktime, time, strftime
 
 from enigma import eEPGCache
 
 from Screens.Screen import Screen
-import ChannelSelection
+import Screens.ChannelSelection
 from ServiceReference import ServiceReference
-from Components.config import config, ConfigSelection, ConfigText, ConfigSubList, ConfigDateTime, ConfigClock, ConfigYesNo, getConfigListEntry
 from Components.ActionMap import NumberActionMap, ActionMap
+from Components.config import config, ConfigSelection, ConfigText, ConfigSubList, ConfigDateTime, ConfigClock, ConfigYesNo, getConfigListEntry
 from Components.ConfigList import ConfigListScreen
 from Components.MenuList import MenuList
 from Components.Button import Button
 from Components.Label import Label
 from Components.Sources.StaticText import StaticText
 from Components.Pixmap import Pixmap
-from Components.SystemInfo import SystemInfo
+from Components.SystemInfo import BoxInfo
 from Components.UsageConfig import defaultMoviePath
 from Components.Sources.Boolean import Boolean
-from Screens.MovieSelection import getPreferredTagEditor
-from Screens.LocationBox import MovieLocationBox
 from Screens.ChoiceBox import ChoiceBox
+from Screens.LocationBox import MovieLocationBox
 from Screens.MessageBox import MessageBox
 from Screens.VirtualKeyBoard import VirtualKeyBoard
 from Screens.Setup import SetupSummary
 from RecordTimer import AFTEREVENT
-from os import statvfs
+from Screens.TagEditor import TagEditor
+import six
+
 
 class TimerEntry(Screen, ConfigListScreen):
 	def __init__(self, session, timer):
@@ -67,9 +70,9 @@ class TimerEntry(Screen, ConfigListScreen):
 		}, -2)
 		self["VirtualKB"].setEnabled(False)
 
-		self.onChangedEntry = [ ]
+		self.onChangedEntry = []
 		self.list = []
-		ConfigListScreen.__init__(self, self.list, session = session)
+		ConfigListScreen.__init__(self, self.list, session=session)
 		self.createSetup("config")
 		self.onLayoutFinish.append(self.layoutFinished)
 
@@ -99,10 +102,10 @@ class TimerEntry(Screen, ConfigListScreen):
 		weekday_table = ("mon", "tue", "wed", "thu", "fri", "sat", "sun")
 
 		# calculate default values
-		day = []
+		days = []
 		weekday = 0
 		for x in (0, 1, 2, 3, 4, 5, 6):
-			day.append(0)
+			days.append(False)
 		if self.timer.repeated: # repeated
 			type = "repeated"
 			if self.timer.repeated == 31: # Mon-Fri
@@ -118,10 +121,10 @@ class TimerEntry(Screen, ConfigListScreen):
 # 						print "Set to weekday " + str(x)
 						weekday = x
 					if flags & 1 == 1: # set user defined flags
-						day[x] = 1
+						days[x] = True
 						count += 1
 					else:
-						day[x] = 0
+						days[x] = False
 					flags >>= 1
 				if count == 1:
 					repeated = "weekly"
@@ -129,55 +132,65 @@ class TimerEntry(Screen, ConfigListScreen):
 			type = "once"
 			repeated = None
 			weekday = int(strftime("%u", localtime(self.timer.begin))) - 1
-			day[weekday] = 1
+			days[weekday] = True
 
-		self.timerentry_justplay = ConfigSelection(choices = [
-			("zap", _("zap")), ("record", _("record")), ("zap+record", _("zap and record"))],
-			default = {0: "record", 1: "zap", 2: "zap+record"}[justplay + 2*always_zap])
+		self.timerentry_justplay = ConfigSelection(default={
+			0: "record",
+			1: "zap",
+			2: "zap+record"
+		}[justplay + 2 * always_zap], choices=[
+			("zap", _("Zap")),
+			("record", _("Record")),
+			("zap+record", _("Zap and record"))
+		])
 		self.timertyp = self.timerentry_justplay.value
 
-		if SystemInfo["DeepstandbySupport"]:
-			shutdownString = _("go to deep standby")
+		if BoxInfo.getItem("DeepstandbySupport"):
+			shutdownString = _("Go to deep standby")
 		else:
-			shutdownString = _("shut down")
-		self.timerentry_afterevent = ConfigSelection(choices = [("nothing", _("do nothing")), ("standby", _("go to standby")), ("deepstandby", shutdownString), ("auto", _("auto"))], default = afterevent)
-		self.timerentry_recordingtype = ConfigSelection(choices = [("normal", _("normal")), ("descrambled+ecm", _("descramble and record ecm")), ("scrambled+ecm", _("don't descramble, record ecm"))], default = recordingtype)
-		self.timerentry_type = ConfigSelection(choices = [("once",_("once")), ("repeated", _("repeated"))], default = type)
-		self.timerentry_name = ConfigText(default = self.timer.name.replace('\xc2\x86', '').replace('\xc2\x87', '').encode("utf-8"), visible_width = 50, fixed_size = False)
-		self.timerentry_description_replaced = self.timer.description.replace('\xc2\x8a', ' ').encode("utf-8")
-		self.timerentry_description = ConfigText(default = self.timerentry_description_replaced, visible_width = 50, fixed_size = False)
+			shutdownString = _("Shut down")
+		self.timerentry_afterevent = ConfigSelection(choices=[("nothing", _("Do nothing")), ("standby", _("Go to standby")), ("deepstandby", shutdownString), ("auto", _("auto"))], default=afterevent)
+		self.timerentry_recordingtype = ConfigSelection(choices=[("normal", _("normal")), ("descrambled+ecm", _("Descramble and record ecm")), ("scrambled+ecm", _("Don't descramble, record ecm"))], default=recordingtype)
+		self.timerentry_type = ConfigSelection(choices=[("once", _("once")), ("repeated", _("repeated"))], default=type)
+		# FIME Do we need these 2 lines?
+		if six.PY3:
+			self.timerentry_name = ConfigText(default=self.timer.name.replace('\x86', '').replace('\x87', ''), visible_width=50, fixed_size=False)
+			self.timerentry_description_replaced = self.timer.description.replace('\x8a', ' ')
+		else:
+			self.timerentry_name = ConfigText(default=self.timer.name.replace('\xc2\x86', '').replace('\xc2\x87', '').encode("utf-8"), visible_width=50, fixed_size=False)
+			self.timerentry_description_replaced = self.timer.description.replace('\xc2\x8a', ' ').encode("utf-8")
+		self.timerentry_description = ConfigText(default=self.timerentry_description_replaced, visible_width=50, fixed_size=False)
 		self.timerentry_tags = self.timer.tags[:]
 		# if no tags found, make name of event default tag set.
 		if not self.timerentry_tags:
-				tagname = self.timer.name.strip()
-				if tagname:
-					tagname = tagname[0].upper() + tagname[1:].replace(" ", "_")
-					self.timerentry_tags.append(tagname)
+			tagname = self.timer.name.strip()
+			if tagname:
+				tagname = tagname[0].upper() + tagname[1:].replace(" ", "_")
+				self.timerentry_tags.append(tagname)
 
-		self.timerentry_tagsset = ConfigSelection(choices = [not self.timerentry_tags and "None" or " ".join(self.timerentry_tags)])
+		self.timerentry_tagsset = ConfigSelection(choices=[not self.timerentry_tags and "None" or " ".join(self.timerentry_tags)])
 
-		self.timerentry_repeated = ConfigSelection(default = repeated, choices = [("weekly", _("weekly")), ("daily", _("daily")), ("weekdays", _("Mon-Fri")), ("user", _("user defined"))])
-		self.timerentry_renamerepeat = ConfigYesNo(default = rename_repeat)
+		self.timerentry_repeated = ConfigSelection(default=repeated, choices=[("weekly", _("weekly")), ("daily", _("daily")), ("weekdays", _("Mon-Fri")), ("user", _("user defined"))])
+		self.timerentry_renamerepeat = ConfigYesNo(default=rename_repeat)
 
-		self.timerentry_date = ConfigDateTime(default = self.timer.begin, formatstring = _("%d %B %Y"), increment = 86400)
-		self.timerentry_starttime = ConfigClock(default = self.timer.begin)
-		self.timerentry_endtime = ConfigClock(default = self.timer.end)
-		#self.timerentry_showendtime = ConfigSelection(default = False, choices = [(True, _("yes")), (False, _("no"))])
-		self.timerentry_showendtime = ConfigSelection(default = (self.timer.end > self.timer.begin + 3 and self.timer.justplay), choices = [(True, _("yes")), (False, _("no"))])
+		self.timerentry_date = ConfigDateTime(default=self.timer.begin, formatstring=config.usage.date.full.value, increment=86400)
+		self.timerentry_starttime = ConfigClock(default=self.timer.begin)
+		self.timerentry_endtime = ConfigClock(default=self.timer.end)
+		self.timerentry_showendtime = ConfigSelection(default=(self.timer.end > self.timer.begin + 3 and self.timer.justplay), choices=[(True, _("Yes")), (False, _("No"))])
 
 		default = self.timer.dirname or defaultMoviePath()
 		tmp = config.movielist.videodirs.value
 		if default not in tmp:
 			tmp.append(default)
-		self.timerentry_dirname = ConfigSelection(default = default, choices = tmp)
+		self.timerentry_dirname = ConfigSelection(default=default, choices=tmp)
 
-		self.timerentry_repeatedbegindate = ConfigDateTime(default = self.timer.repeatedbegindate, formatstring = _("%d.%B %Y"), increment = 86400)
+		self.timerentry_repeatedbegindate = ConfigDateTime(default=self.timer.repeatedbegindate, formatstring=config.usage.date.full.value, increment=86400)
 
-		self.timerentry_weekday = ConfigSelection(default = weekday_table[weekday], choices = [("mon",_("Monday")), ("tue", _("Tuesday")), ("wed",_("Wednesday")), ("thu", _("Thursday")), ("fri", _("Friday")), ("sat", _("Saturday")), ("sun", _("Sunday"))])
+		self.timerentry_weekday = ConfigSelection(default=weekday_table[weekday], choices=[("mon", _("Monday")), ("tue", _("Tuesday")), ("wed", _("Wednesday")), ("thu", _("Thursday")), ("fri", _("Friday")), ("sat", _("Saturday")), ("sun", _("Sunday"))])
 
 		self.timerentry_day = ConfigSubList()
 		for x in (0, 1, 2, 3, 4, 5, 6):
-			self.timerentry_day.append(ConfigYesNo(default = day[x]))
+			self.timerentry_day.append(ConfigYesNo(default=days[x]))
 
 		# FIXME some service-chooser needed here
 		servicename = "N/A"
@@ -205,6 +218,26 @@ class TimerEntry(Screen, ConfigListScreen):
 		self.list = []
 		self.timerJustplayEntry = getConfigListEntry(_("Timer type"), self.timerentry_justplay, _("Chose between record and ZAP."))
 		self.list.append(self.timerJustplayEntry)
+
+		description = free = ""
+		try:
+			if self.timerentry_justplay.value != "zap":
+				stat = statvfs(self.timerentry_dirname.value)
+				a = float(stat.f_blocks) * stat.f_bsize / 1024 / 1024 / 1024
+				b = float(stat.f_bavail) * stat.f_bsize / 1024 / 1024 / 1024
+				c = 100.0 * b / a
+				free = ("%0.f GB (%0.f %s) " + _("free diskspace")) % (b, c, "%")
+				description = _("Current location")
+		except:
+			pass
+		self["locationdescription"].setText(description)
+		self["locationfreespace"].setText(free)
+
+		self.dirname = getConfigListEntry(_("Location"), self.timerentry_dirname, _("Where should the recording be saved?"))
+		if self.timerentry_justplay.value != "zap":
+			if config.usage.setup_level.index >= 2: # expert+
+				self.list.append(self.dirname)
+
 		self.entryName = getConfigListEntry(_("Name"), self.timerentry_name, _("Set the name the recording will get."))
 		self.list.append(self.entryName)
 		self.entryDescription = getConfigListEntry(_("Description"), self.timerentry_description, _("Set the description of the recording."))
@@ -258,27 +291,9 @@ class TimerEntry(Screen, ConfigListScreen):
 		if self.timerentry_showendtime.value and self.timerentry_justplay.value == "zap":
 			self.list.append(getConfigListEntry(_("After event"), self.timerentry_afterevent, _("What action is required on completion of the timer? 'Auto' lets the box return to the state it had when the timer started. 'Do nothing', 'Go to standby' and 'Go to deep standby' do exactly that.")))
 
-		description = free = ""
-		try:
-			if self.timerentry_justplay.value != "zap":
-				stat = statvfs(self.timerentry_dirname.value)
-				a = float(stat.f_blocks) * stat.f_bsize / 1024 / 1024 /1024
-				b = float(stat.f_bavail) * stat.f_bsize / 1024 / 1024 /1024
-				c = 100.0 * b / a
-				free = ("%0.f GB (%0.f %s) " + _("free diskspace")) % (b,c,"%")
-				description = _("Current location")
-		except:
-			pass
-		self["locationdescription"].setText(description)
-		self["locationfreespace"].setText(free)
-
-		self.dirname = getConfigListEntry(_("Location"), self.timerentry_dirname, _("Where should the recording be saved?"))
 		self.tagsSet = getConfigListEntry(_("Tags"), self.timerentry_tagsset, _("Choose a tag for easy finding a recording."))
 		if self.timerentry_justplay.value != "zap":
-			if config.usage.setup_level.index >= 2: # expert+
-				self.list.append(self.dirname)
-			if getPreferredTagEditor():
-				self.list.append(self.tagsSet)
+			self.list.append(self.tagsSet)
 			self.list.append(getConfigListEntry(_("After Recording"), self.timerentry_afterevent, _("What action is required on completion of the timer? 'Auto' lets the box return to the state it had when the timer started. 'Do nothing', 'Go to standby' and 'Go to deep standby' do exactly that.")))
 			self.list.append(getConfigListEntry(_("Recording type"), self.timerentry_recordingtype, _("Descramble & record ECM' gives the option to descramble afterwards if descrambling on recording failed. 'Don't descramble, record ECM' save a scramble recording that can be descrambled on playback. 'Normal' means descramble the recording and don't record ECM.")))
 
@@ -290,20 +305,20 @@ class TimerEntry(Screen, ConfigListScreen):
 			if len(self["config"].getCurrent()) > 2 and self["config"].getCurrent()[2]:
 				self["description"].setText(self["config"].getCurrent()[2])
 			if isinstance(self["config"].getCurrent()[1], ConfigText):
-				if self.has_key("VKeyIcon"):
+				if "VKeyIcon" in self:
 					self["VirtualKB"].setEnabled(True)
 					self["VKeyIcon"].boolean = True
-				if self.has_key("HelpWindow"):
+				if "HelpWindow" in self:
 					if self["config"].getCurrent()[1].help_window and self["config"].getCurrent()[1].help_window.instance is not None:
 						helpwindowpos = self["HelpWindow"].getPosition()
 						from enigma import ePoint
-						self["config"].getCurrent()[1].help_window.instance.move(ePoint(helpwindowpos[0],helpwindowpos[1]))
+						self["config"].getCurrent()[1].help_window.instance.move(ePoint(helpwindowpos[0], helpwindowpos[1]))
 					else:
-						if self.has_key("VKeyIcon"):
+						if "VKeyIcon" in self:
 							self["VirtualKB"].setEnabled(False)
 							self["VKeyIcon"].boolean = False
 		else:
-			if self.has_key("VKeyIcon"):
+			if "VKeyIcon" in self:
 				self["VirtualKB"].setEnabled(False)
 				self["VKeyIcon"].boolean = False
 
@@ -330,7 +345,7 @@ class TimerEntry(Screen, ConfigListScreen):
 
 	def KeyText(self):
 		if self['config'].getCurrent()[0] in (_('Name'), _("Description")):
-			self.session.openWithCallback(self.renameEntryCallback, VirtualKeyBoard, title=self["config"].getCurrent()[2], text = self["config"].getCurrent()[1].value, visible_width=50, currPos=0)
+			self.session.openWithCallback(self.renameEntryCallback, VirtualKeyBoard, title=self["config"].getCurrent()[2], text=self["config"].getCurrent()[1].value, visible_width=50, currPos=0)
 
 	def keyLeft(self):
 		cur = self["config"].getCurrent()
@@ -383,7 +398,7 @@ class TimerEntry(Screen, ConfigListScreen):
 		if cur == self.channelEntry:
 			self.session.openWithCallback(
 				self.finishedChannelSelection,
-				ChannelSelection.SimpleChannelSelection,
+				Screens.ChannelSelection.SimpleChannelSelection,
 				_("Select channel to record from"),
 				currentBouquet=True
 			)
@@ -393,13 +408,13 @@ class TimerEntry(Screen, ConfigListScreen):
 				MovieLocationBox,
 				_("Select target folder"),
 				self.timerentry_dirname.value,
-				minFree = 100 # We require at least 100MB free space
+				minFree=100 # We require at least 100MB free space
 			)
-		elif getPreferredTagEditor() and cur == self.tagsSet:
+		elif cur == self.tagsSet:
 			self.session.openWithCallback(
 				self.tagEditFinished,
-				getPreferredTagEditor(),
-				self.timerentry_tags
+				TagEditor,
+				tags=self.timerentry_tags
 			)
 		else:
 			self.keyGo()
@@ -437,7 +452,7 @@ class TimerEntry(Screen, ConfigListScreen):
 	def selectChannelSelector(self, *args):
 		self.session.openWithCallback(
 				self.finishedChannelSelectionCorrection,
-				ChannelSelection.SimpleChannelSelection,
+				Screens.ChannelSelection.SimpleChannelSelection,
 				_("Select channel to record from")
 			)
 
@@ -446,7 +461,7 @@ class TimerEntry(Screen, ConfigListScreen):
 			self.finishedChannelSelection(*args)
 			self.keyGo()
 
-	def keyGo(self, result = None):
+	def keyGo(self, result=None):
 		if not self.timerentry_service_ref.isRecordable():
 			self.session.openWithCallback(self.selectChannelSelector, MessageBox, _("You didn't select a channel to record from."), MessageBox.TYPE_ERROR)
 			return
@@ -462,9 +477,8 @@ class TimerEntry(Screen, ConfigListScreen):
 
 		if self.timerentry_endtime.value == self.timerentry_starttime.value and self.timerentry_afterevent.value != "nothing":
 			self.timerentry_afterevent.value = "nothing"
-			self.session.open(MessageBox, _("Difference between timer begin and end must be equal or greater than %d minutes.\nEnd Action was disabled !") %1, MessageBox.TYPE_INFO, timeout=30)
+			self.session.open(MessageBox, _("Difference between timer begin and end must be equal or greater than %d minutes.\nEnd Action was disabled !") % 1, MessageBox.TYPE_INFO, timeout=30)
 
-			
 		self.timer.resetRepeated()
 		self.timer.afterEvent = {
 			"nothing": AFTEREVENT.NONE,
@@ -530,12 +544,12 @@ class TimerEntry(Screen, ConfigListScreen):
 					ref = self.session.nav.getCurrentlyPlayingServiceOrGroup()
 					parent = self.timer.service_ref.ref
 					selection = 0
-					for x in range(n):
+					for x in list(range(n)):
 						i = event.getLinkageService(parent, x)
 						if i.toString() == ref.toString():
 							selection = x
 						tlist.append((i.getName(), i))
-					self.session.openWithCallback(self.subserviceSelected, ChoiceBox, title=_("Please select a subservice to record..."), list = tlist, selection = selection)
+					self.session.openWithCallback(self.subserviceSelected, ChoiceBox, title=_("Please select a subservice to record..."), list=tlist, selection=selection)
 					return
 				elif n > 0:
 					parent = self.timer.service_ref.ref
@@ -597,6 +611,7 @@ class TimerEntry(Screen, ConfigListScreen):
 			self.timerentry_tagsset.setChoices([not ret and "None" or " ".join(ret)])
 			self["config"].invalidate(self.tagsSet)
 
+
 class TimerLog(Screen):
 	def __init__(self, session, timer):
 		Screen.__init__(self, session)
@@ -639,7 +654,7 @@ class TimerLog(Screen):
 		self.updateText()
 
 	def fillLogList(self):
-		self.list = [(str(strftime(_("%Y-%m-%d %H-%M"), localtime(x[0])) + " - " + x[2]), x) for x in self.log_entries]
+		self.list = [(str(strftime(config.usage.date.long.value + " " + config.usage.time.short.value, localtime(x[0])) + " - " + x[2]), x) for x in self.log_entries]
 
 	def clearLog(self):
 		self.log_entries = []
@@ -677,8 +692,9 @@ class TimerLog(Screen):
 		else:
 			self["logentry"].setText("")
 
+
 class InstantRecordTimerEntry(TimerEntry):
-	def __init__(self, session, timer, zap = 0, zaprecord = 0):
+	def __init__(self, session, timer, zap=0, zaprecord=0):
 		Screen.__init__(self, session)
 		self.setup_title = ""
 		self.timer = timer
@@ -688,7 +704,7 @@ class InstantRecordTimerEntry(TimerEntry):
 		self.entryService = None
 		self.keyGo()
 
-	def keyGo(self, result = None):
+	def keyGo(self, result=None):
 		if self.timer.justplay:
 			self.timer.begin += config.recording.margin_before.value * 60
 			self.timer.end = self.timer.begin + 1
@@ -700,4 +716,3 @@ class InstantRecordTimerEntry(TimerEntry):
 
 	def saveTimer(self):
 		self.session.nav.RecordTimer.saveTimer()
-

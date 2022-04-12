@@ -1,11 +1,12 @@
-from Converter import Converter
-from Poll import Poll
+from Components.Converter.Converter import Converter
+from Components.Converter.Poll import Poll
 from time import time
 from Components.Element import cached, ElementError
 from Components.config import config
 from enigma import eEPGCache
 
-class EventTime(Poll, Converter, object):
+
+class EventTime(Poll, Converter):
 	STARTTIME = 0
 	ENDTIME = 1
 	REMAINING = 2

@@ -1,9 +1,7 @@
-# -*- coding: utf-8 -*-
-
 # keep it for compatibility, please note this renderer is deprecated --> remove it from your skins
-
-from Renderer import Renderer
+from Components.Renderer.Renderer import Renderer
 from enigma import eLabel
+
 
 class VWeatherUpdater(Renderer):
 

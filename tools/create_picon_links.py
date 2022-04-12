@@ -1,3 +1,4 @@
+from __future__ import print_function
 #
 # create links for picon
 #   usage: create_picon_links lamedb
@@ -5,11 +6,12 @@
 # It will read the servicenames from the lamedb and create symlinks
 # for the servicereference names.
 
-import os, sys
+import os
+import sys
 
 f = open(sys.argv[1]).readlines()
 
-f = f[f.index("services\n")+1:-3]
+f = f[f.index("services\n") + 1:-3]
 
 while len(f):
 	ref = [int(x, 0x10) for x in f[0][:-1].split(':')]
@@ -32,12 +34,12 @@ while len(f):
 	filename = filename.replace('/', '_').replace('\\', '_').replace('&', '_').replace('\'', '').replace('"', '').replace('`', '')
 	filename = filename.replace('\n', '')
 
-	for i in range(len(filename)):
+	for i in list(range(len(filename))):
 		if ord(filename[i]) > 127:
 			filename = filename[0:i] + '_' + filename[i + 1:]
 
 	if os.access(filename, os.F_OK) and not os.access(linkname, os.F_OK):
 		os.symlink(filename, linkname)
 	else:
-		print "could not find %s (%s)" % (filename, name)
-	f =f[3:]
+		print("could not find %s (%s)" % (filename, name))
+	f = f[3:]

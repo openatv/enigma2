@@ -1,3 +1,4 @@
+from __future__ import print_function, division
 from Screens.Screen import Screen
 from Screens.MessageBox import MessageBox
 from Components.ActionMap import ActionMap, NumberActionMap
@@ -5,20 +6,23 @@ from Components.config import config, ConfigSubsection, ConfigText
 from Components.Label import Label
 from Components.ChoiceList import ChoiceEntryComponent, ChoiceList
 from Components.Sources.StaticText import StaticText
-from Components.Pixmap import Pixmap
 import enigma
+from six.moves import zip
 
 config.misc.pluginlist = ConfigSubsection()
 config.misc.pluginlist.eventinfo_order = ConfigText(default="")
 config.misc.pluginlist.extension_order = ConfigText(default="")
 config.misc.pluginlist.fc_bookmarks_order = ConfigText(default="")
 
+
 class ChoiceBox(Screen):
-	def __init__(self, session, title="", list=None, keys=None, selection=0, skin_name=None, text="", reorderConfig="", var="", menu_path="", windowTitle = None, allow_cancel = True, titlebartext = _("Choice Box")):
+	def __init__(self, session, title="", list=None, keys=None, selection=0, skin_name=None, text="", reorderConfig="", windowTitle=None, allow_cancel=True, titlebartext=_("Choice Box")):
 		if not windowTitle: #for compatibility
 			windowTitle = titlebartext
-		if not list: list = []
-		if not skin_name: skin_name = []
+		if not list:
+			list = []
+		if not skin_name:
+			skin_name = []
 		Screen.__init__(self, session)
 
 		self.allow_cancel = allow_cancel
@@ -29,16 +33,6 @@ class ChoiceBox(Screen):
 
 		self.reorderConfig = reorderConfig
 		self["text"] = Label()
-		self.var = ""
-		if skin_name and 'SoftwareUpdateChoices' in skin_name and var and var in ('unstable', 'updating', 'stable', 'unknown'):
-			self.var = var
-			self['feedStatusMSG'] = Label()
-			self['tl_off'] = Pixmap()
-			self['tl_red'] = Pixmap()
-			self['tl_yellow'] = Pixmap()
-			self['tl_green'] = Pixmap()
-		if skin_name and 'SoftwareUpdateChoices' in skin_name:
-			self["menu_path_compressed"] = StaticText(menu_path)
 
 		title_max = 55
 		if 'MetrixHD/' in config.skin.primary_skin.value:
@@ -47,6 +41,8 @@ class ChoiceBox(Screen):
 			title = _(title)
 			if len(title) < title_max and title.find('\n') == -1:
 				Screen.setTitle(self, title)
+				if text != "":
+					self["text"] = Label(_(text))
 			elif title.find('\n') != -1:
 				temptext = title.split('\n')
 				if len(temptext[0]) < title_max:
@@ -56,9 +52,9 @@ class ChoiceBox(Screen):
 					while len(temptext) >= count:
 						if labeltext:
 							labeltext += '\n'
-						labeltext = labeltext + temptext[count-1]
+						labeltext = labeltext + temptext[count - 1]
 						count += 1
-						print '[Choicebox] count', count
+						print('[Choicebox] count', count)
 					self["text"].setText(labeltext)
 				else:
 					self["text"] = Label(title)
@@ -78,24 +74,25 @@ class ChoiceBox(Screen):
 		if self.reorderConfig:
 			self.config_type = eval("config.misc.pluginlist." + self.reorderConfig)
 			if self.config_type.value:
-				prev_list = zip(list, self.__keys)
+				prev_list = [i for i in zip(list, self.__keys)]
 				new_list = []
 				for x in self.config_type.value.split(","):
 					for entry in prev_list:
 						if entry[0][0] == x:
 							new_list.append(entry)
 							prev_list.remove(entry)
-				list = zip(*(new_list + prev_list))
+				list = [i for i in zip(*(new_list + prev_list))]
 				list, self.__keys = list[0], list[1]
 				number = 1
 				new_keys = []
 				for x in self.__keys:
 					if (not x or x.isdigit()) and number <= 10:
 						new_keys.append(str(number % 10))
-						number+=1
+						number += 1
 					else:
 						new_keys.append(not x.isdigit() and x or "")
 				self.__keys = new_keys
+
 		for x in list:
 			strpos = str(self.__keys[pos])
 			self.list.append(ChoiceEntryComponent(key=strpos, text=x))
@@ -141,28 +138,7 @@ class ChoiceBox(Screen):
 		{
 			"back": self.cancel,
 		}, prio=-1)
-		self.onShown.append(self.onshow)
 
-	def onshow(self):
-		if self.skinName and 'SoftwareUpdateChoices' in self.skinName and self.var:
-			from Components.OnlineUpdateCheck import feedsstatuscheck
-			if self.var in feedsstatuscheck.feed_status_msgs:
-				status_text = feedsstatuscheck.feed_status_msgs[self.var]
-			else:
-				status_text = _('Feeds status: Unexpected')
-			self['feedStatusMSG'].setText(status_text)
-			self['tl_off'].hide()
-			self['tl_red'].hide()
-			self['tl_yellow'].hide()
-			self['tl_green'].hide()
-			if self.var == 'unstable':
-				self['tl_red'].show()
-			elif self.var == 'updating':
-				self['tl_yellow'].show()
-			elif self.var == 'stable':
-				self['tl_green'].show()
-			else:
-				self['tl_off'].show()
 
 	def autoResize(self):
 		desktop_w = enigma.getDesktop(0).size().width()
@@ -197,16 +173,16 @@ class ChoiceBox(Screen):
 			self["list"].instance.resize(enigma.eSize(*listsize))
 
 		wsizex = textsize[0]
-		wsizey = textsize[1]+listsize[1]
+		wsizey = textsize[1] + listsize[1]
 		wsize = (wsizex, wsizey)
 		self.instance.resize(enigma.eSize(*wsize))
 
 		# center window
-		self.instance.move(enigma.ePoint((desktop_w-wsizex)/2, (desktop_h-wsizey)/2))
+		self.instance.move(enigma.ePoint((desktop_w - wsizex) // 2, (desktop_h - wsizey) // 2))
 
 	def left(self):
 		if len(self["list"].list) > 0:
-			while 1:
+			while True:
 				self["list"].instance.moveSelection(self["list"].instance.pageUp)
 				self.updateSummary(self["list"].l.getCurrentSelectionIndex())
 				if self["list"].l.getCurrentSelection()[0][0] != "--" or self["list"].l.getCurrentSelectionIndex() == 0:
@@ -214,7 +190,7 @@ class ChoiceBox(Screen):
 
 	def right(self):
 		if len(self["list"].list) > 0:
-			while 1:
+			while True:
 				self["list"].instance.moveSelection(self["list"].instance.pageDown)
 				self.updateSummary(self["list"].l.getCurrentSelectionIndex())
 				if self["list"].l.getCurrentSelection()[0][0] != "--" or self["list"].l.getCurrentSelectionIndex() == 0:
@@ -222,7 +198,7 @@ class ChoiceBox(Screen):
 
 	def up(self):
 		if len(self["list"].list) > 0:
-			while 1:
+			while True:
 				self["list"].instance.moveSelection(self["list"].instance.moveUp)
 				self.updateSummary(self["list"].l.getCurrentSelectionIndex())
 				if self["list"].l.getCurrentSelection()[0][0] != "--" or self["list"].l.getCurrentSelectionIndex() == 0:
@@ -230,7 +206,7 @@ class ChoiceBox(Screen):
 
 	def down(self):
 		if len(self["list"].list) > 0:
-			while 1:
+			while True:
 				self["list"].instance.moveSelection(self["list"].instance.moveDown)
 				self.updateSummary(self["list"].l.getCurrentSelectionIndex())
 				if self["list"].l.getCurrentSelection()[0][0] != "--" or self["list"].l.getCurrentSelectionIndex() == len(self["list"].list) - 1:
@@ -284,7 +260,7 @@ class ChoiceBox(Screen):
 		pos = 0
 		summarytext = ""
 		for entry in self.summarylist:
-			if curpos-2 < pos < curpos+5:
+			if curpos - 2 < pos < curpos + 5:
 				if pos == curpos:
 					summarytext += ">"
 					self["summary_selection"].setText(entry[1])

@@ -25,6 +25,10 @@ eHdmiCEC::eCECMessage::eCECMessage(int addr, int cmd, char *data, int length)
 	if (length > (int)sizeof(messageData)) length = sizeof(messageData);
 	if (length && data) memcpy(messageData, data, length);
 	dataLength = length;
+	control0 = data[0];
+	control1 = data[1];
+	control2 = data[2];
+	control3 = data[3];
 }
 
 int eHdmiCEC::eCECMessage::getAddress()
@@ -172,7 +176,6 @@ void eHdmiCEC::reportPhysicalAddress()
 {
 	struct cec_message txmessage;
 	memset(&txmessage, 0, sizeof(txmessage));
-
 	txmessage.address = 0x0f; /* broadcast */
 	txmessage.data[0] = 0x84; /* report address */
 	txmessage.data[1] = physicalAddress[0];
@@ -388,6 +391,7 @@ void eHdmiCEC::hdmiEvent(int what)
 					case 0x44: /* key pressed */
 						keypressed = true;
 						pressedkey = rxmessage.data[1];
+						[[fallthrough]];
 					case 0x45: /* key released */
 					{
 						long code = translateKey(pressedkey);
@@ -469,7 +473,7 @@ long eHdmiCEC::translateKey(unsigned char code)
 			key = 0xd0;
 			break;
 		case 0x53:
-			key = 0x166;
+			key = 0x16d;
 			break;
 		case 0x54:
 			key = 0x16a;
@@ -518,6 +522,7 @@ long eHdmiCEC::translateKey(unsigned char code)
 			break;
 		default:
 			key = 0x8b;
+			eDebug("eHdmiCEC: unknown code 0x%02X", (unsigned int)(code & 0xFF));
 			break;
 	}
 	return key;
@@ -548,7 +553,8 @@ void eHdmiCEC::sendMessage(struct cec_message &message)
 			message.flag = 1;
 			::ioctl(hdmiFd, 3, &message);
 #else
-			::write(hdmiFd, &message, 2 + message.length);
+			ssize_t ret = ::write(hdmiFd, &message, 2 + message.length);
+			if (ret < 0) eDebug("[eHdmiCEC] write failed: %m");
 #endif
 		}
 	}

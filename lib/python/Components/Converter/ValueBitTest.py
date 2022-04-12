@@ -1,7 +1,8 @@
-from Converter import Converter
+from Components.Converter.Converter import Converter
 from Components.Element import cached
 
-class ValueBitTest(Converter, object):
+
+class ValueBitTest(Converter):
 	def __init__(self, arg):
 		Converter.__init__(self, arg)
 		self.value = int(arg)

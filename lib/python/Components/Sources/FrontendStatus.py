@@ -1,8 +1,9 @@
-from Source import Source
+from Components.Sources.Source import Source
 from enigma import eTimer
 
+
 class FrontendStatus(Source):
-	def __init__(self, service_source = None, frontend_source = None, update_interval = 1000):
+	def __init__(self, service_source=None, frontend_source=None, update_interval=1000):
 		Source.__init__(self)
 		self.update_interval = update_interval
 		self.service_source = service_source
@@ -33,7 +34,7 @@ class FrontendStatus(Source):
 	def getFrontendStatus(self):
 		if self.frontend_source:
 			frontend = self.frontend_source()
-			dict = { }
+			dict = {}
 			if frontend:
 				frontend.getFrontendStatus(dict)
 			return dict
@@ -53,4 +54,3 @@ class FrontendStatus(Source):
 	def destroy(self):
 		self.poll_timer.callback.remove(self.updateFrontendStatus)
 		Source.destroy(self)
-

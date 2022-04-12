@@ -254,7 +254,6 @@ int eDVBSubtitleParser::subtitle_process_pixel_data(subtitle_region *region, sub
 	default:
 		return -1;
 	}
-	return 0;
 }
 
 int eDVBSubtitleParser::subtitle_process_segment(uint8_t *segment)
@@ -757,11 +756,13 @@ int eDVBSubtitleParser::subtitle_process_segment(uint8_t *segment)
 	{
 		subtitle_redraw_all();
 		m_seen_eod = true;
+		break;
 	}
 	case 0xFF: // stuffing
 		break;
 	default:
 		eDebug("[eDVBSubtitleParser] unhandled segment type %02x", segment_type);
+		break;
 	}
 
 	return segment_length + 6;
@@ -923,7 +924,7 @@ void eDVBSubtitleParser::subtitle_redraw(int page_id)
 				case subtitle_region::bpp2:
 					if (clut)
 						entries = clut->entries_2bit;
-					memset(palette, 0, 4 * sizeof(gRGB));
+					memset(static_cast<void*>(palette), 0, 4 * sizeof(gRGB));
 					// this table is tested on cyfra .. but in EN300743 the table palette[2] and palette[1] is swapped.. i dont understand this ;)
 					palette[0].a = 0xFF;
 					palette[2].r = palette[2].g = palette[2].b = 0xFF;
@@ -932,7 +933,7 @@ void eDVBSubtitleParser::subtitle_redraw(int page_id)
 				case subtitle_region::bpp4: // tested on cyfra... but the map is another in EN300743... dont understand this...
 					if (clut)
 						entries = clut->entries_4bit;
-					memset(palette, 0, 16*sizeof(gRGB));
+					memset(static_cast<void*>(palette), 0, 16*sizeof(gRGB));
 					for (int i=0; i < 16; ++i)
 					{
 						if (!i)
@@ -960,7 +961,7 @@ void eDVBSubtitleParser::subtitle_redraw(int page_id)
 				case subtitle_region::bpp8:  // completely untested.. i never seen 8bit DVB subtitles
 					if (clut)
 						entries = clut->entries_8bit;
-					memset(palette, 0, 256*sizeof(gRGB));
+					memset(static_cast<void*>(palette), 0, 256*sizeof(gRGB));
 					for (int i=0; i < 256; ++i)
 					{
 						switch (i & 17)
@@ -982,7 +983,7 @@ void eDVBSubtitleParser::subtitle_redraw(int page_id)
 								}
 								break;
 							}
-							// fallthrough !!
+                    		[[fallthrough]];
 						case 16: // b1 == 0 && b5 == 1
 							if (i & 128) // R = 33% x b8
 								palette[i].r = 0x55;
@@ -1003,7 +1004,7 @@ void eDVBSubtitleParser::subtitle_redraw(int page_id)
 							palette[i].r =
 							palette[i].g =
 							palette[i].b = 0x80; // 50%
-							// fall through!!
+                    		[[fallthrough]];
 						case 17: // b1 == 1 && b5 == 1
 							if (i & 128) // R += 16.7% x b8
 								palette[i].r += 0x2A;

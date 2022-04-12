@@ -48,6 +48,7 @@ public:
 	void setPage(const eDVBTeletextSubtitlePage &p);
 	void setPage(const eDVBSubtitlePage &p);
 	void setPage(const ePangoSubtitlePage &p);
+	void setPage(const eVobSubtitlePage &p);
 	void clearPage();
 	void setPixmap(ePtr<gPixmap> &pixmap, gRegion changed, eRect dest = eRect(0, 0, 720, 576));
 	void destroy() { delete this; }

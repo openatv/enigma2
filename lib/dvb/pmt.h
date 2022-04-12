@@ -54,8 +54,8 @@ public:
 	std::string m_ApplicationName;
 public:
 	HbbTVApplicationInfo(int controlCode, int orgid, int appid, std::string hbbtvUrl, std::string applicationName,int profileCode)
-		: m_ControlCode(controlCode), m_HbbTVUrl(hbbtvUrl), m_ApplicationName(applicationName), m_OrgId(orgid), m_AppId(appid),
-		m_ProfileCode(profileCode)
+		: m_OrgId(orgid), m_AppId(appid), m_ControlCode(controlCode), m_ProfileCode(profileCode),
+		m_HbbTVUrl(hbbtvUrl), m_ApplicationName(applicationName)
 	{}
 };
 typedef std::list<HbbTVApplicationInfo *> HbbTVApplicationInfoList;

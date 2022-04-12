@@ -1,18 +1,13 @@
-#from Components.ActionMap import ActionMap, NumberActionMap
-#from Components.Input import Input
-#from Components.Ipkg import IpkgComponent
-#from Components.Label import Label
-#from Components.MenuList import MenuList
-#from Components.Slider import Slider
+from __future__ import print_function
 from Components.NimManager import nimmanager
 from Plugins.Plugin import PluginDescriptor
 from Screens.ScanSetup import ScanSetup
 from Screens.ServiceScan import ServiceScan
 from Screens.MessageBox import MessageBox
 from Tools.Directories import resolveFilename, SCOPE_CONFIG, copyfile
-#from Screens.Screen import Screen
 from os import unlink
 from enigma import eTimer, eDVBDB
+
 
 class DefaultServiceScan(ServiceScan):
 	skin = """
@@ -52,6 +47,7 @@ class DefaultServiceScan(ServiceScan):
 		self.timer.callback.append(self.ok)
 		self.timer.start(1000)
 
+
 class DefaultServicesScannerPlugin(ScanSetup):
 	skin = """
 		<screen position="100,115" size="520,390" title="Service scan">
@@ -59,7 +55,7 @@ class DefaultServicesScannerPlugin(ScanSetup):
 			<widget name="introduction" position="10,365" size="500,25" font="Regular;20" halign="center" />
 		</screen>"""
 
-	def __init__(self, session, args = None):
+	def __init__(self, session, args=None):
 		ScanSetup.__init__(self, session)
 		# backup lamedb
 		confdir = resolveFilename(SCOPE_CONFIG)
@@ -71,32 +67,32 @@ class DefaultServicesScannerPlugin(ScanSetup):
 		self.onFirstExecBegin.append(self.runScan)
 
 	def selectSat(self, index):
-		for satindex in range(len(self.multiscanlist)):
+		for satindex in list(range(len(self.multiscanlist))):
 			if satindex != index:
 				self.multiscanlist[satindex][1].setValue(False)
 			else:
 				self.multiscanlist[satindex][1].setValue(True)
 
 	def runScan(self):
-		print "runScan"
+		print("runScan")
 		self.keyGo()
 
-	def startScan(self, tlist, flags, feid, networkid = 0):
-		print "startScan"
+	def startScan(self, tlist, flags, feid, networkid=0):
+		print("startScan")
 		if len(tlist):
 			# flags |= eComponentScan.scanSearchBAT
 			self.session.openWithCallback(self.scanFinished, DefaultServiceScan, [{"transponders": tlist, "feid": feid, "flags": flags, "networkid": networkid}])
 		else:
 			self.session.openWithCallback(self.scanFinished, MessageBox, _("Nothing to scan!\nPlease setup your tuner settings before you start a service scan."), MessageBox.TYPE_ERROR)
 
-	def scanFinished(self, value = None):
-		print "finished"
-		print "self.scanIndex:", self.scanIndex
+	def scanFinished(self, value=None):
+		print("finished")
+		print("self.scanIndex:", self.scanIndex)
 		db = eDVBDB.getInstance()
-		print "self.multiscanlist:", self.multiscanlist
+		print("self.multiscanlist:", self.multiscanlist)
 		if len(self.multiscanlist) - 1 >= self.scanIndex and len(self.multiscanlist[self.scanIndex]) > 0:
 			satint = self.multiscanlist[self.scanIndex][0]
-			print "scanned sat:", satint
+			print("scanned sat:", satint)
 			db.saveServicelist("/tmp/lamedb." + str(satint))
 			file = open("/tmp/sat" + str(satint) + ".info", "w")
 			xml = """<default>
@@ -121,7 +117,7 @@ class DefaultServicesScannerPlugin(ScanSetup):
 
 		self.scanIndex += 1
 		if self.scanIndex + 1 >= len(self.multiscanlist):
-			print "no more sats to scan"
+			print("no more sats to scan")
 			confdir = resolveFilename(SCOPE_CONFIG)
 			copyfile(confdir + "/lamedb.backup", confdir + "/lamedb")
 			db.reloadServicelist()
@@ -130,8 +126,10 @@ class DefaultServicesScannerPlugin(ScanSetup):
 			self.selectSat(self.scanIndex)
 			self.keyGo()
 
+
 def DefaultServicesScannerMain(session, **kwargs):
 	session.open(DefaultServicesScannerPlugin)
 
+
 def Plugins(**kwargs):
-	return PluginDescriptor(name=_("Default Services Scanner"), description=_("Scans default lamedbs sorted by satellite with a connected dish positioner"), where = PluginDescriptor.WHERE_PLUGINMENU, needsRestart = False, fnc=DefaultServicesScannerMain)
+	return PluginDescriptor(name=_("Default Services Scanner"), description=_("Scans default lamedbs sorted by satellite with a connected dish positioner"), where=PluginDescriptor.WHERE_PLUGINMENU, needsRestart=False, fnc=DefaultServicesScannerMain)

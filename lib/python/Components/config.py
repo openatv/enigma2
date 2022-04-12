@@ -1,390 +1,865 @@
+from copy import copy as shallowcopy
+from os import fsync, rename, sep
+from os.path import realpath
+from time import localtime, strftime, struct_time
+
 from enigma import getPrevAsciiCode
-from Tools.NumericalTextInput import NumericalTextInput
-from Tools.Directories import resolveFilename, SCOPE_CONFIG, fileExists
-from Components.Harddisk import harddiskmanager
+
+from Components.SystemInfo import BoxInfo
+from Tools.Directories import SCOPE_CONFIG, fileAccess, resolveFilename
 from Tools.LoadPixmap import LoadPixmap
-from copy import copy as copy_copy
-from os import path as os_path
-from time import localtime, strftime
+from Tools.NumericalTextInput import NumericalTextInput
+from Components.Harddisk import harddiskmanager  # This import is order critical!
+
+ACTIONKEY_LEFT = 0
+ACTIONKEY_RIGHT = 1
+ACTIONKEY_SELECT = 2
+ACTIONKEY_DELETE = 3
+ACTIONKEY_BACKSPACE = 4
+ACTIONKEY_FIRST = 5
+ACTIONKEY_LAST = 6
+ACTIONKEY_TOGGLE = 7
+ACTIONKEY_ASCII = 8
+ACTIONKEY_TIMEOUT = 9
+ACTIONKEY_NUMBERS = list(range(12, 12 + 10))
+ACTIONKEY_0 = 12
+ACTIONKEY_1 = 13
+ACTIONKEY_2 = 14
+ACTIONKEY_3 = 15
+ACTIONKEY_4 = 16
+ACTIONKEY_5 = 17
+ACTIONKEY_6 = 18
+ACTIONKEY_7 = 19
+ACTIONKEY_8 = 20
+ACTIONKEY_9 = 21
+ACTIONKEY_PAGEUP = 22
+ACTIONKEY_PAGEDOWN = 23
+ACTIONKEY_PREV = 24
+ACTIONKEY_NEXT = 25
+ACTIONKEY_ERASE = 26
+
+# Deprecated / Legacy action key names...
+#
+# (These should be removed when all Enigma2 uses the new and less confusing names.)
+#
+KEY_LEFT = ACTIONKEY_LEFT
+KEY_RIGHT = ACTIONKEY_RIGHT
+KEY_OK = ACTIONKEY_SELECT
+KEY_DELETE = ACTIONKEY_DELETE
+KEY_BACKSPACE = ACTIONKEY_BACKSPACE
+KEY_HOME = ACTIONKEY_FIRST
+KEY_END = ACTIONKEY_LAST
+KEY_TOGGLEOW = ACTIONKEY_TOGGLE
+KEY_ASCII = ACTIONKEY_ASCII
+KEY_TIMEOUT = ACTIONKEY_TIMEOUT
+KEY_NUMBERS = ACTIONKEY_NUMBERS
+KEY_0 = ACTIONKEY_0
+KEY_9 = ACTIONKEY_9
+
+
+def getKeyNumber(key):
+	if key not in ACTIONKEY_NUMBERS:
+		raise ValueError("[Config] Error: The key '%s' is not a numeric digit!" % key)
+	return key - ACTIONKEY_0
+
+
+def getConfigListEntry(*args):
+	if len(args) < 1:  # A single argument creates a comment line in the ConfigList.  This item can't be selected!
+		print("[Config] Error: 'getConfigListEntry' needs at least one argument (description)!")
+	return args
+
+
+def updateConfigElement(element, newelement):
+	newelement.value = element.value
+	return newelement
+
+
+def NoSave(element):
+	# element.disableSave()
+	element.setSaveDisabled(True)
+	return element
+
 
 # ConfigElement, the base class of all ConfigElements.
-
-# it stores:
-#   value    the current value, usefully encoded.
-#            usually a property which retrieves _value,
-#            and maybe does some reformatting
-#   _value   the value as it's going to be saved in the configfile,
-#            though still in non-string form.
-#            this is the object which is actually worked on.
-#   default  the initial value. If _value is equal to default,
-#            it will not be stored in the config file
-#   saved_value is a text representation of _value, stored in the config file
 #
-# and has (at least) the following methods:
-#   save()   stores _value into saved_value,
-#            (or stores 'None' if it should not be stored)
-#   load()   loads _value from saved_value, or loads
-#            the default if saved_value is 'None' (default)
-#            or invalid.
+# It stores:
+#   value        The current value, usefully encoded.  Usually a property which
+#                retrieves _value, and maybe does some reformatting.
+#   _value       The value as it's going to be saved in the configfile, though
+#                still in non-string form.  This is the object which is actually
+#                worked on.
+#   default      The initial value. If _value is equal to default, it will not
+#                be stored in the config file unless savedForced is True.
+#   saved_value  Is a text representation of _value, stored in the config file.
+#
+# It has (at least) the following methods:
+#   load()       Loads _value from saved_value, or loads the default if
+#                saved_value is "None" (default) or invalid.
+#   save()       Stores _value into saved_value, (or stores "None" if it should
+#                not be stored).
+#
+# WARNING:       Be careful when using variables line "value", "index",
+#                "notifiers", etc as these are properties and their accidental
+#                use can have very unexpected and undesirable results!
 #
 class ConfigElement(object):
 	def __init__(self):
-		self.extra_args = {}
-		self.saved_value = None
-		self.save_forced = False
-		self.last_value = None
-		self.save_disabled = False
-		self.__notifiers = { }
-		self.__notifiers_final = { }
-		self.enabled = True
-		self.callNotifiersOnSaveAndCancel = False
-
-	def getNotifiers(self):
-		return [func for (func, val, call_on_save_and_cancel) in self.__notifiers.itervalues()]
-
-	def setNotifiers(self, val):
-		print "just readonly access to notifiers is allowed! append/remove doesnt work anymore! please use addNotifier, removeNotifier, clearNotifiers"
-
-	notifiers = property(getNotifiers, setNotifiers)
-
-	def getNotifiersFinal(self):
-		return [func for (func, val, call_on_save_and_cancel) in self.__notifiers_final.itervalues()]
-
-	def setNotifiersFinal(self, val):
-		print "just readonly access to notifiers_final is allowed! append/remove doesnt work anymore! please use addNotifier, removeNotifier, clearNotifiers"
-
-	notifiers_final = property(getNotifiersFinal, setNotifiersFinal)
-
-	# you need to override this to do input validation
-	def setValue(self, value):
-		self._value = value
-		self.changed()
-
-	def getValue(self):
-		return self._value
-
-	value = property(getValue, setValue)
-
-	# you need to override this if self.value is not a string
-	def fromstring(self, value):
-		return value
-
-	# you can overide this for fancy default handling
-	def load(self):
-		sv = self.saved_value
-		if sv is None:
-			self.value = self.default
-		else:
-			self.value = self.fromstring(sv)
-
-	def tostring(self, value):
-		return str(value)
-
-	# you need to override this if str(self.value) doesn't work
-	def save(self):
-		if self.save_disabled or (self.value == self.default and not self.save_forced):
-			self.saved_value = None
-		else:
-			self.saved_value = self.tostring(self.value)
-		if self.callNotifiersOnSaveAndCancel:
-			self.changed()
-
-	def cancel(self):
-		self.load()
-		if self.callNotifiersOnSaveAndCancel:
-			self.changed()
-
-	def isChanged(self):
-		sv = self.saved_value
-		if sv is None and self.value == self.default:
-			return False
-		return self.tostring(self.value) != sv
-
-	def changed(self):
-		if self.__notifiers:
-			for x in self.notifiers:
-				try:
-					if self.extra_args and self.extra_args[x]:
-						x(self, self.extra_args[x])
-					else:
-						x(self)
-				except:
-					x(self)
-
-	def changedFinal(self):
-		if self.__notifiers_final:
-			for x in self.notifiers_final:
-				try:
-					if self.extra_args and self.extra_args[x]:
-						x(self, self.extra_args[x])
-					else:
-						x(self)
-				except:
-					x(self)
-
-	# immediate_feedback = True means call notifier on every value CHANGE
-	# immediate_feedback = False means call notifier on leave the config element (up/down) when value have CHANGED
-	# call_on_save_or_cancel = True means call notifier always on save/cancel.. even when value have not changed
-	def addNotifier(self, notifier, initial_call = True, immediate_feedback = True, call_on_save_or_cancel = False, extra_args=None):
-		if not extra_args: extra_args = []
-		assert callable(notifier), "notifiers must be callable"
-		try:
-			self.extra_args[notifier] = extra_args
-		except: pass	
-		if immediate_feedback:
-			self.__notifiers[str(notifier)] = (notifier, self.value, call_on_save_or_cancel)
-		else:
-			self.__notifiers_final[str(notifier)] = (notifier, self.value, call_on_save_or_cancel)
-		# CHECKME:
-		# do we want to call the notifier
-		#  - at all when adding it? (yes, though optional)
-		#  - when the default is active? (yes)
-		#  - when no value *yet* has been set,
-		#    because no config has ever been read (currently yes)
-		#    (though that's not so easy to detect.
-		#     the entry could just be new.)
-		if initial_call:
-			if extra_args:
-				notifier(self,extra_args)
-			else:
-				notifier(self)
-
-	def removeNotifier(self, notifier):
-		try:
-			del self.__notifiers[str(notifier)]
-		except:
-			try:
-				del self.__notifiers_final[str(notifier)]
-			except:
-				pass
-
-	def clearNotifiers(self):
-		self.__notifiers = { }
-		self.__notifiers_final = { }
-
-	def disableSave(self):
-		self.save_disabled = True
+		self.enabled = True  # Control the output format generated by getMulti.
+		self.saveDisable = False  # Don't allow the value to be saved to the settings file.  (Used externally!)
+		self.saveForce = False  # Save the value in the settings file even if it is the default value.
+		self.loadValue = None  # The value as initially loaded from the saved settings or the default value if the value was not saved.
+		self.saveValue = None  # The value as lased saved by a previous change.
+		self.lastValue = None
+		self.currentValue = None
+		self.immediateNotifiers = []
+		self.finalNotifiers = []
+		self.extraArgs = []
+		self.callback = None
 
 	def __call__(self, selected):
 		return self.getMulti(selected)
 
-	def onSelect(self, session):
+	def load(self):  # You can overide this for fancy default handling.
+		self.loadValue = self.default if self.saved_value is None else self.fromString(self.saved_value)
+		self.value = self.loadValue
+		# print("[Config] load DEBUG: Default='%s', SavedValue='%s'." % (self.toString(self.default), self.saved_value))
+
+	def cancel(self):  # You need to override this if you want cancel to use something other than loadValue.
+		if self.loadValue is None:
+			self.loadValue = self.default if self.saved_value is None else self.fromString(self.saved_value)
+		# print("[Config] cancel DEBUG: Load='%s' %s, Value='%s' %s." % (self.loadValue, type(self.loadValue), self.value, type(self.value)))
+		if self.value != self.loadValue:
+			self.value = self.loadValue
+			self.changedFinal()  # Call non-immediate_feedback notifiers, immediate_feedback Notifiers are called as the values change.
+
+	def save(self):  # You need to override this if str(self.value) doesn't work.
+		if self.loadValue is None:
+			self.loadValue = self.default if self.saved_value is None else self.fromString(self.saved_value)
+		# print("[Config] save DEBUG: Load='%s', Value='%s'." % (self.loadValue, self.value))
+		self.saved_value = None if self.save_disabled or (self.value == self.default and not self.saveForced) else self.toString(self.value)
+		if self.value != self.loadValue:
+			self.changedFinal()  # Call non-immediate_feedback notifiers, immediate_feedback notifiers are called as the values chanage.
+
+	def getSavedValue(self):
+		return self.saveValue
+
+	def setSavedValue(self, value):
+		self.saveValue = value
+
+	savedValue = property(getSavedValue, setSavedValue)
+	saved_value = property(getSavedValue, setSavedValue)
+
+	def getSaveDisabled(self):
+		return self.saveDisable
+
+	def setSaveDisabled(self, value):
+		self.saveDisable = value
+
+	saveDisabled = property(getSaveDisabled, setSaveDisabled)
+	save_disabled = property(getSaveDisabled, setSaveDisabled)
+
+	def getSaveForced(self):
+		return self.saveForce
+
+	def setSaveForced(self, value):
+		self.saveForce = value
+
+	saveForced = property(getSaveForced, setSaveForced)
+	save_forced = property(getSaveForced, setSaveForced)
+
+	def handleKey(self, key, callback=None):
 		pass
 
+	def getText(self):
+		return self.value
+
+	def getMulti(self, selected):  # You need to override this to do appropriate value conversion to a display renderer.
+		return ("text", self.value)
+
+	def fromString(self, value):  # You need to override to return the value as the correct type.  This is correct if value is a string.
+		return value
+
+	def toString(self, value):  # You need to override this to do appropriate value conversion to a string.
+		return str(value)
+
+	def toDisplayString(self, value):  # You need to override this to do appropriate value conversion to a displayable string in the Setup / ConfigList UI.
+		return str(value)
+
+	def showHelp(self, session):
+		pass
+
+	def hideHelp(self, session):
+		pass
+
+	def onSelect(self, session):
+		pass  # Note that self.lastValue is set in each module's __init__ method.
+
 	def onDeselect(self, session):
-		if not self.last_value == self.value:
+		if self.lastValue != self.value:
+			self.lastValue = self.value
 			self.changedFinal()
-			self.last_value = self.value
 
-KEY_LEFT = 0
-KEY_RIGHT = 1
-KEY_OK = 2
-KEY_DELETE = 3
-KEY_BACKSPACE = 4
-KEY_HOME = 5
-KEY_END = 6
-KEY_TOGGLEOW = 7
-KEY_ASCII = 8
-KEY_TIMEOUT = 9
-KEY_NUMBERS = range(12, 12+10)
-KEY_0 = 12
-KEY_9 = 12+9
+	def getValue(self):
+		return self._value
 
-def getKeyNumber(key):
-	assert key in KEY_NUMBERS
-	return key - KEY_0
+	def setValue(self, value):  # You need to override this to do input validation.
+		prev = self._value if hasattr(self, "_value") else None
+		self._value = value
+		if self._value != prev:
+			self.changed()
 
-class choicesList(object): # XXX: we might want a better name for this
-	LIST_TYPE_LIST = 1
-	LIST_TYPE_DICT = 2
+	value = property(getValue, setValue)
 
-	def __init__(self, choices, type = None):
+	def isChanged(self):  # NOTE: self.saved_value should already be stringified, self.default may be a string or None.
+		saved = self.saved_value or self.toString(self.default)
+		# print("[Config] isChanged DEBUG: Saved='%s', Default='%s', Value='%s', Changed=%s." % (saved, self.toString(self.default), self.toString(self.value), self.toString(self.value) != saved))
+		return self.toString(self.value) != saved
+
+	def changed(self):  # This calls all the notifiers on every change to an element.
+		# print("[Config] changed DEBUG: Changed method has been called.")
+		if self.immediateNotifiers:
+			for notifier in self.immediateNotifiers:
+				extraArgs = self.getExtraArgs(notifier)
+				if extraArgs is not None:
+					notifier(self, extraArgs)
+				else:
+					notifier(self)
+
+	def changedFinal(self):  # This calls all the final notifiers as the last action on an edited element.
+		# print("[Config] changedFinal DEBUG: Final changed method has been called.")
+		if self.finalNotifiers:
+			for notifier in self.finalNotifiers:
+				extraArgs = self.getExtraArgs(notifier)
+				if extraArgs is not None:
+					notifier(self, extraArgs)
+				else:
+					notifier(self)
+
+	def getExtraArgs(self, notifier):
+		for extraArg in self.extraArgs:
+			if extraArg[0] == notifier:
+				return extraArg[1]
+
+	def getNotifiers(self):
+		return self.immediateNotifiers
+
+	def setNotifiers(self, value):
+		if isinstance(value, list):
+			self.immediateNotifiers = value
+		elif value and callable(value):
+			self.immediateNotifiers = list(value)
+			print("[Config] Warning: Notifier initialisation requires a list of notifiers!")
+		else:
+			self.immediateNotifiers = []
+		self.verifyNotifiers(self.immediateNotifiers)
+
+	notifiers = property(getNotifiers, setNotifiers)
+
+	def getNotifiersFinal(self):
+		return self.finalNotifiers
+
+	def setNotifiersFinal(self, value):
+		if isinstance(value, list):
+			self.finalNotifiers = value
+		elif value:
+			self.finalNotifiers = list(value)
+			print("[Config] Warning: Notifier initialisation requires a list of notifiers!")
+		else:
+			self.finalNotifiers = []
+		self.verifyNotifiers(self.finalNotifiers)
+
+	notifiersFinal = property(getNotifiersFinal, setNotifiersFinal)
+	notifiers_final = property(getNotifiersFinal, setNotifiersFinal)
+
+	# For immediate_feedback:
+	# 	True = Call notifier on every value change.
+	# 	False = Call notifier on leave the config element (up/down) when value has changes.
+	# for call_on_save_or_cancel:
+	# 	True = Call notifier always on save/cancel, even when value have not changed!
+	# 	DEBUG: What is the point of this?
+	#
+	def addNotifier(self, notifier, initial_call=True, immediate_feedback=True, extra_args=None, call_on_save_or_cancel=None):  # TODO: camelCase the variables!
+		if not callable(notifier):
+			raise TypeError("[Config] Error: Notifiers must be callable!")
+		extraArgs = extra_args  # This can be removed when all calling code is updated.
+		if extraArgs is not None:
+			self.extraArgs.append((notifier, extraArgs))
+		if immediate_feedback:
+			self.immediateNotifiers.append(notifier)
+		else:
+			self.finalNotifiers.append(notifier)
+		# CHECKME:
+		# Do we want to call the notifier:
+		# - At all when adding it?  (Yes, though optional - initial_call)
+		# - When the default is active?  (Yes)
+		# - When no value *yet* has been set, because no config has
+		#   ever been read though that's not so easy to detect as
+		#   the entry could just be new.  (Currently Yes)
+		if initial_call:
+			if extraArgs:
+				notifier(self, extraArgs)
+			else:
+				notifier(self)
+
+	def removeNotifier(self, notifier):
+		while notifier in self.immediateNotifiers:
+			self.immediateNotifiers.remove(notifier)
+		while notifier in self.finalNotifiers:
+			self.finalNotifiers.remove(notifier)
+		for index in range(len(self.extraArgs)):
+			if self.extraArgs[index][0] == notifier:
+				del self.extraArgs[index]
+
+	def clearNotifiers(self):
+		self.immediateNotifiers = []
+		self.finalNotifiers = []
+
+	def verifyNotifiers(self, notifiers):
+		if any([not callable(notifier) for notifier in notifiers]):
+			raise TypeError("[Config] Error: All notifiers must be callable!")
+
+
+# This is the support class for the ConfigSelection and ConfigSet based classes.
+#
+# The choices parameter should be a list or dictionary.
+#
+# If choices is a list then it should be a list of values or a list of
+# tuples with each tuple being a value and translated description pair.  If
+# the list is a list of values then the description will be the translation
+# of a string formed from the value.
+#
+# If choices is a dictionary then the values will be the keys of the
+# dictionary and the descriptions will be the values.
+#
+class choicesList():
+	TYPE_LIST = 1
+	TYPE_DICT = 2
+
+	def __init__(self, choices, type=None):
 		self.choices = choices
 		if type is None:
 			if isinstance(choices, list):
-				self.type = choicesList.LIST_TYPE_LIST
+				self.type = choicesList.TYPE_LIST
 			elif isinstance(choices, dict):
-				self.type = choicesList.LIST_TYPE_DICT
+				self.type = choicesList.TYPE_DICT
 			else:
-				assert False, "choices must be dict or list!"
+				raise TypeError("[Config] Error: Choices must be dict or list!")
 		else:
 			self.type = type
-
-	def __list__(self):
-		if self.type == choicesList.LIST_TYPE_LIST:
-			ret = [not isinstance(x, tuple) and x or x[0] for x in self.choices]
-		else:
-			ret = self.choices.keys()
-		return ret or [""]
-
-	def __iter__(self):
-		if self.type == choicesList.LIST_TYPE_LIST:
-			ret = [not isinstance(x, tuple) and x or x[0] for x in self.choices]
-		else:
-			ret = self.choices
-		return iter(ret or [""])
-
-	def __len__(self):
-		return len(self.choices) or 1
-
-	def updateItemDescription(self, index, descr):
-		if self.type == choicesList.LIST_TYPE_LIST:
-			orig = self.choices[index]
-			assert isinstance(orig, tuple)
-			self.choices[index] = (orig[0], descr)
-		else:
-			key = self.choices.keys()[index]
-			self.choices[key] = descr
+		# print("[Config] choicesList DEBUG: Choices=%s." % choices)
+		# if len(choices):
+		# 	if self.type == choicesList.TYPE_LIST:
+		# 		if isinstance(choices[0], tuple):
+		# 			# print("[Config] choicesList DEBUG: ChoicesList is a tuple list.")
+		# 			pass
+		# 		else:
+		# 			print("[Config] choicesList DEBUG: ChoicesList is a value list.")
+		# 			print("[Config] choicesList DEBUG: Choices=%s." % choices)
+		# 	else:
+		# 		# print("[Config] choicesList DEBUG: ChoicesList is a dictionary.")
+		# 		pass
+		# else:
+		# 	print("[Config] choicesList DEBUG: Choices list is empty!")
 
 	def __getitem__(self, index):
-		if self.type == choicesList.LIST_TYPE_LIST:
-			ret = self.choices[index]
-			if isinstance(ret, tuple):
-				ret = ret[0]
-			return ret
-		return self.choices.keys()[index]
-
-	def index(self, value):
-		try:
-			return self.__list__().index(value)
-		except (ValueError, IndexError):
-			# occurs e.g. when default is not in list
-			return 0
+		if index == 0 and not self.choices:  # Shouldn't this be if not self.choices, if there are not choices the index shouldn't matter!
+			return ""  # This should be None to indicate that nothing is available.
+		if self.type == choicesList.TYPE_LIST:
+			item = self.choices[index]
+			return item[0] if isinstance(item, tuple) else item
+		return list(self.choices.keys())[index]  # Shouldn't this be a single item?
 
 	def __setitem__(self, index, value):
-		if self.type == choicesList.LIST_TYPE_LIST:
+		if index == 0 and not self.choices:
+			return
+		if self.type == choicesList.TYPE_LIST:
 			orig = self.choices[index]
-			if isinstance(orig, tuple):
-				self.choices[index] = (value, orig[1])
-			else:
-				self.choices[index] = value
+			self.choices[index] = (value, orig[1]) if isinstance(orig, tuple) else value
 		else:
-			key = self.choices.keys()[index]
+			key = list(self.choices.keys())[index]
 			orig = self.choices[key]
 			del self.choices[key]
 			self.choices[value] = orig
+
+	def __iter__(self):
+		return iter(self.__list__())
+
+	def __list__(self):
+		return [x[0] if isinstance(x, tuple) else x for x in self.choices] if self.type == choicesList.TYPE_LIST else list(self.choices.keys()) or [""]  # Should [""] be []?
+
+	def __len__(self):
+		return len(self.choices) or 1  # DEBUG: Do we need the or? Why is the list always a min length of 1 even if it is empty?
 
 	def default(self):
 		choices = self.choices
 		if not choices:
 			return ""
-		if self.type is choicesList.LIST_TYPE_LIST:
+		if self.type == choicesList.TYPE_LIST:
 			default = choices[0]
 			if isinstance(default, tuple):
 				default = default[0]
 		else:
-			default = choices.keys()[0]
+			default = list(choices.keys())[0]  # Shouldn't this be a single item?
 		return default
 
-class descriptionList(choicesList): # XXX: we might want a better name for this
-	def __list__(self):
-		if self.type == choicesList.LIST_TYPE_LIST:
-			ret = [not isinstance(x, tuple) and x or x[1] for x in self.choices]
+	def index(self, value):
+		try:
+			return list(map(str, self.__list__())).index(str(value))
+		except (ValueError, IndexError):  # Occurs, for example, when default is not in list.
+			return 0  # DEBUG: Is it appropriate to return the first item if the index is invalid?
+
+	# only used in nimmanager.py / connectedToChanged
+	def updateItemDescription(self, index, descr):
+		if self.type == choicesList.TYPE_LIST:
+			orig = self.choices[index]
+			if isinstance(orig, tuple):
+				self.choices[index] = (orig[0], descr)
 		else:
-			ret = self.choices.values()
-		return ret or [""]
+			key = list(self.choices.keys())[index]
+			self.choices[key] = descr
+
+class descriptionsList(choicesList):
+	def __getitem__(self, index):
+		if self.type == choicesList.TYPE_LIST:
+			for choice in self.choices:
+				if isinstance(choice, tuple) and str(choice[0]) == str(index):
+					return str(choice[1])
+			return _(str(index))  # If there is no display / translation string then translate the value!
+		return str(self.choices.get(index, ""))
+
+	def __setitem__(self, index, value):
+		if not self.choices:
+			return
+		if self.type == choicesList.TYPE_LIST:
+			indx = self.index(index)
+			orig = self.choices[indx]
+			self.choices[indx] = (orig[0], value) if isinstance(orig, tuple) else value
+		else:
+			self.choices[index] = value
 
 	def __iter__(self):
 		return iter(self.__list__())
 
-	def __getitem__(self, index):
-		if self.type == choicesList.LIST_TYPE_LIST:
-			for x in self.choices:
-				if isinstance(x, tuple):
-					if x[0] == index:
-						return str(x[1])
-				elif x == index:
-					return str(x)
-			return str(index) # Fallback!
-		else:
-			return str(self.choices.get(index, ""))
+	def __list__(self):
+		return [x[1] if isinstance(x, tuple) else x for x in self.choices] if self.type == choicesList.TYPE_LIST else list(self.choices.values()) or [""]  # Should [""] be []?
 
-	def __setitem__(self, index, value):
-		if self.type == choicesList.LIST_TYPE_LIST:
-			i = self.index(index)
-			orig = self.choices[i]
-			if isinstance(orig, tuple):
-				self.choices[i] = (orig[0], value)
-			else:
-				self.choices[i] = value
-		else:
-			self.choices[index] = value
 
+# This is the control, and base class, for triggering action settings.
 #
-# ConfigSelection is a "one of.."-type.
-# it has the "choices", usually a list, which contains
-# (id, desc)-tuples (or just only the ids, in case the id
-# will be used as description)
+# class ConfigAction(ConfigElement):
+# 	def __init__(self, action, *args):
+# 		ConfigElement.__init__(self)
+# 		self.value = "(OK)"
+# 		self.action = action
+# 		self.actionargs = args
 #
-# all ids MUST be plain strings.
+# 	def handleKey(self, key):
+# 		if (key == ACTIONKEY_SELECT):
+# 			self.action(*self.actionargs)
 #
-class ConfigSelection(ConfigElement):
-	def __init__(self, choices, default = None, graphic=True):
+# 	def getMulti(self, selected):
+# 		return ("text", _("<Press OK to perform action>") if selected else "")
+
+
+# This is the control, and base class, for binary decision settings.
+#
+# Several customized versions exist for different descriptions.
+#
+class ConfigBoolean(ConfigElement):
+	def __init__(self, default=False, descriptions=None, graphic=True):
 		ConfigElement.__init__(self)
-		self.choices = choicesList(choices)
-		self.graphic = graphic
-
-		if default is None:
-			default = self.choices.default()
-
-		self._descr = None
-		self.default = self._value = self.last_value = default
-
-	def setChoices(self, choices, default = None):
-		self.choices = choicesList(choices)
-
-		if default is None:
-			default = self.choices.default()
+		if not isinstance(default, bool):
+			# raise TypeError("[Config] Error: 'ConfigBoolean' default must be a Boolean!")
+			print("[Config] Error: 'ConfigBoolean' default must be a Boolean!  (%s)" % default)
+		if descriptions is None:
+			descriptions = {
+				False: _("False"),
+				True: _("True")
+			}
+		if not isinstance(descriptions, dict):
+			raise TypeError("[Config] Error: 'ConfigBoolean' descriptions must be a dictionary!")
+		if not isinstance(graphic, bool):
+			raise TypeError("[Config] Error: 'ConfigBoolean' graphic must be a Boolean!")
 		self.default = default
+		self.lastValue = default
+		self.value = default
+		self.descriptions = descriptions
+		self.graphic = graphic
+		self.trueValues = ("1", "enabled", "on", "true", "yes")
 
-		if self.value not in self.choices:
-			self.value = default
+	def handleKey(self, key, callback=None):
+		prev = self.value
+		if key in (ACTIONKEY_TOGGLE, ACTIONKEY_SELECT, ACTIONKEY_LEFT, ACTIONKEY_RIGHT):
+			self.value = not self.value
+		elif key == ACTIONKEY_FIRST:
+			self.value = False
+		elif key == ACTIONKEY_LAST:
+			self.value = True
+		if self.value != prev:
+			self.changed()
+			if callable(callback):
+				callback()
 
-	def setValue(self, value):
-		if value in self.choices:
-			self._value = value
+	def getText(self):
+		return self.descriptions[self.value]
+
+	def getMulti(self, selected):
+		from skin import switchPixmap
+		from Components.config import config
+		if self.graphic and config.usage.boolean_graphic.value and "menu_on" in switchPixmap and "menu_off" in switchPixmap:
+			return ("pixmap", switchPixmap["menu_on" if self.value else "menu_off"])
+		return ("text", self.descriptions[self.value])
+
+	def fromString(self, value):
+		return str(value).lower() in self.trueValues
+
+	def toString(self, value):
+		return "True" if value and str(value).lower() in self.trueValues else "False"
+		# Use the following if settings should be saved using the same values as displayed to the user.
+		# self.descriptions[True] if value or str(value).lower() in self.trueValues else self.descriptions[False]
+
+	def toDisplayString(self, value):
+		return self.descriptions[True] if value or str(value).lower() in self.trueValues else self.descriptions[False]
+
+	def isChanged(self):  # This is required because old settings files have various text representations for True and False.  All changes settings will be corrected.
+		saved = self.saved_value.lower() in self.trueValues if self.saved_value else self.default
+		# print("[Config] isChanged DEBUG Boolean: Saved='%s', Default='%s', Value='%s', Changed=%s." % (saved, self.default, self.value, self.value != saved))
+		return self.value != saved
+
+
+class ConfigEnableDisable(ConfigBoolean):
+	def __init__(self, default=False, graphic=True):
+		ConfigBoolean.__init__(self, default=default, descriptions={False: _("Disable"), True: _("Enable")}, graphic=graphic)
+
+
+class ConfigOnOff(ConfigBoolean):
+	def __init__(self, default=False, graphic=True):
+		ConfigBoolean.__init__(self, default=default, descriptions={False: _("Off"), True: _("On")}, graphic=graphic)
+
+
+class ConfigYesNo(ConfigBoolean):
+	def __init__(self, default=False, graphic=True):
+		ConfigBoolean.__init__(self, default=default, descriptions={False: _("No"), True: _("Yes")}, graphic=graphic)
+
+
+# This is the control, and base class, for date and time settings.
+#
+class ConfigDateTime(ConfigElement):
+	def __init__(self, default, formatstring, increment=86400):
+		ConfigElement.__init__(self)
+		if isinstance(default, float):
+			default = default
+		elif isinstance(default, int):
+			default = float(default)
 		else:
-			self._value = self.default
-		self._descr = None
-		self.changed()
+			raise TypeError("[Config] Error: 'ConfigDateTime' default must be a float or int!")
+		if not isinstance(formatstring, str):
+			raise TypeError("[Config] Error: 'ConfigDateTime' formatstring must be a string!")
+		if not isinstance(increment, int):
+			raise TypeError("[Config] Error: 'ConfigDateTime' increment must be an integer!")
+		self.default = default
+		self.lastValue = default
+		self.value = default
+		self.formatString = formatstring
+		self.increment = increment
 
-	def tostring(self, val):
-		return val
+	def handleKey(self, key, callback=None):
+		prev = self.value
+		if key == ACTIONKEY_LEFT:
+			self.value -= self.increment
+		elif key == ACTIONKEY_RIGHT:
+			self.value += self.increment
+		elif key == ACTIONKEY_FIRST or key == ACTIONKEY_LAST:
+			self.value = self.default
+		if self.value != prev:
+			self.changed()
+			if callable(callback):
+				callback()
+
+	def getText(self):
+		return strftime(self.formatString, localtime(self.value))
+
+	def getMulti(self, selected):
+		return ("text", strftime(self.formatString, localtime(self.value)))
+
+	def fromString(self, value):
+		return int(value)
+
+	def toDisplayString(self, value):
+		return strftime(self.formatString, localtime(value))
+
+
+# This is the control, and base class, for dictionary settings.
+#
+class ConfigDictionarySet(ConfigElement):
+	def __init__(self, default={}):
+		ConfigElement.__init__(self)
+		self.default = default
+		self.dirs = {}
+		self.value = self.default
+		self.callback = None
+
+	def load(self):
+		# self.dirs = self.default if self.saved_value is None else self.fromString(self.saved_value)
+		ConfigElement.load(self)
+		self.dirs = self.value
+
+	def save(self):
+		del_keys = []
+		for key in self.dirs:
+			if not len(self.dirs[key]):
+				del_keys.append(key)
+		for del_key in del_keys:
+			try:
+				del self.dirs[del_key]
+			except KeyError:
+				pass
+			self.changed()
+			if callable(self.callback):
+				self.callback()
+		self.saved_value = self.toString(self.dirs)
+
+	def handleKey(self, key, callback=None):
+		self.callback = callback
+
+	def fromString(self, val):
+		return eval(val)
+
+	def toString(self, value):
+		return str(value)
 
 	def getValue(self):
-		return self._value
+		return self.dirs
 
-	def setCurrentText(self, text):
-		i = self.choices.index(self.value)
-		self.choices[i] = text
-		self._descr = self.description[text] = text
-		self._value = text
+	def setValue(self, value):
+		if isinstance(value, dict):
+			prev = self.dirs
+			self.dirs = value
+			if self.dirs != prev:
+				self.changed()
+				if callable(self.callback):
+					self.callback()
 
 	value = property(getValue, setValue)
 
-	def getIndex(self):
-		return self.choices.index(self.value)
+	def getConfigValue(self, value, config_key):
+		if isinstance(value, str) and isinstance(config_key, str):
+			if value in self.dirs and config_key in self.dirs[value]:
+				return self.dirs[value][config_key]
+		return None
 
-	index = property(getIndex)
+	def changeConfigValue(self, value, config_key, config_value):
+		if isinstance(value, str) and isinstance(config_key, str):
+			if value in self.dirs:
+				self.dirs[value][config_key] = config_value
+			else:
+				self.dirs[value] = {config_key: config_value}
+			self.changed()
+			if callable(self.callback):
+				self.callback()
 
-	# GUI
-	def handleKey(self, key):
-		nchoices = len(self.choices)
-		if nchoices > 1:
-			i = self.choices.index(self.value)
-			if key == KEY_LEFT:
-				self.value = self.choices[(i + nchoices - 1) % nchoices]
-			elif key == KEY_RIGHT:
-				self.value = self.choices[(i + 1) % nchoices]
-			elif key == KEY_HOME:
+	def removeConfigValue(self, value, config_key):
+		if isinstance(value, str) and isinstance(config_key, str) and value in self.dirs and config_key in self.dirs[value]:
+			del self.dirs[value][config_key]
+			self.changed()
+			if callable(self.callback):
+				self.callback()
+
+	def getKeys(self):
+		return self.dir_pathes
+
+
+# This is the control, and base class, for location settings.
+#
+# Where:
+# 	location[0] = Location path
+# 	location[1] = Mount point
+# 	location[2] = True is location exists
+#
+class ConfigLocations(ConfigElement):
+	def __init__(self, default=None, visible_width=False):
+		ConfigElement.__init__(self)
+		if default is None or not default:  # Remove "or not default" when the defaults are fixed.
+			default = []
+		if not isinstance(default, list):
+			raise TypeError("[Config] Error: 'ConfigLocations' requires a default of None or a list!")
+		self.default = default
+		self.lastValue = default
+		self.visibleWidth = visible_width
+		self.locations = []
+		self.mountPoints = []
+		self.value = default
+		self.item = 0
+
+	def load(self):
+		ConfigElement.load(self)
+		self.loadValue = list(set(self.loadValue))  # Remove any duplicated entries.
+		self.locations = [[x, None, False] for x in self.loadValue]
+		self.refreshMountPoints()
+		for location in self.locations:
+			if fileAccess(location[0]):
+				location[1] = self.getMountPoint(location[0])
+				location[2] = True
+
+	def handleKey(self, key, callback=None):
+		count = len(self.value) - 1
+		if key == ACTIONKEY_FIRST:
+			self.item = 0
+		elif key == ACTIONKEY_LEFT:
+			self.item = self.item - 1 if self.item > 0 else count
+		elif key == ACTIONKEY_RIGHT:
+			self.item = self.item + 1 if self.item < count else 0
+		elif key == ACTIONKEY_LAST:
+			self.item = count
+
+	def getText(self):
+		return " ".join(self.value)
+
+	def getMulti(self, selected):
+		if selected:
+			start = 0
+			for index, value in enumerate(self.value):
+				if index == self.item:
+					break
+				start += len(value) + 1
+			end = start + len(value)
+			value = " ".join(self.value)
+			if self.visibleWidth and len(value) > self.visibleWidth:
+				if start + 1 < self.visibleWidth / 2:
+					offset = 0
+				else:
+					offset = min(start + 1 - self.visibleWidth / 2, len(value) - self.visibleWidth)
+				return ("mtext", value[offset:offset + self.visibleWidth], list(range(start - offset, end - offset)))
+			else:
+				return ("mtext", value, list(range(start, end)))
+		else:
+			value = " ".join(self.value)
+			return ("text", value[0:self.visibleWidth] if self.visibleWidth and len(value) > self.visibleWidth else value)
+
+	def fromString(self, value):
+		return eval(value)
+
+	def toString(self, value):
+		return str([x[0] if isinstance(x, list) else x for x in value])
+
+	def getValue(self):
+		self.checkChangedMountPoints()
+		return [x[0] for x in self.locations if x[2]]
+
+	def setValue(self, value):
+		value = list(set(value))  # Remove any duplicated entries.
+		newLocations = []
+		for location in self.locations:
+			if location[0] in value:
+				newLocations.append(location)
+				value.remove(location[0])
+		for location in value:
+			newLocations.append([location, self.getMountPoint(location), fileAccess(location)])
+		newLocations.sort(key=lambda x: x[0])
+		if newLocations != self.locations:
+			self.locations = newLocations
+			self.changed()
+
+	value = property(getValue, setValue)
+
+	def refreshMountPoints(self):
+		self.mountPoints = [x.mountpoint for x in harddiskmanager.getMountedPartitions() if x.mountpoint != sep]
+		self.mountPoints.sort(key=lambda x: -len(x))
+
+	def getMountPoint(self, path):
+		path = "%s%s" % (realpath(path), sep)
+		for mountPoint in self.mountPoints:
+			if path.startswith(mountPoint):
+				return mountPoint
+		return None
+
+	def checkChangedMountPoints(self):
+		oldMountPoints = self.mountPoints
+		self.refreshMountPoints()
+		newMountPoints = self.mountPoints
+		if oldMountPoints == newMountPoints:
+			return
+		for mountPoint in oldMountPoints:
+			if mountPoint not in newMountPoints:
+				self.removedMount(mountPoint)
+		for mountPoint in newMountPoints:
+			if mountPoint not in oldMountPoints:
+				self.addedMount(mountPoint)
+
+	def removedMount(self, mountPoint):
+		for location in self.locations:
+			if location[1] == mountPoint:
+				location[2] = False
+
+	def addedMount(self, mountPoint):
+		for location in self.locations:
+			if location[1] == mountPoint:
+				location[2] = True
+			elif location[1] is None and fileAccess(location[0]):
+				location[1] = self.getMountPoint(location[0])
+				location[2] = True
+
+
+# This is the control, and base class, for selection list settings.
+#
+# ConfigSelection is a "one of.."-type.  It has the "choices", usually
+# a list, which contains (id, desc)-tuples (or just only the ids, in
+# case str(id) will be used as description).
+#
+# The ids in "choices" may be of any type, provided that for there
+# is a one-to-one mapping between x and str(x) for every x in "choices".
+# The ids do not necessarily all have to have the same type, but
+# managing that is left to the programmer.  For example:
+#  choices=[1, 2, "3", "4"] is permitted, but
+#  choices=[1, 2, "1", "2"] is not,
+# because str(1) == "1" and str("1") =="1", and because str(2) == "2"
+# and str("2") == "2".
+#
+# This requirement is not enforced by the code.
+#
+# config.item.value and config.item.getValue always return an object
+# of the type of the selected item.
+#
+# When assigning to config.item.value or using config.item.setValue,
+# where x is in the "choices" list, either x or str(x) may be used
+# to set the choice. The form of the assignment will not affect the
+# choices list or the type returned by the ConfigSelection instance.
+#
+# This replaces the former requirement that all ids MUST be plain
+# strings, but is compatible with that requirement.
+#
+class ConfigSelection(ConfigElement):
+	def __init__(self, choices, default=None):
+		ConfigElement.__init__(self)
+		self.choices = choicesList(choices)
+		if default is None:
+			default = self.choices.default()
+		self.default = default
+		self.lastValue = default
+		self._descr = None
+		self._value = default
+
+	def load(self):
+		self.loadValue = self.default if self.saved_value is None else self.choices[self.choices.index(self.saved_value)]
+		self.value = self.loadValue
+
+	def handleKey(self, key, callback=None):
+		count = len(self.choices)
+		if count > 1:
+			prev = str(self.value)
+			index = self.choices.index(str(self.value))  # Temporary hack until keys don't have to be strings.
+			if key == ACTIONKEY_LEFT:
+				self.value = self.choices[(index + count - 1) % count]
+			elif key == ACTIONKEY_RIGHT:
+				self.value = self.choices[(index + 1) % count]
+			elif key == ACTIONKEY_FIRST:
 				self.value = self.choices[0]
-			elif key == KEY_END:
-				self.value = self.choices[nchoices - 1]
-
-	def selectNext(self):
-		nchoices = len(self.choices)
-		i = self.choices.index(self.value)
-		self.value = self.choices[(i + 1) % nchoices]
+			elif key == ACTIONKEY_LAST:
+				self.value = self.choices[count - 1]
+			if str(self.value) != prev:
+				self.changed()
+				if callable(callback):
+					callback()
 
 	def getText(self):
 		if self._descr is None:
@@ -392,269 +867,214 @@ class ConfigSelection(ConfigElement):
 		return self._descr
 
 	def getMulti(self, selected):
-		from config import config
-		from skin import switchPixmap
 		if self._descr is None:
 			self._descr = self.description[self.value]
-		keywords_true = (_('True'),_('Yes'),_('Enabled'),_('On'))
-		keywords_false = (_('False'),_('No'),_("Disable"),_('Disabled'),_('Off'), _("None"))
-		if self._descr in (keywords_true + keywords_false) and self.graphic and config.usage.boolean_graphic.value and switchPixmap.get("menu_on", False) and switchPixmap.get("menu_off", False):
-			return ('pixmap', self._descr in keywords_true and switchPixmap["menu_on"] or switchPixmap["menu_off"])
 		return ("text", self._descr)
 
-	# HTML
-	def getHTML(self, id):
-		res = ""
-		for v in self.choices:
-			descr = self.description[v]
-			if self.value == v:
-				checked = 'checked="checked" '
-			else:
-				checked = ''
-			res += '<input type="radio" name="' + id + '" ' + checked + 'value="' + v + '">' + descr + "</input></br>\n"
-		return res
+	def toString(self, val):
+		return str(val)
 
-	def unsafeAssign(self, value):
-		# setValue does check if value is in choices. This is safe enough.
-		self.value = value
+	def toDisplayString(self, val):
+		return self.description[val]
 
-	description = property(lambda self: descriptionList(self.choices.choices, self.choices.type))
+	def setChoices(self, choices, default=None):
+		value = self.value
+		self.choices = choicesList(choices)
+		if default is None:
+			default = self.choices.default()
+		self.default = default
+		if self.value not in self.choices:
+			self.value = default
+		if self.value != value:
+			self.changed()
 
-# a binary decision.
+	def getValue(self):
+		return self._value
+
+	def setValue(self, value):
+		prev = self._value
+		self._descr = None
+		self._value = self.choices[self.choices.index(value)] if str(value) in map(str, self.choices) else self.default
+		if self._value != prev:
+			self.changed()
+
+	value = property(getValue, setValue)
+
+	def setCurrentText(self, text):
+		index = self.choices.index(self.value)
+		self.choices[index] = text
+		self.description[text] = text
+		self._descr = text
+		self._value = text
+
+	def getIndex(self):
+		return self.choices.index(self.value)
+
+	index = property(getIndex)
+
+	def selectNext(self):
+		self.value = self.choices[(self.choices.index(self.value) + 1) % len(self.choices)]
+
+	description = property(lambda self: descriptionsList(self.choices.choices, self.choices.type))
+
+
+# This is a special control that is a place holder in a settings list that does nothing.
 #
-# several customized versions exist for different
-# descriptions.
+class ConfigNothing(ConfigSelection):
+	def __init__(self):
+		ConfigSelection.__init__(self, choices=[("", "")])
+
+
+class ConfigSatlist(ConfigSelection):
+	def __init__(self, list, default=None):
+		if default is not None:
+			default = str(default)
+		ConfigSelection.__init__(self, choices=[(str(orbpos), desc) for (orbpos, desc, flags) in list], default=default)
+
+	def getOrbitalPosition(self):
+		if self.value == "":
+			return None
+		return int(self.value)
+
+	orbitalPosition = property(getOrbitalPosition)
+	orbital_position = property(getOrbitalPosition)
+
+
+# Lets the user select between [min, min + stepwidth, min + (stepwidth * 2)...,
+# maxval] with maxval <= max depending on the stepwidth. The min, max, stepwidth,
+# and default are int values.
 #
-class ConfigBoolean(ConfigElement):
-	def __init__(self, default = False, descriptions = {False: _("false"), True: _("true")}, graphic=True):
-		ConfigElement.__init__(self)
-		self.descriptions = descriptions
-		self.value = self.last_value = self.default = default
-		self.graphic = graphic
-
-	def handleKey(self, key):
-		if key in (KEY_LEFT, KEY_RIGHT):
-			self.value = not self.value
-		elif key == KEY_HOME:
-			self.value = False
-		elif key == KEY_END:
-			self.value = True
-
-	def getText(self):
-		return self.descriptions[self.value]
-
-	def getMulti(self, selected):
-		from config import config
-		from skin import switchPixmap
-		if self.graphic and config.usage.boolean_graphic.value and switchPixmap.get("menu_on", False) and switchPixmap.get("menu_off", False):
-			return ('pixmap', self.value and switchPixmap["menu_on"] or switchPixmap["menu_off"])
-		else:
-			return ("text", self.descriptions[self.value])
-
-	def tostring(self, value):
-		if not value:
-			return "false"
-		else:
-			return "true"
-
-	def fromstring(self, val):
-		if val == "true":
-			return True
-		else:
-			return False
-
-	def getHTML(self, id):
-		if self.value:
-			checked = ' checked="checked"'
-		else:
-			checked = ''
-		return '<input type="checkbox" name="' + id + '" value="1" ' + checked + " />"
-
-	# this is FLAWED. and must be fixed.
-	def unsafeAssign(self, value):
-		if value == "1":
-			self.value = True
-		else:
-			self.value = False
-
-	def onDeselect(self, session):
-		if not self.last_value == self.value:
-			self.changedFinal()
-			self.last_value = self.value
-
-class ConfigYesNo(ConfigBoolean):
-	def __init__(self, default = False):
-		ConfigBoolean.__init__(self, default = default, descriptions = {False: _("no"), True: _("yes")})
-
-class ConfigOnOff(ConfigBoolean):
-	def __init__(self, default = False):
-		ConfigBoolean.__init__(self, default = default, descriptions = {False: _("off"), True: _("on")})
-
-class ConfigEnableDisable(ConfigBoolean):
-	def __init__(self, default = False):
-		ConfigBoolean.__init__(self, default = default, descriptions = {False: _("disable"), True: _("enable")})
-
-class ConfigDateTime(ConfigElement):
-	def __init__(self, default, formatstring, increment = 86400):
-		ConfigElement.__init__(self)
-		self.increment = increment
-		self.formatstring = formatstring
-		self.value = self.last_value = self.default = int(default)
-
-	def handleKey(self, key):
-		if key == KEY_LEFT:
-			self.value -= self.increment
-		elif key == KEY_RIGHT:
-			self.value += self.increment
-		elif key == KEY_HOME or key == KEY_END:
-			self.value = self.default
-
-	def getText(self):
-		return strftime(self.formatstring, localtime(self.value))
-
-	def getMulti(self, selected):
-		return "text", strftime(self.formatstring, localtime(self.value))
-
-	def fromstring(self, val):
-		return int(val)
-
-# *THE* mighty config element class
+# wraparound: Pressing RIGHT key at max value brings you to min value and vice
+# versa if set to True.
 #
-# allows you to store/edit a sequence of values.
-# can be used for IP-addresses, dates, plain integers, ...
-# several helper exist to ease this up a bit.
+class ConfigSelectionNumber(ConfigSelection):
+	def __init__(self, min, max, stepwidth, default=None, wraparound=False):
+		choices = []
+		step = min
+		while step <= max:
+			choices.append(str(step))
+			step += stepwidth
+		if default is None:
+			default = min
+		self.wrap = wraparound
+		ConfigSelection.__init__(self, choices, str(default))
+		self.default = default
+		self.lastValue = default
+		self.value = default
+
+	def handleKey(self, key, callback=None):
+		if not self.wrap:
+			value = str(self.value)
+			if key == ACTIONKEY_RIGHT and self.choices.index(value) == len(self.choices) - 1:
+				return
+			if key == ACTIONKEY_LEFT and self.choices.index(value) == 0:
+				return
+		ConfigSelection.handleKey(self, key, callback)
+
+	def getValue(self):
+		return int(ConfigSelection.getValue(self))
+
+	def setValue(self, value):
+		ConfigSelection.setValue(self, str(value))
+
+	value = property(getValue, setValue)
+
+
+# This is the control, and base class, for formatted sequence settings.
+#
+# *THE* mighty config element class!
+#
+# Allows you to store/edit a sequence of values.  Can be used for IP-addresses,
+# dates, plain integers, several helpers exist to ease this up a bit.
 #
 class ConfigSequence(ConfigElement):
-	def __init__(self, seperator, limits, default, censor_char = ""):
+	def __init__(self, seperator, limits, default, censor="", censor_char=None):  # Should we also have a flag to select blocks on first entry?
 		ConfigElement.__init__(self)
-		assert isinstance(limits, list) and len(limits[0]) == 2, "limits must be [(min, max),...]-tuple-list"
-		assert censor_char == "" or len(censor_char) == 1, "censor char must be a single char (or \"\")"
-		#assert isinstance(default, list), "default must be a list"
-		#assert isinstance(default[0], int), "list must contain numbers"
-		#assert len(default) == len(limits), "length must match"
-
-		self.marked_pos = 0
+		if not isinstance(limits, list) and len(limits[0]) != 2:
+			raise TypeError("[Config] Error: Limits must be [(min, max), ...] tuple-list!")
+		# if not isinstance(default, list):
+		# 	raise TypeError("[Config] Error: Default must be a list!")
+		# if not all([isinstance(x, int) for x in default]):
+		# 	raise TypeError("[Config] Error: Default list must consist of numbers!")
+		# if len(default) != len(limits):
+		# 	raise ValueError("[Config] Error: Lengths of default and limits must match!")
+		if censor_char is not None:  # DEBUG: This captures the censor character from legacy code!
+			censor = censor_char
+		if censor != "" and (isinstance(censor, str) and len(censor) != 1) and (isinstance(censor, unicode) and len(censor) != 1):
+			raise ValueError("[Config] Error: Censor must be a single char (or \"\")!")
 		self.seperator = seperator
 		self.limits = limits
-		self.censor_char = censor_char
-
-		self.last_value = self.default = default
-		self.value = copy_copy(default)
+		self.blockLen = [len(str(x[1])) for x in limits]
+		self.totalLen = sum(self.blockLen) - 1
+		self.censor = censor
+		self.lastValue = self.default = default
+		self.value = shallowcopy(default)
+		self.hidden = censor != ""
 		self.endNotifier = None
+		self.markedPos = 0
+		self.zeroPad = True
 
-	def validate(self):
-		max_pos = 0
-		num = 0
-		for i in self._value:
-			max_pos += len(str(self.limits[num][1]))
-
-			if self._value[num] < self.limits[num][0]:
-				self._value[num] = self.limits[num][0]
-
-			if self._value[num] > self.limits[num][1]:
-				self._value[num] = self.limits[num][1]
-
-			num += 1
-
-		if self.marked_pos >= max_pos:
-			if self.endNotifier:
-				for x in self.endNotifier:
-					x(self)
-			self.marked_pos = max_pos - 1
-
-		if self.marked_pos < 0:
-			self.marked_pos = 0
-
-	def validatePos(self):
-		if self.marked_pos < 0:
-			self.marked_pos = 0
-
-		total_len = sum([len(str(x[1])) for x in self.limits])
-
-		if self.marked_pos >= total_len:
-			self.marked_pos = total_len - 1
-
-	def addEndNotifier(self, notifier):
-		if self.endNotifier is None:
-			self.endNotifier = []
-		self.endNotifier.append(notifier)
-
-	def handleKey(self, key):
-		if key == KEY_LEFT:
-			self.marked_pos -= 1
-			self.validatePos()
-
-		elif key == KEY_RIGHT:
-			self.marked_pos += 1
-			self.validatePos()
-
-		elif key == KEY_HOME:
-			self.marked_pos = 0
-			self.validatePos()
-
-		elif key == KEY_END:
-			max_pos = 0
-			num = 0
-			for i in self._value:
-				max_pos += len(str(self.limits[num][1]))
-				num += 1
-			self.marked_pos = max_pos - 1
-			self.validatePos()
-
-		elif key in KEY_NUMBERS or key == KEY_ASCII:
-			if key == KEY_ASCII:
+	def handleKey(self, key, callback=None):
+		if key == ACTIONKEY_FIRST:
+			self.markedPos = 0
+		elif key == ACTIONKEY_LEFT:
+			if self.markedPos > 0:
+				self.markedPos -= 1
+		elif key == ACTIONKEY_RIGHT:
+			if self.markedPos < self.totalLen:
+				self.markedPos += 1
+		elif key == ACTIONKEY_LAST:
+			self.markedPos = self.totalLen
+		elif key in ACTIONKEY_NUMBERS or key == ACTIONKEY_ASCII:
+			# prev = self._value
+			if key == ACTIONKEY_ASCII:
 				code = getPrevAsciiCode()
 				if code < 48 or code > 57:
 					return
 				number = code - 48
 			else:
 				number = getKeyNumber(key)
-
-			block_len = [len(str(x[1])) for x in self.limits]
-			total_len = sum(block_len)
-
 			pos = 0
-			blocknumber = 0
-			block_len_total = [0, ]
-			for x in block_len:
-				pos += block_len[blocknumber]
+			blockNumber = 0
+			block_len_total = [0]
+			for x in self.blockLen:
+				pos += self.blockLen[blockNumber]
 				block_len_total.append(pos)
-				if pos - 1 >= self.marked_pos:
+				if pos - 1 >= self.markedPos:
 					pass
 				else:
-					blocknumber += 1
-
-			# length of numberblock
-			number_len = len(str(self.limits[blocknumber][1]))
-
-			# position in the block
-			posinblock = self.marked_pos - block_len_total[blocknumber]
-
-			oldvalue = abs(self._value[blocknumber]) # we are using abs in order to allow change negative values like default -1 on mis
+					blockNumber += 1
+			number_len = len(str(self.limits[blockNumber][1]))  # Length of number block.
+			posinblock = self.markedPos - block_len_total[blockNumber]  # Position in the block.
+			oldvalue = abs(self._value[blockNumber])  # We are using abs() in order to allow change negative values like default -1.
 			olddec = oldvalue % 10 ** (number_len - posinblock) - (oldvalue % 10 ** (number_len - posinblock - 1))
 			newvalue = oldvalue - olddec + (10 ** (number_len - posinblock - 1) * number)
-
-			self._value[blocknumber] = newvalue
-			self.marked_pos += 1
-
+			self._value[blockNumber] = newvalue
+			self.markedPos += 1
 			self.validate()
+			# if self._value != prev:
 			self.changed()
+			if callable(callback):
+				callback()
 
-	def genText(self):
-		value = ""
-		mPos = self.marked_pos
+	def validate(self):
+		maxPos = 0
 		num = 0
 		for i in self._value:
-			if value:	#fixme no heading separator possible
-				value += self.seperator
-				if mPos >= len(value) - 1:
-					mPos += 1
-			if self.censor_char == "":
-				value += ("%0" + str(len(str(self.limits[num][1]))) + "d") % i
-			else:
-				value += (self.censor_char * len(str(self.limits[num][1])))
+			maxPos += len(str(self.limits[num][1]))
+
+			if self._value[num] < self.limits[num][0]:
+				self._value[num] = self.limits[num][0]
+			if self._value[num] > self.limits[num][1]:
+				self._value[num] = self.limits[num][1]
 			num += 1
-		return value, mPos
+		if self.markedPos >= maxPos:
+			if self.endNotifier:
+				for x in self.endNotifier:
+					x(self)
+			self.markedPos = maxPos - 1
+		if self.markedPos < 0:
+			self.markedPos = 0
 
 	def getText(self):
 		(value, mPos) = self.genText()
@@ -662,60 +1082,79 @@ class ConfigSequence(ConfigElement):
 
 	def getMulti(self, selected):
 		(value, mPos) = self.genText()
-			# only mark cursor when we are selected
-			# (this code is heavily ink optimized!)
+		# Only mark cursor when we are selected.  (This code is heavily ink optimized!)
 		if self.enabled:
-			return "mtext"[1-selected:], value, [mPos]
+			return ("mtext"[1 - selected:], value, [mPos])
 		else:
-			return "text", value
+			return ("text", value)
 
-	def tostring(self, val):
-		return self.seperator.join([self.saveSingle(x) for x in val])
+	def genText(self):
+		value = ""
+		mPos = self.markedPos
+		num = 0
+		for i in self._value:
+			if value:  # Fixme no heading separator possible!
+				value += self.seperator
+				if mPos >= len(value) - 1:
+					mPos += 1
+			if self.censor == "" or not self.hidden:
+				value += ("%0" + str(len(str(self.limits[num][1]))) + "d") % i
+			else:
+				value += (self.censor * len(str(self.limits[num][1])))
+			num += 1
+		return (value, mPos)
 
-	def saveSingle(self, v):
-		return str(v)
+	def fromString(self, value):
+		ret = [int(x) for x in value.split(self.seperator)]
+		return ret + [int(x[0]) for x in self.limits[len(ret):]]
 
-	def fromstring(self, value):
-		try:
-			return [int(x) for x in value.split(self.seperator)]
-		except:
-			return self.default
+	def toString(self, value):
+		return self.seperator.join([str(x) for x in value])
+
+	def toDisplayString(self, value):
+		return self.seperator.join(["%%0%sd" % (str(self.blockLen[index]) if self.zeroPad else "") % value for index, value in enumerate(self._value)])
+
+	def onSelect(self, session):
+		self.hidden = False
 
 	def onDeselect(self, session):
-		if self.last_value != self._value:
-			self.changedFinal()
-			self.last_value = copy_copy(self._value)
+		self.hidden = self.censor != ""
+		# DEBUG: This triggers false deselection change notifications!
+		# if self.lastValue != self._value:
+		# 	self.changedFinal()
+		# 	self.lastValue = shallowcopy(self._value)
 
-ip_limits = [(0,255),(0,255),(0,255),(0,255)]
-class ConfigIP(ConfigSequence):
-	def __init__(self, default, auto_jump = False):
-		ConfigSequence.__init__(self, seperator = ".", limits = ip_limits, default = default)
-		self.block_len = [len(str(x[1])) for x in self.limits]
+	def addEndNotifier(self, notifier):
+		if self.endNotifier is None:
+			self.endNotifier = []
+		self.endNotifier.append(notifier)
+
+
+class ConfigCECAddress(ConfigSequence):
+	def __init__(self, default, auto_jump=False):
+		ConfigSequence.__init__(self, seperator=".", limits=[(0, 15), (0, 15), (0, 15), (0, 15)], default=default)
 		self.marked_block = 0
 		self.overwrite = True
 		self.auto_jump = auto_jump
+		self.zeroPad = False
 
-	def handleKey(self, key):
-		if key == KEY_LEFT:
+	def handleKey(self, key, callback=None):
+		if key == ACTIONKEY_LEFT:
 			if self.marked_block > 0:
 				self.marked_block -= 1
 			self.overwrite = True
-
-		elif key == KEY_RIGHT:
-			if self.marked_block < len(self.limits)-1:
+		elif key == ACTIONKEY_RIGHT:
+			if self.marked_block < len(self.limits) - 1:
 				self.marked_block += 1
 			self.overwrite = True
-
-		elif key == KEY_HOME:
+		elif key == ACTIONKEY_FIRST:
 			self.marked_block = 0
 			self.overwrite = True
-
-		elif key == KEY_END:
-			self.marked_block = len(self.limits)-1
+		elif key == ACTIONKEY_LAST:
+			self.marked_block = len(self.limits) - 1
 			self.overwrite = True
-
-		elif key in KEY_NUMBERS or key == KEY_ASCII:
-			if key == KEY_ASCII:
+		elif key in ACTIONKEY_NUMBERS or key == ACTIONKEY_ASCII:
+			if key == ACTIONKEY_ASCII:
 				code = getPrevAsciiCode()
 				if code < 48 or code > 57:
 					return
@@ -723,25 +1162,29 @@ class ConfigIP(ConfigSequence):
 			else:
 				number = getKeyNumber(key)
 			oldvalue = self._value[self.marked_block]
-
 			if self.overwrite:
 				self._value[self.marked_block] = number
 				self.overwrite = False
 			else:
 				oldvalue *= 10
 				newvalue = oldvalue + number
-				if self.auto_jump and newvalue > self.limits[self.marked_block][1] and self.marked_block < len(self.limits)-1:
-					self.handleKey(KEY_RIGHT)
-					self.handleKey(key)
+				if self.auto_jump and newvalue > self.limits[self.marked_block][1] and self.marked_block < len(self.limits) - 1:
+					self.handleKey(ACTIONKEY_RIGHT, callback)
+					self.handleKey(key, callback)
 					return
 				else:
 					self._value[self.marked_block] = newvalue
-
-			if len(str(self._value[self.marked_block])) >= self.block_len[self.marked_block]:
-				self.handleKey(KEY_RIGHT)
-
+			if len(str(self._value[self.marked_block])) >= self.blockLen[self.marked_block]:
+				self.handleKey(ACTIONKEY_RIGHT, callback)
 			self.validate()
 			self.changed()
+
+	def getMulti(self, selected):
+		(value, mBlock) = self.genText()
+		if self.enabled:
+			return ("mtext"[1 - selected:], value, mBlock)
+		else:
+			return ("text", value)
 
 	def genText(self):
 		value = ""
@@ -751,329 +1194,120 @@ class ConfigIP(ConfigSequence):
 			if value:
 				value += self.seperator
 			value += str(i)
-		leftPos = sum(block_strlen[:self.marked_block])+self.marked_block
-		rightPos = sum(block_strlen[:(self.marked_block+1)])+self.marked_block
-		mBlock = range(leftPos, rightPos)
-		return value, mBlock
+		leftPos = sum(block_strlen[:(self.marked_block)]) + self.marked_block
+		rightPos = sum(block_strlen[:(self.marked_block + 1)]) + self.marked_block
+		mBlock = list(range(leftPos, rightPos))
+		return (value, mBlock)
 
-	def getMulti(self, selected):
-		(value, mBlock) = self.genText()
-		if self.enabled:
-			return "mtext"[1-selected:], value, mBlock
-		else:
-			return "text", value
 
-	def getHTML(self, id):
-		# we definitely don't want leading zeros
-		return '.'.join(["%d" % d for d in self.value])
-
-mac_limits = [(1,255),(1,255),(1,255),(1,255),(1,255),(1,255)]
-class ConfigMAC(ConfigSequence):
-	def __init__(self, default):
-		ConfigSequence.__init__(self, seperator = ":", limits = mac_limits, default = default)
-
-class ConfigMacText(ConfigElement, NumericalTextInput):
-	def __init__(self, default = "", visible_width = False, show_help=True):
-		ConfigElement.__init__(self)
-		NumericalTextInput.__init__(self, nextFunc = self.nextFunc, handleTimeout = False)
-
-		self.marked_pos = 0
-		self.allmarked = (default != "")
-		self.fixed_size = 17
-		self.visible_width = visible_width
-		self.offset = 0
-		self.overwrite = 17
-		self.help_window = None
-		self.show_help = show_help
-		self.value = self.last_value = self.default = default
-		self.useableChars = '0123456789ABCDEF'
-
-	def validateMarker(self):
-		textlen = len(self.text)
-		if self.marked_pos > textlen-1:
-			self.marked_pos = textlen-1
-		elif self.marked_pos < 0:
-			self.marked_pos = 0
-
-	def insertChar(self, ch, pos, owr):
-		if self.text[pos] == ':':
-			pos += 1
-		if owr or self.overwrite:
-			self.text = self.text[0:pos] + ch + self.text[pos + 1:]
-		elif self.fixed_size:
-			self.text = self.text[0:pos] + ch + self.text[pos:-1]
-		else:
-			self.text = self.text[0:pos] + ch + self.text[pos:]
-
-	def handleKey(self, key):
-		if key == KEY_LEFT:
-			self.timeout()
-			if self.allmarked:
-				self.marked_pos = len(self.text)
-				self.allmarked = False
-			else:
-				if self.text[self.marked_pos-1] == ':':
-					self.marked_pos -= 2
-				else:
-					self.marked_pos -= 1
-		elif key == KEY_RIGHT:
-			self.timeout()
-			if self.allmarked:
-				self.marked_pos = 0
-				self.allmarked = False
-			else:
-				if self.marked_pos < (len(self.text)-1):
-					if self.text[self.marked_pos+1] == ':':
-						self.marked_pos += 2
-					else:
-						self.marked_pos += 1
-		elif key in KEY_NUMBERS:
-			owr = self.lastKey == getKeyNumber(key)
-			newChar = self.getKey(getKeyNumber(key))
-			self.insertChar(newChar, self.marked_pos, owr)
-		elif key == KEY_TIMEOUT:
-			self.timeout()
-			if self.help_window:
-				self.help_window.update(self)
-			if self.text[self.marked_pos] == ':':
-				self.marked_pos += 1
-			return
-
-		if self.help_window:
-			self.help_window.update(self)
-		self.validateMarker()
-		self.changed()
-
-	def nextFunc(self):
-		self.marked_pos += 1
-		self.validateMarker()
-		self.changed()
-
-	def getValue(self):
-		try:
-			return self.text.encode("utf-8")
-		except UnicodeDecodeError:
-			print "Broken UTF8!"
-			return self.text
-
-	def setValue(self, val):
-		try:
-			self.text = val.decode("utf-8")
-		except UnicodeDecodeError:
-			self.text = val.decode("utf-8", "ignore")
-			print "Broken UTF8!"
-
-	value = property(getValue, setValue)
-	_value = property(getValue, setValue)
-
-	def getText(self):
-		return self.text.encode("utf-8")
-
-	def getMulti(self, selected):
-		if self.visible_width:
-			if self.allmarked:
-				mark = range(0, min(self.visible_width, len(self.text)))
-			else:
-				mark = [self.marked_pos-self.offset]
-			return "mtext"[1-selected:], self.text[self.offset:self.offset+self.visible_width].encode("utf-8")+" ", mark
-		else:
-			if self.allmarked:
-				mark = range(0, len(self.text))
-			else:
-				mark = [self.marked_pos]
-			return "mtext"[1-selected:], self.text.encode("utf-8")+" ", mark
-
-	def onSelect(self, session):
-		self.allmarked = (self.value != "")
-		if session is not None:
-			from Screens.NumericalTextInputHelpDialog import NumericalTextInputHelpDialog
-			self.help_window = session.instantiateDialog(NumericalTextInputHelpDialog, self)
-			self.help_window.setAnimationMode(0)
-			if self.show_help:
-				self.help_window.show()
-
-	def onDeselect(self, session):
-		self.marked_pos = 0
-		self.offset = 0
-		if self.help_window:
-			session.deleteDialog(self.help_window)
-			self.help_window = None
-		if not self.last_value == self.value:
-			self.changedFinal()
-			self.last_value = self.value
-
-	def getHTML(self, id):
-		return '<input type="text" name="' + id + '" value="' + self.value + '" /><br>\n'
-
-	def unsafeAssign(self, value):
-		self.value = str(value)
-
-class ConfigPosition(ConfigSequence):
-	def __init__(self, default, args):
-		ConfigSequence.__init__(self, seperator = ",", limits = [(0,args[0]),(0,args[1]),(0,args[2]),(0,args[3])], default = default)
-
-clock_limits = [(0, 23), (0, 59)]
 class ConfigClock(ConfigSequence):
-	def __init__(self, default, timeconv=localtime, durationmode=False):
-		self.t = timeconv(default)
-		ConfigSequence.__init__(self, seperator=":", limits=clock_limits, default=[self.t.tm_hour, self.t.tm_min])
-		if durationmode:
-			self.wideformat = False
-			self.timeformat = "%_H:%M"
-		else:
-			self.wideformat = None  # Defer until later
-			self.timeformat = None  # Defer until later
+	def __init__(self, default):
+		self.time = localtime(default)
+		ConfigSequence.__init__(self, seperator=":", limits=[(0, 23), (0, 59)], default=[self.time.tm_hour, self.time.tm_min])
 
-	def increment(self):
-		# Check if Minutes maxed out
-		if self._value[1] == 59:
-			# Increment Hour, reset Minutes
-			if self._value[0] < 23:
-				self._value[0] += 1
-			else:
-				self._value[0] = 0
-			self._value[1] = 0
-		else:
-			# Increment Minutes
-			self._value[1] += 1
-		# Trigger change
-		self.changed()
-
-	def decrement(self, step=1):
-		# Check if Minutes is minimum
-		if self._value[1] == 0:
-			# Decrement Hour, set Minutes to 59 or 55
-			if self._value[0] > 0:
-				self._value[0] -= 1
-			else:
-				self._value[0] = 23
-			self._value[1] = 60 - step
-		else:
-			# Decrement Minutes
-			self._value[1] -= step
-		# Trigger change
-		self.changed()
-
-	def nextStep(self):
-		self._value[1] += 5 - self._value[1] % 5 - 1
-		self.increment()
-
-	def prevStep(self):
-		# Set Minutes to the previous multiple of 5
-		step = (4 + self._value[1]) % 5 + 1
-		self.decrement(step)
-
-	def handleKey(self, key):
-		if self.wideformat is None:
-			self.wideformat = config.usage.time.wide.value
-		if key == KEY_DELETE and self.wideformat:
+	def handleKey(self, key, callback=None):
+		if key == ACTIONKEY_DELETE and config.usage.time.wide.value:
 			if self._value[0] < 12:
 				self._value[0] += 12
 				self.validate()
 				self.changed()
-		elif key == KEY_BACKSPACE and self.wideformat:
+		elif key == ACTIONKEY_BACKSPACE and config.usage.time.wide.value:
 			if self._value[0] >= 12:
 				self._value[0] -= 12
 				self.validate()
 				self.changed()
-		elif key in KEY_NUMBERS or key == KEY_ASCII:
-			if key == KEY_ASCII:
+		elif key in ACTIONKEY_NUMBERS or key == ACTIONKEY_ASCII:
+			if key == ACTIONKEY_ASCII:
 				code = getPrevAsciiCode()
 				if code < 48 or code > 57:
 					return
 				digit = code - 48
 			else:
 				digit = getKeyNumber(key)
-
 			hour = self._value[0]
 			pmadjust = 0
-			if self.wideformat:
-				if hour > 11:  # All the PM times
+			if config.usage.time.wide.value:
+				if hour > 11:  # All the PM times.
 					hour -= 12
 					pmadjust = 12
-				if hour == 0:  # 12AM & 12PM map to 12
+				if hour == 0:  # 12AM & 12PM map to 12.
 					hour = 12
-				if self.marked_pos == 0 and digit >= 2:  # Only 0, 1 allowed (12 hour clock)
+				if self.markedPos == 0 and digit >= 2:  # Only 0, 1 allowed (12 hour clock).
 					return
-				if self.marked_pos == 1 and hour > 9 and digit >= 3:  # Only 10, 11, 12 allowed
+				if self.markedPos == 1 and hour > 9 and digit >= 3:  # Only 10, 11, 12 allowed.
 					return
-				if self.marked_pos == 1 and hour < 10 and digit == 0:  # Only 01, 02, ..., 09 allowed
+				if self.markedPos == 1 and hour < 10 and digit == 0:  # Only 01, 02, ..., 09 allowed.
 					return
 			else:
-				if self.marked_pos == 0 and digit >= 3:  # Only 0, 1, 2 allowed (24 hour clock)
+				if self.markedPos == 0 and digit >= 3:  # Only 0, 1, 2 allowed (24 hour clock).
 					return
-				if self.marked_pos == 1 and hour > 19 and digit >= 4:  # Only 20, 21, 22, 23 allowed
+				if self.markedPos == 1 and hour > 19 and digit >= 4:  # Only 20, 21, 22, 23 allowed.
 					return
-			if self.marked_pos == 2 and digit >= 6:  # Only 0, 1, ..., 5 allowed (tens digit of minutes)
+			if self.markedPos == 2 and digit >= 6:  # Only 0, 1, ..., 5 allowed (tens digit of minutes).
 				return
-
 			value = bytearray(b"%02d%02d" % (hour, self._value[1]))  # Must be ASCII!
-			value[self.marked_pos] = digit + ord(b'0')
+			value[self.markedPos] = digit + ord(b"0")
 			hour = int(value[:2])
 			minute = int(value[2:])
-
-			if self.wideformat:
-				if hour == 12:  # 12AM & 12PM map to back to 00
+			if config.usage.time.wide.value:
+				if hour == 12:  # 12AM & 12PM map to back to 00.
 					hour = 0
 				elif hour > 12:
 					hour = 10
 				hour += pmadjust
 			elif hour > 23:
 				hour = 20
-
 			self._value[0] = hour
 			self._value[1] = minute
-			self.marked_pos += 1
+			self.markedPos += 1
 			self.validate()
 			self.changed()
 		else:
-			ConfigSequence.handleKey(self, key)
+			ConfigSequence.handleKey(self, key, callback)
+
+	def increment(self):
+		if self._value[1] == 59:  # Check if Minutes maxed out, increment Hour, reset Minutes.
+			if self._value[0] < 23:
+				self._value[0] += 1
+			else:
+				self._value[0] = 0
+			self._value[1] = 0
+		else:  # Increment Minutes.
+			self._value[1] += 1
+		self.changed()  # Trigger change.
+
+	def decrement(self):
+		if self._value[1] == 0:  # Check if Minutes is minimum, decrement Hour, set Minutes to 59.
+			if self._value[0] > 0:
+				self._value[0] -= 1
+			else:
+				self._value[0] = 23
+			self._value[1] = 59
+		else:  # Decrement Minutes.
+			self._value[1] -= 1
+		self.changed()  # Trigger change.
 
 	def genText(self):
-		if self.timeformat is None:
-			self.timeformat = config.usage.time.short.value.replace("%-I", "%_I").replace("%-H", "%_H")
-		mPos = self.marked_pos
+		mPos = self.markedPos
 		if mPos >= 2:
-			mPos += 1  # Skip over the separator
-		newtime = list(self.t)
+			mPos += 1  # Skip over the separator.
+		newtime = list(self.time)
 		newtime[3] = self._value[0]
 		newtime[4] = self._value[1]
-		value = strftime(self.timeformat, newtime)
-		return value, mPos
+		newtime = struct_time(newtime)
+		value = strftime(config.usage.time.short.value.replace("%-I", "%_I").replace("%-H", "%_H"), newtime)
+		return (value, mPos)
 
-integer_limits = (0, 9999999999)
-class ConfigInteger(ConfigSequence):
-	def __init__(self, default, limits = integer_limits):
-		ConfigSequence.__init__(self, seperator = ":", limits = [limits], default = default)
 
-	# you need to override this to do input validation
-	def setValue(self, value):
-		self._value = [value]
-		self.changed()
+class ConfigDate(ConfigSequence):
+	def __init__(self, default):
+		date = localtime(default)
+		ConfigSequence.__init__(self, seperator="/", limits=[(1, 31), (1, 12), (1970, 2050)], default=[date.tm_mday, date.tm_mon, date.tm_year])
 
-	def getValue(self):
-		return self._value[0]
-
-	value = property(getValue, setValue)
-
-	def fromstring(self, value):
-		return int(value)
-
-	def tostring(self, value):
-		return str(value)
-
-class ConfigPIN(ConfigInteger):
-	def __init__(self, default, len = 4, censor = ""):
-		assert isinstance(default, int), "ConfigPIN default must be an integer"
-		ConfigSequence.__init__(self, seperator = ":", limits = [(0, (10**len)-1)], censor_char = censor, default = default)
-		self.len = len
-
-	def getLength(self):
-		return self.len
 
 class ConfigFloat(ConfigSequence):
 	def __init__(self, default, limits):
-		ConfigSequence.__init__(self, seperator = ".", limits = limits, default = default)
+		ConfigSequence.__init__(self, seperator=".", limits=limits, default=default)
 
 	def getFloat(self):
 		return float(self.value[1] / float(self.limits[1][1] + 1) + self.value[0])
@@ -1089,789 +1323,699 @@ class ConfigFloat(ConfigSequence):
 
 	floatint = property(getFloatInt, setFloatInt)
 
-# an editable text...
-class ConfigText(ConfigElement, NumericalTextInput):
-	def __init__(self, default = "", fixed_size = True, visible_width = False, show_help=True):
-		ConfigElement.__init__(self)
-		NumericalTextInput.__init__(self, nextFunc = self.nextFunc, handleTimeout = False)
 
-		self.marked_pos = 0
-		self.allmarked = (default != "")
+class ConfigInteger(ConfigSequence):
+	def __init__(self, default, limits=(0, 9999999999), censor=""):
+		ConfigSequence.__init__(self, seperator=":", limits=[limits], default=default, censor=censor)
+		self.length = len(str(limits[1]))  # DEBUG: Is this actually used?
+
+	def fromString(self, value):
+		return int(value)
+
+	def toString(self, value):
+		return str(value)
+
+	def getValue(self):
+		return self._value[0]
+
+	def setValue(self, value):
+		prev = self._value if hasattr(self, "_value") else None
+		self._value = [value]
+		if self._value != prev:
+			self.changed()
+
+	value = property(getValue, setValue)
+
+	def getLimits(self):
+		return self.limits
+
+
+class ConfigPIN(ConfigInteger):
+	def __init__(self, default, pinLength=4, censor=u"\u2022"):
+		if not isinstance(default, int):
+			raise TypeError("[Config] Error: 'ConfigPIN' default must be an integer!")
+		if censor != "" and (isinstance(censor, str) and len(censor) != 1): # and (isinstance(censor, unicode) and len(censor) != 1):
+			raise ValueError("[Config] Error: Censor must be a single char (or \"\")!")
+		ConfigInteger.__init__(self, default=default, limits=(0, (10 ** pinLength) - 1), censor=censor)
+		self.pinLength = pinLength
+
+	def getLength(self):
+		return self.pinLength
+
+
+class ConfigIP(ConfigSequence):
+	def __init__(self, default, auto_jump=False):
+		ConfigSequence.__init__(self, seperator=".", limits=[(0, 255), (0, 255), (0, 255), (0, 255)], default=default)
+		self.autoJump = auto_jump
+		self.markedPos = 0
+		self.overwrite = True
+		self.zeroPad = False
+
+	def handleKey(self, key, callback=None):
+		if key == ACTIONKEY_FIRST:
+			self.markedPos = 0
+			self.overwrite = True
+		elif key == ACTIONKEY_LEFT:
+			if self.markedPos > 0:
+				self.markedPos -= 1
+			self.overwrite = True
+		elif key == ACTIONKEY_RIGHT:
+			if self.markedPos < len(self.limits) - 1:
+				self.markedPos += 1
+			self.overwrite = True
+		elif key == ACTIONKEY_LAST:
+			self.markedPos = len(self.limits) - 1
+			self.overwrite = True
+		elif key in (ACTIONKEY_DELETE, ACTIONKEY_BACKSPACE):
+			self._value[self.markedPos] = 0
+			self.overwrite = True
+		elif key == ACTIONKEY_ERASE:
+			self.markedPos = 0
+			self._value = [0, 0, 0, 0]
+			self.overwrite = True
+		elif key in ACTIONKEY_NUMBERS or key == ACTIONKEY_ASCII:
+			if key == ACTIONKEY_ASCII:
+				code = getPrevAsciiCode()
+				if code < 48 or code > 57:
+					return
+				number = code - 48
+			else:
+				number = getKeyNumber(key)
+			prev = self._value[:]
+			if self.overwrite:
+				self._value[self.markedPos] = number
+				self.overwrite = False
+			else:
+				newValue = (self._value[self.markedPos] * 10) + number
+				if self.autoJump and newValue > self.limits[self.markedPos][1] and self.markedPos < len(self.limits) - 1:
+					self.handleKey(ACTIONKEY_RIGHT, callback)
+					self.handleKey(key, callback)
+					return
+				else:
+					self._value[self.markedPos] = newValue
+			if len(str(self._value[self.markedPos])) >= self.blockLen[self.markedPos]:
+				self.handleKey(ACTIONKEY_RIGHT, callback)
+			self.validate()
+			if self._value != prev:
+				self.changed()
+				if callable(callback):
+					callback()
+
+	def getMulti(self, selected):
+		(value, mBlock) = self.genText()
+		return ("mtext"[1 - selected:], value, mBlock) if self.enabled else ("text", value)
+
+	def genText(self):
+		value = self.seperator.join([str(x) for x in self._value])
+		blockLen = [len(str(x)) for x in self._value]
+		leftPos = sum(blockLen[:self.markedPos]) + self.markedPos
+		rightPos = sum(blockLen[:self.markedPos + 1]) + self.markedPos
+		mBlock = list(range(leftPos, rightPos))
+		return (value, mBlock)
+
+
+class ConfigMAC(ConfigSequence):
+	def __init__(self, default):
+		ConfigSequence.__init__(self, seperator=":", limits=[(0, 255), (0, 255), (0, 255), (0, 255), (0, 255), (0, 255)], default=default)
+
+
+class ConfigPosition(ConfigSequence):
+	def __init__(self, default, args):
+		ConfigSequence.__init__(self, seperator=",", limits=[(0, args[0]), (0, args[1]), (0, args[2]), (0, args[3])], default=default)
+
+
+# This is the control, and base class, for a set/list of selection value toggle settings.
+#
+class ConfigSet(ConfigElement):
+	def __init__(self, choices, default=None):
+		ConfigElement.__init__(self)
+		if isinstance(choices, list):
+			choices.sort()
+			self.choices = choicesList(choices, choicesList.TYPE_LIST)
+		else:
+			raise TypeError("[Config] Error: 'ConfigSet' choices must be a list!")
+		if default is None:
+			default = []
+		default.sort()
+		self.default = default
+		self.lastValue = default
+		self.value = shallowcopy(default)
+		self.pos = 0
+
+	def load(self):
+		ConfigElement.load(self)
+		if not isinstance(self.value, list):
+			self.value = [] if self.value is None else list(self.value)
+		self.value.sort()
+
+	def handleKey(self, key, callback=None):
+		if key == ACTIONKEY_FIRST:
+			self.pos = 0
+		elif key == ACTIONKEY_LEFT:
+			self.pos = self.pos - 1 if self.pos > 0 else len(self.choices) - 1
+		elif key == ACTIONKEY_RIGHT:
+			self.pos = self.pos + 1 if self.pos < len(self.choices) - 1 else 0
+		elif key == ACTIONKEY_LAST:
+			self.pos = len(self.choices) - 1
+		elif key in [ACTIONKEY_TOGGLE, ACTIONKEY_SELECT, ACTIONKEY_DELETE, ACTIONKEY_BACKSPACE] + ACTIONKEY_NUMBERS:
+			value = self.value
+			choice = self.choices[self.pos]
+			if choice in value:
+				value.remove(choice)
+			else:
+				value.append(choice)
+				value.sort()
+			self.value = value
+			self.changed()
+			if callable(callback):
+				callback()
+
+	def getText(self):
+		return " ".join([self.description[x] for x in self.value])
+
+	def getMulti(self, selected):
+		if selected:
+			text = []
+			pos = 0
+			start = 0
+			end = 0
+			for item in self.choices:
+				itemStr = str(item)
+				text.append(" %s " % itemStr if item in self.value else "(%s)" % itemStr)
+				length = 2 + len(itemStr)
+				if item == self.choices[self.pos]:
+					start = pos
+					end = start + length
+				pos += length
+			return ("mtext", "".join(text), list(range(start, end)))
+		else:
+			return ("text", " ".join([self.description[x] for x in self.value]))
+
+	def fromString(self, value):
+		return eval(value)
+
+	# def toString(self, value):
+	# 	return str(value)
+
+	def toDisplayString(self, value):
+		return ", ".join([self.description[x] for x in value])
+
+	def onDeselect(self, session):
+		# self.pos = 0  # Enable this to reset the position marker to the first element.
+		if self.lastValue != self.value:
+			self.lastValue = shallowcopy(self.value)
+			self.changedFinal()
+
+	description = property(lambda self: descriptionsList(self.choices.choices, choicesList.TYPE_LIST))
+
+
+# This is the control, and base class, for slider settings.
+#
+class ConfigSlider(ConfigElement):
+	def __init__(self, default=0, increment=1, limits=(0, 100)):
+		ConfigElement.__init__(self)
+		if not isinstance(default, int):
+			raise TypeError("[Config] Error: 'ConfigSlider' default must be an integer!")
+		if not isinstance(increment, int):
+			raise TypeError("[Config] Error: 'ConfigSlider' increment must be an integer!")
+		if not isinstance(limits[0], int):
+			raise TypeError("[Config] Error: 'ConfigSlider' minimum value must be an integer!")
+		if not isinstance(limits[1], int):
+			raise TypeError("[Config] Error: 'ConfigSlider' maximum value must be an integer!")
+		if limits[0] >= limits[1]:
+			raise ValueError("[Config] Error: 'ConfigSlider' minimum value must be less than maximum value!")
+		self.default = default
+		self.lastValue = default
+		self.value = default
+		self.increment = increment
+		self.min = limits[0]
+		self.max = limits[1]
+
+	def handleKey(self, key, callback=None):
+		value = self.value
+		if key == ACTIONKEY_FIRST:
+			value = self.min
+		elif key == ACTIONKEY_LEFT:
+			value -= self.increment
+		elif key == ACTIONKEY_RIGHT:
+			value += self.increment
+		elif key == ACTIONKEY_LAST:
+			value = self.max
+		else:
+			return
+		if value < self.min:
+			value = self.min
+		elif value > self.max:
+			value = self.max
+		if value != self.value:
+			self.value = value
+			self.changed()
+			if callable(callback):
+				callback()
+
+	def getText(self):
+		return "%d / %d" % (self.value, self.max)
+
+	def getMulti(self, selected):
+		return ("slider", self.value, self.max)
+
+	def fromString(self, value):
+		return int(value)
+
+
+# This is the control, and base class, for editable text settings.
+#
+class ConfigText(ConfigElement, NumericalTextInput):
+	def __init__(self, default="", fixed_size=True, visible_width=False):
+		ConfigElement.__init__(self)
+		NumericalTextInput.__init__(self, nextFunc=self.nextFunc, handleTimeout=False, mode="Default")
+		self.markedPos = 0
+		self.allmarked = (default != "")  # This is also used in Input.py!
 		self.fixed_size = fixed_size
 		self.visible_width = visible_width
 		self.offset = 0
 		self.overwrite = fixed_size
-		self.help_window = None
-		self.show_help = show_help
-		self.value = self.last_value = self.default = default
+		self.help_window = None  # DEBUG: Used in ConfigList.py, Wizard.py and NetworkSetup.py!
+		self.value = self.lastValue = self.default = default
+		self.callback = None
 
-	def validateMarker(self):
-		textlen = len(self.text)
-		if self.fixed_size:
-			if self.marked_pos > textlen-1:
-				self.marked_pos = textlen-1
-		else:
-			if self.marked_pos > textlen:
-				self.marked_pos = textlen
-		if self.marked_pos < 0:
-			self.marked_pos = 0
-		if self.visible_width:
-			if self.marked_pos < self.offset:
-				self.offset = self.marked_pos
-			if self.marked_pos >= self.offset + self.visible_width:
-				if self.marked_pos == textlen:
-					self.offset = self.marked_pos - self.visible_width
-				else:
-					self.offset = self.marked_pos - self.visible_width + 1
-			if self.offset > 0 and self.offset + self.visible_width > textlen:
-				self.offset = max(0, len - self.visible_width)
+	def handleKey(self, key, callback=None):  # This will not change anything on the value itself so we can handle it here in GUI element.
+		if callable(callback):
+			self.callback = callback
+		prev = self.value
+		if key == ACTIONKEY_FIRST:
+			self.timeout()
+			self.allmarked = False
+			self.markedPos = 0
+		elif key == ACTIONKEY_LEFT:
+			self.timeout()
+			if self.allmarked:
+				self.markedPos = len(self.text)
+				self.allmarked = False
+			else:
+				self.markedPos -= 1
+		elif key == ACTIONKEY_RIGHT:
+			self.timeout()
+			if self.allmarked:
+				self.markedPos = 0
+				self.allmarked = False
+			else:
+				self.markedPos += 1
+		elif key == ACTIONKEY_LAST:
+			self.timeout()
+			self.allmarked = False
+			self.markedPos = len(self.text)
+		elif key == ACTIONKEY_BACKSPACE:
+			self.timeout()
+			if self.allmarked:
+				self.deleteAllChars()
+				self.allmarked = False
+			elif self.markedPos > 0:
+				self.deleteChar(self.markedPos - 1)
+				if not self.fixed_size and self.offset > 0:
+					self.offset -= 1
+				self.markedPos -= 1
+		elif key == ACTIONKEY_DELETE:
+			self.timeout()
+			if self.allmarked:
+				self.deleteAllChars()
+				self.allmarked = False
+			else:
+				self.deleteChar(self.markedPos)
+				if self.fixed_size and self.overwrite:
+					self.markedPos += 1
+		elif key == ACTIONKEY_ERASE:
+			self.timeout()
+			self.deleteAllChars()
+		elif key == ACTIONKEY_TOGGLE:
+			self.timeout()
+			self.overwrite = not self.overwrite
+		elif key == ACTIONKEY_ASCII:
+			self.timeout()
+			newChar = chr(getPrevAsciiCode())
+			if not self.useableChars or newChar in self.useableChars:
+				if self.allmarked:
+					self.deleteAllChars()
+					self.allmarked = False
+				self.insertChar(newChar, self.markedPos, False)
+				self.markedPos += 1
+		elif key in ACTIONKEY_NUMBERS:
+			owr = self.lastKey == getKeyNumber(key)
+			newChar = self.getKey(getKeyNumber(key))
+			if self.allmarked:
+				self.deleteAllChars()
+				self.allmarked = False
+			self.insertChar(newChar, self.markedPos, owr)
+			if self.help_window:
+				self.help_window.update(self)
+			return
+		elif key == ACTIONKEY_TIMEOUT:
+			self.timeout()
+			if self.help_window:
+				self.help_window.update(self)
+			return
+		self.validateMarker()
+		if self.value != prev:
+			self.changed()
+			if self.callback:
+				self.callback()
+
+	def nextFunc(self):
+		self.markedPos += 1
+		self.validateMarker()
+		self.changed()
+		if self.callback:
+			self.callback()
 
 	def insertChar(self, ch, pos, owr):
 		if owr or self.overwrite:
-			self.text = self.text[0:pos] + ch + self.text[pos + 1:]
+			self.text = "%s%s%s" % (self.text[0:pos], ch, self.text[pos + 1:])
 		elif self.fixed_size:
-			self.text = self.text[0:pos] + ch + self.text[pos:-1]
+			self.text = "%s%s%s" % (self.text[0:pos], ch, self.text[pos:-1])
 		else:
-			self.text = self.text[0:pos] + ch + self.text[pos:]
+			self.text = "%s%s%s" % (self.text[0:pos], ch, self.text[pos:])
 
 	def deleteChar(self, pos):
 		if not self.fixed_size:
-			self.text = self.text[0:pos] + self.text[pos + 1:]
+			self.text = "%s%s" % (self.text[0:pos], self.text[pos + 1:])
 		elif self.overwrite:
-			self.text = self.text[0:pos] + " " + self.text[pos + 1:]
+			self.text = "%s %s" % (self.text[0:pos], self.text[pos + 1:])
 		else:
-			self.text = self.text[0:pos] + self.text[pos + 1:] + " "
+			self.text = "%s%s " % (self.text[0:pos], self.text[pos + 1:])
 
 	def deleteAllChars(self):
 		if self.fixed_size:
 			self.text = " " * len(self.text)
 		else:
 			self.text = ""
-		self.marked_pos = 0
+		self.markedPos = 0
 
-	def handleKey(self, key):
-		# this will no change anything on the value itself
-		# so we can handle it here in gui element
-		if key == KEY_DELETE:
-			self.timeout()
-			if self.allmarked:
-				self.deleteAllChars()
-				self.allmarked = False
-			else:
-				self.deleteChar(self.marked_pos)
-				if self.fixed_size and self.overwrite:
-					self.marked_pos += 1
-		elif key == KEY_BACKSPACE:
-			self.timeout()
-			if self.allmarked:
-				self.deleteAllChars()
-				self.allmarked = False
-			elif self.marked_pos > 0:
-				self.deleteChar(self.marked_pos-1)
-				if not self.fixed_size and self.offset > 0:
-					self.offset -= 1
-				self.marked_pos -= 1
-		elif key == KEY_LEFT:
-			self.timeout()
-			if self.allmarked:
-				self.marked_pos = len(self.text)
-				self.allmarked = False
-			else:
-				self.marked_pos -= 1
-		elif key == KEY_RIGHT:
-			self.timeout()
-			if self.allmarked:
-				self.marked_pos = 0
-				self.allmarked = False
-			else:
-				self.marked_pos += 1
-		elif key == KEY_HOME:
-			self.timeout()
-			self.allmarked = False
-			self.marked_pos = 0
-		elif key == KEY_END:
-			self.timeout()
-			self.allmarked = False
-			self.marked_pos = len(self.text)
-		elif key == KEY_TOGGLEOW:
-			self.timeout()
-			self.overwrite = not self.overwrite
-		elif key == KEY_ASCII:
-			self.timeout()
-			newChar = unichr(getPrevAsciiCode())
-			if not self.useableChars or newChar in self.useableChars:
-				if self.allmarked:
-					self.deleteAllChars()
-					self.allmarked = False
-				self.insertChar(newChar, self.marked_pos, False)
-				self.marked_pos += 1
-		elif key in KEY_NUMBERS:
-			owr = self.lastKey == getKeyNumber(key)
-			newChar = self.getKey(getKeyNumber(key))
-			if self.allmarked:
-				self.deleteAllChars()
-				self.allmarked = False
-			self.insertChar(newChar, self.marked_pos, owr)
-		elif key == KEY_TIMEOUT:
-			self.timeout()
-			if self.help_window:
-				self.help_window.update(self)
-			return
-
-		if self.help_window:
-			self.help_window.update(self)
-		self.validateMarker()
-		self.changed()
-
-	def nextFunc(self):
-		self.marked_pos += 1
-		self.validateMarker()
-		self.changed()
-
-	def getValue(self):
-		try:
-			return self.text.encode("utf-8")
-		except UnicodeDecodeError:
-			print "Broken UTF8!"
-			return self.text
-
-	def setValue(self, val):
-		try:
-			self.text = val.decode("utf-8")
-		except UnicodeDecodeError:
-			self.text = val.decode("utf-8", "ignore")
-			print "Broken UTF8!"
-
-	value = property(getValue, setValue)
-	_value = property(getValue, setValue)
+	def validateMarker(self):
+		textlen = len(self.text)
+		if self.fixed_size:
+			if self.markedPos > textlen - 1:
+				self.markedPos = textlen - 1
+		else:
+			if self.markedPos > textlen:
+				self.markedPos = textlen
+		if self.markedPos < 0:
+			self.markedPos = 0
+		if self.visible_width:
+			if self.markedPos < self.offset:
+				self.offset = self.markedPos
+			if self.markedPos >= self.offset + self.visible_width:
+				if self.markedPos == textlen:
+					self.offset = self.markedPos - self.visible_width
+				else:
+					self.offset = self.markedPos - self.visible_width + 1
+			if self.offset > 0 and self.offset + self.visible_width > textlen:
+				self.offset = max(0, textlen - self.visible_width)
 
 	def getText(self):
-		return self.text.encode("utf-8")
+		return self.text
 
 	def getMulti(self, selected):
+		padding = u"\u00A0" if selected else ""
 		if self.visible_width:
 			if self.allmarked:
-				mark = range(0, min(self.visible_width, len(self.text)))
+				mark = list(range(0, min(self.visible_width, len(self.text))))
 			else:
-				mark = [self.marked_pos-self.offset]
-			return "mtext"[1-selected:], self.text[self.offset:self.offset+self.visible_width].encode("utf-8")+" ", mark
+				mark = [self.markedPos - self.offset]
+			multi = "%s%s" % (self.text[self.offset:self.offset + self.visible_width], padding)
 		else:
 			if self.allmarked:
-				mark = range(0, len(self.text))
+				mark = list(range(0, len(self.text)))
 			else:
-				mark = [self.marked_pos]
-			return "mtext"[1-selected:], self.text.encode("utf-8")+" ", mark
+				mark = [self.markedPos]
+			multi = "%s%s" % (self.text, padding)
+		return ("mtext"[1 - selected:], multi, mark)
+
+	def showHelp(self, session):
+		if session is not None and self.help_window is not None:
+			self.help_window.show()
+
+	def hideHelp(self, session):
+		if session is not None and self.help_window is not None:
+			self.help_window.hide()
 
 	def onSelect(self, session):
 		self.allmarked = (self.value != "")
+		if self.value and isinstance(self.value, str): # FIXME multiline text looks odd if all chars marked
+			self.allmarked = ("\n" not in self.value)
 		if session is not None:
 			from Screens.NumericalTextInputHelpDialog import NumericalTextInputHelpDialog
 			self.help_window = session.instantiateDialog(NumericalTextInputHelpDialog, self)
-			self.help_window.setAnimationMode(0)
-			if self.show_help:
-				self.help_window.show()
+			if BoxInfo.getItem("OSDAnimation"):
+				self.help_window.setAnimationMode(0)
+			self.help_window.show()
 
 	def onDeselect(self, session):
-		self.marked_pos = 0
+		self.markedPos = 0
 		self.offset = 0
 		if self.help_window:
 			session.deleteDialog(self.help_window)
 			self.help_window = None
-		if not self.last_value == self.value:
-			self.changedFinal()
-			self.last_value = self.value
-
-	def getHTML(self, id):
-		return '<input type="text" name="' + id + '" value="' + self.value + '" /><br>\n'
-
-	def unsafeAssign(self, value):
-		self.value = str(value)
-
-class ConfigPassword(ConfigText):
-	def __init__(self, default = "", fixed_size = False, visible_width = False, censor = "*", show_help=True):
-		ConfigText.__init__(self, default = default, fixed_size = fixed_size, visible_width = visible_width, show_help=show_help)
-		self.censor_char = censor
-		self.hidden = True
-
-	def getMulti(self, selected):
-		mtext, text, mark = ConfigText.getMulti(self, selected)
-		if self.hidden:
-			text = len(text) * self.censor_char
-		return mtext, text, mark
-
-	def onSelect(self, session):
-		ConfigText.onSelect(self, session)
-		self.hidden = False
-
-	def onDeselect(self, session):
-		ConfigText.onDeselect(self, session)
-		self.hidden = True
-
-# lets the user select between [min, min+stepwidth, min+(stepwidth*2)..., maxval] with maxval <= max depending
-# on the stepwidth
-# min, max, stepwidth, default are int values
-# wraparound: pressing RIGHT key at max value brings you to min value and vice versa if set to True
-class ConfigSelectionNumber(ConfigSelection):
-	def __init__(self, min, max, stepwidth, default = None, wraparound = False):
-		self.wraparound = wraparound
-		if default is None:
-			default = min
-		default = str(default)
-		choices = []
-		step = min
-		while step <= max:
-			choices.append(str(step))
-			step += stepwidth
-
-		ConfigSelection.__init__(self, choices, default)
+		ConfigElement.onDeselect(self, session)
 
 	def getValue(self):
-		return int(ConfigSelection.getValue(self))
+		return self.text
 
-	def setValue(self, val):
-		ConfigSelection.setValue(self, str(val))
-
-	value = property(getValue, setValue)
-
-	def getIndex(self):
-		return self.choices.index(self.value)
-
-	index = property(getIndex)
-
-	def isChanged(self):
-		sv = self.saved_value
-		strv = str(self.tostring(self.value))
-		if sv is None and strv == str(self.default):
-			return False
-		return strv != str(sv)
-
-	def handleKey(self, key):
-		if not self.wraparound:
-			if key == KEY_RIGHT:
-				if len(self.choices) == (self.choices.index(str(self.value)) + 1):
-					return
-			if key == KEY_LEFT:
-				if self.choices.index(str(self.value)) == 0:
-					return
-		nchoices = len(self.choices)
-		if nchoices > 1:
-			i = self.choices.index(str(self.value))
-			if key == KEY_LEFT:
-				self.value = self.choices[(i + nchoices - 1) % nchoices]
-			elif key == KEY_RIGHT:
-				self.value = self.choices[(i + 1) % nchoices]
-			elif key == KEY_HOME:
-				self.value = self.choices[0]
-			elif key == KEY_END:
-				self.value = self.choices[nchoices - 1]
-
-class ConfigNumber(ConfigText):
-	def __init__(self, default = 0):
-		ConfigText.__init__(self, str(default), fixed_size = False)
-
-	def getValue(self):
-		try:
-			return int(self.text)
-		except ValueError:
-			if self.text == "true":
-				self.text = "1"
-			else:
-				self.text = str(default)
-			return int(self.text)
-
-	def setValue(self, val):
-		self.text = str(val)
+	def setValue(self, value):
+		prev = self.text if hasattr(self, "text") else None
+		if isinstance(value, bytes):  # DEBUG: If bytes on PY3 we can print this and then convert.
+			try:
+				self.text = value.decode("UTF-8", errors="strict")
+			except UnicodeDecodeError:
+				print("[Config] Broken UTF8!")
+				self.text = value.decode("UTF-8", errors="ignore")
+		else:
+			self.text = value
+		if self.text != prev:
+			self.changed()
 
 	value = property(getValue, setValue)
 	_value = property(getValue, setValue)
 
-	def isChanged(self):
-		sv = self.saved_value
-		strv = self.tostring(self.value)
-		if sv is None and strv == self.default:
-			return False
-		return strv != sv
-
-	def conform(self):
-		pos = len(self.text) - self.marked_pos
-		self.text = self.text.lstrip("0")
-		if self.text == "":
-			self.text = "0"
-		if pos > len(self.text):
-			self.marked_pos = 0
-		else:
-			self.marked_pos = len(self.text) - pos
-
-	def handleKey(self, key):
-		if key in KEY_NUMBERS or key == KEY_ASCII:
-			if key == KEY_ASCII:
-				ascii = getPrevAsciiCode()
-				if not (48 <= ascii <= 57):
-					return
-			else:
-				ascii = getKeyNumber(key) + 48
-			newChar = unichr(ascii)
-			if self.allmarked:
-				self.deleteAllChars()
-				self.allmarked = False
-			self.insertChar(newChar, self.marked_pos, False)
-			self.marked_pos += 1
-		else:
-			ConfigText.handleKey(self, key)
-		self.conform()
-
-	def onSelect(self, session):
-		self.allmarked = (self.value != "")
-
-	def onDeselect(self, session):
-		self.marked_pos = 0
-		self.offset = 0
-		if not self.last_value == self.value:
-			self.changedFinal()
-			self.last_value = self.value
-
-class ConfigSearchText(ConfigText):
-	def __init__(self, default = "", fixed_size = False, visible_width = False):
-		ConfigText.__init__(self, default = default, fixed_size = fixed_size, visible_width = visible_width)
-		NumericalTextInput.__init__(self, nextFunc = self.nextFunc, handleTimeout = False, search = True)
 
 class ConfigDirectory(ConfigText):
 	def __init__(self, default="", visible_width=60):
-		ConfigText.__init__(self, default, fixed_size = True, visible_width = visible_width)
+		ConfigText.__init__(self, default, fixed_size=True, visible_width=visible_width)
 
-	def handleKey(self, key):
-		pass
-
-	def getValue(self):
-		if self.text == "":
-			return None
-		else:
-			return ConfigText.getValue(self)
-
-	def setValue(self, val):
-		if val is None:
-			val = ""
-		ConfigText.setValue(self, val)
+	def handleKey(self, key, callback=None):
+		# pass
+		if callable(callback):
+			callback()
 
 	def getMulti(self, selected):
 		if self.text == "":
-			return "mtext"[1-selected:], _("List of storage devices"), range(0)
+			return ("mtext"[1 - selected:], _("List of storage devices"), list(range(0)))
 		else:
 			return ConfigText.getMulti(self, selected)
 
 	def onSelect(self, session):
 		self.allmarked = (self.value != "")
 
-# a slider.
-class ConfigSlider(ConfigElement):
-	def __init__(self, default = 0, increment = 1, limits = (0, 100)):
-		ConfigElement.__init__(self)
-		self.value = self.last_value = self.default = default
-		self.min = limits[0]
-		self.max = limits[1]
-		self.increment = increment
 
-	def checkValues(self, value = None):
-		if value is None:
-			value = self.value
-		if value < self.min:
-			value = self.min
-		elif value > self.max:
-			value = self.max
-		if self.value != value:		#avoid call of setter if value not changed
-			self.value = value
+class ConfigMACText(ConfigText):
+	def __init__(self, default="", visible_width=17):
+		ConfigText.__init__(self, default, fixed_size=True, visible_width=visible_width)
+		NumericalTextInput.setMode(self, "HexFastLogicalUpper")  # HexFastUpper
+		self.allmarked = False
 
-	def handleKey(self, key):
-		if key == KEY_LEFT:
-			tmp = self.value - self.increment
-		elif key == KEY_RIGHT:
-			tmp = self.value + self.increment
-		elif key == KEY_HOME:
-			self.value = self.min
+	def handleKey(self, key, callback=None):
+		if callable(callback):
+			self.callback = callback
+		prev = self.value
+		if key == ACTIONKEY_FIRST:
+			self.timeout()
+			self.markedPos = 0
+		elif key == ACTIONKEY_LEFT:
+			self.timeout()
+			self.markedPos -= 2 if self.text[self.markedPos - 1] == ":" else 1
+		elif key == ACTIONKEY_RIGHT:
+			self.timeout()
+			self.markedPos += 2 if self.markedPos < self.visible_width - 1 and self.text[self.markedPos + 1] == ":" else 1
+		elif key == ACTIONKEY_LAST:
+			self.timeout()
+			self.markedPos = len(self.text)
+		elif key == ACTIONKEY_ERASE:
+			self.timeout()
+			self.text = self.text[2].join(["00"] * 6)
+			self.markedPos = 0
+		elif key in ACTIONKEY_NUMBERS:
+			owr = self.lastKey == getKeyNumber(key)
+			newChar = self.getKey(getKeyNumber(key))
+			self.insertChar(newChar, self.markedPos, owr)
+		elif key == ACTIONKEY_TIMEOUT:
+			self.timeout()
+			if self.help_window:
+				self.help_window.update(self)
+			if self.text[self.markedPos] == ":":
+				self.markedPos += 1
 			return
-		elif key == KEY_END:
-			self.value = self.max
-			return
-		else:
-			return
-		self.checkValues(tmp)
-
-	def getText(self):
-		return "%d / %d" % (self.value, self.max)
-
-	def getMulti(self, selected):
-		self.checkValues()
-		return "slider", self.value, self.max
-
-	def fromstring(self, value):
-		return int(value)
-
-# a satlist. in fact, it's a ConfigSelection.
-class ConfigSatlist(ConfigSelection):
-	def __init__(self, list, default = None):
-		if default is not None:
-			default = str(default)
-		ConfigSelection.__init__(self, choices = [(str(orbpos), desc) for (orbpos, desc, flags) in list], default = default)
-
-	def getOrbitalPosition(self):
-		if self.value == "":
-			return None
-		return int(self.value)
-
-	orbital_position = property(getOrbitalPosition)
-
-class ConfigSet(ConfigElement):
-	def __init__(self, choices, default=None):
-		if not default: default = []
-		ConfigElement.__init__(self)
-		if isinstance(choices, list):
-			choices.sort()
-			self.choices = choicesList(choices, choicesList.LIST_TYPE_LIST)
-		else:
-			assert False, "ConfigSet choices must be a list!"
-		if default is None:
-			default = []
-		self.pos = -1
-		default.sort()
-		self.last_value = self.default = default
-		self.value = default[:]
-
-	def toggleChoice(self, choice):
-		value = self.value
-		if choice in value:
-			value.remove(choice)
-		else:
-			value.append(choice)
-			value.sort()
-		self.changed()
-
-	def handleKey(self, key):
-		if key in KEY_NUMBERS + [KEY_DELETE, KEY_BACKSPACE]:
-			if self.pos != -1:
-				self.toggleChoice(self.choices[self.pos])
-		elif key == KEY_LEFT:
-			if self.pos < 0:
-				self.pos = len(self.choices)-1
-			else:
-				self.pos -= 1
-		elif key == KEY_RIGHT:
-			if self.pos >= len(self.choices)-1:
-				self.pos = -1
-			else:
-				self.pos += 1
-		elif key in (KEY_HOME, KEY_END):
-			self.pos = -1
-
-	def genString(self, lst):
-		res = ""
-		for x in lst:
-			res += self.description[x]+" "
-		return res
-
-	def getText(self):
-		return self.genString(self.value)
-
-	def getMulti(self, selected):
-		if not selected or self.pos == -1:
-			return "text", self.genString(self.value)
-		else:
-			tmp = self.value[:]
-			ch = self.choices[self.pos]
-			mem = ch in self.value
-			if not mem:
-				tmp.append(ch)
-				tmp.sort()
-			ind = tmp.index(ch)
-			val1 = self.genString(tmp[:ind])
-			val2 = " "+self.genString(tmp[ind+1:])
-			if mem:
-				chstr = " "+self.description[ch]+" "
-			else:
-				chstr = "("+self.description[ch]+")"
-			len_val1 = len(val1)
-			return "mtext", val1+chstr+val2, range(len_val1, len_val1 + len(chstr))
-
-	def onDeselect(self, session):
-		self.pos = -1
-		if not self.last_value == self.value:
-			self.changedFinal()
-			self.last_value = self.value[:]
-
-	def tostring(self, value):
-		return str(value)
-
-	def fromstring(self, val):
-		return eval(val)
-
-	description = property(lambda self: descriptionList(self.choices.choices, choicesList.LIST_TYPE_LIST))
-
-
-class ConfigDictionarySet(ConfigElement):
-	def __init__(self, default = {}):
-		ConfigElement.__init__(self)
-		self.default = default
-		self.dirs = {}
-		self.value = self.default
-
-	def getKeys(self):
-		return self.dir_pathes
-
-	def setValue(self, value):
-		if isinstance(value, dict):
-			self.dirs = value
+		if self.help_window:
+			self.help_window.update(self)
+		self.validateMarker()
+		if self.value != prev:
 			self.changed()
+			if self.callback:
+				self.callback()
 
-	def getValue(self):
-		return self.dirs
+	def validateMarker(self):
+		textlen = len(self.text)
+		if self.markedPos > textlen - 1:
+			self.markedPos = textlen - 1
+		elif self.markedPos < 0:
+			self.markedPos = 0
 
-	value = property(getValue, setValue)
+	def insertChar(self, ch, pos, owr):
+		if self.text[pos] == ":":
+			pos += 1
+		ConfigText.insertChar(self, ch, pos, owr)
 
-	def tostring(self, value):
-		return str(value)
+	def onSelect(self, session):
+		ConfigText.onSelect(self, session)
+		self.allmarked = False
 
-	def fromstring(self, val):
-		return eval(val)
 
-	def load(self):
-		sv = self.saved_value
-		if sv is None:
-			tmp = self.default
-		else:
-			tmp = self.fromstring(sv)
-		self.dirs = tmp
+class ConfigMacText(ConfigMACText):  # Deprecated class name.
+	def __init__(self, default="", visible_width=17):
+		ConfigMACText.__init__(self, default=default, visible_width=visible_width)
 
-	def changeConfigValue(self, value, config_key, config_value):
-		if isinstance(value, str) and isinstance(config_key, str):
-			if value in self.dirs:
-				self.dirs[value][config_key] = config_value
+
+class ConfigNumber(ConfigText):
+	def __init__(self, default=0):
+		if not isinstance(default, int):
+			raise TypeError("[Config] Error: 'ConfigNumber' requires a default of type integer!")
+		ConfigText.__init__(self, str(default), fixed_size=False)
+		NumericalTextInput.setMode(self, "Number")
+		self.value = self.lastValue = self.default = default
+
+	def handleKey(self, key, callback=None):
+		if key in ACTIONKEY_NUMBERS or key == ACTIONKEY_ASCII:
+			prev = int(self.text)
+			if key == ACTIONKEY_ASCII:
+				ascii = getPrevAsciiCode()
+				if not (48 <= ascii <= 57):
+					return
 			else:
-				self.dirs[value] = {config_key : config_value}
-			self.changed()
-
-	def getConfigValue(self, value, config_key):
-		if isinstance(value, str) and isinstance(config_key, str):
-			if value in self.dirs and config_key in self.dirs[value]:
-				return self.dirs[value][config_key]
-		return None
-
-	def removeConfigValue(self, value, config_key):
-		if isinstance(value, str) and isinstance(config_key, str):
-			if value in self.dirs and config_key in self.dirs[value]:
-				try:
-					del self.dirs[value][config_key]
-				except KeyError:
-					pass
+				ascii = getKeyNumber(key) + 48
+			newChar = chr(ascii)
+			if self.allmarked:
+				self.deleteAllChars()
+				self.allmarked = False
+			self.insertChar(newChar, self.markedPos, False)
+			self.markedPos += 1
+			self.validateMarker()
+			if int(self.text) != prev:
 				self.changed()
+				if callable(callback):
+					callback()
+		else:
+			ConfigText.handleKey(self, key, callback)
 
-	def save(self):
-		del_keys = []
-		for key in self.dirs:
-			if not len(self.dirs[key]):
-				del_keys.append(key)
-		for del_key in del_keys:
-			try:
-				del self.dirs[del_key]
-			except KeyError:
-				pass
-			self.changed()
-		self.saved_value = self.tostring(self.dirs)
-
-class ConfigLocations(ConfigElement):
-	def __init__(self, default=None, visible_width=False):
-		if not default: default = []
-		ConfigElement.__init__(self)
-		self.visible_width = visible_width
-		self.pos = -1
-		self.default = default
-		self.locations = []
-		self.mountpoints = []
-		self.value = default[:]
-
-	def setValue(self, value):
-		locations = self.locations
-		loc = [x[0] for x in locations if x[3]]
-		add = [x for x in value if not x in loc]
-		diff = add + [x for x in loc if not x in value]
-		locations = [x for x in locations if not x[0] in diff] + [[x, self.getMountpoint(x), True, True] for x in add]
-		#locations.sort(key = lambda x: x[0])
-		self.locations = locations
-		self.changed()
+	def validateMarker(self):
+		pos = len(self.text) - self.markedPos
+		self.text = self.text.lstrip("0")
+		if self.text == "":
+			self.text = "0"
+		if pos > len(self.text):
+			self.markedPos = 0
+		else:
+			self.markedPos = len(self.text) - pos
 
 	def getValue(self):
-		self.checkChangedMountpoints()
-		locations = self.locations
-		for x in locations:
-			x[3] = x[2]
-		return [x[0] for x in locations if x[3]]
+		try:
+			return int(self.text)
+		except ValueError:
+			self.text = "1" if self.text.lower() == "true" else self.default
+			return int(self.text)
+
+	def setValue(self, value):
+		prev = self.text if hasattr(self, "text") else None
+		self.text = str(value)
+		if self.text != prev:
+			self.changed()
 
 	value = property(getValue, setValue)
+	_value = property(getValue, setValue)
 
-	def tostring(self, value):
-		return str(value)
 
-	def fromstring(self, val):
-		return eval(val)
-
-	def load(self):
-		sv = self.saved_value
-		if sv is None:
-			tmp = self.default
-		else:
-			tmp = self.fromstring(sv)
-		locations = [[x, None, False, False] for x in tmp]
-		self.refreshMountpoints()
-		for x in locations:
-			if fileExists(x[0]):
-				x[1] = self.getMountpoint(x[0])
-				x[2] = True
-		self.locations = locations
-
-	def save(self):
-		locations = self.locations
-		if self.save_disabled or not locations:
-			self.saved_value = None
-		else:
-			self.saved_value = self.tostring([x[0] for x in locations])
-
-	def isChanged(self):
-		sv = self.saved_value
-		locations = self.locations
-		if sv is None and not locations:
-			return False
-		return self.tostring([x[0] for x in locations]) != sv
-
-	def addedMount(self, mp):
-		for x in self.locations:
-			if x[1] == mp:
-				x[2] = True
-			elif x[1] is None and fileExists(x[0]):
-				x[1] = self.getMountpoint(x[0])
-				x[2] = True
-
-	def removedMount(self, mp):
-		for x in self.locations:
-			if x[1] == mp:
-				x[2] = False
-
-	def refreshMountpoints(self):
-		self.mountpoints = [p.mountpoint for p in harddiskmanager.getMountedPartitions() if p.mountpoint != "/"]
-		self.mountpoints.sort(key = lambda x: -len(x))
-
-	def checkChangedMountpoints(self):
-		oldmounts = self.mountpoints
-		self.refreshMountpoints()
-		newmounts = self.mountpoints
-		if oldmounts == newmounts:
-			return
-		for x in oldmounts:
-			if not x in newmounts:
-				self.removedMount(x)
-		for x in newmounts:
-			if not x in oldmounts:
-				self.addedMount(x)
-
-	def getMountpoint(self, file):
-		file = os_path.realpath(file)+"/"
-		for m in self.mountpoints:
-			if file.startswith(m):
-				return m
-		return None
-
-	def handleKey(self, key):
-		if key == KEY_LEFT:
-			self.pos -= 1
-			if self.pos < -1:
-				self.pos = len(self.value)-1
-		elif key == KEY_RIGHT:
-			self.pos += 1
-			if self.pos >= len(self.value):
-				self.pos = -1
-		elif key in (KEY_HOME, KEY_END):
-			self.pos = -1
-
-	def getText(self):
-		return " ".join(self.value)
+class ConfigPassword(ConfigText):
+	def __init__(self, default="", fixed_size=False, visible_width=False, censor=u"\u2022"):
+		ConfigText.__init__(self, default=default, fixed_size=fixed_size, visible_width=visible_width)
+		if censor != "" and (isinstance(censor, str) and len(censor) != 1) and (isinstance(censor, unicode) and len(censor) != 1):
+			raise ValueError("[Config] Error: Censor must be a single char (or \"\")!")
+		self.censor = censor
+		self.hidden = True
 
 	def getMulti(self, selected):
-		if not selected:
-			valstr = " ".join(self.value)
-			if self.visible_width and len(valstr) > self.visible_width:
-				return "text", valstr[0:self.visible_width]
-			else:
-				return "text", valstr
-		else:
-			i = 0
-			valstr = ""
-			ind1 = 0
-			ind2 = 0
-			for val in self.value:
-				if i == self.pos:
-					ind1 = len(valstr)
-				valstr += str(val)+" "
-				if i == self.pos:
-					ind2 = len(valstr)
-				i += 1
-			if self.visible_width and len(valstr) > self.visible_width:
-				if ind1+1 < self.visible_width/2:
-					off = 0
-				else:
-					off = min(ind1+1-self.visible_width/2, len(valstr)-self.visible_width)
-				return "mtext", valstr[off:off+self.visible_width], range(ind1-off,ind2-off)
-			else:
-				return "mtext", valstr, range(ind1,ind2)
+		mtext, text, mark = ConfigText.getMulti(self, selected)
+		if self.hidden:
+			text = self.censor * len(text)  # For more security a fixed length string can be used!
+		return (mtext, text, mark)
+
+	def onSelect(self, session):
+		ConfigText.onSelect(self, session)
+		self.hidden = False
 
 	def onDeselect(self, session):
-		self.pos = -1
+		self.hidden = True
+		ConfigText.onDeselect(self, session)
 
-# nothing.
-class ConfigNothing(ConfigSelection):
-	def __init__(self):
-		ConfigSelection.__init__(self, choices = [("","")])
 
-# until here, 'saved_value' always had to be a *string*.
-# now, in ConfigSubsection, and only there, saved_value
-# is a dict, essentially forming a tree.
+class ConfigSearchText(ConfigText):
+	def __init__(self, default="", fixed_size=False, visible_width=False):
+		ConfigText.__init__(self, default=default, fixed_size=fixed_size, visible_width=visible_width)
+		NumericalTextInput.setMode(self, "Search")
+
+
+# Until here, "saved_value" always had to be a *string*.  Now, in
+# ConfigSubsection, and only there, "saved_value" is a dict, essentially
+# forming a tree:
 #
 # config.foo.bar=True
 # config.foobar=False
 #
 # turns into:
+#
 # config.saved_value == {"foo": {"bar": "True"}, "foobar": "False"}
 #
-
 class ConfigSubsectionContent(object):
 	pass
 
-# we store a backup of the loaded configuration
-# data in self.stored_values, to be able to deploy
-# them when a new config element will be added,
-# so non-default values are instantly available
 
+# We store a backup of the loaded configuration data in self.stored_values,
+# to be able to deploy them when a new config element will be added, so
+# non-default values are instantly available.
+#
 # A list, for example:
+#
 # config.dipswitches = ConfigSubList()
 # config.dipswitches.append(ConfigYesNo())
 # config.dipswitches.append(ConfigYesNo())
 # config.dipswitches.append(ConfigYesNo())
+#
 class ConfigSubList(list, object):
 	def __init__(self):
 		list.__init__(self)
 		self.stored_values = {}
 
-	def save(self):
-		for x in self:
-			x.save()
-
 	def load(self):
-		for x in self:
-			x.load()
+		for item in self:
+			item.load()
+
+	def save(self):
+		for item in self:
+			item.save()
 
 	def getSavedValue(self):
-		res = { }
-		for i, val in enumerate(self):
-			sv = val.saved_value
-			if sv is not None:
-				res[str(i)] = sv
-		return res
+		values = {}
+		for index, val in enumerate(self):
+			saved = val.saved_value
+			if saved is not None:
+				values[str(index)] = saved
+		return values
 
 	def setSavedValue(self, values):
 		self.stored_values = dict(values)
@@ -1879,50 +2023,27 @@ class ConfigSubList(list, object):
 			if int(key) < len(self):
 				self[int(key)].saved_value = val
 
+	savedValue = property(getSavedValue, setSavedValue)
 	saved_value = property(getSavedValue, setSavedValue)
 
 	def append(self, item):
-		i = str(len(self))
+		index = str(len(self))
 		list.append(self, item)
-		if i in self.stored_values:
-			item.saved_value = self.stored_values[i]
+		if index in self.stored_values:
+			item.saved_value = self.stored_values[index]
 			item.load()
 
 	def dict(self):
 		return dict([(str(index), value) for index, value in enumerate(self)])
 
-# same as ConfigSubList, just as a dictionary.
-# care must be taken that the 'key' has a proper
-# str() method, because it will be used in the config
-# file.
+
+# Same as ConfigSubList, just as a dictionary.  Care must be taken that the
+# "key" has a proper str() method, because it will be used in the config file.
+#
 class ConfigSubDict(dict, object):
 	def __init__(self):
 		dict.__init__(self)
 		self.stored_values = {}
-
-	def save(self):
-		for x in self.values():
-			x.save()
-
-	def load(self):
-		for x in self.values():
-			x.load()
-
-	def getSavedValue(self):
-		res = {}
-		for (key, val) in self.items():
-			sv = val.saved_value
-			if sv is not None:
-				res[str(key)] = sv
-		return res
-
-	def setSavedValue(self, values):
-		self.stored_values = dict(values)
-		for (key, val) in self.items():
-			if str(key) in self.stored_values:
-				val.saved_value = self.stored_values[str(key)]
-
-	saved_value = property(getSavedValue, setSavedValue)
 
 	def __setitem__(self, key, item):
 		dict.__setitem__(self, key, item)
@@ -1930,52 +2051,90 @@ class ConfigSubDict(dict, object):
 			item.saved_value = self.stored_values[str(key)]
 			item.load()
 
+	def load(self):
+		for item in self.values():
+			item.load()
+
+	def save(self):
+		for item in self.values():
+			item.save()
+
+	def getSavedValue(self):
+		values = {}
+		for (key, val) in self.items():
+			saved = val.saved_value
+			if saved is not None:
+				values[str(key)] = saved
+		return values
+
+	def setSavedValue(self, values):
+		self.stored_values = dict(values)
+		for (key, val) in self.items():
+			if str(key) in self.stored_values:
+				val.saved_value = self.stored_values[str(key)]
+
+	savedValue = property(getSavedValue, setSavedValue)
+	saved_value = property(getSavedValue, setSavedValue)
+
 	def dict(self):
 		return self
 
-# Like the classes above, just with a more "native"
-# syntax.
+
+# Like the classes above, just with a more "native" syntax.
 #
-# some evil stuff must be done to allow instant
-# loading of added elements. this is why this class
-# is so complex.
+# Some evil stuff must be done to allow instant loading of added elements.
+# This is why this class is so complex.
 #
-# we need the 'content' because we overwrite
-# __setattr__.
-# If you don't understand this, try adding
-# __setattr__ to a usual exisiting class and you will.
+# We need the "content" because we overwrite __setattr__.
+#
+# If you don't understand this, try adding __setattr__ to a usual exisiting
+# class and you will.
+#
 class ConfigSubsection(object):
 	def __init__(self):
 		self.__dict__["content"] = ConfigSubsectionContent()
-		self.content.items = { }
-		self.content.stored_values = { }
-
-	def __setattr__(self, name, value):
-		if name == "saved_value":
-			return self.setSavedValue(value)
-		assert isinstance(value, (ConfigSubsection, ConfigElement, ConfigSubList, ConfigSubDict)), "ConfigSubsections can only store ConfigSubsections, ConfigSubLists, ConfigSubDicts or ConfigElements"
-		content = self.content
-		content.items[name] = value
-		x = content.stored_values.get(name, None)
-		if x is not None:
-			#print "ok, now we have a new item,", name, "and have the following value for it:", x
-			value.saved_value = x
-			value.load()
+		self.content.items = {}
+		self.content.stored_values = {}
 
 	def __getattr__(self, name):
 		if name in self.content.items:
 			return self.content.items[name]
 		raise AttributeError(name)
 
+	def __setattr__(self, name, value):
+		if name == "saved_value":
+			return self.setSavedValue(value)
+		if not isinstance(value, (ConfigSubsection, ConfigElement, ConfigSubList, ConfigSubDict)):
+			raise TypeError("[Config] Error: 'ConfigSubsection' can only store ConfigSubsections, ConfigSubLists, ConfigSubDicts or ConfigElements!")
+		content = self.content
+		content.items[name] = value
+		val = content.stored_values.get(name, None)
+		if val is not None:
+			# print("[Config] Ok, now we have a new item '%s' and have the following value for it '%s'." % (name, str(val)))
+			value.saved_value = val
+			value.load()
+
+	def load(self):
+		for item in self.content.items.values():
+			item.load()
+
+	def cancel(self):
+		for item in self.content.items.values():
+			item.cancel()
+
+	def save(self):
+		for item in self.content.items.values():
+			item.save()
+
 	def getSavedValue(self):
-		res = self.content.stored_values
+		values = self.content.stored_values
 		for (key, val) in self.content.items.items():
-			sv = val.saved_value
-			if sv is not None:
-				res[key] = sv
-			elif key in res:
-				del res[key]
-		return res
+			saved = val.saved_value
+			if saved is not None:
+				values[key] = saved
+			elif key in values:
+				del values[key]
+		return values
 
 	def setSavedValue(self, values):
 		values = dict(values)
@@ -1985,279 +2144,137 @@ class ConfigSubsection(object):
 			if value is not None:
 				val.saved_value = value
 
+	savedValue = property(getSavedValue, setSavedValue)
 	saved_value = property(getSavedValue, setSavedValue)
-
-	def save(self):
-		for x in self.content.items.values():
-			x.save()
-
-	def load(self):
-		for x in self.content.items.values():
-			x.load()
 
 	def dict(self):
 		return self.content.items
 
-# the root config object, which also can "pickle" (=serialize)
-# down the whole config tree.
+
+# The root config object, which also can "pickle" (=serialize) down the whole
+# config tree.
 #
-# we try to keep non-existing config entries, to apply them whenever
-# a new config entry is added to a subsection
-# also, non-existing config entries will be saved, so they won't be
-# lost when a config entry disappears.
+# We try to keep non-existing config entries, to apply them whenever a new
+# config entry is added to a subsection.  Also, non-existing config entries
+# will be saved, so they won't be lost when a config entry disappears.
+#
 class Config(ConfigSubsection):
 	def __init__(self):
 		ConfigSubsection.__init__(self)
 
-	def pickle_this(self, prefix, topickle, result):
-		for (key, val) in sorted(topickle.items(), key=lambda x: int(x[0]) if x[0].isdigit() else x[0].lower()):
-			name = '.'.join((prefix, key))
+	def pickleThis(self, prefix, toPickle, result):
+		for (key, val) in sorted(toPickle.items(), key=lambda x: str(x[0]) if x[0].isdigit() else x[0].lower()):
+			name = ".".join((prefix, key))
 			if isinstance(val, dict):
-				self.pickle_this(name, val, result)
+				self.pickleThis(name, val, result)
 			elif isinstance(val, tuple):
-				result += [name, '=', str(val[0]), '\n']
+				result += ["%s=%s\n" % (name, str(val[0]))]
 			else:
-				result += [name, '=', str(val), '\n']
+				result += ["%s=%s\n" % (name, str(val))]
 
 	def pickle(self):
 		result = []
-		self.pickle_this("config", self.saved_value, result)
-		return ''.join(result)
+		self.pickleThis("config", self.saved_value, result)
+		return "".join(result)
 
-	def unpickle(self, lines, base_file=True):
-		tree = { }
-		configbase = tree.setdefault("config", {})
-		for l in lines:
-			if not l or l[0] == '#':
+	def unpickle(self, lines, baseFile=True):
+		tree = {}
+		configBase = tree.setdefault("config", {})
+		for line in lines:
+			if not line or line[0] == "#":
 				continue
-
-			result = l.split('=', 1)
+			result = line.split("=", 1)
 			if len(result) != 2:
 				continue
-			(name, val) = result
+			(key, val) = result
 			val = val.strip()
-
-			'''
-			#convert old settings
-			if l.startswith("config.Nims."):
-				tmp = name.split('.')
-				if tmp[3] == "cable":
-					tmp[3] = "dvbc"
-				elif tmp[3].startswith ("cable"):
-					tmp[3] = "dvbc." + tmp[3]
-				elif tmp[3].startswith("terrestrial"):
-					tmp[3] = "dvbt." + tmp[3]
-				#else:
-				#	if tmp[3] not in ('dvbs', 'dvbc', 'dvbt', 'multiType'):
-				#		tmp[3] = "dvbs." + tmp[3]
-				name =".".join(tmp)
-			'''
-
-			names = name.split('.')
-
-			base = configbase
-
-			for n in names[1:-1]:
-				base = base.setdefault(n, {})
-
+			names = key.split(".")
+			base = configBase
+			for name in names[1:-1]:
+				base = base.setdefault(name, {})
 			base[names[-1]] = val
-
-			if not base_file: # not the initial config file..
-				#update config.x.y.value when exist
+			if not baseFile:  # Not the initial config file.
 				try:
-					configEntry = eval(name)
-					if configEntry is not None:
+					configEntry = eval(key)
+					if configEntry is not None:  # Update config.x.y.value when it exists.
 						configEntry.value = val
 				except (SyntaxError, KeyError):
 					pass
-
-		# we inherit from ConfigSubsection, so ...
-		#object.__setattr__(self, "saved_value", tree["config"])
+		# We inherit from ConfigSubsection so object.__setattr__(self, "saved_value", tree["config"])
 		if "config" in tree:
 			self.setSavedValue(tree["config"])
 
+	def loadFromFile(self, filename, baseFile=True, base_file=None):  # DEBUG: base_file is deprecated, only used in Components/PackageInfo.py
+		if base_file is not None:
+			baseFile = base_file
+		with open(filename, "r", encoding="UTF-8") as fd:
+			self.unpickle(fd, baseFile)
+
 	def saveToFile(self, filename):
-		text = self.pickle()
 		try:
-			import os
-			f = open(filename + ".writing", "w")
-			f.write(text)
-			f.flush()
-			os.fsync(f.fileno())
-			f.close()
-			os.rename(filename + ".writing", filename)
-		except IOError:
-			print "Config: Couldn't write %s" % filename
+			with open("%s.writing" % filename, "w") as fd:
+				fd.write(self.pickle())
+				fd.flush()
+				fsync(fd.fileno())
+			rename("%s.writing" % filename, filename)
+		except (IOError, OSError) as err:
+			print("[Config] Error %d: Couldn't write '%s'!  (%s)" % (err.errno, filename, err.strerror))
 
-	def loadFromFile(self, filename, base_file=True):
-		self.unpickle(open(filename, "r"), base_file)
-
-config = Config()
-config.misc = ConfigSubsection()
 
 class ConfigFile:
-	def __init__(self):
-		pass
-
 	CONFIG_FILE = resolveFilename(SCOPE_CONFIG, "settings")
 
 	def load(self):
 		try:
-			config.loadFromFile(self.CONFIG_FILE, True)
-		except IOError, e:
-			print "unable to load config (%s), assuming defaults..." % str(e)
+			config.loadFromFile(self.CONFIG_FILE, baseFile=True)
+		except (IOError, OSError) as err:
+			print("[Config] Error %d: Unable to load config file '%s', assuming defaults.  (%s)" % (err.errno, self.CONFIG_FILE, err.strerror))
 
 	def save(self):
-#		config.save()
+		# config.save()
 		config.saveToFile(self.CONFIG_FILE)
 
 	def __resolveValue(self, pickles, cmap):
 		key = pickles[0]
-		if cmap.has_key(key):
-			if len(pickles) > 1:
-				return self.__resolveValue(pickles[1:], cmap[key].dict())
-			else:
-				return str(cmap[key].value)
+		if key in cmap:
+			return self.__resolveValue(pickles[1:], cmap[key].dict()) if len(pickles) > 1 else str(cmap[key].value)
 		return None
 
 	def getResolvedKey(self, key):
-		names = key.split('.')
+		names = key.split(".")
 		if len(names) > 1:
 			if names[0] == "config":
-				ret = self.__resolveValue(names[1:], config.content.items)
-				if ret and len(ret) or ret == "":
-					return ret
-		print "getResolvedKey", key, "failed !! (Typo??)"
+				val = self.__resolveValue(names[1:], config.content.items)
+				if val and len(val) or val == "":
+					return val
+		print("[Config] Error: getResolvedKey '%s' failed!  (Typo?)" % key)
 		return ""
 
-def NoSave(element):
-	element.disableSave()
-	return element
 
+config = Config()
+config.misc = ConfigSubsection()
 configfile = ConfigFile()
-
 configfile.load()
 
-def getConfigListEntry(*args):
-	assert len(args) > 1, "getConfigListEntry needs a minimum of two arguments (descr, configElement)"
-	return args
-
-def updateConfigElement(element, newelement):
-	newelement.value = element.value
-	return newelement
-
-#def _(x):
-#	return x
+# def _(x):
+# 	return x
 #
-#config.bla = ConfigSubsection()
-#config.bla.test = ConfigYesNo()
-#config.nim = ConfigSubList()
-#config.nim.append(ConfigSubsection())
-#config.nim[0].bla = ConfigYesNo()
-#config.nim.append(ConfigSubsection())
-#config.nim[1].bla = ConfigYesNo()
-#config.nim[1].blub = ConfigYesNo()
-#config.arg = ConfigSubDict()
-#config.arg["Hello"] = ConfigYesNo()
+# config.bla = ConfigSubsection()
+# config.bla.test = ConfigYesNo()
+# config.nim = ConfigSubList()
+# config.nim.append(ConfigSubsection())
+# config.nim[0].bla = ConfigYesNo()
+# config.nim.append(ConfigSubsection())
+# config.nim[1].bla = ConfigYesNo()
+# config.nim[1].blub = ConfigYesNo()
+# config.arg = ConfigSubDict()
+# config.arg["Hello"] = ConfigYesNo()
 #
-#config.arg["Hello"].handleKey(KEY_RIGHT)
-#config.arg["Hello"].handleKey(KEY_RIGHT)
+# config.arg["Hello"].handleKey(ACTIONKEY_RIGHT)
+# config.arg["Hello"].handleKey(ACTIONKEY_RIGHT)
 #
-##config.saved_value
+# #config.saved_value
 #
-##configfile.save()
-#config.save()
-#print config.pickle()
-
-cec_limits = [(0,15),(0,15),(0,15),(0,15)]
-class ConfigCECAddress(ConfigSequence):
-	def __init__(self, default, auto_jump = False):
-		ConfigSequence.__init__(self, seperator = ".", limits = cec_limits, default = default)
-		self.block_len = [len(str(x[1])) for x in self.limits]
-		self.marked_block = 0
-		self.overwrite = True
-		self.auto_jump = auto_jump
-
-	def handleKey(self, key):
-		if key == KEY_LEFT:
-			if self.marked_block > 0:
-				self.marked_block -= 1
-			self.overwrite = True
-
-		elif key == KEY_RIGHT:
-			if self.marked_block < len(self.limits)-1:
-				self.marked_block += 1
-			self.overwrite = True
-
-		elif key == KEY_HOME:
-			self.marked_block = 0
-			self.overwrite = True
-
-		elif key == KEY_END:
-			self.marked_block = len(self.limits)-1
-			self.overwrite = True
-
-		elif key in KEY_NUMBERS or key == KEY_ASCII:
-			if key == KEY_ASCII:
-				code = getPrevAsciiCode()
-				if code < 48 or code > 57:
-					return
-				number = code - 48
-			else:
-				number = getKeyNumber(key)
-			oldvalue = self._value[self.marked_block]
-
-			if self.overwrite:
-				self._value[self.marked_block] = number
-				self.overwrite = False
-			else:
-				oldvalue *= 10
-				newvalue = oldvalue + number
-				if self.auto_jump and newvalue > self.limits[self.marked_block][1] and self.marked_block < len(self.limits)-1:
-					self.handleKey(KEY_RIGHT)
-					self.handleKey(key)
-					return
-				else:
-					self._value[self.marked_block] = newvalue
-
-			if len(str(self._value[self.marked_block])) >= self.block_len[self.marked_block]:
-				self.handleKey(KEY_RIGHT)
-
-			self.validate()
-			self.changed()
-
-	def genText(self):
-		value = ""
-		block_strlen = []
-		for i in self._value:
-			block_strlen.append(len(str(i)))
-			if value:
-				value += self.seperator
-			value += str(i)
-		leftPos = sum(block_strlen[:self.marked_block])+self.marked_block
-		rightPos = sum(block_strlen[:(self.marked_block+1)])+self.marked_block
-		mBlock = range(leftPos, rightPos)
-		return value, mBlock
-
-	def getMulti(self, selected):
-		(value, mBlock) = self.genText()
-		if self.enabled:
-			return "mtext"[1-selected:], value, mBlock
-		else:
-			return "text", value
-
-	def getHTML(self, id):
-		# we definitely don't want leading zeros
-		return '.'.join(["%d" % d for d in self.value])
-
-class ConfigAction(ConfigElement):
-	def __init__(self, action, *args):
-		ConfigElement.__init__(self)
-		self.value = "(OK)"
-		self.action = action
-		self.actionargs = args
-	def handleKey(self, key):
-		if (key == KEY_OK):
-			self.action(*self.actionargs)
-	def getMulti(self, dummy):
-		pass
+# #configfile.save()
+# config.save()
+# print(config.pickle())

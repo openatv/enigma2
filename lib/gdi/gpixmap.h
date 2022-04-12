@@ -22,20 +22,12 @@ struct gRGB
 			unsigned char a, r, g, b;
 		};
 #endif
-#if defined (__aarch64__)
-		unsigned int value;
-#else
-		unsigned long value;
-#endif
+		uint32_t value;
 	};
 	gRGB(int r, int g, int b, int a=0): b(b), g(g), r(r), a(a)
 	{
 	}
-#if defined (__aarch64__)
-	gRGB(unsigned int val): value(val)
-#else
-	gRGB(unsigned long val): value(val)
-#endif
+	gRGB(uint32_t val): value(val)
 	{
 	}
 	gRGB(const gRGB& other): value(other.value)
@@ -43,18 +35,23 @@ struct gRGB
 	}
 	gRGB(const char *colorstring)
 	{
-#if defined (__aarch64__)
-		unsigned int val = 0;
-#else
-		unsigned long val = 0;
-#endif
+		uint32_t val = 0;
+
 		if (colorstring)
 		{
 			for (int i = 0; i < 8; i++)
 			{
-				if (i) val <<= 4;
-				if (!colorstring[i]) break;
-				val |= (colorstring[i]) & 0x0f;
+				char c = colorstring[i];
+				if (!c) break;
+				val <<= 4;
+				if (c >= '0' && c <= '9')
+					val |= c - '0';
+				else if(c >= 'a' && c <= 'f')
+					val |= c - 'a' + 10;
+				else if(c >= 'A' && c <= 'F')
+					val |= c - 'A' + 10;
+				else if(c >= ':' && c <= '?') // Backwards compatibility for old style color strings
+					val |= c & 0x0f;
 			}
 		}
 		value = val;
@@ -63,29 +60,17 @@ struct gRGB
 	{
 	}
 
-#if defined (__aarch64__)
-	unsigned int argb() const
-#else
-	unsigned long argb() const
-#endif
+	uint32_t argb() const
 	{
 		return value;
 	}
 
-#if defined (__aarch64__)
-	void set(unsigned int val)
-#else
-	void set(unsigned long val)
-#endif
+	void set(uint32_t val)
 	{
 		value = val;
 	}
 
-#if defined (__aarch64__)
-	void operator=(unsigned int val)
-#else
-	void operator=(unsigned long val)
-#endif
+	void operator=(uint32_t val)
 	{
 		value = val;
 	}
@@ -117,16 +102,14 @@ struct gRGB
 	}
 	operator const std::string () const
 	{
-#if defined (__aarch64__)
-		unsigned int val = value;
-#else
-		unsigned long val = value;
-#endif
+		uint32_t val = value;
 		std::string escapecolor = "\\c";
 		escapecolor.resize(10);
 		for (int i = 9; i >= 2; i--)
 		{
-			escapecolor[i] = 0x40 | (val & 0xf);
+			int hexbits = val & 0xf;
+			escapecolor[i] = hexbits < 10	? '0' + hexbits
+							: 'a' - 10 + hexbits;
 			val >>= 4;
 		}
 		return escapecolor;
@@ -160,11 +143,8 @@ struct gPalette
 {
 	int start, colors;
 	gRGB *data;
-#if defined (__aarch64__)
-	unsigned int data_phys;
-#else
-	unsigned long data_phys;
-#endif
+	uint32_t data_phys;
+
 	gColor findColor(const gRGB rgb) const;
 	gPalette():	start(0), colors(0), data(0), data_phys(0) {}
 };
@@ -229,8 +209,11 @@ public:
 		accelAlways = 1,
 	};
 
+	typedef void (*gPixmapDisposeCallback)(gPixmap* pixmap);
+
 	gPixmap(gUnmanagedSurface *surface);
 	gPixmap(eSize, int bpp, int accel = 0);
+	gPixmap(int width, int height, int bpp, gPixmapDisposeCallback on_dispose, int accel = accelAuto);
 
 	gUnmanagedSurface *surface;
 
@@ -240,7 +223,7 @@ public:
 	eSize size() const { return eSize(surface->x, surface->y); }
 
 private:
-	bool must_delete_surface;
+	gPixmapDisposeCallback on_dispose;
 
 	friend class gDC;
 	void fill(const gRegion &clip, const gColor &color);

@@ -15,21 +15,24 @@
 #######################################################################
 
 
+from __future__ import print_function
 from Components.Converter.Converter import Converter
 from Components.Element import cached
 from Components.config import config, ConfigSubsection, ConfigNumber, ConfigSelection
 from twisted.web.client import getPage
 from xml.dom.minidom import parseString
 from enigma import eTimer
+import six
 
 config.plugins.AtileHD = ConfigSubsection()
-config.plugins.AtileHD.refreshInterval = ConfigNumber(default = "10")
-config.plugins.AtileHD.woeid = ConfigNumber(default = "640161")
-config.plugins.AtileHD.tempUnit = ConfigSelection(default = "Celsius", choices = [("Celsius", _("Celsius")),("Fahrenheit", _("Fahrenheit"))])
+config.plugins.AtileHD.refreshInterval = ConfigNumber(default="10")
+config.plugins.AtileHD.woeid = ConfigNumber(default="640161")
+config.plugins.AtileHD.tempUnit = ConfigSelection(default="Celsius", choices=[("Celsius", _("Celsius")), ("Fahrenheit", _("Fahrenheit"))])
 
 weather_data = None
 
-class VWeather(Converter, object):
+
+class VWeather(Converter):
 
 	def __init__(self, type):
 		Converter.__init__(self, type)
@@ -112,21 +115,22 @@ class VWeather(Converter, object):
 		elif self.type == "title":
 			return self.getCF() + " | " + WeatherInfo[self.type]
 		elif self.type == "CF":
-			return self.getCF() 
+			return self.getCF()
 		else:
 			return ""
 
 	def getCF(self):
 		if config.plugins.AtileHD.tempUnit.value == "Fahrenheit":
-			return "°F"
-		else: 
-			return "°C"
+			return u"\u00B0" + "F"
+		else:
+			return u"\u00B0" + "C"
 
 	text = property(getText)
 
+
 class WeatherData:
 	def __init__(self):
-		self.WeatherInfo = WeatherInfo = { 
+		self.WeatherInfo = WeatherInfo = {
 			"currentLocation": "N/A",
 			"currentWeatherCode": "(",
 			"currentWeatherText": "N/A",
@@ -167,28 +171,29 @@ class WeatherData:
 			self.timer.callback.append(self.GetWeather)
 			self.GetWeather()
 
-	def downloadError(self, error = None):
-		print "[WeatherUpdate] error fetching weather data"
+	def downloadError(self, error=None):
+		print("[VWeather] error fetching weather data")
 
 	def GetWeather(self):
 		timeout = config.plugins.AtileHD.refreshInterval.value * 1000 * 60
 		if timeout > 0:
 			self.timer.start(timeout, True)
-			print "AtileHD lookup for ID " + str(config.plugins.AtileHD.woeid.value)
-			url = "http://query.yahooapis.com/v1/public/yql?q=select%20item%20from%20weather.forecast%20where%20woeid%3D%22"+str(config.plugins.AtileHD.woeid.value)+"%22&format=xml"
-			getPage(url,method = 'GET').addCallback(self.GotWeatherData).addErrback(self.downloadError)
+			print("[VWeather] lookup for ID " + str(config.plugins.AtileHD.woeid.value))
+			url = "http://query.yahooapis.com/v1/public/yql?q=select%20item%20from%20weather.forecast%20where%20woeid%3D%22" + str(config.plugins.AtileHD.woeid.value) + "%22&format=xml"
+			url = six.ensure_binary(url)
+			getPage(url, method='GET').addCallback(self.GotWeatherData).addErrback(self.downloadError)
 
-	def GotWeatherData(self, data = None):
+	def GotWeatherData(self, data=None):
 		if data is not None:
 			dom = parseString(data)
 			title = self.getText(dom.getElementsByTagName('title')[0].childNodes)
-			self.WeatherInfo["currentLocation"] = str(title).split(',')[0].replace("Conditions for ","")
+			self.WeatherInfo["currentLocation"] = str(title).split(',')[0].replace("Conditions for ", "")
 
 			weather = dom.getElementsByTagName('yweather:condition')[0]
 			self.WeatherInfo["currentWeatherCode"] = self.ConvertCondition(weather.getAttributeNode('code').nodeValue)
 			self.WeatherInfo["currentWeatherTemp"] = self.getTemp(weather.getAttributeNode('temp').nodeValue)
 			self.WeatherInfo["currentWeatherText"] = _(str(weather.getAttributeNode('text').nodeValue))
-			
+
 			weather = dom.getElementsByTagName('yweather:forecast')[0]
 			self.WeatherInfo["forecastTodayCode"] = self.ConvertCondition(weather.getAttributeNode('code').nodeValue)
 			self.WeatherInfo["forecastTodayDay"] = _(weather.getAttributeNode('day').nodeValue)
@@ -196,7 +201,7 @@ class WeatherData:
 			self.WeatherInfo["forecastTodayTempMax"] = self.getTemp(weather.getAttributeNode('high').nodeValue)
 			self.WeatherInfo["forecastTodayTempMin"] = self.getTemp(weather.getAttributeNode('low').nodeValue)
 			self.WeatherInfo["forecastTodayText"] = _(str(weather.getAttributeNode('text').nodeValue))
-		
+
 			weather = dom.getElementsByTagName('yweather:forecast')[1]
 			self.WeatherInfo["forecastTomorrowCode"] = self.ConvertCondition(weather.getAttributeNode('code').nodeValue)
 			self.WeatherInfo["forecastTomorrowDay"] = _(weather.getAttributeNode('day').nodeValue)
@@ -227,14 +232,14 @@ class WeatherData:
 			self.WeatherInfo["forecastTomorrow3Date"] = self.getWeatherDate(weather)
 			self.WeatherInfo["forecastTomorrow3TempMax"] = self.getTemp(weather.getAttributeNode('high').nodeValue)
 			self.WeatherInfo["forecastTomorrow3TempMin"] = self.getTemp(weather.getAttributeNode('low').nodeValue)
-			self.WeatherInfo["forecastTomorrow3Text"] =_(str(weather.getAttributeNode('text').nodeValue))
-			
-	def getText(self,nodelist):
-	    rc = []
-	    for node in nodelist:
-	        if node.nodeType == node.TEXT_NODE:
-	            rc.append(node.data)
-	    return ''.join(rc)
+			self.WeatherInfo["forecastTomorrow3Text"] = _(str(weather.getAttributeNode('text').nodeValue))
+
+	def getText(self, nodelist):
+		rc = []
+		for node in nodelist:
+			if node.nodeType == node.TEXT_NODE:
+				rc.append(node.data)
+		return ''.join(rc)
 
 	def ConvertCondition(self, c):
 		c = int(c)
@@ -243,7 +248,7 @@ class WeatherData:
 			condition = "S"
 		elif c == 3 or c == 4:
 			condition = "Z"
-		elif c == 5  or c == 6 or c == 7 or c == 18:
+		elif c == 5 or c == 6 or c == 7 or c == 18:
 			condition = "U"
 		elif c == 8 or c == 10 or c == 25:
 			condition = "G"
@@ -279,12 +284,12 @@ class WeatherData:
 			condition = ")"
 		return str(condition)
 
-	def getTemp(self,temp):
+	def getTemp(self, temp):
 		if config.plugins.AtileHD.tempUnit.value == "Fahrenheit":
-			return str(int(round(float(temp),0)))
+			return str(int(round(float(temp), 0)))
 		else:
-			celsius = (float(temp) - 32 ) * 5 / 9
-			return str(int(round(float(celsius),0)))
+			celsius = (float(temp) - 32) * 5 / 9
+			return str(int(round(float(celsius), 0)))
 
 	def getWeatherDate(self, weather):
 		cur_weather = str(weather.getAttributeNode('date').nodeValue).split(" ")

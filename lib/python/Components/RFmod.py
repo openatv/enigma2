@@ -1,10 +1,12 @@
-from config import config, ConfigSelection, ConfigSubsection, ConfigOnOff, ConfigSlider, ConfigNothing
+from __future__ import absolute_import
+from Components.config import config, ConfigSelection, ConfigSubsection, ConfigOnOff, ConfigSlider, ConfigNothing
 from enigma import eRFmod
-from Components.SystemInfo import SystemInfo
+from Components.SystemInfo import BoxInfo
 
 # CHECK ME.
 RFMOD_CHANNEL_MIN = 21
 RFMOD_CHANNEL_MAX = 69 + 1
+
 
 class RFmod:
 	def __init__(self):
@@ -12,27 +14,33 @@ class RFmod:
 
 	def setFunction(self, value):
 		eRFmod.getInstance().setFunction(not value)
+
 	def setTestmode(self, value):
 		eRFmod.getInstance().setTestmode(value)
+
 	def setSoundFunction(self, value):
 		eRFmod.getInstance().setSoundFunction(not value)
+
 	def setSoundCarrier(self, value):
 		eRFmod.getInstance().setSoundCarrier(value)
+
 	def setChannel(self, value):
 		eRFmod.getInstance().setChannel(value)
+
 	def setFinetune(self, value):
 		eRFmod.getInstance().setFinetune(value)
 
+
 def InitRFmod():
 	detected = eRFmod.getInstance().detected()
-	SystemInfo["RfModulator"] = detected
+	BoxInfo.setItem("RfModulator", detected)
 	config.rfmod = ConfigSubsection()
 	if detected:
 		config.rfmod.enable = ConfigOnOff(default=False)
 		config.rfmod.test = ConfigOnOff(default=False)
 		config.rfmod.sound = ConfigOnOff(default=True)
-		config.rfmod.soundcarrier = ConfigSelection(choices=[("4500","4.5 MHz"), ("5500", "5.5 MHz"), ("6000", "6.0 MHz"), ("6500", "6.5 MHz")], default="5500")
-		config.rfmod.channel = ConfigSelection(default = "36", choices = ["%d" % x for x in range(RFMOD_CHANNEL_MIN, RFMOD_CHANNEL_MAX)])
+		config.rfmod.soundcarrier = ConfigSelection(choices=[("4500", "4.5 MHz"), ("5500", "5.5 MHz"), ("6000", "6.0 MHz"), ("6500", "6.5 MHz")], default="5500")
+		config.rfmod.channel = ConfigSelection(default="36", choices=["%d" % x for x in list(range(RFMOD_CHANNEL_MIN, RFMOD_CHANNEL_MAX))])
 		config.rfmod.finetune = ConfigSlider(default=5, limits=(1, 10))
 
 		iRFmod = RFmod()

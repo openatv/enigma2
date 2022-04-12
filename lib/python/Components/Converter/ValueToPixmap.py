@@ -1,10 +1,10 @@
 from Components.Converter.Converter import Converter
 from Components.Element import cached, ElementError
-from Tools.Directories import SCOPE_SKIN_IMAGE, SCOPE_ACTIVE_SKIN, resolveFilename
+from Tools.Directories import SCOPE_SKINS, SCOPE_GUISKIN, resolveFilename
 from Tools.LoadPixmap import LoadPixmap
 
 
-class ValueToPixmap(Converter, object):
+class ValueToPixmap(Converter):
 	LANGUAGE_CODE = 0
 	PATH = 1
 
@@ -26,13 +26,13 @@ class ValueToPixmap(Converter, object):
 		if self.type == self.PATH:
 			return LoadPixmap(val)
 		if self.type == self.LANGUAGE_CODE:
-			png = LoadPixmap(cached=True, path=resolveFilename(SCOPE_ACTIVE_SKIN, "countries/" + val[3:].lower() + ".png"))
+			png = LoadPixmap(cached=True, path=resolveFilename(SCOPE_GUISKIN, "countries/" + val[3:].lower() + ".png"))
 			if png is None:
-				png = LoadPixmap(cached=True, path=resolveFilename(SCOPE_ACTIVE_SKIN, "countries/" + val + ".png"))
+				png = LoadPixmap(cached=True, path=resolveFilename(SCOPE_GUISKIN, "countries/" + val + ".png"))
 				if png is None:
-					png = LoadPixmap(cached=True, path=resolveFilename(SCOPE_ACTIVE_SKIN, "countries/missing.png"))
+					png = LoadPixmap(cached=True, path=resolveFilename(SCOPE_GUISKIN, "countries/missing.png"))
 					if png is None:
-						png = LoadPixmap(cached=True, path=resolveFilename(SCOPE_SKIN_IMAGE, "countries/missing.png"))
+						png = LoadPixmap(cached=True, path=resolveFilename(SCOPE_SKINS, "countries/missing.png"))
 			return png
 		return None
 
@@ -41,4 +41,3 @@ class ValueToPixmap(Converter, object):
 	def changed(self, what):
 		if what[0] != self.CHANGED_SPECIFIC or what[1] == self.type:
 			Converter.changed(self, what)
-

@@ -1,11 +1,13 @@
-from HTMLComponent import HTMLComponent
-from GUIComponent import GUIComponent
-from VariableValue import VariableValue
+from __future__ import absolute_import
+from Components.GUIComponent import GUIComponent
+from Components.VariableValue import VariableValue
 
 from enigma import eSlider
 
 # a general purpose progress bar
-class ProgressBar(VariableValue, HTMLComponent, GUIComponent, object):
+
+
+class ProgressBar(VariableValue, GUIComponent):
 	def __init__(self):
 		GUIComponent.__init__(self)
 		VariableValue.__init__(self)

@@ -13,6 +13,7 @@
 #include <dvbsi++/simple_application_location_descriptor.h>
 #include <dvbsi++/simple_application_boundary_descriptor.h>
 #include <dvbsi++/transport_protocol_descriptor.h>
+#include <dvbsi++/ancillary_data_descriptor.h>
 
 eDVBPMTParser::eDVBPMTParser()
 {
@@ -107,7 +108,7 @@ int eDVBPMTParser::getProgramInfo(program &program)
 				case 0x1b: // AVC Video Stream (MPEG4 H264)
 					video.type = videoStream::vtMPEG4_H264;
 					isvideo = 1;
-					//break; fall through !!!
+					[[fallthrough]];
 				case 0x24: // H265 HEVC
 				case 0x27: // H265 HEVC
 					if (!isvideo)
@@ -115,34 +116,43 @@ int eDVBPMTParser::getProgramInfo(program &program)
 						video.type = videoStream::vtH265_HEVC;
 						isvideo = 1;
 					}
+					[[fallthrough]];
 				case 0x42: // CAVS
 					if (!isvideo)
 					{
 						video.type = videoStream::vtCAVS;
 						isvideo = 1;
 					}
+					[[fallthrough]];
+				case 0xD2: // AVS2
+					if (!isvideo)
+					{
+						video.type = videoStream::vtAVS2;
+						isvideo = 1;
+					}
+					[[fallthrough]];
 				case 0x10: // MPEG 4 Part 2
 					if (!isvideo)
 					{
 						video.type = videoStream::vtMPEG4_Part2;
 						isvideo = 1;
 					}
-					//break; fall through !!!
+					[[fallthrough]];
 				case 0x01: // MPEG 1 video
 					if (!isvideo)
 						video.type = videoStream::vtMPEG1;
-					//break; fall through !!!
+					[[fallthrough]];
 				case 0x02: // MPEG 2 video
 					isvideo = 1;
 					forced_video = 1;
-					//break; fall through !!!
+					[[fallthrough]];
 				case 0x03: // MPEG 1 audio
 				case 0x04: // MPEG 2 audio:
 					if (!isvideo) {
 						isaudio = 1;
 						forced_audio = 1;
 					}
-					//break; fall through !!!
+					[[fallthrough]];
 				case 0x0f: // MPEG 2 AAC
 					if (!isvideo && !isaudio)
 					{
@@ -150,7 +160,7 @@ int eDVBPMTParser::getProgramInfo(program &program)
 						audio.type = audioStream::atAAC;
 						forced_audio = 1;
 					}
-					//break; fall through !!!
+					[[fallthrough]];
 				case 0x11: // MPEG 4 AAC
 					if (!isvideo && !isaudio)
 					{
@@ -158,6 +168,7 @@ int eDVBPMTParser::getProgramInfo(program &program)
 						audio.type = audioStream::atAACHE;
 						forced_audio = 1;
 					}
+					[[fallthrough]];
 				case 0x80: // user private ... but bluray LPCM
 				case 0xA0: // bluray secondary LPCM
 					if (!isvideo && !isaudio && is_hdmv)
@@ -165,6 +176,7 @@ int eDVBPMTParser::getProgramInfo(program &program)
 						isaudio = 1;
 						audio.type = audioStream::atLPCM;
 					}
+					[[fallthrough]];
 				case 0x81: // user private ... but bluray AC3
 				case 0xA1: // bluray secondary AC3
 					if (!isvideo && !isaudio)
@@ -172,6 +184,7 @@ int eDVBPMTParser::getProgramInfo(program &program)
 						isaudio = 1;
 						audio.type = audioStream::atAC3;
 					}
+					[[fallthrough]];
 				case 0x82: // bluray DTS (dvb user private...)
 				case 0xA2: // bluray secondary DTS
 					if (!isvideo && !isaudio && is_hdmv)
@@ -179,6 +192,7 @@ int eDVBPMTParser::getProgramInfo(program &program)
 						isaudio = 1;
 						audio.type = audioStream::atDTS;
 					}
+					[[fallthrough]];
 				case 0x84: // DDP (blueray)
 				case 0x87: // DDP (ATSC)
 					if (!isvideo && !isaudio)
@@ -186,6 +200,7 @@ int eDVBPMTParser::getProgramInfo(program &program)
 						isaudio = 1;
 						audio.type = audioStream::atDDP;
 					}
+					[[fallthrough]];
 				case 0x85: // bluray DTS-HD HRA(dvb user private...)
 				case 0x86: // bluray DTS-HD MA(dvb user private...)
 				case 0xA6: // bluray secondary DTS-HD
@@ -194,6 +209,7 @@ int eDVBPMTParser::getProgramInfo(program &program)
 						isaudio = 1;
 						audio.type = audioStream::atDTSHD;
 					}
+					[[fallthrough]];
 				case 0x06: // PES Private
 				case 0xEA: // TS_PSI_ST_SMPTE_VC1
 				{
@@ -445,6 +461,23 @@ int eDVBPMTParser::getProgramInfo(program &program)
 							program.dsmccPid = (*es)->getPid();
 							break;
 						case STREAM_IDENTIFIER_DESCRIPTOR:
+							break;
+						}
+					}
+					break;
+				}
+				case 0x89: /* User private */
+				{
+					for (DescriptorConstIterator desc = (*es)->getDescriptors()->begin();
+						desc != (*es)->getDescriptors()->end(); ++desc)
+					{
+						switch ((*desc)->getTag())
+						{
+						case ANCILLARY_DATA_DESCRIPTOR:
+							AncillaryDataDescriptor* d = (AncillaryDataDescriptor*)(*desc);
+							if ((d->getAncillaryDataIdentifier() == 0x40) && prev_audio) /* RDS via UECP */
+								prev_audio->rdsPid = (*es)->getPid();
+							prev_audio = 0;
 							break;
 						}
 					}

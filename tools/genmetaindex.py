@@ -1,8 +1,10 @@
 # usage: genmetaindex.py <xml-files>  > index.xml
-import sys, os
+import sys
+import os
 from xml.etree.ElementTree import ElementTree, Element
 
 root = Element("index")
+encoding = ("unicode" if sys.version_info[0] >= 3 else "utf-8")
 
 for file in sys.argv[1:]:
 	p = ElementTree()
@@ -30,21 +32,23 @@ for file in sys.argv[1:]:
 
 	root.append(package)
 
+
 def indent(elem, level=0):
-	i = "\n" + level*"\t"
+	i = "\n" + level * "\t"
 	if len(elem):
 		if not elem.text or not elem.text.strip():
 			elem.text = i + "\t"
 		if not elem.tail or not elem.tail.strip():
 			elem.tail = i
 		for elem in elem:
-			indent(elem, level+1)
+			indent(elem, level + 1)
 		if not elem.tail or not elem.tail.strip():
 			elem.tail = i
 	else:
 		if level and (not elem.tail or not elem.tail.strip()):
 			elem.tail = i
 
+
 indent(root)
 
-ElementTree(root).write(sys.stdout)
+ElementTree(root).write(sys.stdout, encoding=encoding)

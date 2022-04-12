@@ -7,11 +7,13 @@ from Components.ActionMap import ActionMap
 from Components.config import config
 from Components.NimManager import nimmanager as nimmgr
 
+
 class SecParameterSetup(Screen, ConfigListScreen):
 	skin = """
 		<screen position="100,100" size="560,400" title="Satellite equipment setup" >
 			<widget name="config" position="10,10" size="540,390" />
 		</screen>"""
+
 	def __init__(self, session):
 		self.skin = SecParameterSetup.skin
 
@@ -43,37 +45,42 @@ class SecParameterSetup(Screen, ConfigListScreen):
 			(_("Delay after voltage change before motor command"), config.sec.delay_after_voltage_change_before_motor_command),
 			(_("Delay before sequence repeat"), config.sec.delay_before_sequence_repeat),
 			(_("Motor running timeout"), config.sec.motor_running_timeout),
-			(_("Motor command retries"), config.sec.motor_command_retries) ]
+			(_("Motor command retries"), config.sec.motor_command_retries)]
 		ConfigListScreen.__init__(self, list)
 
+
 session = None
+
 
 def confirmed(answer):
 	global session
 	if answer:
 		session.open(SecParameterSetup)
 
+
 def SecSetupMain(Session, **kwargs):
 	global session
 	session = Session
 	session.openWithCallback(confirmed, MessageBox, _("Please do not change any values unless you know what you are doing!"), MessageBox.TYPE_INFO)
+
 
 def SecSetupStart(menuid):
 	show = False
 
 	# other menu than "scan"?
 	if menuid != "scan":
-		return [ ]
+		return []
 
 	# only show if DVB-S frontends are available
 	for slot in nimmgr.nim_slots:
 		if slot.canBeCompatible("DVB-S"):
 			return [(_("Satellite equipment setup"), SecSetupMain, "satellite_equipment_setup", None)]
 
-	return [ ]
+	return []
+
 
 def Plugins(**kwargs):
 	if nimmgr.hasNimType("DVB-S"):
-		return PluginDescriptor(name=_("Satellite equipment setup"), description=_("Setup your satellite equipment"), where = PluginDescriptor.WHERE_MENU, needsRestart = False, fnc=SecSetupStart)
+		return PluginDescriptor(name=_("Satellite equipment setup"), description=_("Setup your satellite equipment"), where=PluginDescriptor.WHERE_MENU, needsRestart=False, fnc=SecSetupStart)
 	else:
 		return []

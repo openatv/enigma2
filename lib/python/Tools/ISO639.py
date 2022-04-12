@@ -1,5 +1,6 @@
-# -*- coding: iso-8859-2 -*-
-LanguageCodes = { }
+import six
+
+LanguageCodes = {}
 
 LanguageCodes["aar"] = LanguageCodes["aa"] = ("Afar", "Hamitic")
 LanguageCodes["abk"] = LanguageCodes["ab"] = ("Abkhazian", "Ibero-caucasian")
@@ -150,7 +151,7 @@ LanguageCodes["grb"] = ("Grebo", "")
 LanguageCodes["grc"] = ("Greek, Ancient (to 1453)", "")
 LanguageCodes["grn"] = LanguageCodes["gn"] = ("Guarani", "Amerindian")
 LanguageCodes["guj"] = LanguageCodes["gu"] = ("Gujarati", "Indian")
-LanguageCodes["gwi"] = ("Gwich´in", "")
+LanguageCodes["gwi"] = ("GwichÊ¼in", "")
 LanguageCodes["hai"] = ("Haida", "")
 LanguageCodes["hau"] = LanguageCodes["ha"] = ("Hausa", "Negro-african")
 LanguageCodes["haw"] = ("Hawaiian", "")
@@ -284,7 +285,7 @@ LanguageCodes["nic"] = ("Niger-Kordofanian (Other)", "")
 LanguageCodes["niu"] = ("Niuean", "")
 LanguageCodes["nld"] = LanguageCodes["dut"] = LanguageCodes["nl"] = ("Dutch", "Germanic")
 LanguageCodes["nno"] = LanguageCodes["nn"] = ("Norwegian Nynorsk", "")
-LanguageCodes["nob"] = LanguageCodes["nb"] = ("Norwegian Bokmål", "")
+LanguageCodes["nob"] = LanguageCodes["nb"] = ("Norwegian BokmÃ¥l", "")
 LanguageCodes["non"] = ("Norse, Old", "")
 LanguageCodes["nor"] = LanguageCodes["no"] = ("Norwegian", "Germanic")
 LanguageCodes["nso"] = ("Sotho, Northern", "")
@@ -294,7 +295,7 @@ LanguageCodes["nym"] = ("Nyamwezi", "")
 LanguageCodes["nyn"] = ("Nyankole", "")
 LanguageCodes["nyo"] = ("Nyoro", "")
 LanguageCodes["nzi"] = ("Nzima", "")
-LanguageCodes["oci"] = LanguageCodes["oc"] = ("Occitan (post 1500); Provençal", "Romance")
+LanguageCodes["oci"] = LanguageCodes["oc"] = ("Occitan (post 1500)", "Romance")
 LanguageCodes["oji"] = ("Ojibwa", "")
 LanguageCodes["ori"] = LanguageCodes["or"] = ("Oriya", "Indian")
 LanguageCodes["orm"] = LanguageCodes["om"] = ("Oromo", "Hamitic")
@@ -316,7 +317,7 @@ LanguageCodes["pol"] = LanguageCodes["pl"] = ("Polish", "Slavic")
 LanguageCodes["pon"] = ("Pohnpeian", "")
 LanguageCodes["por"] = LanguageCodes["pt"] = ("Portuguese", "Romance")
 LanguageCodes["pra"] = ("Prakrit languages", "")
-LanguageCodes["pro"] = ("Provençal, Old (to 1500)", "")
+LanguageCodes["pro"] = ("ProvenÃ§al, Old (to 1500)", "")
 LanguageCodes["pus"] = LanguageCodes["ps"] = ("Pushto", "Iranian")
 LanguageCodes["que"] = LanguageCodes["qu"] = ("Quechua", "Amerindian")
 LanguageCodes["raj"] = ("Rajasthani", "")
@@ -413,7 +414,7 @@ LanguageCodes["uzb"] = LanguageCodes["uz"] = ("Uzbek", "Turkic/altaic")
 LanguageCodes["vai"] = ("Vai", "")
 LanguageCodes["ven"] = ("Venda", "")
 LanguageCodes["vie"] = LanguageCodes["vi"] = ("Vietnamese", "Asian")
-LanguageCodes["vol"] = LanguageCodes["vo"] = ("Volapük", "International aux.")
+LanguageCodes["vol"] = LanguageCodes["vo"] = ("VolapÃ¼k", "International aux.")
 LanguageCodes["vot"] = ("Votic", "")
 LanguageCodes["wak"] = ("Wakashan languages", "")
 LanguageCodes["wal"] = ("Walamo", "")
@@ -435,25 +436,27 @@ LanguageCodes["znd"] = ("Zande", "")
 LanguageCodes["zul"] = LanguageCodes["zu"] = ("Zulu", "Negro-african")
 LanguageCodes["zun"] = ("Zuni", "")
 
+
 class ISO639Language:
 	[PRIMARY, SECONDARY, TERTIARY] = [1, 2, 3]
+
 	def __init__(self, depth=PRIMARY):
 		self.depth = depth
 
 		wanted_languages = []
 		if depth == self.PRIMARY:
-			wanted_languages = [ "Undetermined", "English", "German", "Arabic", "Catalan", "Croatian", "Czech", "Danish", "Dutch", "Estonian", "Finnish", "French", "Greek", "Hungarian", "Lithuanian", "Latvian", "Icelandic", "Italian", "Norwegian", "Polish", "Portuguese", "Russian", "Serbian", "Slovakian", "Slovenian", "Spanish", "Swedish", "Turkish", "Ukrainian" ]
+			wanted_languages = ["Undetermined", "English", "German", "Arabic", "Catalan", "Croatian", "Czech", "Danish", "Dutch", "Estonian", "Finnish", "French", "Greek", "Hungarian", "Lithuanian", "Latvian", "Icelandic", "Italian", "Norwegian", "Polish", "Portuguese", "Russian", "Serbian", "Slovakian", "Slovenian", "Spanish", "Swedish", "Turkish", "Ukrainian"]
 		elif depth == self.SECONDARY:
-			for key, val in LanguageCodes.iteritems():
+			for key, val in six.iteritems(LanguageCodes):
 				if len(key) == 2:
 					wanted_languages.append(val[0])
 		else:
-			for key, val in LanguageCodes.iteritems():
+			for key, val in six.iteritems(LanguageCodes):
 				if len(key) == 3:
 					wanted_languages.append(val[0])
 
 		self.idlist_by_name = {}
-		for key, val in LanguageCodes.iteritems():
+		for key, val in six.iteritems(LanguageCodes):
 			val = val[0]
 			if val not in wanted_languages:
 				continue
@@ -464,7 +467,7 @@ class ISO639Language:
 
 		self.name_and_shortid_by_longid = {}
 		self.name_by_shortid = {}
-		for lang, id_list in self.idlist_by_name.iteritems():
+		for lang, id_list in six.iteritems(self.idlist_by_name):
 			long_ids = []
 			short_id = None
 			for id in id_list:
@@ -477,30 +480,30 @@ class ISO639Language:
 				self.name_and_shortid_by_longid[long_id] = (short_id, lang)
 
 	def getChoices(self):
-		from Components.Language import language as syslanguage
-		syslang = syslanguage.getLanguage()[:2]
+		from Components.International import international
+		syslang = international.getLanguage()
 		choices = []
-		for lang, id_list in self.idlist_by_name.iteritems():
+		for lang, id_list in six.iteritems(self.idlist_by_name):
 			if syslang not in id_list and 'en' not in id_list:
 				choices.append((lang, lang))
 		choices.sort()
-		choices.insert(0,(self.name_by_shortid[syslang], self.name_by_shortid[syslang]))
+		choices.insert(0, (self.name_by_shortid[syslang], self.name_by_shortid[syslang]))
 		if syslang != "en":
-			choices.insert(1,(self.name_by_shortid["en"], self.name_by_shortid["en"]))
+			choices.insert(1, (self.name_by_shortid["en"], self.name_by_shortid["en"]))
 		return choices
 
 	def determineLanguage(self, string):
 		string = string.lower()
 		language = "Undetermined"
 		for word in ("stereo", "audio", "description", "2ch", "dolby digital", "2.0"):
-			string = string.replace(word,"").strip()
+			string = word.replace("").strip()
 		if len(string) == 2 and string in self.name_by_shortid:
 			language = self.name_by_shortid[string]
 		elif len(string) == 3 and string in self.name_and_shortid_by_longid:
 			language = self.name_and_shortid_by_longid[string][1]
 		elif len(string) >= 3:
 			string = string.capitalize()
-			for key in self.idlist_by_name.keys():
+			for key in list(self.idlist_by_name.keys()):
 				if key == string or _(key) == string:
 					language = key
 		return language

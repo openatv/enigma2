@@ -69,7 +69,7 @@ state transitions, like:
 
 ON_REC - [STANDBY] -> STANDBY_REC
 
-sets running timers' "After event" to "go to deep standby", but
+sets running timers' "After event" to "Go to deep standby", but
 
 STANDBY_REC - [WAKEUP or POWER] -> ON_REC
 

@@ -1,6 +1,7 @@
+from Components.Renderer.Renderer import Renderer
+
 from enigma import eCanvas, eRect, gRGB
 
-from Renderer import Renderer
 
 class Canvas(Renderer):
 	GUI_WIDGET = eCanvas
@@ -38,7 +39,7 @@ class Canvas(Renderer):
 			elif l[0] == 4:
 				self.instance.drawRotatedLine(l[1], l[2], l[3], l[4], l[5], l[6], l[7], l[8], gRGB(l[9]))
 			else:
-				print "drawlist entry:", l
+				print("[Canvas] drawlist entry: %s" % str(l))
 				raise RuntimeError("invalid drawlist entry")
 
 	def changed(self, what):

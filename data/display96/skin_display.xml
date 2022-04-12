@@ -194,14 +194,13 @@
 		<widget source="parent.summary_list" render="Label" position="fill" font="FdLcD;11" />
 	</screen>	
 
-	<screen name="MessageBox_summary" position="fill">
-		<widget source="parent.Text" render="Label" position="top" size="*,52" font="FdLcD;11" halign="center" valign="center" />
-		<widget source="parent.selectedChoice" render="Label" position="bottom" size="*,14" font="FdLcD;14" halign="center" valign="center" />
+	<screen name="MessageBoxSummary" position="fill">
+		<widget source="text" render="Label" position="top" size="*,52" font="FdLcD;11" halign="center" valign="center" />
+		<widget source="option" render="Label" position="bottom" size="*,14" font="FdLcD;14" halign="center" valign="center" />
 	</screen>
 
-	<screen name="MessageBoxSimple_summary" position="fill">
-		<widget source="parent.Text" render="Label" position="top" size="*,52" font="FdLcD;11" halign="center" valign="center" />
-		<widget source="parent.selectedChoice" render="Label" position="bottom" size="*,14" font="FdLcD;14" halign="center" valign="center" />
+	<screen name="MessageBoxSimpleSummary" position="fill">
+		<panel name="MessageBoxSummary" />
 	</screen>
 	<screen name="EMCMoviePlayerSummary" position="0,0" size="96,64" >
 		<!-- Movie name -->

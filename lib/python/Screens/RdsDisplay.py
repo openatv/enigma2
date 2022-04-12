@@ -1,3 +1,4 @@
+from __future__ import print_function
 from enigma import iPlayableService, iRdsDecoder
 from Screens.Screen import Screen
 from Components.ActionMap import NumberActionMap
@@ -5,12 +6,13 @@ from Components.ServiceEventTracker import ServiceEventTracker
 from Components.Pixmap import Pixmap
 from Components.Label import Label
 from Components.Sources.StaticText import StaticText
-from Tools.Directories import resolveFilename, SCOPE_ACTIVE_SKIN
+from Tools.Directories import resolveFilename, SCOPE_GUISKIN
 from Tools.LoadPixmap import LoadPixmap
+
 
 class RdsInfoDisplaySummary(Screen):
 	def __init__(self, session, parent):
-		Screen.__init__(self, session, parent = parent)
+		Screen.__init__(self, session, parent=parent)
 		self["message"] = StaticText("")
 		self.parent.onText.append(self.onText)
 
@@ -21,14 +23,14 @@ class RdsInfoDisplaySummary(Screen):
 		else:
 			self.hide()
 
+
 class RdsInfoDisplay(Screen):
 	ALLOW_SUSPEND = True
 
 	def __init__(self, session):
 		Screen.__init__(self, session)
 
-		self.__event_tracker = ServiceEventTracker(screen=self, eventmap=
-			{
+		self.__event_tracker = ServiceEventTracker(screen=self, eventmap={
 				iPlayableService.evEnd: self.__serviceStopped,
 				iPlayableService.evUpdatedRadioText: self.RadioTextChanged,
 				iPlayableService.evUpdatedRtpText: self.RtpTextChanged,
@@ -40,15 +42,15 @@ class RdsInfoDisplay(Screen):
 		self["RassLogo"] = Pixmap()
 
 		self.onLayoutFinish.append(self.hideWidgets)
-		self.rassInteractivePossible=False
-		self.onRassInteractivePossibilityChanged = [ ]
-		self.onText = [ ]
+		self.rassInteractivePossible = False
+		self.onRassInteractivePossibilityChanged = []
+		self.onText = []
 
 	def createSummary(self):
 		return RdsInfoDisplaySummary
 
 	def hideWidgets(self):
-		for x in (self["RadioText"],self["RtpText"],self["RassLogo"]):
+		for x in (self["RadioText"], self["RtpText"], self["RassLogo"]):
 			x.hide()
 		for x in self.onText:
 			x('')
@@ -95,31 +97,31 @@ class RdsInfoDisplay(Screen):
 			for x in self.onRassInteractivePossibilityChanged:
 				x(False)
 
+
 class RassInteractive(Screen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
 
-		self["actions"] = NumberActionMap( [ "NumberActions", "RassInteractiveActions" ],
+		self["actions"] = NumberActionMap(["NumberActions", "RassInteractiveActions"],
 			{
 				"exit": self.close,
-				"0": lambda x : self.numPressed(0),
-				"1": lambda x : self.numPressed(1),
-				"2": lambda x : self.numPressed(2),
-				"3": lambda x : self.numPressed(3),
-				"4": lambda x : self.numPressed(4),
-				"5": lambda x : self.numPressed(5),
-				"6": lambda x : self.numPressed(6),
-				"7": lambda x : self.numPressed(7),
-				"8": lambda x : self.numPressed(8),
-				"9": lambda x : self.numPressed(9),
+				"0": lambda x: self.numPressed(0),
+				"1": lambda x: self.numPressed(1),
+				"2": lambda x: self.numPressed(2),
+				"3": lambda x: self.numPressed(3),
+				"4": lambda x: self.numPressed(4),
+				"5": lambda x: self.numPressed(5),
+				"6": lambda x: self.numPressed(6),
+				"7": lambda x: self.numPressed(7),
+				"8": lambda x: self.numPressed(8),
+				"9": lambda x: self.numPressed(9),
 				"nextPage": self.nextPage,
 				"prevPage": self.prevPage,
 				"nextSubPage": self.nextSubPage,
 				"prevSubPage": self.prevSubPage
 			})
 
-		self.__event_tracker = ServiceEventTracker(screen=self, eventmap=
-			{
+		self.__event_tracker = ServiceEventTracker(screen=self, eventmap={
 				iPlayableService.evUpdatedRassInteractivePicMask: self.recvRassInteractivePicMaskChanged
 			})
 
@@ -135,32 +137,32 @@ class RassInteractive(Screen):
 		self["Marker"] = Label(">")
 
 		self.subpage = {
-			1 : self["subpages_1"],
-			2 : self["subpages_2"],
-			3 : self["subpages_3"],
-			4 : self["subpages_4"],
-			5 : self["subpages_5"],
-			6 : self["subpages_6"],
-			7 : self["subpages_7"],
-			8 : self["subpages_8"],
-			9 : self["subpages_9"] }
+			1: self["subpages_1"],
+			2: self["subpages_2"],
+			3: self["subpages_3"],
+			4: self["subpages_4"],
+			5: self["subpages_5"],
+			6: self["subpages_6"],
+			7: self["subpages_7"],
+			8: self["subpages_8"],
+			9: self["subpages_9"]}
 
 		self.subpage_png = {
-			1 : LoadPixmap(resolveFilename(SCOPE_ACTIVE_SKIN, "icons/rass_page1.png")),
-			2 : LoadPixmap(resolveFilename(SCOPE_ACTIVE_SKIN, "icons/rass_page2.png")),
-			3 : LoadPixmap(resolveFilename(SCOPE_ACTIVE_SKIN, "icons/rass_page3.png")),
-			4 : LoadPixmap(resolveFilename(SCOPE_ACTIVE_SKIN, "icons/rass_page4.png")) }
+			1: LoadPixmap(resolveFilename(SCOPE_GUISKIN, "icons/rass_page1.png")),
+			2: LoadPixmap(resolveFilename(SCOPE_GUISKIN, "icons/rass_page2.png")),
+			3: LoadPixmap(resolveFilename(SCOPE_GUISKIN, "icons/rass_page3.png")),
+			4: LoadPixmap(resolveFilename(SCOPE_GUISKIN, "icons/rass_page4.png"))}
 
-		self.current_page=0
-		self.current_subpage=0
-		self.showRassPage(0,0)
+		self.current_page = 0
+		self.current_subpage = 0
+		self.showRassPage(0, 0)
 		self.onLayoutFinish.append(self.updateSubPagePixmaps)
 
 	def updateSubPagePixmaps(self):
 		service = self.session.nav.getCurrentService()
 		decoder = service and service.rdsDecoder()
 		if not decoder: # this should never happen
-			print "NO RDS DECODER in showRassPage"
+			print("NO RDS DECODER in showRassPage")
 		else:
 			mask = decoder.getRassInteractiveMask()
 			page = 1
@@ -174,7 +176,7 @@ class RassInteractive(Screen):
 							subpage.instance.setPixmap(png)
 							subpage.show()
 						else:
-							print "rass png missing"
+							print("rass png missing")
 				else:
 					subpage.hide()
 				page += 1
@@ -186,7 +188,7 @@ class RassInteractive(Screen):
 		service = self.session.nav.getCurrentService()
 		decoder = service and service.rdsDecoder()
 		if not decoder: # this should never happen
-			print "NO RDS DECODER in showRassPage"
+			print("NO RDS DECODER in showRassPage")
 		else:
 			decoder.showRassInteractivePic(page, subpage)
 			page_diff = page - self.current_page
@@ -195,17 +197,17 @@ class RassInteractive(Screen):
 				current_pos = self["Marker"].getPosition()
 				y = current_pos[1]
 				y += page_diff * 25
-				self["Marker"].setPosition(current_pos[0],y)
+				self["Marker"].setPosition(current_pos[0], y)
 
 	def getMaskForPage(self, page, masks=None):
 		if not masks:
 			service = self.session.nav.getCurrentService()
 			decoder = service and service.rdsDecoder()
 			if not decoder: # this should never happen
-				print "NO RDS DECODER in getMaskForPage"
+				print("NO RDS DECODER in getMaskForPage")
 			masks = decoder.getRassInteractiveMask()
 		if masks:
-			mask = masks[(page*4)/8]
+			mask = masks[(page * 4) / 8]
 			if page % 2:
 				mask >>= 4
 			else:

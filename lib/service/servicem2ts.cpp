@@ -305,7 +305,8 @@ sync:
 						int add_offs = (x - 4);
 						eDebug("[eM2TSFile] sync found at pos %d, sync_offset is now %d, old was %d", x, add_offs + m_sync_offset, m_sync_offset);
 						m_sync_offset += add_offs;
-						goto sync;
+						// FIXME do not use goto
+						goto sync; // NOSONAR
 					}
 				}
 			}

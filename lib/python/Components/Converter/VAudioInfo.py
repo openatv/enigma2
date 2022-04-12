@@ -1,9 +1,10 @@
 from enigma import iPlayableService
 from Components.Converter.Converter import Converter
 from Components.Element import cached
-from Poll import Poll
+from Components.Converter.Poll import Poll
 
-class VAudioInfo(Poll, Converter, object):
+
+class VAudioInfo(Poll, Converter):
 	GET_AUDIO_ICON = 0
 	GET_AUDIO_CODEC = 1
 
@@ -14,7 +15,7 @@ class VAudioInfo(Poll, Converter, object):
 		self.poll_interval = 1000
 		self.poll_enabled = True
 		self.lang_strings = ("ger", "german", "deu")
-		self.codecs = {    "01_dolbydigitalplus" : ("digital+", "digitalplus", "ac3+", "e-ac-3"),
+		self.codecs = {"01_dolbydigitalplus": ("digital+", "digitalplus", "ac3+", "e-ac-3"),
 				   "02_dolbydigital": ("ac3", "ac-3", "dolbydigital"),
 				   "03_mp3": ("mp3", ),
 				   "04_wma": ("wma", ),
@@ -25,9 +26,9 @@ class VAudioInfo(Poll, Converter, object):
 				   "09_dts": ("dts", ),
 				   "10_pcm": ("pcm", ),
 				}
-		self.codec_info = { "dolbydigitalplus" : ("51", "20", "71"),
-				    "dolbydigital" : ("51", "20", "71"),
-				    "wma" : ("8", "9"),
+		self.codec_info = {"dolbydigitalplus": ("51", "20", "71"),
+				    "dolbydigital": ("51", "20", "71"),
+				    "wma": ("8", "9"),
 				  }
 		self.type, self.interesting_events = {
 				"AudioIcon": (self.GET_AUDIO_ICON, (iPlayableService.evUpdatedInfo,)),
@@ -54,11 +55,11 @@ class VAudioInfo(Poll, Converter, object):
 		languages = languages.replace("und ", "")
 		return languages
 
-	def getAudioCodec(self,info):
+	def getAudioCodec(self, info):
 		description_str = _("unknown")
 		if self.getAudio():
 			languages = self.getLanguage()
-			description = self.audio_info.getDescription();
+			description = self.audio_info.getDescription()
 			description_str = description.split(" ")
 			if len(description_str) and description_str[0] in languages:
 				return languages
@@ -67,12 +68,13 @@ class VAudioInfo(Poll, Converter, object):
 			description_str = description + " " + languages
 		return description_str
 
-	def getAudioIcon(self,info):
-		description_str = self.get_short(self.getAudioCodec(info).translate(None,' .').lower())
+	def getAudioIcon(self, info):
+		description_str = self.get_short(self.getAudioCodec(info).translate(str.maketrans("", "", ' .')).lower())
 		return description_str
 
 	def get_short(self, audioName):
-		for return_codec, codecs in sorted(self.codecs.iteritems()):
+		import six
+		for return_codec, codecs in sorted(six.iteritems(self.codecs)):
 			for codec in codecs:
 				if codec in audioName:
 					codec = return_codec.split('_')[1]

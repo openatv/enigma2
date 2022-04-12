@@ -100,6 +100,7 @@ is usually caused by not marking PSignals as immutable.
 #include <lib/dvb/cablescan.h>
 #include <lib/dvb/encoder.h>
 #include <lib/dvb/streamserver.h>
+#include <lib/dvb/metaparser.h>
 #include <lib/components/scan.h>
 #include <lib/components/file_eraser.h>
 #include <lib/components/tuxtxtapp.h>
@@ -265,6 +266,7 @@ typedef long time_t;
 %include <lib/python/pythonconfig.h>
 %include <lib/gdi/picload.h>
 %include <lib/dvb/streamserver.h>
+%include <lib/dvb/metaparser.h>
 /**************  eptr  **************/
 
 /**************  signals  **************/
@@ -435,10 +437,31 @@ bool isFBCLink(int);
 bool isFBCLink(int fe)
 {
         eFBCTunerManager *mgr = eFBCTunerManager::getInstance();
-        if (mgr) return mgr->isFBCLink(fe);
+        if (mgr) return mgr->IsFBCLink(fe);
         return false;
 }
 %}
+
+PyObject *getFontFaces();
+%{
+PyObject *getFontFaces()
+{
+	std::vector<std::string> v = fontRenderClass::getInstance()->getFontFaces();
+	ePyObject result = PyList_New(v.size());
+	for (size_t i = 0; i < v.size(); i++)
+		PyList_SET_ITEM(result, i, PyString_FromString(v[i].c_str()));
+        return result;
+}
+%}
+
+void setListBoxScrollbarStyle(int,int);
+%{
+void setListBoxScrollbarStyle(int width, int offset)
+{
+	eListbox::setScrollbarStyle(width, offset);
+}
+%}
+
 
 /************** temp *****************/
 
@@ -448,10 +471,12 @@ extern void runMainloop();
 extern void quitMainloop(int exit_code);
 extern eApplication *getApplication();
 extern int getPrevAsciiCode();
+extern void setPrevAsciiCode(int code);
 extern int getBsodCounter();
 extern void resetBsodCounter();
 extern void addFont(const char *filename, const char *alias, int scale_factor, int is_replacement, int renderflags = 0);
 extern const char *getEnigmaVersionString();
+extern const char *getE2Rev();
 extern const char *getGStreamerVersionString();
 extern void dump_malloc_stats(void);
 #ifndef HAVE_OSDANIMATION
@@ -465,12 +490,14 @@ extern void resumeInit(void);
 
 extern void addFont(const char *filename, const char *alias, int scale_factor, int is_replacement, int renderflags = 0);
 extern int getPrevAsciiCode();
+extern void setPrevAsciiCode(int code);
 extern int getBsodCounter();
 extern void resetBsodCounter();
 extern void runMainloop();
 extern void quitMainloop(int exit_code);
 extern eApplication *getApplication();
 extern const char *getEnigmaVersionString();
+extern const char *getE2Rev();
 extern const char *getGStreamerVersionString();
 extern void dump_malloc_stats(void);
 #ifndef HAVE_OSDANIMATION

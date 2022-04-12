@@ -178,12 +178,14 @@ std::string eTPM::challenge(std::string rnd)
 		if (!send_cmd(TPMD_CMD_COMPUTE_SIGNATURE, rnd.c_str(), 8))
 			return "";
 
-		unsigned int tag;
+		unsigned int tag = 0;
 		size_t len;
 		unsigned char *val = (unsigned char*)recv_cmd(&tag, &len);
 
-		if (tag != TPMD_CMD_COMPUTE_SIGNATURE)
+		if (tag != TPMD_CMD_COMPUTE_SIGNATURE) {
+			free(val);
 			return "";
+		}
 
 		std::string ret((char*)val, len);
 		free(val);

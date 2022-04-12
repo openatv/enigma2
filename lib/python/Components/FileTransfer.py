@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from __future__ import absolute_import
 from Components.Task import Task, Job, job_manager, AbortedPostcondition, ReturncodePostcondition
 from Tools.Directories import fileExists, shellquote
 from Components.MovieList import MOVIE_EXTENSIONS
@@ -7,10 +8,12 @@ import os
 
 ALL_MOVIE_EXTENSIONS = MOVIE_EXTENSIONS.union((".ts",))
 
+
 class FileTransferJob(Job):
 	def __init__(self, src_file, dst_file, src_isDir, do_copy, title):
 		Job.__init__(self, title)
 		FileTransferTask(self, src_file, dst_file, src_isDir, do_copy)
+
 
 class FileTransferTask(Task):
 	def __init__(self, job, src_file, dst_file, src_isDir, do_copy):
@@ -80,9 +83,9 @@ class FileTransferTask(Task):
 		self.afterRun()
 		not_met = []
 		if aborted:
-			from Tools import Notifications
+			import Tools.Notifications
 			from Screens.MessageBox import MessageBox
-			Notifications.AddNotification(MessageBox, _("File transfer was cancelled by user"), type=MessageBox.TYPE_INFO)
+			Tools.Notifications.AddNotification(MessageBox, _("File transfer was cancelled by user"), type=MessageBox.TYPE_INFO)
 		else:
 			for postcondition in self.postconditions:
 				if not postcondition.check(self):

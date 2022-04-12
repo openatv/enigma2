@@ -205,7 +205,13 @@ uint16_t FastScanTransportStream::getOrbitalPosition(void) const
 	return 0;
 }
 
-int32_t FastScanTransportStream::getFrequency(void) const
+uint8_t FastScanTransportStream::getWestEastFlag(void) const
+{
+	if (deliverySystem) return deliverySystem->getWestEastFlag();
+	return 0;
+}
+
+uint32_t FastScanTransportStream::getFrequency(void) const
 {
 	if (deliverySystem) return deliverySystem->getFrequency();
 	return 0;
@@ -484,6 +490,9 @@ void eFastScan::parseResult()
 			eDVBChannelID chid;
 			int orbitalposbcd = (*it)->getOrbitalPosition();
 			int orbitalpos = (orbitalposbcd & 0x0f) + ((orbitalposbcd >> 4) & 0x0f) * 10 + ((orbitalposbcd >> 8) & 0x0f) * 100;
+			int westeastflag = (*it)->getWestEastFlag();
+			if (!westeastflag)
+				orbitalpos = 3600 - orbitalpos;
 
 			if (transponderParameters.orbital_position != orbitalpos &&
 				!eDVBSatelliteEquipmentControl::getInstance()->isOrbitalPositionConfigured(orbitalpos))

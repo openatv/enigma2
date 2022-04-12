@@ -1,45 +1,46 @@
-from enigma import eTimer
-import re, glob, shutil, os, urllib2, urllib, time, sys
-from Screens.Screen import Screen
-from Components.config import ConfigSubsection, ConfigYesNo, ConfigText, config, configfile
+from __future__ import print_function
+from __future__ import absolute_import
+from enigma import eTimer, eDVBDB
+import os
+import time
+import sys
+from Components.config import config, configfile
 from Screens.MessageBox import MessageBox
-from downloader import DownloadSetting, ConverDate, ConverDateBack
-from enigma import *
-
-try:
-    import zipfile
-except:
-    pass
+from .downloader import DownloadSetting, ConverDate, ConverDateBack
+from six.moves.urllib.request import urlopen
+from six.moves.urllib.request import Request
+import six
 
 Directory = os.path.dirname(sys.modules[__name__].__file__)
+
 
 def InstallSettings(name, link, date):
 
     def DownloadSetting(link):
-        req = urllib2.Request(link)
-        req.add_header('User-Agent', 'VAS')
-        response = urllib2.urlopen(req)
+        req = Request(link)
+        #req.add_header('User-Agent', 'VAS')
+        response = urlopen(req)
         newlink = response.read()
         response.close()
-        Setting = open(Directory + '/Settings/tmp/listE2.zip', 'w')
+        Setting = open(Directory + '/Settings/tmp/listE2.zip', 'wb')
         Setting.write(newlink)
         Setting.close()
         if os.path.exists(Directory + '/Settings/tmp/listE2.zip'):
             os.system('mkdir ' + Directory + '/Settings/tmp/listE2_unzip')
             try:
-                os.system('unzip ' + Directory + '/Settings/tmp/listE2.zip -d  ' + Directory + '/Settings/tmp/listE2_unzip')
+                os.system('unzip -q ' + Directory + '/Settings/tmp/listE2.zip -d  ' + Directory + '/Settings/tmp/listE2_unzip')
             except:
-                print "ERROR unzip listE2.zip"
+                print("ERROR unzip listE2.zip")
             if not os.path.exists(Directory + '/Settings/tmp/setting'):
                 os.system('mkdir ' + Directory + '/Settings/tmp/setting')
                 try:
-                    os.system('unzip ' + Directory + '/Settings/tmp/listE2_unzip/*.zip -d  ' + Directory + '/Settings/tmp/setting')
+                    os.system('unzip -q ' + Directory + '/Settings/tmp/listE2_unzip/*.zip -d  ' + Directory + '/Settings/tmp/setting')
                 except:
-                    print "ERROR unzip %s.zip", name
+                    print("ERROR unzip %s.zip", name)
         return False
 
     Status = True
-    
+
     # remove old download if exists
     if os.path.exists(Directory + '/Settings/tmp'):
         os.system('rm -rf ' + Directory + '/Settings/tmp')
@@ -62,18 +63,17 @@ def InstallSettings(name, link, date):
         inhaltfile = Directory + '/Settings/tmp/setting/inhalt.lst'
         if os.path.isfile(inhaltfile):
             with open(inhaltfile, 'r') as f:
-                data = f.read().decode("utf-8-sig").encode("utf-8")
+                data = six.ensure_str(f.read())
             RemoveList = data.splitlines()
-
         return RemoveList
 
     if not DownloadSetting(link):
         RemoveList = getRemoveList()
         if RemoveList:
             for file in RemoveList:
-               nFile = '/etc/enigma2/'+ file
+               nFile = '/etc/enigma2/' + file
                if os.path.isfile(nFile) and not nFile == '/etc/enigma2/lamedb':
-                    os.system('rm -rf %s' %nFile)
+                    os.system('rm -rf %s' % nFile)
 
         os.system('rm -rf /etc/enigma2/*.del')
         os.system('rm -rf /etc/enigma2/lamedb')
@@ -86,7 +86,7 @@ def InstallSettings(name, link, date):
         # remove /tmp folder
         if os.path.exists(Directory + '/Settings/tmp'):
             os.system('rm -rf ' + Directory + '/Settings/tmp')
-        
+
     else:
         Status = False
 
@@ -95,7 +95,7 @@ def InstallSettings(name, link, date):
 
 class CheckTimer:
 
-    def __init__(self, session = None):
+    def __init__(self, session=None):
         self.session = session
         self.UpdateTimer = eTimer()
         self.UpdateTimer.callback.append(self.startTimerSetting)
@@ -127,7 +127,7 @@ class CheckTimer:
             pass
 
     def TimerSetting(self, Auto=False):
-  
+
         try:
             self.StopTimer()
         except:
@@ -136,7 +136,7 @@ class CheckTimer:
         now = time.time()
         ttime = now + 28800 # Check each 8 hours for new version
         delta1 = int(ttime - now)
-        
+
         if Auto:
             #Do Check at bootup after 2 min
             self.UpdateTimer.start(120000, True)
@@ -150,12 +150,12 @@ class CheckTimer:
         else:
             config.pud.update_question.value = False
         config.pud.save()
-        
+
     def startTimerSetting(self):
 
         def OnDsl():
             try:
-                urllib2.urlopen('http://www.google.de', None, 3)
+                urlopen('https://www.google.de', None, 3)
                 return (True and config.pud.showmessage.value)
             except:
                 return False
@@ -163,7 +163,7 @@ class CheckTimer:
             return
 
         if OnDsl():
-            print "Programmlisten-Updater: CHECK FOR UPDATE"
+            print("Programmlisten-Updater: CHECK FOR UPDATE")
             sList = DownloadSetting(self.url)
             for date, name, link in sList:
                 if name == config.pud.satname.value:
@@ -173,7 +173,7 @@ class CheckTimer:
                         self.name = name
                         self.link = link
                         yesno_default = config.pud.update_question.value
-                        print "Programmlisten-Updater: NEW SETTINGS DXANDY"
+                        print("Programmlisten-Updater: NEW SETTINGS DXANDY")
                         if config.pud.just_update.value:
                             # Update without information
                             self.startDownload(self.name, self.link, ConverDate(self.date))
@@ -181,7 +181,7 @@ class CheckTimer:
                             # Auto update with confrimation
                             self.session.openWithCallback(self.CBupdate, MessageBox, _('New Setting DXAndy ') + name + _(' of ') + ConverDate(date) + _(' available !!' + "\n\n" + "Do you want to install the new settingslist?"), MessageBox.TYPE_YESNO, default=yesno_default, timeout=60)
                     else:
-                        print "Programmlisten-Updater: NO NEW UPDATE AVAILBLE"
+                        print("Programmlisten-Updater: NO NEW UPDATE AVAILBLE")
                     break
- 
+
         self.TimerSetting()

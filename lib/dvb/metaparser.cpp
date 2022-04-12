@@ -94,35 +94,35 @@ int eDVBMetaParser::parseMeta(const std::string &tsname)
 
 		switch (linecnt)
 		{
-		case 0:
+		case iDVBMetaFile::idServiceRef:
 			m_ref = eServiceReferenceDVB(line);
 			break;
-		case 1:
+		case iDVBMetaFile::idName:
 			m_name = line;
 			break;
-		case 2:
+		case iDVBMetaFile::idDescription:
 			m_description = line;
 			break;
-		case 3:
+		case iDVBMetaFile::idCreated:
 			m_time_create = atoi(line);
 			if (m_time_create == 0)
 			{
 				m_time_create = getctime(tsname);
 			}
 			break;
-		case 4:
+		case iDVBMetaFile::idTags:
 			m_tags = line;
 			break;
-		case 5:
+		case iDVBMetaFile::idLength:
 			m_length = atoll(line);  //movielength in pts
 			break;
-		case 6:
+		case iDVBMetaFile::idFileSize:
 			m_filesize = atoll(line);
 			break;
-		case 7:
+		case iDVBMetaFile::idServiceData:
 			m_service_data = line;
 			break;
-		case 8:
+		case iDVBMetaFile::idPacketSize:
 			m_packet_size = atoi(line);
 			if (m_packet_size <= 0)
 			{
@@ -130,7 +130,7 @@ int eDVBMetaParser::parseMeta(const std::string &tsname)
 				m_packet_size = 188;
 			}
 			break;
-		case 9:
+		case iDVBMetaFile::idScrambled:
 			m_scrambled = atoi(line);
 			break;
 		default:

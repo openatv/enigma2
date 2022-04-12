@@ -1,13 +1,15 @@
 import os
 import time
+import six
 
 ECM_INFO = '/tmp/ecm.info'
-EMPTY_ECM_INFO = '','0','0','0'
+EMPTY_ECM_INFO = '', '0', '0', '0'
 
 old_ecm_time = time.time()
 info = {}
 ecm = ''
 data = EMPTY_ECM_INFO
+
 
 class GetEcmInfo:
 	def pollEcmData(self):
@@ -23,14 +25,17 @@ class GetEcmInfo:
 			info = {}
 			ecm = ''
 		if ecm_time != old_ecm_time:
-			oecmi1 = info.get('ecminterval1','')
-			oecmi0 = info.get('ecminterval0','')
+			oecmi1 = info.get('ecminterval1', '')
+			oecmi0 = info.get('ecminterval0', '')
 			info = {}
 			info['ecminterval2'] = oecmi1
 			info['ecminterval1'] = oecmi0
 			old_ecm_time = ecm_time
 			try:
-				ecm = open(ECM_INFO, 'rb').readlines()
+				if six.PY2:
+					ecm = open(ECM_INFO, 'rb').readlines()
+				else:
+					ecm = open(ECM_INFO, 'r').readlines()
 			except:
 				ecm = ''
 			for line in ecm:
@@ -40,7 +45,7 @@ class GetEcmInfo:
 			data = self.getText()
 			return True
 		else:
-			info['ecminterval0'] = int(time.time()-ecm_time+0.5)
+			info['ecminterval0'] = int(time.time() - ecm_time + 0.5)
 
 	def getEcm(self):
 		return (self.pollEcmData(), ecm)
@@ -49,7 +54,7 @@ class GetEcmInfo:
 		self.pollEcmData()
 		return data
 
-	def getInfo(self, member, ifempty = ''):
+	def getInfo(self, member, ifempty=''):
 		self.pollEcmData()
 		return str(info.get(member, ifempty))
 
@@ -78,7 +83,10 @@ class GetEcmInfo:
 					if info['decode'] == 'Network':
 						cardid = 'id:' + info.get('prov', '')
 						try:
-							share = open('/tmp/share.info', 'rb').readlines()
+							if six.PY2:
+								share = open('/tmp/share.info', 'rb').readlines()
+							else:
+								share = open('/tmp/share.info', 'r').readlines()
 							for line in share:
 								if cardid in line:
 									self.textvalue = line.strip()
@@ -93,8 +101,8 @@ class GetEcmInfo:
 						info['prov'] = ecm[1].strip()[6:]
 					if info['response'] and 'CaID 0x' in ecm[0] and 'pid 0x' in ecm[0]:
 						self.textvalue += " (0.%ss)" % info['response']
-						info['caid'] = ecm[0][ecm[0].find('CaID 0x')+7:ecm[0].find(',')]
-						info['pid'] = ecm[0][ecm[0].find('pid 0x')+6:ecm[0].find(' =')]
+						info['caid'] = ecm[0][ecm[0].find('CaID 0x') + 7:ecm[0].find(',')]
+						info['pid'] = ecm[0][ecm[0].find('pid 0x') + 6:ecm[0].find(' =')]
 						info['provid'] = info.get('prov', '0')[:4]
 				else:
 					source = info.get('source', None)
@@ -110,7 +118,7 @@ class GetEcmInfo:
 							if 'msec' in line:
 								line = line.split(' ')
 								if line[0]:
-									time = " (%ss)" % (float(line[0])/1000)
+									time = " (%ss)" % (float(line[0]) / 1000)
 									continue
 						self.textvalue = source + time
 					else:
@@ -127,7 +135,7 @@ class GetEcmInfo:
 							if response:
 								# wicardd - type 1
 								response = response.split(' ')
-								self.textvalue = "%s (%ss)" % (response[4], float(response[0])/1000)
+								self.textvalue = "%s (%ss)" % (response[4], float(response[0]) / 1000)
 							else:
 								self.textvalue = ""
 			decCI = info.get('caid', info.get('CAID', '0'))
@@ -136,7 +144,7 @@ class GetEcmInfo:
 		except:
 			ecm = ''
 			self.textvalue = ""
-			decCI='0'
-			provid='0'
-			ecmpid='0'
-		return self.textvalue,decCI,provid,ecmpid
+			decCI = '0'
+			provid = '0'
+			ecmpid = '0'
+		return self.textvalue, decCI, provid, ecmpid

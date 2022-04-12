@@ -1,15 +1,17 @@
+from __future__ import print_function
 ##
 ## Picon renderer by Gruffy .. some speedups by Ghost
 ##
 from Tools.Directories import fileExists
 from Tools.Alternatives import GetWithAlternative
-from Components.config import config
+#from Components.config import config
 from enigma import eServiceCenter, eServiceReference
 
 searchPaths = ('/usr/share/enigma2/%s/', '/media/usb/%s/', '/media/mmc/%s/', '/media/hdd/%s/')
 path = "picon"
-nameCache = { }
+nameCache = {}
 pngname = ""
+
 
 def findFile(serviceName):
 	path = "picon"
@@ -41,6 +43,7 @@ def findFile(serviceName):
 			return pngname
 	return ""
 
+
 def findPicon(service):
 	pngname = ""
 	sname = service
@@ -48,13 +51,13 @@ def findPicon(service):
 	if sname.startswith("1:134"):
 		sname = GetWithAlternative(service)
 	for protocol in ("http", "rtmp", "rtsp", "mms", "rtp"):
-		pos = sname.rfind(':' + protocol )
+		pos = sname.rfind(':' + protocol)
 		if pos != -1:
 			sname = sname.split(protocol)[0]
 			break
 	pos = sname.rfind(':')
 	if pos != -1:
-		sname = sname[:pos].rstrip(':').replace(':','_')
+		sname = sname[:pos].rstrip(':').replace(':', '_')
 	pngname = nameCache.get(sname, "")
 	if pngname == "":
 		pngname = findFile(sname)
@@ -64,8 +67,8 @@ def findPicon(service):
 			if service and service is not None:
 				info = serviceHandler.info(service)
 				if info and info is not None:
-					service_name = info.getName(service).replace('\xc2\x86','').replace('\xc2\x87', '').replace('/', '_')
-					print service_name
+					service_name = info.getName(service).replace('\xc2\x86', '').replace('\xc2\x87', '').replace('/', '_')
+					print(service_name)
 					pngname = findFile(service_name)
 		if pngname == "" and sname.startswith("4097_"):
 			pngname = findFile(sname.replace("4097_", "1_", 1))

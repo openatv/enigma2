@@ -1,4 +1,3 @@
-#include <lib/base/etrace.h>
 #include <lib/driver/rcsdl.h>
 //#include <lib/actions/action.h>
 #include <lib/base/init.h>
@@ -19,15 +18,13 @@ eSDLInputDevice::~eSDLInputDevice()
 
 void eSDLInputDevice::handleCode(long arg)
 {
-	D_ENTER();
-
 	const SDL_KeyboardEvent *event = (const SDL_KeyboardEvent *)arg;
-	const SDL_keysym *key = &event->keysym;
+	const SDL_Keysym *key = &event->keysym;
 	int km = input->getKeyboardMode();
 	int code, flags;
 
 	if (event->type == SDL_KEYDOWN) {
-		m_unicode = key->unicode;
+//		m_unicode = key->unicode;
 		flags = eRCKey::flagMake;
 	} else {
 		flags = eRCKey::flagBreak;
@@ -35,13 +32,13 @@ void eSDLInputDevice::handleCode(long arg)
 
 	if (km == eRCInput::kmNone) {
 		code = translateKey(key->sym);
-		D_PRINT("translated code: %d", code);
+		eDebug("[eSDLInputDevice] translated code: %d", code);
 	} else {
 		code = m_unicode;
-		D_PRINT("native virtual code: %d / sym: %d", code, key->sym);
+		eDebug("[eSDLInputDevice] native virtual code: %d / sym: %d", code, key->sym);
 		if ((code == 0) && (key->sym < 128)) {
 			code = key->sym;
-			D_PRINT("ASCII code: %u", code);
+			eDebug("[eSDLInputDevice] ASCII code: %u", code);
 		}
 
 		if ((km == eRCInput::kmAscii) &&
@@ -53,14 +50,14 @@ void eSDLInputDevice::handleCode(long arg)
 		} else {
 			// ASCII keys should only generate key press events
 			if (flags == eRCKey::flagBreak)
-				D_RETURN();
+				return;
 
 			if (km == eRCInput::kmAscii) {
 				// skip ESC c or ESC '[' c
 				if (m_escape) {
 					if (code != '[')
 						m_escape = false;
-					D_RETURN();
+					return;
 				}
 				if (code == SDLK_ESCAPE)
 					m_escape = true;
@@ -69,9 +66,8 @@ void eSDLInputDevice::handleCode(long arg)
 		}
 	}
 
-	D_PRINT("code=%d (%#x) flags=%d (%#x)", code, code, flags, flags);
+	eDebug("[eSDLInputDevice] code=%d (%#x) flags=%d (%#x)", code, code, flags, flags);
 	input->keyPressed(eRCKey(this, code, flags));
-	D_RETURN();
 }
 
 const char *eSDLInputDevice::getDescription() const
@@ -79,7 +75,7 @@ const char *eSDLInputDevice::getDescription() const
 	return "SDL";
 }
 
-int eSDLInputDevice::translateKey(SDLKey key)
+int eSDLInputDevice::translateKey(SDL_Keycode key)
 {
 	#define P(a)	case SDLK_##a: return KEY_##a
 	#define P2(a,b)	case SDLK_##a: return KEY_##b
@@ -270,16 +266,16 @@ int eSDLInputDevice::translateKey(SDLKey key)
 	P(WORLD_94);
 	P(WORLD_95);
 #endif
-	P(KP0);
-	P(KP1);
-	P(KP2);
-	P(KP3);
-	P(KP4);
-	P(KP5);
-	P(KP6);
-	P(KP7);
-	P(KP8);
-	P(KP9);
+//	P(KP0);
+//	P(KP1);
+//	P(KP2);
+//	P(KP3);
+//	P(KP4);
+//	P(KP5);
+//	P(KP6);
+//	P(KP7);
+//	P(KP8);
+//	P(KP9);
 	P2(KP_PERIOD,KPDOT);
 	P2(KP_DIVIDE,KPSLASH);
 	P2(KP_MULTIPLY,KPASTERISK);
@@ -311,30 +307,30 @@ int eSDLInputDevice::translateKey(SDLKey key)
 	P(F13);
 	P(F14);
 	P(F15);
-	P(NUMLOCK);
+//	P(NUMLOCK);
 	P(CAPSLOCK);
-	P2(SCROLLOCK,SCROLLLOCK);
+//	P2(SCROLLOCK,SCROLLLOCK);
 	P2(RSHIFT,RIGHTSHIFT);
 	P2(LSHIFT,LEFTSHIFT);
 	P2(RCTRL,RIGHTCTRL);
 	P2(LCTRL,LEFTCTRL);
 	P2(RALT,RIGHTALT);
 	P2(LALT,LEFTALT);
-	P2(RMETA,RIGHTMETA);
-	P2(LMETA,LEFTMETA);
+//	P2(RMETA,RIGHTMETA);
+//	P2(LMETA,LEFTMETA);
 #if 0
 	P(LSUPER);
 	P(RSUPER);
 #endif
 	P(MODE);
-	P(COMPOSE);
+//	P(COMPOSE);
 	P(HELP);
-	P(PRINT);
+//	P(PRINT);
 	P2(SYSREQ,SYSRQ);
-	P(BREAK);
+//	P(BREAK);
 	P(MENU);
 	P(POWER);
-	P(EURO);
+//	P(EURO);
 	P(UNDO);
 	default:
 		eDebug("[eSDLInputDevice] unhandled SDL keycode: %d", key);

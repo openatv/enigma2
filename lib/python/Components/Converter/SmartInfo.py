@@ -2,9 +2,10 @@ from enigma import iServiceInformation
 from Components.Converter.Converter import Converter
 from Components.Element import cached
 from xml.etree.cElementTree import parse
-from Poll import Poll
+from Components.Converter.Poll import Poll
 
-class SmartInfo(Poll, Converter, object):
+
+class SmartInfo(Poll, Converter):
     EXPERTINFO = 0
 
     def __init__(self, type):
@@ -73,7 +74,7 @@ class SmartInfo(Poll, Converter, object):
                         orb_pos = ''
                     elif frontendData.get('tuner_type') == 'DVB-T':
                         frequency = str(frontendData.get('frequency') / 1000) + ' MHz'
-                        Ret_Text = Ret_Text + 'Frequency: ' + frequency
+                        Ret_Text = Ret_Text + _('Frequency: ') + frequency
                 Ret_Text = Ret_Text + ' ' + satName
             return Ret_Text
         return 'n/a'
@@ -105,7 +106,7 @@ class SmartInfo(Poll, Converter, object):
         if transponderData is not None:
             if isinstance(transponderData, float):
                 return ''
-            if transponderData.has_key('tuner_type'):
+            if 'tuner_type' in transponderData:
                 if transponderData['tuner_type'] == 'DVB-S' or transponderData['tuner_type'] == 'DVB-S2':
                     orbital = transponderData['orbital_position']
                     orbital = int(orbital)

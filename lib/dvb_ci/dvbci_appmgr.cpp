@@ -38,12 +38,13 @@ int eDVBCIApplicationManagerSession::receivedAPDU(const unsigned char *tag,const
 			dl=((unsigned char*)data)[5];
 			if ((dl + 6) > len)
 			{
-				eDebugNoNewLineEnd("[CI AM] warning, invalid length (%d vs %d)", dl+6, len);
+				eDebugNoNewLine("[CI AM] warning, invalid length (%d vs %d)", dl+6, len);
 				dl=len-6;
 			}
 			char str[dl + 1];
 			memcpy(str, ((char*)data) + 6, dl);
-			str[dl] = '\0';
+			if (dl > 0)
+				str[dl] = '\0'; //NOSONAR
 			for (int i = 0; i < dl; ++i)
 				eDebugNoNewLine("%c", ((unsigned char*)data)[i+6]);
 

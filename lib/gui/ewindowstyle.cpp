@@ -60,7 +60,7 @@ eWindowStyleSimple::eWindowStyleSimple()
 
 void eWindowStyleSimple::handleNewSize(eWindow *wnd, eSize &size, eSize &offset)
 {
-//	eDebug("[eWindowStyleManager] handle new size: %d x %d", size.width(), size.height());
+//	eDebug("[eWindowStyleSimple] handle new size: %d x %d", size.width(), size.height());
 
 	eWidget *child = wnd->child();
 

@@ -25,11 +25,11 @@ extern void bcm_accel_blit(
 		int dst_x, int dst_y, int dwidth, int dheight,
 		int pal_addr, int flags);
 #endif
-
 #ifdef HAVE_HISILICON_ACCEL
 extern void  dinobot_accel_register(void *p1,void *p2);
 extern void  dinibot_accel_notify(void);
 #endif
+
 gFBDC::gFBDC()
 {
 	fb=new fbClass;
@@ -260,7 +260,6 @@ void gFBDC::exec(const gOpcode *o)
 		break;
 	}
 #endif
-
 	default:
 		gDC::exec(o);
 		break;
@@ -360,7 +359,6 @@ void gFBDC::setResolution(int xres, int yres, int bpp)
 	if (gAccel::getInstance())
 		gAccel::getInstance()->setAccelMemorySpace(fb->lfb + fb_size, surface.data_phys + fb_size, fb->Available() - fb_size);
 #endif
-
 #ifdef HAVE_HISILICON_ACCEL
 	dinobot_accel_register(&surface,&surface_back);
 #endif
@@ -368,7 +366,7 @@ void gFBDC::setResolution(int xres, int yres, int bpp)
 	{
 		surface.clut.colors = 256;
 		surface.clut.data = new gRGB[surface.clut.colors];
-		memset(surface.clut.data, 0, sizeof(*surface.clut.data)*surface.clut.colors);
+		memset(static_cast<void*>(surface.clut.data), 0, sizeof(*surface.clut.data)*surface.clut.colors);
 	}
 
 	surface_back.clut = surface.clut;

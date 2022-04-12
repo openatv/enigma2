@@ -1,9 +1,10 @@
-from Components.Converter.Converter import Converter
-from Components.Element import cached
 from Components.config import config
+from Components.Element import cached
 from Components.NimManager import nimmanager
+from Components.Converter.Converter import Converter
 
-class FrontendInfo(Converter, object):
+
+class FrontendInfo(Converter):
 	BER = 0
 	SNR = 1
 	AGC = 2
@@ -50,28 +51,28 @@ class FrontendInfo(Converter, object):
 			percent = self.source.agc
 		elif (self.type == self.SNR and not swapsnr) or (self.type == self.SNRdB and swapsnr):
 			percent = self.source.snr
-		elif self.type  == self.SNR or self.type == self.SNRdB:
+		elif self.type == self.SNR or self.type == self.SNRdB:
 			if self.source.snr_db is not None:
 				return "%3.01f dB" % (self.source.snr_db / 100.0)
 			elif self.source.snr is not None: #fallback to normal SNR...
 				percent = self.source.snr
 		elif self.type == self.TUNER_TYPE:
-			return self.source.frontend_type and self.frontend_type or "Unknown"
+			return self.source.frontend_type or _("Unknown")
 		elif self.type == self.STRING:
 			string = ""
 			for n in nimmanager.nim_slots:
 				if n.type:
 					if n.slot == self.source.slot_number:
-						color = "\c0000??00"
+						color = "\c0000ff00"
 					elif self.source.tuner_mask & 1 << n.slot:
-						color = "\c00??????"
+						color = "\c00ffffff"
 					elif len(nimmanager.nim_slots) <= self.space_for_tuners:
-						color = "\c007?7?7?"
+						color = "\c007f7f7f"
 					else:
 						continue
 					if string and len(nimmanager.nim_slots) <= self.space_for_tuners_with_spaces:
 						string += " "
-					string += color + chr(ord("A")+n.slot)
+					string += color + chr(ord("A") + n.slot)
 			return string
 		if percent is None:
 			return "N/A"
@@ -103,10 +104,8 @@ class FrontendInfo(Converter, object):
 		elif self.type == self.SNR:
 			return self.source.snr or 0
 		elif self.type == self.BER:
-			if self.BER < self.range:
-				return self.BER or 0
-			else:
-				return self.range
+			ber = self.source.ber or 0
+			return self.range if ber > self.range else ber
 		elif self.type == self.TUNER_TYPE:
 			type = self.source.frontend_type
 			if type == 'DVB-S':

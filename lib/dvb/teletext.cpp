@@ -49,7 +49,7 @@ unsigned int NationalOptionSubsets[13*14] = {
 	0, 0xc3a9, 0xc3af, 0xc3a0, 0xc3ab, 0xc3aa, 0xc3b9, 0xc3ae, 0x0023, 0xc3a8, 0xc3a2, 0xc3b4, 0xc3bb, 0xc3a7, // French
 	0, 0x0023, 0x0024, 0xc2a7, 0xc384, 0xc396, 0xc39c, 0x005e, 0x005f, 0xcb9a, 0xc3a4, 0xc3b6, 0xc3bc, 0xc39f, // German
 	0, 0xc2a3, 0x0024, 0xc3a9, 0xcb9a, 0xc3a7, 0xe28692, 0xe28691, 0x0023, 0xc3b9, 0xc3a0, 0xc3b2, 0xc3a8, 0xc3ac, // Italian
-	0, 0x0023, 0x0024, 0xc5a0, 0xc497, 0xc8a9, 0xc5bd, 0xc48d, 0xc5ab, 0xc5a1, 0xc485, 0xc5b3, 0xc5be, 0xc4af/*FIXMEE*/, // Lithuanian/Lettish
+	0, 0x0023, 0x0024, 0xc5a0, 0xc497, 0xc8a9, 0xc5bd, 0xc48d, 0xc5ab, 0xc5a1, 0xc485, 0xc5b3, 0xc5be, 0xc4af/*FIXME*/, // Lithuanian/Lettish
 	0, 0x0023, 0xc584, 0xc485, 0xc5bb, 0xc59a, 0xc581, 0xc487, 0xc3b3, 0xc499, 0xc5bc, 0xc59b, 0xc582, 0xc5ba, // Polish
 	0, 0xc3a7, 0x0024, 0xc2a1, 0xc3a1, 0xc3a9, 0xc3ad, 0xc3b3, 0xc3ba, 0xc2bf, 0xc3bc, 0xc3b1, 0xc3a8, 0xc3a0, // Spanish/Portuguese
 	0, 0x0023, 0xc2a4, 0xc5a2, 0xc382, 0xc59e, 0xc78d, 0xc38e, 0xc4b1, 0xc5a3, 0xc3a2, 0xc59f, 0xc78e, 0xc3ae, // Rumanian
@@ -253,7 +253,7 @@ void eDVBTeletextParser::processPESPacket(uint8_t *pkt, int len)
 {
 	unsigned char *p = pkt;
 
-	pts_t pts;
+	pts_t pts = 0;
 	int have_pts = extractPTS(pts, pkt);
 
 	//eDebug("[eDVBTeletextParser] PES packet len=%d", len);
@@ -276,10 +276,7 @@ void eDVBTeletextParser::processPESPacket(uint8_t *pkt, int len)
 			break;
 
 		if (len < data_unit_length)
-		{
-			eDebug("data_unit_length > len");
 			break;
-		}
 
 		if (data_unit_length != 44)
 			break;
@@ -408,18 +405,17 @@ void eDVBTeletextParser::processPESPacket(uint8_t *pkt, int len)
 									continue;
 								}
 								else
-									eDebug("ignore G2 char < 0x20: ");
+									eDebugNoNewLineStart("[eDVBTeletextParser] ignore G2 char < 0x20: ");
 							}
 							else
-								eDebug("ignore unimplemented: ");
+								eDebugNoNewLineStart("[eDVBTeletextParser] ignore unimplemented: ");
 						}
 						else
-							eDebug("row is not selected.. ignore: ");
+							eDebugNoNewLineStart("[eDVBTeletextParser] row is not selected.. ignore: ");
 					}
-					eDebug("triplet = %08x(%s) ", val, get_bits(val, 18));
-					eDebug("address = %02x(%s) ", addr, get_bits(addr, 6));
-					eDebug("mode = %02x(%s) ", mode, get_bits(mode, 5));
-					eDebug("data = %02x(%s)", data, get_bits(data, 7));
+					eDebugNoNewLine("triplet = %08x(%s) address = %02x(%s) mode = %02x(%s) data = %02x(%s)\n",
+							val, get_bits(val, 18), addr, get_bits(addr, 6),
+							mode, get_bits(mode, 5), data, get_bits(data, 7));
 				}
 			}
 		}

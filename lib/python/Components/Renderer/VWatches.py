@@ -12,15 +12,14 @@
 #    but WITHOUT ANY WARRANTY; without even the implied warranty of
 #    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 #    GNU General Public License for more details.
-#    
+#
 #######################################################################
 
 import math
-from Renderer import Renderer
+from Components.Renderer.Renderer import Renderer
 from skin import parseColor
 from enigma import eCanvas, eSize, gRGB, eRect
-from Components.VariableText import VariableText
-from Components.config import config
+
 
 class VWatches(Renderer):
 
@@ -61,12 +60,12 @@ class VWatches(Renderer):
 	def draw_line(self, x0, y0, x1, y1):
 		steep = abs(y1 - y0) > abs(x1 - x0)
 		if steep:
-			x0, y0 = y0, x0  
+			x0, y0 = y0, x0
 			x1, y1 = y1, x1
 		if x0 > x1:
 			x0, x1 = x1, x0
 			y0, y1 = y1, y0
-		if y0 < y1: 
+		if y0 < y1:
 			ystep = 1
 		else:
 			ystep = -1
@@ -77,13 +76,13 @@ class VWatches(Renderer):
 		for x in range(x0, x1 + 1):
 			if steep:
 				self.instance.fillRect(eRect(y, x, 1, 3), self.fColor)
-			else:          
+			else:
 				self.instance.fillRect(eRect(x, y, 1, 3), self.fColor)
 			error = error + deltay
 			if error > 0:
 				y = y + ystep
 				error = error - deltax
-        
+
 	def changed(self, what):
 		sss = self.source.value
 		if what[0] == self.CHANGED_CLEAR:
@@ -94,7 +93,7 @@ class VWatches(Renderer):
 					self.numval = sss
 					self.instance.clear(self.bColor)
 					self.hand()
-					
+
 	def postWidgetCreate(self, instance):
 
 		def parseSize(str):
@@ -105,5 +104,3 @@ class VWatches(Renderer):
 			if ((attrib == 'size') and self.instance.setSize(parseSize(value))):
 				pass
 		self.instance.clear(self.bColor)
-
-        

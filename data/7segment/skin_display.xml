@@ -1,5 +1,19 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <skin>
+<!--
+############################################################################################################
+to show the display-skin on some other older OSD-Skins, we need "windowstyle"
+If it has not been declared, there will otherwise be an error
+and the display skin will not be displayed
+[ E ] gui/ewindowstyle.cpp:35 getStyle [eWindowStyleManager] getStyle(style_id=1): NOT FOUND -->
+
+	<windowstyle id="1" type="skinned">
+		<color name="Background" color="#0060eb"/>
+		<color name="LabelForeground" color="#ffffff"/>
+	</windowstyle>
+
+<!-- ####################################################################################################### -->
+
 <!-- MyClockPanel -->	
 	<screen name="MyClockPanel">
 		<widget source="session.CurrentService" render="Label" position="0,0" size="1,1">
@@ -94,13 +108,12 @@
 		<panel name="MyClockPanel" />
 		<panel name="MyRecPanel" />
 	</screen>
-	<screen name="MessageBox_summary" position="0,0" size="1,1">
+	<screen name="MessageBoxSummary" position="0,0" size="1,1">
 		<panel name="MyClockPanel" />
 		<panel name="MyRecPanel" />
 	</screen>
-	<screen name="MessageBoxSimple_summary" position="0,0" size="1,1">
-		<panel name="MyClockPanel" />
-		<panel name="MyRecPanel" />
+	<screen name="MessageBoxSimpleSummary" position="0,0" size="1,1">
+		<panel name="MessageBoxSummary" />
 	</screen>
 	<screen name="PluginBrowserSummary" position="0,0" size="1,1">
 		<panel name="MyClockPanel" />
@@ -149,16 +162,12 @@
 <!-- standby -->
 	<screen name="StandbySummary" position="0,0" size="1,1">
 		<widget source="session.CurrentService" render="Label" position="0,0" size="1,1">
-			<convert type="ConfigEntryTest">config.usage.show_in_standby,time,CheckSourceBoolean</convert>
+			<convert type="ConfigEntryTest">config.usage.show_in_standby,time</convert>
 			<convert type="VfdDisplay">Clock</convert>
 		</widget>
 		<widget source="session.CurrentService" render="FixedLabel" position="0,0" size="1,1" text="    ">
-			<convert type="ConfigEntryTest">config.usage.show_in_standby,nothing,CheckSourceBoolean</convert>
+			<convert type="ConfigEntryTest">config.usage.show_in_standby,nothing</convert>
 			<convert type="ConditionalShowHide" />
-		</widget>
-		<widget source="session.CurrentService" render="Label" position="0,0" size="1,1">
-			<convert type="ConfigEntryTest">config.usage.blinking_display_clock_during_recording,time,CheckSourceBoolean</convert>
-			<convert type="VfdDisplay">Clock</convert>
 		</widget>
 		<widget source="session.RecordState" render="FixedLabel" position="0,0" size="1,1" text="REC ">
 			<convert type="ConfigEntryTest">config.usage.blinking_display_clock_during_recording,RecBlink,CheckSourceBoolean</convert>
@@ -168,7 +177,7 @@
 			<convert type="ConfigEntryTest">config.usage.blinking_display_clock_during_recording,Rec,CheckSourceBoolean</convert>
 			<convert type="ConditionalShowHide" />
 		</widget>
-		<widget source="session.CurrentService" render="FixedLabel" position="0,0" size="1,1" text="    ">
+		<widget source="session.RecordState" render="FixedLabel" position="0,0" size="1,1" text="    ">
 			<convert type="ConfigEntryTest">config.usage.blinking_display_clock_during_recording,Nothing,CheckSourceBoolean</convert>
 			<convert type="ConditionalShowHide" />
 		</widget>

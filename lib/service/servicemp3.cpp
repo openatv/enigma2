@@ -383,6 +383,22 @@ RESULT eStaticServiceMP3Info::getEvent(const eServiceReference &ref, ePtr<eServi
 		equivalentref.path.clear();
 		return eEPGCache::getInstance()->lookupEventTime(equivalentref, start_time, evt);
 	}
+	else // try to read .eit file
+	{
+		size_t pos;
+		ePtr<eServiceEvent> event = new eServiceEvent;
+		std::string filename = ref.path;
+		if ( (pos = filename.rfind('.')) != std::string::npos)
+		{
+			filename.erase(pos + 1);
+			filename += "eit";
+			if (!event->parseFrom(filename, 0))
+			{
+				evt = event;
+				return 0;
+			}
+		}
+	}
 	evt = 0;
 	return -1;
 }
@@ -525,6 +541,7 @@ eServiceMP3::eServiceMP3(eServiceReference ref):
 	m_aspect = m_width = m_height = m_framerate = m_progressive = m_gamma = -1;
 
 	m_state = stIdle;
+	m_gstdot = eConfigManager::getConfigBoolValue("config.crash.gstdot");
 	m_coverart = false;
 	m_subtitles_paused = false;
 	// eDebug("[eServiceMP3] construct!");
@@ -798,8 +815,10 @@ eServiceMP3::eServiceMP3(eServiceReference ref):
 			strcat(srt_filename, ".srt");
 			if (::access(srt_filename, R_OK) >= 0)
 			{
-				eDebug("[eServiceMP3] subtitle uri: %s", g_filename_to_uri(srt_filename, NULL, NULL));
-				g_object_set (m_gst_playbin, "suburi", g_filename_to_uri(srt_filename, NULL, NULL), NULL);
+				gchar *luri = g_filename_to_uri(srt_filename, NULL, NULL);
+				eDebug("[eServiceMP3] subtitle uri: %s", luri);
+				g_object_set (m_gst_playbin, "suburi", luri, NULL);
+				g_free(luri);
 			}
 		}
 	} else
@@ -956,6 +975,25 @@ RESULT eServiceMP3::start()
 			break;
 		default:
 			break;
+		}
+	}
+
+	if (m_ref.path.find("://") == std::string::npos)
+	{
+		/* read event from .eit file */
+		size_t pos;
+		ePtr<eServiceEvent> event = new eServiceEvent;
+		std::string filename = m_ref.path;
+		if ( (pos = filename.rfind('.')) != std::string::npos)
+		{
+			filename.erase(pos + 1);
+			filename += "eit";
+			if (!event->parseFrom(filename, 0))
+			{
+				ePtr<eServiceEvent> empty;
+				m_event_now = event;
+				m_event_next = empty;
+			}
 		}
 	}
 
@@ -1738,7 +1776,6 @@ int eServiceMP3::getInfo(int w)
 		guint64 v = -1;
 		g_signal_emit_by_name(dvb_videosink, "get-video-codec", &v);
 		return (int) v;
-		break;
 	}
 	case sSID: return m_ref.getData(1);
 	default:
@@ -2180,7 +2217,16 @@ void eServiceMP3::gstBusCall(GstMessage *msg)
 
 			if(old_state == new_state)
 				break;
-			eDebug("[eServiceMP3] ****STATE TRANSITION %s -> %s ****", gst_element_state_get_name(old_state), gst_element_state_get_name(new_state));
+
+			std::string s_old_state(gst_element_state_get_name(old_state));
+			std::string s_new_state(gst_element_state_get_name(new_state));
+			eDebug("[eServiceMP3] ****STATE TRANSITION %s -> %s ****", s_old_state.c_str(), s_new_state.c_str());
+
+			if (m_gstdot)
+			{
+				std::string s_graph_filename = "GStreamer-enigma2." + s_old_state + "_" + s_new_state;
+				GST_DEBUG_BIN_TO_DOT_FILE_WITH_TS(GST_BIN_CAST(m_gst_playbin), GST_DEBUG_GRAPH_SHOW_ALL, s_graph_filename.c_str());
+			}
 
 			transition = (GstStateChange)GST_STATE_TRANSITION(old_state, new_state);
 
@@ -2912,11 +2958,7 @@ audiotype_t eServiceMP3::gstCheckAudioPad(GstStructure* structure)
 			case 1:
 				{
 					gst_structure_get_int (structure, "layer", &layer);
-					if ( layer == 3 )
-						return atMP3;
-					else
-						return atMPEG;
-					break;
+					return ( layer == 3 ) ? atMP3 : atMPEG;
 				}
 			case 2:
 				return atAAC;

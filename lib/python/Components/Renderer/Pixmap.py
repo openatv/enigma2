@@ -1,6 +1,7 @@
-from Renderer import Renderer
-
 from enigma import ePixmap
+
+from Components.Renderer.Renderer import Renderer
+
 
 class Pixmap(Renderer):
 	def __init__(self):
@@ -16,4 +17,3 @@ class Pixmap(Renderer):
 			if self.source and hasattr(self.source, "pixmap"):
 				if self.instance:
 					self.instance.setPixmap(self.source.pixmap)
-

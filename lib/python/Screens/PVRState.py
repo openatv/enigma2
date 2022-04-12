@@ -1,7 +1,9 @@
-from Screen import Screen
+from __future__ import absolute_import
+from Screens.Screen import Screen
 
 from Components.Label import Label
 from Components.Pixmap import Pixmap, MultiPixmap
+
 
 class PVRState(Screen):
 	def __init__(self, session):
@@ -10,6 +12,7 @@ class PVRState(Screen):
 		self["state"] = Label()
 		self["speed"] = Label()
 		self["statusicon"] = MultiPixmap()
+
 
 class TimeshiftState(Screen):
 	def __init__(self, session):

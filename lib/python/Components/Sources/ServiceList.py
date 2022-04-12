@@ -1,14 +1,16 @@
-from Source import Source
 from enigma import eServiceCenter, eServiceReference
 
+from Components.Sources.Source import Source
+
+
 class ServiceList(Source):
-	def __init__(self, root, command_func = None, validate_commands = True):
+	def __init__(self, root, command_func=None, validate_commands=True):
 		Source.__init__(self)
 		self.root = root
-		self.command_func = command_func
-		self.validate_commands = validate_commands
+		self.commandFunction = command_func
+		self.validateCommands = validate_commands
 
-	def getServicesAsList(self, format = "SN"):
+	def getServicesAsList(self, format="SN"):
 		services = self.getServiceList()
 		return services and services.getContent(format, True)
 
@@ -16,11 +18,15 @@ class ServiceList(Source):
 		serviceHandler = eServiceCenter.getInstance()
 		return serviceHandler.list(self.root)
 
-	def validateReference(self, ref):
-		return ref in self.getServicesAsList("S")
+	def validateReference(self, reference):
+		return reference in self.getServicesAsList("S")
 
 	list = property(getServicesAsList)
-	lut = {"Reference": 0, "Name": 1}
+
+	lut = {
+		"Reference": 0,
+		"Name": 1
+	}
 
 	def getRoot(self):
 		return self.__root
@@ -33,12 +39,10 @@ class ServiceList(Source):
 	root = property(getRoot, setRoot)
 
 	def handleCommand(self, cmd):
-		print "ServiceList handle command"
-
-		if self.validate_commands and not self.validateReference(cmd):
-			print "Service reference did not validate!"
+		print("[ServiceList] Handle command: '%s'." % str(cmd))
+		if self.validateCommands and not self.validateReference(cmd):
+			print("[ServiceList] Service reference did not validate!")
 			return
-
-		ref = eServiceReference(cmd)
-		if self.command_func:
-			self.command_func(ref)
+		reference = eServiceReference(cmd)
+		if self.commandFunction:
+			self.commandFunction(reference)

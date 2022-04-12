@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: iso-8859-1 -*-
 
+from __future__ import print_function
 from Components.config import config
 from enigma import gFont
 from Plugins.Extensions.FileCommander.addons.unarchiver import ArchiverMenuScreen, ArchiverInfoScreen
@@ -9,6 +10,7 @@ import skin
 pname = _("File Commander - unzip Addon")
 pdesc = _("unpack zip Files")
 pversion = "0.2-r1"
+
 
 class UnzipMenuScreen(ArchiverMenuScreen):
 
@@ -25,7 +27,7 @@ class UnzipMenuScreen(ArchiverMenuScreen):
 		self.pversion = pversion
 
 	def unpackModus(self, id):
-		print "[UnzipMenuScreen] unpackModus", id
+		print("[UnzipMenuScreen] unpackModus", id)
 		if id == 1:
 			cmd = ("unzip", "-l", self.sourceDir + self.filename)
 			self.unpackPopen(cmd, UnpackInfoScreen)
@@ -39,13 +41,14 @@ class UnzipMenuScreen(ArchiverMenuScreen):
 				cmd.append(config.usage.default_path.value)
 			self.unpackEConsoleApp(cmd)
 
+
 class UnpackInfoScreen(ArchiverInfoScreen):
 
-	def __init__(self, session, list, sourceDir, filename):
-		super(UnpackInfoScreen, self).__init__(session, list, sourceDir, filename)
+	def __init__(self, session, liste, sourceDir, filename):
+		super(UnpackInfoScreen, self).__init__(session, liste, sourceDir, filename)
 		self.pname = pname
 		self.pdesc = pdesc
 		self.pversion = pversion
 
 		font = skin.fonts.get("FileList", ("Console", 20, 30))
-		self.chooseMenuList.l.setFont(0, gFont('Console', int(font[1]*0.85)))
+		self.chooseMenuList.l.setFont(0, gFont('Console', int(font[1] * 0.85)))

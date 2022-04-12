@@ -11,6 +11,7 @@ pname = _("File Commander - ipk Addon")
 pdesc = _("install/unpack ipk Files")
 pversion = "0.2-r1"
 
+
 class ipkMenuScreen(ArchiverMenuScreen):
 
 	def __init__(self, session, sourcelist, targetlist):
@@ -46,10 +47,11 @@ class ipkMenuScreen(ArchiverMenuScreen):
 			plugins.readPluginList(resolveFilename(SCOPE_PLUGINS))
 		return
 
+
 class UnpackInfoScreen(ArchiverInfoScreen):
 
-	def __init__(self, session, list, sourceDir, filename):
-		super(UnpackInfoScreen, self).__init__(session, list, sourceDir, filename)
+	def __init__(self, session, liste, sourceDir, filename):
+		super(UnpackInfoScreen, self).__init__(session, liste, sourceDir, filename)
 		self.pname = pname
 		self.pdesc = pdesc
 		self.pversion = pversion

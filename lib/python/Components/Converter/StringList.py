@@ -1,9 +1,12 @@
-from Converter import Converter
+from __future__ import print_function
+from Components.Converter.Converter import Converter
 from enigma import eListboxPythonStringContent
 from Components.Element import cached
 
+
 class StringList(Converter):
 	"""Turns a simple python list into a list which can be used in a listbox."""
+
 	def __init__(self, type):
 		Converter.__init__(self, type)
 		self.content = None
@@ -21,14 +24,14 @@ class StringList(Converter):
 
 	def setIndex(self, index):
 		# update all non-master targets
-		print "changed selection in listbox!"
+		print("[StringList] changed selection in listbox!")
 		for x in self.downstream_elements:
-			print "downstream element", x
+			print("[StringList] downstream element", x)
 			if x is not self.master:
-				print "is not master, so update to index", index
+				print("[StringList] is not master, so update to index", index)
 				x.index = index
 
-	def getIndex(self, index):
+	def getIndex(self):
 		return None
 
 	index = property(getIndex, setIndex)

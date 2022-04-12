@@ -97,7 +97,11 @@ static char* readInputCI(int NimNumber)
 static std::string getTunerLetterDM(int NimNumber)
 {
 	char *srcCI = readInputCI(NimNumber);
-	if (srcCI) return std::string(srcCI);
+	if (srcCI) {
+		std::string ret = std::string(srcCI);
+		free(srcCI);
+		return ret;
+	}
 	return eDVBCISlot::getTunerLetter(NimNumber);
 }
 
@@ -1068,14 +1072,20 @@ int eDVBCIInterfaces::setInputSource(int tuner_no, const std::string &source)
 		if (srcCI && CFile::write(buf, srcCI) == -1)
 		{
 			eDebug("[CI] eDVBCIInterfaces setInputSource for input %s failed!", srcCI);
+			free(srcCI);
+			srcCI = NULL;
 		}
 		else if (CFile::write(buf, source.c_str()) == -1)
 		{
 			eDebug("[CI] eDVBCIInterfaces setInputSource for input %s failed!", source.c_str());
+			if (srcCI)
+				free(srcCI);
 			return 0;
 		}
 
 		eDebug("[CI] eDVBCIInterfaces setInputSource(%d, %s)", tuner_no, source.c_str());
+		if (srcCI)
+			free(srcCI);
 	}
 	return 0;
 }
@@ -1187,7 +1197,7 @@ RESULT eDVBCIInterfaces::setDescrambleRules(int slotid, SWIG_PYOBJECT(ePyObject)
 			PyErr_SetString(PyExc_StandardError, buf);
 			return -1;
 		}
-		char *tmpstr = PyString_AS_STRING(refstr);
+		const char *tmpstr = PyString_AS_STRING(refstr);
 		eServiceReference ref(tmpstr);
 		if (ref.valid())
 			slot->possible_services.insert(ref);
@@ -1227,7 +1237,7 @@ RESULT eDVBCIInterfaces::setDescrambleRules(int slotid, SWIG_PYOBJECT(ePyObject)
 			PyErr_SetString(PyExc_StandardError, buf);
 			return -1;
 		}
-		char *tmpstr = PyString_AS_STRING(PyTuple_GET_ITEM(tuple, 0));
+		const char *tmpstr = PyString_AS_STRING(PyTuple_GET_ITEM(tuple, 0));
 		uint32_t orbpos = PyLong_AsUnsignedLong(PyTuple_GET_ITEM(tuple, 1));
 		if (strlen(tmpstr))
 			slot->possible_providers.insert(std::pair<std::string, uint32_t>(tmpstr, orbpos));
@@ -1830,15 +1840,21 @@ int eDVBCISlot::setSource(const std::string &source)
 	if(srcCI && CFile::write(buf, srcCI) == -1)
 	{
 		eDebug("[CI] Slot: %d setSource: %s failed!", getSlotID(), srcCI);
+		free(srcCI);
 		return 0;
 	}
 	else if(CFile::write(buf, source.c_str()) == -1)
 	{
 		eDebug("[CI] Slot: %d setSource: %s failed!", getSlotID(), source.c_str());
+		if (srcCI)
+			free(srcCI);
 		return 0;
 	}
 
 	eDebug("[CI] Slot: %d setSource: %s", getSlotID(), source.c_str());
+	if (srcCI)
+		free(srcCI);
+
 	return 0;
 }
 

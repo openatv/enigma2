@@ -22,6 +22,12 @@
 #ifndef AUDIO_SOURCE_HDMI
 #define AUDIO_SOURCE_HDMI 2
 #endif
+#ifndef AUDIO_GET_PTS
+#define AUDIO_GET_PTS _IOR('o', 19, __u64)
+#endif
+#ifndef VIDEO_GET_FRAME_RATE
+#define VIDEO_GET_FRAME_RATE _IOR('o', 56, unsigned int)
+#endif
 
 DEFINE_REF(eDVBAudio);
 
@@ -323,6 +329,7 @@ eDVBVideo::eDVBVideo(eDVBDemux *demux, int dev)
 #define VIDEO_STREAMTYPE_H265_HEVC 7
 #endif
 #define VIDEO_STREAMTYPE_AVS 16
+#define VIDEO_STREAMTYPE_AVS2 40
 
 int eDVBVideo::startPid(int pid, int type)
 {
@@ -354,6 +361,9 @@ int eDVBVideo::startPid(int pid, int type)
 			break;
 		case AVS:
 			streamtype = VIDEO_STREAMTYPE_AVS;
+			break;
+		case AVS2:
+			streamtype = VIDEO_STREAMTYPE_AVS2;
 			break;
 		}
 

@@ -27,6 +27,7 @@ protected:
 	iListboxContent();
 	friend class eListbox;
 	virtual void updateClip(gRegion &){ };
+	virtual void resetClip(){ };
 	virtual void cursorHome()=0;
 	virtual void cursorEnd()=0;
 	virtual int cursorMove(int count=1)=0;
@@ -61,7 +62,7 @@ struct eListboxStyle
 	ePtr<gPixmap> m_background, m_selection;
 	int m_transparent_background;
 	gRGB m_background_color, m_background_color_selected,
-	 m_foreground_color, m_foreground_color_selected, m_border_color, m_sliderborder_color, m_sliderforeground_color;
+	m_foreground_color, m_foreground_color_selected, m_border_color, m_sliderborder_color, m_sliderforeground_color;
 	int m_background_color_set, m_foreground_color_set, m_background_color_selected_set, m_foreground_color_selected_set, m_sliderforeground_color_set, m_sliderborder_color_set, m_scrollbarsliderborder_size_set;
 		/*
 			{m_transparent_background m_background_color_set m_background}
@@ -108,6 +109,8 @@ public:
 
 	void setContent(iListboxContent *content);
 
+	void allowNativeKeys(bool allow);
+
 /*	enum Movement {
 		moveUp,
 		moveDown,
@@ -148,9 +151,9 @@ public:
 
 	void setSliderPicture(ePtr<gPixmap> &pm);
 	void setScrollbarBackgroundPicture(ePtr<gPixmap> &pm);
-	void setScrollbarSliderPicture(ePtr<gPixmap> &pm);
 	void setScrollbarSliderBorderWidth(int size);
 	void setScrollbarWidth(int size);
+	void setScrollbarOffset(int size);
 
 	void setFont(gFont *font);
 	void setSecondFont(gFont *font);
@@ -162,6 +165,22 @@ public:
 	void setSliderBorderColor(const gRGB &col);
 	void setSliderBorderWidth(int size);
 	void setSliderForegroundColor(gRGB &col);
+
+	static void setScrollbarStyle(int width = -1, int offset = -1) { 
+			if (width != -1)
+				Defaultwidth = width; 
+			if (offset != -1)
+				Defaultoffset = offset; 
+		}
+
+	bool getWrapAround() { return m_enabled_wrap_around; }
+	int getScrollbarWidth() { return m_scrollbar_width; }
+	int getScrollbarOffset() { return m_scrollbar_offset; }
+	int getItemHeight() { return m_itemheight; }
+	bool getSelectionEnable() {return m_selection_enabled; }
+	gFont* getFont() {return m_style.m_font; }
+	gFont* getSecondFont() {return m_style.m_secondfont; }
+
 
 #ifndef SWIG
 	struct eListboxStyle *getLocalStyle(void);
@@ -177,25 +196,35 @@ public:
 
 	int getEntryTop();
 	void invalidate(const gRegion &region = gRegion::invalidRegion());
+
 protected:
 	int event(int event, void *data=0, void *data2=0);
 	void recalcSize();
 
 private:
+	static int getDefaultwidth() { return Defaultwidth; }
+	static int getDefaultoffset() { return Defaultoffset; }
+
+	static int Defaultwidth;
+	static int Defaultoffset;
+
 	int m_scrollbar_mode, m_prev_scrollbar_page;
 	bool m_content_changed;
 	bool m_enabled_wrap_around;
 
 	int m_scrollbar_width;
+	int m_scrollbar_offset;
 	int m_top, m_selected;
 	int m_itemheight;
 	int m_items_per_page;
 	int m_selection_enabled;
+
+	bool m_native_keys_bound;
+
 	ePtr<iListboxContent> m_content;
 	eSlider *m_scrollbar;
 	eListboxStyle m_style;
 	ePtr<gPixmap> m_scrollbarpixmap, m_scrollbarbackgroundpixmap;
-	ePtr<gPixmap> m_scrollbarsliderpixmap;
 #ifdef USE_LIBVUGLES2
 	long m_dir;
 #endif

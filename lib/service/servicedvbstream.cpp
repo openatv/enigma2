@@ -141,7 +141,10 @@ int eDVBServiceStream::doRecord()
 			eDebug("[eDVBServiceStream] NO DEMUX available");
 			return -1;
 		}
-		demux->createTSRecorder(m_record, /*packetsize*/ 188, /*streaming*/ true);
+		if (m_ref.path.empty())
+			demux->createTSRecorder(m_record, /*packetsize*/ 188, /*streaming*/ true);
+		else
+			demux->createTSRecorder(m_record, /*packetsize*/ 188, /*streaming*/ false);
 		if (!m_record)
 		{
 			eDebug("[eDVBServiceStream] no ts recorder available.");
@@ -268,7 +271,7 @@ int eDVBServiceStream::doRecord()
 		eDebugNoNewLine(", and the pcr pid is %04x", program.pcrPid);
 		if (program.pcrPid >= 0 && program.pcrPid < 0x1fff)
 			pids_to_record.insert(program.pcrPid);
-		eDebugNoNewLineEnd(", and the text pid is %04x", program.textPid);
+		eDebugNoNewLine(", and the text pid is %04x", program.textPid);
 		if (program.textPid != -1)
 			pids_to_record.insert(program.textPid); // Videotext
 

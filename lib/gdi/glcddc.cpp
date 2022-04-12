@@ -33,14 +33,14 @@ gLCDDC::gLCDDC()
 	{
 		surface.clut.colors = 256;
 		surface.clut.data = new gRGB[surface.clut.colors];
-		memset(surface.clut.data, 0, sizeof(*surface.clut.data)*surface.clut.colors);
+		memset(static_cast<void*>(surface.clut.data), 0, sizeof(*surface.clut.data)*surface.clut.colors);
 	}
 	else
 	{
 		surface.clut.colors = 0;
 		surface.clut.data = 0;
 	}
-	eDebug("[gLCDDC] resolution: %d x %d x %d (stride: %d)", surface.x, surface.y, surface.bpp, surface.stride);
+	eDebug("[gLCDDC] resolution: %dx%dx%d stride=%d", surface.x, surface.y, surface.bpp, surface.stride);
 
 	m_pixmap = new gPixmap(&surface);
 }
@@ -75,6 +75,7 @@ void gLCDDC::exec(const gOpcode *o)
 #endif
 	case gOpcode::flush:
 		lcd->update();
+		[[fallthrough]];
 	default:
 		gDC::exec(o);
 		break;

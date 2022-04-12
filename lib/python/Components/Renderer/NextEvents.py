@@ -1,7 +1,8 @@
 from Components.VariableText import VariableText
-from Renderer import Renderer
+from Components.Renderer.Renderer import Renderer
 from enigma import eLabel, eEPGCache
 from time import localtime
+
 
 class NextEvents(VariableText, Renderer):
 	def __init__(self):
@@ -12,7 +13,7 @@ class NextEvents(VariableText, Renderer):
 
 	def applySkin(self, desktop, parent):
 		self.number = 0
-		attribs = [ ]
+		attribs = []
 		for (attrib, value) in self.skinAttributes:
 			if attrib == "number":
 				self.number = int(value)
@@ -34,7 +35,7 @@ class NextEvents(VariableText, Renderer):
 		if what[0] == self.CHANGED_CLEAR:
 			self.text = ""
 		else:
-			list = self.epgcache.lookupEvent([ 'BDT', (self.source.text, 0, -1, 360) ])
+			list = self.epgcache.lookupEvent(['BDT', (self.source.text, 0, -1, 360)])
 			text = ""
 			if len(list):
 				if self.lines:
@@ -63,5 +64,5 @@ class NextEvents(VariableText, Renderer):
 
 	def build_eventstr(self, event):
 		begin = localtime(event[0])
-		end = localtime(event[0]+event[1])
-		return("%02d:%02d - %02d:%02d %s\n" % (begin[3],begin[4],end[3],end[4], event[2]))
+		end = localtime(event[0] + event[1])
+		return("%02d:%02d - %02d:%02d %s\n" % (begin[3], begin[4], end[3], end[4], event[2]))

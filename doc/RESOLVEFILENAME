@@ -1,32 +1,24 @@
-Pathname resolution in Tools.Directories.resolveFilename()
-==========================================================
+Pathname Resolution in Tools.Directories.resolveFilename()
+----------------------------------------------------------
 
 In all scopes:
 
-"~/" at the start of the base path is replaced by the optional
-path_prefix argument to resolveFilename(). When resolveFilename()
-is called from the skin.readSkin() path_prefix is set to the value
-of the current screen's skin_path attribute if it exists, or the
-directory of the file containing containing the screen if there is
-no skin_path attribute.
+"~/" at the start of the base path is replaced by the optional path_prefix 
+argument to resolveFilename().  When resolveFilename() is called from the 
+skin.readSkin() path_prefix is set to the value of the current screen's 
+skin_path attribute if it exists, or the directory of the file containing 
+the screen if there is no skin_path attribute.
 
-If the "~/" path prefix is used in a path resolved by
-resolveFilename() and its path_prefix parameter is None,
-resolveFilename() will raise an AssertionError exception.
+If the "~/" path prefix is used in a path resolved by resolveFilename() and 
+its path_prefix parameter is None, resolveFilename() will raise an 
+AssertionError exception.
 
-After that substitution, if the resolved path starts with '/',
-it is returned unchanged.
+After that substitution, if the resolved path starts with '/', it is 
+returned unchanged.
 
-SCOPE_CURRENT_SKIN
-    If the path SCOPE_CONFIG/base exists, use that as the resolved name.
 
-    Otherwise if config.skin.primary_skin.value (the skin path selected in
-    MENU>Setup>AV Setup>Skin setup) contains '/', use
-    SCOPE_SKIN/skin_path/base as the resolved name if the path exists.
+SCOPE_GUISKIN
 
-    Otherwise fall back to the path SCOPE_SKIN/base.
-
-SCOPE_ACTIVE_SKIN
     If the path SCOPE_CONFIG/base exists, use that as the resolved name.
 
     Otherwise if config.skin.primary_skin.value (the skin path selected in
@@ -44,71 +36,57 @@ SCOPE_ACTIVE_SKIN
 
     Otherwise fall back to the path SCOPE_SKIN/base.
 
-SCOPE_ACTIVE_LCDSKIN
-    As for SCOPE_ACTIVE_SKIN, but use SCOPE_LCDSKIN instead of SCOPE_SKIN.
+
+SCOPE_LCDSKIN
+
+    As for SCOPE_GUISKIN, but search SCOPE_LCDSKIN instead of SCOPE_GUISKIN.
+
+
+SCOPE_FONTS
+
+    As for SCOPE_GUISKIN, but search both SCOPE_GUISKIN and SCOPE_LCDSKIN 
+    before looking in SCOPE_FONTS.
+
 
 For all other scopes, the base path is appended to the scope's directory. 
 
-Scope                  Directory                        Path creation flag
-=====                  =========                        ==================
-SCOPE_TRANSPONDERDATA  /etc/                            PATH_DONTCREATE
-SCOPE_SYSETC           /etc/                            PATH_DONTCREATE
-SCOPE_FONTS            /usr/share/fonts/                PATH_DONTCREATE
-SCOPE_CONFIG           /etc/enigma2/                    PATH_CREATE
-SCOPE_PLUGINS          /usr/lib/enigma2/python/Plugins/ PATH_CREATE
-SCOPE_LANGUAGE         /usr/share/enigma2/po/           PATH_DONTCREATE
-SCOPE_SKIN             /usr/share/enigma2/              PATH_DONTCREATE
-SCOPE_LCDSKIN          /usr/share/enigma2/display/      PATH_DONTCREATE
-SCOPE_SKIN_IMAGE       /usr/share/enigma2/              PATH_DONTCREATE
-SCOPE_HDD              /media/hdd/movie/                PATH_DONTCREATE
-SCOPE_TIMESHIFT        /media/hdd/timeshift/            PATH_DONTCREATE
-SCOPE_MEDIA            /media/                          PATH_DONTCREATE
-SCOPE_PLAYLIST         /etc/enigma2/playlist/           PATH_CREATE
-SCOPE_USERETC          current directory**              PATH_DONTCREATE
-SCOPE_METADIR          /usr/share/meta                  PATH_CREATE
 
-** current directory of enigma2 process, effectively /home/root/
+Scope                          Directory                        Path creation flag
+=====                          =========                        ==================
+SCOPE_HOME                 *1  Home directory                   PATH_DONTCREATE
+SCOPE_LANGUAGE                 /usr/share/enigma2/po/           PATH_DONTCREATE
+SCOPE_KEYMAPS                  /usr/share/keymaps/              PATH_CREATE
+SCOPE_METADIR                  /usr/share/meta/                 PATH_CREATE
+SCOPE_SKINS                    /usr/share/enigma2/              PATH_DONTCREATE
+SCOPE_GUISKIN              *2  /usr/share/enigma2/              PATH_DONTCREATE
+SCOPE_LCDSKIN              *2  /usr/share/enigma2/display/      PATH_DONTCREATE
+SCOPE_FONTS                    /usr/share/fonts/                PATH_DONTCREATE
+SCOPE_PLUGINS                  /usr/lib/enigma2/python/Plugins/ PATH_CREATE
+SCOPE_PLUGIN               *2  /usr/lib/enigma2/python/Plugins/ PATH_CREATE
+SCOPE_PLUGIN_ABSOLUTE      *2  /usr/lib/enigma2/python/Plugins/ PATH_DONTCREATE
+SCOPE_PLUGIN_RELATIVE          /usr/lib/enigma2/python/Plugins/ PATH_DONTCREATE
+SCOPE_SYSETC                   /etc/                            PATH_DONTCREATE
+SCOPE_TRANSPONDERDATA          /etc/                            PATH_DONTCREATE
+SCOPE_CONFIG                   /etc/enigma2/                    PATH_CREATE
+SCOPE_PLAYLIST                 /etc/enigma2/playlist/           PATH_CREATE
+SCOPE_MEDIA                    /media/                          PATH_DONTCREATE
+SCOPE_HDD                      /media/hdd/movie/                PATH_DONTCREATE
+SCOPE_TIMESHIFT                /media/hdd/timeshift/            PATH_DONTCREATE
+SCOPE_DEFAULTDIR               /usr/share/enigma2/defaults/     PATH_CREATE
+SCOPE_LIBDIR                   /usr/lib/                        PATH_DONTCREATE
+
+*1 Current home directory of the enigma2 process, effectively /home/root/
+*2 These directories are dynamically calculated based on current Enigma2 
+   settings.
 
 If the directory path for the file doesn't exist, the path creation flag
 determines what is done:
 
-PATH_CREATE:     Create the directory path if it doesn't exist. E.g. if the
-                 resolved path is /etc/enigma2/playlist/playlist1.xml, and
-		 /etc/enigma2/playlist does not exist, then create it. This
-		 is done using os.mkdir(), so it can only create the last
-		 segment of the pathname. If /etc/enigma2 exists, then
-		 /etc/enigma2/playlist can be created, but if
-		 /etc/enigma2 doesn't exist, /etc/enigma2/playlist
-		 won't be created and resolveFilename() will return None.
-		 It doesn't help here that SCOPE_CONFIG contains
-		 /etc/enigma2 with PATH_CREATE.
+PATH_CREATE:	 Create the directory path if it doesn't exist.  E.g. if the 
+		 resolved path is /etc/enigma2/playlist/playlist1.xml, and 
+		 /etc/enigma2/playlist does not exist, then create it.  This 
+		 is done using os.makedirs(), so it will try to create all 
+		 segments of the pathname.
 PATH_DONTCREATE: Don't create the directory if it doesn't exist.
-PATH_FALLBACK:   Same as PATH_DONTCREATE.
 
-If the resolved file doesn't exist and the skope has a fallback defined,
-try to create the file using the defined fallback mechanism:
-
-
-FILE_COPY: Copy file from fallback dir to the file's directory path
-           using os.link() if possible, otherwise the "cp" command.
-FILE_MOVE: Move files from fallback dir to the file's directory path
-           using os.rename().
-PATH_COPY: Copy the complete fallback dir to the file's directory
-           path. If the path doesn't exist, create it with os.mkdir(),
-	   then copy the directory with "cp -a".
-PATH_MOVE: Move the fallback dir to the complete resolved pathname using
-           os.rename(), which will only work if both directory paths
-	   are on the same device. This can be used for changes in paths.
-
-The current scope fallbacks are:
-fallbackPaths = {
-        SCOPE_CONFIG: [
-                ("/home/root/", FILE_MOVE),
-                ("/usr/share/enigma2/defaults/"), FILE_COPY)
-        ],
-        SCOPE_HDD: [("/media/hdd/movies", PATH_MOVE)],
-        SCOPE_TIMESHIFT: [("/media/hdd/timeshift", PATH_MOVE)]
-}
-
-The first fallback path that contains the file/directory to be copied or
-moved will be used.
+---END---

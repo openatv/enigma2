@@ -22,7 +22,6 @@ int eDVBCIResourceManagerSession::receivedAPDU(const unsigned char *tag,const vo
 			eDebug("[CI RM] cam profile inquiry");
 			state=stateProfileEnquiry;
 			return 1;
-			break;
 		case 0x11: // Tprofile
 			eDebugNoNewLineStart("[CI RM] can do: ");
 			if (!len)
@@ -52,46 +51,47 @@ int eDVBCIResourceManagerSession::doAction()
 {
 	switch (state)
 	{
-	case stateStarted:
-	{
-		const unsigned char tag[3]={0x9F, 0x80, 0x10}; // profile enquiry
-		sendAPDU(tag);
-		state = stateFirstProfileEnquiry;
-		return 0;
-	}
-	case stateFirstProfileEnquiry:
-	{
-		const unsigned char tag[3]={0x9F, 0x80, 0x12}; // profile change
-		sendAPDU(tag);
-		state=stateProfileChange;
-		return 0;
-	}
-	case stateProfileChange:
-	{
-		eDebug("[CI RM] cannot deal with statProfileChange");
-		break;
-	}
-	case stateProfileEnquiry:
-	{
-		const unsigned char tag[3]={0x9F, 0x80, 0x11};
-		const unsigned char data[][4]=
-			{
-				{0x00, 0x01, 0x00, 0x41},
-				{0x00, 0x02, 0x00, 0x41},
-				{0x00, 0x03, 0x00, 0x41},
-//				{0x00, 0x20, 0x00, 0x41}, // host control
-				{0x00, 0x24, 0x00, 0x41},
-				{0x00, 0x40, 0x00, 0x41},
-//				{0x00, 0x10, 0x00, 0x41}, // auth.
-			};
-		sendAPDU(tag, data, sizeof(data));
-		state=stateFinal;
-		return 0;
-	}
-	case stateFinal:
-		eDebug("[CI RM] Should not happen: action on stateFinal");
-	default:
-		break;
-	}
+		case stateStarted:
+		{
+			const unsigned char tag[3]={0x9F, 0x80, 0x10}; // profile enquiry
+			sendAPDU(tag);
+			state = stateFirstProfileEnquiry;
+			break;
+		}
+		case stateFirstProfileEnquiry:
+		{
+			const unsigned char tag[3]={0x9F, 0x80, 0x12}; // profile change
+			sendAPDU(tag);
+			state=stateProfileChange;
+			break;
+		}
+		case stateProfileChange:
+		{
+			eDebug("[CI RM] cannot deal with statProfileChange");
+			break;
+		}
+		case stateProfileEnquiry:
+		{
+			const unsigned char tag[3]={0x9F, 0x80, 0x11};
+			const unsigned char data[][4]=
+				{
+					{0x00, 0x01, 0x00, 0x41},
+					{0x00, 0x02, 0x00, 0x41},
+					{0x00, 0x03, 0x00, 0x41},
+	//				{0x00, 0x20, 0x00, 0x41}, // host control
+					{0x00, 0x24, 0x00, 0x41},
+					{0x00, 0x40, 0x00, 0x41},
+	//				{0x00, 0x10, 0x00, 0x41}, // auth.
+				};
+			sendAPDU(tag, data, sizeof(data));
+			state=stateFinal;
+			break;
+		}
+		case stateFinal:
+			eDebug("[CI RM] Should not happen: action on stateFinal");
+			break;
+		default:
+			break;
+		}
 	return 0;
 }

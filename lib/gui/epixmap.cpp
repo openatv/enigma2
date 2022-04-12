@@ -1,9 +1,10 @@
+#include <lib/base/wrappers.h>
 #include <lib/gui/epixmap.h>
 #include <lib/gdi/epng.h>
 #include <lib/gui/ewidgetdesktop.h>
 
 ePixmap::ePixmap(eWidget *parent)
-        :eWidget(parent), m_alphatest(false), m_scale(false), m_have_border_color(false), m_border_width(0)
+        :eWidget(parent), m_alphatest(0), m_scale(0), m_have_border_color(false), m_border_width(0)
 {
 }
 
@@ -15,9 +16,21 @@ void ePixmap::setAlphatest(int alphatest)
 
 void ePixmap::setScale(int scale)
 {
+	// support old python code beacause the old code will only support BT_SCALE
+	scale = (scale) ? gPainter::BT_SCALE : 0;
+
 	if (m_scale != scale)
 	{
 		m_scale = scale;
+		invalidate();
+	}
+}
+
+void ePixmap::setPixmapScaleFlags(int flags)
+{
+	if (m_scale != flags)
+	{
+		m_scale = flags;
 		invalidate();
 	}
 }
@@ -36,11 +49,11 @@ void ePixmap::setPixmap(ePtr<gPixmap> &pixmap)
 
 void ePixmap::setPixmapFromFile(const char *filename)
 {
-	loadPNG(m_pixmap, filename);
+	loadImage(m_pixmap, filename, m_scale, m_scale ? size().width() : 0, m_scale ? size().height() : 0);
 
 	if (!m_pixmap)
 	{
-		eDebug("[ePixmap] setPixmapFromFile: loadPNG failed");
+		eDebug("[ePixmap] setPixmapFromFile: load %s failed", filename);
 		return;
 	}
 
@@ -93,14 +106,12 @@ int ePixmap::event(int event, void *data, void *data2)
 		if (m_pixmap)
 		{
 			int flags = 0;
-			if (m_alphatest == 0)
-				flags = 0;
-			else if (m_alphatest == 1)
+			if (m_alphatest == 1)
 				flags = gPainter::BT_ALPHATEST;
 			else if (m_alphatest == 2)
 				flags = gPainter::BT_ALPHABLEND;
-			if (m_scale)
-				flags |= gPainter::BT_SCALE;
+
+			flags |= m_scale;
 			painter.blit(m_pixmap, eRect(ePoint(0, 0), s), eRect(), flags);
 		}
 
@@ -122,7 +133,7 @@ int ePixmap::event(int event, void *data, void *data2)
 		return 0;
 	case evtChangedSize:
 		checkSize();
-			/* fall trough. */
+		[[fallthrough]];
 	default:
 		return eWidget::event(event, data, data2);
 	}

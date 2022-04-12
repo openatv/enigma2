@@ -4,7 +4,8 @@ from Components.Converter.Converter import Converter
 from Components.Element import cached
 from time import localtime, strftime
 
-class EGAnalogic(Converter, object):
+
+class EGAnalogic(Converter):
 
 	def __init__(self, type):
 		Converter.__init__(self, type)
@@ -22,15 +23,14 @@ class EGAnalogic(Converter, object):
 		time = self.source.time
 		if time is None:
 			return 0
-		
-		t = localtime(time)	
-		
+
+		t = localtime(time)
+
 		if self.type == 1:
-			return int((t.tm_sec *100) /60)
+			return int((t.tm_sec * 100) / 60)
 		elif self.type == 2:
-			return int((t.tm_min *100) /60)
+			return int((t.tm_min * 100) / 60)
 		elif self.type == 3:
-			return int(((t.tm_hour *100) /12) + (t.tm_min /8))
-		
+			return int(((t.tm_hour * 100) / 12) + (t.tm_min / 8))
 
 	value = property(getValue)

@@ -29,21 +29,22 @@ if [ ! -d /etc/enigma2 ] ; then
 fi
 
 # workaround for corrupt ssl files
-if [ ! "$(grep config.misc.firstrun /etc/enigma2/settings)" == "config.misc.firstrun=false" ]; then
+if [ "$(grep -i config.misc.firstrun=true /etc/enigma2/settings)" != "" ]; then
 	rm -rf /etc/enigma2/cert.pem &
 	rm -rf /etc/enigma2/key.pem &
 fi
 
 if [ -e /proc/stb/info/boxtype ]; then
 	stbcheck=`cat /proc/stb/info/boxtype`
-	if [ $stbcheck == "sf8008" ] || [ $stbcheck == "ustym4kpro" ] || [ $stbcheck == "cc1" ] || [ $stbcheck == "trio4k" ] || [ $stbcheck == "gbmv200" ] || [ $stbcheck == "beyonwizv2" ] || [ $stbcheck == "viper4k" ]; then
+	if [ $stbcheck == "sf8008" ] || [ $stbcheck == "sf8008m" ] || [ $stbcheck == "sf8008opt" ] || [ $stbcheck == "sx988" ] || [ $stbcheck == "ustym4kpro" ] || [ $stbcheck == "ustym4kottpremium" ] || [ $stbcheck == "cc1" ] || [ $stbcheck == "trio4k" ] || [ $stbcheck == "gbip4k" ] || [ $stbcheck == "gbmv200" ] || [ $stbcheck == "beyonwizv2" ] || [ $stbcheck == "viper4k" ] || [ $stbcheck == "og2ott4k" ] || [ $stbcheck == "sfx6008" ]; then
 		count=`ps -ef |grep libreader |grep -v "grep" |wc -l`
 		if [ 0 == $count ];then
 			libreader 720P_50
 		fi
 	fi
 fi
-if [ -x @bindir@/showiframe ]; then
+# Show backdrop on enigma2 start.
+if [ -x "@bindir@/showiframe" ]; then
 	if [ -e /proc/stb/info/boxtype ]; then
 		stbcheck=`cat /proc/stb/info/boxtype | cut -c1-2`
 		if [ ! $stbcheck == "u5" ] && [ ! $stbcheck == "u4" ]; then
@@ -52,11 +53,18 @@ if [ -x @bindir@/showiframe ]; then
 	else
 		killall -9 showiframe; sleep 1
 	fi
-	if [ -f @sysconfdir@/enigma2/backdrop.mvi ]; then
-		@bindir@/showiframe @sysconfdir@/enigma2/backdrop.mvi
-	elif [ -f @datadir@/backdrop.mvi ]; then
-		@bindir@/showiframe @datadir@/backdrop.mvi
+	SKIN=`sed -En 's|^config\.skin\.primary_skin=(.+)/skin\.xml$|\1|p' "@sysconfdir@/enigma2/settings"`
+	if [ -n "${SKIN}" ]; then
+		SEARCHDIRS="@sysconfdir@/enigma2/$SKIN @sysconfdir@/enigma2/skin_common @sysconfdir@/enigma2 @datadir@/enigma2/$SKIN @datadir@/enigma2/skin_default @datadir@/enigma2 @datadir@"
+	else
+		SEARCHDIRS="@sysconfdir@/enigma2/skin_common @sysconfdir@/enigma2 @datadir@/enigma2/skin_default @datadir@/enigma2 @datadir@"
 	fi
+	for DIR in $SEARCHDIRS; do
+		if [ -d "${DIR}" ] && [ -f "${DIR}/backdrop.mvi" ]; then
+			"@bindir@/showiframe" "${DIR}/backdrop.mvi"
+			break
+		fi
+	done
 fi
 
 # hook to execute scripts always before enigma2 start
@@ -80,6 +88,13 @@ if [ -d /home/root ]; then
 	export HOME=/home/root
 fi
 
+# any debuglevel passed?
+if [ -z $ENIGMA_DEBUG_LVL ]; then
+	DEBUG_LVL=3
+else
+	DEBUG_LVL=$ENIGMA_DEBUG_LVL
+fi
+
 #check for sundtek tuner helper lib
 if [ -e /opt/lib/libmediaclient.so ]; then
 	LIBS="/opt/lib/libmediaclient.so @libdir@/libopen.so.0.0.0"
@@ -93,9 +108,9 @@ if [ -e @libdir@/libpagecache.so ]; then
 fi
 
 #check for receiver specific passthrough helper lib
-if [ -e @libdir@/libpassthrough.so ]; then
-	LIBS="$LIBS @libdir@/libpassthrough.so"
-fi
+#if [ -e @libdir@/libpassthrough.so ]; then
+#	LIBS="$LIBS @libdir@/libpassthrough.so"
+#fi
 
 if [ ! -e /etc/enigma2/settings ]; then
 	touch /etc/enigma2/settings
@@ -122,30 +137,53 @@ sysctl -p
 (sleep 2; echo "enigma2 is the main pvr application... adjust oom score!"; PID=$(pidof enigma2); \
         [ -e /proc/$PID/oom_score_adj ] && echo "-999" > /proc/$PID/oom_score_adj || echo "-17" > /proc/$PID/oom_adj;) &
 
-VERBOSE=''
-if [ "$(grep config.log.level /etc/enigma2/settings)" == "config.log.level=3" ]; then
-	VERBOSE='--verbose'
+export LC_CTYPE="en_US.UTF-8"
+
+# Randomize timestamp if clock is not set
+RANDOMIZE1970=''
+time=`date +%Y` ;
+if [ "$time" = 1970 ]; then
+	RANDOMIZE1970="$(strings /dev/urandom | grep -o '[[:alnum:]]' | head -n 5 | tr -d '\n')"
 fi
 
-if [ "$(grep config.crash.enabledebug /etc/enigma2/settings)" == "config.crash.enabledebug=true" ]; then
-	RANDOMIZE1970=''
-	time=`date +%Y` ;
-	if [ "$time" = 1970 ]; then
-		RANDOMIZE1970="$(strings /dev/urandom | grep -o '[[:alnum:]]' | head -n 5 | tr -d '\n')"
+# Set time format used to prefix each line in the debug logs.
+DEBUGTIME=`sed -En 's|^config\.crash\.debugTimeFormat=(.+)$|\1|p' "@sysconfdir@/enigma2/settings"`
+[ -n "${DEBUGTIME}" ] || DEBUGTIME="2"
+DEBUG_TIME="${DEBUGTIME}"
+
+# Create and set log folder
+LOGFOLDER="/home/root/logs/"
+if [ ! -d $LOGFOLDER ] ; then mkdir -p $LOGFOLDER; fi
+if [ "$(grep config.crash.debug_path= /etc/enigma2/settings | sed 's/config.crash.debug_path=//g')" != "" -a -d "$(grep config.crash.debug_path= /etc/enigma2/settings | sed 's/config.crash.debug_path=//g')" ]; then
+	LOGFOLDER=$(grep config.crash.debug_path= /etc/enigma2/settings | sed 's/config.crash.debug_path=//g')
+fi
+
+# Enable and configure gstreamer debug log of category and level without color
+if [ "$(grep -i config.crash.gstdebug=true /etc/enigma2/settings)" != "" ]; then
+	GSTDEBUGCATEGORY="*"
+	GSTDEBUGLEVEL="INFO"
+	if [ "$(grep config.crash.gstdebugcategory= /etc/enigma2/settings | sed 's/config.crash.gstdebugcategory=//g')" != "" ]; then
+		GSTDEBUGCATEGORY=$(grep config.crash.gstdebugcategory= /etc/enigma2/settings | sed 's/config.crash.gstdebugcategory=//g')
 	fi
-	LOGFOLDER="/home/root/logs/"
-	if [ ! -d $LOGFOLDER ] ; then mkdir -p $LOGFOLDER; fi
-	if [ "$(grep config.crash.debug_path= /etc/enigma2/settings | sed 's/config.crash.debug_path=//g')" != "" -a -d "$(grep config.crash.debug_path= /etc/enigma2/settings | sed 's/config.crash.debug_path=//g')" ]; then
-		LOGFOLDER=$(grep config.crash.debug_path= /etc/enigma2/settings | sed 's/config.crash.debug_path=//g')
+	if [ "$(grep config.crash.gstdebuglevel= /etc/enigma2/settings | sed 's/config.crash.gstdebuglevel=//g')" != "" ]; then
+		GSTDEBUGLEVEL=$(grep config.crash.gstdebuglevel= /etc/enigma2/settings | sed 's/config.crash.gstdebuglevel=//g')
 	fi
-	LD_PRELOAD=$LIBS @bindir@/enigma2 --debug-no-color $VERBOSE &> ${LOGFOLDER}Enigma2-debug-$(date +%Y%m%d_%H-%M-%S)${RANDOMIZE1970}.log
+	export GST_DEBUG_FILE="${LOGFOLDER}GStreamer-debug-$(date +%Y%m%d_%H-%M-%S)${RANDOMIZE1970}.log"
+	export GST_DEBUG="${GSTDEBUGCATEGORY}:${GSTDEBUGLEVEL}"
+	export GST_DEBUG_NO_COLOR="1"
+fi
+
+# Enable and set gstreamer directory for pipeline graphs that are not created if directory is not set
+if [ "$(grep -i config.crash.gstdot=true /etc/enigma2/settings)" != "" ]; then
+	export GST_DEBUG_DUMP_DOT_DIR=${LOGFOLDER}
+fi
+
+# Start enigma2 with or without debug
+if [ "$(grep -i config.crash.enabledebug=true /etc/enigma2/settings)" != "" ]; then
+	DEBUG_LVL='4'
+	LD_PRELOAD=$LIBS ENIGMA_DEBUG_LVL=$DEBUG_LVL ENIGMA_DEBUG_TIME="${DEBUG_TIME}" @bindir@/enigma2 &> ${LOGFOLDER}Enigma2-debug-$(date +%Y%m%d_%H-%M-%S)${RANDOMIZE1970}.log
 else
-	# in case $TERM is "linux" the serial output is activated - discard debug output
-	if [ "$TERM" = linux ]; then
-		LD_PRELOAD=$LIBS @bindir@/enigma2 $VERBOSE 2> /dev/null
-	else
-		LD_PRELOAD=$LIBS @bindir@/enigma2 $VERBOSE
-	fi
+	LD_PRELOAD=$LIBS ENIGMA_DEBUG_LVL=$DEBUG_LVL ENIGMA_DEBUG_TIME="${DEBUG_TIME}" @bindir@/enigma2
 fi
 
 # enigma2 exit codes:
@@ -158,6 +196,13 @@ fi
 
 ret=$?
 
+function check_busybox_update {
+	if [ -e /etc/enigma2/.busybox_update_required ]; then
+		rm /etc/enigma2/.busybox_update_required
+		opkg install busybox --force-reinstall
+	fi
+} 
+
 if [ "$ret" -ne "1" ]; then
 	if [ -e /proc/stb/info/boxtype ]; then
 		stbcheck=`cat /proc/stb/info/boxtype | cut -c1-2`
@@ -165,7 +210,7 @@ if [ "$ret" -ne "1" ]; then
 			killall -9 showiframe; sleep 5
 		fi
 		stbcheck=`cat /proc/stb/info/boxtype`
-		if [ $stbcheck == "sf8008" ] || [ $stbcheck == "ustym4kpro" ] || [ $stbcheck == "cc1" ] || [ $stbcheck == "trio4k" ] || [ $stbcheck == "gbmv200" ] || [ $stbcheck == "beyonwizv2" ] || [ $stbcheck == "viper4k" ]; then
+		if [ $stbcheck == "sf8008" ] || [ $stbcheck == "sf8008m" ] || [ $stbcheck == "sf8008opt" ] || [ $stbcheck == "sx988" ] || [ $stbcheck == "ustym4kpro" ] || [ $stbcheck == "ustym4kottpremium" ] || [ $stbcheck == "cc1" ] || [ $stbcheck == "trio4k" ] || [ $stbcheck == "gbip4k" ] || [ $stbcheck == "gbmv200" ] || [ $stbcheck == "beyonwizv2" ] || [ $stbcheck == "viper4k" ] || [ $stbcheck == "og2ott4k" ] || [ $stbcheck == "sfx6008" ]; then
 			killall -9 libreader; sleep 5
 		fi
 	fi
@@ -173,10 +218,12 @@ fi
 
 case $ret in
 	1)
+		check_busybox_update
 		touch /etc/enigma2/.deep
 		/sbin/halt
 		;;
 	2)
+		check_busybox_update
 		if [ -f /proc/stb/fp/force_restart ]; then
 			echo 1 > /proc/stb/fp/force_restart
 		fi
@@ -188,6 +235,7 @@ case $ret in
 		rm -f /tmp/.listen.camd.socket.ignore
 		;;
 	4)
+		check_busybox_update
 		/sbin/rmmod lcd
 		/usr/sbin/fpupgrade --upgrade 2>&1 | tee /home/root/fpupgrade.log
 		sleep 1;
@@ -197,7 +245,9 @@ case $ret in
 		/sbin/reboot
 		;;
 	16)
-		if [ -e /dev/block/by-name/bootoptions ]; then
+		if [ -e /dev/block/by-name/flag ]; then
+			echo -n "0" > /dev/block/by-name/flag
+		elif [ -e /dev/block/by-name/bootoptions ]; then
 			mkdir -p /tmp/bootoptions
 			mount /dev/block/by-name/bootoptions /tmp/bootoptions
 			cp -f /tmp/bootoptions/STARTUP_RECOVERY /tmp/bootoptions/STARTUP_ONCE
@@ -206,9 +256,6 @@ case $ret in
 		fi
 		[[ -e /etc/enigma2/.deep ]] && rm /etc/enigma2/.deep
 		/sbin/reboot
-		;;
-	42)
-		python @libdir@/enigma2/python/upgrade.pyo
 		;;
 	43)
 		init 1

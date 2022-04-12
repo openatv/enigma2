@@ -1,6 +1,7 @@
 # -*- coding: iso-8859-1 -*-
 # (c) 2006 Stephan Reichholf
 # This Software is Free, use it where you want, when you want for whatever you want and modify it if you want but don't remove my copyright!
+from __future__ import print_function
 from Screens.Screen import Screen
 from Screens.Standby import TryQuitMainloop
 from Screens.MessageBox import MessageBox
@@ -11,8 +12,9 @@ from Components.MenuList import MenuList
 from Plugins.Plugin import PluginDescriptor
 from Components.config import config
 from Tools.Directories import resolveFilename, SCOPE_PLUGINS
-from os import path, walk
+from os import path
 from enigma import eEnv
+
 
 class SkinSelector(Screen):
 	# for i18n:
@@ -20,7 +22,7 @@ class SkinSelector(Screen):
 	skinlist = []
 	root = eEnv.resolve("${datadir}/enigma2/")
 
-	def __init__(self, session, args = None):
+	def __init__(self, session, args=None):
 
 		Screen.__init__(self, session)
 
@@ -78,13 +80,13 @@ class SkinSelector(Screen):
 		self.loadPreview()
 
 	def info(self):
-		aboutbox = self.session.open(MessageBox,_("Enigma2 Skinselector\n\nIf you experience any problems please contact\nstephan@reichholf.net\n\n\xA9 2006 - Stephan Reichholf"), MessageBox.TYPE_INFO)
+		aboutbox = self.session.open(MessageBox, _("Enigma2 Skinselector\n\nIf you experience any problems please contact\nstephan@reichholf.net\n\n\xA9 2006 - Stephan Reichholf"), MessageBox.TYPE_INFO)
 		aboutbox.setTitle(_("About..."))
 
 	def find(self, arg, dirname, names):
 		for x in names:
 			if x == "skin.xml":
-				if dirname <> self.root:
+				if dirname != self.root:
 					subdir = dirname[19:]
 					self.skinlist.append(subdir)
 				else:
@@ -95,19 +97,19 @@ class SkinSelector(Screen):
 		if self["SkinList"].getCurrent() == "Default Skin":
 			skinfile = "skin.xml"
 		else:
-			skinfile = self["SkinList"].getCurrent()+"/skin.xml"
+			skinfile = self["SkinList"].getCurrent() + "/skin.xml"
 
-		print "Skinselector: Selected Skin: "+self.root+skinfile
+		print("Skinselector: Selected Skin: " + self.root + skinfile)
 		config.skin.primary_skin.setValue(skinfile)
 		config.skin.primary_skin.save()
-		restartbox = self.session.openWithCallback(self.restartGUI,MessageBox,_("GUI needs a restart to apply a new skin\nDo you want to Restart the GUI now?"), MessageBox.TYPE_YESNO)
+		restartbox = self.session.openWithCallback(self.restartGUI, MessageBox, _("GUI needs a restart to apply a new skin\nDo you want to Restart the GUI now?"), MessageBox.TYPE_YESNO)
 		restartbox.setTitle(_("Restart GUI now?"))
 
 	def loadPreview(self):
 		if self["SkinList"].getCurrent() == "Default Skin":
-			pngpath = self.root+"/prev.png"
+			pngpath = self.root + "/prev.png"
 		else:
-			pngpath = self.root+self["SkinList"].getCurrent()+"/prev.png"
+			pngpath = self.root + self["SkinList"].getCurrent() + "/prev.png"
 
 		if not path.exists(pngpath):
 			pngpath = resolveFilename(SCOPE_PLUGINS, "SystemPlugins/SkinSelector/noprev.png")
@@ -121,8 +123,10 @@ class SkinSelector(Screen):
 		if answer is True:
 			self.session.open(TryQuitMainloop, 3)
 
+
 def SkinSelMain(session, **kwargs):
 	session.open(SkinSelector)
+
 
 def SkinSelSetup(menuid, **kwargs):
 	if menuid == "system":
@@ -130,5 +134,6 @@ def SkinSelSetup(menuid, **kwargs):
 	else:
 		return []
 
+
 def Plugins(**kwargs):
-	return PluginDescriptor(name=_("Skinselector"), description=_("Select Your Skin"), where = PluginDescriptor.WHERE_MENU, needsRestart = False, fnc=SkinSelSetup)
+	return PluginDescriptor(name=_("Skinselector"), description=_("Select Your Skin"), where=PluginDescriptor.WHERE_MENU, needsRestart=False, fnc=SkinSelSetup)

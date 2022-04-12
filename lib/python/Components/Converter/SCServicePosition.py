@@ -1,10 +1,12 @@
+from __future__ import absolute_import
 import time
-from Converter import Converter
-from Poll import Poll
+from Components.Converter.Converter import Converter
+from Components.Converter.Poll import Poll
 from enigma import iPlayableService
 from Components.Element import cached, ElementError
 
-class SCServicePosition(Poll, Converter, object):
+
+class SCServicePosition(Poll, Converter):
 	TYPE_LENGTH = 0
 	TYPE_POSITION = 1
 	TYPE_REMAINING = 2
@@ -101,7 +103,8 @@ class SCServicePosition(Poll, Converter, object):
 			if not self.detailed:
 				l /= 90000
 
-			if self.negate: l = -l
+			if self.negate:
+				l = -l
 
 			if l > 0:
 				sign = ""
@@ -112,19 +115,19 @@ class SCServicePosition(Poll, Converter, object):
 			if not self.detailed:
 				if self.showHours:
 					if self.showNoSeconds:
-						return sign + "%d:%02d" % (l/3600, l%3600/60)
+						return sign + "%d:%02d" % (l / 3600, l % 3600 / 60)
 					else:
-						return sign + "%d:%02d:%02d" % (l/3600, l%3600/60, l%60)
+						return sign + "%d:%02d:%02d" % (l / 3600, l % 3600 / 60, l % 60)
 				else:
 					if self.showNoSeconds:
-						return sign + "%d" % (l/60)
+						return sign + "%d" % (l / 60)
 					else:
-						return sign + "%d:%02d" % (l/60, l%60)
+						return sign + "%d:%02d" % (l / 60, l % 60)
 			else:
 				if self.showHours:
-					return sign + "%d:%02d:%02d:%03d" % ((l/3600/90000), (l/90000)%3600/60, (l/90000)%60, (l%90000)/90)
+					return sign + "%d:%02d:%02d:%03d" % ((l / 3600 / 90000), (l / 90000) % 3600 / 60, (l / 90000) % 60, (l % 90000) / 90)
 				else:
-					return sign + "%d:%02d:%03d" % ((l/60/90000), (l/90000)%60, (l%90000)/90)
+					return sign + "%d:%02d:%03d" % ((l / 60 / 90000), (l / 90000) % 60, (l % 90000) / 90)
 
 	# range/value are for the Progress renderer
 	range = 10000

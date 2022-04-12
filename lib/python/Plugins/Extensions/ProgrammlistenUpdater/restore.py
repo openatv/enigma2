@@ -1,3 +1,4 @@
+from __future__ import absolute_import
 from Components.ConfigList import ConfigListScreen
 from Components.config import config, configfile
 from Components.ActionMap import ActionMap
@@ -5,15 +6,18 @@ from Components.MenuList import MenuList
 from Components.Sources.StaticText import StaticText
 from Screens.Screen import Screen
 from Screens.MessageBox import MessageBox
-from downloader import ConverDate
-import glob, os, urllib, sys
+from .downloader import ConverDate
+import glob
+import os
+import sys
 from enigma import *
 
 Directory = os.path.dirname(sys.modules[__name__].__file__)
 
-class PU_Restore(Screen,ConfigListScreen):
 
-    skin =  """
+class PU_Restore(Screen, ConfigListScreen):
+
+    skin = """
         <screen name="PU_Restore" position="center,center" size="600,470">
             <ePixmap pixmap="skin_default/buttons/red.png" position="5,0" size="140,40" alphatest="on" />
             <ePixmap pixmap="skin_default/buttons/green.png" position="155,0" size="140,40" alphatest="on" />
@@ -27,24 +31,21 @@ class PU_Restore(Screen,ConfigListScreen):
 
     def __init__(self, session):
         Screen.__init__(self, session)
-        self.session = session
         self['ListSetting'] = MenuList([])
         self.skinName = "PU_Restore"
-        self.setup_title = _("Programmlisten Restore")
-        self.setTitle(self.setup_title)
-        
+        self.setTitle(_("Programmlisten Restore"))
+
         self["key_red"] = StaticText(_("Exit"))
         self["key_green"] = StaticText(_("Restore"))
         self["key_yellow"] = StaticText(_("Delete"))
 
-
-        self["ColorActions"] = ActionMap(['OkCancelActions', 'ShortcutActions',"ColorActions"],
+        self["ColorActions"] = ActionMap(['OkCancelActions', 'ShortcutActions', "ColorActions"],
             {
             "red": self.keyCancel,
             "green": self.keyGreen,
-            "yellow" : self.keyYellow,
-            "cancel" : self.keyCancel,
-            "ok" : self.keyOk,
+            "yellow": self.keyYellow,
+            "cancel": self.keyCancel,
+            "ok": self.keyOk,
             })
 
         self.List = self.Search_Settings()
@@ -72,10 +73,10 @@ class PU_Restore(Screen,ConfigListScreen):
 
     def CBremove(self, req):
         if req:
-            os.system('rm -rf %s' %(Directory + '/Settings/enigma2/' + self.filename))
+            os.system('rm -rf %s' % (Directory + '/Settings/enigma2/' + self.filename))
             self.List = self.Search_Settings()
             self.SettingsMenu()
-    
+
     def Search_Settings(self):
         list = []
         os.chdir(Directory + '/Settings/enigma2')
@@ -97,11 +98,9 @@ class PU_Restore(Screen,ConfigListScreen):
         os.system('rm -rf /etc/enigma2/*.radio')
         os.system('rm -rf /etc/enigma2/*.tv')
         # Restore settingslist
-        os.system('tar -xzvf %s -C /' %(Directory + '/Settings/enigma2/' + self.filename))
+        os.system('tar -xzvf %s -C /' % (Directory + '/Settings/enigma2/' + self.filename))
         # Reload settingslist
         eDVBDB.getInstance().reloadServicelist()
         eDVBDB.getInstance().reloadBouquets()
         self.session.open(MessageBox, _('Setting Restored ') + self.filename + _(' of ') + date, MessageBox.TYPE_INFO, timeout=15)
         self.close()
-        
-        

@@ -1,3 +1,4 @@
+from __future__ import print_function
 from Screens.Screen import Screen
 from Components.GUIComponent import GUIComponent
 from Components.VariableText import VariableText
@@ -19,16 +20,22 @@ from glob import glob
 from skin import getSkinFactor
 
 import Components.Task
+import sys
 
 # Import smtplib for the actual sending function
-import smtplib, base64
+import smtplib
+import base64
 
 # Here are the email package modules we'll need
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
-from email.Utils import formatdate
+if sys.version_info[0] >= 3:
+	from email.utils import formatdate
+else:
+	from email.Utils import formatdate
 
 _session = None
+
 
 def get_size(start_path=None):
 	total_size = 0
@@ -40,13 +47,16 @@ def get_size(start_path=None):
 		return total_size
 	return 0
 
+
 def AutoLogManager(session=None, **kwargs):
 	global debuglogcheckpoller
 	debuglogcheckpoller = LogManagerPoller()
 	debuglogcheckpoller.start()
 
+
 class LogManagerPoller:
 	"""Automatically Poll LogManager"""
+
 	def __init__(self):
 		# Init Timer
 		self.TrimTimer = eTimer()
@@ -69,11 +79,11 @@ class LogManagerPoller:
 		self.TrashTimer.stop()
 
 	def TrimTimerJob(self):
-		print '[LogManager] Trim Poll Started'
+		print('[LogManager] Trim Poll Started')
 		Components.Task.job_manager.AddJob(self.createTrimJob())
 
 	def TrashTimerJob(self):
-		print '[LogManager] Trash Poll Started'
+		print('[LogManager] Trash Poll Started')
 		self.JobTrash()
 		# Components.Task.job_manager.AddJob(self.createTrashJob())
 
@@ -113,11 +123,11 @@ class LogManagerPoller:
 
 	def JobTrash(self):
 		ctimeLimit = time() - (config.crash.daysloglimit.value * 3600 * 24)
-		allowedBytes = 1024*1024 * int(config.crash.sizeloglimit.value)
+		allowedBytes = 1024 * 1024 * int(config.crash.sizeloglimit.value)
 
 		mounts = []
 		matches = []
-		print "[LogManager] probing folders"
+		print("[LogManager] probing folders")
 		f = open('/proc/mounts', 'r')
 		for line in f.readlines():
 			parts = line.strip().split()
@@ -130,17 +140,17 @@ class LogManagerPoller:
 			config.crash.lastfulljobtrashtime.save()
 			configfile.save()
 			for mount in mounts:
-				if path.isdir(path.join(mount,'logs')):
-					matches.append(path.join(mount,'logs'))
+				if path.isdir(path.join(mount, 'logs')):
+					matches.append(path.join(mount, 'logs'))
 			matches.append('/home/root/logs')
 		else:
 			#small JobTrash (in selected log file dir only) twice a day
 			matches.append(config.crash.debug_path.value)
 
-		print "[LogManager] found following log's:", matches
+		print("[LogManager] found following log's:", matches)
 		if len(matches):
 			for logsfolder in matches:
-				print "[LogManager] looking in:", logsfolder
+				print("[LogManager] looking in:", logsfolder)
 				logssize = get_size(logsfolder)
 				bytesToRemove = logssize - allowedBytes
 				candidates = []
@@ -154,14 +164,14 @@ class LogManagerPoller:
 							#print "Last created: %s" % ctime(st.st_ctime)
 							#print "Last modified: %s" % ctime(st.st_mtime)
 							if st.st_mtime < ctimeLimit:
-								print "[LogManager] " + str(fn) + ": Too old:", ctime(st.st_mtime)
+								print("[LogManager] " + str(fn) + ": Too old:", ctime(st.st_mtime))
 								eBackgroundFileEraser.getInstance().erase(fn)
 								bytesToRemove -= st.st_size
 							else:
 								candidates.append((st.st_mtime, fn, st.st_size))
 								size += st.st_size
-						except Exception, e:
-							print "[LogManager] Failed to stat %s:"% name, e
+						except Exception as e:
+							print("[LogManager] Failed to stat %s:" % name, e)
 					# Remove empty directories if possible
 					for name in dirs:
 						try:
@@ -171,7 +181,7 @@ class LogManagerPoller:
 					candidates.sort()
 					# Now we have a list of ctime, candidates, size. Sorted by ctime (=deletion time)
 					for st_ctime, fn, st_size in candidates:
-						print "[LogManager] " + str(logsfolder) + ": bytesToRemove", bytesToRemove
+						print("[LogManager] " + str(logsfolder) + ": bytesToRemove", bytesToRemove)
 						if bytesToRemove < 0:
 							break
 						eBackgroundFileEraser.getInstance().erase(fn)
@@ -182,9 +192,10 @@ class LogManagerPoller:
 		if (seconds_since_0330am <= 0):
 			seconds_since_0330am += 86400
 		if (seconds_since_0330am > 43200):
-			self.TrashTimer.startLongTimer(int(86400-seconds_since_0330am)) #at 03:30 AM
+			self.TrashTimer.startLongTimer(int(86400 - seconds_since_0330am)) #at 03:30 AM
 		else:
 			self.TrashTimer.startLongTimer(43200) #twice a day
+
 
 class LogManager(Screen):
 	def __init__(self, session):
@@ -210,13 +221,13 @@ class LogManager(Screen):
 		self["key_yellow"] = Button(_("Delete"))
 		self["key_blue"] = Button(_("Send"))
 
-		self.onChangedEntry = [ ]
+		self.onChangedEntry = []
 		self.sentsingle = ""
 		self.selectedFiles = config.logmanager.sentfiles.value
 		self.previouslySent = config.logmanager.sentfiles.value
 		self.defaultDir = config.crash.debug_path.value
 		self.matchingPattern = 'enigma2_crash_'
-		self.filelist = MultiFileSelectList(self.selectedFiles, self.defaultDir, showDirectories = False, matchingPattern = self.matchingPattern )
+		self.filelist = MultiFileSelectList(self.selectedFiles, self.defaultDir, showDirectories=False, matchingPattern=self.matchingPattern)
 		self["list"] = self.filelist
 		self["LogsSize"] = self.logsinfo = LogInfo(config.crash.debug_path.value, LogInfo.USED, update=False)
 		self.onLayoutFinish.append(self.layoutFinished)
@@ -314,7 +325,7 @@ class LogManager(Screen):
 			ybox = self.session.openWithCallback(self.doDelete3, MessageBox, message, MessageBox.TYPE_YESNO)
 			ybox.setTitle(_("Delete Confirmation"))
 		else:
-			self.session.open(MessageBox, _("You have selected no logs to delete."), MessageBox.TYPE_INFO, timeout = 10)
+			self.session.open(MessageBox, _("You have selected no logs to delete."), MessageBox.TYPE_INFO, timeout=10)
 
 	def doDelete1(self, answer):
 		self.selectedFiles = self["list"].getSelectedList()
@@ -350,7 +361,7 @@ class LogManager(Screen):
 			self["list"].changeDir(self.defaultDir)
 			self["LogsSize"].update(config.crash.debug_path.value)
 
-	def sendlog(self, addtionalinfo = None):
+	def sendlog(self, addtionalinfo=None):
 		try:
 			self.sel = self["list"].getCurrent()[0]
 		except:
@@ -379,7 +390,7 @@ class LogManager(Screen):
 				ybox = self.session.openWithCallback(self.sendlog2, MessageBox, message, MessageBox.TYPE_YESNO)
 				ybox.setTitle(_("Send Confirmation"))
 		else:
-			self.session.open(MessageBox, _("You have selected no logs to send."), MessageBox.TYPE_INFO, timeout = 10)
+			self.session.open(MessageBox, _("You have selected no logs to send."), MessageBox.TYPE_INFO, timeout=10)
 
 	def sendlog1(self, answer):
 		if answer:
@@ -413,9 +424,9 @@ class LogManager(Screen):
 			self.session.openWithCallback(self.doSendlog, LogManagerFb)
 		else:
 			from Screens.VirtualKeyBoard import VirtualKeyBoard
-			self.session.openWithCallback(self.doSendlog, VirtualKeyBoard, title = _("Additional Info"))
+			self.session.openWithCallback(self.doSendlog, VirtualKeyBoard, title=_("Additional Info"))
 
-	def doSendlog(self, additonalinfo = None):
+	def doSendlog(self, additonalinfo=None):
 		ref = str(time())
 		# Create the container (outer) email message.
 		msg = MIMEMultipart()
@@ -463,9 +474,9 @@ class LogManager(Screen):
 			wos_pwd = base64.b64decode('NDJJWnojMEpldUxX')
 
 			try:
-				print "connecting to server: mail.dummy.org"
+				print("connecting to server: mail.dummy.org")
 				#socket.setdefaulttimeout(30)
-				s = smtplib.SMTP("mail.dummy.org",26)
+				s = smtplib.SMTP("mail.dummy.org", 26)
 				s.login(wos_user, wos_pwd)
 				if config.logmanager.usersendcopy.value:
 					s.sendmail(fromlogman, [tocrashlogs, fromlogman], msg.as_string())
@@ -475,21 +486,21 @@ class LogManager(Screen):
 					s.sendmail(fromlogman, tocrashlogs, msg.as_string())
 					s.quit()
 					self.session.open(MessageBox, sentfiles + ' ' + _('has been sent to the SVN team team.\nplease quote') + ' ' + str(ref) + ' ' + _('when asking question about this log'), MessageBox.TYPE_INFO)
-			except Exception,e:
-				self.session.open(MessageBox, _("Error:\n%s" % e), MessageBox.TYPE_INFO, timeout = 10)
+			except Exception as e:
+				self.session.open(MessageBox, _("Error:\n%s" % e), MessageBox.TYPE_INFO, timeout=10)
 		else:
-			self.session.open(MessageBox, _('You have not setup your user info in the setup screen\nPress MENU, and enter your info, then try again'), MessageBox.TYPE_INFO, timeout = 10)
+			self.session.open(MessageBox, _('You have not setup your user info in the setup screen\nPress MENU, and enter your info, then try again'), MessageBox.TYPE_INFO, timeout=10)
 
 	def myclose(self):
 		self.close()
 
+
 class LogManagerViewLog(Screen):
 	def __init__(self, session, selected):
-		self.session = session
 		Screen.__init__(self, session)
 		self.setTitle(selected)
 		self.logfile = config.crash.debug_path.value + selected
-		self.log=[]
+		self.log = []
 		self["list"] = MenuList(self.log)
 		self["setupActions"] = ActionMap(["SetupActions", "ColorActions", "DirectionActions"],
 		{
@@ -507,24 +518,24 @@ class LogManagerViewLog(Screen):
 
 	def layoutFinished(self):
 		sf = getSkinFactor()
-		font = gFont("Console", int(16*sf))
+		font = gFont("Console", int(16 * sf))
 		if not int(fontRenderClass.getInstance().getLineHeight(font)):
-			font = gFont("Regular", int(16*sf))
+			font = gFont("Regular", int(16 * sf))
 		self["list"].instance.setFont(font)
 		fontwidth = getTextBoundarySize(self.instance, font, self["list"].instance.size(), _(" ")).width()
 		listwidth = int(self["list"].instance.size().width() / fontwidth)
 		if path.exists(self.logfile):
-			for line in file(self.logfile ).readlines():
-				line = line.replace('\t',' '*9)
+			for line in open(self.logfile).readlines():
+				line = line.replace('\t', ' ' * 9)
 				if len(line) > listwidth:
 					pos = 0
 					offset = 0
 					readyline = True
 					while readyline:
-						a = " " * offset + line[pos:pos+listwidth-offset]
+						a = " " * offset + line[pos:pos + listwidth - offset]
 						self.log.append(a)
-						if len(line[pos+listwidth-offset:]):
-							pos += listwidth-offset
+						if len(line[pos + listwidth - offset:]):
+							pos += listwidth - offset
 							offset = 20
 						else:
 							readyline = False
@@ -538,10 +549,11 @@ class LogManagerViewLog(Screen):
 		self["list"].moveToIndex(0)
 
 	def gotoLastPage(self):
-		self["list"].moveToIndex(len(self.log)-1)
+		self["list"].moveToIndex(len(self.log) - 1)
 
 	def cancel(self):
 		self.close()
+
 
 class LogManagerFb(Screen):
 	def __init__(self, session, logpath=None):
@@ -551,17 +563,15 @@ class LogManagerFb(Screen):
 			else:
 				logpath = "/"
 
-		self.session = session
 		Screen.__init__(self, session)
 
-		self["list"] = FileList(logpath, matchingPattern = "^.*")
+		self["list"] = FileList(logpath, matchingPattern="^.*")
 		self["red"] = Label(_("delete"))
 		self["green"] = Label(_("move"))
 		self["yellow"] = Label(_("copy"))
 		self["blue"] = Label(_("rename"))
 
-
-		self["actions"] = ActionMap(["ChannelSelectBaseActions","WizardActions", "DirectionActions", "MenuActions", "NumberActions", "ColorActions"],
+		self["actions"] = ActionMap(["ChannelSelectBaseActions", "WizardActions", "DirectionActions", "MenuActions", "NumberActions", "ColorActions"],
 			{
 			 "ok": self.ok,
 			 "back": self.exit,
@@ -609,18 +619,19 @@ class LogManagerFb(Screen):
 		self.setTitle(self.SOURCELIST.getCurrentDirectory())
 
 	def onFileAction(self):
-		config.logmanager.additionalinfo.setValue(file(self.SOURCELIST.getCurrentDirectory()+self.SOURCELIST.getFilename()).read())
+		config.logmanager.additionalinfo.setValue(file(self.SOURCELIST.getCurrentDirectory() + self.SOURCELIST.getFilename()).read())
 		if self["list"].getCurrentDirectory():
 			config.logmanager.path.setValue(self["list"].getCurrentDirectory())
 			config.logmanager.path.save()
 		self.close()
+
 
 class LogInfo(VariableText, GUIComponent):
 	FREE = 0
 	USED = 1
 	SIZE = 2
 
-	def __init__(self, path, type, update = True):
+	def __init__(self, path, type, update=True):
 		GUIComponent.__init__(self)
 		VariableText.__init__(self)
 		self.type = type

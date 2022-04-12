@@ -78,7 +78,7 @@ void eInputContentString::deleteChar(int dir)
 {
 	if (dir == deleteForward)
 	{
-		eDebug("forward");
+		eDebug("[eInputString] forward");
 		if (m_cursor != m_len)
 			++m_cursor;
 		else

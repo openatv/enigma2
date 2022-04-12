@@ -1,12 +1,14 @@
-from HTMLComponent import HTMLComponent
-from GUIComponent import GUIComponent
-from VariableText import VariableText
+from __future__ import absolute_import
+from Components.GUIComponent import GUIComponent
+from Components.VariableText import VariableText
 
 from enigma import eButton
 
-class Button(VariableText, HTMLComponent, GUIComponent):
+
+class Button(VariableText, GUIComponent):
 	def __init__(self, text="", onClick=None):
-		if not onClick: onClick = []
+		if not onClick:
+			onClick = []
 		GUIComponent.__init__(self)
 		VariableText.__init__(self)
 		self.setText(text)
@@ -32,10 +34,6 @@ class Button(VariableText, HTMLComponent, GUIComponent):
 
 	def disconnectDownstream(self, downstream):
 		pass
-
-# html:
-	def produceHTML(self):
-		return "<input type=\"submit\" text=\"" + self.getText() + "\">\n"
 
 	GUI_WIDGET = eButton
 

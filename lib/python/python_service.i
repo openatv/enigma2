@@ -116,7 +116,11 @@ PyObject *getInfoObject(int w)
 				data = info->getBuffer(size);
 				if (data && size)
 				{
+%#if PY_MAJOR_VERSION >= 3
+					return PyMemoryView_FromMemory((char*)data, size, PyBUF_READ);
+%#else
 					return PyBuffer_FromMemory(data, size);
+%#endif
 				}
 				else
 				{

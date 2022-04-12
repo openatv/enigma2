@@ -1,7 +1,8 @@
 from Components.Converter.Converter import Converter
 from Components.Element import cached
 
-class HbbtvApplicationInfo(Converter, object):
+
+class HbbtvApplicationInfo(Converter):
 	NAME = 0
 
 	def __init__(self, type):

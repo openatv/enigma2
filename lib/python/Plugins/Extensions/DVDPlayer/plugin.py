@@ -1,3 +1,4 @@
+from __future__ import print_function
 import os
 from Tools.Directories import fileExists
 from Plugins.Plugin import PluginDescriptor
@@ -5,9 +6,11 @@ from Components.Harddisk import harddiskmanager
 
 detected_DVD = None
 
+
 def main(session, **kwargs):
 	from Screens import DVD
 	session.open(DVD.DVDPlayer)
+
 
 def play(session, **kwargs):
 	from Screens import DVD
@@ -17,15 +20,18 @@ def play(session, **kwargs):
 	else:
 		return
 
+
 def DVDPlayer(*args, **kwargs):
 	# for backward compatibility with plugins that do "from DVDPlayer.plugin import DVDPlayer"
 	from Screens import DVD
 	return DVD.DVDPlayer(*args, **kwargs)
 
+
 def DVDOverlay(*args, **kwargs):
 	# for backward compatibility with plugins that do "from DVDPlayer.plugin import DVDOverlay"
 	from Screens import DVD
 	return DVD.DVDOverlay(*args, **kwargs)
+
 
 def filescan_open(list, session, **kwargs):
 	from Screens import DVD
@@ -33,8 +39,8 @@ def filescan_open(list, session, **kwargs):
 		cd = harddiskmanager.getCD()
 		if cd and (os.path.exists(os.path.join(harddiskmanager.getAutofsMountpoint(cd), "VIDEO_TS"))
 				or os.path.exists(os.path.join(harddiskmanager.getAutofsMountpoint(cd), "video_ts"))):
-			print "[DVDplayer] found device /dev/%s", " mount path ", harddiskmanager.getAutofsMountpoint(cd)
-			session.open(DVD.DVDPlayer, dvd_device="/dev/%s" %(harddiskmanager.getAutofsMountpoint(cd)))
+			print("[DVDplayer] found device /dev/%s", " mount path ", harddiskmanager.getAutofsMountpoint(cd))
+			session.open(DVD.DVDPlayer, dvd_device="/dev/%s" % (harddiskmanager.getAutofsMountpoint(cd)))
 			return
 	else:
 		dvd_filelist = []
@@ -42,8 +48,9 @@ def filescan_open(list, session, **kwargs):
 			if x.mimetype == "video/x-dvd-iso":
 				dvd_filelist.append(x.path)
 			if x.mimetype == "video/x-dvd":
-				dvd_filelist.append(x.path.rsplit('/',1)[0])
+				dvd_filelist.append(x.path.rsplit('/', 1)[0])
 		session.open(DVD.DVDPlayer, dvd_filelist=dvd_filelist)
+
 
 def filescan(**kwargs):
 	from Components.Scanner import Scanner, ScanPath
@@ -54,28 +61,29 @@ def filescan(**kwargs):
 			return fileExists(file.path)
 
 	return [
-		LocalScanner(mimetypes = ["video/x-dvd","video/x-dvd-iso"],
-			paths_to_scan =
-				[
-					ScanPath(path = "video_ts", with_subdirs = False),
-					ScanPath(path = "VIDEO_TS", with_subdirs = False),
-					ScanPath(path = "", with_subdirs = False),
+		LocalScanner(mimetypes=["video/x-dvd", "video/x-dvd-iso"],
+			paths_to_scan=[
+					ScanPath(path="video_ts", with_subdirs=False),
+					ScanPath(path="VIDEO_TS", with_subdirs=False),
+					ScanPath(path="", with_subdirs=False),
 				],
-			name = "DVD",
-			description = _("Play DVD"),
-			openfnc = filescan_open,
+			name="DVD",
+			description=_("Play DVD"),
+			openfnc=filescan_open,
 		)]
 
+
 def onPartitionChange(action, partition):
-	print "[@] onPartitionChange", action, partition
+	print("[@] onPartitionChange", action, partition)
 	if partition != harddiskmanager.getCD():
 		global detected_DVD
 		if action == 'remove':
-			print "[DVDplayer] DVD removed"
+			print("[DVDplayer] DVD removed")
 			detected_DVD = False
 		elif action == 'add':
-			print "[DVDplayer] DVD Inserted"
+			print("[DVDplayer] DVD Inserted")
 			detected_DVD = None
+
 
 def menu(menuid, **kwargs):
 	if menuid == "mainmenu":
@@ -84,7 +92,7 @@ def menu(menuid, **kwargs):
 			cd = harddiskmanager.getCD()
 			if cd and (os.path.exists(os.path.join(harddiskmanager.getAutofsMountpoint(cd), "VIDEO_TS"))
 					or os.path.exists(os.path.join(harddiskmanager.getAutofsMountpoint(cd), "video_ts"))):
-				print "[DVDplayer] Mountpoint is present and is", harddiskmanager.getAutofsMountpoint(cd)
+				print("[DVDplayer] Mountpoint is present and is", harddiskmanager.getAutofsMountpoint(cd))
 				detected_DVD = True
 			else:
 				detected_DVD = False
@@ -94,6 +102,7 @@ def menu(menuid, **kwargs):
 			return [(_("DVD player"), play, "dvd_player", 46)]
 	return []
 
+
 def Plugins(**kwargs):
-	return [PluginDescriptor(where = PluginDescriptor.WHERE_FILESCAN, needsRestart = False, fnc = filescan),
-		PluginDescriptor(name = _("DVDPlayer"), description = _("Play DVDs"), where = PluginDescriptor.WHERE_MENU, needsRestart = False, fnc = menu)]
+	return [PluginDescriptor(where=PluginDescriptor.WHERE_FILESCAN, needsRestart=False, fnc=filescan),
+		PluginDescriptor(name=_("DVDPlayer"), description=_("Play DVDs"), where=PluginDescriptor.WHERE_MENU, needsRestart=False, fnc=menu)]

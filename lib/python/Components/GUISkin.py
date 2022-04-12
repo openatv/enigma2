@@ -1,25 +1,28 @@
-from GUIComponent import GUIComponent
+from __future__ import print_function
+from __future__ import absolute_import
+from Components.GUIComponent import GUIComponent
 from skin import applyAllAttributes
 from Tools.CList import CList
-from Sources.StaticText import StaticText
+from Components.Sources.StaticText import StaticText
+
 
 class GUISkin:
 	__module__ = __name__
 
 	def __init__(self):
 		self["Title"] = StaticText()
-		self.onLayoutFinish = [ ]
+		self.onLayoutFinish = []
 		self.summaries = CList()
 		self.instance = None
 		self.desktop = None
 
-	def createGUIScreen(self, parent, desktop, updateonly = False):
+	def createGUIScreen(self, parent, desktop, updateonly=False):
 		for val in self.renderer:
 			if isinstance(val, GUIComponent):
 				if not updateonly:
 					val.GUIcreate(parent)
 				if not val.applySkin(desktop, self):
-					print "warning, skin is missing renderer", val, "in", self
+					print("warning, skin is missing renderer", val, "in", self)
 
 		for key in self:
 			val = self[key]
@@ -29,10 +32,10 @@ class GUISkin:
 				depr = val.deprecationInfo
 				if val.applySkin(desktop, self):
 					if depr:
-						print "WARNING: OBSOLETE COMPONENT '%s' USED IN SKIN. USE '%s' INSTEAD!" % (key, depr[0])
-						print "OBSOLETE COMPONENT WILL BE REMOVED %s, PLEASE UPDATE!" % (depr[1])
+						print("WARNING: OBSOLETE COMPONENT '%s' USED IN SKIN. USE '%s' INSTEAD!" % (key, depr[0]))
+						print("OBSOLETE COMPONENT WILL BE REMOVED %s, PLEASE UPDATE!" % (depr[1]))
 				elif not depr:
-					print "warning, skin is missing element", key, "in", self
+					print("warning, skin is missing element", key, "in", self)
 
 		for w in self.additionalWidgets:
 			if not updateonly:
@@ -41,13 +44,13 @@ class GUISkin:
 			applyAllAttributes(w.instance, desktop, w.skinAttributes, self.scale)
 
 		for f in self.onLayoutFinish:
-			if type(f) is not type(self.close): # is this the best way to do this?
-				exec f in globals(), locals()
+			if not isinstance(f, type(self.close)): # is this the best way to do this?
+				exec(f, globals(), locals())
 			else:
 				f()
 
 	def deleteGUIScreen(self):
-		for (name, val) in self.items():
+		for (name, val) in list(self.items()):
 			if isinstance(val, GUIComponent):
 				val.GUIdelete()
 
@@ -71,6 +74,7 @@ class GUISkin:
 			self.summaries.setTitle(title)
 		except:
 			pass
+
 	def getTitle(self):
 		return self["Title"].text
 

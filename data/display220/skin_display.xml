@@ -241,7 +241,7 @@
 		<panel name="SummaryClockPanel" />
 	</screen>
 	<screen name="IMDbLCDScreen" position="0,0" size="220,176">
-		<eLabel text="IMDB Search" position="0,0" foregroundColor="#FFFF00" size="220,135" font="FdLcD;26" halign="center" valign="center" />
+		<eLabel text="IMDb Search" position="0,0" foregroundColor="#FFFF00" size="220,135" font="FdLcD;26" halign="center" valign="center" />
 		<panel name="SummaryClockPanel" />
 	</screen>
 	<screen name="GraphicalInfoBarEPG_summary" position="0,0" size="220,176">
@@ -265,13 +265,12 @@
 		<panel name="SummaryClockPanel" />
 	</screen>
 
-	<screen name="MessageBox_summary" position="0,0" size="220,176">
-		<widget source="parent.Text" render="Label" position="0,0" size="220,176" font="FdLcD;17" halign="center" />
-		<widget source="parent.selectedChoice" render="Label" position="0,135" size="220,28" font="FdLcD;26" halign="center" noWrap="1" />
+	<screen name="MessageBoxSummary" position="0,0" size="220,176">
+		<widget source="text" render="Label" position="0,0" size="220,176" font="FdLcD;17" halign="center" />
+		<widget source="option" render="Label" position="0,135" size="220,28" font="FdLcD;26" halign="center" noWrap="1" />
 	</screen>
-	<screen name="MessageBoxSimple_summary" position="0,0" size="220,176">
-		<widget source="parent.Text" render="Label" position="0,0" size="220,176" font="FdLcD;17" halign="center" />
-		<widget source="parent.selectedChoice" render="Label" position="0,135" size="220,28" font="FdLcD;26" halign="center" noWrap="1" />
+	<screen name="MessageBoxSimpleSummary" position="0,0" size="220,176">
+		<panel name="MessageBoxSummary" />
 	</screen>
 
 	<screen name="AboutSummary" position="0,0" size="220,176">

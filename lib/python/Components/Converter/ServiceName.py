@@ -5,12 +5,12 @@ from enigma import iServiceInformation, iPlayableService, iPlayableServicePtr, e
 from Components.Element import cached
 from ServiceReference import resolveAlternate, ServiceReference
 from Tools.Directories import fileExists
-from Tools.Transponder import ConvertToHumanReadable
+from Tools.Transponder import ConvertToHumanReadable, getChannelNumber
 from Components.NimManager import nimmanager
-from Components.Converter.ChannelNumbers import channelnumbers
 import Screens.InfoBar
 
-class ServiceName(Converter, object):
+
+class ServiceName(Converter):
 	NAME = 0
 	NAME_ONLY = 1
 	NAME_EVENT = 2
@@ -57,7 +57,7 @@ class ServiceName(Converter, object):
 			name = service and info.getName(service)
 			if name is None:
 				name = info.getName()
-			name = name.replace('\xc2\x86', '').replace('\xc2\x87', '')
+			name = name.replace('\xc2\x86', '').replace('\xc2\x87', '').replace('_', ' ')
 			if self.type == self.NAME_EVENT:
 				act_event = info and info.getEvent(0)
 				if not act_event and info:
@@ -109,10 +109,10 @@ class ServiceName(Converter, object):
 				if self.system() == None: # catch driver bug
 					return ""
 				if "DVB-T" in self.system():
-					return	self.dvb_t()
+					return self.dvb_t()
 				elif "DVB-C" in self.system():
 					return self.dvb_c()
-				return 	self.dvb_s()
+				return self.dvb_s()
 			if service:
 				result = service.toString()
 			else:
@@ -129,35 +129,46 @@ class ServiceName(Converter, object):
 
 	def dvb_s(self):
 		return "%s %s %s %s %s %s %s" % (self.orb_pos(), self.system(), self.freq(), self.polar(), self.s_rate(), self.fec(), self.mod())
+
 	def dvb_t(self):
 		return "%s %s %s/%s" % (self.system(), self.ch_number(), self.freq(), self.bandwidth())
+
 	def dvb_c(self):
 		return "%s %s %s %s %s" % (self.system(), self.freq(), self.s_rate(), self.fec(), self.mod())
+
 	def system(self):
 		return self.t_info["system"]
+
 	def freq(self):
 		return self.t_info["frequency"]
+
 	def bandwidth(self):
 		return self.t_info["bandwidth"]
+
 	def s_rate(self):
 		return self.t_info["symbol_rate"]
+
 	def mod(self):
 		return self.t_info["modulation"]
+
 	def polar(self):
 		return self.t_info["polarization_abbreviation"]
+
 	def orb_pos(self):
 		op = self.t_info["orbital_position"]
 		if '(' in op:
 			op = op.split('(')[1]
-			return "%s°%s" % (op[:-2],op[-2:-1])
+			return "%s%s%s" % (op[:-2], u"\u00B0", op[-2:-1])
 		op = op.split(' ')[0]
-		return "%s°%s" % (op[:-1],op[-1:])
+		return "%s%s%s" % (op[:-1], u"\u00B0", op[-1:])
+
 	def fec(self):
 		return self.t_info["fec_inner"]
+
 	def ch_number(self):
 		for n in nimmanager.nim_slots:
 			if n.isCompatible("DVB-T"):
-				channel = channelnumbers.getChannelNumber(self.freq(), n.slot)
+				channel = getChannelNumber(self.freq(), n.slot)
 				if channel:
 					return _("CH") + "%s" % channel
 		return ""

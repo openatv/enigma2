@@ -106,7 +106,7 @@ end on shutdown.
 you just have to use "WHERE_AUTOSTART". your entry point must (fnc) look 
 like:
 
-def autostartEntry(raeson, **kwargs):
+def autostartEntry(reason, **kwargs):
 	if reason == 0: # startup
 		print "startup"
 	elif reason == 1:

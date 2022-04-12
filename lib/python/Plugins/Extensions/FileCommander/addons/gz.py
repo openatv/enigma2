@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: iso-8859-1 -*-
 
+from __future__ import print_function
 from Components.config import config
 from Tools.Directories import shellquote
 from Plugins.Extensions.FileCommander.addons.unarchiver import ArchiverMenuScreen, ArchiverInfoScreen
@@ -9,6 +10,7 @@ from os.path import splitext
 pname = _("File Commander - gzip Addon")
 pdesc = _("unpack gzip Files")
 pversion = "0.2-r1"
+
 
 class GunzipMenuScreen(ArchiverMenuScreen):
 
@@ -24,7 +26,7 @@ class GunzipMenuScreen(ArchiverMenuScreen):
 		self.pversion = pversion
 
 	def unpackModus(self, id):
-		print "[GunzipMenuScreen] unpackModus", id
+		print("[GunzipMenuScreen] unpackModus", id)
 		pathName = self.sourceDir + self.filename
 		if id == 1:
 			cmd = ("gunzip", pathName)
@@ -40,10 +42,11 @@ class GunzipMenuScreen(ArchiverMenuScreen):
 			cmd = "gunzip -c %s > %s && rm %s" % (shellquote(pathName), shellquote(dest), shellquote(pathName))
 		self.unpackEConsoleApp(cmd)
 
+
 class UnpackInfoScreen(ArchiverInfoScreen):
 
-	def __init__(self, session, list, sourceDir, filename):
-		super(UnpackInfoScreen, self).__init__(session, list, sourceDir, filename)
+	def __init__(self, session, liste, sourceDir, filename):
+		super(UnpackInfoScreen, self).__init__(session, liste, sourceDir, filename)
 		self.pname = pname
 		self.pdesc = pdesc
 		self.pversion = pversion

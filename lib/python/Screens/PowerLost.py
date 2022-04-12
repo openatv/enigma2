@@ -1,8 +1,10 @@
-from Screen import Screen
-from MessageBox import MessageBox
+from __future__ import absolute_import
+from Screens.Screen import Screen
+from Screens.MessageBox import MessageBox
 from Components.config import config
 import Screens.Standby
 from boxbranding import getMachineBrand, getMachineName
+
 
 class PowerLost(Screen):
 	def __init__(self, session):
@@ -13,7 +15,7 @@ class PowerLost(Screen):
 		if config.usage.boot_action.value == 'normal':
 			message = _("Your %s %s was not shutdown properly.\n\n"
 					"Do you want to put it in %s?") % (getMachineBrand(), getMachineName(), config.usage.shutdownNOK_action.value)
-			self.session.openWithCallback(self.MsgBoxClosed, MessageBox, message, MessageBox.TYPE_YESNO, timeout = int(config.usage.shutdown_msgbox_timeout.value), default = True)
+			self.session.openWithCallback(self.MsgBoxClosed, MessageBox, message, MessageBox.TYPE_YESNO, timeout=int(config.usage.shutdown_msgbox_timeout.value), default=True)
 		else:
 			self.MsgBoxClosed(True)
 

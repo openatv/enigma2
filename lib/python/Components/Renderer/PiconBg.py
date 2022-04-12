@@ -1,7 +1,8 @@
-from Renderer import Renderer
+from Components.Renderer.Renderer import Renderer
 from enigma import ePixmap
 from Components.config import config
-from Tools.Directories import SCOPE_ACTIVE_SKIN, resolveFilename
+from Tools.Directories import SCOPE_GUISKIN, resolveFilename
+
 
 class PiconBg(Renderer):
 	def __init__(self):
@@ -17,7 +18,7 @@ class PiconBg(Renderer):
 		if self.instance:
 			pngname = ""
 			if what[0] == 1 or what[0] == 3:
-				pngname = resolveFilename(SCOPE_ACTIVE_SKIN, "piconbg/"+config.usage.show_picon_bkgrn.value + ".png")
+				pngname = resolveFilename(SCOPE_GUISKIN, "piconbg/" + config.usage.show_picon_bkgrn.value + ".png")
 				if self.pngname != pngname:
 					if pngname:
 						self.instance.setScale(1)

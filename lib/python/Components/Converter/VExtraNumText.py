@@ -12,14 +12,15 @@
 #    but WITHOUT ANY WARRANTY; without even the implied warranty of
 #    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 #    GNU General Public License for more details.
-#    
+#
 #######################################################################
 
 from Components.Converter.Converter import Converter
 from Components.Element import cached
-from time import localtime, strftime
+from time import localtime
 
-class VExtraNumText(Converter, object):
+
+class VExtraNumText(Converter):
 	SNRNUM = 0
 	AGCNUM = 1
 	BERNUM = 2
@@ -30,14 +31,14 @@ class VExtraNumText(Converter, object):
 	SLOT_NUMBER = 7
 	SECHAND = 8
 	MINHAND = 9
-	HOURHAND = 10	
-	
+	HOURHAND = 10
+
 	def __init__(self, type):
 		Converter.__init__(self, type)
 		if type == "SnrNum":
-			self.type = self.SNRNUM	
+			self.type = self.SNRNUM
 		elif type == "AgcNum":
-			self.type = self.AGCNUM	
+			self.type = self.AGCNUM
 		elif type == "BerNum":
 			self.type = self.BERNUM
 		elif type == "Step":
@@ -72,19 +73,19 @@ class VExtraNumText(Converter, object):
 	text = property(getText)
 
 	@cached
-	def getValue(self):	
+	def getValue(self):
 		if self.type == self.SNRNUM:
-			count = self.source.snr		
+			count = self.source.snr
 			if count is None:
-				return 0	
+				return 0
 			return (count * 100 / 65536)
 		elif self.type == self.AGCNUM:
-			count = self.source.agc			
+			count = self.source.agc
 			if count is None:
-				return 0						
+				return 0
 			return (count * 100 / 65536)
 		elif self.type == self.BERNUM:
-			count = self.source.ber		
+			count = self.source.ber
 			if count < 320000:
 				return count
 			return 320000
@@ -94,7 +95,7 @@ class VExtraNumText(Converter, object):
 				return 0
 			t = localtime(time)
 			c = t.tm_sec
-			
+
 			if c < 10:
 				return c
 			elif c < 20:
@@ -119,7 +120,7 @@ class VExtraNumText(Converter, object):
 				return 0
 			t = localtime(time)
 			c = t.tm_min
-			return c			
+			return c
 		elif self.type == self.HOURHAND:
 			time = self.source.time
 			if time is None:

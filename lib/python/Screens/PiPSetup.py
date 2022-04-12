@@ -1,16 +1,18 @@
+from __future__ import division
 from Screens.Screen import Screen
 from Components.ActionMap import NumberActionMap
-from Components.SystemInfo import SystemInfo
+from Components.SystemInfo import BoxInfo
 from Components.Label import Label
 from Components.config import config
 
 # this is not so great.
 MAX_X = 720
 MAX_Y = 576
-MAX_W = MAX_X * 3 / 4
-MAX_H = MAX_Y * 3 / 4
-MIN_W = MAX_X / 8
-MIN_H = MAX_Y / 8
+MAX_W = MAX_X * 3 // 4
+MAX_H = MAX_Y * 3 // 4
+MIN_W = MAX_X // 8
+MIN_H = MAX_Y // 8
+
 
 def clip(val, min, max):
 	if min <= val <= max:
@@ -18,6 +20,7 @@ def clip(val, min, max):
 	if min <= val:
 		return max
 	return min
+
 
 class PiPSetup(Screen):
 	def __init__(self, session, pip):
@@ -36,7 +39,7 @@ class PiPSetup(Screen):
 		self.resize = 100
 
 		self.helptext = _("Please use direction keys to move the PiP window.\nPress Bouquet +/- to resize the window.\nPress OK to go back to the TV mode or EXIT to cancel the moving.")
-		if SystemInfo["VideoDestinationConfigurable"] or SystemInfo["HasExternalPIP"]:
+		if BoxInfo.getItem("VideoDestinationConfigurable") or BoxInfo.getItem("HasExternalPIP"):
 			self.helptext += "\n" + _("Press '0' to toggle PiP mode")
 		self.modetext = _("Current mode: %s \n")
 
@@ -84,15 +87,15 @@ class PiPSetup(Screen):
 
 		oldsize = self.size
 		if self.mode != "split":
-			w = clip(self.size[0] * resize / 100, MIN_W, MAX_W)
-			h = clip(self.size[1] * resize / 100, MIN_H, MAX_H)
+			w = clip(self.size[0] * resize // 100, MIN_W, MAX_W)
+			h = clip(self.size[1] * resize // 100, MIN_H, MAX_H)
 		else:
-			w = clip(self.size[0] * resize / 100, MAX_X / 2, MAX_X)
-			h = clip(self.size[1] * resize / 100, MAX_Y / 2, MAX_Y)
+			w = clip(self.size[0] * resize // 100, MAX_X // 2, MAX_X)
+			h = clip(self.size[1] * resize // 100, MAX_Y // 2, MAX_Y)
 
 		# calculate offset from center
-		mx = (oldsize[0] - w) / 2
-		my = (oldsize[1] - h) / 2
+		mx = (oldsize[0] - w) // 2
+		my = (oldsize[1] - h) // 2
 
 		self.size = (w, h)
 		# reclip, account for new center
@@ -128,16 +131,16 @@ class PiPSetup(Screen):
 
 	def keyNumberGlobal(self, number):
 		if number > 0 and self.mode == "standard":
-			colsize = MAX_X / 3
-			rowsize = MAX_Y / 3
-			col = (number-1) % 3
-			row = (number-1) / 3
+			colsize = MAX_X // 3
+			rowsize = MAX_Y // 3
+			col = (number - 1) % 3
+			row = (number - 1) // 3
 
 			self.size = (180, 135)
 
 			# offset to keep center
-			ox = (colsize - self.size[0]) / 2
-			oy = (rowsize - self.size[1]) / 2
+			ox = (colsize - self.size[0]) // 2
+			oy = (rowsize - self.size[1]) // 2
 
 			self.pos = (col * colsize + ox, row * rowsize + oy)
 		elif number == 0:

@@ -1,4 +1,6 @@
-import Project, TitleCutter, TitleProperties, ProjectSettings, MediumToolbox, Process, Bludisc
+from __future__ import print_function
+from __future__ import absolute_import
+from . import Project, TitleCutter, TitleProperties, ProjectSettings, MediumToolbox, Process, Bludisc
 from Screens.Screen import Screen
 from Screens.ChoiceBox import ChoiceBox
 from Screens.MessageBox import MessageBox
@@ -14,7 +16,8 @@ from Components.Label import MultiColorLabel
 from enigma import gFont, RT_HALIGN_LEFT, RT_HALIGN_RIGHT
 from Tools.Directories import resolveFilename, SCOPE_PLUGINS
 
-MODE_DVD, MODE_BLUDISC = range(2)
+MODE_DVD, MODE_BLUDISC = list(range(2))
+
 
 class TitleList(Screen, HelpableScreen):
 	skin = """
@@ -57,10 +60,10 @@ class TitleList(Screen, HelpableScreen):
 			<widget source="marker_bludisc" render="Label" position="508,460" size="44,12" zPosition="1" font="Regular;11" halign="right" foregroundColor="#FFFFFF" />
 		</screen>"""
 
-	def __init__(self, session, project = None):
+	def __init__(self, session, project=None):
 		Screen.__init__(self, session)
 		HelpableScreen.__init__(self)
-		
+
 		self["titleactions"] = HelpableActionMap(self, "TitleList",
 			{
 				"addTitle": (self.addTitle, _("Add a new title"), _("Add title")),
@@ -111,9 +114,9 @@ class TitleList(Screen, HelpableScreen):
 
 	def checkBackgroundJobs(self):
 		for job in job_manager.getPendingJobs():
-			print "type(job):", type(job)
-			print "Process.DVDJob:", Process.DVDJob
-			if type(job) == Process.DVDJob:
+			print("type(job):", type(job))
+			print("Process.DVDJob:", Process.DVDJob)
+			if isinstance(job, Process.DVDJob):
 				self.backgroundJob = job
 				return
 		self.backgroundJob = None
@@ -123,7 +126,7 @@ class TitleList(Screen, HelpableScreen):
 		self.checkBackgroundJobs()
 		if self.backgroundJob:
 			j = self.backgroundJob
-			menu.append(("%s: %s (%d%%)" % (j.getStatustext(), j.name, int(100*j.progress/float(j.end))), self.showBackgroundJob))
+			menu.append(("%s: %s (%d%%)" % (j.getStatustext(), j.name, int(100 * j.progress / float(j.end))), self.showBackgroundJob))
 		menu.append((_("Medium toolbox"), self.toolbox))
 		if self.project.settings.output.getValue() == "medium":
 			if len(self["titles"].list):
@@ -146,7 +149,7 @@ class TitleList(Screen, HelpableScreen):
 		job_manager.in_background = False
 		self.session.openWithCallback(self.JobViewCB, JobView, self.backgroundJob)
 		self.backgroundJob = None
-	
+
 	def titleProperties(self):
 		#if self.getCurrentTitle():
 			self.session.openWithCallback(self.updateTitleList, TitleProperties.TitleProperties, self, self.project, self["titles"].getIndex())
@@ -164,6 +167,7 @@ class TitleList(Screen, HelpableScreen):
 		from Screens.MovieSelection import MovieSelection
 		from Components.ActionMap import HelpableActionMap
 		from Components.Button import Button
+
 		class DVDMovieSelection(MovieSelection):
 			def __init__(self, session):
 				MovieSelection.__init__(self, session)
@@ -177,15 +181,19 @@ class TitleList(Screen, HelpableScreen):
 					"green": (self.insertWithoutEdit, ("insert without cutlist editor")),
 					"yellow": (self.movieSelected, _("Add a new title"))
 				})
+
 			def updateTags(self):
 				pass
+
 			def doContext(self):
-				print "context menu forbidden inside DVDBurn to prevent calling multiple instances"
+				print("context menu forbidden inside DVDBurn to prevent calling multiple instances")
+
 			def insertWithoutEdit(self):
 				current = self.getCurrent()
 				if current is not None:
 					current.edit = False
 					self.close(current)
+
 			def movieSelected(self):
 				current = self.getCurrent()
 				if current is not None:
@@ -193,11 +201,11 @@ class TitleList(Screen, HelpableScreen):
 					self.close(current)
 		self.session.openWithCallback(self.selectedSource, DVDMovieSelection)
 
-	def selectedSource(self, source = None):
+	def selectedSource(self, source=None):
 		if source is None:
 			return None
 		if not source.getPath().endswith(".ts"):
-			self.session.open(MessageBox,text = _("You can only burn Dreambox recordings!"), type = MessageBox.TYPE_ERROR)
+			self.session.open(MessageBox, text=_("You can only burn Dreambox recordings!"), type=MessageBox.TYPE_ERROR)
 			return None
 		t = self.project.addService(source)
 		try:
@@ -209,7 +217,7 @@ class TitleList(Screen, HelpableScreen):
 	def removeCurrentTitle(self):
 		title = self.getCurrentTitle()
 		self.removeTitle(title)
-	
+
 	def removeTitle(self, title):
 		if title is not None:
 			self.project.titles.remove(title)
@@ -228,9 +236,9 @@ class TitleList(Screen, HelpableScreen):
 
 	def loadTemplate(self, mode=MODE_DVD):
 		if mode == MODE_BLUDISC:
-			filename = resolveFilename(SCOPE_PLUGINS)+"Extensions/DVDBurn/DreamboxBludisc.ddvdp.xml"
+			filename = resolveFilename(SCOPE_PLUGINS) + "Extensions/DVDBurn/DreamboxBludisc.ddvdp.xml"
 		else:
-			filename = resolveFilename(SCOPE_PLUGINS)+"Extensions/DVDBurn/DreamboxDVD.ddvdp.xml"
+			filename = resolveFilename(SCOPE_PLUGINS) + "Extensions/DVDBurn/DreamboxDVD.ddvdp.xml"
 		if self.project.load(filename):
 			self["error_label"].setText("")
 			return True
@@ -240,7 +248,7 @@ class TitleList(Screen, HelpableScreen):
 
 	def askBurnProject(self):
 		if len(self["titles"].list):
-			self.session.openWithCallback(self.burnProject,MessageBox,text = _("Do you want to produce this collection?"), type = MessageBox.TYPE_YESNO)
+			self.session.openWithCallback(self.burnProject, MessageBox, text=_("Do you want to produce this collection?"), type=MessageBox.TYPE_YESNO)
 
 	def burnProject(self, answer=True):
 		if not answer:
@@ -277,7 +285,7 @@ class TitleList(Screen, HelpableScreen):
 		job_manager.AddJob(job)
 
 	def updateTitleList(self):
-		list = [ ]
+		list = []
 		for title in self.project.titles:
 			list.append((title, title.properties.menutitle.getValue(), title.properties.menusubtitle.getValue(), title.DVBchannel, title.formatDVDmenuText("$D.$M.$Y, $T", 0), title.formatDVDmenuText("$l", 0)))
 		self["titles"].list = list
@@ -293,21 +301,21 @@ class TitleList(Screen, HelpableScreen):
 		self.project.finished_burning = False
 
 	def updateSize(self):
-		size = self.project.size/(1024*1024)
-		MAX_DL = self.project.MAX_DL-100
-		MAX_SL = self.project.MAX_SL-100
-		MAX_BD = self.project.MAX_BD-200
+		size = self.project.size / (1024 * 1024)
+		MAX_DL = self.project.MAX_DL - 100
+		MAX_SL = self.project.MAX_SL - 100
+		MAX_BD = self.project.MAX_BD - 200
 		self["space_bar_bludisc"].value = 100 * size / (MAX_BD)
 
 		if self.project.settings.authormode.value == "bdmv":
 			percent = 100 * size / float(MAX_BD)
 			self["space_label"].text = "%d MB (%.2f%%)" % (size, percent)
-			
+
 			if size > MAX_BD:
 				self["medium_label"].setText(_("Exceeds Bludisc medium!"))
 				self["medium_label"].setForegroundColorNum(2)
 				if self.previous_size < MAX_BD:
-					self.session.open(MessageBox,text = _("Exceeds Bludisc medium!"), type = MessageBox.TYPE_ERROR)
+					self.session.open(MessageBox, text=_("Exceeds Bludisc medium!"), type=MessageBox.TYPE_ERROR)
 			elif size < MAX_BD:
 				self["medium_label"].setText(_("Required medium type:") + " " + _("BLUDISC RECORDABLE") + ", %d MB " % (MAX_BD - size) + _("free"))
 				self["medium_label"].setForegroundColorNum(1)
@@ -318,14 +326,14 @@ class TitleList(Screen, HelpableScreen):
 				self["medium_label"].setText(_("Exceeds dual layer medium!"))
 				self["medium_label"].setForegroundColorNum(2)
 				if self.previous_size < MAX_DL:
-					self.session.open(MessageBox,text = _("Exceeds dual layer medium!"), type = MessageBox.TYPE_ERROR)
+					self.session.open(MessageBox, text=_("Exceeds dual layer medium!"), type=MessageBox.TYPE_ERROR)
 			elif size > MAX_SL:
 				percent = 100 * size / float(MAX_DL)
 				self["space_label"].text = "%d MB (%.2f%%)" % (size, percent)
 				self["medium_label"].setText(_("Required medium type:") + " " + _("DUAL LAYER DVD") + ", %d MB " % (MAX_DL - size) + _("free"))
 				self["medium_label"].setForegroundColorNum(1)
 				if self.previous_size < MAX_SL:
-					self.session.open(MessageBox, text = _("Your collection exceeds the size of a single layer medium, you will need a blank dual layer DVD!"), timeout = 10, type = MessageBox.TYPE_INFO)
+					self.session.open(MessageBox, text=_("Your collection exceeds the size of a single layer medium, you will need a blank dual layer DVD!"), timeout=10, type=MessageBox.TYPE_INFO)
 			elif size < MAX_SL:
 				percent = 100 * size / float(MAX_SL)
 				self["space_label"].text = "%d MB (%.2f%%)" % (size, percent)
@@ -337,7 +345,7 @@ class TitleList(Screen, HelpableScreen):
 		t = self["titles"].getCurrent()
 		return t and t[0]
 
-	def editTitle(self, title = None, editor = True):
+	def editTitle(self, title=None, editor=True):
 		t = title or self.getCurrentTitle()
 		if t is not None:
 			self.current_edit_title = t
@@ -361,12 +369,12 @@ class TitleList(Screen, HelpableScreen):
 
 		if t.VideoType != 0 and self.project.settings.authormode.value not in ("data_ts", "bdmv"):
 			text = _("The DVD standard doesn't support H.264 (HDTV) video streams.")
-			
+
 			if all_hd == True:
-				choices.append((_("BDMV Bludisc (HDTV titles only)"),"bdmv"))
-			
-			choices.append((_("Dreambox format data DVD (won't work in other DVD players)"),"data_ts"))
-			choices.append((_("Don't add this recording"),None))
+				choices.append((_("BDMV Bludisc (HDTV titles only)"), "bdmv"))
+
+			choices.append((_("Dreambox format data DVD (won't work in other DVD players)"), "data_ts"))
+			choices.append((_("Don't add this recording"), None))
 			self.session.openWithCallback(self.formatCB, ChoiceBox, title=text, list=choices)
 
 		#elif t.VideoType != 1 and self.project.settings.authormode.value == "bdmv":
@@ -401,13 +409,13 @@ class TitleList(Screen, HelpableScreen):
 			title.initDVDmenuText(count)
 		self.updateTitleList()
 
-	def leave(self, close = False):
+	def leave(self, close=False):
 		if not len(self["titles"].list) or close or self.project.finished_burning:
 			self.close()
 		else:
-			self.session.openWithCallback(self.exitCB, MessageBox,text = _("Your current collection will get lost!") + "\n" + _("Do you really want to exit?"), type = MessageBox.TYPE_YESNO)
+			self.session.openWithCallback(self.exitCB, MessageBox, text=_("Your current collection will get lost!") + "\n" + _("Do you really want to exit?"), type=MessageBox.TYPE_YESNO)
 
 	def exitCB(self, answer):
-		print "exitCB", answer
+		print("exitCB", answer)
 		if answer is not None and answer:
 			self.close()

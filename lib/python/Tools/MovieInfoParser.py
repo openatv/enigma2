@@ -3,6 +3,7 @@
 
 from os import path
 
+
 def getExtendedMovieDescription(ref):
 	f = None
 	extended_desc = ""
@@ -19,7 +20,7 @@ def getExtendedMovieDescription(ref):
 		if path.exists(info_file + ext):
 			f = info_file + ext
 			break
-	if not f:	
+	if not f:
 		ext_pos = info_file.rfind('.')
 		name_len = len(info_file)
 		ext_len = name_len - ext_pos
@@ -30,7 +31,7 @@ def getExtendedMovieDescription(ref):
 					f = info_file + ext
 					break
 	if f:
-		with open (f, "r") as txtfile:
+		with open(f, "r") as txtfile:
 			extended_desc = txtfile.read()
-	
+
 	return (name, extended_desc)

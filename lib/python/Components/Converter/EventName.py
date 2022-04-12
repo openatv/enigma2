@@ -1,10 +1,11 @@
+from __future__ import print_function
 from enigma import eEPGCache
 
 from Components.Converter.Converter import Converter
 from Components.Element import cached
 from Components.Converter.genre import getGenreStringSub
 from Components.config import config
-from Tools.Directories import resolveFilename, SCOPE_ACTIVE_SKIN
+from Tools.Directories import resolveFilename, SCOPE_GUISKIN
 from time import localtime, mktime, strftime
 
 
@@ -79,7 +80,7 @@ countries = {
 }
 
 
-class EventName(Converter, object):
+class EventName(Converter):
 	NAME = 0
 	SHORT_DESCRIPTION = 1
 	EXTENDED_DESCRIPTION = 2
@@ -166,7 +167,7 @@ class EventName(Converter, object):
 		for arg in args:
 			name, value = self.KEYWORDS.get(arg, ("Error", None))
 			if name == "Error":
-				print "[EventName] ERROR: Unexpected / Invalid argument token '%s'!" % arg
+				print("[EventName] ERROR: Unexpected / Invalid argument token '%s'!" % arg)
 			else:
 				setattr(self, name, value)
 		if self.separator is None:
@@ -223,7 +224,7 @@ class EventName(Converter, object):
 						return self.trimText(rating[self.RATLONG])
 					elif self.type == self.SRATING:
 						return self.trimText(rating[self.RATSHORT])
-					return resolveFilename(SCOPE_ACTIVE_SKIN, rating[self.RATICON])
+					return resolveFilename(SCOPE_GUISKIN, rating[self.RATICON])
 		elif self.type in (self.GENRE, self.GENRELIST):
 			if not config.usage.show_genre_info.value:
 				return ""

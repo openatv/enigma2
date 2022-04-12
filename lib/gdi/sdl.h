@@ -4,12 +4,17 @@
 #include <lib/base/thread.h>
 #include <lib/gdi/gmaindc.h>
 
-#include <SDL.h>
+#include <SDL2/SDL.h>
 
 class gSDLDC: public gMainDC, public eThread, public sigc::trackable
 {
 private:
 	SDL_Surface *m_screen;
+	SDL_Window *m_window;
+	SDL_Renderer *m_render;
+	SDL_Texture *m_osd_tex;
+	SDL_Surface *m_osd;
+
 	void exec(const gOpcode *opcode);
 
 	gUnmanagedSurface m_surface;
@@ -30,7 +35,7 @@ private:
 	void evFlip();
 
 public:
-	void setResolution(int xres, int yres);
+	void setResolution(int xres, int yres, int bpp = 32);
 	gSDLDC();
 	virtual ~gSDLDC();
 	int islocked() const { return 0; }

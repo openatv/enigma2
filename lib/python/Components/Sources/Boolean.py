@@ -1,26 +1,27 @@
-from Source import Source
-from Components.Element import cached
 from enigma import eTimer
 
-# a small warning:
-# you can use that boolean well to express screen-private
-# conditional expressions.
+from Components.Element import cached
+from Components.Sources.Source import Source
+
+
+# A small warning:
+# You can use Boolean to express screen-private conditional expressions.
+# However, if you think that there is ANY interest that another screen
+# could use your expression, please put your calculation into a separate
+# Source, providing a "boolean"-property.
 #
-# however, if you think that there is ANY interest that another
-# screen could use your expression, please put your calculation
-# into a seperate Source, providing a "boolean"-property.
-class Boolean(Source, object):
-	def __init__(self, fixed = False, function = None, destroy = None, poll = 0):
+class Boolean(Source):
+	def __init__(self, fixed=False, function=None, destroy=None, poll=0):
 		Source.__init__(self)
-		self.function = function
 		self.fixed = fixed
-		self.post_destroy = destroy
+		self.function = function
+		self.postDestroy = destroy
 		if poll > 0:
-			self.poll_timer = eTimer()
-			self.poll_timer.callback.append(self.poll)
-			self.poll_timer.start(poll)
+			self.pollTimer = eTimer()
+			self.pollTimer.callback.append(self.poll)
+			self.pollTimer.start(poll)
 		else:
-			self.poll_timer = None
+			self.pollTimer = None
 
 	@cached
 	def getBoolean(self):
@@ -40,9 +41,9 @@ class Boolean(Source, object):
 		self.changed((self.CHANGED_ALL,))
 
 	def destroy(self):
-		if self.poll_timer:
-			self.poll_timer.callback.remove(self.poll)
-		if self.post_destroy is not None:
-			self.fixed = self.post_destroy
+		if self.pollTimer:
+			self.pollTimer.callback.remove(self.poll)
+		if self.postDestroy is not None:
+			self.fixed = self.postDestroy
 			self.poll()
 		Source.destroy(self)

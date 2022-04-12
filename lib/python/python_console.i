@@ -124,7 +124,7 @@ eConsolePy_dealloc(eConsolePy* self)
 		PyObject_ClearWeakRefs((PyObject *) self);
 	eConsolePy_clear(self);
 	self->cont->Release();
-	self->ob_type->tp_free((PyObject*)self);
+	Py_TYPE(self)->tp_free((PyObject*)self);
 }
 
 static PyObject *
@@ -187,16 +187,29 @@ static PyObject *
 eConsolePy_write(eConsolePy* self, PyObject *args)
 {
 	char *data;
-	int data_len;
 	int len = -1;
+
+#if PY_VERSION_HEX >= 0x030a0000
+	if (!PyArg_ParseTuple(args, "s|i", &data, &len))
+	{
+		PyErr_SetString(PyExc_TypeError,
+			"1st arg must be a string, optionaly 2nd arg can be the string length");
+		return NULL;
+	}
+	int data_len = strlen(data);
+#else
+	int data_len;
 	if (!PyArg_ParseTuple(args, "s#|i", &data, &data_len, &len))
 	{
 		PyErr_SetString(PyExc_TypeError,
 			"1st arg must be a string, optionaly 2nd arg can be the string length");
 		return NULL;
 	}
+#endif
+
 	if (len < 0)
 		len = data_len;	
+
 	self->cont->write(data, len);
 	Py_RETURN_NONE;
 }
@@ -335,8 +348,7 @@ static PyMethodDef eConsolePy_methods[] = {
 };
 
 static PyTypeObject eConsolePyType = {
-	PyObject_HEAD_INIT(NULL)
-	0, /*ob_size*/
+	PyVarObject_HEAD_INIT(NULL, 0)
 	"eConsoleImpl.eConsoleAppContainer", /*tp_name*/
 	sizeof(eConsolePy), /*tp_basicsize*/
 	0, /*tp_itemsize*/
@@ -380,6 +392,21 @@ static PyMethodDef console_module_methods[] = {
 	{NULL}  /* Sentinel */
 };
 
+#if PY_MAJOR_VERSION >= 3
+	static struct PyModuleDef eConsole_moduledef = {
+	PyModuleDef_HEAD_INIT,
+	"eConsoleImpl",																			/* m_name */
+	"Module that implements eConsoleAppContainer with working cyclic garbage collection.",	/* m_doc */
+	-1,																						/* m_size */
+	console_module_methods,																	/* m_methods */
+	NULL,																					/* m_reload */
+	NULL,																					/* m_traverse */
+	NULL,																					/* m_clear */
+	NULL,																					/* m_free */
+	};
+#endif
+
+#if PY_MAJOR_VERSION < 3
 void eConsoleInit(void)
 {
 	PyObject* m = Py_InitModule3("eConsoleImpl", console_module_methods,
@@ -394,5 +421,23 @@ void eConsoleInit(void)
 		PyModule_AddObject(m, "eConsoleAppContainer", (PyObject*)&eConsolePyType);
 	}
 }
+#endif
+
+#if PY_MAJOR_VERSION >= 3
+PyObject* PyInit_eConsoleImpl(void)
+{
+	PyObject* m = PyModule_Create(&eConsole_moduledef);
+
+	if (m == NULL)
+		return NULL;
+
+	if (!PyType_Ready(&eConsolePyType))
+	{
+		Org_Py_INCREF((PyObject*)&eConsolePyType);
+		PyModule_AddObject(m, "eConsoleAppContainer", (PyObject*)&eConsolePyType);
+	}
+	return m;
+}
+#endif
 }
 %}

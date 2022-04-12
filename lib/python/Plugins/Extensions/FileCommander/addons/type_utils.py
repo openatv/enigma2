@@ -2,6 +2,7 @@
 # -*- coding: iso-8859-1 -*-
 
 # Components
+from __future__ import print_function
 from Components.config import config
 from Components.Label import Label
 from Components.ActionMap import HelpableActionMap
@@ -36,18 +37,20 @@ pversion = "1.0-r0"
 
 # ### play with movieplayer ###
 
+
 class MoviePlayer(Movie_Audio_Player):
 	def __init__(self, session, service):
-		self.session = session
 		self.WithoutStopClose = False
-		Movie_Audio_Player.__init__(self, self.session, service)
+		Movie_Audio_Player.__init__(self, session, service)
 
 	def leavePlayer(self):
 		self.is_closing = True
 		self.close()
 
 	def leavePlayerConfirmed(self, answer):
-		pass
+		"""
+		overwrite InfoBar method.
+		"""
 
 	def doEofInternal(self, playing):
 		if not self.execing:
@@ -61,13 +64,14 @@ class MoviePlayer(Movie_Audio_Player):
 		self.close()
 
 	def movieSelected(self, service):
-		self.leavePlayer(self.de_instance)
+		self.leavePlayer()
 
 	def __onClose(self):
 		if not(self.WithoutStopClose):
 			self.session.nav.playService(self.lastservice)
 
 # ### File viewer/line editor ###
+
 
 class vEditor(Screen, HelpableScreen):
 
@@ -89,7 +93,6 @@ class vEditor(Screen, HelpableScreen):
 		pname = _("File Commander - Addon File-Viewer")
 		self.skin = vEditor.skin
 		Screen.__init__(self, session)
-		self.session = session
 		HelpableScreen.__init__(self)
 		self.file_name = file
 		self.list = []
@@ -158,19 +161,19 @@ class vEditor(Screen, HelpableScreen):
 				# screen: ... size="1140,30" font="screen_text; 20"
 				# font:   ... <alias name="FileList" font="screen_text" size="20" height="30" />
 				font = skin.fonts.get("FileList", ("Regular", 20, 30))
-				fieldwidth = int(1140*skin.getSkinFactor()) #fhd?
-				length=1
+				fieldwidth = int(1140 * skin.getSkinFactor()) #fhd?
+				length = 1
 				if firstpos_end:
-					while getTextBoundarySize(self.instance, gFont(font[0], font[1]), eSize(fieldwidth, font[2]), editableText[len(editableText)-length:], True).width() <= fieldwidth:
-						length+=1
+					while getTextBoundarySize(self.instance, gFont(font[0], font[1]), eSize(fieldwidth, font[2]), editableText[len(editableText) - length:], True).width() <= fieldwidth:
+						length += 1
 						if length > len(editableText):
 							break
 				else:
-					while getTextBoundarySize(self.instance, gFont(font[0], font[1]), eSize(fieldwidth, font[2]), editableText.replace(' ','')[:length], True).width() <= fieldwidth:
-						length+=1
+					while getTextBoundarySize(self.instance, gFont(font[0], font[1]), eSize(fieldwidth, font[2]), editableText.replace(' ', '')[:length], True).width() <= fieldwidth:
+						length += 1
 						if length > len(editableText):
 							break
-				length-=1
+				length -= 1
 			self.session.openWithCallback(self.callbackEditLine, InputBoxWide, title=_(_("original") + ": " + editableText), visible_width=length, overwrite=False, firstpos_end=firstpos_end, allmarked=False, windowTitle=_("Edit line ") + str(self.selLine + 1), text=editableText)
 		except:
 			msg = self.session.open(MessageBox, _("This line is not editable!"), MessageBox.TYPE_ERROR)
@@ -243,6 +246,7 @@ class vEditor(Screen, HelpableScreen):
 			self.close()
 		else:
 			self.close()
+
 
 class ImageViewer(Screen, HelpableScreen):
 	s, w, h = 30, getDesktop(0).size().width(), getDesktop(0).size().height()
@@ -424,7 +428,7 @@ class ImageViewer(Screen, HelpableScreen):
 		self["status"].show()
 
 	def cbSlideShow(self):
-		print "slide to next Picture index=" + str(self.lsatIndex)
+		print("slide to next Picture index=" + str(self.lsatIndex))
 		if not config.pic.loop.value and self.lsatIndex == self.fileListLen:
 			self.PlayPause()
 		self.displayNow = True

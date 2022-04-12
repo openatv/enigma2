@@ -46,17 +46,17 @@ int eMMI_UI::processMMIData(int slot_id, const unsigned char *tag, const void *d
 				timeout = d[1];
 			else
 			{
-				eDebug("[eMMI_UI] mmi close tag incorrect.. no timeout given.. assume 5 seconds");
+				eDebug("[eMMI_UI] close tag incorrect.. no timeout given.. assume 5 seconds");
 				timeout = 5;
 			}
 		}
 		else if (d[0] > 1)
-			eDebug("[eMMI_UI] mmi close tag incorrect.. byte 4 should be 0 or 1");
+			eDebug("[eMMI_UI] close tag incorrect.. byte 4 should be 0 or 1");
 		mmiScreenClose(slot_id, timeout);
 		break;
 	}
 	case 0x01:
-		eDebug("[eMMI_UI] MMI display control");
+		eDebug("[eMMI_UI] display control");
 		if (((unsigned char*)data)[0] != 1)
 			eDebug("[eMMI_UI] displeay control failes: expected 1 as first byte, got %d", ((unsigned char*)data)[0]);
 		return 1;
