@@ -5,6 +5,7 @@ from Plugins.Plugin import PluginDescriptor
 from Screens.Console import Console
 from Screens.ChoiceBox import ChoiceBox
 from Screens.MessageBox import MessageBox
+from Screens.MultiBootManager import MultiBootManager
 from Screens.Screen import Screen
 from Screens.Standby import TryQuitMainloop
 from Screens.Opkg import Opkg
@@ -44,7 +45,6 @@ from twisted.internet import reactor
 from .ImageBackup import ImageBackup
 from .Flash_online import FlashOnline
 from .ImageWizard import ImageWizard
-from .Multibootmgr import MultiBootWizard
 from .BackupRestore import BackupSelection, RestoreMenu, BackupScreen, RestoreScreen, getBackupPath, getOldBackupPath, getBackupFilename, RestoreMyMetrixHD
 from .BackupRestore import InitConfig as BackupRestore_InitConfig
 from .SoftwareTools import iSoftwareTools
@@ -199,7 +199,7 @@ class UpdatePluginMenu(Screen):
 			if not boxtype.startswith('az') and not brandoem.startswith('cube') and not brandoem.startswith('wetek') and not boxtype.startswith('alien'):
 				self.list.append(("backup-image", _("Backup Image"), _("\nBackup your running %s %s image to HDD or USB.") % (getMachineBrand(), getMachineName()) + self.oktext, None))
 			if BoxInfo.getItem("canMultiBoot"):
-				self.list.append(("multiboot-manager", _("Multiboot Manager"), _("\nMaintain your multiboot device.") + self.oktext, None))
+				self.list.append(("multiboot-manager", _("MultiBoot Manager"), _("\nMaintain your multi boot device.") + self.oktext, None))
 			self.list.append(("system-backup", _("Backup system settings"), _("\nBackup your %s %s settings.") % (getMachineBrand(), getMachineName()) + self.oktext + "\n\n" + self.infotext, None))
 			self.list.append(("system-restore", _("Restore system settings"), _("\nRestore your %s %s settings.") % (getMachineBrand(), getMachineName()) + self.oktext, None))
 			self.list.append(("ipkg-install", _("Install local extension"), _("\nScan for local extensions and install them.") + self.oktext, None))
@@ -338,7 +338,7 @@ class UpdatePluginMenu(Screen):
 				elif (currentEntry == "flash-online"):
 					self.session.open(FlashOnline)
 				elif (currentEntry == "multiboot-manager"):
-					self.session.open(MultiBootWizard)
+					self.session.open(MultiBootManager)
 				elif (currentEntry == "backup-image"):
 					if DFLASH == True:
 						self.session.open(dFlash)
