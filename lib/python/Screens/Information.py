@@ -553,7 +553,8 @@ class ImageInformation(InformationBase):
 		else:
 			device = _("eMMC slot %s%s") % (slotCode, "  -  %s" % device if device else "")
 		info.append(formatLine("P1", _("Hardware MultiBoot device"), device))
-		info.append(formatLine("P1", _("MultiBoot startup file"), MultiBoot.getStartupFile()))
+		if MultiBoot.canMultiBoot():
+			info.append(formatLine("P1", _("MultiBoot startup file"), MultiBoot.getStartupFile()))
 		if bootCode:
 			info.append(formatLine("P1", _("MultiBoot boot mode"), MultiBoot.getBootCodeDescription(bootCode)))
 		info.append(formatLine("P1", _("Software MultiBoot"), _("Yes") if BoxInfo.getItem("multiboot", False) else _("No")))
