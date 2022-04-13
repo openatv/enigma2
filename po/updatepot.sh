@@ -30,9 +30,19 @@ fi
 
 which python
 if [ $? -eq 1 ]; then
-	printf "python not found on this system, please install it first or ensure that it is in the PATH variable.\n"
+	which python3
+	if [ $? -eq 1 ]; then
+		printf "python not found on this system, please install it first or ensure that it is in the PATH variable.\n"
+		exit 1
+	fi
+fi
+
+which xgettext
+if [ $? -eq 1 ]; then
+	printf "xgettext not found on this system, please install it first or ensure that it is in the PATH variable.\n"
 	exit 1
 fi
+
 
 #
 # On Mac OSX find option are specific
@@ -53,7 +63,12 @@ printf "Creating temporary file enigma2-py.pot\n"
 find $findoptions .. -name "*.py" -exec xgettext --no-wrap -L Python --from-code=UTF-8 -kpgettext:1c,2 --add-comments="TRANSLATORS:" -d enigma2 -s -o enigma2-py.pot {} \+
 $localgsed --in-place enigma2-py.pot --expression=s/CHARSET/UTF-8/
 printf "Creating temporary file enigma2-xml.pot\n"
-find $findoptions .. -name "*.xml" -exec python xml2po.py {} \+ > enigma2-xml.pot
+which python
+if [ $? -eq 0 ]; then
+	find $findoptions .. -name "*.xml" -exec python xml2po.py {} \+ > enigma2-xml.pot
+else
+	find $findoptions .. -name "*.xml" -exec python3 xml2po.py {} \+ > enigma2-xml.pot
+fi
 printf "Merging pot files to create: enigma2.pot\n"
 cat enigma2-py.pot enigma2-xml.pot | msguniq -s --no-wrap --no-location -o enigma2.pot -
 #printf "remove pot Creation date\n"
