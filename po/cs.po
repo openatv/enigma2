@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-04-10 10:23+0000\n"
+"POT-Creation-Date: 2022-04-13 15:07+0000\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Jjezevec <jjezevecc@seznam.cz>\n"
 "Language-Team: \n"
@@ -295,10 +295,6 @@ msgid ""
 "\n"
 "Do you want to install the new settingslist?"
 msgstr "Chcete nainstalovat seznam programů?"
-
-#, python-format
-msgid " bootmode = %s"
-msgstr ""
 
 msgid " of "
 msgstr ""
@@ -1558,10 +1554,6 @@ msgstr "Vyberte film"
 
 msgid "(Show only reader:"
 msgstr "(Pouze čtečku:"
-
-#, fuzzy
-msgid "(current image)"
-msgstr "Akt. čas"
 
 msgid "(empty)"
 msgstr "(prázdné)"
@@ -2988,6 +2980,12 @@ msgstr "Došlo k neznámé chybě!"
 msgid "Andorra"
 msgstr ""
 
+msgid "Android"
+msgstr ""
+
+msgid "Android Linux SE"
+msgstr ""
+
 msgid "Angola"
 msgstr ""
 
@@ -3084,15 +3082,12 @@ msgstr ""
 msgid "Are you sure you want to delete all selected logs:\n"
 msgstr "Opravdu chcete smazat všechny vybrané zprávy:\n"
 
-#, fuzzy, python-format
-msgid "Are you sure you want to delete image slot %s ?"
-msgstr ""
-"Opravdu chcete smazat tohle: \n"
-" "
-
 #, fuzzy
 msgid "Are you sure you want to delete the EPG data from:\n"
 msgstr "Opravdu chcete načíst EPG data z:\n"
+
+msgid "Are you sure you want to delete this image?"
+msgstr ""
 
 msgid "Are you sure you want to delete this log:\n"
 msgstr "Opravdu chcete smazat tuto zprávu:\n"
@@ -3836,6 +3831,10 @@ msgid "Boot ID"
 msgstr ""
 
 msgid "Boot information"
+msgstr ""
+
+#, python-format
+msgid "Boot slot information for %s %s"
 msgstr ""
 
 msgid "Boot time"
@@ -5766,6 +5765,9 @@ msgstr ""
 msgid "Currency"
 msgstr ""
 
+msgid "Current"
+msgstr ""
+
 #, fuzzy
 msgid "Current Affairs"
 msgstr "Zpravodajství, publicistika "
@@ -6398,6 +6400,9 @@ msgid "Delete image"
 msgstr "Smazat časovač"
 
 msgid "Delete logfile"
+msgstr ""
+
+msgid "Delete or Wipe the highlighted image slot"
 msgstr ""
 
 msgid "Delete playlist entry"
@@ -7387,7 +7392,7 @@ msgstr ""
 msgid "Embedded"
 msgstr ""
 
-msgid "Empty slot"
+msgid "Empty"
 msgstr ""
 
 msgid "Enable"
@@ -7748,9 +7753,6 @@ msgid "Equal to"
 msgstr "Shodné s"
 
 msgid "Equatorial Guinea"
-msgstr ""
-
-msgid "Erase"
 msgstr ""
 
 msgid "Eritrea"
@@ -9248,6 +9250,9 @@ msgstr "Pevný disk"
 msgid "Harddisk Setup"
 msgstr "Nastavit HDD"
 
+msgid "Hardware MultiBoot device"
+msgstr ""
+
 msgid "Hardware information"
 msgstr ""
 
@@ -9833,6 +9838,9 @@ msgstr "Probíhá"
 msgid "In the Standby Record on the LCD Display"
 msgstr "Povolit blikající 'rec' symbol na LCD displeji"
 
+msgid "Inaccessible"
+msgstr ""
+
 msgid "Inactive"
 msgstr "Neaktivní"
 
@@ -10171,6 +10179,14 @@ msgstr "Interní"
 
 msgid "Internal flash"
 msgstr "Interní flash"
+
+#, python-format
+msgid "Internal flash:  %s %s "
+msgstr ""
+
+#, python-format
+msgid "Internal flash: %s %s as USB Recovery"
+msgstr ""
 
 msgid "Internal hdd only"
 msgstr "Jen na interním disku"
@@ -10867,6 +10883,9 @@ msgstr "Načíst nepropojené uživatelské přehledy"
 msgid "Load/Save/Delete"
 msgstr "Načíst/Uložit"
 
+msgid "Loading image slot information, please wait..."
+msgstr ""
+
 msgid "Loading information, please wait..."
 msgstr ""
 
@@ -11472,9 +11491,10 @@ msgstr ""
 msgid "Mode 1"
 msgstr "Režim rozlišení"
 
-msgid ""
-"Mode 1 suppports Kodi, PiP may not work.\n"
-"Mode 12 supports PiP, Kodi may not work."
+msgid "Mode 12: Supports PiP but Kodi may not work"
+msgstr ""
+
+msgid "Mode 1: Supports Kodi but PiP may not work"
 msgstr ""
 
 #, fuzzy
@@ -11830,17 +11850,30 @@ msgstr ""
 msgid "Multi EPG"
 msgstr "Multi EPG"
 
+msgid "Multi-Boot Image Manager"
+msgstr ""
+
+msgid "Multi-Boot Manager Actions"
+msgstr ""
+
+msgid "MultiBoot"
+msgstr ""
+
 #, fuzzy
 msgid "MultiBoot Image Manager"
 msgstr "Správce image"
 
-#, fuzzy
-msgid "MultiBoot Image Selector"
-msgstr "Vybrat všechny satelity"
+msgid "MultiBoot Information"
+msgstr ""
 
-#, fuzzy
-msgid "MultiBootSelector Actions"
-msgstr "Volba zvuku"
+msgid "MultiBoot Manager"
+msgstr ""
+
+msgid "MultiBoot boot mode"
+msgstr ""
+
+msgid "MultiBoot startup file"
+msgstr ""
 
 msgid "MultiEPG Settings"
 msgstr "Nastavení MultiEPG"
@@ -11851,17 +11884,9 @@ msgstr ""
 msgid "MultiTranscoding"
 msgstr ""
 
-#, fuzzy
-msgid "Multiboot Image Selector"
-msgstr "Vybrat všechny satelity"
-
 #, python-format
 msgid "Multiboot Image created on: %s/%s-%s-%s-backup-%s_usb.zip"
 msgstr ""
-
-#, fuzzy
-msgid "Multiboot Manager"
-msgstr "Nastavení připojení"
 
 msgid "Multimedia"
 msgstr "Multimédia"
@@ -12498,6 +12523,9 @@ msgstr "Normální"
 msgid "Normal - Standard image"
 msgstr ""
 
+msgid "Normal: No boot modes required."
+msgstr ""
+
 msgid "North"
 msgstr "Severní"
 
@@ -12579,9 +12607,6 @@ msgstr "pracuji..."
 
 msgid "Not tested:"
 msgstr "Netestováno:"
-
-msgid "Note: slot list does not show current image or empty slots."
-msgstr ""
 
 msgid "Nothing"
 msgstr "Nic"
@@ -14097,6 +14122,9 @@ msgstr ""
 msgid "Press OK to use this locale.  [%s]"
 msgstr ""
 
+msgid "Press the UP/DOWN buttons to select an image and press OK or GREEN to 'Reboot' to that image. If available, YELLOW will either 'Delete' or 'Wipe' the image. A 'Deleted' image can be 'Restored' with the BLUE button. A 'Wiped' image is completely removed can NOT be restored!"
+msgstr ""
+
 msgid "Press the menu button to set a general AC3/Dolby offset."
 msgstr "Stiskněte tlačítko menu a nastavte kompenzaci AC3/Dolby."
 
@@ -14756,6 +14784,9 @@ msgstr "Nahrávání má vždy prioritu"
 msgid "Records"
 msgstr "Nahrávání"
 
+msgid "Recovery"
+msgstr ""
+
 #, fuzzy
 msgid "Recovery Mode"
 msgstr "Nahrávání"
@@ -14914,10 +14945,6 @@ msgstr ""
 msgid "Remote control type"
 msgstr "Typ dálkového ovládání"
 
-#, python-format
-msgid "Removal of this slot will not show in %s Gui.  Are you sure you want to delete image slot %s ?"
-msgstr ""
-
 msgid "Remove"
 msgstr "Smazat"
 
@@ -14982,10 +15009,6 @@ msgstr "Smazat záložku"
 
 msgid "Remove completed timers after (days)"
 msgstr "Dokončené časovače odstraňovat po (dnech)"
-
-#, fuzzy
-msgid "Remove confirmation"
-msgstr "Odstranit potvrzení"
 
 #, fuzzy
 msgid "Remove current folder from bookmarks"
@@ -15224,6 +15247,9 @@ msgstr "Obnova nastavení ze zálohy"
 msgid "Restore system settings"
 msgstr "Obnova nastavení"
 
+msgid "Restore the highlighted image slot"
+msgstr ""
+
 msgid "Restore your settings back from a backup. After restore the box will restart to activated the new settings"
 msgstr "Obnova nastavení ze zálohy. Po restartu přijímače bude aktivováno obnovené nastavení ze zálohy"
 
@@ -15248,6 +15274,9 @@ msgstr "Obnovit přehrávání"
 
 #, python-format
 msgid "Retrieving %s commit log, please wait..."
+msgstr ""
+
+msgid "Retrieving boot slot information..."
 msgstr ""
 
 #, fuzzy
@@ -15444,6 +15473,10 @@ msgstr ""
 msgid "SD"
 msgstr "SID"
 
+#, python-format
+msgid "SDcard slot %s%s"
+msgstr ""
+
 msgid "SDcard switch ERROR! - H9 root files not transferred to SD card"
 msgstr ""
 
@@ -15477,9 +15510,6 @@ msgstr ""
 
 msgid "SSID:"
 msgstr "SSID:"
-
-msgid "STARTUP_"
-msgstr ""
 
 #, fuzzy
 msgid "STB Display"
@@ -16338,9 +16368,6 @@ msgstr ""
 #, fuzzy
 msgid "Select/Zap to selected service"
 msgstr "Přepnout na vybraný kanál"
-
-msgid "Selected Image"
-msgstr ""
 
 #, python-format
 msgid ""
@@ -17923,12 +17950,24 @@ msgid "Slot %d"
 msgstr "Slot  %d"
 
 #, python-format
-msgid "Slot %s: %s - Mode %d%s"
+msgid "Slot %s: %s"
 msgstr ""
 
-#, fuzzy, python-format
-msgid "Slot %s: %s%s"
-msgstr "DiSEqC port %s: %s"
+#, python-format
+msgid "Slot %s: %s (Current image)"
+msgstr ""
+
+#, python-format
+msgid "Slot %s: %s as USB Recovery"
+msgstr ""
+
+#, python-format
+msgid "Slot '%s'"
+msgstr ""
+
+#, python-format
+msgid "Slot '%s': %s%s"
+msgstr ""
 
 msgid "Slovak"
 msgstr "Slovensky"
@@ -17998,9 +18037,6 @@ msgstr ""
 msgid "Socket"
 msgstr "Zamknuto"
 
-msgid "Soft MultiBoot"
-msgstr ""
-
 #, fuzzy
 msgid "Softcam"
 msgstr "Typ softcamu"
@@ -18020,6 +18056,9 @@ msgstr "Správa software"
 
 msgid "Software Manager Setup"
 msgstr "Nastavení správy software"
+
+msgid "Software MultiBoot"
+msgstr ""
 
 msgid "Software Update"
 msgstr "Aktualizace software"
@@ -20968,12 +21007,6 @@ msgstr "Použít alternativní nebo konvenční režim Rádia."
 msgid "Use the alternative screen"
 msgstr "Použít alternativní obrazovku"
 
-msgid "Use the cursor keys to select an installed image and then Erase button."
-msgstr ""
-
-msgid "Use the cursor keys to select an installed image and then Reboot button."
-msgstr ""
-
 msgid "Use the cursor keys to select an installed image and then Start button."
 msgstr ""
 
@@ -21912,6 +21945,9 @@ msgstr "zimní sporty"
 #, fuzzy
 msgid "Wintersport"
 msgstr "zimní sporty"
+
+msgid "Wipe"
+msgstr ""
 
 msgid "Wireless LAN"
 msgstr "Bezdrátová LAN"
@@ -23036,9 +23072,9 @@ msgstr ""
 msgid "eMMC"
 msgstr ""
 
-#, fuzzy, python-format
-msgid "eMMC slot %s"
-msgstr "Nenalezen CI slot"
+#, python-format
+msgid "eMMC slot %s%s"
+msgstr ""
 
 msgid "eSATA"
 msgstr ""
@@ -23388,14 +23424,6 @@ msgstr "Odebrat"
 #, fuzzy
 msgid "instant record"
 msgstr "Volby okamžitého nahrávání"
-
-#, fuzzy, python-format
-msgid "internal flash:  %s %s "
-msgstr "Interní flash"
-
-#, fuzzy, python-format
-msgid "internal flash: %s %s as USB Recovery"
-msgstr "Změna a obnova Image"
 
 msgid "internally loopthrough to"
 msgstr "Interní propojení (smyčka) na"
@@ -24057,16 +24085,8 @@ msgid "slot%s - %s"
 msgstr ""
 
 #, python-format
-msgid "slot%s - %s "
-msgstr ""
-
-#, python-format
 msgid "slot%s - %s (current image)"
 msgstr ""
-
-#, fuzzy, python-format
-msgid "slot%s - %s as USB Recovery"
-msgstr "Změna a obnova Image"
 
 msgid "slow"
 msgstr "Pomalu"
@@ -24430,6 +24450,56 @@ msgstr "Přepnutý"
 
 msgid "®"
 msgstr ""
+
+#, fuzzy
+#~ msgid "(current image)"
+#~ msgstr "Akt. čas"
+
+#, fuzzy, python-format
+#~ msgid "Are you sure you want to delete image slot %s ?"
+#~ msgstr ""
+#~ "Opravdu chcete smazat tohle: \n"
+#~ " "
+
+#, fuzzy
+#~ msgid "MultiBoot Image Selector"
+#~ msgstr "Vybrat všechny satelity"
+
+#, fuzzy
+#~ msgid "MultiBootSelector Actions"
+#~ msgstr "Volba zvuku"
+
+#, fuzzy
+#~ msgid "Multiboot Image Selector"
+#~ msgstr "Vybrat všechny satelity"
+
+#, fuzzy
+#~ msgid "Multiboot Manager"
+#~ msgstr "Nastavení připojení"
+
+#, fuzzy
+#~ msgid "Remove confirmation"
+#~ msgstr "Odstranit potvrzení"
+
+#, fuzzy, python-format
+#~ msgid "Slot %s: %s%s"
+#~ msgstr "DiSEqC port %s: %s"
+
+#, fuzzy, python-format
+#~ msgid "eMMC slot %s"
+#~ msgstr "Nenalezen CI slot"
+
+#, fuzzy, python-format
+#~ msgid "internal flash:  %s %s "
+#~ msgstr "Interní flash"
+
+#, fuzzy, python-format
+#~ msgid "internal flash: %s %s as USB Recovery"
+#~ msgstr "Změna a obnova Image"
+
+#, fuzzy, python-format
+#~ msgid "slot%s - %s as USB Recovery"
+#~ msgstr "Změna a obnova Image"
 
 #~ msgid "Changelog"
 #~ msgstr "Změny"

@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Enigma2 Official Greek Translation\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-04-10 10:23+0000\n"
+"POT-Creation-Date: 2022-04-13 15:07+0000\n"
 "PO-Revision-Date: 2021-08-19 12:59+0000\n"
 "Last-Translator: MCelliotG <mcelliotg@gmail.com>\n"
 "Language-Team: Greek <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/el/>\n"
@@ -311,10 +311,6 @@ msgstr ""
 " διαθέσιμη !!\n"
 "\n"
 "Θέλετε να εγκαταστήσετε τη νέα λίστα ρυθμίσεων;"
-
-#, python-format
-msgid " bootmode = %s"
-msgstr " λειτουργία εκκίνησης = %s"
 
 msgid " of "
 msgstr " του "
@@ -1485,10 +1481,6 @@ msgstr "(Λειτουργία επιλογής)"
 
 msgid "(Show only reader:"
 msgstr "(Εμφάνιση μόνο του αναγνώστη:"
-
-#, fuzzy
-msgid "(current image)"
-msgstr "Τρέχουσα ώρα"
 
 msgid "(empty)"
 msgstr "(κενό)"
@@ -2833,6 +2825,12 @@ msgstr "Προέκυψε άγνωστο σφάλμα!"
 msgid "Andorra"
 msgstr "Ανδόρρα"
 
+msgid "Android"
+msgstr ""
+
+msgid "Android Linux SE"
+msgstr ""
+
 msgid "Angola"
 msgstr "Αγκόλα"
 
@@ -2921,12 +2919,11 @@ msgstr ""
 msgid "Are you sure you want to delete all selected logs:\n"
 msgstr "Θέλετε σίγουρα να διαγραφούν όλες οι επιλεγμένες καταγραφές:\n"
 
-#, python-format
-msgid "Are you sure you want to delete image slot %s ?"
-msgstr "Θέλετε σίγουρα να διαγραφεί η θέση image %s ;"
-
 msgid "Are you sure you want to delete the EPG data from:\n"
 msgstr "Θέλετε σίγουρα να διαγραφούν τα δεδομένα EPG από το:\n"
+
+msgid "Are you sure you want to delete this image?"
+msgstr ""
 
 msgid "Are you sure you want to delete this log:\n"
 msgstr "Θέλετε σίγουρα να διαγραφεί αυτή η καταγραφή:\n"
@@ -3630,6 +3627,10 @@ msgid "Boot ID"
 msgstr ""
 
 msgid "Boot information"
+msgstr ""
+
+#, python-format
+msgid "Boot slot information for %s %s"
 msgstr ""
 
 msgid "Boot time"
@@ -5472,6 +5473,9 @@ msgstr "Κουρασάο"
 msgid "Currency"
 msgstr ""
 
+msgid "Current"
+msgstr ""
+
 msgid "Current Affairs"
 msgstr "Επικαιρότητα"
 
@@ -6084,6 +6088,9 @@ msgid "Delete image"
 msgstr "Διαγραφή image"
 
 msgid "Delete logfile"
+msgstr ""
+
+msgid "Delete or Wipe the highlighted image slot"
 msgstr ""
 
 msgid "Delete playlist entry"
@@ -7041,8 +7048,8 @@ msgstr "Email"
 msgid "Embedded"
 msgstr ""
 
-msgid "Empty slot"
-msgstr "Άδεια θύρα"
+msgid "Empty"
+msgstr ""
 
 msgid "Enable"
 msgstr "Ενεργοποίηση"
@@ -7392,9 +7399,6 @@ msgstr "Ισούται με"
 
 msgid "Equatorial Guinea"
 msgstr "Ισημερινή Γουινέα"
-
-msgid "Erase"
-msgstr "Διαγραφή"
 
 msgid "Eritrea"
 msgstr "Ερυθραία"
@@ -8828,6 +8832,9 @@ msgstr "Σκληρός δίσκος"
 msgid "Harddisk Setup"
 msgstr "Ρυθμίσεις σκληρού δίσκου"
 
+msgid "Hardware MultiBoot device"
+msgstr ""
+
 msgid "Hardware information"
 msgstr ""
 
@@ -9399,6 +9406,9 @@ msgstr "Σε εξέλιξη"
 msgid "In the Standby Record on the LCD Display"
 msgstr "Στην Αναμονή Εγγραφή στην Οθόνη LCD"
 
+msgid "Inaccessible"
+msgstr ""
+
 msgid "Inactive"
 msgstr "Ανενεργό"
 
@@ -9719,6 +9729,14 @@ msgstr "Εσωτερικό USB"
 
 msgid "Internal flash"
 msgstr "Εσωτερική flash"
+
+#, python-format
+msgid "Internal flash:  %s %s "
+msgstr ""
+
+#, python-format
+msgid "Internal flash: %s %s as USB Recovery"
+msgstr ""
 
 msgid "Internal hdd only"
 msgstr "Εσωτερικός δίσκος μόνο"
@@ -10386,6 +10404,9 @@ msgstr "Φόρτωση ασύνδετων μπουκέτων χρήστη"
 msgid "Load/Save/Delete"
 msgstr "Φόρτωση/Αποθήκευση/Διαγραφή"
 
+msgid "Loading image slot information, please wait..."
+msgstr ""
+
 msgid "Loading information, please wait..."
 msgstr ""
 
@@ -10969,12 +10990,11 @@ msgstr "Λειτουργία %s (%04o)"
 msgid "Mode 1"
 msgstr "Λειτουργία 1"
 
-msgid ""
-"Mode 1 suppports Kodi, PiP may not work.\n"
-"Mode 12 supports PiP, Kodi may not work."
+msgid "Mode 12: Supports PiP but Kodi may not work"
 msgstr ""
-"Η λειτουργία 1 υποστηρίζει το Kodi, το PiP μπορεί να μη δουλεύει.\n"
-"Η λειτουργία 12 υποστηρίζει το PiP, το Kodi μπορεί να μη δουλεύει."
+
+msgid "Mode 1: Supports Kodi but PiP may not work"
+msgstr ""
 
 msgid "Mode 2"
 msgstr "Λειτουργία 2"
@@ -11314,16 +11334,29 @@ msgstr "Μοζαμβίκη"
 msgid "Multi EPG"
 msgstr "Πολλαπλός EPG"
 
+msgid "Multi-Boot Image Manager"
+msgstr ""
+
+msgid "Multi-Boot Manager Actions"
+msgstr ""
+
+msgid "MultiBoot"
+msgstr ""
+
 msgid "MultiBoot Image Manager"
 msgstr "Διαχείριση image πολλαπλής εκκίνησης"
 
-#, fuzzy
-msgid "MultiBoot Image Selector"
-msgstr "Επιλογή Image πολλαπλής εκκίνησης"
+msgid "MultiBoot Information"
+msgstr ""
 
-#, fuzzy
-msgid "MultiBootSelector Actions"
-msgstr "Επιλογή Image πολλαπλής εκκίνησης"
+msgid "MultiBoot Manager"
+msgstr ""
+
+msgid "MultiBoot boot mode"
+msgstr ""
+
+msgid "MultiBoot startup file"
+msgstr ""
 
 msgid "MultiEPG Settings"
 msgstr "Ρυθμίσεις πολλαπλού EPG"
@@ -11334,15 +11367,9 @@ msgstr ""
 msgid "MultiTranscoding"
 msgstr ""
 
-msgid "Multiboot Image Selector"
-msgstr "Επιλογή Image πολλαπλής εκκίνησης"
-
 #, python-format
 msgid "Multiboot Image created on: %s/%s-%s-%s-backup-%s_usb.zip"
 msgstr "Το Image δημιουργήθηκε στο: %s/%s-%s-%s-backup-%s_usb.zip"
-
-msgid "Multiboot Manager"
-msgstr "Διαχείριση πολλαπλής εκκίνησης"
 
 msgid "Multimedia"
 msgstr "Πολυμέσα"
@@ -11944,6 +11971,9 @@ msgstr "κανονικό"
 msgid "Normal - Standard image"
 msgstr ""
 
+msgid "Normal: No boot modes required."
+msgstr ""
+
 msgid "North"
 msgstr "Βόρεια"
 
@@ -12022,9 +12052,6 @@ msgstr "Δεν εκτελείται"
 
 msgid "Not tested:"
 msgstr "Μη δοκιμασμένο:"
-
-msgid "Note: slot list does not show current image or empty slots."
-msgstr "Σημείωση: η λίστα θέσεων δεν δείχνει το τρέχον image ή τις άδειες θέσεις."
 
 msgid "Nothing"
 msgstr "Τίποτα"
@@ -13484,6 +13511,9 @@ msgstr ""
 msgid "Press OK to use this locale.  [%s]"
 msgstr ""
 
+msgid "Press the UP/DOWN buttons to select an image and press OK or GREEN to 'Reboot' to that image. If available, YELLOW will either 'Delete' or 'Wipe' the image. A 'Deleted' image can be 'Restored' with the BLUE button. A 'Wiped' image is completely removed can NOT be restored!"
+msgstr ""
+
 msgid "Press the menu button to set a general AC3/Dolby offset."
 msgstr "πιέστε το πλήκτρο μενού για να ορίσετε μία γενική καθυστέρηση AC3/Dolby"
 
@@ -14110,6 +14140,9 @@ msgstr "Οι εγγραφές έχουν πάντα προτεραιότητα"
 msgid "Records"
 msgstr "Εγγραφές"
 
+msgid "Recovery"
+msgstr ""
+
 msgid "Recovery Mode"
 msgstr "Λειτουργία αποκατάστασης"
 
@@ -14255,10 +14288,6 @@ msgstr ""
 msgid "Remote control type"
 msgstr "Τύπος τηλεχειριστηρίου"
 
-#, python-format
-msgid "Removal of this slot will not show in %s Gui.  Are you sure you want to delete image slot %s ?"
-msgstr "Η αφαίρεση αυτής της θέσης δεν θα φαίνεται στο %s Gui. Θέλετε σίγουρα να διαγραφεί η θέση image %s ;"
-
 msgid "Remove"
 msgstr "Διαγραφή"
 
@@ -14321,9 +14350,6 @@ msgstr "Διαγραφή σελιδοδείκτη"
 
 msgid "Remove completed timers after (days)"
 msgstr "Διαγραφή ολοκληρωμένων χρονοδιακοπτών μετά από (ημέρες)"
-
-msgid "Remove confirmation"
-msgstr "Επιβεβαίωση αφαίρεσης"
 
 msgid "Remove current folder from bookmarks"
 msgstr "Αφαίρεση του επιλεγμένου φακέλου από τους σελιδοδείκτες"
@@ -14550,6 +14576,9 @@ msgstr "Επαναφορά ρυθμίσεων από αντίγραφο ασφα
 msgid "Restore system settings"
 msgstr "Επαναφορά ρυθμίσεων συστήματος"
 
+msgid "Restore the highlighted image slot"
+msgstr ""
+
 msgid "Restore your settings back from a backup. After restore the box will restart to activated the new settings"
 msgstr "Επαναφορά των ρυθμίσεών σας από αντίγραφο ασφαλείας. Μετά την επαναφορά θα γίνει επανεκκίνηση του δέκτη για να ενεργοποιηθούν οι νέες ρυθμίσεις"
 
@@ -14574,6 +14603,9 @@ msgstr "Επανασυνέχιση αναπαραγωγής"
 
 #, python-format
 msgid "Retrieving %s commit log, please wait..."
+msgstr ""
+
+msgid "Retrieving boot slot information..."
 msgstr ""
 
 msgid "Retrieving image list - Please wait..."
@@ -14758,6 +14790,10 @@ msgstr "Ρύθμιση χρονισμού του SCR σε συνδυασμό μ�
 msgid "SD"
 msgstr "SD"
 
+#, python-format
+msgid "SDcard slot %s%s"
+msgstr ""
+
 msgid "SDcard switch ERROR! - H9 root files not transferred to SD card"
 msgstr "ΣΦΑΛΜΑ αλλαγής κάρτας SD! - Τα αρχεία root του H9 δεν έχουν μεταφερθεί στην κάρτα SD"
 
@@ -14791,9 +14827,6 @@ msgstr ""
 
 msgid "SSID:"
 msgstr "SSID:"
-
-msgid "STARTUP_"
-msgstr "ΕΚΚΙΝΗΣΗ_"
 
 msgid "STB Display"
 msgstr "Οθόνη πρόσοψης δέκτη"
@@ -15631,9 +15664,6 @@ msgstr ""
 #, fuzzy
 msgid "Select/Zap to selected service"
 msgstr "Μετάβαση στο επιλεγμένο κανάλι"
-
-msgid "Selected Image"
-msgstr ""
 
 #, python-format
 msgid ""
@@ -17151,13 +17181,25 @@ msgstr "Ολίσθηση από την κορυφή στον πάτο"
 msgid "Slot %d"
 msgstr "Θύρα %d"
 
-#, fuzzy, python-format
-msgid "Slot %s: %s - Mode %d%s"
-msgstr "θέση%s - %s - %s "
+#, python-format
+msgid "Slot %s: %s"
+msgstr ""
 
-#, fuzzy, python-format
-msgid "Slot %s: %s%s"
-msgstr "Πόρτα DiSEqC %s: %s"
+#, python-format
+msgid "Slot %s: %s (Current image)"
+msgstr ""
+
+#, python-format
+msgid "Slot %s: %s as USB Recovery"
+msgstr ""
+
+#, python-format
+msgid "Slot '%s'"
+msgstr ""
+
+#, python-format
+msgid "Slot '%s': %s%s"
+msgstr ""
 
 msgid "Slovak"
 msgstr "Σλοβακικά"
@@ -17223,9 +17265,6 @@ msgstr "Κοινωνία & πολιτισμός"
 msgid "Socket"
 msgstr "Υποδοχή"
 
-msgid "Soft MultiBoot"
-msgstr ""
-
 msgid "Softcam"
 msgstr "Softcam"
 
@@ -17243,6 +17282,9 @@ msgstr "Διαχείριση λογισμικού"
 
 msgid "Software Manager Setup"
 msgstr "Ρυθμίσεις διαχείρισης λογισμικού"
+
+msgid "Software MultiBoot"
+msgstr ""
 
 msgid "Software Update"
 msgstr "Ενημέρωση λογισμικού"
@@ -20069,12 +20111,6 @@ msgstr "Χρήση της εναλλακτικής ή της κλασσικής 
 msgid "Use the alternative screen"
 msgstr "Χρήση εναλλακτικής εμφάνισης"
 
-msgid "Use the cursor keys to select an installed image and then Erase button."
-msgstr "Χρησιμοποιήστε τα πλήκτρα πλοήγησης για επιλογή ενός εγκατεστημένου image και μετά το πλήκτρο Διαγραφή."
-
-msgid "Use the cursor keys to select an installed image and then Reboot button."
-msgstr "Χρησιμοποιήστε τα πλήκτρα πλοήγησης για επιλογή ενός εγκατεστημένου image και μετά το πλήκτρο Επανεκκίνηση."
-
 msgid "Use the cursor keys to select an installed image and then Start button."
 msgstr "Χρησιμοποιήστε τα πλήκτρα πλοήγησης για επιλογή ενός εγκατεστημένου image και μετά το πλήκτρο Εκκίνηση."
 
@@ -20963,6 +20999,9 @@ msgstr "Χειμερινά σπορ"
 
 msgid "Wintersport"
 msgstr "Χειμερινά σπορ"
+
+msgid "Wipe"
+msgstr ""
 
 msgid "Wireless LAN"
 msgstr "Ασύρματο δίκτυο"
@@ -22040,9 +22079,9 @@ msgstr ""
 msgid "eMMC"
 msgstr "eMMC"
 
-#, fuzzy, python-format
-msgid "eMMC slot %s"
-msgstr "Θύρα CI: "
+#, python-format
+msgid "eMMC slot %s%s"
+msgstr ""
 
 msgid "eSATA"
 msgstr "eSATA"
@@ -22376,14 +22415,6 @@ msgstr "Απεγκατάσταση"
 #, fuzzy
 msgid "instant record"
 msgstr "Άμεση εγγραφή"
-
-#, python-format
-msgid "internal flash:  %s %s "
-msgstr "εσωτερική flash:  %s %s "
-
-#, python-format
-msgid "internal flash: %s %s as USB Recovery"
-msgstr "εσωτερική flash: %s %s ως USB ανάκτηση"
 
 msgid "internally loopthrough to"
 msgstr "εσωτερικό loopthrough σε"
@@ -23019,16 +23050,8 @@ msgid "slot%s - %s"
 msgstr "θέση%s - %s"
 
 #, python-format
-msgid "slot%s - %s "
-msgstr "θέση%s - %s "
-
-#, python-format
 msgid "slot%s - %s (current image)"
 msgstr "θέση%s - %s (τρέχον image)"
-
-#, fuzzy, python-format
-msgid "slot%s - %s as USB Recovery"
-msgstr "θέση%s - %s - %s ως USB ανάκτηση"
 
 msgid "slow"
 msgstr "αργά"
@@ -23370,6 +23393,92 @@ msgstr "ζάπινγκ"
 
 msgid "®"
 msgstr ""
+
+#, python-format
+#~ msgid " bootmode = %s"
+#~ msgstr " λειτουργία εκκίνησης = %s"
+
+#, fuzzy
+#~ msgid "(current image)"
+#~ msgstr "Τρέχουσα ώρα"
+
+#, python-format
+#~ msgid "Are you sure you want to delete image slot %s ?"
+#~ msgstr "Θέλετε σίγουρα να διαγραφεί η θέση image %s ;"
+
+#~ msgid "Empty slot"
+#~ msgstr "Άδεια θύρα"
+
+#~ msgid "Erase"
+#~ msgstr "Διαγραφή"
+
+#~ msgid ""
+#~ "Mode 1 suppports Kodi, PiP may not work.\n"
+#~ "Mode 12 supports PiP, Kodi may not work."
+#~ msgstr ""
+#~ "Η λειτουργία 1 υποστηρίζει το Kodi, το PiP μπορεί να μη δουλεύει.\n"
+#~ "Η λειτουργία 12 υποστηρίζει το PiP, το Kodi μπορεί να μη δουλεύει."
+
+#, fuzzy
+#~ msgid "MultiBoot Image Selector"
+#~ msgstr "Επιλογή Image πολλαπλής εκκίνησης"
+
+#, fuzzy
+#~ msgid "MultiBootSelector Actions"
+#~ msgstr "Επιλογή Image πολλαπλής εκκίνησης"
+
+#~ msgid "Multiboot Image Selector"
+#~ msgstr "Επιλογή Image πολλαπλής εκκίνησης"
+
+#~ msgid "Multiboot Manager"
+#~ msgstr "Διαχείριση πολλαπλής εκκίνησης"
+
+#~ msgid "Note: slot list does not show current image or empty slots."
+#~ msgstr "Σημείωση: η λίστα θέσεων δεν δείχνει το τρέχον image ή τις άδειες θέσεις."
+
+#, python-format
+#~ msgid "Removal of this slot will not show in %s Gui.  Are you sure you want to delete image slot %s ?"
+#~ msgstr "Η αφαίρεση αυτής της θέσης δεν θα φαίνεται στο %s Gui. Θέλετε σίγουρα να διαγραφεί η θέση image %s ;"
+
+#~ msgid "Remove confirmation"
+#~ msgstr "Επιβεβαίωση αφαίρεσης"
+
+#~ msgid "STARTUP_"
+#~ msgstr "ΕΚΚΙΝΗΣΗ_"
+
+#, fuzzy, python-format
+#~ msgid "Slot %s: %s - Mode %d%s"
+#~ msgstr "θέση%s - %s - %s "
+
+#, fuzzy, python-format
+#~ msgid "Slot %s: %s%s"
+#~ msgstr "Πόρτα DiSEqC %s: %s"
+
+#~ msgid "Use the cursor keys to select an installed image and then Erase button."
+#~ msgstr "Χρησιμοποιήστε τα πλήκτρα πλοήγησης για επιλογή ενός εγκατεστημένου image και μετά το πλήκτρο Διαγραφή."
+
+#~ msgid "Use the cursor keys to select an installed image and then Reboot button."
+#~ msgstr "Χρησιμοποιήστε τα πλήκτρα πλοήγησης για επιλογή ενός εγκατεστημένου image και μετά το πλήκτρο Επανεκκίνηση."
+
+#, fuzzy, python-format
+#~ msgid "eMMC slot %s"
+#~ msgstr "Θύρα CI: "
+
+#, python-format
+#~ msgid "internal flash:  %s %s "
+#~ msgstr "εσωτερική flash:  %s %s "
+
+#, python-format
+#~ msgid "internal flash: %s %s as USB Recovery"
+#~ msgstr "εσωτερική flash: %s %s ως USB ανάκτηση"
+
+#, python-format
+#~ msgid "slot%s - %s "
+#~ msgstr "θέση%s - %s "
+
+#, fuzzy, python-format
+#~ msgid "slot%s - %s as USB Recovery"
+#~ msgstr "θέση%s - %s - %s ως USB ανάκτηση"
 
 #~ msgid "Changelog"
 #~ msgstr "Καταγραφολόγιο αλλαγών"

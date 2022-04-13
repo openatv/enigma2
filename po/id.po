@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openATV / enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-04-10 10:23+0000\n"
+"POT-Creation-Date: 2022-04-13 15:07+0000\n"
 "PO-Revision-Date: 2018-01-14 01:15+0300\n"
 "Last-Translator: DVBS | by budiarno <budiarno@pedode.com>\n"
 "Language-Team: DVBS | by budiarno <budiarno@pedode.com>\n"
@@ -309,10 +309,6 @@ msgstr ""
 " tersedia !!\n"
 "\n"
 "Anda ingin memasang daftar pengaturan baru?"
-
-#, python-format
-msgid " bootmode = %s"
-msgstr ""
 
 msgid " of "
 msgstr " dari "
@@ -1582,10 +1578,6 @@ msgstr "Select movie"
 
 msgid "(Show only reader:"
 msgstr "(Tampilkan pembaca saja:"
-
-#, fuzzy
-msgid "(current image)"
-msgstr "Current time"
 
 msgid "(empty)"
 msgstr "(kosong)"
@@ -2980,6 +2972,12 @@ msgstr "Terjadi kesalahan tak diketahui!"
 msgid "Andorra"
 msgstr "Andorra"
 
+msgid "Android"
+msgstr ""
+
+msgid "Android Linux SE"
+msgstr ""
+
 msgid "Angola"
 msgstr "Angola"
 
@@ -3072,14 +3070,11 @@ msgstr ""
 msgid "Are you sure you want to delete all selected logs:\n"
 msgstr "Anda yakin ingin menghapus semua log yg dipilih:\n"
 
-#, fuzzy, python-format
-msgid "Are you sure you want to delete image slot %s ?"
-msgstr ""
-"Anda yakin ingin menghapus ini:\n"
-" "
-
 msgid "Are you sure you want to delete the EPG data from:\n"
 msgstr "Anda yakin ingin menghapus data EPG dari:\n"
+
+msgid "Are you sure you want to delete this image?"
+msgstr ""
 
 msgid "Are you sure you want to delete this log:\n"
 msgstr "Anda yakin ingin menghapus log ini:\n"
@@ -3808,6 +3803,10 @@ msgid "Boot ID"
 msgstr ""
 
 msgid "Boot information"
+msgstr ""
+
+#, python-format
+msgid "Boot slot information for %s %s"
 msgstr ""
 
 msgid "Boot time"
@@ -5687,6 +5686,9 @@ msgstr "Curacao"
 msgid "Currency"
 msgstr ""
 
+msgid "Current"
+msgstr ""
+
 #, fuzzy
 msgid "Current Affairs"
 msgstr "News Current Affairs"
@@ -6310,6 +6312,9 @@ msgid "Delete image"
 msgstr "Hapus pewaktu"
 
 msgid "Delete logfile"
+msgstr ""
+
+msgid "Delete or Wipe the highlighted image slot"
 msgstr ""
 
 msgid "Delete playlist entry"
@@ -7281,7 +7286,7 @@ msgstr ""
 msgid "Embedded"
 msgstr ""
 
-msgid "Empty slot"
+msgid "Empty"
 msgstr ""
 
 msgid "Enable"
@@ -7641,9 +7646,6 @@ msgstr "Equal to"
 
 msgid "Equatorial Guinea"
 msgstr "Equatorial Guinea"
-
-msgid "Erase"
-msgstr ""
 
 msgid "Eritrea"
 msgstr "Eritrea"
@@ -9110,6 +9112,9 @@ msgstr "Harddisk"
 msgid "Harddisk Setup"
 msgstr "Harddisk Setup"
 
+msgid "Hardware MultiBoot device"
+msgstr ""
+
 msgid "Hardware information"
 msgstr ""
 
@@ -9689,6 +9694,9 @@ msgstr "In progress"
 msgid "In the Standby Record on the LCD Display"
 msgstr "In the Standby blinking Clock on the LCD Display"
 
+msgid "Inaccessible"
+msgstr ""
+
 msgid "Inactive"
 msgstr "Inactive"
 
@@ -10023,6 +10031,14 @@ msgstr "Internal USB"
 
 msgid "Internal flash"
 msgstr "Internal flash"
+
+#, python-format
+msgid "Internal flash:  %s %s "
+msgstr ""
+
+#, python-format
+msgid "Internal flash: %s %s as USB Recovery"
+msgstr ""
 
 msgid "Internal hdd only"
 msgstr "Internal hdd only"
@@ -10710,6 +10726,9 @@ msgstr "Load unlinked userbouquets"
 msgid "Load/Save/Delete"
 msgstr "Load/Save/Delete"
 
+msgid "Loading image slot information, please wait..."
+msgstr ""
+
 msgid "Loading information, please wait..."
 msgstr ""
 
@@ -11303,9 +11322,10 @@ msgstr "Model: %s %s\n"
 msgid "Mode 1"
 msgstr "Mode 1"
 
-msgid ""
-"Mode 1 suppports Kodi, PiP may not work.\n"
-"Mode 12 supports PiP, Kodi may not work."
+msgid "Mode 12: Supports PiP but Kodi may not work"
+msgstr ""
+
+msgid "Mode 1: Supports Kodi but PiP may not work"
 msgstr ""
 
 msgid "Mode 2"
@@ -11649,17 +11669,30 @@ msgstr "Mozambique"
 msgid "Multi EPG"
 msgstr "Multi EPG"
 
+msgid "Multi-Boot Image Manager"
+msgstr ""
+
+msgid "Multi-Boot Manager Actions"
+msgstr ""
+
+msgid "MultiBoot"
+msgstr ""
+
 #, fuzzy
 msgid "MultiBoot Image Manager"
 msgstr "Image Manager"
 
-#, fuzzy
-msgid "MultiBoot Image Selector"
-msgstr "MultiBoot Selector"
+msgid "MultiBoot Information"
+msgstr ""
 
-#, fuzzy
-msgid "MultiBootSelector Actions"
-msgstr "MultiBoot Selector"
+msgid "MultiBoot Manager"
+msgstr ""
+
+msgid "MultiBoot boot mode"
+msgstr ""
+
+msgid "MultiBoot startup file"
+msgstr ""
 
 msgid "MultiEPG Settings"
 msgstr "MultiEPG Settings"
@@ -11670,17 +11703,9 @@ msgstr ""
 msgid "MultiTranscoding"
 msgstr ""
 
-#, fuzzy
-msgid "Multiboot Image Selector"
-msgstr "MultiBoot Selector"
-
 #, python-format
 msgid "Multiboot Image created on: %s/%s-%s-%s-backup-%s_usb.zip"
 msgstr ""
-
-#, fuzzy
-msgid "Multiboot Manager"
-msgstr "Mount Manager"
 
 msgid "Multimedia"
 msgstr "Multimedia"
@@ -12306,6 +12331,9 @@ msgstr "normal"
 msgid "Normal - Standard image"
 msgstr ""
 
+msgid "Normal: No boot modes required."
+msgstr ""
+
 msgid "North"
 msgstr "North"
 
@@ -12386,9 +12414,6 @@ msgstr "running..."
 
 msgid "Not tested:"
 msgstr "Not tested:"
-
-msgid "Note: slot list does not show current image or empty slots."
-msgstr ""
 
 msgid "Nothing"
 msgstr "Nothing"
@@ -13895,6 +13920,9 @@ msgstr ""
 msgid "Press OK to use this locale.  [%s]"
 msgstr ""
 
+msgid "Press the UP/DOWN buttons to select an image and press OK or GREEN to 'Reboot' to that image. If available, YELLOW will either 'Delete' or 'Wipe' the image. A 'Deleted' image can be 'Restored' with the BLUE button. A 'Wiped' image is completely removed can NOT be restored!"
+msgstr ""
+
 msgid "Press the menu button to set a general AC3/Dolby offset."
 msgstr "Press the menu button to set a general AC3/Dolby offset."
 
@@ -14532,6 +14560,9 @@ msgstr "Perekaman selalu diutamakan"
 msgid "Records"
 msgstr "Record"
 
+msgid "Recovery"
+msgstr ""
+
 msgid "Recovery Mode"
 msgstr "Mode Rekoveri"
 
@@ -14684,10 +14715,6 @@ msgstr ""
 msgid "Remote control type"
 msgstr "Remote control type"
 
-#, python-format
-msgid "Removal of this slot will not show in %s Gui.  Are you sure you want to delete image slot %s ?"
-msgstr ""
-
 msgid "Remove"
 msgstr "Remove"
 
@@ -14751,10 +14778,6 @@ msgstr "Remove bookmark"
 
 msgid "Remove completed timers after (days)"
 msgstr "Remove completed timers after (days)"
-
-#, fuzzy
-msgid "Remove confirmation"
-msgstr "Remove Confirmation"
 
 msgid "Remove current folder from bookmarks"
 msgstr ""
@@ -14987,6 +15010,9 @@ msgstr "Restore settings from a backup"
 msgid "Restore system settings"
 msgstr "Restore system settings"
 
+msgid "Restore the highlighted image slot"
+msgstr ""
+
 msgid "Restore your settings back from a backup. After restore the box will restart to activated the new settings"
 msgstr "Restore your settings back from a backup. After restore the box will restart to activated the new settings"
 
@@ -15011,6 +15037,9 @@ msgstr "Resuming playback"
 
 #, python-format
 msgid "Retrieving %s commit log, please wait..."
+msgstr ""
+
+msgid "Retrieving boot slot information..."
 msgstr ""
 
 #, fuzzy
@@ -15203,6 +15232,10 @@ msgstr ""
 msgid "SD"
 msgstr "SD"
 
+#, python-format
+msgid "SDcard slot %s%s"
+msgstr ""
+
 msgid "SDcard switch ERROR! - H9 root files not transferred to SD card"
 msgstr ""
 
@@ -15236,10 +15269,6 @@ msgstr ""
 
 msgid "SSID:"
 msgstr "SSID:"
-
-#, fuzzy
-msgid "STARTUP_"
-msgstr "STARTUP"
 
 #, fuzzy
 msgid "STB Display"
@@ -16083,9 +16112,6 @@ msgstr ""
 #, fuzzy
 msgid "Select/Zap to selected service"
 msgstr "Zap to selected channel"
-
-msgid "Selected Image"
-msgstr ""
 
 #, python-format
 msgid ""
@@ -17642,12 +17668,24 @@ msgid "Slot %d"
 msgstr "Slot %d"
 
 #, python-format
-msgid "Slot %s: %s - Mode %d%s"
+msgid "Slot %s: %s"
 msgstr ""
 
-#, fuzzy, python-format
-msgid "Slot %s: %s%s"
-msgstr "DiSEqC port %s: %s"
+#, python-format
+msgid "Slot %s: %s (Current image)"
+msgstr ""
+
+#, python-format
+msgid "Slot %s: %s as USB Recovery"
+msgstr ""
+
+#, python-format
+msgid "Slot '%s'"
+msgstr ""
+
+#, python-format
+msgid "Slot '%s': %s%s"
+msgstr ""
 
 msgid "Slovak"
 msgstr "Slovak"
@@ -17714,9 +17752,6 @@ msgstr ""
 msgid "Socket"
 msgstr "locked"
 
-msgid "Soft MultiBoot"
-msgstr ""
-
 msgid "Softcam"
 msgstr "Softcam"
 
@@ -17734,6 +17769,9 @@ msgstr "Pengelola Perangkat Lunak"
 
 msgid "Software Manager Setup"
 msgstr "Atur Pengelola Perangkat Lunak"
+
+msgid "Software MultiBoot"
+msgstr ""
 
 msgid "Software Update"
 msgstr "Pembaruan Perangkat Lunak"
@@ -20607,12 +20645,6 @@ msgstr "Use the alternative or the conventional radio mode."
 msgid "Use the alternative screen"
 msgstr "Use the alternative screen"
 
-msgid "Use the cursor keys to select an installed image and then Erase button."
-msgstr ""
-
-msgid "Use the cursor keys to select an installed image and then Reboot button."
-msgstr ""
-
 msgid "Use the cursor keys to select an installed image and then Start button."
 msgstr ""
 
@@ -21524,6 +21556,9 @@ msgstr "winter sport"
 #, fuzzy
 msgid "Wintersport"
 msgstr "winter sport"
+
+msgid "Wipe"
+msgstr ""
 
 msgid "Wireless LAN"
 msgstr "Wireless LAN"
@@ -22625,9 +22660,9 @@ msgstr ""
 msgid "eMMC"
 msgstr "eMMC"
 
-#, fuzzy, python-format
-msgid "eMMC slot %s"
-msgstr "CI slot: "
+#, python-format
+msgid "eMMC slot %s%s"
+msgstr ""
 
 msgid "eSATA"
 msgstr "eSATA"
@@ -22973,14 +23008,6 @@ msgstr "Uninstall"
 #, fuzzy
 msgid "instant record"
 msgstr "Instant record"
-
-#, fuzzy, python-format
-msgid "internal flash:  %s %s "
-msgstr "Internal flash"
-
-#, python-format
-msgid "internal flash: %s %s as USB Recovery"
-msgstr ""
 
 msgid "internally loopthrough to"
 msgstr "internally loopthrough to"
@@ -23632,15 +23659,7 @@ msgid "slot%s - %s"
 msgstr ""
 
 #, python-format
-msgid "slot%s - %s "
-msgstr ""
-
-#, python-format
 msgid "slot%s - %s (current image)"
-msgstr ""
-
-#, python-format
-msgid "slot%s - %s as USB Recovery"
 msgstr ""
 
 msgid "slow"
@@ -23994,6 +24013,52 @@ msgstr "zapping"
 
 msgid "®"
 msgstr ""
+
+#, fuzzy
+#~ msgid "(current image)"
+#~ msgstr "Current time"
+
+#, fuzzy, python-format
+#~ msgid "Are you sure you want to delete image slot %s ?"
+#~ msgstr ""
+#~ "Anda yakin ingin menghapus ini:\n"
+#~ " "
+
+#, fuzzy
+#~ msgid "MultiBoot Image Selector"
+#~ msgstr "MultiBoot Selector"
+
+#, fuzzy
+#~ msgid "MultiBootSelector Actions"
+#~ msgstr "MultiBoot Selector"
+
+#, fuzzy
+#~ msgid "Multiboot Image Selector"
+#~ msgstr "MultiBoot Selector"
+
+#, fuzzy
+#~ msgid "Multiboot Manager"
+#~ msgstr "Mount Manager"
+
+#, fuzzy
+#~ msgid "Remove confirmation"
+#~ msgstr "Remove Confirmation"
+
+#, fuzzy
+#~ msgid "STARTUP_"
+#~ msgstr "STARTUP"
+
+#, fuzzy, python-format
+#~ msgid "Slot %s: %s%s"
+#~ msgstr "DiSEqC port %s: %s"
+
+#, fuzzy, python-format
+#~ msgid "eMMC slot %s"
+#~ msgstr "CI slot: "
+
+#, fuzzy, python-format
+#~ msgid "internal flash:  %s %s "
+#~ msgstr "Internal flash"
 
 #~ msgid "Changelog"
 #~ msgstr "Changelog"

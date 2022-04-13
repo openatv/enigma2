@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-04-10 10:23+0000\n"
-"PO-Revision-Date: 2022-04-10 20:02+0000\n"
+"POT-Creation-Date: 2022-04-13 15:07+0000\n"
+"PO-Revision-Date: 2022-04-13 18:13+0000\n"
 "Last-Translator: VfBFan <drop0815@posteo.de>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/de/>\n"
 "Language: de\n"
@@ -334,10 +334,6 @@ msgstr ""
 " verfügbar !!\n"
 "\n"
 "Möchten Sie die Programmliste installieren?"
-
-#, python-format
-msgid " bootmode = %s"
-msgstr " Bootmodus = %s"
 
 msgid " of "
 msgstr " von "
@@ -1480,9 +1476,6 @@ msgstr "(Auswahlmodus)"
 
 msgid "(Show only reader:"
 msgstr "(Nur Lesegeräte zeigen:"
-
-msgid "(current image)"
-msgstr "(aktuelles Image)"
 
 #
 msgid "(empty)"
@@ -2931,6 +2924,12 @@ msgstr "Ein unbekannter Fehler ist aufgetreten!"
 msgid "Andorra"
 msgstr "Andorra"
 
+msgid "Android"
+msgstr "Android"
+
+msgid "Android Linux SE"
+msgstr "Android Linux SE"
+
 msgid "Angola"
 msgstr "Angola"
 
@@ -3025,12 +3024,11 @@ msgstr ""
 msgid "Are you sure you want to delete all selected logs:\n"
 msgstr "Alle ausgewählten Logdateien löschen:\n"
 
-#, python-format
-msgid "Are you sure you want to delete image slot %s ?"
-msgstr "Soll das Image im Slot %s wirklich gelöscht werden?"
-
 msgid "Are you sure you want to delete the EPG data from:\n"
 msgstr "Möchten Sie die EPG-Daten wirklich löschen:\n"
+
+msgid "Are you sure you want to delete this image?"
+msgstr "Möchten Sie dieses Image wirklich löschen?"
 
 msgid "Are you sure you want to delete this log:\n"
 msgstr "Dieses Log löschen:\n"
@@ -3782,6 +3780,10 @@ msgstr "Boot-ID"
 msgid "Boot information"
 msgstr "Boot-Informationen"
 
+#, python-format
+msgid "Boot slot information for %s %s"
+msgstr "Boot-Slot Informationen für %s %s"
+
 msgid "Boot time"
 msgstr "Bootzeit"
 
@@ -3867,7 +3869,7 @@ msgid "Buffers"
 msgstr "Puffer"
 
 msgid "Build Brand"
-msgstr ""
+msgstr "OEM Hersteller"
 
 msgid "Build Information"
 msgstr "Build-Informationen"
@@ -5752,6 +5754,9 @@ msgstr "Curacao"
 msgid "Currency"
 msgstr "Währung"
 
+msgid "Current"
+msgstr "Aktuell"
+
 msgid "Current Affairs"
 msgstr "Aktuelles"
 
@@ -6381,6 +6386,9 @@ msgstr "Image löschen"
 
 msgid "Delete logfile"
 msgstr "Logfile löschen"
+
+msgid "Delete or Wipe the highlighted image slot"
+msgstr "Löschen oder Schreddern des markierten Image-Slots"
 
 #
 msgid "Delete playlist entry"
@@ -7407,8 +7415,8 @@ msgstr "E-Mail"
 msgid "Embedded"
 msgstr "Integriert"
 
-msgid "Empty slot"
-msgstr "Leerer Slot"
+msgid "Empty"
+msgstr "Leer"
 
 #
 msgid "Enable"
@@ -7775,9 +7783,6 @@ msgstr "Gleich wie"
 
 msgid "Equatorial Guinea"
 msgstr "Äquatorialguinea"
-
-msgid "Erase"
-msgstr "Löschen"
 
 msgid "Eritrea"
 msgstr "Eritrea"
@@ -9093,7 +9098,7 @@ msgid "GotoX calibration"
 msgstr "GotoX-Kalibrierung"
 
 msgid "Grab"
-msgstr ""
+msgstr "Grab"
 
 msgid "Graphical EPG"
 msgstr "Grafischer-EPG"
@@ -9250,7 +9255,7 @@ msgid "Haitian / Haitian Creole"
 msgstr "Haitianisch / Haitianisches Kreolisch"
 
 msgid "Halt"
-msgstr ""
+msgstr "Halt"
 
 msgid "Handball"
 msgstr "Handball"
@@ -9282,6 +9287,9 @@ msgstr "Festplatte"
 
 msgid "Harddisk Setup"
 msgstr "Konfiguration der Festplatte"
+
+msgid "Hardware MultiBoot device"
+msgstr "Multi-Boot Gerät"
 
 msgid "Hardware information"
 msgstr "Hardware-Informationen"
@@ -9865,6 +9873,10 @@ msgstr "In Arbeit"
 msgid "In the Standby Record on the LCD Display"
 msgstr "Bei 'Ja' wird das blinkende Aufnahmesymbol im Display auch im Standby aktiviert (nicht alle Receiver unterstützen das)."
 
+#, fuzzy
+msgid "Inaccessible"
+msgstr "Nicht zugänglich"
+
 msgid "Inactive"
 msgstr "Inaktiv"
 
@@ -10208,6 +10220,14 @@ msgstr "Interner USB"
 msgid "Internal flash"
 msgstr "Interner Flash"
 
+#, python-format
+msgid "Internal flash:  %s %s "
+msgstr "Interner Flash: %s %s"
+
+#, python-format
+msgid "Internal flash: %s %s as USB Recovery"
+msgstr "Interner Flash: %s %s als USB-Wiederherstellung"
+
 msgid "Internal hdd only"
 msgstr "Nur interne Festplatte"
 
@@ -10505,7 +10525,7 @@ msgid "Kodi installed:"
 msgstr "Kodi installiert:"
 
 msgid "Kodi long"
-msgstr "Kodi Lang"
+msgstr "Kodi lang"
 
 msgid "Kodi media player"
 msgstr "Kodi-Mediaplayer"
@@ -10913,6 +10933,9 @@ msgstr "Nicht eingebundene Bouquets laden"
 
 msgid "Load/Save/Delete"
 msgstr "Laden/Speichern/Löschen"
+
+msgid "Loading image slot information, please wait..."
+msgstr "Informationen zum Image-Slot werden geladen, bitte warten..."
 
 msgid "Loading information, please wait..."
 msgstr "Informationen werden geladen. Bitte warten..."
@@ -11453,7 +11476,7 @@ msgid "Micronesia, Federated States of"
 msgstr "Mikronesien (Föderierte Staaten)"
 
 msgid "Middle - Lite image"
-msgstr ""
+msgstr "Mittel - Images max 256 MB"
 
 #
 msgid "Mini Series"
@@ -11525,12 +11548,11 @@ msgstr "Modus %s (%04o)"
 msgid "Mode 1"
 msgstr "Modus 1"
 
-msgid ""
-"Mode 1 suppports Kodi, PiP may not work.\n"
-"Mode 12 supports PiP, Kodi may not work."
-msgstr ""
-"Mode 1 unterstützt Kodi, Bild im Bild könnte nicht funktionieren.\n"
-"Mode 12 unterstützt Bild im Bild, Kodi könnte nicht funktionieren."
+msgid "Mode 12: Supports PiP but Kodi may not work"
+msgstr "Modus 12: Unterstützt PiP, aber Kodi funktioniert möglicherweise nicht"
+
+msgid "Mode 1: Supports Kodi but PiP may not work"
+msgstr "Modus 1: Unterstützt Kodi, aber PiP funktioniert möglicherweise nicht"
 
 msgid "Mode 2"
 msgstr "Modus 2"
@@ -11637,7 +11659,7 @@ msgid "Mount: "
 msgstr "Mount: "
 
 msgid "Mountpoint"
-msgstr ""
+msgstr "Mount Punkt"
 
 msgid "Mounts"
 msgstr "Mounts"
@@ -11883,37 +11905,44 @@ msgstr "Mosambik"
 msgid "Multi EPG"
 msgstr "Multi-EPG"
 
+msgid "Multi-Boot Image Manager"
+msgstr "Multi-Boot Verwaltung"
+
+msgid "Multi-Boot Manager Actions"
+msgstr "Multi-Boot-Manager-Aktionen"
+
+msgid "MultiBoot"
+msgstr "MultiBoot"
+
 #
 msgid "MultiBoot Image Manager"
 msgstr "Multiboot-Imagemanager"
 
-#
-msgid "MultiBoot Image Selector"
-msgstr "Multiboot-Auswahl"
+msgid "MultiBoot Information"
+msgstr "MultiBoot-Informationen"
 
-#
-msgid "MultiBootSelector Actions"
-msgstr "Multiboot-Auswahl"
+msgid "MultiBoot Manager"
+msgstr "MultiBoot Verwaltung"
+
+msgid "MultiBoot boot mode"
+msgstr "MultiBoot-Startmodus"
+
+msgid "MultiBoot startup file"
+msgstr "MultiBoot Startdatei"
 
 msgid "MultiEPG Settings"
 msgstr "Multi-EPG"
 
 msgid "MultiLib"
-msgstr ""
+msgstr "MultiLib"
 
 msgid "MultiTranscoding"
 msgstr "MultiTranscoding"
-
-msgid "Multiboot Image Selector"
-msgstr "Multiboot-Auswahl"
 
 # ImageBackup.py
 #, python-format
 msgid "Multiboot Image created on: %s/%s-%s-%s-backup-%s_usb.zip"
 msgstr "Multiboot-Image erstellt: %s/%s-%s-%s-backup-%s_usb.zip"
-
-msgid "Multiboot Manager"
-msgstr "Multiboot-Manager"
 
 #
 msgid "Multimedia"
@@ -12590,6 +12619,9 @@ msgstr "Normal"
 msgid "Normal - Standard image"
 msgstr "Normal - Standard-Image"
 
+msgid "Normal: No boot modes required."
+msgstr "Normal: Keine Bootmodi erforderlich."
+
 #
 msgid "North"
 msgstr "Nord"
@@ -12670,9 +12702,6 @@ msgstr "Nicht gestartet"
 
 msgid "Not tested:"
 msgstr "Nicht getestet:"
-
-msgid "Note: slot list does not show current image or empty slots."
-msgstr "Hinweis: Die Slotliste zeigt kein aktuelles Image oder leere Slots an."
 
 msgid "Nothing"
 msgstr "Nichts"
@@ -14276,6 +14305,9 @@ msgstr "Drücken Sie OK, um diese Sprache zu verwenden.  [%s]"
 msgid "Press OK to use this locale.  [%s]"
 msgstr "Drücken Sie OK, um die Sprachregion zu verwenden.  [%s]"
 
+msgid "Press the UP/DOWN buttons to select an image and press OK or GREEN to 'Reboot' to that image. If available, YELLOW will either 'Delete' or 'Wipe' the image. A 'Deleted' image can be 'Restored' with the BLUE button. A 'Wiped' image is completely removed can NOT be restored!"
+msgstr "Drücken Sie die Tasten AUF/AB, um ein Image auszuwählen und drücken Sie OK oder GRÜN, um zu diesem Image zu wechseln. Falls verfügbar, wird mit GELB entweder 'Löschen' oder 'Schreddern' das Image gelöscht. Ein 'Gelöschtes' Image kann 'Wiederhergestellt' werden mit der BLAUEN Taste. Ein 'Geschreddertes' Image ist komplett entfernt und kann NICHT wiederhergestellt werden!"
+
 msgid "Press the menu button to set a general AC3/Dolby offset."
 msgstr "Drücken Sie die Taste MENU, um einen allgemeinen AC3/Dolby-Offset zu setzen."
 
@@ -14341,7 +14373,7 @@ msgid "Probable causes could be"
 msgstr "Mögliche Ursachen könnten sein"
 
 msgid "Proc model"
-msgstr ""
+msgstr "Treiber Model"
 
 msgid "Proceed with the update"
 msgstr "Fortfahren mit der Aktualisierung"
@@ -14630,7 +14662,7 @@ msgid "RAM (Summary)"
 msgstr "Arbeitsspeicher (Zusammenfassung)"
 
 msgid "RC custom code"
-msgstr ""
+msgstr "Fernbedienungs Code"
 
 msgid "RC default name"
 msgstr "RC-Standardname"
@@ -14934,6 +14966,9 @@ msgstr "Aufnahmen haben immer Vorrang"
 msgid "Records"
 msgstr "Aufnahmen"
 
+msgid "Recovery"
+msgstr "Wiederherstellung"
+
 msgid "Recovery Mode"
 msgstr "Wartungsmodus"
 
@@ -15087,10 +15122,6 @@ msgstr "Informationen zur Fernbedienung"
 msgid "Remote control type"
 msgstr "Fernbedienungstyp"
 
-#, fuzzy, python-format
-msgid "Removal of this slot will not show in %s Gui.  Are you sure you want to delete image slot %s ?"
-msgstr "Das Entfernen dieses Slots wird nicht in %s GUI angezeigt. Soll das Image im Slot %s wirklich gelöscht werden?"
-
 #
 msgid "Remove"
 msgstr "Entfernen"
@@ -15159,9 +15190,6 @@ msgstr "Lesezeichen entfernen"
 #
 msgid "Remove completed timers after (days)"
 msgstr "Entferne fertige Timer nach x Tagen"
-
-msgid "Remove confirmation"
-msgstr "Entfernen bestätigen"
 
 msgid "Remove current folder from bookmarks"
 msgstr "Aktuellen Ordner aus Lesezeichen entfernen"
@@ -15422,6 +15450,9 @@ msgstr "Einstellungen wiederherstellen"
 msgid "Restore system settings"
 msgstr "Systemeinstellungen wiederherstellen"
 
+msgid "Restore the highlighted image slot"
+msgstr "Wiederherstellen des markierten Image-Slots"
+
 msgid "Restore your settings back from a backup. After restore the box will restart to activated the new settings"
 msgstr "Wiederherstellen der Einstellungen von der Sicherung. Nach Wiederherstellung wird der Receiver neu starten."
 
@@ -15451,6 +15482,9 @@ msgstr "Setze Wiedergabe fort"
 #, python-format
 msgid "Retrieving %s commit log, please wait..."
 msgstr "%s Commit-Log wird abgerufen. Bitte warten..."
+
+msgid "Retrieving boot slot information..."
+msgstr "Abrufen von Boot-Slot-Informationen..."
 
 msgid "Retrieving image list - Please wait..."
 msgstr "Image-Liste abrufen. Bitte warten..."
@@ -15643,6 +15677,10 @@ msgstr "Timing-Einstellung, in Verbindung mit Unicable-Dose und Betrieb mehrerer
 msgid "SD"
 msgstr "SD"
 
+#, python-format
+msgid "SDcard slot %s%s"
+msgstr "SD-Kartensteckplatz %s%s"
+
 msgid "SDcard switch ERROR! - H9 root files not transferred to SD card"
 msgstr "Fehler beim Wechseln auf SD-Karte! H9-Root-Dateien wurden nicht auf SD-Karte übertragen."
 
@@ -15678,9 +15716,6 @@ msgstr "SSID"
 #
 msgid "SSID:"
 msgstr "SSID:\t"
-
-msgid "STARTUP_"
-msgstr "STARTUP_"
 
 msgid "STB Display"
 msgstr "Display"
@@ -16568,9 +16603,6 @@ msgstr "Auswählen, umschalten, bearbeiten oder editieren des aktuellen Eintrags
 
 msgid "Select/Zap to selected service"
 msgstr "Zum ausgewählten Sender umschalten"
-
-msgid "Selected Image"
-msgstr "Ausgewähltes Image"
 
 #, python-format
 msgid ""
@@ -17943,7 +17975,7 @@ msgid "Show/Hide focus bar"
 msgstr "Fokusrahmen anzeigen/verstecken"
 
 msgid "Showiframe"
-msgstr ""
+msgstr "Showiframe"
 
 msgid "Shows Plugins Browser. Here you can setup installed Plugin"
 msgstr "Plugin-Manager anzeigen. Dort können die Plugins konfiguriert werden."
@@ -18189,12 +18221,24 @@ msgid "Slot %d"
 msgstr "Steckplatz %d"
 
 #, python-format
-msgid "Slot %s: %s - Mode %d%s"
-msgstr "Slot %s: %s - Mode %d%s"
+msgid "Slot %s: %s"
+msgstr "Slot %s: %s"
 
 #, python-format
-msgid "Slot %s: %s%s"
-msgstr "Slot %s: %s%s"
+msgid "Slot %s: %s (Current image)"
+msgstr "Slot %s: %s (Aktuelles Image)"
+
+#, python-format
+msgid "Slot %s: %s as USB Recovery"
+msgstr "Slot %s: %s als USB-Wiederherstellung"
+
+#, python-format
+msgid "Slot '%s'"
+msgstr "Slot '%s'"
+
+#, python-format
+msgid "Slot '%s': %s%s"
+msgstr "Slot '%s': %s%s"
 
 msgid "Slovak"
 msgstr "Slowakisch"
@@ -18219,7 +18263,7 @@ msgid "Small"
 msgstr "Klein"
 
 msgid "Small - Tiny image"
-msgstr ""
+msgstr "Klein - Images max. 128 MB"
 
 msgid "Small Test"
 msgstr "Kleiner Test"
@@ -18261,9 +18305,6 @@ msgstr "Gesellschaft & Kultur"
 msgid "Socket"
 msgstr "Socket"
 
-msgid "Soft MultiBoot"
-msgstr ""
-
 msgid "Softcam"
 msgstr "Softcam"
 
@@ -18282,6 +18323,9 @@ msgstr "Softwareverwaltung"
 
 msgid "Software Manager Setup"
 msgstr "Updateeinstellungen"
+
+msgid "Software MultiBoot"
+msgstr "Software-MultiBoot"
 
 #
 msgid "Software Update"
@@ -18665,7 +18709,7 @@ msgid "Stepped west"
 msgstr "Schrittweise nach Westen"
 
 msgid "Sti"
-msgstr ""
+msgstr "Sti"
 
 msgid "Stop"
 msgstr "Stopp"
@@ -20527,7 +20571,7 @@ msgid "Total memory"
 msgstr "Gesamtspeicher"
 
 msgid "Total swap"
-msgstr ""
+msgstr "Swap gesamt"
 
 msgid "Total:"
 msgstr "Insgesamt:\t"
@@ -21314,12 +21358,6 @@ msgstr "Bei 'Ja' wird der alternative Radiomodus verwendet, ansonsten der normal
 
 msgid "Use the alternative screen"
 msgstr "Legt fest, ob eine alternative Anzeige verwendet werden soll."
-
-msgid "Use the cursor keys to select an installed image and then Erase button."
-msgstr "Ein installiertes Image auswählen (falls es mehrere gibt) und danach die Taste GRÜN drücken, um es zu löschen."
-
-msgid "Use the cursor keys to select an installed image and then Reboot button."
-msgstr "Ein installiertes Image auswählen (falls es mehrere gibt) und danach die Taste GRÜN für einen Neustart drücken."
 
 # ImageBackup.py
 msgid "Use the cursor keys to select an installed image and then Start button."
@@ -22303,6 +22341,9 @@ msgstr "Wintersport"
 #
 msgid "Wintersport"
 msgstr "Wintersport"
+
+msgid "Wipe"
+msgstr "Schreddern"
 
 #
 msgid "Wireless LAN"
@@ -23486,8 +23527,8 @@ msgid "eMMC"
 msgstr "eMMC"
 
 #, python-format
-msgid "eMMC slot %s"
-msgstr "eMMC-Steckplatz %s"
+msgid "eMMC slot %s%s"
+msgstr "eMMC-Slot %s%s"
 
 msgid "eSATA"
 msgstr "eSATA"
@@ -23852,14 +23893,6 @@ msgstr "Installiert"
 
 msgid "instant record"
 msgstr "Sofortaufnahme"
-
-#, python-format
-msgid "internal flash:  %s %s "
-msgstr "Interner Flash: %s %s "
-
-#, python-format
-msgid "internal flash: %s %s as USB Recovery"
-msgstr "Interner Flash: %s %s als USB-Recovery"
 
 # NimManager.py
 msgid "internally loopthrough to"
@@ -24573,16 +24606,8 @@ msgid "slot%s - %s"
 msgstr "Slot %s - %s"
 
 #, python-format
-msgid "slot%s - %s "
-msgstr "Slot %s - %s "
-
-#, python-format
 msgid "slot%s - %s (current image)"
 msgstr "Slot %s - %s (aktuelles Image)"
-
-#, python-format
-msgid "slot%s - %s as USB Recovery"
-msgstr "Slot %s - %s als USB-Recovery"
 
 msgid "slow"
 msgstr "Langsam"
@@ -24960,6 +24985,94 @@ msgstr "Umschalten"
 
 msgid "®"
 msgstr "®"
+
+#, python-format
+#~ msgid " bootmode = %s"
+#~ msgstr " Bootmodus = %s"
+
+#~ msgid "(current image)"
+#~ msgstr "(aktuelles Image)"
+
+#, python-format
+#~ msgid "Are you sure you want to delete image slot %s ?"
+#~ msgstr "Soll das Image im Slot %s wirklich gelöscht werden?"
+
+#~ msgid "Empty slot"
+#~ msgstr "Leerer Slot"
+
+#~ msgid "Erase"
+#~ msgstr "Löschen"
+
+#~ msgid ""
+#~ "Mode 1 suppports Kodi, PiP may not work.\n"
+#~ "Mode 12 supports PiP, Kodi may not work."
+#~ msgstr ""
+#~ "Mode 1 unterstützt Kodi, Bild im Bild könnte nicht funktionieren.\n"
+#~ "Mode 12 unterstützt Bild im Bild, Kodi könnte nicht funktionieren."
+
+#
+#~ msgid "MultiBoot Image Selector"
+#~ msgstr "Multiboot-Auswahl"
+
+#
+#~ msgid "MultiBootSelector Actions"
+#~ msgstr "Multiboot-Auswahl"
+
+#~ msgid "Multiboot Image Selector"
+#~ msgstr "Multiboot-Auswahl"
+
+#~ msgid "Multiboot Manager"
+#~ msgstr "Multiboot-Manager"
+
+#~ msgid "Note: slot list does not show current image or empty slots."
+#~ msgstr "Hinweis: Die Slotliste zeigt kein aktuelles Image oder leere Slots an."
+
+#, fuzzy, python-format
+#~ msgid "Removal of this slot will not show in %s Gui.  Are you sure you want to delete image slot %s ?"
+#~ msgstr "Das Entfernen dieses Slots wird nicht in %s GUI angezeigt. Soll das Image im Slot %s wirklich gelöscht werden?"
+
+#~ msgid "Remove confirmation"
+#~ msgstr "Entfernen bestätigen"
+
+#~ msgid "STARTUP_"
+#~ msgstr "STARTUP_"
+
+#~ msgid "Selected Image"
+#~ msgstr "Ausgewähltes Image"
+
+#, python-format
+#~ msgid "Slot %s: %s - Mode %d%s"
+#~ msgstr "Slot %s: %s - Mode %d%s"
+
+#, python-format
+#~ msgid "Slot %s: %s%s"
+#~ msgstr "Slot %s: %s%s"
+
+#~ msgid "Use the cursor keys to select an installed image and then Erase button."
+#~ msgstr "Ein installiertes Image auswählen (falls es mehrere gibt) und danach die Taste GRÜN drücken, um es zu löschen."
+
+#~ msgid "Use the cursor keys to select an installed image and then Reboot button."
+#~ msgstr "Ein installiertes Image auswählen (falls es mehrere gibt) und danach die Taste GRÜN für einen Neustart drücken."
+
+#, python-format
+#~ msgid "eMMC slot %s"
+#~ msgstr "eMMC-Steckplatz %s"
+
+#, python-format
+#~ msgid "internal flash:  %s %s "
+#~ msgstr "Interner Flash: %s %s "
+
+#, python-format
+#~ msgid "internal flash: %s %s as USB Recovery"
+#~ msgstr "Interner Flash: %s %s als USB-Recovery"
+
+#, python-format
+#~ msgid "slot%s - %s "
+#~ msgstr "Slot %s - %s "
+
+#, python-format
+#~ msgid "slot%s - %s as USB Recovery"
+#~ msgstr "Slot %s - %s als USB-Recovery"
 
 #~ msgid "Changelog"
 #~ msgstr "Übersicht der Änderungen"

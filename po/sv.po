@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-04-10 10:23+0000\n"
+"POT-Creation-Date: 2022-04-13 15:07+0000\n"
 "PO-Revision-Date: 2021-08-15 18:50+0000\n"
 "Last-Translator: openATV <openatv@gmail.com>\n"
 "Language-Team: Swedish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/sv/>\n"
@@ -303,10 +303,6 @@ msgid ""
 "\n"
 "Do you want to install the new settingslist?"
 msgstr "Vill du återställa dina inställningar?"
-
-#, python-format
-msgid " bootmode = %s"
-msgstr ""
 
 msgid " of "
 msgstr ""
@@ -1577,10 +1573,6 @@ msgstr "Välj film"
 
 msgid "(Show only reader:"
 msgstr "(Visa endast läsare:"
-
-#, fuzzy
-msgid "(current image)"
-msgstr "Aktuell tid"
 
 #
 msgid "(empty)"
@@ -3066,6 +3058,12 @@ msgstr "Ett okänt fel uppstod!"
 msgid "Andorra"
 msgstr ""
 
+msgid "Android"
+msgstr ""
+
+msgid "Android Linux SE"
+msgstr ""
+
 msgid "Angola"
 msgstr ""
 
@@ -3165,12 +3163,10 @@ msgstr ""
 msgid "Are you sure you want to delete all selected logs:\n"
 msgstr "Är du säker på att du vill ta bort alla valda loggar:\n"
 
-#
-#, fuzzy, python-format
-msgid "Are you sure you want to delete image slot %s ?"
-msgstr "Är du säker på att du vill ta bort denna:"
-
 msgid "Are you sure you want to delete the EPG data from:\n"
+msgstr ""
+
+msgid "Are you sure you want to delete this image?"
 msgstr ""
 
 msgid "Are you sure you want to delete this log:\n"
@@ -3950,6 +3946,10 @@ msgid "Boot ID"
 msgstr ""
 
 msgid "Boot information"
+msgstr ""
+
+#, python-format
+msgid "Boot slot information for %s %s"
 msgstr ""
 
 msgid "Boot time"
@@ -5951,6 +5951,9 @@ msgstr ""
 msgid "Currency"
 msgstr ""
 
+msgid "Current"
+msgstr ""
+
 #, fuzzy
 msgid "Current Affairs"
 msgstr "Nyheter/ Aktuella frågor"
@@ -6624,6 +6627,9 @@ msgid "Delete image"
 msgstr "Ta bort timer"
 
 msgid "Delete logfile"
+msgstr ""
+
+msgid "Delete or Wipe the highlighted image slot"
 msgstr ""
 
 #
@@ -7671,7 +7677,7 @@ msgstr ""
 msgid "Embedded"
 msgstr ""
 
-msgid "Empty slot"
+msgid "Empty"
 msgstr ""
 
 #
@@ -8049,9 +8055,6 @@ msgid "Equal to"
 msgstr "Lika med"
 
 msgid "Equatorial Guinea"
-msgstr ""
-
-msgid "Erase"
 msgstr ""
 
 #, fuzzy
@@ -9610,6 +9613,9 @@ msgstr "Hårddisk"
 msgid "Harddisk Setup"
 msgstr "Hårddiskinställningar"
 
+msgid "Hardware MultiBoot device"
+msgstr ""
+
 msgid "Hardware information"
 msgstr ""
 
@@ -10214,6 +10220,9 @@ msgstr "Pågående"
 msgid "In the Standby Record on the LCD Display"
 msgstr ""
 
+msgid "Inaccessible"
+msgstr ""
+
 msgid "Inactive"
 msgstr ""
 
@@ -10584,6 +10593,14 @@ msgstr ""
 #
 msgid "Internal flash"
 msgstr "Intern Flash"
+
+#, python-format
+msgid "Internal flash:  %s %s "
+msgstr ""
+
+#, python-format
+msgid "Internal flash: %s %s as USB Recovery"
+msgstr ""
 
 msgid "Internal hdd only"
 msgstr "Endast Intern HDD"
@@ -11327,6 +11344,9 @@ msgstr ""
 msgid "Load/Save/Delete"
 msgstr "Ladda/Spara"
 
+msgid "Loading image slot information, please wait..."
+msgstr ""
+
 msgid "Loading information, please wait..."
 msgstr ""
 
@@ -11959,9 +11979,10 @@ msgstr "Modell: %s %s\n"
 msgid "Mode 1"
 msgstr ""
 
-msgid ""
-"Mode 1 suppports Kodi, PiP may not work.\n"
-"Mode 12 supports PiP, Kodi may not work."
+msgid "Mode 12: Supports PiP but Kodi may not work"
+msgstr ""
+
+msgid "Mode 1: Supports Kodi but PiP may not work"
 msgstr ""
 
 msgid "Mode 2"
@@ -12343,19 +12364,30 @@ msgstr ""
 msgid "Multi EPG"
 msgstr "Multi EPG"
 
+msgid "Multi-Boot Image Manager"
+msgstr ""
+
+msgid "Multi-Boot Manager Actions"
+msgstr ""
+
+msgid "MultiBoot"
+msgstr ""
+
 #, fuzzy
 msgid "MultiBoot Image Manager"
 msgstr "Image Hanterare"
 
-#
-#, fuzzy
-msgid "MultiBoot Image Selector"
-msgstr "Textningsval"
+msgid "MultiBoot Information"
+msgstr ""
 
-#
-#, fuzzy
-msgid "MultiBootSelector Actions"
-msgstr "Textningsval"
+msgid "MultiBoot Manager"
+msgstr ""
+
+msgid "MultiBoot boot mode"
+msgstr ""
+
+msgid "MultiBoot startup file"
+msgstr ""
 
 #
 msgid "MultiEPG Settings"
@@ -12367,18 +12399,9 @@ msgstr ""
 msgid "MultiTranscoding"
 msgstr ""
 
-#
-#, fuzzy
-msgid "Multiboot Image Selector"
-msgstr "Textningsval"
-
 #, python-format
 msgid "Multiboot Image created on: %s/%s-%s-%s-backup-%s_usb.zip"
 msgstr ""
-
-#, fuzzy
-msgid "Multiboot Manager"
-msgstr "Logghanterare"
 
 #
 msgid "Multimedia"
@@ -13068,6 +13091,9 @@ msgstr "normal"
 msgid "Normal - Standard image"
 msgstr ""
 
+msgid "Normal: No boot modes required."
+msgstr ""
+
 #
 msgid "North"
 msgstr "Nord"
@@ -13156,9 +13182,6 @@ msgstr "pågår..."
 
 msgid "Not tested:"
 msgstr "Inte testad :"
-
-msgid "Note: slot list does not show current image or empty slots."
-msgstr ""
 
 #
 msgid "Nothing"
@@ -14788,6 +14811,9 @@ msgstr ""
 msgid "Press OK to use this locale.  [%s]"
 msgstr ""
 
+msgid "Press the UP/DOWN buttons to select an image and press OK or GREEN to 'Reboot' to that image. If available, YELLOW will either 'Delete' or 'Wipe' the image. A 'Deleted' image can be 'Restored' with the BLUE button. A 'Wiped' image is completely removed can NOT be restored!"
+msgstr ""
+
 msgid "Press the menu button to set a general AC3/Dolby offset."
 msgstr ""
 
@@ -15479,6 +15505,9 @@ msgstr "Inspelningar har alltid prioritet"
 msgid "Records"
 msgstr "Spela in"
 
+msgid "Recovery"
+msgstr ""
+
 #
 #, fuzzy
 msgid "Recovery Mode"
@@ -15639,10 +15668,6 @@ msgstr ""
 msgid "Remote control type"
 msgstr "Typ av Fjärrkontroll"
 
-#, python-format
-msgid "Removal of this slot will not show in %s Gui.  Are you sure you want to delete image slot %s ?"
-msgstr ""
-
 #
 msgid "Remove"
 msgstr "Ta bort"
@@ -15714,11 +15739,6 @@ msgstr "Ta bort bokmärke"
 
 msgid "Remove completed timers after (days)"
 msgstr "Ta bort färdiga timers efter (dagar)"
-
-#
-#, fuzzy
-msgid "Remove confirmation"
-msgstr "Konfirmera Borttagning"
 
 msgid "Remove current folder from bookmarks"
 msgstr ""
@@ -15985,6 +16005,9 @@ msgstr ""
 msgid "Restore system settings"
 msgstr "Återskapa systeminställningar"
 
+msgid "Restore the highlighted image slot"
+msgstr ""
+
 msgid "Restore your settings back from a backup. After restore the box will restart to activated the new settings"
 msgstr ""
 
@@ -16012,6 +16035,9 @@ msgstr "Återupptar uppspelning"
 
 #, python-format
 msgid "Retrieving %s commit log, please wait..."
+msgstr ""
+
+msgid "Retrieving boot slot information..."
 msgstr ""
 
 #
@@ -16214,6 +16240,10 @@ msgstr ""
 msgid "SD"
 msgstr ""
 
+#, python-format
+msgid "SDcard slot %s%s"
+msgstr ""
+
 msgid "SDcard switch ERROR! - H9 root files not transferred to SD card"
 msgstr ""
 
@@ -16249,9 +16279,6 @@ msgstr ""
 #
 msgid "SSID:"
 msgstr "SSID :"
-
-msgid "STARTUP_"
-msgstr ""
 
 #, fuzzy
 msgid "STB Display"
@@ -17167,9 +17194,6 @@ msgstr ""
 #, fuzzy
 msgid "Select/Zap to selected service"
 msgstr "Välj inmatningsenhet"
-
-msgid "Selected Image"
-msgstr ""
 
 #, python-format
 msgid ""
@@ -18834,12 +18858,24 @@ msgid "Slot %d"
 msgstr "Slot %d"
 
 #, python-format
-msgid "Slot %s: %s - Mode %d%s"
+msgid "Slot %s: %s"
 msgstr ""
 
-#, fuzzy, python-format
-msgid "Slot %s: %s%s"
-msgstr "DiSEqC port %s: %s"
+#, python-format
+msgid "Slot %s: %s (Current image)"
+msgstr ""
+
+#, python-format
+msgid "Slot %s: %s as USB Recovery"
+msgstr ""
+
+#, python-format
+msgid "Slot '%s'"
+msgstr ""
+
+#, python-format
+msgid "Slot '%s': %s%s"
+msgstr ""
 
 msgid "Slovak"
 msgstr "Slovakiska"
@@ -18914,9 +18950,6 @@ msgstr ""
 msgid "Socket"
 msgstr "låst"
 
-msgid "Soft MultiBoot"
-msgstr ""
-
 msgid "Softcam"
 msgstr ""
 
@@ -18934,6 +18967,9 @@ msgid "Software Manager"
 msgstr ""
 
 msgid "Software Manager Setup"
+msgstr ""
+
+msgid "Software MultiBoot"
 msgstr ""
 
 msgid "Software Update"
@@ -22013,12 +22049,6 @@ msgstr "Använd alternativt eller konventionellt radioläge."
 msgid "Use the alternative screen"
 msgstr "Använd den alternativa vyn"
 
-msgid "Use the cursor keys to select an installed image and then Erase button."
-msgstr ""
-
-msgid "Use the cursor keys to select an installed image and then Reboot button."
-msgstr ""
-
 msgid "Use the cursor keys to select an installed image and then Start button."
 msgstr ""
 
@@ -22993,6 +23023,9 @@ msgstr "vintersport"
 #, fuzzy
 msgid "Wintersport"
 msgstr "vintersport"
+
+msgid "Wipe"
+msgstr ""
 
 #
 msgid "Wireless LAN"
@@ -24169,7 +24202,7 @@ msgid "eMMC"
 msgstr ""
 
 #, python-format
-msgid "eMMC slot %s"
+msgid "eMMC slot %s%s"
 msgstr ""
 
 msgid "eSATA"
@@ -24546,15 +24579,6 @@ msgstr "Avinstallera"
 #, fuzzy
 msgid "instant record"
 msgstr "Direktinspelning"
-
-#
-#, fuzzy, python-format
-msgid "internal flash:  %s %s "
-msgstr "Internt flashminne"
-
-#, python-format
-msgid "internal flash: %s %s as USB Recovery"
-msgstr ""
 
 msgid "internally loopthrough to"
 msgstr ""
@@ -25283,15 +25307,7 @@ msgid "slot%s - %s"
 msgstr ""
 
 #, python-format
-msgid "slot%s - %s "
-msgstr ""
-
-#, python-format
 msgid "slot%s - %s (current image)"
-msgstr ""
-
-#, python-format
-msgid "slot%s - %s as USB Recovery"
 msgstr ""
 
 msgid "slow"
@@ -25681,6 +25697,48 @@ msgstr "zappad"
 
 msgid "®"
 msgstr ""
+
+#, fuzzy
+#~ msgid "(current image)"
+#~ msgstr "Aktuell tid"
+
+#
+#, fuzzy, python-format
+#~ msgid "Are you sure you want to delete image slot %s ?"
+#~ msgstr "Är du säker på att du vill ta bort denna:"
+
+#
+#, fuzzy
+#~ msgid "MultiBoot Image Selector"
+#~ msgstr "Textningsval"
+
+#
+#, fuzzy
+#~ msgid "MultiBootSelector Actions"
+#~ msgstr "Textningsval"
+
+#
+#, fuzzy
+#~ msgid "Multiboot Image Selector"
+#~ msgstr "Textningsval"
+
+#, fuzzy
+#~ msgid "Multiboot Manager"
+#~ msgstr "Logghanterare"
+
+#
+#, fuzzy
+#~ msgid "Remove confirmation"
+#~ msgstr "Konfirmera Borttagning"
+
+#, fuzzy, python-format
+#~ msgid "Slot %s: %s%s"
+#~ msgstr "DiSEqC port %s: %s"
+
+#
+#, fuzzy, python-format
+#~ msgid "internal flash:  %s %s "
+#~ msgstr "Internt flashminne"
 
 #~ msgid "Changelog"
 #~ msgstr "Ändringslogg"

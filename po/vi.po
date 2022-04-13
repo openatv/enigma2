@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-04-10 10:23+0000\n"
+"POT-Creation-Date: 2022-04-13 15:07+0000\n"
 "PO-Revision-Date: 2019-07-27 12:19+0700\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -314,10 +314,6 @@ msgstr ""
 " có sẵn !!\n"
 "\n"
 "Bạn có muốn cài đặt danh sách cài đặt mới?"
-
-#, python-format
-msgid " bootmode = %s"
-msgstr ""
 
 msgid " of "
 msgstr " của "
@@ -1466,10 +1462,6 @@ msgstr "(Chọn chế độ)"
 
 msgid "(Show only reader:"
 msgstr "(Chỉ hiển thị người đọc:"
-
-#, fuzzy
-msgid "(current image)"
-msgstr "Thời điểm hiện tại"
 
 msgid "(empty)"
 msgstr "(trống)"
@@ -2834,6 +2826,12 @@ msgstr "Một lỗi không xác định đã xảy ra!"
 msgid "Andorra"
 msgstr "Andorra"
 
+msgid "Android"
+msgstr ""
+
+msgid "Android Linux SE"
+msgstr ""
+
 msgid "Angola"
 msgstr "Angola"
 
@@ -2923,12 +2921,11 @@ msgstr ""
 msgid "Are you sure you want to delete all selected logs:\n"
 msgstr "Bạn có chắc chắn muốn xóa tất cả các nhật ký đã chọn:\n"
 
-#, python-format
-msgid "Are you sure you want to delete image slot %s ?"
-msgstr "Bạn có chắc chắn muốn xóa khe hình ảnh %s không?"
-
 msgid "Are you sure you want to delete the EPG data from:\n"
 msgstr "Bạn có chắc chắn muốn xóa dữ liệu EPG khỏi:\n"
+
+msgid "Are you sure you want to delete this image?"
+msgstr ""
 
 msgid "Are you sure you want to delete this log:\n"
 msgstr "Bạn có chắc chắn muốn xóa nhật ký này:\n"
@@ -3638,6 +3635,10 @@ msgid "Boot ID"
 msgstr ""
 
 msgid "Boot information"
+msgstr ""
+
+#, python-format
+msgid "Boot slot information for %s %s"
 msgstr ""
 
 msgid "Boot time"
@@ -5498,6 +5499,9 @@ msgstr "Curacao"
 msgid "Currency"
 msgstr ""
 
+msgid "Current"
+msgstr ""
+
 #, fuzzy
 msgid "Current Affairs"
 msgstr "Tin tức thời sự"
@@ -6111,6 +6115,9 @@ msgid "Delete image"
 msgstr "Xóa hình ảnh"
 
 msgid "Delete logfile"
+msgstr ""
+
+msgid "Delete or Wipe the highlighted image slot"
 msgstr ""
 
 msgid "Delete playlist entry"
@@ -7086,8 +7093,8 @@ msgstr ""
 msgid "Embedded"
 msgstr ""
 
-msgid "Empty slot"
-msgstr "Chỗ trống"
+msgid "Empty"
+msgstr ""
 
 msgid "Enable"
 msgstr "Kích hoạt"
@@ -7441,9 +7448,6 @@ msgstr "Tương đương với"
 
 msgid "Equatorial Guinea"
 msgstr "Equatorial Guinea"
-
-msgid "Erase"
-msgstr "Xóa"
 
 msgid "Eritrea"
 msgstr "Eritrea"
@@ -8894,6 +8898,9 @@ msgstr "Ổ đĩa cứng"
 msgid "Harddisk Setup"
 msgstr "Cài đặt đĩa cứng"
 
+msgid "Hardware MultiBoot device"
+msgstr ""
+
 msgid "Hardware information"
 msgstr ""
 
@@ -9468,6 +9475,9 @@ msgstr "Trong tiến trình"
 msgid "In the Standby Record on the LCD Display"
 msgstr "Trong Bản ghi chờ trên màn hình LCD"
 
+msgid "Inaccessible"
+msgstr ""
+
 msgid "Inactive"
 msgstr "Không hoạt động"
 
@@ -9789,6 +9799,14 @@ msgstr "USB nội bộ"
 
 msgid "Internal flash"
 msgstr "Đèn flash bên trong"
+
+#, python-format
+msgid "Internal flash:  %s %s "
+msgstr ""
+
+#, python-format
+msgid "Internal flash: %s %s as USB Recovery"
+msgstr ""
 
 msgid "Internal hdd only"
 msgstr "Chỉ hdd nội bộ"
@@ -10465,6 +10483,9 @@ msgstr "Tải các tập tin người dùng không liên kết"
 msgid "Load/Save/Delete"
 msgstr "Tải / lưu / xóa"
 
+msgid "Loading image slot information, please wait..."
+msgstr ""
+
 msgid "Loading information, please wait..."
 msgstr ""
 
@@ -11054,12 +11075,11 @@ msgstr "Chế độ % s (% 04o)"
 msgid "Mode 1"
 msgstr "Chế độ 1"
 
-msgid ""
-"Mode 1 suppports Kodi, PiP may not work.\n"
-"Mode 12 supports PiP, Kodi may not work."
+msgid "Mode 12: Supports PiP but Kodi may not work"
 msgstr ""
-"Chế độ 1 hỗ trợ Kodi, PiP có thể không hoạt động.\n"
-"Chế độ 12 hỗ trợ PiP, Kodi có thể không hoạt động."
+
+msgid "Mode 1: Supports Kodi but PiP may not work"
+msgstr ""
 
 msgid "Mode 2"
 msgstr "Chế độ 2"
@@ -11403,16 +11423,29 @@ msgstr "Mozambique"
 msgid "Multi EPG"
 msgstr "Đa EPG"
 
+msgid "Multi-Boot Image Manager"
+msgstr ""
+
+msgid "Multi-Boot Manager Actions"
+msgstr ""
+
+msgid "MultiBoot"
+msgstr ""
+
 msgid "MultiBoot Image Manager"
 msgstr "Trình quản lý đa khởi động"
 
-#, fuzzy
-msgid "MultiBoot Image Selector"
-msgstr "Công cụ chọn hình ảnh đa khởi động"
+msgid "MultiBoot Information"
+msgstr ""
 
-#, fuzzy
-msgid "MultiBootSelector Actions"
-msgstr "Công cụ chọn hình ảnh đa khởi động"
+msgid "MultiBoot Manager"
+msgstr ""
+
+msgid "MultiBoot boot mode"
+msgstr ""
+
+msgid "MultiBoot startup file"
+msgstr ""
 
 msgid "MultiEPG Settings"
 msgstr "Cài đặt MultiEPG"
@@ -11423,15 +11456,9 @@ msgstr ""
 msgid "MultiTranscoding"
 msgstr ""
 
-msgid "Multiboot Image Selector"
-msgstr "Công cụ chọn hình ảnh đa khởi động"
-
 #, python-format
 msgid "Multiboot Image created on: %s/%s-%s-%s-backup-%s_usb.zip"
 msgstr "Hình ảnh đa khởi động được tạo trên:% s /% s-% s-% s-backup-% s_usb.zip"
-
-msgid "Multiboot Manager"
-msgstr "Quản lý đa khởi động"
 
 msgid "Multimedia"
 msgstr "Đa phương tiện"
@@ -12045,6 +12072,9 @@ msgstr "bình thường"
 msgid "Normal - Standard image"
 msgstr ""
 
+msgid "Normal: No boot modes required."
+msgstr ""
+
 msgid "North"
 msgstr "Bắc"
 
@@ -12124,9 +12154,6 @@ msgstr "đang chạy..."
 
 msgid "Not tested:"
 msgstr "Không được kiểm tra:"
-
-msgid "Note: slot list does not show current image or empty slots."
-msgstr "Lưu ý: danh sách vị trí không hiển thị hình ảnh hiện tại hoặc vị trí trống."
 
 msgid "Nothing"
 msgstr "Không làm gì cả"
@@ -13593,6 +13620,9 @@ msgstr ""
 msgid "Press OK to use this locale.  [%s]"
 msgstr ""
 
+msgid "Press the UP/DOWN buttons to select an image and press OK or GREEN to 'Reboot' to that image. If available, YELLOW will either 'Delete' or 'Wipe' the image. A 'Deleted' image can be 'Restored' with the BLUE button. A 'Wiped' image is completely removed can NOT be restored!"
+msgstr ""
+
 msgid "Press the menu button to set a general AC3/Dolby offset."
 msgstr "nhấn nút menu để đặt bù AC3 / Dolby chung"
 
@@ -14232,6 +14262,9 @@ msgstr "Ghi chép luôGhi chép luôn được ưu tiênn được ưu tiên"
 msgid "Records"
 msgstr "Hồ sơ"
 
+msgid "Recovery"
+msgstr ""
+
 msgid "Recovery Mode"
 msgstr "Chế độ phục hồi"
 
@@ -14382,10 +14415,6 @@ msgstr ""
 msgid "Remote control type"
 msgstr "Loại điều khiển từ xa"
 
-#, python-format
-msgid "Removal of this slot will not show in %s Gui.  Are you sure you want to delete image slot %s ?"
-msgstr "Xóa vị trí này sẽ không hiển thị trong % s Gui. Bạn có chắc chắn muốn xóa khe hình ảnh % s không?"
-
 msgid "Remove"
 msgstr "Tẩy"
 
@@ -14448,9 +14477,6 @@ msgstr "Xóa dấu trang"
 
 msgid "Remove completed timers after (days)"
 msgstr "Xóa bộ định thời đã hoàn thành sau (ngày)"
-
-msgid "Remove confirmation"
-msgstr "Xóa xác nhận"
 
 msgid "Remove current folder from bookmarks"
 msgstr "Xóa thư mục hiện tại khỏi bookmark"
@@ -14679,6 +14705,9 @@ msgstr "Khôi phục cài đặt từ bản sao lưu"
 msgid "Restore system settings"
 msgstr "Khôi phục cài đặt hệ thống"
 
+msgid "Restore the highlighted image slot"
+msgstr ""
+
 msgid "Restore your settings back from a backup. After restore the box will restart to activated the new settings"
 msgstr "Khôi phục cài đặt của bạn trở lại từ bản sao lưu. Sau khi khôi phục, hộp sẽ khởi động lại để kích hoạt cài đặt mới"
 
@@ -14703,6 +14732,9 @@ msgstr "Tiếp tục phát lại"
 
 #, python-format
 msgid "Retrieving %s commit log, please wait..."
+msgstr ""
+
+msgid "Retrieving boot slot information..."
 msgstr ""
 
 msgid "Retrieving image list - Please wait..."
@@ -14889,6 +14921,10 @@ msgstr "Điều chỉnh thời gian SCR, kết hợp với ổ cắm SCR và ho�
 msgid "SD"
 msgstr "SD"
 
+#, python-format
+msgid "SDcard slot %s%s"
+msgstr ""
+
 msgid "SDcard switch ERROR! - H9 root files not transferred to SD card"
 msgstr "Chuyển đổi thẻ SD LRI! - Tập tin gốc H9 không được chuyển sang thẻ SD"
 
@@ -14922,9 +14958,6 @@ msgstr ""
 
 msgid "SSID:"
 msgstr "SSID:"
-
-msgid "STARTUP_"
-msgstr "BẮT ĐẦU_"
 
 msgid "STB Display"
 msgstr "Màn hình hiển thị STB"
@@ -15761,9 +15794,6 @@ msgstr ""
 #, fuzzy
 msgid "Select/Zap to selected service"
 msgstr "Chuyển sang kênh đã chọn"
-
-msgid "Selected Image"
-msgstr ""
 
 #, python-format
 msgid ""
@@ -17289,13 +17319,25 @@ msgstr "Trượt từ trên xuống dưới"
 msgid "Slot %d"
 msgstr "Khe %d"
 
-#, fuzzy, python-format
-msgid "Slot %s: %s - Mode %d%s"
-msgstr "vị trí % s -% s -% s "
+#, python-format
+msgid "Slot %s: %s"
+msgstr ""
 
-#, fuzzy, python-format
-msgid "Slot %s: %s%s"
-msgstr "Cổng DiSEqC%s:%s"
+#, python-format
+msgid "Slot %s: %s (Current image)"
+msgstr ""
+
+#, python-format
+msgid "Slot %s: %s as USB Recovery"
+msgstr ""
+
+#, python-format
+msgid "Slot '%s'"
+msgstr ""
+
+#, python-format
+msgid "Slot '%s': %s%s"
+msgstr ""
 
 msgid "Slovak"
 msgstr "Tiếng Slovak"
@@ -17361,9 +17403,6 @@ msgstr ""
 msgid "Socket"
 msgstr "Ổ cắm"
 
-msgid "Soft MultiBoot"
-msgstr ""
-
 msgid "Softcam"
 msgstr "Softcam"
 
@@ -17381,6 +17420,9 @@ msgstr "Quản trị viên phần mềm"
 
 msgid "Software Manager Setup"
 msgstr "Cài đặt trình quản lý phần mềm"
+
+msgid "Software MultiBoot"
+msgstr ""
 
 msgid "Software Update"
 msgstr "Cập nhật phần mềm"
@@ -20223,12 +20265,6 @@ msgstr "Sử dụng thay thế hoặc chế độ radio thông thường."
 msgid "Use the alternative screen"
 msgstr "Sử dụng màn hình thay thế"
 
-msgid "Use the cursor keys to select an installed image and then Erase button."
-msgstr "Sử dụng các phím con trỏ để chọn một hình ảnh được cài đặt và sau đó nút Xóa."
-
-msgid "Use the cursor keys to select an installed image and then Reboot button."
-msgstr "Sử dụng các phím con trỏ để chọn một hình ảnh được cài đặt và sau đó khởi động lại nút."
-
 msgid "Use the cursor keys to select an installed image and then Start button."
 msgstr "Sử dụng các phím con trỏ để chọn một hình ảnh được cài đặt và sau đó là nút Bắt đầu."
 
@@ -21128,6 +21164,9 @@ msgstr "thể thao mùa đông"
 #, fuzzy
 msgid "Wintersport"
 msgstr "thể thao mùa đông"
+
+msgid "Wipe"
+msgstr ""
 
 msgid "Wireless LAN"
 msgstr "Mạng địa phương không dây"
@@ -22215,9 +22254,9 @@ msgstr ""
 msgid "eMMC"
 msgstr "eMMC"
 
-#, fuzzy, python-format
-msgid "eMMC slot %s"
-msgstr "Khe CI: "
+#, python-format
+msgid "eMMC slot %s%s"
+msgstr ""
 
 msgid "eSATA"
 msgstr "eSATA"
@@ -22554,14 +22593,6 @@ msgstr "Gỡ cài đặt"
 #, fuzzy
 msgid "instant record"
 msgstr "Ghi lại ngay lập tức"
-
-#, python-format
-msgid "internal flash:  %s %s "
-msgstr "đèn flash bên trong:  % s% s "
-
-#, python-format
-msgid "internal flash: %s %s as USB Recovery"
-msgstr "flash nội bộ:% s% s dưới dạng USB Recovery"
 
 msgid "internally loopthrough to"
 msgstr "vòng lặp nội bộ để"
@@ -23201,16 +23232,8 @@ msgid "slot%s - %s"
 msgstr "vị trí%s -%s"
 
 #, python-format
-msgid "slot%s - %s "
-msgstr "vị trí % s -% s "
-
-#, python-format
 msgid "slot%s - %s (current image)"
 msgstr "vị trí%s -%s (hình ảnh hiện tại)"
-
-#, fuzzy, python-format
-msgid "slot%s - %s as USB Recovery"
-msgstr "khe cắm % s -% s -% s khi khôi phục USB"
 
 msgid "slow"
 msgstr "chậm"
@@ -23554,6 +23577,88 @@ msgstr "hạ gục"
 
 msgid "®"
 msgstr ""
+
+#, fuzzy
+#~ msgid "(current image)"
+#~ msgstr "Thời điểm hiện tại"
+
+#, python-format
+#~ msgid "Are you sure you want to delete image slot %s ?"
+#~ msgstr "Bạn có chắc chắn muốn xóa khe hình ảnh %s không?"
+
+#~ msgid "Empty slot"
+#~ msgstr "Chỗ trống"
+
+#~ msgid "Erase"
+#~ msgstr "Xóa"
+
+#~ msgid ""
+#~ "Mode 1 suppports Kodi, PiP may not work.\n"
+#~ "Mode 12 supports PiP, Kodi may not work."
+#~ msgstr ""
+#~ "Chế độ 1 hỗ trợ Kodi, PiP có thể không hoạt động.\n"
+#~ "Chế độ 12 hỗ trợ PiP, Kodi có thể không hoạt động."
+
+#, fuzzy
+#~ msgid "MultiBoot Image Selector"
+#~ msgstr "Công cụ chọn hình ảnh đa khởi động"
+
+#, fuzzy
+#~ msgid "MultiBootSelector Actions"
+#~ msgstr "Công cụ chọn hình ảnh đa khởi động"
+
+#~ msgid "Multiboot Image Selector"
+#~ msgstr "Công cụ chọn hình ảnh đa khởi động"
+
+#~ msgid "Multiboot Manager"
+#~ msgstr "Quản lý đa khởi động"
+
+#~ msgid "Note: slot list does not show current image or empty slots."
+#~ msgstr "Lưu ý: danh sách vị trí không hiển thị hình ảnh hiện tại hoặc vị trí trống."
+
+#, python-format
+#~ msgid "Removal of this slot will not show in %s Gui.  Are you sure you want to delete image slot %s ?"
+#~ msgstr "Xóa vị trí này sẽ không hiển thị trong % s Gui. Bạn có chắc chắn muốn xóa khe hình ảnh % s không?"
+
+#~ msgid "Remove confirmation"
+#~ msgstr "Xóa xác nhận"
+
+#~ msgid "STARTUP_"
+#~ msgstr "BẮT ĐẦU_"
+
+#, fuzzy, python-format
+#~ msgid "Slot %s: %s - Mode %d%s"
+#~ msgstr "vị trí % s -% s -% s "
+
+#, fuzzy, python-format
+#~ msgid "Slot %s: %s%s"
+#~ msgstr "Cổng DiSEqC%s:%s"
+
+#~ msgid "Use the cursor keys to select an installed image and then Erase button."
+#~ msgstr "Sử dụng các phím con trỏ để chọn một hình ảnh được cài đặt và sau đó nút Xóa."
+
+#~ msgid "Use the cursor keys to select an installed image and then Reboot button."
+#~ msgstr "Sử dụng các phím con trỏ để chọn một hình ảnh được cài đặt và sau đó khởi động lại nút."
+
+#, fuzzy, python-format
+#~ msgid "eMMC slot %s"
+#~ msgstr "Khe CI: "
+
+#, python-format
+#~ msgid "internal flash:  %s %s "
+#~ msgstr "đèn flash bên trong:  % s% s "
+
+#, python-format
+#~ msgid "internal flash: %s %s as USB Recovery"
+#~ msgstr "flash nội bộ:% s% s dưới dạng USB Recovery"
+
+#, python-format
+#~ msgid "slot%s - %s "
+#~ msgstr "vị trí % s -% s "
+
+#, fuzzy, python-format
+#~ msgid "slot%s - %s as USB Recovery"
+#~ msgstr "khe cắm % s -% s -% s khi khôi phục USB"
 
 #~ msgid "Changelog"
 #~ msgstr "Thay đổi"

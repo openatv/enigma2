@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-04-10 10:23+0000\n"
+"POT-Creation-Date: 2022-04-13 15:07+0000\n"
 "PO-Revision-Date: 2016-04-02 23:18+0200\n"
 "Last-Translator: Andy Blackburn <andyblac@icloud.com>\n"
 "Language-Team: OldSkul from www.linux-sprejemniki.info\n"
@@ -285,10 +285,6 @@ msgid ""
 "\n"
 "Do you want to install the new settingslist?"
 msgstr "Želite povrniti vaše nastavitve?"
-
-#, python-format
-msgid " bootmode = %s"
-msgstr ""
 
 msgid " of "
 msgstr ""
@@ -1583,10 +1579,6 @@ msgstr "Izberite posnetek"
 
 msgid "(Show only reader:"
 msgstr ""
-
-#, fuzzy
-msgid "(current image)"
-msgstr "Trenutna nameščena slika"
 
 #
 msgid "(empty)"
@@ -3083,6 +3075,12 @@ msgstr "Pojavila se je neznana napaka!"
 msgid "Andorra"
 msgstr ""
 
+msgid "Android"
+msgstr ""
+
+msgid "Android Linux SE"
+msgstr ""
+
 msgid "Angola"
 msgstr ""
 
@@ -3178,11 +3176,10 @@ msgstr ""
 msgid "Are you sure you want to delete all selected logs:\n"
 msgstr "Ste prepričani, da želite izbrisati vse izbrane dnevnike:\n"
 
-#, fuzzy, python-format
-msgid "Are you sure you want to delete image slot %s ?"
-msgstr "Ste prepričani, da želite izbrisati izbrani dnevnik:\n"
-
 msgid "Are you sure you want to delete the EPG data from:\n"
+msgstr ""
+
+msgid "Are you sure you want to delete this image?"
 msgstr ""
 
 msgid "Are you sure you want to delete this log:\n"
@@ -3972,6 +3969,10 @@ msgid "Boot ID"
 msgstr ""
 
 msgid "Boot information"
+msgstr ""
+
+#, python-format
+msgid "Boot slot information for %s %s"
 msgstr ""
 
 msgid "Boot time"
@@ -5995,6 +5996,9 @@ msgstr ""
 msgid "Currency"
 msgstr ""
 
+msgid "Current"
+msgstr ""
+
 #
 #, fuzzy
 msgid "Current Affairs"
@@ -6690,6 +6694,9 @@ msgid "Delete image"
 msgstr "izbris datoteke"
 
 msgid "Delete logfile"
+msgstr ""
+
+msgid "Delete or Wipe the highlighted image slot"
 msgstr ""
 
 #
@@ -7742,7 +7749,7 @@ msgstr ""
 msgid "Embedded"
 msgstr ""
 
-msgid "Empty slot"
+msgid "Empty"
 msgstr ""
 
 #
@@ -8130,9 +8137,6 @@ msgid "Equal to"
 msgstr ""
 
 msgid "Equatorial Guinea"
-msgstr ""
-
-msgid "Erase"
 msgstr ""
 
 msgid "Eritrea"
@@ -9691,6 +9695,9 @@ msgstr ""
 msgid "Harddisk Setup"
 msgstr ""
 
+msgid "Hardware MultiBoot device"
+msgstr ""
+
 msgid "Hardware information"
 msgstr ""
 
@@ -10301,6 +10308,9 @@ msgstr "Se izvaja"
 msgid "In the Standby Record on the LCD Display"
 msgstr ""
 
+msgid "Inaccessible"
+msgstr ""
+
 msgid "Inactive"
 msgstr ""
 
@@ -10683,6 +10693,14 @@ msgstr ""
 #, fuzzy
 msgid "Internal flash"
 msgstr "Notranji pomnilnik"
+
+#, python-format
+msgid "Internal flash:  %s %s "
+msgstr ""
+
+#, python-format
+msgid "Internal flash: %s %s as USB Recovery"
+msgstr ""
 
 msgid "Internal hdd only"
 msgstr "Samo notranji HDD"
@@ -11440,6 +11458,9 @@ msgstr ""
 msgid "Load/Save/Delete"
 msgstr "Izberi/Shrani"
 
+msgid "Loading image slot information, please wait..."
+msgstr ""
+
 msgid "Loading information, please wait..."
 msgstr ""
 
@@ -12079,9 +12100,10 @@ msgstr ""
 msgid "Mode 1"
 msgstr ""
 
-msgid ""
-"Mode 1 suppports Kodi, PiP may not work.\n"
-"Mode 12 supports PiP, Kodi may not work."
+msgid "Mode 12: Supports PiP but Kodi may not work"
+msgstr ""
+
+msgid "Mode 1: Supports Kodi but PiP may not work"
 msgstr ""
 
 msgid "Mode 2"
@@ -12481,16 +12503,29 @@ msgstr ""
 msgid "Multi EPG"
 msgstr "Multi-EPG"
 
+msgid "Multi-Boot Image Manager"
+msgstr ""
+
+msgid "Multi-Boot Manager Actions"
+msgstr ""
+
+msgid "MultiBoot"
+msgstr ""
+
 msgid "MultiBoot Image Manager"
 msgstr ""
 
-msgid "MultiBoot Image Selector"
+msgid "MultiBoot Information"
 msgstr ""
 
-#
-#, fuzzy
-msgid "MultiBootSelector Actions"
-msgstr "Izberite lokacijo"
+msgid "MultiBoot Manager"
+msgstr ""
+
+msgid "MultiBoot boot mode"
+msgstr ""
+
+msgid "MultiBoot startup file"
+msgstr ""
 
 #
 #, fuzzy
@@ -12503,14 +12538,8 @@ msgstr ""
 msgid "MultiTranscoding"
 msgstr ""
 
-msgid "Multiboot Image Selector"
-msgstr ""
-
 #, python-format
 msgid "Multiboot Image created on: %s/%s-%s-%s-backup-%s_usb.zip"
-msgstr ""
-
-msgid "Multiboot Manager"
 msgstr ""
 
 #
@@ -13207,6 +13236,9 @@ msgstr "normalno"
 msgid "Normal - Standard image"
 msgstr ""
 
+msgid "Normal: No boot modes required."
+msgstr ""
+
 #
 msgid "North"
 msgstr "Sever"
@@ -13289,9 +13321,6 @@ msgstr "Pregledovanje..."
 #, fuzzy
 msgid "Not tested:"
 msgstr "Test mreže:"
-
-msgid "Note: slot list does not show current image or empty slots."
-msgstr ""
 
 #
 #, fuzzy
@@ -14950,6 +14979,9 @@ msgstr ""
 msgid "Press OK to use this locale.  [%s]"
 msgstr ""
 
+msgid "Press the UP/DOWN buttons to select an image and press OK or GREEN to 'Reboot' to that image. If available, YELLOW will either 'Delete' or 'Wipe' the image. A 'Deleted' image can be 'Restored' with the BLUE button. A 'Wiped' image is completely removed can NOT be restored!"
+msgstr ""
+
 msgid "Press the menu button to set a general AC3/Dolby offset."
 msgstr ""
 
@@ -15652,6 +15684,9 @@ msgstr "Snemanje ima vedno višjo prioriteto"
 msgid "Records"
 msgstr "Nastavitve snemanja"
 
+msgid "Recovery"
+msgstr ""
+
 #
 #, fuzzy
 msgid "Recovery Mode"
@@ -15812,10 +15847,6 @@ msgstr ""
 msgid "Remote control type"
 msgstr ""
 
-#, python-format
-msgid "Removal of this slot will not show in %s Gui.  Are you sure you want to delete image slot %s ?"
-msgstr ""
-
 #
 msgid "Remove"
 msgstr "Odstrani"
@@ -15889,11 +15920,6 @@ msgstr "odstranitev zaznamka"
 
 msgid "Remove completed timers after (days)"
 msgstr ""
-
-#
-#, fuzzy
-msgid "Remove confirmation"
-msgstr "Nastavitev kanalnikov"
 
 msgid "Remove current folder from bookmarks"
 msgstr ""
@@ -16165,6 +16191,9 @@ msgstr ""
 msgid "Restore system settings"
 msgstr "Obnovitev glavnih nastavitev"
 
+msgid "Restore the highlighted image slot"
+msgstr ""
+
 msgid "Restore your settings back from a backup. After restore the box will restart to activated the new settings"
 msgstr ""
 
@@ -16192,6 +16221,9 @@ msgstr "Nadaljevanje predvajanja."
 
 #, python-format
 msgid "Retrieving %s commit log, please wait..."
+msgstr ""
+
+msgid "Retrieving boot slot information..."
 msgstr ""
 
 #
@@ -16393,6 +16425,10 @@ msgstr ""
 msgid "SD"
 msgstr ""
 
+#, python-format
+msgid "SDcard slot %s%s"
+msgstr ""
+
 msgid "SDcard switch ERROR! - H9 root files not transferred to SD card"
 msgstr ""
 
@@ -16429,9 +16465,6 @@ msgstr ""
 #
 msgid "SSID:"
 msgstr "SSID:"
-
-msgid "STARTUP_"
-msgstr ""
 
 msgid "STB Display"
 msgstr ""
@@ -17372,9 +17405,6 @@ msgstr ""
 #, fuzzy
 msgid "Select/Zap to selected service"
 msgstr "Izberite vhodno napravo"
-
-msgid "Selected Image"
-msgstr ""
 
 #, python-format
 msgid ""
@@ -19063,13 +19093,24 @@ msgid "Slot %d"
 msgstr "Slot %d"
 
 #, python-format
-msgid "Slot %s: %s - Mode %d%s"
+msgid "Slot %s: %s"
 msgstr ""
 
-#
-#, fuzzy, python-format
-msgid "Slot %s: %s%s"
-msgstr "Slot %d"
+#, python-format
+msgid "Slot %s: %s (Current image)"
+msgstr ""
+
+#, python-format
+msgid "Slot %s: %s as USB Recovery"
+msgstr ""
+
+#, python-format
+msgid "Slot '%s'"
+msgstr ""
+
+#, python-format
+msgid "Slot '%s': %s%s"
+msgstr ""
 
 msgid "Slovak"
 msgstr ""
@@ -19146,9 +19187,6 @@ msgstr ""
 msgid "Socket"
 msgstr "zaklenjen"
 
-msgid "Soft MultiBoot"
-msgstr ""
-
 msgid "Softcam"
 msgstr ""
 
@@ -19166,6 +19204,9 @@ msgid "Software Manager"
 msgstr ""
 
 msgid "Software Manager Setup"
+msgstr ""
+
+msgid "Software MultiBoot"
 msgstr ""
 
 msgid "Software Update"
@@ -22233,12 +22274,6 @@ msgstr ""
 msgid "Use the alternative screen"
 msgstr ""
 
-msgid "Use the cursor keys to select an installed image and then Erase button."
-msgstr ""
-
-msgid "Use the cursor keys to select an installed image and then Reboot button."
-msgstr ""
-
 msgid "Use the cursor keys to select an installed image and then Start button."
 msgstr ""
 
@@ -23208,6 +23243,9 @@ msgid "Winter Sports"
 msgstr ""
 
 msgid "Wintersport"
+msgstr ""
+
+msgid "Wipe"
 msgstr ""
 
 #
@@ -24361,7 +24399,7 @@ msgid "eMMC"
 msgstr ""
 
 #, python-format
-msgid "eMMC slot %s"
+msgid "eMMC slot %s%s"
 msgstr ""
 
 msgid "eSATA"
@@ -24734,15 +24772,6 @@ msgstr "Odstranitev"
 #, fuzzy
 msgid "instant record"
 msgstr "Takojšnje snemanje"
-
-#
-#, fuzzy, python-format
-msgid "internal flash:  %s %s "
-msgstr "Notranji pomnilnik"
-
-#, python-format
-msgid "internal flash: %s %s as USB Recovery"
-msgstr ""
 
 msgid "internally loopthrough to"
 msgstr ""
@@ -25475,15 +25504,7 @@ msgid "slot%s - %s"
 msgstr ""
 
 #, python-format
-msgid "slot%s - %s "
-msgstr ""
-
-#, python-format
 msgid "slot%s - %s (current image)"
-msgstr ""
-
-#, python-format
-msgid "slot%s - %s as USB Recovery"
 msgstr ""
 
 msgid "slow"
@@ -25877,6 +25898,34 @@ msgstr "preklopljen"
 
 msgid "®"
 msgstr ""
+
+#, fuzzy
+#~ msgid "(current image)"
+#~ msgstr "Trenutna nameščena slika"
+
+#, fuzzy, python-format
+#~ msgid "Are you sure you want to delete image slot %s ?"
+#~ msgstr "Ste prepričani, da želite izbrisati izbrani dnevnik:\n"
+
+#
+#, fuzzy
+#~ msgid "MultiBootSelector Actions"
+#~ msgstr "Izberite lokacijo"
+
+#
+#, fuzzy
+#~ msgid "Remove confirmation"
+#~ msgstr "Nastavitev kanalnikov"
+
+#
+#, fuzzy, python-format
+#~ msgid "Slot %s: %s%s"
+#~ msgstr "Slot %d"
+
+#
+#, fuzzy, python-format
+#~ msgid "internal flash:  %s %s "
+#~ msgstr "Notranji pomnilnik"
 
 #
 #~ msgid "Changelog"

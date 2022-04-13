@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV-Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-04-10 10:23+0000\n"
+"POT-Creation-Date: 2022-04-13 15:07+0000\n"
 "PO-Revision-Date: 2021-08-21 11:46+0000\n"
 "Last-Translator: openATV <openatv@gmail.com>\n"
 "Language-Team: Estonian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/et/>\n"
@@ -314,10 +314,6 @@ msgstr ""
 " saadaval!!\n"
 "\n"
 "Kas paigaldada uus kanalinimekiri?"
-
-#, python-format
-msgid " bootmode = %s"
-msgstr ""
 
 msgid " of "
 msgstr " - "
@@ -1454,9 +1450,6 @@ msgstr ""
 
 msgid "(Show only reader:"
 msgstr "(Näita ainult kaardipesa:"
-
-msgid "(current image)"
-msgstr "(praegune püsivara)"
 
 msgid "(empty)"
 msgstr "(tühi)"
@@ -2827,6 +2820,12 @@ msgstr "Tundmatu viga!"
 msgid "Andorra"
 msgstr "Andorra"
 
+msgid "Android"
+msgstr ""
+
+msgid "Android Linux SE"
+msgstr ""
+
 msgid "Angola"
 msgstr "Angoola"
 
@@ -2917,12 +2916,11 @@ msgstr "Kas kustutada see varukoopia:\n"
 msgid "Are you sure you want to delete all selected logs:\n"
 msgstr "Kas kustutada kõik valitud logid:\n"
 
-#, python-format
-msgid "Are you sure you want to delete image slot %s ?"
-msgstr "Kas kustutada püsivara pesa %s?"
-
 msgid "Are you sure you want to delete the EPG data from:\n"
 msgstr "Kas kustutada EPG andmed asukohast:\n"
+
+msgid "Are you sure you want to delete this image?"
+msgstr ""
 
 msgid "Are you sure you want to delete this log:\n"
 msgstr "Kas kustutada see logi:\n"
@@ -3642,6 +3640,10 @@ msgid "Boot ID"
 msgstr ""
 
 msgid "Boot information"
+msgstr ""
+
+#, python-format
+msgid "Boot slot information for %s %s"
 msgstr ""
 
 msgid "Boot time"
@@ -5519,6 +5521,9 @@ msgstr "Curaçao"
 msgid "Currency"
 msgstr ""
 
+msgid "Current"
+msgstr ""
+
 #, fuzzy
 msgid "Current Affairs"
 msgstr "Uudised sündmused"
@@ -6138,6 +6143,9 @@ msgid "Delete image"
 msgstr "Kustuta püsivara"
 
 msgid "Delete logfile"
+msgstr ""
+
+msgid "Delete or Wipe the highlighted image slot"
 msgstr ""
 
 msgid "Delete playlist entry"
@@ -7119,8 +7127,8 @@ msgstr ""
 msgid "Embedded"
 msgstr ""
 
-msgid "Empty slot"
-msgstr "Tühi pesa"
+msgid "Empty"
+msgstr ""
 
 msgid "Enable"
 msgstr "Luba"
@@ -7480,9 +7488,6 @@ msgstr "Sama kui"
 
 msgid "Equatorial Guinea"
 msgstr "Ekvatoriaal-Ginea"
-
-msgid "Erase"
-msgstr "Kustuta"
 
 msgid "Eritrea"
 msgstr "Eritrea"
@@ -8949,6 +8954,9 @@ msgstr "Kõvaketas"
 msgid "Harddisk Setup"
 msgstr "Kõvaketta seadistamine"
 
+msgid "Hardware MultiBoot device"
+msgstr ""
+
 msgid "Hardware information"
 msgstr ""
 
@@ -9530,6 +9538,9 @@ msgstr "Käsil"
 msgid "In the Standby Record on the LCD Display"
 msgstr "Ooteseisundis Rec-sümbol esipaneelil"
 
+msgid "Inaccessible"
+msgstr ""
+
 msgid "Inactive"
 msgstr "Väljas"
 
@@ -9860,6 +9871,14 @@ msgstr "Sisemine USB pesa"
 
 msgid "Internal flash"
 msgstr "Sisemälu"
+
+#, python-format
+msgid "Internal flash:  %s %s "
+msgstr ""
+
+#, python-format
+msgid "Internal flash: %s %s as USB Recovery"
+msgstr ""
 
 msgid "Internal hdd only"
 msgstr "Ainult sisesel kõvakettal"
@@ -10540,6 +10559,9 @@ msgstr "Sidumata lemmiknimekirjad kuvatakse"
 msgid "Load/Save/Delete"
 msgstr "Laadi/talleta/kustuta"
 
+msgid "Loading image slot information, please wait..."
+msgstr ""
+
 msgid "Loading information, please wait..."
 msgstr ""
 
@@ -11148,12 +11170,11 @@ msgstr "Režiim %s (%04o)"
 msgid "Mode 1"
 msgstr "Režiim 1"
 
-msgid ""
-"Mode 1 suppports Kodi, PiP may not work.\n"
-"Mode 12 supports PiP, Kodi may not work."
+msgid "Mode 12: Supports PiP but Kodi may not work"
 msgstr ""
-"Mood 1: Kodi töötab, PiP ei pruugi.\n"
-"Mood 12: PiP töötab, Kodi ei pruugi."
+
+msgid "Mode 1: Supports Kodi but PiP may not work"
+msgstr ""
 
 msgid "Mode 2"
 msgstr "Režiim 2"
@@ -11498,16 +11519,29 @@ msgstr "Mosambiik"
 msgid "Multi EPG"
 msgstr "Multi EPG"
 
+msgid "Multi-Boot Image Manager"
+msgstr ""
+
+msgid "Multi-Boot Manager Actions"
+msgstr ""
+
+msgid "MultiBoot"
+msgstr ""
+
 msgid "MultiBoot Image Manager"
 msgstr "Multibuut püsivara haldur"
 
-#, fuzzy
-msgid "MultiBoot Image Selector"
-msgstr "Multibuut püsivara valik"
+msgid "MultiBoot Information"
+msgstr ""
 
-#, fuzzy
-msgid "MultiBootSelector Actions"
-msgstr "Multibuut valik"
+msgid "MultiBoot Manager"
+msgstr ""
+
+msgid "MultiBoot boot mode"
+msgstr ""
+
+msgid "MultiBoot startup file"
+msgstr ""
 
 msgid "MultiEPG Settings"
 msgstr "MultiEPG seaded"
@@ -11518,15 +11552,9 @@ msgstr ""
 msgid "MultiTranscoding"
 msgstr ""
 
-msgid "Multiboot Image Selector"
-msgstr "Multibuut püsivara valik"
-
 #, python-format
 msgid "Multiboot Image created on: %s/%s-%s-%s-backup-%s_usb.zip"
 msgstr "Multibuut püsivara loodi: %s/%s-%s-%s-backup-%s_usb.zip"
-
-msgid "Multiboot Manager"
-msgstr "Multibuudi haldur"
 
 msgid "Multimedia"
 msgstr "Multimeedia"
@@ -12160,6 +12188,9 @@ msgstr "Tavaline"
 msgid "Normal - Standard image"
 msgstr ""
 
+msgid "Normal: No boot modes required."
+msgstr ""
+
 msgid "North"
 msgstr "Põhi"
 
@@ -12240,9 +12271,6 @@ msgstr "töös..."
 
 msgid "Not tested:"
 msgstr "Pole testitud:"
-
-msgid "Note: slot list does not show current image or empty slots."
-msgstr "Märkus: pesade loend ei näita aktiivset püsivara või tühje pesi."
 
 msgid "Nothing"
 msgstr "Mitte midagi"
@@ -13751,6 +13779,9 @@ msgstr ""
 msgid "Press OK to use this locale.  [%s]"
 msgstr ""
 
+msgid "Press the UP/DOWN buttons to select an image and press OK or GREEN to 'Reboot' to that image. If available, YELLOW will either 'Delete' or 'Wipe' the image. A 'Deleted' image can be 'Restored' with the BLUE button. A 'Wiped' image is completely removed can NOT be restored!"
+msgstr ""
+
 msgid "Press the menu button to set a general AC3/Dolby offset."
 msgstr "AC3/Dolby üldise helitaseme määramiseks vajuta 'MENU'"
 
@@ -14397,6 +14428,9 @@ msgstr "Salvestused omavad alati eelist"
 msgid "Records"
 msgstr "Salvestised"
 
+msgid "Recovery"
+msgstr ""
+
 msgid "Recovery Mode"
 msgstr "Taasterežiim"
 
@@ -14549,10 +14583,6 @@ msgstr ""
 msgid "Remote control type"
 msgstr "Puldi tüüp"
 
-#, python-format
-msgid "Removal of this slot will not show in %s Gui.  Are you sure you want to delete image slot %s ?"
-msgstr "Selle pesa eemaldamine ei paista %s kasutajaliideses. Kas eemaldada püsivara pesa %s?"
-
 msgid "Remove"
 msgstr "Eemalda"
 
@@ -14616,9 +14646,6 @@ msgstr "Eemalda järjehoidja"
 
 msgid "Remove completed timers after (days)"
 msgstr "Aegunud taimerite eemaldamine pärast (päeva)"
-
-msgid "Remove confirmation"
-msgstr "Eemaldamise kinnitamine"
 
 msgid "Remove current folder from bookmarks"
 msgstr "Eemalda praegune kataloog järjehoidjatest"
@@ -14850,6 +14877,9 @@ msgstr "Taasta seadistused varukoopiast"
 msgid "Restore system settings"
 msgstr "Seadistuste taastamine"
 
+msgid "Restore the highlighted image slot"
+msgstr ""
+
 msgid "Restore your settings back from a backup. After restore the box will restart to activated the new settings"
 msgstr "Taasta seadistused varukoopiast. Nende jõustamiseks vastuvõtja taaskäivitub"
 
@@ -14875,6 +14905,9 @@ msgstr "Taasesituse jätkamine"
 
 #, python-format
 msgid "Retrieving %s commit log, please wait..."
+msgstr ""
+
+msgid "Retrieving boot slot information..."
 msgstr ""
 
 msgid "Retrieving image list - Please wait..."
@@ -15064,6 +15097,10 @@ msgstr ""
 msgid "SD"
 msgstr "SD"
 
+#, python-format
+msgid "SDcard slot %s%s"
+msgstr ""
+
 msgid "SDcard switch ERROR! - H9 root files not transferred to SD card"
 msgstr "H9 SD kaardi vahetuse VIGA! - H9 juurfaile ei saadetud SD kaardile"
 
@@ -15098,9 +15135,6 @@ msgstr ""
 
 msgid "SSID:"
 msgstr "SSID:"
-
-msgid "STARTUP_"
-msgstr ""
 
 msgid "STB Display"
 msgstr "Esipaneeli näidik"
@@ -15954,9 +15988,6 @@ msgstr ""
 #, fuzzy
 msgid "Select/Zap to selected service"
 msgstr "Mine valitud kanalile"
-
-msgid "Selected Image"
-msgstr ""
 
 #, python-format
 msgid ""
@@ -17512,13 +17543,25 @@ msgstr "Liuglemine ülevalt alla"
 msgid "Slot %d"
 msgstr "Pesa %d"
 
-#, fuzzy, python-format
-msgid "Slot %s: %s - Mode %d%s"
-msgstr "pesa%s -%s- %s "
+#, python-format
+msgid "Slot %s: %s"
+msgstr ""
 
-#, fuzzy, python-format
-msgid "Slot %s: %s%s"
-msgstr "DiSEqC sisend %s: %s"
+#, python-format
+msgid "Slot %s: %s (Current image)"
+msgstr ""
+
+#, python-format
+msgid "Slot %s: %s as USB Recovery"
+msgstr ""
+
+#, python-format
+msgid "Slot '%s'"
+msgstr ""
+
+#, python-format
+msgid "Slot '%s': %s%s"
+msgstr ""
 
 msgid "Slovak"
 msgstr "Slovaki"
@@ -17586,9 +17629,6 @@ msgstr ""
 msgid "Socket"
 msgstr "Pesa"
 
-msgid "Soft MultiBoot"
-msgstr ""
-
 msgid "Softcam"
 msgstr "Emulaator"
 
@@ -17606,6 +17646,9 @@ msgstr "Tarkvara paneel"
 
 msgid "Software Manager Setup"
 msgstr "Tarkvarahalduri seaded"
+
+msgid "Software MultiBoot"
+msgstr ""
 
 msgid "Software Update"
 msgstr "Tarkvara uuendamine"
@@ -20513,12 +20556,6 @@ msgstr "Kasuta alternatiivset või tavapärast raadiovaadet."
 msgid "Use the alternative screen"
 msgstr "Kasuta alternatiivset vaadet"
 
-msgid "Use the cursor keys to select an installed image and then Erase button."
-msgstr "Kasuta kursorinuppe paigaldatud püsivara valikuks ja siis nuppu 'Kustuta'."
-
-msgid "Use the cursor keys to select an installed image and then Reboot button."
-msgstr "Kasuta paigaldatud püsivara valikuks noolenuppe ja siis nuppu 'Taaskäivitus'."
-
 msgid "Use the cursor keys to select an installed image and then Start button."
 msgstr "Kasuta kursorinuppe paigaldatud püsivara valikuks ja siis nuppu 'Käivita'."
 
@@ -21442,6 +21479,9 @@ msgstr "talisport"
 #, fuzzy
 msgid "Wintersport"
 msgstr "talisport"
+
+msgid "Wipe"
+msgstr ""
 
 msgid "Wireless LAN"
 msgstr "Traadita kohtvõrk"
@@ -22547,9 +22587,9 @@ msgstr ""
 msgid "eMMC"
 msgstr "eMMC"
 
-#, fuzzy, python-format
-msgid "eMMC slot %s"
-msgstr "CI pesa: "
+#, python-format
+msgid "eMMC slot %s%s"
+msgstr ""
 
 msgid "eSATA"
 msgstr "eSATA"
@@ -22891,14 +22931,6 @@ msgstr "Eemalda"
 #, fuzzy
 msgid "instant record"
 msgstr "Kohese salvestuse valikud"
-
-#, python-format
-msgid "internal flash:  %s %s "
-msgstr "sisemälu:  %s %s "
-
-#, python-format
-msgid "internal flash: %s %s as USB Recovery"
-msgstr "sisemälu: %s - %s USB varukoopiana"
 
 # NimManager.py
 msgid "internally loopthrough to"
@@ -23548,16 +23580,8 @@ msgid "slot%s - %s"
 msgstr "pesa%s - %s"
 
 #, python-format
-msgid "slot%s - %s "
-msgstr "pesa%s - %s "
-
-#, python-format
 msgid "slot%s - %s (current image)"
 msgstr "pesa%s - %s (aktiivne püsivara)"
-
-#, fuzzy, python-format
-msgid "slot%s - %s as USB Recovery"
-msgstr "pesat%s -%s - %s USB varukoopiana"
 
 msgid "slow"
 msgstr "Aeglane"
@@ -23904,6 +23928,84 @@ msgstr "Kanalivahetus"
 
 msgid "®"
 msgstr ""
+
+#~ msgid "(current image)"
+#~ msgstr "(praegune püsivara)"
+
+#, python-format
+#~ msgid "Are you sure you want to delete image slot %s ?"
+#~ msgstr "Kas kustutada püsivara pesa %s?"
+
+#~ msgid "Empty slot"
+#~ msgstr "Tühi pesa"
+
+#~ msgid "Erase"
+#~ msgstr "Kustuta"
+
+#~ msgid ""
+#~ "Mode 1 suppports Kodi, PiP may not work.\n"
+#~ "Mode 12 supports PiP, Kodi may not work."
+#~ msgstr ""
+#~ "Mood 1: Kodi töötab, PiP ei pruugi.\n"
+#~ "Mood 12: PiP töötab, Kodi ei pruugi."
+
+#, fuzzy
+#~ msgid "MultiBoot Image Selector"
+#~ msgstr "Multibuut püsivara valik"
+
+#, fuzzy
+#~ msgid "MultiBootSelector Actions"
+#~ msgstr "Multibuut valik"
+
+#~ msgid "Multiboot Image Selector"
+#~ msgstr "Multibuut püsivara valik"
+
+#~ msgid "Multiboot Manager"
+#~ msgstr "Multibuudi haldur"
+
+#~ msgid "Note: slot list does not show current image or empty slots."
+#~ msgstr "Märkus: pesade loend ei näita aktiivset püsivara või tühje pesi."
+
+#, python-format
+#~ msgid "Removal of this slot will not show in %s Gui.  Are you sure you want to delete image slot %s ?"
+#~ msgstr "Selle pesa eemaldamine ei paista %s kasutajaliideses. Kas eemaldada püsivara pesa %s?"
+
+#~ msgid "Remove confirmation"
+#~ msgstr "Eemaldamise kinnitamine"
+
+#, fuzzy, python-format
+#~ msgid "Slot %s: %s - Mode %d%s"
+#~ msgstr "pesa%s -%s- %s "
+
+#, fuzzy, python-format
+#~ msgid "Slot %s: %s%s"
+#~ msgstr "DiSEqC sisend %s: %s"
+
+#~ msgid "Use the cursor keys to select an installed image and then Erase button."
+#~ msgstr "Kasuta kursorinuppe paigaldatud püsivara valikuks ja siis nuppu 'Kustuta'."
+
+#~ msgid "Use the cursor keys to select an installed image and then Reboot button."
+#~ msgstr "Kasuta paigaldatud püsivara valikuks noolenuppe ja siis nuppu 'Taaskäivitus'."
+
+#, fuzzy, python-format
+#~ msgid "eMMC slot %s"
+#~ msgstr "CI pesa: "
+
+#, python-format
+#~ msgid "internal flash:  %s %s "
+#~ msgstr "sisemälu:  %s %s "
+
+#, python-format
+#~ msgid "internal flash: %s %s as USB Recovery"
+#~ msgstr "sisemälu: %s - %s USB varukoopiana"
+
+#, python-format
+#~ msgid "slot%s - %s "
+#~ msgstr "pesa%s - %s "
+
+#, fuzzy, python-format
+#~ msgid "slot%s - %s as USB Recovery"
+#~ msgstr "pesat%s -%s - %s USB varukoopiana"
 
 #~ msgid "Changelog"
 #~ msgstr "Muudatused"

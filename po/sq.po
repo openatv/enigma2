@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-04-10 10:23+0000\n"
+"POT-Creation-Date: 2022-04-13 15:07+0000\n"
 "PO-Revision-Date: 2021-12-28 18:02+0000\n"
 "Last-Translator: BliNeR-KeY <blinerg@gmail.com>\n"
 "Language-Team: Albanian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/sq/>\n"
@@ -315,10 +315,6 @@ msgstr ""
 " e mundshme !!\n"
 "\n"
 "A dëshironi ta instaloni listën e re të kanaleve?"
-
-#, python-format
-msgid " bootmode = %s"
-msgstr " bootmode = %s"
 
 msgid " of "
 msgstr " e "
@@ -1448,9 +1444,6 @@ msgid "(Selectmode)"
 msgstr ""
 
 msgid "(Show only reader:"
-msgstr ""
-
-msgid "(current image)"
 msgstr ""
 
 msgid "(empty)"
@@ -2756,6 +2749,12 @@ msgstr ""
 msgid "Andorra"
 msgstr ""
 
+msgid "Android"
+msgstr ""
+
+msgid "Android Linux SE"
+msgstr ""
+
 msgid "Angola"
 msgstr ""
 
@@ -2842,11 +2841,10 @@ msgstr ""
 msgid "Are you sure you want to delete all selected logs:\n"
 msgstr ""
 
-#, python-format
-msgid "Are you sure you want to delete image slot %s ?"
+msgid "Are you sure you want to delete the EPG data from:\n"
 msgstr ""
 
-msgid "Are you sure you want to delete the EPG data from:\n"
+msgid "Are you sure you want to delete this image?"
 msgstr ""
 
 msgid "Are you sure you want to delete this log:\n"
@@ -3532,6 +3530,10 @@ msgid "Boot ID"
 msgstr ""
 
 msgid "Boot information"
+msgstr ""
+
+#, python-format
+msgid "Boot slot information for %s %s"
 msgstr ""
 
 msgid "Boot time"
@@ -5356,6 +5358,9 @@ msgstr ""
 msgid "Currency"
 msgstr ""
 
+msgid "Current"
+msgstr ""
+
 msgid "Current Affairs"
 msgstr ""
 
@@ -5955,6 +5960,9 @@ msgid "Delete image"
 msgstr ""
 
 msgid "Delete logfile"
+msgstr ""
+
+msgid "Delete or Wipe the highlighted image slot"
 msgstr ""
 
 msgid "Delete playlist entry"
@@ -6867,7 +6875,7 @@ msgstr ""
 msgid "Embedded"
 msgstr ""
 
-msgid "Empty slot"
+msgid "Empty"
 msgstr ""
 
 msgid "Enable"
@@ -7210,9 +7218,6 @@ msgid "Equal to"
 msgstr ""
 
 msgid "Equatorial Guinea"
-msgstr ""
-
-msgid "Erase"
 msgstr ""
 
 msgid "Eritrea"
@@ -8592,6 +8597,9 @@ msgstr ""
 msgid "Harddisk Setup"
 msgstr ""
 
+msgid "Hardware MultiBoot device"
+msgstr ""
+
 msgid "Hardware information"
 msgstr ""
 
@@ -9141,6 +9149,9 @@ msgstr ""
 msgid "In the Standby Record on the LCD Display"
 msgstr ""
 
+msgid "Inaccessible"
+msgstr ""
+
 msgid "Inactive"
 msgstr ""
 
@@ -9454,6 +9465,14 @@ msgid "Internal USB"
 msgstr ""
 
 msgid "Internal flash"
+msgstr ""
+
+#, python-format
+msgid "Internal flash:  %s %s "
+msgstr ""
+
+#, python-format
+msgid "Internal flash: %s %s as USB Recovery"
 msgstr ""
 
 msgid "Internal hdd only"
@@ -10108,6 +10127,9 @@ msgstr ""
 msgid "Load/Save/Delete"
 msgstr ""
 
+msgid "Loading image slot information, please wait..."
+msgstr ""
+
 msgid "Loading information, please wait..."
 msgstr ""
 
@@ -10669,9 +10691,10 @@ msgstr ""
 msgid "Mode 1"
 msgstr ""
 
-msgid ""
-"Mode 1 suppports Kodi, PiP may not work.\n"
-"Mode 12 supports PiP, Kodi may not work."
+msgid "Mode 12: Supports PiP but Kodi may not work"
+msgstr ""
+
+msgid "Mode 1: Supports Kodi but PiP may not work"
 msgstr ""
 
 msgid "Mode 2"
@@ -10992,13 +11015,28 @@ msgstr ""
 msgid "Multi EPG"
 msgstr ""
 
+msgid "Multi-Boot Image Manager"
+msgstr ""
+
+msgid "Multi-Boot Manager Actions"
+msgstr ""
+
+msgid "MultiBoot"
+msgstr ""
+
 msgid "MultiBoot Image Manager"
 msgstr ""
 
-msgid "MultiBoot Image Selector"
+msgid "MultiBoot Information"
 msgstr ""
 
-msgid "MultiBootSelector Actions"
+msgid "MultiBoot Manager"
+msgstr ""
+
+msgid "MultiBoot boot mode"
+msgstr ""
+
+msgid "MultiBoot startup file"
 msgstr ""
 
 msgid "MultiEPG Settings"
@@ -11010,14 +11048,8 @@ msgstr ""
 msgid "MultiTranscoding"
 msgstr ""
 
-msgid "Multiboot Image Selector"
-msgstr ""
-
 #, python-format
 msgid "Multiboot Image created on: %s/%s-%s-%s-backup-%s_usb.zip"
-msgstr ""
-
-msgid "Multiboot Manager"
 msgstr ""
 
 msgid "Multimedia"
@@ -11596,6 +11628,9 @@ msgstr ""
 msgid "Normal - Standard image"
 msgstr ""
 
+msgid "Normal: No boot modes required."
+msgstr ""
+
 msgid "North"
 msgstr ""
 
@@ -11664,9 +11699,6 @@ msgid "Not running"
 msgstr ""
 
 msgid "Not tested:"
-msgstr ""
-
-msgid "Note: slot list does not show current image or empty slots."
 msgstr ""
 
 msgid "Nothing"
@@ -13065,6 +13097,9 @@ msgstr ""
 msgid "Press OK to use this locale.  [%s]"
 msgstr ""
 
+msgid "Press the UP/DOWN buttons to select an image and press OK or GREEN to 'Reboot' to that image. If available, YELLOW will either 'Delete' or 'Wipe' the image. A 'Deleted' image can be 'Restored' with the BLUE button. A 'Wiped' image is completely removed can NOT be restored!"
+msgstr ""
+
 msgid "Press the menu button to set a general AC3/Dolby offset."
 msgstr ""
 
@@ -13675,6 +13710,9 @@ msgstr ""
 msgid "Records"
 msgstr ""
 
+msgid "Recovery"
+msgstr ""
+
 msgid "Recovery Mode"
 msgstr ""
 
@@ -13817,10 +13855,6 @@ msgstr ""
 msgid "Remote control type"
 msgstr ""
 
-#, python-format
-msgid "Removal of this slot will not show in %s Gui.  Are you sure you want to delete image slot %s ?"
-msgstr ""
-
 msgid "Remove"
 msgstr ""
 
@@ -13882,9 +13916,6 @@ msgid "Remove bookmark"
 msgstr ""
 
 msgid "Remove completed timers after (days)"
-msgstr ""
-
-msgid "Remove confirmation"
 msgstr ""
 
 msgid "Remove current folder from bookmarks"
@@ -14112,6 +14143,9 @@ msgstr ""
 msgid "Restore system settings"
 msgstr ""
 
+msgid "Restore the highlighted image slot"
+msgstr ""
+
 msgid "Restore your settings back from a backup. After restore the box will restart to activated the new settings"
 msgstr ""
 
@@ -14136,6 +14170,9 @@ msgstr ""
 
 #, python-format
 msgid "Retrieving %s commit log, please wait..."
+msgstr ""
+
+msgid "Retrieving boot slot information..."
 msgstr ""
 
 msgid "Retrieving image list - Please wait..."
@@ -14316,6 +14353,10 @@ msgstr ""
 msgid "SD"
 msgstr ""
 
+#, python-format
+msgid "SDcard slot %s%s"
+msgstr ""
+
 msgid "SDcard switch ERROR! - H9 root files not transferred to SD card"
 msgstr ""
 
@@ -14347,9 +14388,6 @@ msgid "SSID"
 msgstr ""
 
 msgid "SSID:"
-msgstr ""
-
-msgid "STARTUP_"
 msgstr ""
 
 msgid "STB Display"
@@ -15170,9 +15208,6 @@ msgid "Select, toggle, process or edit the current entry"
 msgstr ""
 
 msgid "Select/Zap to selected service"
-msgstr ""
-
-msgid "Selected Image"
 msgstr ""
 
 #, python-format
@@ -16646,11 +16681,23 @@ msgid "Slot %d"
 msgstr ""
 
 #, python-format
-msgid "Slot %s: %s - Mode %d%s"
+msgid "Slot %s: %s"
 msgstr ""
 
 #, python-format
-msgid "Slot %s: %s%s"
+msgid "Slot %s: %s (Current image)"
+msgstr ""
+
+#, python-format
+msgid "Slot %s: %s as USB Recovery"
+msgstr ""
+
+#, python-format
+msgid "Slot '%s'"
+msgstr ""
+
+#, python-format
+msgid "Slot '%s': %s%s"
 msgstr ""
 
 msgid "Slovak"
@@ -16716,9 +16763,6 @@ msgstr ""
 msgid "Socket"
 msgstr ""
 
-msgid "Soft MultiBoot"
-msgstr ""
-
 msgid "Softcam"
 msgstr ""
 
@@ -16735,6 +16779,9 @@ msgid "Software Manager"
 msgstr ""
 
 msgid "Software Manager Setup"
+msgstr ""
+
+msgid "Software MultiBoot"
 msgstr ""
 
 msgid "Software Update"
@@ -19429,12 +19476,6 @@ msgstr ""
 msgid "Use the alternative screen"
 msgstr ""
 
-msgid "Use the cursor keys to select an installed image and then Erase button."
-msgstr ""
-
-msgid "Use the cursor keys to select an installed image and then Reboot button."
-msgstr ""
-
 msgid "Use the cursor keys to select an installed image and then Start button."
 msgstr ""
 
@@ -20289,6 +20330,9 @@ msgid "Winter Sports"
 msgstr ""
 
 msgid "Wintersport"
+msgstr ""
+
+msgid "Wipe"
 msgstr ""
 
 msgid "Wireless LAN"
@@ -21303,7 +21347,7 @@ msgid "eMMC"
 msgstr ""
 
 #, python-format
-msgid "eMMC slot %s"
+msgid "eMMC slot %s%s"
 msgstr ""
 
 msgid "eSATA"
@@ -21633,14 +21677,6 @@ msgid "installed"
 msgstr ""
 
 msgid "instant record"
-msgstr ""
-
-#, python-format
-msgid "internal flash:  %s %s "
-msgstr ""
-
-#, python-format
-msgid "internal flash: %s %s as USB Recovery"
 msgstr ""
 
 msgid "internally loopthrough to"
@@ -22271,15 +22307,7 @@ msgid "slot%s - %s"
 msgstr ""
 
 #, python-format
-msgid "slot%s - %s "
-msgstr ""
-
-#, python-format
 msgid "slot%s - %s (current image)"
-msgstr ""
-
-#, python-format
-msgid "slot%s - %s as USB Recovery"
 msgstr ""
 
 msgid "slow"
@@ -22618,6 +22646,10 @@ msgstr ""
 
 msgid "®"
 msgstr "®"
+
+#, python-format
+#~ msgid " bootmode = %s"
+#~ msgstr " bootmode = %s"
 
 #~ msgid "12, show latin-1 characters except for greek and cyrillic, switch to 8 if needed."
 #~ msgstr "12, tregoni karaktere latine-1, përveç greqishtes dhe cirilikës, kaloni në 8 nëse është e nevojshme."
