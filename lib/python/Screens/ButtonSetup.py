@@ -240,7 +240,7 @@ def getButtonSetupFunctions():
 	if BoxInfo.getItem("LcdLiveTV"):
 		ButtonSetupFunctions.append((_("Toggle LCD LiveTV"), "Infobar/ToggleLCDLiveTV", "InfoBar"))
 	if BoxInfo.getItem("canMultiBoot"):
-		ButtonSetupFunctions.append((_("Multiboot Image Selector"), "Module/Screens.MultiBootSelector/MultiBootSelector", "InfoBar"))
+		ButtonSetupFunctions.append((_("MultiBoot Image Manager"), "Module/Screens.MultiBootManager/MultiBootManager", "InfoBar"))
 	ButtonSetupFunctions.append((_("Hotkey Setup"), "Module/Screens.ButtonSetup/ButtonSetup", "Setup"))
 	ButtonSetupFunctions.append((_("Software Update"), "Module/Screens.SoftwareUpdate/SoftwareUpdate", "Setup"))
 	if getHaveCI() == 'True':
@@ -308,7 +308,7 @@ class ButtonSetup(Screen):
 		self.ButtonSetupKeys = getButtonSetupKeys()
 		self.ButtonSetupFunctions = getButtonSetupFunctions()
 		for x in self.ButtonSetupKeys:
-			self.list.append(ChoiceEntryComponent('', (_(x[0]), x[1])))
+			self.list.append(ChoiceEntryComponent('dummy', (_(x[0]), x[1])))
 		self["list"] = ChoiceList(list=self.list[:config.misc.ButtonSetup.additional_keys.value and len(self.ButtonSetupKeys) or 10], selection=0)
 		self["choosen"] = ChoiceList(list=[])
 		self.getFunctions()
@@ -361,7 +361,7 @@ class ButtonSetup(Screen):
 			for x in eval("config.misc.ButtonSetup." + key + ".value.split(',')"):
 				function = list(function for function in self.ButtonSetupFunctions if function[1] == x)
 				if function:
-					selected.append(ChoiceEntryComponent('', ((function[0][0]), function[0][1])))
+					selected.append(ChoiceEntryComponent('dummy', ((function[0][0]), function[0][1])))
 			self["choosen"].setList(selected)
 
 
@@ -382,7 +382,7 @@ class ButtonSetupSelect(Screen):
 		for x in self.config.value.split(','):
 			function = list(function for function in self.ButtonSetupFunctions if function[1] == x)
 			if function:
-				self.selected.append(ChoiceEntryComponent('', ((function[0][0]), function[0][1])))
+				self.selected.append(ChoiceEntryComponent('dummy', ((function[0][0]), function[0][1])))
 		self.prevselected = self.selected[:]
 		self["choosen"] = ChoiceList(list=self.selected, selection=0)
 		self["list"] = ChoiceList(list=self.getFunctionList(), selection=0)

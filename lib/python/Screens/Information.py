@@ -41,19 +41,21 @@ from Screens.Screen import Screen, ScreenSummary
 from Tools.Directories import SCOPE_GUISKIN, fileReadLine, fileReadLines, fileWriteLine, resolveFilename
 from Tools.Geolocation import geolocation
 from Tools.LoadPixmap import LoadPixmap
-from Tools.Multiboot import GetCurrentImage, GetCurrentImageMode
+from Tools.MultiBoot import MultiBoot
 from Tools.StbHardware import getFPVersion, getBoxProc, getHWSerial, getBoxRCType, getBoxProcType
 
 MODULE_NAME = __name__.split(".")[-1]
 
-INFO_COLORS = ["N", "H", "P", "V", "M"]
+INFO_COLORS = ["N", "H", "S", "P", "V", "M", "F"]
 INFO_COLOR = {
 	"B": None,
 	"N": 0x00ffffff,  # Normal.
 	"H": 0x00ffffff,  # Headings.
+	"S": 0x00ffffff,  # Subheadings.
 	"P": 0x00cccccc,  # Prompts.
 	"V": 0x00cccccc,  # Values.
-	"M": 0x00ffff00  # Messages.
+	"M": 0x00ffff00,  # Messages.
+	"F": 0x0000ffff  # Features.
 }
 
 USECOMMA = "," in format_string("%.1f", 1)
@@ -178,7 +180,7 @@ class InformationBase(Screen, HelpableScreen):
 		#	self["infoActions"] = HelpableActionMap(self, ["InfoActions"], {
 		#		"info": (self.showReceiverImage, _("Show receiver image(s)"))
 		#	}, prio=0, description=_("Receiver Information Actions"))
-		colors = parameters.get("InformationColors", (0x00ffffff, 0x00ffffff, 0x00cccccc, 0x00cccccc, 0x00ffff00))
+		colors = parameters.get("InformationColors", (0x00ffffff, 0x00ffffff, 0x00ffffff, 0x00cccccc, 0x00cccccc, 0x00ffff00, 0x0000ffff))
 		if len(colors) == len(INFO_COLORS):
 			for index in range(len(colors)):
 				INFO_COLOR[INFO_COLORS[index]] = colors[index]
@@ -542,20 +544,19 @@ class ImageInformation(InformationBase):
 		info.append(formatLine("P1", _("Distribution revision"), convertDate(BoxInfo.getItem("imgrevision"))))
 		info.append(formatLine("P1", _("Distribution language"), BoxInfo.getItem("imglanguage")))
 		info.append(formatLine("P1", _("OEM Model"), getMachineBuild()))
-		info.append(formatLine("P1", _("Soft MultiBoot"), _("Yes") if BoxInfo.getItem("multiboot", False) else _("No")))
-		if BoxInfo.getItem("canMultiBoot"):
-			slot = image = GetCurrentImage()
-			bootmode = ""
-			part = _("eMMC slot %s") % slot
-			if BoxInfo.getItem("canMode12"):
-				bootmode = _(" bootmode = %s") % GetCurrentImageMode()
-			if BoxInfo.getItem("HasHiSi") and "sda" in BoxInfo.getItem("canMultiBoot")[slot]['device']:
-				if slot > 4:
-					image -= 4
-				else:
-					image -= 1
-				part = "SDcard slot %s (%s) " % (image, BoxInfo.getItem("canMultiBoot")[slot]['device'])
-			info.append(formatLine("P1", _("Selected Image"), "%s%s (%s%s)" % (_("STARTUP_"), str(slot), part, bootmode)))
+		slotCode, bootCode = MultiBoot.getCurrentSlotAndBootCodes()
+		device = MultiBoot.getBootDevice()
+		if BoxInfo.getItem("HasHiSi") and "sda" in device:
+			slotCode = int(slotCode)
+			image = slotCode - 4 if slotCode > 4 else slotCode - 1
+			device = _("SDcard slot %s%s") % (image, "  -  %s" % device if device else "")
+		else:
+			device = _("eMMC slot %s%s") % (slotCode, "  -  %s" % device if device else "")
+		info.append(formatLine("P1", _("Hardware MultiBoot device"), device))
+		info.append(formatLine("P1", _("MultiBoot startup file"), MultiBoot.getStartupFile()))
+		if bootCode:
+			info.append(formatLine("P1", _("MultiBoot boot mode"), MultiBoot.getBootCodeDescription(bootCode)))
+		info.append(formatLine("P1", _("Software MultiBoot"), _("Yes") if BoxInfo.getItem("multiboot", False) else _("No")))
 		info.append(formatLine("P1", _("Flash type"), about.getFlashType()))
 		xResolution = getDesktop(0).size().width()
 		yResolution = getDesktop(0).size().height()
@@ -684,6 +685,70 @@ class MemoryInformation(InformationBase):
 
 	def getSummaryInformation(self):
 		return "Memory Information Data"
+
+
+class MultiBootInformation(InformationBase):
+	def __init__(self, session):
+		InformationBase.__init__(self, session)
+		self.setTitle(_("MultiBoot Information"))
+		self.skinName.insert(0, "MultiBootInformation")
+		self.slotImages = None
+
+	def fetchInformation(self):
+		self.informationTimer.stop()
+		MultiBoot.getSlotImageList(self.gotInformation)
+
+	def gotInformation(self, slotImages):
+		self.slotImages = slotImages
+		for callback in self.onInformationUpdated:
+			callback()
+
+	def refreshInformation(self):
+		self.slotImages = None
+		MultiBoot.loadMultiBoot()
+		self.informationTimer.start(25)
+		for callback in self.onInformationUpdated:
+			callback()
+
+	def displayInformation(self):
+		info = []
+		info.append(formatLine("H", _("Boot slot information for %s %s") % (BoxInfo.getItem("displaybrand"), BoxInfo.getItem("displaymodel"))))
+		info.append("")
+		if self.slotImages:
+			slotCode, bootCode = MultiBoot.getCurrentSlotAndBootCodes()
+			slotImageList = sorted(self.slotImages.keys())
+			currentMsg = "  -  %s" % _("Current")
+			imageLists = {}
+			for slot in slotImageList:
+				for boot in self.slotImages[slot]["bootCodes"]:
+					if imageLists.get(boot) is None:
+						imageLists[boot] = []
+					current = currentMsg if boot == bootCode and slot == slotCode else ""
+					indent = "P0V0" if boot == "" else "P1V0"
+					if current:
+						indent = indent.replace("P", "F").replace("V", "F")
+					imageLists[boot].append(formatLine(indent, _("Slot '%s'") % slot, "%s%s" % (self.slotImages[slot]["imagename"], current)))
+			count = 0
+			for bootCode in sorted(imageLists.keys()):
+				if bootCode == "":
+					continue
+				if count:
+					info.append("")
+				info.append(formatLine("S", MultiBoot.getBootCodeDescription(bootCode), None))
+				if self.extraSpacing:
+					info.append("")
+				info.extend(imageLists[bootCode])
+				count += 1
+			if count:
+				info.append("")
+			if "" in imageLists:
+				info.extend(imageLists[""])
+		else:
+			info.append(formatLine("P1", _("Retrieving boot slot information...")))
+		self["information"].setText("\n".join(info))
+
+	def getSummaryInformation(self):
+		return "MultiBoot Information Data"
 
 
 class NetworkInformation(InformationBase):

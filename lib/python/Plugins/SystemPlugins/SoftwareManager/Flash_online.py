@@ -1,4 +1,3 @@
-from __future__ import print_function
 from Components.config import config
 from Components.Label import Label
 from Components.ActionMap import ActionMap
@@ -10,10 +9,10 @@ from Components.ProgressBar import ProgressBar
 from Screens.MessageBox import MessageBox
 from Screens.ChoiceBox import ChoiceBox
 from Screens.Screen import Screen
-from Screens.MultiBootSelector import MultiBootSelector
+from Screens.MultiBootManager import MultiBootManager
 from Components.Console import Console
 from Tools.BoundFunction import boundFunction
-from Tools.Multiboot import GetImagelist, GetCurrentImage, GetCurrentImageMode, GetBoxName
+from Tools.MultiBoot import MultiBoot
 from enigma import eTimer, fbClass
 import os
 import json
@@ -25,10 +24,47 @@ import shutil
 from six.moves.urllib.request import urlopen
 
 
-from boxbranding import getImageDistro, getMachineBuild, getMachineBrand, getMachineName, getMachineMtdRoot, getMachineMtdKernel
+# from boxbranding import getImageDistro, getMachineBuild, getMachineBrand, getMachineName, getMachineMtdRoot, getMachineMtdKernel
+from boxbranding import getBoxType, getImageDistro, getMachineBuild, getMachineBrand, getMachineName, getMachineMtdRoot, getMachineMtdKernel
 
 feedserver = 'images.mynonpublic.com'
 feedurl = 'http://%s/%s/json' % (feedserver, getImageDistro())
+
+
+def GetBoxName():
+	box = getBoxType()
+	machinename = getMachineName()
+	if box in ('uniboxhd1', 'uniboxhd2', 'uniboxhd3'):
+		box = "ventonhdx"
+	elif box == 'odinm6':
+		box = getMachineName().lower()
+	elif box == "inihde" and machinename.lower() == "xpeedlx":
+		box = "xpeedlx"
+	elif box in ('xpeedlx1', 'xpeedlx2'):
+		box = "xpeedlx"
+	elif box == "inihde" and machinename.lower() == "hd-1000":
+		box = "sezam-1000hd"
+	elif box == "ventonhdx" and machinename.lower() == "hd-5000":
+		box = "sezam-5000hd"
+	elif box == "ventonhdx" and machinename.lower() == "premium twin":
+		box = "miraclebox-twin"
+	elif box == "xp1000" and machinename.lower() == "sf8 hd":
+		box = "sf8"
+	elif box.startswith('et') and not box in ('et8000', 'et8500', 'et8500s', 'et10000'):
+		box = box[0:3] + 'x00'
+	elif box == 'odinm9':
+		box = 'maram9'
+	elif box.startswith('sf8008m'):
+		box = "sf8008m"
+	elif box.startswith('sf8008opt'):
+		box = "sf8008opt"
+	elif box.startswith('sf8008'):
+		box = "sf8008"
+	elif box.startswith('ustym4kpro'):
+		box = "ustym4kpro"
+	elif box.startswith('twinboxlcdci'):
+		box = "twinboxlcd"
+	return box
 
 
 def checkimagefiles(files):
@@ -234,19 +270,22 @@ class FlashImage(Screen):
 
 	def confirmation(self):
 		self.message = _("Do you want to flash image\n%s") % self.imagename
-		if BoxInfo.getItem("canMultiBoot"):
-			self.getImageList = GetImagelist(self.getImagelistCallback)
+		if MultiBoot.canMultiBoot():
+			self.getImageList = MultiBoot.getSlotImageList(self.getImagelistCallback)
 		else:
 			self.checkMedia(True)
 
 	def getImagelistCallback(self, imagedict):
 		self.getImageList = None
 		choices = []
-		HIslot = len(imagedict) + 1
-		currentimageslot = GetCurrentImage()
-		print("[FlashOnline] Current Image Slot %s, Imagelist %s" % (currentimageslot, imagedict))
-		for x in list(range(1, HIslot)):
-			choices.append(((_("slot%s - %s (current image)") if x == currentimageslot else _("slot%s - %s")) % (x, imagedict[x]['imagename']), (x, True)))
+		for item in imagedict.copy():
+			if not item.isdecimal():
+				imagedict.pop(item)
+		currentimageslot = int(MultiBoot.getCurrentSlotCode())
+		print("[FlashOnline] Current image slot %s." % currentimageslot)
+		for slotCode in imagedict.keys():
+			print("[FlashOnline] Image Slot %s: %s" % (slotCode, str(imagedict)))
+			choices.append(((_("slot%s - %s (current image)") if slotCode == currentimageslot else _("slot%s - %s")) % (slotCode, imagedict[slotCode]['imagename']), (slotCode, True)))
 		choices.append((_("No, do not flash an image"), False))
 		self.session.openWithCallback(self.checkMedia, MessageBox, self.message, list=choices, default=currentimageslot, simple=True)
 
@@ -259,7 +298,7 @@ class FlashImage(Screen):
 	def checkMedia(self, retval):
 		if retval:
 			if not 'backup' in str(retval):
-				if BoxInfo.getItem("canMultiBoot"):
+				if MultiBoot.canMultiBoot():
 					self.multibootslot = retval[0]
 				self.session.openWithCallback(self.backupQuestionCB, MessageBox, _('Backup Settings') + '?', default=True, timeout=10)
 				return
@@ -516,11 +555,15 @@ class FlashImage(Screen):
 		imagefiles = findimagefiles(self.unzippedimage)
 		if imagefiles:
 			self.ROOTFSSUBDIR = "none"
-			if BoxInfo.getItem("canMultiBoot"):
-				self.MTDKERNEL = BoxInfo.getItem("canMultiBoot")[self.multibootslot]["kernel"].split('/')[2]
-				self.MTDROOTFS = BoxInfo.getItem("canMultiBoot")[self.multibootslot]["device"].split('/')[2]
-				if BoxInfo.getItem("HasRootSubdir"):
-					self.ROOTFSSUBDIR = BoxInfo.getItem("canMultiBoot")[self.multibootslot]['rootsubdir']
+			bootSlots = MultiBoot.getBootSlots()
+			if bootSlots:
+				self.MTDKERNEL = bootSlots[self.multibootslot]["kernel"].split('/')[2]
+				if bootSlots[self.multibootslot].get("ubi"):
+					self.MTDROOTFS = bootSlots[self.multibootslot]["device"]
+				else:
+					self.MTDROOTFS = bootSlots[self.multibootslot]["device"].split('/')[2]
+				if MultiBoot.hasRootSubdir():
+					self.ROOTFSSUBDIR = bootSlots[self.multibootslot]["rootsubdir"]
 			else:
 				self.MTDKERNEL = getMachineMtdKernel()
 				self.MTDROOTFS = getMachineMtdRoot()
@@ -530,7 +573,7 @@ class FlashImage(Screen):
 				CMD = "/usr/bin/ofgwrite -r '%s'" % imagefiles
 			else:
 				CMD = "/usr/bin/ofgwrite -r -k '%s'" % imagefiles	#normal non multiboot receiver
-			if BoxInfo.getItem("canMultiBoot"):
+			if MultiBoot.canMultiBoot():
 				if (self.ROOTFSSUBDIR) is None:	# receiver with SD card multiboot
 					CMD = "/usr/bin/ofgwrite -r%s -k%s -m0 '%s'" % (self.MTDROOTFS, self.MTDKERNEL, imagefiles)
 				else:
@@ -561,8 +604,8 @@ class FlashImage(Screen):
 	def ok(self):
 		fbClass.getInstance().unlock()
 		if self["header"].text == _("Flashing image successful"):
-			if BoxInfo.getItem("canMultiBoot"):
-				self.session.openWithCallback(self.abort, MultiBootSelector)
+			if MultiBoot.canMultiBoot():
+				self.session.openWithCallback(self.abort, MultiBootManager)
 			else:
 				self.close()
 		else:
