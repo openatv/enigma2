@@ -8,6 +8,7 @@ from boxbranding import getBrandOEM, getDisplayType, getHaveAVJACK, getHaveDVI, 
 from enigma import Misc_Options, eDVBCIInterfaces, eDVBResourceManager, eGetEnigmaDebugLvl
 
 from Tools.Directories import SCOPE_LIBDIR, SCOPE_SKINS, isPluginInstalled, fileCheck, fileReadLine, fileReadLines, resolveFilename, fileExists, fileHas, fileReadLine, pathExists
+from Tools.MultiBoot import MultiBoot
 
 MODULE_NAME = __name__.split(".")[-1]
 
@@ -160,12 +161,10 @@ class BoxInformation:  # To maintain data integrity class variables should not b
 
 BoxInfo = BoxInformation()
 
-from Tools.Multiboot import getMBbootdevice, getMultibootslots  # This import needs to be here to avoid a SystemInfo load loop!
-
-
 # Parse the boot commandline.
 cmdline = fileReadLine("/proc/cmdline", source=MODULE_NAME)
 cmdline = {k: v.strip('"') for k, v in findall(r'(\S+)=(".*?"|\S+)', cmdline)}
+
 
 def getNumVideoDecoders():
 	numVideoDecoders = 0
@@ -266,9 +265,6 @@ BoxInfo.setItem("RemoteRepeat", repeat)
 BoxInfo.setItem("RemoteDelay", 200 if repeat == 400 else 700)
 BoxInfo.setItem("HDMI-PreEmphasis", fileExists("/proc/stb/hdmi/preemphasis"))
 
-SystemInfo["HasRootSubdir"] = False	# This needs to be here so it can be reset by getMultibootslots!
-SystemInfo["RecoveryMode"] = False or fileCheck("/proc/stb/fp/boot_mode")	# This needs to be here so it can be reset by getMultibootslots!
-
 SystemInfo["OSDAnimation"] = fileCheck("/proc/stb/fb/animation_mode")
 SystemInfo["NumVideoDecoders"] = getNumVideoDecoders()
 SystemInfo["PIPAvailable"] = SystemInfo["NumVideoDecoders"] > 1
@@ -348,13 +344,9 @@ SystemInfo["HAVEHDMI"] = getHaveHDMI() == "True"
 SystemInfo["HasMMC"] = fileHas("/proc/cmdline", "root=/dev/mmcblk") or "mmcblk" in getMachineMtdRoot()
 SystemInfo["CanProc"] = SystemInfo["HasMMC"] and getBrandOEM() != "vuplus"
 SystemInfo["HasHiSi"] = pathExists("/proc/hisi")
-SystemInfo["MBbootdevice"] = getMBbootdevice()
-SystemInfo["canMultiBoot"] = getMultibootslots()
-SystemInfo["canDualBoot"] = fileExists("/dev/block/by-name/flag")
-SystemInfo["canMode12"] = getMachineBuild() in ("hd51", "vs1500", "h7") and ("brcm_cma=440M@328M brcm_cma=192M@768M", "brcm_cma=520M@248M brcm_cma=200M@768M")
-SystemInfo["HAScmdline"] = fileCheck("/boot/cmdline.txt")
-SystemInfo["HasMMC"] = fileHas("/proc/cmdline", "root=/dev/mmcblk") or SystemInfo["canMultiBoot"] and fileHas("/proc/cmdline", "root=/dev/sda")
-SystemInfo["HasSDmmc"] = SystemInfo["canMultiBoot"] and "sd" in SystemInfo["canMultiBoot"][2] and "mmcblk" in getMachineMtdRoot()
+SystemInfo["canMultiBoot"] = MultiBoot.getBootSlots()
+SystemInfo["HasMMC"] = fileHas("/proc/cmdline", "root=/dev/mmcblk") or MultiBoot.canMultiBoot() and fileHas("/proc/cmdline", "root=/dev/sda")
+SystemInfo["HasSDmmc"] = MultiBoot.canMultiBoot() and "sd" in MultiBoot.getBootSlots()["2"] and "mmcblk" in getMachineMtdRoot()
 SystemInfo["HasSDswap"] = getMachineBuild() in ("h9", "i55plus") and pathExists("/dev/mmcblk0p1")
 SystemInfo["HasFullHDSkinSupport"] = model not in ("et4000", "et5000", "sh1", "hd500c", "hd1100", "xp1000", "lc")
 SystemInfo["CanProc"] = SystemInfo["HasMMC"] and getBrandOEM() != "vuplus"
