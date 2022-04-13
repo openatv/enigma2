@@ -26,7 +26,7 @@
 		<item entryID="drives_info_screen" level="0" text="Drives" weight="40"><screen module="Information" screen="DrivesInformation" /></item>
 		<item entryID="memory_info_screen" level="0" text="Memory" weight="50"><screen module="Information" screen="MemoryInformation" /></item>
 		<item entryID="tuner_info_screen" level="0" text="Tuner" weight="60"><screen module="Information" screen="TunerInformation" /></item>
-		<item entryID="multiboot_info_screen" level="0" text="MultiBoot" weight="70"><screen module="Information" screen="MultiBootInformation" /></item>
+		<item entryID="multiboot_info_screen" level="0" text="MultiBoot" weight="70" requires="canMultiBoot"><screen module="Information" screen="MultiBootInformation" /></item>
 		<item entryID="service_info_screen" level="1" text="Service" weight="80"><screen module="ServiceInfo" screen="ServiceInfo" /></item>
 		<item entryID="streaming_clients_info_screen" level="2" text="Streaming Clients" weight="90"><screen module="Information" screen="StreamingInformation" /></item>
 	</menu>
