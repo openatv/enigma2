@@ -26,6 +26,7 @@ from Components.Console import Console
 from Components.MultiContent import MultiContentEntryText, MultiContentEntryPixmapAlphaTest
 from Components.SelectionList import SelectionList
 from Components.PluginComponent import plugins
+from Screens.FlashOnline import FlashOnline
 from Screens.SoftwareUpdate import SoftwareUpdate
 from Components.PackageInfo import PackageInfoHandler
 from Components.International import international
@@ -43,7 +44,6 @@ from twisted.web import client
 from twisted.internet import reactor
 
 from .ImageBackup import ImageBackup
-from .Flash_online import FlashOnline
 from .ImageWizard import ImageWizard
 from .BackupRestore import BackupSelection, RestoreMenu, BackupScreen, RestoreScreen, getBackupPath, getOldBackupPath, getBackupFilename, RestoreMyMetrixHD
 from .BackupRestore import InitConfig as BackupRestore_InitConfig

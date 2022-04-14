@@ -318,7 +318,7 @@ class SoftwareUpdate(Screen, HelpableScreen, ProtectedScreen):
 
 	def keyUpdateCallback(self, answer):
 		if answer == 1:
-			from Plugins.SystemPlugins.SoftwareManager.Flash_online import FlashOnline  # This must be here to ensure the plugin is initialized.
+			from Screens.FlashOnline import FlashOnline # This must be here to ensure the plugin is initialized.
 			self.session.open(FlashOnline)
 		elif answer == 2:
 			self.session.open(RunSoftwareUpdate)

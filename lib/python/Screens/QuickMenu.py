@@ -491,7 +491,7 @@ class QuickMenu(Screen, ProtectedScreen):
 			from Screens.SoftwareUpdate import SoftwareUpdate
 			self.session.open(SoftwareUpdate)
 		elif item[0] == _("Flash Online"):
-			from Plugins.SystemPlugins.SoftwareManager.Flash_online import FlashOnline
+			from Screens.FlashOnline import FlashOnline
 			self.session.open(FlashOnline)
 		elif item[0] == _("Complete Backup"):
 			self.CompleteBackup()
