@@ -13,7 +13,7 @@ class MultiBootManager(Screen, HelpableScreen):
 	# NOTE: This embedded skin will be affected by the Choicelist parameters and ChoiceList font in the current skin!  This screen should be skinned.
 	# 	See Components/ChoiceList.py to see the hard coded defaults for which this embedded screen has been designed.
 	skin = """
-	<screen title="MultiBoot Image Manager" position="center,center" size="900,455">
+	<screen title="MultiBoot Manager" position="center,center" size="900,455">
 		<widget name="slotlist" position="10,10" size="880,275" scrollbarMode="showOnDemand" />
 		<widget name="description" position="10,e-160" size="880,100" font="Regular;20" valign="bottom" />
 		<widget source="key_red" render="Label" position="10,e-50" size="140,40" backgroundColor="key_red" font="Regular;20" conditional="key_red" foregroundColor="key_text" halign="center" noWrap="1" valign="center">
@@ -36,16 +36,16 @@ class MultiBootManager(Screen, HelpableScreen):
 	def __init__(self, session, *args):
 		Screen.__init__(self, session)
 		HelpableScreen.__init__(self)
-		Screen.setTitle(self, _("Multi-Boot Image Manager"))
-		self["slotlist"] = ChoiceList([ChoiceEntryComponent("", (_("Loading image slot information, please wait..."), "Loading"))])
-		self["description"] = Label(_("Press the UP/DOWN buttons to select an image and press OK or GREEN to 'Reboot' to that image. If available, YELLOW will either 'Delete' or 'Wipe' the image. A 'Deleted' image can be 'Restored' with the BLUE button. A 'Wiped' image is completely removed can NOT be restored!"))
+		Screen.setTitle(self, _("MultiBoot Manager"))
+		self["slotlist"] = ChoiceList([ChoiceEntryComponent("", (_("Loading slot information, please wait..."), "Loading"))])
+		self["description"] = Label(_("Press the UP/DOWN buttons to select a slot and press OK or GREEN to 'Reboot' to that image. If available, YELLOW will either 'Delete' or 'Wipe' the image. A 'Deleted' image can be 'Restored' with the BLUE button. A 'Wiped' image is completely removed can NOT be restored!"))
 		self["key_red"] = StaticText(_("Cancel"))
 		self["key_green"] = StaticText(_("Reboot"))
 		self["key_yellow"] = StaticText()
 		self["key_blue"] = StaticText()
 		self["actions"] = HelpableActionMap(self, ["CancelActions", "NavigationActions"], {
-			"cancel": (self.cancel, _("Cancel the image selection and exit")),
-			"close": (self.closeRecursive, _("Cancel the image selection and exit all menus")),
+			"cancel": (self.cancel, _("Cancel the slot selection and exit")),
+			"close": (self.closeRecursive, _("Cancel the slot selection and exit all menus")),
 			"top": (self.keyTop, _("Move to first line")),
 			# "pageUp": (self.keyTop, _("Move to first line")),
 			"up": (self.keyUp, _("Move up a line")),
@@ -54,19 +54,19 @@ class MultiBootManager(Screen, HelpableScreen):
 			"down": (self.keyDown, _("Move down a line")),
 			# "pageDown": (self.keyBottom, _("Move to last line")),
 			"bottom": (self.keyBottom, _("Move to last line"))
-		}, prio=0, description=_("Multi-Boot Manager Actions"))
+		}, prio=0, description=_("MultiBoot Manager Actions"))
 		self["restartActions"] = HelpableActionMap(self, ["OkSaveActions"], {
-			"save": (self.reboot, _("Select the highlighted image and reboot")),
-			"ok": (self.reboot, _("Select the highlighted image and reboot")),
-		}, prio=0, description=_("Multi-Boot Manager Actions"))
+			"save": (self.reboot, _("Select the highlighted slot and reboot")),
+			"ok": (self.reboot, _("Select the highlighted slot and reboot")),
+		}, prio=0, description=_("MultiBoot Manager Actions"))
 		self["restartActions"].setEnabled(False)
 		self["deleteActions"] = HelpableActionMap(self, ["ColorActions"], {
-			"yellow": (self.deleteImage, _("Delete or Wipe the highlighted image slot"))
-		}, prio=0, description=_("Multi-Boot Manager Actions"))
+			"yellow": (self.deleteImage, _("Delete or Wipe the highlighted slot"))
+		}, prio=0, description=_("MultiBoot Manager Actions"))
 		self["deleteActions"].setEnabled(False)
 		self["restoreActions"] = HelpableActionMap(self, ["ColorActions"], {
-			"blue": (self.restoreImage, _("Restore the highlighted image slot"))
-		}, prio=0, description=_("Multi-Boot Manager Actions"))
+			"blue": (self.restoreImage, _("Restore the highlighted slot"))
+		}, prio=0, description=_("MultiBoot Manager Actions"))
 		self["restoreActions"].setEnabled(False)
 		self.onLayoutFinish.append(self.layoutFinished)
 		self.initialize = True
@@ -107,7 +107,7 @@ class MultiBootManager(Screen, HelpableScreen):
 			else:
 				index = self["slotlist"].getSelectedIndex()
 		else:
-			imageList.append(ChoiceEntryComponent("", (_("No images found"), "Void")))
+			imageList.append(ChoiceEntryComponent("", (_("No slot images found"), "Void")))
 			index = 0
 		self["slotlist"].setList(imageList)
 		self["slotlist"].moveToIndex(index)
