@@ -8,7 +8,7 @@ from __future__ import print_function
 from enigma import getEnigmaVersionString
 from Screens.Screen import Screen
 from Components.Sources.StaticText import StaticText
-from Components.SystemInfo import BoxInfo
+from Components.SystemInfo import BoxInfo, GetBoxName
 from Components.Label import Label
 from Components.ActionMap import ActionMap
 from Components.About import about
@@ -23,8 +23,7 @@ from Tools.MultiBoot import MultiBoot
 import os
 import datetime
 import sys
-# from boxbranding import getMachineBrand, getMachineName, getDriverDate, getImageVersion, getImageBuild, getBrandOEM, getMachineBuild, getImageFolder, getMachineUBINIZE, getMachineMKUBIFS, getMachineMtdKernel, getMachineMtdRoot, getMachineKernelFile, getMachineRootFile, getImageFileSystem, getImageDistro
-from boxbranding import getBoxType, getMachineBrand, getMachineName, getDriverDate, getImageVersion, getImageBuild, getBrandOEM, getMachineBuild, getImageFolder, getMachineUBINIZE, getMachineMKUBIFS, getMachineMtdKernel, getMachineMtdRoot, getMachineKernelFile, getMachineRootFile, getImageFileSystem, getImageDistro
+from boxbranding import getMachineBrand, getMachineName, getDriverDate, getImageVersion, getImageBuild, getBrandOEM, getMachineBuild, getImageFolder, getMachineUBINIZE, getMachineMKUBIFS, getMachineMtdKernel, getMachineMtdRoot, getMachineKernelFile, getMachineRootFile, getImageFileSystem, getImageDistro
 
 if sys.version_info[0] >= 3:
 	import subprocess
@@ -32,42 +31,6 @@ else:
 	import commands
 
 VERSION = _("Version %s %s") % (getImageDistro(), getImageVersion())
-
-
-def GetBoxName():
-	box = getBoxType()
-	machinename = getMachineName()
-	if box in ('uniboxhd1', 'uniboxhd2', 'uniboxhd3'):
-		box = "ventonhdx"
-	elif box == 'odinm6':
-		box = getMachineName().lower()
-	elif box == "inihde" and machinename.lower() == "xpeedlx":
-		box = "xpeedlx"
-	elif box in ('xpeedlx1', 'xpeedlx2'):
-		box = "xpeedlx"
-	elif box == "inihde" and machinename.lower() == "hd-1000":
-		box = "sezam-1000hd"
-	elif box == "ventonhdx" and machinename.lower() == "hd-5000":
-		box = "sezam-5000hd"
-	elif box == "ventonhdx" and machinename.lower() == "premium twin":
-		box = "miraclebox-twin"
-	elif box == "xp1000" and machinename.lower() == "sf8 hd":
-		box = "sf8"
-	elif box.startswith('et') and not box in ('et8000', 'et8500', 'et8500s', 'et10000'):
-		box = box[0:3] + 'x00'
-	elif box == 'odinm9':
-		box = 'maram9'
-	elif box.startswith('sf8008m'):
-		box = "sf8008m"
-	elif box.startswith('sf8008opt'):
-		box = "sf8008opt"
-	elif box.startswith('sf8008'):
-		box = "sf8008"
-	elif box.startswith('ustym4kpro'):
-		box = "ustym4kpro"
-	elif box.startswith('twinboxlcdci'):
-		box = "twinboxlcd"
-	return box
 
 
 class ImageBackup(Screen):

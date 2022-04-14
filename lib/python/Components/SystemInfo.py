@@ -4,7 +4,7 @@ from os.path import exists as fileAccess, isdir, isfile, join as pathjoin, islin
 from re import findall
 from subprocess import PIPE, Popen
 
-from boxbranding import getBrandOEM, getDisplayType, getHaveAVJACK, getHaveDVI, getHaveHDMI, getHaveRCA, getHaveSCART, getHaveSCARTYUV, getHaveYUV, getMachineBuild, getMachineMtdRoot
+from boxbranding import getBrandOEM, getDisplayType, getHaveAVJACK, getHaveDVI, getHaveHDMI, getHaveRCA, getHaveSCART, getHaveSCARTYUV, getHaveYUV, getMachineBuild, getMachineMtdRoot, getMachineName, getBoxType
 from enigma import Misc_Options, eDVBCIInterfaces, eDVBResourceManager, eGetEnigmaDebugLvl
 
 from Tools.Directories import SCOPE_LIBDIR, SCOPE_SKINS, isPluginInstalled, fileCheck, fileReadLine, fileReadLines, resolveFilename, fileExists, fileHas, fileReadLine, pathExists
@@ -242,6 +242,41 @@ def Check_SysSoftcam():
 def Refresh_SysSoftCam():
 	SystemInfo["ShowOscamInfo"] = Check_SysSoftcam() in ("oscam", "ncam")
 	SystemInfo["ShowCCCamInfo"] = Check_SysSoftcam() in ("cccam",)
+
+def GetBoxName():
+	box = getBoxType()
+	machinename = getMachineName()
+	if box in ('uniboxhd1', 'uniboxhd2', 'uniboxhd3'):
+		box = "ventonhdx"
+	elif box == 'odinm6':
+		box = getMachineName().lower()
+	elif box == "inihde" and machinename.lower() == "xpeedlx":
+		box = "xpeedlx"
+	elif box in ('xpeedlx1', 'xpeedlx2'):
+		box = "xpeedlx"
+	elif box == "inihde" and machinename.lower() == "hd-1000":
+		box = "sezam-1000hd"
+	elif box == "ventonhdx" and machinename.lower() == "hd-5000":
+		box = "sezam-5000hd"
+	elif box == "ventonhdx" and machinename.lower() == "premium twin":
+		box = "miraclebox-twin"
+	elif box == "xp1000" and machinename.lower() == "sf8 hd":
+		box = "sf8"
+	elif box.startswith('et') and not box in ('et8000', 'et8500', 'et8500s', 'et10000'):
+		box = box[0:3] + 'x00'
+	elif box == 'odinm9':
+		box = 'maram9'
+	elif box.startswith('sf8008m'):
+		box = "sf8008m"
+	elif box.startswith('sf8008opt'):
+		box = "sf8008opt"
+	elif box.startswith('sf8008'):
+		box = "sf8008"
+	elif box.startswith('ustym4kpro'):
+		box = "ustym4kpro"
+	elif box.startswith('twinboxlcdci'):
+		box = "twinboxlcd"
+	return box
 
 
 model = BoxInfo.getItem("model")
