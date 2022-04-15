@@ -69,7 +69,6 @@ def InitConfig():
 		+ eEnv_resolve_multi("${datadir}/enigma2/*/mySkin_off")\
 		+ eEnv_resolve_multi("${datadir}/enigma2/*/mySkin")\
 		+ eEnv_resolve_multi("${datadir}/enigma2/*/skin_user_*.xml")\
-		+ eEnv_resolve_multi("/usr/bin/*cam*")\
 		+ eEnv_resolve_multi("/etc/*.emu")\
 		+ eEnv_resolve_multi("${sysconfdir}/cron*")\
 		+ eEnv_resolve_multi("${sysconfdir}/init.d/softcam*")\

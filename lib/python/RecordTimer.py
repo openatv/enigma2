@@ -77,6 +77,10 @@ def parseEvent(event, description=True):
 	else:
 		name = ""
 		description = ""
+
+	# Replace linebreak's with spaces to avoid display issues in the text edit screens.
+	# Enigma2 does not have a multiline InputBox or VirtualKeyBoard.
+	description = description.replace("\n", " ")
 	begin = event.getBeginTime()
 	end = begin + event.getDuration()
 	eit = event.getEventId()
