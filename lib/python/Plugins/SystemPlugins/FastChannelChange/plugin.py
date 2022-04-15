@@ -472,9 +472,12 @@ def showFCCExtentionMenu():
 	return (currentScreenName == "InfoBar")
 
 
+def getExtensionName():
+	return _("Disable Fast Channel Change") if config.plugins.fccsetup.activate.value else _("Enable Fast Channel Change")
+
+
 def addExtentions(infobarExtensions):
-	name = _("Disable Fast Channel Change") if config.plugins.fccsetup.activate.value else _("Enable Fast Channel Change")
-	infobarExtensions.addExtension((name, ToggleUpdate, showFCCExtentionMenu), None)
+	infobarExtensions.addExtension((getExtensionName, ToggleUpdate, showFCCExtentionMenu), None)
 
 
 def FCCStart(session, **kwargs):
