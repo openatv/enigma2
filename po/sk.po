@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-04-13 15:07+0000\n"
+"POT-Creation-Date: 2022-04-14 09:02+0000\n"
 "PO-Revision-Date: 2022-04-02 20:47+0000\n"
 "Last-Translator: Marián Hikaník <podnety@mojepreklady.net>\n"
 "Language-Team: Slovak <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/sk/>\n"
@@ -4087,11 +4087,11 @@ msgstr "Zrušiť ukladanie timeshiftu ako filmu"
 msgid "Cancel selection"
 msgstr "Zrušiť výber"
 
-msgid "Cancel the image selection and exit"
-msgstr "Zrušiť výber image a ukončiť"
+msgid "Cancel the slot selection and exit"
+msgstr ""
 
-msgid "Cancel the image selection and exit all menus"
-msgstr "Zrušiť výber image a ukončiť všetky menu"
+msgid "Cancel the slot selection and exit all menus"
+msgstr ""
 
 msgid "Cancel the update"
 msgstr "Zrušiť aktualizáciu"
@@ -6050,7 +6050,7 @@ msgstr "Vymazať image"
 msgid "Delete logfile"
 msgstr "Vymazať súbor so záznamom"
 
-msgid "Delete or Wipe the highlighted image slot"
+msgid "Delete or Wipe the highlighted slot"
 msgstr ""
 
 msgid "Delete playlist entry"
@@ -10318,11 +10318,11 @@ msgstr "Načítať neprepojené používateľské prehľady"
 msgid "Load/Save/Delete"
 msgstr "Načítať/Uložiť/Vymazať"
 
-msgid "Loading image slot information, please wait..."
-msgstr ""
-
 msgid "Loading information, please wait..."
 msgstr "Informácia sa načítava, prosím čakajte..."
+
+msgid "Loading slot information, please wait..."
+msgstr ""
 
 msgid "Local box"
 msgstr "Lokálny box"
@@ -11208,12 +11208,6 @@ msgstr "Mozambik"
 msgid "Multi EPG"
 msgstr "Multi EPG"
 
-msgid "Multi-Boot Image Manager"
-msgstr ""
-
-msgid "Multi-Boot Manager Actions"
-msgstr ""
-
 msgid "MultiBoot"
 msgstr ""
 
@@ -11224,6 +11218,9 @@ msgid "MultiBoot Information"
 msgstr ""
 
 msgid "MultiBoot Manager"
+msgstr ""
+
+msgid "MultiBoot Manager Actions"
 msgstr ""
 
 msgid "MultiBoot boot mode"
@@ -11671,9 +11668,6 @@ msgstr "Neboli zistené žiadne pevné disky."
 msgid "No hash calculations configured"
 msgstr "Nie sú nakonfigurované žiadne výpočty pre hash"
 
-msgid "No images found"
-msgstr "Nenašli sa žiadne image"
-
 msgid "No matching place names found"
 msgstr "Nenašlo sa žiadne zodpovedajúce umiestnenie"
 
@@ -11706,6 +11700,9 @@ msgstr "Žiadna stanica"
 
 msgid "No services/providers selected"
 msgstr "Nie sú vybrané žiadne stanice, služby alebo poskytovatelia"
+
+msgid "No slot images found"
+msgstr ""
 
 msgid "No standby"
 msgstr "Žiadny pohotovostný režim"
@@ -13362,7 +13359,7 @@ msgstr "Stlačte OK pre použitie tohto jazyka:  [%s]"
 msgid "Press OK to use this locale.  [%s]"
 msgstr "Stlačte OK pre použitie tejto lokalizácie:  [%s]"
 
-msgid "Press the UP/DOWN buttons to select an image and press OK or GREEN to 'Reboot' to that image. If available, YELLOW will either 'Delete' or 'Wipe' the image. A 'Deleted' image can be 'Restored' with the BLUE button. A 'Wiped' image is completely removed can NOT be restored!"
+msgid "Press the UP/DOWN buttons to select a slot and press OK or GREEN to 'Reboot' to that image. If available, YELLOW will either 'Delete' or 'Wipe' the image. A 'Deleted' image can be 'Restored' with the BLUE button. A 'Wiped' image is completely removed can NOT be restored!"
 msgstr ""
 
 msgid "Press the menu button to set a general AC3/Dolby offset."
@@ -14423,7 +14420,7 @@ msgstr "Obnoviť nastavenia zo zálohy"
 msgid "Restore system settings"
 msgstr "Obnoviť systémové nastavenia"
 
-msgid "Restore the highlighted image slot"
+msgid "Restore the highlighted slot"
 msgstr ""
 
 msgid "Restore your settings back from a backup. After restore the box will restart to activated the new settings"
@@ -15347,8 +15344,8 @@ msgstr "Vybrať aktuálne zvýraznené miestne nastavenie alebo jazyk pre použ�
 msgid "Select the desired function and click on \"OK\" to assign it. Use \"CH+/-\" to toggle between the lists. Select an assigned function and click on \"OK\" to de-assign it. Use \"Next/Previous\" to change the order of the assigned functions."
 msgstr "Vyberte požadovanú funkciu a kliknite na \"OK\" pre pridelenie. Na prepnutie medzi zoznamami použite tlačidlá \"CH+/-\". Vybraním pridelenej funkcie a následným stlačením \"OK\" dôjde k odobratiu funkciu. Pre zmenu poradia pridelených funkcií použite tlačidlá \"Ďalej/Predchádzajúce\"."
 
-msgid "Select the highlighted image and reboot"
-msgstr "Vybrať zvýraznený image a reštartovať"
+msgid "Select the highlighted slot and reboot"
+msgstr ""
 
 msgid "Select the locale from a menu"
 msgstr "Vybrať lokalizáciu z menu"
@@ -23146,6 +23143,18 @@ msgstr "prepínanie"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Cancel the image selection and exit"
+#~ msgstr "Zrušiť výber image a ukončiť"
+
+#~ msgid "Cancel the image selection and exit all menus"
+#~ msgstr "Zrušiť výber image a ukončiť všetky menu"
+
+#~ msgid "No images found"
+#~ msgstr "Nenašli sa žiadne image"
+
+#~ msgid "Select the highlighted image and reboot"
+#~ msgstr "Vybrať zvýraznený image a reštartovať"
 
 #, python-format
 #~ msgid " bootmode = %s"

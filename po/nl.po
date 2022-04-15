@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-04-13 15:07+0000\n"
+"POT-Creation-Date: 2022-04-14 09:02+0000\n"
 "PO-Revision-Date: 2022-03-28 08:07+0000\n"
 "Last-Translator: Snoete <snoete@hotmail.com>\n"
 "Language-Team: Dutch <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/nl/>\n"
@@ -4070,11 +4070,11 @@ msgstr "Annuleer het opslaan van Timeshift als opname"
 msgid "Cancel selection"
 msgstr "Annuleer selectie"
 
-msgid "Cancel the image selection and exit"
-msgstr "Annuleer de image selectie en exit"
+msgid "Cancel the slot selection and exit"
+msgstr ""
 
-msgid "Cancel the image selection and exit all menus"
-msgstr "Annuleer de image selectie en exit alle menu's"
+msgid "Cancel the slot selection and exit all menus"
+msgstr ""
 
 msgid "Cancel the update"
 msgstr "De update annuleren"
@@ -6144,7 +6144,7 @@ msgstr "Image verwijderen"
 msgid "Delete logfile"
 msgstr "Verwijder log-bestand"
 
-msgid "Delete or Wipe the highlighted image slot"
+msgid "Delete or Wipe the highlighted slot"
 msgstr ""
 
 msgid "Delete playlist entry"
@@ -10426,11 +10426,11 @@ msgstr "Niet gelinkte favorietenlijsten gebruiken"
 msgid "Load/Save/Delete"
 msgstr "Laden/opslaan/verwijderen"
 
-msgid "Loading image slot information, please wait..."
-msgstr ""
-
 msgid "Loading information, please wait..."
 msgstr "Informatie laden, een moment geduld..."
+
+msgid "Loading slot information, please wait..."
+msgstr ""
 
 msgid "Local box"
 msgstr "Lokale box"
@@ -11316,12 +11316,6 @@ msgstr "Mozambique"
 msgid "Multi EPG"
 msgstr "Multi-EPG"
 
-msgid "Multi-Boot Image Manager"
-msgstr ""
-
-msgid "Multi-Boot Manager Actions"
-msgstr ""
-
 msgid "MultiBoot"
 msgstr ""
 
@@ -11332,6 +11326,9 @@ msgid "MultiBoot Information"
 msgstr ""
 
 msgid "MultiBoot Manager"
+msgstr ""
+
+msgid "MultiBoot Manager Actions"
 msgstr ""
 
 msgid "MultiBoot boot mode"
@@ -11779,9 +11776,6 @@ msgstr "Geen harde schijven gevonden."
 msgid "No hash calculations configured"
 msgstr "Geen hash berekeningen geconfigureerd"
 
-msgid "No images found"
-msgstr "Geen images gevonden"
-
 msgid "No matching place names found"
 msgstr "Geen overeenkomende locaties gevonden"
 
@@ -11814,6 +11808,9 @@ msgstr "Geen uitzending"
 
 msgid "No services/providers selected"
 msgstr "Geen zender / provider gekozen"
+
+msgid "No slot images found"
+msgstr ""
 
 msgid "No standby"
 msgstr "Geen stand-by"
@@ -13474,7 +13471,7 @@ msgstr "Druk op OK om deze taal te gebruiken.  [%s]"
 msgid "Press OK to use this locale.  [%s]"
 msgstr "Druk op OK om deze locale te gebruiken.  [%s]"
 
-msgid "Press the UP/DOWN buttons to select an image and press OK or GREEN to 'Reboot' to that image. If available, YELLOW will either 'Delete' or 'Wipe' the image. A 'Deleted' image can be 'Restored' with the BLUE button. A 'Wiped' image is completely removed can NOT be restored!"
+msgid "Press the UP/DOWN buttons to select a slot and press OK or GREEN to 'Reboot' to that image. If available, YELLOW will either 'Delete' or 'Wipe' the image. A 'Deleted' image can be 'Restored' with the BLUE button. A 'Wiped' image is completely removed can NOT be restored!"
 msgstr ""
 
 msgid "Press the menu button to set a general AC3/Dolby offset."
@@ -14535,7 +14532,7 @@ msgstr "Instellingen herstellen vanuit een back-up"
 msgid "Restore system settings"
 msgstr "Herstel uw instellingen"
 
-msgid "Restore the highlighted image slot"
+msgid "Restore the highlighted slot"
 msgstr ""
 
 msgid "Restore your settings back from a backup. After restore the box will restart to activated the new settings"
@@ -15463,8 +15460,8 @@ msgstr "Selecteer de nu gearceerde taal voor de user interface"
 msgid "Select the desired function and click on \"OK\" to assign it. Use \"CH+/-\" to toggle between the lists. Select an assigned function and click on \"OK\" to de-assign it. Use \"Next/Previous\" to change the order of the assigned functions."
 msgstr "Selecteer de gewenste functie en klik op 'OK' om deze toe te wijzen. Gebruik 'Ch+/-' om te schakelen tussen de lijsten. Selecteer een toegewezen functie en klik op 'OK' om deze ongedaan te maken."
 
-msgid "Select the highlighted image and reboot"
-msgstr "Selecteer het gemarkeerde image en reboot"
+msgid "Select the highlighted slot and reboot"
+msgstr ""
 
 msgid "Select the locale from a menu"
 msgstr "Selecteer de landinstellingen voor het virtuele toetsenbord in het menu"
@@ -23354,6 +23351,18 @@ msgstr "zappen"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Cancel the image selection and exit"
+#~ msgstr "Annuleer de image selectie en exit"
+
+#~ msgid "Cancel the image selection and exit all menus"
+#~ msgstr "Annuleer de image selectie en exit alle menu's"
+
+#~ msgid "No images found"
+#~ msgstr "Geen images gevonden"
+
+#~ msgid "Select the highlighted image and reboot"
+#~ msgstr "Selecteer het gemarkeerde image en reboot"
 
 #, python-format
 #~ msgid " bootmode = %s"

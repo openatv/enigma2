@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-04-13 15:07+0000\n"
+"POT-Creation-Date: 2022-04-14 09:02+0000\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Jjezevec <jjezevecc@seznam.cz>\n"
 "Language-Team: \n"
@@ -4322,13 +4322,11 @@ msgstr "Zrušit uložení timeshiftu jako filmu"
 msgid "Cancel selection"
 msgstr "Výběr kanálú"
 
-#, fuzzy
-msgid "Cancel the image selection and exit"
-msgstr "Výběr kanálú"
+msgid "Cancel the slot selection and exit"
+msgstr ""
 
-#, fuzzy
-msgid "Cancel the image selection and exit all menus"
-msgstr "Výběr kanálú"
+msgid "Cancel the slot selection and exit all menus"
+msgstr ""
 
 msgid "Cancel the update"
 msgstr ""
@@ -6402,7 +6400,7 @@ msgstr "Smazat časovač"
 msgid "Delete logfile"
 msgstr ""
 
-msgid "Delete or Wipe the highlighted image slot"
+msgid "Delete or Wipe the highlighted slot"
 msgstr ""
 
 msgid "Delete playlist entry"
@@ -10883,10 +10881,10 @@ msgstr "Načíst nepropojené uživatelské přehledy"
 msgid "Load/Save/Delete"
 msgstr "Načíst/Uložit"
 
-msgid "Loading image slot information, please wait..."
+msgid "Loading information, please wait..."
 msgstr ""
 
-msgid "Loading information, please wait..."
+msgid "Loading slot information, please wait..."
 msgstr ""
 
 msgid "Local box"
@@ -11850,12 +11848,6 @@ msgstr ""
 msgid "Multi EPG"
 msgstr "Multi EPG"
 
-msgid "Multi-Boot Image Manager"
-msgstr ""
-
-msgid "Multi-Boot Manager Actions"
-msgstr ""
-
 msgid "MultiBoot"
 msgstr ""
 
@@ -11867,6 +11859,9 @@ msgid "MultiBoot Information"
 msgstr ""
 
 msgid "MultiBoot Manager"
+msgstr ""
+
+msgid "MultiBoot Manager Actions"
 msgstr ""
 
 msgid "MultiBoot boot mode"
@@ -12350,10 +12345,6 @@ msgid "No hash calculations configured"
 msgstr ""
 
 #, fuzzy
-msgid "No images found"
-msgstr "Obraz (image) %s nebyla nalezena!"
-
-#, fuzzy
 msgid "No matching place names found"
 msgstr "Zádný nový plugin nenalezen."
 
@@ -12387,6 +12378,9 @@ msgstr "Zádný kanál"
 
 msgid "No services/providers selected"
 msgstr "Žádný program/poskytovatel není vybrán"
+
+msgid "No slot images found"
+msgstr ""
 
 msgid "No standby"
 msgstr "Neuspávat"
@@ -14122,7 +14116,7 @@ msgstr ""
 msgid "Press OK to use this locale.  [%s]"
 msgstr ""
 
-msgid "Press the UP/DOWN buttons to select an image and press OK or GREEN to 'Reboot' to that image. If available, YELLOW will either 'Delete' or 'Wipe' the image. A 'Deleted' image can be 'Restored' with the BLUE button. A 'Wiped' image is completely removed can NOT be restored!"
+msgid "Press the UP/DOWN buttons to select a slot and press OK or GREEN to 'Reboot' to that image. If available, YELLOW will either 'Delete' or 'Wipe' the image. A 'Deleted' image can be 'Restored' with the BLUE button. A 'Wiped' image is completely removed can NOT be restored!"
 msgstr ""
 
 msgid "Press the menu button to set a general AC3/Dolby offset."
@@ -15247,7 +15241,7 @@ msgstr "Obnova nastavení ze zálohy"
 msgid "Restore system settings"
 msgstr "Obnova nastavení"
 
-msgid "Restore the highlighted image slot"
+msgid "Restore the highlighted slot"
 msgstr ""
 
 msgid "Restore your settings back from a backup. After restore the box will restart to activated the new settings"
@@ -16216,7 +16210,7 @@ msgstr ""
 msgid "Select the desired function and click on \"OK\" to assign it. Use \"CH+/-\" to toggle between the lists. Select an assigned function and click on \"OK\" to de-assign it. Use \"Next/Previous\" to change the order of the assigned functions."
 msgstr "Stiskem \"OK\" vyberete a přiřadíte požadovanou funkci. \"CH +/-\" umožňuje přepínat mezi seznamy. Stiskem \"OK\" můžete již přiřazenou funkci také vyřadit. Tlačítkem \"Další / Předchozí\" změňte pořadí přiřazených funkcí."
 
-msgid "Select the highlighted image and reboot"
+msgid "Select the highlighted slot and reboot"
 msgstr ""
 
 #, fuzzy
@@ -24450,6 +24444,18 @@ msgstr "Přepnutý"
 
 msgid "®"
 msgstr ""
+
+#, fuzzy
+#~ msgid "Cancel the image selection and exit"
+#~ msgstr "Výběr kanálú"
+
+#, fuzzy
+#~ msgid "Cancel the image selection and exit all menus"
+#~ msgstr "Výběr kanálú"
+
+#, fuzzy
+#~ msgid "No images found"
+#~ msgstr "Obraz (image) %s nebyla nalezena!"
 
 #, fuzzy
 #~ msgid "(current image)"

@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Enigma2 Official Greek Translation\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-04-13 15:07+0000\n"
+"POT-Creation-Date: 2022-04-14 09:02+0000\n"
 "PO-Revision-Date: 2021-08-19 12:59+0000\n"
 "Last-Translator: MCelliotG <mcelliotg@gmail.com>\n"
 "Language-Team: Greek <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/el/>\n"
@@ -4102,13 +4102,11 @@ msgstr "Ακύρωση αποθήκευσης της χρονομετατόπι�
 msgid "Cancel selection"
 msgstr "Επιλογή καναλιού"
 
-#, fuzzy
-msgid "Cancel the image selection and exit"
-msgstr "Ακύρωση της επιλογής"
+msgid "Cancel the slot selection and exit"
+msgstr ""
 
-#, fuzzy
-msgid "Cancel the image selection and exit all menus"
-msgstr "Ακύρωση της επιλογής"
+msgid "Cancel the slot selection and exit all menus"
+msgstr ""
 
 msgid "Cancel the update"
 msgstr ""
@@ -6090,7 +6088,7 @@ msgstr "Διαγραφή image"
 msgid "Delete logfile"
 msgstr ""
 
-msgid "Delete or Wipe the highlighted image slot"
+msgid "Delete or Wipe the highlighted slot"
 msgstr ""
 
 msgid "Delete playlist entry"
@@ -10404,10 +10402,10 @@ msgstr "Φόρτωση ασύνδετων μπουκέτων χρήστη"
 msgid "Load/Save/Delete"
 msgstr "Φόρτωση/Αποθήκευση/Διαγραφή"
 
-msgid "Loading image slot information, please wait..."
+msgid "Loading information, please wait..."
 msgstr ""
 
-msgid "Loading information, please wait..."
+msgid "Loading slot information, please wait..."
 msgstr ""
 
 msgid "Local box"
@@ -11334,12 +11332,6 @@ msgstr "Μοζαμβίκη"
 msgid "Multi EPG"
 msgstr "Πολλαπλός EPG"
 
-msgid "Multi-Boot Image Manager"
-msgstr ""
-
-msgid "Multi-Boot Manager Actions"
-msgstr ""
-
 msgid "MultiBoot"
 msgstr ""
 
@@ -11350,6 +11342,9 @@ msgid "MultiBoot Information"
 msgstr ""
 
 msgid "MultiBoot Manager"
+msgstr ""
+
+msgid "MultiBoot Manager Actions"
 msgstr ""
 
 msgid "MultiBoot boot mode"
@@ -11804,9 +11799,6 @@ msgstr ""
 msgid "No hash calculations configured"
 msgstr "Δεν έχουν παραμετροποιηθεί οι υπολογισμοί των ψηφιακών υπογραφών"
 
-msgid "No images found"
-msgstr "Δεν βρέθηκαν εικόνες"
-
 msgid "No matching place names found"
 msgstr "Δεν βρέθηκαν συσχετισμένα ονόματα θέσεων"
 
@@ -11839,6 +11831,9 @@ msgstr "Καμία υπηρεσία"
 
 msgid "No services/providers selected"
 msgstr "Δεν έχουν επιλεγεί υπηρεσίες/πάροχοι"
+
+msgid "No slot images found"
+msgstr ""
 
 msgid "No standby"
 msgstr "Χωρίς αναμονή"
@@ -13511,7 +13506,7 @@ msgstr ""
 msgid "Press OK to use this locale.  [%s]"
 msgstr ""
 
-msgid "Press the UP/DOWN buttons to select an image and press OK or GREEN to 'Reboot' to that image. If available, YELLOW will either 'Delete' or 'Wipe' the image. A 'Deleted' image can be 'Restored' with the BLUE button. A 'Wiped' image is completely removed can NOT be restored!"
+msgid "Press the UP/DOWN buttons to select a slot and press OK or GREEN to 'Reboot' to that image. If available, YELLOW will either 'Delete' or 'Wipe' the image. A 'Deleted' image can be 'Restored' with the BLUE button. A 'Wiped' image is completely removed can NOT be restored!"
 msgstr ""
 
 msgid "Press the menu button to set a general AC3/Dolby offset."
@@ -14576,7 +14571,7 @@ msgstr "Επαναφορά ρυθμίσεων από αντίγραφο ασφα
 msgid "Restore system settings"
 msgstr "Επαναφορά ρυθμίσεων συστήματος"
 
-msgid "Restore the highlighted image slot"
+msgid "Restore the highlighted slot"
 msgstr ""
 
 msgid "Restore your settings back from a backup. After restore the box will restart to activated the new settings"
@@ -15512,7 +15507,7 @@ msgstr ""
 msgid "Select the desired function and click on \"OK\" to assign it. Use \"CH+/-\" to toggle between the lists. Select an assigned function and click on \"OK\" to de-assign it. Use \"Next/Previous\" to change the order of the assigned functions."
 msgstr "Επιλέξτε την επιθυμητή λειτουργία και πιέστε το \"OK\" για ανάθεση. Χρήση των \"CH+/-\" για εναλλαγή μεταξύ λιστών. Επιλέξτε μία ανατεθειμένη λειτουργία και πιέστε το \"OK\" για να την ακυρώσετε. Χρήση των \"Next/Previous\" για αλλαγή σειράς των ανατιθέμενων λειτουργιών."
 
-msgid "Select the highlighted image and reboot"
+msgid "Select the highlighted slot and reboot"
 msgstr ""
 
 #, fuzzy
@@ -23393,6 +23388,17 @@ msgstr "ζάπινγκ"
 
 msgid "®"
 msgstr ""
+
+#, fuzzy
+#~ msgid "Cancel the image selection and exit"
+#~ msgstr "Ακύρωση της επιλογής"
+
+#, fuzzy
+#~ msgid "Cancel the image selection and exit all menus"
+#~ msgstr "Ακύρωση της επιλογής"
+
+#~ msgid "No images found"
+#~ msgstr "Δεν βρέθηκαν εικόνες"
 
 #, python-format
 #~ msgid " bootmode = %s"

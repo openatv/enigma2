@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Apachi70 (OpenATV)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-04-13 15:07+0000\n"
+"POT-Creation-Date: 2022-04-14 09:02+0000\n"
 "PO-Revision-Date: 2021-11-14 06:52+0000\n"
 "Last-Translator: Oğuz Ersen <oguzersen@protonmail.com>\n"
 "Language-Team: Turkish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/tr/>\n"
@@ -4321,15 +4321,11 @@ msgstr "Zaman-kaydırmayı film olarak saklama"
 msgid "Cancel selection"
 msgstr "Kanal Seçimi"
 
-#
-#, fuzzy
-msgid "Cancel the image selection and exit"
-msgstr "Kanal Seçimi"
+msgid "Cancel the slot selection and exit"
+msgstr ""
 
-#
-#, fuzzy
-msgid "Cancel the image selection and exit all menus"
-msgstr "Kanal Seçimi"
+msgid "Cancel the slot selection and exit all menus"
+msgstr ""
 
 msgid "Cancel the update"
 msgstr ""
@@ -6444,7 +6440,7 @@ msgstr "Skin sil"
 msgid "Delete logfile"
 msgstr ""
 
-msgid "Delete or Wipe the highlighted image slot"
+msgid "Delete or Wipe the highlighted slot"
 msgstr ""
 
 #
@@ -11079,10 +11075,10 @@ msgstr "Bağlanmamış kullanıcı kitaplarını yükle"
 msgid "Load/Save/Delete"
 msgstr "Yük / Kaydet / Sil"
 
-msgid "Loading image slot information, please wait..."
+msgid "Loading information, please wait..."
 msgstr ""
 
-msgid "Loading information, please wait..."
+msgid "Loading slot information, please wait..."
 msgstr ""
 
 msgid "Local box"
@@ -12083,12 +12079,6 @@ msgstr "Mozambik"
 msgid "Multi EPG"
 msgstr "Çoklu EPG"
 
-msgid "Multi-Boot Image Manager"
-msgstr ""
-
-msgid "Multi-Boot Manager Actions"
-msgstr ""
-
 msgid "MultiBoot"
 msgstr ""
 
@@ -12099,6 +12089,9 @@ msgid "MultiBoot Information"
 msgstr ""
 
 msgid "MultiBoot Manager"
+msgstr ""
+
+msgid "MultiBoot Manager Actions"
 msgstr ""
 
 msgid "MultiBoot boot mode"
@@ -12608,10 +12601,6 @@ msgid "No hash calculations configured"
 msgstr "Yapılandırılmış hesap yok"
 
 #
-msgid "No images found"
-msgstr "Image bulunamadı"
-
-#
 msgid "No matching place names found"
 msgstr "Eşleşen yer adı bulunamadı"
 
@@ -12649,6 +12638,9 @@ msgstr "Kanal yok"
 #
 msgid "No services/providers selected"
 msgstr "Kanal/Sağlayıcı seçilmedi"
+
+msgid "No slot images found"
+msgstr ""
 
 #
 msgid "No standby"
@@ -14469,7 +14461,7 @@ msgstr ""
 msgid "Press OK to use this locale.  [%s]"
 msgstr ""
 
-msgid "Press the UP/DOWN buttons to select an image and press OK or GREEN to 'Reboot' to that image. If available, YELLOW will either 'Delete' or 'Wipe' the image. A 'Deleted' image can be 'Restored' with the BLUE button. A 'Wiped' image is completely removed can NOT be restored!"
+msgid "Press the UP/DOWN buttons to select a slot and press OK or GREEN to 'Reboot' to that image. If available, YELLOW will either 'Delete' or 'Wipe' the image. A 'Deleted' image can be 'Restored' with the BLUE button. A 'Wiped' image is completely removed can NOT be restored!"
 msgstr ""
 
 msgid "Press the menu button to set a general AC3/Dolby offset."
@@ -15631,7 +15623,7 @@ msgstr "Ayarları bir yedeklemeden geri yükle"
 msgid "Restore system settings"
 msgstr "Sistem ayarlarını geri yükle"
 
-msgid "Restore the highlighted image slot"
+msgid "Restore the highlighted slot"
 msgstr ""
 
 msgid "Restore your settings back from a backup. After restore the box will restart to activated the new settings"
@@ -16628,7 +16620,7 @@ msgstr ""
 msgid "Select the desired function and click on \"OK\" to assign it. Use \"CH+/-\" to toggle between the lists. Select an assigned function and click on \"OK\" to de-assign it. Use \"Next/Previous\" to change the order of the assigned functions."
 msgstr "İstediğiniz işlevi seçin ve atamak için \"Tamam\" a tıklayın. Listeler arasında geçiş yapmak için \"CH +/-\" kullanın. Atanan bir işlevi seçin ve atamayı iptal etmek için \"Tamam\" a tıklayın. Atanan işlevlerin sırasını değiştirmek için \"Sonraki / Önceki\" yi kullanın."
 
-msgid "Select the highlighted image and reboot"
+msgid "Select the highlighted slot and reboot"
 msgstr ""
 
 #, fuzzy
@@ -25113,6 +25105,20 @@ msgstr "zap"
 
 msgid "®"
 msgstr ""
+
+#
+#, fuzzy
+#~ msgid "Cancel the image selection and exit"
+#~ msgstr "Kanal Seçimi"
+
+#
+#, fuzzy
+#~ msgid "Cancel the image selection and exit all menus"
+#~ msgstr "Kanal Seçimi"
+
+#
+#~ msgid "No images found"
+#~ msgstr "Image bulunamadı"
 
 #, python-format
 #~ msgid " bootmode = %s"

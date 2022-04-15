@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-04-13 15:07+0000\n"
-"PO-Revision-Date: 2022-04-14 18:25+0000\n"
+"POT-Creation-Date: 2022-04-14 09:02+0000\n"
+"PO-Revision-Date: 2022-04-15 09:02+0000\n"
 "Last-Translator: jbleyel <jbleyel@gmx.net>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/de/>\n"
 "Language: de\n"
@@ -4287,13 +4287,11 @@ msgstr "Timeshift nicht als Film speichern"
 msgid "Cancel selection"
 msgstr "Auswahl abbrechen"
 
-#
-msgid "Cancel the image selection and exit"
-msgstr "Imageauswahl abbrechen und verlassen"
+msgid "Cancel the slot selection and exit"
+msgstr "Auswahl des Slots abbrechen und beenden"
 
-#
-msgid "Cancel the image selection and exit all menus"
-msgstr "Imageauswahl abbrechen und alle Menüs verlassen"
+msgid "Cancel the slot selection and exit all menus"
+msgstr "Auswahl des Slots abbrechen und alle Menüs verlassen"
 
 msgid "Cancel the update"
 msgstr "Update abbrechen"
@@ -5063,9 +5061,8 @@ msgid "Configure if and how crypto icons will be shown in the channel selection 
 msgstr "Die Anzeige des Verschlüsselungssymbols in der Senderliste einstellen."
 
 # /data/setup.xml
-#, fuzzy
 msgid "Configure if and how long the latest service in the PiP will be remembered."
-msgstr "Einstellen, ob und wie lange der aktuelle Bild im Bild Service in Erinnerung bleiben soll."
+msgstr "Einstellen, ob und wie lange der letzte Sender bei Bild im Bild gespeichert werden soll."
 
 msgid "Configure if and how service type icons will be shown."
 msgstr "Die Anzeige der Servicetyp-Symbole einstellen."
@@ -6387,8 +6384,8 @@ msgstr "Image löschen"
 msgid "Delete logfile"
 msgstr "Logfile löschen"
 
-msgid "Delete or Wipe the highlighted image slot"
-msgstr "Löschen oder Schreddern des markierten Image-Slots"
+msgid "Delete or Wipe the highlighted slot"
+msgstr "Löschen oder Schreddern des markierten Slots"
 
 #
 msgid "Delete playlist entry"
@@ -6439,7 +6436,7 @@ msgid "Deleting files"
 msgstr "Dateien löschen"
 
 msgid "Delivery system workaround"
-msgstr "Tuner System Spezial Funktion"
+msgstr "Verteilungssystem Problemumgehung"
 
 msgid "Democratic Republic of the Congo"
 msgstr "Demokratische Republik Kongo"
@@ -9289,7 +9286,7 @@ msgid "Harddisk Setup"
 msgstr "Konfiguration der Festplatte"
 
 msgid "Hardware MultiBoot device"
-msgstr "Multi-Boot Gerät"
+msgstr "Multiboot-Gerät"
 
 msgid "Hardware information"
 msgstr "Hardware-Informationen"
@@ -9873,7 +9870,6 @@ msgstr "In Arbeit"
 msgid "In the Standby Record on the LCD Display"
 msgstr "Bei 'Ja' wird das blinkende Aufnahmesymbol im Display auch im Standby aktiviert (nicht alle Receiver unterstützen das)."
 
-#, fuzzy
 msgid "Inaccessible"
 msgstr "Nicht zugänglich"
 
@@ -10059,7 +10055,6 @@ msgstr "Eingabe "
 msgid "Input Device Settings"
 msgstr "Eingabegeräte Einstellungen"
 
-#, fuzzy
 msgid "Input Stream ID"
 msgstr "Input Stream ID"
 
@@ -10339,9 +10334,8 @@ msgstr "Italien"
 msgid "J"
 msgstr "J"
 
-#, fuzzy
 msgid "JUMP 24 HOURS"
-msgstr "24 STUNDEN SPRINGEN"
+msgstr "Springe 24 Stunden"
 
 msgid "Jamaica"
 msgstr "Jamaika"
@@ -10934,11 +10928,11 @@ msgstr "Nicht eingebundene Bouquets laden"
 msgid "Load/Save/Delete"
 msgstr "Laden/Speichern/Löschen"
 
-msgid "Loading image slot information, please wait..."
-msgstr "Informationen zum Image-Slot werden geladen, bitte warten..."
-
 msgid "Loading information, please wait..."
 msgstr "Informationen werden geladen. Bitte warten..."
+
+msgid "Loading slot information, please wait..."
+msgstr "Slot-Informationen werden geladen, bitte warten..."
 
 msgid "Local box"
 msgstr "Lokaler Receiver"
@@ -11905,12 +11899,6 @@ msgstr "Mosambik"
 msgid "Multi EPG"
 msgstr "Multi-EPG"
 
-msgid "Multi-Boot Image Manager"
-msgstr "Multi-Boot Verwaltung"
-
-msgid "Multi-Boot Manager Actions"
-msgstr "Multi-Boot-Manager-Aktionen"
-
 msgid "MultiBoot"
 msgstr "Multi-Boot"
 
@@ -11923,6 +11911,9 @@ msgstr "Multiboot-Informationen"
 
 msgid "MultiBoot Manager"
 msgstr "Multiboot-Verwaltung"
+
+msgid "MultiBoot Manager Actions"
+msgstr "Multiboot-Manager-Aktionen"
 
 msgid "MultiBoot boot mode"
 msgstr "Multiboot-Startmodus"
@@ -12427,9 +12418,6 @@ msgstr "Keine Festplatten gefunden."
 msgid "No hash calculations configured"
 msgstr "Keine Hash-Berechnungen konfiguriert"
 
-msgid "No images found"
-msgstr "Keine Images gefunden"
-
 msgid "No matching place names found"
 msgstr "Keine übereinstimmenden Ortsnamen gefunden"
 
@@ -12472,6 +12460,9 @@ msgstr "Kein Dienst"
 #
 msgid "No services/providers selected"
 msgstr "Keine Services/Provider ausgewählt"
+
+msgid "No slot images found"
+msgstr "Keine Slot-Images gefunden"
 
 msgid "No standby"
 msgstr "Kein Standby"
@@ -14305,8 +14296,8 @@ msgstr "Drücken Sie OK, um diese Sprache zu verwenden.  [%s]"
 msgid "Press OK to use this locale.  [%s]"
 msgstr "Drücken Sie OK, um die Sprachregion zu verwenden.  [%s]"
 
-msgid "Press the UP/DOWN buttons to select an image and press OK or GREEN to 'Reboot' to that image. If available, YELLOW will either 'Delete' or 'Wipe' the image. A 'Deleted' image can be 'Restored' with the BLUE button. A 'Wiped' image is completely removed can NOT be restored!"
-msgstr "Drücken Sie die Tasten AUF/AB, um ein Image auszuwählen und drücken Sie OK oder GRÜN, um zu diesem Image zu wechseln. Falls verfügbar, wird mit GELB entweder 'Löschen' oder 'Schreddern' das Image gelöscht. Ein 'Gelöschtes' Image kann 'Wiederhergestellt' werden mit der BLAUEN Taste. Ein 'Geschreddertes' Image ist komplett entfernt und kann NICHT wiederhergestellt werden!"
+msgid "Press the UP/DOWN buttons to select a slot and press OK or GREEN to 'Reboot' to that image. If available, YELLOW will either 'Delete' or 'Wipe' the image. A 'Deleted' image can be 'Restored' with the BLUE button. A 'Wiped' image is completely removed can NOT be restored!"
+msgstr "Drücken Sie die Tasten AUF/AB, um einen Slot auszuwählen und drücken Sie OK oder GRÜN, um zu diesem Image zu wechseln. Falls verfügbar, wird mit GELB entweder 'Löschen' oder 'Schreddern' das Image gelöscht. Ein 'gelöschtes' Image kann 'Wiederhergestellt' werden mit der BLAUEN Taste. Ein 'geschreddertes' Image ist komplett entfernt und kann NICHT wiederhergestellt werden!"
 
 msgid "Press the menu button to set a general AC3/Dolby offset."
 msgstr "Drücken Sie die Taste MENU, um einen allgemeinen AC3/Dolby-Offset zu setzen."
@@ -15450,8 +15441,8 @@ msgstr "Einstellungen wiederherstellen"
 msgid "Restore system settings"
 msgstr "Systemeinstellungen wiederherstellen"
 
-msgid "Restore the highlighted image slot"
-msgstr "Wiederherstellen des markierten Image-Slots"
+msgid "Restore the highlighted slot"
+msgstr "Den markierten Slot wiederherstellen"
 
 msgid "Restore your settings back from a backup. After restore the box will restart to activated the new settings"
 msgstr "Wiederherstellen der Einstellungen von der Sicherung. Nach Wiederherstellung wird der Receiver neu starten."
@@ -16448,8 +16439,8 @@ msgstr "Wählen Sie die aktuell markierte Sprachregion für die Benutzeroberflä
 msgid "Select the desired function and click on \"OK\" to assign it. Use \"CH+/-\" to toggle between the lists. Select an assigned function and click on \"OK\" to de-assign it. Use \"Next/Previous\" to change the order of the assigned functions."
 msgstr "Gewünschte Funktion auswählen und OK drücken, um sie zu belegen. Mit P+/CH+ oder P-/CH- zwischen den Listen umschalten. Zugeordnete Funktion auswählen und OK drücken, um die Belegung zu entfernen. Mit '<' oder '>' die Funktionen sortieren."
 
-msgid "Select the highlighted image and reboot"
-msgstr "Ausgewähltes Image verwenden und neu starten"
+msgid "Select the highlighted slot and reboot"
+msgstr "Wählen Sie den markierten Slot und starten Sie neu"
 
 #
 msgid "Select the locale from a menu"
@@ -18835,7 +18826,7 @@ msgid "Stretch nonlinear"
 msgstr "Nichtlinear gestreckt"
 
 msgid "Strict DLNA"
-msgstr "Genaue DLNA"
+msgstr "Striktes DLNA"
 
 msgid "Stripes"
 msgstr "Streifen"
@@ -24315,9 +24306,8 @@ msgstr "Rot"
 msgid "reliable"
 msgstr "Zuverlässig"
 
-#, fuzzy
 msgid "reliable, retune"
-msgstr "Zuverlässig, retune"
+msgstr "Zuverlässig, neu Abstimmen"
 
 msgid "religion"
 msgstr "Religion"
@@ -24758,9 +24748,8 @@ msgstr "Tourismus/Reise"
 msgid "traditional (fast)"
 msgstr "Klassisch (schnell)"
 
-#, fuzzy
 msgid "traditional (fast), retune"
-msgstr "Klassisch (schnell), retune"
+msgstr "Klassisch (schnell), neu Abstimmen"
 
 msgid "turbo"
 msgstr "Turbo"
@@ -24985,6 +24974,38 @@ msgstr "Umschalten"
 
 msgid "®"
 msgstr "®"
+
+#
+#~ msgid "Cancel the image selection and exit"
+#~ msgstr "Imageauswahl abbrechen und verlassen"
+
+#
+#~ msgid "Cancel the image selection and exit all menus"
+#~ msgstr "Imageauswahl abbrechen und alle Menüs verlassen"
+
+#~ msgid "Delete or Wipe the highlighted image slot"
+#~ msgstr "Löschen oder Schreddern des markierten Image-Slots"
+
+#~ msgid "Loading image slot information, please wait..."
+#~ msgstr "Informationen zum Image-Slot werden geladen, bitte warten..."
+
+#~ msgid "Multi-Boot Image Manager"
+#~ msgstr "Multi-Boot Verwaltung"
+
+#~ msgid "Multi-Boot Manager Actions"
+#~ msgstr "Multi-Boot-Manager-Aktionen"
+
+#~ msgid "No images found"
+#~ msgstr "Keine Images gefunden"
+
+#~ msgid "Press the UP/DOWN buttons to select an image and press OK or GREEN to 'Reboot' to that image. If available, YELLOW will either 'Delete' or 'Wipe' the image. A 'Deleted' image can be 'Restored' with the BLUE button. A 'Wiped' image is completely removed can NOT be restored!"
+#~ msgstr "Drücken Sie die Tasten AUF/AB, um ein Image auszuwählen und drücken Sie OK oder GRÜN, um zu diesem Image zu wechseln. Falls verfügbar, wird mit GELB entweder 'Löschen' oder 'Schreddern' das Image gelöscht. Ein 'Gelöschtes' Image kann 'Wiederhergestellt' werden mit der BLAUEN Taste. Ein 'Geschreddertes' Image ist komplett entfernt und kann NICHT wiederhergestellt werden!"
+
+#~ msgid "Restore the highlighted image slot"
+#~ msgstr "Wiederherstellen des markierten Image-Slots"
+
+#~ msgid "Select the highlighted image and reboot"
+#~ msgstr "Ausgewähltes Image verwenden und neu starten"
 
 #, python-format
 #~ msgid " bootmode = %s"

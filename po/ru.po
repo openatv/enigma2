@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Enigma2 OpenXXX\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-04-13 15:07+0000\n"
+"POT-Creation-Date: 2022-04-14 09:02+0000\n"
 "PO-Revision-Date: 2022-04-05 18:10+0000\n"
 "Last-Translator: igorrrrr <igorzhugan66@gmail.com>\n"
 "Language-Team: Russian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/ru/>\n"
@@ -4088,11 +4088,11 @@ msgstr "Отменить сохранение таймшифта в виде з�
 msgid "Cancel selection"
 msgstr "Отменить выбор"
 
-msgid "Cancel the image selection and exit"
-msgstr "Отмена выбора имиджа и выход"
+msgid "Cancel the slot selection and exit"
+msgstr ""
 
-msgid "Cancel the image selection and exit all menus"
-msgstr "Отмена выбора имиджа и выход из всех меню"
+msgid "Cancel the slot selection and exit all menus"
+msgstr ""
 
 msgid "Cancel the update"
 msgstr "Отменить обновление"
@@ -6051,7 +6051,7 @@ msgstr "Удалить имидж"
 msgid "Delete logfile"
 msgstr "Удалить файл журнала"
 
-msgid "Delete or Wipe the highlighted image slot"
+msgid "Delete or Wipe the highlighted slot"
 msgstr ""
 
 msgid "Delete playlist entry"
@@ -10319,11 +10319,11 @@ msgstr "Загружать невыбранные букеты пользова�
 msgid "Load/Save/Delete"
 msgstr "Загрузить/Сохранить/Удалить"
 
-msgid "Loading image slot information, please wait..."
-msgstr ""
-
 msgid "Loading information, please wait..."
 msgstr "Загрузка информации, подождите..."
+
+msgid "Loading slot information, please wait..."
+msgstr ""
 
 msgid "Local box"
 msgstr "Локальный ресивер"
@@ -11209,12 +11209,6 @@ msgstr "Мозамбик"
 msgid "Multi EPG"
 msgstr "Мульти ТВ-гид"
 
-msgid "Multi-Boot Image Manager"
-msgstr ""
-
-msgid "Multi-Boot Manager Actions"
-msgstr ""
-
 msgid "MultiBoot"
 msgstr ""
 
@@ -11225,6 +11219,9 @@ msgid "MultiBoot Information"
 msgstr ""
 
 msgid "MultiBoot Manager"
+msgstr ""
+
+msgid "MultiBoot Manager Actions"
 msgstr ""
 
 msgid "MultiBoot boot mode"
@@ -11672,9 +11669,6 @@ msgstr "Жёсткие диски не обнаружены."
 msgid "No hash calculations configured"
 msgstr "Не настроены хэш-вычисления"
 
-msgid "No images found"
-msgstr "Имидж не найден"
-
 msgid "No matching place names found"
 msgstr "Не найдено совпадающих географических названий"
 
@@ -11707,6 +11701,9 @@ msgstr "Каналов нет"
 
 msgid "No services/providers selected"
 msgstr "Не выбраны каналы/провайдеры"
+
+msgid "No slot images found"
+msgstr ""
 
 msgid "No standby"
 msgstr "Не переходить в режим ожидания"
@@ -13363,7 +13360,7 @@ msgstr "Нажмите ОК, чтобы использовать этот язы
 msgid "Press OK to use this locale.  [%s]"
 msgstr "Нажмите OK, чтобы использовать эту локаль.  [%s]"
 
-msgid "Press the UP/DOWN buttons to select an image and press OK or GREEN to 'Reboot' to that image. If available, YELLOW will either 'Delete' or 'Wipe' the image. A 'Deleted' image can be 'Restored' with the BLUE button. A 'Wiped' image is completely removed can NOT be restored!"
+msgid "Press the UP/DOWN buttons to select a slot and press OK or GREEN to 'Reboot' to that image. If available, YELLOW will either 'Delete' or 'Wipe' the image. A 'Deleted' image can be 'Restored' with the BLUE button. A 'Wiped' image is completely removed can NOT be restored!"
 msgstr ""
 
 msgid "Press the menu button to set a general AC3/Dolby offset."
@@ -14424,7 +14421,7 @@ msgstr "Восстановить настройки из копии"
 msgid "Restore system settings"
 msgstr "Восстановить настройки"
 
-msgid "Restore the highlighted image slot"
+msgid "Restore the highlighted slot"
 msgstr ""
 
 msgid "Restore your settings back from a backup. After restore the box will restart to activated the new settings"
@@ -15348,8 +15345,8 @@ msgstr "Выберите текущую выделенную локаль/язы
 msgid "Select the desired function and click on \"OK\" to assign it. Use \"CH+/-\" to toggle between the lists. Select an assigned function and click on \"OK\" to de-assign it. Use \"Next/Previous\" to change the order of the assigned functions."
 msgstr "Выберите желаемую функцию и нажмите 'ОК', чтобы назначить её. Используйте 'CH +/-' для переключения между списками. Выберите назначенную функцию и нажмите 'ОК', чтобы отменить её назначение. Используйте 'Далее/Назад', чтобы изменить порядок назначенных функций."
 
-msgid "Select the highlighted image and reboot"
-msgstr "Выберите выделенное изображение и перезагрузитесь"
+msgid "Select the highlighted slot and reboot"
+msgstr ""
 
 msgid "Select the locale from a menu"
 msgstr "Выберите локаль из меню"
@@ -23144,6 +23141,18 @@ msgstr "Переключение"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Cancel the image selection and exit"
+#~ msgstr "Отмена выбора имиджа и выход"
+
+#~ msgid "Cancel the image selection and exit all menus"
+#~ msgstr "Отмена выбора имиджа и выход из всех меню"
+
+#~ msgid "No images found"
+#~ msgstr "Имидж не найден"
+
+#~ msgid "Select the highlighted image and reboot"
+#~ msgstr "Выберите выделенное изображение и перезагрузитесь"
 
 #, python-format
 #~ msgid " bootmode = %s"
