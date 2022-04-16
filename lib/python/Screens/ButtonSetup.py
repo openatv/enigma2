@@ -240,7 +240,7 @@ def getButtonSetupFunctions():
 	if BoxInfo.getItem("LcdLiveTV"):
 		ButtonSetupFunctions.append((_("Toggle LCD LiveTV"), "Infobar/ToggleLCDLiveTV", "InfoBar"))
 	if BoxInfo.getItem("canMultiBoot"):
-		ButtonSetupFunctions.append((_("MultiBoot Image Manager"), "Module/Screens.MultiBootManager/MultiBootManager", "InfoBar"))
+		ButtonSetupFunctions.append((_("MultiBoot Manager"), "Module/Screens.MultiBootManager/MultiBootManager", "InfoBar"))
 	ButtonSetupFunctions.append((_("Hotkey Setup"), "Module/Screens.ButtonSetup/ButtonSetup", "Setup"))
 	ButtonSetupFunctions.append((_("Software Update"), "Module/Screens.SoftwareUpdate/SoftwareUpdate", "Setup"))
 	if getHaveCI() == 'True':
