@@ -5238,7 +5238,7 @@ class InfoBarSleepTimer:
 		return delay
 
 	def sleepTimerTimeout(self):
-		action = config.usage.energyTimerAction.value
+		action = config.usage.sleepTimerAction.value
 		brand, model, timeout = self.timerTimeout(action, self.setSleepTimer, _("Sleep Timer"))
 		if brand:
 			if not Screens.Standby.inStandby:
