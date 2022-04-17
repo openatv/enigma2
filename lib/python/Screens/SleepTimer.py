@@ -51,17 +51,17 @@ class SleepTimer(Setup):
 		sleepTimer = InfoBar.instance.sleepTimerState()
 		if sleepTimer > 60:
 			sleepTimer //= 60
-			sleepMsg = ngettext("Sleep timer: %d minute remains", "Sleep timer: %d minutes remain.", sleepTimer) % sleepTimer
+			sleepMsg = ngettext("Sleep timer: %d minute remains.", "Sleep timer: %d minutes remain.", sleepTimer) % sleepTimer
 		elif sleepTimer:
-			sleepMsg = ngettext("Sleep timer: %d second remains", "Sleep timer: %d seconds remain.", sleepTimer) % sleepTimer
+			sleepMsg = ngettext("Sleep timer: %d second remains.", "Sleep timer: %d seconds remain.", sleepTimer) % sleepTimer
 		else:
 			sleepMsg = _("Sleep timer: Inactive.")
 		energyTimer = InfoBar.instance.energyTimerState()
 		if energyTimer > 60:
 			energyTimer //= 60
-			energyMsg = ngettext("Energy timer: %d minute remains", "Energy timer: %d minutes remain.", energyTimer) % energyTimer
+			energyMsg = ngettext("Energy timer: %d minute remains.", "Energy timer: %d minutes remain.", energyTimer) % energyTimer
 		elif energyTimer:
-			energyMsg = ngettext("Energy timer: %d second remains", "Energy timer: %d seconds remain.", energyTimer) % energyTimer
+			energyMsg = ngettext("Energy timer: %d second remains.", "Energy timer: %d seconds remain.", energyTimer) % energyTimer
 		else:
 			energyMsg = _("Energy timer: Inactive.")
 		self.setFootnote("%s   %s" % (sleepMsg, energyMsg))
