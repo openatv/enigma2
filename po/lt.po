@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-04-14 09:02+0000\n"
-"PO-Revision-Date: 2022-04-13 18:33+0000\n"
+"POT-Creation-Date: 2022-04-17 12:35+0000\n"
+"PO-Revision-Date: 2022-04-17 19:39+0000\n"
 "Last-Translator: Adga56 <adga45@gmail.com>\n"
 "Language-Team: Lithuanian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/lt/>\n"
 "Language: lt\n"
@@ -1356,6 +1356,14 @@ msgid "%s additional screens"
 msgstr "%s papildomi ekranai"
 
 #, python-format
+msgid "%s has been activated."
+msgstr "%s suaktyvintas."
+
+#, python-format
+msgid "%s has been disabled."
+msgstr "%s buvo išjungtas."
+
+#, python-format
 msgid "%s information"
 msgstr "%s informacija"
 
@@ -2050,16 +2058,6 @@ msgstr "??"
 msgid "A"
 msgstr "A"
 
-#, python-format
-msgid ""
-"A Recording, RecordTimer or PowerTimer is running or begins in 15 minutes.\n"
-"Extend sleep timer 30 minutes. Your %s %s\n"
-"will shut down after Recording or Powertimer event. Get in Standby now?"
-msgstr ""
-"Vyksta, arba 15 min. eigoje prasidės įrašas, įrašymo, ar įjungimo laikmačio veiksmas.\n"
-"Pratęskite budėjimo laikmatį 30 minučių. Jūsų %s %s išsijungs po įrašymo,\n"
-"arba įjungimo laikmačio veiksmo. Pereiti į budėjimą dabar?"
-
 msgid "A background update check is in progress, please wait a few minutes and try again."
 msgstr "Fone vyksta atnaujinimų paieška, palaukite ir po kelių minučių bandykite dar kartą."
 
@@ -2144,6 +2142,16 @@ msgstr "Dabar vyksta įrašymas. Prieš skenuodami, nutraukite įrašymą."
 msgid "A recording is currently running. Please stop the recording before trying to start the satfinder."
 msgstr "Dabar vyksta įrašymas. Prieš pradėdami palydovų paiešką, išjunkite įrašymą."
 
+#, python-format
+msgid ""
+"A recording, recording timer or power timer is running or will begin within 15 minutes. %s extended to 30 minutes. Your %s %s will go to Deep Standby after the recording or power timer event.\n"
+"\n"
+"Go to Deep Standby now?"
+msgstr ""
+"Įrašymo, įrašymo laikmatis arba maitinimo laikmatis veikia arba prasidės per 15 minučių. %s pratęstas iki 30 minučių. Jūsų %s %s pateks į gilų budėjimą po įrašymo ar galios laikmačio įvykio.\n"
+"\n"
+"Eiti į gilų budėjimą dabar?"
+
 msgid "A repeating timer or just once?"
 msgstr "Laikmatis kartojamas, ar vienkartinis?"
 
@@ -2173,27 +2181,11 @@ msgstr ""
 
 #, python-format
 msgid ""
-"A sleep timer wants to set your %s %s to standby.\n"
-"Do that now or set extend additional minutes?"
-msgstr ""
-"Budėjimo laikmatis nori perjungti jūsų %s %s į budėjimo\n"
-"režimą. Perjungti dabar, ar norite skirti papildomo laiko?"
-
-#, python-format
-msgid ""
 "A sleep timer wants to shut down\n"
 "your %s %s. Shutdown now?"
 msgstr ""
 "Budėjimo laikmatis nori išjungti\n"
 "Jūsų %s %s. Išjungti dabar?"
-
-#, python-format
-msgid ""
-"A sleep timer wants to shut down your %s %s.\n"
-"Do that now or set extend additional minutes?"
-msgstr ""
-"Baigtas įjungimo laikmatis nori išjungti Jūsų %s %s.\n"
-"Išjungti dabar, ar norite skirti papildomo laiko?"
 
 msgid "A small overview of the available icon states and actions."
 msgstr "Galimų logotipų būsenos ir veiksmų apžvalga."
@@ -3039,6 +3031,9 @@ msgstr "Astra 3 23.5e"
 
 msgid "At End:"
 msgstr "Pabaigoje:"
+
+msgid "At end of current program"
+msgstr "Dabartinės programos pabaigoje"
 
 msgid "Athletics"
 msgstr "Atletika"
@@ -4095,10 +4090,10 @@ msgid "Cancel selection"
 msgstr "Atšaukti pasirinkimą"
 
 msgid "Cancel the slot selection and exit"
-msgstr ""
+msgstr "Atšaukti lizdų pasirinkimą ir išeiti"
 
 msgid "Cancel the slot selection and exit all menus"
-msgstr ""
+msgstr "Atšaukti lizdų pasirinkimą ir išeiti iš visų meniu"
 
 msgid "Cancel the update"
 msgstr "Atšaukti naujinimą"
@@ -4908,8 +4903,11 @@ msgstr "Konfigūruokite ekrano rezoliuciją ir šriftą, naudojamą teletekstui.
 msgid "Configure the duration in minutes for the screensaver."
 msgstr "Konfigūruokite trukmę minutėmis, po kurios įsijungs ekrano užsklanda."
 
-msgid "Configure the duration in minutes for the sleep timer."
-msgstr "Konfigūruokite trukmę minutėmis, po kurios įsijungs budėjimo laikmatis."
+msgid "Configure the duration, in minutes, before the energy saver timer activates."
+msgstr "Sukonfigūruokite trukmę minutėmis, prieš aktyvuojant energijos taupymo laikmatį."
+
+msgid "Configure the duration, in minutes, before the sleep timer activates."
+msgstr "Sukonfigūruokite trukmę minutėmis prieš aktyvuojant miego laikmatį."
 
 msgid "Configure the end coordinate in x of the teletext display area."
 msgstr "Konfigūruokite baigimo koordinates x teleteksto ekrano pločiui."
@@ -6065,7 +6063,7 @@ msgid "Delete logfile"
 msgstr "Naikinti žurnalą"
 
 msgid "Delete or Wipe the highlighted slot"
-msgstr ""
+msgstr "Naikinti arba išvalyti paryškintą lizdą"
 
 msgid "Delete playlist entry"
 msgstr "Trinti įrašą iš grojaraščio"
@@ -7236,6 +7234,35 @@ msgstr "Pabaigos laikas"
 msgid "Energie"
 msgstr "Energija"
 
+msgid "Energy Timer"
+msgstr "Energijos laikmatis"
+
+msgid "Energy saver action"
+msgstr "Energijos taupymo priemonės veiksmas"
+
+msgid "Energy saver activation delay"
+msgstr "Energijos taupymo aktyvavimo vėlavimas"
+
+msgid "Energy timer"
+msgstr "Energijos laikmatis"
+
+#, python-format
+msgid "Energy timer: %d minute remains"
+msgid_plural "Energy timer: %d minutes remain."
+msgstr[0] "Energijos laikmatis: liko %d minutė"
+msgstr[1] "Energijos laikmatis: liko %d minutės"
+msgstr[2] "Energijos laikmatis: liko %d minučių"
+
+#, python-format
+msgid "Energy timer: %d second remains"
+msgid_plural "Energy timer: %d seconds remain."
+msgstr[0] "Energijos laikmatis: liko %d sekundė"
+msgstr[1] "Energijos laikmatis: liko %d sekundės"
+msgstr[2] "Energijos laikmatis: liko %d sekundžių"
+
+msgid "Energy timer: Inactive."
+msgstr "Energijos laikmatis: neaktyvus."
+
 msgid "English"
 msgstr "Anglų"
 
@@ -7637,12 +7664,6 @@ msgstr "Viršija Blu-ray disko laikmeną!"
 
 msgid "Exceeds dual layer medium!"
 msgstr "Viršija dvejų sluoksnių laikmeną!"
-
-msgid "Execute after current event"
-msgstr "Vykdyti po šio įvykio"
-
-msgid "Execute in "
-msgstr "Vykdyti "
 
 msgid "Execution condition"
 msgstr "Vykdymo sąlyga"
@@ -10336,7 +10357,7 @@ msgid "Loading information, please wait..."
 msgstr "Įkeliama informacija, palaukite..."
 
 msgid "Loading slot information, please wait..."
-msgstr ""
+msgstr "Įkeliama lizdo informacija, palaukite..."
 
 msgid "Local box"
 msgstr "Vietinis imtuvas"
@@ -11225,9 +11246,6 @@ msgstr "Kelių kanalų EPG"
 msgid "MultiBoot"
 msgstr "Daugialypė įkrova"
 
-msgid "MultiBoot Image Manager"
-msgstr "Daugialypės atvaizdo įkrovos tvarkyklė"
-
 msgid "MultiBoot Information"
 msgstr "Daugialypės įkrovos informacija"
 
@@ -11235,7 +11253,7 @@ msgid "MultiBoot Manager"
 msgstr "Daugialypės įkrovos tvarkyklė"
 
 msgid "MultiBoot Manager Actions"
-msgstr ""
+msgstr "Daugialypės įkrovos tvarkyklės veiksmai"
 
 msgid "MultiBoot boot mode"
 msgstr "Daugialypės įkrovos režimas"
@@ -11716,7 +11734,7 @@ msgid "No services/providers selected"
 msgstr "Nepasirinkti kanalai/teikėjai"
 
 msgid "No slot images found"
-msgstr ""
+msgstr "Lizdų atvaizdų nerasta"
 
 msgid "No standby"
 msgstr "Nebudėti"
@@ -13374,7 +13392,7 @@ msgid "Press OK to use this locale.  [%s]"
 msgstr "Paspauskite OK, kad naudotumėte šią lokalę.  [%s]"
 
 msgid "Press the UP/DOWN buttons to select a slot and press OK or GREEN to 'Reboot' to that image. If available, YELLOW will either 'Delete' or 'Wipe' the image. A 'Deleted' image can be 'Restored' with the BLUE button. A 'Wiped' image is completely removed can NOT be restored!"
-msgstr ""
+msgstr "Paspauskite mygtukus AUKŠTYN / ŽEMYN, kad pasirinktumėte atvaizdą, ir paspauskite OK arba ŽALIĄ, kad 'Perkrauti' į tą atvaizdą. Jei įmanoma, GELTONU bus arba 'Ištrinti' arba 'Išvalyti' atvaizdą. 'Ištrintas' atvaizdas gali būti 'atkurtas'  MĖLYNU mygtuku. Visiškai pašalintas 'išvalytas' atvaizdas negali būti atkurtas!"
 
 msgid "Press the menu button to set a general AC3/Dolby offset."
 msgstr "Paspauskite meniu mygtuką, kad nustatytumėte bendrą AC3/Dolby poslinkio galimybę."
@@ -14435,7 +14453,7 @@ msgid "Restore system settings"
 msgstr "Atkurkite sistemos nustatymus"
 
 msgid "Restore the highlighted slot"
-msgstr ""
+msgstr "Atkurti paryškintą lizdą"
 
 msgid "Restore your settings back from a backup. After restore the box will restart to activated the new settings"
 msgstr "Atkurti savus nustatymus iš atsarginės kopijos. Po atkūrimo, kad aktyvuoti nustatymus, imtuvas bus paleistas iš naujo"
@@ -15359,7 +15377,7 @@ msgid "Select the desired function and click on \"OK\" to assign it. Use \"CH+/-
 msgstr "Pasirinkite norimą funkciją ir kad ją priskirti, spauskite 'OK'. Perjungti tarp sąrašų, naudokite kanalų '+/-' mygtukus. Pasirinkite priskirtą funkciją ir jai per-priskirti spauskite 'OK'. Pakeisti priskirtų funkcijų tvarkai, naudokite \"Kitas/Ankstesnis\" ."
 
 msgid "Select the highlighted slot and reboot"
-msgstr ""
+msgstr "Pasirinkite paryškintą lizdą ir perkraukite"
 
 msgid "Select the locale from a menu"
 msgstr "Pasirinkite lokalę iš meniu"
@@ -15409,9 +15427,6 @@ msgstr "Pasirinkite perkeltą simbolių rinkinį"
 msgid "Select the shifted character set for the next character only"
 msgstr "Pasirinkite paslinktų simbolių rinkinį tik kitam simboliui"
 
-msgid "Select the sleep timer action."
-msgstr "Pasirinkite budėjimo laikmačio veiksmą."
-
 msgid "Select the source of the default DNS settings."
 msgstr "Pasirinkite numatytųjų DNS parametrų šaltinį."
 
@@ -15438,6 +15453,12 @@ msgstr "Pasirinkite naudojamo LNB/įrenginio tipą (paprastai 'Universal'). Jei 
 
 msgid "Select the type of Single Cable Reception device you are using."
 msgstr "Pasirinkite vieno kabelio priėmimo įrenginio tipą, kurį jūs naudojate."
+
+msgid "Select the type of shutdown desired when the energy timer activates."
+msgstr "Pasirinkite norimo išjungimo tipą, kai suaktyvinamas energijos laikmatis."
+
+msgid "Select the type of shutdown desired when the steep timer activates."
+msgstr "Pasirinkite norimo išjungimo tipą, kai įjungiamas kietas laikmatis."
 
 msgid "Select upgrade source"
 msgstr "Pasirinkite atnaujinimo šaltinį"
@@ -16961,11 +16982,40 @@ msgstr "Miegoti"
 msgid "Sleep Timer"
 msgstr "Miego laikmatis"
 
+msgid "Sleep Timer Settings"
+msgstr "Miego laikmačio parametrai"
+
 msgid "Sleep delay"
 msgstr "Miego būsenos delsa"
 
 msgid "Sleep long"
 msgstr "Miegoti, ilgai spausti"
+
+msgid "Sleep timer"
+msgstr "Miego laikmatis"
+
+msgid "Sleep timer action"
+msgstr "Miego laikmačio veiksmas"
+
+msgid "Sleep timer activation delay"
+msgstr "Miego laikmačio aktyvavimo vėlavimas"
+
+#, python-format
+msgid "Sleep timer: %d minute remains"
+msgid_plural "Sleep timer: %d minutes remain."
+msgstr[0] "Miego laikmatis: liko %d minutė"
+msgstr[1] "Miego laikmatis: liko %d minutės"
+msgstr[2] "Miego laikmatis: liko %d minučių"
+
+#, python-format
+msgid "Sleep timer: %d second remains"
+msgid_plural "Sleep timer: %d seconds remain."
+msgstr[0] "Miego laikmatis: %d sekundė lieka"
+msgstr[1] "Miego laikmatis: %d sekundės lieka"
+msgstr[2] "Miego laikmatis: %d sekundžių lieka"
+
+msgid "Sleep timer: Inactive."
+msgstr "Miego laikmatis: neaktyvus."
 
 msgid "SleepTimer"
 msgstr "Miego režimo laikmatis"
@@ -17894,7 +17944,7 @@ msgid "TEXT"
 msgstr "TEKSTAS"
 
 msgid "TRANSLATOR_INFO"
-msgstr "2022-04-13 adga45@gmail.com"
+msgstr "2022-04-17 adga45@gmail.com"
 
 msgid "TS file is too large for ISO9660 level 1!"
 msgstr "TS failas yra per didelis ISO9660 lygmeniui 1!"
@@ -18269,6 +18319,16 @@ msgstr "Numatytieji parametrai yra: budinimo laikas - 5 min ir laikmačio pradž
 msgid "The detailed information is intended for developers only."
 msgstr "Išsami informacija skirta tik kūrėjams."
 
+#, python-format
+msgid ""
+"The energy timer wants to set the %s %s to %s.\n"
+"\n"
+"Press OK to continue using the %s %s."
+msgstr ""
+"Energijos laikmatis nori nustatyti %s %s %s.\n"
+"\n"
+"Paspauskite OK, kad galėtumėte toliau naudoti %s %s."
+
 msgid "The following files were found..."
 msgstr "Buvo surasti šie failai..."
 
@@ -18318,11 +18378,15 @@ msgstr "Kanalų sąrašas įkeltas iš naujo."
 msgid "The setting 'without query' is the same as 'standard' without additional confirmation query. All other dependencies (e.g. recordings, time range) stay persist."
 msgstr "Parametras 'be užklausos' yra tas pats, kaip 'standartinis', bet be papildomų patvirtinimo užklausų. Visos kitos priklausomybės (pvz., įrašai, laiko intervalas) išlieka."
 
-msgid "The sleep timer has been activated."
-msgstr "Miego laikmatis jau įjungtas."
-
-msgid "The sleep timer has been disabled."
-msgstr "Miego laikmatis yra išjungtas."
+#, python-format
+msgid ""
+"The sleep timer wants to set the %s %s to %s.\n"
+"\n"
+"Do that now or extend the timer?"
+msgstr ""
+"Miego laikmatis nori nustatyti, kad %s %s %s.\n"
+"\n"
+"Ar tai padaryti dabar, ar pratęsti laikmatį?"
 
 msgid ""
 "The software management extension is not installed!\n"
@@ -18949,9 +19013,6 @@ msgstr "Laikmačio veiksmai"
 msgid "Timer List"
 msgstr "Laikmačių sąrašas"
 
-msgid "Timer action"
-msgstr "Budėjimo laikmačio veiksmas"
-
 msgid "Timer edit"
 msgstr "Redaguoti laikmatį"
 
@@ -18960,13 +19021,6 @@ msgstr "Laikmačio redaktorius"
 
 msgid "Timer entry"
 msgstr "Laikmačio užduotis"
-
-#, python-format
-msgid "Timer is activated: +%d min"
-msgstr "Laikmatis yra aktyvuotas: +%d min"
-
-msgid "Timer is not activated"
-msgstr "Laikmatis neaktyvuotas"
 
 msgid "Timer log"
 msgstr "Laikmačio žurnalas"
@@ -22395,9 +22449,6 @@ msgstr "normalus"
 msgid "not"
 msgstr "ne"
 
-msgid "not activated"
-msgstr "neaktyvuotas"
-
 msgid "not configured"
 msgstr "nekonfigūruota"
 
@@ -23152,6 +23203,66 @@ msgstr "perjungimas"
 
 msgid "®"
 msgstr "®"
+
+#, python-format
+#~ msgid ""
+#~ "A Recording, RecordTimer or PowerTimer is running or begins in 15 minutes.\n"
+#~ "Extend sleep timer 30 minutes. Your %s %s\n"
+#~ "will shut down after Recording or Powertimer event. Get in Standby now?"
+#~ msgstr ""
+#~ "Vyksta, arba 15 min. eigoje prasidės įrašas, įrašymo, ar įjungimo laikmačio veiksmas.\n"
+#~ "Pratęskite budėjimo laikmatį 30 minučių. Jūsų %s %s išsijungs po įrašymo,\n"
+#~ "arba įjungimo laikmačio veiksmo. Pereiti į budėjimą dabar?"
+
+#, python-format
+#~ msgid ""
+#~ "A sleep timer wants to set your %s %s to standby.\n"
+#~ "Do that now or set extend additional minutes?"
+#~ msgstr ""
+#~ "Budėjimo laikmatis nori perjungti jūsų %s %s į budėjimo\n"
+#~ "režimą. Perjungti dabar, ar norite skirti papildomo laiko?"
+
+#, python-format
+#~ msgid ""
+#~ "A sleep timer wants to shut down your %s %s.\n"
+#~ "Do that now or set extend additional minutes?"
+#~ msgstr ""
+#~ "Baigtas įjungimo laikmatis nori išjungti Jūsų %s %s.\n"
+#~ "Išjungti dabar, ar norite skirti papildomo laiko?"
+
+#~ msgid "Configure the duration in minutes for the sleep timer."
+#~ msgstr "Konfigūruokite trukmę minutėmis, po kurios įsijungs budėjimo laikmatis."
+
+#~ msgid "Execute after current event"
+#~ msgstr "Vykdyti po šio įvykio"
+
+#~ msgid "Execute in "
+#~ msgstr "Vykdyti "
+
+#~ msgid "MultiBoot Image Manager"
+#~ msgstr "Daugialypės atvaizdo įkrovos tvarkyklė"
+
+#~ msgid "Select the sleep timer action."
+#~ msgstr "Pasirinkite budėjimo laikmačio veiksmą."
+
+#~ msgid "The sleep timer has been activated."
+#~ msgstr "Miego laikmatis jau įjungtas."
+
+#~ msgid "The sleep timer has been disabled."
+#~ msgstr "Miego laikmatis yra išjungtas."
+
+#~ msgid "Timer action"
+#~ msgstr "Budėjimo laikmačio veiksmas"
+
+#, python-format
+#~ msgid "Timer is activated: +%d min"
+#~ msgstr "Laikmatis yra aktyvuotas: +%d min"
+
+#~ msgid "Timer is not activated"
+#~ msgstr "Laikmatis neaktyvuotas"
+
+#~ msgid "not activated"
+#~ msgstr "neaktyvuotas"
 
 #~ msgid "Cancel the image selection and exit"
 #~ msgstr "Atšaukti atvaizdo pasirinkimą ir užverti"
