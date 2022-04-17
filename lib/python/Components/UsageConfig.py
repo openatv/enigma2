@@ -175,7 +175,7 @@ def InitUsageConfig():
 	choicelist = []
 	for i in list(range(10, 310, 10)):
 		choicelist.append(("%d" % i, "%d " % i + _("seconds")))
-	config.usage.shutdown_msgbox_timeout = ConfigSelection(default="180", choices=choicelist)
+	config.usage.shutdown_msgbox_timeout = ConfigSelection(default="120", choices=choicelist)
 
 	choicelist = []
 	for i in list(range(1, 21)):
@@ -375,14 +375,23 @@ def InitUsageConfig():
 		("50", _("Very slow"))
 	])
 
-	choicelist = [("standby", _("Standby")), ("deepstandby", _("Deep Standby"))]
-	config.usage.sleep_timer_action = ConfigSelection(default="deepstandby", choices=choicelist)
-	choicelist = [("0", _("Disabled")), ("event_standby", _("Execute after current event"))]
-	for i in list(range(900, 14401, 900)):
-		m = abs(i / 60)
-		m = ngettext("%d minute", "%d minutes", m) % m
-		choicelist.append((str(i), _("Execute in ") + m))
-	config.usage.sleep_timer = ConfigSelection(default="0", choices=choicelist)
+	choiceList = [
+		(0, _("Disabled")),
+		(-1, _("At end of current program"))
+	]
+	for minutes in range(15, 241, 15):
+		choiceList.append((minutes * 60, _("%d minutes") % minutes))
+	config.usage.sleepTimer = ConfigSelection(default=0, choices=choiceList)
+	choiceList = [(0, _("Disabled"))]
+	for hours in range(1, 4):
+		choiceList.append((hours * 3600, ngettext("%d hour", "%d hours", hours) % hours))
+	config.usage.energyTimer = ConfigSelection(default=0, choices=choiceList)
+	choiceList = [
+		("standby", _("Standby")),
+		("deepstandby", _("Deep Standby"))
+	]
+	config.usage.sleepTimerAction = ConfigSelection(default="deepstandby", choices=choiceList)
+	config.usage.energyTimerAction = ConfigSelection(default="deepstandby", choices=choiceList)
 
 	choicelist = [("show_menu", _("Show shutdown menu")), ("shutdown", _("Immediate shutdown")), ("standby", _("Standby")), ("standby_noTVshutdown", _("Standby without TV shutdown")), ("sleeptimer", _("SleepTimer")), ("powertimerStandby", _("PowerTimer Standby")), ("powertimerDeepStandby", _("PowerTimer DeepStandby"))]
 	config.usage.on_long_powerpress = ConfigSelection(default="show_menu", choices=choicelist)
