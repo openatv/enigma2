@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-04-14 09:02+0000\n"
+"POT-Creation-Date: 2022-04-17 12:35+0000\n"
 "PO-Revision-Date: 2019-07-27 12:19+0700\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -1350,6 +1350,14 @@ msgid "%s additional screens"
 msgstr "%s màn hình bổ sung"
 
 #, python-format
+msgid "%s has been activated."
+msgstr ""
+
+#, python-format
+msgid "%s has been disabled."
+msgstr ""
+
+#, python-format
 msgid "%s information"
 msgstr ""
 
@@ -2058,16 +2066,6 @@ msgstr "??"
 msgid "A"
 msgstr "A"
 
-#, python-format
-msgid ""
-"A Recording, RecordTimer or PowerTimer is running or begins in 15 minutes.\n"
-"Extend sleep timer 30 minutes. Your %s %s\n"
-"will shut down after Recording or Powertimer event. Get in Standby now?"
-msgstr ""
-"Ghi âm, RecordTimer hoặc PowerTimer đang chạy hoặc bắt đầu sau 15 phút.\n"
-"Kéo dài thời gian ngủ 30 phút. % s% s của bạn\n"
-"sẽ tắt sau sự kiện Ghi hoặc Powertimer. Nhận trong chế độ chờ ngay bây giờ?"
-
 msgid "A background update check is in progress, please wait a few minutes and try again."
 msgstr "Việc kiểm tra cập nhật nền đang được tiến hành, vui lòng đợi vài phút và thử lại."
 
@@ -2152,6 +2150,13 @@ msgstr "Một bản ghi hiện đang chạy. Hãy dừng ghi âm trước khi th
 msgid "A recording is currently running. Please stop the recording before trying to start the satfinder."
 msgstr "Một bản ghi hiện đang chạy. Vui lòng dừng ghi âm trước khi thử khởi động satfinder."
 
+#, python-format
+msgid ""
+"A recording, recording timer or power timer is running or will begin within 15 minutes. %s extended to 30 minutes. Your %s %s will go to Deep Standby after the recording or power timer event.\n"
+"\n"
+"Go to Deep Standby now?"
+msgstr ""
+
 msgid "A repeating timer or just once?"
 msgstr "Một bộ đếm thời gian lặp lại hoặc chỉ một lần?"
 
@@ -2181,27 +2186,11 @@ msgstr ""
 
 #, python-format
 msgid ""
-"A sleep timer wants to set your %s %s to standby.\n"
-"Do that now or set extend additional minutes?"
-msgstr ""
-"Đồng hồ ngủ muốn đặt%s%s của bạn ở chế độ chờ.\n"
-"Làm điều đó bây giờ hoặc thiết lập kéo dài thêm phút?"
-
-#, python-format
-msgid ""
 "A sleep timer wants to shut down\n"
 "your %s %s. Shutdown now?"
 msgstr ""
 "Hẹn giờ ngủ muốn tắt\n"
 "%s%s của bạn. Tắt máy bây giờ?"
-
-#, python-format
-msgid ""
-"A sleep timer wants to shut down your %s %s.\n"
-"Do that now or set extend additional minutes?"
-msgstr ""
-"Đồng hồ ngủ muốn tắt%s%s của bạn.\n"
-"Làm điều đó bây giờ hoặc thiết lập kéo dài thêm phút?"
 
 msgid "A small overview of the available icon states and actions."
 msgstr "Một tổng quan nhỏ về các trạng thái và hành động biểu tượng có sẵn."
@@ -3055,6 +3044,9 @@ msgstr "Astra 3 23.5e"
 
 msgid "At End:"
 msgstr "Cuối cùng:"
+
+msgid "At end of current program"
+msgstr ""
 
 #, fuzzy
 msgid "Athletics"
@@ -4938,8 +4930,11 @@ msgstr "Định cấu hình độ phân giải màn hình và phông chữ đư�
 msgid "Configure the duration in minutes for the screensaver."
 msgstr "Định cấu hình thời lượng tính bằng phút cho trình bảo vệ màn hình."
 
-msgid "Configure the duration in minutes for the sleep timer."
-msgstr "Cấu hình thời lượng tính bằng phút cho bộ đếm thời gian ngủ."
+msgid "Configure the duration, in minutes, before the energy saver timer activates."
+msgstr ""
+
+msgid "Configure the duration, in minutes, before the sleep timer activates."
+msgstr ""
 
 msgid "Configure the end coordinate in x of the teletext display area."
 msgstr "Định cấu hình tọa độ kết thúc theo x của vùng hiển thị teletext."
@@ -6109,7 +6104,7 @@ msgstr "Xóa tập tin hoặc thư mục (và tất cả nội dung của nó)"
 msgid "Delete folder"
 msgstr "Xóa thư mục"
 
-msgid "Delete image"
+msgid "Delete Image"
 msgstr "Xóa hình ảnh"
 
 msgid "Delete logfile"
@@ -7316,6 +7311,31 @@ msgstr "Thời gian kết thúc"
 msgid "Energie"
 msgstr ""
 
+msgid "Energy Timer"
+msgstr ""
+
+msgid "Energy saver action"
+msgstr ""
+
+msgid "Energy saver activation delay"
+msgstr ""
+
+msgid "Energy timer"
+msgstr ""
+
+#, python-format
+msgid "Energy timer: %d minute remains."
+msgid_plural "Energy timer: %d minutes remain."
+msgstr[0] ""
+
+#, python-format
+msgid "Energy timer: %d second remains."
+msgid_plural "Energy timer: %d seconds remain."
+msgstr[0] ""
+
+msgid "Energy timer: Inactive."
+msgstr ""
+
 msgid "English"
 msgstr "English"
 
@@ -7719,12 +7739,6 @@ msgstr "Vượt quá Bludisc vừa!"
 
 msgid "Exceeds dual layer medium!"
 msgstr "Vượt quá hai lớp vừa!"
-
-msgid "Execute after current event"
-msgstr "Thực hiện sau sự kiện hiện tại"
-
-msgid "Execute in "
-msgstr "Thực hiện trong "
 
 msgid "Execution condition"
 msgstr "Điều kiện thực hiện"
@@ -11423,9 +11437,6 @@ msgstr "Đa EPG"
 
 msgid "MultiBoot"
 msgstr ""
-
-msgid "MultiBoot Image Manager"
-msgstr "Trình quản lý đa khởi động"
 
 msgid "MultiBoot Information"
 msgstr ""
@@ -15691,9 +15702,6 @@ msgstr "Chọn bộ ký tự dịch chuyển bàn phím ảo"
 msgid "Select the shifted character set for the next character only"
 msgstr "Chọn bộ ký tự dịch chuyển bàn phím ảo cho chỉ ký tự tiếp theo"
 
-msgid "Select the sleep timer action."
-msgstr "Chọn hẹn giờ ngủ."
-
 msgid "Select the source of the default DNS settings."
 msgstr ""
 
@@ -15721,6 +15729,12 @@ msgstr "Chọn loại LNB / thiết bị đang được sử dụng (thông thư
 
 msgid "Select the type of Single Cable Reception device you are using."
 msgstr "Chọn loại thiết bị Tiếp nhận cáp đơn bạn đang sử dụng."
+
+msgid "Select the type of shutdown desired when the energy timer activates."
+msgstr ""
+
+msgid "Select the type of shutdown desired when the steep timer activates."
+msgstr ""
 
 msgid "Select upgrade source"
 msgstr "Chọn nguồn nâng cấp"
@@ -17277,11 +17291,36 @@ msgstr "Ngủ"
 msgid "Sleep Timer"
 msgstr "Hẹn giờ ngủ"
 
+msgid "Sleep Timer Settings"
+msgstr ""
+
 msgid "Sleep delay"
 msgstr "Ngủ muộn"
 
 msgid "Sleep long"
 msgstr "Ngủ lâu"
+
+msgid "Sleep timer"
+msgstr ""
+
+msgid "Sleep timer action"
+msgstr ""
+
+msgid "Sleep timer activation delay"
+msgstr ""
+
+#, python-format
+msgid "Sleep timer: %d minute remains."
+msgid_plural "Sleep timer: %d minutes remain."
+msgstr[0] ""
+
+#, python-format
+msgid "Sleep timer: %d second remains."
+msgid_plural "Sleep timer: %d seconds remain."
+msgstr[0] ""
+
+msgid "Sleep timer: Inactive."
+msgstr ""
 
 msgid "SleepTimer"
 msgstr "Hẹn giờ ngủ"
@@ -18612,6 +18651,13 @@ msgstr "Cài đặt mặc định là thời gian thức dậy - 5 phút và th�
 msgid "The detailed information is intended for developers only."
 msgstr ""
 
+#, python-format
+msgid ""
+"The energy timer wants to set the %s %s to %s.\n"
+"\n"
+"Press OK to continue using the %s %s."
+msgstr ""
+
 msgid "The following files were found..."
 msgstr "Các tập tin sau đã được tìm thấy ..."
 
@@ -18661,11 +18707,12 @@ msgstr "Người phục vụ được tải lại."
 msgid "The setting 'without query' is the same as 'standard' without additional confirmation query. All other dependencies (e.g. recordings, time range) stay persist."
 msgstr "Cài đặt 'không có truy vấn' giống như 'tiêu chuẩn' mà không có truy vấn xác nhận bổ sung. Tất cả các phụ thuộc khác (ví dụ: bản ghi, phạm vi thời gian) vẫn tồn tại."
 
-msgid "The sleep timer has been activated."
-msgstr "Đồng hồ ngủ đã được kích hoạt."
-
-msgid "The sleep timer has been disabled."
-msgstr "Đồng hồ ngủ đã bị vô hiệu hóa."
+#, python-format
+msgid ""
+"The sleep timer wants to set the %s %s to %s.\n"
+"\n"
+"Do that now or extend the timer?"
+msgstr ""
 
 msgid ""
 "The software management extension is not installed!\n"
@@ -19303,9 +19350,6 @@ msgstr "Hành động hẹn giờ"
 msgid "Timer List"
 msgstr "Danh sách hẹn giờ"
 
-msgid "Timer action"
-msgstr "Hành động hẹn giờ"
-
 msgid "Timer edit"
 msgstr "Chỉnh sửa hẹn giờ"
 
@@ -19314,13 +19358,6 @@ msgstr "Trình chỉnh sửa hẹn giờ"
 
 msgid "Timer entry"
 msgstr "Nhập giờ"
-
-#, python-format
-msgid "Timer is activated: +%d min"
-msgstr "Hẹn giờ được kích hoạt: +% d min"
-
-msgid "Timer is not activated"
-msgstr "Hẹn giờ không được kích hoạt"
 
 msgid "Timer log"
 msgstr "Nhật ký hẹn giờ"
@@ -22813,9 +22850,6 @@ msgstr ""
 msgid "not"
 msgstr "không có gì"
 
-msgid "not activated"
-msgstr "chưa kích hoạt"
-
 msgid "not configured"
 msgstr "không được cấu hình"
 
@@ -23572,6 +23606,66 @@ msgstr "hạ gục"
 
 msgid "®"
 msgstr ""
+
+#, python-format
+#~ msgid ""
+#~ "A Recording, RecordTimer or PowerTimer is running or begins in 15 minutes.\n"
+#~ "Extend sleep timer 30 minutes. Your %s %s\n"
+#~ "will shut down after Recording or Powertimer event. Get in Standby now?"
+#~ msgstr ""
+#~ "Ghi âm, RecordTimer hoặc PowerTimer đang chạy hoặc bắt đầu sau 15 phút.\n"
+#~ "Kéo dài thời gian ngủ 30 phút. % s% s của bạn\n"
+#~ "sẽ tắt sau sự kiện Ghi hoặc Powertimer. Nhận trong chế độ chờ ngay bây giờ?"
+
+#, python-format
+#~ msgid ""
+#~ "A sleep timer wants to set your %s %s to standby.\n"
+#~ "Do that now or set extend additional minutes?"
+#~ msgstr ""
+#~ "Đồng hồ ngủ muốn đặt%s%s của bạn ở chế độ chờ.\n"
+#~ "Làm điều đó bây giờ hoặc thiết lập kéo dài thêm phút?"
+
+#, python-format
+#~ msgid ""
+#~ "A sleep timer wants to shut down your %s %s.\n"
+#~ "Do that now or set extend additional minutes?"
+#~ msgstr ""
+#~ "Đồng hồ ngủ muốn tắt%s%s của bạn.\n"
+#~ "Làm điều đó bây giờ hoặc thiết lập kéo dài thêm phút?"
+
+#~ msgid "Configure the duration in minutes for the sleep timer."
+#~ msgstr "Cấu hình thời lượng tính bằng phút cho bộ đếm thời gian ngủ."
+
+#~ msgid "Execute after current event"
+#~ msgstr "Thực hiện sau sự kiện hiện tại"
+
+#~ msgid "Execute in "
+#~ msgstr "Thực hiện trong "
+
+#~ msgid "MultiBoot Image Manager"
+#~ msgstr "Trình quản lý đa khởi động"
+
+#~ msgid "Select the sleep timer action."
+#~ msgstr "Chọn hẹn giờ ngủ."
+
+#~ msgid "The sleep timer has been activated."
+#~ msgstr "Đồng hồ ngủ đã được kích hoạt."
+
+#~ msgid "The sleep timer has been disabled."
+#~ msgstr "Đồng hồ ngủ đã bị vô hiệu hóa."
+
+#~ msgid "Timer action"
+#~ msgstr "Hành động hẹn giờ"
+
+#, python-format
+#~ msgid "Timer is activated: +%d min"
+#~ msgstr "Hẹn giờ được kích hoạt: +% d min"
+
+#~ msgid "Timer is not activated"
+#~ msgstr "Hẹn giờ không được kích hoạt"
+
+#~ msgid "not activated"
+#~ msgstr "chưa kích hoạt"
 
 #, fuzzy
 #~ msgid "Cancel the image selection and exit"

@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Italian translation\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-04-14 09:02+0000\n"
+"POT-Creation-Date: 2022-04-17 12:35+0000\n"
 "PO-Revision-Date: 2019-09-01 14:09+0100\n"
 "Last-Translator: Massimo Bambi - Insanity\n"
 "Language-Team: Massimo Bambi <maxbambi@libero.it>\n"
@@ -1364,6 +1364,14 @@ msgid "%s additional screens"
 msgstr "%s schermi aggiuntivi"
 
 #, python-format
+msgid "%s has been activated."
+msgstr ""
+
+#, python-format
+msgid "%s has been disabled."
+msgstr ""
+
+#, python-format
 msgid "%s information"
 msgstr ""
 
@@ -2072,16 +2080,6 @@ msgstr "??"
 msgid "A"
 msgstr "A"
 
-#, python-format
-msgid ""
-"A Recording, RecordTimer or PowerTimer is running or begins in 15 minutes.\n"
-"Extend sleep timer 30 minutes. Your %s %s\n"
-"will shut down after Recording or Powertimer event. Get in Standby now?"
-msgstr ""
-"Una registrazione, recTimer o powerTimer è in esecuzione o inizia in 15 minuti.\n"
-"Estendere il timer di sleep di 30 minuti. Il tuo %s %s\n"
-"si spegnerà dopo l'evento di Registrazione o il PowerTimer. Attivare lo Standby ora ?"
-
 msgid "A background update check is in progress, please wait a few minutes and try again."
 msgstr "Un aggiornamento in background è in corso, attendi qualche minuto e riprova."
 
@@ -2166,6 +2164,13 @@ msgstr "Una registrazione è in esecuzione. Interrompi la registrazione prima di
 msgid "A recording is currently running. Please stop the recording before trying to start the satfinder."
 msgstr "Registrazioni in corso! Prima di avviare una ricerca satelliti, è necessario arrestarle."
 
+#, python-format
+msgid ""
+"A recording, recording timer or power timer is running or will begin within 15 minutes. %s extended to 30 minutes. Your %s %s will go to Deep Standby after the recording or power timer event.\n"
+"\n"
+"Go to Deep Standby now?"
+msgstr ""
+
 msgid "A repeating timer or just once?"
 msgstr "Impostare se avviare il timer solo una volta o più volte?"
 
@@ -2195,27 +2200,11 @@ msgstr ""
 
 #, python-format
 msgid ""
-"A sleep timer wants to set your %s %s to standby.\n"
-"Do that now or set extend additional minutes?"
-msgstr ""
-"Un timer di spegnimento prevede di porre in standby il tuo %s %s\n"
-"Farlo adesso o ritardarlo di alcuni minuti?"
-
-#, python-format
-msgid ""
 "A sleep timer wants to shut down\n"
 "your %s %s. Shutdown now?"
 msgstr ""
 "Un timer di spegnimento prevede\n"
 "l'arresto del %s %s. Farlo ora?"
-
-#, python-format
-msgid ""
-"A sleep timer wants to shut down your %s %s.\n"
-"Do that now or set extend additional minutes?"
-msgstr ""
-"Un timer di spegnimento prevede l'arresto del tuo %s %s\n"
-"Farlo adesso o ritardarlo di alcuni minuti?"
 
 msgid "A small overview of the available icon states and actions."
 msgstr "Rapida panoramica delle icone di stato e delle azioni disponibili."
@@ -3072,6 +3061,9 @@ msgstr "Astra 3 23.5e"
 
 msgid "At End:"
 msgstr "Alla fine:"
+
+msgid "At end of current program"
+msgstr ""
 
 #, fuzzy
 msgid "Athletics"
@@ -4968,8 +4960,11 @@ msgstr "Configurare la risoluzione del display e il carattere usato per il telev
 msgid "Configure the duration in minutes for the screensaver."
 msgstr "Configurare la durata in minuti per il salvaschermo."
 
-msgid "Configure the duration in minutes for the sleep timer."
-msgstr "Configura tra quanto minuti spegnere il decoder."
+msgid "Configure the duration, in minutes, before the energy saver timer activates."
+msgstr ""
+
+msgid "Configure the duration, in minutes, before the sleep timer activates."
+msgstr ""
 
 msgid "Configure the end coordinate in x of the teletext display area."
 msgstr "Configura la coordinata finale x dell'area display per il televideo."
@@ -6147,7 +6142,7 @@ msgstr "Elimina file o directory (e tutti i suoi contenuti)"
 msgid "Delete folder"
 msgstr "Cancella cartella"
 
-msgid "Delete image"
+msgid "Delete Image"
 msgstr "Cancella immagine"
 
 msgid "Delete logfile"
@@ -7342,6 +7337,33 @@ msgstr "Orario fine"
 msgid "Energie"
 msgstr ""
 
+msgid "Energy Timer"
+msgstr ""
+
+msgid "Energy saver action"
+msgstr ""
+
+msgid "Energy saver activation delay"
+msgstr ""
+
+msgid "Energy timer"
+msgstr ""
+
+#, python-format
+msgid "Energy timer: %d minute remains."
+msgid_plural "Energy timer: %d minutes remain."
+msgstr[0] ""
+msgstr[1] ""
+
+#, python-format
+msgid "Energy timer: %d second remains."
+msgid_plural "Energy timer: %d seconds remain."
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "Energy timer: Inactive."
+msgstr ""
+
 msgid "English"
 msgstr "Inglese"
 
@@ -7745,12 +7767,6 @@ msgstr "Contenuti eccedono il supporto ottico!"
 
 msgid "Exceeds dual layer medium!"
 msgstr "Supera la capacità di supporto doppio strato!"
-
-msgid "Execute after current event"
-msgstr "Spegni dopo l'attuale evento"
-
-msgid "Execute in "
-msgstr "Esegui in "
 
 msgid "Execution condition"
 msgstr "Condizione di esecuzione"
@@ -11453,9 +11469,6 @@ msgstr "Multi EPG"
 
 msgid "MultiBoot"
 msgstr ""
-
-msgid "MultiBoot Image Manager"
-msgstr "Gestore immagini multiboot"
 
 msgid "MultiBoot Information"
 msgstr ""
@@ -15729,9 +15742,6 @@ msgstr "Seleziona il set di caratteri della tastiera virtuale."
 msgid "Select the shifted character set for the next character only"
 msgstr "Seleziona il set di caratteri secondario della tastiera virtuale solo per il carattere successivo."
 
-msgid "Select the sleep timer action."
-msgstr "Seleziona l'azione del timer di sospensione."
-
 msgid "Select the source of the default DNS settings."
 msgstr ""
 
@@ -15759,6 +15769,12 @@ msgstr "Seleziona il tipo di LNB utilizzato (di solito ‘Universale’ o Unicab
 
 msgid "Select the type of Single Cable Reception device you are using."
 msgstr "Seleziona il tipo di dispositivo per la ricezione con cavo singolo."
+
+msgid "Select the type of shutdown desired when the energy timer activates."
+msgstr ""
+
+msgid "Select the type of shutdown desired when the steep timer activates."
+msgstr ""
 
 msgid "Select upgrade source"
 msgstr "Seleziona la sorgente aggiornamenti"
@@ -17327,11 +17343,38 @@ msgstr "Timer spegnimento"
 msgid "Sleep Timer"
 msgstr "Timer spegnimento"
 
+msgid "Sleep Timer Settings"
+msgstr ""
+
 msgid "Sleep delay"
 msgstr "Timer di spegnimento"
 
 msgid "Sleep long"
 msgstr "Sleep lungo"
+
+msgid "Sleep timer"
+msgstr ""
+
+msgid "Sleep timer action"
+msgstr ""
+
+msgid "Sleep timer activation delay"
+msgstr ""
+
+#, python-format
+msgid "Sleep timer: %d minute remains."
+msgid_plural "Sleep timer: %d minutes remain."
+msgstr[0] ""
+msgstr[1] ""
+
+#, python-format
+msgid "Sleep timer: %d second remains."
+msgid_plural "Sleep timer: %d seconds remain."
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "Sleep timer: Inactive."
+msgstr ""
 
 msgid "SleepTimer"
 msgstr "Timer di spegnimento"
@@ -18661,6 +18704,13 @@ msgstr "Le impostazioni predefinite sono: tempo di risveglio 5 minuti prima e in
 msgid "The detailed information is intended for developers only."
 msgstr ""
 
+#, python-format
+msgid ""
+"The energy timer wants to set the %s %s to %s.\n"
+"\n"
+"Press OK to continue using the %s %s."
+msgstr ""
+
 msgid "The following files were found..."
 msgstr "Trovati i seguenti file..."
 
@@ -18710,11 +18760,12 @@ msgstr "L’elenco dei canali è stata ricaricato."
 msgid "The setting 'without query' is the same as 'standard' without additional confirmation query. All other dependencies (e.g. recordings, time range) stay persist."
 msgstr "L'impostazione 'senza consultazione' è uguale a 'standard' senza richiesta di conferma aggiuntiva. Tutte le altre dipendenze (registrazioni, intervalli di tempo) rimangono mantenute"
 
-msgid "The sleep timer has been activated."
-msgstr "Timer di spegnimento attivato!"
-
-msgid "The sleep timer has been disabled."
-msgstr "Timer di spegnimento disattivato!"
+#, python-format
+msgid ""
+"The sleep timer wants to set the %s %s to %s.\n"
+"\n"
+"Do that now or extend the timer?"
+msgstr ""
 
 msgid ""
 "The software management extension is not installed!\n"
@@ -19350,9 +19401,6 @@ msgstr "Azione timer"
 msgid "Timer List"
 msgstr "Elenco timer"
 
-msgid "Timer action"
-msgstr "Azione timer"
-
 msgid "Timer edit"
 msgstr "Modifica timer"
 
@@ -19361,13 +19409,6 @@ msgstr "Modifica timer"
 
 msgid "Timer entry"
 msgstr "Voce timer"
-
-#, python-format
-msgid "Timer is activated: +%d min"
-msgstr "Il timer è attivato: +%d min"
-
-msgid "Timer is not activated"
-msgstr "Il timer non è attivato"
 
 msgid "Timer log"
 msgstr "Log timer"
@@ -22867,9 +22908,6 @@ msgstr "normale"
 msgid "not"
 msgstr "non"
 
-msgid "not activated"
-msgstr "non attivato"
-
 msgid "not configured"
 msgstr "non configurato"
 
@@ -23627,6 +23665,66 @@ msgstr "zapping"
 
 msgid "®"
 msgstr "®"
+
+#, python-format
+#~ msgid ""
+#~ "A Recording, RecordTimer or PowerTimer is running or begins in 15 minutes.\n"
+#~ "Extend sleep timer 30 minutes. Your %s %s\n"
+#~ "will shut down after Recording or Powertimer event. Get in Standby now?"
+#~ msgstr ""
+#~ "Una registrazione, recTimer o powerTimer è in esecuzione o inizia in 15 minuti.\n"
+#~ "Estendere il timer di sleep di 30 minuti. Il tuo %s %s\n"
+#~ "si spegnerà dopo l'evento di Registrazione o il PowerTimer. Attivare lo Standby ora ?"
+
+#, python-format
+#~ msgid ""
+#~ "A sleep timer wants to set your %s %s to standby.\n"
+#~ "Do that now or set extend additional minutes?"
+#~ msgstr ""
+#~ "Un timer di spegnimento prevede di porre in standby il tuo %s %s\n"
+#~ "Farlo adesso o ritardarlo di alcuni minuti?"
+
+#, python-format
+#~ msgid ""
+#~ "A sleep timer wants to shut down your %s %s.\n"
+#~ "Do that now or set extend additional minutes?"
+#~ msgstr ""
+#~ "Un timer di spegnimento prevede l'arresto del tuo %s %s\n"
+#~ "Farlo adesso o ritardarlo di alcuni minuti?"
+
+#~ msgid "Configure the duration in minutes for the sleep timer."
+#~ msgstr "Configura tra quanto minuti spegnere il decoder."
+
+#~ msgid "Execute after current event"
+#~ msgstr "Spegni dopo l'attuale evento"
+
+#~ msgid "Execute in "
+#~ msgstr "Esegui in "
+
+#~ msgid "MultiBoot Image Manager"
+#~ msgstr "Gestore immagini multiboot"
+
+#~ msgid "Select the sleep timer action."
+#~ msgstr "Seleziona l'azione del timer di sospensione."
+
+#~ msgid "The sleep timer has been activated."
+#~ msgstr "Timer di spegnimento attivato!"
+
+#~ msgid "The sleep timer has been disabled."
+#~ msgstr "Timer di spegnimento disattivato!"
+
+#~ msgid "Timer action"
+#~ msgstr "Azione timer"
+
+#, python-format
+#~ msgid "Timer is activated: +%d min"
+#~ msgstr "Il timer è attivato: +%d min"
+
+#~ msgid "Timer is not activated"
+#~ msgstr "Il timer non è attivato"
+
+#~ msgid "not activated"
+#~ msgstr "non attivato"
 
 #, fuzzy
 #~ msgid "Cancel the image selection and exit"

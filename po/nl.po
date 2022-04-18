@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-04-14 09:02+0000\n"
+"POT-Creation-Date: 2022-04-17 12:35+0000\n"
 "PO-Revision-Date: 2022-03-28 08:07+0000\n"
 "Last-Translator: Snoete <snoete@hotmail.com>\n"
 "Language-Team: Dutch <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/nl/>\n"
@@ -1337,6 +1337,14 @@ msgid "%s additional screens"
 msgstr "%s extra schermen"
 
 #, python-format
+msgid "%s has been activated."
+msgstr ""
+
+#, python-format
+msgid "%s has been disabled."
+msgstr ""
+
+#, python-format
 msgid "%s information"
 msgstr "%s informatie"
 
@@ -2029,16 +2037,6 @@ msgstr "??"
 msgid "A"
 msgstr "A"
 
-#, python-format
-msgid ""
-"A Recording, RecordTimer or PowerTimer is running or begins in 15 minutes.\n"
-"Extend sleep timer 30 minutes. Your %s %s\n"
-"will shut down after Recording or Powertimer event. Get in Standby now?"
-msgstr ""
-"Een Opname, OpnameTimer of PowerTimer is actief of begint binnen 15 minuten.\n"
-"Verhoog de slaap timer met 30 minuten. Uw %s %s\n"
-"zal afsluiten na de Opname of Powertimer. Ga nu naar stand-by?"
-
 msgid "A background update check is in progress, please wait a few minutes and try again."
 msgstr "Op de achtergrond wordt een controle uitgevoerd. Wacht een paar minuten en probeer het opnieuw."
 
@@ -2123,6 +2121,13 @@ msgstr "Een opname is nu bezig. Stop de opname voor u gaat zoeken."
 msgid "A recording is currently running. Please stop the recording before trying to start the satfinder."
 msgstr "U bent aan het opnemen. Stop de opname voordat u de signaalmeting start."
 
+#, python-format
+msgid ""
+"A recording, recording timer or power timer is running or will begin within 15 minutes. %s extended to 30 minutes. Your %s %s will go to Deep Standby after the recording or power timer event.\n"
+"\n"
+"Go to Deep Standby now?"
+msgstr ""
+
 msgid "A repeating timer or just once?"
 msgstr "Een herhalende timer of eenmalig?"
 
@@ -2152,27 +2157,11 @@ msgstr ""
 
 #, python-format
 msgid ""
-"A sleep timer wants to set your %s %s to standby.\n"
-"Do that now or set extend additional minutes?"
-msgstr ""
-"Een slaap timer wilt uw %s %s in stand-by zetten.\n"
-"Doe dat nu of verhoog het aantal minuten?"
-
-#, python-format
-msgid ""
 "A sleep timer wants to shut down\n"
 "your %s %s. Shutdown now?"
 msgstr ""
 "Een slaap timer wil uw\n"
 "%s %s uitschakelen. Dat nu doen?"
-
-#, python-format
-msgid ""
-"A sleep timer wants to shut down your %s %s.\n"
-"Do that now or set extend additional minutes?"
-msgstr ""
-"Een slaap timer wilt uw %s %s .\n"
-"Doe dat nu of verhoog het aantal minuten?"
 
 msgid "A small overview of the available icon states and actions."
 msgstr "Een klein overzicht van gebruikte icon-statussen en acties."
@@ -3015,6 +3004,9 @@ msgstr "Astra 3 23.5e"
 
 msgid "At End:"
 msgstr "Aan het einde:"
+
+msgid "At end of current program"
+msgstr ""
 
 msgid "Athletics"
 msgstr "Atletiek"
@@ -4919,8 +4911,11 @@ msgstr "Configureer de weergaveresolutie en het lettertype dat wordt gebruikt vo
 msgid "Configure the duration in minutes for the screensaver."
 msgstr "Hier kunt u een screensaver activeren en instellen na hoeveel minuten deze moet starten."
 
-msgid "Configure the duration in minutes for the sleep timer."
-msgstr "Configureer de slaaptimer in minuten."
+msgid "Configure the duration, in minutes, before the energy saver timer activates."
+msgstr ""
+
+msgid "Configure the duration, in minutes, before the sleep timer activates."
+msgstr ""
 
 msgid "Configure the end coordinate in x of the teletext display area."
 msgstr "Configureer de eind-coördinaat in x van het weergavegebied van Teletekst."
@@ -6138,7 +6133,7 @@ msgstr "Verwijder bestand of map (en al zijn inhoud)"
 msgid "Delete folder"
 msgstr "Verwijder map"
 
-msgid "Delete image"
+msgid "Delete Image"
 msgstr "Image verwijderen"
 
 msgid "Delete logfile"
@@ -7322,6 +7317,33 @@ msgstr "Eindtijd"
 msgid "Energie"
 msgstr "Energie"
 
+msgid "Energy Timer"
+msgstr ""
+
+msgid "Energy saver action"
+msgstr ""
+
+msgid "Energy saver activation delay"
+msgstr ""
+
+msgid "Energy timer"
+msgstr ""
+
+#, python-format
+msgid "Energy timer: %d minute remains."
+msgid_plural "Energy timer: %d minutes remain."
+msgstr[0] ""
+msgstr[1] ""
+
+#, python-format
+msgid "Energy timer: %d second remains."
+msgid_plural "Energy timer: %d seconds remain."
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "Energy timer: Inactive."
+msgstr ""
+
 msgid "English"
 msgstr "Engels"
 
@@ -7723,12 +7745,6 @@ msgstr "Overschrijdt Bludisk medium!"
 
 msgid "Exceeds dual layer medium!"
 msgstr "Overschrijdt een dual layer schijf!"
-
-msgid "Execute after current event"
-msgstr "Uitvoeren na huidig programma"
-
-msgid "Execute in "
-msgstr "Uitvoeren in "
 
 msgid "Execution condition"
 msgstr "Uitvoering voorwaarde"
@@ -11318,9 +11334,6 @@ msgstr "Multi-EPG"
 
 msgid "MultiBoot"
 msgstr ""
-
-msgid "MultiBoot Image Manager"
-msgstr "MultiBoot image manager"
 
 msgid "MultiBoot Information"
 msgstr ""
@@ -15511,9 +15524,6 @@ msgstr "Selecteer de SHIFT karakterset voor het virtuele toetsenbord"
 msgid "Select the shifted character set for the next character only"
 msgstr "Selecteer de SHIFT karakterset voor het virtuele toetsenbord alleen voor de volgende letter"
 
-msgid "Select the sleep timer action."
-msgstr "Selecteer slaap timer actie."
-
 msgid "Select the source of the default DNS settings."
 msgstr "De locatie van de default DNS instellingen selecteren."
 
@@ -15540,6 +15550,12 @@ msgstr "Selecteer het type LNB/apparaat dat gebruikt wordt (meestal 'universeel'
 
 msgid "Select the type of Single Cable Reception device you are using."
 msgstr "Selecteer het type enkele kabel ontvangst apparaat dat u gebruikt."
+
+msgid "Select the type of shutdown desired when the energy timer activates."
+msgstr ""
+
+msgid "Select the type of shutdown desired when the steep timer activates."
+msgstr ""
 
 msgid "Select upgrade source"
 msgstr "Selecteer de update bron"
@@ -17085,11 +17101,38 @@ msgstr "Slaap"
 msgid "Sleep Timer"
 msgstr "Slaap timer"
 
+msgid "Sleep Timer Settings"
+msgstr ""
+
 msgid "Sleep delay"
 msgstr "Slaap vertraging"
 
 msgid "Sleep long"
 msgstr "Sleep lang"
+
+msgid "Sleep timer"
+msgstr ""
+
+msgid "Sleep timer action"
+msgstr ""
+
+msgid "Sleep timer activation delay"
+msgstr ""
+
+#, python-format
+msgid "Sleep timer: %d minute remains."
+msgid_plural "Sleep timer: %d minutes remain."
+msgstr[0] ""
+msgstr[1] ""
+
+#, python-format
+msgid "Sleep timer: %d second remains."
+msgid_plural "Sleep timer: %d seconds remain."
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "Sleep timer: Inactive."
+msgstr ""
 
 msgid "SleepTimer"
 msgstr "Slaap Timer"
@@ -18396,6 +18439,13 @@ msgstr "De standaard instelling is voor de ontwaaktijd - 5 minuten en timer star
 msgid "The detailed information is intended for developers only."
 msgstr "Deze gedetailleerde informatie is alleen voor developers bedoeld."
 
+#, python-format
+msgid ""
+"The energy timer wants to set the %s %s to %s.\n"
+"\n"
+"Press OK to continue using the %s %s."
+msgstr ""
+
 msgid "The following files were found..."
 msgstr "De volgende bestanden werden gevonden..."
 
@@ -18445,11 +18495,12 @@ msgstr "De zenderlijst is opnieuw geladen."
 msgid "The setting 'without query' is the same as 'standard' without additional confirmation query. All other dependencies (e.g. recordings, time range) stay persist."
 msgstr "De instelling 'zonder query' is hetzelfde als 'standaard' zonder extra bevestiging query. Alle andere afhankelijkheden (bv opnames, tijdsbereik) blijven bestaan."
 
-msgid "The sleep timer has been activated."
-msgstr "De slaaptimer is geactiveerd."
-
-msgid "The sleep timer has been disabled."
-msgstr "De slaaptimer is uitgeschakeld."
+#, python-format
+msgid ""
+"The sleep timer wants to set the %s %s to %s.\n"
+"\n"
+"Do that now or extend the timer?"
+msgstr ""
 
 msgid ""
 "The software management extension is not installed!\n"
@@ -19124,9 +19175,6 @@ msgstr "Timer acties"
 msgid "Timer List"
 msgstr "Timers"
 
-msgid "Timer action"
-msgstr "Timer actie"
-
 msgid "Timer edit"
 msgstr "Timer bewerken"
 
@@ -19135,13 +19183,6 @@ msgstr "Timer bewerken"
 
 msgid "Timer entry"
 msgstr "Timer invoer"
-
-#, python-format
-msgid "Timer is activated: +%d min"
-msgstr "Timer is geactiveerd: +%d min"
-
-msgid "Timer is not activated"
-msgstr "Timer is niet ingeschakeld"
 
 msgid "Timer log"
 msgstr "Timerlog"
@@ -22596,9 +22637,6 @@ msgstr "normaal"
 msgid "not"
 msgstr "niet"
 
-msgid "not activated"
-msgstr "niet geactiveerd"
-
 msgid "not configured"
 msgstr "niet geconfigureerd"
 
@@ -23351,6 +23389,66 @@ msgstr "zappen"
 
 msgid "®"
 msgstr "®"
+
+#, python-format
+#~ msgid ""
+#~ "A Recording, RecordTimer or PowerTimer is running or begins in 15 minutes.\n"
+#~ "Extend sleep timer 30 minutes. Your %s %s\n"
+#~ "will shut down after Recording or Powertimer event. Get in Standby now?"
+#~ msgstr ""
+#~ "Een Opname, OpnameTimer of PowerTimer is actief of begint binnen 15 minuten.\n"
+#~ "Verhoog de slaap timer met 30 minuten. Uw %s %s\n"
+#~ "zal afsluiten na de Opname of Powertimer. Ga nu naar stand-by?"
+
+#, python-format
+#~ msgid ""
+#~ "A sleep timer wants to set your %s %s to standby.\n"
+#~ "Do that now or set extend additional minutes?"
+#~ msgstr ""
+#~ "Een slaap timer wilt uw %s %s in stand-by zetten.\n"
+#~ "Doe dat nu of verhoog het aantal minuten?"
+
+#, python-format
+#~ msgid ""
+#~ "A sleep timer wants to shut down your %s %s.\n"
+#~ "Do that now or set extend additional minutes?"
+#~ msgstr ""
+#~ "Een slaap timer wilt uw %s %s .\n"
+#~ "Doe dat nu of verhoog het aantal minuten?"
+
+#~ msgid "Configure the duration in minutes for the sleep timer."
+#~ msgstr "Configureer de slaaptimer in minuten."
+
+#~ msgid "Execute after current event"
+#~ msgstr "Uitvoeren na huidig programma"
+
+#~ msgid "Execute in "
+#~ msgstr "Uitvoeren in "
+
+#~ msgid "MultiBoot Image Manager"
+#~ msgstr "MultiBoot image manager"
+
+#~ msgid "Select the sleep timer action."
+#~ msgstr "Selecteer slaap timer actie."
+
+#~ msgid "The sleep timer has been activated."
+#~ msgstr "De slaaptimer is geactiveerd."
+
+#~ msgid "The sleep timer has been disabled."
+#~ msgstr "De slaaptimer is uitgeschakeld."
+
+#~ msgid "Timer action"
+#~ msgstr "Timer actie"
+
+#, python-format
+#~ msgid "Timer is activated: +%d min"
+#~ msgstr "Timer is geactiveerd: +%d min"
+
+#~ msgid "Timer is not activated"
+#~ msgstr "Timer is niet ingeschakeld"
+
+#~ msgid "not activated"
+#~ msgstr "niet geactiveerd"
 
 #~ msgid "Cancel the image selection and exit"
 #~ msgstr "Annuleer de image selectie en exit"

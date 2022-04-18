@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-04-14 09:02+0000\n"
+"POT-Creation-Date: 2022-04-17 12:35+0000\n"
 "PO-Revision-Date: 2022-02-24 21:56+0000\n"
 "Last-Translator: Mr.Servo <mrservo@gmx.de>\n"
 "Language-Team: French <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/fr/>\n"
@@ -1335,6 +1335,14 @@ msgid "%s additional screens"
 msgstr "%s écrans supplémentaires"
 
 #, python-format
+msgid "%s has been activated."
+msgstr ""
+
+#, python-format
+msgid "%s has been disabled."
+msgstr ""
+
+#, python-format
 msgid "%s information"
 msgstr ""
 
@@ -2027,16 +2035,6 @@ msgstr "??"
 msgid "A"
 msgstr "A"
 
-#, python-format
-msgid ""
-"A Recording, RecordTimer or PowerTimer is running or begins in 15 minutes.\n"
-"Extend sleep timer 30 minutes. Your %s %s\n"
-"will shut down after Recording or Powertimer event. Get in Standby now?"
-msgstr ""
-"Un enregistrement, un enregistrement planifié ou une programmation d'alimentation est en cours\n"
-"ou commence dans 15 minutes. Étendre la programmation de veille de 30 minutes.\n"
-"Votre %s %s sera éteint après l'enregistrement ou la programmation d'alimentation. Aller en veille maintenant?"
-
 msgid "A background update check is in progress, please wait a few minutes and try again."
 msgstr "Une recherche de mise à jour en tâche de fond est en cours, merci de patienter quelques minutes et de réessayer."
 
@@ -2121,6 +2119,13 @@ msgstr "Un enregistrement est en cours. Veuillez arrêter l'enregistrement avant
 msgid "A recording is currently running. Please stop the recording before trying to start the satfinder."
 msgstr "Un enregistrement est en cours. Veuillez arrêter l'enregistrement avant de démarrer la recherche satellites."
 
+#, python-format
+msgid ""
+"A recording, recording timer or power timer is running or will begin within 15 minutes. %s extended to 30 minutes. Your %s %s will go to Deep Standby after the recording or power timer event.\n"
+"\n"
+"Go to Deep Standby now?"
+msgstr ""
+
 msgid "A repeating timer or just once?"
 msgstr "Un timer répétitif ou unique?"
 
@@ -2150,27 +2155,11 @@ msgstr ""
 
 #, python-format
 msgid ""
-"A sleep timer wants to set your %s %s to standby.\n"
-"Do that now or set extend additional minutes?"
-msgstr ""
-"Une programmation de mise en veille veut passer votre %s %s en veille.\n"
-"Procéder maintenant ou étendre de quelques minutes ?"
-
-#, python-format
-msgid ""
 "A sleep timer wants to shut down\n"
 "your %s %s. Shutdown now?"
 msgstr ""
 "Une programmation de mise en veille veut\n"
 "arrêter votre %s %s. Eteindre maintenant ?"
-
-#, python-format
-msgid ""
-"A sleep timer wants to shut down your %s %s.\n"
-"Do that now or set extend additional minutes?"
-msgstr ""
-"Une programmation de mise en veille veut arrêter votre %s %s.\n"
-"Eteindre maintenant ou étendre de quelques minutes ?"
 
 msgid "A small overview of the available icon states and actions."
 msgstr "Une vue d'ensemble des icônes d'états et d'actions disponibles."
@@ -3014,6 +3003,9 @@ msgstr "Astra 3 23.5e"
 
 msgid "At End:"
 msgstr "A la fin :"
+
+msgid "At end of current program"
+msgstr ""
 
 msgid "Athletics"
 msgstr "athlétisme"
@@ -4877,8 +4869,11 @@ msgstr "Configure la résolution d'écran et la police de caractères utilisée 
 msgid "Configure the duration in minutes for the screensaver."
 msgstr "Configure la durée en minutes de l'économiseur d'écran."
 
-msgid "Configure the duration in minutes for the sleep timer."
-msgstr "Configurer la durée en minutes de la programmation de mise en veille."
+msgid "Configure the duration, in minutes, before the energy saver timer activates."
+msgstr ""
+
+msgid "Configure the duration, in minutes, before the sleep timer activates."
+msgstr ""
 
 msgid "Configure the end coordinate in x of the teletext display area."
 msgstr "Configure la fin de coordonnées en x de la zone d'affichage du télétexte."
@@ -6027,7 +6022,7 @@ msgstr "Supprimer le fichier ou le répertoire (et tout son contenu)"
 msgid "Delete folder"
 msgstr "Supprimer le dossier"
 
-msgid "Delete image"
+msgid "Delete Image"
 msgstr "Supprimer l’image"
 
 msgid "Delete logfile"
@@ -7207,6 +7202,33 @@ msgstr "Heure de fin"
 msgid "Energie"
 msgstr "Energie"
 
+msgid "Energy Timer"
+msgstr ""
+
+msgid "Energy saver action"
+msgstr ""
+
+msgid "Energy saver activation delay"
+msgstr ""
+
+msgid "Energy timer"
+msgstr ""
+
+#, python-format
+msgid "Energy timer: %d minute remains."
+msgid_plural "Energy timer: %d minutes remain."
+msgstr[0] ""
+msgstr[1] ""
+
+#, python-format
+msgid "Energy timer: %d second remains."
+msgid_plural "Energy timer: %d seconds remain."
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "Energy timer: Inactive."
+msgstr ""
+
 msgid "English"
 msgstr "Anglais"
 
@@ -7609,12 +7631,6 @@ msgstr "Dépasse la capacité du support Blue Disc !"
 
 msgid "Exceeds dual layer medium!"
 msgstr "Dépasse le support double couche !"
-
-msgid "Execute after current event"
-msgstr "Exécuter après l'évènement courant"
-
-msgid "Execute in "
-msgstr "Exécuter dans "
 
 msgid "Execution condition"
 msgstr "Condition d'exécution"
@@ -11201,9 +11217,6 @@ msgstr "Multi EPG"
 
 msgid "MultiBoot"
 msgstr ""
-
-msgid "MultiBoot Image Manager"
-msgstr "Gestionnaire d’images multiboot"
 
 msgid "MultiBoot Information"
 msgstr ""
@@ -15395,9 +15408,6 @@ msgstr "Sélectionnez le jeu de caractères décalé"
 msgid "Select the shifted character set for the next character only"
 msgstr "Sélectionnez le caractère décalé uniquement pour le suivant"
 
-msgid "Select the sleep timer action."
-msgstr "Définir l'action de la mise en veille."
-
 msgid "Select the source of the default DNS settings."
 msgstr ""
 
@@ -15424,6 +15434,12 @@ msgstr "Sélectionnez le type de LNB/périphérique étant utilisé (normallemen
 
 msgid "Select the type of Single Cable Reception device you are using."
 msgstr "Sélectionnez le type de SCR (Single Cable Réception) que vous utilisez."
+
+msgid "Select the type of shutdown desired when the energy timer activates."
+msgstr ""
+
+msgid "Select the type of shutdown desired when the steep timer activates."
+msgstr ""
 
 msgid "Select upgrade source"
 msgstr "Choisissez la source de mise à niveau"
@@ -16950,11 +16966,38 @@ msgstr "Veille programmée"
 msgid "Sleep Timer"
 msgstr "Programmation de mise en veille"
 
+msgid "Sleep Timer Settings"
+msgstr ""
+
 msgid "Sleep delay"
 msgstr "Délai de la veille programmée"
 
 msgid "Sleep long"
 msgstr "Mode veille profond"
+
+msgid "Sleep timer"
+msgstr ""
+
+msgid "Sleep timer action"
+msgstr ""
+
+msgid "Sleep timer activation delay"
+msgstr ""
+
+#, python-format
+msgid "Sleep timer: %d minute remains."
+msgid_plural "Sleep timer: %d minutes remain."
+msgstr[0] ""
+msgstr[1] ""
+
+#, python-format
+msgid "Sleep timer: %d second remains."
+msgid_plural "Sleep timer: %d seconds remain."
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "Sleep timer: Inactive."
+msgstr ""
 
 msgid "SleepTimer"
 msgstr "Programmation de mise en veille"
@@ -18267,6 +18310,13 @@ msgstr "Le paramètre par défaut de l'heure de démarrage est : -5 minutes et d
 msgid "The detailed information is intended for developers only."
 msgstr ""
 
+#, python-format
+msgid ""
+"The energy timer wants to set the %s %s to %s.\n"
+"\n"
+"Press OK to continue using the %s %s."
+msgstr ""
+
 msgid "The following files were found..."
 msgstr "Les fichiers suivant ont été trouvés..."
 
@@ -18316,13 +18366,12 @@ msgstr "La liste des services a été rechargée."
 msgid "The setting 'without query' is the same as 'standard' without additional confirmation query. All other dependencies (e.g. recordings, time range) stay persist."
 msgstr "Ce paramètre 'sans demander' est le même que 'standard' sans la question de confirmation supplémentaire. Toutes les autres dépendances restent (p.ex. enregistrements, intervalle de temps)."
 
-# TODO
-msgid "The sleep timer has been activated."
-msgstr "La veille programmée a été activée."
-
-# TODO
-msgid "The sleep timer has been disabled."
-msgstr "La veille programmée a été désactivée."
+#, python-format
+msgid ""
+"The sleep timer wants to set the %s %s to %s.\n"
+"\n"
+"Do that now or extend the timer?"
+msgstr ""
 
 msgid ""
 "The software management extension is not installed!\n"
@@ -18953,10 +19002,6 @@ msgstr "Actions de la minuterie"
 msgid "Timer List"
 msgstr "Liste des programmations"
 
-# TODO
-msgid "Timer action"
-msgstr "Action de la minuterie"
-
 msgid "Timer edit"
 msgstr "Édition des programmations"
 
@@ -18966,13 +19011,6 @@ msgstr "Editer programmation"
 # TODO
 msgid "Timer entry"
 msgstr "Saisir programmation"
-
-#, python-format
-msgid "Timer is activated: +%d min"
-msgstr "La programmation est activée : +%d min"
-
-msgid "Timer is not activated"
-msgstr "La programmation n'est pas activée"
 
 msgid "Timer log"
 msgstr "Journal des enregistrements"
@@ -22417,9 +22455,6 @@ msgstr "normal"
 msgid "not"
 msgstr "non"
 
-msgid "not activated"
-msgstr "pas activé"
-
 msgid "not configured"
 msgstr "Pas configuré"
 
@@ -23172,6 +23207,69 @@ msgstr "zapping"
 
 msgid "®"
 msgstr "®"
+
+#, python-format
+#~ msgid ""
+#~ "A Recording, RecordTimer or PowerTimer is running or begins in 15 minutes.\n"
+#~ "Extend sleep timer 30 minutes. Your %s %s\n"
+#~ "will shut down after Recording or Powertimer event. Get in Standby now?"
+#~ msgstr ""
+#~ "Un enregistrement, un enregistrement planifié ou une programmation d'alimentation est en cours\n"
+#~ "ou commence dans 15 minutes. Étendre la programmation de veille de 30 minutes.\n"
+#~ "Votre %s %s sera éteint après l'enregistrement ou la programmation d'alimentation. Aller en veille maintenant?"
+
+#, python-format
+#~ msgid ""
+#~ "A sleep timer wants to set your %s %s to standby.\n"
+#~ "Do that now or set extend additional minutes?"
+#~ msgstr ""
+#~ "Une programmation de mise en veille veut passer votre %s %s en veille.\n"
+#~ "Procéder maintenant ou étendre de quelques minutes ?"
+
+#, python-format
+#~ msgid ""
+#~ "A sleep timer wants to shut down your %s %s.\n"
+#~ "Do that now or set extend additional minutes?"
+#~ msgstr ""
+#~ "Une programmation de mise en veille veut arrêter votre %s %s.\n"
+#~ "Eteindre maintenant ou étendre de quelques minutes ?"
+
+#~ msgid "Configure the duration in minutes for the sleep timer."
+#~ msgstr "Configurer la durée en minutes de la programmation de mise en veille."
+
+#~ msgid "Execute after current event"
+#~ msgstr "Exécuter après l'évènement courant"
+
+#~ msgid "Execute in "
+#~ msgstr "Exécuter dans "
+
+#~ msgid "MultiBoot Image Manager"
+#~ msgstr "Gestionnaire d’images multiboot"
+
+#~ msgid "Select the sleep timer action."
+#~ msgstr "Définir l'action de la mise en veille."
+
+# TODO
+#~ msgid "The sleep timer has been activated."
+#~ msgstr "La veille programmée a été activée."
+
+# TODO
+#~ msgid "The sleep timer has been disabled."
+#~ msgstr "La veille programmée a été désactivée."
+
+# TODO
+#~ msgid "Timer action"
+#~ msgstr "Action de la minuterie"
+
+#, python-format
+#~ msgid "Timer is activated: +%d min"
+#~ msgstr "La programmation est activée : +%d min"
+
+#~ msgid "Timer is not activated"
+#~ msgstr "La programmation n'est pas activée"
+
+#~ msgid "not activated"
+#~ msgstr "pas activé"
 
 #~ msgid "Cancel the image selection and exit"
 #~ msgstr "Annuler la sélection d'images et quitter"

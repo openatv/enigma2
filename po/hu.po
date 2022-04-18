@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: hu_po v3.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-04-14 09:02+0000\n"
+"POT-Creation-Date: 2022-04-17 12:35+0000\n"
 "PO-Revision-Date: 2022-03-10 14:56+0000\n"
 "Last-Translator: H. Árkosi Róbert <robreg@zsurob.hu>\n"
 "Language-Team: Hungarian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/hu/>\n"
@@ -1368,6 +1368,14 @@ msgid "%s additional screens"
 msgstr "%s további képernyők"
 
 #, python-format
+msgid "%s has been activated."
+msgstr ""
+
+#, python-format
+msgid "%s has been disabled."
+msgstr ""
+
+#, python-format
 msgid "%s information"
 msgstr "%s információ"
 
@@ -2067,16 +2075,6 @@ msgstr "??"
 msgid "A"
 msgstr "A"
 
-#, python-format
-msgid ""
-"A Recording, RecordTimer or PowerTimer is running or begins in 15 minutes.\n"
-"Extend sleep timer 30 minutes. Your %s %s\n"
-"will shut down after Recording or Powertimer event. Get in Standby now?"
-msgstr ""
-"A felvétel, a Felvétel időzítő vagy a Kikapcsolás időzítő 15 percen belül elindul vagy elkezdődik.\n"
-"Az elalvási időzítőt 30 percig növelje. A(z) %s %s készülék\n"
-"a felvétel vagy Kikapcsolás időzítő esemény után leáll. Most állj készenléti állapotba?"
-
 msgid "A background update check is in progress, please wait a few minutes and try again."
 msgstr "A frissítés ellenőrzése folyamatban van a háttérben, várjon néhány percet, és próbálkozzon újra."
 
@@ -2161,6 +2159,13 @@ msgstr "Egy felvétel folyamatban van. A keresés elindítása előtt állítsa 
 msgid "A recording is currently running. Please stop the recording before trying to start the satfinder."
 msgstr "Egy felvétel folyamatban van. Kérjük, állítsa le a felvételt, mielőtt megpróbálná elindítani a műhold keresést."
 
+#, python-format
+msgid ""
+"A recording, recording timer or power timer is running or will begin within 15 minutes. %s extended to 30 minutes. Your %s %s will go to Deep Standby after the recording or power timer event.\n"
+"\n"
+"Go to Deep Standby now?"
+msgstr ""
+
 msgid "A repeating timer or just once?"
 msgstr "Ismétlődő időzítés vagy csak egyszeri?"
 
@@ -2190,27 +2195,11 @@ msgstr ""
 
 #, python-format
 msgid ""
-"A sleep timer wants to set your %s %s to standby.\n"
-"Do that now or set extend additional minutes?"
-msgstr ""
-"Az elalvás időzítő készenléti állapotba akarja helyezni a(z) %s %s készüléket.\n"
-"Tegye meg most vagy további perceket ad az időzítéshez?"
-
-#, python-format
-msgid ""
 "A sleep timer wants to shut down\n"
 "your %s %s. Shutdown now?"
 msgstr ""
 "Az alvás időzítő le akarja állítani\n"
 " a(z) %s %s készüléket. Leállítsa most?"
-
-#, python-format
-msgid ""
-"A sleep timer wants to shut down your %s %s.\n"
-"Do that now or set extend additional minutes?"
-msgstr ""
-"Az elalvás időzítő le akarja állítani a(z) %s %s készüléket.\n"
-"Tegye meg most vagy további perceket ad az időzítéshez?"
 
 msgid "A small overview of the available icon states and actions."
 msgstr "Egy gyors áttekintés az elérhető ikonokról és állapotokról."
@@ -3060,6 +3049,9 @@ msgstr "Astra 3 23.5e"
 
 msgid "At End:"
 msgstr "Vége:"
+
+msgid "At end of current program"
+msgstr ""
 
 msgid "Athletics"
 msgstr "Atlétika"
@@ -4921,8 +4913,11 @@ msgstr "Beállíthatja, hogy a teletexthez milyen betűtípust milyen felbontás
 msgid "Configure the duration in minutes for the screensaver."
 msgstr "Állítsa be a képernyővédő időtartamát percekben."
 
-msgid "Configure the duration in minutes for the sleep timer."
-msgstr "Állítsa be az Elalvás időzítésének időtartamát percekben."
+msgid "Configure the duration, in minutes, before the energy saver timer activates."
+msgstr ""
+
+msgid "Configure the duration, in minutes, before the sleep timer activates."
+msgstr ""
 
 msgid "Configure the end coordinate in x of the teletext display area."
 msgstr "Állítsa be a teletext kijelzési területének \"x\" befejezési koordinátáját."
@@ -6084,7 +6079,7 @@ msgstr "Fájl vagy könyvtár törlése (és annak tartalma)"
 msgid "Delete folder"
 msgstr "Mappa törlése"
 
-msgid "Delete image"
+msgid "Delete Image"
 msgstr "Kép törlése"
 
 msgid "Delete logfile"
@@ -7264,6 +7259,33 @@ msgstr "Befejezési időpont"
 msgid "Energie"
 msgstr "Energetika"
 
+msgid "Energy Timer"
+msgstr ""
+
+msgid "Energy saver action"
+msgstr ""
+
+msgid "Energy saver activation delay"
+msgstr ""
+
+msgid "Energy timer"
+msgstr ""
+
+#, python-format
+msgid "Energy timer: %d minute remains."
+msgid_plural "Energy timer: %d minutes remain."
+msgstr[0] ""
+msgstr[1] ""
+
+#, python-format
+msgid "Energy timer: %d second remains."
+msgid_plural "Energy timer: %d seconds remain."
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "Energy timer: Inactive."
+msgstr ""
+
 msgid "English"
 msgstr "Angol"
 
@@ -7660,12 +7682,6 @@ msgstr "Meghaladja a Bluedisc kapacitását!"
 
 msgid "Exceeds dual layer medium!"
 msgstr "Meghaladja a kétrétegű hordozó kapacitását!"
-
-msgid "Execute after current event"
-msgstr "Végrehajtás a beállítást követően"
-
-msgid "Execute in "
-msgstr "Végrehajtás "
 
 msgid "Execution condition"
 msgstr "Végrehajtási állapot"
@@ -11329,9 +11345,6 @@ msgstr "Multi EPG"
 
 msgid "MultiBoot"
 msgstr ""
-
-msgid "MultiBoot Image Manager"
-msgstr "MultiBoot Lemezkép Kezelő"
 
 msgid "MultiBoot Information"
 msgstr ""
@@ -15551,9 +15564,6 @@ msgstr "Válassza ki a virtuális billentyűzettel eltolt karakterkészletét"
 msgid "Select the shifted character set for the next character only"
 msgstr "Válassza ki a virtuális billentyűzettel eltolt karakterkészletet csak a következő karakterhez"
 
-msgid "Select the sleep timer action."
-msgstr "Válassza ki az Elalvás időzítésének műveletét."
-
 msgid "Select the source of the default DNS settings."
 msgstr ""
 
@@ -15580,6 +15590,12 @@ msgstr "Válassza ki a használt LNB/eszköz típusát (általában 'Univerzáli
 
 msgid "Select the type of Single Cable Reception device you are using."
 msgstr "Válassza ki a használt egy kábeles vételi eszköz típusát."
+
+msgid "Select the type of shutdown desired when the energy timer activates."
+msgstr ""
+
+msgid "Select the type of shutdown desired when the steep timer activates."
+msgstr ""
 
 msgid "Select upgrade source"
 msgstr "Válasszon szerkesztendő frissítési forrást"
@@ -17126,11 +17142,38 @@ msgstr "Elalvás"
 msgid "Sleep Timer"
 msgstr "Elalvás időzítő"
 
+msgid "Sleep Timer Settings"
+msgstr ""
+
 msgid "Sleep delay"
 msgstr "Elalvás késleltetése"
 
 msgid "Sleep long"
 msgstr "Elalvás hosszan"
+
+msgid "Sleep timer"
+msgstr ""
+
+msgid "Sleep timer action"
+msgstr ""
+
+msgid "Sleep timer activation delay"
+msgstr ""
+
+#, python-format
+msgid "Sleep timer: %d minute remains."
+msgid_plural "Sleep timer: %d minutes remain."
+msgstr[0] ""
+msgstr[1] ""
+
+#, python-format
+msgid "Sleep timer: %d second remains."
+msgid_plural "Sleep timer: %d seconds remain."
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "Sleep timer: Inactive."
+msgstr ""
 
 msgid "SleepTimer"
 msgstr "Elalvás időzítő"
@@ -18462,6 +18505,13 @@ msgstr "Az alapértelmezett beállítás: az ébresztési idő - 5 perc és az i
 msgid "The detailed information is intended for developers only."
 msgstr ""
 
+#, python-format
+msgid ""
+"The energy timer wants to set the %s %s to %s.\n"
+"\n"
+"Press OK to continue using the %s %s."
+msgstr ""
+
 msgid "The following files were found..."
 msgstr "Az alábbi fájlokat találta a rendszer..."
 
@@ -18511,11 +18561,12 @@ msgstr "A csatornalista újra van töltve."
 msgid "The setting 'without query' is the same as 'standard' without additional confirmation query. All other dependencies (e.g. recordings, time range) stay persist."
 msgstr "A 'query nélkül' lekérdezés ugyanaz, mint a 'standard' lekérdezés. Az összes többi függőség (például felvételek, időtartomány) továbbra is fennmarad."
 
-msgid "The sleep timer has been activated."
-msgstr "Az elalvás időzítő aktiválva lett."
-
-msgid "The sleep timer has been disabled."
-msgstr "Az elalvásidőzítő ki lett kapcsolva."
+#, python-format
+msgid ""
+"The sleep timer wants to set the %s %s to %s.\n"
+"\n"
+"Do that now or extend the timer?"
+msgstr ""
 
 msgid ""
 "The software management extension is not installed!\n"
@@ -19144,9 +19195,6 @@ msgstr "Időzítő művelete"
 msgid "Timer List"
 msgstr "Időzítő lista"
 
-msgid "Timer action"
-msgstr "Időzítő művelete"
-
 msgid "Timer edit"
 msgstr "Időzítő módosítása"
 
@@ -19155,13 +19203,6 @@ msgstr "Időzítések"
 
 msgid "Timer entry"
 msgstr "Időzítés megadása"
-
-#, python-format
-msgid "Timer is activated: +%d min"
-msgstr "Időzítés aktiválva: +%d perc"
-
-msgid "Timer is not activated"
-msgstr "Elalvás időzítése"
 
 msgid "Timer log"
 msgstr "Időzítő lognapló"
@@ -22622,9 +22663,6 @@ msgstr ""
 msgid "not"
 msgstr "nem"
 
-msgid "not activated"
-msgstr "nincs aktiválva"
-
 msgid "not configured"
 msgstr "nem konfigurált"
 
@@ -23378,6 +23416,66 @@ msgstr "ugrás folyamatban"
 
 msgid "®"
 msgstr "®"
+
+#, python-format
+#~ msgid ""
+#~ "A Recording, RecordTimer or PowerTimer is running or begins in 15 minutes.\n"
+#~ "Extend sleep timer 30 minutes. Your %s %s\n"
+#~ "will shut down after Recording or Powertimer event. Get in Standby now?"
+#~ msgstr ""
+#~ "A felvétel, a Felvétel időzítő vagy a Kikapcsolás időzítő 15 percen belül elindul vagy elkezdődik.\n"
+#~ "Az elalvási időzítőt 30 percig növelje. A(z) %s %s készülék\n"
+#~ "a felvétel vagy Kikapcsolás időzítő esemény után leáll. Most állj készenléti állapotba?"
+
+#, python-format
+#~ msgid ""
+#~ "A sleep timer wants to set your %s %s to standby.\n"
+#~ "Do that now or set extend additional minutes?"
+#~ msgstr ""
+#~ "Az elalvás időzítő készenléti állapotba akarja helyezni a(z) %s %s készüléket.\n"
+#~ "Tegye meg most vagy további perceket ad az időzítéshez?"
+
+#, python-format
+#~ msgid ""
+#~ "A sleep timer wants to shut down your %s %s.\n"
+#~ "Do that now or set extend additional minutes?"
+#~ msgstr ""
+#~ "Az elalvás időzítő le akarja állítani a(z) %s %s készüléket.\n"
+#~ "Tegye meg most vagy további perceket ad az időzítéshez?"
+
+#~ msgid "Configure the duration in minutes for the sleep timer."
+#~ msgstr "Állítsa be az Elalvás időzítésének időtartamát percekben."
+
+#~ msgid "Execute after current event"
+#~ msgstr "Végrehajtás a beállítást követően"
+
+#~ msgid "Execute in "
+#~ msgstr "Végrehajtás "
+
+#~ msgid "MultiBoot Image Manager"
+#~ msgstr "MultiBoot Lemezkép Kezelő"
+
+#~ msgid "Select the sleep timer action."
+#~ msgstr "Válassza ki az Elalvás időzítésének műveletét."
+
+#~ msgid "The sleep timer has been activated."
+#~ msgstr "Az elalvás időzítő aktiválva lett."
+
+#~ msgid "The sleep timer has been disabled."
+#~ msgstr "Az elalvásidőzítő ki lett kapcsolva."
+
+#~ msgid "Timer action"
+#~ msgstr "Időzítő művelete"
+
+#, python-format
+#~ msgid "Timer is activated: +%d min"
+#~ msgstr "Időzítés aktiválva: +%d perc"
+
+#~ msgid "Timer is not activated"
+#~ msgstr "Elalvás időzítése"
+
+#~ msgid "not activated"
+#~ msgstr "nincs aktiválva"
 
 #, fuzzy
 #~ msgid "Cancel the image selection and exit"

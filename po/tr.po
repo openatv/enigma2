@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Apachi70 (OpenATV)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-04-14 09:02+0000\n"
+"POT-Creation-Date: 2022-04-17 12:35+0000\n"
 "PO-Revision-Date: 2021-11-14 06:52+0000\n"
 "Last-Translator: Oğuz Ersen <oguzersen@protonmail.com>\n"
 "Language-Team: Turkish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/tr/>\n"
@@ -1394,6 +1394,14 @@ msgid "%s additional screens"
 msgstr "%s ek ekranlar"
 
 #, python-format
+msgid "%s has been activated."
+msgstr ""
+
+#, python-format
+msgid "%s has been disabled."
+msgstr ""
+
+#, python-format
 msgid "%s information"
 msgstr ""
 
@@ -2140,16 +2148,6 @@ msgstr "??"
 msgid "A"
 msgstr "A"
 
-#, python-format
-msgid ""
-"A Recording, RecordTimer or PowerTimer is running or begins in 15 minutes.\n"
-"Extend sleep timer 30 minutes. Your %s %s\n"
-"will shut down after Recording or Powertimer event. Get in Standby now?"
-msgstr ""
-"Bir Kayıt, RecordTimer veya PowerTimer çalışıyor veya 15 dakika içinde başlıyor.\n"
-"Uyku zamanlayıcısını 30 dakika uzatın. %s % s\n"
-"Kayıt veya Powertimer olayından sonra kapanır. Beklemede kal şimdi mi?"
-
 msgid "A background update check is in progress, please wait a few minutes and try again."
 msgstr "Arkaplan güncelleme kontrolu sürüyor, birkaç dakika sonra tekrar deneyin."
 
@@ -2243,6 +2241,13 @@ msgstr "Kayıt yapılmaktadır. Lütfen taramayı denemeden önce kayıdı durdu
 msgid "A recording is currently running. Please stop the recording before trying to start the satfinder."
 msgstr "Kayıt devam ediyor. Lütfen uydu bulucuyu başlatmadan önce kayıdı durdurun."
 
+#, python-format
+msgid ""
+"A recording, recording timer or power timer is running or will begin within 15 minutes. %s extended to 30 minutes. Your %s %s will go to Deep Standby after the recording or power timer event.\n"
+"\n"
+"Go to Deep Standby now?"
+msgstr ""
+
 msgid "A repeating timer or just once?"
 msgstr "Tekrarlanan bir zamanlayıcı mı, yoksa sadece bir kez mi?"
 
@@ -2273,14 +2278,6 @@ msgstr ""
 "Uyku zamanlayıcı %s %s'yu\n"
 "bekleme kipine almak istiyor. Şimdi alınsın mı?"
 
-#, python-format
-msgid ""
-"A sleep timer wants to set your %s %s to standby.\n"
-"Do that now or set extend additional minutes?"
-msgstr ""
-"Bir uyku zamanlayıcısı,% s% s değerini bekleme moduna ayarlamak ister.\n"
-"Bunu şimdi yapın veya ek dakikaları uzatın mı?"
-
 #
 #, python-format
 msgid ""
@@ -2289,14 +2286,6 @@ msgid ""
 msgstr ""
 "Uyku zamanlayıcı %s %s'yu\n"
 "kapatmak istiyor. Şimdi kapatılsın mı?"
-
-#, python-format
-msgid ""
-"A sleep timer wants to shut down your %s %s.\n"
-"Do that now or set extend additional minutes?"
-msgstr ""
-"Bir uyku zamanlayıcısı% s% s 'nizi kapatmak istiyor.\n"
-"Bunu şimdi yapın veya ek dakikaları uzatın mı?"
 
 msgid "A small overview of the available icon states and actions."
 msgstr "İkonların durumları ve eylemleri hakkında küçük bir açıklama."
@@ -3207,6 +3196,9 @@ msgstr "Astra 3 23.5e"
 
 msgid "At End:"
 msgstr "Sonda:"
+
+msgid "At end of current program"
+msgstr ""
 
 #, fuzzy
 msgid "Athletics"
@@ -5197,8 +5189,11 @@ msgstr "Teletekst için kullanılan ekran çözünürlüğünü ve yazı tipini 
 msgid "Configure the duration in minutes for the screensaver."
 msgstr "Ekran koruyucu için süreyi dakika olarak yapılandırın."
 
-msgid "Configure the duration in minutes for the sleep timer."
-msgstr "Uyku zamanlayıcısı için süreyi dakika olarak yapılandırın."
+msgid "Configure the duration, in minutes, before the energy saver timer activates."
+msgstr ""
+
+msgid "Configure the duration, in minutes, before the sleep timer activates."
+msgstr ""
 
 msgid "Configure the end coordinate in x of the teletext display area."
 msgstr "Bitiş koordinatını teletekst görüntüleme alanının x değerinde yapılandırın."
@@ -6434,7 +6429,7 @@ msgstr "Dosya veya dizini sil (ve tüm içeriğini)"
 msgid "Delete folder"
 msgstr "Klasörü sil"
 
-msgid "Delete image"
+msgid "Delete Image"
 msgstr "Skin sil"
 
 msgid "Delete logfile"
@@ -7714,6 +7709,31 @@ msgstr "Bitiş zamanı"
 msgid "Energie"
 msgstr ""
 
+msgid "Energy Timer"
+msgstr ""
+
+msgid "Energy saver action"
+msgstr ""
+
+msgid "Energy saver activation delay"
+msgstr ""
+
+msgid "Energy timer"
+msgstr ""
+
+#, python-format
+msgid "Energy timer: %d minute remains."
+msgid_plural "Energy timer: %d minutes remain."
+msgstr[0] ""
+
+#, python-format
+msgid "Energy timer: %d second remains."
+msgid_plural "Energy timer: %d seconds remain."
+msgstr[0] ""
+
+msgid "Energy timer: Inactive."
+msgstr ""
+
 #
 msgid "English"
 msgstr "İngilizce"
@@ -8130,12 +8150,6 @@ msgstr "Bludisc ortamını aşıyor!"
 #
 msgid "Exceeds dual layer medium!"
 msgstr "Çift katman (dual layer) ortam kapasitesini aşıyor!"
-
-msgid "Execute after current event"
-msgstr "Mevcut etkinlikten sonra yürüt"
-
-msgid "Execute in "
-msgstr "İçinde yürüt "
 
 msgid "Execution condition"
 msgstr "Yürütme koşulu"
@@ -12081,9 +12095,6 @@ msgstr "Çoklu EPG"
 
 msgid "MultiBoot"
 msgstr ""
-
-msgid "MultiBoot Image Manager"
-msgstr "MultiBoot Görüntü Yöneticisi"
 
 msgid "MultiBoot Information"
 msgstr ""
@@ -16675,9 +16686,6 @@ msgstr "Sanal klavyeyle kaydırılmış karakter kümesini seçin"
 msgid "Select the shifted character set for the next character only"
 msgstr "Yalnızca bir sonraki karakter için ayarlanan sanal klavye karakterini seçin"
 
-msgid "Select the sleep timer action."
-msgstr "Uyku zamanlayıcısı işlemini seçin."
-
 msgid "Select the source of the default DNS settings."
 msgstr ""
 
@@ -16705,6 +16713,12 @@ msgstr "Kullanılan LNB / cihaz türünü seçin (normalde 'Evrensel'). LNB tipi
 
 msgid "Select the type of Single Cable Reception device you are using."
 msgstr "Kullanmakta olduğunuz Tek Kablo Alma cihazının türünü seçin."
+
+msgid "Select the type of shutdown desired when the energy timer activates."
+msgstr ""
+
+msgid "Select the type of shutdown desired when the steep timer activates."
+msgstr ""
 
 #
 msgid "Select upgrade source"
@@ -18341,12 +18355,37 @@ msgstr "Uyku"
 msgid "Sleep Timer"
 msgstr "Uyku Zamanlayıcısı"
 
+msgid "Sleep Timer Settings"
+msgstr ""
+
 #
 msgid "Sleep delay"
 msgstr "Uyku geciktirme"
 
 msgid "Sleep long"
 msgstr "Uzun uyu"
+
+msgid "Sleep timer"
+msgstr ""
+
+msgid "Sleep timer action"
+msgstr ""
+
+msgid "Sleep timer activation delay"
+msgstr ""
+
+#, python-format
+msgid "Sleep timer: %d minute remains."
+msgid_plural "Sleep timer: %d minutes remain."
+msgstr[0] ""
+
+#, python-format
+msgid "Sleep timer: %d second remains."
+msgid_plural "Sleep timer: %d seconds remain."
+msgstr[0] ""
+
+msgid "Sleep timer: Inactive."
+msgstr ""
 
 msgid "SleepTimer"
 msgstr "SleepTimer"
@@ -19755,6 +19794,13 @@ msgstr "Varsayılan ayarlar uyanma süresidir - 5 dakika ve zamanlayıcı başla
 msgid "The detailed information is intended for developers only."
 msgstr ""
 
+#, python-format
+msgid ""
+"The energy timer wants to set the %s %s to %s.\n"
+"\n"
+"Press OK to continue using the %s %s."
+msgstr ""
+
 #
 msgid "The following files were found..."
 msgstr "Aşağıdaki dosyalar bulundu..."
@@ -19808,11 +19854,12 @@ msgstr "Hizmet uzmanı yeniden yüklenir."
 msgid "The setting 'without query' is the same as 'standard' without additional confirmation query. All other dependencies (e.g. recordings, time range) stay persist."
 msgstr "Sorgu olmadan' ayarı, ek onay sorgusu olmadan 'standart' ile aynıdır. Diğer tüm bağımlılıklar (ör. Kayıtlar, zaman aralığı) devam eder."
 
-msgid "The sleep timer has been activated."
-msgstr "Uyku zamanlayıcı etkinleştirildi."
-
-msgid "The sleep timer has been disabled."
-msgstr "Uyku zamanlayıcı kapatıldı."
+#, python-format
+msgid ""
+"The sleep timer wants to set the %s %s to %s.\n"
+"\n"
+"Do that now or extend the timer?"
+msgstr ""
 
 msgid ""
 "The software management extension is not installed!\n"
@@ -20475,9 +20522,6 @@ msgstr "Zamanlayıcı eylem"
 msgid "Timer List"
 msgstr "Zamanlayıcı Listesi"
 
-msgid "Timer action"
-msgstr "Zamanlayıcı eylem"
-
 msgid "Timer edit"
 msgstr "Zamanlayıcı düzenlemesi"
 
@@ -20487,13 +20531,6 @@ msgstr "Zamanlayıcı editörü"
 #
 msgid "Timer entry"
 msgstr "Zamanlayıcı girişi"
-
-#, python-format
-msgid "Timer is activated: +%d min"
-msgstr "Zamanlayıcı etkinleştirildi: +%d min"
-
-msgid "Timer is not activated"
-msgstr "Zamanlayıcı aktif değil"
 
 #
 msgid "Timer log"
@@ -24267,9 +24304,6 @@ msgstr ""
 msgid "not"
 msgstr "yok"
 
-msgid "not activated"
-msgstr "etkinleştirilmedi"
-
 msgid "not configured"
 msgstr "yapılandırılmamış"
 
@@ -25105,6 +25139,66 @@ msgstr "zap"
 
 msgid "®"
 msgstr ""
+
+#, python-format
+#~ msgid ""
+#~ "A Recording, RecordTimer or PowerTimer is running or begins in 15 minutes.\n"
+#~ "Extend sleep timer 30 minutes. Your %s %s\n"
+#~ "will shut down after Recording or Powertimer event. Get in Standby now?"
+#~ msgstr ""
+#~ "Bir Kayıt, RecordTimer veya PowerTimer çalışıyor veya 15 dakika içinde başlıyor.\n"
+#~ "Uyku zamanlayıcısını 30 dakika uzatın. %s % s\n"
+#~ "Kayıt veya Powertimer olayından sonra kapanır. Beklemede kal şimdi mi?"
+
+#, python-format
+#~ msgid ""
+#~ "A sleep timer wants to set your %s %s to standby.\n"
+#~ "Do that now or set extend additional minutes?"
+#~ msgstr ""
+#~ "Bir uyku zamanlayıcısı,% s% s değerini bekleme moduna ayarlamak ister.\n"
+#~ "Bunu şimdi yapın veya ek dakikaları uzatın mı?"
+
+#, python-format
+#~ msgid ""
+#~ "A sleep timer wants to shut down your %s %s.\n"
+#~ "Do that now or set extend additional minutes?"
+#~ msgstr ""
+#~ "Bir uyku zamanlayıcısı% s% s 'nizi kapatmak istiyor.\n"
+#~ "Bunu şimdi yapın veya ek dakikaları uzatın mı?"
+
+#~ msgid "Configure the duration in minutes for the sleep timer."
+#~ msgstr "Uyku zamanlayıcısı için süreyi dakika olarak yapılandırın."
+
+#~ msgid "Execute after current event"
+#~ msgstr "Mevcut etkinlikten sonra yürüt"
+
+#~ msgid "Execute in "
+#~ msgstr "İçinde yürüt "
+
+#~ msgid "MultiBoot Image Manager"
+#~ msgstr "MultiBoot Görüntü Yöneticisi"
+
+#~ msgid "Select the sleep timer action."
+#~ msgstr "Uyku zamanlayıcısı işlemini seçin."
+
+#~ msgid "The sleep timer has been activated."
+#~ msgstr "Uyku zamanlayıcı etkinleştirildi."
+
+#~ msgid "The sleep timer has been disabled."
+#~ msgstr "Uyku zamanlayıcı kapatıldı."
+
+#~ msgid "Timer action"
+#~ msgstr "Zamanlayıcı eylem"
+
+#, python-format
+#~ msgid "Timer is activated: +%d min"
+#~ msgstr "Zamanlayıcı etkinleştirildi: +%d min"
+
+#~ msgid "Timer is not activated"
+#~ msgstr "Zamanlayıcı aktif değil"
+
+#~ msgid "not activated"
+#~ msgstr "etkinleştirilmedi"
 
 #
 #, fuzzy

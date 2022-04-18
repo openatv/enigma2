@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-04-14 09:02+0000\n"
+"POT-Creation-Date: 2022-04-17 12:35+0000\n"
 "PO-Revision-Date: 2016-04-02 23:09+0200\n"
 "Last-Translator: Stig-O <stiose@hotmail.com>\n"
 "Language-Team: Stig-O\n"
@@ -1478,6 +1478,14 @@ msgid "%s additional screens"
 msgstr "Søke ytterlige SR"
 
 #, python-format
+msgid "%s has been activated."
+msgstr ""
+
+#, python-format
+msgid "%s has been disabled."
+msgstr ""
+
+#, python-format
 msgid "%s information"
 msgstr ""
 
@@ -2249,13 +2257,6 @@ msgstr "??"
 msgid "A"
 msgstr "A"
 
-#, python-format
-msgid ""
-"A Recording, RecordTimer or PowerTimer is running or begins in 15 minutes.\n"
-"Extend sleep timer 30 minutes. Your %s %s\n"
-"will shut down after Recording or Powertimer event. Get in Standby now?"
-msgstr ""
-
 msgid "A background update check is in progress, please wait a few minutes and try again."
 msgstr "En bakgrunnsoppdatering pågår, vennligst vent et par minutter og prøv igjen."
 
@@ -2349,6 +2350,13 @@ msgstr "En innspilling er i gang. Vennligst stoppe opptaket før du prøver å s
 msgid "A recording is currently running. Please stop the recording before trying to start the satfinder."
 msgstr "En innspilling kjører fortsatt. Vennligst stopp innspillingen før du prøver å starte satellittfinneren."
 
+#, python-format
+msgid ""
+"A recording, recording timer or power timer is running or will begin within 15 minutes. %s extended to 30 minutes. Your %s %s will go to Deep Standby after the recording or power timer event.\n"
+"\n"
+"Go to Deep Standby now?"
+msgstr ""
+
 msgid "A repeating timer or just once?"
 msgstr "Gjenta timer eller bare en gang?"
 
@@ -2380,12 +2388,6 @@ msgstr ""
 "En innsovingstimer ønsker å sette din\n"
 "%s %s i dvalemodus. Skal det gjøres nå?"
 
-#, python-format
-msgid ""
-"A sleep timer wants to set your %s %s to standby.\n"
-"Do that now or set extend additional minutes?"
-msgstr ""
-
 #
 #, python-format
 msgid ""
@@ -2394,12 +2396,6 @@ msgid ""
 msgstr ""
 "En innsovingstimer ønsker å slå av\n"
 "din %s %s. Slå den av nå?"
-
-#, python-format
-msgid ""
-"A sleep timer wants to shut down your %s %s.\n"
-"Do that now or set extend additional minutes?"
-msgstr ""
 
 #
 msgid "A small overview of the available icon states and actions."
@@ -3330,6 +3326,9 @@ msgstr ""
 
 msgid "At End:"
 msgstr "Ved slutten:"
+
+msgid "At end of current program"
+msgstr ""
 
 #, fuzzy
 msgid "Athletics"
@@ -5372,7 +5371,10 @@ msgstr "Konfigurer varigheten i minutter for skjermspareren."
 msgid "Configure the duration in minutes for the screensaver."
 msgstr ""
 
-msgid "Configure the duration in minutes for the sleep timer."
+msgid "Configure the duration, in minutes, before the energy saver timer activates."
+msgstr ""
+
+msgid "Configure the duration, in minutes, before the sleep timer activates."
 msgstr ""
 
 #, fuzzy
@@ -6651,7 +6653,7 @@ msgstr "Slett fil."
 
 #
 #, fuzzy
-msgid "Delete image"
+msgid "Delete Image"
 msgstr "Slett timer"
 
 msgid "Delete logfile"
@@ -7946,6 +7948,33 @@ msgstr "Slutt tid"
 msgid "Energie"
 msgstr ""
 
+msgid "Energy Timer"
+msgstr ""
+
+msgid "Energy saver action"
+msgstr ""
+
+msgid "Energy saver activation delay"
+msgstr ""
+
+msgid "Energy timer"
+msgstr ""
+
+#, python-format
+msgid "Energy timer: %d minute remains."
+msgid_plural "Energy timer: %d minutes remain."
+msgstr[0] ""
+msgstr[1] ""
+
+#, python-format
+msgid "Energy timer: %d second remains."
+msgid_plural "Energy timer: %d seconds remain."
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "Energy timer: Inactive."
+msgstr ""
+
 #
 msgid "English"
 msgstr "Engelsk"
@@ -8343,12 +8372,6 @@ msgstr ""
 #
 msgid "Exceeds dual layer medium!"
 msgstr "Overstiger dobbellags medie!"
-
-msgid "Execute after current event"
-msgstr ""
-
-msgid "Execute in "
-msgstr ""
 
 msgid "Execution condition"
 msgstr ""
@@ -12382,10 +12405,6 @@ msgstr "Multi EPG"
 
 msgid "MultiBoot"
 msgstr ""
-
-#, fuzzy
-msgid "MultiBoot Image Manager"
-msgstr "Image Behandler"
 
 msgid "MultiBoot Information"
 msgstr ""
@@ -17066,9 +17085,6 @@ msgstr "Velg sti for lagring av film"
 msgid "Select the shifted character set for the next character only"
 msgstr ""
 
-msgid "Select the sleep timer action."
-msgstr ""
-
 msgid "Select the source of the default DNS settings."
 msgstr ""
 
@@ -17095,6 +17111,12 @@ msgid "Select the type of LNB/device being used (normally 'Universal'). If your 
 msgstr ""
 
 msgid "Select the type of Single Cable Reception device you are using."
+msgstr ""
+
+msgid "Select the type of shutdown desired when the energy timer activates."
+msgstr ""
+
+msgid "Select the type of shutdown desired when the steep timer activates."
 msgstr ""
 
 #
@@ -18780,6 +18802,9 @@ msgstr ""
 msgid "Sleep Timer"
 msgstr ""
 
+msgid "Sleep Timer Settings"
+msgstr ""
+
 #
 msgid "Sleep delay"
 msgstr "Sleep forsinkelse"
@@ -18787,6 +18812,30 @@ msgstr "Sleep forsinkelse"
 #, fuzzy
 msgid "Sleep long"
 msgstr "Lang blå"
+
+msgid "Sleep timer"
+msgstr ""
+
+msgid "Sleep timer action"
+msgstr ""
+
+msgid "Sleep timer activation delay"
+msgstr ""
+
+#, python-format
+msgid "Sleep timer: %d minute remains."
+msgid_plural "Sleep timer: %d minutes remain."
+msgstr[0] ""
+msgstr[1] ""
+
+#, python-format
+msgid "Sleep timer: %d second remains."
+msgid_plural "Sleep timer: %d seconds remain."
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "Sleep timer: Inactive."
+msgstr ""
 
 msgid "SleepTimer"
 msgstr ""
@@ -20207,6 +20256,13 @@ msgstr ""
 msgid "The detailed information is intended for developers only."
 msgstr ""
 
+#, python-format
+msgid ""
+"The energy timer wants to set the %s %s to %s.\n"
+"\n"
+"Press OK to continue using the %s %s."
+msgstr ""
+
 #
 msgid "The following files were found..."
 msgstr "Følgende filer ble funnet..."
@@ -20258,10 +20314,11 @@ msgstr ""
 msgid "The setting 'without query' is the same as 'standard' without additional confirmation query. All other dependencies (e.g. recordings, time range) stay persist."
 msgstr ""
 
-msgid "The sleep timer has been activated."
-msgstr ""
-
-msgid "The sleep timer has been disabled."
+#, python-format
+msgid ""
+"The sleep timer wants to set the %s %s to %s.\n"
+"\n"
+"Do that now or extend the timer?"
 msgstr ""
 
 msgid ""
@@ -20952,9 +21009,6 @@ msgstr "Timer valg"
 msgid "Timer List"
 msgstr "Timer Listen"
 
-msgid "Timer action"
-msgstr ""
-
 msgid "Timer edit"
 msgstr ""
 
@@ -20964,13 +21018,6 @@ msgstr ""
 #
 msgid "Timer entry"
 msgstr "Timer oppføring"
-
-#, python-format
-msgid "Timer is activated: +%d min"
-msgstr ""
-
-msgid "Timer is not activated"
-msgstr ""
 
 #
 msgid "Timer log"
@@ -24782,9 +24829,6 @@ msgstr ""
 msgid "not"
 msgstr "Nei"
 
-msgid "not activated"
-msgstr ""
-
 #
 msgid "not configured"
 msgstr "ikke konfigurert"
@@ -25644,6 +25688,10 @@ msgstr "zapped"
 
 msgid "®"
 msgstr ""
+
+#, fuzzy
+#~ msgid "MultiBoot Image Manager"
+#~ msgstr "Image Behandler"
 
 #
 #, fuzzy

@@ -167,7 +167,7 @@ class FlashOnline(Screen):
 		if "://" in currentSelected[0][1] or currentSelected[0][1] in ["Expander", "Waiter"]:
 			self["key_yellow"].setText("")
 		else:
-			self["key_yellow"].setText(_("Delete image"))
+			self["key_yellow"].setText(_("Delete Image"))
 		if currentSelected[0][1] == "Waiter":
 			self["key_green"].setText("")
 		else:

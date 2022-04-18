@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-04-14 09:02+0000\n"
+"POT-Creation-Date: 2022-04-17 12:35+0000\n"
 "PO-Revision-Date: 2022-04-10 19:53+0000\n"
 "Last-Translator: kvinto <badsystem@ukr.net>\n"
 "Language-Team: Ukrainian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/uk/>\n"
@@ -1357,6 +1357,14 @@ msgid "%s additional screens"
 msgstr "%s додатки до скіну"
 
 #, python-format
+msgid "%s has been activated."
+msgstr ""
+
+#, python-format
+msgid "%s has been disabled."
+msgstr ""
+
+#, python-format
 msgid "%s information"
 msgstr "%s інформація"
 
@@ -2049,16 +2057,6 @@ msgstr "??"
 msgid "A"
 msgstr "A"
 
-#, python-format
-msgid ""
-"A Recording, RecordTimer or PowerTimer is running or begins in 15 minutes.\n"
-"Extend sleep timer 30 minutes. Your %s %s\n"
-"will shut down after Recording or Powertimer event. Get in Standby now?"
-msgstr ""
-"Запис, Таймер Запису або Таймер включення працює, або почнеться через 15 хвилин.\n"
-"Продовжити таймер виключення на 30 хвилин. Ваш %s %s\n"
-"буде виключено після запису або по таймеру виключення. Перевести в режим очікування?"
-
 msgid "A background update check is in progress, please wait a few minutes and try again."
 msgstr "Виконується перевірка оновленнь у фоні, будь ласка, зачекайте кілька хвилин і повторіть спробу."
 
@@ -2143,6 +2141,13 @@ msgstr "В даний час триває запис. Зупиніть запи�
 msgid "A recording is currently running. Please stop the recording before trying to start the satfinder."
 msgstr "В даний час триває запис. Зупиніть запис перед стартом пошуку супутника."
 
+#, python-format
+msgid ""
+"A recording, recording timer or power timer is running or will begin within 15 minutes. %s extended to 30 minutes. Your %s %s will go to Deep Standby after the recording or power timer event.\n"
+"\n"
+"Go to Deep Standby now?"
+msgstr ""
+
 msgid "A repeating timer or just once?"
 msgstr "Повторюваний таймер або тільки один раз?"
 
@@ -2172,27 +2177,11 @@ msgstr ""
 
 #, python-format
 msgid ""
-"A sleep timer wants to set your %s %s to standby.\n"
-"Do that now or set extend additional minutes?"
-msgstr ""
-"Таймер сну хоче перевести пристрій %s %s в режим очікування.\n"
-"Виконати це зараз або відкласти на певний час?"
-
-#, python-format
-msgid ""
 "A sleep timer wants to shut down\n"
 "your %s %s. Shutdown now?"
 msgstr ""
 "Таймер сну хоче вимкнути\n"
 "Ваш %s %s. Вимкнути зараз?"
-
-#, python-format
-msgid ""
-"A sleep timer wants to shut down your %s %s.\n"
-"Do that now or set extend additional minutes?"
-msgstr ""
-"Таймер сну хоче вимкнути Ваш %s %s.\n"
-"Виконати це зараз або відкласти на певний час?"
 
 msgid "A small overview of the available icon states and actions."
 msgstr "Невеликий огляд доступного стану іконок і дій."
@@ -3036,6 +3025,9 @@ msgstr "Astra 3 23.5E"
 
 msgid "At End:"
 msgstr "На кінець:"
+
+msgid "At end of current program"
+msgstr ""
 
 msgid "Athletics"
 msgstr "Легка атлетика"
@@ -4898,8 +4890,11 @@ msgstr "Налаштування розширення екрану і розмі
 msgid "Configure the duration in minutes for the screensaver."
 msgstr "Через якийсь час показувати заставку."
 
-msgid "Configure the duration in minutes for the sleep timer."
-msgstr "Налаштування тривалості в хвилинах для таймера сну."
+msgid "Configure the duration, in minutes, before the energy saver timer activates."
+msgstr ""
+
+msgid "Configure the duration, in minutes, before the sleep timer activates."
+msgstr ""
 
 msgid "Configure the end coordinate in x of the teletext display area."
 msgstr "Налаштування кінцевої координати Х відображення телетексту."
@@ -6048,7 +6043,7 @@ msgstr "Видалити файл або каталог (і весь його в
 msgid "Delete folder"
 msgstr "Видалення папки"
 
-msgid "Delete image"
+msgid "Delete Image"
 msgstr "Видалення іміджу"
 
 msgid "Delete logfile"
@@ -7226,6 +7221,35 @@ msgstr "Час закінчення"
 msgid "Energie"
 msgstr "Енергія"
 
+msgid "Energy Timer"
+msgstr ""
+
+msgid "Energy saver action"
+msgstr ""
+
+msgid "Energy saver activation delay"
+msgstr ""
+
+msgid "Energy timer"
+msgstr ""
+
+#, python-format
+msgid "Energy timer: %d minute remains."
+msgid_plural "Energy timer: %d minutes remain."
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+
+#, python-format
+msgid "Energy timer: %d second remains."
+msgid_plural "Energy timer: %d seconds remain."
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+
+msgid "Energy timer: Inactive."
+msgstr ""
+
 msgid "English"
 msgstr "Англійська"
 
@@ -7627,12 +7651,6 @@ msgstr "Перевищує розмір Блюрай диску!"
 
 msgid "Exceeds dual layer medium!"
 msgstr "Перевищує розмір двошарового диску!"
-
-msgid "Execute after current event"
-msgstr "Виконати після поточної передачі"
-
-msgid "Execute in "
-msgstr "Виконати через "
 
 msgid "Execution condition"
 msgstr "Умова виконання"
@@ -11214,9 +11232,6 @@ msgstr "Мульти ЕПГ"
 
 msgid "MultiBoot"
 msgstr ""
-
-msgid "MultiBoot Image Manager"
-msgstr "Мененджер Іміджів MultiBoot"
 
 msgid "MultiBoot Information"
 msgstr ""
@@ -15399,9 +15414,6 @@ msgstr "Виберіть набір символів клавіатури"
 msgid "Select the shifted character set for the next character only"
 msgstr "Виберіть набір символів клавіатури лише для наступного символу"
 
-msgid "Select the sleep timer action."
-msgstr "Виберіть дію таймер сну."
-
 msgid "Select the source of the default DNS settings."
 msgstr "Виберіть джерело налаштувань DNS за замовчуванням."
 
@@ -15428,6 +15440,12 @@ msgstr "Виберіть тип LNB/пристрій (зазвичай 'Universa
 
 msgid "Select the type of Single Cable Reception device you are using."
 msgstr "Виберіть тип пристрою прийому, який ви використовуєте."
+
+msgid "Select the type of shutdown desired when the energy timer activates."
+msgstr ""
+
+msgid "Select the type of shutdown desired when the steep timer activates."
+msgstr ""
 
 msgid "Select upgrade source"
 msgstr "Вибер джерела оновлення"
@@ -16951,11 +16969,40 @@ msgstr "Очікування"
 msgid "Sleep Timer"
 msgstr "Таймер Cну"
 
+msgid "Sleep Timer Settings"
+msgstr ""
+
 msgid "Sleep delay"
 msgstr "Затримка перед вимиканням"
 
 msgid "Sleep long"
 msgstr "Очікування довге натискання"
+
+msgid "Sleep timer"
+msgstr ""
+
+msgid "Sleep timer action"
+msgstr ""
+
+msgid "Sleep timer activation delay"
+msgstr ""
+
+#, python-format
+msgid "Sleep timer: %d minute remains."
+msgid_plural "Sleep timer: %d minutes remain."
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+
+#, python-format
+msgid "Sleep timer: %d second remains."
+msgid_plural "Sleep timer: %d seconds remain."
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+
+msgid "Sleep timer: Inactive."
+msgstr ""
 
 msgid "SleepTimer"
 msgstr "Таймер Cну"
@@ -18261,6 +18308,13 @@ msgstr "Налаштування за замовчуванням часу вкл
 msgid "The detailed information is intended for developers only."
 msgstr "Детальна інформація призначена лише для розробників."
 
+#, python-format
+msgid ""
+"The energy timer wants to set the %s %s to %s.\n"
+"\n"
+"Press OK to continue using the %s %s."
+msgstr ""
+
 msgid "The following files were found..."
 msgstr "Слідуючі файли було знайдено..."
 
@@ -18310,11 +18364,12 @@ msgstr "Список каналів перезавантажений."
 msgid "The setting 'without query' is the same as 'standard' without additional confirmation query. All other dependencies (e.g. recordings, time range) stay persist."
 msgstr "Параметр 'без запиту' є такіж, як 'стандартний' без додаткового запиту підтвердження. Всі інші залежності (наприклад, записи, часовий діапазон) зберігаються."
 
-msgid "The sleep timer has been activated."
-msgstr "Таймер сну активний."
-
-msgid "The sleep timer has been disabled."
-msgstr "Таймер сну було вимкнено."
+#, python-format
+msgid ""
+"The sleep timer wants to set the %s %s to %s.\n"
+"\n"
+"Do that now or extend the timer?"
+msgstr ""
 
 msgid ""
 "The software management extension is not installed!\n"
@@ -18941,9 +18996,6 @@ msgstr "Дія для Таймера"
 msgid "Timer List"
 msgstr "Список таймерів"
 
-msgid "Timer action"
-msgstr "Дія таймера"
-
 msgid "Timer edit"
 msgstr "Редактувати таймер"
 
@@ -18952,13 +19004,6 @@ msgstr "Редактор таймеру"
 
 msgid "Timer entry"
 msgstr "Додати таймер"
-
-#, python-format
-msgid "Timer is activated: +%d min"
-msgstr "Таймер активовано: +%d хв"
-
-msgid "Timer is not activated"
-msgstr "Таймер не активовано"
 
 msgid "Timer log"
 msgstr "Лог таймера"
@@ -22388,9 +22433,6 @@ msgstr "типовий"
 msgid "not"
 msgstr "не"
 
-msgid "not activated"
-msgstr "не активований"
-
 msgid "not configured"
 msgstr "не налаштований"
 
@@ -23144,6 +23186,66 @@ msgstr "переключення"
 
 msgid "®"
 msgstr "®"
+
+#, python-format
+#~ msgid ""
+#~ "A Recording, RecordTimer or PowerTimer is running or begins in 15 minutes.\n"
+#~ "Extend sleep timer 30 minutes. Your %s %s\n"
+#~ "will shut down after Recording or Powertimer event. Get in Standby now?"
+#~ msgstr ""
+#~ "Запис, Таймер Запису або Таймер включення працює, або почнеться через 15 хвилин.\n"
+#~ "Продовжити таймер виключення на 30 хвилин. Ваш %s %s\n"
+#~ "буде виключено після запису або по таймеру виключення. Перевести в режим очікування?"
+
+#, python-format
+#~ msgid ""
+#~ "A sleep timer wants to set your %s %s to standby.\n"
+#~ "Do that now or set extend additional minutes?"
+#~ msgstr ""
+#~ "Таймер сну хоче перевести пристрій %s %s в режим очікування.\n"
+#~ "Виконати це зараз або відкласти на певний час?"
+
+#, python-format
+#~ msgid ""
+#~ "A sleep timer wants to shut down your %s %s.\n"
+#~ "Do that now or set extend additional minutes?"
+#~ msgstr ""
+#~ "Таймер сну хоче вимкнути Ваш %s %s.\n"
+#~ "Виконати це зараз або відкласти на певний час?"
+
+#~ msgid "Configure the duration in minutes for the sleep timer."
+#~ msgstr "Налаштування тривалості в хвилинах для таймера сну."
+
+#~ msgid "Execute after current event"
+#~ msgstr "Виконати після поточної передачі"
+
+#~ msgid "Execute in "
+#~ msgstr "Виконати через "
+
+#~ msgid "MultiBoot Image Manager"
+#~ msgstr "Мененджер Іміджів MultiBoot"
+
+#~ msgid "Select the sleep timer action."
+#~ msgstr "Виберіть дію таймер сну."
+
+#~ msgid "The sleep timer has been activated."
+#~ msgstr "Таймер сну активний."
+
+#~ msgid "The sleep timer has been disabled."
+#~ msgstr "Таймер сну було вимкнено."
+
+#~ msgid "Timer action"
+#~ msgstr "Дія таймера"
+
+#, python-format
+#~ msgid "Timer is activated: +%d min"
+#~ msgstr "Таймер активовано: +%d хв"
+
+#~ msgid "Timer is not activated"
+#~ msgstr "Таймер не активовано"
+
+#~ msgid "not activated"
+#~ msgstr "не активований"
 
 #~ msgid "Cancel the image selection and exit"
 #~ msgstr "Скасувати вибір іміджу і вийти"

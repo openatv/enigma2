@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-04-14 09:02+0000\n"
+"POT-Creation-Date: 2022-04-17 12:35+0000\n"
 "PO-Revision-Date: 2022-04-15 13:16+0000\n"
 "Last-Translator: tomppaa <tomzza89@gmail.com>\n"
 "Language-Team: Finnish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/fi/>\n"
@@ -1334,6 +1334,14 @@ msgid "%s additional screens"
 msgstr "%s lisä näyttöjä"
 
 #, python-format
+msgid "%s has been activated."
+msgstr ""
+
+#, python-format
+msgid "%s has been disabled."
+msgstr ""
+
+#, python-format
 msgid "%s information"
 msgstr "%s tiedot"
 
@@ -2026,16 +2034,6 @@ msgstr "??"
 msgid "A"
 msgstr "A"
 
-#, python-format
-msgid ""
-"A Recording, RecordTimer or PowerTimer is running or begins in 15 minutes.\n"
-"Extend sleep timer 30 minutes. Your %s %s\n"
-"will shut down after Recording or Powertimer event. Get in Standby now?"
-msgstr ""
-"Tallennus, tallennusajastin tai Virta ajastin on aktiivinen tai alkaa 15 minuutissa.\n"
-"Sammutusajastinta pidennetään 30 minuutilla sinun %s %s\n"
-"sammuttaa tallennuksen tai Virta ajastin tapahtuman jälkeen. Mennäänkö nyt valmiustilaan?"
-
 msgid "A background update check is in progress, please wait a few minutes and try again."
 msgstr "Taustapäivityksen tarkistus on käynnissä, odota muutama minuutti ja yritä uudelleen."
 
@@ -2120,6 +2118,13 @@ msgstr "Tallennus on käynnissä. Lopeta se ennen kanavahakua."
 msgid "A recording is currently running. Please stop the recording before trying to start the satfinder."
 msgstr "Tallennus on käynnissä. Lopeta se ennen kanavahakua."
 
+#, python-format
+msgid ""
+"A recording, recording timer or power timer is running or will begin within 15 minutes. %s extended to 30 minutes. Your %s %s will go to Deep Standby after the recording or power timer event.\n"
+"\n"
+"Go to Deep Standby now?"
+msgstr ""
+
 msgid "A repeating timer or just once?"
 msgstr "Tehdäänkö toistuva vai kerta ajastus?"
 
@@ -2149,27 +2154,11 @@ msgstr ""
 
 #, python-format
 msgid ""
-"A sleep timer wants to set your %s %s to standby.\n"
-"Do that now or set extend additional minutes?"
-msgstr ""
-"Uniajastin haluaa sammuttaa laitteen %s %s valmiustilaan.\n"
-"Tehdäänkö se nyt vai haluatko lisätä aikaa?"
-
-#, python-format
-msgid ""
 "A sleep timer wants to shut down\n"
 "your %s %s. Shutdown now?"
 msgstr ""
 "Uniajastimeen asetettu aika on kulunut umpeen.\n"
 "Sammutetaanko %s %s virransäästötilaan?"
-
-#, python-format
-msgid ""
-"A sleep timer wants to shut down your %s %s.\n"
-"Do that now or set extend additional minutes?"
-msgstr ""
-"Uniajastin haluaa sammuttaa laitteen %s %s valmiustilaan.\n"
-"Tehdäänkö se nyt vai haluatko lisätä aikaa?"
 
 msgid "A small overview of the available icon states and actions."
 msgstr "Kuvaus kuvakkeiden tiloista ja toiminnoista."
@@ -3021,6 +3010,9 @@ msgstr "Astra 3 23.5e"
 
 msgid "At End:"
 msgstr "Lopussa:"
+
+msgid "At end of current program"
+msgstr ""
 
 msgid "Athletics"
 msgstr "Yleisurheilu"
@@ -4884,8 +4876,11 @@ msgstr "Määritä näytön resoluutio ja teksti-tv:lle käytetty fontti."
 msgid "Configure the duration in minutes for the screensaver."
 msgstr "Määrittää, käytetäänkö näytönsäästäjää ja jos, niin kuinka pitkän ajan kuluttua se aktivoidaan."
 
-msgid "Configure the duration in minutes for the sleep timer."
-msgstr "Monenko minuutin päästä uniajastin aktivoidaan."
+msgid "Configure the duration, in minutes, before the energy saver timer activates."
+msgstr ""
+
+msgid "Configure the duration, in minutes, before the sleep timer activates."
+msgstr ""
 
 msgid "Configure the end coordinate in x of the teletext display area."
 msgstr "Määritä loppukoordinaatti tekstitv:een X leveys."
@@ -6034,7 +6029,7 @@ msgstr "Poista tiedosto / hakemisto (koko sisältö)"
 msgid "Delete folder"
 msgstr "Poista kansio"
 
-msgid "Delete image"
+msgid "Delete Image"
 msgstr "Poista image"
 
 msgid "Delete logfile"
@@ -7211,6 +7206,33 @@ msgstr "Lopetusaika"
 msgid "Energie"
 msgstr "Energia"
 
+msgid "Energy Timer"
+msgstr ""
+
+msgid "Energy saver action"
+msgstr ""
+
+msgid "Energy saver activation delay"
+msgstr ""
+
+msgid "Energy timer"
+msgstr ""
+
+#, python-format
+msgid "Energy timer: %d minute remains."
+msgid_plural "Energy timer: %d minutes remain."
+msgstr[0] ""
+msgstr[1] ""
+
+#, python-format
+msgid "Energy timer: %d second remains."
+msgid_plural "Energy timer: %d seconds remain."
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "Energy timer: Inactive."
+msgstr ""
+
 msgid "English"
 msgstr "Englanti"
 
@@ -7612,12 +7634,6 @@ msgstr "Ylittää kaksikerroslevyn tilavuuden!"
 
 msgid "Exceeds dual layer medium!"
 msgstr "Ylittää kaksikerroslevyn tilavuuden!"
-
-msgid "Execute after current event"
-msgstr "Aktivoi nykyisen ohjelman jälkeen"
-
-msgid "Execute in "
-msgstr "Aktivointiviive "
 
 msgid "Execution condition"
 msgstr "Suoritustila"
@@ -11205,9 +11221,6 @@ msgstr "Kanavaopas"
 
 msgid "MultiBoot"
 msgstr "Multiboot"
-
-msgid "MultiBoot Image Manager"
-msgstr "MultiBoot Image Hallinta"
 
 msgid "MultiBoot Information"
 msgstr "MultiBoot tiedot"
@@ -15410,9 +15423,6 @@ msgstr "Käytä siirtymää seuraaville merkeille"
 msgid "Select the shifted character set for the next character only"
 msgstr "Käytä vaihtoa vain seuraavaan merkkiin"
 
-msgid "Select the sleep timer action."
-msgstr "Valitse toimenpide, joka suoritetaan ajastuksen loputtua."
-
 msgid "Select the source of the default DNS settings."
 msgstr "Valitse lähde oletus DNS asetuksille."
 
@@ -15439,6 +15449,12 @@ msgstr "\"Valitse käytetyn LNB:n / laitteen tyyppi (yleensä\" Universal \"). J
 
 msgid "Select the type of Single Cable Reception device you are using."
 msgstr "Valitse käyttämäsi laitteen tyyppi."
+
+msgid "Select the type of shutdown desired when the energy timer activates."
+msgstr ""
+
+msgid "Select the type of shutdown desired when the steep timer activates."
+msgstr ""
 
 msgid "Select upgrade source"
 msgstr "Valitse päivityksen lähdeosoite"
@@ -16964,11 +16980,38 @@ msgstr "Uniajastin"
 msgid "Sleep Timer"
 msgstr "Uniajastin"
 
+msgid "Sleep Timer Settings"
+msgstr ""
+
 msgid "Sleep delay"
 msgstr "Sammumisen viive"
 
 msgid "Sleep long"
 msgstr "Nuku pitkään"
+
+msgid "Sleep timer"
+msgstr ""
+
+msgid "Sleep timer action"
+msgstr ""
+
+msgid "Sleep timer activation delay"
+msgstr ""
+
+#, python-format
+msgid "Sleep timer: %d minute remains."
+msgid_plural "Sleep timer: %d minutes remain."
+msgstr[0] ""
+msgstr[1] ""
+
+#, python-format
+msgid "Sleep timer: %d second remains."
+msgid_plural "Sleep timer: %d seconds remain."
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "Sleep timer: Inactive."
+msgstr ""
 
 msgid "SleepTimer"
 msgstr "Uniajastin"
@@ -18276,6 +18319,13 @@ msgstr "Vakioasetukset ovat herätysaika - 5 minuuttia ja ajastimen käynnistys 
 msgid "The detailed information is intended for developers only."
 msgstr "Yksityiskohtaiset tiedot on tarkoitettu vain kehittäjille."
 
+#, python-format
+msgid ""
+"The energy timer wants to set the %s %s to %s.\n"
+"\n"
+"Press OK to continue using the %s %s."
+msgstr ""
+
 msgid "The following files were found..."
 msgstr "Seuraavat tiedostot löytyi..."
 
@@ -18325,11 +18375,12 @@ msgstr "Kanavalista ladattu uudelleen."
 msgid "The setting 'without query' is the same as 'standard' without additional confirmation query. All other dependencies (e.g. recordings, time range) stay persist."
 msgstr "Asetus \"ilman vahvistusta\" on sama kuin \"vakio\" ilman uutta vahvistuspyyntöä. Kaikki muut riippuvuudet (esim. Tallennukset, aikaväli) pysyvät."
 
-msgid "The sleep timer has been activated."
-msgstr "Uniajastin on käytössä."
-
-msgid "The sleep timer has been disabled."
-msgstr "Uniajastin on poistettu käytöstä."
+#, python-format
+msgid ""
+"The sleep timer wants to set the %s %s to %s.\n"
+"\n"
+"Do that now or extend the timer?"
+msgstr ""
 
 msgid ""
 "The software management extension is not installed!\n"
@@ -18958,9 +19009,6 @@ msgstr "Ajastin Toiminnot"
 msgid "Timer List"
 msgstr "Ajastusluettelo"
 
-msgid "Timer action"
-msgstr "Ajastimen toimenpide"
-
 msgid "Timer edit"
 msgstr "Ajastuksen muokkaus"
 
@@ -18969,13 +19017,6 @@ msgstr "Ajastuksen editori"
 
 msgid "Timer entry"
 msgstr "Ajastettava ohjelma"
-
-#, python-format
-msgid "Timer is activated: +%d min"
-msgstr "Ajastin on aktivoitu: +%d min"
-
-msgid "Timer is not activated"
-msgstr "Ajastinta ei ole aktivoitu"
 
 msgid "Timer log"
 msgstr "Ajastin loki"
@@ -22416,9 +22457,6 @@ msgstr "normaali"
 msgid "not"
 msgstr "ei"
 
-msgid "not activated"
-msgstr "ei käytössä"
-
 msgid "not configured"
 msgstr "ei määritetty"
 
@@ -23171,6 +23209,66 @@ msgstr "vaihtaa"
 
 msgid "®"
 msgstr "®"
+
+#, python-format
+#~ msgid ""
+#~ "A Recording, RecordTimer or PowerTimer is running or begins in 15 minutes.\n"
+#~ "Extend sleep timer 30 minutes. Your %s %s\n"
+#~ "will shut down after Recording or Powertimer event. Get in Standby now?"
+#~ msgstr ""
+#~ "Tallennus, tallennusajastin tai Virta ajastin on aktiivinen tai alkaa 15 minuutissa.\n"
+#~ "Sammutusajastinta pidennetään 30 minuutilla sinun %s %s\n"
+#~ "sammuttaa tallennuksen tai Virta ajastin tapahtuman jälkeen. Mennäänkö nyt valmiustilaan?"
+
+#, python-format
+#~ msgid ""
+#~ "A sleep timer wants to set your %s %s to standby.\n"
+#~ "Do that now or set extend additional minutes?"
+#~ msgstr ""
+#~ "Uniajastin haluaa sammuttaa laitteen %s %s valmiustilaan.\n"
+#~ "Tehdäänkö se nyt vai haluatko lisätä aikaa?"
+
+#, python-format
+#~ msgid ""
+#~ "A sleep timer wants to shut down your %s %s.\n"
+#~ "Do that now or set extend additional minutes?"
+#~ msgstr ""
+#~ "Uniajastin haluaa sammuttaa laitteen %s %s valmiustilaan.\n"
+#~ "Tehdäänkö se nyt vai haluatko lisätä aikaa?"
+
+#~ msgid "Configure the duration in minutes for the sleep timer."
+#~ msgstr "Monenko minuutin päästä uniajastin aktivoidaan."
+
+#~ msgid "Execute after current event"
+#~ msgstr "Aktivoi nykyisen ohjelman jälkeen"
+
+#~ msgid "Execute in "
+#~ msgstr "Aktivointiviive "
+
+#~ msgid "MultiBoot Image Manager"
+#~ msgstr "MultiBoot Image Hallinta"
+
+#~ msgid "Select the sleep timer action."
+#~ msgstr "Valitse toimenpide, joka suoritetaan ajastuksen loputtua."
+
+#~ msgid "The sleep timer has been activated."
+#~ msgstr "Uniajastin on käytössä."
+
+#~ msgid "The sleep timer has been disabled."
+#~ msgstr "Uniajastin on poistettu käytöstä."
+
+#~ msgid "Timer action"
+#~ msgstr "Ajastimen toimenpide"
+
+#, python-format
+#~ msgid "Timer is activated: +%d min"
+#~ msgstr "Ajastin on aktivoitu: +%d min"
+
+#~ msgid "Timer is not activated"
+#~ msgstr "Ajastinta ei ole aktivoitu"
+
+#~ msgid "not activated"
+#~ msgstr "ei käytössä"
 
 #~ msgid "Cancel the image selection and exit"
 #~ msgstr "Peruuta image valinta ja poistu"

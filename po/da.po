@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-04-14 09:02+0000\n"
+"POT-Creation-Date: 2022-04-17 12:35+0000\n"
 "PO-Revision-Date: 2021-11-04 23:53+0000\n"
 "Last-Translator: T. Rylle <dk-translation@pm.me>\n"
 "Language-Team: Danish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/da/>\n"
@@ -1333,6 +1333,14 @@ msgid "%s additional screens"
 msgstr "%s flere skærme"
 
 #, python-format
+msgid "%s has been activated."
+msgstr ""
+
+#, python-format
+msgid "%s has been disabled."
+msgstr ""
+
+#, python-format
 msgid "%s information"
 msgstr ""
 
@@ -2026,16 +2034,6 @@ msgstr "??"
 msgid "A"
 msgstr "A"
 
-#, python-format
-msgid ""
-"A Recording, RecordTimer or PowerTimer is running or begins in 15 minutes.\n"
-"Extend sleep timer 30 minutes. Your %s %s\n"
-"will shut down after Recording or Powertimer event. Get in Standby now?"
-msgstr ""
-"En Optagelse, OptagelsesTimer eller StrømTimer kører eller starter om 15 minutter.\n"
-"Udvid DvaleTimer med 30 minutter. Din %s %s\n"
-"vil lukke ned efter Optagelse eller StrømTimer begivenhed. Gå i Standby nu ?"
-
 msgid "A background update check is in progress, please wait a few minutes and try again."
 msgstr "En opdateringskontrol er i gang i baggrund, vent venligst nogle minutter og prøv igen."
 
@@ -2120,6 +2118,13 @@ msgstr "En optagelse er lige nu i gang. Stop venligst denne optagelse før fors�
 msgid "A recording is currently running. Please stop the recording before trying to start the satfinder."
 msgstr "En optagelse er lige nu i gang. Stop venligst denne optagelse før forsøg på start af satfinder."
 
+#, python-format
+msgid ""
+"A recording, recording timer or power timer is running or will begin within 15 minutes. %s extended to 30 minutes. Your %s %s will go to Deep Standby after the recording or power timer event.\n"
+"\n"
+"Go to Deep Standby now?"
+msgstr ""
+
 msgid "A repeating timer or just once?"
 msgstr "Skal Timer gentages eller kun en gang ?"
 
@@ -2149,27 +2154,11 @@ msgstr ""
 
 #, python-format
 msgid ""
-"A sleep timer wants to set your %s %s to standby.\n"
-"Do that now or set extend additional minutes?"
-msgstr ""
-"En DvaleTimer ønsker at sætte din %s %s i Standby\n"
-"Gør det nu eller udvid med ekstra minutter ?"
-
-#, python-format
-msgid ""
 "A sleep timer wants to shut down\n"
 "your %s %s. Shutdown now?"
 msgstr ""
 "En DvaleTimer ønsker at slukke\n"
 "din %s %s. Sluk nu ?"
-
-#, python-format
-msgid ""
-"A sleep timer wants to shut down your %s %s.\n"
-"Do that now or set extend additional minutes?"
-msgstr ""
-"En DvaleTimer ønsker at slukke din %s %s.\n"
-"Gør det nu eller udvid med ekstra minutter ?"
 
 msgid "A small overview of the available icon states and actions."
 msgstr "En lille oversigt over tilgængelige ikon-tilstande og handlinger."
@@ -3013,6 +3002,9 @@ msgstr "Astra 3 23.5e"
 
 msgid "At End:"
 msgstr "Ved slutning:"
+
+msgid "At end of current program"
+msgstr ""
 
 msgid "Athletics"
 msgstr "Atletik"
@@ -4883,8 +4875,11 @@ msgstr "Konfigurer den skærmopløsning og skrifttype der skal bruges til Tekst-
 msgid "Configure the duration in minutes for the screensaver."
 msgstr "Konfigurer varigheden i minutter for pauseskærm."
 
-msgid "Configure the duration in minutes for the sleep timer."
-msgstr "Konfigurer varigheden i minutter for DvaleTimer."
+msgid "Configure the duration, in minutes, before the energy saver timer activates."
+msgstr ""
+
+msgid "Configure the duration, in minutes, before the sleep timer activates."
+msgstr ""
 
 msgid "Configure the end coordinate in x of the teletext display area."
 msgstr "Konfigurer slutkoordinat i X af Tekst-TVs visningsområde."
@@ -6034,7 +6029,7 @@ msgstr "Slet fil eller mappe (og hele dens indhold)"
 msgid "Delete folder"
 msgstr "Slet mappe"
 
-msgid "Delete image"
+msgid "Delete Image"
 msgstr "Slet Image"
 
 msgid "Delete logfile"
@@ -7207,6 +7202,33 @@ msgstr "Sluttid"
 msgid "Energie"
 msgstr ""
 
+msgid "Energy Timer"
+msgstr ""
+
+msgid "Energy saver action"
+msgstr ""
+
+msgid "Energy saver activation delay"
+msgstr ""
+
+msgid "Energy timer"
+msgstr ""
+
+#, python-format
+msgid "Energy timer: %d minute remains."
+msgid_plural "Energy timer: %d minutes remain."
+msgstr[0] ""
+msgstr[1] ""
+
+#, python-format
+msgid "Energy timer: %d second remains."
+msgid_plural "Energy timer: %d seconds remain."
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "Energy timer: Inactive."
+msgstr ""
+
 msgid "English"
 msgstr "Engelsk"
 
@@ -7609,12 +7631,6 @@ msgstr "Overskrider Bluedisk medie!"
 
 msgid "Exceeds dual layer medium!"
 msgstr "Overskrider dobbeltlags medie!"
-
-msgid "Execute after current event"
-msgstr "Udfør efter aktuel begivenhed"
-
-msgid "Execute in "
-msgstr "Udfør om "
 
 msgid "Execution condition"
 msgstr "Udførelsesbetingelse"
@@ -11265,9 +11281,6 @@ msgstr "Multi EPG"
 
 msgid "MultiBoot"
 msgstr ""
-
-msgid "MultiBoot Image Manager"
-msgstr "Multiboot Image håndtering"
 
 msgid "MultiBoot Information"
 msgstr ""
@@ -15499,9 +15512,6 @@ msgstr "Vælg det skiftet tegnsæt"
 msgid "Select the shifted character set for the next character only"
 msgstr "Vælg kun skiftet tegnsæt for det næste tegn"
 
-msgid "Select the sleep timer action."
-msgstr "Vælg handling for DvaleTimer."
-
 msgid "Select the source of the default DNS settings."
 msgstr ""
 
@@ -15528,6 +15538,12 @@ msgstr "Vælg den type af LNB/enhed der bruges (normalt 'Universal'). Vælg 'bru
 
 msgid "Select the type of Single Cable Reception device you are using."
 msgstr "Vælg den type af enkeltkabel modtagelsesenhed du bruger."
+
+msgid "Select the type of shutdown desired when the energy timer activates."
+msgstr ""
+
+msgid "Select the type of shutdown desired when the steep timer activates."
+msgstr ""
 
 msgid "Select upgrade source"
 msgstr "Vælg opgraderingskilde"
@@ -17079,11 +17095,38 @@ msgstr "Dvale"
 msgid "Sleep Timer"
 msgstr "DvaleTimer"
 
+msgid "Sleep Timer Settings"
+msgstr ""
+
 msgid "Sleep delay"
 msgstr "Dvale forsinkelse"
 
 msgid "Sleep long"
 msgstr "Dvale lang"
+
+msgid "Sleep timer"
+msgstr ""
+
+msgid "Sleep timer action"
+msgstr ""
+
+msgid "Sleep timer activation delay"
+msgstr ""
+
+#, python-format
+msgid "Sleep timer: %d minute remains."
+msgid_plural "Sleep timer: %d minutes remain."
+msgstr[0] ""
+msgstr[1] ""
+
+#, python-format
+msgid "Sleep timer: %d second remains."
+msgid_plural "Sleep timer: %d seconds remain."
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "Sleep timer: Inactive."
+msgstr ""
 
 msgid "SleepTimer"
 msgstr "DvaleTmer"
@@ -18408,6 +18451,13 @@ msgstr "Standardindstillingerne er opvågningstid - 5 minutter og Timer starttid
 msgid "The detailed information is intended for developers only."
 msgstr ""
 
+#, python-format
+msgid ""
+"The energy timer wants to set the %s %s to %s.\n"
+"\n"
+"Press OK to continue using the %s %s."
+msgstr ""
+
 msgid "The following files were found..."
 msgstr "Følgende filer fandtes..."
 
@@ -18457,11 +18507,12 @@ msgstr "Kanallisten er genindlæst."
 msgid "The setting 'without query' is the same as 'standard' without additional confirmation query. All other dependencies (e.g. recordings, time range) stay persist."
 msgstr "Indstillingen 'Uden forespørgsel' er det samme som 'Standard' uden yderligere bekræftelsesspørgsmål. Alle andre afhængighed (f.eks. optagelser, tidsområde) gælder stadig."
 
-msgid "The sleep timer has been activated."
-msgstr "DvaleTimer er blevet aktiveret."
-
-msgid "The sleep timer has been disabled."
-msgstr "DvaleTimer er blevet deaktiveret."
+#, python-format
+msgid ""
+"The sleep timer wants to set the %s %s to %s.\n"
+"\n"
+"Do that now or extend the timer?"
+msgstr ""
 
 msgid ""
 "The software management extension is not installed!\n"
@@ -19090,9 +19141,6 @@ msgstr "Timer handlinger"
 msgid "Timer List"
 msgstr "Timerliste"
 
-msgid "Timer action"
-msgstr "Timer handling"
-
 msgid "Timer edit"
 msgstr "Timer redigering"
 
@@ -19101,13 +19149,6 @@ msgstr "Timer redigering"
 
 msgid "Timer entry"
 msgstr "Indstil Timer"
-
-#, python-format
-msgid "Timer is activated: +%d min"
-msgstr "Timer er aktiveret: +%d min."
-
-msgid "Timer is not activated"
-msgstr "Timer er ikke aktiveret"
 
 msgid "Timer log"
 msgstr "Timer log"
@@ -22563,9 +22604,6 @@ msgstr ""
 msgid "not"
 msgstr "ikke"
 
-msgid "not activated"
-msgstr "ikke aktiveret"
-
 msgid "not configured"
 msgstr "ikke konfigureret"
 
@@ -23329,6 +23367,66 @@ msgstr "Zapper"
 
 msgid "®"
 msgstr "®"
+
+#, python-format
+#~ msgid ""
+#~ "A Recording, RecordTimer or PowerTimer is running or begins in 15 minutes.\n"
+#~ "Extend sleep timer 30 minutes. Your %s %s\n"
+#~ "will shut down after Recording or Powertimer event. Get in Standby now?"
+#~ msgstr ""
+#~ "En Optagelse, OptagelsesTimer eller StrømTimer kører eller starter om 15 minutter.\n"
+#~ "Udvid DvaleTimer med 30 minutter. Din %s %s\n"
+#~ "vil lukke ned efter Optagelse eller StrømTimer begivenhed. Gå i Standby nu ?"
+
+#, python-format
+#~ msgid ""
+#~ "A sleep timer wants to set your %s %s to standby.\n"
+#~ "Do that now or set extend additional minutes?"
+#~ msgstr ""
+#~ "En DvaleTimer ønsker at sætte din %s %s i Standby\n"
+#~ "Gør det nu eller udvid med ekstra minutter ?"
+
+#, python-format
+#~ msgid ""
+#~ "A sleep timer wants to shut down your %s %s.\n"
+#~ "Do that now or set extend additional minutes?"
+#~ msgstr ""
+#~ "En DvaleTimer ønsker at slukke din %s %s.\n"
+#~ "Gør det nu eller udvid med ekstra minutter ?"
+
+#~ msgid "Configure the duration in minutes for the sleep timer."
+#~ msgstr "Konfigurer varigheden i minutter for DvaleTimer."
+
+#~ msgid "Execute after current event"
+#~ msgstr "Udfør efter aktuel begivenhed"
+
+#~ msgid "Execute in "
+#~ msgstr "Udfør om "
+
+#~ msgid "MultiBoot Image Manager"
+#~ msgstr "Multiboot Image håndtering"
+
+#~ msgid "Select the sleep timer action."
+#~ msgstr "Vælg handling for DvaleTimer."
+
+#~ msgid "The sleep timer has been activated."
+#~ msgstr "DvaleTimer er blevet aktiveret."
+
+#~ msgid "The sleep timer has been disabled."
+#~ msgstr "DvaleTimer er blevet deaktiveret."
+
+#~ msgid "Timer action"
+#~ msgstr "Timer handling"
+
+#, python-format
+#~ msgid "Timer is activated: +%d min"
+#~ msgstr "Timer er aktiveret: +%d min."
+
+#~ msgid "Timer is not activated"
+#~ msgstr "Timer er ikke aktiveret"
+
+#~ msgid "not activated"
+#~ msgstr "ikke aktiveret"
 
 #~ msgid "Cancel the image selection and exit"
 #~ msgstr "Afbryd Image valg og afslut"

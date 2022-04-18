@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV-Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-04-14 09:02+0000\n"
+"POT-Creation-Date: 2022-04-17 12:35+0000\n"
 "PO-Revision-Date: 2021-08-21 11:46+0000\n"
 "Last-Translator: openATV <openatv@gmail.com>\n"
 "Language-Team: Estonian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/et/>\n"
@@ -1339,6 +1339,14 @@ msgid "%s additional screens"
 msgstr "%s täiendavad ekraanimenüüd"
 
 #, python-format
+msgid "%s has been activated."
+msgstr ""
+
+#, python-format
+msgid "%s has been disabled."
+msgstr ""
+
+#, python-format
 msgid "%s information"
 msgstr ""
 
@@ -2049,16 +2057,6 @@ msgstr "??"
 msgid "A"
 msgstr "A"
 
-#, python-format
-msgid ""
-"A Recording, RecordTimer or PowerTimer is running or begins in 15 minutes.\n"
-"Extend sleep timer 30 minutes. Your %s %s\n"
-"will shut down after Recording or Powertimer event. Get in Standby now?"
-msgstr ""
-"Salvestus, salvestustaimer või toitetaimer on töös või alustab 15 minuti jooksul.\n"
-"Pikenda unetaimerit 30 minutit. %s %s seisatakse\n"
-"pärast salvestus- või toitetaimerit. Kas minna ooteseisundisse kohe?"
-
 msgid "A background update check is in progress, please wait a few minutes and try again."
 msgstr "Taustal toimub uuenduste otsing. Oota paar minutit ja proovi uuesti."
 
@@ -2143,6 +2141,13 @@ msgstr "Toimub salvestamine. Peata salvestamine enne kanaliotsingu alustamist."
 msgid "A recording is currently running. Please stop the recording before trying to start the satfinder."
 msgstr "Toimub salvestamine. Peata salvestamine enne signaalimõõdiku kasutamist."
 
+#, python-format
+msgid ""
+"A recording, recording timer or power timer is running or will begin within 15 minutes. %s extended to 30 minutes. Your %s %s will go to Deep Standby after the recording or power timer event.\n"
+"\n"
+"Go to Deep Standby now?"
+msgstr ""
+
 msgid "A repeating timer or just once?"
 msgstr "Kas korduv taimer või ainult üks kord?"
 
@@ -2172,27 +2177,11 @@ msgstr ""
 
 #, python-format
 msgid ""
-"A sleep timer wants to set your %s %s to standby.\n"
-"Do that now or set extend additional minutes?"
-msgstr ""
-"Unetaimer tahab %s %s viia ooteseisundisse.\n"
-"Kas nõustud või määrata lisaminutid?"
-
-#, python-format
-msgid ""
 "A sleep timer wants to shut down\n"
 "your %s %s. Shutdown now?"
 msgstr ""
 "Unetaimer soovib %s %s välja lülitada.\n"
 "Kas nõustud?"
-
-#, python-format
-msgid ""
-"A sleep timer wants to shut down your %s %s.\n"
-"Do that now or set extend additional minutes?"
-msgstr ""
-"Unetaimer tahab %s %s välja lülitada.\n"
-"Kas teha seda kohe või määrata lisaminutid?"
 
 msgid "A small overview of the available icon states and actions."
 msgstr "Kasutatavate ikoonide olekute ja tegevuste lühiülevaade."
@@ -3055,6 +3044,9 @@ msgstr "Astra 3 23.5e"
 
 msgid "At End:"
 msgstr "Lõpus:"
+
+msgid "At end of current program"
+msgstr ""
 
 msgid "Athletics"
 msgstr "kergejõustik"
@@ -4956,8 +4948,11 @@ msgstr "Seadista teleteksti lahutust ja kirjatüüpi."
 msgid "Configure the duration in minutes for the screensaver."
 msgstr "Määra aeg ekraanisäästja käivitamiseni (min)."
 
-msgid "Configure the duration in minutes for the sleep timer."
-msgstr "Määra aeg unetaimeri käivitamiseni (min)."
+msgid "Configure the duration, in minutes, before the energy saver timer activates."
+msgstr ""
+
+msgid "Configure the duration, in minutes, before the sleep timer activates."
+msgstr ""
 
 msgid "Configure the end coordinate in x of the teletext display area."
 msgstr "Määra x-koordinaadi lõpp teleteksti kuvaalas."
@@ -6137,7 +6132,7 @@ msgstr "Kustuta fail ja kataloog (kogu sisuga)"
 msgid "Delete folder"
 msgstr "Kustuta kataloog"
 
-msgid "Delete image"
+msgid "Delete Image"
 msgstr "Kustuta püsivara"
 
 msgid "Delete logfile"
@@ -7355,6 +7350,33 @@ msgstr "Lõpuaeg"
 msgid "Energie"
 msgstr ""
 
+msgid "Energy Timer"
+msgstr ""
+
+msgid "Energy saver action"
+msgstr ""
+
+msgid "Energy saver activation delay"
+msgstr ""
+
+msgid "Energy timer"
+msgstr ""
+
+#, python-format
+msgid "Energy timer: %d minute remains."
+msgid_plural "Energy timer: %d minutes remain."
+msgstr[0] ""
+msgstr[1] ""
+
+#, python-format
+msgid "Energy timer: %d second remains."
+msgid_plural "Energy timer: %d seconds remain."
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "Energy timer: Inactive."
+msgstr ""
+
 msgid "English"
 msgstr "Inglise"
 
@@ -7761,12 +7783,6 @@ msgstr "Liiga suur bluray ketta jaoks!"
 
 msgid "Exceeds dual layer medium!"
 msgstr "Liiga suur kahekihilise ketta jaoks!"
-
-msgid "Execute after current event"
-msgstr "Teosta pärast praegust saadet"
-
-msgid "Execute in "
-msgstr "Käivita  "
 
 msgid "Execution condition"
 msgstr "Täitmise tingimused"
@@ -11519,9 +11535,6 @@ msgstr "Multi EPG"
 
 msgid "MultiBoot"
 msgstr ""
-
-msgid "MultiBoot Image Manager"
-msgstr "Multibuut püsivara haldur"
 
 msgid "MultiBoot Information"
 msgstr ""
@@ -15884,9 +15897,6 @@ msgstr "Vali unetaimeri tegevus."
 msgid "Select the shifted character set for the next character only"
 msgstr "Kustuta teksti puhvri kursori alla jääv tähemärk"
 
-msgid "Select the sleep timer action."
-msgstr "Vali unetaimeri tegevus."
-
 msgid "Select the source of the default DNS settings."
 msgstr ""
 
@@ -15914,6 +15924,12 @@ msgstr "Vali kasutatava LNB/seadme tüüp (tavaliselt 'universaalne'). Kui pole 
 
 msgid "Select the type of Single Cable Reception device you are using."
 msgstr "Vali kasutatava Single Cable Reception (SCR) seadme tüüp."
+
+msgid "Select the type of shutdown desired when the energy timer activates."
+msgstr ""
+
+msgid "Select the type of shutdown desired when the steep timer activates."
+msgstr ""
 
 msgid "Select upgrade source"
 msgstr "Vali uuenduste allikas"
@@ -17499,11 +17515,38 @@ msgstr "Unetaimer"
 msgid "Sleep Timer"
 msgstr "Unetaimer"
 
+msgid "Sleep Timer Settings"
+msgstr ""
+
 msgid "Sleep delay"
 msgstr "Sulgemise viiteaeg"
 
 msgid "Sleep long"
 msgstr "Sleep - pikk"
+
+msgid "Sleep timer"
+msgstr ""
+
+msgid "Sleep timer action"
+msgstr ""
+
+msgid "Sleep timer activation delay"
+msgstr ""
+
+#, python-format
+msgid "Sleep timer: %d minute remains."
+msgid_plural "Sleep timer: %d minutes remain."
+msgstr[0] ""
+msgstr[1] ""
+
+#, python-format
+msgid "Sleep timer: %d second remains."
+msgid_plural "Sleep timer: %d seconds remain."
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "Sleep timer: Inactive."
+msgstr ""
 
 msgid "SleepTimer"
 msgstr "Unetaimer"
@@ -18858,6 +18901,13 @@ msgstr "Vaikeväärtused on: äratusaeg '- 5 minutit' ja taimeri algusaeg '+ 5 m
 msgid "The detailed information is intended for developers only."
 msgstr ""
 
+#, python-format
+msgid ""
+"The energy timer wants to set the %s %s to %s.\n"
+"\n"
+"Press OK to continue using the %s %s."
+msgstr ""
+
 msgid "The following files were found..."
 msgstr "Leiti järgnevad failid..."
 
@@ -18908,13 +18958,12 @@ msgstr "Kanalinimekiri on värskendatud."
 msgid "The setting 'without query' is the same as 'standard' without additional confirmation query. All other dependencies (e.g. recordings, time range) stay persist."
 msgstr "Valik 'päringuta' on sama kui 'vaikimisi', ainult lisakinnitust ei küsita. Kõik muud tingimused (salvestused, ajavaru) jäävad samaks."
 
-#
-msgid "The sleep timer has been activated."
-msgstr "Unetaimer aktiveeriti."
-
-#
-msgid "The sleep timer has been disabled."
-msgstr "Unetaimer keelati."
+#, python-format
+msgid ""
+"The sleep timer wants to set the %s %s to %s.\n"
+"\n"
+"Do that now or extend the timer?"
+msgstr ""
 
 msgid ""
 "The software management extension is not installed!\n"
@@ -19575,9 +19624,6 @@ msgstr "Taimeri tegevus"
 msgid "Timer List"
 msgstr "Taimerid"
 
-msgid "Timer action"
-msgstr "Taimeri tegevus"
-
 msgid "Timer edit"
 msgstr "Taimeri muutmine"
 
@@ -19586,13 +19632,6 @@ msgstr "Taimerid"
 
 msgid "Timer entry"
 msgstr "Taimer"
-
-#, python-format
-msgid "Timer is activated: +%d min"
-msgstr "Taimer aktiveeritud: +%d min"
-
-msgid "Timer is not activated"
-msgstr "Taimer aktiveerimata"
 
 msgid "Timer log"
 msgstr "Taimeri logi"
@@ -23156,9 +23195,6 @@ msgstr ""
 msgid "not"
 msgstr "mitte"
 
-msgid "not activated"
-msgstr "aktiveerimata"
-
 msgid "not configured"
 msgstr "ei ole häälestatud"
 
@@ -23923,6 +23959,68 @@ msgstr "Kanalivahetus"
 
 msgid "®"
 msgstr ""
+
+#, python-format
+#~ msgid ""
+#~ "A Recording, RecordTimer or PowerTimer is running or begins in 15 minutes.\n"
+#~ "Extend sleep timer 30 minutes. Your %s %s\n"
+#~ "will shut down after Recording or Powertimer event. Get in Standby now?"
+#~ msgstr ""
+#~ "Salvestus, salvestustaimer või toitetaimer on töös või alustab 15 minuti jooksul.\n"
+#~ "Pikenda unetaimerit 30 minutit. %s %s seisatakse\n"
+#~ "pärast salvestus- või toitetaimerit. Kas minna ooteseisundisse kohe?"
+
+#, python-format
+#~ msgid ""
+#~ "A sleep timer wants to set your %s %s to standby.\n"
+#~ "Do that now or set extend additional minutes?"
+#~ msgstr ""
+#~ "Unetaimer tahab %s %s viia ooteseisundisse.\n"
+#~ "Kas nõustud või määrata lisaminutid?"
+
+#, python-format
+#~ msgid ""
+#~ "A sleep timer wants to shut down your %s %s.\n"
+#~ "Do that now or set extend additional minutes?"
+#~ msgstr ""
+#~ "Unetaimer tahab %s %s välja lülitada.\n"
+#~ "Kas teha seda kohe või määrata lisaminutid?"
+
+#~ msgid "Configure the duration in minutes for the sleep timer."
+#~ msgstr "Määra aeg unetaimeri käivitamiseni (min)."
+
+#~ msgid "Execute after current event"
+#~ msgstr "Teosta pärast praegust saadet"
+
+#~ msgid "Execute in "
+#~ msgstr "Käivita  "
+
+#~ msgid "MultiBoot Image Manager"
+#~ msgstr "Multibuut püsivara haldur"
+
+#~ msgid "Select the sleep timer action."
+#~ msgstr "Vali unetaimeri tegevus."
+
+#
+#~ msgid "The sleep timer has been activated."
+#~ msgstr "Unetaimer aktiveeriti."
+
+#
+#~ msgid "The sleep timer has been disabled."
+#~ msgstr "Unetaimer keelati."
+
+#~ msgid "Timer action"
+#~ msgstr "Taimeri tegevus"
+
+#, python-format
+#~ msgid "Timer is activated: +%d min"
+#~ msgstr "Taimer aktiveeritud: +%d min"
+
+#~ msgid "Timer is not activated"
+#~ msgstr "Taimer aktiveerimata"
+
+#~ msgid "not activated"
+#~ msgstr "aktiveerimata"
 
 #, fuzzy
 #~ msgid "Cancel the image selection and exit"

@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-04-14 09:02+0000\n"
+"POT-Creation-Date: 2022-04-17 12:35+0000\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Jjezevec <jjezevecc@seznam.cz>\n"
 "Language-Team: \n"
@@ -1440,6 +1440,14 @@ msgid "%s additional screens"
 msgstr "Prohledat dodatečný SR"
 
 #, python-format
+msgid "%s has been activated."
+msgstr ""
+
+#, python-format
+msgid "%s has been disabled."
+msgstr ""
+
+#, python-format
 msgid "%s information"
 msgstr ""
 
@@ -2176,13 +2184,6 @@ msgstr "??"
 msgid "A"
 msgstr "A"
 
-#, python-format
-msgid ""
-"A Recording, RecordTimer or PowerTimer is running or begins in 15 minutes.\n"
-"Extend sleep timer 30 minutes. Your %s %s\n"
-"will shut down after Recording or Powertimer event. Get in Standby now?"
-msgstr ""
-
 msgid "A background update check is in progress, please wait a few minutes and try again."
 msgstr "Kontrola aktualizace na pozadí probíhá, prosím vyčkejte několik minut a zkuste to znovu."
 
@@ -2267,6 +2268,13 @@ msgstr "Právě se nahrává. Prosím, ukončete nahrávání před před prohle
 msgid "A recording is currently running. Please stop the recording before trying to start the satfinder."
 msgstr "Právě se nahrává. Prosím, ukončete nahrávání před spuštěním SAT Finderu."
 
+#, python-format
+msgid ""
+"A recording, recording timer or power timer is running or will begin within 15 minutes. %s extended to 30 minutes. Your %s %s will go to Deep Standby after the recording or power timer event.\n"
+"\n"
+"Go to Deep Standby now?"
+msgstr ""
+
 msgid "A repeating timer or just once?"
 msgstr "Opakovat časovač nebo jen jednou?"
 
@@ -2294,26 +2302,10 @@ msgstr ""
 "Časovač chce nastavit \n"
 "%s %s do pohotovostního režimu. Určitě, teď?"
 
-#, fuzzy, python-format
-msgid ""
-"A sleep timer wants to set your %s %s to standby.\n"
-"Do that now or set extend additional minutes?"
-msgstr ""
-"Časovač chce nastavit \n"
-"%s %s do pohotovostního režimu. Určitě, teď?"
-
 #, python-format
 msgid ""
 "A sleep timer wants to shut down\n"
 "your %s %s. Shutdown now?"
-msgstr ""
-"Časovač vypnutí chce vypnout Vaše %s %s.\n"
-"Určitě, teď?"
-
-#, fuzzy, python-format
-msgid ""
-"A sleep timer wants to shut down your %s %s.\n"
-"Do that now or set extend additional minutes?"
 msgstr ""
 "Časovač vypnutí chce vypnout Vaše %s %s.\n"
 "Určitě, teď?"
@@ -3224,6 +3216,9 @@ msgstr ""
 
 msgid "At End:"
 msgstr "Na konci:"
+
+msgid "At end of current program"
+msgstr ""
 
 #, fuzzy
 msgid "Athletics"
@@ -5173,8 +5168,11 @@ msgstr "Nastavuje rozlišení obrazovky pro PC výstupní mód."
 msgid "Configure the duration in minutes for the screensaver."
 msgstr "Nastavení doby v minutách pro spořič obrazovky."
 
-msgid "Configure the duration in minutes for the sleep timer."
-msgstr "Nastavit trvání v minutách pro časovač vypnutí."
+msgid "Configure the duration, in minutes, before the energy saver timer activates."
+msgstr ""
+
+msgid "Configure the duration, in minutes, before the sleep timer activates."
+msgstr ""
 
 #, fuzzy
 msgid "Configure the end coordinate in x of the teletext display area."
@@ -6394,7 +6392,7 @@ msgid "Delete folder"
 msgstr "Smazat soubor"
 
 #, fuzzy
-msgid "Delete image"
+msgid "Delete Image"
 msgstr "Smazat časovač"
 
 msgid "Delete logfile"
@@ -7623,6 +7621,35 @@ msgstr "Čas konce"
 msgid "Energie"
 msgstr ""
 
+msgid "Energy Timer"
+msgstr ""
+
+msgid "Energy saver action"
+msgstr ""
+
+msgid "Energy saver activation delay"
+msgstr ""
+
+msgid "Energy timer"
+msgstr ""
+
+#, python-format
+msgid "Energy timer: %d minute remains."
+msgid_plural "Energy timer: %d minutes remain."
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+
+#, python-format
+msgid "Energy timer: %d second remains."
+msgid_plural "Energy timer: %d seconds remain."
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+
+msgid "Energy timer: Inactive."
+msgstr ""
+
 msgid "English"
 msgstr "Anglicky"
 
@@ -8025,12 +8052,6 @@ msgstr "Překračuje kapacitu dvouvrstvého média!"
 
 msgid "Exceeds dual layer medium!"
 msgstr "Překračuje kapacitu dvouvrstvého média!"
-
-msgid "Execute after current event"
-msgstr "Vypnout po aktuální události"
-
-msgid "Execute in "
-msgstr "Vypnout za "
 
 msgid "Execution condition"
 msgstr "Podmínky provedení akce"
@@ -11850,10 +11871,6 @@ msgstr "Multi EPG"
 
 msgid "MultiBoot"
 msgstr ""
-
-#, fuzzy
-msgid "MultiBoot Image Manager"
-msgstr "Správce image"
 
 msgid "MultiBoot Information"
 msgstr ""
@@ -16263,9 +16280,6 @@ msgstr "Vyberte akci časovače vypnutí."
 msgid "Select the shifted character set for the next character only"
 msgstr ""
 
-msgid "Select the sleep timer action."
-msgstr "Vyberte akci časovače vypnutí."
-
 msgid "Select the source of the default DNS settings."
 msgstr ""
 
@@ -16292,6 +16306,12 @@ msgid "Select the type of LNB/device being used (normally 'Universal'). If your 
 msgstr ""
 
 msgid "Select the type of Single Cable Reception device you are using."
+msgstr ""
+
+msgid "Select the type of shutdown desired when the energy timer activates."
+msgstr ""
+
+msgid "Select the type of shutdown desired when the steep timer activates."
 msgstr ""
 
 msgid "Select upgrade source"
@@ -17906,11 +17926,40 @@ msgstr "Sleep - dlouhý stisk"
 msgid "Sleep Timer"
 msgstr "Vypnout se zpožděním"
 
+msgid "Sleep Timer Settings"
+msgstr ""
+
 msgid "Sleep delay"
 msgstr "Zpožděné uspání"
 
 msgid "Sleep long"
 msgstr "Sleep - dlouhý stisk"
+
+msgid "Sleep timer"
+msgstr ""
+
+msgid "Sleep timer action"
+msgstr ""
+
+msgid "Sleep timer activation delay"
+msgstr ""
+
+#, python-format
+msgid "Sleep timer: %d minute remains."
+msgid_plural "Sleep timer: %d minutes remain."
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+
+#, python-format
+msgid "Sleep timer: %d second remains."
+msgid_plural "Sleep timer: %d seconds remain."
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+
+msgid "Sleep timer: Inactive."
+msgstr ""
 
 msgid "SleepTimer"
 msgstr "Vypnout se zpožděním"
@@ -19296,6 +19345,13 @@ msgstr ""
 msgid "The detailed information is intended for developers only."
 msgstr ""
 
+#, python-format
+msgid ""
+"The energy timer wants to set the %s %s to %s.\n"
+"\n"
+"Press OK to continue using the %s %s."
+msgstr ""
+
 msgid "The following files were found..."
 msgstr "Nalezeny byly následující typy souborů"
 
@@ -19344,11 +19400,12 @@ msgstr "Seznam programů byl obnoven."
 msgid "The setting 'without query' is the same as 'standard' without additional confirmation query. All other dependencies (e.g. recordings, time range) stay persist."
 msgstr "Nastavení 'bez dotazu' je stejné jako 'standardní' bez dodatečného potvrzení dotazu. Takže lze vypnout přijímač i když se nikdo nedívá na televizi (přípaně video, HbbTV) - Doporučuje se pouze pro časovač. Všechna ostatní nastavení (např. nahrávání, časové rozsahy,..) zůstávají beze změn."
 
-msgid "The sleep timer has been activated."
-msgstr "Časovač vypnutí byl aktivován."
-
-msgid "The sleep timer has been disabled."
-msgstr "Časovač vypnutí byl zrušen."
+#, python-format
+msgid ""
+"The sleep timer wants to set the %s %s to %s.\n"
+"\n"
+"Do that now or extend the timer?"
+msgstr ""
 
 msgid ""
 "The software management extension is not installed!\n"
@@ -20017,9 +20074,6 @@ msgstr "Akce časovače"
 msgid "Timer List"
 msgstr "Seznam časovačů"
 
-msgid "Timer action"
-msgstr "Akce časovače"
-
 msgid "Timer edit"
 msgstr "Upravit časovač"
 
@@ -20028,13 +20082,6 @@ msgstr "Časovače - editace"
 
 msgid "Timer entry"
 msgstr "Záznam časovače"
-
-#, python-format
-msgid "Timer is activated: +%d min"
-msgstr "Časovač bude aktivován za:  +%d min"
-
-msgid "Timer is not activated"
-msgstr "Aktivace časovače"
 
 msgid "Timer log"
 msgstr "Protokol časovače"
@@ -23655,10 +23702,6 @@ msgstr ""
 msgid "not"
 msgstr "Ne"
 
-#, fuzzy
-msgid "not activated"
-msgstr "není aktivní"
-
 msgid "not configured"
 msgstr "Nenakonfigurováno"
 
@@ -24444,6 +24487,58 @@ msgstr "Přepnutý"
 
 msgid "®"
 msgstr ""
+
+#, fuzzy, python-format
+#~ msgid ""
+#~ "A sleep timer wants to set your %s %s to standby.\n"
+#~ "Do that now or set extend additional minutes?"
+#~ msgstr ""
+#~ "Časovač chce nastavit \n"
+#~ "%s %s do pohotovostního režimu. Určitě, teď?"
+
+#, fuzzy, python-format
+#~ msgid ""
+#~ "A sleep timer wants to shut down your %s %s.\n"
+#~ "Do that now or set extend additional minutes?"
+#~ msgstr ""
+#~ "Časovač vypnutí chce vypnout Vaše %s %s.\n"
+#~ "Určitě, teď?"
+
+#~ msgid "Configure the duration in minutes for the sleep timer."
+#~ msgstr "Nastavit trvání v minutách pro časovač vypnutí."
+
+#~ msgid "Execute after current event"
+#~ msgstr "Vypnout po aktuální události"
+
+#~ msgid "Execute in "
+#~ msgstr "Vypnout za "
+
+#, fuzzy
+#~ msgid "MultiBoot Image Manager"
+#~ msgstr "Správce image"
+
+#~ msgid "Select the sleep timer action."
+#~ msgstr "Vyberte akci časovače vypnutí."
+
+#~ msgid "The sleep timer has been activated."
+#~ msgstr "Časovač vypnutí byl aktivován."
+
+#~ msgid "The sleep timer has been disabled."
+#~ msgstr "Časovač vypnutí byl zrušen."
+
+#~ msgid "Timer action"
+#~ msgstr "Akce časovače"
+
+#, python-format
+#~ msgid "Timer is activated: +%d min"
+#~ msgstr "Časovač bude aktivován za:  +%d min"
+
+#~ msgid "Timer is not activated"
+#~ msgstr "Aktivace časovače"
+
+#, fuzzy
+#~ msgid "not activated"
+#~ msgstr "není aktivní"
 
 #, fuzzy
 #~ msgid "Cancel the image selection and exit"

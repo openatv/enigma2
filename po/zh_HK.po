@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-04-14 09:02+0000\n"
+"POT-Creation-Date: 2022-04-17 12:35+0000\n"
 "PO-Revision-Date: 2021-08-15 18:50+0000\n"
 "Last-Translator: openATV <openatv@gmail.com>\n"
 "Language-Team: Chinese (Traditional, Hong Kong) <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/zh_Hant_HK/>\n"
@@ -1342,6 +1342,14 @@ msgid "%s additional screens"
 msgstr "掃描更多 SR"
 
 #, python-format
+msgid "%s has been activated."
+msgstr ""
+
+#, python-format
+msgid "%s has been disabled."
+msgstr ""
+
+#, python-format
 msgid "%s information"
 msgstr ""
 
@@ -2082,13 +2090,6 @@ msgstr "更新! 立即重啟dreambox嗎？"
 msgid "A"
 msgstr "A"
 
-#, python-format
-msgid ""
-"A Recording, RecordTimer or PowerTimer is running or begins in 15 minutes.\n"
-"Extend sleep timer 30 minutes. Your %s %s\n"
-"will shut down after Recording or Powertimer event. Get in Standby now?"
-msgstr ""
-
 msgid "A background update check is in progress, please wait a few minutes and try again."
 msgstr ""
 
@@ -2174,6 +2175,13 @@ msgstr ""
 msgid "A recording is currently running. Please stop the recording before trying to start the satfinder."
 msgstr "錄製正在進行中. 請在啟動satfinder之前停止錄製."
 
+#, python-format
+msgid ""
+"A recording, recording timer or power timer is running or will begin within 15 minutes. %s extended to 30 minutes. Your %s %s will go to Deep Standby after the recording or power timer event.\n"
+"\n"
+"Go to Deep Standby now?"
+msgstr ""
+
 #, fuzzy
 msgid "A repeating timer or just once?"
 msgstr "所有非重複計時器"
@@ -2204,24 +2212,8 @@ msgstr ""
 
 #, fuzzy, python-format
 msgid ""
-"A sleep timer wants to set your %s %s to standby.\n"
-"Do that now or set extend additional minutes?"
-msgstr ""
-"睡眠計時器要設定Dreambox待機.\n"
-"確定嗎?"
-
-#, fuzzy, python-format
-msgid ""
 "A sleep timer wants to shut down\n"
 "your %s %s. Shutdown now?"
-msgstr ""
-"睡眠計時器要設定Dreambox關機.\n"
-"確定嗎?"
-
-#, fuzzy, python-format
-msgid ""
-"A sleep timer wants to shut down your %s %s.\n"
-"Do that now or set extend additional minutes?"
 msgstr ""
 "睡眠計時器要設定Dreambox關機.\n"
 "確定嗎?"
@@ -3139,6 +3131,9 @@ msgid "Astra 3 23.5e"
 msgstr ""
 
 msgid "At End:"
+msgstr ""
+
+msgid "At end of current program"
 msgstr ""
 
 msgid "Athletics"
@@ -5130,7 +5125,10 @@ msgstr ""
 msgid "Configure the duration in minutes for the screensaver."
 msgstr ""
 
-msgid "Configure the duration in minutes for the sleep timer."
+msgid "Configure the duration, in minutes, before the energy saver timer activates."
+msgstr ""
+
+msgid "Configure the duration, in minutes, before the sleep timer activates."
 msgstr ""
 
 msgid "Configure the end coordinate in x of the teletext display area."
@@ -6354,7 +6352,7 @@ msgid "Delete folder"
 msgstr "刪除檔"
 
 #, fuzzy
-msgid "Delete image"
+msgid "Delete Image"
 msgstr "選擇Image"
 
 msgid "Delete logfile"
@@ -7585,6 +7583,31 @@ msgstr "結束時間"
 msgid "Energie"
 msgstr ""
 
+msgid "Energy Timer"
+msgstr ""
+
+msgid "Energy saver action"
+msgstr ""
+
+msgid "Energy saver activation delay"
+msgstr ""
+
+msgid "Energy timer"
+msgstr ""
+
+#, python-format
+msgid "Energy timer: %d minute remains."
+msgid_plural "Energy timer: %d minutes remain."
+msgstr[0] ""
+
+#, python-format
+msgid "Energy timer: %d second remains."
+msgid_plural "Energy timer: %d seconds remain."
+msgstr[0] ""
+
+msgid "Energy timer: Inactive."
+msgstr ""
+
 msgid "English"
 msgstr "英語"
 
@@ -7974,14 +7997,6 @@ msgstr "超過雙層介質！"
 
 msgid "Exceeds dual layer medium!"
 msgstr "超過雙層介質！"
-
-#, fuzzy
-msgid "Execute after current event"
-msgstr "為當前事件定制"
-
-#, fuzzy
-msgid "Execute in "
-msgstr "執行"
 
 #, fuzzy
 msgid "Execution condition"
@@ -11867,9 +11882,6 @@ msgid "Multi EPG"
 msgstr "多路 EPG"
 
 msgid "MultiBoot"
-msgstr ""
-
-msgid "MultiBoot Image Manager"
 msgstr ""
 
 msgid "MultiBoot Information"
@@ -16381,10 +16393,6 @@ msgstr "定時休眠:"
 msgid "Select the shifted character set for the next character only"
 msgstr ""
 
-#, fuzzy
-msgid "Select the sleep timer action."
-msgstr "定時休眠:"
-
 msgid "Select the source of the default DNS settings."
 msgstr ""
 
@@ -16411,6 +16419,12 @@ msgid "Select the type of LNB/device being used (normally 'Universal'). If your 
 msgstr ""
 
 msgid "Select the type of Single Cable Reception device you are using."
+msgstr ""
+
+msgid "Select the type of shutdown desired when the energy timer activates."
+msgstr ""
+
+msgid "Select the type of shutdown desired when the steep timer activates."
 msgstr ""
 
 msgid "Select upgrade source"
@@ -18119,11 +18133,36 @@ msgstr "休眠時間"
 msgid "Sleep Timer"
 msgstr "休眠時間"
 
+msgid "Sleep Timer Settings"
+msgstr ""
+
 #, fuzzy
 msgid "Sleep delay"
 msgstr "頻道延遲"
 
 msgid "Sleep long"
+msgstr ""
+
+msgid "Sleep timer"
+msgstr ""
+
+msgid "Sleep timer action"
+msgstr ""
+
+msgid "Sleep timer activation delay"
+msgstr ""
+
+#, python-format
+msgid "Sleep timer: %d minute remains."
+msgid_plural "Sleep timer: %d minutes remain."
+msgstr[0] ""
+
+#, python-format
+msgid "Sleep timer: %d second remains."
+msgid_plural "Sleep timer: %d seconds remain."
+msgstr[0] ""
+
+msgid "Sleep timer: Inactive."
 msgstr ""
 
 #, fuzzy
@@ -19525,6 +19564,13 @@ msgstr ""
 msgid "The detailed information is intended for developers only."
 msgstr ""
 
+#, python-format
+msgid ""
+"The energy timer wants to set the %s %s to %s.\n"
+"\n"
+"Press OK to continue using the %s %s."
+msgstr ""
+
 msgid "The following files were found..."
 msgstr "下列文件被發現..."
 
@@ -19570,11 +19616,12 @@ msgstr ""
 msgid "The setting 'without query' is the same as 'standard' without additional confirmation query. All other dependencies (e.g. recordings, time range) stay persist."
 msgstr ""
 
-msgid "The sleep timer has been activated."
-msgstr "定時休眠已被啟動."
-
-msgid "The sleep timer has been disabled."
-msgstr "定時休眠已被禁用."
+#, python-format
+msgid ""
+"The sleep timer wants to set the %s %s to %s.\n"
+"\n"
+"Do that now or extend the timer?"
+msgstr ""
 
 msgid ""
 "The software management extension is not installed!\n"
@@ -20205,10 +20252,6 @@ msgstr "計時器選擇"
 msgid "Timer List"
 msgstr "計時器編輯"
 
-#, fuzzy
-msgid "Timer action"
-msgstr "計時器選擇"
-
 msgid "Timer edit"
 msgstr ""
 
@@ -20217,14 +20260,6 @@ msgstr ""
 
 msgid "Timer entry"
 msgstr "計時器項目"
-
-#, python-format
-msgid "Timer is activated: +%d min"
-msgstr ""
-
-#, fuzzy
-msgid "Timer is not activated"
-msgstr "定時休眠已被啟動."
 
 msgid "Timer log"
 msgstr "計時器日誌"
@@ -23810,10 +23845,6 @@ msgstr ""
 msgid "not"
 msgstr "否"
 
-#, fuzzy
-msgid "not activated"
-msgstr "啟動交換檔"
-
 msgid "not configured"
 msgstr ""
 
@@ -24614,6 +24645,52 @@ msgstr "轉自"
 
 msgid "®"
 msgstr ""
+
+#, fuzzy, python-format
+#~ msgid ""
+#~ "A sleep timer wants to set your %s %s to standby.\n"
+#~ "Do that now or set extend additional minutes?"
+#~ msgstr ""
+#~ "睡眠計時器要設定Dreambox待機.\n"
+#~ "確定嗎?"
+
+#, fuzzy, python-format
+#~ msgid ""
+#~ "A sleep timer wants to shut down your %s %s.\n"
+#~ "Do that now or set extend additional minutes?"
+#~ msgstr ""
+#~ "睡眠計時器要設定Dreambox關機.\n"
+#~ "確定嗎?"
+
+#, fuzzy
+#~ msgid "Execute after current event"
+#~ msgstr "為當前事件定制"
+
+#, fuzzy
+#~ msgid "Execute in "
+#~ msgstr "執行"
+
+#, fuzzy
+#~ msgid "Select the sleep timer action."
+#~ msgstr "定時休眠:"
+
+#~ msgid "The sleep timer has been activated."
+#~ msgstr "定時休眠已被啟動."
+
+#~ msgid "The sleep timer has been disabled."
+#~ msgstr "定時休眠已被禁用."
+
+#, fuzzy
+#~ msgid "Timer action"
+#~ msgstr "計時器選擇"
+
+#, fuzzy
+#~ msgid "Timer is not activated"
+#~ msgstr "定時休眠已被啟動."
+
+#, fuzzy
+#~ msgid "not activated"
+#~ msgstr "啟動交換檔"
 
 #, fuzzy
 #~ msgid "Cancel the image selection and exit"
