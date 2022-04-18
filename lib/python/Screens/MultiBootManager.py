@@ -46,14 +46,14 @@ class MultiBootManager(Screen, HelpableScreen):
 		self["actions"] = HelpableActionMap(self, ["CancelActions", "NavigationActions"], {
 			"cancel": (self.cancel, _("Cancel the slot selection and exit")),
 			"close": (self.closeRecursive, _("Cancel the slot selection and exit all menus")),
-			"top": (self.keyTop, _("Move to first line")),
-			# "pageUp": (self.keyTop, _("Move to first line")),
+			"top": (self.keyTop, _("Move to first line / screen")),
+			# "pageUp": (self.keyTop, _("Move up a screen")),
 			"up": (self.keyUp, _("Move up a line")),
 			# "left": (self.keyUp, _("Move up a line")),
 			# "right": (self.keyDown, _("Move down a line")),
 			"down": (self.keyDown, _("Move down a line")),
-			# "pageDown": (self.keyBottom, _("Move to last line")),
-			"bottom": (self.keyBottom, _("Move to last line"))
+			# "pageDown": (self.keyBottom, _("Move down a screen")),
+			"bottom": (self.keyBottom, _("Move to last line / screen"))
 		}, prio=0, description=_("MultiBoot Manager Actions"))
 		self["restartActions"] = HelpableActionMap(self, ["OkSaveActions"], {
 			"save": (self.reboot, _("Select the highlighted slot and reboot")),
