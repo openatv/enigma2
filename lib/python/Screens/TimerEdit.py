@@ -1,6 +1,11 @@
-from __future__ import print_function
+from functools import cmp_to_key
+from os import listdir, system
+from os.path import exists, join as pathjoin, normpath, realpath
+from time import time, localtime
+
+from enigma import eEPGCache
+
 from Components.ActionMap import ActionMap
-from Components.Button import Button
 from Components.Label import Label
 from Components.config import config
 from Components.MenuList import MenuList
@@ -18,14 +23,10 @@ from ServiceReference import ServiceReference
 from Screens.EventView import EventViewSimple
 from Screens.TimerEntry import TimerEntry, TimerLog
 from Tools.BoundFunction import boundFunction
-from Tools.FuzzyDate import FuzzyTime
 from Tools.Directories import resolveFilename, SCOPE_HDD, isPluginInstalled
-from time import time, localtime
+from Tools.FuzzyDate import FuzzyTime
 from timer import TimerEntry as RealTimerEntry
-from enigma import eServiceCenter, eEPGCache
-from functools import cmp_to_key
 import Tools.CopyFiles
-import os
 
 
 class TimerEditList(Screen):
@@ -38,23 +39,22 @@ class TimerEditList(Screen):
 
 	def __init__(self, session):
 		Screen.__init__(self, session)
-		Screen.setTitle(self, _("Timer List"))
+		self.setTitle(_("Timer List"))
 
 		self.onChangedEntry = []
-		list = []
-		self.list = list
+		self.list = []
 		self.fillTimerList()
 
-		self["timerlist"] = TimerList(list)
+		self["timerlist"] = TimerList([])
 
 		self.key_red_choice = self.EMPTY
 		self.key_yellow_choice = self.EMPTY
 		self.key_blue_choice = self.EMPTY
 
-		self["key_red"] = Button(" ")
-		self["key_green"] = Button(_("Add"))
-		self["key_yellow"] = Button(" ")
-		self["key_blue"] = Button(" ")
+		self["key_red"] = StaticText("")
+		self["key_green"] = StaticText(_("Add"))
+		self["key_yellow"] = StaticText("")
+		self["key_blue"] = StaticText("")
 
 		self["description"] = Label()
 		self["ServiceEvent"] = ServiceEvent()
@@ -171,11 +171,11 @@ class TimerEditList(Screen):
 			self["description"].setText(" ")
 			if self.key_red_choice != self.EMPTY:
 				self.removeAction("red")
-				self["key_red"].setText(" ")
+				self["key_red"].setText("")
 				self.key_red_choice = self.EMPTY
 			if self.key_yellow_choice != self.EMPTY:
 				self.removeAction("yellow")
-				self["key_yellow"].setText(" ")
+				self["key_yellow"].setText("")
 				self.key_yellow_choice = self.EMPTY
 
 		showCleanup = True
@@ -191,7 +191,7 @@ class TimerEditList(Screen):
 			self.key_blue_choice = self.CLEANUP
 		elif (not showCleanup) and (self.key_blue_choice != self.EMPTY):
 			self.removeAction("blue")
-			self["key_blue"].setText(" ")
+			self["key_blue"].setText("")
 			self.key_blue_choice = self.EMPTY
 		if len(self.list) == 0:
 			return
@@ -329,7 +329,7 @@ class TimerEditList(Screen):
 		self.moviename = f
 		path = resolveFilename(SCOPE_HDD)
 		try:
-			files = os.listdir(path)
+			files = listdir(path)
 		except:
 			files = ""
 		for file in files:
@@ -383,15 +383,15 @@ class TimerEditList(Screen):
 			self.updateState()
 
 	def MoveToTrash(self, trashpath):
-		if not os.path.exists(trashpath):
-			os.system("mkdir -p %s" % trashpath)
+		if not exists(trashpath):
+			system("mkdir -p %s" % trashpath)
 		self.removeTimer(True)
-		moviepath = os.path.normpath(resolveFilename(SCOPE_HDD))
+		moviepath = normpath(resolveFilename(SCOPE_HDD))
 		movedList = []
-		files = os.listdir(moviepath)
+		files = listdir(moviepath)
 		for file in files:
 			if file.startswith(self.moviename):
-				movedList.append((os.path.join(moviepath, file), os.path.join(trashpath, file)))
+				movedList.append((pathjoin(moviepath, file), pathjoin(trashpath, file)))
 		Tools.CopyFiles.moveFiles(movedList, None)
 
 	def delete(self):
@@ -408,10 +408,10 @@ class TimerEditList(Screen):
 		path = resolveFilename(SCOPE_HDD)
 		self.removeTimer(True)
 		from enigma import eBackgroundFileEraser
-		files = os.listdir(path)
+		files = listdir(path)
 		for file in files:
 			if file.startswith(f):
-				eBackgroundFileEraser.getInstance().erase(os.path.realpath(path + file))
+				eBackgroundFileEraser.getInstance().erase(realpath(path + file))
 
 	def refill(self):
 		oldsize = len(self.list)
@@ -525,10 +525,10 @@ class TimerSanityConflict(Screen):
 		self["list"] = MenuList(self.list)
 		self["timer2"] = TimerList(self.list2)
 
-		self["key_red"] = Button(_("Edit new entry"))
-		self["key_green"] = Button(" ")
-		self["key_yellow"] = Button(" ")
-		self["key_blue"] = Button(" ")
+		self["key_red"] = StaticText(_("Edit new entry"))
+		self["key_green"] = StaticText("")
+		self["key_yellow"] = StaticText("")
+		self["key_blue"] = StaticText("")
 
 		self.key_green_choice = self.EMPTY
 		self.key_yellow_choice = self.EMPTY
@@ -611,7 +611,7 @@ class TimerSanityConflict(Screen):
 				self.key_green_choice = self.ENABLE
 			elif self.timer[0].isRunning() and not self.timer[0].repeated and self.key_green_choice != self.EMPTY:
 				self.removeAction("green")
-				self["key_green"].setText(" ")
+				self["key_green"].setText("")
 				self.key_green_choice = self.EMPTY
 			elif (not self.timer[0].isRunning() or self.timer[0].repeated) and self.key_green_choice != self.DISABLE:
 				self["actions"].actions.update({"green": self.toggleNewTimer})
@@ -631,7 +631,7 @@ class TimerSanityConflict(Screen):
 					self.key_blue_choice = self.ENABLE
 				elif self.timer[x].isRunning() and not self.timer[x].repeated and self.key_blue_choice != self.EMPTY:
 					self.removeAction("blue")
-					self["key_blue"].setText(" ")
+					self["key_blue"].setText("")
 					self.key_blue_choice = self.EMPTY
 				elif (not self.timer[x].isRunning() or self.timer[x].repeated) and self.key_blue_choice != self.DISABLE:
 					self["actions"].actions.update({"blue": self.toggleTimer})
@@ -641,11 +641,11 @@ class TimerSanityConflict(Screen):
 #FIXME.... this doesnt hide the buttons self.... just the text
 			if self.key_yellow_choice != self.EMPTY:
 				self.removeAction("yellow")
-				self["key_yellow"].setText(" ")
+				self["key_yellow"].setText("")
 				self.key_yellow_choice = self.EMPTY
 			if self.key_blue_choice != self.EMPTY:
 				self.removeAction("blue")
-				self["key_blue"].setText(" ")
+				self["key_blue"].setText("")
 				self.key_blue_choice = self.EMPTY
 
 
