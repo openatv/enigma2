@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-04-17 12:35+0000\n"
-"PO-Revision-Date: 2022-04-15 13:16+0000\n"
+"PO-Revision-Date: 2022-04-20 06:30+0000\n"
 "Last-Translator: tomppaa <tomzza89@gmail.com>\n"
 "Language-Team: Finnish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/fi/>\n"
 "Language: fi\n"
@@ -1335,11 +1335,11 @@ msgstr "%s lisä näyttöjä"
 
 #, python-format
 msgid "%s has been activated."
-msgstr ""
+msgstr "%s on aktivoitu."
 
 #, python-format
 msgid "%s has been disabled."
-msgstr ""
+msgstr "%s on poistettu käytöstä."
 
 #, python-format
 msgid "%s information"
@@ -2124,6 +2124,9 @@ msgid ""
 "\n"
 "Go to Deep Standby now?"
 msgstr ""
+"Tallennus, tallennusajastin tai virran ajastin on käynnissä tai alkaa 15 minuutin kuluessa. %s pidennetään 30 minuuttiin. %s %s siirtyy syvään valmiustilaan tallennuksen tai virran ajastustapahtuman jälkeen.\n"
+"\n"
+"Siirry syvään valmiustilaan nyt?"
 
 msgid "A repeating timer or just once?"
 msgstr "Tehdäänkö toistuva vai kerta ajastus?"
@@ -3012,7 +3015,7 @@ msgid "At End:"
 msgstr "Lopussa:"
 
 msgid "At end of current program"
-msgstr ""
+msgstr "Nykyisen ohjelman lopussa"
 
 msgid "Athletics"
 msgstr "Yleisurheilu"
@@ -4877,10 +4880,10 @@ msgid "Configure the duration in minutes for the screensaver."
 msgstr "Määrittää, käytetäänkö näytönsäästäjää ja jos, niin kuinka pitkän ajan kuluttua se aktivoidaan."
 
 msgid "Configure the duration, in minutes, before the energy saver timer activates."
-msgstr ""
+msgstr "Määritä kesto minuutteina ennen kuin energian säästöajastin aktivoituu."
 
 msgid "Configure the duration, in minutes, before the sleep timer activates."
-msgstr ""
+msgstr "Määritä kesto minuutteina, ennen kuin uniajastin aktivoituu."
 
 msgid "Configure the end coordinate in x of the teletext display area."
 msgstr "Määritä loppukoordinaatti tekstitv:een X leveys."
@@ -7204,31 +7207,31 @@ msgid "Energie"
 msgstr "Energia"
 
 msgid "Energy Timer"
-msgstr ""
+msgstr "Energia ajastin"
 
 msgid "Energy saver action"
-msgstr ""
+msgstr "Energiansäästö toiminto"
 
 msgid "Energy saver activation delay"
-msgstr ""
+msgstr "Energiansäästäjän aktivoinnin viive"
 
 msgid "Energy timer"
-msgstr ""
+msgstr "Energia ajastin"
 
 #, python-format
 msgid "Energy timer: %d minute remains."
 msgid_plural "Energy timer: %d minutes remain."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Energia ajastin: %d minuutti jäljellä."
+msgstr[1] "Energia ajastin: %d minuuttia jäljellä."
 
 #, python-format
 msgid "Energy timer: %d second remains."
 msgid_plural "Energy timer: %d seconds remain."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Energia-ajastin: %d sekuntia jäljellä."
+msgstr[1] "Energia-ajastin: %d sekuntia jäljellä."
 
 msgid "Energy timer: Inactive."
-msgstr ""
+msgstr "Energia-ajastin: Ei käytössä."
 
 msgid "English"
 msgstr "Englanti"
@@ -15448,10 +15451,10 @@ msgid "Select the type of Single Cable Reception device you are using."
 msgstr "Valitse käyttämäsi laitteen tyyppi."
 
 msgid "Select the type of shutdown desired when the energy timer activates."
-msgstr ""
+msgstr "Valitse haluamasi sammutus tyyppi, kun energia ajastin aktivoituu."
 
 msgid "Select the type of shutdown desired when the steep timer activates."
-msgstr ""
+msgstr "Valitse haluamasi sammutustyyppi, kun uniajastin aktivoituu."
 
 msgid "Select upgrade source"
 msgstr "Valitse päivityksen lähdeosoite"
@@ -16978,7 +16981,7 @@ msgid "Sleep Timer"
 msgstr "Uniajastin"
 
 msgid "Sleep Timer Settings"
-msgstr ""
+msgstr "Uniajastimen asetukset"
 
 msgid "Sleep delay"
 msgstr "Sammumisen viive"
@@ -16987,28 +16990,28 @@ msgid "Sleep long"
 msgstr "Nuku pitkään"
 
 msgid "Sleep timer"
-msgstr ""
+msgstr "Uniajastin"
 
 msgid "Sleep timer action"
-msgstr ""
+msgstr "Uniajastimen toiminnot"
 
 msgid "Sleep timer activation delay"
-msgstr ""
+msgstr "Uniajastimen aktivointi viive"
 
 #, python-format
 msgid "Sleep timer: %d minute remains."
 msgid_plural "Sleep timer: %d minutes remain."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Uniajastin: %d minuutti jäljellä."
+msgstr[1] "Uniajastin: %d minuuttia jäljellä."
 
 #, python-format
 msgid "Sleep timer: %d second remains."
 msgid_plural "Sleep timer: %d seconds remain."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Uniajastin: %d sekuntia jäljellä."
+msgstr[1] "Uniajastin: %d sekuntia jäljellä."
 
 msgid "Sleep timer: Inactive."
-msgstr ""
+msgstr "Uniajastin: Ei käytössä."
 
 msgid "SleepTimer"
 msgstr "Uniajastin"
@@ -18322,6 +18325,9 @@ msgid ""
 "\n"
 "Press OK to continue using the %s %s."
 msgstr ""
+"Energia ajastin haluaa asettaa %s %s arvoon %s.\n"
+"\n"
+"Paina OK jatkaaksesi %s %s."
 
 msgid "The following files were found..."
 msgstr "Seuraavat tiedostot löytyi..."
@@ -18378,6 +18384,9 @@ msgid ""
 "\n"
 "Do that now or extend the timer?"
 msgstr ""
+"Uniajastin haluaa asettaa %s %s:n %s:een.\n"
+"\n"
+"Tehdäänkö se nyt vai jatketaanko ajastinta?"
 
 msgid ""
 "The software management extension is not installed!\n"
