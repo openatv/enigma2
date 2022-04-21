@@ -39,7 +39,6 @@ class TimerEditList(Screen):
 
 	def __init__(self, session):
 		Screen.__init__(self, session)
-		self.setTitle(_("Timer List"))
 		self.onChangedEntry = []
 		self.list = []
 		self.fillTimerList()
