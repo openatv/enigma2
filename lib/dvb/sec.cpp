@@ -511,7 +511,8 @@ RESULT eDVBSatelliteEquipmentControl::prepare(iDVBFrontend &frontend, const eDVB
 			sec_fe->getData(eDVBFrontend::TONEBURST, lastToneburst);
 			sec_fe->getData(eDVBFrontend::ROTOR_CMD, lastRotorCmd);
 			sec_fe->getData(eDVBFrontend::ROTOR_POS, curRotorPos);
-			bool useExternalRotorCmd = has_external_rotor(slot_id_to_fe_id(slot_id));
+			//with simulate we don't want to move the dish and spam the log with useless messages
+			bool useExternalRotorCmd = !simulate && has_external_rotor(slot_id_to_fe_id(slot_id));
 
 			if (lastcsw == lastucsw && lastToneburst == lastucsw && lastucsw == -1)
 				needDiSEqCReset = true;
@@ -1101,7 +1102,7 @@ RESULT eDVBSatelliteEquipmentControl::prepare(iDVBFrontend &frontend, const eDVB
 					sec_sequence.push_back( eSecCommand(eSecCommand::SLEEP, m_params[DELAY_AFTER_VOLTAGE_CHANGE_BEFORE_MOTOR_CMD]) );  // wait 150msec after voltage change
 			}
 
-			if (useExternalRotorCmd && !sat.no_rotor_command_on_tune && !simulate) {
+			if (useExternalRotorCmd && !sat.no_rotor_command_on_tune) {
 				move_external_rotor(slot_id_to_fe_id(slot_id), sat.orbital_position, sw_param.m_rotorPosNum);
 				sec_fe->setData(eDVBFrontend::NEW_ROTOR_POS, sat.orbital_position);
 				int mrt;
