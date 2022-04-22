@@ -1,31 +1,32 @@
-from __future__ import print_function
+from functools import cmp_to_key
+from os import listdir, system
+from os.path import exists, join as pathjoin, normpath, realpath
+from time import localtime, time
+
+from enigma import eEPGCache
+
+from RecordTimer import AFTEREVENT, RecordTimerEntry, parseEvent
+from ServiceReference import ServiceReference
+from timer import TimerEntry as RealTimerEntry
 from Components.ActionMap import ActionMap
-from Components.Button import Button
 from Components.Label import Label
 from Components.config import config
 from Components.MenuList import MenuList
 from Components.TimerList import TimerList
 from Components.TimerSanityCheck import TimerSanityCheck
 from Components.UsageConfig import preferredTimerPath
-from Components.Sources.StaticText import StaticText
-from Components.Sources.ServiceEvent import ServiceEvent
 from Components.Sources.Event import Event
-from RecordTimer import RecordTimerEntry, parseEvent, AFTEREVENT
-from Screens.Screen import Screen
+from Components.Sources.ServiceEvent import ServiceEvent
+from Components.Sources.StaticText import StaticText
 from Screens.ChoiceBox import ChoiceBox
-from Screens.MessageBox import MessageBox
-from ServiceReference import ServiceReference
 from Screens.EventView import EventViewSimple
+from Screens.MessageBox import MessageBox
+from Screens.Screen import Screen
 from Screens.TimerEntry import TimerEntry, TimerLog
 from Tools.BoundFunction import boundFunction
+from Tools.CopyFiles import moveFiles
+from Tools.Directories import SCOPE_HDD, isPluginInstalled, resolveFilename
 from Tools.FuzzyDate import FuzzyTime
-from Tools.Directories import resolveFilename, SCOPE_HDD, isPluginInstalled
-from time import time, localtime
-from timer import TimerEntry as RealTimerEntry
-from enigma import eServiceCenter, eEPGCache
-from functools import cmp_to_key
-import Tools.CopyFiles
-import os
 
 
 class TimerEditList(Screen):
@@ -38,62 +39,63 @@ class TimerEditList(Screen):
 
 	def __init__(self, session):
 		Screen.__init__(self, session)
-		Screen.setTitle(self, _("Timer List"))
-
 		self.onChangedEntry = []
-		list = []
-		self.list = list
+		self.list = []
 		self.fillTimerList()
-
-		self["timerlist"] = TimerList(list)
-
+		self["timerlist"] = TimerList([])
 		self.key_red_choice = self.EMPTY
 		self.key_yellow_choice = self.EMPTY
 		self.key_blue_choice = self.EMPTY
-
-		self["key_red"] = Button(" ")
-		self["key_green"] = Button(_("Add"))
-		self["key_yellow"] = Button(" ")
-		self["key_blue"] = Button(" ")
-
+		self["key_red"] = StaticText("")
+		self["key_green"] = StaticText(_("Add"))
+		self["key_yellow"] = StaticText("")
+		self["key_blue"] = StaticText("")
 		self["description"] = Label()
 		self["ServiceEvent"] = ServiceEvent()
 		self["Event"] = Event()
-
-		self["actions"] = ActionMap(["OkCancelActions", "DirectionActions", "ShortcutActions", "TimerEditActions"],
-			{
-				"ok": self.openEdit,
-				"cancel": self.leave,
-				"green": self.addCurrentTimer,
-				"log": self.showLog,
-				"left": self.left,
-				"right": self.right,
-				"up": self.up,
-				"down": self.down
-			}, -1)
+		self["actions"] = ActionMap(["OkCancelActions", "DirectionActions", "ShortcutActions", "TimerEditActions"], {
+			"ok": self.openEdit,
+			"cancel": self.leave,
+			"green": self.addCurrentTimer,
+			"log": self.showLog,
+			# "top": self.moveTop,
+			"left": self.pageUp,
+			"up": self.moveUp,
+			"down": self.moveDown,
+			"right": self.pageDown,
+			# "bottom": self.moveBottom
+		}, prio=-1)
 		self.setTitle(_("Timer overview"))
 		# Disabled because it crashes on some boxes with SSD ######################
-		#self.session.nav.RecordTimer.on_state_change.append(self.onStateChange)
+		# self.session.nav.RecordTimer.on_state_change.append(self.onStateChange)
 		# #########################################################################
 		self.onShown.append(self.updateState)
 
 	def createSummary(self):
 		return TimerEditListSummary
 
-	def up(self):
-		self["timerlist"].instance.moveSelection(self["timerlist"].instance.moveUp)
+	def moveTop(self):
+		self["timerlist"].instance.moveSelection(self["timerlist"].instance.moveTop)
 		self.updateState()
 
-	def down(self):
-		self["timerlist"].instance.moveSelection(self["timerlist"].instance.moveDown)
-		self.updateState()
-
-	def left(self):
+	def pageUp(self):
 		self["timerlist"].instance.moveSelection(self["timerlist"].instance.pageUp)
 		self.updateState()
 
-	def right(self):
+	def moveUp(self):
+		self["timerlist"].instance.moveSelection(self["timerlist"].instance.moveUp)
+		self.updateState()
+
+	def moveDown(self):
+		self["timerlist"].instance.moveSelection(self["timerlist"].instance.moveDown)
+		self.updateState()
+
+	def pageDown(self):
 		self["timerlist"].instance.moveSelection(self["timerlist"].instance.pageDown)
+		self.updateState()
+
+	def moveBottom(self):
+		self["timerlist"].instance.moveSelection(self["timerlist"].instance.moveEnd)
 		self.updateState()
 
 	def toggleDisabledState(self):
@@ -101,17 +103,17 @@ class TimerEditList(Screen):
 		if cur:
 			t = cur
 			if t.disabled:
-# 				print "try to ENABLE timer"
+				# print("[TimerEdit] Try to ENABLE the timer.")
 				t.enable()
 				timersanitycheck = TimerSanityCheck(self.session.nav.RecordTimer.timer_list, cur)
 				if not timersanitycheck.check():
 					t.disable()
-					print("Sanity check failed")
+					print("[TimerEdit] Sanity check failed!")
 					simulTimerList = timersanitycheck.getSimulTimerList()
 					if simulTimerList is not None:
 						self.session.openWithCallback(self.finishedEdit, TimerSanityConflict, simulTimerList)
 				else:
-					print("Sanity check passed")
+					print("[TimerEdit] Sanity check passed.")
 					if timersanitycheck.doubleCheck():
 						t.disable()
 			else:
@@ -122,7 +124,7 @@ class TimerEditList(Screen):
 							(_("Stop current event and disable coming events"), "stopall"),
 							(_("Don't stop current event but disable coming events"), "stoponlycoming")
 						)
-						self.session.openWithCallback(boundFunction(self.runningEventCallback, t), ChoiceBox, title=_("Repeating event currently recording... What do you want to do?"), list=list)
+						self.session.openWithCallback(boundFunction(self.runningEventCallback, t), ChoiceBox, title=_("Repeating event currently recording.  What do you want to do?"), list=list)
 				else:
 					t.disable()
 			self.session.nav.RecordTimer.timeChanged(t)
@@ -154,7 +156,6 @@ class TimerEditList(Screen):
 				self["actions"].actions.update({"red": self.removeTimerQuestion})
 				self["key_red"].setText(_("Delete"))
 				self.key_red_choice = self.DELETE
-
 			if cur.disabled and (self.key_yellow_choice != self.ENABLE):
 				self["actions"].actions.update({"yellow": self.toggleDisabledState})
 				self["key_yellow"].setText(_("Enable"))
@@ -171,53 +172,46 @@ class TimerEditList(Screen):
 			self["description"].setText(" ")
 			if self.key_red_choice != self.EMPTY:
 				self.removeAction("red")
-				self["key_red"].setText(" ")
+				self["key_red"].setText("")
 				self.key_red_choice = self.EMPTY
 			if self.key_yellow_choice != self.EMPTY:
 				self.removeAction("yellow")
-				self["key_yellow"].setText(" ")
+				self["key_yellow"].setText("")
 				self.key_yellow_choice = self.EMPTY
-
 		showCleanup = True
 		for x in self.list:
 			if (not x[0].disabled) and (x[1] == True):
 				break
 		else:
 			showCleanup = False
-
 		if showCleanup and (self.key_blue_choice != self.CLEANUP):
 			self["actions"].actions.update({"blue": self.cleanupQuestion})
 			self["key_blue"].setText(_("Cleanup"))
 			self.key_blue_choice = self.CLEANUP
 		elif (not showCleanup) and (self.key_blue_choice != self.EMPTY):
 			self.removeAction("blue")
-			self["key_blue"].setText(" ")
+			self["key_blue"].setText("")
 			self.key_blue_choice = self.EMPTY
 		if len(self.list) == 0:
 			return
 		timer = self['timerlist'].getCurrent()
-
 		if timer:
 			try:
 				name = str(timer.name)
 				time = "%s %s ... %s" % (FuzzyTime(timer.begin)[0], FuzzyTime(timer.begin)[1], FuzzyTime(timer.end)[1])
-				duration = ("(%d " + _("mins") + ")") % ((timer.end - timer.begin) / 60)
+				duration = ("(%d " + _("mins") + ")") % ((timer.end - timer.begin) / 60)  # FIXME: This should handle singular/plural durations!
 				service = str(timer.service_ref.getServiceName())
-
 				if timer.state == RealTimerEntry.StateWaiting:
 					state = _("waiting")
 				elif timer.state == RealTimerEntry.StatePrepared:
 					state = _("about to start")
 				elif timer.state == RealTimerEntry.StateRunning:
-					if timer.justplay:
-						state = _("zapped")
-					else:
-						state = _("recording...")
+					state = _("zapped") if timer.justplay else _("recording...")
 				elif timer.state == RealTimerEntry.StateEnded:
 					state = _("done!")
 				else:
 					state = _("<unknown>")
-			except:
+			except Exception:
 				name = ""
 				time = ""
 				duration = ""
@@ -229,7 +223,6 @@ class TimerEditList(Screen):
 			service = ""
 		for cb in self.onChangedEntry:
 			cb(name, time, duration, service, state)
-
 		if config.usage.timerlist_show_epg.value:
 			event = self.getEPGEvent(cur)
 			if event:
@@ -237,8 +230,7 @@ class TimerEditList(Screen):
 				self["ServiceEvent"].newService(cur.service_ref.ref)
 
 	def fillTimerList(self):
-		#helper function to move finished timers to end of list
-		def _cmp(a, b):
+		def _cmp(a, b):  # Helper function to move finished timers to end of list.
 			return (a > b) - (a < b)
 
 		def eol_compare(x, y):
@@ -250,7 +242,7 @@ class TimerEditList(Screen):
 		del _list[:]
 		_list.extend([(timer, False) for timer in self.session.nav.RecordTimer.timer_list])
 		_list.extend([(timer, True) for timer in self.session.nav.RecordTimer.processed_timers])
-		if config.usage.timerlist_finished_timer_position.index: #end of list
+		if config.usage.timerlist_finished_timer_position.index:  # End of list.
 			_list.sort(key=cmp_to_key(eol_compare))
 		else:
 			_list.sort(key=lambda x: x[0].begin)
@@ -263,21 +255,18 @@ class TimerEditList(Screen):
 			if hasattr(timer, "eit") and timer.eit:
 				event = epgcache.lookupEventId(timer.service_ref.ref, timer.eit)
 			if not event:
-				if isinstance(timer.service_ref, str):
-					ref = timer.service_ref
-				else:
-					ref = timer.service_ref.ref.toString()
+				ref = timer.service_ref if isinstance(timer.service_ref, str) else timer.service_ref.ref.toString()
 				begin = timer.begin + config.recording.margin_before.value * 60
 				duration = (timer.end - begin - config.recording.margin_after.value * 60) // 60
 				if duration <= 0:
-					duration = 30 # it seems to be a reminder or a justplay timer without end time, so search epg events for the next 30 min
+					duration = 30  # It seems to be a reminder or a justplay timer without end time, so search EPG events for the next 30 minutes.
 				list = epgcache.lookupEvent(['IBDT', (ref, 0, begin, duration)])
 				if len(list):
 					for epgevent in list:
 						if timer.name.startswith(epgevent[3]):
 							event_id = epgevent[0]
 							break
-					if not event_id and timer.begin != timer.end: # no match at title search --> search in time span
+					if not event_id and timer.begin != timer.end:  # No match at title search --> search in time span.
 						for epgevent in list:
 							if timer.end >= (begin + epgevent[2]) and timer.begin <= epgevent[1]:
 								event_id = epgevent[0]
@@ -321,30 +310,29 @@ class TimerEditList(Screen):
 		f = f.replace(':', '_')
 		f = f.replace(',', '_')
 		f = f.replace('/', '_')
-
 		if not cur:
 			return
-
 		onhdd = False
 		self.moviename = f
 		path = resolveFilename(SCOPE_HDD)
 		try:
-			files = os.listdir(path)
-		except:
+			files = listdir(path)
+		except (IOError, OSError) as err:
 			files = ""
 		for file in files:
 			if file.startswith(f):
 				onhdd = True
 				break
-
 		if onhdd:
-			message = (_("Do you really want to delete %s?") % (cur.name))
-			choices = [(_("No"), "no"),
-					(_("Yes, delete from Timerlist"), "yes"),
-					(_("Yes, delete from Timerlist and delete recording"), "yesremove")]
+			message = (_("Do you really want to delete '%s'?") % (cur.name))
+			choices = [
+				(_("No"), "no"),
+				(_("Yes, delete from Timerlist"), "yes"),
+				(_("Yes, delete from Timerlist and delete recording"), "yesremove")
+			]
 			self.session.openWithCallback(self.startDelete, ChoiceBox, title=message, list=choices)
 		else:
-			self.session.openWithCallback(self.removeTimer, MessageBox, _("Do you really want to delete %s?") % (cur.name), default=False)
+			self.session.openWithCallback(self.removeTimer, MessageBox, _("Do you really want to delete '%s'?") % (cur.name), default=False)
 
 	def startDelete(self, answer):
 		if not answer or not answer[1]:
@@ -383,21 +371,21 @@ class TimerEditList(Screen):
 			self.updateState()
 
 	def MoveToTrash(self, trashpath):
-		if not os.path.exists(trashpath):
-			os.system("mkdir -p %s" % trashpath)
+		if not exists(trashpath):
+			system("mkdir -p %s" % trashpath)
 		self.removeTimer(True)
-		moviepath = os.path.normpath(resolveFilename(SCOPE_HDD))
+		moviepath = normpath(resolveFilename(SCOPE_HDD))
 		movedList = []
-		files = os.listdir(moviepath)
+		files = listdir(moviepath)
 		for file in files:
 			if file.startswith(self.moviename):
-				movedList.append((os.path.join(moviepath, file), os.path.join(trashpath, file)))
-		Tools.CopyFiles.moveFiles(movedList, None)
+				movedList.append((pathjoin(moviepath, file), pathjoin(trashpath, file)))
+		moveFiles(movedList, None)
 
 	def delete(self):
 		item = self["timerlist"].getCurrent()
 		if item is None:
-			return # huh?
+			return  # Huh?
 		name = item.name
 		service = str(item.service_ref.getServiceName())
 		t = localtime(item.begin)
@@ -408,10 +396,10 @@ class TimerEditList(Screen):
 		path = resolveFilename(SCOPE_HDD)
 		self.removeTimer(True)
 		from enigma import eBackgroundFileEraser
-		files = os.listdir(path)
+		files = listdir(path)
 		for file in files:
 			if file.startswith(f):
-				eBackgroundFileEraser.getInstance().erase(os.path.realpath(path + file))
+				eBackgroundFileEraser.getInstance().erase(realpath(path + file))
 
 	def refill(self):
 		oldsize = len(self.list)
@@ -431,10 +419,8 @@ class TimerEditList(Screen):
 			info = service.info()
 			if info is not None:
 				event = info.getEvent(0)
-
-		# FIXME only works if already playing a service
+		# FIXME: Only works if already playing a service!
 		serviceref = ServiceReference(self.session.nav.getCurrentlyPlayingServiceOrGroup())
-
 		if event is None:
 			data = (int(time()), int(time() + 60), "", "", None)
 		else:
@@ -465,9 +451,8 @@ class TimerEditList(Screen):
 			else:
 				success = True
 			if success:
-				print("Sanity check passed")
+				print("[TimerEdit] Sanity check passed.")
 				self.session.nav.RecordTimer.timeChanged(entry)
-
 			self.fillTimerList()
 			self.updateState()
 
@@ -490,7 +475,7 @@ class TimerEditList(Screen):
 
 	def leave(self):
 		# Disabled because it crashes on some boxes with SSD ######################
-		#self.session.nav.RecordTimer.on_state_change.append(self.onStateChange)
+		# self.session.nav.RecordTimer.on_state_change.append(self.onStateChange)
 		# #########################################################################
 		self.close()
 
@@ -508,40 +493,34 @@ class TimerSanityConflict(Screen):
 	def __init__(self, session, timer):
 		Screen.__init__(self, session)
 		self.timer = timer
-		print("TimerSanityConflict")
-
+		print("[TimerEdit] TimerSanityConflict")
 		self["timer1"] = TimerList(self.getTimerList(timer[0]))
 		self.list = []
 		self.list2 = []
 		count = 0
 		for x in timer:
 			if count != 0:
-				self.list.append((_("Conflicting timer") + " " + str(count), x))
+				self.list.append(("%s %d" % (_("Conflicting timer"), count), x))
 				self.list2.append((timer[count], False))
 			count += 1
 		if count == 1:
 			self.list.append((_("Channel not in services list")))
-
 		self["list"] = MenuList(self.list)
 		self["timer2"] = TimerList(self.list2)
-
-		self["key_red"] = Button(_("Edit new entry"))
-		self["key_green"] = Button(" ")
-		self["key_yellow"] = Button(" ")
-		self["key_blue"] = Button(" ")
-
+		self["key_red"] = StaticText(_("Edit new entry"))
+		self["key_green"] = StaticText("")
+		self["key_yellow"] = StaticText("")
+		self["key_blue"] = StaticText("")
 		self.key_green_choice = self.EMPTY
 		self.key_yellow_choice = self.EMPTY
 		self.key_blue_choice = self.EMPTY
-
-		self["actions"] = ActionMap(["OkCancelActions", "DirectionActions", "ShortcutActions", "TimerEditActions"],
-			{
-				"ok": self.leave_ok,
-				"cancel": self.leave_cancel,
-				"red": self.editTimer1,
-				"up": self.up,
-				"down": self.down
-			}, -1)
+		self["actions"] = ActionMap(["OkCancelActions", "DirectionActions", "ShortcutActions", "TimerEditActions"], {
+			"ok": self.leave_ok,
+			"cancel": self.leave_cancel,
+			"red": self.editTimer1,
+			"up": self.up,
+			"down": self.down
+		}, prio=-1)
 		self.setTitle(_("Timer sanity error"))
 		self.onShown.append(self.updateState)
 
@@ -558,21 +537,19 @@ class TimerSanityConflict(Screen):
 		if self.timer[0].disabled:
 			self.timer[0].disabled = False
 			self.session.nav.RecordTimer.timeChanged(self.timer[0])
-
 		elif not self.timer[0].isRunning():
 			self.timer[0].disabled = True
 			self.session.nav.RecordTimer.timeChanged(self.timer[0])
 		self.finishedEdit((True, self.timer[0]))
 
 	def toggleTimer(self):
-		x = self["list"].getSelectedIndex() + 1 # the first is the new timer so we do +1 here
+		x = self["list"].getSelectedIndex() + 1  # The first is the new timer so we do +1 here.
 		if self.timer[x].disabled:
 			self.timer[x].disabled = False
 			self.session.nav.RecordTimer.timeChanged(self.timer[x])
 			if not self.timer[0].isRunning():
 				self.timer[0].disabled = True
 				self.session.nav.RecordTimer.timeChanged(self.timer[0])
-
 		elif not self.timer[x].isRunning():
 			self.timer[x].disabled = True
 			self.session.nav.RecordTimer.timeChanged(self.timer[x])
@@ -611,15 +588,14 @@ class TimerSanityConflict(Screen):
 				self.key_green_choice = self.ENABLE
 			elif self.timer[0].isRunning() and not self.timer[0].repeated and self.key_green_choice != self.EMPTY:
 				self.removeAction("green")
-				self["key_green"].setText(" ")
+				self["key_green"].setText("")
 				self.key_green_choice = self.EMPTY
 			elif (not self.timer[0].isRunning() or self.timer[0].repeated) and self.key_green_choice != self.DISABLE:
 				self["actions"].actions.update({"green": self.toggleNewTimer})
 				self["key_green"].setText(_("Disable"))
 				self.key_green_choice = self.DISABLE
-
 		if len(self.timer) > 1:
-			x = self["list"].getSelectedIndex() + 1 # the first is the new timer so we do +1 here
+			x = self["list"].getSelectedIndex() + 1  # The first is the new timer so we do +1 here.
 			if self.timer[x] is not None:
 				if self.key_yellow_choice == self.EMPTY:
 					self["actions"].actions.update({"yellow": self.editTimer2})
@@ -631,21 +607,21 @@ class TimerSanityConflict(Screen):
 					self.key_blue_choice = self.ENABLE
 				elif self.timer[x].isRunning() and not self.timer[x].repeated and self.key_blue_choice != self.EMPTY:
 					self.removeAction("blue")
-					self["key_blue"].setText(" ")
+					self["key_blue"].setText("")
 					self.key_blue_choice = self.EMPTY
 				elif (not self.timer[x].isRunning() or self.timer[x].repeated) and self.key_blue_choice != self.DISABLE:
 					self["actions"].actions.update({"blue": self.toggleTimer})
 					self["key_blue"].setText(_("Disable"))
 					self.key_blue_choice = self.DISABLE
 		else:
-#FIXME.... this doesnt hide the buttons self.... just the text
+			# FIXME: This doesn't hide the buttons just the text!
 			if self.key_yellow_choice != self.EMPTY:
 				self.removeAction("yellow")
-				self["key_yellow"].setText(" ")
+				self["key_yellow"].setText("")
 				self.key_yellow_choice = self.EMPTY
 			if self.key_blue_choice != self.EMPTY:
 				self.removeAction("blue")
-				self["key_blue"].setText(" ")
+				self["key_blue"].setText("")
 				self.key_blue_choice = self.EMPTY
 
 
