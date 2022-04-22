@@ -3,7 +3,6 @@ from time import time
 from timer import TimerEntry as RealTimerEntry
 from PowerTimer import PowerTimerEntry, AFTEREVENT
 from Components.ActionMap import ActionMap
-from Components.Button import Button
 from Components.config import config
 from Components.Label import Label
 from Components.PowerTimerList import PowerTimerList, gettimerType, getafterEvent
@@ -28,7 +27,6 @@ class PowerTimerEditList(Screen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
 		self.skinName = "TimerEditList"
-		Screen.setTitle(self, _("PowerTimer list"))
 
 		self.onChangedEntry = []
 		list = []
@@ -41,10 +39,10 @@ class PowerTimerEditList(Screen):
 		self.key_yellow_choice = self.EMPTY
 		self.key_blue_choice = self.EMPTY
 
-		self["key_red"] = Button(" ")
-		self["key_green"] = Button(_("Add"))
-		self["key_yellow"] = Button(" ")
-		self["key_blue"] = Button(" ")
+		self["key_red"] = StaticText("")
+		self["key_green"] = StaticText(_("Add"))
+		self["key_yellow"] = StaticText("")
+		self["key_blue"] = StaticText("")
 
 		self["description"] = Label()
 		self["ServiceEvent"] = ServiceEvent()
